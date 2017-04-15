@@ -70,12 +70,16 @@ struct attack_hit_type attack_hit_text[] =
 
 void appear(struct char_data * ch)
 {
-  act("$n slowly fades into existence.", FALSE, ch, 0, 0, TO_ROOM);
-
   if (affected_by_spell(ch, SPELL_INVISIBLE))
     affect_from_char(ch, SPELL_INVISIBLE);
 
   REMOVE_BIT(AFF_FLAGS(ch), AFF_INVISIBLE | AFF_HIDE);
+
+  if (GET_LEVEL(ch) < LVL_IMMORT)
+    act("$n slowly fades into existence.", FALSE, ch, 0, 0, TO_ROOM);
+  else
+    act("You feel a strange presence as $n appears, seemingly from nowhere.",
+	FALSE, ch, 0, 0, TO_ROOM);
 }
 
 
@@ -199,25 +203,12 @@ void set_fighting(struct char_data * ch, struct char_data * vict)
 /* remove a char from the list of fighting chars */
 void stop_fighting(struct char_data * ch)
 {
-  struct char_data *tmp;
-
-  assert(FIGHTING(ch));
+  struct char_data *temp;
 
   if (ch == next_combat_list)
     next_combat_list = ch->next_fighting;
 
-  if (combat_list == ch)
-    combat_list = ch->next_fighting;
-  else {
-    for (tmp = combat_list; tmp && (tmp->next_fighting != ch);
-	 tmp = tmp->next_fighting);
-    if (!tmp) {
-      log("SYSERR: Char fighting not found Error (fight.c, stop_fighting)");
-      abort();
-    }
-    tmp->next_fighting = ch->next_fighting;
-  }
-
+  REMOVE_FROM_LIST(ch, combat_list, next_fighting);
   ch->next_fighting = NULL;
   FIGHTING(ch) = NULL;
   GET_POS(ch) = POS_STANDING;
@@ -267,7 +258,7 @@ void make_corpse(struct char_data * ch)
 
   /* transfer character's equipment to the corpse */
   for (i = 0; i < NUM_WEARS; i++)
-    if (ch->equipment[i])
+    if (GET_EQ(ch, i))
       obj_to_obj(unequip_char(ch, i), corpse);
 
   /* transfer gold */
@@ -541,7 +532,7 @@ int skill_message(int dam, struct char_data * ch, struct char_data * vict,
   int i, j, nr;
   struct message_type *msg;
 
-  struct obj_data *weap = ch->equipment[WEAR_WIELD];
+  struct obj_data *weap = GET_EQ(ch, WEAR_WIELD);
 
   for (i = 0; i < MAX_MESSAGES; i++) {
     if (fight_messages[i].a_type == attacktype) {
@@ -643,7 +634,7 @@ void damage(struct char_data * ch, struct char_data * victim, int dam,
   if (!pk_allowed) {
     check_killer(ch, victim);
 
-    if (PLR_FLAGGED(ch, PLR_KILLER))
+    if (PLR_FLAGGED(ch, PLR_KILLER) && (ch != victim))
       dam = 0;
   }
 
@@ -703,10 +694,10 @@ void damage(struct char_data * ch, struct char_data * victim, int dam,
       sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\r\n",
 	      CCRED(victim, C_SPR), CCNRM(victim, C_SPR));
       send_to_char(buf2, victim);
-      if (MOB_FLAGGED(victim, MOB_WIMPY))
+      if (MOB_FLAGGED(victim, MOB_WIMPY) && (ch != victim))
 	do_flee(victim, "", 0, 0);
     }
-    if (!IS_NPC(victim) && GET_WIMP_LEV(victim) && victim != ch &&
+    if (!IS_NPC(victim) && GET_WIMP_LEV(victim) && (victim != ch) &&
 	GET_HIT(victim) < GET_WIMP_LEV(victim)) {
       send_to_char("You wimp out, and attempt to flee!\r\n", victim);
       do_flee(victim, "", 0, 0);
@@ -763,22 +754,25 @@ void damage(struct char_data * ch, struct char_data * victim, int dam,
 
 void hit(struct char_data * ch, struct char_data * victim, int type)
 {
-  struct obj_data *wielded = ch->equipment[WEAR_WIELD];
-  int w_type;
-  int victim_ac, calc_thaco;
-  int dam;
-  byte diceroll;
+  struct obj_data *wielded = GET_EQ(ch, WEAR_WIELD);
+  int w_type, victim_ac, calc_thaco, dam, diceroll;
 
-  extern int thaco[4][35];
+  extern int thaco[NUM_CLASSES][LVL_IMPL+1];
   extern byte backstab_mult[];
   extern struct str_app_type str_app[];
   extern struct dex_app_type dex_app[];
 
   if (ch->in_room != victim->in_room) {
-    log("SYSERR: NOT SAME ROOM WHEN FIGHTING!");
-    stop_fighting(ch);
+    if (FIGHTING(ch) && FIGHTING(ch) == victim)
+      stop_fighting(ch);
     return;
   }
+
+  if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
+    send_to_char("This room just has such a peaceful, easy feeling...\r\n", ch);
+    return;
+  }
+
   if (wielded && GET_OBJ_TYPE(wielded) == ITEM_WEAPON)
     w_type = GET_OBJ_VAL(wielded, 3) + TYPE_HIT;
   else {
@@ -792,8 +786,7 @@ void hit(struct char_data * ch, struct char_data * victim, int type)
 
   if (!IS_NPC(ch))
     calc_thaco = thaco[(int) GET_CLASS(ch)][(int) GET_LEVEL(ch)];
-  else
-    /* THAC0 for monsters is set in the HitRoll */
+  else		/* THAC0 for monsters is set in the HitRoll */
     calc_thaco = 20;
 
   calc_thaco -= str_app[STRENGTH_APPLY_INDEX(ch)].tohit;
@@ -809,6 +802,7 @@ void hit(struct char_data * ch, struct char_data * victim, int type)
 
   victim_ac = MAX(-10, victim_ac);	/* -10 is lowest */
 
+  /* decide whether this is a hit or a miss */
   if ((((diceroll < 20) && AWAKE(victim)) &&
        ((diceroll == 1) || ((calc_thaco - diceroll) > victim_ac)))) {
     if (type == SKILL_BACKSTAB)
@@ -816,7 +810,7 @@ void hit(struct char_data * ch, struct char_data * victim, int type)
     else
       damage(ch, victim, 0, w_type);
   } else {
-
+    /* okay, we know the guy has been hit.  now calculate damage. */
     dam = str_app[STRENGTH_APPLY_INDEX(ch)].todam;
     dam += GET_DAMROLL(ch);
 
@@ -838,7 +832,7 @@ void hit(struct char_data * ch, struct char_data * victim, int type)
     /* Position  incap    x 2.66 */
     /* Position  mortally x 3.00 */
 
-    dam = MAX(1, dam);		/* Not less than 0 damage */
+    dam = MAX(1, dam);		/* at least 1 hp damage min per hit */
 
     if (type == SKILL_BACKSTAB) {
       dam *= backstab_mult[(int) GET_LEVEL(ch)];
@@ -859,12 +853,30 @@ void perform_violence(void)
   for (ch = combat_list; ch; ch = next_combat_list) {
     next_combat_list = ch->next_fighting;
 
-    if (FIGHTING(ch) == NULL || ch->in_room != FIGHTING(ch)->in_room)
+    if (FIGHTING(ch) == NULL || ch->in_room != FIGHTING(ch)->in_room) {
       stop_fighting(ch);
-    else {
-      hit(ch, FIGHTING(ch), TYPE_UNDEFINED);
-      if (MOB_FLAGGED(ch, MOB_SPEC) && mob_index[GET_MOB_RNUM(ch)].func != NULL)
-	(mob_index[GET_MOB_RNUM(ch)].func) (ch, ch, 0, "");
+      continue;
     }
+
+    if (IS_NPC(ch)) {
+      if (GET_MOB_WAIT(ch) > 0) {
+	GET_MOB_WAIT(ch) -= PULSE_VIOLENCE;
+	continue;
+      }
+      GET_MOB_WAIT(ch) = 0;
+      if (GET_POS(ch) < POS_FIGHTING) {
+	GET_POS(ch) = POS_FIGHTING;
+	act("$n scrambles to $s feet!", TRUE, ch, 0, 0, TO_ROOM);
+      }
+    }
+
+    if (GET_POS(ch) < POS_FIGHTING) {
+      send_to_char("You can't fight while sitting!!\r\n", ch);
+      continue;
+    }
+
+    hit(ch, FIGHTING(ch), TYPE_UNDEFINED);
+    if (MOB_FLAGGED(ch, MOB_SPEC) && mob_index[GET_MOB_RNUM(ch)].func != NULL)
+      (mob_index[GET_MOB_RNUM(ch)].func) (ch, ch, 0, "");
   }
 }

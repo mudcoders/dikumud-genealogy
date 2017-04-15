@@ -275,7 +275,8 @@ A Side Street~
    You are in the common section of the city.  Ruined buildings made of
 clay and stone is all the view has to offer.  Most of these homes are 
 nothing but piles of rubble, but some look almost safe enough to venture
-into.  The street continues north and south and buildings line the street.
+into.
+   The street continues north and south and buildings line the street.
 ~
 52 0 1
 D0
@@ -357,8 +358,8 @@ S
 #5213
 A Side Street~
    This small side street is lined with the remains of once great
-buildings.  To the north is a dark, foreboding structure while to the
-south lies the entrance to a small tavern.  The street continues north
+buildings.  To the west is a dark, foreboding structure while to the
+east lies the entrance to a small tavern.  The street continues north
 and south.
 ~
 52 0 1
@@ -630,7 +631,7 @@ A small side street runs past the house.
 S
 #5228
 A Back Alley~
-   A narrow alley leads east to one of the city watchtowers and west to
+   A narrow alley leads west to one of the city watchtowers and east to
 a small side street.
 ~
 52 0 1
@@ -1032,5 +1033,4 @@ The market place lies this way.
 ~
 0 -1 5205
 S
-#99999
-$~
+$

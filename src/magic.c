@@ -62,111 +62,111 @@ struct char_data *read_mobile(int, int);
 const byte saving_throws[NUM_CLASSES][5][41] = {
 
   {				/* Mages */
-    {90, 70, 69, 68, 67, 66, 65, 63, 61, 60, 59,	/* 0 - 10 */
-       /* PARA */ 57, 55, 54, 53, 53, 52, 51, 50, 48, 46,	/* 11 - 20 */
-      45, 44, 42, 40, 38, 36, 34, 32, 30, 28,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 70, 69, 68, 67, 66, 65, 63, 61, 60, 59,	/* 0 - 10 */
+/* PARA */	57, 55, 54, 53, 53, 52, 51, 50, 48, 46,		/* 11 - 20 */
+		45, 44, 42, 40, 38, 36, 34, 32, 30, 28,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 55, 53, 51, 49, 47, 45, 43, 41, 40, 39,	/* 0 - 10 */
-       /* ROD */ 37, 35, 33, 31, 30, 29, 27, 25, 23, 21,	/* 11 - 20 */
-      20, 19, 17, 15, 14, 13, 12, 11, 10, 9,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 55, 53, 51, 49, 47, 45, 43, 41, 40, 39,	/* 0 - 10 */
+/* ROD */	37, 35, 33, 31, 30, 29, 27, 25, 23, 21,		/* 11 - 20 */
+		20, 19, 17, 15, 14, 13, 12, 11, 10, 9,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 65, 63, 61, 59, 57, 55, 53, 51, 50, 49,	/* 0 - 10 */
-       /* PETRI */ 47, 45, 43, 41, 40, 39, 37, 35, 33, 31,	/* 11 - 20 */
-      30, 29, 27, 25, 23, 21, 19, 17, 15, 13,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 65, 63, 61, 59, 57, 55, 53, 51, 50, 49,	/* 0 - 10 */
+/* PETRI */	47, 45, 43, 41, 40, 39, 37, 35, 33, 31,		/* 11 - 20 */
+		30, 29, 27, 25, 23, 21, 19, 17, 15, 13,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 75, 73, 71, 69, 67, 65, 63, 61, 60, 59,	/* 0 - 10 */
-       /* BREATH */ 57, 55, 53, 51, 50, 49, 47, 45, 43, 41,	/* 11 - 20 */
-      40, 39, 37, 35, 33, 31, 29, 27, 25, 23,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 75, 73, 71, 69, 67, 65, 63, 61, 60, 59,	/* 0 - 10 */
+/* BREATH */	57, 55, 53, 51, 50, 49, 47, 45, 43, 41,		/* 11 - 20 */
+		40, 39, 37, 35, 33, 31, 29, 27, 25, 23,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 60, 58, 56, 54, 52, 50, 48, 46, 45, 44,	/* 0 - 10 */
-       /* SPELL */ 42, 40, 38, 36, 35, 34, 32, 30, 28, 26,	/* 11 - 20 */
-      25, 24, 22, 20, 18, 16, 14, 12, 10, 8,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 60, 58, 56, 54, 52, 50, 48, 46, 45, 44,	/* 0 - 10 */
+/* SPELL */	42, 40, 38, 36, 35, 34, 32, 30, 28, 26,		/* 11 - 20 */
+		25, 24, 22, 20, 18, 16, 14, 12, 10, 8,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
   },
 
   {				/* Clerics */
-    {90, 50, 59, 48, 46, 45, 43, 40, 37, 35, 34,	/* 0 - 10 */
-       /* PARA */ 33, 31, 30, 29, 27, 26, 25, 24, 23, 22,	/* 11 - 20 */
-      21, 20, 18, 15, 14, 12, 10, 9, 8, 7,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 50, 59, 48, 46, 45, 43, 40, 37, 35, 34,	/* 0 - 10 */
+/* PARA */	33, 31, 30, 29, 27, 26, 25, 24, 23, 22,		/* 11 - 20 */
+		21, 20, 18, 15, 14, 12, 10, 9, 8, 7,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 70, 69, 68, 66, 65, 63, 60, 57, 55, 54,	/* 0 - 10 */
-       /* ROD */ 53, 51, 50, 49, 47, 46, 45, 44, 43, 42,	/* 11 - 20 */
-      41, 40, 38, 35, 34, 32, 30, 29, 28, 27,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 70, 69, 68, 66, 65, 63, 60, 57, 55, 54,	/* 0 - 10 */
+/* ROD */	53, 51, 50, 49, 47, 46, 45, 44, 43, 42,		/* 11 - 20 */
+		41, 40, 38, 35, 34, 32, 30, 29, 28, 27,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 65, 64, 63, 61, 60, 58, 55, 53, 50, 49,	/* 0 - 10 */
-       /* PETRI */ 48, 46, 45, 44, 43, 41, 40, 39, 38, 37,	/* 11 - 20 */
-      36, 35, 33, 31, 29, 27, 25, 24, 23, 22,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 65, 64, 63, 61, 60, 58, 55, 53, 50, 49,	/* 0 - 10 */
+/* PETRI */	48, 46, 45, 44, 43, 41, 40, 39, 38, 37,		/* 11 - 20 */
+		36, 35, 33, 31, 29, 27, 25, 24, 23, 22,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 80, 79, 78, 76, 75, 73, 70, 67, 65, 64,	/* 0 - 10 */
-       /* BREATH */ 63, 61, 60, 59, 57, 56, 55, 54, 53, 52,	/* 11 - 20 */
-      51, 50, 48, 45, 44, 42, 40, 39, 38, 37,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 80, 79, 78, 76, 75, 73, 70, 67, 65, 64,	/* 0 - 10 */
+/* BREATH */	63, 61, 60, 59, 57, 56, 55, 54, 53, 52,		/* 11 - 20 */
+		51, 50, 48, 45, 44, 42, 40, 39, 38, 37,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 75, 74, 73, 71, 70, 68, 65, 63, 60, 59,	/* 0 - 10 */
-       /* SPELL */ 58, 56, 55, 54, 53, 51, 50, 49, 48, 47,	/* 11 - 20 */
-      46, 45, 43, 41, 39, 37, 35, 34, 33, 32,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0}	/* 31 - 40 */
+		{90, 75, 74, 73, 71, 70, 68, 65, 63, 60, 59,	/* 0 - 10 */
+/* SPELL */	58, 56, 55, 54, 53, 51, 50, 49, 48, 47,		/* 11 - 20 */
+		46, 45, 43, 41, 39, 37, 35, 34, 33, 32,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0}		/* 31 - 40 */
   },
 
   {				/* Thieves */
-    {90, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56,	/* 0 - 10 */
-       /* PARA */ 55, 54, 53, 52, 51, 50, 49, 48, 47, 46,	/* 11 - 20 */
-      45, 44, 43, 42, 41, 40, 39, 38, 37, 36,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56,	/* 0 - 10 */
+/* PARA */	55, 54, 53, 52, 51, 50, 49, 48, 47, 46,		/* 11 - 20 */
+		45, 44, 43, 42, 41, 40, 39, 38, 37, 36,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 70, 68, 66, 64, 62, 60, 58, 56, 54, 52,	/* 0 - 10 */
-       /* ROD */ 50, 48, 46, 44, 42, 40, 38, 36, 34, 32,	/* 11 - 20 */
-      30, 28, 26, 24, 22, 20, 18, 16, 14, 13,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 70, 68, 66, 64, 62, 60, 58, 56, 54, 52,	/* 0 - 10 */
+/* ROD */	50, 48, 46, 44, 42, 40, 38, 36, 34, 32,		/* 11 - 20 */
+		30, 28, 26, 24, 22, 20, 18, 16, 14, 13,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 60, 59, 58, 58, 56, 55, 54, 53, 52, 51,	/* 0 - 10 */
-       /* PETRI */ 50, 49, 48, 47, 46, 45, 44, 43, 42, 41,	/* 11 - 20 */
-      40, 39, 38, 37, 36, 35, 34, 33, 32, 31,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 60, 59, 58, 58, 56, 55, 54, 53, 52, 51,	/* 0 - 10 */
+/* PETRI */	50, 49, 48, 47, 46, 45, 44, 43, 42, 41,		/* 11 - 20 */
+		40, 39, 38, 37, 36, 35, 34, 33, 32, 31,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71,	/* 0 - 10 */
-       /* BREATH */ 70, 69, 68, 67, 66, 65, 64, 63, 62, 61,	/* 11 - 20 */
-      60, 59, 58, 57, 56, 55, 54, 53, 52, 51,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0},	/* 31 - 40 */
+		{90, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71,	/* 0 - 10 */
+/* BREATH */	70, 69, 68, 67, 66, 65, 64, 63, 62, 61,		/* 11 - 20 */
+		60, 59, 58, 57, 56, 55, 54, 53, 52, 51,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
 
-    {90, 75, 73, 71, 69, 67, 65, 63, 61, 59, 57,	/* 0 - 10 */
-       /* SPELL */ 55, 53, 51, 49, 47, 45, 43, 41, 39, 37,	/* 11 - 20 */
-      35, 33, 31, 29, 27, 25, 23, 21, 19, 17,	/* 21 - 30 */
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0}	/* 31 - 40 */
+		{90, 75, 73, 71, 69, 67, 65, 63, 61, 59, 57,	/* 0 - 10 */
+/* SPELL */	55, 53, 51, 49, 47, 45, 43, 41, 39, 37,		/* 11 - 20 */
+		35, 33, 31, 29, 27, 25, 23, 21, 19, 17,		/* 21 - 30 */
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0}			/* 31 - 40 */
   },
 
   {				/* Warriors */
-    {90, 70, 68, 67, 65, 62, 58, 55, 53, 52, 50,	/* 0 - 10 */
-       /* PARA */ 47, 43, 40, 38, 37, 35, 32, 28, 25, 24,	/* 11 - 20 */
-      23, 22, 20, 19, 17, 16, 15, 14, 13, 12,	/* 21 - 30 */
-    11, 10, 9, 8, 7, 6, 5, 4, 3, 2},	/* 31 - 40 */
+		{90, 70, 68, 67, 65, 62, 58, 55, 53, 52, 50,	/* 0 - 10 */
+/* PARA */	47, 43, 40, 38, 37, 35, 32, 28, 25, 24,		/* 11 - 20 */
+		23, 22, 20, 19, 17, 16, 15, 14, 13, 12,		/* 21 - 30 */
+		11, 10, 9, 8, 7, 6, 5, 4, 3, 2},		/* 31 - 40 */
 
-    {90, 80, 78, 77, 75, 72, 68, 65, 63, 62, 60,	/* 0 - 10 */
-       /* ROD */ 57, 53, 50, 48, 47, 45, 42, 38, 35, 34,	/* 11 - 20 */
-      33, 32, 30, 29, 27, 26, 25, 24, 23, 22,	/* 21 - 30 */
-    20, 18, 16, 14, 12, 10, 8, 6, 5, 4},	/* 31 - 40 */
+		{90, 80, 78, 77, 75, 72, 68, 65, 63, 62, 60,	/* 0 - 10 */
+/* ROD */	57, 53, 50, 48, 47, 45, 42, 38, 35, 34,		/* 11 - 20 */
+		33, 32, 30, 29, 27, 26, 25, 24, 23, 22,		/* 21 - 30 */
+		20, 18, 16, 14, 12, 10, 8, 6, 5, 4},		/* 31 - 40 */
 
-    {90, 75, 73, 72, 70, 67, 63, 60, 58, 57, 55,	/* 0 - 10 */
-       /* PETRI */ 52, 48, 45, 43, 42, 40, 37, 33, 30, 29,	/* 11 - 20 */
-      28, 26, 25, 24, 23, 21, 20, 19, 18, 17,	/* 21 - 30 */
-    16, 15, 14, 13, 12, 11, 10, 9, 8, 7},	/* 31 - 40 */
+		{90, 75, 73, 72, 70, 67, 63, 60, 58, 57, 55,	/* 0 - 10 */
+/* PETRI */	52, 48, 45, 43, 42, 40, 37, 33, 30, 29,		/* 11 - 20 */
+		28, 26, 25, 24, 23, 21, 20, 19, 18, 17,		/* 21 - 30 */
+		16, 15, 14, 13, 12, 11, 10, 9, 8, 7},		/* 31 - 40 */
 
-    {90, 85, 83, 82, 80, 75, 70, 65, 63, 62, 60,	/* 0 - 10 */
-       /* BREATH */ 55, 50, 45, 43, 42, 40, 37, 33, 30, 29,	/* 11 - 20 */
-      28, 26, 25, 24, 23, 21, 20, 19, 18, 17,	/* 21 - 30 */
-    16, 15, 14, 13, 12, 11, 10, 9, 8, 7},	/* 31 - 40 */
+		{90, 85, 83, 82, 80, 75, 70, 65, 63, 62, 60,	/* 0 - 10 */
+/* BREATH */	55, 50, 45, 43, 42, 40, 37, 33, 30, 29,		/* 11 - 20 */
+		28, 26, 25, 24, 23, 21, 20, 19, 18, 17,		/* 21 - 30 */
+		16, 15, 14, 13, 12, 11, 10, 9, 8, 7},		/* 31 - 40 */
 
-    {90, 85, 83, 82, 80, 77, 73, 70, 68, 67, 65,	/* 0 - 10 */
-       /* SPELL */ 62, 58, 55, 53, 52, 50, 47, 43, 40, 39,	/* 11 - 20 */
-      38, 36, 35, 34, 33, 31, 30, 29, 28, 27,	/* 21 - 30 */
-    25, 23, 21, 19, 17, 15, 13, 11, 9, 7}	/* 31 - 40 */
+		{90, 85, 83, 82, 80, 77, 73, 70, 68, 67, 65,	/* 0 - 10 */
+/* SPELL */	62, 58, 55, 53, 52, 50, 47, 43, 40, 39,		/* 11 - 20 */
+		38, 36, 35, 34, 33, 31, 30, 29, 28, 27,		/* 21 - 30 */
+		25, 23, 21, 19, 17, 15, 13, 11, 9, 7}		/* 31 - 40 */
   }
 };
 
@@ -177,7 +177,7 @@ int mag_savingthrow(struct char_data * ch, int type)
 
   /* negative apply_saving_throw values make saving throws better! */
 
-  if (IS_NPC(ch))
+  if (IS_NPC(ch)) /* NPCs use warrior tables according to some book */
     save = saving_throws[CLASS_WARRIOR][type][(int) GET_LEVEL(ch)];
   else
     save = saving_throws[(int) GET_CLASS(ch)][type][(int) GET_LEVEL(ch)];
@@ -204,8 +204,7 @@ void affect_update(void)
       next = af->next;
       if (af->duration >= 1)
 	af->duration--;
-      else if (af->duration == -1)
-	/* No action */
+      else if (af->duration == -1)	/* No action */
 	af->duration = -1;	/* GODs only! unlimited */
       else {
 	if ((af->type > 0) && (af->type <= MAX_SPELLS))
@@ -222,10 +221,13 @@ void affect_update(void)
 
 
 /*
-  mag_materials:
-  Checks for up to 3 vnums in the player's inventory.
-*/
-
+ *  mag_materials:
+ *  Checks for up to 3 vnums (spell reagents) in the player's inventory.
+ *
+ * No spells implemented in Circle 3.0 use mag_materials, but you can use
+ * it to implement your own spells which require ingredients (i.e., some
+ * heal spell which requires a rare herb or some such.)
+ */
 int mag_materials(struct char_data * ch, int item0, int item1, int item2,
 		      int extract, int verbose)
 {
@@ -285,11 +287,10 @@ int mag_materials(struct char_data * ch, int item0, int item1, int item2,
 
 
 /*
-  Every spell that does damage comes through here.  This calculates the
-  amount of damage, adds in any modifiers, determines what the saves are,
-  tests for save and calls damage();
-*/
-
+ * Every spell that does damage comes through here.  This calculates the
+ * amount of damage, adds in any modifiers, determines what the saves are,
+ * tests for save and calls damage().
+ */
 
 void mag_damage(int level, struct char_data * ch, struct char_data * victim,
 		     int spellnum, int savetype)
@@ -388,30 +389,36 @@ void mag_damage(int level, struct char_data * ch, struct char_data * victim,
     dam = dice(2, 8) + level;
     break;
 
-  }				/* switch(spellnum) */
+  } /* switch(spellnum) */
 
 
+  /* divide damage by two if victim makes his saving throw */
   if (mag_savingthrow(victim, savetype))
     dam >>= 1;
+
+  /* and finally, inflict the damage */
   damage(ch, victim, dam, spellnum);
 }
 
 
 /*
-  Every spell that does an affect comes through here.  This determines
-  the effect, whether it is added or replacement, whether it is legal or
-  not, etc.
-
-  affect_join(vict, aff, add_dur, avg_dur, add_mod, avg_mod)
+ * Every spell that does an affect comes through here.  This determines
+ * the effect, whether it is added or replacement, whether it is legal or
+ * not, etc.
+ *
+ * affect_join(vict, aff, add_dur, avg_dur, add_mod, avg_mod)
 */
 
 void mag_affects(int level, struct char_data * ch, struct char_data * victim,
 		      int spellnum, int savetype)
 {
-
-  struct affected_type af;
+  struct affected_type af, af2;
   int is_mage = FALSE;
   int is_cleric = FALSE;
+  int accum_affect = FALSE;
+  int accum_duration = FALSE;
+  char *to_vict = NULL;
+  char *to_room = NULL;
 
   if (victim == NULL || ch == NULL)
     return;
@@ -419,225 +426,244 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
   is_mage = (GET_CLASS(ch) == CLASS_MAGIC_USER);
   is_cleric = (GET_CLASS(ch) == CLASS_CLERIC);
 
+  af.type = spellnum;
   af.bitvector = 0;
   af.modifier = 0;
   af.location = APPLY_NONE;
 
+  af2.type = spellnum;
+  af2.bitvector = 0;
+  af2.modifier = 0;
+  af2.location = APPLY_NONE;
+
   switch (spellnum) {
+
   case SPELL_CHILL_TOUCH:
+    af.location = APPLY_STR;
     if (mag_savingthrow(victim, savetype))
       af.duration = 1;
     else
       af.duration = 4;
-    af.type = SPELL_CHILL_TOUCH;
     af.modifier = -1;
-    af.location = APPLY_STR;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
-    send_to_char("You feel your strength wither!\r\n", victim);
+    accum_duration = TRUE;
+    to_vict = "You feel your strength wither!";
     break;
-  case SPELL_ARMOR:
-    af.type = SPELL_ARMOR;
-    af.duration = 24;
-    af.modifier = -20;
-    af.location = APPLY_AC;
 
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
-    send_to_char("You feel someone protecting you.\r\n", victim);
+  case SPELL_ARMOR:
+    af.location = APPLY_AC;
+    af.modifier = -20;
+    af.duration = 24;
+    accum_duration = TRUE;
+    to_vict = "You feel someone protecting you.";
     break;
+
   case SPELL_BLESS:
-    af.type = SPELL_BLESS;
+    af.location = APPLY_HITROLL;
     af.modifier = 2;
     af.duration = 6;
-    af.location = APPLY_HITROLL;
-    af.bitvector = 0;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
 
-    af.location = APPLY_SAVING_SPELL;
-    af.modifier = -1;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
+    af2.location = APPLY_SAVING_SPELL;
+    af2.modifier = -1;
+    af2.duration = 6;
 
-    send_to_char("You feel righteous.\r\n", victim);
+    accum_duration = TRUE;
+    to_vict = "You feel righteous.";
     break;
+
   case SPELL_BLINDNESS:
-    if (IS_AFFECTED(victim, AFF_BLIND)) {
-      send_to_char("Nothing seems to happen.\r\n", ch);
-      return;
-    }
-    if (mag_savingthrow(victim, savetype)) {
+    if (MOB_FLAGGED(victim,MOB_NOBLIND) || mag_savingthrow(victim, savetype)) {
       send_to_char("You fail.\r\n", ch);
       return;
     }
-    act("$n seems to be blinded!", TRUE, victim, 0, 0, TO_ROOM);
-    send_to_char("You have been blinded!\r\n", victim);
 
-    af.type = SPELL_BLINDNESS;
     af.location = APPLY_HITROLL;
     af.modifier = -4;
     af.duration = 2;
     af.bitvector = AFF_BLIND;
-    affect_join(victim, &af, FALSE, FALSE, FALSE, FALSE);
 
-    af.location = APPLY_AC;
-    af.modifier = 40;
-    affect_join(victim, &af, FALSE, FALSE, FALSE, FALSE);
+    af2.location = APPLY_AC;
+    af2.modifier = 40;
+    af2.duration = 2;
+    af2.bitvector = AFF_BLIND;
+
+    to_room = "$n seems to be blinded!";
+    to_vict = "You have been blinded!";
     break;
 
   case SPELL_CURSE:
-    if (mag_savingthrow(victim, savetype))
+    if (mag_savingthrow(victim, savetype)) {
+      send_to_char(NOEFFECT, ch);
       return;
-    af.type = SPELL_CURSE;
+    }
+
+    af.location = APPLY_HITROLL;
     af.duration = 1 + (GET_LEVEL(ch) >> 1);
     af.modifier = -1;
-    af.location = APPLY_HITROLL;
     af.bitvector = AFF_CURSE;
-    affect_join(victim, &af, TRUE, FALSE, TRUE, TRUE);
 
-    af.modifier = -1;
-    af.location = APPLY_DAMROLL;
-    affect_join(victim, &af, TRUE, FALSE, TRUE, TRUE);
+    af2.location = APPLY_DAMROLL;
+    af2.duration = 1 + (GET_LEVEL(ch) >> 1);
+    af2.modifier = -1;
+    af2.bitvector = AFF_CURSE;
 
-    act("$n briefly glows red!", FALSE, victim, 0, 0, TO_ROOM);
-    act("You feel very uncomfortable.", FALSE, victim, 0, 0, TO_CHAR);
+    accum_duration = TRUE;
+    accum_affect = TRUE;
+    to_room = "$n briefly glows red!";
+    to_vict = "You feel very uncomfortable.";
     break;
 
   case SPELL_DETECT_ALIGN:
-    af.type = SPELL_DETECT_ALIGN;
     af.duration = 12 + level;
     af.bitvector = AFF_DETECT_ALIGN;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
-    send_to_char("Your eyes tingle.\r\n", victim);
+    accum_duration = TRUE;
+    to_vict = "Your eyes tingle.";
     break;
 
   case SPELL_DETECT_INVIS:
-    af.type = SPELL_DETECT_INVIS;
     af.duration = 12 + level;
     af.bitvector = AFF_DETECT_INVIS;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
-    send_to_char("Your eyes tingle.\r\n", victim);
+    accum_duration = TRUE;
+    to_vict = "Your eyes tingle.";
     break;
 
   case SPELL_DETECT_MAGIC:
-    af.type = SPELL_DETECT_MAGIC;
     af.duration = 12 + level;
     af.bitvector = AFF_DETECT_MAGIC;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
-    send_to_char("Your eyes tingle.\r\n", victim);
-    break;
-
-  case SPELL_DETECT_POISON:
-    if (victim == ch)
-      if (IS_AFFECTED(victim, AFF_POISON))
-	send_to_char("You can sense poison in your blood.\r\n", ch);
-      else
-	send_to_char("You feel healthy.\r\n", ch);
-    else if (IS_AFFECTED(victim, AFF_POISON))
-      act("You sense that $E is poisoned.", FALSE, ch, 0, victim, TO_CHAR);
-    else
-      act("You sense that $E is healthy.", FALSE, ch, 0, victim, TO_CHAR);
+    accum_duration = TRUE;
+    to_vict = "Your eyes tingle.";
     break;
 
   case SPELL_INFRAVISION:
-    af.type = SPELL_INFRAVISION;
     af.duration = 12 + level;
     af.bitvector = AFF_INFRAVISION;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
-    send_to_char("Your eyes glow red.\r\n", victim);
-    act("$n's eyes glow red.", TRUE, victim, 0, 0, TO_ROOM);
+    accum_duration = TRUE;
+    to_vict = "Your eyes glow red.";
+    to_room = "$n's eyes glow red.";
     break;
 
   case SPELL_INVISIBLE:
     if (!victim)
       victim = ch;
-    act("$n slowly fades out of existence.", TRUE, victim, 0, 0, TO_NOTVICT);
-    send_to_char("You vanish.\r\n", victim);
 
-    af.type = SPELL_INVISIBLE;
     af.duration = 12 + (GET_LEVEL(ch) >> 2);
     af.modifier = -40;
     af.location = APPLY_AC;
     af.bitvector = AFF_INVISIBLE;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
+    accum_duration = TRUE;
+    to_vict = "You vanish.";
+    to_room = "$n slowly fades out of existence.";
     break;
 
   case SPELL_POISON:
-    if (!mag_savingthrow(victim, savetype)) {
-      af.type = SPELL_POISON;
-      af.duration = GET_LEVEL(ch);
-      af.modifier = -2;
-      af.location = APPLY_STR;
-      af.bitvector = AFF_POISON;
-      affect_join(victim, &af, FALSE, FALSE, FALSE, FALSE);
-      send_to_char("You feel very sick.\r\n", victim);
-      act("$N gets violently ill!", TRUE, ch, NULL, victim, TO_NOTVICT);
+    if (mag_savingthrow(victim, savetype)) {
+      send_to_char(NOEFFECT, ch);
+      return;
     }
+
+    af.location = APPLY_STR;
+    af.duration = GET_LEVEL(ch);
+    af.modifier = -2;
+    af.bitvector = AFF_POISON;
+    to_vict = "You feel very sick.";
+    to_room = "$n gets violently ill!";
     break;
 
   case SPELL_PROT_FROM_EVIL:
-    af.type = SPELL_PROT_FROM_EVIL;
     af.duration = 24;
     af.bitvector = AFF_PROTECT_EVIL;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
-    send_to_char("You feel invulnerable!\r\n", victim);
+    accum_duration = TRUE;
+    to_vict = "You feel invulnerable!";
     break;
 
   case SPELL_SANCTUARY:
-    act("$n is surrounded by a white aura.", TRUE, victim, 0, 0, TO_ROOM);
-    act("You start glowing.", TRUE, victim, 0, 0, TO_CHAR);
-
-    af.type = SPELL_SANCTUARY;
     af.duration = 4;
     af.bitvector = AFF_SANCTUARY;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
+
+    accum_duration = TRUE;
+    to_vict = "A white aura momentarily surrounds you.";
+    to_room = "$n is surrounded by a white aura.";
     break;
 
   case SPELL_SLEEP:
     if (!pk_allowed && !IS_NPC(ch) && !IS_NPC(victim))
       return;
+    if (MOB_FLAGGED(victim, MOB_NOSLEEP))
+      return;
     if (mag_savingthrow(victim, savetype))
       return;
 
-    af.type = SPELL_SLEEP;
     af.duration = 4 + (GET_LEVEL(ch) >> 2);
-    af.location = APPLY_NONE;
     af.bitvector = AFF_SLEEP;
-    affect_join(victim, &af, FALSE, FALSE, FALSE, FALSE);
+
     if (GET_POS(victim) > POS_SLEEPING) {
-      act("You feel very sleepy...zzzzzz", FALSE, victim, 0, 0, TO_CHAR);
+      act("You feel very sleepy...  Zzzz......", FALSE, victim, 0, 0, TO_CHAR);
       act("$n goes to sleep.", TRUE, victim, 0, 0, TO_ROOM);
       GET_POS(victim) = POS_SLEEPING;
     }
     break;
 
   case SPELL_STRENGTH:
-    send_to_char("You feel stronger!\r\n", victim);
-    af.type = SPELL_STRENGTH;
+    af.location = APPLY_STR;
     af.duration = (GET_LEVEL(ch) >> 1) + 4;
     af.modifier = 1 + (level > 18);
-    af.location = APPLY_STR;
-    affect_join(victim, &af, TRUE, TRUE, TRUE, FALSE);
+    accum_duration = TRUE;
+    accum_affect = TRUE;
+    to_vict = "You feel stronger!";
     break;
 
   case SPELL_SENSE_LIFE:
-    send_to_char("Your feel your awareness improve.\r\n", ch);
-    af.type = SPELL_SENSE_LIFE;
+    to_vict = "Your feel your awareness improve.";
     af.duration = GET_LEVEL(ch);
     af.bitvector = AFF_SENSE_LIFE;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
+    accum_duration = TRUE;
     break;
 
   case SPELL_WATERWALK:
-    af.type = SPELL_WATERWALK;
     af.duration = 24;
     af.bitvector = AFF_WATERWALK;
-    affect_join(victim, &af, TRUE, FALSE, FALSE, FALSE);
-    send_to_char("You feel webbing between your toes.\r\n", victim);
+    accum_duration = TRUE;
+    to_vict = "You feel webbing between your toes.";
     break;
   }
+
+  /*
+   * If this is a mob that has this affect set in its mob file, do not
+   * perform the affect.  This prevents people from un-sancting mobs
+   * by sancting them and waiting for it to fade, for example.
+   */
+   if (IS_NPC(victim) && IS_AFFECTED(victim, af.bitvector|af2.bitvector) &&
+       !affected_by_spell(victim, spellnum)) {
+	send_to_char(NOEFFECT, ch);
+	return;
+   }
+
+  /*
+   * If the victim is already affected by this spell, and the spell does
+   * not have an accumulative effect, then fail the spell.
+   */
+  if (affected_by_spell(victim,spellnum) && !(accum_duration||accum_affect)) {
+    send_to_char(NOEFFECT, ch);
+    return;
+  }
+
+  affect_join(victim, &af, accum_duration, FALSE, accum_affect, FALSE);
+  if (af2.bitvector || af2.location)
+    affect_join(victim, &af2, accum_duration, FALSE, accum_affect, FALSE);
+
+  if (to_vict != NULL)
+    act(to_vict, FALSE, victim, 0, ch, TO_CHAR);
+  if (to_room != NULL)
+    act(to_room, TRUE, victim, 0, ch, TO_ROOM);
 }
 
 
-void mag_group_switch(int level, struct char_data * ch, struct char_data * tch,
-		           int spellnum, int savetype)
+/*
+ * This function is used to provide services to mag_groups.  This function
+ * is the one you should change to add new group spells.
+ */
+
+void perform_mag_groups(int level, struct char_data * ch,
+			struct char_data * tch, int spellnum, int savetype)
 {
   switch (spellnum) {
     case SPELL_GROUP_HEAL:
@@ -652,13 +678,18 @@ void mag_group_switch(int level, struct char_data * ch, struct char_data * tch,
   }
 }
 
-/*
-  Every spell that affects the group should run through here
-  mag_group_switch contains the switch statement to send us to the right
-  magic.
 
-  group spells affect everyone grouped with the caster who is in the room.
-*/
+/*
+ * Every spell that affects the group should run through here
+ * perform_mag_groups contains the switch statement to send us to the right
+ * magic.
+ *
+ * group spells affect everyone grouped with the caster who is in the room,
+ * caster last.
+ *
+ * To add new group spells, you shouldn't have to change anything in
+ * mag_groups -- just add a new case to perform_mag_groups.
+ */
 
 void mag_groups(int level, struct char_data * ch, int spellnum, int savetype)
 {
@@ -681,17 +712,22 @@ void mag_groups(int level, struct char_data * ch, int spellnum, int savetype)
       continue;
     if (!IS_AFFECTED(tch, AFF_GROUP))
       continue;
-    mag_group_switch(level, ch, tch, spellnum, savetype);
+    if (ch == tch)
+      continue;
+    perform_mag_groups(level, ch, tch, spellnum, savetype);
   }
+
   if ((k != ch) && IS_AFFECTED(k, AFF_GROUP))
-    mag_group_switch(level, ch, k, spellnum, savetype);
-  mag_group_switch(level, ch, ch, spellnum, savetype);
+    perform_mag_groups(level, ch, k, spellnum, savetype);
+  perform_mag_groups(level, ch, ch, spellnum, savetype);
 }
 
 
 /*
-  mass spells affect every creature in the room except the caster.
-*/
+ * mass spells affect every creature in the room except the caster.
+ *
+ * No spells of this class currently implemented as of Circle 3.0.
+ */
 
 void mag_masses(int level, struct char_data * ch, int spellnum, int savetype)
 {
@@ -709,68 +745,72 @@ void mag_masses(int level, struct char_data * ch, int spellnum, int savetype)
 
 
 /*
-  Every spell that affects an area (room) runs through here.  These are
-  generally offensive spells.  This calls mag_damage to do the actual
-  damage.
-
-  area spells have limited targets within the room.
+ * Every spell that affects an area (room) runs through here.  These are
+ * generally offensive spells.  This calls mag_damage to do the actual
+ * damage -- all spells listed here must also have a case in mag_damage()
+ * in order for them to work.
+ *
+ *  area spells have limited targets within the room.
 */
 
 void mag_areas(byte level, struct char_data * ch, int spellnum, int savetype)
 {
-  struct char_data *tch, *next_tch, *m;
-  int is_mage = 0, is_cleric = 0;
-  int skip;
+  struct char_data *tch, *next_tch;
+  char *to_char = NULL;
+  char *to_room = NULL;
 
   if (ch == NULL)
     return;
 
-  is_mage = (GET_CLASS(ch) == CLASS_MAGIC_USER);
-  is_cleric = (GET_CLASS(ch) == CLASS_CLERIC);
+  /*
+   * to add spells to this fn, just add the message here plus an entry
+   * in mag_damage for the damaging part of the spell.
+   */
+  switch (spellnum) {
+  case SPELL_EARTHQUAKE:
+    to_char = "You gesture and the earth begins to shake all around you!";
+    to_room ="$n gracefully gestures and the earth begins to shake violently!";
+    break;
+  }
 
-  if (ch->master != NULL)
-    m = ch->master;
-  else
-    m = ch;
+  if (to_char != NULL)
+    act(to_char, FALSE, ch, 0, 0, TO_CHAR);
+  if (to_room != NULL)
+    act(to_room, FALSE, ch, 0, 0, TO_ROOM);
+
 
   for (tch = world[ch->in_room].people; tch; tch = next_tch) {
     next_tch = tch->next_in_room;
 
-
     /*
-     * The skips: 1) immortals && self 2) mobs only hit charmed mobs 3)
+     * The skips: 1: the caster
+     *            2: immortals
+     *            3: if no pk on this mud, skips over all players
+     *            4: pets (charmed NPCs)
      * players can only hit players in CRIMEOK rooms 4) players can only hit
      * charmed mobs in CRIMEOK rooms
      */
 
-    skip = 0;
     if (tch == ch)
-      skip = 1;
-    if (IS_NPC(ch) && IS_NPC(tch) && !IS_AFFECTED(tch, AFF_CHARM))
-      skip = 1;
+      continue;
     if (!IS_NPC(tch) && GET_LEVEL(tch) >= LVL_IMMORT)
-      skip = 1;
-    if (!IS_NPC(ch) && !IS_NPC(tch))
-      skip = 1;
+      continue;
+    if (!pk_allowed && !IS_NPC(ch) && !IS_NPC(tch))
+      continue;
     if (!IS_NPC(ch) && IS_NPC(tch) && IS_AFFECTED(tch, AFF_CHARM))
-      skip = 1;
-
-    if (skip)
       continue;
 
-    switch (spellnum) {
-    case SPELL_EARTHQUAKE:
-      mag_damage(GET_LEVEL(ch), ch, tch, spellnum, 1);
-      break;
-    default:
-      return;
-    }
+    mag_damage(GET_LEVEL(ch), ch, tch, spellnum, 1);
   }
 }
 
 
 /*
   Every spell which summons/gates/conjours a mob comes through here.
+
+  None of these spells are currently implemented in Circle 3.0; these
+  were taken as examples from the JediMUD code.  Summons can be used
+  for spells like clone, ariel servant, etc.
 */
 
 static char *mag_summon_msgs[] = {
@@ -918,11 +958,10 @@ void mag_unaffects(int level, struct char_data * ch, struct char_data * victim,
 
   switch (spellnum) {
   case SPELL_CURE_BLIND:
-    spell = SPELL_BLINDNESS;
-    to_vict = "Your vision returns!";
-    break;
   case SPELL_HEAL:
     spell = SPELL_BLINDNESS;
+    to_vict = "Your vision returns!";
+    to_room = "There's a momentary gleam in $n's eyes.";
     break;
   case SPELL_REMOVE_POISON:
     spell = SPELL_POISON;
@@ -940,16 +979,17 @@ void mag_unaffects(int level, struct char_data * ch, struct char_data * victim,
     break;
   }
 
-  if (affected_by_spell(victim, spell)) {
-    affect_from_char(victim, spell);
-    if (to_vict != NULL) {
-      send_to_char(to_vict, victim);
-      send_to_char("\r\n", victim);
-    }
-    if (to_room != NULL)
-      act(to_room, TRUE, victim, NULL, NULL, TO_ROOM);
-  } else if (to_vict != NULL)
-    send_to_char("Nothing seems to happen.\r\n", ch);
+  if (!affected_by_spell(victim, spell)) {
+    send_to_char(NOEFFECT, ch);
+    return;
+  }
+
+  affect_from_char(victim, spell);
+  if (to_vict != NULL)
+    act(to_vict, FALSE, victim, 0, ch, TO_CHAR);
+  if (to_room != NULL)
+    act(to_room, TRUE, victim, 0, ch, TO_ROOM);
+
 }
 
 
@@ -957,38 +997,69 @@ void mag_alter_objs(int level, struct char_data * ch, struct obj_data * obj,
 		         int spellnum, int savetype)
 {
   char *to_char = NULL;
+  char *to_room = NULL;
 
   if (obj == NULL)
     return;
 
   switch (spellnum) {
+    case SPELL_BLESS:
+      if (!IS_OBJ_STAT(obj, ITEM_BLESS) &&
+	  (GET_OBJ_WEIGHT(obj) <= 5 * GET_LEVEL(ch))) {
+	SET_BIT(GET_OBJ_EXTRA(obj), ITEM_BLESS);
+	to_char = "$p glows briefly.";
+      }
+      break;
+    case SPELL_CURSE:
+      if (!IS_OBJ_STAT(obj, ITEM_NODROP)) {
+	SET_BIT(GET_OBJ_EXTRA(obj), ITEM_NODROP);
+	if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
+	  GET_OBJ_VAL(obj, 2)--;
+	to_char = "$p briefly glows red.";
+      }
+      break;
     case SPELL_INVISIBLE:
       if (!IS_OBJ_STAT(obj, ITEM_NOINVIS | ITEM_INVISIBLE)) {
         SET_BIT(obj->obj_flags.extra_flags, ITEM_INVISIBLE);
-        to_char = "$p turns invisible.";
+        to_char = "$p vanishes.";
+      }
+      break;
+    case SPELL_POISON:
+      if (((GET_OBJ_TYPE(obj) == ITEM_DRINKCON) ||
+         (GET_OBJ_TYPE(obj) == ITEM_FOUNTAIN) ||
+         (GET_OBJ_TYPE(obj) == ITEM_FOOD)) && !GET_OBJ_VAL(obj, 3)) {
+      GET_OBJ_VAL(obj, 3) = 1;
+      to_char = "$p steams briefly.";
       }
       break;
     case SPELL_REMOVE_CURSE:
       if (IS_OBJ_STAT(obj, ITEM_NODROP)) {
         REMOVE_BIT(obj->obj_flags.extra_flags, ITEM_NODROP);
+        if (GET_OBJ_TYPE(obj) == ITEM_WEAPON)
+          GET_OBJ_VAL(obj, 2)++;
         to_char = "$p briefly glows blue.";
       }
       break;
+    case SPELL_REMOVE_POISON:
+      if (((GET_OBJ_TYPE(obj) == ITEM_DRINKCON) ||
+         (GET_OBJ_TYPE(obj) == ITEM_FOUNTAIN) ||
+         (GET_OBJ_TYPE(obj) == ITEM_FOOD)) && GET_OBJ_VAL(obj, 3)) {
+        GET_OBJ_VAL(obj, 3) = 0;
+        to_char = "$p steams briefly.";
+      }
+      break;
   }
+
   if (to_char == NULL)
-    send_to_char("Nothing seems to happen.\r\n", ch);
+    send_to_char(NOEFFECT, ch);
   else
     act(to_char, TRUE, ch, obj, 0, TO_CHAR);
-}
 
+  if (to_room != NULL)
+    act(to_room, TRUE, ch, obj, 0, TO_ROOM);
+  else if (to_char != NULL)
+    act(to_char, TRUE, ch, obj, 0, TO_ROOM);
 
-void mag_objects(int level, struct char_data * ch, struct obj_data * obj,
-		      int spellnum)
-{
-  switch (spellnum) {
-    case SPELL_CREATE_WATER:
-    break;
-  }
 }
 
 
@@ -1004,7 +1075,7 @@ void mag_creations(int level, struct char_data * ch, int spellnum)
 
   switch (spellnum) {
   case SPELL_CREATE_FOOD:
-    z = 7090;
+    z = 10;
     break;
   default:
     send_to_char("Spell unimplemented, it would seem.\r\n", ch);

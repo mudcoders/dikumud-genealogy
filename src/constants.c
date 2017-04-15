@@ -11,7 +11,7 @@
 #include "structs.h"
 
 const char circlemud_version[] = {
-"CircleMUD, version 3.00 beta patchlevel 5\r\n"};
+"CircleMUD, version 3.00 beta patchlevel 8\r\n"};
 
 
 /* strings corresponding to ordinals/bitvectors in structs.h ***********/
@@ -133,7 +133,7 @@ const char *action_bits[] = {
   "SENTINEL",
   "SCAVENGER",
   "ISNPC",
-  "NICE-THIEF",
+  "AWARE",
   "AGGR",
   "STAY-ZONE",
   "WIMPY",
@@ -147,7 +147,6 @@ const char *action_bits[] = {
   "!SLEEP",
   "!BASH",
   "!BLIND",
-  "AWARE",
   "\n"
 };
 

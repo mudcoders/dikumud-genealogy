@@ -1891,7 +1891,7 @@ for more information.
 
 See also: BOARDS
 #
-CIRCLEMUD
+CIRCLEMUD CREDITS
                     C  I  R  C  L  E  M  U  D     3  .  0
 
 CircleMUD was developed from DikuMUD (Gamma 0.0) by Jeremy "Ras" Elson at
@@ -1904,10 +1904,11 @@ the course of its development.  Although it's impossible for me to remember
 them all, I'd like to extend special thanks to certain people:
 
   -- Jeff Fink, for submitting a veritable mountain of excellent code.
+  -- Chris Epler and Chris Herringshaw for extensive beta-testing and bug
+     reporting.
+  -- Furry (Alex Fletcher), for single-handedly managing Circle's world files.
   -- Fred Merkel, Ryan Watkins, Jay Levino, and Sharon Goza, for other
      code and area submissions.
-  -- Danny Baker, for single-handedly managing Circle's world files.
-  -- Brett Turner, for managing the CircleMUD Mailing List.
   -- Jean-Jack Riethoven, for porting the code to the Amiga.
   -- Bill Bogstad and Tim Stearns, for allowing Circle to exist.
   -- The DikuMUD folk, and the good old WhatMUD implementors Dave & Justin,
@@ -1920,7 +1921,7 @@ them all, I'd like to extend special thanks to certain people:
 Thanks everyone!
 
   Anoymous FTP:  ftp.cs.jhu.edu:pub/CircleMUD
-Author's Email:  jelson@cs.jhu.edu
-           URL:  http://www.cs.jhu.edu/other/jelson/circle.html
+Author's Email:  jelson@jhu.edu
+           URL:  http://www.cs.jhu.edu/~jelson/circle.html
   Mailing List:  circle@pvv.unit.no
 #~

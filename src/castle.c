@@ -71,7 +71,9 @@ SPECIAL(jerry);
 
 void assign_kings_castle(void)
 {
-  C_MOB_SPEC(Z_KINGS_C, 1) = king_welmar;	/* Our dear friend, the King */
+  C_MOB_SPEC(Z_KINGS_C, 0) = CastleGuard;   /* Gwydion */
+  /* Added the previous line -- Furry */
+  C_MOB_SPEC(Z_KINGS_C, 1) = king_welmar;   /* Our dear friend, the King */
   C_MOB_SPEC(Z_KINGS_C, 3) = CastleGuard;	/* Jim */
   C_MOB_SPEC(Z_KINGS_C, 4) = CastleGuard;	/* Brian */
   C_MOB_SPEC(Z_KINGS_C, 5) = CastleGuard;	/* Mick */
@@ -637,21 +639,24 @@ SPECIAL(James)
 /* Picks up any trash she finds... */
 SPECIAL(cleaning)
 {
-  struct obj_data *i;
+  struct obj_data *i, *next;
 
   if (cmd || !AWAKE(ch))
     return (FALSE);
 
-  for (i = world[ch->in_room].contents; i; i = i->next_content) {
-    if (is_trash(i))
+  for (i = world[ch->in_room].contents; i; i = next) {
+    next = i->next_content;
+    if (is_trash(i)) {
       act("$n picks up some trash.", FALSE, ch, 0, 0, TO_ROOM);
-    obj_from_room(i);
-    obj_to_char(i, ch);
-    return TRUE;
+      obj_from_room(i);
+      obj_to_char(i, ch);
+      return TRUE;
+    } else
+      return FALSE;
   }
-
   return FALSE;
 }
+
 
 
 /* Routine CastleGuard */

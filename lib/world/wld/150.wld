@@ -1,19 +1,53 @@
-#15001
+#15000
 The King's Road~
-   You come out onto the great King's Road.  The road is very well
-built, and goes in a straight line due east-west.
+   You stand at the beginning of the actual King's Road.  The road is wide
+enough for several horses to ride along side by side with room to spare.
+The stones which make up the road have been put into place with such skill
+that the road seems to be perfectly smooth and perfectly straight.
+   You spot a small trail leading to the south through the undergrowth which
+surrounds the road at this point.
+A traveller passes by and waves cheerfully at you.
 ~
 150 c 1
+D1
+The King's Road continues in a straight line to the east towards a grand
+castle.
+~
+~
+0 -1 15001
+D2
+A small overgrown trail leads through the undergrowth to the south.
+~
+~
+0 -1 15061
+D3
+The King's Road thins out a bit into a lane just to the west.
+~
+~
+0 -1 3502
+E
+traveller~
+The traveller smiles cheerfully and calls 'hello' when you greet him,
+but continues on his way.
+The traveller is in excellent condition.
+~
+S
+#15001
+The King's Road~
+   You stand in the center of the great King's Road.  The road is very well
+built, and goes in a straight line due east-west.
+~
+150 0 1
 D1
 The King's Road continues in a straight line to the east.
 ~
 ~
 0 -1 15002
 D3
-You see the turning point.
+You see that the King's Road continues westwards towards a large city.
 ~
 ~
-0 -1 3502
+0 -1 15000
 S
 #15002
 The King's Road~
@@ -657,10 +691,10 @@ You see the small passage.
 ~
 0 -1 15024
 D5
-The stairs down seem to be blocked by a large plot device.
+The stairs down lead into darkness.
 ~
 ~
-0 -1 -1
+0 -1 15055
 E
 stairs stair staircase~
 They seem to be made of granite, and stretch down into a more dimly
@@ -1219,5 +1253,514 @@ You see the stairs going back down to the second floor.
 ~
 0 -1 15048
 S
-#99999
-$~
+#15055
+The Bottom Of The Stairs~
+   The stairs lead down to a damp part of the castle, you can hear
+water dripping somewhere around you.  The area is lit by a single
+torch flickering in the room which this staircase is built off of.
+   The stairs lead upwards and they open up onto a fairly small
+room to the east.
+~
+150 d 0
+D1
+A small room opens up to the east.
+~
+~
+0 -1 15056
+D4
+The stairs lead upwards out of this dank, dark place.
+~
+~
+0 -1 15029
+S
+#15056
+The Guard Room~
+   You are at a loss to explain why someone would want to spend all
+day down here.  The only explanation that seems even remotely logical
+to you is that there must be an important prisoner kept in one of the
+cells through the south door.
+   The decorations of the room are sparse, merely a table, a chair,
+and a deck of cards.  A stairwell has been built into the western wall
+and it leads upwards. 
+~
+150 d 0
+D2
+Through the peep hole at the top of the small wooden door you can see
+that there is a small corridor leading past several cells.
+~
+door wooden~
+1 15017 15057
+D3
+A small stairwell built into the western wall of the room leads upwards.
+~
+~
+0 -1 15055
+E
+table cards deck~
+There is a deck of cards on the table in a small pile.  There is one card
+lying on the floor however.
+~
+E
+card floor~
+The card on the floor seems to be the Ace of Spades... a bad card to find
+indeed.  What could be the bad luck brought about by this discovery?
+~
+S
+#15057
+The Prison~
+   This small passage is about thirty feet long and is well lit by the
+torches on each wall.  The torches have been locked inside small metal
+cages to ensure that they are not removed.  The strangest thing about
+the torches however, is the manner in which they burn, they have what
+appears to be a constant flame in that it does not flicker whatsoever,
+and does not give off any smoke.  Perhaps they have been magicked to
+burn forever...
+   There are three cells along this passage way, one on each side of
+the corridor right near the north end and one isolated at the south
+end of the corridor with a small metal plaque located over the door
+in the keystone of the archway.
+~
+150 d 0
+D0
+A small wooden door blocks the way out of the prison.
+~
+door wooden~
+1 15017 15056
+D1
+A cell door is set into the eastern wall.
+~
+door cell~
+2 15017 15060
+D2
+The cell door to the south has been double padlocked and there is a
+plaque placed in the keystone above the door.
+~
+door cell~
+2 15017 15059
+D3
+A cell door is set into the western wall.
+~
+door cell~
+2 15017 15058
+E
+plaque keystone~
+The plaque in the keystone is engraved with four simple words:
+
+                Ergan, Murderer of Townsbridge
+
+~
+S
+#15058
+A Cell~
+   This cell is in a shambles.  There is a small hole in the
+western wall where something has broken through the stones
+into the cell.  There is a cell door in the eastern wall.
+~
+150 d 0
+D1
+The cell door to the east leads back to the prison hallway.
+~
+door cell~
+2 15017 15057
+E
+hole~
+The hole is much too small for you to clamber through.
+~
+S
+#15059
+Ergan's Cell~
+   This large cell is almost like a living quarters with a cot
+in one corner serving as a bed, a small table built out of the
+wall in another corner.  There is even a rug in the center of
+the floor to keep some warmth.  It seems that the prisoner kept
+here is treated quite well, almost too well for a murderer of
+an entire town...
+~
+150 d 0
+D0
+The cell door to the north leads back to the prison hallway.
+~
+door cell~
+2 15017 15057
+S
+#15060
+A Cell~
+   This small cell is damp and dark and looks like noone and nothing
+has lived in it for quite some time.  A small cell door is located in
+the west wall.
+~
+150 d 0
+D3
+The cell door to the west leads back to the prison hallway.
+~
+door cell~
+2 15017 15057
+S
+#15061
+An Overgrown Trail~
+   Moving off of the King's Road, you find yourself on a small
+fading trail which appears to have been so little used that it
+has almost completely grown over with vegitation from the woods
+here.  Sounds of the forest can be heard all round and you feel
+a peaceful feeling come over you as you realize that mankind
+has not passed this way for some time.
+   The faded trail appears to lead north and south.
+~
+150 0 4
+D0
+The travel upon the King's Road can be heard off to the north.
+~
+~
+0 -1 15000
+D2
+The trail continues southwards.
+~
+~
+0 -1 15062
+S
+#15062
+An Overgrown Trail~
+   Continuing through the heavy undergrowth, you find yourself
+in the middle of the forest.  The sounds of the forest can be
+heard all round and you feel a peaceful feeling come over you
+as you realize that mankind has not passed this way for some
+time.
+   The fading trail you are on appears to have been so little
+used that it has almost completely grown over with vegitation
+from the woods here.  
+   The faded trail appears to lead north and east.
+~
+150 0 4
+D0
+The trail continues northwards.
+~
+~
+0 -1 15061
+D1
+The trail appears to continue to the east.
+~
+~
+0 -1 15063
+S
+#15063
+An Overgrown Trail~
+   Continuing through the heavy undergrowth, you find yourself
+in the middle of the forest.  The sounds of the forest can be
+heard all round and you feel a peaceful feeling come over you
+as you realize that mankind has not passed this way for some
+time.
+   The fading trail you are on appears to have been so little
+used that it has almost completely grown over with vegitation
+from the woods here.  
+   The faded trail appears to lead west and south.  To the south
+a strange eerie silence seems to hang in the air, almost blocking
+out all the sounds that you can hear from the north and east.
+~
+150 0 4
+D2
+The undergrowth begins to open up to the south and you can see what
+appears to be a small village to the south.  It is very quiet, almost
+too quiet.
+~
+~
+0 -1 15064
+D3
+The overgrown trail continues to the northwest.
+~
+~
+0 -1 15062
+S
+#15064
+A Dirt Road~
+   As you leave the forest to the north, you find yourself at
+what appears to be the beginning of a dirt road and a small
+village.  Upon first laying eyes on this place you realize
+that there is something funny about this settlement... there
+is no sound other that the whistling wind here.  You would have
+expected to hear people going about their regular business, but
+the village is silent.  You cannot see any movement around the
+village either.  It is almost as still and silent as the woods
+to the north.
+There is a small sign lying by the side of the road here.
+~
+150 0 2
+D0
+An trail leads into the heavy undergrowth to the north.
+~
+~
+0 -1 15063
+D2
+The dirt road continues through the village to the south.
+~
+~
+0 -1 15065
+D3
+A house stands a short distance off the west side of the road, its
+door hanging ajar.
+~
+~
+0 -1 15068
+E
+sign~
+
+/----------------------------------\
+|     Welcome to the hamlet of     |
+|           Townsbridge            |
+|                                  |
+|                                  |
+|     Population:  276             |
+|                                  |
+\----------------------------------/
+
+The number 276 has been scratched out and replaced with the
+number 0.
+
+~
+S
+#15065
+A Small Intersection~
+   Continuing along the dirt road, you find yourself at a place where
+a small path splits away from the main road and leads off to the west.
+The woods around the village seem to be pressing inwards towards you
+as if the village hides a secret which they do not want to be spread
+about.
+   There is another house standing on the east side of the road.  
+~
+150 0 2
+D0
+The dirt road continues to the north.
+~
+~
+0 -1 15064
+D1
+You can hear a wailing sound coming from the house to the east.
+~
+~
+0 -1 15069
+D2
+The dirt road continues towards the south where a horrible smell
+permeates the air.
+~
+~
+0 -1 15066
+D3
+A small, dark trail leads off into the woods to the west.
+~
+~
+0 -1 15072
+S
+#15066
+A Dirt Road~
+   This section of the dirt road is quiet, but there is an awful stench
+in the air.  It brings to mind rotting corpses and raw sewage.  The woods
+contiue to press closely about you, and almost totally surround the small
+building to the west with a thatched roof.  There is a blackened shell of
+a building to the east with a small sign hanging out front from a black
+and charred chain.
+   The dirt road continues north and south.
+~
+150 0 2
+D0
+The small dirt road continues towards the north.
+~
+~
+0 -1 15065        
+D1
+The building to the east is merely a shell of what it once probably
+was.  The walls are blackened as if they had been exposed to fire at
+some point in the past...
+~
+~
+0 -1 15071
+D2
+The stench from the south is almost overpowering now... it seems that
+the source wouldn't be too far from here.
+~
+~
+0 -1 15067
+D3
+A small quiet cottage stands on the west side of the road, apparently
+untouched by the desecration and destruction that appears to have hit
+this small village.
+~
+~
+0 -1 15070
+E
+sign~
+The sign is covered with soot and the wood is quite charred, but you can
+still make out the following letters:
+
+        T   TO  SB  DGE   NER L    RE
+
+~
+S
+#15067
+A Large Pit~
+   The dirt road ends at the edge of a large pit here and you now
+realize where the awful smell was coming from.  This pit appears
+to be a mass grave for the citizens of the village.  There are
+bones and corpses lying all over the place.  A lot of the corpses
+look too recent to be from the Townsbridge murders of almost a
+decade ago, but the village seems to have been empty for almost
+that long.
+   The dirt road leads away from the carnage to the north.
+~
+150 0 2
+D0
+Just near the north edge of the pit a small and narrow trail leads
+away.
+~
+~
+0 -1 15066
+S
+#15068
+A House~
+   This house is a wreck, furniture has been strewn all about
+the room, and it looks like a tornado landed right in the middle
+of the room.  The destruction that has taken place in this room
+is almost beyond belief.  The oddest part of it all though, is
+how it all seems so recent, since there are no cobwebs, and there
+is no dust on anything.
+   The dirt road can be seen to the east through the doorway.
+~
+150 d 0
+D1
+You can see the dirt road through the doorway to the east.
+~
+~
+0 -1 15064
+S
+#15069
+A House~
+   This darkened room is barely lit by the outdoor light, but what
+you can see of it gives you the creeps.  There are cobwebs dangling
+from everything, a thick layer of dust begins to rise up at your
+passage, and a strange howl comes from somewhere around you.  The
+furniture in this house is old and of a type that hasn't been seen
+around these lands for some time.  If it was in better shape, you
+might be able to sell it as antique.
+   The meager light of the road shines through the doorway to the
+west.
+~
+150 ad 0
+D3
+You can see the dirt road through the doorway to the west.
+~
+~
+0 -1 15065
+S
+#15070
+A Small Cottage~
+   This cottage looks to have been left in exactly the same shape as
+it was in quite some time ago.  It looks as if the residents left one
+day and haven't returned home yet.  Oddly enough, the furniture is
+dust free and the food on the table still looks fresh.  This house is
+really strange, perhaps it wuld be in your best interests to leave as
+soon as humanly possible.
+   The road is back through the open doorway to the east.
+~
+150 d 0
+D1
+You can see the dirt road through the doorway to the east.
+~
+~
+0 -1 15066
+S
+#15071
+The Burned Shop~
+   As you enter this small building, you notice that that blackened
+walls are due to a fire that seemed to burn here unattended for quite
+some time.  There is almost nothing left of the roof that would have
+once covered this building, and the north and east walls have been
+burnt to almost half the height of the other two walls.  There are
+some burnt goods around on the ground and the remains of a counter
+near what is left of the north wall seems to indicate that this was
+once a shop.
+   The road lies to the west through the blackened wall.
+~
+150 0 2
+D3
+You can see the dirt road to the west.
+~
+~
+0 -1 15066
+S
+#15072
+A Dark Path~
+   As you move away form the open air into the darkness of the path
+and the sinister looking woods around you, you get a feeling of awe
+and something almost akin to horror.  The wood around is completely
+silent, not even the rustling of leaves or the cracking of branches
+breaks the silence.  The final thing you notice is that the darkness
+all around you seems to be almost contrived, and doesn't seem natural
+for this kind of vegitation.
+   The path continues west and you can see light to the east.
+~
+150 ad 1
+D1
+The path continues towards a small intersection with a dirt road.
+~
+~
+0 -1 15065
+D3
+The path continues through the darkness.
+~
+~
+0 -1 15073
+S
+#15073
+A Dark Path~
+   This narrow path leads through the overhanging trees in the unnatural
+darkness.  It seems almost as if the trees are crowding in on you here,
+as if they didn't want to feel your presence.  The wood is almost totally
+silent and you wonder silently to yourself why this could be.
+   The path appears to continue east and west.
+~
+150 ad 1
+D1
+The path continues through the darkness.
+~
+~
+0 -1 15072
+D3
+The glow from the west appears to be quite strong, but it does not
+give enough light to see by here, nor can you see the source of the
+glow.
+~
+~
+0 -1 15074
+S
+#15074
+The Circle Of Stones~
+   You are at the edge of a circle of seven large monolith-like stones.
+Each stone towers over your head and appears to be at least double your
+height.  The stones are made of a dark black material, almost black in
+colour.
+   In the center of the ring of stones, you can see a black circular
+mirror-like disk on the ground.  The surface is highly reflective and
+almost appears to be rippling.  The trees surrounding the circle tower
+far above your heads blocking out the sky.
+   A strange glow seems to be emanating from each stone, almost green
+in colour.  This glow provides enough light for you to see with even
+though the sky above has been blotted out.
+~
+150 d 1
+D1
+A narrow path leads away into the darkness.
+~
+~
+0 -1 15073
+D4
+You cannot see the sky above since the trees around the stone ring
+block it out entirely.
+~
+~
+0 -1 -1
+E
+stones glow stone ring circle~
+Each stone is at least fifteen feet tall, maybe more, and the dark
+material glows with a greenish aura providing more than enough light
+for you to see by.
+~
+S
+$

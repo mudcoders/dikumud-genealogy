@@ -1,9 +1,28 @@
-/**************************************************************************
-*  Copyright (C) 1993 - see 'license.doc' for complete information.       *
-**************************************************************************/
+/* ************************************************************************
+*   File: color.doc                                     Part of CircleMUD *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
 
-			USING COLOR IN CIRCLEMUD
- 			       "color.doc"
+                          USING COLOR IN CIRCLEMUD
+
+Summary:
+   A description of how to write C code which displays messages to players
+in color.
+
+Intended Audience:
+   Coders only.
+
+
+Table of Contents
+---------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------
+
 
 CircleMUD allows you to create colorful messages by using ANSI control
 sequences.  Each player may select what "level" of color he/she desires

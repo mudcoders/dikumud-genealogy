@@ -231,7 +231,8 @@ void say_spell(struct char_data * ch, int spellnum, struct char_data * tch,
       sprintf(lbuf, "$n closes $s eyes and utters the words, '%%s'.");
     else
       sprintf(lbuf, "$n stares at $N and utters the words, '%%s'.");
-  } else if (tobj != NULL && tobj->in_room == ch->in_room)
+  } else if (tobj != NULL &&
+	     ((tobj->in_room == ch->in_room) || (tobj->carried_by == ch)))
     sprintf(lbuf, "$n stares at $p and utters the words, '%%s'.");
   else
     sprintf(lbuf, "$n utters the words, '%%s'.");
@@ -248,7 +249,7 @@ void say_spell(struct char_data * ch, int spellnum, struct char_data * tch,
       perform_act(buf2, ch, tobj, tch, i);
   }
 
-  if (tch != NULL && tch != ch) {
+  if (tch != NULL && tch != ch && tch->in_room == ch->in_room) {
     sprintf(buf1, "$n stares at you and utters the words, '%s'.",
 	    GET_CLASS(ch) == GET_CLASS(tch) ? spells[spellnum] : buf);
     act(buf1, FALSE, ch, NULL, tch, TO_VICT);
@@ -286,10 +287,11 @@ int find_skill_num(char *name)
 
 
 /*
- * All invocations of any spell must come through this function,
- * call_magic(). This is also the entry point for non-spoken or unrestricted
- * spells. Spellnum 0 is legal but silently ignored here, to make callers
- * simpler.
+ * This function is the very heart of the entire magic system.  All
+ * invocations of all types of magic -- objects, spoken and unspoken PC
+ * and NPC spells, the works -- all come through this function eventually.
+ * This is also the entry point for non-spoken or unrestricted spells.
+ * Spellnum 0 is legal but silently ignored here, to make callers simpler.
  */
 int call_magic(struct char_data * caster, struct char_data * cvict,
 	     struct obj_data * ovict, int spellnum, int level, int casttype)
@@ -361,24 +363,13 @@ int call_magic(struct char_data * caster, struct char_data * cvict,
 
   if (IS_SET(SINFO.routines, MAG_MANUAL))
     switch (spellnum) {
-    case SPELL_ENCHANT_WEAPON:
-      MANUAL_SPELL(spell_enchant_weapon);
-      break;
-    case SPELL_CHARM:
-      MANUAL_SPELL(spell_charm);
-      break;
-    case SPELL_WORD_OF_RECALL:
-      MANUAL_SPELL(spell_recall);
-      break;
-    case SPELL_IDENTIFY:
-      MANUAL_SPELL(spell_identify);
-      break;
-    case SPELL_SUMMON:
-      MANUAL_SPELL(spell_summon);
-      break;
-    case SPELL_LOCATE_OBJECT:
-      MANUAL_SPELL(spell_locate_object);
-      break;
+    case SPELL_ENCHANT_WEAPON:  MANUAL_SPELL(spell_enchant_weapon); break;
+    case SPELL_CHARM:		MANUAL_SPELL(spell_charm); break;
+    case SPELL_WORD_OF_RECALL:  MANUAL_SPELL(spell_recall); break;
+    case SPELL_IDENTIFY:	MANUAL_SPELL(spell_identify); break;
+    case SPELL_SUMMON:		MANUAL_SPELL(spell_summon); break;
+    case SPELL_LOCATE_OBJECT:   MANUAL_SPELL(spell_locate_object); break;
+    case SPELL_DETECT_POISON:	MANUAL_SPELL(spell_detect_poison); break;
     }
 
   return 1;
@@ -420,6 +411,7 @@ void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
       act("Nothing seems to happen.", FALSE, ch, obj, 0, TO_ROOM);
     } else {
       GET_OBJ_VAL(obj, 2)--;
+      WAIT_STATE(ch, PULSE_VIOLENCE);
       for (tch = world[ch->in_room].people; tch; tch = next_tch) {
 	next_tch = tch->next_in_room;
 	if (ch == tch)
@@ -458,9 +450,11 @@ void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
 
     if (GET_OBJ_VAL(obj, 2) <= 0) {
       act("It seems powerless.", FALSE, ch, obj, 0, TO_CHAR);
+      act("Nothing seems to happen.", FALSE, ch, obj, 0, TO_ROOM);
       return;
     }
     GET_OBJ_VAL(obj, 2)--;
+    WAIT_STATE(ch, PULSE_VIOLENCE);
     if (GET_OBJ_VAL(obj, 0))
       call_magic(ch, tch, tobj, GET_OBJ_VAL(obj, 3),
 		 GET_OBJ_VAL(obj, 0), CAST_WAND);
@@ -484,6 +478,7 @@ void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
     else
       act("$n recites $p.", FALSE, ch, obj, NULL, TO_ROOM);
 
+    WAIT_STATE(ch, PULSE_VIOLENCE);
     for (i = 1; i < 4; i++)
       if (!(call_magic(ch, tch, tobj, GET_OBJ_VAL(obj, i),
 		       GET_OBJ_VAL(obj, 0), CAST_SCROLL)))
@@ -500,6 +495,7 @@ void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
     else
       act("$n quaffs $p.", TRUE, ch, obj, NULL, TO_ROOM);
 
+    WAIT_STATE(ch, PULSE_VIOLENCE);
     for (i = 1; i < 4; i++)
       if (!(call_magic(ch, ch, NULL, GET_OBJ_VAL(obj, i),
 		       GET_OBJ_VAL(obj, 0), CAST_POTION)))
@@ -520,7 +516,8 @@ void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
  * already have the target char/obj and spell number.  It checks all
  * restrictions, etc., prints the words, etc.
  *
- * Entry point for NPC casts.
+ * Entry point for NPC casts.  Recommended entry point for spells cast
+ * by NPCs via specprocs.
  */
 
 int cast_spell(struct char_data * ch, struct char_data * tch,
@@ -556,6 +553,10 @@ int cast_spell(struct char_data * ch, struct char_data * tch,
   }
   if ((tch == ch) && IS_SET(SINFO.targets, TAR_NOT_SELF)) {
     send_to_char("You cannot cast this spell upon yourself!\r\n", ch);
+    return 0;
+  }
+  if (IS_SET(SINFO.routines, MAG_GROUPS) && !IS_AFFECTED(ch, AFF_GROUP)) {
+    send_to_char("You can't cast this spell if you're not in a group!\r\n",ch);
     return 0;
   }
   send_to_char(OK, ch);
@@ -633,8 +634,8 @@ ACMD(do_cast)
 
     if (!target && IS_SET(SINFO.targets, TAR_OBJ_EQUIP)) {
       for (i = 0; !target && i < NUM_WEARS; i++)
-	if (ch->equipment[i] && !str_cmp(t, ch->equipment[i]->name)) {
-	  tobj = ch->equipment[i];
+	if (GET_EQ(ch, i) && !str_cmp(t, GET_EQ(ch, i)->name)) {
+	  tobj = GET_EQ(ch, i);
 	  target = TRUE;
 	}
     }
@@ -695,7 +696,7 @@ ACMD(do_cast)
       GET_MANA(ch) = MAX(0, MIN(GET_MAX_MANA(ch), GET_MANA(ch) - (mana >> 1)));
     if (SINFO.violent && tch && IS_NPC(tch))
       hit(tch, ch, TYPE_UNDEFINED);
-  } else {
+  } else { /* cast spell returns 1 on success; subtract mana & set waitstate */
     if (cast_spell(ch, tch, tobj, spellnum)) {
       WAIT_STATE(ch, PULSE_VIOLENCE);
       if (mana > 0)
@@ -768,7 +769,7 @@ void mag_assign_spells(void)
 	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
 
   spello(SPELL_BLESS,  X,  5,  X,  X,  35,   5,  3,
-	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_AFFECTS | MAG_ALTER_OBJS);
 
   spello(SPELL_BLINDNESS, 9, 6, X, X, 35, 25, 1,
 	 POS_STANDING, TAR_CHAR_ROOM | TAR_NOT_SELF, FALSE, MAG_AFFECTS);
@@ -812,7 +813,7 @@ void mag_assign_spells(void)
 	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_POINTS);
 
   spello(SPELL_CURSE, 14, X, X, X, 80, 50, 2,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, TRUE, MAG_AFFECTS);
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, TRUE, MAG_AFFECTS | MAG_ALTER_OBJS);
 
   spello(SPELL_DETECT_ALIGN, X, 4, X, X, 20, 10, 2,
 	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
@@ -825,7 +826,7 @@ void mag_assign_spells(void)
   /* C L A S S E S      M A N A   */
   /* Ma  Cl  Th  Wa   Max Min Chn */
   spello(SPELL_DETECT_POISON, 10, 3, X, X, 15, 5, 1,
-	 POS_STANDING, TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL);
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL);
 
   spello(SPELL_DISPEL_EVIL, X, 14, X, X, 40, 25, 3,
 	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
@@ -862,7 +863,7 @@ void mag_assign_spells(void)
 	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
 
   spello(SPELL_INVISIBLE, 4, X, X, X, 35, 25, 1,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_AFFECTS);
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_AFFECTS | MAG_ALTER_OBJS);
 
   spello(SPELL_LIGHTNING_BOLT, 9, X, X, X, 30, 15, 1,
 	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
@@ -875,13 +876,13 @@ void mag_assign_spells(void)
 	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
   spello(SPELL_POISON, X, X, X, X, 50, 20, 3,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_OBJ_INV, TRUE, MAG_AFFECTS);
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_OBJ_INV, TRUE, MAG_AFFECTS | MAG_ALTER_OBJS);
 
   spello(SPELL_PROT_FROM_EVIL, X, 8, X, X, 40, 10, 3,
 	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
 
   spello(SPELL_REMOVE_CURSE, X, 26, X, X, 45, 25, 5,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_UNAFFECTS);
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_UNAFFECTS | MAG_ALTER_OBJS);
 
   spello(SPELL_SANCTUARY, X, 15, X, X, 110, 85, 5,
 	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
@@ -903,7 +904,7 @@ void mag_assign_spells(void)
 	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_MANUAL);
 
   spello(SPELL_REMOVE_POISON, X, 10, X, X, 40, 8, 4,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_UNAFFECTS);
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_UNAFFECTS | MAG_ALTER_OBJS);
 
   spello(SPELL_SENSE_LIFE, X, X, X, X, 20, 10, 2,
 	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
@@ -919,6 +920,9 @@ void mag_assign_spells(void)
 
   /* Ma  Cl  Th  Wa  */
   spello(SKILL_BACKSTAB, X, X, 3, X,
+	 0, 0, 0, 0, 0, 0, 0);
+
+  spello(SKILL_BASH, X, X, X, 12,
 	 0, 0, 0, 0, 0, 0, 0);
 
   spello(SKILL_HIDE, X, X, 5, X,

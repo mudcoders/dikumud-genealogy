@@ -159,6 +159,8 @@ int socket(int domain, int type, int protocol);
 #endif
 
 #if defined(ultrix)
+void bzero(char *b1, int length);
+int setitimer(int which, struct itimerval *value, struct itimerval *ovalue);
 int accept(int s, struct sockaddr * addr, int *addrlen);
 int bind(int s, struct sockaddr * name, int namelen);
 int close(int fd);

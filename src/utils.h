@@ -126,7 +126,8 @@ void	update_pos(struct char_data *victim);
   if (!((result) = (type *) realloc ((result), sizeof(type) * (number))))\
 		{ perror("realloc failure"); abort(); } } while(0)
 
-/* the source previously used the same code in many places to remove an item
+/*
+ * the source previously used the same code in many places to remove an item
  * from a list: if it's the list head, change the head, else traverse the
  * list looking for the item before the one to be removed.  Now, we have a
  * macro to do this.  To use, just make sure that there is a variable 'temp'
@@ -179,10 +180,12 @@ void	update_pos(struct char_data *victim);
 /* room utils ************************************************************/
 
 
+#define SECT(room)	(world[(room)].sector_type)
+
 #define IS_DARK(room)  ( !world[room].light && \
-                         (IS_SET(world[room].room_flags, ROOM_DARK) || \
-                          ( ( world[room].sector_type != SECT_INSIDE && \
-                              world[room].sector_type != SECT_CITY ) && \
+                         (ROOM_FLAGGED(room, ROOM_DARK) || \
+                          ( ( SECT(room) != SECT_INSIDE && \
+                              SECT(room) != SECT_CITY ) && \
                             (weather_info.sunlight == SUN_SET || \
 			     weather_info.sunlight == SUN_DARK)) ) )
 
@@ -201,6 +204,8 @@ void	update_pos(struct char_data *victim);
 			 (ch)->player.short_descr : (ch)->player.name)
 #define GET_TITLE(ch)   ((ch)->player.title)
 #define GET_LEVEL(ch)   ((ch)->player.level)
+#define GET_PASSWD(ch)	((ch)->player.passwd)
+#define GET_PFILEPOS(ch)((ch)->pfilepos)
 
 /*
  * I wonder if this definition of GET_REAL_LEVEL should be the definition
@@ -264,13 +269,16 @@ void	update_pos(struct char_data *victim);
 #define GET_SKILL(ch, i)	((ch)->player_specials->saved.skills[i])
 #define SET_SKILL(ch, i, pct)	{ (ch)->player_specials->saved.skills[i] = pct; }
 
+#define GET_EQ(ch, i)		((ch)->equipment[i])
+
 #define GET_MOB_SPEC(ch) (IS_MOB(ch) ? (mob_index[(ch->nr)].func) : NULL)
 #define GET_MOB_RNUM(mob)	((mob)->nr)
 #define GET_MOB_VNUM(mob)	(IS_MOB(mob) ? \
 				 mob_index[GET_MOB_RNUM(mob)].virtual : -1)
 
-#define MEMORY(ch)		((ch)->mob_specials.memory)
+#define GET_MOB_WAIT(ch)	((ch)->mob_specials.wait_state)
 #define GET_DEFAULT_POS(ch)	((ch)->mob_specials.default_pos)
+#define MEMORY(ch)		((ch)->mob_specials.memory)
 
 #define STRENGTH_APPLY_INDEX(ch) \
         ( ((GET_ADD(ch)==0) || (GET_STR(ch) != 18)) ? GET_STR(ch) :\
@@ -294,7 +302,10 @@ void	update_pos(struct char_data *victim);
 /* descriptor-based utils ************************************************/
 
 
-#define WAIT_STATE(ch, cycle) { if ((ch)->desc) (ch)->desc->wait = (cycle); }
+#define WAIT_STATE(ch, cycle) { \
+	if ((ch)->desc) (ch)->desc->wait = (cycle); \
+	else if (IS_NPC(ch)) GET_MOB_WAIT(ch) = (cycle); }
+
 #define CHECK_WAIT(ch)	(((ch)->desc) ? ((ch)->desc->wait > 1) : 0)
 #define STATE(d)	((d)->connected)
 
@@ -503,13 +514,17 @@ char	*crypt(const char *key, const char *salt);
 #endif
 
 #if defined(DGUX_TARGET)
+#ifndef NOCRYPT
 #include <crypt.h>
+#endif
 #define bzero(a, b) memset((a), 0, (b))
 #endif
 
 #if defined(sgi)
 #include <bstring.h>
+#ifndef NOCRYPT
 #include <crypt.h>
+#endif
 #endif
 
 

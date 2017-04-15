@@ -482,9 +482,8 @@ D3
 S
 #4035
 At The Foothills' End~
-   At this point you are leaving the foothills.  You see a plains area
-to the north of here.  You can spot a small city in the distance from
-here.
+   At this point you are leaving the foothills.  You see a large
+area of plains to the north of here.
 ~
 40 0 2
 D0
@@ -498,13 +497,19 @@ D2
 S
 #4036
 The Plains~
-   The plains.  The only exit is south.
+   You are in the plains.  The path leads to the south.  As you look around
+you notice a small almost invisible trail leading away to the west towards
+a copse of trees.
 ~
 40 0 2
 D2
 ~
 ~
 0 -1 4035
+D3
+~
+~
+0 -1 4075
 S
 #4037
 The Path Through The Foothills~
@@ -1092,12 +1097,30 @@ what can be found below.
 ~
 0 -1 -1
 S
+#4075
+The Copse Of Trees~
+   Standing in this copse of trees gives you an eerie feeling.  Off to
+the east you can see the plains, and just to the north a strange shadow
+seems to be changing shape constantly and almost seems to beckon you to
+enter it. 
+~
+40 0 4
+D0
+There is a strange shadow forming before you.
+~
+~
+0 -1 2500
+D1
+~
+~
+0 -1 4036
+S
 #4100
 The Tunnel~
    Suddenly you feel that the tunnel leads slightly down... The only 
 exit is to the west, and it leads down...
 ~
-41 13 3
+41 acd 3
 D3
 ~
 ~
@@ -1534,5 +1557,4 @@ D1
 ~
 0 -1 4124
 S
-#99999
-$~
+$

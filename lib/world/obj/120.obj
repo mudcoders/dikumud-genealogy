@@ -139,7 +139,7 @@ robe froboz~
 Froboz' robe~
 Froboz' robe has been dropped here.~
 ~
-11 0 5
+11 0 1024
 0 0 0 0
 5 15000 2500
 A
@@ -384,5 +384,4 @@ A steel key is lying on the ground.~
 18 c 1
 12039 0 0 0
 1 0 0
-#99999
-$~
+$

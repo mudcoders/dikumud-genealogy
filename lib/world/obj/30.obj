@@ -211,7 +211,7 @@ atm teller bank machine~
 an automatic teller machine~
 An automatic teller machine has been installed in the wall here.~
 ~
-12 cdeg 1
+12 cdeg 0
 0 0 0 0
 5000 0 0 
 E
@@ -242,7 +242,7 @@ cashcard card atm~
 a cashcard~
 A handy dandy cashcard is sitting on the ground here.~
 ~
-12 cdeg 16385
+12 deg 16385
 0 0 0 0
 1 10000 10 
 E
@@ -315,7 +315,7 @@ a scroll of identify~
 A scroll has carelessly been left here.~
 ~
 2 g 16385
-12 53 -1 -1
+12 201 -1 -1
 1 2001 10
 E
 scroll identify~
@@ -556,5 +556,4 @@ E
 bulletin~
 Use 'look board' to read the board.
 ~
-#99999
-$~
+$

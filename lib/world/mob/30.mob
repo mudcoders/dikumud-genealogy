@@ -139,7 +139,7 @@ Even though your guildmaster looks old and tired, you can clearly see the
 vast amount of knowledge she possesses.  She is wearing fine magic clothing,
 and you notice that she is surrounded by a blue shimmering aura.
 ~
-abelno dh 1000 S
+abelnop dh 1000 S
 34 0 -10 6d10+640 1d8+24
 18794 100000
 8 8 2
@@ -152,7 +152,7 @@ You are in no doubt that this guildmaster is truly close to your God; he
 has a peaceful, loving look.  You notice that he is surrounded by a white
 aura.
 ~
-abelno dh 1000 S
+abelnop dh 1000 S
 34 0 -10 6d10+640 1d8+24
 18794 100000
 8 8 1
@@ -165,7 +165,7 @@ You realize that whenever your guildmaster moves, you fail to notice it -
 the way of the true thief.  She is to be dressed in poor clothing, having
 the appearance of a beggar.
 ~
-abelno dh 1000 S
+abelnop dh 1000 S
 34 0 -10 6d10+640 1d8+34
 18794 100000
 8 8 2
@@ -178,7 +178,7 @@ This is your master. Big and strong with bulging muscles. Several scars
 across his body proves that he was using arms before you were born. He
 has a calm look on his face.
 ~
-abelno 0 1000 S
+abelnop 0 1000 S
 34 0 -10 6d10+740 1d8+34
 18794 100000
 8 8 1
@@ -191,7 +191,7 @@ He is an experienced mage who has specialized in the field of Combat Magic.
 He is here to guard the Mage's Guild and his superior knowledge of offensive
 as well as defensive spells make him a deadly opponent.
 ~
-ablno dh 900 S
+ablnop dh 900 S
 33 0 -5 6d10+990 1d8+22
 2000 60000
 8 8 1
@@ -205,7 +205,7 @@ Faith.  His duty is to protect the faithful from persecution and infidel
 attacks and his religious devotion combined with his superior skill makes
 him a deadly opponent.
 ~
-ablno dh 1000 S
+ablnop dh 1000 S
 33 0 -5 6d10+990 1d8+22
 2000 160000
 8 8 1
@@ -219,7 +219,7 @@ possible, using all sorts of weapons.  His superior knowledge of how
 and where to use them combined with his extraordinary stealth makes
 him a deadly opponent.
 ~
-ablno dfhst 400 S
+ablnop dfhst 400 S
 33 0 -10 6d10+990 1d8+25
 2000 160000
 8 8 1
@@ -233,7 +233,7 @@ chivalrous deeds.  His duty is to protect the Guild of Swordsmen and his
 extreme skill combined with his experience in warfare makes him a deadly
 opponent.
 ~
-ablno dh 800 S
+ablnop dh 800 S
 33 0 -8 6d10+990 1d8+40
 2000 160000
 8 8 1
@@ -325,10 +325,12 @@ A Peacekeeper is standing here, ready to jump in at the first sign of trouble.
 ~
 He looks very strong and wise.  Looks like he doesn't answer to ANYONE.
 ~
-aeglm d 1000 S
+aeglm d 1000 E
 17 3 0 5d6+225 3d3+13
 2500 30000
 8 8 1
+BareHandAttack: 10
+E
 #3060
 cityguard guard~
 the cityguard~
@@ -347,7 +349,7 @@ A janitor is walking around, cleaning up.
 ~
 What a tough job he has.
 ~
-al 0 800 S
+agl 0 800 S
 1 20 9 2d6+10 1d5+0
 34 100
 8 8 1
@@ -359,10 +361,12 @@ A beastly fido is mucking through the garbage looking for food here.
 The fido is a small dog that has a foul smell and pieces of rotted meat
 hanging around his teeth.
 ~
-afhq p -200 S
+afghq p -200 E
 0 20 10 1d6+4 1d4+0
 0 25
 8 8 1
+BareHandAttack: 4
+E
 #3063
 mercenary~
 the mercenary~
@@ -403,10 +407,12 @@ An odif yltsaeb is here, walking backwards.
 ~
 The odif is a small god that has been reversed by some dog.
 ~
-afhq p -200 S
+afghq p -200 E
 0 20 10 1d6+4 1d4+0
 0 25
 8 8 1
+BareHandAttack: 4
+E
 #3067
 cityguard guard~
 the cityguard~
@@ -425,10 +431,12 @@ An oozing green gelatinous blob is here, sucking in bits of debris.
 ~
 A horrid looking thing; it is huge, greenish, and looks like the blob.
 ~
-aehlnopqr d 0 S
+aeghlnopqr d 0 E
 20 0 0 1d11+325 3d6+5
 1000 40000
 8 8 0
+BareHandAttack: 6
+E
 #3089
 pet shop boy~
 the Pet Shop Boy~
@@ -436,7 +444,7 @@ There is a Pet Shop Boy standing here cuddleing something furry in his hands.
 ~
 As you look at him, he opens his hands to reveal a rat!
 ~
-ablno 0 1000 S
+blno 0 1000 S
 10 10 1 1d1+30000 20d4+10
 500 9000
 8 8 1
@@ -447,10 +455,12 @@ A small loyal kitten is here.
 ~
 The kitten looks like a cute, little, fierce fighter.
 ~
-bc 0 0 S
+bc 0 0 E
 1 20 9 1d6+11 1d4+0
-0 100
+0 0
 8 8 0
+BareHandAttack: 8
+E
 #3091
 puppy~
 the puppy~
@@ -458,10 +468,12 @@ A small loyal puppy is here.
 ~
 The puppy looks like a cute, little, fierce fighter.
 ~
-bc 0 0 S
+bc 0 0 E
 1 20 9 1d6+11 1d4+0
-0 100
+0 0
 8 8 0
+BareHandAttack: 8
+E
 #3092
 beagle~
 the beagle~
@@ -469,10 +481,12 @@ A small, quick, loyal beagle is here.
 ~
 The beagle looks like a fierce fighter.
 ~
-bc 0 0 S
+bc 0 0 E
 2 19 8 1d12+22 1d6+0
-0 200
+0 0
 8 8 0
+BareHandAttack: 4
+E
 #3093
 rottweiler~
 the rottweiler~
@@ -480,10 +494,12 @@ A large, loyal rottweiler is here.
 ~
 The rottweiler looks like a strong, fierce fighter.
 ~
-bc 0 0 S
+bc 0 0 E
 3 18 7 1d12+35 1d7+0
-0 800
+0 0
 8 8 0
+BareHandAttack: 4
+E
 #3094
 wolf~
 the wolf~
@@ -491,10 +507,12 @@ A large, trained wolf is here.
 ~
 The wolf looks like a strong, fearless fighter.
 ~
-bc 0 0 S
+bc 0 0 E
 4 17 6 1d12+47 1d8+0
-0 1600
+0 0
 8 8 0
+BareHandAttack: 4
+E
 #3095
 cryogenicist cryo~
 the cryogenicist~
@@ -507,5 +525,4 @@ ablno dfp 900 S
 33 0 -10 1d1+30000 2d8+32
 0 0
 8 8 2
-#99999
-$~
+$

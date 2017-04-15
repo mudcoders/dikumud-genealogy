@@ -108,7 +108,7 @@ ASPELL(spell_teleport)
 
   do {
     to_room = number(0, top_of_world);
-  } while (IS_SET(world[to_room].room_flags, ROOM_PRIVATE | ROOM_DEATH));
+  } while (ROOM_FLAGGED(to_room, ROOM_PRIVATE | ROOM_DEATH));
 
   act("$n slowly fades out of existence and is gone.",
       FALSE, victim, 0, 0, TO_ROOM);
@@ -118,15 +118,18 @@ ASPELL(spell_teleport)
   look_at_room(victim, 0);
 }
 
+#define SUMMON_FAIL "You failed.\r\n"
+
 ASPELL(spell_summon)
 {
   if (ch == NULL || victim == NULL)
     return;
 
   if (GET_LEVEL(victim) > MIN(LVL_IMMORT - 1, level + 3)) {
-    send_to_char("You failed.\r\n", ch);
+    send_to_char(SUMMON_FAIL, ch);
     return;
   }
+
   if (!pk_allowed) {
     if (MOB_FLAGGED(victim, MOB_AGGRESSIVE)) {
       act("As the words escape your lips and $N travels\r\n"
@@ -154,10 +157,13 @@ ASPELL(spell_summon)
       return;
     }
   }
-  if (IS_NPC(victim) && mag_savingthrow(victim, SAVING_SPELL)) {
-    send_to_char("You failed.\r\n", ch);
+
+  if (MOB_FLAGGED(victim, MOB_NOCHARM) ||
+      (IS_NPC(victim) && mag_savingthrow(victim, SAVING_SPELL))) {
+    send_to_char(SUMMON_FAIL, ch);
     return;
   }
+
   act("$n disappears suddenly.", TRUE, victim, 0, 0, TO_ROOM);
 
   char_from_room(victim);
@@ -223,6 +229,8 @@ ASPELL(spell_charm)
     send_to_char("You fail because SUMMON protection is on!\r\n", ch);
   else if (IS_AFFECTED(victim, AFF_SANCTUARY))
     send_to_char("Your victim is protected by sanctuary!\r\n", ch);
+  else if (MOB_FLAGGED(victim, MOB_NOCHARM))
+    send_to_char("Your victim resists!\r\n", ch);
   else if (IS_AFFECTED(ch, AFF_CHARM))
     send_to_char("You can't have any followers of your own!\r\n", ch);
   else if (IS_AFFECTED(victim, AFF_CHARM) || level < GET_LEVEL(victim))
@@ -402,6 +410,40 @@ ASPELL(spell_enchant_weapon)
       act("$p glows red.", FALSE, ch, obj, 0, TO_CHAR);
     } else {
       act("$p glows yellow.", FALSE, ch, obj, 0, TO_CHAR);
+    }
+  }
+}
+
+
+ASPELL(spell_detect_poison)
+{
+  if (victim) {
+    if (victim == ch) {
+      if (IS_AFFECTED(victim, AFF_POISON))
+        send_to_char("You can sense poison in your blood.\r\n", ch);
+      else
+        send_to_char("You feel healthy.\r\n", ch);
+    } else {
+      if (IS_AFFECTED(victim, AFF_POISON))
+        act("You sense that $E is poisoned.", FALSE, ch, 0, victim, TO_CHAR);
+      else
+        act("You sense that $E is healthy.", FALSE, ch, 0, victim, TO_CHAR);
+    }
+  }
+
+  if (obj) {
+    switch (GET_OBJ_TYPE(obj)) {
+    case ITEM_DRINKCON:
+    case ITEM_FOUNTAIN:
+    case ITEM_FOOD:
+      if (GET_OBJ_VAL(obj, 3))
+	act("You sense that $p has been contaminated.",FALSE,ch,obj,0,TO_CHAR);
+      else
+	act("You sense that $p is safe for consumption.", FALSE, ch, obj, 0,
+	    TO_CHAR);
+      break;
+    default:
+      send_to_char("You sense that it should not be consumed.\r\n", ch);
     }
   }
 }

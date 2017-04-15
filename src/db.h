@@ -187,4 +187,5 @@ extern char	arg[MAX_STRING_LENGTH];
 #ifndef __CONFIG_C__
 extern char	*OK;
 extern char	*NOPERSON;
+extern char	*NOEFFECT;
 #endif

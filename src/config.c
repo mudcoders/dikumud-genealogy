@@ -73,6 +73,7 @@ int dts_are_dumps = YES;
 /* "okay" etc. */
 char *OK = "Okay.\r\n";
 char *NOPERSON = "No-one by that name here.\r\n";
+char *NOEFFECT = "Nothing seems to happen.\r\n";
 
 /****************************************************************************/
 /****************************************************************************/
@@ -155,15 +156,16 @@ int MAX_PLAYERS = 300;
 /* maximum size of bug, typo and idea files (to prevent bombing) */
 int max_filesize = 50000;
 
-/* Some nameservers (such as the one here at JHU) are slow and cause the
- *  game to lag terribly every time someone logs in.  The lag is caused by
- * the gethostbyaddr() function -- the function which resolves a numeric
- * IP address (such as 128.220.13.30) into an alphabetic name (such as
- * circle.cs.jhu.edu).
- *
- * The nameserver at JHU can get so bad at times that the incredible lag
- * caused by gethostbyaddr() isn't worth the luxury of having names
- * instead of numbers for players' sitenames.
+/* maximum number of password attempts before disconnection */
+int max_bad_pws = 3;
+
+/*
+ * Some nameservers are very slow and cause the game to lag terribly every 
+ * time someone logs in.  The lag is caused by the gethostbyaddr() function
+ * which is responsible for resolving numeric IP addresses to alphabetic names.
+ * Sometimes, nameservers can be so slow that the incredible lag caused by
+ * gethostbyaddr() isn't worth the luxury of having names instead of numbers
+ * for players' sitenames.
  *
  * If your nameserver is fast, set the variable below to NO.  If your
  * nameserver is slow, of it you would simply prefer to have numbers
@@ -173,7 +175,7 @@ int max_filesize = 50000;
  * the SLOWNS command from within the MUD.
  */
 
-int nameserver_is_slow = YES;
+int nameserver_is_slow = NO;
 
 
 char *MENU =

@@ -7,8 +7,10 @@
 ************************************************************************* */
 
 #include <stdio.h>
+#include <strings.h>
 #include "../structs.h"
 
+void	Crash_listrent(char *fname);
 
 void	main(int argc, char **argv) 
 {
@@ -19,12 +21,11 @@ void	main(int argc, char **argv)
 }
 
 
-int	Crash_listrent(char *fname) 
+void	Crash_listrent(char *fname) 
 {
    FILE * fl;
    char	buf[MAX_STRING_LENGTH];
    struct obj_file_elem object;
-   struct obj_data *obj;
    struct rent_info rent;
 
    if (!(fl = fopen(fname, "rb"))) {

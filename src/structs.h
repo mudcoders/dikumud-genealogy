@@ -14,8 +14,9 @@
 
 #include <sys/types.h>
 
-#define NOWHERE    -1    /* nil reference for room-database	 */
-#define NOTHING	   -1    /* nil reference for objects or mobiles */
+#define NOWHERE    -1    /* nil reference for room-database	*/
+#define NOTHING	   -1    /* nil reference for objects		*/
+#define NOBODY	   -1    /* nil reference for mobiles		*/
 
 #define SPECIAL(name) \
    int (name)(struct char_data *ch, void *me, int cmd, char *argument)
@@ -611,6 +612,7 @@ struct time_data {
 
 /* general player-related info, usually PC's and NPC's */
 struct char_player_data {
+   char	passwd[MAX_PWD_LENGTH+1]; /* character's password      */
    char	*name;	       /* PC / NPC s name (kill ...  )         */
    char	*short_descr;  /* for NPC 'actions'                    */
    char	*long_descr;   /* for 'look'			       */
@@ -700,7 +702,7 @@ struct char_special_data {
  */
 struct player_special_data_saved {
    byte skills[MAX_SKILLS+1];	/* array of skills plus skill 0		*/
-   byte spells_to_learn;	/* How many can you learn yet this level*/
+   byte PADDING0;		/* used to be spells_to_learn		*/
    bool talks[MAX_TONGUE];	/* PC s Tongues 0 for NPC		*/
    int	wimp_level;		/* Below this # of hit points, flee!	*/
    byte freeze_level;		/* Level of god who froze char, if any	*/
@@ -719,7 +721,7 @@ struct player_special_data_saved {
    ubyte spare3;
    ubyte spare4;
    ubyte spare5;
-   int spare6;
+   int spells_to_learn;		/* How many can you learn yet this level*/
    int spare7;
    int spare8;
    int spare9;
@@ -749,11 +751,10 @@ struct player_special_data {
 
    char	*poofin;		/* Description on arrival of a god.     */
    char	*poofout;		/* Description upon a god's exit.       */
-   struct alias *aliases;		/* Character's aliases	*/
-   struct char_data *last_tell;		/* last tell from	*/
-   void *last_olc_targ;
-   int last_olc_mode;
-
+   struct alias *aliases;	/* Character's aliases			*/
+   long last_tell;		/* idnum of last tell from		*/
+   void *last_olc_targ;		/* olc control				*/
+   int last_olc_mode;		/* olc control				*/
 };
 
 
@@ -765,6 +766,7 @@ struct mob_special_data {
    memory_rec *memory;	    /* List of attackers to remember	       */
    byte damnodice;          /* The number of damage dice's	       */
    byte damsizedice;        /* The size of the damage dice's           */
+   int wait_state;	    /* Wait state for bashed mobs	       */
 };
 
 
@@ -789,6 +791,7 @@ struct follow_type {
 
 /* ================== Structure for player/non-player ===================== */
 struct char_data {
+   int pfilepos;			 /* playerfile pos		  */
    sh_int nr;                            /* Mob's rnum			  */
    room_num in_room;                     /* Location (real room number)	  */
    room_num was_in_room;		 /* location for linkdead people  */
@@ -833,8 +836,7 @@ struct char_file_u {
    ubyte weight;
    ubyte height;
 
-   /* password */
-   char	pwd[MAX_PWD_LENGTH+1];
+   char	pwd[MAX_PWD_LENGTH+1];    /* character's password */
 
    struct char_special_data_saved char_specials_saved;
    struct player_special_data_saved player_specials_saved;
@@ -867,9 +869,7 @@ struct txt_q {
 struct descriptor_data {
    int	descriptor;		/* file descriptor for socket		*/
    char	host[HOST_LENGTH+1];	/* hostname				*/
-   char	pwd[MAX_PWD_LENGTH+1];	/* password				*/
    byte	bad_pws;		/* number of bad pw attemps this login	*/
-   int	pos;			/* position in player-file		*/
    int	connected;		/* mode of 'connectedness'		*/
    int	wait;			/* wait for how many loops		*/
    int	desc_num;		/* unique num assigned to desc		*/

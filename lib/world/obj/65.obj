@@ -142,5 +142,12 @@ There is a deep green key lying here.~
 18 c 16385
 6515 0 0 0
 10 0 0
-#99999
-$~
+#6516
+key old~
+an old key~
+Someone seems to have dropped an old key.~
+~
+18 c 16385
+6516 0 0 0
+1 0 0
+$

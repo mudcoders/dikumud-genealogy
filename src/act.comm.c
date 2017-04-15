@@ -96,7 +96,7 @@ void perform_tell(struct char_data *ch, struct char_data *vict, char *arg)
     send_to_char(CCNRM(ch, C_CMP), ch);
   }
 
-  GET_LAST_TELL(vict) = ch;
+  GET_LAST_TELL(vict) = GET_IDNUM(ch);
 }
 
 /*
@@ -137,24 +137,25 @@ ACMD(do_reply)
 
   skip_spaces(&argument);
 
-  if (GET_LAST_TELL(ch) == NULL)
+  if (GET_LAST_TELL(ch) == NOBODY)
     send_to_char("You have no-one to reply to!\r\n", ch);
   else if (!*argument)
     send_to_char("What is your reply?\r\n", ch);
   else {
     /*
      * Make sure the person you're replying to is still playing by searching
-     * for them.  Note, this will break in a big way if I ever implement some
-     * scheme where it keeps a pool of char_data structures for reuse.
+     * for them.  Note, now last tell is stored as player IDnum instead of
+     * a pointer, which is much better because it's safer, plus will still
+     * work if someone logs out and back in again.
      */
 				     
-    while (tch != NULL && tch != GET_LAST_TELL(ch))
+    while (tch != NULL && GET_IDNUM(tch) != GET_LAST_TELL(ch))
       tch = tch->next;
 
     if (tch == NULL)
       send_to_char("They are no longer playing.\r\n", ch);
     else
-      perform_tell(ch, GET_LAST_TELL(ch), argument);
+      perform_tell(ch, tch, argument);
   }
 }
 
@@ -224,12 +225,11 @@ ACMD(do_write)
       return;
     }
     if (!(pen = get_obj_in_list_vis(ch, penname, ch->carrying))) {
-      sprintf(buf, "You have no %s.\r\n", papername);
+      sprintf(buf, "You have no %s.\r\n", penname);
       send_to_char(buf, ch);
       return;
     }
-  } else {			/* there was one arg.. let's see what we can
-				 * find */
+  } else {		/* there was one arg.. let's see what we can find */
     if (!(paper = get_obj_in_list_vis(ch, papername, ch->carrying))) {
       sprintf(buf, "There is no %s in your inventory.\r\n", papername);
       send_to_char(buf, ch);
@@ -243,29 +243,29 @@ ACMD(do_write)
       return;
     }
     /* One object was found.. now for the other one. */
-    if (!ch->equipment[WEAR_HOLD]) {
+    if (!GET_EQ(ch, WEAR_HOLD)) {
       sprintf(buf, "You can't write with %s %s alone.\r\n", AN(papername),
 	      papername);
       send_to_char(buf, ch);
       return;
     }
-    if (!CAN_SEE_OBJ(ch, ch->equipment[WEAR_HOLD])) {
+    if (!CAN_SEE_OBJ(ch, GET_EQ(ch, WEAR_HOLD))) {
       send_to_char("The stuff in your hand is invisible!  Yeech!!\r\n", ch);
       return;
     }
     if (pen)
-      paper = ch->equipment[WEAR_HOLD];
+      paper = GET_EQ(ch, WEAR_HOLD);
     else
-      pen = ch->equipment[WEAR_HOLD];
+      pen = GET_EQ(ch, WEAR_HOLD);
   }
 
 
   /* ok.. now let's see what kind of stuff we've found */
-  if (GET_OBJ_TYPE(pen) != ITEM_PEN) {
+  if (GET_OBJ_TYPE(pen) != ITEM_PEN)
     act("$p is no good for writing with.", FALSE, ch, pen, 0, TO_CHAR);
-  } else if (GET_OBJ_TYPE(paper) != ITEM_NOTE) {
+  else if (GET_OBJ_TYPE(paper) != ITEM_NOTE)
     act("You can't write on $p.", FALSE, ch, paper, 0, TO_CHAR);
-  } else if (paper->action_description)
+  else if (paper->action_description)
     send_to_char("There's something written on it already.\r\n", ch);
   else {
     /* we can write - hooray! */

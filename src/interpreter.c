@@ -114,6 +114,7 @@ ACMD(do_look);
 ACMD(do_move);
 ACMD(do_not_here);
 ACMD(do_offer);
+ACMD(do_olc);
 ACMD(do_order);
 ACMD(do_page);
 ACMD(do_poofset);
@@ -368,6 +369,7 @@ const struct command_info cmd_info[] = {
   { "nudge"    , POS_RESTING , do_action   , 0, 0 },
   { "nuzzle"   , POS_RESTING , do_action   , 0, 0 },
 
+  { "olc"      , POS_DEAD    , do_olc      , LVL_IMPL, 0 },
   { "order"    , POS_RESTING , do_order    , 1, 0 },
   { "offer"    , POS_STANDING, do_not_here , 1, 0 },
   { "open"     , POS_SITTING , do_gen_door , 0, SCMD_OPEN },
@@ -395,7 +397,7 @@ const struct command_info cmd_info[] = {
   { "purge"    , POS_DEAD    , do_purge    , LVL_GOD, 0 },
 
   { "quaff"    , POS_RESTING , do_use      , 0, SCMD_QUAFF },
-  { "qecho"    , POS_DEAD    , do_qcomm    , 0, SCMD_QECHO },
+  { "qecho"    , POS_DEAD    , do_qcomm    , LVL_IMMORT, SCMD_QECHO },
   { "quest"    , POS_DEAD    , do_gen_tog  , 0, SCMD_QUEST },
   { "qui"      , POS_DEAD    , do_quit     , 0, 0 },
   { "quit"     , POS_DEAD    , do_quit     , 0, SCMD_QUIT },
@@ -569,11 +571,22 @@ void command_interpreter(struct char_data * ch, char *argument)
 
   REMOVE_BIT(AFF_FLAGS(ch), AFF_HIDE);
 
-  line = any_one_arg(argument, arg);
-
   /* just drop to next line for hitting CR */
-  if (!*arg)
+  skip_spaces(&argument);
+  if (!*argument)
     return;
+
+  /*
+   * special case to handle one-character, non-alphanumeric commands;
+   * requested by many people so "'hi" or ";godnet test" is possible.
+   * Patch sent by Eric Green and Stefan Wasilewski.
+   */
+  if (!isalpha(*argument)) {
+    arg[0] = argument[0];
+    arg[1] = '\0';
+    line = argument+1;
+  } else
+    line = any_one_arg(argument, arg);
 
   /* otherwise, find the command */
   for (length = strlen(arg), cmd = 0; *cmd_info[cmd].command != '\n'; cmd++)
@@ -647,7 +660,7 @@ void free_alias(struct alias * a)
 }
 
 
-/* The interface: do_alias */
+/* The interface to the outside world: do_alias */
 ACMD(do_alias)
 {
   char *repl;
@@ -658,7 +671,7 @@ ACMD(do_alias)
 
   repl = any_one_arg(argument, arg);
 
-  if (!*arg) {
+  if (!*arg) {  /* no argument specified -- list currently defined aliases */
     send_to_char("Currently defined aliases:\r\n", ch);
     if ((a = GET_ALIASES(ch)) == NULL)
       send_to_char(" None.\r\n", ch);
@@ -669,17 +682,20 @@ ACMD(do_alias)
 	a = a->next;
       }
     }
-  } else {
+  } else { /* otherwise, add or remove aliases */
+    /* is this an alias we've already defined? */
     if ((a = find_alias(GET_ALIASES(ch), arg)) != NULL) {
       REMOVE_FROM_LIST(a, GET_ALIASES(ch), next);
       free_alias(a);
     }
+
+    /* if no replacement string is specified, assume we want to delete */
     if (!*repl) {
       if (a == NULL)
 	send_to_char("No such alias.\r\n", ch);
       else
 	send_to_char("Alias deleted.\r\n", ch);
-    } else {
+    } else { /* otherwise, either add or redefine an alias */
       if (!str_cmp(arg, "alias")) {
 	send_to_char("You can't alias 'alias'.\r\n", ch);
 	return;
@@ -728,6 +744,7 @@ void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a)
   for (temp = a->replacement; *temp; temp++) {
     if (*temp == ALIAS_SEP_CHAR) {
       *write_point = '\0';
+      buf[MAX_INPUT_LENGTH-1] = '\0';
       write_to_q(buf, &temp_queue, 1);
       write_point = buf;
     } else if (*temp == ALIAS_VAR_CHAR) {
@@ -746,6 +763,7 @@ void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a)
   }
 
   *write_point = '\0';
+  buf[MAX_INPUT_LENGTH-1] = '\0';
   write_to_q(buf, &temp_queue, 1);
 
   /* push our temp_queue on to the _front_ of the input queue */
@@ -933,6 +951,10 @@ char *two_arguments(char *argument, char *first_arg, char *second_arg)
 /*
  * determine if a given string is an abbreviation of another
  * (now works symmetrically -- JE 7/25/94)
+ *
+ * that was dumb.  it shouldn't be symmetrical.  JE 5/1/95
+ * 
+ * returnss 1 if arg1 is an abbreviation of arg2
  */
 int is_abbrev(char *arg1, char *arg2)
 {
@@ -943,7 +965,10 @@ int is_abbrev(char *arg1, char *arg2)
     if (LOWER(*arg1) != LOWER(*arg2))
       return 0;
 
-  return 1;
+  if (!*arg1)
+    return 1;
+  else
+    return 0;
 }
 
 
@@ -986,8 +1011,8 @@ int special(struct char_data * ch, int cmd, char *arg)
 
   /* special in equipment list? */
   for (j = 0; j < NUM_WEARS; j++)
-    if (ch->equipment[j] && GET_OBJ_SPEC(ch->equipment[j]) != NULL)
-      if (GET_OBJ_SPEC(ch->equipment[j]) (ch, ch->equipment[j], cmd, arg))
+    if (GET_EQ(ch, j) && GET_OBJ_SPEC(GET_EQ(ch, j)) != NULL)
+      if (GET_OBJ_SPEC(GET_EQ(ch, j)) (ch, GET_EQ(ch, j), cmd, arg))
 	return 1;
 
   /* special in inventory? */
@@ -1054,9 +1079,9 @@ int _parse_name(char *arg, char *name)
 /* deal with newcomers and other non-playing sockets */
 void nanny(struct descriptor_data * d, char *arg)
 {
-  char buf[100];
+  char buf[128];
   int player_i, load_result;
-  char tmp_name[20];
+  char tmp_name[MAX_INPUT_LENGTH];
   struct char_file_u tmp_store;
   struct char_data *tmp_ch;
   struct descriptor_data *k, *next;
@@ -1065,6 +1090,7 @@ void nanny(struct descriptor_data * d, char *arg)
   extern sh_int r_immort_start_room;
   extern sh_int r_frozen_start_room;
   extern const char *class_menu;
+  extern int max_bad_pws;
   sh_int load_room;
 
   int load_char(char *name, struct char_file_u * char_element);
@@ -1091,8 +1117,8 @@ void nanny(struct descriptor_data * d, char *arg)
 	return;
       }
       if ((player_i = load_char(tmp_name, &tmp_store)) > -1) {
-	d->pos = player_i;
 	store_to_char(&tmp_store, d->character);
+	GET_PFILEPOS(d->character) = player_i;
 
 	if (PLR_FLAGGED(d->character, PLR_DELETED)) {
 	  free_char(d->character);
@@ -1102,12 +1128,11 @@ void nanny(struct descriptor_data * d, char *arg)
 	  d->character->desc = d;
 	  CREATE(d->character->player.name, char, strlen(tmp_name) + 1);
 	  strcpy(d->character->player.name, CAP(tmp_name));
+	  GET_PFILEPOS(d->character) = player_i;
 	  sprintf(buf, "Did I get that right, %s (Y/N)? ", tmp_name);
 	  SEND_TO_Q(buf, d);
 	  STATE(d) = CON_NAME_CNFRM;
 	} else {
-	  strcpy(d->pwd, tmp_store.pwd);
-
 	  /* undo it just in case they are set */
 	  REMOVE_BIT(PLR_FLAGS(d->character),
 		     PLR_WRITING | PLR_MAILING | PLR_CRYO);
@@ -1135,7 +1160,7 @@ void nanny(struct descriptor_data * d, char *arg)
     }
     break;
   case CON_NAME_CNFRM:		/* wait for conf. of new name	 */
-    if (*arg == 'y' || *arg == 'Y') {
+    if (UPPER(*arg) == 'Y') {
       if (isbanned(d->host) >= BAN_NEW) {
 	sprintf(buf, "Request for new char %s denied from [%s] (siteban)",
 		GET_NAME(d->character), d->host);
@@ -1173,12 +1198,12 @@ void nanny(struct descriptor_data * d, char *arg)
     if (!*arg)
       close_socket(d);
     else {
-      if (strncmp(CRYPT(arg, d->pwd), d->pwd, MAX_PWD_LENGTH)) {
+      if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
 	sprintf(buf, "Bad PW: %s [%s]", GET_NAME(d->character), d->host);
 	mudlog(buf, BRF, LVL_GOD, TRUE);
 	GET_BAD_PWS(d->character)++;
 	save_char(d->character, NOWHERE);
-	if (++(d->bad_pws) >= 3) {	/* 3 strikes and you're out. */
+	if (++(d->bad_pws) >= max_bad_pws) {	/* 3 strikes and you're out. */
 	  SEND_TO_Q("Wrong password... disconnecting.\r\n", d);
 	  STATE(d) = CON_CLOSE;
 	} else {
@@ -1292,8 +1317,8 @@ void nanny(struct descriptor_data * d, char *arg)
       SEND_TO_Q("Password: ", d);
       return;
     }
-    strncpy(d->pwd, CRYPT(arg, d->character->player.name), MAX_PWD_LENGTH);
-    *(d->pwd + MAX_PWD_LENGTH) = '\0';
+    strncpy(GET_PASSWD(d->character), CRYPT(arg, GET_NAME(d->character)), MAX_PWD_LENGTH);
+    *(GET_PASSWD(d->character) + MAX_PWD_LENGTH) = '\0';
 
     SEND_TO_Q("\r\nPlease retype password: ", d);
     if (STATE(d) == CON_NEWPASSWD)
@@ -1305,7 +1330,8 @@ void nanny(struct descriptor_data * d, char *arg)
 
   case CON_CNFPASSWD:
   case CON_CHPWD_VRFY:
-    if (strncmp(CRYPT(arg, d->pwd), d->pwd, MAX_PWD_LENGTH)) {
+    if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character),
+		MAX_PWD_LENGTH)) {
       SEND_TO_Q("\r\nPasswords don't match... start over.\r\n", d);
       SEND_TO_Q("Password: ", d);
       if (STATE(d) == CON_CNFPASSWD)
@@ -1352,13 +1378,15 @@ void nanny(struct descriptor_data * d, char *arg)
     break;
 
   case CON_QCLASS:
-    if ((GET_CLASS(d->character) = parse_class(*arg)) == CLASS_UNDEFINED) {
+    load_result = parse_class(*arg);
+    if (load_result == CLASS_UNDEFINED) {
       SEND_TO_Q("\r\nThat's not a class.\r\nClass: ", d);
       return;
-    }
+    } else
+      GET_CLASS(d->character) = load_result;
 
-    if (d->pos < 0)
-      d->pos = create_entry(GET_NAME(d->character));
+    if (GET_PFILEPOS(d->character) < 0)
+      GET_PFILEPOS(d->character) = create_entry(GET_NAME(d->character));
     init_char(d->character);
     save_char(d->character, NOWHERE);
     SEND_TO_Q(motd, d);
@@ -1476,9 +1504,9 @@ void nanny(struct descriptor_data * d, char *arg)
     break;
 
   case CON_CHPWD_GETOLD:
-    if (strncmp(CRYPT(arg, d->pwd), d->pwd, MAX_PWD_LENGTH)) {
-      SEND_TO_Q("\r\nIncorrect password.\r\n", d);
+    if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
       echo_on(d);
+      SEND_TO_Q("\r\nIncorrect password.\r\n", d);
       SEND_TO_Q(MENU, d);
       STATE(d) = CON_MENU;
       return;
@@ -1491,7 +1519,7 @@ void nanny(struct descriptor_data * d, char *arg)
 
   case CON_DELCNF1:
     echo_on(d);
-    if (strncmp(CRYPT(arg, d->pwd), d->pwd, MAX_PWD_LENGTH)) {
+    if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
       SEND_TO_Q("\r\nIncorrect password.\r\n", d);
       SEND_TO_Q(MENU, d);
       STATE(d) = CON_MENU;

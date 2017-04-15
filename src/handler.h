@@ -59,7 +59,7 @@ void	extract_char(struct char_data *ch);
 
 /* find if character can see */
 struct char_data *get_char_room_vis(struct char_data *ch, char *name);
-struct char_data *get_player_vis(struct char_data *ch, char *name);
+struct char_data *get_player_vis(struct char_data *ch, char *name, int inroom);
 struct char_data *get_char_vis(struct char_data *ch, char *name);
 struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name, 
 struct obj_data *list);

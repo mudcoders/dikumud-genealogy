@@ -115,6 +115,12 @@ You can barely make out a storefront through the foliage.
 ~
 ~
 0 -1 12006
+D3
+The gate has been permanently rusted shut and is further secured by a large 
+chain and padlock.  Don't even bother THINKING about trying to open it.
+~
+gate~
+2 -1 -1
 E
 gate~
 The gate has been permanently rusted shut and is further secured by a large 
@@ -721,6 +727,11 @@ to be closed and locked against intrusion.  A large road muddy road runs
 through the gate and into the countryside.  Nero Drive runs south from here.
 ~
 120 0 1
+D0
+The gate is made of solid iron and is well maintained.
+~
+gate~
+2 -1 -1
 D2
 Nero Drive continues in that direction.
 ~
@@ -898,6 +909,11 @@ in that direction.  It appears to be surrounded by a rolling pink mist.
 ~
 ~
 0 -1 12042
+D2
+The gate appears to be closed and locked against intruders.
+~
+gate~
+2 -1 -1
 E
 gate~
 The gate appears to be closed and locked against intruders.
@@ -1379,8 +1395,8 @@ Another road leads westward into the city.
 D1
 The clay road heads eastwards.
 ~
-~
-0 -1 12064
+gate~
+1 -1 12064
 D3
 The clay street leads into the city.
 ~
@@ -1677,8 +1693,8 @@ D1
 0 -1 12065
 D3
 ~
-~
-0 -1 12051
+gate~
+1 -1 12051
 S
 #12065
 Clay Road~
@@ -1718,11 +1734,37 @@ here.  You feel a surge run through your body as you look East into the
 lands that Rome turned into its mighty empire.
 ~
 120 d 1
+D1
+A dirt trail leads towards the desert to the east.
+~
+~
+0 -1 12068
 D3
 The mighty clay road leads off in this direction.
 ~
 ~
 0 -1 12066
 S
-#99999
-$~
+#12068
+A Small Dirt Trail~
+   This small dirt path seems to be a joint between a large clay road
+located a short distance to the west and the expanse of sand which opens
+up before you to the east.  The clay road appears to lead through the
+foothills towards the snowcapped mountain chain to the west.  Perhaps
+there is a city or settlement in that direction.
+   You cannot see any breaks in the horizon of the sand which fills your
+vision as you look to the east, it seems to stretch forever.
+~
+120 c 1
+D1
+The expanse of the Great Eastern Desert opens up before you.
+~
+~
+0 -1 5028
+D3
+A large clay road begins a short distance to the west.
+~
+~
+0 -1 12067
+S
+$

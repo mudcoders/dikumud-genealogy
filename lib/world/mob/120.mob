@@ -51,8 +51,8 @@ slave~
 the slave~
 A slave stands here, wishing that she was free.
 ~
-A very pretty young woman who was captured instead of being killed when the
-Roman legions subjugated her land.
+A very pretty young woman who was captured instead of being killed when
+the Roman legions subjugated her land.
 ~
 b 0 0 S
 3 18 7 3d6+30 1d7+0 
@@ -250,10 +250,14 @@ of a fight.  He has been trained to be suspicious of all but the
 most innocent visitors, and likely to take offense of anyone with
 less than pure intentions.
 ~
-abfikl d 990 S
+abfikl d 990 E
 18 2 0 3d6+220 1d6+6
 5000 35000
 8 8 1
+BareHandAttack: 6
+Str: 18
+StrAdd: 90
+E
 #12022
 judge justice~
 the judge~
@@ -286,16 +290,19 @@ A green ball of slime is hanging over you, oozing downward.
 ~
 There is a green 'ball' of slime oozing from the coating on the walls.
 ~
-bcfqr dfk -500 S
+bcfqr dfk -500 E
 12 9 2 3d4+145 2d6+2
 0 13000
 8 8 0
+BareHandAttack: 9
+Int: 1
+E
 #12025
 froboz wizard~
 Froboz~
 Froboz the wizard is standing here, working on a new spell.
 ~
-You see a middle-aged man who's knowledge of magic, both offensive and 
+You see a middle-aged man whose knowledge of magic, both offensive and 
 defensive, is legendary.  He literally glows with a pink aura.
 ~
 abelno dh 300 S
@@ -310,10 +317,12 @@ Titus Andronicus is standing here, polishing a few swords.
 As you look at him, he suddenly swings a newly sharpened sword
 at you!  Watch out!
 ~
-abeflno dh 500 S
+beflno dh 500 E
 24 0 -5 1d5+450 1d8+14
 31000 85000
 8 8 1
+BareHandAttack: 3
+E
 #12027
 senator~
 the senator~
@@ -357,10 +366,18 @@ He is the strongest of the Gods, and certainly no easy mark!  His powers
 transcend the plane of the physical, and could easily kill an unprepared
 mortal.
 ~
-abefilnopqr dhkp 1000 S
+abefilnopqr dhkp 1000 E
 34 0 -10 20d15+950 8d6+50
 250000 550000
 8 8 1
+BareHandAttack: 10
+Str: 25
+Int: 25
+Wis: 25
+Dex: 25
+Con: 25
+Cha: 25
+E
 #12031
 venus goddess~
 Venus~
@@ -370,10 +387,18 @@ Venus is probably one of the most beautiful women you have ever seen
 if not THE most beautiful.  She is very powerful and tough under that
 outer image of beauty.
 ~
-abelnopqr dhkp 1000 S
+abelnopqr dhkp 1000 E
 28 0 -6 5d10+650 6d6+12
 80000 310000
 5 5 2
+BareHandAttack: 12
+Str: 20
+Int: 20
+Wis: 20
+Dex: 20
+Con: 20
+Cha: 25
+E
 #12032
 mars god~
 Mars~
@@ -382,21 +407,37 @@ Mars, the God of War and State, is sitting down here.
 Mars is a tall God with burning, hateful eyes and a large scowl on
 his face.
 ~
-abelnopqr dhkp 1000 S
+abelnopqr dhkp 1000 E
 27 0 -9 15d10+630 8d6+14
 60000 200000
 6 6 1
+BareHandAttack: 7
+Str: 25
+Int: 20
+Wis: 20
+Dex: 20
+Con: 20
+Cha: 20
+E
 #12033
-Mercury messenger god~
+mercury messenger god~
 Mercury~
 Mercury, the messenger of the Gods, is standing here.
 ~
 Mercury is a handsome, youthful God and wears a large grin on his face.
 ~
-belnopqr dkp 1000 S
+belnopqr dkp 1000 E
 26 0 -10 5d10+550 4d6+8
 25000 155000
 8 8 1
+BareHandAttack: 13
+Str: 20
+Int: 20
+Wis: 20
+Dex: 25
+Con: 20
+Cha: 23
+E
 #12034
 shopkeeper~
 Froboz' shopkeeper~
@@ -445,5 +486,4 @@ bl d 900 S
 33 0 -10 1d1+30000 2d8+22
 20000 80000
 8 8 1
-#99999
-$~
+$

@@ -1,3 +1,25 @@
+/* ************************************************************************
+*   File: release.do                                    Part of CircleMUD *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+
+
+		  HOW TO CONVERT YOUR IDEAS INTO REALITY
+			 A CircleMUD Coding Manual
+
+Summary:
+   A revision history of previous releases of CircleMUD.  Summarizes new
+features and bug fixes with each release.
+
+Intended Audience:
+   All users.
+
+---------------------------------------------------------------------------
+
 CircleMUD Release History
 -------------------------
 

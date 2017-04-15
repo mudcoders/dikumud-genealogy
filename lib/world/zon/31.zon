@@ -39,9 +39,9 @@ M 0 3123 2 3113         Duck
 M 0 3123 2 3115         Duck
 * Objects
 O 0 3109 1 3110         Desk
-P 1 3108 1 3130                 Key To Safe
+P 1 3108 1 3109                 Key To Safe
 O 0 3110 1 3110         Safe
-P 1 3115 1 3131                 Money
+P 1 3115 1 3110                 Money
 O 0 3111 3 3101         Bench
 O 0 3111 3 3102         Bench
 O 0 3111 3 3103         Bench
@@ -58,5 +58,4 @@ D 0 3154 2 1            Chapel
 D 0 3155 0 1
 *
 S
-#99999
-$~
+$

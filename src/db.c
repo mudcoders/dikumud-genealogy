@@ -125,6 +125,9 @@ void Read_Invalid_List(void);
 void boot_the_shops(FILE * shop_f, char *filename, int rec_count);
 struct help_index_element *build_help_index(FILE * fl, int *num);
 
+/* external vars */
+extern int no_specials;
+
 
 /*************************************************************************
 *  routines for booting the system                                       *
@@ -198,11 +201,41 @@ ACMD(do_reboot)
 }
 
 
+void boot_world(void)
+{
+  log("Loading zone table.");
+  index_boot(DB_BOOT_ZON);
+
+  log("Loading rooms.");
+  index_boot(DB_BOOT_WLD);
+
+  log("Renumbering rooms.");
+  renum_world();
+
+  log("Checking start rooms.");
+  check_start_rooms();
+
+  log("Loading mobs and generating index.");
+  index_boot(DB_BOOT_MOB);
+
+  log("Loading objs and generating index.");
+  index_boot(DB_BOOT_OBJ);
+
+  log("Renumbering zone table.");
+  renum_zone_table();
+
+  if (!no_specials) {
+    log("Loading shops.");
+    index_boot(DB_BOOT_SHP);
+  }
+}
+
+  
+
 /* body of the booting system */
 void boot_db(void)
 {
   int i;
-  extern int no_specials;
 
   log("Boot db -- BEGIN.");
 
@@ -228,26 +261,7 @@ void boot_db(void)
   else
     help_index = build_help_index(help_fl, &top_of_helpt);
 
-  log("Loading zone table.");
-  index_boot(DB_BOOT_ZON);
-
-  log("Loading rooms.");
-  index_boot(DB_BOOT_WLD);
-
-  log("Renumbering rooms.");
-  renum_world();
-
-  log("Checking start rooms.");
-  check_start_rooms();
-
-  log("Loading mobs and generating index.");
-  index_boot(DB_BOOT_MOB);
-
-  log("Loading objs and generating index.");
-  index_boot(DB_BOOT_OBJ);
-
-  log("Renumbering zone table.");
-  renum_zone_table();
+  boot_world();
 
   log("Generating player index.");
   build_player_index();
@@ -258,10 +272,6 @@ void boot_db(void)
   log("Loading social messages.");
   boot_social_messages();
 
-  if (!no_specials) {
-    log("Loading shops.");
-    index_boot(DB_BOOT_SHP);
-  }
   log("Assigning function pointers:");
 
   if (!no_specials) {
@@ -596,7 +606,7 @@ long asciiflag_conv(char *flag)
     if (islower(*p))
       flags |= 1 << (*p - 'a');
     else if (isupper(*p))
-      flags |= 1 << (26 + (*p - 'a'));
+      flags |= 1 << (26 + (*p - 'A'));
 
     if (!isdigit(*p))
       is_number = 0;
@@ -788,7 +798,7 @@ void renum_zone_table(void)
 	break;
       case 'R': /* rem obj from room */
         a = ZCMD.arg1 = real_room(ZCMD.arg1);
-	b = ZCMD.arg2 = real_room(ZCMD.arg2);
+	b = ZCMD.arg2 = real_object(ZCMD.arg2);
         break;
       }
       if (a < 0 || b < 0) {
@@ -799,6 +809,174 @@ void renum_zone_table(void)
     }
 }
 
+
+
+void parse_simple_mob(FILE *mob_f, int i, int nr)
+{
+  int j, t[10];
+  char line[256];
+
+    mob_proto[i].real_abils.str = 11;
+    mob_proto[i].real_abils.intel = 11;
+    mob_proto[i].real_abils.wis = 11;
+    mob_proto[i].real_abils.dex = 11;
+    mob_proto[i].real_abils.con = 11;
+    mob_proto[i].real_abils.cha = 11;
+
+    get_line(mob_f, line);
+    if (sscanf(line, " %d %d %d %dd%d+%d %dd%d+%d ",
+	  t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7, t + 8) != 9) {
+      fprintf(stderr, "Format error in mob #%d, first line after S flag\n"
+	      "...expecting line of form '# # # #d#+# #d#+#'\n", nr);
+      exit(1);
+    }
+    GET_LEVEL(mob_proto + i) = t[0];
+    mob_proto[i].points.hitroll = 20 - t[1];
+    mob_proto[i].points.armor = 10 * t[2];
+
+    /* max hit = 0 is a flag that H, M, V is xdy+z */
+    mob_proto[i].points.max_hit = 0;
+    mob_proto[i].points.hit = t[3];
+    mob_proto[i].points.mana = t[4];
+    mob_proto[i].points.move = t[5];
+
+    mob_proto[i].points.max_mana = 10;
+    mob_proto[i].points.max_move = 50;
+
+    mob_proto[i].mob_specials.damnodice = t[6];
+    mob_proto[i].mob_specials.damsizedice = t[7];
+    mob_proto[i].points.damroll = t[8];
+
+    get_line(mob_f, line);
+    sscanf(line, " %d %d ", t, t + 1);
+    GET_GOLD(mob_proto + i) = t[0];
+    GET_EXP(mob_proto + i) = t[1];
+
+    get_line(mob_f, line);
+    if (sscanf(line, " %d %d %d %d ", t, t + 1, t + 2, t + 3) != 3) {
+      fprintf(stderr, "Format error in mob #%d, second line after S flag\n"
+	      "...expecting line of form '# # #'\n", nr);
+    }
+
+    mob_proto[i].char_specials.position = t[0];
+    mob_proto[i].mob_specials.default_pos = t[1];
+    mob_proto[i].player.sex = t[2];
+
+    mob_proto[i].player.class = 0;
+    mob_proto[i].player.weight = 200;
+    mob_proto[i].player.height = 198;
+
+    for (j = 0; j < 3; j++)
+      GET_COND(mob_proto + i, j) = -1;
+
+    /*
+     * these are now save applies; base save numbers for MOBs are now from
+     * the warrior save table.
+     */
+    for (j = 0; j < 5; j++)
+      GET_SAVE(mob_proto + i, j) = 0;
+}
+
+
+/*
+ * interpret_espec is the function that takes espec keywords and values
+ * and assigns the correct value to the mob as appropriate.  Adding new
+ * e-specs is absurdly easy -- just add a new CASE statement to this
+ * function!  No other changes need to be made anywhere in the code.
+ */
+
+#define CASE(test) if (!matched && !str_cmp(keyword, test) && (matched = 1))
+#define RANGE(low, high) (num_arg = MAX((low), MIN((high), (num_arg))))
+
+void interpret_espec(char *keyword, char *value, int i, int nr)
+{
+  int num_arg, matched = 0;
+
+  num_arg = atoi(value);
+
+  CASE("BareHandAttack") {
+    RANGE(0, 99);
+    mob_proto[i].mob_specials.attack_type = num_arg;
+  }
+
+  CASE("Str") {
+    RANGE(3, 25);
+    mob_proto[i].real_abils.str = num_arg;
+  }
+
+  CASE("StrAdd") {
+    RANGE(0, 100);
+    mob_proto[i].real_abils.str_add = num_arg;    
+  }
+
+  CASE("Int") {
+    RANGE(3, 25);
+    mob_proto[i].real_abils.intel = num_arg;
+  }
+
+  CASE("Wis") {
+    RANGE(3, 25);
+    mob_proto[i].real_abils.wis = num_arg;
+  }
+
+  CASE("Dex") {
+    RANGE(3, 25);
+    mob_proto[i].real_abils.dex = num_arg;
+  }
+
+  CASE("Con") {
+    RANGE(3, 25);
+    mob_proto[i].real_abils.con = num_arg;
+  }
+
+  CASE("Cha") {
+    RANGE(3, 25);
+    mob_proto[i].real_abils.cha = num_arg;
+  }
+
+  if (!matched) {
+    fprintf(stderr, "Warning: unrecognized espec keyword %s in mob #%d\n",
+	    keyword, nr);
+  }    
+}
+
+#undef CASE
+#undef RANGE
+
+void parse_espec(char *buf, int i, int nr)
+{
+  char *ptr;
+
+  if ((ptr = strchr(buf, ':')) != NULL) {
+    *(ptr++) = '\0';
+    while (isspace(*ptr))
+      ptr++;
+  } else
+    ptr = "";
+
+  interpret_espec(buf, ptr, i, nr);
+}
+
+
+void parse_enhanced_mob(FILE *mob_f, int i, int nr)
+{
+  char line[256];
+
+  parse_simple_mob(mob_f, i, nr);
+
+  while (get_line(mob_f, line)) {
+    if (!strcmp(line, "E"))	/* end of the ehanced section */
+      return;
+    else if (*line == '#') {	/* we've hit the next mob, maybe? */
+      fprintf(stderr, "Unterminated E section in mob #%d\n", nr);
+      exit(1);
+    } else
+      parse_espec(line, i, nr);
+  }
+
+  fprintf(stderr, "Unexpected end of file reached after mob #%d\n", nr);
+  exit(1);
+}
 
 
 void parse_mobile(FILE * mob_f, int nr)
@@ -837,67 +1015,13 @@ void parse_mobile(FILE * mob_f, int nr)
   GET_ALIGNMENT(mob_proto + i) = t[2];
 
   switch (letter) {
-  case 'S':			/* Simple monsters */
-    mob_proto[i].real_abils.str = 11;
-    mob_proto[i].real_abils.intel = 11;
-    mob_proto[i].real_abils.wis = 11;
-    mob_proto[i].real_abils.dex = 11;
-    mob_proto[i].real_abils.con = 11;
-
-    get_line(mob_f, line);
-    if (sscanf(line, " %d %d %d %dd%d+%d %dd%d+%d ",
-	  t, t + 1, t + 2, t + 3, t + 4, t + 5, t + 6, t + 7, t + 8) != 9) {
-      fprintf(stderr, "Format error in mob #%d, first line after S flag\n"
-	      "...expecting line of form '# # # #d#+# #d#+#'\n", nr);
-      exit(1);
-    }
-    GET_LEVEL(mob_proto + i) = t[0];
-    mob_proto[i].points.hitroll = 20 - t[1];
-    mob_proto[i].points.armor = 10 * t[2];
-
-    /* max hit = 0 is a flag that H, M, V is xdy+z */
-    mob_proto[i].points.max_hit = 0;
-    mob_proto[i].points.hit = t[3];
-    mob_proto[i].points.mana = t[4];
-    mob_proto[i].points.move = t[5];
-
-    mob_proto[i].points.max_mana = 10;
-    mob_proto[i].points.max_move = 50;
-
-    mob_proto[i].mob_specials.damnodice = t[6];
-    mob_proto[i].mob_specials.damsizedice = t[7];
-    mob_proto[i].points.damroll = t[8];
-
-    get_line(mob_f, line);
-    sscanf(line, " %d %d ", t, t + 1);
-    GET_GOLD(mob_proto + i) = t[0];
-    GET_EXP(mob_proto + i) = t[1];
-
-    get_line(mob_f, line);
-    if (sscanf(line, " %d %d %d %d ", t, t + 1, t + 2, t + 3) == 4)
-      mob_proto[i].mob_specials.attack_type = t[3];
-    else
-      mob_proto[i].mob_specials.attack_type = 0;
-
-    mob_proto[i].char_specials.position = t[0];
-    mob_proto[i].mob_specials.default_pos = t[1];
-    mob_proto[i].player.sex = t[2];
-
-    mob_proto[i].player.class = 0;
-    mob_proto[i].player.weight = 200;
-    mob_proto[i].player.height = 198;
-
-    for (j = 0; j < 3; j++)
-      GET_COND(mob_proto + i, j) = -1;
-
-    /*
-     * these are now save applies; base save numbers for MOBs are now from
-     * the warrior save table.
-     */
-    for (j = 0; j < 5; j++)
-      GET_SAVE(mob_proto + i, j) = 0;
-
+  case 'S':	/* Simple monsters */
+    parse_simple_mob(mob_f, i, nr);
     break;
+  case 'E':	/* Circle3 Enhanced monsters */
+    parse_enhanced_mob(mob_f, i, nr);
+    break;
+  /* add new mob types here.. */
   default:
     fprintf(stderr, "Unsupported mob type '%c' in mob #%d\n", letter, nr);
     exit(1);
@@ -921,7 +1045,7 @@ void parse_mobile(FILE * mob_f, int nr)
 /* read all objects from obj file; generate index and prototypes */
 char *parse_object(FILE * obj_f, int nr)
 {
-  static int i = 0;
+  static int i = 0, retval;
   static char line[256];
   int t[10], j;
   char *tmpptr;
@@ -955,16 +1079,18 @@ char *parse_object(FILE * obj_f, int nr)
   obj_proto[i].action_description = fread_string(obj_f, buf2);
 
   /* *** numeric data *** */
-  if (!get_line(obj_f, line) || sscanf(line, " %d %s %s", t, f1, f2) != 3) {
-    fprintf(stderr, "Format error in first numeric line, %s\n", buf2);
+  if (!get_line(obj_f, line) ||
+      (retval = sscanf(line, " %d %s %s", t, f1, f2)) != 3) {
+    fprintf(stderr, "Format error in first numeric line (expecting 3 args, got %d), %s\n", retval, buf2);
     exit(1);
   }
   obj_proto[i].obj_flags.type_flag = t[0];
   obj_proto[i].obj_flags.extra_flags = asciiflag_conv(f1);
   obj_proto[i].obj_flags.wear_flags = asciiflag_conv(f2);
 
-  if (!get_line(obj_f, line) || sscanf(line, "%d %d %d %d", t, t + 1, t + 2, t + 3) != 4) {
-    fprintf(stderr, "Format error in second numeric line, %s\n", buf2);
+  if (!get_line(obj_f, line) ||
+      (retval = sscanf(line, "%d %d %d %d", t, t + 1, t + 2, t + 3)) != 4) {
+    fprintf(stderr, "Format error in second numeric line (expecting 4 args, got %d), %s\n", retval, buf2);
     exit(1);
   }
   obj_proto[i].obj_flags.value[0] = t[0];
@@ -972,13 +1098,21 @@ char *parse_object(FILE * obj_f, int nr)
   obj_proto[i].obj_flags.value[2] = t[2];
   obj_proto[i].obj_flags.value[3] = t[3];
 
-  if (!get_line(obj_f, line) || sscanf(line, "%d %d %d", t, t + 1, t + 2) != 3) {
-    fprintf(stderr, "Format error in third numeric line, %s\n", buf2);
+  if (!get_line(obj_f, line) ||
+      (retval = sscanf(line, "%d %d %d", t, t + 1, t + 2)) != 3) {
+    fprintf(stderr, "Format error in third numeric line (expecting 3 args, got %d), %s\n", retval, buf2);
     exit(1);
   }
   obj_proto[i].obj_flags.weight = t[0];
   obj_proto[i].obj_flags.cost = t[1];
   obj_proto[i].obj_flags.cost_per_day = t[2];
+
+  /* check to make sure that weight of containers exceeds curr. quantity */
+  if (obj_proto[i].obj_flags.type_flag == ITEM_DRINKCON ||
+      obj_proto[i].obj_flags.type_flag == ITEM_FOUNTAIN) {
+    if (obj_proto[i].obj_flags.weight < obj_proto[i].obj_flags.value[1])
+      obj_proto[i].obj_flags.weight = obj_proto[i].obj_flags.value[1] + 5;
+  }
 
   /* *** extra descriptions and affect fields *** */
 
@@ -1369,20 +1503,17 @@ void reset_zone(int zone)
       break;
 
     case 'O':			/* read an object */
-      if (obj_index[ZCMD.arg1].number < ZCMD.arg2)
+      if (obj_index[ZCMD.arg1].number < ZCMD.arg2) {
 	if (ZCMD.arg3 >= 0) {
-	  if (!get_obj_in_list_num(ZCMD.arg1, world[ZCMD.arg3].contents)) {
-	    obj = read_object(ZCMD.arg1, REAL);
-	    obj_to_room(obj, ZCMD.arg3);
-	    last_cmd = 1;
-	  } else
-	    last_cmd = 0;
+	  obj = read_object(ZCMD.arg1, REAL);
+	  obj_to_room(obj, ZCMD.arg3);
+	  last_cmd = 1;
 	} else {
 	  obj = read_object(ZCMD.arg1, REAL);
 	  obj->in_room = NOWHERE;
 	  last_cmd = 1;
 	}
-      else
+      } else
 	last_cmd = 0;
       break;
 
@@ -1467,7 +1598,8 @@ void reset_zone(int zone)
       break;
 
     default:
-      ZONE_ERROR("unknown cmd in reset table!");
+      ZONE_ERROR("unknown cmd in reset table; cmd disabled");
+      ZCMD.command = '*';
       break;
     }
   }
@@ -1547,7 +1679,7 @@ void save_char(struct char_data * ch, sh_int load_room)
 {
   struct char_file_u st;
 
-  if (IS_NPC(ch) || !ch->desc)
+  if (IS_NPC(ch) || !ch->desc || GET_PFILEPOS(ch) < 0)
     return;
 
   char_to_store(ch, &st);
@@ -1558,9 +1690,9 @@ void save_char(struct char_data * ch, sh_int load_room)
   if (!PLR_FLAGGED(ch, PLR_LOADROOM))
     st.player_specials_saved.load_room = load_room;
 
-  strcpy(st.pwd, ch->desc->pwd);
+  strcpy(st.pwd, GET_PASSWD(ch));
 
-  fseek(player_fl, ch->desc->pos * sizeof(struct char_file_u), SEEK_SET);
+  fseek(player_fl, GET_PFILEPOS(ch) * sizeof(struct char_file_u), SEEK_SET);
   fwrite(&st, sizeof(struct char_file_u), 1, player_fl);
 }
 
@@ -1611,6 +1743,7 @@ void store_to_char(struct char_file_u * st, struct char_data * ch)
 
   CREATE(ch->player.name, char, strlen(st->name) + 1);
   strcpy(ch->player.name, st->name);
+  strcpy(ch->player.passwd, st->pwd);
 
   /* Add all spell effects */
   for (i = 0; i < MAX_AFFECT; i++) {
@@ -1648,7 +1781,7 @@ void char_to_store(struct char_data * ch, struct char_file_u * st)
   /* Unaffect everything a character can be affected by */
 
   for (i = 0; i < NUM_WEARS; i++) {
-    if (ch->equipment[i])
+    if (GET_EQ(ch, i))
       char_eq[i] = unequip_char(ch, i);
     else
       char_eq[i] = NULL;
@@ -1983,7 +2116,7 @@ void reset_char(struct char_data * ch)
   int i;
 
   for (i = 0; i < NUM_WEARS; i++)
-    ch->equipment[i] = NULL;
+    GET_EQ(ch, i) = NULL;
 
   ch->followers = NULL;
   ch->master = NULL;
@@ -2004,6 +2137,8 @@ void reset_char(struct char_data * ch)
     GET_MOVE(ch) = 1;
   if (GET_MANA(ch) <= 0)
     GET_MANA(ch) = 1;
+
+  GET_LAST_TELL(ch) = NOBODY;
 }
 
 
@@ -2014,6 +2149,7 @@ void clear_char(struct char_data * ch)
   memset((char *) ch, 0, sizeof(struct char_data));
 
   ch->in_room = NOWHERE;
+  GET_PFILEPOS(ch) = -1;
   GET_WAS_IN(ch) = NOWHERE;
   GET_POS(ch) = POS_STANDING;
   ch->mob_specials.default_pos = POS_STANDING;

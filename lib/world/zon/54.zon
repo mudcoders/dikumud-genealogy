@@ -2,7 +2,7 @@
 New Thalos~
 5699 20 2
 *
-* Created by ? of ?
+* Created by Duke of SillyMud?
 *
 * Edited and modified for CircleMUD by Furry
 *
@@ -160,9 +160,9 @@ M 0 5444 24 5567        Vulture
 M 0 5444 24 5568        Vulture
 M 0 5444 24 5692        Vulture
 M 0 5445 2 5455         Old Man
-E 1 5490 2 16                   Chessboard
+E 1 5490 2 17                   Chessboard
 M 0 5445 2 5455         Old Man
-E 1 5490 2 16                   Chessboard
+E 1 5490 2 17                   Chessboard
 M 0 5446 1 5551         Lugh The Librarian
 M 0 5447 1 5411         Dirt Devil
 M 0 5448 1 5411         Lamia
@@ -409,6 +409,5 @@ D 0 5653 1 1            Boulder To River
 D 0 5698 3 1            Lair Of The Ixitxachitl
 D 0 5699 1 1            
 S
-#99999
-$~
 
+$

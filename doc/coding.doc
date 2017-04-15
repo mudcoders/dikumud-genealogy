@@ -1,31 +1,316 @@
-/**************************************************************************
-*  Copyright (C) 1993 - see 'license.doc' for complete information.       *
-**************************************************************************/
+/* ************************************************************************
+*   File: coding.doc                                    Part of CircleMUD *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
 
-		  HOW TO CONVERT YOUR IDEAS INTO REALITY
-			 A CircleMUD Coding Manual
+                  HOW TO CONVERT YOUR IDEAS INTO REALITY
+                 A CircleMUD Coding Manual by Jeremy Elson
+
+Summary:
+      A guide to writing C code for use with CircleMUD.  Includes a
+description of commonly used functions, tips on how to add new commands and
+spells, and other commonly asked coding questions.  Good familiarity with both
+C and UNIX is assumed, although  system-level UNIX C programming skill not
+required.
+      Area-building not covered (see building.doc).
+
+Intended Audience:
+      Coders only.
 
 Table of Contents
 ---------------------------------------------------------------------------
 
-i.  Introduction
+1. Introduction
 
-1.  Overview and Coding Basics
-    1.1. The Way Things Work -- Overview
-    1.2. CircleMUD's Structures and Lists
-    1.3. Frequently Used Functions
+2. Overview and Coding Basics
+      2.1. An Internet Server Tutorial
+      2.2. The Way Things Work -- Overview
+      2.3. CircleMUD's Global Variables
+      2.4. Frequently Used Functions
 
-2.  Changing the Code
-    2.1. Adding Commands
-    2.2. Adding Socials
-    2.3. Adding Spells
-    2.4. Adding Skills
-    2.5. Writing Special Procedures
-    2.6. Adding Classes
+3. Adding Features
+      3.1. Adding Commands
+      3.2. Adding Socials
+      3.3. Adding Spells
+      3.4. Adding Skills
+      3.5. Adding Classes
+      3.6. Adding Levels
+      3.7. Adding Color
 
-    2.9. Adding Color
+4. Writing Special Procedures
+      4.1. Overview of Special Procedures
+      4.2. Pulsed vs. Command-Drive Special Procedures
+      4.3. Relating Special Procedures to Objects, Mobiles, and Rooms
+      4.4. The Special Procedure Function Header
+      4.5. The Special Procedure Return Value
 
-3.  Changing the World
-    3.1. Adding Areas
-    3.2. Removing Areas
-    3.2. Writing Areas
+---------------------------------------------------------------------------
+
+
+1. Introduction
+
+      When DikuMUD was first released in 1990, the authors were rightly more
+concerned with getting their product released than with little cosmetic
+details.  Between writing 25,000 lines of C code and building the entire
+DikuMUD world, complete with objects, rooms, and monsters, it's understandable
+that making the code portable or clean was not at the top of the list of their
+priorities.  Most DikuMUD distributions were not portable and had a number of
+bad bugs and even syntax errors which prevented the code from compiling at
+all.  If a potential MUD implementor wanted to run a Diku, an excellent
+knowledge of C was necessary, because the MUD simply wouldn't run otherwise.
+
+      In 1995 the situation is much different.  With the proliferation of
+user-friendly code bases such as Merc and Circle, any Average Joe can just
+type "make" and inflict yet another MUD on the world.  Therefore, the number
+of truly unique MUDs as a fraction of the total is dropping drastically
+because coding experience is no longer a prerequisite to being able to put a
+MUD up on the 'Net.  Some people may tell you that you don't need to know how
+to code in order to run a MUD -- don't believe them.  Those people are wrong.
+
+      If you want your MUD to succeed and flourish, you'll have to know how
+to code in C.  Otherwise, your MUD will be exactly like every other MUD out
+there.  You're not the only person who knows how to type "make"!  Although the
+quality and originality of your areas is also very important, it's the code
+that transforms the areas from lifeless text files into a living, breathing
+virtual world.   If you don't know how to code, you won't be able to add new
+features, respond to requests of your players, add new world flags for your
+area builders, or even fix the simplest of bugs.  Running a MUD without
+knowing how to code is certainly a recipe for disaster.  If you're a great
+game-player and have some terrific ideas about how a MUD should work, but
+don't know how to code, you should either learn or find a good coder who can
+join your team.  Don't assume that you can get away with running a MUD without
+knowing C -- you can't.  Not for very long, anyway.
+
+      This document won't teach you how to program in C; you'll have to learn
+that on your own.  Instead, it will try to familiarize you with the way
+Circle's code is structured so that you can put your C skills to good use. 
+Even for the best programmers, it takes a while to "get into" a program and
+feel comfortable enough with the way it works to start modifying it. 
+Hopefully, by reading this manual, your breaking-in period for getting to know
+Circle will be minimized.
+
+      Circle consists of close to 30,000 lines of moderately dense C code, so
+you shouldn't expect familiarity to come overnight.  The best way to learn is
+to DO.  Get your hands dirty!  Don't be afraid to tinker with things.  Start
+small by modifying existing functions.  Then, work your way up to creating new
+functions by copying old ones.  Eventually you'll be able to write completely
+original functions, and even tear some of Circle's native functions out as you
+realize completely new ways of implementing them!  But you should learn to
+walk before you try to run.
+
+      Most of all, try to remember that coding for a MUD should be fun.  It
+can sometimes be easy to lose site of the ultimate goal of personal enjoyment
+that MUDs are supposed to provide, particularly when they start to get crushed
+under the weight of their own politics or the egos of their administrators. 
+If you enjoy coding, but find yourself spending more time on politics than you
+are on code, don't be afraid to restructure your MUD or even remove yourself
+as Imp to a lower wizard position which requires less politics.
+
+      People often ask me why I do so much work on CircleMUD.  They want to
+know why I spend so much time writing code *only* for the purpose of letting
+other people use it, since I don't actually run a MUD myself.  After reading
+the preceding paragraph, the answer to that question should be clear.  I've
+spent considerable time coding for on-line MUDs in the past, but after a while
+it just wasn't fun any more.  I eventually found myself doing nothing but
+working politically and doing virtually no coding at all.  Eventually, I even
+lost the will to write code completely.  By quitting from my various God
+positions on every MUD I was of which I was a member, and concentrating on my
+public Circle releases, I have the luxury of enjoying MUD coding in its purest
+form: all code, no politics.  Well, almost none, anyway -- my past still comes
+back to haunt me now and then. :)
+
+      A final thought: nothing will turn potential players away from your MUD
+more than logging in and finding that it's exactly like half the other
+CircleMUDs out there.  Strive to show the world something new and unique.  And
+may the source be with you.
+
+
+
+2. Overview and Coding Basics
+
+      Before getting down to the details of learning how to write code, we
+will first examine generally what a MUD is and what it does, to give you an
+overview of what type of program you're working with.
+
+      The first section, "An Internet Server Tutorial", describes how Internet
+servers such as CircleMUD work.  It contains interesting background material
+if you'd like a deeper understanding of how the MUD actually interacts with
+the Internet and the computer on which it runs, but little practical coding
+advice.  So, if you're reading this document purely to learn how to write MUD
+code, you should skip to the second section.
+
+2.1. An Internet Server Tutorial
+
+      An Internet "server" is a program which provides some service to
+Internet users (called "clients").  There are many different types of servers
+on the Internet.  FTP servers allow you to transfer files between a remote
+computer and your own.  Telnet servers allow you to connect to remote
+machines.  News servers allow you to read USENET news.  Similarly, CircleMUD
+is a server which allows you to play a game.
+
+      However, MUDs such as CircleMUD differ from most Internet servers in
+several very important ways.  When ten different people connect to CircleMUD,
+they can all interact with one another.  CircleMUD -- a single program -- must
+be aware of many users at the same time.  On the other hand, most other
+Internet servers such as FTP servers are written to only be aware of *one*
+user at a time.  If more than one user wants to use an FTP server
+simultaneously, the operating system runs two copies of the server: one to
+handle each user.  Each individual copy of the FTP server is not aware of
+anything but the single user it has been assigned to serve.
+
+      This approach of making one copy of the program per user works quite
+well with an FTP server because all the users of an FTP server do not need to
+interact with one another.  However, this approach does not work well at all
+with MUDs, because it makes the task of allowing users to communicate and
+interact with each other quite difficult.
+
+      In addition, most simple Internet servers do not actually contain any
+network code -- the Internet superserver (inetd) contains most of the code to
+perform the network magic, allowing the individual servers such as FTP and
+telnet to be network-unaware for the most part, simply reading from standard
+input and writing to standard output as if a user at a normal terminal was
+using the program.  The Internet superserver is responsible for setting up
+standard input and standard output so that they are actually network sockets
+and not a text terminal.
+
+      To sum up, a MUD such as CircleMUD does not have the luxury of being
+able to handle multiple users by allowing the operating system to make many
+copies of the MUD.  The MUD itself must be capable of handling many users. 
+The MUD also doesn't have the luxury of allowing a pre-written program such
+as inetd to set up its network connections.  The MUD itself is responsible for
+setting up and keeping track of all of its own network connections, as well
+as splitting its time evenly among all of its players.  The MUD cannot stop
+and wait for a player to type something -- if it stops and waits for that
+player, the MUD will appear to have frozen from the point of view of all the
+other players!
+
+      Let's make this idea more concrete with an example.  Imagine that your
+first programming assignment in a C class is to write a simple calculator that
+gets two numbers from a user as input, multiplies them together, and then
+prints the product on the screen as output.  Your program would probably be
+quite simple: it would prompt the user for the two numbers, then stop and wait
+while the user types the numbers in.
+
+      Now, imagine that your project is to write a program that lets 10 people
+simultaneously connect to your calculator and multiply their own numbers
+together.  Forget for a moment the problem of how to write the network code
+that allows people to connect to your program remotely.  There is a more
+fundamental problem here: your original strategy of stopping and waiting for
+the user to type input won't work any more.  With one user, that worked fine.
+But what will happen with 10 users?
+
+      Let's say your program stops and waits for the first user to type
+something.  Now, what happens if the second user types something in the
+meantime?  The program will not respond to the second user because it is still
+waiting for a response from the first user.  Your simple calculator has
+suddenly become much more complex -- now, it must constantly cycle through all
+users, asking the operating system if any one of them have typed something,
+without ever stopping to wait for a single user.  When input comes in from any
+one of the users, your program must immediately process it and move on to the
+next user.
+
+      Let's say that you've written a program which does the cycling among
+users described in the previous paragraph.  Now, imagine that the operating
+system tells you that User 4 has just typed the number 12.  You might be able
+to see the second problem: what does that 12 mean?  Is 12 the first or second
+multiplicand for your calculator?  Should you immediately multiply the 12 with
+some other number, or store it and wait for another number to multiply by 12?
+
+      Your simple calculator has become more complicated again!  Now, in
+addition to cycling through all users to check if any have typed anything, you
+must remember the STATE each user is in.  In other words, each user might
+start out in a state called "Waiting for First Number."  If a user types a
+number while she's in the "Waiting for First Number" state, you'd store her
+number somewhere and move her into the "Waiting for Second Number" state.  If
+she types a number while in the "Waiting for Second Number" state, you'd
+retrieve the first number from memory, multiply it by the number just typed,
+and print the result.  Of course, each user can be in a different state --
+there is no global state shared by all users.
+
+      Now, you might be able to see how this calculator example relates to
+CircleMUD.  Let's say that the MUD receives the string, "Sleep" from a user. 
+What should Circle do with this string?  Maybe the user is trying to log in,
+typing her name which happens to be "Sleep".  Maybe the user is typing in her
+password.  Maybe the user is already logged in, and is trying to go to sleep! 
+Just like with our calculator, the MUD knows how to interpret data it receives
+from users by examining the users' state.
+
+      You can see a list of all possible players' states in structs.h (they
+all start with "CON_").  All users are put into the CON_GET_NAME state when
+they first connect to the MUD.  CON_GET_NAME simply means that the MUD is
+waiting for the user to type her name, at the "By what name do you wish to be
+known?" prompt.  The normal state that most players are in most of the time
+is the CON_PLAYING state, which indicates that they have already logged in and
+are playing normally.
+
+      Now, let's go back to our previous example and trace exactly what
+happens when you type "Sleep".  First, you type "Sleep."  Then, your computer
+sends the string "Sleep" over the Internet to the computer on which the MUD
+is running.  Within one tenth of a second, Circle checks with the operating
+system to see if any of its users have typed anything.  When Circle gets to
+you, it asks the operating system, "Has this user typed anything?".  Since you
+typed "Sleep", the operating system will respond, "Yes!".  The MUD will then
+ask the operating system to deliver the message and will read your message of
+"Sleep".  (All the magic of talking to the operating system and checking to
+see whether or not you've typed anything happens in comm.c.)
+
+      So, now that the MUD now knows that you've typed "Sleep", it has to
+decide which of several function in interpreter.c should get control next. 
+This depends on what state you're in.  If you're in the normal PLAYING state,
+it will pass control to a function called command_interpreter, which will
+interpret "Sleep" as a normal command and put you to sleep.  If you're in any
+other state, control goes to a function called nanny, which is responsible for
+handling all sockets in any state other than PLAYING.  nanny checks what state
+you're in and acts accordingly.  For example, if you're in the GET_NAME state,
+nanny activates the code to check whether or not "Sleep" is the name of a
+known player (in which case it puts you into the state asking for your
+password), or a new player (in which case it'll ask you the question, "Did I
+get that right, Sleep?".)
+
+      In a nutshell, that's how CircleMUD interacts with the Internet.  If you
+don't understand all the details, don't worry -- it's not necessary to
+understand things on this level to be a successful MUD coder.  If you are
+interested, however, there are some excellent references you can read for more
+information:
+      "Internetworking with TCP/IP" by Douglas Comer.  The canonical text
+describing Internet protocols; comes in three volumes.  Volume 1 gives an
+excellent description of how Internet protocols, error handling, routing, and
+nameservice works.  Volume 3 describes specifics of writing Internet Servers
+in C.  (Volume 2 describes how Internet protocols are implemented by operating
+systems and is not as apropos to this discussion.)
+      "Advanced Programming in the UNIX Environment" by Richard Stevens.  An
+excellent UNIX reference for the serious system programmer.  Describes POSIX
+quite well -- worth its weight in gold for anyone trying to write portable
+UNIX applications.  Sections on signal semantics and non-blocking I/O
+particularly apropos to Internet servers.
+      "UNIX Network Programming" by Richard Stevens.  Similar to Volume 3 of
+Comer's series, but goes into more detail in several areas, and offers more
+practical code examples.
+
+
+
+2.2. The Way Things Work -- Overview
+2.3. CircleMUD's Global Variables
+2.4. Frequently Used Functions
+
+
+3. Adding Features
+3.1. Adding Commands
+3.2. Adding Socials
+3.3. Adding Spells
+3.4. Adding Skills
+3.5. Adding Classes
+3.6. Adding Levels
+3.7. Adding Color
+
+
+4. Writing Special Procedures
+4.1. Overview of Special Procedures
+4.2. Pulsed vs. Command-Drive Special Procedures
+4.3. Relating Special Procedures to Objects, Mobiles, and Rooms
+4.4. The Special Procedure Function Header
+4.5. The Special Procedure Return Value

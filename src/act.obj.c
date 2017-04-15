@@ -929,7 +929,7 @@ ACMD(do_pour)
       act("$n empties $p.", TRUE, ch, from_obj, 0, TO_ROOM);
       act("You empty $p.", FALSE, ch, from_obj, 0, TO_CHAR);
 
-      weight_change_object(from_obj, -GET_OBJ_VAL(from_obj, 1));	/* Empty */
+      weight_change_object(from_obj, -GET_OBJ_VAL(from_obj, 1)); /* Empty */
 
       GET_OBJ_VAL(from_obj, 1) = 0;
       GET_OBJ_VAL(from_obj, 2) = 0;
@@ -1105,10 +1105,10 @@ void perform_wear(struct char_data * ch, struct obj_data * obj, int where)
   }
   /* for neck, finger, and wrist, try pos 2 if pos 1 is already full */
   if ((where == WEAR_FINGER_R) || (where == WEAR_NECK_1) || (where == WEAR_WRIST_R))
-    if (ch->equipment[where])
+    if (GET_EQ(ch, where))
       where++;
 
-  if (ch->equipment[where]) {
+  if (GET_EQ(ch, where)) {
     send_to_char(already_wearing[where], ch);
     return;
   }
@@ -1146,30 +1146,18 @@ int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg)
   };
 
   if (!arg || !*arg) {
-    if (CAN_WEAR(obj, ITEM_WEAR_FINGER))
-      where = WEAR_FINGER_R;
-    if (CAN_WEAR(obj, ITEM_WEAR_NECK))
-      where = WEAR_NECK_1;
-    if (CAN_WEAR(obj, ITEM_WEAR_BODY))
-      where = WEAR_BODY;
-    if (CAN_WEAR(obj, ITEM_WEAR_HEAD))
-      where = WEAR_HEAD;
-    if (CAN_WEAR(obj, ITEM_WEAR_LEGS))
-      where = WEAR_LEGS;
-    if (CAN_WEAR(obj, ITEM_WEAR_FEET))
-      where = WEAR_FEET;
-    if (CAN_WEAR(obj, ITEM_WEAR_HANDS))
-      where = WEAR_HANDS;
-    if (CAN_WEAR(obj, ITEM_WEAR_ARMS))
-      where = WEAR_ARMS;
-    if (CAN_WEAR(obj, ITEM_WEAR_SHIELD))
-      where = WEAR_SHIELD;
-    if (CAN_WEAR(obj, ITEM_WEAR_ABOUT))
-      where = WEAR_ABOUT;
-    if (CAN_WEAR(obj, ITEM_WEAR_WAIST))
-      where = WEAR_WAIST;
-    if (CAN_WEAR(obj, ITEM_WEAR_WRIST))
-      where = WEAR_WRIST_R;
+    if (CAN_WEAR(obj, ITEM_WEAR_FINGER))      where = WEAR_FINGER_R;
+    if (CAN_WEAR(obj, ITEM_WEAR_NECK))        where = WEAR_NECK_1;
+    if (CAN_WEAR(obj, ITEM_WEAR_BODY))        where = WEAR_BODY;
+    if (CAN_WEAR(obj, ITEM_WEAR_HEAD))        where = WEAR_HEAD;
+    if (CAN_WEAR(obj, ITEM_WEAR_LEGS))        where = WEAR_LEGS;
+    if (CAN_WEAR(obj, ITEM_WEAR_FEET))        where = WEAR_FEET;
+    if (CAN_WEAR(obj, ITEM_WEAR_HANDS))       where = WEAR_HANDS;
+    if (CAN_WEAR(obj, ITEM_WEAR_ARMS))        where = WEAR_ARMS;
+    if (CAN_WEAR(obj, ITEM_WEAR_SHIELD))      where = WEAR_SHIELD;
+    if (CAN_WEAR(obj, ITEM_WEAR_ABOUT))       where = WEAR_ABOUT;
+    if (CAN_WEAR(obj, ITEM_WEAR_WAIST))       where = WEAR_WAIST;
+    if (CAN_WEAR(obj, ITEM_WEAR_WRIST))       where = WEAR_WRIST_R;
   } else {
     if ((where = search_block(arg, keywords, FALSE)) < 0) {
       sprintf(buf, "'%s'?  What part of your body is THAT?\r\n", arg);
@@ -1297,7 +1285,7 @@ void perform_remove(struct char_data * ch, int pos)
 {
   struct obj_data *obj;
 
-  if (!(obj = ch->equipment[pos])) {
+  if (!(obj = GET_EQ(ch, pos))) {
     log("Error in perform_remove: bad pos passed.");
     return;
   }
@@ -1328,7 +1316,7 @@ ACMD(do_remove)
   if (dotmode == FIND_ALL) {
     found = 0;
     for (i = 0; i < NUM_WEARS; i++)
-      if (ch->equipment[i]) {
+      if (GET_EQ(ch, i)) {
 	perform_remove(ch, i);
 	found = 1;
       }
@@ -1340,8 +1328,8 @@ ACMD(do_remove)
     else {
       found = 0;
       for (i = 0; i < NUM_WEARS; i++)
-	if (ch->equipment[i] && CAN_SEE_OBJ(ch, ch->equipment[i]) &&
-	    isname(arg, ch->equipment[i]->name)) {
+	if (GET_EQ(ch, i) && CAN_SEE_OBJ(ch, GET_EQ(ch, i)) &&
+	    isname(arg, GET_EQ(ch, i)->name)) {
 	  perform_remove(ch, i);
 	  found = 1;
 	}

@@ -67,7 +67,7 @@ There is a large telescope here, pointing at the sky.~
 ~
 12 0 0
 0 0 0 0
-100 0 0
+0 0 0
 E
 telescope scope~
 A small sign says:
@@ -91,31 +91,44 @@ a huge key~
 There is a huge, heavy-looking key on the floor here.~
 ~
 18 c 16385
-2 0 0 0
-1 1000 0
+15007 0 0 0
+1 0 0
+#15008
+Verminator sword~
+Verminator~
+A strange looking sword is lying upon the ground here.~
+~
+5 adjmnoq 8193
+0 3 4 11
+2 1 4000
+E
+verminator sword~
+This strange sword seems to be made of black metal, an eerie green glow
+surrounds the blade.
+~
 #15009
 key butlers butler~
 the Butler's key~
 The Butler's key is here.~
 ~
 18 c 16385
-1 0 0 0
-3 200 0
+15009 0 0 0
+3 0 0
 #15010
 key small~
 a small key~
 A small key lies here.~
 ~
 18 c 16385
-1 0 0 0
-1 200 100
+15010 0 0 0
+1 0 100
 #15011
 chest wooden~
 a large wooden chest~
 A large wooden chest stands here in a corner.~
 ~
 15 0 1
-400 13 15010 0
+800 13 15010 0
 450 400 100
 E
 chest~
@@ -139,30 +152,26 @@ banner royal~
 a royal banner~
 The royal banner has been firmly planted in the ground here.~
 ~
-12 agp 16385
+12 0 0
 0 0 0 0
-40 25000 10000
+0 0 0
 E
 banner royal standard~
-It is large and very heavy. On top of it flutters King Welmar's flag
+It is large and very heavy.  On top of it flutters King Welmar's flag
 proudly.
 ~
 E
 flag~
 On the flag is the symbol of King Welmar's house, the rampant stag.
 ~
-A
-18 2
-A 
-19 1
 #15014
 key~
 a key~
 A key lies on the floor.~
 ~
 18 c 1
-2 0 0 0
-13 5 0
+15014 0 0 0
+13 0 0
 E
 key~
 It has a finely carved letter 'W' inscribed on it.
@@ -183,6 +192,26 @@ There is a large broadsword lying here.~
 5 0 8193
 0 2 6 3
 14 1300 3000
+#15017
+key cell~
+the cell key~
+A key lies on the floor.~
+~
+18 c 1
+15017 0 0 0
+3 0 0
+E
+key cell~
+This appears to be the key for the cells of the castle.
+~
+#15018
+corpse~
+a corpse~
+There is a corpse lying in the middle of the floor of the building here.~
+~
+13 0 0
+0 0 0 0
+0 0 0
 #15019
 lobster~
 a delicious-looking lobster~
@@ -199,5 +228,26 @@ There is some delicious-looking Russian caviar here, making your mouth water.~
 19 0 1
 2 0 0 0 
 1 250 20
-#99999
-$~
+#15021
+glow~
+the glow from the west~
+There is a strange glow coming from the west.~
+~
+13 0 0
+0 0 0 0
+0 0 0
+E
+glow~
+The glow from the west appears to be quite strong, but it does not
+give enough light to see by here, nor can you see the source of the
+glow.
+~
+#15022
+wail sound~
+the wailing sound from the east~
+There is an eerie wailing sound coming from the house to the east.~
+~
+13 0 0
+0 0 0 0
+0 0 0
+$

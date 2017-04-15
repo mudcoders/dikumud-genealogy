@@ -189,7 +189,7 @@ G 1 12030 500                   Blaze Orange Potion
 M 0 12025 1 12049       Froboz
 E 1 3022 100 16                 Long Sword
 E 1 3042 100 11                 Shield
-E 1 12014 10  5                 Froboz' Cloak
+E 1 12014 10 12                 Froboz' Cloak
 G 1 12025 10                    Ornate Scroll
 G 1 12026 10                    Plain Scroll
 G 1 12029 10                    Prototype Wand
@@ -257,7 +257,7 @@ G 1 3036 100                    Cashcard
 G 1 12003 100                   Coach's Whistle
 E 1 3022 100 16                 Long Sword
 * Gates
-D 0 12004 3 2           West Gate Of City
+D 0 12005 3 2           West Gate Of City
 D 0 12029 0 2           North Gate Of City
 D 0 12035 2 2           South Gate Of City
 D 0 12051 1 1           East Gate Of City
@@ -281,5 +281,4 @@ D 0 12050 1 2           Judge's Chambers
 D 0 12055 3 2
 *
 S
-#99999
-$~
+$

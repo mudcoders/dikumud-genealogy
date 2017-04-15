@@ -1,0 +1,19 @@
+#!/bin/sh
+
+cat << EOF
+
+CircleMUD is free software but it is copyrighted and licensed.  You must read
+and agree to abide by the license before using CircleMUD.
+
+This message will only appear once (the first time you compile the server),
+but is contained in the file doc/license.doc if you'd like to refer back to
+it in the future.
+
+Press return to read the license.
+EOF
+read dummy
+cat ../doc/license.doc | more
+echo Press return to ACCEPT the terms of this license.
+echo Press Control-C if you DO NOT ACCEPT the terms of this license.
+read dummy
+touch .accepted

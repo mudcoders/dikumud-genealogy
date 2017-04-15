@@ -5,7 +5,7 @@ wooden desks and benches.  To the east you hear the bustle of the Temple
 of Midgaard, a sharp contrast to the relative quiet of this peaceful
 room.
 ~
-30 cdf 0
+30 cdeh 0
 D1
 You see the Temple of Midgaard.
 ~
@@ -23,7 +23,7 @@ mound upon which the temple is built and ends on the temple square below.
 To the west, you see the Reading Room.  The donation room is in a small
 alcove to your east.
 ~
-30 cdf 0
+30 cdeh 0
 D0
 At the northern end of the temple hall is a statue and a huge altar.
 ~
@@ -76,7 +76,7 @@ The Bar Of Divination~
    The bar is one of the finest in the land, lucky it is members only.  Fine
 furniture is set all around the room.  A small sign is hanging on the wall.
 ~
-30 cdf 0
+30 cdh 0
 D2
 You see the entrance.
 ~
@@ -181,7 +181,7 @@ the western wall, and through the southeastern windows you can see the temple
 square.  This place makes you feel like home.
 A small sign with big letters is fastened to the bar.
 ~
-30 df 0
+30 dh 0
 D3
 You see the exit to the entrance hall.
 ~
@@ -240,7 +240,7 @@ fine bread fills the room.  The bread and Danish are arranged in fine order
 on the shelves, and seem to be of the finest quality.
 A small sign is on the counter.
 ~
-30 df 0
+30 dh 0
 D2
 You see the main street.
 ~
@@ -270,7 +270,7 @@ The General Store~
 behind the counter, safely out of your reach.
 A small note hangs on the wall.
 ~
-30 df 0
+30 dh 0
 D2
 You see the main street.
 ~
@@ -291,7 +291,7 @@ S
 The Weapon Shop~
    You are inside the weapon shop.  There is a small note on the counter.
 ~
-30 df 0
+30 dh 0
 D2
 You see the main street.
 ~
@@ -475,7 +475,7 @@ The Mages' Bar~
    The bar is one of the weirdest in the land.  Mystical images float around
 the air.  Illusions of fine furniture appear all around the room.
 ~
-30 cdf 0
+30 cdh 0
 D0
 You see the lobby.
 ~
@@ -516,7 +516,7 @@ The Armory~
 see helmets, shields and chain mails.  To the north is the main street.
 On the wall is a small note.
 ~
-30 df 0
+30 dh 0
 D0
 You see the main street.
 ~
@@ -524,7 +524,7 @@ You see the main street.
 0 -1 3013
 E
 note~
-  You can use these commands for trading:
+You can use these commands for trading:
 
   value <item>     To get the price of an item in your possession.
   sell <item>      To sell something.
@@ -559,7 +559,7 @@ The Bar Of Swordsmen~
 furniture is all around you in small pieces.  To the south is the yard, and
 to the west is the entrance hall.
 ~
-30 cdf 0
+30 cdh 0
 D2
 You see the practice yard.
 ~
@@ -690,7 +690,7 @@ furnished, but now it seems almost empty.  To the south is the yard, and to
 the west is the entrance hall.
    (Maybe the furniture has been stolen?!)
 ~
-30 cdf 0
+30 cdh 0
 D2
 You see the secret yard.
 ~
@@ -747,7 +747,7 @@ The Pet Shop~
    The Pet Shop is a small crowded store, full of cages and animals of
 various sizes.  There is a sign on the wall.
 ~
-30 cdf 0
+30 cdh 0
 D0
 You see the main street.
 ~
@@ -787,7 +787,7 @@ The Magic Shop~
    Behind the counter you see various items, neatly placed in racks,
 presumably most of them are magic.
 ~
-30 d 0
+30 dh 0
 D2
 You see the main street.
 ~
@@ -980,14 +980,9 @@ S
 The Eastern End Of The Alley~
    You are standing at the eastern end of the alley, the city wall is just
 east, blocking any further movement.  A small warehouse is directly south of
-here and a mexican food stand has been set up north of here.
+here.
 ~
 30 0 1
-D0
-You see the taco stand.
-~
-~
-0 -1 3056
 D2
 You see the warehouse.
 ~
@@ -1026,7 +1021,7 @@ Grubby Inn~
    You are inside the old Grubby Inn.  This place has not been cleaned for
 several decades; vile smells make you dizzy.
 ~
-30 df 0
+30 dh 0
 D0
 You see the alley.
 ~
@@ -1038,7 +1033,7 @@ The Levee~
    You are at the levee.  South of here you see the river gently flowing west.
 The river bank is very low making it possible to enter the river.
 ~
-30 0 1
+30 h 1
 D0
 You see the alley.
 ~
@@ -1174,10 +1169,12 @@ some kind of mortar.  It is far too high to climb.
 S
 #3054
 By The Temple Altar~
-   You are by the temple altar in the northern end of the Temple of Midgaard.
-A huge altar made from white polished marble is standing in front of you and
-behind it is a ten foot tall sitting statue of Odin, the King of the Gods.
-To the north, steps lead out the back of the temple towards the countryside.
+   You are by the temple altar in the northern end of the Temple of
+Midgaard.  A huge altar made from white polished marble is standing
+in front of you and behind it is a ten foot tall sitting statue of
+Odin, the King of the Gods.
+   To the north, steps lead out the back of the temple towards the
+countryside.
 ~
 30 d 0
 D0
@@ -1192,8 +1189,8 @@ You see the southern end of the temple.
 0 -1 3001
 E
 altar~
-Even though the altar is more than ten feet long it appears to be made from a
-single block of white virgin marble.
+Even though the altar is more than ten feet long it appears to be made from
+a single block of white virgin marble.
 ~
 E
 statue odin king god~
@@ -1211,33 +1208,13 @@ larger than the room by the temple altar.
 ~
 30 dj 0
 S
-#3056
-Uncle Juan's Eatery~
-   This place makes your nose run just from the smell of the spicy food they
-sell.  Spicy as it may be it still looks very tasty.  A box of taco shells
-is set on the counter.
-   There is a large, friendly sign hanging on the wall here.
-~
-30 df 0
-D2
-You see the eastern end of alley.
-~
-~
-0 -1 3046
-E
-sign~
-It is a hand-written sign with large, friendly letters which say:
-
-  If it ain't Uncle Juan's, it ain't any good!
-
-~
-S
 #3058
 Ye Olde Water Shoppe~
-   You are in Wally's World O' Water, whose proprietor, Wally, is sure to
-have something to meet all of your water needs.
+   You are standing in the center of a small wooden shop whose walls are
+covered with racks upon racks of water jugs.  Several large barrels with
+spigots are stacked in the corner.
 ~
-30 df 0
+30 dh 0
 D0
 You see the East Gate.
 ~
@@ -1248,7 +1225,7 @@ S
 Behind The Temple Altar~
    You are on a dirt path leading away from the Temple Altar which is south
 of here.  To the north, the path continues through the lush contryside of
-Midgaard.
+Midgaard towards the Dragonhelm Mountains far off to the north.
 ~
 30 0 1
 D0
@@ -1265,15 +1242,15 @@ S
 #3060
 The Great Field Of Midgaard~
    You are walking on a wide dirt path through the lush, green, fresh
-Midgaard countryside.  You can see to the horizon to the north, east, and
-west; to busy city of Midgaard lies to the south.  All around you is healthy
-green grass and an occasional large oak tree.  The sun feels wonderful on
-your face and a pleasant wind blows through your hair.  Birds chirp quietly
-to themselves and you can smell the faint scent of flowers and freshly cut
-grass.  You feel like you could lie down in the grass and stay here forever,
-surrounded by powerful beauty in all directions.
-   The path you are on continues north through the field and south
-back to Midgaard.
+Midgaard countryside.  You can see to the horizon to the north, east,
+and west; the busy city of Midgaard lies to the south.  All around you
+is healthy green grass and an occasional large oak tree.  The sun feels
+wonderful on your face and a pleasant wind blows through your hair.  Birds
+chirp quietly to themselves and you can smell the faint scent of flowers
+and freshly cut grass.  You feel like you could lie down in the grass and
+stay here forever, surrounded by powerful beauty in all directions.
+   The path you are on continues north through the field and south back
+to Midgaard.
 ~
 30 0 1
 D0
@@ -1290,30 +1267,48 @@ S
 #3061
 The Great Field Of Midgaard~
    You are walking on a wide dirt path through the lush, green, fresh
-Midgaard countryside.  You can see to the horizon to the north, east, and
-west; to busy city of Midgaard lies to the south.  All around you is healthy
-green grass and an occasional large oak tree.  The sun feels wonderful on
-your face and a pleasant wind blows through your hair.  Birds chirp quietly
-to themselves and you can smell the faint scent of flowers and freshly cut
-grass.  You feel like you could lie down in the grass and stay here forever,
-surrounded by powerful beauty in all directions.
+Midgaard countryside.  You can see to the horizon to the north, east,
+and west; the busy city of Midgaard lies to the south.  All around you
+is healthy green grass and an occasional large oak tree.  The sun feels
+wonderful on your face and a pleasant wind blows through your hair.  Birds
+chirp quietly to themselves and you can smell the faint scent of flowers
+and freshly cut grass.  You feel like you could lie down in the grass and
+stay here forever, surrounded by powerful beauty in all directions.
+   There is a strange structure on the eastern side of the path.  A small
+dirt path splits off of the main path and leads off to the west.
 ~
-30 0 1
+30 c 1
+D0
+The path continues northwards bringing you ever closer to the Dragonhelm
+Mountains.
+~
+~
+0 -1 3065
+D1
+There is a strange structure to the east on the edge of the trail.
+~
+~
+0 -1 18600
 D2
 You see more of the Field.
 ~
 ~
 0 -1 3060
+D3
+There is a strange path leading towards a rusty gate to the west.
+~
+~
+0 -1 3066
 S
 #3062
 The Post Office~
-   You are in the central post office for Midgaard.  Piles of assorted mail lay
-untouched in the corners, collecting cobwebs.  Several large crates have been
-pried open by curious customs agents, and are now stacked along the west wall,
-hiding plenty of 'WANTED' posters.
-   There is a sign posted on the wall here.
+   You are in the central post office for Midgaard.  Piles of assorted mail
+lay untouched in the corners, collecting cobwebs.  Several large crates have
+been pried open by curious customs agents, and are now stacked along the west
+wall, hiding plenty of 'WANTED' posters.
+There is a sign posted on the wall here.
 ~
-30 df 1
+30 deh 1
 D2
 You see the entrance to the Grunting Boar Inn and Tavern.
 ~
@@ -1368,7 +1363,7 @@ The Midgaard Donation Room~
 are a couple of small wooden benches here where people occasionally sit
 while they wait for items to appear.  The temple is to the west.
 ~
-30 cd 1
+30 cde 1
 D3
 The busy temple is back west.
 ~
@@ -1388,5 +1383,62 @@ The Reception is to the south.
 ~
 0 -1 3008
 S
-#99999
-$~
+#3065
+The Great Field Of Midgaard~
+   You are walking on a wide dirt path through the lush, green, fresh
+Midgaard countryside.  You can see to the horizon to the north, east,
+and west; the busy city of Midgaard lies to the south.  All around you
+is healthy green grass and an occasional large oak tree.  The sun feels
+wonderful on your face and a pleasant wind blows through your hair.  Birds
+chirp quietly to themselves and you can smell the faint scent of flowers
+and freshly cut grass.  You feel like you could lie down in the grass and
+stay here forever, surrounded by powerful beauty in all directions.
+   The way north appears to be blocked by a large plot device and you cannot
+see any way around it.
+~
+30 0 2
+D0
+Unfortunately the way north is blocked by a large plot device and there
+does not seem to be any way around it.
+~
+~
+0 -1 -1
+D2
+The path continues through the field to the south past an odd structure
+on the eastern side of the path.
+~
+~
+0 -1 3061
+E
+plot device~
+What more is a plot device than something to block a certain direction
+for reasons beyond your comprehension.
+~
+S
+#3066
+The Dirt Path~
+   You are walking along a narrow dirt path through the lush, green,
+fresh Midgaard countryside.  You can see to the horizon to the north
+and east; the busy city of Midgaard lies to the south.  All around
+you is healthy green grass and an occasional large oak tree.  The sun
+feels wonderful on your face and a pleasant wind blows through your
+hair.  Birds chirp quietly to themselves and you can smell the faint
+scent of flowers and freshly cut grass.  You feel like you could lie
+down in the grass and stay here forever, surrounded by powerful beauty
+in all directions.
+   There is a large rusty gate sitting in a stone archway just to the
+west.
+~
+30 0 2
+D1
+The path meets up with a larger path just to the east.
+~
+~
+0 -1 3061
+D3
+There is a large rusty gate just to the west.
+~
+~
+0 -1 3600
+S
+$

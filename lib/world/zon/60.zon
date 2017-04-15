@@ -90,10 +90,10 @@ G 1 6024 4                      Venison
 M 0 6017 3 6027         Fish
 M 0 6017 3 6027         Fish
 M 0 6017 3 6027         Fish
-M 0 3124 4 6027         Duck
-M 0 3124 4 6027         Duck
-M 0 3124 3 6027         Duckling
-M 0 3124 3 6027         Duckling
+M 0 6018 2 6027         Duckling
+M 0 6018 2 6027         Duckling
+M 0 6019 2 6027         Duck
+M 0 6019 2 6027         Duck    
 M 0 6001 11 6068        Rabbit
 G 1 6023 16                     Meat
 M 0 6001 11 6062        Rabbit
@@ -112,5 +112,4 @@ D 0 6009 0 1            Cabin
 D 0 6010 2 1
 *
 S
-#99999
-$~
+$

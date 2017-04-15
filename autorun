@@ -1,4 +1,4 @@
-#!/bin/csh
+#!/bin/csh -f
 #
 # CircleMUD 2.0 autorun script
 # Originally by Fred C. Merkel
@@ -61,5 +61,4 @@ while (1)
   end
 
 end
-
 

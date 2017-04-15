@@ -44,9 +44,9 @@ M 0 3505 1 3576         Innkeeper
 M 0 3506 1 3577         Bard
 E 1 3502 2 16                   Fine Long Sword
 M 0 3507 4 3584         Horseman
-E 1 3503 8 12                   Leather Jacket
+E 1 3503 8 5                    Leather Jacket
 M 0 3507 4 3584         Horseman
-E 1 3503 8 12                   Leather Jacket
+E 1 3503 8 5                    Leather Jacket
 * Objects
 O 0 3505 2 3521         Mutilated Corpse
 O 0 3506 1 3521         Mutilated Corpse
@@ -54,5 +54,4 @@ P 1 3507 1 3506                 Ornate Dagger
 O 0 3505 2 3521         Mutilated Corpse
 *
 S
-#99999
-$~
+$

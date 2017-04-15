@@ -15,6 +15,19 @@ A pair of wings is sitting here.~
 9 0 17
 6 0 0 0
 0 0 200
+#10
+waybread bread~
+a waybread~
+Some waybread has been put here.~
+~
+19 g 1
+24 0 0 0
+1 50 50
+E
+waybread bread~
+The waybread is the traditional feed of elves when travelling, they
+call it lembas.  It is said to refresh the weary traveler greatly.
+~
 #99
 scythe death~
 the Scythe of Death~
@@ -29,5 +42,5 @@ It is a very heavy scythe.  The grey handle is made from hard wood and the
 long iron blade is completely smooth from countless years of use.  It feels
 cold to the touch.
 ~
-#99999
 $~
+

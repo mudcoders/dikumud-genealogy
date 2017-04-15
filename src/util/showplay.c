@@ -6,6 +6,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "../structs.h"
 
 
@@ -19,14 +20,14 @@ void	show(char *filename)
 
    if (!(fl = fopen(filename, "r+"))) {
       perror("error opening playerfile");
-      exit();
+      exit(1);
    }
 
    for (; ; ) {
       fread(&player, sizeof(struct char_file_u ), 1, fl);
       if (feof(fl)) {
 	 fclose(fl);
-	 exit();
+	 exit(1);
       }
 
       switch (player.class) {
@@ -62,20 +63,21 @@ void	show(char *filename)
 	 break;
       }
 
-      printf("%5d. ID: %5d (%c) [%2d %s] %-16s %9dg %9db\n", ++num,
-          player.specials2.idnum, sexname, player.level,
+      printf("%5d. ID: %5ld (%c) [%2d %s] %-16s %9dg %9db\n", ++num,
+          player.char_specials_saved.idnum, sexname, player.level,
           classname, player.name, player.points.gold,
           player.points.bank_gold);
    }
 }
 
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
    if (argc != 2)
       printf("Usage: %s playerfile-name\n", argv[0]);
    else
       show(argv[1]);
-}
 
+   return 0;
+}
 

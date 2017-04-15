@@ -25,7 +25,7 @@ extern struct index_data *mob_index;
 extern struct room_data *world;
 extern struct str_app_type str_app[];
 
-#define MOB_AGGR_TO_ALIGN MOB_AGGR_EVIL | MOB_AGGR_NEUTRAL | MOB_AGGR_GOOD
+#define MOB_AGGR_TO_ALIGN (MOB_AGGR_EVIL | MOB_AGGR_NEUTRAL | MOB_AGGR_GOOD)
 
 void mobile_activity(void)
 {
@@ -83,7 +83,7 @@ void mobile_activity(void)
     }
 
     /* Aggressive Mobs */
-    if (MOB_FLAGGED(ch, MOB_AGGRESSIVE)) {
+    if (MOB_FLAGGED(ch, MOB_AGGRESSIVE | MOB_AGGR_TO_ALIGN)) {
       found = FALSE;
       for (vict = world[ch->in_room].people; vict && !found; vict = vict->next_in_room) {
 	if (IS_NPC(vict) || !CAN_SEE(ch, vict) || PRF_FLAGGED(vict, PRF_NOHASSLE))
@@ -120,7 +120,8 @@ void mobile_activity(void)
     if (MOB_FLAGGED(ch, MOB_HELPER)) {
       found = FALSE;
       for (vict = world[ch->in_room].people; vict && !found; vict = vict->next_in_room)
-	if (IS_NPC(vict) && FIGHTING(vict) && !IS_NPC(FIGHTING(vict))) {
+	if (ch != vict && IS_NPC(vict) && FIGHTING(vict) &&
+            !IS_NPC(FIGHTING(vict)) && ch != FIGHTING(vict)) {
 	  act("$n jumps to the aid of $N!", FALSE, ch, 0, vict, TO_ROOM);
 	  hit(ch, FIGHTING(vict), TYPE_UNDEFINED);
 	  found = TRUE;

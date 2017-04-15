@@ -26,10 +26,12 @@ LIBS = -lcrypt
 
 #remove the hash mark below if compiling under SVR4 or Solaris, or if your
 #linker complains that the socket functions such as 'connect()', 'bind()',
-#etc are undefined.
+#etc are undefined when you try to compile the server.
 #LIBS = -lsocket -lnsl
 
-#############################################################################
+##############################################################################
+# Do Not Modify Anything Below This Line (unless you know what you're doing) #
+##############################################################################
 
 CFLAGS = $(MYFLAGS) $(PROFILE)
 
@@ -37,26 +39,26 @@ OBJFILES = comm.o act.comm.o act.informative.o act.movement.o act.obj.o \
 	act.offensive.o act.other.o act.social.o act.wizard.o ban.o boards.o \
 	castle.o class.o config.o constants.o db.o fight.o graph.o handler.o \
 	house.o interpreter.o limits.o magic.o mail.o mobact.o modify.o \
-	objsave.o random.o shop.o spec_assign.o spec_procs.o spell_parser.o \
-	spells.o utils.o weather.o
+	objsave.o olc.o random.o shop.o spec_assign.o spec_procs.o \
+	spell_parser.o spells.o utils.o weather.o
 
-../bin/circle : $(OBJFILES)
+default: .accepted
+	$(MAKE) ../bin/circle
 
-utils:
+.accepted:
+	@./licheck
+
+utils: .accepted
 	$(MAKE) ../bin/autowiz
 	$(MAKE) ../bin/delobjs
-	$(MAKE) ../bin/hasmail
 	$(MAKE) ../bin/listrent
-	$(MAKE) ../bin/mailindex
 	$(MAKE) ../bin/mudpasswd
 	$(MAKE) ../bin/purgeplay
-	$(MAKE) ../bin/readmail
 	$(MAKE) ../bin/showplay
 	$(MAKE) ../bin/sign
 	$(MAKE) ../bin/split
-	$(MAKE) ../bin/syntax_check
 
-all:
+all: .accepted
 	$(MAKE) ../bin/circle
 	$(MAKE) utils
 
@@ -66,52 +68,35 @@ autowiz:
 	$(MAKE) ../bin/autowiz
 delobjs:
 	$(MAKE) ../bin/delobjs
-hasmail:
-	$(MAKE) ../bin/hasmail
 listrent:
 	$(MAKE) ../bin/listrent
-mailindex:
-	$(MAKE) ../bin/mailindex
 mudpasswd:
 	$(MAKE) ../bin/mudpasswd
 purgeplay:
 	$(MAKE) ../bin/purgeplay
-readmail:
-	$(MAKE) ../bin/readmail
 showplay:
 	$(MAKE) ../bin/showplay
 sign:
 	$(MAKE) ../bin/sign
 split:
 	$(MAKE) ../bin/split
-syntax_check:
-	$(MAKE) ../bin/syntax_check
 
 ../bin/autowiz : util/autowiz.c structs.h db.h utils.h
 	$(CC) $(CFLAGS) -o ../bin/autowiz util/autowiz.c
 ../bin/delobjs : util/delobjs.c structs.h
 	$(CC) $(CFLAGS) -o ../bin/delobjs util/delobjs.c
-../bin/hasmail : util/hasmail.c mail.h
-	$(CC) $(CFLAGS) -o ../bin/hasmail util/hasmail.c
 ../bin/listrent : util/listrent.c structs.h
 	$(CC) $(CFLAGS) -o ../bin/listrent util/listrent.c
-../bin/mailindex : util/mailindex.c mail.h
-	$(CC) $(CFLAGS) -o ../bin/mailindex util/mailindex.c
 ../bin/mudpasswd   : util/mudpasswd.c structs.h
 	$(CC) $(CFLAGS) -o ../bin/mudpasswd util/mudpasswd.c
 ../bin/purgeplay : util/purgeplay.c structs.h
 	$(CC) $(CFLAGS) -o ../bin/purgeplay util/purgeplay.c
-../bin/readmail : util/readmail.c mail.h
-	$(CC) $(CFLAGS) -o ../bin/readmail util/readmail.c
 ../bin/showplay : util/showplay.c structs.h
 	$(CC) $(CFLAGS) -o ../bin/showplay util/showplay.c
 ../bin/sign: util/sign.c
 	$(CC) $(CFLAGS) -o ../bin/sign $(COMMFLAGS) util/sign.c
 ../bin/split: util/split.c
 	$(CC) $(CFLAGS) -o ../bin/split util/split.c
-../bin/syntax_check: util/syntax_check.c structs.h utils.h db.h comm.h \
-	handler.h
-	$(CC) $(CFLAGS) -o ../bin/syntax_check util/syntax_check.c
 
 clean:
 	rm -f *.o
@@ -192,6 +177,8 @@ modify.o : modify.c structs.h utils.h interpreter.h handler.h db.h comm.h \
 objsave.o : objsave.c structs.h comm.h handler.h db.h interpreter.h utils.h \
 	spells.h
 	$(CC) -c $(CFLAGS) objsave.c
+olc.o : olc.c structs.h utils.h comm.h interpreter.h handler.h db.h olc.h
+	$(CC) -c $(CFLAGS) olc.c
 random.o : random.c
 	$(CC) -c $(CFLAGS) random.c
 shop.o : shop.c structs.h comm.h handler.h db.h interpreter.h utils.h shop.h
@@ -211,5 +198,6 @@ utils.o : utils.c structs.h utils.h comm.h screen.h
 	$(CC) -c $(CFLAGS) utils.c
 weather.o : weather.c structs.h utils.h comm.h handler.h interpreter.h db.h
 	$(CC) -c $(CFLAGS) weather.c
-../bin/circle :
+
+../bin/circle : $(OBJFILES)
 	$(CC) -o ../bin/circle $(PROFILE) $(OBJFILES) $(LIBS)

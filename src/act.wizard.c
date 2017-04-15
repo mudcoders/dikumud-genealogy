@@ -560,22 +560,10 @@ void do_stat_object(struct char_data * ch, struct obj_data * j)
   }
   send_to_char(buf, ch);
 
-  strcpy(buf, "\r\nEquipment Status: ");
-  if (!j->carried_by)
-    strcat(buf, "None");
-  else {
-    found = FALSE;
-    for (i = 0; i < NUM_WEARS; i++) {
-      if (j->carried_by->equipment[i] == j) {
-	sprinttype(i, equipment_types, buf2);
-	strcat(buf, buf2);
-	found = TRUE;
-      }
-    }
-    if (!found)
-      strcat(buf, "Inventory");
-  }
-  send_to_char(strcat(buf, "\r\n"), ch);
+  /*
+   * I deleted the "equipment status" code from here because it seemed
+   * more or less useless and just takes up valuable screen space.
+   */
 
   if (j->contains) {
     sprintf(buf, "Contents:%s", CCGRN(ch, C_NRM));
@@ -619,19 +607,11 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
   struct affected_type *aff;
   extern struct attack_hit_type attack_hit_text[];
 
-  switch (k->player.sex) {
-  case SEX_NEUTRAL:
-    strcpy(buf, "NEUTRAL-SEX");
-    break;
-  case SEX_MALE:
-    strcpy(buf, "MALE");
-    break;
-  case SEX_FEMALE:
-    strcpy(buf, "FEMALE");
-    break;
-  default:
-    strcpy(buf, "ILLEGAL-SEX!!");
-    break;
+  switch (GET_SEX(k)) {
+  case SEX_NEUTRAL:    strcpy(buf, "NEUTRAL-SEX");   break;
+  case SEX_MALE:       strcpy(buf, "MALE");          break;
+  case SEX_FEMALE:     strcpy(buf, "FEMALE");        break;
+  default:             strcpy(buf, "ILLEGAL-SEX!!"); break;
   }
 
   sprintf(buf2, " %s '%s'  IDNum: [%5ld], In room [%5d]\r\n",
@@ -755,7 +735,7 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
   sprintf(buf, "%sItems in: inventory: %d, ", buf, i);
 
   for (i = 0, i2 = 0; i < NUM_WEARS; i++)
-    if (k->equipment[i])
+    if (GET_EQ(k, i))
       i2++;
   sprintf(buf2, "eq: %d\r\n", i2);
   strcat(buf, buf2);
@@ -839,7 +819,7 @@ ACMD(do_stat)
     if (!*buf2) {
       send_to_char("Stats on which player?\r\n", ch);
     } else {
-      if ((victim = get_player_vis(ch, buf2)))
+      if ((victim = get_player_vis(ch, buf2, 0)))
 	do_stat_character(ch, victim);
       else
 	send_to_char("No such player around.\r\n", ch);
@@ -866,7 +846,6 @@ ACMD(do_stat)
     if (!*buf2)
       send_to_char("Stats on which object?\r\n", ch);
     else {
-      send_to_char("Nothing around by that name.\r\n", ch);
       if ((object = get_obj_vis(ch, buf2)))
 	do_stat_object(ch, object);
       else
@@ -960,6 +939,8 @@ ACMD(do_snoop)
     stop_snooping(ch);
   else if (victim->desc->snoop_by)
     send_to_char("Busy already. \r\n", ch);
+  else if (victim->desc->snooping == ch->desc)
+    send_to_char("Don't be stupid.\r\n", ch);
   else {
     if (victim->desc->original)
       tch = victim->desc->original;
@@ -1174,7 +1155,7 @@ ACMD(do_purge)
 ACMD(do_advance)
 {
   struct char_data *victim;
-  char name[100], level[100];
+  char *name = arg, *level = buf2;
   int newlevel;
   void do_start(struct char_data *ch);
 
@@ -1280,34 +1261,69 @@ ACMD(do_restore)
 }
 
 
+void perform_immort_vis(struct char_data *ch)
+{
+  void appear(struct char_data *ch);
+
+  if (GET_INVIS_LEV(ch) == 0 && !IS_AFFECTED(ch, AFF_HIDE | AFF_INVISIBLE)) {
+    send_to_char("You are already fully visible.\r\n", ch);
+    return;
+  }
+   
+  GET_INVIS_LEV(ch) = 0;
+  appear(ch);
+  send_to_char("You are now fully visible.\r\n", ch);
+}
+
+
+void perform_immort_invis(struct char_data *ch, int level)
+{
+  struct char_data *tch;
+
+  if (IS_NPC(ch))
+    return;
+
+  for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
+    if (tch == ch)
+      continue;
+    if (GET_LEVEL(tch) >= GET_INVIS_LEV(ch) && GET_LEVEL(tch) < level)
+      act("You blink and suddenly realize that $n is gone.", FALSE, ch, 0,
+	  tch, TO_VICT);
+    if (GET_LEVEL(tch) < GET_INVIS_LEV(ch) && GET_LEVEL(tch) >= level)
+      act("You suddenly realize that $n is standing beside you.", FALSE, ch, 0,
+	  tch, TO_VICT);
+  }
+
+  GET_INVIS_LEV(ch) = level;
+  sprintf(buf, "Your invisibility level is %d.\r\n", level);
+  send_to_char(buf, ch);
+}
+  
 
 ACMD(do_invis)
 {
   int level;
 
+  if (IS_NPC(ch)) {
+    send_to_char("You can't do that!\r\n", ch);
+    return;
+  }
+
   one_argument(argument, arg);
   if (!*arg) {
-    if (GET_INVIS_LEV(ch) > 0) {
-      GET_INVIS_LEV(ch) = 0;
-      sprintf(buf, "You are now fully visible.\r\n");
-    } else {
-      GET_INVIS_LEV(ch) = GET_LEVEL(ch);
-      sprintf(buf, "Your invisibility level is %d.\r\n", GET_LEVEL(ch));
-    }
+    if (GET_INVIS_LEV(ch) > 0)
+      perform_immort_vis(ch);
+    else
+      perform_immort_invis(ch, GET_LEVEL(ch));
   } else {
     level = atoi(arg);
-    if (level > GET_LEVEL(ch)) {
+    if (level > GET_LEVEL(ch))
       send_to_char("You can't go invisible above your own level.\r\n", ch);
-      return;
-    } else if (level < 1) {
-      GET_INVIS_LEV(ch) = 0;
-      sprintf(buf, "You are now fully visible.\r\n");
-    } else {
-      GET_INVIS_LEV(ch) = level;
-      sprintf(buf, "Your invisibility level is now %d.\r\n", level);
-    }
+    else if (level < 1)
+      perform_immort_vis(ch);
+    else
+      perform_immort_invis(ch, level);
   }
-  send_to_char(buf, ch);
 }
 
 
@@ -1337,15 +1353,9 @@ ACMD(do_poofset)
   char **msg;
 
   switch (subcmd) {
-  case SCMD_POOFIN:
-    msg = &(POOFIN(ch));
-    break;
-  case SCMD_POOFOUT:
-    msg = &(POOFOUT(ch));
-    break;
-  default:
-    return;
-    break;
+  case SCMD_POOFIN:    msg = &(POOFIN(ch));    break;
+  case SCMD_POOFOUT:   msg = &(POOFOUT(ch));   break;
+  default:    return;    break;
   }
 
   skip_spaces(&argument);
@@ -1558,7 +1568,7 @@ ACMD(do_wiznet)
   case '#':
     one_argument(argument + 1, buf1);
     if (is_number(buf1)) {
-      half_chop(++argument, buf1, argument);
+      half_chop(argument+1, buf1, argument);
       level = MAX(atoi(buf1), LVL_IMMORT);
       if (level > GET_LEVEL(ch)) {
 	send_to_char("You can't wizline above your own level.\r\n", ch);
@@ -1663,6 +1673,8 @@ ACMD(do_zreset)
     for (i = 0; i <= top_of_zone_table; i++)
       reset_zone(i);
     send_to_char("Reset world.\r\n", ch);
+    sprintf(buf, "(GC) %s reset entire world.", GET_NAME(ch));
+    mudlog(buf, NRM, MAX(LVL_GRGOD, GET_INVIS_LEV(ch)), TRUE);
     return;
   } else if (*arg == '.')
     i = world[ch->in_room].zone;
@@ -2079,7 +2091,7 @@ ACMD(do_set)
   }
   if (!is_file) {
     if (is_player) {
-      if (!(vict = get_player_vis(ch, name))) {
+      if (!(vict = get_player_vis(ch, name, 0))) {
 	send_to_char("There is no such player.\r\n", ch);
 	return;
       }
@@ -2120,10 +2132,10 @@ ACMD(do_set)
     send_to_char("You are not godly enough for that!\r\n", ch);
     return;
   }
-  if (IS_NPC(vict) && (!fields[l].pcnpc && NPC)) {
+  if (IS_NPC(vict) && !(fields[l].pcnpc && NPC)) {
     send_to_char("You can't do that to a beast!\r\n", ch);
     return;
-  } else if (!IS_NPC(vict) && (!fields[l].pcnpc && PC)) {
+  } else if (!IS_NPC(vict) && !(fields[l].pcnpc && PC)) {
     send_to_char("That can only be done to a beast!\r\n", ch);
     return;
   }
@@ -2139,7 +2151,8 @@ ACMD(do_set)
   } else if (fields[l].type == NUMBER) {
     value = atoi(val_arg);
   }
-  strcpy(buf, "Okay.");
+
+  strcpy(buf, "Okay.");  /* can't use OK macro here 'cause of \r\n */
   switch (l) {
   case 0:
     SET_OR_REMOVE(PRF_FLAGS(vict), PRF_BRIEF);
@@ -2337,12 +2350,11 @@ ACMD(do_set)
     SET_OR_REMOVE(PLR_FLAGS(vict), PLR_DELETED);
     break;
   case 39:
-    if ((i = parse_class(*val_arg)) == CLASS_UNDEFINED)
+    if ((i = parse_class(*val_arg)) == CLASS_UNDEFINED) {
       send_to_char("That is not a class.\r\n", ch);
-    else {
-      GET_CLASS(vict) = i;
-      send_to_char(OK, ch);
+      return;
     }
+    GET_CLASS(vict) = i;
     break;
   case 40:
     SET_OR_REMOVE(PLR_FLAGS(vict), PLR_NOWIZLIST);

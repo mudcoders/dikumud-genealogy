@@ -1,9 +1,29 @@
 /* ************************************************************************
-*  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
-************************************************************************* */
+*   File: socials.doc                                   Part of CircleMUD *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
 
 
-		      HANDLING 'SOCIALS' IN CIRCLEMUD
+                            CircleMUD Socials
+
+Summary:
+   A description of how to create new 'social' commands in CircleMUD.
+C programming experience generally not required.
+
+
+Intended Audience:
+   MUD administrators.
+
+
+Table of Contents
+---------------------------------------------------------------------------
+
+
+---------------------------------------------------------------------------
 
 
 A general system exists to handle the 'social' commands -- those which
@@ -82,3 +102,9 @@ For the sake of efficiency, no tests or sanity checks are made on the
 consistency or logic of the act() codes found in the social messages.
 Hence, grave disorder may result if, say, the code '$N' occurs in a text
 field that doesn't refer to a victim; like _messg to others if no arg_.
+In previous versions of Circle, such grave disorder often manifested itself
+in the form of crashes.  However, the act() function itself in Circle 3.0
+and above does sanity checks to make sure it's not dereferencing null
+pointers, hopefully with the result of avoiding crashes.  Nevertheless,
+great care should be taken in making sure that the $ codes of socials are
+used consistently and correctly.

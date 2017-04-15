@@ -2,7 +2,7 @@
 The Great Pyramid~
 5399 20 2
 *
-* Created for MercMUD by Andersen.
+* Created by Andersen of HexOynx.
 *
 * Modifed and edited for CircleMUD by Furry
 *
@@ -124,5 +124,4 @@ D 0 5345 2 1
 D 0 5358 2 2     Entrance To The Hole In The Sand
 *
 S
-#99999
-$~
+$

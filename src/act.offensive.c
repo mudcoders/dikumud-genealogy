@@ -134,7 +134,7 @@ ACMD(do_kill)
 ACMD(do_backstab)
 {
   struct char_data *vict;
-  byte percent, prob;
+  int percent, prob;
 
   one_argument(argument, buf);
 
@@ -146,11 +146,11 @@ ACMD(do_backstab)
     send_to_char("How can you sneak up on yourself?\r\n", ch);
     return;
   }
-  if (!ch->equipment[WEAR_WIELD]) {
+  if (!GET_EQ(ch, WEAR_WIELD)) {
     send_to_char("You need to wield a weapon to make it a success.\r\n", ch);
     return;
   }
-  if (GET_OBJ_VAL(ch->equipment[WEAR_WIELD], 3) != TYPE_PIERCE - TYPE_HIT) {
+  if (GET_OBJ_VAL(GET_EQ(ch, WEAR_WIELD), 3) != TYPE_PIERCE - TYPE_HIT) {
     send_to_char("Only piercing weapons can be used for backstabbing.\r\n", ch);
     return;
   }
@@ -158,6 +158,15 @@ ACMD(do_backstab)
     send_to_char("You can't backstab a fighting person -- they're too alert!\r\n", ch);
     return;
   }
+
+  if (MOB_FLAGGED(vict, MOB_AWARE)) {
+    act("You notice $N lunging at you!", FALSE, vict, 0, ch, TO_CHAR);
+    act("$e notices you lunging at $m!", FALSE, vict, 0, ch, TO_VICT);
+    act("$n notices $N lunging at $m!", FALSE, vict, 0, ch, TO_NOTVICT);
+    hit(vict, ch, TYPE_UNDEFINED);
+    return;
+  }
+
   percent = number(1, 101);	/* 101% is a complete failure */
   prob = GET_SKILL(ch, SKILL_BACKSTAB);
 
@@ -260,7 +269,7 @@ ACMD(do_flee)
 ACMD(do_bash)
 {
   struct char_data *vict;
-  byte percent, prob;
+  int percent, prob;
 
   one_argument(argument, arg);
 
@@ -280,12 +289,15 @@ ACMD(do_bash)
     send_to_char("Aren't we funny today...\r\n", ch);
     return;
   }
-  if (!ch->equipment[WEAR_WIELD]) {
+  if (!GET_EQ(ch, WEAR_WIELD)) {
     send_to_char("You need to wield a weapon to make it a success.\r\n", ch);
     return;
   }
   percent = number(1, 101);	/* 101% is a complete failure */
   prob = GET_SKILL(ch, SKILL_BASH);
+
+  if (MOB_FLAGGED(vict, MOB_NOBASH))
+    percent = 101;
 
   if (percent > prob) {
     damage(ch, vict, 0, SKILL_BASH);
@@ -293,7 +305,7 @@ ACMD(do_bash)
   } else {
     damage(ch, vict, 1, SKILL_BASH);
     GET_POS(vict) = POS_SITTING;
-    WAIT_STATE(vict, PULSE_VIOLENCE * 2);
+    WAIT_STATE(vict, PULSE_VIOLENCE);
   }
   WAIT_STATE(ch, PULSE_VIOLENCE * 2);
 }
@@ -302,12 +314,12 @@ ACMD(do_bash)
 ACMD(do_rescue)
 {
   struct char_data *vict, *tmp_ch;
-  byte percent, prob;
+  int percent, prob;
 
   one_argument(argument, arg);
 
   if (!(vict = get_char_room_vis(ch, arg))) {
-    send_to_char("Who do you want to rescue?\r\n", ch);
+    send_to_char("Whom do you want to rescue?\r\n", ch);
     return;
   }
   if (vict == ch) {
@@ -359,7 +371,7 @@ ACMD(do_rescue)
 ACMD(do_kick)
 {
   struct char_data *vict;
-  byte percent, prob;
+  int percent, prob;
 
   if (GET_CLASS(ch) != CLASS_WARRIOR) {
     send_to_char("You'd better leave all the martial arts to fighters.\r\n", ch);

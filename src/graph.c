@@ -51,11 +51,13 @@ static struct bfs_queue_struct *queue_head = 0, *queue_tail = 0;
 #ifdef TRACK_THROUGH_DOORS
 #define VALID_EDGE(x, y) (world[(x)].dir_option[(y)] && \
 			  (TOROOM(x, y) != NOWHERE) &&	\
+			  (!ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK)) && \
 			  (!IS_MARKED(TOROOM(x, y))))
 #else
 #define VALID_EDGE(x, y) (world[(x)].dir_option[(y)] && \
 			  (TOROOM(x, y) != NOWHERE) &&	\
 			  (!IS_CLOSED(x, y)) &&		\
+			  (!ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK)) && \
 			  (!IS_MARKED(TOROOM(x, y))))
 #endif
 
@@ -166,6 +168,10 @@ ACMD(do_track)
   }
   if (!(vict = get_char_vis(ch, arg))) {
     send_to_char("No-one around by that name.\r\n", ch);
+    return;
+  }
+  if (IS_AFFECTED(vict, AFF_NOTRACK)) {
+    send_to_char("You sense no trail.\r\n", ch);
     return;
   }
   dir = find_first_step(ch->in_room, vict->in_room);

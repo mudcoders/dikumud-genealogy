@@ -60,10 +60,6 @@ G 1 3061 10                     Canoe
 * Mobile
 M 0 3007 1 3050         Sailor
 * Shopkeepers
-M 0 3008 1 3056         Uncle Juan
-G 1 3012 100                    Mexican Taco
-G 1 3013 100                    Hot Burrito
-G 1 3014 100                    Nachos
 M 0 3009 1 3058         Wally The Watermaster
 G 1 3102 100                    Water Cup
 G 1 3103 100                    Water Bottle
@@ -169,11 +165,10 @@ O 1 3034 7 3021         ATM
 O 1 3034 7 3027         ATM
 * Boards
 O 0 3099 2 3000         Mortal Bulletin Board
-O 1 3099 5 3003         Social Bulletin Board
-O 1 3099 5 3018         Social Bulletin Board
-O 1 3099 5 3022         Social Bulletin Board
-O 1 3099 5 3028         Social Bulletin Board
+O 1 3096 5 3003         Social Bulletin Board
+O 1 3096 5 3018         Social Bulletin Board
+O 1 3096 5 3022         Social Bulletin Board
+O 1 3096 5 3028         Social Bulletin Board
 *
 S
-#99999
-$~
+$

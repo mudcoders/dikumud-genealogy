@@ -295,7 +295,7 @@ The Second Trial Of Minos~
    Minos' voice reveberates from the four walls of this room:
 'Get some rest and make sure you're healed.  You'll need it for
 the next monster in my playground.  Or are you strong enough?'
-To the south is the entrance to the next challenge of Minos'
+   To the south is the entrance to the next challenge of Minos'
 stronghold.
 ~
 9 ad 1
@@ -395,5 +395,4 @@ D5
 ~
 0 -1 910
 S
-#99999
-$~
+$

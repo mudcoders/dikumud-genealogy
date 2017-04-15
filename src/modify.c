@@ -24,7 +24,7 @@
 #include "mail.h"
 #include "boards.h"
 
-void show_string(struct descriptor_data * d, char *input);
+void show_string(struct descriptor_data *d, char *input);
 
 char *string_fields[] =
 {
@@ -54,7 +54,7 @@ int length[] =
 ************************************************************************ */
 
 /* Add user input to the 'current' string (as defined by d->str) */
-void string_add(struct descriptor_data * d, char *str)
+void string_add(struct descriptor_data *d, char *str)
 {
   int terminator = 0;
   extern char *MENU;
@@ -258,7 +258,7 @@ struct help_index_element *build_help_index(FILE * fl, int *num)
   struct help_index_element *list = 0, mem;
   char buf[128], tmp[128], *scan;
   long pos;
-  int count_hash_records(FILE *fl);
+  int count_hash_records(FILE * fl);
 
   i = count_hash_records(fl) * 5;
   rewind(fl);
@@ -307,7 +307,7 @@ struct help_index_element *build_help_index(FILE * fl, int *num)
 
 
 
-void page_string(struct descriptor_data * d, char *str, int keep_internal)
+void page_string(struct descriptor_data *d, char *str, int keep_internal)
 {
   if (!d)
     return;
@@ -324,7 +324,7 @@ void page_string(struct descriptor_data * d, char *str, int keep_internal)
 
 
 
-void show_string(struct descriptor_data * d, char *input)
+void show_string(struct descriptor_data *d, char *input)
 {
   char buffer[MAX_STRING_LENGTH], buf[MAX_INPUT_LENGTH];
   register char *scan, *chk;
@@ -341,12 +341,20 @@ void show_string(struct descriptor_data * d, char *input)
     return;
   }
   /* show a chunk */
-  for (scan = buffer;; scan++, d->showstr_point++)
+  for (scan = buffer;; scan++, d->showstr_point++) {
     if ((((*scan = *d->showstr_point) == '\n') || (*scan == '\r')) &&
 	((toggle = -toggle) < 0))
       lines++;
     else if (!*scan || (lines >= 22)) {
-      *scan = '\0';
+      if (lines >= 22) {
+	/* We need to make sure that if we're breaking the input here, we
+	 * must set showstr_point to the right place and null terminate the
+	 * character after the last '\n' or '\r' so we don't lose it.
+	 * -- Michael Buselli
+	 */
+	d->showstr_point++;
+	*(++scan) = '\0';
+      }
       SEND_TO_Q(buffer, d);
 
       /* see if this is the end (or near the end) of the string */
@@ -360,4 +368,5 @@ void show_string(struct descriptor_data * d, char *input)
       }
       return;
     }
+  }
 }

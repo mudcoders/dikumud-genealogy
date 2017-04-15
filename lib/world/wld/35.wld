@@ -21,7 +21,8 @@ S
 The Lane~
    You are strolling along a pleasant, shady lane.  The road is lined on both
 sides by tall, stately trees which lend the scene with a sense of quiet
-serenity.  You can follow the road north or south.
+serenity.
+   You can follow the road north or south.
 ~
 35 0 1
 D0
@@ -34,14 +35,16 @@ D2
 0 -1 3502
 S
 #3502
-The Turning Point~
+The Laneway~
    The trees stand close here, and the tall, bushy undergrowth prevents you
-from seeing far in any direction save north, where a broad lane leads off into
-the distance; and west, where the same lane continues towards what looks like
-a fairly large city.  The muted sounds of city commotion reach your ears from a
-distance; stray dogs barking, children crying, and street salesmen shouting.
+from seeing far in any direction save east, where a broad lane continues off
+into the distance; and west, where the same lane continues towards what looks
+like a fairly large city.  The muted sounds of city commotion reach your ears
+from a distance; stray dogs barking, children crying, and street salesmen
+shouting.
    A steep path leads down from here to the northeast towards the Dwarven
-Village.
+Village, and a small trail leads through the trees towards the hills to the
+north.
 ~
 35 0 1
 D0
@@ -49,10 +52,10 @@ D0
 ~
 0 -1 3501
 D1
-You see a path and a large castle in the distance.
+You see a fairly large road leading towards a grand castle in the distance.
 ~
 ~
-0 -1 15001
+0 -1 15000
 D3
 ~
 ~
@@ -84,7 +87,7 @@ S
 #3504
 The South Gate~
    You are standing on a small, dusty path leading away from the south
-gate of Midgaard, to the forest of Miden'Nir (Goblinic for Green Blood).
+gate of Midgaard, to the forest of Miden'Nir (Goblinic for 'Green Blood').
 You can still see the city to the east, but if you go south, there is
 fresh air and greenery.
 ~
@@ -473,7 +476,7 @@ soaked into the ground.  Two carcasses lie in front of you, seeming to look
 up at you.  The forest is impassible to the south, but the other directions
 look ok.
 ~
-35 1 3
+35 a 3
 D0
 Darkness...
 ~
@@ -817,7 +820,7 @@ hospitality of the Innkeeper, but as of late, he only serves the
 few adventurers that manage to survive a trip through the forest.
 You can leave south and return to the common room.
 ~
-35 df 1
+35 dh 1
 D2
 You may retreat south back to the common room.
 ~
@@ -925,5 +928,4 @@ Back to along the trail.
 ~
 0 -1 3583
 S
-#99999
-$~
+$

@@ -7,7 +7,7 @@ She appears to be having no problem tallying things up.
 ~
 ab p 0 S
 30 0 -10 1d49+901 4d8+5
-15000 250000
+0 0
 8 8 2
 #1201
 postmaster master post~
@@ -18,19 +18,20 @@ Scary... a postal worker... working?
 ~
 ab p 0 S
 30 0 -10 1d49+901 4d8+5
-15000 250000
+0 0
 8 8 2
 #1202
-vacusuck machine 1500~
-the Vacusuck 1500~
-A Vacusuck 1500 wanders around, cleaning.
+being amorphous spirit wandering~
+the wandering spirit~
+A strange amorphous being wanders these halls eternally cleaning.
 ~
-This top of the line creation is doing what it is best at...
-sucking up trash.
+This spirit, having lived out its days in the mortal world, now
+works off its final sins by doing menial labour in this realm's
+purgatory.  In this case, those chores seem to be cleaning up
+after the immortals of the land.
 ~
-acgq dkp 0 S
+acgq dkps 0 S
 30 0 -10 1d49+901 4d8+5
-15000 250000
+0 0
 8 8 0
-#99999
-$~
+$

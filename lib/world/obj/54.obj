@@ -100,7 +100,7 @@ a two-handed bastard sword~
 A two handed bastard sword lies here.~
 ~
 5 0 8193
-0 2 8 0
+0 2 8 3
 18 12580 10000
 #5413
 scimitar~
@@ -721,7 +721,7 @@ chessboard~
 a chessboard~
 A heavy marble chessboard lies here.~
 ~
-5 0 1
+5 0 16385
 0 1 30 6
 10 100 20
 #5491
@@ -785,6 +785,5 @@ wrath allah mace~
 This enormous weapon looks like it could pound the stuffing out of
 anything or anyone around.
 ~
-#99999
-$~
 
+$

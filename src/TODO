@@ -54,4 +54,4 @@
 -newbie command
 -rewrite help system to use internal
 -make '! ras' work
--fix the utilities, most of which are broken at the moment
+/fix the utilities, most of which are broken at the moment

@@ -209,10 +209,10 @@ ACMD(do_steal)
     if (!(obj = get_obj_in_list_vis(vict, obj_name, vict->carrying))) {
 
       for (eq_pos = 0; eq_pos < NUM_WEARS; eq_pos++)
-	if (vict->equipment[eq_pos] &&
-	    (isname(obj_name, vict->equipment[eq_pos]->name)) &&
-	    CAN_SEE_OBJ(ch, vict->equipment[eq_pos])) {
-	  obj = vict->equipment[eq_pos];
+	if (GET_EQ(vict, eq_pos) &&
+	    (isname(obj_name, GET_EQ(vict, eq_pos)->name)) &&
+	    CAN_SEE_OBJ(ch, GET_EQ(vict, eq_pos))) {
+	  obj = GET_EQ(vict, eq_pos);
 	  break;
 	}
       if (!obj) {
@@ -292,9 +292,14 @@ ACMD(do_practice)
 ACMD(do_visible)
 {
   void appear(struct char_data * ch);
+  void perform_immort_vis(struct char_data *ch);
 
-  if IS_AFFECTED
-    (ch, AFF_INVISIBLE) {
+  if (GET_LEVEL(ch) >= LVL_IMMORT) {
+    perform_immort_vis(ch);
+    return;
+  }
+
+  if IS_AFFECTED(ch, AFF_INVISIBLE) {
     appear(ch);
     send_to_char("You break the spell of invisibility.\r\n", ch);
   } else
@@ -326,98 +331,97 @@ ACMD(do_title)
 }
 
 
+int perform_group(struct char_data *ch, struct char_data *vict)
+{
+  if (IS_AFFECTED(vict, AFF_GROUP) || !CAN_SEE(ch, vict))
+    return 0;
+
+  SET_BIT(AFF_FLAGS(vict), AFF_GROUP);
+  if (ch != vict)
+    act("$N is now a member of your group.", FALSE, ch, 0, vict, TO_CHAR);
+  act("You are now a member of $n's group.", FALSE, ch, 0, vict, TO_VICT);
+  act("$N is now a member of $n's group.", FALSE, ch, 0, vict, TO_NOTVICT);
+  return 1;
+}
+
+
+void print_group(struct char_data *ch)
+{
+  struct char_data *k;
+  struct follow_type *f;
+
+  if (!IS_AFFECTED(ch, AFF_GROUP))
+    send_to_char("But you are not the member of a group!\r\n", ch);
+  else {
+    send_to_char("Your group consists of:\r\n", ch);
+
+    k = (ch->master ? ch->master : ch);
+
+    if (IS_AFFECTED(k, AFF_GROUP)) {
+      sprintf(buf, "     [%3dH %3dM %3dV] [%2d %s] $N (Head of group)",
+	      GET_HIT(k), GET_MANA(k), GET_MOVE(k), GET_LEVEL(k), CLASS_ABBR(k));
+      act(buf, FALSE, ch, 0, k, TO_CHAR);
+    }
+
+    for (f = k->followers; f; f = f->next) {
+      if (!IS_AFFECTED(f->follower, AFF_GROUP))
+	continue;
+
+      sprintf(buf, "     [%3dH %3dM %3dV] [%2d %s] $N", GET_HIT(f->follower),
+	      GET_MANA(f->follower), GET_MOVE(f->follower),
+	      GET_LEVEL(f->follower), CLASS_ABBR(f->follower));
+      act(buf, FALSE, ch, 0, f->follower, TO_CHAR);
+    }
+  }
+}
+
+
+
 ACMD(do_group)
 {
-  struct char_data *vict, *k;
+  struct char_data *vict;
   struct follow_type *f;
-  bool found;
+  int found;
 
   one_argument(argument, buf);
 
   if (!*buf) {
-    if (!IS_AFFECTED(ch, AFF_GROUP)) {
-      send_to_char("But you are not the member of a group!\r\n", ch);
-    } else {
-      send_to_char("Your group consists of:\r\n", ch);
-
-      k = (ch->master ? ch->master : ch);
-
-      if (IS_AFFECTED(k, AFF_GROUP)) {
-	sprintf(buf, "     [%3dH %3dM %3dV] [%2d %s] $N (Head of group)",
-	 GET_HIT(k), GET_MANA(k), GET_MOVE(k), GET_LEVEL(k), CLASS_ABBR(k));
-	act(buf, FALSE, ch, 0, k, TO_CHAR);
-      }
-      for (f = k->followers; f; f = f->next)
-	if (IS_AFFECTED(f->follower, AFF_GROUP)) {
-	  sprintf(buf, "     [%3dH %3dM %3dV] [%2d %s] $N",
-		  GET_HIT(f->follower), GET_MANA(f->follower),
-		  GET_MOVE(f->follower), GET_LEVEL(f->follower),
-		  CLASS_ABBR(f->follower));
-	  act(buf, FALSE, ch, 0, f->follower, TO_CHAR);
-	}
-    }
-
+    print_group(ch);
     return;
   }
+
   if (ch->master) {
     act("You can not enroll group members without being head of a group.",
 	FALSE, ch, 0, 0, TO_CHAR);
     return;
   }
-  if (!str_cmp(buf, "all")) {
-    found = FALSE;
-    SET_BIT(AFF_FLAGS(ch), AFF_GROUP);
-    for (f = ch->followers; f; f = f->next) {
-      vict = f->follower;
-      if (!IS_AFFECTED(vict, AFF_GROUP)) {
-	found = TRUE;
-	if (ch != vict)
-	  act("$N is now a member of your group.", FALSE, ch, 0, vict, TO_CHAR);
-	act("You are now a member of $n's group.", FALSE, ch, 0, vict, TO_VICT);
-	act("$N is now a member of $n's group.", FALSE, ch, 0, vict, TO_NOTVICT);
-	SET_BIT(AFF_FLAGS(vict), AFF_GROUP);
-      }
-    }
 
+  if (!str_cmp(buf, "all")) {
+    perform_group(ch, ch);
+    for (found = 0, f = ch->followers; f; f = f->next)
+      found += perform_group(ch, f->follower);
     if (!found)
       send_to_char("Everyone following you is already in your group.\r\n", ch);
-
     return;
   }
-  if (!(vict = get_char_room_vis(ch, buf))) {
+
+  if (!(vict = get_char_room_vis(ch, buf)))
     send_to_char(NOPERSON, ch);
-  } else {
-    found = FALSE;
-
-    if (vict == ch)
-      found = TRUE;
+  else if ((vict->master != ch) && (vict != ch))
+    act("$N must follow you to enter your group.", FALSE, ch, 0, vict, TO_CHAR);
+  else {
+    if (!IS_AFFECTED(vict, AFF_GROUP))
+      perform_group(ch, vict);
     else {
-      for (f = ch->followers; f; f = f->next) {
-	if (f->follower == vict) {
-	  found = TRUE;
-	  break;
-	}
-      }
+      if (ch != vict)
+	act("$N is no longer a member of your group.", FALSE, ch, 0, vict, TO_CHAR);
+      act("You have been kicked out of $n's group!", FALSE, ch, 0, vict, TO_VICT);
+      act("$N has been kicked out of $n's group!", FALSE, ch, 0, vict, TO_NOTVICT);
+      REMOVE_BIT(AFF_FLAGS(vict), AFF_GROUP);
     }
-
-    if (found) {
-      if (IS_AFFECTED(vict, AFF_GROUP)) {
-	if (ch != vict)
-	  act("$N is no longer a member of your group.", FALSE, ch, 0, vict, TO_CHAR);
-	act("You have been kicked out of $n's group!", FALSE, ch, 0, vict, TO_VICT);
-	act("$N has been kicked out of $n's group!", FALSE, ch, 0, vict, TO_NOTVICT);
-	REMOVE_BIT(AFF_FLAGS(vict), AFF_GROUP);
-      } else {
-	if (ch != vict)
-	  act("$N is now a member of your group.", FALSE, ch, 0, vict, TO_CHAR);
-	act("You are now a member of $n's group.", FALSE, ch, 0, vict, TO_VICT);
-	act("$N is now a member of $n's group.", FALSE, ch, 0, vict, TO_NOTVICT);
-	SET_BIT(AFF_FLAGS(vict), AFF_GROUP);
-      }
-    } else
-      act("$N must follow you to enter your group.", FALSE, ch, 0, vict, TO_CHAR);
   }
 }
+
 
 
 ACMD(do_ungroup)
@@ -439,11 +443,13 @@ ACMD(do_ungroup)
       if (IS_AFFECTED(f->follower, AFF_GROUP)) {
 	REMOVE_BIT(AFF_FLAGS(f->follower), AFF_GROUP);
 	send_to_char(buf2, f->follower);
-	stop_follower(f->follower);
+        if (!IS_AFFECTED(f->follower, AFF_CHARM))
+	  stop_follower(f->follower);
       }
     }
 
-    send_to_char("You have disbanded the group.\r\n", ch);
+    REMOVE_BIT(AFF_FLAGS(ch), AFF_GROUP);
+    send_to_char("You disband the group.\r\n", ch);
     return;
   }
   if (!(tch = get_char_room_vis(ch, buf))) {
@@ -454,13 +460,20 @@ ACMD(do_ungroup)
     send_to_char("That person is not following you!\r\n", ch);
     return;
   }
-  if (IS_AFFECTED(tch, AFF_GROUP))
-    REMOVE_BIT(AFF_FLAGS(tch), AFF_GROUP);
+
+  if (!IS_AFFECTED(tch, AFF_GROUP)) {
+    send_to_char("That person isn't in your group.\r\n", ch);
+    return;
+  }
+
+  REMOVE_BIT(AFF_FLAGS(tch), AFF_GROUP);
 
   act("$N is no longer a member of your group.", FALSE, ch, 0, tch, TO_CHAR);
   act("You have been kicked out of $n's group!", FALSE, ch, 0, tch, TO_VICT);
   act("$N has been kicked out of $n's group!", FALSE, ch, 0, tch, TO_NOTVICT);
-  stop_follower(tch);
+ 
+  if (!IS_AFFECTED(tch, AFF_CHARM))
+    stop_follower(tch);
 }
 
 
@@ -577,7 +590,7 @@ ACMD(do_use)
     send_to_char(buf2, ch);
     return;
   }
-  mag_item = ch->equipment[WEAR_HOLD];
+  mag_item = GET_EQ(ch, WEAR_HOLD);
 
   if (!mag_item || !isname(arg, mag_item->name)) {
     switch (subcmd) {

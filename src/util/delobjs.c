@@ -56,7 +56,6 @@ int	main(int argc, char **argv)
    char	*ptr;
    struct char_file_u player;
    int	okay;
-   int	num = 0;
    struct name_element *tmp;
    FILE * fl;
 
@@ -85,7 +84,7 @@ int	main(int argc, char **argv)
       for (ptr  = player.name; *ptr; ptr++)
 	 *ptr = tolower(*ptr);
 
-      if (player.specials2.act & PLR_DELETED)
+      if (player.char_specials_saved.act & PLR_DELETED)
 	 okay = 0;
 
       if (okay) {

@@ -177,7 +177,7 @@ A
 A
 19 3
 #7914
-plate breast silvery~
+plate breast silvery silver~
 a silvery breast plate~
 There is a silvery breast plate on the floor.~
 ~
@@ -185,9 +185,9 @@ There is a silvery breast plate on the floor.~
 10 7000 0 0
 70 20000 5000
 E
-plate breast silvery~
-On the breast plate you notive a relief of large rose. The metal seems
-to be some kind of silver or platinium.
+plate breast silvery silver~
+On the breast plate you notice a relief of large rose.  The metal seems
+to be some kind of silver or platinum.
 ~
 #7915
 plates leg silvery~
@@ -198,12 +198,12 @@ On the floor you see some leg plates.~
 7 7000 0 0
 40 12500 5000
 E
-leg plates~
+leg plates silvery silver~
 They seem to be made from silver or platinum. You see the outline of a
 rose.
 ~
 #7916
-gloves silvery~
+gloves silvery silver~
 a pair of silvery gloves~
 You can see a pair of gloves on the floor.~
 ~
@@ -211,13 +211,13 @@ You can see a pair of gloves on the floor.~
 5 7000 0 0
 14 2500 2000
 E
-gloves silvery~
+gloves silvery silver~
 The gloves are made of silver threads.
 ~
 A
 18 1
 #7917
-helmet silvery~
+helmet silvery silver~
 a silvery helmet~
 The silvery helmet lies here.~
 ~
@@ -225,7 +225,7 @@ The silvery helmet lies here.~
 8 7000 0 0
 35 9000 5000
 E
-helmet silvery~
+helmet silvery silver~
 The helmet is made from platinum or silver and has a white fur brush
 attached on the top.
 ~
@@ -262,7 +262,7 @@ boots heavy plated~
 The boots are made from a silvery metal.
 ~
 #7920
-plates arm silvery~
+plates arm silvery silver~
 some silvery arm plates~
 On the floor you see some arm plates.~
 ~
@@ -270,8 +270,8 @@ On the floor you see some arm plates.~
 7 7000 0 0
 40 12500 5000
 E
-plates arm silvery~
-They seem to be made from silver or platinum. You see the outline of a
+plates arm silvery silver~
+They seem to be made from silver or platinum.  You see the outline of a
 rose.
 ~
 #7921
@@ -282,5 +282,4 @@ A water barrel has been left here.~
 17 0 1
 40 40 15 0
 45 60 20
-#99999
-$~
+$

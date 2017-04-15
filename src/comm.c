@@ -59,6 +59,7 @@ int circle_reboot = 0;		/* reboot the game after a shutdown */
 int no_specials = 0;		/* Suppress ass. of special routines */
 int avail_descs = 0;		/* max descriptors available */
 int tics = 0;			/* for extern checkpointing */
+int scheck = 0;			/* for syntax checking mode */
 extern int nameserver_is_slow;	/* see config.c */
 extern int auto_save;		/* see config.c */
 extern int autosave_time;	/* see config.c */
@@ -85,6 +86,7 @@ void make_prompt(struct descriptor_data * point);
 
 /* extern fcnts */
 void boot_db(void);
+void boot_world(void);
 void zone_update(void);
 void affect_update(void);	/* In spells.c */
 void point_update(void);	/* In limits.c */
@@ -128,6 +130,10 @@ int main(int argc, char **argv)
       no_rent_check = 1;
       log("Running in minimized mode & with no rent check.");
       break;
+    case 'c':
+      scheck = 1;
+      log("Syntax check mode enabled.");
+      break;
     case 'q':
       no_rent_check = 1;
       log("Quick boot mode -- rent check supressed.");
@@ -148,25 +154,33 @@ int main(int argc, char **argv)
     pos++;
   }
 
-  if (pos < argc)
+  if (pos < argc) {
     if (!isdigit(*argv[pos])) {
-      fprintf(stderr, "Usage: %s [-m] [-q] [-r] [-s] [-d pathname] [port #]\n", argv[0]);
+      fprintf(stderr, "Usage: %s [-c] [-m] [-q] [-r] [-s] [-d pathname] [port #]\n", argv[0]);
       exit(1);
     } else if ((port = atoi(argv[pos])) <= 1024) {
       fprintf(stderr, "Illegal port number.\n");
       exit(1);
     }
-  sprintf(buf, "Running game on port %d.", port);
-  log(buf);
+  }
 
   if (chdir(dir) < 0) {
     perror("Fatal error changing to data directory");
     exit(1);
   }
+
   sprintf(buf, "Using %s as data directory.", dir);
   log(buf);
 
-  init_game(port);
+  if (scheck) {
+    boot_world();
+    log("Done.");
+    exit(0);
+  } else {
+    sprintf(buf, "Running game on port %d.", port);
+    log(buf);
+    init_game(port);
+  }
 
   return 0;
 }
@@ -336,7 +350,7 @@ int get_avail_descs(void)
     log("Non-positive max player limit!");
     exit(1);
   }
-  sprintf(buf, "Setting player limit to %d", max_descs);
+  sprintf(buf, "Setting player limit to %d.", max_descs);
   log(buf);
   return max_descs;
 }
@@ -424,11 +438,11 @@ void game_loop(int mother_desc)
     gettimeofday(&last_time, (struct timezone *) 0);
 
     /* poll (without blocking) for new input, output, and exceptions */
-    if (select(maxdesc + 1, &input_set, &output_set, &exc_set, &null_time) < 0) {
+    if (select(maxdesc + 1, &input_set, &output_set, &exc_set, &null_time)<0) {
       perror("Select poll");
       return;
     }
-    /* New connection? */
+    /* New connection waiting for us? */
     if (FD_ISSET(mother_desc, &input_set))
       new_descriptor(mother_desc);
 
@@ -468,25 +482,25 @@ void game_loop(int mother_desc)
 	d->wait = 1;
 	d->prompt_mode = 1;
 
-	if (d->str)
+	if (d->str)			/* writing boards, mail, etc.	*/
 	  string_add(d, comm);
-	else if (d->showstr_point)
+	else if (d->showstr_point)	/* reading something w/ pager	*/
 	  show_string(d, comm);
-	else if (d->connected != CON_PLAYING)
+	else if (d->connected != CON_PLAYING)	/* in menus, etc.	*/
 	  nanny(d, comm);
-	else {
-	  if (aliased)
+	else {				/* else: we're playing normally */
+	  if (aliased) /* to prevent recursive aliases */
 	    d->prompt_mode = 0;
 	  else {
-	    if (perform_alias(d, comm))
+	    if (perform_alias(d, comm))	/* run it through aliasing system */
 	      get_from_q(&d->input, comm, &aliased);
 	  }
-	  command_interpreter(d->character, comm);
+	  command_interpreter(d->character, comm); /* send it to interpreter */
 	}
       }
     }
 
-    /* send queued output out to the operating system */
+    /* send queued output out to the operating system (ultimately to user) */
     for (d = descriptor_list; d; d = next_d) {
       next_d = d->next;
       if (FD_ISSET(d->descriptor, &output_set) && *(d->output))
@@ -552,28 +566,8 @@ void game_loop(int mother_desc)
 *  general utility stuff (for local use)                            *
 ****************************************************************** */
 
-#ifdef USE_OLD_TIMEDIFF
-
-struct timeval timediff(struct timeval * a, struct timeval * b)
-{
-  struct timeval rslt, tmp;
-
-  tmp = *a;
-
-  if ((rslt.tv_usec = tmp.tv_usec - b->tv_usec) < 0) {
-    rslt.tv_usec += 1000000;
-    --(tmp.tv_sec);
-  }
-  if ((rslt.tv_sec = tmp.tv_sec - b->tv_sec) < 0) {
-    rslt.tv_usec = 0;
-    rslt.tv_sec = 0;
-  }
-  return rslt;
-}
-
-#else
-
-/*  new code to calculate time differences, which works on systems
+/*
+ *  new code to calculate time differences, which works on systems
  *  for which tv_usec is unsigned (and thus comparisons for something
  *  being < 0 fail).  Based on code submitted by ss@sirocco.cup.hp.com.
  */
@@ -607,7 +601,6 @@ struct timeval timediff(struct timeval * a, struct timeval * b)
   }
 }
 
-#endif
 
 void record_usage(void)
 {
@@ -630,9 +623,8 @@ void record_usage(void)
     struct rusage ru;
 
     getrusage(0, &ru);
-    sprintf(buf, "rusage: %d %d %d %d %d %d %d",
-	    ru.ru_utime.tv_sec, ru.ru_stime.tv_sec, ru.ru_maxrss,
-	    ru.ru_ixrss, ru.ru_ismrss, ru.ru_idrss, ru.ru_isrss);
+    sprintf(buf, "rusage: user time: %ld sec, system time: %ld sec, max res size: %ld",
+	    ru.ru_utime.tv_sec, ru.ru_stime.tv_sec, ru.ru_maxrss);
     log(buf);
   }
 #endif
@@ -646,7 +638,7 @@ void make_prompt(struct descriptor_data * d)
     write_to_descriptor(d->descriptor, "] ");
   else if (d->showstr_point)
     write_to_descriptor(d->descriptor,
-			"\r\n*** Press return to continue, q to quit ***");
+			"*** Press return to continue, q to quit ***");
   else if (!d->connected) {
     char prompt[MAX_INPUT_LENGTH];
 
@@ -798,7 +790,7 @@ int new_descriptor(int s)
   /* accept the new connection */
   i = sizeof(peer);
   if ((desc = accept(s, (struct sockaddr *) & peer, &i)) < 0) {
-    perror("Accept");
+    perror("accept");
     return -1;
   }
   /* keep it from blocking */
@@ -849,7 +841,6 @@ int new_descriptor(int s)
   /* initialize descriptor data */
   newd->descriptor = desc;
   newd->connected = CON_GET_NAME;
-  newd->pos = -1;
   newd->wait = 1;
   newd->output = newd->small_outbuf;
   newd->bufspace = SMALL_BUFSIZE - 1;
@@ -964,10 +955,16 @@ int process_input(struct descriptor_data * t)
   /* first, find the point where we left off reading data */
   buf_length = strlen(t->inbuf);
   read_point = t->inbuf + buf_length;
+  space_left = MAX_RAW_INPUT_LENGTH - buf_length - 1;
 
   do {
-    if ((bytes_read = read(t->descriptor, read_point,
-			   MAX_RAW_INPUT_LENGTH - buf_length - 1)) < 0) {
+    if (space_left <= 0) {
+      log("process_input: about to close connection: input overflow");
+      return -1;
+    }
+
+    if ((bytes_read = read(t->descriptor, read_point, space_left)) < 0) {
+
 #ifdef EWOULDBLOCK
       if (errno == EWOULDBLOCK)
 	errno = EAGAIN;
@@ -993,6 +990,7 @@ int process_input(struct descriptor_data * t)
 	nl_pos = ptr;
 
     read_point += bytes_read;
+    space_left -= bytes_read;
 
 /*
  * on some systems such as AIX, POSIX-standard nonblocking I/O is broken,
@@ -1001,7 +999,8 @@ int process_input(struct descriptor_data * t)
  * I attempt to compensate by always returning after the _first_ read, instead
  * of looping forever until a read returns -1.  This simulates non-blocking
  * I/O because the result is we never call read unless we know from select()
- * that data is ready.  JE 2/23/95.
+ * that data is ready (process_input is only called if select indicates that
+ * this descriptor is in the read set).  JE 2/23/95.
  */
 #if !defined(POSIX_NONBLOCK_BROKEN)
   } while (nl_pos == NULL);
@@ -1090,29 +1089,55 @@ int process_input(struct descriptor_data * t)
 
 
 
-/* perform substitution for the '^..^' csh-esque syntax */
+/*
+ * perform substitution for the '^..^' csh-esque syntax
+ * orig is the orig string (i.e. the one being modified.
+ * subst contains the substition string, i.e. "^telm^tell"
+ */
 int perform_subst(struct descriptor_data * t, char *orig, char *subst)
 {
   char new[MAX_INPUT_LENGTH + 5];
 
   char *first, *second, *strpos;
 
+  /*
+   * first is the position of the beginning of the first string (the one
+   * to be replaced
+   */
   first = subst + 1;
+
+  /* now find the second '^' */
   if (!(second = strchr(first, '^'))) {
     SEND_TO_Q("Invalid substitution.\r\n", t);
     return 1;
   }
+
+  /* terminate "first" at the position of the '^' and make 'second' point
+   * to the beginning of the second string */
   *(second++) = '\0';
 
+  /* now, see if the contents of the first string appear in the original */
   if (!(strpos = strstr(orig, first))) {
     SEND_TO_Q("Invalid substitution.\r\n", t);
     return 1;
   }
+
+  /* now, we construct the new string for output. */
+
+  /* first, everything in the original, up to the string to be replaced */
   strncpy(new, orig, (strpos - orig));
   new[(strpos - orig)] = '\0';
-  strcat(new, second);
+
+  /* now, the replacement string */
+  strncat(new, second, (MAX_INPUT_LENGTH - strlen(new) - 1));
+
+  /* now, if there's anything left in the original after the string to
+   * replaced, copy that too. */
   if (((strpos - orig) + strlen(first)) < strlen(orig))
-    strcat(new, strpos + strlen(first));
+    strncat(new, strpos + strlen(first), (MAX_INPUT_LENGTH - strlen(new) - 1));
+
+  /* terminate the string in case of an overflow from strncat */
+  new[MAX_INPUT_LENGTH-1] = '\0';
   strcpy(subst, new);
 
   return 0;
@@ -1122,8 +1147,9 @@ int perform_subst(struct descriptor_data * t, char *orig, char *subst)
 
 void close_socket(struct descriptor_data * d)
 {
-  struct descriptor_data *temp;
-  char buf[100];
+  struct descriptor_data *temp, *next_d;
+  char buf[128];
+  long target_idnum = -1;
 
   close(d->descriptor);
   flush_queues(d);
@@ -1137,6 +1163,7 @@ void close_socket(struct descriptor_data * d)
     d->snoop_by->snooping = NULL;
   }
   if (d->character) {
+    target_idnum = GET_IDNUM(d->character);
     if (d->connected == CON_PLAYING) {
       save_char(d->character, NOWHERE);
       act("$n has lost $s link.", TRUE, d->character, 0, 0, TO_ROOM);
@@ -1160,11 +1187,25 @@ void close_socket(struct descriptor_data * d)
 
   if (d->showstr_head)
     free(d->showstr_head);
+
   free(d);
+
+  /*
+   * kill off all sockets connected to the same player as the one who is
+   * trying to quit.  Helps to maintain sanity as well as prevent duping.
+   */
+  if (target_idnum >= 0) {
+    for (temp = descriptor_list; temp; temp = next_d) {
+      next_d = temp->next;
+      if (temp->character && GET_IDNUM(temp->character) == target_idnum)
+        close_socket(temp);
+    }
+  }
 }
 
+
 /*
- * I tried to universally convert Circle over to POSIX compliance, but,
+ * I tried to universally convert Circle over to POSIX compliance, but
  * alas, some systems are still straggling behind and don't have all the
  * appropriate defines.  In particular, NeXT 2.x defines O_NDELAY but not
  * O_NONBLOCK.  Krusty old NeXT machines!  (Thanks to Michael Jones for
@@ -1176,7 +1217,11 @@ void close_socket(struct descriptor_data * d)
 
 void nonblock(int s)
 {
-  if (fcntl(s, F_SETFL, O_NONBLOCK) < 0) {
+  int flags;
+
+  flags = fcntl(s, F_GETFL, 0);
+  flags |= O_NONBLOCK;
+  if (fcntl(s, F_SETFL, flags) < 0) {
     perror("Fatal error executing nonblock (comm.c)");
     exit(1);
   }
@@ -1202,7 +1247,7 @@ void reread_wizlists()
 {
   void reboot_wizlists(void);
 
-  mudlog("Rereading wizlists.", CMP, LVL_IMMORT, FALSE);
+  mudlog("Signal received - rereading wizlists.", CMP, LVL_IMMORT, TRUE);
   reboot_wizlists();
 }
 
@@ -1232,15 +1277,17 @@ void hupsig()
  * This is an implementation of signal() using sigaction() for portability.
  * (sigaction() is POSIX; signal() is not.)  Taken from Stevens' _Advanced
  * Programming in the UNIX Environment_.  We are specifying that all system
- * calls _not_ be automatically restarted because BSD systems do not restart
- * select(), even if SA_RESTART is used.
+ * calls _not_ be automatically restarted for uniformity, because BSD systems
+ * do not restart select(), even if SA_RESTART is used.
  *
  * Note that NeXT 2.x is not POSIX and does not have sigaction; therefore,
  * I just define it to be the old signal.  If your system doesn't have
  * sigaction either, you can use the same fix.
+ *
+ * SunOS Release 4.0.2 (sun386) needs this too, according to Tim Aldric.
  */
 
-#if defined(NeXT)
+#if defined(NeXT) || defined(sun386)
 #define my_signal(signo, func) signal(signo, func)
 #else
 sigfunc *my_signal(int signo, sigfunc * func)

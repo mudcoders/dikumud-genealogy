@@ -86,7 +86,7 @@ struct board_info_type board_info[NUM_OF_BOARDS] = {
 char *msg_storage[INDEX_SIZE];
 int msg_storage_taken[INDEX_SIZE];
 int num_of_msgs[NUM_OF_BOARDS];
-int CMD_READ, CMD_LOOK, CMD_WRITE, CMD_REMOVE;
+int CMD_READ, CMD_LOOK, CMD_EXAMINE, CMD_WRITE, CMD_REMOVE;
 struct board_msginfo msg_index[NUM_OF_BOARDS][MAX_BOARD_MESSAGES];
 
 
@@ -147,6 +147,7 @@ void init_boards(void)
   CMD_WRITE = find_command("write");
   CMD_REMOVE = find_command("remove");
   CMD_LOOK = find_command("look");
+  CMD_EXAMINE = find_command("examine");
 
   if (fatal_error)
     exit(1);
@@ -165,8 +166,8 @@ SPECIAL(gen_board)
   if (!ch->desc)
     return 0;
 
-  if (cmd != CMD_WRITE && cmd != CMD_LOOK && cmd != CMD_READ &&
-      cmd != CMD_REMOVE)
+  if (cmd != CMD_WRITE && cmd != CMD_LOOK && cmd != CMD_EXAMINE &&
+      cmd != CMD_READ && cmd != CMD_REMOVE)
     return 0;
 
   if ((board_type = find_board(ch)) == -1) {
@@ -176,7 +177,7 @@ SPECIAL(gen_board)
   if (cmd == CMD_WRITE) {
     Board_write_message(board_type, ch, argument);
     return 1;
-  } else if (cmd == CMD_LOOK)
+  } else if (cmd == CMD_LOOK || cmd == CMD_EXAMINE)
     return (Board_show_board(board_type, ch, argument));
   else if (cmd == CMD_READ)
     return (Board_display_msg(board_type, ch, argument));

@@ -171,15 +171,15 @@ void look_at_char(struct char_data * i, struct char_data * ch)
 
   found = FALSE;
   for (j = 0; !found && j < NUM_WEARS; j++)
-    if (i->equipment[j] && CAN_SEE_OBJ(ch, i->equipment[j]))
+    if (GET_EQ(i, j) && CAN_SEE_OBJ(ch, GET_EQ(i, j)))
       found = TRUE;
 
   if (found) {
     act("\r\n$n is using:", FALSE, i, 0, ch, TO_VICT);
     for (j = 0; j < NUM_WEARS; j++)
-      if (i->equipment[j] && CAN_SEE_OBJ(ch, i->equipment[j])) {
+      if (GET_EQ(i, j) && CAN_SEE_OBJ(ch, GET_EQ(i, j))) {
 	send_to_char(where[j], ch);
-	show_obj_to_char(i->equipment[j], ch, 1);
+	show_obj_to_char(GET_EQ(i, j), ch, 1);
       }
   }
   if (ch != i && (GET_CLASS(ch) == CLASS_THIEF || GET_LEVEL(ch) >= LVL_IMMORT)) {
@@ -512,8 +512,8 @@ void look_at_target(struct char_data * ch, char *arg)
   }
   /* Does the argument match an extra desc in the char's equipment? */
   for (j = 0; j < NUM_WEARS && !found; j++)
-    if (ch->equipment[j] && CAN_SEE_OBJ(ch, ch->equipment[j]))
-      if ((desc = find_exdesc(arg, ch->equipment[j]->ex_description)) != NULL) {
+    if (GET_EQ(ch, j) && CAN_SEE_OBJ(ch, GET_EQ(ch, j)))
+      if ((desc = find_exdesc(arg, GET_EQ(ch, j)->ex_description)) != NULL) {
 	send_to_char(desc, ch);
 	found = 1;
       }
@@ -753,10 +753,10 @@ ACMD(do_equipment)
 
   send_to_char("You are using:\r\n", ch);
   for (i = 0; i < NUM_WEARS; i++) {
-    if (ch->equipment[i]) {
-      if (CAN_SEE_OBJ(ch, ch->equipment[i])) {
+    if (GET_EQ(ch, i)) {
+      if (CAN_SEE_OBJ(ch, GET_EQ(ch, i))) {
 	send_to_char(where[i], ch);
-	show_obj_to_char(ch->equipment[i], ch, 1);
+	show_obj_to_char(GET_EQ(ch, i), ch, 1);
 	found = TRUE;
       } else {
 	send_to_char(where[i], ch);
@@ -1048,11 +1048,10 @@ ACMD(do_users)
 {
   extern char *connected_types[];
   char line[200], line2[220], idletime[10], classname[20];
-  char state[30], *timeptr;
-
+  char state[30], *timeptr, *format, mode;
+  char name_search[MAX_INPUT_LENGTH], host_search[MAX_INPUT_LENGTH];
   struct char_data *tch;
   struct descriptor_data *d;
-  char name_search[80], host_search[80], mode, *format;
   int low = 0, high = LVL_IMPL, i, num_can_see = 0;
   int showclass = 0, outlaws = 0, playing = 0, deadweight = 0;
 
@@ -1062,7 +1061,7 @@ ACMD(do_users)
   while (*buf) {
     half_chop(buf, arg, buf1);
     if (*arg == '-') {
-      mode = *(arg + 1);	/* just in case; we destroy arg in the switch */
+      mode = *(arg + 1);  /* just in case; we destroy arg in the switch */
       switch (mode) {
       case 'o':
       case 'k':

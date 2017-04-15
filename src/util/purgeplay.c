@@ -7,7 +7,11 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <sys/time.h>
+#include <strings.h>
+
 #include "../structs.h"
+#include "../utils.h"
 
 
 void	purge(char *filename)
@@ -50,7 +54,7 @@ void	purge(char *filename)
 	 strcpy(reason, "Never entered game");
       }
 
-      if (player.level < 0 || player.level > LEVEL_IMPL) {
+      if (player.level < 0 || player.level > LVL_IMPL) {
 	 okay = 0;
 	 strcpy(reason, "Invalid level");
       }
@@ -58,18 +62,18 @@ void	purge(char *filename)
       /* now, check for timeouts.  They only apply if the char is not
        cryo-rented.   Lev 32-34 do not time out.  */
 
-      if (okay && player.level <= LEVEL_IMMORT) {
+      if (okay && player.level <= LVL_IMMORT) {
 
-	 if (!(player.specials2.act & PLR_CRYO)) {
+	 if (!(player.char_specials_saved.act & PLR_CRYO)) {
 	    if (player.level == 1)
 	       timeout = 4;	/* Lev   1 : 4 days */
 	    else if (player.level <= 4)	
 	       timeout = 7;	/* Lev 2-4 : 7 days */
 	    else if (player.level <= 10)	
 	       timeout = 30;	/* Lev 5-10: 30 days */
-	    else if (player.level <= LEVEL_IMMORT - 1) 
+	    else if (player.level <= LVL_IMMORT - 1) 
 	       timeout = 60;	/* Lev 11-30: 60 days */
-	    else if (player.level <= LEVEL_IMMORT)   
+	    else if (player.level <= LVL_IMMORT)   
 	       timeout = 90;	/* Lev 31: 90 days */
 	 } else
 	       timeout = 90;
@@ -78,17 +82,17 @@ void	purge(char *filename)
 
 	 if ((time(0) - player.last_logon) > timeout) {
 	    okay = 0;
-	    sprintf(reason, "Level %2d idle for %3d days", player.level,
+	    sprintf(reason, "Level %2d idle for %3ld days", player.level,
 	        ((time(0) - player.last_logon) / SECS_PER_REAL_DAY));
 	 }
       }
 
-      if (player.specials2.act & PLR_DELETED) {
+      if (player.char_specials_saved.act & PLR_DELETED) {
 	 okay = 0;
 	 sprintf(reason, "Deleted flag set");
       }
 
-      if (!okay && (player.specials2.act & PLR_NODELETE)) {
+      if (!okay && (player.char_specials_saved.act & PLR_NODELETE)) {
 	 okay = 2;
 	 strcat(reason, "; NOT deleted.");
       }

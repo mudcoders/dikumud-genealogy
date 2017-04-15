@@ -1,4 +1,4 @@
-CircleMUD 3.0 - World Files, Beta Version.
+CircleMUD 3.0 - World Files, Beta Version 8.
 
    Contained in this lovely archive is the present shape of the
 world for Circle 3.0.  I have put everything into ascii flags
@@ -16,15 +16,15 @@ can correct those problems before the Gamma release of Circle
 
    The zone files have been reformatted so that each has comments
 (my style of commenting, so that I know what is s'posed to be
-going on (: )  All the wld files have been properly indented to
+going on (= )  All the wld files have been properly indented to
 three spaces in (for consistency mostly and it was easier re-doing
 about a third of the descripts...)  A couple of areas have been
-shifted around and there have been two area additions (see if you
-can figure out what they are, shouldn't be too hard (: )  Many
-typos and 'bugs' have been corrected thus far, but I'm sure that
-more exist yet, so please send me a listing of the ones you find.
+shifted around and there have been two area additions so far with
+the potential of more to come (see if you can figure out what they
+are, shouldn't be too hard (= )  Many typos and 'bugs' have been 
+corrected thus far, but I'm sure that more exist yet, so please
+send me a listing of the ones you find.
 
    I thank you for your time, and please direct all comments to:
 
-3raf7@QUCDN.QueensU.CA
-
+furry@cambot.res.jhu.edu

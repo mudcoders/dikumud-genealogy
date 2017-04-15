@@ -34,7 +34,7 @@ front.
 bqr 0 10 S
 11 10 1 1d20+130 2d7+0
 0 13000
-6 8 0
+8 8 0
 #5203
 mimic boulder skeleton skeletons~
 the mimic~
@@ -48,7 +48,7 @@ attached to them.
 bqr 0 -10 S
 14 7 1 3d15+150 3d5+1
 0 20000
-6 8 0
+8 8 0
 #5204
 mimic floor~
 the mimic~
@@ -60,7 +60,7 @@ destruction.
 bqr 0 -140 S
 11 11 3 2d6+110 2d6+0
 0 10500
-6 8 0
+8 8 0
 #5205
 mimic pottery shards~
 the mimic~
@@ -72,7 +72,7 @@ probably before the city fell.
 bqr 0 200 S
 11 14 0 1d8+100 2d5+3
 0 9800
-6 8 0
+8 8 0
 #5206
 mimic planks wooden~
 the mimic~
@@ -84,7 +84,7 @@ that someone has been here before you...
 bqr 0 0 S
 11 9 0 1d12+110 4d3+1
 0 12000
-6 8 0
+8 8 0
 #5207 
 lizard horned~
 the horned lizard~
@@ -120,5 +120,4 @@ bfg f -500 S
 9 10 3 1d12+120 1d4+5
 1500 7000
 8 8 2
-#99999
-$~
+$

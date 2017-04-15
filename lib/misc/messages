@@ -105,12 +105,29 @@ Did you really expect $M to suffer?
 $n unfruitfully tries to dispell you.
 $n is stupid...
 
+* Earthquake
+M
+ 23
+The earth opens beneath $N's feet and swallows $M whole!
+The earth opens beneath your feet and swallows you whole!
+The earth opens beneath $N's feet and swallows $M whole!
+$N desperately tries to keep $S balance as the earth shakes beneath $S feet!
+You desperately try to keep your balance as the earth shakes beneath your feet!
+$N desperately tries to keep $S balance as the earth shakes beneath $S feet!
+$N falls down and hurts $Mself!
+You fall down and hurt yourself!
+$N falls down and hurts $Mself!
+$N gracefully levitates as the earth shifts beneath $S feet under $M.
+You gracefully levitate as the earth shifts underneath you.
+$N gracefully levitates as the earth shifts beneath $S feet under $M.
+
+
 * Energy Drain
 M
  25
 $N crumples as you kill $M by draining $S energy!
 As $n drains your last energy you look forward to the peace of the graveyard...
-$n drains the enegy of $N who crumples as a lifeless cocoon!
+$n drains the energy of $N who crumples as a lifeless cocoon!
 You need more draining lessons...
 Luckily for you $n slept during draining-lessons!
 $n fails to drain $N -- what a waste of energy!
@@ -329,6 +346,21 @@ It's not polite to swing at a GOD!!
 $n tries to take a swing at you -- how pathetic!
 $n pathetically tries to take a swing at $N - ha!
 
+* Sting
+M
+ 301
+You drive a sting directly into the heart of $N, killing $M!
+With a powerful driving force, $n's sting tears right through your chest causing instant death!
+$n drives $s whip through $N's chest, killing $M!
+You miss $N with your stinging blow!
+$n drives $s stinging blow at you, barely missing!
+You watch in fright as $n stings at $N, missing by mere inches!
+#
+#
+#
+Sting -- God... What are you thinking?
+$n tries to sting you, somewhat comical to tell the truth.
+$n stings at $N, then looks horrified as $N grins at $m!
 
 * Whip
 M
@@ -359,7 +391,6 @@ $n tries to whip $N but whips the ground instead!
 Don't try to whip $N.
 $n is trying to whip you.  Yawn.
 $n tries to whip $N - yawn.
-
 
 * Slash
 M
@@ -509,6 +540,22 @@ A pox on thee and thy pitiful crush on $N!
 $n seems to have a crush on you...
 $n seems to have a crush on $N...
 
+* Pound
+M
+ 307
+You pound $N right into the ground!
+$n pounds you six feet under.
+$n pounds $N mightily on the head, crushing $S entire body!
+You pound at the air as $N nimbly steps out of the way!
+You jump out of the way in a panic as $n pounds at you!
+$n looks perturbed as $s pound misses $N!
+#
+#
+#
+You pound $N!  And $E thanks you for it?  *boggle*
+$n gives you a pound.  Wonder what the exchange rate is....
+$n starts giving pounds to $N who begins to count the money.
+
 * Claw
 M
  308
@@ -538,6 +585,38 @@ $n tries to claw at $N but nearly nicks $mself instead!
 You dummy!  Not the claw, the claw!
 $n must be crazy - trying to claw at you!
 $n must be crazy - trying to claw at $N!
+
+* Maul
+M
+ 309
+You maul $N across the chest and $E screams in pain as $E falls lifeless to the ground.
+As $n mauls you in the chest, you feel a searing pain... then nothing.
+With a brutal maul to the chest, $N slaughters $n!
+You swing wildly with your maul, almost hitting yourself!
+Phew!  $n missed you with $s wild maul!
+$n mauls at $N, missing wildly!
+#
+#
+#
+Mauling a God?  What would your poor mother think?  Of course, you probably wouldn't hesitate to maul her too.
+$n tries to maul you, and as $e fails, looks quite horrified.  How pleasant.
+$N laughs as $n tries to maul $M.  How comical.
+
+* Thrash
+M
+ 310
+You bring $N within the thrashing of $S life, and then thrash $M one last time, killing $M.
+$n thrashes you violently, and you die.
+With a horrible thrashing, $N falls lifeless under $n's blows!
+You miss your thrash against $N!
+What a stroke of luck, $n seems to have missed you with $s thrash!
+$n thrashes madly at $N, missing $m!
+#
+#
+#
+Thrash a God?  More likely that $N would thrash you, don't you think?
+What a fool, $n tried to thrash you.  *sigh*
+Looking rather silly, $n tries to thrash at $N.
 
 * Pierce
 M
@@ -569,6 +648,68 @@ The great $N sends you a piercing look, OOPS!!
 You return $n's pierce with a piercing look, hmmm...
 $N returns $n's pierce with a piercing look, hmmm...
 
+* Blast
+M
+ 312
+You blast $N with all of your might, killing $M!
+With $s powerful blast, $n tears your life from your body!
+$N falls lifeless as $n's blast rips $M apart!
+You blast wildly, missing $N by a mere inch or two!
+You skillfully avoid $n's wild blast!
+$n misses $N with $s wild blast!  What luck $N seems to have!
+#
+#
+#
+Are you kidding?  What do you expect your feeble blast to do to $N?
+Heh.  $n tried to blast you.  Good thing you have blastproof armor.
+$n looks afraid of the consequences as $e tries fruitlessly to blast $N.
+
+* Punch
+M
+ 313
+You punch at $N causing $S face to collapse under the blow, blood everywhere.  Doesn't look like $N will recover.  Ever.
+$n's forceful punch causes you to see red, until you die shortly thereafter.
+$n punches $N right in the face!  There is blood everywhere, and $N seems to be dead!
+You miss $N with your haymaker!
+$n throws a haymaker at you which whistles by your ear!
+$n just misses $N with a strong punch!
+#
+#
+#
+Punch a God?  May be smarter to punch a wall for a bit.  You might do more damage to it.
+Is that a quiet whistling noise you hear as $n is swinging $s fist about?
+$n looks like $e would prefer to have punched a wall rather than trying to punch $N.
+
+* Stab
+M
+ 314
+You stab $N through the heart!  Instant death!
+$n drives a stab at you, it pierces your heart!  RIP!
+$n stabs brutally at $N, killing him as $N is impaled by $n!
+You stab at $N, missing!
+$n misses a particularily nasty stab in your direction!
+$n stabs at $N!  $e misses!
+#
+#
+#
+You stab at $N!  Too bad $E's a god, huh?
+$n stabs at you!  Lucky for you that you are immune to this kind of thing.
+You watch in pity as $n stabs towards $N missing in the most futile way possible!
+M
+ 314
+You stab forth towards $N, hitting $M in the abdomen causing a messy but mortal wound!
+$n stabs you in the stomach, and you watch your insides fall out as you die.
+Making a mess of $N, $n kills $M with a stab to the midsection.
+You stab at $N, barely missing $M!
+$n stabs at you, missing by a good mile or so!
+$N grins at $n as the stab sent by $n goes wide!
+#
+#
+#
+Gods can't be stabbed, did noone ever teach you that?  And $N just so happens to be one.
+It sure is nice being a god isn't it... especially since $n can't hit you with $s stabs.
+$n stabs at $N only to discover $N's immunity to stabbing weapons.
+
 * Suffering
 M
  399
@@ -582,8 +723,8 @@ suffer miss room - should never see.
 You lie on the ground suffering from your terrible wounds...
 $N lies helplessly on the ground and suffers...
 #
-Suffer god victim - should never see
-Suffer god room - should never see
+Suffer god victim - should never see.
+Suffer god room - should never see.
 M
  399
 #
@@ -596,8 +737,8 @@ suffer miss room - should never see.
 You lie on the ground suffering from bleeding wounds...
 $N lies immobile on the ground, suffering...
 #
-Suffer god victim..
-Suffer god room..
+Suffer god victim -- should never see.
+Suffer god room -- should never see.
 
 * Poison
 M

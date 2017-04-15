@@ -500,12 +500,12 @@ void Crash_crashsave(struct char_data * ch)
   Crash_restore_weight(ch->carrying);
 
   for (j = 0; j < NUM_WEARS; j++)
-    if (ch->equipment[j]) {
-      if (!Crash_save(ch->equipment[j], fp)) {
+    if (GET_EQ(ch, j)) {
+      if (!Crash_save(GET_EQ(ch, j), fp)) {
 	fclose(fp);
 	return;
       }
-      Crash_restore_weight(ch->equipment[j]);
+      Crash_restore_weight(GET_EQ(ch, j));
     }
   fclose(fp);
   REMOVE_BIT(PLR_FLAGS(ch), PLR_CRASH);
@@ -529,7 +529,7 @@ void Crash_idlesave(struct char_data * ch)
     return;
 
   for (j = 0; j < NUM_WEARS; j++)
-    if (ch->equipment[j])
+    if (GET_EQ(ch, j))
       obj_to_char(unequip_char(ch, j), ch);
 
   Crash_extract_norents(ch->carrying);
@@ -585,7 +585,7 @@ void Crash_rentsave(struct char_data * ch, int cost)
     return;
 
   for (j = 0; j < NUM_WEARS; j++)
-    if (ch->equipment[j])
+    if (GET_EQ(ch, j))
       obj_to_char(unequip_char(ch, j), ch);
 
   Crash_extract_norents(ch->carrying);
@@ -625,7 +625,7 @@ void Crash_cryosave(struct char_data * ch, int cost)
     return;
 
   for (j = 0; j < NUM_WEARS; j++)
-    if (ch->equipment[j])
+    if (GET_EQ(ch, j))
       obj_to_char(unequip_char(ch, j), ch);
 
   Crash_extract_norents(ch->carrying);
@@ -724,7 +724,7 @@ int Crash_offer_rent(struct char_data * ch, struct char_data * receptionist,
 
   norent = Crash_report_unrentables(ch, receptionist, ch->carrying);
   for (i = 0; i < NUM_WEARS; i++)
-    norent += Crash_report_unrentables(ch, receptionist, ch->equipment[i]);
+    norent += Crash_report_unrentables(ch, receptionist, GET_EQ(ch, i));
 
   if (norent)
     return 0;
@@ -734,7 +734,7 @@ int Crash_offer_rent(struct char_data * ch, struct char_data * receptionist,
   Crash_report_rent(ch, receptionist, ch->carrying, &totalcost, &numitems, display, factor);
 
   for (i = 0; i < NUM_WEARS; i++)
-    Crash_report_rent(ch, receptionist, ch->equipment[i], &totalcost, &numitems, display, factor);
+    Crash_report_rent(ch, receptionist, GET_EQ(ch, i), &totalcost, &numitems, display, factor);
 
   if (!numitems) {
     act("$n tells you, 'But you are not carrying anything!  Just quit!'",

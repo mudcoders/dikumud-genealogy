@@ -1,3 +1,25 @@
+/* ************************************************************************
+*   File: wizhelp.doc                                   Part of CircleMUD *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+
+                            Wizard Commands
+
+Summary:
+   Help text for all priveldged CircleMUD commands.  File is in help text
+format so that it can be pasted into the lib/text/help_text if online help
+is desired.
+
+Intended Audience:
+   CircleMUD immortals, Gods, and player administrators.
+
+
+
+-------cut here-------------------------------------------------------------
 ADVANCE
 
 advance <victim> <level>

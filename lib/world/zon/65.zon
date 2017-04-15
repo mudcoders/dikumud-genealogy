@@ -100,9 +100,9 @@ O 0 6507 4 6513         Long Black Light Stick
 O 0 6507 4 6505         Long Black Light Stick
 O 0 6507 4 6503         Long Black Light Stick
 O 0 6507 4 6540         Long Black Light Stick
-O 1 6516 1 6532         Key To The Mine Maze
 O 0 6513 6 6545         Chunk Of Coal
 O 0 6514 3 6551         Mining Pick
+O 0 6516 1 6532         Key To The Mine Maze
 * Doors
 D 0 6505 3 2            Mountain Entrance
 D 0 6513 1 2
@@ -124,5 +124,4 @@ D 0 6544 0 2            Maze Entrance
 D 0 6546 2 2
 *
 S
-#99999
-$~
+$

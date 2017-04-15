@@ -568,8 +568,8 @@ SPECIAL(cityguard)
   struct char_data *tch, *evil;
   int max_evil;
 
-  if (cmd || !AWAKE(ch) || (GET_POS(ch) == POS_FIGHTING))
-    return (FALSE);
+  if (cmd || !AWAKE(ch) || FIGHTING(ch))
+    return FALSE;
 
   max_evil = 1000;
   evil = 0;

@@ -106,7 +106,7 @@ S
 A Long Narrow Tunnel~
    The tunnel rises sharply to the east.
 ~
-50 ad 5
+50 adi 5
 D1
 ~
 ~
@@ -478,7 +478,8 @@ S
 The Great Eastern Desert~
    A vast desert stretches for miles, the sands constantly shifting around  
 you.  A pyramid lies to the north-east and a snow-capped mountain range to
-the west.
+the west.  You spy a narrow dirt trail leading away to the west into the
+foothills.
 ~
 50 0 2
 D0
@@ -1431,7 +1432,7 @@ A Narrow Crack~
    This part of the tunnel is the hardest to move through as the walls
 move in to meet you.
 ~
-50 ad 5
+50 adi 5
 D0
 ~
 ~
@@ -1471,5 +1472,4 @@ D4
 ~
 0 -1 5009
 S
-#99999
-$~
+$

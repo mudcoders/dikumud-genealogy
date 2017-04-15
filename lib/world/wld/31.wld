@@ -143,7 +143,7 @@ Park Cafe~
 seats where you can relax and enjoy the view.  To the east you can
 see the entrance to the park.
 ~
-31 df 0
+31 dh 0
 D3
 You see the park entrance.
 ~
@@ -1010,5 +1010,4 @@ D3
 ~
 0 -1 3204
 S
-#99999
-$~
+$

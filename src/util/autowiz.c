@@ -18,7 +18,10 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 #include <signal.h>
+#include <strings.h>
 #include "../structs.h"
 #include "../utils.h"
 #include "../db.h"
@@ -26,10 +29,10 @@
 #define IMM_LMARG "   "
 #define IMM_NSIZE  16
 #define LINE_LEN   64
-#define MIN_LEVEL LEVEL_IMMORT
+#define MIN_LEVEL LVL_IMMORT
 
 /* max level that should be in columns instead of centered */
-#define COL_LEVEL LEVEL_IMMORT
+#define COL_LEVEL LVL_IMMORT
 
 struct name_rec {
    char	name[25];
@@ -37,7 +40,7 @@ struct name_rec {
 };
 
 struct control_rec {
-   byte level;
+   int level;
    char	*level_name;
 };
 
@@ -48,10 +51,10 @@ struct level_rec {
 };
 
 struct control_rec level_params[] = {
-   { 31, "Immortals" },
-   { 32, "Gods" },
-   { 33, "Greater Gods" },
-   { 34, "Implementors" },
+   { LVL_IMMORT, "Immortals" },
+   { LVL_GOD, "Gods" },
+   { LVL_GRGOD, "Greater Gods" },
+   { LVL_IMPL, "Implementors" },
    { 0, "" }
 };
 
@@ -61,7 +64,7 @@ struct level_rec *levels = 0;
 void	initialize(void)
 {
    struct level_rec *tmp;
-   byte i = 0;
+   int i = 0;
 
    while (level_params[i].level > 0) {
       tmp = (struct level_rec *)malloc(sizeof(struct level_rec ));
@@ -88,9 +91,9 @@ void	read_file(void)
    while (!feof(fl)) {
       fread(&player, sizeof(struct char_file_u ), 1, fl);
       if (!feof(fl) && player.level >= MIN_LEVEL && 
-          !(IS_SET(player.specials2.act, PLR_FROZEN)) && 
-          !(IS_SET(player.specials2.act, PLR_NOWIZLIST)) && 
-          !(IS_SET(player.specials2.act, PLR_DELETED)))
+          !(IS_SET(player.char_specials_saved.act, PLR_FROZEN)) && 
+          !(IS_SET(player.char_specials_saved.act, PLR_NOWIZLIST)) && 
+          !(IS_SET(player.char_specials_saved.act, PLR_DELETED)))
 	 add_name(player.level, player.name);
    }
 
@@ -100,7 +103,7 @@ void	read_file(void)
 
 void	add_name(byte level, char *name)
 {
-   struct name_rec *tmp, *curr;
+   struct name_rec *tmp;
    struct level_rec *curr_level;
    char	*ptr;
 
@@ -218,15 +221,13 @@ void	write_wizlist(FILE *out, int minlev, int maxlev)
 
 int	main(int argc, char **argv)
 {
-   struct level_rec *a;
-   struct name_rec *b;
-   int	i = 0, wizlevel, immlevel, pid = 0;
+   int	wizlevel, immlevel, pid = 0;
    FILE * fl;
 
    if (argc != 5 && argc != 6) {
       printf("Format: %s wizlev wizlistfile immlev immlistfile [pid to signal]\n",
 	     argv[0]);
-      exit();
+      exit(0);
    }
 
    wizlevel = atoi(argv[1]);
@@ -237,11 +238,12 @@ int	main(int argc, char **argv)
    read_file();
    sort_names();
    fl = fopen(argv[2], "w");
-   write_wizlist(fl, wizlevel, LEVEL_IMPL);
+   write_wizlist(fl, wizlevel, LVL_IMPL);
    fclose(fl);
    fl = fopen(argv[4], "w");
    write_wizlist(fl, immlevel, wizlevel - 1);
    if (pid)
       kill(pid, SIGUSR1);
+   return 0;
 }
 

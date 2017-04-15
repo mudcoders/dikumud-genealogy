@@ -195,7 +195,7 @@ void affect_modify(struct char_data * ch, byte loc, sbyte mod, long bitv,
     log("SYSERR: Unknown apply adjust attempt (handler.c, affect_modify).");
     break;
 
-  }				/* switch */
+  } /* switch */
 }
 
 
@@ -208,11 +208,11 @@ void affect_total(struct char_data * ch)
   int i, j;
 
   for (i = 0; i < NUM_WEARS; i++) {
-    if (ch->equipment[i])
+    if (GET_EQ(ch, i))
       for (j = 0; j < MAX_OBJ_AFFECT; j++)
-	affect_modify(ch, ch->equipment[i]->affected[j].location,
-		      ch->equipment[i]->affected[j].modifier,
-		      ch->equipment[i]->obj_flags.bitvector, FALSE);
+	affect_modify(ch, GET_EQ(ch, i)->affected[j].location,
+		      GET_EQ(ch, i)->affected[j].modifier,
+		      GET_EQ(ch, i)->obj_flags.bitvector, FALSE);
   }
 
 
@@ -222,11 +222,11 @@ void affect_total(struct char_data * ch)
   ch->aff_abils = ch->real_abils;
 
   for (i = 0; i < NUM_WEARS; i++) {
-    if (ch->equipment[i])
+    if (GET_EQ(ch, i))
       for (j = 0; j < MAX_OBJ_AFFECT; j++)
-	affect_modify(ch, ch->equipment[i]->affected[j].location,
-		      ch->equipment[i]->affected[j].modifier,
-		      ch->equipment[i]->obj_flags.bitvector, TRUE);
+	affect_modify(ch, GET_EQ(ch, i)->affected[j].location,
+		      GET_EQ(ch, i)->affected[j].modifier,
+		      GET_EQ(ch, i)->obj_flags.bitvector, TRUE);
   }
 
 
@@ -329,8 +329,8 @@ void affect_join(struct char_data * ch, struct affected_type * af,
   bool found = FALSE;
 
   for (hjp = ch->affected; !found && hjp; hjp = hjp->next) {
-    if (hjp->type == af->type) {
 
+    if ((hjp->type == af->type) && (hjp->location == af->location)) {
       if (add_dur)
 	af->duration += hjp->duration;
       if (avg_dur)
@@ -360,9 +360,13 @@ void char_from_room(struct char_data * ch)
     log("SYSERR: NULL or NOWHERE in handler.c, char_from_room");
     exit(1);
   }
-  if (ch->equipment[WEAR_LIGHT] != NULL)
-    if (GET_OBJ_TYPE(ch->equipment[WEAR_LIGHT]) == ITEM_LIGHT)
-      if (GET_OBJ_VAL(ch->equipment[WEAR_LIGHT], 2))	/* Light is ON */
+
+  if (FIGHTING(ch) != NULL)
+    stop_fighting(ch);
+
+  if (GET_EQ(ch, WEAR_LIGHT) != NULL)
+    if (GET_OBJ_TYPE(GET_EQ(ch, WEAR_LIGHT)) == ITEM_LIGHT)
+      if (GET_OBJ_VAL(GET_EQ(ch, WEAR_LIGHT), 2))	/* Light is ON */
 	world[ch->in_room].light--;
 
   REMOVE_FROM_LIST(ch, world[ch->in_room].people, next_in_room);
@@ -381,9 +385,9 @@ void char_to_room(struct char_data * ch, int room)
     world[room].people = ch;
     ch->in_room = room;
 
-    if (ch->equipment[WEAR_LIGHT])
-      if (GET_OBJ_TYPE(ch->equipment[WEAR_LIGHT]) == ITEM_LIGHT)
-	if (GET_OBJ_VAL(ch->equipment[WEAR_LIGHT], 2))	/* Light ON */
+    if (GET_EQ(ch, WEAR_LIGHT))
+      if (GET_OBJ_TYPE(GET_EQ(ch, WEAR_LIGHT)) == ITEM_LIGHT)
+	if (GET_OBJ_VAL(GET_EQ(ch, WEAR_LIGHT), 2))	/* Light ON */
 	  world[room].light++;
   }
 }
@@ -434,9 +438,9 @@ int apply_ac(struct char_data * ch, int eq_pos)
 {
   int factor;
 
-  assert(ch->equipment[eq_pos]);
+  assert(GET_EQ(ch, eq_pos));
 
-  if (!(GET_OBJ_TYPE(ch->equipment[eq_pos]) == ITEM_ARMOR))
+  if (!(GET_OBJ_TYPE(GET_EQ(ch, eq_pos)) == ITEM_ARMOR))
     return 0;
 
   switch (eq_pos) {
@@ -455,7 +459,7 @@ int apply_ac(struct char_data * ch, int eq_pos)
     break;			/* all others 10% */
   }
 
-  return (factor * GET_OBJ_VAL(ch->equipment[eq_pos], 0));
+  return (factor * GET_OBJ_VAL(GET_EQ(ch, eq_pos), 0));
 }
 
 
@@ -467,7 +471,7 @@ void equip_char(struct char_data * ch, struct obj_data * obj, int pos)
 
   assert(pos >= 0 && pos < NUM_WEARS);
 
-  if (ch->equipment[pos]) {
+  if (GET_EQ(ch, pos)) {
     sprintf(buf, "SYSERR: Char is already equipped: %s, %s", GET_NAME(ch),
 	    obj->short_description);
     log(buf);
@@ -492,7 +496,7 @@ void equip_char(struct char_data * ch, struct obj_data * obj, int pos)
       return;
   }
 
-  ch->equipment[pos] = obj;
+  GET_EQ(ch, pos) = obj;
   obj->worn_by = ch;
   obj->worn_on = pos;
 
@@ -522,9 +526,9 @@ struct obj_data *unequip_char(struct char_data * ch, int pos)
   struct obj_data *obj;
 
   assert(pos >= 0 && pos < NUM_WEARS);
-  assert(ch->equipment[pos]);
+  assert(GET_EQ(ch, pos));
 
-  obj = ch->equipment[pos];
+  obj = GET_EQ(ch, pos);
   obj->worn_by = NULL;
   obj->worn_on = -1;
 
@@ -538,7 +542,7 @@ struct obj_data *unequip_char(struct char_data * ch, int pos)
   } else
     log("SYSERR: ch->in_room = NOWHERE when equipping char.");
 
-  ch->equipment[pos] = NULL;
+  GET_EQ(ch, pos) = NULL;
 
   for (j = 0; j < MAX_OBJ_AFFECT; j++)
     affect_modify(ch, obj->affected[j].location,
@@ -664,6 +668,7 @@ void obj_from_room(struct obj_data * object)
     log("SYSERR: NULL object or obj not in a room passed to obj_from_room");
     return;
   }
+
   REMOVE_FROM_LIST(object, world[object->in_room].contents, next_content);
 
   if (ROOM_FLAGGED(object->in_room, ROOM_HOUSE))
@@ -677,6 +682,11 @@ void obj_from_room(struct obj_data * object)
 void obj_to_obj(struct obj_data * obj, struct obj_data * obj_to)
 {
   struct obj_data *tmp_obj;
+
+  if (!obj || !obj_to || obj == obj_to) {
+    log("SYSERR: NULL object or same source and target obj passed to obj_to_obj");
+    return;
+  }
 
   obj->next_content = obj_to->contains;
   obj_to->contains = obj;
@@ -772,10 +782,10 @@ void update_char_objects(struct char_data * ch)
 {
   int i;
 
-  if (ch->equipment[WEAR_LIGHT] != NULL)
-    if (GET_OBJ_TYPE(ch->equipment[WEAR_LIGHT]) == ITEM_LIGHT)
-      if (GET_OBJ_VAL(ch->equipment[WEAR_LIGHT], 2) > 0) {
-	i = --GET_OBJ_VAL(ch->equipment[WEAR_LIGHT], 2);
+  if (GET_EQ(ch, WEAR_LIGHT) != NULL)
+    if (GET_OBJ_TYPE(GET_EQ(ch, WEAR_LIGHT)) == ITEM_LIGHT)
+      if (GET_OBJ_VAL(GET_EQ(ch, WEAR_LIGHT), 2) > 0) {
+	i = --GET_OBJ_VAL(GET_EQ(ch, WEAR_LIGHT), 2);
 	if (i == 1) {
 	  act("Your light begins to flicker and fade.", FALSE, ch, 0, 0, TO_CHAR);
 	  act("$n's light begins to flicker and fade.", FALSE, ch, 0, 0, TO_ROOM);
@@ -787,8 +797,8 @@ void update_char_objects(struct char_data * ch)
       }
 
   for (i = 0; i < NUM_WEARS; i++)
-    if (ch->equipment[i])
-      update_object(ch->equipment[i], 2);
+    if (GET_EQ(ch, i))
+      update_object(GET_EQ(ch, i), 2);
 
   if (ch->carrying)
     update_object(ch->carrying, 1);
@@ -802,7 +812,7 @@ void extract_char(struct char_data * ch)
   struct char_data *k, *temp;
   struct descriptor_data *t_desc;
   struct obj_data *obj;
-  int i;
+  int i, freed = 0;
 
   extern struct char_data *combat_list;
 
@@ -844,7 +854,7 @@ void extract_char(struct char_data * ch)
 
   /* transfer equipment to room, if any */
   for (i = 0; i < NUM_WEARS; i++)
-    if (ch->equipment[i])
+    if (GET_EQ(ch, i))
       obj_to_room(unequip_char(ch, i), ch->in_room);
 
   if (FIGHTING(ch))
@@ -872,11 +882,15 @@ void extract_char(struct char_data * ch)
       mob_index[GET_MOB_RNUM(ch)].number--;
     clearMemory(ch);		/* Only NPC's can have memory */
     free_char(ch);
+    freed = 1;
   }
 
   if (ch->desc) {
     STATE(ch->desc) = CON_MENU;
     SEND_TO_Q(MENU, ch->desc);
+  } else {  /* if a player gets purged from within the game */
+    if (!freed)
+      free_char(ch);
   }
 }
 
@@ -888,12 +902,13 @@ void extract_char(struct char_data * ch)
    *********************************************************************** */
 
 
-struct char_data *get_player_vis(struct char_data * ch, char *name)
+struct char_data *get_player_vis(struct char_data * ch, char *name, int inroom)
 {
   struct char_data *i;
 
   for (i = character_list; i; i = i->next)
-    if (!IS_NPC(i) && !str_cmp(i->player.name, name) && CAN_SEE(ch, i))
+    if (!IS_NPC(i) && (!inroom || i->in_room == ch->in_room) &&
+	!str_cmp(i->player.name, name) && CAN_SEE(ch, i))
       return i;
 
   return NULL;
@@ -914,7 +929,7 @@ struct char_data *get_char_room_vis(struct char_data * ch, char *name)
   /* 0.<name> means PC with name */
   strcpy(tmp, name);
   if (!(number = get_number(&tmp)))
-    return get_player_vis(ch, tmp);
+    return get_player_vis(ch, tmp, 1);
 
   for (i = world[ch->in_room].people; i && j <= number; i = i->next_in_room)
     if (isname(tmp, i->player.name))
@@ -939,7 +954,7 @@ struct char_data *get_char_vis(struct char_data * ch, char *name)
 
   strcpy(tmp, name);
   if (!(number = get_number(&tmp)))
-    return NULL;
+    return get_player_vis(ch, tmp, 0);
 
   for (i = character_list; i && (j <= number); i = i->next)
     if (isname(tmp, i->player.name) && CAN_SEE(ch, i))
@@ -1159,8 +1174,8 @@ int generic_find(char *arg, int bitvector, struct char_data * ch,
   }
   if (IS_SET(bitvector, FIND_OBJ_EQUIP)) {
     for (found = FALSE, i = 0; i < NUM_WEARS && !found; i++)
-      if (ch->equipment[i] && str_cmp(name, ch->equipment[i]->name) == 0) {
-	*tar_obj = ch->equipment[i];
+      if (GET_EQ(ch, i) && str_cmp(name, GET_EQ(ch, i)->name) == 0) {
+	*tar_obj = GET_EQ(ch, i);
 	found = TRUE;
       }
     if (found) {
