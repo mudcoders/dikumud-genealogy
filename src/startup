@@ -8,7 +8,7 @@ set port = 4000
 if ( "$1" != "" ) set port="$1"
 
 # Change to area directory.
-cd /EnvyMud/area
+cd ../area
 
 # Set limits.
 nohup

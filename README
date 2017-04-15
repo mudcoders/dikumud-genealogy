@@ -1,21 +1,20 @@
 EnvyMud Release 2.0
-Monday, 25th December 1995
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
 === Introduction
 
-EnvyMud 2.0 is an EnvyMud based on Merc Diku Mud with many
+EnvyMud 2.2 is an EnvyMud based on Merc Diku Mud with many
 enhancements and contributions.  See our 'contrib.txt' and 'help envy'
 for acknowledgements.  Send us your contribution, and you'll be in
 there too!
 
 Enjoy our mud.  May your visit here be ... Fun.
 
-This is the 2.0 production release of Envy.
+This is the 2.2 production release of Envy.
 
 
 
@@ -40,7 +39,12 @@ Our license agreement is in 'license.nvy'.
 EnvyMud 2.0 is a derivative of EnvyMud 1.0 and is subject to their
 copyright and license agreement.  EnvyMud 2.0 contains substantial
 enhancements to EnvyMud 1.0.  These enhancements are copyright 1995 by
-Michael Quan and Mitchell Tse. Our license agreement is in 'license.nvy'.
+Michael Quan and Mitchell Tse.  Our license agreement is in 'license.nvy'.
+
+EnvyMud 2.2 is a derivative of EnvyMud 2.0 and is subject to their
+copyright and license agreement.  EnvyMud 2.2 contains substantial
+enhancements to EnvyMud 2.0.  These enhancements are copyright
+1996, 1997 by Michael Quan.  Our license agreement is in 'license.nvy'.
 
 The license terms boil down to this: the people who wrote this mud want due
 credit for their work.
@@ -65,41 +69,51 @@ and purpose of that particular directory.  Please READ them!
 First, group with your highest level Unix guru, and have him or her tank.
 Envy is easier to install than other muds, but every site is different.
 
-(1) Get the release Envy_20.tar.gz from one of these fine
+(1) Get the release Envy_22.tar.gz from one of these fine
     anonymous ftp sites:
 
-	206.24.105.9
+	ftp.envy.com
+	ftp.solace.mh.se
+	ftp.math.okstate.edu
+	ftp.tem.nctu.edu.tw
+	ftp.game.org
+	ftp.goodnet.com
 
 (2) Unpack the release.
 
-	gzip -d Envy_20.tar.gz | tar xvf -
+	gzip -d Envy_22.tar.gz | tar xvf -
 
-(3) Go into the 'src' directory.  Choose the Makefile for your operating
-    system and copy it into 'Makefile':
+(3) Go into the 'src' directory.  Type 'make' and choose the supported
+    platform matching your machine.  Follow instructions.  If your machine
+    is not listed, try 'make std'.
 
-	Makefile	Most machines with 'gcc'
+	Makefile	Top level Makefile
 	Makefile.aix	AIX
-	Makefile.hp	Hp/UX
+	Makefile.ami	Amiga
+	Makefile.hp	HP/UX
 	Makefile.irx	Most machines running IRIX
+	Makefile.lnx	Linux 2.+
 	Makefile.mip	Mips Risc/OS
 	Makefile.nex	NeXT
+	Makefile.osf	DEC OSF
 	Makefile.sol	SunSoft Solaris 2.1
+	Makefile.std	Most machines with 'gcc'
 	Makefile.sys	Sequent SysV
 	Makefile.tek	Tektronix xd88s
 
     See 'port.txt' for more information on porting, including the
-    single-user MsDos and Macintosh versions.
+    Windows 95/NT platform.
 
 (4) Run 'make' with the following options:
 
-	make -k >&! make.out
+	make <MACHINE> -k >&! make.out
 
     This will take 10 minutes to 60 minutes, depending on the speed of your
     computer.
 
     If you encounter errors with 'make', send us your 'make.out' file:
 
-	mail -s make.out michael@uclink.berkeley.edu < make.out
+	mail -s make.out envy@envy.com < make.out
 
     Also we'll need to know what kind of hardware, operating system,
     and C compiler you have.
@@ -130,7 +144,7 @@ Envy is easier to install than other muds, but every site is different.
 === Support
 
 First, read the documentation in the 'doc' directory.  We updated all of the
-documentation files from Envy 1.0 for the Envy 2.0 release, and have been
+documentation files from Envy 1.0 for the Envy 2.2 release, and have been
 keeping them up-to-date since.
 
 Also check the 'wizhelp' command and read the 'help' descriptions for the
@@ -161,9 +175,13 @@ since the release.
 
 === Future Plans
 
-Envy 2.0 contains many structure improvements over Envy 1.0.  Some
+Envy 2.2 contains some structure improvements over Envy 2.0.  Some
 ideas which have been incorporated were suggested by our many players.
 A few of these ideas have been created using the 'Reverse Engineering'
 method.
 
-Enjoy.
+I will no longer support EnvyMud after release 2.4.  Overall, I feel
+I've obtained what I set out to throughout releasing the EnvyMud
+product line.  After release 2.4, you will be on your own devices.
+
+Enjoy and good luck.

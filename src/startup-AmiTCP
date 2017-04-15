@@ -1,0 +1,41 @@
+.key arg
+set port 4000
+set port <arg>
+
+set index=1000
+   lab loop
+   set logfile /log/$index.log
+   if exists $logfile
+      set index `eval $index + 1`
+      skip back loop
+   endif
+; thanks to scampi@dial.pipex.com (Mathew Hendry) for Logfile index
+
+assign Envy: /
+changetaskpri -1
+/area
+stack 70000 ; raise if stack overflow. Looks pretty stable on my machine
+alias rm delete ; need the touch command to use shutdown or reboot
+                ; within the mud.
+                ; touch is on Aminet  /util/cli/shelltools.lha
+if exists shutdown.txt
+   delete shutdown.txt
+endif
+
+LAB Begin
+;    /src/Envy20 4000
+   /src/Envy20 $port  >> $logfile
+
+    if exists shutdown.txt
+       delete shutdown.txt
+       /src
+       quit 0
+    endif
+
+    wait 30
+
+skip Begin back
+/src
+; Dave Kaupp http://www.geocities.com/SiliconValley/1411
+; dkaupp@netcom.com  Will change soon! Try davek@megnet.net
+; 4-16-96, Updated (logfile 5-15-96, command line port# 5-26-96)

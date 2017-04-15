@@ -1,8 +1,7 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
@@ -27,6 +26,11 @@ EnvyMud 2.0 is a derivative of EnvyMud, version 1.0, and is subject to
 the copyright and license agreements for both Diku Mud, Merc Diku Mud,
 and Envy Mud.  The modifications and improvements contained in EnvyMud 2.0
 are copyright (C) 1995 by Michael Quan and Mitchell Tse.
+
+EnvyMud 2.2 is a derivative of EnvyMud, version 2.0, and is subject to 
+the copyright and license agreements for both Diku Mud, Merc Diku Mud,
+and Envy Mud.  The modifications and improvements contained in EnvyMud 2.2
+are copyright (C) 1996, 1997 by Michael Quan.
 
 In order to use EnvyMud you must follow the Diku license, the Merc license,
 and our license.  The exact terms of the Diku license are in the file
@@ -57,7 +61,8 @@ must keep the original Diku authors in the login sequence.
 If you do not follow these license terms, we will ask you to comply.  If that
 doesn't work, then we will talk to your system administrators (not about your
 running a mud, but on the grounds that you're using our copyrighted software
-without permission).
+without permission).  We are in a position to pursue legal action with
+monetary damages as a last resort should you not comply.
 
 These are very generous terms for any software.  If you don't want to accept
 them, feel free to run some other software, or write your own.

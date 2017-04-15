@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -41,6 +43,8 @@ extern  int     _filbuf	        args( (FILE *) );
 #include <memory.h>
 #endif
 
+
+
 /*
  * Globals.
  */
@@ -52,6 +56,7 @@ SHOP_DATA *		shop_last;
 
 CHAR_DATA *		char_free;
 EXTRA_DESCR_DATA *	extra_descr_free;
+AFFECT_DATA *		affect_free;
 NOTE_DATA *		note_free;
 OBJ_DATA *		obj_free;
 PC_DATA *		pcdata_free;
@@ -132,14 +137,11 @@ int                     gsn_vampiric_bite;
 MOB_INDEX_DATA *	mob_index_hash	        [ MAX_KEY_HASH       ];
 OBJ_INDEX_DATA *	obj_index_hash	        [ MAX_KEY_HASH       ];
 ROOM_INDEX_DATA *	room_index_hash         [ MAX_KEY_HASH       ];
-char *			string_hash	        [ MAX_KEY_HASH       ];
 
 AREA_DATA *		area_first;
 AREA_DATA *		area_last;
 
-char *			string_space;
-char *			top_string;
-char			str_empty	        [ 1                  ];
+extern char		str_empty	        [ 1                  ];
 
 int			top_affect;
 int			top_area;
@@ -156,8 +158,9 @@ int			top_shop;
  * Memory management.
  * Increase MAX_STRING from 1500000 if you have too.
  * Tune the others only if you understand what you're doing.
+ * MAX_STRING is now in ssm.c
  */
-#define			MAX_STRING      1600000
+extern int		MAX_STRING;
 
 #if defined( macintosh )
 #define			MAX_PERM_BLOCK  131072
@@ -170,17 +173,20 @@ const int		rgSizeList              [ MAX_MEM_LIST       ]  =
 };
 #else
 #define			MAX_PERM_BLOCK  131072
-#define			MAX_MEM_LIST    12
+#define			MAX_MEM_LIST    14
 
 void *			rgFreeList              [ MAX_MEM_LIST       ];
 const int		rgSizeList              [ MAX_MEM_LIST       ]  =
 {
-    16, 32, 64, 128, 256, 1024, 2048, 4096, 8192, 16384, 32768, 65536
+    4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768-64
 };
 #endif
 
-int			nAllocString;
-int			sAllocString;
+extern int		nAllocString;
+extern int		sAllocString;
+extern int		nOverFlowString;
+extern int		sOverFlowString;
+extern bool		Full;
 int			nAllocPerm;
 int			sAllocPerm;
 
@@ -193,7 +199,9 @@ bool			fBootDb;
 FILE *			fpArea;
 char			strArea                 [ MAX_INPUT_LENGTH   ];
 
-
+void    init_string_space( void );
+void    boot_done( );
+char *  daPrompt;
 
 /*
  * Local booting procedures.
@@ -227,12 +235,7 @@ void boot_db( void )
      * Init some data space stuff.
      */
     {
-	if ( !( string_space = calloc( 1, MAX_STRING ) ) )
-	{
-	    bug( "Boot_db: can't alloc %d string space.", MAX_STRING );
-	    exit( 1 );
-	}
-	top_string	= string_space;
+        init_string_space( );
 	fBootDb		= TRUE;
     }
 
@@ -305,7 +308,9 @@ void boot_db( void )
 
 	for ( ; ; )
 	{
-	    strcpy( strArea, fread_word( fpList ) );
+	    int stat;
+
+	    strcpy( strArea, fread_word( fpList, &stat ) );
 	    if ( strArea[0] == '$' )
 		break;
 
@@ -332,7 +337,7 @@ void boot_db( void )
 		    exit( 1 );
 		}
 
-		word = fread_word( fpArea );
+		word = fread_word( fpArea, &stat );
 
 		     if ( word[0] == '$'               )
                     break;
@@ -376,7 +381,9 @@ void boot_db( void )
      */
     {
 	fix_exits( );
-	fBootDb = FALSE;
+	fBootDb  = FALSE;
+	daPrompt = str_dup( "<%hhp %mm %vmv> " );
+	boot_done( );
 	area_update( );
 	load_notes( );
 	load_ban( );
@@ -394,11 +401,12 @@ void boot_db( void )
 void load_area( FILE *fp )
 {
     AREA_DATA *pArea;
+    int        stat;
 
     pArea		= alloc_perm( sizeof( *pArea ) );
     pArea->reset_first	= NULL;
     pArea->reset_last	= NULL;
-    pArea->name		= fread_string( fp );
+    pArea->name		= fread_string( fp, &stat );
     pArea->recall       = ROOM_VNUM_TEMPLE;
     pArea->age		= 15;
     pArea->nplayer	= 0;
@@ -424,17 +432,18 @@ void load_helps( FILE *fp )
     HELP_DATA *pHelp;
     char      *keyword;
     int        level;
+    int        stat;
 
     for ( ; ; )
     {
-        level           = fread_number( fp );
-	keyword         = fread_string( fp );
+        level           = fread_number( fp, &stat );
+	keyword         = fread_string( fp, &stat );
 	if ( keyword[0] == '$' )
 	    break;
 	pHelp		= alloc_perm( sizeof( *pHelp ) );
 	pHelp->level	= level;
 	pHelp->keyword	= keyword;
-	pHelp->text	= fread_string( fp );
+	pHelp->text	= fread_string( fp, &stat );
 
 	if ( !str_cmp( pHelp->keyword, "greeting" ) )
 	    help_greeting = pHelp->text;
@@ -461,9 +470,10 @@ void load_recall( FILE *fp )
 {
     AREA_DATA *pArea;
     char       buf [ MAX_STRING_LENGTH ];
+    int        stat;
 
     pArea         = area_last;
-    pArea->recall = fread_number( fp );
+    pArea->recall = fread_number( fp, &stat );
 
     if ( pArea->recall < 1 )
     {
@@ -491,6 +501,7 @@ void load_mobiles( FILE *fp )
 	char  letter;
 	int   vnum;
 	int   iHash;
+	int   stat;
 
 	letter				= fread_letter( fp );
 	if ( letter != '#' )
@@ -499,7 +510,7 @@ void load_mobiles( FILE *fp )
 	    exit( 1 );
 	}
 
-	vnum				= fread_number( fp );
+	vnum				= fread_number( fp, &stat );
 	if ( vnum == 0 )
 	    break;
 
@@ -513,42 +524,43 @@ void load_mobiles( FILE *fp )
 
 	pMobIndex			= alloc_perm( sizeof( *pMobIndex ) );
 	pMobIndex->vnum			= vnum;
-	pMobIndex->player_name		= fread_string( fp );
-	pMobIndex->short_descr		= fread_string( fp );
-	pMobIndex->long_descr		= fread_string( fp );
-	pMobIndex->description		= fread_string( fp );
+	pMobIndex->player_name		= fread_string( fp, &stat );
+	pMobIndex->short_descr		= fread_string( fp, &stat );
+	pMobIndex->long_descr		= fread_string( fp, &stat );
+	pMobIndex->description		= fread_string( fp, &stat );
 
 	pMobIndex->long_descr[0]	= UPPER( pMobIndex->long_descr[0]  );
 	pMobIndex->description[0]	= UPPER( pMobIndex->description[0] );
 
-	pMobIndex->act			= fread_number( fp ) | ACT_IS_NPC;
-	pMobIndex->affected_by		= fread_number( fp );
+	pMobIndex->act			= fread_number( fp, &stat ) | ACT_IS_NPC;
+	pMobIndex->affected_by		= fread_number( fp, &stat );
 	pMobIndex->pShop		= NULL;
-	pMobIndex->alignment		= fread_number( fp );
+	pMobIndex->alignment		= fread_number( fp, &stat );
 	letter				= fread_letter( fp );
-	pMobIndex->level		= number_fuzzy( fread_number( fp ) );
+	pMobIndex->level		= number_fuzzy( fread_number( fp,
+								     &stat ) );
 
 	/*
 	 * The unused stuff is for imps who want to use the old-style
 	 * stats-in-files method.
 	 */
-	pMobIndex->hitroll              = fread_number( fp );   /* Unused */
-	pMobIndex->ac                   = fread_number( fp );   /* Unused */
-	pMobIndex->hitnodice            = fread_number( fp );   /* Unused */
+	pMobIndex->hitroll              = fread_number( fp, &stat );   /* Unused */
+	pMobIndex->ac                   = fread_number( fp, &stat );   /* Unused */
+	pMobIndex->hitnodice            = fread_number( fp, &stat );   /* Unused */
 	/* 'd'		*/                fread_letter( fp );   /* Unused */
-	pMobIndex->hitsizedice          = fread_number( fp );   /* Unused */
+	pMobIndex->hitsizedice          = fread_number( fp, &stat );   /* Unused */
 	/* '+'		*/                fread_letter( fp );   /* Unused */
-	pMobIndex->hitplus		= fread_number( fp );   /* Unused */
-	pMobIndex->damnodice            = fread_number( fp );   /* Unused */
+	pMobIndex->hitplus		= fread_number( fp, &stat );   /* Unused */
+	pMobIndex->damnodice            = fread_number( fp, &stat );   /* Unused */
 	/* 'd'		*/                fread_letter( fp );   /* Unused */
-	pMobIndex->damsizedice          = fread_number( fp );   /* Unused */
+	pMobIndex->damsizedice          = fread_number( fp, &stat );   /* Unused */
 	/* '+'		*/                fread_letter( fp );   /* Unused */
-	pMobIndex->damplus              = fread_number( fp );   /* Unused */
-	pMobIndex->gold                 = fread_number( fp );   /* Unused */
-	/* xp           */                fread_number( fp );   /* Unused */
-	/* position	*/                fread_number( fp );   /* Unused */
-	race                            = fread_string( fp );
-	pMobIndex->sex			= fread_number( fp );
+	pMobIndex->damplus              = fread_number( fp, &stat );   /* Unused */
+	pMobIndex->gold                 = fread_number( fp, &stat );   /* Unused */
+	/* xp           */                fread_number( fp, &stat );   /* Unused */
+	/* position	*/                fread_number( fp, &stat );   /* Unused */
+	race                            = fread_string( fp, &stat );
+	pMobIndex->sex			= fread_number( fp, &stat );
 
 	pMobIndex->race = race_lookup( race );
 	if ( pMobIndex->race < 0 )
@@ -588,6 +600,7 @@ void load_objects( FILE *fp )
 	char  letter;
 	int   vnum;
 	int   iHash;
+	int   stat;
 
 	letter				= fread_letter( fp );
 	if ( letter != '#' )
@@ -596,7 +609,7 @@ void load_objects( FILE *fp )
 	    exit( 1 );
 	}
 
-	vnum				= fread_number( fp );
+	vnum				= fread_number( fp, &stat );
 	if ( vnum == 0 )
 	    break;
 
@@ -610,24 +623,24 @@ void load_objects( FILE *fp )
 
 	pObjIndex			= alloc_perm( sizeof( *pObjIndex ) );
 	pObjIndex->vnum			= vnum;
-	pObjIndex->name			= fread_string( fp );
-	pObjIndex->short_descr		= fread_string( fp );
-	pObjIndex->description		= fread_string( fp );
-	/* Action description */	  fread_string( fp );
+	pObjIndex->name			= fread_string( fp, &stat );
+	pObjIndex->short_descr		= fread_string( fp, &stat );
+	pObjIndex->description		= fread_string( fp, &stat );
+	/* Action description */	  fread_string( fp, &stat );
 
 	pObjIndex->short_descr[0]	= LOWER( pObjIndex->short_descr[0] );
 	pObjIndex->description[0]	= UPPER( pObjIndex->description[0] );
 
-	pObjIndex->item_type		= fread_number( fp );
-	pObjIndex->extra_flags		= fread_number( fp );
-	pObjIndex->wear_flags		= fread_number( fp );
-	value[0]		        = fread_string( fp );
-	value[1]		        = fread_string( fp );
-	value[2]		        = fread_string( fp );
-	value[3]		        = fread_string( fp );
-	pObjIndex->weight		= fread_number( fp );
-	pObjIndex->cost			= fread_number( fp );
-	/* Cost per day */		  fread_number( fp );   /* Unused */
+	pObjIndex->item_type		= fread_number( fp, &stat );
+	pObjIndex->extra_flags		= fread_number( fp, &stat );
+	pObjIndex->wear_flags		= fread_number( fp, &stat );
+	value[0]		        = fread_string( fp, &stat );
+	value[1]		        = fread_string( fp, &stat );
+	value[2]		        = fread_string( fp, &stat );
+	value[3]		        = fread_string( fp, &stat );
+	pObjIndex->weight		= fread_number( fp, &stat );
+	pObjIndex->cost			= fread_number( fp, &stat );
+	/* Cost per day */		  fread_number( fp, &stat );   /* Unused */
 
 	/*
 	 * Check here for the redundancy of invisible light sources - Kahn
@@ -652,8 +665,8 @@ void load_objects( FILE *fp )
 		paf			= alloc_perm( sizeof( *paf ) );
 		paf->type		= -1;
 		paf->duration		= -1;
-		paf->location		= fread_number( fp );
-		paf->modifier		= fread_number( fp );
+		paf->location		= fread_number( fp, &stat );
+		paf->modifier		= fread_number( fp, &stat );
 		paf->bitvector		= 0;
 		paf->next		= pObjIndex->affected;
 		pObjIndex->affected	= paf;
@@ -665,8 +678,8 @@ void load_objects( FILE *fp )
 		EXTRA_DESCR_DATA *ed;
 
 		ed			= alloc_perm( sizeof( *ed ) );
-		ed->keyword		= fread_string( fp );
-		ed->description		= fread_string( fp );
+		ed->keyword		= fread_string( fp, &stat );
+		ed->description		= fread_string( fp, &stat );
 		ed->next		= pObjIndex->extra_descr;
 		pObjIndex->extra_descr	= ed;
 		top_ed++;
@@ -740,6 +753,7 @@ void load_resets( FILE *fp )
 	EXIT_DATA       *pexit;
 	ROOM_INDEX_DATA *pRoomIndex;
 	char             letter;
+	int              stat;
 
 	if ( ( letter = fread_letter( fp ) ) == 'S' )
 	    break;
@@ -752,11 +766,11 @@ void load_resets( FILE *fp )
 
 	pReset		= alloc_perm( sizeof( *pReset ) );
 	pReset->command	= letter;
-	/* if_flag */	  fread_number( fp );
-	pReset->arg1	= fread_number( fp );
-	pReset->arg2	= fread_number( fp );
+	/* if_flag */	  fread_number( fp, &stat );
+	pReset->arg1	= fread_number( fp, &stat );
+	pReset->arg2	= fread_number( fp, &stat );
 	pReset->arg3	= ( letter == 'G' || letter == 'R' )
-			    ? 0 : fread_number( fp );
+			    ? 0 : fread_number( fp, &stat );
 			  fread_to_eol( fp );
 
 	/*
@@ -856,6 +870,7 @@ void load_rooms( FILE *fp )
 	int  vnum;
 	int  door;
 	int  iHash;
+	int  stat;
 
 	letter				= fread_letter( fp );
 	if ( letter != '#' )
@@ -864,7 +879,7 @@ void load_rooms( FILE *fp )
 	    exit( 1 );
 	}
 
-	vnum				= fread_number( fp );
+	vnum				= fread_number( fp, &stat );
 	if ( vnum == 0 )
 	    break;
 
@@ -882,11 +897,11 @@ void load_rooms( FILE *fp )
 	pRoomIndex->extra_descr		= NULL;
 	pRoomIndex->area		= area_last;
 	pRoomIndex->vnum		= vnum;
-	pRoomIndex->name		= fread_string( fp );
-	pRoomIndex->description		= fread_string( fp );
-	/* Area number */		  fread_number( fp );   /* Unused */
-	pRoomIndex->room_flags		= fread_number( fp );
-	pRoomIndex->sector_type		= fread_number( fp );
+	pRoomIndex->name		= fread_string( fp, &stat );
+	pRoomIndex->description		= fread_string( fp, &stat );
+	/* Area number */		  fread_number( fp, &stat );   /* Unused */
+	pRoomIndex->room_flags		= fread_number( fp, &stat );
+	pRoomIndex->sector_type		= fread_number( fp, &stat );
 	pRoomIndex->light		= 0;
 	for ( door = 0; door <= 5; door++ )
 	    pRoomIndex->exit[door] = NULL;
@@ -907,7 +922,7 @@ void load_rooms( FILE *fp )
 		EXIT_DATA *pexit;
 		int        locks;
 
-		door = fread_number( fp );
+		door = fread_number( fp, &stat );
 		if ( door < 0 || door > 5 )
 		{
 		    bug( "Fread_rooms: vnum %d has bad door number.", vnum );
@@ -915,12 +930,12 @@ void load_rooms( FILE *fp )
 		}
 
 		pexit			= alloc_perm( sizeof( *pexit ) );
-		pexit->description	= fread_string( fp );
-		pexit->keyword		= fread_string( fp );
+		pexit->description	= fread_string( fp, &stat );
+		pexit->keyword		= fread_string( fp, &stat );
 		pexit->exit_info	= 0;
-		locks			= fread_number( fp );
-		pexit->key		= fread_number( fp );
-		pexit->vnum		= fread_number( fp );
+		locks			= fread_number( fp, &stat );
+		pexit->key		= fread_number( fp, &stat );
+		pexit->vnum		= fread_number( fp, &stat );
 
 		switch ( locks )
 		{
@@ -946,8 +961,8 @@ void load_rooms( FILE *fp )
 		EXTRA_DESCR_DATA *ed;
 
 		ed			= alloc_perm( sizeof( *ed ) );
-		ed->keyword		= fread_string( fp );
-		ed->description		= fread_string( fp );
+		ed->keyword		= fread_string( fp, &stat );
+		ed->description		= fread_string( fp, &stat );
 		ed->next		= pRoomIndex->extra_descr;
 		pRoomIndex->extra_descr	= ed;
 		top_ed++;
@@ -976,24 +991,25 @@ void load_rooms( FILE *fp )
 void load_shops( FILE *fp )
 {
     SHOP_DATA *pShop;
-    int keeper = 0;
+    int        keeper = 0;
 
     for ( ; ; )
     {
 	MOB_INDEX_DATA *pMobIndex;
-	int iTrade;
+	int             iTrade;
+	int             stat;
 
-	keeper                  = fread_number( fp );
+	keeper                  = fread_number( fp, &stat );
 	if ( keeper == 0 )
 	    break;
 	pShop			= alloc_perm( sizeof( *pShop ) );
 	pShop->keeper		= keeper;
 	for ( iTrade = 0; iTrade < MAX_TRADE; iTrade++ )
-	    pShop->buy_type[iTrade] = fread_number( fp );
-	pShop->profit_buy	= fread_number( fp );
-	pShop->profit_sell	= fread_number( fp );
-	pShop->open_hour	= fread_number( fp );
-	pShop->close_hour	= fread_number( fp );
+	    pShop->buy_type[iTrade] = fread_number( fp, &stat );
+	pShop->profit_buy	= fread_number( fp, &stat );
+	pShop->profit_sell	= fread_number( fp, &stat );
+	pShop->open_hour	= fread_number( fp, &stat );
+	pShop->close_hour	= fread_number( fp, &stat );
 				  fread_to_eol( fp );
 	pMobIndex		= get_mob_index( pShop->keeper );
 	pMobIndex->pShop	= pShop;
@@ -1022,6 +1038,7 @@ void load_specials( FILE *fp )
     {
 	MOB_INDEX_DATA *pMobIndex;
 	char            letter;
+	int             stat;
 
 	switch ( letter = fread_letter( fp ) )
 	{
@@ -1036,8 +1053,8 @@ void load_specials( FILE *fp )
 	    break;
 
 	case 'M':
-	    pMobIndex           = get_mob_index ( fread_number ( fp ) );
-	    pMobIndex->spec_fun = spec_lookup   ( fread_word   ( fp ) );
+	    pMobIndex           = get_mob_index ( fread_number ( fp, &stat ) );
+	    pMobIndex->spec_fun = spec_lookup   ( fread_word   ( fp, &stat ) );
 	    if ( pMobIndex->spec_fun == 0 )
 	    {
 		bug( "Load_specials: 'M': vnum %d.", pMobIndex->vnum );
@@ -1068,6 +1085,7 @@ void load_notes( void )
     {
 	NOTE_DATA *pnote;
 	char       letter;
+	int        stat;
 
 	do
 	{
@@ -1083,29 +1101,29 @@ void load_notes( void )
 
 	pnote		  = alloc_perm( sizeof( *pnote ) );
 
-	if ( str_cmp( fread_word( fp ), "sender" ) )
+	if ( str_cmp( fread_word( fp, &stat ), "sender" ) )
 	    break;
-	pnote->sender     = fread_string( fp );
+	pnote->sender     = fread_string( fp, &stat );
 
-	if ( str_cmp( fread_word( fp ), "date" ) )
+	if ( str_cmp( fread_word( fp, &stat ), "date" ) )
 	    break;
-	pnote->date       = fread_string( fp );
+	pnote->date       = fread_string( fp, &stat );
 
-	if ( str_cmp( fread_word( fp ), "stamp" ) )
+	if ( str_cmp( fread_word( fp, &stat ), "stamp" ) )
 	    break;
-	pnote->date_stamp = fread_number( fp );
+	pnote->date_stamp = fread_number( fp, &stat );
 
-	if ( str_cmp( fread_word( fp ), "to" ) )
+	if ( str_cmp( fread_word( fp, &stat ), "to" ) )
 	    break;
-	pnote->to_list    = fread_string( fp );
+	pnote->to_list    = fread_string( fp, &stat );
 
-	if ( str_cmp( fread_word( fp ), "subject" ) )
+	if ( str_cmp( fread_word( fp, &stat ), "subject" ) )
 	    break;
-	pnote->subject    = fread_string( fp );
+	pnote->subject    = fread_string( fp, &stat );
 
-	if ( str_cmp( fread_word( fp ), "text" ) )
+	if ( str_cmp( fread_word( fp, &stat ), "text" ) )
 	    break;
-	pnote->text       = fread_string( fp );
+	pnote->text       = fread_string( fp, &stat );
 
 	if ( !note_list )
 	    note_list           = pnote;
@@ -1140,6 +1158,7 @@ void load_down_time( void )
     {
         char *word;
 	char  letter;
+	int   stat;
 
 	do
 	{
@@ -1166,17 +1185,17 @@ void load_down_time( void )
 	while ( isspace( letter ) );
 	ungetc( letter, fp );
 	
-	word = fread_word( fp );
+	word = fread_word( fp, &stat );
 
 	if ( !str_cmp( word, "HOUR" ) )
 	{
-	    number = fread_number( fp );
+	    number = fread_number( fp, &stat );
 	    if ( number > 0 )
 	        down_time += (time_t) ( number * 3600 );
 	}
 	if ( !str_cmp( word, "MINUTE" ) )
 	{
-	    number = fread_number( fp );
+	    number = fread_number( fp, &stat );
 	    if ( number > 0 )
 	        down_time += (time_t) ( number * 60 );
 	}
@@ -1201,6 +1220,7 @@ void load_ban( void )
     for ( ; ; )
     {
         char   letter;
+	int    stat;
 
 	do
 	{
@@ -1224,7 +1244,7 @@ void load_ban( void )
 	    ban_free = ban_free->next;
 	}
 
-	pban->name   = fread_string( fp );
+	pban->name   = fread_string( fp, &stat );
 
 	pban->next   = ban_list;
 	ban_list     = pban;
@@ -1624,6 +1644,96 @@ void reset_area( AREA_DATA *pArea )
 
 
 /*
+ * Take a character data from the free list and clean it out.
+ */
+CHAR_DATA *new_character( bool player )
+{
+    static PC_DATA    pcdata_zero;
+           CHAR_DATA *ch;
+
+    if ( !char_free )
+    {
+	ch		= alloc_perm( sizeof( CHAR_DATA ) );
+    }
+    else
+    {
+	ch		= char_free;
+	char_free	= char_free->next;
+    }
+
+    clear_char( ch );
+
+    if ( player )
+    {
+	if ( !pcdata_free )
+	{
+	    ch->pcdata  = alloc_perm( sizeof( *ch->pcdata ) );
+	}
+	else
+	{
+	    ch->pcdata  = pcdata_free;
+	    pcdata_free = pcdata_free->next;
+	}
+
+	*ch->pcdata = pcdata_zero;
+    }
+
+    ch->deleted = FALSE;
+
+    return ch;
+}
+
+AFFECT_DATA *new_affect()
+{
+    AFFECT_DATA *paf;
+
+    if ( !affect_free )
+        return alloc_perm( sizeof( AFFECT_DATA ) );
+
+    paf		= affect_free;
+    affect_free = affect_free->next;
+
+    return paf;
+}
+
+OBJ_DATA *new_object()
+{
+    OBJ_DATA *obj;
+
+    if ( !obj_free )
+    {
+        obj	 = alloc_perm( sizeof( *obj ) );
+    }
+    else
+    {
+	obj	 = obj_free;
+	obj_free = obj_free->next;
+    }
+
+    memset( obj, 0, sizeof( OBJ_DATA ) );
+
+    obj->deleted = FALSE;
+
+    return obj;
+}
+
+EXTRA_DESCR_DATA *new_extra_descr()
+{
+    EXTRA_DESCR_DATA *ed;
+
+    if ( !extra_descr_free )
+        return alloc_perm( sizeof( EXTRA_DESCR_DATA ) );
+    
+    ed		     = extra_descr_free;
+    extra_descr_free = extra_descr_free->next;
+
+    return ed;
+
+}
+	
+
+
+/*
  * Create an instance of a mobile.
  */
 CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
@@ -1636,23 +1746,14 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 	exit( 1 );
     }
 
-    if ( !char_free )
-    {
-	mob		= alloc_perm( sizeof( *mob ) );
-    }
-    else
-    {
-	mob		= char_free;
-	char_free	= char_free->next;
-    }
+    mob			= new_character( FALSE );
 
-    clear_char( mob );
     mob->pIndexData     = pMobIndex;
 
-    mob->name		= pMobIndex->player_name;
-    mob->short_descr	= pMobIndex->short_descr;
-    mob->long_descr	= pMobIndex->long_descr;
-    mob->description	= pMobIndex->description;
+    mob->name		= str_dup( pMobIndex->player_name );
+    mob->short_descr	= str_dup( pMobIndex->short_descr );
+    mob->long_descr	= str_dup( pMobIndex->long_descr  );
+    mob->description	= str_dup( pMobIndex->description );
     mob->spec_fun	= pMobIndex->spec_fun;
 
     mob->level		= number_fuzzy( pMobIndex->level );
@@ -1688,8 +1789,7 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
  */
 OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 {
-    static OBJ_DATA  obj_zero;
-           OBJ_DATA *obj;
+    OBJ_DATA *obj;
 
     if ( !pObjIndex )
     {
@@ -1697,25 +1797,16 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 	exit( 1 );
     }
 
-    if ( !obj_free )
-    {
-	obj		= alloc_perm( sizeof( *obj ) );
-    }
-    else
-    {
-	obj		= obj_free;
-	obj_free	= obj_free->next;
-    }
+    obj			= new_object();
 
-    *obj		= obj_zero;
     obj->pIndexData	= pObjIndex;
     obj->in_room	= NULL;
     obj->level		= level;
     obj->wear_loc	= -1;
 
-    obj->name		= pObjIndex->name;
-    obj->short_descr	= pObjIndex->short_descr;
-    obj->description	= pObjIndex->description;
+    obj->name		= str_dup( pObjIndex->name        );
+    obj->short_descr	= str_dup( pObjIndex->short_descr );
+    obj->description	= str_dup( pObjIndex->description );
     obj->item_type	= pObjIndex->item_type;
     obj->extra_flags	= pObjIndex->extra_flags;
     obj->wear_flags	= pObjIndex->wear_flags;
@@ -1832,6 +1923,13 @@ void free_char( CHAR_DATA *ch )
     OBJ_DATA    *obj_next;
     AFFECT_DATA *paf;
 
+    /*
+     * This places the character in a place we know exists and allows for
+     * more controled removal of mud effects and such.  Suggested by Erwin.
+     */
+
+    ch->in_room = get_room_index( ROOM_VNUM_LIMBO );
+
     for ( obj = ch->carrying; obj; obj = obj_next )
     {
         obj_next = obj->next_content;
@@ -1894,6 +1992,14 @@ MOB_INDEX_DATA *get_mob_index( int vnum )
 {
     MOB_INDEX_DATA *pMobIndex;
 
+    /*
+     * There is a possibility of vnum passed is negative.
+     * Trapping suggested by Erwin Andreasen  -Kahn
+     */
+
+    if ( vnum < 0 )
+        return NULL;
+
     for ( pMobIndex  = mob_index_hash[vnum % MAX_KEY_HASH];
 	  pMobIndex;
 	  pMobIndex  = pMobIndex->next )
@@ -1921,6 +2027,14 @@ OBJ_INDEX_DATA *get_obj_index( int vnum )
 {
     OBJ_INDEX_DATA *pObjIndex;
 
+    /*
+     * There is a possibility of vnum passed is negative.
+     * Trapping suggested by Erwin Andreasen  -Kahn
+     */
+
+    if ( vnum < 0 )
+        return NULL;
+
     for ( pObjIndex  = obj_index_hash[vnum % MAX_KEY_HASH];
 	  pObjIndex;
 	  pObjIndex  = pObjIndex->next )
@@ -1947,6 +2061,14 @@ OBJ_INDEX_DATA *get_obj_index( int vnum )
 ROOM_INDEX_DATA *get_room_index( int vnum )
 {
     ROOM_INDEX_DATA *pRoomIndex;
+
+    /*
+     * There is a possibility of vnum passed is negative.
+     * Trapping suggested by Erwin Andreasen  -Kahn
+     */
+
+    if ( vnum < 0 )
+        return NULL;
 
     for ( pRoomIndex  = room_index_hash[vnum % MAX_KEY_HASH];
 	  pRoomIndex;
@@ -1988,11 +2110,12 @@ char fread_letter( FILE *fp )
 /*
  * Read a number from a file.
  */
-int fread_number( FILE *fp )
+int fread_number( FILE *fp, int *status )
 {
     char c;
-    int  number;
     bool sign;
+    int  number;
+    int  stat;
 
     do
     {
@@ -2015,9 +2138,10 @@ int fread_number( FILE *fp )
 
     if ( !isdigit( c ) )
     {
+        *status = 1;
 	bug( "Fread_number: bad format.", 0 );
 	bug( "   If bad object, check for missing '~' in value[] fields.", 0 );
-	exit( 1 );
+	return 0;
     }
 
     while ( isdigit(c) )
@@ -2030,122 +2154,11 @@ int fread_number( FILE *fp )
 	number = 0 - number;
 
     if ( c == '|' )
-	number += fread_number( fp );
+	number += fread_number( fp, &stat );
     else if ( c != ' ' )
 	ungetc( c, fp );
 
     return number;
-}
-
-
-
-/*
- * Read and allocate space for a string from a file.
- * These strings are read-only and shared.
- * Strings are hashed:
- *   each string prepended with hash pointer to prev string,
- *   hash code is simply the string length.
- * This function takes 40% to 50% of boot-up time.
- */
-char *fread_string( FILE *fp )
-{
-    char *plast;
-    char  c;
-
-    plast = top_string + sizeof( char * );
-    if ( plast > &string_space [ MAX_STRING - MAX_STRING_LENGTH ] )
-    {
-	bug( "Fread_string: MAX_STRING %d exceeded.", MAX_STRING );
-	exit( 1 );
-    }
-
-    /*
-     * Skip blanks.
-     * Read first char.
-     */
-    do
-    {
-	c = getc( fp );
-    }
-    while ( isspace( c ) );
-
-    if ( ( *plast++ = c ) == '~' )
-	return &str_empty[0];
-
-    for ( ;; )
-    {
-	/*
-	 * Back off the char type lookup,
-	 *   it was too dirty for portability.
-	 *   -- Furey
-	 */
-	switch ( *plast = getc( fp ) )
-	{
-	default:
-	    plast++;
-	    break;
-
-	case EOF:
-	    bug( "Fread_string: EOF", 0 );
-	    exit( 1 );
-	    break;
-
-	case '\n':
-	    plast++;
-	    *plast++ = '\r';
-	    break;
-
-	case '\r':
-	    break;
-
-	case '~':
-	    plast++;
-	    {
-		union
-		{
-		    char *	pc;
-		    char	rgc[sizeof( char * )];
-		} u1;
-		int ic;
-		int iHash;
-		char *pHash;
-		char *pHashPrev;
-		char *pString;
-
-		plast[-1] = '\0';
-		iHash     = UMIN( MAX_KEY_HASH - 1, plast - 1 - top_string );
-		for ( pHash = string_hash[iHash]; pHash; pHash = pHashPrev )
-		{
-		    for ( ic = 0; ic < sizeof( char * ); ic++ )
-			u1.rgc[ic] = pHash[ic];
-		    pHashPrev = u1.pc;
-		    pHash    += sizeof(char *);
-
-		    if ( top_string[sizeof( char * )] == pHash[0]
-			&& !strcmp( top_string+sizeof( char * )+1, pHash+1 ) )
-			return pHash;
-		}
-
-		if ( fBootDb )
-		{
-		    pString             = top_string;
-		    top_string		= plast;
-		    u1.pc		= string_hash[iHash];
-		    for ( ic = 0; ic < sizeof( char * ); ic++ )
-			pString[ic] = u1.rgc[ic];
-		    string_hash[iHash]  = pString;
-
-		    nAllocString += 1;
-		    sAllocString += top_string - pString;
-		    return pString + sizeof( char * );
-		}
-		else
-		{
-		    return str_dup( top_string + sizeof( char * ) );
-		}
-	    }
-	}
-    }
 }
 
 
@@ -2161,7 +2174,7 @@ void fread_to_eol( FILE *fp )
     {
 	c = getc( fp );
     }
-    while ( c != '\n' && c != '\r' );
+    while ( c != '\n' && c != '\r' && c != EOF );
 
     do
     {
@@ -2178,11 +2191,13 @@ void fread_to_eol( FILE *fp )
 /*
  * Read one word (into static buffer).
  */
-char *fread_word( FILE *fp )
+char *fread_word( FILE *fp, int *status )
 {
     static char  word [ MAX_INPUT_LENGTH ];
            char *pword;
            char  cEnd;
+
+    *status = 0;
 
     do
     {
@@ -2214,7 +2229,7 @@ char *fread_word( FILE *fp )
     }
 
     bug( "Fread_word: word too long.", 0 );
-    exit( 1 );
+    *status = 1;
     return NULL;
 }
 
@@ -2322,45 +2337,6 @@ void *alloc_perm( int sMem )
 
 
 
-/*
- * Duplicate a string into dynamic memory.
- * Fread_strings are read-only and shared.
- */
-char *str_dup( const char *str )
-{
-    char *str_new;
-
-    if ( str[0] == '\0' )
-	return &str_empty[0];
-
-    if ( str >= string_space && str < top_string )
-	return (char *) str;
-
-    str_new = alloc_mem( strlen(str) + 1 );
-    strcpy( str_new, str );
-    return str_new;
-}
-
-
-
-/*
- * Free a string.
- * Null is legal here to simplify callers.
- * Read-only shared strings are not touched.
- */
-void free_string( char *pstr )
-{
-    if (  !pstr
-	|| pstr == &str_empty[0]
-	|| ( pstr >= string_space && pstr < top_string ) )
-	return;
-
-    free_mem( pstr, strlen( pstr ) + 1 );
-    return;
-}
-
-
-
 void do_areas( CHAR_DATA *ch, char *argument )
 {
     AREA_DATA *pArea1;
@@ -2415,13 +2391,23 @@ void do_memory( CHAR_DATA *ch, char *argument )
     sprintf( buf, "Rooms   %5d\n\r", top_room      ); send_to_char( buf, ch );
     sprintf( buf, "Shops   %5d\n\r", top_shop      ); send_to_char( buf, ch );
 
-    sprintf( buf, "Strings %5d strings of %7d bytes (max %d).\n\r",
-	    nAllocString, sAllocString, MAX_STRING );
-    send_to_char( buf, ch );
-
-    sprintf( buf, "Perms   %5d blocks  of %7d bytes.\n\r",
+    sprintf( buf, "Perms   %5d blocks  of %7d bytes.\n\r\n\r",
 	    nAllocPerm, sAllocPerm );
     send_to_char( buf, ch );
+
+    sprintf( buf, "Shared String Info:\n\r\n\r" );
+    send_to_char( buf, ch );
+    sprintf( buf, "Shared Strings   %5d strings of %7d bytes (max %d).\n\r",
+	    nAllocString, sAllocString, MAX_STRING );
+    send_to_char( buf, ch );
+    sprintf( buf, "Overflow Strings %5d strings of %7d bytes.\n\r",
+	    nOverFlowString, sOverFlowString );
+    send_to_char( buf, ch );
+    if ( Full )
+    {
+	sprintf( buf, "Shared String Heap is full, increase MAX_STRING.\n\r" );
+	send_to_char( buf, ch );
+    }
 
     return;
 }

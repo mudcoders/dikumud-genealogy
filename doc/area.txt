@@ -1,12 +1,17 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
 === Preface
+
+Portions of this document contains certain clarifications and
+modifications sent in by hub@hub.eden.com.  Otherwise, the original
+document is intact.
+
+					- Kahn
 
 The majority of this document was submitted to the merc mailing list by RoX of
 Farside, and we are greatly indebted to the Farside staff for this excellent
@@ -19,7 +24,7 @@ original document intact.
 
 
 
-=== Acknowledgement (from Silence of Farside) 
+=== Acknowledgment (from Silence of Farside) 
 
 This document contains information from 'database.doc', 'dbsup.doc', and
 'values.doc', part of the original Diku mud release and copyrighted by the
@@ -59,7 +64,7 @@ area files.  Mainly the removal of slot number references in potions, wands,
 staves, etc.  But, since each area file is a separate file, it is still easy
 to port areas from one diku mud to another through a simple conversion.
 
-EnvyMud 2.0 has added race definitions for mobiles taking the place of the
+EnvyMud 2.2 has added race definitions for mobiles taking the place of the
 former repop position.  IE) sleeping or etc.  See the #MOBILES section below
 for a more indepth description.
 
@@ -90,7 +95,7 @@ An area file contains the following sections:
     #RESETS
     #SHOPS
     #SPECIALS
-    #GAMES
+    #GAMES (NOT IMPLEMENTED YET)
     #$
 
 An area is a collection of sections starting with #AREA until the next #AREA. 
@@ -279,19 +284,35 @@ The syntax of this section is:
     }
     #0
 
-The 'vnum' is the virtual number of the mobile.
+The 'vnum' is the virtual number of the mobile.  IE) #654
 
 The 'keywords' are words which can be used in commands to identify the
-mobile.
+mobile.  Most mudders consider the keywords the mobile's name.
+Separate each keyword you use with a space and make sure at least one
+of them occurs in the description the player sees when they enter the
+room for ease of reference if you intention is to have a visible mobile.
 
 The 'short-description' is the description used by the 'act' function and
-other functions to identify the mobile.
+other functions to identify the mobile.  Do not use a capital letter
+in the description as it is used from within sentences.
 
 The 'long-description' is the description used when a character walks in the
-room and the mobile is visible.
+room and the mobile is visible.  It is suggested to not use more than
+one line for the 'long-description'.  Make sure you end the
+description with a newline with a '~' only.  (example:
+
+	An old woman totters down the street~
+
+is incorrect.
+
+An old woman totters down the street.
+~
+
+is correct.)
 
 The 'description' is the longest description.  It is used when a character
-explicitly looks at the mobile.
+explicitly looks at the mobile.  This may contain as many lines as you
+wish.  This can even include a fake listing of what it is wearing.
  
 The 'act-flags' define how the mobile acts
 ACT_ flags:
@@ -304,7 +325,7 @@ ACT_ flags:
   PET            256         Auto set for pets
   TRAIN          512         Can train PC's   
   PRACTICE      1024         Can practice PC's
-  GAMBLE        2048         Runs a gambling game  (Soon to be implemented)
+  GAMBLE        2048         Runs a gambling game
 
 The 'affected-flags' define more attributes of the mobile.
 AFF_ flags:
@@ -352,7 +373,7 @@ The 'hitroll', 'armor', 'hitnodice', 'hitsizeddice', 'hitplus', 'damnnodice',
 present for compatibility with original Diku mud, but their values are ignored.
 Envy generates these values internally based on the level of the mobile.
 
-Race name consists of one of these many races built into EnvyMud 2.0.  This
+Race name consists of one of these many races built into EnvyMud 2.2.  This
 list may change when you add more races into the mud.
 
     Human, Elf, Halfelf, Drow, Dwarf, Halfdwarf, Hobbit, Giant, Ogre, Orc,
@@ -422,10 +443,12 @@ object.
 The 'short-description' is the description used by the 'act' function and
 other functions to identify the object.  The first character of the short-
 description should be lower case, because this description is used in the
-middle of sentences.
+middle of sentences.  The 'short-description' is used with the
+commands: 'get', 'drop', 'inventory', 'equipment', 'look', etc.
 
 The 'long-description' is the description used when a character walks in the
-room and the object is visible.
+room and the object is visible.  This string will display when someone
+types 'look <obj>'.
 
 The 'action-description' is not used, which why you just put a ~ there.
 
@@ -506,11 +529,11 @@ completely ignored.
 The optional 'E' sections and 'A' sections come after the main data.  An 'E'
 section ('extra description') contains a keyword-list and a string associated
 with those keywords.  This description string is used when a character looks
-at a word on the keyword list, ie) a gem on a sceptre would be:
+at a word on the keyword list, ie) a gem on a scepter would be:
 
 E
 gem~
-A small glowing red gem pulsates silently on the tip of the sceptre.
+A small glowing red gem pulsates silently on the tip of the scepter.
 ~
 
 This allows for an added dimension in your objects.  I suggest you put extra
@@ -856,7 +879,7 @@ An 'E' section (extended description) contains a 'keywords' string and a
 The 'S' at the end marks the end of the room.  It is not optional.
 
 The outhouse from the githzerai castle will serve to illustrate most of the
-commands.  Including an extra description that adds flavour to the room. 
+commands.  Including an extra description that adds flavor to the room. 
 With the extra descriptions and the right wording, you can make your rooms
 come alive.
 
@@ -895,6 +918,15 @@ S
 The most important section of the area, and the easiest to mess up.  It is
 here that you place your mobs and equip them.  Make sure you use the proper
 location flags.
+
+To reset an area, the server executes each command in the list of reset
+commands once.  Each area is reset once when the server loads, and
+again periodically as it ages.  An area is reset if it is at least 3
+area-minutes old and is empty of players, or if it is 15 area-minutes
+old.
+
+An 'area-minute' varies between 30 and 90 seconds of real time.  The
+average is 60 seconds.
 
 The syntax of this section is:
 
@@ -1138,7 +1170,7 @@ M  2243 spec_breath_any
 
 
 
-=== The #GAMES section
+=== The #GAMES section (NOT IMPLEMENTED YET.  SEE GAMING SECTION BELOW)
 ( Games and gambling structure developed by Thelonius for EnvyMud )
 
 Use this section to allow your mobs to host gambling games.
@@ -1373,19 +1405,37 @@ on server operation after loading.
 === Memory Usage
 
 In order to simplify the code, the EnvyMud server has a fixed maximum size on
-strings in the area database.  This size is defined at the beginning of 'db.c'
-'db.c' with a '#define' statement.  As distributed, this size is:
+strings in the area database.  This size is defined at the beginning
+of 'ssm.c'.  As distributed, this size is:
 
-    #define MAX_STRING	 1600000
+#define MAX_CHUNKS 27
 
-This size is about 10% larger than needed for the areas we distribute.  Thus,
-you can add about 4 more areas without touching the server at all.  The server
-will tell you when the string table overflows, and you can simply increase the
-maximum limit and recompile.  The immortal 'memory' command will show you
-memory usage from within the game.
+This size is about 6% (100k) larger than needed for the areas we
+distribute.  Thus, you can add about 2 more areas without touching the
+server at all.  The server will tell you when the string table
+overflows, and you can simply increase the maximum limit and
+recompile.  Any memory overflow is handled by SSM and will not
+adversely affect the game.
+
+The immortal 'memory' command will show you memory usage from within
+the game.  Memory overflow will be noted using the 'memory' command.
 
 There is no other limit on area sizes or memory usage.
 
 We decided to use a fixed size because it simplifies our job.  It also allows
 significant performance improvements: compare our load time and memory usage
 versus other Diku muds with the same quantity of areas.
+
+
+
+=== GAMING in Envy 2.0/2.2
+
+The gaming section available in this v2.2 release is rudimentary and
+is not activated in the area files.  To activate the game upper lower
+triple, you must:
+
+1)  Load the mobile vnum #3160 into the game.  Defined in merc.h as
+	MOB_VNUM_ULT.
+2)  Ensure the ACT bit ACT_GAMBLE is set on the mobile
+
+At this point, the gambling command (bet/wager) will be usable.

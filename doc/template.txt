@@ -1,8 +1,7 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
@@ -12,7 +11,7 @@ spell to EnvyMud (or if you email in a new spell or skill to EnvyMud  :) ).
 
 MERC.H:
 ----------------------------------------------------------------------
-Increase MAX_SKILL by 
+Increase MAX_SKILL by 1
 
 Add to declarations:
 DECLARE_DO_FUN( do_		);

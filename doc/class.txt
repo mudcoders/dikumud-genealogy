@@ -1,8 +1,7 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
@@ -61,7 +60,7 @@ The fields of class_table are:
 === Adding a new class
 
 This section enumerates the changes that need to be made to the base level
-Envy 1.0 code necessary for the addition of a new class.  These changes
+Envy 2.2 code necessary for the addition of a new class.  These changes
 presuppose that certain functions (spells, skills) and structures (skill
 definitions, poses, titles, etc.) are already made.  These assumptions
 are summarized at the end of the file.  For more detailed information
@@ -98,7 +97,7 @@ INTERP.C	- Add to cmd_table[ ] any skills (or anything else) that
 
     { "shadow form",    do_shadow,      POS_STANDING,    0,  LOG_NORMAL },
 
-ACT_COMM.C	- Add class poses (17 poses in standard Envy 1.0) to
+ACT_COMM.C	- Add class poses (17 poses in standard Envy 2.2) to
 ----------	  pose_table.  Be careful (in this and ANY insert) to
 		  keep the proper format with comma separators...arrays
 		  will get very screwed up if you miss a comma (see

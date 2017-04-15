@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -33,8 +35,6 @@
 #include "merc.h"
 
 
-
-AFFECT_DATA *		affect_free;
 
 /*
  * Local functions.
@@ -486,15 +486,7 @@ void affect_to_char( CHAR_DATA *ch, AFFECT_DATA *paf )
 {
     AFFECT_DATA *paf_new;
 
-    if ( !affect_free )
-    {
-	paf_new		= alloc_perm( sizeof( *paf_new ) );
-    }
-    else
-    {
-	paf_new		= affect_free;
-	affect_free	= affect_free->next;
-    }
+    paf_new		= new_affect();
 
     *paf_new		= *paf;
     paf_new->deleted    = FALSE;
@@ -1108,6 +1100,24 @@ void extract_char( CHAR_DATA *ch, bool fPull )
 	    name = ch->name;
 
 	die_follower( ch, name );
+
+	/* Get rid of weapons _first_ 
+	   - from Erwin Andreasen <erwin@pip.dknet.dk> */
+
+	{
+	    OBJ_DATA *obj, *obj2;
+
+	    obj  = get_eq_char( ch, WEAR_WIELD   );
+	    obj2 = get_eq_char( ch, WEAR_WIELD_2 );
+
+	    if ( obj )
+	        extract_obj( obj );
+
+	    /* Now kill obj2 if it exists no matter if on body or floor */
+	    if ( obj2 )
+	        extract_obj( obj2 );
+
+	}
 
 	for ( obj = ch->carrying; obj; obj = obj_next )
 	{

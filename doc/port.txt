@@ -1,18 +1,19 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
 === Platforms
 
---- Envy 2.0
+--- Envy 2.2
 
 These platforms have been directly ported:
 
 	Generic PC	x86	Linux 1.2.8	-Use Standard Makefile
+	Generic PC	x86	Linux 2.+	-Use Makefile.lnx
+	Generic PC	x86	Windows 95/NT	-Read README.WIN
 	Sequent		S81	Dynix		-Use Standard Makefile
 	DEC		5900	Ultrix V4.3A	-Use Standard Makefile
 	DEC Alpha	OSF			-Use Makefile.osf
@@ -21,8 +22,10 @@ These platforms have been directly ported:
 	Sequent		sysv			-Use Makefile.sys
 	Sparc		10	Solaris 2.*	-Use Makefile.sol
 	Sparc		20	Sun OS 4.1.4	-Use Standard Makefile
+	Amiga			Amiga OS	-Use Makefile.ami
 
-These have not been tested for the Envy 2.0 release:
+
+These have not been tested for the Envy 2.2 release:
 
 	IBM		RS/6000	Aix 3.0		-Use Makefile.aix
 	Mips		R4000	Risc/OS 5.XX    -Use Makefile.mip
@@ -33,7 +36,7 @@ If you have gcc on your system, it would be best to try the standard Makefile
 first.  If you have cc on your system, it would be best to try the standard
 Makefile with gcc replaced with cc.
 
-The standard version of gcc as of this release is gcc 2.6.3.
+The standard version of gcc as of this release is gcc 2.7.0
 
 We are simply unable to test Envy on every platform.  Typically a user tries
 a new platform, gets a file full of warnings, and mails us the warnings.
@@ -62,30 +65,6 @@ in ASCII format, so that they may be freely moved from one machine type to
 another.
 
 
-
-=== MSDOS Single-User Version  ( MERC Only )
-
-Merc runs in single-user mode (console only) on MSDOS and Macintosh computers.
-The MSDOS version is built with DJ Delorie's 'djgpp' port of the Gnu C Compiler
-and requires a 386 with 2 megabytes of memory (djgpp has demand-paged virtual
-memory).  You can ftp 'djgpp' from grape.ecs.clarkson.edu.
-
-The commands to build and run Envy on MSDOS are:
-
-	gcc -O -Wall -c *.c
-	gcc -O -o merc *.o
-	go32 merc
-
-
-
-=== Macintosh Single-User Version
-
-The Macintosh changes were contributed by Oleg Etiffin.  It is built with
-Think-C 5.0.4 and requires 4 megabytes of system memory.  You have to define
-the symbol 'macintosh' (if not already defined).
-
-The Macintosh changes for EnvyMud 1.0 was done by John C. Daub.  It is
-build with 
 
 === Performance
 

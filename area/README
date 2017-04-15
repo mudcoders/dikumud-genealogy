@@ -1,8 +1,7 @@
 EnvyMud Release 2.0
-Monday, 25th December 1995
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
@@ -27,4 +26,3 @@ TIME.TXT	- Contains information instructing the server when to
 TYPOS.TXT	- Contains a list of all the player typo contributions.  You
 		may wish to look at this file frequently to maintain integrity
 		of your area files.
-

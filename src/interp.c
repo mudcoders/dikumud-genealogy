@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -81,8 +83,8 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "cast",		do_cast,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "exits",		do_exits,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "get",		do_get,		POS_RESTING,	 0,  LOG_NORMAL	},
-    { "immtalk",	do_immtalk,	POS_DEAD,    L_HER,  LOG_NORMAL	},
     { "inventory",	do_inventory,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "immtalk",	do_immtalk,	POS_DEAD,    L_HER,  LOG_NORMAL	},
     { "kill",		do_kill,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "look",		do_look,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "order",		do_order,	POS_RESTING,	 0,  LOG_ALWAYS	},
@@ -161,6 +163,7 @@ const	struct	cmd_type	cmd_table	[ ] =
      */
     { "answer",		do_answer,	POS_SLEEPING,	 3,  LOG_NORMAL },
     { "auction",	do_auction,	POS_SLEEPING,	 3,  LOG_NORMAL	},
+    { "beep",		do_beep,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "chat",		do_chat,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { ".",		do_chat,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "emote",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL	},
@@ -243,7 +246,6 @@ const	struct	cmd_type	cmd_table	[ ] =
      * Immortal commands.
      */
     { "advance",	do_advance,	POS_DEAD,    L_DIR,  LOG_ALWAYS	},
-    { "sstime",		do_sstime,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
     { "trust",		do_trust,	POS_DEAD,    L_DIR,  LOG_ALWAYS },
 
     { "allow",		do_allow,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
@@ -271,6 +273,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "sla",		do_sla,		POS_DEAD,    L_SEN,  LOG_NORMAL	},
     { "slay",		do_slay,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "sset",		do_sset,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
+    { "sstime",		do_sstime,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
     { "transfer",	do_transfer,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "users",		do_users,	POS_DEAD,    L_SEN,  LOG_NORMAL	},
     { "wizify", 	do_wizify,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},

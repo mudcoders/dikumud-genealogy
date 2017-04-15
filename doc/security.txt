@@ -1,8 +1,7 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
@@ -50,6 +49,9 @@ Objects have level restrictions on their use.
 There are limits on saved items.  Keys do not save.  Items which are higher
 level than the character are not saved.  This protects against storage
 characters.
+
+Shopkeepers will no longer accept objects given to them.  This prevents
+bakers for instance selling poisoned bread or useless items.
 
 If you do need to confiscate equipment, just fire up your favorite editor and
 edit the player files.

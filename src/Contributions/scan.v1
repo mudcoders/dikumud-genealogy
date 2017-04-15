@@ -1,0 +1,99 @@
+/*
+===========================================================================
+This snippet was written by Erwin S. Andreasen, 4u2@aabc.dk. You may use
+this code freely, as long as you retain my name in all of the files. You
+also have to mail me telling that you are using it. I am giving this,
+hopefully useful, piece of source code to you for free, and all I require
+from you is some feedback.
+
+Please mail me if you find any bugs or have any new ideas or just comments.
+
+All my snippets are publically available at:
+
+http://pip.dknet.dk/~pip1773/
+
+If you do not have WWW access, try ftp'ing to pip.dknet.dk and examine
+the /pub/pip1773 directory.
+===========================================================================
+
+Note that function prototypes are not included in this code - remember to add
+them to merc.h yourself.
+
+The classic SCAN command, shows the mobs surrounding the character.
+
+Last update: Sep 18, 1995
+
+Should work on : MERC2.2 ROM2.3
+
+Fixed since last update:
+ ch/target were reversed in the call to can_see
+
+Know bugs and limitations yet to be fixed:
+ Blind character should get another message
+ Dark rooms can be scanned into?
+
+Comments:
+ For ROM2.3, replace to_room with u1.to_room
+ It's primitive, but also some of my first work! :)
+
+*/
+
+/* 
+ * returns everything the character can see at that location in buf
+ * returns number of creatures seen 
+ */
+
+int scan_room (CHAR_DATA *ch, const ROOM_INDEX_DATA *room,char *buf)
+{
+    CHAR_DATA *target = room->people;
+    int number_found = 0;
+
+    while (target != NULL) /* repeat as long more peple in the room */
+    {
+        if (can_see(ch,target)) /* show only if the character can see the target */
+        {
+            strcat (buf, " - ");
+            strcat (buf, IS_NPC(target) ? target->short_descr : target->name);
+            strcat (buf, "\n\r");
+            number_found++;
+        }
+        target = target->next_in_room;
+    }
+
+    return number_found;
+}
+
+void do_scan (CHAR_DATA *ch, char *argument)
+{
+    EXIT_DATA * pexit;
+    ROOM_INDEX_DATA * room;
+    extern char * const dir_name[];
+    char buf[MAX_STRING_LENGTH];
+    int dir;
+    int distance;
+
+    sprintf (buf, "Right here you see:\n\r");
+    if (scan_room(ch,ch->in_room,buf) == 0)
+        strcat (buf, "Noone\n\r");
+    send_to_char (buf,ch);
+
+    for (dir = 0; dir < 6; dir++) /* look in every direction */
+    {
+        room = ch->in_room; /* starting point */
+
+        for (distance = 1 ; distance < 4; distance++)
+        {
+            pexit = room->exit[dir]; /* find the door to the next room */
+            if ((pexit == NULL) || (pexit->to_room == NULL) || (IS_SET(pexit->exit_info, EX_CLOSED)))
+                break; /* exit not there OR points to nothing OR is closed */
+
+            /* char can see the room */
+            sprintf (buf, "%d %s from here you see:\n\r", distance, dir_name[dir]);
+            if (scan_room(ch,pexit->to_room,buf)) /* if there is something there */
+                send_to_char (buf,ch);
+
+            room = pexit->to_room; /* go to the next room */
+        } /* for distance */
+    } /* for dir */
+}
+

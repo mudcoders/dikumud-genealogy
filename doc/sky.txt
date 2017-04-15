@@ -1,19 +1,18 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
-
+Kahn		envy@envy.com
 
 
---- This has been modified and edited from sky.txt in the Envy 1.0 release to
-    reflect changes made from the Envy 1.0 source to Envy 2.0.
+
+--- This has been modified and edited from sky.txt in the Envy 2.0 release to
+    reflect changes made from the Envy 2.0 source to Envy 2.2.
      
 === Blue Sky
 
 It's blue sky time!  These are features we'd like to have in Envy.  We haven't
 designed them, haven't coded them, haven't scheduled them.  They won't be in
-Envy 2.0 and may never be in Envy.
+Envy 2.2 and may never be in Envy.
 
 If you code any of these features please send us a copy.
 

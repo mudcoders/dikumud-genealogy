@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -163,8 +165,9 @@ void gain_exp( CHAR_DATA *ch, int gain )
     if ( IS_NPC( ch ) || ch->level >= LEVEL_HERO )
 	return;
 
-    ch->exp = UMAX( 1000, ch->exp + gain );
-    while ( ch->level < LEVEL_HERO && ch->exp >= 1000 * ( ch->level + 1 ) )
+    ch->exp = UMAX( EXP_PER_LEVEL, ch->exp + gain );
+    while ( ch->level < LEVEL_HERO && ch->exp >= EXP_PER_LEVEL
+	   * ( ch->level + 1 ) )
     {
 	send_to_char( "You raise a level!!  ", ch );
 	ch->level += 1;
@@ -182,46 +185,8 @@ void gain_exp( CHAR_DATA *ch, int gain )
 int hit_gain( CHAR_DATA *ch )
 {
     int gain;
-    int racehpgainextra = 0;
-
-    if ( ch->race == race_lookup( "Ogre" )
-	|| ch->race == race_lookup( "Orc" )
-	|| ch->race == race_lookup( "Halfogre" ) )
-      {
-        racehpgainextra = 2;
-      }
-    else
-      {
-	if ( ch->race == race_lookup( "Giant" )
-	    || ch->race == race_lookup( "Minotaur" )
-	    || ch->race == race_lookup( "Wererat" ) )
-	  {
-	    racehpgainextra = 3;
-	  }
-	else
-	  {
-	    if ( ch->race == race_lookup( "Troll" )
-		|| ch->race == race_lookup( "Vampire" )
-		|| ch->race == race_lookup( "Werewolf" ) )
-	      {
-	        racehpgainextra = 10;
-	      }
-	    else
-	      {
-		if ( ch->race == race_lookup( "Dragon" ) )
-		  {
-		    racehpgainextra = 15;
-		  }
-		else
-		  {
-		    if ( ch->race == race_lookup( "God" ) )
-		      {
-			racehpgainextra = 20;
-		      }
-		  }
-	      }
-	  }
-      }
+    int racehpgainextra = ( ch->max_hit * race_table[ ch->race ].hp_gain )
+                            / ch->max_hit;
     
     if ( IS_NPC( ch ) )
     {
@@ -258,7 +223,9 @@ int hit_gain( CHAR_DATA *ch )
 int mana_gain( CHAR_DATA *ch )
 {
     int gain;
-
+    int racemanaextra = ( ch->max_mana * race_table[ ch->race ].mana_gain )
+                          / ch->max_mana;
+    
     if ( IS_NPC( ch ) )
     {
 	gain = ch->level;
@@ -281,12 +248,10 @@ int mana_gain( CHAR_DATA *ch )
 
     }
 
-    if (   ch->race == race_lookup( "Elf"   )
-	|| ch->race == race_lookup( "Gnome" ) )
-        gain += ch->level / 2;
-
     if ( IS_AFFECTED( ch, AFF_POISON ) )
 	gain /= 4;
+
+    gain += racemanaextra;
 
     return UMIN( gain, ch->max_mana - ch->mana );
 }
@@ -296,6 +261,8 @@ int mana_gain( CHAR_DATA *ch )
 int move_gain( CHAR_DATA *ch )
 {
     int gain;
+    int racemoveextra = ( ch->max_move * race_table[ ch->race ].move_gain )
+                          / ch->max_move;
 
     if ( IS_NPC( ch ) )
     {
@@ -318,14 +285,10 @@ int move_gain( CHAR_DATA *ch )
 	    gain /= 2;
     }
 
-    if (   ch->race == race_lookup( "Harpy"   )
-	|| ch->race == race_lookup( "Bat"     )
-	|| ch->race == race_lookup( "Mist"    )
-	|| ch->race == race_lookup( "Vampire" ) )
-        gain += ch->level / 2;
-
     if ( IS_AFFECTED( ch, AFF_POISON ) )
 	gain /= 4;
+
+    gain += racemoveextra;
 
     return UMIN( gain, ch->max_move - ch->move );
 }
@@ -721,8 +684,10 @@ void char_update( void )
 		ch_quit = ch;
 
 	    gain_condition( ch, COND_DRUNK,  -1 );
-	    gain_condition( ch, COND_FULL,   -1 );
-	    gain_condition( ch, COND_THIRST, -1 );
+	    gain_condition( ch, COND_FULL,
+			   ( -1 - race_table[ch->race].hunger_mod ) );
+	    gain_condition( ch, COND_THIRST,
+			   ( -1 - race_table[ch->race].thirst_mod ) );
 	}
 
 	for ( paf = ch->affected; paf; paf = paf->next )

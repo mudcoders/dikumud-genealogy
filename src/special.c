@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -200,6 +202,7 @@ bool spec_cast_adept( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
@@ -274,6 +277,7 @@ bool spec_cast_cleric( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
@@ -329,6 +333,7 @@ bool spec_cast_judge( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
@@ -361,6 +366,7 @@ bool spec_cast_mage( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
@@ -417,6 +423,7 @@ bool spec_cast_undead( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
@@ -479,6 +486,9 @@ bool spec_executioner( CHAR_DATA *ch )
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
     {
         if ( victim->deleted )
+	    continue;
+
+	if ( victim->level > LEVEL_HERO )
 	    continue;
 
 	if ( !IS_NPC( victim ) && IS_SET( victim->act, PLR_KILLER ) )
@@ -558,6 +568,9 @@ bool spec_guard( CHAR_DATA *ch )
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
     {
         if ( victim->deleted )
+	    continue;
+
+	if ( victim->level > LEVEL_HERO )
 	    continue;
 
 	if ( !IS_NPC( victim ) && IS_SET( victim->act, PLR_KILLER ) )
@@ -763,8 +776,9 @@ bool spec_thief( CHAR_DATA *ch )
 	    || !can_see( ch, victim ) )	/* Thx Glop */
 	    continue;
 
+	/* Thanks to Zeke from MudX for pointing the percent bug */
 	if ( IS_AWAKE( victim ) && victim->level > 5
-	    && number_percent( ) + ch->level - victim->level >= 33 )
+	    && number_percent( ) + victim->level - ch->level >= 33 )
 	{
 	    act( "You discover $n's hands in your wallet!",
 		ch, NULL, victim, TO_VICT );
@@ -798,6 +812,7 @@ bool spec_cast_psionicist( CHAR_DATA *ch )
         return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
@@ -873,6 +888,7 @@ bool spec_cast_ghost( CHAR_DATA *ch )
 	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 

@@ -1,8 +1,7 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
@@ -103,7 +102,7 @@ continue loading.
 
 === Immortal commands
 
-Immortal commands in Envy 2.0 are considered Skills.  Each command is
+Immortal commands in Envy 2.2 are considered Skills.  Each command is
 stored as a string in the field Immskll.  Each immortal must have the
 level and the string in the field Immskll in order to use that
 particular imm command. This allows for customized immortals with

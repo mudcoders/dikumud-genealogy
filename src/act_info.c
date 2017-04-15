@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -32,7 +34,6 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
-
 
 
 char *	const	where_name	[] =
@@ -452,13 +453,15 @@ void do_look( CHAR_DATA *ch, char *argument )
 
     if ( ch->position < POS_SLEEPING )
     {
-	send_to_char( "You can't see anything but stars!\n\r", ch );
+	send_to_char( "You can't see anything but stars!  See how pretty!\n\r",
+		     ch );
 	return;
     }
 
     if ( ch->position == POS_SLEEPING )
     {
-	send_to_char( "You can't see anything, you're sleeping!\n\r", ch );
+	send_to_char( "You can't see anything, you're sleeping!  Zzz.\n\r",
+		     ch );
 	return;
     }
 
@@ -528,9 +531,9 @@ void do_look( CHAR_DATA *ch, char *argument )
 
 	    sprintf( buf, "It's %s full of a %s liquid.\n\r",
 		obj->value[1] <     obj->value[0] / 4
-		    ? "less than" :
+		    ? "less than half" :
 		obj->value[1] < 3 * obj->value[0] / 4
-		    ? "about"     : "more than",
+		    ? "about half"     : "more than half",
 		liq_table[obj->value[2]].liq_color
 		);
 
@@ -836,10 +839,10 @@ void do_score( CHAR_DATA *ch, char *argument )
     if ( !IS_NPC( ch ) && ch->pcdata->condition[COND_DRUNK]   > 10 )
 	strcat( buf1, "You are drunk.\n\r"   );
     if ( !IS_NPC( ch ) && ch->pcdata->condition[COND_THIRST] ==  0
-	&& ch->level >= LEVEL_IMMORTAL )
+	&& ch->level < LEVEL_IMMORTAL )
 	strcat( buf1, "You are thirsty.\n\r" );
     if ( !IS_NPC( ch ) && ch->pcdata->condition[COND_FULL]   ==  0
-	&& ch->level >= LEVEL_IMMORTAL )
+	&& ch->level < LEVEL_IMMORTAL )
 	strcat( buf1, "You are hungry.\n\r"  );
 
     switch ( ch->position )

@@ -1,14 +1,13 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
 === The player directory
 
-This file gies a brief description of the contents in the player directory
+This file gives a brief description of the contents in the player directory.
 
 Player files are ASCII text files organized in separate directories.
 The average player file is 10K long.  You may compress the playerfiles

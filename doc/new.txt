@@ -1,9 +1,111 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
+
+
+=== What's new in Envy 2.2
+
+Many of the changes from Envy 2.0 release to Envy 2.2 were done by the
+reduced (from Envy 2.0) coding staff of EnvyMud.  A few were obtained
+from the merc mailing list and private contributions.  See
+'contrib.txt' for acknowledgements.
+
+We have kept logs of what we have done here in EnvyMud.  It helps in
+backtracking what was done to the code.  It also helps others follow your
+steps should you release your code like us.  :)  You might want to do the
+same.
+
+
+=== Envy 2.2 notes
+
+There has been an email thread on online reboots which will maintain
+player links until the next mud comes up.  I believe this feature is
+not particularly necessary.  If you wish to code this feature, you
+should contact:  Melvin Smith <msmith@quix.robins.af.mil>,
+quest@newl.com, tadriaen@zorro.ruca.ua.ac.be, and/or erwin@pip.dknet.dk.
+
+Online editing has not been a feature which I have spent any time on.
+As far as I can remember, there is an OLC port for Envy 2.0 and ILAB
+for Envy 1.0.  I forget where you can receive such a package.  I
+suggest you contact merc-l@webnexus.com.
+
+-Kahn
+
+Kahn			pkill guinea pig loophole fix
+			tweeking of exp death penalty
+			removed "dazed" state of victim of failed circle
+			tweek polymorph MUTE to be part of race instead of flag
+			tweek display sizes of output
+			tweek combat victim switching
+			rewrite of illegal name handling in nanny().
+			increase memory list to allow for smaller sizes
+			Rewrite top level Makefile
+			Easier configuration of exps to level in merc.h
+			guards and executioner attack immortals bug
+			tweek and bug fixing pfile recovery routine
+			added better bug reporting in ssm 2.2
+			prevent players from giving items to shopkeepers
+			add Linux 2.+ platform
+
+D'sai			remove do_look from mobiles in move_char
+
+Elwyn			Add waitstate to scroll reciters
+
+Averon			self inflicted dmg and flame shield bug crash
+
+Fusion			SSM 2.2 contributed
+
+Canth			autogold logistics bug
+
+Canth/Vego/Maniac	more functionality to imtlset
+
+Maniac			character drunkenness aesthetics
+
+Rassilon		Pfile recovery routine
+
+Cyanide			linkdead chars still get tells and replys bug
+
+Judson Knott		do_beep
+
+LordROM			Upper_lower_triple game bug
+
+Kenneth Dugas		lower level thieves steal better than > level bug
+
+JKallie			Report of slight possible divide by 0 in MANA_COST
+		
+Erwin A.		Hungry/Thirsty immortal typo bug
+			Alignment reporting typo bug
+			PLR_* mixed with ACT_PET bug
+			int type casting problem in division bug
+			Suggested moving more *_gain race info in race_table
+			int type casting problem in xp_compute
+			multiple obj buy
+			eq duplication bug fix
+			define strdup to an error to prevent confusion
+			trap <0 vnum references in get_*_index
+			replace light bug fix from Gene Choi
+			do_put weight bug fix
+
+Erwin A./Derek Snider	removal of getpeername and getsockname
+
+Picard			suggested toupper does not exist in some platforms
+			SUNOS 4.1.3 platform testing
+
+Evii			object affects bug in pfile recovery routine
+
+Mystro			Win 95/NT port
+
+Dave Kaupp		Amiga Port
+			strderr bug on Amiga Port
+			A few more Amiga port tweeks
+			gcc compilation rather than cc tweek
+		
+JohnPaul		automatic player skill success w/ mobiles loophole fix
+			teleport from battle stop_fighting fix
+
+Zeke of MudX		spec_thief stealing formula fix
 
 
 === What's new in Envy 2.0

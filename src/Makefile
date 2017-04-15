@@ -1,24 +1,64 @@
-# Generic Makefile.  Read 'port.txt' in the documentation
-# directory for the Makefile that is right for you  - Kahn
+make:
+	@echo Make what?  You must clarify which system to compile ENVY.
+	@echo
+	@echo 'make aix	- AIX'
+	@echo 'make amiga	- Amiga with TCP/IP'
+	@echo 'make hpux	- HPUX'
+	@echo 'make irix	- Irix'
+	@echo 'make mip	- MIP'
+	@echo 'make next	- NeXT'
+	@echo 'make dec-osf	- DEC OSF'
+	@echo 'make solaris	- Anything running Solaris'
+	@echo 'make standard	- Default compile'
+	@echo 'make linux	- For linux 1.2.x'
+	@echo 'make linux2	- For linux 2.+'
+	@echo 'make sequent	- Sequent machines'
+	@echo 'make tektronix	- Tektronix machines'
+	@echo
+	@echo If your system does not appear in the above list, try 'make all'.
+	@echo
+	@echo For Windows 95/NT platforms please read README.WIN
 
-CC      = gcc
-PROF    =
-DEBUG   = -g
-NOCRYPT =
-O_FLAGS = -O
-C_FLAGS = $(O_FLAGS) -Wall $(DEBUG) $(PROF) $(NOCRYPT)
-L_FLAGS = $(O_FLAGS)                $(PROF)
-LIBS    = -lcrypt
-
-O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
-          db.o fight.o handler.o interp.o magic.o save.o special.o update.o
-
-envy: $(O_FILES)
-	rm -f envy
-	$(CC) $(L_FLAGS) -o envy $(O_FILES) $(LIBS)
-
-.c.o: merc.h
-	$(CC) -c $(C_FLAGS) $<
+all:	standard
 
 clean:
 	rm -f *.o envy envy2
+
+aix:
+	make -f Makefile.aix
+
+amiga:
+	make -f Makefile.ami
+
+hpux:
+	make -f Makefile.hp
+
+mip:
+	make -f Makefile.mip
+
+next:
+	make -f Makefile.nex
+
+dec-osf:
+	make -f Makefile.osf
+
+solaris:
+	make -f Makefile.sol
+
+standard:
+	make -f Makefile.std
+
+std:
+	make -f Makefile.std
+
+linux:
+	make -f Makefile.std
+
+linux2:
+	make -f Makefile.lnx
+
+sequent:
+	make -f Makefile.sys
+
+tektronix:
+	make -f Makefile.tek

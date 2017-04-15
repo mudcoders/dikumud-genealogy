@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -204,9 +206,10 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( IS_AFFECTED( ch, AFF_MUTE ) )
+    if (   IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE ) )
     {
-	send_to_char( "You can't...you're mute!\n\r", ch );
+	send_to_char( "Your lips move but no sound comes out.\n\r", ch );
 	return;
     }
 
@@ -1013,7 +1016,7 @@ void spell_curse( int sn, int level, CHAR_DATA *ch, void *vo )
     }
 
     af.type      = sn;
-    af.duration  = 4 * level;
+    af.duration  = 2 * level;
     af.location  = APPLY_HITROLL;
     af.modifier  = -1;
     af.bitvector = AFF_CURSE;
@@ -1222,13 +1225,6 @@ void spell_dispel_magic ( int sn, int level, CHAR_DATA *ch, void *vo )
 	{
 	    if ( paf->deleted )
 	        continue;
-	    if ( paf->type == skill_lookup( "mute" )
-		&& IS_AFFECTED( victim, AFF_POLYMORPH )
-		&& get_trust( ch ) < LEVEL_IMMORTAL )
-	    {
-		send_to_char( "You were unable to remove Mute.\n\r", ch );
-	        continue;
-	    }
 	    if ( paf->type == skill_lookup( "polymorph other" )
 		&& get_trust( ch ) < LEVEL_IMMORTAL )
 	    {
@@ -1350,15 +1346,7 @@ void spell_enchant_weapon( int sn, int level, CHAR_DATA *ch, void *vo )
 	return;
     }
 
-    if ( !affect_free )
-    {
-	paf		= alloc_perm( sizeof( *paf ) );
-    }
-    else
-    {
-	paf		= affect_free;
-	affect_free	= affect_free->next;
-    }
+    paf			= new_affect();
 
     paf->type		= sn;
     paf->duration	= -1;
@@ -1368,15 +1356,7 @@ void spell_enchant_weapon( int sn, int level, CHAR_DATA *ch, void *vo )
     paf->next		= obj->affected;
     obj->affected	= paf;
 
-    if ( !affect_free )
-    {
-	paf		= alloc_perm( sizeof( *paf ) );
-    }
-    else
-    {
-	paf		= affect_free;
-	affect_free	= affect_free->next;
-    }
+    paf			= new_affect();
 
     paf->type		= sn;
     paf->duration	= -1;
@@ -1420,7 +1400,10 @@ void spell_energy_drain( int sn, int level, CHAR_DATA *ch, void *vo )
     int        dam;
 
     if ( saves_spell( level, victim ) )
+    {
+	send_to_char( "Nothing seems to happen.\n\r", ch );
 	return;
+    }
 
     ch->alignment = UMAX(-1000, ch->alignment - 200);
     if ( victim->level <= 2 )
@@ -2098,7 +2081,7 @@ void spell_polymorph_other( int sn, int level, CHAR_DATA *ch, void *vo )
     }
 
     af.type      = sn;
-    af.duration  = dice( 18, level );
+    af.duration  = dice( 10, level );
     af.location  = APPLY_RACE;
 
     do
@@ -2113,15 +2096,6 @@ void spell_polymorph_other( int sn, int level, CHAR_DATA *ch, void *vo )
     if ( ch != victim )
         send_to_char( "Ok.\n\r", ch );
     send_to_char( "You feel different.\n\r", victim );
-
-    if ( !IS_SET( race_table[ newrace ].race_abilities, RACE_WEAPON_WIELD ) )
-    {
-	af.type      = skill_lookup( "mute" );
-	af.location  = 0;
-	af.modifier  = 0;
-	af.bitvector = AFF_MUTE;
-	affect_to_char( victim, &af );
-    }
 
     if ( get_trust( ch ) > LEVEL_HERO )
     {
@@ -2224,7 +2198,8 @@ void spell_remove_alignment( int sn, int level, CHAR_DATA *ch, void *vo )
     }
 
     if ( number_percent( ) < ch->pcdata->learned[sn] *
-	 ( 33 + ( 33 * ( ch->level - obj->level ) / 50 ) ) / 100 )
+	 ( 33 +
+	  ( 33 * ( ch->level - obj->level ) / (float)LEVEL_HERO ) ) / 100.0 )
     {
 	REMOVE_BIT( obj->extra_flags, ITEM_EVIL		);
 	REMOVE_BIT( obj->extra_flags, ITEM_ANTI_GOOD	);
@@ -2315,8 +2290,7 @@ void spell_remove_silence( int sn, int level, CHAR_DATA *ch, void *vo )
 	    DidSomething = TRUE;
         }
 
-	if ( IS_AFFECTED( victim, AFF_MUTE )
-	    && !IS_AFFECTED( victim, AFF_POLYMORPH ) )
+	if ( IS_AFFECTED( victim, AFF_MUTE ) )
         {
 	    affect_strip( victim, gsn_mute );
 	    send_to_char( "You lift the veil of silence from yourself.\n\r",
@@ -2334,13 +2308,6 @@ void spell_remove_silence( int sn, int level, CHAR_DATA *ch, void *vo )
 
     if ( IS_AFFECTED( victim, AFF_MUTE ) )
     {
-        if ( IS_AFFECTED( victim, AFF_POLYMORPH ) )
-	{
-	    send_to_char(
-		"You were unable to give a non-speaking race speech.\n\r",
-			 ch );
-	    return;
-	}
 	affect_strip( victim, gsn_mute );
 	act( "You lift the veil of silence from $N.",
 					ch, NULL, victim, TO_CHAR    );
@@ -3327,22 +3294,14 @@ void spell_enhance_armor (int sn, int level, CHAR_DATA *ch, void *vo )
 	return;
     }
 
-    if ( !affect_free )
-    {
-	paf	    = alloc_perm( sizeof( *paf ) );
-    }
-    else
-    {
-	paf         = affect_free;
-	affect_free = affect_free->next;
-    }
+    paf			= new_affect();
 
-    paf->type	   = sn;
-    paf->duration  = -1;
-    paf->location  = APPLY_AC;
-    paf->bitvector = 0;
-    paf->next	   = obj->affected;
-    obj->affected  = paf;
+    paf->type		= sn;
+    paf->duration	= -1;
+    paf->location	= APPLY_AC;
+    paf->bitvector	= 0;
+    paf->next		= obj->affected;
+    obj->affected	= paf;
 
     if ( number_percent() < ch->pcdata->learned[sn]/2
 	+ 3 * ( ch->level - obj->level ) )

@@ -1,8 +1,7 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+EnvyMud Release 2.2
+Friday, 14th February 1997
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
+Kahn		envy@envy.com
 
 
 
@@ -17,8 +16,11 @@ class.txt	- Gives detailed instructions on how to create a class for
 		game play.
 command.txt	- Gives detailed instructions on how to add commands to the
 		game.
+config.txt	- Gives descriptions and instructions on how to configure the
+		game.
 contrib.txt	- Lists all those who have contributed their time in creating
 		this release.
+dikuimp.txt	- Gives a brief overview on how to be a Diku Implementor.
 down.txt	- Gives detailed instructions on how to use the autoshutdown
 		feature.
 drool.txt	- Lists the ideas of a group called the Drool Co.
@@ -38,4 +40,5 @@ sites.txt	- Lists known active MERC based muds open on the internet.
 skill.txt	- Gives detailed instructions on how to create new
 		skills/spells in the game
 sky.txt		- Lists our ideas.
+snip.txt	- Lists the known code snippet sites for MERC type muds.
 vnum.txt	- Lists which areas occupy which vnum allotments.

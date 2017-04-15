@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -39,11 +41,41 @@
  * -- Furey  26 Jan 1993
  */
 
+#if defined( WIN32 )
+char version_str[] = "$VER: EnvyMud 2.0 Windows 32 Bit Version";
+/*
+ * Provided by Mystro <http://www.cris.com/~Kendugas/mud.shtml>
+ */
+#endif
+
+#if defined( AmigaTCP )
+char version_str[] = "$VER: Merc/Diku Mud Envy2.0 AmiTCP Version";
+/*
+ * You must rename or delete the sc:sys/types.h, so the
+ * amitcp:netinclude/sys/types.h will be used instead.
+ * Also include these assigns in your user-startup (After the SC assigns)
+ *    assign lib: Amitcp:netlib add
+ *    assign include: Amitcp:netinclude add
+ * If you haven't allready :)
+ * Compilled with SasC 6.56 and AmiTCP 4.2
+ * http://www.geocities.com/SiliconValley/1411
+ * dkaupp@netcom.com (May be defunct soon)
+ * or davek@megnet.net
+ * 4-16-96
+ */
+#endif
+
+#if !defined( WIN32 ) && !defined( AmigaTCP )
+char version_str[] = "$VER: EnvyMud 2.0 *NIX";
+#endif
+
 #if defined( macintosh )
 #include <types.h>
 #else
 #include <sys/types.h>
+#if !defined( WIN32 )
 #include <sys/time.h>
+#endif
 #endif
 
 #include <ctype.h>
@@ -52,6 +84,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
+#if defined( WIN32 )
+#include <winsock.h>
+#include <sys/timeb.h> /*for _ftime(), uses _timeb struct*/
+#endif
 
 #include "merc.h"
 
@@ -81,7 +118,7 @@ extern	int	malloc_verify	args( ( void ) );
 #define __attribute( x )
 #endif
 
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP ) || defined( WIN32 )
 #include <signal.h>
 #endif
 
@@ -94,13 +131,13 @@ extern	int	malloc_verify	args( ( void ) );
 /*
  * Socket and TCP/IP stuff.
  */
-#if	defined( macintosh ) || defined( MSDOS )
+#if	defined( macintosh )
 const	char	echo_off_str	[] = { '\0' };
 const	char	echo_on_str	[] = { '\0' };
 const	char 	go_ahead_str	[] = { '\0' };
 #endif
 
-#if	defined( unix )
+#if	defined( unix ) || defined( AmigaTCP )
 #include <fcntl.h>
 #include <netdb.h>
 #include <netinet/in.h>
@@ -158,12 +195,14 @@ int	socket		args( ( int domain, int type, int protocol ) );
 #endif
 
 #if	defined( linux )
-int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
-int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
 int	close		args( ( int fd ) );
 int	getpeername	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
 int getsockname args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
+#if     defined( LINUX2 )
+  int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
+  int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
+#endif
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
 int	select		args( ( int width, fd_set *readfds, fd_set *writefds,
@@ -193,9 +232,11 @@ int	gettimeofday	args( ( struct timeval *tp, void *tzp ) );
 extern	int		errno;
 #endif
 
-#if	defined( MSDOS )
-int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
-int	kbhit		args( ( void ) );
+#if	defined( WIN32 )
+const   char echo_off_str[]  = { '\0' };
+const   char echo_on_str[]   = { '\0' };
+const   char go_ahead_str[]  = { '\0' };
+void    gettimeofday    args( ( struct timeval *tp, void *tzp ) );
 #endif
 
 #if	defined( NeXT )
@@ -248,7 +289,9 @@ void	bzero		args( ( char *b, int length ) );
 int	close		args( ( int fd ) );
 int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
+#if !defined( SYSV )
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
+#endif
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
 int	select		args( ( int width, fd_set *readfds, fd_set *writefds,
@@ -308,15 +351,15 @@ time_t		    current_time;	/* Time of this pulse		*/
 /*
  * OS-dependent local functions.
  */
-#if defined( macintosh ) || defined( MSDOS )
+#if defined( macintosh )
 void	game_loop_mac_msdos	args( ( void ) );
 bool	read_from_descriptor	args( ( DESCRIPTOR_DATA *d ) );
 bool	write_to_descriptor	args( ( int desc, char *txt, int length ) );
 #endif
 
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP ) || defined( WIN32 )
 void	game_loop_unix		args( ( int control ) );
-int	init_socket		args( ( int port ) );
+int	init_socket		args( ( u_short port ) );
 void	new_descriptor		args( ( int control ) );
 bool	read_from_descriptor	args( ( DESCRIPTOR_DATA *d ) );
 bool	write_to_descriptor	args( ( int desc, char *txt, int length ) );
@@ -342,10 +385,10 @@ void    bust_a_prompt           args( ( DESCRIPTOR_DATA *d ) );
 
 int main( int argc, char **argv )
 {
-    struct timeval now_time;
-    int port;
+    struct  timeval now_time;
+    u_short port;
 
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP ) || defined( WIN32 )
     int control;
 #endif
 
@@ -385,7 +428,7 @@ int main( int argc, char **argv )
     /*
      * Get the port number.
      */
-    port = 1234;
+    port = 4000;
     if ( argc > 1 )
     {
 	if ( !is_number( argv[1] ) )
@@ -403,19 +446,24 @@ int main( int argc, char **argv )
     /*
      * Run the game.
      */
-#if defined( macintosh )  || defined( MSDOS )
+#if defined( macintosh )
     boot_db( );
     log_string( "EnvyMud is ready to rock." );
     game_loop_mac_msdos( );
 #endif
 
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP ) || defined( WIN32 )
     control = init_socket( port );
     boot_db( );
     sprintf( log_buf, "EnvyMud is ready to rock on port %d.", port );
     log_string( log_buf );
     game_loop_unix( control );
+#if !defined( WIN32 )
     close( control );
+#else
+    closesocket( control );
+    WSACleanup();
+#endif
 #endif
 
     /*
@@ -428,26 +476,47 @@ int main( int argc, char **argv )
 
 
 
-#if defined( unix )
-int init_socket( int port )
+#if defined( unix ) || defined( AmigaTCP ) || defined( WIN32 )
+int init_socket( u_short port )
 {
     static struct sockaddr_in sa_zero;
            struct sockaddr_in sa;
                   int         x        = 1;
                   int         fd;
 
+#if !defined( WIN32 )
     system( "touch SHUTDOWN.TXT" );
     if ( ( fd = socket( AF_INET, SOCK_STREAM, 0 ) ) < 0 )
     {
 	perror( "Init_socket: socket" );
 	exit( 1 );
     }
+#else
+    WORD wVersionRequested = MAKEWORD( 1, 1 );
+    WSADATA wsaData;
+    int err = WSAStartup( wVersionRequested, &wsaData );
+    if ( err != 0 )
+    {
+	perror("No useable WINSOCK.DLL");
+	exit(1);
+    }
+
+    if ( ( fd = socket( PF_INET, SOCK_STREAM, 0 ) ) < 0 )
+    {
+        perror( "Init_socket: socket" );
+	exit( 1 );
+    }
+#endif
 
     if ( setsockopt( fd, SOL_SOCKET, SO_REUSEADDR,
     (char *) &x, sizeof( x ) ) < 0 )
     {
 	perror( "Init_socket: SO_REUSEADDR" );
+#if !defined( WIN32 )
 	close( fd );
+#else
+	closesocket( fd );
+#endif
 	exit( 1 );
     }
 
@@ -462,38 +531,56 @@ int init_socket( int port )
 	(char *) &ld, sizeof( ld ) ) < 0 )
 	{
 	    perror( "Init_socket: SO_DONTLINGER" );
+#if !defined( WIN32 )
 	    close( fd );
+#else
+	    closesocket( fd );
+#endif
 	    exit( 1 );
 	}
     }
 #endif
 
     sa		    = sa_zero;
+#if !defined( WIN32 )
     sa.sin_family   = AF_INET;
+#else
+    sa.sin_family   = PF_INET;
+#endif
     sa.sin_port	    = htons( port );
 
     if ( bind( fd, (struct sockaddr *) &sa, sizeof( sa ) ) < 0 )
     {
 	perror( "Init_socket: bind" );
+#if !defined( WIN32 )
 	close( fd );
+#else
+	closesocket( fd );
+#endif
 	exit( 1 );
     }
 
     if ( listen( fd, 3 ) < 0 )
     {
 	perror( "Init_socket: listen" );
+#if !defined( WIN32 )
 	close( fd );
+#else
+	closesocket( fd );
+#endif
 	exit( 1 );
     }
 
+#if !defined( WIN32 )
     system( "rm SHUTDOWN.TXT" );
+#endif
     return fd;
 }
 #endif
 
 
 
-#if defined( macintosh ) || defined( MSDOS )
+#if defined( macintosh )
 void game_loop_mac_msdos( void )
 {
     static        DESCRIPTOR_DATA dcon;
@@ -541,20 +628,15 @@ void game_loop_mac_msdos( void )
 	    d_next	= d->next;
 	    d->fcommand	= FALSE;
 
-#if defined( MSDOS )
-	    if ( kbhit( ) )
-#endif
+	    if ( d->character )
+	        d->character->timer = 0;
+	    if ( !read_from_descriptor( d ) )
 	    {
 		if ( d->character )
-		    d->character->timer = 0;
-		if ( !read_from_descriptor( d ) )
-		{
-		    if ( d->character )
-			save_char_obj( d->character );
-		    d->outtop	= 0;
-		    close_socket( d );
-		    continue;
-		}
+		    save_char_obj( d->character );
+		d->outtop	= 0;
+		close_socket( d );
+		continue;
 	    }
 
 	    if ( d->character && d->character->wait > 0 )
@@ -620,22 +702,14 @@ void game_loop_mac_msdos( void )
 	{
 	    int delta;
 
-#if defined( MSDOS )
-	    if ( kbhit( ) )
-#endif
+	    if ( dcon.character )
+	        dcon.character->timer = 0;
+	    if ( !read_from_descriptor( &dcon ) )
 	    {
 		if ( dcon.character )
-		    dcon.character->timer = 0;
-		if ( !read_from_descriptor( &dcon ) )
-		{
-		    if ( dcon.character )
-			save_char_obj( d->character );
-		    dcon.outtop	= 0;
-		    close_socket( &dcon );
-		}
-#if defined( MSDOS )
-		break;
-#endif
+		    save_char_obj( d->character );
+		dcon.outtop	= 0;
+		close_socket( &dcon );
 	    }
 
 	    gettimeofday( &now_time, NULL );
@@ -654,13 +728,16 @@ void game_loop_mac_msdos( void )
 
 
 
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP ) || defined( WIN32 )
 void game_loop_unix( int control )
 {
     static struct timeval null_time;
            struct timeval last_time;
 
+#if !defined( AmigaTCP ) && !defined( WIN32 )
     signal( SIGPIPE, SIG_IGN );
+#endif
+
     gettimeofday( &last_time, NULL );
     current_time = (time_t) last_time.tv_sec;
 
@@ -688,7 +765,7 @@ void game_loop_unix( int control )
 	maxdesc	= control;
 	for ( d = descriptor_list; d; d = d->next )
 	{
-	    maxdesc = UMAX( maxdesc, d->descriptor );
+	    maxdesc = UMAX( (unsigned) maxdesc, d->descriptor );
 	    FD_SET( d->descriptor, &in_set  );
 	    FD_SET( d->descriptor, &out_set );
 	    FD_SET( d->descriptor, &exc_set );
@@ -806,6 +883,7 @@ void game_loop_unix( int control )
 	 * Sleep( last_time + 1/PULSE_PER_SECOND - now ).
 	 * Careful here of signed versus unsigned arithmetic.
 	 */
+#if !defined( WIN32 )
 	{
 	    struct timeval now_time;
 	    long secDelta;
@@ -842,6 +920,35 @@ void game_loop_unix( int control )
 		}
 	    }
 	}
+#else
+	{
+	    int times_up;
+	    int nappy_time;
+	    struct _timeb start_time;
+	    struct _timeb end_time;
+	    _ftime( &start_time );
+	    times_up = 0;
+
+	    while( times_up == 0 )
+	    {
+		_ftime( &end_time );
+		if ( ( nappy_time =
+		      (int) ( 1000 *
+			     (double) ( ( end_time.time - start_time.time ) +
+				       ( (double) ( end_time.millitm -
+						   start_time.millitm ) /
+					1000.0 ) ) ) ) >=
+		    (double)( 1000 / PULSE_PER_SECOND ) )
+		  times_up = 1;
+		else
+		{
+		    Sleep( (int) ( (double) ( 1000 / PULSE_PER_SECOND ) -
+				  (double) nappy_time ) );
+		    times_up = 1;
+		}
+	    }
+	}
+#endif
 
 	gettimeofday( &last_time, NULL );
 	current_time = (time_t) last_time.tv_sec;
@@ -853,20 +960,20 @@ void game_loop_unix( int control )
 
 
 
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP ) || defined( WIN32 )
 void new_descriptor( int control )
 {
-           BAN_DATA        *pban;
     static DESCRIPTOR_DATA  d_zero;
            DESCRIPTOR_DATA *dnew;
     struct sockaddr_in      sock;
     struct hostent         *from;
+           BAN_DATA        *pban;
     char                    buf [ MAX_STRING_LENGTH ];
     int                     desc;
     int                     size;
+    int                     addr;
 
     size = sizeof( sock );
-    getsockname( control, (struct sockaddr *) &sock, &size );
     if ( ( desc = accept( control, (struct sockaddr *) &sock, &size) ) < 0 )
     {
 	perror( "New_descriptor: accept" );
@@ -881,11 +988,13 @@ void new_descriptor( int control )
 #endif
 #endif
 
+#if !defined( AmigaTCP ) && !defined( WIN32 )
     if ( fcntl( desc, F_SETFL, FNDELAY ) == -1 )
     {
 	perror( "New_descriptor: fcntl: FNDELAY" );
 	return;
     }
+#endif
 
     /*
      * Cons a new descriptor.
@@ -909,31 +1018,23 @@ void new_descriptor( int control )
     dnew->outsize	= 2000;
     dnew->outbuf	= alloc_mem( dnew->outsize );
 
-    size = sizeof(sock);
-    if ( getpeername( desc, (struct sockaddr *) &sock, &size ) < 0 )
-    {
-	perror( "New_descriptor: getpeername" );
-	dnew->host = str_dup( "(unknown)" );
-    }
-    else
-    {
-	/*
-	 * Would be nice to use inet_ntoa here but it takes a struct arg,
-	 * which ain't very compatible between gcc and system libraries.
-	 */
-	int addr;
+    size = sizeof( sock );
 
-	addr = ntohl( sock.sin_addr.s_addr );
-	sprintf( buf, "%d.%d.%d.%d",
-	    ( addr >> 24 ) & 0xFF, ( addr >> 16 ) & 0xFF,
-	    ( addr >>  8 ) & 0xFF, ( addr       ) & 0xFF
-	    );
-	sprintf( log_buf, "Sock.sinaddr:  %s", buf );
-	log_string( log_buf );
-	from = gethostbyaddr( (char *) &sock.sin_addr,
-			     sizeof(sock.sin_addr), AF_INET );
-	dnew->host = str_dup( from ? from->h_name : buf );
-    }
+    /*
+     * Would be nice to use inet_ntoa here but it takes a struct arg,
+     * which ain't very compatible between gcc and system libraries.
+     */
+    addr = ntohl( sock.sin_addr.s_addr );
+    sprintf( buf, "%d.%d.%d.%d",
+	( addr >> 24 ) & 0xFF, ( addr >> 16 ) & 0xFF,
+	( addr >>  8 ) & 0xFF, ( addr       ) & 0xFF
+	);
+    sprintf( log_buf, "Sock.sinaddr:  %s", buf );
+    log_string( log_buf );
+    from = gethostbyaddr( (char *) &sock.sin_addr,
+			 sizeof(sock.sin_addr), AF_INET );
+    dnew->host = str_dup( from ? from->h_name : buf );
+
 
     /*
      * Swiftest: I added the following to ban sites.  I don't
@@ -949,7 +1050,11 @@ void new_descriptor( int control )
 	{
 	    write_to_descriptor( desc,
 		"Your site has been banned from this Mud.\n\r", 0 );
+#if !defined( WIN32 )
 	    close( desc );
+#else
+	    closesocket( desc );
+#endif
 	    free_string( dnew->host );
 	    free_mem( dnew->outbuf, dnew->outsize );
 	    dnew->next		= descriptor_free;
@@ -1039,7 +1144,11 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 	    bug( "Close_socket: dclose not found.", 0 );
     }
 
+#if !defined( WIN32 )
     close( dclose->descriptor );
+#else
+    closesocket( dclose->descriptor );
+#endif
     free_string( dclose->host );
 
     /* RT socket leak fix */
@@ -1047,7 +1156,7 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 
     dclose->next	= descriptor_free;
     descriptor_free	= dclose;
-#if defined( MSDOS ) || defined( macintosh )
+#if defined( macintosh )
     exit( 1 );
 #endif
     return;
@@ -1091,13 +1200,18 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
     }
 #endif
 
-#if defined( MSDOS ) || defined( unix )
+#if defined( unix ) || defined( AmigaTCP ) || defined( WIN32 )
     for ( ; ; )
     {
 	int nRead;
 
+#if !defined( WIN32 )
 	nRead = read( d->descriptor, d->inbuf + iStart,
-	    sizeof( d->inbuf ) - 10 - iStart );
+		     sizeof( d->inbuf ) - 10 - iStart );
+#else
+	nRead = recv( d->descriptor, d->inbuf + iStart,
+		     sizeof( d->inbuf ) - 10 - iStart, 0 );
+#endif
 	if ( nRead > 0 )
 	{
 	    iStart += nRead;
@@ -1109,8 +1223,14 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
 	    log_string( "EOF encountered on read." );
 	    return FALSE;
 	}
-	else if ( errno == EWOULDBLOCK || errno == EAGAIN )
+#if !defined( AmigaTCP ) && !defined( WIN32 )
+        else if ( errno == EWOULDBLOCK || errno == EAGAIN )
 	    break;
+#endif
+#if defined( WIN32 )
+        else if ( WSAGetLastError() == WSAEWOULDBLOCK || errno == EAGAIN )
+	    break;
+#endif
 	else
 	{
 	    perror( "Read_from_descriptor" );
@@ -1351,7 +1471,7 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
 	    sprintf( buf2, "%d", ch->wait                              );
 	    i = buf2; break;
          case 'a' :
-            if( ch->level < 5 )
+            if( ch->level > 10 )
                sprintf( buf2, "%d", ch->alignment                      );
             else
                sprintf( buf2, "%s", IS_GOOD( ch ) ? "good"
@@ -1455,7 +1575,7 @@ bool write_to_descriptor( int desc, char *txt, int length )
     int nWrite;
     int nBlock;
 
-#if defined( macintosh ) || defined( MSDOS )
+#if defined( macintosh )
     if ( desc == 0 )
 	desc = 1;
 #endif
@@ -1465,8 +1585,12 @@ bool write_to_descriptor( int desc, char *txt, int length )
 
     for ( iStart = 0; iStart < length; iStart += nWrite )
     {
-	nBlock = UMIN( length - iStart, 4096 );
+	nBlock = UMIN( length - iStart, 2048 );
+#if !defined( WIN32 )
 	if ( ( nWrite = write( desc, txt + iStart, nBlock ) ) < 0 )
+#else
+	if ( ( nWrite = send( desc, txt + iStart, nBlock , 0) ) < 0 )
+#endif
 	    { perror( "Write_to_descriptor" ); return FALSE; }
     }
 
@@ -1515,34 +1639,14 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
 	argument[0] = UPPER( argument[0] );
 
-	fOld = load_char_obj( d, argument );
-	ch   = d->character;
-
 	if ( !check_parse_name( argument ) )
 	{
-	    if ( !fOld )
-	    {
-	        write_to_buffer( d,
-				"Illegal name, try another.\n\rName: ", 0 );
-		return;
-	    }
-	    else
-	    {
-	        /*
-		 * Trap the "." and ".." logins.
-		 * Chars must be > level 1 here
-		 */
-	        if ( ch->level < 1 )
-		{
-		    write_to_buffer( d,
-				    "Illegal name, try another.\n\rName: ",
-				    0 );
-		    return;
-		}
-		sprintf( buf, "Illegal name:  %s", argument );
-	        bug( buf, 0 );
-	    }
+	    write_to_buffer( d, "Illegal name, try another.\n\rName: ", 0 );
+	    return;
 	}
+
+	fOld = load_char_obj( d, argument );
+	ch   = d->character;
 
 	if ( IS_SET( ch->act, PLR_DENY ) )
 	{
@@ -1617,7 +1721,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	break;
 
     case CON_GET_OLD_PASSWORD:
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP )
 	write_to_buffer( d, "\n\r", 2 );
 #endif
 
@@ -1668,7 +1772,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	break;
 
     case CON_GET_NEW_PASSWORD:
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP )
 	write_to_buffer( d, "\n\r", 2 );
 #endif
 
@@ -1699,7 +1803,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	break;
 
     case CON_CONFIRM_NEW_PASSWORD:
-#if defined( unix )
+#if defined( unix ) || defined( AmigaTCP )
 	write_to_buffer( d, "\n\r", 2 );
 #endif
 
@@ -1961,7 +2065,7 @@ bool check_parse_name( char *name )
     /*
      * Reserved words.
      */
-    if ( is_name( name, "all auto imm immortal self someone" ) )
+    if ( is_name( name, "all auto imm immortal self someone . .. ./ ../ /" ) )
 	return FALSE;
 
     /*
@@ -1976,12 +2080,7 @@ bool check_parse_name( char *name )
     if ( strlen( name ) <  3 )
 	return FALSE;
 
-#if defined( MSDOS )
-    if ( strlen(name) >  8 )
-	return FALSE;
-#endif
-
-#if defined( macintosh ) || defined( unix )
+#if defined( macintosh ) || defined( unix ) || defined( AmigaTCP )
     if ( strlen( name ) > 12 )
 	return FALSE;
 #endif
@@ -2037,7 +2136,6 @@ bool check_parse_name( char *name )
  */
 bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 {
-    OBJ_DATA  *obj;
     CHAR_DATA *ch;
 
     for ( ch = char_list; ch; ch = ch->next )
@@ -2065,15 +2163,6 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 		sprintf( log_buf, "%s@%s reconnected.", ch->name, d->host );
 		log_string( log_buf );
 		d->connected = CON_PLAYING;
-
-		/*
-		 * Contributed by Gene Choi
-		 */
-		if ( ( obj = get_eq_char( ch, WEAR_LIGHT ) )
-		    && obj->item_type == ITEM_LIGHT
-		    && obj->value[2] != 0
-		    && ch->in_room )
-		    ++ch->in_room->light;
 	    }
 	    return TRUE;
 	}
@@ -2433,4 +2522,15 @@ int gettimeofday( struct timeval *tp, void *tzp )
     tp->tv_sec  = time( NULL );
     tp->tv_usec = 0;
 }
+#endif
+
+/*
+ * Windows 95 and Windows NT support functions
+ */
+#if defined( WIN32 )
+void gettimeofday( struct timeval *tp, void *tzp )
+{
+    tp->tv_sec  = time( NULL );
+    tp->tv_usec = 0;
+  }
 #endif

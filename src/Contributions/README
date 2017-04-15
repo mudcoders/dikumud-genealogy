@@ -1,0 +1,27 @@
+EnvyMud Release 2.2
+Friday, 14th February 1997
+
+Kahn		envy@envy.com
+
+
+
+=== Preface
+
+The code snippets here are provided as a curtosy and AS IS.  None of
+this code will patch directly into the stock Envy 2.2.  But with a
+little work, these snippets may work.  Please report any problems or
+bugs to the authors themselves.
+
+
+
+=== The Contributions Directory
+
+This file gives a brief description of the files in the Contributions
+directory.
+
+scan.c		- Scan code from Bryan Cromartie <wildcat@vantek.net>.
+scan.v1		- Scan code from Erwin S. Andreasen <4u2@aabc.dk>.
+message.c	- Provides more user controled information display on 'who'
+		  from Morpheus at <morpheus@teleport.com>.
+warskills.c	- 4th attack, shield block, fast healing from Sandman/Morpheus
+		  at <lerner@scf.usc.edu>

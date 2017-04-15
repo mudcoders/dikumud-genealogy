@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -79,9 +81,24 @@ void violence_update( void )
 	{
 	    if ( IS_AWAKE( ch ) && ch->in_room == victim->in_room
 		&& !victim->deleted )
-	        multi_hit( ch, victim, TYPE_UNDEFINED );
+	    {
+	        /* Ok here we test for switch if victim is charmed */
+	        if ( IS_AFFECTED( victim, AFF_CHARM )
+		    && victim->in_room == victim->master->in_room
+		    && number_percent() > 40 )
+		{
+		    stop_fighting( ch, FALSE );
+		    multi_hit( ch, victim->master, TYPE_UNDEFINED );
+		}
+		else
+		{
+		    multi_hit( ch, victim, TYPE_UNDEFINED );
+		}
+	    }
 	    else
+	    {
 	        stop_fighting( ch, FALSE );
+	    }
 	    continue;
 	}
 
@@ -505,7 +522,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 	&& victim->hit < 1 )
 	victim->hit = 1;
 
-    if ( ( dam > 1 ) && IS_AFFECTED( victim, AFF_FLAMING ) )
+    if ( ( dam > 1 ) && IS_AFFECTED( victim, AFF_FLAMING ) && victim != ch )
     {
 	sntemp = skill_lookup( "flamestrike" );
 	(*skill_table[sntemp].spell_fun) ( sntemp, ( victim->level / 4 ),
@@ -603,9 +620,9 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 	     */
 	    if ( IS_NPC( ch ) )
 	    {
-	        if ( victim->exp > 1000 * ( victim->level - 1 ) )
-		    gain_exp( victim, ( 1000 * ( victim->level - 1 ) 
-				       - victim->exp ) / 2 );
+	        if ( victim->exp > EXP_PER_LEVEL * ( victim->level - 1 ) )
+		    gain_exp( victim, ( EXP_PER_LEVEL * ( victim->level - 1 ) 
+				       - victim->exp ) / 4 );
 	    }
 	    else
 	    {
@@ -617,6 +634,14 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 			gain_exp( victim, 0 - exp );
 			sprintf( buf, "You lose %d exps.\n\r", exp );
 			send_to_char( buf, victim );
+			if ( victim->exp < 1001 )
+			{
+			    send_to_char(
+				"You no longer have any exps to give.\n\r",
+					 victim );
+			    send_to_char( "You are now DEAD.\n\r", victim );
+			    SET_BIT( victim->act, PLR_DENY );
+			}
 		    }
 
 		    gold = victim->gold * number_range( 10, 20 ) / 100;
@@ -643,7 +668,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 	{
 	    /* Autogold by Morpheus */
 	    if ( IS_SET( ch->act, PLR_AUTOGOLD ) )
-	        do_get( ch, "gold corpse" );
+	        do_get( ch, "coins corpse" );  /* autogold mod by Canth */
 
 	    if ( IS_SET( ch->act, PLR_AUTOLOOT ) )
 		do_get( ch, "all corpse" );
@@ -652,6 +677,14 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 
 	    if ( IS_SET( ch->act, PLR_AUTOSAC  ) )
 		do_sacrifice( ch, "corpse" );
+	}
+
+	/*
+	 * Remove victims of pk who no longer have exps left
+	 */
+	if ( !IS_NPC( victim ) && IS_SET( victim->act, PLR_DENY ) )
+	{
+	    do_quit( victim, "" );
 	}
 
 	return;
@@ -1316,7 +1349,7 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 			race_table[gch->race].hate) && members > 1 )
 	  {
 	    send_to_char( "You lost a third of your exps due to grouping with scum.\n\r", ch );
-	    xp *= .66;
+	    xp -= xp/3;
 	  }
 	sprintf( buf, "You receive %d experience points.\n\r", xp );
 	send_to_char( buf, gch );
@@ -1388,44 +1421,44 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
     if ( IS_AFFECTED( victim, AFF_SANCTUARY )
 	|| IS_SET( race_table[ victim->race ].race_abilities, RACE_SANCT ) )
     {
-	bonus += 1/2;
+	bonus += (float)1/2;
     }
 
     if ( IS_AFFECTED( victim, AFF_FLAMING ) )
     {
-	bonus += 4/10;
+	bonus += (float)4/10;
     }
 
     if ( ( obj = get_eq_char( victim, WEAR_WIELD ) ) )
     {
-	bonus += 1/4;
+	bonus += (float)1/4;
     }
     
     if ( ( obj = get_eq_char( victim, WEAR_WIELD_2 ) ) )
     {
-	bonus += 1/5;
+	bonus += (float)1/5;
     }
 
     if ( !str_infix( race_table[victim->race].name,
 		    race_table[gch->race].hate ) )
     {
-	bonus += 1/10;
+	bonus += (float)1/10;
     }
     
     if ( victim->race == gch->race )
     {
-	bonus -= 1/8;
+	bonus -= (float)1/8;
     }
 
     if ( IS_NPC( victim ) )
     {
 	if ( IS_SET( victim->act, ACT_AGGRESSIVE ) )
 	{
-	    bonus += 1/20;
+	    bonus += (float)1/20;
 	}
 
 	if ( victim->pIndexData->pShop != 0 )
-	    bonus -= 1/4;
+	    bonus -= (float)1/4;
 
 	if ( victim->spec_fun != 0 )
 	{
@@ -1434,7 +1467,7 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
 		|| victim->spec_fun == spec_lookup( "spec_cast_undead"      )
 		|| victim->spec_fun == spec_lookup( "spec_breath_gas"       )
 		|| victim->spec_fun == spec_lookup( "spec_cast_mage"        ) )
-	        bonus += 1/3;
+	        bonus += (float)1/3;
 
 	    if (   victim->spec_fun == spec_lookup( "spec_breath_fire"      )
 		|| victim->spec_fun == spec_lookup( "spec_breath_cold"      )
@@ -1443,24 +1476,24 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
 		|| victim->spec_fun == spec_lookup( "spec_cast_cleric"      )
 		|| victim->spec_fun == spec_lookup( "spec_cast_judge"       )
 		|| victim->spec_fun == spec_lookup( "spec_cast_ghost"       ) )
-	        bonus += 1/5;
+	        bonus += (float)1/5;
 
 	    if (   victim->spec_fun == spec_lookup( "spec_poison"           )
 		|| victim->spec_fun == spec_lookup( "spec_thief"            ) )
-	        bonus += 1/20;
+	        bonus += (float)1/20;
 
 	    if ( victim->spec_fun == spec_lookup( "spec_cast_adept"         ) )
-	        bonus -= 1/2;
+	        bonus -= (float)1/2;
 	}
     }
     else
     {
         if ( !IS_SET( victim->act, PLR_REGISTER ) )
-	    bonus = 0;
+	    bonus = 0.0;
 	else
-	    bonus *= 2;
+	    bonus *= (float)2;
     }
-    xp = xp * bonus;
+    xp = (int) ( xp * bonus );
 
     /*
      * Adjust for popularity of target:
@@ -1923,9 +1956,10 @@ void do_circle( CHAR_DATA *ch, char *argument )
     for ( rch = ch->in_room->people; rch; rch = rch->next_in_room )
 	if ( rch->fighting == ch )
 	    break;
+
     if ( rch )
     {
-	send_to_char( "You're too busy right now.\n\r", ch );
+	send_to_char( "You're too busy being hit right now.\n\r", ch );
 	return;
     }
 
@@ -1941,11 +1975,13 @@ void do_circle( CHAR_DATA *ch, char *argument )
     
     check_killer( ch, victim );
     WAIT_STATE( ch, skill_table[gsn_circle].beats );
-    stop_fighting( victim, FALSE );
 
     if ( IS_NPC( ch )
 	|| number_percent( ) < ch->pcdata->learned[gsn_circle] / 2 )
+      {
+	stop_fighting( victim, FALSE );
 	multi_hit( ch, victim, gsn_circle );
+      }
     else
         act( "You failed to get around $M", ch, NULL, victim, TO_CHAR );
 
@@ -2028,8 +2064,10 @@ void do_berserk( CHAR_DATA *ch, char *argument )
 {
     AFFECT_DATA af;
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_rescue].skill_level[ch->class] )
+    /* Don't allow charmed mobs to do this, check player's level */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	|| ( !IS_NPC( ch )
+	    && ch->level < skill_table[gsn_berserk].skill_level[ch->class] ) )
     {
 	send_to_char( "You're not enough of a warrior to go Berserk.\n\r",
 		     ch );
@@ -2087,8 +2125,10 @@ void do_rescue( CHAR_DATA *ch, char *argument )
     char       arg [ MAX_INPUT_LENGTH ];
     int        count;
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_rescue].skill_level[ch->class] )
+    /* Don't allow charmed mobs to do this, check player's level */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	|| ( !IS_NPC( ch )
+	    && ch->level < skill_table[gsn_rescue].skill_level[ch->class] ) )
     {
 	send_to_char(
 	    "You'd better leave the heroic acts to warriors.\n\r", ch );
@@ -2192,8 +2232,10 @@ void do_kick( CHAR_DATA *ch, char *argument )
     CHAR_DATA *victim;
     char       arg [ MAX_INPUT_LENGTH ];
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_kick].skill_level[ch->class] )
+    /* Don't allow charmed mobs to do this, check player's level */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	|| ( !IS_NPC( ch )
+	    && ch->level < skill_table[gsn_kick].skill_level[ch->class] ) )
     {
 	send_to_char(
 	    "You'd better leave the martial arts to fighters.\n\r", ch );
@@ -2253,8 +2295,10 @@ void do_disarm( CHAR_DATA *ch, char *argument )
     char       arg [ MAX_INPUT_LENGTH ];
     int        percent;
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_disarm].skill_level[ch->class] )
+    /* Don't allow charmed mobiles to do this, check player's level */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	|| ( !IS_NPC( ch )
+	    && ch->level < skill_table[gsn_disarm].skill_level[ch->class] ) )
     {
 	send_to_char( "You don't know how to disarm opponents.\n\r", ch );
 	return;
@@ -2595,7 +2639,8 @@ void do_feed( CHAR_DATA *ch, char *argument )
     damage( ch, victim, dam, gsn_vampiric_bite, WEAR_NONE );
 
     /* Lets see if we can get some food from this attack */
-    if ( number_percent( ) < ( 34 - victim->level + ch->level ) )
+    if (   !IS_NPC( ch )
+	&& number_percent( ) < ( 34 - victim->level + ch->level ) )
     {
         /* If not hungry, thirsty or damaged, then continue */
         if (   ch->pcdata->condition[COND_FULL  ] > 40

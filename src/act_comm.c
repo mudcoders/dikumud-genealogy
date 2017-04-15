@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        * 
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -488,7 +490,60 @@ void do_note( CHAR_DATA *ch, char *argument )
     return;
 }
 
+/*
+ * How to make a string look drunk by Apex <robink@htsa.hva.nl>
+ * Modified and enhanced by Maniac from Mythran
+ */
+char *makedrunk( char *string, CHAR_DATA *ch )
+{
+    char buf[ MAX_STRING_LENGTH ];
+    char temp;
+    int  randomnum;
+    int  drunkpos;
+    int  drunklevel = 0;
+    int  pos        = 0;
 
+    /* Check how drunk a person is... */
+    if ( !IS_NPC( ch ) )
+    {
+        if ( ( drunklevel = ch->pcdata->condition[ COND_DRUNK ] ) > 0 )
+	{
+	    do {
+	        temp     = UPPER( *string );
+		drunkpos = temp - 'A';
+
+		if ( ( temp >= 'A' ) && ( temp <= 'Z' ) )
+		{
+		    if ( drunklevel > drunk[ drunkpos ].min_drunk_level )
+		    {
+			randomnum =
+			  number_range( 0, drunk[ drunkpos ].number_of_rep );
+			strcpy( &buf[ pos ],
+			       drunk[ drunkpos ].replacement[ randomnum ] );
+			pos +=
+			  strlen( drunk[ drunkpos ].replacement[ randomnum ] );
+		    }
+		    else
+		        buf[ pos++ ] = *string;
+		}
+		else
+		{
+		    if ( ( temp >= '0' ) && ( temp <= '9' ) )
+		    {
+			temp         = '0' + number_range( 0, 9 );
+			buf[ pos++ ] = temp;
+		    }
+		    else
+		        buf[ pos++ ] = *string;
+		}
+	    }
+	    while ( *string++ );
+	    buf[ pos ] = '\0';
+	    strcpy( string, buf );
+	}
+    }
+    return( string );
+}
 
 /*
  * Generic channel function.
@@ -515,9 +570,10 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
     }
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
     }
 
@@ -539,6 +595,11 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	ch->position	= position;
 	break;
     }
+
+    /*
+     * Make the words look drunk if needed...
+     */
+    argument = makedrunk( argument, ch );
 
     for ( d = descriptor_list; d; d = d->next )
     {
@@ -656,11 +717,14 @@ void do_say( CHAR_DATA *ch, char *argument )
     }
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
     }
+
+    argument = makedrunk( argument, ch );
 
     act( "$n says '$T'", ch, NULL, argument, TO_ROOM );
     act( "You say '$T'", ch, NULL, argument, TO_CHAR );
@@ -676,9 +740,10 @@ void do_tell( CHAR_DATA *ch, char *argument )
     int        position;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
     }
 
@@ -703,6 +768,12 @@ void do_tell( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( !victim->desc )
+    {
+	act( "$N is link dead.", ch, 0, victim, TO_CHAR );
+	return;
+    }
+
     argument = one_argument( argument, arg );
 
     if ( arg[0] == '\0' || argument[0] == '\0' )
@@ -716,6 +787,8 @@ void do_tell( CHAR_DATA *ch, char *argument )
 	act( "$E can't hear you.", ch, 0, victim, TO_CHAR );
 	return;
     }
+
+    argument = makedrunk( argument, ch );
 
     act( "You tell $N '$t'", ch, argument, victim, TO_CHAR );
     position		= victim->position;
@@ -738,9 +811,10 @@ void do_reply( CHAR_DATA *ch, char *argument )
     int        position;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
     }
 
@@ -764,11 +838,19 @@ void do_reply( CHAR_DATA *ch, char *argument )
         return;
     }
 
+    if ( !victim->desc )
+    {
+	act( "$N is link dead.", ch, 0, victim, TO_CHAR );
+	return;
+    }
+
     if ( !IS_IMMORTAL( ch ) && !IS_AWAKE( victim ) )
     {
 	act( "$E can't hear you.", ch, 0, victim, TO_CHAR );
 	return;
     }
+
+    argument = makedrunk( argument, ch );
 
     act( "You tell $N '$t'",  ch, argument, victim, TO_CHAR );
     position		= victim->position;
@@ -1615,9 +1697,10 @@ void do_gtell( CHAR_DATA *ch, char *argument )
     }
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
     }
 
@@ -1627,14 +1710,18 @@ void do_gtell( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    argument = makedrunk( argument, ch );
+
     /*
      * Note use of send_to_char, so gtell works on sleepers.
      */
     sprintf( buf, "%s tells the group '%s'.\n\r", ch->name, argument );
+    
     for ( gch = char_list; gch; gch = gch->next )
     {
 	if ( is_same_group( gch, ch )
 	    && !IS_SET( gch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	    && !IS_SET( race_table[gch->race].race_abilities, RACE_MUTE )
 	    && !IS_AFFECTED( gch, AFF_MUTE ) )
 	    send_to_char( buf, gch );
     }
@@ -1642,6 +1729,45 @@ void do_gtell( CHAR_DATA *ch, char *argument )
     return;
 }
 
+/* Sent in by Judson Knott <jek@conga.oit.unc.edu> */
+void do_beep( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *victim;
+    char arg[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
+
+    if ( IS_NPC( ch ) )
+        return;
+
+    argument = one_argument( argument, arg );
+    
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Beep who?\n\r", ch );
+        return;
+    }
+
+    if ( !( victim = get_char_world( ch, arg ) ) )
+    {
+	send_to_char( "They are not here.\n\r", ch );
+	return;
+    }
+
+    if ( IS_NPC( victim ) )
+    {
+	send_to_char( "They are not beepable.\n\r", ch );
+	return;
+    }
+
+    sprintf( buf, "You beep %s.\n\r", victim->name );
+    send_to_char( buf, ch );
+    
+    sprintf( buf, "\a\a%s has beeped you.\n\r", ch->name );
+    send_to_char( buf, victim );
+
+    return;
+
+}
 
 
 /*

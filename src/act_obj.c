@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -361,8 +363,8 @@ void do_put( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( get_obj_weight( obj ) + get_obj_weight( container )
-	     > container->value[0] )
+	if (  get_obj_weight( obj ) + get_obj_weight( container )
+	    - container->weight > container->value[0] )
 	{
 	    send_to_char( "It won't fit.\n\r", ch );
 	    return;
@@ -609,8 +611,9 @@ void do_give( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( IS_OBJ_STAT( obj, ITEM_HOLY )
-	&& victim->race == race_lookup( "Vampire" ) )
+    if ( (   IS_OBJ_STAT( obj, ITEM_HOLY )
+	  && victim->race == race_lookup( "Vampire" ) )
+	|| ( IS_NPC( victim ) && ( victim->pIndexData->pShop ) ) )
     {
 	act( "$N refuses the $p.", ch, obj, victim, TO_CHAR );
 	act( "$n tries to give $N a $p but $E refuses.",
@@ -1507,13 +1510,15 @@ void do_recite( CHAR_DATA *ch, char *argument )
     }
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
     }
 
-    if ( IS_SET( ch->act , ACT_PET ) || IS_AFFECTED( ch, AFF_CHARM ) )
+    if ( ( IS_NPC( ch ) && IS_SET( ch->act, ACT_PET ) )
+	|| IS_AFFECTED( ch, AFF_CHARM ) )
     {
 	act( "You try to recite $p, but you have no free will.",
 	    ch, scroll, NULL, TO_CHAR );
@@ -1521,6 +1526,8 @@ void do_recite( CHAR_DATA *ch, char *argument )
 	    ch, scroll, NULL, TO_ROOM );
 	return;
     }
+
+    WAIT_STATE( ch, 2 * PULSE_VIOLENCE );
 
     act( "You recite $p.", ch, scroll, NULL, TO_CHAR );
     act( "$n recites $p.", ch, scroll, NULL, TO_ROOM );
@@ -1607,7 +1614,8 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( IS_SET( ch->act , ACT_PET ) || IS_AFFECTED( ch, AFF_CHARM ) )
+    if ( ( IS_NPC( ch ) && IS_SET( ch->act, ACT_PET ) )
+	|| IS_AFFECTED( ch, AFF_CHARM ) )
     {
 	act( "You try to brandish $p, but you have no free will.",
 	    ch, staff, NULL, TO_CHAR );
@@ -1784,7 +1792,8 @@ void do_zap( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    if ( IS_SET( ch->act , ACT_PET ) || IS_AFFECTED( ch, AFF_CHARM ) )
+    if ( ( IS_NPC( ch ) && IS_SET( ch->act, ACT_PET ) )
+	|| IS_AFFECTED( ch, AFF_CHARM ) )
     {
 	act( "You try to zap $p, but you have no free will.",
 	    ch, wand, NULL, TO_CHAR );
@@ -1953,7 +1962,7 @@ void do_steal( CHAR_DATA *ch, char *argument )
         percent += 10; /* Unseen characters steal better */
 
     if ( !str_prefix( arg1, "coins" ) || !str_cmp( arg1, "gold" ) )
-        percent *= 1.2; /* Gold is fairly easy to steal */
+        percent = (int) ( percent * 1.2 ); /* Gold is fairly easy to steal */
     else
     {
 	number = number_argument( arg1, arg );
@@ -1977,9 +1986,9 @@ void do_steal( CHAR_DATA *ch, char *argument )
 
 	if ( obj->wear_loc == WEAR_NONE )
 	    /* Items in inventory are harder */
-	    percent *= .8;
+	    percent = (int) ( percent * .8 );
 	else
-	    percent *= .4;
+	    percent = (int) ( percent * .4 );
     }
 
     if ( (         !IS_NPC( victim )
@@ -1987,7 +1996,7 @@ void do_steal( CHAR_DATA *ch, char *argument )
 		&& !IS_SET( victim->act, PLR_THIEF )
 		&& !IS_SET( victim->act, PLR_REGISTER )
 		&& victim->race != race_lookup( "Vampire" ) )
-	      ||   ch->level - victim->level > 5 ) )
+	      ||   ch->level - victim->level < 5 ) )
 	|| percent > number_percent( ) )
     {
 	/*
@@ -2196,14 +2205,20 @@ int get_cost( CHAR_DATA *keeper, OBJ_DATA *obj, bool fBuy )
 }
 
 
-
+/*
+ * Multiple object buy modifications by Erwin Andreasen
+ * Obtained from Canth's snippets page at:
+ * http://www.xs4all.nl/~phule/snippets/snippets.html
+ */
 void do_buy( CHAR_DATA *ch, char *argument )
 {
     char arg  [ MAX_INPUT_LENGTH ];
     char arg2 [ MAX_INPUT_LENGTH ];
+    char arg3 [ MAX_INPUT_LENGTH ];
 
     argument = one_argument( argument, arg );
-    one_argument( argument, arg2 );
+    argument = one_argument( argument, arg2);
+    one_argument( argument, arg3 );
 
     if ( arg[0] == '\0' )
     {
@@ -2289,6 +2304,14 @@ void do_buy( CHAR_DATA *ch, char *argument )
 	OBJ_DATA  *obj;
 	CHAR_DATA *keeper;
 	int        cost;
+	int        item_count = 1; /* buy only one by default */
+
+	if ( is_number( arg ) )
+	{
+	    item_count = atoi( arg );
+	    strcpy( arg, arg2 );
+	    strcpy( arg2, arg3 );
+	}
 
 	if ( !( keeper = find_keeper( ch, arg2 ) ) )
 	    return;
@@ -2304,12 +2327,37 @@ void do_buy( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( ch->gold < cost )
+	if ( item_count < 1 )
 	{
-	    act( "$n tells you 'You can't afford to buy $p'.",
-		keeper, obj, ch, TO_VICT );
-	    ch->reply = keeper;
+	    send_to_char( "Buy how many?  Number must be more than 0.\n\r",
+			 ch );
 	    return;
+	}
+
+	if ( ch->gold < ( cost * item_count ) )
+	{
+	    if ( item_count == 1 )
+	    {
+		act( "$n tells you 'You can't afford to buy $p'.",
+		    keeper, obj, ch, TO_VICT );
+		ch->reply = keeper;
+		return;
+	    }
+	    else
+	    {
+		char buf [ MAX_STRING_LENGTH ];
+
+		if ( ( ch->gold / cost ) > 0 )
+		    sprintf( buf,
+			    "$n tells you, 'You can only afford %d of those!'",
+			    ( ch->gold / cost ) );
+		else
+		    sprintf( buf, "$n tells you, 'You can't even afford 1'." );
+
+		act( buf, keeper, obj, ch, TO_VICT );
+		ch->reply = keeper;
+		return;
+	    }
 	}
 	
 	if ( obj->level > ch->level )
@@ -2320,28 +2368,58 @@ void do_buy( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( ch->carry_number + get_obj_number( obj ) > can_carry_n( ch ) )
+	if ( ch->carry_number + ( item_count * get_obj_number( obj ) ) >
+	    can_carry_n( ch ) )
 	{
 	    send_to_char( "You can't carry that many items.\n\r", ch );
 	    return;
 	}
 
-	if ( ch->carry_weight + get_obj_weight( obj ) > can_carry_w( ch ) )
+	if ( ch->carry_weight + ( item_count * get_obj_weight( obj ) ) >
+	    can_carry_w( ch ) )
 	{
 	    send_to_char( "You can't carry that much weight.\n\r", ch );
 	    return;
 	}
 
-	act( "You buy $p.", ch, obj, NULL, TO_CHAR );
-	act( "$n buys $p.", ch, obj, NULL, TO_ROOM );
-	ch->gold     -= cost;
+	if ( ( item_count > 1 )
+	    && !IS_SET( obj->extra_flags, ITEM_INVENTORY ) )
+	{
+	    act( "$n tells you, 'Sorry - $p is something I have only one of'",
+		keeper, obj, ch, TO_CHAR );
+	    ch->reply = keeper;
+	    return;
+	}
+
+	if ( item_count == 1 )
+	{
+	    act( "You buy $p.", ch, obj, NULL, TO_CHAR );
+	    act( "$n buys $p.", ch, obj, NULL, TO_ROOM );
+	}
+	else
+	{
+	    char buf [ MAX_STRING_LENGTH ];
+
+	    sprintf( buf, "$n buys %d * $p.", item_count );
+	    act( buf, ch, obj, NULL, TO_ROOM );
+	    sprintf( buf, "You buy %d * $p.", item_count );
+	    act( buf, ch, obj, NULL, TO_CHAR );
+	}
+
+	ch->gold     -= cost * item_count;
 
 	if ( IS_SET( obj->extra_flags, ITEM_INVENTORY ) )
-	    obj = create_object( obj->pIndexData, obj->level );
+	    for ( ; item_count > 0; item_count-- )
+	    {
+		obj = create_object( obj->pIndexData, obj->level );
+		obj_to_char( obj, ch );
+	    }
 	else
+	{
 	    obj_from_char( obj );
+	    obj_to_char( obj, ch );
+	}
 
-	obj_to_char( obj, ch );
 	return;
     }
 }
@@ -2598,8 +2676,11 @@ void do_poison_weapon( CHAR_DATA *ch, char *argument )
     OBJ_DATA *wobj;
     char      arg [ MAX_INPUT_LENGTH ];
 
-    if ( !IS_NPC( ch )                                                  
-	&& ch->level < skill_table[gsn_poison_weapon].skill_level[ch->class] )
+    /* Don't allow mobs or unskilled pcs to do this */
+    if ( IS_NPC( ch )
+	|| (  !IS_NPC( ch )
+	    && ch->level
+	    < skill_table[gsn_poison_weapon].skill_level[ch->class] ) )
     {                                          
 	send_to_char( "What do you think you are, a thief?\n\r", ch );
 	return;

@@ -1,11 +1,11 @@
       
 #HELPS
-    
+
 -1 GREETING~
 .
                    __ ____  ./|        ./\     ____ ____
 Based on          / __|_/"`/ /|_______/ / |   '"\_|_  @ \       By:
-Envy 2.0        /  /#/      | @/ _@@@@ \ @/          \#\  @ \     The EnvyMud
+Envy 2.2        /  /#/      | @/ _@@@@ \ @/          \#\  @ \     The EnvyMud
 ( see 'help   / @/##/        \|  .\ @ /. >            \##\  @ \       Staff
  envy' &    / @ |###|        | < .!| |!.|              |##\   @ \  ( see 'help
  'help     | @  |###|        |@ \  \ /  /\             |###|   @@|   wizlist' )
@@ -14,7 +14,7 @@ Envy 2.0        /  /#/      | @/ _@@@@ \ @/          \#\  @ \     The EnvyMud
            |@@  | \_\_\_\   |\ \@\  |   | |\@ \  |    |###/  /     /
            |@@  |   \)\)\)__|  \\@ \|   | |/\ @@\|    |#/  /     /
            | @  |  |_____|       \@ |   | |/ \ @@|    | \/     /@|  Mud Version
-            \ @ |   _____|   |\    \|   |  \/ \ /     |      /  @|   2.0.0
+            \ @ |   _____|   |\    \|   |  \/ \ /     |      /  @|   2.2
 DikuMud       \ |  |_____|__ |  \       |    \/      /      |   @|
 was created    \|           ||    \     |          / |      |\ @@|
 by:  Han Henrik |___________||  ____\___| \______/___|______|@ \@|
@@ -22,9 +22,8 @@ Staerfeldt, Katja    |     \  /     |   | |   |   _     \     @@ \   Kahn,
 Nyboe, Tom Madsen,   |      \/      |   | |   |  | |     |     @@ \   Hatchet,
 Michael Seifert,     |   |\    /|   |   |_|   |  |_|     |      @@ \   and
 and Sebastian Hammer |___| \__/ |___|\_______/|_________/           |   Staff
-( see 'help diku' )			       email: envy@uclink3.berkeley.edu
-	WWW Home Page: http://www.teleport.com/-morpheus/envy.html
-					       \_tilde
+( see 'help diku' )		 (C) '93 - '97	email: envy@mud.envy.com
+
 State thy name: ~
 
 -1 HANDBOOK~
@@ -44,7 +43,7 @@ Be helpful..and use your best judgement ||     is near death then flee/goto
   Have Fun                              ||   Meddle in the affairs of mortals
                                         ||     unless harrassment is going on
                                         ||   Be anal
-                                        ||   Have your Mortal and immortal chars
+                                        ||   Have your Mortal & immortal chars
 					||     on at the same time
 =============================================================================
  
@@ -62,8 +61,9 @@ or to render them null and void.
 ~
 
 -1 MOTD~
-.
-If you read this motd, press Return.
+************************* This is the MOTD **************************
+
+Please press <Enter> to continue
 ~
 
 50 IMOTD~
@@ -107,12 +107,14 @@ Use these commands to walk in a particular direction.
 ~
 
 0 BUY LIST SELL VALUE~
-Syntax: buy   <object>       <shopkeeper>
-Syntax: list  <object | all> <shopkeeper>
-Syntax: sell  <object>       <shopkeeper>
-Syntax: value <object>       <shopkeeper>
+Syntax: buy   <number> <object> <shopkeeper>
+Syntax: list  <object | all>    <shopkeeper>
+Syntax: sell  <object>          <shopkeeper>
+Syntax: value <object>          <shopkeeper>
 
-BUY buys an object from the first shop keeper if no shopkeeper is identified.
+BUY buys an object from a shop keeper.  If no quantity is given, the
+default is 1.  If no shopkeeper is identified, the first shop keeper
+is selected.
 
 LIST with no argument and LIST ALL lists the objects the first shop keeper
 will sell you.
@@ -283,7 +285,8 @@ DISARM is an auxiliary fighting command to disarm your opponent.  Similarly,
 KICK will inflict more damage during combat by kicking.
 
 A skilled thief can CIRCLE behind an opponent and stab them in the back,
-but only if they are sufficiently distracted during a battle.
+but only if the opponent is sufficiently distracted during a battle
+and the thief is free from fending away attacks.
 
 In order to BACKSTAB, CIRCLE, DISARM, or KICK successfully, you must practice
 the appropriate skill.
@@ -378,7 +381,8 @@ Benefits of PKILLing:
 Penalties for death:
 
       Victim loses random number between 250-750 exps.  If Victim is not
-      registered, Victim will lose 0 exps.
+      registered, Victim will lose 0 exps.  If Victim falls below 1000 exps,
+      he/she will be removed from game.
 
       Victim loses equal money gained by Victor.
 ~
@@ -754,9 +758,9 @@ Any spells which were affecting you, good and bad, are canceled by death.
 
 Following and groups are not affected by death.
 
-You lose experience points for dying.  The amount you lose is half-way back to
-the beginning of your previous level.  Thus if you have a bad day and
-die several times, the penalties won't clobber you.
+You lose experience points for dying.  The amount you lose is quarter-way
+back to the beginning of your previous level.  Thus if you have a bad day
+and die several times, the penalties won't clobber you.
 
 Corpses decay after time, and the objects inside corpses decay with them.
 ~
@@ -1000,7 +1004,7 @@ This mud is based on Merc 2.2, created by Kahn, Hatchet, and Furey.  Merc 2.2
 is an upgrade from Merc 2.1, created by Furey, Hatchet, and Kahn.  Merc 2.2
 is available as Merc_22.tar.gz from ferkel.ucsb.edu (most files moved to
 ftp.tcp.com), ftp.math.okstate.edu, marble.bu.edu, zen.btc.uwe.ac.uk
-E-mail to 'merc-l-request@netcom.com' to join the merc mailing list.
+E-mail to 'merc-l-request@webnexus.com' to join the merc mailing list.
 
 Thanks to ...
   ... Diku Mud for starting it all.
@@ -1031,19 +1035,21 @@ MERC Industries
 -1 ENVY~
 [Note: this entry may not be removed or altered or you will face legal
  action.  See our 'license.nvy'.]
-This mud is based on EnvyMud 2.0, created by the EnvyMud Staff.  EnvyMud
-is based on Envy 1.0, created by Kahn, Thelonius, Kith, and Hatchet.  Envy 2.0
-is available as Envy_20.tar.gz from 206.24.105.9, unix.mclv.net,
-ftp.solace.mh.se, zen.btc.uwe.ac.uk, and ftp.math.okstate.edu under
-/pub/mud/servers.  The file is about 899200 bytes long.
-E-mail to 'merc-l-request@webnexus.com' to join the merc mailing list.
+This mud is based on EnvyMud 2.2, created by the EnvyMud Staff.  EnvyMud
+is based on Envy 2.0, created by Kahn, Thelonius, Kith, and Hatchet.
+Envy 2.2 is available as Envy_22.tar.gz from ftp.envy.com,
+ftp.solace.mh.se, ftp.tem.nctu.edu.tw, ftp.game.org, and
+ftp.goodnet.com under /pub/mud/servers.  The file is about 963835
+bytes long.  E-mail to 'merc-l-request@webnexus.com' to join the merc
+mailing list.
 
 Thanks to ...
   ... Zrin for administering the mailing list.
-  ... Surreality of The Isles for his contributions to the mud world.  He will
-      be missed.  Rest in peace dude.
   ... the many implementors and contributors on the merc mailing list
 
+  ... D'Sai, Elwyn, Averon, Fusion, Canth, Maniac, Vego, Rassilon,
+      Cyanide, Judson Knott, LordROM, Kenneth Dugas, JKallie, Erwin A.,
+      Derek Snider, Picard, Evii, Mystro, Dave Kaupp, JohnPaul, Zeke.
   ... AND the many players of EnvyMud for which this mud was created.
 
 Share and enjoy.
@@ -1950,9 +1956,13 @@ PURGE will not get rid of PC's.
 
 53 RESTORE~
 Syntax: restore <character>
+Syntax: restore all
 
 RESTORE restores full hit points, mana points, and movement points to the
 target character.
+
+RESTORE ALL restores full hit points, mana points, and movement points
+to all players and mobiles.
 ~
 
 54 SSTIME~

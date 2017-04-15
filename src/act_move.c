@@ -11,6 +11,8 @@
  *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
  *  Mitchell Tse.                                                          *
  *                                                                         *
+ *  EnvyMud 2.2 improvements copyright (C) 1996, 1997 by Michael Quan.     *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -101,7 +103,8 @@ void move_char( CHAR_DATA *ch, int door )
     if ( IS_SET( pexit->exit_info, EX_CLOSED ) )
     {
         if ( !IS_AFFECTED( ch, AFF_PASS_DOOR )
-	    && !IS_SET( race_table[ ch->race ].race_abilities, RACE_PASSDOOR ) )
+	    && !IS_SET( race_table[ ch->race ].race_abilities,
+		       RACE_PASSDOOR ) )
         {
 	    act( "The $d is closed.",
 		ch, NULL, pexit->keyword, TO_CHAR );
@@ -109,7 +112,7 @@ void move_char( CHAR_DATA *ch, int door )
 	}
 	if ( IS_SET( pexit->exit_info, EX_PASSPROOF ) )
         {
-	    act( "You are unable to pass through the $d.",
+	    act( "You are unable to pass through the $d.  Ouch!",
 		ch, NULL, pexit->keyword, TO_CHAR );
 	    return;
 	}
@@ -181,8 +184,9 @@ void move_char( CHAR_DATA *ch, int door )
 	     * Suggestion for flying above water by Sludge
 	     */
 	    if ( IS_AFFECTED( ch, AFF_FLYING )
-		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_FLY )
-		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_WATERWALK )
+		|| IS_SET( race_table[ ch->race ].race_abilities,  RACE_FLY )
+		|| IS_SET( race_table[ ch->race ].race_abilities,
+			                                     RACE_WATERWALK )
 		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
 	        found = TRUE;
 
@@ -261,8 +265,15 @@ void move_char( CHAR_DATA *ch, int door )
 	act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
 	damage( ch, ch, 2, TYPE_UNDEFINED, WEAR_NONE );
     }
-    
-    do_look( ch, "auto" );
+
+    /*
+     * Suggested by D'Sai from A Moment in Tyme Mud.  Why have mobiles
+     * see the room?  -Kahn
+     */
+    if ( ch->desc )
+    {
+	do_look( ch, "auto" );
+    }
 
     SET_BIT( ch->act, moved );
 
@@ -707,7 +718,10 @@ void do_pick( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    if ( !IS_NPC( ch ) && number_percent( ) > ch->pcdata->learned[gsn_pick_lock] )
+    /* Check skill roll for player-char, make sure mob isn't charmed */
+    if ( (  !IS_NPC( ch )
+	  && number_percent( ) > ch->pcdata->learned[gsn_pick_lock] )
+	|| ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) ) )
     {
 	send_to_char( "You failed.\n\r", ch);
 	return;
@@ -888,8 +902,10 @@ void do_sneak( CHAR_DATA *ch, char *argument )
 {
     AFFECT_DATA af;
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_sneak].skill_level[ch->class] )
+    /* Don't allow charmed mobs to do this, check player's skill */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	|| ( !IS_NPC( ch )
+	    && ch->level < skill_table[gsn_sneak].skill_level[ch->class] ) )
     {
         send_to_char( "Huh?\n\r", ch );
 	return;
@@ -915,8 +931,10 @@ void do_sneak( CHAR_DATA *ch, char *argument )
 
 void do_hide( CHAR_DATA *ch, char *argument )
 {
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_hide].skill_level[ch->class] )
+    /* Dont allow charmed mobiles to do this, check player's skill */
+    if ( ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	|| ( !IS_NPC( ch )
+	    && ch->level < skill_table[gsn_hide].skill_level[ch->class] ) )
     {
         send_to_char( "Huh?\n\r", ch );
 	return;
@@ -1326,8 +1344,9 @@ void do_bash( CHAR_DATA *ch, char *argument )
     char       arg [ MAX_INPUT_LENGTH ];
     int        door;
 
-    if ( !IS_NPC( ch )
-	&& ch->level < skill_table[gsn_bash].skill_level[ch->class] )
+    if ( IS_NPC( ch ) || ( !IS_NPC( ch )
+			  && ch->level
+			  < skill_table[gsn_bash].skill_level[ch->class] ) )
     {
 	send_to_char( "You're not enough of a warrior to bash doors!\n\r",
 		     ch );
@@ -1489,8 +1508,10 @@ void do_snare( CHAR_DATA *ch, char *argument )
 	/* No argument, but already fighting: valid use of snare */
 	WAIT_STATE( ch, skill_table[gsn_snare].beats );
 
-	if ( IS_NPC( ch )
-	    || number_percent( ) < ch->pcdata->learned[gsn_snare] )
+	/* Only appropriately skilled PCs and uncharmed mobs */
+	if ( ( IS_NPC( ch ) && !IS_AFFECTED( ch, AFF_CHARM ) )
+	    || ( !IS_NPC( ch )
+		&& number_percent( ) < ch->pcdata->learned[gsn_snare] ) )
 	{    
 	    affect_strip( victim, gsn_snare );  
 
@@ -1541,8 +1562,11 @@ void do_snare( CHAR_DATA *ch, char *argument )
 	    }                             
 	    WAIT_STATE( ch, skill_table[gsn_snare].beats );
 
-	    if ( IS_NPC( ch )       /* here, arg supplied, ch not fighting  */
-		|| number_percent( ) < ch->pcdata->learned[gsn_snare] )
+	    /* here, arg supplied, ch not fighting */
+	    /* only appropriately skilled PCs and uncharmed mobs */
+	    if ( ( IS_NPC( ch ) && !IS_AFFECTED( ch, AFF_CHARM ) )
+		|| ( !IS_NPC( ch )
+		    && number_percent( ) < ch->pcdata->learned[gsn_snare] ) )
 	    {
 		affect_strip( victim, gsn_snare );  
 
@@ -1567,14 +1591,25 @@ void do_snare( CHAR_DATA *ch, char *argument )
 		act( "$n attempted to ensnare $N, but failed!",
 		    ch, NULL, victim, TO_NOTVICT );
 	    }
-	    multi_hit( victim, ch, TYPE_UNDEFINED );
+	    if ( IS_NPC( ch ) && IS_AFFECTED( ch, AFF_CHARM ) )
+	    {
+		/* go for the one who wanted to fight :) */
+		multi_hit( victim, ch->master, TYPE_UNDEFINED );
+	    }
+	    else
+	    {
+	        multi_hit( victim, ch, TYPE_UNDEFINED );
+	    }
 	}
 	else
 	{
+	    /* we are already fighting the intended victim */
 	    WAIT_STATE( ch, skill_table[gsn_snare].beats );
 
-	    if ( IS_NPC( ch )
-		|| number_percent( ) < ch->pcdata->learned[gsn_snare] )
+	    /* charmed mobs not allowed to do this */
+	    if ( ( IS_NPC( ch ) && !IS_AFFECTED( ch, AFF_CHARM ) )
+		|| ( !IS_NPC( ch )
+		    && number_percent( ) < ch->pcdata->learned[gsn_snare] ) )
 	    {
 		affect_strip( victim, gsn_snare );  
 
@@ -1666,9 +1701,10 @@ void do_bet( CHAR_DATA *ch, char *argument )
     CHAR_DATA *croupier;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
+	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
         || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;
     }
 
@@ -1685,6 +1721,7 @@ void do_bet( CHAR_DATA *ch, char *argument )
 	if ( IS_NPC( croupier )
 	    && IS_SET( croupier->act, ACT_GAMBLE )
 	    && !IS_AFFECTED( croupier, AFF_MUTE )
+	    && !IS_SET( race_table[croupier->race].race_abilities, RACE_MUTE )
 	    && croupier != ch )
 	    break;
     }
@@ -1747,6 +1784,12 @@ void game_u_l_t( CHAR_DATA *ch, CHAR_DATA *croupier, char *argument )
 	return;
     }
 
+    if ( amount < 0 )
+    {
+	send_to_char( "You are unable to wager imaginary gold.\n\r", ch );
+	return;
+    }
+	
     if ( amount > atoi( limit ) )
     {
 	act( "$n tells you, 'Sorry, the house limit is $t.'",
