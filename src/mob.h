@@ -15,7 +15,7 @@
 
 
 
-/* For 'char_player_data' */
+
 
 #define MAX_TONGUE  3     /* Used in CHAR_FILE_U *DO*NOT*CHANGE* */
 #define MAX_SKILLS  400   /* Used in CHAR_FILE_U *DO*NOT*CHANGE* */
@@ -33,16 +33,16 @@
 #define AFF_DETECT_INVISIBLE  8
 #define AFF_DETECT_MAGIC      16
 #define AFF_SENSE_LIFE        32
-#define AFF_HOLD              64
+#define AFF_HASTE              64
 #define AFF_SANCTUARY         128
 #define AFF_GROUP             256
 #define AFF_CURSE             1024
-#define AFF_FLAMING           2048
+#define unused0	              2048
 #define AFF_POISON            4096
 #define AFF_PROTECT_EVIL      8192
 #define AFF_PARALYSIS         16384
-#define AFF_MORDEN_SWORD      32768
-#define AFF_FLAMING_SWORD     65536
+#define unused1               32768
+#define unused2              65536
 #define AFF_SLEEP             131072
 #define AFF_DODGE             262144
 #define AFF_SNEAK             524288
@@ -50,7 +50,7 @@
 #define AFF_FEAR              2097152
 #define AFF_CHARM             4194304
 #define AFF_FOLLOW            8388608
-#define AFF_WIMPY            16777216
+#define unused3             16777216
 #define AFF_INFRARED         33554432
 #define AFF_THIEF            67108864
 #define AFF_KILLER          134217728
@@ -119,30 +119,27 @@
 
 
 /* for mobile actions: specials.act */
-#define ACT_SPEC         1     /* special routine to be called if exist   */
-#define ACT_SENTINEL     2     /* this mobile not to be moved             */
-#define ACT_SCAVENGER    4     /* pick up stuff lying around              */
-#define ACT_ISNPC        8     /* This bit is set for use with IS_NPC()   */
-#define ACT_NICE_THIEF  16     /* Set if a thief should NOT be killed     */
-#define ACT_AGGRESSIVE  32     /* Set if automatic attack on NPC's        */
-#define ACT_STAY_ZONE   64     /* MOB Must stay inside its own zone       */
-#define ACT_WIMPY      128     /* MOB Will flee when injured, and if      */
-			       /* aggressive only attack sleeping players */
-#define ACT_2ND_ATTACK 256     /* Set this mobile to have 2nd attack      */
-#define ACT_3RD_ATTACK 512     /* Set this mobile to have 3rd attack      */
-#define ACT_4TH_ATTACK 1024    /* Set this mobile to have 4th attack      */
-			       /* Each attack bit must be set to get up   */
-			       /* 4 attacks                               */
-/*
- * For ACT_AGGRESSIVE_XXX, you must also set ACT_AGGRESSIVE
- * These switches can be combined, if none are selected, then
- * the mobile will attack any alignment (same as if all 3 were set)
- */
-#define ACT_AGGR_EVIL       2048    /* Auto attack evil PC's    */
-#define ACT_AGGR_GOOD       4096    /* Auto attack good PC's    */
-#define ACT_AGGR_NEUT       8192    /* Auto attack neutral PC's */
-#define ACT_AGGR_ALL        (ACT_AGGR_EVIL|ACT_AGGR_GOOD|ACT_AGGR_NEUT)
-#define ACT_UNDEAD             16384    /* The undead flag              */
+#define ACT_SPEC           1     /* special routine to be called if exist   */
+#define ACT_SENTINEL       2     /* this mobile not to be moved             */
+#define ACT_SCAVENGER      4     /* pick up stuff lying around              */
+#define ACT_ISNPC          8     /* This bit is set for use with IS_NPC()   */
+#define ACT_NICE_THIEF    16     /* Set if a thief should NOT be killed     */
+#define ACT_AGGRESSIVE    32     /* Set if automatic attack on NPC's        */
+#define ACT_STAY_ZONE     64     /* MOB Must stay inside its own zone       */
+#define ACT_WIMPY        128     /* MOB Will flee when injured, and if      */
+/* reserved for 2.0 */
+
+#define ACT_UNDEAD        16384     /* Mob will have undead abilities */
+#define ACT_CLERIC        65536     /* Mob will use cleric abilities */
+#define ACT_MAGE         131072     /* Mob will use magic-user abilities */
+#define ACT_THIEF        262144     /* Mob will use thief abilities */
+#define ACT_WARRIOR      524288     /* Mob will use warrior abilities */
+#define ACT_FAST        1048576     /* Mob gets extra attacks and healing */
+#define ACT_NOPURGE    2097152     /* Mob is not affected by purge all */
+#define ACT_AREA_ATTACK 4194304     /* Mob attacks all characters fighting it */
+#define ACT_NOSUMMON   8388608     /* Mob cannot be summoned or charmed */
+#define ACT_NOMAGIC   16777216     /* Mob cannot be harmed by magic */
+#define ACT_NOWEAPON 33554432     /* Mob cannot be harmed by weapons */ 
     
 /* For players : specials.act */
 #define PLR_BRIEF        1
@@ -152,8 +149,28 @@
 #define PLR_NOTELL      16
 #define PLR_NOEMOTE     32
 #define PLR_LOG         64 /* log activities of this player. */
-#define PLR_FREEZE     128 /* No commands available */
-
+#define PLR_FREEZE     	128 /* No commands available */
+#define PLR_NOGOSSIP   	256
+#define PLR_NOAUCTION  	512
+#define PLR_NOMUSIC   	1024
+#define PLR_NOQUESTION	2048	
+#define PLR_KILLER	4096
+#define PLR_THIEF	8192
+#define PLR_NOSUMMON	16384
+#define PLR_QUIET	32768
+#define PLR_DEAF	65536
+#define PLR_NOWIZ	131072  /* cannot hear wizard channel */
+#define PLR_WIMPY	262144
+#define PLR_CANLOOT	524288
+#define PLR_NOFOLLOW	1048576
+#define PLR_AUTOSPLIT	2097152
+#define PLR_AUTOLOOT	4194304
+#define PLR_AUTOGOLD	8388608
+#define PLR_AUTOSAC	16777216
+#define PLR_AUTOEXIT	33554432
+#define PLR_AUTOASSIST	67108864
+#define PLR_GOD		134217728
+#define PLR_NOCHANNELS  268435456
 
 
 struct char_player_data
@@ -215,7 +232,7 @@ struct char_special_data
 
     byte position;           /* Standing or ...                         */
     byte default_pos;        /* Default position for NPC                */
-    ubyte act;               /* flags for NPC behavior                  */
+    long act;               /* flags for NPC behavior                  */
 
     ubyte practices;         /* How many can you learn yet this level   */
 
@@ -230,9 +247,13 @@ struct char_special_data
     byte damsizedice;         /* The size of the damage dice's          */
     byte last_direction;      /* The last direction the monster went    */
     int attack_type;          /* The Attack Type Bitvector for NPC's    */
+    byte stun_time;	      /* used to measure stun time for NPC's   */
     int alignment;            /* +-1000 for alignments                  */
     bool holyLite;            /* Holy lite mode */
     bool wizInvis;            /* If on, people can't see you. */
+    int invis_level;	      /* Used to set the level of invisibility */
+    int rows;
+    bool will_save;	      /* will be saved on next autosave */ 
     bool unused;
 };
 
@@ -281,7 +302,8 @@ struct char_data
   struct char_point_data points;        /* Points                        */
   struct char_special_data specials;    /* Special plaing constants      */
   struct char_skill_data skills[MAX_SKILLS]; /* Skills                   */
-  
+
+
   struct affected_type *affected;       /* affected by what spells       */
   struct obj_data *equipment[MAX_WEAR]; /* Equipment array               */
   
@@ -343,5 +365,7 @@ struct char_file_u
     char pwd[11];
     sh_int apply_saving_throw[5];
     int conditions[3];
-    int unused[100];
+    long spec_flags;
+    int rows;
+    int unused[97];
 };

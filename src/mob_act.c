@@ -39,10 +39,21 @@ void mobile_activity(void)
     /* Examine all mobs. */
     for ( ch = character_list; ch; ch = ch->next )
     {
-	if ( !IS_MOB(ch) )
+	if ( !IS_MOB(ch))
 	    continue;
 
 	/* Examine call for special procedure */
+        if (!IS_SET(ch->specials.act, ACT_SPEC))
+        {
+	    if(mob_index[ch->nr].func)
+	    {
+		sprintf(log_buf, "Mobile_acitviy: MOB %d needs action bit",
+	  		 mob_index[ch->nr].virtual );
+		log( log_buf );
+		SET_BIT( ch->specials.act, ACT_SPEC );
+	    }
+        }
+
 	if ( IS_SET(ch->specials.act, ACT_SPEC) )
 	{
 	    if (!mob_index[ch->nr].func)
@@ -65,7 +76,7 @@ void mobile_activity(void)
 
 	/* Scavenge */
 	if ( IS_SET(ch->specials.act, ACT_SCAVENGER)
-	&& world[ch->in_room].contents && number(0,10) == 0 )
+	&& world[ch->in_room].contents && number(0,10) == 0  && !(ch->desc))
 	{
 	    max         = 1;
 	    best_obj    = 0;
@@ -89,6 +100,7 @@ void mobile_activity(void)
 
 	/* Wander */
 	if ( !IS_SET(ch->specials.act, ACT_SENTINEL)
+        && !(ch->desc)
 	&& GET_POS(ch) == POSITION_STANDING
 	&& (door = number(0,45)) <= 5
 	&& CAN_GO(ch, door)
@@ -107,7 +119,8 @@ void mobile_activity(void)
 	}
 
 	/* Aggress */
-	if ( IS_SET(ch->specials.act, ACT_AGGRESSIVE) )
+	if (( IS_SET(ch->specials.act, ACT_AGGRESSIVE) && !(ch->desc)
+        && !( IS_AFFECTED( ch, AFF_CHARM ) ) ))
 	{
 	    for ( tmp_ch = world[ch->in_room].people; tmp_ch;
 	    tmp_ch = tmp_ch->next_in_room )
@@ -117,15 +130,8 @@ void mobile_activity(void)
 		if ( IS_SET(ch->specials.act, ACT_WIMPY) && AWAKE(tmp_ch) )
 		    continue;
 
-		if ( ( IS_SET(ch->specials.act, ACT_AGGR_EVIL)
-		    && IS_EVIL(tmp_ch) ) 
-		||   ( IS_SET(ch->specials.act, ACT_AGGR_NEUT)
-		    && IS_NEUTRAL(tmp_ch) ) 
-		||   ( IS_SET(ch->specials.act, ACT_AGGR_GOOD)
-		    && IS_GOOD(tmp_ch) )
-		||   ( ch->specials.act & ACT_AGGR_ALL ) == 0 )
 		{
-		  hit(ch, tmp_ch, 0);
+		  if (GET_LEVEL(tmp_ch) < 32) hit(ch, tmp_ch, 0);
 		  break;
 		}
 	    }

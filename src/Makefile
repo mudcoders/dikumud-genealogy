@@ -1,6 +1,6 @@
 PROF =
-C_FLAGS = -O -Wall $(PROF)
-L_FLAGS = -O $(PROF)
+C_FLAGS = -O -g  -Wall $(PROF)
+L_FLAGS =  -O -g $(PROF)
 LIBS = -lcrypt
 
 O_FILES = act_comm.o act_info.o act_move.o act_o1.o act_o2.o act_off.o \

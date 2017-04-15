@@ -45,7 +45,6 @@ void assign_mobiles(void)
     SPEC_FUN	mayor;
     SPEC_FUN	snake;
     SPEC_FUN	thief;
-    SPEC_FUN	magic_user;
     SPEC_FUN	red_dragon;
     SPEC_FUN	blue_dragon;
     SPEC_FUN	green_dragon;
@@ -55,8 +54,6 @@ void assign_mobiles(void)
     SPEC_FUN	adept;
     SPEC_FUN	brass_dragon;
     SPEC_FUN	baby_troll;
-    SPEC_FUN	Fanatic_Hector;
-    SPEC_FUN	Thalos_citizen;
     SPEC_FUN	Executioner;
     SPEC_FUN	MERCling;
     SPEC_FUN	train;
@@ -67,6 +64,7 @@ void assign_mobiles(void)
     mob_index[real_mobile(207)].func = adept;
     mob_index[real_mobile(208)].func = adept;
     mob_index[real_mobile(214)].func = fido;
+    mob_index[real_mobile(1601)].func = fido;
     mob_index[real_mobile(218)].func = train;
     mob_index[real_mobile(219)].func = guild;
     mob_index[real_mobile(250)].func = MERCling;
@@ -90,6 +88,10 @@ void assign_mobiles(void)
     mob_index[real_mobile(3027)].func = guild_guard;
 
     mob_index[real_mobile(3143)].func = mayor;
+
+    /* Dwarven Catacombs */
+
+
       
     /* MIDEN'NIR */
     mob_index[real_mobile(3500)].func = snake;
@@ -100,37 +102,30 @@ void assign_mobiles(void)
     mob_index[real_mobile(4053)].func = snake;
 
     mob_index[real_mobile(4103)].func = thief;
-    mob_index[real_mobile(4100)].func = magic_user;
     mob_index[real_mobile(4102)].func = snake;
 
     mob_index[real_mobile(4150)].func = blue_dragon;
     mob_index[real_mobile(4151)].func = red_dragon;
     mob_index[real_mobile(4152)].func = green_dragon;
-    mob_index[real_mobile(4153)].func = white_dragon;
     mob_index[real_mobile(4154)].func = black_dragon;
     mob_index[real_mobile(5005)].func = brass_dragon;
-    mob_index[real_mobile(5377)].func = white_dragon;
     mob_index[real_mobile(4155)].func = thief;
-    mob_index[real_mobile(4157)].func = magic_user;
     mob_index[real_mobile(4158)].func = snake;
 
     /* mages and mage types */
-    mob_index[real_mobile(5200)].func = magic_user;
-    mob_index[real_mobile(7200)].func = magic_user;
-    mob_index[real_mobile(7201)].func = magic_user;
-    mob_index[real_mobile(7202)].func = magic_user;
 
     /* more dragons */
     mob_index[real_mobile(5050)].func = green_dragon;
-    mob_index[real_mobile(5377)].func = white_dragon;
     mob_index[real_mobile(6112)].func = green_dragon;
     mob_index[real_mobile(6302)].func = red_dragon;
     mob_index[real_mobile(6302)].func = green_dragon;
     mob_index[real_mobile(6316)].func = green_dragon;
     mob_index[real_mobile(6317)].func = green_dragon;
     mob_index[real_mobile(350)].func  = green_dragon;
-    mob_index[real_mobile(1000)].func = magic_user; /* faerie dragon */
     mob_index[real_mobile(5010)].func = red_dragon; /* draco lich    */
+
+    /* Arachnos */
+
 
     /* SEWERS */
     mob_index[real_mobile(7006)].func = snake;
@@ -140,35 +135,69 @@ void assign_mobiles(void)
     mob_index[real_mobile(6113)].func = snake;
     mob_index[real_mobile(6114)].func = snake;
 
-    mob_index[real_mobile(6910)].func = magic_user;
-    mob_index[real_mobile(3404)].func = magic_user;
     mob_index[real_mobile(2828)].func = baby_troll;
+  
 
-    /* Thalos */
-    mob_index[real_mobile(503)].func  = cityguard;
-    mob_index[real_mobile(502)].func  = Thalos_citizen;
-    mob_index[real_mobile(504)].func  = Thalos_citizen;
-    mob_index[real_mobile(506)].func  = Fanatic_Hector;
-    mob_index[real_mobile(507)].func  = magic_user;
+    /* Drow */
+
+
+    /* Misc missing procedures */
+
+    mob_index[real_mobile(5017)].func = snake; /* camel */
+    mob_index[real_mobile(5003)].func = snake; /* scorpion */
+    mob_index[real_mobile(9577)].func = snake; /* hornet */
+    mob_index[real_mobile(9570)].func = white_dragon; /* cryohydra */
+    mob_index[real_mobile(9574)].func = blue_dragon; /* behir */
+    mob_index[real_mobile(9575)].func = red_dragon; /* chimera */
+    mob_index[real_mobile(9561)].func = cityguard; /* sultans guard*/
+    mob_index[real_mobile(9562)].func = cityguard; /* royal guard */
+    mob_index[real_mobile(7203)].func = snake; /* wererat */
+    mob_index[real_mobile(7003)].func = snake; /* spider */ 
+
+
+
+
+
+    /* SHIRE */
+
+    mob_index[real_mobile(9401)].func = snake;
+    mob_index[real_mobile(9410)].func = cityguard;
+    mob_index[real_mobile(9411)].func = cityguard;
+    mob_index[real_mobile(9412)].func = cityguard;
+    mob_index[real_mobile(9421)].func = cityguard;
+    mob_index[real_mobile(9422)].func = thief;
+    mob_index[real_mobile(9432)].func = cityguard;
+
+    /* New Thalos */
+
+    mob_index[real_mobile(9500)].func = guild;
+    mob_index[real_mobile(9501)].func = guild;
+    mob_index[real_mobile(9502)].func = guild;
+    mob_index[real_mobile(9503)].func = guild;
+    mob_index[real_mobile(9535)].func = thief;
+    mob_index[real_mobile(9556)].func = guild_guard;
+    mob_index[real_mobile(9557)].func = guild_guard;
+    mob_index[real_mobile(9558)].func = guild_guard;
+    mob_index[real_mobile(9559)].func = guild_guard;
+    mob_index[real_mobile(9582)].func = train;
+    mob_index[real_mobile(9538)].func = thief;
+    mob_index[real_mobile(9544)].func = fido;    /* vulture */
+
+
+
     
     boot_the_shops();
     assign_the_shopkeepers();
 }
 
 /* assign special procedures to objects */
+
 void assign_objects(void)
 {
-    int board(struct char_data *ch, int cmd, char *arg);
-
-    obj_index[real_object(3099)].func = board;
 }
-
 
 
 /* assign special procedures to rooms */
 void assign_rooms(void)
 {
-    int pet_shops(struct char_data *ch, int cmd, char *arg);
-
-    world[real_room(3031)].funct = pet_shops;
 }

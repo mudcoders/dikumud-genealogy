@@ -58,6 +58,7 @@ void cast_blindness( byte level, struct char_data *ch, char *arg, int si, struct
 void cast_burning_hands( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_call_lightning( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_charm_person( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
+void cast_calm( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_chill_touch( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_shocking_grasp( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_clone( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
@@ -82,6 +83,7 @@ void cast_harm( byte level, struct char_data *ch, char *arg, int si, struct char
 void cast_heal( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_invisibility( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_lightning_bolt( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
+void cast_chain_lightning( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_locate_object( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_magic_missile( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_poison( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
@@ -94,6 +96,8 @@ void cast_summon( byte level, struct char_data *ch, char *arg, int si, struct ch
 void cast_ventriloquate( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_word_of_recall( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_remove_poison( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
+void cast_cure_disease( byte level, struct char_data *ch, char *arg, int si, 
+struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_sense_life( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_identify( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_fear( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
@@ -124,6 +128,8 @@ void cast_infravision( byte level, struct char_data *ch, char *arg, int si, stru
 void cast_sandstorm( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_hands_of_wind( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 void cast_plague( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
+void cast_haste ( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
+void cast_frenzy ( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
 
 struct spell_info_type spell_info[MAX_SPL_LIST];
 
@@ -214,6 +220,11 @@ char *spells[]=
    "hands of wind",
    "plague",             /* 80 */
    "refresh",
+   "cure disease",
+   "calm",
+   "chain lightning",
+   "haste",
+   "frenzy",
    "\n"
 };
 
@@ -472,25 +483,53 @@ void say_spell( struct char_data *ch, int si )
 
 
 
-bool saves_spell(struct char_data *ch, sh_int save_type)
+bool saves_spell(struct char_data *ch, sh_int save_type, byte level)
 {
     int save;
 
-    /* Negative apply_saving_throw makes saving throw better! */
+    /* RT new code to make saves more fun */
+    /* At some point it will be made more complicated */
 
-    save = ch->specials.apply_saving_throw[save_type];
+    save = 10;
+    /* Gods always save */
+    if (GET_LEVEL(ch) > 31)
+      return TRUE;
 
-    if (!IS_NPC(ch)) {
-	save += saving_throws[GET_CLASS(ch)-1][save_type][(int) GET_LEVEL(ch)];
-	if (GET_LEVEL(ch) > 31)
-	    return(TRUE);
+    if (IS_NPC(ch))   /* RT NPC mods to saves */
+    {
+      if (IS_SET(ch->specials.act, ACT_WARRIOR))
+	save += 1;
+      if (IS_SET(ch->specials.act, ACT_MAGE))
+	save -= 2;
+      if (IS_SET(ch->specials.act, ACT_CLERIC))
+	save -= 1;
+      if (IS_SET(ch->specials.act, ACT_FAST))
+        save -= 1;
+    }
+    else
+    {
+      if (GET_CLASS(ch) == CLASS_WARRIOR)
+	save += 1;
+      if (GET_CLASS(ch) == CLASS_MAGIC_USER)
+	save -= 2;
+      if (GET_CLASS(ch) == CLASS_CLERIC)
+	save -= 1;
+      if (ch->skills[SKILL_DODGE].learned <= number (1, 200)) 
+      {  
+	save -= 2;
+	check_improve(ch,SKILL_DODGE,2,TRUE);
+      }
     }
 
-    return(MAX(1,save) < number(1,20));
-}
+    save += ch->specials.apply_saving_throw[save_type];   /* -1 is good */
+ 
+    /* modify by the level difference */
+    save -= GET_LEVEL(ch);
+    save += level;   /* Level of spell being cast */
 
-
-
+    return (MAX(1,save) < number(1,20));
+}  
+    
 char *skip_spaces(char *string)
 {
     for(;*string && (*string)==' ';string++);
@@ -640,6 +679,12 @@ void do_cast(struct char_data *ch, char *argument, int cmd)
 	}
       
     } else { /* No argument was typed */
+
+      if (IS_SET(spell_info[spl].targets,TAR_SELF_DEF)) /* default to self */
+      {
+	tar_char = ch;
+	target_ok = TRUE;
+      }
       
       if (IS_SET(spell_info[spl].targets, TAR_FIGHT_SELF))
 	if (ch->specials.fighting) {
@@ -720,11 +765,13 @@ void do_cast(struct char_data *ch, char *argument, int cmd)
       else {
     if (number(1,101) > ch->skills[spl].learned) { /* 101% is failure */
       send_to_char("You lost your concentration!\n\r", ch);
+      check_improve(ch,spl,1,FALSE);
       GET_MANA(ch) -= (use_mana(ch, spl)>>1);
       return;
     }
     send_to_char("Ok.\n\r",ch);
     ((*spell_info[spl].spell_pointer) (GET_LEVEL(ch), ch, argument, SPELL_TYPE_SPELL, tar_char, tar_obj));
+    check_improve(ch,spl,1,TRUE);
     GET_MANA(ch) -= (use_mana(ch, spl));
       }
       
@@ -794,16 +841,16 @@ void assign_spell_pointers(void)
     /* Spells2.c */
 
     SPELLO( 1,12,POSITION_STANDING, 5,  1, 5,
-     TAR_CHAR_ROOM, cast_armor);
+     TAR_CHAR_ROOM | TAR_SELF_DEF, cast_armor);
 
     SPELLO( 2,12,POSITION_FIGHTING, 8, 32, 35,
      TAR_SELF_ONLY, cast_teleport);
 
     SPELLO( 3,12,POSITION_STANDING,32,  5, 5,
-     TAR_OBJ_INV | TAR_OBJ_EQUIP | TAR_CHAR_ROOM, cast_bless);
+     TAR_OBJ_INV | TAR_OBJ_EQUIP | TAR_CHAR_ROOM | TAR_SELF_DEF, cast_bless);
 
     SPELLO( 4,12,POSITION_FIGHTING, 8,  6, 5,
-     TAR_CHAR_ROOM, cast_blindness);
+     TAR_CHAR_ROOM  | TAR_FIGHT_VICT, cast_blindness);
 
     SPELLO(7,12,POSITION_STANDING, 14, 32, 5,
      TAR_CHAR_ROOM | TAR_SELF_NONO, cast_charm_person);
@@ -820,17 +867,17 @@ void assign_spell_pointers(void)
     SPELLO(13,12,POSITION_STANDING,32,  2, 5,
      TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_create_water);
 
-    SPELLO(14,12,POSITION_STANDING,32,  4, 5,
-     TAR_CHAR_ROOM, cast_cure_blind);
+    SPELLO(14,12,POSITION_FIGHTING,32,  4, 5,
+     TAR_CHAR_ROOM | TAR_SELF_DEF, cast_cure_blind);
 
     SPELLO(15,12,POSITION_FIGHTING,32,  9, 20,
-     TAR_CHAR_ROOM, cast_cure_critic);
+     TAR_CHAR_ROOM | TAR_SELF_DEF, cast_cure_critic);
 
     SPELLO(16,12,POSITION_FIGHTING,32,  1, 15,
-     TAR_CHAR_ROOM, cast_cure_light);
+     TAR_CHAR_ROOM | TAR_SELF_DEF, cast_cure_light);
 
-    SPELLO(17,12,POSITION_STANDING,12, 32, 20,
-     TAR_CHAR_ROOM | TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_curse);
+    SPELLO(17,12,POSITION_FIGHTING,12, 32, 20,
+     TAR_CHAR_ROOM  | TAR_FIGHT_VICT, cast_curse);
 
     SPELLO(18,12,POSITION_STANDING,32,  4, 5,
      TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_detect_evil);
@@ -848,25 +895,27 @@ void assign_spell_pointers(void)
      TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_enchant_weapon);
 
     SPELLO(28,12,POSITION_FIGHTING,32, 14, 50,
-     TAR_CHAR_ROOM, cast_heal);
+     TAR_CHAR_ROOM | TAR_SELF_DEF, cast_heal);
 
     SPELLO(29,12,POSITION_STANDING, 4, 32, 5,
-     TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM | TAR_OBJ_EQUIP, cast_invisibility);
+     TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM | TAR_OBJ_EQUIP | TAR_SELF_DEF,
+     cast_invisibility);
 
     SPELLO(31,18,POSITION_STANDING, 6, 10, 20,
      TAR_OBJ_WORLD, cast_locate_object);
 
-    SPELLO(33,12,POSITION_STANDING,32,  8, 10,
-     TAR_CHAR_ROOM | TAR_SELF_NONO | TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_poison);
+    SPELLO(33,12,POSITION_FIGHTING,32,  8, 10,
+     TAR_CHAR_ROOM | TAR_SELF_NONO , cast_poison);
 
     SPELLO(34,12,POSITION_STANDING,32,  6, 5,
      TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_protection_from_evil);
 
     SPELLO(35,12,POSITION_STANDING,32, 12, 5,
-     TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_EQUIP | TAR_OBJ_ROOM, cast_remove_curse);
+     TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_EQUIP | TAR_OBJ_ROOM | TAR_SELF_DEF
+     ,cast_remove_curse);
 
     SPELLO(36,12,POSITION_STANDING,32, 13, 75,
-     TAR_CHAR_ROOM, cast_sanctuary);
+     TAR_CHAR_ROOM | TAR_SELF_DEF, cast_sanctuary);
 
     SPELLO(38,12,POSITION_STANDING,14, 32, 15,
      TAR_CHAR_ROOM, cast_sleep);
@@ -884,7 +933,8 @@ void assign_spell_pointers(void)
      TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_word_of_recall);
 
     SPELLO(43,12,POSITION_STANDING,32,  9, 5,
-     TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, cast_remove_poison);
+     TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM | TAR_SELF_DEF, 
+     cast_remove_poison);
 
     SPELLO(44,12,POSITION_STANDING,32,  7, 5,
      TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_sense_life);
@@ -911,7 +961,7 @@ void assign_spell_pointers(void)
     SPELLO(55,12,POSITION_FIGHTING, 6, 32, 7, TAR_CHAR_ROOM,
 	   cast_fear);
 
-    SPELLO(56,18,POSITION_STANDING, 7, 12, 10, TAR_CHAR_ROOM,
+    SPELLO(56,18,POSITION_STANDING, 7, 12, 10, TAR_CHAR_ROOM | TAR_SELF_DEF,
 	   cast_fly);
 
     SPELLO(57,12,POSITION_STANDING, 4, 2, 7, TAR_IGNORE,
@@ -921,24 +971,24 @@ void assign_spell_pointers(void)
 	   cast_know_alignment);
 
     SPELLO(59,12,POSITION_FIGHTING, 11, 16, 15, TAR_CHAR_ROOM
-	   | TAR_OBJ_ROOM, cast_dispel_magic);
+	   , cast_dispel_magic);
 
     SPELLO(60,24,POSITION_STANDING, 9, 32, 33, TAR_CHAR_WORLD,
 	   cast_conjure_elemental);
 
-    SPELLO(61,18,POSITION_FIGHTING, 32, 5, 17, TAR_CHAR_ROOM,
+    SPELLO(61,18,POSITION_FIGHTING, 32, 5, 17, TAR_CHAR_ROOM | TAR_SELF_DEF,
 	   cast_cure_serious);
 
-    SPELLO(62,12,POSITION_FIGHTING, 32, 1, 15, TAR_CHAR_ROOM,
+    SPELLO(62,12,POSITION_FIGHTING, 32, 1, 15, TAR_CHAR_ROOM | TAR_FIGHT_VICT,
 	   cast_cause_light);
 
-    SPELLO(63,12,POSITION_FIGHTING, 32, 9, 20, TAR_CHAR_ROOM,
+    SPELLO(63,12,POSITION_FIGHTING, 32, 9, 20, TAR_CHAR_ROOM | TAR_FIGHT_VICT,
 	   cast_cause_critical);
 
-    SPELLO(64,12,POSITION_FIGHTING, 32, 5, 17, TAR_CHAR_ROOM,
+    SPELLO(64,12,POSITION_FIGHTING, 32, 5, 17, TAR_CHAR_ROOM | TAR_FIGHT_VICT,
 	   cast_cause_serious);
 
-    SPELLO(65,12,POSITION_FIGHTING, 32, 13, 20, TAR_CHAR_ROOM,
+    SPELLO(65,12,POSITION_FIGHTING, 32, 13, 20, TAR_CHAR_ROOM | TAR_FIGHT_VICT,
 	   cast_flamestrike);
 
     SPELLO(66,18,POSITION_STANDING, 18, 32, 12, TAR_CHAR_ROOM|TAR_SELF_ONLY,
@@ -947,19 +997,20 @@ void assign_spell_pointers(void)
     SPELLO(67,18,POSITION_STANDING, 13, 32, 12, TAR_CHAR_ROOM|TAR_SELF_ONLY,
 	   cast_shield);
 
-    SPELLO(68,12,POSITION_FIGHTING, 7, 32, 20, TAR_CHAR_ROOM,
+    SPELLO(68,12,POSITION_FIGHTING, 7, 32, 20, TAR_CHAR_ROOM | TAR_FIGHT_VICT,
 	   cast_weaken);
 
     SPELLO(69,24,POSITION_STANDING, 15, 17, 20, TAR_IGNORE,
 	   cast_mass_invis);
 
-    SPELLO(70,12,POSITION_FIGHTING, 20, 32, 16, TAR_CHAR_ROOM,
-	   cast_acid_blast);
 
-    SPELLO(71,24,POSITION_STANDING, 32, 10, 50, TAR_CHAR_WORLD,
+    SPELLO(70,12,POSITION_FIGHTING, 20, 32, 16,
+    TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_acid_blast);
+
+    SPELLO(71,24,POSITION_STANDING, 17, 10, 80, TAR_CHAR_WORLD,
 	   cast_gate);
 
-    SPELLO(72,12,POSITION_FIGHTING, 4, 2, 6, TAR_CHAR_ROOM,
+    SPELLO(72,12,POSITION_FIGHTING, 4, 2, 6, TAR_CHAR_ROOM | TAR_FIGHT_VICT,
 	   cast_faerie_fire);
 
     SPELLO(73,12,POSITION_STANDING, 10, 14, 12, TAR_CHAR_ROOM,
@@ -968,13 +1019,13 @@ void assign_spell_pointers(void)
     SPELLO(74,12,POSITION_FIGHTING, 32, 18, 15, TAR_CHAR_ROOM,
 	   cast_drown);
 
-    SPELLO(75,12,POSITION_FIGHTING, 32, 25, 21, TAR_CHAR_ROOM,
+    SPELLO(75,12,POSITION_FIGHTING, 32, 25, 21, TAR_CHAR_ROOM | TAR_FIGHT_VICT,
 	   cast_demonfire);
 
     SPELLO(76,12,POSITION_FIGHTING, 32, 15, 12, TAR_CHAR_ROOM,
 	   cast_turn_undead);
 
-    SPELLO(77,18,POSITION_STANDING, 6, 9, 5, TAR_CHAR_ROOM,
+    SPELLO(77,18,POSITION_STANDING, 6, 9, 5, TAR_CHAR_ROOM | TAR_SELF_DEF,
 	   cast_infravision);
 
     SPELLO(78,12,POSITION_FIGHTING, 20, 20, 25, TAR_IGNORE,
@@ -983,9 +1034,24 @@ void assign_spell_pointers(void)
     SPELLO(79,12,POSITION_FIGHTING, 16, 16, 16, TAR_CHAR_ROOM,
 	   cast_hands_of_wind);
 
-    SPELLO(80,12,POSITION_FIGHTING, 32, 11, 16, TAR_CHAR_ROOM,
+    SPELLO(80,12,POSITION_FIGHTING, 32, 11, 20, TAR_CHAR_ROOM  | TAR_FIGHT_VICT,
 	   cast_plague);
 
-    SPELLO(81,18,POSITION_STANDING, 5, 3, 12, TAR_CHAR_ROOM,
+    SPELLO(81,18,POSITION_STANDING, 5, 3, 12, TAR_CHAR_ROOM | TAR_SELF_DEF,
 	   cast_refresh);
+
+    SPELLO(82,12,POSITION_STANDING, 32, 13, 30, TAR_CHAR_ROOM | TAR_SELF_DEF,
+           cast_cure_disease);
+
+    SPELLO(83,12,POSITION_FIGHTING, 32, 11, 20, TAR_IGNORE, cast_calm);
+
+    SPELLO(84,12,POSITION_FIGHTING, 22, 32, 20,
+     TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_chain_lightning);
+
+    SPELLO(85,24,POSITION_FIGHTING, 12, 32, 30,
+     TAR_CHAR_ROOM | TAR_SELF_DEF , cast_haste);
+
+    SPELLO(86,24,POSITION_FIGHTING, 32, 14, 30,
+     TAR_CHAR_ROOM  | TAR_SELF_DEF, cast_frenzy);
+
 }

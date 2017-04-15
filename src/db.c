@@ -20,6 +20,10 @@ extern int _filbuf(FILE *);
 #include <memory.h>
 #include <ctype.h>
 #include <time.h>
+#include <sys/time.h>
+#include <sys/resource.h>
+extern int getrlimit(int resource, struct rlimit *rlp);
+extern int setrlimit(int resource, const struct rlimit *rlp);
 
 #include "structs.h"
 #include "mob.h"
@@ -35,10 +39,10 @@ extern int _filbuf(FILE *);
 /*
  * Sizes.
  */
-#define MAX_ZONE      96
-#define MAX_INDEX   1024
+#define MAX_ZONE      97
+#define MAX_INDEX   2048
 #define MAX_ROOM    3072
-#define	MAX_RESET   4096
+#define	MAX_RESET   5120
 
 /**************************************************************************
 *  declarations of most of the 'global' variables                         *
@@ -63,6 +67,7 @@ char greetings[MAX_STRING_LENGTH];    /* the greeting screen             */
 char credits[MAX_STRING_LENGTH];      /* the Credits List                */
 char news[MAX_STRING_LENGTH];         /* the news                        */
 char motd[MAX_STRING_LENGTH];         /* the messages of today           */
+char imotd[MAX_STRING_LENGTH];        /* immortal motd                   */
 char story[MAX_STRING_LENGTH];        /* the game story                  */
 char help[MAX_STRING_LENGTH];         /* the main help page              */
 char info[MAX_STRING_LENGTH];         /* the info text                   */
@@ -95,8 +100,10 @@ struct weather_data weather_info;   /* the infomation about the weather */
 
 /* local procedures */
 void boot_zones(void);
-void setup_dir(FILE *fl, int room, int dir);
 
+void setup_dir(FILE *fl, int room, int dir);
+long flag_convert(char *argument);
+long FLAG (char letter);
 void boot_world(void);
 struct index_data *generate_indices(FILE *fl, int *top,
 	struct index_data *index);
@@ -118,29 +125,90 @@ int number(int from, int to);
 void boot_social_messages(void);
 void boot_pose_messages(void);
 struct help_index_element *build_help_index(FILE *fl, int *num);
+extern void init_boards(void);
 
 
 /*************************************************************************
 *  routines for booting the system                                       *
 *********************************************************************** */
 
+/* RT max open files fix */
+
+void maxfilelimit()
+{
+    struct rlimit r;
+
+    getrlimit(RLIMIT_NOFILE, &r);
+    r.rlim_cur = r.rlim_max;
+    setrlimit(RLIMIT_NOFILE, &r);
+}
+
+/* ascii flag converter */
+
+long flag_convert(char *argument)
+{
+
+  long flagval = 0;
+  int i;
+  char buf[52];
+
+  strcpy(buf, argument);
+
+  for (i = 0; i < strlen(argument); i++)
+     if (buf[i] != '0')
+       flagval += FLAG(buf[i]);
+     else
+       return(flagval);
+  return(flagval);
+
+}
+
+long FLAG (char letter)
+{
+  long bitsum = 0;
+  char i;
+
+  if (('A' <= letter) && (letter <= 'Z'))
+  {
+    bitsum =  1;
+    for (i = letter; i > 'A'; i--)
+	bitsum *= 2;
+  }
+  else if (('a' <= letter) && (letter <= 'z'))
+  {
+    bitsum = 33554432;   /* kludgy, 2^25 */
+    for (i = letter; i > 'a'; i--)
+	bitsum *=2;
+  }
+  return bitsum;
+}
+
+
+
 /* body of the booting system */
 void boot_db(void)
 {
     int i;
+        struct ban_t *tmp;
+
 
     reset_time();
+    maxfilelimit();
+
 
     log( "Reading aux files." );
     file_to_string(GREETINGS_FILE, greetings);
     file_to_string(NEWS_FILE, news);
     file_to_string(CREDITS_FILE, credits);
     file_to_string(MOTD_FILE, motd);
+    file_to_string(IMM_MOTD_FILE, imotd);
     strcat( motd, "\n\rPress RETURN to continue: " );
+    strcat( imotd, "\n\rPress RETURN to continue: " );
     file_to_string(STORY_FILE, story);
     file_to_string(HELP_PAGE_FILE, help);
     file_to_string(INFO_FILE, info);
     file_to_string(WIZLIST_FILE, wizlist);
+
 
     log("Opening mobile, object and help files.");
     if (!(mob_f = fopen(MOB_FILE, "r")))
@@ -161,7 +229,23 @@ void boot_db(void)
 	exit( 1 );
     }
     help_index = build_help_index(help_fl, &top_of_helpt);
+     CREATE(tmp,struct ban_t,1);
+        CREATE(tmp->name,char,strlen("bullwinkle.ucdavis.edu")+1);
+        strcpy(tmp->name,"bullwinkle.ucdavis.edu");
+        tmp->next=ban_list;
+        ban_list=tmp;
 
+     CREATE(tmp,struct ban_t,1);
+        CREATE(tmp->name,char,strlen("coos.dartmouth.edu")+1);
+        strcpy(tmp->name,"coos.dartmouth.edu");
+        tmp->next=ban_list;
+        ban_list=tmp;
+
+     CREATE(tmp,struct ban_t,1);
+        CREATE(tmp->name,char,strlen("everest.dartmouth")+1);
+        strcpy(tmp->name,"everest.dartmouth");
+        tmp->next=ban_list;
+        ban_list=tmp;
 
     log( "Loading tinyworld." );
     boot_zones();
@@ -181,6 +265,9 @@ void boot_db(void)
     assign_objects();
     assign_rooms();
     assign_spell_pointers();
+    init_boards();
+
+
 
     fprintf( stderr, "\n[ Room  Room]\t{Level}\t  Author\tZone\n" );
     for (i = 0; i <= top_of_zone_table; i++)
@@ -193,6 +280,7 @@ void boot_db(void)
     }
     fprintf( stderr, "\n" );
 }
+
 
 
 /* reset the time in the game from file */
@@ -209,7 +297,7 @@ void reset_time(void)
 	case 1 :
 	case 2 :
 	case 3 :
-	case 4 : 
+	case 4 :
 	{
 	    weather_info.sunlight = SUN_DARK;
 	    break;
@@ -297,14 +385,14 @@ struct index_data *generate_indices(FILE *fl, int *top,
 		    perror( "Too many indexes" );
 		    exit( 1 );
 		}
-		
+
 		sscanf(buf, "#%d", &index[i].virtual);
 		index[i].pos = ftell(fl);
 		index[i].number = 0;
 		index[i].func = 0;
 		i++;
 	    }
-	    else 
+	    else
 		if (*buf == '$')    /* EOF */
 		    break;
 	}
@@ -326,12 +414,12 @@ void boot_world(void)
 {
     FILE *fl;
     int room_nr = 0, zone = 0, virtual_nr, flag, tmp;
-    char *temp, chk[50];
+    char *temp, chk[50],bitbuf[52];
     struct extra_descr_data *new_descr;
 
     character_list = 0;
     object_list = 0;
-    
+
     if (!(fl = fopen(WORLD_FILE, "r")))
     {
 	perror("fopen");
@@ -377,8 +465,12 @@ void boot_world(void)
 		    }
 		world[room_nr].zone = zone;
 	    }
-	    fscanf(fl, " %d ", &tmp);
-	    world[room_nr].room_flags = tmp;
+	    /* ascii flag code */
+    	    fscanf(fl, " %s ", bitbuf);
+    	    if (!is_number(bitbuf))
+      	      world[room_nr].room_flags = flag_convert(bitbuf);
+            else
+	      world[room_nr].room_flags = atol(bitbuf);
 	    fscanf(fl, " %d ", &tmp);
 	    world[room_nr].sector_type = tmp;
 
@@ -409,7 +501,7 @@ void boot_world(void)
 		else if (*chk == 'S')   /* end of current room */
 		    break;
 	    }
-			
+
 	    room_nr++;
 	}
     }
@@ -428,7 +520,7 @@ void setup_dir(FILE *fl, int room, int dir)
 {
     int tmp;
 
-    CREATE(world[room].dir_option[dir], 
+    CREATE(world[room].dir_option[dir],
 	struct room_direction_data, 1);
 
     world[room].dir_option[dir]->general_description =
@@ -442,7 +534,7 @@ void setup_dir(FILE *fl, int room, int dir)
 	world[room].dir_option[dir]->exit_info = EX_ISDOOR | EX_PICKPROOF;
     else
 	world[room].dir_option[dir]->exit_info = 0;
- 
+
     fscanf(fl, " %d ", &tmp);
     world[room].dir_option[dir]->key = tmp;
 
@@ -479,11 +571,11 @@ void renum_zone_table(void)
 		case 'M':
 		    zone_table[zone].cmd[comm].arg1 =
 			real_mobile(zone_table[zone].cmd[comm].arg1);
-		    zone_table[zone].cmd[comm].arg3 = 
+		    zone_table[zone].cmd[comm].arg3 =
 			real_room(zone_table[zone].cmd[comm].arg3);
 		break;
 		case 'O':
-		    zone_table[zone].cmd[comm].arg1 = 
+		    zone_table[zone].cmd[comm].arg1 =
 			real_object(zone_table[zone].cmd[comm].arg1);
 		    if (zone_table[zone].cmd[comm].arg3 != NOWHERE)
 			zone_table[zone].cmd[comm].arg3 =
@@ -502,7 +594,7 @@ void renum_zone_table(void)
 			real_object(zone_table[zone].cmd[comm].arg1);
 		    zone_table[zone].cmd[comm].arg3 =
 			real_object(zone_table[zone].cmd[comm].arg3);
-		break;                  
+		break;
 		case 'D':
 		    zone_table[zone].cmd[comm].arg1 =
 			real_room(zone_table[zone].cmd[comm].arg1);
@@ -564,9 +656,9 @@ void boot_zones(void)
 	    }
 
 	    fscanf(fl, " "); /* skip blanks */
-	    fscanf(fl, "%c", 
+	    fscanf(fl, "%c",
 		&reset_tab[reset_top].command);
-	    
+
 	    if (reset_tab[reset_top].command == 'S')
 	    {
 		reset_top++;
@@ -580,7 +672,7 @@ void boot_zones(void)
 		continue;
 	    }
 
-	    fscanf(fl, " %d %d %d", 
+	    fscanf(fl, " %d %d %d",
 		&tmp,
 		&reset_tab[reset_top].arg1,
 		&reset_tab[reset_top].arg2);
@@ -620,6 +712,7 @@ struct char_data *read_mobile(int nr, int type)
     long tmp, tmp2, tmp3;
     struct char_data *mob;
     char buf[100];
+    char bitbuf[52];
     char letter;
 
     i = nr;
@@ -636,7 +729,7 @@ struct char_data *read_mobile(int nr, int type)
     clear_char(mob);
 
     /***** String data *** */
-	
+
     mob->player.name = fread_string(mob_f);
     mob->player.short_descr = fread_string(mob_f);
     mob->player.long_descr = fread_string(mob_f);
@@ -645,12 +738,20 @@ struct char_data *read_mobile(int nr, int type)
 
     /* *** Numeric data *** */
 
-    fscanf(mob_f, "%d ", &tmp);
-    mob->specials.act = tmp;
+    /* RT new ascii flag code */
+
+    fscanf(mob_f, "%s ", bitbuf);
+    if (!is_number(bitbuf))
+      mob->specials.act = flag_convert(bitbuf);
+    else
+      mob->specials.act = atol(bitbuf);
     SET_BIT(mob->specials.act, ACT_ISNPC);
 
-    fscanf(mob_f, " %d ", &tmp);
-    mob->specials.affected_by = tmp;
+    fscanf(mob_f, " %s ", bitbuf);
+    if (is_number(bitbuf))
+      mob->specials.affected_by = atol(bitbuf);
+    else
+      mob->specials.affected_by = flag_convert(bitbuf);
 
     fscanf(mob_f, " %d ", &tmp);
     mob->specials.alignment = tmp;
@@ -660,17 +761,17 @@ struct char_data *read_mobile(int nr, int type)
     if (letter == 'S') {
 	/* The new easy monsters */
 	mob->abilities.str   = 11;
-	mob->abilities.intel = 11; 
+	mob->abilities.intel = 11;
 	mob->abilities.wis   = 11;
 	mob->abilities.dex   = 11;
 	mob->abilities.con   = 11;
 
 	fscanf(mob_f, " %d ", &tmp);
 	GET_LEVEL(mob) = tmp;
-	
+
 	fscanf(mob_f, " %d ", &tmp);
 	mob->points.hitroll = 20-tmp;
-	
+
 	fscanf(mob_f, " %d ", &tmp);
 	mob->points.armor = 10*tmp;
 
@@ -683,8 +784,14 @@ struct char_data *read_mobile(int nr, int type)
 	mob->specials.damnodice = tmp;
 	mob->specials.damsizedice = tmp2;
 
-	mob->points.mana = 100;
-	mob->points.max_mana = 100;
+        /* RT new mobile mana function */
+        tmp = 100;
+        if (IS_SET(mob->specials.act,ACT_MAGE))
+	  tmp += dice(GET_LEVEL(mob),10);
+	if (IS_SET(mob->specials.act,ACT_CLERIC))
+	  tmp += dice(GET_LEVEL(mob),9);
+	mob->points.mana = tmp;
+	mob->points.max_mana = tmp;
 
 	mob->points.move = 82;
 	mob->points.max_move = 82;
@@ -716,7 +823,7 @@ struct char_data *read_mobile(int nr, int type)
 	    GET_COND(mob, i) = -1;
 
 	for (i = 0; i < 5; i++)
-	    mob->specials.apply_saving_throw[i] = MAX(20-GET_LEVEL(mob), 2);
+	    mob->specials.apply_saving_throw[i] = 0;
 
     } else {  /* The old monsters are down below here */
 
@@ -724,7 +831,7 @@ struct char_data *read_mobile(int nr, int type)
 	mob->abilities.str = tmp;
 
 	fscanf(mob_f, " %d ", &tmp);
-	mob->abilities.intel = tmp; 
+	mob->abilities.intel = tmp;
 
 	fscanf(mob_f, " %d ", &tmp);
 	mob->abilities.wis = tmp;
@@ -749,7 +856,7 @@ struct char_data *read_mobile(int nr, int type)
 	mob->points.max_mana = tmp;
 
 	fscanf(mob_f, " %d ", &tmp);
-	mob->points.move = tmp;     
+	mob->points.move = tmp;
 	mob->points.max_move = tmp;
 
 	fscanf(mob_f, " %d ", &tmp);
@@ -834,6 +941,7 @@ struct obj_data *read_object(int nr, int eq_level)
 {
     struct obj_data *obj;
     int tmp, i;
+    char bitbuf[52];
 
     char chk[MAX_INPUT_LENGTH];
     struct extra_descr_data *new_descr;
@@ -852,8 +960,18 @@ struct obj_data *read_object(int nr, int eq_level)
     /* *** numeric data *** */
 
     fscanf(obj_f, " %d ", &tmp);   obj->obj_flags.type_flag	= tmp;
-    fscanf(obj_f, " %d ", &tmp);   obj->obj_flags.extra_flags	= tmp;
-    fscanf(obj_f, " %d ", &tmp);   obj->obj_flags.wear_flags	= tmp;
+    /* RT ascii flag reading here */
+    fscanf(obj_f, " %s ", bitbuf);
+    if (!is_number(bitbuf))
+      obj->obj_flags.extra_flags = flag_convert(bitbuf);
+    else
+      obj->obj_flags.extra_flags = atol(bitbuf);
+    fscanf(obj_f, " %s ", bitbuf);
+    if (!is_number(bitbuf))
+      obj->obj_flags.wear_flags = flag_convert(bitbuf);
+    else
+      obj->obj_flags.wear_flags = atol(bitbuf);
+
     fscanf(obj_f, " %d ", &tmp);   obj->obj_flags.value[0]	= tmp;
     fscanf(obj_f, " %d ", &tmp);   obj->obj_flags.value[1]	= tmp;
     fscanf(obj_f, " %d ", &tmp);   obj->obj_flags.value[2]	= tmp;
@@ -892,14 +1010,14 @@ struct obj_data *read_object(int nr, int eq_level)
     obj->carried_by	= 0;
     obj->in_obj		= 0;
     obj->contains	= 0;
-    obj->item_number	= nr;  
+    obj->item_number	= nr;
     obj->obj_flags.eq_level	= eq_level;
 
     obj->next		= object_list;
     object_list		= obj;
     obj_index[nr].number++;
 
-    return (obj);  
+    return (obj);
 }
 
 
@@ -914,9 +1032,14 @@ void zone_update(void)
 	if ( zone_table[i].reset_mode == 0 )
 	    continue;
 
-	if ( zone_table[i].age < zone_table[i].lifespan )
+        if (!is_empty(i))
+	    zone_table[i].empty_age = 0;
+
+	if ( zone_table[i].age < MIN(zone_table[i].lifespan,14+number(0,2)) &&
+            ( zone_table[i].empty_age < 2))
 	{
 	    zone_table[i].age++;
+	    zone_table[i].empty_age++;
 	    continue;
 	}
 
@@ -947,7 +1070,7 @@ void reset_zone(int zone)
 	    switch(ZCMD.command)
 	{
 	    case 'M': /* read a mobile */
-		if (mob_index[ZCMD.arg1].number < 
+		if (mob_index[ZCMD.arg1].number <
 		    ZCMD.arg2)
 		{
 		    mob = read_mobile(ZCMD.arg1, REAL);
@@ -958,8 +1081,10 @@ void reset_zone(int zone)
 		    last_cmd = 0;
 	    break;
 
+/* RT code to makes objects SOMETIMES load regardless */
+
 	    case 'O': /* read an object */
-		if (obj_index[ZCMD.arg1].number < ZCMD.arg2)
+		if ((obj_index[ZCMD.arg1].number < ZCMD.arg2))
 		if (ZCMD.arg3 >= 0)
 		{
 		    if (!get_obj_in_list_num(
@@ -983,7 +1108,8 @@ void reset_zone(int zone)
 	    break;
 
 	    case 'P': /* object to object */
-		if (obj_index[ZCMD.arg1].number < ZCMD.arg2)
+		if ((obj_index[ZCMD.arg1].number < ZCMD.arg2))
+
 		{
 		    obj_to = get_obj_num(ZCMD.arg3);
 		    obj = read_object(ZCMD.arg1, obj_to->obj_flags.eq_level);
@@ -1001,8 +1127,9 @@ void reset_zone(int zone)
 		    last_cmd = 0;
 		    break;
 		}
-		if (obj_index[ZCMD.arg1].number < ZCMD.arg2)
-		{       
+		if ((obj_index[ZCMD.arg1].number < ZCMD.arg2) ||
+		    (number(0,3) == 0))
+		{
 		    obj = read_object(ZCMD.arg1, map_eq_level(mob) );
 		    obj_to_char(obj, mob);
 		    last_cmd = 1;
@@ -1018,8 +1145,9 @@ void reset_zone(int zone)
 		    last_cmd = 0;
 		    break;
 		}
-		if (obj_index[ZCMD.arg1].number < ZCMD.arg2)
-		{       
+		if ((obj_index[ZCMD.arg1].number < ZCMD.arg2) ||
+		    (number(0,3) == 0))
+		{
 		    obj = read_object(ZCMD.arg1, map_eq_level(mob) );
 		    equip_char(mob, obj, ZCMD.arg3);
 		    last_cmd = 1;
@@ -1072,6 +1200,7 @@ void reset_zone(int zone)
     }
 
     zone_table[zone].age = 0;
+    zone_table[zone].empty_age = 0;
 }
 
 #undef ZCMD
@@ -1128,7 +1257,7 @@ char *fread_string(FILE *fl)
 	case '~':
 	    getc( fl );
 	    if ( pBufLast == buf )
-		pAlloc  = "";
+		pAlloc  = str_dup( "");
 	    else
 	    {
 		*pBufLast++ = '\0';
@@ -1142,9 +1271,8 @@ char *fread_string(FILE *fl)
     perror( "fread_string: string too long" );
     exit( 1 );
     return( NULL );
+
 }
-
-
 
 /* release memory allocated for a char struct */
 void free_char( CHAR_DATA *ch )
@@ -1350,7 +1478,7 @@ void init_char(struct char_data *ch)
 	ch->player.weight = number(100,160);
 	ch->player.height = number(150,180);
     }
-    
+
 	ch->points.max_mana = 100;
     ch->points.mana = GET_MAX_MANA(ch);
     ch->points.hit = GET_MAX_HIT(ch);

@@ -78,11 +78,11 @@ static int list_top = -1;
 
 char *fread_action(FILE *fl)
 {
-    char buf[MAX_STRING_LENGTH], *rslt;
+    char buf[SHORT_STRING_LENGTH], *rslt;
 
     for (;;)
     {
-	fgets(buf, MAX_STRING_LENGTH, fl);
+	fgets(buf, SHORT_STRING_LENGTH, fl);
 	if (feof(fl))
 	{
 	    log("Fread_action - unexpected EOF.");
@@ -165,13 +165,12 @@ bool check_social( struct char_data *ch, char *pcomm, int length, char *arg )
 	    goto LCmdFound;
     }
     return FALSE;
-
  LCmdFound:
-    if ( !IS_NPC(ch) && IS_SET(ch->specials.act, PLR_NOEMOTE) )
+    /* RTif ( !IS_NPC(ch) && IS_SET(ch->specials.act, PLR_NOEMOTE) )
     {
 	send_to_char( "You are anti-social!\n\r", ch );
 	return TRUE;
-    }
+    } */
 
     switch( GET_POS(ch) )
     {
@@ -239,7 +238,7 @@ bool check_social( struct char_data *ch, char *pcomm, int length, char *arg )
 void do_insult(struct char_data *ch, char *argument, int cmd)
 {
     char buf[100];
-    char arg[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
     struct char_data *victim;
 
     one_argument(argument, arg);

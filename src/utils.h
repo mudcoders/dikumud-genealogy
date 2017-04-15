@@ -194,8 +194,8 @@ extern char log_buf[512];
 #define IS_GOOD(ch)    (GET_ALIGNMENT(ch) >= 350)
 #define IS_EVIL(ch)    (GET_ALIGNMENT(ch) <= -350)
 #define IS_NEUTRAL(ch) (!IS_GOOD(ch) && !IS_EVIL(ch))
-#define IS_THIEF(ch)   (IS_SET((ch)->specials.act, PLR_ISTHIEF));
-#define IS_KILLER(ch)  (IS_SET((ch)->specials.act, PLR_ISKILLER));
+#define IS_THIEF(ch)   (IS_SET((ch)->specials.affected_by, AFF_THIEF));
+#define IS_KILLER(ch)  (IS_SET((ch)->specials.affected_by, AFF_KILLER));
 
 
 
@@ -313,7 +313,11 @@ void send_to_char(char *messg, CHAR_DATA *ch);
 void send_to_room(char *messg, int room);
 void act(char *str, int hide_invisible, CHAR_DATA *ch,
     struct obj_data *obj, void *vict_obj, int type);
+void act_all(char *str, int hide_invisible, CHAR_DATA *ch,
+    struct obj_data *obj, void *vict_obj, int type);
 int write_to_descriptor(int desc, char *txt);
 void write_to_q(char *txt, struct txt_q *queue);
 int use_mana( CHAR_DATA *ch, int sn );
 void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int type);
+void check_improve(struct char_data *ch, int skilltype, int mod, bool success);
+

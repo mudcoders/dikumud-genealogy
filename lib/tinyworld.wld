@@ -13,7 +13,7 @@ S
 The Void~
   You don't think that you are not floating in nothing.
 ~
-0 8 1
+0 DJ 1
 S
 #2
 Limbo~
@@ -105,7 +105,7 @@ S
 A Room in Mud School~
   You are in a square white room.  The walls are all blank, with no windows.
 Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  The only exit is to the west.  A small plague is on the
+sign on the wall.  The only exit is to the west.  A small plaque is on the
 wall.
 ~
 2 12 0
@@ -1940,7 +1940,7 @@ S
 #315
 Gallow hill~
    You walk in the grassy plains. On this little hill you can see
-two gallows, with rotting human tissue hanging from the robe.
+two gallows, with rotting human tissue hanging from the rope.
 There is a sign here.
 ~
 3 0 4
@@ -2274,8 +2274,8 @@ The foothills extend far to the west.
 S
 #326
 The pool in the foothills~
-   You are standing by a pool in the small foothills, It is of crystal
-clear wather and icily cold for some reason. A steep slope rises up
+   You are standing by a pool in the small foothills, it is of crystal
+clear water and icy cold for some reason. A steep slope rises up
 into the foothills to the north. Behind them ... the mountains.
 ~
 3 0 4
@@ -2807,7 +2807,7 @@ The Woodsman~
     You are in the common room of the Woodsman. A thin haze of smoke sits
 in the air here. People are all about eating, drinking, but mostly just
 talking in as loud a voice as possible. Everything seems quite friendly.
-The bar is just north of here. To the east, you catch a glimpse of a
+The bar is just north of here. To the west, you catch a glimpse of a
 man waving for you to come to him. If you'd rather have your own table,
 one is just being vacated to the south.
 ~
@@ -4881,9 +4881,9 @@ D3
 0 -1 1313
 S
 #1316
-Dinning Room~
-  You are in the dinning area of the student mages. From the number of
-tables and chairs here, you can see that this room could easilly seat
+Dining Room~
+  You are in the dining area of the student mages. From the number of
+tables and chairs here, you can see that this room could easily seat
 several hundred people. It is oddly deserted here, obviously not meal time.
   Exits lead west to the kitchen, and back east.
 ~
@@ -6118,7 +6118,7 @@ D3
 0 -1 1385
 S
 #1388
-The Mad Alchemist's woorkroom~
+he Mad Alchemist's workroom~
   You are in the workroom of The Mad Alchemist. Bubbling braizers, long
 glass tubes and scores of oddly shaped vials and bottles are everywhere.
 It is incredibly messy here, crushed glass and other trash litter the floor.
@@ -6928,7 +6928,7 @@ The scrying chamber~
   You are in the scying chamber of the high tower of sorcerery. It is here
 that arcane rituals are performed to enable those of the art to look in
 upon denizons throughout the world and spy out their darkest secrets.
-  A huge black cauldrin is in the center of the room, bubbling and gurgling,
+  A huge black cauldron is in the center of the room, bubbling and gurgling,
 it pours forth a constant stream of smokey fog into the air about you. Here
 and there on stands of different sizes are crystal balls and oddly shaped
 mirrors.
@@ -9786,7 +9786,7 @@ S
 #2142
 Hector Street at Bakery~
 Hector street runs east and west.  The Bakery used to be to the south
-but the enterence is sealed off.  Probably just a bunch of stale pies in
+but the entrance is sealed off.  Probably just a bunch of stale pies in
 there anyways.
 ~
 21 0 1
@@ -10972,7 +10972,7 @@ to the west is the entrance hall.
 ~
 30 12 0
 D2
-You see the practise yard.
+You see the practice yard.
 ~
 ~
 0 -1 3023
@@ -10984,7 +10984,7 @@ You see the entrance hall to the thieves guild.
 S
 #3023
 The Tournament and Practise Yard~
-   The practise yard of the fighters.  To the north is the bar.  A well leads
+   The practice yard of the fighters.  To the north is the bar.  A well leads
 down into darkness.
 ~
 30 12 0
@@ -11119,7 +11119,7 @@ As you look at the furniture, the chair you sit on disappears.
 S
 #3029
 The Secret Yard~
-   The secret practise yard of thieves and assassins.  To the north is the
+   The secret practice yard of thieves and assassins.  To the north is the
 bar.  A well leads down into darkness.
 ~
 30 12 0
@@ -11488,14 +11488,20 @@ S
 Eastern end of Alley~
    You are standing at the eastern end of the alley, the city wall is just
 east, blocking any further movement.  An old three-storey warehouse is
-directly south of here.
+directly south of here, and the Mob Factory is east. The Fountain of Youth
+Apothecary is north.
 ~
 30 0 1
 D0
-You see another food store!
+You see a pricey-looking potion shop.
 ~
 ~
 0 0 3056
+D1
+You see the entrance to the mob factory.
+~
+~
+0 0 9200
 D2
 You see the warehouse.
 ~
@@ -11697,6 +11703,11 @@ By the Temple Altar~
    You are by the temple altar in the northern end of the Temple of Midgaard.
 A huge altar made from white polished marble is standing in front of you and
 behind it is a ten foot tall sitting statue of Odin, the King of the Gods.
+
+To the east is the bulletin board, to the west is the news board.
+
+A large sign says, "Leave your unwanted possessions in the pit, to aid those
+less fortunate than yourselves."
 ~
 30 8 0
 D2
@@ -11704,6 +11715,16 @@ You see the southern end of the temple.
 ~
 ~
 0 -1 3001
+D1
+You see the bulletin board.
+~
+~
+0 -1 3058
+D3
+You see the news board.
+~
+~
+0 -1 3059
 E
 altar~
 Even though the altar is more than ten feet long it appears to be made from a
@@ -11726,10 +11747,10 @@ larger than the room by the temple altar.
 30 8 0
 S
 #3056
-Uncle Juan's eatery~
-   This place makes your nose run just from the smell of the spicy food they
-sell.  Spicy as it may be it still looks very tasty.  A box of taco shells
-is set on the counter.
+The Fountain of Youth Apothecary~
+   An old man putters around behind the counter, making strange love potions
+and curative philtres.  He turns as you enter, and looks on with avarice.
+Judging from the furnishings, he's been made very wealthy by his trade.
 ~
 30 8 0
 D2
@@ -11758,6 +11779,31 @@ east~
 SMACK! you cant go that way
 ~
 S
+#3058
+The Board Room~
+   This room houses the Midgaard bulletin board.  A large sign warns against
+loitering here.  An exit to the west leads back to the altar.
+~
+30 8 0
+D3
+The temple altar lies to the west.
+~
+~
+0 -1 3054
+S
+#3059 
+The News Room~
+   This rooms houses the Midgaard news board.  Come here to find the rules of 
+the MUD, as well as the latest changes to the code.  A large sign warns against
+loitering.  The altar lies east.
+~
+30 8 0
+D1
+The temple altar lies to the east.
+~
+~
+0 -1 3054
+S 
 #3100
 Northwest end of Concourse~
    You are at the concourse, the city wall is just west.  A small promenade
@@ -12317,7 +12363,7 @@ S
 Park Road~
    You are on Park Road which continues north.  The Concourse is south of
 here.
-An old two-storey house is to the east.
+An old two-story house is to the east.
 ~
 31 0 1
 D0
@@ -12325,7 +12371,8 @@ D0
 ~
 0 -1 3122
 D1
-A heavy oaken door is to the east.~
+A heavy oaken door is to the east.
+~
 door~
 2 3301 6904
 D2
@@ -12685,7 +12732,8 @@ D1
 ~
 0 -1 3201
 D3
-You see the river flowing west into the Forest of Haon-Dor.~
+You see the river flowing west into the Forest of Haon-Dor.
+~
 ~
 0 -1 -1
 E
@@ -13559,7 +13607,7 @@ S
 #3427
 The grand hall of the kings~
   Nearing the western wing of the grand hall of the kings. To the south is a
-door and to the east and west the hall continues. The writing is still legable
+door and to the east and west the hall continues. The writing is still legible
 above the doorframe.
 ~
 34 9 0
@@ -15013,7 +15061,7 @@ S
 #3520
 On the Verge of Darkness~
      The forest is getting pretty thick here. To the south, everything
-seems to close in. The eastern path is a bit less claustrophobic.
+seems to close in. The western path is a bit less claustrophobic.
 Perhaps you ought to go that way...
 ~
 35 0 3
@@ -17136,7 +17184,7 @@ It looks good, but as you look closely you notice that it has no value.
 S
 #4110
 The hole~
-   You are standing by a large hole in the floor, when you looks down
+   You are standing by a large hole in the floor, when you look down
 into the darkness you feel frightened.
 ~
 41 13 3
@@ -17440,7 +17488,7 @@ S
 #4152
 The tunnel~
    You suddenly feel that the tunnel leads down.. The only exit is
-to the east, but it don't leads back..
+to the east, but it doesn't leads back..
 ~
 41 13 3
 D1
@@ -19876,13 +19924,14 @@ S
 #5039
 The Great Eastern Desert~
     A vast desert stretches for miles, the sands constantly shifting around
-you. A pyramid lies to the south.
+you. A pyramid lies to the south.  To the north, you see the gates of a great
+city.
 ~
 50 0 2
 D0
-Sand as far as the eye can see.~
+You see a fine and elegant city rising from the dunes.~
 ~
-0 0 5046
+0 0 9511 
 D1
 Sand as far as the eye can see.~
 ~
@@ -20064,7 +20113,7 @@ S
 #5047
 The Great Eastern Desert~
     A vast desert stretches for miles, the sands constantly shifting around
-you. A pyramid lies to the west.
+you. A pyramid lies to the west.  You see a faint shimmering to the south...
 ~
 50 0 2
 D0
@@ -20076,9 +20125,9 @@ Sand as far as the eye can see.~
 ~
 0 0 5051
 D2
-Sand as far as the eye can see.~
+Sand as far as the eye can see...or is it?~
 ~
-0 0 5053
+0 0 9667 
 D3
 The pyramid seems to be floating about 100 meters above the desert. Even from
 here you can sense an evil presence within.~
@@ -20901,7 +20950,7 @@ D3
 S
 #5122
 Slave Chamber~
-     The room is in shambles. Traw is strewn all about the room as beds for the
+     The room is in shambles. Straw is strewn all about the room as beds for the
 unfortunate creatures who have fallen prey to drow empirialism.
 ~
 51 9 0
@@ -21252,7 +21301,7 @@ D2
 S
 #5143
 Sacrificial Pit~
-A you climb down into the pit thoughsands of spiders cover you tearing your
+A you climb down into the pit thousands of spiders cover you tearing your
 body to shreds.
 
 Lloth thanks you for your sacrifice.
@@ -22407,7 +22456,7 @@ The market place lies this way.
 S
 #5251
 A back alley~
-     A narrow alley leads east to a wider street and west to one of
+     A narrow alley leads west to a wider street and east to one of
 the city watchtowers.
 ~
 52 0 1
@@ -23107,7 +23156,7 @@ S
 The edge of the forest~
 You are standing at the eastern edge of a big forest.  To the east is the West
 Gate of Midgaard and to the west is a narrow trail, leading in through the
-forest.
+forest.  To the north, you see a path leading to to the Shire.
 ~
 60 4 2
 D1
@@ -23115,6 +23164,11 @@ You see the West Gate of the City of Midgaard.
 ~
 ~
 0 -1 3052
+D0
+You see a path leading to the Shire.
+~
+~
+0 -1 9400
 D3
 You see the narrow forest trail winding westwards in between the trees.
 ~
@@ -24499,7 +24553,8 @@ S
 A junction on the river bank in the deep, dark forest~
 You are by a junction where three paths meet.  Ancient, grey trees seem to
 observe you silently you from all around.  To the south a dark river flows from
-east to west through the forest.  Paths lead north, east and west.
+east to west through the forest.  It looks safe for boating.
+Paths lead north, east and west.
 ~
 61 9 3
 D0
@@ -24512,6 +24567,11 @@ The narrow path winds its way through the trees to the east.
 ~
 ~
 0 -1 6124
+D2
+The river looks shallow enough to enter here.
+~
+~
+0 -1 9774
 D3
 The narrow path winds its way through the trees to the west.
 ~
@@ -26045,7 +26105,6 @@ S
 Path, base of mountain~
 Now you are at the bottom of a rugged mountain.  The forest around you is
 very dense, and it seems very dark to the north.
-There is a path that leads east to the zoo.
 ~
 65 0 4
 D0
@@ -26187,8 +26246,8 @@ and the path continues to the west and south.
 65 8 0
 D0
 ~
-door~
-1 -1 6510
+door gate~
+2 2006 6510
 D3
 ~
 ~
@@ -26207,8 +26266,8 @@ wall.
 65 8 0
 D2
 ~
-door~
-1 -1 6509
+door gate~
+2 2006 6509
 D0
 ~
 ~
@@ -26307,7 +26366,8 @@ S
 #6516
 Hide & Tooth Shop~
 You are in the Hide & Tooth shop.  Here you may buy the finest in Dwarven
-weapons and armors. The path continues to the north and east.
+leather goods.  The battle-scarred shopkeeper glares at you.
+The path continues to the north and east.
 ~
 65 8 0
 D1
@@ -26411,7 +26471,7 @@ D1
 ~
 ~
 0 -1 6509
-
+E
 poster~
 There is a wall poster of a nude Minne Pearl.
 ~
@@ -26490,7 +26550,7 @@ a wine cellar at one time.
 ~
 65 9 0
 D4
-~
+trapdoor~
 ~
 0 -1 6526
 D5
@@ -26617,7 +26677,7 @@ S
 #6535
 Granite Head's Bakery~
 The aroma coming from this room is sensuous.  You can almost taste
-the pastry's dissolving in your mouth.
+the pastries dissolving in your mouth.
 ~
 65 8 0
 D1
@@ -27968,7 +28028,7 @@ To the south there is nothing but water and an exit leads east from there.
 S
 #7047
 The Pool in the sewer~
-You stand in water to your waste. To the north is the entrance to this room.
+You stand in water to your waist. To the north is the entrance to this room.
 A single door leads east.
 ~
 70 8 1
@@ -29085,7 +29145,7 @@ You look deeper down into the drain.
 S
 #7130
 The sewer pipe.~
-You are in an odd sewer pipe You see some odd scrates on the pipe wall, as
+You are in an odd sewer pipe You see some odd scratches on the pipe wall, as
 from a gigantic rat. You can see some slimy water gently running down into
 a sewer drain, and north the drain continues.
 ~
@@ -29502,7 +29562,7 @@ The water is dirty but it looks like you would be able to swim in it.
 S
 #7216
 Under water in the sewer.~
-You swim in some dirty water and is holding you breath. You'll better 
+You swim in some dirty water and are holding your breath. You'll better 
 continue before you drown. It is a good thing that you can hold your light
 above water-level.
 ~
@@ -29652,7 +29712,7 @@ You see a sewer drain.
 S
 #7224
 The sewer junction~
-You stand in a junction of three sewer drains. You see some odd scrates on
+You stand in a junction of three sewer drains. You see some odd scratches on
 the pipe wall, as from a gigantic rat.North and south the sewer continues 
 as usual, but west it looks a little strange.
 ~
@@ -29676,7 +29736,7 @@ S
 #7225
 The sewer~
 You are in a sewer, where the slimy water runs down through a tiny hole.
-You see some odd scrates on the pipe wall, as from a gigantic rat. There 
+You see some odd scratches on the pipe wall, as from a gigantic rat. There 
 is a sewer drain south.
 ~
 72 9 3
@@ -29688,7 +29748,7 @@ You see a sewer drain.
 S
 #7229
 The strange sewer~
-You are in a very strange sewer indeed, there are some odd scrates on the
+You are in a very strange sewer indeed, there are some odd scratches on the
 pipe wall, as from a gigantic rat. And you can see a lot of organic decay
 like bones from animals AND humans. West the drain runs slightly upwards.
 ~
@@ -29707,7 +29767,7 @@ S
 #7230
 The damp sewer~
 You are in a sewer drain with a funny damp substance on the floor, in the 
-substance you see a lot of decay. You see some odd scrates on the wall, as
+substance you see a lot of decay. You see some odd scratches on the wall, as
 from a gigantic rat. Both to the east and west the pipe seems to run down.
 ~
 72 13 3
@@ -29724,8 +29784,8 @@ You see a sewer.
 S
 #7231
 The strange sewer~
-You are in an ordinary sewer exept for a lot of scrates on the sewer wall,
-ad a lot of debris on the floor.
+You are in an ordinary sewer except for a lot of scratches on the sewer wall,
+and a lot of debris on the floor.
 ~
 72 9 3
 D1
@@ -29745,7 +29805,7 @@ You see a lot of organic decay on the floor.
 S
 #7232
 The sewer~
-You are in a sewer with more scrates on the walls. And ofcouse a whole lot
+You are in a sewer with more scratches on the walls. And of course a whole lot
 of decay. The drain runs east and north.
 ~
 72 9 3
@@ -29763,7 +29823,7 @@ S
 #7233
 The sewer drain~
 You stand in in a sewer drain, you are able to see some kind of cave-like
-room. You see some odd scrates on the drain wall, as from a gigantic rat. 
+room. You see some odd scratches on the drain wall, as from a gigantic rat. 
 The sewer leads south.
 ~
 72 9 3
@@ -30120,9 +30180,9 @@ The worms are purple. They do not look edible.
 S
 #7404
 Cave turning-point~
-The mud are getting deeper. You are wondering, 'Would
-it be an idea to leave, before I disappear?'. To the
-south you notice a flat round stone are blocking the
+The mud is getting deeper. You are wondering, 'Would
+it be a good idea to leave, before I disappear?'. To the
+south you notice a flat round stone is blocking the
 way. To the west you can see mud.
 ~
 74 9 2
@@ -30166,6 +30226,7 @@ socket~
 The socket looks like the work of a dwarf. It is VERY
 beautifull.
 ~
+E
 crystal globe~
 The crystal globe is glowing with a pulsing light. It
 looks like there is smoke inside it.
@@ -30175,7 +30236,7 @@ S
 The mudhole~
 You are standing in a lot of mud. The mud goes to your
 chest. You feel the precence of something IN the mud.
-The only obivicios exit is to the west.
+The only obvious exit is to the west.
 ~
 74 9 6
 D0
@@ -30611,7 +30672,7 @@ You are standing in a crossing of hallways. You can leave this place
 in every direction, except up and down. In the dust you notice strange
 footprints.
 ~
-74 9 -1
+74 9 1
 D0
 ~
 ~
@@ -30892,7 +30953,6 @@ D2
 ~
 ~
 0 -1 7440
-5~
 E
 hay~
 The hay is very dirty. The smell of it makes you feel sick.
@@ -31296,7 +31356,7 @@ S
 #7911
 Redferne's Bedroom~
 This is a snugly set bedroom with all the necessities for a romantic evening.
-A large fireplace adourns the east wall, and sizzling away is the wood that
+A large fireplace adorns the east wall, and sizzling away is the wood that
 is ablaze within.  The bed is enormous, covering at least HALF of this great
 room.  This stretches at least 300 square feet, so can you imagine the BED?
 A large staircase leads down to the hall.  A couple of doors open up to a
@@ -31926,7 +31986,7 @@ a uniform pale grey, and the horizon seem to be much too close.
 80 0 2
 D0
 You can see the reflexes off a glass road in the sky, swinging
-around from the north to the southeast.The crack continues to the
+around from the north to the southeast.  The crack continues to the
 north.
 ~
 ~
@@ -32346,7 +32406,7 @@ To the east, you can follow the crack around its eastern side.
 ~
 ~
 0 -1 8035
-D2
+D3
 To the west, you can see a wide expanse of glass along the faults
 western side. 
 ~
@@ -33583,7 +33643,8 @@ harvest in the fall, and where lovers stroll in summer. You feel seasons of
 remembered happiness and joy taking Your sorrows and worries away from You,
 leaving You calm and invigorated, ready for the world. Paths lead into the
 holy grove to the east, north and west, while to the south a wide, sunny field
-slopes down to a sparkling lake.
+slopes down to a sparkling lake.  Above you is a strange shimmering, almost
+like something from another world....
 ~
 89 0 3
 D0
@@ -33607,6 +33668,17 @@ glittering lake.
 ~
 ~
 0 -1 8908
+D4
+The shimmering grows in intensity as you look at it, beckoning you to reach
+upwards...
+~
+~
+0 -1 9300
+E
+shimmering world strange~
+The fabric of reality bends around you as you examine the sky.  You feel like
+you could reach up and pull yourself through....but to where?
+~
 S
 #8906
 The holy grove~
@@ -33869,7 +33941,7 @@ The ballroom~
    You are standing in the middle of a vast palisander floor. This is where
 Dragon entertains large number of guests, but the cloth-covered chairs
 standing forlornly in a corner suggests that this does not happen often.
-There are doors in the south and west walls, while to the east there is a
+There are doors in the south and east walls, while to the west there is a
 short corridor to the greenhouse.
 ~
 89 8 0
@@ -35526,5 +35598,8311 @@ You've fallen, and you can't get up!!!
 ~
 91 4 2
 S
-#9999
+#9200
+Entrance to the Mob Factory~
+You find that you have entered a strange factory. This factory doesn't
+make cars or computers or something - it makes mobs! The sound of
+machinery can be heard in the background; the grinding gears drive you
+crazy! To the north you see the storage area, to the south the
+foreman's office, to the east the entrance hallway, and to the west the
+eastern end of alley.
+~
+92 8 0
+D0
+~
+~
+0 0 9202
+D1
+~
+~
+0 0 9207
+D2
+~
+~
+0 0 9203
+D3
+~
+~
+0 0 3046
+S
+#9201
+Mob Factory Storage Area~
+This is where the raw materials from which mobs are manufactured are
+stored. You see sacks of sawdust, cans of pink paint, a large box
+containing wigs and a bottle mysteriously labelled "solution x". Exits
+are more of storage to the east and north, and entrance to the mob
+factory to the south.
+~
+92 8 0
+D0
+~
+~
+0 0 9202
+D1
+~
+~
+0 0 9206
+D2
+~
+~
+0 0 9200
+S
+#9202
+Mob Factory Storage Area~
+This is where the raw materials from which mobs are manufactured are
+stored. You see sacks of sawdust, cans of pink paint, a large box
+containing wigs and a bottle mysteriously labelled "solution X". Exits
+are more of storage to the east and south.
+~
+92 8 0
+D1
+~
+~
+0 0 9205
+D2
+~
+~
+0 0 9201
+S
+#9203
+Foreman's Office~
+This is the ofice of the mob factory foreman. The room is sparsely
+furnished with a metal desk, a couple of chairs, a shelf with helmets
+of various sizes and a Sports Illustrated Swimsuit calendar on the west
+wall. Exits lead north to the mob factory entrance and south to the
+foreman's bathroom.
+~
+92 8 0
+D0
+~
+~
+0 0 9200
+D2
+~
+~
+0 0 9204
+S
+#9204
+Foreman's Bathroom~
+This is the place where the foreman makes frequent visits. The smell
+here is very strong and reminds you of bovine excrement! There is a
+shower to the back, and a urinal to the left. On the floor you can
+see stains of a very suspicious nature. The only exit leads north to
+the foreman's office.
+~
+92 8 0
+D0
+~
+~
+0 0 9203
+S
+#9205
+Mob Factory Storage Area~
+This is where the raw materials from which mobs are manufactured are
+stored. You see sacks of sawdust, cans of pink paint, a large box
+containing wigs and a bottle mysteriously labelled "solution X". Exits
+are more of storage to the west and south, and an inspection room to
+the east.
+~
+92 8 0
+D1
+~
+~
+0 0 9210
+D2
+~
+~
+0 0 9206
+D3
+~
+~
+0 0 9202
+S
+#9206
+Mob Factory Storage Area~
+This is where the raw materials from which mobs are manufactured are
+stored. You see sacks of sawdust, cans of pink paint, a large box
+containing wigs and a bottle mysteriously labelled "solution X". Exits
+are more of storage to the west and north, an inspection room to the
+east and the entrance hallway to the south.
+~
+92 8 0
+D0
+~
+~
+0 0 9205
+D1
+~
+~
+0 0 9211
+D2
+~
+~
+0 0 9207
+D3
+~
+~
+0 0 9201
+S
+#9207
+Entrance Hallway to Mob Factoy~
+You are standing in the entrance hallway of the mob factory. The sound
+of machinery gets louder now, and you can hear people shouting in the
+distance. Every once in a while you get creepy feeling that a pair of
+eyes is observing you...... Exits are north to the storage area, east
+to the entrance hallway, south to the cafeteria and west to the mob
+factory entrance.
+~
+92 8 0
+D0
+~
+~
+0 0 9206
+D1
+~
+~
+0 0 9212
+D2
+~
+~
+0 0 9208
+D3
+~
+~
+0 0 9200
+S
+#9208
+Mob Factory Cafeteria~
+You find that you have entered the cafeteria of the mob factory. There
+are many workers eating at the numerous tables placed around the room.
+The food doesn't look too appetising, but the factory workers don't
+seem to care. There are many places where food and drink have been
+spilled on the ground. Exits are north to the entrance hallway and
+south to the mob factory cafeteria.
+~
+92 8 0
+D0
+~
+~
+0 0 9207
+D2
+~
+~
+0 0 9209
+S
+#9209
+Mob Factory Cafeteria~
+You find that you have entered the cafeteria of the mob factory. There
+are many workers eating at the numerous tables placed around the room.
+The food doesn't look too appetising, but the factory workers don't
+seem to care. There are many places where food and drink have been
+spilled on the ground. The only exit is north to the mob factory
+cafeteria.
+~
+92 8 0
+D0
+~
+~
+0 0 9208
+S
+#9210
+Mob Factory Inspection Room~
+You have entered the mob factory inspections room. This is where the
+mobs manufactured on the assembly lines are inspected for defects. A
+whole team of inspectors from the Midgaard Inspections Bureau is
+standing around, trying to look busy. Exits are south to the mob
+factory inspection room, east to the primary assembly line and west to
+the storage area.
+~
+92 8 0
+D1
+~
+~
+0 0 9215
+D2
+~
+~
+0 0 9211
+D3
+~
+~
+0 0 9205
+S
+#9211
+Mob Factory Inspection Room~
+You have entered the mob factory inspections room. This is where the
+mobs manufactured on the assembly lines are inspected for defects. A
+whole team of inspectors from the Midgaard Inspections Bureau is
+standing around, trying to look busy. Exits are south to the mob
+factory inspection room, east to the primary assembly line and west to
+the storage area.
+~
+92 8 0
+D0
+~
+~
+0 0 9210
+D1
+~
+~
+0 0 9216
+D2
+~
+~
+0 0 9212
+D3
+~
+~
+0 0 9206
+S
+#9212
+Entrance Hallway to Mob Factoy~
+You are standing in the entrance hallway of the mob factory. The sound
+of machinery gets louder now, and you can hear people shouting in the
+distance. Every once in a while you get creepy feeling that a pair of
+eyes is observing you...... Exits are north to the inspection room,
+east to the primary assembly line, south to the reject room and west
+to the entrance hallway.
+~
+92 8 0
+D0
+~
+~
+0 0 9211
+D1
+~
+~
+0 0 9217
+D2
+~
+~
+0 0 9213
+D3
+~
+~
+0 0 9207
+S
+#9213
+Mob Factory Reject Room~
+This is the factory reject room. All the mobs that are manufactured
+incorrectly or have some defect are placed here before subsequent
+destruction. You shudder at the many deformed and grotesque shapes
+present before you. Exits are south to the reject room and north to
+the entrance hallway.
+~
+92 8 0
+D0
+~
+~
+0 0 9212
+D2
+~
+~
+0 0 9214
+S
+#9214
+Mob Factory Reject Room~
+This is the factory reject room. All the mobs that are manufactured
+incorrectly or have some defect are placed here before subsequent
+destruction. You shudder at the many deformed and grotesque shapes
+present before you. The only exit is north to the reject room.
+~
+92 8 0
+D0
+~
+~
+0 0 9213
+S
+#9215
+Primary Assembly Line~
+This is the primary assembly line of the mob factory. Here, all the
+mobs seen roaming around the city of Midgaard are manufactured from
+raw materials. There is a big conveyor belt present which makes a lot
+of noise! It seems that the workers are making drunks today. Exits are
+east to the secondary assembly line, south to the primary assembly
+line and west to the inspection room.
+~
+92 8 0
+D1
+~
+~
+0 0 9220
+D2
+~
+~
+0 0 9216
+D3
+~
+~
+0 0 9210
+S
+#9216
+Primary Assembly Line~
+This is the primary assembly line of the mob factory. Here, all the
+mobs seen roaming around the city of Midgaard are manufactured from
+raw materials. There is a big conveyor belt present which makes a lot
+of noise! It seems that the workers are making drunks today. Exits are
+east to the secondary assembly line, north and south to the primary
+assembly line and west to the inspection room.
+~
+92 8 0
+D0
+~
+~
+0 0 9215
+D1
+~
+~
+0 0 9221
+D2
+~
+~
+0 0 9217
+D3
+~
+~
+0 0 9211
+S
+#9217
+Primary Assembly Line~
+This is the primary assembly line of the mob factory. Here, all the
+mobs seen roaming around the city of Midgaard are manufactured from
+raw materials. There is a big conveyor belt present which makes a lot
+of noise! It seems that the workers are making drunks today. Exits are
+east to the secondary assembly line, north and south to the primary
+assembly line and west to the entrance hallway.
+~
+92 8 0
+D0
+~
+~
+0 0 9216
+D1
+~
+~
+0 0 9222
+D2
+~
+~
+0 0 9218
+D3
+~
+~
+0 0 9212
+S
+#9218
+Primary Assembly Line~
+This is the primary assembly line of the mob factory. Here, all the
+mobs seen roaming around the city of Midgaard are manufactured from
+raw materials. There is a big conveyor belt present which makes a lot
+of noise! It seems that the workers are making drunks today. Exits are
+east to the secondary assembly line, north and south to the primary
+assembly line.
+~
+92 8 0
+D0
+~
+~
+0 0 9217
+D1
+~
+~
+0 0 9223
+D2
+~
+~
+0 0 9219
+S
+#9219
+Primary Assembly Line~
+This is the primary assembly line of the mob factory. Here, all the
+mobs seen roaming around the city of Midgaard are manufactured from
+raw materials. There is a big conveyor belt present which makes a lot
+of noise! It seems that the workers are making drunks today. Exits are
+east to the secondary assembly line and north to the primary
+assembly line.
+~
+92 8 0
+D0
+~
+~
+0 0 9218
+D1
+~
+~
+0 0 9224
+S
+#9220
+Secondary Assembly Line~
+This is the secondary asembly line of the mob factory. You are
+surprised to see cityguard heads come floating on the conveyor belt!
+The very sight is sickening, but the workers seem to be quite
+cheerful about their work. Exits are south to the secondary assembly
+line and west to the primary assembly line.
+~
+92 8 0
+D2
+~
+~
+0 0 9221
+D3
+~
+~
+0 0 9215
+S
+#9221
+Secondary Assembly Line~
+This is the secondary asembly line of the mob factory. You are
+surprised to see cityguard heads come floating on the conveyor belt!
+The very sight is sickening, but the workers seem to be quite
+cheerful about their work. Exits are north and south to the secondary
+assembly line and west to the primary assembly line.
+~
+92 8 0
+D0
+~
+~
+0 0 9220
+D2
+~
+~
+0 0 9222
+D3
+~
+~
+0 0 9216
+S
+#9222
+Secondary Assembly Line~
+This is the secondary asembly line of the mob factory. You are
+surprised to see cityguard heads come floating on the conveyor belt!
+The very sight is sickening, but the workers seem to be quite
+cheerful about their work. Exits are north and south to the secondary
+assembly line and west to the primary assembly line.
+~
+92 8 0
+D0
+~
+~
+0 0 9221
+D2
+~
+~
+0 0 9223
+D3
+~
+~
+0 0 9217
+S
+#9223
+Secondary Assembly Line~
+This is the secondary asembly line of the mob factory. You are
+surprised to see cityguard heads come floating on the conveyor belt!
+The very sight is sickening, but the workers seem to be quite
+cheerful about their work. Exits are north and south to the secondary
+assembly line and west to the primary assembly line.
+~
+92 8 0
+D0
+~
+~
+0 0 9222
+D2
+~
+~
+0 0 9224
+D3
+~
+~
+0 0 9218
+S
+#9224
+Secondary Assembly Line~
+This is the secondary asembly line of the mob factory. You are
+surprised to see cityguard heads come floating on the conveyor belt!
+The very sight is sickening, but the workers seem to be quite
+cheerful about their work. Exits are north to the secondary
+assembly line and west to the primary assembly line.
+~
+92 8 0
+D0
+~
+~
+0 0 9223
+D3
+~
+~
+0 0 9219
+S
+#9300
+Entrance to the Plane of Nirvana~ 
+You stand before the entrance to a plane of absolute balance and order.  It is
+equally hot and cold, equally light and dark, and made of equal parts of solid
+and liquid.
+ 
+The plane extends to the west and east, while an exit lies to the south.
+~
+93 0 2
+D1
+To the east, the plane extends for what seems to be forever.
+~
+~
+0 -1 9301
+D2
+To the south, you see the portal leading back to home.
+~
+~
+0 -1 3001
+D3
+To the west, the plane extends for what seems to be forever.
+~
+~
+0 -1 9302
+S
+#9301
+The Plane of Nirvana~
+You are traveling the Plane of Nirvana.  It has endless bounderies to the east
+and west
+~
+93 0 2
+D1
+To the east, there seems to be a bend in direction of travel.
+~
+~
+0 -1 9303
+D3
+To the west, the plane seems to extend forever.
+~
+~
+0 -1 9300
+S
+#9302
+The Plane of Nirvana~
+You are on a western strech of the plane.  Boundries to the east and west seem 
+nonexistent.
+~
+93 0 2
+D1 
+The plane seems to strech forever to the east
+~
+~
+0 -1 9300
+D3
+The plane continues to the west where is appears to change direction
+~
+~
+0 -1 9304
+S
+#9303
+A Change in Direction~
+Here, the plane seems to direct you to the north.  Also, the plane continues 
+to the west.
+~
+93 0 2
+D0
+The plane continues to the north with no end in sight
+~
+~
+0 -1 9305
+D3
+The plane contiues to the west with no end in sight
+~
+~
+0 -1 9301
+S
+#9304
+A Change in Direction~
+Here, the plane goes to the north and bends to the west
+~
+93 0 2
+D0
+The vast plane seems to have no end to the north
+~
+~
+0 -1 9306
+D1
+To the east, the plane has no visible end
+~
+~
+0 -1 9302
+S
+#9305
+A North-South direction of the plane~
+The plane continues to the north and south
+~
+93 0 2
+D0
+To the north, the plane stretches as far as the eye can see.
+~
+~
+0 -1 9312
+D1
+To the south, the plane stretches as far as the eye can see.
+~
+~
+0 -1 9303
+S
+#9306
+A North-South stretch of the plane~
+The plane continues to the north and the south
+~
+93 0 2
+D0
+To the north, the plane stretches as far as the eye can see.
+~
+~
+0 -1 9313
+D3
+To the south, the plane stretches as far as the eye can see.
+~
+~
+0 -1 9304
+S
+#9307
+In the Tower of Nirvana~
+Entering the tower, there seems to be enough light to see by, but no source is 
+visible.  The hall continues to the east, while a door lies to the west.
+~
+93 8 0
+D1
+The hall continues east into oblivion.
+~
+~
+0 -1 9310
+D3
+A great door lies to the west
+~
+door~
+2 -1 9313
+S
+#9308
+A hallway in the Tower of Nirvana~
+You are in a east-west hallway in the tower.  to the west, the hall continues 
+and a door lies to the east.
+~
+93 8 0
+D1
+A great door lies to the east
+~
+door~
+2 -1 9312
+D3
+the hallway continues west into oblivion.
+~
+~
+0 -1 9309
+S
+#9309
+An east-west hallway in the Tower of Nirvana~
+The hallway continues to the east, and stretches to the west.
+~
+93 8 0
+D1
+The hallway continues east into oblivion.
+~
+~
+0 -1 9308
+D3
+The Hallway continues west into oblivion.
+~
+~
+0 -1 9311
+S
+#9310
+An east-west passage in the Tower of Nirvana~
+~
+93 8 0
+D1
+The Hallway contiues east into oblivion
+~
+~
+0 -1 9311
+D3
+The Hallway contiues west into oblivion
+~
+~
+0 -1 9307
+S
+#9311
+An intersection in the Tower of Nirvana~
+You are at an intersection where the east-west passage continues, but a large 
+passage leads to the north.
+~
+93 8 0
+D0
+The passage continues to the north where it seems to get wider.
+~
+~
+0 -1 9323
+D1
+The passage ontinues eastward into oblivion.
+~
+~
+0 -1 9309
+D3
+The passage continues westward into oblivion.
+~
+~
+0 -1 9310
+S
+#9312
+At the door to the Tower of Nirvana~
+You stand on the plane where a mighty door lies to the west.
+The plane also continues north and southward.  There is a large sign on the 
+door.
+~
+93 0 2
+D0
+The plane continues northward as far as the eye can see.
+~
+~
+0 -1 9314
+D2
+The plane continues southward as far as the eye can see.
+~
+~
+0 -1 9305
+D3
+A mighty door lies to the west
+~
+door~
+2 -1 9308
+E
+sign~
+The sign reads:
+                     WARNING
+Only those brave of heart and high of level should
+enter the Tower of Nirvana.
+~
+S
+#9313
+At the door to the Tower of Nirvana~
+The plane continue to the north and south, while a mighty door lies to the 
+east.  There is a sign on the door.
+~
+93 0 2
+D0
+The plane stretches to the north as far as the eye can see.
+~
+~
+0 -1 9315
+D1
+A mighty door sits to the east
+~
+door~
+2 0 9307
+D2
+The plane continues to the south as far as the eye can see
+~
+~
+0 -1 9306
+E
+sign~
+The sign reads:
+                  WARNING!
+Only those brave of heart and high of level
+should attempt to enter the Tower of Nirvana.
+~
+S
+#9314
+A north-south area of the Plane of Nirvana~
+The plane continues to the north and southward.
+~
+93 0 2
+D0
+The plane continues endlessly to the north.
+~
+~
+0 -1 9327
+D2
+The plane continues endlessly to the south.
+~
+~
+0 -1 9312
+S
+#9315
+A north-south area on the Plane of Nirvana~
+the plane continues to the north and south
+~
+93 0 2
+D0
+The plane continues endlessly to the north
+~
+~
+0 -1 9328
+D2
+The plane continues endlessly to the south
+~
+~
+0 -1 9313
+S
+#9316
+Dead End~ 
+You stand at a dead end where the only exit appears to be west.
+~
+93 8 0
+D3
+The passage continue to the west.
+~
+~
+0 -1 9318
+S
+#9317
+Dead End~
+You are at what appears to be a dead end.  The only exit is back east.
+~
+93 8 0
+D1
+The passage continues to the east.
+~
+~
+0 -1 9319
+S
+#9318
+A Tertain's lair~
+You quite possibly have made a terrible mistake coming in here.
+Exits lead east and west.
+~
+93 8 0
+D1
+The passage continues to the east
+~
+~
+0 -1 9316
+D3
+The passage leads west where you can see a bright light ahead.
+~
+~
+0 -1 9320
+S
+#9319
+A Tertian's lair~
+You might have made a terrible mistake coming into here.
+Exits lead east and west.
+~
+93 8 0
+D1
+The passage continues eastward where you can see a bright light.
+~
+~
+0 -1 9320
+D3
+The passage continues westward into oblivion.
+~
+~
+0 -1 9317
+S
+#9320
+The Lair of Primus~
+You are in a large hall, with a massive pool of what appears to be pure energy 
+in the center of the room.  Exits lead in all the cardinal directions.  From 
+the pool rises the master of the Plane of Nirvana....
+~
+93 8 0
+D0
+A passage leads north into the unknown.
+~
+~
+0 -1 9324
+D1
+A passage leads east into the unknown.
+~
+~
+0 -1 9318
+D2 
+A passage leads south into the unknown.
+~
+~
+0 -1 9321
+D3
+A passage leads west into the unknown.
+~
+~
+0 -1 9319
+S
+#9321
+A Tertian's lair~
+Maybe coming here wasn't such a hot idea.  You feel very unwelcome here.  
+Exits lead north and south
+~
+93 8 0
+D0
+The passage leads north where you can see a bright light.
+~
+~
+0 -1 9320
+D2
+The passage leads south into the unknown.
+~
+~
+0 -1 9322
+S
+#9322
+The office of a Quinton~
+You have stumbled upon the office of a page to Primus.
+Scrolls lie about the room along with me strange objects...you can't imagine 
+what kind of creature would use them.  Exits lead in all the cardinal 
+directions.
+~
+93 8 0
+D0
+The passage heads northward where you can see nothing.
+~
+~
+0 -1 9321
+D1
+The passage goes east where you feel it might be bad to go.
+~
+~
+0 -1 9346
+D2 
+The passage goes south into oblivion.
+~
+~
+0 -1 9323
+D3
+The passage heads westward into oblivion.
+~
+~
+0 -1 9353
+S
+#9323
+A wide north-south passageway~
+you find yourself in a passage where the exits are north and south
+~
+93 8 0
+D0
+To the north, you spy an intersection of tunnels.
+~
+~
+0 -1 9322
+D2
+To the south you can barely make out a junction of passageways.
+~
+~
+0 -1 9311
+S
+#9324
+A Tertian's lair~
+You find yourself in a lair of a Tertian.  Exits lead north and south.
+~
+93 8 0
+D0
+To the north, you can make out a intersection of tunnels.
+~
+~
+0 -1 9325
+D2
+To the south, you can see a bright light.
+~
+~
+0 -1 9320
+S
+#9325
+A north south tunnel~
+You are in a passage where the only exits are north and south.
+~
+93 8 0
+D0
+Far to the north you can see a door.
+~
+~
+0 -1 9326
+D2
+To the south you stare into darkness.
+~
+~
+0 -1 9324
+S
+#9326
+An intersection of passages~
+You stand at an intersection.  Exits lead off into all the cardinal 
+directions.  A door lies to the north
+~
+93 8 0
+D0
+you see a massive door
+~
+door~
+2 0 9331
+D1
+To the east, you spy a dark passage
+~
+~
+0 -1 9332
+D2
+To the south you stare into oblivion.
+~
+~
+0 -1 9325
+D3 
+To the west, you spy a dark passage.
+~
+~
+0 -1 9339
+S
+#9327
+A change of direction~
+The plane curves from the south to west
+~
+93 0 2
+D2
+looking south, you see the plane extending beyond view.
+~
+~
+0 -1 9314
+D3
+looking west, you can't fathom how far the plane extends.
+~
+~
+0 -1 9330
+S
+#9328
+A change of direction~
+Here, the plane takes a turm from the south to heading east.
+~
+93 0 2
+D1
+The plane heads east from here. You can't see the end of it.
+~
+~
+0 -1 9329
+D2
+Looking south, you view the plane extending for miles.
+~
+~
+0 -1 9315
+S
+#9329
+An east-west route on the Plane of Nirvana~
+Exits lead east and west.
+~
+93 0 2
+D1
+looking east, you spy a door far off in the distance.
+~
+~
+0 -1 9331
+D3
+looking west, in the distance you can spy a curve south.
+~
+~
+0 -1 9328
+S
+#9330
+An east-west route on The Plane of Nirvana~
+Exits lead east and west
+~
+93 0 2
+D1
+looking east, you can see a bend in the distance.
+~
+~
+0 -1 9327
+D2
+glancing west, you can spy a door far off in the distance.
+~
+~
+0 -1 9331
+S
+#9331
+A large door in the passage~
+The passages goes east and west, with a large door to the south.
+~
+93 0 2 
+D1
+looking east, you see more of the passage.
+~
+~
+0 -1 9330
+D2
+A large door blocks the way to the south.
+~
+door~
+2 0 9326
+D3
+looking west, you see more of the passage.
+~
+~
+0 -1 9329
+S
+#9332
+A Junction in the passage~
+Here, passages lead off in all cardinal directions.
+~
+93 8 0
+D0
+Looking north, you spy a small room in the distance
+~
+~
+0 -1 9333
+D1 
+Eastward, the passage continues in the darkness.
+~
+~
+0 -1 9335
+D2
+South of here is a small room.
+~
+~
+0 -1 9334
+D3
+West, you spy an intersection.
+~
+~
+0 -1 9326
+S
+#9333
+The office of the Octon~
+you are in a small room, the only exit is south.
+~
+93 8 0
+D2
+looking south, you see an intersection.
+~
+~
+0 -1 9332
+S
+#9334
+A small room~
+The only exit is north
+~
+93 8 0
+D0
+Looking north, you spy an intersection.
+~
+~
+0 -1 9332
+S
+#9335
+A passageway~
+Exits lead in all cardinal directions.
+~
+93 8 0
+D0
+Looking north you spy a average sized room.
+~
+~
+0 -1 9336
+D1
+Looking east, you can make out a large room
+~
+~
+0 -1 9338
+D2
+Looking south, you can see an average room.
+~
+~
+0 -1 9337
+D3
+Looking west, you can see an intersection ahead.
+~
+~
+0 -1 9332
+S
+#9336
+Lair of a Hexton~
+You are in a room that is in complete disrepair.  Items are thrown throughout 
+the room making them worthless piles of junk.
+The only exit is back south
+~
+93 8 0
+D2
+Looking south, you can make out a passage.
+~
+~
+0 -1 9335
+S
+#9337
+Office of a Hexton~
+A makeshift desk forms the center of this room.  The only exit is north.
+~
+93 8 0
+D0
+Looking north, you can make out a hallway.
+~
+~
+0 -1 9335
+S
+#9338
+Office of a Secundus~
+You are standing in a office of one of the Viceroys of the Plane of Nirvana.  
+The occupant doesn't look real thrilled with your presence.  The only exits is 
+west.
+~
+93 8 0
+D3
+Looking west you can see a long hallway
+~
+~
+0 -1 9335
+S
+#9339
+A Junction in the hallway~
+Your are standing in a junction, exits lead in all the cardinal directions.
+~
+93 8 0
+D0
+To the north, you spy a small room
+~
+~
+0 -1 9340
+D1
+To the east, you see a quadruple junction
+~
+~
+0 -1 9325
+D2
+To the south you see a small room
+~
+~
+0 -1 9341
+D3
+To the west, the passageway continues
+~
+~
+0 -1 9342
+S
+#9340
+Office of an Octon~
+You see a messy room with papers scattered everywhere.
+The only exit leads back to the south
+~
+93 8 0
+D2
+To the south you can make out a junction.
+~
+~
+0 -1 9339
+S
+#9341
+Office of a Septon~
+A neat and tidy room, it appear to be inhabited my a neatenss freak.  The only 
+exit lies to the north.
+~
+93 8 0
+D0
+To the north you see a junction.
+~
+~
+0 -1 9339
+S
+#9342
+An east-west passage~
+In east west passage is here with exits in all of the cardinal directions.
+~
+93 8 0
+D0
+You can see a room to the north.
+~
+~
+0 -1 9343
+D1 
+To the east you can see a junction
+~
+~
+0 -1 9339
+D2
+To the south you can make out a averaged sized room.
+~
+~
+0 -1 9344
+D3
+To the west you can see what appears to be a cavernous room.
+~
+~
+0 -1 9345
+S
+#9343
+The Barracks~
+A dusty room, with a almost untolerable odor, the barracks are being inspected 
+by a Hexton and his personal enterage.
+The only exit lies to the south.
+~
+93 8 0
+D2
+To the south you can see junction
+~
+~
+0 -1 9342
+S
+#9344
+The Commander's Post~
+You have stumbled on to the office of the Commander of the forces in the Plane 
+Of Nirvana.  The room is well furnished and a sense of courage and bravery 
+overtakes you as you enter the room.  The only exit lies to the north.
+~
+93 8 0
+D0
+To the north you can visualize a junction of passages.
+~
+~
+0 -1 9342
+S
+#9345
+The chamber of the second Secundus~
+This huge room is furnished with the finest, and a personal legion guards the 
+Secundus. the only exit is to the east.
+~
+93 8 0
+D1
+To the east you can see a junction
+~
+~
+0 -1 9342
+S
+#9346
+A Passageway~
+You are in a well lit passage.  I sense of forboding danger envelopes you.  
+Exits lead in all cardinal directions.
+~
+93 8 0
+D0
+To the north you can see a small chamber
+~
+~
+0 -1 9347
+D1
+To the east, the passage continues,.
+~
+~
+0 -1 9349
+D2
+To the south, a chamber can be seen
+~
+~
+0 -1 9348
+D3
+To the west, a large tunnel can be found.
+~
+~
+0 -1 9322
+S
+#9347
+Chamber of the Octon~
+A small room, sparsely furnished, it leaves you with a sense of fear.  The 
+only exit is to the south
+~
+93 8 0
+D2
+To the south you can see a passage.
+~
+~
+0 -1 9346
+S
+#9348
+Chamber of the Nonaton~
+You have entered the chamber of the principal law and order overseers.  The 
+only exit lies to the north
+~
+93 8 0
+D0
+To the north you can see a passageway.
+~
+~
+0 -1 9346
+S
+#9349
+End of the passageway~
+You have reached the end of a long east-west passage.  The passage contiues to 
+the west, and rooms lie to the north, south, and east.
+~
+93 8 0
+D0
+To the north you can see a room
+~
+~
+0 -1 9350
+D1
+To the east you can make out a large chamber
+~
+~
+0 -1 9352
+D2
+To the south, a room can be seen.
+~
+~
+0 -1 9351
+D3 
+to the west, the passageway continues
+~
+~
+0 -1 9346
+S
+#9350
+Chamber of a Hexton~
+You have entered the chamber of a Hexton.  Trophies adorn the walls, some of 
+which are human. the only exit is to the south.
+~
+93 8 0
+D2
+To the south you can see a passageway.
+~
+~
+0 -1 9349
+S
+#9351
+Chamber of a Hexton~
+You have entered a room where you are not very popular. The only exit lies 
+northbound.
+~
+93 8 0
+D0
+To the north you can see a passage.
+~
+~
+0 -1 9349
+S
+#9352
+Chamber of the Secudus~
+A large canvernous room, this chamber serves as the sleeping quarters for the 
+third Secudus, Viceroy to Primus. The only exit lies to the west.
+~
+93 8 0
+D3
+To the west you can see a passageway.
+~
+~
+0 -1 9349
+S
+#9353
+A passageway~
+You are in a passagway where you may go in any cardinal direction.
+~
+93 8 0
+D0
+To the north lies a small chamber
+~
+~
+0 -1 9354
+D1
+To the east, a main passage forms a junction.
+~
+~
+0 -1 9322
+D2
+To the south, you can spot a small room
+~
+~
+0 -1 9355
+D3
+To the west, the passageway continues
+~
+~
+0 -1 9359
+S
+#9354
+A small chamber~
+You are in a small cramped chamber.  The only exit lies to the south.
+~
+93 8 0
+D2
+To the south you can see a passage
+~
+~
+0 -1 9353
+S
+#9355
+A cramped room~
+You are in a small, crowded room.  The only exit appears to lie to the north.
+~
+93 8 0
+D0
+To the north, you can see a passageway.
+~
+~
+0 -1 9353
+S
+#9356
+A large room~
+You have entered a room where you are not wanted.  The only exit lies to the 
+south.
+~
+93 8 0
+D2
+To the south you can visualize a east-west passage.
+~
+~
+0 -1 9359
+S
+#9357
+A room~
+You have entered a room where there was obviously a hurried move going on.  
+The only exit lies to the north.
+~
+93 8 0
+D0
+To the north you can make out a passageway.
+~
+~
+0 -1 9359
+S
+#9358
+Chamber of The First Secundus~
+You have disturbed the rest of the First Viceroy to Primus the Prime, The 
+Secundus.  He does not look like a happy camper. The only exit lies to the 
+east.
+~
+93 8 0
+D1
+To the east you can spot a hallway
+~
+~
+0 -1 9359
+S
+#9359
+Junction in the hallway~
+Exits lead off in all of the cardinal directions
+~
+93 8 0
+D0
+To the north lies a large chamber
+~
+~
+0 -1 9356
+D1
+To the east , the passage continues.
+~
+~
+0 -1 9353
+D2
+To the south, a small chamber can be found.
+~
+~
+0 -1 9357
+D3
+To the west, lies a monstrous room.
+~
+~
+0 -1 9358
+S
+#9400
+A dimly lit path~
+   You tread through the deep, dark forest on a dimly lit path.  Up ahead you
+can hear the faint sounds of a village.
+~
+94 0 3
+D2
+The dimly lit path leads south through the light forest.
+~
+~
+0 -1 6000
+D0
+The dimly lit path leads north through the dense forest.
+~
+~
+0 -1 9401
+S
+#9401
+A dimly lit path~
+   You tread through the deep, dark forest on a dimly lit path.  Up ahead you
+can hear the faint sounds of a village.
+~
+94 0 3
+D0
+The dimly lit path leads north through the dense forest.
+~
+~
+0 -1 9402
+D2
+The dimly lit path leads south through the dense forest.
+~
+~
+0 -1 9400
+S
+#9402
+A dimly lit path~
+   You tread through the deep, dark forest on a dimly lit path.  The forest
+here seems less dense than to the south.  Northward you see the faint outline
+of a village.
+~
+94 0 3
+D2
+The dimly lit path leads south through the dense forest.
+~
+~
+0 -1 9401
+D0
+The dimly lit path leads to a village.
+~
+~
+0 -1 9403
+S
+#9403
+Entrance to the Shire~
+   You stand at the entrance to the Shire.  You see halflings, no more than
+wee tall, every which way you look. Bywater Road leads east and west.
+~
+94 0 1
+D2
+To the south you see a dimly lit path which leads to a dense forest.
+~
+~
+0 -1 9402
+D1
+To the east runs Bywater Road.
+~
+~
+0 -1 9404
+D3
+To the west runs Bywater Road.
+~
+~
+0 -1 9418
+S
+#9404
+Bywater Road~
+   You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+continues to the east and west while to the north lies the general store.
+~
+94 0 1
+D3
+To the west you see the entrance to the Shire.
+~
+~
+0 -1 9403
+D0
+The general store lies to the north.
+~
+~
+0 -1 9405
+D1
+To the east runs Bywater Road.
+~
+~
+0 -1 9406
+S
+#9405
+The General Store~
+   You are inside the general store.  All sorts of goodies are stacked on the
+many shelves.  Your local friendly shopkeeper is smiling patiently, waiting to 
+serve you to the best of his abilities.  The only exit is to the south.
+~
+94 8 0
+D2
+The only exit lies to the south.
+~
+~
+0 -1 9404
+S
+#9406
+Bywater Road~
+   You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+continues to the east and west.  To the north, steps lead to a friendly looking
+weaponry/armory while a nursery lies to the south.
+~
+94 0 1
+D3
+To the west runs Bywater Road.
+~
+~
+0 -1 9404
+D1
+To the east runs Bywater Road.
+~
+~
+0 -1 9409
+D0
+Steps lead to a friendly looking weaponry and armory.
+~
+~
+0 -1 9407
+D2
+To the south lies Kid'n Keep, the local nursery.
+~
+~
+0 -1 9408
+S
+#9407
+The House of Arms~
+   You are inside the finest weapons and armour shop in all of Shiredom.  The
+shopkeeper proudly displays his fine wares and humbly offers the best daggers
+that you have ever laid eyes on.
+~
+94 8 0
+D2
+The only exit lies to the south.
+~
+~
+0 -1 9406
+S
+#9408
+Kid'n Keep~
+   You are inside Kid'n Keep, the convenient one-stop nursery that maintains
+the youth of the Shire.  Toddlers run every which way while their nursemaids
+sigh in exasperation.  The only exit lies to the north.
+~
+94 8 0
+D0
+The only exit lies to the north.
+~
+~
+0 -1 9406
+S
+#9409
+A bend in the road~
+   Bywater Road continues west and south.  A large, imposing building lies
+to the east.  Farther to the south, you can see an Inn of some sort.
+~
+94 0 1
+D3
+To the west runs Bywater Road.
+~
+~
+0 -1 9406
+D2
+To the south runs Bywater Road.
+~
+~
+0 -1 9412
+D1
+A large, imposing building lies to the east.  A sign reads 'Shiriff Post'.
+~
+~
+0 -1 9410
+S
+#9410
+Shiriff Post of the Eastern Shire~
+   You are in the Shiriff Post which acts as the nucleus for the three shiriffs
+of the Eastern Shire.  As you examine the shiriffs on duty, you come to realize
+that the halflings of the Shire are not to be reckoned with.  You cower with 
+awe.  A door offers passage to the east.
+~
+94 8 0
+D3
+To the west you can see Bywater Road.
+~
+~
+0 -1 9409
+D1
+A door offers passage to the office of the Thain.
+~
+door~
+1 0 9411
+S
+#9411
+Thain's Office~
+   You stand inside the office of the Thain, the police protectorate of the
+great Shire.  The Thain has sworn to protect the Shire from all thieves and
+murderers with his life, and so eyes you suspiciously.  A door to the west
+leads to the Shiriff Post.
+~
+94 8 0
+D3
+A door offers passage to the Shiriff Post.
+~
+door~
+1 0 9410
+S
+#9412
+Bywater Road~
+   You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+continues to the north and south.  To the east you spy the training grounds for
+shiriffs in training.
+~
+94 0 1
+D0
+To the north runs Bywater Road.
+~
+~
+0 -1 9409
+D2
+To the south runs Bywater Road.
+~
+~
+0 -1 9413
+D1
+The Shiriff Training Grounds lies to the east.
+~
+~
+0 -1 9417
+S
+#9413
+Bywater Road~
+   You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+continues to the north.  The private residences of Shire inhabitants are to
+the east and west while to the south lies the Ivy Bush, second only to the
+Green Dragon for its hospitality and service.
+~
+94 0 1
+D0
+To the north runs Bywater Road.
+~
+~
+0 -1 9412
+D1
+You spy the private dwelling of a Shire folk to the east.
+~
+~
+0 -1 9415
+D2
+To the south you see the Ivy Bush, a favorite haunt of Shire urbanites and
+seasoned travelers.
+~
+~
+0 -1 9416
+D3
+You spy the private dwelling of a Shire folk to the west.
+~
+~
+0 -1 9414
+S
+#9414
+A smial~
+   You are inside a smial, a hole in the ground which serves as the proper
+dwelling place for halflings.  As you look around this private abode, you feel
+as if you were intruding and so quickly cover your eyes.  The only exit lies
+to the east.
+~
+94 8 0
+D1
+The only exit lies to the east.
+~
+~
+0 -1 9413
+S
+#9415
+A smial~
+   You are inside a smial, a hole in the ground which serves as the proper
+dwelling place for halflings.  As you look around this private abode, you feel
+as if you were intruding and so quickly cover your eyes.  The only exit lies
+to the west.
+~
+94 8 0
+D3
+The only exit lies to the west.
+~
+~
+0 -1 9413
+S
+#9416
+The Ivy Bush~
+   You are in the Ivy Bush, one of the most famous inns in all of Shiredom.
+Chique Shire urbanites and seasoned travelers fill the confines of the room
+with gay and lively talk.  A jovial innkeeper stops all that he is doing to
+await your command.  The only exit lies to the north.
+~
+94 8 0
+D0
+The only exit lies to the north.
+~
+~
+0 -1 9413
+S
+#9417
+Shiriff Training Grounds~
+   The sounds of mock battle and feigned death cries fill your ears.  Every
+which way you turn you see halfling trainees at the prime of their youth.  A
+wizened old battle instructor meets your gaze and asks if he may be of 
+service.  The only exit lies to the west.
+~
+94 0 0
+D3
+The only exit lies to the west.
+~
+~
+0 -1 9412
+S
+#9418
+Bywater Road~
+   You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+continues to the east and west.  A large, imposing building lies to the south.
+You catch a glimpse of the Brandywine River to the north.
+~
+94 0 1
+D1
+To the east you see the entrance to the Shire.
+~
+~
+0 -1 9403
+D2
+A large, imposing building lies to the south.  A sign reads 'Shiriff Post'.
+~
+~
+0 -1 9419
+D3
+To the west runs Bywater Road.
+~
+~
+0 -1 9420
+S
+#9419
+Shiriff Post of the Bridge~
+   You are in the Shiriff Post which acts as the nucleus for the three shiriffs
+of the Bridge.  As you examine the shiriffs on duty, you come to realize that
+the halflings of the Shire are not to be reckoned with.  You cower with awe.
+The only exit is to the north.
+~
+94 8 0
+D0
+The only exit is to the north.
+~
+~
+0 -1 9418
+S
+#9420
+Bywater Road~
+   You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+continues to the east and west.  To the south you spy the Grocer's Delight,
+the premium grocer's shop in all the realm while to the north lies Brandywine
+Bridge.
+~
+94 0 1
+D0
+Brandywine Bridge offers safe passage across the tumultuous river.
+~
+~
+0 -1 9431
+D1
+To the east runs Bywater Road.
+~
+~
+0 -1 9418
+D2
+You see the Grocer's Delight to the south.
+~
+~
+0 -1 9421
+D3
+To the west runs Bywater Road.
+~
+~
+0 -1 9422
+S
+#9421
+The Grocer's Delight~
+   You tremble with ecstasy as the tempting odors of freshly made pipeweed
+bread fill your lungs.  Rumor has it that the pipeweed bread sold here can
+restore vitality.  You look around but find no one to take your order.  
+You then peep over the counter and discover a friendly grocer who is too 
+short to be seen over the counter.  The only exit is to the north.
+~
+94 8 0
+D0
+The only exit is to the north.
+~
+~
+0 -1 9420
+S
+#9422
+Bywater Road~
+   You stand on Bywater Road, the busiest street in all of Shiredom.  The road
+continues to the east.  A small hill lies to the west while you can see a
+watermill to the far south.  You catch a glimpse of the Brandywine River to
+the north.
+~
+94 0 1
+D1
+To the east runs Bywater Road.
+~
+~
+0 -1 9420
+D2
+An entrance to the watermill lies to the south.
+~
+~
+0 -1 9423
+D3
+A small hill to the west blocks your view.
+~
+~
+0 -1 9426
+S
+#9423
+Entrance to Watermill~
+   You stand at the entrance to a watermill.  You hear the bustle of busy
+workers and the sound of a creaking mill.  Bywater Road is to the north while
+the watermill continues to the south.
+~
+94 0 0
+D0
+You see Bywater Road to the north.
+~
+~
+0 -1 9422
+D2
+A watermill meets your gaze.
+~
+~
+0 -1 9424
+S
+#9424
+The Watermill~
+   Halfling workers are scattered everywhere, busy at work.  You see the river
+to the west and get a compelling urge to grab the nearest worker and to toss
+him into the river.  The entrance stands to the north while a door offers
+passage to the south.
+~
+94 8 0
+D0
+You see the entrance.
+~
+~
+0 -1 9423
+D2
+A wooden door leads to the rear of the watermill.
+~
+door~
+1 0 9425
+S
+#9425
+Rear of watermill~
+   You stand in a damp, dimly lit room.  Mildew clings to the walls and it
+appears as if you were the first person to enter the room in ages.  A barely
+visible portal in the ground catches your eye.
+~
+94 8 0
+D0
+A watermill meets your gaze.
+~
+~
+0 -1 9424
+D5
+A hidden portal reveals a passageway down.
+~
+~
+0 -1 9446
+S
+#9426
+Took Hill~
+   You stand on top of Took Hill, named after the legendary Bandobras Took.
+You feel honored to be standing on a hill named after your hero.  From this
+vantage point you can see all of shiredom.  You get the feeling that with
+one stomp you could eliminate their great city.  You can see the outline of
+Midgaard to the far east.  Sounds of joyful celebration are heard from the
+fields west of here.  The Brandywine flows by lazily nearby.
+~
+94 0 4
+D1
+To the east runs Bywater Road.
+~
+~
+0 -1 9422
+D3
+You see a grassy field to the west.
+~
+~
+0 -1 9428
+S
+#9427
+Northern end of grassy field~
+   You stand in a grassy field--nothing to get too excited about.  The field
+extends toward the south and the west.  To the east you see Took Hill.
+~
+11 0 2
+D2
+You see a grassy field.
+~
+~
+0 -1 9428
+S
+#9428
+A grassy field~
+   You stand in the center of a grassy field.  A great birthday party appears
+to be taking place.  Great tables of food are spread out and a young halfling
+beauty offers you welcome.  You are enticed by her generosity and suggestive
+winks.
+~
+11 0 2
+D0
+You see a grassy field.
+~
+~
+0 -1 9427
+D1
+A small hill to the east blocks your view.
+~
+~
+0 -1 9426
+D2
+You see a grassy field.
+~
+~
+0 -1 9429
+D3
+You see a grassy field.
+~
+~
+0 -1 9430
+S
+#9429
+Southern end of grassy field~
+   You stand in a grassy field--nothing to get too excited about.  The field
+extends toward the north and the west.  To the east you see Took Hill.
+~
+11 0 2
+D0
+You see a grassy field.
+~
+~
+0 -1 9428
+S
+#9430
+Western end of grassy field~
+   You stand in a grassy field--nothing to get too excited about.  The field
+extends every which way but west.
+~
+11 0 2
+D1
+You see a grassy field.
+~
+~
+0 -1 9428
+S
+#9431
+Brandywine Bridge~
+   You stand on a solidly built bridge.  As you look down you spy gaily
+colored fish swimming with the current of Brandywine River.  The cool water
+looks invitingly refreshing and you get a sudden urge to strip and bathe in
+the river, but you hear the laughter of women nearby and so resist the urge.
+Delving Lane extends to the north while Bywater Road can be seen to the south.
+~
+11 0 1
+D0
+You see Delving Lane.
+~
+~
+0 -1 9432
+D2
+To the south runs Bywater Road.
+~
+~
+0 -1 9420
+S
+#9432
+Delving Lane~
+   Delving Lane runs north and south in this small borough of the Shire.  To 
+the south stands Brandywine Bridge.  The Green Dragon, the undisputed leader
+in the art of innkeeping, offers rest and comfort to the east.  You hear the
+bray of horses from the west.
+~
+11 0 1
+D0
+You see Delving Lane.
+~
+~
+0 -1 9433
+D2
+Brandywine Bridge offers safe passage across the tumultuous river.
+~
+~
+0 -1 9431
+D1
+The Green Dragon offers food, drink, and above all hospitality for mere gold.
+~
+~
+0 -1 9444
+S
+#9433
+Delving Lane~
+   Delving Lane runs north and south in this small borough of the Shire.  A 
+large, imposing building lies to the east.  You hear the bray of horses from
+the west.
+~
+11 0 1
+D0
+You see Delving Lane.
+~
+~
+0 -1 9434
+D1
+A large, imposing building lies to the east.  A sign reads 'Shiriff Post'.
+~
+~
+0 -1 9445
+D2
+You see Delving Lane.
+~
+~
+0 -1 9432
+D3
+You see a grassy field.
+~
+~
+0 -1 9438
+S
+#9434
+Delving Lane~
+   Delving Lane runs north and south in this small borough of the Shire. There
+is a small house to the west, nothing to the east, and up ahead you see a round
+door which leads to a rather impressive abode.
+~
+7 0 1
+D0
+A large, magnificent house meets your steady gaze.  Above the round door a
+sign reads 'Bag End'.
+~
+~
+1 -1 9435
+D2
+You see Delving Lane.
+~
+~
+0 -1 9433
+S
+#9435
+Bag End~
+   You stand in a comfortably well-equipped house, a palace by humble halfling
+standards.  On the wall you see a banner which reads "Home Sweet Home".
+A solid oak door to the east leads to a pantry while you see a cozy bedroom
+to the west.
+~
+11 8 0
+D1
+Through the keyhole you see what looks like a well stocked pantry.
+~
+door~
+1 -1 9437
+D2
+You see Delving Lane.
+~
+~
+0 -1 9434
+D3
+You see a bedroom.  It looks like the beds have recently been slept in.
+~
+~
+0 -1 9436
+S
+#9436
+Bedroom~
+   You stand in the private bedroom of Bag End.  There are two beds to the
+side, neither of which are made.  Portraits of halflings hang on the wall,
+and as you gaze upon them you come to the conclusion that the owner of
+Bag End comes from a long line of distinguished halflings.  A cozy fire
+in the fireplace keeps the room warm and comfortable.
+~
+11 8 0
+D1
+Through the doorway you see the main room of Bag End.
+~
+~
+0 -1 9435
+S
+#9437
+Pantry~
+   You are inside the pantry.  Shelves filled with food and drink surround
+you on all sides.  You wonder why a halfling would need so much to eat.
+The presence of something unseen chills you to your bones.  On the floor
+you spy a trapdoor.
+~
+11 8 0
+D3
+Beyond the door you see the main room of Bag End.
+~
+door~
+1 -1 9435
+D5
+It's anyone's guess as to where the trapdoor leads.
+~
+~
+0 -1 9456
+S
+#9438
+A grassy field~
+   You stand upon a grassy field.  A bull stands grazing not far away and
+out of the corner of your eye you can see him considering you.  The sound
+of animals fill the air from the north.  To the south you see a pig pen.
+~
+11 0 2
+D0
+You see a large barn.
+~
+~
+0 -1 9442
+D1
+You see Delving Lane.
+~
+~
+0 -1 9433
+D2
+A rather large pig pen is to the south.
+~
+~
+0 -1 9439
+S
+#9439
+Pig pen~
+   You feel your boots sinking into the mud.  Numerous pigs roam about,
+oblivious to your company.  A grassy field is to the north while you see
+a small path winding to the west.
+~
+11 0 1
+D0
+You see a grassy field.
+~
+~
+0 -1 9438
+D3
+A small path winds its way eastward.
+~
+~
+0 -1 9440
+S
+#9440
+A stony path~
+   You walk on a stony path which leads to a small residence to the north.
+From the east you hear the noisy din of pigs.
+~
+11 0 1
+D0
+To the north you see a modest house.
+~
+~
+0 -1 9441
+D1
+A rather large pig pen is to the east.
+~
+~
+0 -1 9439
+S
+#9441
+Gamgee Residence~
+   You stand inside a modest home.  You deduce that this is indeed the home
+of whomever owns the surrounding lands.  The air is somewhat musty and 
+the smell reminds you of a stable.  As you look around disdainfully, you
+think to yourself that this is more of a shack than a proper residence and
+you long for the urban riches of the Shire proper.
+~
+11 8 0
+D2
+You see a small path winding its way southward.
+~
+~
+0 -1 9440
+S
+#9442
+A barn~
+   Animals of every sort fill the small barn.  You feel the hot breath of
+horses and cows on your neck and you feel the sudden need for fresh air.
+Other than that, you feel cozy and protected and don't mind staying for a
+bit longer.  All the warmth and good vibes remind you of the days when your
+mother would hold you in her arms and sing you to sleep.  You find yourself
+wanting to cradle all the animals.
+~
+11 8 0
+D0
+You see a chicken coop to the north.
+~
+~
+0 -1 9443
+D2
+You see a grassy field.
+~
+~
+0 -1 9438
+S
+#9443
+A chicken coop~
+   You stand inside a rather crowded chicken coop.  The cackle of hens fill
+the air.  The only exit is to the south.
+~
+11 8 0
+D2
+You see a large barn.
+~
+~
+0 -1 9442
+S
+#9444
+The Green Dragon~
+   Welcome to the Green Dragon, the undisputed leader in the art of
+innkeeping.  A rather charming and friendly hostess stands to the side,
+ready to offer you food and drink.  While most of the patrons are halfling
+locals, you spy an occasional human or two.  As you listen more closely
+to the conversations that fill the inn, you hear the tales of great and
+seasoned adventurers as well as the usual gossip.  You feel as if you've
+found your second home in the Green Dragon.  You see a stairway leading
+upwards.
+~
+11 8 0
+D3
+You see Delving Lane.
+~
+~
+0 -1 9432
+D4
+You see the reception.
+~
+~
+0 -1 9457
+S
+#9445
+Shiriff Post of Delving Lane~
+   You are in the Shiriff Post which acts as the nucleus for the three shiriffs
+of Delving Lane.  As you examine the shiriffs on duty, you come to realize
+that the halflings of the Shire are not to be reckoned with.  You cower with
+awe.  The only exit is to the west.
+~
+94 8 0
+D3
+You see Delving Lane.
+~
+~
+0 -1 9433
+S
+#9446
+A dark tunnel~
+   You stand inside a small underground tunnel.  The ceiling is so low that
+you must crouch to avoid hitting your head.  You see light from a small
+hole in the ceiling while to the east you see nothing but darkness.
+~
+94 9 0
+D1
+You see a dark tunnel.
+~
+~
+0 -1 9447
+D4
+You see a portal which leads to a small room.
+~
+~
+0 -1 9425
+S
+#9447
+A dark tunnel~
+   You stand inside a small underground tunnel.  The ceiling is so low that
+you must crouch to avoid hitting your head.  The tunnel continues east and
+west.  All you can see is darkness.
+~
+94 9 0
+D1
+You see a dark tunnel.
+~
+~
+0 -1 9448
+D3
+You see a dark tunnel.
+~
+~
+0 -1 9446
+S
+#9448
+A dark tunnel~
+   You stand inside a small underground tunnel.  The ceiling is so low that
+you must crouch to avoid hitting your head.  The tunnel continues east and
+west.  All you can see is darkness.
+~
+94 9 0
+D1
+You see a dark tunnel.
+~
+~
+0 -1 9449
+D3
+You see a dark tunnel.
+~
+~
+0 -1 9447
+S
+#9449
+A three way intersection~
+   You stand at an intersection.  The tunnel continues east and west while
+to the north you can barely make out a smaller trail.
+~
+11 9 0
+D0
+You see a dark tunnel.
+~
+~
+0 -1 9451
+D1
+You see a dark tunnel.
+~
+~
+0 -1 9450
+D3
+You see a dark tunnel.
+~
+~
+0 -1 9448
+S
+#9450
+End of a dark tunnel~
+   You stand at the end of a dark tunnel.  The underground tunnel continues
+to the west.  From a trapdoor in the ceiling you can hear the din of
+adventurers.
+~
+11 9 0
+D3
+You see a dark tunnel.
+~
+~
+0 -1 9449
+D4
+You hear the din of adventurers.
+~
+~
+0 -1 3001
+S
+#9451
+A dark tunnel~
+   You stand inside a small underground tunnel.  The ceiling is so low that
+you must crouch to avoid hitting your head.  The tunnel continues north and
+south.  To the west you see a Shirriff Post while to the east lies a small
+home.  All you can see is darkness.
+~
+11 9 0
+D0
+You see a dark tunnel.
+~
+~
+0 -1 9452
+D1
+You see a halfling hole.
+~
+~
+0 -1 9454
+D2
+You see a dark tunnel.
+~
+~
+0 -1 9449
+D3
+Above a great oak door you see a sign which reads 'Shirriff Post'.
+~
+~
+0 -1 9453
+S
+#9452
+A dark tunnel~
+   You stand inside a small underground tunnel.  The ceiling is so low that 
+you must crouch to avoid hitting your head.  The tunnel continues north and
+south.  To the west lies a small home.  All you can see is darkness.
+~
+11 9 0
+D0
+You see a dark tunnel.
+~
+~
+0 -1 9456
+D2
+You see a dark tunnel.
+~
+~
+0 -1 9451
+D3
+You see a halfling hole.
+~
+~
+0 -1 9455
+S
+#9453
+Shiriff Post of the Lower Shire~
+   You are in the shiriff Post which acts as the nucleus for the three shiriffs 
+of the Lower Shire.  As you examine the shiriffs on duty, you come to realize
+that the halflings of the Shire are not to be reckoned with.  You cower with
+awe.  The only exit is to the east.
+~
+11 9 0
+D1
+You see a dark tunnel.
+~
+~
+0 -1 9451
+S
+#9454
+A halfling hole~
+   You stand inside a rather crudely built halfling hole.  The many passageways
+and winding paths remind you of a rodent's lair.  The air is musty and damp
+and you feel the need for fresh air.
+~
+11 9 0
+D3
+You see a dark tunnel.
+~
+~
+0 -1 9451
+S
+#9455
+A halfling hole~
+   You stand inside a rather crudely built halfling hole.  The many passageways
+and winding paths remind you of a rodent's lair.  The air is musty and damp
+and you feel the need for fresh air.
+~
+11 9 0
+D1
+You see a dark tunnel.
+~
+~
+0 -1 9452
+S
+#9456
+End of a dark tunnel~
+   You are at one end of a dark tunnel.  The tunnel continues to the south
+while on the ceiling you can make out a trapdoor.
+~
+11 9 0
+D2
+You see a dark tunnel.
+~
+~
+0 -1 9452
+D4
+A trapdoor on the ceiling reveals a passageway.
+~
+~
+0 -1 9437
+S
+#9457
+The Inn of the Green Dragon~
+   You are standing in the Inn of the Green dragon.  Large paintings of 
+halflings at work, and halflings at play adorn the walls.  Comfortable 
+benches and seats line the walls.  A stairway leads down.
+~
+11 24 0
+D5
+~
+~
+0 -1 9444
+S
+#9500
+The Entrance to the Dancing Daemon Inn~
+You find yourself in an entrance foyer to the Dancing Daemon Inn. Chrome
+plated stairs spiral up to the reception area. To the south you hear the
+sounds of merriment and drinking and from the west you hear the bustling
+activity of New Thalos.
+~
+95 8 0
+D2
+You see people dancing and drinking.
+~
+~
+0 -1 9502
+D3
+You see people walking by on Sultan's Walk.
+~
+~
+0 -1 9520
+D4
+The spiral stairs lead up to the reception area.
+~
+~
+0 -1 9501
+S
+#9501
+The Reception Area~
+You are now standing in the reception of New Thalos. A huge mahogany
+desk is here along with two sofas and a coffee table covered in magazines.
+The plush carpeting under your feet is a nice change from the rugged paths
+you are used to travelling. A chrome stairway spirals downstairs to the
+tavern of the Dancing Daemon Inn, and your future adventures in New Thalos.
+~
+95 124 0
+D5
+The stairs lead down to the Daemon.
+~
+~
+0 -1 9500
+E
+4.picture~
+You see a picture of Loki... at least you think it's Loki.
+He seems to be hiding from the camera.
+~
+E
+3.picture~
+You see a picture of Hammor on the front porch of the Danjerhaus,
+drinking a guinness stout and petting Big Guy the Cat.
+~
+E
+2.picture~
+You see a picture of Shark standing behind his desk screaming at a newbie.
+Through a window in the back you see a large aquarium. The newbie seems to
+be cowering in fear.
+~
+E
+1.1picture~
+You see a picture of Felix here, standing before the arena.
+He seems to be doing a body count.
+~
+S
+#9502
+The Dancing Daemon Inn~
+A huge circling wet-bar takes up most of the east end of the Daemon. An
+old mage reclines against the mirror behind the bar absentmindedly pouring
+several drinks at once with his refined telekinesis. The Lokettes, a local
+band, are playing their usual gig on the stage. The large booths along the
+wall are filled with people drinking and having a grand time. You feel like
+partying here.
+The only obvious exit is to the north.
+~
+95 8 0
+D0
+You see the entrance to the Daemon.
+~
+~
+0 -1 9500
+E
+bar~
+The bar looks slightly out of place and you can only assume the powerful
+magic of the bartender allows it to revolve.
+~
+S
+#9503
+The Medina~
+You stand on the Medina, on the larger open areas in New Thalos. People
+walk to and fro carrying on their day to day business. The Common Square
+of the people opens up to the south and the Medina continues north.
+~
+95 0 1
+D0
+You see medina.
+~
+~
+0 -1 9504
+D2
+You see the Common square.
+~
+~
+0 -1 9510
+S
+#9504
+The Medina~
+You are walking along a wide open expanse of road connecting the market
+square to the common square. Panhandlers, beggars, and other such riff-
+raff wander about hoping to catch those few who with open hearts.
+The medina continues to the south and the market spreads out to the north.
+~
+95 0 1
+D0
+You see the market.
+~
+~
+0 -1 9505
+D2
+You see the medina.
+~
+~
+0 -1 9503
+S
+#9505
+The Southern Market Square~
+The large square of markets fills your vision. Strange sights and sounds,
+those known only to the New Thalos market, barrage your senses. The only
+hope of making any sense of what's going on here is to wander around. The
+Market continues north, west, and east, with the Medina trailing off south.
+~
+95 0 1
+D0
+~
+~
+0 -1 9506
+D1
+~
+~
+0 -1 9507
+D2
+~
+~
+0 -1 9504
+D3
+~
+~
+0 -1 9508
+S
+#9506
+The Center of Market Square~
+You are standing on the Center of Market Square, the famous square of
+New Thalos. A large, peculiar looking statue is standing in the middle
+of the square. The square extends in every direction.
+~
+95 0 0
+D0
+~
+~
+0 -1 9515
+D1
+~
+~
+0 -1 9517
+D2
+~
+~
+0 -1 9505
+D3
+~
+~
+0 -1 9509
+E
+statue~
+Before you is a statue of the Mighty Beholder!
+A great beast with multiple eyes and wicked... wicked... um.... eyes...
+The Mighty Beholder is in Excellent condition.
+~
+S
+#9507
+The Southeastern Market Square~
+In this corner of the market some of the largest warriors in the land
+tower over you. It's easy to understand why they hangout here once you
+notice the weapon shop and the armory close by. Perhaps you might stop
+in and take a look at the wares these shops have to offer.
+~
+95 0 1
+D0
+~
+~
+0 -1 9517
+D1
+~
+~
+0 -1 9629
+D2
+~
+~
+0 -1 9636
+D3
+~
+~
+0 -1 9505
+S
+#9508
+The Southwestern Market Square~
+This area of the market seems relatively quiet, save the high-pitched
+banter of the shopkeeps attempting to lure you into their stores.  South
+you see the bread stand and west is the entrance to the general store.
+The market's sprawl continues east and north of here.
+~
+95 0 1
+D0
+~
+~
+0 -1 9509
+D1
+~
+~
+0 -1 9505
+D2
+You see the grocer's.
+~
+~
+0 -1 9635
+D3
+You see the general store.
+~
+~
+0 -1 9628
+S
+#9509
+The Western Market Square~
+This area of the square seems a bit more subdued than the rest. You
+notice that most of the outland adventurers mill around the southern
+end of the market, while the townfolk seem to keep their business in
+the northern end.  West Main Street begins here and heads for the
+gate. The market's expanse fills the other directions.
+~
+95 0 1
+D0
+~
+~
+0 -1 9514
+D1
+~
+~
+0 -1 9506
+D2
+~
+~
+0 -1 9508
+D3
+~
+~
+0 -1 9526
+S
+#9510
+The Common Square~
+People pass by talking to each other, or rest their weary bones on this
+grassy field. You can hear faint sounds of the river to the south of you
+as it passes through the city. Ishtar drive heads east and west from here
+and the medina is to the north. South lies the Ishtar River bridge and the
+southern gate.
+~
+95 0 1
+D0
+You see the medina.
+~
+~
+0 -1 9503
+D1
+~
+~
+0 -1 9537
+D2
+You see the bridge over the river.
+~
+~
+0 -1 9512
+D3
+~
+~
+0 -1 9536
+S
+#9511
+Outside the Southern Gate of New Thalos~
+You see before you the expanse of the Great Eastern Desert. You have heard
+many tales of the Great Pyramid, the giant worm and the friendly
+brass dragon the lies under the desert.  The desert lies to the south and
+the city of New Thalos is to the north.
+~
+95 0 1
+D0
+~
+gate~
+1 9501 9513
+D2
+~
+~
+0 -1 5039
+S
+#9512
+The Southern Bridge~
+Walking over the bridge you see the rushing waters of the Ishtar River.
+To the south you see the Southern Gate of New Thalos and the Common
+Square stretches out to the north.
+~
+95 0 1
+D0
+~
+~
+0 -1 9510
+D2
+~
+~
+0 -1 9513
+D5
+~
+~
+0 -1 9585
+S
+#9513
+Inside the South Gate of New Thalos~
+Two large stone towers rise up to greet you with the massive iron gate
+swinging on ornately crafted hinges and emblazoned with the crest of
+New Thalos. The makers of the city spared no expense in rebuilding the
+defenses or their home. The Ishtar River bridge lies to the north and
+wilderness to the south.
+~
+95 0 1
+D0
+~
+~
+0 -1 9512
+D2
+~
+gate~
+1 9501 9511
+S
+#9514
+The Northwestern Market Square~
+This corner of the market contains some of the most civilized folk in
+New Thalos. To the north lies the humble store of the merchant Ahkeem, his
+weavings known to be the best in the city. West of here is the entrance
+to the First Royal Bank of New Thalos.
+~
+95 0 1
+D0
+~
+~
+0 -1 9614
+D1
+~
+~
+0 -1 9515
+D2
+~
+~
+0 -1 9509
+D3
+~
+~
+0 -1 9621
+S
+#9515
+The Northern Market Square~
+You stand in one of the most heavily used parts of town. To the north lies
+the Palace of New Thalos and the Casbah; east west and south of here the
+busy market thrives with life.
+~
+95 0 1
+D0
+~
+~
+0 -1 9518
+D1
+~
+~
+0 -1 9516
+D2
+~
+~
+0 -1 9506
+D3
+~
+~
+0 -1 9514
+S
+#9516
+The Northeastern Market Square~
+Pandemonium. Chaos. Madness. A few other choice words come to mind as you
+gaze into this corner of the market. The vegetable stand seems quiet enough
+so you have to assume the noise comes from the Butchery. You have to
+think for a while before you muster the will to enter this shop.
+The market continues to the south and west.
+~
+95 0 1
+D0
+~
+~
+0 -1 9615
+D1
+~
+~
+0 -1 9622
+D2
+~
+~
+0 -1 9517
+D3
+~
+~
+0 -1 9515
+S
+#9517
+The Eastern Market Square~
+You stand in the market of New Thalos, the gem of the desert. The
+market is the hub of the city; all trade and commerce of any significance is
+carried on here. The market spreads out in all directions save east; here
+Main Street heads for the eastern gate.
+~
+95 0 1
+D0
+~
+~
+0 -1 9516
+D1
+~
+~
+0 -1 9527
+D2
+~
+~
+0 -1 9507
+D3
+~
+~
+0 -1 9506
+S
+#9518
+Sultan's Walk~
+This cobblestone road aides your journey through town. Traveling north will
+take you by the palace and the Dancing Daemon Inn, and south will put you on
+the market square.
+~
+95 0 0
+D0
+~
+~
+0 -1 9519
+D2
+~
+~
+0 -1 9515
+S
+#9519
+Sultan's Walk~
+This part of the road travels between one of the sturdy walls of the
+Palace and the Dancing Daemon. To the east you peer through a small
+window into the Daemon, seeing many people dancing and drinking. After
+you tend to your other chores you plan on visiting the Daemon.
+The walk continues north and south from here.
+~
+95 0 1
+D0
+~
+~
+0 -1 9520
+D2
+~
+~
+0 -1 9518
+S
+#9520
+Sultan's Walk~
+The road here between the palace and the Dancing Daemon Inn seems well
+worn by the travel of horses, carts, and leather boots. From the west you
+hear the faint sound of trumpets announcing the arrival of some duke or
+duchess to the palace. Safe haven awaits you to the east in the halls
+of the Daemon, and Sultan's Walk continues north and south.
+~
+95 0 1
+D0
+~
+~
+0 -1 9521
+D1
+~
+~
+0 -1 9500
+D2
+~
+~
+0 -1 9519
+D3
+~
+~
+0 -1 9658
+S
+#9521
+Sultan's Walk~
+The main road north from the square continues here, surrounded by the walls
+of the palace and the Daemon. To the north you see the heavily guarded gate
+and can make out faint sounds of trade to the south.
+~
+95 0 1
+D0
+~
+~
+0 -1 9522
+D2
+~
+~
+0 -1 9520
+S
+#9522
+Inside the Northern Gate of New Thalos~
+Two large stone towers rise up to greet you with a massive iron gate
+swinging between on ornately crafted hinges and emblazend with the crest of
+New Thalos. The makers of this city spared no costs in rebuilding the
+defenses of thier home. Sultan's Walk runs to the south and the Casbah
+stretches out east and west. To the north lay wilderness of the desert.
+~
+95 0 0
+D0
+~
+gate~
+1 9501 9667
+D1
+~
+~
+0 -1 9549
+D2
+~
+~
+0 -1 9521
+D3
+~
+~
+0 -1 9548
+S
+#9523
+Inside the West Gate of New Thalos~
+Two large stone towers embedded in the wall loom over you. The massive
+iron gate, emblazoned with the crest of New Thalos, swings easily on
+four ornately crafted hinges. It is obvious the makers of this city
+spared no expense to protect thier home.  Main street heads towards
+the market eastward and the wilderness beckons from the west. To the
+south lies the entrance the warriors guild.
+~
+95 0 1
+D1
+~
+~
+0 -1 9524
+D2
+~
+~
+0 -1 9626
+D3
+~
+gate~
+1 9501 9669
+S
+#9524
+West Main Street~
+This is the main road traveling though the city. To the south you hear
+the hammering of the repair shop and to the north is the grassy field
+known as the temple square. Main street continues east and west.
+~
+95 0 1
+D0
+~
+~
+0 -1 9620
+D1
+~
+~
+0 -1 9525
+D2
+~
+~
+0 -1 9627
+D3
+~
+~
+0 -1 9523
+S
+#9525
+West Main Street~
+A foreman stands stand here watching over two construction workers
+fixing a pothole. The road here branches off north and south into
+two alleys behind the stores of the market. The main street continues
+east and west from here.
+~
+95 0 1
+D0
+~
+~
+0 -1 9571
+D1
+~
+~
+0 -1 9526
+D2
+~
+~
+0 -1 9572
+D3
+~
+~
+0 -1 9524
+S
+#9526
+West Main Street~
+You are strolling on the street between the bank and general store.
+To the west you hear a roadcrew at work and to the East, the sounds of
+commerce taking place.  The air is filled with the smell of gold and riches.
+On the wall of the store is a poster.
+~
+95 0 1
+D1
+~
+~
+0 -1 9509
+D3
+~
+~
+0 -1 9525
+E
+poster~
+A wealthy man in red robes is smiling at you.  The caption reads:
+
+THE SULTAN REMINDS YOU TO PAY YOUR TAXES!
+
+~
+S
+#9527
+East Main Street~
+Here on East Main, you smell the odor of freshly slaughtered meat and
+hear the pounding of new metal from the armory.  The Square is to
+the west and a junction is to the East.
+~
+95 0 1
+D1
+~
+~
+0 -1 9528
+D3
+~
+~
+0 -1 9517
+S
+#9528
+East Main Street~
+You are on East Main Street.  To the North is the beginning of
+Guildsman's Row.  To the South is a dark alley.  The road also
+continues to the East. There is a small sign on a wire hanging
+across the junction.
+~
+95 0 1
+D0
+~
+~
+0 -1 9564
+D1
+~
+~
+0 -1 9529
+D2
+~
+~
+0 -1 9565
+D3
+~
+~
+0 -1 9527
+E
+sign~
+NO LOITERING!
+
+(by order of the Sultan of New Thalos)
+~
+S
+#9529
+East Main Street~
+As you walk by the mercenary guild a cold chill causes you to shiver
+uncontrollably. You see some shady looking characters lurking about the
+entrance to this house of 'helpful' people. Perhaps curiosity gets the
+best of you, but you wonder what could be going on inside. To the north
+you see the open doors of the apothecary shop where one may buy many
+magical livations.
+Main Street continues east and west from here.
+~
+95 0 1
+D0
+~
+~
+0 -1 9623
+D1
+~
+~
+0 -1 9530
+D2
+~
+~
+0 -1 9630
+D3
+~
+~
+0 -1 9528
+S
+#9530
+East Main Street~
+The Main street through eastern New Thalos begins here and heads westward
+towards the marketplace. One of the main gates can be seen to the east,
+Braheem's Magic Shop awaits your business to the north and a slightly 
+anachronistic spaceport is to the south.
+~
+95 0 1
+D0
+~
+~
+0 -1 9624
+D1
+~
+~
+0 -1 9531
+D2
+~
+~
+0 -1 9800
+D3
+~
+~
+0 -1 9529
+S
+#9531
+Inside the Eastern Gate of New Thalos~
+Two large stone towers imbedded in the wall loom over you. The massive
+iron gate, emblazened with the crest of New Thalos, swings easily on
+four ornately crafted hinges. It is obvious the makers of this city spared no
+expense in protecting their home.  Main street heads towards the market
+westward and the wilderness beckons from the east. To the north lies the
+entrance to the mages' guild.
+~
+95 0 1
+D0
+~
+~
+0 -1 9625
+D1
+~
+gate~
+1 9501 9668
+D3
+~
+~
+0 -1 9530
+S
+#9532
+Cassandra's Catch of the Day~
+Nothing in your life has prepared you for the odor which fills your lungs.
+Not wanting to offend the beautiful shopkeeper you hold your tongue and
+quietly look over her selection.
+~
+95 56 0
+D2
+~
+~
+0 -1 9541
+S
+#9533
+West Ishtar Drive~
+This is the warehouse district of New Thalos. Strong men walk back and
+forth from the docks to the warehouse carrying large crates loading
+and unloading the boats as they sail down the river. To the north is
+one of the entrances of the warehouse and West Ishtar leads east.
+~
+95 0 1
+D0
+~
+~
+0 -1 9640
+D1
+~
+~
+0 -1 9534
+S
+#9534
+West Ishtar Drive~
+A few men walk by almost pushing you out of the way as they go about
+thier business of loading and unloading the boats. An entrance to the
+huge warehouses of New Thalos is to the north and the Ishtar River
+quietly flows by to the south. Ishtar Drive continues east and west.
+~
+95 0 1
+D0
+~
+~
+0 -1 9641
+D1
+~
+~
+0 -1 9535
+D3
+~
+~
+0 -1 9533
+S
+#9535
+West Ishtar Drive~
+The cobblestone road is moist here, the trail of water heading down to
+the boat ramp. Catching your balance as you start to slide on the slick
+pavement you grab on to the handrail someone has conveniently placed here.
+To the north is the Shipwright and Ishtar Drive continues east and west.
+~
+95 0 1
+D0
+~
+~
+0 -1 9642
+D1
+~
+~
+0 -1 9536
+D2
+~
+~
+0 -1 9543
+D3
+~
+~
+0 -1 9534
+S
+#9536
+West Ishtar Drive~
+A cool breeze blows up off the river chilling the sweat otherwise present
+on you skin. Orders and sometimes curses can be heard from the west
+in the direction of the warehouses. The common square opens up to the east
+and Ishtar Drive continues west.
+~
+95 0 1
+D1
+~
+~
+0 -1 9510
+D3
+~
+~
+0 -1 9535
+S
+#9537
+East Ishtar Drive~
+Loud hammering and the sound of red hot iron cooling in water reaches
+your ears as you stand in front of the blacksmith. A small boy runs up
+to you with big eyes and as you return his gaze runs off down the road.
+The common square can be seen to the west and Ishtar Drive continues
+to the east.
+~
+95 0 1
+D0
+~
+~
+0 -1 9644
+D1
+~
+~
+0 -1 9539
+D3
+~
+~
+0 -1 9510
+S
+#9538
+East Ishtar Drive~
+The wide road bordering the south of town continues to the east and
+west here, bordered only by the hay-loft to the north and the Ishtar
+River to the south.
+~
+95 0 1
+D1
+~
+~
+0 -1 9540
+D3
+~
+~
+0 -1 9539
+S
+#9539
+East Ishtar Drive~
+Small clumps of hay strewn about the ground alerts you to the fact that
+you have reached the stables. Arabian stallions as well as many other
+fine breeds of horses can be purchased for a price. Ishtar road continues
+east and west.
+~
+95 0 1
+D0
+~
+~
+0 -1 9645
+D1
+~
+~
+0 -1 9538
+D3
+~
+~
+0 -1 9537
+S
+#9540
+East Ishtar Drive~
+Even in broad daylight, you can hardly see into the back alley that begins
+here and heads north. Sounds of loud drunken folk and the occasional
+screaming cat emenate from the direction. Luckily you have the choice of
+going east or west down the drive as well.
+~
+95 0 1
+D0
+You see murky darkness.
+~
+~
+0 -1 9568
+D1
+~
+~
+0 -1 9541
+D3
+~
+~
+0 -1 9538
+S
+#9541
+East Ishtar Drive~
+Your highly acute sense of smell reports you have reached the entrance
+to the fish market. Although renowned for it fresh catches and
+wide selection of aquarian delicacies you wonder how much longer you
+can endure the smell! The Ishtar River flows alongside to the south
+with the drive running alongside it east to west.
+~
+95 0 0
+D0
+~
+~
+0 -1 9532
+D1
+~
+~
+0 -1 9542
+D3
+~
+~
+0 -1 9540
+S
+#9542
+East Ishtar Drive~
+The sound of squawking gulls and the smell of rotting fish gives you a hint
+of your location. The Ishtar River flows south of you, but looks crystal
+clear, so it cannot be the source of this putrid smell. Looking north you
+notice a small sign hanging over the dump.
+~
+95 0 1
+D0
+~
+~
+0 -1 9647
+D3
+~
+~
+0 -1 9541
+E
+sign~
+==========================================================================
+                       THE DUMP OF NEW THALOS
+
+
+                              -----
+
+  Enter at your own risk.
+       -the management
+
+=========================================================================
+~
+S
+#9543
+Boat Ramp~
+This sloped slab of stone allows easy passage to and from the Ishtar.
+Boats are moored to the docks here awaiting thier masters to return from
+the warehouses and the pubs. The waters of the Ishtar lap at your feet
+to the south and Ishtar Drive is to the north.
+~
+95 0 1
+D0
+~
+~
+0 -1 9535
+D2
+~
+~
+0 -1 9586
+S
+#9544
+West Casbah~
+The air takes on a somber note as you stand before the entrance to the
+jailhouse of New Thalos. Hopefully you won't ever see this structure from
+the inside. The northwest tower stands here with a spiral staircase
+leading up. The avenue ends here, only exiting to the east.
+~
+95 0 1
+D1
+~
+~
+0 -1 9545
+D2
+~
+~
+0 -1 9653
+D4
+~
+~
+0 -1 9659
+S
+#9545
+West Casbah~
+You have almost reached the end of the avenue in this direction, the
+number of guards in this part of town is nearly doubled. To the north
+the familiar city wall protects you from the wilderness. Looking south
+marble stairs rise towards the entrance of city hall surrounded by
+massive white pillars. The avenue continues west and south from here.
+~
+95 0 1
+D1
+~
+~
+0 -1 9546
+D2
+~
+~
+0 -1 9654
+D3
+~
+~
+0 -1 9544
+S
+#9546
+The Casbah~
+The wall of the palace curves south from here, a darkened alley runs along
+it in that direction. West of here you see the steps of the city hall
+and notice the increase in the number of guards. To the east the avenue
+continues.
+~
+95 0 1
+D1
+~
+~
+0 -1 9547
+D2
+~
+~
+0 -1 9558
+D3
+~
+~
+0 -1 9545
+S
+#9547
+The Casbah~
+As you travel down the road towards towards the city hall you look up
+at the guards walking along the wall keeping watch. South of you stands
+the great walls of the palace and the avenue goes east and west.
+~
+95 0 1
+D1
+~
+~
+0 -1 9548
+D3
+~
+~
+0 -1 9546
+S
+#9548
+The Casbah~
+The cobblestone pavement runs along the north wall here. South of you
+stand the great walls of the palace and the avenue goes east and west.
+~
+95 0 1
+D1
+~
+~
+0 -1 9522
+D3
+~
+~
+0 -1 9547
+S
+#9549
+The Casbah~
+The activity here is only slightly less than chaotic. Young boys run to
+and fro with stern intent, and older gentleman swagger down the street
+towards the library. To the west you can see the tall towers of the
+northern gate, and the avenue continues east.
+~
+95 0 1
+D1
+~
+~
+0 -1 9550
+D3
+~
+~
+0 -1 9522
+S
+#9550
+The Casbah~
+Walking along the cobblestone path you feel secure with the walls of the
+city towering over you. You hear the scraping sounds of metal on stone
+and look up to see a large, strong guard looking out to the north. To the
+east lies the intersection on Guildsman's Row and the northern gate is
+a short walk to the west.
+~
+95 0 1
+D1
+~
+~
+0 -1 9551
+D3
+~
+~
+0 -1 9549
+S
+#9551
+The Casbah~
+The din of the guilds assaults your senses as you reach this intersection;
+the sound of hammering, the smell of tanned leather, and the smoke rising
+from the smithy all rush up to greet you. The avenue continues east and
+west form here and the row leads south.
+~
+95 0 1
+D1
+~
+~
+0 -1 9552
+D2
+~
+~
+0 -1 9560
+D3
+~
+~
+0 -1 9550
+S
+#9552
+The Casbah~
+You walk between the solid stone wall of the city and that of the Mason's
+guild. Young children and their nannys walk around enjoying the safety
+of the city. The avenue runs east and west from here.
+~
+95 0 1
+D1
+~
+~
+0 -1 9553
+D3
+~
+~
+0 -1 9551
+S
+#9553
+The Casbah~
+You have almost reached the end of the avenue in this direction. Walking
+towards the north-east corner of the city you notice the population density
+here is much less then the rest of the town. A few old men hobbling on
+canes and young men intent on studies are the only travelers of the path
+to the library on a regular basis. The avenue continues east and west from
+here
+~
+95 0 1
+D1
+~
+~
+0 -1 9554
+D3
+~
+~
+0 -1 9552
+S
+#9554
+The Casbah~
+The avenue ends here, turning south to become Kali Row. Traveling in that
+direction will take you to the library and the grand dance hall of the city.
+The Northeast Tower of the wall is accessible here up a spiral staircase.
+~
+95 0 1
+D2
+~
+~
+0 -1 9555
+D3
+~
+~
+0 -1 9553
+D4
+~
+~
+0 -1 9662
+S
+#9555
+Kali Row~
+This is a small, newly added section of the town. The city's library
+can be entered through the door to the west and The Casbah
+begins it's journey a little ways north of here. The row and the
+entrance to the dance hall is to the south.
+~
+95 0 1
+D0
+~
+~
+0 -1 9554
+D2
+~
+~
+0 -1 9556
+D3
+~
+~
+0 -1 9651
+S
+#9556
+Kali Row~
+The short row ends abruptly here at the entrance to the dance hall of
+New Thalos. The entrance to the hall is to the west and the row continues
+northward.
+~
+95 0 1
+D0
+~
+~
+0 -1 9555
+D3
+~
+~
+0 -1 9652
+S
+#9557
+Underground~
+The small passage continues north and south.
+~
+95 9 1
+D0
+~
+~
+0 -1 9578
+D2
+~
+~
+0 -1 9580
+S
+#9558
+Alley~
+This is a dark alley running between the palace and city hall. Not a lot
+here, unless you're partial to spiders and rats.
+~
+95 0 1
+D0
+~
+~
+0 -1 9546
+D2
+~
+~
+0 -1 9559
+S
+#9559
+Alley~
+The alley ends here.
+~
+95 1 1
+D0
+~
+~
+0 -1 9558
+D5
+You see a manhole covering an opening in the road.
+~
+manhole hole man~
+1 -1 9575
+S
+#9560
+Guildsman's Row~
+This row is a hive of activity second only to the actual market
+square itself. Along this row stands all the guilds of the working
+class citizens of New Thalos;  here all the items sold in the square
+are made. Along this particular stretch of the row lie the Boyer/
+Fletcher to the west and the Mason's to the east. The row leads
+off to the south and East Casbah is to the north.
+~
+95 0 1
+D0
+~
+~
+0 -1 9551
+D1
+~
+~
+0 -1 9656
+D2
+~
+~
+0 -1 9561
+D3
+~
+~
+0 -1 9655
+S
+#9561
+Guildsman's Row~
+The guilds continue here, to the west is the Weaver's guild, and to the
+east stands the Craftsman's Guild. The row of guilds continues north
+and south from here.
+~
+95 0 1
+D0
+~
+~
+0 -1 9560
+D1
+~
+~
+0 -1 9607
+D2
+~
+~
+0 -1 9562
+D3
+~
+~
+0 -1 9606
+S
+#9562
+Guildsman's Row~
+Only one guild offers its door to this stretch of the row; the Tanner's
+Guild, to the west. To the east is a beautifully sculpted marble door
+allowing entrance to the Museum of the Greater Gods. The row of
+Guilds leads north and south.
+~
+95 0 1
+D0
+~
+~
+0 -1 9561
+D1
+~
+~
+0 -1 9611
+D2
+~
+~
+0 -1 9563
+D3
+~
+~
+0 -1 9664
+S
+#9563
+Guildsman's Row~
+After the guilds were built the people of the city used some of the extra
+space to erect a shrine to their patron saints. The result of this labor
+became the Museum of the greater gods. You may enter the sacred hall to
+the east.
+~
+95 0 1
+D0
+~
+~
+0 -1 9562
+D1
+~
+~
+0 -1 9616
+D2
+~
+~
+0 -1 9564
+S
+#9564
+Guildsman's Row~
+This small cramped road is worn with travel as apprentices to the guilds
+run merchandise from the guildhouses to the shops on market square. The
+guildhouses lie to the north and Main street is to the south.
+~
+95 0 1
+D0
+~
+~
+0 -1 9563
+D2
+~
+~
+0 -1 9528
+S
+#9565
+Alley~
+Even with your light you cannot seem to penetrate the magical cloak of
+darkness covering this alley.
+~
+95 1 1
+D0
+~
+~
+0 -1 9528
+D2
+~
+~
+0 -1 9566
+S
+#9566
+Alley~
+Even with your light you cannot seem to penetrate the magical cloak of
+darkness covering this alley.
+~
+95 1 1
+D0
+~
+~
+0 -1 9565
+D1
+~
+~
+0 -1 9567
+D3
+~
+~
+0 -1 9637
+S
+#9567
+Alley~
+Even with your light you cannot seem to penetrate the magical cloak of
+darkness covering this alley.
+~
+95 1 1
+D1
+~
+~
+0 -1 9638
+D2
+~
+~
+0 -1 9568
+D3
+~
+~
+0 -1 9566
+S
+#9568
+Alley~
+Even with your light you cannot seem to penetrate the magical cloak of
+darkness covering this alley.
+~
+95 1 1
+D0
+~
+~
+0 -1 9567
+D2
+~
+~
+0 -1 9540
+S
+#9569
+Alley~
+This is a tiny corner in the alley.  The temple walls are North and West.
+You notice a fair amount of footprints to the east.
+~
+95 1 1
+D1
+~
+~
+0 -1 9570
+D2
+~
+~
+0 -1 9571
+E
+footprint~
+Kind of looks like a yeti has been here....  Hmmmm.
+~
+S
+#9570
+Alley~
+This is a dead end to the tiny alley.  There is an unusual amount of wear
+appearent on the ground.
+~
+95 1 1
+D3
+~
+~
+0 -1 9569
+D5
+You see a small iron circle imbedded in the ground.
+~
+manhole man hole~
+1 -1 9578
+S
+#9571
+Alley~
+You are in a tiny ally between the temple and the bank. You hear some
+shouting and general roadwork to the south.  The ground is rough and
+in need of repair.  In the road is a small pothole.
+~
+95 1 1
+D0
+~
+~
+0 -1 9569
+D2
+~
+~
+0 -1 9525
+E
+pothole~
+Why are you looking in a pothole??????
+You poor or something?
+~
+S
+#9572
+Alley~
+You are on a small alley between the repair shop and the general store.
+Nothing much here but small rodents and dust.
+~
+95 1 1
+D0
+~
+~
+0 -1 9525
+D2
+~
+~
+0 -1 9573
+S
+#9573
+Alley~
+This is a small corner in the alley behind the warehouses and the guild
+of warrior's. You notice  some small scrapings to the west.
+~
+95 1 1
+D0
+~
+~
+0 -1 9572
+D1
+~
+~
+0 -1 9574
+S
+#9574
+Alley~
+The alley ends here as do the footprints you had noticed earlier.
+~
+95 1 1
+D3
+~
+~
+0 -1 9573
+D5
+You see a small round iron plate set in the ground.
+~
+manhole man hole~
+1 -1 9581
+S
+#9575
+Underground~
+You are in a small underground passage beneath the city. You see a small
+glint of light from above and the passage continues south.
+~
+95 9 1
+D2
+~
+~
+0 -1 9576
+D4
+~
+man hole manhole~
+1 -1 9559
+S
+#9576
+Underground~
+The passage continues north and south.
+~
+95 9 1
+D0
+~
+~
+0 -1 9575
+D2
+~
+~
+0 -1 9577
+S
+#9577
+Underground~
+The tunnel branches here going north, east, and west.
+~
+95 9 1
+D0
+~
+~
+0 -1 9576
+D1
+~
+~
+0 -1 9578
+D3
+~
+~
+0 -1 9579
+S
+#9578
+Underground~
+The alley turns again here and heads south and west. You notice a small
+glint of light from above.
+~
+95 9 1
+D2
+~
+~
+0 -1 9557
+D3
+~
+~
+0 -1 9577
+D4
+~
+manhole man hole~
+1 -1 9570
+S
+#9579
+Underground~
+The passage ends here and you hear some low chanting from the west.
+You also notice the clearing of dust on the ground but can't seem to
+find any door in that direction.
+~
+95 9 1
+D1
+~
+~
+0 -1 9577
+S
+#9580
+Underground~
+The small passage continues north and south from here.
+~
+95 9 1
+D0
+~
+~
+0 -1 9557
+D2
+~
+~
+0 -1 9581
+S
+#9581
+Underground~
+The small passage heads north and east from here. You here the sounds
+of the city above you.
+~
+95 9 1
+D0
+~
+~
+0 -1 9580
+D1
+~
+~
+0 -1 9582
+D4
+~
+manhole man hole~
+1 -1 9574
+S
+#9582
+Underground~
+The tunnel continues you west and east. Hopefully you have a good sense
+of direction.
+~
+95 9 1
+D1
+~
+~
+0 -1 9592
+D3
+~
+~
+0 -1 9581
+S
+#9583
+Ishtar River~
+High above you on the top of the city wall guards look down to see if you
+wish to exit the city via water. To do so they must open the iron grating
+in front of you from above. The horrid smell of the dump wafts down from
+the shore.
+~
+95 0 7
+D1
+~
+~
+0 -1 9724
+D3
+~
+~
+0 -1 9584
+S
+#9584
+Ishtar River~
+The gentle flow of the river carries you eastward;  looking up you see
+couples strolling along the road. To the west you see the southern
+bridge and to the east you see the iron grating protecting the city from
+unwanted guests.
+~
+95 0 7
+D1
+~
+~
+0 -1 9583
+D3
+~
+~
+0 -1 9585
+S
+#9585
+Ishtar River~
+You hear your voice echo as you float under the bridge above. The city
+construction crews have just recently finished the small ladder giving
+common-folk easy access to the river.  From here, the river flows east and
+west.
+~
+95 0 7
+D1
+~
+~
+0 -1 9584
+D3
+~
+~
+0 -1 9586
+D4
+~
+~
+0 -1 9512
+S
+#9586
+Ishtar River~
+This part of the river seems alive with activity. Boats moored to the
+docks near the ramp north of here make navigation a bit more trying.
+As the river flows eastward you can see the southern bridge in that
+direction.
+~
+95 0 7
+D0
+~
+~
+0 -1 9543
+D1
+~
+~
+0 -1 9585
+D3
+~
+~
+0 -1 9587
+S
+#9587
+Ishtar River~
+The river flows through a huge iron grating from the wilderness through
+the city. Strong guards above await word to open the portal
+should any citizen require exit or entry.
+~
+95 0 7
+D1
+~
+~
+0 -1 9586
+D3
+~
+~
+0 -1 9723
+S
+#9588
+Dark Passage~
+You seem to have stumbled into a small hand made passage. The wall to
+the west  doesn't look quite right but searching it reveals no secret
+doors. The only exit it seems is east.
+~
+95 9 1
+D1
+~
+~
+0 -1 9589
+S
+#9589
+Dark Passage~
+The small passage continues east and west from here. Again you notice
+something peculiar about the wall, this time to the north, but you
+fail to find any secret doors. Voices can be faintly heard from the north.
+~
+95 9 1
+D1
+~
+~
+0 -1 9590
+D3
+~
+~
+0 -1 9588
+S
+#9590
+Dark Passage~
+The small passage continues west and east from here.
+~
+95 9 1
+D1
+~
+~
+0 -1 9591
+D3
+~
+~
+0 -1 9589
+E
+boulder~
+A huge boulder stands here. In its center someone has carved out a
+perfect round hole.
+~
+S
+#9591
+Dark Passage~
+The small passage ends here for no apparent reason. Looking around you
+find a small ladder half buried in the dirt. setting it up you find a
+trap door in the ceiling. The passage continues west from here.
+~
+95 9 1
+D3
+~
+~
+0 -1 9590
+D4
+~
+secret~
+1 -1 9670
+E
+fire~
+Moving closer you see this fire is actually FROZEN in place. The
+flames still radiate heat, but are not actually burning. Looking
+around you notice a small hole about the size of a piece of charcoal
+at the base of the flames.
+~
+S
+#9592
+Underground~
+The small passage continues west and east.
+~
+95 9 1
+D1
+~
+~
+0 -1 9593
+D3
+~
+~
+0 -1 9582
+E
+cloud~
+Peering into the misty cloud the form a huge conch shell seems to fade
+in and out. Perhaps this is somehow the entrance to the next challenge
+~
+S
+#9593
+Underground~
+The small passage continues west and east.
+~
+95 9 1
+D1
+~
+~
+0 -1 9600
+D3
+~
+~
+0 -1 9592
+S
+#9594
+Common Room of the Clan MacCleod~
+You have entered a large hall with passages leading off in all directions.
+A large table dominates the center of this hall with many chairs were
+the clan gathers for feasting, merriment, and meetings. On the walls
+hang large tapestries paying homage to thier leader Conner MacCleod.
+~
+95 40 0
+D0
+~
+iron gate~
+1 -1 9599
+D1
+~
+door east~
+1 -1 9596
+D2
+~
+drawbridge draw bridge door~
+2 7901 6100
+D3
+~
+door west~
+1 -1 9597
+D4
+~
+door up~
+1 -1 9595
+D5
+~
+door down~
+1 -1 9598
+S
+#9595
+Zippoii's Room~
+Climbing up the staircase you enter the hovel of a curious mage. A small
+uncomfortable looking bed rests in the corner, surrounded by ancient
+tomes. On the worn desk next to the window candles burn low, casting
+strange shadows on the walls. The only noticeable decor is the mounted
+head of the Demi-Lich.
+~
+95 120 0
+D5
+~
+door~
+1 -1 9594
+S
+#9596
+Ice's Room~
+Brrrrrr, it's COLD in here. Must be 30 below. It would seem the cleric
+Ice lives up to his name. Healing herbs and other such things line
+the walls in racks, holy symbols and pictures cover the walls, and
+the smiley face button stuck on his bedpost tells you he'll probably
+help you out all he can. As you turn to leave the room the mounted head
+of Kalas stares past you into emptiness.
+~
+95 120 0
+D3
+~
+door~
+1 -1 9594
+S
+#9597
+Naazgul's Room~
+Three Rings for the Elven-kings under the sky,
+  Seven for the Dwarf-lords in thier halls of stone,
+Nine for Mortal Men doomed to die,
+  One for the Dark Lord on his Dark Throne
+In the Land of Mordor where Shadows lie.
+  One ring to rule them all, One ring to find them,
+  One ring to bring them all and in the darkness bind them
+In the Land of Mordor where the Shadows lie.
+
+If I have to explain, you wouldn't understand.
+~
+95 120 0
+D1
+~
+door~
+1 -1 9594
+S
+#9598
+Tank's Room~
+Now here's a room that is easy to understand. A bed, a dresser, and a
+rack for weapons and armor are all that occupy it. Some posters adorn
+the walls, to add color, proclaiming things such as Live fast, Die Young,
+and a homemade one in the corner with a picture of Ice and under it the
+inscription, "I LOVE the resurrection spell". The only thing out of
+place in this happy-go-lucky room is mounted head of Crimson Death.
+~
+95 120 0
+D4
+~
+door~
+1 -1 9594
+S
+#9599
+Inside the Castle of Clan MacCleod~
+You have entered the grand hall of the castle. A huge throne dominates a
+raised area in the northern part of then room. In front of this stands a
+drafting table.
+~
+95 120 0
+D2
+~
+iron gate~
+1 -1 9594
+S
+#9600
+Underground~
+The small passage continues west and east.
+~
+95 9 0
+D1
+~
+~
+0 -1 9601
+D3
+~
+~
+0 -1 9593
+S
+#9601
+Underground~
+The small passage continues west and east.
+~
+95  9 0
+D1
+~
+~
+0 -1 9602
+D3
+~
+~
+0 -1 9600
+S
+#9602
+Underground~
+The small passage continues west and east.
+~
+95  9 0
+D1
+~
+~
+0 -1 9588
+D3
+~
+~
+0 -1 9601
+S
+#9603
+Cleric's Sanctum~
+You walk down the staircase into the silent inner sanctum. Here sits
+your guildmaster ready to assist you when the time is right. The room
+is completely silent. The only obvious exit is back up the staircase
+into the the Nectar.
+~
+95  124 0
+D1
+You notice the floor at the base of the eastern wall has some faint
+scratches in it.
+~
+secret door~
+1 -1 9579
+D4
+~
+~
+0 -1 9619
+S
+#9604
+Chamber of the High Priest~
+You have entered the chamber of the most holy man in New Thalos. The
+High Priest advises the Sultan on all matters in the world of the sacred.
+From what you have heard however, this holy man has a bit of a temper,
+and he doesn't look very happy that you've disturbed his prayers.
+The only obvious exit is south.
+~
+95  8 0
+D2
+~
+~
+0 -1 9608
+S
+#9605
+By the Altar~
+You are by the temple altar in the northern end of Temple of New
+Thalos. A huge altar made of highly polished black onyx is standing
+in front of you. Behind this altar sits a twelve foot tall statue of
+Loki, the highest god in all the lands.
+~
+95  76 0
+D2
+~
+~
+0 -1 9609
+E
+statue~
+Looking up the huge statue you see Loki calmly gazing out across his
+lands.  He seems pleased.
+~
+S
+#9606
+The Weaver's Guild~
+Rows and rows of uncut cloth lie about waiting to be hemmed up into
+tailored clothes. Cotton is brought in from the countryside and
+spun up into cloth and dyed different colors. A young boy walks
+in, grabs a pile of clothing and leaves.
+~
+95  8 0
+D1
+~
+~
+0 -1 9561
+S
+#9607
+The Craftsman's Guild~
+You have entered a busy workshop filled with people running amok
+with various tools and materials.  The air is tense with the rush to
+complete various projects and creations.
+~
+95  8 0
+D3
+~
+~
+0 -1 9561
+S
+#9608
+Inside the Temple~
+The temple continues here, but not on such a grand scale. The place
+still looks immaculate. To the north you see the chamber of the High
+Priest and a sign on the door in BIG letters thats says DO NOT DISTURB.
+To the south is the entrance to the Cleric's Guild.
+~
+95  8 0
+D0
+~
+~
+0 -1 9604
+D1
+~
+~
+0 -1 9609
+D2
+~
+~
+0 -1 9612
+S
+#9609
+Inside the Temple~
+Huge marble pillars rise on either side of you and grab hold of the ceiling.
+Between each of these, fine softstone frescoes have been carved depicting
+scenes from the religous history of New Thalos. Rows of pews face forward
+giving their full attention to the pulpit rising high  above the ground. The
+deep red carpeting underfoot shows not a speck of wear or dirt. It's obvious
+that New Thalonians take religion seriously.
+~
+95  120 0
+D0
+~
+~
+0 -1 9605
+D1
+~
+~
+0 -1 9610
+D2
+~
+~
+0 -1 9613
+D3
+~
+~
+0 -1 9608
+S
+#9610
+Donation Room~
+This room is new to the temple.  It was created during the hard times
+that have struck the city in recent decades.  Luckily for them the sultan
+had been hoarding some of the basic necessities for just such an occasion.
+These days the donation room depends on the generosity of wealthy
+adventureres, and a curse on any that walk in to get all.
+~
+95  8 0
+D3
+~
+~
+0 -1 9609
+S
+#9611
+The Museum of the Greater Gods~
+Four large stone statues reside in the museum. They were constructed by
+the people of New Thalos to pay homage to the saints they believe to
+have saved all their lives.
+~
+95  8 0
+D2
+~
+~
+0 -1 9616
+D3
+~
+~
+0 -1 9562
+S
+#9612
+Entrance to the Guild of Clerics~
+This hall pales in comparison to that of the main hall, but is beautiful
+in its own right. Shaven heads and brown robes can be seen milling about
+quitely talking to each other. North is back inside the temple proper,
+and south is the entrance to the cleric's bar.
+~
+95  8 0
+D0
+~
+~
+0 -1 9608
+D2
+~
+~
+0 -1 9619
+S
+#9613
+The Temple Gates~
+You stand before the entrance way to the Temple of New Thalos. Two large
+wrought iron gates lie open before you. Although they might not ever be
+used, the priests in the temple are ready to defend themselves, should
+their city ever come under siege again.
+~
+95  0 1
+D0
+~
+~
+0 -1 9609
+D2
+~
+~
+0 -1 9620
+D5
+~
+~
+0 -1 9620
+S
+#9614
+Ahkeem's Stuff~
+You step into a shop swirling with smoke.  Ahkeem seems to have a liking for
+things not of this world...very strange stuff indeed.  There is a large sign on
+the wall.
+~
+95  120 0
+D2
+~
+~
+0 -1 9514
+E
+note sign~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much an item is worth to Ahkeem
+SELL : sells an item to Akheem for a generous sum
+BUY : Akheem's FAVORITE command lets you have an item for his low low price.
+
+                                       ~
+S
+#9615
+Vera's Veggies~
+This is a busy place.  Customers shuffle around, bartering for lower prices
+on the wide selection of vegetables.  You can still hear your mother telling
+you 'Eat your Veggies'.  That's probably why you're mudding right now and
+not hanging out with mom.  But wait...Vera looks just like your mother!
+There is a large poster, behind the counter, taped to the wall.
+~
+95  120 0
+D2
+~
+~
+0 -1 9516
+E
+note poster~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much an item is worth to Vera
+SELL : sells an item to Vera for a generous sum
+BUY : Vera's FAVORITE command lets you have an item for her low low price.
+
+                                        NEWBEE INTRUCTOR COMITEE
+~
+S
+#9616
+The Museum of the Greater Gods~
+This room is identical to the one north of it, but contains four differnt
+statues.
+~
+95  8 0
+D0
+~
+~
+0 -1 9611
+D3
+~
+~
+0 -1 9563
+S
+#9617
+Base of the Tower~
+You walk into a cold room whose only feature is an old wooden staircase
+spirling up along the wall to a higher level. Up these stairs, you are
+told, lies the old mage who may be able to help you advance in your
+studies.
+~
+95  8 0
+D1
+~
+~
+0 -1 9618
+D2
+You see some small scratches on the floor near the base of the wall.
+~
+secret door~
+1 -1 9624
+D4
+~
+~
+0 -1 9648
+S
+#9618
+The Mage's Courtyard~
+You enter a small tiled courtyard with a small fountain in the middle.
+Around the sides are four wrought iron benches with cushions where the
+mages of the land sit and exchange ideas. To the west stands a two-story
+tower where the leader of the mage's guild performs his experiments.
+~
+95  0 0
+D2
+~
+~
+0 -1 9625
+D3
+~
+~
+0 -1 9617
+S
+#9619
+Nectar of the Gods~
+You are startled by the lavishness of this place. From what you know of
+clerics they are supposed to be humble people, giving all thier
+material goods to their cause. Perhaps because only clerics are
+allowed to enter this bar they have condoned making it as comfortable
+as possible. In the corner stands a staircase leading down to the
+meditaion chambers.
+~
+95  8 0
+D0
+~
+~
+0 -1 9612
+D5
+~
+~
+0 -1 9603
+S
+#9620
+The Temple Square~
+You are standing on the meeting grounds of those with holy intentions.
+Monks, bards, paladins and clerics mill around either preaching or
+listening to their fellows preach. Huge marble steps lead up to the
+gates of the temple and Main Street lies to the south.
+~
+95  32 1
+D0
+~
+~
+0 -1 9613
+D2
+~
+~
+0 -1 9524
+D4
+~
+~
+0 -1 9613
+S
+#9621
+The Bank~
+You stand in a large building decorated with black marble and red satin.
+Huge pillars support an arched ceiling far above your head.  You wonder at
+the skill the dwarves have for detail as you examine the trim.  Fine silver
+separates the polished blocks that make up the floor.
+~
+95  120 0
+D1
+~
+~
+0 -1 9514
+S
+#9622
+The Butchary~
+This shop has the aroma of freshly slaughterd beasts.  You feel right at home.
+You see a fairly simple set up.  The corpses..er...selections hang on hooks,
+still bleeding into catch pans that drain into a single underground vat.
+You wonder where that leads....  Taped to the counter, almost obscured by
+blood, there is a barely readable sign.
+~
+95 120 0
+D3
+~
+~
+0 -1 9516
+E
+vat~
+You think you hear noises from the vat....nah.
+~
+E
+note sign~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much an item is worth
+SELL : sells an item to Butch for a generous sum
+BUY : Butch's FAVORITE command lets you have an item for his low low price.
+
+                                        NEWBEE INTRUCTOR COMMITEE
+~
+S
+#9623
+The Witch's Brew~
+The first thing you notice as you walk into this spacious shop is the
+hundreds of candles that line the shelves. The swirling mist that surrounds
+your feet makes it seem that you have stepped into a gateway to another
+plane. A tall brunette stands behind her cluttered table unaware of
+your entrance.  An ornately lettered sign floats above your head.
+~
+95 120 0
+D2
+~
+~
+0 -1 9529
+E
+note sign~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much an item is worth to Elvira
+SELL : sells an item to Elvira for a generous sum
+BUY : Elvira's FAVORITE command lets you have an item for her low low price.
+
+
+~
+S
+#9624
+Braheem's Magic Shop~
+You enter a shop crowded with bookshelves and clutterd with scrolls. The
+owner seems to be hard at work on his latest magical creation. You see a
+small sign on the wall.
+~
+95 120 0
+D2
+~
+~
+0 -1 9530
+E
+sign~
+Welcome to Braheem's.
+LIST -Shows you all of my wonderful creations.
+VAL  -Shows what an item might be worth to me.
+SELL -Allows you to rid yourself of excessive magic items.
+BUY  -Allows you to rid youself of excessive cash.
+~
+S
+#9625
+Entrance to the Mage's Tower~
+The entrance hall is a small poorly lit room. It would seem its only
+purpose is to house the powerful sorcerer standing here guarding
+the entrance.
+~
+95 8 0
+D0
+~
+~
+0 -1 9618
+D2
+~
+~
+0 -1 9531
+S
+#9626
+Entrance to the Guild of Warriors'~
+This small hall is merely a check point to keep the unwanted out.
+~
+95 8 0
+D0
+~
+~
+0 -1 9523
+D2
+~
+~
+0 -1 9633
+S
+#9627
+The Repair Shop~
+One of the most popular shops in New Thalos, this shop is always a hive
+of activity. It is almost inhuman the way one man can fix all the area's
+armor singlehandedly. If you have an item in need of repair simply give
+it to the man behind the counter.
+~
+95 8 0
+D0
+~
+~
+0 -1 9524
+S
+#9628
+The General Store~
+The new found wealth of this beautiful city is apearant in the exotic items
+for sale here.  You wonder what would happen if you typed....LIST...
+~
+95 120 0
+D1
+~
+~
+0 -1 9508
+S
+#9629
+Abdul's Armor~
+The sound of hammering metal grows louder as you enter the armory.  Young
+boys run to and fro carrying buckets of water and coal.  A few dwarves work
+on sections of armor in the back of the shop, their hammers working too fast
+to follow.  The walls are adorned with all of Abdul's prize creations.  Here
+you can purchase suits of armor meant to keep monsters from hacking you into
+little pieces.
+A note on the wall beckons newbies.
+~
+95 120 0
+D3
+~
+~
+0 -1 9507
+E
+note~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much an item is worth to Abdul
+SELL : sells an item to Abdul for a generous sum
+BUY : Abdul's FAVORITE command lets you have an item for his low low price.
+
+
+~
+S
+#9630
+The Mercenary's Guild~
+This guild is frowned upon by most of the population of New Thalos, but
+the laws of supply and demand are irresistable. People come here when
+they feel unable or are unwilling to fight their own battles. For a
+small fee you may hire henchman.
+~
+95 0 0
+D0
+~
+~
+0 -1 9529
+D1
+You notice some small scratches in the floor next to the eastern wall.
+~
+secret door~
+1 -1 9632
+S
+#9631
+The Mercenary's Guild~
+This is the storage room for the mercenaries to be hired.
+~
+95 0 0
+S
+#9632
+Entrance to the Thieves' Guild~
+This small, dark room has a single torch mounted in the wall for light.
+There is a small wooden bench and a book lying on it. The assassin
+guarding the entrance from 'outsiders' stands as you walk in.
+~
+95 9 0
+D2
+~
+~
+0 -1 9639
+D3
+~
+secret door~
+1 -1 9630
+S
+#9633
+The Whet Stone~
+Very large men with very large swords drink beer from very large mugs. Every-
+thing in this room is BIG. The large round tables are scuffed and nicked from
+the numerous bar brawls that have sprung up. It might be a good idea to hold
+your tounge for a while as you soak up the atmosphere. There is an exit to
+the east where the master swordsman awaits pupils to train with.
+~
+95 8 0
+D0
+~
+~
+0 -1 9626
+D1
+~
+~
+0 -1 9634
+S
+#9634
+Tournament and Practice Yard~
+This is a wide expanse of grass filled with dummies, punching bags and
+swordpupils. To the north you see a man dressed in black robes, unlike
+his iron clad comrades, who you assume to be your master.
+~
+95 124 0
+D1
+You see the grass near the base of the wall here is slightly torn.
+~
+secret door~
+1 -1 9573
+D3
+~
+~
+0 -1 9633
+S
+#9635
+The Bread Stand~
+A small stand has been set up here, showing the shopkeep's humble
+selection. You notice he has added a few things to his list.
+~
+95 120 0
+D0
+~
+~
+0 -1 9508
+S
+#9636
+Igor's Implements of Destruction~
+You can't help but shiver as you look at the selection of vicious weapons.
+Huge swords and wicked looking axes hang on pegs around the room.  A dwarf
+sits at a bench in the back hammering away on his latest creation.  It is
+here you can buy rare and exotic items not found in other parts of the world.
+A note catches your eye.
+~
+95 104 0
+D0
+~
+~
+0 -1 9507
+D5
+~
+secret sesame~
+2 9591 9750
+E
+note~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much an item is worth to Igor
+SELL : sells an item to Igor for a generous sum
+BUY : Igor's FAVORITE command lets you have an item for his low low price.
+
+                                        NEWBEE INTRUCTOR COMITEE
+~
+S
+#9637
+Ye Old Leather Shoppe~
+You are standing on a thick oriental rug surrounded on all sides by racks
+of numerous leather goods. A few women sit on leather cushions sewing in
+some detail work on custom ordered jackets.  There is a note on the counter.
+~
+95 120 0
+D1
+~
+~
+0 -1 9566
+E
+note~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much an item is worth
+SELL : sells an item for a generous sum
+BUY :  buy an item for an outrageous price.
+
+
+~
+S
+#9638
+Smuggler's Inn~
+You are inside a filthy inn, that seemingly hasn't  been cleaned in decades.
+Poker tables line the walls and everyone stares at you as you walk in.
+You don't feel very welcome. The bar has numerous knife holes in it
+and the bartender leans over waiting for your order.  A large sign, pinned
+to the wall by a knife, awaits your inspection.
+~
+95 8 0
+D3
+~
+~
+0 -1 9567
+E
+sign~
+
+LIST : gives you a list of items for sale.
+BUY :  buy something drinkable.
+
+
+~
+S
+#9639
+The Filthy Unicorn~
+A draft chills your bones as you enter, though you see no open window or
+door. Hooded figures lurk around in the shadows and speak in low voices.
+A flash of steel lets you know that weapons are in great abundance
+in this crowd. As you quickly check your beltpouch you notice
+a small staircase leading down.
+~
+95 8 0
+D0
+~
+~
+0 -1 9632
+D5
+~
+~
+0 -1 9646
+S
+#9640
+Warehouse~
+You are standing in a large room used to store merchandise made in the
+city before it is shipped off. All the items here are made in New Thalos
+and shipped to other parts of the land.
+~
+95 8 0
+D1
+~
+~
+0 -1 9641
+D2
+~
+~
+0 -1 9533
+S
+#9641
+Warehouse~
+Men walk to and fro counting crates and writing down their findings. This
+area of the warehouse is used for storing the raw materials brought in
+from areas outside the city. These goods are then delivered to the various
+guilds. The export area of the warehouses is to the south.
+~
+95 8 0
+D2
+~
+~
+0 -1 9534
+D3
+~
+~
+0 -1 9640
+S
+#9642
+Shipwright~
+The wood under you feet creaks from years of being soaked in saltwater. An
+old man with a curly, grey beard stand behind a small counter waiting to
+take your order. Behind him are mounted various model sailboats and large
+fish.  There is a large poster stapled to the counter.
+~
+95 120 0
+D1
+~
+~
+0 -1 9643
+D2
+~
+~
+0 -1 9535
+E
+note poster~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much an item is worth to the shipwright
+SELL : sells an item to the shipwright for a generous sum
+BUY : The shipwright's FAVORITE command lets you have an item for his low low pr
+ice.
+
+
+~
+S
+#9643
+Drafting Room~
+The walls are covered with paper sketchings of hull designs. This room is
+used by the shipwright to build his creations on paper before making
+a single cut in wood.
+~
+95 8 0
+D3
+~
+~
+0 -1 9642
+S
+#9644
+The Forge~
+Very much like the weaponsmith this man deals in the molding of metal. It
+seems that most of his creations deal with horses. On the walls you see
+several horseshoes made of iron. The room is hot, hotter than the desert
+just south of here, and one wonders how the smithy can stand it.  Some
+letters have been burned into the wooden wall.
+~
+95 124 0
+D2
+~
+~
+0 -1 9537
+E
+letters wall~
+
+LIST : gives you a list of items for sale.
+VALUE : tells you how much the blacksmith will give you for his merchandise
+SELL : sells an item to the blacksmith
+BUY : buy an item from the blacksmith for a fair price
+
+
+~
+S
+#9645
+The Royal Stables~
+Nothing you wouldn't expect is here. Several stalls hold the Sultan's
+choice Arabian Stallions, and each has its own trough for drinking.
+A small boy wanders in sometimes with a shovel to remove the offensive
+by-product of such beasts.
+~
+95 8 1
+D1
+~
+~
+0 -1 9649
+D2
+~
+~
+0 -1 9539
+S
+#9646
+The Secret Yard~
+This is a hidden yard known to only a few people in New Thalos. Here you
+may train in the arts of stealing, picking locks, and becoming almost
+invisible. A small staircase leads back up to the unicorn.
+~
+95 8 0
+D2
+You see some small scratches in the wall to the south.
+~
+secret door~
+1 -1 9589
+D4
+~
+~
+0 -1 9639
+S
+#9647
+The Dump~
+This is the place where the people of the city dump their trash. Due to
+the constant winds blowing down the moutains the smell is usually blown
+outside the walls and over the desert.
+~
+95 0 0
+D2
+~
+~
+0 -1 9542
+S
+#9648
+The Mage's Laboratory~
+You stand in the top of an old stone tower. Along the walls hundreds of
+potions, scroll, and wands lie in disarray. The man you see before you
+sits hunched over a small wooden table with two beakers of bubbling
+liquid in front of him. He looks up as you enter and smiles broadly.
+~
+95 8 0
+D5
+~
+~
+0 -1 9617
+S
+#9649
+The Hay Loft~
+Not as big as the ones you see on farms in the country, this hay loft
+serves as a storage area for the horses in the stables. The young boy
+you saw with the shovel seems to have taken up residence on the second
+story.
+~
+95 8 0
+D3
+~
+~
+0 -1 9645
+S
+#9650
+The Grand Entrance~
+Nowhere have you seen such an obscene display of wealth than in this
+corridor. The shag carpeting under your feet makes it seem as if you are
+walking on a cloud. Platinum candelabras hang delicately from the ceiling
+casting light on the ancient tapestries adorning the walls. The crick
+in your neck tells you it's time to stop staring. To the west the
+numerous halls of the palace begin and the gate lies to the east.
+~
+95 8 0
+D0
+~
+~
+0 -1 9660
+D1
+~
+gate~
+2 9500 9658
+D2
+~
+~
+0 -1 9657
+D3
+~
+~
+0 -1 9705
+S
+#9651
+The Library~
+This building holds the vast collection of books and documents that
+have been brought here by the committee appointed to recover the
+lost knowledge of Thalos.  Rows of shelves, filled with book in every
+condition, lines the walls.  The air has the aroma of old parchment and
+glue.
+~
+95 8 0
+D1
+~
+~
+0 -1 9555
+S
+#9652
+The Dance Hall~
+You seem to have missed a huge party.  The janitors are here cleaning up
+the confetti and cigarette butts.  Hundreds of empty beer mugs on the
+tables surrounding the dance floor suggest that the citizens love their
+drink.  There is still a banner on the wall.
+~
+95 8 0
+D1
+~
+~
+0 -1 9556
+E
+banner~
+========================================================================
+
+		H A P P Y   B I R T H D A Y   T O   U S
+
+========================================================================
+~
+S
+#9653
+Jail~
+You are in jail. For some reason the god's feel you've screwed up
+pretty bad and should be put away safely for a while.
+~
+95 120 0
+D0
+~
+secret gate~
+2 9593 9544
+S
+#9654
+City Hall~
+You stand inside the administrative head of the city. Here the decisions
+regarding city policy are made. Although the Sultan's word is law, he
+usually spends his time on affairs outside the city wall.
+~
+95 8 0
+D0
+~
+~
+0 -1 9545
+S
+#9655
+The Boyer/Fletcher's~
+The walls in this room are covered with pegs that hold various types of
+bows.  There are few people working here, lending to the fact that
+the skills are rare to come by in the general populous.  A few boys are
+busy in the corner preparing feathers for the fine shafts used in making
+arrows.  Some Elven craftsmen are carefuly inspecting each bow as it is
+finished.
+~
+95 8 0
+D1
+~
+~
+0 -1 9560
+S
+#9656
+The Mason's~
+There is no doubt that the Dwarves here know what they're doing.  They
+have been invaluable in the building of this beautiful city.  Here they
+are hard at work doing what they do best.  The hammers fly in a blur as
+these talented craftsmen work the stone into ornate bricks, pillars, trim,
+and many other forms.
+~
+95 8 0
+D3
+~
+~
+0 -1 9560
+S
+#9657
+Guard House~
+You stand inside the southern of the two main guard houses. The stone
+interior has a spartan look to it, only the bare neccesities. A few
+weapons are mounted on the walls in case they might be needed.
+~
+95 8 0
+D0
+~
+~
+0 -1 9650
+S
+#9658
+The Palace Gate~
+You stand before a magnificantly crafted gate wrought in solid gold. You
+gape in awe at the splendor of the spiraling towers beyond the portal. The
+ruler of all the eastern lands resides in this fine palace, and he is not
+a poor man. The grand entrance lies byond the gate, and Sultan's walk is
+to the east.
+~
+95 0 1
+D1
+~
+~
+0 -1 9520
+D3
+~
+gate~
+2 9500 9650
+S
+#9659
+North-West Tower~
+You stand on one of the four towers guarding the city. The view from here
+is great! To the west you see the tall mountains that make up the divide
+between here an Midgaard. The Ishtar river slowly flows from that direction.
+South you can see the entire city of New Thalos and the Great Eastern Desert
+to the south.
+~
+95 8 0
+D5
+~
+~
+0 -1 9544
+S
+#9660
+Guard House~
+You stand inside the northern of the two main guard houses. Strong
+guards are seated here, playing cards. The stone interior is clean
+but bare walled save the weapons and armor mounted in the walls.
+The only exit is south.
+~
+95 8 0
+D2
+~
+~
+0 -1 9650
+S
+#9661
+Kitchen~
+Your footsteps echo off the stone tiles of the kitchen. On the south wall
+you see the large fireplace and a huge copper pot bubbling merrily. The
+chef is busy chopping up greens and other vegetables at the wooden table
+for tonight's meal. Servants scurry about grabbing utensils and preparing
+fresh hares. A small door leads out into the hall northward and the door
+to the dining hall is west.
+~
+95 8 0
+D0
+~
+door~
+1 -1 9663
+D3
+~
+~
+0 -1 9671
+S
+#9662
+North-East Tower~
+You stand on one of the four towers guarding the city. To the north you
+see the wide plains and then the forest. South of here you see the city
+and the great eastern desert beyond.
+~
+95 8 0
+D5
+~
+~
+0 -1 9554
+S
+#9663
+Hall~
+You are at the eastern end of the southern hallway. A small servants'
+entrance give access to the kitchen and the hall continues west.
+~
+95 8 0
+D2
+~
+door small~
+1 -1 9661
+D3
+~
+~
+0 -1 9672
+S
+#9664
+The Tanner's Guild~
+You first notice the pungent smell of freshly tanned leather goods as
+you enter this strange place.  The next thing that grabs your attention
+is the many colors that these people have transformed the beautiful
+skins into.  The people are stretching the leather and cutting it into
+the shapes they need.  You notice a small message on a wall.
+~
+95 8 0
+D1
+~
+~
+0 -1 9562
+E
+message~
+
+                       I hate being a Tanner
+~
+S
+#9665
+Hall~
+You have come to the eastern end of the northern hallway. The only exit
+is west except for the simple wooden door to the north. There is a
+golden plaque above the door.
+~
+95 8 0
+D0
+~
+door~
+1 -1 9666
+D3
+~
+~
+0 -1 9674
+E
+plaque~
+
+
+                     The Holy Shrine of Allah
+
+
+                           (remember Allah is a god, I wouldn't attack him)
+~
+S
+#9666
+Shrine of Allah~
+As you step into this room you seem to leave the material plane. The
+walls here are decorated with beautiful, multi-colored tiles. There
+is a strange stillness about the air. You sense the presence of an
+almighty being.
+~
+95 8 0
+D2
+~
+door~
+1 -1 9665
+S
+#9667
+Outside the Northern Gate of New Thalos~
+You stand outside the gate of New Thalos. The city lies to the south, and
+wilderness to the north.  The Great Eastern Desert continues to the east
+and west.
+~
+95 0 1
+D0
+~
+~
+0 -1 9781
+D2
+~
+~
+0 -1 9522
+D3
+~
+~
+0 -1 5047
+D1
+~
+~
+0 -1 5047
+S
+#9668
+Outside the Eastern Gate of New Thalos~
+You stand outside the protective walls of the city. The massive iron gate
+sits to the west and the unknown awaits you eastward.
+~
+95 0 1
+D1
+~
+~
+0 -1 9790
+D2
+~
+~
+0 -1 9670
+D3
+~
+~
+0 -1 9531
+S
+#9669
+Outside the West Gate of New Thalos~
+You stand outside the city walls, the iron gate to the east. The city lies
+in that direction and the road to Midgaard lies west.
+~
+95 0 1
+D1
+~
+gate~
+1 9501 9523
+D3
+~
+~
+0 -1 9718
+S
+#9670
+Outside the wall~
+You are in a small clearing outside the east wall of the city. The
+ground seems well trodden but you can see no apparent exit save that
+north.
+~
+95 0 2
+D0
+~
+~
+0 -1 9668
+S
+#9671
+Grand Dining Hall~
+A long oaken table, coverd with silverware, plates, and a tablecloth
+with gold trim, dominates the room. Although no diners occupy the room
+as of yet, servants sprint about setting the table and placing condiments.
+The kitchen entrance is to the east, and two huge double doors open into
+the hallway north.
+~
+95 8 0
+D0
+~
+~
+0 -1 9672
+D1
+~
+~
+0 -1 9661
+S
+#9672
+Hall~
+You stand at a T-crossing in the long hallways. There are two
+large double doors to the south.
+~
+95 8 0
+D0
+~
+~
+0 -1 9673
+D1
+~
+~
+0 -1 9663
+D2
+~
+double doors~
+1 -1 9671
+D3
+~
+~
+0 -1 9677
+S
+#9673
+Hall~
+You stand at an intersection of the hallways. Wooden corridors lead off in
+all directions except west; the garden of the palace can be entered there.
+~
+95 8 0
+D0
+~
+~
+0 -1 9674
+D1
+~
+~
+0 -1 9705
+D2
+~
+~
+0 -1 9672
+D3
+~
+~
+0 -1 9678
+S
+#9674
+Hall~
+You have come to a T-crossing on the hallways. The wooden corridors
+continue east, west and south. There is a large iron door to the north.
+~
+95 8 0
+D0
+~
+iron heavy~
+1 -1 9675
+D1
+~
+~
+0 -1 9665
+D2
+~
+~
+0 -1 9673
+D3
+~
+~
+0 -1 9679
+S
+#9675
+Entrance to the Dungeon~
+You enter a cold damp room with bare, roughly hewn stone walls. This
+room seems very out of place compared to the splender of the rest of the
+palace. A large steel grating leads down into darkness, and an iron door
+returns you to the hallway.
+~
+95 8 0
+D2
+~
+iron~
+1 -1 9674
+D5
+~
+steel~
+1 -1 9691
+S
+#9676
+Guest Room~
+This is a simple room used for visiting noblemen. A small dresser stands
+on the east wall with a mirror hung right above it. A queen sized bed made
+up in satin sheets stands in the middle of the room against the south
+wall under a window. The only obvious exit is north back out into the
+hallway.
+~
+95 8 0
+D0
+~
+~
+0 -1 9677
+E
+window~
+Looking out this window you can see the grounds of the palace that
+seperate the walls of the palace from the building itself.
+~
+E
+mirror~
+You see a the fighting image of some armor clad humanoid wielding a weapon.
+~
+S
+#9677
+Hall~
+The long hall continues here with a wooden door in the south wall. On the
+north wall hangs the picture of some forgotten nobleman who once ruled
+the land.
+~
+95 8 0
+D1
+~
+~
+0 -1 9672
+D2
+~
+door~
+1 -1 9676
+D3
+~
+~
+0 -1 9682
+S
+#9678
+Garden~
+You have entered the Sultan's private gardens. A light sweat breaks out
+on your skin from the humidity here. All around you are thousands of
+exotic plants and flowers. The sweet smell of jasmine and honeysuckle
+reminds you of happier days at home. Off to the north, through the palm
+trees, you see a delicate white gazebo. To your right stands a gold sign.
+A path leads out into the hallway and west towards the gazebo.
+~
+95 0 2
+D1
+~
+~
+0 -1 9673
+D3
+~
+~
+0 -1 9683
+E
+sign~
+=========================================================================
+=========================================================================
+||                                                                     ||
+||                                                                     ||
+||                                                                     ||
+||                                                                     ||
+||        Welcome to my humble garden. I have created this             ||
+||        tiny bit of paradise for the pleasure of my people.          ||
+||        Take only pictures... Leave only footprints...               ||
+||                                                                     ||
+||                                                                     ||
+||                                                                     ||
+||                                 The Sultan                          ||
+||                                                                     ||
+||                                                                     ||
+||                                                                     ||
+=========================================================================
+=========================================================================
+~
+S
+#9679
+Hall~
+The long stretch of hallway continues east and west from here. The small
+red carpet covering the centerline is always underfoot and an occasional
+bench or potted plant lines the wall. There is a door here to the north
+with a plaque mounted over it.
+~
+95 8 0
+D0
+~
+door~
+1 -1 9680
+D1
+~
+~
+0 -1 9674
+D3
+~
+~
+0 -1 9684
+E
+plaque~
+
+
+                           ART EXHIBIT
+                                of
+                            NEW THALOS
+
+
+                               -management is not responsible for lost items.
+~
+S
+#9680
+Art Exhibit~
+You are standing in the Sultan's tribute to the finer virtues. Large
+paintings hang from the walls displaying nature scenes, nudes, and
+glorious victories in battle. Strange scupltures rest on pedestals
+at each corner of the room and mirrors are placed in strategic
+locations so the viewer may see an entire sculpture at a glance. Your
+eyes, however, are pulled towards a painting that dominates the far wall.
+~
+95 8 0
+D2
+~
+door~
+1 -1 9679
+S
+#9681
+Guest Room~
+This is another room made up for visiting nobles. There is a dresser up
+against the eastern wall with a mirror above it and a queen sized bed,
+made up in satin sheets, against the south wall.
+~
+95 8 0
+D0
+~
+~
+0 -1 9682
+S
+#9682
+Hall~
+You have reached the western end of the southern hallway. The only exit
+is east except for the doors in the southern and western walls.
+~
+95 8 0
+D1
+~
+~
+0 -1 9677
+D2
+~
+door south~
+1 -1 9681
+D3
+~
+door west~
+2 9601 9687
+S
+#9683
+Garden Gazebo~
+Walking through the gardens you come across a small white wooden structure.
+The sounds of birds, the smell of flowers, ahhh paradise. You believe
+you have never been in a more peaceful setting.
+~
+95 8 0
+D1
+~
+~
+0 -1 9678
+S
+#9684
+Hall~
+This is the western end of the northern hallway. Two doors are set in the
+walls here, one to the north, another to the west.
+~
+95 8 0
+D0
+~
+door north~
+1 -1 9685
+D1
+~
+~
+0 -1 9679
+D3
+~
+door west~
+1 -1 9689
+S
+#9685
+Guard Room~
+You stand in a barren chamber lined with nothing but cots and footlockers.
+The guards come here when off duty to sleep, for they may only leave the
+palace grounds with special permission. The only exit is to the south.
+~
+95 8 0
+D2
+~
+door~
+1 -1 9684
+S
+#9686
+Guard Room~
+This is living quarters for the guards of the palace. Barren compared to
+the rest of the palace, you see only cots and footlockers here. On the
+walls you see pictures of well known knights who have given a proud name
+to the Sultan's Guard.
+~
+95 8 0
+D0
+~
+~
+0 -1 9687
+S
+#9687
+Harem~
+This is the room where the Sultan keeps the beautiful women of his palace.
+There are ten girls here lying about the room dressed in silks you can
+almost see through. In the western end of the room stands a large mound
+of pillows and a beautiful young maiden sits perched atop. It is
+unfortunate for you that only the Sultan is allowed in here.
+~
+95 8 0
+D0
+~
+secret door~
+1 -1 9688
+D1
+~
+~
+0 -1 9682
+D2
+~
+~
+0 -1 9686
+S
+#9688
+Small room~
+This is secret chamber allowing the Sultan direct access to his harem
+at any time he chooses.
+~
+95 8 0
+D0
+~
+~
+0 -1 9689
+D2
+~
+~
+0 -1 9687
+S
+#9689
+Throne Room~
+You stand in the throne room of the mighty Sultan of New Thalos. Guards
+stand at attention near his side ready to make the ultimate sacrifice for
+their beloved leader. The gold inlaid throne studded with jewels stands
+upon a mable dias. The Sultan is not a man to be trifled with.
+~
+95 8 0
+D0
+~
+secret throne~
+2 9600 9690
+D1
+~
+door~
+1 -1 9684
+D2
+~
+secret door
+~
+1 -1 9688
+S
+#9690
+Treasure Room~
+You have somhow managed to gain access to the treaure vault of the Sultan.
+The alarm sounding in the background tells you that you must have
+tripped off some kind of alarm system. It might be adviseable to grab
+as much stuff as you possibly can and run for the door.
+~
+95 8 0
+D1
+~
+~
+0 -1 9685
+D2
+~
+~
+0 -1 9689
+S
+#9691
+Jailer's Room~
+Climbing down the old wooden ladder you enter a small cave-like
+room. There is a small bench with some old magazines and a low
+burning candle sitting off to one side. A door is set into the
+stone on the north wall, and the steel grating opens up above.
+~
+95 9 0
+D1
+~
+door~
+1 -1 9692
+D4
+~
+steel~
+1 -1 9675
+S
+#9692
+Tunnel in the Dungeon~
+You stand in a roughly hewn stone tunnel with cells to the north and
+south. The tunnel continues east.
+~
+95 9 0
+D0
+~
+cell north~
+2 9593 9697
+D1
+~
+~
+0 -1 9693
+D2
+~
+cell south~
+2 9593 9701
+D3
+~
+door~
+1 -1 9691
+S
+#9693
+Tunnel in the Dungeon~
+You stand in a roughly hewn stone tunnel with cells to the north and
+south. The tunnel continues east and west.
+~
+95 9 0
+D0
+~
+cell north~
+2 9593 9698
+D1
+~
+~
+0 -1 9694
+D2
+~
+cell south~
+2 9593 9702
+D3
+~
+~
+0 -1 9692
+S
+#9694
+Tunnel in the Dungeon~
+You stand in a roughly hewn stone tunnel with cells to the north and
+south. The tunnel continues east and west.
+~
+95 9 0
+D0
+~
+cell north~
+2 9593 9699
+D1
+~
+~
+0 -1 9695
+D2
+~
+cell south~
+2 9593 9703
+D3
+~
+~
+0 -1 9693
+S
+#9695
+Tunnel in the Dungeon~
+You stand in a roughly hewn stone tunnel with cells to the north and
+south. The tunnel continues west and you notice a small crack in the
+stone to the east.
+~
+95 9 0
+D0
+~
+cell north~
+2 9593 9700
+D1
+~
+crack~
+1 9500 9696
+D2
+~
+cell south~
+2 9593 9704
+D3
+~
+~
+0 -1 9694
+S
+#9696
+Secret Cell~
+This room seems more like a lair than a cell. Small bits of hay lie
+strewn about the floor covering bones of unkown origin. Spatterd blood
+and tufts of grey hair lie matted in one corner. As you turn to leave
+you notice a pair of small red eyes peering at you from the darkness.
+~
+95 9 0
+D3
+~
+crack~
+2 9500 9695
+S
+#9697
+Cell~
+You are in a cold, cramped chamber with only one exit.
+~
+95 9 0
+D2
+~
+cell~
+2 9593 9692
+S
+#9698
+Cell~
+You are in a cold, cramped chamber with only one exit.
+~
+95 9 0
+D2
+~
+cell~
+2 9593 9693
+S
+#9699
+Cell~
+You are in a cold, cramped chamber with only one exit.
+~
+95 9 0
+D2
+~
+cell~
+2 9593 9694
+S
+#9700
+Cell~
+You are in a cold, cramped chamber with only one exit.
+~
+95 9 0
+D2
+~
+cell~
+2 9593 9695
+S
+#9701
+Cell~
+You are in a cold, cramped chamber with only one exit.
+~
+95 9 0
+D0
+~
+cell~
+2 9593 9692
+S
+#9702
+Cell~
+You are in a cold, cramped chamber with only one exit.
+~
+95 9 0
+D0
+~
+cell~
+2 9593 9693
+S
+#9703
+Cell~
+You are in a cold, cramped chamber with only one exit.
+~
+95 9 0
+D0
+~
+cell
+cell~
+2 9593 9694
+S
+#9704
+Cell~
+You are in a cold, cramped chamber with only one exit.
+~
+95 9 0
+D0
+~
+cell
+cell~
+2 9593 9695
+S
+#9705
+Hall~
+You stand in a large cedar wood hall leading east and west. On the floor
+lies a thin and narrow purple rug. The hall leads west inside the palace
+and east to the Grand Entrance.
+~
+95 8 0
+D1
+~
+~
+0 -1 9650
+D3
+~
+~
+0 -1 9673
+S
+#9706
+Path through the mountains~
+The narrow path turns here heading south and west.  
+~
+95 0 5
+D2
+~
+~
+0 -1 9707
+D3
+~
+~
+0 -1 9711
+S
+#9707
+Path through the mountains~
+Travel is hard and slow as you almost have to climb around large
+boulders strewn about the path.
+~
+95 0 5
+D0
+~
+~
+0 -1 9706
+D1
+~
+~
+0 -1 9708
+S
+#9708
+Edge of the ravine~
+The ground drops off below down to a rushing river. A small rope
+bridge sways to and fro in the wind giving you access to the
+other side.
+~
+95 0 5
+D1
+~
+~
+0 -1 9709
+D3
+~
+~
+0 -1 9707
+S
+#9709
+On a rope bridge~
+The small rope bridge shudders under your weight as you make
+you way across the valley.
+~
+95  0 2
+D1
+~
+~
+0 -1 9727
+D3
+~
+~
+0 -1 9708
+S
+#9710
+Ledge around the valley~
+You are walking around a small ledge overlooking a large valley
+deep within the eastern mountains. The ledge turns north and ends 
+abruptly in a heap of rubble.  A steep trail continues to the east.
+~
+95 0 5
+D1
+~
+~
+0 -1 9711
+S
+#9711
+Path through the mountains~
+You are walking through a rock strewn path deep within the mountains
+east of Midgaard. The going is rough and you constantly twist your
+ankle on the small stones lying about.
+~
+95  0 5
+D1
+~
+~
+0 -1 9706
+D3
+~
+~
+0 -1 9710
+S
+#9712
+On the eastern edge of the mountains~
+You stand on the eastern edge of the Eastern Mountains. The high
+peaks lie to the west and rolling hills and plains open up to the east.
+~
+95  0 5
+D2
+~
+~
+0 -1 9713
+D3
+~
+~
+0 -1 9729
+S
+#9713
+In the foothills~
+The path curves down the face of the mountain allowing you to
+move up or down the face of this massive hunk of stone.
+~
+95  0 5
+D0
+~
+~
+0 -1 9712
+D1
+~
+~
+0 -1 9714
+S
+#9714
+In the foothills~
+The path curves down the face of the mountain allowing you to
+move up or down as you please.
+~
+95  0 5
+D2
+~
+~
+0 -1 9715
+D3
+~
+~
+0 -1 9713
+S
+#9715
+A rocky trail~
+The faint sound of a flowing river reaches your ears from the south and
+through the trees you can see water. The path you are on continues north
+and east from here.
+~
+95  0 5
+D0
+~
+~
+0 -1 9714
+D1
+~
+~
+0 -1 9730
+D2
+~
+~
+0 -1 9745
+S
+#9716
+On a road~
+This long road continues to the east and south.
+~
+95  0 2
+D1
+~
+~
+0 -1 9717
+D2
+~
+~
+0 -1 9733
+S
+#9717
+On a road~
+The well kept road continues east and west from here.
+~
+95  0 2
+D1
+~
+~
+0 -1 9718
+D3
+~
+~
+0 -1 9716
+S
+#9718
+On a road~
+You stand on a well maintained road leading east towards New Thalos
+and west towards the Eastern Mountains. To the north you can see
+wide plains stretching out as far as the eye can see. South of you
+begins a dark green forest.
+~
+95  0 2
+D1
+~
+~
+0 -1 9669
+D3
+~
+~
+0 -1 9717
+S
+#9719
+Headwaters of the River of Lost Souls~
+The waters of the swamp pool in this low area and begin to flow southward.
+~
+95  0 7
+D2
+~
+~
+0 -1 9734
+S
+#9720
+Ishtar River~
+The river calms a bit after being thrashed in the interior of
+the mountain. Although still deep within the rocks you can see
+faint traces of green to the east.
+~
+95  0 7
+D1
+~
+~
+0 -1 9721
+D3
+~
+~
+0 -1 9739
+S
+#9721
+Ishtar River~
+The river flows east and west through the hills. To the north you can
+see a large volcano.
+~
+95  0 7
+D1
+~
+~
+0 -1 9722
+D3
+~
+~
+0 -1 9720
+S
+#9722
+Ishtar River~
+The river begins its decent out of the mountains now and continues
+its flow to the east.
+~
+95  0 7
+D1
+~
+~
+0 -1 9744
+D3
+~
+~
+0 -1 9721
+S
+#9723
+Ishtar River~
+The river flows under the wall of the city to the east and stretches
+off towards high snow capped mountains far far to the west.
+~
+95  0 7
+D1
+~
+~
+0 -1 9587
+D3
+~
+~
+0 -1 9749
+S
+#9724
+Ishtar River~
+The river flows out from the city down a long winding gully towards
+the Sea of Dragons. To the south of you lies the great eastern desert
+and north a wide open expanse of grass. You can just barely make out
+a road that seems to be traveling alongside the river but the banks are
+too steep for you to see very far.
+~
+95  0 7
+D1
+~
+~
+0 -1 9725
+D3
+~
+~
+0 -1 9583
+S
+#9725
+Ishtar River~
+The river continues its descent down the lowlands flowing
+ever so gently south. It's hard to believe this is the same river that
+came cascading down the mountainside.
+~
+95  0 7
+D1
+~
+~
+0 -1 9726
+D3
+~
+~
+0 -1 9724
+S
+#9726
+Ishtar River~
+Small animals and herd animals can be heard in the distance, though
+you don't actually see any near the river. Perhaps the steep slopes
+pervent them from using the river.
+~
+95  0 7
+D1
+~
+~
+0 -1 9784
+D3
+~
+~
+0 -1 9725
+S
+#9727
+Edge of the ravine~
+You stand at the edge of a real long drop down. A small rope bridge
+has conviently been placed here to allow you access to the other
+side of the bridge. Unfortunately the wind seems to be kicking up
+making the bridge sway slightly. The path leads off through the
+mountains to the east.
+~
+95  0 5
+D1
+~
+~
+0 -1 9728
+D3
+~
+~
+0 -1 9709
+S
+#9728
+Path through the mountains~
+The narrow path makes its way through the mountains east
+and west. You hear the squawking of a large bird overhead,
+most likely a buzzard waiting for you to drop.
+~
+95  0 5
+D1
+~
+~
+0 -1 9729
+D3
+~
+~
+0 -1 9727
+S
+#9729
+Path through the mountains~
+A large boulder suddenly decides it wants to occupy the same space
+you are currently standing in. I would move QUICK.
+~
+95  0 4
+D1
+~
+~
+0 -1 9712
+D3
+~
+~
+0 -1 9728
+S
+#9730
+On a road~
+The road you are on continues east and west.
+~
+95  0 4
+D1
+~
+~
+0 -1 9731
+D3
+~
+~
+0 -1 9715
+S
+#9731
+On a road~
+The road you are on continues east and west
+~
+95  0 2
+D1
+~
+~
+0 -1 9732
+D3
+~
+~
+0 -1 9730
+S
+#9732
+On a road~
+The road you are on continues east and west.
+~
+95  0 2
+D1
+~
+~
+0 -1 9733
+D3
+~
+~
+0 -1 9731
+S
+#9733
+On a road~
+The road bends here toward the riverbank giving one access to
+the River Ishtar. The road continues north and west from the
+river bank.
+~
+95  0 2
+D0
+~
+~
+0 -1 9716
+D2
+~
+~
+0 -1 9749
+D3
+~
+~
+0 -1 9732
+S
+#9734
+The River of Lost Souls~
+The river flows south through a valley in the mountains. You can see a
+small village to the west.
+~
+95  0 7
+D0
+~
+~
+0 -1 9719
+D2
+~
+~
+0 -1 9735
+S
+#9735
+The River of Lost Souls~
+The river flows south in the southern end of this wide valley. The walls
+of the valley close in to the south.
+~
+95  0 7
+D0
+~
+~
+0 -1 9734
+D2
+~
+~
+0 -1 9736
+S
+#9736
+The River of Lost Souls~
+The river begins to speed up as it cascades down this mountain
+crevase. High above you a small rope bridge sways in the wind.
+~
+95  0 7
+D2
+~
+~
+0 -1 9737
+S
+#9737
+The River of Lost Souls~
+The river rapidly flows down this crack in the side of the mountain
+to the south. Hopefully you will hear any aproaching rapids.
+~
+95  0 7
+D0
+~
+~
+0 -1 9736
+D2
+~
+~
+0 -1 9738
+S
+#9738
+The River of Lost Souls~
+The river seems to calm a bit as the crevase widens lessens its
+stranglehold on the waters. The river continues to the north
+through a crack and flows to the south.
+~
+95  0 7
+D0
+~
+~
+0 -1 9737
+D2
+~
+~
+0 -1 9739
+S
+#9739
+A Split in the River~
+The waters of the river crash down upon a rock and split into
+two bodies of water. The river you are on continues its southern
+course and the new river heads off to the east. To the west you notice
+a flat area in the sheer rock where it would be possible to shore your
+craft. The River of lost souls also continues to the north.
+~
+95 0 7
+D0
+~
+~
+0 -1 9738
+D1
+~
+~
+0 -1 9720
+D2
+~
+~
+0 -1 9740
+D3
+~
+~
+0 -1 9753
+S
+#9740
+The River of Lost Souls~
+The river continues north and south from here through a water
+eroded valley.
+~
+95  0 7
+D0
+~
+~
+0 -1 9739
+D2
+~
+~
+0 -1 9741
+S
+#9741
+The River of Lost Souls~
+The river continues north and south from here through a water
+eroded valley.
+~
+95  0 7
+D0
+~
+~
+0 -1 9740
+D2
+~
+~
+0 -1 9742
+S
+#9742
+The River of Lost Souls~
+The river continues north and south from here through a water
+eroded valley.
+~
+95 0 7
+D0
+~
+~
+0 -1 9741
+D2
+~
+~
+0 -1 9743
+S
+#9743
+The River of Lost Souls~
+The river makes a sharp bend here and heads east towards a large
+mountain and north through a valley.
+~
+95  0 7
+D0
+~
+~
+0 -1 9742
+S
+#9744
+Ishtar River~
+The river widens here, no longer bounded by rock, and flows east
+towards a plain.
+~
+95  0 7
+D1
+~
+~
+0 -1 9745
+D3
+~
+~
+0 -1 9722
+S
+#9745
+Ishtar River~
+The river continues here east to west.  There is a landing area to the
+north where you can gain access to the shore.
+~
+95  0 7
+D0
+~
+~
+0 -1 9715
+D1
+~
+~
+0 -1 9746
+D3
+~
+~
+0 -1 9744
+S
+#9746
+Ishtar River~
+The river meanders through the foothills of the eastern mountains.
+The air is dryer on this side of the continental divide and it seems
+a bit warmer.
+~
+95  0 7
+D1
+~
+~
+0 -1 9747
+D3
+~
+~
+0 -1 9745
+S
+#9747
+Ishtar River~
+The river continues its journey eastward flowing through the
+plains. To the west you see the peaks of large snow capped
+mountains and to the east you see the outline of a large city.
+~
+95  0 7
+D1
+~
+~
+0 -1 9748
+D3
+~
+~
+0 -1 9746
+S
+#9748
+Ishtar River~
+The river flows east and west from here.
+~
+95  0 7
+D1
+~
+~
+0 -1 9749
+D3
+~
+~
+0 -1 9747
+S
+#9749
+Ishtar River~
+The river slows as it widens and meanders through the lowlands. A
+small dock give access to the north shore.
+~
+95  0 7
+D0
+~
+~
+0 -1 9733
+D1
+~
+~
+0 -1 9723
+D3
+~
+~
+0 -1 9748
+S
+#9750
+Igor's Secret Chamber~
+
+~
+95  8 0
+D4
+~
+secret sesame~
+2 9591 9636
+S
+#9751
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  0 5
+D0
+~
+~
+0 -1 9752
+D1
+~
+~
+0 -1 9756
+D2
+~
+~
+0 -1 9754
+D3
+~
+~
+0 -1 9757
+S
+#9752
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  0 5
+D0
+~
+~
+0 -1 9752
+D1
+~
+~
+0 -1 9755
+D2
+~
+~
+0 -1 9752
+D3
+~
+~
+0 -1 9751
+S
+#9753
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  1 5
+D0
+~
+~
+0 -1 9754
+D1
+You see a large boulder blocking your path.
+~
+rock crack boulder~
+1 -1 9739
+D2
+~
+~
+0 -1 9756
+D3
+~
+~
+0 -1 9757
+S
+#9754
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  0 5
+D0
+~
+~
+0 -1 9754
+D1
+~
+~
+0 -1 9758
+D2
+~
+~
+0 -1 9757
+D3
+~
+~
+0 -1 9760
+S
+#9755
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  0 5
+D0
+~
+~
+0 -1 9755
+D1
+~
+~
+0 -1 9759
+D2
+~
+~
+0 -1 9758
+D3
+~
+~
+0 -1 9754
+S
+#9756
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  0 0
+D0
+~
+~
+0 -1 9753
+D1
+~
+~
+0 -1 9758
+D2
+~
+~
+0 -1 9755
+D3
+~
+~
+0 -1 9751
+S
+#9757
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  0 5
+D0
+~
+~
+0 -1 9754
+D1
+~
+~
+0 -1 9758
+D2
+~
+~
+0 -1 9754
+D3
+~
+~
+0 -1 9754
+S
+#9758
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  0 5
+D0
+~
+~
+0 -1 9755
+D1
+~
+~
+0 -1 9757
+D2
+~
+~
+0 -1 9759
+D3
+~
+~
+0 -1 9754
+S
+#9759
+In the mountains~
+You are walking over rocks and stones through the mountains between
+the Ishtar and Dark rivers.
+It's funny how all the rocks look alike
+~
+95  0 5
+D0
+~
+~
+0 -1 9752
+D1
+~
+~
+0 -1 9759
+D2
+~
+~
+0 -1 9754
+D3
+~
+~
+0 -1 9758
+S
+#9760
+Headwaters of the Dark River~
+A large natural spring issues forth from the heart of the mountain
+and flows west down the mountain. There is a low area in the rocks
+to the east of the spring where you can climb up in mountains.
+~
+95  0 7
+D1
+~
+~
+0 -1 9754
+D3
+~
+~
+0 -1 9761
+S
+#9761
+On the Dark River~
+The river flows down the mountain through a large crevasse to the west
+and up into the mountains east.
+~
+95  0 7
+D1
+~
+~
+0 -1 9760
+D3
+~
+~
+0 -1 9762
+S
+#9762
+On the Dark River~
+The walls of this canyon tower overhead as the river continues east
+and west from here.
+~
+95  0 7
+D1
+~
+~
+0 -1 9761
+D3
+~
+~
+0 -1 9763
+S
+#9763
+On the Dark River~
+The walls of rock around you slowly shrink to ground level as the river
+flows out of the mountains and onto the plains.
+~
+95  0 7
+D1
+~
+~
+0 -1 9762
+D3
+~
+~
+0 -1 9764
+S
+#9764
+On the Dark River~
+The river continues east and west from here out of the foothills
+to the east down into the plains west of here.
+~
+95  0 7
+D1
+~
+~
+0 -1 9763
+D3
+~
+~
+0 -1 9765
+S
+#9765
+On the Dark River~
+The river, following a low spot in the foothills, bends and twists.
+Tall mountains can be seen off to the east and a castle can be seen
+to the west.
+~
+95 0 7
+D1
+~
+~
+0 -1 9764
+D2
+~
+~
+0 -1 9766
+S
+#9766
+On the Dark River~
+The river makes a wide sweeping turn here and off in the distance
+you can see the outline of a large castle.
+~
+95  0 7
+D0
+~
+~
+0 -1 9765
+D3
+~
+~
+0 -1 9767
+S
+#9767
+On the Dark River~
+The river flows west from here into the heart of the Mirkwood Forest
+and east across the plains.
+~
+95  0 7
+D1
+~
+~
+0 -1 9766
+D3
+~
+~
+0 -1 9768
+S
+#9768
+On the Dark River~
+You can barely make out what's ahead of you as the river flows
+quietly through the forest of Mirkwood.
+~
+95  1 7
+D1
+~
+~
+0 -1 9767
+D3
+~
+~
+0 -1 9769
+S
+#9769
+On the Dark River~
+The river slowly flows west towards the city of Midgaard and east
+through the forest of Mirkwood. There are small breaks in the woods
+to the north and south where you might be able to get up on bank --
+if you had a ladder.  :)
+~
+95  1 7
+D3
+~
+~
+0 -1 9770
+S
+#9770
+On the Dark River~
+The river continues east and west from here flowing south of a dark
+forest.
+~
+95  0 7
+D1
+~
+~
+0 -1 9769
+D3
+~
+~
+0 -1 9771
+S
+#9771
+On the Dark River~
+The river flows west through a grating into the city of Midgaard and
+east towards some tall mountains.
+~
+95  0 7
+D1
+~
+~
+0 -1 9770
+D3
+~
+~
+0 -1 3205
+S
+#9772
+On the Dark River~
+The river flows to the east under the walls of Midgaard and west
+snaking through a dark forest.
+~
+95  0 7
+D1
+~
+~
+0 -1 3200
+D3
+~
+~
+0 -1 9773
+S
+#9773
+On the Dark River~
+The river continues east and west meandering through the woods.
+~
+95  1 7
+D1
+~
+~
+0 -1 9772
+D3
+~
+~
+0 -1 9774
+S
+#9774
+On the Dark River~
+The river continues east and west meandering through the woods. You
+hear the sounds of chopping wood far off in the distance.
+~
+95  1 7
+D0
+~
+~
+0 -1 6123 
+D1
+~
+~
+0 -1 9773
+D3
+~
+~
+0 -1 9775
+S
+#9775
+On the Dark River~
+The river continues east meandering through the woods.
+~
+95  1 7
+D1
+~
+~
+0 -1 9774
+S
+#9776
+On a rope bridge~
+The rope bridge begins to gently sway in the wind.
+~
+95  0 7
+D1
+~
+~
+0 -1 9727
+D3
+~
+~
+0 -1 9708
+S
+#9777
+On a rope bridge~
+The bridge begins to gain momentum as it swings in the wind wee this
+is fun.... hope you have good grip.
+~
+95  0 2
+D1
+~
+~
+0 -1 9727
+D3
+~
+~
+0 -1 9708
+S
+#9778
+Freefall~
+As your fingers slowly slip from the handguides you feel a sudden
+euphoria as you freefall the 200 + feet to your death.
+~
+95  2 5
+S
+#9779
+CRUSHED~
+Well you either are a real slow reader or you arent real good
+at taking a hint. From now on when a room says move I would
+suggest you do so.
+~
+95  2 5
+D4
+~
+~
+0 -1 9729
+S
+#9780
+Path through the mountains~
+You hear a loud rumbling nearby and small rocks begin to pelt you.
+~
+95  0 5
+D1
+~
+~
+0 -1 9712
+D3
+~
+~
+0 -1 9728
+S
+#9781
+On the Plains~
+You stand on an open expanse of grass extending in all directions. To
+the south of you stand the might northern gates of New Thalos. East
+and west of you the grassy fields continue and north, in the distance,
+you see a line of trees.
+~
+95  0 2
+D0
+~
+~
+0 -1 9782
+D1
+~
+~
+0 -1 9781
+D2
+~
+~
+0 -1 9667
+D3
+~
+~
+0 -1 9781
+S
+#9782
+On the Plains~
+You stand on an open field of grass. The forest to the north is
+closer but still a good distance away. To the south a small dirt
+path has been trodden into the ground heading towards New Thalos.
+~
+95  0 2
+D0
+~
+~
+0 -1 9783
+D1
+~
+~
+0 -1 9782
+D2
+~
+~
+0 -1 9781
+D3
+~
+~
+0 -1 9782
+S
+#9783
+Edge of the forest~
+You stand at the edge of a huge forest. The line of trees
+continues as far as the eye can see to the east and west. A large
+expanse of grass spreads out to the south.
+~
+95  0 2
+D1
+~
+~
+0 -1 9783
+D2
+~
+~
+0 -1 9782
+D3
+~
+~
+0 -1 9783
+S
+#9784
+Ishtar River~
+The river broadens even more here and the waters become murky. The
+smell of saltwater has reached you from the east. The Dragon Sea
+cannot be far away. To the east you can see the faint outline
+of a city and to the north you see a large expanse of grass.
+~
+95  0 7
+D1
+~
+~
+0 -1 9785
+D3
+~
+~
+0 -1 9726
+S
+#9785
+The river delta~
+This is where the river empties out into the Dragon Sea. The backrush
+of water has kicked up a lot of sand and the blue sea is stained where
+the river empties. Looking east, all you can see is water....all the way
+to the horizon. North of here is a small dock you think you should be
+able to reach with out too much trouble. The river stretches off to
+the west back towards New Thalos.
+~
+95  0 7
+D1
+~
+~
+0 -1 9786
+D3
+~
+~
+0 -1 9784
+S
+#9786
+The Dragon Sea~
+ You are on the clear blue seas of the Dragon Sea.
+ Water extends in all directions as far as the eye
+ can see. Off in the distance you think you might
+ see a small dock to the north.
+~
+95  0 7
+D0
+~
+~
+0 -1 9787
+D1
+~
+~
+0 -1 9786
+D2
+~
+~
+0 -1 9786
+D3
+~
+~
+0 -1 9785
+S
+#9787
+The Dragon Sea~
+The Dragon Sea comes up along the shore here, the deep blue waters
+rolling in and crashing against the beach. To the north you see a
+small dock jutting out into the surf.
+~
+95  0 7
+D0
+~
+~
+0 -1 9795
+D1
+~
+~
+0 -1 9796
+D2
+~
+~
+0 -1 9786
+S
+#9788
+The Dragon Sea~
+ You are on the clear blue seas of the Dragon Sea.
+ Water extends in all directions as far as the eye
+ can see. Off in the distance you think you might
+ see a small dock to the west.
+~
+95  0 7
+D0
+~
+~
+0 -1 9788
+D1
+~
+~
+0 -1 9797
+D2
+~
+~
+0 -1 9795
+S
+#9789
+The Dragon Sea~
+ You are on the clear blue seas of the Dragon Sea.
+ Water extends in all directions as far as the eye
+ can see. Off in the distance you think you might
+ see a small dock to the west.
+~
+95  0 7
+D0
+~
+~
+0 -1 9797
+D1
+~
+~
+0 -1 9789
+D2
+~
+~
+0 -1 9796
+D3
+~
+~
+0 -1 9795
+D5
+~
+~
+0 -1 9798
+S
+#9790
+On a road~
+The people of New Thalos take great pride in the services their
+city may provide. One of these services is the construction crews
+that go to great lengths to keep all the roads in order. Although
+the taxes in New Thalos are higher than other cities in the realm
+most of the money is used for the good of the people.
+~
+95  0 1
+D1
+~
+~
+0 -1 9791
+D3
+~
+~
+0 -1 9668
+S
+#9791
+On a road~
+You walk along a well used road with beautiful scenery. To the north
+tall pine trees form a wall that goes on for miles. Between the road
+and the trees lies a great expanse of grassy plains. South of here,
+beyond the river, lies the Great Eastern Desert. The road continues
+east and west.
+~
+95  0 1
+D1
+~
+~
+0 -1 9792
+D3
+~
+~
+0 -1 9790
+S
+#9792
+On a road~
+The Dragon Sea can be seen to the east now spreading out to unkown
+lands. The road continues east and west. To the south you hear the
+sounds of boats traveling the Ishtar delivering goods.
+~
+95  0 1
+D1
+~
+~
+0 -1 9793
+D3
+~
+~
+0 -1 9791
+S
+#9793
+On a road~
+This is the main land route through the land. Merchants can bring thier goods
+to the coastline and have them ferried onto ships for export. Travel
+by foot west will take you through New Thalos up and over the Eastern
+Mountains and down into Midgaard.
+~
+95  0 1
+D1
+~
+~
+0 -1 9794
+D3
+~
+~
+0 -1 9792
+S
+#9794
+Near the shore~
+The road ends here turning into a small dirt path leading down the
+beach and onto a dock. To the north and south you see the coastline
+stretching out before you. West of here the lowlands roll up into
+huge snow capped mountains.
+~
+95  0 1
+D1
+~
+~
+0 -1 9795
+D3
+~
+~
+0 -1 9793
+S
+#9795
+On a dock~
+You stand on a simple wooden dock that acts as an extension of the road
+to the west. The dock seems to have been here for quite a long time
+but is still sturdy. A small ladder has been built on the eastern end
+to allow easy access to and from ships.
+~
+95  0 0
+D0
+~
+~
+0 -1 9788
+D1
+~
+~
+0 -1 9789
+D2
+~
+~
+0 -1 9787
+D3
+~
+~
+0 -1 9794
+S
+#9796
+The Dragon Sea~
+ You are on the clear blue seas of the Dragon Sea.
+ Water extends in all directions as far as the eye
+ can see. Off in the distance you think you might
+ see a small dock to the west.
+~
+95  0 7
+D0
+~
+~
+0 -1 9789
+D1
+~
+~
+0 -1 9796
+D2
+~
+~
+0 -1 9796
+D3
+~
+~
+0 -1 9787
+S
+#9797
+The Dragon Sea~
+The ocean spreads out in all directions rolling gently. In the distance
+you can see an island on the horizon. To the west you see the mainland.
+~
+95  0 7
+D0
+~
+~
+0 -1 9797
+D1
+~
+~
+0 -1 9797
+D2
+~
+~
+0 -1 9789
+D3
+~
+~
+0 -1 9788
+S
+#9798
+Under the dock~
+You are swimming underneath the dock. You can see the four wooden
+pylons that support the structure. The murky water clouds your vision
+as you gaze westward, but you think you can make out an iron grating in
+that direction.
+~
+95  1 7
+D3
+~
+grate~
+1 1 9799
+D4
+~
+~
+0 -1 9797
+S
+#9799
+Lair of the Ixitxachitl~
+Blood swirls around in the water as the Ixitxachitl devours the
+last of its meal. Swirling around quickly as you intrude upon
+its meal the large sting ray attacks!
+~
+95  1 7
+D1
+~
+grate~
+1 -1 9798
+S
+#9800
+New Thalos Central~
+You are stannding on a platform in a large building with people bustling
+all around you.  There are several benches here for the weary traveller to
+rest his legs.  There are parallel train tracks to your east and west.
+There is a token machine here, mounted to the wall.
+~
+95 8 0
+D0
+~
+~
+0 -1 9530
+D1
+~
+~
+1 -1 9530 
+D3
+~
+~
+1 -1 9530 
+S
+#9801
+The Surf Shack~
+   You are in a small, cozy little shack made of driftwood and bamboo shoots.
+The floor is covered with a hand-woven rug, and sand and bits of wax are
+strewn about it messily.  In one corner you can see a comfortable hammock,
+swaying gently in the sea breeze.
+~
+95 8 0
+D2
+You see a door leading out onto the porch.
+~
+door~
+1 -1 9802
+E
+rug~
+The rug is painstakingly hand-woven from the finest fabrics.  It depicts a
+school of five beautiful dolphins, swimming through a perfectly peeling
+tubular wave of the deepest blue water.  It makes you long for the ocean...
+~
+E
+hammock~
+The hammock sways gently in the sea breeze coming in through the door and
+the cracks in the walls.  It looks like the perfect place to crash after
+a long session.
+~
+E
+wax~
+You see various small bits of wax mixed with sand on the floor.  The wax has
+a pleasant coconut smell to it.
+~
+S
+#9802
+The Wooden Porch~
+   You are standing on a hand-built wooden porch which overlooks the beach
+and a beautiful point break to the south.  Several fiberglass surfboards
+lean against the wall of the shack, and a couple of chairs stand here also,
+suitable for viewing the lineup.  A cool offshore wind is gently blowing.
+~
+95 0 1
+D0
+You see a door leading into the shack.
+~
+door~
+1 -1 9801
+E
+surfboard surfboards board boards~
+A full quiver of surfboards is leaning against the wall here, including
+a classic Dewey Weber longboard, a hellman's gun, a nice tuberiding
+pintail, and a brand-new Al Merrick squashtail thruster.
+~
+E
+chair chairs~
+A pair of wicker chairs, perfect to sit and catch rays or to watch the
+perfect right peelers off the point.
+~
+E
+beach~
+The beach is pure white sand, leading out to a rocky point off which
+perfectly glassy right tubes are breaking.  Sheer heaven.
+~
+E
+wave waves ocean point~
+Conditions couldn't be better today.  Light offshore winds coupled with a
+nice swell are resulting in long hollow tubular rights that peel for
+hundreds of yards.  The only people out right now are a pair of dolphins
+frolicking in the perfect peelers.
+~
+S
+#9803
+Asgard~
+   You stand on a huge expanse of glass. Below you is the universe, in its
+ever-fluctuating state.  You stand in Asgard, home of the gods, frozen in
+its unchanging state.  A huge Mansion lies to the east.
+~
+95 72 0
+D0
+~
+~
+0 -1 9803
+D1
+~
+~
+0 -1 9804
+D2
+~
+~
+0 -1 9803 
+D3
+~
+~
+0 -1 9803
+D4
+~
+~
+0 -1 9803
+D5
+~
+~
+0 -1 3054
+S
+#9804
+Valhalla~
+  This is the huge Hall of Valhalla, where the Gods rule supreme.  The
+cavernous building stretches infinitely in all directions except up,
+which returns you to Asgard, and down, which takes you to the Market Square.
+~
+95 8 0
+D0
+~
+~
+0 -1 9804 
+D1
+~
+~
+0 -1 9804 
+D2
+~
+~
+0 -1 9804
+D3
+~
+~
+0 -1 9804 
+D4
+~
+~
+0 -1 9803
+D5
+~
+~
+0 -1 3014
+S
+#9805
+Priscilla's Pleasure Palace ~
+As you look around you, you see the largest collection of erotic toys
+in the world!!!  On a table in the middle of the room lies a book titled : 
+"All You Ever Wanted to Know About Sex..But Were Afraid to Ask"
+There are things here that you never even imagined in your wildest dreams!
+~
+95 0 0
+S
+#9806
+My Antarctica~
+All around you is a cold, desolate wasteland of ice and snow.  The glare
+from the ice blurs the horizon, causing the land and sky to melt into
+a vague lonely white haze that surrounds and smothers you.  A bitter,
+freezing chill gnaws at your very bones.
+~
+95 JL 5
+S
+#9807 
+Ezra's Sexual Torture Chamber~
+This room's reputation does little to complement its actual appearance.
+Your feet sink into a thick, blood-red carpet.  Black drapes tied by silver
+cords hang on the walls.  Scented candles burn from silver candelabras set
+in the corners, giving the room a warm glow.  Large, puffy cushions are
+strewn about the room.  They look quite comfortable.
+~
+95 DJ 0
+S
+#9808
+Walking on the Moon~
+The proud and lonely silence of Mare Imbrium surrounds you, as you gaze upon 
+the sterile splendor of the moon.  All around is the velvet curtain of night, 
+studded with a thousand gleaming jewels.  Below you hangs the beautiful 
+fields of Earth, looking fragile and far away, but full of hope.  A sense of
+wistful regret touches you, as you think about what might have been, and what
+will be.
+~
+95 DJL 0
+E
+crater mare imbrium~
+A small shipping tag is pinned to the ground with a worn hunting knife.  
+Upon it is a dedication to Robert Anson Heinlein, the father of the future.
+~
+S
+#9810
+Liselle's Private Heaven~
+You find yourself walking the sea shore at sunset.  Soft, soothing mist curls
+contentedly around your ankles.  A cool salt breeze lifts your hair and 
+pastes tendrils of hair to your cheeks.  The sounds of the water pound and
+roar in your ears.  Waves rise up and break in front of you, their foam gently
+tugging at you, tempting you, begging you to walk out into their depths.
+Someone has written in the sand the words, "We love you Lisa" and placed
+delicate pink sea shells all around.
+~
+95 DJ 0
+S
+#99999
 $~

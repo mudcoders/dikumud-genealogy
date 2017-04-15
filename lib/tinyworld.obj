@@ -109,8 +109,42 @@ A
 18 99
 A
 19 99
+#20
+diamond wedding ring~
+a diamond wedding ring~
+A diamond wedding ring is on the floor!~
+~
+9 64 3
+5 0 0 0
+1 0 0
+E
+diamond wedding ring~
+The diamond on this ring is about 5 karats, and the setting is a rich blend of
+platinum and gold.  This ring looks like its divine material.
+~
+A
+18 2
+A
+19 2
+#21
+wedding band gold~
+a gold wedding band~
+A gold wedding band is on the floor!~
+~
+9 64 3
+5 0 0 0
+1 0 0
+E
+wedding band gold~
+This wedding band is made of a strong platinum and gold alloy.  It looks like
+its divine material.
+~
+A
+18 2
+A
+19 2
 #200
-sword~
+sword merc~
 a MERC sub issue sword~
 You see a MERC sub issue sword here.~
 ~
@@ -127,7 +161,7 @@ A
 A
 19 1
 #201
-dagger~
+dagger merc~
 a MERC sub issue dagger~
 You see a MERC sub issue dagger here.~
 ~
@@ -144,7 +178,7 @@ A
 A
 19 1
 #202
-mace~
+mace merc~
 a MERC sub issue mace~
 You see a MERC sub issue mace here.~
 ~
@@ -161,12 +195,12 @@ A
 A
 19 1
 #203
-vest~
+vest merc~
 a MERC sub issue vest~
 You see a MERC sub issue vest here.~
 ~
 9 0 9
-2 0 0 0
+1 0 0 0
 5 0 5
 E
 vest~
@@ -174,12 +208,12 @@ You see a vest of great but cheap craftsmanship.  Stmped on tehe side is:
 MERCIndustries
 ~
 #204
-shield~
+shield merc~
 a MERC sub issue shield~
 You see a MERC sub issue shield here.~
 ~
 9 0 513
-2 0 0 0
+1 0 0 0
 5 0 5
 E
 shield~
@@ -187,12 +221,12 @@ You see a shield of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #205
-cloak~
+cloak merc~
 a MERC sub issue cloak~
 You see a MERC sub issue cloak here.~
 ~
 9 0 5
-5 0 0 0
+3 0 0 0
 5 0 5
 E
 cloak~
@@ -200,12 +234,12 @@ You see a cloak of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #206
-helmet~
+helmet merc~
 a MERC sub issue helmet~
 You see a MERC sub issue helmet here.~
 ~
 9 0 17
-2 0 0 0
+1 0 0 0
 5 0 5
 E
 helmet~
@@ -213,12 +247,12 @@ You see a helmet of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #207
-leggings~
+leggings merc~
 a pair of MERC sub issue leggings~
 You see a pair of MERC sub issue leggings here.~
 ~
 9 0 33
-2 0 0 0
+1 0 0 0
 5 0 5
 E
 leggings~
@@ -226,12 +260,12 @@ You see leggings of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #208
-boots~
+boots merc~
 a pair of MERC sub issue boots~
 You see a pair of MERC sub issue boots here.~
 ~
 9 0 65
-2 0 0 0
+1 0 0 0
 5 0 5
 E
 boots~
@@ -239,12 +273,12 @@ You see boots of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #209
-gloves~
+gloves merc~
 a pair of MERC sub issue gloves~
 You see a pair of MERC sub issue gloves here.~
 ~
 9 0 129
-5 0 0 0
+2 0 0 0
 5 0 5
 E
 gloves~
@@ -252,12 +286,12 @@ You see gloves of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #210
-sleeves~
+sleeves merc~
 a pair of MERC sub issue sleeves~
 You see a pair of MERC sub issue sleeves here.~
 ~
 9 0 257
-2 0 0 0
+1 0 0 0
 5 0 5
 E
 sleeves~
@@ -265,12 +299,12 @@ You see sleeves of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #211
-cape~
+cape merc~
 a MERC sub issue cape~
 You see a MERC sub issue cape here.~
 ~
 9 0 1025
-5 0 0 0
+2 0 0 0
 5 0 5
 E
 cape~
@@ -278,12 +312,12 @@ You see a cape of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #212
-belt~
+belt merc~
 a MERC sub issue belt~
 You see a MERC sub issue belt here.~
 ~
 9 0 2049
-5 0 0 0
+2 0 0 0
 5 0 5
 E
 belt~
@@ -291,15 +325,15 @@ You see a belt of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #213
-bracer~
+bracer merc~
 a MERC sub issue bracer~
 You see a MERC sub issue bracer here.~
 ~
 9 0 4097
-5 0 0 0
+2 0 0 0
 5 0 5
 E
-shield~
+bracer~
 You see a bracer of great but cheap craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
@@ -330,7 +364,7 @@ A
 A
 4 1
 #216
-mercenary banner war~
+banner war merc mercenary~
 the MERCENARY War Banner~
 The MERCENARY War Banner is just on the floor here!~
 ~
@@ -359,12 +393,12 @@ pedestal~
 You see a magnificent pedestal.  You wish it was yours!
 ~
 #250
-sword~
+sword merc~
 a MERC standard issue sword~
 You see a MERC standard issue sword here.~
 ~
 5 64 8193
-0 4 4 3
+0 3 4 3
 5 0 500
 E
 sword~
@@ -376,12 +410,12 @@ A
 A
 19 2
 #251
-dagger~
+dagger merc~
 a MERC standard issue dagger~
 You see a MERC standard issue dagger here.~
 ~
 5 64 8193
-0 4 4 11
+0 3 4 11
 5 0 500
 E
 dagger~
@@ -393,12 +427,12 @@ A
 A
 19 1
 #252
-mace~
+mace merc~
 a MERC standard issue mace~
 You see a MERC standard issue mace here.~
 ~
 5 64 8193
-0 4 4 7
+0 3 4 7
 5 0 500
 E
 mace~
@@ -410,12 +444,12 @@ A
 A
 19 2
 #253
-vest~
+vest merc~
 a MERC standard issue vest~
 You see a MERC standard issue vest here.~
 ~
 9 0 9
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 vest~
@@ -423,12 +457,12 @@ You see a vest of great craftsmanship.  Stmped on tehe side is:
 MERCIndustries
 ~
 #254
-shield~
+shield merc~
 a MERC standard issue shield~
 You see a MERC standard issue shield here.~
 ~
 9 0 513
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 shield~
@@ -436,12 +470,12 @@ You see a shield of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #255
-cloak~
+cloak merc~
 a MERC standard issue cloak~
 You see a MERC standard issue cloak here.~
 ~
 9 0 5
-5 0 0 0
+4 0 0 0
 5 0 500
 E
 cloak~
@@ -449,12 +483,12 @@ You see a cloak of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #256
-helmet~
+helmet merc~
 a MERC standard issue helmet~
 You see a MERC standard issue helmet here.~
 ~
 9 0 17
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 helmet~
@@ -462,12 +496,12 @@ You see a helmet of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #257
-leggings~
+leggings merc~
 a pair of MERC standard issue leggings~
 You see a pair of MERC standard issue leggings here.~
 ~
 9 0 33
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 leggings~
@@ -475,12 +509,12 @@ You see leggings of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #258
-boots~
+boots merc~
 a pair of MERC standard issue boots~
 You see a pair of MERC standard issue boots here.~
 ~
 9 0 65
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 boots~
@@ -488,12 +522,12 @@ You see boots of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #259
-gloves~
+gloves merc~
 a pair of MERC standard issue gloves~
 You see a pair of MERC standard issue gloves here.~
 ~
 9 0 129
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 gloves~
@@ -501,12 +535,12 @@ You see gloves of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #260
-sleeves~
+sleeves merc~
 a pair of MERC standard issue sleeves~
 You see a pair of MERC standard issue sleeves here.~
 ~
 9 0 257
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 sleeves~
@@ -514,12 +548,12 @@ You see sleeves of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #261
-cape~
+cape merc~
 a MERC standard issue cape~
 You see a MERC standard issue cape here.~
 ~
 9 0 1025
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 cape~
@@ -527,12 +561,12 @@ You see a cape of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #262
-belt~
+belt merc~
 a MERC standard issue belt~
 You see a MERC standard issue belt here.~
 ~
 9 0 2049
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 belt~
@@ -540,12 +574,12 @@ You see a belt of great craftsmanship.  Imprinted on the side is:
 MERCIndustries
 ~
 #263
-bracer~
+bracer merc~
 a MERC standard issue bracer~
 You see a MERC standard issue bracer here.~
 ~
 9 0 4097
-5 0 0 0
+3 0 0 0
 5 0 500
 E
 bracer~
@@ -565,7 +599,7 @@ A
 A
 24 -2
 #265
-mercenary banner war~
+banner war mercenary merc~
 the MERCENARY War Banner~
 The MERCENARY War Banner is just on the floor here!~
 ~
@@ -795,19 +829,16 @@ Immortal wings are here.~
 0 0 0 0 
 0 0 0
 #1203
-axe blade~
-an executioner's axe~
-An exectioner's axe is here waiting to possess its next user.~
-reaps~
+scimitar blade~
+Hassan's scimitar~
+A massive scimitar rests upon the ground, you doubt you could lift it.~
+chop~
 5 0 8193
 0 5 6 3
-30 30000 10000
+50 30000 10000
 E
-blade~
-It is quite heavy.  This blade is made of some metal that you can't even
-spell.  The edge of the blade looks as if it could cut through anything
-or anyone.
-~
+scimitar~
+It is quite heavy, and razor sharp.  You think Hassan might want it back...~
 #1204
 fear loathing~
 Fear and Loathing~
@@ -898,7 +929,7 @@ fountain water~
 A fountain~
 A large fountain is here gurgling out an endless stream of water.~
 ~
-17 64 0
+17 GQ 0
 100000 100000 0 0
 5000 10 100000
 #1301
@@ -1089,7 +1120,7 @@ a wooden staff~
 A wooden staff is against the wall here~
 ~
 5 0 8193
-0 1 4 7
+0 1 8 7
 6 10 5
 #1321
 cabinet silver~
@@ -1423,7 +1454,7 @@ a scroll written on blue paper~
 A blue scroll has been left here~
 ~
 2 64 1
-54 24 -1 -1
+35 24 -1 -1
 5 20000 15000
 #1364
 pouch leather~
@@ -1572,7 +1603,7 @@ wand ashen~
 an ashen wand~
 An ashen wand is here~
 ~
-3 512 1
+3 512 AO 
 20 4 4 63
 4 2000 600
 #1381
@@ -1815,9 +1846,9 @@ A
 A
 17 -5
 #1402
-fridge refridgerator~
+fridge refrigerator~
 a fridge~
-A small refridgerator~
+A small refrigerator~
 ~
 15 2 0
 500 5 -1 0
@@ -1844,7 +1875,7 @@ THE long sword~
 THE long sword has been left here.~
 ~
 5 65 8193
-0 6 6 3
+0 5 6 3
 10 1 100000000
 E
 sword long THE~
@@ -1875,9 +1906,9 @@ corner.~
 A
 2 -1
 #2003
-oynx ring~
-an oynx ring~
-A ring with a very dark oynx stone in it has been left in the
+onyx ring~
+an onyx ring~
+A ring with a very dark onyx stone in it has been left in the
 dirt.~
 ~
 9 512 3
@@ -2016,7 +2047,7 @@ ogre jacket~
 an Ogre gang jacket~
 An Ogre gang jacket has been carelessly tossed here.~
 ~
-9 128 9
+9 0 9
 5 0 0 0
 2 100 10
 #2102
@@ -2024,7 +2055,7 @@ troll jacket~
 a Troll gang jacket~
 A Troll gang jacket has been carelessly tossed here.~
 ~
-9 128 9
+9 0 9
 5 0 0 0
 2 100 10
 #2103
@@ -2131,6 +2162,120 @@ A
 13 -15
 A
 18 5
+#2501
+sword curved scimitar~
+a curved sword~
+a very sharp curved sword lies on the ground~
+~
+5 0 8193
+0 2 5 3
+10 1500 1950
+E
+sword scimitar curved~
+This curved scimitar is of orcish make.  The fine edge on the blade makes up the inferior metal.
+
+~
+A
+13 3
+#2502
+sword glowing magic~
+glowing sword~
+A magic sword sits within a fine leather sheath~
+~
+5 513 8193
+0 3 5 3
+5 5000 50
+E
+sword glowing magic~
+As you draw the sword from its sheath, it glows with a magical light!  The
+blade is sharp, and it feels as light as a feather.
+~
+A
+19 3
+A
+2 1
+#2503
+serpent staff~
+a serpent staff~
+a staff carved like a serpent is here, gathering dust~
+~
+4 320 16385
+12 8 8 23
+7 5000 3000
+E
+serpent staff~
+This fine Ironwood staff is carved into the shape of a striking serpent.
+Perhaps it has magical powers?
+~
+A
+18 2
+A
+25 2
+#2504
+helmet~
+a black helmet~
+A black metal helmet with pointed horns is here.~
+~
+9 0 17
+4 0 0 0
+4 1000 1000
+E
+helmet~
+This horned helmet is the symbol of the Orcan clan.  You notice spots of
+dried blood...
+~
+#2505
+club~
+a large club~
+A small, uprooted tree leans against the wall~
+~
+5 0 8193
+0 2 10 6
+18 3000 400
+A
+19 -2
+A
+20 4
+#2506
+cloak~
+a black cloak~
+You see a black cloak with red patterns~
+~
+9 0 5
+6 0 0 0
+6 1500 5
+E
+cloak~
+A red bigger of a single eye domintes the back of this foul-smelling cloak.
+It would appear that this is the garb of the orc leaders.  The cloth is
+heavy and protective, but somewhat encumbering.
+~
+A
+3 -1
+A
+14 -5
+#2507
+lucern hammer~
+a lucern hammer~
+A long, hammer-pointed polearm is here~
+pierces~
+5 0 8193
+0 2 6 11
+10 2000 17
+#2508
+fur furs~
+some smelly furs~
+You see some smelly, mismatched furs~
+~
+9 0 1029
+6 0 0 0
+6 1500 5
+E
+cloak~
+A red bigger of a single eye domintes the back of this foul-smelling cloak.
+It would appear that this is the garb of the orc leaders.  The cloth is
+heavy and protective, but somewhat encumbering.
+~
 #2850
 corpse cadaver~
 the cadaver-toy~
@@ -2334,7 +2479,7 @@ slash~
 #3023
 club wooden~
 a wooden club~
-A simpel looking wooden club is here.~
+A simple looking wooden club is here.~
 pound~
 5 0 8193
 0 1 3 7
@@ -2529,7 +2674,7 @@ A scroll has carelessly been left here.~
 ~
 2 64 16385
 12 42 -1 -1
-4 2000 100
+4 5000 100
 E
 scroll~
 The scroll has written a formulae of 'Word of Recall' upon it.
@@ -2916,7 +3061,7 @@ board bulletin~
 a bulletin board~
 A large bulletin board is mounted on a wall here.~
 ~
-13 0 0
+23 Q 0
 0 0 0 0
 0 0 0
 E
@@ -3116,7 +3261,7 @@ water fountain~
 a fountain~
 A small white fountain is standing at the end of the road.~
 ~
-17 0 0
+17 Q 0
 50 50 0 0
 500 3000 1000
 E
@@ -3359,7 +3504,7 @@ pit~
 the pit~
 A pit for sacrifices is in the north part of the hall.~
 ~
-15 0 0
+15 Q 0
 1000 0 0 0
 0 0 0
 E
@@ -3865,7 +4010,7 @@ breast dented plate worn~
 #3430
 key silver~
 a silver key~
-You see a silver key her.~
+You see a silver key here.~
 ~
 20 0 1
 0 0 0 0
@@ -4097,7 +4242,7 @@ A
 19 2
 #4100
 blade black demon~
-a black demon blade.~
+a black demon blade~
 A black demon blade is here, you sense the forces of evil
 controling the weapon.~
 ~
@@ -4755,7 +4900,7 @@ A ringmail vest~
 A vest made of iron rings lies heaped on the floor.~
 ~
 9 65 9
-6 0 0 0
+7 0 0 0
 60 12000 3000
 A
 17 -1
@@ -4765,7 +4910,7 @@ A mithril helm~
 Here lies a large mithril helm.~
 ~
 9 0 17
-8 0 0 0
+6 0 0 0
 10 5000 1800
 A
 18 2
@@ -4775,7 +4920,7 @@ A pair of mithril gauntlets~
 A pair of mithril gauntlets rests on the ground.~
 ~
 9 0 129
-8 0 0 0
+6 0 0 0
 10 2200 1900
 A
 18 3
@@ -4787,7 +4932,7 @@ Some mithril sleeves~
 A set of mithril sleeves lies on the ground.~
 ~
 9 0 257
-7 0 0 0
+6 0 0 0
 10 12450 2200
 A
 18 2
@@ -4799,7 +4944,7 @@ A pair of mithril boots~
 A pair of mithril boots stands has been left here.~
 ~
 9 0 65
-7 0 0 0
+6 0 0 0
 6 1800 1200
 A
 18 1
@@ -4811,7 +4956,7 @@ A set of mithril leggings~
 A set of mithril leggings lie here unattended.~
 ~
 9 0 33
-7 0 0 0
+6 0 0 0
 10 5400 2100
 A
 18 1
@@ -4823,7 +4968,7 @@ An mithril girth~
 A large iron girth lies at your feet.~
 ~
 9 0 2049
-7 0 0 0
+6 0 0 0
 6 14200 1200
 #5207
 breast plate iron~
@@ -4831,7 +4976,7 @@ A battered iron breast plate~
 A battered iron breast plate lies here.~
 ~
 9 0 9
-5 0 0 0
+6 0 0 0
 125 13000 1500
 A
 18 -6
@@ -4870,11 +5015,11 @@ A jet black potion sits upright waiting to be taken.~
 5 6000 1400
 #5211
 potion orange~
-An orange potion~
+An orange potion of remove poison~
 A small orange potion lies here.~
 ~
-10 96 1
-20 44 -1 -1
+10 64 1
+20 43 -1 -1
 10 7500 2000
 #5213
 staff serpentine~
@@ -4887,7 +5032,7 @@ A green serpentine staff has been left here.~
 #5214
 ball quartz~
 A smooth quartz ball~
-A smooth quartz ball lies here gleeming.~
+A smooth quartz ball lies here gleaming.~
 ~
 1 64 16385
 0 0 72 0
@@ -4941,7 +5086,7 @@ fountain cracked~
 a large cracked fountain~
 Some stagnant water lies in the bottom of the fountain.~
 ~
-17 0 0
+17 Q 0
 10 10 0 1
 0 0 0
 #5221
@@ -6195,7 +6340,7 @@ color.
 A
 24 -1
 #7204
-potion blue~
+potion neon~
 an neon blue potion~
 A neon blue potion stands on the floor.~
 ~
@@ -6520,7 +6665,7 @@ This is a very nice little weapon.
 #7300
 backpack pack back~
 a backpack~
-A bacpack stands upright here.~
+A backpack stands upright here.~
 ~
 15 0 1025
 60 5 -1 0
@@ -7132,5 +7277,1232 @@ an ancient illustrated parchment in the corner~
 2 129 16385
 5 4 17 33
 5 100 50
-#9999
+#9400
+rainbow staff~
+the rainbow staff~
+The rainbow staff lies here.~
+~
+1 64 1 
+0 0 -1 0
+8 5000 2667
+A
+4 1
+#9401
+sting~
+Sting~
+Sting lies here.~
+~
+5 1027 8193
+0 2 7 3 
+1 10000 7500
+A
+2 2
+#9402
+sign~
+a sign~
+A sign demands your attention.~
+~
+12 0 0
+0 0 0 0
+0 0 0
+E
+sign~
+ 
+Welcome to the Shire.  As you enter the Shire from Haon-Dor you come under
+the jurisdiction of the Thain, the peacekeeper of the Shire.  Consequently,
+by entering these lands you agree to obey our laws.  If you break these laws,
+you will be severely punished.  We do not like riff raff in our peaceful
+town.
+ 
+					The Thain
+					Peacekeeper of the Shire
+ 
+~
+#9403
+pipeweed bread~
+a pipeweed bread~
+A loaf of pipeweed bread arouses your hunger.~
+~
+19 0 1
+24 0 0 0
+1 13 2
+#9404
+silvery cloak~
+a silvery cloak~
+A silvery cloak lies here.~
+~
+9 53313 1025
+6 0 0 0
+3 10000 4500
+A
+24 -2
+#9405
+one ring~
+the One Ring~
+The One Ring is here.~
+~
+9 64 16387
+1 0 0 0
+3 2500 1900
+A
+17 -9
+A
+12 20
+#9406
+elven bow~
+an elven bow~
+An elven bow lies here.~
+~
+5 1090 8193
+0 2 8 11 
+10 2000 2000
+A
+18 2
+#9407
+mithril axe~
+a mithril axe~
+A mithril axe lies here.~
+~
+5 28677 8193
+0 2 8 5
+12 4000 2000
+A
+19 2
+#9408
+thain girth~
+the thain girth~
+The girth of the thain lies here.~
+~
+9 8192 2049
+5 3 0 0
+4 1000 200
+A
+4 2
+#9409
+tiny dagger~
+a tiny dagger~
+A tiny dagger lies here.~
+~
+5 0 8193
+0 1 6 94
+3 40 10
+#9410
+egg~
+an egg~
+An egg lies here.~
+~
+19 0 1
+12 0 0 0
+1 9 1
+#9411
+bag~
+a bag~
+A bag is on the floor.~
+~
+15 0 1
+50 0 0 0 
+5 50 10
+#9412
+lantern~
+a lantern~
+A lantern is on the floor.~
+~
+1 0 1
+0 0 20 0
+4 50 10
+#9413
+bardiche~
+a bardiche~
+A long weapon with a sharp end is on the floor.~
+~
+5 0 8193
+0 3 4 3
+10 1000 50
+A
+18 4
+#9414
+flail~
+a flail~
+A flail is on the floor.~
+~
+5 0 8193
+0 2 4 6
+8 300 50
+#9500
+palace key~
+the palace key of New Thalos~
+A large key bearing the crest of New Thalos lies here.~
+~
+18 0 1 
+1 0 0 0
+3 1 1000000
+#9501
+city key~
+the Key to the City of New Thalos~
+The heavy city key lies here in the dust~
+~
+18 0 16389
+1 0 0 0
+3 1 1000000
+#9503
+morning star morningstar~
+a morningstar~
+A small spiked metal ball connected to a rod by links of chain lies here.~
+~
+5 0 8193 
+0 2 6 15
+5 1050 105
+#9504
+awl pike awl-pike~
+an awl-pike~
+An awl pike lies here.~
+~
+5 0 8193  
+0 1 10 11
+3 1200 120
+#9505
+bardiche~
+a bardiche~
+A bardiche lies here.~
+~
+5 0 8193  
+0 2 6 3
+4 1050 105
+#9506
+bec corbin~
+a bec de corbine~
+A bec de corbine lies here.~
+~
+5 0 8193  
+0 1 8 3
+3 600 60
+#9507
+bill guisarme~
+a bill-guisarme~
+A bill-guisarme lies here.~
+~
+5 0 8193  
+0 1 8 3
+3 750 75
+#9508
+fauchard~
+a fauchard~
+A fauchard lies here.~
+~
+5 0 8193  
+0 1 8 6
+3 600 60
+#9509
+glaive~
+a glaive~
+A glaive lies here.~
+~
+5 0 8193  
+0 1 10 12
+3 750 75
+#9510
+guisarme~
+a guisarme~
+A guisarme lies here.~
+~
+5 0 8193  
+0 2 4 4
+4 700 70
+#9511
+sickle~
+a sickle~
+A sickle lies here.~
+~
+5 0 8193  
+0 1 4 3
+1 40 4
+#9512
+bastard two sword~
+a two-handed bastard sword~
+A two handed bastard sword lies here.~
+~
+5 0 8193  
+0 3 5 15
+16 2450 145
+#9513
+scimitar~
+a scimitar~
+a scimitar lies here.~
+~
+5 0 8193  
+0 1 9 3
+10 675 67
+#9514
+rapier~
+a rapier~
+A rapier lies here.~
+~
+5 0 8193  
+0 3 4 3
+10 1225 122
+#9515
+banded mail~
+a suit of banded mail~
+A suit of banded mail lies here.~
+~
+9 0 9 
+7 0 0 0
+25 18000 1800
+#9516
+brigandine~
+a suit of brigandine~
+A suit of brigandine lies here.~
+~
+9 0 9
+7 0 0 0
+20 18000 1800
+#9517
+field plate~
+a suit of field plate~
+A suit of field plate lies here.~
+~
+9 3424 9 
+8 0 0 0
+28 170000 17000
+#9518
+ringmail ring mail~
+a suit of ringmail~
+A suit of ringmail lies here.~
+~
+9 0 9 
+3 0 0 0
+36 3180 454
+A
+12 -20
+#9519
+splintmail splint mail~
+a suit of splintmail~
+A suit of splintmail armor lies here.~
+~
+9 0 9 
+5 0 0 0
+45 3590 512
+A
+12 -10
+#9520
+wooden shield~
+a wooden shield~
+A wooden shield lies here~
+~
+9 0 513 
+2 0 0 0
+1 50 5
+#9521
+splinted shield~
+a splinted shield~
+A splinted shield lies here.~
+~
+9 0 513 
+4 0 0 0
+8 625 62
+#9522
+buckler shield~
+a buckler~
+A buckler lies here.~
+~
+9 0 513 
+1 0 0 0
+6 25 2
+#9523
+jacket leather~
+a leather jacket~
+A leather jacket lies here.~
+~
+9 0 9 
+1 0 0 0
+6 200 20
+#9524
+sleeves leather~
+a pair of leather sleeves~
+A pair of leather sleeves lies here.~
+~
+9 0 257 
+1 0 0 0
+2 50 5
+#9525
+cap leather~
+a leather cap~
+A leather cap lies here~
+~
+9 0 17 
+1 0 0 0
+2 100 10
+#9526
+leather pants~
+a pair of leather pants~
+A pair of leather pants lies here.~
+~
+9 0 33 
+1 0 0 0
+2 100 10
+#9527
+leather gloves~
+a pair of leather gloves~
+A pair of leather gloves lies here.~
+~
+9 0 129 
+1 0 0 0
+2 50 5
+#9528
+padded leather boots~
+a pair of padded leather boots~
+A pair of padded leather boots lies here.~
+~
+9 0 65 
+1 0 0 0
+2 50 5
+#9529
+studded leather jacket~
+a studded leather jacket~
+A studded leather jacket lies here.~
+~
+9 0 9 
+2 0 0 0
+10 500 50
+#9530
+studded leather sleeves~
+a pair of studded leather sleeves~
+A pair of studded leather sleeves lies here.~
+~
+9 0 257 
+2 0 0 0
+3 75 7
+#9531
+studded leather pants~
+a pair of studded leather pants~
+A pair of studded leather pants lies here.~
+~
+9 0 33 
+2 0 0 0
+3 150 15
+#9532
+studded leather gloves~
+a pair of studded leather gloves~
+A pair of studded leather gloves lies here.~
+~
+9 0 129 
+2 0 0 0
+3 75 7
+#9533
+leather shield~
+a leather shield~
+A leather shield lies here.~
+~
+9 0 513 
+2 0 0 0
+3 75 7
+#9534
+sack~
+a sack~
+A sack lies here~
+~
+15 0 16385 
+50 0 0 0
+1 20 2
+#9535
+oil lamp oillamp~
+an oil lamp~
+An oil lamp lies here~
+~
+1 0 1 
+0 0 48 0
+1 480 48
+#9536
+backpack back pack~
+a backpack~
+A backpack lies here~
+~
+15 0 1025 
+75 1 0 0
+8 500 100
+#9537
+basket~
+a basket~
+A basket lies here.~
+~
+15 0 1 
+50 0 0 0
+4 250 50
+#9538
+belt pouch~
+a belt pouch~
+A belt pouch lies here~
+~
+15 0 2049 
+25 0 0 0
+3 300 20
+#9539
+candle~
+a candle~
+A candle lies here~
+~
+1 0 16385 
+0 0 50 0
+1 500 50
+#9540
+cheese~
+a hunk of cheese~
+A hunk of cheese lies here.~
+~
+19 0 1 
+5 0 0 0
+1 5 1
+#9541
+bread~
+a bread~
+A bread lies here.~
+~
+19 0 1 
+3 0 0 0
+1 3 1
+#9542
+dry rations~
+some dry rations~
+Some dry rations lie here.~
+~
+19 0 1 
+20 0 0 0
+2 20 3
+#9543
+iron rations~
+some iron rations~
+A tin of iron rations lies here.~
+~
+19 0 1 
+25 0 0 0
+3 25 5
+#9545
+nuts~
+some nuts~
+Some nuts lies scatterd on the ground.~
+~
+19 0 1 
+1 0 0 0
+1 1 1
+#9546
+belt~
+a belt~
+A nicely made belt lies here.~
+~
+11 0 4097 
+0 0 0 0
+2 4 1
+#9547
+hiking boots~
+a pair of hiking boots~
+A nicely made pair of boots lies here.~
+~
+11 0 65 
+0 0 0 0
+3 6 1
+#9548
+fur cloak~
+a fur cloak~
+A nicely made fur cloak lies here.~
+~
+11 0 1025 
+0 0 0 0
+2 100 14
+#9549
+girdle~
+a girdle~
+A nicely made girdle lies here.~
+~
+11 0 2049 
+0 0 0 0
+1 6 1
+#9550
+hose~
+a pair of hose~
+a nicely made pair of hose lie here.~
+~
+11 0 33 
+0 0 0 0
+1 4 1
+#9551
+common robe~
+a common robe~
+a nicely made robe of common cloth lies here.~
+~
+11 0 9 
+0 0 0 0
+2 18 2
+#9552
+embroiderd robe~
+an embroiderd robe~
+a nicely made robe of embroiderd cloth lies here.~
+~
+11 0 1033 
+0 0 0 0
+2 100 14
+#9553
+sandles~
+a pair of sandles~
+a nicely made pair of sandles lies here.~
+~
+11 0 65 
+0 0 0 0
+1 10 1
+#9554
+sash~
+a sash~
+a nicely made sash lies here.~
+~
+11 0 2049 
+0 0 0 0
+1 4 1
+#9555
+silk jacket~
+a silk jacket~
+a nicely made silk jacket lies here.~
+~
+11 0 1025 
+0 0 0 0
+1 160 22
+#9556
+egg~
+an egg~
+an egg lies here.~
+~
+19 0 1 
+2 0 0 0
+1 3 1
+#9557
+carrot~
+a carrot~
+a carrot lies here.~
+~
+19 0 1 
+3 0 0 0
+1 4 1
+#9558
+tomato~
+a tomato~
+a tomato lies here.~
+~
+19 0 1 
+2 0 0 0
+1 8 1
+#9559
+fig~
+a fig~
+a fig lies here.~
+~
+19 0 1 
+1 0 0 0
+1 2 1
+#9560
+dates~
+some dates~
+a bunch of dates lies here.~
+~
+19 0 1 
+2 0 0 0
+1 4 1
+#9561
+leg lamb~
+a leg of lamb~
+a leg of land lies here.~
+~
+19 0 1 
+10 0 0 0
+2 10 2
+#9562
+side beef~
+a side of beef~
+a side of beef lies here.~
+~
+19 0 1 
+15 0 0 0
+5 20 5
+#9563
+whole chicken~
+a whole chicken~
+a whole skinned chicken lies here.~
+~
+19 0 1 
+12 0 0 0
+3 12 3
+#9564
+herring salted~
+a salted herring~
+a salted herring lies here.~
+~
+19 0 1 
+8 0 0 0
+1 8 1
+#9565
+mussel~
+a mussel~
+a mussel lies here.~
+~
+19 0 1 
+4 0 0 0
+1 4 1
+#9567
+liquor glass blue oasis~
+a glass of blue oasis~
+a glass of blue alcohol rests here.~
+~
+17 0 1 
+5 5 5 0
+1 10 1
+#9568
+wine glass~
+a glass of wine~
+a glass rests here.~
+~
+17 0 1 
+3 3 2 0
+1 5 1
+#9569
+bottle grog~
+a bottle of grog~
+a bottle lies here.~
+~
+17 0 1 
+5 5 3 0
+1 9 1
+#9570
+glowing vial blue~
+a glowing blue vial~
+a glowing blue vial lies here.~
+~
+10 65 16385 
+12 38 -1 -1
+1 250 62
+#9571
+potion green~
+a deep-green potion~
+a deep-green potion lies here.~
+~
+10 64 16385 
+10 66 4 -1
+1 1000 250
+#9572
+potion crystal clear~
+a crystal clear potion~
+a crystal clear potion lies here.~
+~
+10 64 16385 
+10 19 -1 -1
+1 700 175
+#9573
+white potion~
+an off white potion~
+an off white potion lies here.~
+~
+10 64 16385 
+15 -1 -1 -1
+1 350 87
+#9574
+potion dark blue~
+a dark blue potion~
+a dark blue potion lies here.~
+~
+10 64 16385 
+10 18 81 -1
+1 500 125
+#9575
+beer bottle scorpion flaming~
+a flaming scorpion~
+a bottle of strong beer lies here.~
+~
+17 0 1 
+5 5 1 0
+1 10 1
+#9576
+barrel beer~
+a barrel of beer~
+a barrel of beer lies here.~
+~
+17 0 1 
+10 10 1 0
+5 50 5
+#9577
+whisky shot~
+a shot~
+a shot of strong liquor lies here.~
+~
+17 0 1 
+1 1 5 0
+1 5 1
+#9578
+scroll recall~
+a scroll of recall~
+a scroll of recall lies here.~
+~
+2 64 16385 
+12 42 -1 -1
+4 1500 375
+#9579
+wand call lightning~
+a grey-silver wand~
+a grey-silver wand lies here.~
+~
+3 65 16385 
+15 3 3 6
+1 20000 5000
+E
+wand~
+You see a small engraved storm cloud at the base of this wand.
+~
+#9580
+wand detect invis~
+a wand of glinting yellow~
+a wand of glinting yellow lies here.~
+~
+3 64 16385 
+1 15 15 19
+1 5000 1250
+E
+wand~
+You see a shape slowly fading into exsistance at the base of this wand.
+~
+#9581
+wand armor~
+a wand of oak~
+a wand of oak lies here.~
+~
+3 64 16385 
+5 10 10 1
+1 5000 1250
+#9582
+wand faerie fire~
+a pink wand~
+a pink wand lies here~
+~
+3 64 16385 
+3 3 3 72
+1 5000 1250
+#9583
+sewing shears~
+a pair of sewing shears~
+a pair of sewing shears lies here.~
+~
+5 0 8193  
+0 2 4 16
+2 700 70
+#9584
+meat cleaver~
+a meat cleaver~
+a meat cleaver lies here~
+~
+5 3072 8193  
+0 1 5 9
+5 80 8
+#9585
+fountain pen~
+a fountain pen~
+a fountain pen lies here.~
+~
+5 2 8193  
+0 1 5 16
+1 80 8
+#9586
+sledge hammer~
+a sledge hammer~
+a sledge hammer lies here.~
+~
+5 0 8193  
+0 2 3 95
+24 525 52
+#9587
+horse shoe~
+a horse shoe~
+a horse shoe lies here.~
+~
+9 66 16389 
+1 0 0 0
+2 300 100
+A
+18 1
+#9588
+saddle~
+a saddle~
+a saddle lies here.~
+~
+12 0 1 
+0 0 0 0
+4 600 85
+#9589
+crop riding~
+a riding crop~
+a riding crop lies here.~
+~
+5 0 8193  
+0 1 4 2
+1 40 4
+#9590
+chessboard~
+a chessboard~
+a heavy marble chessboard lies here.~
+~
+5 0 1 
+0 1 5 6
+10 80 8
+#9591
+sesame seed~
+a sesame seed~
+a sesame seed lies here.~
+~
+18 0 16385 
+0 0 0 0
+3 1 1000000
+#9592
+something~
+something~
+something lies here.~
+~
+5 0 8192
+0 2 5 -1
+1 875 87
+#9593
+key~
+the jail key~
+the key to the jail lies here.~
+~
+18 0 16385 
+0 0 0 0
+3 1 1000000
+#9594
+key~
+the dungeon key~
+the dungeon key lies here.~
+~
+18 0 16385
+0 0 0 0
+3 1 1000000
+#9595
+shirt tie dye~
+a tie-dye shirt~
+a multi-colored shirt lies here.~
+~
+9 64 9 
+7 0 0 0
+1 18000 1800
+#9596
+bugle boy jeans~
+a pair of Bugle Boy jeans~
+a pair of jeans lie here.~
+~
+9 64 33 
+5 0 0 0
+1 1250 125
+#9597
+sneakers reeboks reebok pumps~
+a pair of Reebok Pumps~
+a pair of nifty sneakers lie here.~
+~
+9 64 65 
+1 0 0 0
+1 527 75
+A
+2 1
+A
+14 10
+#9598
+daemon claw~
+the Daemon Claw~
+A glove with blades mounted on it lies here~
+~
+5 2 8193  
+0 2 8 5
+20 2500 400
+A
+18 -2
+#9599
+wolverine claw~
+the wolverine claw~
+A claw from some animal lies here.~
+~
+5 2 8193  
+0 3 5 5
+20 3500 450
+#9600
+katana sword~
+the razor-sharp katana~
+A razor-sharp katana lies on the floor.~
+~
+5 65 8193
+0 5 4 3
+10 1 10000
+E
+katana sword~
+This katana looks sharp enough to cut a passing thought!  It is engraved with
+mystic runes of strength and honor.
+~
+A
+18 3 
+A
+19 8 
+#9601
+potion heal~
+a potion of healing~
+A potion of healing is here.~
+~
+10 G AO
+20 28 -1 -1
+1 20000 0
+#9602
+potion sanctuary~
+a potion of sanctuary~
+A potion of sanctuary is here.~
+~
+10 G AO
+20 36 -1 -1
+1 25000 0
+#9603
+potion divine~
+a potion of divine protection~
+A potion of divine protection is here.~
+~
+10 ABGI AO 
+35 36 66 1
+1 95000 0
+#9604
+potion cure light~
+a potion of cure light wounds~
+A potion of cure light wounds is here.~
+~
+10 G AO
+5 16 -1 -1
+1 100 0
+#9605
+potion cure serious~
+a potion of cure serious wounds~
+A potion of cure serious wounds is here.~
+~
+10 G AO
+10 61 -1 -1
+1 1000 0
+#9606 
+potion cure critical critic~
+a potion of cure critical wounds~
+A potion of cure critical wounds is here.~
+~
+10 G AO
+15 15 -1 -1 
+1 5000 0
+#9607
+potion antidote bottle~
+a bottle of antidote~
+A bottle of antidote is here.~
+~
+10 G AO
+14 43 16 82
+1 1500 0
+#9608
+potion sight~
+a potion of sight~
+A potion of sight is here.~
+~
+10 G AO
+13 14 -1 -1
+1 1000 0 
+#9609
+vial holy water~
+a vial of holy water~
+A vial of holy water is here.~
+~
+10 AGI AO
+20 3 34 35 
+1 15000 0
+#9610
+potion armor~
+a potion of armor~
+A potion of armor is here.~
+~
+10 G AO
+10 1 -1 -1
+1 2500 0
+#9611
+potion negation~
+a potion of negation~
+A potion of negation is here.~
+~
+10 BG AO
+35 59 25 -1
+1 5000 0
+#9612
+potion fly flying~
+a potion of flying~
+A potion of flying is here.~
+~
+10 G AO
+9 56 -1 -1
+1 500 0
+#9613
+karina doll~
+a Karina doll~
+A Karina doll lies here panting softly.~
+~
+9 65 16385
+0 0 0 0
+6 20000 2000
+E
+karina doll~
+The doll is outfitted in trampy pants,slutty heels, and a child-proof bra.
+It silently asorbs all the hormones in the area.
+~
+A
+17 -10
+A
+24 -2
+#9614
+board god divine~
+the divine board~
+The Divine Board is mounted here, glowing softly.~
+~
+23 Q 0
+0 0 0 0
+0 0 0
+E
+board god divine~
+Use "Look AT board" to see a listing of the messages. Use "Read
+<message number>" or "Remove <message number>" to read or remove
+a message, respectively.
+~
+#9615
+board cold freeze~
+the freeze board~
+An ice-cold board stand here...you hope YOUR name isn't on it.~
+~
+23 Q 0
+0 0 0 0
+0 0 0
+E
+board cold freeze~
+Use "Look AT board" to see a listing of the messages. Use "Read
+<message number>" or "Remove <message number>" to read or remove
+a message, respectively.
+Post the name of all frozen players and WHY they were frozen here.
+Post when a freeze is removed as well.
+~
+#9616
+board info news~
+the news board~
+The news board is mounted in the wall, holding valuable information.~
+~
+23 Q 0
+0 0 0 0
+0 0 0
+E
+board info news~
+Use "Look AT board" to see a listing of the messages. Use "Read
+<message number>" or "Remove <message number>" to read or remove
+a message, respectively.
+Only gods can post to this board, though any player can read it.
+~
+#9617
+rose~
+a red rose~
+A sad, lonely rose blooms from a crack in the ice~
+~
+9 AGQ 17
+6 0 0 0
+8 0 200
+E
+rose~
+You wonder how an object of such great beauty and sadness could grow in this 
+artic wasteland.
+~
+#9700
+hose~
+black lace garters and black silk hose~
+A pair of black lace garters with black lace hose are here~
+~
+9 1088 2049
+12 0 0 0
+6 0 16000
+#9701
+heels~
+a pair of six-inch black heels~
+A pair of black heels are here~
+~
+9 1088 65
+11 0 0 0
+6 0 14760
+#9702
+ears~
+a pair of Playboy bunny ears~
+A pair of felt bunny ears lie on the floor~
+~
+9 1088 17
+13 0 0 0
+10 0 18491
+#9703
+choker~
+a black silk ribbon choker~
+A small loop of black silk is here~
+~
+9 64 5
+13 0 0 0
+9 0 17600
+#9704
+bracelete silver~
+a black studded-leather bracelet~
+A leather bracelet is here~
+~
+9 64 4097
+11 0 0 0
+5 0 16000
+#9705
+panties chainmail~
+a pair of see-through chainmail panties with a fluffy tail~
+A pair of chainmail panties lie here~
+~
+9 0 33
+11 0 0 0
+5 0 10000
+#9706
+bra chainmail~
+a sexy chainmail bra~
+A chainmail bra is here~
+~	
+9 64 9
+13 0 0 0
+9 0 17589
+#9707
+tray~
+a black plastic tray~
+A black plastic tray sits on the floor~
+~
+9 65 16385
+13 0 0 0
+9 0 14391
+#9708
+book~
+the Playboy Bunny Handbook~
+A black-jacketed book is here~
+~
+5 3 8193
+0 0 0 0
+10 0 14040
+#9709
+rings ivy gold~
+a gold ivy twist ring~
+You see a small gold ring~
+~
+12 256 3
+0 0 0 0
+1 0 5000
+#9710
+pillow~
+Lisa's pillow~
+You see a big, fluffy pillow with 'Lisa' sewn on the side in gold thread~
+~
+8 67 16385
+0 0 0 0
+20 0 9999999
+A
+18 99
+A
+19 99
+#99999
 $~

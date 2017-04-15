@@ -430,7 +430,7 @@ char *one_word(char *argument, char *first_arg )
 
 
 
-#define	MAX_HELP	256
+#define	MAX_HELP	512	
 
 struct help_index_element *build_help_index(FILE *fl, int *num)
 {
@@ -518,6 +518,7 @@ void show_string(struct descriptor_data *d, char *input)
     char buffer[MAX_STRING_LENGTH], buf[MAX_INPUT_LENGTH];
     register char *scan, *chk;
     int lines = 0, toggle = 1;
+    int rows;
 
     one_argument(input, buf);
 
@@ -533,11 +534,12 @@ void show_string(struct descriptor_data *d, char *input)
     }
 
     /* show a chunk */
+    rows = d->rows;
     for (scan = buffer;; scan++, d->showstr_point++)
 	if((((*scan = *d->showstr_point) == '\n') || (*scan == '\r')) &&
 	    ((toggle = -toggle) < 0))
 	    lines++;
-	else if (!*scan || (lines >= 22))
+	else if (!*scan || (lines >= (rows - 2))) 
 	{
 	    *scan = '\0';
 	    write_to_q( buffer, &d->output );

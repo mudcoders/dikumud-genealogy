@@ -51,11 +51,138 @@ int move_limit(struct char_data *ch);
 int mana_gain(struct char_data *ch);
 int hit_gain(struct char_data *ch);
 int move_gain(struct char_data *ch);
+void autosave(int count);
+
+/* vnum command, more or less */
+
+void do_number(struct char_data *ch, char *argument, int cmd)
+{
+
+    char type[100], name[100], buf[100];
+    char line[128];
+    char *begin; /* begin of a word or a line */
+    char *cp;    /* counter pointer for loops */
+    int length;
+    FILE *fd;
+
+
+    if (IS_NPC(ch))
+        return;
+
+    argument_interpreter(argument, type, name);
+
+    if (!*type || !*name)
+    {
+        send_to_char("Syntax:\n\rnumber <'mob' | 'obj'> <name>.\n\r", ch);
+        return;
+    }
+
+    length= strlen(name);
+
+    if (is_abbrev(type, "mob"))
+    {
+        if((fd= fopen(MOBS_NUMBER,"r"))) {
+           while(!feof(fd)) {
+                fgets(line,128,fd);
+                cp =line;
+                while ( *cp != ' ')
+                   cp++;
+                begin=(++cp);  /* skip white space after ':' */
+                while (*cp!='\n') {
+                   while (( *cp != ' ')&&(*cp != '\n'))
+                      cp++;  /* go to the end of next word */
+                   if((cp-begin)==length)
+                  /* we only do a strncmp if both words have the same length */
+                        if(!strncmp(name,begin,length))
+                            send_to_char(line,ch);
+                   begin=(++cp);
+                }
+           }
+           fclose(fd);
+        } else {
+                sprintf(buf,"Could not open %s\n\r",MOBS_NUMBER);
+                log(buf);
+        }
+
+    }
+    else if (is_abbrev(type, "obj"))
+    {
+        if((fd= fopen(OBJS_NUMBER,"r"))) {
+           while(!feof(fd)) {
+                fgets(line,128,fd);
+                cp =line;
+                while ( *cp != ' ')
+                   cp++;
+                begin= ++cp;  /* skip white space after ':' */
+                while (*cp!='\n') {
+                   while (( *cp != ' ')&&(*cp != '\n'))
+                      cp++;    /* go to the end of next word */
+                   if((cp-begin)==length)
+                        if(!strncmp(name,begin,length))
+                            send_to_char(line,ch);
+                   begin=(++cp);
+                }
+           }
+           fclose(fd);
+        } else {
+                sprintf(buf,"Could not open %s\n\r",OBJS_NUMBER);
+                log(buf);
+        }
+
+    }
+    else
+        send_to_char("That'll have to be either 'mob' or 'obj'.\n\r", ch);
+}
+
+/* Takes away the ability to use channels */
+
+void do_nochannels(struct char_data *ch,  char *argument, int  cmd)
+{
+    char arg[SHORT_STRING_LENGTH];
+    struct char_data *victim;
+
+    if (IS_NPC(ch))
+	return;
+    one_argument(argument, arg);
+    if (!*arg)
+    {
+	send_to_char("Who do you wish to silence?\n\r",ch);
+	return;
+    }
+    if (!(victim = get_char_vis(ch, arg)))
+    {
+	send_to_char("That character does not exist.\n\r",ch);
+	return;
+    }
+    if (IS_NPC(victim))
+    {
+	send_to_char("Only players can be silenced.\n\r",ch);
+        return;
+    }
+    if ((GET_LEVEL(ch) <= GET_LEVEL(victim)) && (victim != ch))
+    {
+        send_to_char("That would not be wise...\n\r",ch);
+        return;
+    }
+
+    if (IS_SET(victim->specials.act,PLR_NOCHANNELS))
+    {
+      send_to_char("NOCHANNELS removed.\n\r",ch);
+      send_to_char("The gods have restored your channel privileges.\n\r",victim);
+      REMOVE_BIT(victim->specials.act, PLR_NOCHANNELS);
+    }
+    else
+    {
+      send_to_char("NOCHANNELS set.\n\r",ch);
+      send_to_char("The gods have revoked your channel privileges.\n\r",victim);
+      SET_BIT(victim->specials.act,PLR_NOCHANNELS);
+    }
+}
 
 void do_disconnect(struct char_data *ch,  char *argument, int cmd)
 {
-    char arg[MAX_STRING_LENGTH];
-    char buf[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
     struct descriptor_data *d;
     int sdesc;
 
@@ -144,14 +271,12 @@ void do_pardon(struct char_data *ch, char *argument, int cmd)
 void do_emote(struct char_data *ch, char *argument, int cmd)
 {
     int i;
-    char buf[MAX_STRING_LENGTH];
-
+    char buf[SHORT_STRING_LENGTH];
     if (IS_SET(ch->specials.act, PLR_NOEMOTE))
     {
 	send_to_char("You can't show your emotions!!\n\r", ch);
 	return;
     }
-
     for (i = 0; *(argument + i) == ' '; i++);
 
     if (!*(argument + i))
@@ -166,10 +291,10 @@ void do_emote(struct char_data *ch, char *argument, int cmd)
 
 
 
-void do_echo(struct char_data *ch, char *argument, int cmd)
+void do_gecho(struct char_data *ch, char *argument, int cmd)
 {
     int i;
-    char buf[MAX_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
     struct descriptor_data *point;
 
     if (IS_NPC(ch))
@@ -181,14 +306,31 @@ void do_echo(struct char_data *ch, char *argument, int cmd)
 	send_to_char("That must be a mistake...\n\r", ch);
     else
     {
-	sprintf(buf,"\n\r%s\n\r", argument + i);
+	sprintf(buf,"%s", argument + i);
 	for (point=descriptor_list; point; point = point->next)
 	  if (!point->connected)
 	    act(buf, 0, ch, 0, point->character, TO_VICT);
-	send_to_char("Ok.\n\r", ch);
+	send_to_char("Echoed globally.\n\r", ch);
     }
 }
 
+
+/* RT one room only echo added */
+void do_echo (struct char_data *ch, char *argument, int cmd)
+{
+    int i;
+    char buf[SHORT_STRING_LENGTH];
+    for (i = 0; *(argument + i) == ' '; i++);
+
+    if (!*(argument + i))
+        send_to_char("What message do you wish to echo?\n\r", ch);
+    else
+    {
+        sprintf(buf,"%s", argument + i);
+        act(buf,FALSE,ch,0,0,TO_ROOM);
+        send_to_char("Echoed locally.\n\r", ch);
+    }
+}
 
 
 void do_trans(struct char_data *ch, char *argument, int cmd)
@@ -247,6 +389,8 @@ void do_at(struct char_data *ch, char *argument, int cmd)
     struct char_data *target_mob;
     struct obj_data *target_obj;
     extern int top_of_world;
+    int i;
+    struct char_data *pers;
 
     if (IS_NPC(ch))
 	return;
@@ -288,6 +432,25 @@ void do_at(struct char_data *ch, char *argument, int cmd)
     }
 
     /* a location has been found. */
+
+    if ((IS_SET(world[location].room_flags, PRIVATE)) && (GET_LEVEL(ch) != 35))
+    {
+        for (i = 0, pers = world[location].people; pers; pers =
+            pers->next_in_room, i++);
+        if (i > 1)
+        {
+            send_to_char(
+                "There's a private conversation going on in that room.\n\r", ch)
+;
+            return;
+        }
+    }
+
+    if ((IS_SET(world[location].room_flags, IMP_ROOM)) && (GET_LEVEL(ch) != 35))
+    {
+        send_to_char("That room is for implementors only.\n\r",ch);
+        return;
+    }
 
     original_loc = ch->in_room;
     char_from_room(ch);
@@ -369,6 +532,12 @@ void do_goto(struct char_data *ch, char *argument, int cmd)
 	}
     }
 
+    if ((IS_SET(world[location].room_flags, IMP_ROOM)) && (GET_LEVEL(ch) != 35))
+    {
+	send_to_char("That room is for implementors only.\n\r",ch);
+	return;
+    }
+
     if (!ch->specials.wizInvis)
       act("$n disappears in a puff of smoke.", FALSE, ch, 0, 0, TO_ROOM);
     char_from_room(ch);
@@ -378,15 +547,13 @@ void do_goto(struct char_data *ch, char *argument, int cmd)
     do_look(ch, "",15);
 }
 
-
-
 void do_stat(struct char_data *ch, char *argument, int cmd)
 {
     extern char *spells[];
     struct affected_type *aff;
-    char arg1[MAX_STRING_LENGTH];
-    char buf[MAX_STRING_LENGTH];
-    char buf2[MAX_STRING_LENGTH];
+    char arg1[SHORT_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
+    char buf2[SHORT_STRING_LENGTH];
     struct room_data *rm=0;
     struct char_data *k=0;
     struct obj_data  *j=0;
@@ -947,7 +1114,7 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 		}
 	    }
 	    sprintf(buf,
-		"WizInvis :  %s\n\r",((k->specials.wizInvis) ? "ON" : "OFF"));
+		"WizInvis :  %d\n\r",((k->specials.invis_level)));
 	    send_to_char(buf,ch);
 	    sprintf(buf,
 	   	 "Holylite :  %s\n\r",((k->specials.holyLite) ? "ON" : "OFF"));
@@ -983,6 +1150,7 @@ void do_shutdown(struct char_data *ch, char *argument, int cmd)
 
     if (!*arg)
     {
+	autosave(5);
 	sprintf(buf, "Shutdown by %s.\n\r", GET_NAME(ch) );
 	send_to_all(buf);
 	log(buf);
@@ -996,7 +1164,7 @@ void do_shutdown(struct char_data *ch, char *argument, int cmd)
 
 void do_snoop(struct char_data *ch, char *argument, int cmd)
 {
-    char arg[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
     struct char_data *victim;
     char buf[100];
 
@@ -1073,7 +1241,7 @@ void do_snoop(struct char_data *ch, char *argument, int cmd)
 
 void do_switch(struct char_data *ch, char *argument, int cmd)
 {
-    char arg[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
     struct char_data *victim;
 
     if (IS_NPC(ch))
@@ -1185,7 +1353,7 @@ void do_force(struct char_data *ch, char *argument, int cmd)
 	    if (i->character != ch && !i->connected) {
 		vict = i->character;
 		if (GET_LEVEL(ch) <= GET_LEVEL(vict))
-		    send_to_char("Oh no you don't!!\n\r", ch);
+		     /* send_to_char("Oh no you don't!!\n\r", ch) */;
 		else {
 		    sprintf(buf, "$n has forced you to '%s'.", to_force);
 		    act(buf, FALSE, ch, 0, vict, TO_VICT);
@@ -1202,8 +1370,8 @@ void do_load(struct char_data *ch, char *argument, int cmd)
 {
     struct char_data *mob;
     struct obj_data *obj;
-    char type[100], num[100], buf[100];
-    int number, r_num;
+    char type[100], num[100], buf[100], temp[100];
+    int number, r_num, level;
 
 
     if (IS_NPC(ch))
@@ -1248,13 +1416,28 @@ void do_load(struct char_data *ch, char *argument, int cmd)
 	    send_to_char("There is no object with that number.\n\r", ch);
 	    return;
 	}
+        argument = one_argument(argument,temp);
+	argument = one_argument(argument,temp);
+        one_argument(argument,temp);
+       	if (!is_number(temp))
+	  level = GET_LEVEL(ch);
+        else level = atoi(temp);
+        if ((level < 0) || (level > 35))
+        {
+          send_to_char("You must provide a level between 0 and 35.\n\r",ch);
+          return;
+        }
+
+
 	obj = read_object(r_num, 0);
 	obj_to_room(obj, ch->in_room);
+	obj->obj_flags.eq_level = level;
 	act("$n makes a strange magical gesture.", TRUE, ch, 0, 0, TO_ROOM);
 	act("$n has created $p!", FALSE, ch, obj, 0, TO_ROOM);
 	send_to_char("Ok.\n\r", ch);
-	sprintf(buf,"%s loads %s at %s.",GET_NAME(ch),
-		obj->short_description,world[ch->in_room].name);
+	sprintf(buf,"%s loads %s at %s (level %d).",GET_NAME(ch),
+		obj->short_description,world[ch->in_room].name,
+		obj->obj_flags.eq_level);
 	log(buf);
 
     }
@@ -1287,8 +1470,8 @@ void do_purge(struct char_data *ch, char *argument, int cmd)
 	{
 	    if (!IS_NPC(vict) && (GET_LEVEL(ch)<=GET_LEVEL(vict))) {
 	      sprintf(buf,
-  "Foooooooooom!\n\r%s is surrounded with scorching flames and looks shocked!\n\rAfter a few moments, where you expect a pile of charred ashes stands %s cackling with insane glee!\n\rYou think you are in trouble.\n\r",
-		GET_NAME(vict),GET_NAME(vict));
+  "After a few moments, where you expect a pile of charred ashes stands %s cackling with insane glee!\n\rYou think you are in trouble.\n\r",
+		GET_NAME(vict));
 	      send_to_char(buf,ch);
 	      act("$n tried to purge you.", FALSE, ch, 0, vict, TO_VICT);
 	      sprintf(buf,"%s tried to purge %s at %s.",
@@ -1342,14 +1525,15 @@ void do_purge(struct char_data *ch, char *argument, int cmd)
 	for (vict = world[ch->in_room].people; vict; vict = next_v)
 	{
 	    next_v = vict->next_in_room;
-	    if (IS_NPC(vict))
+	    if (IS_NPC(vict) && !IS_SET(vict->specials.act,ACT_NOPURGE))
 		extract_char(vict, TRUE);
 	}
 
 	for (obj = world[ch->in_room].contents; obj; obj = next_o)
 	{
 	    next_o = obj->next_content;
-	    extract_obj(obj);
+	    if (!IS_SET(obj->obj_flags.extra_flags,ITEM_NOPURGE))
+	      extract_obj(obj);
 	}
     }
 }
@@ -1383,6 +1567,7 @@ void do_start(struct char_data *ch)
     send_to_char(
 	"Welcome. This is now your character in DikuMud,\n\rYou can now earn XP, and lots more...\n\r",
 	ch);
+    send_to_char("**Type 'help' and 'help newbie' for important information about playing.**\n\r\n\r",ch);
 
     GET_LEVEL(ch) = 1;
     GET_EXP(ch) = 1;
@@ -1533,7 +1718,7 @@ void do_advance(struct char_data *ch, char *argument, int cmd)
     act("$n makes some strange gestures.\n\rA strange feeling comes uppon you,"
 	"\n\rLike a giant hand, light comes down from\n\rabove, grabbing your "
 	"body, that begins\n\rto pulse with coloured lights from inside.\n\rYo"
-	"ur head seems to be filled with deamons\n\rfrom another plane as your"
+	"ur head seems to be filled with daemons\n\rfrom another plane as your"
 	" body dissolves\n\rto the elements of time and space itself.\n\rSudde"
 	"nly a silent explosion of light snaps\n\ryou back to reality. You fee"
 	"l slightly\n\rdifferent.",FALSE,ch,0,victim,TO_VICT);
@@ -1600,7 +1785,7 @@ void do_restore(struct char_data *ch, char *argument, int cmd)
     if (!*buf)
 	send_to_char("Whom do you wish to restore?\n\r",ch);
     else
-	if(!(victim = get_char(buf)))
+          if(!(victim = get_char(buf)))
 	    send_to_char("No-one by that name in the world.\n\r",ch);
 	else {
 	    GET_MANA(victim) = GET_MAX_MANA(victim);
@@ -1648,15 +1833,9 @@ void do_noshout(struct char_data *ch, char *argument, int cmd)
     one_argument(argument, buf);
 
     if (!*buf)
-	if (IS_SET(ch->specials.act, PLR_NOSHOUT))
 	{
-	    send_to_char("You can now hear shouts again.\n\r", ch);
-	    REMOVE_BIT(ch->specials.act, PLR_NOSHOUT);
-	}
-	else
-	{
-	    send_to_char("From now on, you won't hear shouts.\n\r", ch);
-	    SET_BIT(ch->specials.act, PLR_NOSHOUT);
+	  send_to_char("Use the deaf command to ignore shouts.\n\r", ch);
+	  return;
 	}
     else if (!generic_find(argument, FIND_CHAR_WORLD, ch, &vict, &dummy))
 	send_to_char("Couldn't find any such creature.\n\r", ch);
@@ -1687,6 +1866,8 @@ void do_wizinvis(struct char_data *ch, char *argument, int cmd)
 {
    struct affected_type af;
    struct affected_type *hjp;
+   int level;
+   char buf[100];
 
    if(IS_NPC(ch)){
 	return;
@@ -1705,6 +1886,7 @@ void do_wizinvis(struct char_data *ch, char *argument, int cmd)
       affect_remove(ch, hjp);
 
       ch->specials.wizInvis = FALSE;
+      ch->specials.invis_level = 0;
       send_to_char("You slowly fade back into the world of mortals.\n\r",ch);
       act(
  "Someone utters the words 'izeghy visimon'.\n$n slowly fades into existence.",
@@ -1727,7 +1909,17 @@ void do_wizinvis(struct char_data *ch, char *argument, int cmd)
       af.bitvector = AFF_INVISIBLE;
       affect_to_char(ch, &af);
 
+      one_argument(argument,buf);
+      if(is_number(buf))
+      {
+	level = atoi(buf);
+	if ((level > GET_LEVEL(ch)) || (level < 31))
+	  level = GET_LEVEL(ch);
+      }
+      else
+	level = GET_LEVEL(ch);
       ch->specials.wizInvis = TRUE;
+      ch->specials.invis_level = level;
       send_to_char("You slowly vanish into thin-air.\n\r",ch);
       act("$n utters the words 'inquzky abradyk'.", FALSE, ch, 0, 0, TO_ROOM);
       act("$n slowly vanishes into thin-air.", FALSE, ch, 0, 0, TO_ROOM);
@@ -1810,6 +2002,12 @@ void do_teleport(struct char_data *ch, char *argument, int cmd)
     } /* if */
     } /* if */
 
+    if ((IS_SET(world[target].room_flags, IMP_ROOM)) && (GET_LEVEL(ch) != 35))
+    {
+        send_to_char("That room is for implementors only.\n\r",ch);
+        return;
+    }
+
    act("$n disappears in a puff of smoke.",FALSE,victim, 0,0, TO_ROOM);
    char_from_room(victim);
    char_to_room(victim, target);
@@ -1823,7 +2021,7 @@ void do_teleport(struct char_data *ch, char *argument, int cmd)
 void do_ban(struct char_data *ch, char *argument, int cmd)
 {
 	char name[MAX_INPUT_LENGTH];
-	char buf[MAX_STRING_LENGTH];
+	char buf[SHORT_STRING_LENGTH];
 	struct ban_t *tmp;
 	int count;
 

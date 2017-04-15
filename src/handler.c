@@ -1,4 +1,4 @@
-/***************************************************************************
+ /**************************************************************************
  *  file: handler.c , Handler module.                      Part of DIKUMUD *
  *  Usage: Various routines for moving about objects/players               *
  *  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
@@ -41,6 +41,7 @@ int str_cmp(char *arg1, char *arg2);
 void stop_fighting(struct char_data *ch);
 void remove_follower(struct char_data *ch);
 extern char *index();
+
 
 
 char *fname(char *namelist)
@@ -153,6 +154,7 @@ void affect_modify(struct char_data *ch, byte loc, byte mod, long bitv, bool add
 	    break;
 
 	case APPLY_MANA:
+            ch->points.max_mana += mod;
 	    break;
 
 	case APPLY_HIT:
@@ -245,7 +247,7 @@ void affect_total(struct char_data *ch)
 
     /* Make certain values are between 0..25, not < 0 and not > 25! */
 
-    i = (IS_NPC(ch) ? 25 :18);
+    i = (IS_NPC(ch) ? 25 :25);
 
     GET_DEX(ch) = MAX(0,MIN(GET_DEX(ch), i));
     GET_INT(ch) = MAX(0,MIN(GET_INT(ch), i));
@@ -514,11 +516,11 @@ void equip_char(struct char_data *ch, struct obj_data *obj, int pos)
 	(IS_OBJ_STAT(obj, ITEM_ANTI_GOOD) && IS_GOOD(ch)) ||
 	(IS_OBJ_STAT(obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL(ch))) {
 	if (ch->in_room != NOWHERE) {
-
+/*
 	    act("You are zapped by $p and instantly drop it.", FALSE, ch, obj, 0, TO_CHAR);
 	    act("$n is zapped by $p and instantly drop it.", FALSE, ch, obj, 0, TO_ROOM);
 	    obj_to_room(obj, ch->in_room);
-	    return;
+	    return; */
 	} else {
 	    log("ch->in_room = NOWHERE when equipping char.");
 	}

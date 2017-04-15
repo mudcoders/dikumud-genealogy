@@ -39,6 +39,7 @@
 #define ITEM_MONEY     20
 #define ITEM_PEN       21
 #define ITEM_BOAT      22
+#define ITEM_BOARD     23
 
 /* Bitvector For 'wear_flags' */
 
@@ -78,7 +79,7 @@
 #define ITEM_ANTI_MAGE    8192 /* not usable by mages          */
 #define ITEM_ANTI_THIEF  16384 /* not usable by thieves        */
 #define ITEM_ANTI_CLERIC 32768 /* not usable by clerics        */
-#define ITEM_ANTI_LOW    65536 /* not usable by low-levelers   */
+#define ITEM_NOPURGE     65536 /* not affected by a mass purge */
 
 /* Some different kind of liquids */
 #define LIQ_WATER      0
@@ -151,6 +152,7 @@ struct obj_data
     char *action_description;      /* What to write when used          */
     struct extra_descr_data *ex_description; /* extra descriptions     */
     struct char_data *carried_by;  /* Carried by :NULL in room/conta   */
+    struct char_data *owner;       /* to be used with pc corpses */
 
     struct obj_data *in_obj;       /* In what object NULL when none    */
     struct obj_data *contains;     /* Contains objects                 */

@@ -75,6 +75,7 @@ void name_to_drinkcon(struct obj_data *obj,int type)
 
 void do_drink(struct char_data *ch, char *argument, int cmd)
 {
+
     char buf[100];
     struct obj_data *temp;
     struct affected_type af;
@@ -106,10 +107,14 @@ void do_drink(struct char_data *ch, char *argument, int cmd)
 	act("You are not thirsty anymore.",TRUE, ch, 0, 0, TO_CHAR);
 	if (GET_LEVEL(ch)>31)
 	  return;
-	
+        if (GET_COND(ch,FULL)!=-1)
+       { 
 	GET_COND(ch,FULL) = 25;
+       }
+        if (GET_COND(ch,THIRST)!=-1)
+       {
 	GET_COND(ch,THIRST) = 25;
-	
+       }	
 	return;
       }
       else {
@@ -153,7 +158,7 @@ void do_drink(struct char_data *ch, char *argument, int cmd)
 		"You drink the %s.\n\r",drinks[temp->obj_flags.value[2]]);
 	  send_to_char(buf,ch);
 
-	  if (GET_LEVEL(ch)>31)
+	  if ((GET_LEVEL(ch)>31) || (GET_COND(ch,THIRST)==-1))
 	return;
 	
 	  if (drink_aff[temp->obj_flags.value[2]][DRUNK] > 0 )
@@ -251,16 +256,17 @@ void do_eat(struct char_data *ch, char *argument, int cmd)
 
     act("$n eats $p",TRUE,ch,temp,0,TO_ROOM);
     act("You eat the $o.",FALSE,ch,temp,0,TO_CHAR);
-
+    if (GET_COND(ch,FULL)!=-1) /* not ever-full */
+    {
     gain_condition(ch,FULL,temp->obj_flags.value[0]);
-
+   }
     if(GET_COND(ch,FULL)>20)
 	act("You are full.",FALSE,ch,0,0,TO_CHAR);
 
     if(temp->obj_flags.value[3] && (GET_LEVEL(ch) < 31))
     {
 	/* The shit was poisoned ! */
-	act("Ooups, it tasted rather strange ?!!?",FALSE,ch,0,0,TO_CHAR);
+act("Ooups, it tasted rather strange ?!!?",FALSE,ch,0,0,TO_CHAR);
 	act("$n coughs and utters some strange sounds.",FALSE,ch,0,0,TO_ROOM);
 
 	af.type = SPELL_POISON;
@@ -277,9 +283,9 @@ void do_eat(struct char_data *ch, char *argument, int cmd)
 
 void do_pour(struct char_data *ch, char *argument, int cmd)
 {
-    char arg1[MAX_STRING_LENGTH];
-    char arg2[MAX_STRING_LENGTH];
-    char buf[MAX_STRING_LENGTH];
+    char arg1[SHORT_STRING_LENGTH];
+    char arg2[SHORT_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
     struct obj_data *from_obj;
     struct obj_data *to_obj;
     int amount;
@@ -400,8 +406,8 @@ void do_pour(struct char_data *ch, char *argument, int cmd)
 void do_sip(struct char_data *ch, char *argument, int cmd)
 {
     struct affected_type af;
-    char arg[MAX_STRING_LENGTH];
-    char buf[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
     struct obj_data *temp;
 
     one_argument(argument,arg);
@@ -484,7 +490,7 @@ void do_sip(struct char_data *ch, char *argument, int cmd)
 void do_taste(struct char_data *ch, char *argument, int cmd)
 {
     struct affected_type af;
-    char arg[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
     struct obj_data *temp;
 
     one_argument(argument,arg);
@@ -602,10 +608,12 @@ void perform_wear(struct char_data *ch, struct obj_data *obj_object,
 
 void wear(struct char_data *ch, struct obj_data *obj_object, int keyword)
 {
-    char buffer[MAX_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
 
     if ( GET_LEVEL(ch) < obj_object->obj_flags.eq_level )
     {
+        if (obj_object->obj_flags.eq_level == 1000)
+          sprintf( buffer, "This item was stolen from a shop!\n\r");
 	sprintf( buffer, "You must be level %d to use this object.\n\r",
 	    obj_object->obj_flags.eq_level );
 	send_to_char( buffer, ch );
@@ -785,7 +793,7 @@ void wear(struct char_data *ch, struct obj_data *obj_object, int keyword)
 	    if (CAN_WEAR(obj_object,ITEM_WEAR_WAISTE)) {
 		if (ch->equipment[WEAR_WAISTE]) {
 		    send_to_char(
-		    "You already wear something about your waiste.\n\r", ch);
+		    "You already wear something about your waist.\n\r", ch);
 		} else {
 		    send_to_char("OK.\n\r", ch);
 		    perform_wear(ch,obj_object,keyword);
@@ -831,7 +839,8 @@ void wear(struct char_data *ch, struct obj_data *obj_object, int keyword)
 		    "You are already wielding something.\n\r", ch);
 		} else {
 		    if (GET_OBJ_WEIGHT(obj_object) >
-			str_app[STRENGTH_APPLY_INDEX(ch)].wield_w) {
+			str_app[STRENGTH_APPLY_INDEX(ch)].wield_w &&
+			!IS_NPC(ch)) {
 			send_to_char("It is too heavy for you to use.\n\r",ch);
 		    } else {
 			send_to_char("OK.\n\r", ch);
@@ -914,10 +923,10 @@ int keywordfind(struct obj_data *obj_object)
 
 void do_wear(struct char_data *ch, char *argument, int cmd)
 {
-    char arg1[MAX_STRING_LENGTH];
-    char arg2[MAX_STRING_LENGTH];
+    char arg1[SHORT_STRING_LENGTH];
+    char arg2[SHORT_STRING_LENGTH];
     char buf[256];
-    char buffer[MAX_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
     struct obj_data *obj_object, *tmp_object, *next_obj;
     int keyword;
     static char *keywords[] = {
@@ -945,9 +954,14 @@ void do_wear(struct char_data *ch, char *argument, int cmd)
     }
 
     if ( !str_cmp( arg1, "all" ) )
-    {
-	for ( tmp_object = ch->carrying; tmp_object; tmp_object = next_obj )
-	{
+    {  /* RT code to prevent wear all in room 3001 */
+        if (ch->in_room == real_room(3001))
+          {
+             send_to_char("Changing is not permitted in this room.\n\r",ch);
+             return;
+           }
+       for ( tmp_object = ch->carrying; tmp_object; tmp_object = next_obj )
+        {
 	    int	keyword;
 
 	    next_obj = tmp_object->next_content;
@@ -1005,9 +1019,9 @@ void do_wear(struct char_data *ch, char *argument, int cmd)
 
 
 void do_wield(struct char_data *ch, char *argument, int cmd) {
-char arg1[MAX_STRING_LENGTH];
-char arg2[MAX_STRING_LENGTH];
-char buffer[MAX_STRING_LENGTH];
+char arg1[SHORT_STRING_LENGTH];
+char arg2[SHORT_STRING_LENGTH];
+char buffer[SHORT_STRING_LENGTH];
 struct obj_data *obj_object;
 int keyword = 12;
 
@@ -1028,9 +1042,9 @@ int keyword = 12;
 
 void do_grab(struct char_data *ch, char *argument, int cmd)
 {
-    char arg1[MAX_STRING_LENGTH];
-    char arg2[MAX_STRING_LENGTH];
-    char buffer[MAX_STRING_LENGTH];
+    char arg1[SHORT_STRING_LENGTH];
+    char arg2[SHORT_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
     struct obj_data *obj_object;
 
     argument_interpreter(argument, arg1, arg2);
@@ -1054,7 +1068,7 @@ void do_grab(struct char_data *ch, char *argument, int cmd)
 
 void do_remove(struct char_data *ch, char *argument, int cmd)
 {
-    char arg1[MAX_STRING_LENGTH];
+    char arg1[SHORT_STRING_LENGTH];
     struct obj_data *obj_object;
     int j;
 

@@ -54,6 +54,7 @@ void save_char_obj( struct char_data *ch )
     if ( IS_NPC(ch) || GET_LEVEL(ch) < 2 )
 	goto LSuccess;
 
+
     sprintf( strsave, "%s/%s", SAVE_DIR, ch->player.name );
     if ( ( fpsave = fopen( strsave, "wb" ) ) == NULL )
 	goto LError;
@@ -85,6 +86,9 @@ void save_char_obj( struct char_data *ch )
  LError:
     sprintf( log_buf, "Save_char_obj: %s", strsave );
     log( log_buf );
+    if ( fpsave != NULL )
+	fclose( fpsave);
+    return;
 
  LSuccess:
     if ( fpsave != NULL )
@@ -108,6 +112,7 @@ bool load_char_obj( struct descriptor_data *d, char *name )
     d->character    = ch;
     clear_char( ch );
     ch->desc        = d;
+   
 
     sprintf( strsave, "%s/%s", SAVE_DIR, name );
     if ( ( fpsave = fopen( strsave, "rb" ) ) == NULL )
@@ -118,9 +123,11 @@ bool load_char_obj( struct descriptor_data *d, char *name )
     reset_char( ch );
     GET_NAME(ch) = str_dup(name);
     store_to_char( &uchar, ch );
-    if ( world[ch->in_room].zone != world[real_room(3001)].zone )
+   /* RT if ( world[ch->in_room].zone != world[real_room(3001)].zone )
 	gain_exp(ch, 0 - MIN(GET_EXP(ch)/2, 10*GET_LEVEL(ch)*GET_LEVEL(ch) ));
-
+*/
+    if (ch->player.title == NULL)
+        ch->player.title = str_dup( "the nondescript" );
     while ( !feof( fpsave ) )
     {
 	struct  obj_file_elem   object;
@@ -175,7 +182,10 @@ void obj_store_to_char(struct char_data *ch, struct obj_file_elem *object)
 	for(j=0; j<MAX_OBJ_AFFECT; j++)
 	    obj->affected[j] = object->affected[j];
 
-	obj_to_char(obj, ch);
+	if (obj->obj_flags.eq_level > GET_LEVEL(ch) + 2)
+	  extract_obj(obj);
+	else  
+	  obj_to_char(obj, ch);
     }
 }
 
@@ -312,10 +322,23 @@ void store_to_char(struct char_file_u *st, struct char_data *ch)
 
     ch->specials.practices    = st->practices;
     ch->specials.alignment    = st->alignment;
-
-    ch->specials.act          = st->act;
+    if (st->version == 1)
+    {
+      ch->specials.rows = st->rows; 
+      if (ch->specials.rows == 0)
+        ch->specials.rows = 24;
+      ch->desc->rows = ch->specials.rows;
+      ch->specials.act          = st->spec_flags; /* moved from act */
+    }
+    else
+    {
+      ch->desc->rows = 24;
+      ch->specials.rows = 24;
+      ch->specials.act = st->act;
+    }
     ch->specials.carry_weight = 0;
     ch->specials.carry_items  = 0;
+    ch->specials.will_save = FALSE;
     ch->points.armor          = 100;
     ch->points.hitroll        = 0;
     ch->points.damroll        = 0;
@@ -383,7 +406,7 @@ void char_to_store(struct char_data *ch, struct char_file_u *st)
 
     ch->tmpabilities = ch->abilities;
 
-    st->version    = 0;
+    st->version    = 1;
     st->birth      = ch->player.time.birth;
     st->played     = ch->player.time.played;
     st->played    += (long) (time(0) - ch->player.time.logon);
@@ -402,7 +425,8 @@ void char_to_store(struct char_data *ch, struct char_file_u *st)
     st->points    = ch->points;
     st->alignment = ch->specials.alignment;
     st->practices = ch->specials.practices;
-    st->act       = ch->specials.act;
+    st->spec_flags = ch->specials.act; /* RT changed from the old system */
+    st->rows = ch->specials.rows;
 
     st->points.armor   = 100;
     st->points.hitroll =  0;

@@ -1,12 +1,11 @@
+* all characters who have not been used in 30 days have been moved into off-line storage.  Please notify me if you would like a character restored.
 
-* We have 38 zones, 1688 rooms, 612 objects, 432 mobs, 22 shops,
-  and NO death traps.
- 
-* We frown upon Player Killing and Stealing.  If you wish to P-Kill and
-  Steal there are other muds for you.
- 
-* Read News!  Read Signs!  Read Help!  Help <keyword> now works.
+* ROM II
 
-* Mud School!  New players (or old players with new characters), go "up"
-  from the temple for introduction to Mud and basic equipment.
+  Rivers of Mud will be switching to a Merc 2.0 base on August 31st.  All old
+  playerfiles will be removed at this point (immortals will receive some levels
+  on the new mud, but not immortality).  You can get a head start on this 
+  switch by playing on the test port, cie-2.uoregon.edu 4000.
 
+* Notify rtaylor@cie.uoregon.edu if there are any problems, or if you have
+  any questions or suggestions.

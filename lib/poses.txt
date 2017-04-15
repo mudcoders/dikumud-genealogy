@@ -30,7 +30,7 @@ You conjure red lights to dance in your eyes.
 $n makes little red lights dance in $s eyes.
 You recite words of wisdom first thought by your great god.
 $n reads aloud from a childrens book.
-You juggle with a variaty of items such as daggers, apples, eyes etc.
+You juggle with a variety of items such as daggers, apples, eyes etc.
 $n juggles with daggers, apples, eyes, fishbones etc.
 You hit your head with a blow that makes your eyes roll.
 $n hits $s head with a blow that makes $s eyes roll helplessly around.

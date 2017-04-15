@@ -28,6 +28,7 @@
 #define CREDITS_FILE      "credits.txt"   /* for the 'credits' command  */
 #define NEWS_FILE         "news.txt"      /* for the 'news' command     */
 #define MOTD_FILE         "motd.txt"      /* messages of today          */
+#define IMM_MOTD_FILE     "imotd.txt"     /* news for immortals         */
 #define STORY_FILE        "story.txt"     /* game story                 */
 #define TIME_FILE         "time.txt"      /* game calendar information  */
 #define IDEA_FILE         "ideas.txt"     /* for the 'idea'-command     */
@@ -40,6 +41,8 @@
 #define INFO_FILE         "info.txt"      /* for INFO                   */
 #define WIZLIST_FILE      "wizlist.txt"   /* for WIZLIST                */
 #define POSEMESS_FILE     "poses.txt"     /* for 'pose'-command         */
+#define MOBS_NUMBER	  "mob.list"	  /* for do_number		*/
+#define OBJS_NUMBER	  "obj.list"	  /* for do_number		*/ 
 
 /* public procedures in db.c */
 
@@ -61,6 +64,8 @@ int real_mobile(int virtual);
 
 struct obj_data *read_object(int nr, int eq_level);
 struct char_data *read_mobile(int nr, int type);
+
+
 
 
 /* structure for the reset commands */
@@ -91,6 +96,7 @@ struct zone_data
     char *name;             /* name of this zone                  */
     int lifespan;           /* how long between resets (minutes)  */
     int age;                /* current age of this zone (minutes) */
+    int empty_age;	    /* age without characters             */
     int top;                /* upper limit for rooms in this zone */
 
     int reset_mode;         /* conditions for reset (see below)   */

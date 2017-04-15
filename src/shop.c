@@ -186,6 +186,15 @@ void shopping_buy( char *arg, struct char_data *ch,
 
     cost = (int) (obj->obj_flags.cost * shop_index[shop_nr].profit_buy);
 
+    /* RT code to charge less for used wands/staves */
+    if ((obj->obj_flags.type_flag == ITEM_STAFF) ||
+        (obj->obj_flags.type_flag == ITEM_WAND))
+    {
+      if (obj->obj_flags.value[2] < 1)
+      /* the cost is mutliplied buy charges remaining/charges maximum */
+      cost = (cost * obj->obj_flags.value[2]) / obj->obj_flags.value[1];
+    }
+
     if ( GET_GOLD(ch) < cost )
     {
 	sprintf( buf, shop_index[shop_nr].missing_cash2, GET_NAME(ch) );
@@ -263,6 +272,21 @@ void shopping_sell( char *arg, struct char_data *ch,
     }
 
     cost = (int) ( obj->obj_flags.cost * shop_index[shop_nr].profit_sell );
+
+    /* RT code to charge less for used wands/staves */
+    if ((obj->obj_flags.type_flag == ITEM_STAFF) ||
+        (obj->obj_flags.type_flag == ITEM_WAND))
+    {
+      if (obj->obj_flags.value[2] < 1)
+      { /* RT will not buy empty items */
+	sprintf( buf, "%s Sorry, but that item is powerless.", GET_NAME(ch) );	
+	do_tell ( keeper, buf, 0);
+	return;
+      }
+      /* the cost is mutliplied by charges remaining/charges maximum */
+      cost = (cost * obj->obj_flags.value[2]) / obj->obj_flags.value[1];
+    }
+
     if ( GET_GOLD(keeper) < cost )
     {
 	sprintf( buf, shop_index[shop_nr].missing_cash1, GET_NAME(ch) );
@@ -332,6 +356,21 @@ void shopping_value( char *arg, struct char_data *ch,
     }
 
     cost = (int) ( obj->obj_flags.cost * shop_index[shop_nr].profit_sell );
+ 
+    /* RT code to charge less for used wands/staves */
+    if ((obj->obj_flags.type_flag == ITEM_STAFF) ||
+        (obj->obj_flags.type_flag == ITEM_WAND))
+    {
+      if (obj->obj_flags.value[2] < 1)
+      { /* RT will not buy empty items */
+        sprintf( buf, "%s No charges, no gold.", GET_NAME(ch) );
+        do_tell ( keeper, buf, 0);
+        return;
+      }
+      /* the cost is mutliplied buy charges remaining/charges maximum */
+      cost = (cost * obj->obj_flags.value[2]) / obj->obj_flags.value[1];
+    }
+
     sprintf( buf, "%s I'll give you %d gold coins for that.",
 	GET_NAME(ch), cost );
     do_tell( keeper, buf, 0 );
@@ -350,13 +389,14 @@ void shopping_list( char *arg, struct char_data *ch,
     char buf2[MAX_INPUT_LENGTH];
     struct obj_data *obj;
     int cost;
+    int level;
     extern char *drinks[];
     int found;
 
     if ( !is_ok( keeper, ch, shop_nr ) )
 	return;
 
-    strcpy( buf, "[Price] Item\n\r" );
+    strcpy( buf, "[Price ] [Lev] Item\n\r" );
     found = FALSE;
     for ( obj = keeper->carrying; obj; obj = obj->next_content )
     {
@@ -366,16 +406,26 @@ void shopping_list( char *arg, struct char_data *ch,
 	found = TRUE;
 
 	cost = (int) ( obj->obj_flags.cost * shop_index[shop_nr].profit_buy );
+
+    /* RT code to charge less for used wands/staves */
+    if ((obj->obj_flags.type_flag == ITEM_STAFF) ||
+        (obj->obj_flags.type_flag == ITEM_WAND))
+    {
+      /* the cost is mutliplied buy charges remaining/charges maximum */
+      cost = (cost * obj->obj_flags.value[2]) / obj->obj_flags.value[1];
+    }
+        level = obj->obj_flags.eq_level;
+        if (level == 1000) level = 0;
 	if ( GET_ITEM_TYPE(obj) == ITEM_DRINKCON && obj->obj_flags.value[1] )
 	{
-	    sprintf( buf2, "[%5d] %s of %s.\n\r",
-		cost, obj->short_description,
+	    sprintf( buf2, "[%6d] [%3d] %s of %s.\n\r",
+		cost,level, obj->short_description,
 		drinks[obj->obj_flags.value[2]] );
 	}
 	else
 	{
-	    sprintf( buf2, "[%5d] %s.\n\r",
-		cost, obj->short_description );
+	    sprintf( buf2, "[%6d] [%3d] %s.\n\r",
+		cost,level, obj->short_description );
 	}
 
 	buf2[8] = UPPER(buf2[8]);

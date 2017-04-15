@@ -78,7 +78,7 @@ bool is_in_safe(struct char_data *ch, struct char_data *victim)
 
 void do_hit(struct char_data *ch, char *argument, int cmd)
 {
-    char arg[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
     struct char_data *victim;
 
     one_argument(argument, arg);
@@ -129,11 +129,17 @@ void do_hit(struct char_data *ch, char *argument, int cmd)
 
 void do_murder(struct char_data *ch, char *argument, int cmd)
 {
-    char arg[MAX_STRING_LENGTH];
-    char buffer[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
     struct char_data *victim;
 
     one_argument(argument, arg);
+
+    if (!IS_NPC(ch) || IS_AFFECTED(ch,AFF_CHARM))
+    {
+	send_to_char("Players are not permitted to murder.\n\r",ch);
+	return;
+    }
 
     if (*arg)
     {
@@ -162,8 +168,12 @@ void do_murder(struct char_data *ch, char *argument, int cmd)
 		if ((GET_POS(ch)==POSITION_STANDING) &&
 		(victim != ch->specials.fighting))
 		{
-		    sprintf(buffer,"Help!  I am being attacked by %s!!!\n\r",
-			GET_NAME(ch));
+	            if (IS_NPC(ch))
+		      sprintf(buffer,"Help!  I am being attacked by %s!!!\n\r",
+			      ch->player.short_descr);
+		    else
+		      sprintf(buffer,"Help!  I am being attacked by %s!!!\n\r",
+		              GET_NAME(ch));
 		    do_shout(victim,buffer,0);
 		    log(buffer);
 		    check_killer(ch,victim);
@@ -181,10 +191,71 @@ void do_murder(struct char_data *ch, char *argument, int cmd)
     }
 }
 
+void do_assist(struct char_data *ch, char *argument, int cmd)
+{
+    char arg[SHORT_STRING_LENGTH];
+    struct char_data *victim;
+    struct char_data *target;
+
+    one_argument(argument,arg);
+
+    if (*arg) 
+    {
+	victim = get_char_room_vis(ch,arg);
+	if (victim) 
+	{
+	  if (victim == ch)
+	  {
+	    send_to_char("You ask for assistance!\n\r",ch);
+	    act("$n asks for your assistance!",
+		FALSE,ch,0,victim, TO_ROOM);
+	    return;
+     	  }
+	  else
+	  {
+	    if (GET_POS(victim) == POSITION_FIGHTING)
+	    {
+		target = victim->specials.fighting;
+		if (ch == target)
+		{	
+		  send_to_char("Assist your enemy?? You must be mad!\n\r",ch);
+		  return;
+		}	
+	   	else
+		{
+		  if (!IS_NPC(target) && !IS_NPC(ch))
+		  {
+		    send_to_char("You cannot assist against a player!\n\r",ch);
+		    return;
+		  }
+		  else
+		  {
+		    if ((GET_POS(ch)==POSITION_STANDING) &&
+			(target != ch->specials.fighting))
+		    {
+			hit(ch,target,TYPE_UNDEFINED);
+			WAIT_STATE(ch, PULSE_VIOLENCE+2);		 
+                    }
+		    else
+		      send_to_char("You are already fighting!\n\r",ch);
+                 }
+                }
+	    }
+	    else
+	      send_to_char("But who would you assist against?\n\r",ch);
+	  }
+	}
+	else
+	  send_to_char("You don't see anyone to assist.\n\r",ch);
+    }
+    else
+	send_to_char("Assist who?\n\r",ch);
+}
+	  	
 
 void do_kill(struct char_data *ch, char *argument, int cmd)
 {
-    char arg[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
     struct char_data *victim;
 
     if ((GET_LEVEL(ch) < 34) || IS_NPC(ch)) {
@@ -249,17 +320,21 @@ void do_backstab(struct char_data *ch, char *argument, int cmd)
 	return;
     }
 
-    if (ch->equipment[WIELD]->obj_flags.value[3] != 11) {
+  /*  if (ch->equipment[WIELD]->obj_flags.value[3] != 11) {
 	send_to_char(
 	    "Only piercing weapons can be used for backstabbing.\n\r",ch);
 	return;
-    }
+    } */
 
     if (victim->specials.fighting) {
 	send_to_char(
 	    "You can't backstab a fighting person, too alert!\n\r", ch);
 	return;
     }
+    if (victim->points.hit < victim->points.max_hit) {
+       send_to_char("This dog has already been bitten.\n\r", ch);
+       return;
+   }
 
     check_killer(ch, victim);
     
@@ -267,9 +342,15 @@ void do_backstab(struct char_data *ch, char *argument, int cmd)
 
     WAIT_STATE(ch, PULSE_VIOLENCE*2);
     if (AWAKE(victim) && (percent > ch->skills[SKILL_BACKSTAB].learned))
+    {
 	damage(ch, victim, 0, SKILL_BACKSTAB);
+	check_improve(ch,SKILL_BACKSTAB,1,FALSE);
+    }
     else
+    {
 	hit(ch,victim,SKILL_BACKSTAB);
+	check_improve(ch,SKILL_BACKSTAB,1,TRUE);
+    }
 }
 
 
@@ -329,9 +410,9 @@ void do_order(struct char_data *ch, char *argument, int cmd)
 		send_to_char("Ok.\n\r", ch);
 	    else
 		send_to_char(
-		    "Nobody here are loyal subjects of yours!\n\r", ch);
-	}
-    }
+		    "Nobody here are loyal subjects of yours!\n\r", ch); 
+	} 
+    } 
 }
 
 
@@ -339,6 +420,7 @@ void do_order(struct char_data *ch, char *argument, int cmd)
 void do_flee(struct char_data *ch, char *argument, int cmd)
 {
     int i, attempt, loose, die;
+    char buf[100];
 
     void gain_exp(struct char_data *ch, int gain);
 
@@ -381,6 +463,8 @@ void do_flee(struct char_data *ch, char *argument, int cmd)
 		    gain_exp(ch, -loose);
 
 		send_to_char("You flee head over heels.\n\r", ch);
+		sprintf(buf,"You lose %d experience.\n\r",loose);
+		send_to_char(buf,ch);
 
 		/* Insert later when using hunting system       */
 		/* ch->specials.fighting->specials.hunting = ch */
@@ -450,11 +534,15 @@ void do_bash(struct char_data *ch, char *argument, int cmd)
 
     if (percent > ch->skills[SKILL_BASH].learned) {
 	damage(ch, victim, 0, SKILL_BASH);
+	check_improve(ch,SKILL_BASH,2,FALSE);
 	GET_POS(ch) = POSITION_SITTING;
     } else {
 	damage(ch, victim, 1, SKILL_BASH);
+	check_improve(ch, SKILL_BASH,2,TRUE);
 	GET_POS(victim) = POSITION_SITTING;
 	WAIT_STATE(victim, PULSE_VIOLENCE*2);
+	if (IS_NPC(victim))
+	  victim->specials.stun_time = MAX(victim->specials.stun_time,2);
     }
     WAIT_STATE(ch, PULSE_VIOLENCE*2);
 }
@@ -507,6 +595,7 @@ void do_rescue(struct char_data *ch, char *argument, int cmd)
 	percent=number(1,101); /* 101% is a complete failure */
 	if (percent > ch->skills[SKILL_RESCUE].learned) {
 	    send_to_char("You fail the rescue.\n\r", ch);
+	    check_improve(ch,SKILL_RESCUE,1,FALSE);
 	    return;
 	}
 
@@ -514,6 +603,7 @@ void do_rescue(struct char_data *ch, char *argument, int cmd)
 	act("You are rescued by $N, you are confused!",
 		FALSE, victim, 0, ch, TO_CHAR);
 	act("$n heroically rescues $N.", FALSE, ch, 0, victim, TO_NOTVICT);
+	check_improve(ch,SKILL_RESCUE,1,TRUE);
 
 	if (victim->specials.fighting == tmp_ch)
 	    stop_fighting(victim);
@@ -549,7 +639,6 @@ void do_kick(struct char_data *ch, char *argument, int cmd)
 	ch);
 	return;
     }
-
     one_argument(argument, name);
 
     if (!(victim = get_char_room_vis(ch, name))) {
@@ -580,8 +669,10 @@ void do_kick(struct char_data *ch, char *argument, int cmd)
 
     if (percent > ch->skills[SKILL_KICK].learned) {
 	damage(ch, victim, 0, SKILL_KICK);
+	check_improve(ch,SKILL_KICK,2,FALSE);
     } else {
 	damage(ch, victim, GET_LEVEL(ch)>>1, SKILL_KICK);
+	check_improve(ch,SKILL_KICK,2,TRUE);
     }
     WAIT_STATE(ch, PULSE_VIOLENCE*3);
 }

@@ -36,6 +36,7 @@ extern struct index_data *mob_index;
 extern struct index_data *obj_index;
 extern struct int_app_type int_app[26];
 extern bool wizlock;
+extern bool newlock;
 
 /* external functs */
 
@@ -51,7 +52,6 @@ int hit_gain(struct char_data *ch);
 int move_gain(struct char_data *ch);
 
 /* To be moved to moved to act.wizard.c */
-
 void do_noemote(struct char_data *ch, char *argument, int cmd)
 {
     struct char_data *vict;
@@ -86,8 +86,6 @@ void do_noemote(struct char_data *ch, char *argument, int cmd)
 	SET_BIT(vict->specials.act, PLR_NOEMOTE);
     }
 }
-
-
 void do_notell(struct char_data *ch, char *argument, int cmd)
 {
     struct char_data *vict;
@@ -131,7 +129,6 @@ void do_notell(struct char_data *ch, char *argument, int cmd)
 	SET_BIT(vict->specials.act, PLR_NOTELL);
     }
 }
-
 
 void do_freeze(struct char_data *ch, char *argument, int cmd)
 {
@@ -215,6 +212,20 @@ void do_wizlock(struct char_data *ch, char *argument, int cmd)
     }
 }
 
+void do_newlock(struct char_data *ch, char *argument, int cmd)
+{
+    newlock = !newlock;
+ 
+    if ( newlock ) {
+        sprintf(log_buf,"Newbies have been locked out by %s.",GET_NAME(ch));
+        log(log_buf);
+        send_to_char("Newbies have been locked out\n\r", ch);
+    } else {
+        sprintf(log_buf,"Newbies have been allowed by %s.",GET_NAME(ch));
+        log(log_buf);
+        send_to_char("Nebwie lock removed.\n\r", ch);
+    }
+}
 
 
 
@@ -246,6 +257,13 @@ void do_set(struct char_data *ch, char *argument, int cmd)
     struct char_data *vict;
     char name[100], buf2[100], buf[100], help[MAX_STRING_LENGTH];
     int skill, value, i, qend;
+
+
+    if (IS_NPC(ch))
+     {
+	send_to_char("Monsters don't need set, silly immortal.\n\r",ch);
+        return;
+     }
 
     argument = one_argument(argument, name);
     if (!*name) /* no arguments. print an informative text */
@@ -767,7 +785,7 @@ void do_tap(struct char_data *ch, char *argument, int cmd)
 	GET_GOLD(ch) += 1;
 	extract_obj(obj);
     }
-    else if ( obj->obj_flags.cost_per_day != 100000 )
+    else if ( obj->obj_flags.cost_per_day != 100000 && obj->contains)
     {
 	act( "Such a sacrifice would be very unwise.",
 	    FALSE, ch, obj, 0, TO_CHAR );
@@ -776,6 +794,8 @@ void do_tap(struct char_data *ch, char *argument, int cmd)
     else
     {
 	xp = 10 * GET_LEVEL(ch);
+	if (obj->obj_flags.cost_per_day != 100000)
+  	  xp = 0;
 	sprintf( buf,
 	    "You get %d experience points for your sacrifice.", xp );
 	act( "$n sacrifices $p to $s god.", FALSE, ch, obj, 0, TO_ROOM);
@@ -823,6 +843,7 @@ void do_trip(struct char_data *ch, char *argument, int cmd)
 
     if (percent > ch->skills[SKILL_TRIP].learned * 2 / 3 ) {
         damage(ch, victim, 0, SKILL_TRIP);
+	check_improve(ch,SKILL_TRIP,2,FALSE);;
     } else {
       act( "$n trips you and you go down!",
 	  FALSE, ch, NULL, victim, TO_VICT );
@@ -831,8 +852,11 @@ void do_trip(struct char_data *ch, char *argument, int cmd)
       act( "$n trips $N and $N goes down!",
 	  FALSE, ch, NULL, victim, TO_NOTVICT );
       damage(ch, victim, 1, SKILL_TRIP);
+      check_improve(ch,SKILL_TRIP,2,TRUE);
       WAIT_STATE(ch, PULSE_VIOLENCE*2);
       WAIT_STATE(victim, PULSE_VIOLENCE*3);
+        if (IS_NPC(victim))
+          victim->specials.stun_time = MAX(victim->specials.stun_time,3);
       GET_POS(victim) = POSITION_SITTING;
     }
 
@@ -879,6 +903,7 @@ void do_disarm( struct char_data *ch, char *argument, int cmd )
 	send_to_char( "You disarm yourself!\n\r", ch );
 	obj = unequip_char( ch, WIELD );
 	obj_to_room( obj, ch->in_room );
+	obj->owner = ch;
 	return;
     }
 
@@ -888,16 +913,18 @@ void do_disarm( struct char_data *ch, char *argument, int cmd )
 	return;
     }
 
-    percent = number( 1, 100 ) + GET_LEVEL(victim) - GET_LEVEL(ch);
+    percent = number( 1, 100 ) + 5 * GET_LEVEL(victim) - 3 * GET_LEVEL(ch);
     if ( percent < ch->skills[SKILL_DISARM].learned * 2 / 3 )
     {
 	disarm( ch, victim );
+	check_improve(ch,SKILL_DISARM,1,TRUE);
 	one_hit( victim, ch, TYPE_UNDEFINED );
 	WAIT_STATE( ch, 3 * PULSE_VIOLENCE );
     }
     else
     {
 	one_hit( victim, ch, TYPE_UNDEFINED );
+	check_improve(ch,SKILL_DISARM,1,FALSE);
 	WAIT_STATE( ch, PULSE_VIOLENCE*2 );
     }
 }
@@ -910,11 +937,17 @@ void do_title(struct char_data *ch, char *argument, int cmd)
     send_to_char("Change your title to what?\n\r", ch);
     return;
   }
+
+    if (argument == "/0")
+        {
+                send_to_char("You cannot do this\n\r",ch);
+                return;
+        }
     
   for (; isspace(*argument); argument++);
 
-  if (strlen(argument)>40){
-    send_to_char("Title field too big.  40 characters max.\n\r", ch);
+  if (strlen(argument)>60){
+    send_to_char("Title field too big.  60 characters max.\n\r", ch);
     return;
   }
   
@@ -1030,13 +1063,13 @@ void do_grouptell(struct char_data *ch, char *argument, int cmd)
   }
 
   for (; isspace(*argument); argument++);
-
+/* RT
   if (IS_SET(ch->specials.act, PLR_NOTELL))
     {
       send_to_char("Your message didn't get through!!\n\r", ch);
       return;
     }
-
+*/
   if (!IS_AFFECTED(ch, AFF_GROUP))
     {
       send_to_char("You don't have a group to talk to!\n\r", ch);
@@ -1081,7 +1114,8 @@ bool CAN_SEE( struct char_data *sub, struct char_data *obj )
     
     if ( obj->specials.wizInvis )
     {
-	if ( IS_NPC(sub) || GET_LEVEL(sub) < GET_LEVEL(obj) )
+	if (  IS_NPC(sub) || 
+              GET_LEVEL(sub) < obj->specials.invis_level )
 	    return FALSE;
     }
 

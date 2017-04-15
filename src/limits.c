@@ -25,11 +25,14 @@
 #include "utils.h"
 #include "spells.h"
 #include "db.h"
+#define KEEP_CORPSE_CONTENTS
 
 
 extern struct char_data *character_list;
 extern struct obj_data *object_list;
 extern struct room_data *world;
+extern char *skill_name[];
+extern struct int_app_type int_app[26];
 
 /* External procedures */
 
@@ -61,17 +64,65 @@ int graf(int age, int p0, int p1, int p2, int p3, int p4, int p5, int p6)
 	return(p6);                               /* >= 80 */
 }
 
+/* code to improve skills with use */
+ 
+void check_improve(struct char_data *ch, int skilltype, int mod, bool success)
+{
+  int chance,roll;
+  char buf[100];
+ 
+  /* first see if anything COULD be learned this time */
+
+  chance = (int_app[GET_INT(ch)].learn / (4 * mod));
+  chance += GET_LEVEL(ch) / 3;
+  roll = number(1,100);
+  if (roll > chance || ch->skills[skilltype].learned == 0 || 
+      ch->skills[skilltype].learned >= 99)
+    return;
+ 
+  if (success)
+  {
+    chance = MIN(35,100 - ch->skills[skilltype].learned);
+    roll = number(1,100);
+    if (roll < chance)
+    {
+      if (skilltype < MAX_SPL_LIST)
+        sprintf(buf,"You have become better at %s!\n\r",skill_name[skilltype]);
+      else
+        sprintf(buf,"You have become better at %s!\n\r",
+                skill_name[skilltype - SKILL_TRIP + MAX_SPL_LIST + 1]);
+      send_to_char(buf,ch);
+      ch->skills[skilltype].learned++;
+    }
+  }
+  else
+  {
+    chance = MIN(30,ch->skills[skilltype].learned + 5);
+    roll = number(1,100);
+    if (roll < chance)
+    {
+      if (skilltype < MAX_SPL_LIST)
+        sprintf(buf,
+		"You learn from your mistakes, and your %s skill improves.\n\r",
+ 	  	skill_name[skilltype]);
+      else
+        sprintf(buf,
+		"You learn from your mistakes, and your %s skill improves.\n\r",
+                skill_name[skilltype - SKILL_TRIP + MAX_SPL_LIST + 1]);
+      send_to_char(buf,ch);
+      ch->skills[skilltype].learned += number (1,3);
+      ch->skills[skilltype].learned = MIN(ch->skills[skilltype].learned,99);
+    }
+  }
+}
 
 /* The three MAX functions define a characters Effective maximum */
 /* Which is NOT the same as the ch->points.max_xxxx !!!          */
 int mana_limit(struct char_data *ch)
 {
     int max;
-
-    if (!IS_NPC(ch))
+/* RT changed to give mobs no max mana limit */
       max = (ch->points.max_mana);
-    else
-      max = 100;
     
     return(max);
 }
@@ -126,6 +177,8 @@ int mana_gain(struct char_data *ch)
     if(IS_NPC(ch)) {
 	/* Neat and fast */
 	gain = GET_LEVEL(ch);
+        if (IS_SET(ch->specials.act, ACT_FAST))
+	  gain *= 2; 
     } else {
 	gain = graf(age(ch).year, 2,4,6,8,6,5,8);
 
@@ -148,6 +201,15 @@ int mana_gain(struct char_data *ch)
     if (IS_AFFECTED(ch,AFF_POISON))
 	gain >>= 2;
 
+    if (IS_AFFECTED(ch,AFF_HASTE))
+	gain >>= 1;
+
+    if (IS_AFFECTED(ch,AFF_PLAGUE))
+    {
+        gain >>= 3;
+        GET_MANA(ch) -= 5;
+    }
+
     if((GET_COND(ch,FULL)==0)||(GET_COND(ch,THIRST)==0))
 	gain >>= 2;
  
@@ -162,7 +224,12 @@ int hit_gain(struct char_data *ch)
     int divisor = 100000;
 
     if(IS_NPC(ch)) {
-	gain = (GET_LEVEL(ch) * 3 ) / 2;
+	if (IS_SET(ch->specials.act, ACT_WARRIOR))
+  	  gain = (GET_LEVEL(ch) * 3 ) / 2;
+	else
+	  gain = GET_LEVEL(ch);
+	if (IS_SET(ch->specials.act, ACT_FAST))
+	  gain *= 2;
 	/* Neat and fast */
     } else {
 
@@ -184,11 +251,20 @@ int hit_gain(struct char_data *ch)
 	    gain >>= 1;
   }
 
-  if (IS_AFFECTED(ch,AFF_POISON))
+  if (IS_AFFECTED(ch,AFF_POISON)) 
     {
 	gain >>= 2;
 	damage(ch,ch,2,SPELL_POISON);
     }
+
+    if (IS_AFFECTED(ch,AFF_HASTE))
+        gain >>= 1;
+
+   if (IS_AFFECTED(ch,AFF_PLAGUE))
+   {
+        gain >>= 3;
+        damage(ch,ch,5,SPELL_PLAGUE);
+   }
 
     if((GET_COND(ch,FULL)==0)||(GET_COND(ch,THIRST)==0))
 	gain >>= 2;
@@ -227,6 +303,15 @@ int move_gain(struct char_data *ch)
     if (IS_AFFECTED(ch,AFF_POISON))
 	gain >>= 2;
 
+    if (IS_AFFECTED(ch,AFF_HASTE))
+        gain >>= 1;
+
+   if (IS_AFFECTED(ch,AFF_PLAGUE))
+   {
+        gain >>= 3;
+        GET_MOVE(ch) -= 5;
+   }
+
     if((GET_COND(ch,FULL)==0)||(GET_COND(ch,THIRST)==0))
 	gain >>= 2;
 
@@ -255,13 +340,15 @@ void advance_level(struct char_data *ch)
     {
     case CLASS_MAGIC_USER:
 	add_hp      += number(6, 8);
-	add_mana    += number(2, (GET_INT(ch) + GET_WIS(ch))/6);
+	add_mana    += number((GET_INT(ch) + GET_WIS(ch)) / 6,
+			      (GET_INT(ch) + GET_WIS(ch)) / 3);
 	add_moves   += number(5, (GET_CON(ch) + 2 * GET_DEX(ch)) / 5);
 	break;
 
     case CLASS_CLERIC:
 	add_hp      += number(7, 10);
-	add_mana    += number(2, (GET_INT(ch) + GET_WIS(ch))/6);
+        add_mana    += number((GET_INT(ch) + GET_WIS(ch)) / 8,
+                              (GET_INT(ch) + GET_WIS(ch)) / 4);
 	add_moves   += number(5, (GET_CON(ch) + 2 * GET_DEX(ch)) / 5);
 	break;
 
@@ -278,7 +365,8 @@ void advance_level(struct char_data *ch)
 
     add_hp			 = MAX( 1, add_hp);
     add_mana			 = MAX( 0, add_mana);
-    add_moves			 = MAX(10, add_moves);
+    add_moves /= 2;
+    add_moves			 = MAX(5, add_moves);
     add_practices		 = wis_app[GET_WIS(ch)].bonus;
     ch->points.max_hit		+= add_hp;
     ch->points.max_mana		+= add_mana;
@@ -314,6 +402,9 @@ void set_title(struct char_data *ch)
 
 void gain_exp( CHAR_DATA *ch, int gain )
 {
+    struct obj_data *i;
+    int iWear;
+
     if ( !IS_NPC(ch) )
     {
 	if ( GET_LEVEL(ch) >= 31 )
@@ -321,9 +412,8 @@ void gain_exp( CHAR_DATA *ch, int gain )
 
 	switch ( GET_CLASS(ch) )
 	{
-	case CLASS_THIEF:      gain += gain / 8; break;
-	case CLASS_MAGIC_USER: gain += gain / 4; break;
-	case CLASS_CLERIC:     gain += gain / 2; break;
+	case CLASS_THIEF:      gain += gain / 2; break;
+	case CLASS_WARRIOR:    gain += gain / 8; break;
 	}
     }
 
@@ -338,6 +428,20 @@ void gain_exp( CHAR_DATA *ch, int gain )
     {
 	send_to_char( "You raise a level!!  ", ch );
 	GET_LEVEL(ch) += 1;
+	/* code to fix eq to level 31 */
+	if (GET_LEVEL(ch) == 31)
+	{
+    	  for ( iWear = 0; iWear < MAX_WEAR; iWear++ )
+    	  {
+            if ( ch->equipment[iWear] && 
+                 ch->equipment[iWear]->obj_flags.eq_level < 32)
+	      ch->equipment[iWear]->obj_flags.eq_level = 31;
+    	  }
+	  for ( i = ch->carrying ; i ; i = i->next_content) 
+	    if (i->obj_flags.eq_level < 32)
+	      i->obj_flags.eq_level = 31;
+        }
+
 	advance_level( ch );
 	set_title( ch );
     }
@@ -414,6 +518,7 @@ void point_update( void )
     void extract_obj(struct obj_data *obj); /* handler.c */
     struct char_data *i, *next_dude;
     struct obj_data *j, *next_thing;
+    struct obj_data *jj, *next_thing2; 
 
   /* characters */
     for (i = character_list; i; i = next_dude) {
@@ -441,9 +546,19 @@ void point_update( void )
 		check_idling(i);
 	    }
 	}
-	gain_condition(i,FULL,-1);
-	gain_condition(i,DRUNK,-1);
-	gain_condition(i,THIRST,-1);
+	if (!IS_AFFECTED(i,AFF_HASTE))
+	{
+	  gain_condition(i,FULL,-1);
+	  gain_condition(i,DRUNK,-1);
+	  gain_condition(i,THIRST,-1);
+	}
+	else
+        {
+          gain_condition(i,FULL,-2);
+          gain_condition(i,DRUNK,-2);
+          gain_condition(i,THIRST,-2);
+        }
+
     } /* for */
 
   /* objects */

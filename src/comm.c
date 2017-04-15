@@ -21,8 +21,8 @@
 #include <strings.h>
 #include <string.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <memory.h>
+#include <unistd.h>
 #include <malloc.h>
 #include <errno.h>
 #include <ctype.h>
@@ -200,6 +200,24 @@ int main( int argc, char *argv[] )
 }
 
 
+/* code for auto-saving players */
+void autosave(int save_count)
+{
+    struct descriptor_data *d;
+
+    for (d = descriptor_list; d; d = d->next)
+    {
+      if (!d->connected && d->character && !IS_NPC(d->character))
+	if (d->character->specials.will_save &&
+	/* saves on a 5-minute cycle OR when count = 5 */
+	    ((d->descriptor + save_count) % 5 == 0 || save_count == 5))
+	{
+	  d->character->specials.will_save = FALSE;
+	  save_char_obj( d->character );
+        }
+     }
+}
+
 
 /* Accept new connects, relay commands, and call 'heartbeat-functs' */
 void game_loop( int control )
@@ -207,9 +225,10 @@ void game_loop( int control )
     fd_set input_set, output_set, exc_set;
     static struct timeval null_time = {0, 0};
     struct timeval last_time, now_time, stall_time;
-    char buf[100];
+    char buf[100],buf2[100],wound[50];
+    struct char_data *victim;
     struct descriptor_data *point, *next_point;
-    int pulse = 0, mask;
+    int pulse = 0, mask, percent, save_count = 0;
     char *pcomm;
     bool fStall;
 
@@ -230,7 +249,7 @@ void game_loop( int control )
     while (!diku_shutdown)
     {
 	/* Check what's happening out there */
-	extern void bzero( );	/* For FD_ZERO ick! */
+        extern void bzero( );     /* For FD_ZERO ick! */
 
 	FD_ZERO(&input_set);
 	FD_ZERO(&output_set);
@@ -326,7 +345,9 @@ void game_loop( int control )
 		else if (point->showstr_point)
 		    show_string(point, pcomm);
 		else
-		    command_interpreter(point->character, pcomm);
+                    {
+		      command_interpreter(point->character,  pcomm);
+                     }
 		free( pcomm );
 
 		/* Cheesy way to force prompts */
@@ -352,10 +373,58 @@ void game_loop( int control )
 		{
 		    if ( !IS_SET(point->character->specials.act, PLR_COMPACT) )
 			write_to_q( "\n\r", &point->output );
-		    sprintf( buf, "<%dhp %dm %dmv> ",
-			GET_HIT(point->character),
-			GET_MANA(point->character),
-			GET_MOVE(point->character) );
+		    if (IS_NPC(point->character) ||
+			(GET_CLASS(point->character) == CLASS_MAGIC_USER) ||
+			(GET_CLASS(point->character) == CLASS_CLERIC) ||
+			(GET_LEVEL(point->character) > 31))
+		    { /* mana prompt */
+		      sprintf( buf, "<%dhp %dm %dmv> ",
+		  	  GET_HIT(point->character),
+			  GET_MANA(point->character),
+			  GET_MOVE(point->character) );
+                    }
+		    else
+		    { /* fighter prompt */
+                      sprintf( buf, "<%dhp %dmv> ",
+                          GET_HIT(point->character),
+                          GET_MOVE(point->character) );
+                    }
+	     	    /* RT if fighting, show victim's condition */
+		    if(GET_POS(point->character) == POSITION_FIGHTING &&
+		       	       point->character->specials.fighting)
+		    {
+		      victim = point->character->specials.fighting;
+		      if (GET_MAX_HIT(victim) > 0)
+			percent = (100*GET_HIT(victim)) /
+				  GET_MAX_HIT(victim);
+	 	      else
+			percent = -1;
+		      if (percent >= 100)
+			sprintf(wound,"is in excellent condition.");
+		      else if (percent >= 90)
+			sprintf(wound,"has a few scratches.");
+ 		      else if (percent >= 75)
+			sprintf(wound,"has some small wounds and bruises.");
+		      else if (percent >= 50)
+		 	sprintf(wound,"has quite a few wounds.");
+		      else if (percent >= 30)
+			sprintf(wound,"has some big nasty wounds and scratches.");
+		      else if (percent >= 15)
+			sprintf(wound,"looks pretty hurt.");
+		      else if (percent >= 0)
+			sprintf(wound,"is in an awful condition.");
+		      else
+			sprintf(wound,"is bleeding to death.");
+		      if (IS_NPC(victim))
+			sprintf(buf2, "%s %s \n\r",
+			        victim->player.short_descr,wound);
+		      else
+			sprintf(buf2, "%s is %s \n\r",GET_NAME(victim),wound);
+
+ 		      strcat(buf2,buf);  /* HACK! */
+		      strcpy(buf,buf2);
+                    }
+
 		    write_to_q( buf, &point->output );
 		}
 
@@ -395,6 +464,14 @@ void game_loop( int control )
 
 	if (pulse % PULSE_VIOLENCE == 0)
 	    perform_violence();
+
+	if (pulse % PULSE_SAVE == 0)
+	{
+	    autosave(save_count);
+	    save_count++;
+	    if (save_count > 4)
+ 	      save_count = 0;
+	}
 
 	if (pulse % ((SECS_PER_MUD_HOUR*1000000)/OPT_USEC) == 0)
 	{
@@ -518,6 +595,7 @@ int init_socket(int port)
     }
 
     sa.sin_family      = hp->h_addrtype;
+    fprintf(stderr,"%d",sa.sin_family);
     sa.sin_port        = htons(port);
     sa.sin_addr.s_addr = 0;
     sa.sin_zero[0]     = 0;
@@ -623,6 +701,8 @@ int new_descriptor(int s)
 
     CREATE(newd, struct descriptor_data, 1);
 
+    newd->rows = 24; /* default */
+
     /* find info */
     size = sizeof(sock);
     if (getpeername(desc, (struct sockaddr *) &sock, &size) < 0)
@@ -634,12 +714,10 @@ int new_descriptor(int s)
     {
       int addr;
 
-  		addr = ntohl( sock.sin_addr.s_addr );
+      addr = ntohl( sock.sin_addr.s_addr );
 
-  		sprintf( buf, "%d.%d.%d.%d", ( addr >> 24 ) & 0xFF, ( addr >> 16 ) & 0xFF, ( addr >>  8 ) & 0xFF, ( addr ) & 0xFF);
-  		sprintf( log_buf, "Sock.sinaddr:  %s", buf );
-
-  		log( log_buf );
+      sprintf( buf, "%d.%d.%d.%d", ( addr >> 24 ) & 0xFF, ( addr >> 16 ) & 0xFF, ( addr >>  8 ) & 0xFF, ( addr ) & 0xFF);
+      log( log_buf );
 
 	strcpy(newd->host, inet_ntoa(&sock.sin_addr));
 	from = gethostbyaddr( (char *) &sock.sin_addr,
@@ -655,7 +733,7 @@ int new_descriptor(int s)
     /*
      * Furey: a site-specific rebuke.
      */
-    if ( !strncmp( newd->host, "etch2mac", 8 ) )
+    if ( !strncmp( newd->host, "columbia", 8 ) )
     {
 	write_to_descriptor( desc,
     "Your site is full of twits.  You are banned for a week.\n\r" );
@@ -673,8 +751,8 @@ int new_descriptor(int s)
      */
     for ( tmp = ban_list; tmp; tmp = tmp->next )
     {
-	if ( !str_cmp( tmp->name, newd->host ) )
-	{
+	if (strstr( newd->host, tmp->name) != NULL)
+{
 	    write_to_descriptor( desc,
 	"Your site has been banned from MERCDikuMud.\n\r" );
 	    close( desc );
@@ -778,16 +856,29 @@ int process_input(struct descriptor_data *t)
 {
     int sofar, thisround, begin, squelch, i, k, flag;
     char tmp[MAX_INPUT_LENGTH+2], buffer[MAX_INPUT_LENGTH + 60];
+    char log_buf[100];
 
     sofar = 0;
     flag = 0;
     begin = strlen(t->buf);
 
+
+    /* anti-spam code */
+
+    if (begin >= sizeof(t->buf) - 10)
+    {
+	sprintf( log_buf, "%s input overflow!", t->host );
+	log(log_buf);
+	write_to_descriptor(t->descriptor,"\n\r*** PUT A LID ON IT ***\n\r");
+        return (-1);
+    }
+
+
     /* Read in some stuff */
     do
     {
 	if ((thisround = read(t->descriptor, t->buf + begin + sofar,
-	    MAX_STRING_LENGTH - (begin + sofar) - 1)) > 0){
+	    (sizeof(t->buf)) - (begin + sofar) - 1)) > 0){
 	    sofar += thisround;
 	      }
 	else
@@ -1077,7 +1168,83 @@ void act(char *str, int hide_invisible, struct char_data *ch,
     }
 }
 
+void act_all(char *str, int hide_invisible, struct char_data *ch,
+    struct obj_data *obj, void *vict_obj, int type)
+{
+    register char *strp, *point, *i = NULL;
+    struct char_data *to;
+    char buf[MAX_STRING_LENGTH];
 
+    if (!str)
+        return;
+    if (!*str)
+        return;
+
+    if (type == TO_VICT)
+        to = (struct char_data *) vict_obj;
+    else if (type == TO_CHAR)
+        to = ch;
+    else
+        to = world[ch->in_room].people;
+
+    for (; to; to = to->next_in_room)
+    {
+        if (to->desc && ((to != ch) || (type == TO_CHAR)) &&
+            (CAN_SEE(to, ch) || !hide_invisible ||
+            (type == TO_VICT)) /* && AWAKE(to) */ &&
+            !((type == TO_NOTVICT) && (to == (struct char_data *) vict_obj)))
+        {
+            for (strp = str, point = buf;;)
+                if (*strp == '$')
+                {
+                    switch (*(++strp))
+                    {
+                        case 'n': i = PERS(ch, to); break;
+                        case 'N': i = PERS((struct char_data *) vict_obj, to);
+                                        break;
+                        case 'm': i = HMHR(ch); break;
+                        case 'M': i = HMHR((struct char_data *) vict_obj);
+                                        break;
+                        case 's': i = HSHR(ch); break;
+                        case 'S': i = HSHR((struct char_data *) vict_obj);
+                                        break;
+                        case 'e': i = HSSH(ch); break;
+                        case 'E': i = HSSH((struct char_data *) vict_obj);
+                                        break;
+                        case 'o': i = OBJN(obj, to); break;
+                        case 'O': i = OBJN((struct obj_data *) vict_obj, to);
+                                        break;
+                        case 'p': i = OBJS(obj, to); break;
+                        case 'P': i = OBJS((struct obj_data *) vict_obj, to);
+                                        break;
+                        case 'a': i = SANA(obj); break;
+                        case 'A': i = SANA((struct obj_data *) vict_obj);
+                                        break;
+                        case 'T': i = (char *) vict_obj; break;
+                        case 'F': i = fname((char *) vict_obj); break;
+                        case '$': i = "$"; break;
+                        default:
+                            log("Illegal $-code to act_all():");
+                            log(str);
+                            break;
+                    }
+                    while ( ( *point = *(i++) ) != '\0' )
+                        ++point;
+                    ++strp;
+                }
+                else if (!(*(point++) = *(strp++)))
+                    break;
+
+            *(--point) = '\n';
+            *(++point) = '\r';
+            *(++point) = '\0';
+
+            write_to_q(CAP(buf), &to->desc->output);
+        }
+        if ((type == TO_VICT) || (type == TO_CHAR))
+            return;
+    }
+}
 
 void night_watchman(void)
 {

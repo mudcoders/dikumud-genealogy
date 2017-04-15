@@ -1,18 +1,41 @@
-MERC Implementors:
+
+			   MERC Authors
+			   ------------
 	Kahn		The MERC Captain	michael@web.berkeley.edu
 	Furey		The MERC Code Master	mec@garnet.berkeley.edu
 	Hatchet		The MERC World Builder	mitchell@ocf.berkeley.edu
 
-MERC Immortals:
-	Hatchet		Chief Immortal
-	Frag		Immortal
-	Jordan		Immortal
+		     Rivers of Mud Implementors
+		     --------------------------
+        Alander         Coder of this MERC port rtaylor@cie.uoregon.edu
+        Tara            Map and area designer
 
-MERC Immortals in Training:
-	Cass
-	Cauchy
 
-Thanks to contributors:
-	Aod of Generic for ... LOTS of things.  You're a hoopy frood, Aod.
-	Raff for Catacombs, Dangerous Neighborhood, and Elemental Canyon.
-	Doctor for Galaxy.
+			Guest Immortals
+			---------------
+                   Hatchet	    	 Mendor
+
+ 
+		  Rivers of MUD Greater Gods
+		  --------------------------
+	      Lanthum       Mattick        Liralen 
+
+
+	              Rivers of MUD Gods
+		      ------------------
+	Alchemist  Unicorn         Forstall	 Goose
+
+      Melynda      Jobu   Liselle      Mithrel     Xavier
+
+	Binky      Andersen        Krij		   Celeste
+
+
+		  Rivers of MUD Immortals
+		  -----------------------
+	Eldritch     Xman 	 Andersen 		Joey 
+
+     Maxim     NightCrawler         Velvet        Zenith
+
+	CoreDUMP	  Mellow		Bundy
+     
+     Little     	Taran     		Logan    

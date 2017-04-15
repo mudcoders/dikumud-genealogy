@@ -1,0 +1,82 @@
+**Hatchet[3405]: key #3430 should be item type key, not item type money.
+**Ikee[6513]: this door isn't pickable from this side
+**Ikee[3031]: also, nothing to buy.
+**Ikee[7912]: item 5050 casts invis, BUT does not have a grab/hold flag.
+**Vizzini[3014]: no help on infravision
+**Vizzini[3014]: help on 'armor' give ac, not spell
+**Mahatma[8916]: at the ballroom the directions don't match room exits
+**Gulik[3033]: there seems to be no help on magic or inns, although these are listed as examples under the help ccommands.  Am I just an idiot?
+**Vizzini[3005]: No help on Acid Blast
+**Daredevil[400]: in the Woodsman:  bard is west, not east
+**Beethoven[2160]: in troll territory. on alexander road just e of wide alley. you can go west indefinitely and get nowhere quick.
+**Ikee[9644]: item 9587 is level 25 and only ACA 1, +1 HR neck armor... let's lower that ot 0
+**Ikee[9428]: obj 9404 has 3 undefined extra flags
+**Vizzini[3005]: no help on infravision
+**Lance[3057]: fly potion doesn't work
+**Slater[3005]: There seems to be a problem w/ the help files.
+**Cerilion[3030]: I'm carrying -33/640 pounds around.
+**Hillary[3001]: it said level but i didn't level :P
+**Lance[3001]: recall area is not safe area totally, agg mobs still attack
+**Bolt[7047]: when I try and go north, it gives me the same room.
+**Melancholy[1466]: assist command: you can assist immortals.  a "They're immortal, they don't NEED help!" might be warranted.
+**Melynda[1477]: When an npc cast I saw the message "Suffer miss room"
+**Huh[3001]: no help on inns but help screen sayd there is
+**Huh[5065]: need a help for demonfire
+**Andersen[9330]: room vnum 9330 should have door to the WEST going to 9331, not door to the south
+**Andersen[9330]: D3 from 9330 to 9331, not D2.
+**Andersen[9339]: Another Nirvana bug:  Room 9339's east exit should go to room 9326, not 9325.
+**Norman[3615]: ther's a skeleton here thats not (i can't kill it)
+**Norman[3619]: there's another skeleton here
+**Gerax[9667]: the northern gate in NT does not open from the outside when closed
+**Eomer[9523]: ODD happenings with East Gate of N Thalos:
+**Eomer[9523]: One minute the gate there works, next minute the gate's noun is a null char,
+**Eomer[9523]: ie: it said The  seems to be closed  ???  Weird
+**Furey[1312]: make potions visible even to blind people
+**Furey[1312]: how about: in can_see_obj, add if (item->type == potion) return TRUE
+**Lia[3001]: after grouping with a 16 level warrior i 8th level thief couldn't gain exp (even after bein ungrouped) i had to log off&on again.
+**Ikee[3056]: Apothecary in town purchases field plate
+**Furey[3001]: witch in witch's tower is only 250k xp, feels more like 1 meg !!
+**Andersen[3048]: eyebrow self gives only a blank line.
+**Malyon[6000]: HELP FAERIE FIRE doesn't work, only HELP FIRE does.
+**Malyon[6000]: There is no help on the Infravision spell
+**Tribble[3001]: epson
+**Tribble[3005]: gheri
+**Tribble[3005]: gheri
+**Calyon[248]: Bless is listed twice under SCORE
+**Fazerburn[3033]: The price of a platinum wand is shown as 199 in list, but it's really 1994.
+**Sabra[3010]: bag
+**Ikee[3001]: the flash social is messed up.  You see ... himself to $$n and it shoudld be to $$N
+**Tribble[4016]: shenlong
+**Celeste[1499]: quiet mode still lets pesky mortals tell to me
+**Venger[3020]: Social raspberry gives str var name when used with not present arguement.
+**Ikee[7912]: I purged them all.
+**MacStrongarm[406]: i cant get typo to work
+**MacStrongarm[406]: typo In the bar of the woodsman, 'reguars' should be 'regulars'.
+**MacStrongarm[3102]: From the promenade, it says that there is an entrance to the park, and a small building seems to be just _west_ of the entrance. Should this in fact be _e
+**MacStrongarm[3035]: I can't buy a studded leather jerkin - it sells me sleeves instead!
+**MavEtJu[3001]: You can't snore while sleeping ;-(
+**Garath[3020]: i cant buy scale mail jerkin in weapon shop, only sleeves
+**MacStrongarm[3001]: there is no help for faerie fire
+**MacStrongarm[3616]: The spell 'protection from evil' has no proper description.
+**Garath[3507]: there are too many invisible thieves in Midgaard.
+**Garath[3507]: it makes it hard to get a good start on the game.
+**Bill[258]: bill
+**MacStrongarm[3058]: when writing a message on the board, @ terminates it wherever it is on the line. This makes it very difficult writing Internet addresses. I suggest @ on a
+**Garath[3001]: I was inthe temple and all my equ> dissappeared.
+**Huh[9320]: imms think its open season since losst god powers and switching over to rom 1.0 they help mortsssss consssstantly either should reduce imms to 31 or make 
+**Garion[3033]: prices in magic shop are innacurate
+**Firehawk[3004]: Why do I keep getting disconnected??
+**Jugg[218]: bread
+**Jugg[218]: bread
+**Jugg[218]: bread
+**Jugg[218]: bread
+**Jugg[218]: bread
+**Balfor[3013]: When I carry both the satchel and the bag when I try to get something from the bag it tells me that it is not in the satchel!
+**Rommel[218]: can't save character's inv -> always have to put bread/water back in bag when I renter the game
+**Torren[2171]: gepetto
+**Lan[3004]: guard
+**Lan[3014]: janitor
+**Fig[6501]: I can't be awarded exp
+**Fig[6507]: I keep killing and the game won't give me EXP!! AAARRRGGHH
+**Fig[6507]: Ahhh my fault figured it out...
+**Underburk[3005]: bag has stuff in it but claims to be empty...

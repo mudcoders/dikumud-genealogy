@@ -299,9 +299,9 @@
 0
 0
 #10~
--1
 3060
 3061
+-1
 -1
 -1
 -1
@@ -324,10 +324,10 @@
 3006
 0
 3049
-6
-22
-6
-22
+0
+28
+0
+0
 #11~
 -1
 3100
@@ -354,10 +354,10 @@
 3100
 0
 3106
-6
-23
-23
-24
+0
+28
+0
+0
 #12~
 -1
 -1
@@ -444,10 +444,10 @@
 3010
 0
 3035
-8
-14
-15
-21
+0
+28
+0
+0
 #15~
 -1
 -1
@@ -474,10 +474,10 @@
 3009
 0
 3034
-9
-12
-14
-17
+0
+28
+0
+0
 #16~
 -1
 304
@@ -630,33 +630,664 @@
 0
 0
 #21~
+3009
 -1
-9023
-9025
-9026
-9028
-9022
-1.8
+-1
+-1
+-1
+-1
+2.0
 .5
+17
 19
+0
+0
+0
+%s Just what you see, Mac!~
+%s Look, if you ain't got it, I can't buy it!~
+%s I only deal in food and drink!~
+%s Come back when business is better.~
+%s Listen, kid, no cash, no grub!~
+%s That'll be %d gold...Pay up!~
+%s Here's %d gold...you thief!~
+0
+0
+6504
+0
+6535
+0
+28
+0
+0
+#22~
+305
+-1
+-1
+-1
+-1
+-1
+2.0
+.5
 5
+8
 9
+0
+0
+%s Sorry, we only sell leather goods.~
+%s I don't see that item.~
+%s I only deal in leather goods.~
+%s Sorry, that item is too valuable for me.~
+%s What? No gold?  Leave or I'll call the guards!~
+%s That'll cost you %d coins, come again!~
+%s You'll get %d coins for that piece of junk.~
+0
+0
+6503
+0
+6516
+0
+28
+0
+0
+#23~
+305
+-1
+-1
+-1
+-1
+-1
+1.5
+.5
+17
+0
+0
+0
+0
+%s Sorry, we only sell drinks here.~
+%s I don't see that item.~
+%s I only deal in beverages.~
+%s Sorry, that item is too valuable for me.~
+%s What? No gold?  Leave or I'll call the Shirrif!~
+%s That'll cost you %d coins, enjoy your drink!~
+%s You'll get %d coins for that.~
+0
+0
+9413
+0
+9416
+0
+28
+0
+0
+#24~
+305
+-1
+-1
+-1
+-1
+-1
+1.5
+.5
+5
+15
+1
 17
 13
-m%  Check the list again buddy!~
-m%  Check your possessions again you caucasian!~
-m%  I don't like those type of things, westerner!~
-m%  Forget it!  I don't have enough money.~
-m%  You poor westerner, you haven't enough money!~
-m%  Lemme have it!  Here's your %d coins for it.~
-m%  Here you go, sucker!  That's %d more coins for me.~
-1
-1
-9018
+%s You must be having a bad day.~
+%s I've never heard of that.  Tell me more about it.~
+%s I'm sorry - I don't buy that sort of thing.~
+%s Looks like I don't have enough gold.~
+%s Come back when you get some more money.~
+%s That will be %d coins.  Enjoy.~
+%s I'll give you %d gold for that.~
 0
-9103
 0
-18
-18
+9418
+0
+9405
+0
+28
+0
+0
+#25~
+305
+-1
+-1
+-1
+-1
+-1
+1.5
+.5
+13
+5
+15
+1
+17
+%s You must be having a bad day.~
+%s I've never heard of that.  Tell me more about it.~
+%s I'm sorry - I don't buy that sort of thing.~
+%s Looks like I don't have enough gold.~
+%s Come back when you get some more money.~
+%s That will be %d coins.  Enjoy.~
+%s You'll get %d coins for that piece of junk.~
+0
+0
+9419
+0
+9421
+0
+28
+0
+0
+#26~
+305
+-1
+-1
+-1
+-1
+-1
+1.5
+.5
+5
+9
+0
+0
+0
+0
+%s Are you trying to pull the wool over my eyes?~
+%s Scram kid!~
+%s I don't deal in that kind of merchandise.~
+%s Do I look like a bank to you?~
+%s Pay up or get out!~
+%s Give me %d coins.  Now beat it!~
+%s Fine, here's %d coins.  Thanks for nothing.~
+0
+0
+9420
+0
+9407
+0
+28
+0
+0
+#27~
+305
+-1
+-1
+-1
+-1
+-1
+1.5
+.5
+17
+0
+0
+0
+0
+%s Sorry, we only sell drinks here.~
+%s I don't see that item.~
+%s I only deal in beverages.~
+%s Sorry, that item is too valuable for me.~
+%s What? No gold?  Leave or I'll call the Shirrif!~
+%s That'll cost you %d coins, enjoy your drink!~
+%s You'll get %d coins for that.~
+0
+0
+9430
+0
+9444
+0
+28
+0
+0
+#28  (General Store)~
+9534
+9535
+9536
+9538
+9539
+-1
+2.0
+1.0
+1
+8
+12
+13
+15
+%s It's very noisy in here, what did you say you wanted to buy?~
+%s I don't understand what you mean.~
+%s Hmm, I think I'll pass on that for now~
+%s WOW that's a really good deal, but I don't have the cash.~
+%s Are you drunk or what ?? - NO CREDIT!~
+%s That'll be - say %d coins.~
+%s OK, I'll give you %d coins, not anymore!~
+0
+0
+9511
+0
+9628
+0
+28
+0
+0
+#29  (Tailor Shop)~
+9546
+9547
+9548
+9551
+9553
+-1
+2.0
+0.4
+8
+11
+9
+16
+21
+%s I haven't got that kind of a clothing~
+%s You don't carry that item~
+%s I only buy things you wear~
+%s I can't afford such a fine weaving~
+%s sorry, but NO CREDIT~
+%s That just costs %d coins.~
+%s Here you have %d coins for that.~
+0
+0
+9513
+0
+9614
+0
+28
+0
+0
+#30  (Vera's Shop)~
+9556
+9557
+9558
+9559
+9570
+-1
+1.5
+0.4
+0
+0
+0
+0
+0
+%s Haven't got that on storage - try list!~
+%s I don't buy~
+%s I don't buy~
+%s I don't buy~
+%s You can't afford it!~
+%s That'll be %d coins, please.~
+%s You'll get %d a bug for it!~
+0
+0
+9514
+0
+9615
+0
+28
+0
+0
+#31 (Butcher shop)~
+-1
+-1
+9561
+9562
+9563
+-1
+1.0
+0.5
+0
+0
+0
+0
+0
+%s Haven't got that on storage - try list!~
+%s I don't buy~
+%s I don't buy~
+%s I don't buy~
+%s You can't afford it!~
+%s That'll be %d coins, please.~
+%s You'll get %d coins for it!~
+0
+0
+9515
+0
+9622
+0
+28
+0
+0
+#32 (Armorer)~
+9515
+9516
+9517
+9518
+9519
+-1
+1.5
+0.1
+9
+11
+0
+0
+0
+%s Haven't got that on storage - try list!~
+%s You don't seem to be carrying that~
+%s I don't buy anything but good armor!~
+%s I'm afraid I dont have the capital for such an investment~
+%s If you have no money, you'll have to go!~
+%s That'll be %d coins.~
+%s I'll gladly take that off you hands for %d coins.~
+0
+0
+9516
+0
+9629
+0
+28
+0
+0
+#33  (Weaponsmith)~
+9503
+9504
+9505
+9506
+9513
+-1
+1.3
+.1
+5
+6
+7
+0
+0
+%s Haven't got that on storage - try list!~
+%s I don't buy imagination!~
+%s I don't buy anything but good weapons!~
+%s I don't buy what i can't pay for!~
+%s If you have no money, you'll have to go!~
+%s That'll be %d coins.~
+%s This will make a fine addition. Here's you %d coins.~
+0
+0
+9517
+0
+9636
+0
+28
+0
+0
+#34  (Elvira's shop)~
+9570
+9571
+9572
+9573
+9574
+-1
+1.87
+.25
+10
+0
+0
+0
+0
+%s Haven't got that on storage - try list!~
+%s I'd love to doll, but show me your goods first.~
+%s Apothecary, potions, understand ?~
+%s I'm low on funds at the moment.~
+%s If you have no money, you'll have to go!~
+%s That'll be %d coins.~
+%s Ok, I guess I could use one of those. Here's %d coins.~
+0
+0
+9579
+0
+9623
+0
+28
+0
+0
+#35  (Mage's Shop)~
+9578
+9579
+9580
+9581
+9582
+-1
+1.7
+.3
+2
+3
+4
+0
+0
+%s Haven't got that on storage - try list!~
+%s A little closer, my eyes arent so good~
+%s I only buy things of magical nature~
+%s I don't have any money~
+%s If you have no money, you'll have to go!~
+%s That'll be %d coins.~
+%s Ill let you sell it for %d coins.~
+0
+0
+9580
+0
+9624
+0
+28
+0
+0
+#36 (New Thalos Leather Shop)~
+9522
+9528
+9533
+9523
+9529
+-1
+1.05
+0.15
+9
+11
+0
+0
+0
+%s Sorry, I haven't got exactly that item.~
+%s You don't seem to have that.~
+%s I don't buy such items.~
+%s That is too expensive for me!~
+%s You can't afford it!~
+%s That'll be %d coins, please.~
+%s You'll get %d coins for it!~
+0
+0
+9584
+0
+9637
+0
+28
+0
+0
+#37 (New Thalos Captain's Shop)~
+-1
+-1
+-1
+3060
+3061
+-1
+1.31
+0.86
+22
+0
+0
+0
+0
+%s Sorry pal, I have not got that kind of ship.~
+%s Ok, but let me see it first.~
+%s I only trade ships.~
+%s I can't afford such a nice ship.~
+%s This ship is too expensive for you.~
+%s Here is your ship, I'll take %d gold coins.~
+%s What a fine deal, you get %d gold coins.~
+0
+0
+9565
+0
+9642
+6
+22
+6
+22
+#38 (New Thalos Bartender)~
+9575
+9576
+-1
+-1
+-1
+-1
+1.1
+0.9
+0
+0
+0
+0
+0
+%s I got no such drink.~
+%s I see no such thing.~
+%s I do not buy, would you like a drink?~
+%s BUG, Please report~
+%s You can't afford such a fine drink~
+%s Fine, that'll be %d gold pieces.~
+%s Bug, please report (%d).~
+0
+0
+9583
+0
+9638
+6
+23
+23
 24
+#39 (New Thalos Blacksmith)~
+-1
+-1
+9587
+9589
+9588
+-1
+2.5
+.5
+0
+0
+0
+0
+0
+%s It's very noisy in here, what did you say you wanted to buy?~
+%s I don't buy what I can't see!~
+%s I don't buy such things!~
+%s I don't buy when I can't pay!~
+%s Are you drunk or what ?? - NO CREDIT!~
+%s That'll be - say %d coins.~
+%s If you'd like, I'll give you %d coins.~
+0
+0
+9566
+0
+9644
+0
+28
+0
+0
+#40 (Dancing Daemon Bartender)~
+9575
+9576
+-1
+-1
+-1
+-1
+1.1
+0.9
+0
+0
+0
+0
+0
+%s I got no such drink.~
+%s I see no such thing.~
+%s I do not buy, would you like a drink?~
+%s BUG, Please report~
+%s You can't afford such a fine drink~
+%s Fine, that'll be %d gold pieces.~
+%s Bug, please report (%d).~
+0
+0
+9505
+0
+9502
+6
+23
+23
+24
+#41 (Bread Stand)~
+9575
+9576
+-1
+-1
+-1
+-1
+1.1
+0.9
+0
+0
+0
+0
+0
+%s I don't seem to have that in stock.~
+%s I see no such thing.~
+%s I do not buy, would you some baked goods?~
+%s BUG, Please report~
+%s You can't afford my fine foods!~
+%s Excellent choice, that'll be %d gold pieces.~
+%s Bug, please report (%d).~
+0
+0
+9510
+0
+9635
+0
+28
+0
+0
+#42 (Midgaard Apothecary)~
+9575
+9576
+-1
+-1
+-1
+-1
+6.0
+1.0
+0
+0
+0
+0
+0
+%s I don't seem to have that in stock.~
+%s I see no such thing.~
+%s I only buy potions.~
+%s I'm afraid I cannot afford that potion.~
+%s You can't afford my potions! Leave before I call the guards!~
+%s Excellent choice, that'll be %d gold pieces.~
+%s Here's %d gold for your potion.~
+0
+0
+9600
+0
+3056
+0
+28
+0
+0
 $~

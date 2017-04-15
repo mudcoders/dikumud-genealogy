@@ -40,6 +40,7 @@ extern struct time_info_data time_info;
 
 void hit(struct char_data *ch, struct char_data *victim, int type);
 void gain_exp(struct char_data *ch, int gain);
+bool can_loot(struct char_data *ch, struct obj_data *obj); 
 
 void cast_burning_hands( byte level, struct char_data *ch, char *arg, int type,
     struct char_data *victim, struct obj_data *tar_obj );
@@ -55,6 +56,20 @@ void cast_magic_missile( byte level, struct char_data *ch, char *arg, int type,
     struct char_data *victim, struct obj_data *tar_obj );
 void cast_blindness( byte level, struct char_data *ch, char *arg, int type,
     struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_shocking_grasp( byte level, struct char_data *ch, char *arg, int type,
+    struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_dispel_magic( byte level, struct char_data *ch, char *arg, int type,
+    struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_acid_blast( byte level, struct char_data *ch, char *arg, int type,
+    struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_weaken( byte level, struct char_data *ch, char *arg, int type,
+    struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_fear( byte level, struct char_data *ch, char *arg, int type,
+    struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_faerie_fire( byte level, struct char_data *ch, char *arg, int type,
+    struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_chill_touch( byte level, struct char_data *ch, char *arg, int type,
+    struct char_data *tar_ch, struct obj_data *tar_obj );
 void cast_curse( byte level, struct char_data *ch, char *arg, int type,
     struct char_data *tar_ch, struct obj_data *tar_obj );
 void cast_sleep( byte level, struct char_data *ch, char *arg, int type,
@@ -65,6 +80,37 @@ void cast_bless( byte level, struct char_data *ch, char *arg, int type,
 	struct char_data *tar_ch, struct obj_data *tar_obj );
 void cast_cure_light( byte level, struct char_data *ch, char *arg, int type,
 	struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_cure_serious( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_cure_critic( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_heal( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_dispel_evil( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_cause_light( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_cause_serious( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_cause_critical( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_plague( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_flamestrike( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_harm( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+void cast_demonfire( byte level, struct char_data *ch, char *arg, int type,
+        struct char_data *tar_ch, struct obj_data *tar_obj );
+
+
+/* mana cost procedure */
+
+int mana_cost(struct char_data *ch, int level, int min_cost)
+{
+  return (MAX(min_cost,100/(2 + GET_LEVEL(ch) - level)));
+} 
+
 /* Dragon breath .. */
 void cast_fire_breath( byte level, struct char_data *ch, char *arg, int type,
   struct char_data *tar_ch, struct obj_data *tar_obj );
@@ -110,8 +156,10 @@ char *how_good(int percent)
 	return ( " (good)");
     if (percent <= 85)
 	return ( " (very good)");
+    if (percent <= 98)
+	return (" (superb)");
 
-    return ( " (Superb)");
+    return ( " (perfect)");
 }
 
 int guild(struct char_data *ch, int cmd, char *arg)
@@ -201,7 +249,7 @@ int guild(struct char_data *ch, int cmd, char *arg)
       send_to_char("You do not seem to be able to practice now.\n\r", ch);
       return(TRUE);
     }
-    if (ch->skills[number].learned >= 95) {
+    if (ch->skills[number].learned >= 75) {
       send_to_char("You are already learned in this area.\n\r", ch);
       return(TRUE);
     }
@@ -210,9 +258,9 @@ int guild(struct char_data *ch, int cmd, char *arg)
     ch->specials.practices--;
     
     percent = ch->skills[number].learned+MAX(25,int_app[GET_INT(ch)].learn);
-    ch->skills[number].learned = MIN(95, percent);
+    ch->skills[number].learned = MIN(75, percent);
     
-    if (ch->skills[number].learned >= 95) {
+    if (ch->skills[number].learned >= 75) {
       send_to_char("You are now learned in this area.\n\r", ch);
       return(TRUE);
     }
@@ -250,7 +298,7 @@ int guild(struct char_data *ch, int cmd, char *arg)
     }
     if (nnumber == -1)
       {
-    if (ch->skills[number+SKILL_SNEAK].learned >= 90) {
+    if (ch->skills[number+SKILL_SNEAK].learned >= 70) {
       send_to_char("You are already learned in this area.\n\r", ch);
       return(TRUE);
     }
@@ -258,16 +306,16 @@ int guild(struct char_data *ch, int cmd, char *arg)
     ch->specials.practices--;
     
     percent = ch->skills[number+SKILL_SNEAK].learned +
-      MIN(int_app[GET_INT(ch)].learn, 12);
-    ch->skills[number+SKILL_SNEAK].learned = MIN(90, percent);
+      MAX(int_app[GET_INT(ch)].learn / 3, 10);
+    ch->skills[number+SKILL_SNEAK].learned = MIN(70, percent);
     
-    if (ch->skills[number+SKILL_SNEAK].learned >= 90) {
+    if (ch->skills[number+SKILL_SNEAK].learned >= 70) {
       send_to_char("You are now learned in this area.\n\r", ch);
       return(TRUE);
     }
       } else
     {
-	if (ch->skills[nnumber+SKILL_TRIP].learned >= 90) {
+	if (ch->skills[nnumber+SKILL_TRIP].learned >= 70) {
 	  send_to_char("You are already learned in this area.\n\r", ch);
 	  return(TRUE);
 	}
@@ -275,10 +323,10 @@ int guild(struct char_data *ch, int cmd, char *arg)
 	ch->specials.practices--;
 
 	percent = ch->skills[nnumber+SKILL_TRIP].learned +
-	  MIN(int_app[GET_INT(ch)].learn, 12);
-	ch->skills[nnumber+SKILL_TRIP].learned = MIN(90, percent);
+        MAX(int_app[GET_INT(ch)].learn / 3, 10);
+	ch->skills[nnumber+SKILL_TRIP].learned = MIN(70, percent);
 
-	if (ch->skills[nnumber+SKILL_TRIP].learned >= 90) {
+	if (ch->skills[nnumber+SKILL_TRIP].learned >= 70) {
 	  send_to_char("You are now learned in this area.\n\r", ch);
 	  return(TRUE);
     }
@@ -318,7 +366,7 @@ int guild(struct char_data *ch, int cmd, char *arg)
       send_to_char("You do not seem to be able to practice now.\n\r", ch);
       return(TRUE);
     }
-    if (ch->skills[number].learned >= 95) {
+    if (ch->skills[number].learned >= 75) {
       send_to_char("You are already learned in this area.\n\r", ch);
       return(TRUE);
     }
@@ -326,9 +374,9 @@ int guild(struct char_data *ch, int cmd, char *arg)
     ch->specials.practices--;
     
     percent = ch->skills[number].learned+MAX(25,int_app[GET_INT(ch)].learn);
-    ch->skills[number].learned = MIN(95, percent);
+    ch->skills[number].learned = MIN(75, percent);
     
-    if (ch->skills[number].learned >= 95) {
+    if (ch->skills[number].learned >= 75) {
       send_to_char("You are now learned in this area.\n\r", ch);
       return(TRUE);
     }
@@ -365,7 +413,7 @@ int guild(struct char_data *ch, int cmd, char *arg)
     }
     if (nnumber == -1)
       {
-    if (ch->skills[number+SKILL_KICK].learned >= 85) {
+    if (ch->skills[number+SKILL_KICK].learned >= 70) {
       send_to_char("You are already learned in this area.\n\r", ch);
       return(TRUE);
     }
@@ -373,16 +421,16 @@ int guild(struct char_data *ch, int cmd, char *arg)
     ch->specials.practices--;
     
     percent = ch->skills[number+SKILL_KICK].learned +
-      MIN(12, int_app[GET_INT(ch)].learn);
-    ch->skills[number+SKILL_KICK].learned = MIN(85, percent);
+      MAX(10, int_app[GET_INT(ch)].learn/3);
+    ch->skills[number+SKILL_KICK].learned = MIN(70, percent);
     
-    if (ch->skills[number+SKILL_KICK].learned >= 85) {
+    if (ch->skills[number+SKILL_KICK].learned >= 70) {
       send_to_char("You are now learned in this area.\n\r", ch);
       return(TRUE);
     }
       } else
     {
-	if (ch->skills[nnumber+SKILL_SECOND_ATTACK].learned >= 85) {
+	if (ch->skills[nnumber+SKILL_SECOND_ATTACK].learned >= 70) {
 	  send_to_char("You are already learned in this area.\n\r", ch);
 	  return(TRUE);
 	}
@@ -390,10 +438,10 @@ int guild(struct char_data *ch, int cmd, char *arg)
 	ch->specials.practices--;
 
 	percent = ch->skills[nnumber+SKILL_SECOND_ATTACK].learned +
-	  MIN(12, int_app[GET_INT(ch)].learn);
-	ch->skills[nnumber+SKILL_SECOND_ATTACK].learned = MIN(85, percent);
+        MAX(int_app[GET_INT(ch)].learn / 3, 10);
+	ch->skills[nnumber+SKILL_SECOND_ATTACK].learned = MIN(70, percent);
 
-	if (ch->skills[nnumber+SKILL_SECOND_ATTACK].learned >= 85) {
+	if (ch->skills[nnumber+SKILL_SECOND_ATTACK].learned >= 70) {
 	  send_to_char("You are now learned in this area.\n\r", ch);
 	  return(TRUE);
     }
@@ -402,9 +450,6 @@ int guild(struct char_data *ch, int cmd, char *arg)
   }
   return (TRUE);
 }
-
-
-
 int train(struct char_data *ch, int cmd, char *arg)
 {
     char    buf[256];
@@ -418,73 +463,103 @@ int train(struct char_data *ch, int cmd, char *arg)
      * Strip white space on arg.
      */
     if ( cmd != 165 )
-	return FALSE;
+        return FALSE;
 
     while ( *arg == ' ' )
-	arg++;
+        arg++;
 
     if ( *arg == '\0' )
     {
-	sprintf( buf, "You have %d practice sessions left.\n\r",
-	    ch->specials.practices );
-	send_to_char( buf, ch );
-	arg = "foo";
+        sprintf( buf, "You have %d practice sessions left.\n\r",
+            ch->specials.practices );
+        send_to_char( buf, ch );
+        arg = "foo";
     }
 
     if ( !str_cmp( arg, "str" ) )
     {
-	if ( GET_CLASS(ch) == CLASS_WARRIOR )
-	    cost    = 3;
-	pAbility    = &ch->abilities.str;
-	pTmpAbility = &ch->tmpabilities.str;
+        if ( GET_CLASS(ch) == CLASS_WARRIOR )
+            cost    = 3;
+        pAbility    = &ch->abilities.str;
+        pTmpAbility = &ch->tmpabilities.str;
     }
 
     else if ( !str_cmp( arg, "int" ) )
     {
-	if ( GET_CLASS(ch) == CLASS_MAGIC_USER )
-	    cost    = 3;
-	pAbility    = &ch->abilities.intel;
-	pTmpAbility = &ch->tmpabilities.intel;
+        if ( GET_CLASS(ch) == CLASS_MAGIC_USER )
+            cost    = 3;
+        pAbility    = &ch->abilities.intel;
+        pTmpAbility = &ch->tmpabilities.intel;
     }
 
     else if ( !str_cmp( arg, "wis" ) )
     {
-	if ( GET_CLASS(ch) == CLASS_CLERIC )
-	    cost    = 3;
-	pAbility    = &ch->abilities.wis;
-	pTmpAbility = &ch->tmpabilities.wis;
+        if ( GET_CLASS(ch) == CLASS_CLERIC )
+            cost    = 3;
+        pAbility    = &ch->abilities.wis;
+        pTmpAbility = &ch->tmpabilities.wis;
     }
 
     else if ( !str_cmp( arg, "con" ) )
     {
-	pAbility    = &ch->abilities.con;
-	pTmpAbility = &ch->tmpabilities.con;
+        pAbility    = &ch->abilities.con;
+        pTmpAbility = &ch->tmpabilities.con;
     }
 
     else if ( !str_cmp( arg, "dex" ) )
     {
-	if ( GET_CLASS(ch) == CLASS_THIEF )
-	    cost    = 3;
-	pAbility    = &ch->abilities.dex;
-	pTmpAbility = &ch->tmpabilities.dex;
+        if ( GET_CLASS(ch) == CLASS_THIEF )
+            cost    = 3;
+        pAbility    = &ch->abilities.dex;
+        pTmpAbility = &ch->tmpabilities.dex;
+    }
+/* kind of an ugly hack (escaping out of the procedure with return)
+    change cost and/or points gained per train if you wish */
+
+    else if ( !str_cmp( arg, "hits" ) )
+    {
+        cost = 1;
+    if ( cost > ch->specials.practices )
+       {
+           send_to_char( "You don't have enough practices.\n\r", ch );
+           return TRUE;
+       }
+    ch->specials.practices    -= cost;
+    ch->points.max_hit += 2;
+    send_to_char( "You feel more durable! \n\r", ch );
+    return TRUE; 
+    }
+
+    else if ( !str_cmp( arg, "mana" ) )
+    {
+        cost = 1;
+    if ( cost > ch->specials.practices )
+       {
+           send_to_char( "You don't have enough practices.\n\r", ch );
+           return TRUE;
+       }
+    ch->specials.practices    -= cost;
+    ch->points.max_mana += 2;
+    send_to_char("You feel more powerful! \n\r", ch );
+    return TRUE;
     }
 
     else
     {
-	send_to_char( "You can train in: str int wis con dex.\n\r", ch );
-	return TRUE;
+        send_to_char( "You can train in: str int wis con dex mana hits.\n\r", ch );
+        return TRUE;
     }
 
     if ( cost > ch->specials.practices )
     {
-	send_to_char( "You don't have enough practices.\n\r", ch );
-	return TRUE;
+        send_to_char( "You don't have enough practices.\n\r", ch );
+        return TRUE;
     }
 
-    if ( *pAbility >= 18 || *pTmpAbility >= 18 )
+    if ( *pAbility >= 18)
     {
-	send_to_char( "That ability is already at maximum.\n\r", ch );
-	return TRUE;
+        send_to_char( "That ability is already at maximum.\n\r", ch );
+        return TRUE;
     }
 
     ch->specials.practices    -= cost;
@@ -494,6 +569,8 @@ int train(struct char_data *ch, int cmd, char *arg)
 
     return TRUE;
 }
+
+
 
 
 
@@ -808,81 +885,321 @@ int magic_user(struct char_data *ch, int cmd, char *arg)
     /* Find a dude to do evil things upon ! */
 
     for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
-	if (vict->specials.fighting==ch && number(0,2)==0)
+	if (vict->specials.fighting==ch && (number(0,2) < 2))
 	    break;
 
     if (!vict)
 	return FALSE;
 
-
-    if( vict!=ch->specials.fighting && GET_LEVEL(ch)>13 && number(0,7)==0 )
+    if((GET_LEVEL(ch)>10) && GET_MANA(ch) >= mana_cost(ch,11,15)
+    	&& number(0,5) == 0)
     {
-	act("$n utters the words 'dilan oso'.", 1, ch, 0, 0, TO_ROOM);
-	cast_sleep(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	return TRUE;
+        act("$n utters the words 'sin magicum'.", 1, ch, 0, 0, TO_ROOM);
+        cast_dispel_magic(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+	GET_MANA(ch) -= mana_cost(ch,11,15);
+        return TRUE;
     }
 
-    if( (GET_LEVEL(ch)>12) && (number(0,6)==0) )
+    if((GET_LEVEL(ch)>19) && GET_MANA(ch) >= mana_cost(ch,20,16)
+        && number(0,1)==0 )
     {
-	act("$n utters the words 'gharia miwi'.", 1, ch, 0, 0, TO_ROOM);
-	cast_curse(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	return TRUE;
+        act("$n utters the words 'arque brak'.", 1, ch, 0, 0, TO_ROOM);
+        cast_acid_blast(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,20,16);
+        return TRUE;
     }
 
-    if( (GET_LEVEL(ch)>7) && (number(0,5)==0) )
+    if((GET_LEVEL(ch)>14) && GET_MANA(ch) >= mana_cost(ch,15,15)
+        && number(0,1)==0)
     {
-	act("$n utters the words 'koholian dia'.", 1, ch, 0, 0, TO_ROOM);
-	cast_blindness(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	return TRUE;
-    }
+        act("$n utters the words 'tuborg'.", 1, ch, 0, 0, TO_ROOM);
+        cast_fireball(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,15,15);
+        return TRUE;
+    } 
 
-    if( (GET_LEVEL(ch)>12) && (number(0,8)==0) && IS_EVIL(ch))
+    if((GET_LEVEL(ch)>13) && GET_MANA(ch) >= mana_cost(ch,14,15)
+         && vict!=ch->specials.fighting && number(0,4)==0)
     {
-	act("$n utters the words 'ib er dranker'.", 1, ch, 0, 0, TO_ROOM);
-	cast_energy_drain(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	return TRUE;
+        act("$n utters the words 'dilan oso'.", 1, ch, 0, 0, TO_ROOM);
+        cast_sleep(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,14,15);
+        return TRUE;
     }
 
-    switch (GET_LEVEL(ch)) {
-	case 1:
-	case 2:
-	case 3:
-	case 4:
-	    act("$n utters the words 'hahili duvini'.", 1, ch, 0, 0, TO_ROOM);
-	    cast_magic_missile(
-		GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	    break;
-	case 5:
-	case 6:
-	case 7:
-	case 8:
-	    act("$n utters the words 'grynt oef'.", 1, ch, 0, 0, TO_ROOM);
-	    cast_burning_hands(
-		GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	    break;
-	case 9:
-	case 10:
-	    act("$n utters the words 'sjulk divi'.", 1, ch, 0, 0, TO_ROOM);
-	    cast_lightning_bolt(
-		GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	    break;
-	case 11:
-	case 12:
-	case 13:
-	case 14:
-	    act("$n utters the words 'nasson hof'.", 1, ch, 0, 0, TO_ROOM);
-	    cast_colour_spray(
-		GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	    break;
-	default:
-	    act("$n utters the words 'tuborg'.", 1, ch, 0, 0, TO_ROOM);
-	    cast_fireball(
-		GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-	    break;
+    if((GET_LEVEL(ch)>12) && GET_MANA(ch) >= mana_cost(ch,13,35)
+         && IS_EVIL(ch) && number(0,5) == 0)
+    {
+        act("$n utters the words 'ib er dranker'.", 1, ch, 0, 0, TO_ROOM);
+        cast_energy_drain(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,13,35);
+        return TRUE;
     }
-    return TRUE;
+
+    if((GET_LEVEL(ch)>11)  && GET_MANA(ch) >= mana_cost(ch,12,20)
+        && number(0,3) == 0)
+    {
+        act("$n utters the words 'gharia miwi'.", 1, ch, 0, 0, TO_ROOM);
+        cast_curse(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,12,20);
+        return TRUE;
+    }
+
+   if((GET_LEVEL(ch)>10) && GET_MANA(ch) >= mana_cost(ch,11,15)
+         && number(0,1) == 0)
+    {
+        act("$n utters the words 'nassan hof'.", 1, ch, 0, 0, TO_ROOM);
+        cast_colour_spray(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+	GET_MANA(ch) -= mana_cost(ch,11,15);
+        return TRUE;
+    }
+
+    if((GET_LEVEL(ch)>8) && GET_MANA(ch) >= mana_cost(ch,9,15)
+         && number(0,1) == 0)
+    {
+        act("$n utters the words 'sjulk divi'.", 1, ch, 0, 0, TO_ROOM);
+        cast_lightning_bolt(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,9,15);
+        return TRUE;
+    }
+
+    if((GET_LEVEL(ch)>7) && GET_MANA(ch) >= mana_cost(ch,8,5)
+         && number (0,2) == 0)
+    {
+        act("$n utters the words 'koholian dia'.", 1, ch, 0, 0, TO_ROOM);
+        cast_blindness(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,8,5);
+        return TRUE;
+    }
+
+    if((GET_LEVEL(ch)>6)  && GET_MANA(ch) >= mana_cost(ch,7,15)
+        && number (0,1) == 0)
+    {
+        act("$n utters the words 'electrum'.", 1, ch, 0, 0, TO_ROOM);
+        cast_shocking_grasp(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,7,15);
+        return TRUE;
+    }
+
+    if((GET_LEVEL(ch)>6) && GET_MANA(ch) >= mana_cost(ch,7,20)
+         && number (0,2) == 0)
+    {
+        act("$n utters the words 'infectum nostrum'.", 1, ch, 0, 0, TO_ROOM);
+        cast_weaken(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,7,20);
+        return TRUE;
+    }
+
+   if((GET_LEVEL(ch)>5) && GET_MANA(ch) >= mana_cost(ch,6,7)
+         && number (0,2) == 0)
+    {
+        act("$n utters the words 'nocturnum'.", 1, ch, 0, 0, TO_ROOM);
+        cast_fear(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,6,7);
+        return TRUE;
+    }
+
+    if((GET_LEVEL(ch)>4) && GET_MANA(ch) >= mana_cost(ch,5,15)
+         && number (0,1) == 0)
+    {
+        act("$n utters the words 'grynt oef'.", 1, ch, 0, 0, TO_ROOM);
+        cast_burning_hands(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,5,15);
+        return TRUE;
+    }
+
+    if((GET_LEVEL(ch)>3) && GET_MANA(ch) >= mana_cost(ch,4,6)
+         && number (0,3) == 0)
+    {
+        act("$n utters the words 'glow'.", 1, ch, 0, 0, TO_ROOM);
+        cast_faerie_fire(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,4,6);
+        return TRUE;
+    }
+
+    if((GET_LEVEL(ch)>2) && GET_MANA(ch) >= mana_cost(ch,3,15)
+         && number (0,1) == 0)
+    {
+        act("$n utters the words 'chill touch'.", 1, ch, 0, 0, TO_ROOM);
+        GET_MANA(ch) -= mana_cost(ch,3,15);
+        cast_chill_touch(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        return TRUE;
+    }
+
+    if(GET_MANA(ch) >= mana_cost(ch,1,15)) 
+   {
+        act("$n utters the words 'hahili duvini'.", 1, ch, 0, 0, TO_ROOM);
+        cast_magic_missile(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,1,15);
+        return TRUE;
+   }  
+   
+   return FALSE;
+
 }
 
+
+int cleric(struct char_data *ch, int cmd, char *arg)
+{
+    struct char_data *vict;
+ 
+    if(cmd) return FALSE;
+ 
+    if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
+ 
+    if(!ch->specials.fighting) return FALSE;
+ 
+ 
+    /* Find a dude to do evil things upon ! */
+ 
+    for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
+        if (vict->specials.fighting==ch && (number(0,2) < 2))
+            break;
+ 
+    if (!vict)
+        return FALSE;
+ 
+    if((GET_LEVEL(ch)>15) && GET_MANA(ch) >= mana_cost(ch,16,15)
+        && number(0,5) == 0)
+    {
+        act("$n utters the words 'sin magicum'.", 1, ch, 0, 0, TO_ROOM);
+        cast_dispel_magic(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,16,15);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>24) && GET_MANA(ch) >= mana_cost(ch,25,21)
+         && number(0,2)==0 )
+    {
+        act("$n utters the words 'oculowai yufz'.", 1, ch, 0, 0, TO_ROOM);
+        cast_demonfire(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,25,21);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>14) && GET_MANA(ch) >= mana_cost(ch,15,35)
+         && number(0,2)==0)
+    {
+        act("$n utters the words 'pabraw'.", 1, ch, 0, 0, TO_ROOM);
+        cast_harm(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,15,35);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>13) && GET_MANA(ch) >= mana_cost(ch,14,50)
+         && ((ch->points.max_hit - ch->points.hit) > 99)
+         && number(0,2)==0)
+    {
+        act("$n utters the words 'pzar'.", 1, ch, 0, 0, TO_ROOM);
+        cast_heal(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, ch, 0);
+        GET_MANA(ch) -= mana_cost(ch,14,50);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>10) && GET_MANA(ch) >= mana_cost(ch,11,20)
+         && number (0,2) == 0)
+    {
+        act("$n utters the words 'plague'.", 1, ch, 0, 0, TO_ROOM);
+        cast_plague(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,11,20);
+        return TRUE;
+    }
+ 
+ 
+    if((GET_LEVEL(ch)>12) && GET_MANA(ch) >= mana_cost(ch,13,20)
+         && number(0,2) == 0)
+    {
+        act("$n utters the words 'yrawzghfutz'.", 1, ch, 0, 0, TO_ROOM);
+        cast_flamestrike(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,13,20);
+        return TRUE;
+    }
+
+ 
+    if((GET_LEVEL(ch)>9) && GET_MANA(ch) >= mana_cost(ch,10,15)
+         && !IS_EVIL(ch) && IS_EVIL(vict) && number(0,2) == 0)
+    {
+        act("$n utters the words 'eugszr zzur'.", 1, ch, 0, 0, TO_ROOM);
+        cast_dispel_evil(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,10,15);
+        return TRUE;
+    }
+ 
+   if((GET_LEVEL(ch)>8) && GET_MANA(ch) >= mana_cost(ch,9,20)
+         && ((ch->points.max_hit - ch->points.hit) > 50) 
+         && number(0,2) == 0)
+    {
+        act("$n utters the words 'judicandus qfuhuq'.", 1, ch, 0, 0, TO_ROOM);
+        cast_cure_critic(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, ch, 0);
+        GET_MANA(ch) -= mana_cost(ch,9,20);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>8) && GET_MANA(ch) >= mana_cost(ch,9,20)
+         && number(0,2) == 0)
+    {
+        act("$n utters the words 'qkadagz qfuhuq'.", 1, ch, 0, 0, TO_ROOM);
+        cast_cause_critical(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,9,20);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>5) && GET_MANA(ch) >= mana_cost(ch,6,5)
+         && number (0,2) == 0)
+    {
+        act("$n utters the words 'koholian dia'.", 1, ch, 0, 0, TO_ROOM);
+        cast_blindness(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,6,5);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>4) && GET_MANA(ch) >= mana_cost(ch,5,17)
+         && ((ch->points.max_hit - ch->points.hit) > 25)
+         && number (0,2) == 0)
+    {
+        act("$n utters the words 'judicandus gzfuajg'.", 1, ch, 0, 0, TO_ROOM);
+        cast_cure_serious(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, ch, 0);
+        GET_MANA(ch) -= mana_cost(ch,5,17);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>4) && GET_MANA(ch) >= mana_cost(ch,5,17)
+         && number (0,2) == 0)
+    {
+        act("$n utters the words 'koholian gzfuajg'.", 1, ch, 0, 0, TO_ROOM);
+        cast_cause_serious(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,5,17);
+        return TRUE;
+    }
+ 
+    if((GET_LEVEL(ch)>1) && GET_MANA(ch) >= mana_cost(ch,2,6)
+         && number (0,3) == 0)
+    {
+        act("$n utters the words 'glow'.", 1, ch, 0, 0, TO_ROOM);
+        cast_faerie_fire(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,2,6);
+        return TRUE;
+    }
+ 
+    if(GET_MANA(ch) >= mana_cost(ch,1,15) &&
+	(ch->points.max_hit - ch->points.hit) > 12 && number (0,1) == 0)
+    {
+        act("$n utters the words 'judicandus dies'.", 1, ch, 0, 0, TO_ROOM);
+        cast_cure_light(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, ch, 0);
+        GET_MANA(ch) -= mana_cost(ch,1,15);
+        return TRUE;
+    }
+ 
+   if (GET_MANA(ch) >= mana_cost(ch,1,15)) 
+   {
+        act("$n utters the words 'koholian dies'.", 1, ch, 0, 0, TO_ROOM);
+        cast_cause_light(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+        GET_MANA(ch) -= mana_cost(ch,1,15);
+        return TRUE;
+   }
+   return FALSE;
+ 
+}
 int Thalos_citizen(struct char_data *ch, int cmd, char *arg)
 {
   void do_say(struct char_data *ch, char *argument, int cmd);
@@ -1023,7 +1340,7 @@ int Executioner(struct char_data *ch, int cmd, char *arg)
 	    continue;
 
 	sprintf( buf,
-	    "%s is a %s!  PROTECT THE INNOCENT!  MORE BLOOOOD!!!",
+	    "%s is a %s!  Hassan CHOP!",
 	    GET_NAME(tch),
 	    strName );
 	do_shout( ch, buf, 0 );
@@ -1039,6 +1356,10 @@ int Executioner(struct char_data *ch, int cmd, char *arg)
 }
 
 
+int white_dragon(struct char_data *ch, int cmd, char *arg)
+{
+  return FALSE;
+}
 
 int red_dragon(struct char_data *ch, int cmd, char *arg)
 {
@@ -1070,34 +1391,6 @@ int red_dragon(struct char_data *ch, int cmd, char *arg)
     return TRUE;
 }
 
-int white_dragon(struct char_data *ch, int cmd, char *arg)
-{
-    struct char_data *vict;
-
-    return FALSE;
-
-    if(cmd) return FALSE;
-
-    if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
-    
-    if(!ch->specials.fighting) return FALSE;
-
-    /* Find a dude to do evil things upon ! */
-    for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
-		if (vict->specials.fighting==ch && number(0,1)==0){
-	  act("$n breathes frost.",1, ch, 0, 0, TO_ROOM);
-	  cast_frost_breath(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-		}
-
-	if (!vict)
-	  if (number(0,1) == 0){
-	act("$n breathes frost.",1, ch, 0, 0, TO_ROOM);
-	cast_frost_breath(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL,
-		  ch->specials.fighting, 0);
-	  }
-
-    return TRUE;
-}
 
 int black_dragon(struct char_data *ch, int cmd, char *arg)
 {
@@ -1275,16 +1568,16 @@ int puff(struct char_data *ch, int cmd, char *arg)
     switch (number(0, 12))
     {
 	case 5:
-	    do_say(ch, "My god! It's full of stars!", 0);
+	    do_say(ch, "I....I have become....comfortably numb!", 0);
 	   return(1);
 	case 2:
-	    do_say(ch, "How'd all those fish get up here?", 0);
+	    do_say(ch, "Did you know that I'm written in C?", 0);
 	    return(1);
 	case 8:
-	    do_say(ch, "I'm a very female dragon.", 0);
+	    do_say(ch, "The colors, the colors!", 0);
 	    return(1);
 	case 9:
-	    do_say(ch, "I've got a peaceful, easy feeling.", 0);
+	    do_say(ch, "Into the distance, black on black....", 0);
 	    return(1);
 	default:
 	    return(0);
@@ -1300,7 +1593,8 @@ int fido(struct char_data *ch, int cmd, char *arg)
 	return(FALSE);
 
     for (i = world[ch->in_room].contents; i; i = i->next_content) {
-	if (GET_ITEM_TYPE(i)==ITEM_CONTAINER && i->obj_flags.value[3]) {
+	if (GET_ITEM_TYPE(i)==ITEM_CONTAINER && i->obj_flags.value[3] &&
+	    can_loot(ch,i)) { 
 	    act("$n savagely devours a corpse.", FALSE, ch, 0, 0, TO_ROOM);
 	    for(temp = i->contains; temp; temp=next_obj)
 	    {
@@ -1499,16 +1793,16 @@ int MERCling(struct char_data *ch, int cmd, char *arg)
 	switch (number(0, 12))
 	{
     case 0:
-      do_shout(ch, "Happy Birthday to Hatchet!  Happy Birthday to me!", 0);
+      do_shout(ch, "Happy Birthday to Alander!  Happy Birthday to me!", 0);
       return(1);
     case 1:
-      do_shout(ch, "Happy Birthday to Kahn!  Happy Birthday to you!", 0);
+      do_shout(ch, "Happy Birthday to Russ!  Happy Birthday to you!", 0);
       return(1);
     case 2:
-      do_shout(ch, "Happy Birthday to Hatchet!  Happy Birthday to you!", 0);
+      do_shout(ch, "Happy Birthday to Alander!  Happy Birthday to you!", 0);
       return(1);
     case 3:
-      do_shout(ch, "Happy Birthday to Kahn!  Happy Birthday to me!", 0);
+      do_shout(ch, "Happy Birthday to Russ!  Happy Birthday to me!", 0);
       return(1);
     default:
       return(0);

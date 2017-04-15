@@ -14,6 +14,7 @@
  ***************************************************************************/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
@@ -37,6 +38,8 @@ extern struct char_data *character_list;
 extern struct obj_data *object_list;
 extern char credits[MAX_STRING_LENGTH];
 extern char news[MAX_STRING_LENGTH];
+extern char motd[MAX_STRING_LENGTH];
+extern char imotd[MAX_STRING_LENGTH];
 extern char info[MAX_STRING_LENGTH];
 extern char story[MAX_STRING_LENGTH];
 extern char wizlist[MAX_STRING_LENGTH];
@@ -51,10 +54,53 @@ extern struct str_app_type str_app[];
 struct time_info_data age(struct char_data *ch);
 void page_string(struct descriptor_data *d, char *str, int keep_internal);
 
+/* RT board functions */
+
+int find_board (struct char_data *ch);
+int Board_show_board(int board_type, struct char_data *ch);
+int Board_display_msg(int board_type, struct char_data *ch, char *arg);
+int Board_remove_msg(int board_type, struct char_data *ch, char *arg);
+int Board_save_board(int board_type);
+
 /* intern functions */
 
 void list_obj_to_char(struct obj_data *list,struct char_data *ch, int mode,
     bool show);
+
+/* RT board erase call */
+
+void do_erase(struct char_data *ch, char *argument, int cmd)
+{
+  char temp[MAX_STRING_LENGTH];
+  struct obj_data *obj_board;
+  int board_type;
+
+  obj_board = get_obj_in_list_vis(ch,"board",world[ch->in_room].contents);
+  if (!obj_board)
+  {
+    send_to_char("You do not see a board here.\n\r",ch);
+    return;
+  }
+
+  one_argument(argument,temp);
+  if (!is_number(temp))
+  {
+    send_to_char("You must provide a number to erase.\n\r",ch);
+    return;
+  }
+
+  board_type = find_board(ch);
+  if (board_type != -1)
+  {
+    Board_remove_msg(board_type,ch,argument);
+    Board_save_board(board_type);
+  }
+  else
+  {
+    send_to_char("You do not see a board here.\n\r",ch);
+    return;
+  }
+}
 
 
 /* Procedures related to 'look' */
@@ -111,7 +157,7 @@ char *find_ex_description(char *word, struct extra_descr_data *list)
 
 void show_obj_to_char(struct obj_data *object, struct char_data *ch, int mode)
 {
-    char buffer[MAX_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
     bool found;
 
     buffer[0] = '\0';
@@ -190,7 +236,7 @@ void list_obj_to_char(struct obj_data *list,struct char_data *ch, int mode,
 
 void show_char_to_char(struct char_data *i, struct char_data *ch, int mode)
 {
-    char buffer[MAX_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
     int j, found, percent;
     struct obj_data *tmp_obj;
 
@@ -386,13 +432,49 @@ void list_char_to_char(struct char_data *list, struct char_data *ch,
 }
 
 
+/* RT code for changing the size of the scroll buffer */
+void do_scroll(struct char_data *ch, char *argument, int cmd)
+{
+    char arg[MAX_STRING_LENGTH];
+    char buf[MAX_STRING_LENGTH];
+    int new_rows;
+
+    one_argument(argument,arg);
+    if (!*arg)
+    {
+      sprintf(buf,"You currently display %d lines.\n\r",ch->desc->rows);
+      send_to_char(buf,ch);
+      return;
+    }
+    new_rows = atoi(arg);
+    if (!new_rows || new_rows < 20)
+    {
+      send_to_char("You must provide a number greater than 20.\n\r",ch);
+      return;
+    }
+    ch->desc->rows = new_rows;
+    ch->specials.rows = new_rows;
+    sprintf(buf,"You now will display %d lines.\n\r",ch->desc->rows);
+    send_to_char(buf,ch);
+}
 
 void do_look(struct char_data *ch, char *argument, int cmd)
 {
-    char buffer[MAX_STRING_LENGTH];
-    char arg1[MAX_STRING_LENGTH];
-    char arg2[MAX_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
+    char output[SHORT_STRING_LENGTH];
+    char arg1[SHORT_STRING_LENGTH];
+    char arg2[SHORT_STRING_LENGTH];
     int keyword_no;
+    int door;
+    char *exits[] =
+    {
+        "North",
+        "East",
+        "South",
+        "West",
+        "Up",
+        "Down"
+    };
     int j, bits, temp;
     bool found;
     struct obj_data *tmp_object, *found_object;
@@ -613,7 +695,17 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 			    if (CAN_SEE_OBJ(ch, tmp_object)) {
 				tmp_desc = find_ex_description(arg2, 
 				    tmp_object->ex_description);
-				if (tmp_desc) {
+/* RT for looking at a board */
+                                if (tmp_object->obj_flags.type_flag ==
+                                    ITEM_BOARD)
+ 
+                                {
+                                  temp = find_board(ch);
+                                  if (temp != -1)
+				    Board_show_board(temp,ch);
+				  found = TRUE;
+				}
+				else if (tmp_desc) {
 				    page_string(ch->desc, tmp_desc, 1);
 				    found = TRUE;
 				}
@@ -649,6 +741,24 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 
 		if (!IS_SET(ch->specials.act, PLR_BRIEF))
 		    send_to_char(world[ch->in_room].description, ch);
+		if (IS_SET(ch->specials.act, PLR_AUTOEXIT))
+		{
+		  *buffer = '\0';
+		  if (!check_blind(ch))
+		  {
+		    for (door = 0; door <= 5; door ++)
+		    {
+		      if (EXIT(ch, door))
+		 	if (EXIT(ch,door)->to_room != NOWHERE &&
+			    !IS_SET(EXIT(ch,door)->exit_info,EX_CLOSED))
+			  sprintf(buffer + strlen(buffer), "%s ", exits[door]);
+                    }
+                  }
+		  if (!*buffer)	
+ 		    sprintf(buffer,"None");
+ 	   	  sprintf(output,"\n\rExits: %s\n\r", buffer);
+		  send_to_char(output,ch);
+                }
 
 		list_obj_to_char(world[ch->in_room].contents, ch, 0,FALSE);
 
@@ -672,6 +782,31 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 void do_read(struct char_data *ch, char *argument, int cmd)
 {
     char buf[100];
+    int num, board_type;
+    struct obj_data *board;
+
+    /* RT code for read <number> */
+   
+    one_argument(argument,buf); 
+    if (is_number(buf))
+    {
+      num = atoi(buf);
+      board = get_obj_in_list_vis(ch,"board",world[ch->in_room].contents);
+      if (!board)
+      {
+ 	send_to_char("You do not see a board here.\n\r",ch);
+	return;
+      }
+      board_type = find_board(ch);
+      if (board_type != -1)
+        Board_display_msg(board_type,ch,argument);
+      else
+      {
+	send_to_char("You do not see a board here.\n\r",ch);
+	return;
+      }
+      return;
+    } 
 
     /* This is just for now - To be changed later.! */
     sprintf(buf,"at %s",argument);
@@ -716,7 +851,7 @@ void do_examine(struct char_data *ch, char *argument, int cmd)
 void do_exits(struct char_data *ch, char *argument, int cmd)
 {
     int door;
-    char buf[MAX_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
     char *exits[] =
     {   
 	"North",
@@ -754,7 +889,7 @@ void do_exits(struct char_data *ch, char *argument, int cmd)
 
 void do_score(struct char_data *ch, char *argument, int cmd)
 {
-    char buf[MAX_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
     struct affected_type *aff;
 	extern char *apply_types[];
 	extern char *spells[];
@@ -816,8 +951,7 @@ void do_score(struct char_data *ch, char *argument, int cmd)
 	sprintf(buf, "%d.\n\r", GET_AC(ch));
 	send_to_char(buf, ch);
       }
-    else
-      {
+    
 	if ((GET_AC(ch)<101) && (GET_AC(ch)>90))
 	  send_to_char("You are naked.  Better get some clothes.\n\r",ch);
 	else
@@ -860,7 +994,6 @@ void do_score(struct char_data *ch, char *argument, int cmd)
 	else
 	if (GET_AC(ch)<-139)
 	  send_to_char("Nothing can touch you now!\n\r",ch);
-      }
 
     if (GET_LEVEL(ch)>=15){
       sprintf(buf,"Hitroll: %d  Damroll: %d.\n\r",
@@ -949,6 +1082,12 @@ void do_score(struct char_data *ch, char *argument, int cmd)
 	      }
     if(IS_AFFECTED(ch,AFF_GROUP)){
       send_to_char("You are grouped.\n\r",ch);
+    }
+
+    if ((GET_LEVEL(ch) > 30) && (ch->specials.invis_level > 30))
+    {
+	sprintf(buf, "Invisible: level %d.\n\r",ch->specials.invis_level);
+	send_to_char(buf,ch);
     }
 
     if (ch->affected)
@@ -1049,10 +1188,10 @@ void do_help(struct char_data *ch, char *argument, int cmd)
     extern int top_of_helpt;
     extern struct help_index_element *help_index;
     extern FILE *help_fl;
-    extern char help[MAX_STRING_LENGTH];
+    extern char help[SHORT_STRING_LENGTH];
 
     int chk, bot, top, mid;
-    char buf[MAX_STRING_LENGTH], buffer[MAX_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH], buffer[SHORT_STRING_LENGTH];
 
 
     if (!ch->desc)
@@ -1112,15 +1251,93 @@ void do_help(struct char_data *ch, char *argument, int cmd)
 void do_who(struct char_data *ch, char *argument, int cmd)
 {
     struct descriptor_data *d;
+    char output[MAX_STRING_LENGTH];
     char buf[256];
     char tmp[256];
     char temp[256];
+    char arg1[SHORT_STRING_LENGTH];
+    int  low_limit =0;
+    int  high_limit = 0;
+    int  check_class = -1;
+    int  temp_limit = 0;
+    int  count;
+    int  found = 0;
+   
 
-    send_to_char("Players\n\r-------\n\r", ch);
+
+    /* New parser -- kind of ugly, but not bad for not knowing C */
+    count = 1;
+    while (count <= 3)
+    {
+      argument=one_argument(argument,arg1);
+	if (is_number(arg1))
+        { 
+	  if (strlen(arg1) <= 2)
+	  {
+	    temp_limit = atoi(arg1);
+            if ( (temp_limit < 1) || (temp_limit > 35) )
+	      temp_limit = 0;  /* prevents garbage from getting through */
+	    if (low_limit == 0)
+	      low_limit = temp_limit;
+	    else if (high_limit == 0)
+	      high_limit = temp_limit;
+	  }   /* done parsing for levels */
+        }
+      else  /* parse for immortal or class flags */
+      {
+	switch (arg1[0])
+	{
+	    default:
+		break;
+
+            case 'w': case 'W':
+                if (check_class == -1)
+		  check_class = CLASS_WARRIOR;
+                break;
+ 
+            case 'c': case 'C':
+                if (check_class == -1)
+                  check_class = CLASS_CLERIC;
+                break;
+ 
+            case 'm': case 'M':
+                if (check_class == -1)
+                  check_class = CLASS_MAGIC_USER;
+                break;
+ 
+            case 't': case 'T':
+                if (check_class == -1)
+                  check_class = CLASS_THIEF;
+                break;
+           
+            case 'i': case 'I':
+                low_limit = 31;
+                high_limit = 35;
+         	break;
+        }
+      } 
+    count ++;
+    }
+    if (low_limit == 0) low_limit = 1;
+    if (high_limit == 0) high_limit = 35;
+
+    sprintf(output,"Players\n\r-------\n\r");
     for (d = descriptor_list; d; d = d->next)
     {
-	if ((!d->connected) &&
-	    (CAN_SEE(ch, d->character) || (GET_LEVEL(ch) >= 34)))
+	if ((!d->connected) && !IS_NPC(d->character) &&
+	    (CAN_SEE(ch, d->character) ) &&
+            ((low_limit <= GET_LEVEL(d->character)) &&
+             (GET_LEVEL(d->character) <= high_limit)) &&
+	    ((check_class == -1)  ||
+             ((check_class == CLASS_MAGIC_USER) &&
+                (GET_CLASS(d->character) == CLASS_MAGIC_USER))  ||
+             ((check_class == CLASS_WARRIOR) &&
+                (GET_CLASS(d->character) == CLASS_WARRIOR))     ||
+             ((check_class == CLASS_THIEF) &&
+                (GET_CLASS(d->character) == CLASS_THIEF))       ||
+             ((check_class == CLASS_CLERIC) &&
+                (GET_CLASS(d->character) == CLASS_CLERIC))
+             ))
 	{
 	  if (GET_LEVEL(d->character)<10)
 	    sprintf(tmp,"  ");
@@ -1160,7 +1377,7 @@ void do_who(struct char_data *ch, char *argument, int cmd)
 	    continue;
 	  
 	  sprintf(buf, "[%s%d %s ] ",tmp,GET_LEVEL(d->character),temp);
-	  send_to_char(buf,ch);
+	  strcat(output,buf);
 	  temp[0] = '\0';
 	  tmp[0]  = '\0';
 	  if(IS_SET(d->character->specials.affected_by, AFF_KILLER))
@@ -1181,14 +1398,18 @@ void do_who(struct char_data *ch, char *argument, int cmd)
 		tmp);
 	  }
 
-	  send_to_char(buf, ch);
+          strcat(output,buf);
+          found++;
 	}
-    }
+       }
+  sprintf(buf,"\n\rPlayers found: %d\n\r",found);
+  strcat(output,buf);
+  page_string(ch->desc,output,1);
 }
 
 void do_sockets(struct char_data *ch, char *argument, int cmd)
 {
-    char buf[MAX_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
     char name[MAX_INPUT_LENGTH];
     int num_can_see=0;
 
@@ -1247,6 +1468,8 @@ void do_sockets(struct char_data *ch, char *argument, int cmd)
 	    send_to_char( "CON_GET_NEW_CLASS\n\r", ch ); break;
 	case CON_READ_MOTD:
 	    send_to_char( "CON_READ_MOTD\n\r", ch ); break;
+        case CON_READ_IMM_MOTD:
+            send_to_char( "CON_READ_IMM_MOTD\n\r", ch ); break;
 	case CON_SELECT_MENU:
 	    send_to_char( "CON_SELECT_MENU\n\r", ch ); break;
 	case CON_RESET_PASSWORD:
@@ -1317,6 +1540,18 @@ void do_news(struct char_data *ch, char *argument, int cmd) {
     page_string(ch->desc, news, 0);
 }
 
+void do_motd(struct char_data *ch, char *argument, int cmd) {
+ 
+    page_string(ch->desc, motd, 0);
+    send_to_char("\n\r",ch);
+}
+
+void do_imotd(struct char_data *ch, char *argument, int cmd) {
+ 
+    page_string(ch->desc, imotd, 0);
+    send_to_char("\n\r",ch);
+}
+
 
 void do_info(struct char_data *ch, char *argument, int cmd) {
 
@@ -1333,7 +1568,7 @@ void do_wizlist(struct char_data *ch, char *argument, int cmd) {
 
 void do_where(struct char_data *ch, char *argument, int cmd)
 {
-    char name[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH], buf2[256];
+    char name[MAX_INPUT_LENGTH], buf[SHORT_STRING_LENGTH], buf2[256];
     register struct char_data *i;
     register struct obj_data *k;
     struct descriptor_data *d;
@@ -1367,7 +1602,8 @@ void do_where(struct char_data *ch, char *argument, int cmd)
 	    send_to_char(buf, ch);
 	    for (d = descriptor_list; d; d = d->next) {
 		if (d->character && (d->connected == CON_PLAYING) &&
-		    (d->character->in_room != NOWHERE)) {
+		    (d->character->in_room != NOWHERE) && 
+		     CAN_SEE(ch, d->character)) {
 		    if (d->original)   /* If switched */
 			sprintf(buf, "%-20s - %s [%d] In body of %s\n\r",
 			  d->original->player.name,

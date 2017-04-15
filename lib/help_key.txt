@@ -1,3 +1,134 @@
+CHANGE CHANGES
+* Changes to the code:
+
+ 2-6-93  Acid Blast changed to be more powerful than fireball
+
+         Spell effects added to Acid Blast, Harm, Demon Fire
+
+         Thieves may now backstab with any weapon
+
+         Monster tripping disabled
+
+ 2-7-93  Recall should work more frequently, let me know how it feels now.
+
+         Check 'help useless' for a list of broken spells. Practices will
+         be reimbursed.  Please notify me of any spells that lack help files
+         and/or do not function correctly (use bug).
+
+         Equipment alignment has been disabled until I have time to hash
+         through the object files....enjoy it while it lasts!
+
+	 Gossip, auction, question/answer and music channels have
+	 been added.  Type "help channels" for more information.
+
+ 2-9-93  Several of the shops have been fixed, so check around and see
+         what's for sale.
+
+ 2-10-93 Training sessions may now be used for improving mana and hits.
+         Help train has been updated.  This took me over 2 hours to code,
+         so I hope you're happy :)   (not knowing C doesn't help)
+
+
+ 3-18-93 Backstab no longer works on wounded mobs
+         Levels cost more experience
+         Practices give less hits/mana now
+
+* If anyone knows how to add bulletin boards easily, PLEASE contact me :)
+#
+CHANNEL CHANNELS GOSSIP QUESTION MUSIC AUCTION
+
+The following channels are available:
+
+Gossip: general BS line
+Auction: items for sale or wanted
+Q/A: questions and answers
+Music:  Sing your favorite tunes!
+
+A channel name without an argument joins or quits you from that channel
+Please don't abuse channels by gossipping/auctioning, etc. more than twice.
+
+Examples:
+
+Gossip Pinkfloyd wears combat boots
+Auction  (turns auction off or on)
+#
+ALIAS
+
+Aliases are not yet functional.
+#
+USELESS
+
+The following spells do not work (at the current time):
+
+Sandstorm
+Conjure Elemental
+Hands of Wind
+Animate Dead
+Plague
+Drown
+
+Check this list often for changes or fixed spells.
+#
+"PROTECTION FROM EVIL"
+
+This spells acts like a sanctuary spell, but only against evil spirits
+(i.e. undead, beholders, lamias)
+#
+SANDSTORM
+
+This spell is not yet functional.
+#
+"CONJURE ELEMENTAL"
+
+This spell is not yet functional.
+#
+"HANDS OF WIND"
+
+This spell is not yet functional.
+#
+"ANIMATE DEAD"
+
+This spell is not yet functional.
+#
+DROWN
+
+This spell is not yet functional.
+#
+PLAGUE
+
+Usage       : cast 'plague' victim
+Accumulative: No
+Duration    : Level hours 
+ 
+Will infect the victim with a lethal disease.
+ 
+See Also: CURE DISEASE
+#
+"CURE DISEASE"
+
+Usage       : cast 'cure disease' victim
+Accumulative: No
+Duration    : Instantaneous 
+ 
+Removes the effects of the Plague spell.
+
+See Also: PLAGUE
+#
+"CONTROL WEATHER"
+
+This spell creates the conditions necessary for call lightning.
+#
+GATE
+
+This spell transports you to the target, under certain conditions.  It will
+not gate to gods or into private rooms, and any non-player target gets a
+saving through to avoid your gate.
+#
+"FAERIE FOG"
+
+This spell reveals all invisible targets within the area of effect, even
+to the members of the caster's party.
+#
 "PICK LOCKS"
 
 Thieves only.
@@ -14,6 +145,7 @@ Thieves Only.
 
 Used for sneaking (moving in and out of rooms without any mob/player taking
 notice).
+
 When you type sneak, there is no way to know if you actually sneak.  If you
 sucessfully sneak, then you'll continue to sneak for a little while.
 
@@ -71,15 +203,27 @@ NORTH SOUTH EAST WEST UP DOWN
 To walk in a given direction.
 #
 EAT DRINK SIP TASTE
-If you're hungry or thirsty.  Example: eat bread.
+If you're hungry or thirsty.  
+
+Example: eat bread.
 #
 WHO
 Lists the people currently in the game.  Some people may choose to remain
 unseen.
+
+Who accepts various arguments, including level ranges and classes.
+For example:
+
+who 10		lists all players of level 10 or above
+who 15 20	lists all players between level 15 and 20
+who cleric	lists all clerics playing 
+who immortal	lists all immortals playing
+who cleric 1 5  lists all clerics between levels 1 and 5
 #
 GIVE
-If you feel benevolent, you may give stuff to someone in need.  Example:
-give bread to the beggar.
+If you feel benevolent, you may give stuff to someone in need.  
+
+Example: give bread to the beggar.
 #
 SAVE
 Save your persona.  This includes experience points, strength, gold, etc.
@@ -107,13 +251,20 @@ you exceed the maximum length for the string or you end a line with a '@'.
 #
 LOAD
 For loading new objects or characters from the database.  The format is:
-load <type> <number>
+load <type> <number> (object level)
 Where <type> is either 'obj' or 'char', and number is the number of the object
 or character you wish to create.
+
+The object level argument specifies the level the object will be created at.
+In reimburses, make it the character's level if you are uncertain of the proper
+level, and be VERY cautious about creating level 0 gear.  
+
+Load defaults to your level if you don't provide an argument, you can use this
+to outfit yourself with divine equipment that can not be used by others.
 #
 INVENTORY
 If you're uncertain about what you're carrying, or simply want to check
-that no thieves have got to your backpack.
+that no thieves have gotten to your backpack.
 
 See also: EQUIPMENT
 #
@@ -126,19 +277,23 @@ KISS
 Well, can't you guess?
 #
 WEAR
-If you want to wear some clothes, armor or the likes.
+If you want to wear some clothes, armor or the like.
 For example : wear boots
 
 See also: REMOVE, EQUIPMENT
 #
 WIELD
 When you get tired of bashing monsters with your fists, you might consider
-wielding a weapon. Example : wield sword
+wielding a weapon. 
+
+Example : wield sword
 
 See also: REMOVE, EQUIPMENT
 #
 SCORE
-Gives a detailed report on your character's statistics.
+Gives a detailed report on your character's statistics.  As you gain 
+levels, the information available to you by typing score becomes more
+detailed.
 
 See also: REPORT
 #
@@ -174,7 +329,7 @@ There are about a hundred social commands.  These are used to express
 your mood to other players, but don't do anything in terms of game
 mechanics.  You can use EMOTE to show your own custom emotions.
 
-If want a new social command, use the IDEA command to tell us about it,
+If you want a new social command, use the IDEA command to tell us about it,
 and we can add it.
 
 Example:
@@ -183,14 +338,16 @@ Example:
 #
 KILL HIT
 A good way to start a fight.  To prevent you from accidentally killing
-your fellow players, you must type MURDER to do so.
+your fellow players, you must type MURDER to do so.  Killing other players
+will result in your receiving a (KILLER) flag and having various and sundry
+nasties done to you.
 
 See also:  MURDER
 #
 MURDER
 This is the command you must use to kill a player, though NOT recommended.
 You may kill a player that has a THIEF and/or KILLER flag without
-worrying about the consequenses.
+worrying about the consequences.
 
 See also:  KILL HIT
 #
@@ -224,7 +381,7 @@ Fighters Only.
 
 A rescue is an attempt to make a monster hit you instead of the person being
 rescued.  You can only 'turn' one monster for each attempt. This is highly
-useable when playing in groups.
+usable when playing in groups.
 #
 STEAL
 
@@ -234,9 +391,9 @@ Use steal to steal gold or items from people. The chance of not getting
 caught depends on how well you have practised steal, and if the person
 is asleep.
 
-Due to misuse of the steal command, it now requires at least 1,250 XP
-points to steal from other players.  You can still steal from monsters
-at all levels.  Furthermore steal takes time to perform. you can't just
+Due to misuse of the steal command, it is now impossible to steal from other 
+players. You can steal from all monsters, except shopkeepers.
+Furthermore steal takes time to perform. you can't just
 rush in, steal 20-30 times and quit (unless you have a LOT of time).
 
 Example:
@@ -255,11 +412,16 @@ Thief only.
 
 Is a way to sneak up on a person, and attempt to place you dagger in his
 back, at exactly the point where it does most damage. A successful backstab
-gives a damage multiplier, depending on level.
+gives a damage multiplier, depending on level. It also uses up your next two 
+rounds of fighting.
 
 The chance of successfully backstabbing a person depends on how well you
 have practised backstab at your guild. You can always backstab sleeping
 persons.
+
+You cannot backstab a wounded mobile for obvious reasons -- NO one is going
+to be caught off guard if he/she/it is wounded.  Most likely the monster is
+going to be cowering in a corner waiting to heal up. 
 #
 DISARM
 
@@ -335,8 +497,8 @@ Example : cast 'burning hands' <character>
    Note that the name of the spell must be enclosed by "'"s.
 
 See also : help on each individual spell, for example:
-  > help cure ligh
-  > help ventri
+  > help cure light
+  > help ventriloquate
   > help energy drain
 #
 DROP
@@ -361,9 +523,9 @@ skills, strength, mana, hitpoints etc.
 'Stat room' will give you useful information about the room you're in.
 #
 ORDER
-You can order people under your charm to do things:
+You can order mobiles under your charm to do things:
 
-   order Sober say I'm a jerk and I know it.
+   order drunk say I'm a jerk and I know it.
 
 Or you can order all the people who're charmed by you, like this:
 
@@ -413,10 +575,6 @@ See also: BUY, SELL, LIST, VALUE
 WIZHELP
 A listing of the commands for immortals (should be unavailable for mortals  :)
 #
-COMMANDS
-A mechanical listing of the known verbs.  This command doesn't exist yet.
-Social commands are not listed.
-#
 WARRIOR FIGHTER
 Warriors are better at raw combat than anyone else.  They have more hit
 points, more chance to hit, and the skills of kick, bash, rescue, and
@@ -461,11 +619,11 @@ You get more practices every time you level.  The number depends on your
 wisdom:
 
     13	2
-    14	2
-    15	3
-    16	3
-    17	4
-    18	5
+    16  3	
+    18	4
+    20	5
+    23	6
+    25  7	
 
 See also: TRAIN
 #
@@ -474,7 +632,9 @@ TRAIN
 You can use your practices to increase your ability points.  First,
 find a trainer (there are two in Midgaard).  Then, type TRAIN STR
 to increase your strength, or TRAIN WIS for wisdom.  The trainable
-abilities are STR, INT, WIS, CON, and DEX.
+abilities are STR, INT, WIS, CON, DEX, HITS, and MANA.  Stats are 
+raised by one point for 5 or 3 practices (depending on class), Hit
+points and Mana are increased by 2 points per practice. 
 #
 EXITS
 Gives you a list of the obvious exits from your location. Of course, the less
@@ -542,9 +702,12 @@ For getting a good grip on something; a torch, for example.
 
 See also: WEAR, WIELD, REMOVE
 #
-FOLLOW
+FOLLOW NOFOLLOW
 For following someone around.  Example: "follow joe".  When you are through
 following, use "follow <your name>" to follow yourself.
+
+NOFOLLOW prevents people from following you, this is very useful when someone
+is trying to annoy you.
 
 See also: GROUP
 #
@@ -599,10 +762,6 @@ players are in their zone.
 
 Immortals may type 'where' without arguments to see where everybody is.
 #
-SOCKETS
-
-Tells you who's logged on to the game, and where they are playing from.
-#
 LEVELS
 
 Lists the levels of your class. 
@@ -622,7 +781,7 @@ Repeat the last command typed at the keyboard.
 #
 CONSIDER
 Usage : consider <monster>
-This command will compare your Level with the <monsters> level. You will then
+This command will compare your level with the <monsters> level. You will then
 receive a rough estimate, which is by no means exact. Consider does not take
 hitpoints/special attacks/damage into accout.
 
@@ -646,7 +805,7 @@ Usage : GROUP [player]
 If you are a group member, then you will share experience points for killing
 monsters equally among the group.  Experience points will only be shared among
 group members that are in the same location, at the time of the killing
-blow.  Sharing is regardless of wherther the group members have been
+blow.  Sharing is regardless of whether the group members have been
 participating in the fight.
 
 Group with no argument shows a list of people with whom you are grouped,
@@ -660,7 +819,7 @@ should remember to include himself in the group.
 
 Example:
 
-Quifael and Redferne wishes to group with Dragon.
+Quifael and Redferne wish to group with Dragon.
 
 Quifael : "follow dragon"
 Redferne: "follow dragon"
@@ -669,7 +828,7 @@ Dragon  : "group dragon"
 Dragon  : "group redferne"
 Dragon  : "group quifael"
 
-Later when Dragon get upset at Quifael (because he is sleeping all the time)
+Later when Dragon gets upset at Quifael (because he is sleeping all the time)
 he types : "Group Quifael" to kick Quifael out of the group.
 
 See Also: XP EXPERIENCE
@@ -680,7 +839,18 @@ Use : Quaff <Potion>
 
 Quaff is used to "drink" a (magical) potion.
 #
-RECITE SCROLL SCROLLS
+SCROLL SCROLLS
+
+Use:  Scroll <number>
+
+This command sets up your page buffer (used for who and help, for example)
+to use a given number of lines.  The default is 24 lines, however people with
+larger terminal sessions should change it.
+
+
+For information on USING scrolls, try 'help recite'
+#
+RECITE
 
 Use : Recite <Scroll> [Target]
 
@@ -693,10 +863,10 @@ Use : Use <Staff>
       Use <Wand> <Target>
 
 Using staffs will automatically target everybody (or everything) in a
-room, execpt yourself. Therefore staff's are naturally very powerful, and
+room, except yourself. Therefore staff's are naturally very powerful, and
 yet may be very dangerous to use around other players.
 
-Using wands require that you point it at a target, which can be eihter a
+Using wands requires that you point it at a target, which can be either a
 character or an object.
 
 Both staff's and wand's must be HELD in the hand prior to use! (Use the
@@ -767,7 +937,7 @@ Usage       : cast 'create water' <drink container>
 Accumulative: No
 Duration    : Instantaneous
 
-Expect disaterous results if cast upon a drink container which contains
+Expect disasterous results if cast upon a drink container which contains
 another liquid than water. Empty or water containers will be filled
 depending on the level of the caster.
 
@@ -811,7 +981,7 @@ Accumulative: No
 Duration    : 5 hours per Level, permanent on objects.
 
 Curse cast on a person that fails the saving throw, will reduce the
-hitroll by one, and reduce the saving throw versus paralysation by
+hitroll by one, and reduce the saving throw versus paralyzation by
 one. 
 
 See Also: -
@@ -821,7 +991,7 @@ Usage       : cast 'detect evil' [self]
 Accumulative: No
 Duration    : 5 hours per level
 
-Detect evil will enabel you to see the red aura surrounding evil
+Detect evil will enable you to see the red aura surrounding evil
 persons and items.
 
 See Also: -
@@ -831,7 +1001,7 @@ Usage       : cast 'detect invisibility' [self]
 Accumulative: No
 Duration    : 5 hours per level
 
-This spell enabels you to see invisible items and players.
+This spell enables you to see invisible items and players.
 
 See Also: -
 #
@@ -850,36 +1020,23 @@ Usage       : cast 'detect poison' (victim | food | drink)
 Accumulative: No
 Duration    : Instantaneous
 
-Cast on food or drinks (drink containers) you will be abel to
+When cast on food or drinks (drink containers) you will be able to
 sense if it is poisoned.
 
-Cast on a person you will be abel to see if that person is
+When cast on a person you will be able to see if that person is
 poisoned.
 
 See Also: -
 #
 "ENCHANT WEAPON"
 Usage       : cast 'enchant weapon' <weapon>
-Accumulative: No
+Accumulative: Yes 
 Duration    : Permanent
 
-This spell will enchant non-magical (non-modifying) weapons only.
-By non-modifying weapons we refer to weapons that might alter any
-ability such as for example damage. The only way to know if a weapon
-is suitabel for enchantment is to fully identify it.
-
-The enchantment will modify the weapon as:
-
-Level    Hit Roll    Damage
-
- 0..17     +1         +1
-18..19     +2         +1
-20..24     +3         +2
-25..29     +4         +3
-30..31     +5         +4
-
-(must be checked)
-
+The use of this spell increases the damage and to hit roll of a weapon by
+one.  It may be cast multiple times. Enchant weapon has a chance of 
+disenchanting or destroying the weapon, this chance increases dramatically
+with succesive enchantments.
 See Also: -
 #
 HEAL
@@ -930,15 +1087,6 @@ hour, and gain less points than usual.
 
 See Also: "detect poison" or "cure poison"
 #
-"PROTECTION FROM EVIL"
-Usage       : cast 'protection from evil' [self]
-Accumulative: No
-Duration    : 24 hours
-
-The meaning of this spell is not yet fully defined.
-
-See Also: -
-#
 "REMOVE CURSE"
 Usage       : cast 'remove curse' <person | object>
 Accumulative: No
@@ -962,12 +1110,12 @@ Usage       : cast 'sanctuary' [self]
 Accumulative: No
 Duration    : 3 hours
 
-When protected by sanctuary you can never receive more that 18 damage
-points in one strike.
+When protected by sanctuary damage caused by physical attacks is reduced by 
+half, whether from dragon or kobold.
 
 See Also: -
 #
-"SLEEP SPELL"
+SLEEP
 Usage       : cast 'sleep' <person>
 Accumulative: Yes (duration)
 Duration    : 4 hours + one hour per level
@@ -979,7 +1127,7 @@ See Also: -
 #
 STRENGTH
 Usage       : cast 'strength' [self]
-Accumulative: Yes (strength)
+Accumulative: no 
 Duration    : Level hours
 
 A person will gain 1 strength point per spell (2 points if level of
@@ -995,7 +1143,7 @@ Duration    : Instantaneous
 
 For all people in the same room as the caster that fail a saving
 throw, the spell will make the object or victim appear to say the
-text written. People saving will only notice that someone tired
+text written. People saving will only notice that someone tried
 to make it sound that way, not who.
 
 Example:
@@ -1022,19 +1170,20 @@ Duration    : Instantaneous
 Will summon a person of the name spoken. It is not possible to
 summon someone of three or more levels above yourself.
 If you attempt to summon a monster,it will get a saving throw.
+Summon should not be used to endanger other players.
 
 See Also: -
 #
 "CHARM PERSON"
 Usage       : cast 'charm person' <victim>
 Accumulative: No
-Duration    : (432/Itelligence points of person) hours
+Duration    : (432/Intelligence points of person) hours
 
 Is is not possible to charm anyone that is already charmed, if
 you're charmed yourself, or if the person is higher level than
 yourself. The person will get a saving throw versus "paralysation".
 
-A charmed person will follow you, and not be abel to attack you, you
+A charmed person will follow you, and not be able to attack you, you
 can order charmed person using the order command.
 
 See Also: FOLLOW ORDER
@@ -1206,7 +1355,7 @@ Level       : Level ?
 Save        : Versus spell for null effect
 
 This spell causes fear in the hearts of the brave.  Works best
-when you need a break from fighting a particularlly tough mob.
+when you need a break from fighting a particularly tough mob.
 
 See Also: -
 #
@@ -1217,7 +1366,7 @@ Duration    : Instantaneous
 Level       : Level ? 
 Save        : None
 
-This spell bestowes more endurance upon the receipiant.
+This spell bestows more endurance upon the recepient.
 
 See Also: -   
 #
@@ -1288,7 +1437,7 @@ Level       : Level ?
 Save        : None
 
 This spell shatters bone, causes deep cuts, and critical wounds to the
-victim.  The amount of physical damage done depends on the casters power.
+victim.  The amount of physical damage done depends on the caster's power.
 
 See Also: Cause Light, Cause Serious
 #
@@ -1337,7 +1486,7 @@ Affect      : Armor by -40
 Save        : None
 
 This alteration spell causes the caster's skin to turn into hard
-gratite thus improving his armor rating.
+granite thus improving his armor rating.
 
 See Also: Shield
 #
@@ -1373,7 +1522,7 @@ Duration    : 24 hours
 Level       : Level ?
 Save        : None
 
-This spell makes invisble every creature in the room.
+This spell makes every creature in the room invisible.
 
 See Also: Invisibility
 #
@@ -1459,19 +1608,22 @@ SPELL SPELLS
           (10) Faerie Fog          (10) Identify
           (10) -                   (10) Gate
 
-          (11) Color Spray         (11) Word of Recall
+          (11) Colour Spray        (11) Word of Recall
           (11) Dispel Magic        (11) Plague
+	  (11) -		   (11) Calm
 
           (12) Enchant Weapon      (12) Call Lightning
           (12) Curse               (12) Remove Curse
-          (12) -                   (12) Fly
+          (12) Haste               (12) Fly
 
           (13) Energy Drain        (13) Control Weather
           (13) Shield              (13) Sanctuary
           (13) -                   (13) Flamestrike
+	  (13) -		   (13) Cure Disease
 
           (14) Sleep               (14) Heal
           (14) Charm Person        (14) Faerie Fog
+	  (14) -		   (14) Frenzy
 
           (15) Fireball            (15) Turn Undead
           (15) Mass Invisibility   (15) Harm
@@ -1479,7 +1631,7 @@ SPELL SPELLS
           (16) Hands Of Wind       (16) Hands Of Wind
           (16) -                   (16) Dispel Magic
 
-          (17) -                   (17) Mass Invisibility
+          (17) Gate                (17) Mass Invisibility
 
           (18) Stone Skin          (18) Drown
 
@@ -1488,6 +1640,8 @@ SPELL SPELLS
           (20) Sandstorm           (20) Sandstorm
           (20) Acid Blast          (20) -
 
+	  (22) Chain Lightning     (22) -
+
           (25) -                   (25) Demonfire
 
 #
@@ -1495,17 +1649,21 @@ ADVANCE
 To advance a player to a level higher or lower than his present.
 
 #
-WIZHELP
-List the privileged commands available to you. Can only be used by immortals.
-#
-NOSHOUT
-Prevents you from (or allows you to) hearing shouts, if used with no arguments.
-Can be used with the name of a player, to prevent him/her from hearing shouts,
-as well as from shouting. Can only be used by certain more powerful beings.
+NOSHOUT NOEMOTE NOCHANNEL NOTELL
+
+
+These are all commands used by gods for dealing with jerks.
+
+NOSHOUT:   prevents shouting
+NOEMOTE:   prevents emotes and socials
+NOCHANNEL: prevents use of channels
+NOTELL:    prevents telling
+
+This is preferable to a ban or a freeze, in most cases.
 #
 RESTORE
 If used on a mortal, this command will reset that players mana and hit points.
-If used on an Immortal various values will be reset to their proper values.
+If used on an immortal, various values will be reset to their proper values.
 #
 LINK
 
@@ -1564,7 +1722,7 @@ we have mobs.  :)
 {All  }	  Alfa		City of Ofcol.
 {All  }	  Diku		Haon Dor - Light.
 { 5 10}	  Diku		Haon Dor - Dark.
-{ 5 20}	  Anonymous	Arachnos.
+{ 5 20}	  Mahatma	Arachnos.
 {10 25}	  Anonymous	The Dwarven Kingdom.
 {None }	  Anonymous	Quifael Custom Rooms.
 { 5 15}	  Diku		Upper Sewer.
@@ -1577,5 +1735,209 @@ we have mobs.  :)
 { 5 10}	  Anonymous	Auxiliary Matrix.
 { 1 20}	  Alfa		The Holy Grove.
 {15 25}	  Dylan		Dylan's Area.
+{ 5 15}   PinkFloyd	The Mob Factory.
+{20 30}   Forstall      The Plane of Nirvana.
+{5  30}   Poohbear      The Shire
+{10 30}   Anonymous	New Thalos
 
+Thanks to Forstall and PinkFloyd for writing areas, and Hatchet and Onivel
+for providing the Shire.  Onivel also provided New Thalos, a 300 room city.
+#
+GO GOTO
+
+By using this command, immortals can quickly go to a particular player,
+mobile or room number.
+
+Example:
+
+> goto Tara
+> goto yevaud
+> goto 1200
+
+See Also: TRANSFER
+#
+TRANSFER
+
+This command allows gods to bring a character or mobile to them without
+using summon.  It is best to let a player know that you will be transferring
+a player before you actually do it.  This can also be used to transfer
+players from room to room on the MUD.
+
+Example:
+
+> transfer Mattick 
+(transfers Mattick to your location)
+
+> at 3001 transfer Mattick 
+(transfers Mattick to room 3001)
+
+> at mayor transfer Mattick
+(transfers Mattick to the room in which the Mayor is located)
+#
+SOCKETS  
+
+This command will allow you to see who is logged into the game, and from
+what machines they are logged in.
+#
+SWITCH
+
+This command allows immortals to "take over" the bodies of mobiles within
+the game.  This is especially useful when roleplaying during quests.  To
+leave the body of the mobile and return to your original form, type <return>.
+#
+SNOOP
+
+This immortal command allows you to surreptitiously observe the actions
+of players within the game.  This command is designed to aid in the
+discipline of players and is NOT to be used for the purposes of harrassment
+or voyeurism.  Please be considerate of other players when exercising the
+privilege of the snoop command.
+
+To snoop a player type snoop <playername>.  To snoop yourself type snoop
+<your name>.
+#
+ECHO GECHO
+
+Both of these commands display a line of text to other characters.  Echo
+displays it to all people in the same room (or another room if at is used),
+gecho displays it to everyone.  Use with caution.
+#
+SACRIFICE TAP JUNK
+
+If you want to get rid of a corpse or an item, type sac <item name|corpse>.
+This rids the game of unecessary clutter and helps keep the screen scroll
+for other players to a minimum.  Typing tap <item name|corpse> will achieve
+the same results as sac.  Both of these commands replace the junk command.
+
+Please be sure to sacrifice your corpses when you are done with them, 
+ESPECIALLY corpses of mobiles that have a lot of equipment on them (Such
+as the cityguards).           
+#
+NEWBIE
+
+Welcome to Rivers of MUD!
+
+As a new player, the first thing you will want to do is go up from the
+Temple and go through Mud School.  Doing so will help you get some decent
+equipment to start playing with as well as some experience.  Be sure to
+read the signs in Mud School, and don't drop out!
+
+We don't allow playerkilling or playerstealing on Rivers of MUD, so please
+behave accordingly.
+
+Your first action should be to type 'commands', to see all the wonderful 
+commands you can use.
+
+The following help entries are of special interest to new players:
+CHANNELS SCORE PRACTICE TRAIN SACRIFICE SHOPS NEWS RENT USELESS
+#
+ASSIST
+
+The assist command is used to help another character in command -- it attacks
+the person he is fighting.  Assisting yourself  displays a request for
+assistance (whether or not you are fighting).  You can not assist against
+a player, or assist someone who is not fighting.
+
+Syntax:
+
+assist <character>: Help that character in combat
+assist <your name>: Display a neat message asking for help.
+#
+DISCONNECT DISC
+
+The Disconnect command closes a socket.  This is particularly useful for
+hard-to-type names and/or characters who lost link before actually entering
+the game.  To use it, type disconnect <socket>, where socket is the number
+listed in front of their name by the sockets command.
+#
+QUIET
+
+The quiet command turns off most forms of communication.  With it on, you will
+not hear gossips, shouts, or most tells.  You WILL still hear says, emotes, and
+tells from immortals.
+#
+DEAF
+
+The deaf commands renders you unable to hear shouts.  Unlike a divine NOSHOUT,
+deaf may be turned on or off at will.
+#
+COMMANDS COMMAND  Unlike a divine NOSHOUT,
+deaf may be turned on or off at will.
+#
+COMMANDS COMMAND
+
+Lists all the (non-divine) commands available to you.  Very useful for new
+players, and for seeing if anything new has been added.  Socials are not
+included at this time.
+#
+CHAIN "CHAIN LIGHTNING"
+
+This is an area-effect mage spells, which arc from monster to monster until it 
+runs out of power. Be wary using is, however -- it can be lethal to the caster
+as well.
+#
+CALM
+
+This cleric spell stops all fighting in a room.  The more monsters in the room,
+and the more powerful the enemies, the less likely it is to suceed.
+#
+HASTE
+
+Usage       : cast 'haste' [target]
+Accumulative: no
+Duration    : Level / 2 hours (self) or / 4 hours (others)
+
+This potent combat spells gives the recipient additional attacks in combat, as
+well as improving reflexes.  Beware, however, for hasted adventurers need to
+eat twice as much to sustain their bodies, and the powerful magics make 
+healing difficult.
+#
+FRENZY
+
+Usage       : cast 'frenzy' [target]
+Accumulative: no
+Duration    : Level / 3 hours
+
+Using this spell fills the recipient with divine anger and rage, greatly 
+increasing his ability to hit and inflict damage in combat.  However, such
+enraged warriors are often much easier to hit.  Frenzy may only be used on on
+characters of your alignment.
+#
+SOCIALS
+
+This is a complete list of socials for Rivers of MUD: 
+
+accuse       adjust      air          apologize     applaud     babble
+bark         bcatch      beckon       beer          bearhug     beg
+bird         bkiss       bleed        blink         blush       boast
+boggle       bonk        bounce       bow           brb         burp
+cackle       caress      charge       cheer         chuckle     clap
+claw         collapse    comfort      comb          cough       cover
+cower        cringe      criticize    cry           cuddle      curse
+curtsey      dance       daydream     drool         duck        embrace
+explode      eyebrow     faint        fart          flare       flash
+flex         flinch      flip         flirt         flutter     fondle
+french       frown       fume         gasp          giggle      glare
+goose        grimace     grin         groan         grope       grovel
+growl        grumble     hand         head          hiccup      highfive
+hop          howl        hug          hush          ignore      innocent
+insane       judge       kiss         knee          laugh       lick
+love         lust        massage      meditate      moan        moon
+mosh         mutter      nibble       nod           nudge       nuzzle
+pant         passout     pat          peck          pie         pinch
+pissed       plead       point        poke          ponder      pout
+pray         propose     puke         punch         purr        ramble
+raspberry    rofl        roll         rub           ruffle      run
+scratch      scream      serenade     shake         shiver      shrug
+sigh         sing        slap         slobber       smile       smirk
+snap         snarl       sneeze       snicker       sniff       snore
+snort        snowball    snuggle      sob           spam        spank
+spit         squeal      squeeze      squirm        stare       stretch
+strip        stroke      strut        sulk          swoon       tackle
+tease        thank       threaten     tickle        tip         tongue
+twiddle      type        undress      view          wave        whine
+whistle      wiggle      wince        wink          wonder      worry
+worship      yawn        yeehaw       yodel
+
+(list and many of the socials written by Liralen)
 #~

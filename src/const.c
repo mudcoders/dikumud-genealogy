@@ -21,6 +21,108 @@
 #include "limits.h"
 #include "db.h"
 
+/* skill titles */
+
+const char *skill_name[] =
+{								/* 0 */
+  "RESERVED",
+  "armor",
+  "teleport",
+  "bless",
+  "blindness",
+  "burning hands",
+  "call lightning",
+  "charm person",
+  "chill touch",
+  "clone",
+  "colour spray",						/* 10 */
+  "control weather",
+  "create food",
+  "create water",
+  "cure blind",
+  "cure critical wounds",
+  "cure light wounds",
+  "curse",
+  "detect evil",
+  "detect invisible",
+  "detect magic",						/* 20 */
+  "detect poison",
+  "dispel evil",
+  "earthquake",
+  "enchant weapon",
+  "energy drain",
+  "fireball",
+  "harm",
+  "heal",
+  "invisibility",
+  "lightning bolt",						/* 30 */
+  "locate object",
+  "magic missile",
+  "poison",
+  "protection from evil",
+  "remove curse",
+  "sanctuary",
+  "shocking grasp",
+  "sleep",
+  "strength",
+  "summon",							/* 40 */
+  "ventriloquate",
+  "word of recall",
+  "remove poison",
+  "sense life",
+  "sneak",
+  "hide",
+  "steal",
+  "backstab",
+  "pick lock",
+  "kick",							/* 50 */
+  "bash",
+  "rescue",
+  "identify",
+  "animate dead",
+  "fear",
+  "fly",
+  "continual light",
+  "know alignment",
+  "dispel magic",
+  "conjure elemental",						/* 60 */
+  "cure serious wounds",
+  "cause light wounds",
+  "cause critical wounds",
+  "cause serious wounds",
+  "flamestrike",
+  "stone skin",
+  "shield",
+  "weaken",
+  "mass invisibility",
+  "acid blast",							/* 70 */
+  "gate",
+  "faerie fire",
+  "faerie fog",
+  "drown",
+  "demon fire",
+  "turn undead",
+  "infravision",
+  "sandstorm",
+  "hands of wind",
+  "plague",							/* 80 */
+  "refresh",
+  "cure disease",
+  "calm",
+  "chain lightning",
+  "haste",
+  "frenzy",
+  "bug -- max spells read",
+  "trip",
+  "dodge",
+  "second attack",
+  "disarm",
+  "third attack",
+  "parry"
+};
+  
+
+
 /* Each spell and skill must have a wear off message -Kahn */
 
 const char *spell_wear_off_msg[] =
@@ -91,7 +193,7 @@ const char *spell_wear_off_msg[] =
   "!Cause Critical!",
   "!Cause Serious!",
   "!Flamestrike!",                                             /* 65 */
-  "Your skin does not feal as hard as it used to.",
+  "Your skin does not feel as hard as it used to.",
   "Your force shield shimmers then fades away.",
   "You feel stronger.",
   "!Mass Invisibility!",  /* Uses the invisibility message */
@@ -107,6 +209,12 @@ const char *spell_wear_off_msg[] =
   "!Hands Of Wind!",
   "You feel better now.",                                      /* 80 */
   "!Refresh!",
+  "You are no longer dying of plague.",
+  "!Cure Disease!",
+  "!Calm!",
+  "!Chain lightning!",
+  "You feel yourself slowing down...",
+  "You feel less angry.",
   "!UNUSED!"
 };
 
@@ -129,8 +237,11 @@ const int movement_loss[]=
     3,  /* Forest     */
     4,  /* Hills      */
     6,  /* Mountains  */
-  4,  /* Swimming   */
-  1   /* Unswimable */
+    4,  /* Swimming   */
+    1,  /* Unswimable */
+    2,  /* unused     */
+ 9999,  /* flying     */   
+    9   /* desert */
 };
 
 const char *dirs[] =
@@ -309,10 +420,10 @@ const int exp_table[36+1] =
 	    1  ,   450  ,   900  ,     2 K,     5 K,	/*  5 */
 	   10 K,    20 K,    40 K,    80 K,   160 K,	/* 10 */
 	  320 K,   480 K,   640 K,   960 K,  1280 K,	/* 15 */
-	 1600 K,  2240 K,  2880 K,  3520 K,  4800 K,	/* 20 */
+	 1600 K,  2100 K,  3000 K,    4 M,  5 M,	/* 20 */
 	    6 M,     8 M,    10 M,    12 M,    15 M,	/* 25 */
-	   20 M,    25 M,    30 M,    35 M,    40 M,	/* 30 */
-	   50 M,   200 M,   300 M,   400 M,   500 M,	/* 35 */
+	   20 M,    25 M,    30 M,    40 M,    60 M,	/* 30 */
+	   100 M,   200 M,   300 M,   400 M,   500 M,	/* 35 */
 	0x7FFFFFFF
 };
 #undef	M
@@ -531,6 +642,7 @@ const char *item_types[] =
     "MONEY",
     "PEN",
     "BOAT",
+    "BOARD",
     "\n"
 };
 
@@ -570,6 +682,11 @@ const char *extra_bits[] =
     "ANTI-GOOD",
     "ANTI-EVIL",
     "ANTI-NEUTRAL",
+    "ANTI-WARRIOR",
+    "ANTI-MAGE",
+    "ANTI-THIEF",
+    "ANTI-CLERIC",
+    "NOPURGE",
     "\n"
 };
 
@@ -625,7 +742,7 @@ const char *equipment_types[] =
     "Worn on arms",
     "Worn as shield",
     "Worn about body",
-    "Worn around waiste",
+    "Worn around waist",
     "Worn around right wrist",
     "Worn around left wrist",
     "Wielded",
@@ -642,18 +759,18 @@ const char *affected_bits[] =
     "DETECT-EVIL",
     "DETECT-INVISIBLE",
     "DETECT-MAGIC",
-    "SENCE-LIFE",
-    "HOLD",
+    "SENSE-LIFE",
+    "HASTE",
     "SANCTUARY",
     "GROUP",
-    "UNUSED",
+    "unused",
     "CURSE",
-    "FLAMING-HANDS",
+    "unused",
     "POISON",
     "PROTECT-EVIL",
     "PARALYSIS",
-    "MORDENS-SWORD",
-    "FLAMING-SWORD",
+    "unused",
+    "unused",
     "SLEEP",
     "DODGE",
     "SNEAK",
@@ -661,7 +778,7 @@ const char *affected_bits[] =
     "FEAR",
     "CHARM",
     "FOLLOW",
-    "WIMPY",
+    "unused",
     "INFARED",
     "THIEF",
     "KILLER",
@@ -729,9 +846,24 @@ const char *action_bits[] =
     "AGGRESSIVE",
     "STAY-ZONE",
     "WIMPY",
-    "AGGRESSIVE_EVIL",
-    "AGGRESSIVE_GOOD",
-    "AGGRESSIVE_NEUTRAL",
+    "reserved1",
+    "reserved2",
+    "reserved3",
+    "reserved4",
+    "reserved5",
+    "reserved6",
+    "UNDEAD",
+    "reserved7",
+    "CLERIC",
+    "MAGIC-USER",    
+    "THIEF",
+    "WARRIOR",
+    "FAST",
+    "NO PURGE",
+    "AREA ATTACK",
+    "NO SUMMON",
+    "NO MAGIC",
+    "NO WEAPONS", 
     "\n"
 };
 
@@ -744,8 +876,29 @@ const char *player_bits[] =
     "DONTSET",
     "NOTELL",
     "NOEMOTE",
-    "LOG",
+    "",
     "FREEZE",
+    "NOGOSSIP",
+    "NOAUCTION",
+    "NOMUSIC",
+    "NOQUESTION",
+    "KILLER",
+    "THIEF",
+    "NOSUMMON",
+    "QUIET",
+    "DEAF",
+    "NOWIZ",
+    "WIMPY",
+    "NOLOOT",
+    "NOFOLLOW",
+    "AUTOSPLIT",
+    "AUTOLOOT",
+    "AUTOGOLD",
+    "AUTOSAC",
+    "AUTOEXIT",
+    "AUTOASSIST",
+    "GOD",
+    "NOCHANNELS", 
     "\n"
 };
 
@@ -754,7 +907,7 @@ const char *position_types[] =
 {
     "Dead",
     "Mortally wounded",
-    "Incapasitated",
+    "Incapacitated",
     "Stunned",
     "Sleeping",
     "Resting",
@@ -823,12 +976,12 @@ const struct str_app_type str_app[26] =
     {  1, 2, 195, 16 },
     {  2, 3, 220, 22 },
     {  2, 4, 250, 30 }, /* 18  */
-    {  3, 7, 640, 40 },
+    {  3, 7, 640, 35 },
     {  3, 8, 700, 40 }, /* 20  */
-    {  4, 9, 810, 40 },
-    {  4,10, 970, 40 },
-    {  5,11,1130, 40 },
-    {  6,12,1440, 40 },
+    {  4, 9, 810, 45 },
+    {  4,10, 970, 50 },
+    {  5,11,1130, 50 },
+    {  6,12,1440, 50 },
     {  7,14,1750, 99 } /* 25            */
 };
 
@@ -886,21 +1039,21 @@ const byte backstab_mult[36] =
     5,
     5,
     5,
-    6,   /* 20 */
-    6,
-    6,
-    6,
-    6,
+    5,   /* 20 */
+    5,
+    5,
+    5,
+    5,
     6,   /* 25 */
     6,
-    7,
-    7,
-    7,
+    6,
+    6,
+    6,
     7,   /* 30 */
     7,
-    7,
-    7,
-    7,
+    8,
+    8,
+    8,
     10   /* 35 */
 };
 
@@ -1015,15 +1168,15 @@ struct wis_app_type wis_app[26] =
     { 2 },
     { 2 },
     { 2 },
-    { 3 },   /* 15 */
+    { 2 },   /* 15 */
     { 3 },
+    { 3 },
+    { 4 },   /* 18 */
     { 4 },
-    { 5 },   /* 18 */
-    { 6 },
-    { 6 },   /* 20 */
-    { 6 },
-    { 6 },
+    { 5 },   /* 20 */
+    { 5 },
+    { 5 },
     { 6 },
     { 6 },
-    { 6 }  /* 25 */
+    { 7 }  /* 25 */
 };

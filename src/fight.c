@@ -34,10 +34,18 @@ extern struct room_data *world;
 extern struct message_list fight_messages[MAX_MESSAGES];
 extern struct obj_data  *object_list;
 
+int cleric(struct char_data *ch, int cmd, char *arg);
+int magic_user(struct char_data *ch, int cmd,char *arg);
+int mana_cost(struct char_data *ch, int level, int min_cost);
+void cast_dispel_magic( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
+void cast_cure_blind( byte level, struct char_data *ch, char *arg, int si, struct char_data *tar_ch, struct obj_data *tar_obj);
+
 void stop_follower(struct char_data *ch);
 void hit(struct char_data *ch, struct char_data *victim, int type);
+void mob_hit(struct char_data *ch, struct char_data *victim, int type);
 bool is_in_safe(struct char_data *ch, struct char_data *victim);
 bool is_first_level(struct char_data *ch, struct char_data *victim);
+void check_assist(struct char_data *ch);
 
 void dam_message(int dam, struct char_data *ch, struct char_data *victim,
 		 int w_type);
@@ -46,6 +54,8 @@ bool check_parry( struct char_data *ch, struct char_data *victim );
 bool check_dodge( struct char_data *ch, struct char_data *victim );
 void disarm( struct char_data *ch, struct char_data *victim );
 void trip( struct char_data *ch, struct char_data *victim );
+void kick (struct char_data *ch, struct char_data *victim);
+void bash (struct char_data *ch, struct char_data *victim);
 
 /*
  * Control the fights going on.
@@ -61,12 +71,40 @@ void perform_violence( void )
 	assert( ch->specials.fighting );
 
 	if ( AWAKE(ch) && ch->in_room == ch->specials.fighting->in_room )
+        {
 	    hit( ch, ch->specials.fighting, TYPE_UNDEFINED );
+            if (!IS_NPC(ch) && IS_AFFECTED(ch,AFF_GROUP)) 
+	      check_assist(ch);
+        }
 	else
 	    stop_fighting( ch );
     }
 }
-
+ 
+/* check to see if group members should help out */
+ 
+void check_assist (struct char_data *ch)
+{
+  struct char_data *k;
+  struct follow_type *f;
+ 
+ 
+  if (!(k=ch->master))
+    k = ch;
+ 
+  if (GET_POS(k) == POSITION_STANDING && IS_AFFECTED(k,AFF_GROUP) &&
+      k->in_room == ch->in_room && IS_SET(k->specials.act,PLR_AUTOASSIST))
+    do_assist(k,GET_NAME(ch),0);
+ 
+  for (f=k->followers; f; f=f->next)
+  {
+    if (GET_POS(f->follower) == POSITION_STANDING && ch != f->follower &&
+	IS_AFFECTED(f->follower,AFF_GROUP) &&
+	f->follower->in_room == ch->in_room &&
+	IS_SET(f->follower->specials.act,PLR_AUTOASSIST))
+      do_assist(f->follower,GET_NAME(ch),0);
+   }
+}
 
 
 /*
@@ -76,40 +114,193 @@ void hit( struct char_data *ch, struct char_data *victim, int type )
 {
     int     chance;
 
-    /*
-     * First attack.
-     */
+    /* start attack series, switch out if it is a mobile */
+
+    if (IS_NPC(ch))
+    {
+      mob_hit(ch,victim,type);
+      return;
+    }
+
     one_hit( ch, victim, type );
 
-    /*
-     * Second attack.
-     */
-    chance  = IS_NPC(ch) ? 2 * GET_LEVEL(ch)
-                         : ch->skills[SKILL_SECOND_ATTACK].learned * 2 / 5;
-    if ( number(1, 100) < chance )
-	one_hit( ch, victim, type );
+     /* if is hasted */
+    if (IS_AFFECTED(ch,AFF_HASTE)) 
+      one_hit(ch, victim, type );
 
-    /*
-     * Third attack.
-     */
-    chance  = IS_NPC(ch) ? GET_LEVEL(ch)
-			 : ch->skills[SKILL_THIRD_ATTACK].learned / 5;
-    if ( number(1, 100) < chance )
-	one_hit( ch, victim, type );
+    if (type == SKILL_BACKSTAB) return;
+     /* RT second attack for thief */
+     if (!IS_NPC(ch) && (GET_CLASS(ch) == CLASS_THIEF))
+     {
+	chance =  
+	  ch->skills[SKILL_SECOND_ATTACK].learned * 2 /5 + GET_LEVEL(ch);
+	if ( number(1,100) < chance )
+        { 
+	    one_hit( ch, victim, type );
+	    check_improve(ch,SKILL_SECOND_ATTACK,5,TRUE);
+	}
+	return;
+      }
 
-    /*
-     * Fourth attack.
-     */
-    chance  = IS_NPC(ch) ? GET_LEVEL(ch) * 2 / 3 : 0;
+     if (!IS_NPC(ch) && (GET_CLASS(ch) != CLASS_WARRIOR))
+	return;
+
+    /* second attack */
+    chance  = ch->skills[SKILL_SECOND_ATTACK].learned * 2/5 + 2 * GET_LEVEL(ch);
     if ( number(1, 100) < chance )
+    {
 	one_hit( ch, victim, type );
+	check_improve(ch,SKILL_SECOND_ATTACK,4,TRUE);
+    
+
+      /* Third attack */
+      chance  = ch->skills[SKILL_THIRD_ATTACK].learned * 1/5 + GET_LEVEL(ch); 
+      if ( number(1, 100) < chance )
+      {
+	one_hit( ch, victim, type );
+	check_improve(ch,SKILL_THIRD_ATTACK,4,TRUE);
+      }
+    }
+    
 }
 
 
+/* handles mob attacks and spells and specials skills as well */
 
-/*
- * Hit one guy once.
- */
+void mob_hit (struct char_data *ch, struct char_data *victim, int type)
+{
+  int chance,roll;
+  struct char_data *tmp_vict;
+
+  one_hit(ch,victim,type);  /* 1st attack */
+  
+  if (IS_SET(ch->specials.act,ACT_FAST) || IS_AFFECTED(ch, AFF_HASTE))
+    /* 2nd attack if fast */
+
+    one_hit(ch,victim,type);
+
+  /* extra attacks possible for fighter mobs */
+
+  if (IS_SET(ch->specials.act,ACT_WARRIOR))
+  {
+    chance = 3 * GET_LEVEL(ch);
+    roll = number(1,100);
+    if (roll < chance)
+      one_hit(ch,victim,type);
+
+    roll = number(1,100);
+    chance /= 2;
+    if (roll < chance)  
+      one_hit(ch,victim,type);
+  }
+
+  /* Area attack -- BALLS nasty! */
+  
+  if (IS_SET(ch->specials.act,ACT_AREA_ATTACK))
+  {
+    for (tmp_vict = world[ch->in_room].people;
+         tmp_vict;
+         tmp_vict = tmp_vict->next_in_room)
+    {
+      if (tmp_vict->specials.fighting)
+	if (tmp_vict != victim && tmp_vict->specials.fighting == ch)
+	  one_hit(ch,tmp_vict,type);
+    }
+  } 
+  /* start special attacks */
+
+  if (ch->specials.stun_time > 0)
+  {
+    ch->specials.stun_time--;
+    return;
+  }
+
+  if (IS_SET(ch->specials.act,ACT_WARRIOR) && number(0,1) == 0)
+  /* do some warrior stuff */
+
+  switch (number(0,2)) 
+  {
+    case 0 : disarm(ch,victim);
+             break;
+    case 1 : bash(ch,victim);
+    	     break;
+    case 2:  kick (ch,victim);
+             break;
+  }
+
+  if (IS_SET(ch->specials.act,ACT_THIEF) && number(0,1) == 0)
+    switch (number(0,1))
+  {
+    case 0 : disarm(ch,victim);
+             break;
+    case 1 : trip(ch,victim);
+  	     break;
+  }
+
+  if (IS_SET(ch->specials.act,ACT_MAGE) && IS_SET(ch->specials.act,ACT_CLERIC))
+  {
+    if (number(0,1) == 0 && GET_MANA(ch) > 0)
+      return;
+    if (affected_by_spell(ch,SPELL_BLINDNESS))
+    {
+      if (GET_LEVEL(ch) > 3)
+      {
+	act("$n utters the words, 'judicandus nose'",0,ch,0,0,TO_ROOM);
+        cast_cure_blind(GET_LEVEL(ch),ch,"",SPELL_TYPE_SPELL,ch,0); 
+        GET_MANA(ch) -= mana_cost(ch,4,5);
+      }
+      return;
+    }
+
+    switch (number(0,1))
+    {
+      case 0 : cleric(ch,0,"");
+	       break;
+      case 1 : magic_user(ch,0,"");
+ 	       break;
+    }
+    return;
+  }
+
+  if (IS_SET(ch->specials.act,ACT_CLERIC) && GET_MANA(ch) > 0 &&
+      number(0,1) == 0)
+  {
+    if (affected_by_spell(ch,SPELL_BLINDNESS))
+    {
+      if (GET_LEVEL(ch) > 3)
+      {
+        act("$n utters the words, 'judicandus nose'",0,ch,0,0,TO_ROOM);
+        cast_cure_blind(GET_LEVEL(ch),ch,"",SPELL_TYPE_SPELL,ch,0);
+        GET_MANA(ch) -= mana_cost(ch,4,5);
+       }
+      return;
+    }
+
+    cleric(ch,0,"");
+    return;
+  }
+
+  if (IS_SET(ch->specials.act, ACT_MAGE) && GET_MANA(ch) > 0 &&
+      number(0,1) == 0)
+  {
+    if (affected_by_spell(ch,SPELL_BLINDNESS))
+    {
+      if (GET_LEVEL(ch) > 10)
+      {
+        act("$n utters the words, 'sin magicum'",0,ch,0,0,TO_ROOM);
+	cast_dispel_magic(GET_LEVEL(ch)+10,ch,"",SPELL_TYPE_SPELL,ch,0);
+        GET_MANA(ch) = mana_cost(ch,11,15);
+      }
+      return;
+    }
+ 
+    magic_user(ch,0,"");
+    return;
+  }
+}
+
+ /* Hit one guy once. */
+
 void one_hit( struct char_data *ch, struct char_data *victim, int type )
 {
     struct obj_data *wielded;
@@ -215,6 +406,20 @@ void one_hit( struct char_data *ch, struct char_data *victim, int type )
 	                          /*                            -Kahn   */
       }
 
+    /* RT code for modifying damage by class */
+    if (!IS_NPC(ch))
+    {
+       
+	switch (GET_CLASS(ch))
+	{
+	  case CLASS_MAGIC_USER:  dam = (dam * 7) / 10; break;
+	  case CLASS_CLERIC:      dam = (dam * 8) / 10; break;
+	  case CLASS_THIEF:	  break;  /* no change */
+  	  case CLASS_WARRIOR:     dam = (dam * 12) / 10; break; 
+	  default:  break; 
+         }
+    }
+
     if ( dam < 1 )
 	dam = 1;
 
@@ -232,6 +437,7 @@ void damage( struct char_data *ch, struct char_data *victim,
 {
     struct message_type *messages;
     int i, j, nr, max_hit;
+    struct obj_data *corpse;
 
     int hit_limit(struct char_data *ch);
 
@@ -243,6 +449,19 @@ void damage( struct char_data *ch, struct char_data *victim,
      */
     if ( GET_LEVEL(victim) >= 32 && !IS_NPC(victim) )
 	dam = 0;
+
+    /* code to prevent pkilling */
+
+    if (!IS_NPC(ch) && IS_AFFECTED(ch,AFF_KILLER))
+	dam = 0;
+
+
+    /* shortcut code for invulnerable shopkeepers */
+
+    if (IS_NPC(victim) &&
+        IS_SET(victim->specials.act,ACT_NOWEAPON) &&
+	IS_SET(victim->specials.act,ACT_NOMAGIC))
+      dam = 0;
 
     /*
      * Certain attacks are forbidden.
@@ -317,6 +536,10 @@ void damage( struct char_data *ch, struct char_data *victim,
     if ( IS_AFFECTED(victim, AFF_PROTECT_EVIL) && GET_ALIGNMENT(ch) < -350 )
 	dam /= 2;
 
+    /* RT  Damage reduction */
+    if (dam > 30) dam = 30 + (dam - 30)/2;
+    if (dam > 75) dam = 75 + (dam - 75)/2;
+
     if ( dam < 0 )
 	dam = 0;
 
@@ -326,10 +549,6 @@ void damage( struct char_data *ch, struct char_data *victim,
      */
     if ( attacktype >= TYPE_HIT && attacktype < TYPE_SUFFERING )
     {
-	if ( IS_NPC(ch) && number( 1, 100 ) < GET_LEVEL(ch) / 2 )
-	    disarm( ch, victim );
-	if ( IS_NPC(ch) && number( 1, 100 ) < GET_LEVEL(ch) / 2 )
-	    trip( ch, victim );
 	if ( check_parry( ch, victim ) )
 	    return;
 	if ( check_dodge( ch, victim ) )
@@ -456,7 +675,7 @@ void damage( struct char_data *ch, struct char_data *victim,
 	    }
 	    else
 	    {
-		if ( IS_AFFECTED(victim, AFF_WIMPY) )
+		if ( IS_SET(victim->specials.act, PLR_WIMPY) )
 		{
 		    do_flee( victim, "", 0 );
 		    return;
@@ -515,9 +734,30 @@ void damage( struct char_data *ch, struct char_data *victim,
 	    }
 	}
 	raw_kill( victim );
+
+        corpse = get_obj_in_list_vis(ch, "corpse",world[ch->in_room].contents);
+ 
+	/* RT new auto commands */
+ 	
+        if (corpse && IS_SET(ch->specials.act,PLR_AUTOLOOT) && 
+            corpse->contains && !IS_NPC(ch))  
+  	  do_get( ch, "all corpse", 0 );	
+ 
+        if (corpse && IS_SET(ch->specials.act,PLR_AUTOGOLD) && !IS_NPC(ch) &&
+            corpse->contains &&!IS_SET(ch->specials.act,PLR_AUTOLOOT))
+	  do_get( ch, "gold corpse", 0);
+ 
+	if (corpse && IS_SET(ch->specials.act,PLR_AUTOSAC) && !IS_NPC(ch))
+	{
+	  if (IS_SET(ch->specials.act,PLR_AUTOLOOT) && corpse->contains)
+	    /* return because the corpse was not empty */
+	    return;
+	  do_tap( ch, "corpse", 0);
+ 	}
+	   
 	return;
     }
-
+ 
     return;
 }
 
@@ -534,6 +774,9 @@ void check_killer( struct char_data *ch, struct char_data *victim )
     if (IS_SET( world[ch->in_room].room_flags, SAFE) )
 	return;
     
+    /* RT  Gods cannot be killers past 31 */
+    if (GET_LEVEL(ch) > 31)
+       return;
     /*
      * NPC's are fair game.
      * So are killers and thieves.
@@ -544,27 +787,6 @@ void check_killer( struct char_data *ch, struct char_data *victim )
 	return;
     if ( IS_SET(victim->specials.affected_by, AFF_THIEF) )
 	return;
-
-    /*
-     * Charm-o-rama.
-     */
-    if ( IS_SET(ch->specials.affected_by, AFF_CHARM) )
-    {
-	if ( ch->master == NULL )
-	{
-	    sprintf( log_buf, "Check_killer: %s bad AFF_CHARM",
-		IS_NPC(ch) ? ch->player.short_descr : GET_NAME(ch) );
-	    log( log_buf );
-	    affect_from_char( ch, SPELL_CHARM_PERSON );
-	    REMOVE_BIT( ch->specials.affected_by, AFF_CHARM );
-	    return;
-	}
-
-	send_to_char( "*** You are now a KILLER!! ***\n\r", ch->master );
-	SET_BIT(ch->master->specials.affected_by, AFF_KILLER);
-	stop_follower(ch);
-	return;
-    }
 
     /*
      * NPC's are cool of course (as long as not charmed).
@@ -579,6 +801,7 @@ void check_killer( struct char_data *ch, struct char_data *victim )
 
     send_to_char( "*** You are now a KILLER!! ***\n\r", ch );
     SET_BIT(ch->specials.affected_by, AFF_KILLER);
+    do_quit(ch,0,0);
     return;
 }
 
@@ -596,18 +819,20 @@ bool check_parry( struct char_data *ch, struct char_data *victim )
     if ( ch->equipment[WIELD] == NULL && number ( 1, 101 ) >= 50 )
         return FALSE;
 
-    if ( IS_NPC(victim) )
-	chance	= MIN( 60, 2 * GET_LEVEL(ch) );
+    if ( IS_NPC(victim) && IS_SET(victim->specials.act,ACT_WARRIOR))
+	chance	= MIN( 40, 2 * GET_LEVEL(victim) );
     else
 	chance	= victim->skills[SKILL_PARRY].learned / 2;
 
-    percent = number(1, 101) - (GET_LEVEL(victim) - GET_LEVEL(ch));
+    chance = chance + (GET_LEVEL(ch) - GET_LEVEL(victim))/2;
+    percent = number(1, 101);
     if ( percent >= chance )
 	return FALSE;
 
-    act( "$n parries $N's attack.", FALSE, victim, NULL, ch, TO_NOTVICT );
     act( "$n parries your attack.", FALSE, victim, NULL, ch, TO_VICT );
     act( "You parry $N's attack.",  FALSE, victim, NULL, ch, TO_CHAR );
+    if (!IS_NPC(ch))
+      check_improve(ch,SKILL_PARRY,4,TRUE);
     return TRUE;
 }
 
@@ -617,20 +842,29 @@ bool check_parry( struct char_data *ch, struct char_data *victim )
 bool check_dodge( struct char_data *ch, struct char_data *victim )
 {
     int percent;
-    int chance;
+    int chance = 0;
 
-    if ( IS_NPC(victim) )
-        chance  = MIN( 60, 2 * GET_LEVEL(ch) );
+    if ( IS_NPC(victim))
+    {
+      chance = GET_LEVEL(victim);
+      if (IS_SET(victim->specials.act,ACT_THIEF))
+	chance *= 2;
+      if (IS_SET(victim->specials.act,ACT_FAST))
+	chance += 20;
+    }
+      
     else
         chance  = victim->skills[SKILL_DODGE].learned / 2;
 
-    percent = number(1, 101) - (GET_LEVEL(victim) - GET_LEVEL(ch));
+    chance = chance + (GET_LEVEL(victim) - GET_LEVEL(ch))/2;
+    percent = number(1,101);
     if ( percent >= chance )
         return FALSE;
 
-    act( "$n dodges $N's attack.", FALSE, victim, NULL, ch, TO_NOTVICT );
     act( "$n dodges your attack.", FALSE, victim, NULL, ch, TO_VICT );
     act( "You dodge $N's attack.", FALSE, victim, NULL, ch, TO_CHAR );
+    if (!IS_NPC(ch))
+      check_improve(ch,SKILL_DODGE,4,TRUE);
     return TRUE;
 }
 
@@ -828,6 +1062,9 @@ void make_corpse(struct char_data *ch)
     {
 	corpse->obj_flags.cost_per_day = 200000;
 	corpse->obj_flags.timer = MAX_PC_CORPSE_TIME;
+	corpse->owner = ch;
+        SET_BIT(corpse->obj_flags.extra_flags,ITEM_NOPURGE);
+        REMOVE_BIT(ch->specials.act,PLR_CANLOOT);
     }
 
     for ( i = 0; i < MAX_WEAR; i++ )
@@ -920,6 +1157,7 @@ void raw_kill( struct char_data *ch )
     GET_POS(ch)                 = POSITION_RESTING;
     while ( ch->affected )
 	affect_remove( ch, ch->affected );
+    ch->points.armor = 100; /* RT to fix AC bug */
 
     if ( GET_HIT(ch) <= 0 )
 	GET_HIT(ch) = 1;
@@ -935,6 +1173,7 @@ void raw_kill( struct char_data *ch )
 void group_gain( struct char_data *ch, struct char_data *victim )
 {
     char buf[256];
+    int mult;
     int no_members, share;
     int totallevels;
     struct char_data *k;
@@ -975,6 +1214,26 @@ void group_gain( struct char_data *ch, struct char_data *victim )
     }
 
     share   = GET_EXP(victim);
+    mult = 10;
+    if (IS_SET(victim->specials.act,ACT_WARRIOR))
+	mult += 1;
+    if (IS_SET(victim->specials.act,ACT_MAGE))
+        mult += 1;
+    if (IS_SET(victim->specials.act,ACT_CLERIC))
+        mult += 1;
+    if (IS_SET(victim->specials.act,ACT_THIEF))
+        mult += 1;
+    if (IS_SET(victim->specials.act,ACT_AREA_ATTACK))
+        mult += (no_members - 1);
+    if (IS_SET(victim->specials.act,ACT_FAST))
+        mult += 1;
+    if (IS_SET(victim->specials.act,ACT_AGGRESSIVE))
+        mult += 1;
+    if (IS_SET(victim->specials.act,ACT_WIMPY))
+        mult -= 1;
+
+    share = (mult * share) / 10;
+ 	
     share   += share * (no_members - 1) / 10;
 
     /*
@@ -993,21 +1252,26 @@ void group_gain( struct char_data *ch, struct char_data *victim )
 	if ( !IS_AFFECTED(tmp_ch, AFF_GROUP) && tmp_ch != ch )
 	    goto LContinue;
 	    
-	if ( GET_LEVEL(tmp_ch) - GET_LEVEL(k) >= 6 )
+	if ( GET_LEVEL(tmp_ch) - GET_LEVEL(k) >= 9 )
 	{
 	    act( "You are too high for this group.  You gain no experience.",
 		FALSE, tmp_ch, 0, 0, TO_CHAR );
 	    goto LContinue;
 	}
 
-	if ( GET_LEVEL(tmp_ch) - GET_LEVEL(k) <= -6 )
+	if ( GET_LEVEL(tmp_ch) - GET_LEVEL(k) <= -9 )
 	{
 	    act( "You are too low for this group.  You gain no experience.",
 		FALSE, tmp_ch, 0, 0, TO_CHAR );
 	    goto LContinue;
 	}
 
-	tmp_share   = MIN( 250000, GET_LEVEL(tmp_ch) * share / totallevels );
+	tmp_share   = MIN( 750000, GET_LEVEL(tmp_ch) * share / totallevels );
+        if (IS_SET (tmp_ch->specials.affected_by, AFF_KILLER))
+          { 
+            act( "Murderers receive no rewards.", FALSE, tmp_ch, 0 ,0 ,TO_CHAR);
+            goto LContinue;
+          }
 	sprintf( buf, "You receive %d exps of %d total.\n\r",
 	    tmp_share, share );
 	send_to_char( buf, tmp_ch );
@@ -1048,8 +1312,12 @@ void dam_message( int dam, struct char_data *ch, struct char_data *victim,
     else if ( dam <= 25 ) { vs  = "DISMEMBER";      vp  = "DISMEMBERS";     }
     else if ( dam <= 29 ) { vs  = "DISEMBOWEL";     vp  = "DISEMBOWELS";    }
     else if ( dam <= 33 ) { vs  = "MASSACRE";       vp  = "MASSACRES";      }
-    else                  { vs  = "*** DEMOLISH ***";
-			    vp  = "*** DEMOLISHES ***";                     }
+    else if ( dam <= 44 ) { vs  = "*** DEMOLISH ***"; 
+                            vp  = "*** DEMOLISHES ***";			    }
+    else if ( dam <= 59)  { vs  = "=== OBLITERATE ===";             
+   			    vp  = "=== OBLITERATES ===";                    }
+    else                  { vs  = ">>> ANNIHILATE <<<";
+			    vp  = ">>> ANNIHILATES <<<";                    }
 
     w_type  -= TYPE_HIT;
     if ( w_type >= sizeof(attack_table)/sizeof(attack_table[0]) )
@@ -1093,20 +1361,61 @@ void disarm( struct char_data *ch, struct char_data *victim )
 
     if ( ch->equipment[WIELD] == NULL && number ( 1, 101 ) >= 50 )
       return;
-
+    if (number ( 1, 101 ) >= 50 + 5 * GET_LEVEL (victim) - 3 * GET_LEVEL(ch))
+    {
     act( "$n disarms you and sends your weapon flying!",
 	FALSE, ch, NULL, victim, TO_VICT );
     act( "You disarm $N and send $S weapon flying!",
 	FALSE, ch, NULL, victim, TO_CHAR );
     act( "$n disarms $N and sends $S weapon flying!",
 	FALSE, ch, NULL, victim, TO_NOTVICT );
-
+  
     obj = unequip_char( victim, WIELD );
+   /* buggy  obj->owner = victim; */
     obj_to_room( obj, victim->in_room );
+    }
     return;
 }
 
+void kick(struct char_data *ch, struct char_data *victim)
+{
+  int percent, skill;
 
+    percent=((10-(GET_AC(victim)/10))<<1) + number(1,101);
+
+    skill = 20 + 2 * GET_LEVEL(ch);
+    if (IS_SET(ch->specials.act,ACT_FAST))
+      skill += 20;
+ 
+    if (percent > skill) {
+        damage(ch, victim, 0, SKILL_KICK);
+    } else {
+        damage(ch, victim, GET_LEVEL(ch)>>1, SKILL_KICK);
+    }
+    
+}
+
+void bash(struct char_data *ch, struct char_data *victim)
+{
+  int percent, skill;
+  
+  percent = number(0,101);
+  skill = 20 + 2 * GET_LEVEL(ch);
+
+  if (percent > skill)  {
+       damage(ch, victim, 0, SKILL_BASH);
+       GET_POS(ch) = POSITION_SITTING;
+    } else {
+        damage(ch, victim, 1, SKILL_BASH);
+        GET_POS(victim) = POSITION_SITTING;
+	WAIT_STATE(victim, PULSE_VIOLENCE*2);
+        if (IS_NPC(victim))
+	  victim->specials.stun_time = 2;
+    }
+    WAIT_STATE(ch, PULSE_VIOLENCE*2);
+    ch->specials.stun_time = 1;
+
+}
 
 /*
  * Trip a creature.
@@ -1114,6 +1423,8 @@ void disarm( struct char_data *ch, struct char_data *victim )
  */
 void trip( struct char_data *ch, struct char_data *victim )
 {
+    if (number ( 1, 101 ) >= 40 + 5 * GET_LEVEL (ch) - 3 * GET_LEVEL(victim))
+    {
     act( "$n trips you and you go down!",
         FALSE, ch, NULL, victim, TO_VICT );
     act( "You trip $N and $N goes down!",
@@ -1123,8 +1434,14 @@ void trip( struct char_data *ch, struct char_data *victim )
 
     damage( ch, victim, 1, SKILL_TRIP );
     WAIT_STATE( ch, PULSE_VIOLENCE*2 );
+    if (IS_NPC(ch))
+      ch->specials.stun_time = 1;
+
     WAIT_STATE( victim, PULSE_VIOLENCE*3 );
+    if (IS_NPC(victim))
+      victim->specials.stun_time = 3;
     GET_POS(victim) = POSITION_SITTING;
+    }
 
     return;
 }

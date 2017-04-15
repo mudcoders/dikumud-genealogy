@@ -1,0 +1,132 @@
+**Bannor[3001]: call jel8@ cunix.cc.columbia.edu for a great area; the Elemental Canyon!!!!
+**Andersen[9320]: pose for immortals
+**Furic[2134]: what about a TRAP skill for thieves?  (furic)
+**Abbadon[3008]: Put all bag/pouch/backpack/??? should be possible - wear all is!
+**Markus[9514]: How about putting a fountain or waterskin selling shop in New Thalos...!
+**Andersen[6380]: Have 1st levellers start in mud school instead of the temple.
+**Casret[3005]: have the group command also show class of others
+**Furey[3001]: could you make do_practise usable while sleeping
+**Furey[3001]: ... so i can check my spell list while healing up?
+**Valerie[3013]: Allow players to give stuff to monsters to wear!
+**Feith[7029]: I would like a braid hair social
+**Cobalt[3054]: putting in a description of Acid Blast would be nice
+**Thews[9535]: mix one with another:laugh til ya cry etc...
+**Thews[3008]: a dream function like the socials, in your dreams, or what
+**Andersen[9801]: if we have mosh, why not stagedive, slam...
+**Scott[3110]: cheer?
+**Scott[3001]: snore for sleeping
+**Doom[3005]: new social: fall: you've fallen and you can't get up!
+**Andersen[5250]: shun and/or snub
+**Casret[3011]: a bottomless bag
+**Casret[3005]: shows male or female in the description
+**Mender[4115]: stifle   as stifle a laugh
+**Melancholy[3001]: "Halo" social... =)
+**Slater[3056]: potion of haste
+**Cool[8053]: hunt command
+**Norman[2141]: how about a clue that disarm failed
+**MavEtJu[3001]: GREET command 
+**Casret[3005]: like the citygurads the gangmembers should protect each other, and the gangmemeber from the oppisite tem should join in the fight with you!
+**Valerie[6516]: make it easier for group members to know what direction they went (show e w s n, etc)
+**Yaz[1477]: Can I have an ACK ack social  :)  I wanna ack
+**Ugh[1477]: maybe the master could help out her cat
+**Elendil[3006]: How about a 'raise' social...  Raises his eyebrows in question..
+**Hell[3001]: group should work while sleeping
+**Ravenblood[3001]: new social: salute
+**Yaz[3001]: It would be cool to have weather or not people in a group are restnig or sleeping in the group status... like use an r, or an s to indicate it after the 
+**Weazel[3035]: include Level requirements with identify scrolls.
+**Andersen[9801]: social push
+**Weazel[5248]: put character class in the group information
+**Kade[9543]: be able to tuype GROUP in my sleep
+**Andersen[6010]: yelp (from Sara / Ikee)
+**Melancholy[9806]: "boot to the head" social
+**Colette[3054]: How about having QUIET, BRIEF, etc... be ON or OFF (ie:briefon" commands instead of toggles... would be nice!!!!
+**Lia[3001]: i wanna be able to snore.
+**Andersen[9806]: put holylite : ON/OFF in score report for us imms.
+**Andersen[5051]: a command to see game states like wizlock/newlock
+**Lia[6505]: a thief skill lock.
+**Andersen[1201]: social PET (like a cat, not what you're thinking!)
+**Kade[9525]: pace social
+**Ikee[7912]: buff social :  buffs his fingernails.
+**Kade[3005]: social:  salute!
+**Andersen[3019]: social: tag
+**Andersen[1499]: social:    slouch
+**Abbadon[3001]: make the keyword FLAG to tell bout all the flags a player has and how to change them(if playerchangeable)
+**Abbadon[3007]: get (victim) = sexual social!
+**Andersen[3300]: social:   think
+**Elendil[3020]: Make a bottle of endless water or something. It would be VERY convienent! Thanks...
+**Elendil[6122]: How about telling you the direction you go when you flee? I.E. You flee south. It would help...
+**Fazerburn[4125]: Squint and Throw
+**Fazerburn[3054]: Gogglw as a social
+**Fazerburn[3054]: I meant goggle
+**Fazerburn[1394]: Have the 'pray' social, followed by the name of an on-line immortal send a message to them stating that 'XXXX is praying to you'.
+**Rhaamon[2172]: allow multiple direction  commands like 'w w w s s e' to go directly there
+**Beelzebub[3001]: maybe fix snore so i can do that in my sleep i see no reason i would do it other than in my dreams...
+**Raxon[3514]: raxon
+**Raxon[3514]: pandora
+**Radane[8905]: gloves
+**Liselle[9320]: strangle social... 
+**Liselle[9320]: choke social... 
+**Liselle[9320]: head banging social...
+**Loki[250]: Alias command
+**Beelzebub[3001]: how about the mages taking damage from a failed enchant you know when it explodes and all not much just a little
+**Tristan[3020]: show class in "group" command
+**Lia[9612]: a 'players' command that just returns the number of players found on the mud.
+**Tribble[7102]: connie
+**Tribble[7102]: connie
+**Ikee[5248]: edit line 3 of the worship social to be fall TO your knees
+**MrC[3001]: kill primus
+**Jalapeno[3013]: dagger
+**Rhaamon[2110]: Wedgie for socials.
+**Informer[5556]: Fix the astericks on the RIVERS OF MUD LOGO.
+**Ikee[7912]: list AT among the wizhelp
+**Ikee[7912]: delete Joey and Little from wizlist and player file.  THey are never around
+**Ikee[7912]: Andersen, Masim and Taran are 32's according to wizlist
+**Tristan[3133]: give an echo message when you do a disarm
+**Andersen[1201]: chortle
+**Thraawn[4022]: May we please have a message when the 'shield' spell wears off?
+**Shaddow[9358]: gauntlets
+**Jalapeno[3001]: dream
+**Jalapeno[3001]: body slam
+**Spam[5010]: lambada
+**Spam[5010]: bodyslam
+**Mysanthropy[3003]: dagger
+**Hyperion[3005]: are aliases possible? <asking too much ;)>
+**Ikee[7912]: 10 46 am, Tuesday, someone had loaded 6-8 liches in or near town
+**Zane[3306]: dagger
+**Mysanthropy[3003]: helm
+**Jaguar[3005]: sword
+**Squirrel[5248]: have millions of squirrels running around in the forests!
+**Eru[3014]: sword
+**Diva[3033]: tickler
+**Thews[1313]: dream, an emote for sleep, kind of like pose
+**Dysan[3511]: when you type time have it also show the actual time...(of course have which time zone that is from howevee
+**Beelzebub[212]: new mob   Shenanigans    running all about midguard
+**Beelzebub[3054]: longsword
+**Squirrel[3005]: make me a god
+**Squirrel[3005]: seriously, i think squirrels would be a cool addition to the forest animals...
+**Firehawk[3001]: talisman
+**Zane[1464]: cloak
+**Zane[1464]: what does id do ??
+**Paladine[3005]: make a command for drink fountain?
+**Jimson[3001]: mace
+**Jimson[3001]: club
+**Kyric[3005]: axe
+**GUEST[2167]: PICK
+**GUEST[2167]: SWORD
+**Alea[3045]: update help on areas to include nirvana and mob fact.
+**Paladine[3001]: make tell command able to go to charactes while asleep!!
+**GUEST[9410]: blade
+**Alkali[3033]: ring
+**Malhavoc[3033]: ashen
+**Malhavoc[3033]: silver
+**CabbageHead[3042]: 2.cloak
+**CabbageHead[4737]: stone
+**Goobs[259]: make a 'High-Five" emote
+**Abbadon[3005]: afk command that autotells and modifies title ;)
+**Spirit[3001]: 2.potion
+**Kyric[3033]: morning star
+**Abbadon[9303]: autosave on automenu
+**CabbageHead[3008]: bracer
+**CabbageHead[6100]: toadstool
+**CabbageHead[6000]: I think I've been giving a bunch of screwed up ideas... sorry,just a bug with my client.
+**Abbadon[212]: ... what about an autosnore command? makes you snore  automatic snore while sleeping!

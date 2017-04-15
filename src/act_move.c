@@ -65,6 +65,9 @@ int do_simple_move(struct char_data *ch, int cmd, int following)
     movement_loss[world[world[ch->in_room].dir_option[cmd]->to_room].
 	sector_type]) / 2;
 
+    /* RT Fly spell fix */
+    if(IS_AFFECTED(ch, AFF_FLYING)) need_movement = 0;
+
     if ((world[ch->in_room].sector_type == SECT_WATER_NOSWIM) ||
       (world[world[ch->in_room].dir_option[cmd]->to_room].sector_type
       == SECT_WATER_NOSWIM)) {
@@ -73,13 +76,13 @@ int do_simple_move(struct char_data *ch, int cmd, int following)
 	for (obj=ch->carrying; obj; obj=obj->next_content)
 	    if (obj->obj_flags.type_flag == ITEM_BOAT)
 		has_boat = TRUE;
-	if (!has_boat) {
+	if (!has_boat && !IS_AFFECTED(ch,AFF_FLYING) && (GET_LEVEL(ch) < 32)) {
 	    send_to_char("You need a boat to go there.\n\r", ch);
 	    return(FALSE);
 	}
     }
 
-    if(GET_MOVE(ch)<need_movement && !IS_NPC(ch))
+    if(GET_MOVE(ch)<need_movement && !IS_NPC(ch) && GET_LEVEL(ch) < 32)
     {
 	if(!following)
 	    send_to_char("You are too exhausted.\n\r",ch);
@@ -171,7 +174,7 @@ void do_move(struct char_data *ch, char *argument, int cmd)
 
 int find_door(struct char_data *ch, char *type, char *dir)
 {
-    char buf[MAX_STRING_LENGTH];
+    char buf[SHORT_STRING_LENGTH];
     int door;
     char *dirs[] = 
     {
@@ -228,7 +231,7 @@ int find_door(struct char_data *ch, char *type, char *dir)
 void do_open(struct char_data *ch, char *argument, int cmd)
 {
     int door, other_room;
-    char type[MAX_INPUT_LENGTH], dir[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+    char type[MAX_INPUT_LENGTH], dir[MAX_INPUT_LENGTH], buf[SHORT_STRING_LENGTH];
     struct room_direction_data *back;
     struct obj_data *obj;
     struct char_data *victim;
@@ -300,7 +303,7 @@ void do_open(struct char_data *ch, char *argument, int cmd)
 void do_close(struct char_data *ch, char *argument, int cmd)
 {
     int door, other_room;
-    char type[MAX_INPUT_LENGTH], dir[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
+    char type[MAX_INPUT_LENGTH], dir[MAX_INPUT_LENGTH], buf[SHORT_STRING_LENGTH];
     struct room_direction_data *back;
     struct obj_data *obj;
     struct char_data *victim;
@@ -531,6 +534,7 @@ void do_pick(struct char_data *ch, char *argument, int cmd)
 
    if (percent > (ch->skills[SKILL_PICK_LOCK].learned)) {
       send_to_char("You failed to pick the lock.\n\r", ch);
+      check_improve(ch,SKILL_PICK_LOCK,1,FALSE);
       return;
     }
 
@@ -555,6 +559,7 @@ void do_pick(struct char_data *ch, char *argument, int cmd)
 	{
 	    REMOVE_BIT(obj->obj_flags.value[1], CONT_LOCKED);
 	    send_to_char("*Click*\n\r", ch);
+	    check_improve(ch,SKILL_PICK_LOCK,1,TRUE);
 	    act("$n fiddles with $p.", FALSE, ch, obj, 0, TO_ROOM);
 	}
     else if ((door = find_door(ch, type, dir)) >= 0)
@@ -577,6 +582,7 @@ void do_pick(struct char_data *ch, char *argument, int cmd)
 	    else
 		act("$n picks the lock of the.", TRUE, ch, 0, 0, TO_ROOM);
 	    send_to_char("The lock quickly yields to your skills.\n\r", ch);
+	    check_improve(ch,SKILL_PICK_LOCK,1,TRUE);
 	    /* now for unlocking the other side, too */
 	    if ((other_room = EXIT(ch, door)->to_room) != NOWHERE)
 	    if ( ( back = world[other_room].dir_option[rev_dir[door]] ) != 0 )
@@ -589,7 +595,7 @@ void do_pick(struct char_data *ch, char *argument, int cmd)
 void do_enter(struct char_data *ch, char *argument, int cmd)
 {
     int door;
-    char buf[MAX_INPUT_LENGTH], tmp[MAX_STRING_LENGTH];
+    char buf[MAX_INPUT_LENGTH], tmp[SHORT_STRING_LENGTH];
 
     void do_move(struct char_data *ch, char *argument, int cmd);
 
@@ -788,7 +794,7 @@ void do_sleep(struct char_data *ch, char *argument, int cmd)
 void do_wake(struct char_data *ch, char *argument, int cmd)
 {
     struct char_data *tmp_char;
-    char arg[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
 
 
     one_argument(argument,arg);
@@ -839,6 +845,36 @@ void do_wake(struct char_data *ch, char *argument, int cmd)
 }
 
 
+void do_nofollow(struct char_data *ch, char *argument, int cmd)
+{
+    void stop_follower(struct char_data *ch);
+    struct follow_type *j, *k;
+
+    if (IS_NPC(ch))
+      	return; 
+
+    if (IS_SET(ch->specials.act,PLR_NOFOLLOW))
+    {
+	send_to_char("You may now follow and lead.\n\r",ch);
+	REMOVE_BIT(ch->specials.act,PLR_NOFOLLOW);
+    }
+    else
+    {
+	send_to_char("You no longer welcome followers.\n\r",ch);
+        SET_BIT(ch->specials.act,PLR_NOFOLLOW);
+
+	/* stop all followers */
+	if (ch->master)
+	  stop_follower(ch);
+	
+     	for (k=ch->followers; k; k=j) 
+	{
+          j = k->next;
+          stop_follower(k->follower);
+	}
+     }
+}
+
 void do_follow(struct char_data *ch, char *argument, int cmd)
 {
     char name[160];
@@ -858,6 +894,11 @@ void do_follow(struct char_data *ch, char *argument, int cmd)
 	send_to_char("Who do you wish to follow?\n\r", ch);
 	return;
     }
+    if (!IS_NPC(ch) && IS_SET(ch->specials.act,PLR_NOFOLLOW))
+    {
+	send_to_char("You must remove NOFOLLOW first.\n\r",ch);
+	return;
+    }
 
     if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master)) {
 
@@ -865,6 +906,13 @@ void do_follow(struct char_data *ch, char *argument, int cmd)
 	   FALSE, ch, 0, ch->master, TO_CHAR);
 
     } else { /* Not Charmed follow person */
+ 	
+	if (!IS_NPC(leader) && IS_SET(leader->specials.act,PLR_NOFOLLOW))
+	{
+	   act("$N doesn't seem to want any followers.",
+                FALSE,ch, 0, leader, TO_CHAR);
+	   return;
+	} 
 
 	if (leader == ch) {
 	    if (!ch->master) {
@@ -881,8 +929,17 @@ void do_follow(struct char_data *ch, char *argument, int cmd)
 	    if (ch->master)
 		stop_follower(ch);
 
-	    if ((abs(GET_LEVEL(ch)-GET_LEVEL(leader))<6) || GET_LEVEL(ch)>31)
+	    if ((abs(GET_LEVEL(ch)-GET_LEVEL(leader))<30) || GET_LEVEL(ch)>31)
+    	    {
 		add_follower(ch, leader);
+                if (IS_AFFECTED(ch, AFF_GROUP)) { /* RT remove grouping */
+                    act("$n has been kicked out of the group!",
+                         FALSE, ch, 0, ch, TO_ROOM);
+                    act("You are no longer a member of the group!",
+                         FALSE, ch, 0, 0, TO_CHAR);
+                    REMOVE_BIT(ch->specials.affected_by, AFF_GROUP);
+              }
+            }
 	    else
 	      {
 		act("Sorry, but you are not of the right caliber to follow.",

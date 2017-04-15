@@ -40,7 +40,237 @@ extern struct spell_info_type spell_info[];
 
 void hit(struct char_data *ch, struct char_data *victim, int type);
 void do_shout(struct char_data *ch, char *argument, int cmd);
+void do_gossip(struct char_data *ch, char *argument, int cmd);
 
+
+/* nosummon toggle for mobs and players */
+
+void do_nosummon(struct char_data *ch, char *argument, int cmd)
+{
+  if (IS_NPC(ch))
+  {
+    if (IS_SET(ch->specials.act,ACT_NOSUMMON))
+    {
+	send_to_char("You may now be summoned.\n\r",ch);
+	REMOVE_BIT(ch->specials.act,ACT_NOSUMMON);
+    }
+
+    else
+    {
+	send_to_char("You may no longer be summoned.\n\r",ch);
+	SET_BIT(ch->specials.act,ACT_NOSUMMON);
+    }
+  }
+
+  else
+  {
+    if (IS_SET(ch->specials.act,PLR_NOSUMMON))
+    {
+        send_to_char("You may now be summoned.\n\r",ch);
+        REMOVE_BIT(ch->specials.act,PLR_NOSUMMON);
+    }
+ 
+    else
+    {
+        send_to_char("You may no longer be summoned.\n\r",ch);
+        SET_BIT(ch->specials.act,PLR_NOSUMMON);
+    }
+  }
+}
+
+/* vis command for those sneaky thieves */
+
+void do_visible(struct char_data *ch, char *argument, int cmd)
+{
+  if (IS_AFFECTED(ch,AFF_SNEAK) || affected_by_spell(ch,SKILL_SNEAK))
+  {
+    send_to_char("You no longer feel so sneaky.\n\r",ch);
+    affect_from_char(ch,SKILL_SNEAK);
+    REMOVE_BIT(ch->specials.affected_by,AFF_SNEAK);
+  }
+
+  if (IS_AFFECTED(ch,AFF_HIDE))
+  {
+    send_to_char("You are no longer hidden.\n\r",ch);
+    REMOVE_BIT(ch->specials.affected_by,AFF_HIDE);
+  }
+
+  if (ch->specials.wizInvis)
+    do_wizinvis(ch,"",0);
+
+  if (affected_by_spell(ch,SPELL_INVISIBLE))
+  {
+    send_to_char("You are now visible.\n\r",ch);
+    act( "$n slowly fades into existence.", FALSE, ch, 0, 0, TO_ROOM );
+    affect_from_char(ch, SPELL_INVISIBLE);
+   }
+}
+
+/* various AUTO commands -- who needs clients? */
+
+
+void do_autolist(struct char_data *ch,  char *argument, int cm)
+{
+
+    if (IS_NPC(ch))
+      return;
+
+    /* lists all AUTO flags the character has set or unset */
+    send_to_char("   action     status\n\r",ch);
+    send_to_char("---------------------\n\r",ch);
+
+    send_to_char("autoassist     ",ch);
+    if (IS_SET(ch->specials.act,PLR_AUTOASSIST))
+	send_to_char("ON\n\r",ch);
+    else
+	send_to_char("OFF\n\r",ch);
+
+    send_to_char("autoexit       ",ch);
+    if (IS_SET(ch->specials.act,PLR_AUTOEXIT))
+        send_to_char("ON\n\r",ch);
+    else
+        send_to_char("OFF\n\r",ch);
+
+    send_to_char("autogold       ",ch);
+    if (IS_SET(ch->specials.act,PLR_AUTOGOLD))
+        send_to_char("ON\n\r",ch);
+    else
+        send_to_char("OFF\n\r",ch);
+
+    send_to_char("autoloot       ",ch);
+    if (IS_SET(ch->specials.act,PLR_AUTOLOOT))
+        send_to_char("ON\n\r",ch);
+    else
+        send_to_char("OFF\n\r",ch);
+
+    send_to_char("autosac        ",ch);
+    if (IS_SET(ch->specials.act,PLR_AUTOSAC))
+        send_to_char("ON\n\r",ch);
+    else
+        send_to_char("OFF\n\r",ch);
+
+    send_to_char("autosplit      ",ch);
+    if (IS_SET(ch->specials.act,PLR_AUTOSPLIT))
+        send_to_char("ON\n\r",ch);
+    else
+        send_to_char("OFF\n\r",ch);
+
+    send_to_char("wimpy          ",ch);
+    if (IS_SET(ch->specials.act,PLR_WIMPY))
+        send_to_char("ON\n\r",ch);
+    else
+        send_to_char("OFF\n\r",ch);
+ 
+    send_to_char("safe corpse    ",ch);
+    if (!IS_SET(ch->specials.act,PLR_CANLOOT))
+        send_to_char("ON\n\r",ch);
+    else
+        send_to_char("OFF\n\r",ch);
+}
+
+
+
+void do_autosplit(struct char_data *ch, char *argument, int cmd)
+{
+    if (IS_NPC(ch))
+      return;
+
+    if (IS_SET(ch->specials.act,PLR_AUTOSPLIT))
+    {
+      send_to_char("Autosplitting removed.\n\r",ch);
+      REMOVE_BIT(ch->specials.act,PLR_AUTOSPLIT);
+    }
+    else
+    {
+      send_to_char("Autosplitting set.\n\r",ch); 
+      SET_BIT(ch->specials.act,PLR_AUTOSPLIT);
+    }
+}
+
+void do_autoassist(struct char_data *ch, char *argument, int cmd)
+{
+    if (IS_NPC(ch))
+      return;
+
+    if (IS_SET(ch->specials.act,PLR_AUTOASSIST))
+    {
+      send_to_char("Autoassist removed.\n\r",ch);
+      REMOVE_BIT(ch->specials.act,PLR_AUTOASSIST);
+    }
+    else
+    {
+      send_to_char("You will now assist when needed.\n\r",ch);
+      SET_BIT(ch->specials.act,PLR_AUTOASSIST);
+    }
+}
+
+void do_autoloot(struct char_data *ch, char *argument, int cmd)
+{
+    if (IS_NPC(ch))
+      return;
+
+    if (IS_SET(ch->specials.act,PLR_AUTOLOOT))
+    {
+      send_to_char("Autolooting removed.\n\r",ch);
+      REMOVE_BIT(ch->specials.act,PLR_AUTOLOOT);
+    }
+    else
+    {
+      send_to_char("Autolooting set.\n\r",ch);
+      SET_BIT(ch->specials.act,PLR_AUTOLOOT);
+    }
+}
+
+void do_autogold(struct char_data *ch, char *argument, int cmd)
+{
+    if (IS_NPC(ch))
+      return;
+
+    if (IS_SET(ch->specials.act,PLR_AUTOGOLD))
+    {
+      send_to_char("Autogold removed.\n\r",ch);
+      REMOVE_BIT(ch->specials.act,PLR_AUTOGOLD);
+    }
+    else
+    {
+      send_to_char("Autogold set.\n\r",ch);
+      SET_BIT(ch->specials.act,PLR_AUTOGOLD);
+    }
+}
+
+void do_autosac(struct char_data *ch, char *argument, int cmd)
+{
+    if (IS_NPC(ch))
+      return;
+
+    if (IS_SET(ch->specials.act,PLR_AUTOSAC))
+    {
+      send_to_char("Autosacrificing removed.\n\r",ch);
+      REMOVE_BIT(ch->specials.act,PLR_AUTOSAC);
+    }
+    else
+    {
+      send_to_char("Autosacrificing set.\n\r",ch);
+      SET_BIT(ch->specials.act,PLR_AUTOSAC);
+    }
+}
+
+void do_autoexit(struct char_data *ch, char *argument, int cmd)
+{
+    if (IS_NPC(ch))
+      return;
+
+    if (IS_SET(ch->specials.act,PLR_AUTOEXIT))
+    {
+      send_to_char("Exits will no longer be displayed.\n\r",ch);
+      REMOVE_BIT(ch->specials.act,PLR_AUTOEXIT);
+    }
+    else
+    {
+      send_to_char("Exits will now be displayed.\n\r",ch);
+      SET_BIT(ch->specials.act,PLR_AUTOEXIT);
+    }
+}
 
 void do_qui(struct char_data *ch, char *argument, int cmd)
 {
@@ -51,11 +281,13 @@ void do_qui(struct char_data *ch, char *argument, int cmd)
 void do_quit(struct char_data *ch, char *argument, int cmd)
 {
     int iWear;
+    int loss;
+    char buf[100];
 
     if ( IS_NPC(ch) )
 	return;
 
-    if ( GET_POS(ch) == POSITION_FIGHTING )
+    if (( GET_POS(ch) == POSITION_FIGHTING ) && !IS_SET(ch->specials.affected_by, AFF_KILLER))
     {
 	send_to_char( "No way! You are fighting.\n\r", ch );
 	return;
@@ -66,9 +298,28 @@ void do_quit(struct char_data *ch, char *argument, int cmd)
 	send_to_char( "You're not DEAD yet.\n\r", ch );
 	return;
     }
+    if ( world[ch->in_room].zone != world[real_room(3001)].zone )
+       {
+        loss = MIN(GET_EXP(ch)/2, 10*GET_LEVEL(ch)*GET_LEVEL(ch) );
+        gain_exp(ch, 0 - loss);	
+        sprintf( buf, 
+        "You lost %d experience for quitting outside of town .\n\r",
+            loss );
+        send_to_char( buf, ch );
+       } /* RT */
 
     act( "Goodbye, friend.  Come back soon!", FALSE, ch, 0, 0, TO_CHAR );
     act( "$n has left the game.", TRUE, ch, 0, 0, TO_ROOM );
+
+    /* RT Leave gear behind if level 1 */
+    
+    if (GET_LEVEL(ch) == 1)
+    {
+      extract_char( ch, TRUE );
+      if ( ch->desc)
+         close_socket( ch->desc );
+      return;
+    }
 
     save_char_obj( ch );
     for ( iWear = 0; iWear < MAX_WEAR; iWear++ )
@@ -104,7 +355,8 @@ void do_save(struct char_data *ch, char *argument, int cmd)
 
     sprintf(buf, "Saving %s.\n\r", GET_NAME(ch));
     send_to_char(buf, ch);
-    save_char_obj( ch );
+    /* save_char_obj( ch ); */
+    ch->specials.will_save = TRUE;  /* it uses the autosaver now */
 }
 
 
@@ -129,7 +381,10 @@ void do_sneak(struct char_data *ch, char *argument, int cmd)
 
     if (percent > ch->skills[SKILL_SNEAK].learned +
 	dex_app_skill[GET_DEX(ch)].sneak)
+    {
+	check_improve(ch,SKILL_SNEAK,1,FALSE);
 	return;
+    }
 
     af.type = SKILL_SNEAK;
     af.duration = GET_LEVEL(ch);
@@ -137,6 +392,7 @@ void do_sneak(struct char_data *ch, char *argument, int cmd)
     af.location = APPLY_NONE;
     af.bitvector = AFF_SNEAK;
     affect_to_char(ch, &af);
+    check_improve(ch,SKILL_SNEAK,1,TRUE);
 }
 
 
@@ -154,7 +410,10 @@ void do_hide(struct char_data *ch, char *argument, int cmd)
 
     if (percent > ch->skills[SKILL_HIDE].learned +
 	dex_app_skill[GET_DEX(ch)].hide)
+    {
+	check_improve(ch,SKILL_HIDE,1,FALSE);
 	return;
+    }
 
     SET_BIT(ch->specials.affected_by, AFF_HIDE);
 }
@@ -182,11 +441,9 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 	return;
     }
 
-    if ((GET_EXP(ch) < 1250) && (!IS_NPC(victim))) {
+    if (!IS_NPC(victim)) {
       send_to_char(
 	"Due to misuse of steal, you can't steal from other players\n\r", ch);
-      send_to_char(
-	"unless you have at least 1,250 experience points.\n\r", ch);
       return;
     }
 
@@ -231,6 +488,7 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 	act("You unequip $p and steal it.",FALSE, ch, obj ,0, TO_CHAR);
 	act("$n steals $p from $N.",FALSE,ch,obj,victim,TO_NOTVICT);
 	obj_to_char(unequip_char(victim, eq_pos), ch);
+	check_improve(ch,SKILL_STEAL,1,TRUE);
 	  }
 	}
       } else {  /* obj found in inventory */
@@ -244,12 +502,14 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 		FALSE,ch,0,victim,TO_VICT);
 	  act("$n tries to steal something from $N.",
 		TRUE, ch, 0, victim, TO_NOTVICT);
+	  check_improve(ch,SKILL_STEAL,1,FALSE);
 	} else { /* Steal the item */
 	  if ((IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch))) {
 	if ((IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj)) < CAN_CARRY_W(ch)) {
 	  obj_from_char(obj);
 	  obj_to_char(obj, ch);
 	  send_to_char("Got it!\n\r", ch);
+	  check_improve(ch,SKILL_STEAL,1,TRUE);
 	  if ((GET_LEVEL(ch)<32) && (!IS_NPC(victim)))
 	    {
 	      if (!IS_SET(ch->specials.affected_by, AFF_THIEF))
@@ -269,6 +529,7 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
       if (percent > ch->skills[SKILL_STEAL].learned) {
 	ohoh = TRUE;
 	act("Oops..", FALSE, ch,0,0,TO_CHAR);
+	check_improve(ch,SKILL_STEAL,1,FALSE);
 	act("You discover that $n has $s hands in your wallet.",
 	    FALSE,ch,0,victim,TO_VICT);
 	act("$n tries to steal gold from $N.",
@@ -282,6 +543,7 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 	  GET_GOLD(victim) -= gold;
 	  sprintf(buf, "Bingo! You got %d gold coins.\n\r", gold);
 	  send_to_char(buf, ch);
+	  check_improve(ch,SKILL_STEAL,1,TRUE);
 	  if ((GET_LEVEL(ch)<32) && (!IS_NPC(victim)))
 	{
 	  if (!IS_SET(ch->specials.affected_by, AFF_THIEF))
@@ -338,7 +600,7 @@ void do_practice(struct char_data *ch, char *arg, int cmd)
 void do_idea(struct char_data *ch, char *argument, int cmd)
 {
     FILE *fl;
-    char str[MAX_STRING_LENGTH];
+    char str[SHORT_STRING_LENGTH];
 
     if (IS_NPC(ch))
     {
@@ -379,7 +641,7 @@ void do_idea(struct char_data *ch, char *argument, int cmd)
 void do_typo(struct char_data *ch, char *argument, int cmd)
 {
     FILE *fl;
-    char str[MAX_STRING_LENGTH];
+    char str[SHORT_STRING_LENGTH];
 
     if (IS_NPC(ch))
     {
@@ -418,7 +680,7 @@ void do_typo(struct char_data *ch, char *argument, int cmd)
 void do_bug(struct char_data *ch, char *argument, int cmd)
 {
     FILE *fl;
-    char str[MAX_STRING_LENGTH];
+    char str[SHORT_STRING_LENGTH];
 
     if (IS_NPC(ch))
     {
@@ -563,19 +825,42 @@ void do_group(struct char_data *ch, char *argument, int cmd)
 	}
 	
 	if (found) {
-	  if (abs(GET_LEVEL(ch)-GET_LEVEL(victim)) < 6){
+	  if (abs(GET_LEVEL(ch)-GET_LEVEL(victim)) < 9){
 	    if (IS_AFFECTED(victim, AFF_GROUP)) {
 		act("$n has been kicked out of the group!",
 		    FALSE, victim, 0, ch, TO_ROOM);
 		act("You are no longer a member of the group!",
 		    FALSE, victim, 0, 0, TO_CHAR);
 		REMOVE_BIT(victim->specials.affected_by, AFF_GROUP);
-	    } else {
+                if (victim == ch)
+                { /* dissolve group */
+                   for (f=ch->followers; f; f=f->next)
+                      {
+			if (IS_AFFECTED(f->follower, AFF_GROUP))
+                        {
+		           act("$n has been kicked out of the group!",
+                           FALSE, f->follower, 0, ch, TO_ROOM);
+                	   act("You are no longer a member of the group!",
+                           FALSE, f->follower, 0, 0, TO_CHAR);
+                           REMOVE_BIT(f->follower->specials.affected_by, AFF_GROUP);
+                         }
+                       }
+                 }
+	    } else {   
 		act("$n is now a group member.",
 		    FALSE, victim, 0, 0, TO_ROOM);
 		act("You are now a group member.",
 		    FALSE, victim, 0, 0, TO_CHAR);
 		SET_BIT(victim->specials.affected_by, AFF_GROUP);
+                /* add leader if he is not yet a member */
+                if (!IS_AFFECTED(ch,AFF_GROUP))
+                   {
+                act("$n is now a group member.",
+                    FALSE, ch, 0, 0, TO_ROOM);
+                act("You are now a group member.",
+                    FALSE, ch, 0, 0, TO_CHAR);
+                SET_BIT(ch->specials.affected_by, AFF_GROUP);
+                }
 	    }
 	      } else {
 	    act("$n is not of the right caliber to join this group.",
@@ -711,7 +996,7 @@ void do_use(struct char_data *ch, char *argument, int cmd)
 	act("$n taps $p three times on the ground.",
 	    TRUE, ch, stick, 0,TO_ROOM);
 	act("You tap $p three times on the ground.",
-	    FALSE,ch, stick, 0,TO_CHAR);
+	    FALSE,ch, stick,0,TO_CHAR);
 
 	if (stick->obj_flags.value[2] > 0) { /* Charges left? */
 	    stick->obj_flags.value[2]--;
@@ -720,7 +1005,11 @@ void do_use(struct char_data *ch, char *argument, int cmd)
 	    SPELL_TYPE_STAFF, 0, 0));
 
 	} else {
-	    send_to_char("The staff seems powerless.\n\r", ch);
+	    send_to_char("The staff disintegrates in your hands.\n\r", ch);
+            act
+	    ("The staff disintegrates in $n's hands!",FALSE,ch,0,0,TO_ROOM);
+            unequip_char(ch, HOLD);
+	    extract_obj(stick);
 	}
     } else if (stick->obj_flags.type_flag == ITEM_WAND) {
 
@@ -728,7 +1017,7 @@ void do_use(struct char_data *ch, char *argument, int cmd)
 	| FIND_OBJ_ROOM | FIND_OBJ_EQUIP, ch, &tmp_char, &tmp_object);
 	if (bits) {
 	    if (bits == FIND_CHAR_ROOM) {
-		act("$n point $p at $N.", TRUE, ch, stick, tmp_char, TO_ROOM);
+		act("$n points $p at $N.", TRUE, ch, stick, tmp_char, TO_ROOM);
 		act("You point $p at $N.",FALSE,ch, stick, tmp_char, TO_CHAR);
 	    } else {
 	    act("$n point $p at $P.", TRUE, ch, stick, tmp_object, TO_ROOM);
@@ -742,7 +1031,10 @@ void do_use(struct char_data *ch, char *argument, int cmd)
 	      ((byte) stick->obj_flags.value[0], ch, "",
 	      SPELL_TYPE_WAND, tmp_char, tmp_object));
 	    } else {
-		send_to_char("The wand seems powerless.\n\r", ch);
+		send_to_char("The wand vibrates and explodes!\n\r", ch);
+		act("The wand vibrates and explodes!",FALSE,ch,0,0,TO_ROOM);
+                unequip_char(ch, HOLD);
+                extract_obj(stick);
 	    }
 
 	} else {
@@ -755,17 +1047,19 @@ void do_use(struct char_data *ch, char *argument, int cmd)
 
 
 void do_recall( CHAR_DATA *ch, char *argument, int cmd )
+/* RT modified: no recalls at temple, automatic non-combat recall */
 {
     int location;
     int percent;
     CHAR_DATA *victim;
   
-    percent = number(1, 100);
-
-    act( "$n prays to $s God for transportation!",
+    percent = number(1, 101);
+    if (ch->in_room != real_room(3001) )
+      act( "$n prays to $s God for transportation!",
 	TRUE, ch, 0, 0, TO_ROOM );
 
-    if ( percent > /* ch->skills[SKILL_RECALL].learned */ 50 )
+    if (( percent > /* ch->skills[SKILL_RECALL].learned */ 50 ) &&
+          ( GET_POS(ch) == POSITION_FIGHTING ))
     {
 	send_to_char( "You failed in your recall!\n\r", ch );
 	return;
@@ -775,6 +1069,11 @@ void do_recall( CHAR_DATA *ch, char *argument, int cmd )
     {
 	send_to_char( "You are completely lost.\n\r", ch );
 	return;
+    }
+    if ( ch->in_room == real_room(3001) )
+    {
+        send_to_char( "You are already there!\n\r", ch);
+        return;
     }
 
     if ( ( victim = ch->specials.fighting ) != NULL )
@@ -804,15 +1103,15 @@ void do_recall( CHAR_DATA *ch, char *argument, int cmd )
 
 void do_wimpy(struct char_data *ch, char *argument, int cmd)
 {
-    if (IS_AFFECTED(ch, AFF_WIMPY))
+    if (IS_SET(ch->specials.act, PLR_WIMPY))
     {
 	send_to_char("You are no longer a wimp....maybe.\n\r", ch);
-	REMOVE_BIT(ch->specials.affected_by, AFF_WIMPY);
+	REMOVE_BIT(ch->specials.act, PLR_WIMPY);
     }
     else
     {
 	send_to_char("You are now an official wimp.\n\r", ch);
-	SET_BIT(ch->specials.affected_by, AFF_WIMPY);
+	SET_BIT(ch->specials.act, PLR_WIMPY);
     }
 }
 

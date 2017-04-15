@@ -39,11 +39,44 @@ int isname(char *arg, char *arg2);
 struct obj_data *create_money( int amount );
 void do_put(struct char_data *ch, char *argument, int cmd);
 
+/* no looting code */
+bool can_loot(struct char_data *ch, struct obj_data *obj)
+{
+  if (!IS_NPC(ch) && GET_LEVEL(ch) > 31)
+    return TRUE;
+  if (!obj->owner || obj->owner == NULL)
+    return TRUE;
+  if (obj->owner == ch)
+    return TRUE;
+  if (!IS_NPC(obj->owner) && IS_SET(obj->owner->specials.act,PLR_CANLOOT))
+    return TRUE;
+  
+  return FALSE;
+}
+
+void do_noloot(struct char_data *ch, char *argument, int cmd)
+{
+  if (IS_NPC(ch))
+    return;
+  if (IS_SET(ch->specials.act,PLR_CANLOOT))
+  {
+    send_to_char("Your corpse is now protected from thievery.\n\r",ch);
+    REMOVE_BIT(ch->specials.act,PLR_CANLOOT);
+  }
+  else
+  {
+    send_to_char("Your corpse is no longer protected.\n\r",ch);
+    SET_BIT(ch->specials.act,PLR_CANLOOT);
+  }
+}
+ 
+
 /* procedures related to get */
 void get(struct char_data *ch, struct obj_data *obj_object, 
     struct obj_data *sub_object)
 {
-    char buffer[MAX_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
+    int gold;
 
     if (sub_object) {
 	obj_from_obj(obj_object);
@@ -51,7 +84,7 @@ void get(struct char_data *ch, struct obj_data *obj_object,
 	if (sub_object->carried_by == ch) {
 	    act("You get $p from $P.", 0, ch, obj_object, sub_object,
 		TO_CHAR);
-	    act("$n gets $p from $s $P.", 1, ch, obj_object, sub_object,
+	    act("$n gets $p from $P.", 1, ch, obj_object, sub_object,
 		TO_ROOM);
 	} else {
 	    act("You get $p from $P.", 0, ch, obj_object, sub_object,
@@ -69,20 +102,26 @@ void get(struct char_data *ch, struct obj_data *obj_object,
 	(obj_object->obj_flags.value[0]>=1))
     {
 	obj_from_char(obj_object);
-	sprintf(buffer,"There was %d coins.\n\r",
-		obj_object->obj_flags.value[0]);
+        gold = obj_object->obj_flags.value[0];
+	sprintf(buffer,"There were %d coins.\n\r",gold);
 	send_to_char(buffer,ch);
-	GET_GOLD(ch) += obj_object->obj_flags.value[0];
+	GET_GOLD(ch) += gold; 
 	extract_obj(obj_object);
+        if (!IS_NPC(ch) && IS_SET(ch->specials.act,PLR_AUTOSPLIT) &&
+	    IS_AFFECTED(ch,AFF_GROUP))
+        {
+          sprintf(buffer,"%d",gold);
+	  do_split(ch,buffer,0);
+        }
     }
 }
 
 
 void do_get(struct char_data *ch, char *argument, int cmd)
 {
-    char arg1[MAX_STRING_LENGTH];
-    char arg2[MAX_STRING_LENGTH];
-    char buffer[MAX_STRING_LENGTH];
+    char arg1[SHORT_STRING_LENGTH];
+    char arg2[SHORT_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
     struct obj_data *sub_object;
     struct obj_data *obj_object;
     struct obj_data *next_obj;
@@ -90,7 +129,7 @@ void do_get(struct char_data *ch, char *argument, int cmd)
     bool fail  = FALSE;
     int type   = 3;
     bool alldot = FALSE;
-    char allbuf[MAX_STRING_LENGTH];
+    char allbuf[SHORT_STRING_LENGTH];
 
     argument_interpreter(argument, arg1, arg2);
 
@@ -159,7 +198,8 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 		    if ((IS_CARRYING_N(ch) + 1) <= CAN_CARRY_N(ch)) {
 			if ((IS_CARRYING_W(ch) + obj_object->obj_flags.weight)
 				<= CAN_CARRY_W(ch)) {
-			    if (CAN_WEAR(obj_object,ITEM_TAKE)) {
+			    if (CAN_WEAR(obj_object,ITEM_TAKE) &&
+				can_loot(ch,obj_object)) {
 				get(ch,obj_object,sub_object);
 				found = TRUE;
 			    } else {
@@ -199,7 +239,8 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 		if ((IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch))) {
 		    if ((IS_CARRYING_W(ch) + obj_object->obj_flags.weight) < 
 			CAN_CARRY_W(ch)) {
-			if (CAN_WEAR(obj_object,ITEM_TAKE)) {
+			if (CAN_WEAR(obj_object,ITEM_TAKE) &&
+			    can_loot(ch,obj_object)) {
 			    get(ch,obj_object,sub_object);
 			    found = TRUE;
 			} else {
@@ -245,6 +286,11 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 		    sprintf(buffer,
 			"The %s is closed.\n\r",fname(sub_object->name));
 		    send_to_char(buffer, ch);
+		    return;
+		  }
+		  if (!can_loot(ch,sub_object))
+		  {
+		    send_to_char("Corpse looting is not permitted.\n\r",ch);
 		    return;
 		  }
 		  for(obj_object = sub_object->contains;
@@ -319,6 +365,12 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 	    send_to_char(buffer, ch);
 	    return;
 	      }
+                  if (!can_loot(ch,sub_object))
+                  {
+                    send_to_char("Corpse looting is not permitted.\n\r",ch);
+                    return;
+                  }
+
 	      obj_object = get_obj_in_list_vis(ch, arg1, sub_object->contains);
 	      if (obj_object) {
 	    if ((IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch))) {
@@ -367,9 +419,9 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 
 void do_drop(struct char_data *ch, char *argument, int cmd)
 {
-    char arg[MAX_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
     int amount;
-    char buffer[MAX_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
     struct obj_data *tmp_object;
     struct obj_data *next_obj;
     bool test = FALSE;
@@ -383,7 +435,8 @@ void do_drop(struct char_data *ch, char *argument, int cmd)
       }
       amount = atoi(arg);
       argument=one_argument(argument,arg);
-      if (str_cmp("coins",arg) && str_cmp("coin",arg))
+      if (str_cmp("coins",arg) && str_cmp("coin",arg) &&
+         str_cmp("gold",arg))
 	{
 	  send_to_char("Sorry, you can't do that (yet)...\n\r",ch);
 	  return;
@@ -467,7 +520,7 @@ void do_putalldot(struct char_data *ch, char *name, char *target, int cmd)
 {
 	struct obj_data *tmp_object;
 	struct obj_data *next_object;
-	char buf[MAX_STRING_LENGTH];
+	char buf[SHORT_STRING_LENGTH];
 	bool found = FALSE;
 
 	/* If "put all.object bag", get all carried items
@@ -489,15 +542,21 @@ void do_putalldot(struct char_data *ch, char *name, char *target, int cmd)
 
 void do_put(struct char_data *ch, char *argument, int cmd)
 {
-    char buffer[MAX_STRING_LENGTH];
-    char arg1[MAX_STRING_LENGTH];
-    char arg2[MAX_STRING_LENGTH];
+    char buffer[SHORT_STRING_LENGTH];
+    char arg1[SHORT_STRING_LENGTH];
+    char arg2[SHORT_STRING_LENGTH];
     struct obj_data *obj_object;
     struct obj_data *sub_object;
     struct char_data *tmp_char;
     int bits;
-    char allbuf[MAX_STRING_LENGTH];
+    char allbuf[SHORT_STRING_LENGTH];
 
+      /* RT code to prevent wear all in room 3001 */
+    if (ch->in_room == real_room(3001))
+          {
+             send_to_char("You may not put away objects in this room.\n\r",ch);
+             return;
+           }
     argument_interpreter(argument, arg1, arg2);
     if (*arg1) {
 	if (*arg2) {
@@ -546,11 +605,11 @@ void do_put(struct char_data *ch, char *argument, int cmd)
 	    send_to_char(buffer, ch);
 	      }
 	    } else {
-	      sprintf(buffer, "You dont have the %s.\n\r", arg2);
+	      sprintf(buffer, "You don't have the %s.\n\r", arg2);
 	      send_to_char(buffer, ch);
 	    }
 	  } else {
-	    sprintf(buffer, "You dont have the %s.\n\r", arg1);
+	    sprintf(buffer, "You don't have the %s.\n\r", arg1);
 	    send_to_char(buffer, ch);
 	  }
 	} else {
@@ -566,8 +625,8 @@ void do_put(struct char_data *ch, char *argument, int cmd)
 
 void do_give(struct char_data *ch, char *argument, int cmd)
 {
-    char obj_name[80], vict_name[80], buf[MAX_STRING_LENGTH];
-    char arg[80];
+    char obj_name[SHORT_STRING_LENGTH], vict_name[SHORT_STRING_LENGTH], buf[SHORT_STRING_LENGTH];
+    char arg[SHORT_STRING_LENGTH];
     int amount;
     struct char_data *vict;
     struct obj_data *obj;
@@ -581,7 +640,7 @@ void do_give(struct char_data *ch, char *argument, int cmd)
       }
       amount = atoi(obj_name);
       argument=one_argument(argument, arg);
-      if (str_cmp("coins",arg) && str_cmp("coin",arg))
+      if (str_cmp("coins",arg) && str_cmp("coin",arg) && str_cmp("gold", arg))
 	{
 	  send_to_char("Sorry, you can't do that (yet)...\n\r",ch);
 	  return;

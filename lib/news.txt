@@ -1,32 +1,37 @@
-Recent changes to MERC Mud:
+The following new commands have been added:
 
-All old chars and equipment have been wiped.
+Quiet: 		turns off most forms of communication
+Commands: 	lists all the commands in the game
+Deaf:		renders you deaf to shouts
+Nofollow:	prevents other characters from following you
+MOTD:		displays the message of the day
+Assist:		help someone out in combat
+Autolist:	lists all the AUTO commands (not all available yet)
+Autoexit:	displays all visible exits when you enter a room
+Autosplit:	splits gold automatically when you are in a group
+Autoloot:	gets all equipment from a dead mobile
+Autogold:	gets gold from a dead mobile
+Autosac:	sacrifices dead monsters (with autoloot set, it will only sac
+		empty corpses)
+Autoassist:     makes you help group members automatically.
+Visible:	removes hiding, sneaking, and invisiblity
+Nosummon:	makes you immune to summon.
+Channels:   	Shows which channels are active
 
-Playtesters: we have your purple potions.  The list is not negotiable;
-our decision is final.  We credited everything in BUGS, IDEAS, and even
-some TYPOS, as well as e-mail we received.
+New spells:  (see help for details)
 
-If you haven't been to Mud school lately, you should.
+Gate
+Fly
+Plague
+Enchant Weapon 
+Cure Disease
+Calm
+Chain Lightning
+Haste
+Frenzy
 
-There is no more rent.  Just save and quit whenever you like.  If you are
-outside of town, it will cost you xp to quit.  There is no more free lunch
-available by killing your link.  Note that first level chars can not save,
-and certain items (such as keys) cannot be saved.
+More information about these commands is available with the help command.	
 
-There are no more ATM's, either.
+Remember, this mud is not yet finished.  Expect changes without notice.
 
-If you go outside the city gates without a recall, and you walk into
-a no-exit room, it's your own fault!  No immortal will rescue you.
-You'll have to persuade another player to come get you.
-
-We have level restrictions on grouping.  We also have level restrictions
-on equipment.
-
-Your initial abilities are now standard, so you won't gain anything by
-rolling characters all night.  Abilities can be trained; there are two
-trainers in town.
-
-We have an entire list of areas in "help areas" now.
-
-Several players have asked for a "scan" command.  We think that would
-unbalance the game and are not going to have one.
+-- Alander

@@ -67,6 +67,7 @@ struct command_info cmd_info[] =
      * Common other commands.
      * Placed here so one and two letter abbreviations work.
      */
+    { "at",         do_at,          POSITION_DEAD,      32, 9 },
     { "cast",       do_cast,        POSITION_SITTING,   0,  9 },
     { "exits",      do_exits,       POSITION_RESTING,   0,  9 },
     { "get",        do_get,         POSITION_RESTING,   0,  9 },
@@ -84,22 +85,25 @@ struct command_info cmd_info[] =
      * Informational commands.
      */
     { "brief",      do_brief,       POSITION_DEAD,      0,  9 },
-    { "bug",        do_bug,         POSITION_DEAD,      0,  9 },
+/*  { "bug",        do_bug,         POSITION_DEAD,      5,  9 },     */
+    { "commands",   do_commands,    POSITION_DEAD,      0,  9 },
     { "compact",    do_compact,     POSITION_DEAD,      0,  9 },
     { "credits",    do_credits,     POSITION_DEAD,      0,  9 },
     { "equipment",  do_equipment,   POSITION_DEAD,      0,  9 },
     { "help",       do_help,        POSITION_DEAD,      0,  9 },
-    { "idea",       do_idea,        POSITION_DEAD,      0,  9 },
+    { "idea",       do_idea,        POSITION_DEAD,      5,  9 },
     { "info",       do_info,        POSITION_DEAD,      0,  9 },
 /*  { "inventory",  do_inventory,   POSITION_DEAD,      0,  9 },    */
     { "levels",     do_levels,      POSITION_DEAD,      0,  9 },
+    { "motd",	    do_motd,        POSITION_DEAD,      0,  9 },
     { "news",       do_news,        POSITION_DEAD,      0,  9 },
     { "score",      do_score,       POSITION_DEAD,      0,  9 },
+    { "scroll",     do_scroll,      POSITION_DEAD,      0,  9 },
     { "story",      do_story,       POSITION_DEAD,      0,  9 },
     { "tick",       do_tick,        POSITION_DEAD,      0,  9 },
     { "time",       do_time,        POSITION_DEAD,      0,  9 },
     { "title",      do_title,       POSITION_DEAD,      0,  9 },
-    { "typo",       do_typo,        POSITION_DEAD,      0,  9 },
+    { "typo",       do_typo,        POSITION_DEAD,      5,  9 },
     { "weather",    do_weather,     POSITION_DEAD,      0,  9 },
     { "who",        do_who,         POSITION_DEAD,      0,  9 },
     { "wizlist",    do_wizlist,     POSITION_DEAD,      0,  9 },
@@ -107,18 +111,28 @@ struct command_info cmd_info[] =
     /*
      * Communication commands.
      */
+/*  { "at",         do_at,          POSITION_DEAD,      32, 9 },  */
+    { "answer",     do_answer,      POSITION_SLEEPING,  0,  9 },
     { "ask",        do_ask,         POSITION_RESTING,   0,  9 },
+    { "auction",    do_auction,     POSITION_SLEEPING,  0,  9 },
+    { "deaf",	    do_deaf,	    POSITION_DEAD,      0,  9 },
     { "emote",      do_emote,       POSITION_RESTING,   0,  9 },
+    { "erase",	    do_erase,	    POSITION_RESTING,   0,  9 },
     { ",",          do_emote,       POSITION_RESTING,   0,  9 },    
-    { "gtell",      do_grouptell,   POSITION_DEAD,      0,  9 },
+    { "gtell",      do_grouptell,   POSITION_SLEEPING,  0,  9 },
     { ";",          do_grouptell,   POSITION_DEAD,      0,  9 },
     { "insult",     do_insult,      POSITION_RESTING,   0,  9 },
 /*  { "order",      do_order,       POSITION_RESTING,   0,  9 },    */
+    { "music",      do_music,       POSITION_DEAD,      0,  9 },
     { "pose",       do_pose,        POSITION_RESTING,   0,  9 },
+    { "question",   do_question,    POSITION_SLEEPING,  0,  9 },
+    { "quiet",      do_quiet,       POSITION_DEAD,      0,  9 },
     { "report",     do_report,      POSITION_DEAD,      0,  9 },
     { "say",        do_say,         POSITION_RESTING,   0,  9 },
     { "'",          do_say,         POSITION_RESTING,   0,  9 },
     { "shout",      do_shout,       POSITION_RESTING,   0,  9 },
+    { "goto",       do_goto,        POSITION_DEAD,      32, 9 },
+    { "gossip",     do_gossip,      POSITION_SLEEPING,  0,  9 },
 /*  { "tell",       do_tell,        POSITION_RESTING,   0,  9 },    */
     { "whisper",    do_whisper,     POSITION_RESTING,   0,  9 },
 
@@ -156,6 +170,7 @@ struct command_info cmd_info[] =
     /*
      * Combat commands.
      */
+    { "assist",     do_assist,      POSITION_FIGHTING,  0,  9 },
     { "bash",       do_bash,        POSITION_FIGHTING,  0,  9 },
     { "disarm",     do_disarm,      POSITION_FIGHTING,  0,  9 },
     { "flee",       do_flee,        POSITION_FIGHTING,  0,  9 },
@@ -178,19 +193,30 @@ struct command_info cmd_info[] =
     /*
      * Miscellaneous commands.
      */
+    { "autolist",   do_autolist,    POSITION_DEAD,	0,  9 },
+    { "autoassist", do_autoassist,  POSITION_DEAD, 	0,  9 },
+    { "autoloot",   do_autoloot,    POSITION_DEAD,	0,  9 },
+    { "autoexit",   do_autoexit,    POSITION_DEAD,	0,  9 },
+    { "autogold",   do_autogold,    POSITION_DEAD, 	0,  9 },
+    { "autosac",    do_autosac,	    POSITION_DEAD,	0,  9 },
+    { "autosplit",  do_autosplit,   POSITION_DEAD,      0,  9 },
     { "backstab",   do_backstab,    POSITION_STANDING,  0,  9 },
     { "bs",         do_backstab,    POSITION_STANDING,  0,  9 },
 /*  { "cast",       do_cast,        POSITION_SITTING,   0,  9 },    */
+    { "channels",   do_channels,    POSITION_DEAD,      0,  9 }, 
     { "consider",   do_consider,    POSITION_RESTING,   0,  9 },
     { "enter",      do_enter,       POSITION_STANDING,  0,  9 },
     { "examine",    do_examine,     POSITION_RESTING,   0,  9 },
 /*  { "exits",      do_exits,       POSITION_RESTING,   0,  9 },    */
     { "follow",     do_follow,      POSITION_RESTING,   0,  9 },
-    { "group",      do_group,       POSITION_RESTING,   0,  9 },
+    { "group",      do_group,       POSITION_RESTING,   0,  9 },    
     { "hide",       do_hide,        POSITION_RESTING,   0,  9 },
     { "leave",      do_leave,       POSITION_STANDING,  0,  9 },
 /*  { "look",       do_look,        POSITION_RESTING,   0,  9 },    */
-    { "pick",       do_pick,        POSITION_STANDING,  0,  9 },
+    { "nofollow",   do_nofollow,    POSITION_DEAD,	0,  9 },
+    { "noloot",	    do_noloot,	    POSITION_DEAD,	0,  9 }, 
+    { "nosummon",   do_nosummon,    POSITION_DEAD,      0,  9 },
+    { "pick",       do_pick,        POSITION_STANDING,  5,  9 },
     { "qui",        do_qui,         POSITION_DEAD,      0,  9 },
     { "quit",       do_quit,        POSITION_DEAD,      0,  9 },
     { "recall",     do_recall,      POSITION_FIGHTING,  0,  9 },
@@ -199,7 +225,8 @@ struct command_info cmd_info[] =
     { "save",       do_save,        POSITION_DEAD,      0,  9 },
     { "sneak",      do_sneak,       POSITION_STANDING,  1,  9 },
     { "split",      do_split,       POSITION_RESTING,   0,  9 },
-    { "steal",      do_steal,       POSITION_STANDING,  1,  9 },
+    { "steal",      do_steal,       POSITION_STANDING,  3,  9 },
+    { "visible",    do_visible,     POSITION_RESTING,    0,  9 },
     { "where",      do_where,       POSITION_RESTING,   0,  9 },
     { "wimpy",      do_wimpy,       POSITION_DEAD,      0,  9 },
     { "write",      do_write,       POSITION_STANDING,  0,  9 },
@@ -208,6 +235,7 @@ struct command_info cmd_info[] =
      * Special procedure commands.
      */
     { "buy",        do_not_here,    POSITION_STANDING,  0,  56 },
+    { "bug", 	    do_bug,         POSITION_DEAD,      0,  9  },
     { "sell",       do_not_here,    POSITION_STANDING,  0,  57 },
     { "value",      do_not_here,    POSITION_STANDING,  0,  58 },
     { "list",       do_not_here,    POSITION_STANDING,  0,  59 },
@@ -222,34 +250,35 @@ struct command_info cmd_info[] =
 
     { "allow",      do_allow,       POSITION_DEAD,      34, 9 },
     { "ban",        do_ban,         POSITION_DEAD,      34, 9 },
-    { "disconnect", do_disconnect,  POSITION_DEAD,      34, 9 },
-    { "freeze",     do_freeze,      POSITION_DEAD,      34, 9 },
-    { "log",        do_log,         POSITION_DEAD,      34, 9 },
-    { "purge",      do_purge,       POSITION_DEAD,      34, 9 },
-    { "reroll",     do_reroll,      POSITION_DEAD,      34, 9 },
-    { "reset",      do_reroll,      POSITION_DEAD,      34, 9 },
+    { "disconnect", do_disconnect,  POSITION_DEAD,      33, 9 },
+    { "freeze",     do_freeze,      POSITION_DEAD,      33, 9 },
+    { "log",        do_log,         POSITION_DEAD,      35, 9 },
+    { "purge",      do_purge,       POSITION_DEAD,      33, 9 },
+    { "reroll",     do_reroll,      POSITION_DEAD,      35, 9 },
+    { "reset",      do_reroll,      POSITION_DEAD,      35, 9 },
     { "set",        do_set,         POSITION_DEAD,      34, 9 },
-    { "shutdow",    do_shutdow,     POSITION_DEAD,      34, 9 },
-    { "shutdown",   do_shutdown,    POSITION_DEAD,      34, 9 },
-    { "sockets",    do_sockets,     POSITION_DEAD,      34, 9 },
-    { "string",     do_string,      POSITION_DEAD,      34, 9 },
-    { "wizlock",    do_wizlock,     POSITION_DEAD,      34, 9 },
+    { "shutdow",    do_shutdow,     POSITION_DEAD,      35, 9 },
+    { "shutdown",   do_shutdown,    POSITION_DEAD,      35, 9 },
+    { "sockets",    do_sockets,     POSITION_DEAD,      33, 9 },
+    { "string",     do_string,      POSITION_DEAD,      33, 9 },
+    { "wizlock",    do_wizlock,     POSITION_DEAD,      35, 9 },
 
     { "force",      do_force,       POSITION_DEAD,      33, 9 },
     { "load",       do_load,        POSITION_DEAD,      33, 9 },
+    { "newlock",    do_newlock,     POSITION_DEAD,      33, 9 },
+    { "nochannels", do_nochannels,  POSITION_DEAD,      33, 9 },
     { "noemote",    do_noemote,     POSITION_DEAD,      33, 9 },
-    { "nosocial",   do_noemote,     POSITION_DEAD,      33, 9 },
     { "noshout",    do_noshout,     POSITION_DEAD,      33, 9 },
-    { "notell",     do_notell,      POSITION_DEAD,      33, 9 },
+    { "notell",     do_notell,      POSITION_DEAD,   	33, 9 },
     { "pardon",     do_pardon,      POSITION_DEAD,      33, 9 },
     { "restore",    do_restore,     POSITION_DEAD,      33, 9 },
     { "teleport",   do_teleport,    POSITION_DEAD,      33, 9 },
     { "trans",      do_trans,       POSITION_DEAD,      33, 9 },
 
-    { "at",         do_at,          POSITION_DEAD,      32, 9 },
+ /* { "at",         do_at,          POSITION_DEAD,      32, 9 }, */
     { "echo",       do_echo,        POSITION_DEAD,      32, 9 },
-    { "goto",       do_goto,        POSITION_DEAD,      32, 9 },
-    { "snoop",      do_snoop,       POSITION_DEAD,      32, 9 },
+    { "gecho",      do_gecho,       POSITION_DEAD,      33, 9 },
+    { "snoop",      do_snoop,       POSITION_DEAD,      33, 9 },
     { "stat",       do_stat,        POSITION_DEAD,      32, 9 },
     { "switch",     do_switch,      POSITION_DEAD,      32, 9 },
     { "invis",      do_wizinvis,    POSITION_DEAD,      32, 9 },
@@ -257,6 +286,7 @@ struct command_info cmd_info[] =
 
     { "holylite",   do_holylite,    POSITION_DEAD,      31, 9 },
     { "immortal",   do_wiz,         POSITION_DEAD,      31, 9 },
+    { "imotd",	    do_imotd,       POSITION_DEAD,	31, 9 },
     { ":",          do_wiz,         POSITION_DEAD,      31, 9 },
 /*  { "wizhelp",    do_wizhelp,     POSITION_DEAD,      31, 9 },    */
 
@@ -280,14 +310,16 @@ void command_interpreter( struct char_data *ch, char *pcomm )
     int look_at;
     int cmd;
 
+     
+    
     /*
      * No hiding.
      */
     REMOVE_BIT( ch->specials.affected_by, AFF_HIDE );
 
-    /*
-     * Log players.
-     */
+    /* set autosave on */
+    ch->specials.will_save = TRUE;
+    
     if ( !IS_NPC(ch) && IS_SET(ch->specials.act, PLR_LOG) )
     {
 	sprintf( log_buf, "Log %s: %s", GET_NAME(ch), pcomm );
@@ -597,20 +629,20 @@ int special(struct char_data *ch, int cmd, char *arg)
        if ((*world[ch->in_room].funct)(ch, cmd, arg))
 	  return(1);
 
-    /* special in equipment list? */
+    /* RT special in equipment list? no special items, removed 
     for (j = 0; j <= (MAX_WEAR - 1); j++)
        if (ch->equipment[j] && ch->equipment[j]->item_number>=0)
 	  if (obj_index[ch->equipment[j]->item_number].func)
 	     if ((*obj_index[ch->equipment[j]->item_number].func)
 		(ch, cmd, arg))
-		return(1);
+		return(1);  */
 
-    /* special in inventory? */
+    /* RT special in inventory?  no special items, removed
     for (i = ch->carrying; i; i = i->next_content)
 	if (i->item_number>=0)
 	    if (obj_index[i->item_number].func)
 	   if ((*obj_index[i->item_number].func)(ch, cmd, arg))
-	      return(1);
+	      return(1);  */
 
     /* special in mobile present? */
     for (k = world[ch->in_room].people; k; k = k->next_in_room)
@@ -619,12 +651,12 @@ int special(struct char_data *ch, int cmd, char *arg)
 	     if ((*mob_index[k->nr].func)(ch, cmd, arg))
 		return(1);
 
-    /* special in object present? */
+    /* special in object present? no special items, removed 
     for (i = world[ch->in_room].contents; i; i = i->next_content)
        if (i->item_number>=0)
 	  if (obj_index[i->item_number].func)
 	     if ((*obj_index[i->item_number].func)(ch, cmd, arg))
-		return(1);
+		return(1);  */
 
 
     return(0);
@@ -658,6 +690,37 @@ void do_wizhelp(struct char_data *ch, char *argument, int cmd_arg)
 	no++;
     }
 
+    strcat(buf, "\n\r");
+    page_string(ch->desc, buf, 1);
+}
+
+
+void do_commands(struct char_data *ch, char *argument, int cmd_arg)
+{
+    char buf[MAX_STRING_LENGTH];
+    int cmd;
+    int no;
+ 
+    if (IS_NPC(ch))
+        return;
+ 
+    send_to_char(
+        "The following player comands are available:\n\r\n\r", ch);
+ 
+    buf[0] = '\0';
+    for ( cmd = 0, no = 0; cmd_info[cmd].command_name[0] != '\0'; cmd++ )
+    {
+        if ( cmd_info[cmd].minimum_level > 30 )
+            continue;
+        if ( cmd_info[cmd].minimum_level > GET_LEVEL(ch) )
+            continue;
+ 
+        sprintf( buf + strlen(buf), "%-10s", cmd_info[cmd].command_name );
+        if ( no % 7 == 0 )
+            strcat(buf, "\n\r");
+        no++;
+    }
+ 
     strcat(buf, "\n\r");
     page_string(ch->desc, buf, 1);
 }

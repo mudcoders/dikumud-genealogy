@@ -114,10 +114,15 @@
 #define SPELL_HANDS_OF_WIND          79
 #define SPELL_PLAGUE                 80
 #define SPELL_REFRESH                81
-#define MAX_SPL_LIST                 82
+#define SPELL_CURE_DISEASE           82
+#define SPELL_CALM		     83
+#define SPELL_CHAIN_LIGHTNING	     84
+#define SPELL_HASTE		     85
+#define SPELL_FRENZY		     86
+#define MAX_SPL_LIST                 87
 
 /*
- * 82 to 299 reserved for more spells.
+ * 83 to 299 reserved for more spells.
  * Now some new skills.
  */
 #define SKILL_TRIP                   300
@@ -193,6 +198,7 @@
 #define TAR_OBJ_ROOM    256
 #define TAR_OBJ_WORLD   512
 #define TAR_OBJ_EQUIP  1024
+#define TAR_SELF_DEF   2048  /* default to char if no arg */
 
 typedef	void	SPELL_FUN	( byte level, struct char_data *ch,
 				  char *arg, int type,

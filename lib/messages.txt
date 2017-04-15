@@ -1,4 +1,46 @@
 M
+ 75
+The spirits of Evil drag $N down into Hell!~
+You are pulled into Hell by the forces of Evil!~
+$N is swallowed up by the spirits of Evil!~
+$N wards of the demons of Hell...for now!~
+You breathe a sigh of relief as you ward of the demons summoned by $n!~
+$N wards of the demons of Hell...for now!~
+You torment $N with the spirits of Evil!~
+You are tormented by spirits of Evil!~
+Demonic Spirits torment $N!~
+$N banishes your pathetic demons with a wave of his hand.~
+You banish the demons summoned by $n without a second thought.~
+$N banishes the demons summoned by $n with a wave of his hand.~
+M
+ 27
+Your god smashes $N into bits!~
+You are annihilated by the power of $n's god!~
+$n calls upon $s gods and destroys $N!~
+The power of your god fails to damage $N.~
+Your inner faith saves you from the wrath of $n's god!~
+$N calls upon $s gods to save him from $n, and suceeds!~
+You call upon your god to smite $N!~
+$n calls down the wrath of his god upon you!~
+$N is struck down by the wrath of $n's god!~
+Do you really think your PUNY god can hurt ME?!?~
+$n attempts to strike you with divine wrath...you laugh!~
+$n stupidly tries to invoke the power of $S impotent god against $N~
+M
+ 70 
+Your acid blast burns $N into a smoking pool!~
+You are burned into a smoking pool by the acid blast from $n.~
+$N is reduced to a smoking pool by the acid blast from $n!~
+Your acid blast splashes $N, burning holes in $S clothing.~
+Your clothes smoke as $n splashes you with an acid blast!~
+A splash of acid from $n burns holes in $N's clothing.~ 
+You burn holes in $N with your acid blast.~
+An acid blast from $n burns your flesh....your clothes smoke!~
+Smoke rises from $N as $E is hit from the acid blast from $n.~
+Your acid fails to burn $N...perhaps that was a bad idea?~
+The acid blast from $n fails to wound you.  Foolish mortals!~
+The acid blast from $n does no damage to $N...what was he thinking?~
+M
  5
 You burned $N to death.~
 You have been burned to death by $n.~
@@ -353,9 +395,9 @@ M
 $N makes a strange sound but is suddenly very silent, as you place $p in $S back.~
 Suddenly $n stabs you in the back, RIP...~
 $n place $p in the back of $N, resulting in some strange noises, a lot of blood and a corpse.~
-$N quickly avoids your backstab, and you nearly cuts your finger.~
+$N quickly avoids your backstab, and you nearly cut your finger.~
 $n tried to backstab you, but you avoid $s.~
-$n tried to backstab $N, but nearly cut $s own finger.~
+$n tried to backstab $N, but nearly cuts $s own finger.~
 $N makes a strange sound, as you place $p in $S back.~
 Suddenly $n stabs you in the back.~
 $n place $p in the back of $N, resulting in some strange noises and some blood.~
@@ -382,9 +424,9 @@ $N is dissolved by your goodness.~
 $n dissolves you, you regret having been so evil, and die...~
 $n completely dissolves $N.~
 $N is unaffected by your goodness!~
-$n thinks that he is really good, and tries to dispel you.~
+$n thinks that $e is really good, and tries to dispel you.~
 $N laughs at $n as $e tries to dispel $M!~
-$N shiver, and suffer from his evilness!~
+$N shiver, and suffers from $S evilness!~
 $n makes your soul hurt and suffer!~
 $n makes $N's evil spirit shiver and suffer!~
 Did you really expect $M to suffer?~
@@ -400,8 +442,64 @@ suffer miss victim.~
 suffer miss room.~
 You feel burning poison in your blood, and suffer.~
 suffer victim never see.~
-$N looks really sick, and shiver uncomfortably.~
+$N looks really sick, and shivers uncomfortably.~
 Suffer god Char..~
 Suffer god victim..~
 Suffer god room..~
+M
+ 80 
+The plague consumes your body, you die in horrible agony.~
+victim die suffer never see.~
+$N dies a horrible death from the plague.~
+suffer miss char.~
+suffer miss victim.~
+suffer miss room.~
+You suffer in agony as the plague consumes your body.~
+suffer victim never see.~
+$N convulses in agony as plague sores erupt from $S skin.~
+Suffer god Char..~
+Suffer god victim..~
+Suffer god room..~
+M
+ 62
+null~
+null~
+null~
+You injure $N.~
+You are injured by $n's magic!~
+$n inflicts a wound on $N.~
+You injure $N.~
+You are injured by $n's magic!~
+$n inflicts a wound on $N.~
+Your feeble spell is powerless to harm $N.~
+$n tries to inflict a wound on you.~
+$n tries to inflict a wound on $N, and fails.~
+M
+ 64
+null~
+null~
+null~
+You hurt $N.~
+You are hurt by $n's magic!~
+$n hurts $N with his magic.~
+You hurt $N.~
+You are hurt by $n's magic!~
+$n hurts $N with his magic.~
+$N doesn't seem to be hurt by your magic...~
+$n attempts to hurt you with his magic.~
+$n tries to hurt $N with his spells, but fails.~
+M
+ 63
+null~
+null~
+null~
+$N cries out in agony as your spell sears his flesh!~
+You scream as $n's spell tears your skin apart!~
+$n tears through $N's flesh with his magic.~
+$N cries out in agony as your spell sears his flesh!~
+You scream as $n's spell tears your skin apart!~
+$n tears through $N's flesh with his magic.~
+$N doesn't seem to affected by such spells.~
+$n attempts to wound you with magic.~
+$n tries to wound $N, but fails.~
 $~

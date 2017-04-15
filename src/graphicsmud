@@ -1,0 +1,103 @@
+From jwegher@copper.denver.colorado.edu Sun Apr  4 00:55:26 1993
+Return-Path: <jwegher@copper.denver.colorado.edu>
+Received: from phloem.uoregon.edu by cie-2.uoregon.edu
+	(4.1/UofO NetSvc-11/11/90) id AA03089; Sun, 4 Apr 93 00:55:24 PST
+Received: from cie.uoregon.edu by phloem.uoregon.edu
+	(4.1/UofO NetSvc-02/16/93) id AA11619; Sun, 4 Apr 93 00:54:58 PST
+Received: from copper.denver.colorado.edu by cie.uoregon.edu
+	(5.64/UofO NetSvc-11/11/90 NP-12/13/91) id AA15949; Sun, 4 Apr 93 01:00:01 -0800
+Received: by copper.Denver.Colorado.EDU (cudenver.ether)
+Date: Sun, 4 Apr 93 01:57:02 -0700
+From: jwegher@copper.denver.colorado.edu (Charles U. Farley)
+Message-Id: <9304040857.AA20455@copper.Denver.Colorado.EDU>
+To: rtaylor@cie.uoregon.edu
+Subject: Special codes.
+Cc: jwegher@copper.denver.colorado.edu
+Status: R
+
+
+The idea behind GA (Go Ahead) and EOR (End Of Record) codes being sent after
+the prompt is to enable clients (such as TINTIN and others) to quickly
+identify a string as a prompt, so that it may be placed at the bottem of the
+screen in a visual-mode (as opposed to a normal text mode.)  The way clients
+must deal with it now is to wait .5 - 1 seconds after the last text was sent,
+and then print the string on the bottem, assuming it to be the prompt.  Of
+course, the problem with this occurs when lag from the server strikes in the
+middle of a line...  The client will wait half a second or so, determine that
+it must be a prompt since a new-line was not sent at the end, and then prints
+the partial bit of string as the prompt...
+
+So, it has been proposed that all servers give the option of sending special
+characters at the end of a prompt, so that clients immediately know for sure
+whether the last partial line sent was a prompt.
+
+The way this works is outlined here:
+
+	1. The server receives a new connection from accept().
+	2. A boolean (SEND_GA) in the player's structure is set to FALSE (0).
+	3. IAC WILL GA sequence is sent by the server, BEFORE reading anything
+	   at all from the new connection.  This is because the first thing a
+	   client may send is an IAC DO GA, requesting that GA's be sent after
+	   prompts.  If this happens, it's appropriate to respond with IAC WILL GA,
+	   so the question can in-fact be the answer as well.
+	4. If the server ever receives an IAC DO GA sequence, then set the
+	   SEND_GA variable to TRUE (~FALSE) in the player's structure.
+	   If the sequence is never sent, the server should just assume that
+	   it is communicating with a "dumb" client, and not send GA codes.
+	   This is why SEND_GA is originally set to FALSE.
+	5. If the server ever receives an IAC DONT GA sequence, then if the
+	   SEND_GA variable is TRUE, then set it to FALSE, and send IAC WONT GA
+	   to the client.  If SEND_GA is already FALSE, then do not send anything
+	   back to the client.
+	6. After a prompt is sent, if SEND_GA is TRUE for the particular player,
+	   then the sequence IAC GA is sent, indicating the last line was a prompt.
+	
+The process is exactly the same for using the EOR scheme... IAC WILL EOR,
+replied with IAC DO EOR or IAC DONT EOR, and then prompts followed by
+IAC EOR, if appropriate.
+
+Only one of these codes should be sent, although some clients may not care if
+both are sent.  So, after sending both offers, if the client accepts both of
+them, and both SEND_GA and SEND_EOR are true, then just send one of the two
+codes, either IAC GA or IAC EOR.
+
+It is possible, however extremely unlikely, that some clients will send an
+IAC SGA (Suppress Go Ahead) sometime after already agreeing for the GA's to
+be sent (or even as a reply to IAC WILL GA.)  This is incorrect form, but
+some renegade programmers may try to use it.  Since Merc shouldn't be answering
+any codes except ECHO, GA, and EOR, all others should just be ignored, as
+should the SGA, so, don't even consider adding it in.  I'm only mentioning it
+to be complete.
+
+The only thing that people with "dumb" clients will see is a couple of strange
+characters upon first connecting, but otherwise there's nothing to worry about.
+
+Here are the relevant codes:
+
+	IAC   255 (-1)    Since type char is signed by default, the valid range
+	WILL  251 (-5)    of numbers is -128 to 127.  This is easily over-ridden
+	WONT  252 (-4)    with a cast (to unsigned char.)  This is why I include
+	DO    253 (-3)    both numbers (for easy reference.)
+	DONT  254 (-2)
+	EOR   025 (--)
+	GA    249 (-7)
+	ECHO  001 (--) -> ECHO is already used by Merc and most Dikus.
+
+So, IAC WILL GA would be sent as a string of 3 characters (char).
+    255 251 249
+
+The original Merc code at least already filters out special codes such as
+these, but no action is taken on them.  Should be a simple matter to check
+the special codes as it's filtering them out.  You could make it difficult
+by trying to have correction protocols and such for broken-codes, such as
+an IAC WILL.  IAC WILL what?  The packet was broken in two, and the next code
+sent should tell you...  but this is exceedingly rare, and usually isn't taken
+into account (so, KISS.  Keep It Simple Stupid.)
+
+Hope this helps.  BTW, when are you tentively planning on having the 2.0
+code up and running?
+
+-Jeff Wegher
+jwegher@copper.denver.colorado.edu
+
+

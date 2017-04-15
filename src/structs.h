@@ -25,12 +25,14 @@ typedef char			byte;
 typedef	struct char_data	CHAR_DATA;
 typedef	struct obj_data		OBJ_DATA;
 
+#define PULSE_SAVE     240     /* for autosave */ 
 #define PULSE_ZONE     240
 #define PULSE_MOBILE    16
 #define PULSE_VIOLENCE  12
 #define WAIT_SEC         4
 #define WAIT_ROUND       4
 
+#define SHORT_STRING_LENGTH 8192 
 #define MAX_STRING_LENGTH   8192
 #define MAX_INPUT_LENGTH     160
 #define MAX_MESSAGES          60
@@ -77,6 +79,7 @@ struct ban_t
 #define TUNNEL       256
 #define PRIVATE      512
 #define SAFE        1024
+#define IMP_ROOM    2048
 
 /* For 'dir_option' */
 
@@ -104,8 +107,8 @@ struct ban_t
 #define SECT_MOUNTAIN        5
 #define SECT_WATER_SWIM      6
 #define SECT_WATER_NOSWIM    7
-#define SECT_NO_LOW          8
-#define SECT_NO_HIGH         9
+#define UNUSED               8
+#define SECT_FLYING          9
 #define SECT_DESERT         10
 
 struct room_direction_data
@@ -212,10 +215,12 @@ typedef struct txt_q
 #define CON_GET_NEW_SEX			 6
 #define CON_GET_NEW_CLASS		 7
 #define CON_READ_MOTD			 8
-#define CON_SELECT_MENU			 9
-#define CON_RESET_PASSWORD		10
-#define CON_CONFIRM_RESET_PASSWORD	11
-#define CON_EXDSCR			12
+#define CON_READ_IMM_MOTD                9
+#define CON_SELECT_MENU			10 
+#define CON_RESET_PASSWORD		11
+#define CON_CONFIRM_RESET_PASSWORD	12
+#define CON_EXDSCR			13
+#define CON_BREAK_CONNECT		14
 
 struct snoop_data
 {
@@ -245,6 +250,7 @@ struct descriptor_data
     struct snoop_data	snoop;		/* to snoop people		*/
     struct descriptor_data *	next;	/* link to next descriptor	*/
     int         tick_wait;      	/* # ticks desired to wait	*/
+    int         rows;		        /* number of rows this descriptor has */
 };
 
 struct msg_type 

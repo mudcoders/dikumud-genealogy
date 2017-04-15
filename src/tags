@@ -1,0 +1,605 @@
+ANA	utils.h	/^#define ANA(obj) (index("aeiouyAEIOUY", *(obj)->na/
+AWAKE	utils.h	/^#define AWAKE(ch) (GET_POS(ch) > POSITION_SLEEPING/
+CAN_CARRY_N	utils.h	/^#define CAN_CARRY_N(ch) (5+GET_DEX(ch)\/2+GET_LEVEL/
+CAN_CARRY_OBJ	utils.h	/^#define CAN_CARRY_OBJ(ch,obj)  \\$/
+CAN_CARRY_W	utils.h	/^#define CAN_CARRY_W(ch) (str_app[STRENGTH_APPLY_IN/
+CAN_GET_OBJ	utils.h	/^#define CAN_GET_OBJ(ch, obj)   \\$/
+CAN_GO	utils.h	/^#define CAN_GO(ch, door) (EXIT(ch,door) \\$/
+CAN_SEE	changes.c	/^bool CAN_SEE( struct char_data *sub, struct char_d/
+CAN_SEE_OBJ	changes.c	/^bool CAN_SEE_OBJ( struct char_data *sub, struct ob/
+CAN_WEAR	utils.h	/^#define CAN_WEAR(obj, part) (IS_SET((obj)->obj_fla/
+CAP	utils.h	/^#define CAP(st)  (*(st) = UPPER(*(st)), st)$/
+CREATE	utils.h	/^#define CREATE(result, type, number)  do {\\$/
+EXIT	utils.h	/^#define EXIT(ch, door)  (world[(ch)->in_room].dir_/
+Executioner	spec_pro.c	/^int Executioner(struct char_data *ch, int cmd, cha/
+FOUNTAINisPresent	fount.c	/^int FOUNTAINisPresent (struct char_data *ch)$/
+FREE	utils.h	/^#define FREE(p) do { if ( (p) != NULL ) free((p));/
+Fanatic_Hector	spec_pro.c	/^int Fanatic_Hector(struct char_data *ch, int cmd, /
+GET_AC	utils.h	/^#define GET_AC(ch)      ((ch)->points.armor)$/
+GET_AGE	utils.h	/^#define GET_AGE(ch)     (age(ch).year)$/
+GET_ALIGNMENT	utils.h	/^#define GET_ALIGNMENT(ch) ((ch)->specials.alignmen/
+GET_CLASS	utils.h	/^#define GET_CLASS(ch)   ((ch)->player.class)$/
+GET_CON	utils.h	/^#define GET_CON(ch)     ((ch)->tmpabilities.con)$/
+GET_COND	utils.h	/^#define GET_COND(ch, i) ((ch)->specials.conditions/
+GET_DAMROLL	utils.h	/^#define GET_DAMROLL(ch) ((ch)->points.damroll)$/
+GET_DEX	utils.h	/^#define GET_DEX(ch)     ((ch)->tmpabilities.dex)$/
+GET_EXP	utils.h	/^#define GET_EXP(ch)     ((ch)->points.exp)$/
+GET_GOLD	utils.h	/^#define GET_GOLD(ch)    ((ch)->points.gold)$/
+GET_HEIGHT	utils.h	/^#define GET_HEIGHT(ch)  ((ch)->player.height)$/
+GET_HIT	utils.h	/^#define GET_HIT(ch)     ((ch)->points.hit)$/
+GET_HITROLL	utils.h	/^#define GET_HITROLL(ch) ((ch)->points.hitroll)$/
+GET_HOME	utils.h	/^#define GET_HOME(ch)    ((ch)->player.hometown)$/
+GET_INT	utils.h	/^#define GET_INT(ch)     ((ch)->tmpabilities.intel)/
+GET_ITEM_TYPE	utils.h	/^#define GET_ITEM_TYPE(obj) ((obj)->obj_flags.type_/
+GET_LEVEL	utils.h	/^#define GET_LEVEL(ch)   ((ch)->player.level)$/
+GET_MANA	utils.h	/^#define GET_MANA(ch)    ((ch)->points.mana)$/
+GET_MAX_HIT	utils.h	/^#define GET_MAX_HIT(ch) (hit_limit(ch))$/
+GET_MAX_MANA	utils.h	/^#define GET_MAX_MANA(ch) (mana_limit(ch))$/
+GET_MAX_MOVE	utils.h	/^#define GET_MAX_MOVE(ch) (move_limit(ch))$/
+GET_MOVE	utils.h	/^#define GET_MOVE(ch)    ((ch)->points.move)$/
+GET_NAME	utils.h	/^#define GET_NAME(ch)    ((ch)->player.name)$/
+GET_OBJ_WEIGHT	utils.h	/^#define GET_OBJ_WEIGHT(obj) ((obj)->obj_flags.weig/
+GET_POS	utils.h	/^#define GET_POS(ch)     ((ch)->specials.position)$/
+GET_REQ	utils.h	/^#define GET_REQ(i) (i<2  ? "Awful" :(i<4  ? "Bad" /
+GET_SEX	utils.h	/^#define GET_SEX(ch)     ((ch)->player.sex)$/
+GET_STR	utils.h	/^#define GET_STR(ch)     ((ch)->tmpabilities.str)$/
+GET_TITLE	utils.h	/^#define GET_TITLE(ch)   ((ch)->player.title)$/
+GET_WEIGHT	utils.h	/^#define GET_WEIGHT(ch)  ((ch)->player.weight)$/
+GET_WIS	utils.h	/^#define GET_WIS(ch)     ((ch)->tmpabilities.wis)$/
+GODboard	board.c	/^int GODboard(struct char_data *ch, int cmd, char */
+HMHR	utils.h	/^#define HMHR(ch) ((ch)->player.sex ?              /
+HSHR	utils.h	/^#define HSHR(ch) ((ch)->player.sex ?              /
+HSSH	utils.h	/^#define HSSH(ch) ((ch)->player.sex ?              /
+ISNEWL	utils.h	/^#define ISNEWL(ch) ((ch) == '\\n' || (ch) == '\\r') /
+IS_AFFECTED	utils.h	/^#define IS_AFFECTED(ch,skill) ( IS_SET((ch)->speci/
+IS_CARRYING_N	utils.h	/^#define IS_CARRYING_N(ch) ((ch)->specials.carry_it/
+IS_CARRYING_W	utils.h	/^#define IS_CARRYING_W(ch) ((ch)->specials.carry_we/
+IS_DARK	utils.h	/^#define IS_DARK(room)  (!world[room].light && \\$/
+IS_EVIL	utils.h	/^#define IS_EVIL(ch)    (GET_ALIGNMENT(ch) <= -350)/
+IS_GOOD	utils.h	/^#define IS_GOOD(ch)    (GET_ALIGNMENT(ch) >= 350)$/
+IS_KILLER	utils.h	/^#define IS_KILLER(ch)  (IS_SET((ch)->specials.act,/
+IS_LIGHT	utils.h	/^#define IS_LIGHT(room)  \\$/
+IS_MOB	utils.h	/^#define IS_MOB(ch)  (IS_SET((ch)->specials.act, AC/
+IS_NEUTRAL	utils.h	/^#define IS_NEUTRAL(ch) (!IS_GOOD(ch) && !IS_EVIL(c/
+IS_NPC	utils.h	/^#define IS_NPC(ch)  (IS_SET((ch)->specials.act, AC/
+IS_OBJ_STAT	utils.h	/^#define IS_OBJ_STAT(obj,stat) (IS_SET((obj)->obj_f/
+IS_SET	utils.h	/^#define IS_SET(flag,bit)  ((flag) & (bit))$/
+IS_THIEF	utils.h	/^#define IS_THIEF(ch)   (IS_SET((ch)->specials.act,/
+LOWER	utils.h	/^#define LOWER(c) (((c)>='A'  && (c) <= 'Z') ? ((c)/
+MAX	utils.h	/^#define MAX(a,b)	((a) > (b) ? (a) : (b))$/
+MERCling	spec_pro.c	/^int MERCling(struct char_data *ch, int cmd, char */
+MIN	utils.h	/^#define MIN(a,b)	((a) < (b) ? (a) : (b))$/
+Mcomm	comm.c	/^int main( int argc, char *argv[] )$/
+OBJN	utils.h	/^#define OBJN(obj, vict) (CAN_SEE_OBJ((vict), (obj)/
+OBJS	utils.h	/^#define OBJS(obj, vict) (CAN_SEE_OBJ((vict), (obj)/
+OUTSIDE	utils.h	/^#define OUTSIDE(ch) (!IS_SET(world[(ch)->in_room]./
+PERS	utils.h	/^#define PERS(ch, vict)   (                        /
+REMOVE_BIT	utils.h	/^#define REMOVE_BIT(var,bit)  ((var) = (var) & ~(bi/
+SANA	utils.h	/^#define SANA(obj) (index("aeiouyAEIOUY", *(obj)->n/
+SET_BIT	utils.h	/^#define SET_BIT(var,bit)  ((var) = (var) | (bit))$/
+SPELLO	spells.c	/^#define SPELLO(nr, beat, pos, mlev, clev, mana, ta/
+STATE	nanny.c	/^#define STATE(d)    ((d)->connected)$/
+STRENGTH_APPLY_INDEX	utils.h	/^#define STRENGTH_APPLY_INDEX(ch) \\$/
+Thalos_citizen	spec_pro.c	/^int Thalos_citizen(struct char_data *ch, int cmd, /
+UPPER	utils.h	/^#define UPPER(c) (((c)>='a'  && (c) <= 'z') ? ((c)/
+WAIT_STATE	utils.h	/^#define WAIT_STATE(ch, cycle)  (((ch)->desc) ? (ch/
+_parse_name	nanny.c	/^int _parse_name(char *arg, char *name)$/
+act	comm.c	/^void act(char *str, int hide_invisible, struct cha/
+add_follower	spells.c	/^void add_follower(struct char_data *ch, struct cha/
+adept	spec_pro.c	/^int adept(struct char_data *ch, int cmd, char *arg/
+advance_level	limits.c	/^void advance_level(struct char_data *ch)$/
+affect_from_char	handler.c	/^void affect_from_char( struct char_data *ch, byte /
+affect_join	handler.c	/^void affect_join( struct char_data *ch, struct aff/
+affect_modify	handler.c	/^void affect_modify(struct char_data *ch, byte loc,/
+affect_remove	handler.c	/^void affect_remove( struct char_data *ch, struct a/
+affect_to_char	handler.c	/^void affect_to_char( struct char_data *ch, struct /
+affect_total	handler.c	/^void affect_total(struct char_data *ch)$/
+affect_update	spells.c	/^void affect_update( void )$/
+affected_by_spell	handler.c	/^bool affected_by_spell( struct char_data *ch, byte/
+age	utility.c	/^struct time_info_data age(struct char_data *ch)$/
+another_hour	weather.c	/^void another_hour(int mode)$/
+apply_ac	handler.c	/^int apply_ac(struct char_data *ch, int eq_pos)$/
+argument_interpreter	interp.c	/^void argument_interpreter(char *argument,char *fir/
+argument_split_2	act_info.c	/^void argument_split_2(char *argument, char *first_/
+assign_mobiles	spec_ass.c	/^void assign_mobiles(void)$/
+assign_objects	spec_ass.c	/^void assign_objects(void)$/
+assign_rooms	spec_ass.c	/^void assign_rooms(void)$/
+assign_spell_pointers	spells.c	/^void assign_spell_pointers(void)$/
+assign_the_shopkeepers	shop.c	/^void assign_the_shopkeepers( )$/
+baby_troll	spec_pro.c	/^int baby_troll(struct char_data *ch, int cmd, char/
+black_dragon	spec_pro.c	/^int black_dragon(struct char_data *ch, int cmd, ch/
+blue_dragon	spec_pro.c	/^int blue_dragon(struct char_data *ch, int cmd, cha/
+board	board.c	/^int board(struct char_data *ch, int cmd, char *arg/
+board_display_msg	board.c	/^int board_display_msg(struct char_data *ch, char */
+board_fix_long_desc	board.c	/^void board_fix_long_desc(int num, char *headers[MA/
+board_load_board	board.c	/^void board_load_board(char *file, char **head, cha/
+board_remove_msg	board.c	/^int board_remove_msg(struct char_data *ch, char *a/
+board_reset_board	board.c	/^void board_reset_board(char **head, char **msgs, i/
+board_save_board	board.c	/^void board_save_board(char *file, char **head, cha/
+board_show_board	board.c	/^int board_show_board(struct char_data *ch, char *a/
+board_write_msg	board.c	/^void board_write_msg(struct char_data *ch, char *a/
+boot_db	db.c	/^void boot_db(void)$/
+boot_pose_messages	act_soc.c	/^void boot_pose_messages(void)$/
+boot_social_messages	act_soc.c	/^void boot_social_messages(void)$/
+boot_the_shops	shop.c	/^void boot_the_shops()$/
+boot_world	db.c	/^void boot_world(void)$/
+boot_zones	db.c	/^void boot_zones(void)$/
+brass_dragon	spec_pro.c	/^int brass_dragon(struct char_data *ch, int cmd, ch/
+build_help_index	modify.c	/^struct help_index_element *build_help_index(FILE */
+cast_acid_blast	magic.c	/^void cast_acid_blast( byte level, struct char_data/
+cast_acid_breath	magic.c	/^void cast_acid_breath( byte level, struct char_dat/
+cast_animate_dead	magic.c	/^void cast_animate_dead( byte level, struct char_da/
+cast_armor	magic.c	/^void cast_armor( byte level, struct char_data *ch,/
+cast_bless	magic.c	/^void cast_bless( byte level, struct char_data *ch,/
+cast_blindness	magic.c	/^void cast_blindness( byte level, struct char_data /
+cast_burning_hands	magic.c	/^void cast_burning_hands( byte level, struct char_d/
+cast_call_lightning	magic.c	/^void cast_call_lightning( byte level, struct char_/
+cast_cause_critical	magic.c	/^void cast_cause_critical( byte level, struct char_/
+cast_cause_light	magic.c	/^void cast_cause_light( byte level, struct char_dat/
+cast_cause_serious	magic.c	/^void cast_cause_serious( byte level, struct char_d/
+cast_charm_person	magic.c	/^void cast_charm_person( byte level, struct char_da/
+cast_chill_touch	magic.c	/^void cast_chill_touch( byte level, struct char_dat/
+cast_colour_spray	magic.c	/^void cast_colour_spray( byte level, struct char_da/
+cast_conjure_elemental	magic.c	/^void cast_conjure_elemental( byte level, struct ch/
+cast_cont_light	magic.c	/^void cast_cont_light( byte level, struct char_data/
+cast_control_weather	magic.c	/^void cast_control_weather( byte level, struct char/
+cast_create_food	magic.c	/^void cast_create_food( byte level, struct char_dat/
+cast_create_water	magic.c	/^void cast_create_water( byte level, struct char_da/
+cast_cure_blind	magic.c	/^void cast_cure_blind( byte level, struct char_data/
+cast_cure_critic	magic.c	/^void cast_cure_critic( byte level, struct char_dat/
+cast_cure_light	magic.c	/^void cast_cure_light( byte level, struct char_data/
+cast_cure_serious	magic.c	/^void cast_cure_serious( byte level, struct char_da/
+cast_curse	magic.c	/^void cast_curse( byte level, struct char_data *ch,/
+cast_demonfire	magic.c	/^void cast_demonfire( byte level, struct char_data /
+cast_detect_evil	magic.c	/^void cast_detect_evil( byte level, struct char_dat/
+cast_detect_invisibility	magic.c	/^void cast_detect_invisibility( byte level, struct /
+cast_detect_magic	magic.c	/^void cast_detect_magic( byte level, struct char_da/
+cast_detect_poison	magic.c	/^void cast_detect_poison( byte level, struct char_d/
+cast_dispel_evil	magic.c	/^void cast_dispel_evil( byte level, struct char_dat/
+cast_dispel_magic	magic.c	/^void cast_dispel_magic( byte level, struct char_da/
+cast_drown	magic.c	/^void cast_drown( byte level, struct char_data *ch,/
+cast_earthquake	magic.c	/^void cast_earthquake( byte level, struct char_data/
+cast_enchant_weapon	magic.c	/^void cast_enchant_weapon( byte level, struct char_/
+cast_energy_drain	magic.c	/^void cast_energy_drain( byte level, struct char_da/
+cast_faerie_fire	magic.c	/^void cast_faerie_fire( byte level, struct char_dat/
+cast_faerie_fog	magic.c	/^void cast_faerie_fog( byte level, struct char_data/
+cast_fear	magic.c	/^void cast_fear( byte level, struct char_data *ch, /
+cast_fire_breath	magic.c	/^void cast_fire_breath( byte level, struct char_dat/
+cast_fireball	magic.c	/^void cast_fireball( byte level, struct char_data */
+cast_flamestrike	magic.c	/^void cast_flamestrike( byte level, struct char_dat/
+cast_fly	magic.c	/^void cast_fly( byte level, struct char_data *ch, c/
+cast_frost_breath	magic.c	/^void cast_frost_breath( byte level, struct char_da/
+cast_gas_breath	magic.c	/^void cast_gas_breath( byte level, struct char_data/
+cast_gate	magic.c	/^void cast_gate( byte level, struct char_data *ch, /
+cast_hands_of_wind	magic.c	/^void cast_hands_of_wind( byte level, struct char_d/
+cast_harm	magic.c	/^void cast_harm( byte level, struct char_data *ch, /
+cast_heal	magic.c	/^void cast_heal( byte level, struct char_data *ch, /
+cast_identify	magic.c	/^void cast_identify( byte level, struct char_data */
+cast_infravision	magic.c	/^void cast_infravision( byte level, struct char_dat/
+cast_invisibility	magic.c	/^void cast_invisibility( byte level, struct char_da/
+cast_know_alignment	magic.c	/^void cast_know_alignment(byte level, struct char_d/
+cast_lightning_bolt	magic.c	/^void cast_lightning_bolt( byte level, struct char_/
+cast_lightning_breath	magic.c	/^void cast_lightning_breath( byte level, struct cha/
+cast_locate_object	magic.c	/^void cast_locate_object( byte level, struct char_d/
+cast_magic_missile	magic.c	/^void cast_magic_missile( byte level, struct char_d/
+cast_mass_invis	magic.c	/^void cast_mass_invis( byte level, struct char_data/
+cast_plague	magic.c	/^void cast_plague( byte level, struct char_data *ch/
+cast_poison	magic.c	/^void cast_poison( byte level, struct char_data *ch/
+cast_protection_from_evil	magic.c	/^void cast_protection_from_evil( byte level, struct/
+cast_refresh	magic.c	/^void cast_refresh( byte level, struct char_data *c/
+cast_remove_curse	magic.c	/^void cast_remove_curse( byte level, struct char_da/
+cast_remove_poison	magic.c	/^void cast_remove_poison( byte level, struct char_d/
+cast_sanctuary	magic.c	/^void cast_sanctuary( byte level, struct char_data /
+cast_sandstorm	magic.c	/^void cast_sandstorm( byte level, struct char_data /
+cast_sense_life	magic.c	/^void cast_sense_life( byte level, struct char_data/
+cast_shield	magic.c	/^void cast_shield( byte level, struct char_data *ch/
+cast_shocking_grasp	magic.c	/^void cast_shocking_grasp( byte level, struct char_/
+cast_sleep	magic.c	/^void cast_sleep( byte level, struct char_data *ch,/
+cast_stone_skin	magic.c	/^void cast_stone_skin( byte level, struct char_data/
+cast_strength	magic.c	/^void cast_strength( byte level, struct char_data */
+cast_summon	magic.c	/^void cast_summon( byte level, struct char_data *ch/
+cast_teleport	magic.c	/^void cast_teleport( byte level, struct char_data */
+cast_turn_undead	magic.c	/^void cast_turn_undead( byte level, struct char_dat/
+cast_ventriloquate	magic.c	/^void cast_ventriloquate( byte level, struct char_d/
+cast_weaken	magic.c	/^void cast_weaken( byte level, struct char_data *ch/
+cast_word_of_recall	magic.c	/^void cast_word_of_recall( byte level, struct char_/
+change_alignment	fight.c	/^void change_alignment(struct char_data *ch, struct/
+char_from_room	handler.c	/^void char_from_room(struct char_data *ch)$/
+char_to_room	handler.c	/^void char_to_room(struct char_data *ch, int room)$/
+char_to_store	save.c	/^void char_to_store(struct char_data *ch, struct ch/
+check_blind	changes.c	/^bool check_blind( struct char_data *ch )$/
+check_deny	nanny.c	/^bool check_deny( struct descriptor_data *d, char */
+check_dodge	fight.c	/^bool check_dodge( struct char_data *ch, struct cha/
+check_idling	nanny.c	/^void check_idling( struct char_data *ch )$/
+check_killer	fight.c	/^void check_killer( struct char_data *ch, struct ch/
+check_parry	fight.c	/^bool check_parry( struct char_data *ch, struct cha/
+check_playing	nanny.c	/^bool check_playing( struct descriptor_data *d, cha/
+check_reconnect	nanny.c	/^bool check_reconnect( struct descriptor_data *d, c/
+check_social	act_soc.c	/^bool check_social( struct char_data *ch, char *pco/
+circle_follow	spells.c	/^bool circle_follow(struct char_data *ch, struct ch/
+cityguard	spec_pro.c	/^int cityguard(struct char_data *ch, int cmd, char /
+clear_char	db.c	/^void clear_char(struct char_data *ch)$/
+clear_object	db.c	/^void clear_object(struct obj_data *obj)$/
+close_socket	comm.c	/^void close_socket(struct descriptor_data *d)$/
+command_interpreter	interp.c	/^void command_interpreter( struct char_data *ch, ch/
+create_money	handler.c	/^struct obj_data *create_money( int amount )$/
+dam_message	fight.c	/^void dam_message( int dam, struct char_data *ch, s/
+damage	fight.c	/^void damage( struct char_data *ch, struct char_dat/
+death_cry	fight.c	/^void death_cry(struct char_data *ch)$/
+dice	utility.c	/^int dice( int number, int size )$/
+die_follower	spells.c	/^void die_follower(struct char_data *ch)$/
+disarm	fight.c	/^void disarm( struct char_data *ch, struct char_dat/
+do_advance	act_wiz.c	/^void do_advance(struct char_data *ch, char *argume/
+do_allow	act_wiz.c	/^void do_allow(struct char_data *ch, char *argument/
+do_ask	act_comm.c	/^void do_ask(struct char_data *ch, char *argument, /
+do_at	act_wiz.c	/^void do_at(struct char_data *ch, char *argument, i/
+do_backstab	act_off.c	/^void do_backstab(struct char_data *ch, char *argum/
+do_ban	act_wiz.c	/^void do_ban(struct char_data *ch, char *argument, /
+do_bash	act_off.c	/^void do_bash(struct char_data *ch, char *argument,/
+do_brief	act_oth.c	/^void do_brief(struct char_data *ch, char *argument/
+do_bug	act_oth.c	/^void do_bug(struct char_data *ch, char *argument, /
+do_cast	spells.c	/^void do_cast(struct char_data *ch, char *argument,/
+do_close	act_move.c	/^void do_close(struct char_data *ch, char *argument/
+do_compact	act_oth.c	/^void do_compact(struct char_data *ch, char *argume/
+do_consider	act_info.c	/^void do_consider(struct char_data *ch, char *argum/
+do_credits	act_info.c	/^void do_credits(struct char_data *ch, char *argume/
+do_disarm	changes.c	/^void do_disarm( struct char_data *ch, char *argume/
+do_disconnect	act_wiz.c	/^void do_disconnect(struct char_data *ch,  char *ar/
+do_drink	act_o2.c	/^void do_drink(struct char_data *ch, char *argument/
+do_drop	act_o1.c	/^void do_drop(struct char_data *ch, char *argument,/
+do_eat	act_o2.c	/^void do_eat(struct char_data *ch, char *argument, /
+do_echo	act_wiz.c	/^void do_echo(struct char_data *ch, char *argument,/
+do_emote	act_wiz.c	/^void do_emote(struct char_data *ch, char *argument/
+do_enter	act_move.c	/^void do_enter(struct char_data *ch, char *argument/
+do_equipment	act_info.c	/^void do_equipment(struct char_data *ch, char *argu/
+do_examine	act_info.c	/^void do_examine(struct char_data *ch, char *argume/
+do_exits	act_info.c	/^void do_exits(struct char_data *ch, char *argument/
+do_fill	fount.c	/^void do_fill(struct char_data *ch, char *argument,/
+do_flee	act_off.c	/^void do_flee(struct char_data *ch, char *argument,/
+do_follow	act_move.c	/^void do_follow(struct char_data *ch, char *argumen/
+do_force	act_wiz.c	/^void do_force(struct char_data *ch, char *argument/
+do_freeze	changes.c	/^void do_freeze(struct char_data *ch, char *argumen/
+do_get	act_o1.c	/^void do_get(struct char_data *ch, char *argument, /
+do_give	act_o1.c	/^void do_give(struct char_data *ch, char *argument,/
+do_goto	act_wiz.c	/^void do_goto(struct char_data *ch, char *argument,/
+do_grab	act_o2.c	/^void do_grab(struct char_data *ch, char *argument,/
+do_group	act_oth.c	/^void do_group(struct char_data *ch, char *argument/
+do_grouptell	changes.c	/^void do_grouptell(struct char_data *ch, char *argu/
+do_help	act_info.c	/^void do_help(struct char_data *ch, char *argument,/
+do_hide	act_oth.c	/^void do_hide(struct char_data *ch, char *argument,/
+do_hit	act_off.c	/^void do_hit(struct char_data *ch, char *argument, /
+do_holylite	act_wiz.c	/^void do_holylite(struct char_data *ch, char *argum/
+do_idea	act_oth.c	/^void do_idea(struct char_data *ch, char *argument,/
+do_info	act_info.c	/^void do_info(struct char_data *ch, char *argument,/
+do_insult	act_soc.c	/^void do_insult(struct char_data *ch, char *argumen/
+do_inventory	act_info.c	/^void do_inventory(struct char_data *ch, char *argu/
+do_kick	act_off.c	/^void do_kick(struct char_data *ch, char *argument,/
+do_kill	act_off.c	/^void do_kill(struct char_data *ch, char *argument,/
+do_leave	act_move.c	/^void do_leave(struct char_data *ch, char *argument/
+do_levels	act_info.c	/^void do_levels(struct char_data *ch, char *argumen/
+do_load	act_wiz.c	/^void do_load(struct char_data *ch, char *argument,/
+do_lock	act_move.c	/^void do_lock(struct char_data *ch, char *argument,/
+do_log	changes.c	/^void do_log(struct char_data *ch, char *argument, /
+do_look	act_info.c	/^void do_look(struct char_data *ch, char *argument,/
+do_move	act_move.c	/^void do_move(struct char_data *ch, char *argument,/
+do_murder	act_off.c	/^void do_murder(struct char_data *ch, char *argumen/
+do_news	act_info.c	/^void do_news(struct char_data *ch, char *argument,/
+do_noemote	changes.c	/^void do_noemote(struct char_data *ch, char *argume/
+do_noshout	act_wiz.c	/^void do_noshout(struct char_data *ch, char *argume/
+do_not_here	act_oth.c	/^void do_not_here(struct char_data *ch, char *argum/
+do_notell	changes.c	/^void do_notell(struct char_data *ch, char *argumen/
+do_open	act_move.c	/^void do_open(struct char_data *ch, char *argument,/
+do_order	act_off.c	/^void do_order(struct char_data *ch, char *argument/
+do_pardon	act_wiz.c	/^void do_pardon(struct char_data *ch, char *argumen/
+do_pick	act_move.c	/^void do_pick(struct char_data *ch, char *argument,/
+do_pose	act_soc.c	/^void do_pose(struct char_data *ch, char *argument,/
+do_pour	act_o2.c	/^void do_pour(struct char_data *ch, char *argument,/
+do_practice	act_oth.c	/^void do_practice(struct char_data *ch, char *arg, /
+do_purge	act_wiz.c	/^void do_purge(struct char_data *ch, char *argument/
+do_put	act_o1.c	/^void do_put(struct char_data *ch, char *argument, /
+do_putalldot	act_o1.c	/^void do_putalldot(struct char_data *ch, char *name/
+do_quaff	act_oth.c	/^void do_quaff(struct char_data *ch, char *argument/
+do_qui	act_oth.c	/^void do_qui(struct char_data *ch, char *argument, /
+do_quit	act_oth.c	/^void do_quit(struct char_data *ch, char *argument,/
+do_read	act_info.c	/^void do_read(struct char_data *ch, char *argument,/
+do_recall	act_oth.c	/^void do_recall( CHAR_DATA *ch, char *argument, int/
+do_recite	act_oth.c	/^void do_recite(struct char_data *ch, char *argumen/
+do_remove	act_o2.c	/^void do_remove(struct char_data *ch, char *argumen/
+do_report	changes.c	/^void do_report(struct char_data *ch, char *argumen/
+do_reroll	act_wiz.c	/^void do_reroll(struct char_data *ch, char *argumen/
+do_rescue	act_off.c	/^void do_rescue(struct char_data *ch, char *argumen/
+do_rest	act_move.c	/^void do_rest(struct char_data *ch, char *argument,/
+do_restore	act_wiz.c	/^void do_restore(struct char_data *ch, char *argume/
+do_return	act_wiz.c	/^void do_return(struct char_data *ch, char *argumen/
+do_save	act_oth.c	/^void do_save(struct char_data *ch, char *argument,/
+do_say	act_comm.c	/^void do_say(struct char_data *ch, char *argument, /
+do_score	act_info.c	/^void do_score(struct char_data *ch, char *argument/
+do_set	changes.c	/^void do_set(struct char_data *ch, char *argument, /
+do_shout	act_comm.c	/^void do_shout(struct char_data *ch, char *argument/
+do_shutdow	act_wiz.c	/^void do_shutdow(struct char_data *ch, char *argume/
+do_shutdown	act_wiz.c	/^void do_shutdown(struct char_data *ch, char *argum/
+do_simple_move	act_move.c	/^int do_simple_move(struct char_data *ch, int cmd, /
+do_sip	act_o2.c	/^void do_sip(struct char_data *ch, char *argument, /
+do_sit	act_move.c	/^void do_sit(struct char_data *ch, char *argument, /
+do_sleep	act_move.c	/^void do_sleep(struct char_data *ch, char *argument/
+do_sneak	act_oth.c	/^void do_sneak(struct char_data *ch, char *argument/
+do_snoop	act_wiz.c	/^void do_snoop(struct char_data *ch, char *argument/
+do_sockets	act_info.c	/^void do_sockets(struct char_data *ch, char *argume/
+do_split	changes.c	/^void do_split(struct char_data *ch, char *argument/
+do_stand	act_move.c	/^void do_stand(struct char_data *ch, char *argument/
+do_start	act_wiz.c	/^void do_start(struct char_data *ch)$/
+do_stat	act_wiz.c	/^void do_stat(struct char_data *ch, char *argument,/
+do_steal	act_oth.c	/^void do_steal(struct char_data *ch, char *argument/
+do_story	act_info.c	/^void do_story(struct char_data *ch, char *argument/
+do_string	modify.c	/^void do_string(struct char_data *ch, char *arg, in/
+do_switch	act_wiz.c	/^void do_switch(struct char_data *ch, char *argumen/
+do_tap	changes.c	/^void do_tap(struct char_data *ch, char *argument, /
+do_taste	act_o2.c	/^void do_taste(struct char_data *ch, char *argument/
+do_teleport	act_wiz.c	/^void do_teleport(struct char_data *ch, char *argum/
+do_tell	act_comm.c	/^void do_tell(struct char_data *ch, char *argument,/
+do_tick	changes.c	/^void do_tick( struct char_data *ch, char *argument/
+do_time	act_info.c	/^void do_time(struct char_data *ch, char *argument,/
+do_title	changes.c	/^void do_title(struct char_data *ch, char *argument/
+do_trans	act_wiz.c	/^void do_trans(struct char_data *ch, char *argument/
+do_trip	changes.c	/^void do_trip(struct char_data *ch, char *argument,/
+do_typo	act_oth.c	/^void do_typo(struct char_data *ch, char *argument,/
+do_unlock	act_move.c	/^void do_unlock(struct char_data *ch, char *argumen/
+do_use	act_oth.c	/^void do_use(struct char_data *ch, char *argument, /
+do_wake	act_move.c	/^void do_wake(struct char_data *ch, char *argument,/
+do_wear	act_o2.c	/^void do_wear(struct char_data *ch, char *argument,/
+do_weather	act_info.c	/^void do_weather(struct char_data *ch, char *argume/
+do_where	act_info.c	/^void do_where(struct char_data *ch, char *argument/
+do_whisper	act_comm.c	/^void do_whisper(struct char_data *ch, char *argume/
+do_who	act_info.c	/^void do_who(struct char_data *ch, char *argument, /
+do_wield	act_o2.c	/^void do_wield(struct char_data *ch, char *argument/
+do_wimpy	act_oth.c	/^void do_wimpy(struct char_data *ch, char *argument/
+do_wiz	changes.c	/^void do_wiz(struct char_data *ch, char *argument, /
+do_wizhelp	interp.c	/^void do_wizhelp(struct char_data *ch, char *argume/
+do_wizinvis	act_wiz.c	/^void do_wizinvis(struct char_data *ch, char *argum/
+do_wizlist	act_info.c	/^void do_wizlist(struct char_data *ch, char *argume/
+do_wizlock	changes.c	/^void do_wizlock(struct char_data *ch, char *argume/
+do_write	act_comm.c	/^void do_write(struct char_data *ch, char *argument/
+equip_char	handler.c	/^void equip_char(struct char_data *ch, struct obj_d/
+error_log	board.c	/^void error_log(char *str) { \/* The original error-/
+exec_social	spec_pro.c	/^void exec_social(struct char_data *npc, char *cmd,/
+extract_char	handler.c	/^void extract_char(struct char_data *ch, bool pull)/
+extract_obj	handler.c	/^void extract_obj(struct obj_data *obj)$/
+fido	spec_pro.c	/^int fido(struct char_data *ch, int cmd, char *arg)/
+file_to_string	db.c	/^int file_to_string(char *name, char *buf)$/
+fill_word	interp.c	/^int fill_word(char *argument)$/
+find_door	act_move.c	/^int find_door(struct char_data *ch, char *type, ch/
+find_ex_description	act_info.c	/^char *find_ex_description(char *word, struct extra/
+flush_queues	comm.c	/^void flush_queues(struct descriptor_data *d)$/
+fname	handler.c	/^char *fname(char *namelist)$/
+fread_action	act_soc.c	/^char *fread_action(FILE *fl)$/
+fread_string	db.c	/^char *fread_string(FILE *fl)$/
+free_char	db.c	/^void free_char( CHAR_DATA *ch )$/
+free_obj	db.c	/^void free_obj(struct obj_data *obj)$/
+gain_condition	limits.c	/^void gain_condition(struct char_data *ch,int condi/
+gain_exp	limits.c	/^void gain_exp( CHAR_DATA *ch, int gain )$/
+gain_exp_regardless	limits.c	/^void gain_exp_regardless( CHAR_DATA *ch, int gain /
+game_loop	comm.c	/^void game_loop( int control )$/
+generate_indices	db.c	/^struct index_data *generate_indices(FILE *fl, int /
+generic_find	handler.c	/^int generic_find(char *arg, int bitvector, struct /
+get	act_o1.c	/^void get(struct char_data *ch, struct obj_data *ob/
+get_char	handler.c	/^struct char_data *get_char(char *name)$/
+get_char_num	handler.c	/^struct char_data *get_char_num(int nr)$/
+get_char_room	handler.c	/^struct char_data *get_char_room(char *name, int ro/
+get_char_room_vis	handler.c	/^struct char_data *get_char_room_vis(struct char_da/
+get_char_vis	handler.c	/^struct char_data *get_char_vis(struct char_data *c/
+get_from_q	comm.c	/^char * get_from_q(struct txt_q *queue)$/
+get_number	handler.c	/^int get_number(char **name)$/
+get_obj	handler.c	/^struct obj_data *get_obj(char *name)$/
+get_obj_in_list	handler.c	/^struct obj_data *get_obj_in_list(char *name, struc/
+get_obj_in_list_num	handler.c	/^struct obj_data *get_obj_in_list_num(int num, stru/
+get_obj_in_list_vis	handler.c	/^struct obj_data *get_obj_in_list_vis(struct char_d/
+get_obj_num	handler.c	/^struct obj_data *get_obj_num(int nr)$/
+get_obj_vis	handler.c	/^struct obj_data *get_obj_vis(struct char_data *ch,/
+get_object_in_equip_vis	act_info.c	/^struct obj_data *get_object_in_equip_vis(struct ch/
+graf	limits.c	/^int graf(int age, int p0, int p1, int p2, int p3, /
+green_dragon	spec_pro.c	/^int green_dragon(struct char_data *ch, int cmd, ch/
+group_gain	fight.c	/^void group_gain( struct char_data *ch, struct char/
+guild	spec_pro.c	/^int guild(struct char_data *ch, int cmd, char *arg/
+guild_guard	spec_pro.c	/^int guild_guard(struct char_data *ch, int cmd, cha/
+half_chop	interp.c	/^void half_chop(char *string, char *arg1, char *arg/
+has_key	act_move.c	/^int has_key(struct char_data *ch, int key)$/
+hit	fight.c	/^void hit( struct char_data *ch, struct char_data */
+hit_gain	limits.c	/^int hit_gain(struct char_data *ch)$/
+hit_limit	limits.c	/^int hit_limit(struct char_data *ch)$/
+how_good	spec_pro.c	/^char *how_good(int percent)$/
+init_char	db.c	/^void init_char(struct char_data *ch)$/
+init_socket	comm.c	/^int init_socket(int port)$/
+is_abbrev	interp.c	/^int is_abbrev(char *arg1, char *arg2)$/
+is_empty	db.c	/^int is_empty(int zone_nr)$/
+is_first_level	act_off.c	/^bool is_first_level(struct char_data *ch, struct c/
+is_in_safe	act_off.c	/^bool is_in_safe(struct char_data *ch, struct char_/
+is_number	interp.c	/^int is_number(char *str)$/
+is_ok	shop.c	/^int is_ok( struct char_data *keeper, struct char_d/
+isname	handler.c	/^int isname(char *str, char *namelist)$/
+janitor	spec_pro.c	/^int janitor(struct char_data *ch, int cmd, char *a/
+keywordfind	act_o2.c	/^int keywordfind(struct obj_data *obj_object)$/
+list_char_to_char	act_info.c	/^void list_char_to_char(struct char_data *list, str/
+list_obj_to_char	act_info.c	/^void list_obj_to_char(struct obj_data *list,struct/
+load_char_obj	save.c	/^bool load_char_obj( struct descriptor_data *d, cha/
+load_messages	fight.c	/^void load_messages(void)$/
+log	utility.c	/^void log( char *str )$/
+magic_user	spec_pro.c	/^int magic_user(struct char_data *ch, int cmd, char/
+make_corpse	fight.c	/^void make_corpse(struct char_data *ch)$/
+mana_gain	limits.c	/^int mana_gain(struct char_data *ch)$/
+mana_limit	limits.c	/^int mana_limit(struct char_data *ch)$/
+map_eq_level	changes.c	/^int map_eq_level( struct char_data *mob )$/
+mayor	spec_pro.c	/^int mayor(struct char_data *ch, int cmd, char *arg/
+mobile_activity	mob_act.c	/^void mobile_activity(void)$/
+move_gain	limits.c	/^int move_gain(struct char_data *ch)$/
+move_limit	limits.c	/^int move_limit(struct char_data *ch)$/
+mud_school_adept	spec_pro.c	/^int mud_school_adept(struct char_data *ch, int cmd/
+mud_time_passed	utility.c	/^struct time_info_data mud_time_passed(time_t t2, t/
+name_from_drinkcon	act_o2.c	/^void name_from_drinkcon(struct obj_data *obj)$/
+name_to_drinkcon	act_o2.c	/^void name_to_drinkcon(struct obj_data *obj,int typ/
+nanny	nanny.c	/^void nanny(struct descriptor_data *d, char *arg)$/
+new_connection	comm.c	/^int new_connection(int s)$/
+new_descriptor	comm.c	/^int new_descriptor(int s)$/
+new_fido	spec_pro.c	/^int new_fido(struct char_data *ch, int cmd, char */
+night_watchman	comm.c	/^void night_watchman(void)$/
+nonblock	comm.c	/^void nonblock(int s)$/
+npc_steal	spec_pro.c	/^void npc_steal(struct char_data *ch,struct char_da/
+number	utility.c	/^int number( int from, int to )$/
+number_playing	comm.c	/^int number_playing(void)$/
+obj_from_char	handler.c	/^void obj_from_char(struct obj_data *object)$/
+obj_from_obj	handler.c	/^void obj_from_obj(struct obj_data *obj)$/
+obj_from_room	handler.c	/^void obj_from_room(struct obj_data *object)$/
+obj_store_to_char	save.c	/^void obj_store_to_char(struct char_data *ch, struc/
+obj_to_char	handler.c	/^void obj_to_char(struct obj_data *object, struct c/
+obj_to_obj	handler.c	/^void obj_to_obj(struct obj_data *obj, struct obj_d/
+obj_to_room	handler.c	/^void obj_to_room(struct obj_data *object, int room/
+obj_to_store	save.c	/^bool obj_to_store( struct obj_data *obj, struct ch/
+object_list_new_owner	handler.c	/^void object_list_new_owner(struct obj_data *list, /
+old_search_block	interp.c	/^int old_search_block(char *argument,int begin,int /
+one_argument	interp.c	/^char *one_argument(char *argument, char *first_arg/
+one_hit	fight.c	/^void one_hit( struct char_data *ch, struct char_da/
+one_word	modify.c	/^char *one_word(char *argument, char *first_arg )$/
+page_string	modify.c	/^void page_string(struct descriptor_data *d, char */
+perform_violence	fight.c	/^void perform_violence( void )$/
+perform_wear	act_o2.c	/^void perform_wear(struct char_data *ch, struct obj/
+pet_shops	spec_pro.c	/^int pet_shops(struct char_data *ch, int cmd, char /
+point_update	limits.c	/^void point_update( void )$/
+process_input	comm.c	/^int process_input(struct descriptor_data *t)$/
+process_output	comm.c	/^int process_output(struct descriptor_data *t)$/
+puff	spec_pro.c	/^int puff(struct char_data *ch, int cmd, char *arg)/
+put_obj_in_store	save.c	/^bool put_obj_in_store(struct obj_data *obj, struct/
+quad_arg	modify.c	/^void quad_arg(char *arg, int *type, char *name, in/
+raw_kill	fight.c	/^void raw_kill( struct char_data *ch )$/
+read_mobile	db.c	/^struct char_data *read_mobile(int nr, int type)$/
+read_object	db.c	/^struct obj_data *read_object(int nr, int eq_level)/
+real_mobile	db.c	/^int real_mobile(int virtual)$/
+real_object	db.c	/^int real_object(int virtual)$/
+real_room	db.c	/^int real_room(int virtual)$/
+red_dragon	spec_pro.c	/^int red_dragon(struct char_data *ch, int cmd, char/
+renum_world	db.c	/^void renum_world(void)$/
+renum_zone_table	db.c	/^void renum_zone_table(void)$/
+reset_char	db.c	/^void reset_char(struct char_data *ch)$/
+reset_time	db.c	/^void reset_time(void)$/
+reset_zone	db.c	/^void reset_zone(int zone)$/
+restore_weight	save.c	/^void restore_weight(struct obj_data *obj)$/
+roll_abilities	act_wiz.c	/^void roll_abilities(struct char_data *ch)$/
+save_char_obj	save.c	/^void save_char_obj( struct char_data *ch )$/
+saves_spell	spells.c	/^bool saves_spell(struct char_data *ch, sh_int save/
+say_spell	spells.c	/^void say_spell( struct char_data *ch, int si )$/
+search_block	interp.c	/^int search_block(char *arg, char **list, bool exac/
+send_to_all	comm.c	/^void send_to_all(char *messg)$/
+send_to_char	comm.c	/^void send_to_char(char *messg, struct char_data *c/
+send_to_outdoor	comm.c	/^void send_to_outdoor(char *messg)$/
+send_to_room	comm.c	/^void send_to_room(char *messg, int room)$/
+set_fighting	fight.c	/^void set_fighting(struct char_data *ch, struct cha/
+set_title	limits.c	/^void set_title(struct char_data *ch)$/
+setup_dir	db.c	/^void setup_dir(FILE *fl, int room, int dir)$/
+shop_keeper	shop.c	/^int shop_keeper( struct char_data *ch, int cmd, ch/
+shopping_buy	shop.c	/^void shopping_buy( char *arg, struct char_data *ch/
+shopping_list	shop.c	/^void shopping_list( char *arg, struct char_data *c/
+shopping_sell	shop.c	/^void shopping_sell( char *arg, struct char_data *c/
+shopping_value	shop.c	/^void shopping_value( char *arg, struct char_data */
+show_char_to_char	act_info.c	/^void show_char_to_char(struct char_data *i, struct/
+show_obj_to_char	act_info.c	/^void show_obj_to_char(struct obj_data *object, str/
+show_string	modify.c	/^void show_string(struct descriptor_data *d, char */
+skip_spaces	spells.c	/^char *skip_spaces(char *string)$/
+snake	spec_pro.c	/^int snake(struct char_data *ch, int cmd, char *arg/
+special	interp.c	/^int special(struct char_data *ch, int cmd, char *a/
+spell_acid_blast	magic.c	/^void spell_acid_blast(byte level, struct char_data/
+spell_acid_breath	magic.c	/^void spell_acid_breath(byte level, struct char_dat/
+spell_animate_dead	magic.c	/^void spell_animate_dead(byte level, struct char_da/
+spell_armor	magic.c	/^void spell_armor(byte level, struct char_data *ch,/
+spell_bless	magic.c	/^void spell_bless(byte level, struct char_data *ch,/
+spell_blindness	magic.c	/^void spell_blindness(byte level, struct char_data /
+spell_burning_hands	magic.c	/^void spell_burning_hands(byte level, struct char_d/
+spell_call_lightning	magic.c	/^void spell_call_lightning(byte level, struct char_/
+spell_cause_critical	magic.c	/^void spell_cause_critical(byte level, struct char_/
+spell_cause_light	magic.c	/^void spell_cause_light(byte level, struct char_dat/
+spell_cause_serious	magic.c	/^void spell_cause_serious(byte level, struct char_d/
+spell_charm_person	magic.c	/^void spell_charm_person(byte level, struct char_da/
+spell_chill_touch	magic.c	/^void spell_chill_touch(byte level, struct char_dat/
+spell_colour_spray	magic.c	/^void spell_colour_spray(byte level, struct char_da/
+spell_conjure_elemental	magic.c	/^void spell_conjure_elemental(byte level, struct ch/
+spell_cont_light	magic.c	/^void spell_cont_light(byte level, struct char_data/
+spell_create_food	magic.c	/^void spell_create_food(byte level, struct char_dat/
+spell_create_water	magic.c	/^void spell_create_water(byte level, struct char_da/
+spell_cure_blind	magic.c	/^void spell_cure_blind(byte level, struct char_data/
+spell_cure_critic	magic.c	/^void spell_cure_critic(byte level, struct char_dat/
+spell_cure_light	magic.c	/^void spell_cure_light(byte level, struct char_data/
+spell_cure_serious	magic.c	/^void spell_cure_serious(byte level, struct char_da/
+spell_curse	magic.c	/^void spell_curse(byte level, struct char_data *ch,/
+spell_demonfire	magic.c	/^void spell_demonfire(byte level, struct char_data /
+spell_detect_evil	magic.c	/^void spell_detect_evil(byte level, struct char_dat/
+spell_detect_invisibility	magic.c	/^void spell_detect_invisibility(byte level, struct /
+spell_detect_magic	magic.c	/^void spell_detect_magic(byte level, struct char_da/
+spell_detect_poison	magic.c	/^void spell_detect_poison(byte level, struct char_d/
+spell_dispel_evil	magic.c	/^void spell_dispel_evil(byte level, struct char_dat/
+spell_dispel_magic	magic.c	/^void spell_dispel_magic(byte level, struct char_da/
+spell_drown	magic.c	/^void spell_drown(byte level, struct char_data *ch,/
+spell_earthquake	magic.c	/^void spell_earthquake(byte level, struct char_data/
+spell_enchant_weapon	magic.c	/^void spell_enchant_weapon(byte level, struct char_/
+spell_energy_drain	magic.c	/^void spell_energy_drain(byte level, struct char_da/
+spell_faerie_fire	magic.c	/^void spell_faerie_fire(byte level, struct char_dat/
+spell_faerie_fog	magic.c	/^void spell_faerie_fog(byte level, struct char_data/
+spell_fear	magic.c	/^void spell_fear(byte level, struct char_data *ch,$/
+spell_fire_breath	magic.c	/^void spell_fire_breath(byte level, struct char_dat/
+spell_fireball	magic.c	/^void spell_fireball(byte level, struct char_data */
+spell_flamestrike	magic.c	/^void spell_flamestrike(byte level, struct char_dat/
+spell_fly	magic.c	/^void spell_fly(byte level, struct char_data *ch,$/
+spell_frost_breath	magic.c	/^void spell_frost_breath(byte level, struct char_da/
+spell_gas_breath	magic.c	/^void spell_gas_breath(byte level, struct char_data/
+spell_gate	magic.c	/^void spell_gate(byte level, struct char_data *ch,$/
+spell_harm	magic.c	/^void spell_harm(byte level, struct char_data *ch,$/
+spell_heal	magic.c	/^void spell_heal(byte level, struct char_data *ch,$/
+spell_identify	magic.c	/^void spell_identify(byte level, struct char_data */
+spell_infravision	magic.c	/^void spell_infravision(byte level, struct char_dat/
+spell_invisibility	magic.c	/^void spell_invisibility(byte level, struct char_da/
+spell_know_alignment	magic.c	/^void spell_know_alignment(byte level, struct char_/
+spell_lightning_bolt	magic.c	/^void spell_lightning_bolt(byte level, struct char_/
+spell_lightning_breath	magic.c	/^void spell_lightning_breath(byte level, struct cha/
+spell_locate_object	magic.c	/^void spell_locate_object(byte level, struct char_d/
+spell_magic_missile	magic.c	/^void spell_magic_missile(byte level, struct char_d/
+spell_mass_invis	magic.c	/^void spell_mass_invis(byte level, struct char_data/
+spell_plague	magic.c	/^void spell_plague(byte level, struct char_data *ch/
+spell_poison	magic.c	/^void spell_poison(byte level, struct char_data *ch/
+spell_protection_from_evil	magic.c	/^void spell_protection_from_evil(byte level, struct/
+spell_refresh	magic.c	/^void spell_refresh(byte level, struct char_data *c/
+spell_remove_curse	magic.c	/^void spell_remove_curse(byte level, struct char_da/
+spell_remove_poison	magic.c	/^void spell_remove_poison(byte level, struct char_d/
+spell_sanctuary	magic.c	/^void spell_sanctuary(byte level, struct char_data /
+spell_sandstorm	magic.c	/^void spell_sandstorm(byte level, struct char_data /
+spell_sense_life	magic.c	/^void spell_sense_life(byte level, struct char_data/
+spell_shield	magic.c	/^void spell_shield(byte level, struct char_data *ch/
+spell_shocking_grasp	magic.c	/^void spell_shocking_grasp(byte level, struct char_/
+spell_sleep	magic.c	/^void spell_sleep(byte level, struct char_data *ch,/
+spell_stone_skin	magic.c	/^void spell_stone_skin(byte level, struct char_data/
+spell_strength	magic.c	/^void spell_strength(byte level, struct char_data */
+spell_summon	magic.c	/^void spell_summon(byte level, struct char_data *ch/
+spell_teleport	magic.c	/^void spell_teleport(byte level, struct char_data */
+spell_turn_undead	magic.c	/^void spell_turn_undead(byte level, struct char_dat/
+spell_ventriloquate	magic.c	/^void spell_ventriloquate(byte level, struct char_d/
+spell_weaken	magic.c	/^void spell_weaken(byte level, struct char_data *ch/
+spell_word_of_recall	magic.c	/^void spell_word_of_recall(byte level, struct char_/
+sprintbit	utility.c	/^void sprintbit( long vektor, char *names[], char */
+sprinttype	utility.c	/^void sprinttype( int type, char *names[], char *re/
+stop_fighting	fight.c	/^void stop_fighting(struct char_data *ch)$/
+stop_follower	spells.c	/^void stop_follower(struct char_data *ch)$/
+store_to_char	save.c	/^void store_to_char(struct char_file_u *st, struct /
+str_cmp	utility.c	/^int str_cmp( char *arg1, char *arg2 )$/
+str_dup	utility.c	/^char *str_dup( const char *str )$/
+string_add	modify.c	/^void string_add(struct descriptor_data *d, char *s/
+thief	spec_pro.c	/^int thief(struct char_data *ch, int cmd, char *arg/
+trade_with	shop.c	/^int trade_with( struct obj_data *item, int shop_nr/
+train	spec_pro.c	/^int train(struct char_data *ch, int cmd, char *arg/
+trip	fight.c	/^void trip( struct char_data *ch, struct char_data /
+unequip_char	handler.c	/^struct obj_data *unequip_char(struct char_data *ch/
+update_char_objects	handler.c	/^void update_char_objects( struct char_data *ch )$/
+update_object	handler.c	/^void update_object( struct obj_data *obj, int use)/
+update_pos	fight.c	/^void update_pos( struct char_data *victim )$/
+use_mana	spells.c	/^int use_mana( struct char_data *ch, int sn )$/
+wear	act_o2.c	/^void wear(struct char_data *ch, struct obj_data *o/
+weather_and_time	weather.c	/^void weather_and_time(int mode)$/
+weather_change	weather.c	/^void weather_change(void)$/
+white_dragon	spec_pro.c	/^int white_dragon(struct char_data *ch, int cmd, ch/
+write_to_descriptor	comm.c	/^int write_to_descriptor(int desc, char *txt)$/
+write_to_q	comm.c	/^void write_to_q(char *txt, struct txt_q *queue)$/
+zone_update	db.c	/^void zone_update(void)$/

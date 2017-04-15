@@ -107,18 +107,13 @@ S
 1099 30 2
 *
 M 0 1000 10 1005        fairy dragon in sky
-G 1 1000 10                wings
 M 0 1000 10 1022        ''
-G 1 1000 10                ''
 M 0 1000 10 1019        ''
-G 1 1000 10                ''
 M 0 1001 3 1034       Griffon
-G 1 1000 10                wings
-*
 S
 #13
 {10 30}	  Anonymous	The High Tower of Sorcery~
-1399 20 2
+1399 30 2
 *
 M 0 1300 8 1304          Shadow Guardian
 M 0 1300 8 1305          Shadow Guardian
@@ -164,6 +159,8 @@ G 1 3033 100                 give box
 G 1 3050 500                 give id scroll
 G 1 3051 500                 give yellow potion
 G 1 3053 500                 give wand invis
+G 1 5211 100               give potion cure poison
+G 1 3052 100               give scroll recall
 G 1 1353 100               give parchment
 G 1 1354 100               give quill
 *
@@ -395,11 +392,11 @@ D 0 1395 0 1
 D 0 1395 3 1
 M 0 1338 1 1395          Master of Charm
 E 1 1372 1 17              hold flute
-G 1 1373 1                 figurine
+G 1 1373 5                 figurine
 *
 D 0 1397 2 1
-M 0 3060 30 1397           prisoner guard
-M 0 3094 30 1397           prisoner wolf
+M 0 3060 3 1397           prisoner guard
+M 0 3094 3 1397           prisoner wolf
 M 0 4000 5 1397            prisoner snake
 M 0 4003 6 1397            prisoner kobold
 M 0 4050 6 1397            prisoner warrior
@@ -410,7 +407,7 @@ M 0 1339 4 1398          golem sentry
 S
 #14
 {10 30}	  Anonymous	More High Tower of Sorcery~
-1499 20 2
+1499 30 22
 *
 D 0 1400 0 1
 M 0 1313 4 1400          Greater Guardian
@@ -572,7 +569,7 @@ O 0 1345 1 1482          backpack
 P 1 1344 1 1345          ring
 *
 D 0 1499 5 1
-O 0 1401 2 1499
+*O 0 1401 2 1499
 O 0 1402 1 1499
 P 1 1403 1 1402
 P 1 1404 1 1402
@@ -896,6 +893,8 @@ S
 M 0 1203 1 3001       The executioner
 E 1 1203 100 16             wield the executioners blade
 *
+O 0 3311 2 3054       Pit
+O 0 3099 1 3058	      The bulletin board
 O 0 3300 2 3055       Papi's Key
 O 0 3301 2 3055       Quifael's Key
 O 0 7900 2 3055       Redferne's Key 1
@@ -908,7 +907,8 @@ O 0 3321 2 3055       Mapmaker's Key
 M 0 3000 1 3033       The Wizard Shop Keeper
 G 1 3040 500                Give identify scroll.
 G 1 3041 500                Give potion of see invisible.
-*G 1 3042 500                Give scroll of recall.
+G 1 3052 500                Give scroll of recall.
+G 1 5211 500                Give potion cure poison
 *G 1 3043 500                Give wand of invis.
 *G 1 3044 500                Give staff of sleep.
 *
@@ -927,12 +927,12 @@ G 1 3074 100
 G 1 3075 100
 G 1 3076 100
 G 1 3077 100
-*G 1 3078 100		chain stuff (too good for the armorer)
-*G 1 3079 100		[hatchet]
-*G 1 3080 100
-*G 1 3081 100
-*G 1 3082 100
-*G 1 3083 100
+G 1 3078 100		chain stuff (too good for the armorer)
+G 1 3079 100		[hatchet]
+G 1 3080 100
+G 1 3081 100
+G 1 3082 100
+G 1 3083 100
 G 1 3096 100
 G 1 3097 100
 E 1 3022 100 16            wields a longsword
@@ -979,10 +979,20 @@ G 1 3051 10              Give canoe to Captain
 *
 M 0 3007 1 3050       Sailor selling stuff in the warehouse
 *
-M 0 3008 1 3056       Uncle Juan
-G 1 3012 100
-G 1 3013 100
-G 1 3014 100
+M 0 9600 1 3056	      The Apothecary
+G 1 3041 99        	detect invis
+G 1 9601 99		heal
+G 1 9602 99		sanct
+G 1 9603 99		divine
+G 1 9604 99		cure light
+G 1 9605 99		cure serious
+G 1 9606 99		cure critic
+G 1 9607 99 		antidote
+G 1 9608 99		sight
+G 1 9609 99		holy water
+G 1 9610 99		armor
+G 1 9611 99		negation	
+G 1 9612 99 		flying
 *
 M 0 3040 1 3007       The bartender
 G 1 3000 100
@@ -1216,7 +1226,6 @@ M 0 3092 1 3032       Beagle
 M 0 3093 1 3032       Rottweiler
 M 0 3094 1 3032       Wolf
 *
-* O 0 3099 1 3001       Bulletin board in Temple (limbo for starters)
 *
 M 0 4103 5 3027		thief at entrance to thief guild
 E 1 201 99 16
@@ -1227,6 +1236,7 @@ E 1 201 99 16
 M 0 4103 5 5553		thief in Ofcal
 E 1 201 99 16
 O 0 1300 5 3005		fountain at temple
+O 0 9616 1 3059		news board at temple
 O 0 3139 15 3008	letter at receptionist
 O 0 3140 15 3008	notice at receptionist
 S
@@ -1346,7 +1356,7 @@ E 1 250 199 16          sword
 *
 M 0 3142 1 3137       Secretary at town hall
 M 0 3143 1 3138       Mayor at town hall
-E 1 3133 1 17              Has the City Key
+*E 1 3133 1 17              Has the City Key
 *
 M 0 3144 1 3120       Town Crier
 *
@@ -1387,13 +1397,13 @@ P 1 3309 3 3308         Gimli's Can of Coke.
 D 0 3305 1 2          Close and lock from Doz to Shrine Hall.
 D 0 3306 3 2          Close and lock from Shrine Hall to Doz.
 O 0 3311 1 3305         Pit in Shrine Hall.
-O 0 3312 1 3306         Doz' Breast Plate.
-O 0 3313 1 3306         Doz' Helmet.
-O 0 3314 1 3306         Doz' Sleeves.
-O 0 3315 1 3306         Doz' Cloak.
-O 0 3316 1 3306         Doz' Shield.
-O 0 3317 1 3306         Doz' Gauntlets.
-O 0 3318 1 3306         Doz' Leggings.
+*O 0 3312 1 3306         Doz' Breast Plate.
+*O 0 3313 1 3306         Doz' Helmet.
+*O 0 3314 1 3306         Doz' Sleeves.
+*O 0 3315 1 3306         Doz' Cloak.
+*O 0 3316 1 3306         Doz' Shield.
+*O 0 3317 1 3306         Doz' Gauntlets.
+*O 0 3318 1 3306         Doz' Leggings.
 O 0 3319 1 3306         Doz' Coke Machine.
 P 1 3320 3 3319         Doz' Can of Coke.
 *
@@ -1645,7 +1655,7 @@ E 1 4000 5 1        ring of weakness on left finger
 * Moria level 2
 *
 M 0 4050 1 4062     a warrior
-G 1 4051 3          give him a helmet of savin' throw
+E 1 4051 3 6          give him a helmet of savin' throw
 *
 M 0 4051 4 4070     a warrior
 M 0 4051 4 4050     a warrior
@@ -1669,7 +1679,9 @@ M 0 4055 2 4071     a hobgoblin
 G 1 4050 5         give him a purple potion
 *
 M 0 4056 2 4067     an orc
+E 1 3086 5 7		bronze leggings
 M 0 4056 2 4057     an orc
+E 1 3084 3 5		bronze breastplate
 *
 O 0 4052 8 4068     plant a mushroom
 O 0 4052 8 4069     plant a mushroom
@@ -1687,7 +1699,7 @@ M 0 4100 1 4114    The mage
 G 1 4102 4         Scroll of identify.
 *
 M 0 4101 1 4122    The troll
-G 1 4100 2         The blade
+E 1 4100 2 16         The blade
 *
 M 0 4102 2 4111    The snakes
 G 1 4103 10        Slime
@@ -1702,12 +1714,14 @@ M 0 4103 5 4103		A thief
 E 1 201 99 16
 *
 M 0 4103 3 4124    A orc
+E 1 3088 5 9		bronze gauntlets
 G 1 4104 10        Slime
 *
 M 0 4105 3 4108    A centipede
 *
 M 0 4106 2 4113    A warrior
-G 1 4101 3         Some gloves
+E 1 4101 3 9         Some gloves
+E 1 3089 3 14		bronze bracers
 *
 M 0 4107 1 4119    A kobold
 G 1 4104 10        Slime
@@ -1720,8 +1734,8 @@ M 0 4151 2 4157    A red bat
 M 0 4151 2 4159    A red bat
 M 0 4152 2 4159    A green bat
 M 0 4152 2 4155    A green bat
-M 0 4153 2 4164    A white bat
-M 0 4153 2 4170    A white bat
+*M 0 4153 2 4164    A white bat
+*M 0 4153 2 4170    A white bat
 M 0 4154 2 4164    A black bat
 M 0 4154 2 4157    A black bat
 *
@@ -1729,6 +1743,8 @@ M 0 4155 1 4158    A thief
 E 1 4152 3 16      Wielding a silver dagger
 *
 M 0 4156 1 4151    A mean troll
+E 1 3085 5 6		bronze helmet
+E 1 7201 3 16		large mace 
 *
 M 0 4157 2 4167    A mage
 M 0 4157 2 4167    Second mage
@@ -1742,7 +1758,9 @@ M 0 4159 2 4153    A little troll
 *
 M 0 4160 2 4160    An orc
 G 1 4150 6         Give him a cure critical potion
+E 1 3098 4 11		large metal shield
 M 0 4160 2 4161    An orc
+E 1 3087 5 8		bronze boots
 S
 #47
 {10 25}	  Anonymous	Dwarven Kingdom of Juergan~
@@ -1873,8 +1891,8 @@ E 1 5018 25 16             (cutlass)
 M 0 5009 10 5057         Slaves
 *
 M 0 5010 1 5011          Dracolich
-E 1 5001 1 5                (Bandedmail)
-E 1 5002 1 16               (Halberd)
+G 1 5001 1 5                (Bandedmail)
+G 1 5002 1 16               (Halberd)
 *
 M 0 5011 3 5009          Driders
 E 1 3022 50 16             (long sword)
@@ -2195,7 +2213,7 @@ M 0 6113 3 6133                   2
 M 0 6113 3 6133                   3
 M 0 6114 1 6134  Queen Spider
 G 1 6108 10        10,000 gold     Carried
-G 1 6109 10        Healing potion       Carried
+E 1 6109 10 17        Healing potion       Carried
 G 1 6113 1         Iron sceptre       Carried
 M 0 6115 1 6100  Shargugh the Forest Brownie
 E 1 6114 3 1       Iron ring (Equipped (FINGER_R))
@@ -2215,7 +2233,7 @@ O 0 6106 4 6122            1.3
 O 0 6107 4 6119            2.1 (poisonous)
 S
 #63
-{ 5 20}	  Anonymous	Arachnos~
+{ 5 20}	  Mahatma     	Arachnos~
 6399 22 2
 *
 M 0 6301 10 6301                young spider
@@ -2260,7 +2278,7 @@ M 0 6311 1 6373                 Hermit
 * G 1 6302 2                      give him a wizard's hat
 *
 M 0 6315 1 6350                 Ki-Rin
-G 1 6109 10                        give him a blue potion
+E 1 6109 10 17                      give him a blue potion
 G 1 6109 10                        give him a blue potion
 *
 M 0 6314 1 6399                 Arachnos
@@ -2271,7 +2289,7 @@ G 1 6304 2                        give her a black knight's visor
 *
 M 0 6312 1 6370                 Donjonkeeper
 * G 1 6301 5                       give him the thief's knife
-G 1 6109 10                        give him a blue potion
+E 1 6109 10 17                       give him a blue potion
 *
 M 0 6313 1 6367                 guardian
 *
@@ -2325,18 +2343,30 @@ D 0 6527 4 1
 M 0 6502 1 6527
 E 1 6502 10 17
 M 0 6503 1 6516    the H&T storekeeper
-G 1 6510 10
-G 1 6511 10
-G 1 6512 10
-G 1 6504 10
-G 1 6505 10
-E 1 6504 10 16
+G 1 305 10         waterskin
+G 1 306 10         beef jerky
+G 1 1345 10        backpack
+G 1 1364 10        pouch
+G 1 2854 10        belt
+G 1 3032 10  bag
+G 1 3060 10  jerkin
+G 1 3062 10  pants
+G 1 3069 10  boots
+G 1 3070 10  gloves
+G 1 5011 10  rope
+G 1 8121 10  satchel
+E 1 6504 10 16  wield dwarven hammer
 M 0 6504 1 6535  Baker
-G 1 3000 10
-G 1 3003 10
-G 1 3031 10
-G 1 3010 10
-G 1 3011 10
+G 1 3000 10    beer barrel
+G 1 3003 10    firebreather
+G 1 3002 10    ale
+G 1 3010 10    bread
+G 1 3011 10    pastry
+G 1 3009 10    pot pie
+G 1 309 10     rabbit roast
+G 1 1304 10    pizza :)
+G 1 3013 10    burrito :)
+G 1 1305 10    chunk of meat
 E 1 6504 10 16
 M 0 6505 1 6515   Lizard
 M 0 6506 2 6508  Giant
@@ -2348,6 +2378,8 @@ M 0 6500 6 6509
 E 1 6512 10 9
 E 1 6509 10 16
 E 1 6505 10 5
+D 0 6509 0 2   Close and lock door
+D 0 6510 0 2   Close and lock door
 M 0 6507 4 6543
 E 1 6508 10 16
 M 0 6507 4 6543
@@ -2434,6 +2466,7 @@ E 1 6913 1 13      Silver belt  Equipped (WAISTE)
 E 1 6914 1 16      Long, slender sword   Equipped (WIELD)
 M 0 6999 1 6999  Death
 E 1 6999 1 16      Scythe Equipped (WIELD)
+O 0 9615 1 6999  freeze board with death
 S
 #70
 { 5 15}	  Diku		Upper Sewer~
@@ -2760,4 +2793,676 @@ M 0 9107 1 9141         Wicked Witch
 D 0 9141 1 1
 S
 #92
+{ 5 15}   PinkFloyd     The Mob Factory~ 
+9299 30 1
+M 0 1605 7 9201    Toxic slime
+M 0 1601 5 9202    Mutant Fido
+M 0 1602 1 9203    Floyd
+M 0 1605 7 9204    Toxic slime
+M 0 1603 9 9206    Head
+M 0 1605 7 9208    Toxic slimne
+M 0 1601 5 9208    Mutant Fido
+M 0 1605 7 9209    Toxic slime
+M 0 1607 4 9210    Sleeping worker
+M 0 1604 6 9210    drunk
+M 0 1603 9 9210    head
+M 0 1607 4 9211    Sleeping worker
+M 0 1601 5 9211    Mutant Fido
+M 0 1604 6 9213    drunk
+M 0 1603 9 9214    head
+M 0 1605 7 9215    Toxic Slime
+M 0 1606 9 9215    worker
+M 0 1606 9 9216    worker
+M 0 1606 9 9217    worker
+M 0 1606 9 9218    worker
+M 0 1601 5 9218    mutant fido
+M 0 1606 9 9219    worker
+M 0 1606 9 9220    worker
+M 0 1607 4 9220    sleeping worker
+M 0 1605 7 9221    Toxic Slime
+M 0 1603 9 9221    Head
+M 0 1603 9 9222    Head
+M 0 1606 9 9223    worker
+M 0 1603 9 9223    Head
+M 0 1603 9 9224    Head
+M 0 1606 9 9224    worker
+M 0 1605 7 9224    Toxic Slime
+S
+#93
+{20 30}   Forstall      The Plane of Nirvana~
+9399 40 1 
+*
+M 0 9300 10 9302	Tridrones
+M 0 9300 10 9313	Tridrones
+M 0 9300 10 9329	Tridrones
+M 0 9300 10 9327	Tridrones
+M 0 9300 10 9303	Tridrones
+M 0 9301 9 9301		Quadrones
+M 0 9301 9 9328		Quadrones
+M 0 9301 9 9312		Quadrones
+M 0 9302 7 9311		Pentadrones
+M 0 9302 7 9331		Pentadrones
+M 0 9302 7 9338		Pentadrones
+M 0 9302 7 9345		Pentadrones
+M 0 9302 7 9358		Pentadrones
+M 0 9302 7 9352		Pentadrones
+M 0 9303 1 9355		Decaton
+M 0 9304 1 9348		Nonaton
+M 0 9305 4 9340		Octon
+M 0 9305 4 9333		Octon
+M 0 9305 4 9354		Octon
+M 0 9305 4 9347		Octon
+M 0 9306 2 9341		Septon
+M 0 9306 2 9334		Septon
+M 0 9307 8 9343		Hexton
+E 1 3090 5 5		iron breastplate
+M 0 9307 8 9344		Hexton
+E 1 3091 5 6		iron helmet
+M 0 9307 8 9336		Hexton
+E 1 3092 5 7		iron leggings
+M 0 9307 8 9337		Hexton
+E 1 3093 5 8		iron boots
+M 0 9307 8 9350		Hexton
+E 1 3094 5 9		iron gauntlets
+M 0 9307 8 9351		Hexton
+E 1 3095 5 10		iron bracers
+M 0 9307 8 9356		Hexton
+E 1 4053 2 16		thieves dirk
+M 0 9307 8 9357		Hexton
+E 1 3106 5 15
+G 1 6524 4
+M 0 9308 4 9322		Quinton
+M 0 9308 4 9316		Quinton
+M 0 9308 4 9325		Quinton
+M 0 9308 4 9317		Quinton
+M 0 9309 4 9319		Tertian
+E 1 6515 2 8		magic boots
+M 0 9309 4 9324		Tertian
+E 1 7215 2 0 		light sabre
+M 0 9309 4 9318		Tertian
+M 0 9309 4 9321		Tertian
+M 0 9310 4 9338		Secundus
+E 1 3313 1 6		gold helmet
+M 0 9310 4 9345		Secundus
+E 1 3314 1 10		gold sleeves
+M 0 9310 4 9358 	Secundus
+E 1 3317 1 9		gold gauntlets
+M 0 9310 4 9352		Secundus
+E 1 3318 1 7		gold leggings
+M 0 9311 1 9320		Primus
+E 1 1405 1 16  		Give him THE long sword 
+E 1 3312 1 5		gold breastplate
+E 1 3315 1 3		gold cloak
+E 1 3316 1 11		gold shield
+*
+S
+#94
+{ 5 30}   Poohbear      The Shire~
+9499 20 2 
+*
+O 0 9402 1 9403		Sign
+M 0 9418 1 9405  	General Store Shopkeeper
+G 1 9411 999		bags
+G 1 9412 999		lanterns
+M 0 9420 1 9407		Blacksmith
+G 1 9409 999		Small dagger
+G 1 9413 999            Bardiche
+M 0 9404 2 9408		Nursemaids
+M 0 9404 2 9408
+M 0 9403 6 9408		Toddlers
+M 0 9403 6 9408
+M 0 9403 6 9408
+M 0 9403 6 9408
+M 0 9403 6 9408
+M 0 9403 6 9408
+M 0 9410 8 9410		Non-mobile shiriffs
+E 1 9409 9 16		Tiny dagger
+E 1 3060 100 5		Leather armour
+M 0 9410 8 9410
+E 1 3060 100 5
+M 0 9411 4 9410		Mobile shiriff
+E 1 3060 100 5
+M 0 9412 1 9411		Thain
+E 1 9413 100 16		Long sword
+E 1 3060 100 5		Leather vest
+E 1 9408 5 13
+M 0 9428 4 9414		Country bumpkin
+G 1 9403 99
+M 0 9428 4 9415		Country bumpkin
+G 1 9403 99
+M 0 9413 1 9416		Innkeeper - Ivy Bush
+G 1 9410 999		eggs
+G 1 3000 99    		beer barrel
+G 1 3003 99   	 	firebreather
+G 1 3002 99   		ale
+M 0 9423 4 9416		Seasoned adventurers
+M 0 9423 4 9416
+M 0 9424 2 9416		Gossips
+M 0 9424 2 9416
+M 0 9427 7 9416		Chic urbanites
+M 0 9427 7 9416
+M 0 9427 7 9416
+M 0 9421 1 9417		Battle master
+E 1 9413 100 16		Small sword
+M 0 9426 3 9417		Trainees
+E 1 9413 100 16		Small sword
+M 0 9426 3 9417
+E 1 9413 100 16
+M 0 9426 3 9417
+E 1 9413 100 16
+M 0 9410 8 9419		Non-mobile shiriffs
+E 1 9409 3 16		Tiny dagger
+E 1 3060 100 5
+M 0 9410 8 9419
+E 1 3060 100 5
+M 0 9411 4 9419		Mobile shiriff
+E 1 3060 100 5
+M 0 9419 1 9421		Grocer
+G 1 9403 999		bread
+M 0 9415 6 9423		Mill workers
+M 0 9415 6 9423
+M 0 9415 6 9424
+M 0 9415 6 9424
+M 0 9415 6 9424
+M 0 9414 1 9424		Miller
+M 0 9415 6 9425		Mill workers
+M 0 9422 9 9427		Halfing youths
+M 0 9422 9 9427
+M 0 9422 9 9427
+M 0 9422 9 9429
+M 0 9422 9 9429
+M 0 9422 9 9429
+M 0 9422 9 9430
+M 0 9422 9 9430
+M 0 9422 9 9430
+M 0 9425 1 9428		Beauty
+M 0 9400 1 9428		Wizard
+E 1 9404 1 12		Silvery cloak
+E 1 9400 1 0		Rainbow staff
+M 0 9416 1 9436		Elven warrior
+E 1 9406 1 16		Elven bow
+*E 1 622 25 6		Bronze helmet 
+M 0 9417 1 9436		Dwarven prince
+E 1 9407 1 16		Mithril axe
+*E 1 621 10 5		Bronze breast plate
+M 0 9401 1 9437		Ring keeper
+E 1 9401 1 16		Sting
+E 1 9405 10 1		One ring
+*E 1 623 15 7		Bronze leggings
+M 0 9408 1 9438		Bull
+M 0 9406 5 9439		Pigs
+M 0 9406 5 9439
+M 0 9406 5 9439
+M 0 9406 5 9439
+M 0 9406 5 9439
+M 0 9402 1 9441		Farmer Gamgee
+M 0 9405 3 9442		Cows
+M 0 9405 3 9442
+M 0 9405 3 9442
+M 0 9409 4 9442		Horses
+M 0 9409 4 9442
+M 0 9409 4 9442
+M 0 9409 4 9442
+M 0 9407 6 9443		Chickens
+G 1 9410 100		egg
+M 0 9407 6 9443
+G 1 9410 100
+M 0 9407 6 9443
+G 1 9410 100
+M 0 9407 6 9443
+G 1 9410 100
+M 0 9407 6 9443
+G 1 9410 100
+M 0 9407 6 9443
+G 1 9410 100
+M 0 9430 1 9444		Innkeeper - Green Dragon
+G 1 9410 999		eggs
+G 1 3000 99             beer barrel
+G 1 3003 99             firebreather
+G 1 3002 99             ale
+M 0 9431 1 9457         receptionist - green dragon
+M 0 9423 6 9444		Seasoned adventurers
+M 0 9423 6 9444
+M 0 9423 6 9444
+M 0 9427 7 9444		Chic urbanites
+M 0 9427 7 9444
+M 0 9427 7 9444
+M 0 9427 7 9444
+M 0 9410 8 9445		Non-mobile shiriffs
+E 1 9409 3 16		Tiny daggers
+E 1 3060 100 5		Leather armour
+M 0 9410 8 9445
+E 1 3060 100 5
+M 0 9411 4 9445		Mobile shiriff
+E 1 3060 100 5
+M 0 9410 8 9453		Non-mobile shiriffs
+E 1 9409 3 16		Tiny daggers
+E 1 3060 100 5		Leather armour
+M 0 9410 8 9453
+E 1 3060 100 5
+M 0 9411 4 9453		Mobile shiriff
+E 1 3060 100 5
+M 0 9428 4 9454		Country bumpkin
+M 0 9428 4 9455		Country bumpkin
+S
+#95
+{10 30}   Anonymous     New Thalos~
+9899 20 2 
+M 0 9504 1 9501   ; the receptionist
+M 0 9505 1 9502   ; 
+G 1 9569 910   ; a bottle of grog
+G 1 9568 910   ; a glass of wine
+G 1 9567 910   ; a glass of blue oasis
+M 0 9506 1 9502   ; Brother John
+M 0 9507 1 9503   ; a panhandler
+M 0 9508 1 9504   ; a panhandler
+M 0 9539 1 9505   ; Caramon
+E 1 9515 60 5  
+E 1 5002 4 16
+M 0 9537 2 9506   ; the taxcollector
+G 1 9500 10   ; The palace key of New Thalos
+M 0 9540 1 9506   ; Raistlin
+O 0 1300 1 9506   ; The large central fountain
+M 0 9582 15 9507   ; The Royal Guard
+M 0 9582 15 9508   ; The Royal Guard
+M 0 9592 7 9509   ; the bodyguard
+M 0 9592 7 9509   ; the bodyguard
+M 0 9533 20 9509   ; A nomad merchant
+M 0 9542 20 9510   ; the wandering prophet
+M 0 9509 20 9510   ; a beggar
+M 0 9547 1 9511   ; the dirt devil
+M 0 9549 1 9511   ; the raggety dervish
+M 0 9565 1 9642   ; the shipwright
+G 1 3061 20    ; a canoe 
+G 1 3060 30   ; a raft
+M 0 9548 1 9511   ; the lamia
+D 0 9511 0 1   ; Outside the Southern Gate of New Thalos
+M 0 9561 20 9512   ; the sultans guard
+E 1 9513 50 16
+E 1 9517 53 5   ; a suit of field plate
+E 1 9521 52 11   ; a splinted shield
+M 0 9562 20 9513   ; the sultans guard
+E 1 9513 50 16
+E 1 9517 53 5   ; a suit of field plate
+E 1 9521 72 11   ; a splinted shield
+M 0 9562 20 9513   ; the sultans guard
+E 1 9513 50 16
+E 1 9517 53 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+D 0 9513 2 1   ; Inside the South Gate of New Thalos
+M 0 9582 15 9514   ; The Royal Guard
+M 0 9541 1 9515   ; Curley GreenLeaf
+M 0 9538 1 9515   ; Gord
+M 0 9582 15 9516   ; The Royal Guard
+M 0 9592 14 9517   ; the bodyguard
+M 0 9592 14 9517   ; the bodyguard
+M 0 9533 2 9517   ; A nomad merchant
+M 0 9561 20 9518   ; the sultans guard
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+M 0 9561 20 9519   ; the sultans guard
+E 1 9513 1 16
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+M 0 9561 20 9520   ; the sultans guard
+E 1 9513 1 16
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+M 0 9562 20 9522   ; the sultans guard
+E 1 9513 1 16
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+M 0 9562 20 9522   ; the sultans guard
+E 1 9513 1 16
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+D 0 9522 0 1   ; Inside the Northern Gate of New Thalos
+M 0 9562 20 9523   ; the sultans guard
+E 1 9513 1 16 
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+M 0 9562 20 9523   ; the sultans guard
+E 1 9513 1 16
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+D 0 9523 3 1   ; Inside the West Gate of New Thalos
+M 0 9542 22 9524   ; the wandering prophet
+M 0 9520 2 9525   ; a construction worker
+E 1 9586 2 16  
+M 0 9520 2 9525   ; a construction worker
+E 1 9586 2 16
+M 0 9519 1 9525   ; the foreman
+E 1 9585 1 16
+M 0 9568 15 9527   ; a tourist
+M 0 9568 15 9528   ; a tourist
+M 0 9544 15 9529   ; the vulture
+M 0 9544 15 9530   ; the vulture
+M 0 9562 20 9531   ; the sultans guard
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+M 0 9562 20 9531   ; the sultans guard
+E 1 9517 43 5   ; a suit of field plate
+E 1 9521 42 11   ; a splinted shield
+D 0 9531 1 1   ; Inside the Eastern Gate of New Thalos
+M 0 9518 1 9532   ; Cassandra
+G 1 9564 20
+G 1 9565 20
+M 0 9536 18 9533   ; the dockworker
+M 0 9536 18 9533   ; the dockworker
+M 0 9536 18 9533   ; the dockworker
+M 0 9536 18 9534   ; the dockworker
+M 0 9536 18 9534   ; the dockworker
+M 0 9536 18 9535   ; the dockworker
+M 0 9536 18 9543   ; the dockworker
+M 0 9582 15 9544   ; The Royal Guard
+M 0 9561 20 9544   ; the sultans guard
+M 0 9582 15 9545   ; The Royal Guard
+M 0 9561 20 9545   ; the sultans guard
+M 0 9561 20 9546   ; the sultans guard
+M 0 9561 20 9547   ; the sultans guard
+M 0 9582 15 9550   ; The Royal Guard
+M 0 9582 15 9552   ; The Royal Guard
+M 0 9544 20 9553   ; the vulture
+M 0 9545 2 9555   ; the old man
+E 1 9590 2 16
+M 0 9545 2 9555   ; the old man
+E 1 9590 2 16
+D 0 9559 5 1   ; Alley
+M 0 9544 4 9563   ; the vulture
+M 0 9543 4 9565   ; the alley cat
+M 0 9530 1 9566   ; Mustafah
+M 0 9532 1 9566   ; Kareem
+M 0 9531 1 9566   ; Fatima
+M 0 9529 1 9566   ; Aziz
+M 0 9543 4 9567   ; the alley cat
+M 0 9535 3 9568   ; the skinny kid
+M 0 9535 3 9568   ; the skinny kid
+M 0 9535 3 9568   ; the skinny kid
+M 0 9543 14 9569   ; the alley cat
+D 0 9570 5 1   ; Alley
+M 0 9543 14 9573   ; the alley cat
+D 0 9574 5 1   ; Alley
+D 0 9575 4 1   ; Underground
+D 0 9578 4 1   ; Underground
+D 0 9581 4 1   ; Underground
+D 0 9591 4 0   ; Dark Passage
+O 0 3099 3 9594   ; a bulletin board
+D 0 9594 0 0   ; Common Room of the Clan MacCleod
+D 0 9594 1 0   ; Common Room of the Clan MacCleod
+D 0 9594 2 2   ; Common Room of the Clan MacCleod
+D 0 9594 3 0   ; Common Room of the Clan MacCleod
+D 0 9594 4 0   ; Common Room of the Clan MacCleod
+D 0 9594 5 0   ; Common Room of the Clan MacCleod
+D 0 9595 5 0   ; Zippo's Room
+D 0 9596 3 0   ; Ice's Room
+D 0 9597 1 0   ; Naazgul's Room
+D 0 9598 4 0   ; Tank's Room
+M 0 9569 1 9599   ; Shelbye
+*
+M 0 9501 1 9603   ; the guildmaster
+D 0 9603 1 1   ; Celric's Sanctum
+M 0 9581 1 9604   ; the high priest
+M 0 9544 20 9607   ; the vulture
+M 0 9542 11 9608   ; the wandering prophet
+M 0 9542 11 9609   ; the wandering prophet
+M 0 9592 10 9611   ; the bodyguard
+M 0 9524 1 9611   ; The statue of Hachiman
+M 0 9522 1 9611   ; The statue of Excavator
+M 0 9523 1 9611   ; The statue of Ripper
+M 0 9521 1 9611   ; The statue of Conner
+M 0 9533 12 9612   ; A nomad merchant
+M 0 9557 1 9612   ; the guildguard
+M 0 9542 21 9613   ; the wandering prophet
+M 0 9592 14 9613   ; the bodyguard
+M 0 9542 21 9613   ; the wandering prophet
+M 0 9543 14 9614   ; the alley cat
+M 0 9542 21 9614   ; the wandering prophet
+M 0 9513 1 9614   ; Ahkeem the tailor
+E 1 9583 1 16   ; a pair of sewing shears
+G 1 9555 10   ; a silk jacket
+G 1 9554 10   ; a sash
+G 1 9553 10   ; a pair of sandles
+G 1 9552 10   ; an embroiderd robe
+G 1 9551 10   ; a common robe
+G 1 9550 10   ; a pair of hose
+G 1 9549 10   ; a girdle
+G 1 9548 10   ; a fur cloak
+G 1 9547 10   ; a pair of hiking boots
+G 1 9546 10   ; a belt
+M 0 9592 14 9615   ; the bodyguard
+M 0 9514 1 9615   ; Vera the veggie lady
+G 1 9560 10   ; some dates
+G 1 9559 10   ; a fig
+G 1 9558 10   ; a tomatoe
+G 1 9557 10   ; a carrot
+G 1 9556 10   ; an egg
+M 0 9528 1 9616   ; The statue of Darkenelf
+M 0 9527 1 9616   ; The statue of Hawk
+M 0 9526 1 9616   ; The statue of Herne
+M 0 9525 1 9616   ; The statue of Sinistrad
+D 0 9617 2 1   ; Base of the Tower
+M 0 9544 20 9622   ; the vulture
+M 0 9515 1 9622   ; Butch the meatcutter
+E 1 9584 1 16   ; a meat cleaver
+G 1 9563 10   ; a whole chicken
+G 1 9562 10   ; a side of beef
+G 1 9561 10   ; a leg of lamb
+M 0 9544 20 9623   ; the vulture
+M 0 9579 1 9623   ; Elvria
+G 1 9574 10   ; a dark blue potion
+*G 1 9573 15    ; an off white potion
+G 1 9572 10   ; a crystal clear potion
+G 1 9571 10   ; a deep-green potion
+G 1 9570 10   ; a glowing blue vial
+M 0 9544 20 9624   ; the vulture
+M 0 9592 14 9624   ; the bodyguard
+M 0 9580 1 9624   ; Braheem
+G 1 9582 10   ; a pink wand
+G 1 9581 10   ; a wand of oak
+G 1 9579 10   ; a grey-silver wand
+G 1 9578 10   ; a scroll of recall
+M 0 9556 1 9625   ; the guildguard
+M 0 9533 12 9626   ; A nomad merchant
+M 0 9558 1 9626   ; the guildguard Warrior
+M 0 3070 2 9627   ; The Repair Guy
+M 0 9511 1 9628   ; the shopkeeper
+G 1 9538 10   ; a belt pouch
+G 1 9539 10   ; a candle
+G 1 9537 10   ; a basket
+G 1 9536 10   ; a backpack
+G 1 9535 10   ; an oil lamp
+G 1 9534 10   ; a sack
+M 0 9516 1 9629   ; Abdul the armorer
+G 1 9521 140   ; a splinted shield
+G 1 9520 10   ; a wooden shield
+G 1 9519 10   ; a suit of splintmail
+G 1 9518 10   ; a suit of ringmail
+G 1 9517 22    ; a suit of field plate
+G 1 9516 10   ; a suit of brigandine
+G 1 9515 20   ; a suit of banded mail
+D 0 9630 1 1   ; The Mercenary's Guild
+M 0 9564 1 9631   ; the mercenary
+M 0 9544 20 9632   ; the vulture
+M 0 9559 1 9632   ; the guildguard
+D 0 9632 3 0   ; Entrance to the Thief's Guild
+M 0 9502 1 9634   ; the guildmaster
+D 0 9634 1 1   ; Tournament and Practice Yard
+M 0 9510 1 9635   ; the baker
+G 1 9545 10   ; some nuts
+G 1 9543 10   ; some iron rations
+G 1 9542 10   ; some dry rations
+G 1 9541 10   ; a bread
+G 1 9540 10   ; a hunk of cheese
+M 0 9533 12 9636  ; A nomad merchant
+M 0 9517 1 9636   ; Igor the weaponsmith
+E 1 9591 1 17   ; a sesame seed
+G 1 9514 10   ; a rapier
+G 1 9513 18   ; a scimitar
+G 1 9512 10  ; a two-handed bastard sword
+G 1 9511 10   ; a sickle
+G 1 9510 10   ; a guisarme
+G 1 9509 10   ; a glaive
+G 1 9508 10   ; a fauchard
+G 1 9507 10   ; a bill-guisarme
+G 1 9506 10   ; a bec de corbine
+G 1 9505 10  ; a bardiche
+G 1 9504 10   ; an awl-pike
+G 1 9503 10   ; a morningstar
+D 0 9636 5 2   ; Igor's Implements of Destruction
+M 0 9584 1 9637   ; Stitch, the leather dude.
+G 1 9533 10    ; a leather shield
+G 1 9532 10   ; a pair of studded leather gloves
+G 1 9531 10   ; a pair of studded leather pants
+G 1 9530 10   ; a pair of studded leather sleeves
+G 1 9529 10   ; a studded leather jacket
+G 1 9528 10   ; a pair of padded leather boots
+G 1 9527 10   ; a pair of leather gloves
+G 1 9526 10   ; a pair of leather pants
+G 1 9525 10   ; a leather cap
+G 1 9524 10   ; a pair of leather sleeves
+G 1 9523 10   ; a leather jacket
+G 1 9522 10   ; a buckler
+M 0 9583 1 9638   ; Patch the bartender
+G 1 9577 10   ; a shot of whisky
+G 1 9576 10   ; a barrel of beer
+G 1 9575 10   ; a flaming scorpion
+M 0 9566 1 9644   ; the blacksmith
+G 1 9589 100   ; a riding crop
+G 1 9588 10   ; a saddle
+G 1 9587 10   ; a horse shoe
+M 0 9567 6 9645   ; a horse
+M 0 9567 6 9645   ; a horse
+M 0 9567 6 9645   ; a horse
+M 0 9567 6 9645   ; a horse
+M 0 9567 6 9645   ; a horse
+M 0 9567 6 9645   ; a horse
+M 0 9503 1 9646   ; the guildmaster
+D 0 9646 2 1   ; The Secret Yard
+M 0 9500 1 9648   ; the guildmaster
+M 0 9544 20 9649   ; the vulture
+D 0 9650 1 0   ; The Grand Entrance
+D 0 9653 0 0   ; Jail
+M 0 9589 1 9654   ; the mayor
+G 1 9501 10   ; The Key to the City of New Thalos
+M 0 9544 20 9655   ; the vulture
+D 0 9658 3 0   ; The Palace Gate
+M 0 9560 2 9661   ; a servant boy
+M 0 9560 2 9661   ; a servant boy
+M 0 9590 1 9661   ; the chef
+D 0 9661 0 1   ; Kitchen
+D 0 9663 2 1   ; Hall
+D 0 9665 0 0   ; Hall
+M 0 9555 1 9666   ; Allah
+D 0 9666 2 0   ; Shrine of Allah
+M 0 9544 20 9667   ; the vulture
+M 0 9544 20 9668   ; the vulture
+M 0 9592 10 9668   ; the bodyguard
+M 0 9543 10 9669   ; the alley cat
+D 0 9669 1 0   ; Outside the West Gate of New Thalos
+M 0 9561 18 9672   ; the sultans guard
+M 0 9533 12 9672   ; A nomad merchant
+D 0 9672 2 0   ; Hall
+D 0 9674 0 0   ; Hall
+D 0 9675 2 0   ; Entrance to the Dungeon
+D 0 9675 5 1   ; Entrance to the Dungeon
+D 0 9677 2 0   ; Hall
+M 0 9585 1 9678   ; the gardener
+D 0 9679 0 0   ; Hall
+M 0 9588 1 9680   ; the mimic
+D 0 9680 2 0   ; Art Exhibit
+M 0 9561 32 9681   ; the sultans guard
+M 0 9561 32 9682   ; the sultans guard
+D 0 9682 2 0   ; Hall
+D 0 9682 3 0   ; Hall
+M 0 9586 1 9683   ; the nightmare
+M 0 9578 1 9683   ; the pegasus
+D 0 9684 0 0   ; Hall
+D 0 9684 3 0   ; Hall
+D 0 9685 2 0   ; Guard Room
+M 0 9553 4 9687   ; a eunich
+M 0 9553 4 9687   ; a eunich
+M 0 9553 4 9687   ; a eunich
+M 0 9553 4 9687   ; a eunich
+M 0 9554 1 9687   ; Nichole, the sultan's favorite
+M 0 9551 8 9687   ; a harem girl
+M 0 9551 8 9687   ; a harem girl
+M 0 9551 8 9687   ; a harem girl
+M 0 9551 8 9687   ; a harem girl
+M 0 9551 8 9687   ; a harem girl
+M 0 9551 8 9687   ; a harem girl
+M 0 9551 8 9687   ; a harem girl
+M 0 9551 8 9687   ; a harem girl
+D 0 9687 0 0   ; Harem
+M 0 9561 32 9688   ; the sultans guard
+M 0 9550 1 9689   ; The Sultan
+D 0 9689 0 0   ; Throne Room
+D 0 9689 1 0   ; Throne Room
+D 0 9689 2 0   ; Throne Room
+M 0 9552 1 9691   ; the jailor
+G 1 9593 10   ; the jail key
+D 0 9691 1 1   ; Jailer's Room
+D 0 9691 4 1   ; Jailer's Room
+D 0 9692 0 2   ; Tunnel in the Dungeon
+D 0 9692 2 2   ; Tunnel in the Dungeon
+D 0 9692 3 1   ; Tunnel in the Dungeon
+D 0 9693 0 2   ; Tunnel in the Dungeon
+D 0 9693 2 2   ; Tunnel in the Dungeon
+D 0 9694 0 2   ; Tunnel in the Dungeon
+D 0 9694 2 2   ; Tunnel in the Dungeon
+D 0 9695 0 2   ; Tunnel in the Dungeon
+D 0 9695 1 1   ; Tunnel in the Dungeon
+D 0 9695 2 2   ; Tunnel in the Dungeon
+M 0 9587 1 9696   ; the wolverine
+E 1 9599 1 16   ; the wolverine claw
+D 0 9696 3 1   ; Secret Cell
+M 0 9575 1 9697   ; the chimera
+D 0 9697 2 2   ; Cell
+M 0 9574 1 9698   ; the behir
+D 0 9698 2 2   ; Cell
+M 0 9572 5 9699   ; the death dog
+M 0 9572 5 9699   ; the death dog
+M 0 9572 5 9699   ; the death dog
+M 0 9572 5 9699   ; the death dog
+M 0 9572 5 9699   ; the death dog
+D 0 9699 2 2   ; Cell
+M 0 9570 1 9700   ; the cryohydra
+D 0 9700 2 2   ; Cell
+M 0 9577 1 9701   ; the giant hornet
+D 0 9701 0 2   ; Cell
+M 0 9576 1 9702   ; the couatl
+D 0 9702 0 2   ; Cell
+M 0 9573 1 9703   ; the spotted lion
+D 0 9703 0 2   ; Cell
+M 0 9571 1 9704   ; the minotaur lizard
+D 0 9704 0 2   ; Cell
+M 0 9543 14 9717   ; the alley cat
+M 0 9592 14 9731   ; the bodyguard
+M 0 9542 21 9731   ; the wandering prophet
+M 0 9542 21 9731   ; the wandering prophet
+M 0 9592 14 9732   ; the bodyguard
+O 0 9598 1 9750   ; The Daemon Claw
+D 0 9750 4 2   ; Igor's Secret Chamber
+O 0 3032 28 9751   ; a bag
+O 0 6951 175 9752   ; a cup
+O 0 6951 175 9752   ; a cup
+O 0 6951 175 9752   ; a cup
+O 0 3010 62 9753   ; a bread
+O 0 3010 62 9753   ; a bread
+D 0 9753 1 0   ; In the mountains
+O 0 6951 175 9754   ; a cup
+O 0 6113 6 9755   ; an iron sceptre
+O 0 3010 62 9756   ; a bread
+O 0 6951 175 9759   ; a cup
+O 0 6951 175 9759   ; a cup
+M 0 9544 20 9792   ; the vulture
+M 0 9540 1 9795   ; Raistlin
+D 0 9798 3 0   ; Under the dock
+M 0 9591 1 9799   ; the Ixitxachitl
+D 0 9799 1 0   ; Lair of the Ixitxachitl
+*O 0 3097 2 9506    ATM
+* stuff for the god rooms
+O 0 9614 1 9804      	God board in Valhalla 
+O 0 9617 1 9806		Sara's Rose
+S
+#99
 $~
