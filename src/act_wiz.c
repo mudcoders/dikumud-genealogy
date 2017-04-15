@@ -18,9 +18,9 @@
 /***************************************************************************
 *	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@pacinfo.com)				   *
-*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
-*	    Brian Moore (rom@rom.efn.org)				   *
+*	    Russ Taylor (rtaylor@efn.org)				   *
+*	    Gabrielle Taylor						   *
+*	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
@@ -1252,7 +1252,7 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 
     sprintf( buf, "Vnum: %d  Format: %s  Type: %s  Resets: %d\n\r",
 	obj->pIndexData->vnum, obj->pIndexData->new_format ? "new" : "old",
-	item_table[obj->item_type].name, obj->pIndexData->reset_num );
+	item_name(obj->item_type), obj->pIndexData->reset_num );
     send_to_char( buf, ch );
 
     sprintf( buf, "Short description: %s\n\rLong description: %s\n\r",
@@ -2725,7 +2725,7 @@ void do_advance( CHAR_DATA *ch, char *argument )
 	victim->level += 1;
 	advance_level( victim,TRUE);
     }
-    sprintf(buf,"You are now level %d.\n\r",ch->level);
+    sprintf(buf,"You are now level %d.\n\r",victim->level);
     send_to_char(buf,victim);
     victim->exp   = exp_per_level(victim,victim->pcdata->points) 
 		  * UMAX( 1, victim->level );

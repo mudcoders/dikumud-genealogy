@@ -13,9 +13,16 @@ The race table (in const.c) can be expanded at will to add new races
 Be sure to add new pc races to both the race table and the pc race
 table, and make sure the order is the same.
 
-If you have any questions, feel free to bug me at rtaylor@pacinfo.com.
-There is also a mailing list, send mail to join it.  The list itself
-is at rom@pacinfo.com, but it does not autosubscribe.
+If you have any questions, feel free to bug me at rtaylor@efn.org.  There is
+also a mailing list at rom@cmc.net, to join it, send to subject subscribe to
+rom-request@cmc.net.  Thanks to Brian Moore for providing the list site.
+
 (the final ROM 2.4 is in the works, if that's your question)
 
 Alander 
+
+[Also read the Rom FAQ material, located at http://www.hypercube.org/tess/rom.
+There are short explanations of how to get the mud running for the first time, 
+and short answers to simple questions.  Much more detailed matters are handled
+in Garry Turkington's Rom FAQ, also located at that site.  Thanks Garry!
+-- Satin]

@@ -21,9 +21,9 @@
 /***************************************************************************
 *	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@pacinfo.com)				   *
-*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
-*	    Brian Moore (rom@rom.efn.org)				   *
+*	    Russ Taylor (rtaylor@efn.org)				   *
+*	    Gabrielle Taylor						   *
+*	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
@@ -550,7 +550,7 @@ void game_loop_mac_msdos( void )
 		    d->character->timer = 0;
 		if ( !read_from_descriptor( d ) )
 		{
-		    if ( d->character != NULL)
+		    if ( d->character != NULL && d->connected == CON_PLAYING)
 			save_char_obj( d->character );
 		    d->outtop	= 0;
 		    close_socket( d );
@@ -602,7 +602,7 @@ void game_loop_mac_msdos( void )
 	    {
 		if ( !process_output( d, TRUE ) )
 		{
-		    if ( d->character != NULL && d->character->level > 1)
+		    if ( d->character != NULL && d->connected == CON_PLAYING)
 			save_char_obj( d->character );
 		    d->outtop	= 0;
 		    close_socket( d );
@@ -629,7 +629,7 @@ void game_loop_mac_msdos( void )
 		    dcon.character->timer = 0;
 		if ( !read_from_descriptor( &dcon ) )
 		{
-		    if ( dcon.character != NULL && d->character->level > 1)
+		    if ( dcon.character != NULL && d->connected == CON_PLAYING)
 			save_char_obj( d->character );
 		    dcon.outtop	= 0;
 		    close_socket( &dcon );
@@ -717,7 +717,7 @@ void game_loop_unix( int control )
 	    {
 		FD_CLR( d->descriptor, &in_set  );
 		FD_CLR( d->descriptor, &out_set );
-		if ( d->character && d->character->level > 1)
+		if ( d->character && d->connected == CON_PLAYING)
 		    save_char_obj( d->character );
 		d->outtop	= 0;
 		close_socket( d );
@@ -739,7 +739,7 @@ void game_loop_unix( int control )
 		if ( !read_from_descriptor( d ) )
 		{
 		    FD_CLR( d->descriptor, &out_set );
-		    if ( d->character != NULL && d->character->level > 1)
+		    if ( d->character != NULL && d->connected == CON_PLAYING)
 			save_char_obj( d->character );
 		    d->outtop	= 0;
 		    close_socket( d );
@@ -794,7 +794,7 @@ void game_loop_unix( int control )
 	    {
 		if ( !process_output( d, TRUE ) )
 		{
-		    if ( d->character != NULL && d->character->level > 1)
+		    if ( d->character != NULL && d->connected == CON_PLAYING)
 			save_char_obj( d->character );
 		    d->outtop	= 0;
 		    close_socket( d );

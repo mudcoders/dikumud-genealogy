@@ -19,7 +19,7 @@ any operating version of ROM code:
    with this requirement is left soley to the judgement of the ROM
    consortium.
 4) Before opening a ROM-based mud, you must send email to the author
-   (rtaylor@pacinfo.com), so that I can keep track of sites for
+   (rtaylor@efn.org), so that I can keep track of sites for
    future code releases.
 5) Any use of the term Rivers of Mud remains the exclusive right of
    Russ Taylor, this includes the sole right to release future versions 
@@ -39,10 +39,7 @@ any operating version of ROM code:
    ROM code project is strictly forbidden without written permission from
    the ROM consortium (Russ Taylor, Gabrielle Taylor, and Brian Moore).
    This list includes, but is not limited to, Mike Krause (Vryce),
-   Derek Snider (Thoric), and any other administrators involved in the muds
-   Medievia and Realms of Despair. The second restriction may be lifted
-   after a period of 1 year has passed with Derek Snider in full compliance
-   with the Diku and Merc licenses.
+   and any other administrators involved in the mud Medievia.
 
 (In English, this means that Alander is the only one allowed to release
 ROM source code, as apposed to ROM derived source code, and that you
@@ -50,4 +47,4 @@ cannot call your mud ROM even though it uses ROM code.  You also aren't
 allowed to deal with code thieves)
 
 If you have any questions about this license, please send email to
-rtaylor@pacinfo.com.  
+rtaylor@efn.org.  

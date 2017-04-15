@@ -18,9 +18,9 @@
 /***************************************************************************
 *	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@pacinfo.com)				   *
-*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
-*	    Brian Moore (rom@rom.efn.org)				   *
+*	    Russ Taylor (rtaylor@efn.org)				   *
+*	    Gabrielle Taylor						   *
+*	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
@@ -1927,11 +1927,13 @@ void extract_char( CHAR_DATA *ch, bool fPull )
     OBJ_DATA *obj;
     OBJ_DATA *obj_next;
 
+    /* doesn't seem to be necessary
     if ( ch->in_room == NULL )
     {
 	bug( "Extract_char: NULL.", 0 );
 	return;
     }
+    */
     
     nuke_pets(ch);
     ch->pet = NULL; /* just in case */
@@ -1948,7 +1950,8 @@ void extract_char( CHAR_DATA *ch, bool fPull )
 	extract_obj( obj );
     }
     
-    char_from_room( ch );
+    if (ch->in_room != NULL)
+        char_from_room( ch );
 
     /* Death room is set in the clan tabe now */
     if ( !fPull )

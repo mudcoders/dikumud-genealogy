@@ -18,9 +18,9 @@
 /***************************************************************************
 *	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@pacinfo.com)				   *
-*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
-*	    Brian Moore (rom@rom.efn.org)				   *
+*	    Russ Taylor (rtaylor@efn.org)				   *
+*	    Gabrielle Taylor						   *
+*	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
@@ -202,7 +202,8 @@ void say_spell( CHAR_DATA *ch, int sn )
     for ( rch = ch->in_room->people; rch; rch = rch->next_in_room )
     {
 	if ( rch != ch )
-	    act( ch->class==rch->class ? buf : buf2, ch, NULL, rch, TO_VICT );
+	    act((!IS_NPC(rch) && ch->class==rch->class) ? buf : buf2,
+	        ch, NULL, rch, TO_VICT );
     }
 
     return;
@@ -3236,7 +3237,7 @@ void spell_identify( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	"Object '%s' is type %s, extra flags %s.\n\rWeight is %d, value is %d, level is %d.\n\r",
 
 	obj->name,
-	item_table[obj->item_type].name,
+	item_name(obj->item_type),
 	extra_bit_name( obj->extra_flags ),
 	obj->weight / 10,
 	obj->cost,
