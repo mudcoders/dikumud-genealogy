@@ -14,6 +14,15 @@
 /* Define to `unsigned' if <sys/types.h> doesn't define.  */
 /*#define size_t*/
 
+/* Define if you have 'struct in_addr' */
+#define HAVE_STRUCT_IN_ADDR 1
+
+/* Define if your crypt isn't safe with only 10 characters. */
+#undef HAVE_UNSAFE_CRYPT
+
+/* Define to `int' if <sys/socket.h> doesn't define.  */
+#define socklen_t int
+
 /* Define if you have the <string.h> header file.  */
 #define HAVE_STRING_H
 
@@ -66,10 +75,4 @@
 
 /* Define if your compiler does not prototype strerror().  */
 /* #undef NEED_STRERROR_PROTO */
-
-/* Define if you have 'struct in_addr' */
-#define HAVE_STRUCT_IN_ADDR 1
-
-/* Define if your crypt isn't safe with only 10 characters. */
-#undef HAVE_UNSAFE_CRYPT
 

@@ -18,6 +18,7 @@
 
 void write_aliases(struct char_data *ch);
 void read_aliases(struct char_data *ch);
+void delete_aliases(const char *charname);
 
 void write_aliases(struct char_data *ch)
 {
@@ -25,7 +26,7 @@ void write_aliases(struct char_data *ch)
   char fn[MAX_STRING_LENGTH];
   struct alias_data *temp;
 
-  get_filename(GET_NAME(ch), fn, ALIAS_FILE);
+  get_filename(fn, sizeof(fn), ALIAS_FILE, GET_NAME(ch));
   remove(fn);
 
   if (GET_ALIASES(ch) == NULL)
@@ -56,10 +57,10 @@ void read_aliases(struct char_data *ch)
 {   
   FILE *file;
   char xbuf[MAX_STRING_LENGTH];
-  struct alias_data *t2;
+  struct alias_data *t2, *prev = NULL;
   int length;
 
-  get_filename(GET_NAME(ch), xbuf, ALIAS_FILE);
+  get_filename(xbuf, sizeof(xbuf), ALIAS_FILE, GET_NAME(ch));
 
   if ((file = fopen(xbuf, "r")) == NULL) {
     if (errno != ENOENT) {
@@ -74,26 +75,54 @@ void read_aliases(struct char_data *ch)
 
   for (;;) {
     /* Read the aliased command. */
-    fscanf(file, "%d\n", &length);
+    if (fscanf(file, "%d\n", &length) != 1)
+      goto read_alias_error;
+
     fgets(xbuf, length + 1, file);
-    t2->alias = str_dup(xbuf);
+    t2->alias = strdup(xbuf);
 
     /* Build the replacement. */
-    fscanf(file, "%d\n", &length);
+    if (fscanf(file, "%d\n", &length) != 1)
+       goto read_alias_error;
+
     *xbuf = ' ';		/* Doesn't need terminated, fgets() will. */
     fgets(xbuf + 1, length + 1, file);
-    t2->replacement = str_dup(xbuf); 
+    t2->replacement = strdup(xbuf); 
 
     /* Figure out the alias type. */
-    fscanf(file, "%d\n", &length);
+    if (fscanf(file, "%d\n", &length) != 1)
+      goto read_alias_error;
+
     t2->type = length; 
 
     if (feof(file))
       break;
 
     CREATE(t2->next, struct alias_data, 1);
+    prev = t2;
     t2 = t2->next;
   }; 
   
   fclose(file);
+  return;
+
+read_alias_error:
+  if (t2->alias)
+    free(t2->alias);
+  free(t2);
+  if (prev)
+    prev->next = NULL;
+  fclose(file);
 } 
+
+void delete_aliases(const char *charname)
+{
+  char filename[PATH_MAX];
+
+  if (!get_filename(filename, sizeof(filename), ALIAS_FILE, charname))
+    return;
+
+  if (remove(filename) < 0 && errno != ENOENT)
+    log("SYSERR: deleting alias file %s: %s", filename, strerror(errno));
+}
+

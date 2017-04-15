@@ -1,4 +1,4 @@
-# CircleMUD 3.0 makefile for the Amiga
+# CircleMUD makefile for the Amiga
 
 # C compiler to use
 CC = sc

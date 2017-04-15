@@ -63,6 +63,11 @@ int level_can_shout = 1;
 /* number of movement points it costs to holler */
 int holler_move_cost = 20;
 
+/*  how many people can get into a tunnel?  The default is two, but there
+ *  is also an alternate message in the case of one person being allowed.
+ */
+int tunnel_size = 2;
+
 /* exp change limits */
 int max_exp_gain = 100000;	/* max gainable per kill */
 int max_exp_loss = 500000;	/* max losable per death */
@@ -102,6 +107,18 @@ const char *NOEFFECT = "Nothing seems to happen.\r\n";
  * while 'YES' will pass through doors to find the target.
  */
 int track_through_doors = YES;
+
+/*
+ * If you want mortals to level up to immortal once they have enough
+ * experience, then set this to 0.  This is the stock behaviour for
+ * CircleMUD because it was the stock DikuMud behaviour.  Subtracting
+ * this from LVL_IMMORT gives the top level that people can advance to
+ * in gain_exp() in limits.c
+ * For example, to stop people from advancing to LVL_IMMORT, simply set
+ * immort_level_ok to 1.
+ */
+int immort_level_ok = 0;
+
 
 /****************************************************************************/
 /****************************************************************************/
@@ -210,7 +227,7 @@ const char *LOGNAME = NULL;
 /* const char *LOGNAME = "log/syslog";  -- useful for Windows users */
 
 /* maximum number of players allowed before game starts to turn people away */
-int MAX_PLAYERS = 300;
+int max_playing = 300;
 
 /* maximum size of bug, typo and idea files in bytes (to prevent bombing) */
 int max_filesize = 50000;

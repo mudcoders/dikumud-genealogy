@@ -523,7 +523,7 @@ A muscle lies here.~
 4 0 0 0
 1 4 10
 #5467
-liquor glass blue oasis~
+glass liquor blue oasis whisky~
 a glass~
 A glass of blue alcohol rests here.~
 ~
@@ -531,7 +531,7 @@ A glass of blue alcohol rests here.~
 5 5 5 0
 1 1800 10
 #5468
-wine glass~
+glass wine~
 a glass~
 A glass rests here.~
 ~
@@ -539,7 +539,7 @@ A glass rests here.~
 1 1 2 0
 1 3800 10
 #5469
-bottle grog~
+bottle grog ale~
 a bottle of grog~
 A bottle lies here.~
 ~
@@ -611,7 +611,7 @@ potion dark blue~
 This dark blue potion has a small label on it reading 'Restoration'
 ~
 #5475
-beer bottle scorpion flaming~
+bottle scorpion flaming beer~
 a flaming scorpion~
 A bottle of strong beer lies here.~
 ~
@@ -627,7 +627,7 @@ A barrel of beer lies here.~
 10 10 1 0
 15 900 50
 #5477
-whisky shot~
+shot whisky~
 a shot~
 A shot of strong liquor lies here.~
 ~
@@ -809,5 +809,4 @@ wrath allah mace~
 This enormous weapon looks like it could pound the stuffing out of
 anything or anyone around.
 ~
-
 $

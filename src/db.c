@@ -23,6 +23,7 @@
 #include "mail.h"
 #include "interpreter.h"
 #include "house.h"
+#include "constants.h"
 
 /**************************************************************************
 *  declarations of most of the 'global' variables                         *
@@ -49,7 +50,6 @@ struct message_list fight_messages[MAX_MESSAGES];	/* fighting messages	 */
 struct player_index_element *player_table = NULL;	/* index to plr file	 */
 FILE *player_fl = NULL;		/* file desc of player file	 */
 int top_of_p_table = 0;		/* ref to top of table		 */
-int top_of_p_file = 0;		/* ref of size of p file	 */
 long top_idnum = 0;		/* highest idnum in use		 */
 
 int no_mail = 0;		/* mail disabled?		 */
@@ -83,16 +83,17 @@ struct player_special_data dummy_mob;	/* dummy spec area for mobs	*/
 struct reset_q_type reset_q;	/* queue of zones to be reset	 */
 
 /* local functions */
+int check_bitvector_names(bitvector_t bits, size_t namecount, const char *whatami, const char *whatbits);
 int check_object_spell_number(struct obj_data *obj, int val);
 int check_object_level(struct obj_data *obj, int val);
-void setup_dir(FILE * fl, int room, int dir);
+void setup_dir(FILE *fl, int room, int dir);
 void index_boot(int mode);
-void discrete_load(FILE * fl, int mode, char *filename);
+void discrete_load(FILE *fl, int mode, char *filename);
 int check_object(struct obj_data *);
-void parse_room(FILE * fl, int virtual_nr);
-void parse_mobile(FILE * mob_f, int nr);
-char *parse_object(FILE * obj_f, int nr);
-void load_zones(FILE * fl, char *zonename);
+void parse_room(FILE *fl, int virtual_nr);
+void parse_mobile(FILE *mob_f, int nr);
+char *parse_object(FILE *obj_f, int nr);
+void load_zones(FILE *fl, char *zonename);
 void load_help(FILE *fl);
 void assign_mobiles(void);
 void assign_objects(void);
@@ -107,22 +108,23 @@ void reboot_wizlists(void);
 ACMD(do_reboot);
 void boot_world(void);
 int count_alias_records(FILE *fl);
-int count_hash_records(FILE * fl);
+int count_hash_records(FILE *fl);
 bitvector_t asciiflag_conv(char *flag);
 void parse_simple_mob(FILE *mob_f, int i, int nr);
 void interpret_espec(const char *keyword, const char *value, int i, int nr);
 void parse_espec(char *buf, int i, int nr);
 void parse_enhanced_mob(FILE *mob_f, int i, int nr);
 void get_one_line(FILE *fl, char *buf);
-void save_etext(struct char_data * ch);
+void save_etext(struct char_data *ch);
 void check_start_rooms(void);
 void renum_world(void);
 void renum_zone_table(void);
 void log_zone_error(zone_rnum zone, int cmd_no, const char *message);
 void reset_time(void);
-long get_ptable_by_name(char *name);
+long get_ptable_by_name(const char *name);
 
 /* external functions */
+void paginate_string(char *str, struct descriptor_data *d);
 struct time_info_data *mud_time_passed(time_t t2, time_t t1);
 void free_alias(struct alias_data *a);
 void load_messages(void);
@@ -134,10 +136,10 @@ void sort_commands(void);
 void sort_spells(void);
 void load_banned(void);
 void Read_Invalid_List(void);
-void boot_the_shops(FILE * shop_f, char *filename, int rec_count);
-int find_name(char *name);
+void boot_the_shops(FILE *shop_f, char *filename, int rec_count);
 int hsort(const void *a, const void *b);
 void prune_crlf(char *txt);
+void destroy_shops(void);
 
 /* external vars */
 extern int no_specials;
@@ -146,10 +148,7 @@ extern room_vnum mortal_start_room;
 extern room_vnum immort_start_room;
 extern room_vnum frozen_start_room;
 extern struct descriptor_data *descriptor_list;
-extern struct spell_info_type spell_info[];
-extern const char *unused_spellname;
-
-#define READ_SIZE 256
+extern const char *unused_spellname;	/* spell_parser.c */
 
 /*************************************************************************
 *  routines for booting the system                                       *
@@ -163,9 +162,32 @@ void reboot_wizlists(void)
 }
 
 
+/* Wipe out all the loaded text files, for shutting down. */
+void free_text_files(void)
+{
+  char **textfiles[] = {
+	&wizlist, &immlist, &news, &credits, &motd, &imotd, &help, &info,
+	&policies, &handbook, &background, &GREETINGS, NULL
+  };
+  int rf;
+
+  for (rf = 0; textfiles[rf]; rf++)
+    if (*textfiles[rf]) {
+      free(*textfiles[rf]);
+      *textfiles[rf] = NULL;
+    }
+}
+
+
+/*
+ * Too bad it doesn't check the return values to let the user
+ * know about -1 values.  This will result in an 'Okay.' to a
+ * 'reload' command even when the string was not replaced.
+ * To fix later, if desired. -gg 6/24/99
+ */
 ACMD(do_reboot)
 {
-  int i;
+  char arg[MAX_INPUT_LENGTH];
 
   one_argument(argument, arg);
 
@@ -209,23 +231,15 @@ ACMD(do_reboot)
     if (file_to_string_alloc(GREETINGS_FILE, &GREETINGS) == 0)
       prune_crlf(GREETINGS);
   } else if (!str_cmp(arg, "xhelp")) {
-    if (help_table) {
-      for (i = 0; i <= top_of_helpt; i++) {
-        if (help_table[i].keyword)
-	  free(help_table[i].keyword);
-        if (help_table[i].entry && !help_table[i].duplicate)
-	  free(help_table[i].entry);
-      }
-      free(help_table);
-    }
-    top_of_helpt = 0;
+    if (help_table)
+      free_help();
     index_boot(DB_BOOT_HLP);
   } else {
-    send_to_char("Unknown reload option.\r\n", ch);
+    send_to_char(ch, "Unknown reload option.\r\n");
     return;
   }
 
-  send_to_char(OK, ch);
+  send_to_char(ch, "%s", OK);
 }
 
 
@@ -258,7 +272,110 @@ void boot_world(void)
   }
 }
 
-  
+
+void free_extra_descriptions(struct extra_descr_data *edesc)
+{
+  struct extra_descr_data *enext;
+
+  for (; edesc; edesc = enext) {
+    enext = edesc->next;
+
+    free(edesc->keyword);
+    free(edesc->description);
+    free(edesc);
+  }
+}
+
+
+/* Free the world, in a memory allocation sense. */
+void destroy_db(void)
+{
+  ssize_t cnt, itr;
+  struct char_data *chtmp;
+  struct obj_data *objtmp;
+
+  /* Active Mobiles & Players */
+  while (character_list) {
+    chtmp = character_list;
+    character_list = character_list->next;
+    free_char(chtmp);
+  }
+
+  /* Active Objects */
+  while (object_list) {
+    objtmp = object_list;
+    object_list = object_list->next;
+    free_obj(objtmp);
+  }
+
+  /* Rooms */
+  for (cnt = 0; cnt <= top_of_world; cnt++) {
+    if (world[cnt].name)
+      free(world[cnt].name);
+    if (world[cnt].description)
+      free(world[cnt].description);
+    free_extra_descriptions(world[cnt].ex_description);
+
+    for (itr = 0; itr < NUM_OF_DIRS; itr++) {
+      if (!world[cnt].dir_option[itr])
+        continue;
+
+      if (world[cnt].dir_option[itr]->general_description)
+        free(world[cnt].dir_option[itr]->general_description);
+      if (world[cnt].dir_option[itr]->keyword)
+        free(world[cnt].dir_option[itr]->keyword);
+      free(world[cnt].dir_option[itr]);
+    }
+  }
+  free(world);
+
+  /* Objects */
+  for (cnt = 0; cnt <= top_of_objt; cnt++) {
+    if (obj_proto[cnt].name)
+      free(obj_proto[cnt].name);
+    if (obj_proto[cnt].description)
+      free(obj_proto[cnt].description);
+    if (obj_proto[cnt].short_description)
+      free(obj_proto[cnt].short_description);
+    if (obj_proto[cnt].action_description)
+      free(obj_proto[cnt].action_description);
+    free_extra_descriptions(obj_proto[cnt].ex_description);
+  }
+  free(obj_proto);
+  free(obj_index);
+
+  /* Mobiles */
+  for (cnt = 0; cnt <= top_of_mobt; cnt++) {
+    if (mob_proto[cnt].player.name)
+      free(mob_proto[cnt].player.name);
+    if (mob_proto[cnt].player.title)
+      free(mob_proto[cnt].player.title);
+    if (mob_proto[cnt].player.short_descr)
+      free(mob_proto[cnt].player.short_descr);
+    if (mob_proto[cnt].player.long_descr)
+      free(mob_proto[cnt].player.long_descr);
+    if (mob_proto[cnt].player.description)
+      free(mob_proto[cnt].player.description);
+
+    while (mob_proto[cnt].affected)
+      affect_remove(&mob_proto[cnt], mob_proto[cnt].affected);
+  }
+  free(mob_proto);
+  free(mob_index);
+
+  /* Shops */
+  destroy_shops();
+
+  /* Zones */
+  for (cnt = 0; cnt <= top_of_zone_table; cnt++) {
+    if (zone_table[cnt].name)
+      free(zone_table[cnt].name);
+    if (zone_table[cnt].cmd)
+      free(zone_table[cnt].cmd);
+  }
+  free(zone_table);
+}
+
 
 /* body of the booting system */
 void boot_db(void)
@@ -344,8 +461,8 @@ void boot_db(void)
   }
 
   for (i = 0; i <= top_of_zone_table; i++) {
-    log("Resetting %s (rooms %d-%d).", zone_table[i].name,
-	(i ? (zone_table[i - 1].top + 1) : 0), zone_table[i].top);
+    log("Resetting #%d: %s (rooms %d-%d).", zone_table[i].number,
+	zone_table[i].name, zone_table[i].bot, zone_table[i].top);
     reset_zone(i);
   }
 
@@ -360,11 +477,17 @@ void boot_db(void)
 /* reset the time in the game from file */
 void reset_time(void)
 {
-#if defined(CIRCLE_MACINTOSH)
-  long beginning_of_time = -1561789232;
-#else
-  long beginning_of_time = 650336715;
-#endif
+  time_t beginning_of_time = 0;
+  FILE *bgtime;
+
+  if ((bgtime = fopen(TIME_FILE, "r")) == NULL)
+    log("SYSERR: Can't read from '%s' time file.", TIME_FILE);
+  else {
+    fscanf(bgtime, "%ld\n", &beginning_of_time);
+    fclose(bgtime);
+  }
+  if (beginning_of_time == 0)
+    beginning_of_time = 650336715;
 
   time_info = *mud_time_passed(time(0), beginning_of_time);
 
@@ -401,6 +524,36 @@ void reset_time(void)
 }
 
 
+/* Write the time in 'when' to the MUD-time file. */
+void save_mud_time(struct time_info_data *when)
+{
+  FILE *bgtime;
+
+  if ((bgtime = fopen(TIME_FILE, "w")) == NULL)
+    log("SYSERR: Can't write to '%s' time file.", TIME_FILE);
+  else {
+    fprintf(bgtime, "%ld\n", mud_time_to_secs(when));
+    fclose(bgtime);
+  }
+}
+
+
+void free_player_index(void)
+{
+  int tp;
+
+  if (!player_table)
+    return;
+
+  for (tp = 0; tp <= top_of_p_table; tp++)
+    if (player_table[tp].name)
+      free(player_table[tp].name);
+
+  free(player_table);
+  player_table = NULL;
+  top_of_p_table = 0;
+}
+
 
 /* generate index table for the player file */
 void build_player_index(void)
@@ -434,23 +587,25 @@ void build_player_index(void)
     CREATE(player_table, struct player_index_element, recs);
   } else {
     player_table = NULL;
-    top_of_p_file = top_of_p_table = -1;
+    top_of_p_table = -1;
     return;
   }
 
-  for (; !feof(player_fl);) {
+  for (;;) {
     fread(&dummy, sizeof(struct char_file_u), 1, player_fl);
-    if (!feof(player_fl)) {	/* new record */
-      nr++;
-      CREATE(player_table[nr].name, char, strlen(dummy.name) + 1);
-      for (i = 0;
-	   (*(player_table[nr].name + i) = LOWER(*(dummy.name + i))); i++);
-      player_table[nr].id = dummy.char_specials_saved.idnum;
-      top_idnum = MAX(top_idnum, dummy.char_specials_saved.idnum);
-    }
+    if (feof(player_fl))
+      break;
+
+    /* new record */
+    nr++;
+    CREATE(player_table[nr].name, char, strlen(dummy.name) + 1);
+    for (i = 0; (*(player_table[nr].name + i) = LOWER(*(dummy.name + i))); i++)
+      ;
+    player_table[nr].id = dummy.char_specials_saved.idnum;
+    top_idnum = MAX(top_idnum, dummy.char_specials_saved.idnum);
   }
 
-  top_of_p_file = top_of_p_table = nr;
+  top_of_p_table = nr;
 }
 
 /*
@@ -479,7 +634,8 @@ int count_alias_records(FILE *fl)
     scan = key;
     do {
       scan = one_word(scan, next_key);
-      ++total_keywords;
+      if (*next_key)
+        ++total_keywords;
     } while (*next_key);
 
     /* get next keyword line (or $) */
@@ -498,7 +654,7 @@ ackeof:
 }
 
 /* function to count how many hash-mark delimited records exist in a file */
-int count_hash_records(FILE * fl)
+int count_hash_records(FILE *fl)
 {
   char buf[128];
   int count = 0;
@@ -515,8 +671,9 @@ int count_hash_records(FILE * fl)
 void index_boot(int mode)
 {
   const char *index_filename, *prefix = NULL;	/* NULL or egcs 1.1 complains */
-  FILE *index, *db_file;
+  FILE *db_index, *db_file;
   int rec_count = 0, size[2];
+  char buf2[PATH_MAX], buf1[MAX_STRING_LENGTH];
 
   switch (mode) {
   case DB_BOOT_WLD:
@@ -547,21 +704,20 @@ void index_boot(int mode)
   else
     index_filename = INDEX_FILE;
 
-  sprintf(buf2, "%s%s", prefix, index_filename);
-
-  if (!(index = fopen(buf2, "r"))) {
+  snprintf(buf2, sizeof(buf2), "%s%s", prefix, index_filename);
+  if (!(db_index = fopen(buf2, "r"))) {
     log("SYSERR: opening index file '%s': %s", buf2, strerror(errno));
     exit(1);
   }
 
   /* first, count the number of records in the file so we can malloc */
-  fscanf(index, "%s\n", buf1);
+  fscanf(db_index, "%s\n", buf1);
   while (*buf1 != '$') {
-    sprintf(buf2, "%s%s", prefix, buf1);
+    snprintf(buf2, sizeof(buf2), "%s%s", prefix, buf1);
     if (!(db_file = fopen(buf2, "r"))) {
       log("SYSERR: File '%s' listed in '%s/%s': %s", buf2, prefix,
 	  index_filename, strerror(errno));
-      fscanf(index, "%s\n", buf1);
+      fscanf(db_index, "%s\n", buf1);
       continue;
     } else {
       if (mode == DB_BOOT_ZON)
@@ -573,7 +729,7 @@ void index_boot(int mode)
     }
 
     fclose(db_file);
-    fscanf(index, "%s\n", buf1);
+    fscanf(db_index, "%s\n", buf1);
   }
 
   /* Exit if 0 records, unless this is shops */
@@ -584,9 +740,6 @@ void index_boot(int mode)
 	index_filename);
     exit(1);
   }
-
-  /* Any idea why you put this here Jeremy? */
-  rec_count++;
 
   /*
    * NOTE: "bytes" does _not_ include strings or other later malloc'd things.
@@ -623,10 +776,10 @@ void index_boot(int mode)
     break;
   }
 
-  rewind(index);
-  fscanf(index, "%s\n", buf1);
+  rewind(db_index);
+  fscanf(db_index, "%s\n", buf1);
   while (*buf1 != '$') {
-    sprintf(buf2, "%s%s", prefix, buf1);
+    snprintf(buf2, sizeof(buf2), "%s%s", prefix, buf1);
     if (!(db_file = fopen(buf2, "r"))) {
       log("SYSERR: %s: %s", buf2, strerror(errno));
       exit(1);
@@ -653,9 +806,9 @@ void index_boot(int mode)
     }
 
     fclose(db_file);
-    fscanf(index, "%s\n", buf1);
+    fscanf(db_index, "%s\n", buf1);
   }
-  fclose(index);
+  fclose(db_index);
 
   /* sort the help index */
   if (mode == DB_BOOT_HLP) {
@@ -665,10 +818,10 @@ void index_boot(int mode)
 }
 
 
-void discrete_load(FILE * fl, int mode, char *filename)
+void discrete_load(FILE *fl, int mode, char *filename)
 {
   int nr = -1, last;
-  char line[256];
+  char line[READ_SIZE];
 
   const char *modes[] = {"world", "mob", "obj"};
 
@@ -709,7 +862,7 @@ void discrete_load(FILE * fl, int mode, char *filename)
 	  parse_mobile(fl, nr);
 	  break;
 	case DB_BOOT_OBJ:
-	  strcpy(line, parse_object(fl, nr));
+	  strlcpy(line, parse_object(fl, nr), sizeof(line));
 	  break;
 	}
     } else {
@@ -724,8 +877,8 @@ void discrete_load(FILE * fl, int mode, char *filename)
 bitvector_t asciiflag_conv(char *flag)
 {
   bitvector_t flags = 0;
-  int is_number = 1;
-  register char *p;
+  int is_num = TRUE;
+  char *p;
 
   for (p = flag; *p; p++) {
     if (islower(*p))
@@ -734,10 +887,10 @@ bitvector_t asciiflag_conv(char *flag)
       flags |= 1 << (26 + (*p - 'A'));
 
     if (!isdigit(*p))
-      is_number = 0;
+      is_num = FALSE;
   }
 
-  if (is_number)
+  if (is_num)
     flags = atol(flag);
 
   return (flags);
@@ -745,16 +898,17 @@ bitvector_t asciiflag_conv(char *flag)
 
 
 /* load the rooms */
-void parse_room(FILE * fl, int virtual_nr)
+void parse_room(FILE *fl, int virtual_nr)
 {
   static int room_nr = 0, zone = 0;
   int t[10], i;
-  char line[256], flags[128];
+  char line[READ_SIZE], flags[128], buf2[MAX_STRING_LENGTH], buf[128];
   struct extra_descr_data *new_descr;
 
-  sprintf(buf2, "room #%d", virtual_nr);
+  /* This really had better fit or there are other problems. */
+  snprintf(buf2, sizeof(buf2), "room #%d", virtual_nr);
 
-  if (virtual_nr <= (zone ? zone_table[zone - 1].top : -1)) {
+  if (virtual_nr < zone_table[zone].bot) {
     log("SYSERR: Room #%d is below zone %d.", virtual_nr, zone);
     exit(1);
   }
@@ -780,7 +934,11 @@ void parse_room(FILE * fl, int virtual_nr)
     exit(1);
   }
   /* t[0] is the zone number; ignored with the zone-file system */
+
   world[room_nr].room_flags = asciiflag_conv(flags);
+  sprintf(flags, "object #%d", virtual_nr);	/* sprintf: OK (until 399-bit integers) */
+  check_bitvector_names(world[room_nr].room_flags, room_bits_count, flags, "room");
+
   world[room_nr].sector_type = t[2];
 
   world[room_nr].func = NULL;
@@ -793,11 +951,11 @@ void parse_room(FILE * fl, int virtual_nr)
 
   world[room_nr].ex_description = NULL;
 
-  sprintf(buf,"SYSERR: Format error in room #%d (expecting D/E/S)",virtual_nr);
+  snprintf(buf, sizeof(buf), "SYSERR: Format error in room #%d (expecting D/E/S)", virtual_nr);
 
   for (;;) {
     if (!get_line(fl, line)) {
-      log(buf);
+      log("%s", buf);
       exit(1);
     }
     switch (*line) {
@@ -815,7 +973,7 @@ void parse_room(FILE * fl, int virtual_nr)
       top_of_world = room_nr++;
       return;
     default:
-      log(buf);
+      log("%s", buf);
       exit(1);
     }
   }
@@ -824,12 +982,12 @@ void parse_room(FILE * fl, int virtual_nr)
 
 
 /* read direction data */
-void setup_dir(FILE * fl, int room, int dir)
+void setup_dir(FILE *fl, int room, int dir)
 {
   int t[5];
-  char line[256];
+  char line[READ_SIZE], buf2[128];
 
-  sprintf(buf2, "room #%d, direction D%d", GET_ROOM_VNUM(room), dir);
+  snprintf(buf2, sizeof(buf2), "room #%d, direction D%d", GET_ROOM_VNUM(room), dir);
 
   CREATE(world[room].dir_option[dir], struct room_direction_data, 1);
   world[room].dir_option[dir]->general_description = fread_string(fl, buf2);
@@ -858,16 +1016,16 @@ void setup_dir(FILE * fl, int room, int dir)
 /* make sure the start rooms exist & resolve their vnums to rnums */
 void check_start_rooms(void)
 {
-  if ((r_mortal_start_room = real_room(mortal_start_room)) < 0) {
+  if ((r_mortal_start_room = real_room(mortal_start_room)) == NOWHERE) {
     log("SYSERR:  Mortal start room does not exist.  Change in config.c.");
     exit(1);
   }
-  if ((r_immort_start_room = real_room(immort_start_room)) < 0) {
+  if ((r_immort_start_room = real_room(immort_start_room)) == NOWHERE) {
     if (!mini_mud)
       log("SYSERR:  Warning: Immort start room does not exist.  Change in config.c.");
     r_immort_start_room = r_mortal_start_room;
   }
-  if ((r_frozen_start_room = real_room(frozen_start_room)) < 0) {
+  if ((r_frozen_start_room = real_room(frozen_start_room)) == NOWHERE) {
     if (!mini_mud)
       log("SYSERR:  Warning: Frozen start room does not exist.  Change in config.c.");
     r_frozen_start_room = r_mortal_start_room;
@@ -878,7 +1036,7 @@ void check_start_rooms(void)
 /* resolve all vnums into rnums in the world */
 void renum_world(void)
 {
-  register int room, door;
+  int room, door;
 
   for (room = 0; room <= top_of_world; room++)
     for (door = 0; door < NUM_OF_DIRS; door++)
@@ -891,10 +1049,21 @@ void renum_world(void)
 
 #define ZCMD zone_table[zone].cmd[cmd_no]
 
-/* resulve vnums into rnums in the zone reset tables */
+/*
+ * "resulve vnums into rnums in the zone reset tables"
+ *
+ * Or in English: Once all of the zone reset tables have been loaded, we
+ * resolve the virtual numbers into real numbers all at once so we don't have
+ * to do it repeatedly while the game is running.  This does make adding any
+ * room, mobile, or object a little more difficult while the game is running.
+ *
+ * NOTE 1: Assumes NOWHERE == NOBODY == NOTHING.
+ * NOTE 2: Assumes sizeof(room_rnum) >= (sizeof(mob_rnum) and sizeof(obj_rnum))
+ */
 void renum_zone_table(void)
 {
-  int cmd_no, a, b, c, olda, oldb, oldc;
+  int cmd_no;
+  room_rnum a, b, c, olda, oldb, oldc;
   zone_rnum zone;
   char buf[128];
 
@@ -932,10 +1101,10 @@ void renum_zone_table(void)
 	b = ZCMD.arg2 = real_object(ZCMD.arg2);
         break;
       }
-      if (a < 0 || b < 0 || c < 0) {
+      if (a == NOWHERE || b == NOWHERE || c == NOWHERE) {
 	if (!mini_mud) {
-	  sprintf(buf,  "Invalid vnum %d, cmd disabled",
-			 (a < 0) ? olda : ((b < 0) ? oldb : oldc));
+	  snprintf(buf, sizeof(buf), "Invalid vnum %d, cmd disabled",
+			 a == NOWHERE ? olda : b == NOWHERE ? oldb : oldc);
 	  log_zone_error(zone, cmd_no, buf);
 	}
 	ZCMD.command = '*';
@@ -948,7 +1117,7 @@ void renum_zone_table(void)
 void parse_simple_mob(FILE *mob_f, int i, int nr)
 {
   int j, t[10];
-  char line[256];
+  char line[READ_SIZE];
 
   mob_proto[i].real_abils.str = 11;
   mob_proto[i].real_abils.intel = 11;
@@ -970,21 +1139,21 @@ void parse_simple_mob(FILE *mob_f, int i, int nr)
   }
 
   GET_LEVEL(mob_proto + i) = t[0];
-  mob_proto[i].points.hitroll = 20 - t[1];
-  mob_proto[i].points.armor = 10 * t[2];
+  GET_HITROLL(mob_proto + i) = 20 - t[1];
+  GET_AC(mob_proto + i) = 10 * t[2];
 
   /* max hit = 0 is a flag that H, M, V is xdy+z */
-  mob_proto[i].points.max_hit = 0;
-  mob_proto[i].points.hit = t[3];
-  mob_proto[i].points.mana = t[4];
-  mob_proto[i].points.move = t[5];
+  GET_MAX_HIT(mob_proto + i) = 0;
+  GET_HIT(mob_proto + i) = t[3];
+  GET_MANA(mob_proto + i) = t[4];
+  GET_MOVE(mob_proto + i) = t[5];
 
-  mob_proto[i].points.max_mana = 10;
-  mob_proto[i].points.max_move = 50;
+  GET_MAX_MANA(mob_proto + i) = 10;
+  GET_MAX_MOVE(mob_proto + i) = 50;
 
   mob_proto[i].mob_specials.damnodice = t[6];
   mob_proto[i].mob_specials.damsizedice = t[7];
-  mob_proto[i].points.damroll = t[8];
+  GET_DAMROLL(mob_proto + i) = t[8];
 
   if (!get_line(mob_f, line)) {
       log("SYSERR: Format error in mob #%d, second line after S flag\n"
@@ -1007,19 +1176,19 @@ void parse_simple_mob(FILE *mob_f, int i, int nr)
     exit(1);
   }
 
-  if (sscanf(line, " %d %d %d %d ", t, t + 1, t + 2, t + 3) != 3) {
+  if (sscanf(line, " %d %d %d ", t, t + 1, t + 2) != 3) {
     log("SYSERR: Format error in last line of mob #%d\n"
 	"...expecting line of form '# # #'", nr);
     exit(1);
   }
 
-  mob_proto[i].char_specials.position = t[0];
-  mob_proto[i].mob_specials.default_pos = t[1];
-  mob_proto[i].player.sex = t[2];
+  GET_POS(mob_proto + i) = t[0];
+  GET_DEFAULT_POS(mob_proto + i) = t[1];
+  GET_SEX(mob_proto + i) = t[2];
 
-  mob_proto[i].player.chclass = 0;
-  mob_proto[i].player.weight = 200;
-  mob_proto[i].player.height = 198;
+  GET_CLASS(mob_proto + i) = 0;
+  GET_WEIGHT(mob_proto + i) = 200;
+  GET_HEIGHT(mob_proto + i) = 198;
 
   /*
    * these are now save applies; base save numbers for MOBs are now from
@@ -1035,16 +1204,30 @@ void parse_simple_mob(FILE *mob_f, int i, int nr)
  * and assigns the correct value to the mob as appropriate.  Adding new
  * e-specs is absurdly easy -- just add a new CASE statement to this
  * function!  No other changes need to be made anywhere in the code.
+ *
+ * CASE		: Requires a parameter through 'value'.
+ * BOOL_CASE	: Being specified at all is its value.
  */
 
-#define CASE(test) if (!matched && !str_cmp(keyword, test) && (matched = 1))
-#define RANGE(low, high) (num_arg = MAX((low), MIN((high), (num_arg))))
+#define CASE(test)	\
+	if (value && !matched && !str_cmp(keyword, test) && (matched = TRUE))
+
+#define BOOL_CASE(test)	\
+	if (!value && !matched && !str_cmp(keyword, test) && (matched = TRUE))
+
+#define RANGE(low, high)	\
+	(num_arg = MAX((low), MIN((high), (num_arg))))
 
 void interpret_espec(const char *keyword, const char *value, int i, int nr)
 {
-  int num_arg, matched = 0;
+  int num_arg = 0, matched = FALSE;
 
-  num_arg = atoi(value);
+  /*
+   * If there isn't a colon, there is no value.  While Boolean options are
+   * possible, we don't actually have any.  Feel free to make some.
+  */
+  if (value)
+    num_arg = atoi(value);
 
   CASE("BareHandAttack") {
     RANGE(0, 99);
@@ -1093,6 +1276,7 @@ void interpret_espec(const char *keyword, const char *value, int i, int nr)
 }
 
 #undef CASE
+#undef BOOL_CASE
 #undef RANGE
 
 void parse_espec(char *buf, int i, int nr)
@@ -1103,19 +1287,14 @@ void parse_espec(char *buf, int i, int nr)
     *(ptr++) = '\0';
     while (isspace(*ptr))
       ptr++;
-#if 0	/* Need to evaluate interpret_espec()'s NULL handling. */
   }
-#else
-  } else
-    ptr = "";
-#endif
   interpret_espec(buf, ptr, i, nr);
 }
 
 
 void parse_enhanced_mob(FILE *mob_f, int i, int nr)
 {
-  char line[256];
+  char line[READ_SIZE];
 
   parse_simple_mob(mob_f, i, nr);
 
@@ -1134,12 +1313,12 @@ void parse_enhanced_mob(FILE *mob_f, int i, int nr)
 }
 
 
-void parse_mobile(FILE * mob_f, int nr)
+void parse_mobile(FILE *mob_f, int nr)
 {
   static int i = 0;
   int j, t[10];
-  char line[256], *tmpptr, letter;
-  char f1[128], f2[128];
+  char line[READ_SIZE], *tmpptr, letter;
+  char f1[128], f2[128], buf2[128];
 
   mob_index[i].vnum = nr;
   mob_index[i].number = 0;
@@ -1153,7 +1332,7 @@ void parse_mobile(FILE * mob_f, int nr)
    * structure is to save newbie coders from themselves. -gg 2/25/98
    */
   mob_proto[i].player_specials = &dummy_mob;
-  sprintf(buf2, "mob vnum %d", nr);
+  sprintf(buf2, "mob vnum %d", nr);	/* sprintf: OK (for 'buf2 >= 19') */
 
   /***** String data *****/
   mob_proto[i].player.name = fread_string(mob_f, buf2);
@@ -1164,7 +1343,7 @@ void parse_mobile(FILE * mob_f, int nr)
       *tmpptr = LOWER(*tmpptr);
   mob_proto[i].player.long_descr = fread_string(mob_f, buf2);
   mob_proto[i].player.description = fread_string(mob_f, buf2);
-  mob_proto[i].player.title = NULL;
+  GET_TITLE(mob_proto + i) = NULL;
 
   /* *** Numeric data *** */
   if (!get_line(mob_f, line)) {
@@ -1182,10 +1361,24 @@ void parse_mobile(FILE * mob_f, int nr)
 	"...expecting line of form '# # # {S | E}'", nr);
     exit(1);
   }
+
   MOB_FLAGS(mob_proto + i) = asciiflag_conv(f1);
   SET_BIT(MOB_FLAGS(mob_proto + i), MOB_ISNPC);
+  if (MOB_FLAGGED(mob_proto + i, MOB_NOTDEADYET)) {
+    /* Rather bad to load mobiles with this bit already set. */
+    log("SYSERR: Mob #%d has reserved bit MOB_NOTDEADYET set.", nr);
+    REMOVE_BIT(MOB_FLAGS(mob_proto + i), MOB_NOTDEADYET);
+  }
+  check_bitvector_names(MOB_FLAGS(mob_proto + i), action_bits_count, buf2, "mobile");
+
   AFF_FLAGS(mob_proto + i) = asciiflag_conv(f2);
+  check_bitvector_names(AFF_FLAGS(mob_proto + i), affected_bits_count, buf2, "mobile affect");
+
   GET_ALIGNMENT(mob_proto + i) = t[2];
+
+  /* AGGR_TO_ALIGN is ignored if the mob is AGGRESSIVE. */
+  if (MOB_FLAGGED(mob_proto + i, MOB_AGGRESSIVE) && MOB_FLAGGED(mob_proto + i, MOB_AGGR_GOOD | MOB_AGGR_EVIL | MOB_AGGR_NEUTRAL))
+    log("SYSERR: Mob #%d both Aggressive and Aggressive_to_Alignment.", nr);
 
   switch (UPPER(letter)) {
   case 'S':	/* Simple monsters */
@@ -1215,13 +1408,13 @@ void parse_mobile(FILE * mob_f, int nr)
 
 
 /* read all objects from obj file; generate index and prototypes */
-char *parse_object(FILE * obj_f, int nr)
+char *parse_object(FILE *obj_f, int nr)
 {
   static int i = 0;
-  static char line[256];
+  static char line[READ_SIZE];
   int t[10], j, retval;
   char *tmpptr;
-  char f1[256], f2[256];
+  char f1[READ_SIZE], f2[READ_SIZE], buf2[128];
   struct extra_descr_data *new_descr;
 
   obj_index[i].vnum = nr;
@@ -1229,10 +1422,9 @@ char *parse_object(FILE * obj_f, int nr)
   obj_index[i].func = NULL;
 
   clear_object(obj_proto + i);
-  obj_proto[i].in_room = NOWHERE;
   obj_proto[i].item_number = i;
 
-  sprintf(buf2, "object #%d", nr);
+  sprintf(buf2, "object #%d", nr);	/* sprintf: OK (for 'buf2 >= 19') */
 
   /* *** string data *** */
   if ((obj_proto[i].name = fread_string(obj_f, buf2)) == NULL) {
@@ -1259,9 +1451,11 @@ char *parse_object(FILE * obj_f, int nr)
     log("SYSERR: Format error in first numeric line (expecting 3 args, got %d), %s", retval, buf2);
     exit(1);
   }
-  obj_proto[i].obj_flags.type_flag = t[0];
-  obj_proto[i].obj_flags.extra_flags = asciiflag_conv(f1);
-  obj_proto[i].obj_flags.wear_flags = asciiflag_conv(f2);
+
+  /* Object flags checked in check_object(). */
+  GET_OBJ_TYPE(obj_proto + i) = t[0];
+  GET_OBJ_EXTRA(obj_proto + i) = asciiflag_conv(f1);
+  GET_OBJ_WEAR(obj_proto + i) = asciiflag_conv(f2);
 
   if (!get_line(obj_f, line)) {
     log("SYSERR: Expecting second numeric line of %s, but file ended!", buf2);
@@ -1271,10 +1465,10 @@ char *parse_object(FILE * obj_f, int nr)
     log("SYSERR: Format error in second numeric line (expecting 4 args, got %d), %s", retval, buf2);
     exit(1);
   }
-  obj_proto[i].obj_flags.value[0] = t[0];
-  obj_proto[i].obj_flags.value[1] = t[1];
-  obj_proto[i].obj_flags.value[2] = t[2];
-  obj_proto[i].obj_flags.value[3] = t[3];
+  GET_OBJ_VAL(obj_proto + i, 0) = t[0];
+  GET_OBJ_VAL(obj_proto + i, 1) = t[1];
+  GET_OBJ_VAL(obj_proto + i, 2) = t[2];
+  GET_OBJ_VAL(obj_proto + i, 3) = t[3];
 
   if (!get_line(obj_f, line)) {
     log("SYSERR: Expecting third numeric line of %s, but file ended!", buf2);
@@ -1284,15 +1478,14 @@ char *parse_object(FILE * obj_f, int nr)
     log("SYSERR: Format error in third numeric line (expecting 3 args, got %d), %s", retval, buf2);
     exit(1);
   }
-  obj_proto[i].obj_flags.weight = t[0];
-  obj_proto[i].obj_flags.cost = t[1];
-  obj_proto[i].obj_flags.cost_per_day = t[2];
+  GET_OBJ_WEIGHT(obj_proto + i) = t[0];
+  GET_OBJ_COST(obj_proto + i) = t[1];
+  GET_OBJ_RENT(obj_proto + i) = t[2];
 
   /* check to make sure that weight of containers exceeds curr. quantity */
-  if (obj_proto[i].obj_flags.type_flag == ITEM_DRINKCON ||
-      obj_proto[i].obj_flags.type_flag == ITEM_FOUNTAIN) {
-    if (obj_proto[i].obj_flags.weight < obj_proto[i].obj_flags.value[1])
-      obj_proto[i].obj_flags.weight = obj_proto[i].obj_flags.value[1] + 5;
+  if (GET_OBJ_TYPE(obj_proto + i) == ITEM_DRINKCON || GET_OBJ_TYPE(obj_proto + i) == ITEM_FOUNTAIN) {
+    if (GET_OBJ_WEIGHT(obj_proto + i) < GET_OBJ_VAL(obj_proto + i, 1))
+      GET_OBJ_WEIGHT(obj_proto + i) = GET_OBJ_VAL(obj_proto + i, 1) + 5;
   }
 
   /* *** extra descriptions and affect fields *** */
@@ -1302,7 +1495,7 @@ char *parse_object(FILE * obj_f, int nr)
     obj_proto[i].affected[j].modifier = 0;
   }
 
-  strcat(buf2, ", after numeric constants\n"
+  strcat(buf2, ", after numeric constants\n"	/* strcat: OK (for 'buf2 >= 87') */
 	 "...expecting 'E', 'A', '$', or next object number");
   j = 0;
 
@@ -1342,11 +1535,11 @@ char *parse_object(FILE * obj_f, int nr)
       break;
     case '$':
     case '#':
-      check_object(&obj_proto[i]);
+      check_object(obj_proto + i);
       top_of_objt = i++;
       return (line);
     default:
-      log("SYSERR: Format error in %s", buf2);
+      log("SYSERR: Format error in (%c): %s", *line, buf2);
       exit(1);
     }
   }
@@ -1356,16 +1549,26 @@ char *parse_object(FILE * obj_f, int nr)
 #define Z	zone_table[zone]
 
 /* load the zone table and command tables */
-void load_zones(FILE * fl, char *zonename)
+void load_zones(FILE *fl, char *zonename)
 {
   static zone_rnum zone = 0;
   int cmd_no, num_of_cmds = 0, line_num = 0, tmp, error;
-  char *ptr, buf[256], zname[256];
+  char *ptr, buf[READ_SIZE], zname[READ_SIZE], buf2[MAX_STRING_LENGTH];
 
-  strcpy(zname, zonename);
+  strlcpy(zname, zonename, sizeof(zname));
 
+  /* Skip first 3 lines lest we mistake the zone name for a command. */
+  for (tmp = 0; tmp < 3; tmp++)
+    get_line(fl, buf);
+
+  /*  More accurate count. Previous was always 4 or 5 too high. -gg 2001/1/17
+   *  Note that if a new zone command is added to reset_zone(), this string
+   *  will need to be updated to suit. - ae.
+   */
   while (get_line(fl, buf))
-    num_of_cmds++;		/* this should be correct within 3 or so */
+    if ((strchr("MOPGERD", buf[0]) && buf[1] == ' ') || (buf[0] == 'S' && buf[1] == '\0'))
+      num_of_cmds++;
+
   rewind(fl);
 
   if (num_of_cmds == 0) {
@@ -1380,18 +1583,23 @@ void load_zones(FILE * fl, char *zonename)
     log("SYSERR: Format error in %s, line %d", zname, line_num);
     exit(1);
   }
-  sprintf(buf2, "beginning of zone #%d", Z.number);
+  snprintf(buf2, sizeof(buf2), "beginning of zone #%d", Z.number);
 
   line_num += get_line(fl, buf);
   if ((ptr = strchr(buf, '~')) != NULL)	/* take off the '~' if it's there */
     *ptr = '\0';
-  Z.name = str_dup(buf);
+  Z.name = strdup(buf);
 
   line_num += get_line(fl, buf);
-  if (sscanf(buf, " %hd %d %d ", &Z.top, &Z.lifespan, &Z.reset_mode) != 3) {
-    log("SYSERR: Format error in 3-constant line of %s", zname);
+  if (sscanf(buf, " %hd %hd %d %d ", &Z.bot, &Z.top, &Z.lifespan, &Z.reset_mode) != 4) {
+    log("SYSERR: Format error in numeric constant line of %s", zname);
     exit(1);
   }
+  if (Z.bot > Z.top) {
+    log("SYSERR: Zone %d bottom (%d) > top (%d).", Z.number, Z.bot, Z.top);
+    exit(1);
+  }
+
   cmd_no = 0;
 
   for (;;) {
@@ -1432,6 +1640,11 @@ void load_zones(FILE * fl, char *zonename)
     cmd_no++;
   }
 
+  if (num_of_cmds != cmd_no + 1) {
+    log("SYSERR: Zone command count mismatch for %s. Estimated: %d, Actual: %d", zname, num_of_cmds, cmd_no + 1);
+    exit(1);
+  }
+
   top_of_zone_table = zone++;
 }
 
@@ -1449,33 +1662,75 @@ void get_one_line(FILE *fl, char *buf)
 }
 
 
+void free_help(void)
+{
+  int hp;
+
+  if (!help_table)
+     return;
+
+  for (hp = 0; hp <= top_of_helpt; hp++) {
+    if (help_table[hp].keyword)
+      free(help_table[hp].keyword);
+    if (help_table[hp].entry && !help_table[hp].duplicate)
+      free(help_table[hp].entry);
+  }
+
+  free(help_table);
+  help_table = NULL;
+  top_of_helpt = 0;
+}
+
+
 void load_help(FILE *fl)
 {
 #if defined(CIRCLE_MACINTOSH)
-  static char key[READ_SIZE+1], next_key[READ_SIZE+1], entry[32384]; /* ? */
+  static char key[READ_SIZE + 1], next_key[READ_SIZE + 1], entry[32384]; /* too big for stack? */
 #else
-  char key[READ_SIZE+1], next_key[READ_SIZE+1], entry[32384];
+  char key[READ_SIZE + 1], next_key[READ_SIZE + 1], entry[32384];
 #endif
-  char line[READ_SIZE+1], *scan;
+  size_t entrylen;
+  char line[READ_SIZE + 1], *scan;
   struct help_index_element el;
 
   /* get the first keyword line */
   get_one_line(fl, key);
   while (*key != '$') {
+    strcat(key, "\r\n");	/* strcat: OK (READ_SIZE - "\n" + "\r\n" == READ_SIZE + 1) */
+    entrylen = strlcpy(entry, key, sizeof(entry));
+
     /* read in the corresponding help entry */
-    strcpy(entry, strcat(key, "\r\n"));
     get_one_line(fl, line);
-    while (*line != '#') {
-      strcat(entry, strcat(line, "\r\n"));
+    while (*line != '#' && entrylen < sizeof(entry) - 1) {
+      entrylen += strlcpy(entry + entrylen, line, sizeof(entry) - entrylen);
+
+      if (entrylen + 2 < sizeof(entry) - 1) {
+        strcpy(entry + entrylen, "\r\n");	/* strcpy: OK (size checked above) */
+        entrylen += 2;
+      }
       get_one_line(fl, line);
+    }
+
+    if (entrylen >= sizeof(entry) - 1) {
+      int keysize;
+      const char *truncmsg = "\r\n*TRUNCATED*\r\n";
+
+      strcpy(entry + sizeof(entry) - strlen(truncmsg) - 1, truncmsg);	/* strcpy: OK (assuming sane 'entry' size) */
+
+      keysize = strlen(key) - 2;
+      log("SYSERR: Help entry exceeded buffer space: %.*s", keysize, key);
+
+      /* If we ran out of buffer space, eat the rest of the entry. */
+      while (*line != '#')
+        get_one_line(fl, line);
     }
 
     /* now, add the entry to the index with each keyword on the keyword line */
     el.duplicate = 0;
-    el.entry = str_dup(entry);
+    el.entry = strdup(entry);
     scan = one_word(key, next_key);
     while (*next_key) {
-      el.keyword = str_dup(next_key);
+      el.keyword = strdup(next_key);
       help_table[top_of_helpt++] = el;
       el.duplicate++;
       scan = one_word(scan, next_key);
@@ -1503,37 +1758,27 @@ int hsort(const void *a, const void *b)
 *************************************************************************/
 
 
-
-int vnum_mobile(char *searchname, struct char_data * ch)
+int vnum_mobile(char *searchname, struct char_data *ch)
 {
   int nr, found = 0;
 
-  for (nr = 0; nr <= top_of_mobt; nr++) {
-    if (isname(searchname, mob_proto[nr].player.name)) {
-      sprintf(buf, "%3d. [%5d] %s\r\n", ++found,
-	      mob_index[nr].vnum,
-	      mob_proto[nr].player.short_descr);
-      send_to_char(buf, ch);
-    }
-  }
+  for (nr = 0; nr <= top_of_mobt; nr++)
+    if (isname(searchname, mob_proto[nr].player.name))
+      send_to_char(ch, "%3d. [%5d] %s\r\n", ++found, mob_index[nr].vnum, mob_proto[nr].player.short_descr);
 
   return (found);
 }
 
 
 
-int vnum_object(char *searchname, struct char_data * ch)
+int vnum_object(char *searchname, struct char_data *ch)
 {
   int nr, found = 0;
 
-  for (nr = 0; nr <= top_of_objt; nr++) {
-    if (isname(searchname, obj_proto[nr].name)) {
-      sprintf(buf, "%3d. [%5d] %s\r\n", ++found,
-	      obj_index[nr].vnum,
-	      obj_proto[nr].short_description);
-      send_to_char(buf, ch);
-    }
-  }
+  for (nr = 0; nr <= top_of_objt; nr++)
+    if (isname(searchname, obj_proto[nr].name))
+      send_to_char(ch, "%3d. [%5d] %s\r\n", ++found, obj_index[nr].vnum, obj_proto[nr].short_description);
+
   return (found);
 }
 
@@ -1559,7 +1804,7 @@ struct char_data *read_mobile(mob_vnum nr, int type) /* and mob_rnum */
   struct char_data *mob;
 
   if (type == VIRTUAL) {
-    if ((i = real_mobile(nr)) < 0) {
+    if ((i = real_mobile(nr)) == NOBODY) {
       log("WARNING: Mobile vnum %d does not exist in database.", nr);
       return (NULL);
     }
@@ -1576,7 +1821,7 @@ struct char_data *read_mobile(mob_vnum nr, int type) /* and mob_rnum */
     mob->points.max_hit = dice(mob->points.hit, mob->points.mana) +
       mob->points.move;
   } else
-    mob->points.max_hit = number(mob->points.hit, mob->points.mana);
+    mob->points.max_hit = rand_number(mob->points.hit, mob->points.mana);
 
   mob->points.hit = mob->points.max_hit;
   mob->points.mana = mob->points.max_mana;
@@ -1610,19 +1855,12 @@ struct obj_data *create_obj(void)
 struct obj_data *read_object(obj_vnum nr, int type) /* and obj_rnum */
 {
   struct obj_data *obj;
-  obj_rnum i;
+  obj_rnum i = type == VIRTUAL ? real_object(nr) : nr;
 
-  if (nr < 0) {
-    log("SYSERR: Trying to create obj with negative (%d) num!", nr);
+  if (i == NOTHING || i > top_of_objt) {
+    log("Object (%c) %d does not exist in database.", type == VIRTUAL ? 'V' : 'R', nr);
     return (NULL);
   }
-  if (type == VIRTUAL) {
-    if ((i = real_object(nr)) < 0) {
-      log("Object (V) %d does not exist in database.", nr);
-      return (NULL);
-    }
-  } else
-    i = nr;
 
   CREATE(obj, struct obj_data, 1);
   clear_object(obj);
@@ -1645,7 +1883,6 @@ void zone_update(void)
   int i;
   struct reset_q_element *update_u, *temp;
   static int timer = 0;
-  char buf[128];
 
   /* jelson 10/22/92 */
   if (((++timer * PULSE_ZONE) / PASSES_PER_SEC) >= 60) {
@@ -1691,9 +1928,7 @@ void zone_update(void)
     if (zone_table[update_u->zone_to_reset].reset_mode == 2 ||
 	is_empty(update_u->zone_to_reset)) {
       reset_zone(update_u->zone_to_reset);
-      sprintf(buf, "Auto zone reset: %s",
-	      zone_table[update_u->zone_to_reset].name);
-      mudlog(buf, CMP, LVL_GOD, FALSE);
+      mudlog(CMP, LVL_GOD, FALSE, "Auto zone reset: %s", zone_table[update_u->zone_to_reset].name);
       /* dequeue */
       if (update_u == reset_q.head)
 	reset_q.head = reset_q.head->next;
@@ -1714,14 +1949,9 @@ void zone_update(void)
 
 void log_zone_error(zone_rnum zone, int cmd_no, const char *message)
 {
-  char buf[256];
-
-  sprintf(buf, "SYSERR: zone file: %s", message);
-  mudlog(buf, NRM, LVL_GOD, TRUE);
-
-  sprintf(buf, "SYSERR: ...offending cmd: '%c' cmd in zone #%d, line %d",
-	  ZCMD.command, zone_table[zone].number, ZCMD.line);
-  mudlog(buf, NRM, LVL_GOD, TRUE);
+  mudlog(NRM, LVL_GOD, TRUE, "SYSERR: zone file: %s", message);
+  mudlog(NRM, LVL_GOD, TRUE, "SYSERR: ...offending cmd: '%c' cmd in zone #%d, line %d",
+	ZCMD.command, zone_table[zone].number, ZCMD.line);
 }
 
 #define ZONE_ERROR(message) \
@@ -1739,6 +1969,11 @@ void reset_zone(zone_rnum zone)
     if (ZCMD.if_flag && !last_cmd)
       continue;
 
+    /*  This is the list of actual zone commands.  If any new
+     *  zone commands are added to the game, be certain to update
+     *  the list of commands in load_zone() so that the counting
+     *  will still be correct. - ae.
+     */
     switch (ZCMD.command) {
     case '*':			/* ignore command */
       last_cmd = 0;
@@ -1755,13 +1990,13 @@ void reset_zone(zone_rnum zone)
 
     case 'O':			/* read an object */
       if (obj_index[ZCMD.arg1].number < ZCMD.arg2) {
-	if (ZCMD.arg3 >= 0) {
+	if (ZCMD.arg3 != NOWHERE) {
 	  obj = read_object(ZCMD.arg1, REAL);
 	  obj_to_room(obj, ZCMD.arg3);
 	  last_cmd = 1;
 	} else {
 	  obj = read_object(ZCMD.arg1, REAL);
-	  obj->in_room = NOWHERE;
+	  IN_ROOM(obj) = NOWHERE;
 	  last_cmd = 1;
 	}
       } else
@@ -1815,10 +2050,8 @@ void reset_zone(zone_rnum zone)
       break;
 
     case 'R': /* rem obj from room */
-      if ((obj = get_obj_in_list_num(ZCMD.arg2, world[ZCMD.arg1].contents)) != NULL) {
-        obj_from_room(obj);
+      if ((obj = get_obj_in_list_num(ZCMD.arg2, world[ZCMD.arg1].contents)) != NULL)
         extract_obj(obj);
-      }
       last_cmd = 1;
       break;
 
@@ -1869,10 +2102,18 @@ int is_empty(zone_rnum zone_nr)
 {
   struct descriptor_data *i;
 
-  for (i = descriptor_list; i; i = i->next)
-    if (STATE(i) == CON_PLAYING)
-      if (world[i->character->in_room].zone == zone_nr)
-	return (0);
+  for (i = descriptor_list; i; i = i->next) {
+    if (STATE(i) != CON_PLAYING)
+      continue;
+    if (IN_ROOM(i->character) == NOWHERE)
+      continue;
+    if (GET_LEVEL(i->character) >= LVL_IMMORT)
+      continue;
+    if (world[IN_ROOM(i->character)].zone != zone_nr)
+      continue;
+
+    return (0);
+  }
 
   return (1);
 }
@@ -1886,26 +2127,24 @@ int is_empty(zone_rnum zone_nr)
 *************************************************************************/
 
 
-long get_ptable_by_name(char *name)
+long get_ptable_by_name(const char *name)
 {
   int i;
 
-  one_argument(name, arg);
   for (i = 0; i <= top_of_p_table; i++)
-    if (!strcmp(player_table[i].name, arg))
+    if (!str_cmp(player_table[i].name, name))
       return (i);
 
   return (-1);
 }
 
 
-long get_id_by_name(char *name)
+long get_id_by_name(const char *name)
 {
   int i;
 
-  one_argument(name, arg);
   for (i = 0; i <= top_of_p_table; i++)
-    if (!strcmp(player_table[i].name, arg))
+    if (!str_cmp(player_table[i].name, name))
       return (player_table[i].id);
 
   return (-1);
@@ -1925,12 +2164,12 @@ char *get_name_by_id(long id)
 
 
 /* Load a char, TRUE if loaded, FALSE if not */
-int load_char(char *name, struct char_file_u * char_element)
+int load_char(const char *name, struct char_file_u *char_element)
 {
   int player_i;
 
-  if ((player_i = find_name(name)) >= 0) {
-    fseek(player_fl, (long) (player_i * sizeof(struct char_file_u)), SEEK_SET);
+  if ((player_i = get_ptable_by_name(name)) >= 0) {
+    fseek(player_fl, player_i * sizeof(struct char_file_u), SEEK_SET);
     fread(char_element, sizeof(struct char_file_u), 1, player_fl);
     return (player_i);
   } else
@@ -1943,9 +2182,11 @@ int load_char(char *name, struct char_file_u * char_element)
 /*
  * write the vital data of a player to the player file
  *
- * NOTE: load_room should be an *RNUM* now.  It is converted to a vnum here.
+ * And that's it! No more fudging around with the load room.
+ * Unfortunately, 'host' modifying is still here due to lack
+ * of that variable in the char_data structure.
  */
-void save_char(struct char_data * ch, room_rnum load_room)
+void save_char(struct char_data *ch)
 {
   struct char_file_u st;
 
@@ -1954,15 +2195,8 @@ void save_char(struct char_data * ch, room_rnum load_room)
 
   char_to_store(ch, &st);
 
-  strncpy(st.host, ch->desc->host, HOST_LENGTH);
+  strncpy(st.host, ch->desc->host, HOST_LENGTH);	/* strncpy: OK (s.host:HOST_LENGTH+1) */
   st.host[HOST_LENGTH] = '\0';
-
-  if (!PLR_FLAGGED(ch, PLR_LOADROOM)) {
-    if (load_room == NOWHERE)
-      st.player_specials_saved.load_room = NOWHERE;
-    else
-      st.player_specials_saved.load_room = GET_ROOM_VNUM(load_room);
-  }
 
   fseek(player_fl, GET_PFILEPOS(ch) * sizeof(struct char_file_u), SEEK_SET);
   fwrite(&st, sizeof(struct char_file_u), 1, player_fl);
@@ -1971,7 +2205,7 @@ void save_char(struct char_data * ch, room_rnum load_room)
 
 
 /* copy data from the file structure to a char struct */
-void store_to_char(struct char_file_u * st, struct char_data * ch)
+void store_to_char(struct char_file_u *st, struct char_data *ch)
 {
   int i;
 
@@ -1985,8 +2219,8 @@ void store_to_char(struct char_file_u * st, struct char_data * ch)
 
   ch->player.short_descr = NULL;
   ch->player.long_descr = NULL;
-  ch->player.title = str_dup(st->title);
-  ch->player.description = str_dup(st->description);
+  ch->player.title = strdup(st->title);
+  ch->player.description = strdup(st->description);
 
   ch->player.hometown = st->hometown;
   ch->player.time.birth = st->birth;
@@ -2014,10 +2248,10 @@ void store_to_char(struct char_file_u * st, struct char_data * ch)
   ch->points.hitroll = 0;
   ch->points.damroll = 0;
 
-  if (ch->player.name == NULL)
-    CREATE(ch->player.name, char, strlen(st->name) + 1);
-  strcpy(ch->player.name, st->name);
-  strcpy(ch->player.passwd, st->pwd);
+  if (ch->player.name)
+    free(ch->player.name);
+  ch->player.name = strdup(st->name);
+  strlcpy(ch->player.passwd, st->pwd, sizeof(ch->player.passwd));
 
   /* Add all spell effects */
   for (i = 0; i < MAX_AFFECT; i++) {
@@ -2031,7 +2265,7 @@ void store_to_char(struct char_file_u * st, struct char_data * ch)
    */
 
   if (!AFF_FLAGGED(ch, AFF_POISON) &&
-      (((long) (time(0) - st->last_logon)) >= SECS_PER_REAL_HOUR)) {
+	time(0) - st->last_logon >= SECS_PER_REAL_HOUR) {
     GET_HIT(ch) = GET_MAX_HIT(ch);
     GET_MOVE(ch) = GET_MAX_MOVE(ch);
     GET_MANA(ch) = GET_MAX_MANA(ch);
@@ -2042,7 +2276,7 @@ void store_to_char(struct char_file_u * st, struct char_data * ch)
 
 
 /* copy vital data from a players char-structure to the file structure */
-void char_to_store(struct char_data * ch, struct char_file_u * st)
+void char_to_store(struct char_data *ch, struct char_file_u *st)
 {
   int i;
   struct affected_type *af;
@@ -2088,7 +2322,7 @@ void char_to_store(struct char_data * ch, struct char_file_u * st)
 
   st->birth = ch->player.time.birth;
   st->played = ch->player.time.played;
-  st->played += (long) (time(0) - ch->player.time.logon);
+  st->played += time(0) - ch->player.time.logon;
   st->last_logon = time(0);
 
   ch->player.time.played = st->played;
@@ -2110,17 +2344,24 @@ void char_to_store(struct char_data * ch, struct char_file_u * st)
   st->points.damroll = 0;
 
   if (GET_TITLE(ch))
-    strcpy(st->title, GET_TITLE(ch));
+    strlcpy(st->title, GET_TITLE(ch), MAX_TITLE_LENGTH);
   else
     *st->title = '\0';
 
-  if (ch->player.description)
-    strcpy(st->description, ch->player.description);
-  else
+  if (ch->player.description) {
+    if (strlen(ch->player.description) >= sizeof(st->description)) {
+      log("SYSERR: char_to_store: %s's description length: %d, max: %d! "
+         "Truncated.", GET_PC_NAME(ch), strlen(ch->player.description),
+         sizeof(st->description));
+      ch->player.description[sizeof(st->description) - 3] = '\0';
+      strcat(ch->player.description, "\r\n");	/* strcat: OK (previous line makes room) */
+    }
+    strcpy(st->description, ch->player.description);	/* strcpy: OK (checked above) */
+  } else
     *st->description = '\0';
 
-  strcpy(st->name, GET_NAME(ch));
-  strcpy(st->pwd, GET_PASSWD(ch));
+  strcpy(st->name, GET_NAME(ch));	/* strcpy: OK (that's what GET_NAME came from) */
+  strcpy(st->pwd, GET_PASSWD(ch));	/* strcpy: OK (that's what GET_PASSWD came from) */
 
   /* add spell and eq affections back in now */
   for (i = 0; i < MAX_AFFECT; i++) {
@@ -2137,10 +2378,9 @@ void char_to_store(struct char_data * ch, struct char_file_u * st)
 
 
 
-void save_etext(struct char_data * ch)
+void save_etext(struct char_data *ch)
 {
 /* this will be really cool soon */
-
 }
 
 
@@ -2180,10 +2420,10 @@ int create_entry(char *name)
 
 
 /* read and allocate space for a '~'-terminated string from a given file */
-char *fread_string(FILE * fl, char *error)
+char *fread_string(FILE *fl, const char *error)
 {
-  char buf[MAX_STRING_LENGTH], tmp[512], *rslt;
-  register char *point;
+  char buf[MAX_STRING_LENGTH], tmp[513];
+  char *point;
   int done = 0, length = 0, templength;
 
   *buf = '\0';
@@ -2208,27 +2448,21 @@ char *fread_string(FILE * fl, char *error)
 
     if (length + templength >= MAX_STRING_LENGTH) {
       log("SYSERR: fread_string: string too large (db.c)");
-      log(error);
+      log("%s", error);
       exit(1);
     } else {
-      strcat(buf + length, tmp);
+      strcat(buf + length, tmp);	/* strcat: OK (size checked above) */
       length += templength;
     }
   } while (!done);
 
   /* allocate space for the new string and copy it */
-  if (strlen(buf) > 0) {
-    CREATE(rslt, char, length + 1);
-    strcpy(rslt, buf);
-  } else
-    rslt = NULL;
-
-  return (rslt);
+  return (strlen(buf) ? strdup(buf) : NULL);
 }
 
 
 /* release memory allocated for a char struct */
-void free_char(struct char_data * ch)
+void free_char(struct char_data *ch)
 {
   int i;
   struct alias_data *a;
@@ -2246,7 +2480,7 @@ void free_char(struct char_data * ch)
     if (IS_NPC(ch))
       log("SYSERR: Mob %s (#%d) had player_specials allocated!", GET_NAME(ch), GET_MOB_VNUM(ch));
   }
-  if (!IS_NPC(ch) || (IS_NPC(ch) && GET_MOB_RNUM(ch) == -1)) {
+  if (!IS_NPC(ch) || (IS_NPC(ch) && GET_MOB_RNUM(ch) == NOBODY)) {
     /* if this is a player, or a non-prototyped non-player, free all */
     if (GET_NAME(ch))
       free(GET_NAME(ch));
@@ -2258,7 +2492,7 @@ void free_char(struct char_data * ch)
       free(ch->player.long_descr);
     if (ch->player.description)
       free(ch->player.description);
-  } else if ((i = GET_MOB_RNUM(ch)) >= 0) {
+  } else if ((i = GET_MOB_RNUM(ch)) != NOBODY) {
     /* otherwise, free strings only if the string is not pointing at proto */
     if (ch->player.name && ch->player.name != mob_proto[i].player.name)
       free(ch->player.name);
@@ -2284,12 +2518,11 @@ void free_char(struct char_data * ch)
 
 
 /* release memory allocated for an obj struct */
-void free_obj(struct obj_data * obj)
+void free_obj(struct obj_data *obj)
 {
   int nr;
-  struct extra_descr_data *thisd, *next_one;
 
-  if ((nr = GET_OBJ_RNUM(obj)) == -1) {
+  if ((nr = GET_OBJ_RNUM(obj)) == NOTHING) {
     if (obj->name)
       free(obj->name);
     if (obj->description)
@@ -2299,14 +2532,7 @@ void free_obj(struct obj_data * obj)
     if (obj->action_description)
       free(obj->action_description);
     if (obj->ex_description)
-      for (thisd = obj->ex_description; thisd; thisd = next_one) {
-	next_one = thisd->next;
-	if (thisd->keyword)
-	  free(thisd->keyword);
-	if (thisd->description)
-	  free(thisd->description);
-	free(thisd);
-      }
+      free_extra_descriptions(obj->ex_description);
   } else {
     if (obj->name && obj->name != obj_proto[nr].name)
       free(obj->name);
@@ -2317,34 +2543,59 @@ void free_obj(struct obj_data * obj)
     if (obj->action_description && obj->action_description != obj_proto[nr].action_description)
       free(obj->action_description);
     if (obj->ex_description && obj->ex_description != obj_proto[nr].ex_description)
-      for (thisd = obj->ex_description; thisd; thisd = next_one) {
-	next_one = thisd->next;
-	if (thisd->keyword)
-	  free(thisd->keyword);
-	if (thisd->description)
-	  free(thisd->description);
-	free(thisd);
-      }
+      free_extra_descriptions(obj->ex_description);
   }
 
   free(obj);
 }
 
 
-
-/* read contets of a text file, alloc space, point buf to it */
+/*
+ * Steps:
+ *   1: Read contents of a text file.
+ *   2: Make sure no one is using the pointer in paging.
+ *   3: Allocate space.
+ *   4: Point 'buf' to it.
+ *
+ * We don't want to free() the string that someone may be
+ * viewing in the pager.  page_string() keeps the internal
+ * strdup()'d copy on ->showstr_head and it won't care
+ * if we delete the original.  Otherwise, strings are kept
+ * on ->showstr_vector but we'll only match if the pointer
+ * is to the string we're interested in and not a copy.
+ *
+ * If someone is reading a global copy we're trying to
+ * replace, give everybody using it a different copy so
+ * as to avoid special cases.
+ */
 int file_to_string_alloc(const char *name, char **buf)
 {
+  int temppage;
   char temp[MAX_STRING_LENGTH];
+  struct descriptor_data *in_use;
+
+  for (in_use = descriptor_list; in_use; in_use = in_use->next)
+    if (in_use->showstr_vector && *in_use->showstr_vector == *buf)
+      return (-1);
 
   /* Lets not free() what used to be there unless we succeeded. */
   if (file_to_string(name, temp) < 0)
     return (-1);
 
+  for (in_use = descriptor_list; in_use; in_use = in_use->next) {
+    if (!in_use->showstr_count || *in_use->showstr_vector != *buf)
+      continue;
+
+    /* Let's be nice and leave them at the page they were on. */
+    temppage = in_use->showstr_page;
+    paginate_string((in_use->showstr_head = strdup(*in_use->showstr_vector)), in_use);
+    in_use->showstr_page = temppage;
+  }
+
   if (*buf)
     free(*buf);
 
-  *buf = str_dup(temp);
+  *buf = strdup(temp);
   return (0);
 }
 
@@ -2353,7 +2604,8 @@ int file_to_string_alloc(const char *name, char **buf)
 int file_to_string(const char *name, char *buf)
 {
   FILE *fl;
-  char tmp[READ_SIZE+3];
+  char tmp[READ_SIZE + 3];
+  int len;
 
   *buf = '\0';
 
@@ -2361,21 +2613,22 @@ int file_to_string(const char *name, char *buf)
     log("SYSERR: reading %s: %s", name, strerror(errno));
     return (-1);
   }
-  do {
-    fgets(tmp, READ_SIZE, fl);
-    tmp[strlen(tmp) - 1] = '\0'; /* take off the trailing \n */
-    strcat(tmp, "\r\n");
 
-    if (!feof(fl)) {
-      if (strlen(buf) + strlen(tmp) + 1 > MAX_STRING_LENGTH) {
-        log("SYSERR: %s: string too big (%d max)", name,
-		MAX_STRING_LENGTH);
-	*buf = '\0';
-	return (-1);
-      }
-      strcat(buf, tmp);
+  for (;;) {
+    if (!fgets(tmp, READ_SIZE, fl))	/* EOF check */
+      break;
+    if ((len = strlen(tmp)) > 0)
+      tmp[len - 1] = '\0'; /* take off the trailing \n */
+    strcat(tmp, "\r\n");	/* strcat: OK (tmp:READ_SIZE+3) */
+
+    if (strlen(buf) + strlen(tmp) + 1 > MAX_STRING_LENGTH) {
+      log("SYSERR: %s: string too big (%d max)", name, MAX_STRING_LENGTH);
+      *buf = '\0';
+      fclose(fl);
+      return (-1);
     }
-  } while (!feof(fl));
+    strcat(buf, tmp);	/* strcat: OK (size checked above) */
+  }
 
   fclose(fl);
 
@@ -2385,7 +2638,7 @@ int file_to_string(const char *name, char *buf)
 
 
 /* clear some of the the working variables of a char */
-void reset_char(struct char_data * ch)
+void reset_char(struct char_data *ch)
 {
   int i;
 
@@ -2394,7 +2647,7 @@ void reset_char(struct char_data * ch)
 
   ch->followers = NULL;
   ch->master = NULL;
-  ch->in_room = NOWHERE;
+  IN_ROOM(ch) = NOWHERE;
   ch->carrying = NULL;
   ch->next = NULL;
   ch->next_fighting = NULL;
@@ -2418,11 +2671,11 @@ void reset_char(struct char_data * ch)
 
 
 /* clear ALL the working variables of a char; do NOT free any space alloc'ed */
-void clear_char(struct char_data * ch)
+void clear_char(struct char_data *ch)
 {
   memset((char *) ch, 0, sizeof(struct char_data));
 
-  ch->in_room = NOWHERE;
+  IN_ROOM(ch) = NOWHERE;
   GET_PFILEPOS(ch) = -1;
   GET_MOB_RNUM(ch) = NOBODY;
   GET_WAS_IN(ch) = NOWHERE;
@@ -2435,20 +2688,23 @@ void clear_char(struct char_data * ch)
 }
 
 
-void clear_object(struct obj_data * obj)
+void clear_object(struct obj_data *obj)
 {
   memset((char *) obj, 0, sizeof(struct obj_data));
 
   obj->item_number = NOTHING;
-  obj->in_room = NOWHERE;
+  IN_ROOM(obj) = NOWHERE;
   obj->worn_on = NOWHERE;
 }
 
 
 
 
-/* initialize a new character only if class is set */
-void init_char(struct char_data * ch)
+/*
+ * Called during character creation after picking character class
+ * (and then never again for that character).
+ */
+void init_char(struct char_data *ch)
 {
   int i;
 
@@ -2457,44 +2713,49 @@ void init_char(struct char_data * ch)
     CREATE(ch->player_specials, struct player_special_data, 1);
 
   /* *** if this is our first player --- he be God *** */
-
   if (top_of_p_table == 0) {
-    GET_EXP(ch) = 7000000;
     GET_LEVEL(ch) = LVL_IMPL;
+    GET_EXP(ch) = 7000000;
 
-    ch->points.max_hit = 500;
-    ch->points.max_mana = 100;
-    ch->points.max_move = 82;
+    /* The implementor never goes through do_start(). */
+    GET_MAX_HIT(ch) = 500;
+    GET_MAX_MANA(ch) = 100;
+    GET_MAX_MOVE(ch) = 82;
+    GET_HIT(ch) = GET_MAX_HIT(ch);
+    GET_MANA(ch) = GET_MAX_MANA(ch);
+    GET_MOVE(ch) = GET_MAX_MOVE(ch);
   }
+
   set_title(ch, NULL);
   ch->player.short_descr = NULL;
   ch->player.long_descr = NULL;
   ch->player.description = NULL;
 
-  ch->player.hometown = 1;
-
   ch->player.time.birth = time(0);
-  ch->player.time.played = 0;
   ch->player.time.logon = time(0);
+  ch->player.time.played = 0;
+
+  GET_HOME(ch) = 1;
+  GET_AC(ch) = 100;
 
   for (i = 0; i < MAX_TONGUE; i++)
     GET_TALK(ch, i) = 0;
 
-  /* make favors for sex */
-  if (ch->player.sex == SEX_MALE) {
-    ch->player.weight = number(120, 180);
-    ch->player.height = number(160, 200);
+  /*
+   * make favors for sex -- or in English, we bias the height and weight of the
+   * character depending on what gender they've chosen for themselves. While it
+   * is possible to have a tall, heavy female it's not as likely as a male.
+   *
+   * Height is in centimeters. Weight is in pounds.  The only place they're
+   * ever printed (in stock code) is SPELL_IDENTIFY.
+   */
+  if (GET_SEX(ch) == SEX_MALE) {
+    GET_WEIGHT(ch) = rand_number(120, 180);
+    GET_HEIGHT(ch) = rand_number(160, 200); /* 5'4" - 6'8" */
   } else {
-    ch->player.weight = number(100, 160);
-    ch->player.height = number(150, 180);
+    GET_WEIGHT(ch) = rand_number(100, 160);
+    GET_HEIGHT(ch) = rand_number(150, 180); /* 5'0" - 6'0" */
   }
-
-  ch->points.max_mana = 100;
-  ch->points.mana = GET_MAX_MANA(ch);
-  ch->points.hit = GET_MAX_HIT(ch);
-  ch->points.max_move = 82;
-  ch->points.move = GET_MAX_MOVE(ch);
-  ch->points.armor = 100;
 
   if ((i = get_ptable_by_name(GET_NAME(ch))) != -1)
     player_table[i].id = GET_IDNUM(ch) = ++top_idnum;
@@ -2508,7 +2769,7 @@ void init_char(struct char_data * ch)
       SET_SKILL(ch, i, 100);
   }
 
-  ch->char_specials.saved.affected_by = 0;
+  AFF_FLAGS(ch) = 0;
 
   for (i = 0; i < 5; i++)
     GET_SAVE(ch, i) = 0;
@@ -2569,14 +2830,13 @@ mob_rnum real_mobile(mob_vnum vnum)
     if ((mob_index + mid)->vnum == vnum)
       return (mid);
     if (bot >= top)
-      return (-1);
+      return (NOBODY);
     if ((mob_index + mid)->vnum > vnum)
       top = mid - 1;
     else
       bot = mid + 1;
   }
 }
-
 
 
 /* returns the real number of the object with given virtual number */
@@ -2594,13 +2854,38 @@ obj_rnum real_object(obj_vnum vnum)
     if ((obj_index + mid)->vnum == vnum)
       return (mid);
     if (bot >= top)
-      return (-1);
+      return (NOTHING);
     if ((obj_index + mid)->vnum > vnum)
       top = mid - 1;
     else
       bot = mid + 1;
   }
 }
+
+
+/* returns the real number of the zone with given virtual number */
+room_rnum real_zone(room_vnum vnum)
+{
+  room_rnum bot, top, mid;
+
+  bot = 0;
+  top = top_of_zone_table;
+
+  /* perform binary search on zone-table */
+  for (;;) {
+    mid = (bot + top) / 2;
+
+    if ((zone_table + mid)->number == vnum)
+      return (mid);
+    if (bot >= top)
+      return (NOWHERE);
+    if ((zone_table + mid)->number > vnum)
+      top = mid - 1;
+    else
+      bot = mid + 1;
+  }
+}
+
 
 /*
  * Extend later to include more checks.
@@ -2609,6 +2894,7 @@ obj_rnum real_object(obj_vnum vnum)
  */
 int check_object(struct obj_data *obj)
 {
+  char objname[MAX_INPUT_LENGTH + 32];
   int error = FALSE;
 
   if (GET_OBJ_WEIGHT(obj) < 0 && (error = TRUE))
@@ -2619,8 +2905,22 @@ int check_object(struct obj_data *obj)
     log("SYSERR: Object #%d (%s) has negative cost/day (%d).",
 	GET_OBJ_VNUM(obj), obj->short_description, GET_OBJ_RENT(obj));
 
+  snprintf(objname, sizeof(objname), "Object #%d (%s)", GET_OBJ_VNUM(obj), obj->short_description);
+  error |= check_bitvector_names(GET_OBJ_WEAR(obj), wear_bits_count, objname, "object wear");
+  error |= check_bitvector_names(GET_OBJ_EXTRA(obj), extra_bits_count, objname, "object extra");
+  error |= check_bitvector_names(GET_OBJ_AFFECT(obj), affected_bits_count, objname, "object affect");
+
   switch (GET_OBJ_TYPE(obj)) {
   case ITEM_DRINKCON:
+  {
+    char onealias[MAX_INPUT_LENGTH], *space = strrchr(obj->name, ' ');
+
+    strlcpy(onealias, space ? space + 1 : obj->name, sizeof(onealias));
+    if (search_block(onealias, drinknames, TRUE) < 0 && (error = TRUE))
+      log("SYSERR: Object #%d (%s) doesn't have drink type as last alias. (%s)",
+		GET_OBJ_VNUM(obj), obj->short_description, obj->name);
+  }
+  /* Fall through. */
   case ITEM_FOUNTAIN:
     if (GET_OBJ_VAL(obj, 1) > GET_OBJ_VAL(obj, 0) && (error = TRUE))
       log("SYSERR: Object #%d (%s) contains (%d) more than maximum (%d).",
@@ -2645,7 +2945,7 @@ int check_object(struct obj_data *obj)
     break;
  }
 
-  return error;
+  return (error);
 }
 
 int check_object_spell_number(struct obj_data *obj, int val)
@@ -2654,7 +2954,7 @@ int check_object_spell_number(struct obj_data *obj, int val)
   const char *spellname;
 
   if (GET_OBJ_VAL(obj, val) == -1)	/* i.e.: no spell */
-    return error;
+    return (error);
 
   /*
    * Check for negative spells, spells beyond the top define, and any
@@ -2683,7 +2983,7 @@ int check_object_spell_number(struct obj_data *obj, int val)
 #endif
 
   if (scheck)		/* Spell names don't exist in syntax check mode. */
-    return error;
+    return (error);
 
   /* Now check for unnamed spells. */
   spellname = skill_name(GET_OBJ_VAL(obj, val));
@@ -2693,7 +2993,7 @@ int check_object_spell_number(struct obj_data *obj, int val)
 		GET_OBJ_VNUM(obj), obj->short_description, spellname,
 		GET_OBJ_VAL(obj, val));
 
-  return error;
+  return (error);
 }
 
 int check_object_level(struct obj_data *obj, int val)
@@ -2704,5 +3004,24 @@ int check_object_level(struct obj_data *obj, int val)
     log("SYSERR: Object #%d (%s) has out of range level #%d.",
 	GET_OBJ_VNUM(obj), obj->short_description, GET_OBJ_VAL(obj, val));
 
-  return error;
+  return (error);
 }
+
+int check_bitvector_names(bitvector_t bits, size_t namecount, const char *whatami, const char *whatbits)
+{
+  unsigned int flagnum;
+  bool error = FALSE;
+
+  /* See if any bits are set above the ones we know about. */
+  if (bits <= (~(bitvector_t)0 >> (sizeof(bitvector_t) * 8 - namecount)))
+    return (FALSE);
+
+  for (flagnum = namecount; flagnum < sizeof(bitvector_t) * 8; flagnum++)
+    if ((1 << flagnum) & bits) {
+      log("SYSERR: %s has unknown %s flag, bit %d (0 through %d known).", whatami, whatbits, flagnum, namecount - 1);
+      error = TRUE;
+    }
+
+  return (error);
+}
+

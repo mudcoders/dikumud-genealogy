@@ -16,12 +16,12 @@
 #include "interpreter.h"
 #include "utils.h"
 
+
+/* external globals */
 extern int dts_are_dumps;
 extern int mini_mud;
-extern struct room_data *world;
-extern struct index_data *mob_index;
-extern struct index_data *obj_index;
 
+/* external functions */
 SPECIAL(dump);
 SPECIAL(pet_shops);
 SPECIAL(postmaster);
@@ -55,7 +55,7 @@ void ASSIGNMOB(mob_vnum mob, SPECIAL(fname))
 {
   mob_rnum rnum;
 
-  if ((rnum = real_mobile(mob)) >= 0)
+  if ((rnum = real_mobile(mob)) != NOBODY)
     mob_index[rnum].func = fname;
   else if (!mini_mud)
     log("SYSERR: Attempt to assign spec to non-existant mob #%d", mob);
@@ -65,7 +65,7 @@ void ASSIGNOBJ(obj_vnum obj, SPECIAL(fname))
 {
   obj_rnum rnum;
 
-  if ((rnum = real_object(obj)) >= 0)
+  if ((rnum = real_object(obj)) != NOTHING)
     obj_index[rnum].func = fname;
   else if (!mini_mud)
     log("SYSERR: Attempt to assign spec to non-existant obj #%d", obj);
@@ -75,7 +75,7 @@ void ASSIGNROOM(room_vnum room, SPECIAL(fname))
 {
   room_rnum rnum;
 
-  if ((rnum = real_room(room)) >= 0)
+  if ((rnum = real_room(room)) != NOWHERE)
     world[rnum].func = fname;
   else if (!mini_mud)
     log("SYSERR: Attempt to assign spec to non-existant room #%d", room);
@@ -301,7 +301,7 @@ void assign_rooms(void)
   ASSIGNROOM(3031, pet_shops);
 
   if (dts_are_dumps)
-    for (i = 0; i < top_of_world; i++)
+    for (i = 0; i <= top_of_world; i++)
       if (ROOM_FLAGGED(i, ROOM_DEATH))
 	world[i].func = dump;
 }

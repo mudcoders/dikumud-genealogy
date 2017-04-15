@@ -21,53 +21,64 @@
 #include "handler.h"
 #include "interpreter.h"
 
-extern struct descriptor_data *descriptor_list;
+
+/* external globals */
 extern struct time_data time_info;
-extern struct room_data *world;
 
 /* local functions */
 struct time_info_data *real_time_passed(time_t t2, time_t t1);
 struct time_info_data *mud_time_passed(time_t t2, time_t t1);
-void die_follower(struct char_data * ch);
-void add_follower(struct char_data * ch, struct char_data * leader);
 void prune_crlf(char *txt);
 
+
 /* creates a random number in interval [from;to] */
-int number(int from, int to)
+int rand_number(int from, int to)
 {
-  /* error checking in case people call number() incorrectly */
+  /* error checking in case people call this incorrectly */
   if (from > to) {
     int tmp = from;
     from = to;
     to = tmp;
-    log("SYSERR: number() should be called with lowest, then highest. number(%d, %d), not number(%d, %d).", from, to, to, from);
+    log("SYSERR: rand_number() should be called with lowest, then highest. (%d, %d), not (%d, %d).", from, to, to, from);
   }
 
+  /*
+   * This should always be of the form:
+   *
+   *	((float)(to - from + 1) * rand() / (float)(RAND_MAX + from) + from);
+   *
+   * if you are using rand() due to historical non-randomness of the
+   * lower bits in older implementations.  We always use circle_random()
+   * though, which shouldn't have that problem. Mean and standard
+   * deviation of both are identical (within the realm of statistical
+   * identity) if the rand() implementation is non-broken.
+   */
   return ((circle_random() % (to - from + 1)) + from);
 }
 
 
 /* simulates dice roll */
-int dice(int number, int size)
+int dice(int num, int size)
 {
   int sum = 0;
 
-  if (size <= 0 || number <= 0)
+  if (size <= 0 || num <= 0)
     return (0);
 
-  while (number-- > 0)
-    sum += ((circle_random() % size) + 1);
+  while (num-- > 0)
+    sum += rand_number(1, size);
 
   return (sum);
 }
 
 
+/* Be wary of sign issues with this. */
 int MIN(int a, int b)
 {
   return (a < b ? a : b);
 }
 
-
+/* Be wary of sign issues with this. */
 int MAX(int a, int b)
 {
   return (a > b ? a : b);
@@ -81,14 +92,37 @@ char *CAP(char *txt)
 }
 
 
+#if !defined(HAVE_STRLCPY)
+/*
+ * A 'strlcpy' function in the same fashion as 'strdup' below.
+ *
+ * This copies up to totalsize - 1 bytes from the source string, placing
+ * them and a trailing NUL into the destination string.
+ *
+ * Returns the total length of the string it tried to copy, not including
+ * the trailing NUL.  So a '>= totalsize' test says it was truncated.
+ * (Note that you may have _expected_ truncation because you only wanted
+ * a few characters from the source string.)
+ */
+size_t strlcpy(char *dest, const char *source, size_t totalsize)
+{
+  strncpy(dest, source, totalsize - 1);	/* strncpy: OK (we must assume 'totalsize' is correct) */
+  dest[totalsize - 1] = '\0';
+  return strlen(source);
+}
+#endif
+
+
+#if !defined(HAVE_STRDUP)
 /* Create a duplicate of a string */
-char *str_dup(const char *source)
+char *strdup(const char *source)
 {
   char *new_z;
 
   CREATE(new_z, char, strlen(source) + 1);
-  return (strcpy(new_z, source));
+  return (strcpy(new_z, source)); /* strcpy: OK */
 }
+#endif
 
 
 /*
@@ -103,6 +137,7 @@ void prune_crlf(char *txt)
 }
 
 
+#ifndef str_cmp
 /*
  * str_cmp: a case-insensitive version of strcmp().
  * Returns: 0 if equal, > 0 if arg1 > arg2, or < 0 if arg1 < arg2.
@@ -124,8 +159,10 @@ int str_cmp(const char *arg1, const char *arg2)
 
   return (0);
 }
+#endif
 
 
+#ifndef strn_cmp
 /*
  * strn_cmp: a case-insensitive version of strncmp().
  * Returns: 0 if equal, > 0 if arg1 > arg2, or < 0 if arg1 < arg2.
@@ -147,42 +184,50 @@ int strn_cmp(const char *arg1, const char *arg2, int n)
 
   return (0);
 }
+#endif
+
 
 /* log a death trap hit */
-void log_death_trap(struct char_data * ch)
+void log_death_trap(struct char_data *ch)
 {
-  char buf[256];
-
-  sprintf(buf, "%s hit death trap #%d (%s)", GET_NAME(ch),
-	  GET_ROOM_VNUM(IN_ROOM(ch)), world[ch->in_room].name);
-  mudlog(buf, BRF, LVL_IMMORT, TRUE);
+  mudlog(BRF, LVL_IMMORT, TRUE, "%s hit death trap #%d (%s)", GET_NAME(ch), GET_ROOM_VNUM(IN_ROOM(ch)), world[IN_ROOM(ch)].name);
 }
+
 
 /*
  * New variable argument log() function.  Works the same as the old for
  * previously written code but is very nice for new code.
  */
-void basic_mud_log(const char *format, ...)
+void basic_mud_vlog(const char *format, va_list args)
 {
-  va_list args;
   time_t ct = time(0);
   char *time_s = asctime(localtime(&ct));
 
-  if (logfile == NULL)
+  if (logfile == NULL) {
     puts("SYSERR: Using log() before stream was initialized!");
+    return;
+  }
+
   if (format == NULL)
     format = "SYSERR: log() received a NULL format.";
 
   time_s[strlen(time_s) - 1] = '\0';
 
   fprintf(logfile, "%-15.15s :: ", time_s + 4);
+  vfprintf(logfile, format, args);
+  fputc('\n', logfile);
+  fflush(logfile);
+}
+
+
+/* So mudlog() can use the same function. */
+void basic_mud_log(const char *format, ...)
+{
+  va_list args;
 
   va_start(args, format);
-  vfprintf(logfile, format, args);
+  basic_mud_vlog(format, args);
   va_end(args);
-
-  fprintf(logfile, "\n");
-  fflush(logfile);
 }
 
 
@@ -205,31 +250,42 @@ int touch(const char *path)
  * mudlog -- log mud messages to a file & to online imm's syslogs
  * based on syslog by Fen Jul 3, 1992
  */
-void mudlog(const char *str, int type, int level, int file)
+void mudlog(int type, int level, int file, const char *str, ...)
 {
-  char buf[MAX_STRING_LENGTH], tp;
+  char buf[MAX_STRING_LENGTH];
   struct descriptor_data *i;
+  va_list args;
 
   if (str == NULL)
     return;	/* eh, oh well. */
-  if (file)
-    log(str);
+
+  if (file) {
+    va_start(args, str);
+    basic_mud_vlog(str, args);
+    va_end(args);
+  }
+
   if (level < 0)
     return;
 
-  sprintf(buf, "[ %s ]\r\n", str);
+  strcpy(buf, "[ ");	/* strcpy: OK */
+  va_start(args, str);
+  vsnprintf(buf + 2, sizeof(buf) - 6, str, args);
+  va_end(args);
+  strcat(buf, " ]\r\n");	/* strcat: OK */
 
-  for (i = descriptor_list; i; i = i->next)
-    if (STATE(i) == CON_PLAYING && !PLR_FLAGGED(i->character, PLR_WRITING)) {
-      tp = ((PRF_FLAGGED(i->character, PRF_LOG1) ? 1 : 0) +
-	    (PRF_FLAGGED(i->character, PRF_LOG2) ? 2 : 0));
+  for (i = descriptor_list; i; i = i->next) {
+    if (STATE(i) != CON_PLAYING || IS_NPC(i->character)) /* switch */
+      continue;
+    if (GET_LEVEL(i->character) < level)
+      continue;
+    if (PLR_FLAGGED(i->character, PLR_WRITING))
+      continue;
+    if (type > (PRF_FLAGGED(i->character, PRF_LOG1) ? 1 : 0) + (PRF_FLAGGED(i->character, PRF_LOG2) ? 2 : 0))
+      continue;
 
-      if ((GET_LEVEL(i->character) >= level) && (tp >= type)) {
-	send_to_char(CCGRN(i->character, C_NRM), i->character);
-	send_to_char(buf, i->character);
-	send_to_char(CCNRM(i->character, C_NRM), i->character);
-      }
-    }
+    send_to_char(i->character, "%s%s%s", CCGRN(i->character, C_NRM), buf, CCNRM(i->character, C_NRM));
+  }
 }
 
 
@@ -239,31 +295,34 @@ void mudlog(const char *str, int type, int level, int file)
  * to cast a non-const array as const than to cast a const one as non-const.
  * Doesn't really matter since this function doesn't change the array though.
  */
-void sprintbit(bitvector_t bitvector, const char *names[], char *result)
+size_t sprintbit(bitvector_t bitvector, const char *names[], char *result, size_t reslen)
 {
+  size_t len = 0;
+  int nlen;
   long nr;
 
   *result = '\0';
 
-  for (nr = 0; bitvector; bitvector >>= 1) {
+  for (nr = 0; bitvector && len < reslen; bitvector >>= 1) {
     if (IS_SET(bitvector, 1)) {
-      if (*names[nr] != '\n') {
-	strcat(result, names[nr]);
-	strcat(result, " ");
-      } else
-	strcat(result, "UNDEFINED ");
+      nlen = snprintf(result + len, reslen - len, "%s ", *names[nr] != '\n' ? names[nr] : "UNDEFINED");
+      if (len + nlen >= reslen || nlen < 0)
+        break;
+      len += nlen;
     }
+
     if (*names[nr] != '\n')
       nr++;
   }
 
   if (!*result)
-    strcpy(result, "NOBITS ");
+    len = strlcpy(result, "NOBITS ", reslen);
+
+  return (len);
 }
 
 
-
-void sprinttype(int type, const char *names[], char *result)
+size_t sprinttype(int type, const char *names[], char *result, size_t reslen)
 {
   int nr = 0;
 
@@ -272,10 +331,7 @@ void sprinttype(int type, const char *names[], char *result)
     nr++;
   }
 
-  if (*names[nr] != '\n')
-    strcpy(result, names[nr]);
-  else
-    strcpy(result, "UNDEFINED");
+  return strlcpy(result, *names[nr] != '\n' ? names[nr] : "UNDEFINED", reslen);
 }
 
 
@@ -285,7 +341,7 @@ struct time_info_data *real_time_passed(time_t t2, time_t t1)
   long secs;
   static struct time_info_data now;
 
-  secs = (long) (t2 - t1);
+  secs = t2 - t1;
 
   now.hours = (secs / SECS_PER_REAL_HOUR) % 24;	/* 0..23 hours */
   secs -= SECS_PER_REAL_HOUR * now.hours;
@@ -307,7 +363,7 @@ struct time_info_data *mud_time_passed(time_t t2, time_t t1)
   long secs;
   static struct time_info_data now;
 
-  secs = (long) (t2 - t1);
+  secs = t2 - t1;
 
   now.hours = (secs / SECS_PER_MUD_HOUR) % 24;	/* 0..23 hours */
   secs -= SECS_PER_MUD_HOUR * now.hours;
@@ -324,8 +380,20 @@ struct time_info_data *mud_time_passed(time_t t2, time_t t1)
 }
 
 
+time_t mud_time_to_secs(struct time_info_data *now)
+{
+  time_t when = 0;
 
-struct time_info_data *age(struct char_data * ch)
+  when += now->year  * SECS_PER_MUD_YEAR;
+  when += now->month * SECS_PER_MUD_MONTH;
+  when += now->day   * SECS_PER_MUD_DAY;
+  when += now->hours * SECS_PER_MUD_HOUR;
+
+  return (time(NULL) - when);
+}
+
+
+struct time_info_data *age(struct char_data *ch)
 {
   static struct time_info_data player_age;
 
@@ -339,7 +407,7 @@ struct time_info_data *age(struct char_data * ch)
 
 /* Check if making CH follow VICTIM will create an illegal */
 /* Follow "Loop/circle"                                    */
-bool circle_follow(struct char_data * ch, struct char_data * victim)
+bool circle_follow(struct char_data *ch, struct char_data *victim)
 {
   struct char_data *k;
 
@@ -355,7 +423,7 @@ bool circle_follow(struct char_data * ch, struct char_data * victim)
 
 /* Called when stop following persons, or stopping charm */
 /* This will NOT do if a character quits/dies!!          */
-void stop_follower(struct char_data * ch)
+void stop_follower(struct char_data *ch)
 {
   struct follow_type *j, *k;
 
@@ -393,9 +461,21 @@ void stop_follower(struct char_data * ch)
 }
 
 
+int num_followers_charmed(struct char_data *ch)
+{
+  struct follow_type *lackey;
+  int total = 0;
+
+  for (lackey = ch->followers; lackey; lackey = lackey->next)
+    if (AFF_FLAGGED(lackey->follower, AFF_CHARM) && lackey->follower->master == ch)
+      total++;
+
+  return (total);
+}
+
 
 /* Called when a character that follows/is followed dies */
-void die_follower(struct char_data * ch)
+void die_follower(struct char_data *ch)
 {
   struct follow_type *j, *k;
 
@@ -412,7 +492,7 @@ void die_follower(struct char_data * ch)
 
 /* Do NOT call this before having checked if a circle of followers */
 /* will arise. CH will follow leader                               */
-void add_follower(struct char_data * ch, struct char_data * leader)
+void add_follower(struct char_data *ch, struct char_data *leader)
 {
   struct follow_type *k;
 
@@ -435,35 +515,41 @@ void add_follower(struct char_data * ch, struct char_data * leader)
   act("$n starts to follow $N.", TRUE, ch, 0, leader, TO_NOTVICT);
 }
 
+
 /*
  * get_line reads the next non-blank line off of the input stream.
  * The newline character is removed from the input.  Lines which begin
  * with '*' are considered to be comments.
  *
- * Returns the number of lines advanced in the file.
+ * Returns the number of lines advanced in the file. Buffer given must
+ * be at least READ_SIZE (256) characters large.
  */
-int get_line(FILE * fl, char *buf)
+int get_line(FILE *fl, char *buf)
 {
-  char temp[256];
+  char temp[READ_SIZE];
   int lines = 0;
+  int sl;
 
   do {
-    fgets(temp, 256, fl);
-    if (feof(fl))
-      return 0;
+    if (!fgets(temp, READ_SIZE, fl))
+      return (0);
     lines++;
-  } while (*temp == '*' || *temp == '\n');
+  } while (*temp == '*' || *temp == '\n' || *temp == '\r');
 
-  temp[strlen(temp) - 1] = '\0';
-  strcpy(buf, temp);
-  return lines;
+  /* Last line of file doesn't always have a \n, but it should. */
+  sl = strlen(temp);
+  while (sl > 0 && (temp[sl - 1] == '\n' || temp[sl - 1] == '\r'))
+    temp[--sl] = '\0';
+
+  strcpy(buf, temp); /* strcpy: OK, if buf >= READ_SIZE (256) */
+  return (lines);
 }
 
 
-int get_filename(char *orig_name, char *filename, int mode)
+int get_filename(char *filename, size_t fbufsize, int mode, const char *orig_name)
 {
   const char *prefix, *middle, *suffix;
-  char name[64], *ptr;
+  char name[PATH_MAX], *ptr;
 
   if (orig_name == NULL || *orig_name == '\0' || filename == NULL) {
     log("SYSERR: NULL pointer or empty string passed to get_filename(), %p or %p.",
@@ -488,7 +574,7 @@ int get_filename(char *orig_name, char *filename, int mode)
     return (0);
   }
 
-  strcpy(name, orig_name);
+  strlcpy(name, orig_name, sizeof(name));
   for (ptr = name; *ptr; ptr++)
     *ptr = LOWER(*ptr);
 
@@ -513,7 +599,7 @@ int get_filename(char *orig_name, char *filename, int mode)
     break;
   }
 
-  sprintf(filename, "%s%s"SLASH"%s.%s", prefix, middle, name, suffix);
+  snprintf(filename, fbufsize, "%s%s"SLASH"%s.%s", prefix, middle, name, suffix);
   return (1);
 }
 
@@ -543,15 +629,20 @@ int num_pc_in_room(struct room_data *room)
  *
  * XXX: Wonder if flushing streams includes sockets?
  */
+extern FILE *player_fl;
 void core_dump_real(const char *who, int line)
 {
   log("SYSERR: Assertion failed at %s:%d!", who, line);
 
+#if 0	/* By default, let's not litter. */
 #if defined(CIRCLE_UNIX)
-  /* These would be duplicated otherwise... */
+  /* These would be duplicated otherwise...make very sure. */
   fflush(stdout);
   fflush(stderr);
   fflush(logfile);
+  fflush(player_fl);
+  /* Everything, just in case, for the systems that support it. */
+  fflush(NULL);
 
   /*
    * Kill the child so the debugger or script doesn't think the MUD
@@ -560,4 +651,34 @@ void core_dump_real(const char *who, int line)
   if (fork() == 0)
     abort();
 #endif
+#endif
+}
+
+
+/*
+ * Rules (unless overridden by ROOM_DARK):
+ *
+ * Inside and City rooms are always lit.
+ * Outside rooms are dark at sunset and night.
+ */
+int room_is_dark(room_rnum room)
+{
+  if (!VALID_ROOM_RNUM(room)) {
+    log("room_is_dark: Invalid room rnum %d. (0-%d)", room, top_of_world);
+    return (FALSE);
+  }
+
+  if (world[room].light)
+    return (FALSE);
+
+  if (ROOM_FLAGGED(room, ROOM_DARK))
+    return (TRUE);
+
+  if (SECT(room) == SECT_INSIDE || SECT(room) == SECT_CITY)
+    return (FALSE);
+
+  if (weather_info.sunlight == SUN_SET || weather_info.sunlight == SUN_DARK)
+    return (TRUE);
+
+  return (FALSE);
 }

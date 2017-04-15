@@ -3,7 +3,7 @@ Puff dragon fractal~
 Puff~
 Puff the Fractal Dragon is here, contemplating a higher reality.
 ~
-Is that some type of differntial curve involving some strange, and
+Is that some type of differential curve involving some strange, and
 unknown calculus that she seems to be made out of?
 ~
 anopqr dkp 1000 E
@@ -62,16 +62,4 @@ b 0 0 S
 1 0 0 1d1+1 1d1+1
 0 0
 8 8 0
-#99
-death reaper~
-Death~
-Death the Grim Reaper is observing you silently from empty eye sockets.
-~
-The dark-robed skeletal figure radiates an unendurable coldness.
-~
-belnopqr dfhkp 0 S
-30 0 -10 1d1+665 10d15+20
-0 500000
-8 8 0
-$~
-
+$

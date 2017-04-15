@@ -1,6 +1,6 @@
 #79
 Redferne's Residence~
-7999 50 2
+7900 7999 50 2
 *
 * Created for DikuMud
 *
@@ -30,9 +30,11 @@ R 0 7907 7908
 O 0 7908 40 7907        Waybread
 R 0 7908 7921
 O 0 7921 10 7908        Water Barrel
+R 0 7903 7904
 O 0 7904 1 7903         Chest
 P 1 7903 1 7904                 Money
 P 1 7909 4 7904                 Golden Ring
+R 0 7913 7905
 O 1 7905 1 7913         Chest
 P 1 7906 5 7905
 P 1 7912 3 7905                 Chaos Helmet
@@ -58,5 +60,4 @@ D 0 7911 2 1            Balcony Doors
 D 0 7912 0 1
 *
 S
-$
 $

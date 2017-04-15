@@ -22,34 +22,37 @@ AREAS
 CircleMUD.
 
 Limbo                    -- DikuMud
+River Island Of Minos    -- Mahatma of HexOynx
 God Simplex              -- CircleMUD, modified by Taz of Tazmania
-Rome                     -- Onivel of JediMUD
-King Welmar's Castle     -- CircleMUD*
-Newbie Zone              -- Maynard of StrangeMUD
+The Straight Path        -- Steppin of ChicagoMUD
 The High Tower Of Magic  -- Skylar of SillyMUD*
-Midgaard                 -- DikuMUD
+Midgaard                 -- DikuMud
 The Three Of Swords      -- C.A.W.
 Miden'Nir                -- Copper II, modified by VampLestat of MercMUD*
 The Chessboard           -- Exxon of SillyMUD
-Mount Moria              -- DikuMUD*
+Mount Moria              -- Redferne of DikuMud*
 The Great Eastern Desert -- Rorschach
 The Drow City            -- Rorschach
 The City Of Thalos       -- Rorschach
 The Great Pyramid        -- Andersen of HexOynx*
 New Thalos               -- Duke Of SillyMUD*
-The Haon-Dor Forest      -- DikuMUD, modified by Derkhil of CircleMUD
+The Haon-Dor Forest      -- Quifael of DikuMud, extended by by Derkhil
+                            of CircleMUD
 The Orc Enclave          -- C.A.W.
-Rand's Tower             -- C.A.W.
-The Dwarven Kingdom      -- DikuMUD
-The Sewers               -- DikuMUD
 Arachnos                 -- Mahatma of HexOynx
-River Island Of Minos    -- Mahatma of HexOynx
-Redferne's Residence     -- DikuMUD, modified by Cyron of VieMUD
+Rand's Tower             -- C.A.W.
+The Dwarven Kingdom      -- Depeche of DikuMud
+The Sewers               -- Redferne of DikuMud
+Redferne's Residence     -- DikuMud, modified by Cyron of VieMud
+Rome                     -- Onivel of JediMUD
+King Welmar's Castle     -- CircleMUD*
+Newbie Zone              -- Maynard of StrangeMUD
 
-All those marked with * have been heavily modified by Furry of VieMUD
+All those marked with * have been heavily modified by Furry of VieMud
 C.A.W. stands for the Curious Areas Workshop.  For more information
-mail furry@viemud.org
+mail <fletchra@qsilver.queensu.ca>.
 
+See also: CREDITS
 #
 BOARDS
 
@@ -374,7 +377,7 @@ See also: PRACTICE
 CIRCLE CIRCLEMUD CREDITS
                     C  I  R  C  L  E  M  U  D     3  .  0
 
-CircleMUD was developed from DikuMUD (Gamma 0.0) by Jeremy "Ras" Elson at
+CircleMUD was developed from DikuMud (Gamma 0.0) by Jeremy "Ras" Elson at
 Johns Hopkins University's Department of Computer Science.  All code unique
 to CircleMUD is protected under a copyright by the Trustees of the Johns
 Hopkins University.
@@ -394,7 +397,7 @@ them all, I'd like to extend special thanks to certain people:
      for porting it to OS/2, and Jack Patton and Steffen Haeuser for the
      Amiga port.
   -- Bill Bogstad and Tim Stearns for allowing Circle to exist at JHU.
-  -- The DikuMUD folk, and the good old WhatMUD implementors Dave & Justin,
+  -- The DikuMud folk, and the good old WhatMUD implementors Dave & Justin,
      for starting the ball rolling.
   -- Bryan Jolson, Steven Lacher, Cat Stanton, and Naved Surve, for being 
      there in the very early days of Circle's development.
@@ -412,5 +415,7 @@ Thanks everyone!
                   (write "subscribe circle <first name> <last name>")
 
 --Jeremy Elson (jelson@circlemud.org)
+
+See also: AREAS
 #
 $

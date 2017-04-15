@@ -13,7 +13,7 @@ it in the future.
 Press return to read the license.
 EOF
 read temp
-cat ../doc/license.doc | $1
+cat ../doc/license.txt | $1
 echo
 echo Press return to ACCEPT the terms of this license.
 echo Press Control-C if you DO NOT ACCEPT the terms of this license.

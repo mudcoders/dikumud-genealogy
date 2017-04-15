@@ -1,5 +1,5 @@
 #3000
-beer barrel~
+barrel beer~
 a barrel~
 A beer barrel has been left here.~
 ~
@@ -7,7 +7,7 @@ A beer barrel has been left here.~
 50 50 1 0
 65 300 100
 #3001
-beer bottle~
+bottle beer~
 a bottle~
 A beer bottle has been left here.~
 ~
@@ -15,7 +15,7 @@ A beer bottle has been left here.~
 8 8 1 0
 10 20 8
 #3002
-ale bottle dark~
+bottle dark ale~
 a bottle~
 A dark bottle of ale has been left here.~
 ~
@@ -23,15 +23,15 @@ A dark bottle of ale has been left here.~
 8 8 3 0
 10 10 3
 #3003
-firebreather bottle~
-a firebreather~
-A firebreather has been left here.~
+bottle firebreather~
+a bottle~
+A bottle of firebreather has been left here.~
 ~
 17 0 1
 8 8 7 0
 10 50 17
 #3004
-local bottle~
+bottle local~
 a bottle~
 A dark bottle has been left here.~
 ~
@@ -179,7 +179,7 @@ torch~
 a torch~
 A large torch.~
 ~
-1 0 65537
+1 0 16185
 0 0 24 0
 1 10 10
 #3031
@@ -187,7 +187,7 @@ lantern brass~
 a lantern~
 A brass lantern is here.~
 ~
-1 0 65537
+1 0 16185 
 0 0 96 0
 1 50 10
 #3032
@@ -592,5 +592,4 @@ E
 bulletin~
 Use 'look board' to read the board.
 ~
-$~
-
+$

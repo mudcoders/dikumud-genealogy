@@ -75,7 +75,7 @@ void circle_srandom(unsigned long initial_seed)
 
 unsigned long circle_random(void)
 {
-   register int lo, hi, test;
+   int lo, hi, test;
 
     hi   = seed/q;
     lo   = seed%q;

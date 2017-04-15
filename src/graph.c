@@ -21,20 +21,21 @@
 #include "spells.h"
 
 
-/* Externals */
+/* external functions */
 ACMD(do_say);
-extern struct char_data *character_list;
+
+/* external variables */
 extern const char *dirs[];
-extern struct room_data *world;
 extern int track_through_doors;
 
 /* local functions */
+int VALID_EDGE(room_rnum x, int y);
 void bfs_enqueue(room_rnum room, int dir);
 void bfs_dequeue(void);
 void bfs_clear_queue(void);
 int find_first_step(room_rnum src, room_rnum target);
 ACMD(do_track);
-void hunt_victim(struct char_data * ch);
+void hunt_victim(struct char_data *ch);
 
 struct bfs_queue_struct {
   room_rnum room;
@@ -111,7 +112,7 @@ int find_first_step(room_rnum src, room_rnum target)
   int curr_dir;
   room_rnum curr_room;
 
-  if (src < 0 || src > top_of_world || target < 0 || target > top_of_world) {
+  if (src == NOWHERE || target == NOWHERE || src > top_of_world || target > top_of_world) {
     log("SYSERR: Illegal value %d or %d passed to find_first_step. (%s)", src, target, __FILE__);
     return (BFS_ERROR);
   }
@@ -157,65 +158,63 @@ int find_first_step(room_rnum src, room_rnum target)
 
 ACMD(do_track)
 {
+  char arg[MAX_INPUT_LENGTH];
   struct char_data *vict;
   int dir;
 
   /* The character must have the track skill. */
   if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_TRACK)) {
-    send_to_char("You have no idea how.\r\n", ch);
+    send_to_char(ch, "You have no idea how.\r\n");
     return;
   }
   one_argument(argument, arg);
   if (!*arg) {
-    send_to_char("Whom are you trying to track?\r\n", ch);
+    send_to_char(ch, "Whom are you trying to track?\r\n");
     return;
   }
   /* The person can't see the victim. */
-  if (!(vict = get_char_vis(ch, arg, FIND_CHAR_WORLD))) {
-    send_to_char("No one is around by that name.\r\n", ch);
+  if (!(vict = get_char_vis(ch, arg, NULL, FIND_CHAR_WORLD))) {
+    send_to_char(ch, "No one is around by that name.\r\n");
     return;
   }
   /* We can't track the victim. */
   if (AFF_FLAGGED(vict, AFF_NOTRACK)) {
-    send_to_char("You sense no trail.\r\n", ch);
+    send_to_char(ch, "You sense no trail.\r\n");
     return;
   }
 
   /* 101 is a complete failure, no matter what the proficiency. */
-  if (number(0, 101) >= GET_SKILL(ch, SKILL_TRACK)) {
+  if (rand_number(0, 101) >= GET_SKILL(ch, SKILL_TRACK)) {
     int tries = 10;
     /* Find a random direction. :) */
     do {
-      dir = number(0, NUM_OF_DIRS - 1);
+      dir = rand_number(0, NUM_OF_DIRS - 1);
     } while (!CAN_GO(ch, dir) && --tries);
-    sprintf(buf, "You sense a trail %s from here!\r\n", dirs[dir]);
-    send_to_char(buf, ch);
+    send_to_char(ch, "You sense a trail %s from here!\r\n", dirs[dir]);
     return;
   }
 
   /* They passed the skill check. */
-  dir = find_first_step(ch->in_room, vict->in_room);
+  dir = find_first_step(IN_ROOM(ch), IN_ROOM(vict));
 
   switch (dir) {
   case BFS_ERROR:
-    send_to_char("Hmm.. something seems to be wrong.\r\n", ch);
+    send_to_char(ch, "Hmm.. something seems to be wrong.\r\n");
     break;
   case BFS_ALREADY_THERE:
-    send_to_char("You're already in the same room!!\r\n", ch);
+    send_to_char(ch, "You're already in the same room!!\r\n");
     break;
   case BFS_NO_PATH:
-    sprintf(buf, "You can't sense a trail to %s from here.\r\n", HMHR(vict));
-    send_to_char(buf, ch);
+    send_to_char(ch, "You can't sense a trail to %s from here.\r\n", HMHR(vict));
     break;
   default:	/* Success! */
-    sprintf(buf, "You sense a trail %s from here!\r\n", dirs[dir]);
-    send_to_char(buf, ch);
+    send_to_char(ch, "You sense a trail %s from here!\r\n", dirs[dir]);
     break;
   }
 }
 
 
-void hunt_victim(struct char_data * ch)
+void hunt_victim(struct char_data *ch)
 {
   int dir;
   byte found;
@@ -230,17 +229,21 @@ void hunt_victim(struct char_data * ch)
       found = TRUE;
 
   if (!found) {
-    do_say(ch, "Damn!  My prey is gone!!", 0, 0);
+    char actbuf[MAX_INPUT_LENGTH] = "Damn!  My prey is gone!!";
+
+    do_say(ch, actbuf, 0, 0);
     HUNTING(ch) = NULL;
     return;
   }
-  if ((dir = find_first_step(ch->in_room, HUNTING(ch)->in_room)) < 0) {
-    sprintf(buf, "Damn!  I lost %s!", HMHR(HUNTING(ch)));
+  if ((dir = find_first_step(IN_ROOM(ch), IN_ROOM(HUNTING(ch)))) < 0) {
+    char buf[MAX_INPUT_LENGTH];
+
+    snprintf(buf, sizeof(buf), "Damn!  I lost %s!", HMHR(HUNTING(ch)));
     do_say(ch, buf, 0, 0);
     HUNTING(ch) = NULL;
   } else {
     perform_move(ch, dir, 1);
-    if (ch->in_room == HUNTING(ch)->in_room)
+    if (IN_ROOM(ch) == IN_ROOM(HUNTING(ch)))
       hit(ch, HUNTING(ch), TYPE_UNDEFINED);
   }
 }

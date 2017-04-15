@@ -8,10 +8,10 @@ CircleMUD v3.0 Shop File~
 -1
 1.15
 0.15
-2
-3
-4
-10
+SCROLL
+WAND
+STAFF
+POTION
 -1
 %s Sorry, I haven't got exactly that item.~
 %s You don't seem to have that.~
@@ -64,9 +64,9 @@ CircleMUD v3.0 Shop File~
 -1
 1.5
 0.4
-1
-8
-15
+LIGHT
+TREASURE
+CONTAINER
 -1
 %s Haven't got that on storage - try list!~
 %s You don't seem to have that.~
@@ -95,7 +95,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.3
 0.4
-5
+WEAPON
 -1
 %s I haven't got that kind of a weapon!~
 %s You don't carry that weapon!~
@@ -133,7 +133,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.0
 0.5
-9
+ARMOR
 -1
 %s Haven't got that on storage - try list!~
 %s You don't seem to have that.~
@@ -158,7 +158,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.2
 0.9
-22
+BOAT
 -1
 %s Sorry pal, I have not got that kind of ship.~
 %s Ok, but let me see it first.~
@@ -194,31 +194,6 @@ CircleMUD v3.0 Shop File~
 3007
 1
 3050
--1
-0
-28
-0
-0
-#3008~
-3012
-3013
-3014
--1
-1.0
-1.0
--1
-%s No tengo - try list!~
-%s No buying, compadre.~
-%s No buying, compadre.~
-%s No buying, compadre.~
-%s No dinero!  Hit the road!~
-%s That'll be %d coins, compadre.~
-%s Oops - %d a minor bug - please report.~
-0
-2
-3008
-0
-3056
 -1
 0
 28

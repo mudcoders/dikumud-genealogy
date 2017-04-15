@@ -14,6 +14,7 @@
 - randomized gold?
 - add new prompt system?
 - newbie command
+- fix process_output (see comment above it)
 
 ? verify correctness of process_input
 

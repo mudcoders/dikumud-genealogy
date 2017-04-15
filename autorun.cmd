@@ -1,10 +1,10 @@
 /* REXX */
 /* Note: This is an example Autorun REXX Script for use with OS/2 and
-   CircleMUD 3.0.  You may use it as is, or as the basis for your own
+   CircleMUD.  You may use it as is, or as the basis for your own
    script.
    April 18, 1996 - David A. Carver */
    
-/* CircleMUD 3.0 autorun script
+/* CircleMUD autorun script
  * Originally by Fred C. Merkel
  * Copyright (c) 1993 The Trustees of The Johns Hopkins University
  * All Rights Reserved

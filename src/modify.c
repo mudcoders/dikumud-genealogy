@@ -96,7 +96,7 @@ void string_write(struct descriptor_data *d, char **writeto, size_t len, long ma
     SET_BIT(PLR_FLAGS(d->character), PLR_WRITING);
 
   if (data)
-    mudlog("SYSERR: string_write: I don't understand special data.", BRF, LVL_IMMORT, TRUE);
+    mudlog(BRF, LVL_IMMORT, TRUE, "SYSERR: string_write: I don't understand special data.");
 
   d->str = writeto;
   d->max_str = len;
@@ -119,25 +119,23 @@ void string_add(struct descriptor_data *d, char *str)
   smash_tilde(str);
 
   if (!(*d->str)) {
-    if (strlen(str) > d->max_str) {
-      send_to_char("String too long - Truncated.\r\n",
-		   d->character);
-      *(str + d->max_str) = '\0';
-      terminator = 1;
-    }
-    CREATE(*d->str, char, strlen(str) + 3);
-    strcpy(*d->str, str);
-  } else {
-    if (strlen(str) + strlen(*d->str) > d->max_str) {
-      send_to_char("String too long.  Last line skipped.\r\n", d->character);
+    if (strlen(str) + 3 > d->max_str) { /* \r\n\0 */
+      send_to_char(d->character, "String too long - Truncated.\r\n");
+      strcpy(&str[d->max_str - 3], "\r\n");	/* strcpy: OK (size checked) */
+      CREATE(*d->str, char, d->max_str);
+      strcpy(*d->str, str);	/* strcpy: OK (size checked) */
       terminator = 1;
     } else {
-      if (!(*d->str = (char *) realloc(*d->str, strlen(*d->str) +
-				       strlen(str) + 3))) {
-	perror("SYSERR: string_add");
-	exit(1);
-      }
-      strcat(*d->str, str);
+      CREATE(*d->str, char, strlen(str) + 3);
+      strcpy(*d->str, str);	/* strcpy: OK (size checked) */
+    }
+  } else {
+    if (strlen(str) + strlen(*d->str) + 3 > d->max_str) { /* \r\n\0 */
+      send_to_char(d->character, "String too long.  Last line skipped.\r\n");
+      terminator = 1;
+    } else {
+      RECREATE(*d->str, char, strlen(*d->str) + strlen(str) + 3); /* \r\n\0 */
+      strcat(*d->str, str);	/* strcat: OK (size precalculated) */
     }
   }
 
@@ -147,7 +145,7 @@ void string_add(struct descriptor_data *d, char *str)
       d->mail_to = 0;
       free(*d->str);
       free(d->str);
-      SEND_TO_Q("Message sent!\r\n", d);
+      write_to_output(d, "Message sent!\r\n");
       if (!IS_NPC(d->character))
 	REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);
     }
@@ -158,13 +156,13 @@ void string_add(struct descriptor_data *d, char *str)
       d->mail_to = 0;
     }
     if (STATE(d) == CON_EXDESC) {
-      SEND_TO_Q(MENU, d);
+      write_to_output(d, "%s", MENU);
       STATE(d) = CON_MENU;
     }
     if (STATE(d) == CON_PLAYING && d->character && !IS_NPC(d->character))
       REMOVE_BIT(PLR_FLAGS(d->character), PLR_WRITING);
   } else
-    strcat(*d->str, "\r\n");
+    strcat(*d->str, "\r\n");	/* strcat: OK (size checked) */
 }
 
 
@@ -176,44 +174,40 @@ void string_add(struct descriptor_data *d, char *str)
 ACMD(do_skillset)
 {
   struct char_data *vict;
-  char name[MAX_INPUT_LENGTH], buf2[128];
+  char name[MAX_INPUT_LENGTH];
   char buf[MAX_INPUT_LENGTH], help[MAX_STRING_LENGTH];
   int skill, value, i, qend;
 
   argument = one_argument(argument, name);
 
   if (!*name) {			/* no arguments. print an informative text */
-    send_to_char("Syntax: skillset <name> '<skill>' <value>\r\n", ch);
-    strcpy(help, "Skill being one of the following:\r\n");
+    send_to_char(ch, "Syntax: skillset <name> '<skill>' <value>\r\n"
+		"Skill being one of the following:\r\n");
     for (qend = 0, i = 0; i <= TOP_SPELL_DEFINE; i++) {
       if (spell_info[i].name == unused_spellname)	/* This is valid. */
 	continue;
-      sprintf(help + strlen(help), "%18s", spell_info[i].name);
-      if (qend++ % 4 == 3) {
-	strcat(help, "\r\n");
-	send_to_char(help, ch);
-	*help = '\0';
-      }
+      send_to_char(ch, "%18s", spell_info[i].name);
+      if (qend++ % 4 == 3)
+	send_to_char(ch, "\r\n");
     }
-    if (*help)
-      send_to_char(help, ch);
-    send_to_char("\r\n", ch);
+    if (qend % 4 != 0)
+      send_to_char(ch, "\r\n");
     return;
   }
 
-  if (!(vict = get_char_vis(ch, name, FIND_CHAR_WORLD))) {
-    send_to_char(NOPERSON, ch);
+  if (!(vict = get_char_vis(ch, name, NULL, FIND_CHAR_WORLD))) {
+    send_to_char(ch, "%s", NOPERSON);
     return;
   }
   skip_spaces(&argument);
 
   /* If there is no chars in argument */
   if (!*argument) {
-    send_to_char("Skill name expected.\r\n", ch);
+    send_to_char(ch, "Skill name expected.\r\n");
     return;
   }
   if (*argument != '\'') {
-    send_to_char("Skill must be enclosed in: ''\r\n", ch);
+    send_to_char(ch, "Skill must be enclosed in: ''\r\n");
     return;
   }
   /* Locate the last quote and lowercase the magic words (if any) */
@@ -222,33 +216,33 @@ ACMD(do_skillset)
     argument[qend] = LOWER(argument[qend]);
 
   if (argument[qend] != '\'') {
-    send_to_char("Skill must be enclosed in: ''\r\n", ch);
+    send_to_char(ch, "Skill must be enclosed in: ''\r\n");
     return;
   }
-  strcpy(help, (argument + 1));
+  strcpy(help, (argument + 1));	/* strcpy: OK (MAX_INPUT_LENGTH <= MAX_STRING_LENGTH) */
   help[qend - 1] = '\0';
   if ((skill = find_skill_num(help)) <= 0) {
-    send_to_char("Unrecognized skill.\r\n", ch);
+    send_to_char(ch, "Unrecognized skill.\r\n");
     return;
   }
   argument += qend + 1;		/* skip to next parameter */
   argument = one_argument(argument, buf);
 
   if (!*buf) {
-    send_to_char("Learned value expected.\r\n", ch);
+    send_to_char(ch, "Learned value expected.\r\n");
     return;
   }
   value = atoi(buf);
   if (value < 0) {
-    send_to_char("Minimum value for learned is 0.\r\n", ch);
+    send_to_char(ch, "Minimum value for learned is 0.\r\n");
     return;
   }
   if (value > 100) {
-    send_to_char("Max value for learned is 100.\r\n", ch);
+    send_to_char(ch, "Max value for learned is 100.\r\n");
     return;
   }
   if (IS_NPC(vict)) {
-    send_to_char("You can't set NPC skills.\r\n", ch);
+    send_to_char(ch, "You can't set NPC skills.\r\n");
     return;
   }
 
@@ -256,15 +250,9 @@ ACMD(do_skillset)
    * find_skill_num() guarantees a valid spell_info[] index, or -1, and we
    * checked for the -1 above so we are safe here.
    */
-  sprintf(buf2, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict),
-	  spell_info[skill].name, value);
-  mudlog(buf2, BRF, -1, TRUE);
-
   SET_SKILL(vict, skill, value);
-
-  sprintf(buf2, "You change %s's %s to %d.\r\n", GET_NAME(vict),
-	  spell_info[skill].name, value);
-  send_to_char(buf2, ch);
+  mudlog(BRF, LVL_IMMORT, TRUE, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict), spell_info[skill].name, value);
+  send_to_char(ch, "You change %s's %s to %d.\r\n", GET_NAME(vict), spell_info[skill].name, value);
 }
 
 
@@ -275,9 +263,6 @@ ACMD(do_skillset)
 * for CircleMUD.  All functions below are his.  --JE 8 Mar 96
 *
 *********************************************************************/
-
-#define PAGE_LENGTH     22
-#define PAGE_WIDTH      80
 
 /* Traverse down the string until the begining of the next page has been
  * reached.  Return NULL if this is the last page of the string.
@@ -355,30 +340,31 @@ void paginate_string(char *str, struct descriptor_data *d)
 /* The call that gets the paging ball rolling... */
 void page_string(struct descriptor_data *d, char *str, int keep_internal)
 {
+  char actbuf[MAX_INPUT_LENGTH] = "";
+
   if (!d)
     return;
 
-  if (!str || !*str) {
-    send_to_char("", d->character);
+  if (!str || !*str)
     return;
-  }
+
   d->showstr_count = count_pages(str);
   CREATE(d->showstr_vector, char *, d->showstr_count);
 
   if (keep_internal) {
-    d->showstr_head = str_dup(str);
+    d->showstr_head = strdup(str);
     paginate_string(d->showstr_head, d);
   } else
     paginate_string(str, d);
 
-  show_string(d, "");
+  show_string(d, actbuf);
 }
 
 
 /* The call that displays the next page. */
 void show_string(struct descriptor_data *d, char *input)
 {
-  char buffer[MAX_STRING_LENGTH];
+  char buffer[MAX_STRING_LENGTH], buf[MAX_INPUT_LENGTH];
   int diff;
 
   any_one_arg(input, buf);
@@ -386,6 +372,7 @@ void show_string(struct descriptor_data *d, char *input)
   /* Q is for quit. :) */
   if (LOWER(*buf) == 'q') {
     free(d->showstr_vector);
+    d->showstr_vector = NULL;
     d->showstr_count = 0;
     if (d->showstr_head) {
       free(d->showstr_head);
@@ -412,17 +399,16 @@ void show_string(struct descriptor_data *d, char *input)
     d->showstr_page = MAX(0, MIN(atoi(buf) - 1, d->showstr_count - 1));
 
   else if (*buf) {
-    send_to_char(
-		  "Valid commands while paging are RETURN, Q, R, B, or a numeric value.\r\n",
-		  d->character);
+    send_to_char(d->character, "Valid commands while paging are RETURN, Q, R, B, or a numeric value.\r\n");
     return;
   }
   /* If we're displaying the last page, just send it to the character, and
    * then free up the space we used.
    */
   if (d->showstr_page + 1 >= d->showstr_count) {
-    send_to_char(d->showstr_vector[d->showstr_page], d->character);
+    send_to_char(d->character, "%s", d->showstr_vector[d->showstr_page]);
     free(d->showstr_vector);
+    d->showstr_vector = NULL;
     d->showstr_count = 0;
     if (d->showstr_head) {
       free(d->showstr_head);
@@ -432,11 +418,25 @@ void show_string(struct descriptor_data *d, char *input)
   /* Or if we have more to show.... */
   else {
     diff = d->showstr_vector[d->showstr_page + 1] - d->showstr_vector[d->showstr_page];
-    if (diff >= MAX_STRING_LENGTH)
-      diff = MAX_STRING_LENGTH - 1;
-    strncpy(buffer, d->showstr_vector[d->showstr_page], diff);
-    buffer[diff] = '\0';
-    send_to_char(buffer, d->character);
+    if (diff > MAX_STRING_LENGTH - 3) /* 3=\r\n\0 */
+      diff = MAX_STRING_LENGTH - 3;
+    strncpy(buffer, d->showstr_vector[d->showstr_page], diff);	/* strncpy: OK (size truncated above) */
+    /*
+     * Fix for prompt overwriting last line in compact mode submitted by
+     * Peter Ajamian <peter@pajamian.dhs.org> on 04/21/2001
+     */
+    if (buffer[diff - 2] == '\r' && buffer[diff - 1]=='\n')
+      buffer[diff] = '\0';
+    else if (buffer[diff - 2] == '\n' && buffer[diff - 1] == '\r')
+      /* This is backwards.  Fix it. */
+      strcpy(buffer + diff - 2, "\r\n");	/* strcpy: OK (size checked) */
+    else if (buffer[diff - 1] == '\r' || buffer[diff - 1] == '\n')
+      /* Just one of \r\n.  Overwrite it. */
+      strcpy(buffer + diff - 1, "\r\n");	/* strcpy: OK (size checked) */
+    else
+      /* Tack \r\n onto the end to fix bug with prompt overwriting last line. */
+      strcpy(buffer + diff, "\r\n");	/* strcpy: OK (size checked) */
+    send_to_char(d->character, "%s", buffer);
     d->showstr_page++;
   }
 }

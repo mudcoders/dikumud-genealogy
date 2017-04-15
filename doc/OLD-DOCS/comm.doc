@@ -97,6 +97,14 @@ Each control character is preceded by a '$'.
   $F - Processes the string pointed to by vict_obj with fname() prior to
        printing.
 
+  $u - Processes the buffer and uppercases the first letter of the previous
+       word (the word immediately prior to the control code).  If there is
+       no previous word, no action is taken. -- CircleMUD addition (09/18/00)
+
+  $U - Processes the buffer and uppercases the first letter of the following
+       word (the word immediately after to the control code).  If there is
+       no following word, no action is taken. -- CircleMUD addition (09/18/00)
+
   $$ - Print the character '$'.
 
     HIDE_INVISIBLE

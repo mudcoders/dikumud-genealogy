@@ -8,8 +8,8 @@ CircleMUD v3.0 Shop File~
 -1
 1.9
 0.3
-9
-5
+ARMOR
+WEAPON
 -1
 %s We don't have any in storage, sorry!~
 %s Check your possessions, you don't have that.~
@@ -38,10 +38,10 @@ CircleMUD v3.0 Shop File~
 -1
 1.9
 0.2
-1
-15
-17
-19
+LIGHT
+CONTAINER
+LIQ CONTAINER
+FOOD
 -1
 %s Haven't got that on storage!~
 %s You don't seem to have that!~

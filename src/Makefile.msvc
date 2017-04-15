@@ -1,5 +1,5 @@
 #
-# CircleMUD 3.0 Makefile for Microsoft Visual C++ 4.0, Windows 95/NT
+# CircleMUD Makefile for Microsoft Visual C++ 4.0, Windows 95/NT
 # (manually created by Jeremy Elson)
 #
 # NOTE: This Makefile is only for MSVC 4.0.  If you have a different

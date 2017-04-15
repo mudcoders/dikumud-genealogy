@@ -1,5 +1,5 @@
 # Generated automatically from Makefile.in by configure.
-# CircleMUD 3.0 Makefile.in - Makefile template used by 'configure'
+# CircleMUD Makefile.in - Makefile template used by 'configure'
 #
 
 # C compiler to use
@@ -29,14 +29,16 @@ OBJFILES = act.comm.o act.informative.o act.item.o act.movement.o \
 	boards.o castle.o class.o comm.o config.o constants.o db.o fight.o \
 	graph.o handler.o house.o interpreter.o limits.o magic.o mail.o \
 	mobact.o modify.o objsave.o olc.o random.o shop.o spec_assign.o \
-	spec_procs.o spell_parser.o spells.o utils.o weather.o
+	spec_procs.o spell_parser.o spells.o utils.o weather.o \
+	bsd-snprintf.o
 
 CXREF_FILES = act.comm.c act.informative.c act.item.c act.movement.c \
 	act.offensive.c act.other.c act.social.c act.wizard.c alias.c ban.c \
 	boards.c castle.c class.c comm.c config.c constants.c db.c fight.c \
 	graph.c handler.c house.c interpreter.c limits.c magic.c mail.c \
 	mobact.c modify.c objsave.c olc.c random.c shop.c spec_assign.c\
-	spec_procs.c spell_parser.c spells.c utils.c weather.c
+	spec_procs.c spell_parser.c spells.c utils.c weather.c \
+	bsd-snprintf.c
 
 default: all
 
@@ -86,11 +88,11 @@ ref:
 	@echo Creating .h.html files...
 	@for file in *.h ; do \
 	  echo $$file ; \
-	  cat /home/jelson/mud/htmlh-head $$file /home/jelson/mud/htmlh-tail > doc/$$file.html ; \
+	  cat htmlh-head $$file htmlh-tail > doc/$$file.html ; \
 	done
 # Copy over to the html directory
-	cp doc/*.html /home/jelson/public_html/circle/cdp/cxref
-	chmod 644 /home/jelson/public_html/circle/cdp/cxref/*.html
+	#cp doc/*.html $(HOME)/www/cxref
+	#chmod 644 $(HOME)/www/cxref/*.html
 
 # Dependencies for the object files (automagically generated with
 # gcc -MM)
@@ -102,7 +104,7 @@ act.informative.o: act.informative.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h screen.h constants.h
 	$(CC) -c $(CFLAGS) act.informative.c
 act.item.o: act.item.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h \
-  handler.h db.h spells.h
+  handler.h db.h spells.h constants.h
 	$(CC) -c $(CFLAGS) act.item.c
 act.movement.o: act.movement.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h house.h constants.h
@@ -111,7 +113,7 @@ act.offensive.o: act.offensive.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h
 	$(CC) -c $(CFLAGS) act.offensive.c
 act.other.o: act.other.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h \
-  handler.h db.h spells.h screen.h house.h
+  handler.h db.h spells.h screen.h house.h constants.h
 	$(CC) -c $(CFLAGS) act.other.c
 act.social.o: act.social.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h
@@ -129,7 +131,8 @@ boards.o: boards.c conf.h sysdep.h structs.h utils.h comm.h db.h boards.h \
 castle.o: castle.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h \
   handler.h db.h spells.h
 	$(CC) -c $(CFLAGS) castle.c
-class.o: class.c conf.h sysdep.h structs.h db.h utils.h spells.h interpreter.h
+class.o: class.c conf.h sysdep.h structs.h db.h utils.h spells.h interpreter.h \
+  constants.h
 	$(CC) -c $(CFLAGS) class.c
 comm.o: comm.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h handler.h \
   db.h house.h
@@ -139,10 +142,10 @@ config.o: config.c conf.h sysdep.h structs.h interpreter.h
 constants.o: constants.c conf.h sysdep.h structs.h interpreter.h
 	$(CC) -c $(CFLAGS) constants.c
 db.o: db.c conf.h sysdep.h structs.h utils.h db.h comm.h handler.h spells.h mail.h \
-  interpreter.h house.h
+  interpreter.h house.h constants.h
 	$(CC) -c $(CFLAGS) db.c
 fight.o: fight.c conf.h sysdep.h structs.h utils.h comm.h handler.h interpreter.h \
-  db.h spells.h screen.h
+  db.h spells.h screen.h constants.h
 	$(CC) -c $(CFLAGS) fight.c
 graph.o: graph.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h handler.h \
   db.h spells.h
@@ -159,13 +162,14 @@ interpreter.o: interpreter.c conf.h sysdep.h structs.h comm.h interpreter.h db.h
 limits.o: limits.c conf.h sysdep.h structs.h utils.h spells.h comm.h db.h \
   handler.h
 	$(CC) -c $(CFLAGS) limits.c
-magic.o: magic.c conf.h sysdep.h structs.h utils.h comm.h spells.h handler.h db.h
+magic.o: magic.c conf.h sysdep.h structs.h utils.h comm.h spells.h handler.h db.h \
+  constants.h
 	$(CC) -c $(CFLAGS) magic.c
 mail.o: mail.c conf.h sysdep.h structs.h utils.h comm.h db.h interpreter.h \
   handler.h mail.h
 	$(CC) -c $(CFLAGS) mail.c
 mobact.o: mobact.c conf.h sysdep.h structs.h utils.h db.h comm.h interpreter.h \
-  handler.h spells.h
+  handler.h spells.h constants.h
 	$(CC) -c $(CFLAGS) mobact.c
 modify.o: modify.c conf.h sysdep.h structs.h utils.h interpreter.h handler.h db.h \
   comm.h spells.h mail.h boards.h
@@ -179,13 +183,13 @@ olc.o: olc.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h handler.h db
 random.o: random.c utils.h
 	$(CC) -c $(CFLAGS) random.c
 shop.o: shop.c conf.h sysdep.h structs.h comm.h handler.h db.h interpreter.h \
-  utils.h shop.h
+  utils.h shop.h constants.h
 	$(CC) -c $(CFLAGS) shop.c
 spec_assign.o: spec_assign.c conf.h sysdep.h structs.h db.h interpreter.h \
   utils.h
 	$(CC) -c $(CFLAGS) spec_assign.c
 spec_procs.o: spec_procs.c conf.h sysdep.h structs.h utils.h comm.h \
-  interpreter.h handler.h db.h spells.h
+  interpreter.h handler.h db.h spells.h constants.h
 	$(CC) -c $(CFLAGS) spec_procs.c
 spell_parser.o: spell_parser.c conf.h sysdep.h structs.h utils.h interpreter.h \
   spells.h handler.h comm.h db.h
@@ -199,3 +203,5 @@ utils.o: utils.c conf.h sysdep.h structs.h utils.h comm.h screen.h spells.h \
 weather.o: weather.c conf.h sysdep.h structs.h utils.h comm.h handler.h \
   interpreter.h db.h
 	$(CC) -c $(CFLAGS) weather.c
+bsd-snprintf.o: bsd-snprintf.c conf.h sysdep.h
+	$(CC) -c $(CFLAGS) bsd-snprintf.c

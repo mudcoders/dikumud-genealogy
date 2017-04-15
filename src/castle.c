@@ -22,15 +22,6 @@
 #include "spells.h"
 
 
-/*   external vars  */
-extern struct room_data *world;
-extern struct char_data *character_list;
-extern struct descriptor_data *descriptor_list;
-extern struct index_data *mob_index;
-extern struct index_data *obj_index;
-extern struct time_info_data time_info;
-extern int mini_mud;
-
 /* IMPORTANT!
    The below defined number is the zone number of the Kings Castle.
    Change it to apply to your chosen zone number. The default zone
@@ -38,43 +29,35 @@ extern int mini_mud;
    in the 8000 series... */
 
 #define Z_KINGS_C 150
+
+
+/* external variables */
+extern struct time_info_data time_info;
+extern int mini_mud;
+
 /* local functions */
-struct char_data *find_npc_by_name(struct char_data * chAtChar, const char *pszName, int iLen);
-int block_way(struct char_data * ch, int cmd, char *arg, room_rnum iIn_room, int iProhibited_direction);
+mob_vnum castle_virtual(mob_vnum offset);
+room_rnum castle_real_room(room_vnum roomoffset);
+struct char_data *find_npc_by_name(struct char_data *chAtChar, const char *pszName, int iLen);
+int block_way(struct char_data *ch, int cmd, char *arg, room_vnum iIn_room, int iProhibited_direction);
 void assign_kings_castle(void);
-int member_of_staff(struct char_data * chChar);
-int member_of_royal_guard(struct char_data * chChar);
-struct char_data *find_guard(struct char_data * chAtChar);
-struct char_data *get_victim(struct char_data * chAtChar);
-int banzaii(struct char_data * ch);
-int do_npc_rescue(struct char_data * ch_hero, struct char_data * ch_victim);
-int is_trash(struct obj_data * i);
-void fry_victim(struct char_data * ch);
+int member_of_staff(struct char_data *chChar);
+int member_of_royal_guard(struct char_data *chChar);
+struct char_data *find_guard(struct char_data *chAtChar);
+struct char_data *get_victim(struct char_data *chAtChar);
+int banzaii(struct char_data *ch);
+int do_npc_rescue(struct char_data *ch_hero, struct char_data *ch_victim);
+int is_trash(struct obj_data *i);
+void fry_victim(struct char_data *ch);
 int castle_cleaner(struct char_data *ch, int cmd, int gripe);
-int castle_twin_proc(struct char_data *ch, int cmd, char *arg, int ctlnum, char *twinname);
+int castle_twin_proc(struct char_data *ch, int cmd, char *arg, int ctlnum, const char *twinname);
+void castle_mob_spec(mob_vnum mobnum, SPECIAL(*specproc));
 
 
 /**********************************************************************\
 |* Special procedures for Kings Castle by Pjotr (d90-pem@nada.kth.se) *|
 |* Coded by Sapowox (d90-jkr@nada.kth.se)                             *|
 \**********************************************************************/
-
-/*
- * 11/4/97 - This is kind of ugly but fixes a memory problem if a mob in
- *	the King's Castle does not exist. (Writing to mob_index[-1].func)
- */
-#define C_MOB_SPEC(zone,mob)					\
-	if ((check = real_mobile(((zone)*100)+(mob))) < 0) {	\
-	  if (!mini_mud)					\
-	    log("SYSERR: assign_kings_castle(): can't find mob #%d.", ((zone)*100)+(mob));	\
-	} else							\
-	  mob_index[check].func
-
-#define R_MOB(zone, mob) (real_mobile(((zone)*100)+(mob)))
-#define R_OBJ(zone, obj) (real_object(((zone)*100)+(obj)))
-#define R_ROOM(zone, num) (real_room(((zone)*100)+(num)))
-
-#define CASTLE_ITEM(item) (Z_KINGS_C*100+(item))
 
 SPECIAL(CastleGuard);
 SPECIAL(James);
@@ -90,6 +73,49 @@ SPECIAL(guild);
 ACMD(do_gen_door);
 ACMD(do_follow);
 
+/*
+ * Assign castle special procedures.
+ *
+ * NOTE: The mobile number isn't fully specified. It's only an offset
+ *	from the zone's base.
+ */
+void castle_mob_spec(mob_vnum mobnum, SPECIAL(*specproc))
+{
+  mob_vnum vmv = castle_virtual(mobnum);
+  mob_rnum rmr = NOBODY;
+
+  if (vmv != NOBODY)
+    rmr = real_mobile(vmv);
+
+  if (rmr == NOBODY) {
+    if (!mini_mud)
+      log("SYSERR: assign_kings_castle(): can't find mob #%d.", vmv);
+  } else
+    mob_index[rmr].func = specproc;
+}
+
+
+mob_vnum castle_virtual(mob_vnum offset)
+{
+  zone_rnum zon;
+
+  if ((zon = real_zone(Z_KINGS_C)) == NOWHERE)
+    return NOBODY;
+
+  return zone_table[zon].bot + offset;
+}
+
+
+room_rnum castle_real_room(room_vnum roomoffset)
+{
+  zone_rnum zon;
+
+  if ((zon = real_zone(Z_KINGS_C)) == NOWHERE)
+    return NOWHERE;
+
+  return real_room(zone_table[zon].bot + roomoffset);
+}
+
 
 /*
  * Routine: assign_kings_castle
@@ -99,33 +125,31 @@ ACMD(do_follow);
  */
 void assign_kings_castle(void)
 {
-  int check;
-
-  C_MOB_SPEC(Z_KINGS_C, 0) = CastleGuard;	/* Gwydion */
+  castle_mob_spec(0, CastleGuard);	/* Gwydion */
   /* Added the previous line -- Furry */
-  C_MOB_SPEC(Z_KINGS_C, 1) = king_welmar;	/* Our dear friend, the King */
-  C_MOB_SPEC(Z_KINGS_C, 3) = CastleGuard;	/* Jim */
-  C_MOB_SPEC(Z_KINGS_C, 4) = CastleGuard;	/* Brian */
-  C_MOB_SPEC(Z_KINGS_C, 5) = CastleGuard;	/* Mick */
-  C_MOB_SPEC(Z_KINGS_C, 6) = CastleGuard;	/* Matt */
-  C_MOB_SPEC(Z_KINGS_C, 7) = CastleGuard;	/* Jochem */
-  C_MOB_SPEC(Z_KINGS_C, 8) = CastleGuard;	/* Anne */
-  C_MOB_SPEC(Z_KINGS_C, 9) = CastleGuard;	/* Andrew */
-  C_MOB_SPEC(Z_KINGS_C, 10) = CastleGuard;	/* Bertram */
-  C_MOB_SPEC(Z_KINGS_C, 11) = CastleGuard;	/* Jeanette */
-  C_MOB_SPEC(Z_KINGS_C, 12) = peter;		/* Peter */
-  C_MOB_SPEC(Z_KINGS_C, 13) = training_master;	/* The training master */
-  C_MOB_SPEC(Z_KINGS_C, 16) = James;		/* James the Butler */
-  C_MOB_SPEC(Z_KINGS_C, 17) = cleaning;		/* Ze Cleaning Fomen */
-  C_MOB_SPEC(Z_KINGS_C, 20) = tim;		/* Tim, Tom's twin */
-  C_MOB_SPEC(Z_KINGS_C, 21) = tom;		/* Tom, Tim's twin */
-  C_MOB_SPEC(Z_KINGS_C, 24) = DicknDavid;	/* Dick, guard of the
-						 * Treasury */
-  C_MOB_SPEC(Z_KINGS_C, 25) = DicknDavid;	/* David, Dicks brother */
-  C_MOB_SPEC(Z_KINGS_C, 26) = jerry;		/* Jerry, the Gambler */
-  C_MOB_SPEC(Z_KINGS_C, 27) = CastleGuard;	/* Michael */
-  C_MOB_SPEC(Z_KINGS_C, 28) = CastleGuard;	/* Hans */
-  C_MOB_SPEC(Z_KINGS_C, 29) = CastleGuard;	/* Boris */
+  castle_mob_spec(1, king_welmar);	/* Our dear friend, the King */
+  castle_mob_spec(3, CastleGuard);	/* Jim */
+  castle_mob_spec(4, CastleGuard);	/* Brian */
+  castle_mob_spec(5, CastleGuard);	/* Mick */
+  castle_mob_spec(6, CastleGuard);	/* Matt */
+  castle_mob_spec(7, CastleGuard);	/* Jochem */
+  castle_mob_spec(8, CastleGuard);	/* Anne */
+  castle_mob_spec(9, CastleGuard);	/* Andrew */
+  castle_mob_spec(10, CastleGuard);	/* Bertram */
+  castle_mob_spec(11, CastleGuard);	/* Jeanette */
+  castle_mob_spec(12, peter);		/* Peter */
+  castle_mob_spec(13, training_master);	/* The training master */
+  castle_mob_spec(16, James);		/* James the Butler */
+  castle_mob_spec(17, cleaning);	/* Ze Cleaning Fomen */
+  castle_mob_spec(20, tim);		/* Tim, Tom's twin */
+  castle_mob_spec(21, tom);		/* Tom, Tim's twin */
+  castle_mob_spec(24, DicknDavid);	/* Dick, guard of the
+					 * Treasury */
+  castle_mob_spec(25, DicknDavid);	/* David, Dicks brother */
+  castle_mob_spec(26, jerry);		/* Jerry, the Gambler */
+  castle_mob_spec(27, CastleGuard);	/* Michael */
+  castle_mob_spec(28, CastleGuard);	/* Hans */
+  castle_mob_spec(29, CastleGuard);	/* Boris */
 }
 
 
@@ -135,7 +159,7 @@ void assign_kings_castle(void)
  * Used to see if a character is a member of the castle staff.
  * Used mainly by BANZAI:ng NPC:s.
  */
-int member_of_staff(struct char_data * chChar)
+int member_of_staff(struct char_data *chChar)
 {
   int ch_num;
 
@@ -144,16 +168,16 @@ int member_of_staff(struct char_data * chChar)
 
   ch_num = GET_MOB_VNUM(chChar);
 
-  if (ch_num == CASTLE_ITEM(1))
+  if (ch_num == castle_virtual(1))
     return (TRUE);
 
-  if (ch_num > CASTLE_ITEM(2) && ch_num < CASTLE_ITEM(15))
+  if (ch_num > castle_virtual(2) && ch_num < castle_virtual(15))
     return (TRUE);
 
-  if (ch_num > CASTLE_ITEM(15) && ch_num < CASTLE_ITEM(18))
+  if (ch_num > castle_virtual(15) && ch_num < castle_virtual(18))
     return (TRUE);
 
-  if (ch_num > CASTLE_ITEM(18) && ch_num < CASTLE_ITEM(30))
+  if (ch_num > castle_virtual(18) && ch_num < castle_virtual(30))
     return (TRUE);
 
   return (FALSE);
@@ -166,7 +190,7 @@ int member_of_staff(struct char_data * chChar)
  * Returns TRUE if the character is a guard on duty, otherwise FALSE.
  * Used by Peter the captain of the royal guard.
  */
-int member_of_royal_guard(struct char_data * chChar)
+int member_of_royal_guard(struct char_data *chChar)
 {
   int ch_num;
 
@@ -175,13 +199,13 @@ int member_of_royal_guard(struct char_data * chChar)
 
   ch_num = GET_MOB_VNUM(chChar);
 
-  if (ch_num == CASTLE_ITEM(3) || ch_num == CASTLE_ITEM(6))
+  if (ch_num == castle_virtual(3) || ch_num == castle_virtual(6))
     return (TRUE);
 
-  if (ch_num > CASTLE_ITEM(7) && ch_num < CASTLE_ITEM(12))
+  if (ch_num > castle_virtual(7) && ch_num < castle_virtual(12))
     return (TRUE);
 
-  if (ch_num > CASTLE_ITEM(23) && ch_num < CASTLE_ITEM(26))
+  if (ch_num > castle_virtual(23) && ch_num < castle_virtual(26))
     return (TRUE);
 
   return (FALSE);
@@ -194,12 +218,12 @@ int member_of_royal_guard(struct char_data * chChar)
  * Returns a pointer to an npc by the given name.
  * Used by Tim and Tom
  */
-struct char_data *find_npc_by_name(struct char_data * chAtChar,
+struct char_data *find_npc_by_name(struct char_data *chAtChar,
 		const char *pszName, int iLen)
 {
   struct char_data *ch;
 
-  for (ch = world[chAtChar->in_room].people; ch; ch = ch->next_in_room)
+  for (ch = world[IN_ROOM(chAtChar)].people; ch; ch = ch->next_in_room)
     if (IS_NPC(ch) && !strncmp(pszName, ch->player.short_descr, iLen))
       return (ch);
 
@@ -213,11 +237,11 @@ struct char_data *find_npc_by_name(struct char_data * chAtChar,
  * Returns the pointer to a guard on duty.
  * Used by Peter the Captain of the Royal Guard
  */
-struct char_data *find_guard(struct char_data * chAtChar)
+struct char_data *find_guard(struct char_data *chAtChar)
 {
   struct char_data *ch;
 
-  for (ch = world[chAtChar->in_room].people; ch; ch = ch->next_in_room)
+  for (ch = world[IN_ROOM(chAtChar)].people; ch; ch = ch->next_in_room)
     if (!FIGHTING(ch) && member_of_royal_guard(ch))
       return (ch);
 
@@ -232,25 +256,25 @@ struct char_data *find_guard(struct char_data * chAtChar)
  * fighting someone in the castle staff...
  * Used by BANZAII-ing characters and King Welmar...
  */
-struct char_data *get_victim(struct char_data * chAtChar)
+struct char_data *get_victim(struct char_data *chAtChar)
 {
   struct char_data *ch;
   int iNum_bad_guys = 0, iVictim;
 
-  for (ch = world[chAtChar->in_room].people; ch; ch = ch->next_in_room)
+  for (ch = world[IN_ROOM(chAtChar)].people; ch; ch = ch->next_in_room)
     if (FIGHTING(ch) && member_of_staff(FIGHTING(ch)))
       iNum_bad_guys++;
 
   if (!iNum_bad_guys)
     return (NULL);
 
-  iVictim = number(0, iNum_bad_guys);	/* How nice, we give them a chance */
+  iVictim = rand_number(0, iNum_bad_guys);	/* How nice, we give them a chance */
   if (!iVictim)
     return (NULL);
 
   iNum_bad_guys = 0;
 
-  for (ch = world[chAtChar->in_room].people; ch; ch = ch->next_in_room) {
+  for (ch = world[IN_ROOM(chAtChar)].people; ch; ch = ch->next_in_room) {
     if (FIGHTING(ch) == NULL)
       continue;
 
@@ -273,7 +297,7 @@ struct char_data *get_victim(struct char_data * chAtChar)
  * Makes a character banzaii on attackers of the castle staff.
  * Used by Guards, Tim, Tom, Dick, David, Peter, Master, King and Guards.
  */
-int banzaii(struct char_data * ch)
+int banzaii(struct char_data *ch)
 {
   struct char_data *chOpponent;
 
@@ -293,11 +317,11 @@ int banzaii(struct char_data * ch)
  * Makes ch_hero rescue ch_victim.
  * Used by Tim and Tom
  */
-int do_npc_rescue(struct char_data * ch_hero, struct char_data * ch_victim)
+int do_npc_rescue(struct char_data *ch_hero, struct char_data *ch_victim)
 {
   struct char_data *ch_bad_guy;
 
-  for (ch_bad_guy = world[ch_hero->in_room].people;
+  for (ch_bad_guy = world[IN_ROOM(ch_hero)].people;
        ch_bad_guy && (FIGHTING(ch_bad_guy) != ch_victim);
        ch_bad_guy = ch_bad_guy->next_in_room);
 
@@ -325,7 +349,7 @@ int do_npc_rescue(struct char_data * ch_hero, struct char_data * ch_victim)
  * Procedure to block a person trying to enter a room.
  * Used by Tim/Tom at Kings bedroom and Dick/David at treasury.
  */
-int block_way(struct char_data * ch, int cmd, char *arg, room_rnum iIn_room,
+int block_way(struct char_data *ch, int cmd, char *arg, room_vnum iIn_room,
 	          int iProhibited_direction)
 {
   if (cmd != ++iProhibited_direction)
@@ -334,13 +358,13 @@ int block_way(struct char_data * ch, int cmd, char *arg, room_rnum iIn_room,
   if (ch->player.short_descr && !strncmp(ch->player.short_descr, "King Welmar", 11))
     return (FALSE);
 
-  if (ch->in_room != real_room(iIn_room))
+  if (IN_ROOM(ch) != real_room(iIn_room))
     return (FALSE);
 
   if (!member_of_staff(ch))
     act("The guard roars at $n and pushes $m back.", FALSE, ch, 0, 0, TO_ROOM);
 
-  send_to_char("The guard roars: 'Entrance is Prohibited!', and pushes you back.\r\n", ch);
+  send_to_char(ch, "The guard roars: 'Entrance is Prohibited!', and pushes you back.\r\n");
   return (TRUE);
 }
 
@@ -349,7 +373,7 @@ int block_way(struct char_data * ch, int cmd, char *arg, room_rnum iIn_room,
  * Routine to check if an object is trash...
  * Used by James the Butler and the Cleaning Lady.
  */
-int is_trash(struct obj_data * i)
+int is_trash(struct obj_data *i)
 {
   if (!OBJWEAR_FLAGGED(i, ITEM_WEAR_TAKE))
     return (FALSE);
@@ -367,7 +391,7 @@ int is_trash(struct obj_data * i)
  * Finds a suitabe victim, and cast some _NASTY_ spell on him.
  * Used by King Welmar
  */
-void fry_victim(struct char_data * ch)
+void fry_victim(struct char_data *ch)
 {
   struct char_data *tch;
 
@@ -378,17 +402,17 @@ void fry_victim(struct char_data * ch)
   if (!(tch = get_victim(ch)))
     return;
 
-  switch (number(0, 8)) {
+  switch (rand_number(0, 8)) {
   case 1:
   case 2:
   case 3:
-    send_to_char("You raise your hand in a dramatical gesture.\r\n", ch);
+    send_to_char(ch, "You raise your hand in a dramatical gesture.\r\n");
     act("$n raises $s hand in a dramatical gesture.", 1, ch, 0, 0, TO_ROOM);
     cast_spell(ch, tch, 0, SPELL_COLOR_SPRAY);
     break;
   case 4:
   case 5:
-    send_to_char("You concentrate and mumble to yourself.\r\n", ch);
+    send_to_char(ch, "You concentrate and mumble to yourself.\r\n");
     act("$n concentrates, and mumbles to $mself.", 1, ch, 0, 0, TO_ROOM);
     cast_spell(ch, tch, 0, SPELL_HARM);
     break;
@@ -400,7 +424,7 @@ void fry_victim(struct char_data * ch)
     cast_spell(ch, tch, 0, SPELL_FIREBALL);
     break;
   default:
-    if (!number(0, 1))
+    if (!rand_number(0, 1))
       cast_spell(ch, ch, 0, SPELL_HEAL);
     break;
   }
@@ -419,6 +443,8 @@ void fry_victim(struct char_data * ch)
  */
 SPECIAL(king_welmar)
 {
+  char actbuf[MAX_INPUT_LENGTH];
+
   const char *monolog[] = {
     "$n proclaims 'Primus in regnis Geticis coronam'.",
     "$n proclaims 'regiam gessi, subiique regis'.",
@@ -431,22 +457,22 @@ SPECIAL(king_welmar)
   const char monolog_path[] = "ABCDPPPP.";
 
   static const char *path;
-  static int index;
+  static int path_index;
   static bool move = FALSE;
 
   if (!move) {
-    if (time_info.hours == 8 && ch->in_room == R_ROOM(Z_KINGS_C, 51)) {
+    if (time_info.hours == 8 && IN_ROOM(ch) == castle_real_room(51)) {
       move = TRUE;
       path = throne_path;
-      index = 0;
-    } else if (time_info.hours == 21 && ch->in_room == R_ROOM(Z_KINGS_C, 17)) {
+      path_index = 0;
+    } else if (time_info.hours == 21 && IN_ROOM(ch) == castle_real_room(17)) {
       move = TRUE;
       path = bedroom_path;
-      index = 0;
-    } else if (time_info.hours == 12 && ch->in_room == R_ROOM(Z_KINGS_C, 17)) {
+      path_index = 0;
+    } else if (time_info.hours == 12 && IN_ROOM(ch) == castle_real_room(17)) {
       move = TRUE;
       path = monolog_path;
-      index = 0;
+      path_index = 0;
     }
   }
   if (cmd || (GET_POS(ch) < POS_SLEEPING) ||
@@ -462,21 +488,21 @@ SPECIAL(king_welmar)
   if (!move)
     return (FALSE);
 
-  switch (path[index]) {
+  switch (path[path_index]) {
   case '0':
   case '1':
   case '2':
   case '3':
   case '4':
   case '5':
-    perform_move(ch, path[index] - '0', 1);
+    perform_move(ch, path[path_index] - '0', 1);
     break;
 
   case 'A':
   case 'B':
   case 'C':
   case 'D':
-    act(monolog[path[index] - 'A'], FALSE, ch, 0, 0, TO_ROOM);
+    act(monolog[path[path_index] - 'A'], FALSE, ch, 0, 0, TO_ROOM);
     break;
 
   case 'P':
@@ -511,13 +537,13 @@ SPECIAL(king_welmar)
     break;
 
   case 'o':
-    do_gen_door(ch, "door", 0, SCMD_UNLOCK);
-    do_gen_door(ch, "door", 0, SCMD_OPEN);
+    do_gen_door(ch, strcpy(actbuf, "door"), 0, SCMD_UNLOCK);	/* strcpy: OK */
+    do_gen_door(ch, strcpy(actbuf, "door"), 0, SCMD_OPEN);	/* strcpy: OK */
     break;
 
   case 'c':
-    do_gen_door(ch, "door", 0, SCMD_CLOSE);
-    do_gen_door(ch, "door", 0, SCMD_LOCK);
+    do_gen_door(ch, strcpy(actbuf, "door"), 0, SCMD_CLOSE);	/* strcpy: OK */
+    do_gen_door(ch, strcpy(actbuf, "door"), 0, SCMD_LOCK);	/* strcpy: OK */
     break;
 
   case '.':
@@ -525,7 +551,7 @@ SPECIAL(king_welmar)
     break;
   }
 
-  index++;
+  path_index++;
   return (FALSE);
 }
 
@@ -547,7 +573,7 @@ SPECIAL(training_master)
   if (cmd)
     return (FALSE);
 
-  if (banzaii(ch) || number(0, 2))
+  if (banzaii(ch) || rand_number(0, 2))
     return (FALSE);
 
   if (!(pupil1 = find_npc_by_name(ch, "Brian", 5)))
@@ -559,13 +585,13 @@ SPECIAL(training_master)
   if (FIGHTING(pupil1) || FIGHTING(pupil2))
     return (FALSE);
 
-  if (number(0, 1)) {
+  if (rand_number(0, 1)) {
     tch = pupil1;
     pupil1 = pupil2;
     pupil2 = tch;
   }
 
-  switch (number(0, 7)) {
+  switch (rand_number(0, 7)) {
   case 0:
     act("$n hits $N on $s head with a powerful blow.", FALSE, pupil1, 0, pupil2, TO_NOTVICT);
     act("You hit $N on $s head with a powerful blow.", FALSE, pupil1, 0, pupil2, TO_CHAR);
@@ -579,7 +605,7 @@ SPECIAL(training_master)
     break;
 
   case 2:
-    send_to_char("You command your pupils to bow\r\n.", ch);
+    send_to_char(ch, "You command your pupils to bow.\r\n");
     act("$n commands $s pupils to bow.", FALSE, ch, 0, 0, TO_ROOM);
     act("$n bows before $N.", FALSE, pupil1, 0, pupil2, TO_NOTVICT);
     act("$N bows before $n.", FALSE, pupil1, 0, pupil2, TO_NOTVICT);
@@ -591,7 +617,7 @@ SPECIAL(training_master)
     act("$N yells at $n, as he fumbles and drops $s sword.", FALSE, pupil1, 0, ch, TO_NOTVICT);
     act("$n quickly picks up $s weapon.", FALSE, pupil1, 0, 0, TO_ROOM);
     act("$N yells at you, as you fumble, losing your weapon.", FALSE, pupil1, 0, ch, TO_CHAR);
-    send_to_char("You quickly pick up your weapon again.", pupil1);
+    send_to_char(pupil1, "You quickly pick up your weapon again.\r\n");
     act("You yell at $n, as he fumbles, losing $s weapon.", FALSE, pupil1, 0, ch, TO_VICT);
     break;
 
@@ -614,7 +640,7 @@ SPECIAL(training_master)
     break;
 
   default:
-    send_to_char("You show your pupils an advanced technique.", ch);
+    send_to_char(ch, "You show your pupils an advanced technique.\r\n");
     act("$n shows $s pupils an advanced technique.", FALSE, ch, 0, 0, TO_ROOM);
     break;
   }
@@ -625,18 +651,18 @@ SPECIAL(training_master)
 
 SPECIAL(tom)
 {
-  return castle_twin_proc(ch, cmd, arg, 48, "Tim");
+  return castle_twin_proc(ch, cmd, argument, 48, "Tim");
 }
 
 SPECIAL(tim)
 {
-  return castle_twin_proc(ch, cmd, arg, 49, "Tom");
+  return castle_twin_proc(ch, cmd, argument, 49, "Tom");
 }
 
 /*
  * Common routine for the Castle Twins.
  */
-int castle_twin_proc(struct char_data *ch, int cmd, char *arg, int ctlnum, char *twinname)
+int castle_twin_proc(struct char_data *ch, int cmd, char *arg, int ctlnum, const char *twinname)
 {
   struct char_data *king, *twin;
 
@@ -644,11 +670,13 @@ int castle_twin_proc(struct char_data *ch, int cmd, char *arg, int ctlnum, char 
     return (FALSE);
 
   if (cmd)
-    return block_way(ch, cmd, arg, CASTLE_ITEM(ctlnum), 1);
+    return block_way(ch, cmd, arg, castle_virtual(ctlnum), 1);
 
   if ((king = find_npc_by_name(ch, "King Welmar", 11)) != NULL) {
+    char actbuf[MAX_INPUT_LENGTH];
+
     if (!ch->master)
-      do_follow(ch, "King Welmar", 0, 0);
+      do_follow(ch, strcpy(actbuf, "King Welmar"), 0, 0);	/* strcpy: OK */
     if (FIGHTING(king))
       do_npc_rescue(ch, king);
   }
@@ -685,7 +713,7 @@ int castle_cleaner(struct char_data *ch, int cmd, int gripe)
   if (cmd || !AWAKE(ch) || GET_POS(ch) == POS_FIGHTING)
     return (FALSE);
 
-  for (i = world[ch->in_room].contents; i; i = i->next_content) {
+  for (i = world[IN_ROOM(ch)].contents; i; i = i->next_content) {
     if (!is_trash(i))
       continue;
 
@@ -740,7 +768,7 @@ SPECIAL(DicknDavid)
   if (!cmd && GET_POS(ch) != POS_FIGHTING)
     banzaii(ch);
 
-  return (block_way(ch, cmd, arg, CASTLE_ITEM(36), 1));
+  return (block_way(ch, cmd, argument, castle_virtual(36), 1));
 }
 
 
@@ -758,8 +786,8 @@ SPECIAL(peter)
   if (banzaii(ch))
     return (FALSE);
 
-  if (!(number(0, 3)) && (ch_guard = find_guard(ch)))
-    switch (number(0, 5)) {
+  if (!(rand_number(0, 3)) && (ch_guard = find_guard(ch)))
+    switch (rand_number(0, 5)) {
     case 0:
       act("$N comes sharply into attention as $n inspects $M.",
 	  FALSE, ch, 0, ch_guard, TO_NOTVICT);
@@ -825,7 +853,7 @@ SPECIAL(jerry)
   if (cmd)
     return (FALSE);
 
-  if (banzaii(ch) || number(0, 2))
+  if (banzaii(ch) || rand_number(0, 2))
     return (FALSE);
 
   if (!(gambler1 = ch))
@@ -837,13 +865,13 @@ SPECIAL(jerry)
   if (FIGHTING(gambler1) || FIGHTING(gambler2))
     return (FALSE);
 
-  if (number(0, 1)) {
+  if (rand_number(0, 1)) {
     tch = gambler1;
     gambler1 = gambler2;
     gambler2 = tch;
   }
 
-  switch (number(0, 5)) {
+  switch (rand_number(0, 5)) {
   case 0:
     act("$n rolls the dice and cheers loudly at the result.",
 	    FALSE, gambler1, 0, gambler2, TO_NOTVICT);

@@ -6,7 +6,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.1
 1.0
-17
+LIQ CONTAINER
 -1
 %s I don't know how to make one of those!~
 %s I don't *buy* drinks... we sell 'em!~
@@ -63,11 +63,11 @@ CircleMUD v3.0 Shop File~
 -1
 1.5
 0.4
-1
-15
-19
-13
-8
+LIGHT
+CONTAINER
+FOOD
+TRASH
+TREASURE
 -1
 %s Haven't got that on storage - try list!~
 %s You don't seem to have that.~
@@ -152,7 +152,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.1
 1.0
-19
+FOOD
 -1
 %s I didn't kill any of those this season, sorry.~
 %s I don't buy that.~
@@ -182,7 +182,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.3
 0.5
-9
+ARMOR
 -1
 %s Haven't got that on storage - try list!~
 %s You don't seem to have that.~
@@ -217,7 +217,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.3
 0.4
-5
+WEAPON
 -1
 %s I haven't got that kind of a weapon~
 %s You don't carry that weapon~
@@ -239,8 +239,8 @@ CircleMUD v3.0 Shop File~
 #5418~
 -1
 2.0
-.5
-19
+0.5
+FOOD
 -1
 %s Sorry buddy, I don't sell that.~
 %s Why don't you sell something you own?~
@@ -263,10 +263,10 @@ CircleMUD v3.0 Shop File~
 -1
 1.1
 1.0
-2
-3
-4
-8
+SCROLL
+WAND
+STAFF
+TREASURE
 -1
 %s Don't have one, but I think I might be able to find one...~
 %s You have one?  Really?  Let me see!~
@@ -328,7 +328,7 @@ CircleMUD v3.0 Shop File~
 5460
 5461
 5462
-6563
+5463
 5464
 -1
 0
@@ -341,7 +341,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.2
 0.9
-22
+BOAT
 -1
 %s Sorry pal, I have not got that kind of ship.~
 %s Ok, but let me see it first.~
@@ -367,8 +367,8 @@ CircleMUD v3.0 Shop File~
 -1
 1.2
 0.5
-9
-5
+ARMOR
+WEAPON
 -1
 %s Havn't got that in storage, try LIST!~
 %s You can't sell what you dont HAVE!~
@@ -396,7 +396,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.2
 1.0
-10
+POTION
 -1
 %s We don't have any of those, Sugar.~
 %s Are you sure you have one, handsome?~
@@ -424,10 +424,10 @@ CircleMUD v3.0 Shop File~
 -1
 1.8
 0.5
-11
-12
-3
-4
+WORN
+OTHER
+WAND
+STAFF
 -1
 %s Sorry buddy, I don't sell that.~
 %s Why don't you sell something you own?~
@@ -487,7 +487,7 @@ CircleMUD v3.0 Shop File~
 -1
 1.1
 0.5
-9
+ARMOR
 -1
 %s Havn't got that in storage, try LIST!~
 %s You can't sell what you dont HAVE!~

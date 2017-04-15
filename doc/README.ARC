@@ -1,5 +1,4 @@
-                     Compiling CircleMUD Version 3.0
-                               under RiscOS
+                     Compiling CircleMUD under RiscOS
                by Gareth Duncan (garethduncan@argonet.co.uk)
                              
 You will need:

@@ -3,7 +3,7 @@ key diamond~
 a diamond key~
 A glinting key of diamond has been left here.~
 ~
-19 cdq 1
+18 cdq 16385
 2500 0 0 0
 2 0 0
 #2501
@@ -209,7 +209,7 @@ An old key is here~
 2522 0 0 0
 1 0 0
 #2523
-silvery key~
+key silvery~
 a silvery key~
 A silvery key has been left here.~
 ~
@@ -217,7 +217,7 @@ A silvery key has been left here.~
 2523 0 0 0
 1 0 0
 #2524
-silvery key~
+key silvery~
 a silvery key~
 A silvery key has been left here.~
 ~
@@ -405,7 +405,7 @@ A leather backpack is here.~
 750 0 -1 0
 9 750 50
 #2545
-cup brew herbal~
+cup brew herbal tea~
 a herbal brew~
 A herbal brew is here.~
 ~
@@ -885,7 +885,7 @@ key grey metal~
 a grey key~
 A key made of a strange grey metal has been left here.~
 ~
-19 cdq 16385
+18 cdq 16385
 2593 0 0 0
 2 0 0
 #2594
@@ -893,7 +893,7 @@ key black obsidian~
 a black key~
 A key made of black obsidian has been left here.~
 ~
-19 cdq 16385
+18 cdq 16385
 2594 0 0 0
 2 0 0
 #2595
@@ -901,8 +901,7 @@ key white ivory~
 a white key~
 A key made of white ivory has been left here.~
 ~
-19 cdq 16385
+18 cdq 16385
 2595 0 0 0
 2 0 0
-
 $

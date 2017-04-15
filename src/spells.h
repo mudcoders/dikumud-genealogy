@@ -11,7 +11,7 @@
 #define DEFAULT_STAFF_LVL	12
 #define DEFAULT_WAND_LVL	12
 
-#define CAST_UNDEFINED	-1
+#define CAST_UNDEFINED	(-1)
 #define CAST_SPELL	0
 #define CAST_POTION	1
 #define CAST_WAND	2
@@ -31,7 +31,7 @@
 #define MAG_MANUAL	(1 << 10)
 
 
-#define TYPE_UNDEFINED               -1
+#define TYPE_UNDEFINED               (-1)
 #define SPELL_RESERVED_DBC            0  /* SKILL NUMBER ZERO -- RESERVED */
 
 /* PLAYER SPELLS -- Numbered from 1 to MAX_SPELLS */
@@ -96,7 +96,7 @@
 #define SKILL_HIDE                  133 /* Reserved Skill[] DO NOT CHANGE */
 #define SKILL_KICK                  134 /* Reserved Skill[] DO NOT CHANGE */
 #define SKILL_PICK_LOCK             135 /* Reserved Skill[] DO NOT CHANGE */
-#define SKILL_PUNCH                 136 /* Reserved Skill[] DO NOT CHANGE */
+/* Undefined                        136 */
 #define SKILL_RESCUE                137 /* Reserved Skill[] DO NOT CHANGE */
 #define SKILL_SNEAK                 138 /* Reserved Skill[] DO NOT CHANGE */
 #define SKILL_STEAL                 139 /* Reserved Skill[] DO NOT CHANGE */
@@ -175,7 +175,8 @@ struct spell_info_type {
    int routines;
    byte violent;
    int targets;         /* See below for use with TAR_XXX  */
-   const char *name;
+   const char *name;	/* Input size not limited. Originates from string constants. */
+   const char *wear_off_msg;	/* Input size not limited. Originates from string constants. */
 };
 
 /* Possible Targets:

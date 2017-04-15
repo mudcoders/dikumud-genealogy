@@ -6,7 +6,7 @@ A monstrous wyvern slowly circles just above your head.
 This huge winged creature looks really menacing as it circles only inches
 above your head, flapping its wings and squawking very loudly.
 ~
-bfgjq 0 -700 S
+bgjq 0 -700 S
 8 13 3 2d10+90 2d6+1
 0 3575
 8 8 0
@@ -30,7 +30,7 @@ A goblin lieutenant stands here, attempting to get his men in order.
 The goblin lieutenant is rather angry, and looking for one of his men to
 beat up upon, but maybe you will do just fine...
 ~
-fgjlm dk -600 S
+gjlm dk -600 S
 7 15 3 1d12+100 2d5+1
 300 2000
 8 8 1
@@ -42,7 +42,7 @@ The goblin leader surveys the room.
 The leader doesn't look too happy that you have found him here.  He grabs
 for his shortsword and lunges for your neck.
 ~
-bcfjlm dk -900 S
+bcjlm dk -900 S
 9 10 1 1d12+120 2d5+3
 1000 8000
 8 8 1

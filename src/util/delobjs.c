@@ -41,7 +41,7 @@ void do_purge(int argc, char **argv)
       if (!strcmp(tmp->name, name))
 	found = 1;
     if (!found) {
-      unlink(argv[x]);
+      remove(argv[x]);
       printf("Deleting %s\n", argv[x]);
     }
   }

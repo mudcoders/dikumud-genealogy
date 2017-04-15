@@ -17,23 +17,42 @@
  * You are supposed to compare this with the macro CIRCLEMUD_VERSION()
  * in utils.h.  See there for usage.
  */
-#define _CIRCLEMUD	0x03000F /* Major/Minor/Patchlevel - MMmmPP */
+#define _CIRCLEMUD	0x030100 /* Major/Minor/Patchlevel - MMmmPP */
 
 /*
  * If you want equipment to be automatically equipped to the same place
  * it was when players rented, set the define below to 1.  Please note
  * that this will require erasing or converting all of your rent files.
  * And of course, you have to recompile everything.  We need this feature
- * for CircleMUD 3.0 to be complete but we refuse to break binary file
+ * for CircleMUD to be complete but we refuse to break binary file
  * compatibility.
  */
 #define USE_AUTOEQ	0	/* TRUE/FALSE aren't defined yet. */
 
+
 /* preamble *************************************************************/
 
-#define NOWHERE    -1    /* nil reference for room-database	*/
-#define NOTHING	   -1    /* nil reference for objects		*/
-#define NOBODY	   -1    /* nil reference for mobiles		*/
+/*
+ * As of bpl20, it should be safe to use unsigned data types for the
+ * various virtual and real number data types.  There really isn't a
+ * reason to use signed anymore so use the unsigned types and get
+ * 65,535 objects instead of 32,768.
+ *
+ * NOTE: This will likely be unconditionally unsigned later.
+ */
+#define CIRCLE_UNSIGNED_INDEX	0	/* 0 = signed, 1 = unsigned */
+
+#if CIRCLE_UNSIGNED_INDEX
+# define IDXTYPE	ush_int
+# define NOWHERE	((IDXTYPE)~0)
+# define NOTHING	((IDXTYPE)~0)
+# define NOBODY		((IDXTYPE)~0)
+#else
+# define IDXTYPE	sh_int
+# define NOWHERE	(-1)	/* nil reference for rooms	*/
+# define NOTHING	(-1)	/* nil reference for objects	*/
+# define NOBODY		(-1)	/* nil reference for mobiles	*/
+#endif
 
 #define SPECIAL(name) \
    int (name)(struct char_data *ch, void *me, int cmd, char *argument)
@@ -95,7 +114,7 @@
 
 
 /* PC classes */
-#define CLASS_UNDEFINED	  -1
+#define CLASS_UNDEFINED	  (-1)
 #define CLASS_MAGIC_USER  0
 #define CLASS_CLERIC      1
 #define CLASS_THIEF       2
@@ -147,6 +166,7 @@
 #define PLR_NODELETE	(1 << 13)  /* Player shouldn't be deleted	*/
 #define PLR_INVSTART	(1 << 14)  /* Player should enter game wizinvis	*/
 #define PLR_CRYO	(1 << 15)  /* Player is cryo-saved (purge prog)	*/
+#define PLR_NOTDEADYET	(1 << 16)  /* (R) Player being extracted.	*/
 
 
 /* Mobile flags: used by char_data.char_specials.act */
@@ -155,12 +175,12 @@
 #define MOB_SCAVENGER    (1 << 2)  /* Mob picks up stuff on the ground	*/
 #define MOB_ISNPC        (1 << 3)  /* (R) Automatically set on all Mobs	*/
 #define MOB_AWARE	 (1 << 4)  /* Mob can't be backstabbed		*/
-#define MOB_AGGRESSIVE   (1 << 5)  /* Mob hits players in the room	*/
+#define MOB_AGGRESSIVE   (1 << 5)  /* Mob auto-attacks everybody nearby	*/
 #define MOB_STAY_ZONE    (1 << 6)  /* Mob shouldn't wander out of zone	*/
 #define MOB_WIMPY        (1 << 7)  /* Mob flees if severely injured	*/
-#define MOB_AGGR_EVIL	 (1 << 8)  /* auto attack evil PC's		*/
-#define MOB_AGGR_GOOD	 (1 << 9)  /* auto attack good PC's		*/
-#define MOB_AGGR_NEUTRAL (1 << 10) /* auto attack neutral PC's		*/
+#define MOB_AGGR_EVIL	 (1 << 8)  /* Auto-attack any evil PC's		*/
+#define MOB_AGGR_GOOD	 (1 << 9)  /* Auto-attack any good PC's		*/
+#define MOB_AGGR_NEUTRAL (1 << 10) /* Auto-attack any neutral PC's	*/
 #define MOB_MEMORY	 (1 << 11) /* remember attackers if attacked	*/
 #define MOB_HELPER	 (1 << 12) /* attack PCs fighting other NPCs	*/
 #define MOB_NOCHARM	 (1 << 13) /* Mob can't be charmed		*/
@@ -168,6 +188,7 @@
 #define MOB_NOSLEEP	 (1 << 15) /* Mob can't be slept		*/
 #define MOB_NOBASH	 (1 << 16) /* Mob can't be bashed (e.g. trees)	*/
 #define MOB_NOBLIND	 (1 << 17) /* Mob can't be blinded		*/
+#define MOB_NOTDEADYET   (1 << 18) /* (R) Mob being extracted.		*/
 
 
 /* Preference flags: used by char_data.player_specials.pref */
@@ -193,7 +214,7 @@
 #define PRF_NOGOSS	(1 << 19) /* Can't hear gossip channel		*/
 #define PRF_NOGRATZ	(1 << 20) /* Can't hear grats channel		*/
 #define PRF_ROOMFLAGS	(1 << 21) /* Can see room flags (ROOM_x)	*/
-
+#define PRF_DISPAUTO	(1 << 22) /* Show prompt HP, MP, MV when < 30%.	*/
 
 /* Affect bits: used in char_data.char_specials.saved.affected_by */
 /* WARNING: In the world files, NEVER set the bits marked "R" ("Reserved") */
@@ -222,24 +243,24 @@
 
 
 /* Modes of connectedness: used by descriptor_data.state */
-#define CON_PLAYING	 0		/* Playing - Nominal state	*/
-#define CON_CLOSE	 1		/* Disconnecting		*/
-#define CON_GET_NAME	 2		/* By what name ..?		*/
-#define CON_NAME_CNFRM	 3		/* Did I get that right, x?	*/
-#define CON_PASSWORD	 4		/* Password:			*/
-#define CON_NEWPASSWD	 5		/* Give me a password for x	*/
-#define CON_CNFPASSWD	 6		/* Please retype password:	*/
-#define CON_QSEX	 7		/* Sex?				*/
-#define CON_QCLASS	 8		/* Class?			*/
-#define CON_RMOTD	 9		/* PRESS RETURN after MOTD	*/
-#define CON_MENU	 10		/* Your choice: (main menu)	*/
-#define CON_EXDESC	 11		/* Enter a new description:	*/
-#define CON_CHPWD_GETOLD 12		/* Changing passwd: get old	*/
-#define CON_CHPWD_GETNEW 13		/* Changing passwd: get new	*/
-#define CON_CHPWD_VRFY   14		/* Verify new password		*/
-#define CON_DELCNF1	 15		/* Delete confirmation 1	*/
-#define CON_DELCNF2	 16		/* Delete confirmation 2	*/
-#define CON_DISCONNECT	 17		/* In-game disconnection	*/
+#define CON_PLAYING	 0	/* Playing - Nominal state		*/
+#define CON_CLOSE	 1	/* User disconnect, remove character.	*/
+#define CON_GET_NAME	 2	/* By what name ..?			*/
+#define CON_NAME_CNFRM	 3	/* Did I get that right, x?		*/
+#define CON_PASSWORD	 4	/* Password:				*/
+#define CON_NEWPASSWD	 5	/* Give me a password for x		*/
+#define CON_CNFPASSWD	 6	/* Please retype password:		*/
+#define CON_QSEX	 7	/* Sex?					*/
+#define CON_QCLASS	 8	/* Class?				*/
+#define CON_RMOTD	 9	/* PRESS RETURN after MOTD		*/
+#define CON_MENU	 10	/* Your choice: (main menu)		*/
+#define CON_EXDESC	 11	/* Enter a new description:		*/
+#define CON_CHPWD_GETOLD 12	/* Changing passwd: get old		*/
+#define CON_CHPWD_GETNEW 13	/* Changing passwd: get new		*/
+#define CON_CHPWD_VRFY   14	/* Verify new password			*/
+#define CON_DELCNF1	 15	/* Delete confirmation 1		*/
+#define CON_DELCNF2	 16	/* Delete confirmation 2		*/
+#define CON_DISCONNECT	 17	/* In-game link loss (leave character)	*/
 
 /* Character equipment positions: used as index for char_data.equipment[] */
 /* NOTE: Don't confuse these constants with the ITEM_ bitvectors
@@ -337,7 +358,7 @@
 #define APPLY_NONE              0	/* No effect			*/
 #define APPLY_STR               1	/* Apply to strength		*/
 #define APPLY_DEX               2	/* Apply to dexterity		*/
-#define APPLY_INT               3	/* Apply to constitution	*/
+#define APPLY_INT               3	/* Apply to intelligence	*/
 #define APPLY_WIS               4	/* Apply to wisdom		*/
 #define APPLY_CON               5	/* Apply to constitution	*/
 #define APPLY_CHA		6	/* Apply to charisma		*/
@@ -442,13 +463,26 @@
 #define NUM_OF_DIRS	6	/* number of directions in a room (nsewud) */
 #define MAGIC_NUMBER	(0x06)	/* Arbitrary number that won't be in a string */
 
-#define OPT_USEC	100000	/* 10 passes per second */
+/*
+ * OPT_USEC determines how many commands will be processed by the MUD per
+ * second and how frequently it does socket I/O.  A low setting will cause
+ * actions to be executed more frequently but will increase overhead due to
+ * more cycling to check.  A high setting (e.g. 1 Hz) may upset your players
+ * as actions (such as large speedwalking chains) take longer to be executed.
+ * You shouldn't need to adjust this.
+ */
+#define OPT_USEC	100000		/* 10 passes per second */
 #define PASSES_PER_SEC	(1000000 / OPT_USEC)
 #define RL_SEC		* PASSES_PER_SEC
 
 #define PULSE_ZONE      (10 RL_SEC)
 #define PULSE_MOBILE    (10 RL_SEC)
-#define PULSE_VIOLENCE  (2 RL_SEC)
+#define PULSE_VIOLENCE  ( 2 RL_SEC)
+#define PULSE_AUTOSAVE	(60 RL_SEC)
+#define PULSE_IDLEPWD	(15 RL_SEC)
+#define PULSE_SANITY	(30 RL_SEC)
+#define PULSE_USAGE	(5 * 60 RL_SEC)	/* 5 mins */
+#define PULSE_TIMESAVE	(30 * 60 RL_SEC) /* should be >= SECS_PER_MUD_HOUR */
 
 /* Variables for the output buffering system */
 #define MAX_SOCK_BUF            (12 * 1024) /* Size of kernel's sock buf   */
@@ -472,6 +506,7 @@
 #define MAX_SKILLS		200 /* Used in char_file_u *DO*NOT*CHANGE* */
 #define MAX_AFFECT		32  /* Used in char_file_u *DO*NOT*CHANGE* */
 #define MAX_OBJ_AFFECT		6 /* Used in obj_file_elem *DO*NOT*CHANGE* */
+#define MAX_NOTE_LENGTH		1000	/* arbitrary */
 
 /*
  * A MAX_PWD_LENGTH of 10 will cause BSD-derived systems with MD5 passwords
@@ -501,18 +536,23 @@ typedef char			bool;
 #endif
 
 #if !defined(CIRCLE_WINDOWS) || defined(LCC_WIN32)	/* Hm, sysdep.h? */
-typedef char			byte;
+typedef signed char			byte;
 #endif
 
-typedef sh_int	room_vnum;	/* A room's vnum type */
-typedef sh_int	obj_vnum;	/* An object's vnum type */
-typedef sh_int	mob_vnum;	/* A mob's vnum type */
-typedef sh_int	zone_vnum;	/* A virtual zone number.	*/
+/* Various virtual (human-reference) number types. */
+typedef IDXTYPE room_vnum;
+typedef IDXTYPE obj_vnum;
+typedef IDXTYPE mob_vnum;
+typedef IDXTYPE zone_vnum;
+typedef IDXTYPE shop_vnum;
 
-typedef sh_int	room_rnum;	/* A room's real (internal) number type */
-typedef sh_int	obj_rnum;	/* An object's real (internal) num type */
-typedef sh_int	mob_rnum;	/* A mobile's real (internal) num type */
-typedef sh_int	zone_rnum;	/* A zone's real (array index) number.	*/
+/* Various real (array-reference) number types. */
+typedef IDXTYPE room_rnum;
+typedef IDXTYPE obj_rnum;
+typedef IDXTYPE mob_rnum;
+typedef IDXTYPE zone_rnum;
+typedef IDXTYPE shop_rnum;
+
 
 /*
  * Bitvector type for 32 bit unsigned long bitvectors.
@@ -692,7 +732,7 @@ struct char_player_data {
    byte sex;           /* PC / NPC's sex                       */
    byte chclass;       /* PC / NPC's class		       */
    byte level;         /* PC / NPC's level                     */
-   int	hometown;      /* PC s Hometown (zone)                 */
+   sh_int hometown;    /* PC s Hometown (zone)                 */
    struct time_data time;  /* PC's AGE in days                 */
    ubyte weight;       /* PC / NPC's weight                    */
    ubyte height;       /* PC / NPC's height                    */
@@ -832,10 +872,9 @@ struct player_special_data {
 
 /* Specials used by NPCs, not PCs */
 struct mob_special_data {
-   byte last_direction;     /* The last direction the monster went     */
-   int	attack_type;        /* The Attack Type Bitvector for NPC's     */
-   byte default_pos;        /* Default position for NPC                */
    memory_rec *memory;	    /* List of attackers to remember	       */
+   byte	attack_type;        /* The Attack Type Bitvector for NPC's     */
+   byte default_pos;        /* Default position for NPC                */
    byte damnodice;          /* The number of damage dice's	       */
    byte damsizedice;        /* The size of the damage dice's           */
 };
@@ -863,7 +902,7 @@ struct follow_type {
 /* ================== Structure for player/non-player ===================== */
 struct char_data {
    int pfilepos;			 /* playerfile pos		  */
-   sh_int nr;                            /* Mob's rnum			  */
+   mob_rnum nr;                          /* Mob's rnum			  */
    room_rnum in_room;                    /* Location (real room number)	  */
    room_rnum was_in_room;		 /* location for linkdead people  */
    int wait;				 /* wait for how many loops	  */
@@ -1046,16 +1085,19 @@ struct weather_data {
 };
 
 
-struct title_type {
-   char	*title_m;
-   char	*title_f;
-   int	exp;
+/*
+ * Element in monster and object index-tables.
+ *
+ * NOTE: Assumes sizeof(mob_vnum) >= sizeof(obj_vnum)
+ */
+struct index_data {
+   mob_vnum	vnum;	/* virtual number of this mob/obj		*/
+   int		number;	/* number of existing units of this mob/obj	*/
+   SPECIAL(*func);
 };
 
-
-/* element in monster and object index-tables   */
-struct index_data {
-   sh_int	vnum;	/* virtual number of this mob/obj		*/
-   int	number;		/* number of existing units of this mob/obj	*/
-   SPECIAL(*func);
+struct guild_info_type {
+  int pc_class;
+  room_vnum guild_room;
+  int direction;
 };

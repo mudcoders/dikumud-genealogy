@@ -30,7 +30,7 @@ A big, brown, angry-looking bear is here.
 The bear is a big, brown, furry animal with very large claws and very sharp
 teeth.  It doesn't resemble those cute little dolls from toy shops at all.
 ~
-fgk 0 -50 S
+fg 0 -50 S
 8 13 3 1d12+98 2d6+2
 0 4000
 4 8 0

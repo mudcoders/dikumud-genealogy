@@ -15,7 +15,7 @@
 #include "interpreter.h"	/* alias_data */
 
 cpp_extern const char *circlemud_version =
-	"CircleMUD, version 3.00 beta patchlevel 15";
+	"CircleMUD, version 3.1";
 
 /* strings corresponding to ordinals/bitvectors in structs.h ***********/
 
@@ -40,12 +40,12 @@ const char *dirs[] =
 const char *room_bits[] = {
   "DARK",
   "DEATH",
-  "!MOB",
+  "NO_MOB",
   "INDOORS",
   "PEACEFUL",
   "SOUNDPROOF",
-  "!TRACK",
-  "!MAGIC",
+  "NO_TRACK",
+  "NO_MAGIC",
   "TUNNEL",
   "PRIVATE",
   "GODROOM",
@@ -78,8 +78,8 @@ const char *sector_types[] = {
   "Mountains",
   "Water (Swim)",
   "Water (No Swim)",
-  "Underwater",
   "In Flight",
+  "Underwater",
   "\n"
 };
 
@@ -126,10 +126,11 @@ const char *player_bits[] = {
   "NOTITLE",
   "DELETED",
   "LOADRM",
-  "!WIZL",
-  "!DEL",
+  "NO_WIZL",
+  "NO_DEL",
   "INVST",
   "CRYO",
+  "DEAD",    /* You should never see this. */
   "\n"
 };
 
@@ -149,11 +150,12 @@ const char *action_bits[] = {
   "AGGR_NEUTRAL",
   "MEMORY",
   "HELPER",
-  "!CHARM",
-  "!SUMMN",
-  "!SLEEP",
-  "!BASH",
-  "!BLIND",
+  "NO_CHARM",
+  "NO_SUMMN",
+  "NO_SLEEP",
+  "NO_BASH",
+  "NO_BLIND",
+  "DEAD",    /* You should never see this. */
   "\n"
 };
 
@@ -163,24 +165,24 @@ const char *preference_bits[] = {
   "BRIEF",
   "COMPACT",
   "DEAF",
-  "!TELL",
+  "NO_TELL",
   "D_HP",
   "D_MANA",
   "D_MOVE",
   "AUTOEX",
-  "!HASS",
+  "NO_HASS",
   "QUEST",
   "SUMN",
-  "!REP",
+  "NO_REP",
   "LIGHT",
   "C1",
   "C2",
-  "!WIZ",
+  "NO_WIZ",
   "L1",
   "L2",
-  "!AUC",
-  "!GOS",
-  "!GTZ",
+  "NO_AUC",
+  "NO_GOS",
+  "NO_GTZ",
   "RMFLG",
   "\n"
 };
@@ -204,7 +206,7 @@ const char *affected_bits[] =
   "PROT-EVIL",
   "PROT-GOOD",
   "SLEEP",
-  "!TRACK",
+  "NO_TRACK",
   "UNUSED",
   "UNUSED",
   "SNEAK",
@@ -243,7 +245,7 @@ const char *connected_types[] = {
  * WEAR_x - for eq list
  * Not use in sprinttype() so no \n.
  */
-const char *where[] = {
+const char *wear_where[] = {
   "<used as light>      ",
   "<worn on finger>     ",
   "<worn on finger>     ",
@@ -344,21 +346,21 @@ const char *wear_bits[] = {
 const char *extra_bits[] = {
   "GLOW",
   "HUM",
-  "!RENT",
-  "!DONATE",
-  "!INVIS",
+  "NO_RENT",
+  "NO_DONATE",
+  "NO_INVIS",
   "INVISIBLE",
   "MAGIC",
-  "!DROP",
+  "NO_DROP",
   "BLESS",
-  "!GOOD",
-  "!EVIL",
-  "!NEUTRAL",
-  "!MAGE",
-  "!CLERIC",
-  "!THIEF",
-  "!WARRIOR",
-  "!SELL",
+  "ANTI_GOOD",
+  "ANTI_EVIL",
+  "ANTI_NEUTRAL",
+  "ANTI_MAGE",
+  "ANTI_CLERIC",
+  "ANTI_THIEF",
+  "ANTI_WARRIOR",
+  "NO_SELL",
   "\n"
 };
 
@@ -708,71 +710,11 @@ cpp_extern const struct wis_app_type wis_app[] = {
 };
 
 
-
-const char *spell_wear_off_msg[] = {
-  "RESERVED DB.C",		/* 0 */
-  "You feel less protected.",	/* 1 */
-  "!Teleport!",
-  "You feel less righteous.",
-  "You feel a cloak of blindness disolve.",
-  "!Burning Hands!",		/* 5 */
-  "!Call Lightning",
-  "You feel more self-confident.",
-  "You feel your strength return.",
-  "!Clone!",
-  "!Color Spray!",		/* 10 */
-  "!Control Weather!",
-  "!Create Food!",
-  "!Create Water!",
-  "!Cure Blind!",
-  "!Cure Critic!",		/* 15 */
-  "!Cure Light!",
-  "You feel more optimistic.",
-  "You feel less aware.",
-  "Your eyes stop tingling.",
-  "The detect magic wears off.",/* 20 */
-  "The detect poison wears off.",
-  "!Dispel Evil!",
-  "!Earthquake!",
-  "!Enchant Weapon!",
-  "!Energy Drain!",		/* 25 */
-  "!Fireball!",
-  "!Harm!",
-  "!Heal!",
-  "You feel yourself exposed.",
-  "!Lightning Bolt!",		/* 30 */
-  "!Locate object!",
-  "!Magic Missile!",
-  "You feel less sick.",
-  "You feel less protected.",
-  "!Remove Curse!",		/* 35 */
-  "The white aura around your body fades.",
-  "!Shocking Grasp!",
-  "You feel less tired.",
-  "You feel weaker.",
-  "!Summon!",			/* 40 */
-  "!Ventriloquate!",
-  "!Word of Recall!",
-  "!Remove Poison!",
-  "You feel less aware of your suroundings.",
-  "!Animate Dead!",		/* 45 */
-  "!Dispel Good!",
-  "!Group Armor!",
-  "!Group Heal!",
-  "!Group Recall!",
-  "Your night vision seems to fade.",	/* 50 */
-  "Your feet seem less boyant.",
-  "!UNUSED!"
-};
-
-
-
 const char *npc_class_types[] = {
   "Normal",
   "Undead",
   "\n"
 };
-
 
 
 int rev_dir[] =
@@ -807,7 +749,7 @@ const char *weekdays[] = {
   "the Day of the Deception",
   "the Day of Thunder",
   "the Day of Freedom",
-  "the day of the Great Gods",
+  "the Day of the Great Gods",
   "the Day of the Sun"
 };
 
@@ -832,3 +774,17 @@ const char *month_name[] = {
   "Month of the Ancient Darkness",
   "Month of the Great Evil"
 };
+
+
+/* --- End of constants arrays. --- */
+
+/*
+ * Various arrays we count so we can check the world files.  These
+ * must be at the bottom of the file so they're pre-declared.
+ */
+size_t	room_bits_count = sizeof(room_bits) / sizeof(room_bits[0]) - 1,
+	action_bits_count = sizeof(action_bits) / sizeof(action_bits[0]) - 1,
+	affected_bits_count = sizeof(affected_bits) / sizeof(affected_bits[0]) - 1,
+	extra_bits_count = sizeof(extra_bits) / sizeof(extra_bits[0]) - 1,
+	wear_bits_count = sizeof(wear_bits) / sizeof(wear_bits[0]) - 1;
+

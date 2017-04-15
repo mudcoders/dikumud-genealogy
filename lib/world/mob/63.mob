@@ -17,7 +17,7 @@ Yevaud, the Usurper of Midgaard is here, grinning evilly at you.
 ~
 Old, scaly, but still with a lot of bite in him left.
 ~
-abcfjkl dk -1000 S
+abcjkl dk -1000 S
 24 0 -3 5d4+450 4d7+7
 20000 120000
 8 8 1
@@ -134,7 +134,7 @@ The Donjonkeeper eyes you and wonders how pure your soul is.
 He delves deeper into you as you stare at him.  Only those free of taint
 will be allowed to remain here safely.
 ~
-abcfil dk 1000 S
+abcil dk 1000 S
 25 0 -1 1d12+600 2d8+8
 16000 125000
 8 8 1
@@ -159,7 +159,7 @@ into being one of her many slaves.  She does not possess the venomous
 fangs of normal spiders, but then, as you realize, she does not need
 them.
 ~
-abcfjnolq dfhkp -1000 S
+abcjnolq dfhkp -1000 S
 26 0 -2 6d10+650 1d8+25
 30000 155000
 8 8 2
@@ -174,7 +174,7 @@ time eternal, and now the evil power of Arachnos feeds upon her intense
 magical energies.  She will never give up here fight against evil,
 though, and will continue her work in whatever manner presents itself.
 ~
-abcfilno dk 1000 S
+abcilno dk 1000 S
 26 0 -4 10d8+2500 4d4+22
 15000 170000
 8 8 2

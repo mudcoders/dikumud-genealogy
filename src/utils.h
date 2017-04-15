@@ -16,25 +16,38 @@ extern FILE *logfile;
 
 #define log			basic_mud_log
 
+#define READ_SIZE	256
+
 /* public functions in utils.c */
-char	*str_dup(const char *source);
-int	str_cmp(const char *arg1, const char *arg2);
-int	strn_cmp(const char *arg1, const char *arg2, int n);
 void	basic_mud_log(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
+void	basic_mud_vlog(const char *format, va_list args);
 int	touch(const char *path);
-void	mudlog(const char *str, int type, int level, int file);
+void	mudlog(int type, int level, int file, const char *str, ...) __attribute__ ((format (printf, 4, 5)));
 void	log_death_trap(struct char_data *ch);
-int	number(int from, int to);
+int	rand_number(int from, int to);
 int	dice(int number, int size);
-void	sprintbit(bitvector_t vektor, const char *names[], char *result);
-void	sprinttype(int type, const char *names[], char *result);
+size_t	sprintbit(bitvector_t vektor, const char *names[], char *result, size_t reslen);
+size_t	sprinttype(int type, const char *names[], char *result, size_t reslen);
 int	get_line(FILE *fl, char *buf);
-int	get_filename(char *orig_name, char *filename, int mode);
+int	get_filename(char *filename, size_t fbufsize, int mode, const char *orig_name);
+time_t	mud_time_to_secs(struct time_info_data *now);
 struct time_info_data *age(struct char_data *ch);
 int	num_pc_in_room(struct room_data *room);
 void	core_dump_real(const char *, int);
+int	room_is_dark(room_rnum room);
 
 #define core_dump()		core_dump_real(__FILE__, __LINE__)
+
+/*
+ * Only provide our versions if one isn't in the C library. These macro names
+ * will be defined by sysdep.h if a strcasecmp or stricmp exists.
+ */
+#ifndef str_cmp
+int	str_cmp(const char *arg1, const char *arg2);
+#endif
+#ifndef strn_cmp
+int	strn_cmp(const char *arg1, const char *arg2, int n);
+#endif
 
 /* random functions in random.c */
 void circle_srandom(unsigned long initial_seed);
@@ -53,8 +66,12 @@ int MAX(int a, int b);
 int MIN(int a, int b);
 char *CAP(char *txt);
 
-/* in magic.c */
-bool	circle_follow(struct char_data *ch, struct char_data * victim);
+/* Followers */
+int	num_followers_charmed(struct char_data *ch);
+void	die_follower(struct char_data *ch);
+void	add_follower(struct char_data *ch, struct char_data *leader);
+void	stop_follower(struct char_data *ch);
+bool	circle_follow(struct char_data *ch, struct char_data *victim);
 
 /* in act.informative.c */
 void	look_at_room(struct char_data *ch, int mode);
@@ -91,9 +108,9 @@ void	update_pos(struct char_data *victim);
 #define ALIAS_FILE	2
 
 /* breadth-first searching */
-#define BFS_ERROR		-1
-#define BFS_ALREADY_THERE	-2
-#define BFS_NO_PATH		-3
+#define BFS_ERROR		(-1)
+#define BFS_ALREADY_THERE	(-2)
+#define BFS_NO_PATH		(-3)
 
 /*
  * XXX: These constants should be configurable. See act.informative.c
@@ -122,8 +139,8 @@ void	update_pos(struct char_data *victim);
 #define UPPER(c)   (((c)>='a'  && (c) <= 'z') ? ((c)+('A'-'a')) : (c) )
 
 #define ISNEWL(ch) ((ch) == '\n' || (ch) == '\r') 
-#define IF_STR(st) ((st) ? (st) : "\0")
 
+/* See also: ANA, SANA */
 #define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
 
 
@@ -167,7 +184,7 @@ void	update_pos(struct char_data *victim);
 #define IS_SET(flag,bit)  ((flag) & (bit))
 #define SET_BIT(var,bit)  ((var) |= (bit))
 #define REMOVE_BIT(var,bit)  ((var) &= ~(bit))
-#define TOGGLE_BIT(var,bit) ((var) = (var) ^ (bit))
+#define TOGGLE_BIT(var,bit) ((var) ^= (bit))
 
 /*
  * Accessing player specific data structures on a mobile is a very bad thing
@@ -191,9 +208,13 @@ void	update_pos(struct char_data *victim);
 #define ROOM_FLAGS(loc)	(world[(loc)].room_flags)
 #define SPELL_ROUTINES(spl)	(spell_info[spl].routines)
 
-/* See http://www.circlemud.org/~greerga/todo.009 to eliminate MOB_ISNPC. */
+/*
+ * See http://www.circlemud.org/~greerga/todo/todo.009 to eliminate MOB_ISNPC.
+ * IS_MOB() acts as a VALID_MOB_RNUM()-like function.
+ */
 #define IS_NPC(ch)	(IS_SET(MOB_FLAGS(ch), MOB_ISNPC))
-#define IS_MOB(ch)  (IS_NPC(ch) && GET_MOB_RNUM(ch) >= 0)
+#define IS_MOB(ch)	(IS_NPC(ch) && GET_MOB_RNUM(ch) <= top_of_mobt && \
+				GET_MOB_RNUM(ch) != NOBODY)
 
 #define MOB_FLAGGED(ch, flag) (IS_NPC(ch) && IS_SET(MOB_FLAGS(ch), (flag)))
 #define PLR_FLAGGED(ch, flag) (!IS_NPC(ch) && IS_SET(PLR_FLAGS(ch), (flag)))
@@ -201,8 +222,9 @@ void	update_pos(struct char_data *victim);
 #define PRF_FLAGGED(ch, flag) (IS_SET(PRF_FLAGS(ch), (flag)))
 #define ROOM_FLAGGED(loc, flag) (IS_SET(ROOM_FLAGS(loc), (flag)))
 #define EXIT_FLAGGED(exit, flag) (IS_SET((exit)->exit_info, (flag)))
+#define OBJAFF_FLAGGED(obj, flag) (IS_SET(GET_OBJ_AFFECT(obj), (flag)))
 #define OBJVAL_FLAGGED(obj, flag) (IS_SET(GET_OBJ_VAL((obj), 1), (flag)))
-#define OBJWEAR_FLAGGED(obj, flag) (IS_SET((obj)->obj_flags.wear_flags, (flag)))
+#define OBJWEAR_FLAGGED(obj, flag) (IS_SET(GET_OBJ_WEAR(obj), (flag)))
 #define OBJ_FLAGGED(obj, flag) (IS_SET(GET_OBJ_EXTRA(obj), (flag)))
 #define HAS_SPELL_ROUTINE(spl, flag) (IS_SET(SPELL_ROUTINES(spl), (flag)))
 
@@ -216,21 +238,18 @@ void	update_pos(struct char_data *victim);
 /* room utils ************************************************************/
 
 
-#define SECT(room)	(world[(room)].sector_type)
+#define SECT(room)	(VALID_ROOM_RNUM(room) ? \
+				world[(room)].sector_type : SECT_INSIDE)
 
-#define IS_DARK(room)  ( !world[room].light && \
-                         (ROOM_FLAGGED(room, ROOM_DARK) || \
-                          ( ( SECT(room) != SECT_INSIDE && \
-                              SECT(room) != SECT_CITY ) && \
-                            (weather_info.sunlight == SUN_SET || \
-			     weather_info.sunlight == SUN_DARK)) ) )
-
+#define IS_DARK(room)	room_is_dark((room))
 #define IS_LIGHT(room)  (!IS_DARK(room))
 
-#define VALID_RNUM(rnum)	((rnum) >= 0 && (rnum) <= top_of_world)
+#define VALID_ROOM_RNUM(rnum)	((rnum) != NOWHERE && (rnum) <= top_of_world)
 #define GET_ROOM_VNUM(rnum) \
-	((room_vnum)(VALID_RNUM(rnum) ? world[(rnum)].number : NOWHERE))
-#define GET_ROOM_SPEC(room) (VALID_RNUM(room) ? world[(room)].func : NULL)
+	((room_vnum)(VALID_ROOM_RNUM(rnum) ? world[(rnum)].number : NOWHERE))
+#define GET_ROOM_SPEC(room) \
+	(VALID_ROOM_RNUM(room) ? world[(room)].func : NULL)
+
 
 /* char utils ************************************************************/
 
@@ -314,7 +333,7 @@ void	update_pos(struct char_data *victim);
 #define GET_MOB_SPEC(ch)	(IS_MOB(ch) ? mob_index[(ch)->nr].func : NULL)
 #define GET_MOB_RNUM(mob)	((mob)->nr)
 #define GET_MOB_VNUM(mob)	(IS_MOB(mob) ? \
-				 mob_index[GET_MOB_RNUM(mob)].vnum : -1)
+				 mob_index[GET_MOB_RNUM(mob)].vnum : NOBODY)
 
 #define GET_DEFAULT_POS(ch)	((ch)->mob_specials.default_pos)
 #define MEMORY(ch)		((ch)->mob_specials.memory)
@@ -354,26 +373,33 @@ void	update_pos(struct char_data *victim);
 
 /* object utils **********************************************************/
 
+/*
+ * Check for NOWHERE or the top array index?
+ * If using unsigned types, the top array index will catch everything.
+ * If using signed types, NOTHING will catch the majority of bad accesses.
+ */
+#define VALID_OBJ_RNUM(obj)	(GET_OBJ_RNUM(obj) <= top_of_objt && \
+				 GET_OBJ_RNUM(obj) != NOTHING)
 
 #define GET_OBJ_TYPE(obj)	((obj)->obj_flags.type_flag)
 #define GET_OBJ_COST(obj)	((obj)->obj_flags.cost)
 #define GET_OBJ_RENT(obj)	((obj)->obj_flags.cost_per_day)
+#define GET_OBJ_AFFECT(obj)	((obj)->obj_flags.bitvector)
 #define GET_OBJ_EXTRA(obj)	((obj)->obj_flags.extra_flags)
 #define GET_OBJ_WEAR(obj)	((obj)->obj_flags.wear_flags)
 #define GET_OBJ_VAL(obj, val)	((obj)->obj_flags.value[(val)])
 #define GET_OBJ_WEIGHT(obj)	((obj)->obj_flags.weight)
 #define GET_OBJ_TIMER(obj)	((obj)->obj_flags.timer)
 #define GET_OBJ_RNUM(obj)	((obj)->item_number)
-#define GET_OBJ_VNUM(obj)	(GET_OBJ_RNUM(obj) >= 0 ? \
-				 obj_index[GET_OBJ_RNUM(obj)].vnum : -1)
-#define IS_OBJ_STAT(obj,stat)	(IS_SET((obj)->obj_flags.extra_flags,stat))
+#define GET_OBJ_VNUM(obj)	(VALID_OBJ_RNUM(obj) ? \
+				obj_index[GET_OBJ_RNUM(obj)].vnum : NOTHING)
+#define GET_OBJ_SPEC(obj)	(VALID_OBJ_RNUM(obj) ? \
+				obj_index[GET_OBJ_RNUM(obj)].func : NULL)
+
 #define IS_CORPSE(obj)		(GET_OBJ_TYPE(obj) == ITEM_CONTAINER && \
 					GET_OBJ_VAL((obj), 3) == 1)
 
-#define GET_OBJ_SPEC(obj) ((obj)->item_number >= 0 ? \
-	(obj_index[(obj)->item_number].func) : NULL)
-
-#define CAN_WEAR(obj, part) (IS_SET((obj)->obj_flags.wear_flags, (part)))
+#define CAN_WEAR(obj, part)	OBJWEAR_FLAGGED((obj), (part))
 
 
 /* compound utilities and other macros **********************************/
@@ -389,14 +415,14 @@ void	update_pos(struct char_data *victim);
 #define HSSH(ch) (GET_SEX(ch) ? (GET_SEX(ch)==SEX_MALE ? "he" :"she") : "it")
 #define HMHR(ch) (GET_SEX(ch) ? (GET_SEX(ch)==SEX_MALE ? "him":"her") : "it")
 
-#define ANA(obj) (strchr("aeiouyAEIOUY", *(obj)->name) ? "An" : "A")
-#define SANA(obj) (strchr("aeiouyAEIOUY", *(obj)->name) ? "an" : "a")
+#define ANA(obj) (strchr("aeiouAEIOU", *(obj)->name) ? "An" : "A")
+#define SANA(obj) (strchr("aeiouAEIOU", *(obj)->name) ? "an" : "a")
 
 
 /* Various macros building up to CAN_SEE */
 
 #define LIGHT_OK(sub)	(!AFF_FLAGGED(sub, AFF_BLIND) && \
-   (IS_LIGHT((sub)->in_room) || AFF_FLAGGED((sub), AFF_INFRAVISION)))
+   (IS_LIGHT(IN_ROOM(sub)) || AFF_FLAGGED((sub), AFF_INFRAVISION)))
 
 #define INVIS_OK(sub, obj) \
  ((!AFF_FLAGGED((obj),AFF_INVISIBLE) || AFF_FLAGGED(sub,AFF_DETECT_INVIS)) && \
@@ -418,7 +444,7 @@ void	update_pos(struct char_data *victim);
 
 
 #define INVIS_OK_OBJ(sub, obj) \
-  (!IS_OBJ_STAT((obj), ITEM_INVISIBLE) || AFF_FLAGGED((sub), AFF_DETECT_INVIS))
+  (!OBJ_FLAGGED((obj), ITEM_INVISIBLE) || AFF_FLAGGED((sub), AFF_DETECT_INVIS))
 
 /* Is anyone carrying this object and if so, are they visible? */
 #define CAN_SEE_OBJ_CARRIER(sub, obj) \
@@ -448,7 +474,7 @@ void	update_pos(struct char_data *victim);
 	fname((obj)->name) : "something")
 
 
-#define EXIT(ch, door)  (world[(ch)->in_room].dir_option[door])
+#define EXIT(ch, door)  (world[IN_ROOM(ch)].dir_option[door])
 
 #define CAN_GO(ch, door) (EXIT(ch,door) && \
 			 (EXIT(ch,door)->to_room != NOWHERE) && \
@@ -466,7 +492,7 @@ void	update_pos(struct char_data *victim);
 #define IS_WARRIOR(ch)		(!IS_NPC(ch) && \
 				(GET_CLASS(ch) == CLASS_WARRIOR))
 
-#define OUTSIDE(ch) (!ROOM_FLAGGED((ch)->in_room, ROOM_INDOORS))
+#define OUTSIDE(ch) (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_INDOORS))
 
 
 /* OS compatibility ******************************************************/

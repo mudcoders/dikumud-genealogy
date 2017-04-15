@@ -1,6 +1,6 @@
 #15
 The Straight Path~
-1599 10 2
+1500 1599 10 2
 *
 * By Steppin, Originally For ChicagoMUD 4-94
 *             Hopefully Final Version For JediMUD 12-95
@@ -51,6 +51,4 @@ M 0 1523 1 1527         Soul
 G 1 1507 1                      Ethereal Flame
 *
 S
-#99999
-$~
-
+$

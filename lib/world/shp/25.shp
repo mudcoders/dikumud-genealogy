@@ -9,8 +9,8 @@ CircleMUD v3.0 Shop File~
 -1
 2.1
 0.5
-19
-17
+FOOD
+LIQ CONTAINER
 -1
 %s Haven't got that in storage, try LIST!~
 %s You can't sell what you don't HAVE!~
@@ -36,10 +36,10 @@ CircleMUD v3.0 Shop File~
 -1
 2.5
 0.3
-2
-3
-4
-10
+SCROLL
+WAND
+STAFF
+POTION
 -1
 %s Say again?~
 %s You don't have that, try INVENTORY!~

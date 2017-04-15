@@ -1,9 +1,8 @@
-                     Compiling CircleMUD Version 3.0
-                     using Microsoft Visual C++ v4.x
+            Compiling CircleMUD using Microsoft Visual C++ v4.x
                   by Jeremy Elson (jelson@circlemud.org)
                   For help, write to help@circlemud.org
 
-CircleMUD 3.0 compiles relatively easily under Windows 95 and NT using
+CircleMUD compiles relatively easily under Windows 95 and NT using
 the Microsoft Visual C++ compiler version 4.x.  These instructions won't
 work for any compiler except for MSVC++ 4.0; if you have a different
 compiler, take a look at the main README.WIN file for instructions.
@@ -25,7 +24,7 @@ package mentioned in the README.WIN file if you don't want to buy MSVC.
        http://www.circlemud.org/
 
    The latest version will be called something ending in .zip, like
-   "circle30bpl13.zip".
+   "circle30bplXX.zip".  (where 'XX' is the patchlevel)
 
 2) When you unzip the .zip archive, MAKE SURE to use an unzip program that
    can handle long filenames.  Old versions of pkunzip (e.g. 2.x) do NOT
@@ -38,8 +37,9 @@ package mentioned in the README.WIN file if you don't want to buy MSVC.
    the following commands are performed at the MS-DOS prompt. 
 
 4) Use the CD command to switch to the main CircleMUD directory.  For
-   exmaple, type "CD \circle30bpl12", but this may vary depending on the
-   version of Circle you downloaded and where you decided to uncompress it.
+   example, type "CD \circle30bplXX", where 'XX' is the patchlevel of the
+   version of Circle you downloaded.  Also note that the full path will
+   depend on where you decided to uncompress it.
 
 5) Go to the src directory and rename conf.h.win to conf.h, and replace
    the Makefile with Makefile.msvc.  This can be accomplished with the

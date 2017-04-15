@@ -19,7 +19,7 @@ A strange lamia stands here waiting for her next meal.
 This is a creature with the upper torso of a beautiful woman, but the lower
 body of a four-legged beast.  She licks her lips as she looks at you greedily.
 ~
-acfgj 0 -1000 S
+acgj 0 -1000 S
 12 12 3 1d10+120 2d5+1
 1500 10500
 8 8 2
@@ -104,7 +104,7 @@ In the corner you see a large, stone golem faithfully standing watch.
 It is a big chunk of rock that has been magically formed into a giant stone
 creature.  He stands here still guarding the city.
 ~
-bfilnopqr dfk 800 S
+bilnopqr dfk 800 S
 25 0 -5 6d6+500 4d7+3
 4250 145000
 8 8 0

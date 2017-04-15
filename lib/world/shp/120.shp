@@ -10,8 +10,8 @@ CircleMUD v3.0 Shop File~
 -1
 2.25
 0.6
-5
-9
+WEAPON
+ARMOR
 -1
 %s We are out of that item right now.~
 %s You don't have that.  Stop wasting my time!~
@@ -91,8 +91,8 @@ CircleMUD v3.0 Shop File~
 -1
 1.85
 0.5
-2
-3
+SCROLL
+WAND
 -1
 %s We don't carry that item.~
 %s You don't have that.~
@@ -125,9 +125,9 @@ CircleMUD v3.0 Shop File~
 -1
 %s We don't have that item in stock right now.~
 %s I don't think you have that item.~
+%s Hmmmm... if I was in a good mood, I'd consider it.  But I'm not.~
 %s The Emperor's tax collector just came.  I don't have the cash.  Sorry.~
 %s NO CREDIT!  We don't even take the Renaissance Express card!~
-%s Hmmmm.  I'll give you %d for that... while I'm in a good mood.~
 %s That will be %d coins.  Enjoy!~
 %s You'll get %d coins for that.~
 2

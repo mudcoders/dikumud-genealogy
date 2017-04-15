@@ -1,7 +1,7 @@
 /*
  * sign.c: a program to present text on a TCP port
  *
- * Author: Jeremy Elson (jelson@cs.jhu.edu)
+ * Author: Jeremy Elson (jelson@circlemud.org)
  *  Usage: sign <port> <filename> or
  *         sign <port> -
  *

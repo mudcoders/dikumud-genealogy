@@ -8,9 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-/******* MUD MAIL SYSTEM HEADER FILE *********************
- ***     written by Jeremy Elson (jelson@cs.jhu.edu)   ***
- ********************************************************/
+/******* MUD MAIL SYSTEM HEADER FILE **********************
+ ***     written by Jeremy Elson (jelson@circlemud.org) ***
+ *********************************************************/
 
 /* INSTALLATION INSTRUCTIONS in MAIL.C */
 
@@ -50,9 +50,9 @@ void	store_mail(long to, long from, char *message_pointer);
 char	*read_delete(long recipient);
 
 
-#define HEADER_BLOCK  -1
-#define LAST_BLOCK    -2
-#define DELETED_BLOCK -3
+#define HEADER_BLOCK  (-1)
+#define LAST_BLOCK    (-2)
+#define DELETED_BLOCK (-3)
 
 /*
  * note: next_block is part of header_blk in a data block; we can't combine

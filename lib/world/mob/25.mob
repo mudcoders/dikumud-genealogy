@@ -666,7 +666,7 @@ The Master of Neutrality is here contemplating the balance of the Universe.
 ~
 He looks quite peaceful.
 ~
-abcfgijl dkh 0 S
+abcgijl dkh 0 S
 30 -10 -20 30d30+300 2d5+20
 15350 150000
 8 8 1
@@ -702,7 +702,7 @@ The Master of the Black Robes is here plotting vile deeds.
 ~
 The Master glares at you.
 ~
-abcfgjkl dkh -1000 S
+abcgjkl dkh -1000 S
 30 -10 -20 30d30+300 2d5+20
 22100 150000
 8 8 1
@@ -736,7 +736,7 @@ The Master of Goodness is here frowning at your intrusion.
 ~
 He looks like a self-righteous bastard.
 ~
-abcfgikl dkh 1000 S
+abcgikl dkh 1000 S
 30 -10 -20 30d30+300 2d5+20
 21900 150000
 8 8 1

@@ -19,18 +19,20 @@
 #include "handler.h"
 #include "db.h"
 
+/* local globals */
 struct ban_list_element *ban_list = NULL;
-extern struct descriptor_data *descriptor_list;
 
 /* local functions */
 void load_banned(void);
 int isbanned(char *hostname);
-void _write_one_node(FILE * fp, struct ban_list_element * node);
+void _write_one_node(FILE *fp, struct ban_list_element *node);
 void write_ban_list(void);
 ACMD(do_ban);
 ACMD(do_unban);
 int Valid_Name(char *newname);
 void Read_Invalid_List(void);
+void Free_Invalid_List(void);
+
 
 const char *ban_types[] = {
   "no",
@@ -60,9 +62,9 @@ void load_banned(void)
   }
   while (fscanf(fl, " %s %s %d %s ", ban_type, site_name, &date, name) == 4) {
     CREATE(next_node, struct ban_list_element, 1);
-    strncpy(next_node->site, site_name, BANNED_SITE_LENGTH);
+    strncpy(next_node->site, site_name, BANNED_SITE_LENGTH);	/* strncpy: OK (n_n->site:BANNED_SITE_LENGTH+1) */
     next_node->site[BANNED_SITE_LENGTH] = '\0';
-    strncpy(next_node->name, name, MAX_NAME_LENGTH);
+    strncpy(next_node->name, name, MAX_NAME_LENGTH);	/* strncpy: OK (n_n->name:MAX_NAME_LENGTH+1) */
     next_node->name[MAX_NAME_LENGTH] = '\0';
     next_node->date = date;
 
@@ -99,7 +101,7 @@ int isbanned(char *hostname)
 }
 
 
-void _write_one_node(FILE * fp, struct ban_list_element * node)
+void _write_one_node(FILE *fp, struct ban_list_element *node)
 {
   if (node) {
     _write_one_node(fp, node->next);
@@ -124,69 +126,64 @@ void write_ban_list(void)
 }
 
 
+#define BAN_LIST_FORMAT "%-25.25s  %-8.8s  %-10.10s  %-16.16s\r\n"
 ACMD(do_ban)
 {
-  char flag[MAX_INPUT_LENGTH], site[MAX_INPUT_LENGTH],
-	format[MAX_INPUT_LENGTH], *nextchar, *timestr;
+  char flag[MAX_INPUT_LENGTH], site[MAX_INPUT_LENGTH], *nextchar;
+  char timestr[16];
   int i;
   struct ban_list_element *ban_node;
 
-  *buf = '\0';
-
   if (!*argument) {
     if (!ban_list) {
-      send_to_char("No sites are banned.\r\n", ch);
+      send_to_char(ch, "No sites are banned.\r\n");
       return;
     }
-    strcpy(format, "%-25.25s  %-8.8s  %-10.10s  %-16.16s\r\n");
-    sprintf(buf, format,
+    send_to_char(ch, BAN_LIST_FORMAT,
 	    "Banned Site Name",
 	    "Ban Type",
 	    "Banned On",
 	    "Banned By");
-    send_to_char(buf, ch);
-    sprintf(buf, format,
+    send_to_char(ch, BAN_LIST_FORMAT,
 	    "---------------------------------",
 	    "---------------------------------",
 	    "---------------------------------",
 	    "---------------------------------");
-    send_to_char(buf, ch);
 
     for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
       if (ban_node->date) {
-	timestr = asctime(localtime(&(ban_node->date)));
-	*(timestr + 10) = 0;
-	strcpy(site, timestr);
+	strlcpy(timestr, asctime(localtime(&(ban_node->date))), 10);
+	timestr[10] = '\0';
       } else
-	strcpy(site, "Unknown");
-      sprintf(buf, format, ban_node->site, ban_types[ban_node->type], site,
-	      ban_node->name);
-      send_to_char(buf, ch);
+	strcpy(timestr, "Unknown");	/* strcpy: OK (strlen("Unknown") < 16) */
+
+      send_to_char(ch, BAN_LIST_FORMAT, ban_node->site, ban_types[ban_node->type], timestr, ban_node->name);
     }
     return;
   }
+
   two_arguments(argument, flag, site);
   if (!*site || !*flag) {
-    send_to_char("Usage: ban {all | select | new} site_name\r\n", ch);
+    send_to_char(ch, "Usage: ban {all | select | new} site_name\r\n");
     return;
   }
   if (!(!str_cmp(flag, "select") || !str_cmp(flag, "all") || !str_cmp(flag, "new"))) {
-    send_to_char("Flag must be ALL, SELECT, or NEW.\r\n", ch);
+    send_to_char(ch, "Flag must be ALL, SELECT, or NEW.\r\n");
     return;
   }
   for (ban_node = ban_list; ban_node; ban_node = ban_node->next) {
     if (!str_cmp(ban_node->site, site)) {
-      send_to_char("That site has already been banned -- unban it to change the ban type.\r\n", ch);
+      send_to_char(ch, "That site has already been banned -- unban it to change the ban type.\r\n");
       return;
     }
   }
 
   CREATE(ban_node, struct ban_list_element, 1);
-  strncpy(ban_node->site, site, BANNED_SITE_LENGTH);
+  strncpy(ban_node->site, site, BANNED_SITE_LENGTH);	/* strncpy: OK (b_n->site:BANNED_SITE_LENGTH+1) */
   for (nextchar = ban_node->site; *nextchar; nextchar++)
     *nextchar = LOWER(*nextchar);
   ban_node->site[BANNED_SITE_LENGTH] = '\0';
-  strncpy(ban_node->name, GET_NAME(ch), MAX_NAME_LENGTH);
+  strncpy(ban_node->name, GET_NAME(ch), MAX_NAME_LENGTH);	/* strncpy: OK (b_n->size:MAX_NAME_LENGTH+1) */
   ban_node->name[MAX_NAME_LENGTH] = '\0';
   ban_node->date = time(0);
 
@@ -197,12 +194,12 @@ ACMD(do_ban)
   ban_node->next = ban_list;
   ban_list = ban_node;
 
-  sprintf(buf, "%s has banned %s for %s players.", GET_NAME(ch), site,
-	  ban_types[ban_node->type]);
-  mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
-  send_to_char("Site banned.\r\n", ch);
+  mudlog(NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE, "%s has banned %s for %s players.",
+	GET_NAME(ch), site, ban_types[ban_node->type]);
+  send_to_char(ch, "Site banned.\r\n");
   write_ban_list();
 }
+#undef BAN_LIST_FORMAT
 
 
 ACMD(do_unban)
@@ -213,7 +210,7 @@ ACMD(do_unban)
 
   one_argument(argument, site);
   if (!*site) {
-    send_to_char("A site to unban might help.\r\n", ch);
+    send_to_char(ch, "A site to unban might help.\r\n");
     return;
   }
   ban_node = ban_list;
@@ -225,14 +222,13 @@ ACMD(do_unban)
   }
 
   if (!found) {
-    send_to_char("That site is not currently banned.\r\n", ch);
+    send_to_char(ch, "That site is not currently banned.\r\n");
     return;
   }
   REMOVE_FROM_LIST(ban_node, ban_list, next);
-  send_to_char("Site unbanned.\r\n", ch);
-  sprintf(buf, "%s removed the %s-player ban on %s.",
-	  GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
-  mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
+  send_to_char(ch, "Site unbanned.\r\n");
+  mudlog(NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE, "%s removed the %s-player ban on %s.",
+	GET_NAME(ch), ban_types[ban_node->type], ban_node->site);
 
   free(ban_node);
   write_ban_list();
@@ -270,7 +266,7 @@ int Valid_Name(char *newname)
     return (1);
 
   /* change to lowercase */
-  strcpy(tempname, newname);
+  strlcpy(tempname, newname, sizeof(tempname));
   for (i = 0; tempname[i]; i++)
     tempname[i] = LOWER(tempname[i]);
 
@@ -280,6 +276,18 @@ int Valid_Name(char *newname)
       return (0);
 
   return (1);
+}
+
+
+/* What's with the wacky capitalization in here? */
+void Free_Invalid_List(void)
+{
+  int invl;
+
+  for (invl = 0; invl < num_invalid; invl++)
+    free(invalid_list[invl]);
+
+  num_invalid = 0;
 }
 
 
@@ -295,7 +303,7 @@ void Read_Invalid_List(void)
 
   num_invalid = 0;
   while (get_line(fp, temp) && num_invalid < MAX_INVALID_NAMES)
-    invalid_list[num_invalid++] = str_dup(temp);
+    invalid_list[num_invalid++] = strdup(temp);
 
   if (num_invalid >= MAX_INVALID_NAMES) {
     log("SYSERR: Too many invalid names; change MAX_INVALID_NAMES in ban.c");

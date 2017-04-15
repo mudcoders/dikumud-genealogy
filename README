@@ -2,7 +2,7 @@
                            CircleMUD README File
                            ---------------------
 
-Welcome to CircleMUD 3.0!  I hope you enjoy your stay.
+Welcome to CircleMUD 3.1!  I hope you enjoy your stay.
 
 More information about CircleMUD can be found at the CircleMUD Home Page:
 http://www.circlemud.org.  That site has the latest source distributions,
@@ -33,10 +33,11 @@ jelson@circlemud.org
 Downloading CircleMUD
 ---------------------
 
-You can find version 3.0 of CircleMUD at the following anonymous FTP sites:
+You can find version 3.1 of CircleMUD at the following anonymous FTP sites:
 
         ftp.circlemud.org:/pub/CircleMUD/3.x
         ftp2.circlemud.org:/pub/CircleMUD/3.x
+	ftp.stormhaven.org:/pub/CircleMUD/3.x
 
 You can also find information at the WWW site:
 
@@ -79,7 +80,7 @@ From here, read:
 
 doc/README.UNIX  - If you have any type UNIX system, including Linux,
                    MkLinux, Ultrix, HP/UX, Solaris, SunOS, IRIX, FreeBSD,
-                   OpenBSD, NetBSD, BSDi, etc.
+                   OpenBSD, NetBSD, BSDi, Macintosh OS X, etc.
 
 doc/README.WIN   - If you have Windows 95 or NT.
 
@@ -89,16 +90,15 @@ doc/README.AMIGA - If you are using an Amiga running AmigaDOS.  (If you're
 		   running NetBSD or Linux on an Amiga, use README.UNIX
 		   instead.)
 
-doc/README.MAC   - If you are using a Mac running System 7/8.  (If you're
-                   running MkLinux on a Mac, use README.UNIX instead.)
-
 doc/README.ARC   - If you are using an Acorn running RiscOS.
+
+doc/README.VMS   - If you happen to be on OpenVMS.
 
 
 If you are interested in porting CircleMUD to a new platform, see the
 file doc/porting.txt for some tips.
 
-Version 3.0 source currently does NOT compile under DOS, Windows 3.x, or
+Version 3.1 source currently does NOT compile under DOS, Windows 3.x, or
 Windows for Workgroups.  Also, we currently do not distribute binaries,
 although the FTP site does have a very old Amiga binary of CircleMUD 2.20.
 
@@ -115,25 +115,25 @@ Other Documentation
 
 If this information isn't enough to get you running, there's a lot more
 information available.  All documentation (other than this file) is in
-the "doc" directory and available on-line at http://www.circlemud.org.
+the "doc" directory and available on-line at http://www.circlemud.org/.
 
 The README file in the doc directory describes each documentation file
 in detail, but there are several main files which should be of interest:
 
-"The CircleMUD Administrator's Guide" (admin.txt, admin.ps)
+"The CircleMUD Administrator's Guide" (admin.pdf)
     A good place to start after reading this README file, admin.txt gives
 an overall description of how Circle works, how to get it to compile and
 run for the first time, information about customizing and configuration
 options and command-line arguments, and tips on maintenance and day-to-day
 MUD administration. 
 
-"The CircleMUD Builder's Manual" (building.txt, building.ps)
+"The CircleMUD Builder's Manual" (building.pdf)
     For the builders in your group, this documents the world-file format 
 and describes how to create new rooms, objects, and monsters.  Also, it 
 describes how to add new areas to the MUD and gives some tips about game 
 balance and world-file debugging.
 
-"The CircleMUD Coder's Manual" (coding.txt, coding.ps)
+"The CircleMUD Coder's Manual" (coding.pdf)
     For the coders in your group, a technical reference describing some of
 the more basic coding tasks such as how to add new commands, spells,
 skills, socials, and classes.  Note that it assumes the reader already has
@@ -143,6 +143,7 @@ an excellent knowledge of C; the manual is not a C tutorial.
     A comprehensive list of all the possible SYSERR messages CircleMUD 
 can generate, and a description of what can cause each problem and how to 
 solve it.  An excellent guide for troubleshooting and area debugging.
+[NOTE: This document is not complete at this time]
 
 
 Getting Help

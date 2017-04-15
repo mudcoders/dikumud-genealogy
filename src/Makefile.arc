@@ -1,4 +1,4 @@
-# CircleMUD 3.0 Makefile/arc - manually created (G. Duncan 13 June 98)
+# CircleMUD Makefile/arc - manually created (G. Duncan 13 June 98)
 #
 
 # C compiler to use

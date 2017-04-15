@@ -20,7 +20,7 @@ bool add_dur, bool avg_dur, bool add_mod, bool avg_mod);
 
 
 /* utility */
-char *money_desc(int amount);
+const char *money_desc(int amount);
 struct obj_data *create_money(int amount);
 int	isname(const char *str, const char *namelist);
 char	*fname(const char *namelist);
@@ -35,11 +35,6 @@ void	equip_char(struct char_data *ch, struct obj_data *obj, int pos);
 struct obj_data *unequip_char(struct char_data *ch, int pos);
 int	invalid_align(struct char_data *ch, struct obj_data *obj);
 
-struct obj_data *get_obj_in_list(char *name, struct obj_data *list);
-struct obj_data *get_obj_in_list_num(int num, struct obj_data *list);
-struct obj_data *get_obj(char *name);
-struct obj_data *get_obj_num(obj_rnum nr);
-
 void	obj_to_room(struct obj_data *object, room_rnum room);
 void	obj_from_room(struct obj_data *object);
 void	obj_to_obj(struct obj_data *obj, struct obj_data *obj_to);
@@ -50,24 +45,27 @@ void	extract_obj(struct obj_data *obj);
 
 /* ******* characters ********* */
 
-struct char_data *get_char_room(char *name, room_rnum room);
+struct char_data *get_char_room(char *name, int *num, room_rnum room);
 struct char_data *get_char_num(mob_rnum nr);
-struct char_data *get_char(char *name);
 
 void	char_from_room(struct char_data *ch);
 void	char_to_room(struct char_data *ch, room_rnum room);
 void	extract_char(struct char_data *ch);
+void	extract_char_final(struct char_data *ch);
+void	extract_pending_chars(void);
 
 /* find if character can see */
-struct char_data *get_char_room_vis(struct char_data *ch, char *name);
-struct char_data *get_player_vis(struct char_data *ch, char *name, int inroom);
+struct char_data *get_player_vis(struct char_data *ch, char *name, int *number, int inroom);
+struct char_data *get_char_vis(struct char_data *ch, char *name, int *number, int where);
+struct char_data *get_char_room_vis(struct char_data *ch, char *name, int *number);
+struct char_data *get_char_world_vis(struct char_data *ch, char *name, int *number);
 
-struct char_data *get_char_vis(struct char_data *ch, char *name, int where);
-struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name, 
-struct obj_data *list);
-struct obj_data *get_obj_vis(struct char_data *ch, char *name);
-struct obj_data *get_object_in_equip_vis(struct char_data *ch,
-char *arg, struct obj_data *equipment[], int *j);
+struct obj_data *get_obj_in_list_num(int num, struct obj_data *list);
+struct obj_data *get_obj_num(obj_rnum nr);
+struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name, int *number, struct obj_data *list);
+struct obj_data *get_obj_vis(struct char_data *ch, char *name, int *num);
+struct obj_data *get_obj_in_equip_vis(struct char_data *ch, char *arg, int *number, struct obj_data *equipment[]);
+int              get_obj_pos_in_equip_vis(struct char_data *ch, char *arg, int *num, struct obj_data *equipment[]);
 
 
 /* find all dots */
@@ -94,7 +92,6 @@ int	generic_find(char *arg, bitvector_t bitvector, struct char_data *ch,
 
 /* prototypes from crash save system */
 
-int	Crash_get_filename(char *orig_name, char *filename);
 int	Crash_delete_file(char *name);
 int	Crash_delete_crashfile(struct char_data *ch);
 int	Crash_clean_file(char *name);
@@ -107,7 +104,6 @@ void	Crash_save_all(void);
 /* prototypes from fight.c */
 void	set_fighting(struct char_data *ch, struct char_data *victim);
 void	stop_fighting(struct char_data *ch);
-void	stop_follower(struct char_data *ch);
 void	hit(struct char_data *ch, struct char_data *victim, int type);
 void	forget(struct char_data *ch, struct char_data *victim);
 void	remember(struct char_data *ch, struct char_data *victim);

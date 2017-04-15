@@ -1,4 +1,4 @@
-# CircleMUD 3.0 Makefile for OS/2 (manually created by David Carver)
+# CircleMUD Makefile for OS/2 (manually created by David Carver)
 
 # C compiler to use
 CC = gcc

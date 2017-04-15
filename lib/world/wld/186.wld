@@ -677,10 +677,10 @@ A long hallway, ending in a set of steps.
 ~
 0 -1 18641
 D2
-The hall extends to the south where it seems to darken somewhat.
+The hall extends to the south where it seems to lighten somewhat.
 ~
 ~
-0 -1 18603
+0 -1 18644
 E
 statue~
 Upon closer inspection you see that the statue has a small plaque affixed
@@ -868,5 +868,4 @@ staircase stair stairs~
 They are constructed of smooth, beautiful marble.
 ~
 S
-
 $

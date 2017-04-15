@@ -263,7 +263,7 @@ vest leather~
 The seams are delicately sewn with a enruned thread...
 ~
 #3319
-beer glass~
+glass beer~
 a glass~
 A glass of beer sits forgotten here.~
 ~
@@ -276,7 +276,7 @@ This is a nice glass filled with homebrew.  There doesn't seem to
 be too much stuff floating in it.
 ~
 #3320
-mead glass~
+glass mead ale~
 a glass~
 A big glass of mead sits here, cool and frosty.~
 ~
@@ -284,13 +284,13 @@ A big glass of mead sits here, cool and frosty.~
 1 1 3 0
 2 8 3
 E
-glass~
+glass mead~
 Looks good.  Looks warm.  Doesn't matter; it still looks good.
 ~
 #3321
-whiskey shot~
+shot whisky~
 a shot~
-A shot of whiskey is sitting here.~
+A shot of whisky is sitting here.~
 ~
 17 0 16385
 1 1 5 0

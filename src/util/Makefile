@@ -1,5 +1,5 @@
 # Generated automatically from Makefile.in by configure.
-# CircleMUD 3.0 Makefile.in - Makefile template used by 'configure'
+# CircleMUD Makefile.in - Makefile template used by 'configure'
 # for the 'util' directory
 
 # C compiler to use

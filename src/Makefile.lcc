@@ -1,4 +1,4 @@
-# Makefile for LCC-Win32 compile of CircleMUD 3.0bpl14
+# Makefile for LCC-Win32 compile of CircleMUD
 # Created by Eric Jones (mailto:fpicard@mindless.com)
 
 # 08/31/98
@@ -6,14 +6,13 @@
 #  to \LCC instead of \LCCPUB as in older versions
 # Added DISTDIR variable to allow for an easy way to change
 #  where Circle is located, plus will allow for changes in the
-#  path between versions (bpl14 is circle30bpl14, next version
-#  should be circle30bpl15).
+#  path between versions (e.g. bplZZ is circle30bplZZ)
 # With addition of new variables as replacements for old
 #  hard-coded paths, display lines will be less than 80 columns
 #  thus less clutter on the screen during the make
 
 LCCDIR=c:\lccpub
-DISTDIR=c:\circle30bpl14
+DISTDIR=c:\circle
 CFLAGS=-c -I$(LCCDIR)\include -DLCC_WIN32
 CC=lcc
 OBJS=\

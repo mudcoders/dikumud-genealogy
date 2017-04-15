@@ -27,7 +27,7 @@
 #define LIB_PLRALIAS	":plralias:"
 #define LIB_HOUSE	":house:"
 #define SLASH		":"
-#elif defined(CIRCLE_AMIGA) || defined(CIRCLE_UNIX) || defined(CIRCLE_WINDOWS) || defined(CIRCLE_ACORN)
+#elif defined(CIRCLE_AMIGA) || defined(CIRCLE_UNIX) || defined(CIRCLE_WINDOWS) || defined(CIRCLE_ACORN) || defined(CIRCLE_VMS)
 #define LIB_WORLD	"world/"
 #define LIB_TEXT	"text/"
 #define LIB_TEXT_HELP	"text/help/"
@@ -38,6 +38,8 @@
 #define LIB_PLRALIAS	"plralias/"
 #define LIB_HOUSE	"house/"
 #define SLASH		"/"
+#else
+#error "Unknown path components."
 #endif
 
 #define SUF_OBJS	"objs"
@@ -68,48 +70,58 @@
 #define SHP_PREFIX	LIB_WORLD"shp"SLASH	/* shop definitions	*/
 #define HLP_PREFIX	LIB_TEXT"help"SLASH	/* for HELP <keyword>	*/
 
-#define CREDITS_FILE	LIB_TEXT"credits"/* for the 'credits' command	*/
+#define CREDITS_FILE	LIB_TEXT"credits" /* for the 'credits' command	*/
 #define NEWS_FILE	LIB_TEXT"news"	/* for the 'news' command	*/
 #define MOTD_FILE	LIB_TEXT"motd"	/* messages of the day / mortal	*/
 #define IMOTD_FILE	LIB_TEXT"imotd"	/* messages of the day / immort	*/
 #define GREETINGS_FILE	LIB_TEXT"greetings"	/* The opening screen.	*/
-#define HELP_PAGE_FILE	LIB_TEXT_HELP"screen" /* for HELP <CR>		*/
+#define HELP_PAGE_FILE	LIB_TEXT_HELP"screen"	/* for HELP <CR>	*/
 #define INFO_FILE	LIB_TEXT"info"		/* for INFO		*/
 #define WIZLIST_FILE	LIB_TEXT"wizlist"	/* for WIZLIST		*/
 #define IMMLIST_FILE	LIB_TEXT"immlist"	/* for IMMLIST		*/
 #define BACKGROUND_FILE	LIB_TEXT"background"/* for the background story	*/
-#define POLICIES_FILE	LIB_TEXT"policies" /* player policies/rules	*/
-#define HANDBOOK_FILE	LIB_TEXT"handbook" /* handbook for new immorts	*/
+#define POLICIES_FILE	LIB_TEXT"policies"  /* player policies/rules	*/
+#define HANDBOOK_FILE	LIB_TEXT"handbook"  /* handbook for new immorts	*/
 
-#define IDEA_FILE	LIB_MISC"ideas"	/* for the 'idea'-command	*/
-#define TYPO_FILE	LIB_MISC"typos"	/*         'typo'		*/
-#define BUG_FILE	LIB_MISC"bugs"	/*         'bug'		*/
+#define IDEA_FILE	LIB_MISC"ideas"	   /* for the 'idea'-command	*/
+#define TYPO_FILE	LIB_MISC"typos"	   /*         'typo'		*/
+#define BUG_FILE	LIB_MISC"bugs"	   /*         'bug'		*/
 #define MESS_FILE	LIB_MISC"messages" /* damage messages		*/
-#define SOCMESS_FILE	LIB_MISC"socials" /* messgs for social acts	*/
-#define XNAME_FILE	LIB_MISC"xnames" /* invalid name substrings	*/
+#define SOCMESS_FILE	LIB_MISC"socials"  /* messages for social acts	*/
+#define XNAME_FILE	LIB_MISC"xnames"   /* invalid name substrings	*/
 
-#define PLAYER_FILE	LIB_ETC"players" /* the player database		*/
-#define MAIL_FILE	LIB_ETC"plrmail" /* for the mudmail system	*/
-#define BAN_FILE	LIB_ETC"badsites" /* for the siteban system	*/
+#define PLAYER_FILE	LIB_ETC"players"   /* the player database	*/
+#define MAIL_FILE	LIB_ETC"plrmail"   /* for the mudmail system	*/
+#define BAN_FILE	LIB_ETC"badsites"  /* for the siteban system	*/
 #define HCONTROL_FILE	LIB_ETC"hcontrol"  /* for the house system	*/
+#define TIME_FILE	LIB_ETC"time"	   /* for calendar system	*/
 
 /* public procedures in db.c */
 void	boot_db(void);
+void	destroy_db(void);
 int	create_entry(char *name);
 void	zone_update(void);
-room_rnum real_room(room_vnum vnum);
-char	*fread_string(FILE *fl, char *error);
-long	get_id_by_name(char *name);
+char	*fread_string(FILE *fl, const char *error);
+long	get_id_by_name(const char *name);
 char	*get_name_by_id(long id);
+void	save_mud_time(struct time_info_data *when);
+void	free_extra_descriptions(struct extra_descr_data *edesc);
+void	free_text_files(void);
+void	free_player_index(void);
+void	free_help(void);
+
+zone_rnum real_zone(zone_vnum vnum);
+room_rnum real_room(room_vnum vnum);
+mob_rnum real_mobile(mob_vnum vnum);
+obj_rnum real_object(obj_vnum vnum);
 
 void	char_to_store(struct char_data *ch, struct char_file_u *st);
 void	store_to_char(struct char_file_u *st, struct char_data *ch);
-int	load_char(char *name, struct char_file_u *char_element);
-void	save_char(struct char_data *ch, room_rnum load_room);
+int	load_char(const char *name, struct char_file_u *char_element);
+void	save_char(struct char_data *ch);
 void	init_char(struct char_data *ch);
 struct char_data* create_char(void);
 struct char_data *read_mobile(mob_vnum nr, int type);
-mob_rnum real_mobile(mob_vnum vnum);
 int	vnum_mobile(char *searchname, struct char_data *ch);
 void	clear_char(struct char_data *ch);
 void	reset_char(struct char_data *ch);
@@ -118,7 +130,6 @@ void	free_char(struct char_data *ch);
 struct obj_data *create_obj(void);
 void	clear_object(struct obj_data *obj);
 void	free_obj(struct obj_data *obj);
-obj_rnum real_object(obj_vnum vnum);
 struct obj_data *read_object(obj_vnum nr, int type);
 int	vnum_object(char *searchname, struct char_data *ch);
 
@@ -154,6 +165,7 @@ struct zone_data {
    char	*name;		    /* name of this zone                  */
    int	lifespan;           /* how long between resets (minutes)  */
    int	age;                /* current age of this zone (minutes) */
+   room_vnum bot;           /* starting room number for this zone */
    room_vnum top;           /* upper limit for rooms in this zone */
 
    int	reset_mode;         /* conditions for reset (see below)   */
@@ -217,18 +229,25 @@ struct ban_list_element {
 
 /* global buffering system */
 
-#ifdef __DB_C__
-char	buf[MAX_STRING_LENGTH];
-char	buf1[MAX_STRING_LENGTH];
-char	buf2[MAX_STRING_LENGTH];
-char	arg[MAX_STRING_LENGTH];
-#else
+#ifndef __DB_C__
+extern struct room_data *world;
 extern room_rnum top_of_world;
+
+extern struct zone_data *zone_table;
+extern zone_rnum top_of_zone_table;
+
+extern struct descriptor_data *descriptor_list;
+extern struct char_data *character_list;
 extern struct player_special_data dummy_mob;
-extern char	buf[MAX_STRING_LENGTH];
-extern char	buf1[MAX_STRING_LENGTH];
-extern char	buf2[MAX_STRING_LENGTH];
-extern char	arg[MAX_STRING_LENGTH];
+
+extern struct index_data *mob_index;
+extern struct char_data *mob_proto;
+extern mob_rnum top_of_mobt;
+
+extern struct index_data *obj_index;
+extern struct obj_data *object_list;
+extern struct obj_data *obj_proto;
+extern obj_rnum top_of_objt;
 #endif
 
 #ifndef __CONFIG_C__

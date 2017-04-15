@@ -108,7 +108,7 @@ This disgusting creature is at the size of a small elephant.  It has eight
 huge, hairy legs that would give it a tremendous speed on almost any surface
 if it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.
 ~
-abfgjl dfkp -1000 S
+abgjl dfkp -1000 S
 15 6 1 1d12+185 2d8+3
 0 31000
 8 8 2
@@ -133,7 +133,7 @@ The Elder druid is here.  He looks very upset about your presence in his home.
 The druid looks quite old.  You would think of him as venerable but yet you
 know he would be a tough foe.
 ~
-abfij dfk 0 S
+abij dfk 0 S
 19 2 0 1d12+236 3d6+4
 5000 45000
 8 8 1

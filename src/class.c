@@ -25,18 +25,18 @@
 #include "utils.h"
 #include "spells.h"
 #include "interpreter.h"
+#include "constants.h"
 
-extern struct wis_app_type wis_app[];
-extern struct con_app_type con_app[];
 extern int siteok_everyone;
 
 /* local functions */
+void snoop_check(struct char_data *ch);
 int parse_class(char arg);
-long find_class_bitvector(char arg);
+bitvector_t find_class_bitvector(const char *arg);
 byte saving_throws(int class_num, int type, int level);
 int thaco(int class_num, int level);
-void roll_real_abils(struct char_data * ch);
-void do_start(struct char_data * ch);
+void roll_real_abils(struct char_data *ch);
+void do_start(struct char_data *ch);
 int backstab_mult(int level);
 int invalid_class(struct char_data *ch, struct obj_data *obj);
 int level_exp(int chclass, int level);
@@ -96,20 +96,16 @@ int parse_class(char arg)
  * bitvectors (i.e., powers of two) for each class, mainly for use in
  * do_who and do_users.  Add new classes at the end so that all classes
  * use sequential powers of two (1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4,
- * 1 << 5, etc.
+ * 1 << 5, etc.) up to the limit of your bitvector_t, typically 0-31.
  */
-
-long find_class_bitvector(char arg)
+bitvector_t find_class_bitvector(const char *arg)
 {
-  arg = LOWER(arg);
+  size_t rpos, ret = 0;
 
-  switch (arg) {
-    case 'm': return (1 << CLASS_MAGIC_USER);
-    case 'c': return (1 << CLASS_CLERIC);
-    case 't': return (1 << CLASS_THIEF);
-    case 'w': return (1 << CLASS_WARRIOR);
-    default:  return 0;
-  }
+  for (rpos = 0; rpos < strlen(arg); rpos++)
+    ret |= (1 << parse_class(arg[rpos]));
+
+  return (ret);
 }
 
 
@@ -147,10 +143,10 @@ long find_class_bitvector(char arg)
 
 int prac_params[4][NUM_CLASSES] = {
   /* MAG	CLE	THE	WAR */
-  {95,		95,	85,	80},		/* learned level */
-  {100,		100,	12,	12},		/* max per prac */
-  {25,		25,	0,	0,},		/* min per pac */
-  {SPELL,	SPELL,	SKILL,	SKILL}		/* prac name */
+  { 95,		95,	85,	80	},	/* learned level */
+  { 100,	100,	12,	12	},	/* max per practice */
+  { 25,		25,	0,	0	},	/* min per practice */
+  { SPELL,	SPELL,	SKILL,	SKILL	},	/* prac name */
 };
 
 
@@ -165,19 +161,19 @@ int prac_params[4][NUM_CLASSES] = {
  * "recycle" the existing mobs that are used in other guilds for your new
  * guild, then you don't have to change that file, only here.
  */
-int guild_info[][3] = {
+struct guild_info_type guild_info[] = {
 
 /* Midgaard */
-  {CLASS_MAGIC_USER,	3017,	SCMD_SOUTH},
-  {CLASS_CLERIC,	3004,	SCMD_NORTH},
-  {CLASS_THIEF,		3027,	SCMD_EAST},
-  {CLASS_WARRIOR,	3021,	SCMD_EAST},
+  { CLASS_MAGIC_USER,	3017,	SCMD_SOUTH	},
+  { CLASS_CLERIC,	3004,	SCMD_NORTH	},
+  { CLASS_THIEF,	3027,	SCMD_EAST	},
+  { CLASS_WARRIOR,	3021,	SCMD_EAST	},
 
 /* Brass Dragon */
-  {-999 /* all */ ,	5065,	SCMD_WEST},
+  { -999 /* all */ ,	5065,	SCMD_WEST	},
 
 /* this must go last -- add new guards above! */
-  {-1, -1, -1}
+  { -1, NOWHERE, -1}
 };
 
 
@@ -1398,7 +1394,7 @@ int thaco(int class_num, int level)
  * the best 3 out of 4 rolls of a 6-sided die.  Each class then decides
  * which priority will be given for the best to worst stats.
  */
-void roll_real_abils(struct char_data * ch)
+void roll_real_abils(struct char_data *ch)
 {
   int i, j, k, temp;
   ubyte table[6];
@@ -1410,7 +1406,7 @@ void roll_real_abils(struct char_data * ch)
   for (i = 0; i < 6; i++) {
 
     for (j = 0; j < 4; j++)
-      rolls[j] = number(1, 6);
+      rolls[j] = rand_number(1, 6);
 
     temp = rolls[0] + rolls[1] + rolls[2] + rolls[3] -
       MIN(rolls[0], MIN(rolls[1], MIN(rolls[2], rolls[3])));
@@ -1458,7 +1454,7 @@ void roll_real_abils(struct char_data * ch)
     ch->real_abils.intel = table[4];
     ch->real_abils.cha = table[5];
     if (ch->real_abils.str == 18)
-      ch->real_abils.str_add = number(0, 100);
+      ch->real_abils.str_add = rand_number(0, 100);
     break;
   }
   ch->aff_abils = ch->real_abils;
@@ -1466,14 +1462,17 @@ void roll_real_abils(struct char_data * ch)
 
 
 /* Some initializations for characters, including initial skills */
-void do_start(struct char_data * ch)
+void do_start(struct char_data *ch)
 {
   GET_LEVEL(ch) = 1;
   GET_EXP(ch) = 1;
 
   set_title(ch, NULL);
   roll_real_abils(ch);
-  ch->points.max_hit = 10;
+
+  GET_MAX_HIT(ch)  = 10;
+  GET_MAX_MANA(ch) = 100;
+  GET_MAX_MOVE(ch) = 82;
 
   switch (GET_CLASS(ch)) {
 
@@ -1497,8 +1496,7 @@ void do_start(struct char_data * ch)
   }
 
   advance_level(ch);
-  sprintf(buf, "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
-  mudlog(buf, BRF, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
+  mudlog(BRF, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE, "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
 
   GET_HIT(ch) = GET_MAX_HIT(ch);
   GET_MANA(ch) = GET_MAX_MANA(ch);
@@ -1507,9 +1505,6 @@ void do_start(struct char_data * ch)
   GET_COND(ch, THIRST) = 24;
   GET_COND(ch, FULL) = 24;
   GET_COND(ch, DRUNK) = 0;
-
-  ch->player.time.played = 0;
-  ch->player.time.logon = time(0);
 
   if (siteok_everyone)
     SET_BIT(PLR_FLAGS(ch), PLR_SITEOK);
@@ -1521,7 +1516,7 @@ void do_start(struct char_data * ch)
  * This function controls the change to maxmove, maxmana, and maxhp for
  * each class every time they gain a level.
  */
-void advance_level(struct char_data * ch)
+void advance_level(struct char_data *ch)
 {
   int add_hp, add_mana = 0, add_move = 0, i;
 
@@ -1530,29 +1525,29 @@ void advance_level(struct char_data * ch)
   switch (GET_CLASS(ch)) {
 
   case CLASS_MAGIC_USER:
-    add_hp += number(3, 8);
-    add_mana = number(GET_LEVEL(ch), (int) (1.5 * GET_LEVEL(ch)));
+    add_hp += rand_number(3, 8);
+    add_mana = rand_number(GET_LEVEL(ch), (int)(1.5 * GET_LEVEL(ch)));
     add_mana = MIN(add_mana, 10);
-    add_move = number(0, 2);
+    add_move = rand_number(0, 2);
     break;
 
   case CLASS_CLERIC:
-    add_hp += number(5, 10);
-    add_mana = number(GET_LEVEL(ch), (int) (1.5 * GET_LEVEL(ch)));
+    add_hp += rand_number(5, 10);
+    add_mana = rand_number(GET_LEVEL(ch), (int)(1.5 * GET_LEVEL(ch)));
     add_mana = MIN(add_mana, 10);
-    add_move = number(0, 2);
+    add_move = rand_number(0, 2);
     break;
 
   case CLASS_THIEF:
-    add_hp += number(7, 13);
+    add_hp += rand_number(7, 13);
     add_mana = 0;
-    add_move = number(1, 3);
+    add_move = rand_number(1, 3);
     break;
 
   case CLASS_WARRIOR:
-    add_hp += number(10, 15);
+    add_hp += rand_number(10, 15);
     add_mana = 0;
-    add_move = number(1, 3);
+    add_move = rand_number(1, 3);
     break;
   }
 
@@ -1573,7 +1568,8 @@ void advance_level(struct char_data * ch)
     SET_BIT(PRF_FLAGS(ch), PRF_HOLYLIGHT);
   }
 
-  save_char(ch, NOWHERE);
+  snoop_check(ch);
+  save_char(ch);
 }
 
 
@@ -1606,18 +1602,22 @@ int backstab_mult(int level)
  * invalid_class is used by handler.c to determine if a piece of equipment is
  * usable by a particular class, based on the ITEM_ANTI_{class} bitvectors.
  */
+int invalid_class(struct char_data *ch, struct obj_data *obj)
+{
+  if (OBJ_FLAGGED(obj, ITEM_ANTI_MAGIC_USER) && IS_MAGIC_USER(ch))
+    return TRUE;
 
-int invalid_class(struct char_data *ch, struct obj_data *obj) {
-  if ((IS_OBJ_STAT(obj, ITEM_ANTI_MAGIC_USER) && IS_MAGIC_USER(ch)) ||
-      (IS_OBJ_STAT(obj, ITEM_ANTI_CLERIC) && IS_CLERIC(ch)) ||
-      (IS_OBJ_STAT(obj, ITEM_ANTI_WARRIOR) && IS_WARRIOR(ch)) ||
-      (IS_OBJ_STAT(obj, ITEM_ANTI_THIEF) && IS_THIEF(ch)))
-	return 1;
-  else
-	return 0;
+  if (OBJ_FLAGGED(obj, ITEM_ANTI_CLERIC) && IS_CLERIC(ch))
+    return TRUE;
+
+  if (OBJ_FLAGGED(obj, ITEM_ANTI_WARRIOR) && IS_WARRIOR(ch))
+    return TRUE;
+
+  if (OBJ_FLAGGED(obj, ITEM_ANTI_THIEF) && IS_THIEF(ch))
+    return TRUE;
+
+  return FALSE;
 }
-
-
 
 
 /*
@@ -1810,7 +1810,7 @@ int level_exp(int chclass, int level)
       case  4: return 5000;
       case  5: return 10000;
       case  6: return 20000;
-      case  7: return 30000;
+      case  7: return 40000;
       case  8: return 70000;
       case  9: return 110000;
       case 10: return 160000;
@@ -2138,7 +2138,6 @@ const char *title_female(int chclass, int level)
       case 18: return "the Murderess";
       case 19: return "the Brigand";
       case 20: return "the Cut-Throat";
-      case 34: return "the Implementress";
       /* no one ever thought up these titles 21-30 */
       case LVL_IMMORT: return "the Immortal Assasin";
       case LVL_GOD: return "the Demi Goddess of thieves";

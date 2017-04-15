@@ -1,6 +1,6 @@
 #25
 The High Tower Of Magic~
-2699 20 2
+2500 2699 20 2
 *
 * Created for SillyMUD by Skylar 
 *
@@ -195,9 +195,9 @@ O 0 2503 3 2520         Spice Rack
 O 0 2507 2 2533         Broom
 O 0 2507 2 2533         Broom
 O 0 2508 1 2579         Cabinet
-P 1 3020 999 2508               Dagger
-P 1 3021 999 2508               Small Sword
-P 1 3022 999 2508               Long Sword
+P 1 3020 100 2508               Dagger
+P 1 3021 100 2508               Small Sword
+P 1 3022 100 2508               Long Sword
 O 0 2509 1 2579         Bar Of Silver
 O 0 2510 1 2579         Bar Of Gold
 O 0 2511 1 2579         Bar Of Mithral
@@ -342,5 +342,4 @@ D 0 2680 3 1            Secret Excape Passage
 D 0 2682 1 1
 *
 S
-
 $

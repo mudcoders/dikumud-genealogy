@@ -1,40 +1,35 @@
-CircleMUD 3.0 - World Files, Beta Version 12
-furry@circlemud.org
+CircleMUD - World Files
 
-   Contained in this lovely archive is the present shape of the
-world for Circle 3.0.  I have put everything into ascii flags
-for easy addition and removal of flags.  I have also finally
-gotten around to changing all the shops to the new versions
-(they make good examples since I tried to include a bit of
-everything, from wandering shops to shops that don't like
-certain alignments or classes)  I would like to get some
-feedback on the work I've done thus far... ie... do you like
-it?  Don't you?  Why do/don't you like it?  That kind of
-thing.  Also, if it is at all possible, could you email me
-your typos (and possibly bugs for world bugs) file so that I
-can correct those problems before the Gamma release of Circle
-3.0.
+   Contained in this lovely archive is the present shape of the world
+for Circle.  Everything should be in the form of ASCII flags for easy
+addition and removal of flags.  All of the shop files are in the
+CircleMUD style (and they make good examples since there is a bit of
+everything, from wandering shops through to shops that dislike certain
+alignments or classes).
 
-   The zone files have been reformatted so that each has comments
-(my style of commenting, so that I know what is s'posed to be
-going on (= )  All the wld files have been properly indented to
-three spaces in (for consistency mostly and it was easier re-doing
-about a third of the descripts...)  A couple of areas have been
-shifted around and there have been a few area additions so far with
-the potential of more to come (see if you can figure out what they
-are, shouldn't be too hard (= )  Many typos and 'bugs' have been 
-corrected thus far, but I'm sure that more exist yet, so please
-send me a listing of the ones you find.
+   Feedback on the world is more than welcome.  This includes
+listing things that people like and things that people do not
+like.  Why do you like it or dislike it?
 
-   I thank you for your time, and please direct all comments to:
+   The zone files have been formatted into a consistent format
+with comments and ordering.  This allows readers of the files to
+have a much quicker grasp of what is going on in the file.  All
+of the world files have been indented with three (3) characters
+to begin all paragraphs.  This makes the overall format of the
+world much more similar.
 
-furry@circlemud.org
+   If you are comparing the world to the CircleMUD 2.x world, you
+will notice that some areas have been removed, others have been
+added, and some have been shifted about a little bit.
 
-Also, please note the 'zone.lst' file in this directory, which shows
-all of the zone numbers that are in use, and what is using them.
-Finally, full credit should be in all of the zone files (please
-leave it there in case you ever release your mud code and world),
-and can also be found in 'info.hlp' under 'AREAS ZONES' which gives
-a current list of zones used in CircleMUD.  Please ensure that all
-credits in there remain, and if you add new areas, please credit
-them properly.
+   Also, please note the 'zone.lst' file in this directory, which
+shows all of the zone numbers that are currently in use, and what
+is using them.  Finally, full credit should be in all of the zone
+files (please leave it there in case you ever release your mud code
+and world), and can also be found in 'info.hlp' under 'AREAS ZONES'
+which gives a current list of zones used in CircleMUD.  Please ensure
+that all credits in there remain, and if you add new areas, please
+credit them properly.
+
+Furry/Alex Fletcher
+<furry@circlemud.org>

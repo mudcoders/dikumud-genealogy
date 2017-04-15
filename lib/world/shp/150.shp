@@ -6,10 +6,10 @@ CircleMUD v3.0 Shop File~
 -1
 1.2
 0.3
-2
-3
-4
-10
+SCROLL
+WAND
+STAFF
+POTION
 -1
 %s But I have no such thing for sale.~
 %s But you do not have this item.~

@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# autorun -- maintain a Circle V3.0 mud server
+# autorun -- maintain a Circle mud server
 # Copyright (c)1995 Vi'Rage Studios
 
 # This program is free software; you can redistribute it and/or modify

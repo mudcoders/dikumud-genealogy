@@ -1,4 +1,4 @@
-               Compiling CircleMUD Version 3.0 under UNIX
+                     Compiling CircleMUD under UNIX
                  by Jeremy Elson (jelson@circlemud.org)
                  For help, write to help@circlemud.org
 
@@ -27,7 +27,7 @@ can try to make Circle work with every UNIX variant that we can.
         http://www.circlemud.org/
 
     The latest version will be called something ending in .tar.gz, like
-    "circle30bpl13.tar.gz".
+    "circle30bplXX.tar.gz". (where 'XX' is the patchlevel)
 
 
 2)  Unpack the archive.  If you have the .tar.gz version, uncompress it
@@ -101,6 +101,9 @@ can try to make Circle work with every UNIX variant that we can.
     that you used for the previous step.  A file called 'syslog' will start
     growing in the same directory that contains Circle's log messages.
 
+    If you're using 'csh' on an old version of System V, csh might try to
+    execute 'autorun' itself, giving you a message like "Permission denied"
+    when you try to run "./autorun".  If so, type "sh ./autorun &" instead.
 
 6)  Wait until the line 'No connections.  Going to sleep.' appears in the
     syslog.  This indicates that the server is ready and waiting for

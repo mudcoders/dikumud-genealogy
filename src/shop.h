@@ -12,11 +12,10 @@
 struct shop_buy_data {
    int type;
    char *keywords;
-} ;
+};
 
 #define BUY_TYPE(i)		((i).type)
 #define BUY_WORD(i)		((i).keywords)
-
 
 struct shop_data {
    room_vnum vnum;		/* Virtual number of this shop		*/
@@ -35,7 +34,7 @@ struct shop_data {
    bitvector_t	 bitvector;	/* Can attack? Use bank? Cast here?	*/
    mob_rnum	 keeper;	/* The mobile who owns the shop (rnum)	*/
    int	 with_who;		/* Who does the shop trade with?	*/
-   room_rnum *in_room;		/* Where is the shop?			*/
+   room_vnum *in_room;		/* Where is the shop?			*/
    int	 open1, open2;		/* When does the shop open?		*/
    int	 close1, close2;	/* When does the shop close?		*/
    int	 bankAccount;		/* Store all gold over 15000 (disabled)	*/
@@ -52,7 +51,6 @@ struct shop_data {
 
 /* Pretty general macros that could be used elsewhere */
 #define IS_GOD(ch)		(!IS_NPC(ch) && (GET_LEVEL(ch) >= LVL_GOD))
-#define GET_OBJ_NUM(obj)	(obj->item_number)
 #define END_OF(buffer)		((buffer) + strlen((buffer)))
 
 
@@ -126,8 +124,8 @@ struct stack_data {
 
 
 
-#define	WILL_START_FIGHT	1
-#define WILL_BANK_MONEY		2
+#define WILL_START_FIGHT	(1 << 0)
+#define WILL_BANK_MONEY		(1 << 1)
 
 #define SHOP_KILL_CHARS(i)	(IS_SET(SHOP_BITVECTOR(i), WILL_START_FIGHT))
 #define SHOP_USES_BANK(i)	(IS_SET(SHOP_BITVECTOR(i), WILL_BANK_MONEY))

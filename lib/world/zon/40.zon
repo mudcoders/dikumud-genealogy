@@ -1,6 +1,6 @@
 #40
-Moria, Levels 1-2~
-4199 20 2
+Mines of Moria~
+4000 4198 20 2
 *
 *  Created for DikuMud
 *  Heavily rewritten descriptions for CircleMud by Furry
@@ -80,8 +80,8 @@ G 1 4101 1                      Swordsman's Gloves
 M 0 4107 1 4119         Kobold
 G 1 4104 10                     Slime
 * Doors
-D 0 4119 1 1            Secret Passage
-D 0 4121 3 1
+D 0 4119 3 1            Secret Passage
+D 0 4121 1 1
 *
 * North Of Mountain -- Wilderness
 *
@@ -90,5 +90,4 @@ M 0 4057 2 4041         Lion
 M 0 4058 1 4044         Hill Giant
 *
 S
-#99999
-$~
+$

@@ -13,23 +13,21 @@ void basic_mud_log(const char *x, ...)
   puts(x);
 }
 
-char *fread_string(FILE * fl, char *error)
+char *fread_string(FILE * fl, const char *error)
 {
-  char buf[MAX_STRING_LENGTH], tmp[500];
-  char *rslt;
-  register char *point;
+  char buf[MAX_STRING_LENGTH], tmp[512], *rslt, *point;
   int flag;
 
   *buf = '\0';
 
   do {
-    if (!fgets(tmp, MAX_STRING_LENGTH, fl)) {
+    if (!fgets(tmp, sizeof(tmp), fl)) {
       printf("fread_string: format error at or near %s\n", error);
-      exit(0);
+      exit(1);
     }
     if (strlen(tmp) + strlen(buf) > MAX_STRING_LENGTH) {
       printf("SYSERR: fread_string: string too large (shopconv.c)");
-      exit(0);
+      exit(1);
     } else
       strcat(buf, tmp);
 
@@ -49,7 +47,7 @@ char *fread_string(FILE * fl, char *error)
     CREATE(rslt, char, strlen(buf) + 1);
     strcpy(rslt, buf);
   } else
-    rslt = 0;
+    rslt = NULL;
   return (rslt);
 }
 

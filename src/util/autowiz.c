@@ -230,18 +230,28 @@ int main(int argc, char **argv)
   }
   wizlevel = atoi(argv[1]);
   immlevel = atoi(argv[3]);
+
+#ifdef CIRCLE_UNIX	/* Perhaps #ifndef CIRCLE_WINDOWS but ... */
   if (argc == 6)
     pid = atoi(argv[5]);
+#endif
+
   initialize();
   read_file();
   sort_names();
+
   fl = fopen(argv[2], "w");
   write_wizlist(fl, wizlevel, LVL_IMPL);
   fclose(fl);
+
   fl = fopen(argv[4], "w");
   write_wizlist(fl, immlevel, wizlevel - 1);
   fclose(fl);
+
+#ifdef CIRCLE_UNIX	/* ... I don't have the platforms to test. */
   if (pid)
     kill(pid, SIGUSR1);
+#endif
+
   return (0);
 }

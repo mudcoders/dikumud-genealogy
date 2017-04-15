@@ -42,6 +42,15 @@ if test $ac_cv_prog_gcc = yes; then
     CFLAGS=$OLDCFLAGS
   ])
 
+  dnl If Determine if gcc can accept -fno-builtin
+  AC_CACHE_CHECK(whether ${CC-cc} accepts -fno-builtin, ac_cv_gcc_fnb,
+  [
+    OLDCFLAGS=$CFLAGS
+    CFLAGS="$CFLAGS -fno-builtin"
+    AC_TRY_COMPILE(, , ac_cv_gcc_fnb=yes, ac_cv_gcc_fnb=no)
+    CFLAGS=$OLDCFLAGS
+  ])
+
   dnl If gcc -Wall gives no warnings with isascii(), use "-Wall";
   dnl Otherwise, if gcc -Wall gives isascii warnings:
   dnl    If we can use -Wno-char-subscripts, use "-Wall -Wno-char-subscripts"
@@ -85,7 +94,7 @@ AC_CHECK_HEADERS(fcntl.h sys/fcntl.h errno.h net/errno.h string.h strings.h)
 AC_CHECK_HEADERS(limits.h sys/time.h sys/select.h sys/types.h unistd.h)
 AC_CHECK_HEADERS(memory.h crypt.h assert.h arpa/telnet.h arpa/inet.h)
 AC_CHECK_HEADERS(sys/stat.h sys/socket.h sys/resource.h netinet/in.h netdb.h)
-AC_CHECK_HEADERS(signal.h sys/uio.h)
+AC_CHECK_HEADERS(signal.h sys/uio.h mcheck.h)
 
 AC_UNSAFE_CRYPT
 
@@ -119,8 +128,23 @@ EOF
 fi
 
 
+dnl Check for the 'typedef socklen_t' definition. Even uglier, yes.
+if test $ac_cv_header_sys_socket_h = no; then
+  ac_cv_socklen_t = no;
+else
+  AC_CACHE_CHECK([for typedef socklen_t], ac_cv_socklen_t,
+    [ AC_TRY_COMPILE([#include <sys/socket.h>],[socklen_t sl; sl=0;], ac_cv_socklen_t=yes, ac_cv_socklen_t=no)])
+fi
+
+if test $ac_cv_socklen_t = no; then
+  AC_DEFINE(socklen_t, int)
+fi
+
+
 dnl Checks for library functions.
 AC_TYPE_SIGNAL
+AC_FUNC_VPRINTF
+AC_CHECK_FUNCS(gettimeofday select snprintf strcasecmp strdup strerror stricmp strlcpy strncasecmp strnicmp strstr vsnprintf)
 
 dnl Check for functions that parse IP addresses
 ORIGLIBS=$LIBS
@@ -169,13 +193,21 @@ AC_CHECK_PROTO(select)
 AC_CHECK_PROTO(setitimer)
 AC_CHECK_PROTO(setrlimit)
 AC_CHECK_PROTO(setsockopt)
+AC_CHECK_PROTO(snprintf)
 AC_CHECK_PROTO(socket)
 AC_CHECK_PROTO(sprintf)
 AC_CHECK_PROTO(sscanf)
+AC_CHECK_PROTO(strcasecmp)
+AC_CHECK_PROTO(strdup)
 AC_CHECK_PROTO(strerror)
+AC_CHECK_PROTO(stricmp)
+AC_CHECK_PROTO(strlcpy)
+AC_CHECK_PROTO(strncasecmp)
+AC_CHECK_PROTO(strnicmp)
 AC_CHECK_PROTO(system)
 AC_CHECK_PROTO(time)
 AC_CHECK_PROTO(unlink)
+AC_CHECK_PROTO(vsnprintf)
 AC_CHECK_PROTO(write)
 
 AC_OUTPUT(src/Makefile src/util/Makefile)

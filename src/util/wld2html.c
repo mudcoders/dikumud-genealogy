@@ -3,7 +3,7 @@
 *  Usage: Convert a DikuMUD .wld file into a series of .html files        *
 *                                                                         *
 *  This program is in the public domain.                                  *
-*  Written (QUICKLY AND DIRTILY) by Jeremy Elson (jelson@cs.jhu.edu)      *
+*  Written (QUICKLY AND DIRTILY) by Jeremy Elson (jelson@circlemud.org)   *
 *  Based on the Circle 3.0 syntax checker program (scheck.c)              *
 ************************************************************************ */
 

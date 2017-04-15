@@ -41,7 +41,7 @@ struct command_info {
    const char *command;
    byte minimum_position;
    void	(*command_pointer)
-	   (struct char_data *ch, char * argument, int cmd, int subcmd);
+	   (struct char_data *ch, char *argument, int cmd, int subcmd);
    sh_int minimum_level;
    int	subcmd;
 };
@@ -51,7 +51,7 @@ struct command_info {
  * so it has been moved down here.
  */
 #ifndef __INTERPRETER_C__
-extern struct command_info cmd_info[];
+extern const struct command_info cmd_info[];
 #endif
 
 /*

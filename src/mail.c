@@ -10,7 +10,7 @@
 
 /******* MUD MAIL SYSTEM MAIN FILE ***************************************
 
-Written by Jeremy Elson (jelson@cs.jhu.edu)
+Written by Jeremy Elson (jelson@circlemud.org)
 
 *************************************************************************/
 
@@ -25,32 +25,51 @@ Written by Jeremy Elson (jelson@cs.jhu.edu)
 #include "handler.h"
 #include "mail.h"
 
-void postmaster_send_mail(struct char_data * ch, struct char_data *mailman,
-			  int cmd, char *arg);
-void postmaster_check_mail(struct char_data * ch, struct char_data *mailman,
-			  int cmd, char *arg);
-void postmaster_receive_mail(struct char_data * ch, struct char_data *mailman,
-			  int cmd, char *arg);
+
+/* external variables */
+extern int no_mail;
+
+/* external functions */
 SPECIAL(postmaster);
 
-extern struct room_data *world;
-extern struct index_data *mob_index;
-extern int no_mail;
-int find_name(char *name);
-
+/* local globals */
 mail_index_type *mail_index = NULL;	/* list of recs in the mail file  */
 position_list_type *free_list = NULL;	/* list of free positions in file */
 long file_end_pos = 0;			/* length of file */
 
 /* local functions */
+void postmaster_send_mail(struct char_data *ch, struct char_data *mailman, int cmd, char *arg);
+void postmaster_check_mail(struct char_data *ch, struct char_data *mailman, int cmd, char *arg);
+void postmaster_receive_mail(struct char_data *ch, struct char_data *mailman, int cmd, char *arg);
 void push_free_list(long pos);
 long pop_free_list(void);
+void clear_free_list(void);
 mail_index_type *find_char_in_index(long searchee);
 void write_to_file(void *buf, int size, long filepos);
 void read_from_file(void *buf, int size, long filepos);
 void index_mail(long id_to_index, long pos);
+int mail_recip_ok(const char *name);
 
 /* -------------------------------------------------------------------------- */
+
+int mail_recip_ok(const char *name)
+{
+  struct char_file_u tmp_store;
+  struct char_data *victim;
+  int ret = FALSE;
+
+  CREATE(victim, struct char_data, 1);
+  clear_char(victim);
+  if (load_char(name, &tmp_store) >= 0) {
+    store_to_char(&tmp_store, victim);
+    char_to_room(victim, 0);
+    if (!PLR_FLAGGED(victim, PLR_DELETED))
+      ret = TRUE;
+    extract_char_final(victim);
+  } else 
+    free(victim);
+  return ret;
+}
 
 /*
  * void push_free_list(long #1)
@@ -97,6 +116,13 @@ long pop_free_list(void)
   free(old_pos);
   /* Give back the free offset. */
   return (return_value);
+}
+
+
+void clear_free_list(void)
+{
+  while (free_list)
+    pop_free_list();
 }
 
 
@@ -224,7 +250,7 @@ int scan_file(void)
   header_block_type next_block;
   int total_messages = 0, block_num = 0;
 
-  if (!(mail_file = fopen(MAIL_FILE, "r"))) {
+  if (!(mail_file = fopen(MAIL_FILE, "rb"))) {
     log("   Mail file non-existant... creating new file.");
     touch(MAIL_FILE);
     return (1);
@@ -298,7 +324,7 @@ void store_mail(long to, long from, char *message_pointer)
   header.header_data.from = from;
   header.header_data.to = to;
   header.header_data.mail_time = time(0);
-  strncpy(header.txt, msg_txt, HEADER_BLOCK_DATASIZE);
+  strncpy(header.txt, msg_txt, HEADER_BLOCK_DATASIZE);	/* strncpy: OK (h.txt:HEADER_BLOCK_DATASIZE+1) */
   header.txt[HEADER_BLOCK_DATASIZE] = '\0';
 
   target_address = pop_free_list();	/* find next free block */
@@ -323,7 +349,7 @@ void store_mail(long to, long from, char *message_pointer)
   /* now write the current data block */
   memset((char *) &data, 0, sizeof(data));	/* clear the record */
   data.block_type = LAST_BLOCK;
-  strncpy(data.txt, msg_txt, DATA_BLOCK_DATASIZE);
+  strncpy(data.txt, msg_txt, DATA_BLOCK_DATASIZE);	/* strncpy: OK (d.txt:DATA_BLOCK_DATASIZE+1) */
   data.txt[DATA_BLOCK_DATASIZE] = '\0';
   write_to_file(&data, BLOCK_SIZE, target_address);
   bytes_written += strlen(data.txt);
@@ -351,7 +377,7 @@ void store_mail(long to, long from, char *message_pointer)
 
     /* now write the next block, assuming it's the last.  */
     data.block_type = LAST_BLOCK;
-    strncpy(data.txt, msg_txt, DATA_BLOCK_DATASIZE);
+    strncpy(data.txt, msg_txt, DATA_BLOCK_DATASIZE);	/* strncpy: OK (d.txt:DATA_BLOCK_DATASIZE+1) */
     data.txt[DATA_BLOCK_DATASIZE] = '\0';
     write_to_file(&data, BLOCK_SIZE, target_address);
 
@@ -376,9 +402,8 @@ char *read_delete(long recipient)
   mail_index_type *mail_pointer, *prev_mail;
   position_list_type *position_pointer;
   long mail_address, following_block;
-  char *message, *tmstr, buf[200];
+  char *tmstr, buf[MAX_MAIL_SIZE + 256];	/* + header */
   char *from, *to;
-  size_t string_size;
 
   if (recipient < 0) {
     log("SYSERR: Mail system -- non-fatal error #6. (recipient: %ld)", recipient);
@@ -432,17 +457,19 @@ char *read_delete(long recipient)
   from = get_name_by_id(header.header_data.from);
   to = get_name_by_id(recipient);
 
-  sprintf(buf, " * * * * Midgaard Mail System * * * *\r\n"
-	  "Date: %s\r\n"
-	  "  To: %s\r\n"
-	  "From: %s\r\n\r\n", tmstr, to ? to : "Unknown",
-	  from ? from : "Unknown");
+  snprintf(buf, sizeof(buf),
+	" * * * * Midgaard Mail System * * * *\r\n"
+	"Date: %s\r\n"
+	"  To: %s\r\n"
+	"From: %s\r\n"
+	"\r\n"
+	"%s",
 
-  string_size = (sizeof(char) * (strlen(buf) + strlen(header.txt) + 1));
-  CREATE(message, char, string_size);
-  strcpy(message, buf);
-  strcat(message, header.txt);
-  message[string_size - 1] = '\0';
+	tmstr,
+	to ? to : "Unknown",
+	from ? from : "Unknown",
+	header.txt
+	);
   following_block = header.header_data.next_block;
 
   /* mark the block as deleted */
@@ -453,10 +480,7 @@ char *read_delete(long recipient)
   while (following_block != LAST_BLOCK) {
     read_from_file(&data, BLOCK_SIZE, following_block);
 
-    string_size = (sizeof(char) * (strlen(message) + strlen(data.txt) + 1));
-    RECREATE(message, char, string_size);
-    strcat(message, data.txt);
-    message[string_size - 1] = '\0';
+    strcat(buf, data.txt);	/* strcat: OK (data.txt:DATA_BLOCK_DATASIZE < buf:MAX_MAIL_SIZE) */
     mail_address = following_block;
     following_block = data.block_type;
     data.block_type = DELETED_BLOCK;
@@ -464,13 +488,13 @@ char *read_delete(long recipient)
     push_free_list(mail_address);
   }
 
-  return (message);
+  return strdup(buf);
 }
 
 
 /****************************************************************
 * Below is the spec_proc for a postmaster using the above       *
-* routines.  Written by Jeremy Elson (jelson@server.cs.jhu.edu) *
+* routines.  Written by Jeremy Elson (jelson@circlemud.org) *
 ****************************************************************/
 
 SPECIAL(postmaster)
@@ -482,7 +506,7 @@ SPECIAL(postmaster)
     return (0);
 
   if (no_mail) {
-    send_to_char("Sorry, the mail system is having technical difficulties.\r\n", ch);
+    send_to_char(ch, "Sorry, the mail system is having technical difficulties.\r\n");
     return (0);
   }
 
@@ -500,15 +524,14 @@ SPECIAL(postmaster)
 }
 
 
-void postmaster_send_mail(struct char_data * ch, struct char_data *mailman,
+void postmaster_send_mail(struct char_data *ch, struct char_data *mailman,
 			  int cmd, char *arg)
 {
   long recipient;
-  char buf[256], **write;
+  char buf[MAX_INPUT_LENGTH], **mailwrite;
 
   if (GET_LEVEL(ch) < MIN_MAIL_LEVEL) {
-    sprintf(buf, "$n tells you, 'Sorry, you have to be level %d to send mail!'",
-	    MIN_MAIL_LEVEL);
+    snprintf(buf, sizeof(buf), "$n tells you, 'Sorry, you have to be level %d to send mail!'", MIN_MAIL_LEVEL);
     act(buf, FALSE, mailman, 0, ch, TO_VICT);
     return;
   }
@@ -520,18 +543,19 @@ void postmaster_send_mail(struct char_data * ch, struct char_data *mailman,
     return;
   }
   if (GET_GOLD(ch) < STAMP_PRICE) {
-    sprintf(buf, "$n tells you, 'A stamp costs %d coins.'\r\n"
-	    "$n tells you, '...which I see you can't afford.'", STAMP_PRICE);
+    snprintf(buf, sizeof(buf), "$n tells you, 'A stamp costs %d coin%s.'\r\n"
+	    "$n tells you, '...which I see you can't afford.'", STAMP_PRICE,
+            STAMP_PRICE == 1 ? "" : "s");
     act(buf, FALSE, mailman, 0, ch, TO_VICT);
     return;
   }
-  if ((recipient = get_id_by_name(buf)) < 0) {
+  if ((recipient = get_id_by_name(buf)) < 0 || !mail_recip_ok(buf)) {
     act("$n tells you, 'No one by that name is registered here!'",
 	FALSE, mailman, 0, ch, TO_VICT);
     return;
   }
   act("$n starts to write some mail.", TRUE, ch, 0, 0, TO_ROOM);
-  sprintf(buf, "$n tells you, 'I'll take %d coins for the stamp.'\r\n"
+  snprintf(buf, sizeof(buf), "$n tells you, 'I'll take %d coins for the stamp.'\r\n"
        "$n tells you, 'Write your message, use @ on a new line when done.'",
 	  STAMP_PRICE);
 
@@ -540,41 +564,38 @@ void postmaster_send_mail(struct char_data * ch, struct char_data *mailman,
   SET_BIT(PLR_FLAGS(ch), PLR_MAILING);	/* string_write() sets writing. */
 
   /* Start writing! */
-  CREATE(write, char *, 1);
-  string_write(ch->desc, write, MAX_MAIL_SIZE, recipient, NULL);
+  CREATE(mailwrite, char *, 1);
+  string_write(ch->desc, mailwrite, MAX_MAIL_SIZE, recipient, NULL);
 }
 
 
-void postmaster_check_mail(struct char_data * ch, struct char_data *mailman,
+void postmaster_check_mail(struct char_data *ch, struct char_data *mailman,
 			  int cmd, char *arg)
 {
-  char buf[256];
-
   if (has_mail(GET_IDNUM(ch)))
-    sprintf(buf, "$n tells you, 'You have mail waiting.'");
+    act("$n tells you, 'You have mail waiting.'", FALSE, mailman, 0, ch, TO_VICT);
   else
-    sprintf(buf, "$n tells you, 'Sorry, you don't have any mail waiting.'");
-  act(buf, FALSE, mailman, 0, ch, TO_VICT);
+    act("$n tells you, 'Sorry, you don't have any mail waiting.'", FALSE, mailman, 0, ch, TO_VICT);
 }
 
 
-void postmaster_receive_mail(struct char_data * ch, struct char_data *mailman,
+void postmaster_receive_mail(struct char_data *ch, struct char_data *mailman,
 			  int cmd, char *arg)
 {
   char buf[256];
   struct obj_data *obj;
 
   if (!has_mail(GET_IDNUM(ch))) {
-    sprintf(buf, "$n tells you, 'Sorry, you don't have any mail waiting.'");
+    snprintf(buf, sizeof(buf), "$n tells you, 'Sorry, you don't have any mail waiting.'");
     act(buf, FALSE, mailman, 0, ch, TO_VICT);
     return;
   }
   while (has_mail(GET_IDNUM(ch))) {
     obj = create_obj();
     obj->item_number = NOTHING;
-    obj->name = str_dup("mail paper letter");
-    obj->short_description = str_dup("a piece of mail");
-    obj->description = str_dup("Someone has left a piece of mail here.");
+    obj->name = strdup("mail paper letter");
+    obj->short_description = strdup("a piece of mail");
+    obj->description = strdup("Someone has left a piece of mail here.");
 
     GET_OBJ_TYPE(obj) = ITEM_NOTE;
     GET_OBJ_WEAR(obj) = ITEM_WEAR_TAKE | ITEM_WEAR_HOLD;
@@ -585,7 +606,7 @@ void postmaster_receive_mail(struct char_data * ch, struct char_data *mailman,
 
     if (obj->action_description == NULL)
       obj->action_description =
-	str_dup("Mail system error - please report.  Error #11.\r\n");
+	strdup("Mail system error - please report.  Error #11.\r\n");
 
     obj_to_char(obj, ch);
 

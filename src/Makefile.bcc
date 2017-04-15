@@ -130,7 +130,7 @@ C:\BC5\LIB\cw32i.lib
 
 |
 alias.obj : alias.c
-  $(BCC32) -P0 -c @&&|
+  $(BCC32) -P- -c @&&|
  $(CompOptsAt_circledexe) $(CompInheritOptsAt_circledexe) -o$@ alias.c
 |
 

@@ -556,7 +556,7 @@ This is a creature with the upper torso of a beautiful woman, but the
 lower body of a four-legged beast.  She licks her lips as she looks at
 you greedily.
 ~
-cfj 0 -500 S
+cj 0 -500 S
 12 12 3 1d10+120 2d5+1
 1500 10500
 8 8 2
@@ -578,7 +578,7 @@ The Sultan rests here on his throne.
 ~
 You see a large wealthy man in red robes smiling at you.
 ~
-befilno dhk 200 S
+beilno dhk 200 S
 10 5 -4 6d6+830 1d6+0
 1200 25000
 5 5 1
@@ -637,7 +637,7 @@ Allah is here.
 ~
 You see the all-knowing Allah.
 ~
-abefiklnopqr dhks 1000 S
+abeiklnopqr dhks 1000 S
 11 0 0 2d3+2300 2d20+20
 0 45000 
 5 5 0

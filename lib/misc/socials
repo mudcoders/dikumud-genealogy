@@ -125,7 +125,7 @@ You cuddle $M.
 $n cuddles $N.
 $n cuddles you.
 They aren't here.
-You must feel very cuddly indeed..   :)
+You must feel very cuddly indeed.  :)
 #
 
 curse 0 0
@@ -167,9 +167,9 @@ embrace 0 0
 You reach but come away empty.  :(
 $n reaches out for an embrace, but no one is there.
 You embrace $M warmly.
-$n embraces $N warmly.  
-$n embraces you warmly.  
-Alas, your embracee is not here.  
+$n embraces $N warmly.
+$n embraces you warmly.
+Alas, your embracee is not here.
 You embrace yourself??  
 $n wraps his arms around himself for a warm self-embrace.
 
@@ -562,8 +562,8 @@ snarl 0 0
 You snarl like a viscious animal.
 $n snarls like a cornered, viscious animal.
 You snarl at $M angrily.  Control yourself!
-$n snarls angrily at $N.  $e seems incapable of controlling $mself.
-$n snarls viciously at you.  $s self-control seems to have gone bananas.
+$n snarls angrily at $N.  $e$u seems incapable of controlling $mself.
+$n snarls viciously at you.  $U$s self-control seems to have gone bananas.
 Eh?  Who?  Not here, my friend.
 You snarl at yourself, obviously suffering from schizophrenia.
 $n snarls at $mself, and suddenly looks very frightened.
@@ -656,7 +656,7 @@ $n lets out a lot of steam, much to your relief.
 stroke 0 0
 Whose thigh would you like to stroke?
 #
-You gently stroke $s inner thigh.
+You gently stroke $S inner thigh.
 $n gently strokes $N's inner thigh... hmm...
 $n gently strokes your inner thigh with feathery touches.
 That person is not within reach.
@@ -697,7 +697,7 @@ taunt 0 0
 You taunt the nothing in front of you. 
 $n taunts something that seems to be right in front of $m.
 You taunt $M, to your own delight.
-$n taunts $N rather insultingly.  $n seems to enjoy it tremendously.
+$n taunts $N rather insultingly.  $U$n seems to enjoy it tremendously.
 $n taunts you.  It really hurts your feelings.
 Hmmmmmmm.....nope, no one by that name here.
 You taunt yourself, almost making you cry...:(
