@@ -23,13 +23,19 @@
 /* extern variables */
 extern struct room_data *world;
 extern struct descriptor_data *descriptor_list;
-extern struct room_data *world;
 
 /* extern functions */
 char *fread_action(FILE * fl, int nr);
 
 /* local globals */
 static int list_top = -1;
+
+/* local functions */
+int find_action(int cmd);
+ACMD(do_action);
+ACMD(do_insult);
+void boot_social_messages(void);
+
 
 struct social_messg {
   int act_nr;
@@ -66,7 +72,7 @@ int find_action(int cmd)
     return (-1);
 
   for (;;) {
-    mid = (bot + top) >> 1;
+    mid = (bot + top) / 2;
 
     if (soc_mess_list[mid].act_nr == cmd)
       return (mid);
@@ -94,7 +100,7 @@ ACMD(do_action)
   }
   action = &soc_mess_list[act_nr];
 
-  if (action->char_found)
+  if (action->char_found && argument)
     one_argument(argument, buf);
   else
     *buf = '\0';
@@ -180,7 +186,7 @@ char *fread_action(FILE * fl, int nr)
 
   fgets(buf, MAX_STRING_LENGTH, fl);
   if (feof(fl)) {
-    fprintf(stderr, "SYSERR: fread_action: unexpected EOF near action #%d", nr);
+    log("SYSERR: fread_action: unexpected EOF near action #%d", nr);
     exit(1);
   }
   if (*buf == '#')
@@ -200,7 +206,6 @@ void boot_social_messages(void)
   int nr, i, hide, min_pos, curr_soc = -1;
   char next_soc[100];
   struct social_messg temp;
-  extern struct command_info cmd_info[];
 
   /* open social file */
   if (!(fl = fopen(SOCMESS_FILE, "r"))) {
@@ -220,13 +225,10 @@ void boot_social_messages(void)
     fscanf(fl, " %s ", next_soc);
     if (*next_soc == '$')
       break;
-    if ((nr = find_command(next_soc)) < 0) {
-      sprintf(buf, "Unknown social '%s' in social file", next_soc);
-      log(buf);
-    }
+    if ((nr = find_command(next_soc)) < 0)
+      log("Unknown social '%s' in social file", next_soc);
     if (fscanf(fl, " %d %d \n", &hide, &min_pos) != 2) {
-      fprintf(stderr, "SYSERR: format error in social file near social '%s'\n",
-	      next_soc);
+      log("SYSERR: format error in social file near social '%s'\n", next_soc);
       exit(1);
     }
     /* read the stuff */
@@ -234,6 +236,11 @@ void boot_social_messages(void)
     soc_mess_list[curr_soc].act_nr = nr;
     soc_mess_list[curr_soc].hide = hide;
     soc_mess_list[curr_soc].min_victim_position = min_pos;
+
+#ifdef CIRCLE_ACORN
+    if (fgetc(fl) != '\n')
+      log("SYSERR: Acorn bug workaround failed.");
+#endif
 
     soc_mess_list[curr_soc].char_no_arg = fread_action(fl, nr);
     soc_mess_list[curr_soc].others_no_arg = fread_action(fl, nr);

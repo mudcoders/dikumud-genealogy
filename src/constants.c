@@ -13,8 +13,9 @@
 
 #include "structs.h"
 
-const char circlemud_version[] = {
-"CircleMUD, version 3.00 beta patchlevel 12\r\n"};
+cpp_extern const char circlemud_version[] = {
+	"CircleMUD, version 3.00 beta patchlevel 14"
+};
 
 
 /* strings corresponding to ordinals/bitvectors in structs.h ***********/
@@ -84,7 +85,10 @@ const char *sector_types[] = {
 };
 
 
-/* SEX_x */
+/*
+ * SEX_x
+ * Not used in sprinttype() so no \n.
+ */
 const char *genders[] =
 {
   "Neutral",
@@ -230,11 +234,15 @@ const char *connected_types[] = {
   "Changing PW 3",
   "Self-Delete 1",
   "Self-Delete 2",
+  "Disconnecting",
   "\n"
 };
 
 
-/* WEAR_x - for eq list */
+/*
+ * WEAR_x - for eq list
+ * Not use in sprinttype() so no \n.
+ */
 const char *where[] = {
   "<used as light>      ",
   "<worn on finger>     ",
@@ -446,7 +454,7 @@ const char *drinknames[] =
 
 
 /* effect of drinks on hunger, thirst, and drunkenness -- see values.doc */
-const int drink_aff[][3] = {
+int drink_aff[][3] = {
   {0, 1, 10},
   {3, 2, 5},
   {5, 2, 5},
@@ -485,10 +493,14 @@ const char *color_liquid[] =
   "red",
   "clear",
   "crystal clear"
+  "\n"
 };
 
 
-/* level of fullness for drink containers */
+/*
+ * level of fullness for drink containers
+ * Not used in sprinttype() so no \n.
+ */
 const char *fullness[] =
 {
   "less than half ",
@@ -502,7 +514,7 @@ const char *fullness[] =
 
 
 /* [ch] strength apply (all) */
-const struct str_app_type str_app[] = {
+cpp_extern const struct str_app_type str_app[] = {
   {-5, -4, 0, 0},	/* str = 0 */
   {-5, -4, 3, 1},	/* str = 1 */
   {-3, -2, 3, 2},
@@ -521,7 +533,7 @@ const struct str_app_type str_app[] = {
   {0, 0, 170, 15},	/* str = 15 */
   {0, 1, 195, 16},
   {1, 1, 220, 18},
-  {1, 2, 255, 20},	/* dex = 18 */
+  {1, 2, 255, 20},	/* str = 18 */
   {3, 7, 640, 40},
   {3, 8, 700, 40},	/* str = 20 */
   {4, 9, 810, 40},
@@ -539,7 +551,7 @@ const struct str_app_type str_app[] = {
 
 
 /* [dex] skill apply (thieves only) */
-const struct dex_skill_type dex_app_skill[] = {
+cpp_extern const struct dex_skill_type dex_app_skill[] = {
   {-99, -99, -90, -99, -60},	/* dex = 0 */
   {-90, -90, -60, -90, -50},	/* dex = 1 */
   {-80, -80, -40, -80, -45},
@@ -571,7 +583,7 @@ const struct dex_skill_type dex_app_skill[] = {
 
 
 /* [dex] apply (all) */
-struct dex_app_type dex_app[] = {
+cpp_extern const struct dex_app_type dex_app[] = {
   {-7, -7, 6},		/* dex = 0 */
   {-6, -6, 5},		/* dex = 1 */
   {-4, -4, 5},
@@ -603,7 +615,7 @@ struct dex_app_type dex_app[] = {
 
 
 /* [con] apply (all) */
-struct con_app_type con_app[] = {
+cpp_extern const struct con_app_type con_app[] = {
   {-4, 20},		/* con = 0 */
   {-3, 25},		/* con = 1 */
   {-2, 30},
@@ -635,7 +647,7 @@ struct con_app_type con_app[] = {
 
 
 /* [int] apply (all) */
-struct int_app_type int_app[] = {
+cpp_extern const struct int_app_type int_app[] = {
   {3},		/* int = 0 */
   {5},		/* int = 1 */
   {7},
@@ -666,7 +678,7 @@ struct int_app_type int_app[] = {
 
 
 /* [wis] apply (all) */
-struct wis_app_type wis_app[] = {
+cpp_extern const struct wis_app_type wis_app[] = {
   {0},	/* wis = 0 */
   {0},  /* wis = 1 */
   {0},
@@ -763,7 +775,7 @@ const char *npc_class_types[] = {
 
 
 
-const int rev_dir[] =
+int rev_dir[] =
 {
   2,
   3,
@@ -774,7 +786,7 @@ const int rev_dir[] =
 };
 
 
-const int movement_loss[] =
+int movement_loss[] =
 {
   1,	/* Inside     */
   1,	/* City       */
@@ -788,7 +800,7 @@ const int movement_loss[] =
   5     /* Underwater */
 };
 
-
+/* Not used in sprinttype(). */
 const char *weekdays[] = {
   "the Day of the Moon",
   "the Day of the Bull",
@@ -796,9 +808,11 @@ const char *weekdays[] = {
   "the Day of Thunder",
   "the Day of Freedom",
   "the day of the Great Gods",
-"the Day of the Sun"};
+  "the Day of the Sun"
+};
 
 
+/* Not used in sprinttype(). */
 const char *month_name[] = {
   "Month of Winter",		/* 0 */
   "Month of the Winter Wolf",
@@ -818,4 +832,3 @@ const char *month_name[] = {
   "Month of the Ancient Darkness",
   "Month of the Great Evil"
 };
-

@@ -24,152 +24,30 @@ extern struct obj_data *object_list;
 extern struct char_data *character_list;
 extern struct index_data *obj_index;
 
-extern struct weather_data weather_info;
 extern struct descriptor_data *descriptor_list;
 extern struct zone_data *zone_table;
 
 extern int mini_mud;
 extern int pk_allowed;
-
+extern char *spell_wear_off_msg[];
 extern struct default_mobile_stats *mob_defaults;
-extern char weapon_verbs[];
-extern int *max_ac_applys;
 extern struct apply_mod_defaults *apmd;
 
+byte saving_throws(int class_num, int type, int level); /* class.c */
 void clearMemory(struct char_data * ch);
-void act(char *str, int i, struct char_data * c, struct obj_data * o,
-	      void *vict_obj, int j);
-
-void damage(struct char_data * ch, struct char_data * victim,
-	         int damage, int weapontype);
-
 void weight_change_object(struct obj_data * obj, int weight);
 void add_follower(struct char_data * ch, struct char_data * leader);
-int dice(int number, int size);
 extern struct spell_info_type spell_info[];
 
-
-struct char_data *read_mobile(int, int);
-
+/* local functions */
+int mag_materials(struct char_data * ch, int item0, int item1, int item2, int extract, int verbose);
+void perform_mag_groups(int level, struct char_data * ch, struct char_data * tch, int spellnum, int savetype);
+int mag_savingthrow(struct char_data * ch, int type);
+void affect_update(void);
 
 /*
- * Saving throws for:
- * MCTW
- *   PARA, ROD, PETRI, BREATH, SPELL
- *     Levels 0-40
+ * Saving throws are now in class.c (bpl13)
  */
-
-const byte saving_throws[NUM_CLASSES][5][41] = {
-
-  {				/* Mages */
-		{90, 70, 69, 68, 67, 66, 65, 63, 61, 60, 59,	/* 0 - 10 */
-/* PARA */	57, 55, 54, 53, 53, 52, 51, 50, 48, 46,		/* 11 - 20 */
-		45, 44, 42, 40, 38, 36, 34, 32, 30, 28,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 55, 53, 51, 49, 47, 45, 43, 41, 40, 39,	/* 0 - 10 */
-/* ROD */	37, 35, 33, 31, 30, 29, 27, 25, 23, 21,		/* 11 - 20 */
-		20, 19, 17, 15, 14, 13, 12, 11, 10, 9,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 65, 63, 61, 59, 57, 55, 53, 51, 50, 49,	/* 0 - 10 */
-/* PETRI */	47, 45, 43, 41, 40, 39, 37, 35, 33, 31,		/* 11 - 20 */
-		30, 29, 27, 25, 23, 21, 19, 17, 15, 13,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 75, 73, 71, 69, 67, 65, 63, 61, 60, 59,	/* 0 - 10 */
-/* BREATH */	57, 55, 53, 51, 50, 49, 47, 45, 43, 41,		/* 11 - 20 */
-		40, 39, 37, 35, 33, 31, 29, 27, 25, 23,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 60, 58, 56, 54, 52, 50, 48, 46, 45, 44,	/* 0 - 10 */
-/* SPELL */	42, 40, 38, 36, 35, 34, 32, 30, 28, 26,		/* 11 - 20 */
-		25, 24, 22, 20, 18, 16, 14, 12, 10, 8,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-  },
-
-  {				/* Clerics */
-		{90, 50, 59, 48, 46, 45, 43, 40, 37, 35, 34,	/* 0 - 10 */
-/* PARA */	33, 31, 30, 29, 27, 26, 25, 24, 23, 22,		/* 11 - 20 */
-		21, 20, 18, 15, 14, 12, 10, 9, 8, 7,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 70, 69, 68, 66, 65, 63, 60, 57, 55, 54,	/* 0 - 10 */
-/* ROD */	53, 51, 50, 49, 47, 46, 45, 44, 43, 42,		/* 11 - 20 */
-		41, 40, 38, 35, 34, 32, 30, 29, 28, 27,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 65, 64, 63, 61, 60, 58, 55, 53, 50, 49,	/* 0 - 10 */
-/* PETRI */	48, 46, 45, 44, 43, 41, 40, 39, 38, 37,		/* 11 - 20 */
-		36, 35, 33, 31, 29, 27, 25, 24, 23, 22,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 80, 79, 78, 76, 75, 73, 70, 67, 65, 64,	/* 0 - 10 */
-/* BREATH */	63, 61, 60, 59, 57, 56, 55, 54, 53, 52,		/* 11 - 20 */
-		51, 50, 48, 45, 44, 42, 40, 39, 38, 37,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 75, 74, 73, 71, 70, 68, 65, 63, 60, 59,	/* 0 - 10 */
-/* SPELL */	58, 56, 55, 54, 53, 51, 50, 49, 48, 47,		/* 11 - 20 */
-		46, 45, 43, 41, 39, 37, 35, 34, 33, 32,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0}		/* 31 - 40 */
-  },
-
-  {				/* Thieves */
-		{90, 65, 64, 63, 62, 61, 60, 59, 58, 57, 56,	/* 0 - 10 */
-/* PARA */	55, 54, 53, 52, 51, 50, 49, 48, 47, 46,		/* 11 - 20 */
-		45, 44, 43, 42, 41, 40, 39, 38, 37, 36,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 70, 68, 66, 64, 62, 60, 58, 56, 54, 52,	/* 0 - 10 */
-/* ROD */	50, 48, 46, 44, 42, 40, 38, 36, 34, 32,		/* 11 - 20 */
-		30, 28, 26, 24, 22, 20, 18, 16, 14, 13,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 60, 59, 58, 58, 56, 55, 54, 53, 52, 51,	/* 0 - 10 */
-/* PETRI */	50, 49, 48, 47, 46, 45, 44, 43, 42, 41,		/* 11 - 20 */
-		40, 39, 38, 37, 36, 35, 34, 33, 32, 31,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 80, 79, 78, 77, 76, 75, 74, 73, 72, 71,	/* 0 - 10 */
-/* BREATH */	70, 69, 68, 67, 66, 65, 64, 63, 62, 61,		/* 11 - 20 */
-		60, 59, 58, 57, 56, 55, 54, 53, 52, 51,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0},			/* 31 - 40 */
-
-		{90, 75, 73, 71, 69, 67, 65, 63, 61, 59, 57,	/* 0 - 10 */
-/* SPELL */	55, 53, 51, 49, 47, 45, 43, 41, 39, 37,		/* 11 - 20 */
-		35, 33, 31, 29, 27, 25, 23, 21, 19, 17,		/* 21 - 30 */
-		0, 0, 0, 0, 0, 0, 0, 0, 0, 0}			/* 31 - 40 */
-  },
-
-  {				/* Warriors */
-		{90, 70, 68, 67, 65, 62, 58, 55, 53, 52, 50,	/* 0 - 10 */
-/* PARA */	47, 43, 40, 38, 37, 35, 32, 28, 25, 24,		/* 11 - 20 */
-		23, 22, 20, 19, 17, 16, 15, 14, 13, 12,		/* 21 - 30 */
-		11, 10, 9, 8, 7, 6, 5, 4, 3, 2},		/* 31 - 40 */
-
-		{90, 80, 78, 77, 75, 72, 68, 65, 63, 62, 60,	/* 0 - 10 */
-/* ROD */	57, 53, 50, 48, 47, 45, 42, 38, 35, 34,		/* 11 - 20 */
-		33, 32, 30, 29, 27, 26, 25, 24, 23, 22,		/* 21 - 30 */
-		20, 18, 16, 14, 12, 10, 8, 6, 5, 4},		/* 31 - 40 */
-
-		{90, 75, 73, 72, 70, 67, 63, 60, 58, 57, 55,	/* 0 - 10 */
-/* PETRI */	52, 48, 45, 43, 42, 40, 37, 33, 30, 29,		/* 11 - 20 */
-		28, 26, 25, 24, 23, 21, 20, 19, 18, 17,		/* 21 - 30 */
-		16, 15, 14, 13, 12, 11, 10, 9, 8, 7},		/* 31 - 40 */
-
-		{90, 85, 83, 82, 80, 75, 70, 65, 63, 62, 60,	/* 0 - 10 */
-/* BREATH */	55, 50, 45, 43, 42, 40, 37, 33, 30, 29,		/* 11 - 20 */
-		28, 26, 25, 24, 23, 21, 20, 19, 18, 17,		/* 21 - 30 */
-		16, 15, 14, 13, 12, 11, 10, 9, 8, 7},		/* 31 - 40 */
-
-		{90, 85, 83, 82, 80, 77, 73, 70, 68, 67, 65,	/* 0 - 10 */
-/* SPELL */	62, 58, 55, 53, 52, 50, 47, 43, 40, 39,		/* 11 - 20 */
-		38, 36, 35, 34, 33, 31, 30, 29, 28, 27,		/* 21 - 30 */
-		25, 23, 21, 19, 17, 15, 13, 11, 9, 7}		/* 31 - 40 */
-  }
-};
-
 
 int mag_savingthrow(struct char_data * ch, int type)
 {
@@ -178,9 +56,9 @@ int mag_savingthrow(struct char_data * ch, int type)
   /* negative apply_saving_throw values make saving throws better! */
 
   if (IS_NPC(ch)) /* NPCs use warrior tables according to some book */
-    save = saving_throws[CLASS_WARRIOR][type][(int) GET_LEVEL(ch)];
+    save = saving_throws(CLASS_WARRIOR, type, (int) GET_LEVEL(ch));
   else
-    save = saving_throws[(int) GET_CLASS(ch)][type][(int) GET_LEVEL(ch)];
+    save = saving_throws((int) GET_CLASS(ch), type, (int) GET_LEVEL(ch));
 
   save += GET_SAVE(ch, type);
 
@@ -195,9 +73,8 @@ int mag_savingthrow(struct char_data * ch, int type)
 /* affect_update: called from comm.c (causes spells to wear off) */
 void affect_update(void)
 {
-  static struct affected_type *af, *next;
-  static struct char_data *i;
-  extern char *spell_wear_off_msg[];
+  struct affected_type *af, *next;
+  struct char_data *i;
 
   for (i = character_list; i; i = i->next)
     for (af = i->affected; af; af = next) {
@@ -290,55 +167,52 @@ int mag_materials(struct char_data * ch, int item0, int item1, int item2,
  * Every spell that does damage comes through here.  This calculates the
  * amount of damage, adds in any modifiers, determines what the saves are,
  * tests for save and calls damage().
+ *
+ * -1 = dead, otherwise the amount of damage done.
  */
-
-void mag_damage(int level, struct char_data * ch, struct char_data * victim,
+int mag_damage(int level, struct char_data * ch, struct char_data * victim,
 		     int spellnum, int savetype)
 {
-  int is_mage = 0, is_cleric = 0;
   int dam = 0;
 
   if (victim == NULL || ch == NULL)
-    return;
-
-  is_mage = (GET_CLASS(ch) == CLASS_MAGIC_USER);
-  is_cleric = (GET_CLASS(ch) == CLASS_CLERIC);
+    return 0;
 
   switch (spellnum) {
     /* Mostly mages */
   case SPELL_MAGIC_MISSILE:
   case SPELL_CHILL_TOUCH:	/* chill touch also has an affect */
-    if (is_mage)
+    if (IS_MAGIC_USER(ch))
       dam = dice(1, 8) + 1;
     else
       dam = dice(1, 6) + 1;
     break;
   case SPELL_BURNING_HANDS:
-    if (is_mage)
+    if (IS_MAGIC_USER(ch))
       dam = dice(3, 8) + 3;
     else
       dam = dice(3, 6) + 3;
     break;
   case SPELL_SHOCKING_GRASP:
-    if (is_mage)
+    if (IS_MAGIC_USER(ch))
       dam = dice(5, 8) + 5;
     else
       dam = dice(5, 6) + 5;
     break;
   case SPELL_LIGHTNING_BOLT:
-    if (is_mage)
+    if (IS_MAGIC_USER(ch))
       dam = dice(7, 8) + 7;
     else
       dam = dice(7, 6) + 7;
     break;
   case SPELL_COLOR_SPRAY:
-    if (is_mage)
+    if (IS_MAGIC_USER(ch))
       dam = dice(9, 8) + 9;
     else
       dam = dice(9, 6) + 9;
     break;
   case SPELL_FIREBALL:
-    if (is_mage)
+    if (IS_MAGIC_USER(ch))
       dam = dice(11, 8) + 11;
     else
       dam = dice(11, 6) + 11;
@@ -353,7 +227,7 @@ void mag_damage(int level, struct char_data * ch, struct char_data * victim,
     } else if (IS_GOOD(victim)) {
       act("The gods protect $N.", FALSE, ch, 0, victim, TO_CHAR);
       dam = 0;
-      return;
+      return 0;
     }
     break;
   case SPELL_DISPEL_GOOD:
@@ -364,7 +238,7 @@ void mag_damage(int level, struct char_data * ch, struct char_data * victim,
     } else if (IS_EVIL(victim)) {
       act("The gods protect $N.", FALSE, ch, 0, victim, TO_CHAR);
       dam = 0;
-      return;
+      return 0;
     }
     break;
 
@@ -394,10 +268,10 @@ void mag_damage(int level, struct char_data * ch, struct char_data * victim,
 
   /* divide damage by two if victim makes his saving throw */
   if (mag_savingthrow(victim, savetype))
-    dam >>= 1;
+    dam /= 2;
 
   /* and finally, inflict the damage */
-  damage(ch, victim, dam, spellnum);
+  return damage(ch, victim, dam, spellnum);
 }
 
 
@@ -415,17 +289,13 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
 		      int spellnum, int savetype)
 {
   struct affected_type af[MAX_SPELL_AFFECTS];
-  int is_mage = FALSE, is_cleric = FALSE;
   bool accum_affect = FALSE, accum_duration = FALSE;
-  char *to_vict = NULL, *to_room = NULL;
+  const char *to_vict = NULL, *to_room = NULL;
   int i;
 
 
   if (victim == NULL || ch == NULL)
     return;
-
-  is_mage = (GET_CLASS(ch) == CLASS_MAGIC_USER);
-  is_cleric = (GET_CLASS(ch) == CLASS_CLERIC);
 
   for (i = 0; i < MAX_SPELL_AFFECTS; i++) {
     af[i].type = spellnum;
@@ -495,12 +365,12 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
     }
 
     af[0].location = APPLY_HITROLL;
-    af[0].duration = 1 + (GET_LEVEL(ch) >> 1);
+    af[0].duration = 1 + (GET_LEVEL(ch) / 2);
     af[0].modifier = -1;
     af[0].bitvector = AFF_CURSE;
 
     af[1].location = APPLY_DAMROLL;
-    af[1].duration = 1 + (GET_LEVEL(ch) >> 1);
+    af[1].duration = 1 + (GET_LEVEL(ch) / 2);
     af[1].modifier = -1;
     af[1].bitvector = AFF_CURSE;
 
@@ -543,7 +413,7 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
     if (!victim)
       victim = ch;
 
-    af[0].duration = 12 + (GET_LEVEL(ch) >> 2);
+    af[0].duration = 12 + (GET_LEVEL(ch) / 4);
     af[0].modifier = -40;
     af[0].location = APPLY_AC;
     af[0].bitvector = AFF_INVISIBLE;
@@ -590,7 +460,7 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
     if (mag_savingthrow(victim, savetype))
       return;
 
-    af[0].duration = 4 + (GET_LEVEL(ch) >> 2);
+    af[0].duration = 4 + (GET_LEVEL(ch) / 4);
     af[0].bitvector = AFF_SLEEP;
 
     if (GET_POS(victim) > POS_SLEEPING) {
@@ -602,7 +472,7 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
 
   case SPELL_STRENGTH:
     af[0].location = APPLY_STR;
-    af[0].duration = (GET_LEVEL(ch) >> 1) + 4;
+    af[0].duration = (GET_LEVEL(ch) / 2) + 4;
     af[0].modifier = 1 + (level > 18);
     accum_duration = TRUE;
     accum_affect = TRUE;
@@ -631,7 +501,7 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
    */
   if (IS_NPC(victim) && !affected_by_spell(victim, spellnum))
     for (i = 0; i < MAX_SPELL_AFFECTS; i++)
-      if (IS_AFFECTED(victim, af[i].bitvector)) {
+      if (AFF_FLAGGED(victim, af[i].bitvector)) {
 	send_to_char(NOEFFECT, ch);
 	return;
       }
@@ -698,7 +568,7 @@ void mag_groups(int level, struct char_data * ch, int spellnum, int savetype)
   if (ch == NULL)
     return;
 
-  if (!IS_AFFECTED(ch, AFF_GROUP))
+  if (!AFF_FLAGGED(ch, AFF_GROUP))
     return;
   if (ch->master != NULL)
     k = ch->master;
@@ -709,14 +579,14 @@ void mag_groups(int level, struct char_data * ch, int spellnum, int savetype)
     tch = f->follower;
     if (tch->in_room != ch->in_room)
       continue;
-    if (!IS_AFFECTED(tch, AFF_GROUP))
+    if (!AFF_FLAGGED(tch, AFF_GROUP))
       continue;
     if (ch == tch)
       continue;
     perform_mag_groups(level, ch, tch, spellnum, savetype);
   }
 
-  if ((k != ch) && IS_AFFECTED(k, AFF_GROUP))
+  if ((k != ch) && AFF_FLAGGED(k, AFF_GROUP))
     perform_mag_groups(level, ch, k, spellnum, savetype);
   perform_mag_groups(level, ch, ch, spellnum, savetype);
 }
@@ -755,8 +625,7 @@ void mag_masses(int level, struct char_data * ch, int spellnum, int savetype)
 void mag_areas(int level, struct char_data * ch, int spellnum, int savetype)
 {
   struct char_data *tch, *next_tch;
-  char *to_char = NULL;
-  char *to_room = NULL;
+  const char *to_char = NULL, *to_room = NULL;
 
   if (ch == NULL)
     return;
@@ -796,9 +665,10 @@ void mag_areas(int level, struct char_data * ch, int spellnum, int savetype)
       continue;
     if (!pk_allowed && !IS_NPC(ch) && !IS_NPC(tch))
       continue;
-    if (!IS_NPC(ch) && IS_NPC(tch) && IS_AFFECTED(tch, AFF_CHARM))
+    if (!IS_NPC(ch) && IS_NPC(tch) && AFF_FLAGGED(tch, AFF_CHARM))
       continue;
 
+    /* Doesn't matter if they die here so we don't check. -gg 6/24/98 */
     mag_damage(GET_LEVEL(ch), ch, tch, spellnum, 1);
   }
 }
@@ -810,25 +680,33 @@ void mag_areas(int level, struct char_data * ch, int spellnum, int savetype)
  *  None of these spells are currently implemented in Circle 3.0; these
  *  were taken as examples from the JediMUD code.  Summons can be used
  *  for spells like clone, ariel servant, etc.
+ *
+ * 10/15/97 (gg) - Implemented Animate Dead and Clone.
  */
 
-static char *mag_summon_msgs[] = {
+/*
+ * These use act(), don't put the \r\n.
+ */
+const char *mag_summon_msgs[] = {
   "\r\n",
-  "$n makes a strange magical gesture; you feel a strong breeze!\r\n",
-  "$n animates a corpse!\r\n",
-  "$N appears from a cloud of thick blue smoke!\r\n",
-  "$N appears from a cloud of thick green smoke!\r\n",
-  "$N appears from a cloud of thick red smoke!\r\n",
-  "$N disappears in a thick black cloud!\r\n"
-  "As $n makes a strange magical gesture, you feel a strong breeze.\r\n",
-  "As $n makes a strange magical gesture, you feel a searing heat.\r\n",
-  "As $n makes a strange magical gesture, you feel a sudden chill.\r\n",
-  "As $n makes a strange magical gesture, you feel the dust swirl.\r\n",
-  "$n magically divides!\r\n",
-  "$n animates a corpse!\r\n"
+  "$n makes a strange magical gesture; you feel a strong breeze!",
+  "$n animates a corpse!",
+  "$N appears from a cloud of thick blue smoke!",
+  "$N appears from a cloud of thick green smoke!",
+  "$N appears from a cloud of thick red smoke!",
+  "$N disappears in a thick black cloud!"
+  "As $n makes a strange magical gesture, you feel a strong breeze.",
+  "As $n makes a strange magical gesture, you feel a searing heat.",
+  "As $n makes a strange magical gesture, you feel a sudden chill.",
+  "As $n makes a strange magical gesture, you feel the dust swirl.",
+  "$n magically divides!",
+  "$n animates a corpse!"
 };
 
-static char *mag_summon_fail_msgs[] = {
+/*
+ * Keep the \r\n because these use send_to_char.
+ */
+const char *mag_summon_fail_msgs[] = {
   "\r\n",
   "There are no such creatures.\r\n",
   "Uh oh...\r\n",
@@ -839,16 +717,19 @@ static char *mag_summon_fail_msgs[] = {
   "There is no corpse!\r\n"
 };
 
+/* These mobiles do not exist. */
 #define MOB_MONSUM_I		130
 #define MOB_MONSUM_II		140
 #define MOB_MONSUM_III		150
 #define MOB_GATE_I		160
 #define MOB_GATE_II		170
 #define MOB_GATE_III		180
-#define MOB_ELEMENTAL_BASE	110
-#define MOB_CLONE		69
-#define MOB_ZOMBIE		101
-#define MOB_AERIALSERVANT	109
+
+/* Defined mobiles. */
+#define MOB_ELEMENTAL_BASE	20	/* Only one for now. */
+#define MOB_CLONE		10
+#define MOB_ZOMBIE		11
+#define MOB_AERIALSERVANT	19
 
 
 void mag_summons(int level, struct char_data * ch, struct obj_data * obj,
@@ -856,37 +737,37 @@ void mag_summons(int level, struct char_data * ch, struct obj_data * obj,
 {
   struct char_data *mob = NULL;
   struct obj_data *tobj, *next_obj;
-  int pfail = 0;
-  int msg = 0, fmsg = 0;
-  int num = 1;
-  int a, i;
-  int mob_num = 0;
-  int handle_corpse = 0;
+  int	pfail = 0, msg = 0, fmsg = 0, mob_num = 0,
+	num = 1, handle_corpse = FALSE, i;
 
   if (ch == NULL)
     return;
 
   switch (spellnum) {
+  case SPELL_CLONE:
+    msg = 10;
+    fmsg = number(2, 6);	/* Random fail message. */
+    mob_num = MOB_CLONE;
+    pfail = 50;	/* 50% failure, should be based on something later. */
+    break;
+
   case SPELL_ANIMATE_DEAD:
-    if ((obj == NULL) || (GET_OBJ_TYPE(obj) != ITEM_CONTAINER) ||
-	(!GET_OBJ_VAL(obj, 3))) {
+    if (obj == NULL || !IS_CORPSE(obj)) {
       act(mag_summon_fail_msgs[7], FALSE, ch, 0, 0, TO_CHAR);
       return;
     }
-    handle_corpse = 1;
-    msg = 12;
+    handle_corpse = TRUE;
+    msg = 11;
+    fmsg = number(2, 6);	/* Random fail message. */
     mob_num = MOB_ZOMBIE;
-    a = number(0, 5);
-    if (a)
-      mob_num++;
-    pfail = 8;
+    pfail = 10;	/* 10% failure, should vary in the future. */
     break;
 
   default:
     return;
   }
 
-  if (IS_AFFECTED(ch, AFF_CHARM)) {
+  if (AFF_FLAGGED(ch, AFF_CHARM)) {
     send_to_char("You are too giddy to have any followers!\r\n", ch);
     return;
   }
@@ -895,17 +776,20 @@ void mag_summons(int level, struct char_data * ch, struct obj_data * obj,
     return;
   }
   for (i = 0; i < num; i++) {
-    mob = read_mobile(mob_num, VIRTUAL);
+    if (!(mob = read_mobile(mob_num, VIRTUAL))) {
+      send_to_char("You don't quite remember how to make that creature.\r\n", ch);
+      return;
+    }
     char_to_room(mob, ch->in_room);
     IS_CARRYING_W(mob) = 0;
     IS_CARRYING_N(mob) = 0;
     SET_BIT(AFF_FLAGS(mob), AFF_CHARM);
-    add_follower(mob, ch);
-    act(mag_summon_msgs[fmsg], FALSE, ch, 0, mob, TO_ROOM);
-    if (spellnum == SPELL_CLONE) {
-      strcpy(GET_NAME(mob), GET_NAME(ch));
-      strcpy(mob->player.short_descr, GET_NAME(ch));
+    if (spellnum == SPELL_CLONE) {	/* Don't mess up the proto with strcpy. */
+      mob->player.name = str_dup(GET_NAME(ch));
+      mob->player.short_descr = str_dup(GET_NAME(ch));
     }
+    act(mag_summon_msgs[msg], FALSE, ch, 0, mob, TO_ROOM);
+    add_follower(mob, ch);
   }
   if (handle_corpse) {
     for (tobj = obj->contains; tobj; tobj = next_obj) {
@@ -929,11 +813,11 @@ void mag_points(int level, struct char_data * ch, struct char_data * victim,
 
   switch (spellnum) {
   case SPELL_CURE_LIGHT:
-    hit = dice(1, 8) + 1 + (level >> 2);
+    hit = dice(1, 8) + 1 + (level / 4);
     send_to_char("You feel better.\r\n", victim);
     break;
   case SPELL_CURE_CRITIC:
-    hit = dice(3, 8) + 3 + (level >> 2);
+    hit = dice(3, 8) + 3 + (level / 4);
     send_to_char("You feel a lot better!\r\n", victim);
     break;
   case SPELL_HEAL:
@@ -951,7 +835,7 @@ void mag_unaffects(int level, struct char_data * ch, struct char_data * victim,
 		        int spellnum, int type)
 {
   int spell = 0;
-  char *to_vict = NULL, *to_room = NULL;
+  const char *to_vict = NULL, *to_room = NULL;
 
   if (victim == NULL)
     return;
@@ -973,13 +857,11 @@ void mag_unaffects(int level, struct char_data * ch, struct char_data * victim,
     to_vict = "You don't feel so unlucky.";
     break;
   default:
-    sprintf(buf, "SYSERR: unknown spellnum %d passed to mag_unaffects", spellnum);
-    log(buf);
+    log("SYSERR: unknown spellnum %d passed to mag_unaffects.", spellnum);
     return;
-    break;
   }
 
-  if (!affected_by_spell(victim, spell)) {
+  if (!affected_by_spell(victim, spell) && spellnum != SPELL_HEAL) {
     send_to_char(NOEFFECT, ch);
     return;
   }
@@ -996,8 +878,7 @@ void mag_unaffects(int level, struct char_data * ch, struct char_data * victim,
 void mag_alter_objs(int level, struct char_data * ch, struct obj_data * obj,
 		         int spellnum, int savetype)
 {
-  char *to_char = NULL;
-  char *to_room = NULL;
+  const char *to_char = NULL, *to_room = NULL;
 
   if (obj == NULL)
     return;
@@ -1080,14 +961,12 @@ void mag_creations(int level, struct char_data * ch, int spellnum)
   default:
     send_to_char("Spell unimplemented, it would seem.\r\n", ch);
     return;
-    break;
   }
 
   if (!(tobj = read_object(z, VIRTUAL))) {
     send_to_char("I seem to have goofed.\r\n", ch);
-    sprintf(buf, "SYSERR: spell_creations, spell %d, obj %d: obj not found",
+    log("SYSERR: spell_creations, spell %d, obj %d: obj not found",
 	    spellnum, z);
-    log(buf);
     return;
   }
   obj_to_char(tobj, ch);

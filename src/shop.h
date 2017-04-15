@@ -19,7 +19,7 @@ struct shop_buy_data {
 
 
 struct shop_data {
-   int	 virtual;		/* Virtual number of this shop		*/
+   int	 vnum;			/* Virtual number of this shop		*/
    int	*producing;		/* Which item to produce (virtual)	*/
    float profit_buy;		/* Factor to multiply cost with		*/
    float profit_sell;		/* Factor to multiply cost with		*/
@@ -97,7 +97,7 @@ struct stack_data {
 #define MAX_OPER		4
 
 
-#define SHOP_NUM(i)		(shop_index[(i)].virtual)
+#define SHOP_NUM(i)		(shop_index[(i)].vnum)
 #define SHOP_KEEPER(i)		(shop_index[(i)].keeper)
 #define SHOP_OPEN1(i)		(shop_index[(i)].open1)
 #define SHOP_CLOSE1(i)		(shop_index[(i)].close1)

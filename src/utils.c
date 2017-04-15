@@ -14,13 +14,22 @@
 
 #include "structs.h"
 #include "utils.h"
+#include "db.h"
 #include "comm.h"
 #include "screen.h"
 #include "spells.h"
 #include "handler.h"
 
+extern struct descriptor_data *descriptor_list;
 extern struct time_data time_info;
 extern struct room_data *world;
+extern int top_of_world;
+
+/* local functions */
+struct time_info_data *real_time_passed(time_t t2, time_t t1);
+struct time_info_data *mud_time_passed(time_t t2, time_t t1);
+void die_follower(struct char_data * ch);
+void add_follower(struct char_data * ch, struct char_data * leader);
 
 
 /* creates a random number in interval [from;to] */
@@ -31,6 +40,7 @@ int number(int from, int to)
     int tmp = from;
     from = to;
     to = tmp;
+    log("SYSERR: number() should be called with lowest, then highest. number(%d, %d), not number(%d, %d).", from, to, to, from);
   }
 
   return ((circle_random() % (to - from + 1)) + from);
@@ -68,10 +78,10 @@ int MAX(int a, int b)
 /* Create a duplicate of a string */
 char *str_dup(const char *source)
 {
-  char *new;
+  char *new_z;
 
-  CREATE(new, char, strlen(source) + 1);
-  return (strcpy(new, source));
+  CREATE(new_z, char, strlen(source) + 1);
+  return (strcpy(new_z, source));
 }
 
 
@@ -79,16 +89,17 @@ char *str_dup(const char *source)
 /* str_cmp: a case-insensitive version of strcmp */
 /* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
 /* scan 'till found different or end of both                 */
-int str_cmp(char *arg1, char *arg2)
+int str_cmp(const char *arg1, const char *arg2)
 {
   int chk, i;
 
   for (i = 0; *(arg1 + i) || *(arg2 + i); i++)
-    if ((chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i))))
+    if ((chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i)))) {
       if (chk < 0)
 	return (-1);
       else
 	return (1);
+    }
   return (0);
 }
 
@@ -96,17 +107,17 @@ int str_cmp(char *arg1, char *arg2)
 /* strn_cmp: a case-insensitive version of strncmp */
 /* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
 /* scan 'till found different, end of both, or n reached     */
-int strn_cmp(char *arg1, char *arg2, int n)
+int strn_cmp(const char *arg1, const char *arg2, int n)
 {
   int chk, i;
 
   for (i = 0; (*(arg1 + i) || *(arg2 + i)) && (n > 0); i++, n--)
-    if ((chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i))))
+    if ((chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i)))) {
       if (chk < 0)
 	return (-1);
       else
 	return (1);
-
+    }
   return (0);
 }
 
@@ -115,29 +126,36 @@ int strn_cmp(char *arg1, char *arg2, int n)
 void log_death_trap(struct char_data * ch)
 {
   char buf[150];
-  extern struct room_data *world;
 
   sprintf(buf, "%s hit death trap #%d (%s)", GET_NAME(ch),
-	  world[ch->in_room].number, world[ch->in_room].name);
+	  GET_ROOM_VNUM(IN_ROOM(ch)), world[ch->in_room].name);
   mudlog(buf, BRF, LVL_IMMORT, TRUE);
 }
 
-
-/* writes a string to the log */
-void log(char *str)
+/*
+ * New variable argument log() function.  Works the same as the old for
+ * previously written code but is very nice for new code.
+ */
+void basic_mud_log(const char *format, ...)
 {
-  time_t ct;
-  char *tmstr;
+  va_list args;
+  time_t ct = time(0);
+  char *time_s = asctime(localtime(&ct));
 
-  ct = time(0);
-  tmstr = asctime(localtime(&ct));
-  *(tmstr + strlen(tmstr) - 1) = '\0';
-  fprintf(stderr, "%-19.19s :: %s\n", tmstr, str);
+  time_s[strlen(time_s) - 1] = '\0';
+
+  fprintf(logfile, "%-15.15s :: ", time_s + 4);
+
+  va_start(args, format);
+  vfprintf(logfile, format, args);
+  va_end(args);
+
+  fprintf(logfile, "\n");
+  fflush(logfile);
 }
 
-
 /* the "touch" command, essentially. */
-int touch(char *path)
+int touch(const char *path)
 {
   FILE *fl;
 
@@ -155,26 +173,20 @@ int touch(char *path)
  * mudlog -- log mud messages to a file & to online imm's syslogs
  * based on syslog by Fen Jul 3, 1992
  */
-void mudlog(char *str, char type, int level, byte file)
+void mudlog(const char *str, int type, int level, int file)
 {
-  char buf[MAX_STRING_LENGTH];
-  extern struct descriptor_data *descriptor_list;
+  char buf[MAX_STRING_LENGTH], tp;
   struct descriptor_data *i;
-  char *tmp, tp;
-  time_t ct;
-
-  ct = time(0);
-  tmp = asctime(localtime(&ct));
 
   if (file)
-    fprintf(stderr, "%-19.19s :: %s\n", tmp, str);
+    log(str);
   if (level < 0)
     return;
 
   sprintf(buf, "[ %s ]\r\n", str);
 
   for (i = descriptor_list; i; i = i->next)
-    if (!i->connected && !PLR_FLAGGED(i->character, PLR_WRITING)) {
+    if (STATE(i) == CON_PLAYING && !PLR_FLAGGED(i->character, PLR_WRITING)) {
       tp = ((PRF_FLAGGED(i->character, PRF_LOG1) ? 1 : 0) +
 	    (PRF_FLAGGED(i->character, PRF_LOG2) ? 2 : 0));
 
@@ -188,7 +200,7 @@ void mudlog(char *str, char type, int level, byte file)
 
 
 
-void sprintbit(long bitvector, char *names[], char *result)
+void sprintbit(long bitvector, const char *names[], char *result)
 {
   long nr;
 
@@ -216,7 +228,7 @@ void sprintbit(long bitvector, char *names[], char *result)
 
 
 
-void sprinttype(int type, char *names[], char *result)
+void sprinttype(int type, const char *names[], char *result)
 {
   int nr = 0;
 
@@ -233,10 +245,10 @@ void sprinttype(int type, char *names[], char *result)
 
 
 /* Calculate the REAL time passed over the last t2-t1 centuries (secs) */
-struct time_info_data real_time_passed(time_t t2, time_t t1)
+struct time_info_data *real_time_passed(time_t t2, time_t t1)
 {
   long secs;
-  struct time_info_data now;
+  static struct time_info_data now;
 
   secs = (long) (t2 - t1);
 
@@ -249,16 +261,16 @@ struct time_info_data real_time_passed(time_t t2, time_t t1)
   now.month = -1;
   now.year = -1;
 
-  return now;
+  return &now;
 }
 
 
 
 /* Calculate the MUD time passed over the last t2-t1 centuries (secs) */
-struct time_info_data mud_time_passed(time_t t2, time_t t1)
+struct time_info_data *mud_time_passed(time_t t2, time_t t1)
 {
   long secs;
-  struct time_info_data now;
+  static struct time_info_data now;
 
   secs = (long) (t2 - t1);
 
@@ -273,20 +285,20 @@ struct time_info_data mud_time_passed(time_t t2, time_t t1)
 
   now.year = (secs / SECS_PER_MUD_YEAR);	/* 0..XX? years */
 
-  return now;
+  return &now;
 }
 
 
 
-struct time_info_data age(struct char_data * ch)
+struct time_info_data *age(struct char_data * ch)
 {
-  struct time_info_data player_age;
+  static struct time_info_data player_age;
 
-  player_age = mud_time_passed(time(0), ch->player.time.birth);
+  player_age = *mud_time_passed(time(0), ch->player.time.birth);
 
   player_age.year += 17;	/* All players start at 17 */
 
-  return player_age;
+  return &player_age;
 }
 
 
@@ -312,9 +324,12 @@ void stop_follower(struct char_data * ch)
 {
   struct follow_type *j, *k;
 
-  assert(ch->master);
+  if (ch->master == NULL) {
+    core_dump();
+    return;
+  }
 
-  if (IS_AFFECTED(ch, AFF_CHARM)) {
+  if (AFF_FLAGGED(ch, AFF_CHARM)) {
     act("You realize that $N is a jerk!", FALSE, ch, 0, ch->master, TO_CHAR);
     act("$n realizes that $N is a jerk!", FALSE, ch, 0, ch->master, TO_NOTVICT);
     act("$n hates your guts!", FALSE, ch, 0, ch->master, TO_VICT);
@@ -366,7 +381,10 @@ void add_follower(struct char_data * ch, struct char_data * leader)
 {
   struct follow_type *k;
 
-  assert(!ch->master);
+  if (ch->master) {
+    core_dump();
+    return;
+  }
 
   ch->master = leader;
 
@@ -401,9 +419,10 @@ int get_line(FILE * fl, char *buf)
       temp[strlen(temp) - 1] = '\0';
   } while (!feof(fl) && (*temp == '*' || !*temp));
 
-  if (feof(fl))
+  if (feof(fl)) {
+    *buf = '\0';
     return 0;
-  else {
+  } else {
     strcpy(buf, temp);
     return lines;
   }
@@ -412,20 +431,20 @@ int get_line(FILE * fl, char *buf)
 
 int get_filename(char *orig_name, char *filename, int mode)
 {
-  char *prefix, *middle, *suffix, *ptr, name[64];
+  const char *prefix, *middle, *suffix;
+  char name[64], *ptr;
 
   switch (mode) {
   case CRASH_FILE:
-    prefix = "plrobjs";
-    suffix = "objs";
+    prefix = LIB_PLROBJS;
+    suffix = SUF_OBJS;
     break;
   case ETEXT_FILE:
-    prefix = "plrtext";
-    suffix = "text";
+    prefix = LIB_PLRTEXT;
+    suffix = SUF_TEXT;
     break;
   default:
     return 0;
-    break;
   }
 
   if (!*orig_name)
@@ -456,7 +475,7 @@ int get_filename(char *orig_name, char *filename, int mode)
     break;
   }
 
-  sprintf(filename, "%s/%s/%s.%s", prefix, middle, name, suffix);
+  sprintf(filename, "%s%s"SLASH"%s.%s", prefix, middle, name, suffix);
   return 1;
 }
 
@@ -473,5 +492,31 @@ int num_pc_in_room(struct room_data *room)
   return i;
 }
 
+/*
+ * This function (derived from basic fork(); abort(); idea by Erwin S.
+ * Andreasen) causes your MUD to dump core (assuming you can) but
+ * continue running.  The core dump will allow post-mortem debugging
+ * that is less severe than assert();  Don't call this directly as
+ * core_dump_unix() but as simply 'core_dump()' so that it will be
+ * excluded from systems not supporting them. (e.g. Windows '95).
+ *
+ * XXX: Wonder if flushing streams includes sockets?
+ */
+void core_dump_real(const char *who, ush_int line)
+{
+  log("SYSERR: Assertion failed at %s:%d!", who, line);
 
-  
+#if defined(CIRCLE_UNIX)
+  /* These would be duplicated otherwise... */
+  fflush(stdout);
+  fflush(stderr);
+  fflush(logfile);
+
+  /*
+   * Kill the child so the debugger or script doesn't think the MUD
+   * crashed.  The 'autorun' script would otherwise run it again.
+   */
+  if (fork() == 0)
+    abort();
+#endif
+}

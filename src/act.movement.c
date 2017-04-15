@@ -20,21 +20,35 @@
 #include "db.h"
 #include "spells.h"
 #include "house.h"
+#include "constants.h"
 
 /* external vars  */
 extern struct room_data *world;
 extern struct char_data *character_list;
 extern struct descriptor_data *descriptor_list;
 extern struct index_data *obj_index;
-extern int rev_dir[];
-extern char *dirs[];
-extern int movement_loss[];
+extern int top_of_world;
 
 /* external functs */
+void add_follower(struct char_data *ch, struct char_data *leader);
 int special(struct char_data *ch, int cmd, char *arg);
 void death_cry(struct char_data *ch);
 int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg);
 
+/* local functions */
+int has_boat(struct char_data *ch);
+int find_door(struct char_data *ch, const char *type, char *dir, const char *cmdname);
+int has_key(struct char_data *ch, int key);
+void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd);int ok_pick(struct char_data *ch, int keynum, int pickproof, int scmd);
+ACMD(do_gen_door);
+ACMD(do_enter);
+ACMD(do_leave);
+ACMD(do_stand);
+ACMD(do_sit);
+ACMD(do_rest);
+ACMD(do_sleep);
+ACMD(do_wake);
+ACMD(do_follow);
 
 
 /* simple function to determine if char can walk on water */
@@ -46,7 +60,7 @@ int has_boat(struct char_data *ch)
   if (ROOM_IDENTITY(ch->in_room) == DEAD_SEA)
     return 1;
 */
-  if (IS_AFFECTED(ch, AFF_WATERWALK))
+  if (AFF_FLAGGED(ch, AFF_WATERWALK))
     return 1;
 
   /* non-wearable boats in inventory will do it */
@@ -76,17 +90,15 @@ int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
 {
   int was_in, need_movement;
 
-  int special(struct char_data *ch, int cmd, char *arg);
-
   /*
    * Check for special routines (North is 1 in command list, but 0 here) Note
    * -- only check if following; this avoids 'double spec-proc' bug
    */
-  if (need_specials_check && special(ch, dir + 1, ""))
+  if (need_specials_check && special(ch, dir + 1, "")) /* XXX: Evaluate NULL */
     return 0;
 
   /* charmed? */
-  if (IS_AFFECTED(ch, AFF_CHARM) && ch->master && ch->in_room == ch->master->in_room) {
+  if (AFF_FLAGGED(ch, AFF_CHARM) && ch->master && ch->in_room == ch->master->in_room) {
     send_to_char("The thought of leaving your master makes you weep.\r\n", ch);
     act("$n bursts into tears.", FALSE, ch, 0, 0, TO_ROOM);
     return 0;
@@ -103,7 +115,7 @@ int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
 
   /* move points needed is avg. move loss for src and destination sect type */
   need_movement = (movement_loss[SECT(ch->in_room)] +
-		   movement_loss[SECT(EXIT(ch, dir)->to_room)]) >> 1;
+		   movement_loss[SECT(EXIT(ch, dir)->to_room)]) / 2;
 
   if (GET_MOVE(ch) < need_movement && !IS_NPC(ch)) {
     if (need_specials_check && ch->master)
@@ -113,21 +125,29 @@ int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
 
     return 0;
   }
-  if (IS_SET(ROOM_FLAGS(ch->in_room), ROOM_ATRIUM)) {
-    if (!House_can_enter(ch, world[EXIT(ch, dir)->to_room].number)) {
+  if (ROOM_FLAGGED(ch->in_room, ROOM_ATRIUM)) {
+    if (!House_can_enter(ch, GET_ROOM_VNUM(EXIT(ch, dir)->to_room))) {
       send_to_char("That's private property -- no trespassing!\r\n", ch);
       return 0;
     }
   }
-  if (IS_SET(ROOM_FLAGS(EXIT(ch, dir)->to_room), ROOM_TUNNEL) &&
+  if (ROOM_FLAGGED(EXIT(ch, dir)->to_room, ROOM_TUNNEL) &&
       num_pc_in_room(&(world[EXIT(ch, dir)->to_room])) > 1) {
     send_to_char("There isn't enough room there for more than one person!\r\n", ch);
     return 0;
   }
+  /* Mortals and low level gods cannot enter greater god rooms. */
+  if (ROOM_FLAGGED(EXIT(ch, dir)->to_room, ROOM_GODROOM) &&
+	GET_LEVEL(ch) < LVL_GRGOD) {
+    send_to_char("You aren't godly enough to use that room!\r\n", ch);
+    return 0;
+  }
+
+  /* Now we know we're allow to go into the room. */
   if (GET_LEVEL(ch) < LVL_IMMORT && !IS_NPC(ch))
     GET_MOVE(ch) -= need_movement;
 
-  if (!IS_AFFECTED(ch, AFF_SNEAK)) {
+  if (!AFF_FLAGGED(ch, AFF_SNEAK)) {
     sprintf(buf2, "$n leaves %s.", dirs[dir]);
     act(buf2, TRUE, ch, 0, 0, TO_ROOM);
   }
@@ -135,13 +155,13 @@ int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
   char_from_room(ch);
   char_to_room(ch, world[was_in].dir_option[dir]->to_room);
 
-  if (!IS_AFFECTED(ch, AFF_SNEAK))
+  if (!AFF_FLAGGED(ch, AFF_SNEAK))
     act("$n has arrived.", TRUE, ch, 0, 0, TO_ROOM);
 
   if (ch->desc != NULL)
     look_at_room(ch, 0);
 
-  if (IS_SET(ROOM_FLAGS(ch->in_room), ROOM_DEATH) && GET_LEVEL(ch) < LVL_IMMORT) {
+  if (ROOM_FLAGGED(ch->in_room, ROOM_DEATH) && GET_LEVEL(ch) < LVL_IMMORT) {
     log_death_trap(ch);
     death_cry(ch);
     extract_char(ch);
@@ -156,11 +176,11 @@ int perform_move(struct char_data *ch, int dir, int need_specials_check)
   int was_in;
   struct follow_type *k, *next;
 
-  if (ch == NULL || dir < 0 || dir >= NUM_OF_DIRS)
+  if (ch == NULL || dir < 0 || dir >= NUM_OF_DIRS || FIGHTING(ch))
     return 0;
   else if (!EXIT(ch, dir) || EXIT(ch, dir)->to_room == NOWHERE)
     send_to_char("Alas, you cannot go that way...\r\n", ch);
-  else if (IS_SET(EXIT(ch, dir)->exit_info, EX_CLOSED)) {
+  else if (EXIT_FLAGGED(EXIT(ch, dir), EX_CLOSED)) {
     if (EXIT(ch, dir)->keyword) {
       sprintf(buf2, "The %s seems to be closed.\r\n", fname(EXIT(ch, dir)->keyword));
       send_to_char(buf2, ch);
@@ -195,11 +215,11 @@ ACMD(do_move)
    * It cannot be done in perform_move because perform_move is called
    * by other functions which do not require the remapping.
    */
-  perform_move(ch, cmd - 1, 0);
+  perform_move(ch, subcmd - 1, 0);
 }
 
 
-int find_door(struct char_data *ch, char *type, char *dir, char *cmdname)
+int find_door(struct char_data *ch, const char *type, char *dir, const char *cmdname)
 {
   int door;
 
@@ -208,18 +228,20 @@ int find_door(struct char_data *ch, char *type, char *dir, char *cmdname)
       send_to_char("That's not a direction.\r\n", ch);
       return -1;
     }
-    if (EXIT(ch, door))
-      if (EXIT(ch, door)->keyword)
+    if (EXIT(ch, door)) {	/* Braces added according to indent. -gg */
+      if (EXIT(ch, door)->keyword) {
 	if (isname(type, EXIT(ch, door)->keyword))
 	  return door;
 	else {
 	  sprintf(buf2, "I see no %s there.\r\n", type);
 	  send_to_char(buf2, ch);
 	  return -1;
+        }
       } else
 	return door;
-    else {
-      send_to_char("I really don't see how you can close anything there.\r\n", ch);
+    } else {
+      sprintf(buf2, "I really don't see how you can %s anything there.\r\n", cmdname);
+      send_to_char(buf2, ch);
       return -1;
     }
   } else {			/* try to locate the keyword */
@@ -263,7 +285,7 @@ int has_key(struct char_data *ch, int key)
 #define NEED_UNLOCKED	4
 #define NEED_LOCKED	8
 
-char *cmd_door[] =
+const char *cmd_door[] =
 {
   "open",
   "close",
@@ -367,17 +389,17 @@ int ok_pick(struct char_data *ch, int keynum, int pickproof, int scmd)
 
 #define DOOR_IS_OPENABLE(ch, obj, door)	((obj) ? \
 			((GET_OBJ_TYPE(obj) == ITEM_CONTAINER) && \
-			(IS_SET(GET_OBJ_VAL(obj, 1), CONT_CLOSEABLE))) :\
-			(IS_SET(EXIT(ch, door)->exit_info, EX_ISDOOR)))
+			OBJVAL_FLAGGED(obj, CONT_CLOSEABLE)) :\
+			(EXIT_FLAGGED(EXIT(ch, door), EX_ISDOOR)))
 #define DOOR_IS_OPEN(ch, obj, door)	((obj) ? \
-			(!IS_SET(GET_OBJ_VAL(obj, 1), CONT_CLOSED)) :\
-			(!IS_SET(EXIT(ch, door)->exit_info, EX_CLOSED)))
+			(!OBJVAL_FLAGGED(obj, CONT_CLOSED)) :\
+			(!EXIT_FLAGGED(EXIT(ch, door), EX_CLOSED)))
 #define DOOR_IS_UNLOCKED(ch, obj, door)	((obj) ? \
-			(!IS_SET(GET_OBJ_VAL(obj, 1), CONT_LOCKED)) :\
-			(!IS_SET(EXIT(ch, door)->exit_info, EX_LOCKED)))
+			(!OBJVAL_FLAGGED(obj, CONT_LOCKED)) :\
+			(!EXIT_FLAGGED(EXIT(ch, door), EX_LOCKED)))
 #define DOOR_IS_PICKPROOF(ch, obj, door) ((obj) ? \
-			(IS_SET(GET_OBJ_VAL(obj, 1), CONT_PICKPROOF)) : \
-			(IS_SET(EXIT(ch, door)->exit_info, EX_PICKPROOF)))
+			(OBJVAL_FLAGGED(obj, CONT_PICKPROOF)) : \
+			(EXIT_FLAGGED(EXIT(ch, door), EX_PICKPROOF)))
 
 #define DOOR_IS_CLOSED(ch, obj, door)	(!(DOOR_IS_OPEN(ch, obj, door)))
 #define DOOR_IS_LOCKED(ch, obj, door)	(!(DOOR_IS_UNLOCKED(ch, obj, door)))
@@ -447,15 +469,15 @@ ACMD(do_enter)
 	  }
     sprintf(buf2, "There is no %s here.\r\n", buf);
     send_to_char(buf2, ch);
-  } else if (IS_SET(ROOM_FLAGS(ch->in_room), ROOM_INDOORS))
+  } else if (ROOM_FLAGGED(ch->in_room, ROOM_INDOORS))
     send_to_char("You are already indoors.\r\n", ch);
   else {
     /* try to locate an entrance */
     for (door = 0; door < NUM_OF_DIRS; door++)
       if (EXIT(ch, door))
 	if (EXIT(ch, door)->to_room != NOWHERE)
-	  if (!IS_SET(EXIT(ch, door)->exit_info, EX_CLOSED) &&
-	      IS_SET(ROOM_FLAGS(EXIT(ch, door)->to_room), ROOM_INDOORS)) {
+	  if (!EXIT_FLAGGED(EXIT(ch, door), EX_CLOSED) &&
+	      ROOM_FLAGGED(EXIT(ch, door)->to_room, ROOM_INDOORS)) {
 	    perform_move(ch, door, 1);
 	    return;
 	  }
@@ -468,14 +490,14 @@ ACMD(do_leave)
 {
   int door;
 
-  if (!IS_SET(ROOM_FLAGS(ch->in_room), ROOM_INDOORS))
+  if (!ROOM_FLAGGED(ch->in_room, ROOM_INDOORS))
     send_to_char("You are outside.. where do you want to go?\r\n", ch);
   else {
     for (door = 0; door < NUM_OF_DIRS; door++)
       if (EXIT(ch, door))
 	if (EXIT(ch, door)->to_room != NOWHERE)
-	  if (!IS_SET(EXIT(ch, door)->exit_info, EX_CLOSED) &&
-	    !IS_SET(ROOM_FLAGS(EXIT(ch, door)->to_room), ROOM_INDOORS)) {
+	  if (!EXIT_FLAGGED(EXIT(ch, door), EX_CLOSED) &&
+	    !ROOM_FLAGGED(EXIT(ch, door)->to_room, ROOM_INDOORS)) {
 	    perform_move(ch, door, 1);
 	    return;
 	  }
@@ -622,7 +644,7 @@ ACMD(do_wake)
       self = 1;
     else if (GET_POS(vict) > POS_SLEEPING)
       act("$E is already awake.", FALSE, ch, 0, vict, TO_CHAR);
-    else if (IS_AFFECTED(vict, AFF_SLEEP))
+    else if (AFF_FLAGGED(vict, AFF_SLEEP))
       act("You can't wake $M up!", FALSE, ch, 0, vict, TO_CHAR);
     else if (GET_POS(vict) < POS_SLEEPING)
       act("$E's in pretty bad shape!", FALSE, ch, 0, vict, TO_CHAR);
@@ -634,7 +656,7 @@ ACMD(do_wake)
     if (!self)
       return;
   }
-  if (IS_AFFECTED(ch, AFF_SLEEP))
+  if (AFF_FLAGGED(ch, AFF_SLEEP))
     send_to_char("You can't wake up!\r\n", ch);
   else if (GET_POS(ch) > POS_SLEEPING)
     send_to_char("You are already awake...\r\n", ch);
@@ -649,9 +671,6 @@ ACMD(do_wake)
 ACMD(do_follow)
 {
   struct char_data *leader;
-
-  void stop_follower(struct char_data *ch);
-  void add_follower(struct char_data *ch, struct char_data *leader);
 
   one_argument(argument, buf);
 
@@ -669,7 +688,7 @@ ACMD(do_follow)
     act("You are already following $M.", FALSE, ch, 0, leader, TO_CHAR);
     return;
   }
-  if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master)) {
+  if (AFF_FLAGGED(ch, AFF_CHARM) && (ch->master)) {
     act("But you only feel like following $N!", FALSE, ch, 0, ch->master, TO_CHAR);
   } else {			/* Not Charmed follow person */
     if (leader == ch) {

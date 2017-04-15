@@ -28,16 +28,36 @@ extern struct descriptor_data *descriptor_list;
 extern struct index_data *mob_index;
 extern struct index_data *obj_index;
 extern struct time_info_data time_info;
-extern struct command_info cmd_info[];
+extern struct spell_info_type spell_info[];
+extern struct int_app_type int_app[];
+extern int guild_info[][3];
+extern int top_of_world;
+extern char *spells[];
 
 /* extern functions */
 void add_follower(struct char_data * ch, struct char_data * leader);
+ACMD(do_drop);
+ACMD(do_gen_door);
+ACMD(do_say);
 
-
-struct social_type {
-  char *cmd;
-  int next_line;
-};
+/* local functions */
+void sort_spells(void);
+const char *how_good(int percent);
+void list_skills(struct char_data * ch);
+SPECIAL(guild);
+SPECIAL(dump);
+SPECIAL(mayor);
+void npc_steal(struct char_data * ch, struct char_data * victim);
+SPECIAL(snake);
+SPECIAL(thief);
+SPECIAL(magic_user);
+SPECIAL(guild_guard);
+SPECIAL(puff);
+SPECIAL(fido);
+SPECIAL(janitor);
+SPECIAL(cityguard);
+SPECIAL(pet_shops);
+SPECIAL(bank);
 
 
 /* ********************************************************************
@@ -45,8 +65,6 @@ struct social_type {
 ******************************************************************** */
 
 int spell_sort_info[MAX_SKILLS+1];
-
-extern char *spells[];
 
 void sort_spells(void)
 {
@@ -67,33 +85,31 @@ void sort_spells(void)
 }
 
 
-char *how_good(int percent)
+const char *how_good(int percent)
 {
-  static char buf[256];
-
+  if (percent < 0)
+    return " error)";
   if (percent == 0)
-    strcpy(buf, " (not learned)");
-  else if (percent <= 10)
-    strcpy(buf, " (awful)");
-  else if (percent <= 20)
-    strcpy(buf, " (bad)");
-  else if (percent <= 40)
-    strcpy(buf, " (poor)");
-  else if (percent <= 55)
-    strcpy(buf, " (average)");
-  else if (percent <= 70)
-    strcpy(buf, " (fair)");
-  else if (percent <= 80)
-    strcpy(buf, " (good)");
-  else if (percent <= 85)
-    strcpy(buf, " (very good)");
-  else
-    strcpy(buf, " (superb)");
+    return " (not learned)";
+  if (percent <= 10)
+    return " (awful)";
+  if (percent <= 20)
+    return " (bad)";
+  if (percent <= 40)
+    return " (poor)";
+  if (percent <= 55)
+    return " (average)";
+  if (percent <= 70)
+    return " (fair)";
+  if (percent <= 80)
+    return " (good)";
+  if (percent <= 85)
+    return " (very good)";
 
-  return (buf);
+  return " (superb)";
 }
 
-char *prac_types[] = {
+const char *prac_types[] = {
   "spell",
   "skill"
 };
@@ -113,8 +129,6 @@ extern int prac_params[4][NUM_CLASSES];
 
 void list_skills(struct char_data * ch)
 {
-  extern char *spells[];
-  extern struct spell_info_type spell_info[];
   int i, sortpos;
 
   if (!GET_PRACTICES(ch))
@@ -123,7 +137,7 @@ void list_skills(struct char_data * ch)
     sprintf(buf, "You have %d practice session%s remaining.\r\n",
 	    GET_PRACTICES(ch), (GET_PRACTICES(ch) == 1 ? "" : "s"));
 
-  sprintf(buf, "%sYou know of the following %ss:\r\n", buf, SPLSKL(ch));
+  sprintf(buf + strlen(buf), "You know of the following %ss:\r\n", SPLSKL(ch));
 
   strcpy(buf2, buf);
 
@@ -146,9 +160,6 @@ void list_skills(struct char_data * ch)
 SPECIAL(guild)
 {
   int skill_num, percent;
-
-  extern struct spell_info_type spell_info[];
-  extern struct int_app_type int_app[];
 
   if (IS_NPC(ch) || !CMD_IS("practice"))
     return 0;
@@ -197,9 +208,6 @@ SPECIAL(dump)
   struct obj_data *k;
   int value = 0;
 
-  ACMD(do_drop);
-  char *fname(char *namelist);
-
   for (k = world[ch->in_room].contents; k; k = world[ch->in_room].contents) {
     act("$p vanishes in a puff of smoke!", FALSE, 0, k, 0, TO_ROOM);
     extract_obj(k);
@@ -231,15 +239,12 @@ SPECIAL(dump)
 
 SPECIAL(mayor)
 {
-  ACMD(do_gen_door);
+  const char open_path[] =
+	"W3a3003b33000c111d0d111Oe333333Oe22c222112212111a1S.";
+  const char close_path[] =
+	"W3a3003b33000c111d0d111CE333333CE22c222112212111a1S.";
 
-  static char open_path[] =
-  "W3a3003b33000c111d0d111Oe333333Oe22c222112212111a1S.";
-
-  static char close_path[] =
-  "W3a3003b33000c111d0d111CE333333CE22c222112212111a1S.";
-
-  static char *path;
+  static const char *path;
   static int index;
   static bool move = FALSE;
 
@@ -403,8 +408,12 @@ SPECIAL(magic_user)
       break;
 
   /* if I didn't pick any of those, then just slam the guy I'm fighting */
-  if (vict == NULL)
+  if (vict == NULL && IN_ROOM(FIGHTING(ch)) == IN_ROOM(ch))
     vict = FIGHTING(ch);
+
+  /* Hm...didn't pick anyone...I'll wait a round. */
+  if (vict == NULL)
+    return TRUE;
 
   if ((GET_LEVEL(ch) > 13) && (number(0, 10) == 0))
     cast_spell(ch, vict, NULL, SPELL_SLEEP);
@@ -464,12 +473,11 @@ SPECIAL(magic_user)
 SPECIAL(guild_guard)
 {
   int i;
-  extern int guild_info[][3];
   struct char_data *guard = (struct char_data *) me;
-  char *buf = "The guard humiliates you, and blocks your way.\r\n";
-  char *buf2 = "The guard humiliates $n, and blocks $s way.";
+  const char *buf = "The guard humiliates you, and blocks your way.\r\n";
+  const char *buf2 = "The guard humiliates $n, and blocks $s way.";
 
-  if (!IS_MOVE(cmd) || IS_AFFECTED(guard, AFF_BLIND))
+  if (!IS_MOVE(cmd) || AFF_FLAGGED(guard, AFF_BLIND))
     return FALSE;
 
   if (GET_LEVEL(ch) >= LVL_IMMORT)
@@ -477,7 +485,7 @@ SPECIAL(guild_guard)
 
   for (i = 0; guild_info[i][0] != -1; i++) {
     if ((IS_NPC(ch) || GET_CLASS(ch) != guild_info[i][0]) &&
-	world[ch->in_room].number == guild_info[i][1] &&
+	GET_ROOM_VNUM(IN_ROOM(ch)) == guild_info[i][1] &&
 	cmd == guild_info[i][2]) {
       send_to_char(buf, ch);
       act(buf2, FALSE, ch, 0, 0, TO_ROOM);
@@ -492,8 +500,6 @@ SPECIAL(guild_guard)
 
 SPECIAL(puff)
 {
-  ACMD(do_say);
-
   if (cmd)
     return (0);
 
@@ -526,7 +532,7 @@ SPECIAL(fido)
     return (FALSE);
 
   for (i = world[ch->in_room].contents; i; i = i->next_content) {
-    if (GET_OBJ_TYPE(i) == ITEM_CONTAINER && GET_OBJ_VAL(i, 3)) {
+    if (IS_CORPSE(i)) {
       act("$n savagely devours a corpse.", FALSE, ch, 0, 0, TO_ROOM);
       for (temp = i->contains; temp; temp = next_obj) {
 	next_obj = temp->next_content;
@@ -576,7 +582,7 @@ SPECIAL(cityguard)
   evil = 0;
 
   for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
-    if (!IS_NPC(tch) && CAN_SEE(ch, tch) && IS_SET(PLR_FLAGS(tch), PLR_KILLER)) {
+    if (!IS_NPC(tch) && CAN_SEE(ch, tch) && PLR_FLAGGED(tch, PLR_KILLER)) {
       act("$n screams 'HEY!!!  You're one of those PLAYER KILLERS!!!!!!'", FALSE, ch, 0, 0, TO_ROOM);
       hit(ch, tch, TYPE_UNDEFINED);
       return (TRUE);
@@ -584,7 +590,7 @@ SPECIAL(cityguard)
   }
 
   for (tch = world[ch->in_room].people; tch; tch = tch->next_in_room) {
-    if (!IS_NPC(tch) && CAN_SEE(ch, tch) && IS_SET(PLR_FLAGS(tch), PLR_THIEF)){
+    if (!IS_NPC(tch) && CAN_SEE(ch, tch) && PLR_FLAGGED(tch, PLR_THIEF)){
       act("$n screams 'HEY!!!  You're one of those PLAYER THIEVES!!!!!!'", FALSE, ch, 0, 0, TO_ROOM);
       hit(ch, tch, TYPE_UNDEFINED);
       return (TRUE);

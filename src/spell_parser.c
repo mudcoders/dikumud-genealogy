@@ -27,6 +27,14 @@ struct spell_info_type spell_info[TOP_SPELL_DEFINE + 1];
 
 extern struct room_data *world;
 
+/* local functions */
+void say_spell(struct char_data * ch, int spellnum, struct char_data * tch, struct obj_data * tobj);
+void spello(int spl, int max_mana, int min_mana, int mana_change, int minpos, int targets, int violent, int routines);
+int mag_manacost(struct char_data * ch, int spellnum);
+ACMD(do_cast);
+void unused_spell(int spl);
+void mag_assign_spells(void);
+
 /*
  * This arrangement is pretty stupid, but the number of skills is limited by
  * the playerfile.  We can arbitrarily increase the number of skills by
@@ -34,7 +42,7 @@ extern struct room_data *world;
  * ample slots for skills.
  */
 
-char *spells[] =
+const char *spells[] =
 {
   "!RESERVED!",			/* 0 - reserved */
 
@@ -154,8 +162,8 @@ char *spells[] =
 
 
 struct syllable {
-  char *org;
-  char *new;
+  const char *org;
+  const char *news;
 };
 
 
@@ -222,7 +230,7 @@ void say_spell(struct char_data * ch, int spellnum, struct char_data * tch,
   while (*(lbuf + ofs)) {
     for (j = 0; *(syls[j].org); j++) {
       if (!strncmp(syls[j].org, lbuf + ofs, strlen(syls[j].org))) {
-	strcat(buf, syls[j].new);
+	strcat(buf, syls[j].news);
 	ofs += strlen(syls[j].org);
       }
     }
@@ -259,7 +267,7 @@ void say_spell(struct char_data * ch, int spellnum, struct char_data * tch,
 }
 
 
-char *skill_name(int num)
+const char *skill_name(int num)
 {
   int i = 0;
 
@@ -293,7 +301,8 @@ int find_skill_num(char *name)
       return index;
 
     ok = 1;
-    temp = any_one_arg(spells[index], first);
+    /* It won't be changed, but other uses of this function elsewhere may. */
+    temp = any_one_arg((char *)spells[index], first);
     temp2 = any_one_arg(name, first2);
     while (*first && *first2 && ok) {
       if (!is_abbrev(first2, first))
@@ -331,7 +340,7 @@ int call_magic(struct char_data * caster, struct char_data * cvict,
     act("$n's magic fizzles out and dies.", FALSE, caster, 0, 0, TO_ROOM);
     return 0;
   }
-  if (IS_SET(ROOM_FLAGS(caster->in_room), ROOM_PEACEFUL) &&
+  if (ROOM_FLAGGED(caster->in_room, ROOM_PEACEFUL) &&
       (SINFO.violent || IS_SET(SINFO.routines, MAG_DAMAGE))) {
     send_to_char("A flash of white light fills the room, dispelling your "
 		 "violent magic!\r\n", caster);
@@ -356,8 +365,13 @@ int call_magic(struct char_data * caster, struct char_data * cvict,
   }
 
 
+  /*
+   * Hm, target could die here.  Wonder if we should move this down lower to
+   * give the other spells a chance to go off first? -gg 6/24/98
+   */
   if (IS_SET(SINFO.routines, MAG_DAMAGE))
-    mag_damage(level, caster, cvict, spellnum, savetype);
+    if (mag_damage(level, caster, cvict, spellnum, savetype) == -1)
+      return 1;
 
   if (IS_SET(SINFO.routines, MAG_AFFECTS))
     mag_affects(level, caster, cvict, spellnum, savetype);
@@ -396,6 +410,7 @@ int call_magic(struct char_data * caster, struct char_data * cvict,
     case SPELL_LOCATE_OBJECT:   MANUAL_SPELL(spell_locate_object); break;
     case SPELL_SUMMON:		MANUAL_SPELL(spell_summon); break;
     case SPELL_WORD_OF_RECALL:  MANUAL_SPELL(spell_recall); break;
+    case SPELL_TELEPORT:	MANUAL_SPELL(spell_teleport); break;
     }
 
   return 1;
@@ -535,7 +550,8 @@ void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
       extract_obj(obj);
     break;
   default:
-    log("SYSERR: Unknown object_type in mag_objectmagic");
+    log("SYSERR: Unknown object_type %d in mag_objectmagic.",
+	GET_OBJ_TYPE(obj));
     break;
   }
 }
@@ -553,11 +569,9 @@ void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
 int cast_spell(struct char_data * ch, struct char_data * tch,
 	           struct obj_data * tobj, int spellnum)
 {
-  char buf[256];
-
   if (spellnum < 0 || spellnum > TOP_SPELL_DEFINE) {
-    sprintf(buf, "SYSERR: cast_spell trying to call spellnum %d\n", spellnum);
-    log(buf);
+    log("SYSERR: cast_spell trying to call spellnum %d/%d.\n", spellnum,
+	TOP_SPELL_DEFINE);
     return 0;
   }
     
@@ -581,7 +595,7 @@ int cast_spell(struct char_data * ch, struct char_data * tch,
     }
     return 0;
   }
-  if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master == tch)) {
+  if (AFF_FLAGGED(ch, AFF_CHARM) && (ch->master == tch)) {
     send_to_char("You are afraid you might hurt your master!\r\n", ch);
     return 0;
   }
@@ -593,7 +607,7 @@ int cast_spell(struct char_data * ch, struct char_data * tch,
     send_to_char("You cannot cast this spell upon yourself!\r\n", ch);
     return 0;
   }
-  if (IS_SET(SINFO.routines, MAG_GROUPS) && !IS_AFFECTED(ch, AFF_GROUP)) {
+  if (IS_SET(SINFO.routines, MAG_GROUPS) && !AFF_FLAGGED(ch, AFF_GROUP)) {
     send_to_char("You can't cast this spell if you're not in a group!\r\n",ch);
     return 0;
   }
@@ -731,7 +745,7 @@ ACMD(do_cast)
     if (!tch || !skill_message(0, ch, tch, spellnum))
       send_to_char("You lost your concentration!\r\n", ch);
     if (mana > 0)
-      GET_MANA(ch) = MAX(0, MIN(GET_MAX_MANA(ch), GET_MANA(ch) - (mana >> 1)));
+      GET_MANA(ch) = MAX(0, MIN(GET_MAX_MANA(ch), GET_MANA(ch) - (mana / 2)));
     if (SINFO.violent && tch && IS_NPC(tch))
       hit(tch, ch, TYPE_UNDEFINED);
   } else { /* cast spell returns 1 on success; subtract mana & set waitstate */
@@ -745,33 +759,29 @@ ACMD(do_cast)
 
 
 
-void spell_level(int spell, int class, int level)
+void spell_level(int spell, int chclass, int level)
 {
-  char buf[256];
   int bad = 0;
 
   if (spell < 0 || spell > TOP_SPELL_DEFINE) {
-    sprintf(buf, "SYSERR: attempting assign to illegal spellnum %d", spell);
-    log(buf);
+    log("SYSERR: attempting assign to illegal spellnum %d/%d", spell, TOP_SPELL_DEFINE);
     return;
   }
 
-  if (class < 0 || class >= NUM_CLASSES) {
-    sprintf(buf, "SYSERR: assigning '%s' to illegal class %d",
-	    skill_name(spell), class);
-    log(buf);
+  if (chclass < 0 || chclass >= NUM_CLASSES) {
+    log("SYSERR: assigning '%s' to illegal class %d/%d.", skill_name(spell),
+		chclass, NUM_CLASSES - 1);
     bad = 1;
   }
 
   if (level < 1 || level > LVL_IMPL) {
-    sprintf(buf, "SYSERR: assigning '%s' to illegal level %d",
-	    skill_name(spell), level);
-    log(buf);
+    log("SYSERR: assigning '%s' to illegal level %d/%d.", skill_name(spell),
+		level, LVL_IMPL);
     bad = 1;
   }
 
   if (!bad)    
-    spell_info[spell].min_level[class] = level;
+    spell_info[spell].min_level[chclass] = level;
 }
 
 
@@ -862,6 +872,9 @@ void mag_assign_spells(void)
     unused_spell(i);
   /* Do not change the loop above */
 
+  spello(SPELL_ANIMATE_DEAD, 35, 10, 3, POS_STANDING,
+	TAR_OBJ_ROOM, FALSE, MAG_SUMMONS);
+
   spello(SPELL_ARMOR, 30, 15, 3, POS_FIGHTING,
 	TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
 
@@ -884,7 +897,7 @@ void mag_assign_spells(void)
 	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE | MAG_AFFECTS);
 
   spello(SPELL_CLONE, 80, 65, 5, POS_STANDING,
-	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_MANUAL);
+	TAR_SELF_ONLY, FALSE, MAG_SUMMONS);
 
   spello(SPELL_COLOR_SPRAY, 30, 15, 3, POS_FIGHTING,
 	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
@@ -950,7 +963,7 @@ void mag_assign_spells(void)
 	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
   spello(SPELL_HEAL, 60, 40, 3, POS_FIGHTING,
-	TAR_CHAR_ROOM, FALSE, MAG_POINTS | MAG_AFFECTS | MAG_UNAFFECTS);
+	TAR_CHAR_ROOM, FALSE, MAG_POINTS | MAG_UNAFFECTS);
 
   spello(SPELL_INFRAVISION, 25, 10, 1, POS_STANDING,
 	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
@@ -974,7 +987,8 @@ void mag_assign_spells(void)
 	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
 
   spello(SPELL_REMOVE_CURSE, 45, 25, 5, POS_STANDING,
-	TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_UNAFFECTS | MAG_ALTER_OBJS);
+	TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_EQUIP, FALSE,
+	MAG_UNAFFECTS | MAG_ALTER_OBJS);
 
   spello(SPELL_SANCTUARY, 110, 85, 5, POS_STANDING,
 	TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
@@ -990,6 +1004,9 @@ void mag_assign_spells(void)
 
   spello(SPELL_SUMMON, 75, 50, 3, POS_STANDING,
 	TAR_CHAR_WORLD | TAR_NOT_SELF, FALSE, MAG_MANUAL);
+
+  spello(SPELL_TELEPORT, 75, 50, 3, POS_STANDING,
+	TAR_CHAR_ROOM, FALSE, MAG_MANUAL);
 
   spello(SPELL_WORD_OF_RECALL, 20, 10, 2, POS_FIGHTING,
 	TAR_CHAR_ROOM, FALSE, MAG_MANUAL);

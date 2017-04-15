@@ -12,25 +12,29 @@
 /* external declarations and prototypes **********************************/
 
 extern struct weather_data weather_info;
+extern FILE *logfile;
 
-#define log(x) basic_mud_log(x)
+#define log			basic_mud_log
 
 /* public functions in utils.c */
 char	*str_dup(const char *source);
-int	str_cmp(char *arg1, char *arg2);
-int	strn_cmp(char *arg1, char *arg2, int n);
-void	basic_mud_log(char *str);
-int	touch(char *path);
-void	mudlog(char *str, char type, int level, byte file);
+int	str_cmp(const char *arg1, const char *arg2);
+int	strn_cmp(const char *arg1, const char *arg2, int n);
+void	basic_mud_log(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
+int	touch(const char *path);
+void	mudlog(const char *str, int type, int level, int file);
 void	log_death_trap(struct char_data *ch);
 int	number(int from, int to);
 int	dice(int number, int size);
-void	sprintbit(long vektor, char *names[], char *result);
-void	sprinttype(int type, char *names[], char *result);
+void	sprintbit(long vektor, const char *names[], char *result);
+void	sprinttype(int type, const char *names[], char *result);
 int	get_line(FILE *fl, char *buf);
 int	get_filename(char *orig_name, char *filename, int mode);
-struct time_info_data age(struct char_data *ch);
+struct time_info_data *age(struct char_data *ch);
 int	num_pc_in_room(struct room_data *room);
+void	core_dump_real(const char *, ush_int);
+
+#define core_dump()		core_dump_real(__FILE__, __LINE__)
 
 /* random functions in random.c */
 void circle_srandom(unsigned long initial_seed);
@@ -77,7 +81,6 @@ void	update_pos(struct char_data *victim);
 
 /* various constants *****************************************************/
 
-
 /* defines for mudlog() */
 #define OFF	0
 #define BRF	1
@@ -93,6 +96,10 @@ void	update_pos(struct char_data *victim);
 #define BFS_ALREADY_THERE	-2
 #define BFS_NO_PATH		-3
 
+/*
+ * XXX: These constants should be configurable. See act.informative.c
+ *	and utils.c for other places to change.
+ */
 /* mud-life time */
 #define SECS_PER_MUD_HOUR	75
 #define SECS_PER_MUD_DAY	(24*SECS_PER_MUD_HOUR)
@@ -162,9 +169,24 @@ void	update_pos(struct char_data *victim);
 #define REMOVE_BIT(var,bit)  ((var) &= ~(bit))
 #define TOGGLE_BIT(var,bit) ((var) = (var) ^ (bit))
 
+/*
+ * Accessing player specific data structures on a mobile is a very bad thing
+ * to do.  Consider that changing these variables for a single mob will change
+ * it for every other single mob in the game.  If we didn't specifically check
+ * for it, 'wimpy' would be an extremely bad thing for a mob to do, as an
+ * example.  If you really couldn't care less, change this to a '#if 0'.
+ */
+#if 1
+/* Subtle bug in the '#var', but works well for now. */
+#define CHECK_PLAYER_SPECIAL(ch, var) \
+	(*(((ch)->player_specials == &dummy_mob) ? (log("SYSERR: Mob using '"#var"' at %s:%d.", __FILE__, __LINE__), &(var)) : &(var)))
+#else
+#define CHECK_PLAYER_SPECIAL(ch, var)	(var)
+#endif
+
 #define MOB_FLAGS(ch) ((ch)->char_specials.saved.act)
 #define PLR_FLAGS(ch) ((ch)->char_specials.saved.act)
-#define PRF_FLAGS(ch) ((ch)->player_specials->saved.pref)
+#define PRF_FLAGS(ch) CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.pref))
 #define AFF_FLAGS(ch) ((ch)->char_specials.saved.affected_by)
 #define ROOM_FLAGS(loc) (world[(loc)].room_flags)
 
@@ -176,6 +198,10 @@ void	update_pos(struct char_data *victim);
 #define AFF_FLAGGED(ch, flag) (IS_SET(AFF_FLAGS(ch), (flag)))
 #define PRF_FLAGGED(ch, flag) (IS_SET(PRF_FLAGS(ch), (flag)))
 #define ROOM_FLAGGED(loc, flag) (IS_SET(ROOM_FLAGS(loc), (flag)))
+#define EXIT_FLAGGED(exit, flag) (IS_SET((exit)->exit_info, (flag)))
+#define OBJVAL_FLAGGED(obj, flag) (IS_SET(GET_OBJ_VAL((obj), 1), (flag)))
+#define OBJWEAR_FLAGGED(obj, flag) (IS_SET((obj)->obj_flags.wear_flags, (flag)))
+#define OBJ_FLAGGED(obj, flag) (IS_SET(GET_OBJ_EXTRA(obj), (flag)))
 
 /* IS_AFFECTED for backwards compatibility */
 #define IS_AFFECTED(ch, skill) (AFF_FLAGGED((ch), (skill)))
@@ -198,6 +224,7 @@ void	update_pos(struct char_data *victim);
 
 #define IS_LIGHT(room)  (!IS_DARK(room))
 
+#define GET_ROOM_VNUM(rnum)	((rnum) >= 0 && (rnum) <= top_of_world ? world[(rnum)].number : NOWHERE)
 #define GET_ROOM_SPEC(room) ((room) >= 0 ? world[(room)].func : NULL)
 
 /* char utils ************************************************************/
@@ -205,7 +232,7 @@ void	update_pos(struct char_data *victim);
 
 #define IN_ROOM(ch)	((ch)->in_room)
 #define GET_WAS_IN(ch)	((ch)->was_in_room)
-#define GET_AGE(ch)     (age(ch).year)
+#define GET_AGE(ch)     (age(ch)->year)
 
 #define GET_NAME(ch)    (IS_NPC(ch) ? \
 			 (ch)->player.short_descr : (ch)->player.name)
@@ -222,7 +249,7 @@ void	update_pos(struct char_data *victim);
    (ch->desc && ch->desc->original ? GET_LEVEL(ch->desc->original) : \
     GET_LEVEL(ch))
 
-#define GET_CLASS(ch)   ((ch)->player.class)
+#define GET_CLASS(ch)   ((ch)->player.chclass)
 #define GET_HOME(ch)	((ch)->player.hometown)
 #define GET_HEIGHT(ch)	((ch)->player.height)
 #define GET_WEIGHT(ch)	((ch)->player.weight)
@@ -258,30 +285,30 @@ void	update_pos(struct char_data *victim);
 #define GET_SAVE(ch, i)	  ((ch)->char_specials.saved.apply_saving_throw[i])
 #define GET_ALIGNMENT(ch) ((ch)->char_specials.saved.alignment)
 
-#define GET_COND(ch, i)		((ch)->player_specials->saved.conditions[(i)])
-#define GET_LOADROOM(ch)	((ch)->player_specials->saved.load_room)
-#define GET_PRACTICES(ch)	((ch)->player_specials->saved.spells_to_learn)
-#define GET_INVIS_LEV(ch)	((ch)->player_specials->saved.invis_level)
-#define GET_WIMP_LEV(ch)	((ch)->player_specials->saved.wimp_level)
-#define GET_FREEZE_LEV(ch)	((ch)->player_specials->saved.freeze_level)
-#define GET_BAD_PWS(ch)		((ch)->player_specials->saved.bad_pws)
-#define GET_TALK(ch, i)		((ch)->player_specials->saved.talks[i])
-#define POOFIN(ch)		((ch)->player_specials->poofin)
-#define POOFOUT(ch)		((ch)->player_specials->poofout)
-#define GET_LAST_OLC_TARG(ch)	((ch)->player_specials->last_olc_targ)
-#define GET_LAST_OLC_MODE(ch)	((ch)->player_specials->last_olc_mode)
-#define GET_ALIASES(ch)		((ch)->player_specials->aliases)
-#define GET_LAST_TELL(ch)	((ch)->player_specials->last_tell)
+#define GET_COND(ch, i)		CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.conditions[(i)]))
+#define GET_LOADROOM(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.load_room))
+#define GET_PRACTICES(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.spells_to_learn))
+#define GET_INVIS_LEV(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.invis_level))
+#define GET_WIMP_LEV(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.wimp_level))
+#define GET_FREEZE_LEV(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.freeze_level))
+#define GET_BAD_PWS(ch)		CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.bad_pws))
+#define GET_TALK(ch, i)		CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.talks[i]))
+#define POOFIN(ch)		CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->poofin))
+#define POOFOUT(ch)		CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->poofout))
+#define GET_LAST_OLC_TARG(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->last_olc_targ))
+#define GET_LAST_OLC_MODE(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->last_olc_mode))
+#define GET_ALIASES(ch)		CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->aliases))
+#define GET_LAST_TELL(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->last_tell))
 
-#define GET_SKILL(ch, i)	((ch)->player_specials->saved.skills[i])
-#define SET_SKILL(ch, i, pct)	{ (ch)->player_specials->saved.skills[i] = pct; }
+#define GET_SKILL(ch, i)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.skills[i]))
+#define SET_SKILL(ch, i, pct)	do { CHECK_PLAYER_SPECIAL((ch), (ch)->player_specials->saved.skills[i]) = pct; } while(0)
 
 #define GET_EQ(ch, i)		((ch)->equipment[i])
 
-#define GET_MOB_SPEC(ch) (IS_MOB(ch) ? (mob_index[(ch->nr)].func) : NULL)
+#define GET_MOB_SPEC(ch)	(IS_MOB(ch) ? mob_index[(ch)->nr].func : NULL)
 #define GET_MOB_RNUM(mob)	((mob)->nr)
 #define GET_MOB_VNUM(mob)	(IS_MOB(mob) ? \
-				 mob_index[GET_MOB_RNUM(mob)].virtual : -1)
+				 mob_index[GET_MOB_RNUM(mob)].vnum : -1)
 
 #define GET_MOB_WAIT(ch)	((ch)->mob_specials.wait_state)
 #define GET_DEFAULT_POS(ch)	((ch)->mob_specials.default_pos)
@@ -299,7 +326,7 @@ void	update_pos(struct char_data *victim);
 #define CAN_CARRY_N(ch) (5 + (GET_DEX(ch) >> 1) + (GET_LEVEL(ch) >> 1))
 #define AWAKE(ch) (GET_POS(ch) > POS_SLEEPING)
 #define CAN_SEE_IN_DARK(ch) \
-   (AFF_FLAGGED(ch, AFF_INFRAVISION) || PRF_FLAGGED(ch, PRF_HOLYLIGHT))
+   (AFF_FLAGGED(ch, AFF_INFRAVISION) || (!IS_NPC(ch) && PRF_FLAGGED(ch, PRF_HOLYLIGHT)))
 
 #define IS_GOOD(ch)    (GET_ALIGNMENT(ch) >= 350)
 #define IS_EVIL(ch)    (GET_ALIGNMENT(ch) <= -350)
@@ -330,8 +357,10 @@ void	update_pos(struct char_data *victim);
 #define GET_OBJ_TIMER(obj)	((obj)->obj_flags.timer)
 #define GET_OBJ_RNUM(obj)	((obj)->item_number)
 #define GET_OBJ_VNUM(obj)	(GET_OBJ_RNUM(obj) >= 0 ? \
-				 obj_index[GET_OBJ_RNUM(obj)].virtual : -1)
+				 obj_index[GET_OBJ_RNUM(obj)].vnum : -1)
 #define IS_OBJ_STAT(obj,stat)	(IS_SET((obj)->obj_flags.extra_flags,stat))
+#define IS_CORPSE(obj)		(GET_OBJ_TYPE(obj) == ITEM_CONTAINER && \
+					GET_OBJ_VAL((obj), 3) == 1)
 
 #define GET_OBJ_SPEC(obj) ((obj)->item_number >= 0 ? \
 	(obj_index[(obj)->item_number].func) : NULL)
@@ -341,6 +370,12 @@ void	update_pos(struct char_data *victim);
 
 /* compound utilities and other macros **********************************/
 
+/*
+ * Used to compute CircleMUD version. To see if the code running is newer
+ * than 3.0pl13, you would use: #if _CIRCLEMUD > CIRCLEMUD_VERSION(3,0,13)
+ */
+#define CIRCLEMUD_VERSION(major, minor, patchlevel) \
+	(((major) << 16) + ((minor) << 8) + (patchlevel))
 
 #define HSHR(ch) (GET_SEX(ch) ? (GET_SEX(ch)==SEX_MALE ? "his":"her") :"its")
 #define HSSH(ch) (GET_SEX(ch) ? (GET_SEX(ch)==SEX_MALE ? "he" :"she") : "it")
@@ -352,34 +387,41 @@ void	update_pos(struct char_data *victim);
 
 /* Various macros building up to CAN_SEE */
 
-#define LIGHT_OK(sub)	(!IS_AFFECTED(sub, AFF_BLIND) && \
-   (IS_LIGHT((sub)->in_room) || IS_AFFECTED((sub), AFF_INFRAVISION)))
+#define LIGHT_OK(sub)	(!AFF_FLAGGED(sub, AFF_BLIND) && \
+   (IS_LIGHT((sub)->in_room) || AFF_FLAGGED((sub), AFF_INFRAVISION)))
 
 #define INVIS_OK(sub, obj) \
- ((!IS_AFFECTED((obj),AFF_INVISIBLE) || IS_AFFECTED(sub,AFF_DETECT_INVIS)) && \
- (!IS_AFFECTED((obj), AFF_HIDE) || IS_AFFECTED(sub, AFF_SENSE_LIFE)))
+ ((!AFF_FLAGGED((obj),AFF_INVISIBLE) || AFF_FLAGGED(sub,AFF_DETECT_INVIS)) && \
+ (!AFF_FLAGGED((obj), AFF_HIDE) || AFF_FLAGGED(sub, AFF_SENSE_LIFE)))
 
 #define MORT_CAN_SEE(sub, obj) (LIGHT_OK(sub) && INVIS_OK(sub, obj))
 
 #define IMM_CAN_SEE(sub, obj) \
-   (MORT_CAN_SEE(sub, obj) || PRF_FLAGGED(sub, PRF_HOLYLIGHT))
+   (MORT_CAN_SEE(sub, obj) || (!IS_NPC(sub) && PRF_FLAGGED(sub, PRF_HOLYLIGHT)))
 
 #define SELF(sub, obj)  ((sub) == (obj))
 
 /* Can subject see character "obj"? */
 #define CAN_SEE(sub, obj) (SELF(sub, obj) || \
-   ((GET_REAL_LEVEL(sub) >= GET_INVIS_LEV(obj)) && IMM_CAN_SEE(sub, obj)))
+   ((GET_REAL_LEVEL(sub) >= (IS_NPC(obj) ? 0 : GET_INVIS_LEV(obj))) && \
+   IMM_CAN_SEE(sub, obj)))
 
 /* End of CAN_SEE */
 
 
 #define INVIS_OK_OBJ(sub, obj) \
-  (!IS_OBJ_STAT((obj), ITEM_INVISIBLE) || IS_AFFECTED((sub), AFF_DETECT_INVIS))
+  (!IS_OBJ_STAT((obj), ITEM_INVISIBLE) || AFF_FLAGGED((sub), AFF_DETECT_INVIS))
 
-#define MORT_CAN_SEE_OBJ(sub, obj) (LIGHT_OK(sub) && INVIS_OK_OBJ(sub, obj))
+/* Is anyone carrying this object and if so, are they visible? */
+#define CAN_SEE_OBJ_CARRIER(sub, obj) \
+  ((!obj->carried_by || CAN_SEE(sub, obj->carried_by)) &&	\
+   (!obj->worn_by || CAN_SEE(sub, obj->worn_by)))
+
+#define MORT_CAN_SEE_OBJ(sub, obj) \
+  (LIGHT_OK(sub) && INVIS_OK_OBJ(sub, obj) && CAN_SEE_OBJ_CARRIER(sub, obj))
 
 #define CAN_SEE_OBJ(sub, obj) \
-   (MORT_CAN_SEE_OBJ(sub, obj) || PRF_FLAGGED((sub), PRF_HOLYLIGHT))
+   (MORT_CAN_SEE_OBJ(sub, obj) || (!IS_NPC(sub) && PRF_FLAGGED((sub), PRF_HOLYLIGHT)))
 
 #define CAN_CARRY_OBJ(ch,obj)  \
    (((IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj)) <= CAN_CARRY_W(ch)) &&   \
@@ -388,7 +430,6 @@ void	update_pos(struct char_data *victim);
 #define CAN_GET_OBJ(ch, obj)   \
    (CAN_WEAR((obj), ITEM_WEAR_TAKE) && CAN_CARRY_OBJ((ch),(obj)) && \
     CAN_SEE_OBJ((ch),(obj)))
-
 
 #define PERS(ch, vict)   (CAN_SEE(vict, ch) ? GET_NAME(ch) : "someone")
 

@@ -1,19 +1,17 @@
 #
-# CircleMUD 3.0 Makefile for Windows 95 (manually created by Jeremy Elson)
+# CircleMUD 3.0 Makefile for Microsoft Visual C++ 4.0, Windows 95/NT
+# (manually created by Jeremy Elson)
 #
-# This Makefile works on *my* system -- i.e., Microsoft Visual C++ v4.0
-# installed in \MSDEV.  If you have MSVC++ installed in a different directory,
-# change the CLFAGS and LIB lines to reflect the location of your header files
-# and standard libraries, respectively.
+# NOTE: This Makefile is only for MSVC 4.0.  If you have a different
+# compiler, see the file doc/README.WIN for instructions.
+#
+# This Makefile assumes that Microsoft Visual C++ v4.0 installed in
+# \MSDEV.  If you have MSVC++ installed in a different directory,
+# change the CLFAGS and LIB lines to reflect the location of your
+# header files and standard libraries, respectively.
 #
 # Make sure that the location of your compiler, linker, and make binaries
 # (e.g., \msdev\bin) is in your path.
-#
-# If you have a different compiler, well, I can't really help you.  This
-# code was tested under MSVC++ 4.0 which is the only Windows compiler I
-# own.  If you can get it working with a different compiler, great!  Send
-# me the patches.  But don't write to me to ask for help, because I won't
-# have a clue.
 #
 
 # COMPILER PARAMETERS
@@ -58,13 +56,13 @@ act.comm.obj: act.comm.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h 
   handler.h db.h screen.h
 	$(CC) -c $(CFLAGS) act.comm.c
 act.informative.obj: act.informative.c conf.h sysdep.h structs.h utils.h comm.h \
-  interpreter.h handler.h db.h spells.h screen.h
+  interpreter.h handler.h db.h spells.h screen.h constants.h
 	$(CC) -c $(CFLAGS) act.informative.c
 act.item.obj: act.item.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h \
   handler.h db.h spells.h
 	$(CC) -c $(CFLAGS) act.item.c
 act.movement.obj: act.movement.c conf.h sysdep.h structs.h utils.h comm.h \
-  interpreter.h handler.h db.h spells.h house.h
+  interpreter.h handler.h db.h spells.h house.h constants.h
 	$(CC) -c $(CFLAGS) act.movement.c
 act.offensive.obj: act.offensive.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h
@@ -76,7 +74,7 @@ act.social.obj: act.social.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h
 	$(CC) -c $(CFLAGS) act.social.c
 act.wizard.obj: act.wizard.c conf.h sysdep.h structs.h utils.h comm.h \
-  interpreter.h handler.h db.h spells.h house.h screen.h
+  interpreter.h handler.h db.h spells.h house.h screen.h constants.h
 	$(CC) -c $(CFLAGS) act.wizard.c
 ban.obj: ban.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h handler.h db.h
 	$(CC) -c $(CFLAGS) ban.c
@@ -108,7 +106,7 @@ handler.obj: handler.c conf.h sysdep.h structs.h utils.h comm.h db.h handler.h \
   interpreter.h spells.h
 	$(CC) -c $(CFLAGS) handler.c
 house.obj: house.c conf.h sysdep.h structs.h comm.h handler.h db.h interpreter.h \
-  utils.h house.h
+  utils.h house.h constants.h
 	$(CC) -c $(CFLAGS) house.c
 interpreter.obj: interpreter.c conf.h sysdep.h structs.h comm.h interpreter.h db.h \
   utils.h spells.h handler.h mail.h screen.h
@@ -148,7 +146,7 @@ spell_parser.obj: spell_parser.c conf.h sysdep.h structs.h utils.h interpreter.h
   spells.h handler.h comm.h db.h
 	$(CC) -c $(CFLAGS) spell_parser.c
 spells.obj: spells.c conf.h sysdep.h structs.h utils.h comm.h spells.h handler.h \
-  db.h
+  db.h constants.h
 	$(CC) -c $(CFLAGS) spells.c
 utils.obj: utils.c conf.h sysdep.h structs.h utils.h comm.h screen.h spells.h \
   handler.h

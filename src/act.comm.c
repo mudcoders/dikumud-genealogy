@@ -21,9 +21,25 @@
 #include "screen.h"
 
 /* extern variables */
+extern int level_can_shout;
+extern int holler_move_cost;
 extern struct room_data *world;
 extern struct descriptor_data *descriptor_list;
 extern struct char_data *character_list;
+
+/* local functions */
+void perform_tell(struct char_data *ch, struct char_data *vict, char *arg);
+int is_tell_ok(struct char_data *ch, struct char_data *vict);
+ACMD(do_say);
+ACMD(do_gsay);
+ACMD(do_tell);
+ACMD(do_reply);
+ACMD(do_spec_comm);
+ACMD(do_write);
+ACMD(do_page);
+ACMD(do_gen_comm);
+ACMD(do_qcomm);
+
 
 ACMD(do_say)
 {
@@ -34,7 +50,8 @@ ACMD(do_say)
   else {
     sprintf(buf, "$n says, '%s'", argument);
     act(buf, FALSE, ch, 0, 0, TO_ROOM);
-    if (PRF_FLAGGED(ch, PRF_NOREPEAT))
+
+    if (!IS_NPC(ch) && PRF_FLAGGED(ch, PRF_NOREPEAT))
       send_to_char(OK, ch);
     else {
       sprintf(buf, "You say, '%s'", argument);
@@ -51,7 +68,7 @@ ACMD(do_gsay)
 
   skip_spaces(&argument);
 
-  if (!IS_AFFECTED(ch, AFF_GROUP)) {
+  if (!AFF_FLAGGED(ch, AFF_GROUP)) {
     send_to_char("But you are not the member of a group!\r\n", ch);
     return;
   }
@@ -65,10 +82,10 @@ ACMD(do_gsay)
 
     sprintf(buf, "$n tells the group, '%s'", argument);
 
-    if (IS_AFFECTED(k, AFF_GROUP) && (k != ch))
+    if (AFF_FLAGGED(k, AFF_GROUP) && (k != ch))
       act(buf, FALSE, ch, 0, k, TO_VICT | TO_SLEEP);
     for (f = k->followers; f; f = f->next)
-      if (IS_AFFECTED(f->follower, AFF_GROUP) && (f->follower != ch))
+      if (AFF_FLAGGED(f->follower, AFF_GROUP) && (f->follower != ch))
 	act(buf, FALSE, ch, 0, f->follower, TO_VICT | TO_SLEEP);
 
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
@@ -88,7 +105,7 @@ void perform_tell(struct char_data *ch, struct char_data *vict, char *arg)
   act(buf, FALSE, ch, 0, vict, TO_VICT | TO_SLEEP);
   send_to_char(CCNRM(vict, C_NRM), vict);
 
-  if (PRF_FLAGGED(ch, PRF_NOREPEAT))
+  if (!IS_NPC(ch) && PRF_FLAGGED(ch, PRF_NOREPEAT))
     send_to_char(OK, ch);
   else {
     send_to_char(CCRED(ch, C_CMP), ch);
@@ -97,7 +114,28 @@ void perform_tell(struct char_data *ch, struct char_data *vict, char *arg)
     send_to_char(CCNRM(ch, C_CMP), ch);
   }
 
-  GET_LAST_TELL(vict) = GET_IDNUM(ch);
+  if (!IS_NPC(vict) && !IS_NPC(ch))
+    GET_LAST_TELL(vict) = GET_IDNUM(ch);
+}
+
+int is_tell_ok(struct char_data *ch, struct char_data *vict)
+{
+  if (ch == vict)
+    send_to_char("You try to tell yourself something.\r\n", ch);
+  else if (!IS_NPC(ch) && PRF_FLAGGED(ch, PRF_NOTELL))
+    send_to_char("You can't tell other people while you have notell on.\r\n", ch);
+  else if (ROOM_FLAGGED(ch->in_room, ROOM_SOUNDPROOF))
+    send_to_char("The walls seem to absorb your words.\r\n", ch);
+  else if (!IS_NPC(vict) && !vict->desc)        /* linkless */
+    act("$E's linkless at the moment.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
+  else if (PLR_FLAGGED(vict, PLR_WRITING))
+    act("$E's writing a message right now; try again later.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
+  else if ((!IS_NPC(vict) && PRF_FLAGGED(vict, PRF_NOTELL)) || ROOM_FLAGGED(vict->in_room, ROOM_SOUNDPROOF))
+    act("$E can't hear you.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
+  else
+    return TRUE;
+
+  return FALSE;
 }
 
 /*
@@ -114,20 +152,7 @@ ACMD(do_tell)
     send_to_char("Who do you wish to tell what??\r\n", ch);
   else if (!(vict = get_char_vis(ch, buf)))
     send_to_char(NOPERSON, ch);
-  else if (ch == vict)
-    send_to_char("You try to tell yourself something.\r\n", ch);
-  else if (PRF_FLAGGED(ch, PRF_NOTELL))
-    send_to_char("You can't tell other people while you have notell on.\r\n", ch);
-  else if (ROOM_FLAGGED(ch->in_room, ROOM_SOUNDPROOF))
-    send_to_char("The walls seem to absorb your words.\r\n", ch);
-  else if (!IS_NPC(vict) && !vict->desc)	/* linkless */
-    act("$E's linkless at the moment.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
-  else if (PLR_FLAGGED(vict, PLR_WRITING))
-    act("$E's writing a message right now; try again later.",
-	FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
-  else if (PRF_FLAGGED(vict, PRF_NOTELL) || ROOM_FLAGGED(vict->in_room, ROOM_SOUNDPROOF))
-    act("$E can't hear you.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
-  else
+  else if (is_tell_ok(ch, vict))
     perform_tell(ch, vict, buf2);
 }
 
@@ -135,6 +160,9 @@ ACMD(do_tell)
 ACMD(do_reply)
 {
   struct char_data *tch = character_list;
+
+  if (IS_NPC(ch))
+    return;
 
   skip_spaces(&argument);
 
@@ -150,12 +178,17 @@ ACMD(do_reply)
      * work if someone logs out and back in again.
      */
 				     
-    while (tch != NULL && GET_IDNUM(tch) != GET_LAST_TELL(ch))
+    /*
+     * XXX: A descriptor list based search would be faster although
+     *      we could not find link dead people.  Not that they can
+     *      hear tells anyway. :) -gg 2/24/98
+     */
+    while (tch != NULL && (IS_NPC(tch) || GET_IDNUM(tch) != GET_LAST_TELL(ch)))
       tch = tch->next;
 
     if (tch == NULL)
       send_to_char("They are no longer playing.\r\n", ch);
-    else
+    else if (is_tell_ok(ch, tch))
       perform_tell(ch, tch, argument);
   }
 }
@@ -164,7 +197,7 @@ ACMD(do_reply)
 ACMD(do_spec_comm)
 {
   struct char_data *vict;
-  char *action_sing, *action_plur, *action_others;
+  const char *action_sing, *action_plur, *action_others;
 
   if (subcmd == SCMD_WHISPER) {
     action_sing = "whisper to";
@@ -295,7 +328,7 @@ ACMD(do_page)
     if (!str_cmp(arg, "all")) {
       if (GET_LEVEL(ch) > LVL_GOD) {
 	for (d = descriptor_list; d; d = d->next)
-	  if (!d->connected && d->character)
+	  if (STATE(d) == CON_PLAYING && d->character)
 	    act(buf, FALSE, ch, 0, d->character, TO_VICT);
       } else
 	send_to_char("You will never be godly enough to do that!\r\n", ch);
@@ -320,13 +353,11 @@ ACMD(do_page)
 
 ACMD(do_gen_comm)
 {
-  extern int level_can_shout;
-  extern int holler_move_cost;
   struct descriptor_data *i;
   char color_on[24];
 
   /* Array of flags which must _not_ be set in order for comm to be heard */
-  static int channels[] = {
+  int channels[] = {
     0,
     PRF_DEAF,
     PRF_NOGOSS,
@@ -341,7 +372,7 @@ ACMD(do_gen_comm)
    *           [2] message if you're not on the channel
    *           [3] a color string.
    */
-  static char *com_msgs[][4] = {
+  const char *com_msgs[][4] = {
     {"You cannot holler!!\r\n",
       "holler",
       "",
@@ -428,7 +459,7 @@ ACMD(do_gen_comm)
 
   /* now send all the strings out */
   for (i = descriptor_list; i; i = i->next) {
-    if (!i->connected && i != ch->desc && i->character &&
+    if (STATE(i) == CON_PLAYING && i != ch->desc && i->character &&
 	!PRF_FLAGGED(i->character, channels[subcmd]) &&
 	!PLR_FLAGGED(i->character, PLR_WRITING) &&
 	!ROOM_FLAGGED(i->character->in_room, ROOM_SOUNDPROOF)) {
@@ -480,7 +511,7 @@ ACMD(do_qcomm)
       strcpy(buf, argument);
 
     for (i = descriptor_list; i; i = i->next)
-      if (!i->connected && i != ch->desc &&
+      if (STATE(i) == CON_PLAYING && i != ch->desc &&
 	  PRF_FLAGGED(i->character, PRF_QUEST))
 	act(buf, 0, ch, 0, i->character, TO_VICT | TO_SLEEP);
   }

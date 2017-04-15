@@ -62,6 +62,11 @@
 
 static unsigned long seed;
 
+/* local functions */
+void circle_srandom(unsigned long initial_seed);
+unsigned long circle_random(void);
+
+
 void circle_srandom(unsigned long initial_seed)
 {
     seed = initial_seed; 

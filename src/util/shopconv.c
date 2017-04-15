@@ -31,11 +31,12 @@ char *fread_string(FILE * fl, char *error)
 
     for (point = buf + strlen(buf) - 2; point >= buf && isspace(*point);
 	 point--);
-    if ((flag = (*point == '~')))
+    if ((flag = (*point == '~'))) {
       if (*(buf + strlen(buf) - 3) == '\n')
 	*(buf + strlen(buf) - 2) = '\0';
       else
 	*(buf + strlen(buf) - 2) = '\0';
+    }
   } while (!flag);
 
   /* do the allocate boogie  */
@@ -144,7 +145,7 @@ int boot_the_shops(FILE * shop_f, FILE * newshop_f, char *filename)
   return (0);
 }
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
   FILE *sfp, *nsfp;
   char fn[256], part[256];
@@ -182,4 +183,6 @@ void main(int argc, char *argv[])
       }
     }
   }
+  return 0;
+  return 0;
 }

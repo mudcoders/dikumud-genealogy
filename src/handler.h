@@ -22,7 +22,7 @@ bool add_dur, bool avg_dur, bool add_mod, bool avg_mod);
 /* utility */
 char *money_desc(int amount);
 struct obj_data *create_money(int amount);
-int	isname(char *str, char *namelist);
+int	isname(const char *str, const char *namelist);
 char	*fname(char *namelist);
 int	get_number(char **name);
 
@@ -109,6 +109,6 @@ void	stop_follower(struct char_data *ch);
 void	hit(struct char_data *ch, struct char_data *victim, int type);
 void	forget(struct char_data *ch, struct char_data *victim);
 void	remember(struct char_data *ch, struct char_data *victim);
-void	damage(struct char_data *ch, struct char_data *victim, int dam, int attacktype);
+int	damage(struct char_data *ch, struct char_data *victim, int dam, int attacktype);
 int	skill_message(int dam, struct char_data *ch, struct char_data *vict,
 		      int attacktype);

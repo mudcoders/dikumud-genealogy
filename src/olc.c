@@ -36,16 +36,19 @@
 extern struct room_data *world;
 extern struct obj_data *obj_proto;
 extern struct char_data *mob_proto;
+extern int top_of_world;
 
 struct char_data *olc_ch;
 
+/* local functions */
 void olc_interpreter(void *targ, int mode, char *arg);
 void olc_set_show(struct char_data * ch, int olc_mode, char *arg);
 void olc_string(char **string, size_t maxlen, char *arg);
 int can_modify(struct char_data * ch, int vnum);
+ACMD(do_olc);
+void olc_bitvector(int *bv, const char **names, char *arg);
 
-
-char *olc_modes[] = {
+const char *olc_modes[] = {
   "set",			/* set OLC characteristics */
   "show",			/* show OLC characteristics */
   ".",				/* repeat last modification command */
@@ -55,7 +58,7 @@ char *olc_modes[] = {
   "\n"
 };
 
-char *olc_commands[] = {
+const char *olc_commands[] = {
   "copy",
   "name",
   "description",
@@ -92,7 +95,6 @@ ACMD(do_olc)
   case OLC_SHOW:
     olc_set_show(ch, olc_mode, argument);
     return;
-    break;
   case OLC_REPEAT:
     if (!(olc_mode = GET_LAST_OLC_MODE(ch)) ||
 	((olc_targ = GET_LAST_OLC_TARG(ch)) == NULL)) {
@@ -115,7 +117,7 @@ ACMD(do_olc)
       }
     } else {
       rnum = ch->in_room;
-      vnum = world[ch->in_room].number;
+      vnum = GET_ROOM_VNUM(IN_ROOM(ch));
       sprintf(buf, "(Using current room %d)\r\n", vnum);
       send_to_char(buf, ch);
     }
@@ -154,7 +156,6 @@ ACMD(do_olc)
   default:
     send_to_char("Usage: olc {.|set|show|obj|mob|room} [args]\r\n", ch);
     return;
-    break;
   }
 
   if (olc_targ == NULL)
@@ -199,9 +200,8 @@ void olc_interpreter(void *targ, int mode, char *arg)
     olc_obj = (struct obj_data *) targ;
     break;
   default:
-    log("SYSERR: Invalid OLC mode passed to interp.");
+    log("SYSERR: Invalid OLC mode %d passed to interp.", mode);
     return;
-    break;
   }
 
 
@@ -305,7 +305,7 @@ void olc_string(char **string, size_t maxlen, char *arg)
 
 
 /* generic fn for modifying a bitvector */
-void olc_bitvector(int *bv, char **names, char *arg)
+void olc_bitvector(int *bv, const char **names, char *arg)
 {
   int newbv, flagnum, remove = 0;
   char *this_name;

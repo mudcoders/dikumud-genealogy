@@ -31,11 +31,21 @@ void pword(char *filename, char *name, char *password)
   FILE *fl;
   struct char_file_u buf;
   int found = FALSE;
+  long size;
 
   if (!(fl = fopen(filename, "r+"))) {
     perror(filename);
     exit(1);
   }
+  fseek(fl, 0L, SEEK_END);
+  size = ftell(fl);
+  rewind(fl);
+  if (size % sizeof(struct char_file_u)) {
+    fprintf(stderr, "\aWARNING:  File size does not match structure, recompile mudpasswd.\n");
+    fclose(fl);
+    exit(1);
+  }
+
   for (;;) {
     fread(&buf, sizeof(buf), 1, fl);
     if (feof(fl))

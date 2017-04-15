@@ -85,6 +85,7 @@
 
 #include <stdio.h>
 #include <ctype.h>
+#include <stdarg.h>
 
 #ifdef HAVE_STRING_H
 #include <string.h>
@@ -168,6 +169,11 @@ extern void abort (), exit ();
 #include <net/errno.h>
 #endif
 
+/* Macintosh */
+#ifdef HAVE_SYS_ERRNO_H
+#include <sys/errno.h>
+#endif
+
 #ifdef HAVE_CRYPT_H
 #include <crypt.h>
 #endif
@@ -222,14 +228,22 @@ extern void abort (), exit ();
 # include <netinet/in.h>
 #endif
 
+#ifdef HAVE_ARPA_INET_H
+# include <arpa/inet.h>
+#endif
+
 #ifdef HAVE_NETDB_H
 # include <netdb.h>
 #endif
 
 #ifdef HAVE_SIGNAL_H
-# define _POSIX_C_SOURCE 2
-# include <signal.h>
-# undef _POSIX_C_SOURCE
+# ifndef _POSIX_C_SOURCE
+#  define _POSIX_C_SOURCE 2
+#  include <signal.h>
+#  undef _POSIX_C_SOURCE
+# else
+#  include <signal.h>	/* GNU libc 6 already defines _POSIX_C_SOURCE. */
+# endif
 #endif
 
 #ifdef HAVE_SYS_UIO_H
@@ -251,16 +265,52 @@ extern void abort (), exit ();
 
 /* Basic system dependencies *******************************************/
 
+#if !defined(__GNUC__)
+#define __attribute__(x)	/* nothing */
+#endif
+
 /* Define the type of a socket and other miscellany */
-#ifdef CIRCLE_WINDOWS	/* Definitions for Win32 */
-#define FD_SETSIZE 1024
-#include <winsock.h>
-typedef SOCKET socket_t;
-#define chdir _chdir
-#define CLOSE_SOCKET(sock) closesocket(sock)
-#else					/* Definitions for UNIX */
-typedef int socket_t;
-#define CLOSE_SOCKET(sock) close(sock)
+#if defined(CIRCLE_WINDOWS)	/* Definitions for Win32 */
+# define FD_SETSIZE		1024
+# include <winsock.h>
+  typedef SOCKET socket_t;
+# define CLOSE_SOCKET(sock)	closesocket(sock)
+# if !defined(__BORLANDC__)
+#  define chdir _chdir
+# endif
+
+#elif defined(CIRCLE_UNIX)	/* Definitions for UNIX */
+  typedef int socket_t;
+# define CLOSE_SOCKET(sock)	close(sock)
+
+#elif defined(CIRCLE_MACINTOSH)	/* Macintosh definitions. */
+
+#elif defined(CIRCLE_ACORN)	/* Definitions for Acorn. */
+  typedef int socket_t;
+# define CLOSE_SOCKET(sock)	close(sock)
+
+#else
+# error Who are we?
+#endif
+
+#if defined(__cplusplus)	/* C++ */
+#define cpp_extern	extern
+#else				/* C */
+#define cpp_extern	/* Nothing */
+#endif
+
+/* Guess if we have the getrlimit()/setrlimit() functions */
+#if defined(RLIMIT_NOFILE) || defined (RLIMIT_OFILE)
+#define HAS_RLIMIT
+#if !defined (RLIMIT_NOFILE)
+# define RLIMIT_NOFILE RLIMIT_OFILE
+#endif
+#endif
+
+
+/* Make sure we have STDERR_FILENO */
+#ifndef STDERR_FILENO
+#define STDERR_FILENO 2
 #endif
 
 
@@ -272,20 +322,21 @@ typedef int socket_t;
  * annoying warning messages (sometimes, a huge number of them) on such OS's
  * when compiling with gcc's -Wall.
  *
- * Some versions of CircleMUD prior to 3.0 patchlevel 9 attempted to include
- * prototypes taken from OS man pages for a large number of OS's in the
- * header files.  I now think such an approach is a bad idea: maintaining that
- * list is very difficult and time-consuming, and when new revisions of OS's
- * are released with new new header files, Circle can break if the
- * prototypes contained in Circle's .h files differs from the new OS header
- * files (for example, Circle 3.0 patchlevel 8 failed with compiler errors
- * under Solaris 2.5 and Linux 1.3.xx whereas under previous revisions of
- * those OS's it had been fine.
+ * Some versions of CircleMUD prior to 3.0 patchlevel 9 attempted to
+ * include prototypes taken from OS man pages for a large number of
+ * OS's in the header files.  I now think such an approach is a bad
+ * idea: maintaining that list is very difficult and time-consuming,
+ * and when new revisions of OS's are released with new header files,
+ * Circle can break if the prototypes contained in Circle's .h files
+ * differs from the new OS header files; for example, Circle 3.0
+ * patchlevel 8 failed with compiler errors under Solaris 2.5 and
+ * Linux 1.3.xx whereas under previous revisions of those OS's it had
+ * been fine.
  *
  * Thus, to silence the compiler warnings but still maintain some level of
  * portability (albiet at the expense of worse error checking in the code),
  * my solution is to define a "typeless" function prototype for all problem
- * functions that have not already been prototyped by the OS.
+ * functions that have not already been prototyped by the OS. --JE
  *
  * 20 Mar 96: My quest is not yet over.  These definitions still cause
  * clashes with some compilers.  Therefore, we only use these prototypes
@@ -302,9 +353,10 @@ typedef int socket_t;
  * 27 Oct 97: This is driving me crazy but I think I've finally come
  * up with the solution that will work.  I've changed the configure
  * script to detect which prototypes exist already; this header file
- * only prototypes functions that aren't already prototypes.  This
- * should give us our strong type-checking back.  This should be the
- * last word on this issue!
+ * only prototypes functions that aren't already prototyped by the
+ * system headers.  A clash should be impossible.  This should give us
+ * our strong type-checking back.  This should be the last word on
+ * this issue!
  */
 
 #ifndef NO_LIBRARY_PROTOTYPES
@@ -431,7 +483,7 @@ typedef int socket_t;
    int getpeername(socket_t s, struct sockaddr *name, int *namelen);
 #endif
 
-#ifdef NEED_GETRLIMIT_PROTO
+#if defined(HAS_RLIMIT) && defined(NEED_GETRLIMIT_PROTO)
    int getrlimit(int resource, struct rlimit *rlp);
 #endif
 
@@ -449,6 +501,18 @@ typedef int socket_t;
 
 #ifdef NEED_HTONS_PROTO
    u_short htons(u_short hostshort);
+#endif
+
+#if defined(HAVE_INET_ADDR) && defined(NEED_INET_ADDR_PROTO)
+   unsigned long int inet_addr(const char *cp);
+#endif
+
+#if defined(HAVE_INET_ATON) && defined(NEED_INET_ATON_PROTO)
+   int inet_aton(const char *cp, struct in_addr *inp);
+#endif
+
+#ifdef NEED_INET_NTOA_PROTO
+   char *inet_ntoa(const struct in_addr in);
 #endif
 
 #ifdef NEED_LISTEN_PROTO
@@ -477,7 +541,7 @@ typedef int socket_t;
           struct itimerval *ovalue);
 #endif
 
-#ifdef NEED_SETRLIMIT_PROTO
+#if defined(HAS_RLIMIT) && defined(NEED_SETRLIMIT_PROTO)
    int setrlimit(int resource, const struct rlimit *rlp);
 #endif
 
@@ -497,6 +561,6 @@ typedef int socket_t;
 #endif /* __COMM_C__ */
 
 
-#endif /* LIB_PROTO */
+#endif /* NO_LIBRARY_PROTOTYPES */
 
 

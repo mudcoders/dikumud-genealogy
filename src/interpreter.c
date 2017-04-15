@@ -24,7 +24,10 @@
 #include "screen.h"
 
 
-extern const struct title_type titles[NUM_CLASSES][LVL_IMPL + 1];
+extern sh_int r_mortal_start_room;
+extern sh_int r_immort_start_room;
+extern sh_int r_frozen_start_room;
+extern const char *class_menu;
 extern char *motd;
 extern char *imotd;
 extern char *background;
@@ -35,7 +38,9 @@ extern struct char_data *character_list;
 extern struct descriptor_data *descriptor_list;
 extern struct player_index_element *player_table;
 extern int top_of_p_table;
-extern int restrict;
+extern int circle_restrict;
+extern int no_specials;
+extern int max_bad_pws;
 extern struct index_data *mob_index;
 extern struct index_data *obj_index;
 extern struct room_data *world;
@@ -44,12 +49,20 @@ extern struct room_data *world;
 void echo_on(struct descriptor_data *d);
 void echo_off(struct descriptor_data *d);
 void do_start(struct char_data *ch);
-void init_char(struct char_data *ch);
-int create_entry(char *name);
+int parse_class(char arg);
 int special(struct char_data *ch, int cmd, char *arg);
 int isbanned(char *hostname);
 int Valid_Name(char *newname);
 
+/* local functions */
+int perform_dupe_check(struct descriptor_data *d);
+struct alias *find_alias(struct alias *alias_list, char *str);
+void free_alias(struct alias *a);
+void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a);
+int perform_alias(struct descriptor_data *d, char *orig);
+int reserved_word(char *argument);
+int find_name(char *name);
+int _parse_name(char *arg, char *name);
 
 /* prototypes for all do_x functions. */
 ACMD(do_action);
@@ -110,7 +123,7 @@ ACMD(do_leave);
 ACMD(do_levels);
 ACMD(do_load);
 ACMD(do_look);
-ACMD(do_move);
+/* ACMD(do_move); -- interpreter.h */
 ACMD(do_not_here);
 ACMD(do_offer);
 ACMD(do_olc);
@@ -192,7 +205,7 @@ ACMD(do_zreset);
  * priority.
  */
 
-const struct command_info cmd_info[] = {
+cpp_extern const struct command_info cmd_info[] = {
   { "RESERVED", 0, 0, 0, 0 },	/* this must be first -- for specprocs */
 
   /* directions must come before other commands but after RESERVED */
@@ -534,7 +547,7 @@ const struct command_info cmd_info[] = {
   { "\n", 0, 0, 0, 0 } };	/* this must be last */
 
 
-char *fill[] =
+const char *fill[] =
 {
   "in",
   "from",
@@ -546,7 +559,7 @@ char *fill[] =
   "\n"
 };
 
-char *reserved[] =
+const char *reserved[] =
 {
   "a",
   "an",
@@ -567,7 +580,6 @@ char *reserved[] =
 void command_interpreter(struct char_data *ch, char *argument)
 {
   int cmd, length;
-  extern int no_specials;
   char *line;
 
   REMOVE_BIT(AFF_FLAGS(ch), AFF_HIDE);
@@ -787,6 +799,10 @@ int perform_alias(struct descriptor_data *d, char *orig)
   char first_arg[MAX_INPUT_LENGTH], *ptr;
   struct alias *a, *tmp;
 
+  /* Mobs don't have alaises. */
+  if (IS_NPC(d->character))
+    return 0;
+
   /* bail out immediately if the guy doesn't have any aliases */
   if ((tmp = GET_ALIASES(d->character)) == NULL)
     return 0;
@@ -823,7 +839,7 @@ int perform_alias(struct descriptor_data *d, char *orig)
  * it to be returned.  Returns -1 if not found; 0..n otherwise.  Array
  * must be terminated with a '\n' so it knows to stop searching.
  */
-int search_block(char *arg, char **list, int exact)
+int search_block(char *arg, const char **list, int exact)
 {
   register int i, l;
 
@@ -848,7 +864,7 @@ int search_block(char *arg, char **list, int exact)
 }
 
 
-int is_number(char *str)
+int is_number(const char *str)
 {
   while (*str)
     if (!isdigit(*(str++)))
@@ -919,6 +935,12 @@ int reserved_word(char *argument)
 char *one_argument(char *argument, char *first_arg)
 {
   char *begin = first_arg;
+
+  if (!argument) {
+    log("SYSERR: one_argument received a NULL pointer!");
+    *first_arg = '\0';
+    return NULL;
+  }
 
   do {
     skip_spaces(&argument);
@@ -1005,7 +1027,7 @@ char *two_arguments(char *argument, char *first_arg, char *second_arg)
  * 
  * returnss 1 if arg1 is an abbreviation of arg2
  */
-int is_abbrev(char *arg1, char *arg2)
+int is_abbrev(const char *arg1, const char *arg2)
 {
   if (!*arg1)
     return 0;
@@ -1035,7 +1057,7 @@ void half_chop(char *string, char *arg1, char *arg2)
 
 
 /* Used in specprocs, mostly.  (Exactly) matches "command" to cmd number */
-int find_command(char *command)
+int find_command(const char *command)
 {
   int cmd;
 
@@ -1128,6 +1150,10 @@ int _parse_name(char *arg, char *name)
 #define USURP		2
 #define UNSWITCH	3
 
+/*
+ * XXX: Make immortals 'return' instead of being disconnected when switched
+ *      into person returns.  This function seems a bit over-extended too.
+ */
 int perform_dupe_check(struct descriptor_data *d)
 {
   struct descriptor_data *k, *next_k;
@@ -1259,15 +1285,7 @@ void nanny(struct descriptor_data *d, char *arg)
   int player_i, load_result;
   char tmp_name[MAX_INPUT_LENGTH];
   struct char_file_u tmp_store;
-  extern sh_int r_mortal_start_room;
-  extern sh_int r_immort_start_room;
-  extern sh_int r_frozen_start_room;
-  extern const char *class_menu;
-  extern int max_bad_pws;
   sh_int load_room;
-
-  int load_char(char *name, struct char_file_u *char_element);
-  int parse_class(char arg);
 
   skip_spaces(&arg);
 
@@ -1280,10 +1298,10 @@ void nanny(struct descriptor_data *d, char *arg)
       d->character->desc = d;
     }
     if (!*arg)
-      close_socket(d);
+      STATE(d) = CON_CLOSE;
     else {
       if ((_parse_name(arg, tmp_name)) || strlen(tmp_name) < 2 ||
-	  strlen(tmp_name) > MAX_NAME_LENGTH ||
+	  strlen(tmp_name) > MAX_NAME_LENGTH || !Valid_Name(tmp_name) ||
 	  fill_word(strcpy(buf, tmp_name)) || reserved_word(buf)) {
 	SEND_TO_Q("Invalid name, please try another.\r\n"
 		  "Name: ", d);
@@ -1294,7 +1312,14 @@ void nanny(struct descriptor_data *d, char *arg)
 	GET_PFILEPOS(d->character) = player_i;
 
 	if (PLR_FLAGGED(d->character, PLR_DELETED)) {
+	  /* We get a false positive from the original deleted character. */
 	  free_char(d->character);
+	  d->character = NULL;
+	  /* Check for multiple creations... */
+	  if (!Valid_Name(tmp_name)) {
+	    SEND_TO_Q("Invalid name, please try another.\r\nName: ", d);
+	    return;
+	  }
 	  CREATE(d->character, struct char_data, 1);
 	  clear_char(d->character);
 	  CREATE(d->character->player_specials, struct player_special_data, 1);
@@ -1318,9 +1343,9 @@ void nanny(struct descriptor_data *d, char *arg)
       } else {
 	/* player unknown -- make new character */
 
+	/* Check for multiple creations of a character. */
 	if (!Valid_Name(tmp_name)) {
-	  SEND_TO_Q("Invalid name, please try another.\r\n", d);
-	  SEND_TO_Q("Name: ", d);
+	  SEND_TO_Q("Invalid name, please try another.\r\nName: ", d);
 	  return;
 	}
 	CREATE(d->character->player.name, char, strlen(tmp_name) + 1);
@@ -1342,7 +1367,7 @@ void nanny(struct descriptor_data *d, char *arg)
 	STATE(d) = CON_CLOSE;
 	return;
       }
-      if (restrict) {
+      if (circle_restrict) {
 	SEND_TO_Q("Sorry, new players can't be created at the moment.\r\n", d);
 	sprintf(buf, "Request for new char %s denied from [%s] (wizlock)",
 		GET_NAME(d->character), d->host);
@@ -1378,7 +1403,7 @@ void nanny(struct descriptor_data *d, char *arg)
     echo_on(d);    /* turn echo back on */
 
     if (!*arg)
-      close_socket(d);
+      STATE(d) = CON_CLOSE;
     else {
       if (strncmp(CRYPT(arg, GET_PASSWD(d->character)), GET_PASSWD(d->character), MAX_PWD_LENGTH)) {
 	sprintf(buf, "Bad PW: %s [%s]", GET_NAME(d->character), d->host);
@@ -1409,7 +1434,7 @@ void nanny(struct descriptor_data *d, char *arg)
 	mudlog(buf, NRM, LVL_GOD, TRUE);
 	return;
       }
-      if (GET_LEVEL(d->character) < restrict) {
+      if (GET_LEVEL(d->character) < circle_restrict) {
 	SEND_TO_Q("The game is temporarily restricted.. try again later.\r\n", d);
 	STATE(d) = CON_CLOSE;
 	sprintf(buf, "Request for login denied for %s [%s] (wizlock)",
@@ -1481,7 +1506,7 @@ void nanny(struct descriptor_data *d, char *arg)
     } else {
       save_char(d->character, NOWHERE);
       echo_on(d);
-      SEND_TO_Q("\r\nDone.\n\r", d);
+      SEND_TO_Q("\r\nDone.\r\n", d);
       SEND_TO_Q(MENU, d);
       STATE(d) = CON_MENU;
     }
@@ -1502,7 +1527,6 @@ void nanny(struct descriptor_data *d, char *arg)
       SEND_TO_Q("That is not a sex..\r\n"
 		"What IS your sex? ", d);
       return;
-      break;
     }
 
     SEND_TO_Q(class_menu, d);
@@ -1632,13 +1656,11 @@ void nanny(struct descriptor_data *d, char *arg)
       SEND_TO_Q("\r\nIncorrect password.\r\n", d);
       SEND_TO_Q(MENU, d);
       STATE(d) = CON_MENU;
-      return;
     } else {
       SEND_TO_Q("\r\nEnter a new password: ", d);
       STATE(d) = CON_CHPWD_GETNEW;
-      return;
     }
-    break;
+    return;
 
   case CON_DELCNF1:
     echo_on(d);
@@ -1681,13 +1703,16 @@ void nanny(struct descriptor_data *d, char *arg)
     }
     break;
 
+/*	Taken care of in game_loop()
   case CON_CLOSE:
     close_socket(d);
     break;
+*/
 
   default:
-    log("SYSERR: Nanny: illegal state of con'ness; closing connection");
-    close_socket(d);
+    log("SYSERR: Nanny: illegal state of con'ness (%d) for '%s'; closing connection.",
+	STATE(d), d->character ? GET_NAME(d->character) : "<unknown>");
+    STATE(d) = CON_DISCONNECT;	/* Safest to do. */
     break;
   }
 }

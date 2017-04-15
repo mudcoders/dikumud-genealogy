@@ -7,34 +7,61 @@ AC_SUBST(CRYPTLIB)
 AC_CONFIG_HEADER(src/conf.h)
 AC_DEFINE(CIRCLE_UNIX)
 
+dnl Find the 'more' program
+AC_CHECK_PROGS(MORE, less most more cat)
+
 dnl Checks for programs.
 AC_PROG_CC
 
 dnl If we're using gcc, use gcc options.
 dnl If not, test for various common switches to make a 'cc' compiler
 dnl compile ANSI C code.
-
 if test $ac_cv_prog_gcc = yes; then
-  MYFLAGS="-Wall"
-else
-  MYFLAGS=""
 
-  dnl -cckr for IRIX machines
-  AC_CACHE_CHECK(whether ${CC-cc} accepts -cckr, ac_cv_prog_cc_cckr,
-  [echo 'void f(){}' > conftest.c
-  if test -z "`${CC-cc} -cckr -c conftest.c 2>&1`"; then
-    MYFLAGS="-cckr"
-    ac_cv_prog_cc_cckr=yes
-  else
-    ac_cv_prog_cc_cckr=no
-  fi
-  rm -f conftest*
+  dnl Determine if gcc -Wall causes warnings on isascii(), etc.
+  AC_CACHE_CHECK(whether ${CC-cc} -Wall also needs -Wno-char-subscripts,
+	ac_cv_char_warn,
+  [
+    OLDCFLAGS=$CFLAGS
+    CFLAGS="$CFLAGS -Wall -Werror"
+    AC_TRY_COMPILE([#include <ctype.h>],
+       [ int i; char c;
+         i = isascii(c);
+         i = isdigit(c);
+         i = isprint(c);
+       ], ac_cv_char_warn=no, ac_cv_char_warn=yes)
+    CFLAGS=$OLDCFLAGS
   ])
 
-fi
+  dnl If Determine if gcc can accept -Wno-char-subscripts
+  AC_CACHE_CHECK(whether ${CC-cc} accepts -Wno-char-subscripts, ac_cv_gcc_ncs,
+  [
+    OLDCFLAGS=$CFLAGS
+    CFLAGS="$CFLAGS -Wno-char-subscripts"
+    AC_TRY_COMPILE(, , ac_cv_gcc_ncs=yes, ac_cv_gcc_ncs=no)
+    CFLAGS=$OLDCFLAGS
+  ])
 
-dnl Find the 'more' program
-AC_CHECK_PROGS(MORE, more cat)
+  dnl If gcc -Wall gives no warnings with isascii(), use "-Wall";
+  dnl Otherwise, if gcc -Wall gives isascii warnings:
+  dnl    If we can use -Wno-char-subscripts, use "-Wall -Wno-char-subscripts"
+  dnl    If can't use -Wno-char-subscripts, use no flags at all.
+
+  if test ${ac_cv_char_warn:-ERROR} = no; then
+    MYFLAGS="-Wall"
+  else
+    if test ${ac_cv_gcc_ncs:-ERROR} = yes; then
+      MYFLAGS="-Wall -Wno-char-subscripts"
+    else
+      MYFLAGS=""
+    fi
+  fi
+
+else
+  dnl We aren't using gcc so we can't assume any special flags.
+  MYFLAGS=""
+
+fi
 
 dnl Checks for libraries.  We check for the library only if the function is
 dnl not available without the library.
@@ -57,9 +84,9 @@ AC_HEADER_STDC
 AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS(fcntl.h sys/fcntl.h errno.h net/errno.h string.h strings.h)
 AC_CHECK_HEADERS(limits.h sys/time.h sys/select.h sys/types.h unistd.h)
-AC_CHECK_HEADERS(memory.h crypt.h assert.h arpa/telnet.h sys/stat.h)
-AC_CHECK_HEADERS(sys/socket.h sys/resource.h netinet/in.h netdb.h signal.h)
-AC_CHECK_HEADERS(sys/uio.h)
+AC_CHECK_HEADERS(memory.h crypt.h assert.h arpa/telnet.h arpa/inet.h)
+AC_CHECK_HEADERS(sys/stat.h sys/socket.h sys/resource.h netinet/in.h netdb.h)
+AC_CHECK_HEADERS(signal.h sys/uio.h)
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
@@ -71,6 +98,13 @@ AC_HEADER_TIME
 dnl Checks for library functions.
 AC_TYPE_SIGNAL
 
+dnl Check for functions that parse IP addresses
+ORIGLIBS=$LIBS
+LIBS="$LIBS $NETLIB"
+AC_CHECK_FUNCS(inet_addr inet_aton)
+LIBS=$ORIGLIBS
+
+dnl Check for prototypes
 AC_CHECK_PROTO(accept)
 AC_CHECK_PROTO(atoi)
 AC_CHECK_PROTO(atol)
@@ -96,6 +130,9 @@ AC_CHECK_PROTO(getsockname)
 AC_CHECK_PROTO(gettimeofday)
 AC_CHECK_PROTO(htonl)
 AC_CHECK_PROTO(htons)
+AC_CHECK_PROTO(inet_addr)
+AC_CHECK_PROTO(inet_aton)
+AC_CHECK_PROTO(inet_ntoa)
 AC_CHECK_PROTO(listen)
 AC_CHECK_PROTO(ntohl)
 AC_CHECK_PROTO(perror)

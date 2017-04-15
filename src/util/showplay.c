@@ -18,18 +18,28 @@ void show(char *filename)
   FILE *fl;
   struct char_file_u player;
   int num = 0;
+  long size;
 
   if (!(fl = fopen(filename, "r+"))) {
     perror("error opening playerfile");
     exit(1);
   }
+  fseek(fl, 0L, SEEK_END);
+  size = ftell(fl);
+  rewind(fl);
+  if (size % sizeof(struct char_file_u)) {
+    fprintf(stderr, "\aWARNING:  File size does not match structure, recompile showplay.\n");
+    fclose(fl);
+    exit(1);
+  }
+
   for (;;) {
     fread(&player, sizeof(struct char_file_u), 1, fl);
     if (feof(fl)) {
       fclose(fl);
-      exit(1);
+      exit(0);
     }
-    switch (player.class) {
+    switch (player.chclass) {
     case CLASS_THIEF:
       strcpy(classname, "Th");
       break;

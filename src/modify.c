@@ -24,7 +24,17 @@
 
 void show_string(struct descriptor_data *d, char *input);
 
-char *string_fields[] =
+extern char *spells[];
+extern char *MENU;
+
+/* local functions */
+void string_add(struct descriptor_data *d, char *str);
+ACMD(do_skillset);
+char *next_page(char *str);
+int count_pages(char *str);
+void paginate_string(char *str, struct descriptor_data *d);
+
+const char *string_fields[] =
 {
   "name",
   "short",
@@ -55,7 +65,6 @@ int length[] =
 void string_add(struct descriptor_data *d, char *str)
 {
   int terminator = 0;
-  extern char *MENU;
 
   /* determine if this is the terminal string, and truncate if so */
   /* changed to only accept '@' at the beginning of line - J. Elson 1/17/94 */
@@ -64,6 +73,20 @@ void string_add(struct descriptor_data *d, char *str)
 
   if ((terminator = (*str == '@')))
     *str = '\0';
+
+#if 0
+  /*
+   * Erase any ~'s inserted by people in the editor.  This prevents anyone
+   * using online creation from causing parse errors in the world files.
+   * Derived from an idea by Sammy <samedi@dhc.net> (who happens to like
+   * his tildes thank you very much.), -gg 2/20/98
+   */
+  {
+    char *tilde = str;
+    while ((tilde = strchr(tilde, '~')))
+      *tilde = ' ';
+  }
+#endif
 
   if (!(*d->str)) {
     if (strlen(str) > d->max_str) {
@@ -89,7 +112,7 @@ void string_add(struct descriptor_data *d, char *str)
   }
 
   if (terminator) {
-    if (!d->connected && (PLR_FLAGGED(d->character, PLR_MAILING))) {
+    if (STATE(d) == CON_PLAYING && (PLR_FLAGGED(d->character, PLR_MAILING))) {
       store_mail(d->mail_to, GET_IDNUM(d->character), *d->str);
       d->mail_to = 0;
       free(*d->str);
@@ -104,11 +127,11 @@ void string_add(struct descriptor_data *d, char *str)
       Board_save_board(d->mail_to - BOARD_MAGIC);
       d->mail_to = 0;
     }
-    if (d->connected == CON_EXDESC) {
+    if (STATE(d) == CON_EXDESC) {
       SEND_TO_Q(MENU, d);
-      d->connected = CON_MENU;
+      STATE(d) = CON_MENU;
     }
-    if (!d->connected && d->character && !IS_NPC(d->character))
+    if (STATE(d) == CON_PLAYING && d->character && !IS_NPC(d->character))
       REMOVE_BIT(PLR_FLAGS(d->character), PLR_WRITING);
   } else
     strcat(*d->str, "\r\n");
@@ -122,16 +145,16 @@ void string_add(struct descriptor_data *d, char *str)
 
 ACMD(do_skillset)
 {
-  extern char *spells[];
   struct char_data *vict;
-  char name[100], buf2[100], buf[100], help[MAX_STRING_LENGTH];
+  char name[MAX_INPUT_LENGTH], buf2[128];
+  char buf[MAX_INPUT_LENGTH], help[MAX_STRING_LENGTH];
   int skill, value, i, qend;
 
   argument = one_argument(argument, name);
 
   if (!*name) {			/* no arguments. print an informative text */
     send_to_char("Syntax: skillset <name> '<skill>' <value>\r\n", ch);
-    strcpy(help, "Skill being one of the following:\n\r");
+    strcpy(help, "Skill being one of the following:\r\n");
     for (i = 0; *spells[i] != '\n'; i++) {
       if (*spells[i] == '!')
 	continue;
@@ -144,7 +167,7 @@ ACMD(do_skillset)
     }
     if (*help)
       send_to_char(help, ch);
-    send_to_char("\n\r", ch);
+    send_to_char("\r\n", ch);
     return;
   }
   if (!(vict = get_char_vis(ch, name))) {
@@ -155,11 +178,11 @@ ACMD(do_skillset)
 
   /* If there is no chars in argument */
   if (!*argument) {
-    send_to_char("Skill name expected.\n\r", ch);
+    send_to_char("Skill name expected.\r\n", ch);
     return;
   }
   if (*argument != '\'') {
-    send_to_char("Skill must be enclosed in: ''\n\r", ch);
+    send_to_char("Skill must be enclosed in: ''\r\n", ch);
     return;
   }
   /* Locate the last quote && lowercase the magic words (if any) */
@@ -168,33 +191,33 @@ ACMD(do_skillset)
     *(argument + qend) = LOWER(*(argument + qend));
 
   if (*(argument + qend) != '\'') {
-    send_to_char("Skill must be enclosed in: ''\n\r", ch);
+    send_to_char("Skill must be enclosed in: ''\r\n", ch);
     return;
   }
   strcpy(help, (argument + 1));
   help[qend - 1] = '\0';
   if ((skill = find_skill_num(help)) <= 0) {
-    send_to_char("Unrecognized skill.\n\r", ch);
+    send_to_char("Unrecognized skill.\r\n", ch);
     return;
   }
   argument += qend + 1;		/* skip to next parameter */
   argument = one_argument(argument, buf);
 
   if (!*buf) {
-    send_to_char("Learned value expected.\n\r", ch);
+    send_to_char("Learned value expected.\r\n", ch);
     return;
   }
   value = atoi(buf);
   if (value < 0) {
-    send_to_char("Minimum value for learned is 0.\n\r", ch);
+    send_to_char("Minimum value for learned is 0.\r\n", ch);
     return;
   }
   if (value > 100) {
-    send_to_char("Max value for learned is 100.\n\r", ch);
+    send_to_char("Max value for learned is 100.\r\n", ch);
     return;
   }
   if (IS_NPC(vict)) {
-    send_to_char("You can't set NPC skills.\n\r", ch);
+    send_to_char("You can't set NPC skills.\r\n", ch);
     return;
   }
   sprintf(buf2, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict),
@@ -203,7 +226,7 @@ ACMD(do_skillset)
 
   SET_SKILL(vict, skill, value);
 
-  sprintf(buf2, "You change %s's %s to %d.\n\r", GET_NAME(vict),
+  sprintf(buf2, "You change %s's %s to %d.\r\n", GET_NAME(vict),
 	  spells[skill], value);
   send_to_char(buf2, ch);
 }
@@ -321,7 +344,7 @@ void show_string(struct descriptor_data *d, char *input)
   char buffer[MAX_STRING_LENGTH];
   int diff;
 
-  one_argument(input, buf);
+  any_one_arg(input, buf);
 
   /* Q is for quit. :) */
   if (LOWER(*buf) == 'q') {
@@ -329,7 +352,7 @@ void show_string(struct descriptor_data *d, char *input)
     d->showstr_count = 0;
     if (d->showstr_head) {
       free(d->showstr_head);
-      d->showstr_head = 0;
+      d->showstr_head = NULL;
     }
     return;
   }
@@ -371,9 +394,11 @@ void show_string(struct descriptor_data *d, char *input)
   }
   /* Or if we have more to show.... */
   else {
-    strncpy(buffer, d->showstr_vector[d->showstr_page],
-	    diff = ((int) d->showstr_vector[d->showstr_page + 1])
-	    - ((int) d->showstr_vector[d->showstr_page]));
+    diff = (int) d->showstr_vector[d->showstr_page + 1];
+    diff -= (int) d->showstr_vector[d->showstr_page];
+    if (diff >= MAX_STRING_LENGTH)
+      diff = MAX_STRING_LENGTH - 1;
+    strncpy(buffer, d->showstr_vector[d->showstr_page], diff);
     buffer[diff] = '\0';
     send_to_char(buffer, d->character);
     d->showstr_page++;

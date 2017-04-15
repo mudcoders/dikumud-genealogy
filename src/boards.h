@@ -45,10 +45,10 @@ struct board_info_type {
 #define MSG_SLOTNUM(i, j) (msg_index[i][j].slot_num)
 #define MSG_LEVEL(i, j) (msg_index[i][j].level)
 
-int	Board_display_msg(int board_type, struct char_data *ch, char *arg);
-int	Board_show_board(int board_type, struct char_data *ch, char *arg);
-int	Board_remove_msg(int board_type, struct char_data *ch, char *arg);
+int	Board_display_msg(int board_type, struct char_data *ch, char *arg, struct obj_data *board);
+int	Board_show_board(int board_type, struct char_data *ch, char *arg, struct obj_data *board);
+int	Board_remove_msg(int board_type, struct char_data *ch, char *arg, struct obj_data *board);
+int	Board_write_message(int board_type, struct char_data *ch, char *arg, struct obj_data *board);
 void	Board_save_board(int board_type);
 void	Board_load_board(int board_type);
 void	Board_reset_board(int board_num);
-void	Board_write_message(int board_type, struct char_data *ch, char *arg);

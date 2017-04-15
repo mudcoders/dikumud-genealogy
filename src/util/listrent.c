@@ -13,12 +13,14 @@
 
 void Crash_listrent(char *fname);
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   int x;
 
   for (x = 1; x < argc; x++)
     Crash_listrent(argv[x]);
+
+  return 0;
 }
 
 

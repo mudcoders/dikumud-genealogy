@@ -18,14 +18,15 @@
 #include "spells.h"
 #include "handler.h"
 #include "db.h"
+#include "constants.h"
 
+extern sh_int r_mortal_start_room;
+extern int top_of_world;
+extern char *spells[];
 extern struct room_data *world;
 extern struct obj_data *object_list;
 extern struct char_data *character_list;
-extern struct int_app_type int_app[];
 extern struct index_data *obj_index;
-
-extern struct weather_data weather_info;
 extern struct descriptor_data *descriptor_list;
 extern struct zone_data *zone_table;
 
@@ -33,20 +34,14 @@ extern int mini_mud;
 extern int pk_allowed;
 
 extern struct default_mobile_stats *mob_defaults;
-extern char weapon_verbs[];
-extern int *max_ac_applys;
 extern struct apply_mod_defaults *apmd;
 
 void clearMemory(struct char_data * ch);
-void act(char *str, int i, struct char_data * c, struct obj_data * o,
-	      void *vict_obj, int j);
-
-void damage(struct char_data * ch, struct char_data * victim,
-	         int damage, int weapontype);
-
 void weight_change_object(struct obj_data * obj, int weight);
 void add_follower(struct char_data * ch, struct char_data * leader);
 int mag_savingthrow(struct char_data * ch, int type);
+void name_to_drinkcon(struct obj_data * obj, int type);
+void name_from_drinkcon(struct obj_data * obj);
 
 
 /*
@@ -56,9 +51,6 @@ int mag_savingthrow(struct char_data * ch, int type);
 ASPELL(spell_create_water)
 {
   int water;
-
-  void name_to_drinkcon(struct obj_data * obj, int type);
-  void name_from_drinkcon(struct obj_data * obj);
 
   if (ch == NULL || obj == NULL)
     return;
@@ -87,8 +79,6 @@ ASPELL(spell_create_water)
 
 ASPELL(spell_recall)
 {
-  extern sh_int r_mortal_start_room;
-
   if (victim == NULL || IS_NPC(victim))
     return;
 
@@ -103,9 +93,8 @@ ASPELL(spell_recall)
 ASPELL(spell_teleport)
 {
   int to_room;
-  extern int top_of_world;
 
-  if (victim != NULL)
+  if (victim == NULL || IS_NPC(victim))
     return;
 
   do {
@@ -184,27 +173,33 @@ ASPELL(spell_locate_object)
   char name[MAX_INPUT_LENGTH];
   int j;
 
+  /*
+   * FIXME: This is broken.  The spell parser routines took the argument
+   * the player gave to the spell and located an object with that keyword.
+   * Since we're passed the object and not the keyword we can only guess
+   * at what the player originally meant to search for. -gg
+   */
   strcpy(name, fname(obj->name));
-  j = level >> 1;
+  j = level / 2;
 
   for (i = object_list; i && (j > 0); i = i->next) {
     if (!isname(name, i->name))
       continue;
 
     if (i->carried_by)
-      sprintf(buf, "%s is being carried by %s.\n\r",
+      sprintf(buf, "%s is being carried by %s.\r\n",
 	      i->short_description, PERS(i->carried_by, ch));
     else if (i->in_room != NOWHERE)
-      sprintf(buf, "%s is in %s.\n\r", i->short_description,
+      sprintf(buf, "%s is in %s.\r\n", i->short_description,
 	      world[i->in_room].name);
     else if (i->in_obj)
-      sprintf(buf, "%s is in %s.\n\r", i->short_description,
+      sprintf(buf, "%s is in %s.\r\n", i->short_description,
 	      i->in_obj->short_description);
     else if (i->worn_by)
-      sprintf(buf, "%s is being worn by %s.\n\r",
+      sprintf(buf, "%s is being worn by %s.\r\n",
 	      i->short_description, PERS(i->worn_by, ch));
     else
-      sprintf(buf, "%s's location is uncertain.\n\r",
+      sprintf(buf, "%s's location is uncertain.\r\n",
 	      i->short_description);
 
     CAP(buf);
@@ -212,8 +207,8 @@ ASPELL(spell_locate_object)
     j--;
   }
 
-  if (j == level >> 1)
-    send_to_char("You sense nothing.\n\r", ch);
+  if (j == level / 2)
+    send_to_char("You sense nothing.\r\n", ch);
 }
 
 
@@ -229,13 +224,13 @@ ASPELL(spell_charm)
     send_to_char("You like yourself even better!\r\n", ch);
   else if (!IS_NPC(victim) && !PRF_FLAGGED(victim, PRF_SUMMONABLE))
     send_to_char("You fail because SUMMON protection is on!\r\n", ch);
-  else if (IS_AFFECTED(victim, AFF_SANCTUARY))
+  else if (AFF_FLAGGED(victim, AFF_SANCTUARY))
     send_to_char("Your victim is protected by sanctuary!\r\n", ch);
   else if (MOB_FLAGGED(victim, MOB_NOCHARM))
     send_to_char("Your victim resists!\r\n", ch);
-  else if (IS_AFFECTED(ch, AFF_CHARM))
+  else if (AFF_FLAGGED(ch, AFF_CHARM))
     send_to_char("You can't have any followers of your own!\r\n", ch);
-  else if (IS_AFFECTED(victim, AFF_CHARM) || level < GET_LEVEL(victim))
+  else if (AFF_FLAGGED(victim, AFF_CHARM) || level < GET_LEVEL(victim))
     send_to_char("You fail.\r\n", ch);
   /* player charming another player - no legal reason for this */
   else if (!pk_allowed && !IS_NPC(victim))
@@ -277,15 +272,6 @@ ASPELL(spell_identify)
   int i;
   int found;
 
-  struct time_info_data age(struct char_data * ch);
-
-  extern char *spells[];
-
-  extern char *item_types[];
-  extern char *extra_bits[];
-  extern char *apply_types[];
-  extern char *affected_bits[];
-
   if (obj) {
     send_to_char("You feel informed:\r\n", ch);
     sprintf(buf, "Object '%s', Item type: ", obj->short_description);
@@ -315,19 +301,19 @@ ASPELL(spell_identify)
       sprintf(buf, "This %s casts: ", item_types[(int) GET_OBJ_TYPE(obj)]);
 
       if (GET_OBJ_VAL(obj, 1) >= 1)
-	sprintf(buf, "%s %s", buf, spells[GET_OBJ_VAL(obj, 1)]);
+	sprintf(buf + strlen(buf), " %s", spells[GET_OBJ_VAL(obj, 1)]);
       if (GET_OBJ_VAL(obj, 2) >= 1)
-	sprintf(buf, "%s %s", buf, spells[GET_OBJ_VAL(obj, 2)]);
+	sprintf(buf + strlen(buf), " %s", spells[GET_OBJ_VAL(obj, 2)]);
       if (GET_OBJ_VAL(obj, 3) >= 1)
-	sprintf(buf, "%s %s", buf, spells[GET_OBJ_VAL(obj, 3)]);
-      sprintf(buf, "%s\r\n", buf);
+	sprintf(buf + strlen(buf), " %s", spells[GET_OBJ_VAL(obj, 3)]);
+      strcat(buf, "\r\n");
       send_to_char(buf, ch);
       break;
     case ITEM_WAND:
     case ITEM_STAFF:
       sprintf(buf, "This %s casts: ", item_types[(int) GET_OBJ_TYPE(obj)]);
-      sprintf(buf, "%s %s\r\n", buf, spells[GET_OBJ_VAL(obj, 3)]);
-      sprintf(buf, "%sIt has %d maximum charge%s and %d remaining.\r\n", buf,
+      sprintf(buf + strlen(buf), " %s\r\n", spells[GET_OBJ_VAL(obj, 3)]);
+      sprintf(buf + strlen(buf), "It has %d maximum charge%s and %d remaining.\r\n",
 	      GET_OBJ_VAL(obj, 1), GET_OBJ_VAL(obj, 1) == 1 ? "" : "s",
 	      GET_OBJ_VAL(obj, 2));
       send_to_char(buf, ch);
@@ -335,7 +321,7 @@ ASPELL(spell_identify)
     case ITEM_WEAPON:
       sprintf(buf, "Damage Dice is '%dD%d'", GET_OBJ_VAL(obj, 1),
 	      GET_OBJ_VAL(obj, 2));
-      sprintf(buf, "%s for an average per-round damage of %.1f.\r\n", buf,
+      sprintf(buf + strlen(buf), " for an average per-round damage of %.1f.\r\n",
 	      (((GET_OBJ_VAL(obj, 2) + 1) / 2.0) * GET_OBJ_VAL(obj, 1)));
       send_to_char(buf, ch);
       break;
@@ -362,18 +348,18 @@ ASPELL(spell_identify)
     send_to_char(buf, ch);
     if (!IS_NPC(victim)) {
       sprintf(buf, "%s is %d years, %d months, %d days and %d hours old.\r\n",
-	      GET_NAME(victim), age(victim).year, age(victim).month,
-	      age(victim).day, age(victim).hours);
+	      GET_NAME(victim), age(victim)->year, age(victim)->month,
+	      age(victim)->day, age(victim)->hours);
       send_to_char(buf, ch);
     }
     sprintf(buf, "Height %d cm, Weight %d pounds\r\n",
 	    GET_HEIGHT(victim), GET_WEIGHT(victim));
-    sprintf(buf, "%sLevel: %d, Hits: %d, Mana: %d\r\n", buf,
+    sprintf(buf + strlen(buf), "Level: %d, Hits: %d, Mana: %d\r\n",
 	    GET_LEVEL(victim), GET_HIT(victim), GET_MANA(victim));
-    sprintf(buf, "%sAC: %d, Hitroll: %d, Damroll: %d\r\n", buf,
+    sprintf(buf + strlen(buf), "AC: %d, Hitroll: %d, Damroll: %d\r\n",
 	    GET_AC(victim), GET_HITROLL(victim), GET_DAMROLL(victim));
-    sprintf(buf, "%sStr: %d/%d, Int: %d, Wis: %d, Dex: %d, Con: %d, Cha: %d\r\n",
-	    buf, GET_STR(victim), GET_ADD(victim), GET_INT(victim),
+    sprintf(buf + strlen(buf), "Str: %d/%d, Int: %d, Wis: %d, Dex: %d, Con: %d, Cha: %d\r\n",
+	GET_STR(victim), GET_ADD(victim), GET_INT(victim),
 	GET_WIS(victim), GET_DEX(victim), GET_CON(victim), GET_CHA(victim));
     send_to_char(buf, ch);
 
@@ -390,7 +376,7 @@ ASPELL(spell_enchant_weapon)
     return;
 
   if ((GET_OBJ_TYPE(obj) == ITEM_WEAPON) &&
-      !IS_SET(GET_OBJ_EXTRA(obj), ITEM_MAGIC)) {
+      !OBJ_FLAGGED(obj, ITEM_MAGIC)) {
 
     for (i = 0; i < MAX_OBJ_AFFECT; i++)
       if (obj->affected[i].location != APPLY_NONE)
@@ -421,12 +407,12 @@ ASPELL(spell_detect_poison)
 {
   if (victim) {
     if (victim == ch) {
-      if (IS_AFFECTED(victim, AFF_POISON))
+      if (AFF_FLAGGED(victim, AFF_POISON))
         send_to_char("You can sense poison in your blood.\r\n", ch);
       else
         send_to_char("You feel healthy.\r\n", ch);
     } else {
-      if (IS_AFFECTED(victim, AFF_POISON))
+      if (AFF_FLAGGED(victim, AFF_POISON))
         act("You sense that $E is poisoned.", FALSE, ch, 0, victim, TO_CHAR);
       else
         act("You sense that $E is healthy.", FALSE, ch, 0, victim, TO_CHAR);

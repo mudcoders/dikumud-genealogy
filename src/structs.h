@@ -8,6 +8,16 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
+/*
+ * Intended use of this macro is to allow external packages to work with
+ * a variety of CircleMUD versions without modifications.  For instance,
+ * an IS_CORPSE() macro was introduced in pl13.  Any future code add-ons
+ * could take into account the CircleMUD version and supply their own
+ * definition for the macro if used on an older version of CircleMUD.
+ * You are supposed to compare this with the macro CIRCLEMUD_VERSION()
+ * in utils.h.  See there for usage.
+ */
+#define _CIRCLEMUD	0x03000D /* Major/Minor/Patchlevel - MMmmPP */
 
 /* preamble *************************************************************/
 
@@ -219,7 +229,7 @@
 #define CON_CHPWD_VRFY   14		/* Verify new password		*/
 #define CON_DELCNF1	 15		/* Delete confirmation 1	*/
 #define CON_DELCNF2	 16		/* Delete confirmation 2	*/
-
+#define CON_DISCONNECT	 17		/* In-game disconnection	*/
 
 /* Character equipment positions: used as index for char_data.equipment[] */
 /* NOTE: Don't confuse these constants with the ITEM_ bitvectors
@@ -420,6 +430,7 @@
 #define LVL_FREEZE	LVL_GRGOD
 
 #define NUM_OF_DIRS	6	/* number of directions in a room (nsewud) */
+#define MAGIC_NUMBER	(0x06)	/* Arbitrary number that won't be in a string */
 
 #define OPT_USEC	100000	/* 10 passes per second */
 #define PASSES_PER_SEC	(1000000 / OPT_USEC)
@@ -437,6 +448,16 @@
 /* Max amount of output that can be buffered */
 #define LARGE_BUFSIZE	   (MAX_SOCK_BUF - GARBAGE_SPACE - MAX_PROMPT_LENGTH)
 
+/*
+ * --- WARNING ---
+ * If you are using a BSD-derived UNIX with MD5 passwords, you _must_
+ * make MAX_PWD_LENGTH larger.  A length of 20 should be good. If
+ * you leave it at the default value of 10, then any character with
+ * a name longer than about 5 characters will be able to log in with
+ * _any_ password.  This has not (yet) been changed to ensure pfile
+ * compatibility for those unaffected.
+ */
+#define HISTORY_SIZE		5	/* Keep last 5 commands. */
 #define MAX_STRING_LENGTH	8192
 #define MAX_INPUT_LENGTH	256	/* Max length per *line* of input */
 #define MAX_RAW_INPUT_LENGTH	512	/* Max size of *raw* input */
@@ -461,7 +482,9 @@ typedef signed char		sbyte;
 typedef unsigned char		ubyte;
 typedef signed short int	sh_int;
 typedef unsigned short int	ush_int;
+#if !defined(__cplusplus)	/* Anyone know a portable method? */
 typedef char			bool;
+#endif
 
 #ifndef CIRCLE_WINDOWS
 typedef char			byte;
@@ -471,7 +494,7 @@ typedef sh_int	room_vnum;	/* A room's vnum type */
 typedef sh_int	obj_vnum;	/* An object's vnum type */
 typedef sh_int	mob_vnum;	/* A mob's vnum type */
 
-typedef sh_int	room_rnum;	/* A room's real (internel) number type */
+typedef sh_int	room_rnum;	/* A room's real (internal) number type */
 typedef sh_int	obj_rnum;	/* An object's real (internal) num type */
 typedef sh_int	mob_rnum;	/* A mobile's real (internal) num type */
 
@@ -639,7 +662,7 @@ struct char_player_data {
    char	*description;  /* Extra descriptions                   */
    char	*title;        /* PC / NPC's title                     */
    byte sex;           /* PC / NPC's sex                       */
-   byte class;         /* PC / NPC's class		       */
+   byte chclass;       /* PC / NPC's class		       */
    byte level;         /* PC / NPC's level                     */
    int	hometown;      /* PC s Hometown (zone)                 */
    struct time_data time;  /* PC's AGE in days                 */
@@ -848,7 +871,7 @@ struct char_file_u {
    char	description[EXDSCR_LENGTH];
    char	title[MAX_TITLE_LENGTH+1];
    byte sex;
-   byte class;
+   byte chclass;
    byte level;
    sh_int hometown;
    time_t birth;   /* Time of birth of character     */
@@ -889,7 +912,6 @@ struct txt_q {
 struct descriptor_data {
    socket_t	descriptor;	/* file descriptor for socket		*/
    char	host[HOST_LENGTH+1];	/* hostname				*/
-   byte close_me;               /* flag: this desc. should be closed    */
    byte	bad_pws;		/* number of bad pw attemps this login	*/
    byte idle_tics;		/* tics idle at password prompt		*/
    int	connected;		/* mode of 'connectedness'		*/
@@ -908,6 +930,8 @@ struct descriptor_data {
    char	last_input[MAX_INPUT_LENGTH]; /* the last input			*/
    char small_outbuf[SMALL_BUFSIZE];  /* standard output buffer		*/
    char *output;		/* ptr to the current output buffer	*/
+   char **history;		/* History of commands, for ! mostly.	*/
+   int	history_pos;		/* Circular array position.		*/
    int  bufptr;			/* ptr to end of current output		*/
    int	bufspace;		/* space left in the output buffer	*/
    struct txt_block *large_outbuf; /* ptr to large buffer, if we need it */
@@ -1003,7 +1027,7 @@ struct title_type {
 
 /* element in monster and object index-tables   */
 struct index_data {
-   int	virtual;    /* virtual number of this mob/obj           */
-   int	number;     /* number of existing units of this mob/obj	*/
+   int	vnum;		/* virtual number of this mob/obj		*/
+   int	number;		/* number of existing units of this mob/obj	*/
    SPECIAL(*func);
 };

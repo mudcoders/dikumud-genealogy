@@ -408,6 +408,7 @@ The following are valid fields:
 
 Field          Level Required   Who     Value Type   Decription
 -----------------------------------------------------------------------------
+age            LVL_GRGOD        BOTH    NUMBER       Character's age
 brief          LVL_GOD          PC      BINARY       Brief mode
 invstart       LVL_GOD          PC      BINARY       Invisible @ Start
 title          LVL_GOD          PC      MISC         Player's title

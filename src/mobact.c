@@ -25,6 +25,13 @@ extern struct char_data *character_list;
 extern struct index_data *mob_index;
 extern struct room_data *world;
 extern struct str_app_type str_app[];
+extern int no_specials;
+
+ACMD(do_get);
+
+/* local functions */
+void mobile_activity(void);
+void clearMemory(struct char_data * ch);
 
 #define MOB_AGGR_TO_ALIGN (MOB_AGGR_EVIL | MOB_AGGR_NEUTRAL | MOB_AGGR_GOOD)
 
@@ -35,10 +42,6 @@ void mobile_activity(void)
   int door, found, max;
   memory_rec *names;
 
-  extern int no_specials;
-
-  ACMD(do_get);
-
   for (ch = character_list; ch; ch = next_ch) {
     next_ch = ch->next;
 
@@ -48,11 +51,11 @@ void mobile_activity(void)
     /* Examine call for special procedure */
     if (MOB_FLAGGED(ch, MOB_SPEC) && !no_specials) {
       if (mob_index[GET_MOB_RNUM(ch)].func == NULL) {
-	sprintf(buf, "SYSERR: %s (#%d): Attempting to call non-existing mob func",
+	log("SYSERR: %s (#%d): Attempting to call non-existing mob function.",
 		GET_NAME(ch), GET_MOB_VNUM(ch));
-	log(buf);
 	REMOVE_BIT(MOB_FLAGS(ch), MOB_SPEC);
       } else {
+	/* XXX: Need to see if they can handle NULL instead of "". */
 	if ((mob_index[GET_MOB_RNUM(ch)].func) (ch, ch, 0, ""))
 	  continue;		/* go to next char */
       }
@@ -148,7 +151,7 @@ void remember(struct char_data * ch, struct char_data * victim)
   memory_rec *tmp;
   bool present = FALSE;
 
-  if (!IS_NPC(ch) || IS_NPC(victim) || (GET_LEVEL(victim) >= LVL_IMMORT))
+  if (!IS_NPC(ch) || IS_NPC(victim) || PRF_FLAGGED(victim, PRF_NOHASSLE))
     return;
 
   for (tmp = MEMORY(ch); tmp && !present; tmp = tmp->next)

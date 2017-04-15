@@ -16,55 +16,85 @@
 #define DB_BOOT_SHP	4
 #define DB_BOOT_HLP	5
 
-/* names of various files and directories */
-#define INDEX_FILE	"index"		/* index of world files		*/
-#define MINDEX_FILE	"index.mini"	/* ... and for mini-mud-mode	*/
-#define WLD_PREFIX	"world/wld"	/* room definitions		*/
-#define MOB_PREFIX	"world/mob"	/* monster prototypes		*/
-#define OBJ_PREFIX	"world/obj"	/* object prototypes		*/
-#define ZON_PREFIX	"world/zon"	/* zon defs & command tables	*/
-#define SHP_PREFIX	"world/shp"	/* shop definitions		*/
-#define HLP_PREFIX	"text/help"	/* for HELP <keyword>		*/
+#if defined(CIRCLE_MACINTOSH)
+#define LIB_WORLD	":world:"
+#define LIB_TEXT	":text:"
+#define LIB_TEXT_HELP	":text:help:"
+#define LIB_MISC	":misc:"
+#define LIB_ETC		":etc:"
+#define LIB_PLRTEXT	":plrtext:"
+#define LIB_PLROBJS	":plrobjs:"
+#define LIB_HOUSE	":house:"
+#define SLASH		":"
+#elif defined(CIRCLE_AMIGA) || defined(CIRCLE_UNIX) || defined(CIRCLE_WINDOWS) || defined(CIRCLE_ACORN)
+#define LIB_WORLD	"world/"
+#define LIB_TEXT	"text/"
+#define LIB_TEXT_HELP	"text/help/"
+#define LIB_MISC	"misc/"
+#define LIB_ETC		"etc/"
+#define LIB_PLRTEXT	"plrtext/"
+#define LIB_OBJS	"objs/"
+#define LIB_PLROBJS	"plrobjs/"
+#define LIB_HOUSE	"house/"
+#define SLASH		"/"
+#endif
 
-#define CREDITS_FILE	"text/credits"	/* for the 'credits' command	*/
-#define NEWS_FILE	"text/news"	/* for the 'news' command	*/
-#define MOTD_FILE	"text/motd"	/* messages of the day / mortal	*/
-#define IMOTD_FILE	"text/imotd"	/* messages of the day / immort	*/
-#define HELP_PAGE_FILE	"text/help/screen" /* for HELP <CR>		*/
-#define INFO_FILE	"text/info"	/* for INFO			*/
-#define WIZLIST_FILE	"text/wizlist"	/* for WIZLIST			*/
-#define IMMLIST_FILE	"text/immlist"	/* for IMMLIST			*/
-#define BACKGROUND_FILE	"text/background" /* for the background story	*/
-#define POLICIES_FILE	"text/policies"	/* player policies/rules	*/
-#define HANDBOOK_FILE	"text/handbook"	/* handbook for new immorts	*/
+#define SUF_OBJS	"objs"
+#define SUF_TEXT	"text"
 
-#define IDEA_FILE	"misc/ideas"	/* for the 'idea'-command	*/
-#define TYPO_FILE	"misc/typos"	/*         'typo'		*/
-#define BUG_FILE	"misc/bugs"	/*         'bug'		*/
-#define MESS_FILE	"misc/messages"	/* damage messages		*/
-#define SOCMESS_FILE	"misc/socials"	/* messgs for social acts	*/
-#define XNAME_FILE	"misc/xnames"	/* invalid name substrings	*/
-
-#define PLAYER_FILE	"etc/players"	/* the player database		*/
-#define MAIL_FILE	"etc/plrmail"	/* for the mudmail system	*/
-#define BAN_FILE	"etc/badsites"	/* for the siteban system	*/
-#define HCONTROL_FILE	"etc/hcontrol"  /* for the house system		*/
-
-#ifdef CIRCLE_AMIGA
+#if defined(CIRCLE_AMIGA)
 #define FASTBOOT_FILE   "/.fastboot"    /* autorun: boot without sleep  */
 #define KILLSCRIPT_FILE "/.killscript"  /* autorun: shut mud down       */
 #define PAUSE_FILE      "/pause"        /* autorun: don't restart mud   */
+#elif defined(CIRCLE_MACINTOSH)
+#define FASTBOOT_FILE	"::.fastboot"	/* autorun: boot without sleep	*/
+#define KILLSCRIPT_FILE	"::.killscript"	/* autorun: shut mud down	*/
+#define PAUSE_FILE	"::pause"	/* autorun: don't restart mud	*/
 #else
 #define FASTBOOT_FILE   "../.fastboot"  /* autorun: boot without sleep  */
 #define KILLSCRIPT_FILE "../.killscript"/* autorun: shut mud down       */
 #define PAUSE_FILE      "../pause"      /* autorun: don't restart mud   */
 #endif
 
+/* names of various files and directories */
+#define INDEX_FILE	"index"		/* index of world files		*/
+#define MINDEX_FILE	"index.mini"	/* ... and for mini-mud-mode	*/
+#define WLD_PREFIX	LIB_WORLD"wld"SLASH	/* room definitions	*/
+#define MOB_PREFIX	LIB_WORLD"mob"SLASH	/* monster prototypes	*/
+#define OBJ_PREFIX	LIB_WORLD"obj"SLASH	/* object prototypes	*/
+#define ZON_PREFIX	LIB_WORLD"zon"SLASH	/* zon defs & command tables */
+#define SHP_PREFIX	LIB_WORLD"shp"SLASH	/* shop definitions	*/
+#define HLP_PREFIX	LIB_TEXT"help"SLASH	/* for HELP <keyword>	*/
+
+#define CREDITS_FILE	LIB_TEXT"credits"/* for the 'credits' command	*/
+#define NEWS_FILE	LIB_TEXT"news"	/* for the 'news' command	*/
+#define MOTD_FILE	LIB_TEXT"motd"	/* messages of the day / mortal	*/
+#define IMOTD_FILE	LIB_TEXT"imotd"	/* messages of the day / immort	*/
+#define HELP_PAGE_FILE	LIB_TEXT_HELP"screen" /* for HELP <CR>		*/
+#define INFO_FILE	LIB_TEXT"info"		/* for INFO		*/
+#define WIZLIST_FILE	LIB_TEXT"wizlist"	/* for WIZLIST		*/
+#define IMMLIST_FILE	LIB_TEXT"immlist"	/* for IMMLIST		*/
+#define BACKGROUND_FILE	LIB_TEXT"background"/* for the background story	*/
+#define POLICIES_FILE	LIB_TEXT"policies" /* player policies/rules	*/
+#define HANDBOOK_FILE	LIB_TEXT"handbook" /* handbook for new immorts	*/
+
+#define IDEA_FILE	LIB_MISC"ideas"	/* for the 'idea'-command	*/
+#define TYPO_FILE	LIB_MISC"typos"	/*         'typo'		*/
+#define BUG_FILE	LIB_MISC"bugs"	/*         'bug'		*/
+#define MESS_FILE	LIB_MISC"messages" /* damage messages		*/
+#define SOCMESS_FILE	LIB_MISC"socials" /* messgs for social acts	*/
+#define XNAME_FILE	LIB_MISC"xnames" /* invalid name substrings	*/
+
+#define PLAYER_FILE	LIB_ETC"players" /* the player database		*/
+#define MAIL_FILE	LIB_ETC"plrmail" /* for the mudmail system	*/
+#define BAN_FILE	LIB_ETC"badsites" /* for the siteban system	*/
+#define HCONTROL_FILE	LIB_ETC"hcontrol"  /* for the house system	*/
+
 /* public procedures in db.c */
 void	boot_db(void);
 int	create_entry(char *name);
 void	zone_update(void);
-int	real_room(int virtual);
+int	real_room(int vnum);
 char	*fread_string(FILE *fl, char *error);
 long	get_id_by_name(char *name);
 char	*get_name_by_id(long id);
@@ -76,7 +106,7 @@ void	save_char(struct char_data *ch, sh_int load_room);
 void	init_char(struct char_data *ch);
 struct char_data* create_char(void);
 struct char_data *read_mobile(int nr, int type);
-int	real_mobile(int virtual);
+int	real_mobile(int vnum);
 int	vnum_mobile(char *searchname, struct char_data *ch);
 void	clear_char(struct char_data *ch);
 void	reset_char(struct char_data *ch);
@@ -85,7 +115,7 @@ void	free_char(struct char_data *ch);
 struct obj_data *create_obj(void);
 void	clear_object(struct obj_data *obj);
 void	free_obj(struct obj_data *obj);
-int	real_object(int virtual);
+int	real_object(int vnum);
 struct obj_data *read_object(int nr, int type);
 int	vnum_object(char *searchname, struct char_data *ch);
 
@@ -190,6 +220,7 @@ char	buf1[MAX_STRING_LENGTH];
 char	buf2[MAX_STRING_LENGTH];
 char	arg[MAX_STRING_LENGTH];
 #else
+extern struct player_special_data dummy_mob;
 extern char	buf[MAX_STRING_LENGTH];
 extern char	buf1[MAX_STRING_LENGTH];
 extern char	buf2[MAX_STRING_LENGTH];

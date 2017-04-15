@@ -202,8 +202,8 @@ struct spell_info_type {
 /* Attacktypes with grammar */
 
 struct attack_hit_type {
-   char	*singular;
-   char	*plural;
+   const char	*singular;
+   const char	*plural;
 };
 
 
@@ -228,13 +228,10 @@ ASPELL(spell_detect_poison);
 
 int find_skill_num(char *name);
 
-void mag_damage(int level, struct char_data *ch, struct char_data *victim,
+int mag_damage(int level, struct char_data *ch, struct char_data *victim,
   int spellnum, int savetype);
 
 void mag_affects(int level, struct char_data *ch, struct char_data *victim,
-  int spellnum, int savetype);
-
-void mag_group_switch(int level, struct char_data *ch, struct char_data *tch, 
   int spellnum, int savetype);
 
 void mag_groups(int level, struct char_data *ch, int spellnum, int savetype);
@@ -268,6 +265,6 @@ int	cast_spell(struct char_data *ch, struct char_data *tch,
 
 
 /* other prototypes */
-void spell_level(int spell, int class, int level);
+void spell_level(int spell, int chclass, int level);
 void init_spell_levels(void);
-char *skill_name(int num);
+const char *skill_name(int num);

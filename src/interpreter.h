@@ -11,12 +11,14 @@
 #define ACMD(name)  \
    void name(struct char_data *ch, char *argument, int cmd, int subcmd)
 
+ACMD(do_move);
+
 #define CMD_NAME (cmd_info[cmd].command)
 #define CMD_IS(cmd_name) (!strcmp(cmd_name, cmd_info[cmd].command))
-#define IS_MOVE(cmdnum) (cmdnum >= 1 && cmdnum <= 6)
+#define IS_MOVE(cmdnum) (cmd_info[cmdnum].command_pointer == do_move)
 
 void	command_interpreter(struct char_data *ch, char *argument);
-int	search_block(char *arg, char **list, int exact);
+int	search_block(char *arg, const char **list, int exact);
 char	lower( char c );
 char	*one_argument(char *argument, char *first_arg);
 char	*one_word(char *argument, char *first_arg);
@@ -25,9 +27,9 @@ char	*two_arguments(char *argument, char *first_arg, char *second_arg);
 int	fill_word(char *argument);
 void	half_chop(char *string, char *arg1, char *arg2);
 void	nanny(struct descriptor_data *d, char *arg);
-int	is_abbrev(char *arg1, char *arg2);
-int	is_number(char *str);
-int	find_command(char *command);
+int	is_abbrev(const char *arg1, const char *arg2);
+int	is_number(const char *str);
+int	find_command(const char *command);
 void	skip_spaces(char **string);
 char	*delete_doubledollar(char *string);
 
@@ -36,19 +38,21 @@ char	*delete_doubledollar(char *string);
 
 
 struct command_info {
-   char *command;
+   const char *command;
    byte minimum_position;
    void	(*command_pointer)
-   (struct char_data *ch, char * argument, int cmd, int subcmd);
+	   (struct char_data *ch, char * argument, int cmd, int subcmd);
    sh_int minimum_level;
    int	subcmd;
 };
 
-/* necessary for CMD_IS macro */
+/*
+ * Necessary for CMD_IS macro.  Borland needs the structure defined first
+ * so it has been moved down here.
+ */
 #ifndef __INTERPRETER_C__
 extern struct command_info cmd_info[];
 #endif
-
 
 struct alias {
   char *alias;
@@ -80,7 +84,7 @@ struct alias {
 
 /* do_gen_ps */
 #define SCMD_INFO       0
-#define SCMD_HANDBOOK   1
+#define SCMD_HANDBOOK   1 
 #define SCMD_CREDITS    2
 #define SCMD_NEWS       3
 #define SCMD_WIZLIST    4

@@ -35,3 +35,4 @@ void	House_boot(void);
 void	House_save_all(void);
 int	House_can_enter(struct char_data *ch, room_vnum house);
 void	House_crashsave(room_vnum vnum);
+void	House_list_guests(struct char_data *ch, ush_int i, int quiet);

@@ -18,13 +18,22 @@ void purge(char *filename)
   FILE *outfile;
   struct char_file_u player;
   int okay, num = 0;
-  long timeout;
+  long timeout, size;
   char *ptr, reason[80];
 
   if (!(fl = fopen(filename, "r+"))) {
     printf("Can't open %s.", filename);
-    exit(0);
+    exit(1);
   }
+  fseek(fl, 0L, SEEK_END);
+  size = ftell(fl);
+  rewind(fl);
+  if (size % sizeof(struct char_file_u)) {
+    fprintf(stderr, "\aWARNING:  File size does not match structure, recompile purgeplay.\n");
+    fclose(fl);
+    exit(1);
+  }
+
   outfile = fopen("players.new", "w");
   printf("Deleting: \n");
 

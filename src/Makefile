@@ -5,8 +5,11 @@
 # C compiler to use
 CC = gcc
 
+# Path to cxref utility
+CXREF = cxref
+
 # Any special flags you want to pass to the compiler
-MYFLAGS = -Wall
+MYFLAGS = -Wall -Wno-char-subscripts
 
 #flags for profiling (see hacker.doc for more information)
 PROFILE = 
@@ -18,6 +21,8 @@ PROFILE =
 BINDIR = ../bin
 
 CFLAGS = -g -O2 $(MYFLAGS) $(PROFILE)
+
+LIBS =  -lcrypt 
 
 OBJFILES = comm.o act.comm.o act.informative.o act.movement.o act.item.o \
 	act.offensive.o act.other.o act.social.o act.wizard.o ban.o boards.o \
@@ -40,7 +45,7 @@ all: .accepted
 	$(MAKE) utils
 
 .accepted:
-	@./licheck more
+	@./licheck less
 
 utils: .accepted
 	(cd util; $(MAKE) all)
@@ -48,7 +53,7 @@ circle:
 	$(MAKE) $(BINDIR)/circle
 
 $(BINDIR)/circle : $(OBJFILES)
-	$(CC) -o $(BINDIR)/circle $(PROFILE) $(OBJFILES)  -lcrypt 
+	$(CC) -o $(BINDIR)/circle $(PROFILE) $(OBJFILES) $(LIBS)
 
 clean:
 	rm -f *.o
@@ -59,21 +64,21 @@ ref:
 #
 	@for file in $(CXREF_FILES) ; do \
 	  echo Cross referencing $$file ; \
-	  /home/jelson/cxref/cxref -D__CXREF__ -xref -Odoc -Ncircle $$file ; \
+	  $(CXREF) -D__CXREF__ -xref -Odoc -Ncircle $$file ; \
 	done
 #
-# Create the source files using /home/jelson/cxref/cxref
+# Create the source files using cxref
 #
 	@for file in $(CXREF_FILES) ; do \
 	   echo Documenting $$file ; \
-	   ( cd . ; /home/jelson/cxref/cxref -D__CXREF__ -warn-xref -xref -Odoc -Ncircle -html $$file ) ; \
+	   ( cd . ; $(CXREF) -D__CXREF__ -warn-xref -xref -Odoc -Ncircle -html $$file ) ; \
 	   rm -f $(DOCS) ; \
 	done
 #
-# Create the index using /home/jelson/cxref/cxref
+# Create the index using cxref
 #
 	@echo Indexing
-	@( cd . ; /home/jelson/cxref/cxref -D__CXREF__ -index-all -Odoc -Ncircle -html )
+	@( cd . ; $(CXREF) -D__CXREF__ -index-all -Odoc -Ncircle -html )
 	@rm -f $(DOCS)
 #
 # Make html files for the .h files
@@ -94,13 +99,13 @@ act.comm.o: act.comm.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h \
   handler.h db.h screen.h
 	$(CC) -c $(CFLAGS) act.comm.c
 act.informative.o: act.informative.c conf.h sysdep.h structs.h utils.h comm.h \
-  interpreter.h handler.h db.h spells.h screen.h
+  interpreter.h handler.h db.h spells.h screen.h constants.h
 	$(CC) -c $(CFLAGS) act.informative.c
 act.item.o: act.item.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h \
   handler.h db.h spells.h
 	$(CC) -c $(CFLAGS) act.item.c
 act.movement.o: act.movement.c conf.h sysdep.h structs.h utils.h comm.h \
-  interpreter.h handler.h db.h spells.h house.h
+  interpreter.h handler.h db.h spells.h house.h constants.h
 	$(CC) -c $(CFLAGS) act.movement.c
 act.offensive.o: act.offensive.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h
@@ -112,7 +117,7 @@ act.social.o: act.social.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h
 	$(CC) -c $(CFLAGS) act.social.c
 act.wizard.o: act.wizard.c conf.h sysdep.h structs.h utils.h comm.h \
-  interpreter.h handler.h db.h spells.h house.h screen.h
+  interpreter.h handler.h db.h spells.h house.h screen.h constants.h
 	$(CC) -c $(CFLAGS) act.wizard.c
 ban.o: ban.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h handler.h db.h
 	$(CC) -c $(CFLAGS) ban.c
@@ -144,7 +149,7 @@ handler.o: handler.c conf.h sysdep.h structs.h utils.h comm.h db.h handler.h \
   interpreter.h spells.h
 	$(CC) -c $(CFLAGS) handler.c
 house.o: house.c conf.h sysdep.h structs.h comm.h handler.h db.h interpreter.h \
-  utils.h house.h
+  utils.h house.h constants.h
 	$(CC) -c $(CFLAGS) house.c
 interpreter.o: interpreter.c conf.h sysdep.h structs.h comm.h interpreter.h db.h \
   utils.h spells.h handler.h mail.h screen.h
@@ -184,10 +189,10 @@ spell_parser.o: spell_parser.c conf.h sysdep.h structs.h utils.h interpreter.h \
   spells.h handler.h comm.h db.h
 	$(CC) -c $(CFLAGS) spell_parser.c
 spells.o: spells.c conf.h sysdep.h structs.h utils.h comm.h spells.h handler.h \
-  db.h
+  db.h constants.h
 	$(CC) -c $(CFLAGS) spells.c
 utils.o: utils.c conf.h sysdep.h structs.h utils.h comm.h screen.h spells.h \
-  handler.h
+  handler.h db.h
 	$(CC) -c $(CFLAGS) utils.c
 weather.o: weather.c conf.h sysdep.h structs.h utils.h comm.h handler.h \
   interpreter.h db.h

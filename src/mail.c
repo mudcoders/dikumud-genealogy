@@ -17,7 +17,6 @@ Written by Jeremy Elson (jelson@cs.jhu.edu)
 #include "conf.h"
 #include "sysdep.h"
 
-
 #include "structs.h"
 #include "utils.h"
 #include "comm.h"
@@ -32,17 +31,35 @@ void postmaster_check_mail(struct char_data * ch, struct char_data *mailman,
 			  int cmd, char *arg);
 void postmaster_receive_mail(struct char_data * ch, struct char_data *mailman,
 			  int cmd, char *arg);
+SPECIAL(postmaster);
 
 extern struct room_data *world;
 extern struct index_data *mob_index;
 extern int no_mail;
 int find_name(char *name);
 
-mail_index_type *mail_index = 0;/* list of recs in the mail file  */
-position_list_type *free_list = 0;	/* list of free positions in file */
-long file_end_pos = 0;		/* length of file */
+mail_index_type *mail_index = NULL;	/* list of recs in the mail file  */
+position_list_type *free_list = NULL;	/* list of free positions in file */
+long file_end_pos = 0;			/* length of file */
 
+/* local functions */
+void push_free_list(long pos);
+long pop_free_list(void);
+mail_index_type *find_char_in_index(long searchee);
+void write_to_file(void *buf, int size, long filepos);
+void read_from_file(void *buf, int size, long filepos);
+void index_mail(long id_to_index, long pos);
 
+/* -------------------------------------------------------------------------- */
+
+/*
+ * void push_free_list(long #1)
+ * #1 - What byte offset into the file the block resides.
+ *
+ * Net effect is to store a list of free blocks in the mail file in a linked
+ * list.  This is called when people receive their messages and at startup
+ * when the list is created.
+ */
 void push_free_list(long pos)
 {
   position_list_type *new_pos;
@@ -54,30 +71,49 @@ void push_free_list(long pos)
 }
 
 
-
+/*
+ * long pop_free_list(none)
+ * Returns the offset of a free block in the mail file.
+ *
+ * Typically used whenever a person mails a message.  The blocks are not
+ * guaranteed to be sequential or in any order at all.
+ */
 long pop_free_list(void)
 {
   position_list_type *old_pos;
   long return_value;
 
-  if ((old_pos = free_list) != 0) {
-    return_value = free_list->position;
-    free_list = old_pos->next;
-    free(old_pos);
-    return return_value;
-  } else
+  /*
+   * If we don't have any free blocks, we append to the file.
+   */
+  if ((old_pos = free_list) == NULL)
     return file_end_pos;
+
+  /* Save the offset of the free block. */
+  return_value = free_list->position;
+  /* Remove this block from the free list. */
+  free_list = old_pos->next;
+  /* Get rid of the memory the node took. */
+  free(old_pos);
+  /* Give back the free offset. */
+  return return_value;
 }
 
 
-
+/*
+ * main_index_type *find_char_in_index(long #1)
+ * #1 - The idnum of the person to look for.
+ * Returns a pointer to the mail block found.
+ *
+ * Finds the first mail block for a specific person based on id number.
+ */
 mail_index_type *find_char_in_index(long searchee)
 {
   mail_index_type *tmp;
 
   if (searchee < 0) {
-    log("SYSERR: Mail system -- non fatal error #1.");
-    return 0;
+    log("SYSERR: Mail system -- non fatal error #1 (searchee == %ld).", searchee);
+    return NULL;
   }
   for (tmp = mail_index; (tmp && tmp->recipient != searchee); tmp = tmp->next);
 
@@ -85,16 +121,26 @@ mail_index_type *find_char_in_index(long searchee)
 }
 
 
-
+/*
+ * void write_to_file(void * #1, int #2, long #3)
+ * #1 - A pointer to the data to write, usually the 'block' record.
+ * #2 - How much to write (because we'll write NUL terminated strings.)
+ * #3 - What offset (block position) in the file to write to.
+ *
+ * Writes a mail block back into the database at the given location.
+ */
 void write_to_file(void *buf, int size, long filepos)
 {
   FILE *mail_file;
 
-  mail_file = fopen(MAIL_FILE, "r+b");
-
   if (filepos % BLOCK_SIZE) {
-    log("SYSERR: Mail system -- fatal error #2!!!");
-    no_mail = 1;
+    log("SYSERR: Mail system -- fatal error #2!!! (invalid file position %ld)", filepos);
+    no_mail = TRUE;
+    return;
+  }
+  if (!(mail_file = fopen(MAIL_FILE, "r+b"))) {
+    log("SYSERR: Unable to open mail file '%s'.", MAIL_FILE);
+    no_mail = TRUE;
     return;
   }
   fseek(mail_file, filepos, SEEK_SET);
@@ -108,24 +154,34 @@ void write_to_file(void *buf, int size, long filepos)
 }
 
 
+/*
+ * void read_from_file(void * #1, int #2, long #3)
+ * #1 - A pointer to where we should store the data read.
+ * #2 - How large the block we're reading is.
+ * #3 - What position in the file to read.
+ *
+ * This reads a block from the mail database file.
+ */
 void read_from_file(void *buf, int size, long filepos)
 {
   FILE *mail_file;
 
-  mail_file = fopen(MAIL_FILE, "r+b");
-
   if (filepos % BLOCK_SIZE) {
-    log("SYSERR: Mail system -- fatal error #3!!!");
-    no_mail = 1;
+    log("SYSERR: Mail system -- fatal error #3!!! (invalid filepos read %ld)", filepos);
+    no_mail = TRUE;
     return;
   }
+  if (!(mail_file = fopen(MAIL_FILE, "r+b"))) {
+    log("SYSERR: Unable to open mail file '%s'.", MAIL_FILE);
+    no_mail = TRUE;
+    return;
+  }
+
   fseek(mail_file, filepos, SEEK_SET);
   fread(buf, size, 1, mail_file);
   fclose(mail_file);
   return;
 }
-
-
 
 
 void index_mail(long id_to_index, long pos)
@@ -134,7 +190,7 @@ void index_mail(long id_to_index, long pos)
   position_list_type *new_position;
 
   if (id_to_index < 0) {
-    log("SYSERR: Mail system -- non-fatal error #4.");
+    log("SYSERR: Mail system -- non-fatal error #4. (id_to_index == %ld)", id_to_index);
     return;
   }
   if (!(new_index = find_char_in_index(id_to_index))) {
@@ -155,20 +211,22 @@ void index_mail(long id_to_index, long pos)
 }
 
 
-/* SCAN_FILE */
-/* scan_file is called once during boot-up.  It scans through the mail file
-   and indexes all entries currently in the mail file. */
+/*
+ * int scan_file(none)
+ * Returns false if mail file is corrupted or true if everything correct.
+ *
+ * This is called once during boot-up.  It scans through the mail file
+ * and indexes all entries currently in the mail file.
+ */
 int scan_file(void)
 {
   FILE *mail_file;
   header_block_type next_block;
   int total_messages = 0, block_num = 0;
-  char buf[100];
 
   if (!(mail_file = fopen(MAIL_FILE, "r"))) {
     log("Mail file non-existant... creating new file.");
-    mail_file = fopen(MAIL_FILE, "w");
-    fclose(mail_file);
+    touch(MAIL_FILE);
     return 1;
   }
   while (fread(&next_block, sizeof(header_block_type), 1, mail_file)) {
@@ -182,36 +240,40 @@ int scan_file(void)
 
   file_end_pos = ftell(mail_file);
   fclose(mail_file);
-  sprintf(buf, "   %ld bytes read.", file_end_pos);
-  log(buf);
+  log("   %ld bytes read.", file_end_pos);
   if (file_end_pos % BLOCK_SIZE) {
     log("SYSERR: Error booting mail system -- Mail file corrupt!");
     log("SYSERR: Mail disabled!");
     return 0;
   }
-  sprintf(buf, "   Mail file read -- %d messages.", total_messages);
-  log(buf);
+  log("   Mail file read -- %d messages.", total_messages);
   return 1;
 }				/* end of scan_file */
 
 
-/* HAS_MAIL */
-/* a simple little function which tells you if the guy has mail or not */
+/*
+ * int has_mail(long #1)
+ * #1 - id number of the person to check for mail.
+ * Returns true or false.
+ *
+ * A simple little function which tells you if the guy has mail or not.
+ */
 int has_mail(long recipient)
 {
-  if (find_char_in_index(recipient))
-    return 1;
-  return 0;
+  return (find_char_in_index(recipient) != NULL);
 }
 
 
-
-/* STORE_MAIL  */
-/* call store_mail to store mail.  (hard, huh? :-) )  Pass 3 arguments:
-   who the mail is to (long), who it's from (long), and a pointer to the
-   actual message text (char *).
-*/
-
+/*
+ * void store_mail(long #1, long #2, char * #3)
+ * #1 - id number of the person to mail to.
+ * #2 - id number of the person the mail is from.
+ * #3 - The actual message to send.
+ *
+ * call store_mail to store mail.  (hard, huh? :-) )  Pass 3 arguments:
+ * who the mail is to (long), who it's from (long), and a pointer to the
+ * actual message text (char *).
+ */
 void store_mail(long to, long from, char *message_pointer)
 {
   header_block_type header;
@@ -221,11 +283,14 @@ void store_mail(long to, long from, char *message_pointer)
   int bytes_written = 0;
   int total_length = strlen(message_pointer);
 
-  assert(sizeof(header_block_type) == sizeof(data_block_type));
-  assert(sizeof(header_block_type) == BLOCK_SIZE);
+  if ((sizeof(header_block_type) != sizeof(data_block_type)) ||
+      (sizeof(header_block_type) != BLOCK_SIZE)) {
+    core_dump();
+    return;
+  }
 
   if (from < 0 || to < 0 || !*message_pointer) {
-    log("SYSERR: Mail system -- non-fatal error #5.");
+    log("SYSERR: Mail system -- non-fatal error #5. (from == %ld, to == %ld)", from, to);
     return;
   }
   memset((char *) &header, 0, sizeof(header));	/* clear the record */
@@ -277,7 +342,6 @@ void store_mail(long to, long from, char *message_pointer)
    * meaning a link to the next block, or LAST_BLOCK flag (-2) meaning the
    * last block in the current message.  This works much like DOS' FAT.
    */
-
   while (bytes_written < total_length) {
     last_address = target_address;
     target_address = pop_free_list();
@@ -298,17 +362,15 @@ void store_mail(long to, long from, char *message_pointer)
 }				/* store mail */
 
 
-
-
-/* READ_DELETE */
-/* read_delete takes 1 char pointer to the name of the person whose mail
-you're retrieving.  It returns to you a char pointer to the message text.
-The mail is then discarded from the file and the mail index. */
-
+/*
+ * char *read_delete(long #1)
+ * #1 - The id number of the person we're checking mail for.
+ * Returns the message text of the mail received.
+ *
+ * Retrieves one messsage for a player. The mail is then discarded from
+ * the file and the mail index.
+ */
 char *read_delete(long recipient)
-/* recipient is the name as it appears in the index.
-   recipient_formatted is the name as it should appear on the mail
-   header (i.e. the text handed to the player) */
 {
   header_block_type header;
   data_block_type data;
@@ -316,19 +378,20 @@ char *read_delete(long recipient)
   position_list_type *position_pointer;
   long mail_address, following_block;
   char *message, *tmstr, buf[200];
+  char *from, *to;
   size_t string_size;
 
   if (recipient < 0) {
-    log("SYSERR: Mail system -- non-fatal error #6.");
-    return 0;
+    log("SYSERR: Mail system -- non-fatal error #6. (recipient: %ld)", recipient);
+    return NULL;
   }
   if (!(mail_pointer = find_char_in_index(recipient))) {
-    log("SYSERR: Mail system -- post office spec_proc error?  Error #7.");
-    return 0;
+    log("SYSERR: Mail system -- post office spec_proc error?  Error #7. (invalid character in index)");
+    return NULL;
   }
   if (!(position_pointer = mail_pointer->list_start)) {
-    log("SYSERR: Mail system -- non-fatal error #8.");
-    return 0;
+    log("SYSERR: Mail system -- non-fatal error #8. (invalid position pointer %p)", position_pointer);
+    return NULL;
   }
   if (!(position_pointer->next)) {	/* just 1 entry in list. */
     mail_address = position_pointer->position;
@@ -352,26 +415,29 @@ char *read_delete(long recipient)
       position_pointer = position_pointer->next;
     mail_address = position_pointer->next->position;
     free(position_pointer->next);
-    position_pointer->next = 0;
+    position_pointer->next = NULL;
   }
 
   /* ok, now lets do some readin'! */
   read_from_file(&header, BLOCK_SIZE, mail_address);
 
   if (header.block_type != HEADER_BLOCK) {
-    log("SYSERR: Oh dear.");
-    no_mail = 1;
-    log("SYSERR: Mail system disabled!  -- Error #9.");
-    return 0;
+    log("SYSERR: Oh dear. (Header block %ld != %d)", header.block_type, HEADER_BLOCK);
+    no_mail = TRUE;
+    log("SYSERR: Mail system disabled!  -- Error #9. (Invalid header block.)");
+    return NULL;
   }
   tmstr = asctime(localtime(&header.header_data.mail_time));
   *(tmstr + strlen(tmstr) - 1) = '\0';
 
+  from = get_name_by_id(header.header_data.from);
+  to = get_name_by_id(recipient);
+
   sprintf(buf, " * * * * Midgaard Mail System * * * *\r\n"
 	  "Date: %s\r\n"
 	  "  To: %s\r\n"
-	  "From: %s\r\n\r\n", tmstr, get_name_by_id(recipient),
-	  get_name_by_id(header.header_data.from));
+	  "From: %s\r\n\r\n", tmstr, to ? to : "Unknown",
+	  from ? from : "Unknown");
 
   string_size = (sizeof(char) * (strlen(buf) + strlen(header.txt) + 1));
   CREATE(message, char, string_size);
@@ -403,10 +469,10 @@ char *read_delete(long recipient)
 }
 
 
-/*****************************************************************
-** Below is the spec_proc for a postmaster using the above       **
-** routines.  Written by Jeremy Elson (jelson@server.cs.jhu.edu) **
-*****************************************************************/
+/****************************************************************
+* Below is the spec_proc for a postmaster using the above       *
+* routines.  Written by Jeremy Elson (jelson@server.cs.jhu.edu) *
+****************************************************************/
 
 SPECIAL(postmaster)
 {
@@ -422,13 +488,13 @@ SPECIAL(postmaster)
   }
 
   if (CMD_IS("mail")) {
-    postmaster_send_mail(ch, me, cmd, argument);
+    postmaster_send_mail(ch, (struct char_data *)me, cmd, argument);
     return 1;
   } else if (CMD_IS("check")) {
-    postmaster_check_mail(ch, me, cmd, argument);
+    postmaster_check_mail(ch, (struct char_data *)me, cmd, argument);
     return 1;
   } else if (CMD_IS("receive")) {
-    postmaster_receive_mail(ch, me, cmd, argument);
+    postmaster_receive_mail(ch, (struct char_data *)me, cmd, argument);
     return 1;
   } else
     return 0;

@@ -27,21 +27,51 @@
 extern struct str_app_type str_app[];
 extern struct room_data *world;
 extern struct descriptor_data *descriptor_list;
-extern struct room_data *world;
 extern struct dex_skill_type dex_app_skill[];
 extern struct spell_info_type spell_info[];
 extern struct index_data *mob_index;
 extern char *class_abbrevs[];
+extern int free_rent;
+extern int pt_allowed;
+extern int max_filesize;
+extern int nameserver_is_slow;
+extern int top_of_world;
+extern int auto_save;
 
 /* extern procedures */
+void list_skills(struct char_data * ch);
+void appear(struct char_data * ch);
+void perform_immort_vis(struct char_data *ch);
 SPECIAL(shop_keeper);
+ACMD(do_gen_comm);
+void die(struct char_data * ch);
+void Crash_rentsave(struct char_data * ch, int cost);
+
+/* local functions */
+ACMD(do_quit);
+ACMD(do_save);
+ACMD(do_not_here);
+ACMD(do_sneak);
+ACMD(do_hide);
+ACMD(do_steal);
+ACMD(do_practice);
+ACMD(do_visible);
+ACMD(do_title);
+int perform_group(struct char_data *ch, struct char_data *vict);
+void print_group(struct char_data *ch);
+ACMD(do_group);
+ACMD(do_ungroup);
+ACMD(do_report);
+ACMD(do_split);
+ACMD(do_use);
+ACMD(do_wimpy);
+ACMD(do_display);
+ACMD(do_gen_write);
+ACMD(do_gen_tog);
 
 
 ACMD(do_quit)
 {
-  void die(struct char_data * ch);
-  void Crash_rentsave(struct char_data * ch, int cost);
-  extern int free_rent;
   sh_int save_room;
   struct descriptor_data *d, *next_d;
 
@@ -71,7 +101,7 @@ ACMD(do_quit)
       if (d == ch->desc)
         continue;
       if (d->character && (GET_IDNUM(d->character) == GET_IDNUM(ch)))
-        close_socket(d);
+        STATE(d) = CON_DISCONNECT;
     }
 
    save_room = ch->in_room;
@@ -94,6 +124,15 @@ ACMD(do_save)
 
   /* Only tell the char we're saving if they actually typed "save" */
   if (cmd) {
+    /*
+     * This prevents item duplication by two PC's using coordinated saves
+     * (or one PC with a house) and system crashes. Note that houses are
+     * still automatically saved without this enabled.
+     */
+    if (auto_save) {
+      send_to_char("Manual saving is disabled.\r\n", ch);
+      return;
+    }
     sprintf(buf, "Saving %s.\r\n", GET_NAME(ch));
     send_to_char(buf, ch);
   }
@@ -101,7 +140,7 @@ ACMD(do_save)
   save_char(ch, NOWHERE);
   Crash_crashsave(ch);
   if (ROOM_FLAGGED(ch->in_room, ROOM_HOUSE_CRASH))
-    House_crashsave(world[ch->in_room].number);
+    House_crashsave(GET_ROOM_VNUM(IN_ROOM(ch)));
 }
 
 
@@ -120,7 +159,7 @@ ACMD(do_sneak)
   byte percent;
 
   send_to_char("Okay, you'll try to move silently for a while.\r\n", ch);
-  if (IS_AFFECTED(ch, AFF_SNEAK))
+  if (AFF_FLAGGED(ch, AFF_SNEAK))
     affect_from_char(ch, SKILL_SNEAK);
 
   percent = number(1, 101);	/* 101% is a complete failure */
@@ -144,7 +183,7 @@ ACMD(do_hide)
 
   send_to_char("You attempt to hide yourself.\r\n", ch);
 
-  if (IS_AFFECTED(ch, AFF_HIDE))
+  if (AFF_FLAGGED(ch, AFF_HIDE))
     REMOVE_BIT(AFF_FLAGS(ch), AFF_HIDE);
 
   percent = number(1, 101);	/* 101% is a complete failure */
@@ -164,10 +203,11 @@ ACMD(do_steal)
   struct obj_data *obj;
   char vict_name[MAX_INPUT_LENGTH], obj_name[MAX_INPUT_LENGTH];
   int percent, gold, eq_pos, pcsteal = 0, ohoh = 0;
-  extern int pt_allowed;
 
-
-  ACMD(do_gen_comm);
+  if (ROOM_FLAGGED(IN_ROOM(ch), ROOM_PEACEFUL)) {
+    send_to_char("This room just has such a peaceful, easy feeling...\r\n", ch);
+    return;
+  }
 
   argument = one_argument(argument, obj_name);
   one_argument(argument, vict_name);
@@ -271,8 +311,6 @@ ACMD(do_steal)
 
 ACMD(do_practice)
 {
-  void list_skills(struct char_data * ch);
-
   one_argument(argument, arg);
 
   if (*arg)
@@ -285,15 +323,12 @@ ACMD(do_practice)
 
 ACMD(do_visible)
 {
-  void appear(struct char_data * ch);
-  void perform_immort_vis(struct char_data *ch);
-
   if (GET_LEVEL(ch) >= LVL_IMMORT) {
     perform_immort_vis(ch);
     return;
   }
 
-  if IS_AFFECTED(ch, AFF_INVISIBLE) {
+  if AFF_FLAGGED(ch, AFF_INVISIBLE) {
     appear(ch);
     send_to_char("You break the spell of invisibility.\r\n", ch);
   } else
@@ -327,7 +362,7 @@ ACMD(do_title)
 
 int perform_group(struct char_data *ch, struct char_data *vict)
 {
-  if (IS_AFFECTED(vict, AFF_GROUP) || !CAN_SEE(ch, vict))
+  if (AFF_FLAGGED(vict, AFF_GROUP) || !CAN_SEE(ch, vict))
     return 0;
 
   SET_BIT(AFF_FLAGS(vict), AFF_GROUP);
@@ -344,21 +379,21 @@ void print_group(struct char_data *ch)
   struct char_data *k;
   struct follow_type *f;
 
-  if (!IS_AFFECTED(ch, AFF_GROUP))
+  if (!AFF_FLAGGED(ch, AFF_GROUP))
     send_to_char("But you are not the member of a group!\r\n", ch);
   else {
     send_to_char("Your group consists of:\r\n", ch);
 
     k = (ch->master ? ch->master : ch);
 
-    if (IS_AFFECTED(k, AFF_GROUP)) {
+    if (AFF_FLAGGED(k, AFF_GROUP)) {
       sprintf(buf, "     [%3dH %3dM %3dV] [%2d %s] $N (Head of group)",
 	      GET_HIT(k), GET_MANA(k), GET_MOVE(k), GET_LEVEL(k), CLASS_ABBR(k));
       act(buf, FALSE, ch, 0, k, TO_CHAR);
     }
 
     for (f = k->followers; f; f = f->next) {
-      if (!IS_AFFECTED(f->follower, AFF_GROUP))
+      if (!AFF_FLAGGED(f->follower, AFF_GROUP))
 	continue;
 
       sprintf(buf, "     [%3dH %3dM %3dV] [%2d %s] $N", GET_HIT(f->follower),
@@ -404,7 +439,7 @@ ACMD(do_group)
   else if ((vict->master != ch) && (vict != ch))
     act("$N must follow you to enter your group.", FALSE, ch, 0, vict, TO_CHAR);
   else {
-    if (!IS_AFFECTED(vict, AFF_GROUP))
+    if (!AFF_FLAGGED(vict, AFF_GROUP))
       perform_group(ch, vict);
     else {
       if (ch != vict)
@@ -422,22 +457,21 @@ ACMD(do_ungroup)
 {
   struct follow_type *f, *next_fol;
   struct char_data *tch;
-  void stop_follower(struct char_data * ch);
 
   one_argument(argument, buf);
 
   if (!*buf) {
-    if (ch->master || !(IS_AFFECTED(ch, AFF_GROUP))) {
+    if (ch->master || !(AFF_FLAGGED(ch, AFF_GROUP))) {
       send_to_char("But you lead no group!\r\n", ch);
       return;
     }
     sprintf(buf2, "%s has disbanded the group.\r\n", GET_NAME(ch));
     for (f = ch->followers; f; f = next_fol) {
       next_fol = f->next;
-      if (IS_AFFECTED(f->follower, AFF_GROUP)) {
+      if (AFF_FLAGGED(f->follower, AFF_GROUP)) {
 	REMOVE_BIT(AFF_FLAGS(f->follower), AFF_GROUP);
 	send_to_char(buf2, f->follower);
-        if (!IS_AFFECTED(f->follower, AFF_CHARM))
+        if (!AFF_FLAGGED(f->follower, AFF_CHARM))
 	  stop_follower(f->follower);
       }
     }
@@ -455,7 +489,7 @@ ACMD(do_ungroup)
     return;
   }
 
-  if (!IS_AFFECTED(tch, AFF_GROUP)) {
+  if (!AFF_FLAGGED(tch, AFF_GROUP)) {
     send_to_char("That person isn't in your group.\r\n", ch);
     return;
   }
@@ -466,7 +500,7 @@ ACMD(do_ungroup)
   act("You have been kicked out of $n's group!", FALSE, ch, 0, tch, TO_VICT);
   act("$N has been kicked out of $n's group!", FALSE, ch, 0, tch, TO_NOTVICT);
  
-  if (!IS_AFFECTED(tch, AFF_CHARM))
+  if (!AFF_FLAGGED(tch, AFF_CHARM))
     stop_follower(tch);
 }
 
@@ -478,7 +512,7 @@ ACMD(do_report)
   struct char_data *k;
   struct follow_type *f;
 
-  if (!IS_AFFECTED(ch, AFF_GROUP)) {
+  if (!AFF_FLAGGED(ch, AFF_GROUP)) {
     send_to_char("But you are not a member of any group!\r\n", ch);
     return;
   }
@@ -492,7 +526,7 @@ ACMD(do_report)
   k = (ch->master ? ch->master : ch);
 
   for (f = k->followers; f; f = f->next)
-    if (IS_AFFECTED(f->follower, AFF_GROUP) && f->follower != ch)
+    if (AFF_FLAGGED(f->follower, AFF_GROUP) && f->follower != ch)
       send_to_char(buf, f->follower);
   if (k != ch)
     send_to_char(buf, k);
@@ -524,18 +558,18 @@ ACMD(do_split)
     }
     k = (ch->master ? ch->master : ch);
 
-    if (IS_AFFECTED(k, AFF_GROUP) && (k->in_room == ch->in_room))
+    if (AFF_FLAGGED(k, AFF_GROUP) && (k->in_room == ch->in_room))
       num = 1;
     else
       num = 0;
 
     for (f = k->followers; f; f = f->next)
-      if (IS_AFFECTED(f->follower, AFF_GROUP) &&
+      if (AFF_FLAGGED(f->follower, AFF_GROUP) &&
 	  (!IS_NPC(f->follower)) &&
 	  (f->follower->in_room == ch->in_room))
 	num++;
 
-    if (num && IS_AFFECTED(ch, AFF_GROUP))
+    if (num && AFF_FLAGGED(ch, AFF_GROUP))
       share = amount / num;
     else {
       send_to_char("With whom do you wish to share your gold?\r\n", ch);
@@ -544,7 +578,7 @@ ACMD(do_split)
 
     GET_GOLD(ch) -= share * (num - 1);
 
-    if (IS_AFFECTED(k, AFF_GROUP) && (k->in_room == ch->in_room)
+    if (AFF_FLAGGED(k, AFF_GROUP) && (k->in_room == ch->in_room)
 	&& !(IS_NPC(k)) && k != ch) {
       GET_GOLD(k) += share;
       sprintf(buf, "%s splits %d coins; you receive %d.\r\n", GET_NAME(ch),
@@ -552,7 +586,7 @@ ACMD(do_split)
       send_to_char(buf, k);
     }
     for (f = k->followers; f; f = f->next) {
-      if (IS_AFFECTED(f->follower, AFF_GROUP) &&
+      if (AFF_FLAGGED(f->follower, AFF_GROUP) &&
 	  (!IS_NPC(f->follower)) &&
 	  (f->follower->in_room == ch->in_room) &&
 	  f->follower != ch) {
@@ -601,11 +635,9 @@ ACMD(do_use)
       sprintf(buf2, "You don't seem to be holding %s %s.\r\n", AN(arg), arg);
       send_to_char(buf2, ch);
       return;
-      break;
     default:
-      log("SYSERR: Unknown subcmd passed to do_use");
+      log("SYSERR: Unknown subcmd %d passed to do_use.", subcmd);
       return;
-      break;
     }
   }
   switch (subcmd) {
@@ -639,6 +671,10 @@ ACMD(do_wimpy)
 {
   int wimp_lev;
 
+  /* 'wimp_level' is a player_special. -gg 2/25/98 */
+  if (IS_NPC(ch))
+    return;
+
   one_argument(argument, arg);
 
   if (!*arg) {
@@ -658,7 +694,7 @@ ACMD(do_wimpy)
 	send_to_char("Heh, heh, heh.. we are jolly funny today, eh?\r\n", ch);
       else if (wimp_lev > GET_MAX_HIT(ch))
 	send_to_char("That doesn't make much sense, now does it?\r\n", ch);
-      else if (wimp_lev > (GET_MAX_HIT(ch) >> 1))
+      else if (wimp_lev > (GET_MAX_HIT(ch) / 2))
 	send_to_char("You can't set your wimp level above half your hit points.\r\n", ch);
       else {
 	sprintf(buf, "Okay, you'll wimp out if you drop below %d hit points.\r\n",
@@ -724,9 +760,9 @@ ACMD(do_display)
 ACMD(do_gen_write)
 {
   FILE *fl;
-  char *tmp, *filename, buf[MAX_STRING_LENGTH];
+  char *tmp, buf[MAX_STRING_LENGTH];
+  const char *filename;
   struct stat fbuf;
-  extern int max_filesize;
   time_t ct;
 
   switch (subcmd) {
@@ -775,7 +811,7 @@ ACMD(do_gen_write)
     return;
   }
   fprintf(fl, "%-8s (%6.6s) [%5d] %s\n", GET_NAME(ch), (tmp + 4),
-	  world[ch->in_room].number, argument);
+	  GET_ROOM_VNUM(IN_ROOM(ch)), argument);
   fclose(fl);
   send_to_char("Okay.  Thanks!\r\n", ch);
 }
@@ -790,9 +826,8 @@ ACMD(do_gen_write)
 ACMD(do_gen_tog)
 {
   long result;
-  extern int nameserver_is_slow;
 
-  char *tog_messages[][2] = {
+  const char *tog_messages[][2] = {
     {"You are now safe from summoning by other players.\r\n",
     "You may now be summoned by other players.\r\n"},
     {"Nohassle disabled.\r\n",
@@ -881,9 +916,8 @@ ACMD(do_gen_tog)
     result = PRF_TOG_CHK(ch, PRF_AUTOEXIT);
     break;
   default:
-    log("SYSERR: Unknown subcmd in do_gen_toggle");
+    log("SYSERR: Unknown subcmd %d in do_gen_toggle.", subcmd);
     return;
-    break;
   }
 
   if (result)

@@ -11,8 +11,6 @@
 #include "conf.h"
 #include "sysdep.h"
 
-
-
 #include "structs.h"
 #include "comm.h"
 #include "handler.h"
@@ -20,11 +18,10 @@
 #include "interpreter.h"
 #include "utils.h"
 #include "house.h"
+#include "constants.h"
 
-extern char *dirs[];
 extern struct room_data *world;
 extern int top_of_world;
-extern const int rev_dir[];
 extern struct index_data *obj_index;
 
 
@@ -33,6 +30,21 @@ int Obj_to_store(struct obj_data * obj, FILE * fl);
 
 struct house_control_rec house_control[MAX_HOUSES];
 int num_of_houses = 0;
+
+/* local functions */
+int House_get_filename(int vnum, char *filename);
+int House_load(room_vnum vnum);
+int House_save(struct obj_data * obj, FILE * fp);
+void House_restore_weight(struct obj_data * obj);
+void House_delete_file(int vnum);
+int find_house(room_vnum vnum);
+void House_save_control(void);
+void hcontrol_list_houses(struct char_data * ch);
+void hcontrol_build_house(struct char_data * ch, char *arg);
+void hcontrol_destroy_house(struct char_data * ch, char *arg);
+void hcontrol_pay_house(struct char_data * ch, char *arg);
+ACMD(do_hcontrol);
+ACMD(do_house);
 
 
 /* First, the basics: finding the filename; loading/saving objects */
@@ -43,7 +55,7 @@ int House_get_filename(int vnum, char *filename)
   if (vnum < 0)
     return 0;
 
-  sprintf(filename, "house/%d.house", vnum);
+  sprintf(filename, LIB_HOUSE"%d.house", vnum);
   return 1;
 }
 
@@ -60,10 +72,8 @@ int House_load(room_vnum vnum)
     return 0;
   if (!House_get_filename(vnum, fname))
     return 0;
-  if (!(fl = fopen(fname, "r+b"))) {
-    /* no file found */
+  if (!(fl = fopen(fname, "r+b")))	/* no file found */
     return 0;
-  }
   while (!feof(fl)) {
     fread(&object, sizeof(struct obj_file_elem), 1, fl);
     if (ferror(fl)) {
@@ -155,7 +165,7 @@ void House_delete_file(int vnum)
     return;
   }
   fclose(fl);
-  if (unlink(fname) < 0) {
+  if (remove(fname) < 0) {
     sprintf(buf, "SYSERR: Error deleting house file #%d. (2)", vnum);
     perror(buf);
   }
@@ -187,7 +197,7 @@ void House_listrent(struct char_data * ch, room_vnum vnum)
       return;
     }
     if (!feof(fl) && (obj = Obj_from_store(object)) != NULL) {
-      sprintf(buf, "%s [%5d] (%5dau) %s\r\n", buf,
+      sprintf(buf + strlen(buf), " [%5d] (%5dau) %s\r\n",
 	      GET_OBJ_VNUM(obj), GET_OBJ_RENT(obj),
 	      obj->short_description);
       free_obj(obj);
@@ -224,7 +234,7 @@ void House_save_control(void)
   FILE *fl;
 
   if (!(fl = fopen(HCONTROL_FILE, "wb"))) {
-    perror("SYSERR: Unable to open house control file");
+    perror("SYSERR: Unable to open house control file.");
     return;
   }
   /* write all the house control recs in one fell swoop.  Pretty nifty, eh? */
@@ -245,7 +255,10 @@ void House_boot(void)
   memset((char *)house_control,0,sizeof(struct house_control_rec)*MAX_HOUSES);
 
   if (!(fl = fopen(HCONTROL_FILE, "rb"))) {
-    log("House control file does not exist.");
+    if (errno == ENOENT)
+      log("House control file '%s' does not exist.", HCONTROL_FILE);
+    else
+      perror(HCONTROL_FILE);
     return;
   }
   while (!feof(fl) && num_of_houses < MAX_HOUSES) {
@@ -260,8 +273,8 @@ void House_boot(void)
     if ((real_house = real_room(temp_house.vnum)) < 0)
       continue;			/* this vnum doesn't exist -- skip */
 
-    if ((find_house(temp_house.vnum)) >= 0)
-      continue;			/* this vnum is already a hosue -- skip */
+    if (find_house(temp_house.vnum) >= 0)
+      continue;			/* this vnum is already a house -- skip */
 
     if ((real_atrium = real_room(temp_house.atrium)) < 0)
       continue;			/* house doesn't have an atrium -- skip */
@@ -287,17 +300,15 @@ void House_boot(void)
 
 /* "House Control" functions */
 
-char *HCONTROL_FORMAT =
+const char *HCONTROL_FORMAT =
 "Usage: hcontrol build <house vnum> <exit direction> <player name>\r\n"
 "       hcontrol destroy <house vnum>\r\n"
 "       hcontrol pay <house vnum>\r\n"
 "       hcontrol show\r\n";
 
-#define NAME(x) ((temp = get_name_by_id(x)) == NULL ? "<UNDEF>" : temp)
-
 void hcontrol_list_houses(struct char_data * ch)
 {
-  int i, j;
+  int i;
   char *timestr, *temp;
   char built_on[128], last_pay[128], own_name[128];
 
@@ -307,38 +318,37 @@ void hcontrol_list_houses(struct char_data * ch)
   }
   strcpy(buf, "Address  Atrium  Build Date  Guests  Owner        Last Paymt\r\n");
   strcat(buf, "-------  ------  ----------  ------  ------------ ----------\r\n");
+  send_to_char(buf, ch);
 
   for (i = 0; i < num_of_houses; i++) {
+    /* Avoid seeing <UNDEF> entries from self-deleted people. -gg 6/21/98 */
+    if ((temp = get_name_by_id(house_control[i].owner)) == NULL)
+      continue;
+
     if (house_control[i].built_on) {
       timestr = asctime(localtime(&(house_control[i].built_on)));
-      *(timestr + 10) = 0;
+      *(timestr + 10) = '\0';
       strcpy(built_on, timestr);
     } else
       strcpy(built_on, "Unknown");
 
     if (house_control[i].last_payment) {
       timestr = asctime(localtime(&(house_control[i].last_payment)));
-      *(timestr + 10) = 0;
+      *(timestr + 10) = '\0';
       strcpy(last_pay, timestr);
     } else
       strcpy(last_pay, "None");
 
-    strcpy(own_name, NAME(house_control[i].owner));
+    /* Now we need a copy of the owner's name to capitalize. -gg 6/21/98 */
+    strcpy(own_name, temp);
 
-    sprintf(buf, "%s%7d %7d  %-10s    %2d    %-12s %s\r\n", buf,
+    sprintf(buf, "%7d %7d  %-10s    %2d    %-12s %s\r\n",
 	    house_control[i].vnum, house_control[i].atrium, built_on,
 	    house_control[i].num_of_guests, CAP(own_name), last_pay);
 
-    if (house_control[i].num_of_guests) {
-      strcat(buf, "     Guests: ");
-      for (j = 0; j < house_control[i].num_of_guests; j++) {
-	sprintf(buf2, "%s ", NAME(house_control[i].guests[j]));
-	strcat(buf, CAP(buf2));
-      }
-      strcat(buf, "\r\n");
-    }
+    send_to_char(buf, ch);
+    House_list_guests(ch, i, TRUE);
   }
-  send_to_char(buf, ch);
 }
 
 
@@ -390,7 +400,7 @@ void hcontrol_build_house(struct char_data * ch, char *arg)
   }
 
   real_atrium = TOROOM(real_house, exit_num);
-  virt_atrium = world[real_atrium].number;
+  virt_atrium = GET_ROOM_VNUM(real_atrium);
 
   if (TOROOM(real_atrium, rev_dir[exit_num]) != real_house) {
     send_to_char("A house's exit must be a two-way door.\r\n", ch);
@@ -444,12 +454,13 @@ void hcontrol_destroy_house(struct char_data * ch, char *arg)
     return;
   }
   if ((real_atrium = real_room(house_control[i].atrium)) < 0)
-    log("SYSERR: House had invalid atrium!");
+    log("SYSERR: House %d had invalid atrium %d!", atoi(arg),
+	house_control[i].atrium);
   else
     REMOVE_BIT(ROOM_FLAGS(real_atrium), ROOM_ATRIUM);
 
   if ((real_house = real_room(house_control[i].vnum)) < 0)
-    log("SYSERR: House had invalid vnum!");
+    log("SYSERR: House %d had invalid vnum %d!", atoi(arg), house_control[i].vnum);
   else
     REMOVE_BIT(ROOM_FLAGS(real_house),
 	       ROOM_HOUSE | ROOM_PRIVATE | ROOM_HOUSE_CRASH);
@@ -518,27 +529,21 @@ ACMD(do_hcontrol)
 ACMD(do_house)
 {
   int i, j, id;
-  char *temp;
 
   one_argument(argument, arg);
 
-  if (!IS_SET(ROOM_FLAGS(ch->in_room), ROOM_HOUSE))
+  if (!ROOM_FLAGGED(IN_ROOM(ch), ROOM_HOUSE))
     send_to_char("You must be in your house to set guests.\r\n", ch);
-  else if ((i = find_house(world[ch->in_room].number)) < 0)
+  else if ((i = find_house(GET_ROOM_VNUM(IN_ROOM(ch)))) < 0)
     send_to_char("Um.. this house seems to be screwed up.\r\n", ch);
   else if (GET_IDNUM(ch) != house_control[i].owner)
     send_to_char("Only the primary owner can set guests.\r\n", ch);
-  else if (!*arg) {
-    send_to_char("Guests of your house:\r\n", ch);
-    if (house_control[i].num_of_guests == 0)
-      send_to_char("  None.\r\n", ch);
-    else
-      for (j = 0; j < house_control[i].num_of_guests; j++) {
-	strcpy(buf, NAME(house_control[i].guests[j]));
-	send_to_char(strcat(CAP(buf), "\r\n"), ch);
-      }
-  } else if ((id = get_id_by_name(arg)) < 0)
+  else if (!*arg)
+    House_list_guests(ch, i, FALSE);
+  else if ((id = get_id_by_name(arg)) < 0)
     send_to_char("No such player.\r\n", ch);
+  else if (id == GET_IDNUM(ch))
+    send_to_char("It's your house!\r\n", ch);
   else {
     for (j = 0; j < house_control[i].num_of_guests; j++)
       if (house_control[i].guests[j] == id) {
@@ -549,6 +554,10 @@ ACMD(do_house)
 	send_to_char("Guest deleted.\r\n", ch);
 	return;
       }
+    if (house_control[i].num_of_guests == MAX_GUESTS) {
+      send_to_char("You have too many guests.\r\n", ch);
+      return;
+    }
     j = house_control[i].num_of_guests++;
     house_control[i].guests[j] = id;
     House_save_control();
@@ -569,7 +578,7 @@ void House_save_all(void)
 
   for (i = 0; i < num_of_houses; i++)
     if ((real_house = real_room(house_control[i].vnum)) != NOWHERE)
-      if (IS_SET(ROOM_FLAGS(real_house), ROOM_HOUSE_CRASH))
+      if (ROOM_FLAGGED(real_house, ROOM_HOUSE_CRASH))
 	House_crashsave(house_control[i].vnum);
 }
 
@@ -589,9 +598,34 @@ int House_can_enter(struct char_data * ch, room_vnum house)
     for (j = 0; j < house_control[i].num_of_guests; j++)
       if (GET_IDNUM(ch) == house_control[i].guests[j])
 	return 1;
-    return 0;
-    break;
   }
 
   return 0;
 }
+
+void House_list_guests(struct char_data *ch, ush_int i, int quiet)
+{
+  int j;
+  char *temp;
+  char buf[MAX_STRING_LENGTH], buf2[MAX_NAME_LENGTH + 2];
+
+  if (house_control[i].num_of_guests == 0) {
+    if (!quiet)
+      send_to_char("  Guests: None\r\n", ch);
+    return;
+  }
+
+  strcpy(buf, "  Guests: ");
+
+  /* Avoid <UNDEF>. -gg 6/21/98 */
+  for (j = 0; j < house_control[i].num_of_guests; j++) {
+    if ((temp = get_name_by_id(house_control[i].guests[j])) == NULL)
+      continue;
+    sprintf(buf2, "%s ", temp);
+    strcat(buf, CAP(buf2));
+  }
+
+  strcat(buf, "\r\n");
+  send_to_char(buf, ch);
+}
+

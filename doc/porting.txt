@@ -1,6 +1,6 @@
 
-                            Porting CircleMUD
-                            -----------------
+                    Porting CircleMUD to New Platforms
+                    ----------------------------------
 
 CircleMUD should work on most UNIX platforms without any modifications;
 simply run the "configure" script and it should automatically detect what

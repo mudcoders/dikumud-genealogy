@@ -20,9 +20,19 @@
 #include "db.h"
 
 struct ban_list_element *ban_list = NULL;
+extern struct descriptor_data *descriptor_list;
 
+/* local functions */
+void load_banned(void);
+int isbanned(char *hostname);
+void _write_one_node(FILE * fp, struct ban_list_element * node);
+void write_ban_list(void);
+ACMD(do_ban);
+ACMD(do_unban);
+int Valid_Name(char *newname);
+void Read_Invalid_List(void);
 
-char *ban_types[] = {
+const char *ban_types[] = {
   "no",
   "new",
   "select",
@@ -42,7 +52,11 @@ void load_banned(void)
   ban_list = 0;
 
   if (!(fl = fopen(BAN_FILE, "r"))) {
-    perror("SYSERR: Unable to open banfile");
+    if (errno != ENOENT) {
+      log("SYSERR: Unable to open banfile '%s'.", BAN_FILE);
+      perror(BAN_FILE);
+    } else
+      log("Ban file '%s' doesn't exist.", BAN_FILE);
     return;
   }
   while (fscanf(fl, " %s %s %d %s ", ban_type, site_name, &date, name) == 4) {
@@ -194,7 +208,7 @@ ACMD(do_ban)
 
 ACMD(do_unban)
 {
-  char site[80];
+  char site[MAX_INPUT_LENGTH];
   struct ban_list_element *ban_node, *temp;
   int found = 0;
 
@@ -239,8 +253,18 @@ int num_invalid = 0;
 int Valid_Name(char *newname)
 {
   int i;
-
+  struct descriptor_data *dt;
   char tempname[MAX_INPUT_LENGTH];
+
+  /*
+   * Make sure someone isn't trying to create this same name.  We want to
+   * do a 'str_cmp' so people can't do 'Bob' and 'BoB'.  The creating login
+   * will not have a character name yet and other people sitting at the
+   * prompt won't have characters yet.
+   */
+  for (dt = descriptor_list; dt; dt = dt->next)
+    if (dt->character && GET_NAME(dt->character) && !str_cmp(GET_NAME(dt->character), newname))
+      return (STATE(dt) == CON_PLAYING);
 
   /* return valid if list doesn't exist */
   if (!invalid_list || num_invalid < 1)
@@ -275,7 +299,7 @@ void Read_Invalid_List(void)
     invalid_list[num_invalid++] = str_dup(temp);
 
   if (num_invalid >= MAX_INVALID_NAMES) {
-    fprintf(stderr, "SYSERR: Too many invalid names; change MAX_INVALID_NAMES in ban.c\n");
+    log("SYSERR: Too many invalid names; change MAX_INVALID_NAMES in ban.c");
     exit(1);
   }
 

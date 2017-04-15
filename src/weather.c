@@ -108,23 +108,23 @@ void weather_change(void)
   case SKY_CLOUDY:
     if (weather_info.pressure < 970)
       change = 2;
-    else if (weather_info.pressure < 990)
+    else if (weather_info.pressure < 990) {
       if (dice(1, 4) == 1)
 	change = 2;
       else
 	change = 0;
-    else if (weather_info.pressure > 1030)
+    } else if (weather_info.pressure > 1030)
       if (dice(1, 4) == 1)
 	change = 3;
 
     break;
   case SKY_RAINING:
-    if (weather_info.pressure < 970)
+    if (weather_info.pressure < 970) {
       if (dice(1, 4) == 1)
 	change = 4;
       else
 	change = 0;
-    else if (weather_info.pressure > 1030)
+    } else if (weather_info.pressure > 1030)
       change = 5;
     else if (weather_info.pressure > 1010)
       if (dice(1, 4) == 1)

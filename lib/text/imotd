@@ -6,13 +6,13 @@ This is the immortal MOTD -- the file that immortals will see when they
 log in to the game.  You should change it to something more interesting
 when you get a chance (as well as most of the other files in lib/text.)
 
+If you need help with CircleMUD, please write to help@circlemud.org
 
-ATTENTION ALL CIRCLEMUD IMPLEMENTORS:
-   There is now a CircleMUD mailing list available!  So, if you'd like
-to exchange ideas, ask for coding help, find people who'd like to swap
-areas, or report any BUGS (gasp!) you may find, the mailing list is the
-best place to do it.
+If you would like to report a bug, please write to bugs@circlemud.org
 
-   The address of the CircleMUD mailing list is circle@pvv.unit.no.
-Write to majordomo@pvv.unit.no if you want to subscribe.
+For all other general discussion, you might want to join the CircleMUD
+Mailing List.  If you wish to subscribe to the mailing list, send mail
+to <listserv@post.queensu.ca> with:
+   subscribe circle <first name> <last name>
+in the body of the message.
 

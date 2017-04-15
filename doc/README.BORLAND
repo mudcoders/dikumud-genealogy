@@ -1,0 +1,14 @@
+                     Compiling CircleMUD Version 3.0
+                under Microsoft Windows 95 or Windows NT
+                           using Borland C++
+
+
+We currently do not have any detailed instructions - except for basically:
+
+1- Rename 'conf.h.win' to 'conf.h'
+2- Rename 'Makefile.bcc' to 'Makefile'
+3- Activate Borland's MAKE utility.
+
+If you have any further information, patches, or more detailed instructions,
+please mail them to us at bugs@circlemud.org.
+

@@ -29,6 +29,7 @@ extern struct descriptor_data *descriptor_list;
 extern struct index_data *mob_index;
 extern struct index_data *obj_index;
 extern struct time_info_data time_info;
+extern int mini_mud;
 
 /* IMPORTANT!
    The below defined number is the zone number of the Kings Castle.
@@ -37,6 +38,18 @@ extern struct time_info_data time_info;
    in the 8000 series... */
 
 #define Z_KINGS_C 150
+/* local functions */
+struct char_data *find_npc_by_name(struct char_data * chAtChar, const char *pszName, int iLen);
+int block_way(struct char_data * ch, int cmd, char *arg, int iIn_room, int iProhibited_direction);
+void assign_kings_castle(void);
+int member_of_staff(struct char_data * chChar);
+int member_of_royal_guard(struct char_data * chChar);
+struct char_data *find_guard(struct char_data * chAtChar);
+struct char_data *get_victim(struct char_data * chAtChar);
+int banzaii(struct char_data * ch);
+int do_npc_rescue(struct char_data * ch_hero, struct char_data * ch_victim);
+int is_trash(struct obj_data * i);
+void fry_victim(struct char_data * ch);
 
 
 /**********************************************************************\
@@ -44,7 +57,18 @@ extern struct time_info_data time_info;
 |* Coded by Sapowox (d90-jkr@nada.kth.se)                             *|
 \**********************************************************************/
 
-#define C_MOB_SPEC(zone,mob) (mob_index[real_mobile(((zone)*100)+(mob))].func)
+/*
+ * 11/4/97 - This is kind of ugly but fixes a memory problem if a mob in
+ *	the King's Castle does not exist. (Writing to mob_index[-1].func)
+ */
+#define C_MOB_SPEC(zone,mob)					\
+	if ((check = real_mobile(((zone)*100)+(mob))) < 0) {	\
+	  if (!mini_mud) {					\
+	    sprintf(buf, "assign_kings_castle(): can't find mob #%d.", ((zone)*100)+(mob));	\
+	    log(buf);						\
+	  }							\
+	} else							\
+	  mob_index[check].func
 
 #define R_MOB(zone, mob) (real_mobile(((zone)*100)+(mob)))
 #define R_OBJ(zone, obj) (real_object(((zone)*100)+(obj)))
@@ -62,6 +86,9 @@ SPECIAL(king_welmar);
 SPECIAL(training_master);
 SPECIAL(peter);
 SPECIAL(jerry);
+SPECIAL(guild);
+ACMD(do_gen_door);
+ACMD(do_follow);
 
 
 /* Routine assign_kings_castle */
@@ -70,6 +97,8 @@ SPECIAL(jerry);
 
 void assign_kings_castle(void)
 {
+  int check;
+
   C_MOB_SPEC(Z_KINGS_C, 0) = CastleGuard;   /* Gwydion */
   /* Added the previous line -- Furry */
   C_MOB_SPEC(Z_KINGS_C, 1) = king_welmar;   /* Our dear friend, the King */
@@ -137,8 +166,8 @@ int member_of_royal_guard(struct char_data * chChar)
 /* Function find_npc_by_name */
 /* Returns a pointer to an npc by the given name */
 /* Used by Tim and Tom */
-struct char_data *find_npc_by_name(struct char_data * chAtChar, char *pszName,
-				             int iLen)
+struct char_data *find_npc_by_name(struct char_data * chAtChar,
+		const char *pszName, int iLen)
 {
   struct char_data *ch;
 
@@ -279,7 +308,7 @@ int block_way(struct char_data * ch, int cmd, char *arg, int iIn_room,
 /* Used by James the Butler and the Cleaning Lady */
 int is_trash(struct obj_data * i)
 {
-  if (IS_SET(i->obj_flags.wear_flags, ITEM_WEAR_TAKE) &&
+  if (OBJWEAR_FLAGGED(i, ITEM_WEAR_TAKE) &&
       ((GET_OBJ_TYPE(i) == ITEM_DRINKCON) || (GET_OBJ_COST(i) <= 10)))
     return TRUE;
   else
@@ -341,21 +370,18 @@ void fry_victim(struct char_data * ch)
 /* Used by King Welmar */
 SPECIAL(king_welmar)
 {
-  ACMD(do_gen_door);
-
-  static char *monolog[] = {
+  const char *monolog[] = {
     "$n proclaims 'Primus in regnis Geticis coronam'.",
     "$n proclaims 'regiam gessi, subiique regis'.",
     "$n proclaims 'munus et mores colui sereno'.",
-    "$n proclaims 'principe dignos'."};
+    "$n proclaims 'principe dignos'."
+  };
 
-  static char bedroom_path[] = "s33004o1c1S.";
+  const char bedroom_path[] = "s33004o1c1S.";
+  const char throne_path[] = "W3o3cG52211rg.";
+  const char monolog_path[] = "ABCDPPPP.";
 
-  static char throne_path[] = "W3o3cG52211rg.";
-
-  static char monolog_path[] = "ABCDPPPP.";
-
-  static char *path;
+  static const char *path;
   static int index;
   static bool move = FALSE;
 
@@ -458,10 +484,7 @@ SPECIAL(king_welmar)
 /* Used by the Training Master */
 SPECIAL(training_master)
 {
-
-  struct char_data *pupil1, *pupil2, *tch;
-
-  SPECIAL(guild);
+  struct char_data *pupil1, *pupil2 = NULL, *tch;
 
   if (!AWAKE(ch) || (GET_POS(ch) == POS_FIGHTING))
     return FALSE;
@@ -555,10 +578,7 @@ SPECIAL(training_master)
 
 SPECIAL(tom)
 {
-
   struct char_data *king, *tim;
-
-  ACMD(do_follow);
 
   if (!AWAKE(ch))
     return FALSE;
@@ -583,10 +603,7 @@ SPECIAL(tom)
 
 SPECIAL(tim)
 {
-
   struct char_data *king, *tom;
-
-  ACMD(do_follow);
 
   if (!AWAKE(ch))
     return FALSE;
@@ -687,8 +704,7 @@ SPECIAL(DicknDavid)
 /* Routine for Captain of the Guards. */
 SPECIAL(peter)
 {
-
-  struct char_data *ch_guard;
+  struct char_data *ch_guard = NULL;
 
   if (cmd || !AWAKE(ch) || GET_POS(ch) == POS_FIGHTING)
     return (FALSE);
@@ -754,8 +770,7 @@ SPECIAL(peter)
 
 SPECIAL(jerry)
 {
-
-  struct char_data *gambler1, *gambler2, *tch;
+  struct char_data *gambler1, *gambler2 = NULL, *tch;
 
   if (!AWAKE(ch) || (GET_POS(ch) == POS_FIGHTING))
     return FALSE;

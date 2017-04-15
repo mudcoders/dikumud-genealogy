@@ -24,10 +24,22 @@ extern struct obj_data *object_list;
 extern struct room_data *world;
 extern int max_exp_gain;
 extern int max_exp_loss;
+extern int idle_rent_time;
+extern int idle_max_level;
+extern int idle_void;
+extern int use_autowiz;
+extern int min_wizlist_lev;
+extern int free_rent;
 
-int level_exp(int class, int level);
-char *title_male(int class, int level);
-char *title_female(int class, int level);
+/* local functions */
+int graf(int age, int p0, int p1, int p2, int p3, int p4, int p5, int p6);
+void check_autowiz(struct char_data * ch);
+
+void Crash_rentsave(struct char_data *ch, int cost);
+int level_exp(int chclass, int level);
+char *title_male(int chclass, int level);
+char *title_female(int chclass, int level);
+void update_char_objects(struct char_data * ch);	/* handler.c */
 
 /* When age < 15 return the value p0 */
 /* When age in 15..29 calculate the line between p1 & p2 */
@@ -71,7 +83,7 @@ int mana_gain(struct char_data * ch)
     /* Neat and fast */
     gain = GET_LEVEL(ch);
   } else {
-    gain = graf(age(ch).year, 4, 8, 12, 16, 12, 10, 8);
+    gain = graf(age(ch)->year, 4, 8, 12, 16, 12, 10, 8);
 
     /* Class calculations */
 
@@ -80,112 +92,112 @@ int mana_gain(struct char_data * ch)
     /* Position calculations    */
     switch (GET_POS(ch)) {
     case POS_SLEEPING:
-      gain <<= 1;
+      gain *= 2;
       break;
     case POS_RESTING:
-      gain += (gain >> 1);	/* Divide by 2 */
+      gain += (gain / 2);	/* Divide by 2 */
       break;
     case POS_SITTING:
-      gain += (gain >> 2);	/* Divide by 4 */
+      gain += (gain / 4);	/* Divide by 4 */
       break;
     }
 
-    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
-      gain <<= 1;
-  }
-
-  if (IS_AFFECTED(ch, AFF_POISON))
-    gain >>= 2;
-
-  if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
-    gain >>= 2;
-
-  return (gain);
-}
-
-
-int hit_gain(struct char_data * ch)
-/* Hitpoint gain pr. game hour */
-{
-  int gain;
-
-  if (IS_NPC(ch)) {
-    gain = GET_LEVEL(ch);
-    /* Neat and fast */
-  } else {
-
-    gain = graf(age(ch).year, 8, 12, 20, 32, 16, 10, 4);
-
-    /* Class/Level calculations */
-
-    /* Skill/Spell calculations */
-
-    /* Position calculations    */
-
-    switch (GET_POS(ch)) {
-    case POS_SLEEPING:
-      gain += (gain >> 1);	/* Divide by 2 */
-      break;
-    case POS_RESTING:
-      gain += (gain >> 2);	/* Divide by 4 */
-      break;
-    case POS_SITTING:
-      gain += (gain >> 3);	/* Divide by 8 */
-      break;
-    }
-
-    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
-      gain >>= 1;
-  }
-
-  if (IS_AFFECTED(ch, AFF_POISON))
-    gain >>= 2;
-
-  if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
-    gain >>= 2;
-
-  return (gain);
-}
-
-
-
-int move_gain(struct char_data * ch)
-/* move gain pr. game hour */
-{
-  int gain;
-
-  if (IS_NPC(ch)) {
-    return (GET_LEVEL(ch));
-    /* Neat and fast */
-  } else {
-    gain = graf(age(ch).year, 16, 20, 24, 20, 16, 12, 10);
-
-    /* Class/Level calculations */
-
-    /* Skill/Spell calculations */
-
-
-    /* Position calculations    */
-    switch (GET_POS(ch)) {
-    case POS_SLEEPING:
-      gain += (gain >> 1);	/* Divide by 2 */
-      break;
-    case POS_RESTING:
-      gain += (gain >> 2);	/* Divide by 4 */
-      break;
-    case POS_SITTING:
-      gain += (gain >> 3);	/* Divide by 8 */
-      break;
-    }
-
-    if (IS_AFFECTED(ch, AFF_POISON))
-      gain >>= 2;
+    if (IS_MAGIC_USER(ch) || IS_CLERIC(ch))
+      gain *= 2;
 
     if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
-      gain >>= 2;
-
-    return gain;
+      gain /= 4;
   }
+
+  if (AFF_FLAGGED(ch, AFF_POISON))
+    gain /= 4;
+
+  return (gain);
+}
+
+
+/* Hitpoint gain pr. game hour */
+int hit_gain(struct char_data * ch)
+{
+  int gain;
+
+  if (IS_NPC(ch)) {
+    /* Neat and fast */
+    gain = GET_LEVEL(ch);
+  } else {
+
+    gain = graf(age(ch)->year, 8, 12, 20, 32, 16, 10, 4);
+
+    /* Class/Level calculations */
+
+    /* Skill/Spell calculations */
+
+    /* Position calculations    */
+
+    switch (GET_POS(ch)) {
+    case POS_SLEEPING:
+      gain += (gain / 2);	/* Divide by 2 */
+      break;
+    case POS_RESTING:
+      gain += (gain / 4);	/* Divide by 4 */
+      break;
+    case POS_SITTING:
+      gain += (gain / 8);	/* Divide by 8 */
+      break;
+    }
+
+    if (IS_MAGIC_USER(ch) || IS_CLERIC(ch))
+      gain /= 2;	/* Ouch. */
+
+    if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+      gain /= 4;
+  }
+
+  if (AFF_FLAGGED(ch, AFF_POISON))
+    gain /= 4;
+
+  return (gain);
+}
+
+
+
+/* move gain pr. game hour */
+int move_gain(struct char_data * ch)
+{
+  int gain;
+
+  if (IS_NPC(ch)) {
+    /* Neat and fast */
+    gain = GET_LEVEL(ch);
+  } else {
+    gain = graf(age(ch)->year, 16, 20, 24, 20, 16, 12, 10);
+
+    /* Class/Level calculations */
+
+    /* Skill/Spell calculations */
+
+
+    /* Position calculations    */
+    switch (GET_POS(ch)) {
+    case POS_SLEEPING:
+      gain += (gain / 2);	/* Divide by 2 */
+      break;
+    case POS_RESTING:
+      gain += (gain / 4);	/* Divide by 4 */
+      break;
+    case POS_SITTING:
+      gain += (gain / 8);	/* Divide by 8 */
+      break;
+    }
+
+    if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+      gain /= 4;
+  }
+
+  if (AFF_FLAGGED(ch, AFF_POISON))
+    gain /= 4;
+
+  return gain;
 }
 
 
@@ -215,8 +227,6 @@ void check_autowiz(struct char_data * ch)
   return;
 #else
   char buf[100];
-  extern int use_autowiz;
-  extern int min_wizlist_lev;
 
   if (use_autowiz && GET_LEVEL(ch) >= LVL_IMMORT) {
     sprintf(buf, "nice ../bin/autowiz %d %s %d %s %d &", min_wizlist_lev,
@@ -308,7 +318,7 @@ void gain_condition(struct char_data * ch, int condition, int value)
 {
   bool intoxicated;
 
-  if (GET_COND(ch, condition) == -1)	/* No change */
+  if (IS_NPC(ch) || GET_COND(ch, condition) == -1)	/* No change */
     return;
 
   intoxicated = (GET_COND(ch, DRUNK) > 0);
@@ -341,10 +351,7 @@ void gain_condition(struct char_data * ch, int condition, int value)
 
 void check_idling(struct char_data * ch)
 {
-  extern int free_rent;
-  void Crash_rentsave(struct char_data *ch, int cost);
-
-  if (++(ch->char_specials.timer) > 8)
+  if (++(ch->char_specials.timer) > idle_void) {
     if (GET_WAS_IN(ch) == NOWHERE && ch->in_room != NOWHERE) {
       GET_WAS_IN(ch) = ch->in_room;
       if (FIGHTING(ch)) {
@@ -357,13 +364,19 @@ void check_idling(struct char_data * ch)
       Crash_crashsave(ch);
       char_from_room(ch);
       char_to_room(ch, 1);
-    } else if (ch->char_specials.timer > 48) {
+    } else if (ch->char_specials.timer > idle_rent_time) {
       if (ch->in_room != NOWHERE)
 	char_from_room(ch);
       char_to_room(ch, 3);
-      if (ch->desc)
-	close_socket(ch->desc);
-      ch->desc = NULL;
+      if (ch->desc) {
+	STATE(ch->desc) = CON_DISCONNECT;
+	/*
+	 * For the 'if (d->character)' test in close_socket().
+	 * -gg 3/1/98 (Happy anniversary.)
+	 */
+	ch->desc->character = NULL;
+	ch->desc = NULL;
+      }
       if (free_rent)
 	Crash_rentsave(ch, 0);
       else
@@ -372,6 +385,7 @@ void check_idling(struct char_data * ch)
       mudlog(buf, CMP, LVL_GOD, TRUE);
       extract_char(ch);
     }
+  }
 }
 
 
@@ -379,8 +393,6 @@ void check_idling(struct char_data * ch)
 /* Update PCs, NPCs, and objects */
 void point_update(void)
 {
-  void update_char_objects(struct char_data * ch);	/* handler.c */
-  void extract_obj(struct obj_data * obj);	/* handler.c */
   struct char_data *i, *next_char;
   struct obj_data *j, *next_thing, *jj, *next_thing2;
 
@@ -396,17 +408,21 @@ void point_update(void)
       GET_HIT(i) = MIN(GET_HIT(i) + hit_gain(i), GET_MAX_HIT(i));
       GET_MANA(i) = MIN(GET_MANA(i) + mana_gain(i), GET_MAX_MANA(i));
       GET_MOVE(i) = MIN(GET_MOVE(i) + move_gain(i), GET_MAX_MOVE(i));
-      if (IS_AFFECTED(i, AFF_POISON))
-	damage(i, i, 2, SPELL_POISON);
+      if (AFF_FLAGGED(i, AFF_POISON))
+	if (damage(i, i, 2, SPELL_POISON) == -1)
+	  continue;	/* Oops, they died. -gg 6/24/98 */
       if (GET_POS(i) <= POS_STUNNED)
 	update_pos(i);
-    } else if (GET_POS(i) == POS_INCAP)
-      damage(i, i, 1, TYPE_SUFFERING);
-    else if (GET_POS(i) == POS_MORTALLYW)
-      damage(i, i, 2, TYPE_SUFFERING);
+    } else if (GET_POS(i) == POS_INCAP) {
+      if (damage(i, i, 1, TYPE_SUFFERING) == -1)
+	continue;
+    } else if (GET_POS(i) == POS_MORTALLYW) {
+      if (damage(i, i, 2, TYPE_SUFFERING) == -1)
+	continue;
+    }
     if (!IS_NPC(i)) {
       update_char_objects(i);
-      if (GET_LEVEL(i) < LVL_GOD)
+      if (GET_LEVEL(i) < idle_max_level)
 	check_idling(i);
     }
   }
@@ -416,7 +432,7 @@ void point_update(void)
     next_thing = j->next;	/* Next in object list */
 
     /* If this is a corpse */
-    if ((GET_OBJ_TYPE(j) == ITEM_CONTAINER) && GET_OBJ_VAL(j, 3)) {
+    if (IS_CORPSE(j)) {
       /* timer count down */
       if (GET_OBJ_TIMER(j) > 0)
 	GET_OBJ_TIMER(j)--;
@@ -442,7 +458,7 @@ void point_update(void)
 	  else if (j->in_room != NOWHERE)
 	    obj_to_room(jj, j->in_room);
 	  else
-	    assert(FALSE);
+	    core_dump();
 	}
 	extract_obj(j);
       }

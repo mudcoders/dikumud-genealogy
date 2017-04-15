@@ -1,7 +1,7 @@
 Frequently Asked Questions (FAQ) for Circle DikuMud with
 Answers
 Alex Fletcher, furry@circlemud.org
-Revision 2.4, 28 October 1997
+Revision 2.5, 9 December 1997
 
 This file is intended to cover common questions related to the Cir-
 cleMUD distributon source by Jeremy Elson <http://www.cs.jhu.edu/~jel-
@@ -74,6 +74,8 @@ error #10047'' when the MUD boots, and then dies.  Why?
 4.15.   I want to expand the ability to pk in my MUD, allowing
 4.16.   Why does it say ``Connection closed by foreign host.'' and not
 4.17.   I run my mud on a unix system and the pfile/rent file works
+4.18.   How do I get the CircleMUD to autoload when the Linux server
+4.19.   My server shuts down my MUD everytime I logoff. How do I keep
 
 5.      Code Changes for CircleMUD 2.20
 5.1.    How do I fix the bug where people can junk more coins than
@@ -109,7 +111,6 @@ there already, some of which are based on CircleMUD code.  A good
 place to start looking is the Mud Connector
 <http://www.mudconnect.com/> The CircleMUD web server also has a
 smaller CircleMUD Site List <http://cambot.circlemud.org/sites.html>.
-
 
 
 1.2.  I'm new to C and/or coding. What do I do?
@@ -178,12 +179,12 @@ Quoting from CircleMUD's release.doc:
      "CircleMUD is highly developed from the programming side, but highly
      UNdeveloped on the game-playing side.  So, if you're looking for a
      huge MUD with billions of spells, skills, classes, races, and areas,
-Circle will probably disappoint you severely.  Circle still has only
-the 4 original Diku classes, the original spells, the original skills,
-and about a couple dozen areas. On the other hand, if you're looking
-for a highly stable, well-developed, well-organized "blank slate" MUD
-on which you can put your OWN ideas for spells, skills, classes, and
-areas, then Circle might be just what you're looking for."
+     Circle will probably disappoint you severely.  Circle still has only
+     the 4 original Diku classes, the original spells, the original skills,
+     and about a couple dozen areas. On the other hand, if you're looking
+     for a highly stable, well-developed, well-organized "blank slate" MUD
+     on which you can put your OWN ideas for spells, skills, classes, and
+     areas, then Circle might be just what you're looking for."
 
 
 The latest full release of Circle is 2.20, released on November 17,
@@ -239,11 +240,6 @@ actually, most aren't. The following are types of UNIX (but not all
 the existing flavours): Linux, FreeBSD, BSD, BSDi, Solaris. There are
 others. UNIX operating systems are command-based and Microsoft does
 not make a variant.
-
-
-
-
-
 2.  Resources
 
 
@@ -1102,6 +1098,35 @@ o  Develop an ascii read/write system to allow portability.
 
 
 
+4.18.  How do I get the CircleMUD to autoload when the Linux server is
+restarted?
+
+In /etc/rc.d/rc.local find where things like sendmail and (maybe) gpm
+are started.  Add something like:
+
+cd /home/mudlogin/circlebpl12/
+su mudlogin -c ./autorun&
+cd
+
+
+
+Of course, change the "mudlogin" to whatever the name of the account
+is that normally has control of the mud, and change the path in the
+first cd to whereever the mud is run from.
+
+For more info: man su
+
+
+4.19.  My server shuts down my MUD everytime I logoff. How do I keep
+the MUD running when I logoff?
+
+Instead of typing "autorun &" to start the autorun script (which
+starts and keeps the mud running), type "nohup autorun &".  Running
+the autorun via nohup will keep the script and the MUD running when
+you logoff of the server. For more information type "man nohup" at the
+prompt on your server.
+
+
 5.  Code Changes for CircleMUD 2.20
 
 
@@ -1130,6 +1155,13 @@ Around line 480 of act.obj1.c, you will find the code:
 
 
 It should be changed to:
+
+
+
+
+
+
+
 
 
             if (!str_cmp("coins", arg) || !str_cmp("coin", arg))
@@ -1168,6 +1200,9 @@ Add the line char_to_room(mob, 0) before extract_char(), like this:
         char_to_room(mob, 0);
         extract_char(mob);
 
+
+
+
 5.3.  How do I fix the ``wizlock'' bug that lets lower immortals lock
 out higher immortals?
 
@@ -1193,6 +1228,7 @@ Simple, insert this code into 'do_wizlock()' in 'act.wizard.c':
 
 5.4.  How do I fix the ``mudlog'' bug that lets people see me log in,
 even if I'm wizinvis?
+
 
 For all the mudlog calls for entering the game, quitting, and so
 forth, you must change
@@ -1233,7 +1269,6 @@ of 3.0.
 6.3.  How does the new bitvector system work?
 
 
-
 The new bitvector system in CircleMUD 3.0 is an ascii based one. The
 old numeric values can still be used, but the new system should make
 sorting flags out substantially easier.  The system uses an ``a'' as
@@ -1261,8 +1296,6 @@ recompile the mud and try again.  If you use the POSIX_NONBLOCK_BROKEN
 constant and it fixes your problem, please send mail to Jeremy
 <mailto:jelson@circlemud.org> and let him know exactly what kind of
 system you are using and what you had to do to fix it.
-
-
 6.6.  Why does CircleMUD use BUF switches all through the code, what's
 happening here?
 
@@ -1381,8 +1414,8 @@ in this case a Knight class. The class.doc is available on the FTP
 site
 <ftp://ftp.circlemud.org/pub/CircleMUD/contrib/docs/3.x/class.doc>
 
-The same applies for levels, in the file class.doc
-<ftp://ftp.circlemud.org/pub/CircleMUD/contrib/docs/3.x/class.doc>
+The same applies for levels, in the file levels.doc
+<ftp://ftp.circlemud.org/pub/CircleMUD/contrib/docs/3.x/levels.doc>
 which can be found in the same place.
 
 
@@ -1393,6 +1426,35 @@ No.  Look at the README.NOW in the docs directory.  It isn't complete,
 nor does anyone have the entire thing.  Jeremy is working on it.
 
 RTFM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

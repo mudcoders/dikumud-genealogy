@@ -20,6 +20,7 @@
 #include "spells.h"
 #include "house.h"
 #include "screen.h"
+#include "constants.h"
 
 /*   external vars  */
 extern FILE *player_fl;
@@ -29,44 +30,75 @@ extern struct obj_data *object_list;
 extern struct descriptor_data *descriptor_list;
 extern struct index_data *mob_index;
 extern struct index_data *obj_index;
-extern struct int_app_type int_app[];
-extern struct wis_app_type wis_app[];
 extern struct zone_data *zone_table;
+extern struct attack_hit_type attack_hit_text[];
+extern char *class_abbrevs[];
+extern time_t boot_time;
 extern int top_of_zone_table;
-extern int restrict;
+extern int circle_shutdown, circle_reboot;
+extern int circle_restrict;
+extern int load_into_inventory;
 extern int top_of_world;
+extern int buf_switches, buf_largecount, buf_overflows;
 extern int top_of_mobt;
 extern int top_of_objt;
 extern int top_of_p_table;
 
-/* for objects */
-extern char *item_types[];
-extern char *wear_bits[];
-extern char *extra_bits[];
-extern char *container_bits[];
-extern char *drinks[];
-
-/* for rooms */
-extern char *dirs[];
-extern char *room_bits[];
-extern char *exit_bits[];
-extern char *sector_types[];
-
 /* for chars */
-extern char *spells[];
-extern char *equipment_types[];
-extern char *affected_bits[];
-extern char *apply_types[];
-extern char *pc_class_types[];
-extern char *npc_class_types[];
-extern char *action_bits[];
-extern char *player_bits[];
-extern char *preference_bits[];
-extern char *position_types[];
-extern char *connected_types[];
+extern const char *spells[];
+extern const char *pc_class_types[];
 
 /* extern functions */
-int level_exp(int class, int level);
+int level_exp(int chclass, int level);
+void show_shops(struct char_data * ch, char *value);
+void hcontrol_list_houses(struct char_data *ch);
+void do_start(struct char_data *ch);
+void appear(struct char_data *ch);
+void reset_zone(int zone);
+void roll_real_abils(struct char_data *ch);
+int parse_class(char arg);
+
+/* local functions */
+int perform_set(struct char_data *ch, struct char_data *vict, int mode, char *val_arg);
+void perform_immort_invis(struct char_data *ch, int level);
+ACMD(do_echo);
+ACMD(do_send);
+room_rnum find_target_room(struct char_data * ch, char *rawroomstr);
+ACMD(do_at);
+ACMD(do_goto);
+ACMD(do_trans);
+ACMD(do_teleport);
+ACMD(do_vnum);
+void do_stat_room(struct char_data * ch);
+void do_stat_object(struct char_data * ch, struct obj_data * j);
+void do_stat_character(struct char_data * ch, struct char_data * k);
+ACMD(do_stat);
+ACMD(do_shutdown);
+void stop_snooping(struct char_data * ch);
+ACMD(do_snoop);
+ACMD(do_switch);
+ACMD(do_return);
+ACMD(do_load);
+ACMD(do_vstat);
+ACMD(do_purge);
+ACMD(do_syslog);
+ACMD(do_advance);
+ACMD(do_restore);
+void perform_immort_vis(struct char_data *ch);
+ACMD(do_invis);
+ACMD(do_gecho);
+ACMD(do_poofset);
+ACMD(do_dc);
+ACMD(do_wizlock);
+ACMD(do_date);
+ACMD(do_last);
+ACMD(do_force);
+ACMD(do_wiznet);
+ACMD(do_zreset);
+ACMD(do_wizutil);
+void print_zone_to_buf(char *bufptr, int zone);
+ACMD(do_show);
+ACMD(do_set);
 
 
 ACMD(do_echo)
@@ -162,7 +194,7 @@ room_rnum find_target_room(struct char_data * ch, char *rawroomstr)
       return NOWHERE;
     }
     if (ROOM_FLAGGED(location, ROOM_HOUSE) &&
-	!House_can_enter(ch, world[location].number)) {
+	!House_can_enter(ch, GET_ROOM_VNUM(location))) {
       send_to_char("That's private property -- no trespassing!\r\n", ch);
       return NOWHERE;
     }
@@ -264,7 +296,7 @@ ACMD(do_trans)
     }
 
     for (i = descriptor_list; i; i = i->next)
-      if (!i->connected && i->character && i->character != ch) {
+      if (STATE(i) == CON_PLAYING && i->character && i->character != ch) {
 	victim = i->character;
 	if (GET_LEVEL(victim) >= GET_LEVEL(ch))
 	  continue;
@@ -414,7 +446,7 @@ void do_stat_room(struct char_data * ch)
 	sprintf(buf1, " %sNONE%s", CCCYN(ch, C_NRM), CCNRM(ch, C_NRM));
       else
 	sprintf(buf1, "%s%5d%s", CCCYN(ch, C_NRM),
-		world[rm->dir_option[i]->to_room].number, CCNRM(ch, C_NRM));
+		GET_ROOM_VNUM(rm->dir_option[i]->to_room), CCNRM(ch, C_NRM));
       sprintbit(rm->dir_option[i]->exit_info, exit_bits, buf2);
       sprintf(buf, "Exit %s%-5s%s:  To: [%s], Key: [%5d], Keywrd: %s, Type: %s\r\n ",
 	      CCCYN(ch, C_NRM), dirs[i], CCNRM(ch, C_NRM), buf1, rm->dir_option[i]->key,
@@ -434,11 +466,11 @@ void do_stat_room(struct char_data * ch)
 
 void do_stat_object(struct char_data * ch, struct obj_data * j)
 {
-  int i, virtual, found;
+  int i, vnum, found;
   struct obj_data *j2;
   struct extra_descr_data *desc;
 
-  virtual = GET_OBJ_VNUM(j);
+  vnum = GET_OBJ_VNUM(j);
   sprintf(buf, "Name: '%s%s%s', Aliases: %s\r\n", CCYEL(ch, C_NRM),
 	  ((j->short_description) ? j->short_description : "<None>"),
 	  CCNRM(ch, C_NRM), j->name);
@@ -449,7 +481,7 @@ void do_stat_object(struct char_data * ch, struct obj_data * j)
   else
     strcpy(buf2, "None");
   sprintf(buf, "VNum: [%s%5d%s], RNum: [%5d], Type: %s, SpecProc: %s\r\n",
-   CCGRN(ch, C_NRM), virtual, CCNRM(ch, C_NRM), GET_OBJ_RNUM(j), buf1, buf2);
+   CCGRN(ch, C_NRM), vnum, CCNRM(ch, C_NRM), GET_OBJ_RNUM(j), buf1, buf2);
   send_to_char(buf, ch);
   sprintf(buf, "L-Des: %s\r\n", ((j->description) ? j->description : "None"));
   send_to_char(buf, ch);
@@ -486,9 +518,13 @@ void do_stat_object(struct char_data * ch, struct obj_data * j)
   if (j->in_room == NOWHERE)
     strcat(buf, "Nowhere");
   else {
-    sprintf(buf2, "%d", world[j->in_room].number);
+    sprintf(buf2, "%d", GET_ROOM_VNUM(IN_ROOM(j)));
     strcat(buf, buf2);
   }
+  /*
+   * NOTE: In order to make it this far, we must already be able to see the
+   *       character holding the object. Therefore, we do not need CAN_SEE().
+   */
   strcat(buf, ", In object: ");
   strcat(buf, j->in_obj ? j->in_obj->short_description : "None");
   strcat(buf, ", Carried by: ");
@@ -607,7 +643,6 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
   struct obj_data *j;
   struct follow_type *fol;
   struct affected_type *aff;
-  extern struct attack_hit_type attack_hit_text[];
 
   switch (GET_SEX(k)) {
   case SEX_NEUTRAL:    strcpy(buf, "NEUTRAL-SEX");   break;
@@ -618,7 +653,7 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
 
   sprintf(buf2, " %s '%s'  IDNum: [%5ld], In room [%5d]\r\n",
 	  (!IS_NPC(k) ? "PC" : (!IS_MOB(k) ? "NPC" : "MOB")),
-	  GET_NAME(k), GET_IDNUM(k), world[k->in_room].number);
+	  GET_NAME(k), GET_IDNUM(k), GET_ROOM_VNUM(IN_ROOM(k)));
   send_to_char(strcat(buf, buf2), ch);
   if (IS_MOB(k)) {
     sprintf(buf, "Alias: %s, VNum: [%5d], RNum: [%5d]\r\n",
@@ -631,12 +666,12 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
   sprintf(buf, "L-Des: %s", (k->player.long_descr ? k->player.long_descr : "<None>\r\n"));
   send_to_char(buf, ch);
 
-  if (IS_NPC(k)) {
+  if (IS_NPC(k)) {	/* Use GET_CLASS() macro? */
     strcpy(buf, "Monster Class: ");
-    sprinttype(k->player.class, npc_class_types, buf2);
+    sprinttype(k->player.chclass, npc_class_types, buf2);
   } else {
     strcpy(buf, "Class: ");
-    sprinttype(k->player.class, pc_class_types, buf2);
+    sprinttype(k->player.chclass, pc_class_types, buf2);
   }
   strcat(buf, buf2);
 
@@ -654,7 +689,7 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
 
     sprintf(buf, "Created: [%s], Last Logon: [%s], Played [%dh %dm], Age [%d]\r\n",
 	    buf1, buf2, k->player.time.played / 3600,
-	    ((k->player.time.played / 3600) % 60), age(k).year);
+	    ((k->player.time.played % 3600) / 60), age(k)->year);
     send_to_char(buf, ch);
 
     sprintf(buf, "Hometown: [%d], Speaks: [%d/%d/%d], (STL[%d]/per[%d]/NSTL[%d])\r\n",
@@ -697,7 +732,7 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
     strcat(buf, attack_hit_text[k->mob_specials.attack_type].singular);
   }
   if (k->desc) {
-    sprinttype(k->desc->connected, connected_types, buf2);
+    sprinttype(STATE(k->desc), connected_types, buf2);
     strcat(buf, ", Connected: ");
     strcat(buf, buf2);
   }
@@ -734,7 +769,7 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
 	  IS_CARRYING_W(k), IS_CARRYING_N(k));
 
   for (i = 0, j = k->carrying; j; j = j->next_content, i++);
-  sprintf(buf, "%sItems in: inventory: %d, ", buf, i);
+  sprintf(buf + strlen(buf), "Items in: inventory: %d, ", i);
 
   for (i = 0, i2 = 0; i < NUM_WEARS; i++)
     if (GET_EQ(k, i))
@@ -743,9 +778,11 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
   strcat(buf, buf2);
   send_to_char(buf, ch);
 
-  sprintf(buf, "Hunger: %d, Thirst: %d, Drunk: %d\r\n",
+  if (!IS_NPC(k)) {
+    sprintf(buf, "Hunger: %d, Thirst: %d, Drunk: %d\r\n",
 	  GET_COND(k, FULL), GET_COND(k, THIRST), GET_COND(k, DRUNK));
-  send_to_char(buf, ch);
+    send_to_char(buf, ch);
+  }
 
   sprintf(buf, "Master is: %s, Followers are:",
 	  ((k->master) ? GET_NAME(k->master) : "<none>"));
@@ -835,11 +872,13 @@ ACMD(do_stat)
       clear_char(victim);
       if (load_char(buf2, &tmp_store) > -1) {
 	store_to_char(&tmp_store, victim);
+	victim->player.time.logon = tmp_store.last_logon;
+	char_to_room(victim, 0);
 	if (GET_LEVEL(victim) > GET_LEVEL(ch))
 	  send_to_char("Sorry, you can't do that.\r\n", ch);
 	else
 	  do_stat_character(ch, victim);
-	free_char(victim);
+	extract_char(victim);
       } else {
 	send_to_char("There is no such player.\r\n", ch);
 	free(victim);
@@ -875,8 +914,6 @@ ACMD(do_stat)
 
 ACMD(do_shutdown)
 {
-  extern int circle_shutdown, circle_reboot;
-
   if (subcmd != SCMD_SHUTDOWN) {
     send_to_char("If you want to shut something down, say so!\r\n", ch);
     return;
@@ -884,25 +921,21 @@ ACMD(do_shutdown)
   one_argument(argument, arg);
 
   if (!*arg) {
-    sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-    log(buf);
+    log("(GC) Shutdown by %s.", GET_NAME(ch));
     send_to_all("Shutting down.\r\n");
     circle_shutdown = 1;
   } else if (!str_cmp(arg, "reboot")) {
-    sprintf(buf, "(GC) Reboot by %s.", GET_NAME(ch));
-    log(buf);
+    log("(GC) Reboot by %s.", GET_NAME(ch));
     send_to_all("Rebooting.. come back in a minute or two.\r\n");
     touch(FASTBOOT_FILE);
     circle_shutdown = circle_reboot = 1;
   } else if (!str_cmp(arg, "die")) {
-    sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-    log(buf);
+    log("(GC) Shutdown by %s.", GET_NAME(ch));
     send_to_all("Shutting down for maintenance.\r\n");
     touch(KILLSCRIPT_FILE);
     circle_shutdown = 1;
   } else if (!str_cmp(arg, "pause")) {
-    sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
-    log(buf);
+    log("(GC) Shutdown by %s.", GET_NAME(ch));
     send_to_all("Shutting down for maintenance.\r\n");
     touch(PAUSE_FILE);
     circle_shutdown = 1;
@@ -1004,7 +1037,7 @@ ACMD(do_return)
     /* JE 2/22/95 */
     /* if someone switched into your original body, disconnect them */
     if (ch->desc->original->desc)
-      close_socket(ch->desc->original->desc);
+      STATE(ch->desc->original->desc) = CON_DISCONNECT;
 
     ch->desc->character = ch->desc->original;
     ch->desc->original = NULL;
@@ -1050,7 +1083,10 @@ ACMD(do_load)
       return;
     }
     obj = read_object(r_num, REAL);
-    obj_to_room(obj, ch->in_room);
+    if (load_into_inventory)
+      obj_to_char(obj, ch);
+    else
+      obj_to_room(obj, ch->in_room);
     act("$n makes a strange magical gesture.", TRUE, ch, 0, 0, TO_ROOM);
     act("$n has created $p!", FALSE, ch, obj, 0, TO_ROOM);
     act("You create $p.", FALSE, ch, obj, 0, TO_CHAR);
@@ -1121,7 +1157,8 @@ ACMD(do_purge)
 	sprintf(buf, "(GC) %s has purged %s.", GET_NAME(ch), GET_NAME(vict));
 	mudlog(buf, BRF, LVL_GOD, TRUE);
 	if (vict->desc) {
-	  close_socket(vict->desc);
+	  STATE(vict->desc) = CON_CLOSE;
+	  vict->desc->character = NULL;
 	  vict->desc = NULL;
 	}
       }
@@ -1155,8 +1192,9 @@ ACMD(do_purge)
 
 
 
-static char *logtypes[] = {
-"off", "brief", "normal", "complete", "\n"};
+const char *logtypes[] = {
+  "off", "brief", "normal", "complete", "\n"
+};
 
 ACMD(do_syslog)
 {
@@ -1189,9 +1227,6 @@ ACMD(do_advance)
   struct char_data *victim;
   char *name = arg, *level = buf2;
   int newlevel, oldlevel;
-  void do_start(struct char_data *ch);
-
-  void gain_exp(struct char_data * ch, int gain);
 
   two_arguments(argument, name, level);
 
@@ -1253,9 +1288,8 @@ ACMD(do_advance)
 
   send_to_char(OK, ch);
 
-  sprintf(buf, "(GC) %s has advanced %s to level %d (from %d)",
+  log("(GC) %s has advanced %s to level %d (from %d)",
 	  GET_NAME(ch), GET_NAME(victim), newlevel, oldlevel);
-  log(buf);
   gain_exp_regardless(victim,
 	 level_exp(GET_CLASS(victim), newlevel) - GET_EXP(victim));
   save_char(victim, NOWHERE);
@@ -1302,9 +1336,7 @@ ACMD(do_restore)
 
 void perform_immort_vis(struct char_data *ch)
 {
-  void appear(struct char_data *ch);
-
-  if (GET_INVIS_LEV(ch) == 0 && !IS_AFFECTED(ch, AFF_HIDE | AFF_INVISIBLE)) {
+  if (GET_INVIS_LEV(ch) == 0 && !AFF_FLAGGED(ch, AFF_HIDE | AFF_INVISIBLE)) {
     send_to_char("You are already fully visible.\r\n", ch);
     return;
   }
@@ -1378,7 +1410,7 @@ ACMD(do_gecho)
   else {
     sprintf(buf, "%s\r\n", argument);
     for (pt = descriptor_list; pt; pt = pt->next)
-      if (!pt->connected && pt->character && pt->character != ch)
+      if (STATE(pt) == CON_PLAYING && pt->character && pt->character != ch)
 	send_to_char(buf, pt->character);
     if (PRF_FLAGGED(ch, PRF_NOREPEAT))
       send_to_char(OK, ch);
@@ -1395,7 +1427,7 @@ ACMD(do_poofset)
   switch (subcmd) {
   case SCMD_POOFIN:    msg = &(POOFIN(ch));    break;
   case SCMD_POOFOUT:   msg = &(POOFOUT(ch));   break;
-  default:    return;    break;
+  default:    return;
   }
 
   skip_spaces(&argument);
@@ -1442,12 +1474,16 @@ ACMD(do_dc)
    * closing the person below you on the descriptor list.  Just setting
    * to CON_CLOSE leaves things in a massively inconsistent state so I
    * had to add this new flag to the descriptor.
+   *
+   * It is a much more logical extension for a CON_DISCONNECT to be used
+   * for in-game socket closes and CON_CLOSE for out of game closings.
+   * This will retain the stability of the close_me hack while being
+   * neater in appearance. -gg 12/1/97
    */
-  d->close_me = 1;
+  STATE(d) = CON_DISCONNECT;
   sprintf(buf, "Connection #%d closed.\r\n", num_to_dc);
   send_to_char(buf, ch);
-  sprintf(buf, "(GC) Connection closed by %s.", GET_NAME(ch));
-  log(buf);
+  log("(GC) Connection closed by %s.", GET_NAME(ch));
 }
 
 
@@ -1455,7 +1491,7 @@ ACMD(do_dc)
 ACMD(do_wizlock)
 {
   int value;
-  char *when;
+  const char *when;
 
   one_argument(argument, arg);
   if (*arg) {
@@ -1464,12 +1500,12 @@ ACMD(do_wizlock)
       send_to_char("Invalid wizlock value.\r\n", ch);
       return;
     }
-    restrict = value;
+    circle_restrict = value;
     when = "now";
   } else
     when = "currently";
 
-  switch (restrict) {
+  switch (circle_restrict) {
   case 0:
     sprintf(buf, "The game is %s completely open.\r\n", when);
     break;
@@ -1478,7 +1514,7 @@ ACMD(do_wizlock)
     break;
   default:
     sprintf(buf, "Only level %d and above may enter the game %s.\r\n",
-	    restrict, when);
+	    circle_restrict, when);
     break;
   }
   send_to_char(buf, ch);
@@ -1490,7 +1526,6 @@ ACMD(do_date)
   char *tmstr;
   time_t mytime;
   int d, h, m;
-  extern time_t boot_time;
 
   if (subcmd == SCMD_DATE)
     mytime = time(0);
@@ -1520,7 +1555,6 @@ ACMD(do_date)
 ACMD(do_last)
 {
   struct char_file_u chdata;
-  extern char *class_abbrevs[];
 
   one_argument(argument, arg);
   if (!*arg) {
@@ -1537,7 +1571,7 @@ ACMD(do_last)
   }
   sprintf(buf, "[%5ld] [%2d %s] %-12s : %-18s : %-20s\r\n",
 	  chdata.char_specials_saved.idnum, (int) chdata.level,
-	  class_abbrevs[(int) chdata.class], chdata.name, chdata.host,
+	  class_abbrevs[(int) chdata.chclass], chdata.name, chdata.host,
 	  ctime(&chdata.last_logon));
   send_to_char(buf, ch);
 }
@@ -1569,7 +1603,8 @@ ACMD(do_force)
     }
   } else if (!str_cmp("room", arg)) {
     send_to_char(OK, ch);
-    sprintf(buf, "(GC) %s forced room %d to %s", GET_NAME(ch), world[ch->in_room].number, to_force);
+    sprintf(buf, "(GC) %s forced room %d to %s",
+		GET_NAME(ch), GET_ROOM_VNUM(IN_ROOM(ch)), to_force);
     mudlog(buf, NRM, MAX(LVL_GOD, GET_INVIS_LEV(ch)), TRUE);
 
     for (vict = world[ch->in_room].people; vict; vict = next_force) {
@@ -1587,7 +1622,7 @@ ACMD(do_force)
     for (i = descriptor_list; i; i = next_desc) {
       next_desc = i->next;
 
-      if (i->connected || !(vict = i->character) || GET_LEVEL(vict) >= GET_LEVEL(ch))
+      if (STATE(i) != CON_PLAYING || !(vict = i->character) || GET_LEVEL(vict) >= GET_LEVEL(ch))
 	continue;
       act(buf1, TRUE, ch, NULL, vict, TO_VICT);
       command_interpreter(vict, to_force);
@@ -1629,38 +1664,37 @@ ACMD(do_wiznet)
     break;
   case '@':
     for (d = descriptor_list; d; d = d->next) {
-      if (!d->connected && GET_LEVEL(d->character) >= LVL_IMMORT &&
+      if (STATE(d) == CON_PLAYING && GET_LEVEL(d->character) >= LVL_IMMORT &&
 	  !PRF_FLAGGED(d->character, PRF_NOWIZ) &&
 	  (CAN_SEE(ch, d->character) || GET_LEVEL(ch) == LVL_IMPL)) {
 	if (!any) {
-	  sprintf(buf1, "Gods online:\r\n");
+	  strcpy(buf1, "Gods online:\r\n");
 	  any = TRUE;
 	}
-	sprintf(buf1, "%s  %s", buf1, GET_NAME(d->character));
+	sprintf(buf1 + strlen(buf1), "  %s", GET_NAME(d->character));
 	if (PLR_FLAGGED(d->character, PLR_WRITING))
-	  sprintf(buf1, "%s (Writing)\r\n", buf1);
+	  strcat(buf1, " (Writing)\r\n");
 	else if (PLR_FLAGGED(d->character, PLR_MAILING))
-	  sprintf(buf1, "%s (Writing mail)\r\n", buf1);
+	  strcat(buf1, " (Writing mail)\r\n");
 	else
-	  sprintf(buf1, "%s\r\n", buf1);
+	  strcat(buf1, "\r\n");
 
       }
     }
     any = FALSE;
     for (d = descriptor_list; d; d = d->next) {
-      if (!d->connected && GET_LEVEL(d->character) >= LVL_IMMORT &&
+      if (STATE(d) == CON_PLAYING && GET_LEVEL(d->character) >= LVL_IMMORT &&
 	  PRF_FLAGGED(d->character, PRF_NOWIZ) &&
 	  CAN_SEE(ch, d->character)) {
 	if (!any) {
-	  sprintf(buf1, "%sGods offline:\r\n", buf1);
+	  strcat(buf1, "Gods offline:\r\n");
 	  any = TRUE;
 	}
-	sprintf(buf1, "%s  %s\r\n", buf1, GET_NAME(d->character));
+	sprintf(buf1 + strlen(buf1), "  %s\r\n", GET_NAME(d->character));
       }
     }
     send_to_char(buf1, ch);
     return;
-    break;
   case '\\':
     ++argument;
     break;
@@ -1689,7 +1723,7 @@ ACMD(do_wiznet)
   }
 
   for (d = descriptor_list; d; d = d->next) {
-    if ((!d->connected) && (GET_LEVEL(d->character) >= level) &&
+    if ((STATE(d) == CON_PLAYING) && (GET_LEVEL(d->character) >= level) &&
 	(!PRF_FLAGGED(d->character, PRF_NOWIZ)) &&
 	(!PLR_FLAGGED(d->character, PLR_WRITING | PLR_MAILING))
 	&& (d != ch->desc || !(PRF_FLAGGED(d->character, PRF_NOREPEAT)))) {
@@ -1710,8 +1744,6 @@ ACMD(do_wiznet)
 
 ACMD(do_zreset)
 {
-  void reset_zone(int zone);
-
   int i, j;
 
   one_argument(argument, arg);
@@ -1754,7 +1786,6 @@ ACMD(do_wizutil)
 {
   struct char_data *vict;
   long result;
-  void roll_real_abils(struct char_data *ch);
 
   one_argument(argument, arg);
 
@@ -1771,8 +1802,7 @@ ACMD(do_wizutil)
     case SCMD_REROLL:
       send_to_char("Rerolled...\r\n", ch);
       roll_real_abils(vict);
-      sprintf(buf, "(GC) %s has rerolled %s.", GET_NAME(ch), GET_NAME(vict));
-      log(buf);
+      log("(GC) %s has rerolled %s.", GET_NAME(ch), GET_NAME(vict));
       sprintf(buf, "New stats: Str %d/%d, Int %d, Wis %d, Dex %d, Con %d, Cha %d\r\n",
 	      GET_STR(vict), GET_ADD(vict), GET_INT(vict), GET_WIS(vict),
 	      GET_DEX(vict), GET_CON(vict), GET_CHA(vict));
@@ -1853,7 +1883,7 @@ ACMD(do_wizutil)
       }
       break;
     default:
-      log("SYSERR: Unknown subcmd passed to do_wizutil (act.wizard.c)");
+      log("SYSERR: Unknown subcmd %d passed to do_wizutil (%s)", subcmd, __FILE__);
       break;
     }
     save_char(vict, NOWHERE);
@@ -1881,15 +1911,10 @@ ACMD(do_show)
   struct char_data *vict;
   struct obj_data *obj;
   char field[MAX_INPUT_LENGTH], value[MAX_INPUT_LENGTH], birth[80];
-  extern char *class_abbrevs[];
-  extern char *genders[];
-  extern int buf_switches, buf_largecount, buf_overflows;
-  void show_shops(struct char_data * ch, char *value);
-  void hcontrol_list_houses(struct char_data *ch);
 
   struct show_struct {
-    char *cmd;
-    char level;
+    const char *cmd;
+    const char level;
   } fields[] = {
     { "nothing",	0  },				/* 0 */
     { "zones",		LVL_IMMORT },			/* 1 */
@@ -1910,7 +1935,7 @@ ACMD(do_show)
     strcpy(buf, "Show options:\r\n");
     for (j = 0, i = 1; fields[i].level; i++)
       if (fields[i].level <= GET_LEVEL(ch))
-	sprintf(buf, "%s%-15s%s", buf, fields[i].cmd, (!(++j % 5) ? "\r\n" : ""));
+	sprintf(buf + strlen(buf), "%-15s%s", fields[i].cmd, (!(++j % 5) ? "\r\n" : ""));
     strcat(buf, "\r\n");
     send_to_char(buf, ch);
     return;
@@ -1945,7 +1970,7 @@ ACMD(do_show)
     } else
       for (i = 0; i <= top_of_zone_table; i++)
 	print_zone_to_buf(buf, i);
-    send_to_char(buf, ch);
+    page_string(ch->desc, buf, TRUE);
     break;
   case 2:			/* player */
     if (!*value) {
@@ -1958,7 +1983,7 @@ ACMD(do_show)
       return;
     }
     sprintf(buf, "Player: %-12s (%s) [%2d %s]\r\n", vbuf.name,
-      genders[(int) vbuf.sex], vbuf.level, class_abbrevs[(int) vbuf.class]);
+      genders[(int) vbuf.sex], vbuf.level, class_abbrevs[(int) vbuf.chclass]);
     sprintf(buf,
 	 "%sAu: %-8d  Bal: %-8d  Exp: %-8d  Align: %-5d  Lessons: %-3d\r\n",
 	    buf, vbuf.points.gold, vbuf.points.bank_gold, vbuf.points.exp,
@@ -1990,18 +2015,21 @@ ACMD(do_show)
     }
     for (obj = object_list; obj; obj = obj->next)
       k++;
-    sprintf(buf, "Current stats:\r\n");
-    sprintf(buf, "%s  %5d players in game  %5d connected\r\n", buf, i, con);
-    sprintf(buf, "%s  %5d registered\r\n", buf, top_of_p_table + 1);
-    sprintf(buf, "%s  %5d mobiles          %5d prototypes\r\n",
-	    buf, j, top_of_mobt + 1);
-    sprintf(buf, "%s  %5d objects          %5d prototypes\r\n",
-	    buf, k, top_of_objt + 1);
-    sprintf(buf, "%s  %5d rooms            %5d zones\r\n",
-	    buf, top_of_world + 1, top_of_zone_table + 1);
-    sprintf(buf, "%s  %5d large bufs\r\n", buf, buf_largecount);
-    sprintf(buf, "%s  %5d buf switches     %5d overflows\r\n", buf,
-	    buf_switches, buf_overflows);
+    strcpy(buf, "Current stats:\r\n");
+    sprintf(buf + strlen(buf), "  %5d players in game  %5d connected\r\n",
+		i, con);
+    sprintf(buf + strlen(buf), "  %5d registered\r\n",
+		top_of_p_table + 1);
+    sprintf(buf + strlen(buf), "  %5d mobiles          %5d prototypes\r\n",
+		j, top_of_mobt + 1);
+    sprintf(buf + strlen(buf), "  %5d objects          %5d prototypes\r\n",
+		k, top_of_objt + 1);
+    sprintf(buf + strlen(buf), "  %5d rooms            %5d zones\r\n",
+		top_of_world + 1, top_of_zone_table + 1);
+    sprintf(buf + strlen(buf), "  %5d large bufs\r\n",
+		buf_largecount);
+    sprintf(buf + strlen(buf), "  %5d buf switches     %5d overflows\r\n",
+		buf_switches, buf_overflows);
     send_to_char(buf, ch);
     break;
   case 5:
@@ -2009,24 +2037,25 @@ ACMD(do_show)
     for (i = 0, k = 0; i <= top_of_world; i++)
       for (j = 0; j < NUM_OF_DIRS; j++)
 	if (world[i].dir_option[j] && world[i].dir_option[j]->to_room == 0)
-	  sprintf(buf, "%s%2d: [%5d] %s\r\n", buf, ++k, world[i].number,
+	  sprintf(buf + strlen(buf), "%2d: [%5d] %s\r\n", ++k, GET_ROOM_VNUM(i),
 		  world[i].name);
-    send_to_char(buf, ch);
+    page_string(ch->desc, buf, TRUE);
     break;
   case 6:
     strcpy(buf, "Death Traps\r\n-----------\r\n");
     for (i = 0, j = 0; i <= top_of_world; i++)
-      if (IS_SET(ROOM_FLAGS(i), ROOM_DEATH))
-	sprintf(buf, "%s%2d: [%5d] %s\r\n", buf, ++j,
-		world[i].number, world[i].name);
-    send_to_char(buf, ch);
+      if (ROOM_FLAGGED(i, ROOM_DEATH))
+	sprintf(buf + strlen(buf), "%2d: [%5d] %s\r\n", ++j,
+		GET_ROOM_VNUM(i), world[i].name);
+    page_string(ch->desc, buf, TRUE);
     break;
   case 7:
     strcpy(buf, "Godrooms\r\n--------------------------\r\n");
     for (i = 0, j = 0; i < top_of_world; i++)
     if (ROOM_FLAGGED(i, ROOM_GODROOM))
-      sprintf(buf,"%s%2d: [%5d] %s\r\n",buf,++j,world[i].number,world[i].name);
-    send_to_char(buf, ch);
+      sprintf(buf + strlen(buf), "%2d: [%5d] %s\r\n",
+		++j, GET_ROOM_VNUM(i), world[i].name);
+    page_string(ch->desc, buf, TRUE);
     break;
   case 8:
     show_shops(ch, value);
@@ -2060,10 +2089,10 @@ ACMD(do_show)
 
 /* The set options available */
   struct set_struct {
-    char *cmd;
-    char level;
-    char pcnpc;
-    char type;
+    const char *cmd;
+    const char level;
+    const char pcnpc;
+    const char type;
   } set_fields[] = {
    { "brief",		LVL_GOD, 	PC, 	BINARY },  /* 0 */
    { "invstart", 	LVL_GOD, 	PC, 	BINARY },  /* 1 */
@@ -2113,6 +2142,7 @@ ACMD(do_show)
    { "passwd",		LVL_IMPL, 	PC, 	MISC },    /* 45 */
    { "nodelete", 	LVL_GOD, 	PC, 	BINARY },
    { "sex", 		LVL_GRGOD, 	BOTH, 	MISC },
+   { "age",		LVL_GRGOD,	BOTH,	NUMBER },
    { "\n", 0, BOTH, MISC }
   };
 
@@ -2122,7 +2152,6 @@ int perform_set(struct char_data *ch, struct char_data *vict, int mode,
 {
   int i, on = 0, off = 0, value = 0;
   char output[MAX_STRING_LENGTH];
-  int parse_class(char arg);
 
   /* Check to make sure all the levels are correct */
   if (GET_LEVEL(ch) != LVL_IMPL) {
@@ -2345,7 +2374,8 @@ int perform_set(struct char_data *ch, struct char_data *vict, int mode,
       send_to_char("No room exists with that number.\r\n", ch);
       return 0;
     }
-    char_from_room(vict);
+    if (IN_ROOM(vict) != NOWHERE)	/* Another Eric Green special. */
+      char_from_room(vict);
     char_to_room(vict, i);
     break;
   case 36:
@@ -2425,11 +2455,22 @@ int perform_set(struct char_data *ch, struct char_data *vict, int mode,
       return 0;
     }
     break;
+  case 48:	/* set age */
+    if (value < 2 || value > 200) {	/* Arbitrary limits. */
+      send_to_char("Ages 2 to 200 accepted.\r\n", ch);
+      return 0;
+    }
+    /*
+     * NOTE: May not display the exact age specified due to the integer
+     * division used elsewhere in the code.  Seems to only happen for
+     * some values below the starting age (17) anyway. -gg 5/27/98
+     */
+    ch->player.time.birth = time(0) - ((value - 17) * SECS_PER_MUD_YEAR);
+    break;
 
   default:
     send_to_char("Can't set that!\r\n", ch);
     return 0;
-    break;
   }
 
   strcat(output, "\r\n");

@@ -16,45 +16,66 @@
 #include "interpreter.h"
 #include "utils.h"
 
-extern struct room_data *world;
 extern int top_of_world;
+extern int dts_are_dumps;
 extern int mini_mud;
+extern struct room_data *world;
 extern struct index_data *mob_index;
 extern struct index_data *obj_index;
+
+SPECIAL(dump);
+SPECIAL(pet_shops);
+SPECIAL(postmaster);
+SPECIAL(cityguard);
+SPECIAL(receptionist);
+SPECIAL(cryogenicist);
+SPECIAL(guild_guard);
+SPECIAL(guild);
+SPECIAL(puff);
+SPECIAL(fido);
+SPECIAL(janitor);
+SPECIAL(mayor);
+SPECIAL(snake);
+SPECIAL(thief);
+SPECIAL(magic_user);
+SPECIAL(bank);
+SPECIAL(gen_board);
+void assign_kings_castle(void);
+
+/* local functions */
+void assign_mobiles(void);
+void assign_objects(void);
+void assign_rooms(void);
+void ASSIGNROOM(int room, SPECIAL(fname));
+void ASSIGNMOB(int mob, SPECIAL(fname));
+void ASSIGNOBJ(int obj, SPECIAL(fname));
 
 /* functions to perform assignments */
 
 void ASSIGNMOB(int mob, SPECIAL(fname))
 {
-  if (real_mobile(mob) >= 0)
-    mob_index[real_mobile(mob)].func = fname;
-  else if (!mini_mud) {
-    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant mob #%d",
-	    mob);
-    log(buf);
-  }
+  int rnum;
+
+  if ((rnum = real_mobile(mob)) >= 0)
+    mob_index[rnum].func = fname;
+  else if (!mini_mud)
+    log("SYSERR: Attempt to assign spec to non-existant mob #%d", mob);
 }
 
 void ASSIGNOBJ(int obj, SPECIAL(fname))
 {
   if (real_object(obj) >= 0)
     obj_index[real_object(obj)].func = fname;
-  else if (!mini_mud) {
-    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant obj #%d",
-	    obj);
-    log(buf);
-  }
+  else if (!mini_mud)
+    log("SYSERR: Attempt to assign spec to non-existant obj #%d", obj);
 }
 
 void ASSIGNROOM(int room, SPECIAL(fname))
 {
   if (real_room(room) >= 0)
     world[real_room(room)].func = fname;
-  else if (!mini_mud) {
-    sprintf(buf, "SYSERR: Attempt to assign spec to non-existant rm. #%d",
-	    room);
-    log(buf);
-  }
+  else if (!mini_mud)
+    log("SYSERR: Attempt to assign spec to non-existant room #%d", room);
 }
 
 
@@ -65,21 +86,6 @@ void ASSIGNROOM(int room, SPECIAL(fname))
 /* assign special procedures to mobiles */
 void assign_mobiles(void)
 {
-  SPECIAL(postmaster);
-  SPECIAL(cityguard);
-  SPECIAL(receptionist);
-  SPECIAL(cryogenicist);
-  SPECIAL(guild_guard);
-  SPECIAL(guild);
-  SPECIAL(puff);
-  SPECIAL(fido);
-  SPECIAL(janitor);
-  SPECIAL(mayor);
-  SPECIAL(snake);
-  SPECIAL(thief);
-  SPECIAL(magic_user);
-  void assign_kings_castle(void);
-
   assign_kings_castle();
 
   ASSIGNMOB(1, puff);
@@ -272,9 +278,6 @@ void assign_mobiles(void)
 /* assign special procedures to objects */
 void assign_objects(void)
 {
-  SPECIAL(bank);
-  SPECIAL(gen_board);
-
   ASSIGNOBJ(3096, gen_board);	/* social board */
   ASSIGNOBJ(3097, gen_board);	/* freeze board */
   ASSIGNOBJ(3098, gen_board);	/* immortal board */
@@ -289,18 +292,13 @@ void assign_objects(void)
 /* assign special procedures to rooms */
 void assign_rooms(void)
 {
-  extern int dts_are_dumps;
   int i;
-
-  SPECIAL(dump);
-  SPECIAL(pet_shops);
-  SPECIAL(pray_for_items);
 
   ASSIGNROOM(3030, dump);
   ASSIGNROOM(3031, pet_shops);
 
   if (dts_are_dumps)
     for (i = 0; i < top_of_world; i++)
-      if (IS_SET(ROOM_FLAGS(i), ROOM_DEATH))
+      if (ROOM_FLAGGED(i, ROOM_DEATH))
 	world[i].func = dump;
 }

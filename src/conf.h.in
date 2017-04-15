@@ -1,4 +1,4 @@
-/* src/conf.h.in.  Generated automatically from configure.in by autoheader.  */
+/* src/conf.h.in.  Generated automatically from cnf/configure.in by autoheader.  */
 
 /* Define to empty if the keyword does not work.  */
 #undef const
@@ -29,6 +29,15 @@
 
 /* Define to `int' if <sys/types.h> doesn't define.  */
 #undef ssize_t
+
+/* Define if you have the inet_addr function.  */
+#undef HAVE_INET_ADDR
+
+/* Define if you have the inet_aton function.  */
+#undef HAVE_INET_ATON
+
+/* Define if you have the <arpa/inet.h> header file.  */
+#undef HAVE_ARPA_INET_H
 
 /* Define if you have the <arpa/telnet.h> header file.  */
 #undef HAVE_ARPA_TELNET_H
@@ -173,6 +182,15 @@
 
 /* Define if your compiler does not prototype htons().  */
 #undef NEED_HTONS_PROTO
+
+/* Define if your compiler does not prototype inet_addr().  */
+#undef NEED_INET_ADDR_PROTO
+
+/* Define if your compiler does not prototype inet_aton().  */
+#undef NEED_INET_ATON_PROTO
+
+/* Define if your compiler does not prototype inet_ntoa().  */
+#undef NEED_INET_NTOA_PROTO
 
 /* Define if your compiler does not prototype listen().  */
 #undef NEED_LISTEN_PROTO

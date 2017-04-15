@@ -22,6 +22,7 @@
 
 /* external vars */
 extern int top_of_world;
+extern struct char_data *combat_list;
 extern struct room_data *world;
 extern struct obj_data *object_list;
 extern struct char_data *character_list;
@@ -30,11 +31,17 @@ extern struct index_data *obj_index;
 extern struct descriptor_data *descriptor_list;
 extern char *MENU;
 
+/* local functions */
+int apply_ac(struct char_data * ch, int eq_pos);
+void update_object(struct obj_data * obj, int use);
+void update_char_objects(struct char_data * ch);
+
 /* external functions */
-void free_char(struct char_data * ch);
-void stop_fighting(struct char_data * ch);
+int invalid_class(struct char_data *ch, struct obj_data *obj);
 void remove_follower(struct char_data * ch);
 void clearMemory(struct char_data * ch);
+void die_follower(struct char_data * ch);
+ACMD(do_return);
 
 char *fname(char *namelist)
 {
@@ -50,9 +57,9 @@ char *fname(char *namelist)
 }
 
 
-int isname(char *str, char *namelist)
+int isname(const char *str, const char *namelist)
 {
-  register char *curname, *curstr;
+  const char *curname, *curstr;
 
   curname = namelist;
   for (;;) {
@@ -123,6 +130,14 @@ void affect_modify(struct char_data * ch, byte loc, sbyte mod, long bitv,
     /* ??? GET_CLASS(ch) += mod; */
     break;
 
+  /*
+   * My personal thoughts on these two would be to set the person to the
+   * value of the apply.  That way you won't have to worry about people
+   * making +1 level things to be imp (you restrict anything that gives
+   * immortal level of course).  It also makes more sense to set someone
+   * to a class rather than adding to the class number. -gg
+   */
+
   case APPLY_LEVEL:
     /* ??? GET_LEVEL(ch) += mod; */
     break;
@@ -190,7 +205,7 @@ void affect_modify(struct char_data * ch, byte loc, sbyte mod, long bitv,
     break;
 
   default:
-    log("SYSERR: Unknown apply adjust attempt (handler.c, affect_modify).");
+    log("SYSERR: Unknown apply adjust %d attempt (%s, affect_modify).", loc, __FILE__);
     break;
 
   } /* switch */
@@ -281,7 +296,10 @@ void affect_remove(struct char_data * ch, struct affected_type * af)
 {
   struct affected_type *temp;
 
-  assert(ch->affected);
+  if (ch->affected == NULL) {
+    core_dump();
+    return;
+  }
 
   affect_modify(ch, af->location, af->modifier, af->bitvector, FALSE);
   REMOVE_FROM_LIST(af, ch->affected, next);
@@ -334,12 +352,12 @@ void affect_join(struct char_data * ch, struct affected_type * af,
       if (add_dur)
 	af->duration += hjp->duration;
       if (avg_dur)
-	af->duration >>= 1;
+	af->duration /= 2;
 
       if (add_mod)
 	af->modifier += hjp->modifier;
       if (avg_mod)
-	af->modifier >>= 1;
+	af->modifier /= 2;
 
       affect_remove(ch, hjp);
       affect_to_char(ch, af);
@@ -357,7 +375,7 @@ void char_from_room(struct char_data * ch)
   struct char_data *temp;
 
   if (ch == NULL || ch->in_room == NOWHERE) {
-    log("SYSERR: NULL or NOWHERE in handler.c, char_from_room");
+    log("SYSERR: NULL character or NOWHERE in %s, char_from_room", __FILE__);
     exit(1);
   }
 
@@ -379,7 +397,8 @@ void char_from_room(struct char_data * ch)
 void char_to_room(struct char_data * ch, room_rnum room)
 {
   if (ch == NULL || room < 0 || room > top_of_world)
-    log("SYSERR: Illegal value(s) passed to char_to_room");
+    log("SYSERR: Illegal value(s) passed to char_to_room. (Room: %d/%d Ch: %p",
+		room, top_of_world, ch);
   else {
     ch->next_in_room = world[room].people;
     world[room].people = ch;
@@ -389,6 +408,12 @@ void char_to_room(struct char_data * ch, room_rnum room)
       if (GET_OBJ_TYPE(GET_EQ(ch, WEAR_LIGHT)) == ITEM_LIGHT)
 	if (GET_OBJ_VAL(GET_EQ(ch, WEAR_LIGHT), 2))	/* Light ON */
 	  world[room].light++;
+
+    /* Stop fighting now, if we left. */
+    if (FIGHTING(ch) && IN_ROOM(ch) != IN_ROOM(FIGHTING(ch))) {
+      stop_fighting(FIGHTING(ch));
+      stop_fighting(ch);
+    }
   }
 }
 
@@ -404,10 +429,11 @@ void obj_to_char(struct obj_data * object, struct char_data * ch)
     IS_CARRYING_W(ch) += GET_OBJ_WEIGHT(object);
     IS_CARRYING_N(ch)++;
 
-    /* set flag for crash-save system */
-    SET_BIT(PLR_FLAGS(ch), PLR_CRASH);
+    /* set flag for crash-save system, but not on mobs! */
+    if (!IS_NPC(ch))
+      SET_BIT(PLR_FLAGS(ch), PLR_CRASH);
   } else
-    log("SYSERR: NULL obj or char passed to obj_to_char");
+    log("SYSERR: NULL obj (%p) or char (%p) passed to obj_to_char.", object, ch);
 }
 
 
@@ -417,13 +443,14 @@ void obj_from_char(struct obj_data * object)
   struct obj_data *temp;
 
   if (object == NULL) {
-    log("SYSERR: NULL object passed to obj_from_char");
+    log("SYSERR: NULL object passed to obj_from_char.");
     return;
   }
   REMOVE_FROM_LIST(object, object->carried_by->carrying, next_content);
 
-  /* set flag for crash-save system */
-  SET_BIT(PLR_FLAGS(object->carried_by), PLR_CRASH);
+  /* set flag for crash-save system, but not on mobs! */
+  if (!IS_NPC(object->carried_by))
+    SET_BIT(PLR_FLAGS(object->carried_by), PLR_CRASH);
 
   IS_CARRYING_W(object->carried_by) -= GET_OBJ_WEIGHT(object);
   IS_CARRYING_N(object->carried_by)--;
@@ -438,7 +465,10 @@ int apply_ac(struct char_data * ch, int eq_pos)
 {
   int factor;
 
-  assert(GET_EQ(ch, eq_pos));
+  if (GET_EQ(ch, eq_pos) == NULL) {
+    core_dump();
+    return 0;
+  }
 
   if (!(GET_OBJ_TYPE(GET_EQ(ch, eq_pos)) == ITEM_ARMOR))
     return 0;
@@ -467,14 +497,15 @@ int apply_ac(struct char_data * ch, int eq_pos)
 void equip_char(struct char_data * ch, struct obj_data * obj, int pos)
 {
   int j;
-  int invalid_class(struct char_data *ch, struct obj_data *obj);
 
-  assert(pos >= 0 && pos < NUM_WEARS);
+  if (pos < 0 || pos >= NUM_WEARS) {
+    core_dump();
+    return;
+  }
 
   if (GET_EQ(ch, pos)) {
-    sprintf(buf, "SYSERR: Char is already equipped: %s, %s", GET_NAME(ch),
+    log("SYSERR: Char is already equipped: %s, %s", GET_NAME(ch),
 	    obj->short_description);
-    log(buf);
     return;
   }
   if (obj->carried_by) {
@@ -508,7 +539,7 @@ void equip_char(struct char_data * ch, struct obj_data * obj, int pos)
       if (GET_OBJ_VAL(obj, 2))	/* if light is ON */
 	world[ch->in_room].light++;
   } else
-    log("SYSERR: ch->in_room = NOWHERE when equipping char.");
+    log("SYSERR: ch->in_room = NOWHERE when equipping char %s.", GET_NAME(ch));
 
   for (j = 0; j < MAX_OBJ_AFFECT; j++)
     affect_modify(ch, obj->affected[j].location,
@@ -525,8 +556,10 @@ struct obj_data *unequip_char(struct char_data * ch, int pos)
   int j;
   struct obj_data *obj;
 
-  assert(pos >= 0 && pos < NUM_WEARS);
-  assert(GET_EQ(ch, pos));
+  if ((pos < 0 || pos >= NUM_WEARS) || GET_EQ(ch, pos) == NULL) {
+    core_dump();
+    return NULL;
+  }
 
   obj = GET_EQ(ch, pos);
   obj->worn_by = NULL;
@@ -540,7 +573,7 @@ struct obj_data *unequip_char(struct char_data * ch, int pos)
       if (GET_OBJ_VAL(obj, 2))	/* if light is ON */
 	world[ch->in_room].light--;
   } else
-    log("SYSERR: ch->in_room = NOWHERE when equipping char.");
+    log("SYSERR: ch->in_room = NOWHERE when unequipping char %s.", GET_NAME(ch));
 
   GET_EQ(ch, pos) = NULL;
 
@@ -647,7 +680,8 @@ struct char_data *get_char_num(mob_rnum nr)
 void obj_to_room(struct obj_data * object, room_rnum room)
 {
   if (!object || room < 0 || room > top_of_world)
-    log("SYSERR: Illegal value(s) passed to obj_to_room");
+    log("SYSERR: Illegal value(s) passed to obj_to_room. (Room #%d/%d, obj %p)",
+	room, top_of_world, object);
   else {
     object->next_content = world[room].contents;
     world[room].contents = object;
@@ -665,7 +699,8 @@ void obj_from_room(struct obj_data * object)
   struct obj_data *temp;
 
   if (!object || object->in_room == NOWHERE) {
-    log("SYSERR: NULL object or obj not in a room passed to obj_from_room");
+    log("SYSERR: NULL object (%p) or obj not in a room (%d) passed to obj_from_room",
+	object, object->in_room);
     return;
   }
 
@@ -684,7 +719,8 @@ void obj_to_obj(struct obj_data * obj, struct obj_data * obj_to)
   struct obj_data *tmp_obj;
 
   if (!obj || !obj_to || obj == obj_to) {
-    log("SYSERR: NULL object or same source and target obj passed to obj_to_obj");
+    log("SYSERR: NULL object (%p) or same source (%p) and target (%p) obj passed to obj_to_obj.",
+	obj, obj, obj_to);
     return;
   }
 
@@ -708,7 +744,7 @@ void obj_from_obj(struct obj_data * obj)
   struct obj_data *temp, *obj_from;
 
   if (obj->in_obj == NULL) {
-    log("error (handler.c): trying to illegally extract obj from obj");
+    log("SYSERR: (%s): trying to illegally extract obj from obj.", __FILE__);
     return;
   }
   obj_from = obj->in_obj;
@@ -814,19 +850,14 @@ void extract_char(struct char_data * ch)
   struct obj_data *obj;
   int i, freed = 0;
 
-  extern struct char_data *combat_list;
-
-  ACMD(do_return);
-
-  void die_follower(struct char_data * ch);
-
   if (!IS_NPC(ch) && !ch->desc) {
     for (t_desc = descriptor_list; t_desc; t_desc = t_desc->next)
       if (t_desc->original == ch)
-	do_return(t_desc->character, "", 0, 0);
+	do_return(t_desc->character, NULL, 0, 0);
   }
   if (ch->in_room == NOWHERE) {
-    log("SYSERR: NOWHERE extracting char. (handler.c, extract_char)");
+    log("SYSERR: NOWHERE extracting char %s. (%s, extract_char)",
+	GET_NAME(ch), __FILE__);
     exit(1);
   }
   if (ch->followers || ch->master)
@@ -872,7 +903,7 @@ void extract_char(struct char_data * ch)
   REMOVE_FROM_LIST(ch, character_list, next);
 
   if (ch->desc && ch->desc->original)
-    do_return(ch, "", 0, 0);
+    do_return(ch, NULL, 0, 0);
 
   if (!IS_NPC(ch)) {
     save_char(ch, NOWHERE);
@@ -1040,7 +1071,7 @@ char *money_desc(int amount)
   static char buf[128];
 
   if (amount <= 0) {
-    log("SYSERR: Try to create negative or 0 money.");
+    log("SYSERR: Try to create negative or 0 money (%d).", amount);
     return NULL;
   }
   if (amount == 1)
@@ -1085,7 +1116,7 @@ struct obj_data *create_money(int amount)
   char buf[200];
 
   if (amount <= 0) {
-    log("SYSERR: Try to create negative or 0 money.");
+    log("SYSERR: Try to create negative or 0 money. (%d)", amount);
     return NULL;
   }
   obj = create_obj();

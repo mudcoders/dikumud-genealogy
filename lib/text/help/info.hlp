@@ -405,8 +405,12 @@ them all, I'd like to extend special thanks to certain people:
 Thanks everyone!
 
   Anonymous FTP:  ftp.circlemud.org or ftp2.circlemud.org in pub/CircleMUD
-Author's E-Mail:  jelson@circlemud.org
+ To report bugs:  bugs@circlemud.org
+    To get help:  help@circlemud.org
             URL:  http://www.circlemud.org/
-   Mailing List:  listserv@post.queensu.ca (write "subscribe circle")
+   Mailing List:  listserv@post.queensu.ca
+                  (write "subscribe circle <first name> <last name>")
+
+--Jeremy Elson (jelson@circlemud.org)
 #
 $

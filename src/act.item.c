@@ -21,10 +21,50 @@
 #include "spells.h"
 
 /* extern variables */
+extern sh_int donation_room_1;
+#if 0
+extern sh_int donation_room_2;  /* uncomment if needed! */
+extern sh_int donation_room_3;  /* uncomment if needed! */
+#endif
+extern struct obj_data *obj_proto;
+extern struct obj_data *obj_proto;
+extern char *drinknames[];
 extern struct str_app_type str_app[];
 extern struct room_data *world;
 extern char *drinks[];
 extern int drink_aff[][3];
+
+/* local functions */
+int can_take_obj(struct char_data * ch, struct obj_data * obj);
+void get_check_money(struct char_data * ch, struct obj_data * obj);
+int perform_get_from_room(struct char_data * ch, struct obj_data * obj);
+void get_from_room(struct char_data * ch, char *arg);
+void perform_give_gold(struct char_data * ch, struct char_data * vict, int amount);
+void perform_give(struct char_data * ch, struct char_data * vict, struct obj_data * obj);
+int perform_drop(struct char_data * ch, struct obj_data * obj, byte mode, const char *sname, sh_int RDR);
+void perform_drop_gold(struct char_data * ch, int amount, byte mode, sh_int RDR);
+struct char_data *give_find_vict(struct char_data * ch, char *arg);
+void weight_change_object(struct obj_data * obj, int weight);
+void perform_put(struct char_data * ch, struct obj_data * obj, struct obj_data * cont);
+void name_from_drinkcon(struct obj_data * obj);
+void get_from_container(struct char_data * ch, struct obj_data * cont, char *arg, int mode);
+void name_to_drinkcon(struct obj_data * obj, int type);
+void wear_message(struct char_data * ch, struct obj_data * obj, int where);
+void perform_wear(struct char_data * ch, struct obj_data * obj, int where);
+int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg);
+void perform_get_from_container(struct char_data * ch, struct obj_data * obj, struct obj_data * cont, int mode);
+void perform_remove(struct char_data * ch, int pos);
+ACMD(do_remove);
+ACMD(do_put);
+ACMD(do_get);
+ACMD(do_drop);
+ACMD(do_give);
+ACMD(do_drink);
+ACMD(do_eat);
+ACMD(do_pour);
+ACMD(do_wear);
+ACMD(do_wield);
+ACMD(do_grab);
 
 
 void perform_put(struct char_data * ch, struct obj_data * obj,
@@ -78,7 +118,7 @@ ACMD(do_put)
       send_to_char(buf, ch);
     } else if (GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
       act("$p is not a container.", FALSE, ch, cont, 0, TO_CHAR);
-    else if (IS_SET(GET_OBJ_VAL(cont, 1), CONT_CLOSED))
+    else if (OBJVAL_FLAGGED(cont, CONT_CLOSED))
       send_to_char("You'd better open it first!\r\n", ch);
     else {
       if (obj_dotmode == FIND_INDIV) {	/* put <obj> <container> */
@@ -168,7 +208,7 @@ void get_from_container(struct char_data * ch, struct obj_data * cont,
 
   obj_dotmode = find_all_dots(arg);
 
-  if (IS_SET(GET_OBJ_VAL(cont, 1), CONT_CLOSED))
+  if (OBJVAL_FLAGGED(cont, CONT_CLOSED))
     act("$p is closed.", FALSE, ch, cont, 0, TO_CHAR);
   else if (obj_dotmode == FIND_INDIV) {
     if (!(obj = get_obj_in_list_vis(ch, arg, cont->contains))) {
@@ -289,7 +329,7 @@ ACMD(do_get)
       }
       for (cont = ch->carrying; cont; cont = cont->next_content)
 	if (CAN_SEE_OBJ(ch, cont) &&
-	    (cont_dotmode == FIND_ALL || isname(arg2, cont->name)))
+	    (cont_dotmode == FIND_ALL || isname(arg2, cont->name))) {
 	  if (GET_OBJ_TYPE(cont) == ITEM_CONTAINER) {
 	    found = 1;
 	    get_from_container(ch, cont, arg1, FIND_OBJ_INV);
@@ -297,9 +337,10 @@ ACMD(do_get)
 	    found = 1;
 	    act("$p is not a container.", FALSE, ch, cont, 0, TO_CHAR);
 	  }
+	}
       for (cont = world[ch->in_room].contents; cont; cont = cont->next_content)
 	if (CAN_SEE_OBJ(ch, cont) &&
-	    (cont_dotmode == FIND_ALL || isname(arg2, cont->name)))
+	    (cont_dotmode == FIND_ALL || isname(arg2, cont->name))) {
 	  if (GET_OBJ_TYPE(cont) == ITEM_CONTAINER) {
 	    get_from_container(ch, cont, arg1, FIND_OBJ_ROOM);
 	    found = 1;
@@ -307,6 +348,7 @@ ACMD(do_get)
 	    act("$p is not a container.", FALSE, ch, cont, 0, TO_CHAR);
 	    found = 1;
 	  }
+	}
       if (!found) {
 	if (cont_dotmode == FIND_ALL)
 	  send_to_char("You can't seem to find any containers.\r\n", ch);
@@ -360,7 +402,7 @@ void perform_drop_gold(struct char_data * ch, int amount,
 		      "  It vanishes in a puff of smoke!" : "")
 
 int perform_drop(struct char_data * ch, struct obj_data * obj,
-		     byte mode, char *sname, sh_int RDR)
+		     byte mode, const char *sname, sh_int RDR)
 {
   int value;
 
@@ -382,19 +424,16 @@ int perform_drop(struct char_data * ch, struct obj_data * obj,
   case SCMD_DROP:
     obj_to_room(obj, ch->in_room);
     return 0;
-    break;
   case SCMD_DONATE:
     obj_to_room(obj, RDR);
     act("$p suddenly appears in a puff a smoke!", FALSE, 0, obj, 0, TO_ROOM);
     return 0;
-    break;
   case SCMD_JUNK:
-    value = MAX(1, MIN(200, GET_OBJ_COST(obj) >> 4));
+    value = MAX(1, MIN(200, GET_OBJ_COST(obj) / 16));
     extract_obj(obj);
     return value;
-    break;
   default:
-    log("SYSERR: Incorrect argument passed to perform_drop");
+    log("SYSERR: Incorrect argument %d passed to perform_drop.", mode);
     break;
   }
 
@@ -405,16 +444,11 @@ int perform_drop(struct char_data * ch, struct obj_data * obj,
 
 ACMD(do_drop)
 {
-  extern sh_int donation_room_1;
-#if 0
-  extern sh_int donation_room_2;  /* uncomment if needed! */
-  extern sh_int donation_room_3;  /* uncomment if needed! */
-#endif
   struct obj_data *obj, *next_obj;
   sh_int RDR = 0;
   byte mode = SCMD_DROP;
   int dotmode, amount = 0;
-  char *sname;
+  const char *sname;
 
   switch (subcmd) {
   case SCMD_JUNK:
@@ -566,7 +600,7 @@ void perform_give_gold(struct char_data * ch, struct char_data * vict,
     return;
   }
   send_to_char(OK, ch);
-  sprintf(buf, "$n gives you %d gold coins.", amount);
+  sprintf(buf, "$n gives you %d gold coin%s.", amount, amount == 1 ? "" : "s");
   act(buf, FALSE, ch, 0, vict, TO_VICT);
   sprintf(buf, "$n gives %s to $N.", money_desc(amount));
   act(buf, TRUE, ch, 0, vict, TO_NOTVICT);
@@ -656,7 +690,6 @@ void name_from_drinkcon(struct obj_data * obj)
 {
   int i;
   char *new_name;
-  extern struct obj_data *obj_proto;
 
   for (i = 0; (*((obj->name) + i) != ' ') && (*((obj->name) + i) != '\0'); i++);
 
@@ -673,8 +706,6 @@ void name_from_drinkcon(struct obj_data * obj)
 void name_to_drinkcon(struct obj_data * obj, int type)
 {
   char *new_name;
-  extern struct obj_data *obj_proto;
-  extern char *drinknames[];
 
   CREATE(new_name, char, strlen(obj->name) + strlen(drinknames[type]) + 2);
   sprintf(new_name, "%s %s", drinknames[type], obj->name);
@@ -693,6 +724,9 @@ ACMD(do_drink)
   int on_ground = 0;
 
   one_argument(argument, arg);
+
+  if (IS_NPC(ch))	/* Cannot use GET_COND() on mobs. */
+    return;
 
   if (!*arg) {
     send_to_char("Drink from what?\r\n", ch);
@@ -802,6 +836,9 @@ ACMD(do_eat)
   int amount;
 
   one_argument(argument, arg);
+
+  if (IS_NPC(ch))	/* Cannot use GET_COND() on mobs. */
+    return;
 
   if (!*arg) {
     send_to_char("Eat what?\r\n", ch);
@@ -1003,7 +1040,7 @@ ACMD(do_pour)
 
 void wear_message(struct char_data * ch, struct obj_data * obj, int where)
 {
-  char *wear_messages[][2] = {
+  const char *wear_messages[][2] = {
     {"$n lights $p and holds it.",
     "You light $p and hold it."},
 
@@ -1078,9 +1115,10 @@ void perform_wear(struct char_data * ch, struct obj_data * obj, int where)
     ITEM_WEAR_NECK, ITEM_WEAR_BODY, ITEM_WEAR_HEAD, ITEM_WEAR_LEGS,
     ITEM_WEAR_FEET, ITEM_WEAR_HANDS, ITEM_WEAR_ARMS, ITEM_WEAR_SHIELD,
     ITEM_WEAR_ABOUT, ITEM_WEAR_WAIST, ITEM_WEAR_WRIST, ITEM_WEAR_WRIST,
-  ITEM_WEAR_WIELD, ITEM_WEAR_TAKE};
+    ITEM_WEAR_WIELD, ITEM_WEAR_TAKE
+  };
 
-  char *already_wearing[] = {
+  const char *already_wearing[] = {
     "You're already using a light.\r\n",
     "YOU SHOULD NEVER SEE THIS MESSAGE.  PLEASE REPORT.\r\n",
     "You're already wearing something on both of your ring fingers.\r\n",
@@ -1126,12 +1164,12 @@ int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg)
 {
   int where = -1;
 
-  static char *keywords[] = {
-    "!RESERVED!",
+  const char *keywords[] = {	/* \n to prevent explicit wearing. */
+    "\n!RESERVED!",
     "finger",
-    "!RESERVED!",
+    "\n!RESERVED!",
     "neck",
-    "!RESERVED!",
+    "\n!RESERVED!",
     "body",
     "head",
     "legs",
@@ -1142,9 +1180,9 @@ int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg)
     "about",
     "waist",
     "wrist",
-    "!RESERVED!",
-    "!RESERVED!",
-    "!RESERVED!",
+    "\n!RESERVED!",
+    "\n!RESERVED!",
+    "\n!RESERVED!",
     "\n"
   };
 
@@ -1178,7 +1216,7 @@ ACMD(do_wear)
   char arg1[MAX_INPUT_LENGTH];
   char arg2[MAX_INPUT_LENGTH];
   struct obj_data *obj, *next_obj;
-  int where, dotmode, items_worn = 0;
+  int where = -1, dotmode, items_worn = 0;
 
   two_arguments(argument, arg1, arg2);
 
@@ -1288,11 +1326,11 @@ void perform_remove(struct char_data * ch, int pos)
 {
   struct obj_data *obj;
 
-  if (!(obj = GET_EQ(ch, pos))) {
-    log("Error in perform_remove: bad pos passed.");
-    return;
-  }
-  if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
+  if (!(obj = GET_EQ(ch, pos)))
+    log("Error in perform_remove: bad pos %d passed.", pos);
+  else if (IS_OBJ_STAT(obj, ITEM_NODROP))
+    act("You can't remove $p, it must be CURSED!", FALSE, ch, obj, 0, TO_CHAR);
+  else if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
     act("$p: you can't carry that many items!", FALSE, ch, obj, 0, TO_CHAR);
   else {
     obj_to_char(unequip_char(ch, pos), ch);

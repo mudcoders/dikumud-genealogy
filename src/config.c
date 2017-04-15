@@ -70,13 +70,29 @@ int max_exp_loss = 500000;	/* max losable per death */
 int max_npc_corpse_time = 5;
 int max_pc_corpse_time = 10;
 
+/* How many ticks before a player is sent to the void or idle-rented. */
+int idle_void = 8;
+int idle_rent_time = 48;
+
+/* This level and up is immune to idling, LVL_IMPL+1 will disable it. */
+int idle_max_level = LVL_GOD;
+
 /* should items in death traps automatically be junked? */
 int dts_are_dumps = YES;
 
+/*
+ * Whether you want items that immortals load to appear on the ground or not.
+ * It is most likely best to set this to 'YES' so that something else doesn't
+ * grab the item before the immortal does, but that also means people will be
+ * able to carry around things like boards.  That's not necessarily a bad
+ * thing, but this will be left at a default of 'NO' for historic reasons.
+ */
+int load_into_inventory = NO;
+
 /* "okay" etc. */
-char *OK = "Okay.\r\n";
-char *NOPERSON = "No-one by that name here.\r\n";
-char *NOEFFECT = "Nothing seems to happen.\r\n";
+const char *OK = "Okay.\r\n";
+const char *NOPERSON = "No-one by that name here.\r\n";
+const char *NOEFFECT = "Nothing seems to happen.\r\n";
 
 /****************************************************************************/
 /****************************************************************************/
@@ -98,7 +114,10 @@ int min_rent_cost = 100;
 
 /*
  * Should the game automatically save people?  (i.e., save player data
- * every 4 kills (on average), and Crash-save as defined below.
+ * every 4 kills (on average), and Crash-save as defined below.  This
+ * option has an added meaning past bpl13.  If auto_save is YES, then
+ * the 'save' command will be disabled to prevent item duplication via
+ * game crashes.
  */
 int auto_save = YES;
 
@@ -148,15 +167,38 @@ sh_int donation_room_3 = NOWHERE;	/* unused - room for expansion */
 /* GAME OPERATION OPTIONS */
 
 /*
- * This is the default port the game should run on if no port is given on
- * the command-line.  NOTE WELL: If you're using the 'autorun' script, the
- * port number there will override this setting.  Change the PORT= line in
- * instead of (or in addition to) changing this.
+ * This is the default port on which the game should run if no port is
+ * given on the command-line.  NOTE WELL: If you're using the
+ * 'autorun' script, the port number there will override this setting.
+ * Change the PORT= line in autorun instead of (or in addition to)
+ * changing this.
  */
 int DFLT_PORT = 4000;
 
+/*
+ * IP address to which the MUD should bind.  This is only useful if
+ * you're running Circle on a host that host more than one IP interface,
+ * and you only want to bind to *one* of them instead of all of them.
+ * Setting this to NULL (the default) causes Circle to bind to all
+ * interfaces on the host.  Otherwise, specify a numeric IP address in
+ * dotted quad format, and Circle will only bind to that IP address.  (Of
+ * course, that IP address must be one of your host's interfaces, or it
+ * won't work.)
+ */
+const char *DFLT_IP = NULL; /* bind to all interfaces */
+/* const char *DFLT_IP = "192.168.1.1";  -- bind only to one interface */
+
 /* default directory to use as data directory */
-char *DFLT_DIR = "lib";
+const char *DFLT_DIR = "lib";
+
+/*
+ * What file to log messages to (ex: "log/syslog").  Setting this to NULL
+ * means you want to log to stderr, which was the default in earlier
+ * versions of Circle.  If you specify a file, you don't get messages to
+ * the screen. (Hint: Try 'tail -f' if you have a UNIX machine.)
+ */
+const char *LOGNAME = NULL;
+/* const char *LOGNAME = "log/syslog";  -- useful for Windows users */
 
 /* maximum number of players allowed before game starts to turn people away */
 int MAX_PLAYERS = 300;
@@ -166,6 +208,19 @@ int max_filesize = 50000;
 
 /* maximum number of password attempts before disconnection */
 int max_bad_pws = 3;
+
+/*
+ * Rationale for enabling this, as explained by naved@bird.taponline.com.
+ *
+ * Usually, when you select ban a site, it is because one or two people are
+ * causing troubles while there are still many people from that site who you
+ * want to still log on.  Right now if I want to add a new select ban, I need
+ * to first add the ban, then SITEOK all the players from that site except for
+ * the one or two who I don't want logging on.  Wouldn't it be more convenient
+ * to just have to remove the SITEOK flags from those people I want to ban
+ * rather than what is currently done?
+ */
+int siteok_everyone = TRUE;
 
 /*
  * Some nameservers are very slow and cause the game to lag terribly every 
@@ -186,7 +241,7 @@ int max_bad_pws = 3;
 int nameserver_is_slow = NO;
 
 
-char *MENU =
+const char *MENU =
 "\r\n"
 "Welcome to CircleMUD!\r\n"
 "0) Exit from CircleMUD.\r\n"
@@ -200,7 +255,7 @@ char *MENU =
 
 
 
-char *GREETINGS =
+const char *GREETINGS =
 
 "\r\n\r\n"
 "                              Your MUD Name Here\r\n"
@@ -216,12 +271,12 @@ char *GREETINGS =
 "By what name do you wish to be known? ";
 
 
-char *WELC_MESSG =
+const char *WELC_MESSG =
 "\r\n"
 "Welcome to the land of CircleMUD!  May your visit here be... Interesting."
 "\r\n\r\n";
 
-char *START_MESSG =
+const char *START_MESSG =
 "Welcome.  This is your new CircleMUD character!  You can now earn gold,\r\n"
 "gain experience, find weapons and equipment, and much more -- while\r\n"
 "meeting people from around the world!\r\n";
