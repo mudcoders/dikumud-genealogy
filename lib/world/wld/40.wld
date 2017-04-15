@@ -1,428 +1,433 @@
 #4000
-The hills~
-   You are on a path leading north, small hills surrounds you.  You feel
+The Hills~
+   You are on a path leading north, small hills surround you.  You feel
 the forces of evil approach you from the north.  
 ~
-40 4 4
+40 c 4
 D0
 ~
 ~
-0 0 4001
+0 -1 4001
 D2
 ~
 ~
-0 0 3500
+0 -1 3500
 S
 #4001
-The hills~
+The Hills~
    You are on a small path leading north, dark threatening hills
-surrounds you to almost all sides.
+surround you on almost all sides.
 ~
-40 4 4
+40 c 4
 D0
 ~
 ~
-0 0 4002
+0 -1 4002
 D2
 ~
 ~
-0 0 4000
+0 -1 4000
 S
 #4002
-End of the path~
+The End Of The Path~
    The path stops here, to the north is a single mountain and around you
 are some threatening hills.  There is a dark cave to the north.  You see a
 large sign on the mountain.
 ~
-40 4 4
+40 c 4
 D0
 ~
 ~
-0 0 4010
+0 -1 4010
 D2
 ~
 ~
-0 0 4001
+0 -1 4001
 E
 sign~
 The sign says:
-***********************************************************************
-*                                                                     *
-* ******************************************************************* *
-* *                                                                 * *
-* *                    The Mines of Moria                           * *
-* *                                                                 * *
-* *                  Enter at your own risk.                        * *
-* *                                                                 * *
-* *     Welcome to the mines of Moria..  At present there are only  * *
-* *           3 levels.  Later the plan is to build 20...           * *
-* *                                                                 * *
-* *     Are you below level 3 Don't enter..                         * *
-* *     Are you below level 8 Don't enter alone..                   * *
-* *                                                                 * *
-* ******************************************************************* *
-*                                                                     *
-***********************************************************************
+************************************************************
+*                                                          *
+* ******************************************************** *
+* *                                                      * *
+* *                 The Mines of Moria                   * *
+* *                                                      * *
+* *              Enter at your own risk.                 * *
+* *                                                      * *
+* *           Welcome to the mines of Moria...           * *
+* *                                                      * *
+* *        Are you below level 3?  Don't enter...        * *
+* *     Are you below level 8?  Don't enter alone...     * *
+* *                                                      * *
+* ******************************************************** *
+*                                                          *
+************************************************************
 ~
 S
 #4010
-The cave~
+The Cave~
    You are in a cave, to the south you sense fresh air.  To the north a
 small tunnel continues into the mountain.
 ~
-40 9 2
+40 ad 2
 D0 
 ~
 ~
-0 0 4011
+0 -1 4011
 D2
 ~
 ~
-0 0 4002
+0 -1 4002
 S
 #4011
-The tunnel~
+The Tunnel~
    You force your way through a small tunnel, to you south you sense 
 a little fresh air, and to the north the tunnel continues.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4014
+0 -1 4014
 D2
 ~
 ~
-0 0 4010
+0 -1 4010
 S
 #4012
-The tunnel~
+The Tunnel~
    You are in a small tunnel, to the north there is a cave.  The tunnel
 continues to the east.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4016
+0 -1 4016
 D1
 ~
 ~
-0 0 4013
+0 -1 4013
 S
 #4013
-The tunnel~
+The Tunnel~
    You are in a small tunnel leading east-west.  The floor is covered by
 dust.
 ~
-40 9 3
+40 ad 3
 D1
 ~
 ~
-0 0 4014
+0 -1 4014
 D3
 ~
 ~
-0 0 4012
+0 -1 4012
 S
 #4014
-The tunnel~
+The Tunnel~
    You are in a tunnel, the tunnel continues to the south and to the 
 west, to the north there is a cave.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4018
+0 -1 4018
 D2
 ~
 ~
-0 0 4011
+0 -1 4011
 D3
 ~
 ~
-0 0 4013
+0 -1 4013
 S
 #4015
-The tunnel~
+The Tunnel~
    You are in a small tunnel, the tunnel continues west.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4019
+0 -1 4019
 D3
 ~
 ~
-0 0 4014
+0 -1 4014
 S
 #4016
-The large cave~
+The Large Cave~
    You are in a large cave, the cave continues east and west, to the south
 you notice a small tunnel.
 ~
-40 9 2
+40 ad 2
 D1
 ~
 ~
-0 0 4017
+0 -1 4017
 D2
 ~
 ~
-0 0 4012
+0 -1 4012
 D3
 ~
 ~
-0 0 4023
+0 -1 4023
 S
 #4017
-The large cave~
+The Large Cave~
    You are in the east end of the large cave.
 ~
-40 9 2
+40 ad 2
 D3
 ~
 ~
-0 0 4016
+0 -1 4016
 S
 #4018
-The cave~
+The Cave~
    You are in the south end of a cave, to the south you see a tunnel.  You
 notice a large pile of bones in the corner.
 ~
-40 9 2
+40 ad 2
 D0
 ~
 ~
-0 0 4025
+0 -1 4025
 D2
 ~
 ~
-0 0 4014
+0 -1 4014
 E
 pile bones~
 Well you better watch out - some of the bones are human !
 ~
 S
 #4019
-The tunnel~
+The Tunnel~
    You are in a north-south leading tunnel.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4026
+0 -1 4026
 D2
 ~
 ~
-0 0 4015
+0 -1 4015
 S
 #4020
-The hole~
+The Hole~
    You are by a hole in the floor, you can leave down, or north.
 ~
-40 13 3
+40 acd 3
 D0
 ~
 ~
-0 0 4027
+0 -1 4027
 D5
 ~
 ~
-0 0 4064
+0 -1 4064
 S
 #4021
-The hole~
+The Hole~
    You are by a hole in the floor, exits are down or east.
 ~
-40 13 3
+40 acd 3
 D1
 ~
 ~
-0 0 4022
+0 -1 4022
 D5
 ~
 ~
-0 0 4115
+0 -1 4115
 S
 #4022
-The damp tunnel~
+The Damp Tunnel~
    You are in a damp tunnel, your clothes feel wet.  The tunnel continues
 to the north, to the west you see a hole in the floor and to the east
 there is a large cave.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4024
+0 -1 4024
 D1
 ~
 ~
-0 0 4023
+0 -1 4023
 D3
 ~
 ~
-0 0 4021
+0 -1 4021
 S
 #4023
-The large cave~
+The Large Cave~
    You are in the western part of the large cave, to the west you see
 a damp tunnel.
 ~
-40 9 2
+40 ad 2
 D1
 ~
 ~
-0 0 4016
+0 -1 4016
 D3
 ~
 ~
-0 0 4022
+0 -1 4022
 S
 #4024
-The damp tunnel~
+The Damp Tunnel~
    You are in a damp tunnel, that leads west.
 ~
-40 9 3
+40 ad 3
 D2
 ~
 ~
-0 0 4022
+0 -1 4022
 D3
 ~
 ~
-0 0 4059
+0 -1 4059
 S
 #4025
-The cave~
+The Cave~
    You are in the north end of a cave.  To the east you see some tunnels
 which leads in many directions.
 ~
-40 9 2
+40 ad 2
 D1
 ~
 ~
-0 0 4026
+0 -1 4026
 D2
 ~
 ~
-0 0 4018
+0 -1 4018
 S
 #4026
-The many tunnels~
+The Many Tunnels~
    You are in a tunnel, that leads of in all directions.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4028
+0 -1 4028
 D1
 ~
 ~
-0 0 4027
+0 -1 4027
 D2
 ~
 ~
-0 0 4019
+0 -1 4019
 D3
 ~
 ~
-0 0 4025
+0 -1 4025
 S
 #4027
-The tunnel~
+The Tunnel~
    You are in a north-south leading tunnel, you also notice a tunnel to
 the west.  From the north you sense the fresh air!
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4029
+0 -1 4029
 D2
 ~
 ~
-0 0 4020
+0 -1 4020
 D3
 ~
 ~
-0 0 4026
+0 -1 4026
 S
 #4028
-The smelly tunnel~
+The Smelly Tunnel~
    You are in a north-south leading tunnel, you see a small light
 to the north.  You notice a strange smell from the north..
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4030
+0 -1 4030
 D2
 ~
 ~
-0 0 4026
+0 -1 4026
 S
 #4029
-The cave~
+The Cave~
    You are in a cave that is filled with fresh air, you sense the
 wind blowing from the north.  To the south you see a small tunnel
 continue into the mountain.
 ~
-40 9 2
+40 ad 2
 D0
 ~
 ~
-0 0 4031
+0 -1 4031
 D2
 ~
 ~
-0 0 4027
+0 -1 4027
 S
 #4030
-The light cave~
+The Light Cave~
    You are in a light cave, through a hole large above you, you see 
 the sky.  A small tunnel to the south is the only way out.
 You notice the source of the strange smell, all around you there is
 corpses from several monsters.
 ~
-40 0 2
+40 d 2
 D2
 ~
 ~
-0 0 4028
+0 -1 4028
 E
 corpse corpses~
 IT STINKS!
 ~
 S
 #4031
-The valley~
+The Valley~
    You are in a small valley, surrounded by hills and a mountain to 
-the south.  In the mountain there is a cave.  To the north you enter
-the hills.
+the south.  In the mountain there is a cave.  To the north you can
+enter the hills.  There is a small trail leading up a steep hill to
+the east.
 ~
 40 0 2
-D2
-~
-~
-0 0 4029
 D0
 ~
 ~
-0 0 4032
+0 -1 4032
+D1
+You spot a small trail leading into the hills to the east.
+~
+~
+0 -1 4045
+D2
+~
+~
+0 -1 4029
 E
 cave~
-Well it doesn't look nice, but it's the only way out..
+Well it doesn't look nice, but it is the only way out..
 ~
 S
 #4032
-The foothills~
+The Foothills~
    You are on a winding path that leads through the foothills on the
 other side of the mountain.  The path continues north.
 ~
@@ -430,14 +435,14 @@ other side of the mountain.  The path continues north.
 D0
 ~
 ~
-0 0 4033
+0 -1 4033
 D2
 ~
 ~
-0 0 4031
+0 -1 4031
 S
 #4033
-The intersection in the foothills~
+The Intersection In The Foothills~
    The small path you are following splits here.  The path continues
 north and south or you can follow a trail east into the mountains.
 ~
@@ -445,39 +450,39 @@ north and south or you can follow a trail east into the mountains.
 D0
 ~
 ~
-0 0 4034
+0 -1 4034
 D1
 ~
 ~
-0 0 4037
+0 -1 4037
 D2
 ~
 ~
-0 0 4032
+0 -1 4032
 S
 #4034
-The grassy area of the foothills~
-  The grass here is unusually high.  You notice several areas where
-someone or something large has crush spots of the down.  Several very
-large rocks litter this area.  You can go north, west or south.
+The Grassy Area In The Foothills~
+   The grass here is unusually high.  You notice several areas where
+someone or something large has crushed spots of it down.  Several
+very large rocks litter this area.  You can go north, west or south.
 ~
 40 0 2
 D0
 ~
 ~
-0 0 4035
-D3
-~
-~
-0 0 4042
+0 -1 4035
 D2
 ~
 ~
-0 0 4033
+0 -1 4033
+D3
+~
+~
+0 -1 4042
 S
 #4035
-The foothills end~
-  At this point you are leaving the foothills.  You see a plains area
+At The Foothills' End~
+   At this point you are leaving the foothills.  You see a plains area
 to the north of here.  You can spot a small city in the distance from
 here.
 ~
@@ -485,592 +490,681 @@ here.
 D0
 ~
 ~
-0 0 4036
+0 -1 4036
 D2
 ~
 ~
-0 0 4034
+0 -1 4034
 S
 #4036
-The plains~
+The Plains~
    The plains.  The only exit is south.
 ~
 40 0 2
 D2
 ~
 ~
-0 0 4035
+0 -1 4035
 S
 #4037
-The foothills path~
-  exits are east and west.
+The Path Through The Foothills~
+   The path exits to the east and west.
 ~
 40 0 2
-D3
-~
-~
-0 0 4033
 D1
 ~
 ~
-0 0 4038
+0 -1 4038
+D3
+~
+~
+0 -1 4033
 S
 #4038
-Base of the mountain~
-  Exits are east and west.
-~
-40 0 2
-D1
-~
-~
-0 0 4039
-D3
-~
-~
-0 0 4037
-S
-#4039
-A trail up the mountain~
+The Base Of The Mountain~
    Exits are east and west.
 ~
 40 0 2
 D1
 ~
 ~
-0 0 4040
+0 -1 4039
 D3
 ~
 ~
-0 0 4038
+0 -1 4037
+S
+#4039
+A Trail Up The Mountain~
+   Exits are east and west.
+~
+40 0 2
+D1
+~
+~
+0 -1 4040
+D3
+~
+~
+0 -1 4038
 S
 #4040
-The mountain top~
+The Mountain Top~
    Exits are north, east, west.
 ~
 40 0 2
 D0
 ~
 ~
-0 0 4041
+0 -1 4041
 D1
 ~
 ~
-0 0 7114
+0 -1 7114
 D3
 ~
 ~
-0 0 4039
+0 -1 4039
 S
 #4041
-The lion's den~
-   Exits are south.
+The Lion's Den~
+   The only exit is south.
 ~
-40 0 2
+40 d 2
 D2
 ~
 ~
-0 0 4040
+0 -1 4040
 S
 #4042
-The level foothills~
+The Level Foothills~
    Exits are east and west.
 ~
 40 0 2
 D1
 ~
 ~
-0 0 4034
+0 -1 4034
 D3
 ~
 ~
-0 0 4043
+0 -1 4043
 S
 #4043
-The cave entrance~
+The Cave Entrance~
    Exits are east and west.
 ~
-40 0 2
+40 d 2
 D1
 ~
 ~
-0 0 4042
+0 -1 4042
 D3
 ~
 ~
-0 0 4044
+0 -1 4044
 S
 #4044
-The hill giant cave~
-   Exits are east.
+The Hill Giant Cave~
+   The only exit is to the east.
 ~
-40 0 2
+40 ad 2
 D1
 ~
 ~
-0 0 4043
+0 -1 4043
+S
+#4045
+The Steep Trail~
+   This trail leads up a steep hill to a point where it levels out as
+it begins to pass between the mountains that surround you.  It continues
+through the hills to the east and heads down to the valley to the west.
+~
+40 c 5
+D1
+The rocky trail continues.
+~
+~
+0 -1 4046
+D3
+The valley lies at the bottom of the steep trail.
+~
+~
+0 -1 4031
+S
+#4046
+Between The Mountains~
+   The trail between the mountains seems almost endless as you continue
+to trek along it.  It continues to both the east and west.
+~
+40 c 5
+D1
+The trail continues eastwards.
+~
+~
+0 -1 4047
+D3
+The trail continues westwards.
+~
+~
+0 -1 4045
+S
+#4047
+The Foothills~
+   After a long trek, you find yourself in the foothills again.  You spot
+a narrow trail leading away to the northwest not too far distant to the
+west.
+~
+40 c 5
+D1
+You can head towards the narrow trail this way.
+~
+~
+0 -1 4049
+D3
+The trail leading back through the mountains seems to go on forever.
+~
+~
+0 -1 4046
+S
+#4048
+The Foothills~
+   A short trek through the foothills and you find yourself facing a
+trail that leads between the mountains to the west.  The trail through
+them looks to be very long and probably quite tiring.  You spot a narrow
+trail leading away to the northwest not too far distant to the west.
+~
+40 c 5
+D1
+You can head towards the narrow trail this way.
+~
+~
+0 -1 4049
+D3
+The trail leading through the mountains seems to go on forever.
+~
+~
+0 -1 4046
+S
+#4049
+The Foothills~
+   You are at a point on the trail where it turns slowly from an
+almost straight westwards trail into a trail meandering towards
+the northwest. 
+~
+40 c 4
+D0
+A small trail leads away to the northwest.
+~
+~
+0 -1 5628
+D3
+A trail heads towards the mountains to the west.
+~
+~
+0 -1 4048 
 S
 #4050
-The tunnel~
+The Tunnel~
    You are in a tunnel, which turns here.  The tunnel continues to the
 east and the south.
 ~
-40 9 3
+40 ad 3
 D1
 ~
 ~
-0 0 4051
+0 -1 4051
 D2
 ~
 ~
-0 0 4053
+0 -1 4053
 S
 #4051
-The tunnel~
+The Tunnel~
    You are in an east-west leading tunnel.  The tunnel is very narrow
 here.
 ~
-40 9 3
+40 ad 3
 D1
 ~
 ~
-0 0 4052
+0 -1 4052
 D3
 ~
 ~
-0 0 4050
+0 -1 4050
 S
 #4052
-The tunnel~
+The Tunnel~
    You are in an east-west leading tunnel.
 ~
-40 9 3
+40 ad 3
 D1
 ~
 ~
-0 0 4100
+0 -1 4100
 D3
 ~
 ~
-0 0 4051
+0 -1 4051
 S
 #4053
-The tunnel~
+The Tunnel~
    You are at a turn, the tunnel continues north and east.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4050
+0 -1 4050
 D1
 ~
 ~
-0 0 4054
+0 -1 4054
 S
 #4054
-The light cave~
+The Light Cave~
    You are in a cave, to south from you there is a large fire that lights
 the entire cave, to the east and west tunnels leads off.
 ~
-40 8 2
+40 d 2
 D1
 ~
 ~
-0 0 4055
+0 -1 4055
 D2
 ~
 ~
-0 0 4056
+0 -1 4056
 D3
 ~
 ~
-0 0 4053
+0 -1 4053
 S
 #4055
-The maze~
-   You are in a maze of small damp tunnels.  Only exit is west to a 
+The Maze~
+   You are in a maze of small damp tunnels.  The only exit is west to a 
 light cave.
 ~
-40 9 3
+40 ad 3
 D3
 ~
 ~
-0 0 4054
+0 -1 4054
 S
 #4056
-The light cave~
+The Light Cave~
    You are in a light cave, a large fire in front of you lights the room.
 The cave continues to the north and south.
 ~
-40 8 2
+40 d 2
 D0
 ~
 ~
-0 0 4054
+0 -1 4054
 D2
 ~
 ~
-0 0 4061
+0 -1 4061
 E
 fire~
 Well, errh - It looks somehow quite warm..!
 ~
 S
 #4057
-The maze~
+The Maze~
    You are in a maze of small damp tunnels.  Exits leads both north
 and south.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4055
+0 -1 4055
 D2
 ~
 ~
-0 0 4062
+0 -1 4062
 S
 #4058
-The maze~
+The Maze~
    You are in a maze of small damp tunnels.  Exits leads west and south.
 ~
-40 9 3
+40 ad 3
 D2
 ~
 ~
-0 0 4063
+0 -1 4063
 D3
 ~
 ~
-0 0 4057
+0 -1 4057
 S
 #4059
-The tunnel~
+The Tunnel~
    You are in a tunnel, only exit is to the east.  You sense that the
 tunnel leads slightly down.
 ~
-40 13 3
+40 acd 3
 D1
 ~
 ~
-0 0 4060
+0 -1 4060
 S
 #4060
-The tunnel~
+The Tunnel~
    You are in a small tunnel, to the west the tunnel continues and 
 to the east you see some light.
 ~
-40 9 3
+40 ad 3
 D1
 ~
 ~
-0 0 4061
+0 -1 4061
 D3
 ~
 ~
-0 0 4059
+0 -1 4059
 S
 #4061
-The light cave~
+The Light Cave~
    You are in the south end of a light cave, tunnels leads of to the
 south and west.
 ~
-40 8 2
+40 d 2
 D0
 ~
 ~
-0 0 4056
+0 -1 4056
 D2
 ~
 ~
-0 0 4065
+0 -1 4065
 D3
 ~
 ~
-0 0 4060
+0 -1 4060
 S
 #4062
-The maze~
+The Maze~
    You are in a maze of small damp tunnels.  Exits leads east and west.
 ~
-40 9 3
+40 ad 3
 D1
 ~
 ~
-0 0 4063
+0 -1 4063
 D3
 ~
 ~
-0 0 4061
+0 -1 4061
 S
 #4063
-The maze~
+The Maze~
    You are in a maze of small damp tunnels.  Exits leads north and east.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4054
+0 -1 4054
 D1
 ~
 ~
-0 0 4064
+0 -1 4064
 S
 #4064
-The tunnel~
+The Tunnel~
    You are in a tunnel, only exit is west - Only exit, well there is 
 also a hole in the ceiling.
 ~
-40 9 3
+40 ad 3
 D3
 ~
 ~
-0 0 4063
+0 -1 4063
 D4
 ~
 ~
-0 0 4020
+0 -1 4020
 S
 #4065
-The maze~
+The Maze~
    You are in a maze of small damp tunnels.  The tunnel continues east.
 To the north there is a light cave.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4061
+0 -1 4061
 D1
 ~
 ~
-0 0 4066
+0 -1 4066
 S
 #4066
-The maze~
+The Maze~
    You are in a maze of small damp tunnels.  Exits leads east and
 north.  To the south is a large cave.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4062
+0 -1 4062
 D1
 ~
 ~
-0 0 4067
+0 -1 4067
 D2
 ~
 ~
-0 0 4069
+0 -1 4069
 S
 #4067
-The maze~
+The Maze~
    You are in a maze of small damp tunnels.  Exits leads west and
 north.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4063
+0 -1 4063
 D3
 ~
 ~
-0 0 4066
+0 -1 4066
 S
 #4068
-The large cave~
+The Large Cave~
    You are in the northwest end of a large cave.
 ~
-40 9 2
+40 ad 2
 D1
 ~
 ~
-0 0 4069
+0 -1 4069
 D2
 ~
 ~
-0 0 4070
+0 -1 4070
 S
 #4069
-The large cave~
+The Large Cave~
    You are in the northeast end of a large cave.  To the north the
 is a small damp tunnel.
 ~
-40 9 2
+40 ad 2
 D0
 ~
 ~
-0 0 4066
+0 -1 4066
 D2
 ~
 ~
-0 0 4071
+0 -1 4071
 D3
 ~
 ~
-0 0 4068
+0 -1 4068
 S
 #4070
-The large cave~
+The Large Cave~
    You are in the southwest end of a large cave.
 ~
-40 9 2
+40 ad 2
 D0
 ~
 ~
-0 0 4068
+0 -1 4068
 D1
 ~
 ~
-0 0 4071
+0 -1 4071
 S
 #4071
-The large cave~
+The Large Cave~
    You are in the southeast end of a large cave.  To the east you
 notice a small tunnel.
 ~
-40 9 2
+40 ad 2
 D0
 ~
 ~
-0 0 4069
+0 -1 4069
 D1
 ~
 ~
-0 0 4072
+0 -1 4072
 D3
 ~
 ~
-0 0 4070
+0 -1 4070
 S
 #4072
-The tunnel~
+The Tunnel~
    You are in a narrow tunnel, which leads both to the east and the
 south.  There is also an exit towards the west, where you see a large
 cave.
 ~
-40 9 3
+40 ad 3
 D1
 ~
 ~
-0 0 4073
+0 -1 4073
 D2
 ~
 ~
-0 0 4074
+0 -1 4074
 D3
 ~
 ~
-0 0 4071
+0 -1 4071
 S
 #4073
-End of tunnel~
+The End Of The Tunnel~
    The tunnel stops here.  There is no other exits than the one you
 came from.
 ~
-40 9 3
+40 ad 3
 D3
 ~
 ~
-0 0 4072
+0 -1 4072
 S
 #4074
-The hole~
-   You are at a small hole in the floor, you can either leave north
-or try your luck and leave down into the unknown!
+The Hole~
+   You are at a small hole in the floor. Alas, you can only leave
+north because to leave down into the unknown, you must be able to
+fit through the hole, which is far too small for you!
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4072
+0 -1 4072
 D5
+The small hole in the floor refuses to give up its secrets about
+what can be found below.
 ~
 ~
-0 0 -1
+0 -1 -1
 S
 #4100
-The tunnel~
-   Suddenly you feel that the tunnel leads slightly down..  The only 
-exit is to the west, and it leads down..
+The Tunnel~
+   Suddenly you feel that the tunnel leads slightly down... The only 
+exit is to the west, and it leads down...
 ~
 41 13 3
 D3
 ~
 ~
-0 0 4101
+0 -1 4101
 S
 #4101
-The long tunnel~
+The Long Tunnel~
    You are in a long east-west leading tunnel.  The tunnel is quite
 wide at this point.
 ~
-41 9 3
+41 ad 3
 D1
 ~
 ~
-0 0 4100
+0 -1 4100
 D3
 ~
 ~
-0 0 4102
+0 -1 4102
 S
 #4102
-The long tunnel~
+The Long Tunnel~
    You are in a long east-west leading tunnel.  The tunnel becomes
 narrow to the west.
 ~
-41 9 3
+41 ad 3
 D1
 ~
 ~
-0 0 4101
+0 -1 4101
 D3
 ~
 ~
-0 0 4103
+0 -1 4103
 S
 #4103
-The long tunnel~
+The Long Tunnel~
    You are in a long east-west leading tunnel.  The tunnel is quite
 narrow at this point.  You notice a small hole leading south.
 ~
-41 9 3
+41 ad 3
 D1
 ~
 ~
-0 0 4102
+0 -1 4102
 D2
 ~
 ~
-0 0 4106
+0 -1 4106
 D3
 ~
 ~
-0 0 4104
+0 -1 4104
 S
 #4104
-The long tunnel~
-   You are in a long east-west leading tunnel.  The tunnel starts sloping
-down towards the west.
+The Long Tunnel~
+   You are in a long tunnel which comes to an end here.  The tunnel
+starts sloping upwards towards the east.
 ~
-41 9 3
+41 ad 3
 D1
 ~
 ~
-0 0 4103
-D3
-~
-~
-0 0 -1
+0 -1 4103
 S
 #4105
-The golden cave~
+The Golden Cave~
    You are in a giant cave, all the walls are shining with a soft golden
 light.  The cave continues to the south and west.
 ~
@@ -1078,57 +1172,57 @@ light.  The cave continues to the south and west.
 D2
 ~
 ~
-0 0 4108
+0 -1 4108
 D3
 ~
 ~
-0 0 4106
+0 -1 4106
 E
 light gold golden~
 It looks good, but as you look closely you notice that it has no value.
 ~
 S
 #4106
-The golden cave~
+The Golden Cave~
    You are in a giant cave, all the walls are shining with a soft golden
-light.  The cave continues to the south and east, to the north i a narrow
+light.  The cave continues to the south and east, to the north is a narrow
 tunnel.
 ~
 41 8 1
 D0
 ~
 ~
-0 0 4103
+0 -1 4103
 D1
 ~
 ~
-0 0 4105
+0 -1 4105
 D2
 ~
 ~
-0 0 4109
+0 -1 4109
 E
 light gold golden~
 It looks good, but as you look closely you notice that it has no value.
 ~
 S
 #4107
-The passage~
+The Passage~
    You are in a small passage, it leads south, to the west is a golden
 cave.
 ~
-41 9 3
+41 ad 3
 D2
 ~
 ~
-0 0 4113
+0 -1 4113
 D3
 ~
 ~
-0 0 4108
+0 -1 4108
 S
 #4108
-The golden cave~
+The Golden Cave~
    You are in a giant cave, all the walls are shining with a soft golden
 light.  The cave continues to the north and west, east from you there is
 a small passage.
@@ -1137,22 +1231,22 @@ a small passage.
 D0
 ~
 ~
-0 0 4105
+0 -1 4105
 D1
 ~
 ~
-0 0 4107
+0 -1 4107
 D3
 ~
 ~
-0 0 4109
+0 -1 4109
 E
 light gold golden~
 It looks good, but as you look closely you notice that it has no value.
 ~
 S
 #4109
-The golden cave~
+The Golden Cave~
    You are in a giant cave, all the walls are shining with a soft golden
 light.  The cave continues to the south, east and north.
 ~
@@ -1160,22 +1254,22 @@ light.  The cave continues to the south, east and north.
 D0
 ~
 ~
-0 0 4106
+0 -1 4106
 D1
 ~
 ~
-0 0 4108
+0 -1 4108
 D2
 ~
 ~
-0 0 4114
+0 -1 4114
 E
 light gold golden~
 It looks good, but as you look closely you notice that it has no value.
 ~
 S
 #4110
-The hole~
+The Hole~
    You are standing by a large hole in the floor; when you look down
 into the darkness you feel frightened.
 ~
@@ -1183,61 +1277,64 @@ into the darkness you feel frightened.
 D3
 ~
 ~
-0 0 4111
+0 -1 4111
 D5
+Before you head down, you drop a rock to see how deep the hole is...
+After about five minutes, it still hasn't hit bottom.  Thus, for
+reasons of sanity, you decide not to go this way.
 ~
 ~
-0 0 -1
+0 -1 -1
 S
 #4111
-The tunnel~
+The Tunnel~
    You are in a small tunnel, it leads from east to the west.
 ~
-41 9 3
+41 ad 3
 D1
 ~
 ~
-0 0 4110
+0 -1 4110
 D3
 ~
 ~
-0 0 4112
+0 -1 4112
 S
 #4112
-The tunnel~
+The Tunnel~
    You are in a larger tunnel, it leads from west to east.
 ~
-41 9 3
+41 ad 3
 D1
 ~
 ~
-0 0 4111
+0 -1 4111
 D3
 ~
 ~
-0 0 4113
+0 -1 4113
 S
 #4113
-The passage~
+The Passage~
    You are in a passage that leads towards the south.  To the east 
 you see a tunnel.
 ~
-41 9 3
+41 ad 3
 D0
 ~
 ~
-0 0 4107
+0 -1 4107
 D1
 ~
 ~
-0 0 4112
+0 -1 4112
 D2
 ~
 ~
-0 0 4116
+0 -1 4116
 S
 #4114
-The golden cave~
+The Golden Cave~
    You are in a giant cave, all the walls are shining with a soft golden
 light.  The cave continues to the north, to the west you see a dark 
 passage.
@@ -1246,195 +1343,196 @@ passage.
 D0
 ~
 ~
-0 0 4109
+0 -1 4109
 D3
 ~
 ~
-0 0 4115
+0 -1 4115
 E
 light gold golden~
 It looks good, but as you look closely you notice that it has no value.
 ~
 S
 #4115
-The dark passage~
+The Dark Passage~
    You are in a dark passage, that leads east.  In the ceiling you notice
 a small hole, just big enough to pass through.
 ~
-41 9 3
+41 ad 3
 D1
 ~
 ~
-0 0 4114
+0 -1 4114
 D4
 ~
 ~
-0 0 4021
+0 -1 4021
 S
 #4116
-The passage~
+The Passage~
    You are in a passage that leads north-south.  You notice a small
 light to the south.
 ~
-41 9 3
+41 ad 3
 D0
 ~
 ~
-0 0 4113
+0 -1 4113
 D2
 ~
 ~
-0 0 4120
+0 -1 4120
 E
 light~
 Well you can't see where it comes from..
 ~
 S
 #4117
-The secret tunnel~
+The Secret Tunnel~
    You are in a secret tunnel that leads north, to the south you see
 a small chamber.
 ~
-41 9 3
+41 ad 3
 D0
 ~
 ~
-0 0 4114
+0 -1 4114
 D2
 ~
 ~
-0 0 4122
+0 -1 4122
 S
 #4118
-The cave~
-   You are in a light cave, from torches several feet above your
-head fire lights the room.  The cave continues to the west and south.
-To the north a small hole leads to a tunnel.
+The Cave~
+   You are in a light cave.  From torches several feet above your
+head, fire lights the room.  The cave continues to the west and
+south.  To the north a small hole leads to a tunnel.
 ~
 41 8 1
 D0
 ~
 ~
-0 0 4111
+0 -1 4111
 D2
 ~
 ~
-0 0 4123
+0 -1 4123
 D3
 ~
 ~
-0 0 4119
+0 -1 4119
 S
 #4119
-The cave~
-   You are in a light cave, from torches several feet above your
-head fire lights the room.  The cave continues to the east and south.
+The Cave~
+   You are in a light cave.  From torches several feet above your
+head, fire lights the room.  The cave continues to the east and
+south.
 ~
 41 8 1
 D1
 ~
 ~
-0 0 4118
+0 -1 4118
 D2
 ~
 ~
-0 0 4124
+0 -1 4124
 D3
 ~
 ~
-0 0 4121
+0 -1 4121
 S
 #4120
-The passage~
+The Passage~
    You are in a north-south leading passage.  To the south you see
 light.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4116
+0 -1 4116
 D2
 ~
 ~
-0 0 4125
+0 -1 4125
 E
 light~
 It nearly is enough to light the passage.
 ~
 S
 #4121
-The secret tunnel~
+The Secret Tunnel~
    You are in a secret tunnel that leads west, you feel evilness
 approaching you as you continue west.
 ~
-40 9 3
+40 ad 3
 D3
 ~
 ~
-0 0 4122
+0 -1 4122
 S
 #4122
-The secret chamber~
+The Secret Chamber~
    You are in a secret chamber, the room is filled with an evil
 feeling.
 ~
-40 9 3
+40 ad 3
 D0
 ~
 ~
-0 0 4117
+0 -1 4117
 S
 #4123
-The cave~
-   You are in a light cave, from torches several feet above your
-head fire lights the room.  The cave continues to the north and west.
+The Cave~
+   You are in a light cave.  From torches several feet above your
+head, fire lights the room.  The cave continues to the north and west.
 ~
 41 8 1
 D0
 ~
 ~
-0 0 4118
+0 -1 4118
 D3
 ~
 ~
-0 0 4124
+0 -1 4124
 S
 #4124
-The cave~
-   You are in a light cave, from torches several feet above your
-head fire lights the room.  The cave continues to the east and north.
+The Cave~
+   You are in a light cave.  From torches several feet above your
+head, fire lights the room.  The cave continues to the east and north.
 To the west a passage leads north.
 ~
 41 8 1
 D0
 ~
 ~
-0 0 4119
+0 -1 4119
 D1
 ~
 ~
-0 0 4123
+0 -1 4123
 D3
 ~
 ~
-0 0 4125
+0 -1 4125
 S
 #4125
-The passage~
+The Passage~
    You are in a passage, to the east you see a cave.  Light from the
 cave lights up the passage.  To the north the passage leads into
-the darkness..
+the darkness...
 ~
-40 8 3
+40 d 3
 D0
 ~
 ~
-0 0 4120
+0 -1 4120
 D1
 ~
 ~
-0 0 4124
+0 -1 4124
 S
 #99999
 $~

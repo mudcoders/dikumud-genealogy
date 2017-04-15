@@ -1,103 +1,120 @@
 #1200
-The Chat Room~
-   You are lounging in a quiet cozy parlor, warmed by a gentle magical fire
-which twinkles happily in a warm fireplace.  There are no doors out.  Clearly
-the owner of this room needs none.
+The Meeting Room Of The Gods~
+   The meeting room is plain and very simple.  A circular table sits
+in the middle of the room, lit by some unseen light source.  There
+are many chairs around the table, all empty.  The Immortal Board Room
+is to the north.
 ~
-1 520 0
-S
-#1201
-Moses' Hangout~
-   You see here a cozy little room with a fireplace.  You can tell it is Moses'
-room by the two stone tablets and a bible on a small ledge near the fireplace.
-This room was designed for total relaxation.  You can watch television, listen
-to the stereo, even soak in a hot tub.
-There is a bell here for the butler.
-~
-1 520 0
-S
-#1202
-The Ice Box~
-   Here lie the frozen remains of mud players who just couldn't play with
-the other kids in the sandbox.
-~
-1 8 0
-S
-#1204
-The Board Room of the Immortals~
-   This large room is well decorated, and lit from above by a soft magical
-glow of no particular origin.  Scattered around the room are comfortable chairs
-and piles of furs of various dimensions, and in the very middle there is a
-huge oaken table that shimmers in an odd manner.  A large picture window looks
-down over the whole world, showing the exploits of the many intrepid mortals.
-A spiral staircase leads down to another part of this room.
-~
-1 8 0
-D5
-You see the lower part of this room, and the normal board.
-~
-~
-0 -1 1205
-S
-#1205
-The Lower Board Room of the Immortals~
-   This room is a close twin to the main Immortal Board Room at the top of the
-spiral staircase here.  Your mind and body cannot help but relax as you gaze
-around this comfortable room, and hope that you will be able to linger here
-a while.  Many green plants line a marble stairway that leads down to the 
-Temple of Midgaard. 
-~
-1 520 0
-D3
-A well screened inter-dimensional portal hangs quietly in the air here.  You
-have no idea where it could possibly lead...
-~
-portal fractal sex drugs rock'n'roll~
-0 -1 1206
-D4
-You see the main Immortal Board Room at the top of the spiral staircase
+12 dj 0
+D0
+The Immortal Board Room can be seen to the north.
 ~
 ~
 0 -1 1204
-D5
-You see the hustle and bustle of the Temple of Midgaard at the bottom of the
-stairs.
+S
+#1201
+The Inn Of The Gods~
+   The Inn of the Gods is a small room, holding only a shelf with many
+small precious stones on it.  When God comes to rent his belongings,
+his essence is stored in the stones.  The Immortal Board Room is to
+the south.
 ~
-temple midgaard stairway stairs~
+12 dj 0
+D2
+The Immortal Board Room can be seen to the south.
+~
+~
+0 -1 1204
+S
+#1202
+The Ice Box Of The Gods~
+   The Ice Box is for little boys and girls that cannot play nice. Be good
+and maybe someone will come and get you.
+~
+12 defh 0
+S
+#1203
+The Gods' Mortal Board Room~
+   Here the Gods have magically created an exact copy of the mortal board
+room.  Any God can easily post and read messages from the mortal board room
+without being seen by any mortals.  The Immortal Board Room is to the west.
+~
+12 d 0 
+D3
+The Immortal Board Room can be seen to the west.
+~
+~
+0 -1 1204
+S
+#1204
+The Immortal Board Room~
+   The main hang out of the Gods, the Immortal Board Room is the place to
+be.  Gods exchange messages here most every day.  The mortal board room is
+to the east and the meeting room for the gods is to the south.  To the north
+is the Gods' Inn and to the west is a post office for Gods.  There is a large
+staircase leading down to the main temple in the city of Midgaard.  In the
+northeast corner you spot a small staircase leading upwards.
+~
+12 d 0
+D0
+The Gods' Inn can be seen just to the north.
+~
+~
+0 -1 1201
+D1
+The Mortal Board Room can be seen just to the east.
+~
+~
+0 -1 1203
+D2
+The Gods' Meeting Room is located to the south.
+~
+~
+0 -1 1200
+D3
+The Gods' Post Office is just to the west.
+~
+~
+0 -1 1205
+D4
+There is a small stair in the corner leading up to the social room of
+the Gods.
+~
+~
+0 -1 1206
+D5
+You see the hustle and bustle of the Temple of Midgaard at the bottom of
+the stairs.
+~
+~
 0 -1 3001
-
+S
+#1205
+The Post Office Of The Gods~
+   The Post Office Of The Gods is the same as most Post Offices except that
+it is not as slow.  Even the Postal service knows not to anger the Gods.
+Piles of junk mail line the walls.  I guess even Gods get on mailing lists.
+The Immortal Board Room is to the east.
+~
+12 dj 0
+D1
+The Immortal Board Room is just to the east.
+~
+~
+0 -1 1204
 S
 #1206
-The Fractal Orgy Chamber~
-   This room seems to go on forever, as does the party taking place here.  For
-miles in every direction, lewd acts and general debauchery meets your eye.  
-Each group of orgy-goers seems to be made up of several sub-groups, and each
-sub-group of even more sub-groups, etc., as you may have imagined.
-   A large silvery portal that leads back to the lower board room is floating
-in the air above you.
-You notice a sign hovering above the floor at regular intervals.
+The Social Gathering Room~
+   This elegantly decorated room has one simple purpose.  To socialize with
+everyone else around in one central location.
 ~
-1 72 4
-D4
-Through the silvery inter-dimemsional portal you see the serenity, seriousness,
-and relative safety (compared to remaining here, at least, depending on ones
-tastes) of the main board room of the Immortals.
+12 d 0
+D5
+The Immortal Board Room is just down through the floor.  Funny how you
+didn't notice that exit before isn't it?
 ~
-silver silvery portal door board main room~
-0 -1 1205
-E
-sign~
-The signs all say the same thing -
-
-	Remember, put all the toys back where you found them when you are
-	are done playing with them...
-	This room is here for your enjoyment, so don't let the mortals
-	in on it.  After all, you'll enjoy it more if the mortals just
-	look at your smug grin and wonder, right?  I thought so...
-	Now...Have Fun, OR ELSE ;)
-
-				  	- The Fractal Dominatrix (and crew)
 ~
+0 -1 1204
 S
 #99999
 $~

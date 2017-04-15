@@ -1,0 +1,57 @@
+(Message inbox:501)
+Return-Path: dawagner@phoenix.Princeton.EDU
+Return-Path: <dawagner@phoenix.Princeton.EDU>
+Received: from Princeton.EDU
+           by blaze.cs.jhu.edu; Sat, 6 Aug 94 18:34:00 EDT
+Sender: dawagner@phoenix.Princeton.EDU
+Received: from ponyexpress.Princeton.EDU by Princeton.EDU (5.65b/2.111/princeton)
+	id AA08512; Sat, 6 Aug 94 18:31:23 -0400
+Received: from shine.Princeton.EDU by ponyexpress.princeton.edu (5.65c/1.4/newPE)
+	id AA23168; Sat, 6 Aug 1994 18:31:22 -0400
+From: "David A. Wagner" <dawagner@phoenix.Princeton.EDU>
+Received: by shine.Princeton.EDU (4.1/Phoenix_Cluster_Client)
+	id AA03011; Sat, 6 Aug 94 18:31:21 EDT
+Message-Id: <9408062231.AA03011@shine.Princeton.EDU>
+Subject: Re: TinTin, CircleMUD 3.0, and TELNET GA
+To: jelson@blaze.cs.jhu.edu (Jeremy Elson)
+Date: Sat, 6 Aug 1994 18:31:21 -0400 (EDT)
+Cc: reiss@ritchie.acomp.usf.edu (tt-all)
+Reply-To: reiss@ritchie.acomp.usf.edu (tt-all)
+In-Reply-To: <199408060209.WAA05656@ritchie.acomp.usf.edu> from "Jeremy Elson" at Aug 5, 94 10:04:51 pm
+X-Mailer: ELM [version 2.4 PL22]
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Content-Length: 1304      
+
+> 
+> I remember a while ago a discussion on rec.games.mud.diku that the
+> functionality of clients such as TinTin could be enhanced if MUD servers
+> signalled the end of a prompt, I believe with the TELNET protocol's GA
+> code.
+> 
+
+Yep -- right now tintin++ just ignores such codes.  [I've heard that
+VT and maybe some other clients do use it though.]  Version 2.0 may
+use the telnet codes, though.
+
+I've been told that the way the telnet codes work is this:
+
+- send prompt
+- send IACGA
+- send the data from the mud
+
+IACGA is a two-character code; you'll want to #include <arpa/telnet.h>,
+and you'll find IAC and GA defined in there.  So just after you send
+the prompt, send the IAC character, than the GA character, then send
+the rest of the line (like "That Really did HURT !", for example).
+
+Disclaimer: I may not know what I'm talking about -- I got this from
+a friendly mud admin, Bamsemums@GrimneMUD.  Try GrimneMUD to see an
+example of the IACGA protocol (gytje.pvv.unit.no 4000).  You'll want
+to type 'toggle iacga' as soon as you log on -- if you use PMF and
+/set replace_controls you might just able to see the IACGA go flying
+by...
+
+-------------------------------------------------------------------------------
+David Wagner                                             dawagner@princeton.edu

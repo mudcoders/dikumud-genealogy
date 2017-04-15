@@ -139,9 +139,9 @@ Example of a room entry is the database:
 
 #100
 The Lego temple~
-   You stand in a tiny, red temple; built entirely from Lego bricks. It is,
-sadly, not a very interesting place, and perhaps you should leave through the
-portal which leads south to a sunny garden.
+   You stand in a tiny, red temple built entirely from Lego bricks. It is,
+sadly, not a very interesting place, and perhaps you should leave through
+the portal which leads south to a sunny garden.
 ~
 1 12 0
 D2
@@ -596,5 +596,5 @@ Abbrevations:
 
 <NL> is Newline (return)
 
-! This indicates "NOT" - for example <!NL> means NO newline (ei. it is
+! This indicates "NOT" - for example <!NL> means NO newline (i.e. it is
   forbidden to use newline here).

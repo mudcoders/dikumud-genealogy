@@ -1,10 +1,12 @@
 #0
 The Void~
-  You don't think that you are not floating in nothing.
+   You don't think that you are not floating in nothing.  You can see
+a strange portal located above you.
 ~
-0 8 1
+0 d 1
 D4
-void~
+The Temple of Midgaard floats above you.
+~
 ~
 0 -1 3001
 S
@@ -15,19 +17,57 @@ matter, surrounded by swirling glowing light, which fades into the relative
 darkness around you without any trace of edges or shadow.
    There is a "No Tipping" notice pinned to the darkness.
 ~
-0 8 1
+0 d 1
 S
 #3
-A totally empty room~
-  The walls are completely bare...no nothing at all in the room.
-....weird
+A Totally Empty Room~
+   The walls are completely bare...no nothing at all in the room.
+How... weird.
 ~
-1 8 0
+1 dj 0
 D4
 You do not see that here.
 ~
 ~
-0 0 3048
+0 -1 3048
+S
+#99
+The Realm Of The Dead~
+   You are standing on an immense, grey stone floor that stretches as far
+as you can see in all directions.  Rough winds plunging from the dark,
+starless sky tear savagely at your fragile body.
+~
+0 dj 0
+D0
+The hard floor seems to go on forever.
+~
+~
+0 -1 99
+D1
+The hard floor seems to go on forever.
+~
+~
+0 -1 99
+D2
+The hard floor seems to go on forever.
+~
+~
+0 -1 99
+D3
+The hard floor seems to go on forever.
+~
+~
+0 -1 99
+E
+floor~
+The stone floor is the same shade of grey as the sky and is completely plain
+and unscratched.  It is probably too hard for anything to leave as much as a
+scratch on it.
+~
+E
+sky wind winds~
+Cold winds plunge ceaselessly at you from the dark, cloudless sky.
+~
 S
 #99999
 $~

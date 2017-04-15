@@ -1,0 +1,150 @@
+Teker    (Jun 24) [ 3005] Mortals can group immorts
+Free     (Jun 24) [ 3063] remove 2.ring doesn't work
+Valentine (Jun 24) [ 3011] can you make wear all let you wield your weapon too?
+Teker    (Jun 24) [ 3025] skillset needs to check for victim's level
+RoadKill (Jun 24) [ 3114] Fall down when you BASH even if your the tank?
+Bum      (Jun 24) [ 3505] my exp guage keeps resetting...i am dying but the amout keeps popping back to the same place
+Darkwing (Jun 25) [ 3031] i know that the pet shop is not included in the "standard" shop code, but can it be made consistant with the other shopw?
+Cityguard (Jun 25) [ 3005] even if i type "tell 1.cityguard hi" or "tell 2.cityguard" hi
+Cityguard (Jun 25) [ 3005] i still get the message that i try to tell myself something
+Darkwing (Jun 25) [ 3025] wear all doesnt wield the weapon.  Dont know if thats a bug otr not
+ShaDa    (Jun 25) [ 3014] I'm using a tinyfugue client compiled for vt100 but starting tonite doing a 'who' or 'look' or entering a new room totally messes up my display to the stage that it is almost impossible to play..ShaDa:(
+Bane     (Jun 25) [ 3001] Isn't there supposed to be a limit to the number of pets one can buy? ;)
+Karis    (Jun 26) [ 3062] stamps cost 350 coins at the post office, but in the help should be 150...
+Karis    (Jun 26) [ 3006] need to explain cryo-rent better
+Xylarthen (Jun 26) [ 3033] when I try to track fido, it tried to send me on the river in midgaard, but when I typed where fido it said he was in the main street
+Xylarthen (Jun 26) [ 3012] when I type where fido it says no-one around by that name, but when I type track fido it gives me a direction.
+Xylarthen (Jun 26) [ 3049] its the same for any mob that is not in midgaard, it tries to send me to the river
+Teker    (Jun 26) [ 1205] "cast 'bless' dagger" can not find the dagger in my inventory
+Teker    (Jun 26) [ 1205] maybe you can't bless items anymore? if not, help screen needs changing
+Case     (Jun 26) [ 3002] it might be nicer to move practice before prompt so players can use pr to practice.
+MagicGuy (Jun 26) [ 3014] infravision needs a description
+MagicGuy (Jun 27) [ 3018] in a bar, type 'list'  you'll see 'a firebreather of firebreather'
+MagicGuy (Jun 27) [ 3007] For convenience, take the 'mail' description out of post office so that people can read their mail in there, rather than seeing the description for the mail that is part of the room
+Hobbes   (Jun 27) [ 3000] when looking at board, there is a linefeed missing at the end
+Ras      (Jun 27) [ 3063] identify is screwed up re: age
+Penstar  (Jun 27) [ 3060] goldring is !MAGE  should be !RENT
+Penstar  (Jun 27) [12050] secret doors wouldn't work since if you go in that direction it tells you "door seems to be closed"  defeats the purpose of searching?
+Trew     (Jun 27) [ 3063] I get zapped by stuff, and it says I drop them, but they are in my inventory
+Trew     (Jun 27) [ 3063] Its a good idea, but change the text (not to actually drop that is)
+Darkwing (Jun 27) [ 3019] i have spells not appearing on the help spellls list
+TrewW    (Jun 27) [ 3063] wear all doesn't try to wield anything
+Ras      (Jun 27) [ 3063] hocontrol with invalid names crashes
+Jair     (Jun 27) [ 3063] The identify scroll doesn;t give you stats when you recite it on yourself.
+Jair     (Jun 27) [12050] You can't use the WHE command while sleeping anymore.. not sure if that was intentional..
+Jair     (Jun 27) [12043] You need to update the help spell list.. I got Armor at an earlier level than 5..
+TrewW    (Jun 27) [ 3130] guards don't help each other
+TrewW    (Jun 27) [ 7438] report should echo
+Lich     (Jun 27) [ 3000] if the board is so filled it takes more than one screen to show
+Lich     (Jun 27) [ 3000] the last line is covered by the return to continue
+Lich     (Jun 27) [ 3005] seems weird you can continue drinking even when you are not thirsty
+Arioch   (Jun 27) [ 3029] ok, thought I would list a few of the bugs we happened along on chaosmud,
+Arioch   (Jun 27) [ 3029] probably fixed, but might as well be mentioned just in case
+Arioch   (Jun 27) [ 3029] -- obviously, put all.bread bag, crashed us
+Arioch   (Jun 27) [ 3029] foolish gods who try to frostbreath players and such crashed us
+Arioch   (Jun 27) [ 3029] bash didnt really do anything
+Tepp     (Jun 27) [ 3001] no help for str int wis dex etc.
+Furry    (Jun 27) [ 3012] cannot use scrolls without holding them first.
+Cariso   (Jun 27) [ 3033] Things don't group.
+Free     (Jun 27) [ 6341] create water don't work...i seem to have goofed...
+Furry    (Jun 27) [ 6114] cannot report or list group when asleep...you should be able to (:
+Furry    (Jun 27) [ 6002] gte weather msgs when asleep
+Furry    (Jun 27) [ 6000] staff of sleep affets group members...and also other pcs in room
+Furry    (Jun 27) [ 3001] with the 'pagelength', the 'more to continue' thing covers the last line
+Furry    (Jun 27) [ 3040] linkdead people should go invis.
+Free     (Jun 27) [ 3001] help pages say, earthquake level 7, me level 7 with no earthquake
+Teker    (Jun 27) [ 3014] silvery arm plates needs keyword sleeves
+Teker    (Jun 27) [ 3014] whhooops that should be silver not plates
+Bum      (Jun 27) [21047] there is no message when you try to tell while you are asleep
+Bum      (Jun 27) [21047] it also lets you tell to folks while yer asleep...thats not cool
+Ras      (Jun 27) [ 3063] tell while sleeping
+Slothrop (Jun 27) [21034] I can backstab as a Cleric.
+Slothrop (Jun 27) [12013] can cast spells like 'armor' in the middle of battle
+Slothrop (Jun 27) [21018] 7-11 is out of doughnuts, an unlimited item, and you can't eat the pretzels.
+RoadKill (Jun 27) [ 3033] maybe this is only for the current set-up. but typing 'bu' == 'bug' not the more commonly used 'buy'
+Case     (Jun 28) [ 3003] boards in cleric guild broken
+Tracer   (Jun 28) [ 3029] the guildmaster says I don't know of backstab (as a thief) and I already practiced it at level one now its gone
+Saryon   (Jun 28) [ 3004] My tintin tries to get all if some-one drops something, if this a bit to much, I get linkless.....
+Avatar   (Jun 28) [ 3001] Don't need scrolls of recall anymore, just quit and reenter the game to instantly goto temple...
+Teker    (Jun 28) [ 1204] should you be able to "send teker" with no message?
+Josh     (Jun 28) [ 3001] I kill a guard at the gate and I died, when I came back, the remembered me and killed me again ** ?? **
+Jarl     (Jun 29) [ 3011] why the items numbers on the list at the weaponsmith if you can't use them to buy #?
+Jarl     (Jun 29) [ 3062] at post office the 'read sign' says 350 coins per letter adnd the 'help mail' says 150...
+TrewW    (Jun 29) [ 3033] recite identify camera says camera gives bless spell, it really gives blind
+Penstar  (Jun 29) [ 3014] if you tell someone who is sleeping, that sleeping person's prompt will turn red :) and not get the message
+Penstar  (Jun 29) [ 3049] instead of having it say "Come back later" when it's closed, indicate that they are closed... makes it easier for us to understand WHY
+Penstar  (Jun 29) [21090] you lose way too much xp in the long run... discouraging
+Penstar  (Jun 29) [21090] on my mud, I made it so you can never go below the minimum exp needed for your level
+Penstar  (Jun 29) [21090] before I put that mod in, too many people got discouraged and stopped playing
+Fweeble  (Jun 30) [ 3028] The Thieves' guild board tells me itisn't working.  ?!?!?!?
+Regis    (Jun 30) [12028] You can split coins even when you're not in the same room. :-P
+Luke     (Jun 30) [ 3003] create water doesn't work on bottles.. I'll try other stuff.
+Luke     (Jun 30) [ 3015] the bottle I tried to create water in was half full... don't know if thatt has anything to do with it.
+VampLestat (Jul  1) [ 3001] check out the problem with some sort fo summon flag when try ing to cast charm on cityguards.
+RoadKill (Jul  1) [ 3012] Water Container bug from CircleMUD 2.2 still exsists here.  To better see this load a FULL canteeen (stat it... notice weight aroround 80) then 'pour cantteen out'. STAT ist again. notice NEGATIVE WEIGHT!!! [good item to have 'e] hehe fellow IMP on S
+Death    (Jul  3) [ 3001] spell list needs to be updated BIG time doesn have group armor
+Wallop   (Jul  3) [ 6133] ??? mobile failed a spell and in the same round cast another one ???
+Wallop   (Jul  3) [ 6133] ??? first one was energy drain, second was colour spray          ???
+Penstar  (Jul  4) [21095] I attacked the prostitute and it said 'he misses you' is this some sort of hollywood/transexual thing? :)
+Klobber  (Jul  4) [15039] open door w when there's nothing says "I really don't see how you can close anything there."
+Klobber  (Jul  4) [15039] shouldn't ^^^^^^^ say can OPEN anything there?
+Luke     (Jul  6) [ 6026] The vulture killed me at 4th level. I then proceeded to kill it. I got like 2600 exps for it. Then I made 5th and went to kill it again. When I killed it this time I got 650 or so. Did it somehow collect exps for killing me?
+Luke     (Jul  6) [ 3016] you need to update the spell list to coincide with the spells you recieve
+Luke     (Jul  6) [ 3016] namely the detect alignment spell vs the detect invis spell on the help list.
+Luke     (Jul  6) [ 3002] no help file on detect alignment
+Ian      (Jul  6) [ 3016] I gained two levels in one kill, are there any exp caps ?
+Nimble   (Jul  7) [21084] create water spell creates a bug
+Avatar   (Jul  7) [12027] exit goes west from here but goes north to come back from there....
+VampLestat (Jul  7) [ 1204] save poofin/poofout messages, please?  :)
+Unipus   (Jul  8) [12050] Too many hp's gained per level... Mage gained 11
+RoadKill (Jul 11) [ 3040] HELPER flag of GateGuard (cityguard) assist spec does not work. just had a LONG battle with a gaurd (had slept him) and the 1 gaurd that i didn't sleep just sat there and watched. (maybe my align is good?)
+Knitemare (Jul 13) [ 3005] Even with a -6 apply to my SAVING_SPELL i cant save aginst offensive spells
+Iamet    (Jul 14) [ 3002] The create water spell don't work!
+Argo     (Jul 14) [ 3119] In Emerald Ave. there is a bend where the road leads N and W but the command EX says I can only go N or S
+Myke     (Jul 14) [12050] if the ventriliquate spell is gone, it should be eliminated from the spells help.
+Myke     (Jul 14) [ 3064] IF the cryogenicist can fix it so you don't age, he should be enabled even if saves are fe  free
+Teker    (Jul 14) [ 3031] kittens should probably claw rather than "swing with their fists"
+Ian      (Jul 16) [21002] You can still flee even if you have kicked in the round before that.
+Karis    (Jul 18) [ 3001] telling to asleep people?!?!?
+Teker    (Jul 18) [12046] stat travi{ game SPL: ( 1 hr) something   sets SNEAK
+Karis    (Jul 19) [12050] repeat command does not work, but has an entry in help
+Tassa    (Jul 19) [ 3020] leggings
+Knitemare (Jul 19) [ 5137] Energy Drains fails 10/10 times for an immortal
+Knitemare (Jul 19) [ 5137] Earthquake Dosent work, it simply reports Okay.
+Knitemare (Jul 19) [ 3001] ?? No text for word of recall, just Okay.  But it works
+Knitemare (Jul 19) [ 5108] Clerical spell POISON dosent work on MOBS, simply reports Okay.
+Knitemare (Jul 19) [ 5108] Clerics spell HARM: No messages
+Knitemare (Jul 19) [ 5108] Clerics spell CONTROL WEATHER dosent work, just reports Okay
+Knitemare (Jul 19) [ 5108] Clone spell dosent work, Simply reports Okay
+Knitemare (Jul 19) [ 5108] spell DETECT ALIGNMENT only lets you use yourself as a target, take out that TAR_SELF_ONLY :-) We can see what our own alignments are
+Mudbabe  (Jul 19) [ 3001] fix the credits
+Mudbabe  (Jul 19) [ 3001] make me the IMP
+Mudbabe  (Jul 19) [ 3001] call me you geek
+Mudbabe  (Jul 19) [ 3001] did the crazy lady call you?  how about the bike lady?  har har
+Hong     (Jul 19) [12043] after casting bless, no info is displayed in score
+Hong     (Jul 20) [ 3001] I cant see the weight of stuff by reciteing identify scroll
+Penstar  (Jul 20) [ 5044] you shouldn't be able to cast a spell and fight at same time  if you cast a spell, you can't "swordplay" for a while
+Hayden   (Jul 20) [ 3006] bubbling merrily?  oh come on, jeremy! >:P
+Teker    (Jul 21) [ 3022] don't know if this has been addressed, but need a way to find linkdead people (either where or something else)
+Knitemare (Jul 23) [ 1200] NO message for harm
+Tassa    (Jul 25) [ 3028] spell<<bless>> seems not work 
+Karis    (Jul 25) [12025] one can do spams... merc code has a fix where 20 same commands, auto quit
+Karis    (Jul 25) [12025] help magic gets MAGIC MISSLE help, not general magic help
+Karis    (Jul 25) [12025] blind does not result in the mob attacking tho it is offensive
+Sevis    (Jul 25) [ 6060] is clone working?
+Karis    (Jul 26) [ 3001] you could have an anti-spammer like in merc 2.x where if one does 20 of the same command, he is booted temporalily
+Knitemare (Jul 27) [ 1204] Even with NOHASSLE if your flagged as a killer, guards attaack you (level 32+)
+Loser    (Jul 27) [ 3001] when im alone in the game the who command gives the line '1 characters displayed' in plural form. please chance all such instances of 1 or more in the correct form.
+Jocky    (Jul 28) [12032] I had trouble making the create water spell work, I cast it on my canteen and it said "I must have goofed"?
+Knitemare (Jul 30) [ 6999] The Spell BLESS dosent improve the Hitroll by 1, only affects -1 to the saving spells
+Knitemare (Jul 31) [ 1204] The Spell CONTROL WEATHER dosent have any messages, and dosent appear to work either :-)
+Dirk     (Aug  3) [ 3001] you can talk to people (using tell) when the person is asleep
+Knitemare (Aug  4) [ 3001] The Spell POISON Dosent work. Reports OKAY but does nothing, i think its also missing text
+Knitemare (Aug  4) [ 3001] The Spell CURSE wont actually affect an object, just says OKAY
+Knitemare (Aug  5) [ 1204] SPELL_CHARM when called by an object like a flute(5217) is real screwy, give all kinds of funny messages and dosent work on mobies >=level 18
+Jocky    (Aug  8) [ 3059] there seems to be a bug with the create water spell, I saw a player cast it and create a "bug object'
+Murf     (Aug  8) [ 5229] room 5229 cant do anything with the chest, try look chest!
+Teker    (Aug  9) [ 1205] if I type who 33 and I'm the only 33+ on, should it say that I seem to be alone?
+Teker    (Aug  9) [ 1205] -10
+Teker    (Aug  9) [ 1205] whooops ^^^ and if I type who 1-10, and I get 1 person, I still see "You seem to be alone" when I'm not even listed!
+Karis    (Aug  9) [ 3001] the circlemud herald needs to be updated

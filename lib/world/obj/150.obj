@@ -3,32 +3,39 @@ nothingness universal~
 Sapowox's Universal Nothingness~
 You are quite unable to perceive Sapowox's Universal Nothingness here.~
 ~
-5 4162 8193
+5 bcg 8193
 0 6 4 1
 40 0 200000
 E
 nothingness universal~
 You are not sure, but you do not seem not able to figure out what
 it isn't, because it doesn't much resemble anything you haven't 
-ever seen.
-You feel a bit of mortal confusion, but you notice a small
-inscription on it.
+ever seen.  You feel a bit of mortal confusion, but you notice a
+small inscription on it.
 ~
 E
 text writing inscription~
-It just says: ' (void *) '.
-Not very enlightening.
+It just says: ' (void *) '
+Not very enlightening, is it?
 ~
 A
-18 5
+18 2
 A
-19 5
+19 2
+#15001
+gold coins~
+the gold~
+A lot of gold is here.~
+~
+20 0 1
+32385 0 0 0
+0 32385 0
 #15002
 sceptre royal golden~
 a golden sceptre~
 A golden Royal sceptre lies on the ground.~
 ~
-12 1088 16385
+12 gk 16385
 0 0 0 0
 20 15000 3000
 A
@@ -38,7 +45,7 @@ crown golden~
 a golden crown~
 A magnificently jewelled golden crown has been left here.~
 ~
-9 1088 17
+9 gk 17
 7 0 0 0
 40 12000 10000
 A
@@ -50,7 +57,7 @@ apple golden~
 a golden apple~
 There is a golden apple here.~
 ~
-1 1088 16385
+1 gk 16385
 0 0 -1 0
 5 8000 400
 #15005
@@ -63,7 +70,10 @@ There is a large telescope here, pointing at the sky.~
 100 0 0
 E
 telescope scope~
-A small sign says: Made in Siberia.
+A small sign says:
+
+Made in Siberia.
+
 ~
 #15006
 sword training~
@@ -80,7 +90,7 @@ key huge~
 a huge key~
 There is a huge, heavy-looking key on the floor here.~
 ~
-18 4096 16385
+18 c 16385
 2 0 0 0
 1 1000 0
 #15009
@@ -88,7 +98,7 @@ key butlers butler~
 the Butler's key~
 The Butler's key is here.~
 ~
-18 4096 16385
+18 c 16385
 1 0 0 0
 3 200 0
 #15010
@@ -96,7 +106,7 @@ key small~
 a small key~
 A small key lies here.~
 ~
-18 4096 16385
+18 c 16385
 1 0 0 0
 1 200 100
 #15011
@@ -117,18 +127,19 @@ vial large potion brown~
 a large vial~
 A large vial has been left here.~
 ~
-10 64 1
+10 g 1
 15 15 -1 -1
 14 2000 2000
 E
 vial large brown potion~
-It is filled with a disgusting brown liquid.~
+It is filled with a disgusting brown liquid.
+~
 #15013
 banner royal~
 a royal banner~
 The royal banner has been firmly planted in the ground here.~
 ~
-12 65 16385
+12 agp 16385
 0 0 0 0
 40 25000 10000
 E
@@ -149,7 +160,7 @@ key~
 a key~
 A key lies on the floor.~
 ~
-18 4096 1
+18 c 1
 2 0 0 0
 13 5 0
 E
@@ -157,7 +168,7 @@ key~
 It has a finely carved letter 'W' inscribed on it.
 ~
 #15015
-mail chain hauberk~
+hauberk mail chain~
 a guard's chain mail hauberk~
 A chain mail hauberk lies on the floor~
 ~
@@ -165,7 +176,7 @@ A chain mail hauberk lies on the floor~
 5 0 0 0
 60 2000 500
 #15016
-sword large broadsword~
+broadsword sword large~
 a large broadsword~
 There is a large broadsword lying here.~
 ~

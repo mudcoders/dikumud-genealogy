@@ -45,12 +45,12 @@ A bottle of Evian natural spring water is here.~
 E
 label~
 You've been ripped off!  It says here at the bottom of the label, in really
-really small letters, "Bottled in the Midgaard branch of Evian Inc.  This
-water is from the natural, mostly clean River of Midgaard."
+really small letters, 'Bottled in the Midgaard branch of Evian Inc.  This
+water is from the natural, mostly clean River of Midgaard.'
 ~
 E
 bottle~
-It is a large, clean bottle.
+It is a large, clean bottle.  There is a large label pasted on the side.
 ~
 #3104
 water canteen~
@@ -62,104 +62,86 @@ A canteen has been set on the ground here.~
 20 45 15
 E
 canteen~
-It's a fairly big canteen.  Looks like it can hold a lot of liquid.
+It is a fairly big canteen.  Looks like it can hold a lot of liquid.
 ~
-#3120
+#3105
 key iron~
-a key~
+an iron key~
 An iron key has been left here.~
 ~
-18 4096 1
+18 c 1
 0 0 0 0
 1 0 10
 E
 key iron~
-The iron key is not special.  In fact, it's quite boring.
+The iron key is not special.  In fact, it is quite boring.
 ~
-#3121
+#3106
 key rusty~
-a key~
+a rusty key~
 A rusty key has been left here.~
 ~
-18 4096 1
+18 c 1
 0 0 0 0
 1 0 10
 E
 key rusty~
 The key is a fairly large rusty key.  You notice a lot of dirt it.
 ~
-#3122
+#3107
 key wooden~
-a key~
+a wooden key~
 A wooden key has been left here.~
 ~
-18 4096 1
+18 c 1
 0 0 0 0
 1 0 10
 E
 key wooden~
-The wooden key is not special.  In fact it's just about the most boring key
-you've ever seen in your life.
+The wooden key is not special.  In fact it is just about the most boring
+key you've ever seen in your life.
 ~
-#3123
+#3108
 key brass~
-a key~
+a brass key~
 A brass key has been left here.~
 ~
-18 4096 1
+18 c 1
 0 0 0 0
 1 0 10
 E
 key brass~
 The brass key is small and looks like it fits a very complicated lock.
 ~
-#3130
+#3109
 desk drawer~
 the desk~
 A desk is set against the western wall.~
-The desk looks very sparse, there is a drawer in the left side.
 ~
 15 0 0
-34 15 3122 0
+34 15 3107 0
 100 0 0
+E
+desk~
+The desk looks very sparse, there is a drawer in the left side.
+~
 E
 drawer~
 You notice a keyhole in the drawer.
 ~
-#3131
+#3110
 safe~
 the safe~
 A safe is placed in a dark corner of the room.~
-The safe has a keyhole.
 ~
 15 0 0
-34 15 3123 0
+34 15 3108 0
 999 0 0
 E
 safe~
-The safe is very heavy.
+The safe is very heavy and has a keyhole.
 ~
-#3132
-gold coins~
-the gold~
-A lot of gold is here.~
-Looks like at least 10,000 coins.
-~
-20 0 1
-32385 0 0 0
-0 32385 0
-#3133
-city key~
-the City Key~
-The very big City Key is lying here.~
-It is probably the biggest key you have seen in your life.  It is made from
-polished gold and has various patterns on it along with the Midgaard Coat of
-Arms.
-~
-18 4096 1
-0 0 0 0
-30 10000 500
-#3134
+#3111
 bench~
 the Bench~
 A white-painted wooden bench is standing here.~
@@ -173,8 +155,22 @@ It is a quite heavy but very comfortable bench.  It is placed with its front
 towards the river so you can sit and watch the river and the houses on the
 other side.
 ~
-#3135
-fountain~
+#3112
+key city~
+the City Key~
+The very big City Key is lying here.~
+~
+18 c 1
+0 0 0 0
+30 10000 500
+E
+key city~
+It is probably the biggest key you have seen in your life.  It is made from
+polished gold and has various patterns on it along with the Midgaard Coat of
+Arms.
+~
+#3113
+fountain water~
 a fountain~
 A small white fountain is standing here, gurgling happily.~
 ~
@@ -182,10 +178,10 @@ A small white fountain is standing here, gurgling happily.~
 99999 99999 15 0
 500 0 0
 E
-fountain~
+fountain water~
 It is very nice.  Made from fine white marble.
 ~
-#3136
+#3114
 coins gold~
 a small pile of gold coins~
 A small pile of gold coins lies here.~
@@ -193,30 +189,38 @@ A small pile of gold coins lies here.~
 20 0 1
 37 0 0 0
 0 0 0
-#3300
-key metal~
-a metal key~
-A small metal key has been dropped here.~
+#3115
+gold coins~
+the gold~
+A lot of gold is here.~
 ~
-18 4096 1
-0 0 0 0
-1 10 100
+20 0 1
+32385 0 0 0
+0 32385 0
+#3116
+candlestick candle stick pewter~
+a candlestick~
+A pewter candlestick is standing here.~
+~
+1 0 16385
+0 0 24 0
+5 150 10
 E
-key metal~
-You notice 'My Cottage' has been inscribed on the key.
+candlestick~
+It is a rather old-looking three-armed candlestick made from pewter.  Its
+candles are a yellowish white color.
 ~
-#3301
-key brass~
-a brass key~
-An old brass key has been dropped here.~
+#3117
+tree elm~
+an elm tree~
+An old elm tree grows here.~
 ~
-18 4096 1
+13 0 0
 0 0 0 0
-1 10 100
+0 0 0
 E
-key brass~
-It looks as if it is very old.  There are some small marks on it as if
-somebody with tiny (but strong!) teeth has been biting a lot in it.
+elm tree~
+The fresh young leaves of the elm tree wave gently in the wind.
 ~
 #99999
 $~

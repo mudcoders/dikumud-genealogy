@@ -1,0 +1,248 @@
+Well, I should have started a changes file long, long ago.  Oh well,
+I'll start one now.  Hopefully, I'll maintain it.  JE.
+
+
+8/31/94 JE	Added a GET_REAL_LEVEL macro which returns the actual
+		level taking switched characters into account.  Used
+		in CAN_SEE so that switched immorts can't see invis
+		gods.
+
+8/31/94 JE	Added restriction to interpreter.c so that immort commands
+		cannot be used by NPCs.  Removed all the IS_NPC checks from
+		the individual god commands since they are now redundant.
+
+8/31/94 JE	Made newsign.c into sign.c and deleted the old DIKU sign.c.
+		newsign.c forks to handle its kids and is generally more
+		concise and robust.
+
+8/31/94 JE	Changed the type argument of affect_from_char and
+		affected_by_spell to sh_int (from char) to match the fact
+		that the 'type' member of the affected_type structure is
+		now a sh_int instead of a char.  Spotted by Jean-Jack
+		Riethoven.
+
+8/31/94 JE	Fixed MIN statement using uninitialized 'water' var in
+		spell_create_water.  Spotted by JJR.
+
+8/31/94 JE	Ken Cavness noted that MOBs were getting past guildguards.
+		Not surprising, since I changed the relationship between
+		do_move/do_simple_move/perform_move so many times.  The
+		discipline has now changed again; MOBs calling perform_move
+		must call with 3rd arg of 1 instead of 0.  Changed the
+		arg from 'following' to 'need_specials_check' so its purpose
+		would be clearer.
+
+8/31/94 JE	Added 'worn_on' short integer to obj_data structure to go
+		with worn_by char_data pointer.  Indicates which eq pos
+		eq is being worn on.  (Will be used to facilitate a cleaner
+		version of objectmagic.)
+
+8/31/94 JE	extract_obj now automatically unequips the obj first if it
+		is being used as equipment (uses worn_by and the new worn_on).
+		do_use no longer unequips.  objectmagic didn't have to be
+		changed since extract_obj automatically does the work now. :)
+
+8/31/94 JE	Fixed cityguard routine with a CAN_SEE check so that blinded
+		guards no longer banzai people, and so that guards don't
+		banzai invis people etc.  Spotted by Ken Cavness.
+
+8/31/94 JE	Fixed do_reply to make sure the person you're replying to
+		is still in the game before calling perform_tell.  Note, I
+		think it still may be possible for your reply to go to
+		someone else if the recipient logs out and someone else logs
+		in.  In particular, this will break in a big way if I ever
+		implement some scheme where it keeps a pool of char_data
+		structures for reuse.
+
+8/31/94 JE	CHA added to display when rerolling a character.
+
+8/31/94 JE	Changed TOUNGE to TONGUE throughout.
+
+8/31/94 JE	Made the '*' (ignore) case in zone reset tables (used for
+		invalid vnums) set last_cmd = 0 for proper resetting.
+
+8/31/94 JE	Enhanced (added?) NeXT compatibility with FOPEN_MAX, my_signal,
+		and O_NDELAY.
+
+8/31/94 JE	Changed boards back to listing lowest to highest since people
+		seemed to hate it the other way.
+
+8/31/94 JE	Added sanity checks to perform_move since king_welmar seems
+		to cause crashes when he's moving on occassion, and I'd rather
+		remove that area than try to debug it.
+
+8/31/94 JE	Changed 'SEC' to 'RL_SEC' in structs.h to avoid conflicts
+		with many OS's #defines of SEC
+
+9/1/94	JE	Good God, is it September already?
+
+9/1/94	JE	Changed list_skills to accumulate in a buffer instead of
+		using send_to_char, and use page_string.  This system really
+		sucks.  There should be a "page_to_char" command, or something.
+		It shouldn't even require too much conceptual difference now
+		that output buffers are limited!
+
+9/1/94	JE	Added a 'sort_spells()' function and changed list_skills
+		to use sorted spell list instead of arbitrarily ordered list.
+		sort_spells() called once on boot from db.c.
+
+9/1/94	JE	Finally finished making the background story paged.  Now that
+		process_input and command_interpreter, etc., have been
+		rewritten, all it took was changing it from SEND_TO_Q to
+		page_string.  Whoo hoo!
+
+9/1/94	JE	Jeff Fink suggested having perform_act do some run-time
+		sanity checking in order to make it more robust.  Thus,
+		I created the CHECK_NULL macro for it in comm.c.
+
+9/1/94	JE	Made mobs hit you if you try to cast an offensive spell
+		at them and fail.
+
+9/1/94	JE	Completed line-by-line zone-parsing routines.  Instead of
+		using scanf() to read from disk, Circle now uses fgets().
+		This allows MUCH more robustness, more accurate and sensitive
+		error-checking of zone files, both at boot-time and run-time.
+		In addition, the error reporting now gives you a specific
+		_line number_ in the zone file of the error. :)
+
+9/2/94	JE	Made a 'qecho' command, combined with qsay in do_qcomm
+		of act.comm.c.
+
+9/2/94	JE	Updated the README file.
+
+9/2/94	JE	Circle 3.00 beta patchlevel 3 released
+
+
+-- Patchlevel 4
+
+
+9/9/94	JE	Added IS_NPC check to do_score to prevent crashes.
+
+9/9/94	JE	Added #undef MAX and MIN for NeXT compatibility.
+
+9/19/94	JE	Started work again after 10 days of real life (school's
+		starting up again, ya know.)
+
+9/19/94	JE	Changed lantern-handling in update_char_objects in handler.c;
+		now gives warning one tick before the light expires (idea
+		from Chris <ttl6u@fulton.seas.virginia.edu>) and correctly
+		decrements world[ch->in_room].light as it should have from
+		the very beginning.
+
+9/19/94	JE	Changed the build_house parser in house.c to allow for
+		a house which has more than one exit (i.e., only one of
+		which is access-controlled) because people seem to want
+		multi-room access-controlled areas.
+
+9/19/94	JE	Fixed multi-room-shared-atrium bug in house_control_house,
+		house.c (I haven't heard of this bug ever manifesting itself
+		but looking at the code I realized the error.)
+
+
+9/19/94	JE	Changed 'long' to 'time_t' where appropriate.
+
+9/19/94	JE	Added graceful handling of missing playerfile in db.c
+
+
+-- Patchlevel 5
+
+10/4/94	JE	ban.c:98: long int format, time_t arg, fixed with cast
+
+10/4/94	JE	Made default action of hcontrol to be a help screen;
+		added 'show' subcommand.
+
+10/4/94	JE	Added reni's NeXT function prototypes to utils.h
+
+10/5/94	JE	Fixed !IS_NPC in do_score (act.informative.c)
+
+10/9/94	JE	Added charisma-to-25 code to do_restore (act.wizard.c)
+
+-- Sanity break
+
+2/20/95 JE	Added max length check to set_title in limits.c -- all
+		title setting should go through this function
+
+2/22/95 JE	Added check for null name in 'show player'
+
+2/22/95 JE	included unistd.h in house.c, boards.c and objsave.c
+		for unlink prototype
+
+2/22/95 JE      Low-lev imms can no longer see invstart people above their
+		level entering game
+
+2/22/95 JE	Changed 'color' and 'syslog' to show current levels if typed
+		without arguments, instead of help text.
+
+2/22/95 JE	fixed castle by adding terminator to end of move string
+		reported by Ed Mackey (emackey@BIX.com)
+
+2/22/95 JE	If you try to return to your original body, and someone else
+		has connected into it, disconnect them.  act.wizard.c,
+		do_return().
+		reported by Aaron Mills
+
+2/22/95	JE	interpreter.c - changed the code to sense if a switched
+		persona of yourself is connected when you log in.  Should
+		make switch more stable.
+		reported by Aaron Mills
+
+2/22/95 JE	new timediff in comm.c to work on systems for which
+		tv_sec and tv_usec are unsigned
+		reported by Steven Serocki <ss@sirocco.cup.hp.com>
+
+2/22/95 JE	change RLIMIT code for systems that don't have RLIMIT_INFINITY
+		reported by Steven Serocki <ss@sirocco.cup.hp.com>
+
+2/22/95 JE	changed title_type[4][35] to [NUM_CLASSES][LVL_IMPL + 1]
+		throughout
+		reported by Darel Cullen
+
+2/22/95 JE	changed "his arm" to "$s arm" in act.obj.c
+		reported by Chris Epler <cepler@ucsee.eecs.berkeley.edu>
+
+2/22/95 JE	act.other.c, do_quit() -- kill off all sockets connected to
+		the same player as the one who is trying to quit.  Helps to
+		maintain sanity as well as prevent duping.
+		duping reported by Chris Epler <cepler@ucsee.eecs.berkeley.edu>
+
+2/22/95	JE	installed new version of Jeff Fink's shop.c code
+
+2/22/95 JE	Patched bug in Jeff Fink's shop code reported by him
+		patch send by Jeff Fink
+
+2/22/95 JE	created player_specials structure for new players coming in
+		after having been deleted.  Yet another example of a bug that
+		could have been avoided completely if we'd been using C++.
+		Reported by Jeff Fink
+
+2/22/95 JE	Added code to support 'R' command in zone resets (remove
+		obj from room).  Code sent by Jeff Fink.
+
+2/22/95	JE	Changed plain 'stat' to make better assumptions about what
+		you're trying to stat.
+		Code sent by Jeff Fink
+
+2/22/95	JE	Added go_gen_door code written by Jeff Fink to eliminate
+		duplication of checks, etc. for open/close/lock/unlock/pick
+
+2/22/95 JE	Fixed shop code -- changed keeper = 0 to keeper = me
+
+2/22/95 JE	Added magic_alter_objs code submitted by Jeff Fink
+
+2/22/95 JE	Added break statement to mag_damage, energy drain	
+		Spotted by Jeff Fink
+
+2/22/95 JE	Added ascii flag system to db.c for world, obj, mob files
+
+2/22/95 JE	Brought in the new 3.0 world files from Furry
+
+2/23/95	JE	Created 'random.c' as Circle's new, portable random number
+		generator.
+
+2/23/95	JE	Added 'POSIX_NONBLOCK_BROKEN' option to work around OSs
+		such as AIX which don't implement POSIX nonblocking I/O
+		correctly, causing the MUD to hang in places such as the
+		Password: prompt.
+
+2/23/95 JE	Added a case for sgi (IRIX) in utils.h OS-specific header
+		section for cleaner compiles

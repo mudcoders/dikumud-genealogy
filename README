@@ -1,19 +1,100 @@
+Before doing anything else, please look at license.doc in the circle/doc
+directory.  It contains the original DikuMUD license distributed with the
+original DikuMUD in 1990.  Since CircleMUD is based on the Diku code, the
+DikuMUD license still applies -- this means you!
 
-Welcome to CircleMUD 2.2!
+USE OF THIS SOFTWARE IN ANY CAPACITY IMPLIES THAT YOU HAVE READ, UNDERSTOOD,
+AND AGREED TO ABIDE BY THE TERMS AND CONDITIONS SET DOWN BY THE DIKUMUD
+LICENSE.
+
+
+============================================================================
+
+Welcome to CircleMUD 3.0!  I hope you enjoy your stay.
+
+This file has a quick intro to what Circle is, followed by some tips on
+how to get started quickly.
+
+
+I.  Background and Introduction
+----------------------------------------------------------------------------
+
+CircleMUD is a derivative of DikuMUD -- the Multi-User Dungeon developed
+at DIKU (the Department of Computer Science at the University of Copenhagen).
+Circle 1.0 ran at Johns Hopkins University with moderate popularity from
+January to September of 1992.  Since June of 1993, it has been maintained
+as a public code base that anyone can use to start a MUD, although there is
+no specific MUD which is CircleMUD per se.
+
+Hundreds of carefully spent hours have gone into the development of Circle,
+but it is not a finished product -- it's only a beginning.  It has only
+a small number of spells and skills, a small world with relatively few
+areas, and only the 4 original Diku classes.  From a gamer's point of view,
+it pales in comparison to other MUDs which have dozens of spells spread
+over a dozen classes, a rich palette of skills, and thousands upon thousands
+rooms, mobiles, and objects.
+
+On the other hand, from a programmer's point of view, Circle is very highly
+developed.  While the look and feel of the original DikuMUD has been
+maintained, much of the underlying code and many of the structures have
+been optimized, reworked, or completely redesigned to be efficient, compact,
+and easily changable and extensible.  Dozens of features which have become
+standard in the MUDding world over the past few years, although they were
+not part of the original Diku release, were added to Circle.
+
+The final product is a launching pad for your own MUD ideas.  My hope in
+releasing Circle is that it will free potential MUD implementors from having
+to worry about dealing with bug-ridden code or wasting time reinventing the
+wheel by recoding standard MUD features, allowing them to devote more effort
+towards creatively shaping Circle into their own unique vision of how a MUD
+should look and feel.
+
+So, it is with this message that I inflict my code on the world: don't
+just put another generic MUD on the Net -- give us something new and
+exciting, and have as much fun as possible in the process!
+
+
+II.  Giving Credit Where Credit Is Due
+----------------------------------------------------------------------------
 
 Before doing anything else, please look at license.doc in the circle/doc
-directory.
+directory.  It contains the original DikuMUD license distributed with the
+original DikuMUD in 1990.  Since CircleMUD is based on the Diku code, the
+DikuMUD license still applies -- this means you!
+
+USE OF THIS SOFTWARE IN ANY CAPACITY IMPLIES THAT YOU HAVE READ, UNDERSTOOD,
+AND AGREED TO ABIDE BY THE TERMS AND CONDITIONS SET DOWN BY THE DIKUMUD
+LICENSE.
 
 Also, out of courtesy if nothing else, please keep the 'credits' file
 intact.  You can add your own credits on top of the existing file, but
-I'd appreciate it if you wouldn't simply remove it and all references
+I'd appreciate it if you would not simply remove it and all references
 to the word "Circle" everywhere in the MUD.
+
+
+III.  Enough talk!  Let's get started already.
+----------------------------------------------------------------------------
 
 If you're like me, you don't like to read a lot of documentation when you
 have a neat new toy to play with.  In fact, if you've even read THIS far,
-I'm impressed!
+I'm impressed!  So, below, I've written some short tips on how the budding
+but impatient MUD implementor can get started quickly.  However, you should
+be aware that there is a wealth of additional information availible in the
+/doc directory, and you'll be doing yourself a favor by reading over some
+of it eventually.
 
-Briefly, here are a few tips on how to get started quickly:
+The README file in the /doc directory describes each documentation file
+in detail, but there are several main files which should be of interest.
+For the administrative side of mudding, running.doc gives an overall
+description of how Circle works, how to get it to compile for the first
+time and get it running, and hints on maintenance and day-to-day
+administration.  For the coding side, coding.doc dives into Circle's
+code and describes how to add new commands, spells, skills, socials,
+classes, and whatnot.  For the builders in your group, building.doc
+describes how to create new worlds, including rooms, objects, mobiles,
+and shops.
+
+Now, as promised, my get-started-quickly tips:
 
 *  All source code is in the /src directory.  Before compiling, take a
    look at the beginning of the Makefile and set options as required for
@@ -23,34 +104,51 @@ Briefly, here are a few tips on how to get started quickly:
    more information about compiling and compatibility.
 
 *  The server should be run from Circle's root directory.  For debugging
-   and testing, you can just type 'bin/circle'; to run the game "for real,"
-   use the 'autorun' script -- it automatically reboots the game if it
-   crashes, and handles moving old system logs into the /log directory.
-   The game will run on port 4000 by default.
+   and testing, you can just type 'bin/circle &'.  To run the game for
+   extended periods of time, use the autorun script instead.  autorun
+   automatically reboots the game if it crashes, and handles moving old
+   system logs into the /log directory.  The game will run on port 4000
+   by default.
+
+*  When the MUD boots, it will give status messages describing what it is
+   doing to initialize itself.  Note that if you use 'autorun', these messages
+   will automatically be written to a syslog file and will not appear on the
+   screen.  If nothing goes wrong, the last message should be "Entering game
+   loop.", follwed by "No connections.  Going to sleep."  This indicates that
+   the MUD is operating normally, and is waiting for people to connect to it.
+
+*  Use the 'telnet' program to connect to the MUD; i.e., type
+   'telnet localhost 4000'.  Note that you must run the MUD in the background
+   in order to be able to telnet to it from the same terminal.  Make sure
+   you include '&' at the end of 'bin/circle' or 'autorun' to make sure the
+   MUD is running in the background.
+
+*  Make sure you don't run more than one copy of the MUD at once!  Before
+   starting it, check whether or not other copies are already running by
+   using the 'ps' or 'jobs' command.  Use the 'kill' command to kill old
+   MUDs before starting new ones.
 
 *  The first character who logs in to the game will be made a level 34 god.
    The first god can then use the 'advance' command to create other gods.
    Use the 'wizhelp' command to get a list of god commands; use the
    'commands' command to get a list of other commands.
 
-*  For security purposes (i.e., to prevent all Hell from breaking loose
-   if someone hacks a god character), most of the god commands do not have
-   on-line documentation.  God commands are documented in the doc/wizhelp.doc
-   file.  Wizhelp.doc is in the standard help file format; if you're willing
-   to sacrifice security for convenience, you can incorporate the help for
-   the wizard commands into the on-line help file by appending wizhelp.doc
-   on to lib/text/help_table.
+*  There is a file in this directory called "FAQ" which contains the most
+   frequently asked questions about CircleMUD and answers to them.  Read it!
 
-
-There is a wealth of additional information in the files in the /doc
-directory.  The README file in the /doc directory describes what is in
-each of the documentation files.  If you're just getting started, you
-may be interested in 'running.doc' -- it gives more detailed information
-about compiling, running, maintaining, and day-to-day administration of
-CircleMUD.
 
 If you have strange problems -- and you can't figure out the answer by
-reading the docs -- feel free to write me at the address below.
+reading the docs -- fear not, there are many other resources you can
+turn to.  The best is probably the CircleMUD Mailing List, which you can
+subscribe to by writing mail to "majordomo@pvv.unit.no" with a message
+body of "subscribe circle".  If you want to write mail to the list, address
+it to "circle@pvv.unit.no".  Over 150 CircleMUD imps read that list
+regularly, so chances are you'll get help very quickly.
+
+If that doesn't work, you can always contact me directly by writing to
+jelson@cs.jhu.edu.  Or, take a look at the CircleMUD Home Page which is
+at http://www.cs.jhu.edu/other/jelson/circle.html, which may eventually
+have some on-line documentation for Circle.
 
 Good luck, and have fun!
 

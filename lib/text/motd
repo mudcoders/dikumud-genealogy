@@ -1,15 +1,19 @@
-              ********************************************
-              * W E L C O M E TO DikuMUD RUNNING ON ALFA *
-              ********************************************
+      Welcome to
 
-The end of the Man - see 'news' inside.
+        C    I    R    C    L    E    M    U    D         3    .    0
+                  "We addict players for their own enjoyment."
+	Created by Jeremy Elson (jelson@cs.jhu.edu) at Johns Hopkins U
 
-New command for those with small displays: COMPACT.
 
-      
-      +-----------------------------------------------------------------+
-      |   We may or may not have had a password-security problem.       |
-      |   At any rate, the problem has now been fixed, and we suggest   |
-      |   that you change your password first thing.                    |
-      +-----------------------------------------------------------------+
+Scrolls of identify now work better.
 
+Spell abbreviations work (i.e. 'prot f ev' for 'protection from evil').
+
+Speed-walking should be re-enabled.  Please let me know how the new comm
+code interacts with tintin and other burst-mode clients.
+
+There is now a 'gold' command.
+
+Aliases are now in!  Type HELP ALIAS for more information.  Note that aliases
+are not yet saved when you quit, although they will be in the (very) near
+future.

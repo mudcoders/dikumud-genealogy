@@ -1,0 +1,56 @@
+Frequently Asked Questions about Running CircleMUD, with Answers
+================================================================
+
+Q.  I typed 'autorun' but then my terminal just froze.
+A.  autorun is a script which automatically runs, logs, and reboots the
+    game for long-term runs.  You should run 'autorun' in the background
+    by typing 'autorun &'.  The game will then run unattended until you
+    explicitly shut it down.
+
+
+Q.  I typed 'bin/circle' and got lots of boot messages, but then it said
+    'Entering game loop' and froze.
+A.  It is not frozen, it is just waiting for people to connect.  You have
+    to run the MUD in the background by typing 'bin/circle &' and then use
+    telnet to connect to the game.
+
+
+Q.  Okay, I think the MUD is running but why don't I get a login prompt?
+A.  In order to play the MUD, you must connect to it using the telnet
+    command, i.e. 'telnet localhost 4000'.
+
+
+Q.  When I run Circle under Linux, it tells me 'connection refused' when
+    the MUD boots, and then dies.  Why?
+A.  Because you must install the Linux networking package before running
+    Circle, even if you plan to only play on the local machine.  If you're
+    using Slackware, the networking package is on the 'N' series of disks.
+
+
+Q.  Why do I get many syntax errors when I compile with Sun's 'cc' compiler?
+A.  Because Circle is written in ANSI C, and Sun's standard 'cc' compiler
+    isn't capable of compiling ANSI C code.  You can try 'acc', Sun's ANSI
+    C compiler, but it costs extra money to get it from Sun so your sysadmin
+    may not have installed it.  The best solution is to get GCC from
+    ftp.gnu.ai.mit.edu and install it, if you have enough time and space.
+
+
+Q.  How do I access Online Creation?
+A.  Online Creation is not yet part of the Circle beta release.  When it
+    does become part of the release, it'll be accessed through a command
+    called 'olc'.
+
+
+Q.  When will the production release of Circle 3.0 be????
+A.  I don't know.
+
+
+Q.  If someone logs in and just sits at the password prompt, the MUD hangs
+    (i.e., no one else can connect or do anything) until the person enters
+    their password.
+A.  Your system's POSIX non-blocking I/O is broken.  To compensate, add the
+    following line at the very beginning of comm.c:
+#define POSIX_NONBLOCK_BROKEN
+    Then recompile the MUD and try again.  Also, write mail to jelson@jhu.edu
+    telling me _exactly_ what type of machine and operating system you
+    experienced this problem on.

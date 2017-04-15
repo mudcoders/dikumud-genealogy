@@ -7,7 +7,7 @@ report it immediately using the BUG command.~
 13 0 0
 0 0 0 0
 0 0 0
-#1000
+#1
 wings~
 a pair of wings~
 A pair of wings is sitting here.~
@@ -15,18 +15,19 @@ A pair of wings is sitting here.~
 9 0 17
 6 0 0 0
 0 0 200
-#1001
-rose~
-a red rose~
-A red rose is lying on the ground.~
+#99
+scythe death~
+the Scythe of Death~
+The Scythe of Death rests heavily on the ground.~
 ~
-9 0 17
-3 0 0 0
-8 0 200
+5 cdjkmno 8193
+0 15 15 5
+40 0 50000
 E
-rose~
-This is no ordinary rose, as it is a gift from Dionysos to his 
-dearest, Wendella.
+scythe death~
+It is a very heavy scythe.  The grey handle is made from hard wood and the
+long iron blade is completely smooth from countless years of use.  It feels
+cold to the touch.
 ~
 #99999
 $~

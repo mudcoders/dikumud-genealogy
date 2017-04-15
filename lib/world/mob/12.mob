@@ -1,0 +1,36 @@
+#1200
+innkeeper~
+the Immortal Innkeeper~
+The Immortal Innkeeper is organizing her books here.
+~
+She appears to be having no problem tallying things up.
+~
+ab p 0 S
+30 0 -10 1d49+901 4d8+5
+15000 250000
+8 8 2
+#1201
+postmaster master post~
+the Immortal Postmaster~
+The Immortal Postmaster is hard at work here.
+~
+Scary... a postal worker... working?
+~
+ab p 0 S
+30 0 -10 1d49+901 4d8+5
+15000 250000
+8 8 2
+#1202
+vacusuck machine 1500~
+the Vacusuck 1500~
+A Vacusuck 1500 wanders around, cleaning.
+~
+This top of the line creation is doing what it is best at...
+sucking up trash.
+~
+acgq dkp 0 S
+30 0 -10 1d49+901 4d8+5
+15000 250000
+8 8 0
+#99999
+$~

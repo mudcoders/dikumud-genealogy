@@ -1,8 +1,14 @@
-#compiler name
-CC = gcc
+# CircleMUD 3.0 Makefile
+#
+# This makefile should work with no changes for compiling under SunOS, Ultrix,
+# NeXTSTEP, HP/UX, DG/UX, and Linux.  If you're using AIX, IRIX, some version
+# of SVR4 or Solaris, uncomment the appropriate lines below.  If you're using
+# some other operating system not mentioned, just type 'make' and cross your
+# fingers..
 
-#compiler flags you want to use (other than profiling, such as -Wall)
-MYFLAGS = -g
+#compiler name and flags
+CC = gcc
+MYFLAGS = -g -Wall
 
 #flags for profiling (see hacker.doc for more information)
 PROFILE =
@@ -11,28 +17,28 @@ LIBS = -lcrypt
 
 #remove the hash marks below if compiling under AIX
 #CC = cc
-#COMMFLAGS = -D_BSD
+#MYFLAGS = -g
 
-#remove the hash mark below if compiling under SVR4
-#OSFLAGS = -DSVR4
-#LIBS = -lsocket -lnsl
-
-#remove the has mark below if compiling under IRIX
+#remove the hash marks below if compiling under IRIX
+#CC = cc -cckr -fullwarn
+#MYFLAGS = -g
 #LIBS = -lmalloc
 
-#remove the hash mark below if compiling under Linux
-#OSFLAGS = -DLINUX
+#remove the hash mark below if compiling under SVR4 or Solaris, or if your
+#linker complains that the socket functions such as 'connect()', 'bind()',
+#etc are undefined.
+#LIBS = -lsocket -lnsl
 
 #############################################################################
 
-CFLAGS = $(MYFLAGS) $(PROFILE) $(OSFLAGS)
+CFLAGS = $(MYFLAGS) $(PROFILE)
 
-OBJFILES = comm.o act.comm.o act.informative.o act.movement.o act.obj1.o\
-	act.obj2.o act.offensive.o act.other.o act.social.o act.wizard.o\
-	handler.o db.o interpreter.o utility.o spec_assign.o shop.o limits.o\
-	mobact.o fight.o modify.o weather.o spell_parser.o spells1.o\
-	spells2.o constants.o spec_procs.o signals.o objsave.o boards.o\
-	magic.o mail.o castle.o ban.o graph.o config.o
+OBJFILES = comm.o act.comm.o act.informative.o act.movement.o act.obj.o \
+	act.offensive.o act.other.o act.social.o act.wizard.o ban.o boards.o \
+	castle.o class.o config.o constants.o db.o fight.o graph.o handler.o \
+	house.o interpreter.o limits.o magic.o mail.o mobact.o modify.o \
+	objsave.o random.o shop.o spec_assign.o spec_procs.o spell_parser.o \
+	spells.o utils.o weather.o
 
 ../bin/circle : $(OBJFILES)
 
@@ -104,106 +110,106 @@ syntax_check:
 ../bin/split: util/split.c
 	$(CC) $(CFLAGS) -o ../bin/split util/split.c
 ../bin/syntax_check: util/syntax_check.c structs.h utils.h db.h comm.h \
-	handler.h limits.h
+	handler.h
 	$(CC) $(CFLAGS) -o ../bin/syntax_check util/syntax_check.c
 
 clean:
-	rm -f *.o ../bin/*
+	rm -f *.o
 
 # Dependencies for the main mud
 
 comm.o : comm.c structs.h utils.h comm.h interpreter.h handler.h db.h \
-	limits.h
-	$(CC) -c $(CFLAGS) $(COMMFLAGS) comm.c
+	house.h
+	$(CC) -c $(CFLAGS) comm.c
 act.comm.o : act.comm.c structs.h utils.h comm.h interpreter.h handler.h \
 	db.h screen.h
 	$(CC) -c $(CFLAGS) act.comm.c
 act.informative.o : act.informative.c structs.h utils.h comm.h interpreter.h \
-	handler.h db.h spells.h limits.h screen.h
+	handler.h db.h spells.h screen.h
 	$(CC) -c $(CFLAGS) act.informative.c
 act.movement.o : act.movement.c structs.h utils.h comm.h interpreter.h \
-	handler.h db.h spells.h
+	handler.h db.h spells.h house.h
 	$(CC) -c $(CFLAGS) act.movement.c
-act.obj1.o : act.obj1.c structs.h utils.h comm.h interpreter.h handler.h \
+act.obj.o : act.obj.c structs.h utils.h comm.h interpreter.h handler.h \
 	db.h spells.h
-	$(CC) -c $(CFLAGS) act.obj1.c
-act.obj2.o : act.obj2.c structs.h utils.h comm.h interpreter.h handler.h \
-	db.h spells.h limits.h
-	$(CC) -c $(CFLAGS) act.obj2.c
+	$(CC) -c $(CFLAGS) act.obj.c
 act.offensive.o : act.offensive.c structs.h utils.h comm.h interpreter.h \
-	handler.h db.h spells.h limits.h
+	handler.h db.h spells.h
 	$(CC) -c $(CFLAGS) act.offensive.c
 act.other.o : act.other.c structs.h utils.h comm.h interpreter.h handler.h \
-	db.h spells.h screen.h limits.h
+	db.h spells.h screen.h house.h
 	$(CC) -c $(CFLAGS) act.other.c
 act.social.o : act.social.c structs.h utils.h comm.h interpreter.h \
 	handler.h db.h spells.h
 	$(CC) -c $(CFLAGS) act.social.c
 act.wizard.o : act.wizard.c structs.h utils.h comm.h interpreter.h \
-	handler.h db.h spells.h limits.h screen.h
+	handler.h db.h spells.h house.h screen.h
 	$(CC) -c $(CFLAGS) act.wizard.c
-handler.o : handler.c structs.h utils.h comm.h db.h handler.h interpreter.h
-	$(CC) -c $(CFLAGS) handler.c
-db.o : db.c structs.h utils.h db.h comm.h handler.h limits.h spells.h \
-	mail.h interpreter.h
-	$(CC) -c $(CFLAGS) db.c
 ban.o : ban.c structs.h utils.h comm.h interpreter.h handler.h db.h
 	$(CC) -c $(CFLAGS) ban.c
-interpreter.o : interpreter.c structs.h comm.h interpreter.h db.h utils.h \
-	limits.h spells.h handler.h mail.h screen.h
-	$(CC) -c $(CFLAGS) interpreter.c
-utility.o : utility.c structs.h utils.h comm.h screen.h
-	$(CC) -c $(CFLAGS) utility.c
-spec_assign.o : spec_assign.c structs.h db.h interpreter.h utils.h
-	$(CC) -c $(CFLAGS) spec_assign.c
-spec_procs.o : spec_procs.c structs.h utils.h comm.h interpreter.h \
-	handler.h db.h spells.h limits.h
-	$(CC) -c $(CFLAGS) spec_procs.c
-castle.o : castle.c structs.h utils.h comm.h interpreter.h handler.h \
-	db.h spells.h limits.h
-	$(CC) -c $(CFLAGS) castle.c
-limits.o : limits.c structs.h limits.h utils.h spells.h comm.h db.h handler.h
-	$(CC) -c $(CFLAGS) limits.c
-fight.o : fight.c structs.h utils.h comm.h handler.h interpreter.h db.h \
-	spells.h limits.h screen.h
-	$(CC) -c $(CFLAGS) fight.c
-weather.o : weather.c structs.h utils.h comm.h handler.h interpreter.h db.h
-	$(CC) -c $(CFLAGS) weather.c
-shop.o : shop.c structs.h comm.h handler.h db.h interpreter.h utils.h
-	$(CC) -c $(CFLAGS) shop.c
-spells1.o : spells1.c structs.h utils.h comm.h db.h interpreter.h spells.h \
-	handler.h
-	$(CC) -c $(CFLAGS) spells1.c
-spells2.o : spells2.c structs.h utils.h comm.h db.h interpreter.h spells.h \
-	handler.h
-	$(CC) -c $(CFLAGS) spells2.c
-magic.o : magic.c structs.h utils.h comm.h spells.h handler.h limits.h \
-	interpreter.h db.h
-	$(CC) -c $(CFLAGS) magic.c
-spell_parser.o : spell_parser.c structs.h utils.h comm.h db.h interpreter.h \
-	spells.h handler.h
-	$(CC) -c $(CFLAGS) spell_parser.c
-mobact.o : mobact.c utils.h structs.h db.h comm.h interpreter.h handler.h
-	$(CC) -c $(CFLAGS) mobact.c
-modify.o : modify.c structs.h utils.h interpreter.h handler.h db.h comm.h \
-	mail.h
-	$(CC) -c $(CFLAGS) modify.c
-constants.o : constants.c structs.h limits.h
-	$(CC) -c $(CFLAGS) constants.c
-objsave.o : objsave.c structs.h comm.h handler.h db.h interpreter.h \
-	utils.h spells.h
-	$(CC) -c $(CFLAGS) objsave.c
 boards.o : boards.c structs.h utils.h comm.h db.h boards.h interpreter.h \
 	handler.h
 	$(CC) -c $(CFLAGS) boards.c
-mail.o : mail.c mail.h structs.h utils.h comm.h db.h interpreter.h handler.h
-	$(CC) -c $(CFLAGS) mail.c
-signals.o : signals.c utils.h structs.h
-	$(CC) -c $(CFLAGS) signals.c
+castle.o : castle.c structs.h utils.h comm.h interpreter.h handler.h \
+	db.h spells.h
+	$(CC) -c $(CFLAGS) castle.c
+class.o : class.c structs.h utils.h spells.h interpreter.h
+	$(CC) -c $(CFLAGS) class.c
+config.o : config.c structs.h
+	$(CC) -c $(CFLAGS) config.c
+constants.o : constants.c structs.h
+	$(CC) -c $(CFLAGS) constants.c
+db.o : db.c structs.h utils.h db.h comm.h handler.h spells.h \
+	mail.h interpreter.h
+	$(CC) -c $(CFLAGS) db.c
+fight.o : fight.c structs.h utils.h comm.h handler.h interpreter.h db.h \
+	spells.h screen.h
+	$(CC) -c $(CFLAGS) fight.c
 graph.o : graph.c structs.h utils.h comm.h interpreter.h handler.h db.h \
 	spells.h
 	$(CC) -c $(CFLAGS) graph.c
-config.o : config.c structs.h
-	$(CC) -c $(CFLAGS) config.c
+handler.o : handler.c structs.h utils.h comm.h db.h handler.h interpreter.h \
+	spells.h
+	$(CC) -c $(CFLAGS) handler.c
+house.o : house.c structs.h comm.h handler.h db.h interpreter.h utils.h	house.h
+	$(CC) -c $(CFLAGS) house.c
+interpreter.o : interpreter.c structs.h comm.h interpreter.h db.h utils.h \
+	spells.h handler.h mail.h screen.h
+	$(CC) -c $(CFLAGS) interpreter.c
+limits.o : limits.c structs.h utils.h spells.h comm.h db.h handler.h
+	$(CC) -c $(CFLAGS) limits.c
+magic.o : magic.c structs.h utils.h comm.h spells.h handler.h interpreter.h \
+	db.h
+	$(CC) -c $(CFLAGS) magic.c
+mail.o : mail.c mail.h structs.h utils.h comm.h db.h interpreter.h handler.h
+	$(CC) -c $(CFLAGS) mail.c
+mobact.o : mobact.c utils.h structs.h db.h comm.h interpreter.h handler.h \
+	spells.h
+	$(CC) -c $(CFLAGS) mobact.c
+modify.o : modify.c structs.h utils.h interpreter.h handler.h db.h comm.h \
+	spells.h mail.h boards.h
+	$(CC) -c $(CFLAGS) modify.c
+objsave.o : objsave.c structs.h comm.h handler.h db.h interpreter.h utils.h \
+	spells.h
+	$(CC) -c $(CFLAGS) objsave.c
+random.o : random.c
+	$(CC) -c $(CFLAGS) random.c
+shop.o : shop.c structs.h comm.h handler.h db.h interpreter.h utils.h shop.h
+	$(CC) -c $(CFLAGS) shop.c
+spec_assign.o : spec_assign.c structs.h db.h interpreter.h utils.h
+	$(CC) -c $(CFLAGS) spec_assign.c
+spec_procs.o : spec_procs.c structs.h utils.h comm.h interpreter.h \
+	handler.h db.h spells.h
+	$(CC) -c $(CFLAGS) spec_procs.c
+spell_parser.o : spell_parser.c structs.h utils.h comm.h db.h interpreter.h \
+	spells.h handler.h
+	$(CC) -c $(CFLAGS) spell_parser.c
+spells.o : spells.c structs.h utils.h comm.h db.h interpreter.h spells.h \
+	handler.h
+	$(CC) -c $(CFLAGS) spells.c
+utils.o : utils.c structs.h utils.h comm.h screen.h
+	$(CC) -c $(CFLAGS) utils.c
+weather.o : weather.c structs.h utils.h comm.h handler.h interpreter.h db.h
+	$(CC) -c $(CFLAGS) weather.c
 ../bin/circle :
 	$(CC) -o ../bin/circle $(PROFILE) $(OBJFILES) $(LIBS)

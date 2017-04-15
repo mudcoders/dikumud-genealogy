@@ -56,7 +56,7 @@ be tested manually (for an example, see do_gen_com in act.comm.c).
 
 The recommended series is the CC series (i.e. CCNRM(), CCRED(), etc.)
 The CC series macros require two arguments -- a pointer to the character
-whom the string is being sent to, and the minimum color level the player
+to whom the string is being sent, and the minimum color level the player
 must be set to in order to see the color.  Color sent as 'sparse' (C_SPR)
 will be seen by people with color set to sparse, normal, or complete;
 color sent as 'normal' (C_NRM) will be seen only by people with color

@@ -3,26 +3,12 @@ ring silver~
 a glinting silver ring~
 A lovely silver ring has been left here.~
 ~
-11 64 3
+11 g 3
 0 0 10 0
 9 16000 5000
 A 
 17 -10
 A
 18 2
-#7191
-ring gold goldring~
-a golden ring~
-A shiny gold ring has been abandoned here.~
-~
-13 4096 3
-1 0 0 0
-1 0 180000
-E
-warning gold ring goldring~
-This isn't what you think it is...
-~
-A
-3 -5
 #99999
 $~

@@ -1,22 +1,22 @@
 #4000
-snake~
+snake large~
 the snake~
 A large dreadful snake is at your feet, hissing at you.
 ~
 It looks hungry.
 ~
-35 8 -200 S
+abf dk -200 S
 11 7 4 5d10+50 3d6+0
 0 12000
 8 8 0
 #4001
-snake~
+snake green~
 the green snake~
 A small green snake is here, and it doesn't look too friendly...
 ~
 It looks harmless.
 ~
-3 0 -100 S
+ab 0 -100 S
 7 12 4 3d10+30 2d6+1
 0 2500
 8 8 0
@@ -27,7 +27,7 @@ A small centipede is here, making its way across the floor.
 ~
 It looks completely harmless.
 ~
-2 0 100 S
+b 0 100 S
 3 20 6 2d10+20 1d6+0
 0 400
 8 8 0
@@ -38,7 +38,7 @@ An ugly kobold is here, searching for dinner.
 ~
 It looks ugly.
 ~
-68 0 -100 S
+cg k -100 S
 4 16 5 2d10+40 1d8+1
 50 800
 8 8 0
@@ -47,20 +47,20 @@ orc~
 the orc~
 The orc walks around, looking for someone to kill.
 ~
-You notice an evil look in his eyes...
+You notice an evil look in its eyes...
 ~
-100 0 -400 S
+cfg k -400 S
 5 15 5 2d10+60 2d4+0
 100 900
-8 8 1
+8 8 0
 #4005
-orc~
+orc large~
 the orc~
 A large orc is here, looking really mean.
 ~
 He looks dreadful.
 ~
-68 33554432 -500 S
+cg k -500 S
 7 11 2 3d20+75 2d6+2
 200 3000
 8 8 1
@@ -71,7 +71,7 @@ A tall warrior is here.  He has more scars than anyone you have ever seen.
 ~
 He seems to be a strong, brainless fighter.
 ~
-102 0 -300 S
+bcfg k -300 S
 12 8 4 10d10+50 2d8+1
 1000 12000
 8 8 1
@@ -82,7 +82,7 @@ A tall warrior is here.
 ~
 He seems to know his way with weapons.
 ~
-100 0 -400 S
+cfg k -400 S
 7 13 5 3d10+80 2d5+0
 200 2500
 8 8 1
@@ -93,7 +93,7 @@ A small hobgoblin stands here.
 ~
 The hobgoblin looks quite lost.
 ~
-68 0 -300 S
+cg k -300 S
 6 12 6 3d8+70 2d4+0
 100 1500
 8 8 1
@@ -104,7 +104,7 @@ A brown snake watches you.
 ~
 The snake looks quite mean.
 ~
-35 0 -600 S
+abf k -600 S
 10 10 4 4d10+60 3d5+1
 0 12000
 8 8 0
@@ -115,7 +115,7 @@ A white centipede is here.
 ~
 The centipede doesn't really seem to notice you.
 ~
-2 0 -100 S
+b 0 -100 S
 5 17 5 1d10+50 1d7+0
 0 1000
 8 8 0
@@ -126,7 +126,7 @@ A large hobgoblin is here.
 ~
 The hobgoblin looks quite dangerous.
 ~
-68 0 -500 S
+cg k -500 S
 10 8 2 1d16+120 2d6+3
 300 10000
 8 8 1
@@ -137,7 +137,7 @@ An orc is here, looking for something (or perhaps someone?) to eat.
 ~
 Well, he doesn't seem to be friendly.
 ~
-100 0 -800 S
+cfg k -800 S
 8 13 2 3d10+100 2d5+2
 150 4000
 8 8 1
@@ -148,7 +148,7 @@ A mountain lion is here, growling at you viciously.
 ~
 The lion looks very nasty with huge claws and big teeth.
 ~
-96 0 -100 S
+fg k -100 S
 5 16 5 1d10+60 2d4+0
 0 900
 8 8 1
@@ -158,21 +158,21 @@ the hill giant~
 A hill giant is here, tossing some rocks around.
 ~
 The hill giant looks like he's about 9 feet tall.  By his actions you 
-come to the conclusion that he's not very intelligent.
+quickly come to the conclusion that he isn't very intelligent.
 ~
-64 0 0 S
+gq k 0 S
 13 8 2 1d10+160 2d10+0
 1000 16500
 8 8 1
 #4100
 mage~
-the Mage~
-A small intelligent looking mage is standing here.  It looks like he knows
-his way with magic. 
+the mage~
+A small intelligent looking mage is standing here.
 ~
-His IQ makes almost any dikumud player look stupid..
+His IQ makes almost any normal person look stupid...
+It looks like he knows his way with magic. 
 ~
-39 8 -100 S
+abcf dk -100 S
 13 10 2 3d20+100 2d6+0
 2500 21000
 8 8 1
@@ -183,7 +183,7 @@ A large mean-looking troll is here.
 ~
 Well, it looks dangerous!
 ~
-38 0 -800 S
+bcf k -800 S
 12 8 1 2d10+100 2d7+1
 500 13000
 8 8 1
@@ -194,7 +194,7 @@ A large green snake is here, looks like a guardian for an evil force.
 ~
 You see a evil creature.
 ~
-39 0 -700 S
+abcf k -700 S
 10 8 5 6d10+50 3d5+2
 0 9000
 8 8 1
@@ -206,40 +206,40 @@ A thief is here, all dressed in black.
 He seems to be counting a handful of coins.  Maybe you ought to count YOUR
 gold too...
 ~
-69 1572874 -400 S
+acg dkst -400 S
 8 13 3 1d10+100 2d5+2
 100 4000
 8 8 1
 #4104
-orc~
+orc ugly~
 the orc~
 A ugly orc is standing here.
 ~
-It's quite disgusting to look at.
+It is quite disgusting to look at.
 ~
-228 0 -200 S
+cfgh dkp -200 S
 7 14 4 1d5+90 2d4+1
 200 2250
 8 8 1
 #4105
 centipede~
-a centipede~
+the centipede~
 A small harmless centipede is here.
 ~
 Well it doesn't seem to pay any attention to you.
 ~
-2 0 300 S
+b 0 300 S
 6 15 4 3d10+50 1d8+1
 0 1500
 8 8 0
 #4106
 warrior~
-the Warrior~
+the warrior~
 A human warrior is here.  He has a evil grin in his face.
 ~
 He doesn't look friendly at all...
 ~
-100 0 -300 S
+cfg k -300 S
 9 10 3 3d10+100 2d6+2
 500 9000
 8 8 1
@@ -250,7 +250,7 @@ A green kobold is here.
 ~
 It looks slimy..
 ~
-100 0 -100 S
+cfg k -100 S
 7 14 4 4d10+25 1d9+1
 20 3000
 8 8 1

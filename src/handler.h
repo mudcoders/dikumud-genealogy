@@ -4,7 +4,7 @@
 *                                                                         *
 *  All rights reserved.  See license.doc for complete information.        *
 *                                                                         *
-*  Copyright (C) 1993 by the Trustees of the Johns Hopkins University     *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
@@ -13,16 +13,18 @@ void	affect_total(struct char_data *ch);
 void	affect_modify(struct char_data *ch, byte loc, sbyte mod, long bitv, bool add);
 void	affect_to_char(struct char_data *ch, struct affected_type *af);
 void	affect_remove(struct char_data *ch, struct affected_type *af);
-void	affect_from_char(struct char_data *ch, byte skill);
-bool	affected_by_spell(struct char_data *ch, byte skill);
+void	affect_from_char(struct char_data *ch, sh_int type);
+bool	affected_by_spell(struct char_data *ch, sh_int type);
 void	affect_join(struct char_data *ch, struct affected_type *af,
-bool avg_dur, bool avg_mod );
+bool add_dur, bool avg_dur, bool add_mod, bool avg_mod);
 
 
 /* utility */
-struct obj_data *create_money( int amount );
+char *money_desc(int amount);
+struct obj_data *create_money(int amount);
 int	isname(char *str, char *namelist);
 char	*fname(char *namelist);
+int	get_number(char **name);
 
 /* ******** objects *********** */
 
@@ -108,4 +110,5 @@ void	hit(struct char_data *ch, struct char_data *victim, int type);
 void	forget(struct char_data *ch, struct char_data *victim);
 void	remember(struct char_data *ch, struct char_data *victim);
 void	damage(struct char_data *ch, struct char_data *victim, int dam, int attacktype);
-
+int	skill_message(int dam, struct char_data *ch, struct char_data *vict,
+		      int attacktype);

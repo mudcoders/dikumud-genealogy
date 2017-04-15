@@ -1,14 +1,19 @@
+      Welcome to
+
+        C    I    R    C    L    E    M    U    D         3    .    0
+                  "We addict players for their own enjoyment."
+	Created by Jeremy Elson (jelson@cs.jhu.edu) at Johns Hopkins U
 
 
-Welcome to CircleMUD 2.2!!
+Scrolls of identify now work better.
 
-This is the immortal MOTD -- the file that immortals will see when they
-log in to the game.
+Spell abbreviations work (i.e. 'prot f ev' for 'protection from evil').
 
-If you've just created a new god chracter, the first thing you should do
-is RESTORE yourself -- i.e. type "restore <your name>" -- to set your
-stats to maximum.
+Speed-walking should be re-enabled.  Please let me know how the new comm
+code interacts with tintin and other burst-mode clients.
 
-Also, when you get a chance, you should change this file, along with the
-mortal MOTD, news, etc, to something more interesting...
+There is now a 'gold' command.
 
+Aliases are now in!  Type HELP ALIAS for more information.  Note that aliases
+are not yet saved when you quit, although they will be in the (very) near
+future.

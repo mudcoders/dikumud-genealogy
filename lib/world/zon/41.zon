@@ -1,32 +1,26 @@
 #41
-Moria, levels 3-4~
+Moria, Levels 3-4~
 4199 40 2
 *
-* Level 1
+* Level 3
 *
-M 0 4100 1 4114    The mage
-G 1 4102 2         Scroll of identify.
-*
-M 0 4101 1 4122    The troll
-G 1 4100 2         The blade
-*
-M 0 4102 3 4111    The snakes
-G 1 4103 10      Slime
-M 0 4102 3 4111    The snakes
-G 1 4104 3        Poisoned slime
-*
-M 0 4103 6 4103    A thief
-*
-M 0 4103 2 4124    A thief
-E 1 4053 3 16       equip w/dirk
-*
-M 0 4105 3 4108    A centipede
-*
-M 0 4106 2 4113    A warrior
-G 1 4101 1         Some gloves
-*
-M 0 4107 1 4119    A kobold
-G 1 4104 10        Slime
+* Mobiles
+M 0 4100 1 4114         Mage
+G 1 4102 2                      Scroll Of Identify
+M 0 4101 1 4122         Troll
+G 1 4100 2                      Demon Blade
+M 0 4102 3 4111         Snake
+G 1 4103 10                     Slime
+M 0 4102 3 4111         Snake
+G 1 4104 3                      Poisoned slime
+M 0 4103 6 4103         Thief
+M 0 4103 2 4124         Thief
+E 1 4053 3 16                   Dirk
+M 0 4105 3 4108         Centipede
+M 0 4106 2 4113         Warrior
+G 1 4101 1                      Swordsman's Gloves
+M 0 4107 1 4119         Kobold
+G 1 4104 10                     Slime
 *
 S
 #99999

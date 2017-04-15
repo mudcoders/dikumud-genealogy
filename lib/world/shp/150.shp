@@ -1,59 +1,55 @@
-#15000~
--1
--1
+CircleMUD v3.0 Shop File~
+#15019~
 15012
 3050
 3052
+-1
 1.2
-0.8
+0.3
 2
 3
 4
 10
-0
+-1
 %s But I have no such thing for sale.~
 %s But you do not have this item.~
 %s I have no interest in that.~
 %s I am sorry, but I can not afford such a valuable item.~
 %s But you can not afford that item.~
 %s It will cost you %d coins.~
-%s Here you have %d coins for it.~
+%s Here, you shall have %d coins for it.~
 2
-0
+2
 15019
-0
+40
 15052
-0
+-1
+2
+8
+20
 28
-0
-0
-#15001~
--1
--1
--1
+#15022~
 15019
 15020
+-1
 1.1
 1.0
-0
-0
-0
-0
-0
+-1
 %s Je suis tres desole, mais je n'ai pas ca.~
-%s Mais, j'achete pas!~
-%s Mais, j'achete pas!~
-%s Mais, j'achete pas!~
-%s Si vous n'avez plus d'argent, vous ne pouvez plus acheter!~
+%s Mais, je n'achete pas!~
+%s Mais, je n'achete pas!~
+%s Mais, je n'achete pas!~
+%s Si vous n'avez d'argent, vous ne pouvez p'acheter!~
 %s Ca coute %d piece d'or, s'il vous plait.~
-%s Oops - %d a minor bug - please report!~
+%s Oops - %d, a minor bug - please report!~
 0
-0
+2
 15022
 0
 15005
-0
-28
+-1
+6
+23
 0
 0
 $~

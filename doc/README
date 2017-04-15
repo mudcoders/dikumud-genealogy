@@ -10,13 +10,13 @@ CONTENTS:
 --------
 
 COLOR.DOC	- Programmer's manual on how to use color codes
-COMM.DOC	- The game-to-player communications system, most important
+COMM.DOC	- The game-to-player communications system, most importantly
 		  the act() procedure
 DATABASE.DOC	- The format of the most important data files
 DBSUP.DOC	- Detailed information on each field in database.doc
 DEFS.DOC	- Important document on what rules should be followed
 		  when creating a part of the world, to avoid complete chaos
-HACKER.DOC	- Insight into the art and science of programming
+HACKER.DOC	- Insight into the art & science of programming (courtesy MERC)
 HANDLER.DOC	- Descriptions of most of the basic 'database handling'
 		  procedures, found in handler.c
 LICENSE.DOC	- The conditions under which this game is distributed

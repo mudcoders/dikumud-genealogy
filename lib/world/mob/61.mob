@@ -6,7 +6,7 @@ A vicious warg is here, snarling angrily at you.
 It is an exceptionally large wolf with thick, black fur.  Saliva is dripping
 quickly from its long, white fangs.  It looks quite dangerous and very angry.
 ~
-96 0 -350 S
+fg k -350 S
 5 16 5 1d12+60 2d4+0
 0 1000
 8 8 0
@@ -18,8 +18,8 @@ A ferocious warg is here, snarling angrily at you.
 It is an exceptionally large wolf with thick, black fur.  Saliva is dripping
 quickly from its long, white fangs.  It looks quite dangerous and very angry.
 ~
-96 33554432 -350 S
-5 16 5 1d12+60 2d4+0
+fg k -350 S
+5 16 5 1d12+80 2d4+4
 0 1000
 8 8 0
 #6102
@@ -29,7 +29,7 @@ A large, grey wolf is here, glaring hungrily at you.
 ~
 The large, grey wolf eyes you with interest while licking its lips.
 ~
-96 33554432 -150 S
+fg k -150 S
 3 18 7 1d12+35 1d7+0
 0 450
 8 8 0
@@ -40,8 +40,8 @@ A large, black wolf is here, glaring hungrily at you.
 ~
 The large, black wolf eyes you with interest while licking its lips.
 ~
-96 33554432 -150 S
-3 18 7 1d12+35 1d7+0
+fg k -150 S
+3 18 7 1d12+45 1d7+3
 0 450
 8 8 0
 #6110
@@ -49,14 +49,13 @@ tree ancient~
 the ancient tree~
 A huge, ancient tree towers above you.
 ~
-Its roots are extremely big and large parts of them are above ground. Something
-about it makes you think that this is not a normal oak tree.
+Its roots are extremely big and large parts of them are above ground.
+Something about it makes you think that this is not a normal oak tree.
 
->
 The enormous grey trunk shivers slightly, as if sighing deeply.
 ~
-2128 524296 0 S
-30 0 -10 1d1+999 4d4+18
+glnopqr dfkstp 0 S
+30 0 -10 1d1+1299 4d4+22
 0 500000
 8 8 0
 #6111
@@ -64,13 +63,12 @@ tree ancient~
 the ancient tree~
 A huge, ancient tree towers above you.
 ~
-Its roots are extremely big and large parts of them are above ground. Something
-about it makes you think that this is not a normal oak tree.
+Its roots are extremely big and large parts of them are above ground.
+Something about it makes you think that this is not a normal oak tree.
 
->
 The enormous grey trunk emits a deep, moaning sound.
 ~
-2128 524296 0 S
+glnopqr dfkstp 0 S
 30 0 -10 1d1+999 4d4+18
 0 400000
 8 8 0
@@ -80,11 +78,11 @@ the green dragon~
 A huge green dragon is here, its narrow yellow eyes glowing with rage.
 ~
 This enormous winged serpent has dark green scales covering most of its
-colossal body.  Numerous holes in its heavy wings tell of many fights as does
-the nicks in the horns on its head.  It smells as disgusting as only dragons
-do.
+colossal body.  Numerous holes in its heavy wings tell of many fights as
+does the nicks in the horns on its head.  It smells as disgusting as only
+dragons do.
 ~
-99 8 -1000 S
+afgnoq dk -1000 S
 20 1 0 1d12+248 2d6+9
 0 40000
 8 8 0
@@ -97,20 +95,20 @@ This disgusting creature is at the size of a human crawling on all four.  It
 has eight hairy legs that gives it a tremendous speed on almost any surface
 and sharp poisonous fangs to paralyze or kill its prey.
 ~
-91 0 -350 S
+abfg dk -350 S
 8 13 2 1d12+98 2d5+1
 0 4000
 8 8 0
 #6114
 queen spider~
-the Queen Spider~
-The huge, bulky Queen Spider is here.
+the Queen spider~
+The huge, bulky Queen spider is here.
 ~
 This disgusting creature is at the size of a small elephant.  It has eight
 huge, hairy legs that would give it a tremendous speed on almost any surface
 if it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.
 ~
-2627 33554472 -1000 S
+abfgjl dfkp -1000 S
 15 6 1 1d12+185 2d8+3
 0 31000
 8 8 2
@@ -119,25 +117,41 @@ shargugh brownie~
 Shargugh~
 Shargugh the Forest Brownie is here, grinning broadly at you.
 ~
-This little fellow is only three foot tall with wild matted brown hair and long
-tangled brown beard.  He wears ragged brown and green clothing and looks as if
-he is having great fun.
+This little fellow is only three foot tall with wild matted brown hair and
+long tangled brown beard.  He wears ragged brown and green clothing and looks
+as if he is having great fun.
 ~
-2197 524298 1000 S
+acghl bdfgkstp 1000 S
 10 1 -10 1d12+47 1d8+0
 1000 11000
 8 8 1
 #6116
 elder druid~
-the Elder Druid~
-The elder druid is here.  He looks very upset about your presence in his home.
+the Elder druid~
+The Elder druid is here.  He looks very upset about your presence in his home.
 ~
 The druid looks quite old.  You would think of him as venerable but yet you
 know he would be a tough foe.
 ~
-807 8 0 S
+abfij dfk 0 S
 19 2 0 1d12+236 3d6+4
 5000 45000
 8 8 1
+#6117
+isha elf~
+Isha the Dark Elf~
+Isha the Dark Elf is here, observing you silently.
+~
+She is no less than beautiful, skin as dark as the night and hair
+shining like silver in the moonlight.  Her slender body is adorned
+with a sleeveless shirt and a short skirt made from black scales
+joined with silver threads.  Her back is covered by a large, hooded
+cloak as black as her skin and in her broad silver belt hangs a long,
+slender sword in a silver scabbard.
+~
+bml dks -1000 S
+20 1 0 1d12+245 3d6+4
+5000 40000
+8 8 2
 #99999
 $~

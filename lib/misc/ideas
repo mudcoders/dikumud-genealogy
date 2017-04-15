@@ -1,0 +1,73 @@
+Goethe   (Apr 10) [ 3001] maybe a spells command to show what spells i have available?
+Goethe   (Apr 10) [ 3001] i know i can use the prac command, but it seems to ke
+Poppy    (Apr 10) [ 3011] Lack of warrior skills.. maybe a second attack would be nice, or a berserk like marble.. very nice skills :-)
+Goethe   (Apr 10) [ 3013] how about a 'coins' command that shows how many coins you are carrying
+Goethe   (Apr 10) [ 3001] i would suggest changing the format of the help screen
+Goethe   (Apr 10) [ 3001] the original help screen presents too muich information
+Goethe   (Apr 10) [ 3001] in a too cluttered screen
+Goethe   (Apr 10) [ 3001] maybe break it down into more screens
+Goethe   (Apr 10) [ 3001] presenting the information in a more organised way
+Teker    (Apr 10) [ 3054] V3.1 - levels [ class ]
+Hayden   (Apr 14) [ 3001] make me the implementor.
+Ras      (Apr 14) [ 3000] willow's mud 134.74.152.4 4000
+Willow   (Apr 14) [ 3008] maybe when do a prac have how much mana the spell costs to cast
+Questor  (Apr 14) [ 3005] please separate mage spells and cleric spells into two different help indexes...include type of spell and minimum mana requirement as well
+Questor  (Apr 14) [ 3014] if you want to know what I mean, log into sleepy.cc.utexas.edu 9332 and type help mage spells. :)
+Ionic    (Apr 15) [ 3014] not so much a bug, but 1 prac at level 1 is kinda low.
+Ionic    (Apr 15) [ 3015] still a problem with mobs helping other mobs.. ie.. I just attacked a fido
+VampLestat (Apr 15) [ 3001] set the load room of people with a house to thier house by default?
+Questor  (Apr 15) [ 3005] make a "bury" command that allows one to bury corpses for a minimal reward.
+Questor  (Apr 15) [ 3013] turn the danish pastry into an American Bagel :)
+Questor  (Apr 15) [ 6002] make the mage offensive spells advance in mana need...example magic missile 5, burning hands 10, chill touch 15, lightning 20, etc
+Questor  (Apr 15) [15013] in the group command when grouping... show maxhit, maxmove, and maxmana
+Questor  (Apr 15) [15013] make sure the backstab multiplier table in the help table is correct...or better yet, take it out.
+Questor  (Apr 15) [ 3033] put how much we're carrying/how much we can carry in the score.
+Verdis   (Apr 16) [ 3003] When a player attempts to  look in <mob_in_room>, change the message from 'There is no waiter here.' to something more appropriate.
+Verdis   (Apr 16) [ 3003] Same as 'look in'.  When trying to reference a mob as if it were an object (in general) perhaps a better error message is in order?
+Teker    (Apr 16) [ 3002] for version 3.1: empty command instead of pour barrel out
+Teker    (Apr 16) [ 3002] for version 3.1: you might make it work on corpses as well
+Teker    (Apr 16) [ 3001] for deposit and withdraw, print the new balance out afterwards
+Outlander (Apr 16) [ 3014] How about a Sell all.<item> command?
+Teker    (Jun 22) [ 3021] For 3.1 let guild guards let people pass
+Karis    (Jun 23) [ 3012] a sacrifice command to get rid of corpses...
+Darkenelf (Jun 23) [ 3001] Have newbies start with minimal equipment befitting their class.
+Darkenelf (Jun 23) [ 3001] Have cityguards attack mobiles which are set AGGRESSIVE and AGGRESSIVE_EVIL....I've done this on my mud, and it helps keep the newbie population up :)
+ShaDa    (Jun 24) [ 6061] How about showing how much mana each spell uses in the practice listing...ShaDa :)
+Valentine (Jun 24) [ 6305] you might wanna make us gra lantersn in wear all
+Darkwing (Jun 25) [ 3011] how about having the "all" directive work when selling items, ie "sell all.sword"
+Torn     (Jun 27) [ 3005] One thing is really bugging me, and it's that space REQUIRED after the say tick. the '  a lot of muds now let you 'blahblah and many are used to the nospace now
+Cariso   (Jun 27) [ 6110] Prompt appears on tick.  (ie. shows you when it ticks up)
+Case     (Jun 28) [ 3003] might wanna use the same 'more' mech for levels command
+Vortex   (Jun 28) [ 3000] Seperate 'attribute stat' (or something) command which shows the player their STR, INT, WIS, DEX, and con, and whatever else.
+Vortex   (Jun 28) [ 3000] some command that lists all of the skills/spells for a certain class.
+Vortex   (Jun 28) [ 3000] switch command by itself shows you who is switched, and what mobs they are switched into.
+Vortex   (Jun 28) [ 3001] vnums after objects for gods. e.g. A black knight's visor is laying here! (vnum item number) - makes items easier to load, that way you dont have to vnum it first.
+Vortex   (Jun 28) [ 3001] when players go linkless, they go to some certain room, and when they reconnect, the mud sends them back to the original room.
+Vortex   (Jun 28) [ 3001] sorry for not going light on this command. :) one more idea - online adding of skills/spells, it may be kind of hard to code, but it would be really great.
+HOOK     (Jun 28) [ 6090] how about some sort of god in the temple who can give you some spells 
+HOOK     (Jun 28) [ 6090] hhhhmmmm... about that god in the temple... Make a mob wich throws random spells like armor bless, cure light at random time. This is an idea from Mercmud and I think it worked very well! It makes life a whole lot easier and resting a whole lot shor
+Reni     (Jun 29) [ 3010] store a descriptors last ACTUAL command, not a "return"
+Tracer   (Jun 29) [ 3024] how about wielding 2 swords for the fighter and thief classes
+MagicGuy (Jun 30) [ 3000] modified help menu to include new features such as map of midgaard and house helpfiles
+Teker    (Jul  1) [ 1204] For v3.1 have set list possible fields
+RoadKill (Jul 11) [ 3000] don't know if this is the way it is. but id you got NOSUMMON on you should still be able to be summon.. but it should be like it is with mobiles... the Summoner need beat your Saveing throw
+Ian      (Jul 15) [ 3108] Make the sparrow pick instead of hit with fists ?
+Ian      (Jul 17) [ 3012] Make kick do a bit more damage ?
+Ian      (Jul 18) [ 3001] Make wear all do all things, i.e hold <item>, wield <item> etc
+Knitemare (Jul 20) [ 6999] Pat yourself on the Back... Circle 3.0 Is GREAT!
+Hayden   (Jul 20) [ 3001] do you newbie ppl here, jer?  you could code an auto-newbie
+Hayden   (Jul 20) [ 3001] oh, and make me the implementor
+Hayden   (Jul 20) [ 3062] give me a few levels so i can just mail you this crap
+Itch     (Jul 21) [ 6090] Where should be able to be used during sleep
+Karis    (Jul 25) [12023] have a push cmd so one can push mobs around the mud
+Karis    (Jul 26) [ 3001] a trust command... let a level 1 char have lvl 34 privs, and if an imm is abusing commands, trust them lower, but they still keep their level
+Knitemare (Jul 26) [ 3062] Read your MAIL in the game :-)
+Questor  (Jul 27) [ 3019] hm..perhaps you would let me update the help files?
+Questor  (Jul 27) [ 3505] have gold and other items combine when they're redundant in the same room...example 2 piles of gold coins lie here, or a pile of gold coins lay here [2]
+Karis    (Aug  1) [ 3011] a "trust" cmd... so a level 1 char can have IMP commands
+Dirk     (Aug  3) [ 3001] spells after level 15
+Ras      (Aug  6) [ 1205] reply command
+Karis    (Aug  7) [12004] a scan command
+Ras      (Aug  9) [ 1204] newbie command
+Akron    (Aug  9) [ 3014] "destroy corpse" for the PC's, just like the fido...less waste
+Argon    (Aug  9) [ 3011] hammer

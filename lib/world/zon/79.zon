@@ -2,44 +2,55 @@
 Redferne's Residence~
 7999 50 2
 *
-D 0 7900 0 2
+* Mobiles
+M 0 7900 1 7900         Grand Knight of Paladins
+E 1 7901 4 17                   Copper Key
+E 1 7910 2 16                   Bastard Sword 
+E 1 7914 2 5                    Silvery Breast-Plate
+E 1 7915 2 7                    Silvery Leg Plates
+E 1 7916 2 9                    Silvery Gloves
+E 1 7917 2 6                    Silvery Helmet
+E 1 7918 2 11                   Shield of the Rose
+E 1 7919 2 8                    Heavy Boots
+E 1 7920 2 10                   Silvery Arm Plates
+M 0 7901 2 7907         Rat
+G 1 7900 1                      Brass Key
+M 0 7901 2 7907         Rat
+M 0 7902 1 7913         The Cleaver
+E 1 7907 6 14                   Spiked Bracelet
+E 1 7907 6 15                   Spiked Bracelet
+E 1 7911 2 6                    Large Helmet
+G 1 7902 1                      Steel Key
+* Objects
+O 0 7908 40 7907        Waybread
+O 0 7921 10 7908        Water Barrel
+O 0 7904 1 7903         Chest
+P 1 7903 1 7904                 Money
+P 1 7909 4 7904                 Golden Ring
+O 1 7905 1 7913         Chest
+P 1 7906 5 7905
+P 1 7912 3 7905                 Chaos Helmet
+P 1 7913 2 7905                 Two-Handed Sword
+* Doors
+D 0 7900 0 2            Residence Door
 D 0 7901 2 2
-D 0 7902 1 1
-D 0 7901 3 1
-D 0 7901 1 1
+D 0 7901 1 1            Treasure Room Door
 D 0 7910 3 1
-D 0 7910 1 2
+D 0 7901 3 1            Library Door
+D 0 7902 1 1            
+D 0 7910 1 2            Safe Entrance
 D 0 7903 3 2
-D 0 7904 1 1
+D 0 7904 1 1            Monster Pen Door
 D 0 7913 3 1
-D 0 7911 2 1
-D 0 7912 0 1
-D 0 7904 3 1
+D 0 7904 3 1            Sitting Room Door
 D 0 7905 1 1
-D 0 7906 1 1
-D 0 7908 3 1
-D 0 7906 0 1
+D 0 7906 0 1            Larder Door
 D 0 7907 2 1
-M 0 7009 1 7900         The Grand Knight of Paladins
-E 1 7212 1 16          Equip sword on Knight
-E 1 7217 1 5           Equip Breast-Plate on Knight
-E 1 7218 1 7           Equip Greaves on Knight
-E 1 7219 1 9           Equip Gloves on Knight
-E 1 7220 1 6           Equip Helmet on Knight
-E 1 7221 1 11          Equip Shield on Knight
-E 1 7223 1 10          Equip arm guards on Knight
-E 1 7222 1 8           Equip Heavy Boots on Knight
-*G 1 7911 1               Give key to chest to the knight
-O 0 7090 40 7907           The Waybread
-O 0 6013 10 7908           The barrel with water
-*O 0 7910 1 7910           Load chest
-*P 1 7190 2 7910           The Silver Ring
-*P 1 7191 1 7910           The (Invisible) Golden Ring
-*P 1 7207 1 7910           Muddy gauntlets
-*P 1 7208 6 7910         Light stick
-*O 0 7212 2 7903          Bastard sword
-*O 0 7215 2 7903          Light sabre
-*O 0 7216 2 7903         Two-handed sword
+D 0 7906 1 1            Fridge Door
+D 0 7908 3 1
+D 0 7911 2 1            Balcony Doors
+D 0 7912 0 1
+*
 S
 #99999
 $~

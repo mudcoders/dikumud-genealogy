@@ -1,13 +1,19 @@
 #12
 God Rooms~
-1999 1 0
+1299 10 2
 *
-O 0 3098 1 1204       Immort board to Immort Board Room
-O 1 3099 6 1205	      Regular Board to Lower Board Room
-*
-O 0 1212 1 1206       Mandelbrot's Set in the Fractal Orgy Chamber
-P 1 1210 1 1212       Put Toys into Set box
-P 1 1211 1 1212       Put Toys into Set box
+* Edited and added to by Taz of Tazmania
+* 
+* Mobiles
+M 0 1201 1 1205     Immortal Post man
+M 0 1200 1 1201     Immortal Innkeeper
+M 0 1202 2 1201     Vacusuck 1500
+M 0 1202 2 1200     Vacusuck 1500
+* Boards
+O 0 3096 5 1206     Social Bulletin Board
+O 0 3097 1 1202     Frozen Bulletin Board
+O 0 3098 1 1204     Immort Bulletin Board
+O 0 3099 2 1203     Mortal Bulletin Board
 *
 S
 #99999

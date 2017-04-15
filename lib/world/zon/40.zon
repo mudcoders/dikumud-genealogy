@@ -1,71 +1,60 @@
 #40
-Moria, levels 1-2~
+Moria, Levels 1-2~
 4099 20 2
 *
 * Level 1
 *
-M 0 4000 1 4030     The large snake
-G 1 4001 1          Carry a goblin corpse
-P 1 4002 1 4001     Which contains 500 coins.
+* Mobiles
+M 0 4000 1 4030         Large Snake
+G 1 4001 1                      Goblin Corpse
+P 1 4002 1 4001                         500 Coins
+M 0 4001 2 4025         Green Snake
+M 0 4001 2 4015         Green Snake
+M 0 4002 3 4023         Centipede
+M 0 4002 3 4017         Centipede
+M 0 4002 3 4020         Centipede
+M 0 4003 6 4021         Kobold
+M 0 4003 6 4021         Kobold
+M 0 4003 6 4013         Kobold
+M 0 4003 6 4013         Kobold
+M 0 4003 6 4027         Kobold
+M 0 4003 6 4027         Kobold
+M 0 4004 3 4015         Orc
+M 0 4004 3 4028         Orc
+M 0 4004 3 4028         Orc
+M 0 4005 1 4022         Large Orc
+E 1 4000 5 1                    Yellow Green Ring
+M 0 4057 1 4038         Lion
+M 0 4057 1 4041         Lion
+M 0 4058 1 4044         Hill Giant
 *
-M 0 4001 2 4025     a green snake
-M 0 4001 2 4015     a green snake
+* Level 2
 *
-M 0 4002 3 4023     a centipede
-M 0 4002 3 4017     a centipede
-M 0 4002 3 4020     a centipede
-*
-M 0 4003 6 4021     a Kobold
-M 0 4003 6 4021     a Kobold
-M 0 4003 6 4013     a Kobold
-M 0 4003 6 4013     a Kobold
-M 0 4003 6 4027     a Kobold
-M 0 4003 6 4027     a Kobold
-*
-M 0 4004 3 4015     an Orc
-M 0 4004 3 4028     an Orc
-M 0 4004 3 4028     an Orc
-*
-M 0 4005 1 4022     a large Orc
-E 1 4000 5 1        ring of weakness on left finger
-*
-M 0 4057 1 4038     a lion
-M 0 4057 1 4041     a lion
-M 0 4058 1 4044     a hill giant
-*
-* Moria level 2
-*
-M 0 4050 1 4062     a warrior
-G 1 4051 3          give him a helmet of savin' throw
-*
-M 0 4051 4 4070     a warrior
-M 0 4051 4 4050     a warrior
-M 0 4051 4 4073     a warrior
-M 0 4051 4 4055     a warrior
-*
-M 0 4052 3 4056     a hobgoblin
-M 0 4052 3 4065     a hobgoblin
-M 0 4052 3 4059     a hobgoblin
-*
-M 0 4053 2 4058     a snake
-M 0 4053 2 4068     a snake
-*
-M 0 4054 3 4060     a centipede
-M 0 4054 3 4053     a centipede
-M 0 4054 3 4052     a centipede
-*
-M 0 4055 2 4064     a hobgoblin
-G 1 4050 20         give him a purple potion
-M 0 4055 2 4071     a hobgoblin
-G 1 4050 20         give him a purple potion
-*
-M 0 4056 2 4067     an Orc
-M 0 4056 2 4057     an Orc
-*
-O 0 4052 8 4068     plant a mushroom
-O 0 4052 8 4069     plant a mushroom
-O 0 4052 8 4070     plant a mushroom
-O 0 4052 8 4071     plant a mushroom
+M 0 4050 1 4062         Warrior
+G 1 4051 3                      Helmet
+M 0 4051 4 4070         Warrior
+M 0 4051 4 4050         Warrior
+M 0 4051 4 4073         Warrior
+M 0 4051 4 4055         Warrior
+M 0 4052 3 4056         Hobgoblin
+M 0 4052 3 4065         Hobgoblin
+M 0 4052 3 4059         Hobgoblin
+M 0 4053 2 4058         Snake
+M 0 4053 2 4068         Snake
+M 0 4054 3 4060         Centipede
+M 0 4054 3 4053         Centipede
+M 0 4054 3 4052         Centipede
+M 0 4055 2 4064         Hobgoblin
+G 1 4050 20                     Purple Potion
+M 0 4055 2 4071         Hobgoblin
+G 1 4050 20                     Purple Potion
+M 0 4056 2 4067         Orc
+M 0 4056 2 4057         Orc
+* Objects
+O 0 4052 8 4068         Mushroom
+O 0 4052 8 4069         Mushroom
+O 0 4052 8 4070         Mushroom
+O 0 4052 8 4071         Mushroom
 *
 S
 #99999

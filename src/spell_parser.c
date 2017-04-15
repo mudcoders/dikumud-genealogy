@@ -1,900 +1,949 @@
 /* ************************************************************************
 *   File: spell_parser.c                                Part of CircleMUD *
-*  Usage: command interpreter for 'cast' command (spells)                 *
+*  Usage: top-level magic routines; outside points of entry to magic sys. *
 *                                                                         *
 *  All rights reserved.  See license.doc for complete information.        *
 *                                                                         *
-*  Copyright (C) 1993 by the Trustees of the Johns Hopkins University     *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
+
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 
 #include "structs.h"
 #include "utils.h"
-#include "comm.h"
-#include "db.h"
-#include "interpreter.h" 
+#include "interpreter.h"
 #include "spells.h"
 #include "handler.h"
+#include "comm.h"
+#include "db.h"
 
-#define MANA_MU 1
-#define MANA_CL 1
+struct spell_info_type spell_info[TOP_SPELL_DEFINE + 1];
 
-#define SPELLO(nr, beat, pos, mlev, clev, mana, tar, func) { \
-	spell_info[nr].spell_pointer = (func);    \
-	spell_info[nr].beats = (beat);            \
-	spell_info[nr].minimum_position = (pos);  \
-	spell_info[nr].min_usesmana = (mana);     \
-	spell_info[nr].min_level_cleric = (clev); \
-	spell_info[nr].min_level_magic = (mlev);  \
-	spell_info[nr].targets = (tar);           \
-}
-
-#define SPELL_LEVEL(ch, sn)               \
-  ( (GET_CLASS(ch) == CLASS_CLERIC) ?     \
-  spell_info[sn].min_level_cleric : spell_info[sn].min_level_magic)
-
-
-/* 100 is the MAX_MANA for a character */
-#define USE_MANA(ch, sn)                            \
-  MAX(spell_info[sn].min_usesmana, 100/(2+GET_LEVEL(ch)-SPELL_LEVEL(ch,sn)))
-
-/* Global data */
+#define SINFO spell_info[spellnum]
 
 extern struct room_data *world;
-extern struct char_data *character_list;
-extern char	*spell_wear_off_msg[];
-struct spell_info_type spell_info[MAX_SPL_LIST];
 
-char	*spells[] = 
+/*
+ * This arrangement is pretty stupid, but the number of skills is limited by
+ * the playerfile.  We can arbitrarily increase the number of skills by
+ * increasing the space in the playerfile. Meanwhile, this should provide
+ * ample slots for skills.
+ */
+
+char *spells[] =
 {
-   "armor",               /* 1 */
-   "teleport",
-   "bless",
-   "blindness",
-   "burning hands",
-   "call lightning",
-   "charm person",
-   "chill touch",
-   "clone",
-   "color spray",
-   "control weather",     /* 11 */
-   "create food",
-   "create water",
-   "cure blind",
-   "cure critic",
-   "cure light",
-   "curse",
-   "detect evil",
-   "detect invisibility",
-   "detect magic",
-   "detect poison",       /* 21 */
-   "dispel evil",
-   "earthquake",
-   "enchant weapon",
-   "energy drain",
-   "fireball",
-   "harm",
-   "heal",
-   "invisibility",
-   "lightning bolt",
-   "locate object",      /* 31 */
-   "magic missile",
-   "poison",
-   "protection from evil",
-   "remove curse",
-   "sanctuary",
-   "shocking grasp",
-   "sleep",
-   "strength",
-   "summon",
-   "ventriloquate",      /* 41 */
-   "word of recall",
-   "remove poison",
-   "sense life",         /* 44 */
+  "!RESERVED!",			/* 0 - reserved */
 
-   /* RESERVED SKILLS */
-   "SKILL_SNEAK",        /* 45 */
-   "SKILL_HIDE",
-   "SKILL_STEAL",
-   "SKILL_BACKSTAB",
-   "SKILL_PICK_LOCK",
-   "SKILL_KICK",         /* 50 */
-   "SKILL_BASH",
-   "SKILL_RESCUE",
-   /* NON-CASTABLE SPELLS (Scrolls/potions/wands/staffs) */
+  /* SPELLS */
 
-   "identify",           /* 53 */
-   "\n"
+  "armor",			/* 1 */
+  "teleport",
+  "bless",
+  "blindness",
+  "burning hands",
+  "call lightning",
+  "charm person",
+  "chill touch",
+  "clone",
+  "color spray",		/* 10 */
+  "control weather",
+  "create food",
+  "create water",
+  "cure blind",
+  "cure critic",
+  "cure light",
+  "curse",
+  "detect alignment",
+  "detect invisibility",
+  "detect magic",		/* 20 */
+  "detect poison",
+  "dispel evil",
+  "earthquake",
+  "enchant weapon",
+  "energy drain",
+  "fireball",
+  "harm",
+  "heal",
+  "invisibility",
+  "lightning bolt",		/* 30 */
+  "locate object",
+  "magic missile",
+  "poison",
+  "protection from evil",
+  "remove curse",
+  "sanctuary",
+  "shocking grasp",
+  "sleep",
+  "strength",
+  "summon",			/* 40 */
+  "ventriloquate",
+  "word of recall",
+  "remove poison",
+  "sense life",
+  "animate dead",
+  "dispel good",
+  "group armor",
+  "group heal",
+  "group recall",
+  "infravision",		/* 50 */
+  "waterwalk",
+  "!UNUSED!",
+  "!UNUSED!",
+  "!UNUSED!",
+  "!UNUSED!",
+  "!UNUSED!",
+  "!UNUSED!",
+  "!UNUSED!",
+  "!UNUSED!",
+  "!UNUSED!",			/* 60 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 65 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 70 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 75 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 80 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 85 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 90 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 95 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 100 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 105 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 110 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 115 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 120 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 125 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 130 */
+
+  /* SKILLS */
+
+  "backstab",			/* 131 */
+  "bash",
+  "hide",
+  "kick",
+  "pick lock",
+  "punch",
+  "rescue",
+  "sneak",
+  "steal",
+  "track",			/* 140 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 145 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 150 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 155 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 160 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 165 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 170 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 175 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 180 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 185 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 190 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 195 */
+  "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!", "!UNUSED!",	/* 200 */
+
+  /* OBJECT SPELLS AND NPC SPELLS/SKILLS */
+
+  "identify",			/* 201 */
+  "fire breath",
+  "gas breath",
+  "frost breath",
+  "acid breath",
+  "lightning breath",
+
+  "\n"				/* the end */
 };
 
 
-const byte saving_throws[4][5][35] = {
-   { 
-    {
-      16, 14, 14, 14, 14, 14, 13, 13, 13, 13, 13, 11, 11, 11, 11, 11, 10, 10, 10, 10, 10, 8, 8, 8, 8, 8, 6, 6,
-          6, 6, 6, 4, 4, 4, 0 },
-      { 13, 11, 11, 11, 11, 11, 9, 9, 9, 9, 9, 7, 7, 7, 7, 7, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3, 1, 1, 1, 1, 1, 0, 0,
-                     0, 0 },
-      { 15, 13, 13, 13, 13, 13, 11, 11, 11, 11, 11, 9, 9, 9, 9, 9, 7, 7, 7, 7, 7, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3,
-                     3, 2, 2, 0 },
-      { 17, 15, 15, 15, 15, 15, 13, 13, 13, 13, 13, 11, 11, 11, 11, 11, 9, 9, 9, 9, 9, 7, 7, 7, 7, 7, 5, 5, 5,
-          5, 5, 5, 5, 3, 0 },
-      { 14, 12, 12, 12, 12, 12, 10, 10, 10, 10, 10, 8, 8, 8, 8, 8, 6, 6, 6, 6, 6, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2,
-                     2, 2, 2, 0      }
-    },
-   { 
-        {
-      11, 10, 10, 10, 9, 9, 9, 7, 7, 7, 6, 6, 6, 5, 5, 5, 4, 4, 4, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0,
-                     0 },
-      { 16, 14, 14, 14, 13, 13, 13, 11, 11, 11, 10, 10, 10, 9, 9, 9, 8, 8, 8, 6, 6, 6, 6, 6, 4, 4, 4, 4, 2, 2,
-          2, 1, 1, 1, 0 },
-      { 15, 13, 13, 13, 12, 12, 12, 10, 10, 10, 9, 9, 9, 8, 8, 8, 7, 7, 7, 5, 5, 5, 5, 5, 3, 3, 3, 3, 3, 2, 2,
-          2, 2, 2, 0 },
-      { 18, 16, 16, 16, 15, 15, 15, 13, 13, 13, 12, 12, 12, 11, 11, 11, 10, 10, 10, 8, 8, 8, 8, 8, 7, 7, 7, 7,
-          7, 6, 6, 6, 6, 5, 0 },
-      { 17, 15, 15, 15, 14, 14, 14, 12, 12, 12, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 7, 7, 7, 7, 7, 6, 6, 6,
-                     6, 5, 5, 5, 4, 0      }
-    },
-   { 
-        {
-      15, 13, 13, 13, 13, 12, 12, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8, 7, 7, 7,
-                     7, 7, 7, 6, 0 },
-      { 16, 14, 14, 14, 14, 12, 12, 12, 12, 10, 10, 10, 10, 8, 8, 8, 8, 8, 8, 6, 6, 6, 6, 6, 6, 4, 4, 4, 4, 4,
-          4, 3, 3, 2, 0 },
-      { 14, 12, 12, 12, 12, 11, 11, 11, 11, 10, 10, 10, 10, 10, 9, 9, 9, 9, 9, 8, 8, 8, 8, 8, 7, 7, 7, 7, 7, 6,
-                     6, 6, 5, 3, 0 },
-      { 18, 16, 16, 16, 16, 15, 15, 15, 15, 14, 14, 14, 14, 13, 13, 13, 13, 13, 12, 12, 12, 12, 12, 11, 11, 11,
-                     11, 11, 10, 10, 10, 10, 9, 5, 0 },
-      { 17, 15, 15, 15, 15, 13, 13, 13, 13, 11, 11, 11, 11, 9, 9, 9, 9, 9, 7, 7, 7, 7, 7, 5, 5, 5, 5, 5, 3, 3,
-          3, 3, 3, 1, 0      }
-    },
-   { 
-        {
-      16, 14, 14, 13, 13, 11, 11, 10, 10, 8, 8, 7, 7, 5, 5, 5, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 1, 1, 1,
-          1, 1, 0 },
-      { 18, 16, 16, 15, 15, 13, 13, 12, 12, 10, 10, 9, 9, 7, 7, 6, 6, 6, 6, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3,
-                     3, 3, 2, 0 },
-      { 17, 15, 15, 14, 14, 12, 12, 11, 11, 9, 9, 8, 8, 6, 6, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 2, 2, 2,
-                     2, 1, 0 },
-      { 20, 17, 17, 16, 16, 13, 13, 12, 12, 9, 9, 8, 8, 5, 5, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2,
-                     1, 1, 0 },
-      { 19, 17, 17, 16, 16, 14, 14, 13, 13, 11, 11, 10, 10, 8, 8, 7, 7, 6, 6, 6, 6, 6, 5, 5, 5, 5, 5, 4, 4, 4,
-          4, 2, 2, 1, 0      }
-}
-
-
+struct syllable {
+  char *org;
+  char *new;
 };
 
 
+struct syllable syls[] = {
+  {" ", " "},
+  {"ar", "abra"},
+  {"ate", "i"},
+  {"cau", "kada"},
+  {"blind", "nose"},
+  {"bur", "mosa"},
+  {"cu", "judi"},
+  {"de", "oculo"},
+  {"dis", "mar"},
+  {"ect", "kamina"},
+  {"en", "uns"},
+  {"gro", "cra"},
+  {"light", "dies"},
+  {"lo", "hi"},
+  {"magi", "kari"},
+  {"mon", "bar"},
+  {"mor", "zak"},
+  {"move", "sido"},
+  {"ness", "lacri"},
+  {"ning", "illa"},
+  {"per", "duda"},
+  {"ra", "gru"},
+  {"re", "candus"},
+  {"son", "sabru"},
+  {"tect", "infra"},
+  {"tri", "cula"},
+  {"ven", "nofo"},
+  {"word of", "inset"},
+  {"a", "i"}, {"b", "v"}, {"c", "q"}, {"d", "m"}, {"e", "o"}, {"f", "y"}, {"g", "t"},
+  {"h", "p"}, {"i", "u"}, {"j", "y"}, {"k", "t"}, {"l", "r"}, {"m", "w"}, {"n", "b"},
+  {"o", "a"}, {"p", "s"}, {"q", "d"}, {"r", "f"}, {"s", "g"}, {"t", "h"}, {"u", "e"},
+  {"v", "z"}, {"w", "x"}, {"x", "n"}, {"y", "l"}, {"z", "k"}, {"", ""}
+};
 
-void	affect_update( void )
+int mag_manacost(struct char_data * ch, int spellnum)
 {
-   static struct affected_type *af, *next_af_dude;
-   static struct char_data *i;
+  int mana;
 
-   for (i = character_list; i; i = i->next)
-      for (af = i->affected; af; af = next_af_dude) {
-	 next_af_dude = af->next;
-	 if (af->duration >= 1)
-	    af->duration--;
-	 else if (af->duration == -1)
-	    /* No action */
-	    af->duration = -1;  /* GODs only! unlimited */
-	 else {
-	    if ((af->type > 0) && (af->type <= 52)) /* It must be a spell */
-	       if (!af->next || (af->next->type != af->type) || 
-	           (af->next->duration > 0))
-		  if (*spell_wear_off_msg[af->type]) {
-		     send_to_char(spell_wear_off_msg[af->type], i);
-		     send_to_char("\n\r", i);
-		  }
+  mana = MAX(SINFO.mana_max - (SINFO.mana_change *
+		    (GET_LEVEL(ch) - SINFO.min_level[(int) GET_CLASS(ch)])),
+	     SINFO.mana_min);
 
-	    affect_remove(i, af);
-	 }
+  return mana;
+}
+
+
+/* say_spell erodes buf, buf1, buf2 */
+void say_spell(struct char_data * ch, int spellnum, struct char_data * tch,
+	            struct obj_data * tobj)
+{
+  char lbuf[256];
+
+  struct char_data *i;
+  int j, ofs = 0;
+
+  *buf = '\0';
+  strcpy(lbuf, spells[spellnum]);
+
+  while (*(lbuf + ofs)) {
+    for (j = 0; *(syls[j].org); j++) {
+      if (!strncmp(syls[j].org, lbuf + ofs, strlen(syls[j].org))) {
+	strcat(buf, syls[j].new);
+	ofs += strlen(syls[j].org);
       }
+    }
+  }
+
+  if (tch != NULL && tch->in_room == ch->in_room) {
+    if (tch == ch)
+      sprintf(lbuf, "$n closes $s eyes and utters the words, '%%s'.");
+    else
+      sprintf(lbuf, "$n stares at $N and utters the words, '%%s'.");
+  } else if (tobj != NULL && tobj->in_room == ch->in_room)
+    sprintf(lbuf, "$n stares at $p and utters the words, '%%s'.");
+  else
+    sprintf(lbuf, "$n utters the words, '%%s'.");
+
+  sprintf(buf1, lbuf, spells[spellnum]);
+  sprintf(buf2, lbuf, buf);
+
+  for (i = world[ch->in_room].people; i; i = i->next_in_room) {
+    if (i == ch || i == tch || !i->desc || !AWAKE(i))
+      continue;
+    if (GET_CLASS(ch) == GET_CLASS(i))
+      perform_act(buf1, ch, tobj, tch, i);
+    else
+      perform_act(buf2, ch, tobj, tch, i);
+  }
+
+  if (tch != NULL && tch != ch) {
+    sprintf(buf1, "$n stares at you and utters the words, '%s'.",
+	    GET_CLASS(ch) == GET_CLASS(tch) ? spells[spellnum] : buf);
+    act(buf1, FALSE, ch, NULL, tch, TO_VICT);
+  }
 }
 
 
-void	clone_char(struct char_data *ch)
+int find_skill_num(char *name)
 {
-   extern struct index_data *mob_index;
-   struct char_data *clone;
-   struct affected_type *af;
-   int	i;
+  int index = 0, ok;
+  char *temp, *temp2;
+  char first[256], first2[256];
 
-   CREATE(clone, struct char_data, 1);
+  while (*spells[++index] != '\n') {
+    if (is_abbrev(name, spells[index]))
+      return index;
 
+    ok = 1;
+    temp = any_one_arg(spells[index], first);
+    temp2 = any_one_arg(name, first2);
+    while (*first && *first2 && ok) {
+      if (!is_abbrev(first, first2))
+	ok = 0;
+      temp = any_one_arg(temp, first);
+      temp2 = any_one_arg(temp2, first2);
+    }
 
-   clear_char(clone);       /* Clear EVERYTHING! (ASSUMES CORRECT) */
+    if (ok && !*first2)
+      return index;
+  }
 
-   clone->player    = ch->player;
-   clone->abilities = ch->abilities;
-
-   for (i = 0; i < 5; i++)
-      clone->specials2.apply_saving_throw[i] = ch->specials2.apply_saving_throw[i];
-
-   for (af = ch->affected; af; af = af->next)
-      affect_to_char(clone, af);
-
-   for (i = 0; i < 3; i++)
-      GET_COND(clone, i) = GET_COND(ch, i);
-
-   clone->points = ch->points;
-
-   clone->specials = ch->specials;
-   clone->specials.fighting = 0;
-
-   clone->player.name = str_dup(ch->player.name);
-
-   clone->player.short_descr = 	str_dup(ch->player.short_descr);
-
-   clone->player.long_descr = str_dup(ch->player.long_descr);
-
-   clone->player.description = 0;
-   /* REMEMBER EXTRA DESCRIPTIONS */
-
-   GET_TITLE(clone) = str_dup(GET_TITLE(ch));
-
-   clone->nr = ch->nr;
-
-   if (IS_NPC(clone))
-      mob_index[clone->nr].number++;
-   else { /* Make PC's into NPC's */
-      clone->nr = -1;
-      SET_BIT(clone->specials2.act, MOB_ISNPC);
-   }
-
-   clone->desc = 0;
-   clone->followers = 0;
-   clone->master = 0;
-
-   clone->next = character_list;
-   character_list = clone;
-
-   char_to_room(clone, ch->in_room);
-}
-
-
-
-void	clone_obj(struct obj_data *obj)
-{
-   struct obj_data *clone;
-
-   CREATE(clone, struct obj_data, 1);
-
-   *clone = *obj;
-
-   clone->name               = str_dup(obj->name);
-   clone->description        = str_dup(obj->description);
-   clone->short_description  = str_dup(obj->short_description);
-   clone->action_description = str_dup(obj->action_description);
-   clone->ex_description     = 0;
-
-   /* REMEMBER EXTRA DESCRIPTIONS */
-   clone->carried_by         = 0;
-   clone->in_obj             = 0;
-   clone->contains           = 0;
-   clone->next_content       = 0;
-   clone->next               = 0;
-
-   /* VIRKER IKKE ENDNU */
+  return -1;
 }
 
 
 
-/* Check if making CH follow VICTIM will create an illegal */
-/* Follow "Loop/circle"                                    */
-bool circle_follow(struct char_data *ch, struct char_data *victim)
+/*
+ * All invocations of any spell must come through this function,
+ * call_magic(). This is also the entry point for non-spoken or unrestricted
+ * spells. Spellnum 0 is legal but silently ignored here, to make callers
+ * simpler.
+ */
+int call_magic(struct char_data * caster, struct char_data * cvict,
+	     struct obj_data * ovict, int spellnum, int level, int casttype)
 {
-   struct char_data *k;
+  int savetype;
 
-   for (k = victim; k; k = k->master) {
-      if (k == ch)
-	 return(TRUE);
-   }
+  if (spellnum < 1 || spellnum > TOP_SPELL_DEFINE)
+    return 0;
 
-   return(FALSE);
+  if (ROOM_FLAGGED(caster->in_room, ROOM_NOMAGIC)) {
+    send_to_char("Your magic fizzles out and dies.\r\n", caster);
+    act("$n's magic fizzles out and dies.", FALSE, caster, 0, 0, TO_ROOM);
+    return 0;
+  }
+  if (IS_SET(ROOM_FLAGS(caster->in_room), ROOM_PEACEFUL) &&
+      (SINFO.violent || IS_SET(SINFO.routines, MAG_DAMAGE))) {
+    send_to_char("A flash of white light fills the room, dispelling your "
+		 "violent magic!\r\n", caster);
+    act("White light from no particular source suddenly fills the room, "
+	"then vanishes.", FALSE, caster, 0, 0, TO_ROOM);
+    return 0;
+  }
+  /* determine the type of saving throw */
+  switch (casttype) {
+  case CAST_STAFF:
+  case CAST_SCROLL:
+  case CAST_POTION:
+  case CAST_WAND:
+    savetype = SAVING_ROD;
+    break;
+  case CAST_SPELL:
+    savetype = SAVING_SPELL;
+    break;
+  default:
+    savetype = SAVING_BREATH;
+    break;
+  }
+
+
+  if (IS_SET(SINFO.routines, MAG_DAMAGE))
+    mag_damage(level, caster, cvict, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_AFFECTS))
+    mag_affects(level, caster, cvict, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_UNAFFECTS))
+    mag_unaffects(level, caster, cvict, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_POINTS))
+    mag_points(level, caster, cvict, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_ALTER_OBJS))
+    mag_alter_objs(level, caster, ovict, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_GROUPS))
+    mag_groups(level, caster, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_MASSES))
+    mag_masses(level, caster, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_AREAS))
+    mag_areas(level, caster, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_SUMMONS))
+    mag_summons(level, caster, ovict, spellnum, savetype);
+
+  if (IS_SET(SINFO.routines, MAG_CREATIONS))
+    mag_creations(level, caster, spellnum);
+
+  if (IS_SET(SINFO.routines, MAG_MANUAL))
+    switch (spellnum) {
+    case SPELL_ENCHANT_WEAPON:
+      MANUAL_SPELL(spell_enchant_weapon);
+      break;
+    case SPELL_CHARM:
+      MANUAL_SPELL(spell_charm);
+      break;
+    case SPELL_WORD_OF_RECALL:
+      MANUAL_SPELL(spell_recall);
+      break;
+    case SPELL_IDENTIFY:
+      MANUAL_SPELL(spell_identify);
+      break;
+    case SPELL_SUMMON:
+      MANUAL_SPELL(spell_summon);
+      break;
+    case SPELL_LOCATE_OBJECT:
+      MANUAL_SPELL(spell_locate_object);
+      break;
+    }
+
+  return 1;
 }
 
+/*
+ * mag_objectmagic: This is the entry-point for all magic items.
+ *
+ * staff  - [0]	level	[1] max charges	[2] num charges	[3] spell num
+ * wand   - [0]	level	[1] max charges	[2] num charges	[3] spell num
+ * scroll - [0]	level	[1] spell num	[2] spell num	[3] spell num
+ * potion - [0] level	[1] spell num	[2] spell num	[3] spell num
+ *
+ * Staves and wands will default to level 14 if the level is not specified.
+ */
 
-
-/* Called when stop following persons, or stopping charm */
-/* This will NOT do if a character quits/dies!!          */
-void	stop_follower(struct char_data *ch)
+void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
+		          char *argument)
 {
-   struct follow_type *j, *k;
+  int i, k;
+  struct char_data *tch = NULL, *next_tch;
+  struct obj_data *tobj = NULL;
 
-   assert(ch->master);
+  one_argument(argument, arg);
 
-   if (IS_AFFECTED(ch, AFF_CHARM)) {
-      act("You realize that $N is a jerk!", FALSE, ch, 0, ch->master, TO_CHAR);
-      act("$n realizes that $N is a jerk!", FALSE, ch, 0, ch->master, TO_NOTVICT);
-      act("$n hates your guts!", FALSE, ch, 0, ch->master, TO_VICT);
-      if (affected_by_spell(ch, SPELL_CHARM_PERSON))
-	 affect_from_char(ch, SPELL_CHARM_PERSON);
-   } else {
-      act("You stop following $N.", FALSE, ch, 0, ch->master, TO_CHAR);
-      act("$n stops following $N.", FALSE, ch, 0, ch->master, TO_NOTVICT);
-      act("$n stops following you.", FALSE, ch, 0, ch->master, TO_VICT);
-   }
+  k = generic_find(arg, FIND_CHAR_ROOM | FIND_OBJ_INV | FIND_OBJ_ROOM |
+		   FIND_OBJ_EQUIP, ch, &tch, &tobj);
 
-   if (ch->master->followers->follower == ch) { /* Head of follower-list? */
-      k = ch->master->followers;
-      ch->master->followers = k->next;
-      free(k);
-   } else { /* locate follower who is not head of list */
-      for (k = ch->master->followers; k->next->follower != ch; k = k->next)
-	 ;
+  switch (GET_OBJ_TYPE(obj)) {
+  case ITEM_STAFF:
+    act("You tap $p three times on the ground.", FALSE, ch, obj, 0, TO_CHAR);
+    if (obj->action_description)
+      act(obj->action_description, FALSE, ch, obj, 0, TO_ROOM);
+    else
+      act("$n taps $p three times on the ground.", FALSE, ch, obj, 0, TO_ROOM);
 
-      j = k->next;
-      k->next = j->next;
-      free(j);
-   }
-
-   ch->master = 0;
-   REMOVE_BIT(ch->specials.affected_by, AFF_CHARM | AFF_GROUP);
-}
-
-
-
-/* Called when a character that follows/is followed dies */
-void	die_follower(struct char_data *ch)
-{
-   struct follow_type *j, *k;
-
-   if (ch->master)
-      stop_follower(ch);
-
-   for (k = ch->followers; k; k = j) {
-      j = k->next;
-      stop_follower(k->follower);
-   }
-}
-
-
-
-/* Do NOT call this before having checked if a circle of followers */
-/* will arise. CH will follow leader                               */
-void	add_follower(struct char_data *ch, struct char_data *leader)
-{
-   struct follow_type *k;
-
-   assert(!ch->master);
-
-   ch->master = leader;
-
-   CREATE(k, struct follow_type, 1);
-
-   k->follower = ch;
-   k->next = leader->followers;
-   leader->followers = k;
-
-   act("You now follow $N.", FALSE, ch, 0, leader, TO_CHAR);
-   act("$n starts following you.", TRUE, ch, 0, leader, TO_VICT);
-   act("$n now follows $N.", TRUE, ch, 0, leader, TO_NOTVICT);
-}
-
-
-
-void	say_spell(struct char_data *ch, int si )
-{
-   char splwd[MAX_INPUT_LENGTH];
-
-   int	j, offs;
-   struct char_data *temp_char;
-
-
-   struct syllable {
-      char	org[10];
-      char	new[10];
-   };
-
-   struct syllable syls[] = {
-      { " ", " " },
-      { "ar", "abra"   },
-      { "au", "kada"    },
-      { "bless", "fido" },
-      { "blind", "nose" },
-      { "bur", "mosa" },
-      { "cu", "judi" },
-      { "de", "oculo" },
-      { "en", "unso" },
-      { "light", "dies" },
-      { "lo", "hi" },
-      { "mor", "zak" },
-      { "move", "sido" },
-      { "ness", "lacri" },
-      { "ning", "illa" },
-      { "per", "duda" },
-      { "ra", "gru"   },
-      { "re", "candus" },
-      { "son", "sabru" },
-      { "tect", "infra" },
-      { "tri", "cula" },
-      { "ven", "nofo" },
-      { "a", "a" }, { "b", "b" }, { "c", "q" }, { "d", "e" }, { "e", "z" },
-      { "f", "y" }, { "g", "o" }, { "h", "p" }, { "i", "u" }, { "j", "y" },
-      { "k", "t" }, { "l", "r" }, { "m", "w" }, { "n", "i" }, { "o", "a" },
-      { "p", "s" }, { "q", "d" }, { "r", "f" }, { "s", "g" }, { "t", "h" },
-      { "u", "j" }, { "v", "z" }, { "w", "x" }, { "x", "n" }, { "y", "l" },
-      { "z", "k" }, { "", "" }
-   };   
-
-
-   strcpy(buf, "");
-   strcpy(splwd, spells[si-1]);
-
-   offs = 0;
-
-   while (*(splwd + offs)) {
-      for (j = 0; *(syls[j].org); j++)
-	 if (strncmp(syls[j].org, splwd + offs, strlen(syls[j].org)) == 0) {
-	    strcat(buf, syls[j].new);
-	    if (strlen(syls[j].org))
-	       offs += strlen(syls[j].org);
-	    else
-	       ++offs;
-	 }
-   }
-
-   sprintf(buf2, "$n utters the words, '%s'", buf);
-   sprintf(buf, "$n utters the words, '%s'", spells[si-1]);
-
-   for (temp_char = world[ch->in_room].people; 
-       temp_char; 
-       temp_char = temp_char->next_in_room)
-      if (temp_char != ch) {
-	 if (GET_CLASS(ch) == GET_CLASS(temp_char))
-	    act(buf, FALSE, ch, 0, temp_char, TO_VICT);
-	 else
-	    act(buf2, FALSE, ch, 0, temp_char, TO_VICT);
-
+    if (GET_OBJ_VAL(obj, 2) <= 0) {
+      act("It seems powerless.", FALSE, ch, obj, 0, TO_CHAR);
+      act("Nothing seems to happen.", FALSE, ch, obj, 0, TO_ROOM);
+    } else {
+      GET_OBJ_VAL(obj, 2)--;
+      for (tch = world[ch->in_room].people; tch; tch = next_tch) {
+	next_tch = tch->next_in_room;
+	if (ch == tch)
+	  continue;
+	if (GET_OBJ_VAL(obj, 0))
+	  call_magic(ch, tch, NULL, GET_OBJ_VAL(obj, 3),
+		     GET_OBJ_VAL(obj, 0), CAST_STAFF);
+	else
+	  call_magic(ch, tch, NULL, GET_OBJ_VAL(obj, 3),
+		     DEFAULT_STAFF_LVL, CAST_STAFF);
       }
+    }
+    break;
+  case ITEM_WAND:
+    if (k == FIND_CHAR_ROOM) {
+      if (tch == ch) {
+	act("You point $p at yourself.", FALSE, ch, obj, 0, TO_CHAR);
+	act("$n points $p at $mself.", FALSE, ch, obj, 0, TO_ROOM);
+      } else {
+	act("You point $p at $N.", FALSE, ch, obj, tch, TO_CHAR);
+	if (obj->action_description != NULL)
+	  act(obj->action_description, FALSE, ch, obj, tch, TO_ROOM);
+	else
+	  act("$n points $p at $N.", TRUE, ch, obj, tch, TO_ROOM);
+      }
+    } else if (tobj != NULL) {
+      act("You point $p at $P.", FALSE, ch, obj, tobj, TO_CHAR);
+      if (obj->action_description != NULL)
+	act(obj->action_description, FALSE, ch, obj, tobj, TO_ROOM);
+      else
+	act("$n points $p at $P.", TRUE, ch, obj, tobj, TO_ROOM);
+    } else {
+      act("At what should $p be pointed?", FALSE, ch, obj, NULL, TO_CHAR);
+      return;
+    }
 
+    if (GET_OBJ_VAL(obj, 2) <= 0) {
+      act("It seems powerless.", FALSE, ch, obj, 0, TO_CHAR);
+      return;
+    }
+    GET_OBJ_VAL(obj, 2)--;
+    if (GET_OBJ_VAL(obj, 0))
+      call_magic(ch, tch, tobj, GET_OBJ_VAL(obj, 3),
+		 GET_OBJ_VAL(obj, 0), CAST_WAND);
+    else
+      call_magic(ch, tch, tobj, GET_OBJ_VAL(obj, 3),
+		 DEFAULT_WAND_LVL, CAST_WAND);
+    break;
+  case ITEM_SCROLL:
+    if (*arg) {
+      if (!k) {
+	act("There is nothing to here to affect with $p.", FALSE,
+	    ch, obj, NULL, TO_CHAR);
+	return;
+      }
+    } else
+      tch = ch;
+
+    act("You recite $p which dissolves.", TRUE, ch, obj, 0, TO_CHAR);
+    if (obj->action_description)
+      act(obj->action_description, FALSE, ch, obj, NULL, TO_ROOM);
+    else
+      act("$n recites $p.", FALSE, ch, obj, NULL, TO_ROOM);
+
+    for (i = 1; i < 4; i++)
+      if (!(call_magic(ch, tch, tobj, GET_OBJ_VAL(obj, i),
+		       GET_OBJ_VAL(obj, 0), CAST_SCROLL)))
+	break;
+
+    if (obj != NULL)
+      extract_obj(obj);
+    break;
+  case ITEM_POTION:
+    tch = ch;
+    act("You quaff $p.", FALSE, ch, obj, NULL, TO_CHAR);
+    if (obj->action_description)
+      act(obj->action_description, FALSE, ch, obj, NULL, TO_ROOM);
+    else
+      act("$n quaffs $p.", TRUE, ch, obj, NULL, TO_ROOM);
+
+    for (i = 1; i < 4; i++)
+      if (!(call_magic(ch, ch, NULL, GET_OBJ_VAL(obj, i),
+		       GET_OBJ_VAL(obj, 0), CAST_POTION)))
+	break;
+
+    if (obj != NULL)
+      extract_obj(obj);
+    break;
+  default:
+    log("SYSERR: Unknown object_type in mag_objectmagic");
+    break;
+  }
 }
 
 
+/*
+ * cast_spell is used generically to cast any spoken spell, assuming we
+ * already have the target char/obj and spell number.  It checks all
+ * restrictions, etc., prints the words, etc.
+ *
+ * Entry point for NPC casts.
+ */
 
-bool saves_spell(struct char_data *ch, sh_int save_type)
+int cast_spell(struct char_data * ch, struct char_data * tch,
+	           struct obj_data * tobj, int spellnum)
 {
-   int	save;
+  if (GET_POS(ch) < SINFO.min_position) {
+    switch (GET_POS(ch)) {
+      case POS_SLEEPING:
+      send_to_char("You dream about great magical powers.\r\n", ch);
+      break;
+    case POS_RESTING:
+      send_to_char("You cannot concentrate while resting.\r\n", ch);
+      break;
+    case POS_SITTING:
+      send_to_char("You can't do this sitting!\r\n", ch);
+      break;
+    case POS_FIGHTING:
+      send_to_char("Impossible!  You can't concentrate enough!\r\n", ch);
+      break;
+    default:
+      send_to_char("You can't do much of anything like this!\r\n", ch);
+      break;
+    }
+    return 0;
+  }
+  if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master == tch)) {
+    send_to_char("You are afraid you might hurt your master!\r\n", ch);
+    return 0;
+  }
+  if ((tch != ch) && IS_SET(SINFO.targets, TAR_SELF_ONLY)) {
+    send_to_char("You can only cast this spell upon yourself!\r\n", ch);
+    return 0;
+  }
+  if ((tch == ch) && IS_SET(SINFO.targets, TAR_NOT_SELF)) {
+    send_to_char("You cannot cast this spell upon yourself!\r\n", ch);
+    return 0;
+  }
+  send_to_char(OK, ch);
+  say_spell(ch, spellnum, tch, tobj);
 
-   /* Negative apply_saving_throw makes saving throw better! */
-
-   save = ch->specials2.apply_saving_throw[save_type];
-
-   if (!IS_NPC(ch)) {
-      save += saving_throws[GET_CLASS(ch)-1][save_type][(int)GET_LEVEL(ch)];
-      if (GET_LEVEL(ch) >= LEVEL_IMMORT)
-	 return(TRUE);
-   }
-
-   return(MAX(1, save) < number(1, 20));
+  return (call_magic(ch, tch, tobj, spellnum, GET_LEVEL(ch), CAST_SPELL));
 }
 
 
-
-char	*skip_spaces(char *string)
-{
-   for (; *string && (*string) == ' '; string++)
-      ;
-
-   return(string);
-}
-
-
-
-/* Assumes that *argument does start with first letter of chopped string */
+/*
+ * do_cast is the entry point for PC-casted spells.  It parses the arguments,
+ * determines the spell number and finds a target, throws the die to see if
+ * the spell can be cast, checks for sufficient mana and subtracts it, and
+ * passes control to cast_spell().
+ */
 
 ACMD(do_cast)
 {
-   struct obj_data *tar_obj;
-   struct char_data *tar_char;
-   char	name[MAX_STRING_LENGTH];
-   int	qend, spl, i;
-   bool target_ok;
+  struct char_data *tch = NULL;
+  struct obj_data *tobj = NULL;
+  char *s, *t;
+  int mana, spellnum, i, target = 0;
 
-   if (IS_NPC(ch))
-      return;
+  if (IS_NPC(ch))
+    return;
 
-   if (GET_LEVEL(ch) < LEVEL_IMMORT) {
-      if (GET_CLASS(ch) == CLASS_WARRIOR) {
-	 send_to_char("Think you had better stick to fighting...\n\r", ch);
-	 return;
-      } else if (GET_CLASS(ch) == CLASS_THIEF) {
-	 send_to_char("Think you should stick to robbing and killing...\n\r", ch);
-	 return;
+  /* get: blank, spell name, target name */
+  s = strtok(argument, "'");
+
+  if (s == NULL) {
+    send_to_char("Cast what where?\r\n", ch);
+    return;
+  }
+  s = strtok(NULL, "'");
+  if (s == NULL) {
+    send_to_char("Spell names must be enclosed in the Holy Magic Symbols: '\r\n", ch);
+    return;
+  }
+  t = strtok(NULL, "\0");
+
+  /* spellnum = search_block(s, spells, 0); */
+  spellnum = find_skill_num(s);
+
+  if ((spellnum < 1) || (spellnum > MAX_SPELLS)) {
+    send_to_char("Cast what?!?\r\n", ch);
+    return;
+  }
+  if (GET_LEVEL(ch) < SINFO.min_level[(int) GET_CLASS(ch)]) {
+    send_to_char("You do not know that spell!\r\n", ch);
+    return;
+  }
+  if (GET_SKILL(ch, spellnum) == 0) {
+    send_to_char("You are unfamiliar with that spell.\r\n", ch);
+    return;
+  }
+  /* Find the target */
+  if (t != NULL) {
+    one_argument(strcpy(arg, t), t);
+    skip_spaces(&t);
+  }
+  if (IS_SET(SINFO.targets, TAR_IGNORE)) {
+    target = TRUE;
+  } else if (t != NULL && *t) {
+    if (!target && (IS_SET(SINFO.targets, TAR_CHAR_ROOM))) {
+      if ((tch = get_char_room_vis(ch, t)) != NULL)
+	target = TRUE;
+    }
+    if (!target && IS_SET(SINFO.targets, TAR_CHAR_WORLD))
+      if ((tch = get_char_vis(ch, t)))
+	target = TRUE;
+
+    if (!target && IS_SET(SINFO.targets, TAR_OBJ_INV))
+      if ((tobj = get_obj_in_list_vis(ch, t, ch->carrying)))
+	target = TRUE;
+
+    if (!target && IS_SET(SINFO.targets, TAR_OBJ_EQUIP)) {
+      for (i = 0; !target && i < NUM_WEARS; i++)
+	if (ch->equipment[i] && !str_cmp(t, ch->equipment[i]->name)) {
+	  tobj = ch->equipment[i];
+	  target = TRUE;
+	}
+    }
+    if (!target && IS_SET(SINFO.targets, TAR_OBJ_ROOM))
+      if ((tobj = get_obj_in_list_vis(ch, t, world[ch->in_room].contents)))
+	target = TRUE;
+
+    if (!target && IS_SET(SINFO.targets, TAR_OBJ_WORLD))
+      if ((tobj = get_obj_vis(ch, t)))
+	target = TRUE;
+
+  } else {			/* if target string is empty */
+    if (!target && IS_SET(SINFO.targets, TAR_FIGHT_SELF))
+      if (FIGHTING(ch) != NULL) {
+	tch = ch;
+	target = TRUE;
       }
-   }
-
-   argument = skip_spaces(argument);
-
-   /* If there is no chars in argument */
-   if (!(*argument)) {
-      send_to_char("Cast which what where?\n\r", ch);
+    if (!target && IS_SET(SINFO.targets, TAR_FIGHT_VICT))
+      if (FIGHTING(ch) != NULL) {
+	tch = FIGHTING(ch);
+	target = TRUE;
+      }
+    /* if no target specified, and the spell isn't violent, default to self */
+    if (!target && IS_SET(SINFO.targets, TAR_CHAR_ROOM) &&
+	!SINFO.violent) {
+      tch = ch;
+      target = TRUE;
+    }
+    if (!target) {
+      sprintf(buf, "Upon %s should the spell be cast?\r\n",
+	 IS_SET(SINFO.targets, TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_WORLD) ?
+	      "what" : "who");
+      send_to_char(buf, ch);
       return;
-   }
+    }
+  }
 
-   if (*argument != '\'') {
-      send_to_char("Magic must always be enclosed by the holy magic symbols: '\n\r", ch);
-      return;
-   }
+  if (target && (tch == ch) && SINFO.violent) {
+    send_to_char("You shouldn't cast that on yourself -- could be bad for your health!\r\n", ch);
+    return;
+  }
+  if (!target) {
+    send_to_char("Cannot find the target of your spell!\r\n", ch);
+    return;
+  }
+  mana = mag_manacost(ch, spellnum);
+  if ((mana > 0) && (GET_MANA(ch) < mana) && (GET_LEVEL(ch) < LVL_IMMORT)) {
+    send_to_char("You haven't the energy to cast that spell!\r\n", ch);
+    return;
+  }
 
-   /* Locate the last quote && lowercase the magic words (if any) */
-
-   for (qend = 1; *(argument + qend) && (*(argument + qend) != '\'') ; qend++)
-      *(argument + qend) = LOWER(*(argument + qend));
-
-   if (*(argument + qend) != '\'') {
-      send_to_char("Magic must always be enclosed by the holy magic symbols: '\n\r", ch);
-      return;
-   }
-
-   spl = old_search_block(argument, 1, qend - 1, spells, 0);
-
-   if (!spl) {
-      send_to_char("Your lips do not move, no magic appears.\n\r", ch);
-      return;
-   }
-
-   if ((spl > 0) && (spl <= 44) && spell_info[spl].spell_pointer) {
-      if (GET_POS(ch) < spell_info[spl].minimum_position) {
-	 switch (GET_POS(ch)) {
-	 case POSITION_SLEEPING :
-	    send_to_char("You dream about great magical powers.\n\r", ch);
-	    break;
-	 case POSITION_RESTING :
-	    send_to_char("You can't concentrate enough while resting.\n\r", ch);
-	    break;
-	 case POSITION_SITTING :
-	    send_to_char("You can't do this sitting!\n\r", ch);
-	    break;
-	 case POSITION_FIGHTING :
-	    send_to_char("Impossible!  You can't concentrate enough!\n\r", ch);
-	    break;
-	 default:
-	    send_to_char("It seems like you're in a pretty bad shape!\n\r", ch);
-	    break;
-	 } /* Switch */
-      }	 else {
-
-	 if (GET_LEVEL(ch) < LEVEL_IMMORT) {
-	    if ((GET_CLASS(ch) == CLASS_MAGIC_USER) && 
-	        (spell_info[spl].min_level_magic > GET_LEVEL(ch))) {
-	       send_to_char("Sorry, you can't do that.\n\r", ch);
-	       return;
-	    }
-	    if ((GET_CLASS(ch) == CLASS_CLERIC) && 
-	        (spell_info[spl].min_level_cleric > GET_LEVEL(ch))) {
-	       send_to_char("Sorry, you can't do that.\n\r", ch);
-	       return;
-	    }
-	 }
-
-	 argument += qend + 1;	/* Point to the last ' */
-	 for (; *argument == ' '; argument++)
-	    ;
-
-	 /* **************** Locate targets **************** */
-
-	 target_ok = FALSE;
-	 tar_char = 0;
-	 tar_obj = 0;
-
-	 if (!IS_SET(spell_info[spl].targets, TAR_IGNORE)) {
-
-	    argument = one_argument(argument, name);
-
-	    if (*name) {
-	       if (IS_SET(spell_info[spl].targets, TAR_CHAR_ROOM))
-		  if ((tar_char = get_char_room_vis(ch, name)))
-		     target_ok = TRUE;
-
-	       if (!target_ok && IS_SET(spell_info[spl].targets, TAR_CHAR_WORLD))
-		  if ((tar_char = get_char_vis(ch, name)))
-		     target_ok = TRUE;
-
-	       if (!target_ok && IS_SET(spell_info[spl].targets, TAR_OBJ_INV))
-		  if ((tar_obj = get_obj_in_list_vis(ch, name, ch->carrying)))
-		     target_ok = TRUE;
-
-	       if (!target_ok && IS_SET(spell_info[spl].targets, TAR_OBJ_ROOM))
-		  if ((tar_obj = get_obj_in_list_vis(ch, name, world[ch->in_room].contents)))
-		     target_ok = TRUE;
-
-	       if (!target_ok && IS_SET(spell_info[spl].targets, TAR_OBJ_WORLD))
-		  if ((tar_obj = get_obj_vis(ch, name)))
-		     target_ok = TRUE;
-
-	       if (!target_ok && IS_SET(spell_info[spl].targets, TAR_OBJ_EQUIP)) {
-		  for (i = 0; i < MAX_WEAR && !target_ok; i++)
-		     if (ch->equipment[i] && !str_cmp(name, ch->equipment[i]->name)) {
-			tar_obj = ch->equipment[i];
-			target_ok = TRUE;
-		     }
-	       }
-
-	       if (!target_ok && IS_SET(spell_info[spl].targets, TAR_SELF_ONLY))
-		  if (str_cmp(GET_NAME(ch), name) == 0) {
-		     tar_char = ch;
-		     target_ok = TRUE;
-		  }
-
-	    } else { /* No argument was typed */
-
-	       if (IS_SET(spell_info[spl].targets, TAR_FIGHT_SELF))
-		  if (ch->specials.fighting) {
-		     tar_char = ch;
-		     target_ok = TRUE;
-		  }
-
-	       if (!target_ok && IS_SET(spell_info[spl].targets, TAR_FIGHT_VICT))
-		  if (ch->specials.fighting) {
-		     /* WARNING, MAKE INTO POINTER */
-		     tar_char = ch->specials.fighting;
-		     target_ok = TRUE;
-		  }
-
-	       if (!target_ok && IS_SET(spell_info[spl].targets, TAR_SELF_ONLY)) {
-		  tar_char = ch;
-		  target_ok = TRUE;
-	       }
-
-	    }
-
-	 } else {
-	    target_ok = TRUE; /* No target, is a good target */
-	 }
-
-	 if (!target_ok) {
-	    if (*name) {
-	       if (IS_SET(spell_info[spl].targets, TAR_CHAR_ROOM))
-		  send_to_char("Nobody here by that name.\n\r", ch);
-	       else if (IS_SET(spell_info[spl].targets, TAR_CHAR_WORLD))
-		  send_to_char("Nobody playing by that name.\n\r", ch);
-	       else if (IS_SET(spell_info[spl].targets, TAR_OBJ_INV))
-		  send_to_char("You are not carrying anything like that.\n\r", ch);
-	       else if (IS_SET(spell_info[spl].targets, TAR_OBJ_ROOM))
-		  send_to_char("Nothing here by that name.\n\r", ch);
-	       else if (IS_SET(spell_info[spl].targets, TAR_OBJ_WORLD))
-		  send_to_char("Nothing at all by that name.\n\r", ch);
-	       else if (IS_SET(spell_info[spl].targets, TAR_OBJ_EQUIP))
-		  send_to_char("You are not wearing anything like that.\n\r", ch);
-	       else if (IS_SET(spell_info[spl].targets, TAR_OBJ_WORLD))
-		  send_to_char("Nothing at all by that name.\n\r", ch);
-
-	    } else { /* Nothing was given as argument */
-	       if (spell_info[spl].targets < TAR_OBJ_INV)
-		  send_to_char("Who should the spell be cast upon?\n\r", ch);
-	       else
-		  send_to_char("What should the spell be cast upon?\n\r", ch);
-	    }
-	    return;
-	 } else { /* TARGET IS OK */
-	    if ((tar_char == ch) && IS_SET(spell_info[spl].targets, TAR_SELF_NONO)) {
-	       send_to_char("You can not cast this spell upon yourself.\n\r", ch);
-	       return;
-	    } else if ((tar_char != ch) && IS_SET(spell_info[spl].targets, TAR_SELF_ONLY)) {
-	       send_to_char("You can only cast this spell upon yourself.\n\r", ch);
-	       return;
-	    } else if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master == tar_char)) {
-	       send_to_char("You are afraid that it could harm your master.\n\r", ch);
-	       return;
-	    }
-	 }
-
-	 if (GET_LEVEL(ch) < LEVEL_IMMORT) {
-	    if (GET_MANA(ch) < USE_MANA(ch, spl)) {
-	       send_to_char("You can't summon enough energy to cast the spell.\n\r", ch);
-	       return;
-	    }
-	 }
-
-	 if (spl != SPELL_VENTRILOQUATE)  /* :-) */
-	    say_spell(ch, spl);
-
-	 WAIT_STATE(ch, spell_info[spl].beats);
-
-	 if ((spell_info[spl].spell_pointer == 0) && spl > 0)
-	    send_to_char("Sorry, this magic has not yet been implemented :(\n\r", ch);
-	 else {
-	    if (number(1, 101) > GET_SKILL(ch, spl)) { /* 101% is failure */
-	       send_to_char("You lost your concentration!\n\r", ch);
-	       GET_MANA(ch) -= (USE_MANA(ch, spl) >> 1);
-	       return;
-	    }
-	    send_to_char("Ok.\n\r", ch);
-	    ((*spell_info[spl].spell_pointer) (GET_LEVEL(ch), ch, argument, SPELL_TYPE_SPELL, tar_char,
-	         	         tar_obj));
-	    GET_MANA(ch) -= (USE_MANA(ch, spl));
-	 }
-
-      }	/* if GET_POS < min_pos */
-
-      return;
-   }
-
-   switch (number(1, 5)) {
-   case 1:
-      send_to_char("Bylle Grylle Grop Gryf???\n\r", ch);
-      break;
-   case 2:
-      send_to_char("Olle Bolle Snop Snyf?\n\r", ch);
-      break;
-   case 3:
-      send_to_char("Olle Grylle Bolle Bylle?!?\n\r", ch);
-      break;
-   case 4:
-      send_to_char("Gryffe Olle Gnyffe Snop???\n\r", ch);
-      break;
-   default:
-      send_to_char("Bolle Snylle Gryf Bylle?!!?\n\r", ch);
-      break;
-   }
+  /* You throws the dice and you takes your chances.. 101% is total failure */
+  if (number(0, 101) > GET_SKILL(ch, spellnum)) {
+    WAIT_STATE(ch, PULSE_VIOLENCE);
+    if (!tch || !skill_message(0, ch, tch, spellnum))
+      send_to_char("You lost your concentration!\r\n", ch);
+    if (mana > 0)
+      GET_MANA(ch) = MAX(0, MIN(GET_MAX_MANA(ch), GET_MANA(ch) - (mana >> 1)));
+    if (SINFO.violent && tch && IS_NPC(tch))
+      hit(tch, ch, TYPE_UNDEFINED);
+  } else {
+    if (cast_spell(ch, tch, tobj, spellnum)) {
+      WAIT_STATE(ch, PULSE_VIOLENCE);
+      if (mana > 0)
+	GET_MANA(ch) = MAX(0, MIN(GET_MAX_MANA(ch), GET_MANA(ch) - mana));
+    }
+  }
 }
 
 
-void	assign_spell_pointers(void)
+/* Assign the spells on boot up */
+
+void spello(int spl, int mlev, int clev, int tlev, int wlev,
+	         int max_mana, int min_mana, int mana_change, int minpos,
+	         int targets, int violent, int routines)
 {
-   int	i;
-
-   for (i = 0; i < MAX_SPL_LIST; i++)
-      spell_info[i].spell_pointer = 0;
-
-
-   /* From spells1.c */
-
-   SPELLO(32, 12, POSITION_FIGHTING, 1, LEVEL_IMMORT, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_magic_missile);
-
-   SPELLO( 8, 12, POSITION_FIGHTING, 3, LEVEL_IMMORT, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_chill_touch);
-
-   SPELLO( 5, 12, POSITION_FIGHTING, 5, LEVEL_IMMORT, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_burning_hands);
-
-   SPELLO(37, 12, POSITION_FIGHTING, 7, LEVEL_IMMORT, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_shocking_grasp);
-
-   SPELLO(30, 12, POSITION_FIGHTING, 9, LEVEL_IMMORT, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_lightning_bolt);
-
-   SPELLO(10, 12, POSITION_FIGHTING, 11, LEVEL_IMMORT, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_colour_spray);
-
-   SPELLO(25, 12, POSITION_FIGHTING, 13, LEVEL_IMMORT, 35,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_energy_drain);
-
-   SPELLO(26, 12, POSITION_FIGHTING, 15, LEVEL_IMMORT, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_fireball);
-
-   SPELLO(23, 12, POSITION_FIGHTING, LEVEL_IMMORT, 7, 15,
-       TAR_IGNORE, cast_earthquake);
-
-   SPELLO(22, 12, POSITION_FIGHTING, LEVEL_IMMORT, 10, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_dispel_evil);
-
-   SPELLO( 6, 12, POSITION_FIGHTING, LEVEL_IMMORT, 12, 15,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_call_lightning);
-
-   SPELLO(27, 12, POSITION_FIGHTING, LEVEL_IMMORT, 15, 35,
-       TAR_CHAR_ROOM | TAR_FIGHT_VICT, cast_harm);
-
-
-
-   /* Spells2.c */
-
-   SPELLO( 1, 12, POSITION_STANDING, 5,  1, 5,
-       TAR_CHAR_ROOM, cast_armor);
-
-   SPELLO( 2, 12, POSITION_FIGHTING, 8, LEVEL_IMMORT, 35,
-       TAR_SELF_ONLY, cast_teleport);
-
-   SPELLO( 3, 12, POSITION_STANDING, LEVEL_IMMORT,  5, 5,
-       TAR_OBJ_INV | TAR_OBJ_EQUIP | TAR_CHAR_ROOM, cast_bless);
-
-   SPELLO( 4, 12, POSITION_STANDING, 8,  6, 5,
-       TAR_CHAR_ROOM, cast_blindness);
-
-   SPELLO(7, 12, POSITION_STANDING, 14, LEVEL_IMMORT, 5,
-       TAR_CHAR_ROOM | TAR_SELF_NONO, cast_charm_person);
-
-   SPELLO( 9, 12, POSITION_STANDING, 15, LEVEL_IMMORT, 40,
-       TAR_CHAR_ROOM, cast_clone);
-
-   SPELLO(11, 12, POSITION_STANDING, 10, 13, 25,
-       TAR_IGNORE, cast_control_weather);
-
-   SPELLO(12, 12, POSITION_STANDING, LEVEL_IMMORT,  3, 5,
-       TAR_IGNORE, cast_create_food);
-
-   SPELLO(13, 12, POSITION_STANDING, LEVEL_IMMORT,  2, 5,
-       TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_create_water);
-
-   SPELLO(14, 12, POSITION_STANDING, LEVEL_IMMORT,  4, 5,
-       TAR_CHAR_ROOM, cast_cure_blind);
-
-   SPELLO(15, 12, POSITION_FIGHTING, LEVEL_IMMORT,  9, 20,
-       TAR_CHAR_ROOM, cast_cure_critic);
-
-   SPELLO(16, 12, POSITION_FIGHTING, LEVEL_IMMORT,  1, 15,
-       TAR_CHAR_ROOM, cast_cure_light);
-
-   SPELLO(17, 12, POSITION_STANDING, 12, LEVEL_IMMORT, 20,
-       TAR_CHAR_ROOM | TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_curse);
-
-   SPELLO(18, 12, POSITION_STANDING, LEVEL_IMMORT,  4, 5,
-       TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_detect_evil);
-
-   SPELLO(19, 12, POSITION_STANDING, 2,  5, 5,
-       TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_detect_invisibility);
-
-   SPELLO(20, 12, POSITION_STANDING, 2,  3, 5,
-       TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_detect_magic);
-
-   SPELLO(21, 12, POSITION_STANDING, LEVEL_IMMORT,  2, 5,
-       TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_detect_poison);
-
-   SPELLO(24, 12, POSITION_STANDING, 12, LEVEL_IMMORT, 100,
-       TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_enchant_weapon);
-
-   SPELLO(28, 12, POSITION_FIGHTING, LEVEL_IMMORT, 14, 50,
-       TAR_CHAR_ROOM, cast_heal);
-
-   SPELLO(29, 12, POSITION_STANDING, 4, LEVEL_IMMORT, 5,
-       TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM | TAR_OBJ_EQUIP, cast_invisibility);
-
-   SPELLO(31, 12, POSITION_STANDING, 6, 10, 20,
-       TAR_OBJ_WORLD, cast_locate_object);
-
-   SPELLO(33, 12, POSITION_STANDING, LEVEL_IMMORT,  8, 10,
-       TAR_CHAR_ROOM | TAR_SELF_NONO | TAR_OBJ_INV | TAR_OBJ_EQUIP, cast_poison);
-
-   SPELLO(34, 12, POSITION_STANDING, LEVEL_IMMORT,  6, 5,
-       TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_protection_from_evil);
-
-   SPELLO(35, 12, POSITION_STANDING, LEVEL_IMMORT, 12, 5,
-       TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_EQUIP | TAR_OBJ_ROOM, cast_remove_curse);
-
-   SPELLO(36, 12, POSITION_STANDING, LEVEL_IMMORT, 13, 75,
-       TAR_CHAR_ROOM, cast_sanctuary);
-
-   SPELLO(38, 12, POSITION_STANDING, 14, LEVEL_IMMORT, 15,
-       TAR_CHAR_ROOM, cast_sleep);
-
-   SPELLO(39, 12, POSITION_STANDING, 7, LEVEL_IMMORT, 20,
-       TAR_CHAR_ROOM, cast_strength);
-
-   SPELLO(40, 12, POSITION_STANDING, LEVEL_IMMORT,  8, 50,
-       TAR_CHAR_WORLD, cast_summon);
-
-   SPELLO(41, 12, POSITION_STANDING, 1, LEVEL_IMMORT, 5,
-       TAR_CHAR_ROOM | TAR_OBJ_ROOM | TAR_SELF_NONO, cast_ventriloquate);
-
-   SPELLO(42, 12, POSITION_STANDING, LEVEL_IMMORT, 11, 5,
-       TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_word_of_recall);
-
-   SPELLO(43, 12, POSITION_STANDING, LEVEL_IMMORT, 9, 5,
-       TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, cast_remove_poison);
-
-   SPELLO(44, 12, POSITION_STANDING, LEVEL_IMMORT,  7, 5,
-       TAR_CHAR_ROOM | TAR_SELF_ONLY, cast_sense_life);
-
-   SPELLO(45, 0, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 200, TAR_IGNORE, 0);
-   SPELLO(46, 0, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 200, TAR_IGNORE, 0);
-   SPELLO(47, 0, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 200, TAR_IGNORE, 0);
-   SPELLO(48, 0, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 200, TAR_IGNORE, 0);
-   SPELLO(49, 0, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 200, TAR_IGNORE, 0);
-   SPELLO(50, 0, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 200, TAR_IGNORE, 0);
-   SPELLO(51, 0, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 200, TAR_IGNORE, 0);
-   SPELLO(52, 0, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 200, TAR_IGNORE, 0);
-
-   SPELLO(53, 1, POSITION_STANDING, LEVEL_IMPL + 1, LEVEL_IMPL + 1, 100, TAR_IGNORE, cast_identify);
+  spell_info[spl].min_level[CLASS_MAGIC_USER] = mlev;
+  spell_info[spl].min_level[CLASS_CLERIC] = clev;
+  spell_info[spl].min_level[CLASS_THIEF] = tlev;
+  spell_info[spl].min_level[CLASS_WARRIOR] = wlev;
+  spell_info[spl].mana_max = max_mana;
+  spell_info[spl].mana_min = min_mana;
+  spell_info[spl].mana_change = mana_change;
+  spell_info[spl].min_position = minpos;
+  spell_info[spl].targets = targets;
+  spell_info[spl].violent = violent;
+  spell_info[spl].routines = routines;
 }
 
+/*
+ * Arguments for spello calls:
+ *
+ * spellnum, levels (MCTW), maxmana, minmana, manachng, minpos, targets,
+ * violent?, routines.
+ *
+ * spellnum:  Number of the spell.  Usually the symbolic name as defined in
+ * spells.h (such as SPELL_HEAL). levels  :  Minimum level (mage, cleric,
+ * thief, warrior) a player must be to cast this spell.  Use 'X' for immortal
+ * only. maxmana :  The maximum mana this spell will take (i.e., the mana it
+ * will take when the player first gets the spell). minmana :  The minimum
+ * mana this spell will take, no matter how high level the caster is.
+ * manachng:  The change in mana for the spell from level to level.  This
+ * number should be positive, but represents the reduction in mana cost as
+ * the caster's level increases.
+ *
+ * minpos  :  Minimum position the caster must be in for the spell to work
+ * (usually fighting or standing). targets :  A "list" of the valid targets
+ * for the spell, joined with bitwise OR ('|'). violent :  TRUE or FALSE,
+ * depending on if this is considered a violent spell and should not be cast
+ * in PEACEFUL rooms or on yourself. routines:  A list of magic routines
+ * which are associated with this spell. Also joined with bitwise OR ('|').
+ *
+ * See the CircleMUD documentation for a more detailed description of these
+ * fields.
+ */
+
+#define UU (LVL_IMPL+1)
+#define UNUSED UU,UU,UU,UU,0,0,0,0,0,0,0
+
+#define X LVL_IMMORT
+
+void mag_assign_spells(void)
+{
+  int i;
+
+  for (i = 1; i <= TOP_SPELL_DEFINE; i++)
+    spello(i, UNUSED);
+		   /* C L A S S E S      M A N A   */
+		   /* Ma  Cl  Th  Wa   Max Min Chn */
+  spello(SPELL_ARMOR,  4,  1,  X,  X,  30,  15,  3,
+	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_BLESS,  X,  5,  X,  X,  35,   5,  3,
+	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_BLINDNESS, 9, 6, X, X, 35, 25, 1,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_NOT_SELF, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_BURNING_HANDS, 5, X, X, X, 30, 10, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_CALL_LIGHTNING, X, 15, X, X, 40, 25, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_CHARM, 16, X, X, X, 75, 50, 2,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_NOT_SELF, TRUE, MAG_MANUAL);
+
+  spello(SPELL_CHILL_TOUCH, 3, X, X, X, 30, 10, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE | MAG_AFFECTS);
+  /* C L A S S E S      M A N A   */
+  /* Ma  Cl  Th  Wa   Max Min Chn */
+  spello(SPELL_CLONE, X, X, X, X, 80, 65, 5,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_MANUAL);
+
+  spello(SPELL_COLOR_SPRAY, 11, X, X, X, 30, 15, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_CONTROL_WEATHER, X, 17, X, X, 75, 25, 5,
+	 POS_STANDING, TAR_IGNORE, FALSE, MAG_MANUAL);
+
+  spello(SPELL_CREATE_FOOD, X, 2, X, X, 30, 5, 4,
+	 POS_STANDING, TAR_IGNORE, FALSE, MAG_CREATIONS);
+
+  spello(SPELL_CREATE_WATER, X, 2, X, X, 30, 5, 4,
+	 POS_STANDING, TAR_OBJ_INV | TAR_OBJ_EQUIP, FALSE, MAG_CREATIONS);
+
+  spello(SPELL_CURE_BLIND, X, 4, X, X, 30, 5, 2,
+	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_UNAFFECTS);
+
+  spello(SPELL_CURE_CRITIC, X, 9, X, X, 30, 10, 2,
+	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_POINTS);
+  /* C L A S S E S      M A N A   */
+  /* Ma  Cl  Th  Wa   Max Min Chn */
+  spello(SPELL_CURE_LIGHT, X, 1, X, X, 30, 10, 2,
+	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_POINTS);
+
+  spello(SPELL_CURSE, 14, X, X, X, 80, 50, 2,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, TRUE, MAG_AFFECTS);
+
+  spello(SPELL_DETECT_ALIGN, X, 4, X, X, 20, 10, 2,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_DETECT_INVIS, 2, 6, X, X, 20, 10, 2,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_DETECT_MAGIC, 2, X, X, X, 20, 10, 2,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+  /* C L A S S E S      M A N A   */
+  /* Ma  Cl  Th  Wa   Max Min Chn */
+  spello(SPELL_DETECT_POISON, 10, 3, X, X, 15, 5, 1,
+	 POS_STANDING, TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL);
+
+  spello(SPELL_DISPEL_EVIL, X, 14, X, X, 40, 25, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_DISPEL_GOOD, X, 14, X, X, 40, 25, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_EARTHQUAKE, X, 12, X, X, 40, 25, 3,
+	 POS_FIGHTING, TAR_IGNORE, TRUE, MAG_AREAS);
+
+  spello(SPELL_ENCHANT_WEAPON, 26, X, X, X, 150, 100, 10,
+	 POS_STANDING, TAR_OBJ_INV | TAR_OBJ_EQUIP, FALSE, MAG_MANUAL);
+
+  spello(SPELL_ENERGY_DRAIN, 13, X, X, X, 40, 25, 1,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE | MAG_MANUAL);
+
+  spello(SPELL_GROUP_ARMOR, X, 9, X, X, 50, 30, 2,
+	 POS_STANDING, TAR_IGNORE, FALSE, MAG_GROUPS);
+  /* C L A S S E S      M A N A   */
+  /* Ma  Cl  Th  Wa   Max Min Chn */
+  spello(SPELL_FIREBALL, 15, X, X, X, 40, 30, 2,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_GROUP_HEAL, X, 22, X, X, 80, 60, 5,
+	 POS_STANDING, TAR_IGNORE, FALSE, MAG_GROUPS);
+
+  spello(SPELL_HARM, X, 19, X, X, 75, 45, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_HEAL, X, 16, X, X, 60, 40, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_POINTS | MAG_AFFECTS | MAG_UNAFFECTS);
+
+  spello(SPELL_INFRAVISION, 3, 7, X, X, 25, 10, 1,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_INVISIBLE, 4, X, X, X, 35, 25, 1,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_LIGHTNING_BOLT, 9, X, X, X, 30, 15, 1,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  /* C L A S S E S      M A N A   */
+  /* Ma  Cl  Th  Wa   Max Min Chn */
+  spello(SPELL_LOCATE_OBJECT, 6, X, X, X, 25, 20, 1,
+	 POS_STANDING, TAR_OBJ_WORLD, FALSE, MAG_MANUAL);
+
+  spello(SPELL_MAGIC_MISSILE, 1, X, X, X, 25, 10, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_POISON, X, X, X, X, 50, 20, 3,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_OBJ_INV, TRUE, MAG_AFFECTS);
+
+  spello(SPELL_PROT_FROM_EVIL, X, 8, X, X, 40, 10, 3,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_REMOVE_CURSE, X, 26, X, X, 45, 25, 5,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_UNAFFECTS);
+
+  spello(SPELL_SANCTUARY, X, 15, X, X, 110, 85, 5,
+	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_SHOCKING_GRASP, 7, X, X, X, 30, 15, 3,
+	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  /* C L A S S E S      M A N A   */
+  /* Ma  Cl  Th  Wa   Max Min Chn */
+  spello(SPELL_SLEEP, 8, X, X, X, 40, 25, 5,
+	 POS_STANDING, TAR_CHAR_ROOM, TRUE, MAG_AFFECTS);
+
+  spello(SPELL_STRENGTH, 6, X, X, X, 35, 30, 1,
+	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_SUMMON, X, 10, X, X, 75, 50, 3,
+	 POS_STANDING, TAR_CHAR_WORLD | TAR_NOT_SELF, FALSE, MAG_MANUAL);
+
+  spello(SPELL_WORD_OF_RECALL, X, 12, X, X, 20, 10, 2,
+	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_MANUAL);
+
+  spello(SPELL_REMOVE_POISON, X, 10, X, X, 40, 8, 4,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_UNAFFECTS);
+
+  spello(SPELL_SENSE_LIFE, X, X, X, X, 20, 10, 2,
+	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+
+
+  /*
+   * SKILLS
+   * 
+   * The only parameters needed for skills are only the minimum levels for each
+   * class.  The remaining 8 fields of the structure should be filled with
+   * 0's.
+   */
+
+  /* Ma  Cl  Th  Wa  */
+  spello(SKILL_BACKSTAB, X, X, 3, X,
+	 0, 0, 0, 0, 0, 0, 0);
+
+  spello(SKILL_HIDE, X, X, 5, X,
+	 0, 0, 0, 0, 0, 0, 0);
+
+  spello(SKILL_KICK, X, X, X, 1,
+	 0, 0, 0, 0, 0, 0, 0);
+
+  spello(SKILL_PICK_LOCK, X, X, 2, X,
+	 0, 0, 0, 0, 0, 0, 0);
+
+  spello(SKILL_RESCUE, X, X, X, 3,
+	 0, 0, 0, 0, 0, 0, 0);
+
+  spello(SKILL_SNEAK, X, X, 1, X,
+	 0, 0, 0, 0, 0, 0, 0);
+
+  spello(SKILL_STEAL, X, X, 4, X,
+	 0, 0, 0, 0, 0, 0, 0);
+  /* Ma  Cl  Th  Wa  */
+  spello(SKILL_TRACK, X, X, 6, 9,
+	 0, 0, 0, 0, 0, 0, 0);
+
+
+  spello(SPELL_IDENTIFY, 0, 0, 0, 0, 0, 0, 0, 0,
+	 TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL);
+}
 

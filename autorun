@@ -12,7 +12,7 @@
 # 60 seconds and will not restart the mud until pause is removed.
 
 set PORT=4000
-set FLAGS='-m -q'
+set FLAGS='-q'
 
 while (1)
 

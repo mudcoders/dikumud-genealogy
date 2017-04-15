@@ -2,8 +2,8 @@
 rod devil~
 the devil rod~
 The mysterious devil rod lies on the floor.~
-crush~
-5 64 8193
+~
+5 gj 8193
 0 2 5 3
 6 16000 800
 E
@@ -19,8 +19,8 @@ A
 mace large~
 the large mace~
 A large mace lies here.~
-crush~
-5 64 8193
+~
+5 g 8193
 0 1 6 7
 10 1000 400
 E
@@ -34,8 +34,8 @@ A
 mace small~
 the small mace~
 a small mace has been left here.~
-crush~
-5 64 8193
+~
+5 g 8193
 0 1 6 7
 6 600 200
 E
@@ -50,7 +50,7 @@ cloak purple~
 a purple cloak~
 A purple cloak lies on the floor.~
 ~
-11 64 5
+11 g 5
 0 0 0 0
 20 5000 6000
 E
@@ -63,11 +63,11 @@ A
 A
 17 -10
 #7204
-potion blue~
-an neon blue potion~
+potion blue neon~
+a neon blue potion~
 A neon blue potion stands on the floor.~
 ~
-10 64 1
+10 g 1
 14 6 15 16
 4 100 1000
 E
@@ -79,9 +79,9 @@ key black~
 a black key~
 A black key has been left on the floor.~
 ~
-18 4096 1
+18 c 16385
 0 0 0 0
-2 10 100
+2 0 0
 E
 black key~
 This little key is made from a black metal of unknown origin.
@@ -91,7 +91,7 @@ skull white~
 a strange white skull~
 A strange white skull lies on the floor looking at you.~
 ~
-9 192 17
+9 abh 17
 1 0 0 0
 30 0 250
 E
@@ -110,7 +110,7 @@ gauntlets muddy~
 a pair of muddy gauntlets~
 A pair of muddy gauntlets have been thrown away here.~
 ~
-9 64 129
+9 g 129
 6 0 0 0
 10 6000 1500
 E
@@ -120,7 +120,7 @@ These gauntlets are muddy indeed, however they look very effective.
 A
 1 1
 #7208
-stick small light~
+stick small~
 a small stick~
 A small stick lies here.~
 ~
@@ -134,18 +134,22 @@ to throw it away you notice some small letters.
 ~
 E
 letters letter~
-It reads 'Hold me'.
+They read:
+
+Hold me
+
 ~
 #7209
 boots muddy~
 a pair of muddy boots~
 A pair of muddy boots has been dropped here.~
 ~
-9 64 65
+9 g 65
 4 0 0 0
 10 75 500
 E
-The boots are muddy and they look well worn, but also very comfortable.~
+boots muddy~
+The boots are muddy and they look well worn, but also very comfortable.
 ~
 A
 14 15
@@ -156,150 +160,22 @@ There is a huge treasure here, looking very valuable.~
 ~
 20 0 1
 6522 0 0 0
-0 0 0
+5 6522 0
 E
-treasure~
+treasure coins~
 This looks like a whole lot of coins.
 ~
 #7211
 sword short~
 a short sword~
 A short sword is lying here.~
-slash~
+~
 5 0 8193
 0 2 3 3
 4 100 300
 E
 short sword~
 This is a very nice little weapon.
-~
-#7212
-sword bastard~
-a huge bastard sword~
-There is a huge bastard sword here.~
-slash~
-5 3136 8193
-0 2 9 3
-18 17000 8000
-E
-bastard sword~
-Quite a heavy weapon, with a pure white hilt.
-~
-A
-18 1
-A
-19 3
-#7215
-sabre light~
-a light sabre~
-On the floor lies a strange looking sabre.~
-~
-1 3136 16385
-0 0 10000 0
-50 1500 90000
-E
-light sabre~
-This looks as a sabre out of an well-known SF-movie.  This item shouldn't be
-in circulation amoung mortals, hence the high rent.
-~
-A
-18 +10 
-#7217
-plate breast silvery PalItem~
-a silvery breast plate~
-There is a silvery breast plate on the floor.~
-~
-9 3392 9
-8 0 0 0
-110 25000 13000
-E
-plate breast~
-On the breast plate you notice a relief of large rose. The metal seems to be 
-some kind of silver or platinum.
-~
-#7218
-greaves silvery PalItem~
-a pair of silvery greaves~
-On the floor you see a shiny pair of greaves.~
-~
-9 3392 33
-8 0 0 0 
-40 12500 8000
-E
-greaves~
-They seem to be made from silver or platinum. You see the outline of a rose.
-~
-#7219
-gauntlets silvery PalItem~
-a pair of silvery gauntlets~
-You can see a pair of gauntlets on the floor.~
-~
-9 3392 129
-8 0 0 0
-24 9000 8000
-E
-gauntlets~
-They seem to be made from silver or platinum. You see the outline of a rose.
-~
-A
-18 1
-#7220
-helmet~
-a silvery helmet~
-A silvery helmet lies here.~
-~
-9 3392 17
-8 0 0 0
-40 12000 13000
-E
-helmet~
-The helmet is made from platinum or silver and has a white fur brush attached
-on the top.
-~
-A
-4 2
-A
-12 15
-#7221
-shield rose~
-a shield of the rose~
-A shield of the rose rests on the floor.~
-~
-9 3392 513
-8 0 0 0
-60 15000 9000
-E
-shield~
-On the shield you see a clear and perfect painting of a dark red rose on a 
-white background.  You also notice the inscription :'Pax Est Sanctuum'.
-~
-A
-2 1
-#7222
-boots~
-a pair of silvery plated boots~
-A pair of heavy plated boots stand on the floor.~
-~
-9 3392 65
-8 0 0 0
-40 2000 9000
-E
-boots~
-The boots are made from a silvery metal.
-~
-A
-14 20
-#7223
-plates arm~
-a pair of silvery arm plates~
-On the floor you see some arm plates.~
-~
-9 3392 257
-8 0 0 0
-40 12500 8000
-E
-plates arm~
-They seem to be made from silver or platinum. You see the outline of a rose.
 ~
 #99999
 $~

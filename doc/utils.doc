@@ -39,6 +39,9 @@ Autowiz is not really meant to be run by a person; the MUD automatically
 executes it every time someone reaches immortality or is promoted to an
 immort or higher level.
 
+It must be compiled and in the circle/bin directory in order for the
+automatic wizlist system to work, of course.
+
 
 DELOBJS
 

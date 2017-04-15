@@ -5,8 +5,37 @@
            ----- Compiling, Running, and Maintaining CircleMUD -----
 
 
-Compiling the MUD
------------------
+This manual is meant to be read by implementors just getting started with
+CircleMUD.  This should be the first document you should read after reading
+the main README file.
+
+It should be the first documentation you read (after the
+README file in theIt describes how to get the MUD compiled, configured, and
+running; use of command-line options and system logs; and required daily
+maintenance.
+
+This i
+
+Table of Contents
+---------------------------------------------------------------------------
+
+1.  Compiling Circle
+    1.1. Compatibility Issues
+    1.2. How-To
+2.  Configuring Circle
+3.  Running Circle
+    3.1. Execution and 'autorun'
+    3.2. Command-Line Options
+4.  System Logs
+    4.1. Player Information
+    4.2. Usage Information
+    4.3. Errors
+
+
+1. Compiling Circle
+-------------------
+
+1.1. Compatibility Issues
 
 Ultrix 4.0 was used as CircleMUD's development platform up through v2.00;
 starting with 2.10, Linux 0.99.11 was used instead.  If you have Ultrix,
@@ -42,13 +71,17 @@ with others, feel free to mail me your changes so that they can be included
 in future releases of CircleMUD (if any).  You'll be given credit, of
 course. :)
 
+
+1.2. How-To
+
 The /src directory contains the source code for the main MUD; /src/utils
 has the source for a dozen or so MUD maintenance utilities.  The makefile
-is in the /src directory; type 'make' to compile only the Circle server,
-type 'make utils' to compile all the utilities, or type 'make all' to compile
-everything.  You can also make an individual utility by typing 'make x',
-where x is the name of the utility you want to compile.  Complete
-documentation of the utility programs can be found in utils.doc.
+is in the /src directory; type 'make' while in that directory to compile
+only the Circle server, type 'make utils' to compile all the utilities, or
+type 'make all' to compile everything.  You can also make an individual
+utility by typing 'make x', where x is the name of the utility you want to
+compile.  Complete documentation of the utility programs can be found in
+utils.doc.
 
 The Makefile directs all compiled programs to the /bin directory.  Although
 not necessary, you may want to put Circle's /bin directory in your $PATH.
@@ -56,14 +89,14 @@ not necessary, you may want to put Circle's /bin directory in your $PATH.
 
 
 
-Setting the Game Up
--------------------
+2. Configuring Circle
+---------------------
 
 Your first instinct will probably be to put the game up as fast as possible
 to see if it works.  That's fine, but there are some files you should be
 aware of before you put the game up 'for real'.  This is just a partial
-list -- see 'files.doc' for a complete list of what all the files in the
-Circle distribution are.
+list -- see 'files.doc' for a complete description of all the files in the
+Circle distribution.
 
 First, you'll probably want to take a look at 'config.c' -- it has dozens
 of variables you can set to configure various aspects of CircleMUD.
@@ -92,8 +125,10 @@ in the debugging mode (Mini-Mud Mode, explained below.)
 
 
 
-Running the Game
-----------------
+3. Running Circle
+-----------------
+
+3.1. Execution and 'autorun'
 
 Circle should always be run from circle's "root" directory, not the /bin
 directory.  You can run it manually by typing 'bin/circle' (useful for
@@ -135,8 +170,7 @@ the RESTORE command when you first create the character.  To make more
 God characters, use the ADVANCE command.
 
 
-Command-Line Options
---------------------
+3.2. Command-Line Options
 
 There are a number of command-line options which Circle will recognize.
 You can use these when running Circle manually, or put them in the FLAGS
@@ -150,7 +184,7 @@ circle [-m] [-q] [-r] [-s] [-d <path>] [<port #>]
 -m: "Mini-Mud Mode".  Mini-mud will be one of your most powerful debugging
     tools; it causes Circle to boot with an abridged world, cutting the
     boot time down to several seconds.  It is useful for testing features
-    which are not world-related (i.e, new commands.)
+    which are not world-related (i.e, new commands or spells).
 
     CircleMUD uses split world files (in the lib/world heirarchy); each
     directory (i.e., wld, obj, mob, shp, and zon) has a file called 'index'
@@ -169,8 +203,8 @@ circle [-m] [-q] [-r] [-s] [-d <path>] [<port #>]
     "wizlock 1" (see wizhelp.doc for more information).
 
 -s: Disable special routines.  This option prevents special procedures from
-    being assigned.  It is obsolete because Circle checks to make sure each
-    mob exists before assigning a spec_proc to it.
+    being assigned.  It is still supported but obsolete because Circle checks
+    to make sure each mob exists before assigning a spec_proc to it.
 
 -d: Select data directory.  This is useful if you want to keep one or more
     sets of game data in addition to the standard set.  For example, you may
@@ -187,19 +221,22 @@ port : Select the port on which the game is to wait for connections.
 
 
 
-System Logs
------------
+4. System Logs
+--------------
 
 CircleMUD writes a wide variety of information to its log file (called
-"syslog").  The syslog contains information about players (i.e., when they
-connect, disconnect, rent, unrent, quit, die, hit death traps, etc.) as
-well as status information about the game itself.  The game-related
-information falls generally into 2 categories: usage information and
-errors.
+"syslog").  During Circle's boot sequence, the syslog keeps a record of
+everything the MUD is doing to initialize itself; this can be useful to
+determine what the problem is if the MUD dies while it is booting.  Once
+the game is up and running, the syslog contains information about players
+(i.e., when they connect, disconnect, rent, unrent, quit, die, hit death
+traps, etc.) as well as status information about the game itself.  The
+game-related information falls generally into 2 categories: usage
+information and errors.
 
 
-Player Information
-------------------
+4.1. Player Information
+
 The player information recorded by Circle's system logs will serve you
 very well as your players start to make wild claims about strange bugs
 resulting in them losing equipment or points.  Many mudders prey on the
@@ -221,7 +258,7 @@ check the logs first.
    I've done a good deal of MUD administration, I've seen the same paranoia
    in _many_ other players.
 
-   That paranoia is a very good thing -- the system logs become an abstract
+   That paranoia is a very good thing.  The system logs become an abstract
    and shapeless but omnipresent force on the MUD.  Players hear about "the 
    System Log" and then get paranoid that everything they do is being
    recorded, so they tend to behave, lest the evil System Log betray their
@@ -232,7 +269,7 @@ check the logs first.
    because it reinforces the syslog's presence in the collective psyche
    of your players.
 
-Back to the point -- when someone claims that they've been wronged by the
+Back to the point.  When someone claims that they've been wronged by the
 evil system, always check the logs.  The logs give you power to say things
 like "What do you mean your items disappeared in rent -- it says right here
 in the logs 'Rasmussen has quit the game.' -- you didn't rent at all, you
@@ -252,14 +289,16 @@ greps the logs for certain pieces of extra-juicy information to save
 indefinitely.
 
 
-Usage Information
------------------
+4.2. Usage Information
+
 Every 5 minutes, the game counts how many people are playing and records
 that information in the system log.  Optionally, if you #define RUSAGE
 in comm.c, it will also record system resource information such as CPU time
-and memory used.
+and memory used.  The usage information currently logged by Circle is,
+as you can see, somewhat sparse; local MUD admins are encouraged to add
+to this code as is appropriate for their particular site.
 
-This information isn't critical, but it is interesting to look at the
+Usage information isn't critical, but it is interesting to look at the
 usage patterns to determine when your peak playing hours are.  If you're
 good at using 'cut' and other Unix utilities, you can even dazzle your
 friends by graphing your MUD's system usage.
@@ -267,33 +306,41 @@ friends by graphing your MUD's system usage.
 [ Note: friends not included with the CircleMUD distribution. ]
 
 
-Errors
-------
+4.3. Errors
+
 Just as your first gut instinct should be to look at the logs if a player
 starts begging you for something, your first gut instinct in the event of
 a crash or unexpected shutdown should also be to look at the system logs.
 
-A Unix utility called 'tail' is used to look at the last few lines of a text
-file -- it's very useful for seeing the last 10 entries in the system log
-to see the last thing that happened before the shutdown.  Often, the game
-will report an error in the logs just before it crashes.
+A Unix utility called 'tail' is used to look at the last few lines of a
+text file; it's very useful for looking at the last entries in the system
+log to see the last thing that happened before the shutdown.  Often, Circle
+will report an error in the logs just before it crashes.  This method is
+particularly useful if the MUD crashes during its boot sequence, because
+the logging during boot is intensive.
 
-If there is no core dump, the game probably detected an internal error and
-killed itself, and it should always record the error in the log before
-dying.
+If Circle shuts down unexpectedly and there is no core dump in the /lib
+directory, the game probably detected an internal error and killed itself.
+Such shutdowns are always preceeded by entries in the system log describing
+the error.
 
-If there's no error message at the end of the file, then there probably 
+If there's no error message at the end of the log, then there probably 
 IS a core dump, so you can use 'dbx', 'gdb', etc. to examine the core
 dump and determine the reason for the crash.  The file 'hacker.doc',
 generously provided by Furey of MERC Industries, offers useful insight
 into the art and science of debugging -- you'd be well advised to give it
 a look-see.
 
-Often, Circle will encounter a serious but non-fatal error; in this case,
-the error will be written to the system log with the prefix SYSERR.  You
-should always be aware of any SYSERRs which occur -- and if they do occur,
-try to determine if a change you've made recently has caused it.  Don't
-just ignore it.  The autorun script saves all SYSERRs to the file log/errors.
+Circle sometimes encouters a serious but non-fatal error; in this case,
+the error will be written to the system log with the prefix SYSERR, but
+the MUD will not shut itself down.  You should always be aware of any
+SYSERRs which occur -- they are often useful for forseeing imminent danger
+or averting problems before they become critical.  If a SYSERR does
+occur, try to determine if a change you've made recently has caused it.
+Ignoring SYSERRs is like ignoring compiler warnings: you can be tempted
+to ignore them because the game keeps going even if they exist, but you
+can easily get yourself into trouble by not listening.  The autorun script
+saves all SYSERRs to the file log/errors.
 
 
 
@@ -343,7 +390,7 @@ longer exist in the playerfile.
 
 The 'automaint' script in the main circle directory will automatically purge
 the playerfile and player objects for you.  DO NOT RUN THIS SCRIPT WHILE
-THE MUD IS RUNNING!
+THE MUD IS RUNNING!  Doing so will make your life (more) difficult.
 
 
 
