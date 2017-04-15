@@ -1,0 +1,192 @@
+#30
+Northern Midgaard Main City~
+3099 15 2
+*
+O 0 3035 1 3005       Load fountain to Temple Square
+O 0 3034 7 3001       Load ATM into temple
+O 1 3034 7 3008	      Load ATM into reception
+O 1 3034 7 3004	      Load an ATM to a Guild Entrance
+O 1 3034 7 3017	      Load an ATM to a Guild Entrance 
+O 1 3034 7 3021	      Load an ATM to a Guild Entrance 
+O 1 3034 7 3027	      Load an ATM to a Guild Entrance
+*
+O 0 3097 1 1202	      Frozen bulletin board in ice box
+O 0 3099 6 3000       Bulletin board in Reading Room (w of temple)
+O 1 3099 6 3003       Load a bulletin board to a Guild Bar
+O 1 3099 6 3018       Load a bulletin board to a Guild Bar
+O 1 3099 6 3022       Load a bulletin board to a Guild Bar
+O 1 3099 6 3028       Load a bulletin board to a Guild Bar
+*
+M 0 3010 1 3062       The Postmaster
+*
+M 0 3000 1 3033       The Wizard Shop Keeper
+G 1 3050 500                Give scroll of identify
+G 1 3051 500                Give potion of see invisible.
+G 1 3052 500                Give ...?
+G 1 3053 500                Give ...?
+G 1 3054 500                Give ...?
+*
+M 0 3003 1 3011       The weaponsmith
+G 1 3020 100
+G 1 3021 100
+G 1 3022 100
+G 1 3023 100
+G 1 3024 100
+G 1 3025 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3004 1 3020       The armourer
+G 1 3040 100
+G 1 3042 100
+G 1 3044 100
+G 1 3076 100
+G 1 3081 100
+G 1 3070 100
+G 1 3071 100
+G 1 3075 100
+G 1 3080 100
+G 1 3085 100
+G 1 3086 100
+G 1 3041 100
+G 1 3043 100
+G 1 3046 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3002 1 3010       The grocer
+G 1 3030 100
+G 1 3031 100
+G 1 3032 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3001 1 3009       The baker
+G 1 3010 100
+G 1 3011 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3005 1 3008       The receptionist
+E 1 3022 100 16            wields a smallsword
+*
+M 0 3095 1 3064	      The cryogenicist
+E 1 3022 100 16		   wields a smallsword
+*
+M 0 3006 1 3049       A Captain (selling boats) at Levee
+G 1 3060 20              Give a raft to the captain
+G 1 3061 10              Give canoe to Captain
+*
+M 0 3007 1 3050       Sailor selling stuff in the warehouse
+*
+M 0 3008 1 3056       Uncle Juan
+G 1 3012 100
+G 1 3013 100
+G 1 3014 100
+*
+M 0 3009 1 3058       Wally the Watermaster
+G 1 3102 100
+G 1 3103 100
+G 1 3104 100
+*
+M 0 3040 1 3007       The bartender
+G 1 3000 100
+G 1 3001 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3043 1 3003       The Clerics waiter.
+G 1 3002 100
+G 1 3004 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3042 1 3018       The Magic Users Waiter
+G 1 3002 100
+G 1 3003 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3045 1 3022       The Fighters Waiter
+G 1 3002 100
+G 1 3003 100
+G 1 3004 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3044 1 3028       The Thiefs Waiter
+G 1 3003 100
+G 1 3004 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3046 1 3048       Filthy (bartender) in Grubby Inn
+G 1 3003 100
+G 1 3004 100
+E 1 3022 100 16            wields a longsword
+*
+M 0 3020 1 3019       The Magic Users Guildmaster
+M 0 3021 1 3002       The Clerics Guildmaster
+M 0 3022 1 3029       The Thieves Guildmaster
+M 0 3023 1 3023       The Warrior's Guildmaster
+*
+M 0 3024 1 3017       The Sorcerer Guard
+E 1 3022 100 16            wields a longsword
+*
+M 0 3025 1 3004       The Priest Guard
+E 1 3022 100 16            wields a longsword
+*
+M 0 3026 1 3027       The Assasin Guard
+E 1 3022 100 16            wields a longsword
+*
+M 0 3027 1 3021       The Knight Guard
+E 1 3022 100 16            wields a longsword
+*
+M 0 3060 10 3004      CityGuard 1
+E 1 3022 100 16            wields a longsword
+M 0 3059 8 3004      Peacekeeper
+*
+M 0 3060 10 3014      CityGuard 2
+E 1 3022 100 16            wields a longsword
+M 0 3059 4 3014      Peacekeeper
+*
+M 0 3060 10 3017      CityGuard 3
+E 1 3022 100 16            wields a longsword
+M 0 3059 4 3017      Peacekeeper
+*
+M 0 3060 10 3021      CityGuard 4
+E 1 3022 100 16            wields a longsword
+M 0 3059 4 3021      Peacekeeper
+*
+M 0 3060 10 3027      CityGuard 5
+E 1 3022 100 16            wields a longsword
+M 0 3059 4 3027      Peacekeeper
+*
+M 0 3067 10 3041      CityGuard at east gate
+E 1 3022 100 16            wields a longsword
+*
+M 0 3067 10 3040      CityGuard at west gate
+E 1 3022 100 16            wields a longsword
+*
+M 0 3063 5 3026       A Mercenary (at Dark Alley)
+E 1 3021 100 16            wields a shortsword
+*
+M 0 3064 3 3007       A Happy Drunk (at Inn)
+M 0 3065 2 3044       A Beggar in poor alley
+M 0 3065 2 3048       A Beggar in Grubby Inn
+*
+M 0 3062 15 3024      The Cute Little Doggy Fido (at Poor Alley)
+G 1 3015 30		mystery meat in the fido
+M 0 3062 15 3025      The Cute Little Doggy Fido (at Common Square)
+G 1 3015 30		mystery meat in the fido
+M 0 3062 15 3016      The Cute Little Doggy Fido (at Main Street)
+G 1 3015 30		mystery meat in the fido
+M 0 3062 15 3012      The Cute Little Doggy Fido (at Main Street)
+G 1 3015 30		mystery meat in the fido
+M 0 3066 1 3026       The Cute Little Odif Yggod (at Dark Alley)
+G 1 3015 30		mystery meat in the fido
+M 0 3068 4 3008       Green Gel. Blob at reception
+M 0 3068 4 3014       green gel. blob at market
+*
+M 0 3061 5 3006       The Janitor (at Inn Entrance)
+*
+M 0 3090 1 3032       Kitten
+M 0 3091 1 3032       Puppy
+M 0 3092 1 3032       Beagle
+M 0 3093 1 3032       Rottweiler
+M 0 3094 1 3032       Wolf
+*
+S
+#99999
+$~

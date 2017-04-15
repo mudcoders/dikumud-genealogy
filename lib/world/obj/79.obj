@@ -1,0 +1,63 @@
+#7900
+key large steel~
+a large key~
+A large steel key has been left here.~
+~
+18 4096 1
+2 0 0 0
+2 10 0
+E
+steel key~
+This huge key is made from solid steel.
+~
+#7901
+key copper~
+a copper key~
+A copper key has been left on the floor.~
+~
+18 4096 1
+2 0 0 0
+2 10 0
+E
+copper key~
+This little key is made from copper.
+~
+#7909
+treasure coins~
+a huge treasure~
+There is a huge treasure here, looking moderately valuable.~
+~
+20 0 1
+7734 0 0 0
+0 0 0
+E
+treasure~
+This looks like a whole lot of coins, though not as many as you expected.
+~
+#7910
+chest~
+a wooden chest~
+A wooden chest stands in the corner.~
+~
+15 0 1
+100 15 7911 0
+400 100 3000
+E
+chest~
+It is a robust chest made from short, heavy planks that have been fastened
+together with tenons.  It is equipped with a simple brass lock.
+~
+#7911
+key~
+a small brass key~
+A small brass key lies here.~
+~
+18 4096 1
+7910 0 0 0
+1 10 4
+E
+key~
+It is a small, simple brass key with no inscriptions or marks of any kind.
+~
+#99999
+$~

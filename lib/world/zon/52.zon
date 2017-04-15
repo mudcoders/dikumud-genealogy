@@ -1,0 +1,102 @@
+#52
+The City of Thalos~
+5299 15 2
+*
+M 0 5200 1 5250             Beholder
+E 1 5217 3 17		      Silver Flute, with 2 charges of lev 18 Charm
+E 1 5208 3 11                 Iron shield
+E 1 5223 1 3                  Green cloak
+*
+*  Lamia note - #5201 is AGGR_GOOD and casts spells, #5209 is just plain AGGR
+*
+M 0 5209 25 5234             Lamia
+M 0 5201 25 5235             Lamia
+M 0 5201 25 5232             Lamia
+M 0 5209 25 5229             Lamia
+M 0 5201 25 5236             Lamia
+M 0 5201 25 5237             Lamia
+M 0 5209 25 5240             Lamia
+M 0 5201 25 5242             Lamia
+M 0 5201 25 5218             Lamia
+M 0 5209 25 5216             Lamia
+M 0 5201 25 5219             Lamia
+M 0 5201 25 5220             Lamia
+M 0 5209 25 5221             Lamia
+M 0 5201 25 5225             Lamia
+M 0 5201 25 5226             Lamia
+M 0 5209 25 5224             Lamia
+M 0 5201 25 5203             Lamia
+M 0 5201 25 5204             Lamia
+M 0 5209 25 5205             Lamia
+M 0 5201 25 5206             Lamia
+M 0 5201 25 5208             Lamia
+M 0 5209 25 5209             Lamia (lots of 'em, eh?) (*nod* -je)
+*
+M 0 5202 1 5229             Mimic chest
+E 1 5214 1 17                 (ball o' light)
+M 0 5203 1 5226             Mimic boulder
+G 1 5215 1                    (tattered scroll)
+M 0 5204 1 5219             Mimic floor
+G 1 5218 1                    (talisman)
+M 0 5205 1 5238             Mimic potery
+E 1 5214 1 17                 (ball o' light)
+M 0 5206 1 5236             Mimic planks
+E 1 5222 5 12                 (black robe)
+*
+M 0 5207 4 5232             lizard
+M 0 5207 4 5217             lizard
+M 0 5207 4 5227             lizard
+M 0 5207 4 5244             lizard
+*
+M 0 5208 3 5247             golem SW
+E 1 5224 1 17                 (ebony seal)
+E 1 5200 5 5                  (chainmail vest)
+M 0 5208 3 5246             golem NW
+E 1 5226 1 17                 (ivory seal)
+M 0 5208 3 5248             golem NE
+E 1 5221 5 16                 (2-handed sword)
+*
+O 0 5225 1 5231             curved desk
+P 1 5215 1 5225                (scroll of enchantment)
+P 1 5216 2 5225                (scroll of detection)
+* 
+O 0 5227 1 5233             glass cabinet
+P 1 5201 1 5227               (iron helm)
+P 1 5202 1 5227               (iron gauntlets)
+P 1 5203 1 5227               (iron sleeves)
+P 1 5204 1 5227               (iron boots)
+P 1 5205 1 5227               (iron leggings)
+P 1 5206 1 5227               (iron girth)
+*    
+O 0 5228 10 5242            rotten arm
+O 0 5219 5 5217             venison
+O 0 5220 1 5234             cracked fountain
+O 0 5207 5 5229             battered armor
+*
+O 0 5210 2 5238             black potion
+O 0 5211 2 5238             orange potion
+O 0 5213 2 5238             serp. staff
+*
+O 0 5217 1 5230             silver flute
+O 0 5250 2 5230             mandolin
+O 0 5251 2 5230             harp
+*
+O 0 5230 1 5202             pale blue (all stones)
+O 0 5231 1 5205             scar. and blue
+O 0 5232 1 5208             inc. blue
+O 0 5233 1 5211             deep red
+O 0 5234 1 5214             pink
+O 0 5235 1 5217             white
+O 0 5236 1 5220             pale lavander
+O 0 5237 1 5224             green and lav.
+O 0 5238 1 5227             dusty rose
+O 0 5239 1 5230             dull grey
+O 0 5240 1 5234             viv. purple
+O 0 5241 1 5238             pink and green
+O 0 5242 1 5241             pale green
+O 0 5243 1 5246             clear
+O 0 5244 1 5250             irrad.  
+*
+S
+#99999
+$~

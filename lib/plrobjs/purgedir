@@ -1,0 +1,5 @@
+echo "Purging $1"
+chdir $1
+date >> deleted
+../../../bin/delobjs ../../misc/players *.objs >> ../deleted
+chdir ..

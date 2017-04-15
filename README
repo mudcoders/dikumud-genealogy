@@ -1,17 +1,66 @@
-NOTE: Copying, redistributing, or using any part of DikuMUD without reading
-      doc/licence.doc is in violation of our copyright.
 
-To compile the game, just type 'make', and cross your fingers. So far, the game
-has been successfully ported to these machines:
+Welcome to CircleMUD 2.2!
 
-VAX 11/785      - Unix-BSD 4.3 (it was written on one of these babies)
-Sun 4           - Unix
-Sun 3 (I think) - Unix
+Before doing anything else, please look at license.doc in the circle/doc
+directory.
 
-See doc/running.doc for some hints on how to run the game - and try 'wizhelp'
-in the game itself.
+Also, out of courtesy if nothing else, please keep the 'credits' file
+intact.  You can add your own credits on top of the existing file, but
+I'd appreciate it if you wouldn't simply remove it and all references
+to the word "Circle" everywhere in the MUD.
 
-If you run into trouble whilst compiling or running the game, we'll be happy
-to try and help you out. Send email to:
+If you're like me, you don't like to read a lot of documentation when you
+have a neat new toy to play with.  In fact, if you've even read THIS far,
+I'm impressed!
 
-  quinn@freja.diku.dk
+Briefly, here are a few tips on how to get started quickly:
+
+*  All source code is in the /src directory.  Before compiling, take a
+   look at the beginning of the Makefile and set options as required for
+   your operating system.   Type 'make' to compile only the main Circle
+   server; type 'make all' to make the server as well as Circle's dozen
+   or so maintenance utilities.  running.doc in the doc/ directory has
+   more information about compiling and compatibility.
+
+*  The server should be run from Circle's root directory.  For debugging
+   and testing, you can just type 'bin/circle'; to run the game "for real,"
+   use the 'autorun' script -- it automatically reboots the game if it
+   crashes, and handles moving old system logs into the /log directory.
+   The game will run on port 4000 by default.
+
+*  The first character who logs in to the game will be made a level 34 god.
+   The first god can then use the 'advance' command to create other gods.
+   Use the 'wizhelp' command to get a list of god commands; use the
+   'commands' command to get a list of other commands.
+
+*  For security purposes (i.e., to prevent all Hell from breaking loose
+   if someone hacks a god character), most of the god commands do not have
+   on-line documentation.  God commands are documented in the doc/wizhelp.doc
+   file.  Wizhelp.doc is in the standard help file format; if you're willing
+   to sacrifice security for convenience, you can incorporate the help for
+   the wizard commands into the on-line help file by appending wizhelp.doc
+   on to lib/text/help_table.
+
+
+There is a wealth of additional information in the files in the /doc
+directory.  The README file in the /doc directory describes what is in
+each of the documentation files.  If you're just getting started, you
+may be interested in 'running.doc' -- it gives more detailed information
+about compiling, running, maintaining, and day-to-day administration of
+CircleMUD.
+
+If you have strange problems -- and you can't figure out the answer by
+reading the docs -- feel free to write me at the address below.
+
+Good luck, and have fun!
+
+Jeremy Elson
+aka Ras/Rasmussen
+jelson@cs.jhu.edu
+
+Version 2.20 release: November 17, 1993
+Version 2.11 release: September 19, 1993
+Version 2.10 release: September 1, 1993
+Version 2.02 release: Late August sometime..
+Version 2.01 release: Early August sometime..
+Version 2.00 release: July 16, 1993

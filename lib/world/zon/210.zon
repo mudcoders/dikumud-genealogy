@@ -1,0 +1,367 @@
+#210
+New Sparta~
+21999 6 2
+M 0 21076 1 21001       Load Captain(Shopkeeper) at Port
+G 1 3060 20
+G 1 3061 15
+M 0 21024 4 21001       Load Dockworker at Port
+M 0 21024 4 21001       Load   " "       " "
+M 0 21000 1 21081       Load Goethe(shopkeeper) at Library
+G 1 3052 100
+G 1 3050 100
+M 0 21001 1 21013       Load Harry(shopkeeper) at Pharmacy
+G 1 4050 2
+G 1 6109 3
+G 1 6305 2
+M 0 21024 4 21004       Load Dockworker at Harbor
+M 0 21024 4 21005       Load    " "      " "
+M 0 21002 1 21068       Load Wally(shopkeeper) at Wally World
+G 1 3054 20
+G 1 3051 20
+G 1 3053 20
+G 1 3032 20
+M 0 21003 10 21105      Load Policeman
+E 1 21011 100 16        Load nightstick for Policeman
+M 0 21003 10 21070      Police
+E 1 21011 100 16        Sitck
+M 0 21003 10 21099      Police
+E 1 21011 100 16        Stick
+M 0 21003 10 21029      Police
+E 1 21011 100 16        Stick
+M 0 21003 10 21016      Police
+E 1 21011 100 16        Stick
+M 0 21003 10 21107      Police
+E 1 21011 100 16        Stick
+M 0 21003 10 21107      Police
+E 1 21011 100 16        Stick
+M 0 21003 10 21113      Police
+E 1 21011 100 16        Stick
+M 0 21003 10 21073      Police
+E 1 21011 100 16        Stick
+M 0 21003 10 21074      Police
+E 1 21011 100 16        Stick
+M 0 21004 10 21001      Load Cop
+E 1 21011 100 16        Load Stick
+M 0 21004 10 21027      Cop
+E 1 21011 100 16        Stick
+M 0 21004 10 21107      Cop
+E 1 21011 100 16        Stick
+M 0 21004 10 21011      Cop
+E 1 21011 100 16        Stick
+M 0 21004 10 21069      Cop
+E 1 21011 100 16        Stick
+M 0 21004 10 21097      Cop
+E 1 21011 100 16        Stick
+M 0 21004 10 21072      Cop
+E 1 21011 100 16        Stick
+M 0 21004 10 21022      Cop
+E 1 21011 100 16        Stick
+M 0 21004 10 21114      Cop
+E 1 21011 100 16        Stick
+M 0 21004 10 21030      Cop
+E 1 21011 100 16        Stick
+M 0 21005 2 21028       Load Mugger at Baltimore Ave
+E 1 21012 100 16        Load Switchblade on Mugger
+M 0 21005 2 21015       Load Mugger at Alley
+E 1 21012 100 16        Switchblade on mugger
+M 0 21006 14 21002      Load Tourist at Harbor
+E 1 21036 20 17         Load camera on tourist
+M 0 21006 14 21002      Tourist/harbor
+E 1 21036 20 17         Camera
+M 0 21006 14 21035      Tourist/Wardome
+E 1 21036 20 17         Camera
+M 0 21006 14 21074      Tourist/Broadway
+E 1 21036 20 17         Camera
+M 0 21006 14 21012      Tourist/Cafe
+E 1 21036 20 17         Camera
+M 0 21006 14 21029      Tourist/1st Ave
+E 1 21036 20 17         Camera
+M 0 21006 14 21010      Tourist/Beach
+E 1 21036 20 17         Camera
+M 0 21006 14 21010      Tourist/beach
+E 1 21036 20 17         Camera
+M 0 21006 14 21005      Tourist/harbor
+E 1 21036 20 17         Camera
+M 0 21006 14 21004      Tourist/harbor
+E 1 21036 20 17         Camera
+M 0 21006 14 21070      Tourist/broadway
+E 1 21036 20 17         Camera
+M 0 21006 14 21069      Tourist/broadway
+E 1 21036 20 17         Camera
+M 0 21006 14 21097      Tourist/department store
+E 1 21036 20 17         Camera
+M 0 21007 1 21084       Load Norm in cheers
+M 0 21008 1 21084       Load Cliff in Cheers
+M 0 21009 1 21085       Load Carla in Cheers
+M 0 21010 1 21083       Load Woody(Shopkeeper) in Cheers
+G 1 3001 20
+G 1 3000 20
+G 1 3002 20
+M 0 21011 1 21093       Load Mayor abe in his office
+M 0 21012 1 21091       Load Rebecca in office
+M 0 21013 1 21083       Load sam in cheers
+E 1 21010 4 16          Baseball bat for sam
+M 0 21014 1 21087       Load Frasier in Cheers
+M 0 21015 1 21083       Load lilith in cheers
+M 0 21016 1 21089       Load Paul in cheers
+M 0 21017 15 21106      Load alley cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21106      Load cat in pound
+M 0 21017 15 21022      Load cat in alley
+M 0 21017 15 21008      Load cat in alley
+M 0 21018 1 21027       Load Pee Wee in his peep show
+E 1 21015 2 16          Silver Dildo for Pee Wee
+M 0 21019 5 21115       Load punk in 1st ave
+E 1 21012 100 16        switchblade for punk
+M 0 21019 5 21027       Load punk in pee wee's
+E 1 21012 100 16        switchblade
+M 0 21019 5 21097       Punk in department store
+E 1 21012 100 16        switchblade
+M 0 21019 5 21022       Punk in alley
+E 1 21012 100 16        switchblade
+M 0 21019 5 21115       Punk in 1st ave
+E 1 21012 100 16        switchblade
+M 0 21020 5 21027       Skinhead in pee wees 
+E 1 21013 100 16        Chain for skinhead
+M 0 21020 5 21066       Skinhead on broadway
+E 1 21013 100 16        Chain
+M 0 21020 5 21008       Skinhead in alley
+E 1 21013 100 16        Chain
+M 0 21020 5 21081       Skinhead in Library (To annoy Goethe)
+E 1 21013 100 16        Chain
+M 0 21020 5 21115       Skinhead on 1st ave
+E 1 21013 100 16        Chain
+M 0 21021 5 21027       Prostitute in Pee Wees
+M 0 21021 5 21027       Prostitute in pee wees
+M 0 21021 5 21028       Prostitute on Balt. ave
+M 0 21021 5 21028       Prostitute on Balt. ave
+M 0 21021 5 21028       Prostitute on Balt. ave
+M 0 21022 1 21090       Jonathan Hill in Melvilles
+M 0 21023 1 21100       Its the Bishop!
+M 0 21061 2 21097       Shoplifter in department store
+M 0 21061 2 21097       Shoplifter in dept. store
+M 0 21025 3 21015       Transvestite in alley
+M 0 21025 3 21028       Trans. on Balt. Ave
+M 0 21025 3 21027       Trans. in Pee Wees
+M 0 21026 1 21028       Pimp on Balt. ave
+E 1 21012 100 16        Switchblade
+M 0 21027 4 21061       Orc in wardome
+M 0 21027 4 21058       Orc in wardome
+M 0 21027 4 21053       Orc in wardome
+M 0 21028 4 21053       Human in wardome
+M 0 21028 4 21049       Human in Wardome
+M 0 21028 4 21057       Human in wardome
+M 0 21029 2 21057       Orc in Wardome
+M 0 21029 2 21050       Orc  in WD
+M 0 21030 2 21059       Human in WD
+M 0 21030 2 21061       Human in WD
+M 0 21031 2 21048       Orc in WD
+M 0 21031 2 21055       Orc in WD
+M 0 21032 2 21055       Human in WD
+M 0 21032 2 21049       Human in WD
+M 0 21033 2 21054       Orc in WD
+M 0 21033 2 21058       Orc in WD
+M 0 21034 2 21052       Human in WD
+M 0 21034 2 21049       Human in WD
+M 0 21035 1 21054       Orc in WD
+E 1 21009 10 3          Shoulder pads
+M 0 21036 1 21051       Human in WD
+E 1 21009 10 3          Shoulder pads
+M 0 21027 4 21049       Orc in WD
+M 0 21028 4 21058       Human in WD
+M 0 21037 7 21032       fan in west stands
+M 0 21037 7 21033       fan in west stands
+M 0 21037 7 21033       fan in west stands
+M 0 21037 7 21034       same
+M 0 21037 7 21035       same
+M 0 21037 7 21035       same
+M 0 21037 7 21036       same
+M 0 21038 6 21034       child in west stands
+M 0 21038 6 21032       same
+M 0 21038 6 21010       child on beach
+M 0 21038 6 21009       child on beach
+M 0 21038 6 21097       child in dept store
+M 0 21038 6 21070       child on broadway
+M 0 21039 7 21035       Vendor in wardome
+M 0 21039 7 21033       same
+M 0 21039 7 21045       same
+M 0 21039 7 21043       same
+M 0 21039 7 21002       vendor in harbor
+M 0 21039 7 21002       same
+M 0 21039 7 21016       vendor on broadway
+M 0 21040 5 21104       construction worker on second avenue
+E 1 21018 20 13         tool belt
+E 1 21014 100 16        connecting rod
+E 1 21019 10 6          hard hat
+M 0 21040 5 21104       constuction worker 2
+E 1 21014 100 16        connecting rod
+E 1 21018 20 13         belt
+E 1 21019 10 6          hard hat
+M 0 21040 5 21083       construction worker in bar
+M 0 21040 5 21044       worker in wardome
+M 0 21040 5 21045       same
+M 0 21041 5 21043       rowdy fan in the blue seats
+G 1 3001 100            beer bottle
+M 0 21041 5 21044       rowdy fan
+G 1 3001 100            beer
+M 0 21041 5 21045       rowdy fan       
+G 1 3001 100            beer
+M 0 21042 4 21040       Sec. guard
+E 1 21011 100 16        night stick
+M 0 21042 4 21035       Guard   at WD
+E 1 21011 100 16        stick
+M 0 21042 4 21033       guard   at WD
+E 1 21011 100 16        stick
+M 0 21042 4 21044       guard   at WD
+E 1 21011 100 16        stick
+M 0 21044 1 21102       Fire Marshall Bob in his office
+M 0 21045 5 21103       fireman at station
+E 1 21020 100 16        fireaxe
+M 0 21045 5 21103       Fireman
+E 1 21020 100 16        axe
+M 0 21045 5 21103       Fireman
+E 1 21020 100 16        axe
+M 0 21045 5 21101       Fireman
+E 1 21020 100 16        Axe
+M 0 21045 5 21101       Fireman 
+E 1 21020 100 16        axe
+M 0 21052 6 21060       Cheerleader
+E 1 21016 100 16        pom poms
+M 0 21052 6 21060       Cheerleader
+E 1 21016 100 16        pom poms
+M 0 21052 6 21062       cheerleader
+E 1 21016 100 16        pom poms
+M 0 21052 6 21062       cheerleader
+E 1 21016 100 16        pom poms
+M 0 21052 6 21059       cheereleader
+E 1 21016 100 16        pom poms
+M 0 21052 6 21059       cheerleader
+E 1 21016 100 16        pom poms
+M 0 21053 1 21060       Head Cheerleader
+E 1 21016 100 16        pom poms
+M 0 21054 1 21109       Chief O'Hara in office
+E 1 21001 2 16          handgun
+M 0 21055 1 21110       Warden at jail
+G 1 21000 1             jail key
+E 1 21011 100 16        nightstick
+M 0 21056 1 21094       Maid at reception
+M 0 21057 1 21111       Esprit in Jail :-)
+M 0 21058 1 21097       Cashier(Shopk) at dept store
+G 1 21003 20
+G 1 21004 20
+G 1 21005 20
+G 1 21006 20
+G 1 21008 20
+G 1 21030 20
+G 1 21031 20
+G 1 21015 20
+M 0 21059 2 21018       Cop at 7-11
+E 1 21011 100 16        nightstick
+M 0 21059 2 21018       Cop at 7-11
+E 1 21011 100 16        nightstick
+M 0 21060 2 21087       Cop at cheers
+E 1 21011 100 16        nightstick
+M 0 21060 2 21087       Cop at cheers
+E 1 21011 100 16        nightstick
+M 0 21062 1 21007       fisherman(Shopk) at charlies
+G 1 21023 100
+G 1 3010 200
+G 1 21017 200
+M 0 21063 1 21017       Arms Dealer(Shopk)
+G 1 21011 100
+G 1 21012 100
+G 1 21020 100
+G 1 3020 100
+G 1 3021 100
+G 1 3022 100
+G 1 3023 100
+G 1 3024 100
+G 1 3025 100
+M 0 21077 1 21067        Armorer(Shopk)
+G 1 3040 100
+G 1 3042 100
+G 1 3044 100
+G 1 3076 100
+G 1 3081 100
+G 1 3070 100
+G 1 3071 100
+G 1 3075 100
+G 1 3080 100
+G 1 3085 100
+G 1 3086 100
+G 1 3041 100
+G 1 3043 100
+G 1 3046 100
+M 0 21078 1 21094        Receptionist at Waldorf
+M 0 21068 1 21075        Guildguard MU
+M 0 21069 1 21019        Guildguard CL
+M 0 21070 1 21014        Guildguard TH
+M 0 21071 1 21023        Guildguard WA
+M 0 21072 1 21077	 Guildmaster MU
+M 0 21073 1 21021	 Guildmaster CL
+M 0 21074 1 21096	 Guildmaster TH
+M 0 21075 1 21025	 Guildmaster WA
+M 0 21080 1 21076        Waiter MU
+M 0 21081 1 21020        Waiter Cl
+M 0 21082 1 21095        Waiter Th
+M 0 21083 1 21024        Waiter Wa
+M 0 21084 5 21073        Janitor waldorf lobby
+M 0 21084 5 21006        Janitor broadway
+M 0 21084 5 21070        Janitor broadway
+M 0 21084 5 21016        janitor broadway
+M 0 21085 20 21106       fido pound
+M 0 21085 20 21106       "
+M 0 21085 20 21106       "
+M 0 21085 20 21106       "
+M 0 21085 20 21106       "
+M 0 21085 20 21106       "
+M 0 21085 20 21106       "
+M 0 21085 20 21106       "
+M 0 21085 20 21106       "
+M 0 21085 20 21106       "
+M 0 21086 8 21084        Drunk at cheers
+M 0 21086 8 21085        Drunk at cheers
+M 0 21086 8 21089        Drunk in poolroom
+M 0 21086 8 21027        drunk in  pee wees
+M 0 21086 8 21027        drunk/pee wees
+M 0 21086 8 21080        drunk/broadway
+M 0 21064 1 21018       7-11 manager(shopk)
+G 1 21022 100
+G 1 21025 100
+G 1 21026 100
+G 1 21027 100
+G 1 21029 100
+D 0 21110 2 2       door to jail
+D 0 21111 0 2
+D 0 21088 3 1       door to cheers office
+D 0 21091 1 1
+M 0 21066 1 21010       bimbo at beach
+M 0 21067 4 21027       stripper at pee wees
+M 0 21067 4 21027       stripper
+M 0 21067 4 21027       stripper
+M 0 21067 4 21027       stripper
+M 0 21079 1 21012        waiter(shopk) at 70's cafe
+G 1 3104 100
+G 1 3101 100
+G 1 3100 100
+G 1 6013 100
+O 0 3034 7 21079	load teller machine into Bank of NS
+*
+M 0 21087 1 21117       Kitten
+M 0 21088 1 21117       Puppy
+M 0 21089 1 21117       Beagle
+M 0 21090 1 21117       Rottweiler
+M 0 21091 1 21117       Wolf
+S
+#300
+$~

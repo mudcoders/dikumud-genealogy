@@ -1,0 +1,130 @@
+#6502
+key mine~
+a mine key~
+There is a key to the mines lying here.~
+~
+18 4096 1
+6502 0 0 0
+1 0 0
+#6503
+key bright gold~
+a bright golden key~
+There is a bright golden key lying here.~
+~
+18 4096 1
+6503 0 0 0
+1 900 0
+#6504
+hammer dwarven~
+a hammer~
+There is a dwarven hammer lying here.~
+pummel~
+5 0 8193
+0 2 6 7
+13 5500 1000
+#6505
+plate dwarven mail~
+dwarven plate mail~
+There is dwarven plate mail lying here.~
+~
+9 0 9
+6 0 0 0
+80 4500 300
+#6506
+stick~
+a long, black stick~
+There is a long, black stick lying here.~
+~
+4 0 16385
+4 2 2 28
+1 100 6000
+#6507
+stick~
+a long, black stick~
+There is a long, black stick here.~
+~
+1 0 16385
+0 0 0 0
+1 0 1
+#6508
+club~
+a dwarven club~
+There is a dwarven club lying here.~
+~
+5 0 8193
+0 2 3 3
+12 3000 300
+#6509
+two-handed dwarven axe~
+a two-handed dwarven axe~
+A two-handed dwarven axe is here.~
+slices~
+5 0 8193
+0 2 7 3
+14 5000 3000
+A
+18 2
+A
+1 2
+#6510
+helmet~
+a dwarven helmet~
+A dwarven helmet is here.~
+~
+9 0 17
+4 0 0 0
+4 2500 500
+#6511
+gold ring~
+a golden dwarven ring~
+A golden dwarven ring is lying here.~
+~
+11 0 3
+0 0 0 0
+1 10000 10000
+A
+18 3
+A
+19 2
+#6512
+gloves~
+a pair of dwarven gloves~
+A pair of thick dwarven gloves lay here.~
+~
+9 0 129
+1 0 0 0
+2 4000 200
+A
+5 1
+A
+2 1
+#6517
+coal~
+a chunk of coal~
+There is a chunk of coal here.~
+~
+13 0 16385
+0 0 0 0
+100 0 0
+#6518
+pick~
+a mining pick~
+There is a mining pick here.~
+picks~
+5 256 8193
+0 2 3 11
+9 300 10
+E
+pick~
+It looks almost blessed!
+~
+#6550
+key deep green~
+a deep green key~
+There is a deep green key lying here.~
+~
+18 4096 1
+6550 0 0 0
+10 10 0
+#99999
+$~

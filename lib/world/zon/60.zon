@@ -1,0 +1,113 @@
+#60
+Haon-Dor (Light)~
+6099 13 2
+* Mobiles & equipment
+D 0 6009 0 1       Cabin door must be closed
+M 0 6000 1 6009    John the Lumberjack
+E 1 6000 2 16        Equip with Lumber Axe
+E 1 6001 10 5        Equip with Chequered Shirt
+E 1 6002 20 8         Equip with leather boots
+M 0 6001 6 6012    Rabbit
+G 1 6023 10	     Put Meat in the Rabbit
+M 0 6001 6 6015    Rabbit
+G 1 6023 10	     Put Meat in the Rabbit 
+M 0 6001 6 6017    Rabbit
+G 1 6023 10	     Put Meat in the Rabbit 
+M 0 6001 6 6019    Rabbit     
+G 1 6023 10	     Put Meat in the Rabbit 
+M 0 6002 1 6022    Brown bear
+M 0 6004 1 6023    Fallow deer
+G 1 6024 4           Put Venison in the Deer
+M 0 6005 4 6014    Brown fox
+* Objects
+O 0 6003 1 6010    Fireplace
+P 1 6006 1 6003      Put Brass key to wooden chest into the Fireplace
+O 0 6004 1 6010    Lantern
+O 0 6005 2 6010    Wooden chest
+P 1 6007 1 6005      Coins (In chest)
+O 0 6013 9 6010    Water barrel
+O 0 6010 2 6023    Blackberries
+O 0 6011 10 6006   Mushroom
+O 0 6011 10 6013   Mushroom 
+O 0 6011 10 6016   Mushroom         
+O 0 6012 1 6000    The News Sign
+*
+*  Haon-Dor addition, By Derkhil
+*       Objects (invis means it has no Long Descript)
+O 0 6014 6 6006   Brook to drink from
+O 0 6014 6 6007   Brook to drink from
+O 0 6014 6 6008   Brook to drink from
+O 0 6014 6 6013   Brook to drink from
+O 0 6014 6 6014   Brook to drink from
+O 0 6015 2 6025   invis 'Lake' object to make it drinkable
+O 0 6015 2 6027   invis 'Lake' object to make it drinkable
+*
+O 0 6016 1 6033   oaken cudgel to treetop
+O 0 6017 1 6026   corpse of the Boar to NW Field corner
+P 1 6018 1 6017     Put Meat in corpse
+P 1 6019 1 6017     Put Tusks in corpse
+O 0 6020 1 6067   invis Floating log in forest clearing
+O 0 6021 1 6032   invis Bird's nest in tree
+P 1 6022 3 6021     Put Robin's Eggs in Nest
+P 1 6022 3 6021     Put Robin's Eggs in Nest
+P 1 6022 3 6021     Put Robin's Eggs in Nest
+O 0 6011 15 6019  Mushroom
+O 0 6011 15 6065  Mushroom
+O 0 6011 15 6062  Mushroom
+O 0 6011 15 6069  Mushroom
+O 0 6011 15 6078  Mushroom
+*             Mobiles
+M 0 6006 1 6033   Bird with Broken wing in treetop
+M 0 6007 1 6033   Aggr Bobcat in treetop
+M 0 6008 4 6005   Sparrow
+M 0 6008 4 6013   Sparrow
+M 0 6008 4 6062   Sparrow
+M 0 6009 3 6032   Robin (this one in the tree near the nest)
+M 0 6009 4 6066   Robin 
+M 0 6009 4 6013   Robin
+M 0 6009 4 6016   Robin
+M 0 6010 2 6030   Nested (hidden) Squirrel
+M 0 6010 2 6030   Nested (hidden) Squirrel
+M 0 6011 1 6067   Badger in Den (hidden)
+M 0 6012 7 6003   Grey Squirrel
+M 0 6012 7 6007   Grey Squirrel
+M 0 6012 7 6028   Grey Squirrel
+M 0 6012 7 6032   Grey Squirrel
+M 0 6012 7 6030   Grey Squirrel
+M 0 6012 7 6064   Grey Squirrel
+M 0 6012 7 6075   Grey Squirrel
+M 0 6013 4 6030   Chipmunk
+M 0 6013 4 6021   Chipmunk
+M 0 6013 4 6067   Chipmunk
+M 0 6013 4 6061   Chipmunk
+M 0 6014 4 6026   Crow at Corpse
+M 0 6014 4 6026   Crow at Corpse
+M 0 6014 4 6026   Crow at Corpse
+M 0 6014 4 6027   Crow by Lake
+M 0 6015 1 6026   Vulture Devouring Corpse
+M 0 6016 1 6025   Small 5-pt Buck
+G 1 6024 4          Put Venison in the Deer
+M 0 6017 3 6027   Fish
+M 0 6017 3 6027   Fish
+M 0 6017 3 6027   Fish
+M 0 3124 4 6027   Duck
+M 0 3124 4 6027   Duck
+M 0 3124 3 6027   Duckling
+M 0 3124 3 6027   Duckling
+M 0 6001 11 6068  Rabbit
+G 1 6023 16	    Put Meat in the Rabbit 
+M 0 6001 11 6062  Rabbit
+G 1 6023 16	    Put Meat in the Rabbit 
+M 0 6001 11 6071  Rabbit
+G 1 6023 16	    Put Meat in the Rabbit 
+M 0 6001 11 6070  Rabbit
+G 1 6023 16	    Put Meat in the Rabbit 
+M 0 6001 11 6060  Rabbit
+G 1 6023 16	    Put Meat in the Rabbit 
+M 0 6005 8 6069  Brown fox
+M 0 6005 8 6074  Brown fox
+M 0 6005 8 6060  Brown fox
+*
+S
+#99999
+$~

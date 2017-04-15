@@ -1,0 +1,32 @@
+#0
+bug~
+a bug~
+This object is BAD!  If you see it, there must be a bug in the game.  Please
+report it immediately using the BUG command.~
+~
+13 0 0
+0 0 0 0
+0 0 0
+#1000
+wings~
+a pair of wings~
+A pair of wings is sitting here.~
+~
+9 0 17
+6 0 0 0
+0 0 200
+#1001
+rose~
+a red rose~
+A red rose is lying on the ground.~
+~
+9 0 17
+3 0 0 0
+8 0 200
+E
+rose~
+This is no ordinary rose, as it is a gift from Dionysos to his 
+dearest, Wendella.
+~
+#99999
+$~

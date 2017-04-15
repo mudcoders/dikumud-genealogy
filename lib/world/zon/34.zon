@@ -1,0 +1,11 @@
+#34
+Graveyard~
+3499 40 2
+*
+D 0 3404 2 1          Close Chapel door from outside
+D 0 3405 0 1          Close Chapel door from inside
+O 0 3400 1 3405       Candlestick in Chapel
+*
+S
+#99999
+$~

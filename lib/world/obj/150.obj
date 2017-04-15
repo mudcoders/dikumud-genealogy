@@ -1,0 +1,192 @@
+#15000
+nothingness universal~
+Sapowox's Universal Nothingness~
+You are quite unable to perceive Sapowox's Universal Nothingness here.~
+~
+5 4162 8193
+0 6 4 1
+40 0 200000
+E
+nothingness universal~
+You are not sure, but you do not seem not able to figure out what
+it isn't, because it doesn't much resemble anything you haven't 
+ever seen.
+You feel a bit of mortal confusion, but you notice a small
+inscription on it.
+~
+E
+text writing inscription~
+It just says: ' (void *) '.
+Not very enlightening.
+~
+A
+18 5
+A
+19 5
+#15002
+sceptre royal golden~
+a golden sceptre~
+A golden Royal sceptre lies on the ground.~
+~
+12 1088 16385
+0 0 0 0
+20 15000 3000
+A
+18 2
+#15003
+crown golden~
+a golden crown~
+A magnificently jewelled golden crown has been left here.~
+~
+9 1088 17
+7 0 0 0
+40 12000 10000
+A
+12 30
+A
+3 1
+#15004
+apple golden~
+a golden apple~
+There is a golden apple here.~
+~
+1 1088 16385
+0 0 -1 0
+5 8000 400
+#15005
+telescope scope~
+a large telescope~
+There is a large telescope here, pointing at the sky.~
+~
+12 0 0
+0 0 0 0
+100 0 0
+E
+telescope scope~
+A small sign says: Made in Siberia.
+~
+#15006
+sword training~
+a training sword~
+A training sword with blunt edges is leaned against a wall.~
+~
+5 0 8193
+0 1 4 3
+7 300 5
+A
+18 -2
+#15007
+key huge~
+a huge key~
+There is a huge, heavy-looking key on the floor here.~
+~
+18 4096 16385
+2 0 0 0
+1 1000 0
+#15009
+key butlers butler~
+the Butler's key~
+The Butler's key is here.~
+~
+18 4096 16385
+1 0 0 0
+3 200 0
+#15010
+key small~
+a small key~
+A small key lies here.~
+~
+18 4096 16385
+1 0 0 0
+1 200 100
+#15011
+chest wooden~
+a large wooden chest~
+A large wooden chest stands here in a corner.~
+~
+15 0 1
+400 13 15010 0
+450 400 100
+E
+chest~
+It is equipped with a small lock, that any self-respecting thief
+should be able to pick.
+~
+#15012
+vial large potion brown~
+a large vial~
+A large vial has been left here.~
+~
+10 64 1
+15 15 -1 -1
+14 2000 2000
+E
+vial large brown potion~
+It is filled with a disgusting brown liquid.~
+#15013
+banner royal~
+a royal banner~
+The royal banner has been firmly planted in the ground here.~
+~
+12 65 16385
+0 0 0 0
+40 25000 10000
+E
+banner royal standard~
+It is large and very heavy. On top of it flutters King Welmar's flag
+proudly.
+~
+E
+flag~
+On the flag is the symbol of King Welmar's house, the rampant stag.
+~
+A
+18 2
+A 
+19 1
+#15014
+key~
+a key~
+A key lies on the floor.~
+~
+18 4096 1
+2 0 0 0
+13 5 0
+E
+key~
+It has a finely carved letter 'W' inscribed on it.
+~
+#15015
+mail chain hauberk~
+a guard's chain mail hauberk~
+A chain mail hauberk lies on the floor~
+~
+9 0 9
+5 0 0 0
+60 2000 500
+#15016
+sword large broadsword~
+a large broadsword~
+There is a large broadsword lying here.~
+~
+5 0 8193
+0 2 6 3
+14 1300 3000
+#15019
+lobster~
+a delicious-looking lobster~
+A delicious-looking lobster is lying here, tempting your appetite.~
+~
+19 0 1
+7 0 0 0 
+5 100 10
+#15020
+caviar~
+some Russian caviar~
+There is some delicious-looking Russian caviar here, making your mouth water.~
+~
+19 0 1
+2 0 0 0 
+1 250 20
+#99999
+$~

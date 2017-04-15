@@ -1,2 +1,2 @@
-dmserver
+bin/circle
 *.o

@@ -1,0 +1,1098 @@
+#21000
+goethe poet philosopher~
+Goethe~
+Goethe is here, staring blindly into space.
+~
+Goethe exudes an aura of verbosity.
+~
+2 128 1000 S
+30 0 10 5d10+400 1d8+3
+0 50000 
+6 6 1 
+#21001
+harry hare krishna pharmacist~
+Harry the Hare Krishna~
+Harry the Hare Krishna is busy burning incense and singing.
+~
+Harry is a tall man with a shaven head and a long pony tail... gee I wonder
+if he is a Hare Krishna.
+~
+2 0 900 S
+23 2 2 6d10+390 1d8+12
+1000 80000
+8 8 1
+#21002
+wally wizard~
+Wally the Wizard~
+Wally the Wizard is busy playing with his magical items.
+~
+Wally is an old, long haired man with an obvious affection to strange and
+unusual magic items.  When he looks at you, he doesn't seem to be completely
+there.
+~
+2 0 1000 S
+23 2 2 6d10+390 1d8+12
+10000 80000
+8 8 1
+#21003
+policeman police man~
+the Policeman~
+The Policeman is here, walking his beat.
+~
+Specifically recruited by the upper class people of New Sparta, there
+is no one more respectable and honest than your on duty policeman.
+~
+2113 0 1000 S
+10 10 2 1d12+123 1d8+3
+500 9000
+8 8 1
+#21004
+cop fuzz fuzzy pig flatfoot gumshoe~
+the Cop~
+The Cop is wandering around looking for donuts.
+~
+You can see that this guy does not concentrate very much on his job and tends 
+to look the other way.  He seems to be more interested in filling his belly 
+with donuts than in protecting the city.
+~
+2240 0 0 S
+10 10 2 1d12+123 1d8+3
+500 9000
+8 8 1 
+#21005
+mugger mug mugg thug~
+a Mugger~
+A Mugger is thinking about taking your money or your life.
+~
+Driven to desperate measures, this leech of society is after one thing...
+your money.  He'll do anything to get it, too.
+~
+100 0 -350 S
+3 18 7 1d4+38 1d7+0 
+5 350
+8 8 1
+#21006
+tourist people tour~
+a Tourist~
+A Tourist is here, taking in the sights.
+~
+Every metropolis has them, well so does New Sparta.  Be careful not to get
+caught in their line of sight.
+~
+0 0 500 S
+2 18 8 2d6+20 1d6+0
+50 200
+8 8 0
+#21007
+Norm norm norman normy peterson~
+Norm~
+Norm is drinking another beer.
+~
+You see Norm from Cheers, he is big, fat, drinks a lot and is an overall
+jolly fellow.
+~
+18 0 800 S
+23 0 1 6d10+399 3d8+6
+1000 80000
+6 6 1
+#21008
+cliff cliffy claven~
+Cliff Claven~
+Cliff is rattling off useless trivia.
+~
+A postal worker who never seems to be doing his job, Cliff is out of touch
+with reality and tends to be annoying--even to his friends.
+~
+148 0 1000 S
+18 3 1 3d10+200 2d10+0
+750 30000
+8 8 1
+#21009
+carla carla bitch labeck~
+Carla~
+Carla is waiting on tables.
+~
+Carla splashes a drink in your face.
+~
+4 0 -800 S
+23 2 2 6d10+390 1d8+12
+2000 80000
+8 8 2
+#21010
+woody wood woody boyd~
+Woody~
+Woody is waiting to serve you a drink.
+~
+A farm boy from Indiana, he has not quite fit into the atmosphere of
+the big city yet.
+~
+2 0 1000 S
+23 2 2 6d10+390 1d8+12
+3000 80000
+8 8 1
+#21011
+mayor abe~
+Mayor Abe~
+Mayor Abe is about, inspecting the city.
+~
+This high official, like most other politicians, seems uninterested
+in helping the community.  Not a man to be trifled with, the Mayor
+is reputed to have ties with the mob kingpin--Lucifer.
+~
+64 0 -900 S
+25 0 -2 6d10+480 4d6+4
+20000 135000
+8 8 1
+#21012
+rebecca ms howe rebecca becky~
+Rebecca Howe~
+Rebecca Howe is hurrying about making sure Cheers is in order.
+~
+A very harried but yet beautiful woman.  Most of her anguish stems from
+her sexual frustrations and from attempting to keep Cheers in order.
+~
+64 0 900 S
+23 2 2 6d10+4390 1d8+12
+3000 80000
+8 8 2
+#21013
+sam malone sam sammy malone~
+Sam~
+Sam is here, hitting on the women.
+~
+A very handsome, self-assured ex-baseball player who is very popular
+with the ladies, but often finds himself in sticky situations.
+~
+64 0 900 S
+24 1 1 6d10+4410 2d8+14
+10000 90000
+8 8 1
+#21014
+frazier crane dr crane fraz frazier~
+Frazier~
+Frazier is here psychoanalyzing patrons in the bar.
+~
+Though very emotionally unstable for a psychiatrist, Dr. Crane tries
+to aid people with their problems while creating his own.
+~
+64 0 900 S
+23 2 2 6d10+4390 1d8+12
+5000 80000
+8 8 1
+#21015
+lilith sternen crane~
+Lilith~
+Lilith is sitting at the bar, keeping a watchful eye on Frazier.
+~
+A calm, thoroughly rational and logical thinker on the outside--a wild, 
+crazy, sexual goddess on the inside.
+~
+66 0 900 S
+23 2 2 6d10+4390 1d8+12
+3000 80000
+6 6 2
+#21016
+paul~
+Paul~
+Paul is here, drinking a beer.
+~
+Paul is a robust man, who tends to be a bit childish when around Norm and
+Cliff.
+~
+16 0 800 S
+21 1 0 6d10+4300 3d7+4
+1000 60000
+8 8 1
+#21017
+alley cat pussy~
+the Alley Cat~
+An Alley Cat is looking for food.
+~
+This is an everyday unwanted alley cat who spends most of his day looking 
+for food.
+~
+162 0 0 S
+0 20 10 1d6+4 1d4+0
+10 25
+8 8 1
+#21018
+pee wee peewee pee-wee~
+Pee Wee~
+Pee Wee is doing something you would rather not like to know.
+~
+Pee Wee is the owner of this peep show, so you'd better not piss him off.
+~
+6 0 -500 S
+10 11 2  1d12+120 1d8+4
+500 8000
+6 6 1
+#21019
+punk~
+a punk~
+A punk is here, deciding what color to spray paint your back.
+~
+You see a punk who is more than willing to knock off an old lady for a few 
+bucks.
+~
+4 524288 -400 S
+6 15 4 1d12+72 1d8+1
+100 1500
+8 8 1
+#21020
+skinhead head skin~
+a skinhead~
+A skinhead is here, looking for a punk to kill.
+~
+Skinheads are mean and nasty... better not stare too long.
+~
+4 0 -500 S
+7 14 4 2d6+80 2d4+1
+150 2250
+8 8 1
+#21021
+prostitute~
+a prostitute~
+A prostitute is soliciting you.
+~
+When you look at her she says, "Hey baby, wanna party?"
+~
+2 0 0 S
+3 18 7 2d6+30 1d7+0
+100 350
+8 8 2
+#21022
+john jonathan jon hill~
+Jonathan Hill~
+Jonathan Hill is here, welcoming his costumers.
+~
+This is the evil bald-headed guy who runs Melville.
+~
+2 0 -1000 S
+23 2 2 6d10+4390 3d8+4
+15000 80000
+8 8 1
+#21023
+bishop bish~
+the Bishop~
+The Bishop is here, look for a crime to solve.
+~
+Da Da Deah (sorry for the bad sound effects)!  It's the Bishop!
+~
+80 0 1000 S
+20 0 0 1d10+240 3d6+4
+2000 40000 
+8 8 1
+#21024
+dockworker dock worker work~
+a dockworker~
+A dockworker is busy moving crates.
+~
+Dockworkers get very strong from lifting crates and the size of his muscles
+make you think twice about attacking him.
+~
+4 0 500 S
+9 10 3 4d6+100 2d6+1
+400 6000
+8 8 1
+#21025
+prostitute~
+a prostitute~
+A prostitute is here, looking for customers.
+~
+When you take a closer look, you realize that this is not the lovely lady
+you first laid eyes on, but is really just a female impersonator.
+~
+4 0 -350 S
+5 16 6 1d12+60 2d4+0
+100 900
+8 8 1
+#21026
+pimp~
+a pimp~
+A pimp is busy counting his money to make sure his women haven't been 
+cheating him.
+~
+You over hear the pimp reciting poetry...
+        Bitch better have my money
+        not some, not half
+        but all my cash!
+~
+4 0 -700 S
+10 11 2 2d6+120 2d6+1
+1000 9000
+8 8 1
+#21027
+orc lineman raider~
+an Orc lineman~
+A Raiders' lineman is here hunting for the ball. 
+~
+This is one of Orcland's lineman.  He is a balanced player, but has no
+outstanding abilities.
+~
+36 0 -700 S 
+8 12 2 3d5+100 2d5+1
+300 4000
+8 8 1
+#21028
+human lineman warrior~
+a Human lineman~
+A Warriors' lineman is here hunting for the ball. 
+~
+This is one of New Sparta's lineman.  He is a balanced player, but has no
+outstanding abilities.
+~
+4 0 0 S 
+8 12 2 3d5+100 2d5+1
+300 4000
+8 8 1
+#21029
+orc catcher raider catch receiver~
+an Orc catcher~
+A Raiders' catcher is here running a pattern.
+~
+This is one of the Orcs' skilled catchers.  He is quick, but not very
+powerful.
+~
+4 0 -700 S
+6 15 4 3d8+60 1d8+1
+400 1500
+8 8 1
+#21030
+human catcher warrior catch receiver~
+a Human catcher~
+A Warriors' catcher is here running a pattern.
+~
+This is one of the Warriors' skilled catchers.  He is quick, but not very
+powerful.
+~
+4 0 700 S
+6 15 4 3d8+60 1d8+1
+400 1500
+8 8 1
+#21031
+orc blocker raider block~
+an Orc blocker~
+A Raiders' blocker is trying to pave an open pathway.
+~
+This is the slowest (both physically AND mentally) of the bloodbowl
+players.  However, he is also very large and powerful, so be careful
+when tangling with him.
+~
+4 0 -700 S
+12 9 0 4d6+140 3d5+0
+500 13500
+8 8 1
+#21032
+human blocker warrior block~
+a Human blocker~
+A Warriors' blocker is trying to pave an open pathway.
+~
+This is the slowest (both physically AND mentally) of the bloodbowl
+players.  However, he is also very large and powerful, so be careful
+when tangling with him.
+~
+4 0 700 S
+12 9 0 4d6+140 3d5+0
+500 13500
+8 8 1
+#21033
+orc thrower passer throw raider~
+an Orc thrower~
+A Raiders' thrower, attempting a pass.
+~
+Similar to a quarterback, this is a player with both mobility and a
+cannon for an arm.  He can also hold his own when hitting with the
+big boys.
+~
+4 0 -700 S
+10 11 1 4d6+110 2d6+1
+500 9000
+8 8 1
+#21034
+human thrower passer throw warrior~
+a Human thrower~
+A Warriors' thrower, attempting a pass.
+~
+Similar to a quarterback, this is a player with both mobility and a
+cannon for an arm.  He can also hold his own when hitting with the
+big boys.
+~
+4 0 700 S
+10 11 1 4d6+110 2d6+1
+500 9000
+8 8 1
+#21035
+orc blitz blitzer raider~
+an Orc blitzer~
+A fierce Raiders' blitzer, waiting to tear someone limb from limb.
+~
+An all-around fearsome athlete, the blitzer is the toughest most
+aggressive player on the bloodbowl field.
+~
+38 0 -800 S
+16 5 0 2d10+190 2d8+2
+750 24000
+8 8 1
+#21036
+human blitz blitzer warrior~
+a human blitzer~
+A fierce Warriors' blitzer, waiting to tear someone limb from limb.
+~
+An all-around fearsome athlete, the blitzer is the toughest most
+aggressive player on the bloodbowl field.
+~
+4 0 800 S
+16 5 0 2d10+190 2d8+2
+750 24000
+8 8 1
+#21037
+spectator loyal fan~
+a loyal fan~
+A loyal fan is here enjoying the game.
+~
+Your average sports fan, who attends a game now and then.
+~
+0 0 1000 S
+3 18 7 2d1+40 1d7+0
+20 350
+8 8 1
+#21038
+child kid~
+an innocent child~
+A child is here, wandering around.
+~
+Awww, how cute!!!
+~
+0 0 1000 S
+1 20 10 2d5+10 1d5+0
+5 100
+8 8 0
+#21039
+vendor salesman~
+a vendor~
+A vendor is here peddling his goods.
+~
+A merchant with a variety of goods, with nothing you particularly need.
+~
+4 0 700 S
+4 17 6 2d5+50 1d8+0
+75 600
+8 8 1
+#21040
+construction worker~
+a construction worker~
+A construction worker is here on his break.
+~
+A strong, dirty, harsh-talking construction worker.
+~
+2 0 0 S 
+6 15 4 2d8+70 1d8+1
+100 1500
+8 8 1
+#21041
+rowdy fan drunk~
+a drunk, rowdy fan~
+A drunk, rowdy fan is here, making an ass of himself.
+~
+Sit down, sit down, sit down, sit down--sit down you're rocking
+the boat.
+~
+0 0 -400 S
+4 17 6 2d5+50 1d8+0
+65 600
+8 8 1
+#21042
+security guard~
+a Security Guard~
+A Security Guard is here, attempting to maintain order.
+~
+Not as efficient as a police officer, but then not as expensive either.
+~
+2 0 800 S
+8 13 3 3d5+95 2d5+1
+400 3750
+8 8 1
+#21044
+fire marshall bob~
+Fire Marshall Bob~
+Fire Marshall Bob is busy trying to extinguish the fire that is on his back.
+~
+This is one poor excuse for a Fire Marshall.  He's obviously started more 
+fires in his day than he's actually extinguished.  Just another sad example 
+of nepotism in today's world!
+~
+68 8 350 S
+15 6 1 2d6+185 2d8+2
+1000 21000 
+8 8 1
+#21045
+fireman fire man~
+a fireman~
+A fireman is here, looking rather useless.
+~
+Well, the less skilled relatives of the Sparta executives needed a job 
+somewhere, so they wound up here.  Obviously, its a very cushy job because
+there are no real fires in New Sparta.
+~
+64 0 500 S
+7 14 4 1d6+89 2d4+1
+100 2250
+8 8 1
+#21046
+whore slut bitch hooker~
+a whore~
+A whore is looking for customers.
+~
+The only good attribute of this beast is her low prices, which would explain
+why she is always busy with punks and skinheads.
+~
+2 0 -400 S
+4 17 6 2d6+48 1d8+0
+100 600
+5 5 2
+#21047
+minor cutthroat seeker throat~
+a minor throat~
+A minor throat is busy doing homework.
+~
+This is one of the weakest of the evil inhabitants of the library.  They 
+will do anything for a good grade or to keep a good man down.
+~
+4 524288 -1000 S
+6 15 4 2d6+71 1d8+1 
+100 1500
+8 8 1
+#21048
+throat cut cutthroat~
+a throat~
+A throat is here, looking for someone's notes to steal.
+~
+This is one of the most populated species of the library.  They're really 
+desperate for a good grade.
+~
+4 524296 -1000 S
+9 12 3 2d6+110 2d5+1
+400 6000
+8 8 1
+#21049
+major throat cut cutthroat~
+a major throat~
+A major throat is busy hiding all the science reference books.
+~
+You see a barely human creature that has absolutely no morals or sense of
+dignity.
+~
+4 524296 -1000 S
+12 9 2 2d6+148 2d7+1
+1000 13000
+8 8 0
+#21050
+senior throat cutthroat~
+a senior throat~
+A senior throat is burning all the useful books.
+~
+You see a devilish looking creature that would gladly sell its' sister into 
+slavery for a good grade.
+~
+4 524296 -1000 S
+15 6 1 2d6+184 2d8+2
+2000 21000
+8 8 0
+#21051
+master throat~
+the master throat~
+The master throat is here, trying to break into the school records.
+~
+The master throat is the devilish and desperate creature that lacks any
+morals or self dignity.  Watch out, its' eyeing your stuff right now!
+~
+38 524296 -1000 S
+21 0 -1 10d10+250 3d7+4
+15000 50000
+8 8 0
+#21052
+cheerleader cheer leader lead~
+a cheerleader~
+A cheerleader is here rooting on the home team.
+~
+Wow!  Don't you wish there were more girls like these around?  Almost 
+nothing rivals the beauty of the cheerleaders, unfortunately their looks
+are not always matched by their brains (unfortunately for them, but lucky
+for YOU!!), though you are positive you could forget about that fact
+for just a few hours.
+~
+146 0 1000 S
+2 19 8 3d5+20 1d6+0
+25 200
+8 8 2
+#21053
+head cheerleader cheer lead ilsa~
+Ilsa the Head Cheerleader~
+Ilsa the Head Cheerleader is here, looking totally gorgeous!
+~
+You gaze at this beauty with long, flowing blonde hair, an angelic,
+calming face, firm, ample..... and a body that just screams......!
+You snap out of your daydream and notice that she is frowning at you,
+as she does not appreciate people undressing her with their eyes.
+~
+2 0 1000 S
+10 11 2 1d1+134 2d6+1
+100 9000
+8 8 2
+#21054
+chief o'hara hara~
+Chief O'Hara~
+Chief O'Hara is sitting behind his desk. Looks like he's finally gotten a clue.
+~
+The Chief is a longtime law enforcement agent who has become overweight
+from years of eating donuts.  He is a jolly Irishman, who for the first
+time will have to do his job without the services of Batman.  Unfortunately
+for you, he actually looks up to the job now!
+~
+2050 72 1000 S
+26 0 -6 1d12+510 1d8+12
+0 130000
+6 6 1
+#21055
+warden~
+the Warden~
+The Warden is here guarding the jail.
+~
+A staunch proponent of the death penalty, and the keeper of the jail key.
+~
+2 0 1000 S
+12 9 2 3d5+150 2d7+1
+0 13000
+8 8 1
+#21056
+maid~
+a maid~
+A maid is here cleaning up after the guests.
+~
+The maid is a lady weary from constant upkeep of the hotel who views most of 
+mankind as slobs.
+~
+6 0 900 S
+1 20 9 2d6+10 1d5+0
+34 100
+8 8 2
+#21057
+esprit~
+Esprit~
+Esprit is behind bars, where he belongs.
+~
+The law finally caught up to this character killer, who is serving
+an indefinite sentence.  May this be a lesson to you all.
+~
+35 8 -1000 S
+12 9 1 1d1+140 2d6+1
+0 11000
+8 8 1
+#21058
+cashier clerk~
+a Cashier~
+A cashier is busy filing her nails.
+~
+You see a student working at her part-time job.  She really would rather
+be somewhere else, but needs the money for tuition.
+~
+2 0 900 S
+23 2 2 6d10+390 1d8+12
+2000 80000
+8 8 2
+#21059
+cop~
+the Cop~
+The Cop is sitting here eating donuts.
+~
+You can see that this guy does not concentrate very much on his job and tends 
+to look the other way.  He seems to be more interested in filling his belly 
+with donuts than in protecting the city.
+~
+2242 0 0 S
+10 10 2 1d12+123 1d8+4
+500 9000
+6 6 1
+#21060
+cop~
+the Cop~
+The Cop is sitting here having a drink.
+~
+You can see that this guy does not concentrate very much on his job and tends 
+to look the other way.  He seems to be more interested in filling his belly 
+with beer than in protecting the city.
+~
+2242 0 0 S
+10 10 2 1d12+123 1d8+3
+500 9000
+6 6 1
+#21061
+shoplifter shop lifter~
+a shoplifter~
+A shoplifter is busy stuffing things into her pockets.
+~
+From the size of her pockets, you can see that this is one busy kleptomaniac.
+~
+6 0 -350 S
+4 17 6 2d6+48 1d8+0
+100 600
+8 8 2
+#21062
+fisherman~
+a fisherman~
+A fisherman is waiting to serve you.
+~
+This guy's been around fish so long that he's beginning to look and smell
+like one.
+~
+2 0 900 S
+23 2 2 6d10+390 1d8+12
+2000 80000 
+8 8 1
+#21063
+arms dealer~
+an arms dealer~
+An arms dealer is cleaning his guns.
+~
+Like most arms dealers, he's got greased back hair and a slimy mustache.
+~
+2 0 350 S
+23 2 2 6d10+390 1d8+12
+10000 80000
+8 8 1
+#21064
+raghuram manager~
+Raghuram the 7-11 Manager~
+Raghuram the 7-11 Manager is here.
+~
+Like most 7-11 managers, Raghuram is Indian, and speaks with a near 
+incomprehensible accent.
+~
+2 0 900 S
+23 2 2 6d10+390 1d8+12
+10000 80000
+8 8 1
+#21065
+launchpad launch pad duck mcquack~
+Launchpad McQuack~
+Launchpad McQuack is here following Darkwing.
+~
+You see a tall humanoid duck who is quite confused and very dim-witted, but
+definitely no duck to f*ck with.
+
+>
+You instinctively retch in reaction to looking at this horrible thing!
+
+~
+148 136 1000 S
+21 0 0 1d1+349 2d12+10
+0 70000
+8 8 1
+#21066
+bimbo bleached blonde~
+a bleached blonde bimbo~
+A bleached blonde bimbo is bouncing around.
+~
+You can almost feel the intelligence and wisdom points being reduced as you
+feel the blood rush from your head to another part of your anatomy.
+~
+2 0 0 S
+4 17 10 1d12+50 2d4+0
+0 600
+8 8 2
+#21067
+stripper~
+a stripper~
+A stripper is here, undressing for your entertainment.
+~
+Wow, you have never seen such big h00ters before in your life, it really makes
+you believe that there is a God! (and he likes big butts too ;)
+~
+2 0 100 S
+4 17 6 1d12+48 2d4+0
+0 600
+8 8 2
+#21068
+sorcerer~
+the Sorcerer~
+A sorcerer is guarding the entrance.
+~
+He is an experienced mage who has specialized in the field of Combat Magic.
+He is here to guard the Mage's Guild and his superior knowledge of offensive as
+well as defensive spells make him a deadly opponent.
+~
+2 0 800 S
+33 2 2 6d10+990 1d8+12
+2000 80000
+8 8 1
+#21069
+knight templar~
+the Knight Templar~
+A knight templar is guarding the entrance.
+~
+He is a specially trained warrior belonging to the military order of the Faith.
+His duty is to protect the faithful from persecution and infidel attacks and
+his religious devotion combined with his superior skill makes him a deadly
+opponent.
+~
+2 0 800 S
+33 2 2 6d10+990 1d8+12
+2000 80000
+8 8 1
+#21070
+assassin~
+the Assassin~
+An assassin is guarding the entrance.
+~
+He is a thief who has specialized in killing others as effectively as possible,
+using all sorts of weapons.  His superior knowledge of how and where to use
+them combined with his extraordinary stealth makes him a deadly opponent.
+~
+2 0 800 S
+33 4 4 6d10+990 1d8+12
+2000 80000
+8 8 1
+#21071
+knight~
+the Knight~
+A knight is guarding the entrance.
+~
+He is an expert warrior who has attained knighthood through countless
+chivalrous deeds.  His duty is to protect the Guild of Swordsmen and his
+extreme skill combined with his experience in warfare makes him a deadly
+opponent.
+~
+2 0 800 S
+33 0 0 6d10+990 1d8+12
+2000 80000
+8 8 1
+#21072
+guildmaster master~
+the Guildmaster~
+Your guildmaster is standing here.
+~
+Even though your guildmaster looks old and tired, you can clearly see the
+vast amount of knowledge she possesses.  She is wearing fine magic clothing,
+and you notice that she is surrounded by a blue shimmering aura.
+~
+2 0 1000 S
+24 0 0 6d10+440 3d8+4
+8794 100000
+8 8 2
+#21073
+guildmaster master~
+the Guildmaster~
+Your guildmaster is standing here.
+~
+You are in no doubt that this guildmaster is truly close to your god; he has
+a peaceful, loving look.  You notice that he is surrounded by a white aura.
+~
+2 128 1000 S
+24 0 0 6d10+440 3d8+4
+8794 100000
+8 8 1
+#21074
+guildmaster master~
+the Guildmaster~
+Your guildmaster is standing here.
+~
+You realize that whenever your guildmaster moves, you fail to notice it -
+the way of the true thief.  She is to be dressed in poor clothing, having
+the appearance of a beggar.
+~
+2 0 1000 S
+24 0 0 6d10+440 3d8+4
+8794 100000
+8 8 2
+#21075
+guildmaster master~
+the Guildmaster~
+Your guildmaster is standing here.
+~
+This is your master. Big and strong with bulging muscles. Several scars
+across his body proves that he was using arms before you were born. He
+has a calm look on his face.
+~
+2 0 1000 S
+24 0 0 6d10+440 3d8+4
+8794 100000
+8 8 1
+#21076
+captain~
+the Captain~
+A retired Captain stands here, selling boats.
+~
+This Captain has eaten more sharks than you have killed peas.
+~
+2 0 900 S
+23 2 2 6d10+30090 2d8+12
+2000 80000
+8 8 1
+#21077
+armorer~
+the Armorer~
+An Armorer stands here displaying his shiny new (and previously owned) armors.
+~
+An old but very strong armorer.  He has made more armors in his life than you
+have ever seen.
+~
+2 0 900 S
+23 2 2 6d10+30090 2d8+12
+2000 80000
+8 8 1
+#21078
+receptionist~
+the Receptionist~
+A receptionist stands in front of you, looking at you like you were the
+center of the universe.
+~
+You notice a tired look in her face.  She looks like she isn't paid well
+enough to put up with any crap from mud players with attitudes.
+~
+2 0 900 S
+23 2 2 6d10+30090 2d8+12
+2000 80000
+8 8 2
+#21079
+waiter~
+the Waiter~
+A waiter is going around from one place to another.
+~
+A tired looking waiter.
+~
+2 0 900 S
+23 2 2 6d10+390 1d8+12
+2000 80000
+8 8 1
+#21080
+waiter~
+the Waiter~
+A man who in his young days was a famous sorcerer but now leads a quiet,
+peaceful life as a waiter.
+~
+~
+2 0 600 S
+23 1 2 6d10+390 1d8+12
+2000 80000
+8 8 1
+#21081
+waiter~
+the Waiter~
+A waiter who seems to have reach contact with God.
+~
+~
+2 0 600 S
+23 1 2 6d10+390 1d8+12
+2000 80000
+8 8 1
+#21082
+waiter~
+the Waiter~
+A waiter who knows where all his costumers has their money.
+~
+~
+2 0 600 S
+23 1 2 6d10+390 1d8+12
+2000 80000
+8 8 1
+#21083
+waiter~
+the Waiter~
+A waiter is here who looks like he could easily kill you while still carrying
+quite a few firebreathers.
+~
+~
+2 0 600 S
+23 1 2 6d10+390 1d8+12
+2000 80000
+8 8 1
+#21084
+janitor~
+the Janitor~
+A janitor is walking around, cleaning up.
+~
+~
+2049 0 900 S
+1 20 9 2d6+10 1d5+0
+34 100
+8 8 1
+#21085
+fido dog~
+the Beastly Fido~
+Beastly Fido is here.
+~
+Fido is a small dog that has a foul smell and pieces of rotted meat hanging
+around his teeth.
+~
+161 0 -200 S
+0 20 10 1d6+4 1d4+0
+10 25
+8 8 1
+#21086
+drunk~
+the Drunk~
+A singing, happy Drunk.
+~
+A drunk who seems to be too happy, and to carry too much money.
+~
+0 0 400 S
+2 19 8 2d6+22 1d6+0
+85 200
+8 8 1
+#21087
+kitten~
+the Kitten~
+A small loyal Kitten is here.
+~
+The Kitten looks like a cute, little, fierce fighter.
+~
+6 0 400 S
+1 20 9 1d6+11 1d4+0
+0 100
+8 8 0
+#21088
+puppy~
+the Puppy~
+A small loyal Puppy is here.
+~
+The Puppy looks like a cute, little, fierce fighter.
+~
+6 0 400 S
+1 20 9 1d6+11 1d4+0
+0 100
+8 8 0
+#21089
+beagle~
+the Beagle~
+A small, quick, loyal Beagle is here.
+~
+The Beagle looks like a fierce fighter.
+~
+6 0 400 S
+2 19 8 1d12+22 1d6+0
+0 200
+8 8 0
+#21090
+rottweiler~
+the Rottweiler~
+A large, loyal Rottweiler is here.
+~
+The Rottweiler looks like a strong, fierce fighter.
+~
+6 0 400 S
+3 18 7 1d12+35 1d7+0
+0 800
+8 8 0
+#21091
+wolf~
+the Wolf~
+A large, trained Wolf is here.
+~
+The Wolf looks like a strong, fearless fighter.
+~
+6 0 0 S
+4 17 6 1d12+47 1d8+0
+0 1600
+8 8 0
+#99999
+$~

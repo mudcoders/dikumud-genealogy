@@ -27,7 +27,7 @@ boot-time. It follows the this format:
 .
 .
 
-#<arbitrary number (is ignored)>
+#99999
 $~
 
 Explanation of fields:

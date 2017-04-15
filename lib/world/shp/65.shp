@@ -1,0 +1,118 @@
+#13~
+6510
+3022
+6512
+6504
+6505
+1.9
+.3
+1
+15
+9
+5
+0
+%s We don't have any in storage, sorry!~
+%s Check your possessions, you don't have that.~
+%s I don't care for those types of goods.~
+%s I can't afford something that great!~
+%s You can't afford it, and don't ask a God for the money!~
+%s That'll cost you %d coins, please.~
+%s You'll get %d coins for that.~
+1
+1
+6503
+0
+6516
+0
+23
+23
+28
+#14~
+3000
+3003
+3010
+3011
+3031
+1.9
+0.2
+1
+15
+17
+19
+8
+%s Haven't got that on storage!~
+%s You don't seem to have that!~
+%s I don't buy those types, try another shop.~
+%s I cannot afford such a great treasure!~
+%s You can't afford that!~
+%s That'll be %d coins, please.~
+%s You'll get %d coins for that!~
+0
+1
+6504
+0
+6535
+0
+24
+24
+28
+#15~
+6524
+6522
+6521
+6523
+6526
+1.2
+.7
+1
+9
+18
+3
+4
+%s Dammit!  I don't have that! Type LIST..damn rookies...~
+%s Christ, don't you even know what you're carrying!!!~
+%s I really could care less about that!~
+%s Listen, I don't have the money now, but if you give it to me,
+I'll gladly pay you tuesday.~
+%s Hey Jerk! You don't have the money, so SCRAM!~
+%s HA! I got your %d coins! Another sucker...~
+%s Gimme that damn thing! Here's your %d coins for it.~
+0
+1
+6521
+0
+6562
+0
+24
+24
+28
+#16~
+6504
+6510
+6512
+6509
+6505
+1.2
+0.7
+5
+9
+17
+10
+0
+%s Hey man, I don't seem to have that!~
+%s You don't have that you cool cat.~
+%s Sorry man, I don't buy those things.~
+%s Chill dude, I don't have that much dinero.~
+%s Wow man, you can't afford it!~
+%s Righteous!  That'll be %d coins, man..~
+%s DUDE!  Here, you got %d coins for it!~
+0
+1
+6520
+0
+6561
+0
+28
+0
+0
+$~

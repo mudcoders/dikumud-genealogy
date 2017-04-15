@@ -1,0 +1,76 @@
+#50
+The Great Eastern Desert~
+5099 30 2
+*
+M 0 5015 3 5039          Dustdigger
+M 0 5015 3 5033          Dustdigger
+M 0 5015 3 5049          Dustdigger
+M 0 5017 1 5058          Rabid Camel
+*
+M 0 5000 5 5047          Dervish
+E 1 7211 25 16             (short sword)
+M 0 5000 5 5033          Dervish
+E 1 7211 25 16             (short sword)
+M 0 5001 8 5040          Large Dervish
+E 1 3022 25 16             (long sword)
+*
+M 0 5002 5 5031          Snake, coral
+M 0 5003 5 5050          Scorpion, small
+*
+M 0 5004 1 5036          Purple Worm 
+G 1 5019 10                (pink potion) 
+G 1 5020 5                 (platinum wand)
+G 1 5021 1                 (energy bow)
+*
+M 0 5005 1 5065          Brass Dragon 
+G 1 5024 1                 (golden key)
+G 1 5022 10                (encrypted scroll)
+*
+O 0 5023 1 5070          iron chest
+P 1 5025 3 5023            (bracelet)
+P 1 5026 3 5023            (ruby)
+P 1 5027 3 5023            (diamond)
+P 1 5028 3 5023            (sapphire)
+P 1 5029 3 5023            (lapis)
+P 1 5030 1 5023            (Tiger Jewel)
+P 1 5031 1 5023            (Red-eyed jewel)
+P 1 5032 3 5023            (emerald)
+O 1 5015 1 5070          $$$
+*
+M 0 5006 1 5061          Nomad leader
+E 1 5016 10 16             (sabre)
+M 0 5007 1 5060          Nomad Comm. 
+E 1 5017 15 16             (scimitar)
+M 0 5008 5 5059          Nomad Warriors 
+E 1 5018 25 16             (cutlass)
+M 0 5009 10 5057         Slaves
+*
+M 0 5010 1 5011          Dracolich 
+E 1 5001 1 5                (Bandedmail)
+E 1 5002 1 16               (Halberd)
+* 
+M 0 5011 3 5009          Driders
+E 1 3022 50 16             (long sword)
+M 0 5012 3 5014          Druegars 
+E 1 5000 15 16             (mining pick)
+* 
+M 0 5013 4 5021          myconoids
+M 0 5014 1 5021          Shaman, myc.
+E 1 5003 1 3               Equip with Amulet
+*
+O 0 5005 1 5011          bone
+O 0 5006 1 5049          cactus cup
+O 0 5006 1 5031          cactus cup
+O 0 5006 1 5044          cactus cup
+O 0 5007 1 5060          basket in commanders tent
+P 0 5012 1 5007            (stakes)
+P 0 5011 1 5007            (coil o' rope)
+O 0 5008 1 5061          1st basket leaders tent
+P 1 5014 5 5008            (turban)
+O 0 5009 1 5061          2nd basket leaders tent
+O 0 5010 1 5061          3rd basket leaders tent
+P 1 5013 50 5010           (tattered map)
+*
+S
+#99999
+$~

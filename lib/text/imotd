@@ -1,0 +1,14 @@
+
+
+Welcome to CircleMUD 2.2!!
+
+This is the immortal MOTD -- the file that immortals will see when they
+log in to the game.
+
+If you've just created a new god chracter, the first thing you should do
+is RESTORE yourself -- i.e. type "restore <your name>" -- to set your
+stats to maximum.
+
+Also, when you get a chance, you should change this file, along with the
+mortal MOTD, news, etc, to something more interesting...
+

@@ -1,0 +1,79 @@
+#6301
+knife thief's~
+a very sharp knife~
+A very sharp knife lies here.~
+~
+5 2112 24577
+0 8 1 11
+9 1000 2500
+E
+knife~
+A keen knife, very sharp -- you could cut the air in two!
+~
+A
+2 2
+A
+18 3
+#6302
+hat wizard's~
+a wizard's hat~
+A blue wizard's hat lies here.~
+~
+9 96 17
+6 0 0 0
+5 20000 10000
+E
+hat~
+A hat made of blue cloth.  It looks very comfortable.
+~
+A
+3 3
+A
+12 17
+#6303
+headress pontiff's~
+a pontiff's headress~
+A white cone-shaped head ornament with religious symbols lies here.~
+~
+9 96 17
+6 0 0 0
+5 20000 10000
+E
+headress~
+A starchy headress worn by powerful secular types.
+~
+A
+4 3
+A
+12 13
+#6304
+visor black knight's~
+a black knight's visor~
+A black visor sits here.~
+~
+9 96 17
+8 0 0 0
+5 20000 10000
+E
+visor~
+A visor that protects the head, good for warriors.
+~
+A
+1 1
+A
+5 2
+#6305
+potion thick white~
+a thick white potion~
+A thick white potion has been left here.~
+~
+10 64 1
+25 15 35 19
+9 21000 1000
+E
+potion thick white~
+It is disgusting thick white gunk which looks like liquid web and smells like
+medicine.
+~
+#99999
+$~

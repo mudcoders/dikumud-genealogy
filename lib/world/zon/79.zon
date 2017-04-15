@@ -1,0 +1,45 @@
+#79
+Redferne's Residence~
+7999 50 2
+*
+D 0 7900 0 2
+D 0 7901 2 2
+D 0 7902 1 1
+D 0 7901 3 1
+D 0 7901 1 1
+D 0 7910 3 1
+D 0 7910 1 2
+D 0 7903 3 2
+D 0 7904 1 1
+D 0 7913 3 1
+D 0 7911 2 1
+D 0 7912 0 1
+D 0 7904 3 1
+D 0 7905 1 1
+D 0 7906 1 1
+D 0 7908 3 1
+D 0 7906 0 1
+D 0 7907 2 1
+M 0 7009 1 7900         The Grand Knight of Paladins
+E 1 7212 1 16          Equip sword on Knight
+E 1 7217 1 5           Equip Breast-Plate on Knight
+E 1 7218 1 7           Equip Greaves on Knight
+E 1 7219 1 9           Equip Gloves on Knight
+E 1 7220 1 6           Equip Helmet on Knight
+E 1 7221 1 11          Equip Shield on Knight
+E 1 7223 1 10          Equip arm guards on Knight
+E 1 7222 1 8           Equip Heavy Boots on Knight
+*G 1 7911 1               Give key to chest to the knight
+O 0 7090 40 7907           The Waybread
+O 0 6013 10 7908           The barrel with water
+*O 0 7910 1 7910           Load chest
+*P 1 7190 2 7910           The Silver Ring
+*P 1 7191 1 7910           The (Invisible) Golden Ring
+*P 1 7207 1 7910           Muddy gauntlets
+*P 1 7208 6 7910         Light stick
+*O 0 7212 2 7903          Bastard sword
+*O 0 7215 2 7903          Light sabre
+*O 0 7216 2 7903         Two-handed sword
+S
+#99999
+$~

@@ -1,0 +1,380 @@
+#12000
+ring pewter~
+a pewter ring~
+There is a pewter ring lying here.~
+~
+11 96 3
+0 0 0 0
+5 15000 2500
+A
+13 10
+A
+2 1
+#12001
+bronze belt~
+a bronze belt~
+There is a bronze belt on the ground here.~
+~
+9 32 2049
+4 0 0 0
+5 10000 500
+A
+1 -2
+A
+18 1
+#12002
+helmet roman combat~
+a Roman combat helmet~
+A Roman combat helmet has been left here.~
+~
+9 1 17
+8 0 0 0
+25 12000 8000
+A
+2 -2
+A
+18 1
+#12003
+whistle~
+a coach's whistle~
+A coach's whistle has been left here.~
+~
+8 128 5
+0 0 0 0
+1 1000 200
+#12004
+stethoscope~
+a stethoscope~
+There is an odd object laying on the ground here.~
+~
+11 256 5
+0 0 0 0
+1 15000 2000
+A
+18 4
+A
+19 -3
+#12005
+hairpin~
+a hairpin~
+A woman's hairpin is lying here.~
+~
+11 256 17
+0 0 0 0
+1 3000 500
+A
+1 -1
+A
+3 1
+#12006
+apple~
+an apple~
+A delicious looking apple has been left here.~
+~
+19 0 1
+4 0 0 0
+1 5 5
+#12007
+orange~
+an orange~
+A sun-ripened orange has been left here.~
+~
+19 0 1
+6 0 0 0
+1 6 6
+#12008
+sandals~
+a pair of leather sandals~
+A pair of leather sandals has been dropped here.~
+~
+9 0 65
+2 0 0 0
+2 250 41
+#12010
+frank dog hotdog~
+a hotdog~
+A hotdog loaded with chili and onions has been left here.~
+~
+19 0 1
+8 0 0 0
+1 11 11
+#12011
+bracelet silver gold~
+a silver and gold bracelet~
+A bracelet, made from silver and gold, has been carelessly left here.~
+~
+11 130 4097
+0 0 0 0
+14 10000 8000
+A
+12 25
+A
+19 -2
+#12012
+sapphire ring~
+a sapphire ring~
+A sapphire ring has been left here.~
+~
+11 0 3
+0 0 0 0 
+20 35000 5500
+A
+18 2
+A
+17 -10
+#12013
+pendant jade~
+a jade pendant~
+A beautiful jade pendant has been left here.~
+~
+11 0 5
+0 0 0 0
+30 16500 6000
+A
+3 3
+A
+4 3
+#12014
+robe~
+Froboz's robe~
+Froboz's robe has been dropped here.~
+~
+11 0 5
+0 0 0 0
+5 15000 2500
+A
+17 -6 
+A
+24 -4
+#12015
+tempered sword~
+a tempered sword~
+A nasty looking tempered sword is lying here.~
+~
+5 2 8193
+0 3 8 3
+16 15000 5000
+A
+18 -2
+#12016
+quenched sword~
+a quenched sword~
+A very bloody, but quenched, sword has been left here.~
+~
+5 32 24577
+0 3 5 3
+14 10000 4000
+#12017
+bracers moorish~
+a pair of Moorish bracers~
+A pair of Moorish bracers has been dropped here.~
+~
+9 1 257 
+8 0 0 0
+15 25000 10000
+A
+2 -2
+A
+19 2
+#12018
+plate breast roman combat~
+a Roman combat breast plate~
+A piece of military combat plate has been left here.~
+~
+9 1 9
+8 0 0 0
+135 50000 9500
+A
+2 1
+A
+18 -2
+#12019
+boots combat~
+a pair of Roman combat boots~
+A pair of combat boots have been left here.~
+~
+9 1 65
+8 0 0 0
+45 8750 9000
+A
+1 2
+A
+19 -1
+#12020
+thunderbolt~
+Jupiter's Thunderbolt~
+Jupiter's Thunderbolt has been left here.~
+~
+5 2 8193
+0 4 6 6
+22 100000 25000
+A
+18 3
+A
+19 3
+#12021
+loincloth~
+a red loincloth~
+Mar's red loincloth is resting here.~
+~
+9 1026 2049
+15 0 0 0
+30 100000 20000
+A
+1 2
+A
+2 2
+#12022
+crystal necklace~
+a crystal necklace~
+Someone has left the crystal necklace of knowledge here.~
+~
+11 2 5
+0 0 0 0
+35 50000 12000
+A
+3 6
+A 
+4 6
+#12023
+winged sandals~
+a pair of winged sandals~
+Mercury's winged sandals have been left here.~
+~
+9 2049 65
+8 0 0 0
+14 75000 13000
+A
+2 2
+A
+14 100
+#12024
+dark grey scroll~
+a dark grey scroll~
+A scroll has been carelessly left here.~
+~
+2 32 16385
+20 4 15 1
+2 5000 2000
+#12025
+ornate scroll~
+an ornate scroll~
+An ornate scroll has been left here.~
+~
+2 0 16385
+18 10 10 16
+2 7000 3000
+#12026
+plain scroll~
+a plain scroll~
+A plain scroll is lying on the ground.~
+~
+2 0 16385
+15 7 15 1
+2 8000 2200
+#12027
+bag herbs~
+a bag of herbs~
+There is a small, sweet-smelling bag here on the ground.~
+~
+3 2 16385
+30 4 4 43
+5 15000 2000 
+#12028
+staff kodarta~
+a Kodarta staff~
+A Kodarta staff has been carelessly left here.~
+~
+4 0 16385
+17 3 3 15
+6 35000 4000
+#12029
+wand prototype~
+a prototype wand~
+There is a prototype of a new magical wand lying here.~
+~
+3 672 16385
+30 4 3 26
+26 20000 13000
+A
+18 -3
+A 
+24 8
+#12030
+blaze orange flask potion~
+a flask~
+There is a flask, containing a blaze orange potion, resting here.~
+~
+10 0 1
+9 4 17 33
+8 1000 100
+#12031
+mace~
+an executioner's mace~
+An executioner's mace is lying here.~
+~
+5 128 8193
+0 5 1 7
+13 3000 18
+A
+2 -2
+A
+1 -2
+#12100
+rusted key~
+a rusted key~
+There is a rusted key here.~
+~
+18 4096 1
+1 0 0 0
+1 0 0
+#12101
+double key~
+a double sided key~
+A double sided key has been left here.~
+~
+18 4096 1
+2 0 0 0
+10 0 0
+#12102
+diamond key~
+a diamond studded key~
+A diamond studded key is sitting on the ground.~
+~
+18 4096 1
+2 0 0 0
+30 0 0
+#12103
+pearl key~
+a key with a pearl handle~
+A key with a peral handle is sitting on the ground.~
+~
+18 4096 1
+1 0 0 0
+10 0 0
+#12104
+aquamarine key~
+an aquamarine key~
+There is an aquamarine colored key here.~
+~
+18 4096 1
+1 0 0 0
+10 0 0
+#12105
+opal key~
+an opal key~
+An opal key has been left here.~
+~
+18 4096 1
+2 0 0 0
+20 0 0
+#12106
+steel key~
+a steel key~
+A steel key is lying on the ground.~
+~
+18 4096 1
+1 0 0 0
+1 0 0
+#99999
+$~

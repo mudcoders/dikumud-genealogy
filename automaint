@@ -1,0 +1,16 @@
+#!/bin/csh
+
+echo "Purging playerfile, please wait..."
+chdir lib/misc
+echo `date` >> DELETED
+../../bin/purgeplay players >> DELETED
+if (! -z players.new) then
+   mv players players.old
+   mv players.new players
+endif
+echo "Done."
+
+chdir ../plrobjs
+purgeobjs
+chdir ../..
+

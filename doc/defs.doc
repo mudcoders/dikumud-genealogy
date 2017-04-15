@@ -72,7 +72,6 @@ When creating a new <PC>, the <PC>'s <ABIL> are calculated as:
 
    <HP>   base is set as 10
    <MANA> is allways set to 100
-   Assign 2d6*100 gold coins to player
    Set level as 1
    Set exp as 1
    Set theives abilities as basic.
@@ -196,17 +195,18 @@ MAGICAL ITEMS:
 In DikuMud it is possible to create all kinds of Magic items - but to avoid
 chaos (having 1st levels kill 20 level dragons) these rules for Magic must
 be obeyed.
+
 It is possible to create almost any item. Items can (example) change the
 <STR>, <DEX>, <WIS>, <INT>, <CON>, <HP>, Age, Weight, Height, XP,
 etc. None of these changes are directly permanent in effetct, but may be
 so indirectly - example:
 
   Iggy found a helmet of Increase Wisdom/Intelligence (some + modifier).
-  When Iggy wear this helmet - these abilities improve, when he removes
+  When Iggy wears this helmet - these abilities improve, when he removes
   the helmet they return to their original state. Thus no direct change
-  has happened. BUT if Iggy practices spells (upon which INT and WIS
+  has happened.  BUT if Iggy practices spells (upon which INT and WIS
   determines the rate & success) he will learn them much faster than
-  normal. This was an example of an indirect change.
+  normal.  This was an example of an indirect change.
 
 
 Good ideas when making Magic Items:
@@ -217,11 +217,7 @@ NEVER use large modifiers, exceptional items should modify at most by +3.
 Impose a penalty on the Item - for example make a helmet of wisdom may
   at the same time reduce the constitution. Or maybe a ring of masochism -
   when you wear it your MAX-HITPOINT increase by +200, when you remove it
-  they disappear again. The ring likes to remove itself from the finger.
-
-No more than ONE item should exist in the world at any time (this is set
-in the ZONE file) - thus players must kill each other if they want
-something really bad.
+  they disappear again.  The ring likes to remove itself from the finger.
 
 
 ============================================================================

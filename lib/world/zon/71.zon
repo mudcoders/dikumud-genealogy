@@ -1,0 +1,18 @@
+#71
+Second Sewer~
+7199 20 2
+M 0 7004 3 7102            The Earth Beetle
+M 0 7005 7 7112            The Giant Maggot
+M 0 7005 7 7112            The Giant Maggot
+M 0 7005 7 7122            The Giant Maggot
+M 0 7002 7 7104             The Sewer Rat
+M 0 7000 3 7103            The Horrifying Mudmonster
+M 0 7000 3 7103            The Horrifying Mudmonster
+M 0 7006 7 7113            The slithering snake
+M 0 7006 7 7122            The slithering snake
+M 0 7006 7 7122            The slithering snake
+D 1 7116 5 1
+D 1 7280 4 1
+S
+#99999
+$~

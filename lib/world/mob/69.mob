@@ -1,0 +1,28 @@
+#6910
+isha elf~
+Isha the Dark Elf~
+Isha the Dark Elf is here, observing you silently.
+~
+She is no less than beautiful, skin as dark as the night and hair shining like
+silver in the moonlight.  Her slender body is adorned with a sleeveless shirt
+and a short skirt made from black scales joined with silver threads.  Her back
+is covered by a large, hooded cloak as black as her skin and in her broad
+silver belt hangs a long, slender sword in a silver scabbard.
+~
+2051 524296 -1000 S
+20 1 0 1d12+245 3d6+4
+5000 40000
+8 8 2
+#6999
+death reaper~
+Death~
+Death the Grim Reaper is observing you silently from empty eye sockets.
+~
+The dark-robed skeletal figure radiates an unendurable coldness.
+~
+3 524296 -1000 S
+30 0 -10 1d1+665 10d15+20
+0 500000
+8 8 0
+#99999
+$~

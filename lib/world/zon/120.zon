@@ -1,0 +1,318 @@
+#120
+Rome~
+12099 45 2
+*
+M 0 12000   3   12001                Load Adjudicator
+E 1 3022  100   16                   Wield Long sword
+E 1 3042  100   11                   Equip shield
+M 0 12000   3   12001
+E 1 3022  100   16
+E 1 3042  100   11
+M 0 12000   3   12001
+E 1 3022  100   16
+E 1 3042  100   11
+*
+M 0 12001   1   12001                Load SCOREKEEPER
+E 1 3021  100   16                   Wield small sword
+E 1 3042  100   11                   Equip shield
+*
+M 0 12003  10   12003                Load SPECTATOR
+M 0 12003  10   12004
+M 0 12003  10   12008
+M 0 12003  10   12022
+M 0 12003  10   12023
+M 0 12003  10   12003
+M 0 12003  10   12004
+M 0 12003  10   12008
+M 0 12003  10   12022
+M 0 12003  10   12023
+*
+M 0 12004   3   12002                Load NOBELMAN
+E 1 3042  100   11                    Equip shield
+E 1 3022  100   16                   Wield Long sword
+G 1 12100   2                        Load key to JUDGES BOOTH (2 in game)
+M 0 12004   3   12028
+E 1 3022  100   16                   Wield Long sword 
+E 1 12001   3   13                   Equip BRONZE BELT (3 MAX in game)
+M 0 12004   3   12043
+E 1 3022  100   16
+E 1 12000   5   1                    Equip PEWTER RING (5 MAX in game)
+*
+M 0 12005   5   12021                Load SLAVES
+E 1 3023  100   16                   Wield CLUB
+M 0 12005   5   12021
+E 1 3023  100   16                   
+M 0 12005   5   12021
+E 1 3023  100   16
+M 0 12005   5   12006
+E 1 3023  100   16
+M 0 12005   5   12049
+E 1 3023  100   16
+*
+M 0 12006   5   12010                Load GLADIATOR
+E 1 3022  100   16                   Wield Long sword
+M 0 12006   5   12010
+E 1 3022  100   16
+M 0 12006   5   12010
+E 1 3022  100   16
+M 0 12006   5   12009
+E 1 3022  100   16
+M 0 12006   5   12009
+E 1 3022  100   16
+E 1 12002   2   6                    Equip with ROMAN HELMET (2 MAX in game)
+*
+M 0 12007   4   12016                Load CHARIOT DRIVER
+E 1 3021  100   16                   Wield small sword
+E 1 12008 100   8                    Equip Sandals (100 in game)
+M 0 12007   4   12009
+E 1 3021  100   16
+E 1 12008 100   8
+M 0 12007   4   12016
+E 1 3021  100   16
+E 1 12008 100   8
+M 0 12007   4   12016
+E 1 3021  100   16
+E 1 12008 100   8
+*
+M 0 12008   1   12009               Load COACH
+E 1 3021  100   16                  Wield small sword
+E 1 3043  100   5                   Equip with leather JACKET
+G 1 12003  10                       Load COACH'S WHISTLE  (10 in game)
+*
+M 0 12009   1   12011               Load ROMAN DOCTOR
+E 1 3022  100   16                  Wield Long sword
+E 1 3043  100   5                   Equip with leather JACKET
+E 1 3042  100   11                  Equip with shield
+E 1 12004   6   3                   Equip with STETHOSCOPE  (6 MAX in game)
+G 1 12028   3                       Load STAFF OF KODARTA   (3 MAX in game)
+*
+M 0 12010   1   12011               Load NURSE
+E 1 3021  100   16                  Wield small sword
+E 1 3043  100   5                   Equip with leather JACKET
+E 1 12005   3   6                   Equip with HAIRPIN      (3 MAX in game)
+G 1 12027   5                       Load STAFF OF LATUMFUS  (5 MAX in game)
+*
+M 0 12011   1   12006               Load TITUS'S SHOPKEEPER
+G 1 3020 100
+G 1 3021 100
+G 1 3022 100
+G 1 3023 100
+G 1 3024 100
+G 1 3025 100
+G 1 12008 100
+E 1 3022  100   16                  Wield Long sword
+E 1 12008 100   8                   Equip with Sandals
+G 1 12101   1                       Give key to BACK ROOM (1 MAX in game)
+*
+M 0 12012   2  12032                Load PEDDLER
+E 1 12008 100  8                    Equip Sandals
+G 1 12006  25                       Load APPLE
+G 1 12006  25
+G 1 12006  25
+G 1 12007  25                       Load ORANGE
+G 1 12007  25
+M 0 12012   2  12032
+E 1 12008 100  8
+G 1 12006  25
+G 1 12006  25
+G 1 12007  25
+G 1 12007  25
+*
+M 0 12013   2  12043                Load PAGE
+E 1 3020  100  16                   Wield DAGGER
+E 1 12008 100  8                    Equip Sandals
+M 0 12013   2  12037
+E 1 3020  100  16
+E 1 12008 100  8
+*
+M 0 12014   1  12050                Load PLAINTIFF
+E 1 3022  100  16                   Wield Long sword
+E 1 12011   2  15                   Load SILVER AND GOLD BRACELET (2 in game)
+*
+M 0 12015   3  12025                Load TICKET MASTER
+E 1 3022  100  16                   Wield Long sword
+M 0 12015   3  12025
+E 1 3022  100  16
+M 0 12015   3  12025
+E 1 12015   1  16                  Load TEMPERED sword(WAY TOO MANY in game ;)
+*
+M 0 12016   3  12004                Load STADIUM VENDOR
+G 1 12010  25                       Load HOTDOG
+G 1 12010  25
+G 1 12010  25
+M 0 12016   3  12008  
+G 1 12010  25
+G 1 12010  25
+G 1 12010  25
+M 0 12016   3  12023
+G 1 12010  25
+G 1 12010  25
+G 1 12010  25
+*
+M 0 12017 15 12012                  Load COMMON CITIZEN
+M 0 12017 15 12032
+M 0 12017 15 12021
+M 0 12017 15 12031
+M 0 12017 15 12018
+M 0 12017 15 12032
+M 0 12017 15 12045
+M 0 12017 15 12034
+M 0 12017 15 12039
+M 0 12017 15 12040
+M 0 12017 15 12046
+M 0 12017 15 12033
+M 0 12017 15 12019
+M 0 12017 15 12024
+M 0 12017 15 12013
+*
+M 0 12018  5 12051                  Load GateGuard
+E 1 3022 100 16                     Wield Long sword
+M 0 12018  5 12029
+E 1 3022 100 16
+M 0 12018  5 12035
+E 1 3022 100 16
+M 0 12018  5 12051
+E 1 3022 100 16
+M 0 12018  5 12005
+E 1 3022 100 16
+*
+M 0 12019   3  12006                 Load Soldier
+E 1 3021  100  16                    Wield small sword
+E 1 12008 100  8                     Equip with Sandals
+M 0 12019   3  12042
+E 1 3021  100  16
+E 1 12019   2  8                     Load Combat BOOTS (2 MAX in game)
+M 0 12019   3  12045
+E 1 3021  100  16
+E 1 12008 100  8
+E 1 12018   2  5                     Load Combat Plate (2 MAX in game)
+*
+M 0 12020  1  12036                 Load JULIUS CAESAR
+E 1 3022   100 16                    Wield Long sword
+E 1 12017  1  10                     Wear Moorish bracers (1 MAX in game)
+G 1 12024  7                         Give Musty scroll (7 MAX in game)
+*
+M 0 12021  2  12036                 Load ROYAL BODYGUARD
+E 1 3022  100 16                    Wield Long sword
+E 1 3042  100 11                    Equip with shield
+E 1 3046  100 5                     Equip with Breast Plate
+M 0 12021  2  12036                
+E 1 3022  100 16                   
+E 1 3042  100 11    
+E 1 3046  100 5     
+*
+M 0 12022  1  12055                 Load JUDGE
+E 1 3022  100 16                    Wield Long sword
+E 1 12012  1  2                    Load SAPPHIRE RING (1 MAX in game)
+*
+M 0 12023  1  12043                 Load MASTER SCHEDULER
+E 1 3022  100 16                    Wield Long sword
+E 1 12008 100 8                     Equip with Sandals
+E 1 12013 1 4			    Equip with JADE NECKLACE (1 in game)
+G 1 12102   1                       Load key to CAESAR'S OFFICE  (1 in game)
+G 1 12103   1                       Load key to SENATE CHAMBERS  (1 in game)
+*
+M 0 12024 6 12041                   Load SLIMEBALLS
+M 0 12024 6 12048
+M 0 12024 6 12054
+M 0 12024 6 12057
+M 0 12024 6 12054
+M 0 12024 6 12057
+G 1 12030 500                        Load BLAZE ORANGE POTION  (500 in game)
+*
+M 0 12025 1 12049                   Load FROBOZ
+E 1 3022 100 16                     Wield Long sword
+E 1 3042 100 11                     Equip with shield
+E 1 12014 10  5                      Load FROBOZ'S CLOAK   (10 in game)
+G 1 12025 10                         Load ORNATE scroll    (10 in game)
+G 1 12026 10                        Load PLAIN scroll     (10 in game)
+G 1 12029 10                         Load PROTOTYPE wand   (10 in game)
+*
+M 0 12026 1 12007                   Load TITUS ANDRONICUS
+E 1 12016 3 17                  Hold Quenched sword (10 MAX in game)
+E 1 3022 100 16                     Wield Long sword
+E 1 3042 100 11                     Equip with shield
+E 1 3046 100 5                      Equip with Breast Plate
+E 1 12008 100 8                     Equip with Sandals
+*
+M 0 12027 2 12037                   Load SENATOR
+E 1 3021 100 16                     Wield small sword
+E 1 3044 100 5                      Equip studded leather
+G 1 12104 1                         Load key to COMMON ROOM (1 in game)
+M 0 12027 2 12037                  
+E 1 3021 100 16                    
+E 1 3044 100 5  
+G 1 3050 500                   
+*
+M 0 12028 1 12050                   Load BAILIFF
+E 1 3022 100 16                     Wield Long sword
+E 1 3042 100 11                     Equip with shield
+G 1 12106 1                         Load key to JUDGES CHAMBERS (1 in game)
+*
+M 0 12029 1 12050                   Load DEFENDENT 
+E 1 3024 100 16
+E 1 3043 100 5                       Wear a leather jacket
+*
+M 0 12030 1 12047                   Load JUPITER
+E 1 12020 1 16                       Wield the THUNDERBOLT (1 in game)
+*
+M 0 12031 1 12052                   Load VENUS
+E 1 12022 1 3                        Wear CRYSTAL NECKLACE (1 in game)
+*
+M 0 12032 1 12056                   Load MARS
+E 1 12016 3 17                       Hold Quenched sword
+E 1 12021 1 13                       Wear the LOINCLOTH (1 in game)
+*
+M 0 12033 1 12059                   Load MERCURY
+E 1 12023 1 8                        Wear WINGED Sandals (1 in game)
+*
+M 0 12034 1 12042                   Load FROBOZ'S SHOPKEEPER
+G 1 3050 500
+G 1 3051 500
+G 1 3052 500
+G 1 3053 500
+G 1 3054 500
+G 1 12030 10
+E 1 3022 100 16                     Wield Long sword
+E 1 12008 100 8                     Wear Sandals
+G 1 12105 1                         Load key to Froboz's workshop (1 in game)
+*
+M 0 12035 1 12061                   Load Executioner
+G 1 12031 10                        Give Executioner's mace (10 in game)
+*
+M 0 12036 1 12062                    Load the Baker
+G 1 3010 100
+G 1 3011 100
+G 1 3000 100
+G 1 3001 100
+E 1 3022  16                        Wield Long sword
+*
+M 0 12037 1 12063                    Load the Grocer
+G 1 3030 100 
+G 1 3031 100
+G 1 3032 100
+E 1 3022 16                        Wield Long sword
+*
+D 0 12001 5 2
+D 0 12002 4 2
+*
+D 0 12006 2 2
+D 0 12007 0 2
+*
+D 0 12036 1 2
+D 0 12043 3 2
+D 0 12036 2 2
+D 0 12037 0 2
+D 0 12037 1 2
+D 0 12044 3 2
+D 0 12037 2 2
+* 
+D 0 12042 1 2
+D 0 12049 3 2
+*
+D 0 12050 1 2
+D 0 12055 3 2
+*
+S
+#99999
+$~
