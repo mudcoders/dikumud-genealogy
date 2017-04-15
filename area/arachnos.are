@@ -14,7 +14,7 @@ growing in as of late.
 68 8 0 S
 5 17 8 5d4+50 2d4+1
 100 600
-8 8 2
+8 arachnid~ 2
 #6302
 dragon Yevaud~
 Yevaud~
@@ -25,7 +25,7 @@ Old, scaly, but still with a lot of bite in him left.
 71 8 -1000 S
 24 2 0 24d24+240 4d6+3
 10000 65100
-8 8 1
+8 dragon~ 1
 #6303
 spider wolf~
 the Wolf Spider~
@@ -36,7 +36,7 @@ The Wolf Spider is hairy, very hairy.
 34 0 -300 S
 6 12 4 3d8+70 2d5+3
 1250 2000
-8 8 2
+8 arachnid~ 2
 #6304
 orc~
 the orc~
@@ -47,7 +47,7 @@ You notice an evil look in his eyes.
 2 0 -400 S
 5 15 5 2d10+30 2d4+0
 100 600
-8 8 1
+8 orc~ 1
 #6305
 wasp queen~
 the Queen Wasp~
@@ -59,7 +59,7 @@ You notice a glazed look in her eyes.
 34 0 -800 S
 12 7 -3 12d12+120 2d8+5
 1500 8000
-8 8 2
+8 insect~ 2
 #6306
 spider drone~
 the drone spider~
@@ -70,7 +70,7 @@ An ordinary drone spider.
 68 0 -300 S
 6 12 4 6d6+60 2d4+0
 200 800
-8 8 1
+8 arachnid~ 1
 #6307
 spider ethereal~
 the ethereal spider~
@@ -81,7 +81,7 @@ She winks in and out.
 68 0 1000 S
 10 10 0 10d10+100 2d4+4
 1250 4000
-8 8 2
+8 arachnid~ 2
 #6308
 slave human~
 the slave of Arachnos~
@@ -92,7 +92,7 @@ The slave does not mind you, but will fight like a warrior if attacked.
 68 0 0 S
 8 13 1 8d8+80 2d8+1
 500 2000
-8 8 1
+8 human~ 1
 #6309
 quasit~
 the quasit~
@@ -104,7 +104,7 @@ and creates a magical treasure!
 148 32778 1000 S
 10 1 -7 10d10+100 1d8+3
 1000 3000
-8 8 1
+8 dragon~ 1
 #6310
 spider bird~
 the Bird Spider~
@@ -115,7 +115,7 @@ The Bird Spider has very powerful jaws.
 34 0 -800 S
 14 7 -3 14d14+140 2d9+2
 1750 8000
-8 8 2
+8 arachnid~ 2
 #6311
 hermit~
 the Hermit~
@@ -127,7 +127,7 @@ means well.
 6 8 -400 S
 7 13 5 3d10+80 2d5+0
 750 1500
-8 8 1
+8 human~ 1
 #6312
 donjonkeeper~
 the Donjonkeeper~
@@ -138,7 +138,7 @@ He delves deeper into you as you stare at him.
 6 8 1000 S
 25 -1 -10 25d25+250 3d8+10
 6000 65000
-8 8 1
+8 human~ 1
 #6313
 guardian~
 The guardian~
@@ -149,7 +149,7 @@ He looks like a lazy bum who sleeps half the time.
 96 32768 250 S
 17 4 -7 17d17+170 2d8+10
 1600 20000
-4 4 1
+4 drow~ 1
 #6314
 spider empress arachnos~
 Arachnos~
@@ -163,7 +163,7 @@ them.
 34 10 -1000 S
 26 -2 -8 26d26+260 1d8+20
 10000 65000
-8 8 2
+8 arachnid~ 2
 #6315
 ki-rin~
 the Ki-Rin~
@@ -175,7 +175,7 @@ someday free the slaves of the Empress.
 6 8 1000 S
 26 0 -2 26d26+260 3d4+12
 15000 50000
-8 8 2
+8 dragon~ 2
 #6316
 dragon wormkin young~
 the young dragon wormkin~
@@ -186,7 +186,7 @@ Rather small, you almost feel sad in killing it.
 3 8 1000 S
 10 2 0 10d10+120 2d6+3
 1000 3700
-8 8 1
+8 dragon~ 1
 #6317
 dragon wormkin medium~
 the medium dragon wormkin~
@@ -197,7 +197,7 @@ A medium-sized dragon--seems it hasn't killed anything yet by itself.
 3 8 100 S
 13 2 -2 13d13+150 3d6+5
 5000 9500
-8 8 1
+8 dragon~ 1
 #6318
 spider poisonous~
 the huge, poisonous spider~
@@ -210,7 +210,7 @@ sharp poisonous fangs to paralyze or kill its prey.
 67 0 -350 S
 8 13 2 8d8+80 2d5+1
 0 2500
-8 8 0
+8 arachnid~ 0
 #6319
 queen spider~
 the Queen Spider~
@@ -223,7 +223,7 @@ if it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.
 67 8 -1000 S
 15 6 -4 15d15+150 2d8+2
 0 12000
-8 8 2
+8 arachnid~ 2
 #0
 
 
@@ -284,7 +284,7 @@ You are balancing carefully on the giant sticky threads that holds the giant
 web in place.  To the south leads a strand to a cave-like structure made from
 many layers of a spider web.  Another silky strand continues to the north.
 ~
-61 9 6
+61 9 1
 D0
 ~
 ~
@@ -304,7 +304,7 @@ You are balancing carefully on the giant sticky threads that holds the giant
 web in place.  To the north leads a strand to a cave-like structure made from
 many layers of a spider web.
 ~
-61 9 6
+61 9 1
 D0
 ~
 ~
@@ -320,7 +320,7 @@ You are balancing carefully on the giant sticky threads that holds the giant
 web in place.  To the east leads a strand to a cave-like structure made from
 many layers of a spider web.
 ~
-61 9 6
+61 9 1
 D1
 ~
 ~
@@ -336,7 +336,7 @@ You are balancing carefully on the giant sticky threads that holds the giant
 web in place. A single silky strand lead to the south, while another leads
 off into the northern direction.
 ~
-61 9 6
+61 9 1
 D0
 ~
 ~

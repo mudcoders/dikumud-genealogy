@@ -13,7 +13,7 @@ He's lived a life of violence ever since he was little.
 84 0 -100 S
 5 15 5 5d5+50 1d5+5
 200 600
-8 8 1
+8 ogre~ 1
 #2102
 troll gang member~
 a gang member~
@@ -24,7 +24,7 @@ He wants to rid the world of every last Ogre gang member.
 84 0 +100 S
 5 15 5 5d5+50 1d7+5
 210 700
-8 8 1
+8 troll~ 1
 #2103
 gang leader~
 the gang leader~
@@ -35,7 +35,7 @@ He's risen to be leader through brute force and cunning leadership.
 98 0 0 S
 13 8 2 13d13+130 1d10+12
 2000 10000
-8 8 1
+8 ogre~ 1
 #2104
 bruiser~
 a bruiser~
@@ -46,7 +46,7 @@ He's 6'6" 245 pounds and enough muscle to bash your head in.
 228 8 -333 S
 10 9 -1 10d10+100 1d6+10
 1500 4500
-8 8 1
+8 orc~ 1
 #2105
 doll~
 a doll~
@@ -57,7 +57,7 @@ She's a beauty (ok in RELATIVE terms) but you better not touch!
 212 0 0 S
 7 8 3 7d7+70 1d6+4
 1000 1500
-8 8 2
+8 orc~ 2
 #2106
 patrolman patrol man~
 a patrolman~
@@ -68,7 +68,7 @@ He'd rather be at the local pub then out here with these nasty kids.
 64 0 +700 S
 8 13 4 8d8+80 1d6+8
 7000 2000
-8 8 1
+8 human~ 1
 #2107
 vandal~
 a vandal~
@@ -79,7 +79,7 @@ He has a wary eye and a fine hand for art.
 128 32768 -400 S
 10 10 1 10d10+100 1d6+6
 500 3800
-8 8 1
+8 dwarf~ 1
 #2108
 dog pit bull pitbull~
 a pitbull~
@@ -91,7 +91,7 @@ His fangs are blood-stained from hearty meals of ... steak?!
 98 65536|8 -100 S
 5 10 2 5d5+50 1d6+3
 10 700
-8 8 1
+8 animal~ 1
 #0
 
 

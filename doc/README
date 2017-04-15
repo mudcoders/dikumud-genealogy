@@ -1,9 +1,7 @@
-EnvyMud release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -34,6 +32,7 @@ next.txt	- Gives a brief overview on what might be in the next release.
 pfile.txt	- Gives detailed information on the format of the playerfiles.
 port.txt	- Lists which computer platforms have been successfully
 		compiled and suggestions to do so.
+race.txt	- Gives detailed instructions on how to create new races.
 security.txt	- Lists the security features built into the code.
 sites.txt	- Lists known active MERC based muds open on the internet.
 skill.txt	- Gives detailed instructions on how to create new

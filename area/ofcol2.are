@@ -16,7 +16,7 @@ Ofcol.
 4 8192 1000 S
 19 6 -4 18d18+180 1d4+12
 1000 29000
-8 8 1
+8 human~ 1
 #601
 marshall diana~
 Marshall Diana~
@@ -31,7 +31,7 @@ death.
 2 8328 1000 S
 33 -10 -10 33d33+400 1d4+30
 5000 200000
-8 8 2
+8 human~ 2
 #602
 derrick captain guard cityguard~
 Captain Derrick~
@@ -45,7 +45,7 @@ has to be hard won to be kept, and that laxity is for the weak.
 64 8|128|8192 1000 S
 27 -3 -7 27d27+270 1d4+20
 5000 100000
-8 8 1
+8 human~ 1
 #603
 jacklyn captain guard cityguard~
 Captain Jacklyn~
@@ -61,7 +61,7 @@ but she need not be.
 2 8200 1000 S
 27 0 -8 27d27+180 1d4+17
 5000 100000
-8 8 2
+8 human~ 2
 #604
 jim blacksmith~
 Jim the Blacksmith~
@@ -74,7 +74,7 @@ the metals or the value of the coins.
 2 8192 1000 S
 30 -5 -10 1d1+2000 1d4+25
 75000 150000
-8 8 1
+8 human~ 1
 #605
 sam~
 Sam~
@@ -86,7 +86,7 @@ last sale from you.  He grins at you slightly.
 2 8192 1000 S
 30 -2 -10 1d1+2000 1d4+20
 15000 120000
-8 8 1
+8 human~ 1
 #606
 madam tracy~
 Madam Tracy~
@@ -99,7 +99,7 @@ shop, trading little things (for a wee bit of profit).
 2 8192 1000 S
 20 1 -10 1d1+1500 1d4+15
 25000 20000
-8 8 2
+8 elf~ 2
 #607
 marty~
 Marty~
@@ -112,7 +112,7 @@ kill, though.
 2 8192 1000 S
 30 -5 -10 1d1+2000 1d4+20
 5000 120000
-8 8 1
+8 human~ 1
 #608
 elizabeth farmer~
 Farmer Elizabeth~
@@ -126,7 +126,7 @@ get a good price off of you!
 2 8192 1000 S
 20 1 -10 1d1+1000 1d4+15
 5000 20000
-8 8 2
+8 human~ 2
 #609
 granny jenkins~
 Granny Jenkins~
@@ -140,7 +140,7 @@ Granny Jenkins cackles again.
 2 8192 500 S
 6 17 6 4d4+40 1d4+4
 100 500
-8 8 2
+8 human~ 2
 #610
 jack~
 Jack~
@@ -153,7 +153,7 @@ enter.  "Came by to watch, eh?", he asks.
 162 0 200 S
 12 8 -3 12d12+120 1d4+10
 100 10000
-8 8 1
+8 human~ 1
 #611
 sara farmer~
 Farmer Sara~
@@ -166,7 +166,7 @@ her work.
 130 0 800 S
 5 16 5 5d5+50 1d4+3
 100 600
-8 8 2
+8 human~ 2
 #612
 chicken hen~
 a hen~
@@ -178,7 +178,7 @@ you've ever seen one.
 128 0 0 S
 1 20 10 1d1+10 1d5+0
 0 50
-8 8 2
+8 animal~ 2
 #613
 cow~
 the cow~
@@ -189,7 +189,7 @@ The cow is here happily grazing.  It moos at you and goes back to grazing.
 0 0 0 S
 5 16 5 5d5+50 1d8+3
 0 600
-8 8 0
+8 animal~ 0
 #614
 cow~
 the cow~
@@ -200,7 +200,7 @@ The cow is just standing here.  She moos at you and otherwise ignores you.
 2 0 0 S
 5 16 5 5d5+50 1d8+3
 0 600
-8 8 2
+8 animal~ 2
 #615
 horse young~
 the young horse~
@@ -212,7 +212,7 @@ back to grazing.
 128 0 0 S
 6 15 4 6d6+60 1d8+4
 0 750
-8 8 0
+8 animal~ 0
 #616
 pig~
 the pig~
@@ -223,7 +223,7 @@ The pig looks dirty.  It snorts and sniffs at you, then goes back to its slop.
 2 0 0 S
 4 17 6 4d4+40 1d4+3
 0 400
-8 8 0
+8 animal~ 0
 #617
 citizen man~
 the citizen~
@@ -236,7 +236,7 @@ armored.
 128 0 500 S
 5 16 5 5d5+50 1d6+3
 100 600
-8 8 1
+8 human~ 1
 #618
 citizen woman~
 the citizen~
@@ -249,7 +249,7 @@ and armored.
 128 0 500 S
 5 16 5 5d5+50 1d6+3
 100 600
-8 8 2
+8 human~ 2
 #619
 child boy~
 the boy~
@@ -261,7 +261,7 @@ He then smiles and runs away, remembering his game.
 128 0 500 S
 3 18 7 3d3+30 1d4+2
 10 200
-8 8 1
+8 human~ 1
 #620
 child girl~
 the girl~
@@ -273,7 +273,7 @@ coin?'  She then smiles and runs away, remembering her game.
 128 0 500 S
 3 18 7 3d3+30 1d4+2
 10 200
-8 8 2
+8 human~ 2
 #621
 maid woman~
 the maid~
@@ -286,7 +286,7 @@ She hits you with her broom.
 128 0 500 S
 5 16 5 5d5+50 1d6+3
 50 600
-8 8 2
+8 human~ 2
 #622
 Nyles~
 Nyles the Bartender~
@@ -299,7 +299,7 @@ any.
 2 8192 1000 S
 30 0 -15 30d30+3000 1d5+15
 1000 100000
-8 8 1
+8 human~ 1
 #623
 cityguard guard~
 the Ofcol cityguard~
@@ -313,7 +313,7 @@ Ofcol.
 2 8192 1000 S
 19 6 -4 18d18+180 1d4+12
 1000 29000
-8 8 1
+8 human~ 1
 #624
 bard~
 a bard~
@@ -326,7 +326,7 @@ you, hinting toward a tip from you in ever a subtle way.
 2 8192 800 S
 13 7 -3 13d13+130 1d4+8
 1000 15000
-8 8 1
+8 human~ 1
 #625
 servant~
 a servant~
@@ -337,7 +337,7 @@ The servant smiles good-naturedly at you, then goes on his duties.
 64 8192 1000 S
 6 14 4 6d6+60 1d4+4
 100 800
-8 8 1
+8 human~ 1
 #626
 squire~
 a squire~
@@ -348,7 +348,7 @@ This young man smiles at you, but is too busy to chat.
 64 8192 1000 S
 7 13 3 7d7+70 1d4+5
 100 1000
-8 8 1
+8 human~ 1
 #627
 page~
 a page~
@@ -359,12 +359,11 @@ The page smiles for you, asking if he can do you a favor too.
 64 8192 1000 S
 5 15 5 5d5+50 1d4+3
 100 600
-8 8 1
+8 human~ 1
 #628
 priestess~
 the Priestess of Ofcol~
-The Priestess of Ofcol is here, blessing you 
-with her beatific smile.
+The Priestess of Ofcol is here, blessing you with her beatific smile.
 ~
 The Priestess of Ofcol is an old woman, perfectly at peace with herself and 
 with the world.  She devotes all her time to help teach you the ways of her
@@ -373,7 +372,7 @@ god, Bahamut.  The dragon symbol around her neck looks almost alive.
 2 8|128|8192 1000 S
 30 -10 -20 30d30+300 1d4+20
 1000 120000
-8 8 2
+8 human~ 2
 #629
 chaplain Jerrold~
 Chaplain Jerrold~
@@ -387,7 +386,7 @@ turns to you and with a consipatory tone, whispers, "Kids!"
 64 8|128|8192 1000 S
 20 0 -10 20d20+200 1d4+15
 1000 50000
-8 8 1
+8 human~ 1
 #630
 dragonlord lord dragon~
 a Dragonlord~
@@ -400,7 +399,7 @@ look upset at your presence.
 2 8|128|8192 1000 S
 29 -9 -19 29d29+290 1d4+20
 1000 120000
-8 8 1
+8 dragon~ 1
 #631
 dragon gold~
 The Ancient Gold Dragon~
@@ -414,7 +413,7 @@ his attendants to escort you away.
 2|4 8|128|512|8192 1000 S
 37 -15 -25 37d37+370 1d4+30
 100000 1000000
-8 8 1
+8 dragon~ 1
 #632
 attendant~
 an attendant of the dragon~
@@ -426,7 +425,7 @@ his life for his liege.
 2 8|8192 1000 S
 21 -1 -11 21d21+210 1d4+15
 5000 50000
-8 8 1
+8 dragon~ 1
 #633
 dragonknight knight dragon~
 a Dragonknight~
@@ -439,7 +438,7 @@ He smiles at you, showing very sharp teeth.
 64 8|8192 1000 S
 21 -1 -11 21d21+210 1d4+15
 5000 50000
-8 8 1
+8 dragon~ 1
 #634
 cityguard guard~
 the Ofcol cityguard~
@@ -453,7 +452,7 @@ Ofcol.
 2 8192 1000 S
 19 6 -4 18d18+180 1d4+12
 1000 29000
-8 8 1
+8 human~ 1
 #0
 
 

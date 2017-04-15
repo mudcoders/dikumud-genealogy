@@ -1,9 +1,7 @@
-EnvyMud Release 1.0
-Thursday 30 June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -20,10 +18,15 @@ enhancements to Diku Mud.  These enhancements are copyright (C) 1992, 1993 by
 Michael Chastain, Michael Quan, and Mitchell Tse.  Their license agreement is
 in the file 'license.txt'.
 
-EnvyMud is a derivative of Merc Diku Mud, version 2.2, and is subject to 
+EnvyMud 1.0 is a derivative of Merc Diku Mud, version 2.2, and is subject to 
 the copyright and license agreements for both Diku Mud and Merc Diku Mud.
 The modifications and improvements contained in EnvyMud are copyright (C) 1994
 by Michael Quan, David Love, Guilherme 'Willie' Arnold, and Mitchell Tse.
+
+EnvyMud 2.0 is a derivative of EnvyMud, version 1.0, and is subject to 
+the copyright and license agreements for both Diku Mud, Merc Diku Mud,
+and Envy Mud.  The modifications and improvements contained in EnvyMud 2.0
+are copyright (C) 1995 by Michael Quan and Mitchell Tse.
 
 In order to use EnvyMud you must follow the Diku license, the Merc license,
 and our license.  The exact terms of the Diku license are in the file
@@ -47,9 +50,9 @@ Our terms are:
 
 Neither the Merc nor EnvyMud license terms require keeping our names in the
 'greeting' text.  If you want to include a reference to Merc and its authors
-(Furey, Hatchet, and Kahn) or EnvyMud and its authors (Kahn, Thelonius, Kith,
-and Hatchet), we'd appreciate it, but we do not require it.  However, you must
-keep the original Diku authors in the login sequence.
+(Furey, Hatchet, and Kahn) or EnvyMud and its authors (Kahn and
+Hatchet), we'd appreciate it, but we do not require it.  However, you
+must keep the original Diku authors in the login sequence.
 
 If you do not follow these license terms, we will ask you to comply.  If that
 doesn't work, then we will talk to your system administrators (not about your

@@ -1,177 +1,139 @@
-EnvyMud Release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
 
-=== What's new in Envy 1.0
+=== What's new in Envy 2.0
 
-Many of the changes from Merc 2.2 release to Envy 1.0 were done by the
-coding staff of EnvyMud.  A few like do_whois from Kaneda and such were
-obtained from the merc mailing list.  See 'contrib.txt' for acknowledgements.
+Many of the changes from Envy 1.0 release to Envy 2.0 were done by the
+coding staff of EnvyMud.  A few were obtained from the merc mailing
+list.  See 'contrib.txt' for acknowledgements.
 
 We have kept logs of what we have done here in EnvyMud.  It helps in
 backtracking what was done to the code.  It also helps others follow your
 steps should you release your code like us.  :)  You might want to do the
 same.
 
-Katrina:	fixed bugs in socials
-		fixed shopkeeper assist
-		Restore All command
-		Config changed to report when toggled
-		practice reports 0% only at ACT_PRACTICE mob
-		proper counting message for coins
-		lots of socials added
-		remove curse gets rid of no_remove objects as well
-		spec_ghost added repop at night only gone by dawn
-		axed periods on channels
+Thelonius:	Waterbreathe spell and accompanying code.
+		Berserk skill for Warriors
+		Snare and Untangle skills for Thieves
+		Recharge Item spell for Mages
+		Remove silence spell for Clerics
+		Modification of slookup
+		Circle skill for Thieves
+		Trapping of NULL argument for do_bug, do_idea, do_typo
+		Gambling with dice game called Upper_lower_triple
+		Removal of int warning messages with bug ( ..., NULL )
+		Bug fix addition of checking for deleted chars in is_same_group
+		Dual wield skill for Warriors
+		Remove alignment spell for Mages and Clerics
+		Bug fix for do_bash.
+		Cone of silence spell
+		Conversion of SN in area files to spell names
+		Passproof doors
+		Improved compare command
 
-Thelonius:	Obj_update fix (used to switch to obj_free)
-		immortal powers converted to immortal skills
-		set_fighting bug fixed; modification to do_rescue
-		modified make_corpse to fix obj_update crash (coin creation)
-		put in, balanced, and bugfixed Psi class
-		modified die_follower for better bug reporting
-		fixed typo in affect_remove (affect_free = paf)
-		Dispel magic
-		Bash door and repair door added (Morpheus damage modifier)
-		Poison weapon
 
-Binky:		several socials added
+Thelonius &
+Binky:		Long distance socials
+		Scrolls, wands, staves skills for all classes
 
-Globi:		NO_TELL added to communication checks
-		change_sex modified
-		Newlock and numlock
+Kahn:		Flying chars/mobiles cannot be tripped
+		Races, race skills, and accompanying code
+		Apollo compilation warning removal
+		Free_mem bug fix
+		Social typo fixes
+		Pagelen npc trap
+		do_slist format change
+		Documentation fix
+		do_train display fix
+		Implement Magoo's enchant weapon level problem
+		Implement rstat fix
+		Free_string on new character mistake
+		Can sset yourself
+		invisible obj on mobile bug fix do_steal
+		Display changes to breath spells
+		Bug fix on pc death of attributes
+		Denied characters are autoadvanced to level 2
+		Mobile moves are now randomized
+		Player Affects are now saved as names
+		group_gain change in align now drops eq of the right person
+		only players have prompt field now
+		Correct reset pointers in pager
+		PCs had hp,mana,move,attrib value problems upon death.  Fixed.
+		Oset weight on object while worn by PC trapped
+		Relative damange messages
+		Overtraining trap
+		WIZINVIS flag
+		Do_rescue now rescues the appropriate PC
+		Remove charm away from low level imms
+		Long distance socials are only seen by actor and actee
+		Trap NULL obj list in show_list_*
+		Help and Shop load memory fix.  Previously would alloc extra.
+		Do_bash by NPC bug fix
+		Destroy Cursed spell for Clerics
+		More detailed act bug reporting
+		PC dragon breaths
+		Polymorph other spell and other related code
+		Immortals not affected by cone of silence
+		Paf->deleted bug fix
+		Waterbreathing sputtering fix
+		PC non-human race special skills
+		Enchanted weapon bug fix
+		Order mobile description + bug fix
+		init_socket bug fix
+		Small animals/humaniods may not disarm large animals/humaniods
+		Unarmed damage relative to race
+		Turn undead spell for clerics
+		Racial Hatred code
+		Damage and stop_fighting bug fix
+		Ensure text length copied into pager/MSDOS compile fix
+		Mob disarm no longer disarms noremove weapons
+		Page look item list
+		Expansion of Vampire race
+		Spec_ghost repop fix by Walker
+		Numbered notes fix
+		Mobiles cannot see wizinvised
+		Reinstate of KILLER flags
+		Stake skill for players
+		Exorcise spell for Clerics
+		Limited PKilling
+		Upper limit on owhere
+		Players can now hide from other players
+		Grouped players infinitely moving in maze room fix
+		Reset mobile maximum in room/world change
+		Player Age bug fix.
+		Autoreboot/autoshutdown addition
+		Note number display fix.
+		Increase of exp death risk to 2 levels from 1.
 
-Bonecrusher:	training of hp move mana added
+Kahn & Hatchet:	Shopkeepers do not gain or lose gold in transactions.
 
-Alander:	Socket memory leak fix
+Tre:		Savable bans
 
-Sludge:		fix on hpux platform
+Lunch & Binky:	More socials
 
-Kaneda:		do_whois
-		Fixed prompt bug
+BoneCrusher:	Pager over/underbounds fix
+		Donation code
 
-Thelonius & Kahn:
-		cosmetic changes to ALL files, w/ NULL comparisons in if's
-		list_update & associated changes (_next removal in most cases)
-		 The data elements char, mob, obj are removed every tick
-		 instead of instantaneously.
-		Helps added: guild, trainer, mag, cle, thi, war, blank,
-		 envy, sstime, etc
-		string instead of slot representation in area files,
-		 including removal of slot_lookup and slot field in const.c
-		 paragraphs, and slookup
-		removal of all references to traditional in compiling
+Alexander:	Finish porting Apollo on Envy 2.0
 
-Kahn:		Redid who
-		Free_string in pager to save 8k memory leak
-		made do_prompt consistent (memory recycling)
-		Removed MOBProgs, log contains entry for adding them in again
-		made do_note recycle properly with date field
-		page enable do_score and do_socials
-		initialized buf in do_prompt
-		disallowed selling objects > LEVEL_HERO
-		changed victim->position in do_wake so message could be seen
-		string formatting \n\r to mset long, do_silence,
-		disarm and kick will take different arguments, w/ restrictions
-		Adept won't cast healing spells while fighting
-		kick can start a fight, and can also be dodged
-		sh_int became ints again
-		better bug reporting for >1000 damage
-		change disarm % for mob without weapon
-		NPC's cannot cast spells when forced or charmed
-		page enabled areas
-		base xp 150 from 300, bonus for evil fighting good
-		load_char_obj modified for compatibility with MSDOS platform
-		do_score better reflects real time played
-		dispel evil cannot be cast by evil chars
-		page enabled owhere, added room numbers for object locations
-		shopkeeper worn equipment is unflagged as ITEM_INVENTORY
-		invisible/hidden creatures no longer give "someone's" body
-		 parts, etc when dead
-		increased damage for acid blast
-		buy, sell, list available only if standing
-		switched PC's won't quit when body voids
-		fixed imm skills to reference proper character, not npc
-		load_object reports and fixes invisible light sources
-		light source on ground will light room
-		improved bug reporting on equipping and unequipping
-		disabled paging on mfind all and ofind all
-		 (crashed from buffer overload)
-		extended buffer in pager, capped # of lines at 60
-		 (also reset in fread_char)
-		spec_thief attempt 12.5%, level-dependent success percentage
-		save_char_obj better bug reporting
-		increased pager buffer in do_mwhere, do_owhere
-		added "read" synonymous to "look"
-		proper messages for "blindness"
-		removed charm section of check_killer
-		fluff changes to do_configure
-		violence_update no shopkeeper assist, level-based assist (<5)
-		Load_rooms error reporting
-		affect_modify effects mobs (except attributes)
-		potions save and no longer automatically nodrop and autovisible
-		potions, pills of greater level than caster have effects
-		do_social can only make mob attack if it's lower level than PC
-		bug reporting in affect_modify
-		fixed numerous ->next instead of _next mistakes
-		changed pager, fixed associated memory leak
-		slookup changed (slookup all had crashed)
-		removed reference to NULL item in requested location
-		 from get_eq_char
-		note read all changed to go through pager
-		Spell level cap damage at LEVEL_HERO for PC's, not for mobs
-		do_note allows "immortal" "immortals" "imm" as same target
-		dragon breaths takes from victims' inventory, not caster's
-		added tail_chain to fwrite_obj in save.c for better reporting
-		do_look added \n\r after long descriptions, in room/inventory
-		item_type_name better bug reporting
-		set title initialized buffer
-		objects cast spells at the level of the object
-		strength length trapping in bamfin/out
-		modified sset, only directors can sset all
-		builder defined recall points
-		memory leak fix in do_note, extract_obj ed recycling
-		changed mobile's prompt in create_mobile
-		set up pager's pointers correctly
-		send_to_all_char added
-		offensive spells can now work on caster from obj_cast_spell
-		autoshutdown code (sstime, time_update)
-		fixed oversights in paf->next usage, several occurrences
-		mob duplicate name first checks for existing pfile, then mob.
-		cosmetic fixes for WIZINVIS
-		identify allows for ITEM_PILL
-		Mud changed to level 50, immorts level 51-54
-		healer casts only at < 10 level PC's, no mobs
-		limit damage for backstab
-		offensive spell on PC's changed
-		mset, oset string length limits
-		duplicate pfile/equipment fix (new_descriptor, nanny)
-		charmed shopkeepers won't buy
-		reply "" fixed
-		mset hp < 0 disallowed while fighting
-		sleep spell fixed
-		violence update uses ->next_in_room instead of ->next
-		rewrite violence_update
-		fix pc attacking pc group assist loophole
-		affect_loc_name put in weight and height flags
-		do_murder now works on same-level chars
-		rescue/kick/disarm disabled if blinded
-		fixed do_ban
-		modified spell_gate to limit # of vampires gated in
-		act message fix in spell_summon
-		fixed do_list strcat crash
-		no death_cry for poisoned/incapacitated victims
-		stop decrementing timers below -1
-		disallow rsetting of solitary/private rooms in certain cases
-		fixed do_who and do_whois to disallow seeing switched immorts
-		shopkeepers won't buy invisible objects if they can't see it
-		mob affects stripped before extracting
-		rewrote aggr_update saving some process time
-		redesigned documentation and README's
-		reboot and shutdown force save or quit before killing game
+Binky:		Reenergize economy.
+
+Katzenjammer:	Mass heal spell for clerics
+
+Jason Dinkel:	Mobile_update modification and optimization
+
+Elrond:		Xp_calc modification for mobile abilities and features.
+		Players may utilize multiple shopkeepers in the same room.
+
+Morpheus:	Autogold for players
+
+Malice:		Flaming shield for clerics
+
+Garth:		AFK code
+
+JohnPaul:	Teleport bug report fix

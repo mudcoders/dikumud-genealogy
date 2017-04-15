@@ -15,7 +15,7 @@ one of a peaceful man leading a simple life.
 64 0 350 S
 5 15 7 5d5+50 1d8+2
 50 600
-8 8 1
+8 human~ 1
 #6002
 bear~
 the brown bear~
@@ -27,7 +27,7 @@ teeth.  It doesn't resemble those cute little thingies from toy shops at all.
 96 0 -50 S
 8 13 3 8d8+80 2d6+2
 0 2000
-4 8 0
+4 bear~ 0
 #6003
 rabbit~
 the ferocious rabbit~
@@ -40,7 +40,7 @@ rabbits into ferocious and bloodthirsty monsters.
 96 0 -150 S
 3 17 6 1d4+26 1d8+0
 0 350
-4 8 0
+4 animal~ 0
 #6004
 deer~
 the fallow deer~
@@ -52,7 +52,7 @@ looking back at you with an air of watchful interest.
 82 8 350 S
 2 19 2 2d8+2 1d6+0
 0 200
-8 8 2
+8 animal~ 2
 #6005
 fox~
 the brown fox~
@@ -63,7 +63,7 @@ It is a large fox with beautiful, red-brown fur and a long, thick brush.
 64 0 -50 S
 2 18 6 1d4+18 1d6+0
 0 200
-8 8 0
+8 bear~ 0
 #6100
 warg vicious~
 the vicious warg~
@@ -75,7 +75,7 @@ quickly from its long, white fangs.  It looks quite dangerous and very angry.
 96 0 -350 S
 5 16 5 1d12+60 2d4+0
 0 800
-8 8 0
+8 bear~ 0
 #6101
 warg ferocious~
 the ferocious warg~
@@ -87,7 +87,7 @@ quickly from its long, white fangs.  It looks quite dangerous and very angry.
 96 0 -350 S
 5 16 5 1d12+60 2d4+0
 0 800
-8 8 0
+8 bear~ 0
 #6102
 wolf grey~
 the large, grey wolf~
@@ -98,7 +98,7 @@ The large, grey wolf eyes you with interest while licking its lips.
 96 0 -150 S
 3 18 7 1d12+35 1d7+0
 0 450
-8 8 0
+8 bear~ 0
 #6103
 wolf black~
 the large, black wolf~
@@ -109,7 +109,7 @@ The large, black wolf eyes you with interest while licking its lips.
 96 0 -150 S
 3 18 7 1d12+35 1d7+0
 0 450
-8 8 0
+8 bear~ 0
 #6112
 dragon green~
 the huge, green dragon~
@@ -123,7 +123,7 @@ do.
 99 8 -1000 S
 25 -5 -7 25d25+250 2d6+18
 50000 200000
-8 8 0
+8 dragon~ 0
 #6115
 shargugh brownie~
 Shargugh~
@@ -136,7 +136,7 @@ he is having great fun.
 148 32778 1000 S
 10 1 -10 10d10+100 1d8+2
 1000 3000
-8 8 1
+8 animal~ 1
 #6116
 elder druid~
 the elder druid~
@@ -148,7 +148,7 @@ he would be a tough foe.
 38 8 0 S
 17 4 -7 17d17+170 2d8+2
 5000 20000
-8 8 1
+8 elf~ 1
 #0
 
 

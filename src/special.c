@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -196,6 +199,10 @@ bool spec_cast_adept( CHAR_DATA *ch )
     if ( !IS_AWAKE( ch ) || ch->fighting )
 	return FALSE;
 
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	return FALSE;
+
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
     {
 	if ( victim != ch && can_see( ch, victim ) && number_bits( 1 ) == 0 )
@@ -245,6 +252,11 @@ bool spec_cast_adept( CHAR_DATA *ch )
 	spell_refresh( skill_lookup( "refresh" ), ch->level, ch, victim );
 	return TRUE;
 
+    case 6:
+	act( "$n utters the words 'suinoleht'.", ch, NULL, NULL, TO_ROOM );
+	spell_combat_mind( skill_lookup( "combat mind" ), ch->level, ch,
+			  victim );
+	return TRUE;
     }
 
     return FALSE;
@@ -259,6 +271,10 @@ bool spec_cast_cleric( CHAR_DATA *ch )
     int        sn;
 
     if ( ch->position != POS_FIGHTING )
+	return FALSE;
+
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -286,7 +302,7 @@ bool spec_cast_cleric( CHAR_DATA *ch )
 	case  6: min_level = 12; spell = "change sex";     break;
 	case  7: min_level = 13; spell = "flamestrike";    break;
 	case  8:
-	case  9:
+	case  9: min_level = 14; spell = "mute";           break;
 	case 10: min_level = 15; spell = "harm";           break;
 	default: min_level = 16; spell = "dispel magic";   break;
 	}
@@ -310,6 +326,10 @@ bool spec_cast_judge( CHAR_DATA *ch )
     int        sn;
 
     if ( ch->position != POS_FIGHTING )
+	return FALSE;
+
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -340,6 +360,10 @@ bool spec_cast_mage( CHAR_DATA *ch )
     if ( ch->position != POS_FIGHTING )
 	return FALSE;
 
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	return FALSE;
+
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
     {
 	if ( victim->fighting == ch && can_see( ch, victim )
@@ -366,6 +390,8 @@ bool spec_cast_mage( CHAR_DATA *ch )
 	case  7:
 	case  8:
 	case  9: min_level = 15; spell = "fireball";       break;
+	case 12: min_level = 16; spell = "polymorph other";break;
+	case 13: min_level = 16; spell = "polymorph other";break;
 	default: min_level = 20; spell = "acid blast";     break;
 	}
 
@@ -388,6 +414,10 @@ bool spec_cast_undead( CHAR_DATA *ch )
     int        sn;
 
     if ( ch->position != POS_FIGHTING )
+	return FALSE;
+
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
@@ -414,6 +444,13 @@ bool spec_cast_undead( CHAR_DATA *ch )
 	case  5: min_level = 15; spell = "energy drain";   break;
 	case  6: min_level = 18; spell = "harm";           break;
 	case  7: min_level = 21; spell = "teleport";       break;
+	case  8:
+	case  9:
+	case 10: if ( ch->race == race_lookup( "Vampire" ) )
+	         {
+		     min_level = 24;
+		     spell = "vampiric bite";  break;
+		 }
 	default: min_level = 24; spell = "gate";           break;
 	}
 
@@ -726,7 +763,8 @@ bool spec_thief( CHAR_DATA *ch )
 	    || !can_see( ch, victim ) )	/* Thx Glop */
 	    continue;
 
-	if ( IS_AWAKE( victim ) && number_percent( ) >= ch->level )
+	if ( IS_AWAKE( victim ) && victim->level > 5
+	    && number_percent( ) + ch->level - victim->level >= 33 )
 	{
 	    act( "You discover $n's hands in your wallet!",
 		ch, NULL, victim, TO_VICT );
@@ -737,7 +775,7 @@ bool spec_thief( CHAR_DATA *ch )
 	else
 	{
 	    gold = victim->gold * number_range( 1, 20 ) / 100;
-	    ch->gold     += 7 * gold / 8;
+	    ch->gold     += 3 * gold / 4;
 	    victim->gold -= gold;
 	    return TRUE;
 	}
@@ -758,6 +796,10 @@ bool spec_cast_psionicist( CHAR_DATA *ch )
 
     if ( ch->position != POS_FIGHTING )
         return FALSE;
+
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	return FALSE;
 
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
     {
@@ -816,7 +858,8 @@ bool spec_cast_ghost( CHAR_DATA *ch )
 	  return FALSE;
       }
 
-      stop_fighting( ch, TRUE );
+      if ( ch->fighting )
+	  stop_fighting( ch, TRUE );
 
       act( "A beam of sunlight strikes $n, destroying $m.",
 	  ch, NULL, NULL, TO_ROOM);
@@ -829,11 +872,16 @@ bool spec_cast_ghost( CHAR_DATA *ch )
     if ( ch->position != POS_FIGHTING )
 	return FALSE;
 
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+	return FALSE;
+
     for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
     {
         if ( victim->deleted )
 	    continue;
-	if ( victim->fighting == ch && number_bits( 2 ) == 0 )
+	if ( victim->fighting == ch && can_see( ch, victim )
+	    && number_bits( 2 ) == 0 )
 	    break;
     }
 

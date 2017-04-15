@@ -13,7 +13,7 @@ This is a young but not totally harmless creature.
 68 0 -5 S
 3 17 6 1d4+30 1d4+3
 50 400
-6 8 1
+6 dwarf~ 1
 #6601
 teddy bear~
 a teddy bear~
@@ -24,7 +24,7 @@ This is a tiny little bear with a heart on his chest.
 68 0 500 S
 1 19 9 1d10+10 1d4+1
 75 75
-8 8 1
+8 bear~ 1
 #6602
 doll raggedy anne~
 a raggedy anne doll~
@@ -35,7 +35,7 @@ You see a small little cute rag doll.
 68 0 300 S
 2 18 9 2d5+19 1d5+1
 250 200
-6 8 2
+6 object~ 2
 #6603
 soldier toy~
 a toy soldier~
@@ -46,7 +46,7 @@ The toy is looking for target practice.
 68 0 -300 S
 3 18 7 3d5+26 2d3+2
 400 300
-8 8 1
+8 object~ 1
 #6604
 bear ugly~
 the ugly bear~
@@ -58,7 +58,7 @@ He snarls and growls at you.
 68 0 -400 S
 3 17 6 3d4+25 1d5+2
 100 300
-8 8 1
+8 bear~ 1
 #6605
 doll old~
 an old doll~
@@ -69,7 +69,7 @@ This doll has been hugged and played with until there is almost nothing left.
 68 0 -2 S
 1 20 10 1d10+1 1d4+2
 50 50
-8 8 0
+8 object~ 0
 #6606
 nanny~
 the nanny~
@@ -81,7 +81,7 @@ appears that there is still some fight left in her.
 64 0 10 S
 5 16 6 4d4+50 1d8+2
 750 750
-8 8 2
+8 dwarf~ 2
 #6607
 guard~
 the armed guard~
@@ -93,7 +93,7 @@ You suddenly think that you had better flee.
 70 8 -800 S
 8 9 2 3d10+100 3d5+2
 2000 2000
-8 8 1
+8 dwarf~ 1
 #6608
 brat spoiled~
 the spoiled brat~
@@ -105,7 +105,7 @@ biggest urge to put him out of his misery.
 70 0 -400 S
 1 18 9 2d4+15 2d2+1
 2000 50
-8 8 1
+8 dwarf~ 1
 #0
 
 

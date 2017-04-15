@@ -14,7 +14,7 @@ skeleton looks very mindless but still dangerous ...
 32 0 0 S
 1 20 9 1d1+19 1d6+0
 15 100
-8 8 1
+8 undead~ 1
 #3401
 undead zombie~
 the undead zombie~
@@ -27,7 +27,7 @@ human.
 34 40 -100 S
 4 17 6 1d1+49 1d8+0
 50 600
-8 8 1
+8 undead~ 1
 #3402
 undead ghoul~
 The ghoul~
@@ -39,7 +39,7 @@ he looks like he hasn't forgot his fighting skills.
 32 8 -500 S
 6 15 4 1d1+79 2d5+1
 150 1500
-8 8 1
+8 undead~ 1
 #3403
 undead wraith~
 The wraith~
@@ -52,7 +52,7 @@ in his eyes.
 34 42 -750 S
 12 9 2 1d1+149 3d6+0
 1000 13000
-8 8 1
+8 undead~ 1
 #3404
 undead guardian vampire~
 The guardian vampire~
@@ -64,7 +64,7 @@ arms raises. He looks mighty tough to be just a minor minion.
 2|32 40 -1000 S
 28 0 -4 1d1+385 4d5+15
 15000 105000
-8 8 1
+8 vampire~ 1
 #3405
 priest~
 the priest~
@@ -77,7 +77,7 @@ this man has a sacred beauty.  You see a halo around his head.
 2050 168 1000 S
 15 5 -5 15d15+150 1d4+8
 400 20000
-8 8 1
+8 human~ 1
 #3406
 Mi-Go Fungi~
 the Mi-Go~
@@ -92,7 +92,7 @@ beings sometimes walk on all their legs and sometimes on the hind pair only.
 32 0 -500 S
 12 9 2 12d12+120 2d7+2
 650 10000
-8 8 0
+8 animal~ 0
 #3407
 nightgaunt~
 The nightgaunt~
@@ -107,7 +107,7 @@ it has no face, only a suggestive blackness where a face ought to be ...
 96 98304 -1000 S
 10 11 1 10d10+100 2d6+3
 150 4050
-8 8 0
+8 animal~ 0
 #3408
 hunting horror~
 The hunting horror~
@@ -122,7 +122,7 @@ voices.  A hunting horror is HUGE, normally around 40 feet long.
 32 40 -1000 S
 20 1 -5 20d20+200 3d6+12
 2000 60000
-8 8 0
+8 snake~ 0
 #3409
 weeds~
 some cave weeds~
@@ -133,7 +133,7 @@ Just some unpleasant looking vine-like growths ...
 36 98312 0 S
 6 15 4 1d1+75 1d8+1
 83 1500
-8 8 0
+8 plant~ 0
 #3410
 snapper joe~
 Snapper Joe~
@@ -146,7 +146,7 @@ He is called up from his service in hell in order to aid the Undying One.
 2 8 -750 S
 20 0 -1 1d1+365 4d3+15
 2222 40000
-8 8 1
+8 undead~ 1
 #3411
 X-ist eater~
 The X-ist flesh eater~
@@ -161,7 +161,7 @@ lead you to believe that he knew that you were coming.
 34 8 -1000 S
 17 4 1 1d1+215 4d2+7
 1560 28000
-8 8 1
+8 animal~ 1
 #3412
 spirit ghost king crotus~
 the spirit of King Crotus~
@@ -178,7 +178,7 @@ softly into the air:
 2 40 350 S
 20 0 -1 1d1+260 4d6+5
 50 40000
-8 8 1
+8 undead~ 1
 #3413
 rock slug~
 the rock slug~
@@ -189,7 +189,7 @@ It is a large brownish slug.  Got any salt?  Didn't think so ...
 4 0 0 S
 3 18 7 1d1+42 1d7+0
 5 350
-8 8 0
+8 worm~ 0
 #3414
 etcher~
 The mad etcher~
@@ -210,7 +210,7 @@ And on he babbles ...
 64 1 1000 S
 5 5 3 1d1+80 2d6+1
 50 900
-6 6 1
+6 human~ 1
 #3415
 wife ghost specter~
 The spectral etcher's wife~
@@ -225,7 +225,7 @@ resting on the shoulder of the etcher ... her husband.
 2 65536 1000 S
 7 14 4 1d1+86 2d4+3
 125 2250
-8 8 2
+8 undead~ 2
 #3416
 body~
 The half-decomposed body~
@@ -236,7 +236,7 @@ YUK! It's ugly, disgusting ... it smells ... it also moves a bit!
 36 0 -350 S
 6 15 4 1d1+80 2d5+1
 83 1500
-8 8 1
+8 undead~ 1
 #0
 
 
@@ -719,8 +719,7 @@ D1
 E
 coffin sarcophagus~
 Now destroyed ... there is writing on it: 'All hail the new king; we serve
-the Roch'tar, the Undying One!  Those who decline his worship shall be
-slaughtered!'
+the ShadowLord!  Those who decline his worship shall be slaughtered!'
 ~
 S
 #3415

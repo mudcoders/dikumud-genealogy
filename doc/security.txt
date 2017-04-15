@@ -1,9 +1,7 @@
-EnvyMud release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -68,7 +66,8 @@ In summary, the best way out of combat is fleeing.
 Offensive spells start combat -- no free attempts at 'sleep', 'dispel magic',
 or other such spells.  Offensive spells may not be cast on other players.
 
-Players no longer gain experience from pkilling.
+Players no longer gain experience from pkilling.  Licensed PKillers
+may kill other licensed PKillers for experience points.
 
 The 'summon' spell will not summon a character into a different area.
 

@@ -15,7 +15,7 @@ looks impervious to normal weapons.
 1|2|64 8|16|32|512 -900 S
 35 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10402
 pile coins~
@@ -27,7 +27,7 @@ A large sparkly pile of gold coins.
 1|2|64 512 -800 S
 15 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #10403
 male dee demon~
@@ -40,7 +40,7 @@ makes your mouth water.
 1|2|64 512 -1000 S
 26 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 undead~ 1
 
 #10404
 female dee demon~
@@ -53,7 +53,7 @@ naked body make you sweat, and babble uncontrollably.
 1|2|64 512 -1000 S
 25 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 2
+8 undead~ 2
 
 #10405
 bar gold~
@@ -65,7 +65,7 @@ This gold bar must be worth bucks!
 1|2|64 512 -800 S
 17 2 2 1d1+30000 1d8+32
 1000 80
-8 8 0
+8 object~ 0
 
 #10406
 chicken pot pie~
@@ -77,7 +77,7 @@ You see a golden crusted pot pie filled with chicken and vegetables.
 1|2|64 512 -800 S
 22 2 2 1d1+30000 1d8+32
 1000 800
-8 8 0
+8 object~ 0
 
 #10407
 beef pot pie~
@@ -89,7 +89,7 @@ You see a golden crusted pot pie filled with beef and vegetables.
 1|2|64 512 -800 S
 22 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #10408
 vegetable pot pie~
@@ -101,7 +101,7 @@ You see a golden crusted pot pie filled with vegetables.
 1|2|64 512 -800 S
 22 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #10409
 damned soul~
@@ -114,7 +114,7 @@ make out features that would identify it as the person it was in life.
 1|64 512 -700 S
 12 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10410
 tortured soul~
@@ -127,7 +127,7 @@ indescribable torture. It screams out at you in pain and terror.
 1|2|64 512 -800 S
 14 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10411
 half-eaten person~
@@ -141,7 +141,7 @@ its desperate plea...
 1|2|64 512 -757 S
 6 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10412
 living wall~
@@ -155,7 +155,7 @@ of horror, pain, and sorrow issuing from the walls.
 1|2|64 512 -1000 S
 40 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10413
 skeletal warrior~
@@ -169,7 +169,7 @@ delicious and juicy brain.
 1|64 512 -743 S
 20 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10414
 bloody severed arm~
@@ -182,7 +182,7 @@ gore covered limb makes you want to retch.
 1|2|64 512 -884 S
 13 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10415
 bloody severed foot~
@@ -194,7 +194,7 @@ This bloody foot definitely wasn't a lucky one.
 1|2|64 512 -800 S
 13 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10416
 bloody severed nose~
@@ -207,7 +207,7 @@ this nose does...
 1|2|64 512 -800 S
 3 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10417
 blood~
@@ -219,7 +219,7 @@ You see gallons and gallons of thick red blood gurgling in the fountian.
 1|2|64 512 -950 S
 5 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10418
 Lost soul~
@@ -232,7 +232,7 @@ that reads #14349023402342039840293481234900049.
 1|2|64 512 -500 S
 4 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10419
 crispy critter~
@@ -246,7 +246,7 @@ at its body and devour its flesh...
 1|2|64 512 -800 S
 4 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10420
 pile bones skeleton~
@@ -259,7 +259,7 @@ by them.
 1|2|64 512 -700 S
 7 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10421
 manes sub-demon~
@@ -275,7 +275,7 @@ shadows or ghasts.
 1|32|64 512 -900 S
 12 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10422
 prisoner raiden~
@@ -289,7 +289,7 @@ the God.
 1|2|64 512 -1000 S
 5 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 undead~ 1
 
 #10423
 prisoner hell~
@@ -302,7 +302,7 @@ and burns cover her face and arms.
 1|2|64 512 -800 S
 8 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 2
+8 human~ 2
 
 #10424
 prisoner hell~
@@ -316,7 +316,7 @@ forearm and hangs limply by his side.
 1|2|64 512 -800 S
 8 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 human~ 1
 
 #10425
 demonguard demon guard~
@@ -329,7 +329,7 @@ Yellow spittle runs down the scales of his blackened skin.
 1|64 512 -800 S
 20 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10426
 burning fool~
@@ -342,7 +342,7 @@ of hell consuming it and the smell of burning flesh.
 1|2|64 512 -900 S
 2 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10427
 construction worker male~
@@ -356,7 +356,7 @@ it says, '4th DEMONsion Construction Co.'
 1|2|64 512 -666 S
 5 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 undead~ 1
 
 #10428
 construction worker female~
@@ -370,7 +370,7 @@ it says, '4th DEMONsion Construction Co.'
 1|2|64 512 -666 S
 6 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 2
+8 undead~ 2
 
 #10429
 construction worker female~
@@ -384,7 +384,7 @@ it says, '4th DEMONsion Construction Co.'
 1|2|64 512 -666 S
 6 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 2
+8 undead~ 2
 
 #10430
 fire devil~
@@ -398,7 +398,7 @@ covered teeth. This is definetly a face only a mother could love.
 1|2|64 512 -1000 S
 18 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10431
 wall fire~
@@ -412,7 +412,7 @@ various posts around the room.
 1|2|64 512 -600 S
 26 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10432
 hell hound~
@@ -426,7 +426,7 @@ that runs down its  dung covered coat.
 1|2|32|64 8|32|512|65536 -900 S
 15 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10433
 frozen body~
@@ -439,7 +439,7 @@ They stare intently from its bluish face as if pleading for your help.
 1|2|64 512 -900 S
 7 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10434
 ice devil~
@@ -455,7 +455,7 @@ break an apendage off of a nearby soul and beat the soul with it.
 1|2|64 512 -1000 S
 32 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 god~ 0
 
 #10435
 trapped soul ice~
@@ -469,7 +469,7 @@ die for a second before it is restored and begins thrashing about again.
 1|2|64 512 -789 S
 9 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10436
 half frozen body~
@@ -483,7 +483,7 @@ move and wriggle with a life of its own...
 1|2|64 512 -876 S
 11 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10437
 killer penguin~
@@ -496,7 +496,7 @@ HEY! penguins don't have teeth!
 1|2|32|64 512 -876 S
 12 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10438
 I-scream worker~
@@ -512,7 +512,7 @@ WE ALL SCREAM FOR I SCREAM!!!'
 1|2|64 512 -706 S
 22 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10439
 Ice Screamer~
@@ -528,7 +528,7 @@ written on it in large yellow letters.
 1|2|64 512 -706 S
 22 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10440
 Construction Foreman Demonic~
@@ -545,7 +545,7 @@ He seems none to happy to see you.
 1|2|32|64 8|32|512 -1000 S
 23 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 undead~ 1
 
 #10441
 Secretary of Hell~
@@ -559,7 +559,7 @@ to your presence and seems fascinated by the phones.
 1|2|64 8|32|512 -700 S
 23 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 2
+8 undead~ 2
 
 #10442
 office worker hell~
@@ -572,7 +572,7 @@ AAAAAAAAAAaaaaaaaaaaaarrrrrrrrgggggghhhhh!!!!!!!!!!!
 1|2|64 8|32|512 -1000 S
 23 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10443
 records worker~
@@ -584,7 +584,7 @@ You see a rather plain looking office personel here filing a file on someone.
 1|2|64 8|32|512 -1000 S
 21 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10444
 santa claus~
@@ -597,7 +597,7 @@ as jolly as you can get.
 1|2|64 8|32|512 1000 S
 23 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 human~ 1
 
 #10445
 high priest hell~
@@ -610,7 +610,7 @@ out his emaciated face beneath his hood.
 1|2|64 8|32|512 -1000 S
 33 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 god~ 1
 
 #10446
 bowl blood~
@@ -622,7 +622,7 @@ Its is a wooden bowl filled with blood and bits of flesh.
 1|2|32|64 8|32|512 -900 S
 8 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #10447
 jury member~
@@ -634,7 +634,7 @@ It seems to be a lesser demon disguised as mortal. Fair trial...not likely.
 1|2|64 8|32|512 -800 S
 20 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10448
 Judge Whopper~
@@ -647,7 +647,7 @@ and is notorious for his painful and harsh punishments.
 1|2|64 8|32|512 -1000 S
 32 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10449
 lawyer hell~
@@ -659,7 +659,7 @@ Slimy, sleezy and has very sharp teeth...a lawyer all right...
 1|2|64 8|32|512 -1000 S
 33 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10450
 complaints officer~
@@ -674,7 +674,7 @@ She seems not to notice you; But is absorbed in her favorite soap,
 1|2|64 8|32|512 -1000 S
 21 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 2
+8 undead~ 2
 
 #10451
 bastard hiramoto~
@@ -689,7 +689,7 @@ He is known to buy anything....and sell anything people sell him.
 1|2|64 8|32|512 -600 S
 21 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 human~ 1
 
 #10452
 maintenance worker~
@@ -701,7 +701,7 @@ He is in a yellow jumpsuit with a large nuclear warning symbol on the back.
 1|2|64 8|32|512 -750 S
 20 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 ogre~ 0
 
 #10453
 weeds~
@@ -713,7 +713,7 @@ You see a nasty yellow and purple weed.
 1|2|64 8|32|512 -1000 S
 10 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 plant~ 0
 
 #10454
 stanley~
@@ -727,7 +727,7 @@ are pretty well known. He was rumored to disappear around Solace
 1|2|64 8|32|512 -700 S
 24 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 undead~ 1
 
 #10455
 half eaten horse carcass~
@@ -740,7 +740,7 @@ been digested already.
 1|2|64 8|32|512 -800 S
 7 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 undead~ 0
 
 #10456
 stomach dragon~
@@ -753,7 +753,7 @@ to each food item and proceed to barf acid all over it.
 1|2|64 8|32|512 -900 S
 23 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 dragon~ 0
 
 #10457
 rancid turkey leg~
@@ -766,7 +766,7 @@ disappears and you wonder if it just walked away....
 1|2|64 8|32|512 -900 S
 1 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #10458
 reactor specialist~
@@ -779,7 +779,7 @@ the back.
 1|2|64 512 -900 S
 22 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 ogre~ 1
 
 #10459
 reactor worker~
@@ -792,7 +792,7 @@ the back.
 1|2|64 512 -900 S
 17 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 ogre~ 1
 
 #10460
 homer simpson~
@@ -808,7 +808,7 @@ for a nap.
 1|2|64 512 -900 S
 22 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 ogre~ 1
 
 #10461
 Devils food cake~
@@ -820,7 +820,7 @@ Mmmmmm...don't you just want to take a bite?
 1|2|64 512 -900 S
 12 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #10462
 mad cook~
@@ -834,7 +834,7 @@ You spots you and screams, 'Git awa froom mi food!'
 1|2|32|64 512 -900 S
 22 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 troll~ 1
 
 #10463
 frantic lady~
@@ -845,7 +845,7 @@ A frantic lady is here tearing her hair out looking for a sale.
 1|64 512 -600 S
 19 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 2
+8 ogre~ 2
 
 #10464
 nuclear technician~
@@ -856,7 +856,7 @@ A nuclear technician is here fiddling with his rad suit.
 1|2|64 512 -850 S
 22 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 ogre~ 1
 
 #10465
 stray proton~
@@ -867,7 +867,7 @@ A stray proton is here wizzing about.
 1|2|64 512 -850 S
 12 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #10466
 radiation~
@@ -878,7 +878,7 @@ Radiation is here doing unknown things to you.
 1|2|64 512 -1000 S
 23 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #10467
 chief engineer hell~
@@ -893,7 +893,7 @@ and sirens sound.
 1|2|64 512 -1000 S
 34 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 ogre~ 1
 
 #10468
 Greater Fire Demon~
@@ -909,7 +909,7 @@ sounds of their unending pain...
 1|2|64 512 -1000 S
 40 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 god~ 0
 
 #10469
 frozen side beef~
@@ -922,7 +922,7 @@ large cow.
 1|2|64 512 -675 S
 9 2 2 1d1+30000 1d8+32
 100 80
-8 8 0
+8 object~ 0
 
 #10470
 guard dog~
@@ -934,7 +934,7 @@ A vicious looking pit bull / demon dog mix is here slobering on the donuts.
 1|2|64 512 -900 S
 15 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 animal~ 0
 
 #10471
 juicy steak~
@@ -946,7 +946,7 @@ Mmmmmmm.....steak....mmmmmm...you feel your mouth start to water.
 1|2|64 512 -900 S
 12 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 0
+8 object~ 0
 
 #0
 
@@ -993,7 +993,7 @@ The blade of the sword is a full meter long, and straight as an arrow, with
 lightly fluted sides. Both edges keened down to perfect lines, invisibly
 sharp. Perfection like this could of only been forged by a god. The black
 hilt is contrasted only by the faint symbol of a white arrow.
-Apon the blade is engraved a poem:
+Upon the blade is engraved a poem:
 
                       Farslayer howls across the world
                       For thy heart, for thy heart, who hast wronged me!
@@ -1274,7 +1274,7 @@ figurine of a winged horse~
 You see a small figurine of a winged horse on the ground.~
 ~
 3 1|64 1|16384
-54~ 50~ 50~ summon~
+54~ 50~ 50~ fly~
 3 20 8
 A
 14 25
@@ -1850,7 +1850,7 @@ S
 Bedroom.~
 This is a small bedroom. It is well furnished and a drastic change from
 the room you just stepped out of. A bed stands against the far wall.
-Apon the headboard of the bead are carved two cherub looking figures,
+Upon the headboard of the bed are carved two cherub looking figures,
 with the words 'DEE & DEE' written below them.
 The door to the bedroom is to the west.
 ~
@@ -2769,11 +2769,11 @@ It is too dark to see.
 ~
 ~
 0 -1 10452
-D4
+D5
 It is too dark to see.
 ~
 ~
-0 -1 10452
+0 -1 10476
 S
 #10464
 Hall of Fire~
@@ -4410,10 +4410,10 @@ M 0 10410 2 10413        tortured soul
 *
 M 0 10411 1 10414        half-eaten person
 *
-M 0 10412 2 10412        living wall
+M 0 10412 1 10412        living wall
 G 1 10405 8                    Give Angel's Skull
 *
-M 0 10412 2 10429        living wall
+M 0 10412 1 10429        living wall
 G 1 10404 8                    Give Farslayer
 *
 M 0 10413 2 10426        skeletal warrior
@@ -4430,14 +4430,14 @@ M 0 10416 1 10419        bloody severed nose
 *
 M 0 10417 1 10420        blood from the fountain
 *
-M 0 10418 4 10423        Lost soul
+M 0 10418 1 10423        Lost soul
 *
-M 0 10418 4 10424        Lost soul
+M 0 10418 1 10424        Lost soul
 *
 M 0 10419 1 10425        crispy critter
 E 1 10408 80 16             Equipt flaming claw
 *
-M 0 10420 2 10430        pile bones skeleton
+M 0 10420 1 10430        pile bones skeleton
 *
 M 0 10421 2 10445        manes sub-demon
 E 1 10444 80 16             Equipt manes claws
@@ -4463,25 +4463,25 @@ M 0 10425 3 10438        demonguard demon guard
 E 1 10409 80 5               Wear Demonskin
 E 1 10410 80 16             Equipt demon teeth
 *
-M 0 10426 2 10470        burning fool
+M 0 10426 1 10470        burning fool
 E 1 10411 80 10              Wear burning flesh
 *
-M 0 10426 2 10460        burning fool
+M 0 10426 1 10460        burning fool
 E 1 10411 80 10              Wear burning flesh
 *
-M 0 10427 2 10467        construction worker male
+M 0 10427 1 10467        construction worker male
 E 1 10445 80 16             Equipt welding torch
-M 0 10428 3 10467        construction worker female
+M 0 10428 1 10467        construction worker female
 E 1 10412 80 16             Equipt rivit gun
 *
-M 0 10427 2 10456        construction worker male
+M 0 10427 1 10456        construction worker male
 E 1 10445 80 16             Equipt welding torch
-M 0 10428 3 10456        construction worker female
+M 0 10428 1 10456        construction worker female
 E 1 10412 80 16             Equipt rivit gun
 *
 M 0 10429 1 10465        construction worker female circular saw
 E 1 10413 80 16             Equipt circular saw
-M 0 10428 3 10456        construction worker female
+M 0 10428 1 10456        construction worker female
 E 1 10412 80 16             Equipt rivit gun
 *
 M 0 10430 1 10470        fire devil
@@ -4504,25 +4504,25 @@ E 1 10419 80 16             Equipt ice spear
 *
 M 0 10435 1 10473        trapped soul ice
 *
-M 0 10436 2 10484        half frozen body
+M 0 10436 1 10484        half frozen body
 E 1 10420 80 16             Equipt large meat hook
 *
-M 0 10469 2 10474        frozen side beef
+M 0 10469 1 10474        frozen side beef
 G 1 10421 8                   Give meat
 *
-M 0 10436 2 10475        half frozen body
+M 0 10436 1 10475        half frozen body
 E 1 10420 80 16             Equipt large meat hook
 *
-M 0 10469 2 10485        frozen side beef
+M 0 10469 1 10485        frozen side beef
 G 1 10421 8                   Give meat
 *
-M 0 10437 4 10476        killer penguin
-M 0 10437 4 10477        killer penguin
-M 0 10437 4 10486        killer penguin
-M 0 10437 4 10487        killer penguin
+M 0 10437 1 10476        killer penguin
+M 0 10437 1 10477        killer penguin
+M 0 10437 1 10486        killer penguin
+M 0 10437 1 10487        killer penguin
 *
-M 0 10438 2 10488        I-scream worker
-M 0 10438 2 10478        I-scream worker
+M 0 10438 1 10488        I-scream worker
+M 0 10438 1 10478        I-scream worker
 *
 M 0 10439 1 10479        I-scream worker
 *
@@ -4532,14 +4532,14 @@ G 1 10422 17                   Give blueprint
 M 0 10441 1 10500        Secretary of Hell
 E 1 10446 80 6               Wear blond wig
 *
-M 0 10442 2 10498        office worker hell
+M 0 10442 1 10498        office worker hell
 E 1 10423 80 16             Equipt electric eraser
-M 0 10442 2 10506        office worker hell
+M 0 10442 1 10506        office worker hell
 E 1 10423 80 16             Equipt electric eraser
 *
-M 0 10443 3 10491        records worker
-M 0 10443 3 10492        records worker
-M 0 10443 3 10493        records worker
+M 0 10443 1 10491        records worker
+M 0 10443 1 10492        records worker
+M 0 10443 1 10493        records worker
 *
 M 0 10444 1 10494        Santa Claus
 E 1 10424 80 6               Wear spectacles
@@ -4550,6 +4550,11 @@ E 1 10426 80 12             Wear unholy robe
 *
 M 0 10446 1 10495        a bowl of blood
 *
+M 0 10447 6 10511        jury member
+M 0 10447 6 10511        jury member
+M 0 10447 6 10511        jury member
+M 0 10447 6 10511        jury member
+M 0 10447 6 10511        jury member
 M 0 10447 6 10511        jury member
 *
 M 0 10448 1 10521        Judge Whopper
@@ -4564,20 +4569,20 @@ G 1 10428 8                   Give golden ring
 G 1 10429 8                   Give engagement ring
 G 1 10430 8                   Give prenumptual agreement
 *
-M 0 10452 3 10520        maintenance worker
+M 0 10452 1 10520        maintenance worker
 E 1 10431 80 16             Equipt ionic torque wrench
 E 1 10447 80 5               Wear yellow jumpsuit
 *
-M 0 10452 3 10519        maintenance worker
+M 0 10452 1 10519        maintenance worker
 E 1 10431 80 16             Equipt ionic torque wrench
 E 1 10447 80 5               Wear yellow jumpsuit
 *
-M 0 10452 3 10529        maintenance worker
+M 0 10452 1 10529        maintenance worker
 E 1 10431 80 16             Equipt ionic torque wrench
 E 1 10447 80 5               Wear yellow jumpsuit
 *
-M 0 10453 2 10522       weeds
-M 0 10453 2 10533       weeds
+M 0 10453 1 10522       weeds
+M 0 10453 1 10533       weeds
 *
 M 0 10454 1 10524       Stanley
 G 1 10432 8                   Give figurine horse
@@ -4614,10 +4619,10 @@ M 0 10463 2 10515       frantic lady
 M 0 10464 1 10538       nuclear technician
 E 1 10442 80 5              Wear black jumpsuit
 *
-M 0 10466 2 10538       radiation
+M 0 10466 1 10538       radiation
 *
 M 0 10465 1 10537       stray proton
-M 0 10466 2 10537       radiation
+M 0 10466 1 10537       radiation
 *
 M 0 10467 1 10540       Chief Engineer of Hell
 G 1 10443 8                   Give antacid pill

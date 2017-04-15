@@ -12,7 +12,7 @@ up of hundreds of annoying insects.
 32 524288 -200 S
 2 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 insect~ 0
 #2401
 bat~
 the bat~
@@ -24,21 +24,21 @@ annoying creature usually travel in flocks, so WATCH OUT.
 34 524288 -500 S
 4 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 bat~ 1
 #2402
 shepherd man~
 the shepherd~
 A humble shepherd is here looking after his sheep.
 ~
-The shepherd is a a patient old man, who has spent all his days
+The shepherd is a patient old man, who has spent all his days
 looking after his sheep, and all his nights studying the virtue
-of Humility.  Through the his wrinkled face though you can see
+of Humility.  Through his wrinkled face though you can see
 his proud dignity and begin to sense that he was once a warrior.
 ~
 64 0 1000 S
 4 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2403
 girl child~
 the girl~
@@ -46,12 +46,12 @@ A smiling young girl is here.
 ~
 The girl looks shyly at you.  Even at this young age, she has
 learned enough of her culture to be humble.   She jumps rope and
-look up at you expectantly.
+looks up at you expectantly.
 ~
 128 0 1000 S
 3 0 0 0d0+0 0d0+0
 0 0 
-0 0 2
+0 human~ 2
 #2404
 sheep~
 the sheep~
@@ -63,11 +63,11 @@ sheep has pure white fleece.
 130 0 1000 S
 3 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 animal~ 0
 #2405
 woman shepherd~
 Katrina the Shepherd~
-Katrina the Shepherd is her looking over the village.
+Katrina the Shepherd is here looking over the village.
 ~
 Katrina was one of the Warriors of Destiny.  She epitomizes the
 virtue of humility.  After her great Enlightenment, she traveled
@@ -77,7 +77,7 @@ great warrior and an able guardian of New Magincia.
 64|4 128 1000 S
 5 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 human~ 2
 #2406
 rat~
 the giant rat~
@@ -91,7 +91,7 @@ teeth.
 32 0 -1000 S
 5 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 rat~ 0
 #2407
 spider~
 the giant spider~
@@ -104,7 +104,7 @@ poison.
 2|36 0 -1000 S
 8 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 arachnid~ 0
 #2408
 mage~
 the mage~
@@ -117,7 +117,7 @@ glances at you, and returns to his study.
 64 16 1000 S
 6 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 elf~ 1
 #2409
 nystul Librarian mage~
 Nystul the Librarian~
@@ -130,7 +130,7 @@ power radiates from him.
 2 128 1000 S
 30 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 elf~ 1
 #2410
 mariah mage~
 Mariah the Mage~
@@ -143,32 +143,32 @@ serene in her total devotion to the virtue of Honesty.
 64 128 1000 S
 8 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 elf~ 2
 #2411
 slime puddle mass~
 the slime~
 An ugly green mass sits on the ground in a puddle.
 ~
 The slime is an amorphous goo.  It seems pretty wimpy, but it has
-alot of friends.  As you look at it you wonder who these things
+alot of friends.  As you look at it you wonder how these things
 reproduce.
 ~
 32|128 0 -1000 S
 7 0 0 0d0+0 0d0+0
 0 0 
-0 0 0
+0 object~ 0
 #2412
 snake~
 the snake~
 The snake strikes.
 ~
 The green snake tongue darts in and out tasting the air.  It
-sense spilled beer, and the distinctive taste of human.
+senses spilled beer, and the distinctive taste of human.
 ~
 32|128 0 -1000 S
 9 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 snake~ 1
 #2413
 horse Smithy~
 Mr. Smithy~
@@ -181,32 +181,32 @@ body and his much practiced jaw muscles can be very dangerous.
 2 0 500 S
 25 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 animal~ 1
 #2414
 bard musician~
 the bard~
 A bard sits here strumming his mandolin.
 ~
 The bard seems happy and content to play his mandolin.  He is a
-seeker of compassion, but in the his spare time he sings and
+seeker of compassion, but in his spare time he sings and
 dances.
 ~
 2 0 750 S
 9 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 hobbit~ 1
 #2415
 beggar~
 the beggar~
 A beggar is here with his hand out.
 ~
 He is more accustomed to receiving Compassion, than giving it. 
-But help him out gov, give him a few coins.
+But help him out, give him a few coins.
 ~
 0 0 500 S
 8 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2416
 iolo bard musician~
 Iolo the Bard~
@@ -221,7 +221,7 @@ Compassion that he embodies, he holds out a bottle for you.
 2 128 1000 S
 11 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2417
 jester chuckles~
 Chuckles the Jester~
@@ -230,12 +230,12 @@ Chuckles the Jester is juggling and entertaining.
 Chuckles the Jester is here mumbling, 'Spam Spam.'  This annoying
 characters is Lord British's major entertainment.  He is laughing
 and telling corny jokes.  He seems to hold his dinner in his
-hands, and when he dance the bells on his hat jingle merrily.
+hands, and when he dances the bells on his hat jingle merrily.
 ~
 2 128 1000 S
 33 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2418
 townsman man~
 the townsman~
@@ -248,15 +248,15 @@ citizen, he knows the value of a good party.
 0 0 1000 S
 9 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2419
 gwenno bard~
 Gwenno the Bard~
 Gwenno the Bard, Iolo's happy wife, wanders around with bow in
 hand.
 ~
-You see a pretty woman, with finally sculptured musculature. 
-She's seems to guard the party with a her Infinity Bow, the best
+You see a pretty woman, with finely sculptured musculature. 
+She seems to guard the party with her Infinity Bow, the best
 bow in the Ultima world.  Her kindly eyes seem to emit pure
 Compassion, and as she wanders she helps the drunks up and leads
 them out the door.
@@ -264,44 +264,44 @@ them out the door.
 0 128 1000 S
 31 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 hobbit~ 2
 #2420
 orc ape~
 the orc~
 A mutated ape carries a spear.
 ~
 This orc is a disgusting animal, this ape-like monster scratches
-it armpits.  It travels in herds and is a coward.
+its armpits.  It travels in herds and is a coward.
 ~
 32|128 0  -1000 S
 11 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 orc~ 1
 #2421
 troll~
 the troll~
 A stony troll swings his club.
 ~
 This huge monster is immense and powerful.  Over a chest and a
-head taller then you, his meaty arms swings a club at you.
+head taller then you, his meaty arms swing a club at you!
 ~
 32 0 -1000 S
 13 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 troll~ 1
 #2422
 wisp ball~
 the wisp~
 A blue ball of light soars over to you and winks.
 ~
-The Wisp is constantly blinking.  It wish's information exchange.
+The Wisp is constantly blinking.  It wishes information exchange.
 
 It looks peaceful, but will defend itself.
 ~
 4 128 0 S
 15 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 faerie~ 0
 #2423
 druid~
 the forest druid~
@@ -316,21 +316,21 @@ power.
 0 0 1000 S
 12 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 halfdwarf~ 1
 #2424
 druid~
 the city druid~
 A druid walks around a flame.
 ~
 This druid seems to be entranced by the fire.  She chants softly
-as he waves her hand and stares into the flame.  She is one with
+as she waves her hand and stares into the flame.  She is one with
 the flame.  When she looks at you her hard eyes, only judge,
 seeking Justice.
 ~
 2 0 1000 S
 12 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 halfdwarf~ 2
 #2425
 judge~
 The Judge~
@@ -346,33 +346,33 @@ bare hands.
 2 128 1000 S
 32 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2426
 jaana druid~
 Jaana the Druid~
 Jaana the Druid is in deep meditation.
 ~
-You meet the another Warrior of Destiny.  She helped to lead the
+You meet another Warrior of Destiny.  She helped to lead the
 magical force to the Avatar.  The Avatar's mentor in Justice; she
 has gone to the woods to drive life into a corner.
 ~
 0 128|4194304 1000 S
 15 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 halfdwarf~ 2
 #2427
 prisoner~
 the dirty prisoner~
 The Prisoner grips the bars with his dirty hands.
 ~
-The Prisoner seems to a be slimy character.  He was a thief, and
+The Prisoner seems to be a slimy character.  He was a thief, and
 Justice was done to him.  You glimpse light shining off of
 something black in his hands.
 ~
 2|128 32768 -666 S
 11 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 drow~ 1
 #2428
 prisoner~
 the prisoner~
@@ -384,13 +384,13 @@ MURDER.  It took many guards and druids to restrain this beast.
 2|32 0 -1000 S
 14 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 drow~ 1
 #2429
 citizen yewsman~
 the citizen of yew~
 A citizen of Yew walks around.
 ~
-Being a the second largest city in Britannia, second only to
+Being the second largest city in Britannia, second only to
 Britain itself; this city employs and houses many people.  This
 citizen of the city of Justice strolls the street, sure of his
 Virtue.
@@ -398,21 +398,21 @@ Virtue.
 128 0 1000 S
 13 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2430
 bartender~
 the bartender~
-A bartender stands here in middle of a throng of people.
+A bartender stands here in the middle of a throng of people.
 ~
-A smiling face asks you want you would like to drink.  Well
+A smiling face asks you what you would like to drink.  Well
 versed in compassion, he has heard and sympathized with many
-people how have gone to him for advice.  His advice to you, is to
+people who have gone to him for advice.  His advice to you, is to
 kick back and enjoy a drink.
 ~
 0 0 1000 S
 10 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2431
 owner bartender~
 the pub owner~
@@ -424,32 +424,32 @@ drink and eat.
 2 0 1000 S
 13 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 human~ 2
 #2432
 ettin~
 the ettin~
 The ettin scratches its heads, and attack.
 ~
-With its two head, it should make sense that this monster should
+With its two heads, it should make sense that this monster should
 have double the intelligence.  But in fact it has half.
 ~
 32 0 -1000 S
 16 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 animal~ 0
 #2433
 gremlin~
 the gremlin~
 This little creature sneaks around and steals your food.
 ~
-He seems to be just a head with little hands and feet sticking
+It seems to be just a head with little hands and feet sticking
 out of it.  It does not seem like these things could hurt you,
 but your money pouch seems much lighter.
 ~
 4|128 32768|65536 -1000 S
 15 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 goblin~ 0
 #2434
 headless~
 the headless~
@@ -457,12 +457,12 @@ The headless creature seems to be heading right for you!
 ~
 No one really understands how these things can sense, but as it
 unerringly reaches for you, you know it does.  In any case these
-creatures are strong and endurable.
+creatures are strong and enduring.
 ~
 32 0 -1000 S
 19 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 animal~ 0
 #2435
 fighter~
 the fighter~
@@ -477,7 +477,7 @@ clean them out.
 0 0 1000 S
 18 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 giant~ 2
 #2436
 geoffrey~
 Geoffrey the Fighter~
@@ -491,7 +491,7 @@ Valor.
 0 128 1000 S
 22 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 giant~ 1
 #2437
 lord serpent simon~
 Lord Simon~
@@ -505,7 +505,7 @@ solidified into a human form.
 0 128 1000 S
 33 0 0 0d0+0 0d0+0
 0 0 
-0 0 1
+0 giant~ 1
 #2438
 mimic~
 the mimic~
@@ -517,7 +517,7 @@ Beware adventurer of the Mimic.
 32 0 -1000 S
 26 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 object~ 0
 #2439
 gazer eyeball~
 the gazer~
@@ -530,7 +530,7 @@ making you forget who you are....
 32 0 -1000 S
 23 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 animal~ 0
 #2440
 tinker~
 a tinker~
@@ -544,11 +544,12 @@ fight.
 0 0 1000 S
 25 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 faerie~ 1
 #2441
 julia~
 Julia the Tinker~
-Julia the Tinker is here forging a sword.~
+Julia the Tinker is here forging a sword.
+~
 Julia the Tinker provided some of the muscle power to the Avatar,
 during his Great Quest for enlightenment.  She was a Warrior of
 Destiny and you see that not much has changed since those days. 
@@ -558,20 +559,20 @@ Keeper of Oral History, as well as a prominent weaponsmith.
 2 128 1000 S
 28 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 faerie~ 2
 #2442
 lady~
 The Lady of Empath Abbey~
 The Lady of Empath Abbey stands here.
 ~
 When you see her your heart almost stops, as you feel the intense
-waves of pure Love come from here body.  Her love for you almost
+waves of pure Love come from her body.  Her love for you almost
 knocks you down.  You cannot hurt this one.
 ~
 0 128 1000 S
 34 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 human~ 2
 #2443
 sandtrap tentacle~
 the sandtrap~
@@ -584,21 +585,21 @@ like, but it is a dangerous foe.
 4|32|128 32768|65536 -1000 S
 29 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 object~ 0
 #2444
 dragon~
 the dragon~
 A dragon lies on his heap of treasure, turns his head, and fire
-come billowing out of his maw.
+comes billowing out of his maw.
 ~
 The dragon looks like every other dragon you've seen, wings,
-tail, fire.  Only this one doesn't have a  dorky color attached
+tail, fire.  Only this one doesn't have a dorky color attached
 to it.  And doesn't talk about annoying C terms. 
 ~
 2|32 0 -1000 S
 32 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 dragon~ 0
 #2445
 paladin~
 the paladin~
@@ -612,7 +613,7 @@ is among Brittannia's most powerful battalion.
 0 0 1000 S
 30 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 dwarf~ 1
 #2446
 dupre paladin~
 Dupre the Paladin~
@@ -625,7 +626,7 @@ trying to figure out a plan of attack to get the dragon.
 2 128 1000 S
 33 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 dwarf~ 1
 #2447
 reaper~
 the reaper~
@@ -638,32 +639,32 @@ up for disadvantage.
 2|32 0 -1000 S
 31 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 animal~ 0
 #2448
 gargoyle king draxthanum~
 Draxthanum the Gargoyle~
 The King of Gargoyles is here.
 ~
 Draxthanum the Winged Gargoyle is here to observe the odd habits
-of humans and there combat tactics.  He is red with wings, and is
+of humans and their combat tactics.  He is red with wings, and is
 strong and his aura is overpowering.
 ~
 0 128 1000 S
 35 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 bat~ 1
 #2449
 ghost spirit~
 the spirit~
-The spirit of peaceful man floats around here.
+The spirit of a peaceful man floats around here.
 ~
 This ghost seems peaceful, even though he is chained to the earth
 through some responsibility.
 ~
 0 0 1000 S
-32 0 0 0d0+0 0d0+0
+22 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 undead~ 0
 #2450
 ghost spirit~
 the ghost~
@@ -673,9 +674,9 @@ In through its transparent face, you can see a grimace of
 evilness and swoops over to you.
 ~
 32 0 -1000 S
-32 0 0 0d0+0 0d0+0
+22 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 undead~ 0
 #2451
 skeleton~
 the skeleton~
@@ -687,9 +688,9 @@ completely clean on him is his white teeth, perhaps from his
 nightly meals of flesh and bone.
 ~
 32 0 -1000 S
-33 0 0 0d0+0 0d0+0
+23 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 undead~ 0
 #2452
 daemon demon~
 the daemon~
@@ -702,7 +703,7 @@ Right now he seems to be busy... killing you.
 32 128 -1000 S
 34 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 god~ 0
 #2453
 mourner~
 the mourner~
@@ -713,9 +714,9 @@ one.  She is expressing poignant Spirituality.  This gives her
 strength to persevere.
 ~
 0 0 1000 S
-33 0 0 0d0+0 0d0+0
+13 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 human~ 2
 #2454
 shamino ranger~
 Shamino the Ranger~
@@ -728,7 +729,7 @@ indeed is one with the spirit of Spirituality.
 2 128 1000 S
 35 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2455
 timelord~
 the Timelord~
@@ -742,7 +743,7 @@ powers must be, he is truly and totally neutral.
 1|2 128 0 S
 40 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 god~ 1
 #2456
 guardian~
 The Guardian~
@@ -755,7 +756,7 @@ enemies.  And now you have the joy of meeting him.
 2|32 128 -1000 S
 45 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 god~ 1
 #2457
 blackthorn~
 Blackthorn~
@@ -768,7 +769,7 @@ era he still is corrupt and VERY, VERY dangerous.
 2|32 128 -1000 S
 43 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 werewolf~ 1
 #2458
 exodus~
 Exodus~
@@ -781,7 +782,7 @@ last of the Triad that the Avatar destroyed.
 2|32 128 -1000 S
 41 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 ogre~ 0
 #2459
 minax~
 Minax~
@@ -796,7 +797,7 @@ power.
 2|32 128 -1000 S
 39 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 ogre~ 2
 #2460
 mondain~
 Mondain~
@@ -810,7 +811,7 @@ wielded.
 2|32 128 -1000 S
 37 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 ogre~ 1
 #2461
 sentri guard~
 Sentri~
@@ -824,7 +825,7 @@ and wields a heavy blade.
 2 0 1000 S
 35 0 0 0d0+0 0d0+0
 0 0 
-0 0 1
+0 giant~ 1
 #2462
 batlin~
 Batlin~
@@ -838,7 +839,7 @@ of his god.
 1 128 -1000 S
 37 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 god~ 1
 #2463
 avatar~
 The Avatar~
@@ -852,7 +853,7 @@ truly is an inspiration to those who know him.
 2 128 1000 S
 50 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2464
 lord british~
 Lord British~
@@ -861,12 +862,12 @@ Lord British is healing the Avatar's wounds.
 Lord British sits in his throne.  When you see him, you know the
 meaning of true leadership.  His charisma is almost tangible.  On
 him you see the three crown jewels.  These hold power both
-figuratively and  truly.
+figuratively and truly.
 ~
 2 128 1000 S
-60 0 0 0d0+0 0d0+0
+55 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2465
 shark~
 the shark~
@@ -877,10 +878,10 @@ This fish can sense blood in the water and comes to kill you.
 32 0 -1000 S
 25 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 fish~ 1
 #2466
-seahorse~
-sea horse seahorse~
+seahorse sea horse~
+a seahorse~
 The peaceful seahorse swims here.
 ~
 The seahorse is an amazingly beautiful creature.  Its swimming
@@ -889,7 +890,7 @@ and diving please you.
 0 0 500 S
 28 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 fish~ 1
 #2467
 squid~
 the squid~
@@ -901,7 +902,7 @@ huge and you fear as it grabs for you.
 32 0 -1000 S
 30 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 fish~ 1
 #2468
 armourer~
 the armourer~
@@ -912,7 +913,7 @@ The Armourer sells... armour.
 2  4 1000 S
 100 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2469
 weaponseller~
 the weaponseller~
@@ -923,7 +924,7 @@ The Weaponseller sells... weapons.
 2 4 1000 S
 100 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #2470
 boatseller~
 the boatseller~
@@ -934,7 +935,7 @@ The Boatseller sells... boats.
 2 4 1000 S
 100 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #0
 
 
@@ -1218,8 +1219,6 @@ chicken~
 As you look closer you see this isn't a real chicken, it's one of
 those gag rubber chickens. 
 ~
-A
-8 3
 A
 19 3
 #2430
@@ -1521,7 +1520,7 @@ A
 18 5
 #2451
 black death armour~
-a completely black  armour~
+a completely black armour~
 This completely black armor reeks of death.~
 ~
 9 4|16|512|2048 9
@@ -4292,8 +4291,8 @@ sandtraps.  Unfortunately one of my men had wandered into the
 dragon cave and was slayed by that evil creature.  We need
 another knight, and also he had a moonstone.  Thank you, my
 liege.
-                         Your Servant,
-                         Dupre
+			 Your Servant,
+			 Dupre
 ~
 E
 map~
@@ -5386,9 +5385,31 @@ R 0 2526 4
 S
 
 #SHOPS
- 2468	9  0  0  0  0	110   90	0 23 ; armorer
- 2469   5  0  0  0  0   110   90	0 23 ; weaponsmith
- 2470  22  0  0  0  0   110   90	0 23 ; boatseller
+ 2468   9  0  0  0  0   110   90        0 23 ; armorer
+ 2469   5  0  0  0  0   110   90        0 23 ; weaponsmith
+ 2470  22  0  0  0  0   110   90        0 23 ; boatseller
 0
+
+#SPECIALS
+M 2407 spec_poison
+M 2408 spec_cast_mage
+M 2409 spec_cast_mage
+M 2410 spec_cast_mage
+M 2423 spec_cast_cleric
+M 2424 spec_cast_cleric
+M 2426 spec_cast_cleric
+M 2433 spec_thief
+M 2438 spec_poison
+M 2444 spec_breath_fire
+M 2449 spec_cast_ghost
+M 2450 spec_cast_ghost
+M 2451 spec_cast_undead
+M 2452 spec_cast_undead
+M 2454 spec_cast_psionicist
+M 2459 spec_cast_mage
+M 2460 spec_cast_mage
+M 2462 spec_cast_cleric
+S
+
 #$
 

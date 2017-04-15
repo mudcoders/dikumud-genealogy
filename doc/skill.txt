@@ -1,9 +1,7 @@
-EnvyMud Release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -29,12 +27,12 @@ The fields of skill_table are:
 	command.  Mobiles which cast spells also often invoke the spell by
 	name.  Save files contain this name.
 
-    int		skill_level[MAX_CLASS];
+    int		skill_level [ MAX_CLASS ];
 
-	This array is indexed by character class, GET_CLASS(ch).  It contains
+	This array is indexed by character class, GET_CLASS( ch ).  It contains
 	the minimum level which each class needs in order to practice the skill
 	or spell.  If a given class cannot use this skill or spell, the level
-	is set to 37, so that all immortals can use all skills and spells.
+	is set to L_APP, so that all immortals can use all skills and spells.
 	Mobiles ignore this table; generally their skill percentages are a
 	simple function of level.
 
@@ -63,13 +61,15 @@ The fields of skill_table are:
 
 	This is the minimum position needed to cast the spell.  It is always
 	either POSITION_FIGHTING or POSITION_STANDING.  This field is unused
-	for skills.
+	for skills.  Instead, the minimum position is set in cmd_table in
+	interp.c.
 
     int *	pgsn;
 
 	This is the address of a gsn (global skill/spell number) associated
 	with this skill or spell.  Almost all skills have gsn's; a few spells
-	do.
+	do.  gsn's are helpful for spells that need to be referenced outside
+	the spell_fun itself.
 
     int		min_mana;
 
@@ -240,3 +240,5 @@ To add a new skill:
 
 You may wish to take a look at 'template.txt' for a template on what to
 do when you add a new skill or spell to EnvyMud.
+
+

@@ -14,7 +14,7 @@ APPEAR to be very hungry ... yet.
 65 8 -200 S
 8 10 1 8d8+80 2d6+1
 0 3575
-8 8 0
+8 bat~ 0
 #3501
 goblin mountain~
 the goblin~
@@ -25,7 +25,7 @@ You see before you a small and twisted creature with knotted muscles.
 608 0 -500 S
 6 15 6 4d4+60 1d8+4
 150 800
-8 8 1
+8 goblin~ 1
 #3502
 boy small~
 the small boy~
@@ -37,7 +37,7 @@ He is apparently the only survivor of the ambush.
 146 0 500 S
 4 17 6 1d12+47 1d8+0
 0 600
-5 5 1
+5 halfdwarf~ 1
 #3503
 innkeeper~
 the Innkeeper~
@@ -50,7 +50,7 @@ place that is used to be in days past.
 66 0 400 S
 10 8 1 1d12+200 2d8+1
 1500 7000
-8 8 1
+8 human~ 1
 #3504
 bard~
 the bard~
@@ -62,7 +62,7 @@ has been sitting here quite a while, drinking himself into oblivion.
 66 8 600 S
 8 13 3 1d12+110 2d6+0
 1500 3750
-6 6 1
+6 hobbit~ 1
 #3505
 horseman dark~
 the dark horseman~
@@ -74,7 +74,7 @@ little bits.
 196 32768 -900 S
 8 12 4 1d12+97 1d5+7
 1000 4000
-8 8 1
+8 drow~ 1
 #3506
 goblin lieutenant~
 the goblin lieutenant~
@@ -86,7 +86,7 @@ beat up upon, but maybe you will do just fine ...
 608 0 -600 S
 7 15 3 1d12+100 2d5+1
 300 2000
-8 8 1
+8 goblin~ 1
 #3507
 goblin leader~
 the goblin leader~
@@ -98,7 +98,7 @@ for his shortsword and lunges for your neck.
 614 8 -900 S
 9 10 1 1d12+120 2d5+3
 1000 8000
-8 8 1
+8 goblin~ 1
 #0
 
 
@@ -587,8 +587,8 @@ S
 Carnage~
      Here, you see a gruesome sight. Blood is everywhere... on the trees and
 soaked into the ground. Two carcasses lie in front of you, seeming to look
-up at you. The forest is impassible to the south, but the other directions
-look ok.
+up at you. You can see the remains of a fierce battle to the south, and more
+of the forest north, east, and west.
 ~
 35 1 3
 D0
@@ -601,6 +601,11 @@ Your light does not extend that far.
 ~
 ~
 0 0 3523
+D2
+A bloody path.
+~
+~
+0 0 3585
 D3
 More dark forest.
 ~
@@ -1043,6 +1048,25 @@ Back to along the trail.
 ~
 ~
 0 0 3583
+S
+#3585
+A Desolated Road~
+  A fierce fighting has ravaged this road.  Trees and grasses have either
+been chopped up by a missed slash, burned by a stray fireball, or stomped
+upon by battle-frenzied warriors.  The path clears to the west where you
+see glimpses of smoke and a village.
+~
+4 0 3
+D0
+Back to the carnage.
+~
+~
+0 0 3521
+D3
+On toward a village.
+~
+~
+0 0 8200
 S
 #0
 

@@ -14,7 +14,7 @@ He seems to be in peace with himself and his surroundings.
 192 8 -500 S
 13 8 2 13d13+130 3d5+2
 500 15000
-8 8 1
+8 elf~ 1
 #301
 hermit sorbus~
 Sorbus the Hermit~
@@ -27,7 +27,7 @@ or nothing to say.
 2 0 0 S
 4 16 6 4d4+40 1d9+2
 1 400
-6 6 1
+6 hobbit~ 1
 #303
 citizen~
 the citizen~
@@ -39,7 +39,7 @@ He wears normal, light clothing and has an anonymous face.
 68 0 0 S
 6 15 6 6d6+60 2d4+2
 200 800
-8 8 1
+8 halfdwarf~ 1
 #304
 citizen~
 the citizen~
@@ -51,7 +51,7 @@ She wears a minimum of clothing and has big ... eyes.
 68 0 0 S
 5 16 5 5d5+50 2d4+1
 100 600
-8 8 2
+8 halfdwarf~ 2
 #305
 worm Shudde-M'ell~
 Shudde-M'ell~
@@ -64,7 +64,7 @@ for as long anyone can remember.
 34 8 -1000 S
 24 -2 0 24d24+240 3d8+8
 13666 75000
-8 8 1
+8 worm~ 1
 #306
 luxan shopkeeper~
 Luxan~
@@ -78,19 +78,19 @@ He looks very fit and capable of protecting his goods.
 7 0 400 S
 23 0 0 1d1+30000 2d10+0
 8000 80000
-8 8 1
+8 human~ 1
 #308
 keeper innkeeper~
 the Innkeeper~
 An Innkeeper is here waiting for your order.
 ~
 The Innkeeper looks skilled in brewing different beers and mixing the
-wierdest drinks known. He also looks very big.
+weirdest drinks known. He also looks very big.
 ~
 3 0 -100 S
 23 0 0 1d1+30000 2d10+1
 100 80000
-8 8 1
+8 human~ 1
 #309
 rabbit~
 the cute rabbit~
@@ -101,7 +101,7 @@ It is a small, furry creature with long ears and big feet.
 64 0 0 S
 1 20 6 1d4+1 1d4+0
 0 50
-8 8 0
+8 animal~ 0
 #350
 dragon pet~
 the pet dragon~
@@ -114,7 +114,7 @@ but so far they haven't succeeded.
 131 524424 1000 S
 10 0 0 10d10+100 10d10+0
 0 30000
-8 8 2
+8 dragon~ 2
 #0
 
 
@@ -622,7 +622,8 @@ S
 Gallow hill~
    You walk in the grassy plains. On this little hill you can see
 two gallows, with rotting human tissue hanging from the robe.
-There is a sign here.
+There is a sign here.  Gamma is still hanging from the gallows, but
+the body of Zenin is gone!
 ~
 3 0 4
 D0
@@ -655,9 +656,9 @@ sign~
 The sign says:
 
   Loyal citizens of Midgaard.  These are the earthly remains of the
-  two heretics 'Dim' and 'Gamma' of this world. Having forged them-
+  two heretics 'Zenin' and 'Gamma' of this world. Having forged them-
   selves to immortality, they called upon themselves the anger of the
-  implementators.  Let this be a lesson too all .....
+  implementators.  Let this be a lesson to all .....
 
                                     -- the Powers that Be.
 ~

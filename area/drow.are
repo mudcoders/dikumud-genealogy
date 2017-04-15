@@ -1,6 +1,19 @@
-#AREA	{15 25} Anon    Drow City~
+#AREA {15 25} Anon    Drow City~
 
+#HELPS
 
+-1 DROW~
+DROW are commonly known as "dark elves" because of their dark skinned
+complexion.  Their statures closly resembles those of ELVES and gain bonuses
+and penalties for that.  Normally evil in nature, they developed strong
+animosity toward other races and other races toward DROW.  DROW are
+strongly tied to their deities and thus developed the ability to obtain 
+higher levels of wisdom.
+DROW have certain abilities available to them.
+	* Infravision.
+	* Detect Hidden.
+~
+0 $~
 
 #MOBILES
 #5100
@@ -13,7 +26,7 @@ The defenseless goblin begs for mercy.
 130 0 -450 S
 1 20 9 1d11+11 1d5+0
 0 100
-4 4 1
+4 goblin~ 1
 #5101
 drow commoner~
 the drow commoner~
@@ -21,10 +34,10 @@ A drow commoner walks on guard duty.
 ~
 I doubt he is the type to give directions.
 ~
-104 8 -1000 S
+64 8 -1000 S
 10 12 0 1d10+130 12d1+5
 300 4750
-8 8 1
+8 drow~ 1
 #5102
 drow noble warrior~
 the drow warrior noble~
@@ -32,10 +45,10 @@ The drow warrior noble stands here guarding his home.
 ~
 He looks pissed off!
 ~
-34 8 -1000 S
+2 8 -1000 S
 12 9 0 2d20+160 15d1+2
 1000 11000
-8 8 1
+8 drow~ 1
 #5103
 drow noble mage~
 the drow mage noble~
@@ -43,10 +56,10 @@ The drow mage noble is here protecting his home.
 ~
 The mage prepares to cast a spell ... at you!!
 ~
-34 8 -1000 S
+2 8 -1000 S
 15 8 2 1d12+190 8d2+2
 2000 16000
-8 8 1
+8 drow~ 1
 #5104
 drow priestess~
 the drow priestess~
@@ -54,10 +67,10 @@ The drow priestess is here shouting orders.
 ~
 I wouldn't want go get on her bad side!
 ~
-34 8 -1000 S
+2 8 -1000 S
 17 5 0 1d11+205 17d1+2
 4000 19000
-8 8 2
+8 drow~ 2
 #5105
 drow master~
 The drow master~
@@ -65,10 +78,10 @@ The drow master stares at you angrily.
 ~
 The drow master is ALWAYS ready for a fight.
 ~
-34 8 -1000 S
+2 8 -1000 S
 21 0 0 1d12+248 18d1+4
 10000 40000
-8 8 1
+8 drow~ 1
 #5106
 drow weapons master~
 The weapons master~
@@ -76,10 +89,10 @@ The drow weapons master is here shadow boxing.
 ~
 He definitely knows his way around in combat.
 ~
-34 8 -1000 S
+2 8 -1000 S
 23 -2 -10 23d23+230 1d4+15
 15000 90000
-8 8 1
+8 drow~ 1
 #5107
 drow matron mother~
 the matron mother~
@@ -90,7 +103,7 @@ She looks really pissed off!
 34 8 -1000 S
 24 0 -3 1d50+450 15d2+4
 30000 90000
-8 8 2
+8 drow~ 2
 #5108
 drow matron mother~
 the matron mother~
@@ -101,7 +114,7 @@ She looks like she is about to rip your head off and eat it.
 2|32 8|128 -1000 S
 25 0 -4 1d50+350 20d2+4
 30000 90000
-8 8 2
+8 drow~ 2
 #5109
 yochlol~
 the yochlol~
@@ -112,7 +125,7 @@ The yochlol is not in a good mood.
 2|32 8|128 -1000 S
 35 0 -9 25d2+2200 5d2+35
 30000 100000
-8 8 2
+8 god~ 2
 #5110
 drow guard~
 the drow guard~
@@ -120,10 +133,10 @@ The drow guard is here staring at you ominously.
 ~
 The drow guard blends so well with his environment, you barely see his form.
 ~
-34 66048 -1000 S
+2 66048 -1000 S
 12 9 -2 12d12+120 1d4+5
 5000 13000
-8 8 1
+8 drow~ 1
 #5111
 drow scout~
 the drow scout~
@@ -134,7 +147,7 @@ The drow scout blends so well with her environment, you barely see her form.
 160 98304 -1000 S
 7 13 2 8d8+80 1d4+3
 1000 4000
-8 8 2
+8 drow~ 2
 #0
 
 
@@ -373,8 +386,8 @@ D3
 S
 #5103
 City street~
-     You walk along a highly ornate city street going east-west. A large house
-stands to the south.
+     You walk along a highly ornate city street going east-west. A large 
+house stands to the south.
 ~
 51 9 0
 D1
@@ -419,8 +432,8 @@ D0
 S
 #5106
 City street~
-     You walk along a highly ornate city street going east-west. To the north
-is a large building.
+     You walk along a highly ornate city street going east-west. To the 
+north is a large building.
 ~
 51 9 0
 D0
@@ -438,8 +451,8 @@ D3
 S
 #5107
 City street~
-     You walk along a highly ornate city street leading north and east. To the
-south is an extremely large house.
+     You walk along a highly ornate city street leading north and east. To 
+the south is an extremely large house.
 ~
 51 9 0
 D0
@@ -457,8 +470,8 @@ D2
 S
 #5108
 2nd House~
-     You stand inside the 2nd house of the city. The room is highly decorated
-with statues of spiders and murals everywhere.
+     You stand inside the 2nd house of the city. The room is highly 
+decorated with statues of spiders and murals everywhere.
 ~
 51 9 0
 D0
@@ -483,8 +496,9 @@ D1
 S
 #5110
 Main Gate~
-     You are at the entrance to the 1st house of the city. A large gate, almost
-as big and elegant as the one at the entrance to the city, stands here.
+     You are at the entrance to the 1st house of the city. A large gate, 
+almost as big and elegant as the one at the entrance to the city, stands 
+here.
 ~
 51 9 0
 D0
@@ -502,9 +516,9 @@ gate~
 S
 #5111
 1st House~
-     You stand in the inner courtyard of the 1st and largest house in the city.
-The room is extremely large and decorative. Mural and paintings hang on the
-walls depicting some battles and a spider queen.
+     You stand in the inner courtyard of the 1st and largest house in the 
+city.  The room is extremely large and decorative. Mural and paintings hang 
+on the walls depicting some battles and a spider queen.
 ~
 51 9 0
 D1
@@ -577,7 +591,8 @@ D3
 S
 #5116
 Cleric Academy~
-     This is the most lavish of the academies being that it is for the clerics.
+     This is the most lavish of the academies being that it is for the 
+clerics.
 ~
 51 9 0
 D1
@@ -587,8 +602,8 @@ D1
 S
 #5117
 City street~
-     You walk along a highly ornate city street going east-west. To the north
-is a giant temple.
+     You walk along a highly ornate city street going east-west. To the 
+north is a giant temple.
 ~
 51 9 0
 D0
@@ -616,9 +631,9 @@ D2
 S
 #5119
 Entrance to the Temple of Lloth~
-     The temple is the largest building in the city. Even it's doors are beyond
-imagination. Inside of the temple entrance, the walls are made of gold and
-adamantite.
+     The temple is the largest building in the city. Even it's doors are 
+beyond imagination. Inside of the temple entrance, the walls are made of 
+gold and adamantite.
 ~
 51 9 0
 D2
@@ -632,8 +647,8 @@ D5
 S
 #5120
 Mage's Academy~
-     The mages academy is fairly well decorated see that the drow prefer magic
-over physical power greatly.
+     The mages academy is fairly well decorated. You can see that the drow 
+prefer magic over physical power greatly.
 ~
 51 9 0
 D2
@@ -643,8 +658,8 @@ D2
 S
 #5121
 City street~
-     You walk along a highly ornate city street going eastward. To the north is
-a building.
+     You walk along a highly ornate city street going eastward. To the 
+north is a building.
 ~
 51 9 0
 D0
@@ -666,8 +681,8 @@ D3
 S
 #5122
 Slave Chamber~
-     The room is in shambles. Straw is strewn all about the room as beds for the
-unfortunate creatures who have fallen prey to drow imperialism.
+     The room is in shambles. Straw is strewn all about the room as beds 
+for the unfortunate creatures who have fallen prey to drow imperialism.
 ~
 51 9 0
 D0
@@ -681,8 +696,8 @@ D1
 S
 #5123
 City street~
-     You walk along a highly ornate city street leading west and south. To the
-north is a relatively small house.
+     You walk along a highly ornate city street leading west and south. To 
+the north is a relatively small house.
 ~
 51 9 0
 D0
@@ -700,8 +715,8 @@ D3
 S
 #5124
 4th house~
-    You stand inside the 4th house of the city. Its inner courtyard is rather
-dull by drow standards and rather small as well.
+    You stand inside the 4th house of the city. Its inner courtyard is 
+rather dull by drow standards and rather small as well.
 ~
 51 9 0
 D1
@@ -716,7 +731,7 @@ S
 #5125
 Throne Room~
      The throne room is basically similar to the inner courtyard in regards
-to decor. there is a small throne behind the altar but that is about it.
+to decor. There is a small throne behind the altar but that is about it.
 ~
 51 9 0
 D3
@@ -743,9 +758,9 @@ S
 #5127
 Hallway~
      You are in a long hallway lined with adamantite. The walls are engraved
-with pictures of elves and spiders. The hallway continues east and west. As you
-look down the hallway you can make out one or two figures moving away from you.
-To the north is a obsidian stairway.
+with pictures of elves and spiders. The hallway continues east and west. As 
+you look down the hallway you can make out one or two figures moving away 
+from you.  To the north is a obsidian stairway.
 ~
 51 9 0
 D0
@@ -768,8 +783,9 @@ S
 #5128
 Long Hallway~
      You are in a long hallway lined with adamantite. The walls are engraved
-with pictures of elves and spiders. The hallway continues east and west. As you
-look down the hallway you can make out one or two figures moving away from you.
+with pictures of elves and spiders. The hallway continues east and west. As 
+you look down the hallway you can make out one or two figures moving away 
+from you.
 ~
 51 9 0
 D1
@@ -784,9 +800,9 @@ S
 #5129
 Long Hallway~
      You are in a long hallway lined with adamantite. The walls are engraved
-with pictures of elves and spiders. The hallway continues east and west. As you
-look down the hallway you can make out one or two figures moving away from you.
-To the north is a door.
+with pictures of elves and spiders. The hallway continues east and west. As 
+you look down the hallway you can make out one or two figures moving away 
+from you.  To the north is a door.
 ~
 51 9 0
 D0
@@ -805,8 +821,9 @@ S
 #5130
 Long Hallway~
      You are in a long hallway lined with adamantite. The walls are engraved
-with pictures of elves and spiders. The hallway continues east and west. As you
-look down the hallway you can make out one or two figures moving away from you.
+with pictures of elves and spiders. The hallway continues east and west. As 
+you look down the hallway you can make out one or two figures moving away 
+from you.
 ~
 51 9 0
 D1
@@ -821,8 +838,9 @@ S
 #5131
 Long Hallway~
      You are in a long hallway lined with adamantite. The walls are engraved
-with pictures of elves and spiders. The hallway continues east and west. As you
-look down the hallway you can make out one or two figures moving away from you.
+with pictures of elves and spiders. The hallway continues east and west. As 
+you look down the hallway you can make out one or two figures moving away 
+from you.
 ~
 51 9 0
 D1
@@ -837,9 +855,9 @@ S
 #5132
 Long Hallway~
      You are in a long hallway lined with adamantite. The walls are engraved
-with pictures of elves and spiders. The hallway continues east and west. As you
-look down the hallway you can make out one or two figures moving away from you.
-To the south is a door.
+with pictures of elves and spiders. The hallway continues east and west. As 
+you look down the hallway you can make out one or two figures moving away 
+from you. To the south is a door.
 ~
 51 9 0
 D1
@@ -857,9 +875,9 @@ D3
 S
 #5133
 Warrior's Barracks~
-     The room is a complete mess. None of the beds are made, clothes and other
-items have been left all about the room. Well drow warriors never were known
-for neatness.
+     The room is a complete mess. None of the beds are made, clothes and 
+other items have been left all about the room. Well drow warriors never were 
+known for neatness.
 ~
 51 9 0
 D0
@@ -870,8 +888,9 @@ S
 #5134
 Long Hallway~
      You are in a long hallway lined with adamantite. The walls are engraved
-with pictures of elves and spiders. The hallway continues east and west. As you
-look down the hallway you can make out one or two figures moving away from you.
+with pictures of elves and spiders. The hallway continues east and west. As 
+you look down the hallway you can make out one or two figures moving away 
+from you.
 ~
 51 9 0
 D1
@@ -952,8 +971,8 @@ S
 #5139
 Cleric's Barracks~
      The bed chamber is brightly decorated with spider shaped statues, murals
-and the like. Large beds line the floor making this a comfortable room to live
-in.
+and the like. Large beds line the floor making this a comfortable room to 
+live in.
 ~
 51 9 0
 D1
@@ -963,8 +982,8 @@ D1
 S
 #5140
 Grand Stairway~
-     You are climbing a set of obsidian stairs surrounded by adamantite walls.
-To the north are a set of large golden doors.
+     You are climbing a set of obsidian stairs surrounded by adamantite 
+walls. To the north are a set of large golden doors.
 ~
 51 9 0
 D0
@@ -998,8 +1017,8 @@ D3
 S
 #5142
 Eastern side of Chamber~
-     You are on the eastern side of the chamber overlooking the pit. To the east
-is a door while to the north is an altar.
+     You are on the eastern side of the chamber overlooking the pit. To the 
+east is a door while to the north is an altar.
 ~
 51 9 0
 D0
@@ -1028,8 +1047,8 @@ You've fallen, and you can't get up!!!
 S
 #5144
 Western side of Chamber~
-     You are on the western side of the main chamber overlooking a sacrificial
-pit. To the north is an altar.
+     You are on the western side of the main chamber overlooking a 
+sacrificial pit. To the north is an altar.
 ~
 51 9 0
 D0
@@ -1083,8 +1102,8 @@ S
 #5147
 Slave Pen~
      Rotten meat and breads lie about the floor while shackles hang from the
-walls. The room wreaks of death. You almost become nauseous and decide to leave
-the room since you were obviously too late to save the slave.
+walls. The room reeks of death. You almost become nauseous and decide to 
+leave the room since you were obviously too late to save the slave.
 ~
 51 9 0
 D2
@@ -1121,8 +1140,8 @@ D1
 S
 #5150
 Weaponsmaster's Chamber~
-     This one person bedchamber is very elegant. The owner must be held in high
-to get this kind of treatment.
+     This one person bedchamber is very elegant. The owner must be held in 
+high to get this kind of treatment.
 ~
 51 9 0
 D2
@@ -1142,56 +1161,56 @@ E 1 5100 50 16
 M 0 5101 10 5133
 E 1 5100 50 16
 *
-M 0 5102 4 5104            DROW WARRIOR
+M 0 5102 1 5104            DROW WARRIOR
 E 1 5101 12 16
-M 0 5102 4 5124
+M 0 5102 1 5124
 E 1 5101 12 16
-M 0 5102 4 5108
+M 0 5102 1 5108
 E 1 5101 12 16
-M 0 5102 4 5111
+M 0 5102 1 5111
 E 1 5101 12 16
 *
-M 0 5103 4 5104            DROW MAGE
+M 0 5103 1 5104            DROW MAGE
 E 1 5102 4 16
-M 0 5103 4 5124
+M 0 5103 1 5124
 E 1 5102 4 16
-M 0 5103 4 5108
+M 0 5103 1 5108
 E 1 5102 4 16
-M 0 5103 4 5111
+M 0 5103 1 5111
 E 1 5102 4 16
 *
-M 0 5104 4 5104            DROW PRIESTESS
+M 0 5104 1 5104            DROW PRIESTESS
 E 1 5103 4 16
-M 0 5104 4 5124
+M 0 5104 1 5124
 E 1 5103 4 16
-M 0 5104 4 5108
+M 0 5104 1 5108
 E 1 5103 4 16
-M 0 5104 4 5111
+M 0 5104 1 5111
 E 1 5103 4 16
 *
-M 0 5105 3 5118            DROW MASTER
+M 0 5105 1 5118            DROW MASTER
 E 1 5105 3 16
 E 1 5110 5 17
-M 0 5105 3 5120
+M 0 5105 1 5120
 E 1 5104 2 16
 E 1 5110 5 17
-M 0 5105 3 5116
+M 0 5105 1 5116
 E 1 5104 2 16
 E 1 5110 5 17
 *
-M 0 5106 2 5150            DROW WEAPONSMASTER
+M 0 5106 1 5150            DROW WEAPONSMASTER
 E 1 5105 3 16
 E 1 5109 1 9
-M 0 5106 2 5101            (another) DROW WEAPONSMASTER
+M 0 5106 1 5101            (another) DROW WEAPONSMASTER
 E 1 5105 3 16
 *
-M 0 5107 3 5125            4TH MATRON MOTHER
+M 0 5107 1 5125            4TH MATRON MOTHER
 E 1 5104 3 16
 G 1 5114 3
-M 0 5107 3 5105            3RD MATRON MOTHER
+M 0 5107 1 5105            3RD MATRON MOTHER
 E 1 5104 3 16
 E 1 5111 2 6
-M 0 5107 3 5109            2ND MATRON MOTHER
+M 0 5107 1 5109            2ND MATRON MOTHER
 E 1 5104 3 16
 E 1 5108 2 10
 M 0 5108 1 5113            1ST MATRON MOTHER

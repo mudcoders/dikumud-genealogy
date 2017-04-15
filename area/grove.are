@@ -15,7 +15,7 @@ traps and pitfalls.
 64|128 8|128|8192 +1000 S
 20 0 -5 20d20+180 1d8+12
 50 60000
-8 8 1
+8 human~ 1
 #8901
 hierophant~
 The Hierophant~
@@ -28,7 +28,7 @@ traps and pitfalls.
 64|128 8|128|8192 +1000 S
 20 0 -5 20d20+180 1d8+12
 50 60000
-8 8 2
+8 human~ 2
 #8902
 elder druid~
 an elder druid~
@@ -40,7 +40,7 @@ his lack of wrinkles.
 64|128 8192 1000 S
 13 7 0 13d13+130 1d4+7
 50 15000
-8 8 1
+8 elf~ 1
 #8903
 elder druidess~
 an elder druidess~
@@ -51,7 +51,7 @@ She looks ageless, as do all druids.  She smiles a beautiful smile at you.
 64|128 8192 1000 S
 13 7 0 13d13+130 1d4+7
 50 15000
-8 8 2
+8 elf~ 2
 #8904
 doe~
 a doe~
@@ -63,7 +63,7 @@ she sniffs at you, but she goes back to chewing some grass.
 64|128 0 0 S
 5 15 5 5d5+55 1d4+3
 2 600
-8 8 2
+8 animal~ 2
 #8905
 deer~
 a deer~
@@ -75,7 +75,7 @@ albeit ineffectively.
 64|128 0 0 S
 6 14 4 6d6+66 1d4+4
 2 800
-8 8 1
+8 animal~ 1
 #8906
 stag deer large~
 a stag~
@@ -86,7 +86,7 @@ He eyes you with contained anger.  You'd better leave him alone!
 32|64|128 0 0 S
 8 12 2 8d8+88 1d4+9
 2 2000
-8 8 1
+8 animal~ 1
 #8907
 bunny rabbit~
 a small bunny~
@@ -97,7 +97,7 @@ This bunny looks so adorable, you wished you had one just like this!
 64|128 0 0 S
 2 18 8 2d2+22 1d4+1
 2 100
-8 8 0
+8 animal~ 0
 #8908
 snake~
 a harmless snake~
@@ -108,7 +108,7 @@ Upon careful inspection, you are sure it is NOT a cobra!
 32|64|128 32768 0 S
 4 16 4 4d4+44 1d8+4
 2 500
-8 8 0
+8 snake~ 0
 #8909
 druid~
 a druid~
@@ -119,7 +119,7 @@ He doesn't like you bothering him, but is too polite to ask you to leave.
 64|128 8|8192 1000 S
 10 10 0 10d10+100 1d4+6
 50 5000
-8 8 1
+8 elf~ 1
 #8910
 druidess~
 a druidess~
@@ -130,7 +130,7 @@ She wonders why you are staring at her, and how you got in here.
 64|128 8|8192 1000 S
 10 10 0 10d10+100 1d4+6
 50 5000
-8 8 2
+8 elf~ 2
 #0
 
 

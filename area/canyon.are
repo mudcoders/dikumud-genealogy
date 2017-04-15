@@ -13,7 +13,7 @@ He wants to see what's on the other side of the mountain too.
 68 0 500 S
 3 16 8 10d5+15 1d6+1
 100 500
-8 8 1
+8 human~ 1
 #9202
 cyclops~
 the cyclops~
@@ -24,7 +24,7 @@ He looks like he's about to have dinner (maybe it's you?).
 98 128 -700 S
 22 0 -5 1d4+1100 1d4+25
 1000 80000
-8 8 0
+8 giant~ 0
 #9203
 tiny elemental~
 a tiny elemental~
@@ -35,7 +35,7 @@ Rather small for an elemental form, looks like a reject.
 64 0 0 S
 1 20 9 1d20+0 1d3+1
 11 100
-8 8 0
+8 elemental~ 0
 #9204
 elemental guardian~
 the elemental guardian~
@@ -46,7 +46,7 @@ You can't tell which kind of elemental it is, maybe it's a bit o' all of them?
 2 0 0 S
 20 5 -5 0d0+1000 4d4+5
 10000 100000
-8 8 0
+8 elemental~ 0
 #9205
 small elemental~
 a small elemental~
@@ -57,7 +57,7 @@ A small elemental, a resident of the canyon.
 66 0 0 S
 5 16 5 0d0+60 2d4+0
 250 800
-8 8 0
+8 elemental~ 0
 #9206
 medium elemental~
 a medium elemental~
@@ -68,7 +68,7 @@ A medium elemental, a resident of the canyon.
 66 0 10 S
 10 11 2 10d10+125 2d6+1
 750 4000
-8 8 0
+8 elemental~ 0
 #9207
 large elemental~
 a large elemental~
@@ -78,7 +78,7 @@ A large elemental, a resident of the canyon.~
 66 0 20 S
 15 6 0 10d10+190 2d8+2
 2000 21000
-8 8 0
+8 elemental~ 0
 #9208
 earth elemental ruler~
 the Earth Ruler~
@@ -91,7 +91,7 @@ he begins and the rock wall ends.
 2 128 0 S
 30 -2 -13 30d30+1000 2d6+25
 100000 400000
-8 8 0
+8 elemental~ 0
 #9209
 fire elemental ruler~
 the Fire Ruler~
@@ -102,7 +102,7 @@ As you look at him he seems to blend in with the fire in his throne.
 2 128 0 S
 30 -5 -10 30d30+1000 4d5+5
 100000 300000
-8 8 0
+8 elemental~ 0
 #9210
 air elemental ruler~
 The Air Ruler~
@@ -113,7 +113,7 @@ As you peer at him you seem to be looking at the sky itself.
 2 128 0 S
 30 0 -10 30d30+1000 9d3+9
 100000 350000
-8 8 0
+8 elemental~ 0
 #9211
 lightning elemental ruler~
 The Lightning Ruler~
@@ -125,7 +125,7 @@ You rub your eyes and look and the ruler is there grinning at you.
 2 128 0 S
 30 0 -6 30d30+1000 4d6+15
 100000 350000
-8 8 0
+8 elemental~ 0
 #9212
 water elemental ruler~
 The Water Ruler~
@@ -137,7 +137,7 @@ as you get scared, it reforms in elemental form.
 2 128 0 S
 30 0 -10 30d30+1000 7d3+5
 100000 350000
-8 8 0
+8 elemental~ 0
 #9214
 water puddle elemental~
 a puddle~
@@ -148,7 +148,7 @@ It trickles along the ground and gets your feet wet.
 64 0 0 S
 8 13 3 10d10+200 2d5+1
 225 4000
-8 8 0
+8 elemental~ 0
 #9215
 fire flame elemental~
 a flame~
@@ -159,7 +159,7 @@ It smolders along the grass aimlessly.
 64 0 0 S
 4 17 6 5d10+0 2d4+0
 150 500
-8 8 0
+8 elemental~ 0
 #9216
 snowflake snow flake ice elemental~
 a small snowflake~
@@ -170,7 +170,7 @@ It looks a little blue.
 64 0 520 S
 3 19 8 1d5+30 1d5+0
 0 200
-8 8 0
+8 elemental~ 0
 #9217
 pebble rock earth stone elemental~
 a small rock~
@@ -181,7 +181,7 @@ It seems to be a small living pebble!
 64 0 0 S
 3 18 6 4d10+5 1d6+1
 98 350
-8 8 0
+8 elemental~ 0
 #9218
 spark lightning energy elemental~
 a small spark~
@@ -192,7 +192,7 @@ Zipping from place to place at the speed of light is tough work.
 64 0 0 S
 4 16 6 10d5+0 1d8+1
 150 500
-8 8 0
+8 elemental~ 0
 #9219
 acid blob elemental~
 a small blob of acid~
@@ -203,7 +203,7 @@ The magical blob of acid is a cross between lightning and water.
 64 0 0 S
 9 11 2 1d10+120 5d2+2
 1000 4000
-8 8 0
+8 elemental~ 0
 #9220
 lava elemental~
 a lava beast~
@@ -214,7 +214,7 @@ The magical lava beast is a cross between fire and earth.
 64 0 0 S
 8 13 3 1d10+120 5d2+2
 313 4000
-8 8 0
+8 elemental~ 0
 #9221
 mud elemental~
 a mud monster~
@@ -225,7 +225,7 @@ The magical mud monster is a cross between water and earth.
 64 0 0 S
 7 14 4 1d12+86 2d4+1
 400 1000
-8 8 0
+8 elemental~ 0
 #9222
 mist elemental~
 an elemental mist~ 
@@ -236,7 +236,7 @@ The magical mist is a cross between water and air.
 64 0 0 S
 6 16 50 6d10+20 1d8+0
 300 1000
-8 8 0
+8 elemental~ 0
 #9223
 particle elemental~
 a particle~
@@ -247,7 +247,7 @@ The magical manifestation of energy.
 64 0 0 S
 5 16 6 5d4+70 1d5+5
 10 800
-8 8 0
+8 elemental~ 0
 #9224
 dust elemental~
 a dust cloud~
@@ -258,7 +258,7 @@ The magical dust cloud is a cross between air and earth.
 64 0 0 S
 6 15 4 9d9+4 1d8+1
 100 980
-8 8 0
+8 elemental~ 0
 #9225
 eddie elemental~
 an eddie~
@@ -269,7 +269,7 @@ The magical eddie current is a manifestation of an air elemental.
 64 0 0 S
 2 19 8 5d5+0 1d6+0
 30 150
-8 8 0
+8 elemental~ 0
 #9226
 blue flame~
 the Blue Flame~
@@ -281,7 +281,7 @@ humanoid figure somehow trapped in the fire.
 66 0 -100 S
 26 -3 -4 1d100+550 6d3+12
 25000 100000
-8 8 0
+8 human~ 0
 #9227
 magneto~
 the Magneto~
@@ -292,7 +292,7 @@ A humanoid figure seems to be trapped in the field of the Magneto.
 66 0 -150 S
 22 0 -8 3d10+350 3d8+5
 10000 75000
-8 8 0
+8 human~ 0
 #9228
 ice bandit~
 the Ice Bandit~
@@ -303,7 +303,7 @@ A humanoid figure encased in ice but still apparently alive.
 2|64|128 32768 -250 S
 24 -2 -9 2d10+480 2d8+13
 30000 150000
-8 8 0
+8 human~ 0
 #9229
 rock monster~
 the Rock Monster~
@@ -314,7 +314,7 @@ A humanoid figure trapped in stone seems alive.
 66 0 -310 S
 23 0 -6 40d10+550 3d8+4
 19000 60000
-8 8 0
+8 human~ 0
 #9230
 hurricane~
 the Hurricane~
@@ -325,7 +325,7 @@ A humanoid figure is trapped in the rushing wind.
 66 32768 -10 S
 28 -4 -7 0d0+700 4d6+6
 41082 350000
-8 8 0
+8 human~ 0
 #9231
 magician~
 an elemental magician~
@@ -337,7 +337,7 @@ Stone of Surrender which can be used to render opponents senseless.
 66 2 -50 S
 17 6 2 1d11+200 3d5+3
 8000 30000
-8 8 0
+8 elemental~ 0
 #9232
 rainbow warrior~
 a rainbow warrior~
@@ -349,7 +349,7 @@ the elemental forces.
 64 0 150 S
 18 1 0 0d0+340 3d6+4
 8000 35000
-8 8 0
+8 human~ 0
 #9233
 illusionist~
 an illusionist~	
@@ -362,7 +362,7 @@ He seeks their aid for a powerful new spell of deception.
 66 0 -50 S
 12 10 3 10d6+150 2d7+0
 1900 13900
-8 8 0
+8 human~ 0
 #9234
 alchemist~
 an alchemist~
@@ -373,7 +373,7 @@ Rare herbs are rumored to grow only in the canyon.
 64 0 -50 S
 13 8 1 1d2+270 2d7+1
 1900 15000
-8 8 0
+8 human~ 0
 #9235
 baby rainbow dragon~
 a baby rainbow dragon~
@@ -384,7 +384,7 @@ It's only a baby by dragon standards.
 66 40 0 S
 16 4 -1 0d0+400 1d16+6
 10000 25000
-8 8 0
+8 dragon~ 0
 #9236
 imp~
 a little imp~
@@ -395,7 +395,7 @@ The little bugger steals stuff and is generally obnoxious.
 4|64|128 32768|65536 -500 S
 5 15 1 1d10+100 1d4+3
 1 1000
-8 8 0
+8 kobold~ 0
 #9237
 HUGE elemental~
 a HUGE elemental~
@@ -406,7 +406,7 @@ HUGE, need i say more?
 66 0 30 S
 20 1 0 0d0+750 3d6+4
 10000 40000
-8 8 0
+8 elemental~ 0
 #9238
 vendor~
 the elixir vendor~
@@ -417,7 +417,7 @@ I WOULD NOT suggest you attack me ...!
 82 0 900 S
 30 -20 -10 0d0+10000 0d0+300
 0 1
-8 8 1
+8 human~ 1
 #0
 
 
@@ -1850,24 +1850,24 @@ M 0 9203 8 9215
 M 0 9203 8 9215
 M 0 9203 8 9218
 M 0 9205 8 9218
-M 0 9205 5 9207
-M 0 9205 5 9250
-M 0 9205 5 9209
-M 0 9205 5 9234
-M 0 9205 5 9222
+M 0 9205 1 9207
+M 0 9205 1 9250
+M 0 9205 1 9209
+M 0 9205 1 9234
+M 0 9205 1 9222
 E 1 9224 10 17
-M 0 9206 4 9246
-M 0 9206 4 9212
+M 0 9206 1 9246
+M 0 9206 1 9212
 E 1 9221 10 17
-M 0 9206 4 9254
-M 0 9206 4 9225
+M 0 9206 1 9254
+M 0 9206 1 9225
 E 1 9219 7 17
-M 0 9207 5 9218
-M 0 9207 5 9260
+M 0 9207 1 9218
+M 0 9207 1 9260
 E 1 9220 16 16
-M 0 9207 5 9242
-M 0 9207 5 9209
-M 0 9207 5 9218
+M 0 9207 1 9242
+M 0 9207 1 9209
+M 0 9207 1 9218
 E 1 9223 10 17
 M 0 9226 1 9238
 E 1 9226 10 16
@@ -1879,23 +1879,23 @@ M 0 9229 1 9242
 E 1 9228 10 16
 M 0 9230 1 9242
 E 1 9229 10 16
-M 0 9231 5 9216
+M 0 9231 1 9216
 E 1 9215 10 17
-M 0 9231 5 9211
+M 0 9231 1 9211
 E 1 9215 10 17
 M 0 9232 4 9209
 E 1 9220 16 16
 M 0 9232 4 9208
 E 1 9232 99 16
-M 0 9233 4 9253
-M 0 9233 4 9218
-M 0 9233 4 9255
+M 0 9233 1 9253
+M 0 9233 1 9218
+M 0 9233 1 9255
 M 0 9234 6 9230
 E 1 9218 10 16
 M 0 9234 6 9238
 E 1 9217 10 16
-M 0 9235 2 9249
-M 0 9235 2 9257
+M 0 9235 1 9249
+M 0 9235 1 9257
 E 1 9216 10 16
 M 0 9236 7 9202
 M 0 9236 7 9207

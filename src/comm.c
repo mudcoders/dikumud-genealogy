@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -136,11 +139,6 @@ int	select		args( ( int width, fd_set *readfds, fd_set *writefds,
 			    fd_set *exceptfds, struct timeval *timeout ) );
 #endif
 
-#if	defined( apollo )
-#include <unistd.h>
-void	bzero		args( ( char *b, int length ) );
-#endif
-
 #if	defined( __hpux )
 int	accept		args( ( int s, void *addr, int *addrlen ) );
 int	bind		args( ( int s, const void *addr, int addrlen ) );
@@ -196,7 +194,7 @@ extern	int		errno;
 #endif
 
 #if	defined( MSDOS )
-int	gettimeofday	args( ( struct timeval *tp, void *tzp ) );
+int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	kbhit		args( ( void ) );
 #endif
 
@@ -283,6 +281,12 @@ int	setsockopt	args( ( int s, int level, int optname, void *optval,
 int	socket		args( ( int domain, int type, int protocol ) );
 int	write		args( ( int fd, char *buf, int nbyte ) );
 #endif
+
+
+#if defined( sun )
+int     system          args( ( const char *string ) );
+#endif
+
 
 
 
@@ -432,6 +436,7 @@ int init_socket( int port )
                   int         x        = 1;
                   int         fd;
 
+    system( "touch SHUTDOWN.TXT" );
     if ( ( fd = socket( AF_INET, SOCK_STREAM, 0 ) ) < 0 )
     {
 	perror( "Init_socket: socket" );
@@ -481,6 +486,7 @@ int init_socket( int port )
 	exit( 1 );
     }
 
+    system( "rm SHUTDOWN.TXT" );
     return fd;
 }
 #endif
@@ -900,7 +906,6 @@ void new_descriptor( int control )
     dnew->connected	= CON_GET_NAME;
     dnew->showstr_head  = str_dup( "" );
     dnew->showstr_point = 0;
-    dnew->showstr_point = NULL;
     dnew->outsize	= 2000;
     dnew->outbuf	= alloc_mem( dnew->outsize );
 
@@ -946,7 +951,6 @@ void new_descriptor( int control )
 		"Your site has been banned from this Mud.\n\r", 0 );
 	    close( desc );
 	    free_string( dnew->host );
-	    free_string( dnew->showstr_head );
 	    free_mem( dnew->outbuf, dnew->outsize );
 	    dnew->next		= descriptor_free;
 	    descriptor_free	= dnew;
@@ -1037,7 +1041,6 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 
     close( dclose->descriptor );
     free_string( dclose->host );
-    free_string( dclose->showstr_head );
 
     /* RT socket leak fix */
     free_mem( dclose->outbuf, dclose->outsize );
@@ -1232,10 +1235,12 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
      * Bust a prompt.
      */
     if ( fPrompt && !merc_down && d->connected == CON_PLAYING )
+    {
         if ( d->showstr_point )
+	{
 	    write_to_buffer( d,
-  "[Please type (c)ontinue, (r)efresh, (b)ack, (h)elp, (q)uit, or RETURN]:  ",
-			    0 );
+  "[Please type (c)ontinue, (r)efresh, (b)ack, (q)uit, or RETURN]:  ", 0 );
+	}
 	else
 	{
 	    CHAR_DATA *ch;
@@ -1250,6 +1255,7 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 	    if ( IS_SET( ch->act, PLR_TELNET_GA ) )
 	        write_to_buffer( d, go_ahead_str, 0 );
 	}
+    }
 
     /*
      * Short-circuit if nothing to write.
@@ -1294,15 +1300,17 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
          char       buf  [ MAX_STRING_LENGTH ];
          char       buf2 [ MAX_STRING_LENGTH ];
 
-   ch = d->character;
-   if( !ch->prompt || ch->prompt[0] == '\0' )
+   /* Will always have a pc ch after this */
+   ch = ( d->original ? d->original : d->character );
+   if( !ch->pcdata->prompt || ch->pcdata->prompt[0] == '\0' )
    {
       send_to_char( "\n\r\n\r", ch );
       return;
    }
 
    point = buf;
-   str = d->original ? d->original->prompt : d->character->prompt;
+   str = ch->pcdata->prompt;
+
    while( *str != '\0' )
    {
       if( *str != '%' )
@@ -1339,6 +1347,9 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
          case 'g' :
             sprintf( buf2, "%d", ch->gold                              );
             i = buf2; break;
+         case 'w' :
+	    sprintf( buf2, "%d", ch->wait                              );
+	    i = buf2; break;
          case 'a' :
             if( ch->level < 5 )
                sprintf( buf2, "%d", ch->alignment                      );
@@ -1361,6 +1372,17 @@ void bust_a_prompt( DESCRIPTOR_DATA *d )
          case 'z' :
             if( IS_IMMORTAL( ch ) && ch->in_room )
                sprintf( buf2, "%s", ch->in_room->area->name            );
+            else
+               sprintf( buf2, " "                                      );
+            i = buf2; break;
+         case 'i' :  /* Invisible notification on prompt sent by Kaneda */
+	    sprintf( buf2, "%s", IS_AFFECTED( ch, AFF_INVISIBLE ) ?
+		                 "invisible" : "visible" );
+	    i = buf2; break;
+         case 'I' :
+            if( IS_IMMORTAL( ch ) )
+               sprintf( buf2, "(wizinv: %s)", IS_SET( ch->act, PLR_WIZINVIS ) ?
+		                              "on" : "off" );
             else
                sprintf( buf2, " "                                      );
             i = buf2; break;
@@ -1412,9 +1434,9 @@ void write_to_buffer( DESCRIPTOR_DATA *d, const char *txt, int length )
     }
 
     /*
-     * Copy.
+     * Copy.  Modifications sent in by Zavod.
      */
-    strcpy( d->outbuf + d->outtop, txt );
+    strncpy( d->outbuf + d->outtop, txt, length );
     d->outtop += length;
     return;
 }
@@ -1461,9 +1483,11 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     CHAR_DATA *ch;
     NOTE_DATA *pnote;
     char      *pwdnew;
+    char      *classname;
     char      *p;
     char       buf [ MAX_STRING_LENGTH ];
     int        iClass;
+    int        iRace;
     int        lines;
     int        notes;
     bool       fOld;
@@ -1504,8 +1528,19 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    }
 	    else
 	    {
+	        /*
+		 * Trap the "." and ".." logins.
+		 * Chars must be > level 1 here
+		 */
+	        if ( ch->level < 1 )
+		{
+		    write_to_buffer( d,
+				    "Illegal name, try another.\n\rName: ",
+				    0 );
+		    return;
+		}
 		sprintf( buf, "Illegal name:  %s", argument );
-	        bug( buf, NULL );
+	        bug( buf, 0 );
 	    }
 	}
 
@@ -1525,13 +1560,17 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	else
 	{
 	    /* Must be immortal with wizbit in order to get in */
-	    if ( wizlock && !IS_HERO( ch ) && !ch->wizbit )
+	    if ( wizlock
+		&& !IS_HERO( ch )
+		&& !IS_SET( ch->act, PLR_WIZBIT ) )
 	    {
 		write_to_buffer( d, "The game is wizlocked.\n\r", 0 );
 		close_socket( d );
 		return;
 	    }
-	    if ( ch->level <= numlock && !ch->wizbit && numlock != 0 )
+	    if ( ch->level <= numlock
+		&& !IS_SET( ch->act, PLR_WIZBIT )
+		&& numlock != 0 )
 	    {
 		write_to_buffer( d,
 			"The game is locked to your level character.\n\r\n\r",
@@ -1673,7 +1712,59 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	}
 
 	write_to_buffer( d, echo_on_str, 0 );
-	write_to_buffer( d, "What is your sex (M/F/N)? ", 0 );
+	write_to_buffer( d, "\n\rPress Return to continue:\n\r", 0 );
+	d->connected = CON_DISPLAY_RACE;
+	break;
+
+    case CON_DISPLAY_RACE:
+	strcpy( buf, "Select a race [" );
+	for ( iRace = 0; iRace < MAX_RACE; iRace++ )
+	{
+	    if ( !IS_SET( race_table[ iRace ].race_abilities, RACE_PC_AVAIL ) )
+	        continue;
+	    if ( iRace > 0 )
+	        strcat( buf, " " );
+	    strcat( buf, race_table[iRace].name );
+	}
+	strcat( buf, "]:  " );
+	write_to_buffer( d, buf, 0 );
+	d->connected = CON_GET_NEW_RACE;
+	break;
+
+    case CON_GET_NEW_RACE:
+	for ( iRace = 0; iRace < MAX_RACE; iRace++ )
+	    if ( !str_prefix( argument, race_table[iRace].name )
+		&& IS_SET( race_table[ iRace ].race_abilities,
+			  RACE_PC_AVAIL ) )
+	    {
+		ch->race = race_lookup( race_table[iRace].name );
+		break;
+	    }
+
+	if ( iRace == MAX_RACE )
+	{
+	    write_to_buffer( d,
+			    "That is not a race.\n\rWhat IS your race? ", 0 );
+	    return;
+	}
+
+	write_to_buffer( d, "\n\r", 0 );
+	do_help( ch, race_table[ch->race].name );
+	write_to_buffer( d, "Are you sure you want this race?  ", 0 );
+	d->connected = CON_CONFIRM_NEW_RACE;
+	break;
+
+    case CON_CONFIRM_NEW_RACE:
+	switch ( argument[0] )
+	{
+	  case 'y': case 'Y': break;
+	  default:
+	      write_to_buffer( d, "\n\rPress Return to continue:\n\r", 0 );
+	      d->connected = CON_DISPLAY_RACE;
+	      return;
+	}
+
+	write_to_buffer( d, "\n\rWhat is your sex (M/F/N)? ", 0 );
 	d->connected = CON_GET_NEW_SEX;
 	break;
 
@@ -1688,6 +1779,11 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    return;
 	}
 
+	d->connected = CON_DISPLAY_CLASS;
+	write_to_buffer( d, "\n\rPress Return to continue:\n\r", 0 );
+	break;
+
+    case CON_DISPLAY_CLASS:
 	strcpy( buf, "Select a class [" );
 	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
 	{
@@ -1703,7 +1799,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     case CON_GET_NEW_CLASS:
 	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
 	{
-	    if ( !str_cmp( argument, class_table[iClass].who_name ) )
+	    if ( !str_prefix( argument, class_table[iClass].who_name ) )
 	    {
 		ch->class = iClass;
 		break;
@@ -1715,6 +1811,38 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    write_to_buffer( d,
 		"That's not a class.\n\rWhat IS your class? ", 0 );
 	    return;
+	}
+
+	write_to_buffer( d, "\n\r", 0 );
+
+	/* define the classname for helps. */
+	switch ( ch->class )
+	{
+	  default: classname = "";           break;
+	  case 0:  classname = "Mage";       break;
+	  case 1:  classname = "Cleric";     break;
+	  case 2:  classname = "Thief";      break;
+	  case 3:  classname = "Warrior";    break;
+	  case 4:  classname = "Psionicist"; break;
+	}
+	if ( classname != "" )
+	    do_help( ch, classname );
+	else
+	    bug( "Nanny CON_GET_NEW_CLASS:  ch->class (%d) not valid",
+		ch->class );
+
+	write_to_buffer( d, "Are you sure you want this class?  ", 0 );
+	d->connected = CON_CONFIRM_CLASS;
+	break;
+
+    case CON_CONFIRM_CLASS:
+	switch ( argument[0] )
+	{
+	  case 'y': case 'Y': break;
+	  default:
+	      write_to_buffer( d, "\n\rPress Return to continue:\n\r", 0 );
+	      d->connected = CON_DISPLAY_CLASS;
+	      return;
 	}
 
 	sprintf( log_buf, "%s@%s new player.", ch->name, d->host );
@@ -1749,6 +1877,8 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
 	    ch->level	= 1;
 	    ch->exp	= 1000;
+	    ch->gold    = 5500 + number_fuzzy( 3 )
+	                * number_fuzzy( 4 ) * number_fuzzy( 5 ) * 9;
 	    ch->hit	= ch->max_hit;
 	    ch->mana	= ch->max_mana;
 	    ch->move	= ch->max_move;
@@ -1756,7 +1886,8 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 		    title_table [ch->class] [ch->level]
 		    [ch->sex == SEX_FEMALE ? 1 : 0] );
 	    set_title( ch, buf );
-	    ch->prompt = str_dup( "<%hhp %mm %vmv> " );
+	    free_string( ch->pcdata->prompt );
+	    ch->pcdata->prompt = str_dup( "<%hhp %mm %vmv> " );
 
 	    obj = create_object( get_obj_index( OBJ_VNUM_SCHOOL_BANNER ), 0 );
 	    obj_to_char( obj, ch );
@@ -1830,8 +1961,14 @@ bool check_parse_name( char *name )
     /*
      * Reserved words.
      */
-    if ( is_name( name, "all auto immortal self someone" ) )
+    if ( is_name( name, "all auto imm immortal self someone" ) )
 	return FALSE;
+
+    /*
+     * Obsenities
+     */
+    if ( is_name( name, "damn fuck screw shit ass asshole bitch bastard gay lesbian pussy fart vagina penis" ) )
+        return FALSE;
 
     /*
      * Length restrictions.
@@ -1905,6 +2042,9 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 
     for ( ch = char_list; ch; ch = ch->next )
     {
+        if ( ch->deleted )
+	    continue;
+
 	if ( !IS_NPC( ch )
 	    && ( !fConn || !ch->desc )
 	    && !str_cmp( d->character->name, ch->name ) )
@@ -1956,7 +2096,6 @@ bool check_playing( DESCRIPTOR_DATA *d, char *name )
 	if ( dold != d
 	    && dold->character
 	    && dold->connected != CON_GET_NAME
-	    && dold->connected != CON_GET_OLD_PASSWORD
 	    && !str_cmp( name, dold->original
 			? dold->original->name : dold->character->name )
 	    && !dold->character->deleted )
@@ -1995,6 +2134,19 @@ void stop_idling( CHAR_DATA *ch )
 }
 
 /*
+ * Write to all in the room.
+ */
+void send_to_room( const char *txt, ROOM_INDEX_DATA *room )
+{
+    DESCRIPTOR_DATA *d;
+
+    for ( d = descriptor_list; d; d = d->next )
+        if ( d->character != NULL )
+	    if ( d->character->in_room == room )
+	        act( txt, d->character, NULL, NULL, TO_CHAR );
+}
+
+/*
  * Write to all characters.
  */
 void send_to_all_char( const char *text )
@@ -2017,26 +2169,39 @@ void send_to_char( const char *txt, CHAR_DATA *ch )
 {
     if ( !txt || !ch->desc )
         return;
-    free_string( ch->desc->showstr_head );
-    ch->desc->showstr_head  = str_dup( txt );
-    ch->desc->showstr_point = ch->desc->showstr_head;
-    show_string( ch->desc, "" );
 
+    /*
+     * Bypass the paging procedure if the text output is small
+     * Saves process time.
+     */
+    if ( strlen( txt ) < 600 )
+	write_to_buffer( ch->desc, txt, strlen( txt ) );
+    else
+    {
+        free_string( ch->desc->showstr_head );
+	ch->desc->showstr_head  = str_dup( txt );
+	ch->desc->showstr_point = ch->desc->showstr_head;
+	show_string( ch->desc, "" );
+    }
+
+    return;
 }
 
-/* The heart of the pager.  Thanks to N'Atas-Ha, ThePrincedom
-   for porting this SillyMud code for MERC 2.0 and laying down the groundwork.
-   Thanks to Blackstar, hopper.cs.uiowa.edu 4000 for which
-   the improvements to the pager was modeled from.  - Kahn */
+ /* The heart of the pager.  Thanks to N'Atas-Ha, ThePrincedom
+    for porting this SillyMud code for MERC 2.0 and laying down the groundwork.
+    Thanks to Blackstar, hopper.cs.uiowa.edu 4000 for which
+    the improvements to the pager was modeled from.  - Kahn */
+ /* 12/1/94 Fixed bounds and overflow bugs in pager thanks to BoneCrusher
+    of EnvyMud Staff - Kahn */
 
 void show_string( struct descriptor_data *d, char *input )
 {
     register char *scan;
-    register char *chk;
-             char  buffer[ MAX_STRING_LENGTH*3 ];
+             char  buffer[ MAX_STRING_LENGTH*6 ];
              char  buf   [ MAX_INPUT_LENGTH    ];
-             int   lines  = 0;
-	     int   toggle = 1;
+             int   line      = 0;
+             int   toggle    = 0;
+             int   pagelines = 20;
 
     one_argument( input, buf );
 
@@ -2044,30 +2209,19 @@ void show_string( struct descriptor_data *d, char *input )
     {
     case '\0':
     case 'C': /* show next page of text */
-        lines = 0;
-        break;
+	break;
 
     case 'R': /* refresh current page of text */
-        lines = - 1 - (d->character->pcdata->pagelen);
-        break;
+	toggle = 1;
+	break;
 
     case 'B': /* scroll back a page of text */
-        lines = -( 2 * d->character->pcdata->pagelen );
-        break;
-
-    case 'H': /* Show some help */
-        write_to_buffer( d,
-	"C, or Return = continue, R = redraw this page,\n\r",
-			0 );
-    write_to_buffer( d,
-        "B = back one page, H = this help, Q or other keys = exit.\n\r\n\r",
-		    0 );
-	lines = - 1 - ( d->character->pcdata->pagelen );
+	toggle = 2;
 	break;
 
     default: /*otherwise, stop the text viewing */
-        if ( d->showstr_head )
-        {
+	if ( d->showstr_head )
+	{
 	    free_string( d->showstr_head );
 	    d->showstr_head = str_dup( "" );
 	}
@@ -2076,50 +2230,62 @@ void show_string( struct descriptor_data *d, char *input )
 
     }
 
-    /* do any backing up necessary */
-    if ( lines < 0 )
+    if ( d->original )
+        pagelines = d->original->pcdata->pagelen;
+    else
+        pagelines = d->character->pcdata->pagelen;
+
+    if ( toggle )
     {
-        for ( scan = d->showstr_point; scan > d->showstr_head; scan-- )
-            if ( ( *scan == '\n' ) || ( *scan == '\r' ) )
-	    {
-	        toggle = -toggle;
-	        if ( toggle < 0 )
-	            if ( !( ++lines ) )
-		        break;
-	    }
-	d->showstr_point = scan;
+	if ( d->showstr_point == d->showstr_head )
+	    return;
+	if ( toggle == 1 )
+	    line = -1;
+	do
+	{
+	    if ( *d->showstr_point == '\n' )
+	      if ( ( line++ ) == ( pagelines * toggle ) )
+		break;
+	    d->showstr_point--;
+	} while( d->showstr_point != d->showstr_head );
     }
 
-    /* show a chunk */
-    lines  = 0;
-    toggle = 1;
-    for ( scan = buffer; ; scan++, d->showstr_point++ )
-        if ( ( ( *scan = *d->showstr_point ) == '\n' || *scan == '\r' )
-	    && ( toggle = -toggle ) < 0 )
-	    lines++;
-        else
-	    if ( !*scan || ( d->character && !IS_NPC( d->character )
-			    && lines >= d->character->pcdata->pagelen ) )
-	   {
-	       *scan = '\0';
-	       write_to_buffer( d, buffer, strlen( buffer ) );
+    line    = 0;
+    *buffer = 0;
+    scan    = buffer;
+    if ( *d->showstr_point )
+    {
+	do
+	{
+	    *scan = *d->showstr_point;
+	    if ( *scan == '\n' )
+	      if ( ( line++ ) == pagelines )
+		{
+		  scan++;
+		  break;
+		}
+	    scan++;
+	    d->showstr_point++;
+	    if( *d->showstr_point == 0 )
+	      break;
+	} while( 1 );
+    }
 
-	       /* See if this is the end (or near the end) of the string */
-	       for ( chk = d->showstr_point; isspace( *chk ); chk++ )
-		 ;
-	       if ( !*chk )
-	       {
-		   if ( d->showstr_head )
-		   {
-		       free_string( d->showstr_head );
-		       d->showstr_head = str_dup( "" );
-		   }
-		   d->showstr_point = 0;
-	       }
-	       return;
-	   }
+    /* On advice by Scott Mobley and others */
+    *scan++ = '\n';
+    *scan++ = '\r';
 
-  return;
+    *scan = 0;
+
+    write_to_buffer( d, buffer, strlen( buffer ) );
+    if ( *d->showstr_point == 0 )
+    {
+      free_string( d->showstr_head );
+      d->showstr_head  = str_dup( "" );
+      d->showstr_point = 0;
+    }
+
+    return;
 }
 
 /*
@@ -2139,6 +2305,7 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
     const  char            *i;
            char            *point;
            char             buf     [ MAX_STRING_LENGTH ];
+           char             buf1    [ MAX_STRING_LENGTH ];
            char             fname   [ MAX_INPUT_LENGTH  ];
 
     /*
@@ -2153,6 +2320,8 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
 	if ( !vch )
 	{
 	    bug( "Act: null vch with TO_VICT.", 0 );
+	    sprintf( buf1, "Bad act string:  %s", format );
+	    bug( buf1, 0 );
 	    return;
 	}
 	to = vch->in_room->people;
@@ -2188,6 +2357,8 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
 	    if ( !arg2 && *str >= 'A' && *str <= 'Z' )
 	    {
 		bug( "Act: missing arg2 for code %d.", *str );
+		sprintf( buf1, "Bad act string:  %s", format );
+		bug( buf1, 0 );
 		i = " <@@@> ";
 	    }
 	    else
@@ -2195,6 +2366,8 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
 		switch ( *str )
 		{
 		default:  bug( "Act: bad code %d.", *str );
+		          sprintf( buf1, "Bad act string:  %s", format );
+		          bug( buf1, 0 );
 			  i = " <@@@> ";				break;
 		/* Thx alex for 't' idea */
 		case 't': i = (char *) arg1;				break;

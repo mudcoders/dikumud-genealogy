@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -36,7 +39,8 @@ AFFECT_DATA *		affect_free;
 /*
  * Local functions.
  */
-void    affect_modify   args( ( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd ) );
+void    affect_modify          args( ( CHAR_DATA *ch, AFFECT_DATA *paf,
+				      bool fAdd ) );
 
 
 
@@ -64,9 +68,10 @@ int get_trust( CHAR_DATA *ch )
  */
 int get_age( CHAR_DATA *ch )
 {
-    return 17 + ( ch->played + (int) ( current_time - ch->logon ) ) / 14400;
+    return 17 + ( ch->played + (int) ( current_time - ch->logon ) ) / 428400;
 
-    /* 14400 assumes 30 second hours, 24 hours a day, 20 day - Kahn */
+    /* 428400 assumes 30 secs/mud hour * 24 hours/day * 35 days/month *
+       17 months/year - Kahn */
 }
 
 
@@ -77,14 +82,19 @@ int get_age( CHAR_DATA *ch )
 int get_curr_str( CHAR_DATA *ch )
 {
     int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].str_mod;
+    value = 13 + mod;
 
     if ( IS_NPC( ch ) )
-	return 13;
+	return value;
 
     if ( class_table[ch->class].attr_prime == APPLY_STR )
-	max = 25;
+	max = UMIN( 25, 25 + mod );
     else
-	max = 22;
+	max = UMIN( 22 + mod, 25 );
 
     return URANGE( 3, ch->pcdata->perm_str + ch->pcdata->mod_str, max );
 }
@@ -97,14 +107,19 @@ int get_curr_str( CHAR_DATA *ch )
 int get_curr_int( CHAR_DATA *ch )
 {
     int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].int_mod;
+    value = 13 + mod;
 
     if ( IS_NPC( ch ) )
-	return 13;
+	return value;
 
     if ( class_table[ch->class].attr_prime == APPLY_INT )
-	max = 25;
+	max = UMIN( 25, 25 + mod );
     else
-	max = 22;
+	max = UMIN( 22 + mod, 25 );
 
     return URANGE( 3, ch->pcdata->perm_int + ch->pcdata->mod_int, max );
 }
@@ -117,14 +132,19 @@ int get_curr_int( CHAR_DATA *ch )
 int get_curr_wis( CHAR_DATA *ch )
 {
     int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].wis_mod;
+    value = 13 + mod;
 
     if ( IS_NPC( ch ) )
-	return 13;
+	return value;
 
     if ( class_table[ch->class].attr_prime == APPLY_WIS )
-	max = 25;
+	max = UMIN( 25, 25 + mod );
     else
-	max = 22;
+	max = UMIN( 22 + mod, 25 );
 
     return URANGE( 3, ch->pcdata->perm_wis + ch->pcdata->mod_wis, max );
 }
@@ -137,14 +157,19 @@ int get_curr_wis( CHAR_DATA *ch )
 int get_curr_dex( CHAR_DATA *ch )
 {
     int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].dex_mod;
+    value = 13 + mod;
 
     if ( IS_NPC( ch ) )
-	return 13;
+	return value;
 
     if ( class_table[ch->class].attr_prime == APPLY_DEX )
-	max = 25;
+	max = UMIN( 25, 25 + mod );
     else
-	max = 22;
+	max = UMIN( 22 + mod, 25 );
 
     return URANGE( 3, ch->pcdata->perm_dex + ch->pcdata->mod_dex, max );
 }
@@ -157,16 +182,99 @@ int get_curr_dex( CHAR_DATA *ch )
 int get_curr_con( CHAR_DATA *ch )
 {
     int max;
+    int mod;
+    int value;
+
+    mod   = race_table[ch->race].con_mod;
+    value = 13 + mod;
 
     if ( IS_NPC( ch ) )
-	return 13;
+	return value;
 
     if ( class_table[ch->class].attr_prime == APPLY_CON )
-	max = 25;
+	max = UMIN( 25, 25 + mod );
     else
-	max = 22;
+	max = UMIN( 22 + mod, 25 );
 
     return URANGE( 3, ch->pcdata->perm_con + ch->pcdata->mod_con, max );
+}
+
+
+
+/*
+ * Retrieve character's current hitroll for given weapon location
+ */
+int get_hitroll( CHAR_DATA *ch, int wpn )
+{
+    OBJ_DATA    *other_wield;
+    AFFECT_DATA *paf;
+    int          other_wpn;
+    int          hitroll;
+
+    if ( wpn == WEAR_WIELD)
+        other_wpn = WEAR_WIELD_2;
+    else if ( wpn == WEAR_WIELD_2 )
+        other_wpn = WEAR_WIELD;
+    else
+    {
+        char buf [ MAX_STRING_LENGTH ];
+        sprintf( buf, "get_hitroll: Invalid weapon location %d on %s.",
+		wpn, ch->name );
+        bug( buf, 0 );
+        return 0;
+    }
+
+    hitroll = ch->hitroll + str_app[get_curr_str( ch )].tohit;
+    if ( !( other_wield = get_eq_char( ch, other_wpn ) ) )
+        return hitroll;
+
+    for( paf = other_wield->pIndexData->affected; paf; paf = paf->next )
+        if ( paf->location == APPLY_HITROLL )
+            hitroll -= paf->modifier;
+    for( paf = other_wield->affected; paf; paf = paf->next )
+        if ( paf->location == APPLY_HITROLL )
+            hitroll -= paf->modifier;
+
+    return hitroll;
+}
+
+
+
+/*
+ * Retrieve character's current damroll for given weapon location
+ */
+int get_damroll( CHAR_DATA *ch, int wpn )
+{
+    OBJ_DATA    *other_wield;
+    AFFECT_DATA *paf;
+    int          other_wpn;
+    int          damroll;
+
+    if ( wpn == WEAR_WIELD)
+        other_wpn = WEAR_WIELD_2;
+    else if ( wpn == WEAR_WIELD_2 )
+        other_wpn = WEAR_WIELD;
+    else
+    {
+        char buf [ MAX_STRING_LENGTH ];
+        sprintf( buf, "get_damroll: Invalid weapon location %d on %s.",
+		wpn, ch->name );
+        bug( buf, 0 );
+        return 0;
+    }
+
+    damroll = ch->damroll + str_app[get_curr_str( ch )].todam;
+    if ( !( other_wield = get_eq_char( ch, other_wpn ) ) )
+        return damroll;
+
+    for( paf = other_wield->pIndexData->affected; paf; paf = paf->next )
+        if ( paf->location == APPLY_DAMROLL )
+            damroll -= paf->modifier;
+    for( paf = other_wield->affected; paf; paf = paf->next )
+        if ( paf->location == APPLY_DAMROLL )
+            damroll -= paf->modifier;
+
+    return damroll;
 }
 
 
@@ -229,6 +337,7 @@ bool is_name( const char *str, char *namelist )
 void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
 {
     OBJ_DATA *wield;
+    OBJ_DATA *wield2;
     char      buf [ MAX_STRING_LENGTH ];
     int       mod;
 
@@ -249,7 +358,7 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
     default:
         sprintf( buf, "Affect_modify: unknown location %d on %s.",
 		paf->location, ch->name );
-	bug ( buf, NULL );
+	bug ( buf, 0 );
 	return;
 
     case APPLY_NONE:						break;
@@ -269,6 +378,7 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
 	if ( !IS_NPC( ch ) )
 	    ch->pcdata->mod_con += mod;                         break;
     case APPLY_SEX:           ch->sex                   += mod; break;
+    case APPLY_RACE:          ch->race                  += mod; break;
     case APPLY_CLASS:						break;
     case APPLY_LEVEL:						break;
     case APPLY_AGE:						break;
@@ -289,27 +399,79 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
     case APPLY_SAVING_SPELL:  ch->saving_throw          += mod; break;
     }
 
+    /* Remove the excess general stats */
+    ch->hit  = UMIN( ch->hit, ch->max_hit );
+    ch->mana = UMIN( ch->mana, ch->max_mana );
+    ch->move = UMIN( ch->move, ch->max_move );
+
     if ( IS_NPC( ch ) )
         return;
 
     /*
-     * Check for weapon wielding.
+     * Check for PC weapon wielding.
      * Guard against recursion (for weapons with affects).
+     * If more than one weapon, drop weapon 2 first, then recheck.
+     * And yes, it does work.  :)  --- Thelonius (Monk)
      */
-    if ( ( wield = get_eq_char( ch, WEAR_WIELD ) )
-	&& get_obj_weight( wield ) > str_app[get_curr_str( ch )].wield )
+    if ( ( wield  = get_eq_char( ch, WEAR_WIELD ) ) )
+    {
+	if ( ( wield2 = get_eq_char( ch, WEAR_WIELD_2 ) ) )
+	{
+	    if ( ( ( get_obj_weight( wield ) + get_obj_weight( wield2 ) )
+		  > str_app[get_curr_str( ch )].wield )
+		|| !IS_SET( race_table[ ch->race ].race_abilities,
+			   RACE_WEAPON_WIELD ) )
+	    {
+		static int depth;
+
+		if ( depth == 0 )
+		{
+		    depth++;
+		    act( "You drop $p.", ch, wield2, NULL, TO_CHAR );
+		    act( "$n drops $p.", ch, wield2, NULL, TO_ROOM );
+		    obj_from_char( wield2 );
+		    obj_to_room( wield2, ch->in_room );
+		    depth--;
+		}
+
+	    }
+	}
+	else
+	if ( ( get_obj_weight( wield ) > str_app[get_curr_str( ch )].wield )
+	    || !IS_SET( race_table[ ch->race ].race_abilities,
+		       RACE_WEAPON_WIELD ) )
+	{
+	    static int depth;
+
+	    if ( depth == 0 )
+	    {
+		depth++;
+		act( "You drop $p.", ch, wield, NULL, TO_CHAR );
+		act( "$n drops $p.", ch, wield, NULL, TO_ROOM );
+		obj_from_char( wield );
+		obj_to_room( wield, ch->in_room );
+		depth--;
+	    }
+
+	}
+    }
+    else if ( ( wield2 = get_eq_char( ch, WEAR_WIELD_2 ) )
+             && ( get_obj_weight( wield2 ) > str_app[get_curr_str( ch )].wield
+		 || !IS_SET( race_table[ ch->race ].race_abilities,
+			    RACE_WEAPON_WIELD ) ) )
     {
 	static int depth;
 
 	if ( depth == 0 )
 	{
 	    depth++;
-	    act( "You drop $p.", ch, wield, NULL, TO_CHAR );
-	    act( "$n drops $p.", ch, wield, NULL, TO_ROOM );
-	    obj_from_char( wield );
-	    obj_to_room( wield, ch->in_room );
+	    act( "You drop $p.", ch, wield2, NULL, TO_CHAR );
+	    act( "$n drops $p.", ch, wield2, NULL, TO_ROOM );
+	    obj_from_char( wield2 );
+	    obj_to_room( wield2, ch->in_room );
 	    depth--;
 	}
+
     }
 
     return;
@@ -411,9 +573,7 @@ bool is_affected( CHAR_DATA *ch, int sn )
 void affect_join( CHAR_DATA *ch, AFFECT_DATA *paf )
 {
     AFFECT_DATA *paf_old;
-    bool         found;
 
-    found = FALSE;
     for ( paf_old = ch->affected; paf_old; paf_old = paf_old->next )
     {
         if ( paf_old->deleted )
@@ -640,7 +800,7 @@ void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
     {
         sprintf( buf, "Equip_char: %s already equipped at %d.",
 		ch->name, iWear );
-	bug( buf, NULL );
+	bug( buf, 0 );
 	return;
     }
 
@@ -688,7 +848,7 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
     {
         sprintf( buf, "Unequip_char: %s already unequipped with %d.",
 		ch->name, obj->pIndexData->vnum );
-	bug( buf, NULL );
+	bug( buf, 0 );
 	return;
     }
 
@@ -935,6 +1095,9 @@ void extract_char( CHAR_DATA *ch, bool fPull )
 	return;
     }
 
+    if ( ch->fighting )
+        stop_fighting( ch, TRUE );
+
     if ( fPull )
     {
 	char* name;
@@ -945,17 +1108,15 @@ void extract_char( CHAR_DATA *ch, bool fPull )
 	    name = ch->name;
 
 	die_follower( ch, name );
-    }
 
-    stop_fighting( ch, TRUE );
-
-    for ( obj = ch->carrying; obj; obj = obj_next )
-    {
-        obj_next = obj->next_content;
-        if ( obj->deleted )
-	    continue;
-	extract_obj( obj );
-    }
+	for ( obj = ch->carrying; obj; obj = obj_next )
+	{
+	    obj_next = obj->next_content;
+	    if ( obj->deleted )
+	      continue;
+	    extract_obj( obj );
+	}
+     }
     
     char_from_room( ch );
 
@@ -965,7 +1126,7 @@ void extract_char( CHAR_DATA *ch, bool fPull )
 
 	if ( !( location = get_room_index( ROOM_VNUM_PURGATORY_A ) ) )
 	  {
-	    bug( "Purgatory A does not exist!", NULL );
+	    bug( "Purgatory A does not exist!", 0 );
 	    char_to_room( ch, get_room_index( ROOM_VNUM_ALTAR ) );
 	  }
 	else
@@ -1351,6 +1512,11 @@ bool can_see( CHAR_DATA *ch, CHAR_DATA *victim )
     if ( ch == victim )
 	return TRUE;
 
+    /* All mobiles cannot see wizinvised immorts */
+    if ( IS_NPC( ch )
+	&& !IS_NPC( victim ) && IS_SET( victim->act, PLR_WIZINVIS ) )
+        return FALSE;
+	
     if ( !IS_NPC( victim )
 	&& IS_SET( victim->act, PLR_WIZINVIS )
 	&& get_trust( ch ) < get_trust( victim ) )
@@ -1362,20 +1528,23 @@ bool can_see( CHAR_DATA *ch, CHAR_DATA *victim )
     if ( IS_AFFECTED( ch, AFF_BLIND ) )
 	return FALSE;
 
-    if ( room_is_dark( ch->in_room ) && !IS_AFFECTED( ch, AFF_INFRARED ) )
+    if ( room_is_dark( ch->in_room )
+	&& !IS_SET( race_table[ ch->race ].race_abilities, RACE_INFRAVISION )
+	&& !IS_AFFECTED( ch, AFF_INFRARED ) )
 	return FALSE;
 
     if ( victim->position == POS_DEAD )
         return TRUE;
 
     if ( IS_AFFECTED( victim, AFF_INVISIBLE )
+	&& !IS_SET( race_table[ ch->race ].race_abilities, RACE_DETECT_INVIS )
 	&& !IS_AFFECTED( ch, AFF_DETECT_INVIS ) )
 	return FALSE;
 
     if ( IS_AFFECTED( victim, AFF_HIDE )
+	&& !IS_SET( race_table[ ch->race ].race_abilities, RACE_DETECT_HIDDEN )
 	&& !IS_AFFECTED( ch, AFF_DETECT_HIDDEN )
-	&& !victim->fighting
-	&& ( IS_NPC( ch ) ? !IS_NPC( victim ) : IS_NPC( victim ) ) )
+	&& !victim->fighting )
 	return FALSE;
 
     return TRUE;
@@ -1400,10 +1569,13 @@ bool can_see_obj( CHAR_DATA *ch, OBJ_DATA *obj )
     if ( obj->item_type == ITEM_LIGHT && obj->value[2] != 0 )
 	return TRUE;
 
-    if ( room_is_dark( ch->in_room ) && !IS_AFFECTED( ch, AFF_INFRARED ) )
+    if ( room_is_dark( ch->in_room )
+	&& !IS_SET( race_table[ ch->race ].race_abilities, RACE_INFRAVISION )
+	&& !IS_AFFECTED( ch, AFF_INFRARED ) )
 	return FALSE;
 
     if ( IS_SET( obj->extra_flags, ITEM_INVIS )
+	&& !IS_SET( race_table[ ch->race ].race_abilities, RACE_DETECT_INVIS )
 	&& !IS_AFFECTED( ch, AFF_DETECT_INVIS ) )
 	return FALSE;
 
@@ -1455,7 +1627,7 @@ char *item_type_name( OBJ_DATA *obj )
     case ITEM_MONEY:		return "money";
     case ITEM_BOAT:		return "boat";
     case ITEM_CORPSE_NPC:	return "npc corpse";
-    case ITEM_CORPSE_PC:	return "pc corpse";
+    case ITEM_CORPSE_PC:        return "pc corpse";
     case ITEM_FOUNTAIN:		return "fountain";
     case ITEM_PILL:		return "pill";
     }
@@ -1471,7 +1643,7 @@ char *item_type_name( OBJ_DATA *obj )
 	      "Item_type_name: unknown type %d from %s owned by (unknown).",
 	      obj->item_type, obj->name );
 
-    bug( buf, NULL );
+    bug( buf, 0 );
     return "(unknown)";
 }
 
@@ -1509,6 +1681,7 @@ char *affect_loc_name( int location )
     case APPLY_SAVING_PETRI:	return "save vs petrification";
     case APPLY_SAVING_BREATH:	return "save vs breath";
     case APPLY_SAVING_SPELL:	return "save vs spell";
+    case APPLY_RACE:            return "race";
     }
 
     bug( "Affect_location_name: unknown location %d.", location );
@@ -1525,27 +1698,33 @@ char *affect_bit_name( int vector )
     static char buf [ 512 ];
 
     buf[0] = '\0';
-    if ( vector & AFF_BLIND         ) strcat( buf, " blind"         );
-    if ( vector & AFF_INVISIBLE     ) strcat( buf, " invisible"     );
-    if ( vector & AFF_DETECT_EVIL   ) strcat( buf, " detect_evil"   );
-    if ( vector & AFF_DETECT_INVIS  ) strcat( buf, " detect_invis"  );
-    if ( vector & AFF_DETECT_MAGIC  ) strcat( buf, " detect_magic"  );
-    if ( vector & AFF_DETECT_HIDDEN ) strcat( buf, " detect_hidden" );
-    if ( vector & AFF_HOLD          ) strcat( buf, " hold"          );
-    if ( vector & AFF_SANCTUARY     ) strcat( buf, " sanctuary"     );
-    if ( vector & AFF_FAERIE_FIRE   ) strcat( buf, " faerie_fire"   );
-    if ( vector & AFF_INFRARED      ) strcat( buf, " infrared"      );
-    if ( vector & AFF_CURSE         ) strcat( buf, " curse"         );
-    if ( vector & AFF_FLAMING       ) strcat( buf, " flaming"       );
-    if ( vector & AFF_POISON        ) strcat( buf, " poison"        );
-    if ( vector & AFF_PROTECT       ) strcat( buf, " protect"       );
-    if ( vector & AFF_PARALYSIS     ) strcat( buf, " paralysis"     );
-    if ( vector & AFF_SLEEP         ) strcat( buf, " sleep"         );
-    if ( vector & AFF_SNEAK         ) strcat( buf, " sneak"         );
-    if ( vector & AFF_HIDE          ) strcat( buf, " hide"          );
-    if ( vector & AFF_CHARM         ) strcat( buf, " charm"         );
-    if ( vector & AFF_FLYING        ) strcat( buf, " flying"        );
-    if ( vector & AFF_PASS_DOOR     ) strcat( buf, " pass_door"     );
+    if ( vector & AFF_BLIND         ) strcat( buf, " blind"          );
+    if ( vector & AFF_INVISIBLE     ) strcat( buf, " invisible"      );
+    if ( vector & AFF_DETECT_EVIL   ) strcat( buf, " detect_evil"    );
+    if ( vector & AFF_DETECT_INVIS  ) strcat( buf, " detect_invis"   );
+    if ( vector & AFF_DETECT_MAGIC  ) strcat( buf, " detect_magic"   );
+    if ( vector & AFF_DETECT_HIDDEN ) strcat( buf, " detect_hidden"  );
+    if ( vector & AFF_HOLD          ) strcat( buf, " hold"           );
+    if ( vector & AFF_SANCTUARY     ) strcat( buf, " sanctuary"      );
+    if ( vector & AFF_FAERIE_FIRE   ) strcat( buf, " faerie_fire"    );
+    if ( vector & AFF_INFRARED      ) strcat( buf, " infrared"       );
+    if ( vector & AFF_CURSE         ) strcat( buf, " curse"          );
+    if ( vector & AFF_CHANGE_SEX    ) strcat( buf, " change_sex"     );
+    if ( vector & AFF_POISON        ) strcat( buf, " poison"         );
+    if ( vector & AFF_PROTECT       ) strcat( buf, " protect"        );
+    if ( vector & AFF_POLYMORPH     ) strcat( buf, " polymorph"      );
+    if ( vector & AFF_SLEEP         ) strcat( buf, " sleep"          );
+    if ( vector & AFF_SNEAK         ) strcat( buf, " sneak"          );
+    if ( vector & AFF_HIDE          ) strcat( buf, " hide"           );
+    if ( vector & AFF_CHARM         ) strcat( buf, " charm"          );
+    if ( vector & AFF_FLYING        ) strcat( buf, " flying"         );
+    if ( vector & AFF_PASS_DOOR     ) strcat( buf, " pass_door"      );
+    if ( vector & AFF_MUTE          ) strcat( buf, " mute"           );
+    if ( vector & AFF_GILLS         ) strcat( buf, " gills"          );
+    if ( vector & AFF_VAMP_BITE     ) strcat( buf, " vampiric curse" );
+    if ( vector & AFF_GHOUL         ) strcat( buf, " ghoulic curse"  );
+    if ( vector & AFF_FLAMING       ) strcat( buf, " flaming shield" );
+
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
 
@@ -1574,6 +1753,8 @@ char *extra_bit_name( int extra_flags )
     if ( extra_flags & ITEM_NOREMOVE     ) strcat( buf, " noremove"     );
     if ( extra_flags & ITEM_INVENTORY    ) strcat( buf, " inventory"    );
     if ( extra_flags & ITEM_POISONED     ) strcat( buf, " poisoned"     );
+    if ( extra_flags & ITEM_VAMPIRE_BANE ) strcat( buf, " vampire bane" );
+    if ( extra_flags & ITEM_HOLY         ) strcat( buf, " holy"         );
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
 
@@ -1596,15 +1777,20 @@ bool longstring( CHAR_DATA *ch, char *argument )
         return FALSE;
 }
 
-bool authorized( CHAR_DATA *ch, int gsn )
+bool authorized( CHAR_DATA *ch, char *skllnm )
 {
-    if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn] < 100 )
+
+    char buf [ MAX_STRING_LENGTH ];
+
+    if ( ( !IS_NPC( ch ) && str_infix( skllnm, ch->pcdata->immskll ) )
+	||  IS_NPC( ch ) )
     {
-	send_to_char( "You are not authorized to use this command.\n\r", ch );
+        sprintf( buf, "Sorry, you are not authorized to use %s.\n\r", skllnm );
+	send_to_char( buf, ch );
 	return FALSE;
     }
-    else
-        return TRUE;
+
+    return TRUE;
 
 }
 
@@ -1623,8 +1809,34 @@ void end_of_game( void )
 	    else
 	      interpret( d->character, "quit" );
 	}
+	else
+	    close_socket( d );
     }
 
     return;
+
+}
+
+int race_lookup( const char *race )
+{
+    int index;
+
+    for ( index = 0; index < MAX_RACE; index++ )
+        if ( !str_prefix( race, race_table[index].name ) )
+	    return index;
+
+    return -1;
+
+}
+
+int affect_lookup( const char *affectname )
+{
+    int index;
+
+    for ( index = 0; index < MAX_SKILL; index++ )
+	if ( !str_cmp( affectname, skill_table[index].name ) )
+	    return index;
+
+    return -1;
 
 }

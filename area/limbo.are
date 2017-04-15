@@ -12,7 +12,7 @@ Puff the Fractal Dragon is here, contemplating a higher reality.
 1 0 1000 S
 26 1 -1 5d10+550 4d6+3
 10000 155000
-8 8 2
+8 dragon~ 2
 #2
 darkside~
 The Mighty Darkside~
@@ -25,7 +25,7 @@ to disintegrate you.  Beholders are not known for their personality.
 163 8 -870 S
 25 6 0 25d25+250 6d6+5
 22560 94000
-8 8 0
+8 god~ 0
 #0
 
 
@@ -47,6 +47,14 @@ A pile of gold coins.~
 20 0 1
 0~ 0~ 0~ 0~
 1 0 0
+#4
+generic potion~
+a generic potion~
+A bland generic potion is lying here.~
+~
+10 1 1|16384
+12~ heal~ 0~ 0~
+2 0 0
 #10
 corpse~
 corpse of %s~
@@ -64,7 +72,7 @@ The corpse of %s is lying here.~
 0~ 0~ 0~ 1~
 100 0 0
 #12
-head~
+head food~
 head of %s~
 The severed head of %s is lying here.~
 ~
@@ -72,7 +80,7 @@ The severed head of %s is lying here.~
 10~ 0~ 0~ 0~
 5 0 0
 #13
-heart~
+heart food~
 heart of %s~
 The torn-out heart of %s is lying here.~
 ~
@@ -80,7 +88,7 @@ The torn-out heart of %s is lying here.~
 16~ 0~ 0~ 0~
 2 0 0
 #14
-arm~
+arm food~
 arm of %s~
 The sliced-off arm of %s is lying here.~
 ~
@@ -88,7 +96,7 @@ The sliced-off arm of %s is lying here.~
 20~ 0~ 0~ 0~
 5 0 0
 #15
-leg~
+leg food~
 leg of %s~
 The sliced-off leg of %s is lying here.~
 ~
@@ -104,7 +112,7 @@ The steaming turds of %s assail your nostrils.~
 5~ 0~ 0~ 1~
 1 0 0
 #20
-mushroom~
+mushroom food~
 a Magic Mushroom~
 A delicious magic mushroom is here.~
 ~

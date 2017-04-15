@@ -1,4 +1,4 @@
-#AREA	{ 5 45} Strahd  Crystalmir Lake~
+#AREA     { 5 45} Strahd  Crystalmir Lake~
 
 
 
@@ -15,7 +15,7 @@ cape. A single feather folds back along the right side of her head.
 3 128 900 S
 45 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 human~ 2
 #10002
 Fewmaster Toede~
 Fewmaster Toede~
@@ -27,19 +27,19 @@ double chins, and pot belly all resemble those of a vicious little toad.
 96 128 -900 S
 12 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 elf~ 1
 #10003
 riverwind man~
 Riverwind~
 Riverwind the Ranger is standing here..
 ~
-A black haired ranger whos muscles surge with power.
+A black haired ranger who's muscles surge with power.
 He looks travel weary and tired.
 ~
 64 128 900 S
 30 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #10004
 Baaz Draconian robed~
 Baaz Draconian~
@@ -51,7 +51,7 @@ and hood.
 67 512 -750 S
 7 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 dragon~ 1
 #10005
 Farmer~
 The Farmer~
@@ -62,7 +62,7 @@ He looks like a farmer.....go figure...
 1 0 150 S
 10 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #10006
 Farm worker~
 Farm worker~
@@ -73,7 +73,7 @@ The worker is very busy...leave him alone.
 64 0 125 S
 5 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #10007
 barracuda~
 Barracuda~
@@ -84,20 +84,20 @@ This is a very hungry looking fish with BIG teeth...
 34 0 20 S
 7 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 fish~ 0
 #10008
 Turtle Dragon~
 Turtle dragon~
 There is a very large Turtle dragon here.
 ~
 This is a very big dragon. It looks more turtle than dragon though.
-Its blue-green scales glisten with moisture. Steam jets from its nostrals.
+Its blue-green scales glisten with moisture. Steam jets from its nostrils.
 It looks intently at you as if you look you over before eating you.
 ~
 99 8 -700 S
 27 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 dragon~ 0
 #10009
 farmers guard dog~
 Farmers guarddog~
@@ -109,7 +109,7 @@ thinking of biting You!!....
 34 8 100 S
 7 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 animal~ 0
 #10010
 strange fish~
 strange fish~
@@ -121,7 +121,7 @@ Probably walks too....
 64 0 200 S
 5 0 0 0d0+0 0d0+0
 0 0
-0 0 0
+0 fish~ 0
 #10011
 hobgoblin flunky~
 hobgoblin flunky~
@@ -132,7 +132,7 @@ The hobgoblin screams at you, "Give me the blue crystal staff!!!!"
 68 0 -300 S
 6 12 6 6d6+60 2d4+0
 100 1000
-8 8 1
+8 hobgoblin~ 1
 #10012
 White Stag~
 the White Stag~
@@ -144,18 +144,18 @@ suppose to be just a legend...
 68 65536 -300 S
 17 12 6 6d6+60 2d4+0
 100 1000
-8 8 1
+8 animal~ 1
 #10013
 Old pooh bear~
 Old pooh bear~
 An old worn out winnie the pooh bear is here.
 ~
-This is an old pooh bear. It looks as if it has been loves a little too much.
+This is an old pooh bear. It looks as if it has been loved a little too much.
 ~
 68 0 300 S
 5 18 9 2d5+19 1d5+1
 250 200
-6 8 1
+6 bear~ 1
 #10014
 rat large~
 a large rat~
@@ -167,7 +167,7 @@ I'm sure the farmers would appreciate it too.
 4 0 -200 S
 5 17 6 3d4+48 1d8+0
 10 400
-8 8 1
+8 rat~ 1
 #10015
 mouse field~
 a field mouse~
@@ -178,7 +178,7 @@ The Mouse is a cute little creature.
 6 0 100 S
 4 19 9 2d4+10 1d4+0
 1 100
-8 8 1
+8 rat~ 1
 #0
 
 #OBJECTS
@@ -307,7 +307,8 @@ Its a pair of longjohns....the kind a farmer would wear.
 #10010
 ancient coins gold~
 a heap of ancient gold coins~
-Some ancient gold coins lie piled up in a heap on the floor.~
+Some ancient gold coins lie piled up in a heap on the shipwreck maybe?
+~
 ~
 20 0 1
 1000~ 0~ 0~ 0~
@@ -333,13 +334,13 @@ grain~
 some grain~
 There is some grain here.~
 ~
-19 0 1
-15~ 0~ 0~ 0~
-8 22 4
+15 0 1
+2~ 0~ 0~ 0~
+5 100 20
 #10013
 leather armor~
 leather armor~
-There is a suit of leather armor~
+There is a suit of leather armor on the ground.~
 ~
 9 0 1|8
 2~ 0~ 0~ 0~
@@ -941,7 +942,7 @@ You see a path long the lakeshore.
 S
 #10023
 Stone bridge~
-The Solace Stream sparkles beneath an ancient stone brige. Water tumbles
+The Solace Stream sparkles beneath an ancient stone bridge. Water tumbles
 out of the forest, over the rocks, and toward the Southpass that lies between
 southern Sentinel Peaks. West of the bridge, the road splits in two, branching
 to the south and the west. Both roads wind among the great vallenwoods,
@@ -1373,7 +1374,7 @@ An antique bed sits in one corner of the room.
 D1
 You see a bedroom closet.
 ~
-~
+closet door~
 1 -1 10044
 D2
 You see the top of the stairs.
@@ -1403,7 +1404,7 @@ You see a closet to the south.
 D2
 You see a closet door.
 ~
-door~
+closet door~
 1 -1 10082
 D3
 You see the top of the stairs.
@@ -1437,7 +1438,7 @@ You are locked in.
 D3
 You see closet door.
 ~
-~
+closet door~
 1 10007 10042
 E
 cedar blocks~
@@ -1457,7 +1458,7 @@ It is very dim here. You can make out the faint surfaces of the lake floor
 and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1466,7 +1467,7 @@ Its too dark to see.
 D1
 Its too dark to see.
 ~
-~
+door~
 0 -1 10049
 D2
 Its too dark to see.
@@ -1491,7 +1492,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1520,7 +1521,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1549,7 +1550,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1578,7 +1579,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1607,7 +1608,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1636,7 +1637,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1665,7 +1666,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1694,7 +1695,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1723,7 +1724,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1752,7 +1753,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1781,7 +1782,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1805,7 +1806,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1834,7 +1835,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1863,7 +1864,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1892,7 +1893,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1921,7 +1922,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1950,7 +1951,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -1979,7 +1980,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -2003,7 +2004,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -2032,7 +2033,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -2061,7 +2062,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -2090,7 +2091,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -2119,7 +2120,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -2148,7 +2149,7 @@ and other rocks. You hope you can hold your breath long enough.
 It looks as if the surface of the lake is make of glass...
 In fact you can't break the surface!...You need air SOON!
 ~
-100 7  2
+100 0 8
 D0
 Its too dark to see.
 ~
@@ -2171,7 +2172,7 @@ This is an underwater cave that seems to have trapped some air in it.
 It seems as if the cave continued deeper, but it is blocked by a rock
 slide.
 ~
-100 7  2
+100 0 8
 D3
 Its too dark to see.
 ~
@@ -2187,7 +2188,7 @@ Underwater Passageway~
 This passageway is almost completely filled with water. It seems to have
 trapped some air. Some thing doesn't feel right. Maybe you should leave.
 ~
-100 7  2
+100 0 8
 D1
 Its too dark to see.
 ~
@@ -2205,7 +2206,7 @@ This passageway is almost completely filled with air. This is REALLY strange.
 You wonder how this can be. Something is definetly wrong.
 The air here is very humid and it seem to be getting warmer to the south.
 ~
-100 7  2
+100 0 8
 D1
 Underwater Passageway.
 ~
@@ -2223,7 +2224,7 @@ This Cave is enormous. It is mostly flooded with water. The air is very
 humid and misty. Large piles of bones lay all over. The walls are covered
 with scratches and claw marks.
 ~
-100 7  2
+100 0 8
 D0
 Underwater Passageway.
 ~
@@ -2240,7 +2241,7 @@ Narrow Crack in the rock.~
 This seems to a crack caused by some earthquake or other natural event.
 The opening is large here, but seems to get smaller as it goes on.
 ~
-100 7  2
+100 0 8
 D1
 Its too dark to see.
 ~
@@ -2258,7 +2259,7 @@ This is a small tunnel that seems to go deeper into the mountains.
 It is completely filled with water.
 Some light filters in through the muck to the east.
 ~
-100 7  2
+100 0 8
 D0
 a very small tunnel.
 ~
@@ -2280,7 +2281,7 @@ Dead end~
 The tunnel seems to dead end here.
 There is nothing but mud and a small pocket of air.
 ~
-100 7  2
+100 0 8
 D0
 a very small tunnel.
 ~
@@ -2292,7 +2293,7 @@ Nest Entrance~
 This seems to be the entrance to a nest of some kind.
 The water here is very murky.
 ~
-100 7  2
+100 0 8
 D0
 Barracuda nest.
 ~
@@ -2304,7 +2305,7 @@ Barracuda Nest~
 You have disturbed a barracuda nest. They are none too pleased and
 now plan to use you for their next feeding....
 ~
-100 7  2
+100 0 8
 D2
 a small tunnel.
 ~
@@ -2343,7 +2344,7 @@ M 0 10003 1 10002       Riverwind
 E 1 10008 15 16            Equipt with Silver longsword
 E 1 10013 15 5              Equipt with Leather armor
 *
-M 0 10004 10 10015     Baaz Draconian
+M 0 10004 4 10015     Baaz Draconian
 E 1 10015 7 16              Equipt with footmans lance
 E 1 10016 7 5                Equipt with humanskin vest
 E 1 10017 7 6                Equipt with draconian helmet
@@ -2355,16 +2356,16 @@ E 1 10009 10 5              Equipt with Longjohns
 M 0 10006 10 10013     farm workers
 E 1 10009 5 5                Equipt with Longjohns
 *
-M 0 10007 16 10069       Barracuda
-M 0 10007 16 10057       Barracuda
-M 0 10007 16 10081       Barracuda
-M 0 10007 16 10066       Barracuda
-M 0 10007 16 10079       Barracuda
-M 0 10007 16 10005       Barracuda
+M 0 10007 1 10069       Barracuda
+M 0 10007 1 10057       Barracuda
+M 0 10007 1 10081       Barracuda
+M 0 10007 1 10066       Barracuda
+M 0 10007 1 10079       Barracuda
+M 0 10007 1 10005       Barracuda
 *
 M 0 10008 1 10076       Turtle Dragon
 E 1 10001 20 12            Equipt with Turtle Dragon Shell
-G 0 10010 0	              Give Pile of ancient coins.
+G 0 10010 0                  Give Pile of ancient coins.
 *
 M 0 10009 2 10039       Farmer's Dog
 G 0 10006 0                  Give house key
@@ -2395,8 +2396,8 @@ M 0 10014 7 10035        large rat
 M 0 10014 7 10031        large rat
 M 0 10014 7 10038        large rat
 *
-M 0 10015 3 10037        Field mouse
-M 0 10015 3 10034        Field mouse
+M 0 10015 1 10037        Field mouse
+M 0 10015 1 10034        Field mouse
 *
 O 0 10005 1 10018        Place fire pit
 P 0 10004 1 10005        Put silver bracer in pit
@@ -2466,9 +2467,17 @@ M  10013 spec_thief                Pooh bear
 * BUG FIX 1/21/94 8:00PST  Fix fire pit so you can't pick it up.
 * ADD 1/30/94 2:00pm PST    Addition of conect point for Descent.are
 * BUG FIX 1/30/94 2:00pm PST  Fix for the mob trap in farmers house/yard
-* ADD 2/17/94 2:00pm PST 	Addition of connect point for Yggdrasil
+* ADD 2/17/94 2:00pm PST      Addition of connect point for Yggdrasil
 *
+
+* Updated 1/6/95 by Zelda
+*
+* Fixed following spelling errors
+*
+*          Mob#10003  whos should be who's
+*          Mob#10008  nostrals should be nostrils
+*          Room#10023 brige should be bridge
 S
 
-
 #$
+

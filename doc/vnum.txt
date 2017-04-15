@@ -1,9 +1,7 @@
-EnvyMud Release 1.0
-Thursday 30 June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -16,7 +14,7 @@ kept up to date since.
 
 00 limbo.are    20 catacomb.are 40 moria.are    60 haon.are     80 mega1.are
 01 smurf.are    21 hood.are     41 moria.are    61 haon.are     81 nirvana.are
-02 ocean.are    22 draconia.are 42 -            62 -            82 -
+02 ocean.are    22 draconia.are 42 -            62 arachnos.are 82 castle.are
 03 plains.are   23 mahntor.are  43 -            63 arachnos.are 83 marsh.are   
 04 purgator.are 24 ultima.are   44 circus.are   64 -            84 -           
 05 -            25 ultima.are   45 -            65 dwarven.are  85 -           
@@ -42,7 +40,7 @@ kept up to date since.
 104 descent.are 114 -            124 -            134 -
 105 descent.are 115 highland.are 125 -            135 -
 106 -           116 highland.are 126 -            136 -
-107 -           117 highland.are 127 -            137 -
+107 murky.are   117 highland.are 127 -            137 -
 108 -           118 -            128 -            138 -
 109 -           119 -            129 -            139 -
 

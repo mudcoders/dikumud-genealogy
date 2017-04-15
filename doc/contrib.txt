@@ -1,9 +1,7 @@
-EnvyMud release 1.0
-Thursday 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -18,7 +16,7 @@ and we'll fix it in the next release.
 
 === Contribution Policy
 
-We welcome contributions to the Merc Mailing List at merc@kpc.com.
+We welcome contributions to the Merc Mailing List at merc-l@netcom.com
 
 You can send the mailing list areas, spells, skills, bug reports, bug fixes,
 code, ideas, comments on our documentation, interesting stories, or anything
@@ -38,7 +36,7 @@ take things from EnvyMud we'd appreciate e-mail from you.
 === Mailing List
 
 Thanks to Zrin for administering the Merc mailing list.  You can join the list
-by sending e-mail to merc-request@kpc.com.
+by sending e-mail to merc-l@webnexus.com
 
 
 
@@ -49,7 +47,7 @@ EnvyMud started solely on MERC 2.2 source.
 Thanks to Sludge (Tuan Doan) for pointing to the solution for the hpux
 echo_str bug.
 
-Thanks to Kaneda for the prompt fix.
+Thanks to Kaneda for the prompt fix and do_whois.
 
 Thanks to Alander for his socket memory fix.
 
@@ -81,3 +79,22 @@ Thanks to those who helped port EnvyMud to various sites:
 	Jeremy Elson (of CircleMud), Binky, Thelonius, Celeste, George Marinos
 of Central Computing Services of University of California at Berkeley.
 
+=== The Second Contributions
+
+Thanks to:
+
+Magoo from the MERC mailing list for a little insight on enchant weapon.
+
+Zavod for:  information on Rstat showing wizinvised immorts
+	    missing free_string on new characters
+	    MSDOS compile warning fix
+	    new character name problem for source overwrites & dir changes
+
+Koala from EnvyMud for:  pointing out a drop eq problem in group_gain
+			 slist display problem fix
+
+Walker from the MERC mailing list for the spec_ghost repop fix.
+
+Robin Goodall from the MERC mailing list for the multiple help keyword display.
+
+Spitfire from the MERC mailing list for the mobiles using magical items.

@@ -15,7 +15,7 @@ to disintegrate you.  Beholders are not known for their personality.
 163 8 -870 S
 25 6 0 25d25+250 6d6+5
 22560 94000
-8 8 0
+8 giant~ 0
 #5201
 lamia beast~
 The lamia~
@@ -27,7 +27,7 @@ body of a four-legged beast.  She licks her lips as she looks at you greedily.
 100 0 -999 S
 9 12 1 9d9+99 1d5+4
 1000 3000
-8 8 2
+8 animal~ 2
 #5202
 mimic chest~
 The mimic~
@@ -39,7 +39,7 @@ front.
 228 32768 10 S
 11 10 1 11d11+110 2d7+0
 0 4000
-8 8 0
+8 object~ 0
 #5203
 mimic boulder~
 The mimic~
@@ -49,7 +49,7 @@ Two skeletons lie crushed under a large boulder.
 228 32768 -10 S
 11 10 1 11d11+110 3d5+1
 0 4000
-8 8 0
+8 object~ 0
 #5204
 mimic floor~
 The mimic~
@@ -59,7 +59,7 @@ The stone floor of this house has been ripped apart.
 228 32768 -140 S
 11 10 1 11d11+110 2d6+0
 0 3500
-8 8 0
+8 object~ 0
 #5205
 mimic pottery~
 The mimic~
@@ -69,7 +69,7 @@ Some broken shards of pottery lie strewn about the floor.
 228 32768 200 S
 11 10 0 11d11+110 2d5+1
 0 3500
-8 8 0
+8 object~ 0
 #5206
 mimic planks~
 The mimic~
@@ -79,7 +79,7 @@ A few wooden planks lie stacked on a low shelf.
 228 32768 0 S
 11 9 0 11d11+110 4d3+1
 0 3500
-8 8 0
+8 object~ 0
 #5207
 lizard horned~
 The horned lizard~
@@ -90,7 +90,7 @@ A cute little lizard, that is, if you like reptiles!
 128 0 0 S
 3 17 4 1d4+30 1d4+0
 0 300
-8 8 0
+8 snake~ 0
 #5208
 golem stone~
 The stone golem~
@@ -102,7 +102,7 @@ stone creature. He stands here still guarding the city.
 2 8192 600 S
 25 0 0 6d10+600 3d7+15
 4250 80000
-8 8 0
+8 god~ 0
 #0
 
 

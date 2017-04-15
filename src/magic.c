@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -201,13 +204,24 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_MUTE ) )
+    {
+	send_to_char( "You can't...you're mute!\n\r", ch );
+	return;
+    }
+
+    if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+    {
+	send_to_char( "You can't...you are in a Cone of Silence!\n\r", ch );
+	return;
+    }
+
     mana = MANA_COST( ch, sn );
 
     /*
      * Locate targets.
      */
     victim	= NULL;
-    obj		= NULL;
     vo		= NULL;
       
     switch ( skill_table[sn].target )
@@ -237,18 +251,17 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	    }
 	}
 
-	if ( !IS_NPC( victim ) && ch != victim )
-        {
-	    send_to_char( "You can't do that on a player.\n\r", ch );
-	    return;
-	}
-
 	if ( IS_AFFECTED( ch, AFF_CHARM ) && ch->master == victim )
         {
 	    send_to_char( "You can't do that on your own follower.\n\r",
 			 ch );
 	    return;
 	}
+
+	if ( is_safe( ch, victim ) )
+	    return;
+
+	check_killer( ch, victim );
 
 	vo = (void *) victim;
 	break;
@@ -373,11 +386,17 @@ void obj_cast_spell( int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim,
     case TAR_CHAR_OFFENSIVE:
 	if ( !victim )
 	    victim = ch->fighting;
-	if ( !victim || ( !IS_NPC( victim ) && ch != victim ) )
+	if ( !victim )
 	{
 	    send_to_char( "You can't do that.\n\r", ch );
 	    return;
 	}
+
+	if ( is_safe( ch, victim ) )
+	    return;
+
+	check_killer( ch, victim );
+
 	vo = (void *) victim;
 	break;
 
@@ -437,7 +456,8 @@ void spell_acid_blast( int sn, int level, CHAR_DATA *ch, void *vo )
     dam = dice( level, 8 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -516,6 +536,28 @@ void spell_blindness( int sn, int level, CHAR_DATA *ch, void *vo )
 
 
 
+void spell_breathe_water( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+    AFFECT_DATA af;
+
+    if ( IS_AFFECTED( victim, AFF_GILLS ) )
+	return;
+
+    af.type      = sn;
+    af.duration  = 24;
+    af.location  = APPLY_NONE;
+    af.modifier  = 0;
+    af.bitvector = AFF_GILLS;
+    affect_to_char( victim, &af );
+
+    send_to_char( "You can now breathe underwater.\n\r", victim );
+    act( "$n can now breathe underwater.", victim, NULL, NULL, TO_ROOM );
+    return;
+}
+
+
+
 void spell_burning_hands( int sn, int level, CHAR_DATA *ch, void *vo )
 {
                  CHAR_DATA *victim       = (CHAR_DATA *) vo;
@@ -535,7 +577,8 @@ void spell_burning_hands( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -572,7 +615,8 @@ void spell_call_lightning( int sn, int level, CHAR_DATA *ch, void *vo )
 	{
 	    if ( vch != ch
 		&& ( IS_NPC( ch ) ? !IS_NPC( vch ) : IS_NPC( vch ) ) )
-		damage( ch, vch, saves_spell( level, vch ) ? dam/2 : dam, sn );
+                damage( ch, vch, saves_spell( level, vch ) ? dam/2 : dam,
+                       sn, WEAR_NONE );
 	    continue;
 	}
 
@@ -589,7 +633,7 @@ void spell_call_lightning( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_cause_light( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    damage( ch, (CHAR_DATA *) vo, dice( 1, 8 ) + level / 3, sn );
+    damage( ch, (CHAR_DATA *) vo, dice( 1, 8 ) + level / 3, sn, WEAR_NONE );
     return;
 }
 
@@ -597,7 +641,7 @@ void spell_cause_light( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_cause_critical( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    damage( ch, (CHAR_DATA *) vo, dice( 3, 8 ) + level - 6, sn );
+    damage( ch, (CHAR_DATA *) vo, dice( 3, 8 ) + level - 6, sn, WEAR_NONE );
     return;
 }
 
@@ -605,7 +649,7 @@ void spell_cause_critical( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_cause_serious( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    damage( ch, (CHAR_DATA *) vo, dice( 2, 8 ) + level / 2, sn );
+    damage( ch, (CHAR_DATA *) vo, dice( 2, 8 ) + level / 2, sn, WEAR_NONE );
     return;
 }
 
@@ -616,6 +660,12 @@ void spell_change_sex( int sn, int level, CHAR_DATA *ch, void *vo )
     CHAR_DATA  *victim = (CHAR_DATA *) vo;
     AFFECT_DATA af;
 
+    if ( IS_AFFECTED( victim, AFF_CHANGE_SEX ) )
+    {
+	act( "$E is already changed.", ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
     af.type      = sn;
     af.duration  = 10 * level;
     af.location  = APPLY_SEX;
@@ -624,7 +674,7 @@ void spell_change_sex( int sn, int level, CHAR_DATA *ch, void *vo )
 	af.modifier  = number_range( 0, 2 ) - victim->sex;
     }
     while ( af.modifier == 0 );
-    af.bitvector = 0;
+    af.bitvector = AFF_CHANGE_SEX;
     affect_to_char( victim, &af );
     if ( ch != victim )
 	send_to_char( "Ok.\n\r", ch );
@@ -638,10 +688,20 @@ void spell_charm_person( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     CHAR_DATA  *victim = (CHAR_DATA *) vo;
     AFFECT_DATA af;
+    char        buf[ MAX_STRING_LENGTH ];
 
     if ( victim == ch )
     {
 	send_to_char( "You like yourself even better!\n\r", ch );
+	return;
+    }
+
+    if ( get_trust( ch ) > LEVEL_HERO && get_trust( ch ) < L_SEN )
+    {
+	send_to_char( "There is no need for you to have a charmed mobile\n\r",
+		     ch );
+	sprintf( buf, "%s charming", ch->name );
+	log_string( buf );
 	return;
     }
 
@@ -699,8 +759,8 @@ void spell_chill_touch( int sn, int level, CHAR_DATA *ch, void *vo )
     {
 	dam /= 2;
     }
+    damage( ch, victim, dam, sn, WEAR_NONE );
 
-    damage( ch, victim, dam, sn );
     return;
 }
 
@@ -726,10 +786,35 @@ void spell_colour_spray( int sn, int level, CHAR_DATA *ch, void *vo )
     if ( saves_spell( level, victim ) )
 	dam /= 2;
 
-    damage( ch, victim, dam, sn );
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
+
+
+void spell_cone_of_silence( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    ROOM_INDEX_DATA *pRoomIndex;
+
+    if ( !( pRoomIndex = ch->in_room ) )
+        return;
+
+    if ( IS_SET( pRoomIndex->room_flags, ROOM_SAFE ) )
+    {
+	send_to_char( "You can't do that.\n\r", ch );
+	return;
+    }
+
+    if ( !IS_SET( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE ) )
+    {
+	SET_BIT( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE );
+	send_to_char( "You have created a cone of silence!\n\r", ch );
+	act( "$n has created a cone of silence!", ch, NULL, NULL, TO_ROOM );
+    }
+
+    return;
+}
 
 
 void spell_continual_light( int sn, int level, CHAR_DATA *ch, void *vo )
@@ -945,6 +1030,34 @@ void spell_curse( int sn, int level, CHAR_DATA *ch, void *vo )
 }
 
 
+void spell_destroy_cursed( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    OBJ_DATA  *obj;
+    OBJ_DATA  *obj_next;
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    int        yesno  = 0;
+
+    for ( obj = victim->carrying; obj; obj = obj_next )
+    {
+        obj_next = obj->next_content;
+
+	if ( IS_SET( obj->extra_flags, ITEM_NODROP )
+	    && obj->wear_loc == WEAR_NONE )
+	{
+    act( "You convulse as you toss $p to the ground, destroying it.",
+		victim, obj, NULL, TO_CHAR );
+    act( "$n convulses as $e tosses $p to the ground, destroying it.",
+		victim, obj, NULL, TO_ROOM );
+	    extract_obj( obj );
+	    yesno = 1;
+	}
+    }
+
+    if ( ch != victim && yesno )
+        send_to_char( "Ok.\n\r", ch );
+    return;
+}
+
 
 void spell_detect_evil( int sn, int level, CHAR_DATA *ch, void *vo )
 {
@@ -1058,6 +1171,41 @@ void spell_detect_poison( int sn, int level, CHAR_DATA *ch, void *vo )
 }
 
 
+void spell_dispel_evil( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    int        dam;
+  
+    if ( !IS_NPC( ch ) && IS_EVIL( ch ) )
+    {
+	send_to_char( "You are too EVIL to cast this.\n\r", ch );
+	return;
+    }
+  
+    if ( IS_GOOD( victim ) )
+    {
+	act( "God protects $N.", ch, NULL, victim, TO_ROOM );
+	act( "$N does not seem to be affected.", ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
+    if ( IS_NEUTRAL( victim ) )
+    {
+	act( "$N does not seem to be affected.", ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
+    dam = dice( level, 4 );
+    if ( saves_spell( level, victim ) )
+	dam /= 2;
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
+    return;
+}
+
+
+
 /* Dispel Magic recoded by Thelonius for EnvyMud */
 void spell_dispel_magic ( int sn, int level, CHAR_DATA *ch, void *vo )
 {
@@ -1074,6 +1222,28 @@ void spell_dispel_magic ( int sn, int level, CHAR_DATA *ch, void *vo )
 	{
 	    if ( paf->deleted )
 	        continue;
+	    if ( paf->type == skill_lookup( "mute" )
+		&& IS_AFFECTED( victim, AFF_POLYMORPH )
+		&& get_trust( ch ) < LEVEL_IMMORTAL )
+	    {
+		send_to_char( "You were unable to remove Mute.\n\r", ch );
+	        continue;
+	    }
+	    if ( paf->type == skill_lookup( "polymorph other" )
+		&& get_trust( ch ) < LEVEL_IMMORTAL )
+	    {
+		send_to_char( "You were unable to remove Polymorph other.\n\r",
+			     ch );
+	        continue;
+	    }
+	    if ( paf->type == gsn_vampiric_bite 
+		&& get_trust( ch ) < LEVEL_IMMORTAL )
+	    {
+		send_to_char(
+			    "You were unable to remove the Vampire curse.\n\r",
+			     ch );
+		continue;
+	    }
 	    affect_remove( victim, paf );
 	}
 
@@ -1128,38 +1298,6 @@ void spell_dispel_magic ( int sn, int level, CHAR_DATA *ch, void *vo )
     return;
 }
 
-void spell_dispel_evil( int sn, int level, CHAR_DATA *ch, void *vo )
-{
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    int        dam;
-  
-    if ( !IS_NPC( ch ) && IS_EVIL( ch ) )
-    {
-	send_to_char( "You are too EVIL to cast this.\n\r", ch );
-	return;
-    }
-  
-    if ( IS_GOOD( victim ) )
-    {
-	act( "God protects $N.", ch, NULL, victim, TO_ROOM );
-	return;
-    }
-
-    if ( IS_NEUTRAL( victim ) )
-    {
-	act( "$N does not seem to be affected.", ch, NULL, victim, TO_CHAR );
-	return;
-    }
-
-    dam = dice( level, 4 );
-    if ( saves_spell( level, victim ) )
-	dam /= 2;
-    damage( ch, victim, dam, sn );
-    return;
-}
-
-
-
 void spell_earthquake( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     CHAR_DATA *vch;
@@ -1175,7 +1313,7 @@ void spell_earthquake( int sn, int level, CHAR_DATA *ch, void *vo )
 	{
 	    if ( vch != ch && ( IS_NPC( ch ) ? !IS_NPC( vch )
 			                     :  IS_NPC( vch ) ) )
-		damage( ch, vch, level + dice( 2, 8 ), sn );
+		damage( ch, vch, level + dice( 2, 8 ), sn, WEAR_NONE );
 	    continue;
 	}
 
@@ -1198,6 +1336,17 @@ void spell_enchant_weapon( int sn, int level, CHAR_DATA *ch, void *vo )
 	|| obj->affected )
     {
 	send_to_char( "That item cannot be enchanted.\n\r", ch );
+	return;
+    }
+
+    if ( obj->wear_loc != WEAR_NONE )
+        remove_obj( ch, obj->wear_loc, TRUE );
+
+    /* Thanks to Magoo for this little insight */
+    if ( obj->level > get_trust( ch ) )
+    {
+	send_to_char( "You cannot enchant a weapon higher then yourself.\n\r",
+		     ch);
 	return;
     }
 
@@ -1287,7 +1436,7 @@ void spell_energy_drain( int sn, int level, CHAR_DATA *ch, void *vo )
 	ch->hit		+= dam;
     }
 
-    damage( ch, victim, dam, sn );
+    damage( ch, victim, dam, sn, WEAR_NONE );
 
     return;
 }
@@ -1313,7 +1462,9 @@ void spell_fireball( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -1327,7 +1478,9 @@ void spell_flamestrike( int sn, int level, CHAR_DATA *ch, void *vo )
     dam = dice( 6, level );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -1337,15 +1490,21 @@ void spell_faerie_fire( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     CHAR_DATA  *victim = (CHAR_DATA *) vo;
     AFFECT_DATA af;
+    int         effect;
 
     if ( IS_AFFECTED( victim, AFF_FAERIE_FIRE ) )
 	return;
 
+    effect       = UMIN( 2 * level, 50 );
+    if ( saves_spell( level, victim ) )
+        effect  /= 2;
+
     af.type      = sn;
     af.duration  = level;
     af.location  = APPLY_AC;
-    af.modifier  = 2 * level;
+    af.modifier  = effect;
     af.bitvector = AFF_FAERIE_FIRE;
+
     affect_to_char( victim, &af );
 
     send_to_char( "You are surrounded by a pink outline.\n\r", victim );
@@ -1448,7 +1607,9 @@ void spell_general_purpose( int sn, int level, CHAR_DATA *ch, void *vo )
     dam = number_range( 25, 100 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -1486,7 +1647,9 @@ void spell_harm( int sn, int level, CHAR_DATA *ch, void *vo )
     if ( saves_spell( level, victim ) )
 	dam = UMIN( 50, dam / 4 );
     dam = UMIN( 100, dam );
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -1518,7 +1681,9 @@ void spell_high_explosive( int sn, int level, CHAR_DATA *ch, void *vo )
     dam = number_range( 30, 120 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -1714,7 +1879,9 @@ void spell_lightning_bolt( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -1781,7 +1948,32 @@ void spell_magic_missile( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
+    return;
+}
+
+
+
+void spell_mass_heal( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *gch;
+    int        heal;
+
+    for( gch = ch->in_room->people; gch; gch = gch->next_in_room )
+    {
+	if ( !is_same_group( gch, ch ) )
+	    continue;
+
+	heal = dice( 17, 2 ) + level;
+	gch->hit = UMIN( gch->hit + heal, gch->max_hit );
+	update_pos( gch );
+	
+	send_to_char( "You feel better!\n\r", gch );
+    }
+    send_to_char( "OK.\n\r", ch );
+
     return;
 }
 
@@ -1808,6 +2000,30 @@ void spell_mass_invis( int sn, int level, CHAR_DATA *ch, void *vo )
 	affect_to_char( gch, &af );
     }
     send_to_char( "Ok.\n\r", ch );
+
+    return;
+}
+
+
+
+void spell_mute( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+    AFFECT_DATA af;
+
+    if ( IS_AFFECTED( victim, AFF_MUTE )
+	|| saves_spell( level, victim ) )
+	return;
+    af.type      = sn;
+    af.duration  = level;
+    af.location  = 0;
+    af.modifier  = 0;
+    af.bitvector = AFF_MUTE;
+    affect_to_char( victim, &af );
+    
+    act( "You have silenced $N!", ch, NULL, victim, TO_CHAR    );
+    act( "$n has silenced you!",  ch, NULL, victim, TO_VICT    );
+    act( "$n has silenced $N!",   ch, NULL, victim, TO_NOTVICT );
 
     return;
 }
@@ -1849,7 +2065,9 @@ void spell_poison( int sn, int level, CHAR_DATA *ch, void *vo )
     CHAR_DATA  *victim = (CHAR_DATA *) vo;
     AFFECT_DATA af;
 
-    if ( saves_spell( level, victim ) )
+    if (   saves_spell( level, victim )
+	|| victim->race == race_lookup( "Vampire" ) 
+	|| victim->race == race_lookup( "Undead" ) )
 	return;
 
     af.type      = sn;
@@ -1863,6 +2081,56 @@ void spell_poison( int sn, int level, CHAR_DATA *ch, void *vo )
 	send_to_char( "Ok.\n\r", ch );
     send_to_char( "You feel very sick.\n\r", victim );
     return;
+}
+
+
+void spell_polymorph_other( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    AFFECT_DATA af;
+    char        buf[ MAX_STRING_LENGTH ];
+    int         newrace;
+
+    if ( IS_AFFECTED( victim, AFF_POLYMORPH ) )
+    {
+	act( "$E is already changed.", ch, NULL, victim, TO_CHAR );
+	return;
+    }
+
+    af.type      = sn;
+    af.duration  = dice( 18, level );
+    af.location  = APPLY_RACE;
+
+    do
+    {
+	af.modifier  = number_range( 0, MAX_RACE - 1 ) - victim->race;
+    }
+    while ( af.modifier == 0 );
+
+    af.bitvector = AFF_POLYMORPH;
+    newrace = victim->race + af.modifier;
+    affect_to_char( victim, &af );
+    if ( ch != victim )
+        send_to_char( "Ok.\n\r", ch );
+    send_to_char( "You feel different.\n\r", victim );
+
+    if ( !IS_SET( race_table[ newrace ].race_abilities, RACE_WEAPON_WIELD ) )
+    {
+	af.type      = skill_lookup( "mute" );
+	af.location  = 0;
+	af.modifier  = 0;
+	af.bitvector = AFF_MUTE;
+	affect_to_char( victim, &af );
+    }
+
+    if ( get_trust( ch ) > LEVEL_HERO )
+    {
+	sprintf( buf, "Log %s: casting Polymorph other", ch->name );
+	log_string( buf );
+    }
+
+    return;
+
 }
 
 
@@ -1890,6 +2158,44 @@ void spell_protection( int sn, int level, CHAR_DATA *ch, void *vo )
 
 
 
+void spell_recharge_item ( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    OBJ_DATA *obj= (OBJ_DATA *) vo;
+
+    if (   obj->item_type != ITEM_WAND
+	&& obj->item_type != ITEM_STAFF )
+    {
+	send_to_char( "That item cannot be recharged.\n\r", ch );
+	return;
+    }
+
+    if ( number_percent( ) <
+	ch->pcdata->learned[sn] / 2 + 3 * ( ch->level - obj->value[0] )
+	&& obj->value[2] < obj->value[1] )
+    {
+	obj->value[2] = obj->value[1];
+	obj->cost     = 1;
+	act( "$p shines brightly, then returns to normal.",
+	    ch, obj, NULL, TO_CHAR );
+	act( "$p shines brightly, then returns to normal.",
+	    ch, obj, NULL, TO_ROOM );
+    }
+    else
+    {
+	act( "$p shines brightly, then explodes into fragments!",
+	    ch, obj, NULL, TO_CHAR );
+	act( "$p shines brightly, then explodes into fragments!",
+	    ch, obj, NULL, TO_ROOM );
+	extract_obj( obj );
+
+	damage( ch, ch, ch->max_hit / 16, sn, WEAR_NONE );
+    }
+
+    return;
+}
+
+
+
 void spell_refresh( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     CHAR_DATA *victim = (CHAR_DATA *) vo;
@@ -1901,6 +2207,44 @@ void spell_refresh( int sn, int level, CHAR_DATA *ch, void *vo )
     send_to_char( "You feel less tired.\n\r", victim );
     return;
 }
+
+
+/* Remove Alignment by Thelonius for EnvyMud */
+void spell_remove_alignment( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    OBJ_DATA *obj = (OBJ_DATA *) vo;
+
+    if ( !IS_SET( obj->extra_flags, ITEM_EVIL		)
+    &&   !IS_SET( obj->extra_flags, ITEM_ANTI_GOOD	)
+    &&   !IS_SET( obj->extra_flags, ITEM_ANTI_EVIL	)
+    &&   !IS_SET( obj->extra_flags, ITEM_ANTI_NEUTRAL	) )
+    {
+	send_to_char( "Nothing happens.\n\r", ch );
+	return;
+    }
+
+    if ( number_percent( ) < ch->pcdata->learned[sn] *
+	 ( 33 + ( 33 * ( ch->level - obj->level ) / 50 ) ) / 100 )
+    {
+	REMOVE_BIT( obj->extra_flags, ITEM_EVIL		);
+	REMOVE_BIT( obj->extra_flags, ITEM_ANTI_GOOD	);
+	REMOVE_BIT( obj->extra_flags, ITEM_ANTI_EVIL	);
+	REMOVE_BIT( obj->extra_flags, ITEM_ANTI_NEUTRAL	);
+	act( "$p hums briefly, then lies quiet.", ch, obj, NULL, TO_CHAR );
+	act( "$p hums briefly, then lies quiet.", ch, obj, NULL, TO_ROOM );
+	return;
+    }
+
+    SET_BIT( obj->extra_flags, ITEM_NODROP );
+    obj->wear_flags = 1;			/* Useless   */
+    obj->cost       = 0;			/* Worthless */
+    act( "$p blazes brightly, then turns grey.", ch, obj, NULL, TO_CHAR );
+    act( "$p blazes brightly, then turns grey.", ch, obj, NULL, TO_ROOM );
+
+    return;
+
+}
+
 
 
 /* Expulsion of ITEM_NOREMOVE addition by Katrina */
@@ -1935,6 +2279,79 @@ void spell_remove_curse( int sn, int level, CHAR_DATA *ch, void *vo )
     
     if ( ch != victim && yesno )
         send_to_char( "Ok.\n\r", ch );
+    return;
+}
+
+
+
+void spell_remove_silence( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+
+    /*
+     *  Note: because this spell is declared as TAR_CHAR_DEFENSIVE,
+     *  do_cast will set vo = ch with no argument.  Since it is
+     *  impossible for a silenced character to cast anyway, if
+     *  victim == ch, that means there was no argument supplied
+     *  (or the spellcaster tried to specify themself), i.e., trying
+     *  to remove a "Cone of Silence" from ch->in_room.
+     *  This might seem pointless, but it will work within obj_cast_spell.
+     *  Thelonius (Monk) 5/94
+     */
+    if ( victim == ch )
+    {
+	ROOM_INDEX_DATA *pRoomIndex;
+	bool             DidSomething;
+
+	pRoomIndex   = ch->in_room;
+	DidSomething = FALSE;
+
+	if ( IS_SET( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE ) )
+        {
+	    REMOVE_BIT( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE );
+	    send_to_char( "You have lifted the cone of silence!\n\r", ch );
+	    act( "$n has lifted the cone of silence!",
+		ch, NULL, NULL,   TO_ROOM );
+	    DidSomething = TRUE;
+        }
+
+	if ( IS_AFFECTED( victim, AFF_MUTE )
+	    && !IS_AFFECTED( victim, AFF_POLYMORPH ) )
+        {
+	    affect_strip( victim, gsn_mute );
+	    send_to_char( "You lift the veil of silence from yourself.\n\r",
+			 ch );
+	    act( "$n lifts the veil of silence from $mself.",
+		ch, NULL, victim, TO_VICT );
+	    DidSomething = TRUE;
+	}
+
+	if ( !DidSomething )
+	    send_to_char( "Fzzzzzzzzz...\n\r", ch );
+
+	return;
+    }
+
+    if ( IS_AFFECTED( victim, AFF_MUTE ) )
+    {
+        if ( IS_AFFECTED( victim, AFF_POLYMORPH ) )
+	{
+	    send_to_char(
+		"You were unable to give a non-speaking race speech.\n\r",
+			 ch );
+	    return;
+	}
+	affect_strip( victim, gsn_mute );
+	act( "You lift the veil of silence from $N.",
+					ch, NULL, victim, TO_CHAR    );
+	act( "$n lifts the veil of silence from you.",
+					ch, NULL, victim, TO_VICT    );
+	act( "$n lifts the veil of silence from $N.",
+					ch, NULL, victim, TO_NOTVICT );
+    }
+    else
+	act( "$N is not silenced.",     ch, NULL, victim, TO_CHAR    );
+
     return;
 }
 
@@ -2002,7 +2419,9 @@ void spell_shocking_grasp( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -2015,7 +2434,8 @@ void spell_sleep( int sn, int level, CHAR_DATA *ch, void *vo )
   
     if ( IS_AFFECTED( victim, AFF_SLEEP )
 	|| level < victim->level
-	|| saves_spell( level, victim ) )
+	|| saves_spell( level, victim )
+	|| victim->race == race_lookup( "Vampire" ) )
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -2074,6 +2494,7 @@ void spell_summon( int sn, int level, CHAR_DATA *ch, void *vo )
 	|| IS_SET( victim->in_room->room_flags, ROOM_PRIVATE   )
 	|| IS_SET( victim->in_room->room_flags, ROOM_SOLITARY  )
 	|| IS_SET( victim->in_room->room_flags, ROOM_NO_RECALL )
+	|| IS_AFFECTED( victim, AFF_CURSE )
 	|| victim->level >= level + 3
 	|| victim->fighting
 	|| victim->in_room->area != ch->in_room->area
@@ -2119,6 +2540,8 @@ void spell_teleport( int sn, int level, CHAR_DATA *ch, void *vo )
 	    break;
     }
 
+    if ( victim->fighting )
+        stop_fighting( victim, TRUE );
     act( "$n slowly fades out of existence.", victim, NULL, NULL, TO_ROOM );
     char_from_room( victim );
     char_to_room( victim, pRoomIndex );
@@ -2216,18 +2639,20 @@ void spell_acid_breath( int sn, int level, CHAR_DATA *ch, void *vo )
 	    case ITEM_ARMOR:
 		if ( obj_lose->value[0] > 0 )
 		{
+		    /* Correction on math by IvoryTiger */ 
 		    act( "$p is pitted and etched!",
 			victim, obj_lose, NULL, TO_CHAR );
 		    if ( ( iWear = obj_lose->wear_loc ) != WEAR_NONE )
-			victim->armor -= apply_ac( obj_lose, iWear );
+			victim->armor += apply_ac( obj_lose, iWear );
 		    obj_lose->value[0] -= 1;
 		    obj_lose->cost      = 0;
 		    if ( iWear != WEAR_NONE )
-			victim->armor += apply_ac( obj_lose, iWear );
+			victim->armor -= apply_ac( obj_lose, iWear );
 		}
 		break;
 
 	    case ITEM_CONTAINER:
+	    case ITEM_FURNITURE:
 		act( "$p fumes and dissolves!",
 		    victim, obj_lose, NULL, TO_CHAR );
 		extract_obj( obj_lose );
@@ -2240,7 +2665,9 @@ void spell_acid_breath( int sn, int level, CHAR_DATA *ch, void *vo )
     dam  = number_range( hpch / 8 + 1, hpch / 4 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -2276,6 +2703,7 @@ void spell_fire_breath( int sn, int level, CHAR_DATA *ch, void *vo )
 	    case ITEM_WAND:      msg = "$p sparks and sputters!"; break;
 	    case ITEM_FOOD:      msg = "$p blackens and crisps!"; break;
 	    case ITEM_PILL:      msg = "$p melts and drips!";     break;
+	    case ITEM_FURNITURE: msg = "$p crackles and burns!";  break;
 	    }
 
 	    act( msg, victim, obj_lose, NULL, TO_CHAR );
@@ -2287,7 +2715,9 @@ void spell_fire_breath( int sn, int level, CHAR_DATA *ch, void *vo )
     dam  = number_range( hpch / 8 + 1, hpch / 4 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -2330,7 +2760,9 @@ void spell_frost_breath( int sn, int level, CHAR_DATA *ch, void *vo )
     dam  = number_range( hpch / 8 + 1, hpch / 4 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -2356,7 +2788,7 @@ void spell_gas_breath( int sn, int level, CHAR_DATA *ch, void *vo )
 	    if ( saves_spell( level, vch ) )
 		dam /= 2;
 	    spell_poison( gsn_poison, level, ch, vch );
-	    damage( ch, vch, dam, sn );
+	    damage( ch, vch, dam, sn, WEAR_NONE );
 	}
     }
     return;
@@ -2374,7 +2806,9 @@ void spell_lightning_breath( int sn, int level, CHAR_DATA *ch, void *vo )
     dam = number_range( hpch / 8 + 1, hpch / 4 );
     if ( saves_spell( level, victim ) )
 	dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -2428,7 +2862,9 @@ void spell_agitation ( int sn, int level, CHAR_DATA *ch, void *vo )
    
     if ( saves_spell( level, victim ) )
       dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -2436,21 +2872,11 @@ void spell_agitation ( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_aura_sight ( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    CHAR_DATA *victim = (CHAR_DATA *) vo;
-    char      *msg;
-    int        ap;
-   
-    ap = victim->alignment;
+    sn = skill_lookup( "know alignment" );
 
-    if ( ap >  700 ) msg = "$N has an aura as white as the driven snow.";
-    else if ( ap >  350 ) msg = "$N is of excellent moral character.";
-    else if ( ap >  100 ) msg = "$N is often kind and thoughtful.";
-    else if ( ap > -100 ) msg = "$N doesn't have a firm moral commitment.";
-    else if ( ap > -350 ) msg = "$N lies to $S friends.";
-    else if ( ap > -700 ) msg = "Don't bring $N home to meet your family.";
-    else msg = "Uh, check please!";
+    (*skill_table[sn].spell_fun) ( sn, level, ch, vo );
 
-    act( msg, ch, NULL, victim, TO_CHAR );
+    return;
 }
 
 
@@ -2490,9 +2916,12 @@ void spell_ballistic_attack ( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
       dam /= 2;
+
     act( "You chuckle as a stone strikes $N.", ch, NULL, victim,
 	TO_CHAR );
-    damage( ch, victim, dam, sn);
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -2500,21 +2929,10 @@ void spell_ballistic_attack ( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_biofeedback ( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    CHAR_DATA  *victim = (CHAR_DATA *) vo;
-    AFFECT_DATA af;
-   
-    if ( IS_AFFECTED( victim, AFF_SANCTUARY ) )
-        return;
+    sn = skill_lookup( "Sanctuary" );
 
-    af.type      = sn;
-    af.duration  = number_fuzzy( level / 8 );
-    af.location  = APPLY_NONE;
-    af.modifier  = 0;
-    af.bitvector = AFF_SANCTUARY;
-    affect_to_char( victim, &af );
+    (*skill_table[sn].spell_fun) ( sn, level, ch, vo );
 
-    send_to_char( "You are surrounded by a white aura.\n\r", victim );
-    act( "$n is surrounded by a white aura.", victim, NULL, NULL, TO_ROOM );
     return;
 }
 
@@ -2616,7 +3034,9 @@ void spell_control_flames ( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
         dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -2683,7 +3103,7 @@ void spell_death_field ( int sn, int level, CHAR_DATA *ch, void *vo )
 	    else
 	        dam = number_range( hpch / 16 + 1, hpch / 8 );
 
-	    damage( ch, vch, dam, sn );
+	    damage( ch, vch, dam, sn, WEAR_NONE );
         }
     }
     return;
@@ -2710,7 +3130,7 @@ void spell_detonate ( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
         dam /= 2;
-    damage( ch, victim, dam, sn );
+    damage( ch, victim, dam, sn, WEAR_NONE );
     return;
 }
 
@@ -2732,8 +3152,8 @@ void spell_disintegrate ( int sn, int level, CHAR_DATA *ch, void *vo )
 	  if ( number_bits( 2 ) != 0 )
 	      continue;
 
-	  act( "$p disintegrates!",      victim, obj_lose, NULL, TO_CHAR );
-	  act( "$n's $p disintegrates!", victim, obj_lose, NULL, TO_ROOM );
+	  act( "$p disintegrates!", victim, obj_lose, NULL, TO_CHAR );
+	  act( "$p disintegrates!", victim, obj_lose, NULL, TO_ROOM );
 	  extract_obj( obj_lose ) ;
       }
 
@@ -3036,7 +3456,7 @@ void spell_inertial_barrier ( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_inflict_pain ( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    damage( ch, (CHAR_DATA *) vo, dice( 2, 10 ) + level / 2, sn );
+    damage( ch, (CHAR_DATA *) vo, dice( 2, 10 ) + level / 2, sn, WEAR_NONE );
     return;
 }
 
@@ -3148,7 +3568,7 @@ void spell_mental_barrier ( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_mind_thrust ( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    damage( ch, (CHAR_DATA *) vo, dice( 1, 10 ) + level / 2, sn );
+    damage( ch, (CHAR_DATA *) vo, dice( 1, 10 ) + level / 2, sn, WEAR_NONE );
     return;
 }
 
@@ -3156,7 +3576,7 @@ void spell_mind_thrust ( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_project_force ( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    damage( ch, (CHAR_DATA *) vo, dice( 4, 6 ) + level, sn );
+    damage( ch, (CHAR_DATA *) vo, dice( 4, 6 ) + level, sn, WEAR_NONE );
     return;
 }
 
@@ -3181,7 +3601,9 @@ void spell_psionic_blast ( int sn, int level, CHAR_DATA *ch, void *vo )
     dam	     = number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim ) )
         dam /= 2;
-    damage( ch, victim, dam, sn );
+
+    damage( ch, victim, dam, sn, WEAR_NONE );
+
     return;
 }
 
@@ -3189,7 +3611,7 @@ void spell_psionic_blast ( int sn, int level, CHAR_DATA *ch, void *vo )
 
 void spell_psychic_crush ( int sn, int level, CHAR_DATA *ch, void *vo )
 {
-    damage( ch, (CHAR_DATA *) vo, dice( 3, 5 ) + level, sn );
+    damage( ch, (CHAR_DATA *) vo, dice( 3, 5 ) + level, sn, WEAR_NONE );
     return;
 }
 
@@ -3309,8 +3731,132 @@ void spell_ultrablast ( int sn, int level, CHAR_DATA *ch, void *vo )
 	    dam  = number_range( hpch / 8+1, hpch / 4 );
 	    if ( saves_spell( level, vch ) )
 	        dam /= 2;
-	    damage( ch, vch, dam, sn );
+	    damage( ch, vch, dam, sn, WEAR_NONE );
 	}
     }
     return;
+}
+
+void spell_vampiric_bite( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+    OBJ_DATA   *obj;
+    AFFECT_DATA af;
+    int         dam;
+
+    dam = dice( 5, level );
+    damage( ch, victim, dam, sn, WEAR_NONE );
+    ch->hit = UMIN( ch->max_hit, ch->hit + dam );
+
+    if ( victim->level < 11 || get_age( victim ) < 21 )
+        return;
+
+    if ( IS_AFFECTED( victim, AFF_POLYMORPH ) )
+        return;
+
+    if ( saves_spell( level, victim )
+	|| number_bits( 1 ) == 0 )
+	return;
+
+    if ( ( obj = get_eq_char( victim, ITEM_HOLD ) ) )
+    {
+        if ( IS_OBJ_STAT( obj, ITEM_VAMPIRE_BANE )
+	    && ch->level < 21 )
+	    return;
+	else
+	{
+	    if ( IS_OBJ_STAT( obj, ITEM_HOLY ) )
+	    {
+	        if ( ch->level < 32 )
+		{
+		    return;
+		}
+		else
+		{
+		    if ( victim->level > ch->level )
+		        return;
+		}
+	    }
+	}
+    }
+		  
+    af.type      = sn;
+    af.duration  = UMAX( 5, 30 - level );
+    af.location  = APPLY_NONE;
+    af.modifier  = 0;
+    af.bitvector = AFF_VAMP_BITE;
+    affect_join( victim, &af );
+
+    if ( ch != victim )
+	send_to_char( "Ahh!  Taste the power!\n\r", ch );
+    send_to_char( "Your blood begins to burn!\n\r", victim );
+    return;
+}
+
+
+void spell_turn_undead( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+
+    if (   victim->level >= level
+	|| saves_spell( level, victim ) )
+    {
+        send_to_char( "You have failed.\n\r", ch );
+	return;
+    }
+
+    if (   victim->race == race_lookup( "Vampire" )
+	|| victim->race == race_lookup( "Undead" ) )
+        do_flee( victim, "" );
+
+    return;
+
+}
+
+
+void spell_exorcise( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+
+    if ( !is_affected( victim, gsn_vampiric_bite ) )
+        return;
+
+    /*
+     * We actually give the vampiric curse a chance to save
+     * at the victim's level
+     */
+    if ( !saves_spell( level, victim ) )
+        return;
+
+    affect_strip( victim, gsn_vampiric_bite );
+
+    send_to_char( "Ok.\n\r",                                    ch     );
+    send_to_char( "A warm feeling runs through your body.\n\r", victim );
+    act( "$N looks better.", ch, NULL, victim, TO_NOTVICT );
+
+    return;
+
+}
+
+/* Flame shield spell from Malice of EnvyMud */
+void spell_flaming( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+    AFFECT_DATA af;
+
+    if ( IS_AFFECTED( victim, AFF_FLAMING ) )
+        return;
+
+    af.type      = sn;
+    af.duration  = number_fuzzy( level / 8 );
+    af.location  = APPLY_NONE;
+    af.modifier  = 0;
+    af.bitvector = AFF_FLAMING;
+    affect_to_char( victim, &af );
+
+    send_to_char( "You are surrounded by a flaming shield.\n\r", victim );
+    act( "$n is surrounded by a flaming shield.",
+	victim, NULL, NULL, TO_ROOM );
+    return;
+
 }

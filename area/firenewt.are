@@ -13,7 +13,7 @@ It looks hungry and searches for food.
 2 0 -100 S
 2 18 10 2d2+30 1d4+2
 14 150
-8 8 1
+8 animal~ 1
 #2902
 black mountain ewe~
 a mountain ewe~
@@ -24,7 +24,7 @@ The ewe is watching her young.
 2 0 -100 S
 2 19 10 2d2+30 1d4+1
 10 125
-8 8 2
+8 animal~ 2
 #2903
 black mountain kid~
 a mountain kid~
@@ -35,7 +35,7 @@ The kid is playing with its siblings.
 2 0 -100 S
 1 20 10 3d6+1 1d3+1
 6 100
-8 8 0
+8 animal~ 0
 #2904
 fire newt worker~
 a fire newt worker~
@@ -46,7 +46,7 @@ The fire newt worker looks hot and sweaty.
 4|32|64 0 -400 S
 2 18 8 3d12+8 1d6+2
 23 200
-8 8 1
+8 lizard~ 1
 #2905
 fire newt guard~
 a fire newt guard~
@@ -57,7 +57,7 @@ The fire newt guard thinks you would be better dead.
 2|32 0 -450 S
 3 17 7 3d3+35 1d10+2
 30 300
-8 8 1
+8 lizard~ 1
 #2906
 fire newt worker~
 a fire newt worker~
@@ -68,7 +68,7 @@ The fire newt worker looks hot and sweaty.
 2 8 -400 S
 2 18 8 3d12+8 1d6+2
 23 200
-8 8 2
+8 lizard~ 2
 #2907
 fire newt guard~
 fire newt guard~
@@ -79,7 +79,7 @@ The fire newt guard wants to kill you!
 32|64 0 -450 S
 3 17 7 3d3+35 1d10+2
 30 300
-8 8 2
+8 lizard~ 2
 #2908
 fire newt mother~
 a fire newt mother~ 
@@ -90,7 +90,7 @@ The fire newt mother is watching her kids.
 2 0 -355 S
 2 18 8 3d10+8 1d6+2
 26 200
-8 8 2
+8 lizard~ 2
 #2909
 fire newt baby~
 a fire newt baby~
@@ -101,7 +101,7 @@ The fire newt baby is crawling and drooling here.
 2|4 0 -350 S
 0 20 10 3d2+1 1d3+0
 6 50
-8 8 0
+8 lizard~ 0
 #2910
 fire newt sergeant~
 a fire newt sergeant~
@@ -112,7 +112,7 @@ He's just found something that doesn't belong here!
 2|32 0 -500 S
 5 15 4 12d10+20 1d12+4
 200 700
-8 8 1
+8 lizard~ 1
 #2911
 fire newt general~
 a fire newt general~
@@ -123,7 +123,7 @@ The fire newt general grins evilly at you.
 34 0 -700 S
 8 13 3 8d8+100 1d15+4
 400 2000
-8 8 1
+8 lizard~ 1
 #2912
 fire newt leader~
 a fire newt leader~
@@ -134,7 +134,7 @@ The fire newt leader screams, 'I'm going to hose you!'
 2|32 8|128 -1000 S
 13 9 1 13d13+150 1d5+12
 1000 8000
-8 8 1
+8 lizard~ 1
 #2913
 fire newt priest~
 a fire newt priest~
@@ -145,7 +145,7 @@ The fire newt priest is preparing for worship.
 2|32 8 -1000 S
 10 11 2 10d10+100 1d4+8
 700 3500
-8 8 1
+8 lizard~ 1
 #2914
 fire lizard~
 a fire lizard~
@@ -156,7 +156,7 @@ The fire lizard flicks its tongue at you.
 2|32 8 -100 S
 11 10 2 11d11+110 2d12+8
 1000 5000
-8 8 0
+8 snake~ 0
 #0
 
 

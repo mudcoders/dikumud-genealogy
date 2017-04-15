@@ -13,7 +13,7 @@ He is big and bad.  Don't mess with him.
 2|64 8|128 1000 S
 30 -10 -20 1d1+29999 2d4+30
 0 -99000
-8 8 1
+8 human~ 1
 #3701
 blob~
 the blob~
@@ -26,7 +26,7 @@ would really suffer the consequences.
 2|64 8 0 S
 5 20 -99 1d1+50 1d1+0
 0 -9999
-8 8 0
+8 object~ 0
 #3702
 monster~
 the monster~
@@ -38,7 +38,7 @@ he is leashed up, and you are not.
 2 0 0 S
 1 20 10 1d1+10 1d3+0
 100 50
-8 8 0
+8 animal~ 0
 #3703
 monster wimpy~
 the wimpy monster~
@@ -50,7 +50,7 @@ he is leashed up, and you are not.
 2|128 0 0 S
 1 20 10 1d1+10 1d3+0
 100 50
-8 8 0
+8 animal~ 0
 #3704
 monster aggressive~
 the aggressive monster~
@@ -62,7 +62,7 @@ he is leashed up, and you are not.
 2|32 0 0 S
 1 20 10 1d1+10 1d3+0
 100 50
-8 8 0
+8 bear~ 0
 #3705
 monster wimpy aggressive~
 the wimpy aggressive monster~
@@ -74,7 +74,7 @@ he is leashed up, and you are not.
 2|32|128 0 0 S
 1 20 10 1d1+10 1d3+0
 100 50
-8 8 0
+8 bear~ 0
 #3706
 big creature~
 the big creature~
@@ -86,7 +86,7 @@ looks like a great prize!!!
 2 512 0 S
 1 19 9 2d2+20 1d4+1
 200 50
-8 8 0
+8 animal~ 0
 #3707
 adept cleric~
 the adept of Kahn~
@@ -97,7 +97,7 @@ He is big and bad.  Don't mess with him.
 2|64 8|128 1000 S
 30 -10 -20 1d1+29999 2d4+30
 0 -99000
-8 8 1
+8 human~ 1
 #3709
 rabbit~
 the rabbit~
@@ -108,7 +108,7 @@ The rabbit smiles at you, completely harmless!
 64|128 0 100 S
 1 20 10 1d1+10 1d3+0
 10 25
-8 8 0
+8 animal~ 0
 #3710
 lizard~
 the lizard~
@@ -119,7 +119,7 @@ It smiles at you, and tries to eat your leg.
 64 0 -100 S
 2 19 9 2d2+20 1d4+1
 10 100
-8 8 0
+8 snake~ 0
 #3711
 boar~
 the boar~
@@ -130,7 +130,7 @@ It grunts at you.
 64 0 0 S
 3 18 8 3d3+30 1d6+1
 10 200
-8 8 0
+8 animal~ 0
 #3712
 fox~
 the fox~
@@ -141,7 +141,7 @@ His fur might be worth money.
 64|128 0 100 S
 1 20 10 1d1+10 1d3+0
 10 25
-8 8 0
+8 animal~ 0
 #3713
 snail~
 the snail~
@@ -152,7 +152,7 @@ You don't see much but slime about it.
 64 0 0 S
 0 21 10 1d1+0 1d1+0
 2 10
-8 8 0
+8 worm~ 0
 #3714
 beast~
 the beast~
@@ -163,7 +163,7 @@ It looks mean.  You'd better run.
 32|64 0 0 S
 5 16 6 5d5+55 1d6+3
 50 500
-8 8 0
+8 bear~ 0
 #3715
 bear~
 the bear~
@@ -174,7 +174,7 @@ The bear must be bigger than you!  It wants to rip your head off.
 64 0 0 S
 4 17 7 4d4+44 1d6+2
 40 300
-8 8 0
+8 bear~ 0
 #3716
 wolf~
 the wolf~
@@ -185,7 +185,7 @@ The wolf doesn't want to be bothered.
 64 0 0 S
 4 17 7 4d4+44 1d6+2
 40 300
-8 8 0
+8 animal~ 0
 #3717
 adept cleric~
 the adept of Frag~
@@ -196,7 +196,7 @@ He is big and bad.  Don't mess with him.
 2|64 8|128 1000 S
 30 -10 -20 1d1+29999 2d4+30
 0 -99000
-8 8 1
+8 human~ 1
 #3718
 adept cleric~
 the adept of Furey~
@@ -207,7 +207,7 @@ He is big and bad.  Don't mess with him.
 2|64|512 8|128 1000 S
 30 -10 -20 1d1+29999 2d4+30
 0 -99000
-8 8 1
+8 human~ 1
 #3719
 priest cleric~
 the priest of Hatchet~
@@ -218,7 +218,7 @@ He is big and bad.  Don't mess with him.
 2|64|1024 8|128 1000 S
 30 -10 -20 1d1+29999 2d4+30
 0 -99000
-8 8 1
+8 human~ 1
 #3720
 beast~
 the diploma beast~
@@ -230,7 +230,7 @@ diploma is yours.
 2 512 0 S
 1 18 8 2d4+30 1d6+1
 300 100
-8 8 0
+8 bear~ 0
 #0
 
 

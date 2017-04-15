@@ -1,5 +1,6 @@
 # Makefile for most IRIX machines
 # Thanks to Jeremy Elson for providing information on this port
+# Thanks to Jeremy Arnold for double checking Envy 2.0 for us
 
 CC      = cc -cckr
 PROF    = 

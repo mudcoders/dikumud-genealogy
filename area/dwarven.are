@@ -1,5 +1,19 @@
 #AREA	{10 25} Anon    Dwarven Kingdom~
 
+#HELPS
+
+-1 DWARF DWARVES~
+DWARVES are a race of hardy individuals known for their love of adventure and
+great food.  DWARVES still hold their racial dislikes and prefer to act on
+them before anything else.  Because of their squat stature, they gain certain
+size bonuses in combat yet are not as dexterious.  DWARVES do have better
+bodily health than most civilized races due to racial development.
+DWARVES have certain abilities available to them.
+	* Infravision.
+	* Detect Hidden.
+~
+
+0 $~
 
 
 #MOBILES
@@ -10,10 +24,10 @@ A dwarven guard is here.
 ~
 The guard looks very tough and mean.
 ~
-2050 8 500 S
+2|64 8 500 S
 20 0 -2 20d20+200 2d4+18
 10000 40000
-8 8 1
+8 dwarf~ 1
 #6501
 dwarf worker miner~
 the dwarven worker~
@@ -24,7 +38,7 @@ He is very dirty, and looks extremely over-worked.
 2112 0 900 S
 12 4 1 12d12+120 1d7+7
 3500 6000
-8 8 1
+8 dwarf~ 1
 #6502
 wraith~
 the wraith~
@@ -35,7 +49,7 @@ A black, almost transparent wraith.
 2 40 -900 S
 29 -5 -10 29d29+290 4d6+15
 50000 125000
-8 8 1
+8 undead~ 1
 #6503
 storekeeper~
 the storekeeper~
@@ -46,7 +60,7 @@ The storekeeper is very rotund, but looks like a sharp guy.
 2050 0 900 S
 35 2 2 6d10+990 2d9+20
 100000 80000
-8 8 1
+8 dwarf~ 1
 #6504
 baker~
 the baker~
@@ -57,7 +71,7 @@ Granite Head is covered with flour and grains.
 2050 0 900 S
 35 2 2 7d10+990 2d9+19
 1000 80000
-8 8 1
+8 dwarf~ 1
 #6505
 lizard~
 the giant lizard~
@@ -69,7 +83,7 @@ habitat.  He looks very powerful.
 64 8 100 S
 18 7 2 10d20+500 4d4+5
 1200 25000
-8 8 1
+8 snake~ 1
 #6506
 giant~
 the giant~
@@ -80,7 +94,7 @@ The giant is about 8 feet tall, with arms of steel, and looks very strong.
 64 0 0 S
 16 5 1 4d20+300 3d7+5
 2000 24000
-8 8 1
+8 giant~ 1
 #6507
 dwarf miner~
 the dwarven miner~
@@ -91,7 +105,7 @@ The mineworker is very tired, and very dirty, and he has bulging muscles.
 2050 0 0 S
 8 14 7 8d8+100 2d9+9
 40 1000
-8 8 1
+8 dwarf~ 1
 #6508
 dwarf leader~
 the dwarven mine leader~
@@ -102,7 +116,7 @@ The mine leader is very big and very strong.
 2050 0 0 S
 21 0 -8 5d3+400 3d9+3
 20000 52000
-8 8 1
+8 dwarf~ 1
 #6509
 dwarf doctor~
 the dwarven doctor~
@@ -113,7 +127,7 @@ He is a very skilled surgeon, with hands of steel.
 2050 136 1000 S
 9 15 4 9d9+99 3d4+12
 1500 15000
-8 8 1
+8 dwarf~ 1
 #6510
 dwarf peon~
 the dwarven peon~
@@ -123,7 +137,7 @@ A dwarven peon is awaiting help here.
 2050 0 500 S
 3 16 6 5d3+33 2d4+3
 75 400
-8 8 1
+8 dwarf~ 1
 #6511
 dwarf~
 the dwarf~
@@ -133,7 +147,7 @@ A grinning dwarf is here.
 2050 0 500 S
 9 10 2 9d9+99 3d4+1
 1250 6000
-8 8 1
+8 dwarf~ 1
 #6512
 dwarf son~
 the unwanted son~
@@ -143,7 +157,7 @@ An unwanted son is here.  You feel sorry for the guy.
 64 0 250 S
 9 12 3 3d4+125 3d5+5
 50 5000
-8 8 1
+8 dwarf~ 1
 #6513
 dwarf daughter~
 the unwanted daughter~
@@ -153,7 +167,7 @@ An unwanted daughter is here.  You feel sorry for her.
 64 0 250 S
 10 11 2 3d4+135 3d5+7
 50 5000
-8 8 1
+8 dwarf~ 1
 #6514
 dwarf guard~
 the barracks guard~
@@ -163,7 +177,7 @@ A barrack guard is here.
 2050 0 100 S
 16 5 1 16d16+160 3d6+8
 3000 18000
-8 8 1
+8 dwarf~ 1
 #6515
 man~
 the man in waiting~
@@ -173,7 +187,7 @@ A man in waiting is here.  He looks nervous and unsure of himself.
 2050 0 300 S
 15 12 7 6d8+180 3d7+5
 6969 20000
-8 8 1
+8 human~ 1
 #6516
 mazekeeper~
 the mazekeeper~
@@ -184,7 +198,7 @@ He looks VERY tough.
 2082 128 -1000 S
 29 0 -9 25d29+290 4d8+15
 80000 200000
-8 8 1
+8 dwarf~ 1
 #6517
 snake~
 the giant snake~
@@ -194,7 +208,7 @@ There is a giant snake here.
 34 0 -1000 S
 15 7 2 3d7+432 3d7+6
 3000 30000
-8 8 1
+8 snake~ 1
 #0
 
 
@@ -1190,18 +1204,18 @@ D 0 6546 2 2
 D 0 6531 0 1
 D 0 6532 2 1
 *
-M 0 6500 4 6505    guard
+M 0 6500 2 6505    guard
 E 1 6504 10 16
 E 1 6505 10 5     eq plate
 G 1 6502 10 17
-M 0 6500 4 6505    guard
+M 0 6500 2 6505    guard
 E 1 6504 10 16
 E 1 6505 10 5
-M 0 6500 4 6540
+M 0 6500 2 6540
 E 1 6504 10 16
 E 1 6505 10 5
 G 1 6502 10 17
-M 0 6500 4 6540
+M 0 6500 2 6540
 E 1 6504 10 16
 E 1 6505 10 5
 *
@@ -1231,11 +1245,11 @@ G 1 3031 10
 E 1 6504 10 16
 M 0 6505 1 6515   Lizard
 M 0 6506 2 6508  Giant
-M 0 6500 6 6509
+M 0 6500 2 6509
 E 1 6509 10 16
 E 1 6510 10 6
 E 1 6511 10 1
-M 0 6500 6 6509
+M 0 6500 2 6509
 E 1 6512 10 9
 E 1 6509 10 16
 E 1 6505 10 5
@@ -1250,23 +1264,22 @@ E 1 6512 10 9
 E 1 6508 10 16
 M 0 6510 4 6534  peon in hospital
 M 0 6510 4 6534
-M 0 6514 4 6521  barracks guard
+M 0 6514 2 6521  barracks guard
 E 1 6509 10 16
-M 0 6514 4 6521
+M 0 6514 2 6521
 E 1 6509 10 16
-M 0 6500 4 6521  guardhouse guard
-M 0 6500 4 6521
-M 0 6500 4 6521
-M 0 6511 8 6523  barracks dwarf
-M 0 6511 8 6523
+M 0 6500 2 6521  guardhouse guard
+M 0 6500 2 6521
+M 0 6511 4 6523  barracks dwarf
+M 0 6511 4 6523
 E 1 6504 10 16
 E 1 6514 10 17
-M 0 6511 8 6523
-M 0 6511 8 6523
-M 0 6511 8 6524
+M 0 6511 4 6523
+M 0 6511 4 6523
+M 0 6511 4 6524
 O 0 6513 1 6524
-M 0 6502 2 6524
-M 0 6511 8 6524
+M 0 6502 1 6524
+M 0 6511 4 6524
 M 0 6512 3 6528  unwanted sons and daughters
 M 0 6512 3 6529
 M 0 6513 3 6529
@@ -1293,7 +1306,7 @@ S
 
 
 #SHOPS
- 6503	 0  0  0  0  0	 150  50	 0 23	; Hide and Tooth
+ 6503	 5  9  0  0  0	 150  50	 0 23	; Hide and Tooth
  6504	 0  0  0  0  0	 150  50	 0 23	; Granitehead the Baker
 0
 

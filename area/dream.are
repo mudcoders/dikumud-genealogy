@@ -14,7 +14,7 @@ Her job is to set the level for this equipment.
 1 0 1000 S
 8 1 -1 1d1+999 4d6+3
 100 100
-8 8 2
+8 elf~ 2
 
 #0
 

@@ -14,7 +14,7 @@ as he approaches and raises two black taloned claws to strike you.
 2|4|32|64 0 -600 S
 16 5 1 5d20+200 4d4+8 
 10000 20000
-8 5 1
+8 troll~ 1
 #8302
 troll~
 a green troll~
@@ -27,7 +27,7 @@ and cackles with glee.
 4|32|64 0 -400 S
 14 7 3 3d20+150 2d4+6
 8000 12000
-8 8 1
+8 troll~ 1
 #8303
 ogre~
 an ogre~
@@ -38,7 +38,7 @@ This mean bastard looks like he could tear you limb from limb.
 4|32|64 0 -500 S
 20 1 0 1d20+250 5d5+8
 10000 11000
-8 8 1
+8 ogre~ 1
 #8304
 thing~
 the Swamp Thing~
@@ -49,7 +49,7 @@ The Swamp Thing has huge fists, which look like they could pound you flat.
 4|32|64 0 -700 S
 24 1 8 10d10+500 4d5+10
 25000 60000
-8 5 0
+8 undead~ 0
 #8305
 gnoll~
 a gnoll~
@@ -60,7 +60,7 @@ The Gnoll seems annoyed at your presence.
 4|64 8|32 -1000 S
 30 0 -3 2d10+750 2d8+15
 25000 100000
-8 8 1
+8 hobbit~ 1
 #8306
 beast~
 a huge hairy beast~
@@ -72,7 +72,7 @@ appendages.
 4|32|64 8|32 -450 S
 21 0 0 21d21+210 2d4+15
 10000 40000
-8 8 1
+8 dragon~ 1
 #8307
 beast~
 a rather small beast~
@@ -84,7 +84,7 @@ sword blow.
 4|64|128 32768 0 S
 3 18 9 3d10+40 1d20+1
 500 200
-8 8 1
+8 animal~ 1
 #8308
 will will-o-wisp~
 the Will-O-Wisp~
@@ -97,7 +97,7 @@ are just able to notice a small pair of glowing eyes.
 4|64|128 32768 0 S
 10 11 -5 5d5+100 3d3+3
 3000 5000
-8 8 0
+8 faerie~ 0
 #8309
 snake anaconda~
 the monstrous snake~
@@ -108,7 +108,7 @@ This 10 meter anaconda looks rather hungry.
 4|32|64|128 32768|65536 -100 S
 16 5 1 16d16+200 4d4+6
 10000 26000
-8 8 1
+8 snake~ 1
 #8310
 snake python~
 a large snake~
@@ -119,7 +119,7 @@ It's the largest Amazon python you have ever seen.
 4|32|64|128 32768|65536 -100 S
 11 10 2 4d10+100 3d3+5
 0 9000
-8 8 2
+8 snake~ 2
 #8312
 hag~
 the Marsh Hag~
@@ -131,7 +131,7 @@ because she thinks you stink too, and she's about to do something about it.
 4|64 0 -200 S
 9 12 3 2d10+300 3d5+10
 1000 6000
-8 8 2
+8 ogre~ 2
 #8313
 slaad~
 a Death Slaad~
@@ -143,7 +143,7 @@ swamp light, the blade of his scythe gleams.
 4|64 40 -200 S
 20 1 -2 5d20+300 5d5+15
 14000 40000
-8 8 1
+8 undead~ 1
 #8314
 wolf~
 a marsh wolf~
@@ -155,7 +155,7 @@ into the marsh.
 4|32|64 0 -200 S
 8 13 3 10d10+50 3d5+1
 0 2000
-8 8 2
+8 bear~ 2
 #8318
 mound shambling~
 a shambling mound~
@@ -166,7 +166,7 @@ This grotesque pile of plant matter fills you with utmost horror.
 4|64 65536 -100 S
 13 8 10 10d10+150 3d6+2
 0 10000
-8 8 0
+8 plant~ 0
 #8319
 shaman orc~
 the orc shaman~
@@ -178,7 +178,7 @@ painted on his face and hands.
 110 40 -100 S
 12 10 7 5d6+120 3d4+1
 350 10000
-8 8 1
+8 orc~ 1
 #8320
 giant~
 a marsh giant~
@@ -189,7 +189,7 @@ This huge monster of a man has green gnarly teeth and a BIG stick.
 110 40 -100 S
 15 8 5 6d6+300 2d4+10
 12000 18000
-8 8 1
+8 giant~ 1
 #8321
 gargoyle~
 a gargoyle~
@@ -200,7 +200,7 @@ This creepy fellow looks like he could use you as a meal.
 110 40 -100 S
 12 4 0 4d5+200 4d4+4
 2000 12000
-8 8 0
+8 bat~ 0
 #0
 
 

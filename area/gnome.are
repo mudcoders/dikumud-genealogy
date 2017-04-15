@@ -1,5 +1,19 @@
 #AREA	{ 5 15} Vougon  Gnome Village~
 
+#HELPS
+
+-1 GNOME~
+GNOMEs are small peaceloving creatures much like a mix of DWARVES and HOBBITs.
+Not relatives of either race, GNOMEs do not carry the same number of negative
+feelings toward other races.  Having on average less strength than many other
+races, they make up this deficiency through a higher than average
+wisdom, as well as the ability to recover quickly from using magic.
+Also agile, GNOMEs regularly rival HOBBITs in the inter-racial Olympics.
+GNOMEs have certain abilities available to them.
+.	* Infravision.
+~
+
+0 $~
 
 
 #MOBILES
@@ -14,7 +28,7 @@ just want to pick him up and hug him.
 20 0 600 S
 3 18 7 3d4+37 2d4+0
 50 400
-8 8 1
+8 gnome~ 1
 #1501
 woman gnome~
 a gnome woman~
@@ -26,7 +40,7 @@ She's starting to look pretty attractive to you ...
 20 0 600 S
 5 16 5 2d6+70 1d8+0
 500 700
-8 8 2
+8 gnome~ 2
 #1502
 man gnome~
 a gnome man~
@@ -38,7 +52,7 @@ same time an intelligent creature who could outsmart you.
 4 0 500 S
 6 15 4 1d12+100 1d8+1
 450 900
-8 8 1
+8 gnome~ 1
 #1503
 scientist gnome~
 a gnome scientist~
@@ -50,7 +64,7 @@ to make.  His hair is white, but he looks fairly strong.
 6 0 500 S
 7 14 4 2d5+100 2d5+1
 1000 1300
-8 8 1
+8 gnome~ 1
 #1504
 guard gnome~
 a gnome guard~
@@ -62,7 +76,7 @@ he makes up for it with his weapons skill.
 2 0 400 S
 8 13 3 2d6+120 3d3+2
 1500 2000
-8 8 1
+8 gnome~ 1
 #1505
 chief gnome~
 the chief gnome~
@@ -74,7 +88,7 @@ but wise and resourceful.  You better not mess with him.
 2 0 550 S
 15 6 -1 1d12+300 2d10+0
 8000 15000
-8 8 1
+8 gnome~ 1
 #1507
 troll small~
 a small troll~
@@ -86,7 +100,7 @@ but with the eyes and fangs of a wild beast.
 38 0 -900 S
 8 12 3 2d4+105 2d5+1
 800 2000
-8 8 1
+8 troll~ 1
 #1508
 mouse field~
 a field mouse~
@@ -97,7 +111,7 @@ The Mouse is a cute little creature.
 6 0 100 S
 1 19 9 2d4+10 1d4+0
 1 100
-8 8 1
+8 rat~ 1
 #1509
 rat~
 a rat~
@@ -108,7 +122,7 @@ The rat is a little evil creature that deserves death.
 4 0 -200 S
 2 19 8 2d4+24 1d5+1
 5 200
-8 8 1
+8 rat~ 1
 #1510
 rat large~
 a large rat~
@@ -119,7 +133,7 @@ You have the urge to kill this vile creature.
 4 0 -200 S
 4 17 6 3d4+48 1d8+0
 10 400
-8 8 1
+8 rat~ 1
 #1511
 rat giant~
 a giant rat~
@@ -130,7 +144,7 @@ This rat has grown up to be the size of an average dog.
 4 0 -200 S
 6 15 4 1d12+72 1d8+1
 20 800
-8 8 1
+8 rat~ 1
 #1512
 troll~
 the troll~
@@ -142,7 +156,7 @@ he lifts his powerful arm to bludgeon you.
 34 0 -800 S
 14 7 0 3d5+160 2d8+1
 9000 10000
-8 8 1
+8 troll~ 1
 #1513
 bat black~
 a black bat~
@@ -153,7 +167,7 @@ The bat is a grotesque little creature with large wings and fangs.
 0 0 -500 S
 5 16 5 3d4+70 1d8+0
 1 1000
-8 8 0
+8 bat~ 0
 #1514
 zombie gnome~
 the zombie gnome~
@@ -165,7 +179,7 @@ pulled out of its resting place by some evil force.
 0 0 -700 S
 7 14 3 3d4+90 3d4+0
 696 2300
-8 8 0
+8 undead~ 0
 #1515
 bat fire~
 the fire bat~
@@ -177,7 +191,7 @@ hangs from the ceiling and bites at you.
 38 8 -900 S
 12 9 2 3d4+150 3d5+0
 6000 6000
-8 8 1
+8 bat~ 1
 #1516
 guard hobgoblin~
 the hobgoblin guard~
@@ -189,7 +203,7 @@ as he attempts to brain you.
 34 0 -700 S
 6 15 4 1d12+102 1d8+1
 750 1000
-8 8 1
+8 hobgoblin~ 1
 #1517
 soldier hobgoblin~
 the hobgoblin soldier~
@@ -201,7 +215,7 @@ of the elite guards.  He looks pissed.
 34 0 -600 S
 3 18 7 2d6+36 1d7+0
 200 300
-8 8 1
+8 hobgoblin~ 1
 #1518
 bodyguard hobgoblin~
 the hobgoblin bodyguard~
@@ -213,7 +227,7 @@ stature.  He grins a toothy grin as he prepares to attack.
 2 0 -500 S
 7 14 4 1d12+85 1d7+2
 600 2000
-8 8 1
+8 hobgoblin~ 1
 #1519
 king hobgoblin~
 the king of the hobgoblins~
@@ -225,7 +239,7 @@ destroying the sophisticated effect he was trying to create.
 2 0 -500 S
 12 9 2 2d6+148 2d7+1
 6000 6000
-6 8 1
+6 hobgoblin~ 1
 #1520
 miner hobgoblin~
 a hobgoblin miner~
@@ -236,7 +250,7 @@ The miner is totally covered in dust.
 6 0 -400 S
 5 16 5 1d12+60 1d8+0
 700 500
-8 8 1
+8 hobgoblin~ 1
 #1521
 treasurer hobgoblin~
 the treasurer~
@@ -248,7 +262,7 @@ can only see a couple feet in front of him.
 6 0 -200 S
 10 11 2 3d5+120 2d6+1
 5000 2500
-8 8 1
+8 hobgoblin~ 1
 #1522
 prisoner gnome~
 a gnome prisoner~
@@ -259,7 +273,7 @@ The prisoner is just barely alive.
 6 0 100 S
 3 17 8 3d5+10 2d3+1
 1 50
-5 8 1
+5 gnome~ 1
 #1523
 prisoner human~
 a human prisoner~
@@ -270,7 +284,7 @@ The prisoner is just barely alive.
 6 0 100 S
 3 17 8 3d5+10 2d3+1
 1 50
-5 8 2
+5 human~ 2
 #1524
 hermit crab~
 a hermit~
@@ -282,7 +296,7 @@ to wake it up.
 38 0 -10 S
 5 16 5 1d11+61 1d8+0
 200 600
-8 8 1
+8 animal~ 1
 #1526
 cook hobgoblin~
 the cook~
@@ -294,7 +308,7 @@ in a pot.
 6 0 -300 S
 7 14 4 1d12+85 1d7+1
 2600 900
-8 8 1
+8 hobgoblin~ 1
 #0
 
 
@@ -427,7 +441,7 @@ A small skiff is here.~
 #1515
 boots gnome~
 a pair of gnome boots~
-You notice a pair of Gnome Boots.~
+You notice a pair of gnome boots.~
 ~
 9 0 65
 4~ 0~ 0~ 0~
@@ -2064,36 +2078,36 @@ M 0 1500  3 1511
 E 1 1502 20 16
 M 0 1501  3 1511
 *
-M 0 1503  3 1513
+M 0 1503  1 1513
 G 1 1511 12
 P 1 1513 12 1511
 *
-M 0 1503  3 1514
+M 0 1503  1 1514
 G 1 1511 12
 P 1 1512 12 1511
 *
-M 0 1503  3 1515
+M 0 1503  1 1515
 E 1 1514 12 16
 *
-M 0 1504  3 1519
+M 0 1504  1 1519
 G 1 1500  3 
 G 1 1506 10
 E 1 1507 10 3
 *
-M 0 1508  2 1522
-M 0 1508  2 1522
+M 0 1508  1 1522
+M 0 1508  1 1522
 *
 M 0 1507 1 1524
 *
-M 0 1504  6 1527
+M 0 1504  1 1527
 E 1 1504 20 16
 *
-M 0 1504  6 1530
+M 0 1504  1 1530
 E 1 1504 20 16
-M 0 1504  6 1530
+M 0 1504  1 1530
 E 1 1504 20 16
 *
-M 0 1504  6 1534
+M 0 1504  1 1534
 E 1 1504 12 16
 *
 D 0 1536 1 2
@@ -2148,66 +2162,66 @@ E 1 1508 5 1
 E 1 1509 12 3
 E 1 1510 5 16
 *
-M 0 1520 6 1563
+M 0 1520 1 1563
 *
-M 0 1520 6 1565
+M 0 1520 1 1565
 *
-M 0 1518 5 1569
+M 0 1518 2 1569
 E 1 1521 30 16
-M 0 1518 5 1569
+M 0 1518 2 1569
 E 1 1521 30 16
-M 0 1518 5 1569
+M 0 1518 2 1569
 E 1 1521 30 16
-M 0 1518 5 1569
+M 0 1518 2 1569
 E 1 1521 30 16
-M 0 1518 5 1569
+M 0 1518 2 1569
 E 1 1521 30 16
-M 0 1519 1 1569
+M 0 1519 2 1569
 E 1 1520 5 5
 *
 M 0 1521 1 1570
 O 1 1516 10 1570
 O 1 1517 10 1570
 *
-M 0 1517 30 1571
+M 0 1517 3 1571
 E 1 1521 40 16
-M 0 1517 30 1571
+M 0 1517 3 1571
 E 1 1521 40 16
-M 0 1517 30 1571
+M 0 1517 3 1571
 E 1 1521 40 16
-M 0 1517 30 1571
+M 0 1517 3 1571
 E 1 1521 40 16
 *
-M 0 1517 30 1572
+M 0 1517 3 1572
 E 1 1521 40 16
-M 0 1517 30 1572
+M 0 1517 3 1572
 E 1 1521 40 16
-M 0 1517 30 1572
+M 0 1517 3 1572
 E 1 1521 40 16
-M 0 1517 30 1572
+M 0 1517 3 1572
 E 1 1521 40 16
 *
 O 0 1521 40 1573
 *
-M 0 1522 6 1577
+M 0 1522 3 1577
 *
-M 0 1522 6 1578
+M 0 1522 3 1578
 *
-M 0 1522 6 1579
+M 0 1522 3 1579
 *
-M 0 1523 6 1580
+M 0 1523 3 1580
 *
-M 0 1523 6 1581
+M 0 1523 3 1581
 *
-M 0 1517 20 1583
-M 0 1517 20 1583
+M 0 1517 3 1583
+M 0 1517 3 1583
 *
-M 0 1517 20 1584
-M 0 1517 20 1584
+M 0 1517 3 1584
+M 0 1517 3 1584
 *
 M 0 1526 1 1587
 M 0 1524 1 1589
-M 0 1520 6 1590
+M 0 1520 2 1590
 S
 
 

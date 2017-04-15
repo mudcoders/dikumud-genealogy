@@ -11,7 +11,7 @@ You see what appears to be a 3 sided pyramid with spidery arms and legs.
 1|4|64 0 0 S
 18 11 4 3d20+80 1d6+6
 0 8500
-8 8 0
+8 arachnid~ 0
 #8101
 quadrone~
 a quadrone~
@@ -22,7 +22,7 @@ A cubic creature, with spiny arms and legs.
 1|4|32|64 8 0 S
 21 9 3 14d10+70 2d8+0
 0 13000
-8 8 0
+8 arachnid~ 0
 #8102
 pentadrone~
 a pentadrone~
@@ -33,7 +33,7 @@ A five-armed creature which resembles a starfish on thin stilt-like legs.
 1|2|32|64 8 0 S
 23 8 0 15d12+80 3d4+3
 0 17000
-8 8 0
+8 arachnid~ 0
 #8103
 decaton~
 a decaton~
@@ -44,7 +44,7 @@ A Decaton  appear as a 10 tentacled sphere on stumpy legs.
 1|2|32|64 8 0 S
 25 6 2 25d10+50 2d8+2
 0 23000
-8 8 0
+8 arachnid~ 0
 #8104
 nonaton~
 A nonaton~
@@ -55,7 +55,7 @@ A cylidrical modron with 9 tentacles and stubby legs.
 1|2|32|64 136 0 S
 27 5 2 11d8+150 2d10+1
 0 27000
-8 8 0
+8 arachnid~ 0
 #8105
 octon~
 An octon~
@@ -67,7 +67,7 @@ collar.
 1|2|32|64 8 0 S
 29 4 1 25d10+75 3d6+5
 0 31000
-8 8 0
+8 arachnid~ 0
 #8106
 septon~
 a septon~
@@ -79,7 +79,7 @@ with 7 tentacles coming from it.
 1|2|32|64 8 300 S
 31 3 1 5d10+180 2d8+8
 150 34000
-8 8 0
+8 arachnid~ 0
 #8107
 hexton~
 a hexton~
@@ -91,7 +91,7 @@ and 4 tentalces below tipped with sharp claws.
 1|2|32|64 8|128 0 S
 33 1 -2 1d1+249 5d6+5
 2000 50000
-8 8 0
+8 arachnid~ 0
 #8108
 quinton~
 a quinton~
@@ -104,7 +104,7 @@ fan-like wings attached to their shoulders.
 1|2|32|64 8 0 S
 35 1 0 8d12+150 4d5+4
 500 50000
-8 8 0
+8 arachnid~ 0
 #8109
 tertian~
 a tertian~
@@ -117,7 +117,7 @@ like ball.
 1|2|32|64 8 0 S
 40 0 -5 1d1+349 4d6+5
 1000 70000
-8 8 0
+8 arachnid~ 0
 #8110
 secundus~
 Secundus~
@@ -129,7 +129,7 @@ and deepset eyes.
 1|2|32|64 8|128 0 S
 45 0 -6 1d1+499 5d6+10
 2500 200000
-8 8 0
+8 human~ 0
 #8111
 primus~
 Primus~
@@ -142,7 +142,7 @@ he looks very displeased to see you.
 1|2|32|64 8|128 0 S
 60 0 -10 1d1+1999 3d20+20
 10000 700000
-8 8 0
+8 god~ 0
 #0
 
 
@@ -183,7 +183,7 @@ A helm glowing and pulsing with radiance.~
 A
 18 2
 #8103
-sleeves radiant~
+aura sleeves radiant~
 Aura of radiance~
 An aura lies here shimmering before you.~
 ~

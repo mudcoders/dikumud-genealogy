@@ -1,4 +1,4 @@
-#AREA   { ALL } Envy   Purgatory~
+#AREA   { ALL } Envy    Purgatory~
 
 #RECALL
 401
@@ -15,7 +15,7 @@ Ever smiling, he doesn't seems to mind being stuck here for eternity.
 2 8|128|8192 -1000 S 
 100 0 0 0d0+0 0d0+0
 0 0
-8 8 0
+8 god~ 0
 
 #402
 lost soul~
@@ -28,7 +28,7 @@ wasting time if you don't want to end up like it.
 64 0 0 S
 1 0 0 0d0+0 0d0+0
 0 0
-8 8 0
+8 mist~ 0
 
 #0
 
@@ -929,7 +929,7 @@ you were alive.  Overwhelmed by anxiety and tears flowing, you beg for mercy
 and search desperately for your corpse.  Good Luck!
 A sign is posted here.
 ~
-4 2|8|8192 0
+4 2|8|8192 11
 D4
 ~
 ~
@@ -970,5 +970,4 @@ S
 
 
 #$
-
 

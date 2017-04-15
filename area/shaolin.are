@@ -1,4 +1,3 @@
-
 #AREA   {15 25} Boom    Shaolin Temple~
 
 #MOBILES
@@ -13,7 +12,7 @@ He is only a child, surely you will want to pick on someone your own size.
 4|64|128 0 500 S 
 6 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20102
 female prisoner~
@@ -25,7 +24,7 @@ Judging from what is left of her clothes, she appears to be a nun.
 1|4|64 0 0 S
 8 0 0 0d0+0 0d0+0
 0 0
-8 8 2
+8 human~ 2
 
 #20103
 disciple~
@@ -38,7 +37,7 @@ many others, he seems quite hopeless.
 2|4|128 0 100 S
 8 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20104
 monk~
@@ -50,7 +49,7 @@ You take a step back to ensure you're out of the range of his deadly moves.
 1|2|4 0 201 S
 15 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20105
 monk guard~
@@ -62,7 +61,7 @@ Armed and dangerous, you don't want to mess with him.
 1|2|4|32 8|32|512 -100 S
 20 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 hobbit~ 1
 
 #20106
 demon~
@@ -75,7 +74,7 @@ exactly like you. In fact, it is you!
 1|2|4|32 8|32|128|512 -201 S
 21 0 0 0d0+0 0d0+0
 0 0
-8 8 0
+8 undead~ 0
 
 #20107
 evil monk~
@@ -88,7 +87,7 @@ more friendly than the rest.  Too bad he doesn't like your face.
 1|4|32|64 8|32|512 -300 S
 22 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 werewolf~ 1
 
 #20108
 wood wooden monk man machine~
@@ -101,7 +100,7 @@ this is one tough bugger.
 2|32 8|32|512 0 S
 18 0 0 0d0+0 0d0+0
 0 0
-8 8 0
+8 object~ 0
 
 #20109
 monk warrior~
@@ -114,7 +113,7 @@ laughs in your face.
 1|4|64|128 8192 201 S
 22 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20110
 luohan Luohan bronze monk~
@@ -127,7 +126,7 @@ You don't want to mess with them.  Then again, do you have a choice?
 1|4|2 128|8192 500 S
 27 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 giant~ 1
 
 #20111
 Wuhua wuhua monk~
@@ -140,7 +139,7 @@ claws on you.
 1|4|32|64 8|32|128|512 -500 S
 24 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20112
 master librarian monk~
@@ -153,7 +152,7 @@ candle to help him read better.
 1|2 128|8192 500 S
 27 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20113
 master monk drunken~
@@ -166,7 +165,7 @@ pathetic excuse for a human being.
 1|4|64|128 128|8192 250 S
 21 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20114
 master monk trainer~
@@ -179,7 +178,7 @@ Don't you wish you can do that.
 1|4|64|128 2|128|8192 500 S
 26 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20115
 abbot Abbot monk~
@@ -192,7 +191,7 @@ figure.
 1|4|64|128 128|8192|524288 800 S
 31 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
 
 #20116
 Jinshen jinshen~
@@ -205,7 +204,7 @@ high monk has been perfectly preserved.
 1|2 2|8|128|8192|65536 1000 S
 33 0 0 0d0+0 0d0+0
 0 0
-8 8 0
+8 human~ 0
 
 #20117
 guest visitor~
@@ -217,7 +216,22 @@ Looking at his best in his fine clothing, he looks rather wealthy.
 4|64|128 0 50 S
 15 0 0 0d0+0 0d0+0
 0 0
-8 8 1
+8 human~ 1
+
+#20118
+old man~
+a crazy old man~
+A crazy old man sits on the shore, staring at everything.
+~
+He keeps staring into space, and says 'I see you, KhyrhaZenin, you will die!
+I know your name, KhyrhaZenin, and I will come get you! HAHAHAHA'
+He must be crazy.'
+~
+2|32 0 0 S
+1 0 0 0d0+0 0d0+0
+0 0
+8 human~ 1
+
 #0
 
 
@@ -647,7 +661,7 @@ S
 #20104
 Mountain shrine~
 A small shrine lies in one corner of this small clearing. This place 
-looks deserted and very forgotten. To your west, a hugå stone boulder is
+looks deserted and very forgotten. To your west, a huge stone boulder is
 set into the mountain. South leads you back to the mountain path.
 ~
 201 1 3
@@ -1310,6 +1324,12 @@ D 0 20134 0 2
 D 0 20135 2 2
 D 0 20136 1 2   	workshop from outside
 D 0 20137 3 2   	from inside
+* abbot			The abbot has been moved here so that the items
+*			are now no longer level 1.  Hatchet 2/15/1995
+M 0 20115 1 20123
+E 0 20121 0 1024        jiasha
+E 0 20122 0 4           fozhu
+E 0 20123 0 16384       staff
 * load objects into rooms
 O 0 20102 0 20121       lighted candle
 O 0 20102 0 20122
@@ -1322,11 +1342,6 @@ O 0 20107 0 20125       treasure
 O 0 20110 0 20125       ying manual
 O 0 20106 0 20110       bun
 O 0 20137 0 20137       shell of boom
-* abbot
-M 0 20115 1 20123
-E 0 20121 0 1024        jiasha
-E 0 20122 0 4           fozhu
-E 0 20123 0 16384       staff
 * master of books
 M 0 20112 1 20124
 G 0 20101 0             lighted candle
@@ -1398,6 +1413,8 @@ G 0 20106 0             bun
 * mortal shell
 P 0 20108 0 20137       flame of mercy
 P 0 20107 0 20137       treasure
+* stick an old man on the beach
+M 0 20118 1 246		old man
 S
 
 #SPECIALS

@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        * 
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -174,7 +177,7 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
 	{
 	    fprintf( fp, "Sender  %s~\n", pnote->sender     );
 	    fprintf( fp, "Date    %s~\n", pnote->date       );
-	    fprintf( fp, "Stamp   %ld\n", pnote->date_stamp );
+	    fprintf( fp, "Stamp   %ld\n", (unsigned long)pnote->date_stamp );
 	    fprintf( fp, "To      %s~\n", pnote->to_list    );
 	    fprintf( fp, "Subject %s~\n", pnote->subject    );
 	    fprintf( fp, "Text\n%s~\n\n", pnote->text       );
@@ -249,20 +252,27 @@ void do_note( CHAR_DATA *ch, char *argument )
 		    && str_cmp( ch->name, pnote->sender )
 		    && ch->last_note < pnote->date_stamp )
 		{
-		    sprintf( buf, "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r",
-			    vnum,
-			    pnote->sender,
-			    pnote->subject,
-			    pnote->date,
-			    pnote->to_list );
-		    strcat( buf1, buf );
-		    strcat( buf1, pnote->text );
-		    ch->last_note = UMAX( ch->last_note, pnote->date_stamp );
-		    send_to_char( buf1, ch );
-		    return;
+		    break;
 		}
 		else
-		    vnum++;
+		{
+		    if ( is_note_to( ch, pnote ) )
+		        vnum++;
+		}
+	    }
+	    if ( pnote )
+	    {
+		sprintf( buf, "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r",
+			vnum,
+			pnote->sender,
+			pnote->subject,
+			pnote->date,
+			pnote->to_list );
+		strcat( buf1, buf );
+		strcat( buf1, pnote->text );
+		ch->last_note = UMAX( ch->last_note, pnote->date_stamp );
+		send_to_char( buf1, ch );
+		return;
 	    }
 	    send_to_char( "You have no unread notes.\n\r", ch );
 	    return;
@@ -282,23 +292,27 @@ void do_note( CHAR_DATA *ch, char *argument )
 	buf1[0] = '\0';
 	for ( pnote = note_list; pnote; pnote = pnote->next )
 	{
-	    if ( is_note_to( ch, pnote ) && ( vnum++ == anum || fAll ) )
+	    if ( is_note_to( ch, pnote ) )
 	    {
-		sprintf( buf, "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r",
-			vnum - 1,
-			pnote->sender,
-			pnote->subject,
-			pnote->date,
-			pnote->to_list );
-		strcat( buf1, buf );
-		strcat( buf1, pnote->text );
-		if ( !fAll )
-		    send_to_char( buf1, ch );
-		else
-		    strcat( buf1, "\n\r" );
-		ch->last_note = UMAX( ch->last_note, pnote->date_stamp );
-		if ( !fAll )
-		    return;
+	        if ( vnum == anum || fAll )
+		{
+		    sprintf( buf, "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r",
+			    vnum,
+			    pnote->sender,
+			    pnote->subject,
+			    pnote->date,
+			    pnote->to_list );
+		    strcat( buf1, buf );
+		    strcat( buf1, pnote->text );
+		    if ( !fAll )
+		      send_to_char( buf1, ch );
+		    else
+		      strcat( buf1, "\n\r" );
+		    ch->last_note = UMAX( ch->last_note, pnote->date_stamp );
+		    if ( !fAll )
+		      return;
+		}
+		vnum++;
 	    }
 	}
 
@@ -434,7 +448,7 @@ void do_note( CHAR_DATA *ch, char *argument )
 	{
 	    fprintf( fp, "Sender  %s~\n", pnote->sender     );
 	    fprintf( fp, "Date    %s~\n", pnote->date       );
-	    fprintf( fp, "Stamp   %ld\n", pnote->date_stamp );
+	    fprintf( fp, "Stamp   %ld\n", (unsigned long)pnote->date_stamp );
 	    fprintf( fp, "To      %s~\n", pnote->to_list    );
 	    fprintf( fp, "Subject %s~\n", pnote->subject    );
 	    fprintf( fp, "Text\n%s~\n\n", pnote->text       );
@@ -479,7 +493,8 @@ void do_note( CHAR_DATA *ch, char *argument )
 /*
  * Generic channel function.
  */
-void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb )
+void talk_channel( CHAR_DATA *ch, char *argument, int channel,
+		  const char *verb )
 {
     DESCRIPTOR_DATA *d;
     char             buf [ MAX_STRING_LENGTH ];
@@ -497,6 +512,13 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 	sprintf( buf, "You can't %s.\n\r", verb );
 	send_to_char( buf, ch );
 	return;
+    }
+
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+    {
+        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        return;
     }
 
     REMOVE_BIT( ch->deaf, channel );
@@ -528,7 +550,8 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 
 	if ( d->connected == CON_PLAYING
 	    && vch != ch
-	    && !IS_SET( och->deaf, channel ) )
+	    && !IS_SET( och->deaf, channel )
+	    && !IS_SET( och->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	{
 	    if ( channel == CHANNEL_IMMTALK && !IS_HERO( och ) )
 		continue;
@@ -611,11 +634,12 @@ void do_yell( CHAR_DATA *ch, char *argument )
 
 void do_immtalk( CHAR_DATA *ch, char *argument )
 {
-    if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_immtalk] < 100 )
-    {
-        send_to_char("You are not authorized to use this command.\n\r", ch );
+    CHAR_DATA *rch;
+  
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "immtalk" ) )
         return;
-    }
 
     talk_channel( ch, argument, CHANNEL_IMMTALK, "immtalk" );
     return;
@@ -631,6 +655,13 @@ void do_say( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+    {
+        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        return;
+    }
+
     act( "$n says '$T'", ch, NULL, argument, TO_ROOM );
     act( "You say '$T'", ch, NULL, argument, TO_CHAR );
     return;
@@ -644,8 +675,29 @@ void do_tell( CHAR_DATA *ch, char *argument )
     char       arg [ MAX_INPUT_LENGTH ];
     int        position;
 
-    if ( !IS_NPC( ch ) && (   IS_SET( ch->act, PLR_SILENCE )
-			   || IS_SET( ch->act, PLR_NO_TELL ) ) )
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+    {
+        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        return;
+    }
+
+    one_argument( argument, arg );
+
+    /*
+     * Can tell to PC's anywhere, but NPC's only in same room.
+     * -- Furey
+     */
+    if ( !( victim = get_char_world( ch, arg ) )
+	|| ( IS_NPC( victim ) && victim->in_room != ch->in_room ) )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if ( ( !IS_NPC( ch ) && (   IS_SET( ch->act, PLR_SILENCE )
+			     || IS_SET( ch->act, PLR_NO_TELL ) ) )
+	|| IS_SET( victim->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
@@ -656,17 +708,6 @@ void do_tell( CHAR_DATA *ch, char *argument )
     if ( arg[0] == '\0' || argument[0] == '\0' )
     {
 	send_to_char( "Tell whom what?\n\r", ch );
-	return;
-    }
-
-    /*
-     * Can tell to PC's anywhere, but NPC's only in same room.
-     * -- Furey
-     */
-    if ( !( victim = get_char_world( ch, arg ) )
-	|| ( IS_NPC( victim ) && victim->in_room != ch->in_room ) )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
@@ -683,6 +724,9 @@ void do_tell( CHAR_DATA *ch, char *argument )
     victim->position	= position;
     victim->reply	= ch;
 
+    if ( IS_SET( victim->act, PLR_AFK ) )
+        act( "Just so you know, $E is AFK.", ch, NULL, victim, TO_CHAR );
+
     return;
 }
 
@@ -693,15 +737,24 @@ void do_reply( CHAR_DATA *ch, char *argument )
     CHAR_DATA *victim;
     int        position;
 
-    if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_SILENCE ) )
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-	send_to_char( "Your message didn't get through.\n\r", ch );
-	return;
+        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        return;
     }
 
     if ( !( victim = ch->reply ) )
     {
 	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if ( ( !IS_NPC( ch ) && (   IS_SET( ch->act, PLR_SILENCE )
+ 			     || IS_SET( ch->act, PLR_NO_TELL ) ) )
+	|| IS_SET( victim->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+    {
+	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
     }
 
@@ -723,6 +776,9 @@ void do_reply( CHAR_DATA *ch, char *argument )
     act( "$n tells you '$t'", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
+
+    if ( IS_SET( victim->act, PLR_AFK ) )
+        act( "Just so you know, $E is AFK.", ch, NULL, victim, TO_CHAR );
 
     return;
 }
@@ -826,7 +882,7 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You hit your head, and your eyes roll.",
 	    "$n hits $s head, and $s eyes roll.",
             "A will-o-the-wisp arrives with your slippers.",
-            "A will-o-the-wisp affives with $n's slippers."
+            "A will-o-the-wisp arrives with $n's slippers."
 	}
     },
 
@@ -1048,6 +1104,12 @@ void do_pose( CHAR_DATA *ch, char *argument )
 
 void do_bug( CHAR_DATA *ch, char *argument )
 {
+    if ( argument[0] == '\0' )
+    {
+	send_to_char( "The Implementors look at you quizzically.\n\r", ch );
+	return;
+    }
+
     append_file( ch, BUG_FILE,  argument );
     send_to_char( "Ok.  Thanks.\n\r", ch );
     return;
@@ -1057,6 +1119,12 @@ void do_bug( CHAR_DATA *ch, char *argument )
 
 void do_idea( CHAR_DATA *ch, char *argument )
 {
+    if ( argument[0] == '\0' )
+    {
+	send_to_char( "The Implementors look at you quizzically.\n\r", ch );
+	return;
+    }
+
     append_file( ch, IDEA_FILE, argument );
     send_to_char( "Ok.  Thanks.\n\r", ch );
     return;
@@ -1066,6 +1134,12 @@ void do_idea( CHAR_DATA *ch, char *argument )
 
 void do_typo( CHAR_DATA *ch, char *argument )
 {
+    if ( argument[0] == '\0' )
+    {
+	send_to_char( "The Implementors look at you quizzically.\n\r", ch );
+	return;
+    }
+
     append_file( ch, TYPO_FILE, argument );
     send_to_char( "Ok.  Thanks.\n\r", ch );
     return;
@@ -1380,7 +1454,7 @@ void do_group( CHAR_DATA *ch, char *argument )
 		"[%2d %s] %-16s %4d/%4d hp %4d/%4d mana %4d/%4d mv %5d xp\n\r",
 			gch->level,
 			IS_NPC( gch ) ? "Mob"
-			              : class_table[gch->class].who_name,
+			              : (char *)class_table[gch->class].who_name,
 			capitalize( PERS( gch, ch ) ),
 			gch->hit,   gch->max_hit,
 			gch->mana,  gch->max_mana,
@@ -1540,6 +1614,13 @@ void do_gtell( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+    {
+        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        return;
+    }
+
     if ( IS_SET( ch->act, PLR_NO_TELL ) )
     {
 	send_to_char( "Your message didn't get through!\n\r", ch );
@@ -1552,9 +1633,9 @@ void do_gtell( CHAR_DATA *ch, char *argument )
     sprintf( buf, "%s tells the group '%s'.\n\r", ch->name, argument );
     for ( gch = char_list; gch; gch = gch->next )
     {
-        if ( gch->deleted )
-	    continue;
-	if ( is_same_group( gch, ch ) )
+	if ( is_same_group( gch, ch )
+	    && !IS_SET( gch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
+	    && !IS_AFFECTED( gch, AFF_MUTE ) )
 	    send_to_char( buf, gch );
     }
 
@@ -1571,7 +1652,11 @@ void do_gtell( CHAR_DATA *ch, char *argument )
  */
 bool is_same_group( CHAR_DATA *ach, CHAR_DATA *bch )
 {
+    if ( ach->deleted || bch->deleted )
+        return FALSE;
+
     if ( ach->leader ) ach = ach->leader;
     if ( bch->leader ) bch = bch->leader;
     return ach == bch;
 }
+

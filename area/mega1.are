@@ -15,7 +15,7 @@ vandalism repairs.
 4 0 -400 S
 5 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8001
 punk~
 a punk~
@@ -27,7 +27,7 @@ fashionable of all gangs -- the Grunge Mongers.
 4|64 0 -500 S
 10 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8002
 Futsie~
 a Futsie~
@@ -40,7 +40,7 @@ Justice Department.
 2|32 8 0 S
 17 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8003
 Citi-Def Militiaman~
 a Citi-Def Militiaman~
@@ -52,7 +52,7 @@ and undersupervised.
 4|64 512 0 S
 16 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8004
 dunk~
 a dunk~
@@ -63,7 +63,7 @@ He blends into the crowd as his hand travels into another citizen's pocket.
 4|64|128 0 -150 S
 10 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8005
 tap~
 a tap~
@@ -75,7 +75,7 @@ looking you over for a possible business transaction.
 4|64 0 -400 S
 14 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 human~ 2
 #8006
 rookie judge~
 a rookie judge~
@@ -88,7 +88,7 @@ you though.
 64 8|32 300 S
 20 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8007
 Wallaby Gleep~
 Wallaby Gleep~
@@ -100,7 +100,7 @@ unintelligent and unimaginative, but looks can be deceiving.
 2|4 8|32|512 -600 S
 22 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8008
 Pinkerton Throt~
 Pinkerton Throt~
@@ -113,7 +113,7 @@ eyes is the mention of money.
 2|4|32 8|32 -900 S
 25 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8009
 Ernie Ramirez~
 Ernie Ramirez~
@@ -126,7 +126,7 @@ Gleep.
 2|4 0 -400 S
 19 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8010
 Judge Eckersely~
 Judge Eckersely~
@@ -138,7 +138,7 @@ of the Downtown Quadrant.
 64 8|32|128 300 S
 30 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #8011
 Judge Sara Beddows~
 Judge Beddows~
@@ -151,7 +151,7 @@ to enforce the LAW.
 64 8|32 500 S
 25 0 0 0d0+0 0d0+0
 0 0
-0 0 2
+0 human~ 2
 #8012
 bite fighter~
 a bite fighter~
@@ -162,7 +162,7 @@ A bite fighter is here with sharpened teeth and a bad attitude.
 2|32 0 -400 S
 20 0 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 #0
 
 
@@ -310,7 +310,7 @@ wet noodle~
 a wet noodle~
 A wet noodle is laying here with clam sauce on it.~
 ~
-5 0 1|4|8192
+5 0 1|8192
 0~ 0~ 0~ 4~
 1 0 0
 E

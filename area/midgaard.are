@@ -13,9 +13,9 @@ wizard. He is equipped with fine clothing, and is wearing many fine
 rings and bracelets.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+32
+50 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 human~ 1
 #3001
 baker~
 the baker~
@@ -25,9 +25,9 @@ A fat, nice looking baker. But you can see that he has many scars on his
 body.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+20
+50 2 2 1d1+30000 1d8+20
 12000 80000
-8 8 1
+8 human~ 1
 #3002
 grocer~
 the grocer~
@@ -36,9 +36,9 @@ A grocer stands at the counter, with a slightly impatient look on his face.
 A tall grocer, who moves two 200 pounds bag of flour around on his shoulders.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+20
+50 2 2 1d1+30000 1d8+20
 12000 80000
-8 8 1
+8 human~ 1
 #3003
 weaponsmith~
 the weaponsmith~
@@ -47,9 +47,9 @@ A weaponsmith.
 A young weaponsmith, who still has lots to learn.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+32
+50 2 2 1d1+30000 1d8+32
 100000 80000
-8 8 1
+8 human~ 1
 #3004
 armourer armorer~
 the armourer~
@@ -59,9 +59,9 @@ An old but very strong armourer, he has made more armours in his
 lifetime than you have ever seen.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+32
+50 2 2 1d1+30000 1d8+32
 150000 80000
-8 8 1
+8 human~ 1
 #3005
 thief~
 the thief~
@@ -72,7 +72,7 @@ Well COUNT your money!
 133 98304 100 S
 8 13 3 8d8+80 1d5+5
 100 4000
-8 8 1
+8 human~ 1
 #3006
 captain~
 the captain~
@@ -81,9 +81,9 @@ A retired captain stands here, selling boats.
 This captain has killed more sharks than you have eaten peas.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+32
+50 2 2 1d1+30000 1d8+32
 12000 80000
-8 8 1
+8 human~ 1
 #3007
 sailor~
 the sailor~
@@ -92,9 +92,9 @@ A sailor stands here, waiting to train you.
 He looks like a strong, fit sailor.
 ~
 2|512 0 900 S
-23 -2 -13 23d23+230 1d4+23
+50 -2 -13 23d23+230 1d4+23
 2000 -15000
-8 8 1
+8 human~ 1
 #3008
 boy~
 the pet shop boy~
@@ -103,9 +103,9 @@ A pet shop boy is here, humming gently.
 He is young and close-cropped and looks quite happy.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+20
+50 2 2 1d1+30000 1d8+20
 12000 80000
-8 8 1
+8 human~ 1
 #3009
 jeweller~
 the jeweller~
@@ -114,9 +114,9 @@ The jeweller is standing behind the desk.
 He is fat and has a content although watchful look on his face.
 ~
 2 0 900 S
-23 2 -10 1d1+30000 1d8+22
+50 2 -10 1d1+30000 1d8+22
 300000 80000
-8 8 1
+8 human~ 1
 #3010
 leather worker~
 the leather worker~
@@ -126,13 +126,13 @@ He looks as an honest, hard-working artisan who only just earns enough to
 keep himself going.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+20
+50 2 2 1d1+30000 1d8+20
 100000 80000
-8 8 1
+8 human~ 1
 #3011
 executioner~
 the executioner~
-The executioner is here polishing his blade.
+The executioner is here polishing his blades.
 ~
 A masked man with muscles bulging all over his body.  You can tell by
 the look in his eyes that he enjoys seeing you cower in his presence.
@@ -140,7 +140,7 @@ the look in his eyes that he enjoys seeing you cower in his presence.
 2|64 8|128 1000 S
 50 -10 -20 1d1+1499 1d4+30
 5000 500000
-8 8 1
+8 human~ 1
 #3012
 healer~
 the healer~
@@ -151,7 +151,7 @@ Although retired from adventuring, the healer still lends a hand.
 2|64 8|128 1000 S
 40 -10 -20 1d1+29999 2d4+30
 0 -99000
-8 8 1
+8 human~ 1
 #3020
 guildmaster master~
 the guildmaster~
@@ -164,7 +164,7 @@ and you notice that she is surrounded by a blue shimmering aura.
 2|1024 0 1000 S
 24 0 0 6d10+440 3d8+24
 8794 100000
-8 8 2
+8 human~ 2
 #3021
 guildmaster master~
 the guildmaster~
@@ -176,7 +176,7 @@ a peaceful, loving look. You notice that he is surrounded by a white aura.
 2|1024 128 1000 S
 24 0 0 6d10+440 3d8+24
 8794 100000
-8 8 1
+8 human~ 1
 #3022
 guildmaster master~
 the guildmaster~
@@ -189,7 +189,7 @@ the appearance of a beggar.
 2|1024 0 1000 S
 24 0 0 6d10+440 3d8+24
 8794 100000
-8 8 2
+8 human~ 2
 #3023
 guildmaster master~
 the guildmaster~
@@ -202,7 +202,7 @@ has a calm look on his face.
 2|1024 0 1000 S
 24 0 0 6d10+440 3d8+24
 8794 100000
-8 8 1
+8 human~ 1
 #3024
 sorcerer~
 the sorcerer~
@@ -215,7 +215,7 @@ as well as defensive spells make him a deadly opponent.
 2 2 800 S
 23 2 2 6d10+3900 1d8+22
 2000 80000
-8 8 1
+8 human~ 1
 #3025
 templar~
 the knight templar~
@@ -229,7 +229,7 @@ opponent.
 2 0 800 S
 23 2 2 6d10+3900 1d8+22
 2000 80000
-8 8 1
+8 human~ 1
 #3026
 assassin~
 the assassin~
@@ -242,7 +242,7 @@ them combined with his extraordinary stealth makes him a deadly opponent.
 2 65536 800 S
 23 4 4 6d10+3900 1d8+22
 2000 80000
-8 8 1
+8 human~ 1
 #3027
 knight~
 the knight~
@@ -256,7 +256,7 @@ opponent.
 2 0 800 S
 23 0 0 6d10+5900 1d8+32
 2000 80000
-8 8 1
+8 human~ 1
 #3040
 bartender~
 the bartender~
@@ -265,9 +265,9 @@ A bartender watches you calmly, while he skillfully mixes a drink.
 A tired looking Bartender who hates trouble in his bar.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+18
+50 2 2 1d1+30000 1d8+18
 2000 80000
-8 8 1
+8 human~ 1
 #3041
 waiter~
 the waiter~
@@ -276,9 +276,9 @@ A waiter is going around from one place to another.
 A tired looking waiter.
 ~
 2 0 900 S
-23 2 2 6d10+390 1d8+18
+50 2 2 6d10+390 1d8+18
 2000 20000
-8 8 1
+8 human~ 1
 #3042
 waiter~
 the waiter~
@@ -287,9 +287,9 @@ peaceful life as a waiter.
 ~
 ~
 2 0 600 S
-23 1 2 6d10+390 1d8+18
+50 1 2 6d10+390 1d8+18
 2000 20000
-8 8 1
+8 human~ 1
 #3043
 waiter~
 the waiter~
@@ -297,9 +297,9 @@ A waiter who seems to have reached contact with God.
 ~
 ~
 2 0 600 S
-23 1 2 6d10+390 1d8+18
+50 1 2 6d10+390 1d8+18
 2000 20000
-8 8 1
+8 human~ 1
 #3044
 waiter~
 the waiter~
@@ -307,9 +307,9 @@ A waiter who knows where all his customers keep their money.
 ~
 ~
 2 0 600 S
-23 1 2 6d10+390 1d8+18
+50 1 2 6d10+390 1d8+18
 2000 20000
-8 8 1
+8 human~ 1
 #3045
 waiter~
 the waiter~
@@ -317,9 +317,9 @@ A waiter who easily could kill you, and still carry quite a few firebreathers.
 ~
 ~
 2 0 600 S
-23 1 2 6d10+390 1d8+18
+50 1 2 6d10+390 1d8+18
 2000 20000
-8 8 1
+8 human~ 1
 #3046
 filthy~
 Filthy~
@@ -329,9 +329,9 @@ Filthy looks real, ehm, dirty. He likes to keep his costumers happy,
 but do not mess with him or else he'll get upset.
 ~
 2 0 600 S
-23 1 2 1d1+30000 1d8+18
+50 1 2 1d1+30000 1d8+18
 2000 80000
-8 8 1
+8 human~ 1
 #3050
 dealer dave~
 Dave the Dealer~
@@ -343,9 +343,9 @@ He's here to sell you trash.  Or is it?
 
 Because he is a Sensitive Ponytail Man, ~
 4|64 8|32|512 0 S
-45 15 -2 1d1+999 2d10+20
+50 15 -2 1d1+999 2d10+20
 500 19000
-8 8 1
+8 human~ 1
 #3060
 cityguard guard~
 the cityguard~
@@ -356,7 +356,7 @@ A big, strong, helpful, trustworthy guard.
 69 0 1000 S
 15 15 -2 15d15+150 1d4+10
 500 19000
-8 8 1
+8 dwarf~ 1
 #3061
 janitor~
 the janitor~
@@ -366,7 +366,7 @@ A janitor is walking around, cleaning up.
 1 0 900 S
 1 20 9 2d6+10 1d5+0
 34 100
-8 8 1
+8 gnome~ 1
 #3062
 fido dog~
 the beastly fido~
@@ -378,7 +378,7 @@ around his teeth.
 161 0 -200 S
 0 20 10 1d6+4 1d4+0
 10 25
-8 8 1
+8 animal~ 1
 #3063
 vagabond~
 the vagabond~
@@ -389,7 +389,7 @@ He looks pretty mean.
 4 0 -200 S
 5 16 5 2d6+60 1d8+0
 47 900
-8 8 1
+8 human~ 1
 #3064
 drunk~
 the drunk~
@@ -400,7 +400,7 @@ A drunk who seems to be too happy, and to carry too much money.
 0 0 400 S
 2 19 8 2d6+22 1d6+0
 85 200
-8 8 1
+8 human~ 1
 #3065
 beggar~
 the beggar~
@@ -411,7 +411,7 @@ The beggar looks like she is fed up with life.
 2 0 400 S
 1 20 9 2d6+10 1d5+0
 0 100
-8 8 2
+8 human~ 2
 #3066
 cat~
 an alley cat~
@@ -422,7 +422,7 @@ The alley cat is half starved and more than a little feral.
 161 0 -200 S
 0 20 10 1d6+4 1d4+0
 10 25
-8 8 1
+8 animal~ 1
 #3067
 cityguard guard~
 the cityguard~
@@ -433,7 +433,7 @@ A big, strong, helpful, trustworthy guard.
 67 0 1000 S
 15 5 -2 15d15+150 1d4+10
 500 19000
-8 8 1
+8 human~ 1
 #3068
 cityguard guard~
 the cityguard~
@@ -444,7 +444,7 @@ A big, strong, helpful, trustworthy guard.
 67 0 1000 S
 15 5 -2 15d15+150 1d4+10
 500 19000
-8 8 1
+8 dwarf~ 1
 #3069
 cityguard guard~
 the cityguard~
@@ -455,7 +455,7 @@ A big, strong, helpful, trustworthy guard.
 67 2|65536 1000 S
 20 0 -7 20d20+200 1d4+15
 500 40000
-8 8 1
+8 human~ 1
 #3090
 kitten~
 the kitten~
@@ -466,7 +466,7 @@ The kitten looks like a cute, little, fierce fighter.
 6 0 400 S
 1 20 9 1d6+11 1d4+0
 0 100
-8 8 0
+8 animal~ 0
 #3091
 puppy~
 the puppy~
@@ -477,7 +477,7 @@ The puppy looks like a cute, little, fierce fighter.
 6 0 400 S
 3 20 9 1d6+11 1d4+0
 0 100
-8 8 0
+8 animal~ 0
 #3092
 beagle~
 the beagle~
@@ -488,7 +488,7 @@ The beagle looks like a fierce fighter.
 6 0 400 S
 5 19 8 1d12+22 1d6+0
 0 200
-8 8 0
+8 animal~ 0
 #3093
 rottweiler~
 the rottweiler~
@@ -499,7 +499,7 @@ The rottweiler looks like a strong, fierce fighter.
 6 0 400 S
 7 18 7 1d12+35 1d7+0
 0 800
-8 8 0
+8 animal~ 0
 #3094
 wolf~
 the wolf~
@@ -510,7 +510,7 @@ The wolf looks like a strong, fearless fighter.
 6 0 0 S
 9 17 6 1d12+47 1d8+0
 0 1600
-8 8 0
+8 animal~ 0
 #3100
 maid~
 the maid~
@@ -520,9 +520,9 @@ She is very beautiful with golden hair, and deep blue eyes. A good reason
 for coming here more often.
 ~
 2 0 1000 S
-23 2 -2 6d10+390 1d8+12
+50 2 -2 6d10+390 1d8+12
 2000 80000
-8 8 2
+8 human~ 2
 #3120
 sexton~
 the sexton~
@@ -533,7 +533,7 @@ The sexton looks like he is relaxing after another grave-digging job.
 2 0 800 S
 3 18 7 2d6+35 1d7+0
 13 350
-6 6 1
+6 human~ 1
 #3121
 swan~
 the swan~
@@ -544,7 +544,7 @@ The white swan is very elegant.
 2 0 1000 S
 1 20 9 2d6+10 1d5+0
 0 100
-8 8 0
+8 animal~ 0
 #3122
 duckling~
 the duckling~
@@ -555,7 +555,7 @@ The duckling is adorable, it looks most of all like a tiny furball.
 2 0 1000 S
 0 20 10 1d1+0 1d1+0
 0 10
-8 8 0
+8 animal~ 0
 #3123
 sparrow~
 the sparrow~
@@ -566,7 +566,7 @@ The sparrow looks like it is enjoying life.
 192 0 1000 S
 0 20 10 2d6+0 1d3+0
 0 25
-8 8 0
+8 animal~ 0
 #3124
 duck~
 the duck~
@@ -577,7 +577,7 @@ The duck is quite fat.  It looks like it is enjoying life.
 64 0 1000 S
 1 20 10 2d6+5 1d4+0
 0 75
-8 8 0
+8 animal~ 0
 #3140
 captain~
 the captain~
@@ -588,7 +588,7 @@ A big, strong, angry captain.
 38 8 1000 S
 17 4 1 1d12+210 1d8+8
 0 28000
-8 8 1
+8 human~ 1
 #3141
 cityguard guard~
 the cityguard~
@@ -599,7 +599,7 @@ A big, strong, angry guard.
 38 0 1000 S
 15 5 -2 15d15+150 1d4+10
 0 9000
-8 8 1
+8 human~ 1
 #3142
 secretary~
 the secretary~
@@ -612,7 +612,7 @@ The Secretary says 'Please sit down and have a seat in the meantime'.
 2 0 900 S
 12 9 2 1d12+148 2d7+1
 100 3000
-8 8 2
+8 human~ 2
 #3143
 mayor~
 the mayor~
@@ -623,7 +623,7 @@ He is a stocky, middle-aged man with thin, grey hair.
 3 8192 900 S
 23 2 -2 6d10+500 1d8+12
 1000 120000
-4 4 1
+4 human~ 1
 #3144
 crier~
 the town crier~
@@ -634,7 +634,7 @@ He is very good at his job - completely dissolved in tears.
 128 0 900 S
 1 20 9 2d6+10 1d5+0
 34 100
-8 8 1
+8 human~ 1
 #3150
 guildmaster master~
 the guildmaster~
@@ -648,7 +648,7 @@ attention.
 2|1024 0 1000 S
 23 0 0 6d10+440 3d8+24
 1333 100000
-8 8 2
+8 human~ 2
 #3151
 gypsy~
 the gypsy~
@@ -661,7 +661,7 @@ but so was Yoda.  I wouldn't cross her.
 2 2 500 S
 22 2 2 6d10+3900 1d8+22
 1333 80000
-8 8 2
+8 human~ 2
 #3152
 waiter~
 the waiter~
@@ -671,9 +671,9 @@ A man who once bent spoons with the best of them, he is now content to
 mix drinks and make conversation.
 ~
 2 0 600 S
-25 1 2 6d10+390 1d8+18
+50 1 2 6d10+390 1d8+18
 1333 20000
-8 8 1
+8 human~ 1
 #3153
 mapmaker map maker~
 the Map Maker~
@@ -683,9 +683,22 @@ A rather old man, wearing spectacles from his years spent staring at pieces
 of parchment under poor lighting.
 ~
 2 0 900 S
-23 2 2 1d1+30000 1d8+20
+50 2 2 1d1+30000 1d8+20
 12000 80000
-8 8 1
+8 human~ 1
+
+#3160
+croupier~
+the slick croupier~
+A slick croupier is here, ready to take your bet.
+~
+He's a seedy-looking character, who doesn't look like he's happy to be
+playing by the rules.
+~
+2|64|2048 0 0 S
+50 1 2 6d8+200 1d6+12
+1000 15000
+8 human~ 1
 #0
 
 #OBJECTS
@@ -744,7 +757,7 @@ spell.  The edge of the blade looks as if it could cut through anything
 or anyone.
 ~
 #3009
-potpie pot pie~
+potpie pot pie food~
 a big pot pie~
 A big pot pie has been left here.~
 ~
@@ -752,7 +765,7 @@ A big pot pie has been left here.~
 40~ 0~ 0~ 0~
 5 100 10
 #3010
-pit~
+donation pit~
 the donation pit~
 A pit for sacrifices is in front of the altar.~
 ~
@@ -763,6 +776,18 @@ E
 pit~
 This is where you put money and items to help Doz expand this shrine and
 convert more people to the belief of Eru our creator.
+~
+#3011
+license~
+a license to kill~
+A license to kill is here. *mu-hahahaha!*~
+~
+12 8192 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+license~
+This item allows you to kill other players, use it with care!
 ~
 #3020
 dagger~
@@ -1326,6 +1351,63 @@ The letter is written in a reserved and dignified Spencer hand.
 
     Midgaard City Bank
 ~
+
+#3160
+sign notice note rules~
+a sign~
+The sign giving the rules to UPPER, LOWER, OR TRIPLE is posted here.~
+~
+12 0 0
+0~ 0~ 0~ 0~
+999 0 0
+E
+sign notice note rules~
+To play UPPER, LOWER, OR TRIPLE, simply type:
+	bet <amount> <choice>
+where <amount> is your wager in gold pieces, and <choice> is one of "upper",
+"lower", or "triple".  The croupier will roll three six-sided dice, and
+if the sum of the numbers on the three dice is 10 or less, the result is
+"Lower".  If the sum is 11 or more, the result is "Upper".  However, if all
+three dice have the same value, the result is "Triple", and all bets of
+"Upper" and "Lower" will lose.  If you bet on the correct "Upper" or "Lower"
+result, you win back double your bet.  If you correctly pick "Triple", you
+win 37 times your bet.
+~
+#3161
+staff~
+a nondescript staff~
+You see a rather nondescript staff here.~
+~
+4 2|64 16385
+17~ 1~ 1~ cone of silence~
+10 0 0
+#3162
+wand~
+a nondescript wand~
+You see a rather nondescript wand here.~
+~
+3 2|64 16385
+11~ 3~ 3~ mute~
+3 0 0
+#3163
+wand~
+a nondescript wand~
+You see a rather nondescript wand here.~
+~
+3 2|64 16385
+13~ 2~ 2~ remove silence~
+3 0 0
+#3170
+wand~
+a wand of water breathing~
+Here is a wand which will allow you to breathe underwater.~
+~                                                                        
+3 2|64 16385                                                       
+0~ 10~ 10~ breathe water~
+3 0 0
+
+
+
 #3350
 standard sword~
 a standard issue sword~
@@ -2361,7 +2443,7 @@ You see your favorite place, the Mage's Bar.
 S
 #3018
 Mage's Bar~
-   The bar is one of the wierdest in the land.  Mystical images float around
+   The bar is one of the weirdest in the land.  Mystical images float around
 the air.  Illusions of fine furniture appear all around the room.
 ~
 30 12 0
@@ -3285,8 +3367,8 @@ S
 General Meeting Room~
 You are inside the general meeting room, where the issues of this mud are
 discussed.  You see a large table and chairs, along with three seats at the far
-end, meant for the three directors of this mud, Yaz, Kahn, and Hatchet.  The 
-exit is to the south.
+end, meant for the three directors of this mud, Demonspawn, Kahn, and Kith.
+The exit is to the south.
 ~
 30 4|8|1024 0
 D2
@@ -3298,8 +3380,8 @@ S
 Builders' Room~
 You are inside the Builders' room, where the issues regarding areas of this
 mud are discussed.  You see a large table and chairs, along with a large seat
-at the far end, meant for the director of areas, Hatchet.  The exit is to the
-west.
+at the far end, meant for the director of areas, Demonspawn.  The exit is to
+the west.
 ~
 30 4|8|1024 0
 D3
@@ -4450,13 +4532,15 @@ S
 * -- northern Midgaard --
 *
 M 0 3011 1 3001       The executioner
-E 1 3005 100 16         wield the executioners blade
+E 1 3005 100 16         wield the executioner's blade
+E 1 3005 100 18         wield another one!
 *
 O 0 3010 1 3054       Donation pit
 *
 M 0 3000 1 3033       The Wizard Shop Keeper
 G 1 3040 500                Give identify scroll.
 G 1 3041 500                Give potion of see invisible.
+G 1 3170 500                Give wand of breathe water.
 *
 M 0 3003 1 3011       The weaponsmith
 G 1 3020 100
@@ -4478,6 +4562,7 @@ M 0 3002 1 3010       The grocer
 G 1 3030 900
 G 1 3031 900
 G 1 3138 999
+G 1 3011 0
 E 1 3022 900 16            wields a longsword
 *
 M 0 3001 1 3009       The baker
@@ -4569,14 +4654,14 @@ E 1 3350 199 16		sword
 E 1 3353 99 5		vest
 E 1 3356 99 6            helmet
 *
-M 0 3060 10 3017      Cityguard 3
+M 0 3060 12 3017      Cityguard 3
 E 1 3365 99 0		banner
 E 1 3364 99 1		signet ring
 E 1 3350 199 16		sword
 E 1 3353 99 5		vest
 E 1 3357 99 7            leggings
 *
-M 0 3060 10 3021      Cityguard 4
+M 0 3060 12 3021      Cityguard 4
 E 1 3365 99 0		banner
 E 1 3364 99 1		signet ring
 E 1 3350 199 16		sword

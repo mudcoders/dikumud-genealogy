@@ -14,7 +14,7 @@ It stands before you with arms folded, seemingly uninterested in you.
 1|2|64 8|32|128|8192 0 S
 37 -20 -15 37d37+370 8d12+100
 100000 600000
-8 8 0
+8 human~ 0
 #1901
 nightmare~
 A pitch-black nightmare~
@@ -27,7 +27,7 @@ than the darkest night, and hooves that burn with unholy fires.
 1|32|64 8|512|524288 -1000 S
 18 2 -2 18d18+180 5d3+10
 6000 32000
-8 8 0
+8 animal~ 0
 #1902
 night hag~
 An evil night hag~
@@ -40,7 +40,7 @@ master to torment.
 1|4|32|64 8|512 -1000 S
 24 0 -1 24d24+240 5d5+5
 12500 67500
-8 8 2
+8 undead~ 2
 #1903
 stalker invisible~
 An invisible stalker~
@@ -52,7 +52,7 @@ feel nothing, not even the slightest of motions.
 1|64 2|524288 200 S
 17 3 0 17d17+170 2d7+6
 1000 19000
-8 8 0
+8 undead~ 0
 #1904
 soulless one~
 A poor soulless being~
@@ -64,7 +64,7 @@ mindlessly, unaware of its surroundings.
 1|64|128 0 0 S
 10 8 5 10d10+100 1d6+2
 250 7500
-8 8 0
+8 undead~ 0
 #1905
 githyanki hunter~
 A githyanki hunter~
@@ -77,7 +77,7 @@ and sunken.
 1|4|64|128 512 -500 S
 11 6 6 11d11+110 1d5+4
 1000 8000
-8 8 1
+8 githyanki~ 1
 #1906
 githyanki warrior~
 A githyanki warrior~
@@ -91,7 +91,7 @@ whistles through the air as it slices towards your neck.
 1|4|64 512 -500 S
 15 4 6 15d15+150 1d5+6
 2500 15000
-8 8 1
+8 githyanki~ 1
 #1907
 githyanki guardian~
 A githyanki guardian~
@@ -105,7 +105,7 @@ whistles through the air as it slices towards your neck.
 1|2|4|32 512 -500 S
 15 4 6 15d15+150 1d5+6
 6000 15000
-8 8 1
+8 githyanki~ 1
 #1908
 githyanki knight~
 A githyanki knight~
@@ -119,7 +119,7 @@ of his sword against its scabbard as it is unsheathed.
 1|4|64 512 -750 S
 25 -2 6 25d25+250 1d5+15
 10000 90000
-8 8 1
+8 githyanki~ 1
 #1909
 githyanki protector~
 A githyanki protector~
@@ -133,7 +133,7 @@ of his sword against its scabbard as it is unsheathed.
 1|2|4|32 512 -750 S
 25 -2 6 25d25+250 1d5+15
 10000 90000
-8 8 1
+8 githyanki~ 1
 #1910
 githyanki gish~
 An evil gish~
@@ -147,7 +147,7 @@ people.  You notice this from the blast of lightning headed towards you.
 1|4|64|128 512 -600 S
 11 6 6 11d11+110 1d5+2
 3000 12500
-8 8 1
+8 githyanki~ 1
 #1911
 githyanki gish~
 An evil gish~
@@ -161,7 +161,7 @@ people.  You notice this from the blast of lightning headed towards you.
 1|4|32|64 512 -600 S
 11 6 6 11d11+110 1d5+2
 3000 12500
-8 8 1
+8 githyanki~ 1
 #1912
 githyanki warlock~
 A warlock of the Gith~
@@ -175,7 +175,7 @@ your back.
 1|32|64 8|16|512 -900 S
 20 0 2 20d20+200 1d5+8
 10000 55000
-8 8 1
+8 githyanki~ 1
 #1913
 githyanki lich queen~
 The lich-queen~
@@ -189,7 +189,7 @@ hollow eyes sends you into paroxysms of fright.
 1|2|32 8|16|32|128|512 -1000 S
 30 -8 -8 30d30+300 4d5+20
 100000 475000
-8 8 2
+8 githyanki~ 2
 #1914
 lord gith~
 Lord Gith~
@@ -207,7 +207,7 @@ to tighten.  You are about to die.
 1|2|32 2|8|32|512 -1000 S
 35 -15 -10 35d35+350 10d3+50
 5000 750000
-8 8 1
+8 githyanki~ 1
 #1915
 ghost~
 An insubstantial ghost~
@@ -221,7 +221,7 @@ true living beings it encounters, including you.
 1|32|64 512|524288|1048576 -1000 S
 16 2 0 16d16+160 2d9+2
 1000 19000
-8 8 0
+8 undead~ 0
 #1916
 githzerai prisoner~
 An imprisoned githzerai~
@@ -234,7 +234,7 @@ are bitter enemies, and this one happened to get caught.  He intends to escape.
 1|64 512 -350 S
 10 8 8 10d10+100 1d4+4
 0 6000
-8 8 1
+8 githyanki~ 1
 #1917
 mindflayer prisoner~
 A tortured mindflayer prisoner~
@@ -247,7 +247,7 @@ by the githyanki.  It cringes as you approach.
 1|2 0 0 S
 8 13 2 8d8+80 2d4+3
 0 3000
-8 8 0
+8 mindflayer~ 0
 #1918
 dragon red slave~
 The enslaved red dragon~
@@ -261,7 +261,7 @@ from his open mouth.
 1|2 8|512 -500 S
 28 -3 -6 28d28+280 3d5+25
 5000 350000
-8 8 1
+8 dragon~ 1
 #1919
 fire furnace flame~
 A massive blast of fire~
@@ -272,7 +272,7 @@ The fire feeds on your skin like a living being, licking out at your hair.
 1|2|32|64 512 0 S
 13 5 5 13d13+130 3d3+3
 5000 10000
-8 8 0
+8 object~ 0
 #0
 
 
@@ -351,7 +351,7 @@ The amulet is a small circular object made from some bizarre metallic alloy.
 It is inscribed with various symbols and raised images of snakes, tortured
 victims, and other things too horrible to describe.
 
-Stenciled in the center is an unpronouncable name which it would behoove you
+Stenciled in the center is an unpronounceable name which it would behoove you
 not to utter aloud.
 ~
 #1905
@@ -509,7 +509,7 @@ Maybe picking it up wasn't such a good idea.
 ~
 #1913
 stone flame~
-a brighty flaming stone~
+a bright flaming stone~
 The room is lit by a hot blue flame coming from a small stone.~
 ~
 1 0 16385
@@ -725,13 +725,13 @@ You can see the Temple of Midgaard below you.
 0 -1 1036
 E
 rainbow~
-The rainbow softly glows with beams of light, in colours that defy 
+The rainbow softly glows with beams of light, in colors that defy 
 description.
 ~
 S
 #1901
 On the Rainbow~
-   You are standing on the rainbow, surrounded by many beams of multicoloured
+   You are standing on the rainbow, surrounded by many beams of multicolored
 light.  Through the bottom of the rainbow you can barely make out the Temple
 of Midgaard, which is now quite far away.
 ~
@@ -748,13 +748,13 @@ The rainbow extends below you towards Midgaard.
 0 -1 1900
 E
 rainbow~
-The rainbow softly glows with beams of light, in colours that defie 
+The rainbow softly glows with beams of light, in colors that defy 
 description.
 ~
 S
 #1902
 On the Rainbow~
-   You are standing on the rainbow, surrounded by many beams of multicoloured
+   You are standing on the rainbow, surrounded by many beams of multicolored
 light.  Through the bottom of the rainbow you see the City of Midgaard and the 
 land surrounding it.  It seems to be miles below you.
 ~
@@ -771,13 +771,13 @@ The rainbow extends below you towards the land you once knew as home.
 0 -1 1901
 E
 rainbow~
-The rainbow softly glows with beams of light, in colours that
-defie description.
+The rainbow softly glows with beams of light, in colors that
+defy description.
 ~
 S
 #1903
 On the Rainbow~
-   You are standing on the rainbow, surrounded by many beams of multicoloured
+   You are standing on the rainbow, surrounded by many beams of multicolored
 light.  The rainbow extends above and below you as far as you can see.
 ~
 19 0 5
@@ -794,13 +794,13 @@ The rainbow extends far below you, slowly fading into darkness.
 0 -1 1902
 E
 rainbow~
-The rainbow brightly glows with beams of light, in colours that defie any
+The rainbow brightly glows with beams of light, in colors that defy any
 description.
 ~
 S
 #1904
 On the Rainbow~
-   You are nearing the end of the rainbow.  The beams of multicoloured
+   You are nearing the end of the rainbow.  The beams of multicolored
 light have begun to merge and solidify.  All around you you see glowing
 starlike motes of dust.  Ahead of you is a bridge.
 ~
@@ -818,7 +818,7 @@ The rainbow extends far below you, slowly fading into darkness.
 0 -1 1903
 E
 rainbow~
-The rainbow brilliantly glows with beams of blinding light, in colours that 
+The rainbow brilliantly glows with beams of blinding light, in colors that 
 sweep together and merge before your eyes.
 ~
 E
@@ -835,7 +835,7 @@ S
 #1905
 The Glowing Bridge at the Rainbow's End~
    After a long climb you have reached the end of the rainbow.  The brilliant
-colours have twisted and merged into a beautiful glowing bridge that leads
+colors have twisted and merged into a beautiful glowing bridge that leads
 toward a massive white gate to the north.  All around you is a soft, peaceful 
 glow interrupted only by the passing of starlike dust motes before your eyes.
 ~
@@ -847,7 +847,7 @@ standing there.
 ~
 0 -1 1906
 D5
-The bridge disassociates into a beautiful spectrum of colours that
+The bridge disassociates into a beautiful spectrum of colors that
 drop out of sight below you.
 ~
 ~
@@ -874,7 +874,7 @@ blackness, from which the motes of light seem to issue forth.
 S
 #1906
 The Astral Gate~
-   Here the bridge ends before a massive, pearly-coloured gate beyond which
+   Here the bridge ends before a massive, pearly-colored gate beyond which
 you can see a field of blackness filled with silvery snake-like tendrils,
 stars, and occasional flashes of of light.
 ~
@@ -950,7 +950,7 @@ The astral field leads off into infinity.
 0 -1 1912
 E
 gate~
-From here the pearly-coloured gate seems very small and insubstantial.  Through
+From here the pearly-colored gate seems very small and insubstantial.  Through
 its bars you can see the Astral Guardian, protecting your world from the perils
 of this plane of existence.
 ~
@@ -1247,7 +1247,7 @@ S
 Roaming the Astral Plane~
    You find yourself floating in a field of blackness, filled with tiny tendrils
 of silvery light and insubstantial shining motes of dust.  The weightlessness
-of this environment is somewhat disorenting, though your instincts say you are 
+of this environment is somewhat disorienting, though your instincts say you are 
 close to home.
    All exits lead off into the astral field.
 ~
@@ -2946,7 +2946,7 @@ S
 #1972
 A tiny cell~
    You are in a cold, dank, cramped cell.
-   The only exit is back throught the door to the north.
+   The only exit is back through the door to the north.
 ~
 19 8 0
 D0
@@ -3180,22 +3180,22 @@ S
   R 0 1943 6
   R 0 1944 6
 * Entrance to the astral plane
- M 0 1900 1 1906		Load the Astral Guardian
- E 0 1900 0 16			He wields the slate-grey sledgehammer
- D 0 1906 0 1			Close the astral gate
+ M 0 1900 1 1906         Load the Astral Guardian
+ E 0 1900 0 16           He wields the slate-grey sledgehammer
+ D 0 1906 0 1            Close the astral gate
  D 0 1907 2 1
 * The astral plane
  * nightmares
-  M 0 1901 2 1933		Load 2 nightmares
-  G 0 1904 0			And give them demon amulets
+  M 0 1901 2 1933        Load 2 nightmares
+  G 0 1904 0             And give them demon amulets
   M 0 1901 2 1934
   G 0 1904 0
  * night hag
-  M 0 1902 1 1946		Load a night hag
-  G 0 1905 0			And give it a devilish talisman
+  M 0 1902 1 1946        Load a night hag
+  G 0 1905 0             And give it a devilish talisman
  * invisible stalkers
-  M 0 1903 4 1920		Load 4 invisible stalkers
-  G 0 1914 0			And give each some astral powder
+  M 0 1903 4 1920        Load 4 invisible stalkers
+  G 0 1914 0             And give each some astral powder
   M 0 1903 4 1924
   G 0 1914 0
   M 0 1903 4 1926
@@ -3203,8 +3203,8 @@ S
   M 0 1903 4 1930
   G 0 1914 0
  * soulless ones
-  M 0 1904 10 1913		Load 10 soulless ones
-  E 0 1926 0 16			Each wields a long sword
+  M 0 1904 10 1913       Load 10 soulless ones
+  E 0 1926 0 16               Each wields a long sword
   M 0 1904 10 1914
   E 0 1926 0 16
   M 0 1904 10 1915
@@ -3224,38 +3224,38 @@ S
   M 0 1904 10 1922
   E 0 1926 0 16
  * githyanki hunters
-  M 0 1905 8 1918		Load 4 (maximum of 8) githyanki hunters
-  E 0 1907 0 16			Each wields a silvery dagger
+  M 0 1905 8 1918        Load 4 (maximum of 8) githyanki hunters
+  E 0 1907 0 16               Each wields a silvery dagger
   M 0 1905 8 1920
   E 0 1907 0 16
-  M 0 1905 8 1922		Notice all the githyanki
-  E 0 1907 0 16			in the astral plane have a variable
-  M 0 1905 8 1924		number of mobiles present after each load,
-  E 0 1907 0 16			from a maximum value to 1/2 that value.
+  M 0 1905 8 1922        Notice all the githyanki
+  E 0 1907 0 16               in the astral plane have a variable
+  M 0 1905 8 1924        number of mobiles present after each load,
+  E 0 1907 0 16               from a maximum value to 1/2 that value.
  * githyanki warriors
-  M 0 1906 6 1923		Load 2 (max. 6) githyanki warriors.
-  E 0 1909 0 16			Each wields a thin razor-sharp sword
-  E 0 1915 0 5			And wears a splint mail vest
+  M 0 1906 6 1923        Load 2 (max. 6) githyanki warriors.
+  E 0 1909 0 16               Each wields a thin razor-sharp sword
+  E 0 1915 0 5           And wears a splint mail vest
   M 0 1906 6 1927
   E 0 1909 0 16
   E 0 1915 0 5
  * githyanki knights
-  M 0 1908 3 1930		Load 1 (max. 3) githyanki knight.
-  E 0 1909 0 16			He wields a thin two-handed sword
-  E 0 1915 0 5			And wears all the splint mail armor
+  M 0 1908 3 1930        Load 1 (max. 3) githyanki knight.
+  E 0 1909 0 16               He wields a thin two-handed sword
+  E 0 1915 0 5           And wears all the splint mail armor
   E 0 1916 0 7
-  E 0 1917 0 10			(There's also a knight in the keep)
+  E 0 1917 0 10               (There's also a knight in the keep)
  * githyanki gish
-  M 0 1910 6 1929		Load 2 (max. 6) githyanki gish
-  E 0 1906 0 16			Each wields a silvery knife
+  M 0 1910 6 1929        Load 2 (max. 6) githyanki gish
+  E 0 1906 0 16               Each wields a silvery knife
   M 0 1910 6 1931
   E 0 1906 0 16
  * ghosts
-  M 0 1915 3 1945		Load 3 ghosts
-  G 0 1921 0			Give each one a murky potion
+  M 0 1915 3 1945        Load 3 ghosts
+  G 0 1921 0             Give each one a murky potion
   M 0 1915 3 1947
   G 0 1921 0
-  M 0 1915 3 1949		Do you believe in ghosts?
+  M 0 1915 3 1949        Do you believe in ghosts?
   G 0 1921 0
 * Close all the doors in the githyanki keep
  * the steel door to get in
@@ -3279,7 +3279,7 @@ S
   D 0 1962 3 1
   D 0 1963 2 1
   D 0 1964 0 1
-  D 0 1973 2 1			Ok, that building is out of place, so what?
+  D 0 1973 2 1           Ok, that building is out of place, so what?
  * the doors to the armoury, weaponry, and the furnace
   D 0 1965 3 1
   D 0 1966 1 1
@@ -3289,66 +3289,66 @@ S
   D 0 1969 1 1
   D 0 1970 0 1
   D 0 1970 2 1
-  D 0 1971 2 1			I know, the cell doors are unlocked, but
-  D 0 1972 0 1			the guards are mean, and the food's good.
+  D 0 1971 2 1           I know, the cell doors are unlocked, but
+  D 0 1972 0 1           the guards are mean, and the food's good.
  * the doors in the great hall
-  D 0 1974 2 1			close the silvery metal door
-  D 0 1975 0 1			close the mist door in the archway (south side)
-  D 0 1976 2 1			close the mist door in the archway (north side)
-  D 0 1977 5 1			close the hole from above
-  D 0 1978 4 1			close the hole from below
-  D 0 1978 5 2			close and LOCK the gateway (1 way only)
+  D 0 1974 2 1           close the silvery metal door
+  D 0 1975 0 1           close the mist door in the archway (south side)
+  D 0 1976 2 1           close the mist door in the archway (north side)
+  D 0 1977 5 1           close the hole from above
+  D 0 1978 4 1           close the hole from below
+  D 0 1978 5 2           close and LOCK the gateway (1 way only)
 * The githyanki keep
  * githyanki guardians
-   M 0 1907 8 1951		Load 8 githyanki guardians
-   E 0 1908 0 16		Each wields a thin razor-sharp sword
-   E 0 1915 0 5			And wears a splint mail vest
-   M 0 1907 8 1951		2 at the entrance
+   M 0 1907 8 1951       Load 8 githyanki guardians
+   E 0 1908 0 16         Each wields a thin razor-sharp sword
+   E 0 1915 0 5               And wears a splint mail vest
+   M 0 1907 8 1951       2 at the entrance
    E 0 1908 0 16
    E 0 1915 0 5
-   M 0 1907 8 1965		2 at the weaponry
+   M 0 1907 8 1965       2 at the weaponry
    E 0 1908 0 16
    E 0 1915 0 5
    M 0 1907 8 1965
    E 0 1908 0 16
    E 0 1915 0 5
-   M 0 1907 8 1967		2 at the armoury
+   M 0 1907 8 1967       2 at the armoury
    E 0 1908 0 16
    E 0 1915 0 5
    M 0 1907 8 1967
    E 0 1908 0 16
    E 0 1915 0 5
-   M 0 1907 8 1969		2 in the prison
+   M 0 1907 8 1969       2 in the prison
    E 0 1908 0 16
    E 0 1915 0 5
    M 0 1907 8 1969
    E 0 1908 0 16
    E 0 1915 0 5
  * githyanki knights
-   M 0 1908 3 1955		Load the githyanki knight
-   E 0 1909 0 16		Give him his thin two-handed sword
-   E 0 1915 0 5			and
-   E 0 1916 0 7			his
-   E 0 1917 0 10		splint mail
+   M 0 1908 3 1955       Load the githyanki knight
+   E 0 1909 0 16         Give him his thin two-handed sword
+   E 0 1915 0 5               and
+   E 0 1916 0 7               his
+   E 0 1917 0 10         splint mail
  * githyanki gish
-   M 0 1911 6 1953		Load 6 githyanki gish (these guys are aggro)
-   E 0 1906 0 16		Each wields a silvery knife
+   M 0 1911 6 1953       Load 6 githyanki gish (these guys are aggro)
+   E 0 1906 0 16         Each wields a silvery knife
    M 0 1911 6 1959
    E 0 1906 0 16
    M 0 1911 6 1962
    E 0 1906 0 16
    M 0 1911 6 1963
    E 0 1906 0 16
-   M 0 1911 6 1962		Bonus!  The last 2 have silvery potions!
+   M 0 1911 6 1962       Bonus!  The last 2 have silvery potions!
    E 0 1906 0 16
    G 0 1922 0
    M 0 1911 6 1963
    E 0 1906 0 16
    G 0 1922 0
  * githyanki warlocks
-   M 0 1912 4 1964		Load 4 githyanki warlocks
-   E 0 1910 0 16		Each wields a silvery sword
-   G 0 1903 0			And carries a githyanki scroll
+   M 0 1912 4 1964       Load 4 githyanki warlocks
+   E 0 1910 0 16         Each wields a silvery sword
+   G 0 1903 0            And carries a githyanki scroll
    M 0 1912 4 1973
    E 0 1910 0 16
    G 0 1903 0
@@ -3363,20 +3363,20 @@ S
    M 0 1917 1 1971
   * enslaved red dragon and 6 furnace flames
    M 0 1918 1 1968
-   E 0 1913 0 0			the red dragon holds a flaming stone as light
+   E 0 1913 0 0               the red dragon holds a flaming stone as light
    M 0 1919 6 1968
    M 0 1919 6 1968
    M 0 1919 6 1968
    M 0 1919 6 1968
    M 0 1919 6 1968
-   M 0 1919 6 1968		hot furnace!
+   M 0 1919 6 1968       hot furnace!
   * githyanki knights
-   M 0 1909 2 1976		two githyanki protectors
-   E 0 1909 0 16		with the usual knight eq
+   M 0 1909 2 1976       two githyanki protectors
+   E 0 1909 0 16         with the usual knight eq
    E 0 1915 0 5
    E 0 1916 0 7
    E 0 1917 0 10
-   E 0 1918 0 9			plus each has ornate gauntlets
+   E 0 1918 0 9               plus each has ornate gauntlets
    M 0 1909 2 1977
    E 0 1909 0 16
    E 0 1915 0 5
@@ -3385,14 +3385,14 @@ S
    E 0 1918 0 9
   * the githyanki lich-queen
    M 0 1913 1 1977
-   E 0 1911 0 16		She wields the barbed flail
-   E 0 1924 0 17		and holds the pentagram
-   G 0 1902 0			and carries a black etched tablet
+   E 0 1911 0 16         She wields the barbed flail
+   E 0 1924 0 17         and holds the pentagram
+   G 0 1902 0            and carries a black etched tablet
   * lord gith
    M 0 1914 1 1979
-   E 0 1912 0 16		He wields the unholy sword of the githyanki
-   E 0 1919 0 5			and wears a cracked leather vest
-   G 0 1925 0			and carries a rotting pouch
+   E 0 1912 0 16         He wields the unholy sword of the githyanki
+   E 0 1919 0 5               and wears a cracked leather vest
+   G 0 1925 0            and carries a rotting pouch
 S
 
 #SPECIALS
@@ -3409,6 +3409,18 @@ M  1917 spec_cast_mage     mind flayer
 M  1918 spec_breath_fire   red dragon
 M  1918 spec_cast_mage     red dragon
 M  1919 spec_breath_fire   furnace flames
+
+
+* updated 1/6/95 by Zelda
+* Spelling fixes:
+
+  *            Object #1904   Unpronouncable changed to Unpronounceable
+  *            Object #1913   Brighty changed to bright
+  *            Every reference to Colour was changed to Color
+  *            Room#1901      Defie changed to Defy
+  *            Room#1916      Disorenting changed to Disorienting
+  *            Room#1972      Throught changed to Through
 S
 
 #$
+

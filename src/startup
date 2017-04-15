@@ -8,13 +8,12 @@ set port = 4000
 if ( "$1" != "" ) set port="$1"
 
 # Change to area directory.
-cd ../area
+cd /EnvyMud/area
 
 # Set limits.
 nohup
-nice +6
 limit stack 1024k
-if ( -e shutdown.txt ) rm -f shutdown.txt
+if ( -e SHUTDOWN.TXT ) rm -f SHUTDOWN.TXT
 
 while ( 1 )
     # If you want to have logs in a different directory,
@@ -26,17 +25,24 @@ while ( 1 )
 	@ index++
     end
 
+    # Update to new code if possible.
+    if ( -e ../src/envy.new ) then
+	\mv ../src/envy2 ../src/envy.old
+	\mv ../src/envy.new ../src/envy2
+    endif
+
     # Run envy.
-    ../src/envy $port >&! $logfile
+    ../src/envy2 $port >&! $logfile
 
     if ( -e core ) then
-	    mv core ../src/$index.core
+	\mv core ../src/
     endif
 
     # Restart, giving old connections a chance to die.
-    if ( -e shutdown.txt ) then
-	rm -f shutdown.txt
+    if ( -e SHUTDOWN.TXT ) then
+	rm -f SHUTDOWN.TXT
 	exit 0
     endif
-    sleep 15
+
+    sleep 10
 end

@@ -1,119 +1,30 @@
-EnvyMud release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
 
-=== The area directory
+=== The doc directory
 
-This file gives a brief description of the files in the area directory.
+This file gives a brief description of the files in the doc directory.
 
-	*.are files
-	AREA.LST
-	BUGS.TXT
-	IDEAS.TXT
-	NOTES.TXT
-	SHUTDOWN.TXT
-	TIME.TXT
-	TYPOS.TXT
+AREA.LST	- Contains a list of all areas to be loaded into the server.
+		The areas are loaded in top-down order.
+BUGS.TXT	- Contains a report of all bugs and player bug comments.  You
+		may wish to look at this file frequently.
+IDEAS.TXT	- Contains a list of all the ideas players contribute using
+		the online IDEA command.
+NOTES.TXT	- Contains all the player notes created by the online NOTE
+		command.  You may wish to clean this file periodically using
+		your favorite text editor.
+SHUTDOWN.TXT	- This file is created by the server when it exits normally
+		by shutdown command or autoshutdown.  The server run script
+		will do its own housekeeping and you will rarely see it.
+TIME.TXT	- Contains information instructing the server when to
+		autoreboot or autoshutdown.
+TYPOS.TXT	- Contains a list of all the player typo contributions.  You
+		may wish to look at this file frequently to maintain integrity
+		of your area files.
 
-
-=== *.are files
-
-These are the area files each representing one zone in the mud.  Each zone
-may have objects, mobiles, rooms, special procedures for mobs, shopkeepers,
-and data telling the mud all sorts of information about how that zone interacts
-with the players.
-
-See 'area.txt' for more information on what an area file consists of.
-
-
-=== AREA.LST
-
-This file contains all the names of all the area files loaded into the
-mud server.  The zones listed must occur in increasing vnum order as stated
-in each area file.
-
-See 'vnum.txt' for more information on what vnum group each distributed
-area file fills.
-
-
-
-===  BUGS.TXT
-
-This file contains all the server bug reports and player created bug reports
-while the game is running.  This file is not included in the package.  The
-mud server is smart enough to create a file when necessary.
-
-It is advisable to check this file once in a while to ensure the quality
-of your code and to meet your players immediate needs.
-
-
-
-===  IDEAS.TXT
-
-This file contains all the player created idea contributions while the game
-is running.  This file is not included in the package.  The mud server is
-smart enough to create a file when necessary.
-
-It is advisable to check this file once in a while to improve your mud to
-the standards your players desire.
-
-
-
-=== NOTES.TXT
-
-This file contains all the intermud communications in the form of notes while
-the game is running.  This file is not included in the package.  The mud
-server is smart enough to create a file when necessary.
-
-It is advisable to periodically check and remove certain notes once in a while
-to prevent note clutter.  Not every player is diligent in removing their
-notes.
-
-To remove notes, just edit notes.txt with your favorite text editor and
-delete a note block from "Sender ....." to "Sender ....".  If you were to
-make an error, the mud will stop on bootup with an error indicating which
-line was offending.
-
-
-
-=== SHUTDOWN.TXT
-
-This file is used by the startup or startupSH script to indicate whether
-or not the mud is to reboot automatically.  If the file 'shutdown.txt'
-exists at the instant the mud goes down and the startup script is running,
-the startup script will exit and the mud will not reboot.
-
-NOTE:  Should you test another copy of your mud in the area directory, and
-	end the test with a shutdown BEFORE your original mud exits, you
-	will create a shutdown.txt file which will signal your original mud
-	to NOT reboot.  Just delete the file to ensure proper operation of
-	your startup script when or if you see it.
-
-
-
-=== TIME.TXT
-
-This file is used to give the mud server information on when to shutdown.
-This is designed for muds on an uptime schedule.  This file is not included
-in the package.  You have no need for one unless you intend on having your
-mud server turn off at regular times.
-
-See 'down.txt' for more information regarding setting an automatic shutdown
-time.
-
-
-
-=== TYPOS.TXT
-
-This file contains all the player created typo reports while the game is
-running.  This file is not included in the package.  The mud server is smart
-enough to create a file when necessary.
-
-It is advisable to check this file once in a while to ensure your areas and
-text displays are error-free.

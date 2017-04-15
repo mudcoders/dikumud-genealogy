@@ -1,4 +1,4 @@
-#AREA	{ All } Alfa    Ofcol~
+#AREA   { All } Alfa    Ofcol~
 
 
 
@@ -60,7 +60,8 @@ Village square~
    The village square is a place where inhabitants of Ofcol gather
 to talk, trade and sell items and just have a good time.
 You see a small shop to the west and the local inn to the north.
-If you leave south you go to village street.
+If you leave south you go to village street.  You see some new
+construction east of you!
 ~
 51 0 1
 D0
@@ -68,6 +69,10 @@ You see a local inn called 'The Ofcol Local Inn'. Looks nice.
 ~
 ~
 0 -1 5556
+D1
+~
+~
+0 -1 10700
 D2
 You see the village street of Ofcol.
 ~
@@ -108,7 +113,7 @@ leading to the small alley.
 ~
 51 8 1
 D0
-You are able to see the small alley, really not very interesting.
+You are able to see the small alley, which is really not very interesting.
 ~
 ~
 0 -1 5553
@@ -193,8 +198,8 @@ S
 
 
 #SHOPS
-  306	 1 10 11 19  0	 120   60	 0 23	; Luxan
-  308	 0  0  0  0  0	 110  100	 0 23	; Ofcol Innkeeper
+  306    1 10 11 19  0   120   60        0 23   ; Luxan
+  308    0  0  0  0  0   110  100        0 23   ; Ofcol Innkeeper
 0
 
 

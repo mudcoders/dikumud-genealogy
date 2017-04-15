@@ -1,9 +1,7 @@
-EnvyMud release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -105,21 +103,21 @@ continue loading.
 
 === Immortal commands
 
-Immortal commands in Envy 1.0 are considered Skills.  Each command is
-stored as a player skill trained at 100%.  Each immortal must have the
-level and the skill at 100% in order to use that particular imm command.
-This allows for customized immortals with customized skills.
+Immortal commands in Envy 2.0 are considered Skills.  Each command is
+stored as a string in the field Immskll.  Each immortal must have the
+level and the string in the field Immskll in order to use that
+particular imm command. This allows for customized immortals with
+customized skills.
 
 To give an immortal a particular imm skill, edit the playerfile with your
 favorite text editor and add in the #PLAYER section:
 
-Skll	100 '<name:phrase>'
+Immskll		wizhelp ~
 
 As an example:
 #PLAYER
 Nm	Kahn~
-Skll	100 'advance'
-Skll	100 'reboot'
+Immskll		imtlset mset sset advance ~
 End
 
 #END

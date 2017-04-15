@@ -17,7 +17,7 @@ she has in her hand a wand, and in the room is a magical red book.
 1|2 0 0 S
 28 0 0 0d0+0 0d0+0
 14000 2000
-0 0 2
+0 hobbit~ 2
 
 #202
 sailor~
@@ -29,7 +29,7 @@ It appears that this sailor's captain has left him here on the dock.
 1|2 0 900 S
 23 2 2 1d30000+0 1d8+32
 12000 80000
-8 8 1
+8 human~ 1
 
 #0
 
@@ -1166,7 +1166,6 @@ S
 S
 
 #$
-
 
 
 

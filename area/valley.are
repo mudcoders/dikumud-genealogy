@@ -9,6 +9,20 @@ pointed features.  They are reclusive and resent intrusion.  All other sorts
 of elves, including the drow, shun valley elves.  The latter, in turn, dislike
 association with any races save perhaps gnomekind, whom they tolerate.
 ~
+
+-1 ELF ELVES~
+ELVES are leaner in stature than humans yet on the average just as strong.
+They are more magical and dexterous than the average HUMAN.  With their
+smaller frame, they are able to better dodge larger foes like GIANTS
+and OGRES.  Unfortunately, ELVES are not so strong in bodily health;
+on the other hand, their magical nature aids them in recovering from
+the rigors of spell-casting.  Due to ancient feuds and past dealings,
+ELVES have strong animosity toward a few races and they toward ELVES.
+ELVES have certain abilities available to them.
+	* Infravision.
+	* Detect Hidden.
+~
+
 0 $~
 
 
@@ -26,7 +40,7 @@ undetectable as it moves.
 64|128 32768 0 S
 5 15 4 4d4+55 2d4+1
 0 700
-8 8 0
+8 animal~ 0
 #7801
 valley elf~
 a valley elf~
@@ -40,7 +54,7 @@ noticing him, and quietly disappears.
 4|32|64|128 512|32768 0 S
 8 11 0 7d7+80 1d4+6
 10 2000
-8 8 1
+8 elf~ 1
 #7802
 valley elf~
 a valley elf~
@@ -52,7 +66,7 @@ She glares at you, then quickly disappears before you see more of her.
 4|32|64|128 512|32768 0 S
 8 11 0 7d7+80 1d4+6
 10 2000
-8 8 2
+8 elf~ 2
 #7803
 sentry valley elf~
 a valley elf sentry~
@@ -64,7 +78,7 @@ He glares at your intrusion and attacks with menace.
 2|32 512|32768 0 S
 7 12 1 6d6+70 1d4+5
 10 1500
-8 8 1
+8 elf~ 1
 #7804
 sentry valley elf~
 a valley elf sentry~
@@ -76,7 +90,7 @@ She glares at your intrusion and attacks with menace.
 2|32 512|32768 0 S
 7 12 1 6d6+70 1d4+5
 10 1500
-8 8 2
+8 elf~ 2
 #7805
 scout valley elf~
 a valley elf scout~
@@ -87,7 +101,7 @@ The elf notices your intrusion and attacks with determination.
 4|32|64 512|32768 0 S
 6 13 2 5d5+60 1d4+4
 10 1000
-8 8 1
+8 elf~ 1
 #7806
 valley elf~
 a valley elf~
@@ -99,7 +113,7 @@ when you are in her way.
 64|128 512|32768 0 S
 6 13 2 5d5+60 1d4+4
 10 1000
-8 8 2
+8 elf~ 2
 #7807
 elder valley elf~
 a valley elf elder~
@@ -112,7 +126,7 @@ quite potent, though.
 2|4|32 128|8192 0 S
 15 3 -7 14d14+150 1d4+9
 10 30000
-8 8 1
+8 elf~ 1
 #7808
 elder valley elf~
 a valley elf elder~
@@ -125,7 +139,7 @@ quite potent, though.
 2|4|32 8192 0 S
 15 3 -10 14d14+150 1d4+9
 10 30000
-8 8 2
+8 elf~ 2
 #7809
 pyrohydra pyro hydra~
 the pyrohydra~
@@ -137,7 +151,7 @@ regular dragon, too.  It doesn't look happy.
 2|32 0 0 S
 20 2 -5 20d20+200 1d20+12
 0 50000
-8 8 0
+8 hydra~ 0
 #7810
 hermit man old~
 an old hermit~
@@ -148,7 +162,7 @@ He looks old and feeble.
 2|4|128 0 0 S
 3 17 7 3d3+33 1d4+2
 10 300
-8 8 1
+8 human~ 1
 #7811
 talemon wizard mage~
 Talemon~
@@ -159,7 +173,7 @@ Talemon looks harmless, but the fireballs he throws at you don't.
 2|4|32 0 0 S
 25 0 -10 25d25+250 1d4+10
 1000 100000
-8 8 1
+8 elf~ 1
 #7812
 guardian daemon~
 the guardian daemon~
@@ -171,7 +185,7 @@ anger at you!
 2|32 0 -500 S
 25 -2 -10 25d25+250 2d4+20
 0 80000
-8 8 0
+8 god~ 0
 #7813
 wolf~
 a wolf~
@@ -182,7 +196,7 @@ The wolf is covered with brown hair.  It looks at you with fright.
 32|128 0 0 S
 4 16 6 4d4+40 1d4+3
 0 500
-8 8 0
+8 bear~ 0
 #7814
 antelope~
 an antelope~
@@ -194,7 +208,7 @@ image of ... an antelope.
 128 0 0 S
 6 14 4 6d6+66 1d4+5
 0 1000
-8 8 0
+8 animal~ 0
 #0
 
 

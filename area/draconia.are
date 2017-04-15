@@ -14,7 +14,7 @@ few feet long, its sharp teeth make you think twice about petting it.
 2|64 524288 -900 S
 7 12 4 4d8+100 1d8+2
 2000 2250
-8 8 0
+8 dragon~ 0
 #2201
 draconian~
 the Draconian~
@@ -27,7 +27,7 @@ spear as you enter the room.
 2|4|32 8 -900 S
 13 8 2 13d13+130 2d6+3
 2000 15000
-8 8 1
+8 dragon~ 1
 #2202
 master~
 the dragon master~
@@ -38,7 +38,7 @@ He doesn't look happy to see you.
 2|4|32 524288 -1000 S
 37 0 -2 27d27+270 3d6+8
 35000 60000
-8 8 1
+8 god~ 1
 #2203
 man mage wizard~
 a powerful mage~
@@ -51,7 +51,7 @@ powerful to have been accepted by the creatures which live here.
 2 2|8|128 -900 S
 32 0 3 22d22+220 1d8+10
 600 45000
-8 8 1
+8 human~ 1
 #2204
 cleric draconian~
 the holy Draconian~
@@ -63,7 +63,7 @@ notice a golden medallion in the shape of a five headed dragon.
 2|4|32 8|128 -900 S
 32 1 0 22d22+220 3d5+6
 400 45000
-8 8 1        
+8 dragon~ 1        
 #2205
 king draconian~
 the Draconian King~
@@ -76,7 +76,7 @@ is controlled by a greater power.
 2|4 8|128 -900 S
 26 0 1 26d26+260 2d8+12
 800 100000
-8 8 1
+8 dragon~ 1
 #2206
 concubine draconian~
 a concubine~
@@ -89,7 +89,7 @@ prepares to defend herself.
 2 0 -500 S
 6 16 5 6d10+50 2d3+1
 100 1000
-8 8 2
+8 dragon~ 2
 #2207
 bodyguard draconian~
 A bodyguard~
@@ -101,7 +101,7 @@ not pleased it.
 2|32 4|8|32 -800 S
 18 3 2 18d18+180 2d6+10
 5000 30000
-8 8 1
+8 dragon~ 1
 #2220
 tiamat dragon~
 Tiamat~
@@ -113,7 +113,7 @@ prepares to make you pay for your insolence ... with your lives!
 2|4|32 8|32 -1000 S
 47 0 -10 35d35+1000 4d9+15
 50000 3500000
-8 8 2
+8 dragon~ 2
 #2221
 dragon red~
 the Great Red Dragon~
@@ -125,7 +125,7 @@ you and invites you to stay ... forever!
 2|4|32 8|32 -1000 S
 41 0 -5 27d27+270 2d8+10
 10000 300000
-8 8 1
+8 dragon~ 1
 #2222
 dragon black~
 the Great Black Dragon~
@@ -137,7 +137,7 @@ going to roll over and die for you.
 2|4|32 8|32 -900 S
 36 1 -3 26d26+260 3d8+4
 20000 250000
-8 8 1
+8 dragon~ 1
 #2223
 dragon white~
 the Great White Dragon~
@@ -150,7 +150,7 @@ me a greater challenge than my offspring.'
 2|4|32 8|32 -1000 S
 39 0 -3 27d27+270 3d8+4
 35000 200000
-8 8 2
+8 dragon~ 2
 #2225
 dragon green~
 the Ancient Green Dragon~
@@ -163,7 +163,7 @@ children.  Prepare to die.'
 2|4|32 8|32 -1000 S
 41 0 -4 31d31+310 3d8+15
 20000 500000
-8 8 2
+8 dragon~ 2
 #2226
 hydra~
 a large hydra~
@@ -175,7 +175,7 @@ it isn't happy to see you.
 2|4|32 8|32 -800 S
 18 3 1 18d18+180 2d8+7
 5000 35000
-8 8 0
+8 hydra~ 0
 #2227
 slave human~
 A human slave~
@@ -187,7 +187,7 @@ left him alone.
 2 0 0 S 
 5 16 6 1d10+50 1d6+4 
 100 900 
-8 8 1
+8 human~ 1
 #2240
 zombie draconian~
 a Draconian zombie~
@@ -199,7 +199,7 @@ rest, however, and now guards this corridor tirelessly as a zombie.
 2|4|32 8|32 -400 S
 9 9 4 1d100+175 1d8+6
 1500 3000
-8 8 0 
+8 undead~ 0 
 #2241
 dragon phase~
 the phase dragon~
@@ -210,7 +210,7 @@ This small dragon looks like he's up to no good.
 4|32|64|128 8|32 -300 S 
 10 11 3 10d10+150 2d6+6
 5000 6000
-8 8 1
+8 dragon~ 1
 #2242
 fool draconian~
 the draconian fool~
@@ -222,7 +222,7 @@ suit.  As you enter the room, he points at you and laughs.
 64|128 0 0 S 
 5 16 5 1d10+50 3d3+4 
 500 800 
-8 8 1
+8 dragon~ 1
 #2243
 queen draconian~
 the Draconian Queen~
@@ -234,7 +234,7 @@ it might be a good idea to leave her alone.
 2|4 8|32|128 -600 S 
 20 1 2 20d20+200 3d4+8 
 10000 45000 
-8 8 2
+8 dragon~ 2
 #0
 
 

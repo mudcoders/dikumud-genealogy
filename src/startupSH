@@ -44,13 +44,20 @@ do
         fi
     done
 
+    # Update to new code if possible.
+    if [ -r ../src/envy.new ]
+    then
+	\mv ../src/envy2 ../src/envy.old
+	\mv ../src/envy.new ../src/envy2
+    fi
+
     # Run envy.
     # Thanks to Alan and Grodyn for their help on the redirecting stuff - Loki
     ../src/envy $port >$logfile 2>&1
 
     if [ -r core ]
     then
-            mv core ../src/$index.core
+	\mv core ../src/
     fi
 
     # Restart, giving old connections a chance to die.
@@ -59,5 +66,5 @@ do
         rm -f shutdown.txt
         exit 0
     fi
-    sleep 15
+    sleep 10
 done

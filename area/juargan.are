@@ -14,7 +14,7 @@ beard is encrusted with cracked rock and dust from the tunnel walls.
 4 0 500 S
 7 13 3 1d10+150 1d8+0
 50 1600
-8 8 1
+8 dwarf~ 1
 #4701
 dwarf~
 the small dwarf~
@@ -27,7 +27,7 @@ of the mines.
 4 0 500 S
 5 18 5 1d12+60 1d8+0
 100 900
-8 8 1
+8 dwarf~ 1
 #4702
 dwarf guard~
 the dwarf guard~
@@ -40,7 +40,7 @@ dwarf is of no use to anyone but him, but provides adequate defense.
 2 0 700 S
 10 10 0 1d12+170 1d8+6
 150 3500
-8 8 1
+8 dwarf~ 1
 #4703
 dwarf yentle~
 Yentle the dwarf~
@@ -53,7 +53,7 @@ of failure at growing rocks.
 4 8 1000 S
 10 11 2 10d10+100 2d6+1
 300 9000
-6 6 1
+6 dwarf~ 1
 #4704
 juargan dwarf king~
 Juargan the Dwarven King~
@@ -66,7 +66,7 @@ surroundings, as if his burden has become to much for him.
 2 8 1000 S
 27 -1 -10 27d27+270 3d6+9
 1000 90000
-6 6 1
+6 dwarf~ 1
 #4705
 duergar dwarf~
 the duergar dwarf~
@@ -79,7 +79,7 @@ enemies with them.
 36 8 -1000 S
 8 13 3 2d10+150 2d4+0
 100 2900
-8 8 1
+8 dwarf~ 1
 #4706
 grimdale king dwarf~
 Grimdale the ancient king~
@@ -92,7 +92,7 @@ turned into a crude scowl as you can feel that his soul is not at ease.
 34 40 -999 S
 27 -1 -10 27d27+270 2d10+9
 0 100000
-8 8 1
+8 undead~ 1
 #4707
 rock worm dreaded~
 The dreaded rock worm~
@@ -105,7 +105,7 @@ many dwarves as it's body is at least five feet in diameter.
 34 8 0 S
 20 10 5 4d10+250 3d4+6
 4000 28000
-8 8 0
+8 worm~ 0
 #4708
 spirit dwarf~
 a dwarven spirit~
@@ -118,7 +118,7 @@ of eternal pain.
 34 168 -999 S
 15 6 1 5d10+150 2d6+3
 0 28000
-8 8 0
+8 undead~ 0
 #0
 
 

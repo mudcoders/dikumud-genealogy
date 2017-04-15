@@ -12,7 +12,7 @@ The Sentry to the Goblin Caves tells you, 'Abandon all hope ye who enter here'
 2 128 500 S
 19 3 0 10d10+100 10d10+100
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20001
 wizard~
@@ -21,12 +21,12 @@ An Ancient Wizard stands here as to prevent you from entering the caves.
 ~
 You realize as you look upon this wizened Wizard, that you must defeat him in 
 combat before you can enter the caves.  Why waste the effort, you should really 
-take the easy way out and leave..
+take the easy way out and leave.
 ~
 2 8192 0 S
 10 3 0 10d9+50 10d9+70
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20002
 goblin~
@@ -38,7 +38,7 @@ You have never in your life seen anything so ugly!!!
 34 8192 0 S
 10 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20003
 goblin~
@@ -50,7 +50,7 @@ You have never in your life seen anything so ugly!!!
 34 8192 0 S
 10 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20004
 goblin~
@@ -62,7 +62,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 10 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20005
 goblin~
@@ -74,7 +74,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 10 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20006
 goblin~
@@ -86,7 +86,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 10 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20007
 goblin~
@@ -98,7 +98,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 10 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20008
 goblin~
@@ -110,7 +110,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 10 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20009
 goblin~
@@ -122,7 +122,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 12 3 20 3d11+5 3d17+9
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20010
 goblin~
@@ -134,7 +134,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 12 3 20 3d11+5 3d17+9
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20011
 goblin~
@@ -146,7 +146,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 13 3 20 3d11+5 3d17+9
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20012
 goblin~
@@ -158,7 +158,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 13 3 20 3d11+5 3d17+9
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20013
 goblin~
@@ -170,7 +170,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 13 3 0 6d9+11 6d9+15
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20014
 goblin~
@@ -182,7 +182,7 @@ You have never in your life seen anything so ugly!!!
 32 8192 0 S
 13 3 0 6d9+11 6d9+15
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20015
 goblin king~
@@ -194,7 +194,7 @@ As you bow toward this king you end up falling over in a fit of laughter.
 2 8192 0 S
 23 3 40 9d17+11 9d17+15
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20016
 goblin captain~
@@ -206,7 +206,7 @@ The Captain of the Goblin Guard appears to be drunk...
 32 8192 0 S
 17 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 goblin~ 1
 
 #20017
 captive creature~
@@ -220,7 +220,7 @@ leads to the king.  This door is .....'.  The poor creature faints.
 2 8192 0 S
 1 3 40 2d7+1 2d7+5
 1000 900
-0 0 1
+0 animal~ 1
 
 #0
 
@@ -284,7 +284,7 @@ Some plain looking armor lies here.~
 #20006
 sword~
 a Goblin Sentry's Sword~
-A deadly looking Goblin Sentry'sword~
+A deadly looking Goblin Sentry's sword~
 ~
 5 1024 8192|1
 0~ 10~ 25~ 3~
@@ -296,7 +296,7 @@ A
 #ROOMS
 #20000
 Base of the Mountain~
-You are standing at the base of the Imfamous Goblin Caves.
+You are standing at the base of the Infamous Goblin Caves.
 ~
 0 1024 4
 D2
@@ -380,7 +380,7 @@ D2
 S
 #20006
 At the entrance~
-Before you stands the entrance to the Imfamous Goblin Caves.  Legend has it 
+Before you stands the entrance to the Infamous Goblin Caves.  Legend has it 
 that many a brave adventurer has set foot within, but few have ever returned.  
 However, you think to yourself "Yeah as if!!"...
 ~
@@ -666,7 +666,7 @@ S
 #20022
 Cavern Entrance~
 You have come to the entrance of a very large cavern.  Inside, you can hear
-the sound of water rushing quickly.  The walls of the cavern are extrordinarily
+the sound of water rushing quickly.  The walls of the cavern are extraordinarily
 smooth, due to the effects of erosion.  This cavern sends a chill through your
 spine, and you can feel evil within it.  A passage leads south into the dark
 cavern, and north to a hallway.
@@ -760,7 +760,7 @@ You are standing on a small ledge of rock, which follows it's way along these
 cavern walls.  Before you lies the largest pool of water you have ever seen.
 It seems to span the entire cavern, and the waters splash back and forth, as
 a mighty river from the north pours into the room.  As you look east, you see
-that a larger river seems to be flowing eastwards, very quickly.
+that a larger river seems to be flowing eastward, very quickly.
 ~
 0 9 0
 D0
@@ -923,8 +923,15 @@ G 1 20003 100
 S
 
 #SPECIALS
+
+*updated 1/7/95 by Zelda
+
+*Spelling errors fixed:
+
+*    room#20000  imfamous should be infamous
+*    room#20022  extrodinarily should be extraordinarily
+*    room#20027  eastwards should be eastward
 S
 
-
-
 #$
+

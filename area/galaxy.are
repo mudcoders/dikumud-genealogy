@@ -4,16 +4,16 @@
 
 #MOBILES
 #9301
-poor mudder~
-a poor mudder~
-A poor mudder, lost in this place.
+poor adventurer~
+a poor adventurer~
+A poor adventurer, lost in this place.
 ~
 You will become him if you are not careful.
 ~
 68 0 0 S
 4 16 8 10d5+20 1d6+3
 100 600
-8 8 1
+8 human~ 1
 #9302
 star~
 a beautiful star~
@@ -24,7 +24,7 @@ You can't tell what the star looks like, she is too bright!
 66 0 500 S
 8 15 4 4d5+80 2d3+3 
 500 2000
-8 8 2
+8 god~ 2
 #9303
 nebula young~
 a young nebula~
@@ -35,7 +35,7 @@ It hasn't got a definite shape, it is just a cloud of mist.
 64 0 200 S
 10 10 2 3d6+240 2d4+4
 1000 5000
-8 8 2
+8 god~ 2
 #9304
 comet speedy~
 a speedy comet~
@@ -46,7 +46,7 @@ You see the offspring of Halley's comet, here just to wipe everything out.
 100 0 -500 S
 10 9 2 4d6+160 2d6+4
 1500 5000
-8 8 1
+8 god~ 1
 #9305
 red supergiant~
 a red supergiant~
@@ -58,7 +58,7 @@ Still he can be very powerful.
 194 0 0 S
 15 3 6 5d5+200 6d3+2
 2000 12000
-4 4 1
+4 god~ 1
 #9306
 white dwarf~
 a white dwarf~
@@ -70,7 +70,7 @@ But somehow he manages to escape.  Though tiny, it can take a lot of hits!
 68 0 0 S
 15 8 3 8d5+280 4d2+10  
 2000 19000
-8 8 1
+8 god~ 1
 #9307
 horsehead nebula~
 a horsehead nebula~
@@ -82,7 +82,7 @@ here and his face may never be seen by anyone again.
 66 32768|65536 -1000 S
 18 0 0 8d5+300 4d5+1
 6000 30000
-6 6 1
+6 god~ 1
 #9308
 andromeda~
 poor Andromeda~
@@ -94,7 +94,7 @@ jealousy and she has to suffer here endlessly until Perseus comes.
 82 128 1000 S
 18 0 0 8d5+300 4d4+0
 7500 30000  
-8 8 2
+8 god~ 2
 #9309
 hercules~
 the mighty Hercules~
@@ -107,7 +107,7 @@ granted immortality. He is a very brave and strong fighter.
 66 128 1000 S
 39 0 -3 6d5+400 5d4+10
 7500 60000
-8 8 1
+8 god~ 1
 #9310
 pegasus~
 the wild Pegasus~
@@ -118,7 +118,7 @@ It is the legendary horse with wings on its back.
 194 0 300 S
 17 3 2 5d4+170 2d7+0
 5000 20000
-8 8 0
+8 animal~ 0
 #9311
 orion~
 Orion the hunter~
@@ -132,7 +132,7 @@ never meet.
 66 128 300 S
 39 0 0 6d3+400 4d4+2
 7500 40000
-8 8 1
+8 god~ 1
 #9312
 pleiades~
 the Pleiades~
@@ -144,7 +144,7 @@ one knows; even the Gods themselves have forgotten.
 66 0 300 S
 21 5 3 3d4+120 2d7+0
 3000 7000
-8 8 2
+8 god~ 2
 #9313
 draco head~
 the Head of Draco~
@@ -157,7 +157,7 @@ hitting the head is certainly not easy.
 98 136 -1000 S
 35 0 -5 4d4+600 5d5+3
 15000 100000
-8 8 0
+8 dragon~ 0
 #9314
 draco baby~
 a baby draco~
@@ -170,7 +170,7 @@ we are on now?
 196 0 -700 S
 9 6 3 3d3+100 2d5+0
 4000 6000
-8 8 0
+8 dragon~ 0
 #9315
 aries~
 Aries~
@@ -182,7 +182,7 @@ also the ruler of Spring. He looks as if he is expecting you.
 66 128 700 S
 33 0 -5 6d4+500 4d5+3
 10000 80000
-6 6 1
+6 god~ 1
 #9316
 taurus~
 Taurus~
@@ -194,7 +194,7 @@ he can fight well ... indeed he has fought with Orion before and survived.
 98 136 -100 S
 37 0 0 5d3+500 4d6+1
 10000 80000
-8 8 1
+8 god~ 1
 #9317
 gemini~
 Gemini~
@@ -206,7 +206,7 @@ You can't find any imperfections on him.
 66 128 1000 S
 32 0 -5 7d3+400 5d4+2
 10000 80000
-8 8 1
+8 god~ 1
 #9318
 gemini~
 Gemini~
@@ -218,7 +218,7 @@ How can there be such a contrast?  You wonder ...
 230 1048712 -1000 S
 32 5 5 3d4+200 3d4+2
 5000 20000
-8 8 1
+8 god~ 1
 #9319
 cancer~
 Cancer~
@@ -231,7 +231,7 @@ So Hera made Cancer a constellation for his work.
 66 128 0 S
 31 0 -5 2d10+500 4d4+3
 12000 80000
-8 8 1
+8 god~ 1
 #9320
 leo~
 Leo~
@@ -244,7 +244,7 @@ his bare hands to tear the lion into two from its mouth!
 98 136 -100 S
 30 0 -7 2d20+500 5d3+3
 10000 80000
-8 8 1
+8 god~ 1
 #9321 
 virgo~
 Virgo~
@@ -257,7 +257,7 @@ gorgeous and is waiting for your first move, whatever it is ...
 66 128 1000 S
 29 0 -5 3d8+450 4d5+1
 10000 80000
-6 6 2
+6 god~ 2
 #9322
 libra~
 Libra~
@@ -269,7 +269,7 @@ Now all he can see from you is greed and bloodshed.
 66 128 1000 S
 34 0 -5 4d5+500 5d4+2
 10000 80000
-8 8 1
+8 god~ 1
 #9323
 scorpio~
 Scorpio~
@@ -281,7 +281,7 @@ Sagittarius' arrow aimed at his heart forever.
 98 136 -200 S
 36 0 -5 4d3+470 3d7+1
 10000 80000
-8 8 1
+8 god~ 1
 #9324
 sagittarius~
 Sagittarius~
@@ -292,7 +292,7 @@ He is a centaur and a well trained archer. No one can escape his arrows.
 66 128 1000 S
 32 0 -5 5d6+500 3d9+2
 10000 80000
-8 8 1
+8 god~ 1
 #9325
 capricorn~
 Capricorn~
@@ -305,7 +305,7 @@ days in peace.
 66 128 700 S
 33 0 -5 4d7+520 3d10+0
 10000 80000
-8 8 1
+8 god~ 1
 #9326
 aquarius~
 Aquarius~
@@ -317,7 +317,7 @@ hand with holding the vessel.
 66 128 1000 S
 32 0 -5 3d5+500 2d10+1
 10000 80000
-8 8 2
+8 god~ 2
 #9327
 pisces mermaid~
 Pisces the mermaid~
@@ -329,7 +329,7 @@ fish and she deserves your pity.
 66 128 1000 S
 28 0 -5 4d5+500 3d7+0
 10000 80000
-6 6 2
+6 god~ 2
 #9328
 pisces fish~
 Pisces the fish~
@@ -341,7 +341,7 @@ So he becomes jealous of any living thing which is more handsome than him.
 98 128 -1000 S
 32 4 0 3d3+400 3d6+2 
 10000 80000
-8 8 1
+8 god~ 1
 #9329
 bear ursa major~
 Ursa Major the bear~
@@ -353,7 +353,7 @@ You think you'd better turn back.  At least you have got a chance of survival.
 98 136 0 S
 37 0 -7 2d4+800 5d5+3
 15000 120000
-8 8 0
+8 bear~ 0
 #9330
 cassiopeia queen~
 Cassiopeia the Queen~
@@ -364,7 +364,7 @@ She is the Queen of Dignity; facing her you feel all your dignity has gone.
 66 128 700 S
 39 0 -6 10d3+700 4d7+2
 12000 110000
-6 6 2
+6 god~ 2
 #9331
 cepheus king~
 Cepheus the King~
@@ -376,7 +376,7 @@ weak and useless in front of him.
 66 128 700 S
 41 0 -6 10d4+700 4d8+1
 12000 110000
-6 6 1
+6 god~ 1
 #9332
 polaris polar star~
 Polaris, the polar star~
@@ -390,7 +390,7 @@ here at all?
 66 138 1000 S
 44 0 -10 0d0+1500 6d6+3
 20000 200000
-8 8 1
+8 god~ 1
 #0
 
 

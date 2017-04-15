@@ -15,7 +15,7 @@ You now know what true fear is.
 2|4 2|8|32|128|8192|524288 1000 S
 52 0 -10 35d35+1000 20d3+25
 100000 2000000
-8 8 1
+8 god~ 1
 #902
 prometheus~
 Prometheus~
@@ -27,7 +27,7 @@ looks up at you and smiles.
 2|4 2|8|32|128|8192|524288 1000 S
 41 0 -7 31d31+310 15d2+20
 40000 300000
-8 8 1
+8 god~ 1
 #903
 hermes~
 Hermes~
@@ -40,7 +40,7 @@ even notice your presence.
 4 2|8|32|128|8192|32768|524288 1000 S
 43 0 -7 33d33+330 20d2+20
 50000 400000
-8 8 1
+8 god~ 1
 #904
 poseidon~
 Poseidon~
@@ -53,7 +53,7 @@ have a seat.
 2|4 2|8|32|128|8192|524288 1000 S
 48 0 -10 35d35+1000 20d3+25
 100000 2000000
-6 8 1
+6 god~ 1
 #905
 apollo~
 Apollo~
@@ -66,7 +66,7 @@ that he knows more than music.
 2|4 2|8|32|128|8192|524288 1000 S
 44 0 -8 34d34+340 15d3+25
 40000 550000
-8 8 1
+8 god~ 1
 #906
 ares~
 Ares~
@@ -78,7 +78,7 @@ and says 'I am very busy.  What do you want?'
 2|4|32 2|8|32|128|524288 -1000 S
 45 0 -10 35d35+1500 10d2+25
 50000 2000000
-8 8 1
+8 god~ 1
 #907
 athena~
 Athena~
@@ -90,7 +90,7 @@ you and invites you to join her.
 2|4 2|8|32|128|8192|524288 1000 S
 43 0 -7 33d33+330 15d2+10
 60000 300000
-8 8 2
+8 god~ 2
 #908
 hephaestus smith~
 Hephaestus~
@@ -103,7 +103,7 @@ way to help you.  He is attended by three golden maidens.
 2|4 2|8|32|128|8192|524288 1000 S
 38 0 -7 33d33+330 12d2+26
 60000 550000
-8 8 1
+8 god~ 1
 #909
 handmaid golden~
 A Golden Maiden~
@@ -115,7 +115,7 @@ gold.  She seems to be very lifelike as she assists the smith in his work.
 2|4 2|8|32|128|8192|524288 0 S
 25 0 0 2d8+250 2d8+2
 1000 21000
-8 8 2
+8 human~ 2
 #910
 soldier~
 A Soldier~
@@ -127,7 +127,7 @@ realize that Ares would not have any weaklings working for him.
 2|4|32 2|8|32|128|524288 0 S
 27 0 0 2d8+250 3d6+12
 5000 15000
-8 8 1
+8 human~ 1
 #911
 musician apprentice~
 an apprentice musician~
@@ -139,7 +139,7 @@ immortal Apollo.
 2|4|1024 2|8|32|128|524288 1000 S
 8 9 4 2d8+80 2d5+2
 2500 2000
-8 8 1
+8 human~ 1
 #912
 boy serving servant~
 A serving boy~
@@ -150,7 +150,7 @@ This boy is truly lucky to be able to serve Athena herself.
 2|4 2|8|32|128|524288 1000 S
 6 15 7 2d8+200 2d3+2
 500 1000
-8 8 1
+8 human~ 1
 #913
 hound dog war~
 A hound of war~
@@ -162,7 +162,7 @@ on the battle field, and you have no doubt that it does its job well.
 2|4|32 2|8|32|128|524288 -600 S
 23 0 0 1d8+450 2d12+10
 0 45000
-8 8 0
+8 animal~ 0
 #914
 Odin~
 Odin~
@@ -175,7 +175,7 @@ presence.
 2|4 2|8|32|128|8192|524288 1000 S
 49 0 -10 35d35+1000 10d2+25
 100000 2000000
-8 8 1
+8 god~ 1
 #915
 grocer greengrocer julius~
 Julius the Green Grocer~
@@ -189,7 +189,7 @@ of delicious looking foods.
 2|4 2|8|32|128|8192|524288 1000 S
 37 0 -4 1d1+1999 3d10+10
 10000 110000
-8 8 1
+8 human~ 1
 #916
 alchemist~
 the Alchemist~
@@ -202,7 +202,7 @@ arcane supplies.
 2|4 2|8|32|128|8192|524288 1000 S
 39 0 -8 1d1+1999 25d2+50
 10000 100000
-8 8 1
+8 troll~ 1
 #917
 clive~
 Clive the Weapons Master~
@@ -214,7 +214,7 @@ paid off.
 2|4 2|8|32|128|8192|524288 1000 S
 40 0 -10 30d30+300 10d3+20
 40000 200000
-8 8 1
+8 giant~ 1
 #918
 armourer samuel~
 Samuel the Armourer~
@@ -226,7 +226,7 @@ He doesn't like what you've been doing in his city.
 2|4|32 2|8|32|128|8192|524288 1000 S
 30 0 -3 1d8+400 10d3+20
 10000 60000
-8 8 1
+8 drow~ 1
 #919
 ra sun god~
 Ra the Sun God~
@@ -239,7 +239,7 @@ to be trifled with.
 2|4 2|8|32|128|8192|524288 1000 S
 46 0 -10 1d8+2500 25d2+25
 100000 3000000
-8 8 1
+8 god~ 1
 #920
 chimera~
 a chimera~
@@ -251,7 +251,7 @@ of a dragon.  It growls at you as you enter the cell, then suddenly attacks!
 2|4|32 2|8|32|128|524288 -1000 S
 20 0 -3 20d20+200 5d5+15
 1000 75000
-8 8 1
+8 animal~ 1
 #921
 hera~
 Hera~
@@ -263,7 +263,7 @@ to rest and sit for a while.
 2|4 2|8|32|128|8192|524288 1000 S
 50 0 -10 1d8+1500 15d3+15
 100000 1500000
-8 8 2
+8 god~ 2
 #922
 roc~
 a roc~
@@ -275,7 +275,7 @@ looks away.
 4 2|8|32|128|8192|524288 0 S
 15 0 0 1d8+400 3d8+6
 5000 40000
-8 8 0
+8 god~ 0
 #923
 citizen resident~
 A citizen~
@@ -286,7 +286,7 @@ He looks happy and carefree.  He smiles and tips his hat to you.
 4 2|8|32|64|128|8192|524288 1000 S
 4 16 6 1d8+60 2d4+1
 69 500
-8 8 1
+8 ogre~ 1
 #924
 pegasus horse~
 a pegasus~
@@ -298,7 +298,7 @@ threatening, it seems as though it would be dangerous if provoked.
 4 2|8|32|128|8192|524288 0 S
 8 12 4 1d8+110 2d5+3
 800 3000
-8 8 0
+8 animal~ 0
 #925
 cook~
 A Cook~
@@ -309,7 +309,7 @@ This man looks as is he has been spending WAY too much time in the kitchen.
 2|4 2|8|32|128|8192|524288 1000 S
 5 15 5 1d8+75 2d4+2
 100 1000
-8 8 1
+8 human~ 1
 #926
 jailer~
 The Jailer~
@@ -321,7 +321,7 @@ prisoners.
 2|4 2|8|32|128|8192|524288 0 S
 13 8 2 1d8+620 2d6+1
 1000 13000
-8 8 1
+8 human~ 1
 #0
 
 
@@ -1520,8 +1520,8 @@ S
 M   901 spec_cast_cleric
 M   902 spec_breath_fire
 M   904 spec_cast_mage
-M   905 spec_cast_adept
-M   907 spec_cast_adept
+M   905 spec_cast_mage
+M   907 spec_cast_mage
 M   908 spec_breath_lightning
 M   909 spec_guard
 M   914 spec_breath_any

@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -23,6 +26,7 @@
 #else
 #include <sys/types.h>
 #endif
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,36 +40,30 @@ void do_wizhelp( CHAR_DATA *ch, char *argument )
     CHAR_DATA *rch;
     char       buf  [ MAX_STRING_LENGTH ];
     char       buf1 [ MAX_STRING_LENGTH ];
-    int        sn;
+    int        cmd;
     int        col;
 
     rch = get_char( ch );
     
-    if ( !authorized( rch, gsn_wizhelp ) )
+    if ( !authorized( rch, "wizhelp" ) )
         return;
 
     buf1[0] = '\0';
     col     = 0;
 
-    for ( sn = 0; sn < MAX_SKILL; sn++ )
+    for ( cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++ )
     {
-        if ( !skill_table[sn].name )
-	    break;
-        if ( get_trust( rch ) < skill_table[sn].skill_level[rch->class]
-	    || skill_table[sn].skill_level[rch->class] < L_APP )
+        if ( cmd_table[cmd].level < LEVEL_HERO
+	    || str_infix( cmd_table[cmd].name, rch->pcdata->immskll ) )
 	    continue;
 
-	if ( rch->pcdata->learned[sn] == 100
-	    && skill_table[sn].min_mana == 0 )
-	{
-	    sprintf( buf, "%-16s", skill_table[sn].name );
-	    strcat( buf1, buf );
-	    if ( ++col % 5 == 0 )
-		strcat( buf1, "\n\r" );
-	}
+	sprintf( buf, "%-10s", cmd_table[cmd].name );
+	strcat( buf1, buf );
+	if ( ++col % 8 == 0 )
+	    strcat( buf1, "\n\r" );
     }
  
-    if ( col % 5 != 0 )
+    if ( col % 8 != 0 )
 	strcat( buf1, "\n\r" );
     send_to_char( buf1, ch );
     return;
@@ -79,7 +77,7 @@ void do_bamfin( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_bamfin ) )
+    if ( !authorized( rch, "bamfin" ) )
         return;
 
     if ( !IS_NPC( ch ) )
@@ -103,7 +101,7 @@ void do_bamfout( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_bamfout ) )
+    if ( !authorized( rch, "bamfout" ) )
         return;
 
     if ( !IS_NPC( ch ) )
@@ -129,7 +127,7 @@ void do_deny( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_deny ) )
+    if ( !authorized( rch, "deny" ) )
         return;
 
     one_argument( argument, arg );
@@ -160,6 +158,8 @@ void do_deny( CHAR_DATA *ch, char *argument )
     SET_BIT( victim->act, PLR_DENY );
     send_to_char( "You are denied access!\n\r", victim );
     send_to_char( "OK.\n\r", ch );
+    if ( victim->level < 2 )
+      victim->level = 2;
     do_quit( victim, "" );
 
     return;
@@ -176,7 +176,7 @@ void do_disconnect( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_disconnect ) )
+    if ( !authorized( rch, "disconnect" ) )
         return;
 
     one_argument( argument, arg );
@@ -224,11 +224,11 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_pardon ) )
+    if ( !authorized( rch, "pardon" ) )
         return;
 
     argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
+    one_argument( argument, arg2 );
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' )
     {
@@ -282,7 +282,7 @@ void do_echo( CHAR_DATA *ch, char *argument )
     
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_echo ) )
+    if ( !authorized( rch, "echo" ) )
         return;
 
     if ( argument[0] == '\0' )
@@ -306,7 +306,7 @@ void do_recho( CHAR_DATA *ch, char *argument )
     
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_recho ) )
+    if ( !authorized( rch, "recho" ) )
         return;
 
     if ( argument[0] == '\0' )
@@ -360,11 +360,11 @@ void do_transfer( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_transfer ) )
+    if ( !authorized( rch, "transfer" ) )
         return;
 
     argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
+    one_argument( argument, arg2 );
 
     if ( arg1[0] == '\0' )
     {
@@ -448,7 +448,7 @@ void do_at( CHAR_DATA *ch, char *argument )
     
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_at ) )
+    if ( !authorized( rch, "at" ) )
         return;
 
     argument = one_argument( argument, arg );
@@ -503,7 +503,7 @@ void do_goto( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_goto ) )
+    if ( !authorized( rch, "goto" ) )
         return;
 
     one_argument( argument, arg );
@@ -562,7 +562,7 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_rstat ) )
+    if ( !authorized( rch, "rstat" ) )
         return;
 
     one_argument( argument, arg );
@@ -618,9 +618,13 @@ void do_rstat( CHAR_DATA *ch, char *argument )
     /* Yes, we are reusing the variable rch.  - Kahn */
     for ( rch = location->people; rch; rch = rch->next_in_room )
     {
-	strcat( buf1, " " );
-	one_argument( rch->name, buf );
-	strcat( buf1, buf );
+      /* Heh.  Thanks to Zavod for this little security fix */ 
+      if ( can_see( ch, rch ) )
+	{
+	  strcat( buf1, " " );
+	  one_argument( rch->name, buf );
+	  strcat( buf1, buf );
+	}
     }
 
     strcat( buf1, ".\n\rObjects:   " );
@@ -671,7 +675,7 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_ostat ) )
+    if ( !authorized( rch, "ostat" ) )
         return;
 
     one_argument( argument, arg );
@@ -780,7 +784,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_mstat ) )
+    if ( !authorized( rch, "mstat" ) )
         return;
 
     one_argument( argument, arg );
@@ -803,10 +807,13 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    victim->name );
     strcat( buf1, buf );
 
+    sprintf( buf, "Race: %s.\n\r", race_table[victim->race].name );
+    strcat( buf1, buf );
+
     sprintf( buf, "Vnum: %d.  Sex: %s.  Room: %d.\n\r",
 	    IS_NPC( victim ) ? victim->pIndexData->vnum : 0,
 	    victim->sex == SEX_MALE    ? "male"   :
-	    victim->sex == SEX_FEMALE  ? "female" : "neutral",
+	    victim->sex == SEX_FEMALE  ? "female" : "neuter",
 	    !victim->in_room           ?        0 : victim->in_room->vnum );
     strcat( buf1, buf );
 
@@ -831,11 +838,25 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    GET_AC( victim ),    victim->gold,         victim->exp );
     strcat( buf1, buf );
 
-    sprintf( buf,
-	    "Hitroll: %d.  Damroll: %d.  Position: %d.  Wimpy: %d.\n\r",
-	    GET_HITROLL( victim ), GET_DAMROLL( victim ),
-	    victim->position,      victim->wimpy );
+    sprintf( buf, "Position: %d.  Wimpy: %d.\n\r",
+            victim->position,    victim->wimpy );
     strcat( buf1, buf );
+
+    if ( IS_NPC( victim )
+        || victim->level >= skill_table[gsn_dual].skill_level[victim->class] )
+	strcat ( buf1, "Primary Weapon " );
+    sprintf( buf, "Hitroll: %d  Damroll: %d.\n\r",
+            get_hitroll( victim, WEAR_WIELD ),
+            get_damroll( victim, WEAR_WIELD ) );
+    strcat( buf1, buf );
+
+    if ( get_eq_char( victim, WEAR_WIELD_2 ) )
+    {
+	sprintf( buf, " Second Weapon Hitroll: %d  Damroll: %d.\n\r",
+		get_hitroll( victim, WEAR_WIELD_2 ),
+		get_damroll( victim, WEAR_WIELD_2 ) );
+	strcat( buf1, buf );
+    }
 
     if ( !IS_NPC( victim ) )
     {
@@ -919,7 +940,7 @@ void do_mfind( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_mfind ) )
+    if ( !authorized( rch, "mfind" ) )
         return;
 
     one_argument( argument, arg );
@@ -986,7 +1007,7 @@ void do_ofind( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_ofind ) )
+    if ( !authorized( rch, "ofind" ) )
         return;
 
     one_argument( argument, arg );
@@ -1042,7 +1063,7 @@ void do_mwhere( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_mwhere ) )
+    if ( !authorized( rch, "mwhere" ) )
         return;
 
     one_argument( argument, arg );
@@ -1088,7 +1109,7 @@ void do_reboo( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_reboot ) )
+    if ( !authorized( rch, "reboot" ) )
         return;
 
     send_to_char( "If you want to REBOOT, spell it out.\n\r", ch );
@@ -1105,7 +1126,7 @@ void do_reboot( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_reboot ) )
+    if ( !authorized( rch, "reboot" ) )
         return;
 
     sprintf( buf, "Reboot by %s.", ch->name );
@@ -1125,7 +1146,7 @@ void do_shutdow( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_shutdown ) )
+    if ( !authorized( rch, "shutdown" ) )
         return;
 
     send_to_char( "If you want to SHUTDOWN, spell it out.\n\r", ch );
@@ -1142,7 +1163,7 @@ void do_shutdown( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_shutdown ) )
+    if ( !authorized( rch, "shutdown" ) )
         return;
 
     sprintf( buf, "Shutdown by %s.", ch->name );
@@ -1167,7 +1188,7 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_snoop ) )
+    if ( !authorized( rch, "snoop" ) )
         return;
 
     one_argument( argument, arg );
@@ -1240,7 +1261,7 @@ void do_switch( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_switch ) )
+    if ( !authorized( rch, "switch" ) )
         return;
 
     one_argument( argument, arg );
@@ -1309,11 +1330,10 @@ void do_return( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_return] < 100 )
-    {
-        send_to_char( "You are not authorized to use this command.\n\r", ch );
-        return;
-    }
+/* Note that we dont check for immortal ability to have return here.
+ * We assume we will automatically allow immortals with switch to return.
+ * Dont want to have our immortals stuck in a mobile's body do we?  :)
+ * -Kahn */
 
     send_to_char( "You return to your original body.\n\r", ch );
     ch->desc->original->pcdata->switched = FALSE;
@@ -1335,7 +1355,7 @@ void do_mload( CHAR_DATA *ch, char *argument )
     
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_mload ) )
+    if ( !authorized( rch, "mload" ) )
         return;
 
     one_argument( argument, arg );
@@ -1372,11 +1392,11 @@ void do_oload( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_oload ) )
+    if ( !authorized( rch, "oload" ) )
         return;
 
     argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
+    one_argument( argument, arg2 );
  
     if ( arg1[0] == '\0' || !is_number( arg1 ) )
     {
@@ -1437,7 +1457,7 @@ void do_purge( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_purge ) )
+    if ( !authorized( rch, "purge" ) )
         return;
 
     one_argument( argument, arg );
@@ -1501,11 +1521,11 @@ void do_advance( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_advance ) )
+    if ( !authorized( rch, "advance" ) )
         return;
 
     argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
+    one_argument( argument, arg2 );
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || !is_number( arg2 ) )
     {
@@ -1597,11 +1617,11 @@ void do_trust( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_trust ) )
+    if ( !authorized( rch, "trust" ) )
         return;
 
     argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
+    one_argument( argument, arg2 );
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || !is_number( arg2 ) )
     {
@@ -1646,7 +1666,7 @@ void do_restore( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_restore ) )
+    if ( !authorized( rch, "restore" ) )
         return;
 
     one_argument( argument, arg );
@@ -1700,7 +1720,7 @@ void do_freeze( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_freeze ) )
+    if ( !authorized( rch, "freeze" ) )
         return;
 
     one_argument( argument, arg );
@@ -1757,7 +1777,7 @@ void do_log( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_log ) )
+    if ( !authorized( rch, "log" ) )
         return;
 
     one_argument( argument, arg );
@@ -1822,7 +1842,7 @@ void do_noemote( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_noemote ) )
+    if ( !authorized( rch, "noemote" ) )
         return;
 
     one_argument( argument, arg );
@@ -1877,7 +1897,7 @@ void do_notell( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_notell ) )
+    if ( !authorized( rch, "notell" ) )
         return;
 
     one_argument( argument, arg );
@@ -1932,7 +1952,7 @@ void do_silence( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_silence ) )
+    if ( !authorized( rch, "silence" ) )
         return;
 
     one_argument( argument, arg );
@@ -1984,7 +2004,7 @@ void do_peace( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_peace ) )
+    if ( !authorized( rch, "peace" ) )
         return;
 
     /* Yes, we are reusing rch.  -Kahn */
@@ -2015,7 +2035,7 @@ void do_ban( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_ban ) )
+    if ( !authorized( rch, "ban" ) )
         return;
 
     one_argument( argument, arg );
@@ -2055,6 +2075,7 @@ void do_ban( CHAR_DATA *ch, char *argument )
     pban->next	= ban_list;
     ban_list	= pban;
     send_to_char( "Ok.\n\r", ch );
+    ban_update( );
     return;
 }
 
@@ -2069,7 +2090,7 @@ void do_allow( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_allow ) )
+    if ( !authorized( rch, "allow" ) )
         return;
 
     one_argument( argument, arg );
@@ -2094,6 +2115,7 @@ void do_allow( CHAR_DATA *ch, char *argument )
 	    curr->next	= ban_free;
 	    ban_free	= curr;
 	    send_to_char( "Ok.\n\r", ch );
+	    ban_update( );
 	    return;
 	}
     }
@@ -2111,7 +2133,7 @@ void do_wizlock( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_wizlock ) )
+    if ( !authorized( rch, "wizlock" ) )
         return;
 
     wizlock = !wizlock;
@@ -2136,7 +2158,7 @@ void do_slookup( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_slookup ) )
+    if ( !authorized( rch, "slookup" ) )
         return;
 
     one_argument( argument, arg );
@@ -2161,7 +2183,21 @@ void do_slookup( CHAR_DATA *ch, char *argument )
     }
     else
     {
-	if ( ( sn = skill_lookup( arg ) ) < 0 )
+	if ( is_number( arg ) )
+        {
+	    sn = atoi( arg );
+	    if (   sn >= 0
+		&& sn  < MAX_SKILL
+		&& skill_table[sn].name )
+	    {
+		sprintf( buf, "Sn: %4d Skill/spell: '%s'\n\r",
+			sn, skill_table[sn].name );
+		send_to_char( buf, ch );
+		return;
+	    }
+	}
+
+        if ( ( sn = skill_lookup( arg ) ) < 0 )
 	{
 	    send_to_char( "No such skill or spell.\n\r", ch );
 	    return;
@@ -2190,12 +2226,12 @@ void do_sset( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_sset ) )
+    if ( !authorized( rch, "sset" ) )
         return;
 
     argument = one_argument( argument, arg1 );
     argument = one_argument( argument, arg2 );
-    argument = one_argument( argument, arg3 );
+    one_argument( argument, arg3 );
 
     if ( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0' )
     {
@@ -2214,6 +2250,13 @@ void do_sset( CHAR_DATA *ch, char *argument )
     if ( IS_NPC( victim ) )
     {
 	send_to_char( "Not on NPC's.\n\r", ch );
+	return;
+    }
+
+    if ( ch->level <= victim->level && ch != victim )
+    {
+	send_to_char( "You may not sset your peer nor your superior.\n\r",
+		     ch );
 	return;
     }
 
@@ -2282,7 +2325,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_mset ) )
+    if ( !authorized( rch, "mset" ) )
         return;
 
     smash_tilde( argument );
@@ -2296,7 +2339,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	send_to_char( "or:     mset <victim> <string> <value>\n\r",	ch );
 	send_to_char( "\n\r",						ch );
 	send_to_char( "Field being one of:\n\r",			ch );
-	send_to_char( "  str int wis dex con class level\n\r",  	ch );
+	send_to_char( "  str int wis dex con class sex race level\n\r",	ch );
 	send_to_char( "  gold hp mana move practice align\n\r",		ch );
 	send_to_char( "  thirst drunk full",				ch );
 	send_to_char( "\n\r",						ch );
@@ -2450,6 +2493,81 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 	victim->class = value;
+	return;
+    }
+
+    if ( !str_cmp( arg2, "sex" ) )
+    {
+        if ( IS_AFFECTED( victim, AFF_CHANGE_SEX ) )
+	{
+	    send_to_char( "This person is affect by change sex.\n\r", ch );
+	    send_to_char( "Try again later.\n\r", ch );
+	    return;
+	}
+
+	if ( value < 0 || value > 2 )
+	{
+	    send_to_char( "Sex range is 0 to 2.\n\r", ch );
+	    return;
+	}
+
+	victim->sex = value;
+
+	return;
+    }
+
+    if ( !str_cmp( arg2, "race" ) )
+    {
+        OBJ_DATA *wield;
+	OBJ_DATA *wield2;
+	int       race;
+
+	if ( IS_AFFECTED( victim, AFF_POLYMORPH ) )
+	{
+	    send_to_char( "This person is affected by polymorph other.\n\r",
+			 ch );
+	    send_to_char( "Try again later.\n\r", ch );
+	    return;
+	}
+
+	race = race_lookup( arg3 );
+
+	if ( race < 0 )
+	{
+	    send_to_char( "Invalid race.\n\r", ch );
+	    return;
+	}
+
+	if (  !IS_SET( race_table[ race ].race_abilities, RACE_PC_AVAIL )
+	    && get_trust( ch ) < L_DIR )
+	{
+	    send_to_char( "You may not set a race not available to PC's.\n\r",
+			 ch );
+	    return;
+	}
+
+	victim->race = race;
+
+	if ( ( wield = get_eq_char( victim, WEAR_WIELD ) )
+	    && !IS_SET( race_table[ victim->race ].race_abilities,
+		       RACE_WEAPON_WIELD ) )
+	{
+	    act( "You drop $p.", victim, wield, NULL, TO_CHAR );
+	    act( "$n drops $p.", victim, wield, NULL, TO_ROOM );
+	    obj_from_char( wield );
+	    obj_to_room( wield, victim->in_room );
+	}
+
+	if ( ( wield2 = get_eq_char( victim, WEAR_WIELD_2 ) )
+	    && !IS_SET( race_table[ victim->race ].race_abilities,
+		       RACE_WEAPON_WIELD ) )
+	{
+	    act( "You drop $p.", victim, wield2, NULL, TO_CHAR );
+	    act( "$n drops $p.", victim, wield2, NULL, TO_ROOM );
+	    obj_from_char( wield2 );
+	    obj_to_room( wield2, victim->in_room );
+	}
+
 	return;
     }
 
@@ -2692,7 +2810,7 @@ void do_oset( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_oset ) )
+    if ( !authorized( rch, "oset" ) )
         return;
 
     smash_tilde( argument );
@@ -2772,6 +2890,13 @@ void do_oset( CHAR_DATA *ch, char *argument )
 	
     if ( !str_cmp( arg2, "weight" ) )
     {
+	if ( obj->carried_by != NULL && !IS_NPC( obj->carried_by ) )
+	{
+	    send_to_char(
+		"You may not modify an item's weight while on a PC.\n\r",
+			 ch);
+	    return;
+	}
 	obj->weight = value;
 	return;
     }
@@ -2870,7 +2995,7 @@ void do_rset( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_rset ) )
+    if ( !authorized( rch, "rset" ) )
         return;
 
     smash_tilde( argument );
@@ -2946,7 +3071,7 @@ void do_users( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_users ) )
+    if ( !authorized( rch, "users" ) )
         return;
 
     count	= 0;
@@ -2986,7 +3111,7 @@ void do_force( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_force ) )
+    if ( !authorized( rch, "force" ) )
         return;
 
     argument = one_argument( argument, arg );
@@ -3068,7 +3193,7 @@ void do_invis( CHAR_DATA *ch, char *argument )
     if ( IS_NPC( ch ) )
 	return;
 
-    if ( !authorized( ch, gsn_wizinvis ) )
+    if ( !authorized( ch, "wizinvis" ) )
         return;
 
     if ( IS_SET( ch->act, PLR_WIZINVIS ) )
@@ -3094,7 +3219,7 @@ void do_holylight( CHAR_DATA *ch, char *argument )
     if ( IS_NPC( ch ) )
 	return;
 
-    if ( !authorized( ch, gsn_holylight ) )
+    if ( !authorized( ch, "holylight" ) )
         return;
 
     if ( IS_SET( ch->act, PLR_HOLYLIGHT ) )
@@ -3121,10 +3246,11 @@ void do_wizify( CHAR_DATA *ch, char *argument )
   
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_wizify ) )
+    if ( !authorized( rch, "wizify" ) )
         return;
 
-    argument = one_argument( argument, arg1  );
+    one_argument( argument, arg1  );
+
     if ( arg1[0] == '\0' )
     {
 	send_to_char( "Syntax: wizify <name>\n\r" , ch );
@@ -3140,14 +3266,17 @@ void do_wizify( CHAR_DATA *ch, char *argument )
 	send_to_char( "Not on mobs.\n\r", ch );
 	return;
     }
-    victim->wizbit = !victim->wizbit;
-    if ( victim->wizbit ) 
+
+    
+    if ( !IS_SET( victim->act, PLR_WIZBIT ) )
     {
+	SET_BIT( victim->act, PLR_WIZBIT );
 	act( "$N wizified.",         ch, NULL, victim, TO_CHAR );
 	act( "$n has wizified you!", ch, NULL, victim, TO_VICT );
     }
     else
     {
+	REMOVE_BIT( victim->act, PLR_WIZBIT );
 	act( "$N dewizzed.",         ch, NULL, victim, TO_CHAR );
 	act( "$n has dewizzed you!", ch, NULL, victim, TO_VICT ); 
     }
@@ -3171,7 +3300,7 @@ void do_owhere( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_owhere ) )
+    if ( !authorized( rch, "owhere" ) )
         return;
 
     one_argument( argument, arg );
@@ -3216,6 +3345,10 @@ void do_owhere( CHAR_DATA *ch, char *argument )
 	    obj_counter++;
 	    buf[0] = UPPER( buf[0] );
 	    strcat( buf1, buf );
+
+	    /* Only see the first 101 */
+	    if ( obj_counter > 100 )
+	        break;
 	}
 
 	send_to_char( buf1, ch );
@@ -3240,10 +3373,11 @@ void do_numlock( CHAR_DATA *ch, char *argument )  /*By Globi*/
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_numlock ) )
+    if ( !authorized( rch, "numlock" ) )
         return;
 
-    argument = one_argument( argument, arg1 );
+    one_argument( argument, arg1 );
+
     temp = atoi( arg1 );
 
     if ( arg1[0] == '\0' ) /* Prints out the current value */
@@ -3282,7 +3416,7 @@ void do_newlock( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_newlock ) )
+    if ( !authorized( rch, "newlock" ) )
         return;
 
     if ( numlock != 0 && get_trust( ch ) < L_SEN )
@@ -3310,70 +3444,211 @@ void do_newlock( CHAR_DATA *ch, char *argument )
 void do_sstime( CHAR_DATA *ch, char *argument )
 {
            CHAR_DATA *rch;
-    extern char      *down_time;
-    extern char      *warning1;
-    extern char      *warning2;
+    extern time_t     down_time;
+    extern time_t     warning1;
+    extern time_t     warning2;
+    extern bool       Reboot;
            char       buf  [ MAX_STRING_LENGTH ];
            char       arg1 [ MAX_INPUT_LENGTH  ];
-           char       arg2 [ MAX_INPUT_LENGTH  ];
+	   int        number;
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, gsn_sstime ) )
+    if ( !authorized( rch, "sstime" ) )
         return;
 
     smash_tilde( argument );
     argument = one_argument( argument, arg1 );
-    strcpy ( arg2, argument );
 
-    if ( arg1[0] == '\0' || arg2[0] == '\0' ||
-	( strlen( arg2 ) != 8 && ( arg2 != "*" && strlen( arg2 ) != 1 ) ) )
-      {
-	send_to_char( "Syntax: sstime <field> <value>\n\r",               ch );
-	send_to_char( "\n\r",                                             ch );
-	send_to_char( "Field being one of:\n\r",                          ch );
-	send_to_char( "  downtime  1warning  2warning\n\r",               ch );
-	send_to_char( "\n\r",                                             ch );
-	send_to_char( "Value being format of:\n\r",                       ch );
-	send_to_char( "  hh:mm:ss  (military time) or  *  (for off)\n\r", ch );
-	send_to_char( "\n\r",                                             ch );
-	sprintf( buf,
-		"1st warning:  %s\n\r2nd warning:  %s\n\r   Downtime:  %s\n\r",
-		warning1, warning2, down_time );
-	send_to_char( buf,                                                ch );
+    if ( !str_cmp( arg1, "reboot" ) )
+    {
+        Reboot = !Reboot;
+	sprintf( buf, "Reboot is %s.\n\r", Reboot ? "on" : "off" );
+	send_to_char( buf, ch );
 	return;
-      }
+    }
+
+    number   = atoi( arg1 );
+
+    if ( arg1[0] == '\0' || !is_number( arg1 ) || number < 0 )
+    {
+	send_to_char( "Syntax: sstime <value>/reboot\n\r",                ch );
+	send_to_char( "\n\r",                                             ch );
+	send_to_char( "Value is number of minutes till reboot/shutdown.", ch );
+	send_to_char( "  Or 0 to turn off.\n\r",                          ch );
+	send_to_char( "Reboot will toggle reboot on or off.\n\r",         ch );
+	send_to_char( "\n\r",                                             ch );
+	if ( down_time > 0 )
+	{
+	    sprintf( buf, "1st warning:  %d minutes (%d seconds).\n\r",
+		    UMAX( ( (int) warning1 - (int) current_time ) / 60, 0 ),
+		    UMAX( ( (int) warning1 - (int) current_time ), 0 ) );
+	    send_to_char( buf,                                            ch );
+	    sprintf( buf, "2nd warning:  %d minutes (%d seconds).\n\r",
+		    UMAX( ( (int) warning2 - (int) current_time ) / 60, 0 ),
+		    UMAX( ( (int) warning2 - (int) current_time ), 0 ) );
+	    send_to_char( buf,                                            ch );
+	    sprintf( buf, "%s%d minutes (%d seconds).\n\r",
+		    Reboot ? "Reboot:       " : "Shutdown:     ",
+		    UMAX( ( (int) down_time - (int) current_time ) / 60, 0 ),
+		    UMAX( ( (int) down_time - (int) current_time ), 0 ) );
+	    send_to_char( buf,                                            ch );
+	}
+	else
+	    send_to_char( "Automatic reboot/shutdown:  off.\n\r",         ch );
+	return;
+    }
 
     /* Set something */
 
-    if ( !str_infix( arg1, "downtime" ) )
-      {
-	free_string( down_time );
-	down_time = str_dup( arg2 );
-	sprintf( buf, "Downtime is now set to:  %s\n\r", down_time );
+    if ( number > 0 )
+    {
+        down_time = current_time + ( number * 60 );
+        if ( number < 6 )
+	{
+	    warning2  = down_time - 150;
+	    warning1  = warning2  - 75;
+	}
+	else
+	{
+	    warning2  = down_time - 150;
+	    warning1  = warning2  - 150;
+	}
+	sprintf( buf, "%s will be in %d minutes (%d seconds).\n\r",
+		Reboot ? "Reboot" : "Shutdown",
+		( (int) down_time - (int) current_time ) / 60,
+		( (int) down_time - (int) current_time ) );
 	send_to_char( buf, ch );
-	return;
-      }
-    if ( !str_infix( arg1, "1warning" ) )
-      {
-	free_string( warning1 );
-	warning1 = str_dup( arg2 );
-	sprintf( buf, "First warning will be given at:  %s\n\r", warning1 );
+	sprintf( buf, "1st Warning will be in %d minutes (%d seconds).\n\r",
+		( (int) warning1 - (int) current_time ) / 60,
+		( (int) warning1 - (int) current_time ) );
 	send_to_char( buf, ch );
-	return;
-      }
-    if ( !str_infix( arg1, "2warning" ) )
-      {
-	free_string( warning2 );
-	warning2 = str_dup( arg2 );
-	sprintf( buf, "Second warning will be given at:  %s\n\r", warning2 );
+	sprintf( buf, "2nd Warning will be in %d minutes (%d seconds).\n\r",
+		( (int) warning2 - (int) current_time ) / 60,
+		( (int) warning2 - (int) current_time ) );
 	send_to_char( buf, ch );
-	return;
-      }
+    }
+    else
+    {
+	down_time = 0;
+	sprintf( buf, "Auto%s is now off.\n\r",
+		Reboot ? "reboot" : "shutdown" );
+	send_to_char( buf, ch );
+    }
 
-    /* Generate usage mesage */
+    return;
 
-    do_sstime( ch, "" );
+}
+
+void do_imtlset( CHAR_DATA *ch, char *argument )
+{
+
+    CHAR_DATA *rch;
+    CHAR_DATA *victim;
+    char       arg1 [ MAX_INPUT_LENGTH  ];
+    char       buf  [ MAX_STRING_LENGTH ];
+    char       buf1 [ MAX_STRING_LENGTH ];
+    int        cmd;
+    int        col = 0;
+
+    rch = get_char( ch );
+    
+    if ( !authorized( rch, "imtlset" ) )
+        return;
+
+    argument = one_argument( argument, arg1 );
+
+    if ( arg1[0] == '\0' )
+    {
+	send_to_char( "Syntax: imtlset <victim> + <immortal skills>\n\r", ch );
+	send_to_char( "or:     imtlset <victim> -\n\r",                   ch );
+	send_to_char( "or:     imtlset <victim>\n\r",                     ch );
+	return;
+    }
+
+    if ( !( victim = get_char_world( rch, arg1 ) ) )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if ( IS_NPC( victim ) )
+    {
+	send_to_char( "Not on NPC's.\n\r", ch );
+	return;
+    }
+
+    if ( rch->level <= victim->level && rch != victim )
+    {
+	send_to_char( "You may not imtlset your peer nor your superior.\n\r",
+		     ch );
+	return;
+    }
+
+    if ( argument[0] == '+' || argument[0] == '-' )
+    {
+	buf[0] = '\0';
+	smash_tilde( argument );
+	if ( argument[0] == '+' )
+	{
+	    if ( victim->pcdata->immskll )
+	        strcat( buf, victim->pcdata->immskll );
+	    argument++;
+	    while ( isspace( *argument ) )
+	        argument++;
+	    for ( cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++ )
+	    {
+		if ( cmd_table[cmd].level > get_trust( rch ) )
+		    continue;
+		if ( !str_cmp( argument, cmd_table[cmd].name ) )
+		    break;
+	    }	      
+	    if ( cmd_table[cmd].name[0] == '\0' )
+	    {
+		send_to_char( "That is not an immskill.\n\r", ch );
+		return;
+	    }
+	    if ( !str_infix( argument, victim->pcdata->immskll ) )
+	    {
+		send_to_char( "That skill has already been set.\n\r", ch );
+		return;
+	    }
+	}
+
+	if ( argument[0] == '-' )
+	{
+	    free_string( victim->pcdata->immskll );
+	    victim->pcdata->immskll = str_dup( "" );
+	    send_to_char( "Immskills have been deleted.\n\r", ch );
+	    return;
+	}
+
+	strcat( buf, argument );
+	strcat( buf, " " ); /* This line is really not needed but makes
+			       pfile look nice - Kahn */
+	free_string( victim->pcdata->immskll );
+	victim->pcdata->immskll = str_dup( buf );
+    }
+
+    sprintf( buf, "Immortal skills set for %s:\n\r", victim->name );
+    send_to_char( buf, ch );
+    buf1[0] = '\0';
+    for ( cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++ )
+    {
+        if ( cmd_table[cmd].level < LEVEL_HERO
+	    || str_infix( cmd_table[cmd].name, victim->pcdata->immskll ) )
+	    continue;
+
+	sprintf( buf, "%-10s", cmd_table[cmd].name );
+	strcat( buf1, buf );
+	if ( ++col % 8 == 0 )
+	    strcat( buf1, "\n\r" );
+    }
+ 
+    if ( col % 8 != 0 )
+	strcat( buf1, "\n\r" );
+    send_to_char( buf1, ch );
+
     return;
 
 }

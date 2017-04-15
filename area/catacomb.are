@@ -1,4 +1,4 @@
-#AREA	{10 20} Raff    Dwarven Catacombs~
+#AREA     {10 20} Raff    Dwarven Catacombs~
 
 
 
@@ -13,7 +13,7 @@ Your typical smelly, blind flying mammal.
 34 32 0 S
 5 18 5 5d5+50 2d3+3
 0 500
-8 8 0
+8 bat~ 0
 #2002
 page templar~
 a templar page~
@@ -24,7 +24,7 @@ He has lost his family and everything of his former life.
 128 0 200 S
 7 14 4 7d7+70 1d9+4
 600 1500
-8 8 1
+8 dwarf~ 1
 #2003
 spelunker explorer~
 a spelunker~
@@ -38,7 +38,7 @@ probably won't last long.
 132 32 100 S
 8 13 4 8d8+80 2d5+1
 800 2000
-8 8 1
+8 human~ 1
 #2004
 gravedigger digger robber graverobber~
 a graverobber~
@@ -50,7 +50,7 @@ They seem like little more than zombie servants themselves.
 36 0 -500 S
 9 12 3 9d9+90 2d6+1
 100 2000
-8 8 1
+8 human~ 1
 #2005
 mist swirling~
 some mist~
@@ -61,7 +61,7 @@ In fact it IS alive in a magical sort of sense.
 0 128|32768|1048576 0 S
 10 10 6 10d10+100 2d6+4
 200 2500
-8 8 0
+8 mist~ 0
 #2006
 ~
 It~
@@ -70,7 +70,7 @@ It~
 32 0 0 S
 10 10 2 10d10+100 3d3+6
 1000 3000
-8 8 0
+8 animal~ 0
 #2007
 skeleton skeletal soldier~
 a skeleton~
@@ -82,7 +82,7 @@ continues for him in his charmed state.
 36 0 -290 S
 11 10 4 11d11+110 2d8+1
 1100 4000
-8 8 1
+8 undead~ 1
 #2008
 templar~
 a templar~
@@ -97,7 +97,7 @@ A templar tells you, "You must die for your sin!".
 36 0 600 S
 12 9 3 12d12+120 1d4+8
 500 5000
-8 8 1
+8 dwarf~ 1
 #2009
 wraith~
 a mysterious wraith~
@@ -108,7 +108,7 @@ Hard to tell much about the mysterious form even upon further inspection.
 36 32|1048576 0 S
 12 9 2 12d12+120 2d7+1
 600 5000
-8 8 1
+8 undead~ 1
 #2010
 officer templar~
 the templar officer~
@@ -119,7 +119,7 @@ A templar officer tells you "Better move along evil one!"
 32 8 700 S
 13 8 2 13d13+130 1d6+8
 600 7000
-8 8 1
+8 dwarf~ 1
 #2011
 zombie mage~
 zombie~
@@ -130,7 +130,7 @@ He seems to lack real interest in what he is doing.
 36 0 -100 S
 13 8 5 13d13+130 1d4+8
 550 9000
-8 8 1
+8 undead~ 1
 #2012
 shadow shadows~
 the shadow~
@@ -141,7 +141,7 @@ Looks vaguely you-shaped.
 0 32|32768|1048576 0 S
 14 6 1 14d14+140 2d9+1
 800 10900
-8 8 0
+8 vampire~ 0
 #2013
 bat vampire~
 The vampire~
@@ -152,7 +152,7 @@ A rather LARGE "bat" ...
 34 32 -100 S
 15 6 5 15d15+150 1d10+7
 1000 17000
-8 8 1
+8 vampire~ 1
 #2014
 necromancer necro cleric~
 the evil necromancer~
@@ -164,7 +164,7 @@ to kill you to get a fresh corpse!
 34 0 -888 S
 15 8 -5 15d15+150 1d8+8
 1100 15000
-8 8 1
+8 dwarf~ 1
 #2015
 grand templar leader~
 the grand templar~
@@ -176,7 +176,7 @@ of an eye he seems stern again.
 2 168 1000 S
 16 5 -5 16d16+160 1d8+12
 1500 20000
-8 8 1
+8 dwarf~ 1
 #2016
 prism dragon prismdragon~
 the prism dragon~
@@ -187,18 +187,18 @@ The spray of colored light bouncing off his scales is almost blinding.
 34 40 -303 S
 20 0 -5 20d20+200 6d3+14
 30000 30000
-8 8 1
+8 dragon~ 1
 #2017
 darken dark beast darkenbeast~
 The DarkenBeast~
-You hear and smell the presense of the darkenbeast.
+You hear and smell the presence of the darkenbeast.
 ~
 You see nothing more than the sense of darkness and evil.
 ~
 34 0 -1000 S
 24 -2 -12 24d24+240 3d7+7
 20000 80000
-8 8 0
+8 god~ 0
 #0
 
 
@@ -555,7 +555,7 @@ S
 A Middle-aged templar's room~
 This is a room furnished in a room becoming a low level templar scribe.
 No real amenities but better than a communal sleeping quarters. As far
-as you can tell he would be a rank equivalent to a Sargeant.
+as you can tell he would be a rank equivalent to a Sergeant.
 ~
 20 264 0
 D3
@@ -641,7 +641,7 @@ S
 Mess hall~
 The a huge table with an immaculate white table cloth stretches way off
 to the south.  The room is kept immaculately clean by the nights
-themselves.  They truly belive that cleanliness is next to godliness.
+themselves.  They truly believe that cleanliness is next to godliness.
 ~
 20 264 0
 D2
@@ -848,7 +848,7 @@ S
 The holy grove~
 All of a sudden all the mysterious sounds of the grove stop. Or perhaps
 its just the strange humming and glowing from a clearing to the south
-drowning out everything else. There is a sort of magical forcefield door
+drowning out everything else. There is a sort of magical force field door
 to the south.
 ~
 20 520 3
@@ -1013,7 +1013,8 @@ S
 The burial grounds~
 It seems as if many of the warriors could not stop fighting even in
 death.  They fight amongst each other and flail at any living being
-that would wander near.
+that would wander near.  You see a massive, open tomb here.  A plaque
+honoring the late king Mokhdon is next to it.
 ~
 20 9 5
 D3
@@ -1024,11 +1025,23 @@ D1
 ~
 ~
 0 -1 2038
+E
+massive open tomb~
+The tomb has been opened, from the inside!  You wonder how that happened.
+~
+E
+plaque~
+Here lies the body of the great king Mokhdon.  He served his country well,
+but was taken by a strange disease that maddened him.  He was found guilty
+of multiple charges of rape, murder, and mutilation of bodies, and was
+beheaded.  On the behest of the queen Sandia, the body of king Mokhdon was
+not buried in the royal court, but instead here.
+~
 S
 #2038
 The burial grounds~
 Legions of skeletal warriors wander by and battle the enemy even in
-death.  Old battlelines have been forgotten and new ones made. Its a
+death.  Old battle lines have been forgotten and new ones made. Its a
 gruesome scene.
 ~
 20 9 5
@@ -1724,8 +1737,19 @@ M  2013 spec_cast_undead
 M  2014 spec_cast_undead
 M  2016 spec_breath_any
 M  2017 spec_poison
+
+
+
+* Updated 1/6/95 by Zelda
+
+* Spelling errors fixed
+
+*                      Mob #2017  presense changed to presence
+*                      Room#2011  Sargeant changed to Sergeant
+*                      Room#2016  belive changed to believe
+*                      Room#2028  forcefield changed to two words
+*                      Room#2038  battlelines changed to two words
 S
 
-
-
 #$
+

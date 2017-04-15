@@ -14,7 +14,7 @@ he waits for release.
 2 136 -1000 S
 25 0 -5 550d1+75 1d8+15
 25000 70000
-8 8 1
+8 undead~ 1
 #2301
 treant tree~
 the Old Treant~
@@ -27,7 +27,7 @@ wind pushes it back and forth.
 2 0 250 S
 20 0 -3 250d1+50 3d6+5
 5000 35000
-8 8 0
+8 plant~ 0
 #2302
 dweller cave~
 the Cave Dweller~
@@ -40,7 +40,7 @@ It sees you and snarls.
 2|32 32788 0 S
 15 5 2 150d1+75 3d6+3
 2500 21000
-8 8 0
+8 animal~ 0
 
 
 #2303
@@ -53,7 +53,7 @@ A grey toad. Its about the size of a cow. Small horns grow all over its body.
 2 0 -250 S
 14 6 4 150d1+35 2d8+3
 2550 17500
-6 6 0
+6 animal~ 0
 #2304
 weeping willow tree~
 the Weeping Willow~
@@ -65,7 +65,7 @@ anguish and dismay. You hear a faint sound of crying.
 2 136 1000 S
 25 0 -5 550d1+50 4d6+5
 20000 150000
-8 8 2
+8 plant~ 2
 #2305
 mist mistling~
 the Mistling~
@@ -76,7 +76,7 @@ It looks like a thin wisp of mist that has gained substance and size.
 34 65536 0 S
 15 1 5 200d1+20 2d9+3
 1000 22000
-8 8 0
+8 mist~ 0
 #2306
 swamp wraith~
 the Swamp Wraith~
@@ -89,7 +89,7 @@ he nears you.
 38 0 -1000 S
 20 0 -10 250d1+25 6d4+5
 25000 50000
-8 8 1
+8 mist~ 1
 #2307
 ogre villager~
 the Ogre Villager~
@@ -101,7 +101,7 @@ with its head hung low. It sees you and cringes in mortal terror.
 192 0 -200 S
 10 11 3 100d1+20 2d6+2
 200 10000
-8 8 0
+8 ogre~ 0
 #2308
 warrior ogre~
 the Ogre Warrior~
@@ -113,7 +113,7 @@ formidable.
 228 0 -350 S
 15 6 1 175d1+25 3d6+3
 5000 22000
-8 8 1
+8 ogre~ 1
 #2309
 guard ogre~
 the Ogre Guard~
@@ -125,7 +125,7 @@ fight to the death before abandoning his post.
 102 0 -500 S
 19 0 2 200d1+50 3d6+5
 10000 35000
-8 8 1
+8 ogre~ 1
 #2310
 shaman ogre~
 The Ogre Shaman~
@@ -137,7 +137,7 @@ charms and holy symbols draped about him. He looks at you and snarls.
 230 136 -750 S
 20 0 1 250d1+50 4d6+5
 50000 45000
-8 8 1
+8 ogre~ 1
 #2311
 chief chieftain ogre~
 the Ogre Chieftain~
@@ -149,7 +149,7 @@ quite formidable. He towers high above you and growls menacingly.
 230 136 -1000 S
 25 -4 0 550d1+50 5d5+5
 50000 145000
-8 8 1
+8 ogre~ 1
 #2312
 barbarian~
 the Plains Barbarian~
@@ -161,7 +161,7 @@ and icy wastes.
 230 0 0 S
 20 0 1 250d1+50 3D6+4
 5000 50000
-8 8 1
+8 ogre~ 1
 #2313
 yeti white~
 the White Yeti~
@@ -173,7 +173,7 @@ curved talons and its mouth is full of sharp teeth.
 230 0 -350 S
 16 1 5 200d1+25 3d7+3
 1000 28000
-8 8 0
+8 animal~ 0
 #2314
 worm ice iceworm~
 the Ice Worm~
@@ -186,7 +186,7 @@ as it charges directly at you.
 102 0 0 S
 20 0 -5 250d1+75 3d6+5
 3500 45000
-8 8 0
+8 worm~ 0
 #2315
 citizen minotaur~
 the Minotaur Citizen~
@@ -198,7 +198,7 @@ place to seek refuge from the cold.
 198 0 100 S
 15 5 3 100d1+90 2d5+5
 10000 15000
-8 8 0
+8 minotaur~ 0
 #2316
 guard minotaur~
 the Minotaur Guard~
@@ -210,7 +210,7 @@ his armor.
 102 0 -330 S
 22 -2 0 400d1+40 4d6+5
 25000 90000
-8 8 1
+8 minotaur~ 1
 #2317
 warrior minotaur~
 the Minotaur Warrior~
@@ -222,7 +222,7 @@ fur and red eyes. He looks quite capable of protecting the city.
 4|32|64 0 -330 S
 21 -1 0 300d1+50 3d7+5
 25000 65000
-8 8 1
+8 minotaur~ 1
 #2318
 minotaur gatekeeper~
 the Minotaur Gatekeeper~
@@ -234,7 +234,7 @@ miserable standing in the driven snow and ice.
 70 8 -330 S
 25 -4 -5 550d1+50 5d5+5
 25000 100000
-8 8 0
+8 minotaur~ 0
 #2319
 minotaur high guard~
 the High Minotaur Guard~
@@ -246,7 +246,7 @@ skilled.
 102 8 -330 S
 25 -4 -5 600d1+20 4d7+4
 45000 130000
-8 8 1
+8 minotaur~ 1
 #2320
 minotaur royal guard~
 the Royal Minotaur Guard~
@@ -258,7 +258,7 @@ huge glaive. He looks quite capable of protecting the keep.
 102 8 -330 S
 26 -6 -7 650d1+50 5d5+4
 50000 160000
-8 8 1
+8 minotaur~ 1
 #2321
 guard minotaur elite~
 the Elite Minotaur Guard~
@@ -270,7 +270,7 @@ furs.
 102 8 -250 S
 28 -8 -8 800d1+50 6d5+5
 75000 300000
-8 8 1
+8 minotaur~ 1
 #2322
 girl haremgirl harem slave~
 the Harem Girl~
@@ -282,7 +282,7 @@ in the harem.
 198 0 1000 S
 2 20 10 50d1+10 3d1+5
 10 100
-8 8 2
+8 human~ 2
 #2323
 butler minotaur~
 the Minotaur Butler~
@@ -293,7 +293,7 @@ He looks quite regal and refined to be a minotaur.
 198 0 250 S
 20 1 0 1d12+247 3d6+4
 5000 40000
-8 8 1
+8 minotaur~ 1
 #2324
 keeper minotaur ring-keeper~
 the Minotaur Ring-Keeper~
@@ -305,7 +305,7 @@ keys hanging from his belt. He wears huge, spiked brass knuckles.
 70 136 -300 S
 29 -9 -9 100d3+700 5d7+5
 50000 400000
-8 8 1
+8 minotaur~ 1
 #2325
 gorak minotaur warrior master~
 Gorak~
@@ -317,7 +317,7 @@ master of the warrior guild of Mahn-Tor.
 34 136 -300 S
 30 -9 -10 2500d1+500 6d6+5
 100000 800000
-8 8 1
+8 minotaur~ 1
 #2326
 darkoth minotaur anti-paladin master~
 Darkoth~
@@ -329,7 +329,7 @@ chill runs down your spine. He is the master of the Mahn-Tor anti-paladins.
 34 136 -1000 S
 30 -9 -10 2500d1+500 6d6+5
 100000 800000
-8 8 1
+8 minotaur~ 1
 #2327
 tyrgoth minotaur paladin master~
 Tyrgoth~
@@ -341,7 +341,7 @@ presence. He is the leader of the Mahn-Tor paladins.
 2 136 1000 S
 30 -9 -10 2500d1+500 6d6+5
 100000 800000
-8 8 1
+8 minotaur~ 1
 #2328
 amyrok minotaur mage master~
 Amyrok~
@@ -354,7 +354,7 @@ mages of Mahn-Tor.
 34 136 300 S
 30 -9 -10 2500d1+500 6d6+5
 100000 800000
-8 8 1
+8 minotaur~ 1
 #2329
 sumaron minotaur cleric master~
 Sumaron~
@@ -366,7 +366,7 @@ master of all the clerics of Mahn-Tor.
 34 136 1000 S
 30 -9 -10 2500d1+500 6d6+5
 100000 800000
-8 8 1
+8 minotaur~ 1
 #2330
 nasturn minotaur druid master~
 Nasturn~
@@ -378,7 +378,7 @@ wears no metal of any type. He looks at you and smiles.
 2 136 500 S
 30 -9 -10 2500d1+500 6d6+5
 100000 800000
-8 8 1
+8 minotaur~ 1
 #2331
 belrak minotaur ranger master~
 Belrak~
@@ -390,7 +390,7 @@ compared to the normal minotaur. He looks at you with a slight smirk.
 34 136 500 S
 30 -9 -10 2500d1+500 6d6+5
 100000 800000
-8 8 1
+8 minotaur~ 1
 #2332
 dorgar minotaur thief master~
 Dorgar~
@@ -402,7 +402,7 @@ appears to be quite a skilled thief.
 38 65536 -500 S
 30 -9 -10 2500d1+500 6d6+5
 100000 800000
-8 8 1
+8 minotaur~ 1
 #2333
 mahn-tor minotaur grand master~
 Mahn-Tor~
@@ -415,7 +415,7 @@ Mahn-Tor is the leader of the minotaurs. He is awe-inspiring.
 6 1573002 -500 S
 33 -10 -10 3000d1+500 6d7+5
 100000 900000
-8 8 1
+8 minotaur~ 1
 #0
 
 
@@ -829,7 +829,7 @@ stone blood red~
 a blood red stone~
 A blood red stone lies here collecting dust.~
 ~
-9 66 16384
+9 66 1|16384
 3~ 0~ 0~ 0~
 2 45000 4500
 E
@@ -1146,7 +1146,7 @@ vambraces steel~
 a pair of steel vambraces~
 A gleaming pair of vambraces lies here.~
 ~
-9 0 256
+9 0 257
 6~ 0~ 0~ 0~
 7 5000 450
 #2364
@@ -3709,7 +3709,7 @@ E 1 2313 20 11                 Huge Tower Shield
 E 1 2314 3 16                  Dawnbringer
 *
 M 0 2328 1 2391                Amyrok (Minotaur Mage)
-E 1 2315 10 1                  Gold Rimmed Specs
+E 1 2315 10 6                  Gold Rimmed Specs
 E 1 2316 5 2                   Banded Ring
 E 1 2317 5 12                  Minor Globe of Invulnerability
 E 1 2318 3 16                  Gnarled Magius Staff

@@ -1,9 +1,7 @@
-EnvyMud Release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -12,7 +10,7 @@ Hatchet		hatchet@uclink.berkeley.edu
 
 The majority of this document was submitted to the merc mailing list by RoX of
 Farside, and we are greatly indebted to the Farside staff for this excellent
-introduction to area building.  We have modified the text only slightly to 
+introduction to area building.  We have modified the text slightly to 
 match the changes made at EnvyMud (especially the removal of slot numbers),
 removed references to Farside immortals (You may still ask them them what to
 do! :) ), and have added our own examples, but have otherwise left the
@@ -61,13 +59,17 @@ area files.  Mainly the removal of slot number references in potions, wands,
 staves, etc.  But, since each area file is a separate file, it is still easy
 to port areas from one diku mud to another through a simple conversion.
 
+EnvyMud 2.0 has added race definitions for mobiles taking the place of the
+former repop position.  IE) sleeping or etc.  See the #MOBILES section below
+for a more indepth description.
+
 All of our areas may be freely distributed, as long as the internal notices
 (such as those on plaques, signs, graffiti, or tombstones) are kept.  If you
 write new areas, and would like to contribute them back to EnvyMud, just
 e-mail to one of the addresses above.  As you can see from typing 'areas' in
 the game, we credit the original authors whenever we can find them.
 
-Although the format of EnvyMud areas is (mostly) compatible with other Diku
+Although the format of EnvyMud areas is (somewhat) compatible with other Diku
 and MERC muds, EnvyMud ignores many of the fields in the area files,
 generating its own values based on mobile and object levels.  We adopted this
 policy in order to maintain balance between areas originally written by many
@@ -88,6 +90,7 @@ An area file contains the following sections:
     #RESETS
     #SHOPS
     #SPECIALS
+    #GAMES
     #$
 
 An area is a collection of sections starting with #AREA until the next #AREA. 
@@ -166,10 +169,10 @@ The syntax of this section is:
     #AREA <area-name:string>
 
 The 'area-name' can be any string.  The 'areas' command provides a list of
-areas, so it's worth while to follow the standard Merc format for this
+areas, so it's worth while to follow the standard Envy format for this
 string:
 
-    #AREA { 5 35} Merc    Prototype for New Area~
+    #AREA { 5 35} Envy    Prototype for New Area~
 
 The first two numbers are recommended level range.  The name is the name of
 the original author of the area.  The last phrase is the name of the area.
@@ -182,12 +185,16 @@ This section is usually omitted from area files but may be included to
 better enhance your area.  For instance, your zone containing many
 dwarves might have a HELP DWARF section.  This individual help gets tacked
 onto the pool of all helps.  Conflicting helps are resolved by EnvyMud by
-displaying the first instance of the help.
+displaying all instances of the help.
 
 Generally, all helps are placed in one file, help.are, that contains no
 other sections.  The syntax of a help entry is as follows:
 
     #HELPS
+    {
+	<level:number> <keywords:string>~
+	<help-text:string>~
+    }
     {
 	<level:number> <keywords:string>~
 	<help-text:string>~
@@ -227,6 +234,9 @@ If a 'help-text' begins with a leading '.', the leading '.' is stripped off.
 This provides for an escape mechanism from the usual leading-blank stripping of
 strings, so that picturesque greeting screens may be used.
 
+0 $~:  This goes to the end of the entire #HELPS section to notify the
+area loader that the #HELPS section is over.
+
 
 
 === The #RECALL section
@@ -265,7 +275,7 @@ The syntax of this section is:
      <hitnodice:number> d <hitsizedice:number> + <hitplus:number>	\
      <damnodice:number> d <damsizedice:number> + <damroll:number>
      <gold:number> <exp:number>
-     <position:number> <position:number> <sex:number>
+     <position:number> <race name:string> <sex:number>
     }
     #0
 
@@ -304,7 +314,7 @@ AFF_ flags:
   DETECT_INVIS       8
   DETECT_MAGIC      16
   DETECT_HIDDEN     32
-  HOLD              64       (Soon to be implemented)
+  HOLD              64       
   SANCTUARY        128
   FAERIE_FIRE      256
   INFRARED         512
@@ -317,17 +327,20 @@ AFF_ flags:
   CHARM         262144
   FLYING        524288
   PASS_DOOR    1048576
-  WATERWALK    2097152       (Soon to be implemented)
-  SUMMONED     4194304       (Soon to be implemented)
-  MUTE         8388608       (Soon to be implemented)
-  GILLS       16777216       (Soon to be implemented)
+  WATERWALK    2097152       
+  SUMMONED     4194304       (Soon to be implemented) 
+  MUTE         8388608     
+  GILLS       16777216       
+  VAMP_BITE   33554432	     (internally set)
+  GHOUL	      67108864	     (internally set)
+  FLAMING    134217728
 
 The 'alignment' of the mobile ranges from -1000 to +1000.  Keep in mind that
 certain spells ('protection' and 'dispel evil') give characters fighting evil
 monsters an advantage, and that experience earned is influenced by alignment.
 
 The literal letter 'S' must be present after the alignment.  In the original
-Diku mob format, 'S' stands for simple.  Merc supports only simple mobs, so
+Diku mob format, 'S' stands for simple.  Envy supports only simple mobs, so
 the 'S' is redundant.  It is retained not only for compatibility with the
 Diku format, but also because it helps the server report errors more
 accurately.
@@ -335,9 +348,18 @@ accurately.
 The 'level' is a number from 1 to 50.
 
 The 'hitroll', 'armor', 'hitnodice', 'hitsizeddice', 'hitplus', 'damnnodice',
-'damsizedice', 'damroll', 'gold', 'exp', 'position', and 'position' fields are
+'damsizedice', 'damroll', 'gold', 'exp', and 'position' fields are
 present for compatibility with original Diku mud, but their values are ignored.
 Envy generates these values internally based on the level of the mobile.
+
+Race name consists of one of these many races built into EnvyMud 2.0.  This
+list may change when you add more races into the mud.
+
+    Human, Elf, Halfelf, Drow, Dwarf, Halfdwarf, Hobbit, Giant, Ogre, Orc,
+    Kobold, Minotaur, Troll, Hobgoblin, Insect, Dragon, Animal, God, Undead,
+    Harpy, Bear, Githyanki, Elemental, Bat, Plant, Rat, Vampire, Werewolf,
+    Goblin, Faerie, Arachnid, Mindflayer, Object, Mist, Snake, Worm, Fish,
+    Hydra, Lizard, Gnome, Halfkobold
 
 Sex:
   NEUTRAL           0
@@ -358,7 +380,7 @@ make your first move.
 1|2|64 4|32|512 -1000 S
 41 0 0d0+0 0d0+0
 0 0
-0 0 1
+0 human~ 1
 
 
 
@@ -436,21 +458,22 @@ describe whether the item can be picked up, and if so, what bodily locations
 can wear it.
 
 Extra ITEM_ flags:
-  GLOW            1
-  HUM             2
-  DARK            4
-  LOCK            8
-  EVIL           16
-  INVIS          32
-  MAGIC          64
-  NODROP        128
-  BLESS         256
-  ANTI_GOOD     512
-  ANTI_EVIL    1024
-  ANTI_NEUTRAL 2048
-  NOREMOVE     4096
-  INVENTORY    8192
-  POISONED    16384
+  GLOW         		   1
+  HUM          		   2
+  DARK         		   4
+  LOCK         		   8
+  EVIL         		  16
+  INVIS        		  32
+  MAGIC        		  64
+  NODROP       		 128
+  HOLY        		 256
+  ANTI_GOOD    		 512
+  ANTI_EVIL    		1024
+  ANTI_NEUTRAL 		2048
+  NOREMOVE     		4096
+  INVENTORY    		8192
+  POISONED    	       16384
+  VAMPIRE_BANE         32768
 
 WEAR_ flags:
   TAKE            1
@@ -477,13 +500,13 @@ of the input.  Interpretations are given below.
 The 'weight' of the object is just that.
 
 'Cost' and 'cost-per-day' are ignored.  'Cost' is generated internally based
-on the level of the object.  Because Merc has no rent, 'cost-per-day' is
+on the level of the object.  Because Envy has no rent, 'cost-per-day' is
 completely ignored.
 
 The optional 'E' sections and 'A' sections come after the main data.  An 'E'
 section ('extra description') contains a keyword-list and a string associated
 with those keywords.  This description string is used when a character looks
-at a word on the keyword list, ie a gem on a sceptre would be:
+at a word on the keyword list, ie) a gem on a sceptre would be:
 
 E
 gem~
@@ -533,14 +556,14 @@ An object may have an unlimited number of 'E' and 'A' sections.
 --- Meaning of Value Numbers by Item Type
 
 As mentioned above, the 'value' fields are entered by the builder as TEXT 
-strings, even though they will be converted to and stored as integer values.
+strings even though they will be converted to and stored as integer values.
 EnvyMud made this modification so that spell names, rather than slot numbers,
 could be used for scrolls, staves, wands, potions, and pills.  For these types
 of items, the text string containing the spell name (for example, cure
 critical) is translated to an internal skill/spell number or 'sn'.  For the
 other item types, the strings are converted directly to integer values.  If a
 potion, scroll, or pill only has one spell, the other strings must still be
-terminated by a ~, but need not have any content.  A complete list of spells
+terminated by a '~' but need not have any content.  A complete list of spells
 is given at the end of this file.
 
 NOTE:  Because these are read in as strings, the '|' format cannot be used for
@@ -763,6 +786,7 @@ ROOM_ flags:
   DARK                 1       need a light source
   NO_MOB               4       no mobs may enter
   INDOORS              8       room is indoors
+  UNDERGROUND	      16       room is underground (useful for avoiding sun)
   PRIVATE            512       only 2 people allowed (or 1 mob, 1 player)
   SAFE              1024       no pkilling
   SOLITARY          2048       only 1 person allowed
@@ -920,6 +944,7 @@ The reset commands are:
     D     set state of door
     R     randomize room exits
     S     stop (end of list)
+
 The '*' lines contain comments.  The 'S' line is the last line of the
 section.
 
@@ -929,8 +954,9 @@ follows:
     
 For the 'M' command, the second number is the vnum of a mobile to load.  The
 third number is the limit of how many of this mobile may be present in the
-world.  NOTE, world! not room. The fourth number is the vnum of the room
-where the mobile is loaded.
+world if the mobile is NOT sentinel.  NOTE, world! not room.  BUT, if the
+mobile is set to be sentinel, the third number is limit present in the room.
+The fourth number is the vnum of the room where the mobile is loaded.
 
 For the 'O', 'P', 'G', and 'E' commands, the second number is the vnum of an
 object to load.  The third number is ignored.
@@ -979,8 +1005,7 @@ Equipment wear locations:
   WRIST_R      15
   WIELD        16
   HOLD         17
-  WIELD_2      18	(Soon to be implemented)
-
+  WIELD_2      18
 
 All objects have a level limit, which is computed by inheritance from the
 most recently read 'M' command (whether it succeeded or not) in 'area_update'
@@ -1113,6 +1138,60 @@ M  2243 spec_breath_any
 
 
 
+=== The #GAMES section
+( Games and gambling structure developed by Thelonius for EnvyMud )
+
+Use this section to allow your mobs to host gambling games.
+
+The syntax of this section is:
+
+#GAMES
+    {
+     * <comment_to_eol>
+    }
+    {
+     M <mob-vnum:number> <game-fun:string>~ <bankroll:number> \
+       <max_wait:number> <cheat:number>                       \
+       <comment:to_eol>
+    }
+    S
+
+Like the #RESETS and #SPECIALS sections, the #GAMES section has one command
+per line.
+
+The 'M' command assigns 'game-fun' to all mobiles of with virtual number
+'mob-vnum'.  All game-fun's are assigned by name.
+
+The 'bankroll' is the amount of gold that the croupier (the mob running
+the game) has when it is loaded.  When the bankroll goes below zero, the
+mob shuts down its game.
+
+The 'max_wait' value is the number of PULSE_MOBILE's the croupier will wait
+for each person to make a decision.  PULSE_MOBILE is defined in merc.h, and
+is currently 1 second per pulse.  The wait between rounds depends upon the
+number of players, not 'max_wait'.
+
+If 'cheat' is non-zero (meaning TRUE), this mobile will cheat at the given
+game, if such code is in place.
+
+An 'M' line may have a comment at the end.
+
+The following game functions are available for mobiles:
+
+game_blackjack	(Not yet here)	Blackjack or twenty-one, dealer participates
+game_u_l_t			Upper-Lower-Triple, a dice game
+
+Here is an example of a #GAMES section:
+
+#GAMES
+*
+M  3160 upper-lower-triple~	100000	  4	0	/* Croupier    */
+M  3161 blackjack~		1000000   8	0	/* Dealer      */
+*
+S
+
+
+
 === The #$ section
 
 The syntax of this section is:
@@ -1131,62 +1210,63 @@ would appear in the appropriate locations for wands, scrolls, staves, potions,
 and pills.  Note that staves typically are only useful with area-affect spells
 (TAR_IGNORE) or specialized spells (like create spring).
 
-        acid blast                      faerie fire
-        adrenaline control              faerie fog
-        agitation                       fireball
-        armor                           flamestrike
-        aura sight                      flesh armor
-        awe                             fly
-        ballistic attack                gate
-        biofeedback                     giant strength
-        bless                           harm
-        blindness                       heal
-        burning hands                   identify
-        call lightning                  inertial barrier
-        cause critical                  inflict pain
-        cause light                     intellect fortress
-        cause serious                   infravision
-        cell adjustment                 invis
-        change sex                      know alignment
-        charm person                    lend health
-        chill touch                     levitation
-        colour spray                    lightning bolt
-        combat mind                     locate object
-        complete healing                magic missile
-        continual light                 mass invis
-        control flames                  mental barrier
-        control weather                 mind thrust
-        create food                     pass door
-        create sound                    poison
-        create spring                   project force
-        create water                    protection
-        cure blindness                  psionic blast
-        cure critical                   psychic crush
-        cure light                      psychic drain
-        cure poison                     psychic healing
-        cure serious                    refresh
-        curse                           remove curse
-        death field                     sanctuary
-        detect evil                     share strength
-        detect hidden                   shield
-        detect invis                    shocking grasp
-        detect magic                    sleep
-        detect poison                   stone skin
-        detonate                        summon
-        disintegrate                    teleport
-        dispel evil                     thought shield
-        dispel magic                    ultrablast
-        displacement                    ventriloquate
-        domination                      weaken
-        earthquake                      word of recall
-        ectoplasmic form
-        ego whip                        acid breath
-        enchant weapon                  fire breath
-        energy containment              frost breath
-        energy drain                    gas breath
-        enhance armor                   lightning breath
-        enhanced strength
-
+	acid blast		faerie fire		acid breath
+	adrenaline control	faerie fog		fire breath
+	agitation		fireball		frost breath
+	armor			flamestrike		gas breath
+	aura sight		flaming shield		lightning breath
+	awe			flesh armor
+	ballistic attack	fly
+	biofeedback		gate
+	bless			giant strength
+	blindness		harm
+	burning hands		heal
+	call lightning		identify
+	cause critical		inertial barrier
+	cause light		inflict pain
+	cause serious		intellect fortress
+	cell adjustment		infravision
+	change sex		invis
+	charm person		know alignment
+	chill touch		lend health
+	colour spray		levitation
+	combat mind		lightning bolt
+	complete healing	locate object
+	cone of silence		magic missile
+	continual light		mass heal
+	control flames		mass invis
+	control weather		mental barrier
+	create food		mind thrust
+	create sound		mute
+	create spring		pass door
+	create water		poison
+	cure blindness		project force
+	cure critical		protection
+	cure light		psionic blast
+	cure poison		psychic crush
+	cure serious		psychic drain
+	curse			psychic healing
+	death field		refresh
+	destroy cursed		remove curse
+	detect evil		remove silence
+	detect hidden		sanctuary
+	detect invis		share strength
+	detect magic		shield
+	detect poison		shocking grasp
+	detonate		sleep
+	disintegrate		stone skin
+	dispel evil		summon
+	dispel magic		teleport
+	displacement		thought shield
+	domination		turn undead
+	earthquake		ultrablast
+	ectoplasmic form	ventriloquate
+	ego whip		weaken
+	enchant weapon		word of recall
+	energy containment
+	energy drain
+	enhance armor
+	enhanced strength
 
 If you have any questions about area writing, please contact any of the
 immortals on EnvyMud, or perhaps get in touch with Silence at
@@ -1202,7 +1282,7 @@ you can spell check your area before handing it in.
 
 === Booting and Testing Areas
 
-When the Merc server starts, it reads a file named 'area.lst' in the current
+When the Envy server starts, it reads a file named 'area.lst' in the current
 directory.  This file contains a list of all the area files to read in.  To add
 or delete areas, simply edit area.lst.
 
@@ -1213,12 +1293,12 @@ completely memory-based, zone resets are fast, too.  (And paradoxically, moving
 to a memory-based system allowed certain memory optimizations to be made,
 cutting memory usage by 50% from Merc 1.0).
 
-You can test areas by running Merc in a different directory with a different
+You can test areas by running Envy in a different directory with a different
 'area.lst' file with new areas dropped into it.  Setting up an appropriate
 directory structure is an exercise for the student.  (You DID say you're
 running a mud because you wanted to learn more about system administration,
 right?)  Hint: you can run a program in another directory just by invoking its
-full name: '../src/merc', for example.
+full name: '../src/envy', for example.
 
 The server reports syntax errors, including the area file name and a line
 number.  Take the line number with a grain of salt; some kinds of errors cause
@@ -1230,7 +1310,7 @@ mobiles, objects, or rooms.
 
 Error recovery is simply not possible without far more sophisticated input
 parsing than we're willing to write.  (Hey, feel free to write your own.)
-Thus the server exits after reporting any error.  Merc takes only a few seconds
+Thus the server exits after reporting any error.  Envy takes only a few seconds
 to load, however, so it's quite practical to use the whole server as a syntax
 checker.
 
@@ -1238,7 +1318,7 @@ checker.
 
 === Compressing the Area Files
 
-It is possible to run Merc with a single combined, compressed area file.
+It is possible to run Envy with a single combined, compressed area file.
 Here's how to do this on a Unix system:
 
 (1) In 'area.lst', remove the last line (the '$' line).
@@ -1253,19 +1333,19 @@ Here's how to do this on a Unix system:
 
 (4) Edit 'startup'.  Change the line:
 
-	../src/merc 4000 >&! $logfile
+	../src/envy 4000 >&! $logfile
 
     to:
 
-	zcat all_area.Z | ../src/merc 4000 >&! $logfile
+	zcat all_area.Z | ../src/envy 4000 >&! $logfile
 
-(5) Test the changes so far.  Merc should start up normally, although it
+(5) Test the changes so far.  Envy should start up normally, although it
     may take a few seconds longer to zcat everything.
 
 Now you can remove all the original *.are files.
 
 Notice that all of the compression and decompression takes place outside of the
-Merc server.  Thus, you can substitute any archiving program of your choice, as
+Envy server.  Thus, you can substitute any archiving program of your choice, as
 long as it can write its output to standard output.
 
 You can recover the original areas simply by running 'uncompress all_area.Z'
@@ -1277,7 +1357,7 @@ without closing standard input).  Diagnostic messages are given with the full
 name (e.g. '-arachnos.are'), but the line number will be reported as zero.
 
 You can freely mix areas from standard input with ordinary area files.  Thus,
-you could compress all the Merc standard zones into a file such as merc_area.Z,
+you could compress all the Envy standard zones into a file such as envy_area.Z,
 prefixing them with '-' in 'area.lst'.  Then you could add your own areas
 anywhere in the file (beginning, middle, end, wherever your areas need to go),
 and omit the '-' on the lines for your areas.
@@ -1296,7 +1376,7 @@ In order to simplify the code, the EnvyMud server has a fixed maximum size on
 strings in the area database.  This size is defined at the beginning of 'db.c'
 'db.c' with a '#define' statement.  As distributed, this size is:
 
-    #define MAX_STRING	 1500000
+    #define MAX_STRING	 1600000
 
 This size is about 10% larger than needed for the areas we distribute.  Thus,
 you can add about 4 more areas without touching the server at all.  The server

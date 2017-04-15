@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -25,6 +28,7 @@
 #endif
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
@@ -33,9 +37,10 @@
 extern	int	_filbuf		args( (FILE *) );
 #endif
 
-#if defined( ultrix ) || defined( sequent )
-void    system          args( ( char *string ) );
+#if defined( sun )
+int     system          args( ( const char *string ) );
 #endif
+
 
 /*
  * Array of containers read for proper re-nesting of objects.
@@ -95,7 +100,7 @@ void save_char_obj( CHAR_DATA *ch )
     if ( !( fp = fopen( strsave, "w" ) ) )
     {
         sprintf( buf, "Save_char_obj: fopen %s: ", ch->name );
-	bug( buf, NULL );
+	bug( buf, 0 );
 	perror( strsave );
     }
     else
@@ -126,16 +131,17 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "ShtDsc      %s~\n",	ch->short_descr		);
     fprintf( fp, "LngDsc      %s~\n",	ch->long_descr		);
     fprintf( fp, "Dscr        %s~\n",	ch->description		);
-    fprintf( fp, "Prmpt       %s~\n",	ch->prompt		);
+    fprintf( fp, "Prmpt       %s~\n",	ch->pcdata->prompt	);
     fprintf( fp, "Sx          %d\n",	ch->sex			);
     fprintf( fp, "Cla         %d\n",	ch->class		);
-    fprintf( fp, "Rce         %d\n",	ch->race		);
+
+    fprintf( fp, "Race        %s~\n",	race_table[ ch->race ].name );
+
     fprintf( fp, "Lvl         %d\n",	ch->level		);
     fprintf( fp, "Trst        %d\n",	ch->trust		);
-    fprintf( fp, "Wizbt       %d\n",	ch->wizbit		);
     fprintf( fp, "Playd       %d\n",
 	ch->played + (int) ( current_time - ch->logon )		);
-    fprintf( fp, "Note        %ld\n",   ch->last_note           );
+    fprintf( fp, "Note        %ld\n",   (unsigned long)ch->last_note );
     fprintf( fp, "Room        %d\n",
 	    (  ch->in_room == get_room_index( ROOM_VNUM_LIMBO )
 	     && ch->was_in_room )
@@ -170,6 +176,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 	fprintf( fp, "Paswd       %s~\n",	ch->pcdata->pwd		);
 	fprintf( fp, "Bmfin       %s~\n",	ch->pcdata->bamfin	);
 	fprintf( fp, "Bmfout      %s~\n",	ch->pcdata->bamfout	);
+	fprintf( fp, "Immskll     %s~\n",	ch->pcdata->immskll	);
 	fprintf( fp, "Ttle        %s~\n",	ch->pcdata->title	);
 	fprintf( fp, "AtrPrm      %d %d %d %d %d\n",
 		ch->pcdata->perm_str,
@@ -207,8 +214,8 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
         if ( paf->deleted )
 	    continue;
 
-	fprintf( fp, "Aff       %3d %3d %3d %3d %10d\n",
-		paf->type,
+	fprintf( fp, "Afft       %18s~ %3d %3d %3d %10d\n",
+		skill_table[ paf->type ].name,
 		paf->duration,
 		paf->modifier,
 		paf->location,
@@ -363,7 +370,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     d->character			= ch;
     ch->desc				= d;
     ch->name				= str_dup( name );
-    ch->prompt                          = str_dup( "<%hhp %mm %vmv> " );
+    ch->pcdata->prompt                  = str_dup( "<%hhp %mm %vmv> " );
     ch->last_note                       = 0;
     ch->act				= PLR_BLANK
 					| PLR_COMBINE
@@ -371,6 +378,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->pcdata->pwd			= str_dup( "" );
     ch->pcdata->bamfin			= str_dup( "" );
     ch->pcdata->bamfout			= str_dup( "" );
+    ch->pcdata->immskll			= str_dup( "" );
     ch->pcdata->title			= str_dup( "" );
     ch->pcdata->perm_str		= 13;
     ch->pcdata->perm_int		= 13; 
@@ -469,6 +477,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 void fread_char( CHAR_DATA *ch, FILE *fp )
 {
     char *word;
+    char *race;
     char  buf [ MAX_STRING_LENGTH ];
     bool  fMatch;
 
@@ -490,7 +499,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    KEY( "Align",	ch->alignment,		fread_number( fp ) );
 	    KEY( "Armr",	ch->armor,		fread_number( fp ) );
 
-	    if ( !str_cmp( word, "Aff" ) )
+	    if ( !str_prefix( word, "Afft" ) )
 	    {
 		AFFECT_DATA *paf;
 
@@ -504,7 +513,11 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 		    affect_free	= affect_free->next;
 		}
 
-		paf->type	= fread_number( fp );
+
+		if ( !str_cmp( word, "Aff" ) )
+		    paf->type	= fread_number( fp );
+		else
+		    paf->type   = affect_lookup( fread_string( fp ) );
 		paf->duration	= fread_number( fp );
 		paf->modifier	= fread_number( fp );
 		paf->location	= fread_number( fp );
@@ -513,7 +526,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 		paf->next	= ch->affected;
 		ch->affected	= paf;
 		fMatch = TRUE;
-		break;
+
 	    }
 
 	    if ( !str_cmp( word, "AtrMd"  ) )
@@ -589,6 +602,9 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    }
 	    break;
 
+	case 'I':
+	    KEY ( "Immskll",    ch->pcdata->immskll,    fread_string( fp ) );
+
 	case 'L':
 	    KEY( "Lvl", 	ch->level,		fread_number( fp ) );
 	    KEY( "LngDsc",	ch->long_descr,		fread_string( fp ) );
@@ -613,11 +629,22 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    KEY( "Playd",	ch->played,		fread_number( fp ) );
 	    KEY( "Pos", 	ch->position,		fread_number( fp ) );
 	    KEY( "Prac",	ch->practice,		fread_number( fp ) );
-	    KEY( "Prmpt",	ch->prompt,		fread_string( fp ) );
+	    KEY( "Prmpt",	ch->pcdata->prompt,	fread_string( fp ) );
 	    break;
 
 	case 'R':
-	    KEY( "Rce",         ch->race,		fread_number( fp ) );
+	    /*
+	     * This line is left to maintain compatibility stock Envy 1.0
+	     */
+	    KEY( "Rce",         ch->race,               fread_number( fp ) );
+
+	    if ( !str_cmp( word, "Race" ) )
+	    {
+		race     = fread_string( fp );
+		ch->race = race_lookup( race );
+		fMatch   = TRUE;
+		break;
+	    }
 
 	    if ( !str_cmp( word, "Room" ) )
 	    {
@@ -627,7 +654,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 		fMatch = TRUE;
 		break;
 	    }
-
+	      
 	    break;
 
 	case 'S':
@@ -681,19 +708,27 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 
 	case 'W':
 	    KEY( "Wimp",	ch->wimpy,		fread_number( fp ) );
-	    KEY( "Wizbt",	ch->wizbit,		fread_number( fp ) );
+
+	    if ( !str_cmp( word, "Wizbt" ) )
+	    {
+		fread_to_eol( fp );
+		fMatch = TRUE;
+		break;
+	    }
 	    break;
 	}
 
 	/* Make sure old chars have this field - Kahn */
 	if ( !ch->pcdata->pagelen )
 	    ch->pcdata->pagelen = 20;
-	if ( !ch->prompt || ch->prompt == '\0' )
-	    ch->prompt = str_dup ( "<%hhp %mm %vmv> " );
+	if ( !ch->pcdata->prompt || ch->pcdata->prompt == '\0' )
+	    ch->pcdata->prompt = str_dup ( "<%hhp %mm %vmv> " );
 
 	/* Make sure old chars do not have pagelen > 60 - Kahn */
 	if ( ch->pcdata->pagelen > 60 )
 	    ch->pcdata->pagelen = 60;
+	if ( ch->pcdata->pagelen < 19 )
+	    ch->pcdata->pagelen = 19;
 
 	if ( !fMatch )
 	{

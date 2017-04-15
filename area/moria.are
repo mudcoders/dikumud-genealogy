@@ -1,6 +1,40 @@
 #AREA	{ 5 15} Alfa    Moria~
 
+#HELPS
 
+-1 GIANT~
+GIANTs are large hulking humaniods with an overactive ego.  They love picking
+upon those smaller than them.  Not particularly bright nor agile, they
+rely more upon brute force than anything else.  Another one of their
+assets (besides their great smell) is that their dense bodies heal up
+faster than in most races.
+~
+
+-1 OGRE~
+OGREs are slightly less muscular than GIANTs with nothing to do but harass
+creatures which are vertically challenged.  Not particularly bright nor agile,
+they rely more upon brute force than anything else.  Another one of
+their assets (besides their great smell) is that their dense bodies
+heal up faster than in most races.
+~
+
+-1 ORC~
+ORCs are your typical underground dwelling mutant pig humanoid.  Living either
+in caves or other underground dwellings, ORCs have developed keen eyesight
+in the darkness.  What ORCs do not have in intelligence, they make up in
+strength and in their robust bodies, which can recover quickly from
+and damage done to it.
+~
+
+-1 KOBOLD~
+KOBOLDs are smaller than the typical HUMAN.  Once thought of as a clan of
+ELVES banished to the caves long ago by a powerful god, KOBOLDs have become
+more visible as of late.  Their keen eyesight in the darkness coupled with
+their agility make them dangerous.  Fortunately, KOBOLDs lack in strength and
+intelligence.
+~
+
+0 $~
 
 #MOBILES
 #4000
@@ -13,7 +47,7 @@ It sways back and forth contemplating whether or not to eat you.
 35 8 -200 S
 11 7 3 11d11+110 3d6+0
 0 5000
-8 8 1
+8 snake~ 1
 #4001
 garter snake~
 the garter snake~
@@ -24,7 +58,7 @@ It looks harmless enough.  Or is it?
 3 0 -100 S
 7 12 4 7d7+70 2d6+1
 0 1500
-8 8 0
+8 snake~ 0
 #4002
 centipede~
 the centipede~
@@ -35,7 +69,7 @@ It looks completely harmless but who knows for sure?
 2 0 100 S
 3 20 6 3d3+30 1d6+0
 0 400
-8 8 0
+8 worm~ 0
 #4003
 kobold~
 the kobold~
@@ -46,7 +80,7 @@ It looks ugly enough to scare its own mother.
 68 0 -100 S
 4 16 5 4d4+40 1d8+1
 50 500
-8 8 0
+8 kobold~ 0
 #4004
 orc~
 the orc~
@@ -57,7 +91,7 @@ You notice a slight tinge of madness in his eyes.
 100 0 -400 S
 5 15 5 5d5+50 2d4+0
 100 700
-8 8 1
+8 orc~ 1
 #4005
 orc~
 the large orc~
@@ -68,7 +102,7 @@ The orc says, "Whatcha look'n at?"
 68 0 -500 S
 7 11 2 7d7+70 2d6+2
 200 1500
-8 8 1
+8 orc~ 1
 #4050
 warrior~
 the warrior~
@@ -79,7 +113,7 @@ He's surely a strong, brainless fighter.  Like you.
 102 0 -300 S
 12 8 -1 12d12+120 2d8+1
 1000 5000
-8 8 1
+8 giant~ 1
 #4051
 warrior~
 the warrior~
@@ -91,7 +125,7 @@ to show you what he can do!
 100 0 -400 S
 7 13 3 7d7+70 2d5+0
 200 1500
-8 8 1
+8 giant~ 1
 #4052
 hobgoblin~
 the hobgoblin~
@@ -104,7 +138,7 @@ don't you put it out of its misery?
 68 0 -300 S
 6 12 6 6d6+60 2d4+0
 100 1000
-8 8 1
+8 hobgoblin~ 1
 #4053
 snake~
 the snake~
@@ -115,7 +149,7 @@ A closer look reveals a hungry demeanor.  Don't get too close!
 35 0 -600 S
 10 10 4  10d10+100 3d5+1
 0 1000
-8 8 0
+8 snake~ 0
 #4054
 centipede~
 the centipede~
@@ -126,7 +160,7 @@ The centipede doesn't really seem to notice you.
 2 0 -100 S
 5 17 5 5d5+50 1d7+0
 0 100
-8 8 0
+8 worm~ 0
 #4055
 hobgoblin~
 the large hobgoblin~
@@ -138,7 +172,7 @@ wonder just how far away you should be.
 68 0 -500 S
 10 11 2 1d10+120 2d6+1
 300 4000
-8 8 1
+8 hobgoblin~ 1
 #4056
 orc~
 the orc~
@@ -150,7 +184,7 @@ Care to be dinner?
 100 0 -800 S
 8 13 2 3d10+100 2d5+2
 150 1000
-8 8 1
+8 orc~ 1
 #4057
 lion mountain~
 the mountain lion~
@@ -162,7 +196,7 @@ the weary.  Are you next?
 96 0 -100 S
 5 16 5 1d10+60 2d4+0
 0 900
-8 8 1
+8 animal~ 1
 #4058
 giant hill~
 the hill giant~
@@ -175,7 +209,7 @@ playmate for you.
 64 0 0 S
 13 8 2 1d10+160 2d10+0
 1000 16500
-8 8 1
+8 giant~ 1
 #4100
 mage~
 the Mage~
@@ -187,7 +221,7 @@ This guy can ace the SAT with his frontal lobe tied behind his back.
 39 8 -100 S
 13 10 2 13d13+130 2d6+0
 1500 17000
-8 8 1
+8 elf~ 1
 #4101
 troll~
 the troll~
@@ -199,7 +233,7 @@ figure just how tender you are.
 38 0 -800 S
 12 8 1 2d10+100 2d7+1
 500 15000
-8 8 1
+8 troll~ 1
 #4102
 guardian snake~
 the guardian snake~
@@ -211,7 +245,7 @@ bite your head off!
 39 0 -700 S
 10 8 5 10d10+100 2d5+2
 0 9000
-8 8 1
+8 snake~ 1
 #4104
 orc~
 the orc~
@@ -222,7 +256,7 @@ Yrkk..  He belches in your face!
 228 0 -200 S
 7 14 4 1d5+90 2d4+1
 200 2250
-8 8 1
+8 orc~ 1
 #4105
 centipede~
 a centipede~
@@ -234,7 +268,7 @@ not important.
 2 0 300 S
 6 15 4 3d10+50 1d8+1
 0 1500
-8 8 0
+8 worm~ 0
 #4106
 warrior~
 the Warrior~
@@ -245,7 +279,7 @@ He doesn't look friendly at all...  He is no Mr. Rogers!
 100 0 -300 S
 9 10 3 3d10+100 2d6+1
 500 9000
-8 8 1
+8 giant~ 1
 #4107
 kobold~
 the green kobold~
@@ -256,7 +290,7 @@ It looks a little sick.  Something he ate maybe?
 100 0 -100 S
 7 14 4 2d10+20 1d10+0
 20 3000
-8 8 1
+8 kobold~ 1
 #4150
 bat blue~
 the blue bat~
@@ -267,7 +301,7 @@ Bzzzt.  Zap.  Crackle.  Speak about static electricity!
 35 0 -100 S
 7 15 4 3d10+70 1d7+1
 0 2200
-8 8 0
+8 bat~ 0
 #4151
 bat red~
 the red bat~
@@ -278,7 +312,7 @@ You can definitely feel some heat from this thing.  A fever perhaps?
 35 0 -100 S
 7 15 4 3d10+70 1d7+1
 0 2200
-8 8 0
+8 bat~ 0
 #4152
 bat green~
 the green bat~
@@ -289,7 +323,7 @@ Whew!  What a stinker!
 35 0 -100 S
 7 15 4 3d10+70 1d7+1
 0 2200
-8 8 0
+8 bat~ 0
 #4153
 bat white~
 the white bat~
@@ -300,7 +334,7 @@ Brrr!  You almost can't distinguish this bat from an ice cube.
 35 0 -100 S
 7 15 4 3d10+70 1d7+1
 0 2200
-8 8 0
+8 bat~ 0
 #4154
 bat black~
 the black bat~
@@ -311,7 +345,7 @@ Amazing!  This bat is grooming itself with acid!
 35 0 -100 S
 7 15 4 3d10+70 1d7+1
 0 2200
-8 8 0
+8 bat~ 0
 #4155
 thief~
 the thief~
@@ -322,7 +356,7 @@ He definitely knows what he's doing.  Trust him.
 69 32770 400 S
 12 7 1 3d20+130 2d7+1
 2000 14000
-8 8 1
+8 human~ 1
 #4156
 troll~
 the troll~
@@ -333,7 +367,7 @@ He looks quite mean.  Don't mess with him.
 38 0 -700 S
 14 8 1 8d20+140 2d7+1
 3000 20000
-8 8 1
+8 troll~ 1
 #4157
 mage~
 the Mage~
@@ -345,7 +379,7 @@ angry should you bother his studies.
 101 0 -200 S
 11 10 2 4d10+80 2d5+1
 800 11000
-8 8 1
+8 elf~ 1
 #4158
 snake~
 the snake~
@@ -357,7 +391,7 @@ for dinner.
 35 0 200 S
 9 12 3 1d10+110 2d5+1
 0 8000
-8 8 1
+8 snake~ 1
 #4159
 troll~
 the small troll~
@@ -368,7 +402,7 @@ He is so happy, you are disgusted.  Kill him now!
 100 0 -300 S
 8 13 3 3d10+80 2d5+2
 500 5000
-8 8 1
+8 troll~ 1
 #4160
 orc~
 the orc~
@@ -379,7 +413,7 @@ He is just looking for a fight isn't he?
 100 0 -200 S
 9 12 3 1d20+100 2d5+1
 500 6000
-8 8 1
+8 orc~ 1
 #0
 
 
@@ -2485,8 +2519,7 @@ D3
 0 0 4166
 S
 #4168
-The end of the tunnel~
-   The tunnel suddenly stops here, only exit is to the east.
+A Tunnel~
 The air is damp here.
 ~
 41 9 3

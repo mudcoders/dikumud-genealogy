@@ -14,7 +14,7 @@ It gracefully dances around your head.
 65 24 500 S
 5 16 5 5d5+50 2d4+1
 20 900
-8 8 0
+8 dragon~ 2
 #1001
 griffin~
 A griffin~
@@ -26,7 +26,7 @@ for the fact it is hungry and is attacking you!
 96 0 300 S
 8 14 4 1d1+104 2d5+2
 500 3750
-8 8 1
+8 harpy~ 1
 #0
 
 

@@ -4,7 +4,7 @@
 #1801
 gnome busy~
 the busy gnome~
-The busy gome shuffles past you.
+The busy gnome shuffles past you.
 ~
 The weather does not phase him in the least.  She is ready
 to defend himself to the death.  There is a glazed look
@@ -13,7 +13,7 @@ about her eyes.
 69 32768 100 S
 16 17 8 5d4+260 3d6+1
 3000 4500
-8 8 2
+8 gnome~ 2
 #1802
 gnome guard~
 the gnome guard~
@@ -24,7 +24,7 @@ There is a glazed look about her eyes.
 3 32768 100 S
 20 8 0 6d6+440 4d4+2
 5000 40000
-8 8 2
+8 gnome~ 2
 #1803
 bear giant polar~
 the giant polar bear~
@@ -35,7 +35,7 @@ She blends with the snow.
 34 65544 0 S
 24 8 3 6d10+400 20d2+1
 10000 75000
-8 8 2
+8 bear~ 2
 #1804
 dragon white~
 the white dragon~
@@ -46,7 +46,7 @@ He is an enormous, mature dragon, ready to freeze you.
 3 128 -1000 S
 25 -5 -100 25d4+550 5d4+5
 50000 450000
-8 8 1
+8 dragon~ 1
 #1805
 dragon blue~
 the blue dragon~
@@ -58,7 +58,7 @@ to match her electric blue scales.
 32 136 -1000 S
 26 -5  -100 25d4+600 4d10+10
 75000 500000
-8 8 2
+8 dragon~ 2
 #1806
 queen snow~
 the Snow Queen~
@@ -69,7 +69,7 @@ Dressed in all white, she almost charms you with her placidness.
 3 128 0 S
 32 -10 -100 3d10+2000 15d3+15
 50000 600000
-8 8 2
+8 god~ 2
 #1807
 giant frost guard~
 the cold frost giant~
@@ -81,7 +81,7 @@ but they keep him fed.
 5 8 0 S
 20 0 -65 6d4+370 3d8+1
 3000 75000
-8 8 1
+8 giant~ 1
 #1808
 mistress white~
 the white mistress~
@@ -92,7 +92,7 @@ She is a fanatical servant to the Snow Queen.
 39 40 -500 S
 20 5 -66 100d4+50 5d4+10
 14000 70000 
-8 8 2
+8 elemental~ 2
 #1809
 master herbal~
 the master herbal~
@@ -103,7 +103,7 @@ She is too busy to consider you.
 3 32 0 S
 20 0 -66 4d100+75 3d6+3
 10000 65000
-8 8 2
+8 human~ 2
 #1810
 thief~
 the thief~
@@ -114,7 +114,7 @@ He REALLY likes your money!
 128 32768 -500 S
 7 13 3 7d7+77 2d3+3
 10 1000
-8 8 1
+8 human~ 1
 #0
 
 #OBJECTS
@@ -850,10 +850,10 @@ M 0 1801 10 1813		busy gnome
 M 0 1801 10 1814		busy gnome
 M 0 1802 4 1807			gnome guard
 M 0 1802 4 1807			gnome guard
-M 0 1803 4 1831			polar bear
-M 0 1803 4 1832			polar bear
-M 0 1803 4 1833			polar bear
-M 0 1803 4 1805			polar bear
+M 0 1803 1 1831			polar bear
+M 0 1803 1 1832			polar bear
+M 0 1803 1 1833			polar bear
+M 0 1803 1 1805			polar bear
 M 0 1804 1 1824			white dragon
 E 1 1802 2 17				gets a fire wand
 M 0 1805 1 1825			blue dragon
@@ -870,10 +870,10 @@ G 1 1806 10				give him a purple potion
 M 0 1807 5 1827			frost giant guard
 G 1 1806 10				give him a purple potion
 M 0 1807 5 1827			frost giant guard
-M 0 1808 4 1830			white mistress
+M 0 1808 1 1830			white mistress
 E 1 1802 2 17				gets a fire wand
-M 0 1808 4 1828
-M 0 1808 4 1828			white mistress
+M 0 1808 1 1828
+M 0 1808 1 1828			white mistress
 E 1 1803 2 16				gets a flaming axe
 M 0 1809 1 1820			master herbal
 G 1 1805 10 				gets a sprig of mints

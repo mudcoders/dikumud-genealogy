@@ -15,7 +15,7 @@ their playful personality.  Hmmm....  It looks like the baby is teething!
 2|4|128 8 500 S
 5 16 5 5d5+55 1d6+2
 225 700
-8 8 0
+8 giant~ 0
 #5301
 lamia pet~
 the pet lamia~
@@ -27,7 +27,7 @@ body of a four-legged beast.
 4|128 0 500 S
 4 17 6 4d4+44 1d5+1
 50 500
-8 8 2
+8 animal~ 2
 #5302
 citizen man~
 a citizen of Thalos~
@@ -39,7 +39,7 @@ choice but to reciprocate.
 64|128 0 500 S
 5 16 5 5d5+55 1d4+3
 100 700
-8 8 1
+8 human~ 1
 #5303
 guard imperial cityguard~
 an imperial cityguard~
@@ -51,7 +51,7 @@ he is just giggling with a kid running about.
 4|64 128 1000 S
 17 6 -5 15d15+150 1d4+10
 1500 15000
-8 8 1
+8 human~ 1
 #5304
 citizen woman female~
 a female citizen of Thalos~
@@ -64,7 +64,7 @@ attention, if only for a moment.
 64|128 0 500 S
 5 16 5 5d5+55 1d4+3
 100 700
-8 8 2
+8 human~ 2
 #5305
 gordon defender~
 Gordon the Brave~
@@ -78,7 +78,7 @@ ARMED stranger.  Better not do any funny stuff in his presence.
 0 128 1000 S
 35 0 -10 35d35+350 1d8+30
 10000 150000
-8 8 1
+8 human~ 1
 #5306
 priest~
 the fanatic priest~
@@ -92,7 +92,7 @@ and he clenches it at you.  Other than that, he is dressed all in black.
 2|128 0 -500 S
 10 10 0 10d10+100 1d4+8
 100 5000
-8 8 1
+8 human~ 1
 #5307
 priest~
 the priest of Thalos~
@@ -105,7 +105,7 @@ here.
 2 128 1000 S
 20 5 -5 20d20+200 1d4+15
 100 17000
-8 8 1
+8 human~ 1
 #5308
 golem stone~
 the stone golem~
@@ -117,7 +117,7 @@ stone creature.  It stands here guarding the city.
 2 8192 1000 S
 30 0 -5 30d30+300 1d8+25
 4250 95000
-8 8 0
+8 god~ 0
 #5309
 mayor~
 the mayor of Thalos~
@@ -129,7 +129,7 @@ He looks very proud of his work.
 2 0 800 S
 20 5 -5 20d20+200 1d4+5
 1000 15000
-8 8 1
+8 human~ 1
 #5310
 dan barkeep~
 Dan the Barkeep~
@@ -140,7 +140,7 @@ He looks at you, and says, 'What's your poison, stranger?'
 2 0 600 S
 30 0 -10 30d30+300 1d6+20
 1000 100000
-8 8 1
+8 minotaur~ 1
 #5311
 george butcher~
 George the Butcher~
@@ -152,7 +152,7 @@ he asks, 'How much you want?'
 2 0 600 S
 30 0 -10 30d30+300 1d6+20
 1000 100000
-8 8 1
+8 minotaur~ 1
 #5312
 farmer betty~
 Farmer Betty~
@@ -163,7 +163,7 @@ She smiles at you meekly.
 2 0 650 S
 30 0 -10 30d30+300 1d6+20
 1000 100000
-8 8 2
+8 human~ 2
 #5313
 thaellor dwarf~
 Thaellor the dwarf~
@@ -175,7 +175,7 @@ metal into items of defense and destruction.
 2 0 550 S
 30 0 -10 30d30+300 1d6+20
 1000 100000
-8 8 1
+8 orc~ 1
 #5314
 ben smith~
 Ben the Smith~
@@ -186,7 +186,7 @@ Ben tries to pawn his various wares to you.
 2 0 600 S
 30 0 -10 30d30+30 1d6+20
 1000 100000
-8 8 1
+8 elf~ 1
 #5315
 librarian~
 the librarian~
@@ -197,7 +197,7 @@ The librarian looks busy and whispers, 'Shhh!'
 2|128 0 500 S
 8 12 2 8d8+80 1d4+6
 0 2000
-8 8 2
+8 halfelf~ 2
 #5316
 scholar boy~
 a young scholar~
@@ -208,7 +208,7 @@ This young scholar is studying to be a priest.
 2|128 0 500 S
 6 14 4 6d6+60 1d4+4
 10 1000
-8 8 1
+8 dwarf~ 1
 #5317
 wizard~
 an old wizard~
@@ -219,7 +219,7 @@ This old wizard almost looks like he is about to fall over and sleep.
 2 8 550 S
 30 0 -10 30d30+300 1d6+20
 1000 100000
-8 8 1
+8 hobbit~ 1
 #5318
 masseuse woman~
 a beautiful masseuse~
@@ -232,7 +232,7 @@ attention, and you jump to her offer for a massage.
 2|128 0 700 S
 4 16 6 4d4+40 1d4+3
 50 400
-8 8 2
+8 human~ 2
 #5319
 bather man~
 a man~
@@ -244,7 +244,7 @@ choice but to reciprocate and join him and the others in the soothing pool.
 2|128 0 650 S
 5 15 5 5d5+50 1d4+4
 0 600
-8 8 1
+8 human~ 1
 #5320
 guard imperial cityguard~
 An imperial cityguard~
@@ -257,7 +257,7 @@ track of each city patrol.
 2|4|64 128 1000 S
 17 6 -5 15d15+150 1d4+10
 1500 15000
-8 8 1
+8 human~ 1
 #5321
 guard cityguard~
 an imperial cityguard~
@@ -269,7 +269,7 @@ he is watching the children play with amusement.
 2|4|64 128 1000 S
 17 6 -5 15d15+150 1d4+10
 1500 15000
-8 8 1
+8 human~ 1
 #5322
 doe~
 a doe~
@@ -281,7 +281,7 @@ she sniffs at you, but she goes back to chewing some grass.
 64|128 0 0 S
 5 15 5 5d5+55 1d4+3
 2 600
-8 8 2
+8 animal~ 2
 #5323
 deer~
 a deer~
@@ -293,7 +293,7 @@ albeit ineffectively.
 64|128 0 0 S
 6 14 4 6d6+66 1d4+4
 2 800
-8 8 1
+8 animal~ 1
 #5324
 stag deer~
 a stag~
@@ -304,7 +304,7 @@ He eyes you with contained anger.  You'd better leave him alone!
 32|64|128 0 0 S
 8 12 2 8d8+88 1d4+9
 2 2000
-8 8 1
+8 animal~ 1
 #5325
 bunny rabbit~
 a small bunny~
@@ -315,7 +315,7 @@ This bunny looks so adorable, you wished you had one just like this!
 64|128 0 0 S
 2 18 8 2d2+22 1d4+1
 2 100
-8 8 0
+8 animal~ 0
 #5326
 snake~
 a harmless snake~
@@ -326,7 +326,7 @@ Upon careful inspection, you are sure it is NOT a cobra!
 32|64|128 32768 0 S
 4 16 4 4d4+44 1d8+4
 2 500
-8 8 0
+8 snake~ 0
 #5327
 druid~
 a druid~
@@ -337,7 +337,7 @@ He doesn't like you bothering him, but is too polite to ask you to leave.
 64|128 8|8192 1000 S
 10 10 0 10d10+100 1d4+6
 50 5000
-8 8 1
+8 halfdwarf~ 1
 #5328
 druidess~
 a druidess~
@@ -348,7 +348,7 @@ She wonders why you are staring at her, and how you got in here.
 64|128 8|8192 1000 S
 10 10 0 10d10+100 1d4+6
 50 5000
-8 8 2
+8 halfdwarf~ 2
 #5329
 musician bard~
 bard of Thalos~
@@ -359,7 +359,7 @@ This musical fellow plays a happy song with his fellow comrades.
 2|4 0 450 S
 6 15 4 6d6+60 1d4+4
 100 800
-8 8 1
+8 human~ 1
 #5330
 musician bard~
 bard of Thalos~
@@ -370,7 +370,7 @@ This musical fellow wanders the world singing of the glory of Thalos.
 4 0 550 S
 7 14 3 7d7+70 1d4+5
 150 850
-8 8 1
+8 human~ 1
 #5331
 cityguard guard~
 the cityguard~
@@ -381,7 +381,7 @@ A big, strong, helpful, trustworthy guard.
 69 0 1000 S
 15 15 -2 15d15+150 1d4+10
 500 19000
-8 8 1
+8 giant~ 1
 #5332
 janitor~
 the janitor~
@@ -391,7 +391,7 @@ A janitor is walking around, cleaning up.
 1 0 900 S
 1 20 9 2d6+10 1d5+0
 34 100
-8 8 1
+8 hobgoblin~ 1
 #5333
 fido dog~
 the beastly fido~
@@ -403,7 +403,7 @@ around his teeth.
 161 0 -200 S
 0 20 10 1d6+4 1d4+0
 10 25
-8 8 1
+8 animal~ 1
 #5334
 cityguard guard~
 the cityguard~
@@ -414,7 +414,7 @@ A big, strong, helpful, trustworthy guard.
 67 0 1000 S
 15 5 -2 15d15+150 1d4+10
 500 19000
-8 8 1
+8 giant~ 1
 #0
 
 
@@ -772,6 +772,60 @@ A
 24 -2
 A
 17 -2
+#5332
+scroll prophecy~
+the Scroll of Prophecy~
+A heavy scroll is on the floor.~
+~
+8 0 1
+0~ 0~ 0~ 0~
+1 1 1
+E
+scroll prophecy~
+In the beggining, there was God.  God was bored with His singular existence,
+and so He begat His first creation, Khyrha, or 'angel'.  He loved Khyrha so,
+and Khyrha became much like God, learning from Him in many ways, and Khyrha
+became powerful.  God eventually wanted more than just Khyrha, and so He 
+created the heavens and Earth, where He sprouted Humanity.  Khyrha became 
+envious and then jealous of Man, and decided to harm them.  So Khyrha 
+into men some of his un-divine emotions, like hatred and fear, into the souls
+of men.  God was furious with Khyrha, for harming His Creation, and so Khyrha
+and God fought.  Khyrha was no match for God, and was cast down into Earth,
+and Khyrha did die and he bled unto the earth.  But the blood of Khyrha did
+not die, but festered.  With the last of Khyrha's breath, he cursed that he
+shall return in 666 decades and wreak havok to humanity, so that they will 
+regret taking away God's affection from Khyrha.
+
+And so, 666 decades later, upon a willow tree on earth, the blood of Khyrha
+found its way into the roots of the willow.  And the tree changed, and had
+a harvest of dark red fruit.  The first man to find the tree, Lodren, ate
+the fruit.  He became sick, and maddened.  He stalked the country and killed
+241 people before he himself was found and caught and brought to justice.  He
+was hanged and buried.  But from the grave of Lodren arose the ShadowLord,
+KhyrhaLodren.  KhyrhaLodren ruled the earth with his deadly might for 100
+years, until three paladins, lords Hatchet, Kahn, and Frag fought the 
+Shadow Lord and defeated KhyrhaLodren in combat.  But the three paladins died
+themselves from the heavy fighting, and were made gods themselves by the old
+true God, for their valiant work in restoring freedom on earth.
+
+And so, another 666 decades pass by, and another willow tree is affected by
+the blood of Khyrha.  And Denae the fair walked upon the willow and ate from
+its forsaken fruit.  And then Denae did become a powerful sorceress, and she
+killed over a hundred men and women and children before she was caught by 
+the heroine Icaza and killed by Icaza.  But from Denae's grave arose the
+ShadowLord, KhyrhaDenae, and she made the DracoLich, and she cursed half the
+dragons, making them the evil dragons, the Reds and Greens and Blues and 
+Blacks and Whites.  It took the combined efforts of three paladins, lords
+Kith, Morpheus, and Demonspawn, to destroy KhyrhaDenae, but they, too, were
+slayed in the wars.  And so, it was the gods Hatchet, Kahn, and Frag who
+empowered the falled heroes and made them gods, so that they may join them in
+heaven.
+
+But the end of the world is here.  It has been over 665 decades since the 
+death of KhyrhaDenae, and we will not survive the next Khyrha.
+
+--- as prophesized by Me
+~
 #0
 
 
@@ -2641,7 +2695,7 @@ M 0 5306 1 5319		Fanatic Priest
 E 1 5218 8  3		(talisman)
 E 1 5222 8 12		(black robe)
 E 1 5252 150 16		(silver dagger)
-E 1 5239 9 17		(dull grey stone)
+E 1 5332 9 17		(scroll of prophecy)
 *
 M 0 5305 1 5336		Gordon the commander
 E 1 5204 8 8		(mithril boots)

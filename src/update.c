@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -23,6 +26,7 @@
 #else
 #include <sys/types.h>
 #endif
+#include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -101,6 +105,58 @@ void advance_level( CHAR_DATA *ch )
 }   
 
 
+/*
+ * Demote stuff.
+ */
+void demote_level( CHAR_DATA *ch )
+{
+    char buf [ MAX_STRING_LENGTH ];
+    int  add_hp;
+    int  add_mana;
+    int  add_move;
+    int  add_prac;
+
+    if ( ch->level == 1 )
+        return;
+
+    sprintf( buf, "the %s",
+	title_table [ch->class] [ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
+    set_title( ch, buf );
+
+    add_hp      = con_app[get_curr_con( ch )].hitp + number_range(
+		    class_table[ch->class].hp_min,
+		    class_table[ch->class].hp_max );
+    add_mana    = class_table[ch->class].fMana
+        ? number_range(2, ( 2 * get_curr_int( ch ) + get_curr_wis( ch ) ) / 8 )
+	: 0;
+    add_move    =
+      number_range( 5, ( get_curr_con( ch ) + get_curr_dex( ch ) ) / 4 );
+    add_prac    = wis_app[get_curr_wis( ch )].practice;
+
+    add_hp               = UMAX(  1, add_hp   );
+    add_mana             = UMAX(  0, add_mana );
+    add_move             = UMAX( 10, add_move );
+
+    ch->max_hit 	-= add_hp;
+    ch->max_mana	-= add_mana;
+    ch->max_move	-= add_move;
+    ch->practice	-= add_prac;
+
+    if ( !IS_NPC( ch ) )
+	REMOVE_BIT( ch->act, PLR_BOUGHT_PET );
+
+    ch->level -= 1;
+    sprintf( buf,
+	    "Your loss is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
+	    add_hp,	ch->max_hit,
+	    add_mana,	ch->max_mana,
+	    add_move,	ch->max_move,
+	    add_prac,	ch->practice );
+    send_to_char( buf, ch );
+    return;
+}   
+
+
 
 void gain_exp( CHAR_DATA *ch, int gain )
 {
@@ -126,7 +182,47 @@ void gain_exp( CHAR_DATA *ch, int gain )
 int hit_gain( CHAR_DATA *ch )
 {
     int gain;
+    int racehpgainextra = 0;
 
+    if ( ch->race == race_lookup( "Ogre" )
+	|| ch->race == race_lookup( "Orc" )
+	|| ch->race == race_lookup( "Halfogre" ) )
+      {
+        racehpgainextra = 2;
+      }
+    else
+      {
+	if ( ch->race == race_lookup( "Giant" )
+	    || ch->race == race_lookup( "Minotaur" )
+	    || ch->race == race_lookup( "Wererat" ) )
+	  {
+	    racehpgainextra = 3;
+	  }
+	else
+	  {
+	    if ( ch->race == race_lookup( "Troll" )
+		|| ch->race == race_lookup( "Vampire" )
+		|| ch->race == race_lookup( "Werewolf" ) )
+	      {
+	        racehpgainextra = 10;
+	      }
+	    else
+	      {
+		if ( ch->race == race_lookup( "Dragon" ) )
+		  {
+		    racehpgainextra = 15;
+		  }
+		else
+		  {
+		    if ( ch->race == race_lookup( "God" ) )
+		      {
+			racehpgainextra = 20;
+		      }
+		  }
+	      }
+	  }
+      }
+    
     if ( IS_NPC( ch ) )
     {
 	gain = ch->level * 3 / 2;
@@ -137,8 +233,8 @@ int hit_gain( CHAR_DATA *ch )
 
 	switch ( ch->position )
 	{
-	case POS_SLEEPING: gain += get_curr_con( ch );		break;
-	case POS_RESTING:  gain += get_curr_con( ch ) / 2;	break;
+	case POS_SLEEPING: gain += get_curr_con( ch ) * 2;	break;
+	case POS_RESTING:  gain += get_curr_con( ch );  	break;
 	}
 
 	if ( ch->pcdata->condition[COND_FULL  ] == 0 )
@@ -148,6 +244,8 @@ int hit_gain( CHAR_DATA *ch )
 	    gain /= 2;
 
     }
+
+    gain += racehpgainextra;
 
     if ( IS_AFFECTED( ch, AFF_POISON ) )
 	gain /= 4;
@@ -171,8 +269,8 @@ int mana_gain( CHAR_DATA *ch )
 
 	switch ( ch->position )
 	{
-	case POS_SLEEPING: gain += get_curr_int( ch ) * 2;	break;
-	case POS_RESTING:  gain += get_curr_int( ch );		break;
+	case POS_SLEEPING: gain += get_curr_int( ch ) * 2;  	break;
+	case POS_RESTING:  gain += get_curr_int( ch );  	break;
 	}
 
 	if ( ch->pcdata->condition[COND_FULL  ] == 0 )
@@ -182,6 +280,10 @@ int mana_gain( CHAR_DATA *ch )
 	    gain /= 2;
 
     }
+
+    if (   ch->race == race_lookup( "Elf"   )
+	|| ch->race == race_lookup( "Gnome" ) )
+        gain += ch->level / 2;
 
     if ( IS_AFFECTED( ch, AFF_POISON ) )
 	gain /= 4;
@@ -205,8 +307,8 @@ int move_gain( CHAR_DATA *ch )
 
 	switch ( ch->position )
 	{
-	case POS_SLEEPING: gain += get_curr_dex( ch );		break;
-	case POS_RESTING:  gain += get_curr_dex( ch ) / 2;	break;
+	case POS_SLEEPING: gain += get_curr_dex( ch ) * 2;	break;
+	case POS_RESTING:  gain += get_curr_dex( ch );  	break;
 	}
 
 	if ( ch->pcdata->condition[COND_FULL  ] == 0 )
@@ -215,6 +317,12 @@ int move_gain( CHAR_DATA *ch )
 	if ( ch->pcdata->condition[COND_THIRST] == 0 )
 	    gain /= 2;
     }
+
+    if (   ch->race == race_lookup( "Harpy"   )
+	|| ch->race == race_lookup( "Bat"     )
+	|| ch->race == race_lookup( "Mist"    )
+	|| ch->race == race_lookup( "Vampire" ) )
+        gain += ch->level / 2;
 
     if ( IS_AFFECTED( ch, AFF_POISON ) )
 	gain /= 4;
@@ -272,6 +380,8 @@ void mobile_update( void )
     /* Examine all mobs. */
     for ( ch = char_list; ch; ch = ch->next )
     {
+        int rnum;
+
         if ( ch->deleted )
 	    continue;
 
@@ -321,9 +431,14 @@ void mobile_update( void )
 	    }
 	}
 
-	/* Wander */
+	/* Wander or Flee  - modifications by Jason Dinkel */
+	if ( ch->hit < ch->max_hit / 2 )
+	    rnum = 3;
+	else
+	    rnum = 5;
+
 	if ( !IS_SET( ch->act, ACT_SENTINEL )
-	    && ( door = number_bits( 5 ) ) <= 5
+	    && ( door = number_bits( rnum ) ) <= 5
 	    && ( pexit = ch->in_room->exit[door] )
 	    &&   pexit->to_room
 	    &&   !IS_SET( pexit->exit_info, EX_CLOSED )
@@ -331,39 +446,49 @@ void mobile_update( void )
 	    && ( !IS_SET( ch->act, ACT_STAY_AREA )
 		||   pexit->to_room->area == ch->in_room->area ) )
 	{
+	    /* Give message if hurt */
+	    if ( rnum == 3 )
+	        act( "$n flees in terror!", ch, NULL, NULL, TO_ROOM );
+		  
 	    move_char( ch, door );
-	}
 
-	/* Flee */
-	if ( ch->hit < ( ch->max_hit / 2 )
-	    && ( door = number_bits( 3 ) ) <= 5
-	    && ( pexit = ch->in_room->exit[door] )
-	    &&   pexit->to_room
-	    &&   !IS_SET( pexit->exit_info, EX_CLOSED )
-	    &&   !IS_SET( pexit->to_room->room_flags, ROOM_NO_MOB ) )
-	{
-	    CHAR_DATA *rch;
-	    bool       found;
-
-	    found = FALSE;
-	    for ( rch  = pexit->to_room->people;
-		  rch;
-		  rch  = rch->next_in_room )
+	    /* If people are in the room, then flee. */
+	    if ( rnum == 3 )
 	    {
-	        if ( rch->deleted )
-		    continue;
-		if ( !IS_NPC( rch ) )
+		CHAR_DATA *rch;
+		
+		for ( rch  = pexit->to_room->people;
+		      rch;
+		      rch  = rch->next_in_room )
 		{
-		    found = TRUE;
-		    break;
+		    if ( rch->deleted )
+		        continue;
+		    if ( !IS_NPC( rch ) )
+		    {
+		        int direction;
+
+		        door = -1;
+			act( "$n flees in terror!", ch, NULL, NULL, TO_ROOM );
+
+			/* Find an exit giving each one an equal chance */
+			for ( direction = 0; direction <= 5; direction++ )
+			{
+			    if ( ch->in_room->exit[direction]
+				&& number_range( 0, direction ) == 0 )
+			        door = direction;
+			}
+
+			/* If no exit, attack.  Else flee! */
+			if ( door == -1 )
+			    multi_hit( ch, rch, TYPE_UNDEFINED );
+			else
+			    move_char( ch, door );
+			break;
+		    }
 		}
 	    }
-	    if ( !found )
-		move_char( ch, door );
 	}
-
     }
-
     return;
 }
 
@@ -382,14 +507,14 @@ void weather_update( void )
 
     switch ( ++time_info.hour )
     {
-    case  5:
-	weather_info.sunlight = SUN_LIGHT;
-	strcat( buf, "The day has begun.\n\r" );
-	break;
-
     case  6:
 	weather_info.sunlight = SUN_RISE;
 	strcat( buf, "The sun rises in the east.\n\r" );
+	break;
+
+    case  7:
+	weather_info.sunlight = SUN_LIGHT;
+	strcat( buf, "The day has begun.\n\r" );
 	break;
 
     case 19:
@@ -620,30 +745,80 @@ void char_update( void )
 			send_to_char( "\n\r", ch );
 		    }
 		}
-	  
+
+		if ( paf->type == gsn_vampiric_bite )
+		    ch->race = race_lookup( "Vampire" );
+
 		affect_remove( ch, paf );
 	    }
 	}
 
-	/*
-	 * Careful with the damages here,
-	 *   MUST NOT refer to ch after damage taken,
-	 *   as it may be lethal damage (on NPC).
-	 */
-	if ( IS_AFFECTED( ch, AFF_POISON ) )
+        /*
+         * Careful with the damages here,
+         *   MUST NOT refer to ch after damage taken,
+         *   as it may be lethal damage (on NPC).
+         */
+	if ( ( time_info.hour > 5 && time_info.hour < 21 )
+	    && ch->race == race_lookup( "vampire" )
+	    && ch->in_room->room_flags != ROOM_UNDERGROUND )
 	{
-	    send_to_char( "You shiver and suffer.\n\r", ch );
-	    act( "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
-	    damage( ch, ch, 2, gsn_poison );
+	    int dmg = 0;
+
+	    if ( ch->in_room->sector_type == SECT_INSIDE )
+	    {
+	        dmg = 10;
+	    }
+	    else
+	    {
+		if ( ch->in_room->sector_type == SECT_FOREST )
+		{
+		    dmg = 25;
+		}
+		else
+		{
+		    dmg = 50;
+		}
+	    }
+	    
+	    if ( weather_info.sky == SKY_CLOUDY )
+	        dmg /= 2;
+	    if ( weather_info.sky == SKY_RAINING )
+	      {
+	        dmg /= 4;
+		dmg *= 3;
+	      }
+
+	    damage( ch, ch, dmg, gsn_poison, WEAR_NONE );
 	}
-	else if ( ch->position == POS_INCAP )
-	{
-	    damage( ch, ch, 1, TYPE_UNDEFINED );
-	}
-	else if ( ch->position == POS_MORTAL )
-	{
-	    damage( ch, ch, 2, TYPE_UNDEFINED );
-	}
+	else
+	    if ( (   ch->in_room->sector_type == SECT_UNDERWATER
+		  && ( !IS_IMMORTAL( ch ) && !IS_AFFECTED( ch, AFF_GILLS )
+		      && !IS_SET( race_table[ ch->race ].race_abilities,
+				 RACE_WATERBREATH ) ) )
+		|| ( ch->in_room->sector_type != SECT_UNDERWATER
+		    && IS_SET( race_table[ ch->race ].race_abilities,
+			      RACE_WATERBREATH )
+		    && ( strcmp( race_table[ ch->race ].name, "Object" )
+			&& strcmp( race_table[ ch->race ].name, "God" ) ) ) )
+        {
+            send_to_char( "You can't breathe!\n\r", ch );
+            act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
+            damage( ch, ch, 5, gsn_breathe_water, WEAR_NONE );
+        }
+        else if ( IS_AFFECTED( ch, AFF_POISON ) )
+        {
+            send_to_char( "You shiver and suffer.\n\r", ch );
+            act( "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
+            damage( ch, ch, 2, gsn_poison, WEAR_NONE );
+        }
+        else if ( ch->position == POS_INCAP )
+        {
+            damage( ch, ch, 1, TYPE_UNDEFINED, WEAR_NONE );
+        }
+        else if ( ch->position == POS_MORTAL )
+        {
+            damage( ch, ch, 2, TYPE_UNDEFINED, WEAR_NONE );
+        }
     }
 
     /*
@@ -789,16 +964,26 @@ void aggr_update( void )
 	for ( mch = ch->in_room->people; mch; mch = mch->next_in_room )
 	{
 	    int count;
+	    bool hate = FALSE;
 
 	    if ( !IS_NPC( mch )
 		|| mch->deleted
-		|| !IS_SET( mch->act, ACT_AGGRESSIVE )
 		|| mch->fighting
 		|| IS_AFFECTED( mch, AFF_CHARM )
 		|| !IS_AWAKE( mch )
 		|| ( IS_SET( mch->act, ACT_WIMPY ) && IS_AWAKE( ch ) )
-		|| !can_see( mch, ch ) )
+		|| !can_see( mch, ch )
+		|| ( !IS_SET( mch->act, ACT_AGGRESSIVE )
+		    && ( str_infix( race_table[ch->race].name,
+				   race_table[mch->race].hate )
+			|| ( !str_infix( race_table[ch->race].name,
+					race_table[mch->race].hate )
+			    && abs( mch->level - ch->level ) > 4 ) ) ) )
 		continue;
+
+	    if ( !str_infix( race_table[ch->race].name,
+			    race_table[mch->race].hate ) )
+	        hate = TRUE;
 
 	    /*
 	     * Ok we have a 'ch' player character and a 'mch' npc aggressor.
@@ -817,9 +1002,15 @@ void aggr_update( void )
 		if ( ( !IS_SET( mch->act, ACT_WIMPY ) || !IS_AWAKE( vch ) )
 		    && can_see( mch, vch ) )
 		{
-		    if ( number_range( 0, count ) == 0 )
-			victim = vch;
-		    count++;
+		    if (   !hate
+			|| ( hate
+			    && !str_infix( race_table[vch->race].name,
+					  race_table[mch->race].hate ) ) )
+		    {
+		        if ( number_range( 0, count ) == 0 )
+			    victim = vch;
+			count++;
+		    }
 		}
 	    }
 
@@ -839,47 +1030,58 @@ void aggr_update( void )
 void time_update( void )
 {
     FILE            *fp;
-    char            *curr_time;
     char             buf [ MAX_STRING_LENGTH ];
     
-    if ( down_time == "*" )
+    if ( down_time <= 0 )
         return;
-    curr_time = ctime( &current_time );
-    if ( !str_infix( warning1, curr_time ) )
+    if ( current_time > warning1 && warning1 > 0 )
     {
-	sprintf( buf, "First Warning!\n\rShutdown at %s system time\n\r",
-		down_time );
+	sprintf( buf, "First Warning!\n\r%s in %d minutes or %d seconds.\n\r",
+		Reboot ? "Reboot" : "Shutdown",
+		(int) ( down_time - current_time ) / 60,
+		(int) ( down_time - current_time ) );
 	send_to_all_char( buf );
-	free_string( warning1 );
-	warning1 = str_dup( "*" );
+	warning1 = 0;
     }
-    if ( !str_infix( warning2, curr_time ) )
+    if ( current_time > warning2 && warning2 > 0 )
     {
-	sprintf( buf, "Second Warning!\n\rShutdown at %s system time\n\r",
-		down_time );
+	sprintf( buf, "Second Warning!\n\r%s in %d minutes or %d seconds.\n\r",
+		Reboot ? "Reboot" : "Shutdown",
+		(int) ( down_time - current_time ) / 60,
+		(int) ( down_time - current_time ) );
 	send_to_all_char( buf );
-	free_string( warning2 );
-	warning2 = str_dup( "*" );
+	warning2 = 0;
     }
-    if ( !str_infix( down_time, curr_time ) )
+    if ( current_time + 10 > down_time && warning2 == 0 )
     {
-	send_to_all_char( "Shutdown by system.\n\r" );
-	log_string( "Shutdown by system." );
+	sprintf( buf, "Final Warning!\n\r%s in 10 seconds.\n\r",
+		Reboot ? "Reboot" : "Shutdown" );
+	send_to_all_char( buf );
+	warning2--;
+    }
+    if ( current_time > down_time )
+    {
+        sprintf( buf, "%s by system.\n\r", Reboot ? "Reboot" : "Shutdown" );
+	send_to_all_char( buf );
+	log_string( buf );
 
 	end_of_game( );
 
-	fclose( fpReserve );
-	if ( !( fp = fopen( SHUTDOWN_FILE, "a" ) ) )
+	if ( !Reboot )
 	{
-	    perror( SHUTDOWN_FILE );
-	    bug( "Could not open the Shutdown file!", NULL );
+	    fclose( fpReserve );
+	    if ( !( fp = fopen( SHUTDOWN_FILE, "a" ) ) )
+	      {
+		perror( SHUTDOWN_FILE );
+		bug( "Could not open the Shutdown file!", 0 );
+	      }
+	    else
+	      {
+		fprintf( fp, "Shutdown by System\n" );
+		fclose ( fp );
+	      }
+	    fpReserve = fopen ( NULL_FILE, "r" );
 	}
-	else
-	{
-	    fprintf( fp, "Shutdown by System\n" );
-	    fclose ( fp );
-	}
-	fpReserve = fopen ( NULL_FILE, "r" );
 	merc_down = TRUE;
     }
     
@@ -969,7 +1171,7 @@ void list_update( void )
 			
 			sprintf( buf, "List_update: char %s not found.",
 				ch->name );
-			bug( buf, NULL );
+			bug( buf, 0 );
 			continue;
 		      }
 		  }
@@ -1079,6 +1281,32 @@ void list_update( void )
     return;
 }
 
+/*
+ * Update the ban file upon call.
+ * Written by Tre of EnvyMud and modified by Kahn
+ */
+void ban_update( void )
+{
+    FILE      *fp;
+    BAN_DATA  *pban;
+
+    fclose( fpReserve );
+
+    if ( !( fp = fopen ( BAN_FILE, "w" ) ) )
+    {
+	bug( "Ban_update:  fopen of BAN_FILE failed", 0 );
+	return;
+    }
+
+    for ( pban = ban_list; pban; pban = pban->next )
+        fprintf( fp, "%s~\n", pban->name );
+
+    fclose( fp );
+    fpReserve = fopen( NULL_FILE, "r" );
+
+    return;
+
+}
 
 /*
  * Handle all kinds of updates.
@@ -1106,7 +1334,8 @@ void update_handler( void )
 
     if ( --pulse_mobile   <= 0 )
     {
-	pulse_mobile    = PULSE_MOBILE;
+	pulse_mobile    =
+	  number_range( PULSE_MOBILE / 2, 3 * PULSE_MOBILE / 2 );
 	mobile_update   ( );
     }
 

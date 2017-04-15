@@ -1,9 +1,7 @@
-EnvyMud release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -28,7 +26,9 @@ Makefile.hp	- Is the Makefile specifically designed for HPUX Machines
 Makefile.irx	- Is the Makefile specifically designed for IRIX Machines
 Makefile.mip	- Is the Makefile specifically designed for MIPS Machines
 Makefile.nex	- Is the Makefile specifically designed for the NeXT
-Makefile.sol	- Is the Makefile specifically designed for Solaris 2.1 OS
+Makefile.osf	- Is the Makefile specifically designed for the DEC OSF Alpha
+Makefile.sol	- Is the Makefile specifically designed for Solaris 2.4
+Makefile.std	- Is the generic Makefile for machines with gcc
 Makefile.sys	- Is the Makefile specifically designed for the Sequent SysV
 Makefile.tek	- Is the Makefile specifically designed for utek Machines
 
@@ -39,6 +39,15 @@ with the Makefile you choose to use.  For example, you are running a
 machine running IRIX, so you choose the file 'Makefile.irx'.  You rename
 'Makefile.irx' to 'Makefile' replacing it, then type 'make -k >&! a.out'
 
+If you have problems with crypt, add to the NOCRYPT line in your Makefile
+-DNOCRYPT.
+
+We do not guarantee each Makefile will work for your system as each
+system administrator will modify to his/her liking.  The Makefile are
+only to be used as a close guideline for your system.
+
+We extend a hearty thanks to all who have tested Envy source on these
+ports.
 
 
 === The source files
@@ -68,13 +77,22 @@ startup		- Is the startup script for EnvyMud using CSH
 startupSH	- Is the startup script for EnvyMud using SH
 
 
-On most systems, 'startup' is adequate for you.
+On most systems, 'startup &' is adequate for you.
+
+If you wish a more indepth logging feature, 'start' will give you that.
 
 The startup script will create a number log file starting from 1000.log in
 the log directory.  Should your game crash, and you have enabled core dumps
 by setting your 'LIMIT coredumpsize unlimited' (see your system manual for
 information on the command LIMIT), you will have a core file with a name
 matching the appropriate log file in your src directory.
+
+The startup script will run the executable named envy2.  This will
+allow you to compile and test your code without worrying about
+touching the running mud.  When you are done testing your testmud,
+rename it as envy.new in the src directory and reboot your "real" mud.
+The startup script will automatically update your running executable
+and backup your old one.
 
 --- Debugging
 
@@ -92,9 +110,9 @@ information on your resident debugger)
 The executable file is created after typing 'make'.  You must first choose
 a Makefile best suited for your machine.  See 'port.txt' for more information.
 
-After making, the executable file is named 'envy'.  You may then boot the game
-by executing the startup script 'startup' or 'startupSH' by typing
-'startup &' or 'startupSH &'
+After making, the executable file is named 'envy'.  After renaming it to
+'envy2', you may then boot the game by executing the startup script
+'startup' or 'startupSH' by typing 'startup &' or 'startupSH &'.
 
 To enter the game, type 'telnet localhost 4000' from your mud account.
 
@@ -102,12 +120,12 @@ To enter the game, type 'telnet localhost 4000' from your mud account.
 
 === What is new, what is old
 
-This source is based on the MERC 2.2 release source code.  Some internal
+This source is based on the Envy 1.0 release source code.  Some internal
 workings have changed and some player visible improvements have been made.
-We've been developing the code for the past 23 weeks with extensive playing.
+We've been developing the code for the past 18 months with extensive playing.
 Unfortunately, there might be bugs we have missed.  If you encounter errors
 or bugs, first check your code additions then forward questions to the
-mailing list at merc@kpc.com.
+mailing list at merc-l@webnexus.com.
 
 All in all, Envy will "feel" like any other MERC mud out there.  Envy is
 designed to go beyond the MERC releases and make into reality many

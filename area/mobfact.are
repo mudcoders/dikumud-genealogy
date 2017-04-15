@@ -18,7 +18,7 @@ this factory meets ASPCA guidlines....
 481 8 -700 S
 6 18 -3 3d6+20 2d4+1
 5 2000
-8 8 1
+8 animal~ 1
 #9402
 foreman floyd~
 Foreman Floyd~
@@ -31,7 +31,7 @@ slayer, Floyd now creates the beasts for other adventurers to fight.
 66 168 2 S
 12 10 -4 2d100+100 2d7+2
 1000 3500
-6 8 1
+6 human~ 1
 #9403
 cityguard guard head~
 The Cityguard head~
@@ -44,7 +44,7 @@ sharp...
 64 524288 0 S
 9 12 0 3d15+30 2d6+2
 0 2000
-8 8 0
+8 undead~ 0
 #9404
 revolving drunk~
 The revolving drunk~
@@ -56,7 +56,7 @@ in place!  Someone should tell him that he is a REVOLTING drunk.
 196 0 1 S
 2 20 4 2d4+10 1d6+1
 50 150
-8 8 1
+8 human~ 1
 #9405
 toxic slime~
 The toxic slime~
@@ -68,7 +68,7 @@ hydraulic fluid is leaking again.
 6 0 0 S
 4 17 8 3d10+30 2d4+0
 0 650
-6 6 0
+6 plant~ 0
 #9406
 worker~
 The factory worker~
@@ -80,7 +80,7 @@ Factory" written in a bright purple starburst.  Fashion plate, he's not.
 192 0 100 S
 3 18  6 4d20+5 1d4+1
 50 325
-8 8 1
+8 dwarf~ 1
 #9407
 worker~
 The factory worker~
@@ -92,7 +92,7 @@ worked the late shift!
 130 0 150 S
 3 18 6 4d20+5 1d4+1
 75 300
-4 4 2
+4 dwarf~ 2
 #0
 
 
@@ -250,7 +250,7 @@ D3
 0 0 9401
 S
 #9407
-Entrance Hallway to Mob Factoy~
+Entrance Hallway to Mob Factory~
 You are standing in the entrance hallway of the mob factory. The sound
 of machinery gets louder now, and you can hear people shouting in the
 distance. Every once in a while you get creepy feeling that a pair of
@@ -361,7 +361,7 @@ D3
 0 0 9406
 S
 #9412
-Entrance Hallway to Mob Factoy~
+Entrance Hallway to Mob Factory~
 You are standing in the entrance hallway of the mob factory. The sound
 of machinery gets louder now, and you can hear people shouting in the
 distance. Every once in a while you get creepy feeling that a pair of

@@ -14,7 +14,7 @@ The poison bite of this snake has felled many a mighty pharoah.
 1|32|64 0 0 S
 5 14 8 5d5+50 1d6+1
 10 1000
-8 8 0
+8 snake~ 0
 #2601
 cobra snake~
 A hooded cobra snake~
@@ -26,7 +26,7 @@ colors designed to serve notice to its prey that it is about to strike.
 1|32|64 0 0 S
 7 13 7 7d7+70 2d4+2
 25 2000
-8 8 0
+8 snake~ 0
 #2602
 mongoose~
 A wily little mongoose~
@@ -38,7 +38,7 @@ She sniffs you and appears to be looking for food in your hand.
 1|64 512 10 S
 11 10 6 11d11+110 3d5+3
 100 10000
-8 8 2
+8 animal~ 2
 #2603
 pyramid watcher~
 A pyramid watcher~
@@ -51,7 +51,7 @@ sand-colored clothing.
 1|2 0 250 S
 8 12 5 8d8+80 2d6+2
 200 3750
-8 8 1
+8 human~ 1
 #2604
 thief tomb~
 A tomb thief~
@@ -62,7 +62,7 @@ The thief brushes against you briefly, then slinks back into the shadows.
 1|64|128 32768 -250 S
 10 10 5 10d10+100 2d6+3
 500 9000
-8 8 1
+8 dwarf~ 1
 #2605
 ali baba thief~
 Ali Baba~
@@ -76,7 +76,7 @@ he might get caught, but not today...
 1|4|64 32768 -300 S
 18 2 0 18d18+180 3d8+2
 1000 30000
-8 8 1
+8 dwarf~ 1
 #2606
 magic carpet~
 The magic carpet~
@@ -89,7 +89,7 @@ above the ground!  In fact, it seems to be ALIVE!
 1|2 8|512 500 S
 9 11 7 9d9+90 2d5+2
 250 6000
-8 8 0
+8 object~ 0
 #2607
 mummy corpse~
 A mummy~
@@ -101,11 +101,11 @@ animated by the distempered spirit of a long-deceased person.
 1|64 512 -600 S
 12 8 4 12d12+120 1d6+6
 750 15000
-8 8 0
+8 undead~ 0
 #2608
-sand man sandman~
-A sandman~
-A sandman rises up from the desert floor.
+sand man~
+A sand man~
+A sand man rises up from the desert floor.
 ~
 The sandman is exactly that -- some sort of strange being formed from the sands
 of the desert floor.  It seems quite large and strong and at home in the heat
@@ -114,7 +114,7 @@ and sandy winds.
 1|64 512 0 S
 14 6 2 14d14+140 2d7+4
 1500 18000
-8 8 1
+8 object~ 1
 #2609
 efreeti efreet~
 The efreeti~
@@ -126,7 +126,7 @@ with disdain and scorn, arms folded across his mighty chest.
 1|2|32 8|512 -600 S
 20 0 -1 20d20+200 4d6+4
 11000 40000
-8 8 1
+8 god~ 1
 #2610
 caryatid column~
 A caryatid~
@@ -139,7 +139,7 @@ but you can still make out a deadly stone sword in the hands of each figure.
 1|2 512 0 S
 24 -4 -3 24d24+240 4d6+8
 35000 100000
-8 8 2
+8 god~ 2
 #2611
 djinn genie~
 The djinn~
@@ -153,7 +153,7 @@ skin, and strokes his goatee.
 1|2 512 600 S
 28 -8 -6 28d28+280 6d6+12
 60000 310000
-8 8 1
+8 god~ 1
 #2612
 hieracosphinx sphinx~
 A hieracosphinx~
@@ -167,7 +167,7 @@ cousins.
 1|32|64 512 -200 S
 15 5 3 15d15+150 1d10+5
 7500 21000
-8 8 0
+8 god~ 0
 #2613
 gynosphinx sphinx~
 A gynosphinx~
@@ -181,7 +181,7 @@ just heard a puzzling riddle from a cousin criosphinx.
 1|2 8 100 S
 19 1 0 19d19+190 2d10+10
 10000 35000
-8 8 2
+8 god~ 2
 #2614
 criosphinx sphinx~
 A criosphinx~
@@ -194,7 +194,7 @@ and in poking occasional fun at his easily confused lesser cousins.
 1|2 8 300 S
 23 -3 -2 23d23+230 3d10+15
 25000 80000
-8 8 1
+8 god~ 1
 #2615
 androsphinx sphinx~
 An androsphinx~
@@ -208,7 +208,7 @@ mighty roar of this sphinx.
 1|2 8 400 S
 27 -7 -6 27d27+270 4d10+20
 50000 200000
-8 8 0
+8 god~ 0
 #2616
 great sphinx~
 The great sphinx~
@@ -223,7 +223,7 @@ advised many rulers.
 1|2 8|16|128|8192 500 S
 41 -21 -20 41d41+410 5d10+25
 125000 1500000
-8 8 0
+8 god~ 0
 #2617
 ramses mummy~
 Ramses the Damned~
@@ -238,7 +238,7 @@ his chest not even moving to breathe.
 1|2 8|16|128|512|8192 150 S
 38 -18 -18 38d38+380 8d5+40
 88000 1000000
-8 8 1
+8 undead~ 1
 #0
 
 
@@ -600,7 +600,7 @@ of the wearer.
 #2623
 diamond~
 the diamond~
-~
+You see a diamond on the ground!~
 ~
 13 0 1
 0~ 0~ 0~ 0~
@@ -619,7 +619,7 @@ A small length of brass shines here with its own light.~
 ~
 3 1|64 16385
 35~ 25~ 25~ harm~
-10 25000 1000
+10 250 1000
 A
 21 -5
 A
@@ -637,7 +637,7 @@ A small sandy-colored ring has been carelessly dropped here.~
 ~
 9 2|64 3
 8~ 0~ 0~ 0~
-5 20000 750
+5 200 750
 A
 3 1
 A
@@ -654,7 +654,7 @@ A small golden sphinx glints in the light.~
 ~
 8 64 16385
 0~ 0~ 0~ 0~
-5 50000 750
+5 500 750
 A
 4 2
 E
@@ -670,7 +670,7 @@ Massive leggings formed from the body of a sphinx stand here.~
 ~
 9 64|1024 33
 10~ 0~ 0~ 0~
-20 20000 500
+20 200 500
 A
 1 3
 A

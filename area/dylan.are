@@ -15,7 +15,7 @@ sharp talons flex as she considers you for her dinner.
 4|32 8|32|32768 -500 S
 20 1 0 2d6+260 4d6+4
 30500 15000
-8 8 2
+8 harpy~ 2
 #9102
 harpy leader~
 the screaming harpy leader~
@@ -29,7 +29,7 @@ her presence.
 2|4|32 8|32|32768 -750 S
 23 8 2 4d7+510 4d8+5
 42500 15000
-8 8 2
+8 harpy~ 2
 #9103
 air elemental~
 the ghostly air elemental~
@@ -41,7 +41,7 @@ because objects behind it seem to waver and are slightly blurred.
 4|32 8|32|32768|65536 0 S
 25 0 -4 5d10+600 4d7+7
 1000 45000
-8 8 0
+8 elemental~ 0
 #9104
 mysterious effreeti~
 the mysterious effreeti~
@@ -53,7 +53,7 @@ finest ghostly silks and a headdress with an elaborate brooch.
 4 8|128|32768 -100 S
 27 0 -7 10d7+700 5d6+4
 50000 60000
-8 8 0
+8 undead~ 0
 #9105
 roc~
 the gigantic roc~
@@ -64,7 +64,7 @@ moves surprisingly fast for something of its size.~
 64 0 50 S
 24 0 -3 6d9+500 3d10+5
 0 40000
-8 8 2
+8 bat~ 2
 #9106
 roc~
 the gigantic roc~
@@ -76,7 +76,7 @@ moves surprisingly fast for something of its size.
 64 0 50 S
 28 0 -8 5d9+800 5d6+15
 40000 80000
-8 8 1
+8 bat~ 1
 #9107
 wicked witch~
 the ugly, wicked witch~
@@ -89,7 +89,7 @@ they would be quite painful.  Her eyes pierce your very soul.
 2|4|32 8|128 -600 S
 31 0 -11 9d10+1200 5d9+5
 200000 200000
-8 8 2
+8 halfelf~ 2
 #0
 
 

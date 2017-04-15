@@ -1,36 +1,39 @@
-EnvyMud release 1.0
-Thursday 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
 
 === Platforms
 
---- Envy 1.0
+--- Envy 2.0
 
 These platforms have been directly ported:
 
+	Generic PC	x86	Linux 1.2.8	-Use Standard Makefile
 	Sequent		S81	Dynix		-Use Standard Makefile
 	DEC		5900	Ultrix V4.3A	-Use Standard Makefile
-	IBM		RS/6000	Aix		-Use Makefile.aix
-	HP		9000	Hp/UX		-Use Makefile.hp
+	DEC Alpha	OSF			-Use Makefile.osf
 	Any IRIX Machine	IRIX 5.1.1.2	-Use Makefile.irx
-	Tektronix	xd88s	utek 3.2e	-Use Makefile.tek
+	HP		9000	Hp/UX		-Use Makefile.hp
 	Sequent		sysv			-Use Makefile.sys
+	Sparc		10	Solaris 2.*	-Use Makefile.sol
+	Sparc		20	Sun OS 4.1.4	-Use Standard Makefile
 
-These have not been tested for the Envy 1.0 release:
+These have not been tested for the Envy 2.0 release:
 
+	IBM		RS/6000	Aix 3.0		-Use Makefile.aix
 	Mips		R4000	Risc/OS 5.XX    -Use Makefile.mip
 	NeXT		68040	Ultrix		-Use Makefile.nex
-	Sparc		10	Solaris 2.1	-Use Makefile.sol
+	Tektronix	xd88s	utek 3.2e	-Use Makefile.tek
 
 If you have gcc on your system, it would be best to try the standard Makefile
 first.  If you have cc on your system, it would be best to try the standard
 Makefile with gcc replaced with cc.
+
+The standard version of gcc as of this release is gcc 2.6.3.
 
 We are simply unable to test Envy on every platform.  Typically a user tries
 a new platform, gets a file full of warnings, and mails us the warnings.
@@ -60,7 +63,7 @@ another.
 
 
 
-=== MSDOS Single-User Version
+=== MSDOS Single-User Version  ( MERC Only )
 
 Merc runs in single-user mode (console only) on MSDOS and Macintosh computers.
 The MSDOS version is built with DJ Delorie's 'djgpp' port of the Gnu C Compiler
@@ -81,14 +84,17 @@ The Macintosh changes were contributed by Oleg Etiffin.  It is built with
 Think-C 5.0.4 and requires 4 megabytes of system memory.  You have to define
 the symbol 'macintosh' (if not already defined).
 
-
+The Macintosh changes for EnvyMud 1.0 was done by John C. Daub.  It is
+build with 
 
 === Performance
 
-All this measured on a DEC 5900 with Ultrix V4.3A
+All this measured on a 486 DX4 100 mHz running Linux 1.2.8
 
-Boot time:    11 CPU seconds.
-Memory:       5040 bytes SZ size.
-CPU usage:    2.5 CPU minutes per hour + 1-2 CPU seconds per player.
+Boot time:    5 CPU seconds.
+Memory:       4409 bytes SZ size.
+CPU usage:    1.2 CPU minutes per hour + 1-2 CPU seconds per player.
 Disk space:   6 megabytes plus 10K per player file.
 IP packets:   about 10 per second with 20 people logged in.
+
+This has improved from Envy 1.0 by about 25% overall.

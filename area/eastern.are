@@ -14,7 +14,7 @@ some rest.
 196 32768 900 S
 5 15 5 5d5+50 2d4+0
 70 700
-8 8 1
+8 human~ 1
 #5001
 dervish large~
 the dervish~
@@ -26,7 +26,7 @@ LOTS of rest.
 96 32768 650 S
 8 11 1 8d8+80 2d6+1
 150 2000
-8 8 1
+8 human~ 1
 #5002
 snake coral~
 the coral snake~
@@ -38,7 +38,7 @@ and black.
 64 0 -10 S
 4 17 4 4d4+40 1d9+0
 0 500
-8 8 0
+8 snake~ 0
 #5003
 scorpion small~
 the small scorpion~
@@ -49,7 +49,7 @@ The little tail is mighty dangerous for such a small creature.
 64 0 -50 S
 3 17 1 3d3+30 1d8+0
 0 500
-8 8 0
+8 insect~ 0
 #5004
 worm giant~
 the giant, purple sand worm~
@@ -60,7 +60,7 @@ He's big, mean, and purple. Watch out!
 2|32 0 -100 S
 18 -1 0 18d18+180 3d6+4
 2540 50000
-8 8 0
+8 worm~ 0
 #5005
 dragon brass~
 the brass dragon~
@@ -71,7 +71,7 @@ Then adds to it, 'Prepare to die, have a nice day!'
 2|4|32 8|128 450 S
 30 -10 -10 30d30+300 1d9+25
 5500 295000
-8 8 2
+8 dragon~ 2
 #5006
 nomad leader~
 the nomad leader~
@@ -84,7 +84,7 @@ about him.
 2240 0 950 S
 14 7 0 14d14+140 3d8+2
 1000 17000
-6 6 1
+6 hobbit~ 1
 #5007
 nomad commander~
 the nomad commander~
@@ -96,7 +96,7 @@ woven of silk and gold thread. A nasty cutlass hangs at his side.
 2050 0 900 S
 12 8 1 12d12+120 3d5+1
 600 11000
-8 8 1
+8 hobbit~ 1
 #5008
 nomad warrior~
 the nomad warrior~
@@ -106,7 +106,7 @@ A proud nomad warrior stands here.
 2 0 700 S
 10 10 0 10d10+100 4d3+0
 300 4000
-8 8 1
+8 hobbit~ 1
 #5009
 slave young~
 the slave~
@@ -116,7 +116,7 @@ A young slave sits here staring at you with pleading eyes.
 130 0 1000 S
 3 18 9 3d3+30 1d5+0
 0 200
-5 5 2
+5 human~ 2
 #5010
 dracolich lich~
 the dracolich~
@@ -128,7 +128,7 @@ Obviously it no longer fears death.
 2083 136 -1000 S
 20 1 -2 20d20+200 25d2+0
 75000 50000
-8 8 0
+8 undead~ 0
 #5011
 drider drow~
 the drider~
@@ -139,7 +139,7 @@ This half-spider, half-drow creature is a formidable opponent.
 96 8 -1000 S
 8 12 2 8d8+80 2d6+2
 200 2000
-8 8 2
+8 arachnid~ 2
 #5012
 duergar dwarf~
 the dark dwarf~
@@ -150,7 +150,7 @@ The duergar could crush your head as easily as it does those rocks.
 96 8 -850 S
 5 16 3 5d5+50 2d5+1
 170 750
-8 8 1
+8 dwarf~ 1
 #5013
 myconoid~
 the myconoid~
@@ -162,7 +162,7 @@ has the same effect).
 192 8 850 S
 6 15 4 6d6+60 2d7+0
 50 700
-8 8 1
+8 plant~ 1
 #5014
 myconoid shaman~
 the myconoid shaman~
@@ -173,7 +173,7 @@ The shaman shoots spores into the air.
 130 136 850 S
 8 13 2 8d8+80 2d7+2
 1500 3000
-8 8 1
+8 plant~ 1
 #5015
 dustdigger~
 the dustdigger~
@@ -183,7 +183,7 @@ A small oasis invites you to dive in.
 38 65536 -200 S
 7 10 1 7d7+70 3d4+0
 450 1500
-8 8 0
+8 object~ 0
 #5017
 camel~
 the rabid camel~
@@ -194,7 +194,7 @@ Don't mess with this animal.
 34 0 -351 S
 5 12 6 6d6+60 2d4+3
 270 700
-8 8 0
+8 animal~ 0
 #0
 
 
@@ -1348,10 +1348,10 @@ R 0 5032 4
 D 0 5065 3 2
 D 0 5066 1 2
 *
-M 0 5015 4 5024          Dustdigger
-M 0 5015 4 5026          Dustdigger
-M 0 5015 4 5030          Dustdigger
-M 0 5015 4 5032          Dustdigger
+M 0 5015 1 5024          Dustdigger
+M 0 5015 1 5026          Dustdigger
+M 0 5015 1 5030          Dustdigger
+M 0 5015 1 5032          Dustdigger
 *
 M 0 5000 3 5025          Dervish
 E 1 3021 25 16             (short sword)

@@ -15,7 +15,7 @@ saliva dripping from the beast's jaw.  The guardian beast snarls again.
 2|4|32|64 8|32768|65536 -200 S
 7 12 2 7d7+70 2d6+1
 0 1550
-8 8 1
+8 animal~ 1
 #2801
 young troll~
 the young troll~
@@ -28,7 +28,7 @@ of yours!!
 4|32|64 32768 -500 S
 6 13 3 6d6+60 2d5+1
 500 1000
-6 8 1
+6 troll~ 1
 #2802
 medium troll~
 the medium troll~
@@ -41,7 +41,7 @@ His eyes dart toward you, as he realizes you are one third his size.
 2|4|32|64 32768 -500 S
 8 11 1 8d8+80 2d6+3
 1500 3000
-8 8 1
+8 troll~ 1
 #2803
 baby troll~
 a baby troll~
@@ -54,7 +54,7 @@ He notices you and gargles "WANNA JOIN?".
 2|4|32 32768 -100 S
 5 14 4 5d5+50 2d4+1
 250 700
-6 8 1
+6 troll~ 1
 #2804
 giant troll~
 the giant troll~
@@ -67,7 +67,7 @@ You gasp as you realize you have intruded upon his acts of passion!
 2|4|32|64 32768 -1000 S
 13 6 -4 13d13+130 3d6+4
 3000 13000
-5 8 1
+5 troll~ 1
 #2805
 large troll female~
 the large female troll~
@@ -80,7 +80,7 @@ Her smiles turn into snarls as she screams at you!
 2|4|32|64 32768 -800 S
 11 8 -3 11d11+110 3d5+3
 2500 8000
-5 8 2
+5 troll~ 2
 #2806
 fat worm~
 a fat worm~
@@ -92,7 +92,7 @@ It moves quickly, from corpse to corpse.
 4|32|128 32768|65536 0 S
 3 13 3 3d3+30 2d4+0
 0 350
-8 8 0
+8 worm~ 0
 #2807
 roving beast~
 the roving beast~
@@ -106,7 +106,7 @@ jaw.  The roving beast snarls at you.
 2|4|32|64 8|32768 -200 S
 7 12 2 7d7+70 2d6+1
 0 2250
-8 8 1
+8 animal~ 1
 #2808
 medium troll~
 the medium troll~
@@ -119,7 +119,7 @@ He advances toward you.
 4|32|64 32768 -500 S
 8 11 1 8d8+80 2d6+3
 1500 2750
-8 8 1
+8 troll~ 1
 #0
 
 

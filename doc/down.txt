@@ -1,47 +1,57 @@
-EnvyMud release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1995
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
 
-This file gives instructions on how to create a time.txt file suitable to
-get the mud server to autoshutdown.
+This file gives instructions on how to create a TIME.TXT file suitable to
+get the mud server to autoshutdown or autoreboot.
 
 
 
-=== Time.txt
+=== TIME.TXT
 
-The time.txt file is simple to create.  With your favorite text editor,
-edit a file named time.txt.  In it, you declare the time you wish your
+The TIME.TXT file is simple to create.  With your favorite text editor,
+edit a file named TIME.TXT.  In it, you declare the time you wish your
 two warnings to go off and when the mud is to shutdown.
 
 The format for the files is such:
 
-WARNINGA
-<time:string>~
+HOUR
+<hours:number>
 
-WARNINGB
-<time:string>~
+MINUTE
+<minutes:number>
 
-DOWNTIME
-<time:string>~
+REBOOT
+
+HOUR represent how many hours since bootup will the mud automatically
+shutdown.  MINUTE represents how many minutes since bootup will the
+mud automatically shutdown.  You may enter one or the other or both.
+The code is smart enough to add together or ignore the appropriate
+fields.  The mud will assume a minimum of 5 minutes of life should
+TIME.TXT state less than 5 minutes.
+
+The presence of REBOOT in the file notifies the mud that the user
+wishes the mud to reboot instead of shutdown when the time elapses.
+
+For example, you wish to shutdown the mud 1 hour and 14 minutes after
+bootup.  Then your TIME.TXT file should look like this:
+
+HOUR
+1
+
+MINUTE
+14
 
 
-WARNINGA is the time value of the first warning.  WARNINGB is the time value
-of the second warning.  DOWNTIME is the time at which the mud server is to
-shutdown.  You may or may not wish to include any or all three fields.
-
-The time values are in 24 hour time terminated with a '~'.
-
-The mud checks the time every game pulse and compares the string value of the
-current time and the warning/down times.  Should they match, the mud will
-issue the proper warning or shutdown command.
+The mud checks the time every game pulse and compares the numerical
+value of the current time and the warning/down times.  Should they
+occur, the mud will issue the proper warning or shutdown command.
 
 There is an online command called SSTIME that sets the warnings and downtime
 from within the game.  The changes to these values internally will not save
-over game reboots.  For more permanent settings, editing the time.txt file is
+over game reboots.  For more permanent settings, editing the TIME.TXT file is
 more desirable.

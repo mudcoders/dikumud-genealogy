@@ -1,9 +1,7 @@
-EnvyMud Release 1.0
-Thursday, 30th June 1994
+EnvyMud Release 2.0
+Monday, 25th December 1994
 
 Kahn		michael@uclink.berkeley.edu
-Thelonius	dave@mechatro2.berkeley.edu
-Kith		kith@marble.bu.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
 
@@ -19,23 +17,27 @@ us all!
 
 These are the MERC muds we know of:
 
-Dragon Mud		eve.assumption.edu		5000
-Acme Mud		mud.cc.geneseo.edu		9000
-Worm Mud		mud.cc.geneseo.edu		4000
-Dutch Mountains		129.125.134.4			9000
-North. CrossRoads	ugsparc13.eecg.toronto.edu	9002
-Hidden Worlds		cns.cscns.com			4000
-The Land Mud		nora.gih.no			4000
-Murky Mud II		150.204.38.33			4567
-Stormy Mountain		harp.cc.msstate.edu		9000
-Conch Mud		aann.tyrell.net			4000
-Mystic Adventure	miniac.etu.gel.ulaval.ca	4000
-Mortal Realms		hydrogen.ee.utulsa.edu		4321
-Farside			farside.atinc.com		3000
-PK Mud			kennedy.ecn.uoknor.edu		5000
-Rip's Quest		kennedy.ecn.uoknor.edu		5500
-Vego Mud		spotted.alfred.edu		4000
-Troll Mud		ouray.denver.colorado.edu	9000 ( 9001 )
-Aldara Mud III		one.fcasd.edu			4000
+Dutch Mountains		dm.icce.rug.nl			4000
+Mystic Adventure	miniac.etu.gel.ulaval.ca	4000 mudadmin@gel.ulaval.ca
+Mortal Realms (Pkill)	hydrogen.ee.utulsa.edu		4321
+Mortal Realms		192.216.48.20			4321
+Vego Mud		spotted.alfred.edu		4000 vego@spotted.alfred.edu
 Legend of the Winds	140.113.17.168			4040
-The Dragon Realm	ccnett1.ntu.edu.tw		3000
+TURF			163.1.245.206			4000 turf.teaching@physics.oxford.ac.uk
+The Final Challenge	mud.primenet.com		4000
+
+These are the ROM Muds we know of:
+Providence of Coranthia	mserv1.wizvax.net		9201 strife@mserv1.wizvax.net
+The Great Hunt		wheel.imaginary.com		4000 rsmith@eclipse.net
+The Labyrnthe		nash.pubnix.net			2000 sneil@pubnix.net
+Endless Nameless	mserv1.wizvax.net		4301
+			199.181.141.3			4301
+Endless Realms		persephone.cs.umsl.edu		9000
+Nevermore		nevermore.mclv.net		4000
+
+These are the ENVY Muds we know of:
+Wild Side		levant.cs.ohiou.edu		1234 stclair@bobcat.ent.ohiou.edu
+Troll Mud		carbon.cudenver.edu		9000 swatkins@ouray.cudenver.edu
+EnvyMud 2.0 Development	206.24.105.9			1234 michael@uclink.berkeley.edu
+Lost World		spock.tacom.army.mil port	4000 ajohnson@spock.tacom.army.mil
+

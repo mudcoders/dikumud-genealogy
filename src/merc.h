@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -29,11 +32,13 @@
 #define DECLARE_DO_FUN( fun )		void fun( )
 #define DECLARE_SPEC_FUN( fun )		bool fun( )
 #define DECLARE_SPELL_FUN( fun )	void fun( )
+#define DECLARE_GAME_FUN( fun ) 	void fun( )
 #else
 #define args( list )			list
 #define DECLARE_DO_FUN( fun )		DO_FUN    fun
 #define DECLARE_SPEC_FUN( fun )		SPEC_FUN  fun
 #define DECLARE_SPELL_FUN( fun )	SPELL_FUN fun
+#define DECLARE_GAME_FUN( fun )		GAME_FUN  fun
 #endif
 
 
@@ -93,6 +98,9 @@ typedef	void DO_FUN                     args( ( CHAR_DATA *ch,
 typedef bool SPEC_FUN                   args( ( CHAR_DATA *ch ) );
 typedef void SPELL_FUN                  args( ( int sn, int level,
 					       CHAR_DATA *ch, void *vo ) );
+typedef void GAME_FUN                   args( ( CHAR_DATA *ch, 
+					       CHAR_DATA *croupier,
+					       char *argument ) );
 
 /*
  * String and memory management parameters.
@@ -108,8 +116,9 @@ typedef void SPELL_FUN                  args( ( int sn, int level,
  * Increase the max'es if you add more of something.
  * Adjust the pulse numbers to suit yourself.
  */
-#define MAX_SKILL		  190
+#define MAX_SKILL		  156
 #define MAX_CLASS		    5
+#define MAX_RACE                   41
 #define MAX_LEVEL		   54
 #define L_DIR		           MAX_LEVEL
 #define L_SEN		          ( L_DIR - 1 )
@@ -119,8 +128,8 @@ typedef void SPELL_FUN                  args( ( int sn, int level,
 #define LEVEL_HERO		  ( LEVEL_IMMORTAL - 1 )
 
 #define PULSE_PER_SECOND	    4
-#define PULSE_VIOLENCE		  (  3 * PULSE_PER_SECOND )
-#define PULSE_MOBILE		  (  4 * PULSE_PER_SECOND )
+#define PULSE_VIOLENCE		  (  2 * PULSE_PER_SECOND )
+#define PULSE_MOBILE		  (  5 * PULSE_PER_SECOND )
 #define PULSE_TICK		  ( 30 * PULSE_PER_SECOND )
 #define PULSE_AREA		  ( 60 * PULSE_PER_SECOND )
 
@@ -177,11 +186,47 @@ struct	weather_data
 #define CON_CONFIRM_NEW_NAME		3
 #define CON_GET_NEW_PASSWORD		4
 #define CON_CONFIRM_NEW_PASSWORD	5
-#define CON_GET_NEW_SEX			6
-#define CON_GET_NEW_CLASS		7
-#define CON_READ_MOTD			8
+#define CON_DISPLAY_RACE                6
+#define CON_GET_NEW_RACE                7
+#define CON_CONFIRM_NEW_RACE            8
+#define CON_GET_NEW_SEX                 9
+#define CON_DISPLAY_CLASS              10
+#define CON_GET_NEW_CLASS              11
+#define CON_CONFIRM_CLASS              12
+#define CON_READ_MOTD                  13
 
+/*
+ * Race structures
+ */
+struct  race_type
+{
+    char *              name;
+    int                 race_abilities;
+    int                 size;
+    int                 str_mod;
+    int                 int_mod;
+    int                 wis_mod;
+    int                 dex_mod;
+    int                 con_mod;
+    char *              dmg_message;
+    char *              hate;
+};
 
+/* Race ability bits */
+#define RACE_NO_ABILITIES	      0
+#define RACE_PC_AVAIL		      1
+#define RACE_WATERBREATH	      2
+#define RACE_FLY		      4
+#define RACE_SWIM		      8
+#define RACE_WATERWALK		     16
+#define RACE_PASSDOOR		     32
+#define RACE_INFRAVISION	     64
+#define RACE_DETECT_ALIGN	    128
+#define RACE_DETECT_INVIS	    256
+#define RACE_DETECT_HIDDEN	    512
+#define RACE_PROTECTION		   1024
+#define RACE_SANCT		   2048
+#define RACE_WEAPON_WIELD	   4096
 
 /*
  * Descriptor (channel) structure.
@@ -360,6 +405,8 @@ struct	kill_data
 #define MOB_VNUM_CITYGUARD	   3060
 #define MOB_VNUM_VAMPIRE	   3404
 #define MOB_VNUM_ULT               3160
+#define MOB_VNUM_SECRETARY         3142
+#define MOB_VNUM_MIDGAARD_MAYOR    3143
 
 #define MOB_VNUM_AIR_ELEMENTAL     8914
 #define MOB_VNUM_EARTH_ELEMENTAL   8915
@@ -381,7 +428,7 @@ struct	kill_data
 #define ACT_TRAIN		    512		/* Can train PC's	*/
 #define ACT_PRACTICE		   1024		/* Can practice PC's	*/
 #define ACT_GAMBLE                 2048         /* Runs a gambling game */
-
+#define ACT_MOVED                131072         /* Dont ever set!       */
 
 /*
  * Bits for 'affected_by'.
@@ -398,10 +445,10 @@ struct	kill_data
 #define AFF_FAERIE_FIRE		    256
 #define AFF_INFRARED		    512
 #define AFF_CURSE		   1024
-#define AFF_FLAMING		   2048		/* Unused	*/
+#define AFF_CHANGE_SEX		   2048
 #define AFF_POISON		   4096
 #define AFF_PROTECT		   8192
-#define AFF_PARALYSIS		  16384		/* Unused	*/
+#define AFF_POLYMORPH		  16384
 #define AFF_SNEAK		  32768
 #define AFF_HIDE		  65536
 #define AFF_SLEEP		 131072
@@ -412,7 +459,9 @@ struct	kill_data
 #define AFF_SUMMONED            4194304
 #define AFF_MUTE                8388608
 #define AFF_GILLS              16777216
-
+#define AFF_VAMP_BITE          33554432
+#define AFF_GHOUL              67108864
+#define AFF_FLAMING           134217728
 
 /*
  * Sex.
@@ -453,7 +502,8 @@ struct	kill_data
 
 #define OBJ_VNUM_BLACK_POWDER      8903
 #define OBJ_VNUM_FLAMEBLADE        8920
-
+#define OBJ_VNUM_STAKE             3811
+#define OBJ_VNUM_LICENSE           3011
 
 /*
  * Item types.
@@ -501,6 +551,8 @@ struct	kill_data
 #define ITEM_NOREMOVE		   4096
 #define ITEM_INVENTORY		   8192
 #define ITEM_POISONED             16384
+#define ITEM_VAMPIRE_BANE         32768
+#define ITEM_HOLY                 65536
 
 
 /*
@@ -554,7 +606,7 @@ struct	kill_data
 #define APPLY_SAVING_PETRI	     22
 #define APPLY_SAVING_BREATH	     23
 #define APPLY_SAVING_SPELL	     24
-
+#define APPLY_RACE                   25
 
 
 /*
@@ -588,6 +640,7 @@ struct	kill_data
 #define ROOM_DARK		      1
 #define ROOM_NO_MOB		      4
 #define ROOM_INDOORS		      8
+#define ROOM_UNDERGROUND             16
 #define ROOM_PRIVATE		    512
 #define ROOM_SAFE		   1024
 #define ROOM_SOLITARY		   2048
@@ -663,7 +716,8 @@ struct	kill_data
 #define WEAR_WRIST_R		     15
 #define WEAR_WIELD		     16
 #define WEAR_HOLD		     17
-#define MAX_WEAR		     18
+#define WEAR_WIELD_2                 18		/* by Thelonius */
+#define MAX_WEAR		     19
 
 
 
@@ -702,7 +756,7 @@ struct	kill_data
  */
 #define PLR_IS_NPC		      1		/* Don't EVER set.	*/
 #define PLR_BOUGHT_PET		      2
-
+#define PLR_REGISTER                  4         /* Registering for Pkill */
 #define PLR_AUTOEXIT		      8
 #define PLR_AUTOLOOT		     16
 #define PLR_AUTOSAC                  32
@@ -714,25 +768,24 @@ struct	kill_data
 
 #define PLR_HOLYLIGHT		   4096
 #define PLR_WIZINVIS		   8192
-
+#define PLR_WIZBIT		  16384
 #define	PLR_SILENCE		  32768
 #define PLR_NO_EMOTE		  65536
+#define PLR_MOVED		 131072
 #define PLR_NO_TELL		 262144
 #define PLR_LOG			 524288
 #define PLR_DENY		1048576
 #define PLR_FREEZE		2097152
 #define PLR_THIEF		4194304
 #define PLR_KILLER		8388608
-
-
+#define PLR_AUTOGOLD           16777216
+#define PLR_AFK                33554432
 
 /*
  * Obsolete bits.
  */
 #if 0
-#define PLR_AUCTION		      4	/* Obsolete	*/
 #define PLR_CHAT		    256	/* Obsolete	*/
-#define PLR_NO_SHOUT		 131072	/* Obsolete	*/
 #endif
 
 
@@ -781,6 +834,7 @@ struct	mob_index_data
     int 		damsizedice;		/* Unused */
     int 		damplus;		/* Unused */
     int			gold;			/* Unused */
+    int			race;
 };
 
 
@@ -809,13 +863,11 @@ struct	char_data
     char *		short_descr;
     char *		long_descr;
     char *		description;
-    char *              prompt;
     int 		sex;
     int 		class;
     int 		race;
     int 		level;
     int  		trust;
-    bool                wizbit;
     int			played;
     time_t		logon;
     time_t		save_time;
@@ -857,7 +909,9 @@ struct	pc_data
     char *		pwd;
     char *		bamfin;
     char *		bamfout;
+    char *              immskll;
     char *		title;
+    char *              prompt;
     int 		perm_str;
     int 		perm_int;
     int 		perm_wis;
@@ -1079,16 +1133,26 @@ struct	skill_type
  * These are skill_lookup return values for common skills and spells.
  */
 extern  int	gsn_backstab;
+extern  int     gsn_berserk;			/* by Thelonius */
+extern  int     gsn_circle;			/* by Thelonius */
+extern  int     gsn_breathe_water;		/* by Thelonius */
+extern  int     gsn_burning_hands;
+extern  int	gsn_disarm;
 extern  int	gsn_dodge;
 extern  int	gsn_hide;
 extern  int	gsn_peek;
 extern  int	gsn_pick_lock;
+extern  int     gsn_poison_weapon;		/* by Thelonius */
+extern  int	gsn_scrolls;			/* by Binky / Thelonius */
+extern  int	gsn_snare;			/* by Binky / Thelonius */
 extern  int	gsn_sneak;
+extern  int	gsn_staves;			/* by Binky / Thelonius */
 extern  int	gsn_steal;
-extern  int	gsn_disarm;
-extern  int     gsn_poison_weapon;
+extern  int	gsn_untangle;			/* by Thelonius */
+extern  int	gsn_wands;			/* by Binky / Thelonius */
 
 extern  int     gsn_bash;  
+extern  int     gsn_dual;			/* by Thelonius */
 extern	int	gsn_enhanced_damage;
 extern	int	gsn_kick;
 extern	int	gsn_parry;
@@ -1101,71 +1165,27 @@ extern	int	gsn_charm_person;
 extern	int	gsn_curse;
 extern	int	gsn_invis;
 extern	int	gsn_mass_invis;
+extern  int     gsn_mute;			/* by Thelonius */
 extern	int	gsn_poison;
 extern	int	gsn_sleep;
+extern	int	gsn_turn_undead;
 
-extern  int     gsn_advance;
-extern  int     gsn_allow;
-extern  int     gsn_at;
-extern  int     gsn_bamfin;
-extern  int     gsn_bamfout;
-extern  int     gsn_ban;
-extern  int     gsn_deny;
-extern  int     gsn_disconnect;
-extern  int     gsn_echo;
-extern  int     gsn_force;
-extern  int     gsn_freeze;
-extern  int     gsn_goto;
-extern  int     gsn_holylight;
-extern  int     gsn_immtalk;
-extern  int     gsn_log;
-extern  int     gsn_memory;
-extern  int     gsn_mfind;
-extern  int     gsn_mload;
-extern  int     gsn_mset;
-extern  int     gsn_mstat;
-extern  int     gsn_mwhere;
-extern  int     gsn_newlock;
-extern  int     gsn_noemote;
-extern  int     gsn_notell;
-extern  int     gsn_numlock;
-extern  int     gsn_ofind;
-extern  int     gsn_oload;
-extern  int     gsn_oset;
-extern  int     gsn_ostat;
-extern  int     gsn_owhere;
-extern  int     gsn_pardon;
-extern  int     gsn_peace;
-extern  int     gsn_purge;
-extern  int     gsn_reboot;
-extern  int     gsn_recho;
-extern  int     gsn_restore;
-extern  int     gsn_return;
-extern  int     gsn_rset;
-extern  int     gsn_rstat;
-extern  int     gsn_shutdown;
-extern  int     gsn_silence;
-extern  int     gsn_slay;
-extern  int     gsn_slookup;
-extern  int     gsn_snoop;
-extern  int     gsn_sset;
-extern  int     gsn_sstime;
-extern  int     gsn_switch;
-extern  int     gsn_transfer;
-extern  int     gsn_trust;
-extern  int     gsn_users;
-extern  int     gsn_wizhelp;
-extern  int     gsn_wizify;
-extern  int     gsn_wizinvis;
-extern  int     gsn_wizlock;
 
 /*
- * Psionicist gsn's.
+ * Psionicist gsn's (by Thelonius).
  */
 extern  int     gsn_chameleon;
 extern  int     gsn_domination;
 extern  int     gsn_heighten;
 extern  int     gsn_shadow;
+
+
+extern  int     gsn_stake;
+
+/*
+ * Race gsn's (by Kahn).
+ */
+extern  int     gsn_vampiric_bite;
 
 /*
  * Utility macros.
@@ -1202,10 +1222,6 @@ extern  int     gsn_shadow;
 				    + ( IS_AWAKE( ch )			     \
 				    ? dex_app[get_curr_dex( ch )].defensive  \
 				    : 0 ) )
-#define GET_HITROLL( ch )      	( ( ch )->hitroll                            \
-				 + str_app[get_curr_str( ch )].tohit )
-#define GET_DAMROLL( ch )      	( ( ch )->damroll                            \
-				 + str_app[get_curr_str( ch )].todam )
 
 #define IS_OUTSIDE( ch )       	( !IS_SET(				     \
 				    ( ch )->in_room->room_flags,       	     \
@@ -1286,6 +1302,7 @@ extern	const	struct	social_type	social_table	[ ];
 extern	char *	const			title_table	[ MAX_CLASS   ]
 							[ MAX_LEVEL+1 ]
 							[ 2 ];
+extern  const   struct  race_type       race_table      [ MAX_RACE ];
 
 
 
@@ -1318,15 +1335,17 @@ extern		KILL_DATA		kill_table	[ ];
 extern		char			log_buf		[ ];
 extern		TIME_INFO_DATA		time_info;
 extern		WEATHER_DATA		weather_info;
-extern          char              *     down_time;
-extern          char              *     warning1;
-extern          char              *     warning2;
+extern          time_t                  down_time;
+extern          time_t                  warning1;
+extern          time_t                  warning2;
+extern          bool                    Reboot;
 
 /*
  * Command functions.
  * Defined in act_*.c (mostly).
  */
 DECLARE_DO_FUN(	do_advance	);
+DECLARE_DO_FUN(	do_afk  	);
 DECLARE_DO_FUN(	do_allow	);
 DECLARE_DO_FUN(	do_answer	);
 DECLARE_DO_FUN(	do_areas	);
@@ -1335,21 +1354,25 @@ DECLARE_DO_FUN(	do_auction	);
 DECLARE_DO_FUN( do_auto         );
 DECLARE_DO_FUN( do_autoexit     );
 DECLARE_DO_FUN( do_autoloot     );
+DECLARE_DO_FUN( do_autogold     );
 DECLARE_DO_FUN( do_autosac      );
 DECLARE_DO_FUN(	do_backstab	);
 DECLARE_DO_FUN(	do_bamfin	);
 DECLARE_DO_FUN(	do_bamfout	);
 DECLARE_DO_FUN(	do_ban		);
 DECLARE_DO_FUN(	do_bash 	);
+DECLARE_DO_FUN(	do_berserk 	);		/* by Thelonius */
+DECLARE_DO_FUN(	do_bet  	);		/* by Thelonius */
 DECLARE_DO_FUN( do_blank        );
 DECLARE_DO_FUN(	do_brandish	);
 DECLARE_DO_FUN( do_brief        );
 DECLARE_DO_FUN(	do_bug		);
 DECLARE_DO_FUN(	do_buy		);
-DECLARE_DO_FUN( do_chameleon    );
 DECLARE_DO_FUN(	do_cast		);
+DECLARE_DO_FUN( do_chameleon    );		/* by Thelonius */
 DECLARE_DO_FUN(	do_channels	);
 DECLARE_DO_FUN(	do_chat		);
+DECLARE_DO_FUN(	do_circle 	);		/* by Thelonius */
 DECLARE_DO_FUN(	do_close	);
 DECLARE_DO_FUN( do_combine      );
 DECLARE_DO_FUN(	do_commands	);
@@ -1361,6 +1384,7 @@ DECLARE_DO_FUN(	do_deny		);
 DECLARE_DO_FUN(	do_description	);
 DECLARE_DO_FUN(	do_disarm	);
 DECLARE_DO_FUN(	do_disconnect	);
+DECLARE_DO_FUN(	do_donate	);
 DECLARE_DO_FUN(	do_down		);
 DECLARE_DO_FUN(	do_drink	);
 DECLARE_DO_FUN(	do_drop		);
@@ -1371,6 +1395,8 @@ DECLARE_DO_FUN(	do_emote	);
 DECLARE_DO_FUN(	do_equipment	);
 DECLARE_DO_FUN(	do_examine	);
 DECLARE_DO_FUN(	do_exits	);
+DECLARE_DO_FUN(	do_fee		);
+DECLARE_DO_FUN(	do_feed		);
 DECLARE_DO_FUN(	do_fill		);
 DECLARE_DO_FUN(	do_flee		);
 DECLARE_DO_FUN(	do_follow	);
@@ -1381,12 +1407,13 @@ DECLARE_DO_FUN(	do_give		);
 DECLARE_DO_FUN(	do_goto		);
 DECLARE_DO_FUN(	do_group	);
 DECLARE_DO_FUN(	do_gtell	);
-DECLARE_DO_FUN( do_heighten     );
+DECLARE_DO_FUN( do_heighten     );		/* by Thelonius */
 DECLARE_DO_FUN(	do_help		);
 DECLARE_DO_FUN(	do_hide		);
 DECLARE_DO_FUN(	do_holylight	);
 DECLARE_DO_FUN(	do_idea		);
 DECLARE_DO_FUN(	do_immtalk	);
+DECLARE_DO_FUN(	do_imtlset	);
 DECLARE_DO_FUN(	do_inventory	);
 DECLARE_DO_FUN(	do_invis	);
 DECLARE_DO_FUN(	do_kick		);
@@ -1401,7 +1428,6 @@ DECLARE_DO_FUN(	do_mload	);
 DECLARE_DO_FUN(	do_mset		);
 DECLARE_DO_FUN(	do_mstat	);
 DECLARE_DO_FUN(	do_mwhere	);
-DECLARE_DO_FUN(	do_murde	);
 DECLARE_DO_FUN(	do_murder	);
 DECLARE_DO_FUN(	do_music	);
 DECLARE_DO_FUN(	do_newlock	);
@@ -1422,7 +1448,7 @@ DECLARE_DO_FUN(	do_pardon	);
 DECLARE_DO_FUN(	do_password	);
 DECLARE_DO_FUN(	do_peace	);
 DECLARE_DO_FUN(	do_pick		);
-DECLARE_DO_FUN(	do_poison_weapon);
+DECLARE_DO_FUN(	do_poison_weapon);		/* by Thelonius */
 DECLARE_DO_FUN(	do_pose		);
 DECLARE_DO_FUN(	do_practice	);
 DECLARE_DO_FUN( do_prompt       );
@@ -1437,6 +1463,7 @@ DECLARE_DO_FUN(	do_reboot	);
 DECLARE_DO_FUN(	do_recall	);
 DECLARE_DO_FUN(	do_recho	);
 DECLARE_DO_FUN(	do_recite	);
+DECLARE_DO_FUN(	do_register	);
 DECLARE_DO_FUN(	do_remove	);
 DECLARE_DO_FUN(	do_rent		);
 DECLARE_DO_FUN(	do_reply	);
@@ -1452,7 +1479,7 @@ DECLARE_DO_FUN(	do_save		);
 DECLARE_DO_FUN(	do_say		);
 DECLARE_DO_FUN(	do_score	);
 DECLARE_DO_FUN(	do_sell		);
-DECLARE_DO_FUN( do_shadow       );
+DECLARE_DO_FUN( do_shadow       );		/* by Thelonius */
 DECLARE_DO_FUN(	do_shout	);
 DECLARE_DO_FUN(	do_shutdow	);
 DECLARE_DO_FUN(	do_shutdown	);
@@ -1462,6 +1489,7 @@ DECLARE_DO_FUN(	do_slay		);
 DECLARE_DO_FUN(	do_sleep	);
 DECLARE_DO_FUN( do_slist        );
 DECLARE_DO_FUN(	do_slookup	);
+DECLARE_DO_FUN(	do_snare	);		/* by Binky / Thelonius */
 DECLARE_DO_FUN(	do_sneak	);
 DECLARE_DO_FUN(	do_snoop	);
 DECLARE_DO_FUN(	do_socials	);
@@ -1470,6 +1498,7 @@ DECLARE_DO_FUN( do_spells       );
 DECLARE_DO_FUN(	do_split	);
 DECLARE_DO_FUN(	do_sset		);
 DECLARE_DO_FUN(	do_sstime	);
+DECLARE_DO_FUN(	do_stake	);
 DECLARE_DO_FUN(	do_stand	);
 DECLARE_DO_FUN(	do_steal	);
 DECLARE_DO_FUN(	do_switch	);
@@ -1481,6 +1510,7 @@ DECLARE_DO_FUN(	do_transfer	);
 DECLARE_DO_FUN(	do_trust	);
 DECLARE_DO_FUN(	do_typo		);
 DECLARE_DO_FUN(	do_unlock	);
+DECLARE_DO_FUN( do_untangle     );		/* by Thelonius */
 DECLARE_DO_FUN(	do_up		);
 DECLARE_DO_FUN(	do_users	);
 DECLARE_DO_FUN(	do_value	);
@@ -1512,6 +1542,7 @@ DECLARE_SPELL_FUN(	spell_armor		);
 DECLARE_SPELL_FUN(	spell_bless		);
 DECLARE_SPELL_FUN(	spell_blindness		);
 DECLARE_SPELL_FUN(	spell_burning_hands	);
+DECLARE_SPELL_FUN(	spell_breathe_water	);	/* by Thelonius */
 DECLARE_SPELL_FUN(	spell_call_lightning	);
 DECLARE_SPELL_FUN(	spell_cause_critical	);
 DECLARE_SPELL_FUN(	spell_cause_light	);
@@ -1520,6 +1551,7 @@ DECLARE_SPELL_FUN(	spell_change_sex	);
 DECLARE_SPELL_FUN(	spell_charm_person	);
 DECLARE_SPELL_FUN(	spell_chill_touch	);
 DECLARE_SPELL_FUN(	spell_colour_spray	);
+DECLARE_SPELL_FUN(	spell_cone_of_silence	);	/* by Thelonius */
 DECLARE_SPELL_FUN(	spell_continual_light	);
 DECLARE_SPELL_FUN(	spell_control_weather	);
 DECLARE_SPELL_FUN(	spell_create_food	);
@@ -1531,20 +1563,23 @@ DECLARE_SPELL_FUN(	spell_cure_light	);
 DECLARE_SPELL_FUN(	spell_cure_poison	);
 DECLARE_SPELL_FUN(	spell_cure_serious	);
 DECLARE_SPELL_FUN(	spell_curse		);
+DECLARE_SPELL_FUN(	spell_destroy_cursed    );
 DECLARE_SPELL_FUN(	spell_detect_evil	);
 DECLARE_SPELL_FUN(	spell_detect_hidden	);
 DECLARE_SPELL_FUN(	spell_detect_invis	);
 DECLARE_SPELL_FUN(	spell_detect_magic	);
 DECLARE_SPELL_FUN(	spell_detect_poison	);
 DECLARE_SPELL_FUN(	spell_dispel_evil	);
-DECLARE_SPELL_FUN(	spell_dispel_magic	);
+DECLARE_SPELL_FUN(	spell_dispel_magic	);	/* by Thelonius */
 DECLARE_SPELL_FUN(	spell_earthquake	);
 DECLARE_SPELL_FUN(	spell_enchant_weapon	);
 DECLARE_SPELL_FUN(	spell_energy_drain	);
+DECLARE_SPELL_FUN(	spell_exorcise  	);
 DECLARE_SPELL_FUN(	spell_faerie_fire	);
 DECLARE_SPELL_FUN(	spell_faerie_fog	);
 DECLARE_SPELL_FUN(	spell_fireball		);
 DECLARE_SPELL_FUN(	spell_flamestrike	);
+DECLARE_SPELL_FUN(	spell_flaming           );
 DECLARE_SPELL_FUN(	spell_fly		);
 DECLARE_SPELL_FUN(	spell_gate		);
 DECLARE_SPELL_FUN(	spell_general_purpose	);
@@ -1559,12 +1594,18 @@ DECLARE_SPELL_FUN(	spell_know_alignment	);
 DECLARE_SPELL_FUN(	spell_lightning_bolt	);
 DECLARE_SPELL_FUN(	spell_locate_object	);
 DECLARE_SPELL_FUN(	spell_magic_missile	);
+DECLARE_SPELL_FUN(	spell_mass_heal 	);
 DECLARE_SPELL_FUN(	spell_mass_invis	);
+DECLARE_SPELL_FUN(	spell_mute		);	/* by Thelonius */
 DECLARE_SPELL_FUN(	spell_pass_door		);
 DECLARE_SPELL_FUN(	spell_poison		);
+DECLARE_SPELL_FUN(	spell_polymorph_other	);
 DECLARE_SPELL_FUN(	spell_protection	);
+DECLARE_SPELL_FUN(	spell_recharge_item	);	/* by Thelonius */
 DECLARE_SPELL_FUN(	spell_refresh		);
+DECLARE_SPELL_FUN(	spell_remove_alignment	);	/* by Thelonius */
 DECLARE_SPELL_FUN(	spell_remove_curse	);
+DECLARE_SPELL_FUN(	spell_remove_silence	);	/* by Thelonius */
 DECLARE_SPELL_FUN(	spell_sanctuary		);
 DECLARE_SPELL_FUN(	spell_shocking_grasp	);
 DECLARE_SPELL_FUN(	spell_shield		);
@@ -1572,6 +1613,7 @@ DECLARE_SPELL_FUN(	spell_sleep		);
 DECLARE_SPELL_FUN(	spell_stone_skin	);
 DECLARE_SPELL_FUN(	spell_summon		);
 DECLARE_SPELL_FUN(	spell_teleport		);
+DECLARE_SPELL_FUN(	spell_turn_undead	);
 DECLARE_SPELL_FUN(	spell_ventriloquate	);
 DECLARE_SPELL_FUN(	spell_weaken		);
 DECLARE_SPELL_FUN(	spell_word_of_recall	);
@@ -1580,9 +1622,10 @@ DECLARE_SPELL_FUN(	spell_fire_breath	);
 DECLARE_SPELL_FUN(	spell_frost_breath	);
 DECLARE_SPELL_FUN(	spell_gas_breath	);
 DECLARE_SPELL_FUN(	spell_lightning_breath	);
+DECLARE_SPELL_FUN(	spell_vampiric_bite	);
 
 /*
- * Psi spell_functions, in magic.c.
+ * Psi spell_functions, in magic.c (by Thelonius).
  */
 DECLARE_SPELL_FUN(      spell_adrenaline_control);
 DECLARE_SPELL_FUN(      spell_agitation         );
@@ -1682,7 +1725,8 @@ int	ungetc		args( ( int c, FILE *stream ) );
 char *	crypt		args( ( const char *key, const char *salt ) );
 int	fclose		args( ( FILE *stream ) );
 int	fprintf		args( ( FILE *stream, const char *format, ... ) );
-int	fread		args( ( void *ptr, int size, int n, FILE *stream ) );
+size_t	fread		args( ( void *ptr, size_t size, size_t nitems,
+			       FILE *stream ) );
 int	fseek		args( ( FILE *stream, long offset, int ptrname ) );
 void	perror		args( ( const char *s ) );
 int	ungetc		args( ( int c, FILE *stream ) );
@@ -1692,6 +1736,17 @@ int	ungetc		args( ( int c, FILE *stream ) );
 char *	crypt		args( ( const char *key, const char *salt ) );
 #endif
 
+/*
+ * Stuff for DEC UNIX on Alpha (OSF3.2C)
+ * Fusion
+ */
+#if defined( _OSF_SOURCE )
+char *	crypt           args( ( const char *key, const char *salt ) );
+int     system          args( ( const char *string ) );
+ssize_t read            args( ( int fd, void *buf, size_t nbyte ) );
+ssize_t write           args( ( int fd, const void *buf, size_t nbyte ) );
+int     close           args( ( int fd ) );
+#endif
 
 
 /*
@@ -1737,14 +1792,15 @@ char *	crypt		args( ( const char *key, const char *salt ) );
 #define NULL_FILE	"/dev/null"	/* To reserve one stream	*/
 #endif
 
-#define AREA_LIST	"area.lst"	/* List of areas		*/
+#define AREA_LIST	"AREA.LST"	/* List of areas		*/
 
-#define BUG_FILE	"bugs.txt"      /* For 'bug' and bug( )		*/
-#define IDEA_FILE	"ideas.txt"	/* For 'idea'			*/
-#define TYPO_FILE	"typos.txt"     /* For 'typo'			*/
-#define NOTE_FILE	"notes.txt"	/* For 'notes'			*/
-#define SHUTDOWN_FILE	"shutdown.txt"	/* For 'shutdown'		*/
-#define DOWN_TIME_FILE  "time.txt"      /* For automatic shutdown       */
+#define BUG_FILE	"BUGS.TXT"      /* For 'bug' and bug( )		*/
+#define IDEA_FILE	"IDEAS.TXT"	/* For 'idea'			*/
+#define TYPO_FILE	"TYPOS.TXT"     /* For 'typo'			*/
+#define NOTE_FILE	"NOTES.TXT"	/* For 'notes'			*/
+#define SHUTDOWN_FILE	"SHUTDOWN.TXT"	/* For 'shutdown'		*/
+#define DOWN_TIME_FILE  "TIME.TXT"      /* For automatic shutdown       */
+#define BAN_FILE        "BAN.TXT"       /* For banned site save         */
 
 
 /*
@@ -1773,6 +1829,7 @@ bool	check_blind	args( ( CHAR_DATA *ch ) );
 void	move_char	args( ( CHAR_DATA *ch, int door ) );
 
 /* act_obj.c */
+bool	remove_obj	args( ( CHAR_DATA *ch, int iWear, bool fReplace ) );
 
 /* act_wiz.c */
 
@@ -1780,6 +1837,7 @@ void	move_char	args( ( CHAR_DATA *ch, int door ) );
 void	close_socket	 args( ( DESCRIPTOR_DATA *dclose ) );
 void	write_to_buffer	 args( ( DESCRIPTOR_DATA *d, const char *txt,
 				int length ) );
+void    send_to_room     args( ( const char *txt, ROOM_INDEX_DATA *room ) );
 void    send_to_all_char args( ( const char *text ) );
 void	send_to_char	 args( ( const char *txt, CHAR_DATA *ch ) );
 void    show_string      args( ( DESCRIPTOR_DATA *d, char *input ) );
@@ -1831,10 +1889,14 @@ void	tail_chain	args( ( void ) );
 void	violence_update	args( ( void ) );
 void	multi_hit	args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dt ) );
 void	damage		args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dam,
-			       int dt ) );
-void	update_pos	args( ( CHAR_DATA *victim ) );
-void	stop_fighting	args( ( CHAR_DATA *ch, bool fBoth ) );
+			       int dt, int wpn ) );
 void	raw_kill	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+void	stop_fighting	args( ( CHAR_DATA *ch, bool fBoth ) );
+void	update_pos	args( ( CHAR_DATA *victim ) );
+void	check_killer	     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool	is_safe		     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool    licensed             args( ( CHAR_DATA *ch ) );
+bool    registered           args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 
 /* handler.c */
 int	get_trust	args( ( CHAR_DATA *ch ) );
@@ -1844,6 +1906,8 @@ int	get_curr_int	args( ( CHAR_DATA *ch ) );
 int	get_curr_wis	args( ( CHAR_DATA *ch ) );
 int	get_curr_dex	args( ( CHAR_DATA *ch ) );
 int	get_curr_con	args( ( CHAR_DATA *ch ) );
+int     get_hitroll     args( ( CHAR_DATA *ch, int wpn ) );
+int     get_damroll     args( ( CHAR_DATA *ch, int wpn ) );
 int	can_carry_n	args( ( CHAR_DATA *ch ) );
 int	can_carry_w	args( ( CHAR_DATA *ch ) );
 bool	is_name		args( ( const char *str, char *namelist ) );
@@ -1890,8 +1954,10 @@ char *	affect_bit_name	args( ( int vector ) );
 char *	extra_bit_name	args( ( int extra_flags ) );
 CD   *  get_char        args( ( CHAR_DATA *ch ) );
 bool    longstring      args( ( CHAR_DATA *ch, char *argument ) );
-bool    authorized      args( ( CHAR_DATA *ch, int gsn ) );
+bool    authorized      args( ( CHAR_DATA *ch, char *skllnm ) );
 void    end_of_game     args( ( void ) );
+int     race_lookup     args( ( const char *race ) );
+int     affect_lookup   args( ( const char *race ) );
 
 /* interp.c */
 void	interpret	args( ( CHAR_DATA *ch, char *argument ) );
@@ -1915,9 +1981,11 @@ SF *	spec_lookup	args( ( const char *name ) );
 
 /* update.c */
 void	advance_level	args( ( CHAR_DATA *ch ) );
+void	demote_level	args( ( CHAR_DATA *ch ) );
 void	gain_exp	args( ( CHAR_DATA *ch, int gain ) );
 void	gain_condition	args( ( CHAR_DATA *ch, int iCond, int value ) );
 void	update_handler	args( ( void ) );
+void    ban_update      args( ( void ) );
 
 #undef	CD
 #undef	MID

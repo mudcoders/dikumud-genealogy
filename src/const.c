@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -35,27 +38,27 @@
 const	struct	class_type	class_table	[MAX_CLASS]	=
 {
     {
-	"Mag",  APPLY_INT,  OBJ_VNUM_SCHOOL_DAGGER,
+	"Mag", APPLY_INT,  OBJ_VNUM_SCHOOL_DAGGER,
 	3018,  95,  18,  6,   6,  8, TRUE
     },
 
     {
-	"Cle",  APPLY_WIS,  OBJ_VNUM_SCHOOL_MACE,
+	"Cle", APPLY_WIS,  OBJ_VNUM_SCHOOL_MACE,
 	3003,  95,  18,  9,  7,  10, TRUE
     },
 
     {
-	"Thi",  APPLY_DEX,  OBJ_VNUM_SCHOOL_DAGGER,
+	"Thi", APPLY_DEX,  OBJ_VNUM_SCHOOL_DAGGER,
 	3028,  85,  18,  3,  8,  13, FALSE
     },
 
     {
-	"War",  APPLY_STR,  OBJ_VNUM_SCHOOL_SWORD,
+	"War", APPLY_STR,  OBJ_VNUM_SCHOOL_SWORD,
 	3022,  85,  18,  0,  11, 15, FALSE
     },
 
     {
-        "Psi",  APPLY_WIS,  OBJ_VNUM_SCHOOL_DAGGER,
+        "Psi", APPLY_WIS,  OBJ_VNUM_SCHOOL_DAGGER,
         3151,  95,  18,  9,   6,  9, TRUE
     }
     
@@ -329,22 +332,22 @@ char *	const			title_table [ MAX_CLASS ][ MAX_LEVEL+1 ][ 2 ] =
 	{ "Baron of Hurricanes",	"Baroness of Hurricanes"	},
 	{ "Baron of Meteors",		"Baroness of Meteors"		},
 
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
+	{ "Baron of the Eastern Plains","Baroness of Meteors"		},
+	{ "Baron of the Western Mountains","Baroness of Meteors"	},
+	{ "Baron of the Northern Reaches","Baroness of Meteors"		},
+	{ "Baron of the Southern Seas",	"Baroness of Meteors"		},
+	{ "Knight of the Black Rose",	"Baroness of Meteors"		},
 
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
+	{ "Knight of the Red Rose",	"Baroness of Meteors"		},
+	{ "Knight of the White Rose",	"Baroness of Meteors"		},
+	{ "Knight of the Silver Moon",	"Baroness of Meteors"		},
+	{ "Knight of the Golden Sun",	"Baroness of Meteors"		},
+	{ "Squire of the Realm",	"Baroness of Meteors"		},
 
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
-	{ "Baron of Meteors",		"Baroness of Meteors"		},
+	{ "Herald of the Realm",	"Baroness of Meteors"		},
+	{ "Knight of the Realm",	"Baroness of Meteors"		},
+	{ "Lord of the Realm",		"Baroness of Meteors"		},
+	{ "Highlord of the Realm",	"Baroness of Meteors"		},
 	{ "Knight Hero",		"Knight Heroine"		},
 
 	{ "Angel of War",		"Angel of War"			},
@@ -424,6 +427,114 @@ char *	const			title_table [ MAX_CLASS ][ MAX_LEVEL+1 ][ 2 ] =
 
 };
 
+/* 
+ * Race types
+ */
+const   struct    race_type       race_table      [ MAX_RACE ]    =
+{
+    { "Human",     RACE_PC_AVAIL | RACE_WEAPON_WIELD,      3, 0, 0, 0, 0, 0,
+	"punch", "Githyanki Vampire Werewolf Mindflayer"                     },
+    { "Elf",       RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
+	           RACE_WEAPON_WIELD,                      2, 0, 1, 0, 1, -1,
+	"punch", "Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"                                                           },
+    { "Halfelf",   RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	                                                   3, 0, 0, 0, 1, 0,
+	"punch", "Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin"                                                                      },
+    { "Drow",      RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
+	           RACE_WEAPON_WIELD,                      2, 0, 0, 1, 1, 0,
+	"punch", "Elf Halfelf Hobbit Githyanki Vampire Werewolf"             },
+    { "Dwarf",     RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
+	           RACE_WEAPON_WIELD,                      2, 0, 0, 0, -1, 1,
+	"punch", "Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"                                                 },
+    { "Halfdwarf", RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	                                                   2, 0, 0, 0, 0, 1,
+	"punch", "Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin"                                                            },
+    { "Hobbit",    RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
+	           RACE_WEAPON_WIELD,                      2, 0, 0, 0, 1, -1,
+	"punch", "Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"                                                 },
+    { "Giant",     RACE_WEAPON_WIELD,                      6, 2, -1, 0, -1, 1,
+	"fist", "Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"  },
+    { "Ogre",      RACE_WEAPON_WIELD,                      6, 1, -1, 0, -1, 1,
+	"fist",	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"  },
+    { "Orc",       RACE_INFRAVISION | RACE_WEAPON_WIELD,   4, 1, -1, 0, 0, 0,
+	"punch", "Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome" },
+    { "Kobold",    RACE_INFRAVISION | RACE_WEAPON_WIELD,   2, -1, -1, 0, 1, 0,
+	"punch", "Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome Halfkobold"                                                                     },
+    { "Minotaur",  RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 5, 2, 0, 0, -1, 1,
+	"fist", "Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"  },
+    { "Troll",     RACE_INFRAVISION | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	                                                   7, 2, -1, 0, 0, 1,
+	"fist", "Human Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"                                                                           },
+    { "Hobgoblin", RACE_INFRAVISION | RACE_WEAPON_WIELD,   3, 1, 0, -1, 0, 1,
+	"punch", "Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome" },
+    { "Insect",    RACE_NO_ABILITIES,                      0, 0, 0, 0, 0, -1,
+	"bite", ""                                                           },
+    { "Dragon",    RACE_FLY | RACE_INFRAVISION | RACE_DETECT_ALIGN |
+	           RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	                                                   9, 2, 2, 1, -3, 2,
+	"claw", ""                                                           },
+    { "Animal",    RACE_DETECT_HIDDEN,                     2, 0, 0, 0, 1, 0,
+	"bite",	"Kobold Halfkobold"                                          },
+    { "God",       RACE_WATERBREATH | RACE_FLY | RACE_SWIM | RACE_WATERWALK   |
+	           RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN       |
+		   RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_PROTECTION   |
+		   RACE_SANCT | RACE_WEAPON_WIELD,         8, 3, 3, 3, 3, 3,
+	"smite", ""                                                          },
+    { "Undead",    RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN       |
+	           RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
+	                                                   3, 1, 0, 0, -2, 1,
+	"touch", "Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Goblin Faerie Gnome"                         },
+    { "Harpy",     RACE_FLY | RACE_DETECT_INVIS,           3, 0, 0, 0, 2, 0,
+	"claw", "Human Elf Halfelf Dwarf Halfdwarf Hobbit Gnome"             },
+    { "Bear",      RACE_SWIM | RACE_DETECT_HIDDEN,         3, 1, 0, 0, -1, 1,
+	"swipe", ""                                                          },
+    { "Githyanki", RACE_WEAPON_WIELD,                      3, 0, 1, 0, 0, 0,
+	"punch", "Mindflayer"                                                },
+    { "Elemental", RACE_NO_ABILITIES,                      4, 1, 0, 0, 0, 1,
+	"punch", ""                                                          },
+    { "Bat",       RACE_FLY | RACE_INFRAVISION,            1, -1, 0, 0, 2, -1,
+	"bite", ""                                                           },
+    { "Plant",     RACE_NO_ABILITIES,                      1, 0, 0, 0, -1, 1,
+	"swipe", ""                                                          },
+    { "Rat",       RACE_PASSDOOR,                          0, -1, 0, 0, 2, -1,
+	"bite", ""                                                           },
+    { "Vampire",   RACE_FLY | RACE_PASSDOOR | RACE_INFRAVISION                |
+	           RACE_DETECT_ALIGN | RACE_DETECT_INVIS | RACE_DETECT_HIDDEN |
+		   RACE_WEAPON_WIELD,                      3, 1, 1, 0, 1, 2,
+	"claw", "Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Werewolf Goblin Faerie Gnome"                 },
+    { "Werewolf",  RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS   |
+	           RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 3, 2, 0, 1, 2, 3,
+	"claw", "Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Vampire Goblin Faerie Gnome"                  },
+    { "Goblin",    RACE_INFRAVISION | RACE_WEAPON_WIELD,   2, -1, -1, -1, 1, 0,
+	"punch", "Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome" },
+    { "Faerie",    RACE_FLY | RACE_INFRAVISION | RACE_DETECT_INVIS            |
+	           RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 1, -2, 1, 1, 1, -1,
+	"punch", ""                                                          },
+    { "Arachnid",  RACE_NO_ABILITIES | RACE_WEAPON_WIELD,  2, 0, 0, 0, 1, 0,
+	"bite", ""                                                           },
+    { "Mindflayer",RACE_INFRAVISION | RACE_WEAPON_WIELD,   3, 1, 2, 1, -1, 0,
+	"punch", "Githyanki"                                                 },
+    { "Object",    RACE_WATERBREATH,                       3, 3, 0, 0, 0, 3,
+	"swing", ""                                                          },
+    { "Mist",      RACE_FLY | RACE_PASSDOOR,               2, -1, 0, 0, 3, 0,
+	"gas",   ""                                                          },
+    { "Snake",     RACE_NO_ABILITIES,                      1, 0, 0, 0, 1, 0,
+	"bite", ""                                                           },
+    { "Worm",      RACE_PASSDOOR,                          0, 0, 0, 0, 0, 0,
+	"slime", ""                                                          },
+    { "Fish",      RACE_WATERBREATH | RACE_SWIM,           1, 0, 0, 0, 2, 0,
+	"slap", ""                                                           },
+    { "Hydra",     RACE_DETECT_HIDDEN,                     8, 2, 0, 0, -1, 2,
+	"bite", ""                                                           },
+    { "Lizard",    RACE_NO_ABILITIES,                      1, -1, 0, 0, 1, 0,
+	"lash", ""                                                           },
+    { "Gnome",     RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	                                                   2, -1, 0, 1, 1, -1,
+	"punch", "Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin"                                                                      },
+    { "Halfkobold", RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
+	                                                  2, -2, -1, -2, 3, -2,
+	"punch", "Ogre Orc Giant Troll Hobgoblin"                            }
+};
 
 
 /*
@@ -661,9 +772,16 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
+	"breathe water",	{ L_APP, L_APP, L_APP, L_APP, L_APP },
+	spell_breathe_water,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	&gsn_breathe_water, 	 5,	12,
+	"pained lungs",		"You can no longer breathe underwater."
+    },
+
+    {
 	"burning hands",	{     5, L_APP, L_APP, L_APP, L_APP },
 	spell_burning_hands,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
+	&gsn_burning_hands,     15,	12,
 	"burning hands",	"!Burning Hands!"
     },
 
@@ -678,27 +796,27 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	"cause critical",	{ L_APP,     9, L_APP, L_APP, L_APP },
 	spell_cause_critical,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			20,	12,
-	"spell",		"!Cause Critical!"
+	"invocation",		"!Cause Critical!"
     },
 
     {
 	"cause light",		{ L_APP,     1, L_APP, L_APP, L_APP },
 	spell_cause_light,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"spell",		"!Cause Light!"
+	"invocation",		"!Cause Light!"
     },
 
     {
 	"cause serious",	{ L_APP,     5, L_APP, L_APP, L_APP },
 	spell_cause_serious,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			17,	12,
-	"spell",		"!Cause Serious!"
+	"invocation",		"!Cause Serious!"
     },
 
     {
 	"change sex",		{ L_APP, L_APP, L_APP, L_APP, L_APP },
 	spell_change_sex,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
-	NULL,			15,	12,
+	NULL,			15,	0,
 	"",			"Your body feels familiar again."
     },
 
@@ -721,6 +839,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_colour_spray,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
 	"colour spray",		"!Colour Spray!"
+    },
+
+    {
+        "cone of silence",	{    22, L_APP, L_APP, L_APP, L_APP },
+        spell_cone_of_silence,	TAR_IGNORE,		POS_FIGHTING,
+        NULL,			35,     12,
+        "",                     "!Cone of Silence!"
     },
 
     {
@@ -801,6 +926,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
+	"destroy cursed",	{ L_APP,    20, L_APP, L_APP, L_APP },
+	spell_destroy_cursed,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			20,	12,
+	"",			"!destroy cursed!"
+    },
+
+    {
 	"detect evil",		{ L_APP,     4, L_APP, L_APP, L_APP },
 	spell_detect_evil,	TAR_CHAR_SELF,		POS_STANDING,
 	NULL,			5,	12,
@@ -839,7 +971,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	"dispel evil",		{ L_APP,    10, L_APP, L_APP, L_APP },
 	spell_dispel_evil,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			15,	12,
-	"dispel evil",		"!Dispel Evil!"
+	"holy fire",		"!Dispel Evil!"
     },
 
     {
@@ -871,6 +1003,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
+	"exorcise",		{ L_APP,    40, L_APP, L_APP, L_APP },
+	spell_exorcise, 	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+	NULL,			35,	12,
+	"",		        "!Exorcise!"
+    },
+
+    {
 	"faerie fire",		{     4,     2, L_APP, L_APP, L_APP },
 	spell_faerie_fire,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			5,	12,
@@ -899,6 +1038,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
+	"flaming shield",	{ L_APP,    35, L_APP, L_APP, L_APP },
+	spell_flaming,  	TAR_CHAR_SELF,  	POS_STANDING,
+	NULL,			100,	60,
+	"flaming shield",	"The flaming shield around you dies out."
+    },
+
+    {
 	"fly",			{     7,    12, L_APP, L_APP, L_APP },
 	spell_fly,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			10,	18,
@@ -923,7 +1069,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	"harm",			{ L_APP,    15, L_APP, L_APP, L_APP },
 	spell_harm,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			35,	12,
-	"harm spell",		"!Harm!"
+	"divine power",		"!Harm!"
     },
 
     {
@@ -956,7 +1102,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 
     {
 	"know alignment",	{     8,     5, L_APP, L_APP, L_APP },
-	spell_know_alignment,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	spell_know_alignment,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			9,	12,
 	"",			"!Know Alignment!"
     },
@@ -983,10 +1129,24 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
+	"mass heal",		{ L_APP,    20, L_APP, L_APP, L_APP },
+	spell_mass_heal,	TAR_IGNORE,		POS_STANDING,
+	NULL,           	50,	24,
+	"",			"!Mass Heal!"
+    },
+
+    {
 	"mass invis",		{    15,    17, L_APP, L_APP, L_APP },
 	spell_mass_invis,	TAR_IGNORE,		POS_STANDING,
 	&gsn_mass_invis,	20,	24,
-	"",			"!Mass Invis!"
+	"",			"You are no longer invisible."
+    },
+
+    {
+        "mute",			{ L_APP,    18, L_APP, L_APP, L_APP },
+        spell_mute,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+        &gsn_mute,		20,     12,
+        "",                     "You are no longer muted."
     },
 
     {
@@ -1000,7 +1160,14 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	"poison",		{ L_APP,     8, L_APP, L_APP, L_APP },
 	spell_poison,		TAR_CHAR_OFFENSIVE,	POS_STANDING,
 	&gsn_poison,		10,	12,
-	"poison",		"You feel less sick."
+	"burning blood",	"You feel less sick."
+    },
+
+    {
+	"polymorph other",	{ L_APP, L_APP, L_APP, L_APP, L_APP },
+	spell_polymorph_other,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+	NULL,			20,	0,
+	"",			"Your body feels familiar again." 
     },
 
     {
@@ -1010,6 +1177,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	"",			"You feel less protected."
     },
 
+    {                                  
+        "recharge item",        {    11, L_APP, L_APP, L_APP, L_APP },
+        spell_recharge_item,    TAR_OBJ_INV,            POS_STANDING,
+        NULL,                   25,     12,
+        "blunder",              "!Recharge Item!"
+    }, 
+
     {
 	"refresh",		{     5,     3, L_APP, L_APP, L_APP },
 	spell_refresh,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
@@ -1018,10 +1192,24 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
+        "remove alignment",	{    16, L_APP, L_APP, L_APP, L_APP },
+        spell_remove_alignment,	TAR_OBJ_INV,		POS_STANDING,
+        NULL,			10,	12,
+        "",                     "!Remove Alignment!"
+    },
+
+    {
 	"remove curse",		{ L_APP,    12, L_APP, L_APP, L_APP },
 	spell_remove_curse,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	NULL,			5,	12,
 	"",			"!Remove Curse!"
+    },
+
+    {
+        "remove silence",	{ L_APP,    16, L_APP, L_APP, L_APP },
+        spell_remove_silence,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
+        NULL,			15,     12,
+        "",                     "!Remove Silence!"
     },
 
     {
@@ -1074,6 +1262,13 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     },
 
     {
+	"turn undead",		{ L_APP,    1, L_APP, L_APP, L_APP },
+	spell_turn_undead,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	&gsn_turn_undead,	10,	12,
+	"divine exorcism",	"!Turn undead!"
+    },
+
+    {
 	"ventriloquate",	{     1, L_APP, L_APP, L_APP, L_APP },
 	spell_ventriloquate,	TAR_IGNORE,		POS_STANDING,
 	NULL,			5,	12,
@@ -1084,7 +1279,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	"weaken",		{     7, L_APP, L_APP, L_APP, L_APP },
 	spell_weaken,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			20,	12,
-	"spell",		"You feel stronger."
+	"weakening spell",	"You feel stronger."
     },
 
     {
@@ -1101,66 +1296,87 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	"acid breath",		{    33, L_APP, L_APP, L_APP, L_APP },
 	spell_acid_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"blast of acid",	"!Acid Breath!"
+	"breath of acid",	"!Acid Breath!"
     },
 
     {
 	"fire breath",		{    34, L_APP, L_APP, L_APP, L_APP },
 	spell_fire_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"blast of flame",	"!Fire Breath!"
+	"breath of flame",	"!Fire Breath!"
     },
 
     {
 	"frost breath",		{    31, L_APP, L_APP, L_APP, L_APP },
 	spell_frost_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"blast of frost",	"!Frost Breath!"
+	"breath of frost",	"!Frost Breath!"
     },
 
     {
 	"gas breath",		{    35, L_APP, L_APP, L_APP, L_APP },
 	spell_gas_breath,	TAR_IGNORE,		POS_FIGHTING,
 	NULL,			50,	12,
-	"blast of gas",		"!Gas Breath!"
+	"breath of gas",		"!Gas Breath!"
     },
 
     {
 	"lightning breath",	{  32, L_APP, L_APP, L_APP, L_APP },
 	spell_lightning_breath,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
 	NULL,			50,	12,
-	"blast of lightning",	"!Lightning Breath!"
+	"breath of lightning",	"!Lightning Breath!"
     },
 
 /*
- * Fighter and thief skills.
+ * Fighter and thief skills, as well as magic item skills.
  */
     {
 	"backstab",		{ L_APP, L_APP,     1, L_APP, L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_backstab,		0,	24,
-	"backstab",		"!Backstab!"
+	&gsn_backstab,		 0,	24,
+	"vicious backstab",	"!Backstab!"
     },
 
     {
 	"bash door", 	 	{ L_APP, L_APP, L_APP,     8, L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_bash,		0,	24,
-	"bash",			"!Bash Door!"
+	&gsn_bash,		 0,	24,
+	"powerful bash",	"!Bash Door!"
+    },
+
+    {
+        "berserk",              { L_APP, L_APP, L_APP,    12, L_APP },
+        spell_null,             TAR_IGNORE,             POS_FIGHTING,
+        &gsn_berserk,            0,      12,
+        "",                     "The bloody haze lifts."
+    },
+
+    {
+        "circle",		{ L_APP, L_APP,    18, L_APP, L_APP },
+        spell_null,		TAR_IGNORE,		POS_FIGHTING,
+        &gsn_circle,		 0,	24,
+        "sneak attack",		"!Circle!"
     },
 
     {
 	"disarm",		{ L_APP, L_APP,    10, L_APP, L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_disarm,		0,	24,
+	&gsn_disarm,		 0,	24,
 	"",			"!Disarm!"
     },
 
     {
 	"dodge",		{ L_APP, L_APP,     1, L_APP, L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_dodge,		0,	 0,
+	&gsn_dodge,		 0,	 0,
 	"",			"!Dodge!"
+    },
+
+    {
+        "dual",         	{ L_APP, L_APP, L_APP,    15, L_APP },
+        spell_null,		TAR_IGNORE,		POS_FIGHTING,
+        &gsn_dual,      	 0,	 0,
+        "",                     "!Dual!"
     },
 
     {
@@ -1173,83 +1389,118 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
     {
 	"hide",			{ L_APP, L_APP,     1, L_APP, L_APP },
 	spell_null,		TAR_IGNORE,		POS_RESTING,
-	&gsn_hide,		0,	12,
+	&gsn_hide,		 0,	12,
 	"",			"!Hide!"
     },
 
     {
 	"kick",			{ L_APP, L_APP, L_APP,     1, L_APP },
 	spell_null,		TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
-	&gsn_kick,		0,	 8,
-	"kick",			"!Kick!"
+	&gsn_kick,		 0,	 8,
+	"mighty kick",		"!Kick!"
     },
 
     {
 	"parry",		{ L_APP, L_APP, L_APP,     1, L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_parry,		0,	 0,
+	&gsn_parry,		 0,	 0,
 	"",			"!Parry!"
     },
 
     {
 	"peek",			{ L_APP, L_APP,     1, L_APP, L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_peek,		0,	 0,
+	&gsn_peek,		 0,	 0,
 	"",			"!Peek!"
     },
 
     {
 	"pick lock",		{ L_APP, L_APP,     1, L_APP, L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_pick_lock,		0,	12,
+	&gsn_pick_lock,		 0,	12,
 	"",			"!Pick!"
     },
 
     {
 	"poison weapon",	{ L_APP, L_APP,    13, L_APP, L_APP },
 	spell_null,		TAR_OBJ_INV,		POS_STANDING,
-	&gsn_poison_weapon,	0,	12,
+	&gsn_poison_weapon,	 0,	12,
 	"poisonous concoction",	"!Poison Weapon!"
     },
 
     {
 	"rescue",		{ L_APP, L_APP, L_APP,     1, L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_rescue,		0,	12,
+	&gsn_rescue,		 0,	12,
 	"",			"!Rescue!"
+    },
+
+    {
+	"scrolls",      	{     3,     5,     7,    10,     5 },
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	&gsn_scrolls,	 	 0,	0,
+	"blazing scroll",	"!Scrolls!"
     },
 
     {
 	"second attack",	{ L_APP, L_APP,     1,     1, L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_second_attack,	0,	 0,
+	&gsn_second_attack,	 0,	 0,
 	"",			"!Second Attack!"
+    },
+
+    {
+	"snare",		{ L_APP, L_APP,     8, L_APP, L_APP },
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_snare,		 0,	12,
+	"",			"You are no longer ensnared."
     },
 
     {
 	"sneak",		{ L_APP, L_APP,     1, L_APP, L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_sneak,		0,	12,
+	&gsn_sneak,		 0,	12,
 	"",			NULL
+    },
+
+    {
+	"staves",       	{     3,     7,    13,    20,     9 },
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	&gsn_staves,	 	 0,	0,
+	"shattered staff",	"!Staves!"
     },
 
     {
 	"steal",		{ L_APP, L_APP,     1, L_APP, L_APP },
 	spell_null,		TAR_IGNORE,		POS_STANDING,
-	&gsn_steal,		0,	24,
+	&gsn_steal,		 0,	24,
 	"",			"!Steal!"
     },
 
     {
 	"third attack",		{ L_APP, L_APP, L_APP,     1, L_APP },
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
-	&gsn_third_attack,	0,	 0,
+	&gsn_third_attack,	 0,	 0,
 	"",			"!Third Attack!"
+    },
+
+    {
+        "untangle",		{ L_APP, L_APP,    11, L_APP, L_APP },
+        spell_null,		TAR_IGNORE,		POS_STANDING,
+        &gsn_untangle,		 0,	24,
+        "",                     "!Untangle!"
+    },
+
+    {
+	"wands",        	{     3,     5,     7,    10,     5 },
+	spell_null,     	TAR_IGNORE,     	POS_FIGHTING,
+	&gsn_wands,	 	 0,	0,
+	"exploding wand",	"!Wands!"
     },
 
 /*
  *  Spells for mega1.are from Glop/Erkenbrand.
-*/
+ */
     {
         "general purpose",      { L_APP, L_APP, L_APP, L_APP, L_APP },
 	spell_general_purpose,  TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
@@ -1262,384 +1513,6 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_high_explosive,   TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
 	NULL,                   0,      12,
 	"high explosive ammo",  "!High Explosive Ammo!"
-    },
-
-    {
-	"advance",		{ L_DIR, L_DIR, L_DIR, L_DIR, L_DIR },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_advance,     	0,	 0,
-	"",			"!Advance!"
-    },
-
-    {
-	"allow",		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_allow,     	0,	 0,
-	"",			"!Allow!"
-    },
-
-    {
-	"at",    		{ L_APP, L_APP, L_APP, L_APP, L_APP },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_at,        	0,	 0,
-	"",			"!At!"
-    },
-
-    {
-	"bamfin",    		{ L_APP, L_APP, L_APP, L_APP, L_APP },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_bamfin,        	0,	 0,
-	"",			"!Bamfin!"
-    },
-
-    {
-	"bamfout",    		{ L_APP, L_APP, L_APP, L_APP, L_APP },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_bamfout,        	0,	 0,
-	"",			"!Bamfout!"
-    },
-
-    {
-	"ban",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_ban,        	0,	 0,
-	"",			"!Ban!"
-    },
-
-    {
-	"deny",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_deny,        	0,	 0,
-	"",			"!Deny!"
-    },
-
-    {
-	"disconnect",  		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_disconnect,       	0,	 0,
-	"",			"!Disconnect!"
-    },
-
-    {
-	"echo",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_echo,        	0,	 0,
-	"",			"!Echo!"
-    },
-
-    {
-	"force",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_force,        	0,	 0,
-	"",			"!Force!"
-    },
-
-    {
-	"freeze",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_freeze,        	0,	 0,
-	"",			"!Freeze!"
-    },
-
-    {
-	"goto",    		{ L_APP, L_APP, L_APP, L_APP, L_APP },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_goto,        	0,	 0,
-	"",			"!Goto!"
-    },
-
-    {
-	"holylight",   		{ L_APP, L_APP, L_APP, L_APP, L_APP },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_holylight,        	0,	 0,
-	"",			"!Holylight!"
-    },
-
-    {
-	"immtalk",    		{ L_APP, L_APP, L_APP, L_APP, L_APP },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_immtalk,        	0,	 0,
-	"",			"!Immtalk!"
-    },
-
-    {
-	"wizinvis",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_wizinvis,        	0,	 0,
-	"",			"!Wizinvis!"
-    },
-
-    {
-	"log",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_log,        	0,	 0,
-	"",			"!Log!"
-    },
-
-    {
-	"memory",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_memory,        	0,	 0,
-	"",			"!Memory!"
-    },
-
-    {
-	"mfind",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_mfind,        	0,	 0,
-	"",			"!Mfind!"
-    },
-
-    {
-	"mload",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_mload,        	0,	 0,
-	"",			"!Mload!"
-    },
-
-    {
-	"mset",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_mset,        	0,	 0,
-	"",			"!Mset!"
-    },
-
-    {
-	"mstat",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_mstat,        	0,	 0,
-	"",			"!Mstat!"
-    },
-
-    {
-	"mwhere",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_mwhere,        	0,	 0,
-	"",			"!Mwhere!"
-    },
-
-    {
-	"newlock",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_newlock,        	0,	 0,
-	"",			"!Newlock!"
-    },
-
-    {
-	"noemote",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_noemote,        	0,	 0,
-	"",			"!Noemote!"
-    },
-
-    {
-	"notell",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_notell,        	0,	 0,
-	"",			"!Notell!"
-    },
-
-    {
-	"numlock",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_numlock,        	0,	 0,
-	"",			"!Numlock!"
-    },
-
-    {
-	"ofind",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_ofind,        	0,	 0,
-	"",			"!Ofind!"
-    },
-
-    {
-	"oload",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_oload,        	0,	 0,
-	"",			"!Oload!"
-    },
-
-    {
-	"oset",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_oset,        	0,	 0,
-	"",			"!Oset!"
-    },
-
-    {
-	"ostat",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_ostat,        	0,	 0,
-	"",			"!Ostat!"
-    },
-
-    {
-	"owhere",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_owhere,        	0,	 0,
-	"",			"!Owhere!"
-    },
-
-    {
-	"pardon",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_pardon,        	0,	 0,
-	"",			"!Pardon!"
-    },
-
-    {
-	"peace",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_peace,        	0,	 0,
-	"",			"!Peace!"
-    },
-
-    {
-	"purge",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_purge,        	0,	 0,
-	"",			"!Purge!"
-    },
-
-    {
-	"reboot",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_reboot,        	0,	 0,
-	"",			"!Reboot!"
-    },
-
-    {
-	"recho",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_recho,        	0,	 0,
-	"",			"!Recho!"
-    },
-
-    {
-	"restore",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_restore,        	0,	 0,
-	"",			"!Restore!"
-    },
-
-    {
-	"return",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_return,        	0,	 0,
-	"",			"!Return!"
-    },
-
-    {
-	"rset",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_rset,        	0,	 0,
-	"",			"!Rset!"
-    },
-
-    {
-	"rstat",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_rstat,        	0,	 0,
-	"",			"!Rstat!"
-    },
-
-    {
-	"shutdown",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_shutdown,        	0,	 0,
-	"",			"!Shutdown!"
-    },
-
-    {
-	"silence",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_silence,        	0,	 0,
-	"",			"!Silence!"
-    },
-
-    {
-	"slay",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_slay,        	0,	 0,
-	"",			"!Slay!"
-    },
-
-    {
-	"slookup",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_slookup,        	0,	 0,
-	"",			"!Slookup!"
-    },
-
-    {
-	"snoop",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_snoop,        	0,	 0,
-	"",			"!Snoop!"
-    },
-
-    {
-	"sset",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_sset,        	0,	 0,
-	"",			"!Sset!"
-    },
-
-    {
-	"sstime",    		{ L_DIR, L_DIR, L_DIR, L_DIR, L_DIR },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_sstime,        	0,	 0,
-	"",			"!Sstime!"
-    },
-
-    {
-	"switch",    		{ L_JUN, L_JUN, L_JUN, L_JUN, L_JUN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_switch,        	0,	 0,
-	"",			"!Switch!"
-    },
-
-    {
-	"transfer",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_transfer,        	0,	 0,
-	"",			"!Transfer!"
-    },
-
-    {
-	"trust",    		{ L_DIR, L_DIR, L_DIR, L_DIR, L_DIR },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_trust,        	0,	 0,
-	"",			"!Trust!"
-    },
-
-    {
-	"users",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_users,        	0,	 0,
-	"",			"!Users!"
-    },
-
-    {
-	"wizhelp",    		{ L_HER, L_HER, L_HER, L_HER, L_HER },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_wizhelp,        	0,	 0,
-	"",			"!Wizhelp!"
-    },
-
-    {
-	"wizify",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_wizify,        	0,	 0,
-	"",			"!Wizify!"
-    },
-
-    {
-	"wizlock",    		{ L_SEN, L_SEN, L_SEN, L_SEN, L_SEN },
-	spell_null,		TAR_IGNORE,		POS_DEAD,
-	&gsn_wizlock,        	0,	 0,
-	"",			"!Wizlock!"
     },
 
 
@@ -1659,7 +1532,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
         "agitation",            { L_APP, L_APP, L_APP, L_APP,     6 },
         spell_agitation,        TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   10,     12,
-        "agitation",            "!Agitation!"
+        "molecular agitation",  "!Agitation!"
     },
 
     {
@@ -1863,7 +1736,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
         spell_mind_thrust,      TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
         NULL,                   8,     12,
         "mind thrust",          "!Mind Thrust!"
-	},
+    },
 
     {
         "project force",        { L_APP, L_APP, L_APP, L_APP,     9 },
@@ -1926,6 +1799,21 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
         spell_ultrablast,       TAR_IGNORE,             POS_FIGHTING,
         NULL,                   75,     24,
         "ultrablast",           "!Ultrablast!"
+    },
+
+    {
+        "stake",                {     1,     1,     1,     1,     1 },
+        spell_null,             TAR_CHAR_OFFENSIVE,     POS_FIGHTING,
+        &gsn_stake,             0,       8,
+        "carefully aimed stake","!Stake!"
+    },
+
+	  /* Race ability spells */
+    {
+        "vampiric bite",        { L_APP, L_APP, L_APP, L_APP, L_APP },
+        spell_vampiric_bite,    TAR_CHAR_DEFENSIVE,     POS_FIGHTING,
+        &gsn_vampiric_bite,     0,     0,
+        "vampiric bite",        "You feel well fed."
     }
 
 };

@@ -1,4 +1,4 @@
-#AREA	{ 2 10} Hatchet The Rats Lair~
+#AREA   { 2 10} Hatchet The Rats Lair~
 
 
 
@@ -28,7 +28,7 @@ This rat looks like ... a rat.
 128 32768 -100 S
 1 20 10 1d1+11 1d1+2
 0 100
-8 8 0
+8 rat~ 0
 #3802
 Snigger snake~
 Snigger~
@@ -41,7 +41,7 @@ Poisonous?  Why don't you find out?
 2 128|8192 1000 S
 40 -20 -10 40d40+999 2d40+40
 0 20000
-8 8 1
+8 snake~ 1
 #3803
 Sammy Sam kitten~
 Sammy~
@@ -54,7 +54,7 @@ is currently purring and washing herself, oblivious to your presense.
 2 128|8192 1000 S
 40 -20 -10 40d40+999 2d40+40
 0 20000
-8 8 2
+8 animal~ 2
 #3804
 rat~
 a rat~
@@ -65,7 +65,7 @@ This rat is about average size, with average size teeth and average size claws.
 32|64|128 32768 -200 S
 2 18 8 2d2+20 1d2+2
 0 150
-8 8 0
+8 rat~ 0
 #3805
 rat large~
 a large rat~
@@ -77,7 +77,7 @@ uses now to bite at you!
 32|64 0 -400 S
 3 17 7 3d3+33 1d3+3
 0 300
-8 8 0
+8 rat~ 0
 #3806
 rat were wererat~
 a wererat~
@@ -90,7 +90,7 @@ of a rat.
 2|32 0 -500 S
 4 16 6 4d4+44 1d4+4
 0 400
-8 8 0
+8 rat~ 0
 #3807
 rat were wererat guard~
 a wererat guard~
@@ -103,7 +103,7 @@ of a rat.  He seems to be guarding something.
 2|32 0 -500 S
 5 15 5 5d5+55 1d5+5
 0 400
-8 8 0
+8 rat~ 0
 #3808
 rat were wererat~
 a wererat~
@@ -116,7 +116,7 @@ of a rat.  They don't notice you in their duscussion.
 2|64|128 0 -5 S
 4 16 6 4d4+44 1d4+4
 0 400
-8 8 0
+8 rat~ 0
 #3809
 drake firedrake~
 a firedrake~
@@ -129,7 +129,7 @@ piercing tail.  It is disturbed by your intrusion.
 2|32 8 -700 S
 7 13 3 7d7+77 1d7+7
 0 1000
-8 8 0
+8 dragon~ 0
 #3810
 rat were wererat leader~
 the wererat leader~
@@ -143,7 +143,7 @@ and also much bigger.
 2|32 0 -700 S
 7 13 3 7d7+77 1d7+7
 0 1000
-8 8 0
+8 rat~ 0
 #3811
 rat large~
 a large rat~
@@ -155,7 +155,7 @@ uses now to bite at you!
 2|32 0 -400 S
 3 17 7 3d3+33 1d3+3
 0 300
-8 8 0
+8 rat~ 0
 #3812
 rat were wererat slavemaster~
 a wererat slavemaster~
@@ -169,7 +169,7 @@ looks quite deadly.
 32 0 -600 S
 6 14 4 6d6+66 1d6+6
 0 600
-8 8 1
+8 rat~ 1
 #3813
 slave human~
 a human slave~
@@ -182,7 +182,7 @@ her escape.
 128 0 100 S
 2 18 8 2d2+22 1d2+2
 0 100
-8 8 2
+8 human~ 2
 #3814
 slave human~
 a human slave~
@@ -195,7 +195,7 @@ him escape.
 128 0 100 S
 2 18 8 2d2+22 1d2+2
 0 100
-8 8 1
+8 human~ 1
 #3815
 god mortal manifestation~
 the mortal Hatchet~
@@ -208,7 +208,7 @@ entrance, and welcomes you to join in conversation.
 2 8|128|8192 1000 S
 40 -20 -30 40d40+444 1d40+40
 0 200000
-8 8 1
+8 human~ 1
 #3816
 goddess mortal manifestation~
 the mortal Icaza~
@@ -222,7 +222,7 @@ smiles at you, and with an accent not too different from a Southern one, says,
 2 8|128|8192 1000 S
 40 -20 -30 40d40+444 1d40+40
 0 200000
-8 8 2
+8 human~ 2
 #3817
 ooze green~
 the green Ooze~
@@ -233,7 +233,7 @@ This ooze looks like bad stuff, almost as if it's alive.
 2|32 0 0 S
 5 15 5 5d5+55 1d5+5
 0 500
-8 8 0
+8 plant~ 0
 #0
 
 
@@ -505,8 +505,8 @@ A book of poetry is beckoning you to read it.~
 E
 book poetry poems~
 This book of poetry is written by Hatchet for his loving Goddess, Icaza.  There
-are 4 poems in this book currently.  To read them, read ONE, TWO, THREE, or
-FOUR.
+are 5 poems in this book currently.  To read them, read ONE, TWO, THREE, 
+FOUR or FIVE.
 ~
 E
 one~
@@ -606,6 +606,87 @@ four~
 Inspired by and dedicated to the fair lady Icaza
 by Hatchet 4/4/94
 ~
+E
+five~
+.
+		Proposal
+	I am enchanted by you.
+	So easily you have captured my heart.
+	And so happy I am when I think of you,
+	My life I wish you to be a part.
+
+	I am in love with you,
+	After only knowing you for time so short.
+	It is your love that I now woo,
+	You hand I now quietly court.
+
+	I am lonely without you,
+	You are so vital to my life.
+	So I now humbly beg of you,
+	Susan, please be my wife.
+
+by Hatchet, 9/1/93, recited to Icaza on 9/9/1994
+~
+#3826
+book poetry poems~
+a book of poetry~
+A book of poetry is beckoning you to read it.~
+~
+8 0 1
+0~ 0~ 0~ 0~
+1 0 0
+E
+book poetry poems~
+This book of poetry is written by Hatchet for his own pleasure.  There are
+4 poems in this book currently.  To read them, read ONE, TWO, THREE, or FOUR.
+~
+E
+one~
+.
+		Driving Fast
+	Wind streaming hy hair.
+	Racing along the highway.
+	Police behind me.
+
+by Hatchet 6/16/95
+~
+E
+two~
+.
+		Traffic Class
+	We all sit in class.
+	Listening to a comic
+	As he laughs at us.
+
+by Hatchet 6/16/95
+~
+E
+three~
+.
+		Suspension
+	A half score people
+	Bound to a room
+	By their own volition.
+	We even pay for
+	Our adult suspension.
+	We all come to this place
+	For the same reason.
+	And we await the same fate.
+
+by Hatchet 6/16/95
+~
+E
+four~
+.
+		Speeding
+	There was a guy named Mitch
+	Who drove like he had an itch.
+	He sped down Twenty Four,
+	Didn't look aft or fore,
+	And got caught by a bitch.
+
+by Hatchet 6/16/95
+~
 #0
 
 
@@ -618,7 +699,7 @@ allowing you to see only a dim passage leading to the south.  You see around
 you decaying wood, and a musty smell assails your nostrils.  You look down and
 realize you are stepping on some type of feces.
 ~
-38 12 0
+38 12|16 1
 D2
 You see the dim passage leading south.
 ~
@@ -636,7 +717,7 @@ You are in a dim hallway.  Unlit torches hang from the walls, but the
 little light coming from the north is enough for you to see around.  This
 hallway continues south and north, with doors to the west and east.
 ~
-38 8 0
+38 8|16 1
 D0
 ~
 ~
@@ -662,7 +743,7 @@ south, with doors to the west and east.  There is less and less light coming
 from the north, and you can barely see what's south of you.  Hanging on the
 walls are some torches.
 ~
-38 8 0
+38 8|16 1
 D0
 ~
 ~
@@ -687,7 +768,7 @@ You can see that what's available of the light from the north can not penetrate
 the lower floor.  A room is to the west and to the east.  Hanging on the walls
 are some torches that look serviceable.
 ~
-38 8 0
+38 8|16 1
 D0
 ~
 ~
@@ -711,7 +792,7 @@ A Small Storage Room~
 You are in a small storage room.  Ripped up flour sacks litter this floor,
 along with some animal droppings.  The exit is to the east.
 ~
-38 8 0
+38 8|16 1
 D1
 ~
 door~
@@ -722,7 +803,7 @@ A Small Storage Room~
 You are in a small storage room.  A pile of rags is against the far wall.  You
 think you saw something move in the pile of rags!  The exit is to the west.
 ~
-38 8 0
+38 8|16 1
 D3
 ~
 door~
@@ -733,7 +814,7 @@ A Small Storage Room~
 You are in a small storage room.  A horrid stench fills this room, smelling 
 like some dead animal is rotting away here.  The exit is to the east.
 ~
-38 8 0
+38 8|16 1
 D1
 ~
 door~
@@ -744,7 +825,7 @@ A Small Storage Room~
 You are in a small storage room.  A pile of filthy rags is against the far
 wall.  The exit is to the west.
 ~
-38 8 0
+38 8|16 1
 D3
 ~
 door~
@@ -755,7 +836,7 @@ A Small Storage Room~
 You are in a small storage room.  A pile of filthy rags is against the far
 wall.  The exit is to the east.
 ~
-38 12 0
+38 12|16 1
 D1
 ~
 door~
@@ -766,7 +847,7 @@ A Small Storage Room~
 You are in a small storage room.  Nothing of interest is here.  The exit is to
 the west.
 ~
-38 8 0
+38 8|16 1
 D3
 ~
 door~
@@ -779,7 +860,7 @@ and the combined darkness makes this place quite forbidding.  Small rooms can
 be seen in the west and east, and a hallway leads north.  Unlit torches adorn
 the walls.
 ~
-38 9 0
+38 9|16 1
 D0
 ~
 ~
@@ -805,7 +886,7 @@ not fully complete in construction, and that the inhabitants here have made
 some make-shift arrangements.  The hallway leads north and south, with rooms
 to the west and east.  Unlit torches adorn the walls.
 ~
-38 9 0
+38 9|16 1
 D0
 ~
 ~
@@ -830,7 +911,7 @@ some roughly made rooms.  You can see that the wooden walls are incomplete, and
 parts of the walls are just dug from rock and packed soil.  Unlit torches
 are on the walls.
 ~
-38 9 0
+38 9|16 1
 D0
 ~
 ~
@@ -855,7 +936,7 @@ unfinished place reveals it's state of incompleteness.  Someone must have
 abandoned this place for a reason.  To the west and east are some makeshift 
 bedrooms, and this hallway leads north and south.
 ~
-38 9 0
+38 9|16 1
 D0
 ~
 ~
@@ -878,7 +959,7 @@ A Storage Room~
 You are in a storage room.  Weapons and some armor are on the floor.  Most are
 broken, however, so they are useless to you.  The exit is to the east.
 ~
-38 9 0
+38 9|16 1
 D1
 ~
 door~
@@ -890,7 +971,7 @@ You are in a storage room.  "Food" and some useless tools are scattered all
 over the floor, but they sure don't look like anything you'd dare get near!
 The exit is to the west.
 ~
-38 9 0
+38 9|16 1
 D3
 ~
 door~
@@ -901,7 +982,7 @@ A Bedroom~
 You are in a makeshift bedroom.  A pile of rags against a wall makes a bed, and
 some boards nailed together make a table.  The exit is to the east.
 ~
-38 9 0
+38 9|16 1
 D1
 ~
 door~
@@ -912,7 +993,7 @@ A Bedroom~
 You are in a makeshift bedroom.  A pile of rags against a wall makes a bed, and
 a crate on it's side makes a rough cabinet.  The exit is to the west.
 ~
-38 9 0
+38 9|16 1
 D3
 ~
 door~
@@ -923,7 +1004,7 @@ A Bedroom~
 You are in a makeshift bedroom.  The only thing in this room is a bed made of
 a pile of rags.  The exit is to the east.
 ~
-38 9 0
+38 9|16 1
 D1
 ~
 door~
@@ -934,7 +1015,7 @@ A Bedroom~
 You are in a makeshift bedroom.  The only thing in this room is a bed made of
 a pile of rags.  The exit is to the west.
 ~
-38 9 0
+38 9|16 1
 D3
 ~
 door~
@@ -945,7 +1026,7 @@ A Bedroom~
 You are in a makeshift bedroom.  All you see in this room is a bed made of rags
 and a wooden box.  The exit is to the east.
 ~
-38 9 0
+38 9|16 1
 D1
 ~
 door~
@@ -956,7 +1037,7 @@ A Bedroom~
 You are in a makeshift bedroom.  All you can see in this room is a bed made of
 rags and a shabbily built stool in the corner.  The exit is to the west.
 ~
-38 9 0
+38 9|16 1
 D3
 ~
 door~
@@ -968,7 +1049,7 @@ You are on a landing of an old stairway.  The stairs creak as you put any
 pressure on it, and the combined gloom of this place gives you the creeps. 
 The stairs lead both up and down, and a hallway is to the south.
 ~
-38 9 0
+38 9|16 1
 D2
 ~
 ~
@@ -990,7 +1071,7 @@ torch is on a wall, and you can tell that someone must do some upkeep here,
 because the obnoxious smell is less in this room.  The exit is down the
 stairway.
 ~
-38 8 0
+38 8|16 1
 D5
 ~
 ~
@@ -1003,7 +1084,7 @@ like swamp, with a warm and humid odor assailing your nostrils.  An ominously
 red light comes from the south, the other exit to this room being the stairs
 back up.
 ~
-38 9 0
+38 9|16 1
 D2
 You think you smell smoke coming from the south.
 ~
@@ -1021,7 +1102,7 @@ high.  A light smoke fills the air, and you see burn marks all around you.  A
 steel door is to the east, another is to the west, and tunnels lead north and
 south.
 ~
-38 1|4|9 0
+38 1|4|9|16 1
 D0
 ~
 ~
@@ -1045,7 +1126,7 @@ You are in a small, unlit room.  There is nothing of interest here other than
 the obvious treasure piled in the center of this room!  The steel door leads
 west out of here.
 ~
-38 9 0
+38 9|16 1
 D3
 ~
 door steel~
@@ -1057,7 +1138,7 @@ You are in a small room.  A large desk and large chair make up the furnishings
 in this room, other than a painting on the north wall.  The steel door leads
 east out of here.
 ~
-38 9 0
+38 9|16 1
 D1
 ~
 door steel~
@@ -1069,7 +1150,7 @@ You are in a roughly dug tunnel.  The inhabitants of this lair must have begun
 to expand by excavating this area.  A lit lantern casts wavy shadows across
 this tunnel, which leads north and south.
 ~
-38 8 0
+38 8|16 1
 D0
 ~
 ~
@@ -1085,7 +1166,7 @@ You are in an intersection in the tunnels.  A lit lantern casts a orange light
 in this tunnel, showing cages to the west, and side branches leading north and
 east.
 ~
-38 8 0
+38 8|16 1
 D0
 ~
 ~
@@ -1105,7 +1186,7 @@ A Large Cage~
 You are in a large, unlit cage.  It smells bad here, and you here squishing
 sounds as you tread around in this room.  The exit is to the east.
 ~
-38 9 0
+38 9|16 1
 D1
 ~
 cage~
@@ -1116,7 +1197,7 @@ A Bend in the Tunnels~
 You are in a bend in the tunnels.  A lantern blazes on a low ceiling.  The 
 exits are to the west and south.
 ~
-38 8 0
+38 8|16 1
 D2
 ~
 ~
@@ -1131,7 +1212,7 @@ A T-Intersection in the Tunnels~
 You are in a T-intersection in the tunnels.  A lantern shows exits in the
 cardinal directions.
 ~
-38 8 0
+38 8|16 1
 D0
 ~
 ~
@@ -1154,7 +1235,7 @@ An End of the Tunnel~
 You are at an end of the tunnel, and you can see signs of digging here.  The
 walls glitter from a lantern hung on a wall.  The exit is to the east.
 ~
-38 8 0
+38 8|16 1
 D1
 ~
 ~
@@ -1165,7 +1246,7 @@ An End of the Tunnel~
 You are at an end of the tunnel, and you can see signs of digging here.  The
 walls glitter from a lantern hung on a wall.  The exit is to the west.
 ~
-38 8 0
+38 8|16 1
 D3
 ~
 ~
@@ -1176,7 +1257,7 @@ The Tunnel~
 You are in the tunnels.  A high lantern shows exits to the north and south.
 The walls glitter slightly.
 ~
-38 8 0
+38 8|16 1
 D0
 ~
 ~
@@ -1192,7 +1273,7 @@ You are at an end of the tunnels.  A high lantern shows a large silver door to
 the south.  The door seems to glow.  The tunnel leads back north.  There is a
 large sign here, scribbled on it, 'Do NOT Enter!'
 ~
-38 8 0
+38 8|16 1
 D0
 ~
 ~
@@ -1216,7 +1297,7 @@ occupants of this area must avoid this room for some reason.  Some words are
 inscribed next to the shrine.  The exit is to the north.  A strange portal is
 to the west.
 ~
-38 12 0
+38 12|16 1
 D0
 ~
 door~
@@ -1247,7 +1328,7 @@ divine light illuminates this room.  To the west, you see the rest of this
 estate, and to the east, you see a small room with a shrine through a hazy
 portal.
 ~
-38 8 0
+38 8|16 1
 D1
 You see the small room with the shrine.~
 ~
@@ -1267,7 +1348,7 @@ door wrought from a platinum-like metal is to the north, and an equally large
 door wrought from a gold-like metal is to the south.  The other exit from this
 room is the hallway to the east, and a mysterious portal to the west.
 ~
-38 8 0
+38 8|16 1
 D0
 The door looks impenetrable by mundane means.  A small sign says, 'Hatchet'.
 ~
@@ -1295,7 +1376,7 @@ A picture of the fair lady Icaza is on a wall, next to a Cindy Crawford
 calendar.  You can hear the song 'Somewhere Out There' in the background.  The
 exit is to the south.
 ~
-38 0 0
+38 0|16 1
 D2
 ~
 ~
@@ -1309,7 +1390,7 @@ and a stuffed piggie on the bed.  This bed looks like it's for display use
 only, as the owner of this room must sleep somewhere else.  You can hear the 
 ringing of a small bell in the background.  The exit is to the north.
 ~
-38 0 0
+38 0|16 1
 D0
 ~
 ~
@@ -1324,7 +1405,7 @@ moods.  The smell of roses and perfumes permeates this room, and you can hear
 some soft jazzy music (Kenny G?) in the background.  There is no mortal exit 
 from this room.
 ~
-38 512 0
+38 512|16 1
 S
 #0
 
@@ -1332,150 +1413,152 @@ S
 
 #RESETS
 *Doors*
-D 0 3801 4 1		Close the grate up
-D 0 3026 5 1		Close the grate down
-D 0 3802 1 1		Close the door to room 3806
-D 0 3806 3 1		Close the door from room 3806
-D 0 3804 3 1		Close the door to room 3809
-D 0 3809 1 1		Close the door from room 3809
-D 0 3811 1 1		Close the door to room 3816
-D 0 3816 3 1		Close the door from room 3816
-D 0 3811 3 1		Close the door to room 3815
-D 0 3815 1 1		Close the door from room 3815
-D 0 3812 1 1		Close the door to room 3818
-D 0 3818 3 1		Close the door from room 3818
-D 0 3813 3 1		Close the door to room 3819
-D 0 3819 1 1		Close the door from room 3819
-D 0 3814 3 1		Close the door to room 3821
-D 0 3821 1 1		Close the door from room 3821
-D 0 3826 1 2		Close and lock the door to room 3827
-D 0 3827 3 2		Close and lock the door from room 3827
-D 0 3826 3 2		Close and lock the door to room 3828
-D 0 3828 1 2		Close and lock the door from room 3828
-D 0 3830 3 2		Close and lock the door to room 3831
-D 0 3831 1 2		Close and lock the door from room 3831
-D 0 3837 2 2		Close and lock the door to room 3838
-D 0 3838 0 2		Close and lock the door from room 3838
-D 0 3838 3 2		Close and lock the door to room 3839
-D 0 3839 1 2		Close and lock the door from room 3839
-D 0 3840 0 2		Close and lock the door to room 3841
-D 0 3840 2 2		Close and lock the door to room 3842
+D 0 3801 4 1            Close the grate up
+D 0 3026 5 1            Close the grate down
+D 0 3802 1 1            Close the door to room 3806
+D 0 3806 3 1            Close the door from room 3806
+D 0 3804 3 1            Close the door to room 3809
+D 0 3809 1 1            Close the door from room 3809
+D 0 3811 1 1            Close the door to room 3816
+D 0 3816 3 1            Close the door from room 3816
+D 0 3811 3 1            Close the door to room 3815
+D 0 3815 1 1            Close the door from room 3815
+D 0 3812 1 1            Close the door to room 3818
+D 0 3818 3 1            Close the door from room 3818
+D 0 3813 3 1            Close the door to room 3819
+D 0 3819 1 1            Close the door from room 3819
+D 0 3814 3 1            Close the door to room 3821
+D 0 3821 1 1            Close the door from room 3821
+D 0 3826 1 2            Close and lock the door to room 3827
+D 0 3827 3 2            Close and lock the door from room 3827
+D 0 3826 3 2            Close and lock the door to room 3828
+D 0 3828 1 2            Close and lock the door from room 3828
+D 0 3830 3 2            Close and lock the door to room 3831
+D 0 3831 1 2            Close and lock the door from room 3831
+D 0 3837 2 2            Close and lock the door to room 3838
+D 0 3838 0 2            Close and lock the door from room 3838
+D 0 3838 3 2            Close and lock the door to room 3839
+D 0 3839 1 2            Close and lock the door from room 3839
+D 0 3840 0 2            Close and lock the door to room 3841
+D 0 3840 2 2            Close and lock the door to room 3842
 *
-M 0 3801 2 3802		Small rat in rooms
-M 0 3801 2 3810		Small rat in rooms
-O 0 3804 9 3802		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
-O 0 3804 9 3803		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
-O 0 3804 9 3804		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
-O 0 3804 9 3811		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
-O 0 3804 9 3812		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
-O 0 3804 9 3813		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
-O 0 3804 9 3814		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
-O 0 3804 9 3823		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
-O 0 3804 9 3824		Walls in the rooms
-P 0 3820 9 3804		Torch in walls
+M 0 3801 2 3802         Small rat in rooms
+M 0 3801 2 3810         Small rat in rooms
+O 0 3804 9 3802         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
+O 0 3804 9 3803         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
+O 0 3804 9 3804         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
+O 0 3804 9 3811         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
+O 0 3804 9 3812         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
+O 0 3804 9 3813         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
+O 0 3804 9 3814         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
+O 0 3804 9 3823         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
+O 0 3804 9 3824         Walls in the rooms
+P 0 3820 9 3804         Torch in walls
 *
-M 0 3804 2 3808		Rat in rooms
-M 0 3804 2 3817		Rat in rooms
-M 0 3805 1 3823		Large rat in rooms
-M 0 3806 1 3806		Wererat in room
-E 1 3811 99 16		Equipped with a stake
-M 0 3807 1 3815		Wererat guarding weapons
-E 1 3813 99 16		Rusted Knife
-E 1 3815 99 7		Leggings
-M 0 3807 2 3816		Wererat guarding food
-E 1 3813 99 16		Rusted Knife
-E 1 3816 99 10		Arm Guards
-M 0 3807 3 3815		Wererat guarding weapons
-E 1 3813 99 16		Rusted Knife
-E 1 3815 99 7		Leggings
-M 0 3807 4 3816		Wererat guarding food
-E 1 3813 99 16		Rusted Knife
-E 1 3816 99 10		Arm Guards
-M 0 3808 3 3824		Wererat in conference
-E 1 3811 99 16		Stake
-M 0 3808 3 3824		Wererat in conference
-E 1 3811 99 16		Stake
-M 0 3808 3 3824		Wererat in conference
-E 1 3811 99 16		Stake
-M 0 3810 1 3828		Wererat leader in office
-E 1 3817 99 16		Flail
-E 1 3814 99 14		Bracer
-E 1 3814 99 15		Bracer
-E 1 3815 99 7		Leggings
-E 1 3816 99 10		Arm Guards
-M 0 3811 2 3828		Large rats to support leader
-M 0 3811 2 3828		Large rats to support leader
-M 0 3812 1 3830		Slavemaster walking around
-E 1 3818 99 16		Whip
-E 1 3814 99 14		Bracer
-E 1 3814 99 15		Bracer
-G 1 3803 99		Give him the key to the cage
-O 0 3805 9 3829		Cavern walls in the rooms
-P 0 3822 9 3805		Sapphire in walls
-O 0 3805 9 3830		Cavern walls in the rooms
-P 0 3823 9 3805		Ruby in walls
-O 0 3805 9 3832		Cavern walls in the rooms
-P 0 3822 9 3805		Sapphire in walls
-O 0 3805 9 3833		Cavern walls in the rooms
-P 0 3822 9 3805		Sapphire in walls
-O 0 3805 9 3834		Cavern walls in the rooms
-P 0 3823 9 3805		Ruby in walls
-O 0 3805 9 3835		Cavern walls in the rooms
-P 0 3822 9 3805		Sapphire in walls
-O 0 3805 9 3836		Cavern walls in the rooms
-P 0 3822 9 3805		Sapphire in walls
-O 0 3805 9 3837		Cavern walls in the rooms
-P 0 3823 9 3805		Ruby in walls
-O 0 3805 9 3838		Cavern walls in the rooms
-P 0 3823 9 3805		Ruby in walls
-M 0 3813 3 3831		Slave in cage
-M 0 3813 3 3831		Slave in cage
-M 0 3813 3 3831		Slave in cage
-M 0 3814 2 3837		Slave working
-M 0 3814 2 3835		Slave working
-M 0 3815 1 3840		Mortal Hatchet
-E 1 3824 9 17		Wielding a Minigun!
-M 0 3816 1 3840		Mortal Icaza
-E 1 3824 9 17		Wielding a Minigun!
-M 0 3817 1 3819		Ooze in room
+M 0 3804 2 3808         Rat in rooms
+M 0 3804 2 3817         Rat in rooms
+M 0 3805 1 3823         Large rat in rooms
+M 0 3806 1 3806         Wererat in room
+E 1 3811 99 16          Equipped with a stake
+M 0 3807 2 3815         Wererat guarding weapons
+E 1 3813 99 16          Rusted Knife
+E 1 3815 99 7           Leggings
+M 0 3807 2 3816         Wererat guarding food
+E 1 3813 99 16          Rusted Knife
+E 1 3816 99 10          Arm Guards
+M 0 3807 2 3815         Wererat guarding weapons
+E 1 3813 99 16          Rusted Knife
+E 1 3815 99 7           Leggings
+M 0 3807 2 3816         Wererat guarding food
+E 1 3813 99 16          Rusted Knife
+E 1 3816 99 10          Arm Guards
+M 0 3808 3 3824         Wererat in conference
+E 1 3811 99 16          Stake
+M 0 3808 3 3824         Wererat in conference
+E 1 3811 99 16          Stake
+M 0 3808 3 3824         Wererat in conference
+E 1 3811 99 16          Stake
+M 0 3810 1 3828         Wererat leader in office
+E 1 3817 99 16          Flail
+E 1 3814 99 14          Bracer
+E 1 3814 99 15          Bracer
+E 1 3815 99 7           Leggings
+E 1 3816 99 10          Arm Guards
+M 0 3811 2 3828         Large rats to support leader
+M 0 3811 2 3828         Large rats to support leader
+M 0 3812 1 3830         Slavemaster walking around
+E 1 3818 99 16          Whip
+E 1 3814 99 14          Bracer
+E 1 3814 99 15          Bracer
+G 1 3803 99             Give him the key to the cage
+O 0 3805 9 3829         Cavern walls in the rooms
+P 0 3822 9 3805         Sapphire in walls
+O 0 3805 9 3830         Cavern walls in the rooms
+P 0 3823 9 3805         Ruby in walls
+O 0 3805 9 3832         Cavern walls in the rooms
+P 0 3822 9 3805         Sapphire in walls
+O 0 3805 9 3833         Cavern walls in the rooms
+P 0 3822 9 3805         Sapphire in walls
+O 0 3805 9 3834         Cavern walls in the rooms
+P 0 3823 9 3805         Ruby in walls
+O 0 3805 9 3835         Cavern walls in the rooms
+P 0 3822 9 3805         Sapphire in walls
+O 0 3805 9 3836         Cavern walls in the rooms
+P 0 3822 9 3805         Sapphire in walls
+O 0 3805 9 3837         Cavern walls in the rooms
+P 0 3823 9 3805         Ruby in walls
+O 0 3805 9 3838         Cavern walls in the rooms
+P 0 3823 9 3805         Ruby in walls
+M 0 3813 3 3831         Slave in cage
+M 0 3813 3 3831         Slave in cage
+M 0 3813 3 3831         Slave in cage
+M 0 3814 2 3837         Slave working
+M 0 3814 2 3835         Slave working
+M 0 3815 1 3840         Mortal Hatchet
+E 1 3824 9 17           Wielding a Minigun!
+M 0 3816 1 3840         Mortal Icaza
+E 1 3824 9 17           Wielding a Minigun!
+M 0 3817 1 3819         Ooze in room
 *
-M 0 3809 1 3826		Drake in the Drake's Lair
-E 1 3802 9 3		Wearing the necklace key
-O 0 3812 9 3838		Shrine in Icaza's holy room
-P 0 3819 9 3812		Put the rod in the shrine
-O 0 3801 9 3827		Key lying on the ground
-O 0 3821 9 3827		Treasure on the ground
+M 0 3809 1 3826         Drake in the Drake's Lair
+E 1 3802 9 3            Wearing the necklace key
+O 0 3812 9 3838         Shrine in Icaza's holy room
+P 0 3819 9 3812         Put the rod in the shrine
+O 0 3801 9 3827         Key lying on the ground
+O 0 3821 9 3827         Treasure on the ground
+O 0 3825 1 3842         Book of Poetry
+P 0 3825 1 3812         Put the Book of Poetry in the shrine
+O 0 3826 1 3841         Hatchet's Book of Poetry
 *
-M 0 3802 1 3842		Snigger in Icaza's room
-O 0 3825 1 3842		Book of Poetry
-M 0 3803 1 3841		Sammy in Hatchet's room
+M 0 3802 1 3842         Snigger in Icaza's room
+M 0 3803 1 3841         Sammy in Hatchet's room
 *
 S
 
 
 
 #SPECIALS
-M 3801 spec_poison	small rat
-M 3802 spec_poison	snigger
-M 3804 spec_poison	rat
-M 3805 spec_poison	large rat
-M 3806 spec_poison	wererat
-M 3807 spec_poison	wererat guard
-M 3808 spec_poison	wererat in conference
-M 3809 spec_breath_fire	firedrake
-M 3810 spec_poison	rat leader
-M 3811 spec_poison	large rat
-M 3812 spec_poison	slavemaster
-M 3815 spec_cast_undead	Hatchet
-M 3816 spec_cast_cleric	Icaza
+M 3801 spec_poison      small rat
+M 3802 spec_poison      snigger
+M 3804 spec_poison      rat
+M 3805 spec_poison      large rat
+M 3806 spec_poison      wererat
+M 3807 spec_poison      wererat guard
+M 3808 spec_poison      wererat in conference
+M 3809 spec_breath_fire firedrake
+M 3810 spec_poison      rat leader
+M 3811 spec_poison      large rat
+M 3812 spec_poison      slavemaster
+M 3815 spec_cast_undead Hatchet
+M 3816 spec_cast_cleric Icaza
 S
 
 

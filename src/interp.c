@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -78,14 +81,17 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "cast",		do_cast,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "exits",		do_exits,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "get",		do_get,		POS_RESTING,	 0,  LOG_NORMAL	},
+    { "immtalk",	do_immtalk,	POS_DEAD,    L_HER,  LOG_NORMAL	},
     { "inventory",	do_inventory,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "kill",		do_kill,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "look",		do_look,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "order",		do_order,	POS_RESTING,	 0,  LOG_ALWAYS	},
+    { "quaff",		do_quaff,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "rest",		do_rest,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "sleep",		do_sleep,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "stand",		do_stand,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "tell",		do_tell,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "wield",		do_wear,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "wizhelp",	do_wizhelp,	POS_DEAD,    L_HER,  LOG_NORMAL	},
 
@@ -116,10 +122,27 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "wizlist",        do_wizlist,     POS_DEAD,        0,  LOG_NORMAL },
 
     /*
+     * Combat commands.
+     */
+    { "backstab",	do_backstab,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "bs",		do_backstab,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "berserk",	do_berserk,	POS_FIGHTING,	 0,  LOG_NORMAL	},
+    { "circle",		do_circle,	POS_FIGHTING,	 0,  LOG_NORMAL	},
+    { "disarm",		do_disarm,	POS_FIGHTING,	 0,  LOG_NORMAL	},
+    { "fee",    	do_fee, 	POS_FIGHTING,	 0,  LOG_NORMAL	},    
+    { "feed",   	do_feed,	POS_FIGHTING,	 0,  LOG_NORMAL	},
+    { "flee",		do_flee,	POS_FIGHTING,	 0,  LOG_NORMAL	},
+    { "kick",		do_kick,	POS_FIGHTING,	 0,  LOG_NORMAL	},
+    { "murder",		do_murder,	POS_FIGHTING,	 0,  LOG_ALWAYS	},
+    { "rescue",		do_rescue,	POS_FIGHTING,	 0,  LOG_NORMAL	},
+    { "stake",		do_stake,	POS_STANDING,	 0,  LOG_NORMAL	},
+
+    /*
      * Configuration commands.
      */
     { "auto",           do_auto,        POS_DEAD,        0,  LOG_NORMAL },
     { "autoexit",       do_autoexit,    POS_DEAD,        0,  LOG_NORMAL },
+    { "autogold",       do_autogold,    POS_DEAD,        0,  LOG_NORMAL },
     { "autoloot",       do_autoloot,    POS_DEAD,        0,  LOG_NORMAL },
     { "autosac",        do_autosac,     POS_DEAD,        0,  LOG_NORMAL },
     { "blank",          do_blank,       POS_DEAD,        0,  LOG_NORMAL },
@@ -136,34 +159,35 @@ const	struct	cmd_type	cmd_table	[ ] =
     /*
      * Communication commands.
      */
-    { "answer",		do_answer,	POS_SLEEPING,	 0,  LOG_NORMAL },
-    { "auction",	do_auction,	POS_SLEEPING,	 0,  LOG_NORMAL	},
+    { "answer",		do_answer,	POS_SLEEPING,	 3,  LOG_NORMAL },
+    { "auction",	do_auction,	POS_SLEEPING,	 3,  LOG_NORMAL	},
     { "chat",		do_chat,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { ".",		do_chat,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "emote",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL	},
     { ",",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "gtell",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL	},
     { ";",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "music",		do_music,	POS_SLEEPING,	 0,  LOG_NORMAL },
+    { "music",		do_music,	POS_SLEEPING,	 3,  LOG_NORMAL },
     { "note",		do_note,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "pose",		do_pose,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "question",	do_question,	POS_SLEEPING,	 0,  LOG_NORMAL },
+    { "question",	do_question,	POS_SLEEPING,	 3,  LOG_NORMAL },
     { "reply",		do_reply,	POS_SLEEPING,	 0,  LOG_NORMAL },
     { "say",		do_say,		POS_RESTING,	 0,  LOG_NORMAL	},
     { "'",		do_say,		POS_RESTING,	 0,  LOG_NORMAL	},
     { "shout",		do_shout,	POS_RESTING,	 3,  LOG_NORMAL	},
-    { "yell",		do_yell,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "yell",		do_yell,	POS_RESTING,	 3,  LOG_NORMAL	},
 
     /*
      * Object manipulation commands.
      */
     { "brandish",	do_brandish,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "close",		do_close,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "donate",         do_donate,      POS_RESTING,     0,  LOG_NORMAL },
     { "drink",		do_drink,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "drop",		do_drop,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "eat",		do_eat,		POS_RESTING,	 0,  LOG_NORMAL	},
     { "fill",		do_fill,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "give",		do_give,	POS_RESTING,	 0,  LOG_ALWAYS	},
+    { "give",		do_give,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "hold",		do_wear,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "list",		do_list,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "lock",		do_lock,	POS_RESTING,	 0,  LOG_NORMAL	},
@@ -182,21 +206,12 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "zap",		do_zap,		POS_RESTING,	 0,  LOG_NORMAL	},
 
     /*
-     * Combat commands.
-     */
-    { "backstab",	do_backstab,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "bs",		do_backstab,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "disarm",		do_disarm,	POS_FIGHTING,	 0,  LOG_NORMAL	},
-    { "flee",		do_flee,	POS_FIGHTING,	 0,  LOG_NORMAL	},
-    { "kick",		do_kick,	POS_FIGHTING,	 0,  LOG_NORMAL	},
-    { "murde",		do_murde,	POS_FIGHTING,	 5,  LOG_NORMAL	},
-    { "murder",		do_murder,	POS_FIGHTING,	 5,  LOG_ALWAYS	},
-    { "rescue",		do_rescue,	POS_FIGHTING,	 0,  LOG_NORMAL	},
-
-    /*
      * Miscellaneous commands.
      */
-    { "bash door",      do_bash,        POS_STANDING,    0,  LOG_NORMAL },
+    { "afk",            do_afk,         POS_SLEEPING,    0,  LOG_NORMAL },
+    { "bash",           do_bash,        POS_STANDING,    0,  LOG_NORMAL },
+    { "bet",            do_bet,         POS_STANDING,    0,  LOG_NORMAL },
+    { "wager",          do_bet,         POS_STANDING,    0,  LOG_NORMAL },
     { "chameleon power",do_chameleon,   POS_STANDING,    0,  LOG_NORMAL },
     { "follow",		do_follow,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "group",		do_group,	POS_SLEEPING,	 0,  LOG_NORMAL	},
@@ -208,15 +223,18 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "quit",		do_quit,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "recall",		do_recall,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "/",		do_recall,	POS_FIGHTING,	 0,  LOG_NORMAL	},
+    { "register",	do_register,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "rent",		do_rent,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "save",		do_save,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "shadow form",    do_shadow,      POS_STANDING,    0,  LOG_NORMAL },
     { "sleep",		do_sleep,	POS_SLEEPING,	 0,  LOG_NORMAL	},
+    { "snare",		do_snare,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "sneak",		do_sneak,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "spells",         do_spells,      POS_SLEEPING,    0,  LOG_NORMAL },
     { "split",		do_split,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "steal",		do_steal,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "train",		do_train,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "untangle",	do_untangle,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "visible",	do_visible,	POS_SLEEPING,	 0,  LOG_NORMAL },
     { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "where",		do_where,	POS_RESTING,	 0,  LOG_NORMAL	},
@@ -234,10 +252,11 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "disconnect",	do_disconnect,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "force",		do_force,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "freeze",		do_freeze,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
+    { "imtlset",	do_imtlset,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
     { "log",		do_log,		POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "mset",		do_mset,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
-    { "noemote",	do_noemote,	POS_DEAD,    L_SEN,  LOG_NORMAL	},
-    { "notell",		do_notell,	POS_DEAD,    L_SEN,  LOG_NORMAL	},
+    { "noemote",	do_noemote,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
+    { "notell",		do_notell,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "numlock",	do_numlock,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "oload",		do_oload,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "oset",		do_oset,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
@@ -248,7 +267,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "restore",	do_restore,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "shutdow",	do_shutdow,	POS_DEAD,    L_SEN,  LOG_NORMAL	},
     { "shutdown",	do_shutdown,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
-    { "silence",	do_silence,	POS_DEAD,    L_SEN,  LOG_NORMAL },
+    { "silence",	do_silence,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
     { "sla",		do_sla,		POS_DEAD,    L_SEN,  LOG_NORMAL	},
     { "slay",		do_slay,	POS_DEAD,    L_SEN,  LOG_ALWAYS	},
     { "sset",		do_sset,	POS_DEAD,    L_SEN,  LOG_ALWAYS },
@@ -283,8 +302,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "goto",		do_goto,	POS_DEAD,    L_APP,  LOG_NORMAL	},
     { "holylight",	do_holylight,	POS_DEAD,    L_APP,  LOG_NORMAL	},
 
-    { "immtalk",	do_immtalk,	POS_DEAD,    L_APP,  LOG_NORMAL	},
-    { ":",		do_immtalk,	POS_DEAD,    L_APP,  LOG_NORMAL	},
+    { ":",		do_immtalk,	POS_DEAD,    L_HER,  LOG_NORMAL	},
 
     /*
      * End of list.
@@ -336,17 +354,6 @@ const	struct	social_type	social_table [ ] =
 	"$n stands and says, 'Hi, I'm $n, and I'm a mud addict.'",
     },
    
-    {
-	"afk",
-	"You tell everyone in the room that you'll be AFK.",
-	"$n announces, 'I'm going AFK'.",
-	"You tell $M that you'll be AFK.",
-	"$n tells $N, 'I'm going AFK'.",
-	"$n announces to you, 'I'm going AFK'.",
-	"Why tell yourself?  You already know you ninny!",
-	"$n is mumbling to $mself again.  Something about going AFK."
-    },
- 
     {
 	"agree",
 	"You seem to be in an agreeable mood.",
@@ -465,7 +472,7 @@ const	struct	social_type	social_table [ ] =
 	"$n blows a kiss to $N.  Touching, ain't it?",
 	"$n blows a kiss to you.  Not as good as a real one, huh?",
 	"You blow a kiss to yourself.",
-	"$n blows a kiss to $mself.  Wierd."
+	"$n blows a kiss to $mself.  Weird."
     },
   
     {
@@ -477,6 +484,17 @@ const	struct	social_type	social_table [ ] =
 	"$n bleeds all over you!  YUCK!",
 	"You bleed all over yourself!",
 	"$n bleeds all over $mself."
+    },
+
+    {
+      "blindfold",
+      "You pull out a blindfold and grin evilly.",
+      "$n pulls out a blindfold and grins evilly.",
+      "You a tie a blindfold securely about $S head.",
+      "$n ties a blindfold securely about $N's head. Must be dark in there.",
+      "$n ties a blindfold securely about your head. You can't see a thing.",
+      "You blindfold yourself, not wanting to see what happens next.",
+      "$n blindfolds $mself, not wanting to see what happens next."
     },
 
     {
@@ -656,6 +674,17 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
+	"caress",
+	"Who would you like to caress?",
+	"$n is looking for someone to caress with $s gentle touch.",
+	"You run your hands across $S body, caressing $M.",
+	"$n runs $s hands across $N's body, caressing $M.",
+	"$n runs $s hands across your body, caressing you.",
+	"You lightly caress yourself- wouldn't you rather do that in private?",
+	"$n caresses $mself all over- and in public, no less!"
+    },
+
+    {
 	"catnap",
 	"You curl into a tiny ball and go to sleep.",
 	"$n curls $mself into a tiny ball and goes to sleep.",
@@ -688,6 +717,17 @@ const	struct	social_type	social_table [ ] =
 	"$n looks around, muttering, 'Ver are the nuclear wessels?'"
     },
     
+    {
+      "cherish",
+      "You cherish the moment.",
+      "$n cherishes the moment.",
+      "You cherish $M with all your heart.",
+      "$n cherishes $N with all $s heart.",
+      "$n cherishes you with all $s heart.",
+      "You cherish yourself. Getting a bit narcissistic, are you?",
+      "$n cherishes $mself narcissistically."
+    },
+
     {
 	"chuckle",
 	"You chuckle politely.",
@@ -733,14 +773,14 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
-	"comb",
-	"You comb your hair - perfect.",
-	"$n combs $s hair, how dashing!",
-	"You patiently untangle $N's hair - what a mess!",
-	"$n tries patiently to untangle $N's hair.",
-	"$n pulls your hair in an attempt to comb it.",
-	"You pull your hair, but it will not be combed.",
-	"$n tries to comb $s tangled hair."
+      "coffee",
+      "You sip from a hot cup of coffee.",
+      "$n sips from a hot cup of coffee.",
+      "You offer $M a hot cup of strong coffee.",
+      "$n offers $N a hot cup of strong coffee.",
+      "$n offers you a hot cup of strong coffee.",
+      "You quaff a hot cup of strong coffee. You are WIRED.",
+      "$n quaffs a hot cup of strong coffee, getting WIRED."
     },
 
     {
@@ -1088,6 +1128,17 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
+      "gag",
+      "You gag in disgust.",
+      "$n gags in disgust.",
+      "You stuff a sock in $s mouth, gagging $M. Ahhhhhhh...sweet silence!",
+      "$n stuffs a sock in $N's mouth, gagging $M. Ahhhhhhh...sweet silence!",
+      "$n gags your mouth with a sock. Everyone enjoys a moment of silence.",
+      "You gag yourself with a sock before you say something you might regret.",
+      "$n gags $mself with a sock before $e says something $e might regret."
+    },
+
+    {
         "garth",
         "You will give your weapons away....NOT.",
 	"$n yells 'WAYNE'S WORLD WAYNE'S WORLD -- PARTY TIME!  EXCELLENT!'",
@@ -1102,7 +1153,7 @@ const	struct	social_type	social_table [ ] =
 	"gasp",
 	"You gasp in astonishment.",
 	"$n gasps in astonishment.",
-	"You gasp as you realize what $e did.",
+	"You gasp as you realize what $E did.",
 	"$n gasps as $e realizes what $N did.",
 	"$n gasps as $e realizes what you did.",
 	"You look at yourself and gasp!",
@@ -1178,7 +1229,7 @@ const	struct	social_type	social_table [ ] =
     {
 	"grimace",
 	"You contort your face in disgust.",
-	"$n grimaces is disgust.",
+	"$n grimaces in disgust.",
 	"You grimace in disgust at $M.",
 	"$n grimaces in disgust at $N.",
 	"$n grimaces in disgust at you.",
@@ -1253,6 +1304,17 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
+      "halo",
+      "An aura of heavenly light appears above your head.",
+      "An aura of heavenly light appears above $n's head.",
+      "You project an aura of heavenly light above $S head.",
+      "$n projects an aura of heavenly light above $N's head.",
+      "$n projects an aura of heavenly light above your head.",
+      "An aura of heavenly light appears above your head.",
+      "An aura of heavenly light appears above $n's head."
+    },
+
+    {
 	"hand",
 	"Kiss whose hand?",
 	NULL,
@@ -1261,6 +1323,17 @@ const	struct	social_type	social_table [ ] =
 	"$n kisses your hand.  How continental!",
 	"You kiss your own hand.",
 	"$n kisses $s own hand."
+    },
+
+    {
+      "handcuff",
+      "You pull out a pair of handcuffs.",
+      "$n pulls out a pair of handcuffs.",
+      "You handcuff $M, putting $M completely at your mercy.",
+      "$n handcuffs $N, pretty kinky, huh?",
+      "$n handcuffs you. This could get interesting.",
+      "You handcuff yourself. Too bad you can't seem to find the key.",
+      "$n handcuffs $mself. Too bad $e can't seem to find the key."
     },
 
     {
@@ -1297,6 +1370,17 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
+      "hero",
+      "You heroically risk life and limb to save the day.",
+      "$n heroically risks life and limb to save the day.",
+      "You say to $M, '$N, YOU'RE MY HERO!'",
+      "$n says to $N, '$N, YOU'RE MY HERO!'",
+      "$n says to you, '$N, YOU'RE MY HERO!'",
+      "You try to look heroic.",
+      "$n does $s best impression of a hero."
+    },
+
+    {
 	"highfive",
 	"You jump in the air...oops, better get someone else to join you.",
 	"$n jumps in the air by $mself.  Is $e a cheerleader, or just daft?",
@@ -1308,14 +1392,25 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
+      "holdon",
+      "You pause for a moment, hesitant.",
+      "$n pauses for a moment, somewhat hesitant.",
+      "You hold $M closely, hugging $M.",
+      "$n holds $N closely, hugging $M.",
+      "$n holds you closely, hugging you.",
+      "You have to hold yourself up you're so weary. Go to Sleep!",
+      "$n has to hold $mself up $e's so tired. $e should go to bed and get some sleep."
+    },
+
+    {
 	"hop",
 	"You hop around like a little kid.",
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL
+	"$n hops around like a little kid.",
+	"$n hops around like a little kid.",
+	"$n hops around like a little kid.",
+	"$n hops around like a little kid.",
+	"$n hops around like a little kid.",
+	"$n hops around like a little kid."
     },
 
     {
@@ -1374,6 +1469,17 @@ const	struct	social_type	social_table [ ] =
     }, 
  
     {
+      "icecube",
+      "You wonder who would like an ice cube down their shirt.",
+      "With a devious look on $s face, $n hides something behind $s back.",
+      "You stuff an ice cube down $S shirt. You laugh as $E hops around.",
+      "$n stuffs an ice cube down $N's shirt, better hope that was $s last ice cube.",
+      "$n stuffs an ice cube down your shirt. Brrr! $n laughs as you struggle to get it out.",
+      "You stick an ice cube down your shirt. Brrr!",
+      "$n sticks an icecube down $s shirt, trying to cool off."
+    },
+
+    {
 	"invite",
 	"You speak your best French in hopes of getting lucky.",
 	"$n tells you, 'Voulez-vous couche avec moi ce soir?'",  
@@ -1384,6 +1490,17 @@ const	struct	social_type	social_table [ ] =
 	"$n says to $mself, 'Voulez-vous couche avec moi ce soir?'"
     },
   
+    {
+      "iwhistle",
+      "You whistle innocently, trying to hide your guilt.",
+      "$n whistles innocently.",
+      "You whistle innocently, avoiding $S question.",
+      "$n whistles innocently, a sure sign of guilt.",
+      "$n whistles innocently at your question...hmmmmm.",
+      "You whistle innocently.",
+      "$n whistles innocently, trying to hide $s guilt."
+    },
+
     {
         "jsave",
         "You profess 'Jesus saves!  But Gretsky recovers...he scores!'",
@@ -1437,6 +1554,17 @@ const	struct	social_type	social_table [ ] =
 	"$n licks you.",
 	"You lick yourself.",
 	"$n licks $mself - YUCK."
+    },
+
+    {
+      "listen",
+      "You listen intently.",
+      "$n listens intently.",
+      "You listen intently to what $E is saying.",
+      "$n listens intently to what $N is saying.",
+      "$n listens intently to what you are saying.",
+      "You pay close attention to what you are saying, trying to avoid saying something you shouldn't.",
+      "$n listens intently to $mself. $e must enjoy the sound of $s own voice."
     },
 
     {
@@ -1638,12 +1766,23 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
+      "noogie",
+      "You look around, wondering who would like to get a noogie.",
+      "$n looks around, wondering who would like to get a noogie.",
+      "You put $M in a headlock and give $M a severe noogie.",
+      "$n puts $N in a headlock and gives $M a noogie.",
+      "$n puts you in a headlock and gives you a severe noogie.",
+      "You give yourself a noogie. What a goof!",
+      "$n gives $mself a noogie. What a goof!"
+    },
+
+    {
 	"nose",
 	"Gee your nose is big.",
 	"$n noses around in your business.",
-	"You tweek $S nose.",
-	"$n tweeks $N's nose.  Ow!",
-	"$n tweeks your nose.  Ow!",
+	"You tweak $S nose.",
+	"$n tweaks $N's nose.  Ow!",
+	"$n tweaks your nose.  Ow!",
 	"You wiggle your nose.",
 	"$n wiggles $s nose."
     },
@@ -1682,14 +1821,14 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
-	"oggle",
-	"Whom do you want to oggle?",
+	"ogle",
+	"Whom do you want to ogle?",
 	NULL,
-	"You oggle $M like $E was a piece of meat.",
-	"$n oggles $N.  Maybe you should leave them alone for awhile?",
-	"$n oggles you.  Guess what $e is thinking about?",
-	"You oggle yourself.  You may just be too wierd for this mud.",
-	"$n oggles $mself.  Better hope that $e stops there."
+	"You ogle $M like $E was a piece of meat.",
+	"$n ogles $N.  Maybe you should leave them alone for awhile?",
+	"$n ogles you.  Guess what $e is thinking about?",
+	"You ogle yourself.  You may just be too wierd for this mud.",
+	"$n ogles $mself.  Better hope that $e stops there."
     },
 
     {
@@ -1763,8 +1902,8 @@ const	struct	social_type	social_table [ ] =
 	"You aim your phasers at everyone in the room.",
 	"$n aims a phaser at everyone in the room.  LOOK OUT!",
 	"You set your phaser on OWCH and point it at $M.",
-	"$n sets $s phaser on OWCH and points it at $N.  Ut oh...",
-	"$n sets $s phaser on OWCH and points it at you.  Ut oh...",
+	"$n sets $s phaser on OWCH and points it at $N.  Uh oh...",
+	"$n sets $s phaser on OWCH and points it at you.  Uh oh...",
 	"You aim your phasers at yourself.  Duck!",
 	"$n aims $s phasers at $mself.  Maybe $e's depressed?"
     },
@@ -1817,11 +1956,11 @@ const	struct	social_type	social_table [ ] =
 	"ponder",
 	"You ponder the question.",
 	"$n sits down and thinks deeply.",
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL
+	"$n sits down and thinks deeply.",
+	"$n sits down and thinks deeply.",
+	"$n sits down and thinks deeply.",
+	"$n sits down and thinks deeply.",
+	"$n sits down and thinks deeply."
     },
 
     {
@@ -1935,6 +2074,17 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
+      "push",
+      "You push the history-eraser button! BUT, nothing seems to happen.",
+      "$n pushes the history-eraser button! BUT, nothing seems to happen.",
+      "You push $M away in disgust.",
+      "$n pushes $N away in disgust.",
+      "$n pushes you away in disgust.",
+      "You push yourself to the limit of your abilities.",
+      "$n pushes $mself to the limits of $s abilites."
+    },
+
+    {
 	"raise",
 	"You raise your hand in response.",
 	"$n raises $s hand in response.",
@@ -1945,6 +2095,17 @@ const	struct	social_type	social_table [ ] =
 	"$n raises $s hand in response."
     },
    
+    {
+      "reassure",
+      "You reassure everyone that everything will be ok.",
+      "$n reassures everyone that everything will be ok.",
+      "You hug $M reassuringly.",
+      "$n hugs $N reassuringly.",
+      "$n hugs you reassuringly.",
+      "You try to reassure yourself that everything will be ok.",
+      "$n tries to reassure $mself that everything will be ok."
+    },
+
     {   
 	"renandstimpy",
 	"You say, 'Oh Happy Happy, Joy Joy!'",
@@ -2034,6 +2195,17 @@ const	struct	social_type	social_table [ ] =
     },
 
     {
+        "scold",
+	"You scold everyone for being so naughty!",
+	"$n scolds everyone for being so naughty!",
+	"You scold $M for being so naughty!",
+	"$n scolds $N for being so naughty!",
+	"$n scolds you for being so naughty!",
+	"You scold yourself for being so naughty!",
+	"$n scolds $mself for being so naughty!"
+    },
+
+    {
 	"scream",
 	"ARRRRRRRRRRGH!!!!!",
 	"$n screams loudly!",
@@ -2070,9 +2242,9 @@ const	struct	social_type	social_table [ ] =
 	"shrug",
 	"You shrug.",
 	"$n shrugs helplessly.",
-	"You shrug in response to $s question.",
+	"You shrug in response to $S question.",
 	"$n shrugs in response to $N's question.",
-	"$n shrugs in respopnse to your question.",
+	"$n shrugs in response to your question.",
 	"You shrug to yourself.",
 	"$n shrugs to $mself.  What a strange person."
     },
@@ -2180,11 +2352,11 @@ const	struct	social_type	social_table [ ] =
 	"sneeze",
 	"Gesundheit!",
 	"$n sneezes.",
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL
+	"$n sneezes.",
+	"$n sneezes.",
+	"$n sneezes.",
+	"$n sneezes.",
+	"$n sneezes."
     },
 
     {
@@ -2213,11 +2385,11 @@ const	struct	social_type	social_table [ ] =
 	"snore",
 	"Zzzzzzzzzzzzzzzzz.",
 	"$n snores loudly.",
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL
+	"$n snores loudly.",
+	"$n snores loudly.",
+	"$n snores loudly.",
+	"$n snores loudly.",
+	"$n snores loudly."
     },
 
     {
@@ -2411,11 +2583,11 @@ const	struct	social_type	social_table [ ] =
 	"sulk",
 	"You sulk.",
 	"$n sulks in the corner.",
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL
+	"$n sulks in the corner.",
+	"$n sulks in the corner.",
+	"$n sulks in the corner.",
+	"$n sulks in the corner.",
+	"$n sulks in the corner."
     },
 
     {
@@ -2429,6 +2601,17 @@ const	struct	social_type	social_table [ ] =
 	"$n stokes $s soul by catching a smooth, perfect wave."
     },
     
+    {
+      "sweep",
+      "You grab a broom and sweep up the mess you made.",
+      "$n grabs a broom and sweeps up the mess $e made.",
+      "You sweep $M up off $S feet and swirl $M around in happiness.",
+      "$n sweeps $N up off $S feet and swirls $M around in happiness.",
+      "$n sweeps you off your feet and swirls you around in happiness.",
+      "You swirl around in happiness.",
+      "$n swirls $mself around.  Pretty silly, huh?"
+    },
+
     {
 	"swoon",
 	"You swoon in ecstacy.",
@@ -2511,7 +2694,7 @@ const	struct	social_type	social_table [ ] =
 	"Whom do you want to tickle?",
 	NULL,
 	"You tickle $N - $E starts giggling.",
-	"$n tickles $N - $e starts giggling.",
+	"$n tickles $N - $E starts giggling.",
 	"$n tickles you - hee hee hee.",
 	"You tickle yourself, how funny!",
 	"$n tickles $mself."
@@ -2595,17 +2778,6 @@ const	struct	social_type	social_table [ ] =
     },
     
     {
-	"wager",
-	"You wager you can name that tune in ONE NOTE.",
-	"$n bets $e can name that tune in ONE NOTE.",
-	"You wager $M that you can name that tune in ONE NOTE.",
-	"$n bets $N that $e can name that tune in ONE NOTE.",
-	"$n bets you that $e can name that tune in ONE NOTE.",
-	"You wager you can name that tune in ONE NOTE.",
-	"$n bets $e can name that tune in ONE NOTE.",
-    },
-    
-    {
 	"wave",
 	"You wave.",
 	"$n waves happily.",
@@ -2651,7 +2823,7 @@ const	struct	social_type	social_table [ ] =
 
     {
 	"wiggle",
-	"Your wiggle your bottom.",
+	"You wiggle your bottom.",
 	"$n wiggles $s bottom.",
 	"You wiggle your bottom toward $M.",
 	"$n wiggles $s bottom toward $N.",
@@ -2788,9 +2960,11 @@ void interpret( CHAR_DATA *ch, char *argument )
 	return;
 
     /*
-     * No hiding.
+     * No hiding and remove AFK
      */
     REMOVE_BIT( ch->affected_by, AFF_HIDE );
+    if ( !IS_NPC( ch ) )
+        REMOVE_BIT( ch->act, PLR_AFK );
 
     /*
      * Implement freeze command.
@@ -2975,7 +3149,7 @@ bool check_social( CHAR_DATA *ch, char *command, char *argument )
 	act( social_table[cmd].char_no_arg,   ch, NULL, victim, TO_CHAR    );
 	act( social_table[cmd].others_no_arg, ch, NULL, victim, TO_ROOM    );
     }
-    else if ( !( victim = get_char_room( ch, arg ) ) )
+    else if ( !( victim = get_char_world( ch, arg ) ) )
     {
 	send_to_char( "They aren't here.\n\r",                    ch );
     }
@@ -2983,6 +3157,34 @@ bool check_social( CHAR_DATA *ch, char *command, char *argument )
     {
 	act( social_table[cmd].char_auto,     ch, NULL, victim, TO_CHAR    );
 	act( social_table[cmd].others_auto,   ch, NULL, victim, TO_ROOM    );
+    }
+    else if ( !get_char_room( ch, arg ) && can_see( ch, victim ) )
+    {
+	if ( !IS_NPC( victim ) )
+        {
+	    ROOM_INDEX_DATA *original;
+	    char            *ldbase                      = "From far away, ";
+	    char             ldmsg [ MAX_STRING_LENGTH ];
+
+	    original = ch->in_room;
+	    char_from_room( ch );
+	    char_to_room( ch, victim->in_room );
+
+	    strcpy( ldmsg, ldbase );
+	    strcat( ldmsg, social_table[cmd].char_found );
+	    act( ldmsg,                       ch, NULL, victim, TO_CHAR    );
+
+	    strcpy( ldmsg, ldbase );
+	    strcat( ldmsg, social_table[cmd].vict_found );
+	    act( ldmsg,                       ch, NULL, victim, TO_VICT    );
+
+	    char_from_room( ch );
+	    char_to_room( ch, original );
+	}
+	else
+	{
+	    send_to_char( "They aren't here.\n\r",                ch );
+	}
     }
     else
     {

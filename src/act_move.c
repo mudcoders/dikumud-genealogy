@@ -8,6 +8,9 @@
  *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
  *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
  *                                                                         *
+ *  EnvyMud 2.0 improvements copyright (C) 1995 by Michael Quan and        *
+ *  Mitchell Tse.                                                          *
+ *                                                                         *
  *  In order to use any part of this Envy Diku Mud, you must comply with   *
  *  the original Diku license in 'license.doc', the Merc license in        *
  *  'license.txt', as well as the Envy license in 'license.nvy'.           *
@@ -24,6 +27,7 @@
 #include <sys/types.h>
 #endif
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
@@ -42,7 +46,7 @@ const	int	rev_dir		[ ]		=
 
 const	int	movement_loss	[ SECT_MAX ]	=
 {
-    1, 2, 2, 3, 4, 5, 4, 1, 6, 10, 6
+    1, 2, 2, 3, 4, 6, 4, 1, 5, 10, 6
 };
 
 
@@ -53,6 +57,10 @@ const	int	movement_loss	[ SECT_MAX ]	=
 int	find_door	args( ( CHAR_DATA *ch, char *arg ) );
 bool	has_key		args( ( CHAR_DATA *ch, int key ) );
 
+/*
+ *  Local game functions.
+ */
+DECLARE_GAME_FUN( game_u_l_t );
 
 
 void move_char( CHAR_DATA *ch, int door )
@@ -62,10 +70,24 @@ void move_char( CHAR_DATA *ch, int door )
     EXIT_DATA       *pexit;
     ROOM_INDEX_DATA *in_room;
     ROOM_INDEX_DATA *to_room;
+    int              moved = 131072; /* Matches ACT & PLR bits */
 
     if ( door < 0 || door > 5 )
     {
 	bug( "Do_move: bad door %d.", door );
+	return;
+    }
+
+    /*
+     * Prevents infinite move loop in
+     * maze zone when group has 2 leaders - Kahn
+     */
+    if ( IS_SET( ch->act, moved ) )
+        return;
+
+    if ( IS_AFFECTED( ch, AFF_HOLD ) ) 
+    {
+	send_to_char( "You are stuck in a snare!  You can't move!\n\r", ch );
 	return;
     }
 
@@ -78,7 +100,8 @@ void move_char( CHAR_DATA *ch, int door )
 
     if ( IS_SET( pexit->exit_info, EX_CLOSED ) )
     {
-        if ( !IS_AFFECTED( ch, AFF_PASS_DOOR ) )
+        if ( !IS_AFFECTED( ch, AFF_PASS_DOOR )
+	    && !IS_SET( race_table[ ch->race ].race_abilities, RACE_PASSDOOR ) )
         {
 	    act( "The $d is closed.",
 		ch, NULL, pexit->keyword, TO_CHAR );
@@ -124,12 +147,24 @@ void move_char( CHAR_DATA *ch, int door )
 	if (   in_room->sector_type == SECT_AIR
 	    || to_room->sector_type == SECT_AIR )
 	{
-	    if ( !IS_AFFECTED( ch, AFF_FLYING ) )
+	    if ( !IS_AFFECTED( ch, AFF_FLYING )
+		&& !IS_SET( race_table[ ch->race ].race_abilities, RACE_FLY ) )
 	    {
 		send_to_char( "You can't fly.\n\r", ch );
 		return;
 	    }
 	}
+
+	if (   to_room->sector_type != SECT_WATER_NOSWIM
+	    && to_room->sector_type != SECT_UNDERWATER
+	    && strcmp( race_table[ ch->race ].name, "God" )
+	    && strcmp( race_table[ ch->race ].name, "Bear" )
+	    && IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
+	{
+	    send_to_char( "You flap around but you cant move!\n\r", ch );
+	    return;
+	}
+
 
 	if (   in_room->sector_type == SECT_WATER_NOSWIM
 	    || to_room->sector_type == SECT_WATER_NOSWIM )
@@ -145,7 +180,10 @@ void move_char( CHAR_DATA *ch, int door )
 	    /*
 	     * Suggestion for flying above water by Sludge
 	     */
-	    if ( IS_AFFECTED( ch, AFF_FLYING ) )
+	    if ( IS_AFFECTED( ch, AFF_FLYING )
+		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_FLY )
+		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_WATERWALK )
+		|| IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
 	        found = TRUE;
 
 	    for ( obj = ch->carrying; obj; obj = obj->next_content )
@@ -163,9 +201,21 @@ void move_char( CHAR_DATA *ch, int door )
 	    }
 	}
 
+	if ( (   in_room->sector_type == SECT_UNDERWATER
+	      || to_room->sector_type == SECT_UNDERWATER )
+	    &&   !IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
+	{
+	    send_to_char( "You need to be able to swim to go there.\n\r", ch );
+	    return;
+	}
+
 	move = movement_loss[UMIN( SECT_MAX-1, in_room->sector_type )]
 	     + movement_loss[UMIN( SECT_MAX-1, to_room->sector_type )]
 	     ;
+	/* Flying persons lose constant minimum movement. */
+	if (   IS_SET( race_table[ ch->race ].race_abilities, RACE_FLY )
+	    || IS_AFFECTED( ch, AFF_FLYING ) )
+	    move = 2;
 
 	if ( ch->move < move )
 	{
@@ -179,7 +229,13 @@ void move_char( CHAR_DATA *ch, int door )
 
     if ( !IS_AFFECTED( ch, AFF_SNEAK )
 	&& ( IS_NPC( ch ) || !IS_SET( ch->act, PLR_WIZINVIS ) ) )
-	act( "$n leaves $T.", ch, NULL, dir_name[door], TO_ROOM );
+        if (     (   ( in_room->sector_type == SECT_WATER_SWIM )
+	          || ( in_room->sector_type == SECT_UNDERWATER ) )
+	    &&   (   ( to_room->sector_type == SECT_WATER_SWIM )
+		  || ( to_room->sector_type == SECT_UNDERWATER ) ) )
+	    act( "$n swims $T.",  ch, NULL, dir_name[door], TO_ROOM );
+	else
+	    act( "$n leaves $T.", ch, NULL, dir_name[door], TO_ROOM );
 
     char_from_room( ch );
     char_to_room( ch, to_room );
@@ -187,7 +243,28 @@ void move_char( CHAR_DATA *ch, int door )
 	&& ( IS_NPC( ch ) || !IS_SET( ch->act, PLR_WIZINVIS ) ) )
 	act( "$n has arrived.", ch, NULL, NULL, TO_ROOM );
 
+    /* Because of the addition of the deleted flag, we can do this -Kahn */
+    if ( !IS_IMMORTAL( ch ) && ch->race == race_lookup( "vampire" )
+	&& to_room->sector_type == SECT_UNDERWATER )
+    {
+	send_to_char( "Arrgh!  Large body of water!\n\r", ch );
+	act( "$n thrashes underwater!", ch, NULL, NULL, TO_ROOM );
+	damage( ch, ch, 20, TYPE_UNDEFINED, WEAR_NONE );
+    }
+    else if ( !IS_IMMORTAL( ch )
+	     && ( to_room->sector_type == SECT_UNDERWATER
+		 && !IS_AFFECTED( ch, AFF_GILLS )
+		 && !IS_SET( race_table[ ch->race ].race_abilities,
+			    RACE_WATERBREATH ) ) )
+    {
+	send_to_char( "You can't breathe!\n\r", ch );
+	act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
+	damage( ch, ch, 2, TYPE_UNDEFINED, WEAR_NONE );
+    }
+    
     do_look( ch, "auto" );
+
+    SET_BIT( ch->act, moved );
 
     for ( fch = in_room->people; fch; fch = fch_next )
     {
@@ -203,6 +280,7 @@ void move_char( CHAR_DATA *ch, int door )
 	}
     }
 
+    REMOVE_BIT( ch->act, moved );
     return;
 }
 
@@ -884,6 +962,13 @@ void do_recall( CHAR_DATA *ch, char *argument )
 
     act( "$n prays for transportation!", ch, NULL, NULL, TO_ROOM );
 
+    if ( IS_SET( ch->in_room->room_flags, ROOM_NO_RECALL )
+	|| IS_AFFECTED( ch, AFF_CURSE ) )
+    {
+	send_to_char( "God has forsaken you.\n\r", ch );
+	return;
+    }
+
     place = ch->in_room->area->recall;
     if ( !( location = get_room_index( place ) ) )
     {
@@ -894,13 +979,6 @@ void do_recall( CHAR_DATA *ch, char *argument )
     if ( ch->in_room == location )
 	return;
 
-    if ( IS_SET( ch->in_room->room_flags, ROOM_NO_RECALL )
-	|| IS_AFFECTED( ch, AFF_CURSE ) )
-    {
-	send_to_char( "God has forsaken you.\n\r", ch );
-	return;
-    }
-
     if ( ( victim = ch->fighting ) )
     {
 	int lose;
@@ -908,14 +986,14 @@ void do_recall( CHAR_DATA *ch, char *argument )
 	if ( number_bits( 1 ) == 0 )
 	{
 	    WAIT_STATE( ch, 4 );
-	    lose = ( ch->desc ) ? 50 : 100;
+	    lose = ( ch->desc ) ? 25 : 50;
 	    gain_exp( ch, 0 - lose );
 	    sprintf( buf, "You failed!  You lose %d exps.\n\r", lose );
 	    send_to_char( buf, ch );
 	    return;
 	}
 
-	lose = ( ch->desc ) ? 100 : 200;
+	lose = ( ch->desc ) ? 50 : 100;
 	gain_exp( ch, 0 - lose );
 	sprintf( buf, "You recall from combat!  You lose %d exps.\n\r", lose );
 	send_to_char( buf, ch );
@@ -939,8 +1017,10 @@ void do_train( CHAR_DATA *ch, char *argument )
     CHAR_DATA *mob;
     char      *pOutput;
     char       buf [ MAX_STRING_LENGTH ];
+    bool       ok = FALSE;
     int       *pAbility;
     int        cost;
+    int        money;
     int        bone_flag = 0; /*Added for training of hp ma mv */
 
     if ( IS_NPC( ch ) )
@@ -968,7 +1048,8 @@ void do_train( CHAR_DATA *ch, char *argument )
 	argument = "foo";
     }
 
-    cost = 5;
+    cost  = 5;
+    money = ch->level * ch->level * 100;
 
     if ( !str_cmp( argument, "str" ) )
     {
@@ -1015,6 +1096,7 @@ void do_train( CHAR_DATA *ch, char *argument )
     else if ( !str_cmp( argument, "hp" ) )
     {
  	    cost    = 1;
+	    money   = ch->level * ch->level * 20;
 	bone_flag   = 1;
         pAbility    = &ch->max_hit;
         pOutput     = "hit points";
@@ -1023,6 +1105,7 @@ void do_train( CHAR_DATA *ch, char *argument )
     else if ( !str_cmp( argument, "mana" ) )
     {
  	    cost    = 1;
+	    money   = ch->level * ch->level * 20;
 	bone_flag   = 1;
         pAbility    = &ch->max_mana;
         pOutput     = "mana points";
@@ -1031,6 +1114,7 @@ void do_train( CHAR_DATA *ch, char *argument )
     else if ( !str_cmp( argument, "move" ) )
     {
  	    cost    = 1;
+	    money   = ch->level * ch->level * 20;
 	bone_flag   = 2;
         pAbility    = &ch->max_move;
         pOutput     = "move points";
@@ -1041,11 +1125,16 @@ void do_train( CHAR_DATA *ch, char *argument )
     else
     {
 	strcpy( buf, "You can train:" );
-	if ( ch->pcdata->perm_str < 18 ) strcat( buf, " str" );
-	if ( ch->pcdata->perm_int < 18 ) strcat( buf, " int" );
-	if ( ch->pcdata->perm_wis < 18 ) strcat( buf, " wis" );
-	if ( ch->pcdata->perm_dex < 18 ) strcat( buf, " dex" );
-	if ( ch->pcdata->perm_con < 18 ) strcat( buf, " con" );
+	if ( ch->pcdata->perm_str < 18 + race_table[ ch->race ].str_mod )
+	    strcat( buf, " str" );
+	if ( ch->pcdata->perm_int < 18 + race_table[ ch->race ].int_mod )
+	    strcat( buf, " int" );
+	if ( ch->pcdata->perm_wis < 18 + race_table[ ch->race ].wis_mod )
+	    strcat( buf, " wis" );
+	if ( ch->pcdata->perm_dex < 18 + race_table[ ch->race ].dex_mod )
+	    strcat( buf, " dex" );
+	if ( ch->pcdata->perm_con < 18 + race_table[ ch->race ].con_mod )
+	    strcat( buf, " con" );
 
 	strcat( buf, " hp mana move" );
 
@@ -1053,15 +1142,61 @@ void do_train( CHAR_DATA *ch, char *argument )
 	{
 	    strcat( buf, ".\n\r" );
 	    send_to_char( buf, ch );
+	    sprintf( buf, "Cost is %d gold coins for attributes.\n\r", money );
+	    send_to_char( buf, ch );
+	    money   = ch->level * ch->level * 20;
+	    sprintf( buf, "Cost is %d gold coins per hp/mana/move.\n\r",
+		    money );
+	    send_to_char( buf, ch );
 	}
 
 	return;
     }
 
-    if ( *pAbility >= 18 && bone_flag == 0 )
-    {
-	act( "Your $T is already at maximum.", ch, NULL, pOutput, TO_CHAR );
-	return;
+    if ( bone_flag == 0 )
+      {
+	if ( !str_cmp( argument, "str" ) )
+	{
+	    if ( *pAbility < 18 + race_table[ ch->race ].str_mod )
+	      {
+	        ok = TRUE;
+	      }
+	}
+	else if ( !str_cmp( argument, "int" ) )
+	{ 
+	    if ( *pAbility < 18 + race_table[ ch->race ].int_mod )
+	      {
+	        ok = TRUE;
+	      }
+	}
+	else if ( !str_cmp( argument, "wis" ) )
+	{
+	    if ( *pAbility < 18 + race_table[ ch->race ].wis_mod )
+	      {
+		ok = TRUE;
+	      }
+	}
+	else if ( !str_cmp( argument, "dex" ) )
+	{
+	    if ( *pAbility < 18 + race_table[ ch->race ].dex_mod )
+	      {
+	        ok = TRUE;
+	      }
+	}
+	else if ( !str_cmp( argument, "con" ) )
+	{
+	    if ( *pAbility < 18 + race_table[ ch->race ].con_mod )
+	      {
+	        ok = TRUE;
+	      }
+	}
+
+	if ( !ok )
+	{
+	    act( "Your $T is already at maximum.",
+		ch, NULL, pOutput, TO_CHAR );
+	    return;
+	}
     }
 
     if ( cost > ch->practice )
@@ -1069,8 +1204,14 @@ void do_train( CHAR_DATA *ch, char *argument )
 	send_to_char( "You don't have enough practices.\n\r", ch );
 	return;
     }
+    else if ( money > ch->gold )
+    {
+	send_to_char( "You don't have enough money.\n\r", ch );
+	return;
+    }
 
     ch->practice        	-= cost;
+    ch->gold                    -= money;
 
     if ( bone_flag == 0 )
         *pAbility		+= 1;
@@ -1177,8 +1318,9 @@ void do_shadow ( CHAR_DATA *ch, char *argument )
 /*
  * Bash code by Thelonius for EnvyMud (originally bash_door)
  * Damage modified using Morpheus's code
+ * Message for bashproof doors by that wacky guy Kahn
  */
-void do_bash ( CHAR_DATA *ch, char *argument )
+void do_bash( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *gch;
     char       arg [ MAX_INPUT_LENGTH ];
@@ -1222,7 +1364,11 @@ void do_bash ( CHAR_DATA *ch, char *argument )
 
 	WAIT_STATE( ch, skill_table[gsn_bash].beats );
 
-	chance = ch->pcdata->learned[gsn_bash]/2;
+	if ( !IS_NPC( ch ) )
+	  chance = ch->pcdata->learned[gsn_bash]/2;
+	else
+	  chance = 0;
+
 	if ( IS_SET( pexit->exit_info, EX_LOCKED ) )
 	    chance /= 2;
 
@@ -1232,12 +1378,13 @@ void do_bash ( CHAR_DATA *ch, char *argument )
 		ch, NULL, pexit->keyword, TO_CHAR );
 	    act( "WHAAAAM!!!  $n bashes against the $d, but it holds strong.",
 		ch, NULL, pexit->keyword, TO_ROOM );
-	    damage( ch, ch, ( ch->max_hit / 5 ), gsn_bash );
+	    damage( ch, ch, ( ch->max_hit /  5 ), gsn_bash, WEAR_NONE );
 	    return;
 	}
 
 	if ( ( get_curr_str( ch ) >= 20 )
-	    && number_percent( ) < ( chance + 4 * ( get_curr_str( ch ) - 20 ) ) )
+	    && number_percent( ) <
+	        ( chance + 4 * ( get_curr_str( ch ) - 20 ) ) )
 	{
 	    /* Success */
 
@@ -1247,10 +1394,12 @@ void do_bash ( CHAR_DATA *ch, char *argument )
 	    
 	    SET_BIT( pexit->exit_info, EX_BASHED );
 
-	    act( "Crash!  You bashed open the $d!", ch, NULL, pexit->keyword, TO_CHAR );
-	    act( "$n bashes open the $d!",          ch, NULL, pexit->keyword, TO_ROOM );
+	    act( "Crash!  You bashed open the $d!",
+		ch, NULL, pexit->keyword, TO_CHAR );
+	    act( "$n bashes open the $d!",
+		ch, NULL, pexit->keyword, TO_ROOM );
 
-	    damage( ch, ch, ( ch->max_hit / 20 ), gsn_bash );
+	    damage( ch, ch, ( ch->max_hit / 20 ), gsn_bash, WEAR_NONE );
 
 	    /* Bash through the other side */
 	    if (   ( to_room   = pexit->to_room               )
@@ -1283,7 +1432,7 @@ void do_bash ( CHAR_DATA *ch, char *argument )
 		ch, NULL, pexit->keyword, TO_CHAR );
 	    act( "$n bashes against the $d, but it holds strong.",
 		ch, NULL, pexit->keyword, TO_ROOM );
-	    damage( ch, ch, ( ch->max_hit / 10 ), gsn_bash );
+	    damage( ch, ch, ( ch->max_hit / 10 ), gsn_bash, WEAR_NONE );
 	}
     }
 
@@ -1291,12 +1440,18 @@ void do_bash ( CHAR_DATA *ch, char *argument )
      * Check for "guards"... anyone bashing a door is considered as
      * a potential aggressor, and there's a 25% chance that mobs
      * will do unto before being done unto.
+     * But first...let's make sure ch ain't dead?  That'd be a pain.
      */
+
+    if ( ch->deleted || ch->hit <= 1 )
+        return;
+
     for ( gch = ch->in_room->people; gch; gch = gch->next_in_room )
     {
-        if ( gch->deleted )
-	    continue;
-	if ( IS_AWAKE( gch )
+	if ( !gch->deleted
+	    && gch != ch
+	    && IS_AWAKE( gch )
+	    && can_see( gch, ch )
 	    && !gch->fighting
 	    && ( IS_NPC( gch ) && !IS_AFFECTED( gch, AFF_CHARM ) )
 	    && ( ch->level - gch->level <= 4 )
@@ -1307,3 +1462,372 @@ void do_bash ( CHAR_DATA *ch, char *argument )
     return;
 
 }
+
+/* Snare skill by Binky for EnvyMud */
+void do_snare( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA   *victim;
+    AFFECT_DATA  af;
+    char         arg [ MAX_INPUT_LENGTH ];
+
+    one_argument( argument, arg );
+
+    /*
+     *  First, this checks for case of no second argument (valid only
+     *  while fighting already).  Later, if an argument is given, it 
+     *  checks validity of argument.  Unsuccessful snares flow through
+     *  and receive messages at the end of the function.
+     */
+
+    if ( arg[0] == '\0' )
+    {
+	if ( !( victim = ch->fighting ) )
+	{
+	    send_to_char( "Ensnare whom?\n\r", ch );
+	    return;
+	}
+	/* No argument, but already fighting: valid use of snare */
+	WAIT_STATE( ch, skill_table[gsn_snare].beats );
+
+	if ( IS_NPC( ch )
+	    || number_percent( ) < ch->pcdata->learned[gsn_snare] )
+	{    
+	    affect_strip( victim, gsn_snare );  
+
+	    af.type      = gsn_snare;
+	    af.duration  = 1 + ( ( ch->level ) / 8 );
+	    af.location  = APPLY_NONE;
+	    af.modifier  = 0;
+	    af.bitvector = AFF_HOLD;
+
+	    affect_to_char( victim, &af );
+
+	    act( "You have ensnared $M!", ch, NULL, victim, TO_CHAR    );
+	    act( "$n has ensnared you!",  ch, NULL, victim, TO_VICT    );
+	    act( "$n has ensnared $N.",   ch, NULL, victim, TO_NOTVICT );
+	}
+	else
+	{
+	    act( "You failed to ensnare $M.  Uh oh!",
+		ch, NULL, victim, TO_CHAR    );
+	    act( "$n tried to ensnare you!  Get $m!",
+		ch, NULL, victim, TO_VICT    );
+	    act( "$n attempted to ensnare $N, but failed!",
+		ch, NULL, victim, TO_NOTVICT );
+	}
+    }
+    else				/* argument supplied */
+    {
+	if ( !( victim = get_char_room( ch, arg ) ) )
+	{
+	    send_to_char( "They aren't here.\n\r", ch );
+	    return;
+	}
+
+	if ( !IS_NPC( ch ) && !IS_NPC( victim ) )
+	{
+	    send_to_char( "You can't ensnare another player.\n\r", ch );
+	    return;
+	}
+
+	if ( victim != ch->fighting ) /* TRUE if not fighting, or fighting  */
+	{                             /* if person other than victim        */
+	    if ( ch->fighting )       /* TRUE if fighting other than vict.  */ 
+	    {		
+		send_to_char(
+		    "Take care of the person you are fighting first!\n\r",
+			     ch );
+		return;
+	    }                             
+	    WAIT_STATE( ch, skill_table[gsn_snare].beats );
+
+	    if ( IS_NPC( ch )       /* here, arg supplied, ch not fighting  */
+		|| number_percent( ) < ch->pcdata->learned[gsn_snare] )
+	    {
+		affect_strip( victim, gsn_snare );  
+
+		af.type      = gsn_snare;
+		af.duration  = 3 + ( (ch->level ) / 8 );
+		af.location  = APPLY_NONE;
+		af.modifier  = 0;
+		af.bitvector = AFF_HOLD;
+
+		affect_to_char( victim, &af );
+
+		act( "You have ensnared $M!", ch, NULL, victim, TO_CHAR    );
+		act( "$n has ensnared you!",  ch, NULL, victim, TO_VICT    );
+		act( "$n has ensnared $N.",   ch, NULL, victim, TO_NOTVICT );
+	    }
+	    else
+	    {
+		act( "You failed to ensnare $M.  Uh oh!",
+		    ch, NULL, victim, TO_CHAR    );
+		act( "$n tried to ensnare you!  Get $m!",
+		    ch, NULL, victim, TO_VICT    );
+		act( "$n attempted to ensnare $N, but failed!",
+		    ch, NULL, victim, TO_NOTVICT );
+	    }
+	    multi_hit( victim, ch, TYPE_UNDEFINED );
+	}
+	else
+	{
+	    WAIT_STATE( ch, skill_table[gsn_snare].beats );
+
+	    if ( IS_NPC( ch )
+		|| number_percent( ) < ch->pcdata->learned[gsn_snare] )
+	    {
+		affect_strip( victim, gsn_snare );  
+
+		af.type      = gsn_snare;
+		af.duration  = 1 + ( ( ch->level ) / 8 );
+		af.location  = APPLY_NONE;
+		af.modifier  = 0;
+		af.bitvector = AFF_HOLD;
+
+		affect_to_char( victim, &af );
+
+		act( "You have ensnared $M!", ch, NULL, victim, TO_CHAR    );
+		act( "$n has ensnared you!",  ch, NULL, victim, TO_VICT    );
+		act( "$n has ensnared $N.",   ch, NULL, victim, TO_NOTVICT );
+	    }
+	    else
+	    {
+		act( "You failed to ensnare $M.  Uh oh!",
+		    ch, NULL, victim, TO_CHAR    );
+		act( "$n tried to ensnare you!  Get $m!",
+		    ch, NULL, victim, TO_VICT    );
+		act( "$n attempted to ensnare $N, but failed!",
+		    ch, NULL, victim, TO_NOTVICT );
+	    }
+	}
+    }
+
+    return;
+}
+
+
+
+/* Untangle by Thelonius for EnvyMud */
+void do_untangle( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA   *victim;
+    char         arg [ MAX_INPUT_LENGTH ];
+
+    if ( !IS_NPC( ch )
+	&& ch->level < skill_table[gsn_untangle].skill_level[ch->class] )
+    {
+	send_to_char( "You aren't nimble enough.\n\r", ch );
+        return;
+    }
+
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+	victim = ch;
+    else if ( !( victim = get_char_room( ch, arg ) ) )
+    {
+	    send_to_char( "They aren't here.\n\r", ch );
+	    return;
+    }
+
+    if ( !is_affected( victim, gsn_snare ) )
+	return;
+
+    if ( ( IS_NPC( ch ) && !IS_AFFECTED( ch, AFF_CHARM ) )
+	|| ( !IS_NPC( ch ) 
+	    && number_percent( ) < ch->pcdata->learned[gsn_untangle] ) )
+    {
+	affect_strip( victim, gsn_snare );
+
+	if ( victim != ch )
+        {
+	    act( "You untangle $N.",  ch, NULL, victim, TO_CHAR    );
+	    act( "$n untangles you.", ch, NULL, victim, TO_VICT    );
+	    act( "$n untangles $n.",  ch, NULL, victim, TO_NOTVICT );
+        }
+	else
+        {
+	    send_to_char( "You untangle yourself.\n\r", ch );
+	    act( "$n untangles $mself.", ch, NULL, NULL, TO_ROOM );
+        }
+
+	return;
+    }
+}
+
+
+
+/*
+ *  Menu for all game functions.
+ *  Thelonius (Monk)  5/94
+ */
+void do_bet( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *croupier;
+
+    if ( IS_AFFECTED( ch, AFF_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
+    {
+        send_to_char( "You can't seem to break the silence.\n\r", ch );
+        return;
+    }
+
+    /*
+     *  The following searches for a valid croupier.  It allows existing
+     *  ACT_GAMBLE mobs to attempt to gamble with other croupiers, but
+     *  will not allow them to gamble with themselves (i.e., switched
+     *  imms).  This takes care of ch == croupier in later act()'s
+     */
+    for( croupier = ch->in_room->people;
+	croupier;
+	croupier = croupier->next_in_room )
+    {
+	if ( IS_NPC( croupier )
+	    && IS_SET( croupier->act, ACT_GAMBLE )
+	    && !IS_AFFECTED( croupier, AFF_MUTE )
+	    && croupier != ch )
+	    break;
+    }
+
+    if ( !croupier )
+    {
+	send_to_char( "You can't gamble here.\n\r", ch );
+	return;
+    }
+
+    switch( croupier->pIndexData->vnum )
+    {
+	default:
+	    bug( "ACT_GAMBLE set on undefined game; vnum = %d",
+		croupier->pIndexData->vnum );
+	    break;
+	case MOB_VNUM_ULT:
+	    game_u_l_t( ch, croupier, argument );
+	    break;
+    }
+
+    return;
+}
+
+
+
+/*
+ * Upper-Lower-Triple
+ * Game idea by Partan
+ * Coded by Thelonius
+ */
+void game_u_l_t( CHAR_DATA *ch, CHAR_DATA *croupier, char *argument )
+{
+    char msg    [ MAX_STRING_LENGTH ];
+    char buf    [ MAX_STRING_LENGTH ];
+    char limit  [ MAX_STRING_LENGTH ] = "5000";
+    char wager  [ MAX_INPUT_LENGTH  ];
+    char choice [ MAX_INPUT_LENGTH  ];
+    int  ichoice;
+    int  amount;
+    int  die1;
+    int  die2;
+    int  die3;
+    int  total;
+
+    argument = one_argument( argument, wager );
+    one_argument( argument, choice );
+
+    if ( wager[0] == '\0' || !is_number( wager ) )
+    {
+	send_to_char( "How much would you like to bet?\n\r", ch );
+	return;
+    }
+
+    amount = atoi( wager );
+
+    if ( amount > ch->gold )
+    {
+	send_to_char( "You don't have enough gold!\n\r", ch );
+	return;
+    }
+
+    if ( amount > atoi( limit ) )
+    {
+	act( "$n tells you, 'Sorry, the house limit is $t.'",
+	    croupier, limit, ch, TO_VICT );
+	ch->reply = croupier;
+	return;
+    }
+/*
+ *  At the moment, the winnings (and losses) do not actually go through
+ *  the croupier.  They could do so, if each croupier is loaded with a 
+ *  certain bankroll.  Unfortunately, they would probably be popular
+ *  (and rich) targets.
+ */
+
+         if ( !str_cmp( choice, "lower"  ) ) ichoice = 1;
+    else if ( !str_cmp( choice, "upper"  ) ) ichoice = 2;
+    else if ( !str_cmp( choice, "triple" ) ) ichoice = 3;
+    else
+    {
+	send_to_char( "What do you wish to bet: Upper, Lower, or Triple?\n\r",
+		     ch );
+	return;
+    }
+/*
+ *  Now we have a wagering amount, and a choice.
+ *  Let's place the bets and roll the dice, shall we?
+ */
+    act( "You place $t gold coins on the table, and bet '$T'.",
+	ch, wager, choice,   TO_CHAR    );
+    act( "$n places a bet with you.",
+	ch, NULL,  croupier, TO_VICT    );
+    act( "$n plays a dice game.",
+	ch, NULL,  croupier, TO_NOTVICT );
+    ch->gold -= amount;
+
+    die1 = number_range( 1, 6 );
+    die2 = number_range( 1, 6 );
+    die3 = number_range( 1, 6 );
+    total = die1 + die2 + die3;
+
+    sprintf( msg, "$n rolls the dice: they come up %d, %d, and %d",
+	    die1, die2, die3 );
+
+    if( die1 == die2 && die2 == die3 )
+    {
+	strcat( msg, "." );
+	act( msg, croupier, NULL, ch, TO_VICT );
+
+	if ( ichoice == 3 )
+	{
+	    char haul [ MAX_STRING_LENGTH ];
+
+	    amount *= 37;
+	    sprintf( haul, "%d", amount );
+	    act( "It's a TRIPLE!  You win $t gold coins!",
+		ch, haul, NULL, TO_CHAR );
+	    ch->gold += amount;
+	}
+	else
+	    send_to_char( "It's a TRIPLE!  You lose!\n\r", ch );
+
+	return;
+    }
+
+    sprintf( buf, ", totalling %d.", total );
+    strcat( msg, buf );
+    act( msg, croupier, NULL, ch, TO_VICT );
+
+    if (   ( ( total <= 10 ) && ( ichoice == 1 ) )
+	|| ( ( total >= 11 ) && ( ichoice == 2 ) ) )
+    {
+	char haul [ MAX_STRING_LENGTH ];
+
+	amount *= 2;
+	sprintf( haul, "%d", amount );
+	act( "You win $t gold coins!", ch, haul, NULL, TO_CHAR );
+	ch->gold += amount;
+    }
+    else
+	send_to_char( "Sorry, better luck next time!\n\r", ch );
+
+    return;
+}
+
