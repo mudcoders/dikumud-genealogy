@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -34,11 +34,8 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "interp.h"
 #include "music.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_quit		);
-
 
 /*
  * Local functions.
@@ -748,7 +745,7 @@ void char_update( void )
             int dam;
 
 	    if (ch->in_room == NULL)
-		return;
+		continue;
             
 	    act("$n writhes in agony as plague sores erupt from $s skin.",
 		ch,NULL,NULL,TO_ROOM);
@@ -762,11 +759,11 @@ void char_update( void )
             if (af == NULL)
             {
             	REMOVE_BIT(ch->affected_by,AFF_PLAGUE);
-            	return;
+            	continue;
             }
         
             if (af->level == 1)
-            	return;
+            	continue;
         
 	    plague.where		= TO_AFFECTS;
             plague.type 		= gsn_plague;
@@ -791,7 +788,7 @@ void char_update( void )
 	    dam = UMIN(ch->level,af->level/5+1);
 	    ch->mana -= dam;
 	    ch->move -= dam;
-	    damage_old( ch, ch, dam, gsn_plague,DAM_DISEASE,FALSE);
+	    damage( ch, ch, dam, gsn_plague,DAM_DISEASE,FALSE);
         }
 	else if ( IS_AFFECTED(ch, AFF_POISON) && ch != NULL
 	     &&   !IS_AFFECTED(ch,AFF_SLOW))
@@ -805,7 +802,7 @@ void char_update( void )
 	    {
 	        act( "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
 	        send_to_char( "You shiver and suffer.\n\r", ch );
-	        damage_old(ch,ch,poison->level/10 + 1,gsn_poison,
+	        damage(ch,ch,poison->level/10 + 1,gsn_poison,
 		    DAM_POISON,FALSE);
 	    }
 	}
@@ -829,10 +826,14 @@ void char_update( void )
         ch_next = ch->next;
 
 	if (ch->desc != NULL && ch->desc->descriptor % 30 == save_number)
+	{
 	    save_char_obj(ch);
+	}
 
-        if ( ch == ch_quit )
-            do_quit( ch, "" );
+        if (ch == ch_quit)
+	{
+            do_function(ch, &do_quit, "" );
+	}
     }
 
     return;

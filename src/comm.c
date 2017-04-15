@@ -19,10 +19,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -58,15 +58,9 @@
 #include <time.h>
 
 #include "merc.h"
+#include "interp.h"
 #include "recycle.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_help		);
-DECLARE_DO_FUN(do_look		);
-DECLARE_DO_FUN(do_skills	);
-DECLARE_DO_FUN(do_outfit	);
-DECLARE_DO_FUN(do_unread	);
-
+#include "tables.h"
 
 /*
  * Malloc debugging stuff.
@@ -167,16 +161,18 @@ int	socket		args( ( int domain, int type, int protocol ) );
 #if	defined(linux)
 /*
     Linux shouldn't need these. If you have a problem compiling, try
-    uncommenting accept and bind.
-    int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
-    int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
+    uncommenting these functions.
+*/
+/*
+int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
+int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
+int	getpeername	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
+int	getsockname	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
+int	listen		args( ( int s, int backlog ) );
 */
 
 int	close		args( ( int fd ) );
-int	getpeername	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
-int	getsockname	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
-int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
 int	select		args( ( int width, fd_set *readfds, fd_set *writefds,
 			    fd_set *exceptfds, struct timeval *timeout ) );
@@ -257,17 +253,21 @@ void	bzero		args( ( char *b, int length ) );
 int	close		args( ( int fd ) );
 int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
-int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
 int	select		args( ( int width, fd_set *readfds, fd_set *writefds,
 			    fd_set *exceptfds, struct timeval *timeout ) );
+
+#if !defined(__SVR4)
+int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
+
 #if defined(SYSV)
 int setsockopt		args( ( int s, int level, int optname,
 			    const char *optval, int optlen ) );
 #else
 int	setsockopt	args( ( int s, int level, int optname, void *optval,
 			    int optlen ) );
+#endif
 #endif
 int	socket		args( ( int domain, int type, int protocol ) );
 int	write		args( ( int fd, char *buf, int nbyte ) );
@@ -1498,7 +1498,7 @@ void write_to_buffer( DESCRIPTOR_DATA *d, const char *txt, int length )
     /*
      * Copy.
      */
-    strcpy( d->outbuf + d->outtop, txt );
+    strncpy( d->outbuf + d->outtop, txt, length );
     d->outtop += length;
     return;
 }
@@ -1670,12 +1670,12 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
 	if ( IS_IMMORTAL(ch) )
 	{
-	    do_help( ch, "imotd" );
+	    do_function(ch, &do_help, "imotd" );
 	    d->connected = CON_READ_IMOTD;
  	}
 	else
 	{
-	    do_help( ch, "motd" );
+	    do_function(ch, &do_help, "motd" );
 	    d->connected = CON_READ_MOTD;
 	}
 	break;
@@ -1813,9 +1813,9 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	{
 	    argument = one_argument(argument,arg);
 	    if (argument[0] == '\0')
-		do_help(ch,"race help");
+		do_function(ch, &do_help, "race help");
 	    else
-		do_help(ch,argument);
+		do_function(ch, &do_help, argument);
             write_to_buffer(d,
 		"What is your race (help for more information)? ",0);
 	    break;
@@ -1946,11 +1946,11 @@ case CON_DEFAULT_CHOICE:
         case 'y': case 'Y':
 	    ch->gen_data = new_gen_data();
 	    ch->gen_data->points_chosen = ch->pcdata->points;
-	    do_help(ch,"group header");
+	    do_function(ch, &do_help, "group header");
 	    list_group_costs(ch);
 	    write_to_buffer(d,"You already have the following skills:\n\r",0);
-	    do_skills(ch,"");
-	    do_help(ch,"menu choice");
+	    do_function(ch, &do_skills, "");
+	    do_function(ch, &do_help, "menu choice");
 	    d->connected = CON_GEN_GROUPS;
 	    break;
         case 'n': case 'N':
@@ -1996,14 +1996,30 @@ case CON_DEFAULT_CHOICE:
 
 	ch->pcdata->learned[*weapon_table[weapon].gsn] = 40;
 	write_to_buffer(d,"\n\r",2);
-	do_help(ch,"motd");
+	do_function(ch, &do_help, "motd");
 	d->connected = CON_READ_MOTD;
 	break;
 
     case CON_GEN_GROUPS:
 	send_to_char("\n\r",ch);
+
        	if (!str_cmp(argument,"done"))
        	{
+	    if (ch->pcdata->points == pc_race_table[ch->race].points)
+	    {
+	        send_to_char("You didn't pick anything.\n\r",ch);
+		break;
+	    }
+
+	    if (ch->pcdata->points <= 40 + pc_race_table[ch->race].points)
+	    {
+		sprintf(buf,
+		    "You must take at least %d points of skills and groups",
+		    40 + pc_race_table[ch->race].points);
+		send_to_char(buf, ch);
+		break;
+	    }
+
 	    sprintf(buf,"Creation points: %d\n\r",ch->pcdata->points);
 	    send_to_char(buf,ch);
 	    sprintf(buf,"Experience per level: %d\n\r",
@@ -2034,12 +2050,12 @@ case CON_DEFAULT_CHOICE:
         "Choices are: list,learned,premise,add,drop,info,help, and done.\n\r"
         ,ch);
 
-        do_help(ch,"menu choice");
+        do_function(ch, &do_help, "menu choice");
         break;
 
     case CON_READ_IMOTD:
 	write_to_buffer(d,"\n\r",2);
-        do_help( ch, "motd" );
+        do_function(ch, &do_help, "motd");
         d->connected = CON_READ_MOTD;
 	break;
 
@@ -2077,12 +2093,12 @@ case CON_DEFAULT_CHOICE:
 		[ch->sex == SEX_FEMALE ? 1 : 0] );
 	    set_title( ch, buf );
 
-	    do_outfit(ch,"");
+	    do_function (ch, &do_outfit,"");
 	    obj_to_char(create_object(get_obj_index(OBJ_VNUM_MAP),0),ch);
 
 	    char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
 	    send_to_char("\n\r",ch);
-	    do_help(ch,"NEWBIE INFO");
+	    do_function(ch, &do_help, "newbie info");
 	    send_to_char("\n\r",ch);
 	}
 	else if ( ch->in_room != NULL )
@@ -2099,7 +2115,7 @@ case CON_DEFAULT_CHOICE:
 	}
 
 	act( "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
-	do_look( ch, "auto" );
+	do_function(ch, &do_look, "auto" );
 
 	wiznet("$N has left real life behind.",ch,NULL,
 		WIZ_LOGINS,WIZ_SITES,get_trust(ch));
@@ -2110,7 +2126,7 @@ case CON_DEFAULT_CHOICE:
 	    act("$n has entered the game.",ch->pet,NULL,NULL,TO_ROOM);
 	}
 
-	do_unread(ch,"");
+	do_function(ch, &do_unread, "");
 	break;
     }
 
@@ -2124,12 +2140,24 @@ case CON_DEFAULT_CHOICE:
  */
 bool check_parse_name( char *name )
 {
+    int clan;
+
     /*
      * Reserved words.
      */
-    if ( is_name( name,
-	"all auto immortal self someone something the you demise balance circle loner honor") )
+    if (is_exact_name(name,
+	"all auto immortal self someone something the you loner"))
+    {
 	return FALSE;
+    }
+
+    /* check clans */
+    for (clan = 0; clan < MAX_CLAN; clan++)
+    {
+	if (LOWER(name[0]) == LOWER(clan_table[clan].name[0])
+	&&  !str_cmp(name,clan_table[clan].name))
+	   return FALSE;
+    }
 
     if (str_cmp(capitalize(name),"Alander") && (!str_prefix("Alan",name)
     || !str_suffix("Alander",name)))
@@ -2319,7 +2347,7 @@ void send_to_char( const char *txt, CHAR_DATA *ch )
 void page_to_char( const char *txt, CHAR_DATA *ch )
 {
     if ( txt == NULL || ch->desc == NULL)
-
+	return;
 
     if (ch->lines == 0 )
     {
@@ -2398,13 +2426,6 @@ void fix_sex(CHAR_DATA *ch)
 {
     if (ch->sex < 0 || ch->sex > 2)
     	ch->sex = IS_NPC(ch) ? 0 : ch->pcdata->true_sex;
-}
-
-void act (const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
-	  int type)
-{
-    /* to be compatible with older code */
-    act_new(format,ch,arg1,arg2,type,POS_RESTING);
 }
 
 void act_new( const char *format, CHAR_DATA *ch, const void *arg1,

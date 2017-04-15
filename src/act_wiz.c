@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -36,28 +36,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include "merc.h"
+#include "interp.h"
 #include "recycle.h"
 #include "tables.h"
 #include "lookup.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_rstat		);
-DECLARE_DO_FUN(do_mstat		);
-DECLARE_DO_FUN(do_ostat		);
-DECLARE_DO_FUN(do_rset		);
-DECLARE_DO_FUN(do_mset		);
-DECLARE_DO_FUN(do_oset		);
-DECLARE_DO_FUN(do_sset		);
-DECLARE_DO_FUN(do_mfind		);
-DECLARE_DO_FUN(do_ofind		);
-DECLARE_DO_FUN(do_slookup	);
-DECLARE_DO_FUN(do_mload		);
-DECLARE_DO_FUN(do_oload		);
-DECLARE_DO_FUN(do_quit		);
-DECLARE_DO_FUN(do_look		);
-DECLARE_DO_FUN(do_stand		);
-
-
 
 /*
  * Local functions.
@@ -481,8 +463,6 @@ void do_bamfin( CHAR_DATA *ch, char *argument )
     return;
 }
 
-
-
 void do_bamfout( CHAR_DATA *ch, char *argument )
 {
     char buf[MAX_STRING_LENGTH];
@@ -552,7 +532,7 @@ void do_deny( CHAR_DATA *ch, char *argument )
     send_to_char( "OK.\n\r", ch );
     save_char_obj(victim);
     stop_fighting(victim,TRUE);
-    do_quit( victim, "" );
+    do_function(victim, &do_quit, "" );
 
     return;
 }
@@ -825,7 +805,7 @@ void do_transfer( CHAR_DATA *ch, char *argument )
 	    {
 		char buf[MAX_STRING_LENGTH];
 		sprintf( buf, "%s %s", d->character->name, arg2 );
-		do_transfer( ch, buf );
+		do_function(ch, &do_transfer, buf );
 	    }
 	}
 	return;
@@ -874,7 +854,7 @@ void do_transfer( CHAR_DATA *ch, char *argument )
     act( "$n arrives from a puff of smoke.", victim, NULL, NULL, TO_ROOM );
     if ( ch != victim )
 	act( "$n has transferred you.", ch, NULL, victim, TO_VICT );
-    do_look( victim, "auto" );
+    do_function(victim, &do_look, "auto" );
     send_to_char( "Ok.\n\r", ch );
 }
 
@@ -993,7 +973,7 @@ void do_goto( CHAR_DATA *ch, char *argument )
         }
     }
 
-    do_look( ch, "auto" );
+    do_function(ch, &do_look, "auto" );
     return;
 }
 
@@ -1049,7 +1029,7 @@ void do_violate( CHAR_DATA *ch, char *argument )
         }
     }
  
-    do_look( ch, "auto" );
+    do_function(ch, &do_look, "auto" );
     return;
 }
 
@@ -1076,19 +1056,19 @@ void do_stat ( CHAR_DATA *ch, char *argument )
 
    if (!str_cmp(arg,"room"))
    {
-	do_rstat(ch,string);
+	do_function(ch, &do_rstat, string);
 	return;
    }
   
    if (!str_cmp(arg,"obj"))
    {
-	do_ostat(ch,string);
+	do_function(ch, &do_ostat, string);
 	return;
    }
 
    if(!str_cmp(arg,"char")  || !str_cmp(arg,"mob"))
    {
-	do_mstat(ch,string);
+	do_function(ch, &do_mstat, string);
 	return;
    }
    
@@ -1097,30 +1077,26 @@ void do_stat ( CHAR_DATA *ch, char *argument )
    obj = get_obj_world(ch,argument);
    if (obj != NULL)
    {
-     do_ostat(ch,argument);
+     do_function(ch, &do_ostat, argument);
      return;
    }
 
   victim = get_char_world(ch,argument);
   if (victim != NULL)
   {
-    do_mstat(ch,argument);
+    do_function(ch, &do_mstat, argument);
     return;
   }
 
   location = find_location(ch,argument);
   if (location != NULL)
   {
-    do_rstat(ch,argument);
+    do_function(ch, &do_rstat, argument);
     return;
   }
 
   send_to_char("Nothing by that name found anywhere.\n\r",ch);
 }
-
-   
-
-
 
 void do_rstat( CHAR_DATA *ch, char *argument )
 {
@@ -1765,24 +1741,24 @@ void do_vnum(CHAR_DATA *ch, char *argument)
 
     if (!str_cmp(arg,"obj"))
     {
-	do_ofind(ch,string);
+	do_function(ch, &do_ofind, string);
  	return;
     }
 
     if (!str_cmp(arg,"mob") || !str_cmp(arg,"char"))
     { 
-	do_mfind(ch,string);
+	do_function(ch, &do_mfind, string);
 	return;
     }
 
     if (!str_cmp(arg,"skill") || !str_cmp(arg,"spell"))
     {
-	do_slookup(ch,string);
+	do_function (ch, &do_slookup, string);
 	return;
     }
     /* do both */
-    do_mfind(ch,argument);
-    do_ofind(ch,argument);
+    do_function(ch, &do_mfind, argument);
+    do_function(ch, &do_ofind, argument);
 }
 
 
@@ -2036,7 +2012,7 @@ void do_reboot( CHAR_DATA *ch, char *argument )
     if (ch->invis_level < LEVEL_HERO)
     {
     	sprintf( buf, "Reboot by %s.", ch->name );
-    	do_echo( ch, buf );
+    	do_function(ch, &do_echo, buf );
     }
 
     merc_down = TRUE;
@@ -2052,15 +2028,11 @@ void do_reboot( CHAR_DATA *ch, char *argument )
     return;
 }
 
-
-
 void do_shutdow( CHAR_DATA *ch, char *argument )
 {
     send_to_char( "If you want to SHUTDOWN, spell it out.\n\r", ch );
     return;
 }
-
-
 
 void do_shutdown( CHAR_DATA *ch, char *argument )
 {
@@ -2074,7 +2046,9 @@ void do_shutdown( CHAR_DATA *ch, char *argument )
     append_file( ch, SHUTDOWN_FILE, buf );
     strcat( buf, "\n\r" );
     if (ch->invis_level < LEVEL_HERO)
-    	do_echo( ch, buf );
+    {
+    	do_function(ch, &do_echo, buf );
+    }
     merc_down = TRUE;
     for ( d = descriptor_list; d != NULL; d = d_next)
     {
@@ -2470,17 +2444,17 @@ void do_load(CHAR_DATA *ch, char *argument )
 
     if (!str_cmp(arg,"mob") || !str_cmp(arg,"char"))
     {
-	do_mload(ch,argument);
+	do_function(ch, &do_mload, argument);
 	return;
     }
 
     if (!str_cmp(arg,"obj"))
     {
-	do_oload(ch,argument);
+	do_function(ch, &do_oload, argument);
 	return;
     }
     /* echo syntax */
-    do_load(ch,"");
+    do_function(ch, &do_load, "");
 }
 
 
@@ -2676,9 +2650,10 @@ void do_advance( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( level = atoi( arg2 ) ) < 1 || level > 60 )
+    if ( ( level = atoi( arg2 ) ) < 1 || level > MAX_LEVEL )
     {
-	send_to_char( "Level must be 1 to 60.\n\r", ch );
+	sprintf(buf,"Level must be 1 to %d.\n\r", MAX_LEVEL);
+	send_to_char(buf, ch);
 	return;
     }
 
@@ -2740,6 +2715,7 @@ void do_trust( CHAR_DATA *ch, char *argument )
 {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int level;
 
@@ -2758,9 +2734,10 @@ void do_trust( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( level = atoi( arg2 ) ) < 0 || level > 60 )
+    if ( ( level = atoi( arg2 ) ) < 0 || level > MAX_LEVEL )
     {
-	send_to_char( "Level must be 0 (reset) or 1 to 60.\n\r", ch );
+	sprintf(buf, "Level must be 0 (reset) or 1 to %d.\n\r",MAX_LEVEL);
+	send_to_char(buf, ch);
 	return;
     }
 
@@ -3242,29 +3219,29 @@ void do_set( CHAR_DATA *ch, char *argument )
 
     if (!str_prefix(arg,"mobile") || !str_prefix(arg,"character"))
     {
-	do_mset(ch,argument);
+	do_function(ch, &do_mset, argument);
 	return;
     }
 
     if (!str_prefix(arg,"skill") || !str_prefix(arg,"spell"))
     {
-	do_sset(ch,argument);
+	do_function(ch, &do_sset, argument);
 	return;
     }
 
     if (!str_prefix(arg,"object"))
     {
-	do_oset(ch,argument);
+	do_function(ch, &do_oset, argument);
 	return;
     }
 
     if (!str_prefix(arg,"room"))
     {
-	do_rset(ch,argument);
+	do_function(ch, &do_rset, argument);
 	return;
     }
     /* echo syntax */
-    do_set(ch,"");
+    do_function(ch, &do_set, "");
 }
 
 
@@ -3342,7 +3319,6 @@ void do_sset( CHAR_DATA *ch, char *argument )
 
     return;
 }
-
 
 
 void do_mset( CHAR_DATA *ch, char *argument )
@@ -3436,7 +3412,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	if ( value < 3 || value > get_max_train(victim,STAT_DEX) )
 	{
 	    sprintf(buf,
-		"Dexterity ranges is 3 to %d.\n\r",
+		"Dexterity range is 3 to %d.\n\r",
 		get_max_train(victim,STAT_DEX));
 	    send_to_char( buf, ch );
 	    return;
@@ -3514,9 +3490,10 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( value < 0 || value > 60 )
+	if ( value < 0 || value > MAX_LEVEL )
 	{
-	    send_to_char( "Level range is 0 to 60.\n\r", ch );
+	    sprintf(buf, "Level range is 0 to %d.\n\r", MAX_LEVEL);
+	    send_to_char(buf, ch);
 	    return;
 	}
 	victim->level = value;
@@ -3716,7 +3693,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     /*
      * Generate usage message.
      */
-    do_mset( ch, "" );
+    do_function(ch, &do_mset, "" );
     return;
 }
 
@@ -3879,7 +3856,7 @@ void do_string( CHAR_DATA *ch, char *argument )
     
     	
     /* echo bad use message */
-    do_string(ch,"");
+    do_function(ch, &do_string, "");
 }
 
 
@@ -3990,7 +3967,7 @@ void do_oset( CHAR_DATA *ch, char *argument )
     /*
      * Generate usage message.
      */
-    do_oset( ch, "" );
+    do_function(ch, &do_oset, "" );
     return;
 }
 
@@ -4059,7 +4036,7 @@ void do_rset( CHAR_DATA *ch, char *argument )
     /*
      * Generate usage message.
      */
-    do_rset( ch, "" );
+    do_function(ch, &do_rset, "");
     return;
 }
 

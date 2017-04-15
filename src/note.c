@@ -16,10 +16,10 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -345,16 +345,16 @@ bool is_note_to( CHAR_DATA *ch, NOTE_DATA *pnote )
     if ( !str_cmp( ch->name, pnote->sender ) )
 	return TRUE;
 
-    if ( is_name( "all", pnote->to_list ) )
+    if ( is_exact_name( "all", pnote->to_list ) )
 	return TRUE;
 
-    if ( IS_IMMORTAL(ch) && is_name( "immortal", pnote->to_list ) )
+    if ( IS_IMMORTAL(ch) && is_exact_name( "immortal", pnote->to_list ) )
 	return TRUE;
 
-    if (ch->clan && is_name(clan_table[ch->clan].name,pnote->to_list))
+    if (ch->clan && is_exact_name(clan_table[ch->clan].name,pnote->to_list))
 	return TRUE;
 
-    if ( is_name( ch->name, pnote->to_list ) )
+    if (is_exact_name( ch->name, pnote->to_list ) )
 	return TRUE;
 
     return FALSE;

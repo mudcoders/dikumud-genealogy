@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -34,22 +34,7 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_backstab	);
-DECLARE_DO_FUN(do_emote		);
-DECLARE_DO_FUN(do_berserk	);
-DECLARE_DO_FUN(do_bash		);
-DECLARE_DO_FUN(do_trip		);
-DECLARE_DO_FUN(do_dirt		);
-DECLARE_DO_FUN(do_flee		);
-DECLARE_DO_FUN(do_kick		);
-DECLARE_DO_FUN(do_disarm	);
-DECLARE_DO_FUN(do_get		);
-DECLARE_DO_FUN(do_recall	);
-DECLARE_DO_FUN(do_yell		);
-DECLARE_DO_FUN(do_sacrifice	);
-
+#include "interp.h"
 
 /*
  * Local functions.
@@ -126,7 +111,7 @@ void check_assist(CHAR_DATA *ch,CHAR_DATA *victim)
 	    && IS_SET(rch->off_flags,ASSIST_PLAYERS)
 	    &&  rch->level + 6 > victim->level)
 	    {
-		do_emote(rch,"screams and attacks!");
+		do_function(rch, &do_emote, "screams and attacks!");
 		multi_hit(rch,victim,TYPE_UNDEFINED);
 		continue;
 	    }
@@ -186,7 +171,7 @@ void check_assist(CHAR_DATA *ch,CHAR_DATA *victim)
 
 		    if (target != NULL)
 		    {
-			do_emote(rch,"screams and attacks!");
+			do_function(rch, &do_emote, "screams and attacks!");
 			multi_hit(rch,target,TYPE_UNDEFINED);
 		    }
 		}	
@@ -340,12 +325,12 @@ void mob_hit (CHAR_DATA *ch, CHAR_DATA *victim, int dt)
     {
     case (0) :
 	if (IS_SET(ch->off_flags,OFF_BASH))
-	    do_bash(ch,"");
+	    do_function(ch, &do_bash, "");
 	break;
 
     case (1) :
 	if (IS_SET(ch->off_flags,OFF_BERSERK) && !IS_AFFECTED(ch,AFF_BERSERK))
-	    do_berserk(ch,"");
+	    do_function(ch, &do_berserk, "");
 	break;
 
 
@@ -354,41 +339,41 @@ void mob_hit (CHAR_DATA *ch, CHAR_DATA *victim, int dt)
 	|| (get_weapon_sn(ch) != gsn_hand_to_hand 
 	&& (IS_SET(ch->act,ACT_WARRIOR)
    	||  IS_SET(ch->act,ACT_THIEF))))
-	    do_disarm(ch,"");
+	    do_function(ch, &do_disarm, "");
 	break;
 
     case (3) :
 	if (IS_SET(ch->off_flags,OFF_KICK))
-	    do_kick(ch,"");
+	    do_function(ch, &do_kick, "");
 	break;
 
     case (4) :
 	if (IS_SET(ch->off_flags,OFF_KICK_DIRT))
-	    do_dirt(ch,"");
+	    do_function(ch, &do_dirt, "");
 	break;
 
     case (5) :
 	if (IS_SET(ch->off_flags,OFF_TAIL))
 	{
-	    /* do_tail(ch,"") */ ;
+	    /* do_function(ch, &do_tail, "") */ ;
 	}
 	break; 
 
     case (6) :
 	if (IS_SET(ch->off_flags,OFF_TRIP))
-	    do_trip(ch,"");
+	    do_function(ch, &do_trip, "");
 	break;
 
     case (7) :
 	if (IS_SET(ch->off_flags,OFF_CRUSH))
 	{
-	    /* do_crush(ch,"") */ ;
+	    /* do_function(ch, &do_crush, "") */ ;
 	}
 	break;
     case (8) :
 	if (IS_SET(ch->off_flags,OFF_BACKSTAB))
 	{
-	    do_backstab(ch,"");
+	    do_function(ch, &do_backstab, "");
 	}
     }
 }
@@ -646,7 +631,7 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 	    act("$p draws life from $n.",victim,wield,NULL,TO_ROOM);
 	    act("You feel $p drawing your life away.",
 		victim,wield,NULL,TO_CHAR);
-	    damage_old(ch,victim,dam,0,DAM_NEGATIVE,FALSE);
+	    damage(ch,victim,dam,0,DAM_NEGATIVE,FALSE);
 	    ch->alignment = UMAX(-1000,ch->alignment - 1);
 	    ch->hit += dam/2;
 	}
@@ -690,7 +675,6 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 bool damage(CHAR_DATA *ch,CHAR_DATA *victim,int dam,int dt,int dam_type,
 	    bool show) 
 {
-
     OBJ_DATA *corpse;
     bool immune;
 
@@ -747,23 +731,6 @@ bool damage(CHAR_DATA *ch,CHAR_DATA *victim,int dam,int dt,int dam_type,
 	{
 	    if ( ch->fighting == NULL )
 		set_fighting( ch, victim );
-
-	    /*
-	     * If victim is charmed, ch might attack victim's master.
-	     taken out by Russ! */
-/*
-	    if ( IS_NPC(ch)
-	    &&   IS_NPC(victim)
-	    &&   IS_AFFECTED(victim, AFF_CHARM)
-	    &&   victim->master != NULL
-	    &&   victim->master->in_room == ch->in_room
-	    &&   number_bits( 3 ) == 0 )
-	    {
-		stop_fighting( ch, FALSE );
-		multi_hit( ch, victim->master, TYPE_UNDEFINED );
-		return FALSE;
-	    }
-*/
 	}
 
 	/*
@@ -948,338 +915,34 @@ bool damage(CHAR_DATA *ch,CHAR_DATA *victim,int dam,int dt,int dam_type,
 
 	    if ( IS_SET(ch->act, PLR_AUTOLOOT) &&
 		 corpse && corpse->contains) /* exists and not empty */
-		do_get( ch, "all corpse" );
+            {
+		do_function(ch, &do_get, "all corpse");
+	    }
 
  	    if (IS_SET(ch->act,PLR_AUTOGOLD) &&
 	        corpse && corpse->contains  && /* exists and not empty */
 		!IS_SET(ch->act,PLR_AUTOLOOT))
+	    {
 		if ((coins = get_obj_list(ch,"gcash",corpse->contains))
 		     != NULL)
-	      	    do_get(ch, "all.gcash corpse");
+		{
+		    do_function(ch, &do_get, "all.gcash corpse");
+	      	}
+	    }
             
-	    if ( IS_SET(ch->act, PLR_AUTOSAC) )
-       	      if ( IS_SET(ch->act,PLR_AUTOLOOT) && corpse && corpse->contains)
-		return TRUE;  /* leave if corpse has treasure */
-	      else
-		do_sacrifice( ch, "corpse" );
-	}
-
-	return TRUE;
-    }
-
-    if ( victim == ch )
-	return TRUE;
-
-    /*
-     * Take care of link dead people.
-     */
-    if ( !IS_NPC(victim) && victim->desc == NULL )
-    {
-	if ( number_range( 0, victim->wait ) == 0 )
-	{
-	    do_recall( victim, "" );
-	    return TRUE;
-	}
-    }
-
-    /*
-     * Wimp out?
-     */
-    if ( IS_NPC(victim) && dam > 0 && victim->wait < PULSE_VIOLENCE / 2)
-    {
-	if ( ( IS_SET(victim->act, ACT_WIMPY) && number_bits( 2 ) == 0
-	&&   victim->hit < victim->max_hit / 5) 
-	||   ( IS_AFFECTED(victim, AFF_CHARM) && victim->master != NULL
-	&&     victim->master->in_room != victim->in_room ) )
-	    do_flee( victim, "" );
-    }
-
-    if ( !IS_NPC(victim)
-    &&   victim->hit > 0
-    &&   victim->hit <= victim->wimpy
-    &&   victim->wait < PULSE_VIOLENCE / 2 )
-	do_flee( victim, "" );
-
-    tail_chain( );
-    return TRUE;
-}
-
-
-
-
-
-
-/*
- * Inflict damage from a hit.
- */
-bool damage_old( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int 
-dam_type, bool show ) {
-
-    OBJ_DATA *corpse;
-    bool immune;
-
-    if ( victim->position == POS_DEAD )
-	return FALSE;
-
-    /*
-     * Stop up any residual loopholes.
-     */
-
-    if ( dam > 1200 && dt >= TYPE_HIT)
-    {
-        bug( "Damage: %d: more than 1200 points!", dam );
-        dam = 1200;
-        if (!IS_IMMORTAL(ch))
-        {
-            OBJ_DATA *obj;
-            obj = get_eq_char( ch, WEAR_WIELD );
-            send_to_char("You really shouldn't cheat.\n\r",ch);
-            if (obj != NULL)
-                extract_obj(obj);
-        }
- 
-    }
-
-    
-    /* damage reduction */
-    if ( dam > 35)
-	dam = (dam - 35)/2 + 35;
-    if ( dam > 80)
-	dam = (dam - 80)/2 + 80; 
-
-
-
-   
-    if ( victim != ch )
-    {
-	/*
-	 * Certain attacks are forbidden.
-	 * Most other attacks are returned.
-	 */
-	if ( is_safe( ch, victim ) )
-	    return FALSE;
-	check_killer( ch, victim );
-
-	if ( victim->position > POS_STUNNED )
-	{
-	    if ( victim->fighting == NULL )
-		set_fighting( victim, ch );
-	    if (victim->timer <= 4)
-	    	victim->position = POS_FIGHTING;
-	}
-
-	if ( victim->position > POS_STUNNED )
-	{
-	    if ( ch->fighting == NULL )
-		set_fighting( ch, victim );
-
-	    /*
-	     * If victim is charmed, ch might attack victim's master.
-	     */
-	    if ( IS_NPC(ch)
-	    &&   IS_NPC(victim)
-	    &&   IS_AFFECTED(victim, AFF_CHARM)
-	    &&   victim->master != NULL
-	    &&   victim->master->in_room == ch->in_room
-	    &&   number_bits( 3 ) == 0 )
+	    if (IS_SET(ch->act, PLR_AUTOSAC))
 	    {
-		stop_fighting( ch, FALSE );
-		multi_hit( ch, victim->master, TYPE_UNDEFINED );
-		return FALSE;
+       	        if (IS_SET(ch->act,PLR_AUTOLOOT) && corpse && corpse->contains)
+       	      	{
+		    return TRUE;  /* leave if corpse has treasure */
+	      	}
+	        else
+		{
+		    do_function(ch, &do_sacrifice, "corpse");
+		}
 	    }
 	}
 
-	/*
-	 * More charm stuff.
-	 */
-	if ( victim->master == ch )
-	    stop_follower( victim );
-    }
-
-    /*
-     * Inviso attacks ... not.
-     */
-    if ( IS_AFFECTED(ch, AFF_INVISIBLE) )
-    {
-	affect_strip( ch, gsn_invis );
-	affect_strip( ch, gsn_mass_invis );
-	REMOVE_BIT( ch->affected_by, AFF_INVISIBLE );
-	act( "$n fades into existence.", ch, NULL, NULL, TO_ROOM );
-    }
-
-    /*
-     * Damage modifiers.
-     */
-
-    if ( dam > 1 && !IS_NPC(victim)
-    &&   victim->pcdata->condition[COND_DRUNK]  > 10 )
-        dam = 9 * dam / 10;
- 
-    if ( dam > 1 && IS_AFFECTED(victim, AFF_SANCTUARY) )
-        dam /= 2;
- 
-    if ( dam > 1 && ((IS_AFFECTED(victim, AFF_PROTECT_EVIL) && IS_EVIL(ch) )
-    ||               (IS_AFFECTED(victim, AFF_PROTECT_GOOD) && IS_GOOD(ch) )))
-        dam -= dam / 4;
-
-    immune = FALSE;
-
-
-    /*
-     * Check for parry, and dodge.
-     */
-    if ( dt >= TYPE_HIT && ch != victim)
-    {
-        if ( check_parry( ch, victim ) )
-	    return FALSE;
-	if ( check_dodge( ch, victim ) )
-	    return FALSE;
-	if ( check_shield_block(ch,victim))
-	    return FALSE;
-
-    }
-
-    switch(check_immune(victim,dam_type))
-    {
-	case(IS_IMMUNE):
-	    immune = TRUE;
-	    dam = 0;
-	    break;
-	case(IS_RESISTANT):	
-	    dam -= dam/3;
-	    break;
-	case(IS_VULNERABLE):
-	    dam += dam/2;
-	    break;
-    }
-
-    if (show)
-    	dam_message( ch, victim, dam, dt, immune );
-
-    if (dam == 0)
-	return FALSE;
-
-    /*
-     * Hurt the victim.
-     * Inform the victim of his new state.
-     */
-    victim->hit -= dam;
-    if ( !IS_NPC(victim)
-    &&   victim->level >= LEVEL_IMMORTAL
-    &&   victim->hit < 1 )
-	victim->hit = 1;
-    update_pos( victim );
-
-    switch( victim->position )
-    {
-    case POS_MORTAL:
-	act( "$n is mortally wounded, and will die soon, if not aided.",
-	    victim, NULL, NULL, TO_ROOM );
-	send_to_char( 
-	    "You are mortally wounded, and will die soon, if not aided.\n\r",
-	    victim );
-	break;
-
-    case POS_INCAP:
-	act( "$n is incapacitated and will slowly die, if not aided.",
-	    victim, NULL, NULL, TO_ROOM );
-	send_to_char(
-	    "You are incapacitated and will slowly die, if not aided.\n\r",
-	    victim );
-	break;
-
-    case POS_STUNNED:
-	act( "$n is stunned, but will probably recover.",
-	    victim, NULL, NULL, TO_ROOM );
-	send_to_char("You are stunned, but will probably recover.\n\r",
-	    victim );
-	break;
-
-    case POS_DEAD:
-	act( "$n is DEAD!!", victim, 0, 0, TO_ROOM );
-	send_to_char( "You have been KILLED!!\n\r\n\r", victim );
-	break;
-
-    default:
-	if ( dam > victim->max_hit / 4 )
-	    send_to_char( "That really did HURT!\n\r", victim );
-	if ( victim->hit < victim->max_hit / 4 )
-	    send_to_char( "You sure are BLEEDING!\n\r", victim );
-	break;
-    }
-
-    /*
-     * Sleep spells and extremely wounded folks.
-     */
-    if ( !IS_AWAKE(victim) )
-	stop_fighting( victim, FALSE );
-
-    /*
-     * Payoff for killing things.
-     */
-    if ( victim->position == POS_DEAD )
-    {
-	group_gain( ch, victim );
-
-	if ( !IS_NPC(victim) )
-	{
-	    sprintf( log_buf, "%s killed by %s at %d",
-		victim->name,
-		(IS_NPC(ch) ? ch->short_descr : ch->name),
-		victim->in_room->vnum );
-	    log_string( log_buf );
-
-	    /*
-	     * Dying penalty:
-	     * 2/3 way back to previous level.
-	     */
-	    if ( victim->exp > exp_per_level(victim,victim->pcdata->points) 
-			       * victim->level )
-	gain_exp( victim, (2 * (exp_per_level(victim,victim->pcdata->points)
-			         * victim->level - victim->exp)/3) + 50 );
-	}
-
-        sprintf( log_buf, "%s got toasted by %s at %s [room %d]",
-            (IS_NPC(victim) ? victim->short_descr : victim->name),
-            (IS_NPC(ch) ? ch->short_descr : ch->name),
-            ch->in_room->name, ch->in_room->vnum);
- 
-        if (IS_NPC(victim))
-            wiznet(log_buf,NULL,NULL,WIZ_MOBDEATHS,0,0);
-        else
-            wiznet(log_buf,NULL,NULL,WIZ_DEATHS,0,0);
-
-	raw_kill( victim );
-	/* dump the flags */
-	if (ch != victim && !IS_NPC(ch) && !is_same_clan(ch,victim))
-	{
-	    if (IS_SET(victim->act,PLR_KILLER))
-	    	REMOVE_BIT(victim->act,PLR_KILLER);
-	    else
-		REMOVE_BIT(victim->act,PLR_THIEF);
-	}
-        /* RT new auto commands */
-
-	if ( !IS_NPC(ch) && IS_NPC(victim) )
-	{
-	    corpse = get_obj_list( ch, "corpse", ch->in_room->contents ); 
-
-	    if ( IS_SET(ch->act, PLR_AUTOLOOT) &&
-		 corpse && corpse->contains) /* exists and not empty */
-		do_get( ch, "all corpse" );
-
- 	    if (IS_SET(ch->act,PLR_AUTOGOLD) &&
-	        corpse && corpse->contains  && /* exists and not empty */
-		!IS_SET(ch->act,PLR_AUTOLOOT))
-	      do_get(ch, "gold corpse");
-            
-	    if ( IS_SET(ch->act, PLR_AUTOSAC) )
-       	      if ( IS_SET(ch->act,PLR_AUTOLOOT) && corpse && corpse->contains)
-		return TRUE;  /* leave if corpse has treasure */
-	      else
-		do_sacrifice( ch, "corpse" );
-	}
-
 	return TRUE;
     }
 
@@ -1293,7 +956,7 @@ dam_type, bool show ) {
     {
 	if ( number_range( 0, victim->wait ) == 0 )
 	{
-	    do_recall( victim, "" );
+	    do_function(victim, &do_recall, "" );
 	    return TRUE;
 	}
     }
@@ -1307,14 +970,18 @@ dam_type, bool show ) {
 	&&   victim->hit < victim->max_hit / 5) 
 	||   ( IS_AFFECTED(victim, AFF_CHARM) && victim->master != NULL
 	&&     victim->master->in_room != victim->in_room ) )
-	    do_flee( victim, "" );
+	{
+	    do_function(victim, &do_flee, "" );
+	}
     }
 
     if ( !IS_NPC(victim)
     &&   victim->hit > 0
     &&   victim->hit <= victim->wimpy
     &&   victim->wait < PULSE_VIOLENCE / 2 )
-	do_flee( victim, "" );
+    {
+	do_function (victim, &do_flee, "" );
+    }
 
     tail_chain( );
     return TRUE;
@@ -3049,7 +2716,7 @@ void do_murder( CHAR_DATA *ch, char *argument )
 	sprintf(buf, "Help! I am being attacked by %s!",ch->short_descr);
     else
     	sprintf( buf, "Help!  I am being attacked by %s!", ch->name );
-    do_yell( victim, buf );
+    do_function(victim, &do_yell, buf );
     check_killer( ch, victim );
     multi_hit( ch, victim, TYPE_UNDEFINED );
     return;

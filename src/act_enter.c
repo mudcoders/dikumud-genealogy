@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@efn.org)				   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -36,10 +36,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "merc.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_look		);
-DECLARE_DO_FUN(do_stand		);
+#include "interp.h"
 
 /* random room generation procedure */
 ROOM_INDEX_DATA  *get_random_room(CHAR_DATA *ch)
@@ -151,7 +148,7 @@ void do_enter( CHAR_DATA *ch, char *argument)
 	else
 	    act("$n has arrived through $p.",ch,portal,NULL,TO_ROOM);
 
-	do_look(ch,"auto");
+	do_function(ch, &do_look, "auto");
 
 	/* charges */
 	if (portal->value[0] > 0)
@@ -175,7 +172,7 @@ void do_enter( CHAR_DATA *ch, char *argument)
  
             if ( fch->master == ch && IS_AFFECTED(fch,AFF_CHARM)
             &&   fch->position < POS_STANDING)
-            	do_stand(fch,"");
+            	do_function(fch, &do_stand, "");
 
             if ( fch->master == ch && fch->position == POS_STANDING)
             {
@@ -191,7 +188,7 @@ void do_enter( CHAR_DATA *ch, char *argument)
             	}
  
             	act( "You follow $N.", fch, NULL, ch, TO_CHAR );
-		do_enter(fch,argument);
+		do_function(fch, &do_enter, argument);
             }
     	}
 

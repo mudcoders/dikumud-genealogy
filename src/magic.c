@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -35,11 +35,9 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "interp.h"
 #include "magic.h"
 #include "recycle.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_look		);
 
 /*
  * Local functions.
@@ -731,7 +729,7 @@ void spell_acid_blast( int sn, int level, CHAR_DATA *ch, void *vo, int target )
     dam = dice( level, 12 );
     if ( saves_spell( level, victim, DAM_ACID ) )
 	dam /= 2;
-    damage_old( ch, victim, dam, sn,DAM_ACID,TRUE);
+    damage( ch, victim, dam, sn, DAM_ACID, TRUE);
     return;
 }
 
@@ -895,7 +893,7 @@ void spell_burning_hands(int sn,int level, CHAR_DATA *ch, void *vo, int target)
     dam		= number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim,DAM_FIRE) )
 	dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_FIRE,TRUE);
+    damage( ch, victim, dam, sn, DAM_FIRE,TRUE);
     return;
 }
 
@@ -933,7 +931,7 @@ void spell_call_lightning( int sn, int level,CHAR_DATA *ch,void *vo,int target)
 	if ( vch->in_room == ch->in_room )
 	{
 	    if ( vch != ch && ( IS_NPC(ch) ? !IS_NPC(vch) : IS_NPC(vch) ) )
-		damage_old( ch, vch, saves_spell( level,vch,DAM_LIGHTNING) 
+		damage( ch, vch, saves_spell( level,vch,DAM_LIGHTNING) 
 		? dam / 2 : dam, sn,DAM_LIGHTNING,TRUE);
 	    continue;
 	}
@@ -1183,7 +1181,7 @@ void spell_cancellation( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 
 void spell_cause_light( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 {
-    damage_old( ch, (CHAR_DATA *) vo, dice(1, 8) + level / 3, sn,DAM_HARM,TRUE);
+    damage( ch, (CHAR_DATA *) vo, dice(1, 8) + level / 3, sn,DAM_HARM,TRUE);
     return;
 }
 
@@ -1191,7 +1189,7 @@ void spell_cause_light( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 
 void spell_cause_critical(int sn,int level,CHAR_DATA *ch,void *vo,int target)
 {
-    damage_old( ch, (CHAR_DATA *) vo, dice(3, 8) + level - 6, sn,DAM_HARM,TRUE);
+    damage( ch, (CHAR_DATA *) vo, dice(3, 8) + level - 6, sn,DAM_HARM,TRUE);
     return;
 }
 
@@ -1199,7 +1197,7 @@ void spell_cause_critical(int sn,int level,CHAR_DATA *ch,void *vo,int target)
 
 void spell_cause_serious(int sn,int level,CHAR_DATA *ch,void *vo,int target)
 {
-    damage_old( ch, (CHAR_DATA *) vo, dice(2, 8) + level / 2, sn,DAM_HARM,TRUE);
+    damage( ch, (CHAR_DATA *) vo, dice(2, 8) + level / 2, sn,DAM_HARM,TRUE);
     return;
 }
 
@@ -1222,7 +1220,7 @@ void spell_chain_lightning(int sn,int level,CHAR_DATA *ch, void *vo,int target)
     dam = dice(level,6);
     if (saves_spell(level,victim,DAM_LIGHTNING))
  	dam /= 3;
-    damage_old(ch,victim,dam,sn,DAM_LIGHTNING,TRUE);
+    damage(ch,victim,dam,sn,DAM_LIGHTNING,TRUE);
     last_vict = victim;
     level -= 4;   /* decrement damage */
 
@@ -1244,7 +1242,7 @@ void spell_chain_lightning(int sn,int level,CHAR_DATA *ch, void *vo,int target)
 	    dam = dice(level,6);
 	    if (saves_spell(level,tmp_vict,DAM_LIGHTNING))
 		dam /= 3;
-	    damage_old(ch,tmp_vict,dam,sn,DAM_LIGHTNING,TRUE);
+	    damage(ch,tmp_vict,dam,sn,DAM_LIGHTNING,TRUE);
 	    level -= 4;  /* decrement damage */
 	  }
 	}   /* end target searching loop */
@@ -1268,7 +1266,7 @@ void spell_chain_lightning(int sn,int level,CHAR_DATA *ch, void *vo,int target)
 	  dam = dice(level,6);
 	  if (saves_spell(level,ch,DAM_LIGHTNING))
 	    dam /= 3;
-	  damage_old(ch,ch,dam,sn,DAM_LIGHTNING,TRUE);
+	  damage(ch,ch,dam,sn,DAM_LIGHTNING,TRUE);
 	  level -= 4;  /* decrement damage */
 	  if (ch == NULL) 
 	    return;
@@ -1395,7 +1393,7 @@ void spell_chill_touch( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	dam /= 2;
     }
 
-    damage_old( ch, victim, dam, sn, DAM_COLD,TRUE );
+    damage( ch, victim, dam, sn, DAM_COLD,TRUE );
     return;
 }
 
@@ -1424,7 +1422,7 @@ void spell_colour_spray( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	spell_blindness(skill_lookup("blindness"),
 	    level/2,ch,(void *) victim,TARGET_CHAR);
 
-    damage_old( ch, victim, dam, sn, DAM_LIGHT,TRUE );
+    damage( ch, victim, dam, sn, DAM_LIGHT,TRUE );
     return;
 }
 
@@ -1778,7 +1776,7 @@ void spell_demonfire(int sn, int level, CHAR_DATA *ch, void *vo,int target)
     dam = dice( level, 10 );
     if ( saves_spell( level, victim,DAM_NEGATIVE) )
         dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_NEGATIVE ,TRUE);
+    damage( ch, victim, dam, sn, DAM_NEGATIVE ,TRUE);
     spell_curse(gsn_curse, 3 * level / 4, ch, (void *) victim,TARGET_CHAR);
 }
 
@@ -1975,7 +1973,7 @@ void spell_dispel_evil( int sn, int level, CHAR_DATA *ch, void *vo,int target)
       dam = UMAX(victim->hit, dice(level,4));
     if ( saves_spell( level, victim,DAM_HOLY) )
 	dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_HOLY ,TRUE);
+    damage( ch, victim, dam, sn, DAM_HOLY ,TRUE);
     return;
 }
 
@@ -2006,7 +2004,7 @@ void spell_dispel_good( int sn, int level, CHAR_DATA *ch, void *vo,int target )
       dam = UMAX(victim->hit, dice(level,4));
     if ( saves_spell( level, victim,DAM_NEGATIVE) )
         dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_NEGATIVE ,TRUE);
+    damage( ch, victim, dam, sn, DAM_NEGATIVE ,TRUE);
     return;
 }
 
@@ -2204,9 +2202,9 @@ void spell_earthquake( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	{
 	    if ( vch != ch && !is_safe_spell(ch,vch,TRUE))
 		if (IS_AFFECTED(vch,AFF_FLYING))
-		    damage_old(ch,vch,0,sn,DAM_BASH,TRUE);
+		    damage(ch,vch,0,sn,DAM_BASH,TRUE);
 		else
-		    damage_old( ch,vch,level + dice(2, 8), sn, DAM_BASH,TRUE);
+		    damage( ch,vch,level + dice(2, 8), sn, DAM_BASH,TRUE);
 	    continue;
 	}
 
@@ -2651,7 +2649,7 @@ void spell_energy_drain( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 
     send_to_char("You feel your life slipping away!\n\r",victim);
     send_to_char("Wow....what a rush!\n\r",ch);
-    damage_old( ch, victim, dam, sn, DAM_NEGATIVE ,TRUE);
+    damage( ch, victim, dam, sn, DAM_NEGATIVE ,TRUE);
 
     return;
 }
@@ -2677,7 +2675,7 @@ void spell_fireball( int sn, int level, CHAR_DATA *ch, void *vo,int target )
     dam		= number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim, DAM_FIRE) )
 	dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_FIRE ,TRUE);
+    damage( ch, victim, dam, sn, DAM_FIRE ,TRUE);
     return;
 }
 
@@ -2717,7 +2715,7 @@ void spell_flamestrike( int sn, int level, CHAR_DATA *ch, void *vo,int target )
     dam = dice(6 + level / 2, 8);
     if ( saves_spell( level, victim,DAM_FIRE) )
 	dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_FIRE ,TRUE);
+    damage( ch, victim, dam, sn, DAM_FIRE ,TRUE);
     return;
 }
 
@@ -2915,7 +2913,7 @@ void spell_gate( int sn, int level, CHAR_DATA *ch, void *vo,int target )
     char_to_room(ch,victim->in_room);
 
     act("$n has arrived through a gate.",ch,NULL,NULL,TO_ROOM);
-    do_look(ch,"auto");
+    do_function(ch, &do_look, "auto");
 
     if (gate_pet)
     {
@@ -2924,7 +2922,7 @@ void spell_gate( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	char_from_room(ch->pet);
 	char_to_room(ch->pet,victim->in_room);
 	act("$n has arrived through a gate.",ch->pet,NULL,NULL,TO_ROOM);
-	do_look(ch->pet,"auto");
+	do_function(ch->pet, &do_look, "auto");
     }
 }
 
@@ -2968,7 +2966,7 @@ void spell_harm( int sn, int level, CHAR_DATA *ch, void *vo,int target)
     if ( saves_spell( level, victim,DAM_HARM) )
 	dam = UMIN( 50, dam / 2 );
     dam = UMIN( 100, dam );
-    damage_old( ch, victim, dam, sn, DAM_HARM ,TRUE);
+    damage( ch, victim, dam, sn, DAM_HARM ,TRUE);
     return;
 }
 
@@ -3166,7 +3164,7 @@ void spell_heat_metal( int sn, int level, CHAR_DATA *ch, void *vo,int target )
     {
 	if (saves_spell(level,victim,DAM_FIRE))
 	    dam = 2 * dam / 3;
-	damage_old(ch,victim,dam,sn,DAM_FIRE,TRUE);
+	damage(ch,victim,dam,sn,DAM_FIRE,TRUE);
     }
 }
 
@@ -3206,7 +3204,7 @@ void spell_holy_word(int sn, int level, CHAR_DATA *ch, void *vo,int target)
             spell_curse(curse_num,level,ch,(void *) vch,TARGET_CHAR);
 	    send_to_char("You are struck down!\n\r",vch);
 	    dam = dice(level,6);
-	    damage_old(ch,vch,dam,sn,DAM_ENERGY,TRUE);
+	    damage(ch,vch,dam,sn,DAM_ENERGY,TRUE);
 	  }
 	}
 
@@ -3217,7 +3215,7 @@ void spell_holy_word(int sn, int level, CHAR_DATA *ch, void *vo,int target)
             spell_curse(curse_num,level/2,ch,(void *) vch,TARGET_CHAR);
 	    send_to_char("You are struck down!\n\r",vch);
 	    dam = dice(level,4);
-	    damage_old(ch,vch,dam,sn,DAM_ENERGY,TRUE);
+	    damage(ch,vch,dam,sn,DAM_ENERGY,TRUE);
    	  }
 	}
     }  
@@ -3577,7 +3575,7 @@ void spell_lightning_bolt(int sn,int level,CHAR_DATA *ch,void *vo,int target)
     dam		= number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim,DAM_LIGHTNING) )
 	dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_LIGHTNING ,TRUE);
+    damage( ch, victim, dam, sn, DAM_LIGHTNING ,TRUE);
     return;
 }
 
@@ -3665,7 +3663,7 @@ void spell_magic_missile( int sn, int level, CHAR_DATA *ch,void *vo,int target)
     dam		= number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim,DAM_ENERGY) )
 	dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_ENERGY ,TRUE);
+    damage( ch, victim, dam, sn, DAM_ENERGY ,TRUE);
     return;
 }
 
@@ -3966,7 +3964,7 @@ void spell_ray_of_truth (int sn, int level, CHAR_DATA *ch, void *vo,int target)
 
     dam = (dam * align * align) / 1000000;
 
-    damage_old( ch, victim, dam, sn, DAM_HOLY ,TRUE);
+    damage( ch, victim, dam, sn, DAM_HOLY ,TRUE);
     spell_blindness(gsn_blindness, 
 	3 * level / 4, ch, (void *) victim,TARGET_CHAR);
 }
@@ -4194,7 +4192,7 @@ void spell_shocking_grasp(int sn,int level,CHAR_DATA *ch,void *vo,int target)
     dam		= number_range( dam_each[level] / 2, dam_each[level] * 2 );
     if ( saves_spell( level, victim,DAM_LIGHTNING) )
 	dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_LIGHTNING ,TRUE);
+    damage( ch, victim, dam, sn, DAM_LIGHTNING ,TRUE);
     return;
 }
 
@@ -4344,7 +4342,7 @@ void spell_summon( int sn, int level, CHAR_DATA *ch, void *vo,int target )
     char_to_room( victim, ch->in_room );
     act( "$n arrives suddenly.", victim, NULL, NULL, TO_ROOM );
     act( "$n has summoned you!", ch, NULL, victim,   TO_VICT );
-    do_look( victim, "auto" );
+    do_function(victim, &do_look, "auto" );
     return;
 }
 
@@ -4375,7 +4373,7 @@ void spell_teleport( int sn, int level, CHAR_DATA *ch, void *vo,int target )
     char_from_room( victim );
     char_to_room( victim, pRoomIndex );
     act( "$n slowly fades into existence.", victim, NULL, NULL, TO_ROOM );
-    do_look( victim, "auto" );
+    do_function(victim, &do_look, "auto" );
     return;
 }
 
@@ -4459,7 +4457,7 @@ void spell_word_of_recall( int sn, int level, CHAR_DATA *ch,void *vo,int target)
     char_from_room(victim);
     char_to_room(victim,location);
     act("$n appears in the room.",victim,NULL,NULL,TO_ROOM);
-    do_look(victim,"auto");
+    do_function(victim, &do_look, "auto");
 }
 
 /*
@@ -4483,12 +4481,12 @@ void spell_acid_breath( int sn, int level, CHAR_DATA *ch, void *vo,int target)
     if (saves_spell(level,victim,DAM_ACID))
     {
 	acid_effect(victim,level/2,dam/4,TARGET_CHAR);
-	damage_old(ch,victim,dam/2,sn,DAM_ACID,TRUE);
+	damage(ch,victim,dam/2,sn,DAM_ACID,TRUE);
     }
     else
     {
 	acid_effect(victim,level,dam,TARGET_CHAR);
-	damage_old(ch,victim,dam,sn,DAM_ACID,TRUE);
+	damage(ch,victim,dam,sn,DAM_ACID,TRUE);
     }
 }
 
@@ -4526,12 +4524,12 @@ void spell_fire_breath( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	    if (saves_spell(level,vch,DAM_FIRE))
 	    {
 		fire_effect(vch,level/2,dam/4,TARGET_CHAR);
-		damage_old(ch,vch,dam/2,sn,DAM_FIRE,TRUE);
+		damage(ch,vch,dam/2,sn,DAM_FIRE,TRUE);
 	    }
 	    else
 	    {
 		fire_effect(vch,level,dam,TARGET_CHAR);
-		damage_old(ch,vch,dam,sn,DAM_FIRE,TRUE);
+		damage(ch,vch,dam,sn,DAM_FIRE,TRUE);
 	    }
 	}
 	else /* partial damage */
@@ -4539,12 +4537,12 @@ void spell_fire_breath( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	    if (saves_spell(level - 2,vch,DAM_FIRE))
 	    {
 		fire_effect(vch,level/4,dam/8,TARGET_CHAR);
-		damage_old(ch,vch,dam/4,sn,DAM_FIRE,TRUE);
+		damage(ch,vch,dam/4,sn,DAM_FIRE,TRUE);
 	    }
 	    else
 	    {
 		fire_effect(vch,level/2,dam/4,TARGET_CHAR);
-		damage_old(ch,vch,dam/2,sn,DAM_FIRE,TRUE);
+		damage(ch,vch,dam/2,sn,DAM_FIRE,TRUE);
 	    }
 	}
     }
@@ -4582,12 +4580,12 @@ void spell_frost_breath( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	    if (saves_spell(level,vch,DAM_COLD))
 	    {
 		cold_effect(vch,level/2,dam/4,TARGET_CHAR);
-		damage_old(ch,vch,dam/2,sn,DAM_COLD,TRUE);
+		damage(ch,vch,dam/2,sn,DAM_COLD,TRUE);
 	    }
 	    else
 	    {
 		cold_effect(vch,level,dam,TARGET_CHAR);
-		damage_old(ch,vch,dam,sn,DAM_COLD,TRUE);
+		damage(ch,vch,dam,sn,DAM_COLD,TRUE);
 	    }
 	}
 	else
@@ -4595,12 +4593,12 @@ void spell_frost_breath( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	    if (saves_spell(level - 2,vch,DAM_COLD))
 	    {
 		cold_effect(vch,level/4,dam/8,TARGET_CHAR);
-		damage_old(ch,vch,dam/4,sn,DAM_COLD,TRUE);
+		damage(ch,vch,dam/4,sn,DAM_COLD,TRUE);
 	    }
 	    else
 	    {
 		cold_effect(vch,level/2,dam/4,TARGET_CHAR);
-		damage_old(ch,vch,dam/2,sn,DAM_COLD,TRUE);
+		damage(ch,vch,dam/2,sn,DAM_COLD,TRUE);
 	    }
 	}
     }
@@ -4635,12 +4633,12 @@ void spell_gas_breath( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	if (saves_spell(level,vch,DAM_POISON))
 	{
 	    poison_effect(vch,level/2,dam/4,TARGET_CHAR);
-	    damage_old(ch,vch,dam/2,sn,DAM_POISON,TRUE);
+	    damage(ch,vch,dam/2,sn,DAM_POISON,TRUE);
 	}
 	else
 	{
 	    poison_effect(vch,level,dam,TARGET_CHAR);
-	    damage_old(ch,vch,dam,sn,DAM_POISON,TRUE);
+	    damage(ch,vch,dam,sn,DAM_POISON,TRUE);
 	}
     }
 }
@@ -4663,12 +4661,12 @@ void spell_lightning_breath(int sn,int level,CHAR_DATA *ch,void *vo,int target)
     if (saves_spell(level,victim,DAM_LIGHTNING))
     {
 	shock_effect(victim,level/2,dam/4,TARGET_CHAR);
-	damage_old(ch,victim,dam/2,sn,DAM_LIGHTNING,TRUE);
+	damage(ch,victim,dam/2,sn,DAM_LIGHTNING,TRUE);
     }
     else
     {
 	shock_effect(victim,level,dam,TARGET_CHAR);
-	damage_old(ch,victim,dam,sn,DAM_LIGHTNING,TRUE); 
+	damage(ch,victim,dam,sn,DAM_LIGHTNING,TRUE); 
     }
 }
 
@@ -4683,7 +4681,7 @@ void spell_general_purpose(int sn,int level,CHAR_DATA *ch,void *vo,int target)
     dam = number_range( 25, 100 );
     if ( saves_spell( level, victim, DAM_PIERCE) )
         dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_PIERCE ,TRUE);
+    damage( ch, victim, dam, sn, DAM_PIERCE ,TRUE);
     return;
 }
 
@@ -4695,6 +4693,6 @@ void spell_high_explosive(int sn,int level,CHAR_DATA *ch,void *vo,int target)
     dam = number_range( 30, 120 );
     if ( saves_spell( level, victim, DAM_PIERCE) )
         dam /= 2;
-    damage_old( ch, victim, dam, sn, DAM_PIERCE ,TRUE);
+    damage( ch, victim, dam, sn, DAM_PIERCE ,TRUE);
     return;
 }

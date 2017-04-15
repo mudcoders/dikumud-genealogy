@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -36,17 +36,8 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "interp.h"
 #include "magic.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_yell		);
-DECLARE_DO_FUN(do_open		);
-DECLARE_DO_FUN(do_close		);
-DECLARE_DO_FUN(do_say	);
-DECLARE_DO_FUN(do_backstab);
-DECLARE_DO_FUN(do_flee);
-DECLARE_DO_FUN(do_murder);
-
 
 /*
  * The following special functions are available for mobiles.
@@ -346,9 +337,12 @@ bool spec_nasty( CHAR_DATA *ch )
              && (victim->level > ch->level)
              && (victim->level < ch->level + 10))
           {
-	     do_backstab(ch,victim->name);
+	     do_function(ch, &do_backstab, victim->name);
              if (ch->position != POS_FIGHTING)
-                 do_murder(ch,victim->name);
+	     {
+                 do_function(ch, &do_murder, victim->name);
+	     }
+
              /* should steal some coins right away? :) */
              return TRUE;
           }
@@ -373,7 +367,7 @@ bool spec_nasty( CHAR_DATA *ch )
                  ch->gold     += gold;
                  return TRUE;
  
-        case 1:  do_flee( ch, "");
+        case 1:  do_function(ch, &do_flee, "");
                  return TRUE;
  
         default: return FALSE;
@@ -754,7 +748,7 @@ bool spec_executioner( CHAR_DATA *ch )
     sprintf( buf, "%s is a %s!  PROTECT THE INNOCENT!  MORE BLOOOOD!!!",
 	victim->name, crime );
     REMOVE_BIT(ch->comm,COMM_NOSHOUT);
-    do_yell( ch, buf );
+    do_function(ch, &do_yell, buf );
     multi_hit( ch, victim, TYPE_UNDEFINED );
     return TRUE;
 }
@@ -835,7 +829,7 @@ bool spec_guard( CHAR_DATA *ch )
 	sprintf( buf, "%s is a %s!  PROTECT THE INNOCENT!!  BANZAI!!",
 	    victim->name, crime );
  	REMOVE_BIT(ch->comm,COMM_NOSHOUT);
-	do_yell( ch, buf );
+	do_function(ch, &do_yell, buf );
 	multi_hit( ch, victim, TYPE_UNDEFINED );
 	return TRUE;
     }
@@ -964,13 +958,13 @@ bool spec_mayor( CHAR_DATA *ch )
 	break;
 
     case 'O':
-/*	do_unlock( ch, "gate" ); */
-	do_open( ch, "gate" );
+/*	do_function(ch, &do_unlock, "gate" ); */
+	do_function(ch, &do_open, "gate" );
 	break;
 
     case 'C':
-	do_close( ch, "gate" );
-/*	do_lock( ch, "gate" ); */
+	do_function(ch, &do_close, "gate" );
+/*	do_function(ch, &do_lock, "gate" ); */
 	break;
 
     case '.' :

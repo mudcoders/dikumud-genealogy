@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -36,14 +36,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "merc.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_split		);
-DECLARE_DO_FUN(do_yell		);
-DECLARE_DO_FUN(do_say		);
-DECLARE_DO_FUN(do_wake		);
-
-
+#include "interp.h"
 
 /*
  * Local functions.
@@ -180,7 +173,7 @@ void get_obj( CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container )
 	  if ( members > 1 && (obj->value[0] > 1 || obj->value[1]))
 	  {
 	    sprintf(buffer,"%d %d",obj->value[0],obj->value[1]);
-	    do_split(ch,buffer);	
+	    do_function(ch, &do_split, buffer);	
 	  }
         }
  
@@ -749,18 +742,18 @@ void do_give( CHAR_DATA *ch, char *argument )
 		ch->reply = victim;
 		sprintf(buf,"%d %s %s", 
 			amount, silver ? "silver" : "gold",ch->name);
-		do_give(victim,buf);
+		do_function(victim, &do_give, buf);
 	    }
 	    else if (can_see(victim,ch))
 	    {
 		sprintf(buf,"%d %s %s", 
 			change, silver ? "gold" : "silver",ch->name);
-		do_give(victim,buf);
+		do_function(victim, &do_give, buf);
 		if (silver)
 		{
 		    sprintf(buf,"%d silver %s", 
 			(95 * amount / 100 - change * 100),ch->name);
-		    do_give(victim,buf);
+		    do_function(victim, &do_give, buf);
 		}
 		act("$n tells you 'Thank you, come again.'",
 		    victim,NULL,ch,TO_VICT);
@@ -837,7 +830,7 @@ void do_envenom(CHAR_DATA *ch, char *argument)
     int percent,skill;
 
     /* find out what */
-    if (argument == '\0')
+    if (argument[0] == '\0')
     {
 	send_to_char("Envenom what item?\n\r",ch);
 	return;
@@ -1830,7 +1823,7 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 	if ( members > 1 && silver > 1)
 	{
 	    sprintf(buffer,"%d",silver);
-	    do_split(ch,buffer);	
+	    do_function(ch, &do_split, buffer);	
 	}
     }
 
@@ -2219,9 +2212,9 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	    break;
         }
         if (!IS_AWAKE(victim))
-            do_wake(victim,"");
+            do_function(victim, &do_wake, "");
 	if (IS_AWAKE(victim))
-	    do_yell( victim, buf );
+	    do_function(victim, &do_yell, buf );
 	if ( !IS_NPC(ch) )
 	{
 	    if ( IS_NPC(victim) )
@@ -2252,8 +2245,8 @@ void do_steal( CHAR_DATA *ch, char *argument )
     {
 	int gold, silver;
 
-	gold = victim->gold * number_range(1, ch->level) / 60;
-	silver = victim->silver * number_range(1,ch->level) / 60;
+	gold = victim->gold * number_range(1, ch->level) / MAX_LEVEL;
+	silver = victim->silver * number_range(1,ch->level) / MAX_LEVEL;
 	if ( gold <= 0 && silver <= 0 )
 	{
 	    send_to_char( "You couldn't get any coins.\n\r", ch );
@@ -2340,17 +2333,17 @@ CHAR_DATA *find_keeper( CHAR_DATA *ch )
      *
     if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_KILLER) )
     {
-	do_say( keeper, "Killers are not welcome!" );
-	sprintf( buf, "%s the KILLER is over here!\n\r", ch->name );
-	do_yell( keeper, buf );
+	do_function(keeper, &do_say, "Killers are not welcome!");
+	sprintf(buf, "%s the KILLER is over here!\n\r", ch->name);
+	do_function(keeper, &do_yell, buf );
 	return NULL;
     }
 
     if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_THIEF) )
     {
-	do_say( keeper, "Thieves are not welcome!" );
-	sprintf( buf, "%s the THIEF is over here!\n\r", ch->name );
-	do_yell( keeper, buf );
+	do_function(keeper, &do_say, "Thieves are not welcome!");
+	sprintf(buf, "%s the THIEF is over here!\n\r", ch->name);
+	do_function(keeper, &do_yell, buf );
 	return NULL;
     }
 	*/
@@ -2359,13 +2352,13 @@ CHAR_DATA *find_keeper( CHAR_DATA *ch )
      */
     if ( time_info.hour < pShop->open_hour )
     {
-	do_say( keeper, "Sorry, I am closed. Come back later." );
+	do_function(keeper, &do_say, "Sorry, I am closed. Come back later.");
 	return NULL;
     }
     
     if ( time_info.hour > pShop->close_hour )
     {
-	do_say( keeper, "Sorry, I am closed. Come back tomorrow." );
+	do_function(keeper, &do_say, "Sorry, I am closed. Come back tomorrow.");
 	return NULL;
     }
 
@@ -2374,7 +2367,7 @@ CHAR_DATA *find_keeper( CHAR_DATA *ch )
      */
     if ( !can_see( keeper, ch ) )
     {
-	do_say( keeper, "I don't trade with folks I can't see." );
+	do_function(keeper, &do_say, "I don't trade with folks I can't see.");
 	return NULL;
     }
 
@@ -2628,7 +2621,7 @@ void do_buy( CHAR_DATA *ch, char *argument )
 	obj  = get_obj_keeper( ch,keeper, arg );
 	cost = get_cost( keeper, obj, TRUE );
 
-	if (number < 1)
+	if (number < 1 || number > 99)
 	{
 	    act("$n tells you 'Get real!",keeper,NULL,ch,TO_VICT);
 	    return;

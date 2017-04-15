@@ -16,10 +16,10 @@
  **************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -36,11 +36,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include "merc.h"
+#include "interp.h"
 #include "recycle.h"
 #include "tables.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_quit	);
 
 /* RT code to delete yourself */
 
@@ -69,7 +67,7 @@ void do_delete( CHAR_DATA *ch, char *argument)
     	    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( ch->name ) );
 	    wiznet("$N turns $Mself into line noise.",ch,NULL,0,0,0);
 	    stop_fighting(ch,TRUE);
-	    do_quit(ch,"");
+	    do_function(ch, &do_quit, "");
 	    unlink(strsave);
 	    return;
  	}
@@ -298,14 +296,15 @@ void do_auction( CHAR_DATA *ch, char *argument )
 	{
 	  send_to_char("The gods have revoked your channel priviliges.\n\r",ch);
 	  return;
+	}
 
 	REMOVE_BIT(ch->comm,COMM_NOAUCTION);
-      }
+    }
 
-      sprintf( buf, "You auction '%s'\n\r", argument );
-      send_to_char( buf, ch );
-      for ( d = descriptor_list; d != NULL; d = d->next )
-      {
+    sprintf( buf, "You auction '%s'\n\r", argument );
+    send_to_char( buf, ch );
+    for ( d = descriptor_list; d != NULL; d = d->next )
+    {
 	CHAR_DATA *victim;
 
 	victim = d->original ? d->original : d->character;
@@ -318,7 +317,6 @@ void do_auction( CHAR_DATA *ch, char *argument )
 	    act_new("$n auctions '$t'",
 		    ch,argument,d->character,TO_VICT,POS_DEAD);
  	}
-      }
     }
 }
 

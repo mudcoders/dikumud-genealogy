@@ -1,4 +1,15 @@
 #HELPS
+-1 NEWBIE INFO~
+Ah! Another mortal, seeking adventure.  You should go through mudschool first,
+to gain experience to face the trials outside.  Be sure to practice a weapon
+in the guild room, or your stay with us shall be very short indeed.  Type
+'equipment' to see what your are wielding, 'spells' to see your spells,
+'skills' to see your skills, and 'commands' for a list of commands. Help is
+available on most commands and abilities.
+
+Please type 'help rules' to see the Rules of ROM.
+~
+
 -1 LAG~
 Twas dial-up, and the failing mudders did toil and struggle in the fray
 All checksummed were the compressed files
@@ -81,8 +92,8 @@ a little over a year, after which the code (version 2.3) was released,
 and various other ROM muds were started, including Rivers of Mud under
 a new management (Zump's ROM), at rom.org 9000.
 
-Alander's current project is Athen, the sequel to the ROM code.
-It will be found at hypercube.org 6666, when it is opened.
+Alander's current project is Athen, the sequel to the ROM code. It can
+be found on Rehobaom's Legacy, at hypercube.org 9000.
 
 The following people contributed to the ROM flavor of the merc base code:
 
@@ -110,23 +121,28 @@ Geographically correct Midgaard (tm) --
 Ideas and playtesting --
     Thousands of dedicated mudders around the world
 
+The New Thalos area was donated by Onivel of Jedi, who was also the originator
+of the ASCII flags used in the zone files
+
 Beta testing --
-    Ken Blosser, Doug Araya, and Sherene Neil all helped with bug reports
+    Ken Blosser, Doug Araya, and Sherene Neil all helped with bugs reports
     and suggestions, saving a lot of headaches
 
-New Thalos area was donated by Onivel of Jedi, who was also the originator
-of the ASCII flags used in the zone files
+Bug reports --
+    Thanks to Shad Muegge, Jerome Despret, Phoenix, Will Hongach,
+    Erwin S. Andreasen, Adam Debus and especially Gary Turkington
+    (author of the ROM FAQ) for help spotting bugs
 
 ROM 2.4 was developed during my time with Moosehead mud, and the release
 shares many of the features I wrote while I was there.  Additional code
-was written by Seth Scott (enchant armor, the new poofin/poofout), and many
-contributions and ideas from the Merc list were used.  Portions of Rusty's
-code from Moosehead also remain.
+was written by Seth Scott (the new poofin/poofout), and many contributions
+and ideas from the Merc list were used.  Portions of Rusty's work on
+Moosehead also remain.
 
 The new features of 2.4 were largely produced in bull sessions with
 Gabrielle Taylor and Brian Moore, without whom this release wouldn't
 have happened.  In particular, the new privacy code, furniture, and
-wiznet are largely the results of Gabrielle's ideas.
+wiznet are the results of Gabrielle's ideas.
 
 Changes to the standard diku mob and object format, as well as the changes
 to Merc 2.1 source code, were done by Alander over many a late night of
@@ -236,7 +252,7 @@ THIS IS A MUD BASED ON.....
                Original DikuMUD by Hans Staerfeldt, Katja Nyboe,
                Tom Madsen, Michael Seifert, and Sebastian Hammer
                Based on MERC 2.1 code by Hatchet, Furey, and Kahn
-               ROM 2.4 copyright (c) 1993-1996 Russ Taylor
+               ROM 2.4 copyright (c) 1993-1998 Russ Taylor
 
 By what name do you wish to be known? ~
  

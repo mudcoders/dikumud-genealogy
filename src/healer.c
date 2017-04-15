@@ -16,10 +16,10 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -177,7 +177,8 @@ void do_heal(CHAR_DATA *ch, char *argument)
     WAIT_STATE(ch,PULSE_VIOLENCE);
 
     deduct_cost(ch,cost);
-    mob->gold += cost;
+    mob->gold += cost / 100;
+    mob->silver += cost % 100;
     act("$n utters the words '$T'.",mob,NULL,words,TO_ROOM);
   
     if (spell == NULL)  /* restore mana trap...kinda hackish */

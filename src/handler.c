@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -35,14 +35,10 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "interp.h"
 #include "magic.h"
 #include "recycle.h"
 #include "tables.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_return	);
-
-
 
 /*
  * Local functions.
@@ -1109,6 +1105,7 @@ void affect_to_char( CHAR_DATA *ch, AFFECT_DATA *paf )
 
     *paf_new		= *paf;
 
+    VALIDATE(paf);	/* in case we missed it when we set up paf */
     paf_new->next	= ch->affected;
     ch->affected	= paf_new;
 
@@ -1124,6 +1121,8 @@ void affect_to_obj(OBJ_DATA *obj, AFFECT_DATA *paf)
     paf_new = new_affect();
 
     *paf_new		= *paf;
+
+    VALIDATE(paf);	/* in case we missed it when we set up paf */
     paf_new->next	= obj->affected;
     obj->affected	= paf_new;
 
@@ -1965,7 +1964,7 @@ void extract_char( CHAR_DATA *ch, bool fPull )
 
     if ( ch->desc != NULL && ch->desc->original != NULL )
     {
-	do_return( ch, "" );
+	do_function(ch, &do_return, "" );
 	ch->desc = NULL;
     }
 
@@ -2514,7 +2513,7 @@ bool can_see_obj( CHAR_DATA *ch, OBJ_DATA *obj )
     if ( IS_OBJ_STAT(obj,ITEM_GLOW))
 	return TRUE;
 
-    if ( room_is_dark( ch->in_room ) && !IS_AFFECTED(ch, AFF_INFRARED) )
+    if ( room_is_dark( ch->in_room ) && !IS_AFFECTED(ch, AFF_DARK_VISION) )
 	return FALSE;
 
     return TRUE;

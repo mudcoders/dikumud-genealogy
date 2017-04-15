@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -1843,7 +1843,8 @@ extern sh_int  gsn_recall;
 #define get_carry_weight(ch)	((ch)->carry_weight + (ch)->silver/10 +  \
 						      (ch)->gold * 2 / 5)
 
-
+#define act(format,ch,arg1,arg2,type)\
+	act_new((format),(ch),(arg1),(arg2),(type),POS_RESTING)
 
 /*
  * Object macros.
@@ -1989,7 +1990,7 @@ int	fprintf		args( ( FILE *stream, const char *format, ... ) );
 #if	defined(SYSV)
 siz_t	fread		args( ( void *ptr, size_t size, size_t n, 
 			    FILE *stream) );
-#else
+#elif !defined(__SVR4)
 int	fread		args( ( void *ptr, int size, int n, FILE *stream ) );
 #endif
 int	fseek		args( ( FILE *stream, long offset, int ptrname ) );

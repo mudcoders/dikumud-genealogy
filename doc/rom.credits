@@ -27,12 +27,17 @@ Geographically correct Midgaard (tm) --
 Ideas and playtesting --
     Thousands of dedicated mudders around the world
 
-New Thalos area was donated by Onivel of Jedi, who was also the originator
+The New Thalos area was donated by Onivel of Jedi, who was also the originator
 of the ASCII flags used in the zone files
 
 Beta testing --
     Ken Blosser, Doug Araya, and Sherene Neil all helped with bugs reports
     and suggestions, saving a lot of headaches
+
+Bug reports --
+    Thanks to Shad Muegge, Jerome Despret, Phoenix, Will Hongach,
+    Erwin S. Andreasen, Adam Debus and especially Gary Turkington
+    (author of the ROM FAQ) for help spotting bugs
 
 ROM 2.4 was developed during my time with Moosehead mud, and the release
 shares many of the features I wrote while I was there.  Additional code
@@ -43,7 +48,7 @@ Moosehead also remain.
 The new features of 2.4 were largely produced in bull sessions with
 Gabrielle Taylor and Brian Moore, without whom this release wouldn't
 have happened.  In particular, the new privacy code, furniture, and
-wiznet are largely the results of Gabrielle's ideas.
+wiznet are the results of Gabrielle's ideas.
 
 Changes to the standard diku mob and object format, as well as the changes
 to Merc 2.1 source code, were done by Alander over many a late night of

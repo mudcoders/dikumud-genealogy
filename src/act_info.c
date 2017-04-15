@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -37,19 +37,11 @@
 #include <ctype.h>
 #include <time.h>
 #include "merc.h"
+#include "interp.h"
 #include "magic.h"
 #include "recycle.h"
 #include "tables.h"
 #include "lookup.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(	do_exits	);
-DECLARE_DO_FUN( do_look		);
-DECLARE_DO_FUN( do_help		);
-DECLARE_DO_FUN( do_affects	);
-DECLARE_DO_FUN( do_play		);
-
-
 
 char *	const	where_name	[] =
 {
@@ -75,10 +67,8 @@ char *	const	where_name	[] =
 };
 
 
-/* for do_count */
+/* for  keeping track of the player count */
 int max_on = 0;
-
-
 
 /*
  * Local functions.
@@ -620,27 +610,27 @@ void do_socials(CHAR_DATA *ch, char *argument)
 
 void do_motd(CHAR_DATA *ch, char *argument)
 {
-    do_help(ch,"motd");
+    do_function(ch, &do_help, "motd");
 }
 
 void do_imotd(CHAR_DATA *ch, char *argument)
 {  
-    do_help(ch,"imotd");
+    do_function(ch, &do_help, "imotd");
 }
 
 void do_rules(CHAR_DATA *ch, char *argument)
 {
-    do_help(ch,"rules");
+    do_function(ch, &do_help, "rules");
 }
 
 void do_story(CHAR_DATA *ch, char *argument)
 {
-    do_help(ch,"story");
+    do_function(ch, &do_help, "story");
 }
 
 void do_wizlist(CHAR_DATA *ch, char *argument)
 {
-    do_help(ch,"wizlist");
+    do_function(ch, &do_help, "wizlist");
 }
 
 /* RT this following section holds all the auto commands from ROM, as well as
@@ -1055,7 +1045,7 @@ void do_look( CHAR_DATA *ch, char *argument )
         if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_AUTOEXIT) )
 	{
 	    send_to_char("\n\r",ch);
-            do_exits( ch, "auto" );
+            do_function(ch, &do_exits, "auto" );
 	}
 
 	show_list_to_char( ch->in_room->contents, ch, FALSE, FALSE );
@@ -1251,7 +1241,7 @@ void do_look( CHAR_DATA *ch, char *argument )
 /* RT added back for the hell of it */
 void do_read (CHAR_DATA *ch, char *argument )
 {
-    do_look(ch,argument);
+    do_function(ch, &do_look, argument);
 }
 
 void do_examine( CHAR_DATA *ch, char *argument )
@@ -1268,7 +1258,7 @@ void do_examine( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    do_look( ch, arg );
+    do_function(ch, &do_look, arg );
 
     if ( ( obj = get_obj_here( ch, arg ) ) != NULL )
     {
@@ -1278,7 +1268,7 @@ void do_examine( CHAR_DATA *ch, char *argument )
 	    break;
 	
 	case ITEM_JUKEBOX:
-	    do_play(ch,"list");
+	    do_function(ch, &do_play, "list");
 	    break;
 
 	case ITEM_MONEY:
@@ -1312,7 +1302,7 @@ void do_examine( CHAR_DATA *ch, char *argument )
 	case ITEM_CORPSE_NPC:
 	case ITEM_CORPSE_PC:
 	    sprintf(buf,"in %s",argument);
-	    do_look( ch, buf );
+	    do_function(ch, &do_look, buf );
 	}
     }
 
@@ -1627,7 +1617,7 @@ void do_score( CHAR_DATA *ch, char *argument )
     else                             send_to_char( "satanic.\n\r", ch );
 
     if (IS_SET(ch->comm,COMM_SHOW_AFFECTS))
-	do_affects(ch,"");
+	do_function(ch, &do_affects, "");
 }
 
 void do_affects(CHAR_DATA *ch, char *argument )
@@ -2258,7 +2248,7 @@ void do_compare( CHAR_DATA *ch, char *argument )
 
 void do_credits( CHAR_DATA *ch, char *argument )
 {
-    do_help( ch, "diku" );
+    do_function(ch, &do_help, "diku" );
     return;
 }
 

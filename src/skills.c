@@ -16,10 +16,10 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -36,14 +36,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include "merc.h"
+#include "interp.h"
 #include "magic.h"
 #include "recycle.h"
-
-/* command procedures needed */
-DECLARE_DO_FUN(do_groups	);
-DECLARE_DO_FUN(do_help		);
-DECLARE_DO_FUN(do_say		);
-
 
 /* used to get new skills */
 void do_gain(CHAR_DATA *ch, char *argument)
@@ -73,7 +68,7 @@ void do_gain(CHAR_DATA *ch, char *argument)
 
     if (arg[0] == '\0')
     {
-	do_say(trainer,"Pardon me?");
+	do_function(trainer, &do_say, "Pardon me?");
 	return;
     }
 
@@ -677,11 +672,11 @@ bool parse_gen_groups(CHAR_DATA *ch,char *argument)
     {
 	if (argument[0] == '\0')
 	{
-	    do_help(ch,"group help");
+	    do_function(ch, &do_help, "group help");
 	    return TRUE;
 	}
 
-        do_help(ch,argument);
+        do_function(ch, &do_help, argument);
 	return TRUE;
     }
 
@@ -709,6 +704,15 @@ bool parse_gen_groups(CHAR_DATA *ch,char *argument)
 	 	return TRUE;
 	    }
 
+	    /* Close security hole */
+	    if (ch->gen_data->points_chosen + group_table[gn].rating[ch->class]
+		> 300)
+	    {
+		send_to_char(
+		    "You cannot take more than 300 creation points.\n\r", ch);
+		return TRUE;
+	    }
+
 	    sprintf(buf,"%s group added\n\r",group_table[gn].name);
 	    send_to_char(buf,ch);
 	    ch->gen_data->group_chosen[gn] = TRUE;
@@ -732,6 +736,15 @@ bool parse_gen_groups(CHAR_DATA *ch,char *argument)
 	    ||  skill_table[sn].spell_fun != spell_null)
 	    {
 		send_to_char("That skill is not available.\n\r",ch);
+		return TRUE;
+	    }
+
+	    /* Close security hole */
+	    if (ch->gen_data->points_chosen + skill_table[sn].rating[ch->class]
+		> 300)
+	    {
+		send_to_char(
+		    "You cannot take more than 300 creation points.\n\r", ch);
 		return TRUE;
 	    }
 	    sprintf(buf, "%s skill added\n\r",skill_table[sn].name);
@@ -788,7 +801,7 @@ bool parse_gen_groups(CHAR_DATA *ch,char *argument)
 
     if (!str_prefix(arg,"premise"))
     {
-	do_help(ch,"premise");
+	do_function(ch, &do_help, "premise");
 	return TRUE;
     }
 
@@ -806,7 +819,7 @@ bool parse_gen_groups(CHAR_DATA *ch,char *argument)
 
     if (!str_prefix(arg,"info"))
     {
-	do_groups(ch,argument);
+	do_function(ch, &do_groups, argument);
 	return TRUE;
     }
 

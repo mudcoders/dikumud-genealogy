@@ -16,16 +16,19 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
 ***************************************************************************/
 
 /* this is a listing of all the commands and command related data */
+
+/* wrapper function for safe command execution */
+void do_function args((CHAR_DATA *ch, DO_FUN *do_fun, char *argument));
 
 /* for command types */
 #define ML 	MAX_LEVEL	/* implementor */
@@ -231,6 +234,7 @@ DECLARE_DO_FUN( do_rules	);
 DECLARE_DO_FUN(	do_sacrifice	);
 DECLARE_DO_FUN(	do_save		);
 DECLARE_DO_FUN(	do_say		);
+DECLARE_DO_FUN(	do_scan		);
 DECLARE_DO_FUN(	do_score	);
 DECLARE_DO_FUN( do_scroll	);
 DECLARE_DO_FUN(	do_sell		);

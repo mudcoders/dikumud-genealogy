@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -35,10 +35,9 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "interp.h"
 #include "magic.h"
 
-
-DECLARE_DO_FUN(do_scan);
 
 extern char *target_name;
 
@@ -50,7 +49,7 @@ void spell_farsight( int sn, int level, CHAR_DATA *ch, void *vo,int target)
         return;
     }
  
-    do_scan(ch,target_name);
+    do_function(ch, &do_scan, target_name);
 }
 
 

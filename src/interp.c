@@ -16,10 +16,10 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -41,8 +41,6 @@
 
 bool	check_social	args( ( CHAR_DATA *ch, char *command,
 			    char *argument ) );
-
-
 
 /*
  * Command logging types.
@@ -512,8 +510,21 @@ void interpret( CHAR_DATA *ch, char *argument )
     return;
 }
 
-
-
+/* function to keep argument safe in all commands -- no static strings */
+void do_function (CHAR_DATA *ch, DO_FUN *do_fun, char *argument)
+{
+    char *command_string;
+    
+    /* copy the string */
+    command_string = str_dup(argument);
+    
+    /* dispatch the command */
+    (*do_fun) (ch, command_string);
+    
+    /* free the string */
+    free_string(command_string);
+}
+    
 bool check_social( CHAR_DATA *ch, char *command, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];

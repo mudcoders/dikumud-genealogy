@@ -16,10 +16,10 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -370,9 +370,8 @@ void free_char (CHAR_DATA *ch)
     free_string(ch->description);
     free_string(ch->prompt);
     free_string(ch->prefix);
-
-    if (ch->pcdata != NULL)
-    	free_pcdata(ch->pcdata);
+    free_note  (ch->pnote);
+    free_pcdata(ch->pcdata);
 
     ch->next = char_free;
     char_free  = ch;

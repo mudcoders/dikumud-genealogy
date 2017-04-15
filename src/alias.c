@@ -16,10 +16,10 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1998 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
+*	    Russ Taylor (rtaylor@hypercube.org)				   *
+*	    Gabrielle Taylor (gtaylor@hypercube.org)			   *
 *	    Brian Moore (zump@rom.org)					   *
 *	By using this code, you have agreed to follow the terms of the	   *
 *	ROM license, in the file Rom24/doc/rom.license			   *
@@ -81,12 +81,14 @@ void substitute_alias(DESCRIPTOR_DATA *d, char *argument)
 		strcat(buf,ch->pcdata->alias_sub[alias]);
 		strcat(buf," ");
 		strcat(buf,point);
+
+	        if (strlen(buf) > MAX_INPUT_LENGTH - 1)
+	        {
+		    send_to_char(
+			"Alias substitution too long. Truncated.\r\n",ch);
+		    buf[MAX_INPUT_LENGTH -1] = '\0';
+	        }
 		break;
-	    }
-	    if (strlen(buf) > MAX_INPUT_LENGTH)
-	    {
-		send_to_char("Alias substitution too long. Truncated.\r\n",ch);
-		buf[MAX_INPUT_LENGTH -1] = '\0';
 	    }
 	}
     }
@@ -220,7 +222,7 @@ void do_unalias(CHAR_DATA *ch, char *argument)
  
     argument = one_argument(argument,arg);
 
-    if (arg == '\0')
+    if (arg[0] == '\0')
     {
 	send_to_char("Unalias what?\n\r",ch);
 	return;
