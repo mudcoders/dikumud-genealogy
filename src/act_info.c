@@ -15,11 +15,15 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#endif
 #include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "merc.h"
 
@@ -371,8 +375,14 @@ void show_char_to_char( CHAR_DATA *list, CHAR_DATA *ch )
 
 bool check_blind( CHAR_DATA *ch )
 {
+    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_HOLYLIGHT) )
+	return TRUE;
+
     if ( IS_AFFECTED(ch, AFF_BLIND) )
-	{ send_to_char( "You can't see a thing!\n\r", ch ); return FALSE; }
+    {
+	send_to_char( "You can't see a thing!\n\r", ch );
+	return FALSE;
+    }
 
     return TRUE;
 }
@@ -663,7 +673,7 @@ void do_exits( CHAR_DATA *ch, char *argument )
     for ( door = 0; door <= 5; door++ )
     {
 	if ( ( pexit = ch->in_room->exit[door] ) != NULL
-	&&   pexit->u1.to_room != NULL
+	&&   pexit->to_room != NULL
 	&&   !IS_SET(pexit->exit_info, EX_CLOSED) )
 	{
 	    found = TRUE;
@@ -676,9 +686,9 @@ void do_exits( CHAR_DATA *ch, char *argument )
 	    {
 		sprintf( buf + strlen(buf), "%-5s - %s\n\r",
 		    capitalize( dir_name[door] ),
-		    room_is_dark( pexit->u1.to_room )
+		    room_is_dark( pexit->to_room )
 			?  "Too dark to tell"
-			: pexit->u1.to_room->name
+			: pexit->to_room->name
 		    );
 	    }
 	}
@@ -705,8 +715,9 @@ void do_score( CHAR_DATA *ch, char *argument )
 	"You are %s%s, level %d, %d years old (%d hours).\n\r",
 	ch->name,
 	IS_NPC(ch) ? "" : ch->pcdata->title,
-	ch->level, GET_AGE(ch),
-	(int) ((ch->played + current_time - ch->logon) / 3600) );
+	ch->level,
+	get_age(ch),
+	(get_age(ch) - 17) * 2 );
     send_to_char( buf, ch );
 
     if ( get_trust( ch ) != ch->level )
@@ -939,19 +950,33 @@ void do_weather( CHAR_DATA *ch, char *argument )
 
 void do_help( CHAR_DATA *ch, char *argument )
 {
+    char argall[MAX_INPUT_LENGTH];
+    char argone[MAX_INPUT_LENGTH];
     HELP_DATA *pHelp;
 
     if ( argument[0] == '\0' )
 	argument = "summary";
+
+    /*
+     * Tricky argument handling so 'help a b' doesn't match a.
+     */
+    argall[0] = '\0';
+    while ( argument[0] != '\0' )
+    {
+	argument = one_argument( argument, argone );
+	if ( argall[0] != '\0' )
+	    strcat( argall, " " );
+	strcat( argall, argone );
+    }
 
     for ( pHelp = help_first; pHelp != NULL; pHelp = pHelp->next )
     {
 	if ( pHelp->level > get_trust( ch ) )
 	    continue;
 
-	if ( is_name( argument, pHelp->keyword ) )
+	if ( is_name( argall, pHelp->keyword ) )
 	{
-	    if ( pHelp->level >= 0 && str_cmp( argument, "imotd" ) )
+	    if ( pHelp->level >= 0 && str_cmp( argall, "imotd" ) )
 	    {
 		send_to_char( pHelp->keyword, ch );
 		send_to_char( "\n\r", ch );
@@ -1177,19 +1202,44 @@ void do_compare( CHAR_DATA *ch, char *argument )
 
     argument = one_argument( argument, arg1 );
     argument = one_argument( argument, arg2 );
-    if ( arg1[0] == '\0' || arg2[0] == '\0' )
+    if ( arg1[0] == '\0' )
     {
 	send_to_char( "Compare what to what?\n\r", ch );
 	return;
     }
 
-    if ( ( obj1 = get_obj_carry( ch, arg1 ) ) == NULL
-    ||   ( obj2 = get_obj_carry( ch, arg2 ) ) == NULL )
+    if ( ( obj1 = get_obj_carry( ch, arg1 ) ) == NULL )
     {
 	send_to_char( "You do not have that item.\n\r", ch );
 	return;
     }
 
+    if ( arg2[0] == '\0' )
+    {
+	for ( obj2 = ch->carrying; obj2 != NULL; obj2 = obj2->next_content )
+	{
+	    if ( obj2->wear_loc != WEAR_NONE
+	    &&   can_see_obj( ch, obj2 )
+	    &&   obj1->item_type == obj2->item_type
+	    && ( obj1->wear_flags & obj2->wear_flags & ~ITEM_TAKE) != 0 )
+		break;
+	}
+
+	if ( obj2 == NULL )
+	{
+	    send_to_char( "You aren't wearing anything comparable.\n\r", ch );
+	    return;
+	}
+    }
+    else
+    {
+	if ( ( obj2 = get_obj_carry( ch, arg2 ) ) == NULL )
+	{
+	    send_to_char( "You do not have that item.\n\r", ch );
+	    return;
+	}
+    }
+	    
     msg		= NULL;
     value1	= 0;
     value2	= 0;
@@ -1546,7 +1596,7 @@ void do_practice( CHAR_DATA *ch, char *argument )
 	    {
 		act( "You practice $T.",
 		    ch, NULL, skill_table[sn].name, TO_CHAR );
-		act( "$n practice $T.",
+		act( "$n practices $T.",
 		    ch, NULL, skill_table[sn].name, TO_ROOM );
 	    }
 	    else
@@ -1697,6 +1747,50 @@ void do_password( CHAR_DATA *ch, char *argument )
 
 
 
+void do_socials( CHAR_DATA *ch, char *argument )
+{
+    char buf[MAX_STRING_LENGTH];
+    int iSocial;
+    int col;
+ 
+    col = 0;
+    for ( iSocial = 0; social_table[iSocial].name[0] != '\0'; iSocial++ )
+    {
+	sprintf( buf, "%-12s", social_table[iSocial].name );
+	send_to_char( buf, ch );
+	if ( ++col % 6 == 0 )
+	    send_to_char( "\n\r", ch );
+    }
+ 
+    if ( col % 6 != 0 )
+	send_to_char( "\n\r", ch );
+    return;
+}
+
+
+
+void do_spells( CHAR_DATA *ch, char *argument )
+{
+    char buf[MAX_STRING_LENGTH];
+    int sn;
+    int col;
+
+    col = 0;
+    for ( sn = 0; sn < MAX_SKILL && skill_table[sn].name != NULL; sn++ )
+    {
+	sprintf( buf, "%-12s", skill_table[sn].name );
+	send_to_char( buf, ch );
+	if ( ++col % 6 == 0 )
+	    send_to_char( "\n\r", ch );
+    }
+
+    if ( col % 6 != 0 )
+	send_to_char( "\n\r", ch );
+    return;
+}
+
+
+
 /*
  * Contributed by Alander.
  */
@@ -1726,10 +1820,115 @@ void do_commands( CHAR_DATA *ch, char *argument )
 
 
 
+void do_channels( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+	if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_SILENCE) )
+	{
+	    send_to_char( "You are silenced.\n\r", ch );
+	    return;
+	}
+
+	send_to_char( "Channels:", ch );
+
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_AUCTION)
+	    ? " +AUCTION"
+	    : " -auction",
+	    ch );
+
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_CHAT)
+	    ? " +CHAT"
+	    : " -chat",
+	    ch );
+
+#if 0
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_HACKER)
+	    ? " +HACKER"
+	    : " -hacker",
+	    ch );
+#endif
+
+	if ( IS_HERO(ch) )
+	{
+	    send_to_char( !IS_SET(ch->deaf, CHANNEL_IMMTALK)
+		? " +IMMTALK"
+		: " -immtalk",
+		ch );
+	}
+
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_MUSIC)
+	    ? " +MUSIC"
+	    : " -music",
+	    ch );
+
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_QUESTION)
+	    ? " +QUESTION"
+	    : " -question",
+	    ch );
+
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_SHOUT)
+	    ? " +SHOUT"
+	    : " -shout",
+	    ch );
+
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_YELL)
+	    ? " +YELL"
+	    : " -yell",
+	    ch );
+
+	send_to_char( ".\n\r", ch );
+    }
+    else
+    {
+	bool fClear;
+	int bit;
+
+	     if ( arg[0] == '+' ) fClear = TRUE;
+	else if ( arg[0] == '-' ) fClear = FALSE;
+	else
+	{
+	    send_to_char( "Channels -channel or +channel?\n\r", ch );
+	    return;
+	}
+
+	     if ( !str_cmp( arg+1, "auction"  ) ) bit = CHANNEL_AUCTION;
+        else if ( !str_cmp( arg+1, "chat"     ) ) bit = CHANNEL_CHAT;
+#if 0
+	else if ( !str_cmp( arg+1, "hacker"   ) ) bit = CHANNEL_HACKER;
+#endif
+	else if ( !str_cmp( arg+1, "immtalk"  ) ) bit = CHANNEL_IMMTALK;
+	else if ( !str_cmp( arg+1, "music"    ) ) bit = CHANNEL_MUSIC;
+	else if ( !str_cmp( arg+1, "question" ) ) bit = CHANNEL_QUESTION;
+	else if ( !str_cmp( arg+1, "shout"    ) ) bit = CHANNEL_SHOUT;
+	else if ( !str_cmp( arg+1, "yell"     ) ) bit = CHANNEL_YELL;
+	else
+	{
+	    send_to_char( "Set or clear which channel?\n\r", ch );
+	    return;
+	}
+
+	if ( fClear )
+	    REMOVE_BIT (ch->deaf, bit);
+	else
+	    SET_BIT    (ch->deaf, bit);
+
+	send_to_char( "Ok.\n\r", ch );
+    }
+
+    return;
+}
+
+
+
 /*
  * Contributed by Grodyn.
  */
-void do_configure( CHAR_DATA *ch, char *argument )
+void do_config( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
 
@@ -1741,11 +1940,6 @@ void do_configure( CHAR_DATA *ch, char *argument )
     if ( arg[0] == '\0' )
     {
         send_to_char( "[ Keyword  ] Option\n\r", ch );
-
-	send_to_char(  IS_SET(ch->act, PLR_AUCTION)
-	    ? "[+AUCTION  ] You hear the auction channel.\n\r"
-	    : "[-auction  ] You don't hear the auction channel.\n\r"
-	    , ch );
 
 	send_to_char(  IS_SET(ch->act, PLR_AUTOEXIT)
             ? "[+AUTOEXIT ] You automatically see exits.\n\r"
@@ -1772,11 +1966,6 @@ void do_configure( CHAR_DATA *ch, char *argument )
 	    : "[-brief    ] You see long descriptions.\n\r"
 	    , ch );
          
-	send_to_char(  IS_SET(ch->act, PLR_CHAT)
-	    ? "[+CHAT     ] You hear the chat channel.\n\r"
-	    : "[-chat     ] You don't hear the chat channel.\n\r"
-	    , ch );
-
 	send_to_char(  IS_SET(ch->act, PLR_COMBINE)
 	    ? "[+COMBINE  ] You see object lists in combined format.\n\r"
 	    : "[-combine  ] You see object lists in single format.\n\r"
@@ -1787,14 +1976,19 @@ void do_configure( CHAR_DATA *ch, char *argument )
 	    : "[-prompt   ] You don't have a prompt.\n\r"
 	    , ch );
 
+	send_to_char(  IS_SET(ch->act, PLR_TELNET_GA)
+	    ? "[+TELNETGA ] You receive a telnet GA sequence.\n\r"
+	    : "[-telnetga ] You don't receive a telnet GA sequence.\n\r"
+	    , ch );
+
+	send_to_char(  IS_SET(ch->act, PLR_SILENCE)
+	    ? "[+SILENCE  ] You are silenced.\n\r"
+	    : ""
+	    , ch );
+
 	send_to_char( !IS_SET(ch->act, PLR_NO_EMOTE)
 	    ? ""
 	    : "[-emote    ] You can't emote.\n\r"
-	    , ch );
-
-	send_to_char( !IS_SET(ch->act, PLR_NO_SHOUT)
-	    ? ""
-	    : "[-shout    ] You can't shout.\n\r"
 	    , ch );
 
 	send_to_char( !IS_SET(ch->act, PLR_NO_TELL)
@@ -1811,22 +2005,21 @@ void do_configure( CHAR_DATA *ch, char *argument )
 	else if ( arg[0] == '-' ) fSet = FALSE;
 	else
 	{
-	    send_to_char( "Configure -option or +option?\n\r", ch );
+	    send_to_char( "Config -option or +option?\n\r", ch );
 	    return;
 	}
 
-	     if ( !str_cmp( arg+1, "auction"  ) ) bit = PLR_AUCTION;
-        else if ( !str_cmp( arg+1, "autoexit" ) ) bit = PLR_AUTOEXIT;
+             if ( !str_cmp( arg+1, "autoexit" ) ) bit = PLR_AUTOEXIT;
 	else if ( !str_cmp( arg+1, "autoloot" ) ) bit = PLR_AUTOLOOT;
 	else if ( !str_cmp( arg+1, "autosac"  ) ) bit = PLR_AUTOSAC;
 	else if ( !str_cmp( arg+1, "blank"    ) ) bit = PLR_BLANK;
 	else if ( !str_cmp( arg+1, "brief"    ) ) bit = PLR_BRIEF;
-	else if ( !str_cmp( arg+1, "chat"     ) ) bit = PLR_CHAT;
 	else if ( !str_cmp( arg+1, "combine"  ) ) bit = PLR_COMBINE;
         else if ( !str_cmp( arg+1, "prompt"   ) ) bit = PLR_PROMPT;
+	else if ( !str_cmp( arg+1, "telnetga" ) ) bit = PLR_TELNET_GA;
 	else
 	{
-	    send_to_char( "Configure which option?\n\r", ch );
+	    send_to_char( "Config which option?\n\r", ch );
 	    return;
 	}
 

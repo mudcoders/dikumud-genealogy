@@ -15,10 +15,15 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -175,7 +180,6 @@ void do_get( CHAR_DATA *ch, char *argument )
 		char name[MAX_INPUT_LENGTH];
 		CHAR_DATA *gch;
 		char *pd;
-		bool fGroup;
 
 		if ( IS_NPC(ch) )
 		{
@@ -188,13 +192,11 @@ void do_get( CHAR_DATA *ch, char *argument )
 		pd = one_argument( pd, name );
 		pd = one_argument( pd, name );
 
-		fGroup = FALSE;
-		if ( !str_cmp( name, ch->name ) || IS_IMMORTAL(ch) )
+		if ( str_cmp( name, ch->name ) && !IS_IMMORTAL(ch) )
 		{
-		    fGroup = TRUE;
-		}
-		else
-		{
+		    bool fGroup;
+
+		    fGroup = FALSE;
 		    for ( gch = char_list; gch != NULL; gch = gch->next )
 		    {
 			if ( !IS_NPC(gch)
@@ -205,13 +207,12 @@ void do_get( CHAR_DATA *ch, char *argument )
 			    break;
 			}
 		    }
-		}
 
-		if ( !fGroup && !IS_SET(ch->act, PLR_THIEF) )
-		{
-		    SET_BIT(ch->act, PLR_THIEF);
-		    send_to_char( "*** You are now a THIEF!! ***\n\r", ch );
-		    save_char_obj( ch );
+		    if ( !fGroup )
+		    {
+			send_to_char( "You can't do that.\n\r", ch );
+			return;
+		    }
 		}
 	    }
 	}
@@ -808,7 +809,7 @@ void do_eat( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    act( "$n eats $p",  ch, obj, NULL, TO_ROOM );
+    act( "$n eats $p.",  ch, obj, NULL, TO_ROOM );
     act( "You eat $p.", ch, obj, NULL, TO_CHAR );
 
     switch ( obj->item_type )
@@ -1224,18 +1225,8 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( obj->item_type == ITEM_CORPSE_NPC )
-    {
-	send_to_char(
-	    "God gives you one experience point for your sacrifice.\n\r", ch );
-	gain_exp( ch, 1 );
-    }
-    else
-    {
-	send_to_char(
-	    "God gives you one gold coin for your sacrifice.\n\r", ch );
-	ch->gold += 1;
-    }
+    send_to_char( "God gives you one gold coin for your sacrifice.\n\r", ch );
+    ch->gold += 1;
 
     act( "$n sacrifices $p to God.", ch, obj, NULL, TO_ROOM );
     extract_obj( obj );
@@ -1354,7 +1345,7 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 
     if ( ( sn = staff->value[3] ) < 0
     ||   sn >= MAX_SKILL
-    ||   skill_table[sn].spell_fun == NULL )
+    ||   skill_table[sn].spell_fun == 0 )
     {
 	bug( "Do_brandish: bad sn %d.", sn );
 	return;
@@ -1713,7 +1704,10 @@ int get_cost( CHAR_DATA *keeper, OBJ_DATA *obj, bool fBuy )
 	for ( obj2 = keeper->carrying; obj2; obj2 = obj2->next_content )
 	{
 	    if ( obj->pIndexData == obj2->pIndexData )
-		cost /= 2;
+	    {
+		cost = 0;
+		break;
+	    }
 	}
     }
 
@@ -1915,10 +1909,13 @@ void do_list( CHAR_DATA *ch, char *argument )
     }
     else
     {
+	char arg[MAX_INPUT_LENGTH];
 	CHAR_DATA *keeper;
 	OBJ_DATA *obj;
 	int cost;
 	bool found;
+
+	one_argument( argument, arg );
 
 	if ( ( keeper = find_keeper( ch ) ) == NULL )
 	    return;
@@ -1928,7 +1925,8 @@ void do_list( CHAR_DATA *ch, char *argument )
 	{
 	    if ( obj->wear_loc == WEAR_NONE
 	    &&   can_see_obj( ch, obj )
-	    &&   ( cost = get_cost( keeper, obj, TRUE ) ) > 0 )
+	    && ( cost = get_cost( keeper, obj, TRUE ) ) > 0
+	    && ( arg[0] == '\0' || is_name( arg, obj->name ) ) )
 	    {
 		if ( !found )
 		{
@@ -1943,7 +1941,12 @@ void do_list( CHAR_DATA *ch, char *argument )
 	}
 
 	if ( !found )
-	    send_to_char( "You can't buy anything here.\n\r", ch );
+	{
+	    if ( arg[0] == '\0' )
+		send_to_char( "You can't buy anything here.\n\r", ch );
+	    else
+		send_to_char( "You can't buy that here.\n\r", ch );
+	}
 	return;
     }
 }

@@ -1,5 +1,5 @@
-Merc Release 2.0
-Sunday 04 July 1993
+Merc Release 2.1
+Sunday 01 August 1993
 
 Furey	mec@shell.portal.com
 Hatchet	hatchet@uclink.berkeley.edu
@@ -15,7 +15,7 @@ and you'll be in there too!
 
 Enjoy our mud.  May your visit here be ... Mercenary.
 
-This is the 2.0 production release of Merc.
+This is the 2.1 production release of Merc.
 
 
 
@@ -51,20 +51,15 @@ credit for their work.
 First, group with your highest level Unix guru, and have him or her tank.
 Merc is easier to install than other muds, but every site is different.
 
-(1) Get the release Merc_20c.tar.Z or Merc_20c.tar.z from one of these fine
-    anonymous ftp sites:
+(1) Get the release Merc_21.tar.gz from one of these fine anonymous ftp
+    sites:
 
-	ferkel.ucsb.edu
+	ftp.tcp.com (formerly ferkel.ucsb.edu)
 	ftp.math.okstate.edu
     
-(2) Unpack the release.  The command to use depends on whether you got a
-    .Z or .z file:
+(2) Unpack the release:
 
-	uncompress < Merc_20c.tar.Z | tar xvf -
-
-    or:
-
-	gzip -d Merc_20c.tar.z | tar xvf -
+	gzip -d -c Merc_21.tar.gz | tar xvf -
 
 (3) Go into the 'src' directory.  Choose the Makefile for your operating
     system and copy it into 'Makefile':
@@ -72,6 +67,7 @@ Merc is easier to install than other muds, but every site is different.
 	Makefile	Most machines with 'gcc'
 	Makefile.aix	AIX
 	Makefile.hp	Hp/UX
+	Makefile.isc	Interactive Systems Unix
 	Makefile.mip	Mips Risc/OS
 	Makefile.nex	NeXT
 	Makefile.sol	SunSoft Solaris 2.1
@@ -127,7 +123,7 @@ keeping them up-to-date since.
 Also check the 'wizhelp' command and read the 'help' descriptions for the
 individual immortal commands.
 
-We have a mailing list, at 'merc@kpc.com'.  Send mail to 'merc-request@kpc.com'
+There is a mailing list at 'merc@kpc.com'.  Send mail to 'merc-request@kpc.com'
 to join the list.
 
 You can write to us directly at the e-mail addresses at the top of this
@@ -149,7 +145,9 @@ since the release.
 
 === Future Plans
 
-The next release of Merc, version 2.1, which will be a maintenance release.  
-We will fold in contributed code (especially ports to new platforms) and
-fix problems reported against the existing code, but are not anticipating
-new feature development.
+We have finished core development of Merc.  There will never be a Merc 3.
+It's your mud now -- the end of our development is the beginning of yours.
+
+We will continue making maintenance releases to fix bugs, add new platform
+support, and fold in contributed code and areas.  The next release of Merc,
+version 2.2, will be on 05 Sep 1993.

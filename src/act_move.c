@@ -15,9 +15,14 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -63,7 +68,7 @@ void move_char( CHAR_DATA *ch, int door )
 
     in_room = ch->in_room;
     if ( ( pexit   = in_room->exit[door] ) == NULL
-    ||   ( to_room = pexit->u1.to_room   ) == NULL )
+    ||   ( to_room = pexit->to_room      ) == NULL )
     {
 	send_to_char( "Alas, you cannot go that way.\n\r", ch );
 	return;
@@ -171,7 +176,7 @@ void move_char( CHAR_DATA *ch, int door )
 	fch_next = fch->next_in_room;
 	if ( fch->master == ch && fch->position == POS_STANDING )
 	{
-	    act( "You follow $N.\n\r", fch, NULL, ch, TO_CHAR );
+	    act( "You follow $N.", fch, NULL, ch, TO_CHAR );
 	    move_char( fch, door );
 	}
     }
@@ -321,9 +326,9 @@ void do_open( CHAR_DATA *ch, char *argument )
 	send_to_char( "Ok.\n\r", ch );
 
 	/* open the other side */
-	if ( ( to_room   = pexit->u1.to_room            ) != NULL
+	if ( ( to_room   = pexit->to_room               ) != NULL
 	&&   ( pexit_rev = to_room->exit[rev_dir[door]] ) != NULL
-	&&   pexit_rev->u1.to_room == ch->in_room )
+	&&   pexit_rev->to_room == ch->in_room )
 	{
 	    CHAR_DATA *rch;
 
@@ -384,9 +389,9 @@ void do_close( CHAR_DATA *ch, char *argument )
 	send_to_char( "Ok.\n\r", ch );
 
 	/* close the other side */
-	if ( ( to_room   = pexit->u1.to_room            ) != NULL
+	if ( ( to_room   = pexit->to_room               ) != NULL
 	&&   ( pexit_rev = to_room->exit[rev_dir[door]] ) != 0
-	&&   pexit_rev->u1.to_room == ch->in_room )
+	&&   pexit_rev->to_room == ch->in_room )
 	{
 	    CHAR_DATA *rch;
 
@@ -472,9 +477,9 @@ void do_lock( CHAR_DATA *ch, char *argument )
 	act( "$n locks the $d.", ch, NULL, pexit->keyword, TO_ROOM );
 
 	/* lock the other side */
-	if ( ( to_room   = pexit->u1.to_room            ) != NULL
+	if ( ( to_room   = pexit->to_room               ) != NULL
 	&&   ( pexit_rev = to_room->exit[rev_dir[door]] ) != 0
-	&&   pexit_rev->u1.to_room == ch->in_room )
+	&&   pexit_rev->to_room == ch->in_room )
 	{
 	    SET_BIT( pexit_rev->exit_info, EX_LOCKED );
 	}
@@ -541,9 +546,9 @@ void do_unlock( CHAR_DATA *ch, char *argument )
 	act( "$n unlocks the $d.", ch, NULL, pexit->keyword, TO_ROOM );
 
 	/* unlock the other side */
-	if ( ( to_room   = pexit->u1.to_room            ) != NULL
+	if ( ( to_room   = pexit->to_room               ) != NULL
 	&&   ( pexit_rev = to_room->exit[rev_dir[door]] ) != NULL
-	&&   pexit_rev->u1.to_room == ch->in_room )
+	&&   pexit_rev->to_room == ch->in_room )
 	{
 	    REMOVE_BIT( pexit_rev->exit_info, EX_LOCKED );
 	}
@@ -630,9 +635,9 @@ void do_pick( CHAR_DATA *ch, char *argument )
 	act( "$n picks the $d.", ch, NULL, pexit->keyword, TO_ROOM );
 
 	/* pick the other side */
-	if ( ( to_room   = pexit->u1.to_room            ) != NULL
+	if ( ( to_room   = pexit->to_room               ) != NULL
 	&&   ( pexit_rev = to_room->exit[rev_dir[door]] ) != NULL
-	&&   pexit_rev->u1.to_room == ch->in_room )
+	&&   pexit_rev->to_room == ch->in_room )
 	{
 	    REMOVE_BIT( pexit_rev->exit_info, EX_LOCKED );
 	}
@@ -653,13 +658,13 @@ void do_stand( CHAR_DATA *ch, char *argument )
 	    { send_to_char( "You can't wake up!\n\r", ch ); return; }
 
 	send_to_char( "You wake and stand up.\n\r", ch );
-	act( "$n wakes and stands up.\n\r", ch, NULL, NULL, TO_ROOM );
+	act( "$n wakes and stands up.", ch, NULL, NULL, TO_ROOM );
 	ch->position = POS_STANDING;
 	break;
 
     case POS_RESTING:
 	send_to_char( "You stand up.\n\r", ch );
-	act( "$n stands up.\n\r", ch, NULL, NULL, TO_ROOM );
+	act( "$n stands up.", ch, NULL, NULL, TO_ROOM );
 	ch->position = POS_STANDING;
 	break;
 
@@ -844,14 +849,14 @@ void do_recall( CHAR_DATA *ch, char *argument )
 	if ( number_bits( 1 ) == 0 )
 	{
 	    WAIT_STATE( ch, 4 );
-	    lose = (ch->desc != NULL) ? 100 : 200;
+	    lose = (ch->desc != NULL) ? 50 : 100;
 	    gain_exp( ch, 0 - lose );
 	    sprintf( buf, "You failed!  You lose %d exps.\n\r", lose );
 	    send_to_char( buf, ch );
 	    return;
 	}
 
-	lose = (ch->desc != NULL) ? 200 : 400;
+	lose = (ch->desc != NULL) ? 100 : 200;
 	gain_exp( ch, 0 - lose );
 	sprintf( buf, "You recall from combat!  You lose %d exps.\n\r", lose );
 	send_to_char( buf, ch );

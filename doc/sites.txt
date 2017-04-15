@@ -1,5 +1,5 @@
-Merc Release 2.0
-Sunday 04 July 1993
+Merc Release 2.1
+Sunday 01 August 1993
 
 Furey	mec@shell.portal.com
 Hatchet	hatchet@uclink.berkeley.edu
@@ -19,14 +19,18 @@ us all!
 If you would like to be added to (or removed from) to this list, just e-mail
 Furey, Hatchet, or Kahn.
 
-	Dark Castle	spot.colorado.edu	4000
-	Dragonfire	mhoro.cc.columbia.edu	7000
-	Fourth Realm	marble.bu.edu		4000
-	Hidden Worlds	cns.cscns.com		4000
-	The Land	nora.gih.no		4000
-	Mud Lite	haas.berkeley.edu	4000
-	Mystic Realms	dikumud.sju.edu		4000
-	Random Merc	jambo.cc.columbia.edu	9000
-	Rivers of Mud	cie-2.uoregon.edu	9000
-	Ulti Mud	bolero.rahul.net	4000
-	Vego Mud	screech.alfred.edu	9000
+Merc 1:
+	Hidden Worlds	    cns.cscns.com		4000
+	The Land	    nora.gih.no			4000
+	Medievia	    bigboy.cis.temple.edu	4000
+	Mud Lite	    haas.berkeley.edu		4000
+	Mystic Realms	    dikumud.sju.edu		4000
+	Realms of Wind	    ccsun44.csie.nctu.edu.tw	4000
+	Rivers of Mud 	    cie-2.uoregon.edu		9000
+
+Merc 2:
+	Cataclysm	    wagner.musicnet.ua.edu.     4000
+	Fourth Realm	    marble.bu.edu		4000
+	Legend of Winds	    ccsun44.csie.nctu.edu.tw	4040
+	Rivers of Mud 2	    cie-2.uoregon.edu		4000
+	Wisney World	    levant.cs.ohiou.edu		5000

@@ -992,7 +992,7 @@ Sand as far as the eye can see.
 ~
 0 0 5026
 D1
-Sand as far as the eye can see.
+The sand is *glowing* in this direction.
 ~
 ~
 0 0 5062
@@ -1078,7 +1078,7 @@ Sand as far as the eye can see.
 ~
 0 0 5030
 D2
-You see a tiny ledge.
+Sand as far as the eye can see.
 ~
 ~
 0 0 5026
@@ -1120,7 +1120,8 @@ leader of this band.
 ~
 50 0 2
 D3
-You see the center of the nomad camp.~
+You see the center of the nomad camp.
+~
 ~
 0 0 5056
 S
@@ -1137,11 +1138,13 @@ mental note to visit it before you leave.~
 ~
 0 0 5060
 D1
-In this tent there are very large men, all carrying weapons.~
+In this tent there are very large men, all carrying weapons.
+~
 ~
 0 0 5059
 D2
-You see the center of the nomad camp.~
+You see the center of the nomad camp.
+~
 ~
 0 0 5056
 S
@@ -1152,7 +1155,8 @@ protectors. They all stare at you coldly as you enter.
 ~
 50 128 2
 D3
-Outside you see some peaceful camels.~
+Outside you see some peaceful camels.
+~
 ~
 0 0 5058
 S
@@ -1168,7 +1172,8 @@ D1
 ~
 0 0 5061
 D2
-You see some peaceful camels.~
+You see some peaceful camels.
+~
 ~
 0 0 5058
 S
@@ -1180,20 +1185,28 @@ paintings as well.
 ~
 50 128 2
 D3
-You see the entrance to this tent.~
+You see the entrance to this tent.
+~
 ~
 0 0 5060
 S
 #5062
-The rickety rope bridge.~
-     You carefully begin to walk across the bridge, but suddenly the rope
-breaks and you fall...
-                     ...and fall
-                           and fall
-                              and fall
-                                    ... and you can't get up!
+Strange Glowing Sand~
+A vast desert stretches for miles, the sand constantly shifting around you.
+But this patch of desert looks different ... the sand glows.  You see a
+futuristic city to the south.
 ~
-50 0 5
+50 4|8 5
+D2
+You see a futuristic city.
+~
+~
+0 0 8001
+D3
+Sand as far as the eye can see.
+~
+~
+0 0 5029
 S
 #5063
 The wind-swept ledge~
@@ -1208,6 +1221,7 @@ Sand as far as the eye can see.
 ~
 0 0 5031
 D3
+You see a dark cave.
 ~
 ~
 0 0 5064

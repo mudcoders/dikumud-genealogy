@@ -15,10 +15,15 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -54,6 +59,16 @@ int get_trust( CHAR_DATA *ch )
 
 
 /*
+ * Retrieve a character's age.
+ */
+int get_age( CHAR_DATA *ch )
+{
+    return 17 + ( ch->played + (int) (current_time - ch->logon) ) / 7200;
+}
+
+
+
+/*
  * Retrieve character's current strength.
  */
 int get_curr_str( CHAR_DATA *ch )
@@ -66,7 +81,7 @@ int get_curr_str( CHAR_DATA *ch )
     if ( class_table[ch->class].attr_prime == APPLY_STR )
 	max = 25;
     else
-	max = 18;
+	max = 20;
 
     return URANGE( 3, ch->pcdata->perm_str + ch->pcdata->mod_str, max );
 }
@@ -86,7 +101,7 @@ int get_curr_int( CHAR_DATA *ch )
     if ( class_table[ch->class].attr_prime == APPLY_INT )
 	max = 25;
     else
-	max = 18;
+	max = 20;
 
     return URANGE( 3, ch->pcdata->perm_int + ch->pcdata->mod_int, max );
 }
@@ -106,7 +121,7 @@ int get_curr_wis( CHAR_DATA *ch )
     if ( class_table[ch->class].attr_prime == APPLY_WIS )
 	max = 25;
     else
-	max = 18;
+	max = 20;
 
     return URANGE( 3, ch->pcdata->perm_wis + ch->pcdata->mod_wis, max );
 }
@@ -126,7 +141,7 @@ int get_curr_dex( CHAR_DATA *ch )
     if ( class_table[ch->class].attr_prime == APPLY_DEX )
 	max = 25;
     else
-	max = 18;
+	max = 20;
 
     return URANGE( 3, ch->pcdata->perm_dex + ch->pcdata->mod_dex, max );
 }
@@ -146,7 +161,7 @@ int get_curr_con( CHAR_DATA *ch )
     if ( class_table[ch->class].attr_prime == APPLY_CON )
 	max = 25;
     else
-	max = 18;
+	max = 20;
 
     return URANGE( 3, ch->pcdata->perm_con + ch->pcdata->mod_con, max );
 }
@@ -159,7 +174,7 @@ int get_curr_con( CHAR_DATA *ch )
 int can_carry_n( CHAR_DATA *ch )
 {
     if ( !IS_NPC(ch) && ch->level >= LEVEL_IMMORTAL )
-	return 100;
+	return 1000;
 
     if ( IS_NPC(ch) && IS_SET(ch->act, ACT_PET) )
 	return 0;
@@ -175,7 +190,7 @@ int can_carry_n( CHAR_DATA *ch )
 int can_carry_w( CHAR_DATA *ch )
 {
     if ( !IS_NPC(ch) && ch->level >= LEVEL_IMMORTAL )
-	return 10000;
+	return 1000000;
 
     if ( IS_NPC(ch) && IS_SET(ch->act, ACT_PET) )
 	return 0;
@@ -1248,13 +1263,21 @@ OBJ_DATA *create_money( int amount )
 
 /*
  * Return # of objects which an object counts as.
+ * Thanks to Tony Chamberlain for the correct recursive code here.
  */
 int get_obj_number( OBJ_DATA *obj )
 {
+    int number;
+
     if ( obj->item_type == ITEM_CONTAINER )
-	return 0;
+	number = 0;
     else
-	return 1;
+	number = 1;
+
+    for ( obj = obj->contains; obj != NULL; obj = obj->next_content )
+	number += get_obj_number( obj );
+
+    return number;
 }
 
 

@@ -15,11 +15,16 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#endif
 #include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -93,6 +98,7 @@ const	struct	cmd_type	cmd_table	[] =
     { "idea",		do_idea,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "report",		do_report,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "score",		do_score,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "socials",	do_socials,	POS_DEAD,	 0,  LOG_NORMAL },
     { "time",		do_time,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "typo",		do_typo,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "weather",	do_weather,	POS_RESTING,	 0,  LOG_NORMAL	},
@@ -101,7 +107,8 @@ const	struct	cmd_type	cmd_table	[] =
     /*
      * Configuration commands.
      */
-    { "configure",	do_configure,	POS_DEAD,	 0,  LOG_NORMAL },
+    { "channels",	do_channels,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "config",		do_config,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "description",	do_description,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "password",	do_password,	POS_DEAD,	 0,  LOG_NEVER	},
     { "title",		do_title,	POS_DEAD,	 0,  LOG_NORMAL	},
@@ -110,6 +117,7 @@ const	struct	cmd_type	cmd_table	[] =
     /*
      * Communication commands.
      */
+    { "answer",		do_answer,	POS_SLEEPING,	 0,  LOG_NORMAL },
     { "auction",	do_auction,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "chat",		do_chat,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { ".",		do_chat,	POS_SLEEPING,	 0,  LOG_NORMAL	},
@@ -117,8 +125,10 @@ const	struct	cmd_type	cmd_table	[] =
     { ",",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "gtell",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL	},
     { ";",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "music",		do_music,	POS_SLEEPING,	 0,  LOG_NORMAL },
     { "note",		do_note,	POS_RESTING,	 0,  LOG_NORMAL	},
     { "pose",		do_pose,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "question",	do_question,	POS_SLEEPING,	 0,  LOG_NORMAL },
     { "reply",		do_reply,	POS_RESTING,	 0,  LOG_NORMAL },
     { "say",		do_say,		POS_RESTING,	 0,  LOG_NORMAL	},
     { "'",		do_say,		POS_RESTING,	 0,  LOG_NORMAL	},
@@ -176,7 +186,6 @@ const	struct	cmd_type	cmd_table	[] =
     { "recall",		do_recall,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "/",		do_recall,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "rent",		do_rent,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "return",		do_return,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "save",		do_save,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "sleep",		do_sleep,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "sneak",		do_sneak,	POS_STANDING,	 0,  LOG_NORMAL	},
@@ -211,7 +220,6 @@ const	struct	cmd_type	cmd_table	[] =
     { "mload",		do_mload,	POS_DEAD,	38,  LOG_ALWAYS	},
     { "mset",		do_mset,	POS_DEAD,	38,  LOG_ALWAYS	},
     { "noemote",	do_noemote,	POS_DEAD,	38,  LOG_NORMAL	},
-    { "noshout",	do_noshout,	POS_DEAD,	38,  LOG_NORMAL	},
     { "notell",		do_notell,	POS_DEAD,	38,  LOG_NORMAL	},
     { "oload",		do_oload,	POS_DEAD,	38,  LOG_ALWAYS	},
     { "oset",		do_oset,	POS_DEAD,	38,  LOG_ALWAYS	},
@@ -219,6 +227,7 @@ const	struct	cmd_type	cmd_table	[] =
     { "purge",		do_purge,	POS_DEAD,	38,  LOG_NORMAL	},
     { "restore",	do_restore,	POS_DEAD,	38,  LOG_ALWAYS	},
     { "rset",		do_rset,	POS_DEAD,	38,  LOG_ALWAYS	},
+    { "silence",	do_silence,	POS_DEAD,	38,  LOG_NORMAL },
     { "sla",		do_sla,		POS_DEAD,	38,  LOG_NORMAL	},
     { "slay",		do_slay,	POS_DEAD,	38,  LOG_ALWAYS	},
     { "sset",		do_sset,	POS_DEAD,	38,  LOG_ALWAYS },
@@ -240,10 +249,11 @@ const	struct	cmd_type	cmd_table	[] =
     { "ostat",		do_ostat,	POS_DEAD,	37,  LOG_NORMAL	},
     { "peace",		do_peace,	POS_DEAD,	37,  LOG_NORMAL	},
     { "recho",		do_recho,	POS_DEAD,	37,  LOG_ALWAYS	},
+    { "return",		do_return,	POS_DEAD,	37,  LOG_NORMAL	},
     { "rstat",		do_rstat,	POS_DEAD,	37,  LOG_NORMAL	},
     { "slookup",	do_slookup,	POS_DEAD,	37,  LOG_NORMAL },
     { "snoop",		do_snoop,	POS_DEAD,	37,  LOG_NORMAL	},
-    { "switch",		do_switch,	POS_DEAD,	37,  LOG_NORMAL	},
+    { "switch",		do_switch,	POS_DEAD,	37,  LOG_ALWAYS	},
 
     { "immtalk",	do_immtalk,	POS_DEAD,	36,  LOG_NORMAL	},
     { ":",		do_immtalk,	POS_DEAD,	36,  LOG_NORMAL	},
@@ -251,7 +261,7 @@ const	struct	cmd_type	cmd_table	[] =
     /*
      * End of list.
      */
-    { "",		NULL,		POS_DEAD,	 0,  LOG_NORMAL	}
+    { "",		0,		POS_DEAD,	 0,  LOG_NORMAL	}
 };
 
 

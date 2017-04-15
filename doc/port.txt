@@ -1,5 +1,5 @@
-Merc Release 2.0
-Sunday 04 July 1993
+Merc Release 2.1
+Sunday 01 August 1993
 
 Furey	mec@shell.portal.com
 Hatchet	hatchet@uclink.berkeley.edu
@@ -27,9 +27,11 @@ their changes into the base code.  See 'contrib.txt' for acknowledgments.
 	HP	9000	Hp/UX
 	Intel	386	386 BSD
 	Intel	486	Linux
+	Intel	486	Interactive Systems Unix
 	IBM	RS/6000	Aix
 	Mips	R4000	Risc/OS 5.XX
 	NeXT	68030	Mach
+	Sun	Sun-4	Solaris 2.1
 
 We are simply unable to test Merc on every platform.  Typically a user tries
 a new platform, gets a file full of warnings, and mails us the warnings.
@@ -67,8 +69,13 @@ another.
 
 Merc runs in single-user mode (console only) on MsDos and Macintosh computers.
 The MsDos version is built with DJ Delorie's 'djgpp' port of the Gnu C Compiler
-and requires a 386 with 2 megabytes of memory (djgpp has demand-paged virtual
-memory).  You can ftp 'djgpp' from grape.ecs.clarkson.edu.
+and requires a 386 with 4 megabytes of memory.  You can ftp 'djgpp' from
+grape.ecs.clarkson.edu.
+
+A prebuilt executable, 'Merc.exe', is distributed with the release.
+
+As the 'djgpp' documentation states: if you aren't already comfortable
+programming in C, this isn't the compiler with which to learn.  Caveat Hacker.
 
 The commands to build and run Merc on MsDos are:
 
@@ -80,9 +87,35 @@ The commands to build and run Merc on MsDos are:
 
 === Macintosh Single-User Version
 
-The Macintosh changes were contributed by Oleg Etiffin.  It is built with
-Think-C 5.0.4 and requires 4 megabytes of system memory.  You have to define
-the symbol 'macintosh' (if not already defined).
+The Macintosh changes were contributed by Oleg.  It is built with Think-C
+5.0.4 and requires 4 megabytes of system memory.  You have to define the
+symbol 'macintosh' (if not already defined).
+
+Following is an edited version from Oleg's notes for porting 2.0c, after
+taking out everything that we folded into 2.1.  BTW Oleg, you did a
+thorough and meticulous job on this port, and we hope we didn't make
+any mistakes in deriving this section from your notes.
+
+    **** My notes are preceeded by 4 asteristics
+    **** Hardware - Macintosh Powerbook 180, 120 Meg Hard Drive, 8 Meg Ram
+    **** Software - Symantec C++ version 6.0, System Software 7.1
+
+    **** Added "#define macintosh" to project header (Da !!!!)
+    **** Changed Project Type memory partition to 2,500 K
+    **** Changed Project Type to include Far Code and Far Data
+    **** Change compiler to 4 byte integers
+    **** created application instead of running from development environment
+
+    **** Redistributed all files in project to produce 32K segments
+    **** Add unix library for write and close to project
+    **** moved unixio.c and unixmisc.c for the unix library to the project file
+    **** Add MacTraps to project file
+    **** Add ANSI library to project file
+    **** Recompile ANSI library.
+    **** Recompile all *.c files.
+
+    **** moved application to area folder
+
 
 
 
@@ -91,7 +124,7 @@ the symbol 'macintosh' (if not already defined).
 All this measured on a Sun 4 with SunOS 4.1.2.
 
 Boot time:    4.3 CPU seconds.
-Memory:       2.1 megabytes SZ size.
-CPU usage:    20  CPU seconds per hour + 1-2 CPU seconds per player.
+Memory:       2.2 megabytes SZ size.
+CPU usage:    30  CPU seconds per hour + 1-2 CPU seconds per player.
 Disk space:   2.6 megabytes plus 8K per player file.
 IP packets:   about 10 per second with 20 people logged in.

@@ -15,8 +15,13 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
 #include <stdio.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -290,10 +295,10 @@ const	struct	str_app_type	str_app		[26]		=
     {  2,  3, 220, 22 },
     {  2,  4, 250, 25 }, /* 18  */
     {  3,  5, 400, 30 },
-    {  4,  6, 500, 35 }, /* 20  */
-    {  5,  7, 600, 40 },
-    {  6,  8, 700, 45 },
-    {  7,  9, 800, 50 },
+    {  3,  6, 500, 35 }, /* 20  */
+    {  4,  7, 600, 40 },
+    {  5,  7, 700, 45 },
+    {  6,  8, 800, 50 },
     {  8, 10, 900, 55 },
     { 10, 12, 999, 60 }  /* 25   */
 };
@@ -321,12 +326,12 @@ const	struct	int_app_type	int_app		[26]		=
     { 34 },
     { 37 },
     { 40 },	/* 18 */
-    { 45 },
-    { 50 },	/* 20 */
+    { 44 },
+    { 49 },	/* 20 */
+    { 55 },
     { 60 },
     { 70 },
-    { 80 },
-    { 90 },
+    { 85 },
     { 99 }	/* 25 */
 };
 
@@ -355,11 +360,11 @@ const	struct	wis_app_type	wis_app		[26]		=
     { 5 },	/* 18 */
     { 5 },
     { 5 },	/* 20 */
-    { 5 },
-    { 5 },
-    { 5 },
-    { 5 },
-    { 5 }	/* 25 */
+    { 6 },
+    { 6 },
+    { 6 },
+    { 6 },
+    { 7 }	/* 25 */
 };
 
 
@@ -382,16 +387,16 @@ const	struct	dex_app_type	dex_app		[26]		=
     {    0 },
     {    0 },
     { - 10 },   /* 15 */
+    { - 15 },
     { - 20 },
     { - 30 },
     { - 40 },
-    { - 50 },
-    { - 60 },   /* 20 */
-    { - 70 },
-    { - 80 },
+    { - 50 },   /* 20 */
+    { - 60 },
+    { - 75 },
     { - 90 },
-    { -100 },
-    { -110 }    /* 25 */
+    { -105 },
+    { -120 }    /* 25 */
 };
 
 
@@ -419,11 +424,11 @@ const	struct	con_app_type	con_app		[26]		=
     {  3, 99 },   /* 18 */
     {  3, 99 },
     {  4, 99 },   /* 20 */
-    {  5, 99 },
-    {  5, 99 },
+    {  4, 99 },
     {  5, 99 },
     {  6, 99 },
-    {  7, 99 }    /* 25 */
+    {  7, 99 },
+    {  8, 99 }    /* 25 */
 };
 
 
@@ -472,7 +477,7 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 
     {
 	"reserved",		{ 99, 99, 99, 99 },
-	NULL,			TAR_IGNORE,		POS_STANDING,
+	0,			TAR_IGNORE,		POS_STANDING,
 	NULL,			SLOT( 0),	 0,	 0,
 	"",			""
     },
@@ -1076,6 +1081,23 @@ const	struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_null,		TAR_IGNORE,		POS_FIGHTING,
 	&gsn_third_attack,	SLOT( 0),	 0,	 0,
 	"",			"!Third Attack!"
+    },
+
+/*
+ * Spells for mega1.are from Glop/Erkenbrand.
+ */
+    {
+	"general purpose",	{ 37, 37, 37, 37 },
+	spell_general_purpose,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			SLOT(501),	0,	12,
+	"general purpose ammo",	"!General Purpose Ammo!"
+    },
+
+    {
+	"high explosive",	{ 37, 37, 37, 37 },
+	spell_high_explosive,	TAR_CHAR_OFFENSIVE,	POS_FIGHTING,
+	NULL,			SLOT(502),	0,	12,
+	"high explosive ammo",	"!High Explosive Ammo!"
     }
 
 };

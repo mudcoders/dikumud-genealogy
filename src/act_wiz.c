@@ -15,10 +15,15 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -553,7 +558,7 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 		"Door: %d.  To: %d.  Key: %d.  Exit flags: %d.\n\rKeyword: '%s'.  Description: %s",
 
 		door,
-		pexit->u1.to_room->vnum,
+		pexit->to_room != NULL ? pexit->to_room->vnum : 0,
 	    	pexit->key,
 	    	pexit->exit_info,
 	    	pexit->keyword,
@@ -718,7 +723,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	
     sprintf( buf,
 	"Lv: %d.  Class: %d.  Align: %d.  AC: %d.  Gold: %d.  Exp: %d.\n\r",
-	victim->level,       ch->class,            victim->alignment,
+	victim->level,       victim->class,        victim->alignment,
 	GET_AC(victim),      victim->gold,         victim->exp );
     send_to_char( buf, ch );
 
@@ -747,7 +752,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     send_to_char( buf, ch );
 
     sprintf( buf, "Age: %d.  Played: %d.  Timer: %d.  Act: %d.\n\r",
-	GET_AGE(victim), (int) victim->played,  victim->timer, victim->act );
+	get_age( victim ), (int) victim->played, victim->timer, victim->act );
     send_to_char( buf, ch );
 
     sprintf( buf, "Master: %s.  Leader: %s.  Affected by: %s.\n\r",
@@ -761,7 +766,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	victim->long_descr[0] != '\0' ? victim->long_descr : "(none).\n\r" );
     send_to_char( buf, ch );
 
-    if ( IS_NPC(victim) && victim->spec_fun != NULL )
+    if ( IS_NPC(victim) && victim->spec_fun != 0 )
 	send_to_char( "Mobile has spec fun.\n\r", ch );
 
     for ( paf = victim->affected; paf != NULL; paf = paf->next )
@@ -1137,30 +1142,59 @@ void do_mload( CHAR_DATA *ch, char *argument )
 
 void do_oload( CHAR_DATA *ch, char *argument )
 {
-    char arg[MAX_INPUT_LENGTH];
+    char arg1[MAX_INPUT_LENGTH];
+    char arg2[MAX_INPUT_LENGTH];
     OBJ_INDEX_DATA *pObjIndex;
     OBJ_DATA *obj;
-    
-    one_argument( argument, arg );
-
-    if ( arg[0] == '\0' || !is_number(arg) )
+    int level;
+ 
+    argument = one_argument( argument, arg1 );
+    argument = one_argument( argument, arg2 );
+ 
+    if ( arg1[0] == '\0' || !is_number( arg1 ) )
     {
-	send_to_char( "Syntax: oload <vnum>.\n\r", ch );
-	return;
+        send_to_char( "Syntax: oload <vnum> <level>.\n\r", ch );
+        return;
+    }
+ 
+    if ( arg2[0] == '\0' )
+    {
+	level = get_trust( ch );
+    }
+    else
+    {
+	/*
+	 * New feature from Alander.
+	 */
+        if ( !is_number( arg2 ) )
+        {
+	    send_to_char( "Syntax: oload <vnum> <level>.\n\r", ch );
+	    return;
+        }
+        level = atoi( arg2 );
+	if ( level < 0 || level > get_trust( ch ) )
+        {
+	    send_to_char( "Limited to your trust level.\n\r", ch );
+	    return;
+        }
     }
 
-    if ( ( pObjIndex = get_obj_index( atoi( arg ) ) ) == NULL )
+    if ( ( pObjIndex = get_obj_index( atoi( arg1 ) ) ) == NULL )
     {
 	send_to_char( "No object has that vnum.\n\r", ch );
 	return;
     }
 
-    obj = create_object( pObjIndex, get_trust( ch ) );
+    obj = create_object( pObjIndex, level );
     if ( CAN_WEAR(obj, ITEM_TAKE) )
+    {
 	obj_to_char( obj, ch );
+    }
     else
+    {
 	obj_to_room( obj, ch->in_room );
-    act( "$n has created $p!", ch, obj, NULL, TO_ROOM );
+	act( "$n has created $p!", ch, obj, NULL, TO_ROOM );
+    }
     send_to_char( "Ok.\n\r", ch );
     return;
 }
@@ -1532,67 +1566,6 @@ void do_noemote( CHAR_DATA *ch, char *argument )
 
 
 
-void do_noshout( CHAR_DATA *ch, char *argument )
-{
-    char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *victim;
-
-    one_argument( argument, arg );
-
-    if ( arg[0] == '\0' )
-    {
-	if ( IS_NPC(ch) )
-	    return;
-
-	if ( IS_SET(ch->act, PLR_NO_SHOUT) )
-	{
-	    REMOVE_BIT(ch->act, PLR_NO_SHOUT);
-	    send_to_char( "You hear shouts again.\n\r", ch );
-	}
-	else
-	{
-	    SET_BIT(ch->act, PLR_NO_SHOUT);
-	    send_to_char( "You won't hear shouts.\n\r", ch );
-	}
-	return;
-    }
-
-    if ( ( victim = get_char_world( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-
-    if ( IS_NPC(victim) )
-    {
-	send_to_char( "Not on NPC's.\n\r", ch );
-	return;
-    }
-
-    if ( get_trust( victim ) >= get_trust( ch ) )
-    {
-	send_to_char( "You failed.\n\r", ch );
-	return;
-    }
-
-    if ( IS_SET(victim->act, PLR_NO_SHOUT) )
-    {
-	REMOVE_BIT(victim->act, PLR_NO_SHOUT);
-	send_to_char( "You can shout again.\n\r", victim );
-	send_to_char( "NO_SHOUT removed.\n\r", ch );
-    }
-    else
-    {
-	SET_BIT(victim->act, PLR_NO_SHOUT);
-	send_to_char( "You can't shout!\n\r", victim );
-	send_to_char( "NO_SHOUT set.\n\r", ch );
-    }
-
-    return;
-}
-
-
-
 void do_notell( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
@@ -1635,6 +1608,55 @@ void do_notell( CHAR_DATA *ch, char *argument )
 	SET_BIT(victim->act, PLR_NO_TELL);
 	send_to_char( "You can't tell!\n\r", victim );
 	send_to_char( "NO_TELL set.\n\r", ch );
+    }
+
+    return;
+}
+
+
+
+void do_silence( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+    CHAR_DATA *victim;
+
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Silence whom?", ch );
+	return;
+    }
+
+    if ( ( victim = get_char_world( ch, arg ) ) == NULL )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if ( IS_NPC(victim) )
+    {
+	send_to_char( "Not on NPC's.\n\r", ch );
+	return;
+    }
+
+    if ( get_trust( victim ) >= get_trust( ch ) )
+    {
+	send_to_char( "You failed.\n\r", ch );
+	return;
+    }
+
+    if ( IS_SET(victim->act, PLR_SILENCE) )
+    {
+	REMOVE_BIT(victim->act, PLR_SILENCE);
+	send_to_char( "You can use channels again.\n\r", victim );
+	send_to_char( "SILENCE removed.\n\r", ch );
+    }
+    else
+    {
+	SET_BIT(victim->act, PLR_SILENCE);
+	send_to_char( "You can't use channels!\n\r", victim );
+	send_to_char( "SILENCE set.\n\r", ch );
     }
 
     return;
@@ -2219,7 +2241,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( ( victim->spec_fun = spec_lookup( arg3 ) ) == NULL )
+	if ( ( victim->spec_fun = spec_lookup( arg3 ) ) == 0 )
 	{
 	    send_to_char( "No such spec fun.\n\r", ch );
 	    return;
@@ -2496,7 +2518,6 @@ void do_users( CHAR_DATA *ch, char *argument )
  */
 void do_force( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
 
     argument = one_argument( argument, arg );
@@ -2506,8 +2527,6 @@ void do_force( CHAR_DATA *ch, char *argument )
 	send_to_char( "Force whom to do what?\n\r", ch );
 	return;
     }
-
-    sprintf( buf, "$n forces you to '%s'.", argument );
 
     if ( !str_cmp( arg, "all" ) )
     {
@@ -2520,7 +2539,7 @@ void do_force( CHAR_DATA *ch, char *argument )
 
 	    if ( !IS_NPC(vch) && get_trust( vch ) < get_trust( ch ) )
 	    {
-		act( buf, ch, NULL, vch, TO_VICT );
+		act( "$n forces you to '$t'.", ch, argument, vch, TO_VICT );
 		interpret( vch, argument );
 	    }
 	}
@@ -2547,7 +2566,7 @@ void do_force( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	act( buf, ch, NULL, victim, TO_VICT );
+	act( "$n forces you to '$t'.", ch, argument, victim, TO_VICT );
 	interpret( victim, argument );
     }
 

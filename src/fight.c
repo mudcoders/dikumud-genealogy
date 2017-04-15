@@ -15,9 +15,14 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -91,12 +96,12 @@ void violence_update( void )
 		}
 
 		/*
-		 * NPC's assist NPC's of same type or 25% chance regardless.
+		 * NPC's assist NPC's of same type or 12.5% chance regardless.
 		 */
 		if ( IS_NPC(rch) && !IS_AFFECTED(rch, AFF_CHARM) )
 		{
 		    if ( rch->pIndexData == ch->pIndexData
-		    ||   number_bits( 2 ) == 0 )
+		    ||   number_bits( 3 ) == 0 )
 		    {
 			CHAR_DATA *vch;
 			CHAR_DATA *target;
@@ -507,7 +512,11 @@ bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
     if ( IS_NPC(ch) || IS_NPC(victim) )
 	return FALSE;
 
-    if ( GET_AGE(ch) < 21 )
+    /* Thx Josh! */
+    if ( victim->fighting == ch )
+	return FALSE;
+
+    if ( get_age( ch ) < 21 )
     {
 	send_to_char( "You aren't old enough.\n\r", ch );
 	return TRUE;
@@ -600,7 +609,8 @@ bool check_parry( CHAR_DATA *ch, CHAR_DATA *victim )
 
     if ( IS_NPC(victim) )
     {
-	chance	= UMIN( 60, 2 * ch->level );
+	/* Tuan was here.  :) */
+	chance	= UMIN( 60, 2 * victim->level );
     }
     else
     {
@@ -630,7 +640,8 @@ bool check_dodge( CHAR_DATA *ch, CHAR_DATA *victim )
 	return FALSE;
 
     if ( IS_NPC(victim) )
-        chance  = UMIN( 60, 2 * ch->level );
+	/* Tuan was here.  :) */
+        chance  = UMIN( 60, 2 * victim->level );
     else
         chance  = victim->pcdata->learned[gsn_dodge] / 2;
 
@@ -830,10 +841,10 @@ void death_cry( CHAR_DATA *ch )
 	EXIT_DATA *pexit;
 
 	if ( ( pexit = was_in_room->exit[door] ) != NULL
-	&&   pexit->u1.to_room != NULL
-	&&   pexit->u1.to_room != was_in_room )
+	&&   pexit->to_room != NULL
+	&&   pexit->to_room != was_in_room )
 	{
-	    ch->in_room = pexit->u1.to_room;
+	    ch->in_room = pexit->to_room;
 	    act( msg, ch, NULL, NULL, TO_ROOM );
 	}
     }
@@ -877,6 +888,7 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 {
     char buf[MAX_STRING_LENGTH];
     CHAR_DATA *gch;
+    CHAR_DATA *lch;
     int xp;
     int members;
 
@@ -901,6 +913,8 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	members = 1;
     }
 
+    lch = (ch->leader != NULL) ? ch->leader : ch;
+
     for ( gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room )
     {
 	OBJ_DATA *obj;
@@ -909,13 +923,13 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	if ( !is_same_group( gch, ch ) )
 	    continue;
 
-	if ( gch->level - ch->level >= 6 )
+	if ( gch->level - lch->level >  5 )
 	{
 	    send_to_char( "You are too high for this group.\n\r", gch );
 	    continue;
 	}
 
-	if ( gch->level - ch->level <= -6 )
+	if ( gch->level - lch->level < -5 )
 	{
 	    send_to_char( "You are too low for this group.\n\r", gch );
 	    continue;
@@ -960,8 +974,9 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
     int xp;
     int extra;
     int level;
+    int number;
 
-    xp    = 200 - URANGE( -3, gch->level - victim->level, 5 ) * 40;
+    xp    = 300 - URANGE( -3, gch->level - victim->level, 6 ) * 50;
     align = gch->alignment - victim->alignment;
 
     if ( align >  500 )
@@ -985,8 +1000,8 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
      *   +1/8 for each target under 'par' (  up to + 25%)
      */
     level  = URANGE( 0, victim->level, MAX_LEVEL - 1 );
-    extra  = victim->pIndexData->killed
-	   - kill_table[level].killed / kill_table[level].number;
+    number = UMAX( 1, kill_table[level].number );
+    extra  = victim->pIndexData->killed - kill_table[level].killed / number;
     xp    -= xp * URANGE( -2, extra, 8 ) / 8;
 
     xp     = number_range( xp * 3 / 4, xp * 5 / 4 );
@@ -1138,12 +1153,22 @@ void do_kill( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !IS_NPC(victim)
-    &&   !IS_SET(victim->act, PLR_KILLER)
-    &&   !IS_SET(victim->act, PLR_THIEF) )
+    if ( !IS_NPC(victim) )
     {
-	send_to_char( "You must MURDER a player.\n\r", ch );
-	return;
+	if ( !IS_SET(victim->act, PLR_KILLER)
+	&&   !IS_SET(victim->act, PLR_THIEF) )
+	{
+	    send_to_char( "You must MURDER a player.\n\r", ch );
+	    return;
+	}
+    }
+    else
+    {
+	if ( IS_AFFECTED(victim, AFF_CHARM) && victim->master != NULL )
+	{
+	    send_to_char( "You must MURDER a charmed creature.\n\r", ch );
+	    return;
+	}
     }
 
     if ( victim == ch )
@@ -1307,6 +1332,8 @@ void do_flee( CHAR_DATA *ch, char *argument )
 
     if ( ( victim = ch->fighting ) == NULL )
     {
+	if ( ch->position == POS_FIGHTING )
+	    ch->position = POS_STANDING;
 	send_to_char( "You aren't fighting anyone.\n\r", ch );
 	return;
     }
@@ -1319,10 +1346,10 @@ void do_flee( CHAR_DATA *ch, char *argument )
 
 	door = number_door( );
 	if ( ( pexit = was_in->exit[door] ) == 0
-	||   pexit->u1.to_room == NULL
+	||   pexit->to_room == NULL
 	||   IS_SET(pexit->exit_info, EX_CLOSED)
 	|| ( IS_NPC(ch)
-	&&   IS_SET(pexit->u1.to_room->room_flags, ROOM_NO_MOB) ) )
+	&&   IS_SET(pexit->to_room->room_flags, ROOM_NO_MOB) ) )
 	    continue;
 
 	move_char( ch, door );
@@ -1335,8 +1362,8 @@ void do_flee( CHAR_DATA *ch, char *argument )
 
 	if ( !IS_NPC(ch) )
 	{
-	    send_to_char( "You flee from combat!  You lose 50 exps.\n\r", ch );
-	    gain_exp( ch, -50 );
+	    send_to_char( "You flee from combat!  You lose 25 exps.\n\r", ch );
+	    gain_exp( ch, -25 );
 	}
 
 	stop_fighting( ch, TRUE );

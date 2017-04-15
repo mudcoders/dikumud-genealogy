@@ -15,10 +15,15 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -34,6 +39,7 @@ DECLARE_SPEC_FUN(	spec_breath_gas		);
 DECLARE_SPEC_FUN(	spec_breath_lightning	);
 DECLARE_SPEC_FUN(	spec_cast_adept		);
 DECLARE_SPEC_FUN(	spec_cast_cleric	);
+DECLARE_SPEC_FUN(	spec_cast_judge		);
 DECLARE_SPEC_FUN(	spec_cast_mage		);
 DECLARE_SPEC_FUN(	spec_cast_undead	);
 DECLARE_SPEC_FUN(	spec_executioner	);
@@ -60,6 +66,7 @@ SPEC_FUN *spec_lookup( const char *name )
 							spec_breath_lightning;
     if ( !str_cmp( name, "spec_cast_adept"	  ) ) return spec_cast_adept;
     if ( !str_cmp( name, "spec_cast_cleric"	  ) ) return spec_cast_cleric;
+    if ( !str_cmp( name, "spec_cast_judge"	  ) ) return spec_cast_judge;
     if ( !str_cmp( name, "spec_cast_mage"	  ) ) return spec_cast_mage;
     if ( !str_cmp( name, "spec_cast_undead"	  ) ) return spec_cast_undead;
     if ( !str_cmp( name, "spec_executioner"	  ) ) return spec_executioner;
@@ -69,7 +76,7 @@ SPEC_FUN *spec_lookup( const char *name )
     if ( !str_cmp( name, "spec_mayor"		  ) ) return spec_mayor;
     if ( !str_cmp( name, "spec_poison"		  ) ) return spec_poison;
     if ( !str_cmp( name, "spec_thief"		  ) ) return spec_thief;
-    return NULL;
+    return 0;
 }
 
 
@@ -276,6 +283,35 @@ bool spec_cast_cleric( CHAR_DATA *ch )
 	    break;
     }
 
+    if ( ( sn = skill_lookup( spell ) ) < 0 )
+	return FALSE;
+    (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
+    return TRUE;
+}
+
+
+
+bool spec_cast_judge( CHAR_DATA *ch )
+{
+    CHAR_DATA *victim;
+    CHAR_DATA *v_next;
+    char *spell;
+    int sn;
+
+    if ( ch->position != POS_FIGHTING )
+	return FALSE;
+
+    for ( victim = ch->in_room->people; victim != NULL; victim = v_next )
+    {
+	v_next = victim->next_in_room;
+	if ( victim->fighting == ch && number_bits( 2 ) == 0 )
+	    break;
+    }
+
+    if ( victim == NULL )
+	return FALSE;
+
+    spell = "high explosive";
     if ( ( sn = skill_lookup( spell ) ) < 0 )
 	return FALSE;
     (*skill_table[sn].spell_fun) ( sn, ch->level, ch, victim );
@@ -674,8 +710,9 @@ bool spec_thief( CHAR_DATA *ch )
 	v_next = victim->next_in_room;
 
 	if ( IS_NPC(victim)
-	||   ch->level >= LEVEL_IMMORTAL
-	||   number_bits( 2 ) != 0 )
+	||   victim->level >= LEVEL_IMMORTAL
+	||   number_bits( 2 ) != 0
+	||   !can_see( ch, victim ) )	/* Thx Glop */
 	    continue;
 
 	if ( IS_AWAKE(victim) && number_range( 0, ch->level ) == 0 )
@@ -689,7 +726,7 @@ bool spec_thief( CHAR_DATA *ch )
 	else
 	{
 	    gold = victim->gold * number_range( 1, 20 ) / 100;
-	    ch->gold     += gold / 2;
+	    ch->gold     += 7 * gold / 8;
 	    victim->gold -= gold;
 	    return TRUE;
 	}

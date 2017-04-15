@@ -98,17 +98,6 @@ He is big and bad.  Don't mess with him.
 30 -10 -20 1d1+29999 2d4+30
 0 -99000
 8 8 1
-#3708
-adept~
-the adept of Hatchet~
-An adept of Overlord Hatchet is here, smiling at you.
-~
-He is big and bad.  Don't mess with him.
-~
-2|64 8|128 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 -99000
-8 8 1
 #3709
 rabbit~
 the rabbit~
@@ -230,6 +219,18 @@ He is big and bad.  Don't mess with him.
 30 -10 -20 1d1+29999 2d4+30
 0 -99000
 8 8 1
+#3720
+beast~
+the diploma beast~
+The hideous diploma beast is here, holding your graduation present!
+~
+This horrible creature is your final test for mud school.  Kill him, and the
+diploma is yours.
+~
+2 512 0 S
+3 18 8 2d4+30 1d6+1
+300 100
+8 8 0
 #0
 
 
@@ -1000,7 +1001,7 @@ gate~
 1 -1 3722
 E
 sign~
-You have graduated from Mud School!  Take your diploma.  Go 'NORTH' from here
+You have graduated from Mud School!  Get your diploma.  Go 'NORTH' from here
 to visit our arena.  There are plenty of low-level monsters, but DON'T attack
 other players.
 
@@ -1960,9 +1961,6 @@ S
 
 
 #RESETS
-* Stuff at beginning of area is level 0
-O 0 3715 99 3721          diploma
-*
 M 0 3700 1 3701           (acolyte of FRAG)
 D 0 3700 2 1
 M 0 3701 1 3710           blob
@@ -2001,7 +1999,8 @@ M 0 3714 1 3749           beast
 M 0 3715 2 3751           bear
 M 0 3716 2 3754           wolf
 M 0 3707 1 3712           adept
-M 0 3708 1 3721           adept
+M 0 3720 1 3721		  diploma beast (thanks, Alander!)
+E 1 3715 99 17
 M 0 3718 1 3758		adept for training
 M 0 3719 1 3759		adept for practicing
 S
@@ -2016,7 +2015,6 @@ S
 
 #SPECIALS
 M  3707 spec_cast_adept
-M  3708 spec_cast_adept
 M  3714 spec_fido
 S
 

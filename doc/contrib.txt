@@ -1,5 +1,5 @@
-Merc Release 2.0
-Sunday 04 July 1993
+Merc Release 2.1
+Sunday 01 August 1993
 
 Furey	mec@shell.portal.com
 Hatchet	hatchet@uclink.berkeley.edu
@@ -90,6 +90,8 @@ Village, Dwarven Day Care Center, Old Marsh, Draconia, and Olympus.
 John Brothers of Silly Mud gave us permission to use Silly areas.  Although we
 haven't taken any yet, we appreciate having 2 megabytes of areas to draw on!
 
+Glop contributed Mega-City One (from the Judge Dredd comic books).
+
 
 
 === Code and Idea Contributions
@@ -97,7 +99,8 @@ haven't taken any yet, we appreciate having 2 megabytes of areas to draw on!
 Zrin contributed an 'auto-exit' function.
 
 Alander contributed the 'stats over 18 from magic items', as well as the
-new 'who', 'visible', 'commands' commands and some shop code.
+new 'who', 'visible', 'commands' commands and some shop code.  We first
+saw a donation pit on Alander's 'Rivers of Mud'.
 
 Grodyn contributed the 'configure' command.
 
@@ -133,9 +136,11 @@ one of the more painful machines we've encounterd.
 
 Alan Drew contributed the Mips Risc/OS port.
 
-Torsten Spindler contributed the makefile changes for Solaris 2.1.
+Trienne contributed the makefile changes for Solaris 2.1.
 
-Oleg Etiffin contributed the Macintosh port.
+Oleg contributed the Macintosh port.
+
+Jdpierce contributed the Interactive Systems changes.
 
 
 
@@ -164,3 +169,15 @@ Morgenes found and fixed the nasty 'aligned object drop corruption'
 in equip_char.
 
 Rivit play-tested the post-2.0-Beta version.
+
+Alander of Rivers of Mud has published *many* bug fixes and changes for
+2.0 on the Merc list, which we've picked up.
+
+Tony Chamberlain published a correct, recursive implementation of
+get_obj_number.
+
+Tuan Doan pointed out a bug in 'check_parry' and 'check_dodge',
+as well as some other rough edges.
+
+Alex found the right fix for the act() problems with channels,
+the 'rstat' problem with room exits, and some other bugs.

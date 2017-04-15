@@ -20,11 +20,10 @@
 #else
 #include <sys/types.h>
 #endif
-
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 #include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "merc.h"
 
@@ -149,6 +148,8 @@ char			strArea[MAX_INPUT_LENGTH];
 /*
  * Local booting procedures.
  */
+void	init_mm		args( ( void ) );
+
 void	load_area	args( ( FILE *fp ) );
 void	load_helps	args( ( FILE *fp ) );
 void	load_mobiles	args( ( FILE *fp ) );
@@ -184,10 +185,16 @@ void boot_db( void )
     }
 
     /*
+     * Init random number generator.
+     */
+    {
+	init_mm( );
+    }
+
+    /*
      * Set time and weather.
      */
     {
-	extern long current_time;
 	long lhour, lday, lmonth;
 
 	lhour		= (current_time - 650336715)
@@ -790,7 +797,7 @@ void load_rooms( FILE *fp )
 		pexit->exit_info	= 0;
 		locks			= fread_number( fp );
 		pexit->key		= fread_number( fp );
-		pexit->u1.vnum		= fread_number( fp );
+		pexit->vnum		= fread_number( fp );
 
 		switch ( locks )
 		{
@@ -896,7 +903,7 @@ void load_specials( FILE *fp )
 	case 'M':
 	    pMobIndex		= get_mob_index	( fread_number ( fp ) );
 	    pMobIndex->spec_fun	= spec_lookup	( fread_word   ( fp ) );
-	    if ( pMobIndex->spec_fun == NULL )
+	    if ( pMobIndex->spec_fun == 0 )
 	    {
 		bug( "Load_specials: 'M': vnum %d.", pMobIndex->vnum );
 		exit( 1 );
@@ -1000,16 +1007,23 @@ void fix_exits( void )
 	      pRoomIndex != NULL;
 	      pRoomIndex  = pRoomIndex->next )
 	{
+	    bool fexit;
+
+	    fexit = FALSE;
 	    for ( door = 0; door <= 5; door++ )
 	    {
 		if ( ( pexit = pRoomIndex->exit[door] ) != NULL )
 		{
-		    if ( pexit->u1.vnum <= 0 )
-			pexit->u1.to_room = NULL;
+		    fexit = TRUE;
+		    if ( pexit->vnum <= 0 )
+			pexit->to_room = NULL;
 		    else
-			pexit->u1.to_room = get_room_index( pexit->u1.vnum );
+			pexit->to_room = get_room_index( pexit->vnum );
 		}
 	    }
+
+	    if ( !fexit )
+		SET_BIT( pRoomIndex->room_flags, ROOM_NO_MOB );
 	}
     }
 
@@ -1022,15 +1036,15 @@ void fix_exits( void )
 	    for ( door = 0; door <= 5; door++ )
 	    {
 		if ( ( pexit     = pRoomIndex->exit[door]       ) != NULL
-		&&   ( to_room   = pexit->u1.to_room            ) != NULL
+		&&   ( to_room   = pexit->to_room               ) != NULL
 		&&   ( pexit_rev = to_room->exit[rev_dir[door]] ) != NULL
-		&&   pexit_rev->u1.to_room != pRoomIndex )
+		&&   pexit_rev->to_room != pRoomIndex )
 		{
 		    sprintf( buf, "Fix_exits: %d:%d -> %d:%d -> %d.",
 			pRoomIndex->vnum, door,
 			to_room->vnum,    rev_dir[door],
-			(pexit_rev->u1.to_room == NULL)
-			    ? 0 : pexit_rev->u1.to_room->vnum );
+			(pexit_rev->to_room == NULL)
+			    ? 0 : pexit_rev->to_room->vnum );
 		    bug( buf, 0 );
 		}
 	    }
@@ -1185,7 +1199,7 @@ void reset_area( AREA_DATA *pArea )
 		break;
 	    }
 
-	    obj       = create_object( pObjIndex, level );
+	    obj       = create_object( pObjIndex, number_fuzzy( level ) );
 	    obj->cost = 0;
 	    obj_to_room( obj, pRoomIndex );
 	    last = TRUE;
@@ -1213,7 +1227,7 @@ void reset_area( AREA_DATA *pArea )
 		break;
 	    }
 	    
-	    obj = create_object( pObjIndex, obj_to->level );
+	    obj = create_object( pObjIndex, number_fuzzy( obj_to->level ) );
 	    obj_to_obj( obj, obj_to );
 	    last = TRUE;
 	    break;
@@ -1244,13 +1258,13 @@ void reset_area( AREA_DATA *pArea )
 		switch ( pObjIndex->item_type )
 		{
 		default:		olevel = 0;                      break;
-		case ITEM_PILL:		olevel = number_range(  0, 15 ); break;
-		case ITEM_POTION:	olevel = number_range(  5, 20 ); break;
-		case ITEM_SCROLL:	olevel = number_range( 10, 25 ); break;
-		case ITEM_WAND:		olevel = number_range( 15, 30 ); break;
-		case ITEM_STAFF:	olevel = number_range( 20, 35 ); break;
-		case ITEM_ARMOR:	olevel = number_range(  6, 30 ); break;
-		case ITEM_WEAPON:	olevel = number_range(  6, 30 ); break;
+		case ITEM_PILL:		olevel = number_range(  0, 10 ); break;
+		case ITEM_POTION:	olevel = number_range(  0, 10 ); break;
+		case ITEM_SCROLL:	olevel = number_range(  5, 15 ); break;
+		case ITEM_WAND:		olevel = number_range( 10, 20 ); break;
+		case ITEM_STAFF:	olevel = number_range( 15, 25 ); break;
+		case ITEM_ARMOR:	olevel = number_range(  5, 15 ); break;
+		case ITEM_WEAPON:	olevel = number_range(  5, 15 ); break;
 		}
 
 		obj = create_object( pObjIndex, olevel );
@@ -1258,7 +1272,7 @@ void reset_area( AREA_DATA *pArea )
 	    }
 	    else
 	    {
-		obj = create_object( pObjIndex, level );
+		obj = create_object( pObjIndex, number_fuzzy( level ) );
 	    }
 	    obj_to_char( obj, mob );
 	    if ( pReset->command == 'E' )
@@ -1731,22 +1745,12 @@ int fread_number( FILE *fp )
  * Strings are hashed:
  *   each string prepended with hash pointer to prev string,
  *   hash code is simply the string length.
- * Char type lookup and funny code for even more speed,
- *   this function takes 40% to 50% of boot-up time.
+ * This function takes 40% to 50% of boot-up time.
  */
 char *fread_string( FILE *fp )
 {
-    static bool char_special[256-EOF];
     char *plast;
     char c;
-
-    if ( char_special[EOF-EOF] != TRUE )
-    {
-	char_special[EOF -  EOF] = TRUE;
-	char_special['\n' - EOF] = TRUE;
-	char_special['\r' - EOF] = TRUE;
-	char_special['~'  - EOF] = TRUE;
-    }
 
     plast = top_string + sizeof(char *);
     if ( plast > &string_space[MAX_STRING - MAX_STRING_LENGTH] )
@@ -1770,12 +1774,15 @@ char *fread_string( FILE *fp )
 
     for ( ;; )
     {
-	if ( !char_special[ ( *plast++ = getc( fp ) ) - EOF ] )
-	    continue;
-
-	switch ( plast[-1] )
+	/*
+	 * Back off the char type lookup,
+	 *   it was too dirty for portability.
+	 *   -- Furey
+	 */
+	switch ( *plast = getc( fp ) )
 	{
 	default:
+	    plast++;
 	    break;
 
 	case EOF:
@@ -1784,14 +1791,15 @@ char *fread_string( FILE *fp )
 	    break;
 
 	case '\n':
+	    plast++;
 	    *plast++ = '\r';
 	    break;
 
 	case '\r':
-	    plast--;
 	    break;
 
 	case '~':
+	    plast++;
 	    {
 		union
 		{
@@ -2131,17 +2139,16 @@ int number_fuzzy( int number )
  */
 int number_range( int from, int to )
 {
-    int bits;
     int power;
     int number;
 
     if ( ( to = to - from + 1 ) <= 1 )
 	return from;
 
-    for ( bits = 1, power = 2; power < to; bits++, power <<= 1 )
+    for ( power = 2; power < to; power <<= 1 )
 	;
 
-    while ( ( number = number_bits( bits ) ) >= to )
+    while ( ( number = number_mm( ) & (power - 1) ) >= to )
 	;
 
     return from + number;
@@ -2156,7 +2163,7 @@ int number_percent( void )
 {
     int percent;
 
-    while ( ( percent = number_bits( 7 ) ) >= 100 )
+    while ( ( percent = number_mm( ) & (128-1) ) > 99 )
 	;
 
     return 1 + percent;
@@ -2171,7 +2178,7 @@ int number_door( void )
 {
     int door;
 
-    while ( ( door = number_bits( 3 ) ) > 5 )
+    while ( ( door = number_mm( ) & (8-1) ) > 5 )
 	;
 
     return door;
@@ -2179,33 +2186,63 @@ int number_door( void )
 
 
 
-/*
- * Special high-performance random number generator.
- * Note the '32' is slightly machine dependent (32-bit random numbers).
- * We avoid division (expensive on RISC machines) and ration out bits.
- * Highest bit (sign bit) is unused to avoid sign-extension worries.
- * -- Furey
- */
 int number_bits( int width )
 {
-    static long latch_value;
-    static int  latch_width;
-    int value;
+    return number_mm( ) & ( ( 1 << width ) - 1 );
+}
 
-    if ( latch_width < width )
+
+
+/*
+ * I've gotten too many bad reports on OS-supplied random number generators.
+ * This is the Mitchell-Moore algorithm from Knuth Volume II.
+ * Best to leave the constants alone unless you've read Knuth.
+ * -- Furey
+ */
+static	int	rgiState[2+55];
+
+void init_mm( )
+{
+    int *piState;
+    int iState;
+
+    piState	= &rgiState[2];
+
+    piState[-2]	= 55 - 55;
+    piState[-1]	= 55 - 24;
+
+    piState[0]	= ((int) current_time) & ((1 << 30) - 1);
+    piState[1]	= 1;
+    for ( iState = 2; iState < 55; iState++ )
     {
-#if defined(__hpux) || defined(macintosh)
-	latch_value = rand( );
-#else
-	latch_value = random( );
-#endif
-	latch_width = 32 - 1;
+	piState[iState] = (piState[iState-1] + piState[iState-2])
+			& ((1 << 30) - 1);
     }
+    return;
+}
 
-    value         = (int) ( latch_value & ( ( 1 << width ) - 1 ) );
-    latch_value >>= width;
-    latch_width  -= width;
-    return value;
+
+
+int number_mm( void )
+{
+    int *piState;
+    int iState1;
+    int iState2;
+    int iRand;
+
+    piState		= &rgiState[2];
+    iState1	 	= piState[-2];
+    iState2	 	= piState[-1];
+    iRand	 	= (piState[iState1] + piState[iState2])
+			& ((1 << 30) - 1);
+    piState[iState1]	= iRand;
+    if ( ++iState1 == 55 )
+	iState1 = 0;
+    if ( ++iState2 == 55 )
+	iState2 = 0;
+    piState[-2]		= iState1;
+    piState[-1]		= iState2;
+    return iRand >> 6;
 }
 
 

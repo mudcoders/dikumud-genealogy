@@ -704,6 +704,19 @@ A big pot pie has been left here.~
 19 0 1
 40 0 0 0
 5 100 10
+#3010
+pit~
+the donation pit~
+A pit for sacrifices is in front of the altar.~
+~
+15 0 0
+10000 0 0 0
+0 0 0
+E
+pit~
+This is where you put money and items to help Doz expand this shrine and
+convert more people to the belief of Eru our creator.
+~
 #3020
 dagger~
 a dagger~
@@ -2563,11 +2576,15 @@ The alley leads west.
 S
 #3046
 Eastern end of Alley~
-   You are standing at the eastern end of the alley, the city wall is just
-east, blocking any further movement.  An old three-story warehouse is
-directly south of here.
+   You are standing at the eastern end of the alley.  An old three-story
+warehouse is directly south of here, and the Mob Factory is east.
 ~
 30 0 1
+D1
+The entrance to the Mob Factory lies east.
+~
+~
+0 -1 9400
 D2
 You see the warehouse.
 ~
@@ -3744,6 +3761,8 @@ S
 *
 M 0 3011 1 3001       The executioner
 E 1 3005 100 16         wield the executioners blade
+*
+O 0 3010 1 3054       Donation pit
 *
 M 0 3000 1 3033       The Wizard Shop Keeper
 G 1 3040 500                Give identify scroll.

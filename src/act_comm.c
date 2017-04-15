@@ -15,10 +15,15 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
+#include <ctype.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "merc.h"
 
@@ -30,6 +35,8 @@
 bool	is_note_to	args( ( CHAR_DATA *ch, NOTE_DATA *pnote ) );
 void	note_attach	args( ( CHAR_DATA *ch ) );
 void	note_remove	args( ( CHAR_DATA *ch, NOTE_DATA *pnote ) );
+void	talk_channel	args( ( CHAR_DATA *ch, char *argument,
+			    int channel, const char *verb ) );
 
 
 
@@ -400,87 +407,10 @@ void do_note( CHAR_DATA *ch, char *argument )
 
 
 
-void do_auction( CHAR_DATA *ch, char *argument )
-{
-    char buf[MAX_STRING_LENGTH];
-    DESCRIPTOR_DATA *d;
-
-    if ( argument[0] == '\0' )
-    {
-	send_to_char( "Auction what?\n\r", ch );
-	return;
-    }
-
-    if ( !IS_NPC(ch) )
-	SET_BIT(ch->act, PLR_AUCTION);
-
-    sprintf( buf, "You auction '%s'.\n\r", argument );
-    send_to_char( buf, ch );
-    sprintf( buf, "$n auctions '%s'.", argument );
-    for ( d = descriptor_list; d != NULL; d = d->next )
-    {
-	CHAR_DATA *victim;
-	int position;
-
-	victim = d->original ? d->original : d->character;
-
-	if ( d->connected == CON_PLAYING
-	&&   d->character != ch
-	&&   IS_SET(victim->act, PLR_AUCTION) )
-	{
-	    position			= d->character->position;
-	    d->character->position	= POS_STANDING;
-	    act( buf, ch, NULL, d->character, TO_VICT );
-	    d->character->position	= position;
-	}
-    }
-
-    return;
-}
-
-
-
-void do_chat( CHAR_DATA *ch, char *argument )
-{
-    char buf[MAX_STRING_LENGTH];
-    DESCRIPTOR_DATA *d;
-
-    if ( argument[0] == '\0' )
-    {
-	send_to_char( "Chat what?\n\r", ch );
-	return;
-    }
-
-    if ( !IS_NPC(ch) )
-	SET_BIT(ch->act, PLR_CHAT);
-
-    sprintf( buf, "You chat '%s'.\n\r", argument );
-    send_to_char( buf, ch );
-    sprintf( buf, "$n chats '%s'.", argument );
-    for ( d = descriptor_list; d != NULL; d = d->next )
-    {
-	CHAR_DATA *victim;
-	int position;
-
-	victim = d->original ? d->original : d->character;
-
-	if ( d->connected == CON_PLAYING
-	&&   d->character != ch
-	&&   IS_SET(victim->act, PLR_CHAT) )
-	{
-	    position			= d->character->position;
-	    d->character->position	= POS_STANDING;
-	    act( buf, ch, NULL, d->character, TO_VICT );
-	    d->character->position	= position;
-	}
-    }
-
-    return;
-}
-
-
-
-void do_immtalk( CHAR_DATA *ch, char *argument )
+/*
+ * Generic channel function.
+ */
+void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb )
 {
     char buf[MAX_STRING_LENGTH];
     DESCRIPTOR_DATA *d;
@@ -488,27 +418,131 @@ void do_immtalk( CHAR_DATA *ch, char *argument )
 
     if ( argument[0] == '\0' )
     {
-	send_to_char( "Immtalk what?\n\r", ch );
+	sprintf( buf, "%s what?\n\r", verb );
+	buf[0] = UPPER(buf[0]);
 	return;
     }
 
-    sprintf( buf, "$n: %s.", argument );
-    position		= ch->position;
-    ch->position	= POS_STANDING;
-    act( buf, ch, NULL, NULL, TO_CHAR );
-    ch->position	= position;
+    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_SILENCE) )
+    {
+	sprintf( buf, "You can't %s.\n\r", verb );
+	send_to_char( buf, ch );
+	return;
+    }
+
+    REMOVE_BIT(ch->deaf, channel);
+
+    switch ( channel )
+    {
+    default:
+	sprintf( buf, "You %s '%s'.\n\r", verb, argument );
+	send_to_char( buf, ch );
+	sprintf( buf, "$n %ss '$t'.",     verb );
+	break;
+
+    case CHANNEL_IMMTALK:
+	sprintf( buf, "$n: $t." );
+	position	= ch->position;
+	ch->position	= POS_STANDING;
+	act( buf, ch, argument, NULL, TO_CHAR );
+	ch->position	= position;
+	break;
+    }
 
     for ( d = descriptor_list; d != NULL; d = d->next )
     {
-	if ( d->connected == CON_PLAYING && IS_HERO(d->character) )
+	CHAR_DATA *och;
+	CHAR_DATA *vch;
+
+	och = d->original ? d->original : d->character;
+	vch = d->character;
+
+	if ( d->connected == CON_PLAYING
+	&&   vch != ch
+	&&  !IS_SET(och->deaf, channel) )
 	{
-	    position			= d->character->position;
-	    d->character->position	= POS_STANDING;
-	    act( buf, ch, NULL, d->character, TO_VICT );
-	    d->character->position	= position;
+	    if ( channel == CHANNEL_IMMTALK && !IS_HERO(och) )
+		continue;
+	    if ( channel == CHANNEL_YELL
+	    &&   vch->in_room->area != ch->in_room->area )
+		continue;
+
+	    position		= vch->position;
+	    if ( channel != CHANNEL_SHOUT && channel != CHANNEL_YELL )
+		vch->position	= POS_STANDING;
+	    act( buf, ch, argument, vch, TO_VICT );
+	    vch->position	= position;
 	}
     }
 
+    return;
+}
+
+
+
+void do_auction( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_AUCTION, "auction" );
+    return;
+}
+
+
+
+void do_chat( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_CHAT, "chat" );
+    return;
+}
+
+
+
+/*
+ * Alander's new channels.
+ */
+void do_music( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_MUSIC, "music" );
+    return;
+}
+
+
+
+void do_question( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_QUESTION, "question" );
+    return;
+}
+
+
+
+void do_answer( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_QUESTION, "answer" );
+    return;
+}
+
+
+
+void do_shout( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_SHOUT, "shout" );
+    WAIT_STATE( ch, 12 );
+    return;
+}
+
+
+
+void do_yell( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_YELL, "yell" );
+    return;
+}
+
+
+
+void do_immtalk( CHAR_DATA *ch, char *argument )
+{
+    talk_channel( ch, argument, CHANNEL_IMMTALK, "immtalk" );
     return;
 }
 
@@ -529,54 +563,13 @@ void do_say( CHAR_DATA *ch, char *argument )
 
 
 
-void do_shout( CHAR_DATA *ch, char *argument )
-{
-    char buf[MAX_STRING_LENGTH];
-    DESCRIPTOR_DATA *d;
-
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_NO_SHOUT) )
-    {
-	send_to_char( "You can't shout.\n\r", ch );
-	return;
-    }
-
-    if ( argument[0] == '\0' )
-    {
-	send_to_char( "Shout what?\n\r", ch );
-	return;
-    }
-
-    WAIT_STATE( ch, 12 );
-
-    act( "You shout '$T'.", ch, NULL, argument, TO_CHAR );
-    sprintf( buf, "$n shouts '%s'.", argument );
-    for ( d = descriptor_list; d != NULL; d = d->next )
-    {
-	CHAR_DATA *victim;
-
-	victim = d->original ? d->original : d->character;
-
-	if ( d->connected == CON_PLAYING
-	&&   d->character != ch
-	&&   !IS_SET(victim->act, PLR_NO_SHOUT) )
-	{
-	    act( buf, ch, NULL, d->character, TO_VICT );
-	}
-    }
-
-    return;
-}
-
-
-
 void do_tell( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     int position;
 
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_NO_TELL) )
+    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_SILENCE) )
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
@@ -607,13 +600,10 @@ void do_tell( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    sprintf( buf, "You tell $N '%s'.", argument );
-    act( buf, ch, NULL, victim, TO_CHAR );
-
+    act( "You tell $N '$t'.", ch, argument, victim, TO_CHAR );
     position		= victim->position;
     victim->position	= POS_STANDING;
-    sprintf( buf, "$n tells you '%s'.", argument );
-    act( buf, ch, NULL, victim, TO_VICT );
+    act( "$n tells you '$t'.", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
 
@@ -624,11 +614,10 @@ void do_tell( CHAR_DATA *ch, char *argument )
 
 void do_reply( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int position;
 
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_NO_TELL) )
+    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_SILENCE) )
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
@@ -646,12 +635,10 @@ void do_reply( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    sprintf( buf, "You tell $N '%s'.", argument );
-    act( buf, ch, NULL, victim, TO_CHAR );
+    act( "You tell $N '$t'.", ch, argument, victim, TO_CHAR );
     position		= victim->position;
     victim->position	= POS_STANDING;
-    sprintf( buf, "$n tells you '%s'.", argument );
-    act( buf, ch, NULL, victim, TO_VICT );
+    act( "$n tells you '$t'.", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
 
@@ -660,37 +647,11 @@ void do_reply( CHAR_DATA *ch, char *argument )
 
 
 
-void do_yell( CHAR_DATA *ch, char *argument )
-{
-    char buf[MAX_STRING_LENGTH];
-    DESCRIPTOR_DATA *d;
-
-    if ( argument[0] == '\0' )
-    {
-	send_to_char( "Yell what?\n\r", ch );
-	return;
-    }
-
-    sprintf( buf, "You yell '%s'.\n\r", argument );
-    sprintf( buf, "$n yells '%s'.", argument );
-    for ( d = descriptor_list; d != NULL; d = d->next )
-    {
-	if ( d->connected == CON_PLAYING
-	&&   d->character != ch
-	&&   d->character->in_room != NULL
-	&&   d->character->in_room->area == ch->in_room->area )
-	{
-	    act( buf, ch, NULL, d->character, TO_VICT );
-	}
-    }
-
-    return;
-}
-
-
-
 void do_emote( CHAR_DATA *ch, char *argument )
 {
+    char buf[MAX_STRING_LENGTH];
+    char *plast;
+
     if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_NO_EMOTE) )
     {
 	send_to_char( "You can't show your emotions.\n\r", ch );
@@ -703,8 +664,15 @@ void do_emote( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    act( "$n $T.", ch, NULL, argument, TO_ROOM );
-    act( "$n $T.", ch, NULL, argument, TO_CHAR );
+    for ( plast = argument; *plast != '\0'; plast++ )
+	;
+
+    strcpy( buf, argument );
+    if ( isalpha(plast[-1]) )
+	strcat( buf, "." );
+
+    act( "$n $T", ch, NULL, buf, TO_ROOM );
+    act( "$n $T", ch, NULL, buf, TO_CHAR );
     return;
 }
 
@@ -1186,7 +1154,6 @@ void die_follower( CHAR_DATA *ch )
 
 void do_order( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     CHAR_DATA *och;
@@ -1245,8 +1212,7 @@ void do_order( CHAR_DATA *ch, char *argument )
 	&& ( fAll || och == victim ) )
 	{
 	    found = TRUE;
-	    sprintf( buf, "$n orders you to '%s'.", argument );
-	    act( buf, ch, NULL, och, TO_VICT );
+	    act( "$n orders you to '$t'.", ch, argument, och, TO_VICT );
 	    interpret( och, argument );
 	}
     }

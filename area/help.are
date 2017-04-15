@@ -30,9 +30,8 @@ Developed at: DIKU -- The Department of Computer Science
 
 -1 MERC~
 [Note: this entry may not be removed or altered.  See our license.txt.]
-
-This mud is based on Merc 2.0, created by Furey, Hatchet, and Kahn.  Merc 2.0
-is available as Merc_20c.tar.Z from ferkel.ucsb.edu and ftp.math.okstate.edu.
+This mud is based on Merc 2.1, created by Furey, Hatchet, and Kahn.  Merc 2.1
+is available as Merc_21.tar.gz from ftp.tcp.com and ftp.math.okstate.edu.
 E-mail to 'merc-request@kpc.com' to join the merc mailing list.
 
 Thanks to ...
@@ -40,12 +39,13 @@ Thanks to ...
   ... The Free Software Foundation and DJ Delorie for kick-ass tools.
   ... Copper Mud and Alfa Mud for releasing their code and worlds.
   ... Aod of Generic for ... well, everything.  You're a hoopy frood, Aod.
+  ... Alander for many ideas and contributions.
   ... John Brothers of Silly for permission to use Silly code and worlds.
   ... Zrin for administering the mailing list.
   ... Abaddon for proofreading our comm.c.
-  ... Hind, Quin, Vic, Diavolo, Alander, and others for porting help.
-  ... Alander, Diavolo, Grodyn, Morgenes, and others for code and bug fixes.
-  ... Raff, Doctor, VampLestat, Nirrad, Tyrst, PinkF, Chris for worlds.
+  ... Hind, Quin, Vic, Diavolo, Oleg, Trienne, and others for porting help.
+  ... Diavolo, Grodyn, Morgenes, and others for code and bug fixes.
+  ... Raff, Doctor, VampLestat, Nirrad, Tyrst, PinkF, Chris, Glop for worlds.
   ... the players and imps of Mud Dome, Final Mud, Mud Lite, Vego Mud, Rivers
       of Mud, Ruhr Mud, and Mystic Realms for bug reports, ideas, new code,
       and hours of enjoyment.
@@ -76,7 +76,7 @@ This entry contains the administrators of this Mud.
 
                                M          U          D
 
-    04 Jul 1993    Merc 2.0    Furey, Hatchet, Kahn
+    01 Aug 1993    Merc 2.1    Furey, Hatchet, Kahn
 
 By what name do you wish to be known? ~
 
@@ -105,22 +105,9 @@ Press RETURN to continue: ~
 
 
 -1 NEWS~
-All the unimplemented skills and spells have been removed.  Several new ones
-have been added.
+We have more channels and better control over them.
 
-The help file has been rewritten.
-
-The experience point system has been redesigned -- 'help xp'.
-
-Object stats have been redesigned, and now have an element of randomness.
-
-There are level limits on stealing now, and wait states on picking locks and
-stealing.  No more low-level thieves plundering the town.
-
-Item carrying limits are in effect.
-
-Monsters no longer always attack the last character into the room.  They can
-pick on any member of your party, and they can assist other monsters.
+Numerous small things were changed, fixed, improved.
 
 ~
 
@@ -154,27 +141,34 @@ Midgaard is next.
 
 
 -1 SUMMARY~
-MOVEMENT                            GROUP
-north south east west up down       follow group gtell split
+MOVEMENT                          GROUP
+north south east west up down     follow group gtell split
 exits recall
 sleep wake rest stand
 
-OBJECTS                             INFORMATION / COMMUNICATION
-get put drop give sacrifice         help credits commands areas
-wear wield hold                     report score time weather where who
-recite quaff zap brandish           configure description password title
-lock unlock open close pick         bug idea typo
-inventory equipment look compare    auction chat say shout tell yell
-eat drink fill                      emote pose
-list buy sell value                 note
+OBJECTS                           INFORMATION / COMMUNICATION
+get put drop give sacrifice       help credits areas commands socials
+wear wield hold                   report score time weather where who
+recite quaff zap brandish         channels config description password title
+lock unlock open close pick       auction chat music question answer shout yell
+inventory equipment look compare  emote pose say tell
+eat drink fill                    bug idea typo
+list buy sell value               note
 
-COMBAT                              OTHER
-kill flee kick rescue disarm        ! save quit
-backstab cast wimpy                 practice train
+COMBAT                            OTHER
+kill flee kick rescue disarm      ! save quit
+backstab cast wimpy               practice train
 
 
 For more help, type 'help <topic>' for any command, skill, or spell.
-Also help on: DAMAGE DEATH EXPERIENCE NEWS STORY TICK WIZLIST
+Also help on: CHANGES DAMAGE DEATH EXPERIENCE NEWS STORY TICK WIZLIST
+~
+
+
+
+0 CHANGES~
+This entry contains recent changes made to this mud.
+
 ~
 
 
@@ -223,7 +217,6 @@ experience points for each level of experience.
 You gain experience by:
 
     being part of a group that kills a monster
-    sacrificing a corpse to God
 
 You lose experience by:
 
@@ -348,10 +341,14 @@ INVENTORY lists your inventory.
 
 0 COMPARE~
 Syntax: compare <object-1> <object-2>
+Syntax: compare <object>
 
 COMPARE compares two objects in your inventory.  If both objects are weapons,
 it will report the one with the better average damage.  If both objects are
 armor, it will report the one with the better armor class.
+
+COMPARE with one argument compares an object in your inventory to the object
+you are currently wearing or wielding of the same type.
 
 COMPARE doesn't consider any special modifiers of the objects.
 ~
@@ -480,22 +477,27 @@ NOTE POST posts your note for reading.  Posting is not automatic.
 NOTE REMOVE removes the entire note if you are the sender, or just removes you
 from the to-list if you are a recipient.
 ~
-0 AUCTION CHAT . SHOUT YELL~
-Syntax: auction <message>
-Syntax: chat    <message>
-Syntax: shout   <message>
-Syntax: yell    <message>
+0 AUCTION CHAT . MUSIC QUESTION ANSWER SHOUT YELL~
+Syntax: auction  <message>
+Syntax: chat     <message>
+Syntax: music    <message>
+Syntax: question <message>
+Syntax: answer   <message>
+Syntax: shout    <message>
+Syntax: yell     <message>
+
+These commands send messages through communication channels to other players.
 
 SHOUT sends a message to all awake players in the world.  To curb excessive
 shouting, SHOUT imposes a three-second delay on the shouter.
 
-AUCTION and CHAT are variants of SHOUT (without the delay).  '.' is a synonym
-for CHAT.
+AUCTION, CHAT, MUSIC, and QUESTION and ANSWER also send messages to all
+interested players.  '.' is a synonym for CHAT.  The QUESTION and ANSWER
+commands both use the same 'question' channel
 
 YELL sends a message to all awake players within your area.
 
-You can use the CONFIGURE command to hear, or not hear, the auction channel
-and the chat channel.
+You can use the CHANNELS command to hear, or not hear, any of these channels.
 ~
 
 0 EMOTE , POSE SOCIAL~
@@ -530,29 +532,34 @@ REMOVE will take any object from your equipment and put it back into your
 inventory.
 ~
 
-0 CONFIGURE~
-Syntax: configure
-Syntax: configure +<option>
-Syntax: configure -<option>
+0 CHANNELS~
+Syntax: channels
+Syntax: channels +<channel>
+Syntax: channels -<channel>
 
-These commands configure some of your character behavior.  With no options,
-CONFIGURE shows you your current settings.  With a plus or minus sign and
-an option, CONFIGURE turns that option on or off.
+With no options, CHANNELS shows you your current channels.  With a plus or
+minus sign and an option, CHANNELS turns that channel on or off.
+~
+
+0 CONFIG~
+Syntax: config
+Syntax: config +<option>
+Syntax: config -<option>
+
+This command configures some of your character behavior.  With no options,
+CONFIG shows you your current settings.  With a plus or minus sign and
+an option, CONFIG turns that option on or off.
 
 The options are:
 
-    AUCTION   You hear the auction channel.
     AUTOEXIT  You automatically see exits.
     AUTOLOOT  You automatically loot corpses.
     AUTOSAC   You automatically sacrifice corpses.
     BLANK     You have a blank line before your prompt.
     BRIEF     You see brief descriptions only.
-    CHAT      You hear the chat channel.
     COMBINE   You see object lists in combined format.
     PROMPT    You have a prompt.
-
-The AUTO options do not take any time at all, and will work even if your
-character has been delayed by spell-casting, tripping, or other means.
+    TELNETGA  You receive a telnet GA sequence.
 ~
 
 0 BUG IDEA TYPO~
@@ -570,25 +577,34 @@ Syntax: credits
 This command shows the list of the original Diku Mud implementors.
 ~
 
-0 AREAS COMMANDS REPORT SCORE TIME WEATHER~
-Syntax: areas
-Syntax: commands
+0 REPORT SCORE TIME WEATHER~
 Syntax: report
 Syntax: score
 Syntax: time
 Syntax: weather
 
-AREAS shows you a list of areas in the game.
-
-COMMANDS shows you all the commands in the game.
-
 REPORT shows your current statistics to you and also announces them to other
-players in the room.  SCORE shows much more detailed statistics to you only.
+players in the room.
+
+SCORE shows detailed statistics to you only.
 
 TIME shows the game time, as well as the time the mud was last started,
 and the current local time for the host computer.
 
 WEATHER shows the current game weather.
+~
+
+0 AREAS COMMANDS SOCIALS~
+Syntax: areas
+Syntax: commands
+Syntax: socials
+
+AREAS shows you all the areas in the game, with the author's name and the
+suggested levels.
+
+COMMANDS shows you all the (non-social) commands available to you.
+
+SOCIALS shows you all the social commands available to you.
 ~
 
 0 WHO~
@@ -703,12 +719,14 @@ FILL fills a drink container with water.
 0 BUY LIST SELL VALUE~
 Syntax: buy   <object>
 Syntax: list
+Syntax: list  <object>
 Syntax: sell  <object>
 Syntax: value <object>
 
 BUY buys an object from a shop keeper.
 
-LIST lists the objects the shop keeper will sell you.
+LIST lists the objects the shop keeper will sell you.  LIST <object> lists
+just the objects with that name.
 
 SELL sells an object to a shop keeper.
 
@@ -823,7 +841,7 @@ the Temple of Midgaard.  '/' is a synonym for RECALL.
 If you RECALL during combat, you will lose experience (more than for fleeing),
 and you will have a chance of failing (again, more than for fleeing).
 
-RECALL costs all of your movement points.
+RECALL costs half of your movement points.
 
 RECALL doesn't work in certain God-forsaken rooms.  Characters afflicted by a
 curse may not recall at all.
@@ -974,11 +992,13 @@ number and the 'connected' state.  The 'connected' states are listed in merc.h:
 38 MLOAD OLOAD~
 Syntax: mload <vnum>
 Syntax: oload <vnum>
+Syntax: oload <vnum> <level>
 
 MLOAD loads a mobile given its vnum (virtual number).  The vnum's are just
 the #NNNN numbers that appear in world.obj.
 
-OLOAD loads an object given its vnum.
+OLOAD loads an object given its vnum.  It takes an optional parameter for
+the level of the object to be loaded.
 ~
 
 38 MSET OSET RSET SSET~
@@ -995,19 +1015,15 @@ There is currently no way to enter more than one line of text for a
 string-valued option.
 ~
 
-38 NOEMOTE NOSHOUT NOTELL~
+38 NOEMOTE NOTELL SILENCE~
 Syntax: noemote <character>
-Syntax: noshout <character>
 Syntax: notell  <character>
-Syntax: noshout
+Syntax: silence <character>
 
-NOEMOTE, NOSHOUT, and NOTELL are used to muffle other characters, by
-preventing them from emoting, shouting, and telling, respectively.
-Characters who are noshout'ed or no'telled will also not receive those
-forms of communication.
-
-NOSHOUT may also be used without arguments to turn on your own noshout bit.
-This prevents other players from communicating with you when you are busy.
+NOEMOTE, NOTELL, and SILENCE are used to muffle other characters, by
+preventing them from emoting, telling, and using channels, respectively.
+Characters who are no'telled will also not receive those forms of
+communication.
 ~
 
 38 PARDON~

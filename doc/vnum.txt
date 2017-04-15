@@ -1,5 +1,5 @@
-Merc Release 2.0
-Sunday 04 July 1993
+Merc Release 2.1
+Sunday 01 August 1993
 
 Furey	mec@shell.portal.com
 Hatchet	hatchet@uclink.berkeley.edu
@@ -12,7 +12,7 @@ Kahn	michael@uclink.berkeley.edu
 
 === Vnum Assignments
 
-00 limbo.are    20 catacomb.are 40 moria.are    60 haon.are     80 -           
+00 limbo.are    20 catacomb.are 40 moria.are    60 haon.are     80 mega1.are   
 01 smurf.are    21 hood.are     41 moria.are    61 haon.are     81 -           
 02 -            22 draconia.are 42 -            62 -            82 -           
 03 plains.are   23 mahntor.are  43 -            63 arachnos.are 83 marsh.are   

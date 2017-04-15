@@ -15,9 +15,14 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include "merc.h"
 
 
@@ -258,11 +263,11 @@ void mobile_update( void )
     {
 	ch_next = ch->next;
 
-	if ( !IS_NPC(ch) || ch->in_room == NULL )
+	if ( !IS_NPC(ch) || ch->in_room == NULL || IS_AFFECTED(ch, AFF_CHARM) )
 	    continue;
 
 	/* Examine call for special procedure */
-	if ( ch->spec_fun != NULL && !IS_AFFECTED(ch, AFF_CHARM) )
+	if ( ch->spec_fun != 0 )
 	{
 	    if ( (*ch->spec_fun) ( ch ) )
 		continue;
@@ -304,11 +309,11 @@ void mobile_update( void )
 	if ( !IS_SET(ch->act, ACT_SENTINEL)
 	&& ( door = number_bits( 5 ) ) <= 5
 	&& ( pexit = ch->in_room->exit[door] ) != NULL
-	&&   pexit->u1.to_room != NULL
+	&&   pexit->to_room != NULL
 	&&   !IS_SET(pexit->exit_info, EX_CLOSED)
-	&&   !IS_SET(pexit->u1.to_room->room_flags, ROOM_NO_MOB)
+	&&   !IS_SET(pexit->to_room->room_flags, ROOM_NO_MOB)
 	&& ( !IS_SET(ch->act, ACT_STAY_AREA)
-	||   pexit->u1.to_room->area == ch->in_room->area ) )
+	||   pexit->to_room->area == ch->in_room->area ) )
 	{
 	    move_char( ch, door );
 	}
@@ -317,15 +322,15 @@ void mobile_update( void )
 	if ( ch->hit < ch->max_hit / 2
 	&& ( door = number_bits( 3 ) ) <= 5
 	&& ( pexit = ch->in_room->exit[door] ) != NULL
-	&&   pexit->u1.to_room != NULL
+	&&   pexit->to_room != NULL
 	&&   !IS_SET(pexit->exit_info, EX_CLOSED)
-	&&   !IS_SET(pexit->u1.to_room->room_flags, ROOM_NO_MOB) )
+	&&   !IS_SET(pexit->to_room->room_flags, ROOM_NO_MOB) )
 	{
 	    CHAR_DATA *rch;
 	    bool found;
 
 	    found = FALSE;
-	    for ( rch  = pexit->u1.to_room->people;
+	    for ( rch  = pexit->to_room->people;
 		  rch != NULL;
 		  rch  = rch->next_in_room )
 	    {
@@ -495,10 +500,12 @@ void char_update( void )
     CHAR_DATA *ch;
     CHAR_DATA *ch_next;
     CHAR_DATA *ch_save;
-    long save_time;
+    CHAR_DATA *ch_quit;
+    time_t save_time;
 
     save_time	= current_time;
     ch_save	= NULL;
+    ch_quit	= NULL;
     for ( ch = char_list; ch != NULL; ch = ch_next )
     {
 	AFFECT_DATA *paf;
@@ -567,7 +574,7 @@ void char_update( void )
 	    }
 
 	    if ( ch->timer > 30 )
-		do_quit( ch, "" );
+		ch_quit = ch;
 
 	    gain_condition( ch, COND_DRUNK,  -1 );
 	    gain_condition( ch, COND_FULL,   -1 );
@@ -619,12 +626,24 @@ void char_update( void )
 	}
     }
 
-    if ( ch_save != NULL )
-	save_char_obj( ch_save );
+    /*
+     * Autosave and autoquit.
+     * Check that these chars still exist.
+     */
+    if ( ch_save != NULL || ch_quit != NULL )
+    {
+	for ( ch = char_list; ch != NULL; ch = ch_next )
+	{
+	    ch_next = ch->next;
+	    if ( ch == ch_save )
+		save_char_obj( ch );
+	    if ( ch == ch_quit )
+		do_quit( ch, "" );
+	}
+    }
 
     return;
 }
-
 
 
 

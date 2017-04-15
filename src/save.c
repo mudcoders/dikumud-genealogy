@@ -15,10 +15,15 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+#if defined(macintosh)
+#include <types.h>
+#else
 #include <sys/types.h>
+#endif
+#include <ctype.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
+#include <time.h>
 #include "merc.h"
 
 #if !defined(macintosh)
@@ -104,9 +109,12 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Level        %d\n",	ch->level		);
     fprintf( fp, "Trust        %d\n",	ch->trust		);
     fprintf( fp, "Played       %d\n",
-	(int) (ch->played + current_time - ch->logon)		);
+	ch->played + (int) (current_time - ch->logon)		);
     fprintf( fp, "Room         %d\n",
-	ch->in_room == NULL ? ch->was_in_room->vnum : ch->in_room->vnum );
+	(  ch->in_room == get_room_index( ROOM_VNUM_LIMBO )
+	&& ch->was_in_room != NULL )
+	    ? ch->was_in_room->vnum
+	    : ch->in_room->vnum );
 
     fprintf( fp, "HpManaMove   %d %d %d %d %d %d\n",
 	ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move );
@@ -114,7 +122,10 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Exp          %d\n",	ch->exp			);
     fprintf( fp, "Act          %d\n",   ch->act			);
     fprintf( fp, "AffectedBy   %d\n",	ch->affected_by		);
-    fprintf( fp, "Position     %d\n",	ch->position		);
+    /* Bug fix from Alander */
+    fprintf( fp, "Position     %d\n",
+        ch->position == POS_FIGHTING ? POS_STANDING : ch->position );
+
     fprintf( fp, "Practice     %d\n",	ch->practice		);
     fprintf( fp, "SavingThrow  %d\n",	ch->saving_throw	);
     fprintf( fp, "Alignment    %d\n",	ch->alignment		);
@@ -122,6 +133,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Damroll      %d\n",	ch->damroll		);
     fprintf( fp, "Armor        %d\n",	ch->armor		);
     fprintf( fp, "Wimpy        %d\n",	ch->wimpy		);
+    fprintf( fp, "Deaf         %d\n",	ch->deaf		);
 
     if ( IS_NPC(ch) )
     {
@@ -164,8 +176,12 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 
     for ( paf = ch->affected; paf != NULL; paf = paf->next )
     {
-	fprintf( fp, "Affect %3d %3d %3d %3d %10d\n",
-	    paf->type,
+	/* Thx Alander */
+	if ( paf->type < 0 || paf->type >= MAX_SKILL )
+	    continue;
+
+	fprintf( fp, "AffectData   '%s' %3d %3d %3d %10d\n",
+	    skill_table[paf->type].name,
 	    paf->duration,
 	    paf->modifier,
 	    paf->location,
@@ -257,8 +273,11 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 
     for ( paf = obj->affected; paf != NULL; paf = paf->next )
     {
-	fprintf( fp, "Affect       %d %d %d %d %d\n",
-	    paf->type,
+	if ( paf->type < 0 || paf->type >= MAX_SKILL )
+	    continue;
+
+	fprintf( fp, "AffectData   '%s' %d %d %d %d\n",
+	    skill_table[paf->type].name,
 	    paf->duration,
 	    paf->modifier,
 	    paf->location,
@@ -318,9 +337,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     d->character			= ch;
     ch->desc				= d;
     ch->name				= str_dup( name );
-    ch->act				= PLR_AUCTION
-					| PLR_BLANK
-					| PLR_CHAT
+    ch->act				= PLR_BLANK
 					| PLR_COMBINE
 					| PLR_PROMPT;
     ch->pcdata->pwd			= str_dup( "" );
@@ -332,8 +349,8 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->pcdata->perm_wis		= 13;
     ch->pcdata->perm_dex		= 13;
     ch->pcdata->perm_con		= 13;
-    ch->pcdata->condition[COND_THIRST]	= 24;
-    ch->pcdata->condition[COND_FULL]	= 24;
+    ch->pcdata->condition[COND_THIRST]	= 48;
+    ch->pcdata->condition[COND_FULL]	= 48;
 
     found = FALSE;
     fclose( fpReserve );
@@ -423,7 +440,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    KEY( "Alignment",	ch->alignment,		fread_number( fp ) );
 	    KEY( "Armor",	ch->armor,		fread_number( fp ) );
 
-	    if ( !str_cmp( word, "Affect" ) )
+	    if ( !str_cmp( word, "Affect" ) || !str_cmp( word, "AffectData" ) )
 	    {
 		AFFECT_DATA *paf;
 
@@ -437,7 +454,22 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 		    affect_free	= affect_free->next;
 		}
 
-		paf->type	= fread_number( fp );
+		if ( !str_cmp( word, "Affect" ) )
+		{
+		    /* Obsolete 2.0 form. */
+		    paf->type	= fread_number( fp );
+		}
+		else
+		{
+		    int sn;
+
+		    sn = skill_lookup( fread_word( fp ) );
+		    if ( sn < 0 )
+			bug( "Fread_char: unknown skill.", 0 );
+		    else
+			paf->type = sn;
+		}
+
 		paf->duration	= fread_number( fp );
 		paf->modifier	= fread_number( fp );
 		paf->location	= fread_number( fp );
@@ -491,6 +523,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 
 	case 'D':
 	    KEY( "Damroll",	ch->damroll,		fread_number( fp ) );
+	    KEY( "Deaf",	ch->deaf,		fread_number( fp ) );
 	    KEY( "Description",	ch->description,	fread_string( fp ) );
 	    break;
 
@@ -665,7 +698,7 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 	    break;
 
 	case 'A':
-	    if ( !str_cmp( word, "Affect" ) )
+	    if ( !str_cmp( word, "Affect" ) || !str_cmp( word, "AffectData" ) )
 	    {
 		AFFECT_DATA *paf;
 
@@ -677,6 +710,22 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 		{
 		    paf		= affect_free;
 		    affect_free	= affect_free->next;
+		}
+
+		if ( !str_cmp( word, "Affect" ) )
+		{
+		    /* Obsolete 2.0 form. */
+		    paf->type	= fread_number( fp );
+		}
+		else
+		{
+		    int sn;
+
+		    sn = skill_lookup( fread_word( fp ) );
+		    if ( sn < 0 )
+			bug( "Fread_obj: unknown skill.", 0 );
+		    else
+			paf->type = sn;
 		}
 
 		paf->type	= fread_number( fp );

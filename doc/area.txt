@@ -1,5 +1,5 @@
-Merc Release 2.0
-Sunday 04 July 1993
+Merc Release 2.1
+Sunday 01 August 1993
 
 Furey	mec@shell.portal.com
 Hatchet	hatchet@uclink.berkeley.edu
@@ -70,7 +70,7 @@ In order to simplify the code, the Merc server has a fixed maximum size on
 strings in the area database.  This size is defined at the beginning of 'db.c'
 'db.c' with a '#define' statement.  As distributed, this size is:
 
-    #define MAX_STRING	 900000
+    #define MAX_STRING	 1048576
 
 This size is 10% larger than needed for the areas we distribute.  Thus, you
 can add about 4 more areas without touching the server at all.  The server
@@ -660,7 +660,6 @@ negative sn means 'no spell'.
    value[1]	unused
    value[2]	unused
    value[3]	weapon type:
-      00	   hit
       01	   slice
       02	   stab
       03	   slash
@@ -900,11 +899,11 @@ Here's how to do this on a Unix system:
 
 (4) Edit 'startup'.  Change the line:
 
-	../src/merc 4000 >&! $logfile
+	../src/merc $port >&! $logfile
 
     to:
 
-	zcat all_area.Z | ../src/merc 4000 >&! $logfile
+	zcat all_area.Z | ../src/merc $port >&! $logfile
 
 (5) Test the changes so far.  Merc should start up normally, although it
     may take a few seconds longer to zcat everything.
