@@ -73,7 +73,7 @@ Thanks also go to the following people (in order of help given):
 ...Pandora, for trying to bring some semblance of order to the mud.
 ...All the players, for finally showing me why God Wars doesn't work.
 
-Note: This mud is based upon the October 1995 version of the code.
+Note: This mud is based upon the March 1996 version of the code.
 See also: GODWARS-HISTORY, GODWARS-INFO, GODWARS-TREE
 ~
 
@@ -85,45 +85,48 @@ Ben Walding (aka Malice) write a mud called Eternal Conflict.  I supplied
 suggestions, whilst he did almost all of the coding.  In order to help 
 out with the code, I decided to download a copy of Merc 2.1 and 'have a 
 play' with it.  I taught myself how to code in C, but as a side affect I 
-created another mud - God Wars.  The mud was very primitive, but was also 
-quite fun to play on, so I spoke with a friend of mine and managed to get 
-a temporary site - just to show him what I had written.  The mud proved 
-popular, and was offered a permanent site elsewhere.  After about 6 months 
-work, one of the players (who called himself Joker) requested a copy of 
-the mud to help with his University project.  In return for his word that 
-the mud would be for personal use only, I agreed.  He broke his word, and 
-ran the mud as Vampire Wars, making practically no further changes to the 
-code.  A few months later, I began to jointly run a second version of God 
-Wars in the USA, because of the severe lag the American players suffered 
-from whilst playing on the UK based mud.  This mud began developing on its 
-own, until eventually the site owner and his coder fell out, and another
-version of God Wars was created.  In 1997 another copy of Godwars was stolen 
-and given out freely over the net.  Since then I began developing the mud in
-a very different direction - stopping only briefly to create God Wars Deluxe,
-which unfortunately was also stolen and eventually leaked out.
+created another mud - God Wars.  The mud was very primitive, but was
+also quite fun to play on, so I spoke with a friend of mine and managed to
+get a temporary site - just to show him what I had written.  The mud proved 
+popular, and was offered a permanent site elsewhere.  After about 6
+months work, one of the players (who called himself Joker) requested a copy of 
+the mud to help with his University project.  In return for his word
+that the mud would be for personal use only, I agreed.  He broke his word,
+and ran the mud as Vampire Wars, making practically no further changes to
+the code.  A few months later, I began to jointly run a second version of
+God Wars in the USA, because of the severe lag the American players suffered 
+
+from whilst playing on the UK based mud.  This mud began developing on
+its own, until eventually the site owner and his coder fell out, and another
+version of God Wars was created.  In 1997 another copy of Godwars was
+stolen and given out freely over the net.  Since then I began developing the
+mud in a very different direction - stopping only briefly to create God Wars
+Deluxe, which unfortunately was also stolen and eventually leaked out.
 ~
 
 
 
 -1 GODWARS-INFO~
-Apart from a couple of bug fixes, this version of God Wars was last modified 
-in October 1995.  It is the version that ran on the US mirror site, and is
-pretty much the same code used by Vampire Wars.  Look out for other muds in
-the series!  God Wars (1996 version of this), Dark City (my evolved God Wars 
-derivative), God Wars Deluxe (a cut-down, smoothed out version of Dark City) 
-and Last City - my current mud, which (at the moment of writing this) is not 
-QUITE ready to play, but is getting close.  There are also a number of other
-God Wars derivatives which were not written by me - for example Sage's "Lords
-of War" and Aronacus' "Planes of Hades", to name but two.
+This version of God Wars was last modified by me in March 1996.  After
+that point a couple of people decided to try and "rework" the code, filling
+it with numerous really nasty bugs - thus you are using this code at your
+own peril (unfortunately there are no cleaner copies of the 1996 code).
+Look out for other muds in the series!  God Wars (1995 version of this), 
+Dark City (my evolved God Wars derivative), God Wars Deluxe (a cut-down,
+smoothed out version of Dark City) and Last City - my current mud, which 
+(at the moment of writing this) is not QUITE ready to play, but is getting 
+close.  There are also a number of other God Wars derivatives which were
+not written by me - for example Sage's "Lords of War" and Aronacus' "Planes 
+of Hades", to name but two.
 
-There may well be other derivatives that I don't know about yet.  Most of
-the current ones come from the Leaked God Wars, although I suspect there
-will soon be some based on the God Wars Deluxe.  Unfortunately the original
-1996 copy of the code was lost (I didn't keep copies of the mud in it's
-different stages - I just kept working on it until one day I decided it
-needed a new name and called it Dark City).  Last City got another rename
-because a movie came out called Dark City and I didn't want people getting
-confused about the theme.
+There may well be other derivatives that I don't know about yet.  Most
+of the current ones come from this leaked version, although I suspect
+there will soon be some based on the God Wars Deluxe.  Unfortunately the
+original 1996 copy of the code was lost (I didn't keep copies of the mud
+in it's different stages - I just kept working on it until one day I
+decided it needed a new name and called it Dark City).  Last City got
+another rename because a movie came out called Dark City and I didn't want
+people getting confused about the theme.
 
 For more information, check out the GODWARS-TREE help file.
 ~
@@ -158,22 +161,19 @@ For more information, check out the GODWARS-INFO help file.
 
 
 
--1 WIZLIST~
+-1
+WIZLIST~
 ----------------------------------------------------------------------
                              God Wars MUD
 ----------------------------------------------------------------------
-                 --==> I M P L E M E N T O R S <==--
+                 - - - I M P L E M E N T O R S - - -
 
-                 --===> H I G H   J U D G E S <===--
+                  - - - H I G H   J U D G E S - - -
 
-                 -----=====> J U D G E S <=====-----
+                       - - - J U D G E S - - -
 
-                 ---====> E N F O R C E R S <====---
-
-                 --==> Q U E S T   M A K E R S <==--
-
-                 ----====> B U I L D E R S <====----
-
+                    - - - E N F O R C E R S - - -
+                                      
 ----------------------------------------------------------------------
 ~
 
@@ -199,44 +199,25 @@ What name do you want engraved on your tombstone? ~
 -1 MOTD~
 * This is a player killing and stealing mud.
 * Type 'help' for help.  To see the changes type 'help changes'.
-
-* PLEASE READ THE NEWS!
-* ^^^^^^^^^^^^^^^^^^^^^
+* Type 'rules' and 'policy' for a list of rules and the policy.
 
 Press RETURN to continue: ~
 
 
 
-4 IMOTD~
-* Quest point values have changed.  Please check the new costs.
+3 IMOTD~
+* PLEASE: check 'help decapitate' and 'help rules'.
+* Also check 'help status', 'help escape' and 'help godless'.
 ~
 
 
 -1 NEWS~
 To see the changes, type 'help changes'.
-
-Scavengers and mutants have temporarily been removed because:
-(1) There are not enough players for it to work properly,
-(2) The majority of players seem to want to be renegades anyway, and
-(3) The code required is going to take longer than I thought, and I don't 
-like leaving something half finished.
-
-They will be added later when the other mud stuff is fixed and we have a 
-few more players...unless everybody really doesn't want them.
-
-QUEST POINTS!
-Quest point values have changed drastically.  Most things now cost 10 
-times as much, with renames and a couple of other things being the 
-exceptions.  To find out the new costs, type: quest
-
-EXP! EXP! EXP!
-You now get much more exp per kill, depending on your opponents difficulty.
-Training costs have also changed.
 ~
 
 
 
-3 RULES~
+2 RULES~
 The Ten Commandments:
 1)  Kill and decapitate other immortals, or else:
 2)  Other immortals will kill and decapitate you.
@@ -248,6 +229,44 @@ The Ten Commandments:
 8)  Friends are useful.  So are the exp you get for decapitating them.
 9)  Rules and alliences are there to be broken; never trust anyone.
 10) Stop reading the stupid rules and let the slaughter commence!
+11) Never trust Amoeba.
+~
+
+
+
+2 POLICY~
+
+* Cloning of Artifacts is banned! And always has been.
+
+  Cloning of ANY artifact will result in all copies of the cloned artifact
+  being removed from the game and any further action deemed appropriate by
+  myself or the God(s) concerned.
+
+* Multiplaying is banned!
+
+  Anyone caught multiplaying will have ALL of the concerned characters deleted
+  or any lesser penalty deemed appropriate by the immortal dealing with it.
+
+* No spamming any channels
+
+  This is unfriendly and upsets people. The penalty for this is that the 
+  offending player will be silenced for a period determined by the immortal.
+
+* No purposeful crashing of the mud.
+
+  Deliberate crashing of the mud will cause you to be denied or possibly
+  deleted and may even end up in your site being prevented from connecting
+  to the mud (banned). 
+
+* Sharing characters
+
+  This is frowned upon heavily.
+
+* Storage of Artifacts 
+
+  You are not allowed to place your artifact(s) on a "storage character"
+  Any storage characters found will be deleted and the artifact(s) they
+  were storing will be placed back in the game at the immortals discression.
 ~
 
 
@@ -288,7 +307,8 @@ Also help on: CHANGES DAMAGE DEATH EXPERIENCE NEWS STORY TICK WIZLIST
 
 0 CHANGES~
 
-* Improved combat system includes critical hits and death moves.
+* Improved combat system includes weapon skills, hit locations, critical 
+  hits, special moves, death moves, stances and fighting techniques. 
 * Levels and classes removed.
 * PK avatars that can only die by decapitation and complete destruction 
   of their head and brain.
@@ -298,15 +318,15 @@ Also help on: CHANGES DAMAGE DEATH EXPERIENCE NEWS STORY TICK WIZLIST
 * KILLER and THIEF flags removed, and player corpse looting allowed.
 * Spell casting weapons and spell affect armour coded.
 * Godless option, for player who dislike interferring gods.
-* Vampires coded.  Type 'help vampire' for more details.
-* Spell/weapon proficiencies that increase with use.
+* Vampires, Werewolves, Mages and Demons coded.  Type 'help vampire', etc.
 * Left/Right hand locations rather than wield/shield/light/held.
 * Object manipulation commands for wear/remove/activate/etc.
-* Mounts and missile weapons added.
-* ANSI colour added.  Type 'ansi' to switch it on.
+* Mounts, missile weapons, marriage and sex added.
+* ANSI colour added (using macros by Calamar).  Type 'ansi' to switch it on.
 * Special hard-coded quest point system for Quest Makers and players.
 * Oswitch and oreturn, allowing imms to switch into objects and back.
-* 26 extra skills/spells, new item types, extra mob specs, and the rest 
+* Customisable prompts added (based on code by Morgenes from Aldara Mud).
+* Many extra skills/spells, new item types, extra mob specs, and the rest 
   of the usual stuff people generally add to their muds.
 ~
 
@@ -318,14 +338,14 @@ you an idea of how much damage you have caused.  The following messages
 represent the following amounts of damage.
 
 If you missed, then you did 0 points of damage.
-If you lightly hit, then you did 1 to 4 points of damage.   
-If you hit, then you did 5 to 10 points of damage.
-If you hit hard, then you did 11 to 20 points of damage.
-If you hit very hard, then you did 32 to 40 points of damage.
-If you hit extremely hard, then you did 41 to 99 points of damage.
-If you hit incredably hard, then you did 100 or more points of damage.
+If you lightly hit, then you did 1 to 25 points of damage.   
+If you hit, then you did 26 to 50 points of damage.
+If you hit hard, then you did 51 to 100 points of damage.
+If you hit very hard, then you did 101 to 250 points of damage.
+If you hit extremely hard, then you did 251 to 500 points of damage.
+If you hit incredibly hard, then you did 500 or more points of damage.
 
-You final blow will be a death move, depending on your weapon type.
+Your final blow will be a death move, depending on your weapon type.
 ~
 
 
@@ -768,16 +788,62 @@ In combat, the stance of the fighter plays a very important role; you
 can't just stand there and exchange blow for blow unless you are very 
 confident of your ability.  Each fighting stance has advantages and 
 disadvantages, the basic outline of which follows:
-VIPER: For a very fast and aggressive style of combat, concentrating 
-primarily on strong frontal attacks.
-CRANE: For a wide, sweeping style of combat, which provides considerable 
-defence and vicious counter-attacks.
-CRAB: A crouching stance, allowing for low cuts and stabs to be combined 
-with agile footwork.
+VIPER: A very fast and aggressive style of combat, concentrating on 
+striking your opponent before they have the chance to avoid or block you.
+CRANE: A wide, sweeping style of combat, which concentrates on a very 
+strong blocking defence.
+CRAB: A low, defensive fighting stance which uses agile footwork and 
+rolling with attacks in order to reduce your injuries.
 MONGOOSE: A light-footed stance, which relies on leaps and acrobatics to 
-be combined with fast strikes and quick retreats before the opponent can 
-strike back.
-BULL: A low stance designed for very powerful and aggressive attacks.
+ensure that by the time your opponent makes their attack, you've moved 
+out of the way.
+BULL: A low aggressive stance which concentrates purely on physical power.
+
+See also help on 'advancedstance' and 'stancetable'.
+~
+
+0 ADVANCEDSTANCE~
+Syntax: combat <style>
+
+Advanced stances can be learned after you have become a grand master in 
+two normal stances.  These stances are much better than the others.
+MANTIS: Requires CRANE and VIPER before it can be learned.  This stance 
+combines a very strong defence with lightning fast counter attacks.
+DRAGON: Requires BULL and CRAB before it can be learned.  This stance 
+uses very powerful attacks, as well as protecting the fighter from injury.
+TIGER: Requires BULL and VIPER before it can be learned.  Probably the 
+most aggressive of all the stances, this style utilizes very powerful and
+lightning fast attacks.
+MONKEY: Requires CRANE and MONGOOSE before it can be learned.  The only 
+affect of this stance is to completely nullify the advantages of your 
+opponents stance.
+SWALLOW: Requires MONGOOSE and CRAB before it can be learned.  This is 
+the most defensive of all the stances, combining agile dodges with the 
+ability to 'roll' with an attack, helping prevent injury.
+
+See also help on 'stance' and 'stancetable'.
+~
+
+0 STANCETABLE~
+
+The following table is a rough comparison of stances, giving a value 
+between 10 and -10, where the higher the number the better your chance of 
+victory.  Cross-reference your stance from the left with your opponents 
+stance from along the top.  Please remember these are only rough 
+estimates, and may not be completely accurate...
+
+          None Vipr Cran Mmgs Bull Crab Mnts Tigr Drgn Mnky Swlw
+None        0   -4   -5   -5   -5   -5   -9   -9   -10   0   -10
+Viper      +4    0   +3   +3   -2   -2   -2   -7   -9    0   -4
+Crane      +5   -3    0    0   +2   +2   -8   -6   -1    0   -3
+Mongoose   +5   -3    0    0   +2   +2   -8   -6   -1    0   -3
+Bull       +5   +2   -2   -2    0   +2   -5   -3   -3    0   -5
+Crab       +5   +2   -2   -2   -2    0   -5   -5   -7    0   -7
+Mantis     +9   +2   +8   +8   +5   +5    0   -3    0    0   +3
+Tiger      +9   +7   +6   +6   +3   +5   +3    0   -2    0   +1
+Dragon     +10  +9   +1   +1   +3   +7    0   +2    0    0   -2
+Monkey      0    0    0    0    0    0    0    0    0    0    0
+Swallow    +10  +4   +3   +3   +5   +7   -3   -1   +2    0    0
 ~
 
 0 FIGHT STYLE FIGHTSTYLE~
@@ -1060,6 +1126,44 @@ COMMANDS shows you all the (non-social) commands available to you.
 SOCIALS shows you all the social commands available to you.
 ~
 
+0 PROMPT CPROMPT~
+
+This command allows you to configure your prompt.  The PROMPT command 
+will set your standard prompt.  You also have the option of having a 
+combat prompt, CPROMPT, which will appear while fighting.  If no cprompt 
+is defined, the standard prompt will be used for both conditions.
+The following options are available:
+
+%a %A = Alignment (word/numeric).   %b %B = Beast/Blood.
+%c    = Armour Class.               %f %F = Condition of opponent/tank. 
+%g    = Gold.                       %h %H = Current hp/Max hp.          
+%m %M = Current mana/Max mana.      %n %N = Name of opponent/tank.      
+%p %P = Plus Hitroll/Plus Damroll.  %q    = Quest points.
+%r %R = Room name/Rage.             %s %S = Status (word/numeric).
+%v %V = Current move/Max move.      %x    = Exp.
+
+To switch your prompt on and off, use 'prompt on' and 'prompt off'.
+For some examples, type 'help prompts'.
+~
+
+0 PROMPTS~
+
+There are many possible prompts, and everyone will have their own 
+favoured setups.  However, to get you going, here are some examples:
+
+Original normal prompt: [%x exp] <%h/%Hhp %m/%Mm %v/%Vmv>
+Original combat prompt: [%f] <%h/%Hhp %m/%Mm %v/%Vmv>
+Simple prompt: [%hH/%mM/%vV]
+Vampire prompt: [%B Blood] <%hhp %mm %vmv>
+Werewolf prompt: [%R Rage] <%hhp %mm %vmv>
+Combat prompt: [%N:%F/%n:%f]
+Stat prompt: [%xX] [+%pHIT/+%PDAM] [%cAC] [%hH/%mM/%vV]
+
+Remember, you can switch between the default prompts and your customised
+prompts with 'prompt on' and 'prompt off'.  Doing this will not destroy 
+your customised prompts.
+~
+
 0 PRIMAL~
 
 Primal energy is the ultimate form of energy in the multiverse, the one 
@@ -1071,12 +1175,24 @@ between 1 and 50 points).
 
 0 WEREWOLF WEREWOLVES~
 
-Werewolves are not yet coded.  When they are, they will include:
-* 5 Forms: Homid ("Man"), Glabro ("Near-Man"), Crinos ("Wolf-Man"),
-  Hispo ("Near-Wolf"), and Lupus ("Wolf").
-* Double damage from silver, half from other physical attacks.
-* Tribes with tribal powers and a tribal totem.
-* Auspice gifts: Ragabash, Theurge, Philodox, Galliard and Ahroun.
+At the beginning of things, Gaia - the world and the spirit that embodies 
+it - set all things in a balance that would maintain and encourage life.  
+Near the top of this chain of being was humanity, and above them were the 
+Garou - the sacred warriors of the spirit.  They were appointed to be the 
+crusaders against the Wyrm, who spreads its cancer through the humans.  
+They are the preservers of the raw essence of life, of nature's diversity 
+and purity.  They are the Earth's immune system, fighting the disease of 
+the Wyrm.  They are the werewolves, and they fight and destroy the 
+children of the Wyrm (such as the vampires) at every opportunity.
+
+* Claw - Transforms target into a werewolf, but costs 10000 exp. 
+* Introduce - Informs everyone in the room of your werewolf lineage.
+* Howl - A special channel that only werewolves can understand.
+* Tribe - Shows information on other werewolves logged on.
+* Totem - Lists the current totem powers you have at your control.
+
+In addition, all werewolves can gain totem powers, which grant additional 
+powers.  For more information, type 'help totems'.
 ~
 
 0 VAMPIRE VAMPIRES~
@@ -1097,11 +1213,53 @@ immunity take normal fire damage rather than double.  Other abilities:
 * Regenerate - Vampire cannot regenerate naturally; they need to use this.
 * Vclan - Shows information on the other members of a vampires clan.
 * Feed - For feeding other vampires with your blood.
-* Favour - Make a vampire a Prince, or allow them to sire a childe.
+* Favour - Make a vampire a Prince, allow them to sire a childe, accepts 
+  or inducts them into the clan, or outcasts them from the clan.
 
-In addition, all vampires get 4 or more disciplines, each of which grant 
+In addition, all vampires get 3 or more disciplines, each of which grant 
 one or more extra powers.  For more information type 'help disciplines'.
 The VAMPIRE command toggles on/off whether vampires may bite/feed you.
+~
+
+0 MAGE MAGES~
+
+Mages are those who study the greatest of magicks.  Their spells are far 
+greater than those of a non-mage, as well as far more flexible.  Some of 
+the main features of mages are as follows:
+
+* Extra spells - Extra spells unavailable to non-mages, including spells 
+  such as 'find familiar', 'polymorph', 'major creation', etc.
+* Rune spells - Combinations of runes allow the mage to construct new spells.
+* Advanced spells - Available to the more powerful of mages, this ability 
+  allows the mage to create their own spells from scratch.  Such a task is 
+  very difficult as well as time consuming, however.
+* Memorise - Allows the mage to memorise a spell from their spellbook.
+* Introduce - Allows the mage to list his/her master, master's master, etc.
+* Teach - Allows the mage to make an apprentice.
+
+Please note that mages are still under play testing, and are not yet 
+fully working.
+~
+
+0 DEMON DEMONS CHAMPION CHAMPIONS~
+
+These fiends are the damned ones.  They have sold their souls in exchange 
+for power, and they improve this power by draining the souls of their 
+victims.  Their powers are mysterious, but the following facts are known:
+
+* Each Champion, Demon, or Demon Prince follows a specific Demon Lord.  
+  They are able to channel the souls of their victims to their Demon Lord, 
+  who in turn can use that power to grant favours to his/her followers.
+* Demonic armour improves the combat ability of the wearer, the more 
+  armour worn the better the improvement.
+* Many demons are able to transport themselves to each other at will.
+* Most demons are able to assume the form of a weapon.
+* The demons power over death is such that even after they have been 
+  decapitated, they are still able to employ a selection of powers.
+* The powers of a specific demon vary considerably.  Some are barely more 
+  powerful than a common avatar, while others are as strong as the greatest 
+  of werewolves or vampires.
+* While in hell, a demon is virtually unkillable.
 ~
 
 0 BEAST~
@@ -1128,34 +1286,57 @@ princes.
 
 SIRE allows the target vampire of your clan to sire another vampire.  
 Once a single vampire has been created the power is lost, but can be 
-granted again if the Antediluvian or Prince so desire.
+granted again if the Antediluvian or Prince so desire.  A childe sired 
+without permission is known as an Anarch.
 
 PRINCE turns the target vampire into a prince, who is then able to allow 
 other vampires the ability to sire more vampires still.  Only an 
 Antediluvian has the power to make some a prince (or to remove the 
 prince's powers).
+
+ACCEPT will accept a childe into the clan, making them a Neonate.
+
+INDUCT and OUTCAST will accept an Anarch into the clan or outcast a member.
+~
+
+0 TOTEM TOTEMS~
+
+Every werewolf is able to learn special totem powers from various 
+spirits.  Each of the spirits teaches a different type of power, and the 
+werewolf is able to gain use of these powers through the expenditure of 
+primal energy.
+
+The following totem animals exist.
+
+* Bear   - Flex, Rage, Steel Claws, Hibernate.
+* Boar   - Shatter, Charge, Toughness, Immovability.
+* Lynx   - Light Footed, Stalker, Combat Speed, Lightning Claws.
+* Owl    - Vanish, Shield, Shadowplane, Channel.
+* Spider - Poisonous Bite, Web, Poison Immunity.
+* Wolf   - Claws, Fangs, Calm, Spirit of Fernis.
+* Hawk   - Nightsight, Shadowsight, Truesight.
+* Mantis - Agility, Intuition, Speed of the Fenris, Dance of Fernis.
 ~
 
 0 DISCIPLINE DISCIPLINES~
 
-Each vampire (except for the original one) has three disciplines from 
-which their powers come, although these disciplines vary from clan to 
-clan.  In addition to the basic three, vampires are allowed to select 
-from one to three additional personal disciplines, depending on their 
-generation.  Personal disciplines are identical to clan disciplines in 
-all ways, except that they are not passed on to further generations.
+Each vampire has three clan disciplines from which their powers come.  In 
+addition to these basic three, vampires are allowed to select additional 
+disciplines by spending primal; the first extra discipline costs 10, the 
+second costs 20, and so on.  Only the three clan disciplines are passed 
+on to later generations.
 
 There are nine disciplines, each with the following powers:
 
 * Protean       - Nightsight, Claws, Change.
-* Celerity      - Extra attacks.
+* Celerity      - An extra attack, Reduced move cost for spells.
 * Fortitude     - Improved hitpoints, Damage resistance.
 * Potence       - Improved damage.
 * Obfuscate     - Mask, Mortal, Shield.
 * Obtenebration - Shadowplane, Shadowsight, Nightsight.
 * Serpentis     - Darkheart, Serpent, Poison.
 * Auspex        - Truesight, Scry, Readaura.
-* Dominate      - Evileye, Command, Shield.
+* Dominate      - Command, Shield, Ghoul.
 
 For more information, type 'help <discipline name>'.
 ~
@@ -1178,7 +1359,7 @@ claws have no effect if the vampire is armed, however if not they cause
 considerably more damage than a normal unarmed attack.
 * Change: Allow the vampire to transform into bat, wolf or mist.  Bat 
 form can fly and detect almost everything (invis, hidden, etc).  While in 
-wolf form, the vampire enjoys the benefit of an extra 50hp and greatly 
+wolf form, the vampire enjoys the benefit of an extra 500hp and greatly 
 enhanced combat abilities.  Mist form is impervious to attacks and can 
 pass through doors.  Beware though, for two vampires in mist form CAN 
 attack each other.
@@ -1269,23 +1450,25 @@ This Discipline allows the following powers:
   to obey.  This will only work on those who's minds are much weaker than 
   the vampire's.
 * Shield: Protects you from the Auspex 'scry' and 'readaura' powers.
+* Ghoul: By feeding a mob some of his/her blood, the vampire can create a 
+  ghoul - a loyal servant to act as their eyes and ears.
 ~
 
 0 IMMUNE IMMUNITY IMMUNITIES RESISTANCES~
 
 Immunities and resistances give you protection from the following:
-Slash     : Slashing/Slicing weapons inflict 10hp less.
-Stab      : Stabbing/Piercing weapons inflict 10hp less.
-Smash     : Blasting/Crushing/Pounding weapons inflict 10hp less.
-Beast     : Clawing/Biting weapons inflict 10hp less.
-Grab      : Grepping/Whipping/Sucking weapons inflict 10hp less.
+Slash     : Slashing/Slicing weapon damage reduced by 1-100% per blow.
+Stab      : Stabbing/Piercing weapon damage reduced by 1-100% per blow.
+Smash     : Blasting/Crushing/Pounding damage reduced by 1-100% per blow.
+Beast     : Clawing/Biting weapon damage reduced by 1-100% per blow.
+Grab      : Grepping/Whipping/Sucking damage reduced by 1-100% per blow.
 Charm     : You are no longer affected by the Charm Person spell.
 Heat      : You are unaffected by Burning Hands, Fireball, etc.
 Cold      : You are unaffected by Frost Breath, Chill Touch, etc.
 Lightning : You are unaffected by Lightning bolt, Call Lightning, etc.
 Acid      : You are unaffected by Acid Blast, Acid Breath, etc.
 Drain     : You are unaffected by the Energy Drain spell.
-Summon    : You cannot be summoned by other players.
+Summon    : You cannot be summoned or portaled to, nor can you teleport.
 Hurl      : You cannot be hurled.
 Backstab  : You cannot be backstabbed.
 Kick      : Kicks do no damage whatsoever to you.
@@ -1329,18 +1512,13 @@ that person is bleeding to death, this will also be shown.
 0 TERMS~
 There are many terms and abbreviations used in muds.  Here are a few to 
 help you along...
-AFK     : Away From Keyboard.
-BBL     : Be Back Later.
-BRB     : Be Right Back.
-BRT     : Be Right There.
-CYA     : See you later/goodbye.
-IRL     : In Real Life...ie, not in the mud.
-L8R     : Later/goodbye.
-LO      : Hello.
-TTYL    : Talk To You Later
-BF/GF   : Boyfriend/Girlfriend
+AFK     : Away From Keyboard.          BBL     : Be Back Later.
+BRB     : Be Right Back.               BRT     : Be Right There.
+CYA     : See you later/goodbye.       IRL     : In Real Life.
+L8R     : Later/goodbye.               LO      : Hello.
+TTYL    : Talk To You Later.           BF/GF   : Boyfriend/Girlfriend.
+BS      : Backstab                     ROFL    : Roll On Floor Laughing.
 TANK    : The person (in a group) who takes the damage in combat.
-BS      : Backstab
 STABBER : A (usually decent) backstabbing weapon.
 DUPING  : An illegal method of copying items by crashing the mud.
 MULTI   : The process of playing more than one character at a time.
@@ -1508,8 +1686,13 @@ more charges, it will be consumed.
 0 CONSIDER~
 Syntax: consider <character>
 
-CONSIDER tells you what your chances are of killing a character.
-Of course, it's only a rough estimate.
+CONSIDER tells you what your chances are of killing a character, taking 
+into account hitroll, damroll, armour class and hit points, and giving 
+you an overview of your chances.  If you are considering a player, you 
+will also be informed how skilled they are with their weapon/s, and which 
+stance they are currently using (if any) and how good they are at it.
+
+Please remember that this is only a rough estimate.
 ~
 
 0 FOLLOW GROUP~
@@ -1621,24 +1804,28 @@ session.  Unused sessions are saved until you do use them.
 ~
 
 0 TRAIN~
-Syntax: train <'str'|'int'|'wis'|'dex'|'con'>
-Syntax: train <'avatar'|'mortal'|'practices'|'hp'|'mana'|'move'>
-Syntax: train <'slash'|'stab'|'smash'|'beast'|'grab'>
-Syntax: train <'charm'|'heat'|'cold'|'lightning'|'acid'>
+Syntax: train <str/int/wis/dex/con>
+Syntax: train <avatar/mortal/primal/hp/mana/move>
+Syntax: train <slash/stab/smash/beast/grab>
+Syntax: train <charm/heat/cold/lightning/acid/sleep/drain/voodoo>
+Syntax: train <hurl/backstab/kick/steal/disarm>
 
 TRAIN increases one of your attributes.  When you start the game, your
 character has standard attributes based on your class.  You can increase 
 your attributes by spending experience points (exp) at a trainer.
 
 It costs 200 exp to train a stat (str, int, etc), except that it costs 
-only 100 exp to train your primary stat.  Practice sessions cost 500 exp 
-each, and hp/mana/move cost your current amount in that particular area 
-minus your con (for hp and move) or wis (for mana) per point.  Becoming a 
-mortal or an avatar costs 1000 exp each.
+only 100 exp to train your primary stat.  Primal costs 500 exp for the 
+first point, 1000 for the second, 1500 for the third, etc, and 
+hp/mana/move cost your current amount in that particular area minus your 
+con (for hp and move) or wis (for mana) per point.  Becoming a mortal or 
+an avatar costs 1000 exp each.
 
 You can also train weapon resistances (reduces between 1 and all of the 
-damage per blow for that weapon type) and spell immunities (those types 
-of spell do no damage to you).  These cost 10000 exp each.
+damage per blow for that weapon type), spell immunities (those types 
+of spell do no damage to you), and skill immunities (they no long have 
+any affect on you).  These cost 10000 exp for the first, 20000 for the 
+second, 30000 for the third, and so on.
 ~
 
 8 TRUST~
@@ -2239,6 +2426,15 @@ This spell reveals all manner of invisible, hidden, and sneaking creatures in
 the same room as you.
 ~
 
+4 'FIND FAMILIAR'~
+Syntax: cast 'find familiar' <familiar>
+
+This spell enables the caster to create a familiar, which can be either a 
+frog, a raven, a cat, or a dog.  The mage is able to see everything that 
+the familiar can see, and is able to issue orders from any distance using 
+the 'fcommand' or '[' commands.
+~
+
 0 FLAMESTRIKE~
 Syntax: cast 'flamestrike' <victim>
 
@@ -2282,6 +2478,18 @@ just to show off to your friends ;).
 Syntax: cast identify <object>
 
 This spell reveals information about the object.
+~
+
+0 IMPROVE~
+Syntax: cast improve <object>
+
+This spell enables a quest created object to contain more bonuses.  The 
+object must be worth at least 750 quest points.  Casting this spell will 
+enable it to hold an additional bonus comparable to the bonuses that can 
+be added to non-created items - ie: an extra +10 hitroll or damroll on a 
+weapon, an extra +5 hitroll or damroll on a piece of armour, etc.  The 
+maximum number of quest points that the item can contain is also 
+increased by an addition 500, plus 10 per status point.
 ~
 
 0 INFRAVISION~
@@ -2385,6 +2593,8 @@ This spell creates a quest card.  The quest-point value of the card is
 the same as the amount of primal the caster has at the time of casting 
 (and this primal is used up during the casting of the spell).  No more 
 than 50 primal will be used on any one casting of this spell.
+
+For information on how to complete the card, type 'help complete'.
 ~
 
 0 REFRESH~
@@ -2407,6 +2617,13 @@ Syntax: cast 'mend' <character>
 
 REGENERATE will replace lost body parts on the target, while CLOT will 
 stop them bleeding and MEND will fix any broken bones or cut open throats.
+~
+
+0 RESISTANCE~
+Syntax: cast resistance <object>
+
+This spell makes the target object capable of withstanding 10 blows 
+before it is destroyed, rather than 4.
 ~
 
 0 SCANSPELL REPAIR~

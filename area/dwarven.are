@@ -1,4 +1,4 @@
-#AREA	{10 25} Anon    Dwarven Kingdom~
+#AREA	Anon    Dwarven Kingdom~
 
 
 
@@ -343,7 +343,7 @@ a box of birth control pills~
 There is a box of birth control pills here.~
 ~
 26 0 1
-20 0 0 82
+20 0 0 563
 1 300 15
 E
 birth control pills pill~

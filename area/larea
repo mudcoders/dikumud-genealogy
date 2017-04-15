@@ -1,0 +1,28 @@
+#! /bin/csh -f
+# Locate all exits leading to another area.
+if ($1 == "") then
+    echo Syntax: larea FILENAME VNUM.
+else
+    set first = `ls | grep -swx $1 | wc -w`
+    set second = `echo $2 | wc -w`
+    set third = `echo $3 | wc -w`
+    if ($first != 0 && $second == 0) then
+	cat $1 | awk -f countup.awk
+    else if ($second == 0) then
+	echo There is no file called $1 in this directory.
+    else
+	if ($first == 0) then
+	    echo There is no file called $1 in this directory.
+	else
+	    echo $2 > tempfile
+	    if ($third != 0) then
+		echo $3 >> tempfile
+	    else
+		echo -1 >> tempfile
+	    endif
+	    cat $1 >> tempfile
+	    cat tempfile | awk -f locate.awk
+	    rm -f tempfile
+	endif
+    endif
+endif

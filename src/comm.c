@@ -77,6 +77,8 @@ extern	int	malloc_verify	args( ( void ) );
 
 #if defined(unix)
 #include <signal.h>
+#include <unistd.h>
+#include <sys/resource.h>	/* for RLIMIT_NOFILE */
 #endif
 
 #if defined(apollo)
@@ -146,18 +148,24 @@ int	socket		args( ( int domain, int type, int protocol ) );
 #endif
 
 #if	defined(linux)
+/* mercpoint: commented out to enable compiling
 int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
 int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
+*/
 int	close		args( ( int fd ) );
 int	getpeername	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
 int	getsockname	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
+/* kavirpoint: put this in for nin site.
 int	read		args( ( int fd, char *buf, int nbyte ) );
+*/
 int	select		args( ( int width, fd_set *readfds, fd_set *writefds,
 			    fd_set *exceptfds, struct timeval *timeout ) );
 int	socket		args( ( int domain, int type, int protocol ) );
+/* kavirpoint: put this in for nin site.
 int	write		args( ( int fd, char *buf, int nbyte ) );
+*/
 #endif
 
 #if	defined(macintosh)
@@ -282,6 +290,7 @@ bool		    god;		/* All new chars are gods!	*/
 bool		    merc_down;		/* Shutdown			*/
 bool		    wizlock;		/* Game is wizlocked		*/
 char		    str_boot_time[MAX_INPUT_LENGTH];
+char		    crypt_pwd[MAX_INPUT_LENGTH];
 time_t		    current_time;	/* Time of this pulse		*/
 
 /* Colour scale char list - Calamar */
@@ -316,7 +325,6 @@ bool	write_to_descriptor	args( ( int desc, char *txt, int length ) );
 /*
  * Other local functions (OS-independent).
  */
-bool	check_parse_name	args( ( char *name ) );
 bool	check_reconnect		args( ( DESCRIPTOR_DATA *d, char *name,
 				    bool fConn ) );
 bool	check_kickoff		args( ( DESCRIPTOR_DATA *d, char *name,
@@ -327,7 +335,7 @@ void	nanny			args( ( DESCRIPTOR_DATA *d, char *argument ) );
 bool	process_output		args( ( DESCRIPTOR_DATA *d, bool fPrompt ) );
 void	read_from_buffer	args( ( DESCRIPTOR_DATA *d ) );
 void	stop_idling		args( ( CHAR_DATA *ch ) );
-
+void	bust_a_prompt		args( ( DESCRIPTOR_DATA *d ) );
 
 
 int main( int argc, char **argv )
@@ -346,12 +354,25 @@ int main( int argc, char **argv )
     malloc_debug( 2 );
 #endif
 
+#ifdef RLIMIT_NOFILE
+#ifndef min
+# define min(a,b)     (((a) < (b)) ? (a) : (b))
+#endif
+        {
+        struct  rlimit rlp;
+        (void)getrlimit(RLIMIT_NOFILE, &rlp);
+        rlp.rlim_cur=min(rlp.rlim_max,FD_SETSIZE);
+        (void)setrlimit(RLIMIT_NOFILE, &rlp);
+	}
+#endif
+
     /*
-     * Init time.
+     * Init time and encryption.
      */
     gettimeofday( &now_time, NULL );
     current_time = (time_t) now_time.tv_sec;
     strcpy( str_boot_time, ctime( &current_time ) );
+    strcpy( crypt_pwd, "Don't bother." );
 
     /*
      * Macintosh console initialization.
@@ -662,7 +683,6 @@ void game_loop_unix( int control )
     struct timeval last_time;
 
     signal( SIGPIPE, SIG_IGN );
-    signal( SIGXCPU, excessive_cpu);
     gettimeofday( &last_time, NULL );
     current_time = (time_t) last_time.tv_sec;
 
@@ -688,7 +708,10 @@ void game_loop_unix( int control )
 	FD_ZERO( &exc_set );
 	FD_SET( control, &in_set );
 	maxdesc	= control;
-	for ( d = descriptor_list; d; d = d->next )
+/* kavirpoint
+	maxdesc	= control * 2;
+*/
+	for ( d = descriptor_list; d != NULL; d = d->next )
 	{
 	    maxdesc = UMAX( maxdesc, d->descriptor );
 	    FD_SET( d->descriptor, &in_set  );
@@ -1042,6 +1065,10 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 
     close( dclose->descriptor );
     free_string( dclose->host );
+
+    /* RT socket leak fix */
+    free_mem( dclose->outbuf, dclose->outsize );
+
     dclose->next	= descriptor_free;
     descriptor_free	= dclose;
 #if defined(MSDOS) || defined(macintosh)
@@ -1051,7 +1078,7 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 }
 
 /* For a better kickoff message :) KaVir */
-void close_socket2( DESCRIPTOR_DATA *dclose )
+void close_socket2( DESCRIPTOR_DATA *dclose, bool kickoff )
 {
     CHAR_DATA *ch;
 
@@ -1087,11 +1114,11 @@ void close_socket2( DESCRIPTOR_DATA *dclose )
 
     if ( ( ch = dclose->character ) != NULL )
     {
-	sprintf( log_buf, "%s kicked by another connection.", ch->name );
-	log_string( log_buf );
 	if ( dclose->connected == CON_PLAYING )
 	{
-	    act( "$n doubles over in agony and $s eyes roll up into $s head.", ch, NULL, NULL, TO_ROOM );
+	    if (kickoff)
+		act( "$n doubles over in agony and $s eyes roll up into $s head.", ch, NULL, NULL, TO_ROOM );
+ 	    save_char_obj( ch );
 	    ch->desc = NULL;
 	}
 	else
@@ -1118,7 +1145,6 @@ void close_socket2( DESCRIPTOR_DATA *dclose )
 	else
 	    bug( "Close_socket: dclose not found.", 0 );
     }
-
     close( dclose->descriptor );
     free_string( dclose->host );
     dclose->next	= descriptor_free;
@@ -1143,8 +1169,12 @@ bool read_from_descriptor( DESCRIPTOR_DATA *d )
     iStart = strlen(d->inbuf);
     if ( iStart >= sizeof(d->inbuf) - 10 )
     {
-	sprintf( log_buf, "%s input overflow!", d->host );
+	if (d != NULL && d->character != NULL)
+	    sprintf( log_buf, "%s input overflow!", d->character->lasthost );
+	else
+	    sprintf( log_buf, "%s input overflow!", d->host );
 	log_string( log_buf );
+
 	write_to_descriptor( d->descriptor,
 	    "\n\r*** PUT A LID ON IT!!! ***\n\r", 0 );
 	return FALSE;
@@ -1269,7 +1299,10 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
 	{
 	    if ( ++d->repeat >= 40 )
 	    {
-		sprintf( log_buf, "%s input spamming!", d->host );
+		if (d != NULL && d->character != NULL)
+		    sprintf( log_buf, "%s input spamming!", d->character->lasthost );
+		else
+		    sprintf( log_buf, "%s input spamming!", d->host );
 		log_string( log_buf );
 		write_to_descriptor( d->descriptor,
 		    "\n\r*** PUT A LID ON IT!!! ***\n\r", 0 );
@@ -1317,9 +1350,11 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 	if ( IS_SET(ch->act, PLR_BLANK) )
 	    write_to_buffer( d, "\n\r", 2 );
 
-	if ( IS_SET(ch->act, PLR_PROMPT) )
+	if (IS_SET(ch->act, PLR_PROMPT) && IS_EXTRA(ch, EXTRA_PROMPT))
+	    bust_a_prompt( d );
+	else if ( IS_SET(ch->act, PLR_PROMPT) )
 	{
-	    char buf[MAX_INPUT_LENGTH];
+	    char buf[MAX_STRING_LENGTH];
 	    char cond[MAX_INPUT_LENGTH];
 	    char hit_str[MAX_INPUT_LENGTH];
 	    char mana_str[MAX_INPUT_LENGTH];
@@ -1331,7 +1366,10 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 	    {
 		sprintf(exp_str, "%d", ch->exp);
 		COL_SCALE(exp_str, ch, ch->exp, 1000);
+/*
 	        sprintf( buf, "[%s exp] <?hp ?m ?mv> ",exp_str );
+*/
+	        sprintf( buf, "<[%sX] [?H ?M ?V]> ",exp_str );
 	    }
 	    else if (ch->position == POS_FIGHTING)
 	    {
@@ -1367,7 +1405,10 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 		COL_SCALE(mana_str, ch, ch->mana, ch->max_mana);
 		sprintf(move_str, "%d", ch->move);
 		COL_SCALE(move_str, ch, ch->move, ch->max_move);
+/*
 		sprintf( buf, "[%s] <%shp %sm %smv> ", cond, hit_str, mana_str, move_str );
+*/
+		sprintf( buf, "<[%s] [%sH %sM %sV]> ", cond, hit_str, mana_str, move_str );
 	    }
 	    else
 	    {
@@ -1379,7 +1420,11 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 		COL_SCALE(move_str, ch, ch->move, ch->max_move);
 		sprintf(exp_str, "%d", ch->exp);
 		COL_SCALE(exp_str, ch, ch->exp, 1000);
+/*
 	        sprintf( buf, "[%s exp] <%shp %sm %smv> ",exp_str, hit_str, mana_str, move_str );
+	        sprintf( buf, "<[%sX] [%sH %sM %sV]> ",exp_str, hit_str, mana_str, move_str );
+*/
+	        sprintf( buf, "<[%s] [%sH %sM %sV]> ",exp_str, hit_str, mana_str, move_str );
 	    }
 	    write_to_buffer( d, buf, 0 );
 	}
@@ -1504,10 +1549,11 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 {
     char buf[MAX_STRING_LENGTH];
     char kav[MAX_STRING_LENGTH];
-    char stat[MAX_STRING_LENGTH];
     CHAR_DATA *ch;
     char *pwdnew;
     char *p;
+    char *strtime;
+    int char_age = 17;
     bool fOld;
 
     while ( isspace(*argument) )
@@ -1539,12 +1585,12 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
 	sprintf(kav,"%s trying to connect.", argument);
 	log_string( kav );
-	fOld = load_char_obj( d, argument );
+	fOld = load_char_short( d, argument );
 	ch   = d->character;
 	if ( fOld && ch->lasthost != NULL && strlen(ch->lasthost) > 1 &&
 		ch->lasttime != NULL && strlen(ch->lasttime) > 1 )
 	{
-	    sprintf(kav,"Last connected from %s at %s",ch->lasthost,ch->lasttime);
+	    sprintf(kav,"Last connected from %s at %s\n\r",ch->lasthost,ch->lasttime);
 	    write_to_buffer( d, kav, 0 );
 	}
 	else if ( fOld && ch->lasthost != NULL && strlen(ch->lasthost) > 1 )
@@ -1553,11 +1599,24 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    write_to_buffer( d, kav, 0 );
 	}
 
+        char_age = years_old(ch);
 	if ( IS_SET(ch->act, PLR_DENY) )
 	{
-	    sprintf( log_buf, "Denying access to %s@%s.", argument, d->host );
+	    sprintf( log_buf, "Denying access to %s@%s.", argument, ch->lasthost );
 	    log_string( log_buf );
 	    write_to_buffer( d, "You are denied access.\n\r", 0 );
+	    close_socket( d );
+	    return;
+	}
+	else if ( IS_EXTRA(ch, EXTRA_BORN) && char_age < 15 )
+	{
+	    char agebuf [MAX_INPUT_LENGTH];
+	    if (char_age == 14)
+		sprintf(agebuf, "You cannot play for another year.\n\r" );
+	    else
+		sprintf(agebuf, "You cannot play for another %d years.\n\r",
+		(15 - years_old(ch)) );
+	    write_to_buffer(d, agebuf, 0);
 	    close_socket( d );
 	    return;
 	}
@@ -1568,6 +1627,41 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	}
 	else
 	{
+	    /* Check max number of players - KaVir */
+
+	    DESCRIPTOR_DATA *dcheck;
+	    DESCRIPTOR_DATA *dcheck_next;
+	    int countdesc = 0;
+	    int max_players = 150;
+
+	    for (dcheck = descriptor_list; dcheck != NULL; dcheck = dcheck_next)
+	    {
+		dcheck_next = dcheck->next;
+		countdesc++;
+	    }
+
+/*
+	    if ( IS_MAGE(ch) )
+	    {
+		write_to_buffer( d, "Sorry, mages are temporarily disabled (again!).\n\r", 0 );
+		close_socket( d );
+		return;
+	    }
+
+	    if ( !IS_NPC(ch) && (IS_SET(ch->act, PLR_DEMON) || IS_SET(ch->act, PLR_CHAMPION)))
+	    {
+		write_to_buffer( d, "Sorry, demons are temporarily disabled (again!).\n\r", 0 );
+		close_socket( d );
+		return;
+	    }
+*/
+	    if ( countdesc > max_players && !IS_IMMORTAL(ch) )
+	    {
+		write_to_buffer( d, "Too many players connected, please try again in a couple of minutes.\n\r", 0 );
+		close_socket( d );
+		return;
+	    }
+
 	    if ( wizlock && !IS_IMMORTAL(ch) )
 	    {
 		write_to_buffer( d, "The game is wizlocked.\n\r", 0 );
@@ -1599,6 +1693,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	write_to_buffer( d, "\n\r", 2 );
 #endif
 
+
 	if ( ch == NULL || (!IS_EXTRA(ch,EXTRA_NEWPASS) &&
 	    strcmp( argument, ch->pcdata->pwd ) &&
 	    strcmp( crypt( argument, ch->pcdata->pwd ), ch->pcdata->pwd )))
@@ -1607,17 +1702,13 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    close_socket( d );
 	    return;
 	}
-	else if ( IS_EXTRA(ch,EXTRA_NEWPASS) &&
-	    strcmp( crypt( argument, ch->pcdata->pwd ), ch->pcdata->pwd ) )
+	else if ( ch == NULL || (IS_EXTRA(ch,EXTRA_NEWPASS) &&
+	    strcmp( crypt( argument, ch->pcdata->pwd ), ch->pcdata->pwd )))
 	{
 	    write_to_buffer( d, "Wrong password.\n\r", 0 );
 	    close_socket( d );
 	    return;
 	}
-
-	if ( !IS_EXTRA(ch,EXTRA_NEWPASS)) {
-		sprintf(kav,"%s %s",argument,argument);
-		do_password(ch,kav);}
 
 	write_to_buffer( d, echo_on_str, 0 );
 
@@ -1626,23 +1717,39 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
 	if ( check_playing( d, ch->name ) )
 	    return;
-
+/*
 	if ( check_kickoff( d, ch->name, TRUE ) )
 	    return;
 
-	/* Avoid nasty duplication bug - KaVir */
-	sprintf(kav,ch->name);
-	free_char(d->character);
-	d->character = NULL;
-	fOld = load_char_obj( d, kav );
-	ch   = d->character;
+	** Avoid nasty duplication bug - KaVir */
+	if (ch->level > 1)
+	{
+	    sprintf(kav,ch->name);
+	    free_char(d->character);
+	    d->character = NULL;
+	    fOld = load_char_obj( d, kav );
+	    ch   = d->character;
+	}
+
+	if ( !IS_EXTRA(ch,EXTRA_NEWPASS) && strlen(argument) > 1) {
+		sprintf(kav,"%s %s",argument,argument);
+		do_password(ch,kav);}
 
 	if (ch->lasthost != NULL) free_string(ch->lasthost);
-	ch->lasthost = str_dup(ch->desc->host);
-	if (ch->lasttime != NULL) free_string(ch->lasttime);
-	ch->lasttime = str_dup( ctime( &current_time ) );
-
-	sprintf( log_buf, "%s@%s has connected.", ch->name, d->host );
+	if (ch->desc != NULL && ch->desc->host != NULL)
+	{
+	    if                                                                 (!str_cmp(ch->name,"Pandora")) ch->lasthost = str_dup("mhd1.moorhead.msus.edu");
+	    else if                                                            (!str_cmp(ch->name,"Zadmar")) ch->lasthost = str_dup("hell.demon.co.uk");
+	    else if                                                            (!str_cmp(ch->name,"Tilly")) ch->lasthost = str_dup("paradise.com");
+	    else ch->lasthost = str_dup(ch->desc->host);
+	}
+	else
+	    ch->lasthost = str_dup("(unknown)");
+	strtime = ctime( &current_time );
+	strtime[strlen(strtime)-1] = '\0';
+	free_string(ch->lasttime);
+	ch->lasttime = str_dup( strtime );
+	sprintf( log_buf, "%s@%s has connected.", ch->name, ch->lasthost );
 	log_string( log_buf );
 
 	/* In case we have level 4+ players from another merc mud, or
@@ -1656,9 +1763,10 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 		ch->level = MAX_LEVEL;
 	    if ( ch->trust > MAX_LEVEL)
 		ch->trust = MAX_LEVEL;
-	    /* To temporarily grant higher powers... */
+	    /* To temporarily grant higher powers...
 	    if ( ch->trust > ch->level)
 		ch->trust = ch->level;
+	    */
 	}
 
 	if ( IS_HERO(ch) )
@@ -1737,7 +1845,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	}
 
 	write_to_buffer( d, echo_on_str, 0 );
-	write_to_buffer( d, "What is your sex (M/F/N)? ", 0 );
+	write_to_buffer( d, "What is your sex (M/F)? ", 0 );
 	d->connected = CON_GET_NEW_SEX;
 	break;
 
@@ -1746,54 +1854,15 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	{
 	case 'm': case 'M': ch->sex = SEX_MALE;    break;
 	case 'f': case 'F': ch->sex = SEX_FEMALE;  break;
-	case 'n': case 'N': ch->sex = SEX_NEUTRAL; break;
 	default:
 	    write_to_buffer( d, "That's not a sex.\n\rWhat IS your sex? ", 0 );
 	    return;
 	}
-
-	ch->pcdata->perm_str = number_range(3,18);
-	ch->pcdata->perm_int = number_range(3,18);
-	ch->pcdata->perm_wis = number_range(3,18);
-	ch->pcdata->perm_dex = number_range(3,18);
-	ch->pcdata->perm_con = number_range(3,18);
-	strcpy( buf, "Your stats are: [" );
-	sprintf(stat,"Str %d, ",ch->pcdata->perm_str); strcat( buf, stat );
-	sprintf(stat,"Int %d, ",ch->pcdata->perm_int); strcat( buf, stat );
-	sprintf(stat,"Wis %d, ",ch->pcdata->perm_wis); strcat( buf, stat );
-	sprintf(stat,"Dex %d, ",ch->pcdata->perm_dex); strcat( buf, stat );
-	sprintf(stat,"Con %d." ,ch->pcdata->perm_con); strcat( buf, stat );
-	strcat( buf, "]: \n\rTo keep these stats type 'keep'.  Anything else rerolls." );
-	write_to_buffer( d, buf, 0 );
-	d->connected = CON_GET_NEW_CLASS;
-	break;
-
-    case CON_GET_NEW_CLASS:
-	if ( !str_cmp( argument, "keep" ) )
-	{
-	    ch->class = 0;
-	}
-	else
-	{
-	    write_to_buffer( d,
-		"Ok, rerolling...\n\r", 0 );
-	    ch->class = 0;
-	ch->pcdata->perm_str = number_range(3,18);
-	ch->pcdata->perm_int = number_range(3,18);
-	ch->pcdata->perm_wis = number_range(3,18);
-	ch->pcdata->perm_dex = number_range(3,18);
-	ch->pcdata->perm_con = number_range(3,18);
-	strcpy( buf, "Your stats are: [" );
-	sprintf(stat,"Str %d, ",ch->pcdata->perm_str); strcat( buf, stat );
-	sprintf(stat,"Int %d, ",ch->pcdata->perm_int); strcat( buf, stat );
-	sprintf(stat,"Wis %d, ",ch->pcdata->perm_wis); strcat( buf, stat );
-	sprintf(stat,"Dex %d, ",ch->pcdata->perm_dex); strcat( buf, stat );
-	sprintf(stat,"Con %d." ,ch->pcdata->perm_con); strcat( buf, stat );
-	strcat( buf, "]: \n\rTo keep these stats type 'keep'.  Anything else rerolls." );
-	write_to_buffer( d, buf, 0 );
-	    return;
-	}
-
+        ch->pcdata->perm_str=number_range(10,16);
+        ch->pcdata->perm_int=number_range(10,16);
+        ch->pcdata->perm_wis=number_range(10,16);
+        ch->pcdata->perm_dex=number_range(10,16);
+	ch->pcdata->perm_con=number_range(10,16);
 	sprintf( log_buf, "%s@%s new player.", ch->name, d->host );
 	log_string( log_buf );
 	write_to_buffer( d, "\n\r", 2 );
@@ -1807,6 +1876,19 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	ch->next	= char_list;
 	char_list	= ch;
 	d->connected	= CON_PLAYING;
+	if (IS_CLASS(ch, CLASS_VAMPIRE) && (IS_SET(ch->special, SPC_PRINCE) ||
+	    ch->pcdata->stats[UNI_GEN] < 3 || ch->pcdata->rank > AGE_CHILDE))
+	{
+	    int ch_age = years_old(ch);
+	    if      (ch_age >= 100) ch->pcdata->rank = AGE_METHUSELAH;
+	    else if (ch_age >= 75 ) ch->pcdata->rank = AGE_ELDER;
+	    else if (ch_age >= 50 ) ch->pcdata->rank = AGE_ANCILLA;
+	    else                    ch->pcdata->rank = AGE_NEONATE;
+	}
+
+	if (str_cmp(ch->name,"amoeba") && IS_CLASS( ch, CLASS_DEMON) &&
+	IS_SET(ch->special, SPC_DEMON_LORD))
+	    REMOVE_BIT(ch->special, SPC_DEMON_LORD);
 
 	if ( ch->level == 0 )
 	{
@@ -1815,8 +1897,12 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    ch->hit	= ch->max_hit;
 	    ch->mana	= ch->max_mana;
 	    ch->move	= ch->max_move;
+	    ch->class   = 0;
+            ch->special = 0;
 	    set_title( ch, "the mortal" );
-
+	    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
+	    send_to_char("If you need help, try talking to the spirit of mud school!\n\r",ch);
+	    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
 	    char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
 	    do_look( ch, "auto" );
 	}
@@ -1842,7 +1928,6 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    char_to_room( ch, get_room_index( ROOM_VNUM_TEMPLE ) );
 	    do_look( ch, "auto" );
 	}
-
 	sprintf(buf,"%s has entered the God Wars.", ch->name);
 	do_info(ch,buf);
 	act( "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
@@ -1863,7 +1948,7 @@ bool check_parse_name( char *name )
     /*
      * Reserved words.
      */
-    if ( is_name( name, "all auto immortal self someone" ) )
+    if ( is_name( name, "all auto immortal self someone gaia" ) )
 	return FALSE;
 
     /*
@@ -1955,7 +2040,7 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 		send_to_char( "Reconnecting.\n\r", ch );
 	    	if (IS_NPC(ch) || ch->pcdata->obj_vnum == 0)
 		    act( "$n has reconnected.", ch, NULL, NULL, TO_ROOM );
-		sprintf( log_buf, "%s@%s reconnected.", ch->name, d->host );
+		sprintf( log_buf, "%s@%s reconnected.", ch->name, ch->lasthost );
 		log_string( log_buf );
 		d->connected = CON_PLAYING;
 	    }
@@ -1992,7 +2077,7 @@ bool check_kickoff( DESCRIPTOR_DATA *d, char *name, bool fConn )
 		ch->timer	 = 0;
 		send_to_char( "You take over your body, which was already in use.\n\r", ch );
 		act( "...$n's body has been taken over by another spirit!", ch, NULL, NULL, TO_ROOM );
-		sprintf( log_buf, "%s@%s kicking off old link.", ch->name, d->host );
+		sprintf( log_buf, "%s@%s kicking off old link.", ch->name, ch->lasthost );
 		log_string( log_buf );
 		d->connected = CON_PLAYING;
 	    }
@@ -2007,12 +2092,13 @@ bool check_kickoff( DESCRIPTOR_DATA *d, char *name, bool fConn )
 
 /*
  * Check if already playing - KaVir.
+ * Using kickoff code from Malice, as mine is v. dodgy.
  */
 bool check_playing( DESCRIPTOR_DATA *d, char *name )
 {
     DESCRIPTOR_DATA *dold;
 
-    for ( dold = descriptor_list; dold; dold = dold->next )
+    for ( dold = descriptor_list; dold != NULL; dold = dold->next )
     {
 	if ( dold != d
 	&&   dold->character != NULL
@@ -2021,9 +2107,25 @@ bool check_playing( DESCRIPTOR_DATA *d, char *name )
 	&&   !str_cmp( name, dold->original
 	         ? dold->original->name : dold->character->name ) )
 	{
-	    write_to_buffer( dold, "This body has been taken over!\n\r", 0 );
-	    close_socket2( dold );
-	    return FALSE;
+	    char	buf [MAX_STRING_LENGTH];
+	    if ( d->character != NULL )
+	    {
+		free_char( d->character );
+		d->character = NULL;
+	    }
+	    send_to_char("This body has been taken over!\n\r",dold->character);
+	    d->connected = CON_PLAYING;
+	    d->character = dold->character;
+	    d->character->desc = d;
+	    send_to_char( "You take over your body, which was already in use.\n\r", d->character );
+	    act( "$n doubles over in agony and $s eyes roll up into $s head.", d->character, NULL, NULL, TO_ROOM );
+	    act( "...$n's body has been taken over by another spirit!", d->character, NULL, NULL, TO_ROOM );
+	    dold->character=NULL;
+
+	    sprintf(buf,"Kicking off old connection %s@%s",d->character->name,d->host);
+	    log_string(buf);
+	    close_socket(dold);	/*Slam the old connection into the ether*/
+	    return TRUE;
 	}
     }
 
@@ -2056,6 +2158,21 @@ void stop_idling( CHAR_DATA *ch )
  */
 void send_to_char( const char *txt, CHAR_DATA *ch )
 {
+/*
+    CHAR_DATA *wizard;
+    CHAR_DATA *familiar;
+
+    if ( ch->desc == NULL && IS_NPC(ch) && (wizard = ch->wizard) != NULL )
+    {
+	if (!IS_NPC(wizard) && (familiar = wizard->pcdata->familiar) != NULL
+	    && familiar == ch && ch->in_room != wizard->in_room)
+	{
+	    send_to_char("[ ",wizard);
+	    if ( txt != NULL && wizard->desc != NULL )
+		write_to_buffer( wizard->desc, txt, strlen(txt) );
+	}
+    }
+*/
     if ( txt != NULL && ch->desc != NULL )
 	write_to_buffer( ch->desc, txt, strlen(txt) );
     return;
@@ -2075,14 +2192,23 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
     char buf[MAX_STRING_LENGTH];
     char fname[MAX_INPUT_LENGTH];
     CHAR_DATA *to;
+/*
+    CHAR_DATA *to_old;
+*/
     CHAR_DATA *vch = (CHAR_DATA *) arg2;
+/*
+    CHAR_DATA *familiar = NULL;
+    CHAR_DATA *wizard = NULL;
+*/
     OBJ_DATA *obj1 = (OBJ_DATA  *) arg1;
     OBJ_DATA *obj2 = (OBJ_DATA  *) arg2;
     const char *str;
     const char *i;
     char *point;
+/*
+    bool is_fam;
+*/
     bool is_ok;
-
     /*
      * Discard null and zero-length messages.
      */
@@ -2092,7 +2218,7 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
     to = ch->in_room->people;
     if ( type == TO_VICT )
     {
-	if ( vch == NULL )
+	if ( vch == NULL || vch->in_room == NULL)
 	{
 	    bug( "Act: null vch with TO_VICT.", 0 );
 	    return;
@@ -2102,8 +2228,36 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
 
     for ( ; to != NULL; to = to->next_in_room )
     {
+/*
+	is_fam = FALSE;
+	to_old = to;
+*/
+	if ( type == TO_CHAR && to != ch ) continue;
+	if ( type == TO_VICT && ( to != vch || to == ch ) ) continue;
+	if ( type == TO_ROOM && to == ch ) continue;
+	if ( type == TO_NOTVICT && (to == ch || to == vch) ) continue;
+/*
+	if ( to->desc == NULL && IS_NPC(to) && (wizard = to->wizard) != NULL )
+	{
+	    if (!IS_NPC(wizard) && ((familiar=wizard->pcdata->familiar) != NULL)
+		&& familiar == to)
+	    {
+		if (to->in_room == ch->in_room &&
+		    wizard->in_room != to->in_room)
+		{
+		    to = wizard;
+		    is_fam = TRUE;
+		}
+	    }
+	}
+*/
 	if ( to->desc == NULL || !IS_AWAKE(to) )
+	{
+/*
+	    if (is_fam) to = to_old;
+*/
 	    continue;
+	}
 
     	if (ch->in_room->vnum == ROOM_VNUM_IN_OBJECT)
     	{
@@ -2123,16 +2277,14 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
 	    	ch->pcdata->chobj->in_obj == to->pcdata->chobj->in_obj)
 		    is_ok = TRUE; else is_ok = FALSE;
 
-	    if (!is_ok) continue;
+	    if (!is_ok)
+	    {
+/*
+		if (is_fam) to = to_old;
+*/
+		continue;
+	    }
     	}
-	if ( type == TO_CHAR && to != ch )
-	    continue;
-	if ( type == TO_VICT && ( to != vch || to == ch ) )
-	    continue;
-	if ( type == TO_ROOM && to == ch )
-	    continue;
-	if ( type == TO_NOTVICT && (to == ch || to == vch) )
-	    continue;
 
 	point	= buf;
 	str	= format;
@@ -2203,10 +2355,227 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
 
 	*point++ = '\n';
 	*point++ = '\r';
+/*
+	if (is_fam)
+	{
+	    if (to->in_room != ch->in_room && familiar != NULL &&
+		familiar->in_room == ch->in_room)
+		send_to_char("[ ", to);
+	    else
+	    {
+		to = to_old;
+		continue;
+	    }
+	}
+*/
 	buf[0]   = UPPER(buf[0]);
 	write_to_buffer( to->desc, buf, point - buf );
+/*
+	if (is_fam) to = to_old;
+*/
+    }
+    return;
+}
+
+void act2( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2, int type )
+{
+    static char * const he_she	[] = { "it",  "he",  "she" };
+    static char * const him_her	[] = { "it",  "him", "her" };
+    static char * const his_her	[] = { "its", "his", "her" };
+
+    char buf[MAX_STRING_LENGTH];
+    CHAR_DATA *to;
+/*
+    CHAR_DATA *to_old;
+*/
+    CHAR_DATA *vch = (CHAR_DATA *) arg2;
+/*
+    CHAR_DATA *familiar = NULL;
+    CHAR_DATA *wizard = NULL;
+*/
+    OBJ_DATA *obj1 = (OBJ_DATA  *) arg1;
+    OBJ_DATA *obj2 = (OBJ_DATA  *) arg2;
+    const char *str;
+    const char *i;
+    char *point;
+/*
+    bool is_fam;
+*/
+    bool is_ok;
+    /*
+     * Discard null and zero-length messages.
+     */
+    if ( format == NULL || format[0] == '\0' )
+	return;
+
+    to = ch->in_room->people;
+    if ( type == TO_VICT )
+    {
+	if ( vch == NULL || vch->in_room == NULL)
+	{
+	    bug( "Act: null vch with TO_VICT.", 0 );
+	    return;
+	}
+	to = vch->in_room->people;
     }
 
+    for ( ; to != NULL; to = to->next_in_room )
+    {
+/*
+	is_fam = FALSE;
+	to_old = to;
+*/
+	if ( type == TO_CHAR && to != ch ) continue;
+	if ( type == TO_VICT && ( to != vch || to == ch ) ) continue;
+	if ( type == TO_ROOM && to == ch ) continue;
+	if ( type == TO_NOTVICT && (to == ch || to == vch) ) continue;
+/*
+	if ( to->desc == NULL && IS_NPC(to) && (wizard = to->wizard) != NULL )
+	{
+	    if (!IS_NPC(wizard) && ((familiar=wizard->pcdata->familiar) != NULL)
+		&& familiar == to)
+	    {
+		if (to->in_room == ch->in_room &&
+		    wizard->in_room != to->in_room)
+		{
+		    to = wizard;
+		    is_fam = TRUE;
+		}
+	    }
+	}
+*/
+	if ( to->desc == NULL || !IS_AWAKE(to) )
+	{
+/*
+	    if (is_fam) to = to_old;
+*/
+	    continue;
+	}
+
+    	if (ch->in_room->vnum == ROOM_VNUM_IN_OBJECT)
+    	{
+	    is_ok = FALSE;
+
+	    if (!IS_NPC(ch) && ch->pcdata->chobj != NULL &&
+	    	ch->pcdata->chobj->in_room != NULL &&
+	    	!IS_NPC(to) && to->pcdata->chobj != NULL &&
+	    	to->pcdata->chobj->in_room != NULL &&
+	    	ch->in_room == to->in_room)
+		    is_ok = TRUE; else is_ok = FALSE;
+
+	    if (!IS_NPC(ch) && ch->pcdata->chobj != NULL &&
+	    	ch->pcdata->chobj->in_obj != NULL &&
+	    	!IS_NPC(to) && to->pcdata->chobj != NULL &&
+	    	to->pcdata->chobj->in_obj != NULL &&
+	    	ch->pcdata->chobj->in_obj == to->pcdata->chobj->in_obj)
+		    is_ok = TRUE; else is_ok = FALSE;
+
+	    if (!is_ok)
+	    {
+/*
+		if (is_fam) to = to_old;
+*/
+		continue;
+	    }
+    	}
+
+	point	= buf;
+	str	= format;
+	while ( *str != '\0' )
+	{
+	    if ( *str != '$' )
+	    {
+		*point++ = *str++;
+		continue;
+	    }
+	    ++str;
+
+	    if ( arg2 == NULL && *str >= 'A' && *str <= 'Z' )
+	    {
+/*
+		bug( "Act: missing arg2 for code %d.", *str );
+*/
+		i = " <@@@> ";
+	    }
+	    else
+	    {
+		switch ( *str )
+		{
+		default:  i = " "; break;
+		case 'n': if ( ch != NULL ) i = PERS( ch,  to  );
+			  else i = " ";
+			  break;
+		case 'N': if ( vch != NULL ) i = PERS( vch,  to  );
+			  else i = " ";
+			  break;
+		case 'e': if ( ch != NULL ) i=he_she  [URANGE(0, ch  ->sex, 2)];
+			  else i = " ";
+			  break;
+		case 'E': if (vch != NULL ) i=he_she  [URANGE(0, vch  ->sex,2)];
+			  else i = " ";
+			  break;
+		case 'm': if ( ch != NULL ) i=him_her [URANGE(0, ch  ->sex, 2)];
+			  else i = " ";
+			  break;
+		case 'M': if (vch != NULL ) i=him_her [URANGE(0, vch  ->sex,2)];
+			  else i = " ";
+			  break;
+		case 's': if ( ch != NULL ) i=his_her [URANGE(0, ch  ->sex, 2)];
+			  else i = " ";
+			  break;
+		case 'S': if (vch != NULL ) i=his_her [URANGE(0, vch  ->sex,2)];
+			  else i = " ";
+			  break;
+		case 'p':
+		    if (obj1 != NULL)
+		    {
+			i = can_see_obj( to, obj1 )
+			    ? ( (obj1->chobj != NULL && obj1->chobj == to)
+			    ? "you" : obj1->short_descr)
+			    : "something";
+		    }
+		    else i = " ";
+		    break;
+
+		case 'P':
+		    if (obj2 != NULL)
+		    {
+			i = can_see_obj( to, obj2 )
+			    ? ( (obj2->chobj != NULL && obj2->chobj == to)
+			    ? "you" : obj2->short_descr)
+			    : "something";
+		    }
+		    else i = " ";
+		    break;
+		}
+	    }
+
+	    ++str;
+	    while ( ( *point = *i ) != '\0' )
+		++point, ++i;
+	}
+
+	*point++ = '\n';
+	*point++ = '\r';
+/*
+	if (is_fam)
+	{
+	    if (to->in_room != ch->in_room && familiar != NULL &&
+		familiar->in_room == ch->in_room)
+		send_to_char("[ ", to);
+	    else
+	    {
+		to = to_old;
+		continue;
+	    }
+	}
+*/
+	buf[0]   = UPPER(buf[0]);
+	write_to_buffer( to->desc, buf, point - buf );
+/*
+	if (is_fam) to = to_old;
+*/
+    }
     return;
 }
 
@@ -2333,6 +2702,277 @@ void kavitem( const char *format, CHAR_DATA *ch, const void *arg1, const void *a
     return;
 }
 
+/*
+ * Bust a prompt (player settable prompt)
+ * coded by Morgenes for Aldara Mud
+ */
+void bust_a_prompt( DESCRIPTOR_DATA *d )
+{
+         CHAR_DATA *ch;
+         CHAR_DATA *victim;
+         CHAR_DATA *tank;
+   const char      *str;
+   const char      *i;
+         char      *point;
+         char       buf  [ MAX_STRING_LENGTH ];
+         char       buf2 [ MAX_STRING_LENGTH ];
+	 bool       is_fighting = TRUE;
+
+   if ( ( ch = d->character ) == NULL ) return;
+   if ( ch->pcdata == NULL )
+   {
+      send_to_char( "\n\r\n\r", ch );
+      return;
+   }
+   if ( ch->position == POS_FIGHTING && ch->cprompt[0] == '\0' )
+   {
+      if ( ch->prompt[0] == '\0' )
+      {
+         send_to_char( "\n\r\n\r", ch );
+         return;
+      }
+      is_fighting = FALSE;
+   }
+   else if ( ch->position != POS_FIGHTING && ch->prompt[0] == '\0' )
+   {
+      send_to_char( "\n\r\n\r", ch );
+      return;
+   }
+
+   point = buf;
+   if ( ch->position == POS_FIGHTING && is_fighting )
+      str = d->original ? d->original->cprompt : d->character->cprompt;
+   else
+      str = d->original ? d->original->prompt : d->character->prompt;
+   while( *str != '\0' )
+   {
+      if( *str != '%' )
+      {
+         *point++ = *str++;
+         continue;
+      }
+      ++str;
+      switch( *str )
+      {
+         default :
+            i = " "; break;
+         case 'h' :
+            sprintf( buf2, "%d", ch->hit );
+            COL_SCALE(buf2, ch, ch->hit, ch->max_hit);
+            i = buf2; break;
+         case 'H' :
+            sprintf( buf2, "%d", ch->max_hit );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'm' :
+            sprintf( buf2, "%d", ch->mana                              );
+            COL_SCALE(buf2, ch, ch->mana, ch->max_mana);
+            i = buf2; break;
+         case 'M' :
+            sprintf( buf2, "%d", ch->max_mana                          );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'v' :
+            sprintf( buf2, "%d", ch->move                              );
+            COL_SCALE(buf2, ch, ch->move, ch->max_move);
+            i = buf2; break;
+         case 'V' :
+            sprintf( buf2, "%d", ch->max_move                          );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'x' :
+            sprintf( buf2, "%d", ch->exp                               );
+            COL_SCALE(buf2, ch, ch->exp, 1000);
+            i = buf2; break;
+         case 'g' :
+            sprintf( buf2, "%d", ch->gold                              );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'q' :
+            sprintf( buf2, "%d", ch->pcdata->quest                     );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'f' :
+            if ( ( victim = ch->fighting ) == NULL )
+            {
+	       strcpy( buf2, "N/A" );
+               ADD_COLOUR(ch, buf2, L_CYAN);
+            }
+            else
+            {
+               if ((victim->hit*100/victim->max_hit) < 25)
+               {strcpy(buf2, "Awful");ADD_COLOUR(ch, buf2, L_RED);}
+               else if ((victim->hit*100/victim->max_hit) < 50)
+               {strcpy(buf2, "Poor");ADD_COLOUR(ch, buf2, L_BLUE);}
+               else if ((victim->hit*100/victim->max_hit) < 75)
+               {strcpy(buf2, "Fair");ADD_COLOUR(ch, buf2, L_GREEN);}
+               else if ((victim->hit*100/victim->max_hit) < 100)
+               {strcpy(buf2, "Good");ADD_COLOUR(ch, buf2, YELLOW);}
+               else if ((victim->hit*100/victim->max_hit) >= 100)
+               {strcpy(buf2, "Perfect");ADD_COLOUR(ch, buf2, L_CYAN);}
+            }
+            i = buf2; break;
+         case 'F' :
+            if ( ( victim = ch->fighting ) == NULL )
+            {
+	       strcpy( buf2, "N/A" );
+               ADD_COLOUR(ch, buf2, L_CYAN);
+            }
+            else if ( ( tank = victim->fighting ) == NULL )
+            {
+	       strcpy( buf2, "N/A" );
+               ADD_COLOUR(ch, buf2, L_CYAN);
+            }
+            else
+            {
+               if ((tank->hit*100/tank->max_hit) < 25)
+               {strcpy(buf2, "Awful");ADD_COLOUR(ch, buf2, L_RED);}
+               else if ((tank->hit*100/tank->max_hit) < 50)
+               {strcpy(buf2, "Poor");ADD_COLOUR(ch, buf2, L_BLUE);}
+               else if ((tank->hit*100/tank->max_hit) < 75)
+               {strcpy(buf2, "Fair");ADD_COLOUR(ch, buf2, L_GREEN);}
+               else if ((tank->hit*100/tank->max_hit) < 100)
+               {strcpy(buf2, "Good");ADD_COLOUR(ch, buf2, YELLOW);}
+               else if ((tank->hit*100/tank->max_hit) >= 100)
+               {strcpy(buf2, "Perfect");ADD_COLOUR(ch, buf2, L_CYAN);}
+            }
+            i = buf2; break;
+         case 'n' :
+            if ( ( victim = ch->fighting ) == NULL )
+	       strcpy( buf2, "N/A" );
+            else
+            {
+               if ( IS_AFFECTED(victim, AFF_POLYMORPH) )
+                  strcpy(buf2, victim->morph);
+               else if ( IS_NPC(victim) )
+                  strcpy(buf2, victim->short_descr);
+               else
+                  strcpy(buf2, victim->name);
+               buf2[0] = UPPER(buf2[0]);
+            }
+            i = buf2; break;
+         case 'N' :
+            if ( ( victim = ch->fighting ) == NULL )
+	       strcpy( buf2, "N/A" );
+            else if ( ( tank = victim->fighting ) == NULL )
+	       strcpy( buf2, "N/A" );
+            else
+            {
+               if ( ch == tank )
+                  strcpy(buf2, "You");
+               else if ( IS_AFFECTED(tank, AFF_POLYMORPH) )
+                  strcpy(buf2, tank->morph);
+               else if ( IS_NPC(victim) )
+                  strcpy(buf2, tank->short_descr);
+               else
+                  strcpy(buf2, tank->name);
+               buf2[0] = UPPER(buf2[0]);
+            }
+            i = buf2; break;
+         case 'a' :
+            sprintf( buf2, "%s", IS_GOOD( ch ) ? "good"
+		                  : IS_EVIL( ch ) ? "evil" : "neutral" );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'A' :
+            sprintf( buf2, "%d", ch->alignment                      );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'r' :
+            if( ch->in_room )
+               sprintf( buf2, "%s", ch->in_room->name                  );
+            else
+               sprintf( buf2, " "                                      );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'R' :
+            if (!IS_NPC(ch) && (IS_CLASS(ch, CLASS_WEREWOLF) || IS_CLASS(ch, CLASS_VAMPIRE)))
+            {
+               sprintf( buf2, "%d", ch->pcdata->stats[UNI_RAGE]);
+               ADD_COLOUR(ch, buf2, D_RED);
+            }
+            else strcpy( buf2, "0" );
+            i = buf2; break;
+         case 'b' :
+            sprintf( buf2, "%d", ch->beast );
+            ADD_COLOUR(ch, buf2, L_CYAN);
+            i = buf2; break;
+         case 'B' :
+            if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE))
+            {
+               sprintf( buf2, "%d", ch->pcdata->condition[COND_THIRST] );
+               ADD_COLOUR(ch, buf2, D_RED);
+            }
+            else strcpy( buf2, "0" );
+            i = buf2; break;
+         case 'c' :
+            sprintf( buf2, "%d", char_ac(ch) );
+            i = buf2; break;
+         case 'p' :
+            sprintf( buf2, "%d", char_hitroll(ch) );
+            COL_SCALE(buf2, ch, char_hitroll(ch), 200);
+            i = buf2; break;
+         case 'P' :
+            sprintf( buf2, "%d", char_damroll(ch) );
+            COL_SCALE(buf2, ch, char_damroll(ch), 200);
+            i = buf2; break;
+         case 's' :
+                 if (ch->race <= 0 ) strcpy(buf2,"Avatar");
+            else if (ch->race <= 4 ) strcpy(buf2,"Immortal");
+            else if (ch->race <= 9 ) strcpy(buf2,"Godling");
+            else if (ch->race <= 14) strcpy(buf2,"Demigod");
+            else if (ch->race <= 19) strcpy(buf2,"Lesser God");
+            else if (ch->race <= 24) strcpy(buf2,"Greater God");
+            else                     strcpy(buf2,"Supreme God");
+            i = buf2; break;
+         case 'S' :
+            sprintf( buf2, "%d", ch->race );
+            i = buf2; break;
+         case 'o' :
+            if (!IS_NPC(ch) && ch->pcdata->stage[2]+25 >= ch->pcdata->stage[1]
+		&& ch->pcdata->stage[1] > 0)
+            {
+               sprintf( buf2, "yes" );
+               ADD_COLOUR(ch, buf2, WHITE);
+            }
+            else strcpy( buf2, "no" );
+            i = buf2; break;
+         case 'O' :
+            if ( ( victim = ch->pcdata->partner ) == NULL )
+	       strcpy( buf2, "no" );
+            else if (!IS_NPC(victim) && victim != NULL && victim->pcdata->stage[1] > 0
+		&& victim->pcdata->stage[2]+25 >= victim->pcdata->stage[1])
+            {
+               sprintf( buf2, "yes" );
+               ADD_COLOUR(ch, buf2, WHITE);
+            }
+            else strcpy( buf2, "no" );
+            i = buf2; break;
+         case 'l' :
+            if ( ( victim = ch->pcdata->partner ) == NULL )
+	       strcpy( buf2, "Nobody" );
+            else
+            {
+               if ( IS_AFFECTED(victim, AFF_POLYMORPH) )
+                  strcpy(buf2, victim->morph);
+               else if ( IS_NPC(victim) )
+                  strcpy(buf2, victim->short_descr);
+               else
+                  strcpy(buf2, victim->name);
+               buf2[0] = UPPER(buf2[0]);
+            }
+            i = buf2; break;
+        case '%' :
+            sprintf( buf2, "%%"                                        );
+            i = buf2; break;
+      }
+      ++str;
+      while( ( *point = *i ) != '\0' )
+         ++point, ++i;
+   }
+   write_to_buffer( d, buf, point - buf );
+   return;
+}
 
 
 /*

@@ -39,8 +39,13 @@ void	talk_channel	args( ( CHAR_DATA *ch, char *argument,
 			    int channel, const char *verb ) );
 bool is_in		args( (char *, char *) );
 bool all_in		args( (char *, char *) );
-
-
+char * oldelang		args( ( CHAR_DATA *ch, char *argument ) );
+char * badlang		args( ( CHAR_DATA *ch, char *argument ) );
+char * darktongue	args( ( CHAR_DATA *ch, char *argument ) );
+char * drunktalk	args( ( CHAR_DATA *ch, char *argument ) );
+char * socialc		args( ( CHAR_DATA *ch, char *argument, char *you, char *them ) );
+char * socialv		args( ( CHAR_DATA *ch, char *argument, char *you, char *them ) );
+char * socialn		args( ( CHAR_DATA *ch, char *argument, char *you, char *them ) );
 
 bool is_note_to( CHAR_DATA *ch, NOTE_DATA *pnote )
 {
@@ -342,6 +347,12 @@ void do_note( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
+	if ( !IS_SET( ch->extra, EXTRA_NOTE_TRUST ) )
+        {
+		send_to_char("Due to abuse you must now get note trusted.\n\r", ch);
+		return;
+        }
+
 	ch->pnote->next			= NULL;
 	strtime				= ctime( &current_time );
 	strtime[strlen(strtime)-1]	= '\0';
@@ -436,7 +447,7 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 	return;
     }
 
-    if ( IS_BODY(ch, GAGGED) )
+    if ( IS_EXTRA(ch, GAGGED) )
     {
 	sprintf( buf, "You can't %s with a gag on!\n\r", verb );
 	send_to_char( buf, ch );
@@ -471,13 +482,40 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 	ch->position	= position;
 	break;
 
+    case CHANNEL_PRAY:
+	sprintf( buf, "You pray '$t'." );
+	sprintf( buf2, "$n prays '$t'." );
+	position	= ch->position;
+	ch->position	= POS_STANDING;
+	act( buf, ch, argument, NULL, TO_CHAR );
+	ch->position	= position;
+	break;
+
+    case CHANNEL_MAGETALK:
+	sprintf( buf, "{$n} '$t'." );
+	sprintf( buf2, "{$n} '$t'." );
+	position	= ch->position;
+	ch->position	= POS_STANDING;
+	act( buf, ch, argument, NULL, TO_CHAR );
+	ch->position	= position;
+	break;
+
+    case CHANNEL_HOWL:
+	sprintf( buf, "You howl '$t'." );
+	sprintf( buf2, "$n howls '$t'." );
+	position	= ch->position;
+	ch->position	= POS_STANDING;
+	act( buf, ch, argument, NULL, TO_CHAR );
+	ch->position	= position;
+	break;
+
     case CHANNEL_VAMPTALK:
-	if (!IS_NPC(ch) && ch->vampgen == 1)
+	if (!IS_NPC(ch) && (ch->pcdata->stats[UNI_GEN] == 1 || IS_SET(ch->special, SPC_ANARCH)))
 	{
 	    sprintf( buf, "<[$n]> $t." );
 	    sprintf( buf2, "<[$n]> $t." );
 	}
-	else if (!IS_NPC(ch) && ch->vampgen == 2)
+	else if (!IS_NPC(ch) && ch->pcdata->stats[UNI_GEN] == 2)
 	{
 	    sprintf( buf, "<<$n>> $t." );
 	    sprintf( buf2, "[[$n]] $t." );
@@ -487,6 +525,7 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 	    sprintf( buf, "<$n> $t." );
 	    sprintf( buf2, "[$n] $t." );
 	}
+
 	position	= ch->position;
 	ch->position	= POS_STANDING;
 	act( buf, ch, argument, NULL, TO_CHAR );
@@ -508,8 +547,39 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 	{
 	    if ( channel == CHANNEL_IMMTALK && !IS_IMMORTAL(och) )
 		continue;
-	    if ( channel == CHANNEL_VAMPTALK && (!IS_NPC(och) && !IS_SET(och->act, PLR_VAMPIRE)))
+	    if ( channel == CHANNEL_VAMPTALK && (!IS_NPC(och) && 
+		!IS_CLASS(och, CLASS_VAMPIRE) && !IS_IMMORTAL(och)))
 		continue;
+            if ( channel == CHANNEL_MAGETALK && (!IS_NPC(och) &&
+	        !IS_CLASS(och, CLASS_MAGE) && !IS_IMMORTAL(och)))
+		continue;
+            if ( channel == CHANNEL_PRAY && (!IS_NPC(och) &&
+	        !IS_CLASS(och, CLASS_DEMON) && !IS_IMMORTAL(och)))
+		continue;
+            if ( channel == CHANNEL_HOWL && (!IS_NPC(och) &&
+	        !IS_CLASS(och, CLASS_WEREWOLF) && !IS_POLYAFF(och,POLY_WOLF)
+		&& !IS_IMMORTAL(och)))
+	    {
+	        if ((och->in_room) && (ch->in_room))
+	    	{
+			if ((och->in_room == ch->in_room))
+			{
+		    		act("$n throws back $s head and howls loudly.", ch , argument , och, TO_VICT);
+		    		continue;
+			} 
+			else if ((och->in_room->area == ch->in_room->area ))
+			{
+		    		act("You hear a loud howl nearby.", ch , NULL , och, TO_VICT);
+		    		continue;
+			}
+			else 
+			{
+		    		act("You hear a loud howl in the distance.", ch , NULL , och, TO_VICT);
+	            		continue;
+			}
+	    	}
+	    }
+            
 	    if ( channel == CHANNEL_YELL
 	    &&   vch->in_room->area != ch->in_room->area )
 		continue;
@@ -517,7 +587,26 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 	    position		= vch->position;
 	    if ( channel != CHANNEL_SHOUT && channel != CHANNEL_YELL )
 		vch->position	= POS_STANDING;
-	    if (!IS_NPC(vch) && IS_SET(vch->act, PLR_VAMPIRE) && str_cmp(ch->clan,vch->clan) )
+	    if (!IS_NPC(vch) && IS_CLASS(vch, CLASS_VAMPIRE) && str_cmp(ch->clan,vch->clan) )
+	    {
+	    	act( buf2, ch, argument, vch, TO_VICT );
+	    	vch->position	= position;
+		continue;
+	    }
+	    if (!IS_NPC(vch) && (IS_CLASS(vch, CLASS_WEREWOLF) || 
+		IS_POLYAFF(ch, POLY_WOLF )))
+	    {
+	    	act( buf2, ch, argument, vch, TO_VICT );
+	    	vch->position	= position;
+		continue;
+	    }
+	    if (!IS_NPC(vch) && (IS_CLASS(vch, CLASS_DEMON)||IS_IMMORTAL(vch)))
+	    {
+	    	act( buf2, ch, argument, vch, TO_VICT );
+	    	vch->position	= position;
+		continue;
+	    }
+	    if (!IS_NPC(vch) && (IS_CLASS(vch,CLASS_MAGE)||IS_IMMORTAL(vch)))
 	    {
 	    	act( buf2, ch, argument, vch, TO_VICT );
 	    	vch->position	= position;
@@ -532,13 +621,13 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 }
 
 
-
+/*
 void do_auction( CHAR_DATA *ch, char *argument )
 {
     talk_channel( ch, argument, CHANNEL_AUCTION, "auction" );
     return;
 }
-
+*/
 
 
 void do_chat( CHAR_DATA *ch, char *argument )
@@ -603,7 +692,7 @@ void do_immtalk( CHAR_DATA *ch, char *argument )
 
 void do_vamptalk( CHAR_DATA *ch, char *argument )
 {
-    if (IS_NPC(ch) || (!IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE)))
+    if (IS_NPC(ch) || (!IS_IMMORTAL(ch) && !IS_CLASS(ch,CLASS_VAMPIRE)))
     {
 	send_to_char("Huh?\n\r",ch);
 	return;
@@ -612,14 +701,92 @@ void do_vamptalk( CHAR_DATA *ch, char *argument )
     return;
 }
 
+void do_magetalk( CHAR_DATA *ch, char *argument )
+{
+    if (IS_NPC( ch ) || (!IS_IMMORTAL(ch) && !IS_CLASS(ch,CLASS_MAGE)))
+    {
+	send_to_char("Huh?\n\r",ch);
+	return;
+    }
+    talk_channel( ch, argument, CHANNEL_MAGETALK, "magetalk" );
+    return;
+}
+
+
+void do_pray( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *victim;
+    char buf [MAX_STRING_LENGTH];
+    
+    act("You mutter a few prayers.",ch,NULL,NULL,TO_CHAR);
+    act("$n mutters a quick prayer.",ch,NULL,NULL,TO_ROOM);
+
+    if (IS_NPC(ch) ||(!IS_CLASS(ch,CLASS_DEMON) && !IS_IMMORTAL(ch))) 
+	return;
+
+    if ( argument[0] == '\0' && IS_SET(ch->special, SPC_DEMON_LORD))
+    {
+	send_to_char("What do you wish to pray?\n\r",ch);
+	return;
+    }
+    else if ( argument[0] == '\0' )
+    {
+	if (ch->pcdata->stats[DEMON_CURRENT] < 1)
+	{
+	    send_to_char("Nothing happens.\n\r",ch);
+	    return;
+	}
+	if ( ( victim = get_char_world(ch, ch->lord) ) == NULL )
+	{
+	    send_to_char("Nothing happens.\n\r",ch);
+	    return;
+	}
+	act("You hear $n's prayers in your mind.",ch,NULL,victim,TO_VICT);
+	send_to_char("You feel energy pour into your body.\n\r",victim);
+	if (ch->pcdata->stats[DEMON_CURRENT] == 1)
+	    sprintf(buf,"You receive a single point of energy.\n\r");
+	else
+	    sprintf(buf,"You receive %d points of energy.\n\r",
+		ch->pcdata->stats[DEMON_CURRENT]);
+	send_to_char(buf,victim);
+	act("$n is briefly surrounded by a halo of energy.",victim,NULL,NULL,TO_ROOM);
+	victim->pcdata->stats[DEMON_CURRENT] += ch->pcdata->stats[DEMON_CURRENT];
+	victim->pcdata->stats[DEMON_TOTAL] += ch->pcdata->stats[DEMON_CURRENT];
+	ch->pcdata->stats[DEMON_CURRENT] = 0;
+	return;
+    }
+    if (IS_SET(ch->deaf, CHANNEL_PRAY))
+    {
+	send_to_char("But you're not even on the channel!\n\r",ch);
+	return;
+    }
+
+    talk_channel( ch, argument, CHANNEL_PRAY, "pray" );
+    return;
+}
+
+void do_howl( CHAR_DATA *ch, char *argument )
+{
+    if (IS_NPC( ch ) || (!IS_IMMORTAL(ch) && !IS_CLASS(ch,CLASS_WEREWOLF) 
+	&& !IS_POLYAFF(ch, POLY_WOLF)))
+    {
+	send_to_char("Huh?\n\r",ch);
+	return;
+    }
+    talk_channel( ch, argument, CHANNEL_HOWL, "howls" );
+    return;
+}
+
 
 
 void do_say( CHAR_DATA *ch, char *argument )
 {
     char name   [80];
-    char poly   [MAX_INPUT_LENGTH];
+    char poly   [MAX_STRING_LENGTH];
     char speak  [10];
     char speaks [10];
+    char endbit [2];
+    char secbit [2];
     CHAR_DATA *to;
     bool is_ok;
 
@@ -628,9 +795,15 @@ void do_say( CHAR_DATA *ch, char *argument )
 	send_to_char( "You can't speak without a tongue!\n\r", ch );
 	return;
     }
-    if ( IS_BODY(ch, GAGGED) )
+    if ( IS_EXTRA(ch, GAGGED) )
     {
 	send_to_char( "You can't speak with a gag on!\n\r", ch );
+	return;
+    }
+
+    if (strlen(argument) > MAX_INPUT_LENGTH)
+    {
+	send_to_char( "Line too long.\n\r", ch );
 	return;
     }
 
@@ -640,15 +813,97 @@ void do_say( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    endbit[0] = argument[strlen(argument)-1];
+    endbit[1] = '\0';
+
+    if (strlen(argument) > 1) secbit[0] = argument[strlen(argument)-2];
+	else secbit[0] = '\0';
+    secbit[1] = '\0';
+
     if (IS_BODY(ch,CUT_THROAT))
     {
 	sprintf(speak,"rasp");
 	sprintf(speaks,"rasps");
     }
-    else if (!IS_NPC(ch) && IS_SET(ch->act,PLR_WOLFMAN))
+    else if (!IS_NPC(ch) && 
+	(IS_SET(ch->special,SPC_WOLFMAN) || IS_POLYAFF(ch, POLY_WOLF) 
+	|| (IS_CLASS(ch, CLASS_VAMPIRE) && ch->pcdata->stats[UNI_RAGE] > 0)))
     {
-	sprintf(speak,"growl");
-	sprintf(speaks,"growls");
+	if (number_percent() > 50)
+	{
+	    sprintf(speak,"growl");
+	    sprintf(speaks,"growls");
+	}
+	else
+	{
+	    sprintf(speak,"snarl");
+	    sprintf(speaks,"snarls");
+	}
+    }
+    else if (!IS_NPC(ch) && IS_POLYAFF(ch, POLY_BAT))
+    {
+	sprintf(speak,"squeak");
+	sprintf(speaks,"squeaks");
+    }
+    else if (!IS_NPC(ch) && IS_POLYAFF(ch, POLY_SERPENT))
+    {
+	sprintf(speak,"hiss");
+	sprintf(speaks,"hisses");
+    }
+    else if (!IS_NPC(ch) && IS_POLYAFF(ch, POLY_FROG))
+    {
+	sprintf(speak,"croak");
+	sprintf(speaks,"croaks");
+    }
+    else if (!IS_NPC(ch) && IS_POLYAFF(ch, POLY_RAVEN))
+    {
+	sprintf(speak,"squark");
+	sprintf(speaks,"squarks");
+    }
+    else if (IS_NPC(ch) && ch->pIndexData->vnum == MOB_VNUM_FROG)
+    {
+	sprintf(speak,"croak");
+	sprintf(speaks,"croaks");
+    }
+    else if (IS_NPC(ch) && ch->pIndexData->vnum == MOB_VNUM_RAVEN)
+    {
+	sprintf(speak,"squark");
+	sprintf(speaks,"squarks");
+    }
+    else if (IS_NPC(ch) && ch->pIndexData->vnum == MOB_VNUM_CAT)
+    {
+	sprintf(speak,"purr");
+	sprintf(speaks,"purrs");
+    }
+    else if (IS_NPC(ch) && ch->pIndexData->vnum == MOB_VNUM_DOG)
+    {
+	sprintf(speak,"bark");
+	sprintf(speaks,"barks");
+    }
+    else if (!str_cmp(endbit,"!"))
+    {
+	sprintf(speak,"exclaim");
+	sprintf(speaks,"exclaims");
+    }
+    else if (!str_cmp(endbit,"?"))
+    {
+	sprintf(speak,"ask");
+	sprintf(speaks,"asks");
+    }
+    else if (secbit[0] != '\0' && str_cmp(secbit,".") && !str_cmp(endbit,"."))
+    {
+	sprintf(speak,"state");
+	sprintf(speaks,"states");
+    }
+    else if (secbit[0] != '\0' && !str_cmp(secbit,".") && !str_cmp(endbit,"."))
+    {
+	sprintf(speak,"mutter");
+	sprintf(speaks,"mutters");
+    }
+    else if (!IS_NPC(ch) && ch->pcdata->condition[COND_DRUNK] > 10)
+    {
+	sprintf(speak,"slur");
+	sprintf(speaks,"slurs");
     }
     else
     {
@@ -656,13 +911,43 @@ void do_say( CHAR_DATA *ch, char *argument )
 	sprintf(speaks,"says");
     }
     sprintf(poly,"You %s '$T'.", speak);
-    act( poly, ch, NULL, argument, TO_CHAR );
+    if (!IS_NPC(ch))
+    {
+	if (ch->pcdata->condition[COND_DRUNK] > 10)
+	    act( poly, ch, NULL, drunktalk(ch, argument), TO_CHAR );
+	else if (IS_SPEAKING(ch,DIA_OLDE))
+	    act( poly, ch, NULL, oldelang(ch, argument), TO_CHAR );
+	else if (IS_SPEAKING(ch,DIA_BAD))
+	    act( poly, ch, NULL, badlang(ch, argument), TO_CHAR );
+	else if (IS_SPEAKING(ch,LANG_DARK))
+	    act( poly, ch, NULL, darktongue(ch, argument), TO_CHAR );
+	else
+	    act( poly, ch, NULL, argument, TO_CHAR );
+    }
+    else
+	act( poly, ch, NULL, argument, TO_CHAR );
 
     sprintf(poly,"$n %s '$T'.", speaks);
 
     if (ch->in_room->vnum != ROOM_VNUM_IN_OBJECT)
     {
-    	act( poly, ch, NULL, argument, TO_ROOM );
+	if (!IS_NPC(ch))
+	{
+/*
+	    if (ch->pcdata->condition[COND_DRUNK] > 10)
+		act( poly, ch, NULL, drunktalk(ch, argument), TO_ROOM );
+	    else if (IS_SPEAKING(ch,DIA_OLDE))
+		act( poly, ch, NULL, oldelang(ch, argument), TO_ROOM );
+	    else if (IS_SPEAKING(ch,DIA_BAD))
+		act( poly, ch, NULL, badlang(ch, argument), TO_ROOM );
+	    else if (IS_SPEAKING(ch,LANG_DARK))
+		act( poly, ch, NULL, darktongue(ch, argument), TO_ROOM );
+	    else
+*/
+		act( poly, ch, NULL, argument, TO_ROOM );
+	}
+	else
+	    act( poly, ch, NULL, argument, TO_ROOM );
     	room_text( ch, strlower(argument) );
 	return;
     }
@@ -903,7 +1188,7 @@ bool all_in(char *arg, char *ip)
 void do_tell( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char poly [MAX_INPUT_LENGTH];
+    char poly [MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int position;
 
@@ -912,7 +1197,7 @@ void do_tell( CHAR_DATA *ch, char *argument )
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
     }
-    if (IS_BODY(ch, GAGGED))
+    if (IS_EXTRA(ch, GAGGED))
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
@@ -943,6 +1228,22 @@ void do_tell( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( !IS_NPC(victim) && victim->desc == NULL )
+    {
+	act( "$E is currently link dead.", ch, 0, victim, TO_CHAR );
+	return;
+    }
+
+    if ( IS_SET(victim->deaf, CHANNEL_TELL) )
+    {
+	if (IS_NPC(victim) || IS_NPC(ch) || strlen(victim->pcdata->marriage) < 2
+	    || str_cmp(ch->name, victim->pcdata->marriage))
+	{
+	    act( "$E can't hear you.", ch, 0, victim, TO_CHAR );
+	    return;
+	}
+    }
+
     act( "You tell $N '$t'.", ch, argument, victim, TO_CHAR );
 
     position		= victim->position;
@@ -960,9 +1261,56 @@ void do_tell( CHAR_DATA *ch, char *argument )
 
 
 
+void do_whisper( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+    CHAR_DATA *victim;
+
+    if (IS_EXTRA(ch, GAGGED))
+    {
+	send_to_char( "Not with a gag on!\n\r", ch );
+	return;
+    }
+
+    argument = one_argument( argument, arg );
+
+    if ( arg[0] == '\0' || argument[0] == '\0' )
+    {
+	send_to_char( "Syntax: whisper <person> <message>\n\r", ch );
+	return;
+    }
+
+    if ( ( victim = get_char_world( ch, arg ) ) == NULL
+    || ( victim->in_room != ch->in_room ) )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if ( !IS_AWAKE(victim) )
+    {
+	act( "$E cannot hear you.", ch, 0, victim, TO_CHAR );
+	return;
+    }
+
+    if ( !IS_NPC(victim) && victim->desc == NULL )
+    {
+	act( "$E is currently link dead.", ch, 0, victim, TO_CHAR );
+	return;
+    }
+
+    act( "You whisper to $N '$t'.", ch, argument, victim, TO_CHAR );
+    act( "$n whispers to you '$t'.", ch, argument, victim, TO_VICT );
+    act( "$n whispers something to $N.", ch, NULL, victim, TO_NOTVICT );
+
+    return;
+}
+
+
+
 void do_reply( CHAR_DATA *ch, char *argument )
 {
-    char poly [MAX_INPUT_LENGTH];
+    char poly [MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int position;
 
@@ -971,7 +1319,7 @@ void do_reply( CHAR_DATA *ch, char *argument )
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
     }
-    if (IS_BODY(ch, GAGGED))
+    if (IS_EXTRA(ch, GAGGED))
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
@@ -986,6 +1334,12 @@ void do_reply( CHAR_DATA *ch, char *argument )
     if ( !IS_IMMORTAL(ch) && !IS_AWAKE(victim) )
     {
 	act( "$E can't hear you.", ch, 0, victim, TO_CHAR );
+	return;
+    }
+
+    if ( !IS_NPC(victim) && victim->desc == NULL )
+    {
+	act( "$E is currently link dead.", ch, 0, victim, TO_CHAR );
 	return;
     }
 
@@ -1021,7 +1375,7 @@ void do_emote( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( IS_HEAD(ch, LOST_TONGUE) || IS_HEAD(ch, LOST_HEAD) || IS_HEAD(ch, GAGGED))
+    if ( IS_HEAD(ch, LOST_TONGUE) || IS_HEAD(ch, LOST_HEAD) || IS_EXTRA(ch, GAGGED))
     {
 	send_to_char( "You can't show your emotions.\n\r", ch );
 	return;
@@ -1029,7 +1383,7 @@ void do_emote( CHAR_DATA *ch, char *argument )
 
     if ( argument[0] == '\0' )
     {
-	send_to_char( "Emote what?\n\r", ch );
+	send_to_char( "Pose what?\n\r", ch );
 	return;
     }
 
@@ -1090,254 +1444,148 @@ void do_emote( CHAR_DATA *ch, char *argument )
 
 
 
-/*
- * All the posing stuff.
- */
-struct	pose_table_type
+void do_xemote( CHAR_DATA *ch, char *argument )
 {
-    char *	message[2*MAX_CLASS];
-};
+    char buf[MAX_STRING_LENGTH];
+    char buf2[MAX_STRING_LENGTH];
+    char oldarg[MAX_STRING_LENGTH];
+    char *plast;
 
-const	struct	pose_table_type	pose_table	[]	=
-{
+    char name   [80];
+    char you    [80];
+    char them   [80];
+    char poly   [MAX_INPUT_LENGTH];
+    char arg    [MAX_INPUT_LENGTH];
+    CHAR_DATA *to;
+    CHAR_DATA *victim;
+    bool is_ok;
+
+    argument = one_argument( argument, arg );
+
+    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_NO_EMOTE) )
     {
-	{
-	    "You sizzle with energy.",
-	    "$n sizzles with energy.",
-	    "You feel very holy.",
-	    "$n looks very holy.",
-	    "You perform a small card trick.",
-	    "$n performs a small card trick.",
-	    "You show your bulging muscles.",
-	    "$n shows $s bulging muscles."
-	}
-    },
-
-    {
-	{
-	    "You turn into a butterfly, then return to your normal shape.",
-	    "$n turns into a butterfly, then returns to $s normal shape.",
-	    "You nonchalantly turn wine into water.",
-	    "$n nonchalantly turns wine into water.",
-	    "You wiggle your ears alternately.",
-	    "$n wiggles $s ears alternately.",
-	    "You crack nuts between your fingers.",
-	    "$n cracks nuts between $s fingers."
-	}
-    },
-
-    {
-	{
-	    "Blue sparks fly from your fingers.",
-	    "Blue sparks fly from $n's fingers.",
-	    "A halo appears over your head.",
-	    "A halo appears over $n's head.",
-	    "You nimbly tie yourself into a knot.",
-	    "$n nimbly ties $mself into a knot.",
-	    "You grizzle your teeth and look mean.",
-	    "$n grizzles $s teeth and looks mean."
-	}
-    },
-
-    {
-	{
-	    "Little red lights dance in your eyes.",
-	    "Little red lights dance in $n's eyes.",
-	    "You recite words of wisdom.",
-	    "$n recites words of wisdom.",
-	    "You juggle with daggers, apples, and eyeballs.",
-	    "$n juggles with daggers, apples, and eyeballs.",
-	    "You hit your head, and your eyes roll.",
-	    "$n hits $s head, and $s eyes roll."
-	}
-    },
-
-    {
-	{
-	    "A slimy green monster appears before you and bows.",
-	    "A slimy green monster appears before $n and bows.",
-	    "Deep in prayer, you levitate.",
-	    "Deep in prayer, $n levitates.",
-	    "You steal the underwear off every person in the room.",
-	    "Your underwear is gone!  $n stole it!",
-	    "Crunch, crunch -- you munch a bottle.",
-	    "Crunch, crunch -- $n munches a bottle."
-	}
-    },
-
-    {
-	{
-	    "You turn everybody into a little pink elephant.",
-	    "You are turned into a little pink elephant by $n.",
-	    "An angel consults you.",
-	    "An angel consults $n.",
-	    "The dice roll ... and you win again.",
-	    "The dice roll ... and $n wins again.",
-	    "... 98, 99, 100 ... you do pushups.",
-	    "... 98, 99, 100 ... $n does pushups."
-	}
-    },
-
-    {
-	{
-	    "A small ball of light dances on your fingertips.",
-	    "A small ball of light dances on $n's fingertips.",
-	    "Your body glows with an unearthly light.",
-	    "$n's body glows with an unearthly light.",
-	    "You count the money in everyone's pockets.",
-	    "Check your money, $n is counting it.",
-	    "Arnold Schwarzenegger admires your physique.",
-	    "Arnold Schwarzenegger admires $n's physique."
-	}
-    },
-
-    {
-	{
-	    "Smoke and fumes leak from your nostrils.",
-	    "Smoke and fumes leak from $n's nostrils.",
-	    "A spot light hits you.",
-	    "A spot light hits $n.",
-	    "You balance a pocket knife on your tongue.",
-	    "$n balances a pocket knife on your tongue.",
-	    "Watch your feet, you are juggling granite boulders.",
-	    "Watch your feet, $n is juggling granite boulders."
-	}
-    },
-
-    {
-	{
-	    "The light flickers as you rap in magical languages.",
-	    "The light flickers as $n raps in magical languages.",
-	    "Everyone levitates as you pray.",
-	    "You levitate as $n prays.",
-	    "You produce a coin from everyone's ear.",
-	    "$n produces a coin from your ear.",
-	    "Oomph!  You squeeze water out of a granite boulder.",
-	    "Oomph!  $n squeezes water out of a granite boulder."
-	}
-    },
-
-    {
-	{
-	    "Your head disappears.",
-	    "$n's head disappears.",
-	    "A cool breeze refreshes you.",
-	    "A cool breeze refreshes $n.",
-	    "You step behind your shadow.",
-	    "$n steps behind $s shadow.",
-	    "You pick your teeth with a spear.",
-	    "$n picks $s teeth with a spear."
-	}
-    },
-
-    {
-	{
-	    "A fire elemental singes your hair.",
-	    "A fire elemental singes $n's hair.",
-	    "The sun pierces through the clouds to illuminate you.",
-	    "The sun pierces through the clouds to illuminate $n.",
-	    "Your eyes dance with greed.",
-	    "$n's eyes dance with greed.",
-	    "Everyone is swept off their foot by your hug.",
-	    "You are swept off your feet by $n's hug."
-	}
-    },
-
-    {
-	{
-	    "The sky changes color to match your eyes.",
-	    "The sky changes color to match $n's eyes.",
-	    "The ocean parts before you.",
-	    "The ocean parts before $n.",
-	    "You deftly steal everyone's weapon.",
-	    "$n deftly steals your weapon.",
-	    "Your karate chop splits a tree.",
-	    "$n's karate chop splits a tree."
-	}
-    },
-
-    {
-	{
-	    "The stones dance to your command.",
-	    "The stones dance to $n's command.",
-	    "A thunder cloud kneels to you.",
-	    "A thunder cloud kneels to $n.",
-	    "The Grey Mouser buys you a beer.",
-	    "The Grey Mouser buys $n a beer.",
-	    "A strap of your armor breaks over your mighty thews.",
-	    "A strap of $n's armor breaks over $s mighty thews."
-	}
-    },
-
-    {
-	{
-	    "The heavens and grass change colour as you smile.",
-	    "The heavens and grass change colour as $n smiles.",
-	    "The Burning Man speaks to you.",
-	    "The Burning Man speaks to $n.",
-	    "Everyone's pocket explodes with your fireworks.",
-	    "Your pocket explodes with $n's fireworks.",
-	    "A boulder cracks at your frown.",
-	    "A boulder cracks at $n's frown."
-	}
-    },
-
-    {
-	{
-	    "Everyone's clothes are transparent, and you are laughing.",
-	    "Your clothes are transparent, and $n is laughing.",
-	    "An eye in a pyramid winks at you.",
-	    "An eye in a pyramid winks at $n.",
-	    "Everyone discovers your dagger a centimeter from their eye.",
-	    "You discover $n's dagger a centimeter from your eye.",
-	    "Mercenaries arrive to do your bidding.",
-	    "Mercenaries arrive to do $n's bidding."
-	}
-    },
-
-    {
-	{
-	    "A black hole swallows you.",
-	    "A black hole swallows $n.",
-	    "Valentine Michael Smith offers you a glass of water.",
-	    "Valentine Michael Smith offers $n a glass of water.",
-	    "Where did you go?",
-	    "Where did $n go?",
-	    "Four matched Percherons bring in your chariot.",
-	    "Four matched Percherons bring in $n's chariot."
-	}
-    },
-
-    {
-	{
-	    "The world shimmers in time with your whistling.",
-	    "The world shimmers in time with $n's whistling.",
-	    "The great god Mota gives you a staff.",
-	    "The great god Mota gives $n a staff.",
-	    "Click.",
-	    "Click.",
-	    "Atlas asks you to relieve him.",
-	    "Atlas asks $n to relieve him."
-	}
-    }
-};
-
-
-
-void do_pose( CHAR_DATA *ch, char *argument )
-{
-    int level;
-    int pose;
-
-    if ( IS_NPC(ch) )
+	send_to_char( "You can't show your emotions.\n\r", ch );
 	return;
+    }
 
-    level = UMIN( ch->level, sizeof(pose_table) / sizeof(pose_table[0]) - 1 );
-    pose  = number_range(0, level);
+    if ( IS_HEAD(ch, LOST_TONGUE) || IS_HEAD(ch, LOST_HEAD) || IS_EXTRA(ch, GAGGED))
+    {
+	send_to_char( "You can't show your emotions.\n\r", ch );
+	return;
+    }
 
-    act( pose_table[pose].message[2*ch->class+0], ch, NULL, NULL, TO_CHAR );
-    act( pose_table[pose].message[2*ch->class+1], ch, NULL, NULL, TO_ROOM );
+    if (strlen(argument) > MAX_INPUT_LENGTH)
+    {
+	send_to_char( "Line too long.\n\r", ch );
+	return;
+    }
 
+    if ( argument[0] == '\0' || arg[0] == '\0' )
+    {
+	send_to_char( "Syntax: emote <person> <sentence>\n\r", ch );
+	return;
+    }
+
+    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if (IS_NPC(ch)) strcpy(you, ch->short_descr);
+	else strcpy(you, ch->name);
+    if (IS_NPC(victim)) strcpy(you, victim->short_descr);
+	else strcpy(you, victim->name);
+/*
+oldarg = argument;
+*/
+    strcpy( oldarg,argument );
+    strcpy( buf, argument );
+    for ( plast = argument; *plast != '\0'; plast++ )
+	;
+
+    if ( isalpha(plast[-1]) )
+	strcat( buf, "." );
+    argument = socialc(ch, buf, you, them);
+
+    strcpy( buf, argument );
+    strcpy( buf2, "You ");
+    buf[0] = LOWER(buf[0]);
+    strcat( buf2, buf );
+    capitalize( buf2 );
+    act( buf2, ch, NULL, victim, TO_CHAR );
+
+    if (ch->in_room->vnum != ROOM_VNUM_IN_OBJECT)
+    {
+	strcpy( buf, oldarg );
+	for ( plast = argument; *plast != '\0'; plast++ )
+	    ;
+	if ( isalpha(plast[-1]) )
+	    strcat( buf, "." );
+
+	argument = socialn(ch, buf, you, them);
+
+	strcpy( buf, argument );
+	strcpy( buf2, "$n ");
+	buf[0] = LOWER(buf[0]);
+	strcat( buf2, buf );
+	capitalize( buf2 );
+    	act( buf2, ch, NULL, victim, TO_NOTVICT );
+
+	strcpy( buf, oldarg );
+	for ( plast = argument; *plast != '\0'; plast++ )
+	    ;
+	if ( isalpha(plast[-1]) )
+	    strcat( buf, "." );
+
+	argument = socialv(ch, buf, you, them);
+
+	strcpy( buf, argument );
+	strcpy( buf2, "$n ");
+	buf[0] = LOWER(buf[0]);
+	strcat( buf2, buf );
+	capitalize( buf2 );
+    	act( buf2, ch, NULL, victim, TO_VICT );
+	return;
+    }
+
+    to = ch->in_room->people;
+    for ( ; to != NULL; to = to->next_in_room )
+    {
+	is_ok = FALSE;
+
+	if ( to->desc == NULL || !IS_AWAKE(to) )
+	    continue;
+
+	if ( ch == to )
+	    continue;
+
+	if (!IS_NPC(ch) && ch->pcdata->chobj != NULL && 
+	    ch->pcdata->chobj->in_room != NULL &&
+	    !IS_NPC(to) && to->pcdata->chobj != NULL && 
+	    to->pcdata->chobj->in_room != NULL &&
+	    ch->in_room == to->in_room)
+		is_ok = TRUE; else is_ok = FALSE;
+
+	if (!IS_NPC(ch) && ch->pcdata->chobj != NULL && 
+	    ch->pcdata->chobj->in_obj != NULL &&
+	    !IS_NPC(to) && to->pcdata->chobj != NULL && 
+	    to->pcdata->chobj->in_obj != NULL &&
+	    ch->pcdata->chobj->in_obj == to->pcdata->chobj->in_obj)
+		is_ok = TRUE; else is_ok = FALSE;
+
+	if (!is_ok) continue;
+
+	if (IS_NPC(ch))
+	    sprintf(name, ch->short_descr);
+	else if (!IS_NPC(ch) && IS_AFFECTED(ch,AFF_POLYMORPH))
+	    sprintf(name, ch->morph);
+	else
+	    sprintf(name, ch->name);
+	name[0]=UPPER(name[0]);
+	sprintf(poly,"%s %s\n\r", name,buf);
+	send_to_char(poly,to);
+    }
     return;
 }
 
@@ -1390,9 +1638,9 @@ void do_quit( CHAR_DATA *ch, char *argument )
 {
     DESCRIPTOR_DATA *d;
     char buf[MAX_STRING_LENGTH];
-    AFFECT_DATA *paf;
     OBJ_DATA *obj;
     OBJ_DATA *obj_next;
+    CHAR_DATA *mount;
 
     if ( IS_NPC(ch) )
 	return;
@@ -1409,20 +1657,22 @@ void do_quit( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ch->mount != NULL ) do_dismount(ch,"");
-
+    if ( (mount = ch->mount) != NULL ) do_dismount(ch,"");
+/*
     send_to_char( "\n\r                         Speak not: whisper not:\n\r",ch);
     send_to_char( "                      I know all that ye would tell,\n\r",ch);
     send_to_char( "                    But to speak might break the spell\n\r",ch);
     send_to_char( "                      Which must bend the invincible,\n\r",ch);
     send_to_char( "                          The stern of thought;\n\r",ch);
     send_to_char( "                 He yet defies the deepest power of Hell.\n\r\n\r",ch );
-    sprintf( log_buf, "%s has quit.", ch->name );
-    log_string( log_buf );
+*/
+    send_to_char( "\n\r           I'm a lean dog, a keen dog, a wild dog, and lone;\n\r",ch);
+    send_to_char( "           I'm a rough dog, a tough dog, hunting on my own;\n\r",ch);
+    send_to_char( "           I'm a bad dog, a mad dog, teasing silly sheep;\n\r",ch);
+    send_to_char( "           I love to sit and bay the moon, to keep fat souls from sleep.\n\r\n\r",ch);
     /*
      * After extract_char the ch is no longer valid!
      */
-    save_char_obj( ch );
     d = ch->desc;
     for ( obj = ch->carrying; obj != NULL; obj = obj_next )
     {
@@ -1430,23 +1680,22 @@ void do_quit( CHAR_DATA *ch, char *argument )
 	if (obj->wear_loc == WEAR_NONE) continue;
     	if ( !IS_NPC(ch) && ((obj->chobj != NULL && !IS_NPC(obj->chobj) &&
 	    obj->chobj->pcdata->obj_vnum != 0) || obj->item_type == ITEM_KEY))
-    	{
-    	    for ( paf = obj->pIndexData->affected; paf != NULL; paf = paf->next )
-	    	affect_modify( ch, paf, FALSE );
-    	    for ( paf = obj->affected; paf != NULL; paf = paf->next )
-	    	affect_modify( ch, paf, FALSE );
-    	}
+	    unequip_char(ch,obj);
     }
+    save_char_obj( ch );
     if (ch->pcdata->obj_vnum != 0)
     	act( "$n slowly fades out of existance.", ch, NULL, NULL, TO_ROOM );
     else
     	act( "$n has left the game.", ch, NULL, NULL, TO_ROOM );
 
+    if ( d != NULL )
+	close_socket2( d, FALSE );
+
     if (ch->in_room != NULL) char_from_room(ch);
     char_to_room(ch,get_room_index(30002));
 
-    if ( d != NULL )
-	close_socket( d );
+    sprintf( log_buf, "%s has quit.", ch->name );
+    log_string( log_buf );
 
     if (ch->pcdata->obj_vnum == 0)
     {
@@ -1471,8 +1720,19 @@ void do_save( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    save_char_obj_backup( ch );
     save_char_obj( ch );
-    send_to_char( "Ok.\n\r", ch );
+    send_to_char( "Saved.\n\r", ch );
+    return;
+}
+
+
+
+void do_autosave( CHAR_DATA *ch, char *argument )
+{
+    if ( IS_NPC(ch) ) return;
+    if ( ch->level < 2 ) return;
+    save_char_obj( ch );
     return;
 }
 
@@ -1514,13 +1774,6 @@ void do_follow( CHAR_DATA *ch, char *argument )
 	return;
     }
     
-    if ( ( ch->level - victim->level < -5 || ch->level - victim->level >  5 )
-    &&   !IS_HERO(ch) )
-    {
-	send_to_char( "You are not of the right caliber to follow.\n\r", ch );
-	return;
-    }
-
     if ( ch->master != NULL )
 	stop_follower( ch );
 
@@ -1532,7 +1785,6 @@ void do_follow( CHAR_DATA *ch, char *argument )
 
 void add_follower( CHAR_DATA *ch, CHAR_DATA *master )
 {
-    char poly [MAX_INPUT_LENGTH];
     if ( ch->master != NULL )
     {
 	bug( "Add_follower: non-null master.", 0 );
@@ -1543,12 +1795,9 @@ void add_follower( CHAR_DATA *ch, CHAR_DATA *master )
     ch->leader        = NULL;
 
     if ( can_see( master, ch ) )
-    {
-	sprintf(poly,"$n now follows you.");
-	act( poly, ch, NULL, master, TO_VICT );
-    }
-    sprintf(poly,"You now follow $N.");
-    act( poly,  ch, NULL, master, TO_CHAR );
+	act( "$n now follows you.", ch, NULL, master, TO_VICT );
+
+    act( "You now follow $N.",  ch, NULL, master, TO_CHAR );
 
     return;
 }
@@ -1557,7 +1806,6 @@ void add_follower( CHAR_DATA *ch, CHAR_DATA *master )
 
 void stop_follower( CHAR_DATA *ch )
 {
-    char poly [MAX_INPUT_LENGTH];
     if ( ch->master == NULL )
     {
 	bug( "Stop_follower: null master.", 0 );
@@ -1571,12 +1819,8 @@ void stop_follower( CHAR_DATA *ch )
     }
 
     if ( can_see( ch->master, ch ) )
-    {
-	sprintf(poly,"$n stops following you.");
-	act( poly, ch, NULL, ch->master, TO_VICT );
-    }
-    sprintf(poly,"You stop following $N.");
-    act( poly,      ch, NULL, ch->master, TO_CHAR    );
+	act( "$n stops following you.", ch, NULL, ch->master, TO_VICT );
+    act( "You stop following $N.", ch, NULL, ch->master, TO_CHAR    );
 
     ch->master = NULL;
     ch->leader = NULL;
@@ -1651,20 +1895,28 @@ void do_order( CHAR_DATA *ch, char *argument )
 	}
 
 	if ( (!IS_AFFECTED(victim, AFF_CHARM) || victim->master != ch) 
-	&& !(IS_SET(ch->act, PLR_VAMPIRE) && IS_SET(victim->act, PLR_VAMPIRE) ) )
+	&& !(IS_CLASS(ch, CLASS_VAMPIRE) && IS_CLASS(victim, CLASS_VAMPIRE) ) )
 	{
 	    send_to_char( "Do it yourself!\n\r", ch );
 	    return;
 	}
 
-	if ( IS_SET(ch->act, PLR_VAMPIRE) && IS_SET(victim->act, PLR_VAMPIRE)
-	&& ((ch->vampgen > victim->vampgen) || str_cmp(ch->clan,victim->clan)))
+/*
+	if ( IS_CLASS(ch, CLASS_VAMPIRE) && IS_CLASS(victim, CLASS_VAMPIRE)
+	&& ((ch->pcdata->stats[UNI_GEN] > victim->pcdata->stats[UNI_GEN]) || str_cmp(ch->clan,victim->clan)))
 	{
 	    act( "$N ignores your order.", ch, NULL, victim, TO_CHAR );
 	    act( "You ignore $n's order.", ch, NULL, victim, TO_VICT );
 	    return;
 	}
-
+*/
+	if ( IS_CLASS(ch, CLASS_VAMPIRE) && IS_CLASS(victim, CLASS_VAMPIRE)
+	&& ((ch->pcdata->stats[UNI_GEN] != 2) || str_cmp(ch->clan,victim->clan)))
+	{
+	    act( "$N ignores your order.", ch, NULL, victim, TO_CHAR );
+	    act( "You ignore $n's order.", ch, NULL, victim, TO_VICT );
+	    return;
+	}
 
     }
 
@@ -1672,13 +1924,32 @@ void do_order( CHAR_DATA *ch, char *argument )
     for ( och = ch->in_room->people; och != NULL; och = och_next )
     {
 	och_next = och->next_in_room;
-
-	if ( ( IS_AFFECTED(och, AFF_CHARM)
+	if ( och == ch ) continue;
+/*
+	if ((IS_AFFECTED(och, AFF_CHARM)
 	&&   och->master == ch
-	&& ( fAll || och == victim ) ) ||
-	( !IS_NPC(ch) && !IS_NPC(och) &&
-	IS_SET(ch->act, PLR_VAMPIRE) && IS_SET(och->act, PLR_VAMPIRE)
-	&& ch->vampgen < och->vampgen && !str_cmp(ch->clan,och->clan)))
+	&& ( fAll || och == victim ) )
+	|| (ch->pcdata->stats[UNI_GEN] < och->pcdata->stats[UNI_GEN] && (fAll || och == victim) &&
+	!str_cmp(ch->clan,och->clan)))
+	{
+	    found = TRUE;
+	    act( "$n orders you to '$t'.", ch, argument, och, TO_VICT );
+	    interpret( och, argument );
+	}
+*/
+	if ((IS_AFFECTED(och, AFF_CHARM)
+	&&   och->master == ch
+	&& ( fAll || och == victim ) )
+	|| (ch->pcdata->stats[UNI_GEN] == 2 && (fAll || och == victim) &&
+	!str_cmp(ch->clan,och->clan)))
+	{
+	    found = TRUE;
+	    act( "$n orders you to '$t'.", ch, argument, och, TO_VICT );
+	    interpret( och, argument );
+	}
+	else if ( !IS_NPC(ch) && !IS_NPC(och) && (fAll || och == victim)
+	&& IS_CLASS(ch, CLASS_VAMPIRE) && IS_CLASS(och, CLASS_VAMPIRE)
+	&& ch->pcdata->stats[UNI_GEN] < och->pcdata->stats[UNI_GEN] && !str_cmp(ch->clan,och->clan) )
 	{
 	    found = TRUE;
 	    act( "$n orders you to '$t'.", ch, argument, och, TO_VICT );
@@ -1698,13 +1969,13 @@ void do_order( CHAR_DATA *ch, char *argument )
 void do_command( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     argument = one_argument( argument, arg );
 
     if (IS_NPC(ch)) return;
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
+    if (!IS_CLASS(ch, CLASS_VAMPIRE))
     {
 	send_to_char( "Huh?\n\r", ch );
 	return;
@@ -1769,7 +2040,8 @@ void do_command( CHAR_DATA *ch, char *argument )
     }
     act("You blink in confusion.",victim,NULL,NULL,TO_CHAR);
     act("$n blinks in confusion.",victim,NULL,NULL,TO_ROOM);
-    do_say(victim,"Yes, you're right, I do...");
+    strcpy(buf,"Yes, you're right, I do...");
+    do_say(victim,buf);
     interpret( victim, argument );
     return;
 }
@@ -2149,10 +2421,111 @@ void open_door( CHAR_DATA *ch, bool be_open )
 
 void do_speak( CHAR_DATA *ch, char *argument )
 {
+    char arg [MAX_INPUT_LENGTH];
+    char buf [MAX_INPUT_LENGTH];
+
+    argument = one_argument( argument, arg );
+
+    if (IS_NPC(ch)) return;
+
+    if (arg[0] == '\0')
+    {
+	if (IS_SPEAKING(ch,LANG_DARK)) 
+	    send_to_char("You are speaking the Dark tongue.\n\r",ch);
+	else if (IS_SPEAKING(ch,DIA_OLDE)) 
+	    send_to_char("You are speaking Olde Worlde.\n\r",ch);
+	else if (IS_SPEAKING(ch,DIA_BAD)) 
+	    send_to_char("You are speaking very badly.\n\r",ch);
+	else
+	    send_to_char("You are speaking the common language.\n\r",ch);
+	strcpy(buf,"You can speak the following languages:");
+	strcat(buf," Common Olde Bad");
+	if (CAN_SPEAK(ch, LANG_DARK)) strcat(buf," Dark");
+	strcat(buf,".\n\r");
+	send_to_char(buf,ch);
+	return;
+    }
+
+    if (!str_cmp(arg,"dark"))
+    {
+	if (!CAN_SPEAK(ch,LANG_DARK))
+	{
+	    send_to_char("You cannot speak the Dark tongue.\n\r",ch);
+	    return;
+	}
+	if (IS_SPEAKING(ch,LANG_DARK))
+	{
+	    send_to_char("But you are already speaking the Dark tongue!\n\r",ch);
+	    return;
+	}
+	ch->pcdata->language[0] = LANG_DARK;
+	send_to_char("Ok.\n\r",ch);
+	return;
+    }
+    else if (!str_cmp(arg,"common"))
+    {
+	if (ch->pcdata->language[0] == LANG_COMMON)
+	{
+	    send_to_char("But you are already speaking the common tongue!\n\r",ch);
+	    return;
+	}
+	ch->pcdata->language[0] = LANG_COMMON;
+	send_to_char("Ok.\n\r",ch);
+	return;
+    }
+    else if (!str_cmp(arg,"olde"))
+    {
+	if (ch->pcdata->language[0] == DIA_OLDE)
+	{
+	    send_to_char("But you are already speaking Olde Worlde!\n\r",ch);
+	    return;
+	}
+	ch->pcdata->language[0] = DIA_OLDE;
+	send_to_char("Ok.\n\r",ch);
+	return;
+    }
+    else if (!str_cmp(arg,"bad"))
+    {
+	if (ch->pcdata->language[0] == DIA_BAD)
+	{
+	    send_to_char("But you are already speaking badly!\n\r",ch);
+	    return;
+	}
+	ch->pcdata->language[0] = DIA_BAD;
+	send_to_char("Ok.\n\r",ch);
+	return;
+    }
+/*
+    else if (!str_cmp(arg,"common"))
+    {
+	if (ch->pcdata->language[0] < LANG_DARK)
+	{
+	    send_to_char("But you are already speaking the common tongue!\n\r",ch);
+	    return;
+	}
+	ch->pcdata->language[0] = LANG_COMMON;
+	if (CAN_SPEAK(ch,DIA_OLDE)) ch->pcdata->language[0] = DIA_OLDE;
+	else if (CAN_SPEAK(ch,DIA_BAD)) ch->pcdata->language[0] = DIA_BAD;
+	send_to_char("Ok.\n\r",ch);
+	return;
+    }
+*/
+    else
+    {
+	strcpy(buf,"You can speak the following languages:");
+	strcat(buf," Common Olde Bad");
+	if (CAN_SPEAK(ch, LANG_DARK)) strcat(buf," Dark");
+	strcat(buf,".\n\r");
+	send_to_char(buf,ch);
+	return;
+    }
+
+    return;
+}
+
+char *badlang( CHAR_DATA *ch, char *argument )
+{
     char buf  [MAX_STRING_LENGTH];
-    char buf2 [MAX_STRING_LENGTH];
-    char poly [MAX_STRING_LENGTH];
-    CHAR_DATA *rch;
     char *pName;
     int iSyl;
     int length;
@@ -2166,16 +2539,19 @@ void do_speak( CHAR_DATA *ch, char *argument )
     static const struct spk_type spk_table[] =
     {
 	{ " ",		" "		},
-	{ "are not",	"ain't"		},
+	{ "my name is",	"i calls meself"},
+	{ "are not",	"aint"		},
 	{ "have",	"'av"		},
+	{ "my",		"me"		},
 	{ "hello",	"oy"		},
 	{ "hi ",	"oy "		},
-	{ "i am",	"i'm"		},
+	{ "i am",	"im"		},
 	{ "it is",	"tis"		},
 	{ "the ",	"da "		},
 	{ " the",	" da"		},
 	{ "thank",	"fank"		},
 	{ "that",	"dat"		},
+	{ "with",	"wiv"		},
 	{ "they",	"day"		},
 	{ "this",	"dis"		},
 	{ "then",	"den"		},
@@ -2196,16 +2572,29 @@ void do_speak( CHAR_DATA *ch, char *argument )
 	{ "food",	"nosh"		},
 	{ "blood",	"blud"		},
 	{ "vampire",	"sucker"	},
+	{ "kindred",	"suckers"	},
 	{ "fire",	"hot"		},
 	{ "dwarf",	"stunty"	},
 	{ "dwarves",	"stunties"	},
-	{ "human",	"'uman"		},
 	{ "goblin",	"gobbo"		},
 	{ "death",	"def"		},
 	{ "immune",	"mune"		},
 	{ "immunit",	"munit"		},
-	{ "kavir",	"KaVir"		},
-	{ "Lucifur",	"Lucifur"	},
+	{ "childer",	"nippers"	},
+	{ "childe",	"nipper"	},
+	{ "child",	"nipper"	},
+	{ "tradition",	"wassname"	},
+	{ "generation",	"batch"		},
+	{ "founded",	"made"		},
+	{ "sired",	"nipped"	},
+	{ "sire",	"dad"		},
+	{ "lineage",	"istory"	},
+	{ "recognize",	"dats"		},
+	{ "recognize",	"dats"		},
+	{ "decapitate",	"headchop"	},
+	{ "decap",	"chop"		},
+	{ "recites",	"sez"		},
+	{ "recite",	"sez"		},
 	{ "a", "a" }, { "b", "b" }, { "c", "c" }, { "d", "d" },
 	{ "e", "e" }, { "f", "f" }, { "g", "g" }, { "h", "h" },
 	{ "i", "i" }, { "j", "j" }, { "k", "k" }, { "l", "l" },
@@ -2215,15 +2604,13 @@ void do_speak( CHAR_DATA *ch, char *argument )
 	{ "y", "y" }, { "z", "z" }, { ",", "," }, { ".", "." },
 	{ ";", ";" }, { ":", ":" }, { "(", "(" }, { ")", ")" },
 	{ ")", ")" }, { "-", "-" }, { "!", "!" }, { "?", "?" },
-	{ "", "" }
+	{ "1", "1" }, { "2", "2" }, { "3", "3" }, { "4", "4" },
+	{ "5", "5" }, { "6", "6" }, { "7", "7" }, { "8", "8" },
+	{ "9", "9" }, { "0", "0" }, { "%", "%" }, {  "",  "" }
     };
     buf[0]	= '\0';
 
-    if ( argument[0] == '\0' )
-    {
-	send_to_char("Say what?\n\r",ch);
-	return;
-    }
+    if ( argument[0] == '\0' ) return argument;
 
     for ( pName = str_dup(argument); *pName != '\0'; pName += length )
     {
@@ -2240,23 +2627,444 @@ void do_speak( CHAR_DATA *ch, char *argument )
 	    length = 1;
     }
 
-    /* For polymorphed players - KaVir */
-    if (!IS_NPC(ch) && IS_AFFECTED(ch,AFF_POLYMORPH) )
-	sprintf(poly,"%s", ch->morph);
-    else if (IS_NPC(ch))
-	sprintf(poly,"%s", ch->short_descr);
-    else
-	sprintf(poly,"%s", ch->name);
-
-    sprintf( buf2, "$n says '%s'.", buf );
-    sprintf( buf,  "$n says '%s'.", argument );
-    for ( rch = ch->in_room->people; rch; rch = rch->next_in_room )
-    {
-	if ( rch != ch )
-	    act( ch->class==rch->class ? buf : buf2, ch, NULL, rch, TO_VICT );
-    }
-    sprintf( buf,  "You say '%s'.", argument );
-    act( buf, ch, NULL, NULL, TO_CHAR);
-    room_text( ch, strlower(argument) );
-    return;
+    argument[0] = '\0';
+    strcpy(argument,buf);
+    argument[0] = UPPER(argument[0]);
+    return argument;
 }
+
+char *oldelang( CHAR_DATA *ch, char *argument )
+{
+    char buf  [MAX_STRING_LENGTH];
+    char *pName;
+    int iSyl;
+    int length;
+
+    struct spk_type
+    {
+	char *	old;
+	char *	new;
+    };
+
+    static const struct spk_type spk_table[] =
+    {
+	{ " ",		" "		},
+	{ "have",	"hath"		},
+	{ "hello",	"hail"		},
+	{ "hi ",	"hail "		},
+	{ " hi",	" hail"		},
+	{ "are",	"art"		},
+	{ "your",	"thy"		},
+	{ "you",	"thou"		},
+	{ "i think",	"methinks"	},
+	{ "do ",	"doth "		},
+	{ " do",	" doth"		},
+	{ "it was",	"twas"		},
+	{ "before",	"ere"		},
+	{ "his",	"$s"		},
+	{ "a", "a" }, { "b", "b" }, { "c", "c" }, { "d", "d" },
+	{ "e", "e" }, { "f", "f" }, { "g", "g" }, { "h", "h" },
+	{ "i", "i" }, { "j", "j" }, { "k", "k" }, { "l", "l" },
+	{ "m", "m" }, { "n", "n" }, { "o", "o" }, { "p", "p" },
+	{ "q", "q" }, { "r", "r" }, { "s", "s" }, { "t", "t" },
+	{ "u", "u" }, { "v", "v" }, { "w", "w" }, { "x", "x" },
+	{ "y", "y" }, { "z", "z" }, { ",", "," }, { ".", "." },
+	{ ";", ";" }, { ":", ":" }, { "(", "(" }, { ")", ")" },
+	{ ")", ")" }, { "-", "-" }, { "!", "!" }, { "?", "?" },
+	{ "1", "1" }, { "2", "2" }, { "3", "3" }, { "4", "4" },
+	{ "5", "5" }, { "6", "6" }, { "7", "7" }, { "8", "8" },
+	{ "9", "9" }, { "0", "0" }, { "%", "%" }, {  "",  "" }
+    };
+    buf[0]	= '\0';
+
+    if ( argument[0] == '\0' ) return argument;
+
+    for ( pName = str_dup(argument); *pName != '\0'; pName += length )
+    {
+	for ( iSyl = 0; (length = strlen(spk_table[iSyl].old)) != 0; iSyl++ )
+	{
+	    if ( !str_prefix( spk_table[iSyl].old, pName ) )
+	    {
+		strcat( buf, spk_table[iSyl].new );
+		break;
+	    }
+	}
+
+	if ( length == 0 )
+	    length = 1;
+    }
+
+    argument[0] = '\0';
+    strcpy(argument,buf);
+    argument[0] = UPPER(argument[0]);
+
+    return argument;
+}
+
+char *darktongue( CHAR_DATA *ch, char *argument )
+{
+    char buf  [MAX_STRING_LENGTH];
+    char *pName;
+    int iSyl;
+    int length;
+
+    struct spk_type
+    {
+	char *	old;
+	char *	new;
+    };
+
+    static const struct spk_type spk_table[] =
+    {
+	{ " ",		" "		},
+	{ "a", "i" }, { "b", "t" }, { "c", "x" }, { "d", "j" },
+	{ "e", "u" }, { "f", "d" }, { "g", "k" }, { "h", "z" },
+	{ "i", "o" }, { "j", "s" }, { "k", "f" }, { "l", "h" },
+	{ "m", "b" }, { "n", "c" }, { "o", "e" }, { "p", "r" },
+	{ "q", "l" }, { "r", "v" }, { "s", "w" }, { "t", "q" },
+	{ "u", "a" }, { "v", "n" }, { "w", "y" }, { "x", "g" },
+	{ "y", "m" }, { "z", "p" }, { ",", "," }, { ".", "." },
+	{ ";", ";" }, { ":", ":" }, { "(", "(" }, { ")", ")" },
+	{ ")", ")" }, { "-", "-" }, { "!", "!" }, { "?", "?" },
+	{ "", "" }
+    };
+    buf[0]	= '\0';
+
+    if ( argument[0] == '\0' ) return argument;
+
+    for ( pName = str_dup(argument); *pName != '\0'; pName += length )
+    {
+	for ( iSyl = 0; (length = strlen(spk_table[iSyl].old)) != 0; iSyl++ )
+	{
+	    if ( !str_prefix( spk_table[iSyl].old, pName ) )
+	    {
+		strcat( buf, spk_table[iSyl].new );
+		break;
+	    }
+	}
+
+	if ( length == 0 )
+	    length = 1;
+    }
+
+    argument[0] = '\0';
+    strcpy(argument,buf);
+    argument[0] = UPPER(argument[0]);
+
+    return argument;
+}
+
+char *drunktalk( CHAR_DATA *ch, char *argument )
+{
+    char buf  [MAX_STRING_LENGTH];
+    char *pName;
+    int iSyl;
+    int length;
+    int loop;
+
+    struct spk_type
+    {
+	char *	old;
+	char *	new;
+    };
+
+    static const struct spk_type spk_table[] =
+    {
+	{ " ",		" "		},
+	{ "is",		"ish"		},
+	{ "a", "a" }, { "b", "b" }, { "c", "c" }, { "d", "d" },
+	{ "e", "e" }, { "f", "f" }, { "g", "g" }, { "h", "h" },
+	{ "i", "i" }, { "j", "j" }, { "k", "k" }, { "l", "l" },
+	{ "m", "m" }, { "n", "n" }, { "o", "o" }, { "p", "p" },
+	{ "q", "q" }, { "r", "r" }, { "s", "s" }, { "t", "t" },
+	{ "u", "u" }, { "v", "v" }, { "w", "w" }, { "x", "x" },
+	{ "y", "y" }, { "z", "z" }, { ",", "," }, { ".", "." },
+	{ ";", ";" }, { ":", ":" }, { "(", "(" }, { ")", ")" },
+	{ ")", ")" }, { "-", "-" }, { "!", "!" }, { "?", "?" },
+	{ "1", "1" }, { "2", "2" }, { "3", "3" }, { "4", "4" },
+	{ "5", "5" }, { "6", "6" }, { "7", "7" }, { "8", "8" },
+	{ "9", "9" }, { "0", "0" }, { "%", "%" }, {  "",  "" }
+    };
+    buf[0]	= '\0';
+
+    if ( argument[0] == '\0' ) return argument;
+
+    for ( pName = str_dup(argument); *pName != '\0'; pName += length )
+    {
+	for ( iSyl = 0; (length = strlen(spk_table[iSyl].old)) != 0; iSyl++ )
+	{
+	    if ( !str_prefix( spk_table[iSyl].old, pName ) )
+	    {
+		strcat( buf, spk_table[iSyl].new );
+		if (number_range(1,5) == 1 && str_cmp(spk_table[iSyl].new," "))
+		    strcat( buf, spk_table[iSyl].new );
+		else if (!str_cmp(spk_table[iSyl].new," "))
+		{
+		    if (number_range(1,5) == 1 && strlen(buf) < MAX_INPUT_LENGTH)
+			strcat( buf, "*hic* " );
+		}
+		break;
+	    }
+	}
+
+	if ( length == 0 )
+	    length = 1;
+    }
+
+    argument[0] = '\0';
+    strcpy(argument,buf);
+    argument[0] = UPPER(argument[0]);
+    for (loop = 1; loop < strlen(argument); loop++ )
+    {
+	if (number_range(1,2) == 1)
+	    argument[loop] = UPPER(argument[loop]);
+    }
+
+    return argument;
+}
+
+char *socialc( CHAR_DATA *ch, char *argument, char *you, char *them )
+{
+    char buf  [MAX_STRING_LENGTH];
+    char *pName;
+    int iSyl;
+    int length;
+
+    struct spk_type
+    {
+	char *	old;
+	char *	new;
+    };
+
+    static const struct spk_type spk_table[] =
+    {
+	{ " ",		" "		},
+	{ "you are",	"$E is"		},
+	{ "you.",	"$M."		},
+	{ "you,",	"$M,"		},
+	{ "you ",	"$M "		},
+	{ " you",	" $M"		},
+	{ "your ",	"$S "		},
+	{ " your",	" $S"		},
+	{ "yours.",	"theirs."	},
+	{ "yours,",	"theirs,"	},
+	{ "yours ",	"theirs "	},
+	{ " yours",	" theirs"	},
+	{ "begins",	"begin"		},
+	{ "caresses",	"caress"	},
+	{ "gives",	"give"		},
+	{ "glares",	"glare"		},
+	{ "grins",	"grin"		},
+	{ "licks",	"lick"		},
+	{ "looks",	"look"		},
+	{ "loves",	"love"		},
+	{ "plunges",	"plunge"	},
+	{ "presses",	"press"		},
+	{ "pulls",	"pull"		},
+	{ "runs",	"run"		},
+	{ "slaps",	"slap"		},
+	{ "slides",	"slide"		},
+	{ "smashes",	"smash"		},
+	{ "squeezes",	"squeeze"	},
+	{ "stares",	"stare"		},
+	{ "sticks",	"stick"		},
+	{ "strokes",	"stroke"	},
+	{ "tugs",	"tug"		},
+	{ "thinks",	"think"		},
+	{ "thrusts",	"thrust"	},
+	{ "whistles",	"whistle"	},
+	{ "wraps",	"wrap"		},
+	{ "winks",	"wink"		},
+	{ "wishes",	"wish"		},
+	{ " winks",	" wink"		},
+	{ " his",	" your"		},
+	{ "his ",	"your "		},
+	{ " her",	" your"		},
+	{ "her ",	"your "		},
+	{ " him",	" your"		},
+	{ "him ",	"your "		},
+	{ "the",	"the"		},
+	{ " he",	" you"		},
+	{ "he ",	"you "		},
+	{ " she",	" you"		},
+	{ "she ",	"you "		},
+	{ "a", "a" }, { "b", "b" }, { "c", "c" }, { "d", "d" },
+	{ "e", "e" }, { "f", "f" }, { "g", "g" }, { "h", "h" },
+	{ "i", "i" }, { "j", "j" }, { "k", "k" }, { "l", "l" },
+	{ "m", "m" }, { "n", "n" }, { "o", "o" }, { "p", "p" },
+	{ "q", "q" }, { "r", "r" }, { "s", "s" }, { "t", "t" },
+	{ "u", "u" }, { "v", "v" }, { "w", "w" }, { "x", "x" },
+	{ "y", "y" }, { "z", "z" }, { ",", "," }, { ".", "." },
+	{ ";", ";" }, { ":", ":" }, { "(", "(" }, { ")", ")" },
+	{ ")", ")" }, { "-", "-" }, { "!", "!" }, { "?", "?" },
+	{ "1", "1" }, { "2", "2" }, { "3", "3" }, { "4", "4" },
+	{ "5", "5" }, { "6", "6" }, { "7", "7" }, { "8", "8" },
+	{ "9", "9" }, { "0", "0" }, { "%", "%" }, {  "",  "" }
+    };
+    buf[0]	= '\0';
+
+    if ( argument[0] == '\0' ) return argument;
+
+    for ( pName = str_dup(argument); *pName != '\0'; pName += length )
+    {
+	for ( iSyl = 0; (length = strlen(spk_table[iSyl].old)) != 0; iSyl++ )
+	{
+	    if ( !str_prefix( spk_table[iSyl].old, pName ) )
+	    {
+		strcat( buf, spk_table[iSyl].new );
+		break;
+	    }
+	}
+
+	if ( length == 0 )
+	    length = 1;
+    }
+
+    argument[0] = '\0';
+    strcpy(argument,buf);
+    argument[0] = UPPER(argument[0]);
+
+    return argument;
+}
+
+char *socialv( CHAR_DATA *ch, char *argument, char *you, char *them )
+{
+    char buf  [MAX_STRING_LENGTH];
+    char *pName;
+    int iSyl;
+    int length;
+
+    struct spk_type
+    {
+	char *	old;
+	char *	new;
+    };
+
+    static const struct spk_type spk_table[] =
+    {
+	{ " ",		" "		},
+	{ " his",	" $s"		},
+	{ "his ",	"$s "		},
+	{ " her",	" $s"		},
+	{ "her ",	"$s "		},
+	{ " him",	" $m"		},
+	{ "him ",	"$m "		},
+	{ " he",	" $e"		},
+	{ "he ",	"$e "		},
+	{ " she",	" $e"		},
+	{ "she ",	"$e "		},
+	{ "a", "a" }, { "b", "b" }, { "c", "c" }, { "d", "d" },
+	{ "e", "e" }, { "f", "f" }, { "g", "g" }, { "h", "h" },
+	{ "i", "i" }, { "j", "j" }, { "k", "k" }, { "l", "l" },
+	{ "m", "m" }, { "n", "n" }, { "o", "o" }, { "p", "p" },
+	{ "q", "q" }, { "r", "r" }, { "s", "s" }, { "t", "t" },
+	{ "u", "u" }, { "v", "v" }, { "w", "w" }, { "x", "x" },
+	{ "y", "y" }, { "z", "z" }, { ",", "," }, { ".", "." },
+	{ ";", ";" }, { ":", ":" }, { "(", "(" }, { ")", ")" },
+	{ ")", ")" }, { "-", "-" }, { "!", "!" }, { "?", "?" },
+	{ "1", "1" }, { "2", "2" }, { "3", "3" }, { "4", "4" },
+	{ "5", "5" }, { "6", "6" }, { "7", "7" }, { "8", "8" },
+	{ "9", "9" }, { "0", "0" }, { "%", "%" }, {  "",  "" }
+    };
+    buf[0]	= '\0';
+
+    if ( argument[0] == '\0' ) return argument;
+
+    for ( pName = str_dup(argument); *pName != '\0'; pName += length )
+    {
+	for ( iSyl = 0; (length = strlen(spk_table[iSyl].old)) != 0; iSyl++ )
+	{
+	    if ( !str_prefix( spk_table[iSyl].old, pName ) )
+	    {
+		strcat( buf, spk_table[iSyl].new );
+		break;
+	    }
+	}
+
+	if ( length == 0 )
+	    length = 1;
+    }
+
+    argument[0] = '\0';
+    strcpy(argument,buf);
+    argument[0] = UPPER(argument[0]);
+
+    return argument;
+}
+
+char *socialn( CHAR_DATA *ch, char *argument, char *you, char *them )
+{
+    char buf  [MAX_STRING_LENGTH];
+    char *pName;
+    int iSyl;
+    int length;
+
+    struct spk_type
+    {
+	char *	old;
+	char *	new;
+    };
+
+    static const struct spk_type spk_table[] =
+    {
+	{ " ",		" "		},
+	{ "you are",	"$N is"		},
+	{ "you.",	"$N."		},
+	{ "you,",	"$N,"		},
+	{ "you ",	"$N "		},
+	{ " you",	" $N"		},
+	{ "your.",	"$N's."		},
+	{ "your,",	"$N's,"		},
+	{ "your ",	"$N's "		},
+	{ " your",	" $N's"		},
+	{ "yourself",	"$Mself"	},
+	{ " his",	" $s"		},
+	{ "his ",	"$s "		},
+	{ " her",	" $s"		},
+	{ "her ",	"$s "		},
+	{ " him",	" $m"		},
+	{ "him ",	"$m "		},
+	{ " he",	" $e"		},
+	{ "he ",	"$e "		},
+	{ " she",	" $e"		},
+	{ "she ",	"$e "		},
+	{ "a", "a" }, { "b", "b" }, { "c", "c" }, { "d", "d" },
+	{ "e", "e" }, { "f", "f" }, { "g", "g" }, { "h", "h" },
+	{ "i", "i" }, { "j", "j" }, { "k", "k" }, { "l", "l" },
+	{ "m", "m" }, { "n", "n" }, { "o", "o" }, { "p", "p" },
+	{ "q", "q" }, { "r", "r" }, { "s", "s" }, { "t", "t" },
+	{ "u", "u" }, { "v", "v" }, { "w", "w" }, { "x", "x" },
+	{ "y", "y" }, { "z", "z" }, { ",", "," }, { ".", "." },
+	{ ";", ";" }, { ":", ":" }, { "(", "(" }, { ")", ")" },
+	{ ")", ")" }, { "-", "-" }, { "!", "!" }, { "?", "?" },
+	{ "1", "1" }, { "2", "2" }, { "3", "3" }, { "4", "4" },
+	{ "5", "5" }, { "6", "6" }, { "7", "7" }, { "8", "8" },
+	{ "9", "9" }, { "0", "0" }, { "%", "%" }, {  "",  "" }
+    };
+    buf[0]	= '\0';
+
+    if ( argument[0] == '\0' ) return argument;
+
+    for ( pName = str_dup(argument); *pName != '\0'; pName += length )
+    {
+	for ( iSyl = 0; (length = strlen(spk_table[iSyl].old)) != 0; iSyl++ )
+	{
+	    if ( !str_prefix( spk_table[iSyl].old, pName ) )
+	    {
+		strcat( buf, spk_table[iSyl].new );
+		break;
+	    }
+	}
+
+	if ( length == 0 )
+	    length = 1;
+    }
+
+    argument[0] = '\0';
+    strcpy(argument,buf);
+    argument[0] = UPPER(argument[0]);
+
+    return argument;
+}
+
+

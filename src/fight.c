@@ -31,7 +31,7 @@
 /*
  * Local functions.
  */
-bool	check_dodge	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool	check_dodge	args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dt ) );
 void	check_killer	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 bool	check_parry	args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dt ) );
 void	dam_message	args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dam,
@@ -39,22 +39,13 @@ void	dam_message	args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dam,
 void	death_cry	args( ( CHAR_DATA *ch ) );
 void	group_gain	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 int	xp_compute	args( ( CHAR_DATA *gch, CHAR_DATA *victim ) );
-bool	is_safe		args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
-void	make_corpse	args( ( CHAR_DATA *ch ) );
-void	one_hit		args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int handtype ) );
-void	raw_kill	args( ( CHAR_DATA *victim ) );
 void	set_fighting	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
-void	disarm		args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
-void	trip		args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
-void	improve_wpn	args( ( CHAR_DATA *ch, int dtype, bool right_hand ) );
-void	improve_stance	args( ( CHAR_DATA *ch ) );
-void	skillstance	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
-void	show_spell	args( ( CHAR_DATA *ch, int dtype ) );
-void	fightaction	args( ( CHAR_DATA *ch, CHAR_DATA *victim, int actype, int dtype, int wpntype ) );
-void    crack_head      args( ( CHAR_DATA *ch, OBJ_DATA *obj, char *argument ) );
-void	critical_hit	args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int dam) );
-void	take_item	args( ( CHAR_DATA *ch, OBJ_DATA *obj ) );
-void	clear_stats	args( ( CHAR_DATA *ch ) );
+bool	can_counter	args( ( CHAR_DATA *ch) );
+bool	can_bypass	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+int	number_attacks	args( ( CHAR_DATA *ch ) );
+int	dambonus	args( ( CHAR_DATA *ch, CHAR_DATA *victim, 
+			    int dam, int stance) );
+void	update_damcap	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 
 
 
@@ -69,6 +60,7 @@ void violence_update( void )
     CHAR_DATA *victim;
     CHAR_DATA *rch;
     CHAR_DATA *rch_next;
+    CHAR_DATA *mount;
 
     for ( ch = char_list; ch != NULL; ch = ch->next )
     {
@@ -77,7 +69,8 @@ void violence_update( void )
 	if ( ( victim = ch->fighting ) == NULL || ch->in_room == NULL )
 	    continue;
 
-	if ( IS_AWAKE(ch) && ch->in_room == victim->in_room )
+	if ( IS_AWAKE(ch) && IS_AWAKE(victim) && 
+		ch->in_room == victim->in_room )
 	    multi_hit( ch, victim, TYPE_UNDEFINED );
 	else
 	    stop_fighting( ch, FALSE );
@@ -97,9 +90,9 @@ void violence_update( void )
 		/*
 		 * Mount's auto-assist their riders and vice versa.
 		 */
-		if ( rch->mount != NULL && rch->mount == ch )
+		if ( (mount = rch->mount) != NULL )
 		{
-		    multi_hit( rch, victim, TYPE_UNDEFINED );
+		    if (mount == ch) multi_hit( rch, victim, TYPE_UNDEFINED );
 		    continue;
 		}
 		/*
@@ -165,8 +158,28 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
     int       unarmed;
     int       wieldorig = 0;
     int       wieldtype = 0;
+    int       maxcount;
+    int       countup;
 
     if ( ch->position < POS_SLEEPING ) return;
+
+    if ( dt == gsn_headbutt )
+    {
+	one_hit( ch, victim, dt, 1 );
+	return;
+    }
+
+    if (!IS_NPC(ch) && IS_ITEMAFF(ch, ITEMA_PEACE))
+    {
+	send_to_char( "You are unable to attack them.\n\r", ch );
+	return;
+    }
+
+    if (!IS_NPC(victim) && IS_ITEMAFF(victim, ITEMA_PEACE))
+    {
+	send_to_char( "You can't seem to attack them.\n\r", ch );
+	return;
+    }
 
     wield1 = get_eq_char( ch, WEAR_WIELD );
     wield2 = get_eq_char( ch, WEAR_HOLD );
@@ -178,12 +191,26 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
     if      ( wieldtype == 2 ) wield = wield2;
     else                       wield = wield1;
 
+    if (!IS_NPC(ch) && ch->stance[0] > 0 && number_percent() == 1)
+    {
+	int stance = ch->stance[0];
+	if (ch->stance[stance] >= 200)
+	{
+	    special_move(ch,victim);
+	    return;
+	}
+    }
+
     unarmed = 0;
+/*
     if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
 	ch->cmbt[unarmed] != 0 && wieldorig == 0 )
 	fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
     else
+*/
 	one_hit( ch, victim, dt, wieldtype );
+
+    if ( victim == NULL || victim->position != POS_FIGHTING ) return;
 
     /* Only want one spell per round from spell weapons...otherwise it's 
      * too powerful, and would unbalance player killing (as this is a PK mud).
@@ -208,7 +235,13 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 	}
     }
 
-    if ( !IS_NPC(victim) && number_percent( ) <= victim->pcdata->learned[gsn_fastdraw] )
+    if ( victim == NULL || victim->position != POS_FIGHTING ) return;
+
+    if ( ch->fighting != victim || dt == gsn_backstab || dt == gsn_headbutt )
+	return;
+
+    if ( !IS_NPC(victim) && !IS_SET(victim->special, SPC_WOLFMAN) &&
+	number_percent( ) <= victim->pcdata->learned[gsn_fastdraw] )
     {
     	OBJ_DATA *obj;
     	int wpntype  = 0;
@@ -240,162 +273,122 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 	    }
 	    do_draw(victim,"left");
 	}
-	if (wpntype  > 0) one_hit( victim, ch, TYPE_UNDEFINED,  1 );
+	if (wpntype  > 0) one_hit( victim, ch, TYPE_UNDEFINED, 1 );
+	if ( victim == NULL || victim->position != POS_FIGHTING ) return;
 	if (wpntype2 > 0) one_hit( victim, ch, TYPE_UNDEFINED, 2 );
+	if ( victim == NULL || victim->position != POS_FIGHTING ) return;
     }
 
-    if ( ch->fighting != victim || dt == gsn_backstab )
-	return;
-
-    if (IS_NPC(ch)) chance = ch->level * 2;
-    else
+    maxcount = number_attacks(ch);
+    if (!IS_NPC(ch))
     {
-    	wieldtype = wieldorig;
-    	if ( wieldorig == 3 ) { if (number_range(1,2) == 2) wieldtype = 2;
-		else wieldtype = 1;}
-	if (wieldtype == 1 && wield1 != NULL && wield1->value[3] >= 0 &&
-		wield1->value[3] <= 12) chance = ch->wpn[wield1->value[3]];
-	else if (wieldtype == 2 && wield2 != NULL && wield2->value[3] >= 0 &&
-		wield2->value[3] <= 12) chance = ch->wpn[wield2->value[3]];
-	else chance = ch->wpn[0];
-    }
-    if ( number_percent( ) < chance )
-    {
-    	unarmed = number_range(0,3);
-    	if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
-	ch->cmbt[unarmed] != 0 && wieldorig == 0 )
-	    fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
-	else
-    	    one_hit( ch, victim, -1, wieldtype );
-	if ( ch->fighting != victim ) return;
-    }
-
-    if (IS_NPC(ch)) chance = ch->level;
-    else
-    {
-    	wieldtype = wieldorig;
-    	if ( wieldorig == 3 ) { if (number_range(1,2) == 2) wieldtype = 2;
-		else wieldtype = 1;}
-	if (wieldtype == 1 && wield1 != NULL && wield1->value[3] >= 0 &&
-		wield1->value[3] <= 12) chance = ch->wpn[wield1->value[3]] / 2;
-	else if (wieldtype == 2 && wield2 != NULL && wield2->value[3] >= 0 &&
-		wield2->value[3] <= 12) chance = ch->wpn[wield2->value[3]] / 2;
-	else chance = ch->wpn[0] / 2;
-    }
-    if ( number_percent( ) < chance )
-    {
-    	unarmed = number_range(4,7);
-    	if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
-	ch->cmbt[unarmed] != 0 && wieldorig == 0 )
-	    fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
-	else
-    	    one_hit( ch, victim, -1, wieldtype );
-	if ( ch->fighting != victim ) return;
-    }
-
-    chance = IS_NPC(ch) ? ch->level / 2 : 0;
-    if ( number_percent( ) < chance )
-    {
-    	unarmed = number_range(0,7);
-    	if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
-	ch->cmbt[unarmed] != 0 && wieldorig == 0 )
-	    fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
-	else
+	chance = 0;
+	if (wield != NULL && wield->item_type == ITEM_WEAPON)
 	{
-    	    wieldtype = wieldorig;
-    	    if ( wieldorig == 3 ) { if (number_range(1,2) == 2) wieldtype = 2; else wieldtype = 1;}
-    	    one_hit( ch, victim, -1, wieldtype );
+	    int tempnum = wield->value[3];
+	    chance = (ch->wpn[tempnum]) * 0.5;
 	}
-	if ( ch->fighting != victim ) return;
+	else chance = (ch->wpn[0]) * 0.5;
+	if (number_percent() <= chance) maxcount += 1;
     }
-
-    unarmed = number_range(0,7);
-    if ( !IS_NPC(ch) && IS_STANCE(ch, STANCE_VIPER) && number_percent() > ch->stance[STANCE_VIPER] )
+    if (wieldorig == 3) maxcount += 1;
+    for (countup = 0; countup <= maxcount; countup++)
     {
-    	if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
-	ch->cmbt[unarmed] != 0 && wieldorig == 0 )
-	    fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
-	else
+/*
+	if (!IS_NPC(ch) && wieldorig == 0)
 	{
-    	    wieldtype = wieldorig;
-    	    if ( wieldorig == 3 ) { if (number_range(1,2) == 2) wieldtype = 2; else wieldtype = 1;}
-    	    one_hit( ch, victim, -1, wieldtype );
+	    if      (countup == 0) unarmed = number_range(0,3);
+	    else if (countup == 1) unarmed = number_range(4,7);
+    	    else                   unarmed = number_range(0,7);
+    	    if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
+		ch->cmbt[unarmed] != 0 && wieldorig == 0 )
+	    {
+		fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
+		continue;
+	    }
 	}
-	if ( ch->fighting != victim ) return;
-    }
-
-    unarmed = number_range(0,7);
-    if ( !IS_NPC(ch) && IS_STANCE(ch, STANCE_VIPER) && number_percent() > ch->stance[STANCE_VIPER] - 100 )
-    {
-    	if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
-	ch->cmbt[unarmed] != 0 && wieldorig == 0 )
-	    fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
-	else
+*/
+	wieldtype = wieldorig;
+	if ( wieldorig == 3 )
 	{
-    	    wieldtype = wieldorig;
-    	    if ( wieldorig == 3 ) { if (number_range(1,2) == 2) wieldtype = 2; else wieldtype = 1;}
-    	    one_hit( ch, victim, -1, wieldtype );
+	    if (number_range(1,2) == 2) wieldtype = 2;
+	    else wieldtype = 1;
 	}
-	if ( ch->fighting != victim ) return;
-    }
-
-    unarmed = number_range(0,7);
-    if ( !IS_NPC(ch) && IS_VAMPAFF(ch, VAM_CELERITY) && number_percent() > 33 )
-    {
-    	if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
-	ch->cmbt[unarmed] != 0 && wieldorig == 0 )
-	    fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
-	else
-	{
-    	    wieldtype = wieldorig;
-    	    if ( wieldorig == 3 ) { if (number_range(1,2) == 2) wieldtype = 2; else wieldtype = 1;}
-    	    one_hit( ch, victim, -1, wieldtype );
-	}
-	if ( ch->fighting != victim ) return;
-    }
-
-    unarmed = number_range(0,7);
-    if ( !IS_NPC(ch) && IS_VAMPAFF(ch, VAM_CELERITY) && number_percent() > 66 )
-    {
-    	if ( !IS_NPC(ch) && !IS_AFFECTED(ch, AFF_POLYMORPH) &&
-	ch->cmbt[unarmed] != 0 && wieldorig == 0 )
-	    fightaction(ch,victim,ch->cmbt[unarmed], dt, wieldtype);
-	else
-	{
-    	    wieldtype = wieldorig;
-    	    if ( wieldorig == 3 ) { if (number_range(1,2) == 2) wieldtype = 2; else wieldtype = 1;}
-    	    one_hit( ch, victim, -1, wieldtype );
-	}
+	one_hit( ch, victim, -1, wieldtype );
+	if ( victim == NULL || victim->position != POS_FIGHTING ) return;
 	if ( ch->fighting != victim ) return;
     }
 
     if (!IS_NPC(ch) && IS_VAMPAFF(ch,VAM_FANGS))
 	one_hit( ch, victim, ( TYPE_HIT + 10 ), 0 );
+    if ( victim == NULL || victim->position != POS_FIGHTING ) return;
+    if (!IS_NPC(ch))
+    {
+	if (IS_CLASS(ch, CLASS_DEMON)  && IS_DEMAFF(ch,DEM_HORNS) 
+		&& number_range(1,3) == 1)
+	multi_hit( ch, victim, gsn_headbutt );
+    }
+    if ( victim == NULL || victim->position != POS_FIGHTING ) return;
 
-    /* Vampires in serpent form have a chance of poisoning their opponent. */
-
-    if (!IS_NPC(ch) && IS_VAMPAFF(ch,VAM_FANGS) && IS_VAMPAFF(ch,VAM_CHANGED)
-	&& IS_POLYAFF(ch,POLY_SERPENT) && number_percent() > 75 )
+    if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) && IS_VAMPAFF(ch, VAM_SERPENTIS))
+	spell_poison( gsn_poison, (ch->level*number_range(5,10)),ch,victim );
+    else if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_WEREWOLF) && ch->pcdata->powers[WPOWER_SPIDER] > 0)
 	spell_poison( gsn_poison, (ch->level*number_range(5,10)),ch,victim );
 
     if (victim->itemaffect < 1) return;
     if (IS_NPC(victim) || victim->spl[1] < 4) level = victim->level;
-    else level = (victim->spl[1]/4);
-    if (IS_ITEMAFF(victim, ITEMA_SHOCKSHIELD))
+    else level = (victim->spl[1] * 0.25);
+    if (IS_ITEMAFF(victim, ITEMA_SHOCKSHIELD) && ch->position == POS_FIGHTING)
 	if ( (sn = skill_lookup( "lightning bolt" ) ) > 0)
 	    (*skill_table[sn].spell_fun) (sn,level,victim,ch);
-    if (IS_ITEMAFF(victim, ITEMA_FIRESHIELD))
+    if (IS_ITEMAFF(victim, ITEMA_FIRESHIELD) && ch->position == POS_FIGHTING)
 	if ( (sn = skill_lookup( "fireball" ) ) > 0)
 	    (*skill_table[sn].spell_fun) (sn,level,victim,ch);
-    if (IS_ITEMAFF(victim, ITEMA_ICESHIELD))
+    if (IS_ITEMAFF(victim, ITEMA_ICESHIELD) && ch->position == POS_FIGHTING)
 	if ( (sn = skill_lookup( "chill touch" ) ) > 0)
 	    (*skill_table[sn].spell_fun) (sn,level,victim,ch);
-    if (IS_ITEMAFF(victim, ITEMA_ACIDSHIELD))
+    if (IS_ITEMAFF(victim, ITEMA_ACIDSHIELD) && ch->position == POS_FIGHTING)
 	if ( (sn = skill_lookup( "acid blast" ) ) > 0)
+	    (*skill_table[sn].spell_fun) (sn,level,victim,ch);
+    if (IS_ITEMAFF(victim, ITEMA_CHAOSSHIELD) && ch->position == POS_FIGHTING)
+	if ( (sn = skill_lookup( "chaos blast" ) ) > 0)
 	    (*skill_table[sn].spell_fun) (sn,level,victim,ch);
     return;
 }
 
+
+int number_attacks( CHAR_DATA *ch )
+{
+    int count = 1;
+
+    if ( IS_NPC(ch) )
+    {
+	if (ch->level >= 50) count += 1;
+	if (ch->level >= 100) count += 1;
+	return count;
+    }
+
+    if ( IS_STANCE(ch, STANCE_VIPER) && number_percent() > 
+	ch->stance[STANCE_VIPER] * 0.5) count += 1;
+    else if ( IS_STANCE(ch, STANCE_MANTIS) && number_percent() > 
+	ch->stance[STANCE_MANTIS] * 0.5) count += 1;
+    else if ( IS_STANCE(ch, STANCE_TIGER) && number_percent() > 
+	ch->stance[STANCE_TIGER] * 0.5) count += 1;
+
+    if (!IS_NPC(ch))
+    {
+    	if ( IS_CLASS(ch, CLASS_VAMPIRE) && IS_VAMPAFF(ch, VAM_CELERITY) )
+		count += 1;
+    	else if (IS_CLASS(ch, CLASS_WEREWOLF) && ch->pcdata->powers[WPOWER_LYNX] > 2 )
+		count += 1;
+   	else if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_DEMON) && IS_DEMPOWER( ch, DEM_SPEED) )
+		count += 1;
+    }
+
+    if ( IS_ITEMAFF(ch, ITEMA_SPEED) ) count += 1;
+
+    return count;
+}
 
 
 /*
@@ -404,6 +397,7 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int handtype)
 {
     OBJ_DATA *wield;
+    OBJ_DATA *gloves;
     int victim_ac;
     int thac0;
     int thac0_00;
@@ -420,6 +414,18 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int handtype)
      */
     if ( victim->position == POS_DEAD || ch->in_room != victim->in_room )
 	return;
+
+    if (!IS_NPC(ch) && IS_ITEMAFF(ch, ITEMA_PEACE))
+    {
+	send_to_char( "You are unable to attack them.\n\r", ch );
+	return;
+    }
+
+    if (!IS_NPC(victim) && IS_ITEMAFF(victim, ITEMA_PEACE))
+    {
+	send_to_char( "You can't seem to attack them.\n\r", ch );
+	return;
+    }
 
     /*
      * Figure out the type of damage message.
@@ -455,11 +461,11 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int handtype)
     }
     else
     {
-	thac0_00 = class_table[ch->class].thac0_00;
-	thac0_32 = class_table[ch->class].thac0_32;
+	thac0_00 = SKILL_THAC0_00;
+	thac0_32 = SKILL_THAC0_32;
     }
-    thac0     = interpolate( level, thac0_00, thac0_32 ) - GET_HITROLL(ch);
-    victim_ac = UMAX( -25, GET_AC(victim) / 10 );
+    thac0     = interpolate( level, thac0_00, thac0_32 ) - char_hitroll(ch);
+    victim_ac = UMAX( -75, char_ac(victim) / 10 );
     if ( !can_see( ch, victim ) )
 	victim_ac -= 4;
 
@@ -475,8 +481,11 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int handtype)
 	/* Miss. */
 	damage( ch, victim, 0, dt );
 	tail_chain( );
-	improve_wpn(ch,dt,right_hand);
-    	improve_stance(ch);
+	if (!is_safe(ch,victim))
+	{
+	    improve_wpn(ch,dt,right_hand);
+    	    improve_stance(ch);
+	}
 	return;
     }
 
@@ -488,13 +497,13 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int handtype)
     {
 	dam = number_range( ch->level / 2, ch->level * 3 / 2 );
 	if ( wield != NULL )
-	    dam += dam / 2;
+	    dam += dam * 0.5;
     }
     else
     {
 	if ( IS_VAMPAFF(ch,VAM_CLAWS) && wield == NULL)
 	    dam = number_range( 10, 20 );
-	else if ( wield != NULL )
+	else if ( wield != NULL && wield->item_type == ITEM_WEAPON )
 	    dam = number_range( wield->value[1], wield->value[2] );
 	else
 	    dam = number_range( 1, 4 );
@@ -503,59 +512,165 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int handtype)
     /*
      * Bonuses.
      */
-    dam += GET_DAMROLL(ch);
-    if (!IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE))
-	dam += ch->pcdata->wolf;
+    dam += char_damroll(ch);
     if ( !IS_AWAKE(victim) )
 	dam *= 2;
     if ( dt == gsn_backstab )
 	dam *= number_range(2,4);
-    if ( !IS_NPC(ch) && IS_VAMPAFF(ch, VAM_POTENCE) )
+    if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) &&
+	IS_VAMPAFF(ch, VAM_POTENCE) )
 	dam *= 1.5;
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_WEREWOLF) )
-	dam *= 2;
-    if ( !IS_NPC(ch) ) stance = ch->stance[0];
-    if ( !IS_NPC(ch) && IS_STANCE(ch, STANCE_NORMAL) )
-	dam *= 1.25;
-    else if ( !IS_NPC(ch) && IS_STANCE(ch, STANCE_BULL) && ch->stance[STANCE_BULL] > 100 )
-	dam = dam + (dam * ((ch->stance[STANCE_BULL]-100) / 100));
-    else if ( !IS_NPC(ch) && ch->stance[0] > 0 && ch->stance[stance] < 100 )
-	dam = dam * (ch->stance[stance] + 1) / 100;
-    /* Vampires should be tougher at night and weaker during the day. */
-    if ( IS_SET(ch->act, PLR_VAMPIRE) )
+    else if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_DEMON) && 
+		IS_DEMPOWER(ch, DEM_MIGHT) )
+	dam *= 1.5;
+
+    if ( !IS_NPC(victim) && IS_CLASS(victim, CLASS_WEREWOLF) )
     {
-	if (weather_info.sunlight == SUN_LIGHT )
-	    dam *= 1.5;
-	else if (weather_info.sunlight == SUN_DARK )
+	if (IS_SET(victim->special, SPC_WOLFMAN)) dam *= 0.5;
+	if (victim->pcdata->powers[WPOWER_BOAR] > 2 ) dam *= 0.5;
+	if (wield != NULL && IS_SET(wield->spectype, SITEM_SILVER)) 
+	    dam *= 2;
+	else if ( ( gloves = get_eq_char( ch, WEAR_HANDS ) ) != NULL
+	    && IS_SET(gloves->spectype, SITEM_SILVER)) dam *= 2;
+    }
+
+    /* Vampires should be tougher at night and weaker during the day. */
+    if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) )
+    {
+	if (weather_info.sunlight == SUN_LIGHT && dam > 1)
 	    dam /= 1.5;
+	else if (weather_info.sunlight == SUN_DARK)
+	    dam *= 1.5;
     }
     if ( !IS_NPC(ch) && dt >= TYPE_HIT)
-	dam = dam + (dam * (ch->wpn[dt-1000] / 100));
+	dam = dam + (dam * ((ch->wpn[dt-1000]+1) / 100));
+
+    if ( !IS_NPC(ch) )
+    {
+	stance = ch->stance[0];
+	if ( IS_STANCE(ch, STANCE_NORMAL) ) dam *= 1.25;
+	else dam = dambonus(ch,victim,dam,stance);
+    }
 
     if ( dam <= 0 )
 	dam = 1;
 
     damage( ch, victim, dam, dt );
     tail_chain( );
-    improve_wpn(ch,dt,right_hand);
-    improve_stance(ch);
+    if (!is_safe(ch,victim))
+    {
+	improve_wpn(ch,dt,right_hand);
+	improve_stance(ch);
+    }
     return;
 }
 
+bool can_counter( CHAR_DATA *ch)
+{
+    if (!IS_NPC(ch) && IS_STANCE(ch, STANCE_MONKEY)) return TRUE;
+    return FALSE;
+}
 
+bool can_bypass( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    if (IS_NPC(ch) || IS_NPC(victim)) return FALSE;
+    else if (IS_STANCE(ch, STANCE_VIPER)) return TRUE;
+    else if (IS_STANCE(ch, STANCE_MANTIS)) return TRUE;
+    else if (IS_STANCE(ch, STANCE_TIGER)) return TRUE;
+    return FALSE;
+}
+
+void update_damcap( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    int max_dam = 1000;
+
+    if (!IS_NPC(ch))
+    {
+	if ((IS_CLASS(ch, CLASS_DEMON) || IS_SET(ch->special, SPC_CHAMPION)) &&
+	    ch->in_room != NULL)
+	{
+	    if (ch->in_room->vnum == 30000) max_dam = 10000; /* was5000Rotain*/
+	    max_dam += (ch->pcdata->stats[DEMON_POWER] * 20);
+	}
+	else if (IS_CLASS(ch, CLASS_VAMPIRE))
+	{
+	    if      (ch->pcdata->stats[UNI_GEN] < 3) max_dam = 1500;
+	    else if (ch->pcdata->stats[UNI_GEN] < 4) max_dam = 1400;
+	    else if (ch->pcdata->stats[UNI_GEN] < 5) max_dam = 1300;
+	    else                      max_dam = 1200;
+	    max_dam += (ch->pcdata->stats[UNI_RAGE] * 10);
+	    if (IS_VAMPAFF(ch, VAM_POTENCE)) max_dam += 100;
+	    if (ch->pcdata->rank == AGE_METHUSELAH) max_dam += 300;
+	    else if (ch->pcdata->rank == AGE_ELDER) max_dam += 200;
+	    else if (ch->pcdata->rank == AGE_ANCILLA) max_dam += 100;
+	}
+	else if (IS_SET(ch->special, SPC_WOLFMAN))
+	{
+	    if      (ch->pcdata->stats[UNI_GEN] < 2) max_dam = 2000;
+	    else if (ch->pcdata->stats[UNI_GEN] < 3) max_dam = 1900;
+	    else if (ch->pcdata->stats[UNI_GEN] < 4) max_dam = 1800;
+	    else                      max_dam = 1700;
+	    max_dam += ch->pcdata->stats[UNI_RAGE];
+	}
+	else if (IS_CLASS(ch, CLASS_DEMON)) max_dam += 500;
+	else if (IS_SET(ch->special, SPC_CHAMPION)) max_dam += 250;
+	else if (IS_CLASS(ch, CLASS_HIGHLANDER) && IS_ITEMAFF(ch, ITEMA_HIGHLANDER))
+	{
+	    int wpn = ch->pcdata->powers[HPOWER_WPNSKILL];
+	    if (wpn == 1 || wpn == 3)
+		max_dam += ch->wpn[wpn];
+	}
+	if (IS_ITEMAFF(ch, ITEMA_ARTIFACT)) max_dam += 500;
+	if (IS_ITEMAFF(victim, ITEMA_ARTIFACT)) max_dam -= 500;
+	if (IS_NPC(victim) || victim->stance[0] != STANCE_MONKEY)
+	{
+	    if      (ch->stance[0] == STANCE_BULL)   max_dam += 250;
+	    else if (ch->stance[0] == STANCE_DRAGON) max_dam += 250;
+	    else if (ch->stance[0] == STANCE_TIGER)  max_dam += 250;
+	}
+    }
+    else max_dam += (ch->level * 2);
+    if (!IS_NPC(victim))
+    {
+	int silver_tol = (victim->pcdata->powers[WPOWER_SILVER] * 2.5);
+	if (IS_CLASS(victim, CLASS_WEREWOLF) && 
+	    IS_ITEMAFF(ch, ITEMA_RIGHT_SILVER))
+	    max_dam += (250 - silver_tol);
+	if (IS_CLASS(victim, CLASS_WEREWOLF) && 
+	    IS_ITEMAFF(ch, ITEMA_LEFT_SILVER))
+	    max_dam += (250 - silver_tol);
+	if (IS_NPC(ch) || ch->stance[0] != STANCE_MONKEY)
+	{
+	    if      (victim->stance[0] == STANCE_CRAB)    max_dam -= 250;
+	    else if (victim->stance[0] == STANCE_DRAGON)  max_dam -= 250;
+	    else if (victim->stance[0] == STANCE_SWALLOW) max_dam -= 250;
+	}
+	if ((IS_CLASS(victim,CLASS_DEMON) || IS_SET(victim->special,SPC_CHAMPION)) 
+	    && victim->in_room != NULL && victim->in_room->vnum == 30000)
+	    max_dam *= 0.2;
+    }
+    if (max_dam < 1000) max_dam = 1000;
+    ch->damcap[DAM_CAP] = max_dam;
+    ch->damcap[DAM_CHANGE] = 0;
+    return;
+}
 
 /*
  * Inflict damage from a hit.
  */
 void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 {
+    int max_dam = ch->damcap[DAM_CAP];
+
     if ( victim->position == POS_DEAD )
 	return;
 
     /*
      * Stop up any residual loopholes.
      */
-    if ( dam > 1000 ) dam = 1000;
+    if (ch->damcap[DAM_CHANGE] == 1) update_damcap(ch,victim);
+
+    if ( dam > max_dam ) dam = max_dam;
 
     if ( victim != ch )
     {
@@ -567,15 +682,14 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	    return;
 	check_killer( ch, victim );
 
-	if ( victim->position > POS_STUNNED && ch->position > POS_STUNNED )
+	if ( victim->position > POS_STUNNED )
 	{
 	    if ( victim->fighting == NULL )
 		set_fighting( victim, ch );
 	    victim->position = POS_FIGHTING;
-	    ch->position = POS_FIGHTING;
 	}
 
-	if ( victim->position > POS_STUNNED && ch->position > POS_STUNNED )
+	if ( victim->position > POS_STUNNED )
 	{
 	    if ( ch->fighting == NULL )
 		set_fighting( ch, victim );
@@ -613,11 +727,11 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	    act( "$n leaps from $s concealment.", ch, NULL, NULL, TO_ROOM );
 	}
 
-	if ( IS_AFFECTED(victim, AFF_SANCTUARY) )
-	    dam /= 2;
+	if ( IS_AFFECTED(victim, AFF_SANCTUARY) && dam > 1  )
+	    dam *= 0.5;
 
-	if ( IS_AFFECTED(victim, AFF_PROTECT) && IS_EVIL(ch) )
-	    dam -= dam / 4;
+	if ( IS_AFFECTED(victim, AFF_PROTECT) && IS_EVIL(ch) && dam > 1  )
+	    dam -= dam * 0.25;
 
 	if ( dam < 0 )
 	    dam = 0;
@@ -627,30 +741,98 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	 */
 	if ( dt >= TYPE_HIT )
 	{
-	    if ( IS_NPC(ch) && number_percent( ) < ch->level / 2 )
+	    if ( IS_NPC(ch) && number_percent( ) < ch->level * 0.5 )
 		disarm( ch, victim );
-	    if ( IS_NPC(ch) && number_percent( ) < ch->level / 2 )
+	    if ( IS_NPC(ch) && number_percent( ) < ch->level * 0.5 )
 		trip( ch, victim );
 	    if ( check_parry( ch, victim, dt ) )
 		return;
 	    if ( !IS_NPC(victim) && IS_STANCE(victim, STANCE_CRANE) && 
-		victim->stance[STANCE_CRANE] > 100 && check_parry( ch, victim, dt ))
+		victim->stance[STANCE_CRANE] > 100 && !can_counter(ch)
+		&& !can_bypass(ch,victim) && check_parry( ch, victim, dt ))
 		return;
-	    if ( check_dodge( ch, victim ) )
+	    else if ( !IS_NPC(victim) && IS_STANCE(victim, STANCE_MANTIS) && 
+		victim->stance[STANCE_MANTIS] > 100 && !can_counter(ch)
+		&& !can_bypass(ch,victim) && check_parry( ch, victim, dt ))
+		return;
+	    if ( check_dodge( ch, victim, dt ) )
 		return;
 	    if ( !IS_NPC(victim) && IS_STANCE(victim, STANCE_MONGOOSE) && 
-		victim->stance[STANCE_MONGOOSE] > 100 && check_dodge( ch, victim ))
+		victim->stance[STANCE_MONGOOSE] > 100 && !can_counter(ch)
+		&& !can_bypass(ch,victim) && check_dodge( ch, victim, dt ))
+		return;
+	    else if ( !IS_NPC(victim) && IS_STANCE(victim, STANCE_SWALLOW) && 
+		victim->stance[STANCE_SWALLOW] > 100 && !can_counter(ch)
+		&& !can_bypass(ch,victim) && check_dodge( ch, victim, dt ))
 		return;
 	}
 
 	dam_message( ch, victim, dam, dt );
-	if (!IS_NPC(victim) && IS_SET(victim->act, PLR_WEREWOLF) && dam > 0)
-	{
-	    victim->pcdata->wolf += 1;
-	    if (!IS_SET(victim->act, PLR_WOLFMAN) && victim->pcdata->wolf >= 100)
-		do_werewolf(victim,"");
-	}
     }
+    hurt_person(ch,victim,dam);
+    return;
+}
+
+void adv_damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam )
+{
+    if ( victim->position == POS_DEAD )
+	return;
+
+    if ( dam > 1000 ) dam = 1000;
+
+    if ( victim != ch )
+    {
+	if ( is_safe( ch, victim ) )
+	    return;
+	check_killer( ch, victim );
+
+	if ( victim->position > POS_STUNNED )
+	{
+	    if ( victim->fighting == NULL )
+		set_fighting( victim, ch );
+	    victim->position = POS_FIGHTING;
+	}
+
+	if ( victim->position > POS_STUNNED )
+	{
+	    if ( ch->fighting == NULL )
+		set_fighting( ch, victim );
+
+	    /*
+	     * If victim is charmed, ch might attack victim's master.
+	     */
+	    if ( IS_NPC(ch)
+	    &&   IS_NPC(victim)
+	    &&   IS_AFFECTED(victim, AFF_CHARM)
+	    &&   victim->master != NULL
+	    &&   victim->master->in_room == ch->in_room
+	    &&   number_bits( 3 ) == 0 )
+	    {
+		stop_fighting( ch, FALSE );
+		multi_hit( ch, victim->master, TYPE_UNDEFINED );
+		return;
+	    }
+	}
+
+	if ( victim->master == ch )
+	    stop_follower( victim );
+
+	if ( IS_AFFECTED(victim, AFF_SANCTUARY) && dam > 1 )
+	    dam /= 2;
+
+	if ( IS_AFFECTED(victim, AFF_PROTECT) && IS_EVIL(ch) && dam > 1  )
+	    dam -= dam / 4;
+
+	if ( dam < 0 )
+	    dam = 0;
+    }
+    return;
+}
+
+void hurt_person( CHAR_DATA *ch, CHAR_DATA *victim, int dam )
+{
+    bool is_npc = FALSE;
+    int vnum;
 
     /*
      * Hurt the victim.
@@ -698,9 +880,9 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	    send_to_char( "That really did HURT!\n\r", victim );
 	if ( victim->hit < victim->max_hit / 4 && dam > 0 )
 	{
-	    if (!IS_NPC(victim) && IS_SET(victim->act, PLR_VAMPIRE)
+	    if (!IS_NPC(victim) && IS_CLASS(victim, CLASS_VAMPIRE)
 		&& number_percent() < victim->beast)
-		do_rage(victim,"");
+		vamp_rage(victim);
 	    else
 		send_to_char( "You sure are BLEEDING!\n\r", victim );
 	}
@@ -739,13 +921,43 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
     	if (IS_NPC(victim) && !IS_NPC(ch))
 	{
 	    ch->mkill += 1;
+	    if (IS_CLASS(ch, CLASS_DEMON) || IS_SET(ch->special, SPC_CHAMPION))
+	    {
+		if ((vnum = victim->pIndexData->vnum) > 29000)
+		{
+		    switch (vnum)
+		    {
+		    default:
+			ch->pcdata->stats[DEMON_CURRENT] += victim->level;
+			ch->pcdata->stats[DEMON_TOTAL]   += victim->level;
+			break;
+		    case 29600:
+		    case 30001:
+		    case 30006:
+		    case 30007:
+		    case 30008:
+		    case 30009:
+                    case 30000:
+			break;
+		    }
+		}
+		else if (IS_NPC(victim) && !IS_SET(victim->act, ACT_NOEXP))
+		{
+		    ch->pcdata->stats[DEMON_CURRENT] += victim->level;
+		    ch->pcdata->stats[DEMON_TOTAL] += victim->level;
+		}
+	    }
 	    if (ch->level == 1 && ch->mkill > 4)
 	    {
 		ch->level = 2;
 		do_save(ch,"");
 	    }
 	}
-    	if (!IS_NPC(victim) && IS_NPC(ch)) victim->mdeath = victim->mdeath + 1;
+    	if (!IS_NPC(victim) && IS_NPC(ch)) 
+        {
+           victim->mdeath = victim->mdeath + 1;
+        }
+
 	raw_kill( victim );
 
 	if ( IS_SET(ch->act, PLR_AUTOLOOT) )
@@ -753,7 +965,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	else
 	    do_look( ch, "in corpse" );
 
-	if ( !IS_NPC(ch) && IS_NPC(victim) )
+	if ( !IS_NPC(ch) && is_npc )
 	{
 	    if ( IS_SET(ch->act, PLR_AUTOSAC) )
 		do_sacrifice( ch, "corpse" );
@@ -851,12 +1063,44 @@ bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
     if ( victim->fighting == ch )
 	return FALSE;
 
-    if ( victim->level != 3 || ch->level != 3 )
+    if (IS_ITEMAFF(ch, ITEMA_PEACE))
+    {
+	send_to_char( "You are unable to attack them.\n\r", ch );
+	return TRUE;
+    }
+
+    if (IS_ITEMAFF(victim, ITEMA_PEACE))
+    {
+	send_to_char( "You can't seem to attack them.\n\r", ch );
+	return TRUE;
+    }
+
+    if ( ch->trust > LEVEL_BUILDER )
+    {
+	send_to_char( "You cannot fight if you have implementor powers!\n\r", ch );
+	return TRUE;
+    }
+
+    if ( victim->trust > LEVEL_BUILDER )
+    {
+	send_to_char( "You cannot fight someone with implementor powers!\n\r", ch );
+	return TRUE;
+    }
+
+    if ( !CAN_PK(ch) || !CAN_PK(victim) )
     {
 	send_to_char( "Both players must be avatars to fight.\n\r", ch );
 	return TRUE;
     }
 
+    if ( ch->desc == NULL || victim->desc == NULL )
+    {
+	if (victim->position != POS_FIGHTING)
+	{
+	    send_to_char( "They are currently link dead.\n\r", ch );
+	    return TRUE;
+	}
+    }
     return FALSE;
 }
 
@@ -951,51 +1195,119 @@ void check_killer( CHAR_DATA *ch, CHAR_DATA *victim )
  */
 bool check_parry( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 {
-    OBJ_DATA *obj;
-    int chance;
+    OBJ_DATA *obj = NULL;
+    int chance = 0;
+    bool claws = FALSE;
 
     if ( !IS_AWAKE(victim) )
 	return FALSE;
 
     if ( IS_NPC(victim) )
-    {
-	/* Tuan was here.  :) */
-	chance	= victim->level;
 	obj = NULL;
+    else if ( IS_CLASS(victim, CLASS_WEREWOLF)	&& 
+	victim->pcdata->powers[WPOWER_BEAR] > 2	&& 
+	IS_VAMPAFF(victim, VAM_CLAWS)		&&
+	get_eq_char(victim, WEAR_WIELD) == NULL	&&
+	get_eq_char(victim, WEAR_HOLD) == NULL)
+    {
+	obj = NULL;
+	claws = TRUE;
     }
     else
     {
-	if ( ( obj = get_eq_char( victim, WEAR_WIELD ) ) != NULL 
-		&& obj->item_type == ITEM_WEAPON && obj->value[3] >= 0
-		&& obj->value[3] <= 12)
-	    chance = ch->wpn[obj->value[3]] / 3;
-	else if ( ( obj = get_eq_char( victim, WEAR_HOLD ) ) != NULL 
-		&& obj->item_type == ITEM_WEAPON && obj->value[3] >= 0
-		&& obj->value[3] <= 12)
-	    chance = ch->wpn[obj->value[3]] / 3;
-	else return FALSE;
+	if ( ( obj = get_eq_char( victim, WEAR_WIELD ) ) == NULL 
+		|| obj->item_type != ITEM_WEAPON )
+	{
+	    if ( ( obj = get_eq_char( victim, WEAR_HOLD ) ) == NULL 
+		|| obj->item_type != ITEM_WEAPON ) return FALSE;
+	}
     }
 
-    if (!IS_NPC(ch) && (dt < 1000 || dt > 1012)) return FALSE;
-    if (!IS_NPC(ch))     chance = chance - (    ch->wpn[dt-1000]/10);
-    if (!IS_NPC(victim)) chance = chance + (victim->wpn[dt-1000]/10);
+    if (dt < 1000 || dt > 1012) return FALSE;
+    if (!IS_NPC(ch))     chance -= (ch->wpn[dt-1000] * 0.1);
+	else             chance -= (ch->level * 0.2);
+    if (!IS_NPC(victim)) chance += (victim->wpn[dt-1000] * 0.5);
+	else             chance += victim->level;
     if (!IS_NPC(victim) && IS_STANCE(victim, STANCE_CRANE) &&
-	victim->stance[STANCE_CRANE] > 0)
-	chance += victim->stance[STANCE_CRANE] / 4;
-    if (chance > 95) chance = 95;
+	victim->stance[STANCE_CRANE] > 0 && !can_counter(ch) &&
+	!can_bypass(ch,victim))
+	chance += (victim->stance[STANCE_CRANE] * 0.25);
+    else if (!IS_NPC(victim) && IS_STANCE(victim, STANCE_MANTIS) &&
+	victim->stance[STANCE_MANTIS] > 0 && !can_counter(ch) &&
+	!can_bypass(ch,victim))
+	chance += (victim->stance[STANCE_MANTIS] * 0.25);
+    chance -= (char_hitroll(ch) * 0.1);
 
-    if ( number_percent( ) < 100 && number_percent( ) >= chance + victim->level - ch->level + victim->hitroll - ch->hitroll )
+    if (claws) 
+    {
+	if ( victim->pcdata->powers[WPOWER_LYNX] > 3 )
+	    chance += (char_hitroll(victim) * 0.1);
+	else
+	    chance += (char_hitroll(victim) * 0.075);
+    }
+    else chance += (char_hitroll(victim) * 0.1);
+
+    if (!IS_NPC(ch))
+    {
+	if (IS_VAMPAFF(ch, VAM_CELERITY) && 
+	    IS_CLASS(ch, CLASS_VAMPIRE)) 
+	    chance -= 20;
+	else if (IS_CLASS(ch, CLASS_DEMON) && IS_DEMPOWER(ch, DEM_SPEED) )
+	    chance -= 10;
+	else if (IS_CLASS(ch, CLASS_WEREWOLF) &&
+	    ch->pcdata->powers[WPOWER_MANTIS] < 5 )
+	    chance -= (ch->pcdata->powers[WPOWER_MANTIS] * 5);
+    }
+    if (!IS_NPC(victim))
+    {
+	if (IS_VAMPAFF(victim, VAM_CELERITY) && 
+	    IS_CLASS(victim, CLASS_VAMPIRE)) 
+	    chance += 20;
+	else if (IS_CLASS(victim, CLASS_DEMON) && IS_DEMPOWER( victim, DEM_SPEED) )
+	    chance += 10;
+    }
+
+    if      (chance > 75) chance = 75;
+    else if (chance < 25) chance = 25;
+
+    if (!IS_NPC(ch) && IS_VAMPAFF(ch, VAM_CELERITY) && 
+	IS_CLASS(ch, CLASS_VAMPIRE))
+    {
+	if (ch->pcdata->rank == AGE_METHUSELAH) chance -= 15;
+	else if (ch->pcdata->rank == AGE_ELDER) chance -= 10;
+	else if (ch->pcdata->rank == AGE_ANCILLA) chance -= 5;
+    }
+    if (!IS_NPC(victim) && IS_VAMPAFF(victim, VAM_CELERITY) && 
+	IS_CLASS(victim, CLASS_VAMPIRE))
+    {
+	if (victim->pcdata->rank == AGE_METHUSELAH) chance += 15;
+	else if (victim->pcdata->rank == AGE_ELDER) chance += 10;
+	else if (victim->pcdata->rank == AGE_ANCILLA) chance += 5;
+    }
+    if ( number_percent( ) < 100 && number_percent( ) >= chance )
 	return FALSE;
 
-    if (!IS_NPC(ch) && obj != NULL && obj->item_type == ITEM_WEAPON &&
-	obj->value[3] >= 0 && obj->value[3] <= 12)
+    if (claws)
     {
-    	act( "You parry $n's blow with $p.",  ch, obj, victim, TO_VICT );
-    	act( "$N parries your blow with $p.", ch, obj, victim, TO_CHAR );
+	if (IS_NPC(victim) || !IS_SET(victim->act, PLR_BRIEF))
+	    act( "You parry $n's blow with your claws.",  ch, NULL, victim, TO_VICT );
+	if (IS_NPC(ch) || !IS_SET(ch->act, PLR_BRIEF))
+	    act( "$N parries your blow with $S claws.", ch, NULL, victim, TO_CHAR );
 	return TRUE;
     }
-    act( "You parry $n's attack.",  ch, NULL, victim, TO_VICT    );
-    act( "$N parries your attack.", ch, NULL, victim, TO_CHAR    );
+    if (!IS_NPC(victim) && obj != NULL && obj->item_type == ITEM_WEAPON &&
+	obj->value[3] >= 0 && obj->value[3] <= 12)
+    {
+	if (IS_NPC(victim) || !IS_SET(victim->act, PLR_BRIEF))
+	    act( "You parry $n's blow with $p.",  ch, obj, victim, TO_VICT );
+	if (IS_NPC(ch) || !IS_SET(ch->act, PLR_BRIEF))
+	    act( "$N parries your blow with $p.", ch, obj, victim, TO_CHAR );
+	return TRUE;
+    }
+    if (IS_NPC(victim) || !IS_SET(victim->act, PLR_BRIEF))
+	act( "You parry $n's attack.",  ch, NULL, victim, TO_VICT    );
+    if (IS_NPC(ch) || !IS_SET(ch->act, PLR_BRIEF))
+	act( "$N parries your attack.", ch, NULL, victim, TO_CHAR    );
     return TRUE;
 }
 
@@ -1004,39 +1316,72 @@ bool check_parry( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 /*
  * Check for dodge.
  */
-bool check_dodge( CHAR_DATA *ch, CHAR_DATA *victim )
+bool check_dodge( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 {
-    int chance;
-    int dodge1;
-    int dodge2;
+    int chance = 0;
 
     if ( !IS_AWAKE(victim) )
 	return FALSE;
 
-    if ( IS_NPC(victim) )
-	/* Tuan was here.  :) */
-        chance  = victim->level;
-    else if (victim->wpn[0] < 20)
-        chance  = 0;
-    else
-        chance  = (victim->wpn[0] / 2) - 5;
-
-    dodge1 = victim->carry_weight;
-    dodge2 = can_carry_w(victim);
+    if (!IS_NPC(ch))     chance -= (ch->wpn[dt-1000] * 0.1);
+	else             chance -= (ch->level * 0.2);
+    if (!IS_NPC(victim)) chance += (victim->wpn[0] * 0.5);
+	else             chance += victim->level;
 
     if (!IS_NPC(victim) && IS_STANCE(victim, STANCE_MONGOOSE) &&
-	victim->stance[STANCE_MONGOOSE] > 0)
-	chance += victim->stance[STANCE_MONGOOSE] / 4;
-    if (chance > 95) chance = 95;
+	victim->stance[STANCE_MONGOOSE] > 0 && !can_counter(ch) &&
+	!can_bypass(ch,victim))
+	(chance += victim->stance[STANCE_MONGOOSE] * 0.25);
+    if (!IS_NPC(victim) && IS_STANCE(victim, STANCE_SWALLOW) &&
+	victim->stance[STANCE_SWALLOW] > 0 && !can_counter(ch) &&
+	!can_bypass(ch,victim))
+	(chance += victim->stance[STANCE_SWALLOW] * 0.25);
 
-    if (dodge2 < 1) return FALSE;
-    else if ( (dodge1 < 1) && (number_percent( ) >= chance) )
-	return FALSE;
-    else if (dodge1 > 0 && number_percent( ) >= chance - (dodge1 * 100/dodge2))
+    if (!IS_NPC(ch))
+    {
+	if (IS_VAMPAFF(ch, VAM_CELERITY) && 
+	    IS_CLASS(ch, CLASS_VAMPIRE)) 
+	    chance -= 20;
+	else if (IS_CLASS(ch, CLASS_DEMON) && IS_DEMPOWER( ch, DEM_SPEED) )
+	    chance -= 10;
+	else if (IS_CLASS(ch, CLASS_WEREWOLF) &&
+	    ch->pcdata->powers[WPOWER_MANTIS] < 5 )
+	    chance -= (ch->pcdata->powers[WPOWER_MANTIS] * 10);
+    }
+    if (!IS_NPC(victim))
+    {
+	if (IS_VAMPAFF(victim, VAM_CELERITY) && 
+	    IS_CLASS(victim, CLASS_VAMPIRE)) 
+	    chance += 20;
+	else if (IS_CLASS(victim, CLASS_DEMON) && IS_DEMPOWER( victim, DEM_SPEED) )
+	    chance += 10;
+    }
+
+    if      (chance > 75) chance = 75;
+    else if (chance < 25) chance = 25;
+
+    if (!IS_NPC(ch) && IS_VAMPAFF(ch, VAM_CELERITY) && 
+	IS_CLASS(ch, CLASS_VAMPIRE))
+    {
+	if (ch->pcdata->rank == AGE_METHUSELAH) chance -= 15;
+	else if (ch->pcdata->rank == AGE_ELDER) chance -= 10;
+	else if (ch->pcdata->rank == AGE_ANCILLA) chance -= 5;
+    }
+    if (!IS_NPC(victim) && IS_VAMPAFF(victim, VAM_CELERITY) && 
+	IS_CLASS(victim, CLASS_VAMPIRE))
+    {
+	if (victim->pcdata->rank == AGE_METHUSELAH) chance += 15;
+	else if (victim->pcdata->rank == AGE_ELDER) chance += 10;
+	else if (victim->pcdata->rank == AGE_ANCILLA) chance += 5;
+    }
+
+    if ( number_percent( ) < 100 && number_percent( ) >= chance )
 	return FALSE;
 
-    act( "You dodge $n's attack.", ch, NULL, victim, TO_VICT    );
-    act( "$N dodges your attack.", ch, NULL, victim, TO_CHAR    );
+    if (IS_NPC(victim) || !IS_SET(victim->act, PLR_BRIEF))
+	act( "You dodge $n's attack.", ch, NULL, victim, TO_VICT );
+    if (IS_NPC(ch) || !IS_SET(ch->act, PLR_BRIEF))
+	act( "$N dodges your attack.", ch, NULL, victim, TO_CHAR );
     return TRUE;
 }
 
@@ -1052,7 +1397,26 @@ void update_pos( CHAR_DATA *victim )
     if ( victim->hit > 0 )
     {
     	if ( victim->position <= POS_STUNNED )
+	{
+	    bool gm_stance = FALSE;
 	    victim->position = POS_STANDING;
+	    if (!IS_NPC(victim) && victim->stance[0] > 0)
+	    {
+		int stance = victim->stance[0];
+		if (victim->stance[stance] >= 200) gm_stance = TRUE;
+	    }
+	    if (IS_NPC(victim) || victim->max_hit * 0.25 > victim->hit || 
+		!gm_stance)
+	    {
+		act( "$n clambers back to $s feet.", victim, NULL, NULL, TO_ROOM);
+		act( "You clamber back to your feet.", victim, NULL, NULL, TO_CHAR);
+	    }
+	    else
+	    {
+		act( "$n flips back up to $s feet.", victim, NULL, NULL, TO_ROOM);
+		act( "You flip back up to your feet.", victim, NULL, NULL, TO_CHAR);
+	    }
+	}
 	return;
     }
     else if ( (mount = victim->mount) != NULL)
@@ -1076,7 +1440,8 @@ void update_pos( CHAR_DATA *victim )
     if (!IS_NPC(victim) && victim->hit <=-11 && IS_HERO(victim))
     {
         victim->hit = -10;
-        stop_fighting(victim,TRUE);
+        if (victim->position == POS_FIGHTING) 
+           stop_fighting(victim,TRUE);
         return;
     }
 
@@ -1111,6 +1476,7 @@ void set_fighting( CHAR_DATA *ch, CHAR_DATA *victim )
 
     ch->fighting = victim;
     ch->position = POS_FIGHTING;
+    ch->damcap[DAM_CHANGE] = 1;
 
     return;
 }
@@ -1155,6 +1521,7 @@ void make_corpse( CHAR_DATA *ch )
 	name		= ch->short_descr;
 	corpse		= create_object(get_obj_index(OBJ_VNUM_CORPSE_NPC), 0);
 	corpse->timer	= number_range( 4, 8 );
+	corpse->value[2]= ch->pIndexData->vnum;
 	if ( ch->gold > 0 )
 	{
 	    obj_to_obj( create_money( ch->gold ), corpse );
@@ -1212,47 +1579,11 @@ void make_corpse( CHAR_DATA *ch )
 
 
 
-/*
- * Improved Death_cry contributed by Diavolo.
- */
 void death_cry( CHAR_DATA *ch )
 {
     ROOM_INDEX_DATA *was_in_room;
     char *msg;
     int door;
-    int vnum;
-
-    vnum = 0;
-    switch ( number_bits( 4 ) )
-    {
-	/* Took out cut off bits, etc.  Will include as part of the final
-	 * Death moves.  KaVir.
-	 */
-    	default: msg  = "$n hits the ground ... DEAD.";			break;
-    }
-
-    act( msg, ch, NULL, NULL, TO_ROOM );
-
-    if ( vnum != 0 )
-    {
-	char buf[MAX_STRING_LENGTH];
-	OBJ_DATA *obj;
-	char *name;
-
-	name		= IS_NPC(ch) ? ch->short_descr : ch->name;
-	obj		= create_object( get_obj_index( vnum ), 0 );
-	obj->timer	= number_range( 4, 7 );
-
-	sprintf( buf, obj->short_descr, name );
-	free_string( obj->short_descr );
-	obj->short_descr = str_dup( buf );
-
-	sprintf( buf, obj->description, name );
-	free_string( obj->description );
-	obj->description = str_dup( buf );
-
-	obj_to_room( obj, ch->in_room );
-    }
 
     if ( IS_NPC(ch) )
 	msg = "You hear something's death cry.";
@@ -1414,9 +1745,16 @@ void raw_kill( CHAR_DATA *victim )
     	victim->affected_by	= AFF_ETHEREAL;
     else
     	victim->affected_by	= 0;
-    if (!IS_NPC(victim) && IS_IMMUNE(victim, IMM_STAKE))
-	REMOVE_BIT(victim->immune, IMM_STAKE);
-    victim->itemaffect	= 0;
+
+    REMOVE_BIT(victim->immune, IMM_STAKE);
+    REMOVE_BIT(victim->extra, TIED_UP);
+    REMOVE_BIT(victim->extra, GAGGED);
+    REMOVE_BIT(victim->extra, BLINDFOLDED);
+    REMOVE_BIT(victim->extra, EXTRA_PREGNANT);
+    REMOVE_BIT(victim->extra, EXTRA_LABOUR);
+    victim->pcdata->stats[DEMON_POWER] = 0;
+
+    victim->itemaffect	 = 0;
     victim->loc_hp[0]    = 0;
     victim->loc_hp[1]    = 0;
     victim->loc_hp[2]    = 0;
@@ -1434,6 +1772,7 @@ void raw_kill( CHAR_DATA *victim )
     victim->saving_throw = 0;
     victim->carry_weight = 0;
     victim->carry_number = 0;
+    do_call(victim,"all");
     save_char_obj( victim );
     return;
 }
@@ -1441,20 +1780,27 @@ void raw_kill( CHAR_DATA *victim )
 
 void behead( CHAR_DATA *victim )
 {
-    char buf [MAX_INPUT_LENGTH];
+    char buf [MAX_STRING_LENGTH];
     ROOM_INDEX_DATA *location;
 
     if (IS_NPC(victim)) return;
 
-    location = get_room_index(victim->in_room->vnum);
+    location = victim->in_room;
 
     stop_fighting( victim, TRUE );
-
-    make_part( victim, "head" );
 
     make_corpse( victim );
 
     extract_char( victim, FALSE );
+
+    char_from_room(victim);
+    char_to_room(victim,location);
+
+    if (victim == NULL)
+    {bug( "Behead: Victim no longer exists.", 0 );return;}
+
+    make_part( victim, "head" );
+
     while ( victim->affected )
 	affect_remove( victim, victim->affected );
     if (IS_AFFECTED(victim,AFF_POLYMORPH) && IS_AFFECTED(victim,AFF_ETHEREAL))
@@ -1467,9 +1813,16 @@ void behead( CHAR_DATA *victim )
     	victim->affected_by	= AFF_ETHEREAL;
     else
     	victim->affected_by	= 0;
-    if (!IS_NPC(victim) && IS_IMMUNE(victim, IMM_STAKE))
-	REMOVE_BIT(victim->immune, IMM_STAKE);
-    victim->itemaffect	= 0;
+
+    REMOVE_BIT(victim->immune, IMM_STAKE);
+    REMOVE_BIT(victim->extra, TIED_UP);
+    REMOVE_BIT(victim->extra, GAGGED);
+    REMOVE_BIT(victim->extra, BLINDFOLDED);
+    REMOVE_BIT(victim->extra, EXTRA_PREGNANT);
+    REMOVE_BIT(victim->extra, EXTRA_LABOUR);
+    victim->pcdata->stats[DEMON_POWER] = 0;
+
+    victim->itemaffect	 = 0;
     victim->loc_hp[0]    = 0;
     victim->loc_hp[1]    = 0;
     victim->loc_hp[2]    = 0;
@@ -1489,14 +1842,12 @@ void behead( CHAR_DATA *victim )
     victim->carry_weight = 0;
     victim->carry_number = 0;
 
-    char_from_room(victim);
-    char_to_room(victim,location);
     SET_BIT(victim->loc_hp[0],LOST_HEAD);
     SET_BIT(victim->affected_by,AFF_POLYMORPH);
     sprintf(buf,"the severed head of %s",victim->name);
     free_string(victim->morph);
     victim->morph = str_dup(buf);
-
+    do_call(victim,"all");
     save_char_obj( victim );
     return;
 }
@@ -1508,6 +1859,7 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
     char buf[MAX_STRING_LENGTH];
     CHAR_DATA *gch;
     CHAR_DATA *lch;
+    CHAR_DATA *mount;
     int xp;
     int members;
 
@@ -1516,7 +1868,7 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
      * P-killing doesn't help either.
      * Dying of mortal wounds or poison doesn't give xp to anyone!
      */
-    if ( (IS_NPC(ch) && ch->mount == NULL)  || victim == ch )
+    if ( (IS_NPC(ch) && (mount = ch->mount) == NULL) || victim == ch )
 	return;
     
     members = 0;
@@ -1545,7 +1897,7 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	xp = xp_compute( gch, victim ) / members;
 	sprintf( buf, "You receive %d experience points.\n\r", xp );
 	send_to_char( buf, gch );
-	if (gch->mount != NULL) send_to_char( buf, gch->mount );
+	if ((mount = gch->mount) != NULL) send_to_char( buf, mount );
 	gain_exp( gch, xp );
 
 	for ( obj = ch->carrying; obj != NULL; obj = obj_next )
@@ -1583,9 +1935,16 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
     int extra;
     int level;
     int number;
+    int vnum;
+    int victim_level; /* put to stop mass exp give outs Rotain */
 
-    xp    = 300 - URANGE( -3, gch->level - victim->level, 6 ) * 50;
+    xp    = 300 - URANGE( -3, 3 - victim->level, 6 ) * 50;
     align = gch->alignment - victim->alignment;
+
+    if (victim->level > 1000 )
+	victim_level = 1000;
+    else
+	victim_level = victim->level;
 
     if (IS_HERO(gch))
     {
@@ -1607,20 +1966,59 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
 	xp = 3 * xp / 4;
     }
 
+     /* 
+      * Put in mob vnum that you don't want players to gain exp for
+      * Rotain
+      */
+    if (IS_NPC(victim) && (vnum = victim->pIndexData->vnum) > 29000)
+    {
+	switch (vnum)
+	{
+	default:
+	    break;
+	case 29600:
+	case 30001:
+	case 30006:
+	case 30007:
+	case 30008:
+	case 30009:
+        case 30000:
+	    return 0;
+	}
+    }
+
+    if (IS_NPC(victim) && (IS_SET(victim->act, ACT_NOEXP) || IS_IMMORTAL(gch))) 
+	return 0;
+
     /*
      * Adjust for popularity of target:
      *   -1/8 for each target over  'par' (down to -100%)
      *   +1/8 for each target under 'par' (  up to + 25%)
      */
-    level  = URANGE( 0, victim->level, MAX_LEVEL - 1 );
+    level  = URANGE( 0, victim_level, MAX_LEVEL - 1 );
     number = UMAX( 1, kill_table[level].number );
     extra  = victim->pIndexData->killed - kill_table[level].killed / number;
-/*  xp    -= xp * URANGE( -2, extra, 8 ) / 8; */
-    xp    -= xp * URANGE( -2, extra, 6 ) / 8;
+/*  xp    -= xp * URANGE( -2, extra, 8 ) / 8;
+    xp    -= xp * URANGE( -2, extra, 6 ) / 8; */
+
+    xp    -= xp * number_range( -2, 2 ) / 8;
 
     xp     = number_range( xp * 3 / 4, xp * 5 / 4 );
     xp     = UMAX( 0, xp );
-    xp     = (xp * (victim->level+1)) / (gch->level+1);
+    xp     = (xp * (victim_level+1) * 0.25);
+    xp     = xp / 2; /* Put in cause players compaling to much exp :P */
+
+    if (!IS_NPC(gch))
+    {
+	gch->pcdata->score[SCORE_TOTAL_LEVEL] += victim->level;
+	if (victim->level > gch->pcdata->score[SCORE_HIGH_LEVEL])
+	    gch->pcdata->score[SCORE_HIGH_LEVEL] += victim->level;
+	if (victim->level > 950) return 0;
+	gch->pcdata->score[SCORE_TOTAL_XP] += xp;
+	if (xp > gch->pcdata->score[SCORE_HIGH_XP])
+	    gch->pcdata->score[SCORE_HIGH_XP] += xp;
+    }
+
     return xp;
 }
 
@@ -1643,7 +2041,7 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	"pierces", "sucks"
     };
 
-    char buf1[256], buf2[256], buf3[256];
+    char buf1[512], buf2[512], buf3[512];
     const char *vs;
     const char *vp;
     const char *attack;
@@ -1655,20 +2053,21 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
     char punct;
 
          if ( dam ==   0 ) { vs = " miss";	vp = " misses";		}
-    else if ( dam <=   4 ) { vs = " lightly";	vp = " lightly";	}
-    else if ( dam <=  10 ) { vs = "";		vp = "";		}
-    else if ( dam <=  20 ) { vs = " hard";	vp = " hard";		}
-    else if ( dam <=  40 ) { vs = " very hard";	vp = " very hard";	}
-    else if ( dam <=  99 ) { vs = " extremely hard";vp = " extremely hard";}
-    else                   { vs = " incredably hard";vp = " incredably hard";}
+    else if ( dam <=  25 ) { vs = " lightly";	vp = " lightly";	}
+    else if ( dam <=  50 ) { vs = "";		vp = "";		}
+    else if ( dam <= 100 ) { vs = " hard";	vp = " hard";		}
+    else if ( dam <= 250 ) { vs = " very hard";	vp = " very hard";	}
+    else if ( dam <= 500 ) { vs = " extremely hard";vp = " extremely hard";}
+    else                   { vs = " incredibly hard";vp = " incredibly hard";}
     /* If victim's hp are less/equal to 'damp', attacker gets a death blow */
     if (IS_NPC(victim)) damp = 0;
     else                damp = -10;
-    if ( (victim->hit - dam > damp ) || (dt >= 0 && dt < MAX_SKILL) )
+    if ( (victim->hit - dam > damp ) || (dt >= 0 && dt < MAX_SKILL) ||
+	(IS_NPC(victim) && IS_SET(victim->act, ACT_NOPARTS)) )
     {
-    	punct   = (dam <= 40) ? '.' : '!';
+    	punct   = (dam <= 250) ? '.' : '!';
 
-    	if ( dt == TYPE_HIT && !IS_VAMPAFF(ch,VAM_CLAWS) )
+    	if ( dt == TYPE_HIT && !IS_NPC(ch) && !IS_VAMPAFF(ch,VAM_CLAWS) )
     	{
 	    if (dam == 0)
 	    {
@@ -1686,7 +2085,7 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
     	}
     	else
     	{
-	    if ( dt == TYPE_HIT && IS_VAMPAFF(ch,VAM_CLAWS) )
+	    if ( dt == TYPE_HIT && !IS_NPC(ch) && IS_VAMPAFF(ch,VAM_CLAWS))
 	    {
 	    	attack  = attack_table[dt - TYPE_HIT + 5];
 	    	attack2 = attack_table2[dt - TYPE_HIT + 5];
@@ -1750,7 +2149,13 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 		(attack == "grep" || attack == "suck" || attack == "whip") && dam > 0 )
 		recover = number_range(1,dam);
 	    /* Check for fortitude - KaVir */
-	    if ( !IS_NPC(victim) && IS_VAMPAFF(victim, VAM_FORTITUDE) && (dam-recover) > 0)
+	    if ( !IS_NPC(victim) && IS_CLASS(victim, CLASS_VAMPIRE) &&
+		IS_VAMPAFF(victim, VAM_FORTITUDE) && (dam-recover) > 0)
+		victim->hit = victim->hit+number_range(1,(dam-recover));
+	    else if (IS_ITEMAFF(victim, ITEMA_RESISTANCE) && (dam-recover) > 0)
+		victim->hit = victim->hit+number_range(1,(dam-recover));
+	    else if ( !IS_NPC(victim) && IS_CLASS(victim, CLASS_DEMON) 
+		&& (dam-recover) > 0 && IS_DEMPOWER( victim, DEM_TOUGH))
 		victim->hit = victim->hit+number_range(1,(dam-recover));
 	    victim->hit = victim->hit+recover;
         }
@@ -1761,9 +2166,10 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	return;
     }
 
-    if ( dt == TYPE_HIT && !IS_VAMPAFF(ch,VAM_CLAWS) && !IS_VAMPAFF(ch,VAM_FANGS))
+    if ( dt == TYPE_HIT && !IS_NPC( ch ) && !IS_VAMPAFF(ch,VAM_CLAWS) 
+	&&!IS_VAMPAFF(ch,VAM_FANGS))
     {
-	damp=number_range(1,4);
+	damp=number_range(1,5);
 	if ( damp == 1 )
 	{
 	    act("You ram your fingers into $N's eye sockets and rip $S face off.", ch, NULL, victim, TO_CHAR);
@@ -1792,6 +2198,18 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	    act("You hoist $N above your head and slam $M down upon your knee.\n\rThere is a loud cracking sound as $N's spine snaps.", ch, NULL, victim, TO_CHAR);
 	    act("$n hoists $N above $s head and slams $M down upon $s knee.\n\rThere is a loud cracking sound as $N's spine snaps.", ch, NULL, victim, TO_NOTVICT);
 	    act("$n hoists you above $s head and slams you down upon $s knee.\n\rThere is a loud cracking sound as your spine snaps.", ch, NULL, victim, TO_VICT);
+	}
+	else if ( damp == 5 )
+	{
+	    act("You lock your arm around $N's head, and give it a vicious twist.", ch, NULL, victim, TO_CHAR);
+	    act("$n locks $s arm around $N's head, and gives it a vicious twist.", ch, NULL, victim, TO_NOTVICT);
+	    act("$n locks $s arm around your head, and gives it a vicious twist.", ch, NULL, victim, TO_VICT);
+	    if (!IS_BODY(victim,BROKEN_NECK))
+	    {
+		act("There is a loud snapping noise as your neck breaks.", victim, NULL, NULL, TO_CHAR);
+		act("There is a loud snapping noise as $n's neck breaks.", victim, NULL, NULL, TO_ROOM);
+		SET_BIT(victim->loc_hp[1],BROKEN_NECK);
+	    }
 	}
 	return;
     }
@@ -2034,7 +2452,7 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	    }
 	}
     }
-    else if ( attack == "bite" || IS_VAMPAFF(ch,VAM_FANGS))
+    else if ( !IS_NPC( ch ) && (attack == "bite" ||IS_VAMPAFF(ch,VAM_FANGS)))
     {
 	act("You sink your teeth into $N's throat and tear out $S jugular vein.\n\rYou wipe the blood from your chin with one hand.", ch, NULL, victim, TO_CHAR);
 	act("$n sink $s teeth into $N's throat and tears out $S jugular vein.\n\r$n wipes the blood from $s chin with one hand.", ch, NULL, victim, TO_NOTVICT);
@@ -2045,7 +2463,7 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	if (!IS_BLEEDING(victim,BLEEDING_THROAT))
 	    SET_BIT(victim->loc_hp[6],BLEEDING_THROAT);
     }
-    else if ( attack == "claw" || IS_VAMPAFF(ch,VAM_CLAWS))
+    else if ( !IS_NPC(ch) && (attack == "claw" || IS_VAMPAFF(ch,VAM_CLAWS)))
     {
 	damp=number_range(1,2);
 	if ( damp == 1 )
@@ -2123,7 +2541,7 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 void disarm( CHAR_DATA *ch, CHAR_DATA *victim )
 {
     OBJ_DATA *obj;
-    char buf [MAX_INPUT_LENGTH];
+    char buf [MAX_STRING_LENGTH];
 
     /* I'm fed up of being disarmed every 10 seconds - KaVir */
     if (IS_NPC(ch) && victim->level > 2 && number_percent() > 5)
@@ -2178,11 +2596,23 @@ void disarm( CHAR_DATA *ch, CHAR_DATA *victim )
  */
 void trip( CHAR_DATA *ch, CHAR_DATA *victim )
 {
-    char buf [MAX_INPUT_LENGTH];
+    char buf [MAX_STRING_LENGTH];
+
     if (IS_AFFECTED(victim,AFF_FLYING))
 	return;
-    if (!IS_NPC(victim) && IS_VAMPAFF(victim,VAM_FLYING))
+
+    if (IS_NPC(ch) && victim->level > 2 && number_percent() > 5)
 	return;
+
+    if (!IS_NPC(victim))
+    {
+	if (IS_CLASS(victim, CLASS_VAMPIRE) && IS_VAMPAFF(victim,VAM_FLYING))
+	    return;
+	if (IS_CLASS(victim, CLASS_DEMON) && IS_DEMAFF(victim, DEM_UNFOLDED))
+	    return;
+	if (IS_SET(victim->special, SPC_CHAMPION) && IS_DEMAFF(victim,DEM_UNFOLDED))
+	    return;
+    }
     if ( victim->wait == 0)
     {
     	sprintf(buf,"$n trips you and you go down!");
@@ -2247,6 +2677,22 @@ void do_kill( CHAR_DATA *ch, char *argument )
 
     WAIT_STATE( ch, 1 * PULSE_VIOLENCE );
     check_killer( ch, victim );
+    if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_WEREWOLF) && number_range(1,3) == 1
+	&& ch->pcdata->powers[WPOWER_BOAR] > 1 && victim->position == POS_STANDING)
+    {
+/*
+	ch->damroll += 50;
+	multi_hit( ch, victim, TYPE_UNDEFINED );
+	ch->damroll -= 50;
+*/
+	act("You charge into $N, knocking $M from $S feet.",ch,NULL,victim,TO_CHAR);
+	act("$n charge into $N, knocking $M from $S feet.",ch,NULL,victim,TO_NOTVICT);
+	act("$n charge into you, knocking you from your feet.",ch,NULL,victim,TO_VICT);
+	victim->position = POS_STUNNED;
+	multi_hit( ch, victim, TYPE_UNDEFINED );
+	multi_hit( ch, victim, TYPE_UNDEFINED );
+	return;
+    }
     multi_hit( ch, victim, TYPE_UNDEFINED );
     return;
 }
@@ -2335,6 +2781,26 @@ void do_flee( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if (IS_AFFECTED(ch, AFF_WEBBED))
+    {
+	send_to_char("You are unable to move with all this sticky webbing on.\n\r",ch);
+	return;
+    }
+    if (!IS_NPC(ch) && ch->pcdata->stats[UNI_RAGE] >= 0)
+    {
+	if (IS_CLASS(ch,CLASS_VAMPIRE) && number_percent() <= ch->pcdata->stats[UNI_RAGE])
+	{
+	    send_to_char("Your inner beast refuses to let you run!\n\r",ch);
+	    WAIT_STATE(ch,12);
+	    return;
+	}
+	else if (IS_CLASS(ch, CLASS_WEREWOLF) && number_percent() <= ch->pcdata->stats[UNI_RAGE] * 0.3)
+	{
+	    send_to_char("Your rage is too great!\n\r",ch);
+	    WAIT_STATE(ch,12);
+	    return;
+	}
+    }
     was_in = ch->in_room;
     for ( attempt = 0; attempt < 6; attempt++ )
     {
@@ -2413,6 +2879,8 @@ void do_rescue( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( is_safe(ch, fch) || is_safe(ch, victim) ) return;
+
     WAIT_STATE( ch, skill_table[gsn_rescue].beats );
     if ( !IS_NPC(ch) && number_percent( ) > ch->pcdata->learned[gsn_rescue] )
     {
@@ -2440,12 +2908,13 @@ void do_rescue( CHAR_DATA *ch, char *argument )
 void do_kick( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *victim;
+    OBJ_DATA *boots;
     int dam;
     int stance;
     int hitpoints;
 
     if ( !IS_NPC(ch)
-    &&   ch->level < skill_table[gsn_kick].skill_level[ch->class] )
+    &&   ch->level < skill_table[gsn_kick].skill_level)
     {
 	send_to_char(
 	    "First you should learn to kick.\n\r", ch );
@@ -2468,42 +2937,89 @@ void do_kick( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    dam += GET_DAMROLL(ch);
-    if (!IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE))
-	dam += ch->pcdata->wolf;
+    dam += char_damroll(ch);
     if (dam == 0) dam = 1;
     if ( !IS_AWAKE(victim) )
 	dam *= 2;
-    if ( !IS_NPC(ch) && IS_VAMPAFF(ch, VAM_POTENCE) )
+    if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) &&
+	IS_VAMPAFF(ch, VAM_POTENCE) )
 	dam *= 1.5;
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_WEREWOLF) )
-	dam *= 2;
-    if ( !IS_NPC(ch) ) stance = ch->stance[0];
-    if ( !IS_NPC(ch) && IS_STANCE(ch, STANCE_NORMAL) )
-	dam *= 1.25;
-    else if ( !IS_NPC(ch) && IS_STANCE(ch, STANCE_BULL) && ch->stance[STANCE_BULL] > 100 )
-	dam = dam + (dam * ((ch->stance[STANCE_BULL]-100) / 100));
-    else if ( !IS_NPC(ch) && ch->stance[0] > 0 && ch->stance[stance] < 100 )
-	dam = dam * (ch->stance[stance] + 1) / 100;
-    /* Vampires should be tougher at night and weaker during the day. */
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE) )
+    else if ( !IS_NPC(ch) && (IS_SET(ch->special, SPC_CHAMPION) ||
+	IS_CLASS(ch, CLASS_DEMON)) && 
+	IS_DEMPOWER( ch, DEM_MIGHT) )
+	dam *= 1.5;
+    if ( !IS_NPC(victim) && IS_CLASS(victim, CLASS_WEREWOLF) )
     {
-	if (weather_info.sunlight == SUN_LIGHT )
-	    dam *= 1.5;
-	else if (weather_info.sunlight == SUN_DARK )
-	    dam /= 1.5;
+	if (IS_SET(victim->special, SPC_WOLFMAN)) dam *= 0.5;
+	if (victim->pcdata->powers[WPOWER_BOAR] > 2 ) dam *= 0.5;
+	if ( ( boots = get_eq_char( ch, WEAR_FEET ) ) != NULL 
+	    && IS_SET(boots->spectype, SITEM_SILVER)) dam *= 2;
     }
-    if ( !IS_NPC(ch) ) dam = dam + (dam * (ch->wpn[0] / 100));
+    /* Vampires should be tougher at night and weaker during the day. */
+    if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) )
+    {
+	if (weather_info.sunlight == SUN_LIGHT && dam > 1)
+	    dam /= 1.5;
+	else if (weather_info.sunlight == SUN_DARK)
+	    dam *= 1.5;
+    }
+    if ( !IS_NPC(ch) ) dam = dam + (dam * ((ch->wpn[0]+1) / 100));
+
+    if ( !IS_NPC(ch) )
+    {
+	stance = ch->stance[0];
+	if ( IS_STANCE(ch, STANCE_NORMAL) ) dam *= 1.25;
+	else dam = dambonus(ch,victim,dam,stance);
+    }
 
     if ( dam <= 0 )
 	dam = 1;
 
     hitpoints = victim->hit;
-    damage( ch, victim, dam, gsn_kick );
     if ( !IS_NPC(victim) && IS_IMMUNE(victim, IMM_KICK) )
+    {
+	victim->hit += dam;
+	damage( ch, victim, dam, gsn_kick );
 	victim->hit = hitpoints;
+    }
+    else damage( ch, victim, dam, gsn_kick );
     return;
 }
+
+
+int dambonus( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int stance)
+{
+    if (dam < 1) return 0;
+    if (stance < 1) return dam;
+    if (!IS_NPC(ch) && !can_counter(victim))
+    {
+	if ( IS_STANCE(ch, STANCE_MONKEY) )
+	{
+	    int mindam = dam * 0.25;
+	    dam *= (ch->stance[STANCE_MONKEY]+1) / 200;
+	    if (dam < mindam) dam = mindam;
+	}
+	else if ( IS_STANCE(ch, STANCE_BULL) && ch->stance[STANCE_BULL] > 100 )
+	    dam += dam * (ch->stance[STANCE_BULL] / 100);
+	else if ( IS_STANCE(ch, STANCE_DRAGON) && ch->stance[STANCE_DRAGON] > 100 )
+	    dam += dam * (ch->stance[STANCE_DRAGON] / 100);
+	else if ( IS_STANCE(ch, STANCE_TIGER) && ch->stance[STANCE_TIGER] > 100 )
+	    dam += dam * (ch->stance[STANCE_TIGER] / 100);
+	else if ( ch->stance[0] > 0 && ch->stance[stance] < 100 )
+	    dam *= 0.5;
+    }
+    if (!IS_NPC(victim) && !can_counter(ch))
+    {
+	if ( IS_STANCE(victim, STANCE_CRAB) && victim->stance[STANCE_CRAB] > 100 )
+	    dam /= victim->stance[STANCE_CRAB]/100;
+	else if ( IS_STANCE(victim, STANCE_DRAGON) && victim->stance[STANCE_DRAGON] > 100 )
+	    dam /= victim->stance[STANCE_DRAGON]/100;
+	else if ( IS_STANCE(victim, STANCE_SWALLOW) && victim->stance[STANCE_SWALLOW] > 100 )
+	    dam /= victim->stance[STANCE_SWALLOW]/100;
+    }
+    return dam;
+}
+
 
 
 void do_punch( CHAR_DATA *ch, char *argument )
@@ -2511,12 +3027,14 @@ void do_punch( CHAR_DATA *ch, char *argument )
     char arg [MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     int dam;
+    int store;
+    bool broke = FALSE;
 
     one_argument(argument,arg);
 
     if ( IS_NPC(ch) ) return;
 
-    if ( ch->level < skill_table[gsn_punch].skill_level[ch->class] )
+    if ( ch->level < skill_table[gsn_punch].skill_level)
     {
 	send_to_char( "First you should learn to punch.\n\r", ch );
 	return;
@@ -2561,9 +3079,7 @@ void do_punch( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    dam += GET_DAMROLL(ch);
-    if (!IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE))
-	dam += ch->pcdata->wolf;
+    dam += char_damroll(ch);
     if (dam == 0) dam = 1;
     if ( !IS_AWAKE(victim) )
 	dam *= 2;
@@ -2572,9 +3088,53 @@ void do_punch( CHAR_DATA *ch, char *argument )
     if ( dam <= 0 )
 	dam = 1;
 
+    if (!IS_NPC(victim) && IS_CLASS(victim, CLASS_WEREWOLF) && victim->pcdata->powers[WPOWER_BOAR] > 3)
+    {
+	store = victim->hit;
+	victim->hit += dam;
+	damage( ch, victim, dam, gsn_punch );
+	victim->hit = store;
+	if (number_percent() <= 25 && !IS_ARM_L(ch,LOST_ARM) && 
+	!IS_ARM_L(ch,LOST_HAND))
+	{
+	    if (!IS_ARM_L(ch, LOST_FINGER_I) && !IS_ARM_L(ch, BROKEN_FINGER_I))
+		{SET_BIT(ch->loc_hp[LOC_ARM_L],BROKEN_FINGER_I);broke = TRUE;}
+	    if (!IS_ARM_L(ch, LOST_FINGER_M) && !IS_ARM_L(ch, BROKEN_FINGER_M))
+		{SET_BIT(ch->loc_hp[LOC_ARM_L],BROKEN_FINGER_M);broke = TRUE;}
+	    if (!IS_ARM_L(ch, LOST_FINGER_R) && !IS_ARM_L(ch, BROKEN_FINGER_R))
+		{SET_BIT(ch->loc_hp[LOC_ARM_L],BROKEN_FINGER_R);broke = TRUE;}
+	    if (!IS_ARM_L(ch, LOST_FINGER_L) && !IS_ARM_L(ch, BROKEN_FINGER_L))
+		{SET_BIT(ch->loc_hp[LOC_ARM_L],BROKEN_FINGER_L);broke = TRUE;}
+	    if (broke)
+	    {
+		act("The fingers on your left hand shatter under the impact of the blow!",ch,NULL,NULL,TO_CHAR);
+		act("The fingers on $n's left hand shatter under the impact of the blow! ",ch,NULL,NULL,TO_ROOM);
+	    }
+	}
+	else if (number_percent() <= 25 && !IS_ARM_R(ch,LOST_ARM) && 
+	!IS_ARM_R(ch,LOST_HAND))
+	{
+	    if (!IS_ARM_R(ch, LOST_FINGER_I) && !IS_ARM_R(ch, BROKEN_FINGER_I))
+		{SET_BIT(ch->loc_hp[LOC_ARM_R],BROKEN_FINGER_I);broke = TRUE;}
+	    if (!IS_ARM_R(ch, LOST_FINGER_M) && !IS_ARM_R(ch, BROKEN_FINGER_M))
+		{SET_BIT(ch->loc_hp[LOC_ARM_R],BROKEN_FINGER_M);broke = TRUE;}
+	    if (!IS_ARM_R(ch, LOST_FINGER_R) && !IS_ARM_R(ch, BROKEN_FINGER_R))
+		{SET_BIT(ch->loc_hp[LOC_ARM_R],BROKEN_FINGER_R);broke = TRUE;}
+	    if (!IS_ARM_R(ch, LOST_FINGER_L) && !IS_ARM_R(ch, BROKEN_FINGER_L))
+		{SET_BIT(ch->loc_hp[LOC_ARM_R],BROKEN_FINGER_L);broke = TRUE;}
+	    if (broke)
+	    {
+		act("The fingers on your right hand shatter under the impact of the blow!",ch,NULL,NULL,TO_CHAR);
+		act("The fingers on $n's right hand shatter under the impact of the blow! ",ch,NULL,NULL,TO_ROOM);
+	    }
+	}
+	stop_fighting(victim,TRUE);
+	return;
+    }
+
     damage( ch, victim, dam, gsn_punch );
-    if (victim == NULL || victim->position == POS_DEAD) return;
-    stop_fighting(victim,TRUE);
+    if (victim == NULL || victim->position == POS_DEAD || dam < 1) return;
+    if (victim->position == POS_FIGHTING) stop_fighting(victim,TRUE);
     if (number_percent() <= 25 && !IS_HEAD(victim,BROKEN_NOSE)
 	 && !IS_HEAD(victim,LOST_NOSE))
     {
@@ -2600,12 +3160,14 @@ void do_berserk( CHAR_DATA *ch, char *argument )
     char       arg [MAX_INPUT_LENGTH];
     CHAR_DATA *vch;
     CHAR_DATA *vch_next;
+    CHAR_DATA *mount;
+    int number_hit = 0;
 
     argument = one_argument( argument, arg );
 
     if (IS_NPC(ch)) return;
 
-    if ( ch->level < skill_table[gsn_berserk].skill_level[ch->class] )
+    if ( ch->level < skill_table[gsn_berserk].skill_level)
     {
 	send_to_char( "You are not wild enough to go berserk.\n\r", ch );
 	return;
@@ -2624,14 +3186,21 @@ void do_berserk( CHAR_DATA *ch, char *argument )
     for ( vch = char_list; vch != NULL; vch = vch_next )
     {
 	vch_next	= vch->next;
+	if (number_hit > 4) continue;
 	if ( vch->in_room == NULL )
+	    continue;
+	if ( !IS_NPC(vch) && vch->pcdata->chobj != NULL )
 	    continue;
 	if ( ch == vch )
 	    continue;
 	if ( vch->in_room == ch->in_room )
 	{
-	    if ( can_see( ch, vch) && (vch->mount == NULL || vch->mount != ch) )
+	    if ( ( mount = ch->mount ) != NULL ) {if ( mount == vch ) continue;}
+	    if (can_see(ch,vch))
+	    {
 		multi_hit( ch, vch, TYPE_UNDEFINED );
+		number_hit++;
+	    }
 	}
     }
     do_beastlike(ch,"");
@@ -2644,6 +3213,7 @@ void do_berserk( CHAR_DATA *ch, char *argument )
 void do_hurl( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA       *victim;
+    CHAR_DATA       *mount;
     ROOM_INDEX_DATA *to_room;
     EXIT_DATA       *pexit;
     EXIT_DATA       *pexit_rev;
@@ -2685,18 +3255,24 @@ void do_hurl( CHAR_DATA *ch, char *argument )
     if ( is_safe( ch, victim ) )
       return;
 
-    if ( victim->mount != NULL && victim->mounted == IS_MOUNT)
+    if ( (mount = victim->mount) != NULL && victim->mounted == IS_MOUNT)
     {
 	send_to_char("But they have someone on their back!\n\r",ch);
 	return;
     }
-    else if ( victim->mount != NULL && victim->mounted == IS_RIDING)
+    else if ( (mount = victim->mount) != NULL && victim->mounted == IS_RIDING)
     {
 	send_to_char("But they are riding!\n\r",ch);
 	return;
     }
 
     if ( !IS_NPC(victim) && IS_IMMUNE(victim, IMM_HURL) )
+    {
+	send_to_char("You are unable to get their feet of the ground.\n\r",ch);
+	return;
+    }
+
+    if ( IS_NPC(victim) && victim->level > 900 )
     {
 	send_to_char("You are unable to get their feet of the ground.\n\r",ch);
 	return;
@@ -2839,7 +3415,7 @@ void do_disarm( CHAR_DATA *ch, char *argument )
     int percent;
 
     if ( !IS_NPC(ch)
-    &&   ch->level < skill_table[gsn_disarm].skill_level[ch->class] )
+    &&   ch->level < skill_table[gsn_disarm].skill_level)
     {
 	send_to_char( "You don't know how to disarm opponents.\n\r", ch );
 	return;
@@ -2954,7 +3530,7 @@ void do_decapitate( CHAR_DATA *ch, char *argument )
     OBJ_DATA  *obj;
     OBJ_DATA  *obj2;
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     one_argument( argument, arg );
 
@@ -3010,13 +3586,13 @@ void do_decapitate( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ch->level != 3 )
+    if ( !CAN_PK(ch) )
     {
 	send_to_char( "You must be an avatar to decapitate someone.\n\r", ch );
 	return;
     }
 
-    if ( victim->level != 3 )
+    if ( !CAN_PK(victim) )
     {
 	send_to_char( "You can only decapitate other avatars.\n\r", ch );
 	return;
@@ -3027,29 +3603,83 @@ void do_decapitate( CHAR_DATA *ch, char *argument )
 	send_to_char( "You can only do this to mortally wounded players.\n\r", ch );
 	return;
     }
-/*
-    if ( IS_SET(ch->act, PLR_VAMPIRE) && IS_SET(victim->act, PLR_VAMPIRE) &&
-	!str_cmp(ch->clan,victim->clan) && ch->clan != '\0' &&
-	ch->clan != str_dup("") )
+
+    if (is_safe(ch,victim)) return;
+
+    if ( IS_CLASS(ch, CLASS_VAMPIRE) && IS_SET(ch->special, SPC_INCONNU) && 
+	(IS_CLASS(victim, CLASS_VAMPIRE) || IS_VAMPAFF(victim, VAM_MORTAL)))
     {
-	send_to_char( "You cannot decapitate someone of your own clan.\n\r", ch );
+	send_to_char( "You cannot decapitate another vampire.\n\r", ch );
 	return;
     }
-*/
+
+    if ( IS_CLASS(victim, CLASS_VAMPIRE) && IS_SET(victim->special, SPC_INCONNU) && 
+	(IS_CLASS(ch, CLASS_VAMPIRE) || IS_VAMPAFF(ch, VAM_MORTAL)))
+    {
+	send_to_char( "You cannot decapitate an Inconnu vampire.\n\r", ch );
+	return;
+    }
+
+    if ( IS_CLASS(ch, CLASS_VAMPIRE) && IS_CLASS(victim, CLASS_VAMPIRE) &&
+	strlen(ch->clan) > 1 && strlen(victim->clan) > 1)
+    {
+	if (!str_cmp(ch->clan,victim->clan))
+	{
+	    send_to_char( "You cannot decapitate someone of your own clan.\n\r", ch );
+	    return;
+	}
+    }
+
     act( "You bring your weapon down upon $N's neck!",  ch, NULL, victim, TO_CHAR    );
     send_to_char( "Your head is sliced from your shoulders!\n\r", victim);
     act( "$n swings $s weapon down towards $N's neck!",  ch, NULL, victim, TO_NOTVICT );
-    behead( victim );
-    do_beastlike(ch,"");
-    ch->pkill = ch->pkill + 1;
-    victim->pdeath = victim->pdeath + 1;
+    act( "$n's head is sliced from $s shoulders!", victim, NULL, NULL, TO_ROOM);
+/*
+    clan_table_dec( ch,victim );
+*/
+    if (IS_CLASS(ch, CLASS_DEMON) || IS_SET(ch->special, SPC_CHAMPION)) 
+
+    if ((IS_CLASS(ch, CLASS_DEMON) || IS_SET(ch->special, SPC_CHAMPION)) && 
+	!IS_CLASS(victim,CLASS_DEMON) && !IS_SET(victim->special,SPC_CHAMPION))
+    {
+	if (ch->race == 0 && victim->race == 0)
+	{
+	    ch->pcdata->stats[DEMON_CURRENT] += 1000;
+	    ch->pcdata->stats[DEMON_TOTAL] += 1000;
+	}
+	else
+	{
+	    ch->pcdata->stats[DEMON_CURRENT] += victim->race * 1000;
+	    ch->pcdata->stats[DEMON_TOTAL] += victim->race * 1000;
+	}
+    }
     if ( victim->race < 1 && ch->race > 0 )
     {
-    	sprintf(buf,"%s has been decapitated by %s.",victim->name,ch->name);
+	ch->paradox[0] += ch->race;
+	ch->paradox[1] += ch->race;
+	ch->paradox[2] += PARADOX_TICK;
+/*
+	if (!str_cmp(ch->name,"amoeba"))
+	{
+	    ch->paradox[0] += (25 - ch->race);
+	    ch->paradox[1] += (25 - ch->race);
+ 	}
+*/
+    	sprintf(buf,"%s has been decapitated by %s for no status.",victim->name,ch->name);
     	do_info(ch,buf);
+	sprintf( log_buf, "%s decapitated by %s at %d for no status.",
+	    victim->name, ch->name, victim->in_room->vnum );
+	log_string( log_buf );
+	if (IS_CLASS(victim, CLASS_VAMPIRE))      do_mortalvamp(victim,"");
+	else if (IS_SET(victim->special, SPC_WOLFMAN)) do_unwerewolf(victim,"");
+	if (IS_CLASS(victim, CLASS_MAGE) && IS_AFFECTED(victim, AFF_POLYMORPH)) 
+	    do_unpolymorph(victim,"");
+	behead( victim );
+	do_beastlike(ch,"");
+	ch->pkill = ch->pkill + 1;
+	victim->pdeath = victim->pdeath + 1;
 	return;
     }
-    victim->level = victim->level -1;
     ch->exp = ch->exp +1000;
     if (ch->race - ((ch->race/100)*100) == 0)
     	ch->race = ch->race + 1;
@@ -3063,10 +3693,170 @@ void do_decapitate( CHAR_DATA *ch, char *argument )
     act( "A misty white vapour pours from $N's corpse into $n's body.",  ch, NULL, victim, TO_NOTVICT );
     act( "You double over in agony as raw energy pulses through your veins.",  ch, NULL, NULL, TO_CHAR    );
     act( "$n doubles over in agony as sparks of energy crackle around $m.",  ch, NULL, NULL, TO_NOTVICT );
-    if (IS_SET(victim->act, PLR_VAMPIRE))
-	do_mortalvamp(victim,"");
+    if (IS_CLASS(victim, CLASS_VAMPIRE))      do_mortalvamp(victim,"");
+    else if (IS_SET(victim->special, SPC_WOLFMAN)) do_unwerewolf(victim,"");
+    if (IS_CLASS(victim, CLASS_MAGE) && IS_AFFECTED(victim, AFF_POLYMORPH)) 
+	do_unpolymorph(victim,"");
+    behead( victim );
+    do_beastlike(ch,"");
+    ch->pkill = ch->pkill + 1;
+    victim->pdeath = victim->pdeath + 1;
+    victim->pcdata->stats[UNI_RAGE] = 0;
+    victim->level = 2;
     sprintf(buf,"%s has been decapitated by %s.",victim->name,ch->name);
     do_info(ch,buf);
+    sprintf( log_buf, "%s decapitated by %s at %d.",
+	victim->name, ch->name, victim->in_room->vnum );
+    log_string( log_buf );
+    return;
+}
+
+void do_tear( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *victim;
+    char arg[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
+
+    one_argument( argument, arg );
+
+    if ( IS_NPC(ch) ) return;
+
+    if ( !IS_CLASS(ch, CLASS_WEREWOLF))
+    {
+	send_to_char( "Huh?\n\r", ch );
+	return;
+    }
+
+    if ( !IS_SET(ch->special, SPC_WOLFMAN))
+    {
+	send_to_char( "You can only tear heads off while in Crinos form.\n\r", ch );
+	return;
+    }
+
+    if ( !IS_VAMPAFF(ch, VAM_CLAWS))
+    {
+	send_to_char( "You better get your claws out first.\n\r", ch );
+	return;
+    }
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "Who's head do you wish to tear off?\n\r", ch );
+	return;
+    }
+
+    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+	return;
+    }
+
+    if ( ch == victim )
+    {
+	send_to_char( "That might be a bit tricky...\n\r", ch );
+	return;
+    }
+
+    if ( IS_NPC(victim) )
+    {
+	send_to_char( "You can only tear the heads off other players.\n\r", ch );
+	return;
+    }
+
+    if ( !CAN_PK(ch) )
+    {
+	send_to_char( "You must be an avatar to tear someone's head off.\n\r", ch );
+	return;
+    }
+
+    if ( !CAN_PK(victim) )
+    {
+	send_to_char( "You can only tear the head off another avatar.\n\r", ch );
+	return;
+    }
+
+    if ( victim->position > 1 )
+    {
+	send_to_char( "You can only do this to mortally wounded players.\n\r", ch );
+	return;
+    }
+
+    if (is_safe(ch,victim)) return;
+
+    act( "You tear $N's head from $S shoulders!",  ch, NULL, victim, TO_CHAR    );
+    send_to_char( "Your head is torn from your shoulders!\n\r", victim);
+    act( "$n tears $N's head from $S shoulders!",  ch, NULL, victim, TO_NOTVICT );
+/*
+    clan_table_dec( ch,victim );
+*/
+    if (IS_CLASS(ch, CLASS_DEMON) || IS_SET(ch->special, SPC_CHAMPION)) 
+    {
+	if (ch->race == 0 && victim->race == 0)
+	{
+	    ch->pcdata->stats[DEMON_CURRENT] += 1000;
+	    ch->pcdata->stats[DEMON_TOTAL] += 1000;
+	}
+	else
+	{
+	    ch->pcdata->stats[DEMON_CURRENT] += victim->race * 1000;
+	    ch->pcdata->stats[DEMON_TOTAL] += victim->race * 1000;
+	}
+    }
+    if ( victim->race < 1 && ch->race > 0 )
+    {
+	ch->paradox[0] += ch->race;
+	ch->paradox[1] += ch->race;
+	ch->paradox[2] += PARADOX_TICK;
+/*
+	if (!str_cmp(ch->name,"amoeba"))
+	{
+	    ch->paradox[0] += (25 - ch->race);
+	    ch->paradox[1] += (25 - ch->race);
+	}
+*/
+    	sprintf(buf,"%s has been decapitated by %s.",victim->name,ch->name);
+    	do_info(ch,buf);
+	sprintf( log_buf, "%s decapitated by %s at %d for no status.",
+	    victim->name, ch->name, victim->in_room->vnum );
+	log_string( log_buf );
+	if (IS_CLASS(victim, CLASS_VAMPIRE))      do_mortalvamp(victim,"");
+	else if (IS_SET(victim->special, SPC_WOLFMAN)) do_unwerewolf(victim,"");
+	if (IS_CLASS(victim, CLASS_MAGE) && IS_AFFECTED(victim, AFF_POLYMORPH)) 
+	    do_unpolymorph(victim,"");
+	behead( victim );
+	do_beastlike(ch,"");
+	ch->pkill = ch->pkill + 1;
+	victim->pdeath = victim->pdeath + 1;
+	return;
+    }
+    ch->exp = ch->exp +1000;
+    if (ch->race - ((ch->race/100)*100) == 0)
+    	ch->race = ch->race + 1;
+    else if (ch->race - ((ch->race/100)*100) < 25)
+    	ch->race = ch->race + 1;
+    if (ch->race - ((ch->race/100)*100) == 0)
+    	victim->race = victim->race;
+    else if (victim->race - ((victim->race/100)*100) > 0)
+    	victim->race = victim->race - 1;
+    act( "A misty white vapour pours from $N's corpse into your body.",  ch, NULL, victim, TO_CHAR    );
+    act( "A misty white vapour pours from $N's corpse into $n's body.",  ch, NULL, victim, TO_NOTVICT );
+    act( "You double over in agony as raw energy pulses through your veins.",  ch, NULL, NULL, TO_CHAR    );
+    act( "$n doubles over in agony as sparks of energy crackle around $m.",  ch, NULL, NULL, TO_NOTVICT );
+    if (IS_CLASS(victim, CLASS_VAMPIRE))      do_mortalvamp(victim,"");
+    else if (IS_SET(victim->special, SPC_WOLFMAN)) do_unwerewolf(victim,"");
+    if (IS_CLASS(victim, CLASS_MAGE) && IS_AFFECTED(victim, AFF_POLYMORPH)) 
+	do_unpolymorph(victim,"");
+    behead( victim );
+    do_beastlike(ch,"");
+    ch->pkill = ch->pkill + 1;
+    victim->pdeath = victim->pdeath + 1;
+    victim->pcdata->stats[UNI_RAGE] = 0;
+    victim->level = 2;
+    sprintf(buf,"%s has been decapitated by %s.",victim->name,ch->name);
+    do_info(ch,buf);
+    sprintf( log_buf, "%s decapitated by %s at %d.",
+	victim->name, ch->name, victim->in_room->vnum );
+    log_string( log_buf );
     return;
 }
 
@@ -3203,6 +3993,7 @@ void do_voodoo( CHAR_DATA *ch, char *argument )
     }
     else if ( !str_cmp(arg2, "stab") )
     {
+	WAIT_STATE(ch,12);
 	act("You stab a pin through $p.", ch, obj, NULL, TO_CHAR); 
  	act("$n stabs a pin through $p.", ch, obj, NULL, TO_ROOM);
 	if (!IS_NPC(victim) && IS_IMMUNE(victim, IMM_VOODOO)) return;
@@ -3211,6 +4002,7 @@ void do_voodoo( CHAR_DATA *ch, char *argument )
     }
     else if ( !str_cmp(arg2, "burn") )
     {
+	WAIT_STATE(ch,12);
 	act("You set fire to $p.", ch, obj, NULL, TO_CHAR);
  	act("$n sets fire to $p.", ch, obj, NULL, TO_ROOM);
 	act("$p burns to ashes.", ch, obj, NULL, TO_CHAR);
@@ -3226,6 +4018,7 @@ void do_voodoo( CHAR_DATA *ch, char *argument )
     }
     else if ( !str_cmp(arg2, "throw") )
     {
+	WAIT_STATE(ch,12);
 	act("You throw $p to the ground.", ch, obj, NULL, TO_CHAR);
  	act("$n throws $p to the ground.", ch, obj, NULL, TO_ROOM);
 	obj_from_char(obj);
@@ -3250,4888 +4043,6 @@ void do_voodoo( CHAR_DATA *ch, char *argument )
     {
 	send_to_char( "You can 'stab', 'burn' or 'throw' the doll.\n\r", ch );
     }
-    return;
-}
-
-/* Need to get rid of those flames somehow - KaVir */
-void do_smother( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    char arg[MAX_INPUT_LENGTH];
-
-    one_argument( argument, arg );
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Smother whom?\n\r", ch );
-	return;
-    }
-
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-
-    if ( ch == victim )
-    {
-	send_to_char( "You cannot smother yourself.\n\r", ch );
-	return;
-    }
-
-    if (!IS_AFFECTED(victim, AFF_FLAMING))
-    {
-	send_to_char( "But they are not on fire!\n\r", ch );
-	return;
-    }
-
-    if ( number_percent() > (ch->level*2) )
-    {
-	act( "You try to smother the flames around $N but fail!",  ch, NULL, victim, TO_CHAR    );
-	act( "$n tries to smother the flames around you but fails!", ch, NULL, victim, TO_VICT    );
-	act( "$n tries to smother the flames around $N but fails!",  ch, NULL, victim, TO_NOTVICT );
-	if ( number_percent() > 98 && !IS_AFFECTED(ch,AFF_FLAMING) )
-	{
-	    act( "A spark of flame from $N's body sets you on fire!",  ch, NULL, victim, TO_CHAR    );
-	    act( "A spark of flame from your body sets $n on fire!", ch, NULL, victim, TO_VICT    );
-	    act( "A spark of flame from $N's body sets $n on fire!",  ch, NULL, victim, TO_NOTVICT );
-	    SET_BIT(ch->affected_by, AFF_FLAMING);
-	    do_humanity(ch,"");
-	}
-	return;
-    }
-
-    act( "You manage to smother the flames around $M!",  ch, NULL, victim, TO_CHAR    );
-    act( "$n manages to smother the flames around you!", ch, NULL, victim, TO_VICT    );
-    act( "$n manages to smother the flames around $N!",  ch, NULL, victim, TO_NOTVICT );
-    REMOVE_BIT(victim->affected_by, AFF_FLAMING);
-    do_humanity(ch,"");
-    return;
-}
-
-/* Loads of Vampire powers follow.  KaVir */
-
-void do_fangs( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (IS_VAMPAFF(ch,VAM_FANGS) )
-    {
-	send_to_char("Your fangs slide back into your gums.\n\r",ch);
-	act("$n's fangs slide back into $s gums.", ch, NULL, NULL, TO_ROOM);
-	REMOVE_BIT(ch->vampaff, VAM_FANGS);
-	return;
-    }
-    send_to_char("Your fangs extend out of your gums.\n\r",ch);
-    act("A pair of razor sharp fangs extend from $n's mouth.", ch, NULL, NULL, TO_ROOM);
-    SET_BIT(ch->vampaff, VAM_FANGS);
-    return;
-}
-
-void do_claws( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (!IS_VAMPAFF(ch,VAM_PROTEAN) )
-    {
-	send_to_char("You are not trained in the Protean discipline.\n\r",ch);
-	return;
-    }
-
-    if (IS_VAMPAFF(ch,VAM_CLAWS) )
-    {
-	send_to_char("Your claws slide back under your nails.\n\r",ch);
-	act("$n's claws slide back under $s nails.", ch, NULL, NULL, TO_ROOM);
-	REMOVE_BIT(ch->vampaff, VAM_CLAWS);
-	return;
-    }
-
-    if ( ch->pcdata->condition[COND_THIRST] < 10 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(5,10);
-    send_to_char("Sharp claws extend from under your finger nails.\n\r",ch);
-    act("Sharp claws extend from under $n's finger nails.", ch, NULL, NULL, TO_ROOM);
-    SET_BIT(ch->vampaff, VAM_CLAWS);
-    return;
-}
-
-void do_nightsight( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (!IS_VAMPAFF(ch,VAM_PROTEAN) && !IS_VAMPAFF(ch,VAM_OBTENEBRATION)
-	&& !IS_VAMPAFF(ch,VAM_SERPENTIS))
-    {
-	send_to_char("You are not trained in the correct disciplines.\n\r",ch);
-	return;
-    }
-    if (IS_VAMPAFF(ch,VAM_NIGHTSIGHT) )
-    {
-	send_to_char("The red glow in your eyes fades.\n\r",ch);
-	act("The red glow in $n's eyes fades.", ch, NULL, NULL, TO_ROOM);
-	REMOVE_BIT(ch->vampaff, VAM_NIGHTSIGHT);
-	return;
-    }
-    if ( ch->pcdata->condition[COND_THIRST] < 10 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(5,10);
-    send_to_char("Your eyes start glowing red.\n\r",ch);
-    act("$n's eyes start glowing red.", ch, NULL, NULL, TO_ROOM);
-    SET_BIT(ch->vampaff, VAM_NIGHTSIGHT);
-    return;
-}
-
-void do_shadowsight( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (!IS_VAMPAFF(ch,VAM_OBTENEBRATION) )
-    {
-	send_to_char("You are not trained in the Obtenebration discipline.\n\r",ch);
-	return;
-    }
-    if (IS_AFFECTED(ch,AFF_SHADOWSIGHT) )
-    {
-	send_to_char("You can no longer see between planes.\n\r",ch);
-	REMOVE_BIT(ch->affected_by, AFF_SHADOWSIGHT);
-	return;
-    }
-    if ( ch->pcdata->condition[COND_THIRST] < 10 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(5,10);
-    send_to_char("You can now see between planes.\n\r",ch);
-    SET_BIT(ch->affected_by, AFF_SHADOWSIGHT);
-    return;
-}
-
-void do_bite( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    char      arg [MAX_INPUT_LENGTH];
-    char      buf [MAX_INPUT_LENGTH];
-    int       clancount;
-    bool      can_sire = FALSE;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) || (ch->vampgen < 1))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-
-    if (ch->vamppass == -1) ch->vamppass = ch->vampaff;
-
-    if (ch->vampgen == 1 || ch->vampgen == 2) can_sire = TRUE;
-    if (IS_EXTRA(ch,EXTRA_PRINCE)) can_sire = TRUE;
-    if (IS_EXTRA(ch,EXTRA_SIRE)) can_sire = TRUE;
-    if (ch->vampgen > 6) can_sire = FALSE;
-
-    if (!can_sire)
-    {
-	send_to_char("You are not able to create any childer.\n\r",ch);
-	return;
-    }
-
-    if (!str_cmp(ch->clan,"") && (ch->vampgen != 1) )
-    {
-	send_to_char( "First you need to found a clan.\n\r", ch );
-	return;
-    }
-
-    clancount = 0;
-    if (IS_VAMPPASS(ch,VAM_PROTEAN))       clancount = clancount + 1;
-    if (IS_VAMPPASS(ch,VAM_CELERITY))      clancount = clancount + 1;
-    if (IS_VAMPPASS(ch,VAM_FORTITUDE))     clancount = clancount + 1;
-    if (IS_VAMPPASS(ch,VAM_POTENCE))       clancount = clancount + 1;
-    if (IS_VAMPPASS(ch,VAM_OBFUSCATE))     clancount = clancount + 1;
-    if (IS_VAMPPASS(ch,VAM_OBTENEBRATION)) clancount = clancount + 1;
-    if (IS_VAMPPASS(ch,VAM_SERPENTIS))     clancount = clancount + 1;
-    if (IS_VAMPPASS(ch,VAM_AUSPEX))        clancount = clancount + 1;
-    if (IS_VAMPPASS(ch,VAM_DOMINATE))      clancount = clancount + 1;
-
-    if ( clancount < 3 )
-    {
-	send_to_char( "First you need to master 3 disciplines.\n\r", ch );
-	return;
-    }
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Bite whom?\n\r", ch );
-	return;
-    }
-
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-
-    if ( IS_NPC(victim) )
-    {
-	send_to_char( "Not on NPC's.\n\r", ch );
-	return;
-    }
-
-    if ( ch == victim )
-    {
-	send_to_char( "You cannot bite yourself.\n\r", ch );
-	return;
-    }
-
-    if ( victim->level < 3 )
-    {
-	send_to_char( "You can only bite avatars.\n\r", ch );
-	return;
-    }
-
-    if (IS_SET(victim->act, PLR_VAMPIRE) && ch->beast != 100)
-    {
-	send_to_char( "But they are already a vampire!\n\r", ch );
-	return;
-    }
-
-    if (!IS_IMMUNE(victim,IMM_VAMPIRE) && ch->beast != 100)
-    {
-	send_to_char( "You cannot bite an unwilling person.\n\r", ch );
-	return;
-    }
-
-    if (!IS_VAMPAFF(ch,VAM_FANGS) && ch->beast != 100)
-    {
-	send_to_char("First you better get your fangs out!\n\r",ch);
-	return;
-    }
-
-    if (IS_VAMPAFF(ch,VAM_DISGUISED) && ch->beast != 100)
-    {
-	send_to_char("You must reveal your true nature to bite someone.\n\r",ch);
-	return;
-    }
-
-    if (ch->exp < 1000 && ch->beast != 100)
-    {
-	send_to_char("You cannot afford the 1000 exp to create a childe.\n\r",ch);
-	return;
-    }
-
-    if (ch->beast == 100)
-    {
-    	if (!IS_VAMPAFF(ch,VAM_FANGS) ) do_fangs(ch,"");
-    	act("Your jaw opens wide and you leap hungrily at $N.", ch, NULL, victim, TO_CHAR);
-    	act("$n's jaw opens wide and $e leaps hungrily at $N.", ch, NULL, victim, TO_NOTVICT);
-    	act("$n's jaw opens wide and $e leaps hungrily at you.", ch, NULL, victim, TO_VICT);
-	one_hit( ch, victim, -1, 0 );
-	return;
-    }
-
-    if (ch->beast > 0)
-	ch->beast += 1;
-    ch->exp = ch->exp - 1000;
-    if (IS_EXTRA(ch,EXTRA_SIRE)) REMOVE_BIT(ch->extra,EXTRA_SIRE);
-    act("You sink your teeth into $N.", ch, NULL, victim, TO_CHAR);
-    act("$n sinks $s teeth into $N.", ch, NULL, victim, TO_NOTVICT);
-    act("$n sinks $s teeth into your neck.", ch, NULL, victim, TO_VICT);
-    SET_BIT(victim->act, PLR_VAMPIRE);
-    if ( victim->vampgen != 0 && (victim->vampgen <= ( ch->vampgen + 1 ) ) )
-    {
-	send_to_char( "Your vampiric status has been restored.\n\r", victim );
-	return;
-    }
-    send_to_char( "You are now a vampire.\n\r", victim );    
-    victim->vampgen = ch->vampgen + 1;
-    free_string(victim->lord);
-    if (ch->vampgen == 1)
-	victim->lord=str_dup(ch->name);
-    else
-    {
-	sprintf(buf,"%s %s",ch->lord,ch->name);
-	victim->lord=str_dup(buf);
-    }
-    if (ch->vampgen != 1)
-    {
-    	if (victim->vamppass == -1) victim->vamppass = victim->vampaff;
-
-	/* Remove hp bonus from fortitude */
-	if (IS_VAMPPASS(victim,VAM_FORTITUDE) && !IS_VAMPAFF(victim,VAM_FORTITUDE))
-	{
-	    victim->max_hit = victim->max_hit - 50;
-	    victim->hit = victim->hit - 50;
-	    if (victim->hit < 1) victim->hit = 1;
-	}
-
-	/* Remove any old powers they might have */
-	if (IS_VAMPPASS(victim,VAM_PROTEAN))
-	{REMOVE_BIT(victim->vamppass, VAM_PROTEAN);
-	 REMOVE_BIT(victim->vampaff, VAM_PROTEAN);}
-	if (IS_VAMPPASS(victim,VAM_CELERITY))
-	{REMOVE_BIT(victim->vamppass, VAM_CELERITY);
-	 REMOVE_BIT(victim->vampaff, VAM_CELERITY);}
-	if (IS_VAMPPASS(victim,VAM_FORTITUDE))
-	{REMOVE_BIT(victim->vamppass, VAM_FORTITUDE);
-	 REMOVE_BIT(victim->vampaff, VAM_FORTITUDE);}
-	if (IS_VAMPPASS(victim,VAM_POTENCE))
-	{REMOVE_BIT(victim->vamppass, VAM_POTENCE);
-	 REMOVE_BIT(victim->vampaff, VAM_POTENCE);}
-	if (IS_VAMPPASS(victim,VAM_OBFUSCATE))
-	{REMOVE_BIT(victim->vamppass, VAM_OBFUSCATE);
-	 REMOVE_BIT(victim->vampaff, VAM_OBFUSCATE);}
-	if (IS_VAMPPASS(victim,VAM_OBTENEBRATION))
-	{REMOVE_BIT(victim->vamppass, VAM_OBTENEBRATION);
-	 REMOVE_BIT(victim->vampaff, VAM_OBTENEBRATION);}
-	if (IS_VAMPPASS(victim,VAM_SERPENTIS))
-	{REMOVE_BIT(victim->vamppass, VAM_SERPENTIS);
-	 REMOVE_BIT(victim->vampaff, VAM_SERPENTIS);}
-	if (IS_VAMPPASS(victim,VAM_AUSPEX))
-	{REMOVE_BIT(victim->vamppass, VAM_AUSPEX);
-	 REMOVE_BIT(victim->vampaff, VAM_AUSPEX);}
-	if (IS_VAMPPASS(victim,VAM_DOMINATE))
-	{REMOVE_BIT(victim->vamppass, VAM_DOMINATE);
-	 REMOVE_BIT(victim->vampaff, VAM_DOMINATE);}
-	free_string(victim->clan);
-	victim->clan=str_dup(ch->clan);
-	/* Give the vampire the base powers of their sire */
-	if (IS_VAMPPASS(ch,VAM_FORTITUDE) && !IS_VAMPAFF(victim,VAM_FORTITUDE))
-	{
-	    victim->max_hit = victim->max_hit + 50;
-	    victim->hit = victim->hit + 50;
-	}
-	if (IS_VAMPPASS(ch,VAM_PROTEAN))
-	{SET_BIT(victim->vamppass, VAM_PROTEAN);
-	 SET_BIT(victim->vampaff, VAM_PROTEAN);}
-	if (IS_VAMPPASS(ch,VAM_CELERITY))
-	{SET_BIT(victim->vamppass, VAM_CELERITY);
-	 SET_BIT(victim->vampaff, VAM_CELERITY);}
-	if (IS_VAMPPASS(ch,VAM_FORTITUDE))
-	{SET_BIT(victim->vamppass, VAM_FORTITUDE);
-	 SET_BIT(victim->vampaff, VAM_FORTITUDE);}
-	if (IS_VAMPPASS(ch,VAM_POTENCE))
-	{SET_BIT(victim->vamppass, VAM_POTENCE);
-	 SET_BIT(victim->vampaff, VAM_POTENCE);}
-	if (IS_VAMPPASS(ch,VAM_OBFUSCATE))
-	{SET_BIT(victim->vamppass, VAM_OBFUSCATE);
-	 SET_BIT(victim->vampaff, VAM_OBFUSCATE);}
-	if (IS_VAMPPASS(ch,VAM_OBTENEBRATION))
-	{SET_BIT(victim->vamppass, VAM_OBTENEBRATION);
-	 SET_BIT(victim->vampaff, VAM_OBTENEBRATION);}
-	if (IS_VAMPPASS(ch,VAM_SERPENTIS))
-	{SET_BIT(victim->vamppass, VAM_SERPENTIS);
-	 SET_BIT(victim->vampaff, VAM_SERPENTIS);}
-	if (IS_VAMPPASS(ch,VAM_AUSPEX))
-	{SET_BIT(victim->vamppass, VAM_AUSPEX);
-	 SET_BIT(victim->vampaff, VAM_AUSPEX);}
-	if (IS_VAMPPASS(ch,VAM_DOMINATE))
-	{SET_BIT(victim->vamppass, VAM_DOMINATE);
-	 SET_BIT(victim->vampaff, VAM_DOMINATE);}
-    }
-    return;
-}
-
-void do_clanname( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    char      arg [MAX_INPUT_LENGTH];
-    argument = one_argument( argument, arg );
-    if ( IS_NPC(ch) ) return;
-
-    if ( !IS_SET(ch->act,PLR_VAMPIRE) || ch->vampgen != 1 )
-    {
-	send_to_char( "Huh?\n\r", ch );
-	return;
-    }
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Who's clan do you wish to name?\n\r", ch );
-	return;
-    }
-
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-    if ( IS_NPC(victim) ) return;
-    if ( victim->vampgen != 2 )
-    {
-	send_to_char( "Only the Antediluvians may have clans.\n\r", ch );
-	return;
-    }
-    if ( str_cmp(victim->clan,"") )
-    {
-	send_to_char( "But they already have a clan!\n\r", ch );
-	return;
-    }
-    smash_tilde( argument );
-    free_string( victim->clan );
-    victim->clan = str_dup( argument );
-    send_to_char( "Clan name set.\n\r", ch );
-    return;
-}
-
-void do_stake( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    OBJ_DATA  *stake;
-    char      arg [MAX_INPUT_LENGTH];
-    int       blood;
-
-    argument = one_argument( argument, arg );
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Stake whom?\n\r", ch );
-	return;
-    }
-
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-
-    stake = get_eq_char( ch, WEAR_HOLD );
-    if ( (stake == NULL) || (stake->item_type != ITEM_STAKE) )
-    {
-	send_to_char( "How can you stake someone down without holding a stake?\n\r", ch );
-	return;
-    }
-
-    if ( IS_NPC(victim) )
-    {
-	send_to_char( "Not on NPC's.\n\r", ch );
-	return;
-    }
-
-    if ( ch == victim )
-    {
-	send_to_char( "You cannot bite yourself.\n\r", ch );
-	return;
-    }
-
-    if (!IS_SET(victim->act, PLR_VAMPIRE))
-    {
-	send_to_char( "You can only stake vampires.\n\r", ch );
-	return;
-    }
-
-    if (victim->position > POS_MORTAL)
-    {
-	send_to_char( "You can only stake down a vampire who is mortally wounded.\n\r", ch );
-	return;
-    }
-
-    act("You plunge $p into $N's heart.", ch, stake, victim, TO_CHAR);
-    act("$n plunges $p into $N's heart.", ch, stake, victim, TO_NOTVICT);
-    send_to_char( "You feel a stake plunged through your heart.\n\r", victim );
-    if (IS_IMMUNE(victim,IMM_STAKE)) return;
-
-    /* Have to make sure they have enough blood to change back */
-    blood = victim->pcdata->condition[COND_THIRST];
-    victim->pcdata->condition[COND_THIRST] = 666;
-
-    /* To take care of vampires who have powers in affect. */
-    if (IS_VAMPAFF(victim,VAM_DISGUISED) ) do_mask(victim,"self");
-    if (IS_IMMUNE(victim,IMM_SHIELDED) ) do_shield(victim,"");
-    if (IS_AFFECTED(victim,AFF_SHADOWPLANE) ) do_shadowplane(victim,"");
-    if (IS_VAMPAFF(victim,VAM_FANGS) ) do_fangs(victim,"");
-    if (IS_VAMPAFF(victim,VAM_CLAWS) ) do_claws(victim,"");
-    if (IS_VAMPAFF(victim,VAM_NIGHTSIGHT) ) do_nightsight(victim,"");
-    if (IS_AFFECTED(victim,AFF_SHADOWSIGHT) ) do_shadowsight(victim,"");
-    if (IS_SET(victim->act,PLR_HOLYLIGHT) ) do_truesight(victim,"");
-    if (IS_VAMPAFF(victim,VAM_CHANGED) ) do_change(victim,"human");
-    if (IS_POLYAFF(victim,POLY_SERPENT) ) do_serpent(victim,"");
-    victim->pcdata->wolf = 0;
-    victim->pcdata->condition[COND_THIRST] = blood;
-
-    REMOVE_BIT(victim->act, PLR_VAMPIRE);
-    obj_from_char(stake);
-    obj_to_char(stake,victim);
-    ch->exp = ch->exp + 1000;
-    victim->home = 3001;
-    return;
-}
-
-void do_mask( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    char      arg [MAX_INPUT_LENGTH];
-    char      buf [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char( "Huh?\n\r", ch );
-	return;
-    }
-
-    if (!IS_VAMPAFF(ch,VAM_OBFUSCATE) )
-    {
-	send_to_char("You are not trained in the Obfuscate discipline.\n\r",ch);
-	return;
-    }
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Change to look like whom?\n\r", ch );
-	return;
-    }
-
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-
-    if ( IS_NPC(victim) )
-    {
-	send_to_char( "Not on NPC's.\n\r", ch );
-	return;
-    }
-
-    if ( IS_IMMORTAL(victim) && victim != ch )
-    {
-	send_to_char( "You can only mask avatars or lower.\n\r", ch );
-	return;
-    }
-
-    if ( ch->pcdata->condition[COND_THIRST] < 40 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(30,40);
-
-    if ( ch == victim )
-    {
-	if (!IS_AFFECTED(ch,AFF_POLYMORPH) && !IS_VAMPAFF(ch,VAM_DISGUISED))
-	{
-	    send_to_char( "You already look like yourself!\n\r", ch );
-	    return;
-	}
-	sprintf(buf,"Your form shimmers and transforms into %s.",ch->name);
-	act(buf,ch,NULL,victim,TO_CHAR);
-	sprintf(buf,"%s's form shimmers and transforms into %s.",ch->morph,ch->name);
-	act(buf,ch,NULL,victim,TO_ROOM);
-	REMOVE_BIT(ch->affected_by, AFF_POLYMORPH);
-	REMOVE_BIT(ch->vampaff, VAM_DISGUISED);
-    	free_string( ch->morph );
-    	ch->morph = str_dup( "" );
-	return;
-    }
-    if (IS_VAMPAFF(ch,VAM_DISGUISED))
-    {
-    	sprintf(buf,"Your form shimmers and transforms into a clone of %s.",victim->name);
-    	act(buf,ch,NULL,victim,TO_CHAR);
-    	sprintf(buf,"%s's form shimmers and transforms into a clone of %s.",ch->morph,victim->name);
-    	act(buf,ch,NULL,victim,TO_NOTVICT);
-    	sprintf(buf,"%s's form shimmers and transforms into a clone of you!",ch->morph);
-    	act(buf,ch,NULL,victim,TO_VICT);
-    	free_string( ch->morph );
-    	ch->morph = str_dup( victim->name );
-	return;
-    }
-    sprintf(buf,"Your form shimmers and transforms into a clone of %s.",victim->name);
-    act(buf,ch,NULL,victim,TO_CHAR);
-    sprintf(buf,"%s's form shimmers and transforms into a clone of %s.",ch->name,victim->name);
-    act(buf,ch,NULL,victim,TO_NOTVICT);
-    sprintf(buf,"%s's form shimmers and transforms into a clone of you!",ch->name);
-    act(buf,ch,NULL,victim,TO_VICT);
-    SET_BIT(ch->affected_by, AFF_POLYMORPH);
-    SET_BIT(ch->vampaff, VAM_DISGUISED);
-    free_string( ch->morph );
-    ch->morph = str_dup( victim->name );
-    return;
-}
-
-void do_change( CHAR_DATA *ch, char *argument )
-{
-    char arg [MAX_INPUT_LENGTH]; 
-    char buf [MAX_INPUT_LENGTH]; 
-    argument = one_argument( argument, arg ); 
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-
-    if (!IS_VAMPAFF(ch,VAM_PROTEAN) )
-    {
-	send_to_char("You are not trained in the Protean discipline.\n\r",ch);
-	return;
-    }
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "You can change between 'human', 'bat', 'wolf' and 'mist' forms.\n\r", ch );
-	return;
-    }
-
-    if ( !str_cmp(arg,"bat") )
-    {
-	if (IS_AFFECTED(ch, AFF_POLYMORPH))
-	{
-	    send_to_char( "You can only polymorph from human form.\n\r", ch );
-	    return;
-	}
-    	if ( ch->pcdata->condition[COND_THIRST] < 50 )
-    	{
-	    send_to_char("You have insufficient blood.\n\r",ch);
-	    return;
-    	}
-    	ch->pcdata->condition[COND_THIRST] -= number_range(40,50);
-	clear_stats(ch);
-	act( "You transform into bat form.", ch, NULL, NULL, TO_CHAR );
-	act( "$n transforms into a bat.", ch, NULL, NULL, TO_ROOM );
-	SET_BIT(ch->vampaff, VAM_FLYING);
-	SET_BIT(ch->vampaff, VAM_SONIC);
-	SET_BIT(ch->polyaff, POLY_BAT);
-	SET_BIT(ch->vampaff, VAM_CHANGED);
-	SET_BIT(ch->affected_by, AFF_POLYMORPH);
-	sprintf(buf, "%s the vampire bat", ch->name);
-    	free_string( ch->morph );
-    	ch->morph = str_dup( buf );
-	return;
-    }
-    else if ( !str_cmp(arg,"wolf") )
-    {
-	if (IS_AFFECTED(ch, AFF_POLYMORPH))
-	{
-	    send_to_char( "You can only polymorph from human form.\n\r", ch );
-	    return;
-	}
-    	if ( ch->pcdata->condition[COND_THIRST] < 50 )
-    	{
-	    send_to_char("You have insufficient blood.\n\r",ch);
-	    return;
-    	}
-    	ch->pcdata->condition[COND_THIRST] -= number_range(40,50);
-	act( "You transform into wolf form.", ch, NULL, NULL, TO_CHAR );
-	act( "$n transforms into a dire wolf.", ch, NULL, NULL, TO_ROOM );
-	clear_stats(ch);
-    	if (ch->wpn[0] > 0)
-    	{
-	    ch->hitroll += ch->wpn[0]/4;
-	    ch->damroll += ch->wpn[0]/4;
-	    ch->armor   -= ch->wpn[0];
-    	}
-    	ch->pcdata->mod_str = 10;
-	SET_BIT(ch->polyaff, POLY_WOLF);
-	SET_BIT(ch->affected_by, AFF_POLYMORPH);
-	SET_BIT(ch->vampaff, VAM_CHANGED);
-	ch->max_hit = ch->max_hit + 50;
-	ch->hit = ch->hit + 50;
-	sprintf(buf, "%s the dire wolf", ch->name);
-    	free_string( ch->morph );
-    	ch->morph = str_dup( buf );
-	return;
-    }
-    else if ( !str_cmp(arg,"mist") )
-    {
-	if (IS_AFFECTED(ch, AFF_POLYMORPH))
-	{
-	    send_to_char( "You can only polymorph from human form.\n\r", ch );
-	    return;
-	}
-    	if ( ch->pcdata->condition[COND_THIRST] < 50 )
-    	{
-	    send_to_char("You have insufficient blood.\n\r",ch);
-	    return;
-    	}
-    	ch->pcdata->condition[COND_THIRST] -= number_range(40,50);
-	act( "You transform into mist form.", ch, NULL, NULL, TO_CHAR );
-	act( "$n transforms into a white mist.", ch, NULL, NULL, TO_ROOM );
-	clear_stats(ch);
-	SET_BIT(ch->polyaff, POLY_MIST);
-	SET_BIT(ch->vampaff, VAM_CHANGED);
-	SET_BIT(ch->affected_by, AFF_POLYMORPH);
-	SET_BIT(ch->affected_by, AFF_ETHEREAL);
-	sprintf(buf, "%s the white mist", ch->name);
-    	free_string( ch->morph );
-    	ch->morph = str_dup( buf );
-	return;
-    }
-    else if ( !str_cmp(arg,"human") )
-    {
-	if (!IS_AFFECTED(ch, AFF_POLYMORPH))
-	{
-	    send_to_char( "You are already in human form.\n\r", ch );
-	    return;
-	}
-	if (IS_VAMPAFF(ch, VAM_CHANGED) && IS_POLYAFF(ch, POLY_BAT))
-	{
-	    REMOVE_BIT(ch->vampaff, VAM_FLYING);
-	    REMOVE_BIT(ch->vampaff, VAM_SONIC);
-	    REMOVE_BIT(ch->polyaff, POLY_BAT);
-	}
-	else if (IS_VAMPAFF(ch, VAM_CHANGED) && IS_POLYAFF(ch, POLY_WOLF))
-	{
-	    REMOVE_BIT(ch->polyaff, POLY_WOLF);
-	    ch->max_hit = ch->max_hit - 50;
-	    ch->hit = ch->hit - 50;
-	    if (ch->hit < 1) ch->hit = 1;
-	}
-	else if (IS_VAMPAFF(ch, VAM_CHANGED) && IS_POLYAFF(ch, POLY_MIST))
-	{
-	    REMOVE_BIT(ch->polyaff, POLY_MIST);
-	    REMOVE_BIT(ch->affected_by, AFF_ETHEREAL);
-	}
-	else
-	{
-	    /* In case they try to change to human from a non-vamp form */
-	    send_to_char( "You seem to be stuck in this form.\n\r", ch );
-	    return;
-	}
-	act( "You transform into human form.", ch, NULL, NULL, TO_CHAR );
-	act( "$n transforms into human form.", ch, NULL, NULL, TO_ROOM );
-	REMOVE_BIT(ch->affected_by, AFF_POLYMORPH);
-	REMOVE_BIT(ch->vampaff, VAM_CHANGED);
-	clear_stats(ch);
-  	free_string( ch->morph );
-    	ch->morph = str_dup( "" );
-	return;
-    }
-    else
-	send_to_char( "You can change between 'human', 'bat', 'wolf' and 'mist' forms.\n\r", ch );
-    return;
-}
-
-void clear_stats( CHAR_DATA *ch )
-{
-    OBJ_DATA *obj;
-    OBJ_DATA *obj_next;
-
-    if (IS_NPC(ch)) return;
-
-    for ( obj = ch->carrying; obj != NULL; obj = obj_next )
-    {
-	obj_next = obj->next_content;
-	if ( obj->wear_loc != WEAR_NONE ) unequip_char(ch, obj);
-    }
-    while ( ch->affected )
-	affect_remove( ch, ch->affected );
-    ch->armor			= 100;
-    ch->hitroll			= 0;
-    ch->damroll			= 0;
-    ch->saving_throw		= 0;
-    ch->pcdata->mod_str		= 0;
-    ch->pcdata->mod_int		= 0;
-    ch->pcdata->mod_wis		= 0;
-    ch->pcdata->mod_dex		= 0;
-    ch->pcdata->mod_con		= 0;
-    save_char_obj( ch );
-    return;
-}
-
-
-void do_clandisc( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-    char      buf [MAX_INPUT_LENGTH];
-    int clancount;
-    int clanmax;
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if ( !IS_SET(ch->act,PLR_VAMPIRE) )
-    {
-	send_to_char( "Huh?\n\r", ch );
-	return;
-    }
-
-    if (ch->vamppass == -1) ch->vamppass = ch->vampaff;
-
-    if      (ch->vampgen == 1) clanmax = 8;
-    else if (ch->vampgen == 2) clanmax = 6;
-    else if (ch->vampgen <= 4) clanmax = 5;
-    else                       clanmax = 4;
-
-    clancount = 0;
-    if (IS_VAMPAFF(ch,VAM_PROTEAN) || IS_VAMPPASS(ch,VAM_PROTEAN))
-	clancount = clancount + 1;
-    if (IS_VAMPAFF(ch,VAM_CELERITY) || IS_VAMPPASS(ch,VAM_CELERITY))
-	clancount = clancount + 1;
-    if (IS_VAMPAFF(ch,VAM_FORTITUDE) || IS_VAMPPASS(ch,VAM_FORTITUDE))
-	clancount = clancount + 1;
-    if (IS_VAMPAFF(ch,VAM_POTENCE) || IS_VAMPPASS(ch,VAM_POTENCE))
-	clancount = clancount + 1;
-    if (IS_VAMPAFF(ch,VAM_OBFUSCATE) || IS_VAMPPASS(ch,VAM_OBFUSCATE))
-	clancount = clancount + 1;
-    if (IS_VAMPAFF(ch,VAM_OBTENEBRATION) || IS_VAMPPASS(ch,VAM_OBTENEBRATION))
-	clancount = clancount + 1;
-    if (IS_VAMPAFF(ch,VAM_SERPENTIS) || IS_VAMPPASS(ch,VAM_SERPENTIS))
-	clancount = clancount + 1;
-    if (IS_VAMPAFF(ch,VAM_AUSPEX) || IS_VAMPPASS(ch,VAM_AUSPEX))
-	clancount = clancount + 1;
-    if (IS_VAMPAFF(ch,VAM_DOMINATE) || IS_VAMPPASS(ch,VAM_DOMINATE))
-	clancount = clancount + 1;
-    if ( arg[0] == '\0' )
-    {
-	send_to_char("Current powers:",ch);
-	if (IS_VAMPAFF(ch,VAM_PROTEAN) && !IS_VAMPPASS(ch,VAM_PROTEAN))
-	    send_to_char(" Protean",ch);
-	else if (IS_VAMPAFF(ch,VAM_PROTEAN))
-	    send_to_char(" PROTEAN",ch);
-	if (IS_VAMPAFF(ch,VAM_CELERITY) && !IS_VAMPPASS(ch,VAM_CELERITY))
-	    send_to_char(" Celerity",ch);
-	else if (IS_VAMPAFF(ch,VAM_CELERITY))
-	    send_to_char(" CELERITY",ch);
-	if (IS_VAMPAFF(ch,VAM_FORTITUDE) && !IS_VAMPPASS(ch,VAM_FORTITUDE))
-	    send_to_char(" Fortitude",ch);
-	else if (IS_VAMPAFF(ch,VAM_FORTITUDE))
-	    send_to_char(" FORTITUDE",ch);
-	if (IS_VAMPAFF(ch,VAM_POTENCE) && !IS_VAMPPASS(ch,VAM_POTENCE))
-	    send_to_char(" Potence",ch);
-	else if (IS_VAMPAFF(ch,VAM_POTENCE))
-	    send_to_char(" POTENCE",ch);
-	if (IS_VAMPAFF(ch,VAM_OBFUSCATE) && !IS_VAMPPASS(ch,VAM_OBFUSCATE))
-	    send_to_char(" Obfuscate",ch);
-	else if (IS_VAMPAFF(ch,VAM_OBFUSCATE))
-	    send_to_char(" OBFUSCATE",ch);
-	if (IS_VAMPAFF(ch,VAM_OBTENEBRATION) && !IS_VAMPPASS(ch,VAM_OBTENEBRATION))
-	    send_to_char(" Obtenebration",ch);
-	else if (IS_VAMPAFF(ch,VAM_OBTENEBRATION))
-	    send_to_char(" OBTENEBRATION",ch);
-	if (IS_VAMPAFF(ch,VAM_SERPENTIS) && !IS_VAMPPASS(ch,VAM_SERPENTIS))
-	    send_to_char(" Serpentis",ch);
-	else if (IS_VAMPAFF(ch,VAM_SERPENTIS))
-	    send_to_char(" SERPENTIS",ch);
-	if (IS_VAMPAFF(ch,VAM_AUSPEX) && !IS_VAMPPASS(ch,VAM_AUSPEX))
-	    send_to_char(" Auspex",ch);
-	else if (IS_VAMPAFF(ch,VAM_AUSPEX))
-	    send_to_char(" AUSPEX",ch);
-	if (IS_VAMPAFF(ch,VAM_DOMINATE) && !IS_VAMPPASS(ch,VAM_DOMINATE))
-	    send_to_char(" Dominate",ch);
-	else if (IS_VAMPAFF(ch,VAM_DOMINATE))
-	    send_to_char(" DOMINATE",ch);
-    	if (!IS_VAMPAFF(ch,VAM_PROTEAN) && !IS_VAMPAFF(ch,VAM_CELERITY) && 
-	    !IS_VAMPAFF(ch,VAM_FORTITUDE) && !IS_VAMPAFF(ch,VAM_POTENCE) &&
-	    !IS_VAMPAFF(ch,VAM_OBFUSCATE) && !IS_VAMPAFF(ch,VAM_AUSPEX) &&
-	    !IS_VAMPAFF(ch,VAM_OBTENEBRATION) && !IS_VAMPAFF(ch,VAM_SERPENTIS) &&
-    	    !IS_VAMPPASS(ch,VAM_PROTEAN) && !IS_VAMPPASS(ch,VAM_CELERITY) && 
-	    !IS_VAMPPASS(ch,VAM_FORTITUDE) && !IS_VAMPPASS(ch,VAM_POTENCE) &&
-	    !IS_VAMPPASS(ch,VAM_OBFUSCATE) && !IS_VAMPPASS(ch,VAM_AUSPEX) &&
-	    !IS_VAMPPASS(ch,VAM_DOMINATE) &&
-	    !IS_VAMPPASS(ch,VAM_OBTENEBRATION) && !IS_VAMPPASS(ch,VAM_SERPENTIS))
-	    send_to_char(" None",ch);
-	send_to_char(".\n\r",ch);
-	if (clancount < clanmax) {sprintf(buf,"Select %d from:",(clanmax-clancount));
-	    send_to_char(buf,ch);}
-	else return;
-	if (!IS_VAMPAFF(ch,VAM_PROTEAN)) send_to_char(" Protean",ch);
-	if (!IS_VAMPAFF(ch,VAM_CELERITY)) send_to_char(" Celerity",ch);
-	if (!IS_VAMPAFF(ch,VAM_FORTITUDE)) send_to_char(" Fortitude",ch);
-	if (!IS_VAMPAFF(ch,VAM_POTENCE)) send_to_char(" Potence",ch);
-	if (!IS_VAMPAFF(ch,VAM_OBFUSCATE)) send_to_char(" Obfuscate",ch);
-	if (!IS_VAMPAFF(ch,VAM_OBTENEBRATION)) send_to_char(" Obtenebration",ch);
-	if (!IS_VAMPAFF(ch,VAM_SERPENTIS)) send_to_char(" Serpentis",ch);
-	if (!IS_VAMPAFF(ch,VAM_AUSPEX)) send_to_char(" Auspex",ch);
-	if (!IS_VAMPAFF(ch,VAM_DOMINATE)) send_to_char(" Dominate",ch);
-	send_to_char(".\n\r",ch);
-	return;
-    }
-    if ( clancount >= clanmax )
-    {
-	if ( !str_cmp(arg,"protean") && (IS_VAMPAFF(ch,VAM_PROTEAN) || IS_VAMPPASS(ch,VAM_PROTEAN)))
-	    send_to_char( "Powers: Nightsight, Claws, Change.\n\r", ch );
-	else if ( !str_cmp(arg,"celerity") && (IS_VAMPAFF(ch,VAM_CELERITY) || IS_VAMPPASS(ch,VAM_CELERITY)) )
-	    send_to_char( "Powers: 66% extra attack, 33% extra attack.\n\r", ch );
-	else if ( !str_cmp(arg,"fortitude") && (IS_VAMPAFF(ch,VAM_FORTITUDE) || IS_VAMPPASS(ch,VAM_FORTITUDE)) )
-	    send_to_char( "Powers: 1-100% damage reduction, +50 one time hp bonus.\n\r", ch );
-	else if ( !str_cmp(arg,"potence") && (IS_VAMPAFF(ch,VAM_POTENCE) || IS_VAMPPASS(ch,VAM_POTENCE)) )
-	    send_to_char( "Powers: 150% normal damage in combat.\n\r", ch );
-	else if ( !str_cmp(arg,"obfuscate") && (IS_VAMPAFF(ch,VAM_OBFUSCATE) || IS_VAMPPASS(ch,VAM_OBFUSCATE)) )
-	    send_to_char( "Powers: Mask, Mortal, Shield.\n\r", ch );
-	else if ( !str_cmp(arg,"obtenebration") && (IS_VAMPAFF(ch,VAM_OBTENEBRATION) || IS_VAMPPASS(ch,VAM_OBTENEBRATION)) )
-	    send_to_char( "Powers: Shadowplane, Shadowsight, Nightsight.\n\r", ch );
-	else if ( !str_cmp(arg,"serpentis") && (IS_VAMPAFF(ch,VAM_SERPENTIS) || IS_VAMPPASS(ch,VAM_SERPENTIS)) )
-	    send_to_char( "Powers: Darkheart, Serpent, Poison, Nightsight.\n\r", ch );
-	else if ( !str_cmp(arg,"auspex") && (IS_VAMPAFF(ch,VAM_AUSPEX) || IS_VAMPPASS(ch,VAM_AUSPEX)) )
-	    send_to_char( "Powers: Truesight, Scry, Readaura.\n\r", ch );
-	else if ( !str_cmp(arg,"dominate") && (IS_VAMPAFF(ch,VAM_DOMINATE) || IS_VAMPPASS(ch,VAM_DOMINATE)) )
-	    send_to_char( "Powers: Evileye, Command, Shield.\n\r", ch );
-	else
-	    send_to_char( "You don't know any such Discipline.\n\r", ch );
-	return;
-    }
-    if ( !str_cmp(arg,"protean") )
-    {
-	if (IS_VAMPAFF(ch,VAM_PROTEAN) || IS_VAMPPASS(ch,VAM_PROTEAN))
-	{
-	    send_to_char( "Powers: Nightsight, Claws, Change.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Protean.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_PROTEAN);
-	SET_BIT(ch->vampaff,VAM_PROTEAN);
-	return;
-    }
-    else if ( !str_cmp(arg,"celerity") )
-    {
-	if (IS_VAMPAFF(ch,VAM_CELERITY) || IS_VAMPPASS(ch,VAM_CELERITY))
-	{
-	    send_to_char( "Powers: 66% extra attack, 33% extra attack.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Celerity.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_CELERITY);
-	SET_BIT(ch->vampaff,VAM_CELERITY);
-	return;
-    }
-    else if ( !str_cmp(arg,"fortitude") )
-    {
-	if (IS_VAMPAFF(ch,VAM_FORTITUDE) || IS_VAMPPASS(ch,VAM_FORTITUDE))
-	{
-	    send_to_char( "Powers: 1-100% damage reduction, +50 one time hp bonus.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Fortitude.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_FORTITUDE);
-	SET_BIT(ch->vampaff,VAM_FORTITUDE);
-	ch->max_hit = ch->max_hit + 50;
-	ch->hit = ch->hit + 50;
-	return;
-    }
-    else if ( !str_cmp(arg,"potence") )
-    {
-	if (IS_VAMPAFF(ch,VAM_POTENCE) || IS_VAMPPASS(ch,VAM_POTENCE))
-	{
-	    send_to_char( "Powers: 150% normal damage in combat.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Potence.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_POTENCE);
-	SET_BIT(ch->vampaff,VAM_POTENCE);
-	return;
-    }
-    else if ( !str_cmp(arg,"obfuscate") )
-    {
-	if (IS_VAMPAFF(ch,VAM_OBFUSCATE) || IS_VAMPPASS(ch,VAM_OBFUSCATE))
-	{
-	    send_to_char( "Powers: Mask, Mortal, Shield.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Obfuscate.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_OBFUSCATE);
-	SET_BIT(ch->vampaff,VAM_OBFUSCATE);
-	return;
-    }
-    else if ( !str_cmp(arg,"obtenebration") )
-    {
-	if (IS_VAMPAFF(ch,VAM_OBTENEBRATION) || IS_VAMPPASS(ch,VAM_OBTENEBRATION))
-	{
-	    send_to_char( "Powers: Shadowplane, Shadowsight, Nightsight.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Obtenebration.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_OBTENEBRATION);
-	SET_BIT(ch->vampaff,VAM_OBTENEBRATION);
-	return;
-    }
-    else if ( !str_cmp(arg,"serpentis") )
-    {
-	if (IS_VAMPAFF(ch,VAM_SERPENTIS) || IS_VAMPPASS(ch,VAM_SERPENTIS))
-	{
-	    send_to_char( "Powers: Darkheart, Serpent, Poison, Nightsight.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Serpentis.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_SERPENTIS);
-	SET_BIT(ch->vampaff,VAM_SERPENTIS);
-	return;
-    }
-    else if ( !str_cmp(arg,"auspex") )
-    {
-	if (IS_VAMPAFF(ch,VAM_AUSPEX) || IS_VAMPPASS(ch,VAM_AUSPEX))
-	{
-	    send_to_char( "Powers: Truesight, Scry, Readaura.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Auspex.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_AUSPEX);
-	SET_BIT(ch->vampaff,VAM_AUSPEX);
-	return;
-    }
-    else if ( !str_cmp(arg,"dominate") )
-    {
-	if (IS_VAMPAFF(ch,VAM_DOMINATE) || IS_VAMPPASS(ch,VAM_DOMINATE))
-	{
-	    send_to_char( "Powers: Evileye, Command, Shield.\n\r", ch );
-	    return;
-	}
-	send_to_char( "You master the discipline of Dominate.\n\r", ch );
-	if (clancount < 3) SET_BIT(ch->vamppass,VAM_DOMINATE);
-	SET_BIT(ch->vampaff,VAM_DOMINATE);
-	return;
-    }
-    else
-	send_to_char( "No such discipline.\n\r", ch );
-    return;
-}
-
-void do_vampire( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_IMMUNE(ch, IMM_VAMPIRE))
-    {
-	send_to_char("You will now allow vampires to bite you.\n\r",ch);
-	SET_BIT(ch->immune, IMM_VAMPIRE);
-	return;
-    }
-    send_to_char("You will no longer allow vampires to bite you.\n\r",ch);
-    REMOVE_BIT(ch->immune, IMM_VAMPIRE);
-    return;
-}
-
-void do_shadowplane( CHAR_DATA *ch, char *argument )
-{
-    OBJ_DATA *obj;
-    char      arg [MAX_INPUT_LENGTH];
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (!IS_VAMPAFF(ch,VAM_OBTENEBRATION) )
-    {
-	send_to_char("You are not trained in the Obtenebration discipline.\n\r",ch);
-	return;
-    }
-    if ( ch->pcdata->condition[COND_THIRST] < 75 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(65,75);
-    if ( arg[0] == '\0' )
-    {
-    	if (!IS_AFFECTED(ch, AFF_SHADOWPLANE))
-    	{
-	    send_to_char("You fade into the plane of shadows.\n\r",ch);
-	    act("The shadows flicker and swallow up $n.",ch,NULL,NULL,TO_ROOM);
-	    SET_BIT(ch->affected_by, AFF_SHADOWPLANE);
-	    do_look(ch,"auto");
-	    return;
-    	}
-    	REMOVE_BIT(ch->affected_by, AFF_SHADOWPLANE);
-    	send_to_char("You fade back into the real world.\n\r",ch);
-	act("The shadows flicker and $n fades into existance.",ch,NULL,NULL,TO_ROOM);
-	do_look(ch,"auto");
-	return;
-    }
-
-    if ( ( obj = get_obj_here( ch, arg ) ) == NULL )
-    {
-	send_to_char( "What do you wish to toss into the shadow plane?\n\r", ch );
-	return;
-    }
-
-    if (IS_AFFECTED(ch, AFF_SHADOWPLANE))
-    	send_to_char( "You toss it to the ground and it vanishes.\n\r", ch );
-    else
-    	send_to_char( "You toss it into a shadow and it vanishes.\n\r", ch );
-    return;
-}
-
-void do_immune( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
-    send_to_char("                                -= Immunities =-\n\r",ch);
-    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
-    /* Display weapon resistances */
-    send_to_char("Weapons:",ch);
-    if (!(!IS_IMMUNE(ch,IMM_SLASH) && !IS_IMMUNE(ch,IMM_STAB) && 
-	  !IS_IMMUNE(ch,IMM_SMASH) && !IS_IMMUNE(ch,IMM_ANIMAL) &&
-	  !IS_IMMUNE(ch,IMM_MISC )) )
-    {
-    	if (IS_IMMUNE(ch,IMM_SLASH )) send_to_char(" Slash Slice",ch);
-    	if (IS_IMMUNE(ch,IMM_STAB  )) send_to_char(" Stab Pierce",ch);
-    	if (IS_IMMUNE(ch,IMM_SMASH )) send_to_char(" Blast Crush Pound",ch);
-    	if (IS_IMMUNE(ch,IMM_ANIMAL)) send_to_char(" Claw Bite",ch);
-    	if (IS_IMMUNE(ch,IMM_MISC  )) send_to_char(" Grep Whip Suck",ch);
-    }
-    else
-	send_to_char(" None",ch);
-    send_to_char(".\n\r",ch);
-
-    /* Display spell immunities */
-    send_to_char("Spells :",ch);
-    if (!(!IS_IMMUNE(ch,IMM_CHARM)  && !IS_IMMUNE(ch,IMM_HEAT)      && 
-	  !IS_IMMUNE(ch,IMM_COLD)   && !IS_IMMUNE(ch,IMM_LIGHTNING) &&
-	  !IS_IMMUNE(ch,IMM_ACID)   && !IS_IMMUNE(ch,IMM_SUMMON)    &&
-	  !IS_IMMUNE(ch,IMM_VOODOO) && !IS_IMMUNE(ch,IMM_SLEEP)    &&
-	  !IS_IMMUNE(ch,IMM_DRAIN)))
-    {
-    	if (IS_IMMUNE(ch,IMM_CHARM     )) send_to_char(" Charm",ch);
-    	if (IS_IMMUNE(ch,IMM_HEAT      )) send_to_char(" Heat",ch);
-    	if (IS_IMMUNE(ch,IMM_COLD      )) send_to_char(" Cold",ch);
-    	if (IS_IMMUNE(ch,IMM_LIGHTNING )) send_to_char(" Lightning",ch);
-    	if (IS_IMMUNE(ch,IMM_ACID      )) send_to_char(" Acid",ch);
-    	if (!IS_IMMUNE(ch,IMM_SUMMON   )) send_to_char(" Summon",ch);
-    	if (IS_IMMUNE(ch,IMM_VOODOO    )) send_to_char(" Voodoo",ch);
-    	if (IS_IMMUNE(ch,IMM_SLEEP     )) send_to_char(" Sleep",ch);
-    	if (IS_IMMUNE(ch,IMM_DRAIN     )) send_to_char(" Drain",ch);
-    }
-    else
-	send_to_char(" None",ch);
-    send_to_char(".\n\r",ch);
-
-    /* Display skill immunities */
-    send_to_char("Skills :",ch);
-    if (!(!IS_IMMUNE(ch,IMM_HURL) && !IS_IMMUNE(ch,IMM_BACKSTAB) && 
-	  !IS_IMMUNE(ch,IMM_KICK) && !IS_IMMUNE(ch,IMM_DISARM)   &&
-	  !IS_IMMUNE(ch,IMM_STEAL)))
-    {
-    	if (IS_IMMUNE(ch,IMM_HURL      )) send_to_char(" Hurl",ch);
-    	if (IS_IMMUNE(ch,IMM_BACKSTAB  )) send_to_char(" Backstab",ch);
-    	if (IS_IMMUNE(ch,IMM_KICK      )) send_to_char(" Kick",ch);
-    	if (IS_IMMUNE(ch,IMM_DISARM    )) send_to_char(" Disarm",ch);
-    	if (IS_IMMUNE(ch,IMM_STEAL     )) send_to_char(" Steal",ch);
-    }
-    else
-	send_to_char(" None",ch);
-    send_to_char(".\n\r",ch);
-
-    /* Display vampire immunities */
-    send_to_char("Vampire:",ch);
-    if (!( IS_IMMUNE(ch,IMM_VAMPIRE) && !IS_IMMUNE(ch,IMM_STAKE) && 
-	  !IS_IMMUNE(ch,IMM_SUNLIGHT)))
-    {
-    	if (!IS_IMMUNE(ch,IMM_VAMPIRE  )) send_to_char(" Bite",ch);
-    	if  (IS_IMMUNE(ch,IMM_STAKE    )) send_to_char(" Stake",ch);
-    	if  (IS_IMMUNE(ch,IMM_SUNLIGHT )) send_to_char(" Sunlight",ch);
-    }
-    else
-	send_to_char(" None",ch);
-    send_to_char(".\n\r",ch);
-    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
-    return;
-}
-
-void do_introduce( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) || (ch->vampgen < 1) || (ch->vampgen > 7))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    do_tradition(ch,ch->lord);
-    return;
-}
-
-void do_tradition( CHAR_DATA *ch, char *argument )
-{
-    char      arg1 [MAX_INPUT_LENGTH];
-    char      arg2 [MAX_INPUT_LENGTH];
-    char      arg3 [MAX_INPUT_LENGTH];
-    char      arg4 [MAX_INPUT_LENGTH];
-    char      arg5 [MAX_INPUT_LENGTH];
-    char      arg6 [MAX_INPUT_LENGTH];
-    char      buf  [MAX_INPUT_LENGTH];
-    char      buf2 [MAX_INPUT_LENGTH];
-    char      buf3 [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
-    argument = one_argument( argument, arg3 );
-    argument = one_argument( argument, arg4 );
-    argument = one_argument( argument, arg5 );
-    argument = one_argument( argument, arg6 );
-
-    if (IS_NPC(ch)) return;
-
-    if (arg1 != '\0') arg1[0] = UPPER(arg1[0]);
-    if (arg2 != '\0') arg2[0] = UPPER(arg2[0]);
-    if (arg3 != '\0') arg3[0] = UPPER(arg3[0]);
-    if (arg4 != '\0') arg4[0] = UPPER(arg4[0]);
-    if (arg5 != '\0') arg5[0] = UPPER(arg5[0]);
-    if (arg6 != '\0') arg6[0] = UPPER(arg6[0]);
-
-    if (!str_cmp(arg1,"kavir")) strcpy(arg1,"KaVir");
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) || (ch->vampgen < 1) || (ch->vampgen > 7))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if ( !str_cmp(ch->clan,"") && ch->vampgen != 1 )
-    {
-	send_to_char( "Not until you've created your own clan!\n\r", ch );
-	return;
-    }
-
-    if      (ch->vampgen == 7) {sprintf(buf2,"Seventh");sprintf(buf3,"Fledgling");}
-    else if (ch->vampgen == 6) {sprintf(buf2,"Sixth");sprintf(buf3,"Neonate");}
-    else if (ch->vampgen == 5) {sprintf(buf2,"Fifth");sprintf(buf3,"Ancilla");}
-    else if (ch->vampgen == 4) {sprintf(buf2,"Fourth");sprintf(buf3,"Elder");}
-    else if (ch->vampgen == 3) {sprintf(buf2,"Third");sprintf(buf3,"Methuselah");}
-    else if (ch->vampgen == 2) {sprintf(buf2,"Second");sprintf(buf3,"Antediluvian");}
-    if (ch->vampgen == 1)
-	sprintf(buf,"As is the tradition, I recite the lineage of %s, Sire of all Kindred.",ch->name);
-    else
-	sprintf(buf,"As is the tradition, I recite the lineage of %s, %s of the %s Generation.",ch->name,buf3,buf2);
-    do_say(ch,buf);
-    if ( ch->vampgen != 1 )
-    {
-	if      (ch->vampgen == 7) sprintf(buf2,"%s",arg6);
-	else if (ch->vampgen == 6) sprintf(buf2,"%s",arg5);
-	else if (ch->vampgen == 5) sprintf(buf2,"%s",arg4);
-	else if (ch->vampgen == 4) sprintf(buf2,"%s",arg3);
-	else if (ch->vampgen == 3) sprintf(buf2,"%s",arg2);
-	else if (ch->vampgen == 2) sprintf(buf2,"%s",arg1);
-
-	if (ch->vampgen == 2)
-	    sprintf(buf,"I am %s, founder of clan %s.  My sire is %s.", ch->name,ch->clan,buf2);
-	else
-	    sprintf(buf,"I am %s of clan %s.  My sire is %s.", ch->name,ch->clan,buf2);
-	do_say(ch,buf);
-    }
-    if ( arg6[0] != '\0' )
-    {
-	sprintf(buf,"I am %s of clan %s.  My sire is %s.",
-	arg6,ch->clan,arg5);
-	do_say(ch,buf);
-    }
-    if ( arg5[0] != '\0' )
-    {
-	sprintf(buf,"I am %s of clan %s.  My sire is %s.",
-	arg5,ch->clan,arg4);
-	do_say(ch,buf);
-    }
-    if ( arg4[0] != '\0' )
-    {
-	sprintf(buf,"I am %s of clan %s.  My sire is %s.",
-	arg4,ch->clan,arg3);
-	do_say(ch,buf);
-    }
-    if ( arg3[0] != '\0' )
-    {
-	sprintf(buf,"I am %s of clan %s.  My sire is %s.",
-	arg3,ch->clan,arg2);
-	do_say(ch,buf);
-    }
-    if ( arg2[0] != '\0' )
-    {
-	if ( arg1[0] != '\0' )
-	    sprintf(buf,"I am %s, founder of %s.  My sire is %s.",arg2,ch->clan,arg1);
-	else
-	    sprintf(buf,"I am %s of clan %s.  My sire is %s.",arg2,ch->clan,arg1);
-	do_say(ch,buf);
-    }
-    if ( ch->vampgen == 1 )
-	sprintf(buf,"I am %s.  All Kindred are my childer.",ch->name);
-    else
-	sprintf(buf,"I am %s.  All Kindred are my childer.",arg1);
-    do_say(ch,buf);
-    if ( ch->vampgen == 7 ) sprintf(buf,"My name is %s, childe of %s, childe of %s, childe of %s, childe of %s, childe of %s, childe of %s.  Recognize my lineage.",ch->name,arg6,arg5,arg4,arg3,arg2,arg1);
-    if ( ch->vampgen == 6 ) sprintf(buf,"My name is %s, childe of %s, childe of %s, childe of %s, childe of %s, childe of %s.  Recognize my lineage.",ch->name,arg5,arg4,arg3,arg2,arg1);
-    if ( ch->vampgen == 5 ) sprintf(buf,"My name is %s, childe of %s, childe of %s, childe of %s, childe of %s.  Recognize my lineage.",ch->name,arg4,arg3,arg2,arg1);
-    if ( ch->vampgen == 4 ) sprintf(buf,"My name is %s, childe of %s, childe of %s, childe of %s.  Recognize my lineage.",ch->name,arg3,arg2,arg1);
-    if ( ch->vampgen == 3 ) sprintf(buf,"My name is %s, childe of %s, childe of %s.  Recognize my lineage.",ch->name,arg2,arg1);
-    if ( ch->vampgen == 2 ) sprintf(buf,"My name is %s, childe of %s.  Recognize my lineage.",ch->name,arg1);
-    if ( ch->vampgen == 1 ) sprintf(buf,"My name is %s.  Recognize my lineage.",ch->name);
-    do_say(ch,buf);
-    return;
-}
-
-void do_darkheart( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (!IS_VAMPAFF(ch,VAM_SERPENTIS) )
-    {
-	send_to_char("You are not trained in the Serpentis discipline.\n\r",ch);
-	return;
-    }
-    if (IS_IMMUNE(ch,IMM_STAKE) )
-    {
-	send_to_char("But you've already torn your heart out!\n\r",ch);
-	return;
-    }
-    if ( ch->pcdata->condition[COND_THIRST] < 100 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= 100;
-    send_to_char("You rip your heart from your body and toss it to the ground.\n\r",ch);
-    act("$n rips $s heart out and tosses it to the ground.", ch, NULL, NULL, TO_ROOM);
-    make_part( ch, "heart" );
-    ch->hit = ch->hit - number_range(10,20);
-    update_pos(ch);
-    if (ch->position == POS_DEAD && !IS_HERO(ch))
-    {
-	send_to_char( "You have been KILLED!!\n\r\n\r", ch );
-	raw_kill(ch);
-	return;
-    }
-    SET_BIT(ch->immune, IMM_STAKE);
-    return;
-}
-
-void do_truesight( CHAR_DATA *ch, char *argument )
-{
-    if ( IS_NPC(ch) )
-	return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (!IS_VAMPAFF(ch,VAM_AUSPEX) )
-    {
-	send_to_char("You are not trained in the Auspex discipline.\n\r",ch);
-	return;
-    }
-
-    if ( IS_SET(ch->act, PLR_HOLYLIGHT) )
-    {
-	REMOVE_BIT(ch->act, PLR_HOLYLIGHT);
-	send_to_char( "Your senses return to normal.\n\r", ch );
-    }
-    else
-    {
-	SET_BIT(ch->act, PLR_HOLYLIGHT);
-	send_to_char( "Your senses increase to incredable proportions.\n\r", ch );
-    }
-
-    return;
-}
-
-void do_scry( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    ROOM_INDEX_DATA *chroom;
-    ROOM_INDEX_DATA *victimroom;
-    char      arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char( "Huh?\n\r", ch );
-	return;
-    }
-
-    if (!IS_VAMPAFF(ch,VAM_AUSPEX) )
-    {
-	send_to_char("You are not trained in the Auspex discipline.\n\r",ch);
-	return;
-    }
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Scry on whom?\n\r", ch );
-	return;
-    }
-
-    if ( ( victim = get_char_world( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-
-    if ( ch->pcdata->condition[COND_THIRST] < 25 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(15,25);
-
-    if (!IS_NPC(victim) && IS_IMMUNE(victim,IMM_SHIELDED) )
-    {
-	send_to_char("You are unable to locate them.\n\r",ch);
-	return;
-    }
-
-    chroom = ch->in_room;
-    victimroom = victim->in_room;
-
-    char_from_room(ch);
-    char_to_room(ch,victimroom);
-    if (IS_AFFECTED(ch, AFF_SHADOWPLANE) && (!IS_AFFECTED(victim, AFF_SHADOWPLANE)))
-    {
-	REMOVE_BIT(ch->affected_by, AFF_SHADOWPLANE);
-	do_look(ch,"auto");
-	SET_BIT(ch->affected_by, AFF_SHADOWPLANE);
-    }
-    else if (!IS_AFFECTED(ch, AFF_SHADOWPLANE) && (IS_AFFECTED(victim, AFF_SHADOWPLANE)))
-    {
-	SET_BIT(ch->affected_by, AFF_SHADOWPLANE);
-	do_look(ch,"auto");
-	REMOVE_BIT(ch->affected_by, AFF_SHADOWPLANE);
-    }
-    else
-	do_look(ch,"auto");
-    char_from_room(ch);
-    char_to_room(ch,chroom);
-
-    return;
-}
-
-void do_readaura( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    OBJ_DATA  *obj;
-    char      arg [MAX_INPUT_LENGTH];
-    char      buf [MAX_INPUT_LENGTH];
-    int       hr;
-    int       dr;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char( "Huh?\n\r", ch );
-	return;
-    }
-
-    if (!IS_VAMPAFF(ch,VAM_AUSPEX) )
-    {
-	send_to_char("You are not trained in the Auspex discipline.\n\r",ch);
-	return;
-    }
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Read the aura on what?\n\r", ch );
-	return;
-    }
-
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
-    {
-        if ( ( obj = get_obj_carry( ch, arg ) ) == NULL )
-	{
-	    send_to_char( "Read the aura on what?\n\r", ch );
-	    return;
-	}
-    	if ( ch->pcdata->condition[COND_THIRST] < 50 )
-    	{
-	    send_to_char("You have insufficient blood.\n\r",ch);
-	    return;
-    	}
-    	ch->pcdata->condition[COND_THIRST] -= number_range(40,50);
-	act("$n examines $p intently.",ch,obj,NULL,TO_ROOM);
-	spell_identify( skill_lookup( "identify" ), ch->level, ch, obj );
-	return;
-    }
-
-    if ( ch->pcdata->condition[COND_THIRST] < 50 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(40,50);
-    if (!IS_NPC(victim) && IS_IMMUNE(victim,IMM_SHIELDED) )
-    {
-	send_to_char("You are unable to read their aura.\n\r",ch);
-	return;
-    }
-
-    act("$n examines $N intently.",ch,NULL,victim,TO_NOTVICT);
-    act("$n examines you intently.",ch,NULL,victim,TO_VICT);
-    if (IS_NPC(victim)) sprintf(buf, "%s is an NPC.\n\r",victim->short_descr);
-    else 
-    {
-	if (victim->level == 9) sprintf(buf, "%s is an Implementor.\n\r", victim->name);
-	if (victim->level == 8) sprintf(buf, "%s is a High Judge.\n\r", victim->name);
-	if (victim->level == 7) sprintf(buf, "%s is a Judge.\n\r", victim->name);
-	if (victim->level == 6) sprintf(buf, "%s is an Enforcer.\n\r", victim->name);
-	if (victim->level == 5) sprintf(buf, "%s is a Quest Maker.\n\r", victim->name);
-	if (victim->level == 4) sprintf(buf, "%s is a Builder.\n\r", victim->name);
-	if (victim->level == 3) sprintf(buf, "%s is an Avatar.\n\r", victim->name);
-	else sprintf(buf, "%s is a Mortal.\n\r", victim->name);
-    }
-    send_to_char(buf,ch);
-    if (!IS_NPC(victim))
-    {
-	sprintf(buf,"Str:%d, Int:%d, Wis:%d, Dex:%d, Con:%d.\n\r",get_curr_str(victim),get_curr_int(victim),get_curr_wis(victim),get_curr_dex(victim),get_curr_con(victim));
-	send_to_char(buf,ch);
-    }
-    hr = GET_HITROLL(victim); dr = GET_DAMROLL(victim);
-    if (!IS_NPC(victim) && IS_SET(victim->act, PLR_VAMPIRE))
-    	{ hr += victim->pcdata->wolf; dr += victim->pcdata->wolf; }
-    sprintf(buf,"Hp:%d/%d, Mana:%d/%d, Move:%d/%d.\n\r",victim->hit,victim->max_hit,victim->mana,victim->max_mana,victim->move,victim->max_move);
-    send_to_char(buf,ch);
-    if (!IS_NPC(victim)) sprintf(buf,"Hitroll:%d, Damroll:%d, AC:%d.\n\r",hr,dr,GET_AC(victim));
-    else sprintf(buf,"AC:%d.\n\r",GET_AC(victim));
-    send_to_char(buf,ch);
-    if (!IS_NPC(victim))
-    {
-	sprintf(buf,"Status:%d, ",victim->race);
-	send_to_char(buf,ch);
-	if (IS_SET(victim->act, PLR_VAMPIRE))    
-	{
-	    sprintf(buf,"Blood:%d, ",victim->pcdata->condition[COND_THIRST]);
-	    send_to_char(buf,ch);
-	}
-    }
-    sprintf(buf,"Alignment:%d.\n\r",victim->alignment);
-    send_to_char(buf,ch);
-    if (!IS_NPC(victim) && IS_SET(victim->act, PLR_VAMPIRE))    
-    {
-	send_to_char("Disciplines:",ch);
-	if (IS_VAMPAFF(victim, VAM_PROTEAN)) send_to_char(" Protean",ch);
-	if (IS_VAMPAFF(victim, VAM_CELERITY)) send_to_char(" Celerity",ch);
-	if (IS_VAMPAFF(victim, VAM_FORTITUDE)) send_to_char(" Fortitude",ch);
-	if (IS_VAMPAFF(victim, VAM_POTENCE)) send_to_char(" Potence",ch);
-	if (IS_VAMPAFF(victim, VAM_OBFUSCATE)) send_to_char(" Obfuscate",ch);
-	if (IS_VAMPAFF(victim, VAM_OBTENEBRATION)) send_to_char(" Obtenebration",ch);
-	if (IS_VAMPAFF(victim, VAM_SERPENTIS)) send_to_char(" Serpentis",ch);
-	if (IS_VAMPAFF(victim, VAM_AUSPEX)) send_to_char(" Auspex",ch);
-	if (IS_VAMPAFF(victim, VAM_DOMINATE)) send_to_char(" Dominate",ch);
-	send_to_char(".\n\r",ch);
-    }
-    return;
-}
-
-void do_mortal( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-    int       blood;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (!IS_SET(ch->act, PLR_VAMPIRE) && !IS_VAMPAFF(ch, VAM_MORTAL))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (!IS_VAMPAFF(ch,VAM_OBFUSCATE) )
-    {
-	send_to_char("You are not trained in the Obfuscate discipline.\n\r",ch);
-	return;
-    }
-    if (IS_SET(ch->act,PLR_VAMPIRE) )
-    {
-        if ( ch->pcdata->condition[COND_THIRST] < 100 )
-        {
-	    send_to_char("You must be at full blood to use this power.\n\r",ch);
-	    return;
-    	}
-    	/* Have to make sure they have enough blood to change back */
-    	blood = ch->pcdata->condition[COND_THIRST];
-    	ch->pcdata->condition[COND_THIRST] = 666;
-
-	/* Remove physical vampire attributes when you take mortal form */
-    	if (IS_VAMPAFF(ch,VAM_DISGUISED) ) do_mask(ch,"self");
-    	if (IS_IMMUNE(ch,IMM_SHIELDED) ) do_shield(ch,"");
-    	if (IS_AFFECTED(ch,AFF_SHADOWPLANE) ) do_shadowplane(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_FANGS) ) do_fangs(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_CLAWS) ) do_claws(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_NIGHTSIGHT) ) do_nightsight(ch,"");
-    	if (IS_AFFECTED(ch,AFF_SHADOWSIGHT) ) do_shadowsight(ch,"");
-    	if (IS_SET(ch->act,PLR_HOLYLIGHT) ) do_truesight(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_CHANGED) ) do_change(ch,"human");
-    	if (IS_POLYAFF(ch,POLY_SERPENT) ) do_serpent(ch,"");
-	ch->pcdata->wolf = 0;
-    	ch->pcdata->condition[COND_THIRST] = blood;
-
-    	send_to_char("Colour returns to your skin and you warm up a little.\n\r",ch);
-    	act("Colour returns to $n's skin.", ch, NULL, NULL, TO_ROOM);
-
-    	REMOVE_BIT(ch->act, PLR_VAMPIRE);
-    	SET_BIT(ch->vampaff, VAM_MORTAL);
-	return;
-    }
-    send_to_char("You skin pales and cools.\n\r",ch);
-    act("$n's skin pales slightly.", ch, NULL, NULL, TO_ROOM);
-    SET_BIT(ch->act, PLR_VAMPIRE);
-    REMOVE_BIT(ch->vampaff, VAM_MORTAL);
-    return;
-}
-
-void do_mortalvamp( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-    int       blood;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (IS_SET(ch->act,PLR_VAMPIRE) )
-    {
-    	/* Have to make sure they have enough blood to change back */
-    	blood = ch->pcdata->condition[COND_THIRST];
-    	ch->pcdata->condition[COND_THIRST] = 666;
-
-	/* Remove physical vampire attributes when you take mortal form */
-    	if (IS_VAMPAFF(ch,VAM_DISGUISED) ) do_mask(ch,"self");
-    	if (IS_IMMUNE(ch,IMM_SHIELDED) ) do_shield(ch,"");
-    	if (IS_AFFECTED(ch,AFF_SHADOWPLANE) ) do_shadowplane(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_FANGS) ) do_fangs(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_CLAWS) ) do_claws(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_NIGHTSIGHT) ) do_nightsight(ch,"");
-    	if (IS_AFFECTED(ch,AFF_SHADOWSIGHT) ) do_shadowsight(ch,"");
-    	if (IS_SET(ch->act,PLR_HOLYLIGHT) ) do_truesight(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_CHANGED) ) do_change(ch,"human");
-    	if (IS_POLYAFF(ch,POLY_SERPENT) ) do_serpent(ch,"");
-	ch->pcdata->wolf = 0;
-    	ch->pcdata->condition[COND_THIRST] = blood;
-
-    	send_to_char("You loose your vampire powers.\n\r",ch);
-
-    	REMOVE_BIT(ch->act, PLR_VAMPIRE);
-    	SET_BIT(ch->vampaff, VAM_MORTAL);
-	return;
-    }
-    send_to_char("You regain your vampire powers.\n\r",ch);
-    SET_BIT(ch->act, PLR_VAMPIRE);
-    REMOVE_BIT(ch->vampaff, VAM_MORTAL);
-    return;
-}
-
-void do_shield( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if (!IS_VAMPAFF(ch,VAM_OBFUSCATE) && !IS_VAMPAFF(ch,VAM_DOMINATE) )
-    {
-	send_to_char("You are not trained in the Obfuscate or Dominate disciplines.\n\r",ch);
-	return;
-    }
-    if ( ch->pcdata->condition[COND_THIRST] < 60 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(50,60);
-    if (!IS_IMMUNE(ch,IMM_SHIELDED) )
-    {
-    	send_to_char("You shield your aura from those around you.\n\r",ch);
-    	SET_BIT(ch->immune, IMM_SHIELDED);
-	return;
-    }
-    send_to_char("You stop shielding your aura.\n\r",ch);
-    REMOVE_BIT(ch->immune, IMM_SHIELDED);
-    return;
-}
-
-void do_serpent( CHAR_DATA *ch, char *argument )
-{
-    char arg [MAX_INPUT_LENGTH]; 
-    char buf [MAX_INPUT_LENGTH]; 
-    argument = one_argument( argument, arg ); 
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-
-    if (!IS_VAMPAFF(ch,VAM_SERPENTIS) )
-    {
-	send_to_char("You are not trained in the Serpentis discipline.\n\r",ch);
-	return;
-    }
-
-    if (IS_AFFECTED(ch, AFF_POLYMORPH))
-    {
-	if (!IS_POLYAFF(ch,POLY_SERPENT))
-	{
-	    send_to_char( "You cannot polymorph from this form.\n\r", ch );
-	    return;
-	}
-	act( "You transform back into human.", ch, NULL, NULL, TO_CHAR );
-	act( "$n transform into human form.", ch, NULL, NULL, TO_ROOM );
-	REMOVE_BIT(ch->polyaff, POLY_SERPENT);
-	REMOVE_BIT(ch->affected_by, AFF_POLYMORPH);
-	clear_stats(ch);
-	free_string( ch->morph );
-	ch->morph = str_dup( "" );
-	ch->max_hit = ch->max_hit - 25;
-	ch->hit = ch->hit - 25;
-	if (ch->hit < 1) ch->hit = 1;
-	ch->max_mana = ch->max_mana + 50;
-	return;
-    }
-    if ( ch->pcdata->condition[COND_THIRST] < 50 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(40,50);
-    clear_stats(ch);
-    if (ch->wpn[0] > 0)
-    {
-    	ch->hitroll += ch->wpn[0]/4;
-    	ch->damroll += ch->wpn[0]/4;
-    	ch->armor   -= ch->wpn[0];
-    }
-    ch->pcdata->mod_str = 10;
-    act( "You transform into a huge serpent.", ch, NULL, NULL, TO_CHAR );
-    act( "$n transforms into a huge serpent.", ch, NULL, NULL, TO_ROOM );
-    SET_BIT(ch->polyaff, POLY_SERPENT);
-    SET_BIT(ch->affected_by, AFF_POLYMORPH);
-    sprintf(buf, "%s the huge serpent", ch->name);
-    free_string( ch->morph );
-    ch->morph = str_dup( buf );
-    ch->max_hit = ch->max_hit + 25;
-    ch->hit = ch->hit + 25;
-    ch->max_mana = ch->max_mana - 50;
-    return;
-}
-
-void do_poison( CHAR_DATA *ch, char *argument )
-{
-    OBJ_DATA  *obj;
-    char       arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-
-    if (!IS_VAMPAFF(ch,VAM_SERPENTIS) )
-    {
-	send_to_char("You are not trained in the Serpentis discipline.\n\r",ch);
-	return;
-    }
-
-    if ( ( ( obj = get_eq_char( ch, WEAR_WIELD ) ) == NULL )
-    &&   ( ( obj = get_eq_char( ch, WEAR_HOLD ) ) == NULL ) )
-    {
-	send_to_char( "You must wield the weapon you wish to poison.\n\r", ch );
-	return;
-    }
-
-    if ( obj->value[0] != 0 )
-    {
-	send_to_char( "This weapon cannot be poisoned.\n\r", ch );
-	return;
-    }
-
-    if ( ch->pcdata->condition[COND_THIRST] < 15 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-    ch->pcdata->condition[COND_THIRST] -= number_range(5,15);
-    act("You run your tongue along $p, poisoning it.",ch,obj,NULL,TO_CHAR);
-    act("$n runs $s tongue along $p, poisoning it.",ch,obj,NULL,TO_ROOM);
-    obj->value[0] = 53;
-    obj->timer = number_range(10,20);
-
-    return;
-}
-
-void do_regenerate( CHAR_DATA *ch, char *argument )
-{
-    char       arg [MAX_INPUT_LENGTH];
-    int min = 5;
-    int max = 10;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-
-    if ( ch->position == POS_FIGHTING )
-    {
-	send_to_char("You cannot regenerate while fighting.\n\r",ch);
-	return;
-    }
-
-    if ( ch->hit >= ch->max_hit && ch->mana >= ch->max_mana && ch->move >= ch->max_move )
-    {
-	send_to_char("But you are already completely regenerated!\n\r",ch);
-	return;
-    }
-
-    if ( ch->pcdata->condition[COND_THIRST] < 5 )
-    {
-	send_to_char("You have insufficient blood.\n\r",ch);
-	return;
-    }
-
-    ch->pcdata->condition[COND_THIRST] -= number_range(2,5);
-    if ( ch->hit >= ch->max_hit && ch->mana >= ch->max_mana && ch->move >= ch->max_move )
-    {
-    	send_to_char("Your body has completely regenerated.\n\r",ch);
-    	act("$n's body completely regenerates itself.",ch,NULL,NULL,TO_ROOM);
-    }
-    else
-    	send_to_char("Your body slowly regenerates itself.\n\r",ch);
-    if (ch->hit < 1 )
-    {
-	ch->hit = ch->hit + 1;
-	update_pos(ch);
-	WAIT_STATE( ch, 24 );
-    }
-    else
-    {
-	min += 10 - ch->vampgen;
-	min += 20 - (ch->vampgen * 2);
-    	ch->hit = UMIN(ch->hit + number_range(min,max), ch->max_hit);
-    	ch->mana = UMIN(ch->mana + number_range(min,max), ch->max_mana);
-    	ch->move = UMIN(ch->move + number_range(min,max), ch->max_move);
-	update_pos(ch);
-    }
-    return;
-}
-
-void do_rage( CHAR_DATA *ch, char *argument )
-{
-    char       arg [MAX_INPUT_LENGTH];
-    char       buf [MAX_INPUT_LENGTH];
-    CHAR_DATA *vch;
-    CHAR_DATA *vch_next;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    send_to_char("You scream with rage as the beast within consumes you!\n\r",ch);
-    if (IS_AFFECTED(ch,AFF_POLYMORPH))
-	sprintf(buf,"%s screams with rage as $s inner beast consumes $m!.",ch->morph);
-    else
-	sprintf(buf,"$n screams with rage as $s inner beast consumes $m!.");
-    act(buf, ch, NULL, NULL, TO_ROOM);
-    do_beastlike(ch,"");
-    if ( ch->pcdata->wolf < (12 - ch->vampgen) ) ch->pcdata->wolf += 1;
-    if ( ch->position == POS_FIGHTING ) return;
-    for ( vch = char_list; vch != NULL; vch = vch_next )
-    {
-	vch_next	= vch->next;
-	if ( vch->in_room == NULL )
-	    continue;
-	if ( ch == vch )
-	    continue;
-	if ( vch->in_room == ch->in_room )
-	{
-	    if ( can_see( ch, vch) )
-		multi_hit( ch, vch, TYPE_UNDEFINED );
-	}
-    }
-    return;
-}
-
-void do_humanity( CHAR_DATA *ch, char *argument )
-{
-    char       arg [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (!IS_NPC(ch) && IS_SET(ch->act,PLR_VAMPIRE) && ch->beast > 0
-	&& ch->beast < 100 && number_range(1, 500) <= ch->beast)
-    {
-	if (ch->beast == 1)
-	{
-	    send_to_char("You have attained Golconda!\n\r", ch);
-	    ch->exp += 1000000;
-	    if (!IS_IMMUNE(ch, IMM_SUNLIGHT))
-		SET_BIT(ch->immune, IMM_SUNLIGHT);
-	}
-	else
-	    send_to_char("You feel slightly more in control of your beast.\n\r", ch);
-	ch->beast -= 1;
-    }
-    return;
-}
-
-void do_beastlike( CHAR_DATA *ch, char *argument )
-{
-    char       arg [MAX_INPUT_LENGTH];
-    int blood;
-
-    argument = one_argument( argument, arg );
-
-    if (!IS_NPC(ch) && IS_SET(ch->act,PLR_VAMPIRE) && ch->beast < 100
-	&& ch->beast > 0 && number_range(1, 500) <= ch->beast)
-    {
-	if (ch->beast < 99)
-	    send_to_char("You feel your beast take more control over your actions.\n\r", ch);
-	else
-	    send_to_char("Your beast has fully taken over control of your actions!\n\r", ch);
-	ch->beast += 1;
-    	blood = ch->pcdata->condition[COND_THIRST];
-    	ch->pcdata->condition[COND_THIRST] = 666;
-    	if ((IS_VAMPAFF(ch,VAM_PROTEAN) || (IS_VAMPAFF(ch,VAM_OBTENEBRATION)))
-		&& !IS_VAMPAFF(ch,VAM_NIGHTSIGHT) ) do_nightsight(ch,"");
-    	if (!IS_VAMPAFF(ch,VAM_FANGS) ) do_fangs(ch,"");
-    	if (IS_VAMPAFF(ch,VAM_PROTEAN) &&
-		!IS_VAMPAFF(ch,VAM_CLAWS) ) do_claws(ch,"");
-    	ch->pcdata->condition[COND_THIRST] = blood;
-    }
-    return;
-}
-
-void do_feed( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    char      arg [MAX_INPUT_LENGTH];
-    char      buf [MAX_INPUT_LENGTH];
-    char      bufch [MAX_INPUT_LENGTH];
-    char      bufvi [MAX_INPUT_LENGTH];
-    int       blood;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-    if (IS_NPC(victim))
-    {
-	send_to_char("Not on NPC's.\n\r",ch);
-	return;
-    }
-    if (!IS_SET(victim->act, PLR_VAMPIRE))
-    {
-	send_to_char("Blood does them no good at all.\n\r",ch);
-	return;
-    }
-    if (!IS_IMMUNE(victim, IMM_VAMPIRE))
-    {
-	send_to_char("They refuse to drink your blood.\n\r",ch);
-	return;
-    }
-    if ( ch->pcdata->condition[COND_THIRST] < 20 )
-    {
-	send_to_char("You don't have enough blood.\n\r",ch);
-	return;
-    }
-
-    blood = number_range(5,10);
-    ch->pcdata->condition[COND_THIRST] -= (blood * 2);
-    victim->pcdata->condition[COND_THIRST] += blood;
-
-    if (IS_AFFECTED(ch,AFF_POLYMORPH)) sprintf(bufch,ch->morph);
-    else sprintf(bufch,ch->name);
-    if (IS_AFFECTED(victim,AFF_POLYMORPH)) sprintf(bufvi,victim->morph);
-    else sprintf(bufvi,victim->name);
-    sprintf(buf,"You cut open your wrist and feed some blood to %s.",bufvi);
-    act(buf,ch,NULL,victim,TO_CHAR);
-    sprintf(buf,"%s cuts open $s wrist and feeds some blood to %s.",bufch,bufvi);
-    act(buf, ch, NULL, victim, TO_NOTVICT);
-    if (victim->position < 5)
-	send_to_char("You feel some blood poured down your throat.\n\r",victim);
-    else
-    {
-	sprintf(buf,"%s cuts open $s wrist and feeds you some blood.",bufch);
-	act(buf, ch, NULL, victim, TO_VICT);
-    }
-    return;
-}
-
-void do_upkeep( CHAR_DATA *ch, char *argument )
-{
-    char      arg [MAX_INPUT_LENGTH];
-    char      buf [MAX_INPUT_LENGTH];
-    char      buf2 [MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (!IS_SET(ch->act, PLR_VAMPIRE))
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-
-    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
-    send_to_char("                              -= Vampire upkeep =-\n\r",ch);
-    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
-    send_to_char("Staying alive...upkeep 1.\n\r",ch);
-
-    	if (IS_VAMPAFF(ch,VAM_DISGUISED) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You are disguised as %s...no upkeep.\n\r",ch->morph);
-	    else if (ch->beast == 100) sprintf(buf,"You are disguised as %s...upkeep 10-20.\n\r",ch->morph);
-	    else sprintf(buf,"You are disguised as %s...upkeep 5-10.\n\r",ch->morph);
-	    send_to_char(buf,ch);
-	}
-    	if (IS_IMMUNE(ch,IMM_SHIELDED) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You are shielded...no upkeep.\n\r");
-	    else if (ch->beast == 100) sprintf(buf,"You are shielded...upkeep 2-6.\n\r");
-	    else sprintf(buf,"You are shielded...upkeep 1-3.\n\r");
-	    send_to_char(buf,ch);
-	}
-    	if (IS_AFFECTED(ch,AFF_SHADOWPLANE) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You are in the shadowplane...no upkeep.\n\r");
-	    else if (ch->beast == 100) sprintf(buf,"You are in the shadowplane...no upkeep.\n\r");
-	    else sprintf(buf,"You are in the shadowplane...no upkeep.\n\r");
-	    send_to_char(buf,ch);
-	}
-    	if (IS_VAMPAFF(ch,VAM_FANGS) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You have your fangs out...no upkeep.\n\r");
-	    else if (ch->beast == 100) sprintf(buf,"You have your fangs out...upkeep 2.\n\r");
-	    else sprintf(buf,"You have your fangs out...upkeep 1.\n\r");
-	    send_to_char(buf,ch);
-	}
-    	if (IS_VAMPAFF(ch,VAM_CLAWS) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You have your claws out...no upkeep.\n\r");
-	    else if (ch->beast == 100) sprintf(buf,"You have your claws out...upkeep 2-6.\n\r");
-	    else sprintf(buf,"You have your claws out...upkeep 1-3.\n\r");
-	    send_to_char(buf,ch);
-	}
-    	if (IS_VAMPAFF(ch,VAM_NIGHTSIGHT) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You have nightsight...no upkeep.\n\r");
-	    else if (ch->beast == 100) sprintf(buf,"You have nightsight...upkeep 2.\n\r");
-	    else sprintf(buf,"You have nightsight...upkeep 1.\n\r");
-	    send_to_char(buf,ch);
-	}
-    	if (IS_AFFECTED(ch,AFF_SHADOWSIGHT) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You have shadowsight...no upkeep.\n\r");
-	    else if (ch->beast == 100) sprintf(buf,"You are shadowsight...upkeep 2-6.\n\r");
-	    else sprintf(buf,"You are shadowsight...upkeep 1-3.\n\r");
-	    send_to_char(buf,ch);
-	}
-    	if (IS_SET(ch->act,PLR_HOLYLIGHT) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You have truesight...no upkeep.\n\r");
-	    else if (ch->beast == 100) sprintf(buf,"You have truesight...upkeep 2-10.\n\r");
-	    else sprintf(buf,"You have truesight...upkeep 1-5.\n\r");
-	    send_to_char(buf,ch);
-	}
-    	if (IS_VAMPAFF(ch,VAM_CHANGED) )
-	{
-	    if      (IS_POLYAFF(ch,POLY_BAT))  sprintf(buf2,"bat" );
-	    else if (IS_POLYAFF(ch,POLY_WOLF)) sprintf(buf2,"wolf");
-	    else                               sprintf(buf2,"mist");
-	    if      (ch->beast == 0  ) sprintf(buf,"You have changed into %s form...no upkeep.\n\r",buf2);
-	    else if (ch->beast == 100) sprintf(buf,"You have changed into %s form...upkeep 10-20.\n\r",buf2);
-	    else sprintf(buf,"You have changed into %s form...upkeep 5-10.\n\r",buf2);
-	    send_to_char(buf,ch);
-	}
-    	if (IS_POLYAFF(ch,POLY_SERPENT) )
-	{
-	    if      (ch->beast == 0  ) sprintf(buf,"You are in serpent form...no upkeep.\n\r");
-	    else if (ch->beast == 100) sprintf(buf,"You are in serpent form...upkeep 6-8.\n\r");
-	    else sprintf(buf,"You are in serpent form...upkeep 1-3.\n\r");
-	    send_to_char(buf,ch);
-	}
-    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
-    return;
-}
-
-void do_vclan( CHAR_DATA *ch, char *argument )
-{
-    char buf[MAX_STRING_LENGTH];
-    char arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *gch;
-
-    one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
-    {
-	send_to_char("Huh?\n\r",ch);
-	return;
-    }
-
-    sprintf( buf, "The %s clan:\n\r", ch->clan );
-    send_to_char( buf, ch );
-    send_to_char("[      Name      ] [ Gen ] [ Hits  % ] [ Mana  % ] [ Move  % ] [  Exp  ] [Blood]\n\r", ch );
-    for ( gch = char_list; gch != NULL; gch = gch->next )
-    {
-	if ( IS_NPC(gch) ) continue;
-	if ( !IS_SET(gch->act, PLR_VAMPIRE) ) continue;
-	if ( !str_cmp(ch->clan,gch->clan) )
-	{
-	    sprintf( buf,
-	    "[%-16s] [  %d  ] [%-6d%3d] [%-6d%3d] [%-6d%3d] [%7d] [ %3d ]\n\r",
-		capitalize( gch->name ),
-		gch->vampgen,
-		gch->hit,  (gch->hit  * 100 / gch->max_hit ),
-		gch->mana, (gch->mana * 100 / gch->max_mana),
-		gch->move, (gch->move * 100 / gch->max_move),
-		gch->exp, gch->pcdata->condition[COND_THIRST] );
-		send_to_char( buf, ch );
-	}
-    }
-    return;
-}
-
-void improve_wpn( CHAR_DATA *ch, int dtype, bool right_hand )
-{
-    OBJ_DATA *wield;
-    char bufskill [20];
-    char buf [MAX_INPUT_LENGTH];
-    int dice1;
-    int dice2;
-    int trapper;
-
-    dice1 = number_percent();
-    dice2 = number_percent();
-
-    if (IS_NPC(ch)) return;
-
-    if (right_hand) wield = get_eq_char( ch, WEAR_WIELD );
-    else            wield = get_eq_char( ch, WEAR_HOLD  );
-
-    if (wield == NULL) dtype = TYPE_HIT;
-    if ( dtype == TYPE_UNDEFINED )
-    {
-	dtype = TYPE_HIT;
-	if ( wield != NULL && wield->item_type == ITEM_WEAPON )
-	    dtype += wield->value[3];
-    }
-    if ( dtype < 1000 || dtype > 1012 ) return;
-    dtype -= 1000;
-    if (ch->wpn[dtype] >= 200) return;
-    trapper = ch->wpn[dtype];
-    if ((dice1 > ch->wpn[dtype] && dice2 > ch->wpn[dtype]) || (dice1==100 || dice2==100)) ch->wpn[dtype] += 1;
-    else return;
-    if (trapper == ch->wpn[dtype]) return;
-
-         if (ch->wpn[dtype] == 1  ) sprintf(bufskill,"slightly skilled");
-    else if (ch->wpn[dtype] == 26 ) sprintf(bufskill,"reasonable");
-    else if (ch->wpn[dtype] == 51 ) sprintf(bufskill,"fairly competent");
-    else if (ch->wpn[dtype] == 76 ) sprintf(bufskill,"highly skilled");
-    else if (ch->wpn[dtype] == 101) sprintf(bufskill,"very dangerous");
-    else if (ch->wpn[dtype] == 126) sprintf(bufskill,"extremely deadly");
-    else if (ch->wpn[dtype] == 151) sprintf(bufskill,"an expert");
-    else if (ch->wpn[dtype] == 176) sprintf(bufskill,"a master");
-    else if (ch->wpn[dtype] == 200) sprintf(bufskill,"a grand master");
-    else return;
-    if (wield == NULL || dtype == 0)
-	sprintf(buf,"You are now %s at unarmed combat.\n\r",bufskill);
-    else
-	sprintf(buf,"You are now %s with %s.\n\r",bufskill,wield->short_descr);
-    ADD_COLOUR(ch,buf,WHITE);
-    send_to_char(buf,ch);
-    return;
-}
-
-void improve_stance( CHAR_DATA *ch )
-{
-    char buf        [MAX_INPUT_LENGTH];
-    char bufskill   [25];
-    char stancename [10];
-    int dice1;
-    int dice2;
-    int stance;
-
-    dice1 = number_percent();
-    dice2 = number_percent();
-
-    if (IS_NPC(ch)) return;
-
-    stance = ch->stance[0];
-    if (stance < 1 || stance > 10) return;
-    if ((dice1 > ch->stance[stance] && dice2 > ch->stance[stance]) || (dice1==100 || dice2==100)) ch->stance[stance] += 1;
-    else return;
-    if (stance == ch->stance[stance]) return;
-
-         if (ch->stance[stance] == 1  ) sprintf(bufskill,"an apprentice of");
-    else if (ch->stance[stance] == 26 ) sprintf(bufskill,"a trainee of");
-    else if (ch->stance[stance] == 51 ) sprintf(bufskill,"a student of");
-    else if (ch->stance[stance] == 76 ) sprintf(bufskill,"fairly experienced in");
-    else if (ch->stance[stance] == 101) sprintf(bufskill,"well trained in");
-    else if (ch->stance[stance] == 126) sprintf(bufskill,"highly skilled in");
-    else if (ch->stance[stance] == 151) sprintf(bufskill,"an expert of");
-    else if (ch->stance[stance] == 176) sprintf(bufskill,"a master of");
-    else if (ch->stance[stance] == 200) sprintf(bufskill,"a grand master of");
-    else return;
-         if (stance == STANCE_VIPER   ) sprintf(stancename,"viper"   );
-    else if (stance == STANCE_CRANE   ) sprintf(stancename,"crane"   );
-    else if (stance == STANCE_CRAB    ) sprintf(stancename,"crab"    );
-    else if (stance == STANCE_MONGOOSE) sprintf(stancename,"mongoose");
-    else if (stance == STANCE_BULL    ) sprintf(stancename,"bull"    );
-    else return;
-    sprintf(buf,"You are now %s the %s stance.\n\r",bufskill,stancename);
-    ADD_COLOUR(ch,buf,WHITE);
-    send_to_char(buf,ch);
-    return;
-}
-
-void do_alignment( CHAR_DATA *ch, char *argument )
-{
-    char arg[MAX_INPUT_LENGTH];
-
-    one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-/*
-    if (ch->level > 2)
-    {
-	send_to_char( "Only mortals have the power to change alignment.\n\r", ch );
-	return;
-    }
-*/
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "Please enter 'good', 'neutral', or 'evil'.\n\r", ch );
-	return;
-    }
-    if      (!str_cmp(arg,"good"))
-    {
-	ch->alignment = 1000;
-	send_to_char( "Alignment is now angelic.\n\r", ch );
-    }
-    else if (!str_cmp(arg,"neutral"))
-    {
-	ch->alignment = 0;
-	send_to_char( "Alignment is now neutral.\n\r", ch );
-    }
-    else if (!str_cmp(arg,"evil"))
-    {
-	ch->alignment = -1000;
-	send_to_char( "Alignment is now satanic.\n\r", ch );
-    }
-    else     send_to_char( "Please enter 'good', 'neutral', or 'evil'.\n\r", ch );
-    return;
-}
-
-void do_side( CHAR_DATA *ch, char *argument )
-{
-    char buf[MAX_INPUT_LENGTH];
-    char arg[MAX_INPUT_LENGTH];
-
-    one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if ( arg[0] != '\0' && !str_cmp(arg,"renegade") && 
-	( ch->class == 1 || ch->class == 2 ))
-    {
-	ch->class = 3;
-	send_to_char( "You are now a renegade.\n\r", ch );
-	sprintf(buf,"%s has turned renegade!",ch->name);
-	do_info(ch,buf);
-	return;
-    }
-
-    if (ch->class == 1)
-    {
-	send_to_char( "You are a scavenger.\n\r", ch );
-	return;
-    }
-    else if (ch->class == 2)
-    {
-	send_to_char( "You are a mutant.\n\r", ch );
-	return;
-    }
-    else if (ch->class == 3)
-    {
-	send_to_char( "You are a renegade.\n\r", ch );
-	return;
-    }
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "You have not yet picked a side to fight on.\n\r", ch );
-	send_to_char( "Please enter 'Scavenger' or 'Mutant'.\n\r", ch );
-	return;
-    }
-    if (!str_cmp(arg,"scavenger"))
-    {
-	ch->class = 1;
-	send_to_char( "You are now a scavenger.\n\r", ch );
-	sprintf(buf,"%s has sided with the scavengers!",ch->name);
-	do_info(ch,buf);
-    }
-    else if (!str_cmp(arg,"mutant"))
-    {
-	ch->class = 2;
-	send_to_char( "You are now a mutant.\n\r", ch );
-	sprintf(buf,"%s has sided with the mutants!",ch->name);
-	do_info(ch,buf);
-    }
-    else send_to_char( "Please enter 'Scavenger' or 'Mutant'.\n\r", ch );
-    return;
-}
-
-void do_skill( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    char buf       [MAX_INPUT_LENGTH];
-    char buf2      [MAX_INPUT_LENGTH];
-    char bufskill  [25];
-    char bufskill2 [25];
-    char arg       [MAX_INPUT_LENGTH];
-    OBJ_DATA *wield;
-    OBJ_DATA *wield2;
-    int dtype;
-    int dtype2;
-
-    one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-
-    if ( arg[0] == '\0' )
-	sprintf(arg,ch->name);
-
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-
-    if (IS_NPC(victim))
-    {
-	send_to_char( "Not on NPC's.\n\r", ch );
-	return;
-    }
-
-    wield = get_eq_char( victim, WEAR_WIELD );
-    wield2 = get_eq_char( victim, WEAR_HOLD );
-
-    dtype = TYPE_HIT;
-    dtype2 = TYPE_HIT;
-    if ( wield != NULL && wield->item_type == ITEM_WEAPON )
-	dtype += wield->value[3];
-    if ( wield2 != NULL && wield2->item_type == ITEM_WEAPON )
-	dtype2 += wield2->value[3];
-    dtype -= 1000;
-    dtype2 -= 1000;
-
-    if      (victim->wpn[dtype] == 00 ) sprintf(bufskill,"totally unskilled");
-    else if (victim->wpn[dtype] <= 25 ) sprintf(bufskill,"slightly skilled");
-    else if (victim->wpn[dtype] <= 50 ) sprintf(bufskill,"reasonable");
-    else if (victim->wpn[dtype] <= 75 ) sprintf(bufskill,"fairly competent");
-    else if (victim->wpn[dtype] <= 100) sprintf(bufskill,"highly skilled");
-    else if (victim->wpn[dtype] <= 125) sprintf(bufskill,"very dangerous");
-    else if (victim->wpn[dtype] <= 150) sprintf(bufskill,"extremely deadly");
-    else if (victim->wpn[dtype] <= 175) sprintf(bufskill,"an expert");
-    else if (victim->wpn[dtype] <= 199) sprintf(bufskill,"a master");
-    else if (victim->wpn[dtype] >= 200) sprintf(bufskill,"a grand master");
-    else return;
-
-    if      (victim->wpn[dtype2] == 00 ) sprintf(bufskill2,"totally unskilled");
-    else if (victim->wpn[dtype2] <= 25 ) sprintf(bufskill2,"slightly skilled");
-    else if (victim->wpn[dtype2] <= 50 ) sprintf(bufskill2,"reasonable");
-    else if (victim->wpn[dtype2] <= 75 ) sprintf(bufskill2,"fairly competent");
-    else if (victim->wpn[dtype2] <= 100) sprintf(bufskill2,"highly skilled");
-    else if (victim->wpn[dtype2] <= 125) sprintf(bufskill2,"very dangerous");
-    else if (victim->wpn[dtype2] <= 150) sprintf(bufskill2,"extremely deadly");
-    else if (victim->wpn[dtype2] <= 175) sprintf(bufskill2,"an expert");
-    else if (victim->wpn[dtype2] <= 199) sprintf(bufskill2,"a master");
-    else if (victim->wpn[dtype2] >= 200) sprintf(bufskill2,"a grand master");
-    else return;
-
-    if (ch == victim)
-    {
-    	if (dtype == 0 && dtype2 == 0)
-	    sprintf(buf,"You are %s at unarmed combat.\n\r",bufskill);
-    	else
-	{
-	    if (dtype != 0)
-		sprintf(buf,"You are %s with %s.\n\r",bufskill,wield->short_descr);
-	    if (dtype2 != 0)
-		sprintf(buf2,"You are %s with %s.\n\r",bufskill2,wield2->short_descr);
-	}
-    }
-    else
-    {
-    	if (dtype == 0 && dtype2 == 0)
-	    sprintf(buf,"%s is %s at unarmed combat.\n\r",victim->name,bufskill);
-    	else
-	{
-	    if (dtype != 0)
-		sprintf(buf,"%s is %s with %s.\n\r",victim->name,bufskill,wield->short_descr);
-	    if (dtype2 != 0)
-		sprintf(buf2,"%s is %s with %s.\n\r",victim->name,bufskill2,wield2->short_descr);
-	}
-    }
-    if (!(dtype == 0 && dtype2 != 0)) send_to_char(buf,ch);
-    if (dtype2 != 0) send_to_char(buf2,ch);
-    skillstance(ch,victim);
-    return;
-}
-
-void skillstance( CHAR_DATA *ch, CHAR_DATA *victim )
-{
-    char buf        [MAX_INPUT_LENGTH];
-    char bufskill   [25];
-    char stancename [10];
-    int stance;
-
-    if (IS_NPC(victim)) return;
-
-    stance = victim->stance[0];
-    if (stance < 1 || stance > 10) return;
-         if (victim->stance[stance] <= 0  ) sprintf(bufskill,"completely unskilled in");
-    else if (victim->stance[stance] <= 25 ) sprintf(bufskill,"an apprentice of");
-    else if (victim->stance[stance] <= 50 ) sprintf(bufskill,"a trainee of");
-    else if (victim->stance[stance] <= 75 ) sprintf(bufskill,"a student of");
-    else if (victim->stance[stance] <= 100) sprintf(bufskill,"fairly experienced in");
-    else if (victim->stance[stance] <= 125) sprintf(bufskill,"well trained in");
-    else if (victim->stance[stance] <= 150) sprintf(bufskill,"highly skilled in");
-    else if (victim->stance[stance] <= 175) sprintf(bufskill,"an expert of");
-    else if (victim->stance[stance] <= 199) sprintf(bufskill,"a master of");
-    else if (victim->stance[stance] >= 200) sprintf(bufskill,"a grand master of");
-    else return;
-         if (stance == STANCE_VIPER   ) sprintf(stancename,"viper"   );
-    else if (stance == STANCE_CRANE   ) sprintf(stancename,"crane"   );
-    else if (stance == STANCE_CRAB    ) sprintf(stancename,"crab"    );
-    else if (stance == STANCE_MONGOOSE) sprintf(stancename,"mongoose");
-    else if (stance == STANCE_BULL    ) sprintf(stancename,"bull"    );
-    else return;
-    if (ch == victim)
-    	sprintf(buf,"You are %s the %s stance.",bufskill,stancename);
-    else
-    	sprintf(buf,"$N is %s the %s stance.",bufskill,stancename);
-    act(buf,ch,NULL,victim,TO_CHAR);
-    return;
-}
-
-void do_spell( CHAR_DATA *ch, char *argument )
-{
-    char arg[MAX_INPUT_LENGTH];
-
-    one_argument( argument, arg );
-
-    if ( arg[0] == '\0' )
-    {
-	show_spell(ch,0);
-	show_spell(ch,1);
-	show_spell(ch,2);
-	show_spell(ch,3);
-	show_spell(ch,4);
-    }
-    else if (!str_cmp(arg,"purple")) show_spell(ch,0);
-    else if (!str_cmp(arg,"red"))    show_spell(ch,1);
-    else if (!str_cmp(arg,"blue"))   show_spell(ch,2);
-    else if (!str_cmp(arg,"green"))  show_spell(ch,3);
-    else if (!str_cmp(arg,"yellow")) show_spell(ch,4);
-    else send_to_char("You know of no such magic.\n\r",ch);
-    return;
-}
-
-void show_spell( CHAR_DATA *ch, int dtype )
-{
-    char buf[MAX_INPUT_LENGTH];
-    char bufskill[MAX_INPUT_LENGTH];
-
-    if (IS_NPC(ch)) return;
-
-    if      (ch->spl[dtype] == 00 ) sprintf(bufskill,"untrained");
-    else if (ch->spl[dtype] <= 25 ) sprintf(bufskill,"an apprentice");
-    else if (ch->spl[dtype] <= 50 ) sprintf(bufskill,"a student");
-    else if (ch->spl[dtype] <= 75 ) sprintf(bufskill,"a scholar");
-    else if (ch->spl[dtype] <= 100) sprintf(bufskill,"a magus");
-    else if (ch->spl[dtype] <= 125) sprintf(bufskill,"an adept ");
-    else if (ch->spl[dtype] <= 150) sprintf(bufskill,"a mage");
-    else if (ch->spl[dtype] <= 175) sprintf(bufskill,"a warlock");
-    else if (ch->spl[dtype] <= 199) sprintf(bufskill,"a master wizard");
-    else if (ch->spl[dtype] >= 200) sprintf(bufskill,"a grand sorcerer");
-    else return;
-    if      (dtype == 0)
-	sprintf(buf,"You are %s at purple magic.\n\r",bufskill);
-    else if (dtype == 1)
-	sprintf(buf,"You are %s at red magic.\n\r",bufskill);
-    else if (dtype == 2)
-	sprintf(buf,"You are %s at blue magic.\n\r",bufskill);
-    else if (dtype == 3)
-	sprintf(buf,"You are %s at green magic.\n\r",bufskill);
-    else if (dtype == 4)
-	sprintf(buf,"You are %s at yellow magic.\n\r",bufskill);
-    else return;
-    send_to_char(buf,ch);
-    return;
-}
-
-/* In case we need to remove our pfiles, or wanna turn mortal for a bit */
-void do_relevel( CHAR_DATA *ch, char *argument )
-{
-    if (IS_NPC(ch)) return;
-
-    if (!str_cmp(ch->name,"KaVir") || !str_cmp(ch->name,"Lucifur") )
-    {
-	ch->level = MAX_LEVEL;
-	ch->trust = MAX_LEVEL;
-	send_to_char("Done.\n\r",ch);
-    }
-    else if (!str_cmp(ch->name,"Malice") || !str_cmp(ch->name,"Shaddai") )
-    {
-	ch->level = MAX_LEVEL-1;
-	ch->trust = MAX_LEVEL-1;
-	send_to_char("Done.\n\r",ch);
-    }
-    else
-	send_to_char("Huh?\n\r",ch);
-    return;
-}
-
-void do_scan( CHAR_DATA *ch, char *argument )
-{
-    ROOM_INDEX_DATA *location;
-
-    location = ch->in_room;
-
-    send_to_char("[North]\n\r",ch);
-    do_spydirection(ch,"n");
-    char_from_room(ch);
-    char_to_room(ch,location);
-
-    send_to_char("[East]\n\r",ch);
-    do_spydirection(ch,"e");
-    char_from_room(ch);
-    char_to_room(ch,location);
-
-    send_to_char("[South]\n\r",ch);
-    do_spydirection(ch,"s");
-    char_from_room(ch);
-    char_to_room(ch,location);
-
-    send_to_char("[West]\n\r",ch);
-    do_spydirection(ch,"w");
-    char_from_room(ch);
-    char_to_room(ch,location);
-
-    send_to_char("[Up]\n\r",ch);
-    do_spydirection(ch,"u");
-    char_from_room(ch);
-    char_to_room(ch,location);
-
-    send_to_char("[Down]\n\r",ch);
-    do_spydirection(ch,"d");
-    char_from_room(ch);
-    char_to_room(ch,location);
-    return;
-}
-
-void do_spy( CHAR_DATA *ch, char *argument )
-{
-    ROOM_INDEX_DATA *location;
-    char            arg1      [MAX_INPUT_LENGTH];
-    int             door;
-
-    argument = one_argument( argument, arg1 );
-
-    if ( arg1[0] == '\0' )
-    {
-	send_to_char("Which direction do you wish to spy?\n\r", ch);
-	return;
-    }
-
-    if      ( !str_cmp( arg1, "n" ) || !str_cmp( arg1, "north" ) )
-	door = 0;
-    else if ( !str_cmp( arg1, "e" ) || !str_cmp( arg1, "east" ) )
-	door = 1;
-    else if ( !str_cmp( arg1, "s" ) || !str_cmp( arg1, "south" ) )
-	door = 2;
-    else if ( !str_cmp( arg1, "w" ) || !str_cmp( arg1, "west" ) )
-	door = 3;
-    else if ( !str_cmp( arg1, "u" ) || !str_cmp( arg1, "up" ) )
-	door = 4;
-    else if ( !str_cmp( arg1, "d" ) || !str_cmp( arg1, "down" ) )
-	door = 5;
-    else
-    {
-	send_to_char("You can only spy people north, south, east, west, up or down.\n\r", ch);
-	return;
-    }
-
-    location = ch->in_room;
-
-    send_to_char("[Short Range]\n\r",ch);
-    do_spydirection(ch,arg1);
-    send_to_char("\n\r",ch);
-    send_to_char("[Medium Range]\n\r",ch);
-    do_spydirection(ch,arg1);
-    send_to_char("\n\r",ch);
-    send_to_char("[Long Range]\n\r",ch);
-    do_spydirection(ch,arg1);
-    send_to_char("\n\r",ch);
-
-    /* Move them back */
-    char_from_room(ch);
-    char_to_room(ch,location);
-    return;
-}
-
-void do_spydirection( CHAR_DATA *ch, char *argument )
-{
-    ROOM_INDEX_DATA *to_room;
-    EXIT_DATA       *pexit;
-    CHAR_DATA       *vch;
-    CHAR_DATA       *vch_next;
-    char            arg      [MAX_INPUT_LENGTH];
-    char            buf      [MAX_INPUT_LENGTH];
-    int             door;
-    bool            is_empty;
-
-    argument = one_argument( argument, arg );
-
-    is_empty = TRUE;
-
-    if ( arg[0] == '\0' )
-	return;
-
-    if      ( !str_cmp( arg, "n" ) || !str_cmp( arg, "north" ) ) door = 0;
-    else if ( !str_cmp( arg, "e" ) || !str_cmp( arg, "east"  ) ) door = 1;
-    else if ( !str_cmp( arg, "s" ) || !str_cmp( arg, "south" ) ) door = 2;
-    else if ( !str_cmp( arg, "w" ) || !str_cmp( arg, "west"  ) ) door = 3;
-    else if ( !str_cmp( arg, "u" ) || !str_cmp( arg, "up"    ) ) door = 4;
-    else if ( !str_cmp( arg, "d" ) || !str_cmp( arg, "down"  ) ) door = 5;
-    else return;
-
-    if (( pexit = ch->in_room->exit[door]) == NULL || (to_room = pexit->to_room) == NULL)
-    {
-	send_to_char("   No exit.\n\r",ch);
-	return;
-    }
-    pexit = ch->in_room->exit[door];
-    if (IS_SET(pexit->exit_info, EX_CLOSED) )
-    {
-	send_to_char("   Closed door.\n\r",ch);
-	return;
-    }
-    char_from_room(ch);
-    char_to_room(ch,to_room);
-    for ( vch = char_list; vch != NULL; vch = vch_next )
-    {
-	vch_next	= vch->next;
-	if ( vch->in_room == NULL )
-	    continue;
-	if ( vch == ch )
-	    continue;
-	if ( !can_see(ch,vch) )
-	    continue;
-	if ( vch->in_room == ch->in_room )
-	{
-	    if (!IS_NPC(vch) && !IS_AFFECTED(vch,AFF_POLYMORPH))
-		sprintf(buf,"   %s (Player)\n\r",vch->name);
-	    else if (!IS_NPC(vch) && IS_AFFECTED(vch,AFF_POLYMORPH))
-		sprintf(buf,"   %s (Player)\n\r",vch->morph);
-	    else if (IS_NPC(vch))
-		sprintf(buf,"   %s\n\r",capitalize(vch->short_descr));
-	    send_to_char(buf,ch);
-	    is_empty = FALSE;
-	    continue;
-	}
-    }
-    if (is_empty)
-    {
-	send_to_char("   Nobody here.\n\r",ch);
-	return;
-    }
-    return;
-}
-
-void do_throw( CHAR_DATA *ch, char *argument )
-{
-    ROOM_INDEX_DATA *location;
-    ROOM_INDEX_DATA *to_room;
-    EXIT_DATA       *pexit;
-    CHAR_DATA       *victim;
-    OBJ_DATA        *obj;
-    char            arg1      [MAX_INPUT_LENGTH];
-    char            arg2      [MAX_INPUT_LENGTH];
-    char            buf       [MAX_INPUT_LENGTH];
-    char            revdoor   [MAX_INPUT_LENGTH];
-    int             door;
-
-    argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
-
-    if ( ( obj = get_eq_char( ch, WEAR_WIELD ) ) == NULL )
-    {
-    	if ( ( obj = get_eq_char( ch, WEAR_HOLD ) ) == NULL )
-	{
-	    send_to_char( "You are not holding anything to throw.\n\r", ch );
-	    return;
-	}
-    }
-
-    if ( arg1[0] == '\0' )
-    {
-	send_to_char("Which direction do you wish to throw?\n\r", ch);
-	return;
-    }
-
-    if      ( !str_cmp( arg1, "n" ) || !str_cmp( arg1, "north" ) )
-	{door = 0;sprintf(arg1,"north");}
-    else if ( !str_cmp( arg1, "e" ) || !str_cmp( arg1, "east" ) )
-	{door = 1;sprintf(arg1,"east");}
-    else if ( !str_cmp( arg1, "s" ) || !str_cmp( arg1, "south" ) )
-	{door = 2;sprintf(arg1,"south");}
-    else if ( !str_cmp( arg1, "w" ) || !str_cmp( arg1, "west" ) )
-	{door = 3;sprintf(arg1,"west");}
-    else if ( !str_cmp( arg1, "u" ) || !str_cmp( arg1, "up" ) )
-	{door = 4;sprintf(arg1,"up");}
-    else if ( !str_cmp( arg1, "d" ) || !str_cmp( arg1, "down" ) )
-	{door = 5;sprintf(arg1,"down");}
-    else
-    {
-	send_to_char("You can only throw north, south, east, west, up or down.\n\r", ch);
-	return;
-    }
-
-    if      ( !str_cmp( arg1, "north" ) ) {door = 0;sprintf(revdoor,"south");}
-    else if ( !str_cmp( arg1, "east"  ) ) {door = 1;sprintf(revdoor,"west" );}
-    else if ( !str_cmp( arg1, "south" ) ) {door = 2;sprintf(revdoor,"north");}
-    else if ( !str_cmp( arg1, "west"  ) ) {door = 3;sprintf(revdoor,"east" );}
-    else if ( !str_cmp( arg1, "up"    ) ) {door = 4;sprintf(revdoor,"down" );}
-    else if ( !str_cmp( arg1, "down"  ) ) {door = 5;sprintf(revdoor,"up"   );}
-    else return;
-
-    location = ch->in_room;
-
-    sprintf(buf,"You hurl $p %s.",arg1);
-    act(buf,ch,obj,NULL,TO_CHAR);
-    sprintf(buf,"$n hurls $p %s.",arg1);
-    act(buf,ch,obj,NULL,TO_ROOM);
-    /* First room */
-    if (( pexit = ch->in_room->exit[door]) == NULL || (to_room = pexit->to_room) == NULL)
-    {
-	sprintf(buf,"$p bounces off the %s wall.",arg1);
-	act(buf,ch,obj,NULL,TO_ROOM);
-	act(buf,ch,obj,NULL,TO_CHAR);
-	obj_from_char(obj);
-	obj_to_room(obj, ch->in_room);
-	return;
-    }
-    pexit = ch->in_room->exit[door];
-    if (IS_SET(pexit->exit_info, EX_CLOSED) )
-    {
-	sprintf(buf,"$p bounces off the %s door.",arg1);
-	act(buf,ch,obj,NULL,TO_ROOM);
-	act(buf,ch,obj,NULL,TO_CHAR);
-	obj_from_char(obj);
-	obj_to_room(obj, ch->in_room);
-	return;
-    }
-    char_from_room(ch);
-    char_to_room(ch,to_room);
-    if ( ( victim = get_char_room( ch, arg2 ) ) != NULL )
-    {
-	sprintf(buf,"$p comes flying in from the %s and lands in $N's hands.",revdoor);
-	act(buf,ch,obj,victim,TO_NOTVICT);
-	sprintf(buf,"$p comes flying in from the %s and lands in your hands.",revdoor);
-	act(buf,ch,obj,victim,TO_VICT);
-	obj_from_char(obj);
-	obj_to_char(obj, victim);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-
-    /* Second room */
-    if (( pexit = ch->in_room->exit[door]) == NULL || (to_room = pexit->to_room) == NULL)
-    {
-	sprintf(buf,"$p comes flying in from the %s and strikes %s wall.",revdoor,arg1);
-	act(buf,ch,obj,NULL,TO_ROOM);
-	obj_from_char(obj);
-	obj_to_room(obj, ch->in_room);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-    pexit = ch->in_room->exit[door];
-    if (IS_SET(pexit->exit_info, EX_CLOSED) )
-    {
-	sprintf(buf,"$p comes flying in from the %s and strikes the %s door.",revdoor,arg1);
-	act(buf,ch,obj,NULL,TO_ROOM);
-	obj_from_char(obj);
-	obj_to_room(obj, ch->in_room);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-    sprintf(buf,"$p comes flying in from the %s and carries on %s.",revdoor, arg1);
-    act(buf,ch,obj,NULL,TO_ROOM);
-    char_from_room(ch);
-    char_to_room(ch,to_room);
-    if ( ( victim = get_char_room( ch, arg2 ) ) != NULL )
-    {
-	sprintf(buf,"$p comes flying in from the %s and lands in $N's hands.",revdoor);
-	act(buf,ch,obj,victim,TO_NOTVICT);
-	sprintf(buf,"$p comes flying in from the %s and lands in your hands.",revdoor);
-	act(buf,ch,obj,victim,TO_VICT);
-	obj_from_char(obj);
-	obj_to_char(obj, victim);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-
-    /* Third room */
-    if (( pexit = ch->in_room->exit[door]) == NULL || (to_room = pexit->to_room) == NULL)
-    {
-	sprintf(buf,"$p comes flying in from the %s and strikes %s wall.",revdoor,arg1);
-	act(buf,ch,obj,NULL,TO_ROOM);
-	obj_from_char(obj);
-	obj_to_room(obj, ch->in_room);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-    pexit = ch->in_room->exit[door];
-    if (IS_SET(pexit->exit_info, EX_CLOSED) )
-    {
-	sprintf(buf,"$p comes flying in from the %s and strikes the %s door.",revdoor,arg1);
-	act(buf,ch,obj,NULL,TO_ROOM);
-	obj_from_char(obj);
-	obj_to_room(obj, ch->in_room);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-    sprintf(buf,"$p comes flying in from the %s and carries on %s.",revdoor, arg1);
-    act(buf,ch,obj,NULL,TO_ROOM);
-    char_from_room(ch);
-    char_to_room(ch,to_room);
-    if ( ( victim = get_char_room( ch, arg2 ) ) != NULL )
-    {
-	sprintf(buf,"$p comes flying in from the %s and lands in $N's hands.",revdoor);
-	act(buf,ch,obj,victim,TO_NOTVICT);
-	sprintf(buf,"$p comes flying in from the %s and lands in your hands.",revdoor);
-	act(buf,ch,obj,victim,TO_VICT);
-	obj_from_char(obj);
-	obj_to_char(obj, victim);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-
-    sprintf(buf,"$p comes flying in from the %s and drops at your feet.",revdoor);
-    act(buf,ch,obj,NULL,TO_ROOM);
-    obj_from_char(obj);
-    obj_to_room(obj, ch->in_room);
-
-    /* Move them back */
-    char_from_room(ch);
-    char_to_room(ch,location);
-    return;
-}
-
-void do_shoot( CHAR_DATA *ch, char *argument )
-{
-    ROOM_INDEX_DATA *location;
-    ROOM_INDEX_DATA *to_room;
-    EXIT_DATA       *pexit;
-    CHAR_DATA       *victim;
-    OBJ_DATA        *obj;
-    OBJ_DATA        *ammo;
-    char            arg1      [MAX_INPUT_LENGTH];
-    char            arg2      [MAX_INPUT_LENGTH];
-    char            buf       [MAX_INPUT_LENGTH];
-    char            revdoor   [MAX_INPUT_LENGTH];
-    int             door;
-    bool	    missed;
-
-    argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
-
-    if ( ( obj = get_eq_char( ch, WEAR_WIELD ) ) == NULL
-	|| obj->item_type != ITEM_MISSILE )
-    {
-    	if ( ( obj = get_eq_char( ch, WEAR_HOLD ) ) == NULL
-	    || obj->item_type != ITEM_MISSILE )
-	{
-	    send_to_char( "You are not holding anything to shoot.\n\r", ch );
-	    return;
-	}
-    }
-
-    if ( obj->value[1] < 1 )
-    {
-	send_to_char("First you need to load it.\n\r", ch);
-	return;
-    }
-
-    if ( arg1[0] == '\0' )
-    {
-	send_to_char("Please specify a direction to shoot.\n\r", ch);
-	return;
-    }
-
-    if ( arg2[0] == '\0' )
-    {
-	send_to_char("Please specify a target to shoot at.\n\r", ch);
-	return;
-    }
-
-    if      ( !str_cmp( arg1, "n" ) || !str_cmp( arg1, "north" ) )
-	{door = 0;sprintf(arg1,"north");}
-    else if ( !str_cmp( arg1, "e" ) || !str_cmp( arg1, "east" ) )
-	{door = 1;sprintf(arg1,"east");}
-    else if ( !str_cmp( arg1, "s" ) || !str_cmp( arg1, "south" ) )
-	{door = 2;sprintf(arg1,"south");}
-    else if ( !str_cmp( arg1, "w" ) || !str_cmp( arg1, "west" ) )
-	{door = 3;sprintf(arg1,"west");}
-    else if ( !str_cmp( arg1, "u" ) || !str_cmp( arg1, "up" ) )
-	{door = 4;sprintf(arg1,"up");}
-    else if ( !str_cmp( arg1, "d" ) || !str_cmp( arg1, "down" ) )
-	{door = 5;sprintf(arg1,"down");}
-    else
-    {
-	send_to_char("You can only shoot north, south, east, west, up or down.\n\r", ch);
-	return;
-    }
-
-    if      ( !str_cmp( arg1, "north" ) ) {door = 0;sprintf(revdoor,"south");}
-    else if ( !str_cmp( arg1, "east"  ) ) {door = 1;sprintf(revdoor,"west" );}
-    else if ( !str_cmp( arg1, "south" ) ) {door = 2;sprintf(revdoor,"north");}
-    else if ( !str_cmp( arg1, "west"  ) ) {door = 3;sprintf(revdoor,"east" );}
-    else if ( !str_cmp( arg1, "up"    ) ) {door = 4;sprintf(revdoor,"down" );}
-    else if ( !str_cmp( arg1, "down"  ) ) {door = 5;sprintf(revdoor,"up"   );}
-    else return;
-
-    if ( get_obj_index( obj->value[0] ) == NULL ) return;
-
-    location = ch->in_room;
-    ammo = create_object( get_obj_index( obj->value[0] ), 0 );
-
-    if ( number_percent() <= ammo->value[0] ) missed = FALSE;
-    else missed = TRUE;
-    obj->value[1] -= 1;
-
-    sprintf(buf,"You point $p %s and shoot.",arg1);
-    act(buf,ch,obj,NULL,TO_CHAR);
-    sprintf(buf,"$n points $p %s and shoots.",arg1);
-    act(buf,ch,obj,NULL,TO_ROOM);
-    /* First room */
-    if (( pexit = ch->in_room->exit[door]) == NULL || (to_room = pexit->to_room) == NULL)
-    {
-	sprintf(buf,"$p bounces off the %s wall.",arg1);
-	act(buf,ch,ammo,NULL,TO_ROOM);
-	act(buf,ch,ammo,NULL,TO_CHAR);
-	obj_to_room(ammo, ch->in_room);
-	return;
-    }
-    pexit = ch->in_room->exit[door];
-    if (IS_SET(pexit->exit_info, EX_CLOSED) )
-    {
-	sprintf(buf,"$p bounces off the %s door.",arg1);
-	act(buf,ch,ammo,NULL,TO_ROOM);
-	act(buf,ch,ammo,NULL,TO_CHAR);
-	obj_to_room(ammo, ch->in_room);
-	return;
-    }
-    char_from_room(ch);
-    char_to_room(ch,to_room);
-    if ( ( victim = get_char_room( ch, arg2 ) ) != NULL )
-    {
-	if (missed)
-	{
-	    sprintf(buf,"$p flies in from the %s, just missing $N, and carrying on %s.",revdoor, arg1);
-	    act(buf,ch,ammo,victim,TO_NOTVICT);
-	    sprintf(buf,"$p flies in from the %s, just missing you, and carrying on %s.",revdoor, arg1);
-	    act(buf,ch,ammo,victim,TO_VICT);
-	}
-	else
-	{
-	    sprintf(buf,"$p comes flying in from the %s and strikes $N.",revdoor);
-	    act(buf,ch,ammo,victim,TO_NOTVICT);
-	    sprintf(buf,"$p comes flying in from the %s and strikes you.",revdoor);
-	    act(buf,ch,ammo,victim,TO_VICT);
-	    obj_to_char(ammo, victim);
-    	    char_from_room(ch);
-    	    char_to_room(ch,location);
-	    victim->hit -= number_range(ammo->value[1],ammo->value[2]);
-	    update_pos(victim);
-	    if (victim->position == POS_DEAD && !IS_HERO(victim))
-	    {
-		send_to_char( "You have been KILLED!!\n\r\n\r", victim );
-		raw_kill(victim);
-	    }
-	    return;
-	}
-    }
-
-    /* Second room */
-    if (( pexit = ch->in_room->exit[door]) == NULL || (to_room = pexit->to_room) == NULL)
-    {
-	sprintf(buf,"$p comes flying in from the %s and strikes %s wall.",revdoor,arg1);
-	act(buf,ch,ammo,NULL,TO_ROOM);
-	obj_to_room(ammo, ch->in_room);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-    pexit = ch->in_room->exit[door];
-    if (IS_SET(pexit->exit_info, EX_CLOSED) )
-    {
-	sprintf(buf,"$p comes flying in from the %s and strikes the %s door.",revdoor,arg1);
-	act(buf,ch,ammo,NULL,TO_ROOM);
-	obj_to_room(ammo, ch->in_room);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-    if (!missed)
-    {
-    	sprintf(buf,"$p comes flying in from the %s and carries on %s.",revdoor, arg1);
-    	act(buf,ch,ammo,NULL,TO_ROOM);
-    }
-    char_from_room(ch);
-    char_to_room(ch,to_room);
-    if ( ( victim = get_char_room( ch, arg2 ) ) != NULL )
-    {
-	if (missed)
-	{
-	    sprintf(buf,"$p flies in from the %s, just missing $N, and carrying on %s.",revdoor, arg1);
-	    act(buf,ch,ammo,victim,TO_NOTVICT);
-	    sprintf(buf,"$p flies in from the %s, just missing you, and carrying on %s.",revdoor, arg1);
-	    act(buf,ch,ammo,victim,TO_VICT);
-	}
-	else
-	{
-	    sprintf(buf,"$p comes flying in from the %s and strikes $N.",revdoor);
-	    act(buf,ch,ammo,victim,TO_NOTVICT);
-	    sprintf(buf,"$p comes flying in from the %s and strikes you.",revdoor);
-	    act(buf,ch,ammo,victim,TO_VICT);
-	    obj_to_char(ammo, victim);
-    	    char_from_room(ch);
-    	    char_to_room(ch,location);
-	    victim->hit -= number_range(ammo->value[1],ammo->value[2]);
-	    update_pos(victim);
-	    if (victim->position == POS_DEAD && !IS_HERO(victim))
-	    {
-		send_to_char( "You have been KILLED!!\n\r\n\r", victim );
-		raw_kill(victim);
-	    }
-	    return;
-	}
-    }
-
-    /* Third room */
-    if (( pexit = ch->in_room->exit[door]) == NULL || (to_room = pexit->to_room) == NULL)
-    {
-	sprintf(buf,"$p comes flying in from the %s and strikes %s wall.",revdoor,arg1);
-	act(buf,ch,ammo,NULL,TO_ROOM);
-	obj_to_room(ammo, ch->in_room);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-    pexit = ch->in_room->exit[door];
-    if (IS_SET(pexit->exit_info, EX_CLOSED) )
-    {
-	sprintf(buf,"$p comes flying in from the %s and strikes the %s door.",revdoor,arg1);
-	act(buf,ch,ammo,NULL,TO_ROOM);
-	obj_to_room(ammo, ch->in_room);
-    	char_from_room(ch);
-    	char_to_room(ch,location);
-	return;
-    }
-    if (!missed)
-    {
-    	sprintf(buf,"$p comes flying in from the %s and carries on %s.",revdoor, arg1);
-    	act(buf,ch,ammo,NULL,TO_ROOM);
-    }
-    char_from_room(ch);
-    char_to_room(ch,to_room);
-    if ( ( victim = get_char_room( ch, arg2 ) ) != NULL )
-    {
-	if (missed)
-	{
-	    sprintf(buf,"$p flies in from the %s, just missing $N, and carrying on %s.",revdoor, arg1);
-	    act(buf,ch,ammo,victim,TO_NOTVICT);
-	    sprintf(buf,"$p flies in from the %s, just missing you, and carrying on %s.",revdoor, arg1);
-	    act(buf,ch,ammo,victim,TO_VICT);
-	}
-	else
-	{
-	    sprintf(buf,"$p comes flying in from the %s and strikes $N.",revdoor);
-	    act(buf,ch,ammo,victim,TO_NOTVICT);
-	    sprintf(buf,"$p comes flying in from the %s and strikes you.",revdoor);
-	    act(buf,ch,ammo,victim,TO_VICT);
-	    obj_to_char(ammo, victim);
-    	    char_from_room(ch);
-    	    char_to_room(ch,location);
-	    victim->hit -= number_range(ammo->value[1],ammo->value[2]);
-	    update_pos(victim);
-	    if (victim->position == POS_DEAD && !IS_HERO(victim))
-	    {
-		send_to_char( "You have been KILLED!!\n\r\n\r", victim );
-		raw_kill(victim);
-	    }
-	    return;
-	}
-    }
-
-    sprintf(buf,"$p comes flying in from the %s and drops at your feet.",revdoor);
-    act(buf,ch,ammo,NULL,TO_ROOM);
-    obj_to_room(ammo, ch->in_room);
-
-    /* Move them back */
-    char_from_room(ch);
-    char_to_room(ch,location);
-    return;
-}
-
-void do_reload( CHAR_DATA *ch, char *argument )
-{
-    OBJ_DATA *obj;
-    OBJ_DATA *obj2;
-    OBJ_DATA *ammo;
-    OBJ_DATA *missile;
-
-    obj = get_eq_char( ch, WEAR_WIELD );
-    obj2 = get_eq_char( ch, WEAR_HOLD );
-
-    if ( obj == NULL || obj2 == NULL )
-    {
-	send_to_char( "You must hold the weapon to reload in one hand and the ammo in the other.\n\r", ch );
-	return;
-    }
-
-    if ( !(obj->item_type  == ITEM_MISSILE && obj2->item_type == ITEM_AMMO)
-    &&   !(obj2->item_type == ITEM_MISSILE && obj->item_type  == ITEM_AMMO) )
-    {
-	send_to_char( "You must hold the weapon to reload in one hand and the ammo in the other.\n\r", ch );
-	return;
-    }
-
-    if ( obj->item_type == ITEM_MISSILE )
-    {
-	missile = obj;
-	ammo = obj2;
-    }
-    else
-    {
-	missile = obj2;
-	ammo = obj;
-    }
-
-    if ( missile->value[1] >= missile->value[2] )
-    {
-	send_to_char( "It is already fully loaded.\n\r", ch );
-	return;
-    }
-
-    if ( missile->value[3] != ammo->value[3] )
-    {
-	send_to_char( "That weapon doesn't take that sort of ammo.\n\r", ch );
-	return;
-    }
-
-    if ( missile->value[0] != 0 && missile->value[1] != 0 &&
-	 missile->value[0] != ammo->pIndexData->vnum )
-    {
-	send_to_char( "You cannot mix ammo types.\n\r", ch );
-	return;
-    }
-
-    act("You load $p into $P.",ch,ammo,missile,TO_CHAR);
-    act("$n loads $p into $P.",ch,ammo,missile,TO_ROOM);
-    missile->value[1] += 1;
-    missile->value[0] = ammo->pIndexData->vnum;
-    obj_from_char( ammo );
-    extract_obj( ammo );
-    return;
-}
-
-void do_unload( CHAR_DATA *ch, char *argument )
-{
-    OBJ_DATA *missile;
-    OBJ_DATA *ammo;
-
-    if ( ( missile = get_eq_char( ch, WEAR_WIELD ) ) == NULL
-	|| missile->item_type != ITEM_MISSILE )
-    {
-    	if ( ( missile = get_eq_char( ch, WEAR_HOLD ) ) == NULL
-	    || missile->item_type != ITEM_MISSILE )
-	{
-	    send_to_char( "You are not holding anything to unload.\n\r", ch );
-	    return;
-	}
-    }
-
-    if ( missile->value[1] <= 0 )
-    {
-	send_to_char( "But it is already empty!\n\r", ch );
-	return;
-    }
-
-    if ( get_obj_index( missile->value[0] ) == NULL ) return;
-
-    ammo = create_object( get_obj_index( missile->value[0] ), 0 );
-    act("You remove $p from $P.",ch,ammo,missile,TO_CHAR);
-    act("$n removes $p from $P.",ch,ammo,missile,TO_ROOM);
-    missile->value[1] -= 1;
-    obj_to_char(ammo, ch);
-    return;
-}
-
-void do_stance( CHAR_DATA *ch, char *argument )
-{
-    char            arg      [MAX_INPUT_LENGTH];
-    int             selection;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (IS_SET(ch->mounted, IS_RIDING))
-    {
-	send_to_char("Not while mounted.\n\r",ch);
-	return;
-    }
-    if ( arg[0] == '\0' )
-    {
-	if (ch->stance[0] == -1)
-	{
-	    ch->stance[0] = 0;
-	    send_to_char("You drop into a fighting stance.\n\r",ch);
-	    act("$n drops into a fighting stance.",ch,NULL,NULL,TO_ROOM);
-	}
-	else
-	{
-	    ch->stance[0] = -1;
-	    send_to_char("You relax from your fighting stance.\n\r",ch);
-	    act("$n relaxes from $s fighting stance.",ch,NULL,NULL,TO_ROOM);
-	}
-	return;
-    }
-    if (ch->stance[0] > 0)
-    {
-	send_to_char("You cannot change stances until you come up from the one you are currently in.\n\r",ch);
-	return;
-    }
-    if (!str_cmp(arg,"none")    ) {selection = STANCE_NONE;
-	send_to_char("You drop into a general fighting stance.\n\r",ch);
-	act("$n drops into a general fighting stance.",ch,NULL,NULL,TO_ROOM);}
-    else if (!str_cmp(arg,"viper")   ) {selection = STANCE_VIPER;
-	send_to_char("You arch your body into the viper fighting stance.\n\r",ch);
-	act("$n arches $s body into the viper fighting stance.",ch,NULL,NULL,TO_ROOM);}
-    else if (!str_cmp(arg,"crane")   ) {selection = STANCE_CRANE;
-	send_to_char("You swing your body into the crane fighting stance.\n\r",ch);
-	act("$n swings $s body into the crane fighting stance.",ch,NULL,NULL,TO_ROOM);}
-    else if (!str_cmp(arg,"crab")    ) {selection = STANCE_CRAB;
-	send_to_char("You squat down into the crab fighting stance.\n\r",ch);
-	act("$n squats down into the crab fighting stance. ",ch,NULL,NULL,TO_ROOM);}
-    else if (!str_cmp(arg,"mongoose")) {selection = STANCE_MONGOOSE;
-	send_to_char("You twist into the mongoose fighting stance.\n\r",ch);
-	act("$n twists into the mongoose fighting stance. ",ch,NULL,NULL,TO_ROOM);}
-    else if (!str_cmp(arg,"bull")    ) {selection = STANCE_BULL;
-	send_to_char("You hunch down into the bull fighting stance.\n\r",ch);
-	act("$n hunches down into the bull fighting stance. ",ch,NULL,NULL,TO_ROOM);}
-    else
-    {
-	send_to_char("Syntax is: stance <style>.\n\r",ch);
-	send_to_char("Stance being one of: None, Viper, Crane, Crab, Mongoose, Bull.\n\r",ch);
-	return;
-    }
-    ch->stance[0] = selection;
-    WAIT_STATE( ch, 12 );
-    return;
-}
-
-void do_fightstyle( CHAR_DATA *ch, char *argument )
-{
-    char            arg1     [MAX_INPUT_LENGTH];
-    char            arg2     [MAX_INPUT_LENGTH];
-    char            buf      [MAX_INPUT_LENGTH];
-    int             selection;
-    int             value;
-
-    argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
-
-    if ( arg1[0] == '\0' || arg2[0] == '\0' )
-    {
-	send_to_char("Syntax is: fightstyle <number> <style>.\n\r",ch);
-	send_to_char("Style can be selected from the following (enter style in text form):\n\r",ch);
-	send_to_char("[ 1]*Trip      [ 2]*Kick      [ 3] Bash      [ 4] Elbow     [ 5] Knee\n\r",ch);
-	send_to_char("[ 6] Headbutt  [ 7]*Disarm    [ 8] Bite      [ 9]*Dirt      [10] Grapple\n\r",ch);
-	send_to_char("[11] Punch     [12]*Gouge     [13] Rip       [14]*Stamp     [15] Backfist\n\r",ch);
-	send_to_char("[16] Jumpkick  [17] Spinkick  [18] Hurl      [19] Sweep     [20] Charge\n\r",ch);
-	sprintf(buf,"Selected options: 1:[%d] 2:[%d] 3:[%d] 4:[%d] 5:[%d] 6:[%d] 7:[%d] 8:[%d].\n\r",ch->cmbt[0],ch->cmbt[1],
-	ch->cmbt[2],ch->cmbt[3],ch->cmbt[4],ch->cmbt[5],ch->cmbt[6],ch->cmbt[7]);
-	send_to_char(buf,ch);
-	send_to_char("\n\r* This has been coded (others are not yet in).\n\r",ch);
-	return;
-    }
-    value = is_number( arg1 ) ? atoi( arg1 ) : -1;
-    if (value < 1 || value > 8)
-    {
-	send_to_char("Please enter a value between 1 and 8.\n\r",ch);
-	return;
-    }
-         if (!str_cmp(arg2,"clear")   ) selection = 0;
-    else if (!str_cmp(arg2,"trip")    ) selection = 1;
-    else if (!str_cmp(arg2,"kick")    ) selection = 2;
-    else if (!str_cmp(arg2,"bash")    ) selection = 3;
-    else if (!str_cmp(arg2,"elbow")   ) selection = 4;
-    else if (!str_cmp(arg2,"knee")    ) selection = 5;
-    else if (!str_cmp(arg2,"headbutt")) selection = 6;
-    else if (!str_cmp(arg2,"disarm")  ) selection = 7;
-    else if (!str_cmp(arg2,"bite")    ) selection = 8;
-    else if (!str_cmp(arg2,"dirt")    ) selection = 9;
-    else if (!str_cmp(arg2,"grapple") ) selection = 10;
-    else if (!str_cmp(arg2,"punch")   ) selection = 11;
-    else if (!str_cmp(arg2,"gouge")   ) selection = 12;
-    else if (!str_cmp(arg2,"rip")     ) selection = 13;
-    else if (!str_cmp(arg2,"stamp")   ) selection = 14;
-    else if (!str_cmp(arg2,"backfist")) selection = 15;
-    else if (!str_cmp(arg2,"jumpkick")) selection = 16;
-    else if (!str_cmp(arg2,"spinkick")) selection = 17;
-    else if (!str_cmp(arg2,"hurl")    ) selection = 18;
-    else if (!str_cmp(arg2,"sweep")   ) selection = 19;
-    else if (!str_cmp(arg2,"charge")  ) selection = 20;
-    else
-    {
-	send_to_char("Syntax is: fightstyle <number> <style>.\n\r",ch);
-	send_to_char("Style can be selected from the following (enter style in text form):\n\r",ch);
-	send_to_char("[ 1]*Trip      [ 2]*Kick      [ 3] Bash      [ 4] Elbow     [ 5] Knee\n\r",ch);
-	send_to_char("[ 6] Headbutt  [ 7]*Disarm    [ 8] Bite      [ 9]*Dirt      [10] Grapple\n\r",ch);
-	send_to_char("[11] Punch     [12]*Gouge     [13] Rip       [14]*Stamp     [15] Backfist\n\r",ch);
-	send_to_char("[16] Jumpkick  [17] Spinkick  [18] Hurl      [19] Sweep     [20] Charge\n\r",ch);
-	sprintf(buf,"Selected options: 1:[%d] 2:[%d] 3:[%d] 4:[%d] 5:[%d] 6:[%d] 7:[%d] 8:[%d].\n\r",ch->cmbt[0],ch->cmbt[1],
-	ch->cmbt[2],ch->cmbt[3],ch->cmbt[4],ch->cmbt[5],ch->cmbt[6],ch->cmbt[7]);
-	send_to_char(buf,ch);
-	send_to_char("\n\r* This has been coded (others are not yet in).\n\r",ch);
-	return;
-    }
-    ch->cmbt[(value-1)] = selection;
-    sprintf(buf,"Combat option %d now set to %s (%d).\n\r",value,arg2,ch->cmbt[0]);
-    send_to_char(buf,ch);
-    return;
-}
-
-void fightaction( CHAR_DATA *ch, CHAR_DATA *victim, int actype, int dtype, int wpntype)
-{
-    AFFECT_DATA af;
-/*
-    char            buf      [MAX_INPUT_LENGTH]; */
-
-    if ( IS_NPC(ch) ) return;
-/*  if ( IS_AFFECTED(ch,AFF_POLYMORPH) ) return; *** Just in case...KaVir */
-    if ( actype < 1 || actype > 20 ) return;
-    if ( victim == NULL ) return;
-
-    /* Trip */
-         if ( actype == 1 )
-    {
-	if ( number_percent( ) <= ch->wpn[0] )
-	    trip( ch, victim );
-    	return;
-    }
-    else if ( actype == 2 && number_percent() < 75 )
-    {
-	do_kick(ch,"");
-    	return;
-    }
-    else if ( actype == 7 )
-    {
-	if ( number_percent() < 25 )
-	    disarm( ch, victim );
-    	return;
-    }
-    else if ( actype == 9 )
-    {
-	act( "You kick a spray of dirt into $N's face.",ch,NULL,victim,TO_CHAR );
-	act( "$n kicks a spray of dirt into your face.",ch,NULL,victim,TO_VICT );
-	act( "$n kicks a spray of dirt into $N's face.",ch,NULL,victim,TO_NOTVICT );
-    	if ( IS_AFFECTED(victim, AFF_BLIND) || number_percent() < 25 )
-	    return;
-    	af.type      = 4;
-    	af.location  = APPLY_HITROLL;
-    	af.modifier  = -4;
-    	af.duration  = 1;
-    	af.bitvector = AFF_BLIND;
-    	affect_to_char( victim, &af );
-	act( "$N is blinded!",ch,NULL,victim,TO_CHAR );
-	act( "$N is blinded!",ch,NULL,victim,TO_NOTVICT );
-    	send_to_char( "You are blinded!\n\r", victim );
-    	return;
-    }
-    else if ( actype == 12 )
-    {
-	act( "You gouge your fingers into $N's eyes.",ch,NULL,victim,TO_CHAR );
-	act( "$n gouges $s fingers into your eyes.",ch,NULL,victim,TO_VICT );
-	act( "$n gouges $s fingers into $N's eyes.",ch,NULL,victim,TO_NOTVICT );
-    	if ( IS_AFFECTED(victim, AFF_BLIND) || number_percent() < 75 )
-	{
-	    one_hit( ch, victim, dtype, wpntype );
-	    return;
-	}
-    	af.type      = 4;
-    	af.location  = APPLY_HITROLL;
-    	af.modifier  = -4;
-    	af.duration  = 1;
-    	af.bitvector = AFF_BLIND;
-    	affect_to_char( victim, &af );
-	act( "$N is blinded!",ch,NULL,victim,TO_CHAR );
-	act( "$N is blinded!",ch,NULL,victim,TO_NOTVICT );
-    	send_to_char( "You are blinded!\n\r", victim );
-    	return;
-    }
-    else if ( actype == 14 )
-    {
-    	if ( victim->move < 1 ) return;
-	act( "You leap in the air and stamp on $N's feet.",ch,NULL,victim,TO_CHAR );
-	act( "$n leaps in the air and stamps on your feet.",ch,NULL,victim,TO_VICT );
-	act( "$n leaps in the air and stamps on $N's feet.",ch,NULL,victim,TO_NOTVICT );
-	victim->move -= number_range(25,50);
-	if ( victim->move < 0 ) victim->move = 0;
-    	return;
-    }
-    return;
-}
-
-void critical_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int dam)
-{
-    OBJ_DATA *obj;
-    OBJ_DATA *damaged;
-    char buf  [MAX_INPUT_LENGTH];
-    char buf2 [20];
-    int dtype;
-    int critical = 0;
-    int wpn = 0;
-    int wpn2 = 0;
-    int count;
-    int count2;
-
-    dtype = dt - 1000;
-    if (dtype < 0 || dtype > 12) return;
-    if (IS_NPC(ch)) critical += ((ch->level+1) / 5);
-    if (!IS_NPC(ch)) critical += ((ch->wpn[dtype]+1)/10);
-    if (IS_NPC(victim)) critical -= ((victim->level+1) / 5);
-    if (!IS_NPC(victim))
-    {
-    	obj = get_eq_char( victim, WEAR_WIELD );
-    	dtype = TYPE_HIT;
-    	if ( obj != NULL && obj->item_type == ITEM_WEAPON )
-	    dtype += obj->value[3];
-    	wpn = dtype - 1000;
-	if (wpn < 0 || wpn > 12) wpn = 0;
-    	obj = get_eq_char( victim, WEAR_HOLD );
-    	dtype = TYPE_HIT;
-    	if ( obj != NULL && obj->item_type == ITEM_WEAPON )
-	    dtype += obj->value[3];
-    	wpn2 = dtype - 1000;
-	if (wpn2 < 0 || wpn2 > 12) wpn2 = 0;
-
-	if (victim->wpn[wpn] > victim->wpn[wpn2])
-	    critical -= ((victim->wpn[wpn]+1)/10);
-	else
-	    critical -= ((victim->wpn[wpn2]+1)/10);
-    }
-         if (critical < 1 ) critical = 1;
-    else if (critical > 20) critical = 20;
-    if (number_percent() > critical) return;
-    critical = number_range(1,23);
-    if (critical == 1)
-    {
-	if (IS_HEAD(victim,LOST_EYE_L) && IS_HEAD(victim,LOST_EYE_R)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_FACE) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevents you from loosing an eye.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevents $n from loosing an eye.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_HEAD(victim,LOST_EYE_L) && number_percent() < 50)
-	    SET_BIT(victim->loc_hp[0],LOST_EYE_L);
-	else if (!IS_HEAD(victim,LOST_EYE_R))
-	    SET_BIT(victim->loc_hp[0],LOST_EYE_R);
-	else if (!IS_HEAD(victim,LOST_EYE_L))
-	    SET_BIT(victim->loc_hp[0],LOST_EYE_L);
-	else return;
-	act("Your skillful blow takes out $N's eye!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow takes out $N's eye!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow takes out your eye!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"eyeball");
-	return;
-    }
-    else if (critical == 2)
-    {
-	if (IS_HEAD(victim,LOST_EAR_L) && IS_HEAD(victim,LOST_EAR_R)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_HEAD) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevents you from loosing an ear.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevents $n from loosing an ear.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_HEAD(victim,LOST_EAR_L) && number_percent() < 50)
-	    SET_BIT(victim->loc_hp[0],LOST_EAR_L);
-	else if (!IS_HEAD(victim,LOST_EAR_R))
-	    SET_BIT(victim->loc_hp[0],LOST_EAR_R);
-	else if (!IS_HEAD(victim,LOST_EAR_L))
-	    SET_BIT(victim->loc_hp[0],LOST_EAR_L);
-	else return;
-	act("Your skillful blow cuts off $N's ear!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's ear!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your ear!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"ear");
-	return;
-    }
-    else if (critical == 3)
-    {
-	if (IS_HEAD(victim,LOST_NOSE)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_FACE) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevents you from loosing your nose.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevents $n from loosing $s nose.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	SET_BIT(victim->loc_hp[0],LOST_NOSE);
-	act("Your skillful blow cuts off $N's nose!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's nose!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your nose!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"nose");
-	return;
-    }
-    else if (critical == 4)
-    {
-	if (IS_HEAD(victim,LOST_NOSE) || IS_HEAD(victim,BROKEN_NOSE)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_FACE) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevents you from breaking your nose.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevents $n from breaking $s nose.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_HEAD(victim,LOST_NOSE) && !IS_HEAD(victim,BROKEN_NOSE))
-	    SET_BIT(victim->loc_hp[0],BROKEN_NOSE);
-	else return;
-	act("Your skillful blow breaks $N's nose!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow breaks $N's nose!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow breaks your nose!",ch,NULL,victim,TO_VICT);
-	return;
-    }
-    else if (critical == 5)
-    {
-	if (IS_HEAD(victim,BROKEN_JAW)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_FACE) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevents you from breaking your jaw.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevents $n from breaking $s jaw.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p falls broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_HEAD(victim,BROKEN_JAW))
-	    SET_BIT(victim->loc_hp[0],BROKEN_JAW);
-	else return;
-	act("Your skillful blow breaks $N's jaw!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow breaks $N's jaw!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow breaks your jaw!",ch,NULL,victim,TO_VICT);
-	return;
-    }
-    else if (critical == 6)
-    {
-	if (IS_ARM_L(victim,LOST_ARM)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_ARMS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing your left arm.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing $s left arm.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_ARM_L(victim,LOST_ARM))
-	    SET_BIT(victim->loc_hp[2],LOST_ARM);
-	else return;
-	if (!IS_BLEEDING(victim,BLEEDING_ARM_L))
-	    SET_BIT(victim->loc_hp[6],BLEEDING_ARM_L);
-	if (IS_BLEEDING(victim,BLEEDING_HAND_L))
-	    REMOVE_BIT(victim->loc_hp[6],BLEEDING_HAND_L);
-	act("Your skillful blow cuts off $N's left arm!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's left arm!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your left arm!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"arm");
-	if (IS_ARM_L(victim,LOST_ARM) && IS_ARM_R(victim,LOST_ARM))
-	{
-	    if ((obj = get_eq_char( victim, WEAR_ARMS )) != NULL)
-		take_item(victim,obj);
-	}
-	if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_HANDS )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_WRIST_L )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_FINGER_L )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 7)
-    {
-	if (IS_ARM_R(victim,LOST_ARM)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_ARMS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing your right arm.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing $s right arm.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_ARM_R(victim,LOST_ARM))
-	    SET_BIT(victim->loc_hp[3],LOST_ARM);
-	else return;
-	if (!IS_BLEEDING(victim,BLEEDING_ARM_R))
-	    SET_BIT(victim->loc_hp[6],BLEEDING_ARM_R);
-	if (IS_BLEEDING(victim,BLEEDING_HAND_R))
-	    REMOVE_BIT(victim->loc_hp[6],BLEEDING_HAND_R);
-	act("Your skillful blow cuts off $N's right arm!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's right arm!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your right arm!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"arm");
-	if (IS_ARM_L(victim,LOST_ARM) && IS_ARM_R(victim,LOST_ARM))
-	{
-	    if ((obj = get_eq_char( victim, WEAR_ARMS )) != NULL)
-		take_item(victim,obj);
-	}
-	if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_HANDS )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_WRIST_R )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_FINGER_R )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 8)
-    {
-	if (IS_ARM_L(victim,LOST_ARM) || IS_ARM_L(victim,BROKEN_ARM)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_ARMS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from breaking your left arm.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from breaking $s left arm.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_ARM_L(victim,BROKEN_ARM) && !IS_ARM_L(victim,LOST_ARM))
-	    SET_BIT(victim->loc_hp[2],BROKEN_ARM);
-	else return;
-	act("Your skillful blow breaks $N's left arm!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow breaks $N's left arm!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow breaks your left arm!",ch,NULL,victim,TO_VICT);
-	if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 9)
-    {
-	if (IS_ARM_R(victim,LOST_ARM) || IS_ARM_R(victim,BROKEN_ARM)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_ARMS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from breaking your right arm.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from breaking $s right arm.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_ARM_R(victim,BROKEN_ARM) && !IS_ARM_R(victim,LOST_ARM))
-	    SET_BIT(victim->loc_hp[3],BROKEN_ARM);
-	else return;
-	act("Your skillful blow breaks $N's right arm!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow breaks $N's right arm!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow breaks your right arm!",ch,NULL,victim,TO_VICT);
-	if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 10)
-    {
-	if (IS_ARM_L(victim,LOST_HAND) || IS_ARM_L(victim,LOST_ARM)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_HANDS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing your left hand.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing $s left hand.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_ARM_L(victim,LOST_HAND) && !IS_ARM_L(victim,LOST_ARM))
-	    SET_BIT(victim->loc_hp[2],LOST_HAND);
-	else return;
-	if (IS_BLEEDING(victim,BLEEDING_ARM_L))
-	    REMOVE_BIT(victim->loc_hp[6],BLEEDING_ARM_L);
-	if (!IS_BLEEDING(victim,BLEEDING_HAND_L))
-	    SET_BIT(victim->loc_hp[6],BLEEDING_HAND_L);
-	act("Your skillful blow cuts off $N's left hand!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's left hand!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your left hand!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"hand");
-	if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_HANDS )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_WRIST_L )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_FINGER_L )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 11)
-    {
-	if (IS_ARM_R(victim,LOST_HAND) || IS_ARM_R(victim,LOST_ARM)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_HANDS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing your right hand.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing $s right hand.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_ARM_R(victim,LOST_HAND) && !IS_ARM_R(victim,LOST_ARM))
-	    SET_BIT(victim->loc_hp[3],LOST_HAND);
-	else return;
-	if (IS_BLEEDING(victim,BLEEDING_ARM_R))
-	    REMOVE_BIT(victim->loc_hp[6],BLEEDING_ARM_R);
-	if (!IS_BLEEDING(victim,BLEEDING_HAND_R))
-	    SET_BIT(victim->loc_hp[6],BLEEDING_HAND_R);
-	act("Your skillful blow cuts off $N's right hand!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's right hand!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your right hand!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"hand");
-	if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_HANDS )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_WRIST_R )) != NULL)
-	    take_item(victim,obj);
-	if ((obj = get_eq_char( victim, WEAR_FINGER_R )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 12)
-    {
-	if (IS_ARM_L(victim,LOST_ARM)) return;
-	if (IS_ARM_L(victim,LOST_HAND)) return;
-	if (IS_ARM_L(victim,LOST_THUMB) && IS_ARM_L(victim,LOST_FINGER_I) &&
-	IS_ARM_L(victim,LOST_FINGER_M) && IS_ARM_L(victim,LOST_FINGER_R) &&
-	IS_ARM_L(victim,LOST_FINGER_L)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_HANDS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing some fingers from your left hand.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing some fingers from $s left hand.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	count = 0;
-	count2 = 0;
-	if (!IS_ARM_L(victim,LOST_THUMB) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],LOST_THUMB);count2 += 1;
-	    make_part(victim,"thumb");}
-	if (!IS_ARM_L(victim,LOST_FINGER_I) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],LOST_FINGER_I);count += 1;
-	    make_part(victim,"index");}
-	if (!IS_ARM_L(victim,LOST_FINGER_M) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],LOST_FINGER_M);count += 1;
-	    make_part(victim,"middle");}
-	if (!IS_ARM_L(victim,LOST_FINGER_R) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],LOST_FINGER_R);count += 1;
-	    make_part(victim,"ring");
-	    if ((obj = get_eq_char( victim, WEAR_FINGER_L )) != NULL)
-	        take_item(victim,obj);}
-	if (!IS_ARM_L(victim,LOST_FINGER_L) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],LOST_FINGER_L);count += 1;
-	    make_part(victim,"little");}
-	if (count == 1) sprintf(buf2,"finger");
-	else            sprintf(buf2,"fingers");
-	if (count > 0 && count2 > 0)
-	{
-	    sprintf(buf,"Your skillful blow cuts off %d %s and the thumb from $N's left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow cuts off %d %s and the thumb from $N's left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow cuts off %d %s and the thumb from your left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	else if (count > 0)
-	{
-	    sprintf(buf,"Your skillful blow cuts off %d %s from $N's left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow cuts off %d %s from $N's left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow cuts off %d %s from your left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	else if (count2 > 0)
-	{
-	    sprintf(buf,"Your skillful blow cuts off the thumb from $N's left hand.");
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow cuts off the thumb from $N's left hand.");
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow cuts off the thumb from your left hand.");
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	return;
-    }
-    else if (critical == 13)
-    {
-	if (IS_ARM_L(victim,LOST_ARM)) return;
-	if (IS_ARM_L(victim,LOST_HAND)) return;
-	if ((IS_ARM_L(victim,LOST_THUMB) || IS_ARM_L(victim,BROKEN_THUMB)) &&
-	    (IS_ARM_L(victim,LOST_FINGER_I) || IS_ARM_L(victim,BROKEN_FINGER_I)) &&
-	    (IS_ARM_L(victim,LOST_FINGER_M) || IS_ARM_L(victim,BROKEN_FINGER_M)) &&
-	    (IS_ARM_L(victim,LOST_FINGER_R) || IS_ARM_L(victim,BROKEN_FINGER_R)) &&
-	    (IS_ARM_L(victim,LOST_FINGER_L) || IS_ARM_L(victim,BROKEN_FINGER_L)))
-		return;
-	if ( (damaged = get_eq_char(victim,WEAR_HANDS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from breaking some fingers on your left hand.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from breaking some fingers on $s left hand.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	count = 0;
-	count2 = 0;
-	if (IS_ARM_L(victim,LOST_ARM)) return;
-	if (IS_ARM_L(victim,LOST_HAND)) return;
-
-	if (!IS_ARM_L(victim,BROKEN_THUMB) && !IS_ARM_L(victim,LOST_THUMB) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],BROKEN_THUMB);count2 += 1;}
-	if (!IS_ARM_L(victim,BROKEN_FINGER_I) && !IS_ARM_L(victim,LOST_FINGER_I) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],BROKEN_FINGER_I);count += 1;}
-	if (!IS_ARM_L(victim,BROKEN_FINGER_M) && !IS_ARM_L(victim,LOST_FINGER_M) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],BROKEN_FINGER_M);count += 1;}
-	if (!IS_ARM_L(victim,BROKEN_FINGER_R) && !IS_ARM_L(victim,LOST_FINGER_R) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],BROKEN_FINGER_R);count += 1;}
-	if (!IS_ARM_L(victim,BROKEN_FINGER_L) && !IS_ARM_L(victim,LOST_FINGER_L) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[2],BROKEN_FINGER_L);count += 1;}
-	if (count == 1) sprintf(buf2,"finger");
-	else            sprintf(buf2,"fingers");
-	if (count > 0 && count2 > 0)
-	{
-	    sprintf(buf,"Your skillful breaks %d %s and the thumb on $N's left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow breaks %d %s and the thumb on $N's left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow breaks %d %s and the thumb on your left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	else if (count > 0)
-	{
-	    sprintf(buf,"Your skillful blow breaks %d %s on $N's left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow breaks %d %s on $N's left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow breaks %d %s on your left hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	else if (count2 > 0)
-	{
-	    sprintf(buf,"Your skillful blow breaks the thumb on $N's left hand.");
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow breaks the thumb on $N's left hand.");
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow breaks the thumb on your left hand.");
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_HOLD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	return;
-    }
-    else if (critical == 14)
-    {
-	if (IS_ARM_R(victim,LOST_ARM)) return;
-	if (IS_ARM_R(victim,LOST_HAND)) return;
-	if (IS_ARM_R(victim,LOST_THUMB) && IS_ARM_R(victim,LOST_FINGER_I) &&
-	IS_ARM_R(victim,LOST_FINGER_M) && IS_ARM_R(victim,LOST_FINGER_R) &&
-	IS_ARM_R(victim,LOST_FINGER_L)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_HANDS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing some fingers from your right hand.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing some fingers from $s right hand.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	count = 0;
-	count2 = 0;
-	if (IS_ARM_R(victim,LOST_ARM)) return;
-	if (IS_ARM_R(victim,LOST_HAND)) return;
-
-	if (!IS_ARM_R(victim,LOST_THUMB) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],LOST_THUMB);count2 += 1;
-	    make_part(victim,"thumb");}
-	if (!IS_ARM_R(victim,LOST_FINGER_I) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],LOST_FINGER_I);count += 1;
-	    make_part(victim,"index");}
-	if (!IS_ARM_R(victim,LOST_FINGER_M) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],LOST_FINGER_M);count += 1;
-	    make_part(victim,"middle");}
-	if (!IS_ARM_R(victim,LOST_FINGER_R) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],LOST_FINGER_R);count += 1;
-	    make_part(victim,"ring");
-	    if ((obj = get_eq_char( victim, WEAR_FINGER_R )) != NULL)
-	        take_item(victim,obj);}
-	if (!IS_ARM_R(victim,LOST_FINGER_L) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],LOST_FINGER_L);count += 1;
-	    make_part(victim,"little");}
-	if (count == 1) sprintf(buf2,"finger");
-	else            sprintf(buf2,"fingers");
-	if (count > 0 && count2 > 0)
-	{
-	    sprintf(buf,"Your skillful blow cuts off %d %s and the thumb from $N's right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow cuts off %d %s and the thumb from $N's right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow cuts off %d %s and the thumb from your right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	else if (count > 0)
-	{
-	    sprintf(buf,"Your skillful blow cuts off %d %s from $N's right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow cuts off %d %s from $N's right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow cuts off %d %s from your right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	else if (count2 > 0)
-	{
-	    sprintf(buf,"Your skillful blow cuts off the thumb from $N's right hand.");
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow cuts off the thumb from $N's right hand.");
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow cuts off the thumb from your right hand.");
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	return;
-    }
-    else if (critical == 15)
-    {
-	if (IS_ARM_R(victim,LOST_ARM)) return;
-	if (IS_ARM_R(victim,LOST_HAND)) return;
-	if ((IS_ARM_R(victim,LOST_THUMB) || IS_ARM_R(victim,BROKEN_THUMB)) &&
-	    (IS_ARM_R(victim,LOST_FINGER_I) || IS_ARM_R(victim,BROKEN_FINGER_I)) &&
-	    (IS_ARM_R(victim,LOST_FINGER_M) || IS_ARM_R(victim,BROKEN_FINGER_M)) &&
-	    (IS_ARM_R(victim,LOST_FINGER_R) || IS_ARM_R(victim,BROKEN_FINGER_R)) &&
-	    (IS_ARM_R(victim,LOST_FINGER_L) || IS_ARM_R(victim,BROKEN_FINGER_L)))
-		return;
-	if ( (damaged = get_eq_char(victim,WEAR_HANDS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from breaking some fingers on your right hand.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from breaking some fingers on $s right hand.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	count = 0;
-	count2 = 0;
-	if (IS_ARM_R(victim,LOST_ARM)) return;
-	if (IS_ARM_R(victim,LOST_HAND)) return;
-
-	if (!IS_ARM_R(victim,BROKEN_THUMB) && !IS_ARM_R(victim,LOST_THUMB) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],BROKEN_THUMB);count2 += 1;}
-	if (!IS_ARM_R(victim,BROKEN_FINGER_I) && !IS_ARM_R(victim,LOST_FINGER_I) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],BROKEN_FINGER_I);count += 1;}
-	if (!IS_ARM_R(victim,BROKEN_FINGER_M) && !IS_ARM_R(victim,LOST_FINGER_M) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],BROKEN_FINGER_M);count += 1;}
-	if (!IS_ARM_R(victim,BROKEN_FINGER_R) && !IS_ARM_R(victim,LOST_FINGER_R) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],BROKEN_FINGER_R);count += 1;}
-	if (!IS_ARM_R(victim,BROKEN_FINGER_L) && !IS_ARM_R(victim,LOST_FINGER_L) && number_percent() < 25)
-	    {SET_BIT(victim->loc_hp[3],BROKEN_FINGER_L);count += 1;}
-	if (count == 1) sprintf(buf2,"finger");
-	else            sprintf(buf2,"fingers");
-	if (count > 0 && count2 > 0)
-	{
-	    sprintf(buf,"Your skillful breaks %d %s and the thumb on $N's right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow breaks %d %s and the thumb on $N's right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow breaks %d %s and the thumb on your right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	else if (count > 0)
-	{
-	    sprintf(buf,"Your skillful blow breaks %d %s on $N's right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow breaks %d %s on $N's right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow breaks %d %s on your right hand.",count,buf2);
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	else if (count2 > 0)
-	{
-	    sprintf(buf,"Your skillful blow breaks the thumb on $N's right hand.");
-	    act(buf,ch,NULL,victim,TO_CHAR);
-	    sprintf(buf,"$n's skillful blow breaks the thumb on $N's right hand.");
-	    act(buf,ch,NULL,victim,TO_NOTVICT);
-	    sprintf(buf,"$n's skillful blow breaks the thumb on your right hand.");
-	    act(buf,ch,NULL,victim,TO_VICT);
-	    if ((obj = get_eq_char( victim, WEAR_WIELD )) != NULL)
-		take_item(victim,obj);
-	    return;
-	}
-	return;
-    }
-    else if (critical == 16)
-    {
-	if (IS_LEG_L(victim,LOST_LEG)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_LEGS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing your left leg.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing $s left leg.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_LEG_L(victim,LOST_LEG))
-	    SET_BIT(victim->loc_hp[4],LOST_LEG);
-	else return;
-	if (!IS_BLEEDING(victim,BLEEDING_LEG_L))
-	    SET_BIT(victim->loc_hp[6],BLEEDING_LEG_L);
-	if (IS_BLEEDING(victim,BLEEDING_FOOT_L))
-	    REMOVE_BIT(victim->loc_hp[6],BLEEDING_FOOT_L);
-	act("Your skillful blow cuts off $N's left leg!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's left leg!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your left leg!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"leg");
-	if (IS_LEG_L(victim,LOST_LEG) && IS_LEG_R(victim,LOST_LEG))
-	{
-	    if ((obj = get_eq_char( victim, WEAR_LEGS )) != NULL)
-		take_item(victim,obj);
-	}
-	if ((obj = get_eq_char( victim, WEAR_FEET )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 17)
-    {
-	if (IS_LEG_R(victim,LOST_LEG)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_LEGS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing your right leg.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing $s right leg.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_LEG_R(victim,LOST_LEG))
-	    SET_BIT(victim->loc_hp[5],LOST_LEG);
-	else return;
-	if (!IS_BLEEDING(victim,BLEEDING_LEG_R))
-	    SET_BIT(victim->loc_hp[6],BLEEDING_LEG_R);
-	if (IS_BLEEDING(victim,BLEEDING_FOOT_R))
-	    REMOVE_BIT(victim->loc_hp[6],BLEEDING_FOOT_R);
-	act("Your skillful blow cuts off $N's right leg!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's right leg!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your right leg!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"leg");
-	if (IS_LEG_L(victim,LOST_LEG) && IS_LEG_R(victim,LOST_LEG))
-	{
-	    if ((obj = get_eq_char( victim, WEAR_LEGS )) != NULL)
-		take_item(victim,obj);
-	}
-	if ((obj = get_eq_char( victim, WEAR_FEET )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 18)
-    {
-	if (IS_LEG_L(victim,BROKEN_LEG) || IS_LEG_L(victim,LOST_LEG)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_LEGS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from breaking your left leg.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from breaking $s left leg.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_LEG_L(victim,BROKEN_LEG) && !IS_LEG_L(victim,LOST_LEG))
-	    SET_BIT(victim->loc_hp[4],BROKEN_LEG);
-	else return;
-	act("Your skillful blow breaks $N's left leg!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow breaks $N's left leg!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow breaks your left leg!",ch,NULL,victim,TO_VICT);
-	return;
-    }
-    else if (critical == 19)
-    {
-	if (IS_LEG_R(victim,BROKEN_LEG) || IS_LEG_R(victim,LOST_LEG)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_LEGS) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from breaking your right leg.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from breaking $s right leg.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_LEG_R(victim,BROKEN_LEG) && !IS_LEG_R(victim,LOST_LEG))
-	    SET_BIT(victim->loc_hp[5],BROKEN_LEG);
-	else return;
-	act("Your skillful blow breaks $N's right leg!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow breaks $N's right leg!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow breaks your right leg!",ch,NULL,victim,TO_VICT);
-	return;
-    }
-    else if (critical == 20)
-    {
-	if (IS_LEG_L(victim,LOST_LEG) || IS_LEG_L(victim,LOST_FOOT)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_FEET) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing your left foot.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing $s left foot.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_LEG_L(victim,LOST_LEG) && !IS_LEG_L(victim,LOST_FOOT))
-	    SET_BIT(victim->loc_hp[4],LOST_FOOT);
-	else return;
-	if (IS_BLEEDING(victim,BLEEDING_LEG_L))
-	    REMOVE_BIT(victim->loc_hp[6],BLEEDING_LEG_L);
-	if (!IS_BLEEDING(victim,BLEEDING_FOOT_L))
-	    SET_BIT(victim->loc_hp[6],BLEEDING_FOOT_L);
-	act("Your skillful blow cuts off $N's left foot!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's left foot!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your left foot!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"foot");
-	if ((obj = get_eq_char( victim, WEAR_FEET )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 21)
-    {
-	if (IS_LEG_R(victim,LOST_LEG) || IS_LEG_R(victim,LOST_FOOT)) return;
-	if ( (damaged = get_eq_char(victim,WEAR_FEET) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevent you from loosing your right foot.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevent $n from loosing $s right foot.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (!IS_LEG_R(victim,LOST_LEG) && !IS_LEG_R(victim,LOST_FOOT))
-	    SET_BIT(victim->loc_hp[5],LOST_FOOT);
-	else return;
-	if (IS_BLEEDING(victim,BLEEDING_LEG_R))
-	    REMOVE_BIT(victim->loc_hp[6],BLEEDING_LEG_R);
-	if (!IS_BLEEDING(victim,BLEEDING_FOOT_R))
-	    SET_BIT(victim->loc_hp[6],BLEEDING_FOOT_R);
-	act("Your skillful blow cuts off $N's right foot!",ch,NULL,victim,TO_CHAR);
-	act("$n's skillful blow cuts off $N's right foot!",ch,NULL,victim,TO_NOTVICT);
-	act("$n's skillful blow cuts off your right foot!",ch,NULL,victim,TO_VICT);
-	make_part(victim,"foot");
-	if ((obj = get_eq_char( victim, WEAR_FEET )) != NULL)
-	    take_item(victim,obj);
-	return;
-    }
-    else if (critical == 22)
-    {
-	int bodyloc = 0;
-	int broken = number_range(1,3);
-	if (IS_BODY(victim,BROKEN_RIBS_1 )) bodyloc += 1;
-	if (IS_BODY(victim,BROKEN_RIBS_2 )) bodyloc += 2;
-	if (IS_BODY(victim,BROKEN_RIBS_4 )) bodyloc += 4;
-	if (IS_BODY(victim,BROKEN_RIBS_8 )) bodyloc += 8;
-	if (IS_BODY(victim,BROKEN_RIBS_16)) bodyloc += 16;
-	if (bodyloc >= 24) return;
-
-	if ( (damaged = get_eq_char(victim,WEAR_BODY) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevents you from breaking some ribs.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevents $n from breaking some ribs.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (IS_BODY(victim,BROKEN_RIBS_1 ))
-	    REMOVE_BIT(victim->loc_hp[1],BROKEN_RIBS_1);
-	if (IS_BODY(victim,BROKEN_RIBS_2 ))
-	    REMOVE_BIT(victim->loc_hp[1],BROKEN_RIBS_2);
-	if (IS_BODY(victim,BROKEN_RIBS_4 ))
-	    REMOVE_BIT(victim->loc_hp[1],BROKEN_RIBS_4);
-	if (IS_BODY(victim,BROKEN_RIBS_8 ))
-	    REMOVE_BIT(victim->loc_hp[1],BROKEN_RIBS_8);
-	if (IS_BODY(victim,BROKEN_RIBS_16))
-	    REMOVE_BIT(victim->loc_hp[1],BROKEN_RIBS_16);
-	if (bodyloc+broken > 24) broken -= 1;
-	if (bodyloc+broken > 24) broken -= 1;
-	bodyloc += broken;
-	if (bodyloc >= 16) {bodyloc -= 16;
-	    SET_BIT(victim->loc_hp[1],BROKEN_RIBS_16);}
-	if (bodyloc >= 8) {bodyloc -= 8;
-	    SET_BIT(victim->loc_hp[1],BROKEN_RIBS_8);}
-	if (bodyloc >= 4) {bodyloc -= 4;
-	    SET_BIT(victim->loc_hp[1],BROKEN_RIBS_4);}
-	if (bodyloc >= 2) {bodyloc -= 2;
-	    SET_BIT(victim->loc_hp[1],BROKEN_RIBS_2);}
-	if (bodyloc >= 1) {bodyloc -= 1;
-	    SET_BIT(victim->loc_hp[1],BROKEN_RIBS_1);}
-	sprintf(buf,"Your skillful blow breaks %d of $N's ribs!",broken);
-	act(buf,ch,NULL,victim,TO_CHAR);
-	sprintf(buf,"$n's skillful blow breaks %d of $N's ribs!",broken);
-	act(buf,ch,NULL,victim,TO_NOTVICT);
-	sprintf(buf,"$n's skillful blow breaks %d of your ribs!",broken);
-	act(buf,ch,NULL,victim,TO_VICT);
-	return;
-    }
-    else if (critical == 23)
-    {
-	int bodyloc = 0;
-	int broken = number_range(1,3);
-	if (IS_HEAD(victim,LOST_TOOTH_1 )) bodyloc += 1;
-	if (IS_HEAD(victim,LOST_TOOTH_2 )) bodyloc += 2;
-	if (IS_HEAD(victim,LOST_TOOTH_4 )) bodyloc += 4;
-	if (IS_HEAD(victim,LOST_TOOTH_8 )) bodyloc += 8;
-	if (IS_HEAD(victim,LOST_TOOTH_16)) bodyloc += 16;
-	if (bodyloc >= 28) return;
-
-	if ( (damaged = get_eq_char(victim,WEAR_FACE) ) != NULL &&
-		damaged->toughness > 0)
-	{
-	    act("$p prevents you from loosing some teeth.",victim,damaged,NULL,TO_CHAR);
-	    act("$p prevents $n from loosing some teeth.",victim,damaged,NULL,TO_ROOM);
-	    if (dam - damaged->toughness < 0) return;
-	    if ((dam - damaged->toughness > damaged->resistance))
-	    	damaged->condition -= damaged->resistance;
-	    else
-	    	damaged->condition -= (dam - damaged->toughness);
-	    if (damaged->condition < 1)
-	    {
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_CHAR);
-	    	act("$p fall broken to the ground.",ch,damaged,NULL,TO_ROOM);
-	    	obj_from_char(damaged);
-	    	extract_obj(damaged);
-	    }
-	    return;
-	}
-	if (IS_HEAD(victim,LOST_TOOTH_1 ))
-	    REMOVE_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_1);
-	if (IS_HEAD(victim,LOST_TOOTH_2 ))
-	    REMOVE_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_2);
-	if (IS_HEAD(victim,LOST_TOOTH_4 ))
-	    REMOVE_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_4);
-	if (IS_HEAD(victim,LOST_TOOTH_8 ))
-	    REMOVE_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_8);
-	if (IS_HEAD(victim,LOST_TOOTH_16))
-	    REMOVE_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_16);
-	if (bodyloc+broken > 28) broken -= 1;
-	if (bodyloc+broken > 28) broken -= 1;
-	bodyloc += broken;
-	if (bodyloc >= 16) {bodyloc -= 16;
-	    SET_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_16);}
-	if (bodyloc >= 8) {bodyloc -= 8;
-	    SET_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_8);}
-	if (bodyloc >= 4) {bodyloc -= 4;
-	    SET_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_4);}
-	if (bodyloc >= 2) {bodyloc -= 2;
-	    SET_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_2);}
-	if (bodyloc >= 1) {bodyloc -= 1;
-	    SET_BIT(victim->loc_hp[LOC_HEAD],LOST_TOOTH_1);}
-	sprintf(buf,"Your skillful blow knocks out %d of $N's teeth!",broken);
-	act(buf,ch,NULL,victim,TO_CHAR);
-	sprintf(buf,"$n's skillful blow knocks out %d of $N's teeth!",broken);
-	act(buf,ch,NULL,victim,TO_NOTVICT);
-	sprintf(buf,"$n's skillful blow knocks out %d of your teeth!",broken);
-	act(buf,ch,NULL,victim,TO_VICT);
-	if (broken >= 1) make_part(victim,"tooth");
-	if (broken >= 2) make_part(victim,"tooth");
-	if (broken >= 3) make_part(victim,"tooth");
-	return;
-    }
-    return;
-}
-
-void take_item( CHAR_DATA *ch, OBJ_DATA *obj )
-{
-    if (obj == NULL) return;
-    obj_from_char(obj);
-    obj_to_room(obj,ch->in_room);
-    act("You wince in pain and $p falls to the ground.",ch,obj,NULL,TO_CHAR);
-    act("$n winces in pain and $p falls to the ground.",ch,obj,NULL,TO_ROOM);
-    return;
-}
-
-void do_werewolf( CHAR_DATA *ch, char *argument )
-{
-    char       buf[MAX_INPUT_LENGTH];
-    char       arg[MAX_INPUT_LENGTH];
-    CHAR_DATA *vch;
-    CHAR_DATA *vch_next;
-    OBJ_DATA  *obj;
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (!IS_SET(ch->act, PLR_WEREWOLF)) return;
-    if (IS_SET(ch->act, PLR_WOLFMAN)) return;
-    SET_BIT(ch->act, PLR_WOLFMAN);
-
-    send_to_char("You throw back your head and howl with rage!\n\r",ch);
-    act("$n throws back $s head and howls with rage!.", ch, NULL, NULL, TO_ROOM);
-    send_to_char("Coarse dark hair sprouts from your body.\n\r",ch);
-    act("Coarse dark hair sprouts from $n's body.",ch,NULL,NULL,TO_ROOM);
-    if (!IS_VAMPAFF(ch,VAM_NIGHTSIGHT))
-    {
-	send_to_char("Your eyes start glowing red.\n\r",ch);
-	act("$n's eyes start glowing red.",ch,NULL,NULL,TO_ROOM);
-	SET_BIT(ch->vampaff, VAM_NIGHTSIGHT);
-    }
-    if (!IS_VAMPAFF(ch,VAM_FANGS))
-    {
-	send_to_char("A pair of long fangs extend from your mouth.\n\r",ch);
-	act("A pair of long fangs extend from $n's mouth.",ch,NULL,NULL,TO_ROOM);
-	SET_BIT(ch->vampaff, VAM_FANGS);
-    }
-    if (!IS_VAMPAFF(ch,VAM_CLAWS))
-    {
-	send_to_char("Razor sharp talons extend from your fingers.\n\r",ch);
-	act("Razor sharp talons extend from $n's fingers.",ch,NULL,NULL,TO_ROOM);
-	SET_BIT(ch->vampaff, VAM_CLAWS);
-    }
-    if ((obj = get_eq_char(ch,WEAR_WIELD)) != NULL)
-    {
-	act("$p drops from your right hand.",ch,NULL,NULL,TO_CHAR);
-	act("$p drops from $n's right hand.",ch,NULL,NULL,TO_ROOM);
-	obj_from_char(obj);
-	obj_to_room(obj, ch->in_room);
-    }
-    if ((obj = get_eq_char(ch,WEAR_HOLD)) != NULL)
-    {
-	act("$p drops from your left hand.",ch,NULL,NULL,TO_CHAR);
-	act("$p drops from $n's left hand.",ch,NULL,NULL,TO_ROOM);
-	obj_from_char(obj);
-	obj_to_room(obj, ch->in_room);
-    }
-    SET_BIT(ch->affected_by, AFF_POLYMORPH);
-    SET_BIT(ch->vampaff, VAM_DISGUISED);
-    sprintf(buf,"%s the werewolf",ch->name);
-    free_string(ch->morph);
-    ch->morph = str_dup(buf);
-    ch->pcdata->wolf += 25;
-    for ( vch = char_list; vch != NULL; vch = vch_next )
-    {
-	vch_next	= vch->next;
-	if ( vch->in_room == NULL )
-	    continue;
-	if ( ch == vch )
-	    continue;
-	if ( vch->in_room == ch->in_room )
-	{
-	    if ( can_see( ch, vch) )
-	    {
-		multi_hit( ch, vch, TYPE_UNDEFINED );
-		multi_hit( ch, vch, TYPE_UNDEFINED );
-		multi_hit( ch, vch, TYPE_UNDEFINED );
-	    }
-	}
-	else if (IS_NPC(vch)) continue;
-	else if (vch->in_room->area == ch->in_room->area)
-	    send_to_char("You hear a fearsome howl close by!\n\r", vch);
-	else
-	    send_to_char("You hear a fearsome howl far off in the distance!\n\r", vch);
-    }
-    return;
-}
-
-void do_unwerewolf( CHAR_DATA *ch, char *argument )
-{
-    char       arg[MAX_INPUT_LENGTH];
-
-    argument = one_argument( argument, arg );
-
-    if (IS_NPC(ch)) return;
-    if (!IS_SET(ch->act, PLR_WEREWOLF)) return;
-    if (!IS_SET(ch->act, PLR_WOLFMAN)) return;
-    REMOVE_BIT(ch->act, PLR_WOLFMAN);
-    REMOVE_BIT(ch->affected_by, AFF_POLYMORPH);
-    REMOVE_BIT(ch->vampaff, VAM_DISGUISED);
-    free_string(ch->morph);
-    ch->morph = str_dup("");
-    if (IS_VAMPAFF(ch,VAM_CLAWS))
-    {
-	send_to_char("Your talons slide back into your fingers.\n\r",ch);
-	act("$n's talons slide back into $s fingers.",ch,NULL,NULL,TO_ROOM);
-	REMOVE_BIT(ch->vampaff, VAM_CLAWS);
-    }
-    if (IS_VAMPAFF(ch,VAM_FANGS))
-    {
-	send_to_char("Your fangs slide back into your mouth.\n\r",ch);
-	act("$n's fangs slide back into $s mouth.",ch,NULL,NULL,TO_ROOM);
-	REMOVE_BIT(ch->vampaff, VAM_FANGS);
-    }
-    if (IS_VAMPAFF(ch,VAM_NIGHTSIGHT))
-    {
-	send_to_char("The red glow in your eyes fades.\n\r",ch);
-	act("The red glow in $n's eyes fades.",ch,NULL,NULL,TO_ROOM);
-	REMOVE_BIT(ch->vampaff, VAM_NIGHTSIGHT);
-    }
-    send_to_char("Your coarse hair shrinks back into your body.\n\r",ch);
-    act("$n's coarse hair shrinks back into $s body.",ch,NULL,NULL,TO_ROOM);
-    ch->pcdata->wolf -= 25;
-    if (ch->pcdata->wolf < 0) ch->pcdata->wolf = 0;
-    return;
-}
-
-void do_favour( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *victim;
-    char      arg1 [MAX_INPUT_LENGTH];
-    char      arg2 [MAX_INPUT_LENGTH];
-    argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
-    if ( IS_NPC(ch) ) return;
-    if ( !IS_SET(ch->act,PLR_VAMPIRE) && (IS_EXTRA(ch,EXTRA_PRINCE) || ch->vampgen != 2) )
-    {
-	send_to_char( "Huh?\n\r", ch );
-	return;
-    }
-
-    if ( arg1[0] == '\0' || arg2[0] == '\0' )
-    {
-	send_to_char( "Syntax is: favour <target> <prince/sire>\n\r", ch );
-	return;
-    }
-
-    if ( ( victim = get_char_room( ch, arg1 ) ) == NULL )
-    {
-	send_to_char( "They aren't here.\n\r", ch );
-	return;
-    }
-
-    if ( IS_NPC(victim) )
-    {
-	send_to_char( "Not on NPC's.\n\r", ch );
-	return;
-    }
-
-    if ( ch == victim )
-    {
-	send_to_char( "Not on yourself!\n\r", ch );
-	return;
-    }
-
-    if ( !IS_SET(victim->act,PLR_VAMPIRE) )
-    {
-	send_to_char( "But they are not a vampire!\n\r", ch );
-	return;
-    }
-
-    if ( str_cmp(victim->clan,ch->clan) )
-    {
-	send_to_char( "You can only grant your favour to someone in your clan.\n\r", ch );
-	return;
-    }
-
-    if ( ch->vampgen >= victim->vampgen )
-    {
-	send_to_char( "You can only grant your favour to someone of a lower generation.\n\r", ch );
-	return;
-    }
-
-    if ( victim->vampgen > 6 )
-    {
-	send_to_char( "There is no point in doing that, as they are unable to sire any childer.\n\r", ch );
-	return;
-    }
-
-    if ( !str_cmp(arg2,"prince") && ch->vampgen == 2)
-    {
-	if (IS_EXTRA(victim,EXTRA_PRINCE)) {
-	act("You remove $N's prince privilages!",ch,NULL,victim,TO_CHAR);
-	act("$n removes $N's prince privilages!",ch,NULL,victim,TO_NOTVICT);
-	act("$n removes your prince privilages!",ch,NULL,victim,TO_VICT);
-	if (IS_EXTRA(victim,EXTRA_SIRE)) REMOVE_BIT(victim->extra,EXTRA_SIRE);
-	REMOVE_BIT(victim->extra,EXTRA_PRINCE);return;}
-	act("You make $N a prince!",ch,NULL,victim,TO_CHAR);
-	act("$n has made $N a prince!",ch,NULL,victim,TO_NOTVICT);
-	act("$n has made you a prince!",ch,NULL,victim,TO_VICT);
-	SET_BIT(victim->extra,EXTRA_PRINCE);
-	if (IS_EXTRA(victim,EXTRA_SIRE)) REMOVE_BIT(victim->extra,EXTRA_SIRE);
-	return;
-    }
-    else if ( !str_cmp(arg2,"sire") && (ch->vampgen == 2 || IS_EXTRA(ch,EXTRA_PRINCE)))
-    {
-	if (IS_EXTRA(victim,EXTRA_SIRE)) {
-	act("You remove $N's permission to sire a childe!",ch,NULL,victim,TO_CHAR);
-	act("$n has removed $N's permission to sire a childe!",ch,NULL,victim,TO_NOTVICT);
-	act("$n has remove your permission to sire a childe!",ch,NULL,victim,TO_VICT);
-	REMOVE_BIT(victim->extra,EXTRA_SIRE);return;}
-	act("You grant $N permission to sire a childe!",ch,NULL,victim,TO_CHAR);
-	act("$n has granted $N permission to sire a childe!",ch,NULL,victim,TO_NOTVICT);
-	act("$n has granted you permission to sire a childe!",ch,NULL,victim,TO_VICT);
-	SET_BIT(victim->extra,EXTRA_SIRE);
-	return;
-    }
-    else send_to_char( "You are unable to grant that sort of favour.\n\r", ch );
     return;
 }
 

@@ -69,9 +69,16 @@ sh_int			gsn_disarm;
 sh_int			gsn_fastdraw;
 sh_int			gsn_berserk;
 sh_int			gsn_punch;
+sh_int			gsn_elbow;
+sh_int			gsn_headbutt;
+sh_int			gsn_sweep;
+sh_int			gsn_knee;
 sh_int			gsn_kick;
 sh_int			gsn_hurl;
 sh_int			gsn_rescue;
+sh_int			gsn_track;
+sh_int			gsn_polymorph;
+sh_int			gsn_web;
 
 sh_int			gsn_blindness;
 sh_int			gsn_charm_person;
@@ -80,6 +87,9 @@ sh_int			gsn_invis;
 sh_int			gsn_mass_invis;
 sh_int			gsn_poison;
 sh_int			gsn_sleep;
+
+sh_int			gsn_darkness;
+sh_int			gsn_paradox;
 
 
 
@@ -118,8 +128,12 @@ int			top_shop;
  * Memory management.
  * Increase MAX_STRING if you have too.
  * Tune the others only if you understand what you're doing.
- */
+
 #define			MAX_STRING	1048576
+
+ */
+
+#define			MAX_STRING	1572864
 #define			MAX_PERM_BLOCK	131072
 #define			MAX_MEM_LIST	11
 
@@ -318,6 +332,12 @@ void boot_db( void )
 	load_notes( );
     }
 
+    /* 
+     *  Rotain's Clan Table Read Settings
+     */
+ 
+/*    clan_table_read();
+    artifact_table_read();*/
     return;
 }
 
@@ -529,6 +549,16 @@ void load_objects( FILE *fp )
 	pObjIndex->value[3]		= fread_number( fp );
 	pObjIndex->weight		= fread_number( fp );
 	pObjIndex->cost			= fread_number( fp );	/* Unused */
+	pObjIndex->affected		= NULL;
+	pObjIndex->extra_descr		= NULL;
+	pObjIndex->chpoweron		= NULL;
+	pObjIndex->chpoweroff		= NULL;
+	pObjIndex->chpoweruse		= NULL;
+	pObjIndex->victpoweron		= NULL;
+	pObjIndex->victpoweroff		= NULL;
+	pObjIndex->victpoweruse		= NULL;
+	pObjIndex->spectype		= 0;
+	pObjIndex->specpower		= 0;
 	/* Cost per day */		  fread_number( fp );
 /*
 	if ( pObjIndex->item_type == ITEM_POTION )
@@ -784,6 +814,11 @@ void load_rooms( FILE *fp )
 	pRoomIndex->light		= 0;
 	pRoomIndex->blood		= 0;
 	pRoomIndex->roomtext		= NULL;
+	for ( door = 0; door <= 4; door++ )
+	{
+	    pRoomIndex->track[door] 	= str_dup( "" );
+	    pRoomIndex->track_dir[door] = 0;
+	}
 	for ( door = 0; door <= 5; door++ )
 	    pRoomIndex->exit[door] = NULL;
 
@@ -998,6 +1033,9 @@ void load_notes( void )
 	if ( str_cmp( fread_word( fp ), "text" ) )
 	    break;
 	pnote->text	= fread_string( fp );
+
+	/* Fix from the Themoog from Xania */
+	pnote->next	= NULL;
 
 	if ( note_list == NULL )
 	    note_list		= pnote;
@@ -1377,6 +1415,7 @@ void reset_area( AREA_DATA *pArea )
 CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 {
     CHAR_DATA *mob;
+    int tempvalue;
 
     if ( pMobIndex == NULL )
     {
@@ -1397,6 +1436,19 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
     clear_char( mob );
     mob->pIndexData	= pMobIndex;
 
+    mob->hunting	= str_dup( "" );
+    mob->lord		= str_dup( "" );
+    mob->clan		= str_dup( "" );
+    mob->morph		= str_dup( "" );
+    mob->createtime	= str_dup( "" );
+    mob->lasttime	= str_dup( "" );
+    mob->lasthost	= str_dup( "" );
+    mob->powertype	= str_dup( "" );
+    mob->poweraction	= str_dup( "" );
+    mob->pload		= str_dup( "" );
+    mob->prompt		= str_dup( "" );
+    mob->cprompt	= str_dup( "" );
+
     mob->name		= pMobIndex->player_name;
     mob->short_descr	= pMobIndex->short_descr;
     mob->long_descr	= pMobIndex->long_descr;
@@ -1405,6 +1457,7 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
     mob->spec_fun	= pMobIndex->spec_fun;
 
     mob->home		= 3001;
+    mob->form		= 32767;
     mob->level		= number_fuzzy( pMobIndex->level );
     mob->act		= pMobIndex->act;
     mob->affected_by	= pMobIndex->affected_by;
@@ -1413,9 +1466,12 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 
     mob->armor		= interpolate( mob->level, 100, -100 );
 
-    mob->max_hit	= mob->level * 8 + number_range(
+    tempvalue		= mob->level * 8 + number_range(
 				mob->level * mob->level / 4,
 				mob->level * mob->level );
+    if (tempvalue > 30000) mob->max_hit = 30000;
+    else mob->max_hit	= tempvalue;
+
     mob->hit		= mob->max_hit;
 
     mob->hitroll	= mob->level;
@@ -1477,6 +1533,24 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 	obj->spectype     = pObjIndex->spectype;
 	obj->specpower    = pObjIndex->specpower;
     }
+    else
+    {
+	obj->chpoweron    = str_dup( "(null)" );
+	obj->chpoweroff   = str_dup( "(null)" );
+	obj->chpoweruse   = str_dup( "(null)" );
+	obj->victpoweron  = str_dup( "(null)" );
+	obj->victpoweroff = str_dup( "(null)" );
+	obj->victpoweruse = str_dup( "(null)" );
+	obj->spectype     = 0;
+	obj->specpower    = 0;
+    }
+    obj->questmaker     = str_dup( "" );
+    obj->questowner     = str_dup( "" );
+
+    obj->chobj		= NULL;
+
+    obj->quest		= 0;
+    obj->points		= 0;
 
     obj->item_type	= pObjIndex->item_type;
     obj->extra_flags	= pObjIndex->extra_flags;
@@ -1489,9 +1563,28 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     obj->cost		= number_fuzzy( 10 )
 			* number_fuzzy( level ) * number_fuzzy( level );
 
-    obj->condition	= 100;
-    obj->toughness	= 5;
-    obj->resistance	= 25;
+    if (obj->pIndexData->vnum >= 29500 && obj->pIndexData->vnum <= 29599)
+    {
+	SET_BIT(obj->quest, QUEST_ARTIFACT);
+    	obj->condition	= 100;
+    	obj->toughness	= 100;
+    	obj->resistance	= 1;
+	obj->level	= 60;
+	obj->cost	= 1000000;
+    }
+    else if (obj->pIndexData->vnum >= 29600 && obj->pIndexData->vnum <= 29699)
+    {
+	SET_BIT(obj->quest, QUEST_RELIC);
+    	obj->condition	= 100;
+    	obj->toughness	= 100;
+    	obj->resistance	= 1;
+    }
+    else
+    {
+    	obj->condition	= 100;
+    	obj->toughness	= 5;
+    	obj->resistance	= 25;
+    }
 
     /*
      * Mess with object properties.
@@ -1523,6 +1616,10 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     case ITEM_QUEST:
     case ITEM_QUESTCARD:
     case ITEM_QUESTMACHINE:
+    case ITEM_SYMBOL:
+    case ITEM_BOOK:
+    case ITEM_PAGE:
+    case ITEM_TOOL:
 	break;
 
     case ITEM_SCROLL:
@@ -1537,19 +1634,18 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 	break;
 
     case ITEM_WEAPON:
-/*
-	obj->value[1]	= number_fuzzy( number_fuzzy( 1 * level / 4 + 2 ) );
-	obj->value[2]	= number_fuzzy( number_fuzzy( 3 * level / 4 + 6 ) );
-*/
-	obj->value[1]	= number_range( 1, 10 );
-	obj->value[2]	= number_range((obj->value[1]+1),(obj->value[1]*2));
+	if (!IS_SET(obj->quest, QUEST_ARTIFACT)
+	    && !IS_SET(obj->quest, QUEST_RELIC))
+	{
+	    obj->value[1]	= number_range( 1, 10 );
+	    obj->value[2]	= number_range((obj->value[1]+1),(obj->value[1]*2));
+	}
 	break;
 
     case ITEM_ARMOR:
-/*
-	obj->value[0]	= number_fuzzy( level / 4 + 2 );
-*/
-	obj->value[0]	= number_range( 5, 15 );
+	if (!IS_SET(obj->quest, QUEST_ARTIFACT)
+	    && !IS_SET(obj->quest, QUEST_RELIC))
+	    obj->value[0]	= number_range( 5, 15 );
 	break;
 
     case ITEM_POTION:
@@ -1588,9 +1684,13 @@ void clear_char( CHAR_DATA *ch )
     ch->morph			= &str_empty[0];
     ch->createtime		= &str_empty[0];
     ch->lasthost		= &str_empty[0];
+    ch->lasttime		= &str_empty[0];
     ch->powertype		= &str_empty[0];
     ch->poweraction		= &str_empty[0];
     ch->pload			= &str_empty[0];
+    ch->prompt			= &str_empty[0];
+    ch->cprompt			= &str_empty[0];
+    ch->hunting			= &str_empty[0];
 
     ch->logon			= current_time;
     ch->armor			= 100;
@@ -1602,6 +1702,16 @@ void clear_char( CHAR_DATA *ch )
     ch->max_mana		= 100;
     ch->move			= 100;
     ch->max_move		= 100;
+    ch->master			= NULL;
+    ch->leader			= NULL;
+    ch->fighting		= NULL;
+    ch->mount			= NULL;
+    ch->wizard			= NULL;
+    ch->paradox[0]              = 0;        
+    ch->paradox[1]              = 0;        
+    ch->paradox[2]              = 0;        
+    ch->damcap[0]		= 1000;
+    ch->damcap[1]		= 0;
     return;
 }
 
@@ -1637,10 +1747,14 @@ void free_char( CHAR_DATA *ch )
     free_string( ch->clan 		);
     free_string( ch->morph 		);
     free_string( ch->createtime 	);
+    free_string( ch->lasttime 		);
     free_string( ch->lasthost 		);
     free_string( ch->powertype 		);
     free_string( ch->poweraction 	);
     free_string( ch->pload 		);
+    free_string( ch->prompt 		);
+    free_string( ch->cprompt 		);
+    free_string( ch->hunting		);
 
     if ( ch->pcdata != NULL )
     {
@@ -1648,6 +1762,11 @@ void free_char( CHAR_DATA *ch )
 	free_string( ch->pcdata->bamfin		);
 	free_string( ch->pcdata->bamfout	);
 	free_string( ch->pcdata->title		);
+	free_string( ch->pcdata->conception	);
+	free_string( ch->pcdata->parents	);
+	free_string( ch->pcdata->cparents	);
+	free_string( ch->pcdata->marriage	);
+	free_string( ch->pcdata->email		);
 	ch->pcdata->next = pcdata_free;
 	pcdata_free      = ch->pcdata;
     }
@@ -2601,7 +2720,7 @@ void bug( const char *str, int param )
 void log_string( const char *str )
 {
     char *strtime;
-    char logout [MAX_INPUT_LENGTH];
+    char logout [MAX_STRING_LENGTH];
 
     strtime                    = ctime( &current_time );
     strtime[strlen(strtime)-1] = '\0';

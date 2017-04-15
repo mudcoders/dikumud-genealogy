@@ -1,4 +1,4 @@
-#AREA	{ All } Diku    Midgaard~
+#AREA	Diku    Midgaard~
 
 
 
@@ -3950,11 +3950,11 @@ M 0 3066 1 3026       The Alley Cat (at Dark Alley)
 *
 M 0 3061 5 3006       The janitor (at Inn Entrance)
 *
-M 0 3090 1 3032       Kitten in pet shop
-M 0 3091 1 3032       Puppy in pet shop
-M 0 3092 1 3032       Beagle in pet shop
-M 0 3093 1 3032       Rottweiler in pet shop
-M 0 3094 1 3032       Wolf in pet shop
+* M 0 3090 1 3032       Kitten in pet shop
+* M 0 3091 1 3032       Puppy in pet shop
+* M 0 3092 1 3032       Beagle in pet shop
+* M 0 3093 1 3032       Rottweiler in pet shop
+* M 0 3094 1 3032       Wolf in pet shop
 *
 M 0 3005 5 3027		thief at entrance to thief guild
 E 1 3020 99 16
@@ -4068,7 +4068,6 @@ S
  3003	 5  6  7  0  0	 130  40	 0 23	; The Weaponsmith
  3004	 9  0  0  0  0	 100  50	 0 23	; The Armourer
  3006	22  0  0  0  0	 120  90	 6 22	; The Captain
- 3008	 0  0  0  0  0	 100 100	 0 23	; The Pet Shop Boy
  3009	 8  0  0  0  0	 150  50	 9 17	; The Jeweller
  3010	 9  0  0  0  0	 110  90	 8 21	; The Leather Worker
 

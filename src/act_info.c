@@ -28,7 +28,6 @@
 #include "merc.h"
 
 
-
 char *	const	where_name	[] =
 {
     "[Light         ] ",
@@ -80,7 +79,9 @@ char *format_obj_to_char( OBJ_DATA *obj, CHAR_DATA *ch, bool fShort )
     static char buf[MAX_STRING_LENGTH];
 
     buf[0] = '\0';
-    if ( IS_HERO(ch) && obj->points > 0 ) strcat(buf, "(Legendary) " );
+    if ( IS_SET(obj->quest, QUEST_ARTIFACT)) strcat(buf, "(Artifact) " );
+    else if ( IS_SET(obj->quest, QUEST_RELIC)) strcat(buf, "(Relic) " );
+    else if ( obj->points > 0 ) strcat(buf, "(Legendary) " );
     if ( IS_OBJ_STAT(obj, ITEM_INVIS)     )   strcat( buf, "(Invis) "     );
     if ( IS_AFFECTED(ch, AFF_DETECT_EVIL)
          && !IS_OBJ_STAT(obj, ITEM_ANTI_GOOD)
@@ -107,6 +108,7 @@ char *format_obj_to_char( OBJ_DATA *obj, CHAR_DATA *ch, bool fShort )
     {
 	if ( obj->short_descr != NULL )
 	    strcat( buf, obj->short_descr );
+	if ( obj->condition < 100) strcat(buf, " (damaged)");
     }
     else
     {
@@ -118,6 +120,76 @@ char *format_obj_to_char( OBJ_DATA *obj, CHAR_DATA *ch, bool fShort )
 }
 
 
+
+int char_hitroll( CHAR_DATA *ch )
+{
+    int hr = GET_HITROLL(ch);
+    if (!IS_NPC(ch))
+    {
+	if (IS_CLASS(ch,CLASS_VAMPIRE) && ch->pcdata->stats[UNI_RAGE] > 0)
+	    hr += ch->pcdata->stats[UNI_RAGE];
+	else if (IS_SET(ch->special,SPC_WOLFMAN) && ch->pcdata->stats[UNI_RAGE] > 0)
+	    hr += ch->pcdata->stats[UNI_RAGE];
+	else if (IS_CLASS( ch, CLASS_DEMON) && ch->pcdata->stats[DEMON_POWER] > 0)
+	    hr += (ch->pcdata->stats[DEMON_POWER] * ch->pcdata->stats[DEMON_POWER]);
+	else if (IS_SET(ch->special,SPC_CHAMPION) && ch->pcdata->stats[DEMON_POWER] > 0)
+	    hr += (ch->pcdata->stats[DEMON_POWER] * ch->pcdata->stats[DEMON_POWER]);
+	else if (IS_CLASS(ch, CLASS_HIGHLANDER) && IS_ITEMAFF(ch, ITEMA_HIGHLANDER))
+	{
+	    int wpn = ch->pcdata->powers[HPOWER_WPNSKILL];
+	    if (wpn == 1 || wpn == 3)
+	    {
+		if (ch->wpn[wpn] >= 500)
+		    hr += 500;
+		else
+		    hr += ch->wpn[wpn];
+	    }
+	}
+    }
+    return hr;
+}
+
+int char_damroll( CHAR_DATA *ch )
+{
+    int dr = GET_DAMROLL(ch);
+    if (!IS_NPC(ch))
+    {
+	if (IS_CLASS(ch,CLASS_VAMPIRE) && ch->pcdata->stats[UNI_RAGE] > 0)
+	    dr += ch->pcdata->stats[UNI_RAGE];
+	else if (IS_SET(ch->special,SPC_WOLFMAN) && ch->pcdata->stats[UNI_RAGE] > 0)
+	    dr += ch->pcdata->stats[UNI_RAGE];
+	else if (IS_CLASS( ch,CLASS_DEMON ) && ch->pcdata->stats[DEMON_POWER] > 0)
+	    dr += (ch->pcdata->stats[DEMON_POWER] * ch->pcdata->stats[DEMON_POWER]);
+	else if (IS_SET(ch->special,SPC_CHAMPION) && ch->pcdata->stats[DEMON_POWER] > 0)
+	    dr += (ch->pcdata->stats[DEMON_POWER] * ch->pcdata->stats[DEMON_POWER]);
+	else if (IS_CLASS(ch, CLASS_HIGHLANDER) && IS_ITEMAFF(ch, ITEMA_HIGHLANDER))
+	{
+	    int wpn = ch->pcdata->powers[HPOWER_WPNSKILL];
+	    {
+		if (ch->wpn[wpn] >= 500)
+		    dr += 500;
+		else
+		    dr += ch->wpn[wpn];
+	    }
+	}
+    }
+    return dr;
+}
+
+int char_ac( CHAR_DATA *ch )
+{
+    int a_c = GET_AC(ch);
+    if (!IS_NPC(ch))
+    {
+	if (IS_CLASS(ch, CLASS_HIGHLANDER) && IS_ITEMAFF(ch, ITEMA_HIGHLANDER))
+	{
+	    int wpn = ch->pcdata->powers[HPOWER_WPNSKILL];
+	    if (wpn == 1 || wpn == 3)
+		a_c -= ch->wpn[wpn];
+	}
+    }
+    return a_c;
+}
 
 /*
  * Show a list to a character.
@@ -234,7 +306,9 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
     char buf[MAX_STRING_LENGTH];
     char buf2[MAX_STRING_LENGTH];
     char buf3[MAX_STRING_LENGTH];
-    char mount[MAX_STRING_LENGTH];
+    char buf4[MAX_STRING_LENGTH];
+    char mount2[MAX_STRING_LENGTH];
+    CHAR_DATA *mount;
 
     buf[0] = '\0';
     buf2[0] = '\0';
@@ -243,15 +317,16 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
     if (!IS_NPC(victim) && victim->pcdata->chobj != NULL )
 	return;
 
-    if (victim->mount != NULL && IS_SET(victim->mounted, IS_MOUNT))
+    if ((mount = victim->mount) != NULL && IS_SET(victim->mounted, IS_MOUNT))
 	return;
 
     if ( IS_HEAD(victim, LOST_HEAD) && IS_AFFECTED(victim, AFF_POLYMORPH))
 	strcat( buf, "     " );
     else {
-    	if ( IS_AFFECTED(victim, AFF_INVISIBLE)   ) strcat( buf, "(Invis) "      );
-    	if ( IS_AFFECTED(victim, AFF_HIDE)        ) strcat( buf, "(Hide) "       );
-    	if ( IS_AFFECTED(victim, AFF_CHARM)       ) strcat( buf, "(Charmed) "    );
+	if (!IS_NPC(victim) && victim->desc==NULL ) strcat( buf,"(Link-Dead) ");
+    	if ( IS_AFFECTED(victim, AFF_INVISIBLE)   ) strcat( buf, "(Invis) "   );
+    	if ( IS_AFFECTED(victim, AFF_HIDE)        ) strcat( buf, "(Hide) "    );
+    	if ( IS_AFFECTED(victim, AFF_CHARM)       ) strcat( buf, "(Charmed) " );
     	if ( IS_AFFECTED(victim, AFF_PASS_DOOR)  ||
          IS_AFFECTED(victim, AFF_ETHEREAL)    )
 	 strcat( buf, "(Translucent) ");
@@ -264,10 +339,55 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 	strcat( buf, "(Normal plane) "     );
     else if ( !IS_AFFECTED(ch, AFF_SHADOWPLANE) && IS_AFFECTED(victim, AFF_SHADOWPLANE))
 	strcat( buf, "(Shadowplane) "     );
-    /* Vampires can recognise each other - KaVir */
-    if ( IS_SET(victim->act, PLR_VAMPIRE) && IS_SET(ch->act, PLR_VAMPIRE)   ) strcat( buf, "(Vampire) " );
-    if ( !IS_NPC(ch) && IS_VAMPAFF(ch,VAM_AUSPEX) &&
-	 !IS_NPC(victim) && IS_VAMPAFF(victim, VAM_DISGUISED) )
+    /* Vampires and werewolves can recognise each other - KaVir */
+    if ( !IS_NPC(victim) && !IS_NPC(ch) && IS_CLASS(victim, CLASS_VAMPIRE) && 
+	IS_HERO(victim) && IS_HERO(ch) && 
+	(IS_CLASS(ch, CLASS_VAMPIRE) || IS_CLASS(ch, CLASS_WEREWOLF)
+        || IS_CLASS(ch, CLASS_HIGHLANDER) || IS_CLASS(ch, CLASS_DEMON)
+        || IS_SET(ch->special, SPC_CHAMPION)))
+	strcat( buf, "(Vampire) " );
+    else if ( !IS_NPC(victim) && !IS_NPC(ch) && IS_CLASS(victim,CLASS_WEREWOLF)
+	&& IS_HERO(victim) && IS_HERO(ch) &&
+	(IS_CLASS(ch, CLASS_VAMPIRE) || IS_CLASS(ch, CLASS_WEREWOLF)
+	|| IS_CLASS(ch, CLASS_HIGHLANDER) || IS_CLASS( ch, CLASS_DEMON)
+        || IS_SET(ch->special, SPC_CHAMPION)))
+	strcat( buf, "(Werewolf) " );
+    else if ( !IS_NPC(victim) && !IS_NPC(ch) && IS_CLASS( victim,CLASS_DEMON)
+	&& IS_HERO(victim) && IS_HERO(ch) && IS_SET(victim->special, SPC_DEMON_LORD) 
+	&& (IS_CLASS(ch, CLASS_VAMPIRE) || IS_CLASS(ch, CLASS_WEREWOLF)
+	|| IS_CLASS(ch, CLASS_HIGHLANDER) || IS_CLASS(ch, CLASS_DEMON)
+        || IS_SET(ch->special, SPC_CHAMPION)))
+	strcat( buf, "(Demon Lord) " );
+    else if ( !IS_NPC(victim) && !IS_NPC(ch) && IS_SET(victim->special,SPC_CHAMPION)
+	&& IS_HERO(victim) && IS_HERO(ch) &&
+	(IS_CLASS(ch, CLASS_VAMPIRE) || IS_CLASS(ch, CLASS_WEREWOLF)
+	|| IS_CLASS(ch, CLASS_HIGHLANDER) || IS_CLASS( ch, CLASS_DEMON)
+        || IS_SET(ch->special, SPC_CHAMPION)))
+    {
+	if (IS_SET(victim->special, SPC_SIRE) || IS_SET(victim->special, SPC_PRINCE))
+	    strcat( buf, "(Demon) " );
+	else
+	    strcat( buf, "(Champion) " );
+    }
+    else if ( !IS_NPC(victim) && !IS_NPC(ch) && IS_CLASS(victim, CLASS_HIGHLANDER)
+	&& IS_HERO(victim) && IS_HERO(ch) &&
+	(IS_CLASS(ch, CLASS_VAMPIRE) || IS_CLASS(ch, CLASS_WEREWOLF)
+	|| IS_CLASS(ch, CLASS_HIGHLANDER) || IS_CLASS(ch, CLASS_DEMON)
+        || IS_SET(ch->special, SPC_CHAMPION)))
+	strcat( buf, "(Highlander) " );
+    else if ( !IS_NPC(victim) && !IS_NPC(ch) && IS_CLASS(victim, CLASS_MAGE)
+	&& IS_HERO(victim) && IS_HERO(ch) &&
+	(IS_CLASS(ch, CLASS_VAMPIRE) || IS_CLASS(ch, CLASS_WEREWOLF)
+	|| IS_CLASS(ch, CLASS_HIGHLANDER) || IS_CLASS( ch, CLASS_DEMON)
+        || IS_SET(ch->special, SPC_CHAMPION)))
+    {
+	if (victim->level == LEVEL_APPRENTICE)    strcat( buf,"(Apprentice) " );
+	else if (victim->level == LEVEL_MAGE)     strcat( buf,"(Mage) " );
+	else if (victim->level == LEVEL_ARCHMAGE) strcat( buf,"(Archmage) " );
+    }
+    if ( !IS_NPC(ch) && IS_VAMPAFF(ch,VAM_AUSPEX) && 
+	 !IS_NPC(victim) && IS_CLASS(victim, CLASS_VAMPIRE) &&
+	  IS_VAMPAFF(victim, VAM_DISGUISED) )
     {
 	strcat( buf, "(");
 	strcat( buf, victim->name);
@@ -286,11 +406,11 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 
     if ( !IS_NPC(victim) && IS_HEAD(victim, LOST_HEAD) && IS_AFFECTED(victim, AFF_POLYMORPH)) 
     {
-	if (IS_BODY(victim,GAGGED) && IS_BODY(victim,BLINDFOLDED))
+	if (IS_EXTRA(victim,GAGGED) && IS_EXTRA(victim,BLINDFOLDED))
 	    sprintf( buf3, "...%s is gagged and blindfolded!", victim->morph );
-	else if (IS_BODY(victim,GAGGED))
+	else if (IS_EXTRA(victim,GAGGED))
 	    sprintf( buf3, "...%s is gagged!", victim->morph );
-	else if (IS_BODY(victim,BLINDFOLDED))
+	else if (IS_EXTRA(victim,BLINDFOLDED))
 	    sprintf( buf3, "...%s is blindfolded!", victim->morph );
     }
 
@@ -306,7 +426,7 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 	return;
     }
 
-    if ( IS_BODY(victim, TIED_UP) ) 
+    if ( IS_EXTRA(victim, TIED_UP) ) 
     {
 	if (IS_NPC(victim))
 	    sprintf( buf3, "\n\r...%s is tied up", victim->short_descr );
@@ -314,42 +434,60 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 	    sprintf( buf3, "\n\r...%s is tied up", victim->morph );
 	else
 	    sprintf( buf3, "\n\r...%s is tied up", victim->name );
-	if (IS_BODY(victim,GAGGED) && IS_BODY(victim,BLINDFOLDED))
+	if (IS_EXTRA(victim,GAGGED) && IS_EXTRA(victim,BLINDFOLDED))
 	    strcat( buf3, ", gagged and blindfolded!" );
-	else if (IS_BODY(victim,GAGGED))
+	else if (IS_EXTRA(victim,GAGGED))
 	    strcat( buf3, " and gagged!" );
-	else if (IS_BODY(victim,BLINDFOLDED))
+	else if (IS_EXTRA(victim,BLINDFOLDED))
 	    strcat( buf3, " and blindfolded!" );
 	else
 	    strcat( buf3, "!" );
     }
 
+    if ( IS_AFFECTED(victim, AFF_WEBBED) ) 
+    {
+	if (IS_NPC(victim))
+	    sprintf( buf4, "\n\r...%s is coated in a sticky web.", victim->short_descr );
+	else if (!IS_NPC(victim) && IS_AFFECTED(victim,AFF_POLYMORPH))
+	    sprintf( buf4, "\n\r...%s is coated in a sticky web.", victim->morph );
+	else
+	    sprintf( buf4, "\n\r...%s is coated in a sticky web.", victim->name );
+	strcat( buf3, buf4 );
+    }
+
     if ( !IS_NPC(victim) && IS_AFFECTED(victim, AFF_POLYMORPH) )
 	strcat( buf, victim->morph );
-    else if ( victim->position == POS_STANDING && victim->long_descr[0] != '\0' && victim->mount == NULL )
+    else if ( victim->position == POS_STANDING && victim->long_descr[0] != '\0' && (mount = victim->mount) == NULL )
     {
 	strcat( buf, victim->long_descr );
 	send_to_char( buf, ch );
-    	if ( IS_ITEMAFF(victim, ITEMA_SHOCKSHIELD) ) 
-	    act( "...$N is surrounded by a crackling shield of lightning.", ch,NULL,victim,TO_CHAR );
-    	if ( IS_ITEMAFF(victim, ITEMA_FIRESHIELD) ) 
-	    act( "...$N is surrounded by a burning shield of fire.", ch,NULL,victim,TO_CHAR );
-    	if ( IS_ITEMAFF(victim, ITEMA_ICESHIELD) ) 
-	    act( "...$N is surrounded by a shimmering shield of ice.", ch,NULL,victim,TO_CHAR );
-    	if ( IS_ITEMAFF(victim, ITEMA_ACIDSHIELD) ) 
-	    act( "...$N is surrounded by a bubbling shield of acid.", ch,NULL,victim,TO_CHAR );
+	if ( IS_NPC(ch) || !IS_SET(ch->act, PLR_BRIEF) )
+	{
+	    if ( IS_ITEMAFF(victim, ITEMA_SHOCKSHIELD) ) 
+		act( "...$N is surrounded by a crackling shield of lightning.", ch,NULL,victim,TO_CHAR );
+	    if ( IS_ITEMAFF(victim, ITEMA_FIRESHIELD) ) 
+		act( "...$N is surrounded by a burning shield of fire.", ch,NULL,victim,TO_CHAR );
+	    if ( IS_ITEMAFF(victim, ITEMA_ICESHIELD) ) 
+		act( "...$N is surrounded by a shimmering shield of ice.", ch,NULL,victim,TO_CHAR );
+	    if ( IS_ITEMAFF(victim, ITEMA_ACIDSHIELD) ) 
+		act( "...$N is surrounded by a bubbling shield of acid.", ch,NULL,victim,TO_CHAR );
+	    if ( IS_ITEMAFF(victim, ITEMA_CHAOSSHIELD) ) 
+		act( "...$N is surrounded by a swirling shield of chaos.", ch,NULL,victim,TO_CHAR );
+	    if ( IS_ITEMAFF(victim, ITEMA_REFLECT) ) 
+		act( "...$N is surrounded by a flickering shield of darkness.", ch,NULL,victim,TO_CHAR );
+	}
 	return;
     }
     else
     	strcat( buf, PERS( victim, ch ) );
 
-    if (victim->mount != NULL && victim->mounted == IS_RIDING)
+    if ((mount = victim->mount) != NULL && victim->mounted == IS_RIDING)
     {
-	if (IS_NPC(victim->mount))
-	    sprintf( mount, " is here riding %s", victim->mount->short_descr );
+	if (IS_NPC(mount))
+	    sprintf( mount2, " is here riding %s", mount->short_descr );
 	else
-	    sprintf( mount, " is here riding %s", victim->mount->name );
-	strcat( buf, mount );
+	    sprintf( mount2, " is here riding %s", mount->name );
+	strcat( buf, mount2 );
 	if (victim->position == POS_FIGHTING)
 	{
 	    strcat( buf, ", fighting " );
@@ -381,6 +519,8 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
     	case POS_STUNNED:  strcat( buf, " is lying here stunned." ); break;
     	case POS_SLEEPING: strcat( buf, " is sleeping here." );      break;
     	case POS_RESTING:  strcat( buf, " is resting here." );       break;
+    	case POS_MEDITATING: strcat( buf, " is meditating here." );  break;
+    	case POS_SITTING:  strcat( buf, " is sitting here." );       break;
     	case POS_STANDING:
 	    if      (!IS_NPC(victim) && victim->stance[0] == STANCE_NORMAL)
 		strcat( buf, " is here, crouched in a fighting stance." );
@@ -394,6 +534,16 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 		strcat( buf, " is here, crouched in a mongoose fighting stance." );
 	    else if (!IS_NPC(victim) && victim->stance[0] == STANCE_BULL)
 		strcat( buf, " is here, crouched in a bull fighting stance." );
+	    else if (!IS_NPC(victim) && victim->stance[0] == STANCE_MANTIS)
+		strcat( buf, " is here, crouched in a mantis fighting stance." );
+	    else if (!IS_NPC(victim) && victim->stance[0] == STANCE_DRAGON)
+		strcat( buf, " is here, crouched in a dragon fighting stance." );
+	    else if (!IS_NPC(victim) && victim->stance[0] == STANCE_TIGER)
+		strcat( buf, " is here, crouched in a tiger fighting stance." );
+	    else if (!IS_NPC(victim) && victim->stance[0] == STANCE_MONKEY)
+		strcat( buf, " is here, crouched in a monkey fighting stance." );
+	    else if (!IS_NPC(victim) && victim->stance[0] == STANCE_SWALLOW)
+		strcat( buf, " is here, crouched in a swallow fighting stance." );
 	    else
 		strcat( buf, " is here." );
 	    break;
@@ -420,6 +570,8 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
     buf[0] = UPPER(buf[0]);
     send_to_char( buf, ch );
 
+    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_BRIEF) ) return;
+
     if ( IS_ITEMAFF(victim, ITEMA_SHOCKSHIELD) ) 
 	act( "...$N is surrounded by a crackling shield of lightning.", ch,NULL,victim,TO_CHAR );
     if ( IS_ITEMAFF(victim, ITEMA_FIRESHIELD) ) 
@@ -428,6 +580,10 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 	act( "...$N is surrounded by a shimmering shield of ice.", ch,NULL,victim,TO_CHAR );
     if ( IS_ITEMAFF(victim, ITEMA_ACIDSHIELD) ) 
 	act( "...$N is surrounded by a bubbling shield of acid.", ch,NULL,victim,TO_CHAR );
+    if ( IS_ITEMAFF(victim, ITEMA_CHAOSSHIELD) ) 
+	act( "...$N is surrounded by a swirling shield of chaos.", ch,NULL,victim,TO_CHAR );
+    if ( IS_ITEMAFF(victim, ITEMA_REFLECT) ) 
+	act( "...$N is surrounded by a flickering shield of darkness.", ch,NULL,victim,TO_CHAR );
     return;
 }
 
@@ -435,8 +591,11 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 
 void evil_eye( CHAR_DATA *victim, CHAR_DATA *ch )
 {
-    char buf [MAX_INPUT_LENGTH];
+    char buf [MAX_STRING_LENGTH];
     int tabletype;
+ 
+    return;
+
     if (IS_NPC(victim)) return;
     if (victim == ch) return;
     if (ch->level != 3 || victim->level != 3) return;
@@ -508,12 +667,28 @@ void show_char_to_char_1( CHAR_DATA *victim, CHAR_DATA *ch )
 
     buf[0] = UPPER(buf[0]);
     send_to_char( buf, ch );
-
-    if (IS_AFFECTED(victim, AFF_INFRARED) || IS_VAMPAFF(victim, VAM_NIGHTSIGHT)) act("$N's eyes are glowing bright red.",ch,NULL,victim,TO_CHAR);
-    if (IS_AFFECTED(victim, AFF_FLYING)) act("$N is hovering in the air.",ch,NULL,victim,TO_CHAR);
-    if (IS_VAMPAFF(victim, VAM_FANGS)) act("$N has a pair of long, pointed fangs.",ch,NULL,victim,TO_CHAR);
-    if (IS_VAMPAFF(victim, VAM_CLAWS)) act("$N has razer sharp claws protruding from under $S finger nails.",ch,NULL,victim,TO_CHAR);
-
+ 
+    if (!IS_NPC( victim ))
+    {
+    	if (IS_AFFECTED(victim, AFF_INFRARED) || IS_VAMPAFF(victim, VAM_NIGHTSIGHT)) act("$N's eyes are glowing bright red.",ch,NULL,victim,TO_CHAR);
+    	if (IS_AFFECTED(victim, AFF_FLYING)) act("$N is hovering in the air.",ch,NULL,victim,TO_CHAR);
+    	if (IS_VAMPAFF(victim, VAM_FANGS)) act("$N has a pair of long, pointed fangs.",ch,NULL,victim,TO_CHAR);
+    	if (!IS_NPC(victim) && IS_CLASS(victim, CLASS_VAMPIRE) && IS_VAMPAFF(victim, VAM_CLAWS))
+		act("$N has razer sharp claws protruding from under $S finger nails.",ch,NULL,victim,TO_CHAR);
+    	else if (!IS_NPC(victim) && IS_VAMPAFF(victim, VAM_CLAWS))
+		act("$N has razer sharp talons extending from $S fingers.",ch,NULL,victim,TO_CHAR);
+    	if (!IS_NPC(victim) && (IS_CLASS(victim, CLASS_DEMON) || IS_SET(victim->special, SPC_CHAMPION)))
+    	{
+		if (IS_DEMAFF(victim, DEM_HORNS)) act("$N has a pair of pointed horns extending from $S head.",ch,NULL,victim,TO_CHAR);
+		if (IS_DEMAFF(victim, DEM_WINGS))
+		{
+	    		if (IS_DEMAFF(victim, DEM_UNFOLDED))
+				act("$N has a pair of batlike wings spread out from behind $S back.",ch,NULL,victim,TO_CHAR);
+	    		else
+			act("$N has a pair of batlike wings folded behind $S back.",ch,NULL,victim,TO_CHAR);
+		}
+    	}
+    }
     found = FALSE;
     for ( iWear = 0; iWear < MAX_WEAR; iWear++ )
     {
@@ -560,10 +735,22 @@ void show_char_to_char( CHAR_DATA *list, CHAR_DATA *ch )
 	if ( rch == ch )
 	    continue;
 
-	if ( !IS_NPC(rch)
-	&&   IS_SET(rch->act, PLR_WIZINVIS)
-	&&   get_trust( ch ) < get_trust( rch ) )
-	    continue;
+	if ( IS_IMMORTAL(ch) || IS_IMMORTAL(rch) )
+	{
+	    if ( !IS_NPC(rch)
+	    &&   IS_SET(rch->act, PLR_WIZINVIS)
+	    &&   get_trust( ch ) < get_trust( rch ) )
+		continue;
+	}
+	else
+	{
+	    if ( !IS_NPC(rch)
+	    && ( IS_SET(rch->act, PLR_WIZINVIS)
+	    ||   IS_ITEMAFF(rch, ITEMA_VANISH) )
+	    &&   !IS_SET(ch->act, PLR_HOLYLIGHT)
+	    &&   !IS_ITEMAFF(ch, ITEMA_VISION) )
+		continue;
+	}
 
 	if ( !IS_NPC(rch) && IS_HEAD(rch,LOST_HEAD))
 	    continue;
@@ -574,7 +761,7 @@ void show_char_to_char( CHAR_DATA *list, CHAR_DATA *ch )
 	if ( can_see( ch, rch ) )
 	    show_char_to_char_0( rch, ch );
 	else if ( room_is_dark( ch->in_room )
-	&&      ( IS_AFFECTED(rch, AFF_INFRARED) || IS_VAMPAFF(rch, VAM_NIGHTSIGHT)) )
+	&&      ( IS_AFFECTED(rch, AFF_INFRARED)||(!IS_NPC(rch)&&IS_VAMPAFF(rch, VAM_NIGHTSIGHT))))
 	{
 	    send_to_char( "You see glowing red eyes watching YOU!\n\r", ch );
 	}
@@ -590,19 +777,22 @@ bool check_blind( CHAR_DATA *ch )
     if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_HOLYLIGHT) )
 	return TRUE;
 
+    if ( IS_ITEMAFF(ch, ITEMA_VISION) )
+	return TRUE;
+
     if ( IS_HEAD(ch, LOST_EYE_L) && IS_HEAD(ch, LOST_EYE_R) )
     {
 	send_to_char( "You have no eyes to see with!\n\r", ch );
 	return FALSE;
     }
 
-    if ( IS_BODY(ch, BLINDFOLDED) )
+    if ( IS_EXTRA(ch, BLINDFOLDED) )
     {
 	send_to_char( "You can't see a thing through the blindfold!\n\r", ch );
 	return FALSE;
     }
 
-    if ( IS_AFFECTED(ch, AFF_BLIND) )
+    if ( IS_AFFECTED(ch, AFF_BLIND) && !IS_AFFECTED(ch, AFF_SHADOWSIGHT))
     {
 	send_to_char( "You can't see a thing!\n\r", ch );
 	return FALSE;
@@ -622,6 +812,7 @@ void do_look( CHAR_DATA *ch, char *argument )
     CHAR_DATA *victim;
     CHAR_DATA *vch;
     CHAR_DATA *vch_next;
+    CHAR_DATA *wizard;
     OBJ_DATA *obj;
     OBJ_DATA *portal;
     OBJ_DATA *portal_next;
@@ -631,8 +822,9 @@ void do_look( CHAR_DATA *ch, char *argument )
     int door;
     bool found;
 
-    if ( ch->desc == NULL )
-	return;
+    if ( ch->desc == NULL && (wizard = ch->wizard) == NULL) return;
+
+    if (ch->in_room == NULL) return;
 
     if ( ch->position < POS_SLEEPING )
     {
@@ -649,12 +841,22 @@ void do_look( CHAR_DATA *ch, char *argument )
     if ( !check_blind( ch ) )
 	return;
 
+    if ( !IS_NPC(ch) && IS_SET(ch->in_room->room_flags, ROOM_TOTAL_DARKNESS) &&
+	!IS_ITEMAFF(ch, ITEMA_VISION) && !IS_AFFECTED(ch, AFF_SHADOWSIGHT)
+	&& !IS_IMMORTAL(ch))
+    {
+	send_to_char( "It is pitch black ... \n\r", ch );
+	return;
+    }
+
     if ( !IS_NPC(ch)
     &&   !IS_SET(ch->act, PLR_HOLYLIGHT)
+    &&   !IS_ITEMAFF(ch, ITEMA_VISION)
     &&   !IS_VAMPAFF(ch, VAM_NIGHTSIGHT)
     &&   !IS_AFFECTED(ch, AFF_SHADOWPLANE)
     &&   !(ch->in_room != NULL && ch->in_room->vnum == ROOM_VNUM_IN_OBJECT
-	&& !IS_NPC(ch) && ch->pcdata->chobj != NULL && ch->pcdata->chobj->in_obj != NULL)
+    &&   !IS_NPC(ch) && ch->pcdata->chobj != NULL
+    &&   ch->pcdata->chobj->in_obj != NULL)
     &&   room_is_dark( ch->in_room ) )
     {
 	send_to_char( "It is pitch black ... \n\r", ch );
@@ -675,8 +877,8 @@ void do_look( CHAR_DATA *ch, char *argument )
 	    send_to_char( "The shadow plane\n\r", ch );
 	else
 	{
-	    send_to_char( ch->in_room->name, ch );
-	    send_to_char( "\n\r", ch );
+	    sprintf(buf, "%s\n\r", ch->in_room->name);
+	    send_to_char( buf, ch );
 	}
 
 	if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_AUTOEXIT) )
@@ -1118,24 +1320,18 @@ void do_score( CHAR_DATA *ch, char *argument )
     char ss1[MAX_STRING_LENGTH];
     char ss2[MAX_STRING_LENGTH];
     AFFECT_DATA *paf;
-    int hr;
-    int dr;
+    int a_c = char_ac(ch);
 
     if (!IS_NPC(ch) && (IS_EXTRA(ch,EXTRA_OSWITCH) || IS_HEAD(ch,LOST_HEAD)))
 	{obj_score(ch,ch->pcdata->chobj);return;}
     sprintf( buf,
-	"You are %s%s, %d years old (%d hours).\n\r",
+	"You are %s%s.  You have been playing for %d hours.\n\r",
 	ch->name,
 	IS_NPC(ch) ? "" : ch->pcdata->title,
-	get_age(ch),
 	(get_age(ch) - 17) * 2 );
     send_to_char( buf, ch );
-
-    if (!IS_NPC(ch))
-    {
-    	sprintf( buf, "This character was created %s\n\r", ch->createtime);
-	send_to_char( buf, ch );
-    }
+    if (!IS_NPC(ch)) birth_date(ch, TRUE);
+    if (!IS_NPC(ch) && IS_EXTRA(ch, EXTRA_PREGNANT)) birth_date(ch, FALSE);
 
     if ( get_trust( ch ) != ch->level )
     {
@@ -1172,6 +1368,14 @@ void do_score( CHAR_DATA *ch, char *argument )
 	ch->exp,  ch->gold );
     send_to_char( buf, ch );
 
+    if (!IS_NPC(ch) && (IS_CLASS( ch, CLASS_DEMON) || IS_SET(ch->special,SPC_CHAMPION)))
+    {
+	sprintf( buf,
+	"You have %d out of %d points of demonic power stored.\n\r",
+	ch->pcdata->stats[DEMON_CURRENT],  ch->pcdata->stats[DEMON_TOTAL] );
+	send_to_char( buf, ch );
+    }
+
     sprintf( buf,
 	"Autoexit: %s.  Autoloot: %s.  Autosac: %s.\n\r",
 	(!IS_NPC(ch) && IS_SET(ch->act, PLR_AUTOEXIT)) ? "yes" : "no",
@@ -1179,7 +1383,10 @@ void do_score( CHAR_DATA *ch, char *argument )
 	(!IS_NPC(ch) && IS_SET(ch->act, PLR_AUTOSAC) ) ? "yes" : "no" );
     send_to_char( buf, ch );
     
-    sprintf( buf, "Wimpy set to %d hit points.\n\r", ch->wimpy );
+    sprintf( buf, "Wimpy set to %d hit points.", ch->wimpy );
+    if ( !IS_NPC(ch) && IS_EXTRA(ch, EXTRA_DONE) )
+	strcat(buf,"  You are no longer a virgin.\n\r");
+    else strcat(buf,"\n\r");
     send_to_char( buf, ch );
 
     if ( !IS_NPC(ch) && ch->pcdata->condition[COND_DRUNK]   > 10 )
@@ -1188,8 +1395,20 @@ void do_score( CHAR_DATA *ch, char *argument )
 	send_to_char( "You are thirsty.\n\r", ch );
     if ( !IS_NPC(ch) && ch->pcdata->condition[COND_FULL]   ==  0 )
 	send_to_char( "You are hungry.\n\r",  ch );
+    if ( !IS_NPC(ch) && ch->pcdata->stage[0] >= 100 )
+	send_to_char( "You are feeling extremely horny.\n\r",  ch );
+    else if ( !IS_NPC(ch) && ch->pcdata->stage[0] >= 50 )
+	send_to_char( "You are feeling pretty randy.\n\r",  ch );
+    else if ( !IS_NPC(ch) && ch->pcdata->stage[0] >= 1 )
+	send_to_char( "You are feeling rather kinky.\n\r",  ch );
 
-    switch ( ch->position )
+    if ( !IS_NPC(ch) && ch->pcdata->stage[1] > 0 && ch->position == POS_STANDING )
+    {
+	send_to_char( "You are having sexual intercourse.\n\r",  ch );
+	if (!IS_NPC(ch) && (ch->pcdata->stage[2] + 25) >= ch->pcdata->stage[1])
+	    send_to_char( "You are on the verge of having an orgasm.\n\r",  ch );
+    }
+    else switch ( ch->position )
     {
     case POS_DEAD:     
 	send_to_char( "You are DEAD!!\n\r",		ch );
@@ -1209,6 +1428,12 @@ void do_score( CHAR_DATA *ch, char *argument )
     case POS_RESTING:
 	send_to_char( "You are resting.\n\r",		ch );
 	break;
+    case POS_MEDITATING:
+	send_to_char( "You are meditating.\n\r",	ch );
+	break;
+    case POS_SITTING:
+	send_to_char( "You are sitting.\n\r",		ch );
+	break;
     case POS_STANDING:
 	send_to_char( "You are standing.\n\r",		ch );
 	break;
@@ -1219,40 +1444,32 @@ void do_score( CHAR_DATA *ch, char *argument )
 
     if ( ch->level >= 0 )
     {
-	sprintf( buf, "AC: %d.  ", GET_AC(ch) );
+	sprintf( buf, "AC: %d.  ", a_c );
 	send_to_char( buf, ch );
     }
 
     send_to_char( "You are ", ch );
-         if ( GET_AC(ch) >=  101 ) send_to_char( "naked!\n\r", ch );
-    else if ( GET_AC(ch) >=   80 ) send_to_char( "barely clothed.\n\r",   ch );
-    else if ( GET_AC(ch) >=   60 ) send_to_char( "wearing clothes.\n\r",  ch );
-    else if ( GET_AC(ch) >=   40 ) send_to_char( "slightly armored.\n\r", ch );
-    else if ( GET_AC(ch) >=   20 ) send_to_char( "somewhat armored.\n\r", ch );
-    else if ( GET_AC(ch) >=    0 ) send_to_char( "armored.\n\r",          ch );
-    else if ( GET_AC(ch) >=  -50 ) send_to_char( "well armored.\n\r",     ch );
-    else if ( GET_AC(ch) >= -100 ) send_to_char( "strongly armored.\n\r", ch );
-    else if ( GET_AC(ch) >= -150 ) send_to_char( "heavily armored.\n\r",  ch );
-    else if ( GET_AC(ch) >= -200 ) send_to_char( "superbly armored.\n\r", ch );
-    else if ( GET_AC(ch) >= -249 ) send_to_char( "divinely armored.\n\r", ch );
-    else                           send_to_char( "ultimately armored!\n\r",ch );
+         if ( a_c >=  101 ) send_to_char( "naked!\n\r", ch );
+    else if ( a_c >=   80 ) send_to_char( "barely clothed.\n\r",   ch );
+    else if ( a_c >=   60 ) send_to_char( "wearing clothes.\n\r",  ch );
+    else if ( a_c >=   40 ) send_to_char( "slightly armored.\n\r", ch );
+    else if ( a_c >=   20 ) send_to_char( "somewhat armored.\n\r", ch );
+    else if ( a_c >=    0 ) send_to_char( "armored.\n\r",          ch );
+    else if ( a_c >=  -50 ) send_to_char( "well armored.\n\r",     ch );
+    else if ( a_c >= -100 ) send_to_char( "strongly armored.\n\r", ch );
+    else if ( a_c >= -250 ) send_to_char( "heavily armored.\n\r",  ch );
+    else if ( a_c >= -500 ) send_to_char( "superbly armored.\n\r", ch );
+    else if ( a_c >= -749 ) send_to_char( "divinely armored.\n\r", ch );
+    else                    send_to_char( "ultimately armored!\n\r",ch );
 
-    hr = GET_HITROLL(ch); dr = GET_DAMROLL(ch);
-    if (!IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE))
-    	{ hr += ch->pcdata->wolf; dr += ch->pcdata->wolf; }
-    sprintf( buf, "Hitroll: %d.  Damroll: %d.  ", hr, dr );
+    sprintf( buf, "Hitroll: %d.  Damroll: %d.  ", char_hitroll(ch), char_damroll(ch) );
     send_to_char( buf, ch );
     
-    if ( !IS_NPC(ch) && IS_SET(ch->act,PLR_VAMPIRE) )
+    if ( !IS_NPC(ch) && IS_CLASS(ch,CLASS_VAMPIRE) )
     {
 	sprintf( buf, "Blood: %d.\n\r", ch->pcdata->condition[COND_THIRST] );
 	send_to_char( buf, ch );
-    }
-    else if (ch->level >= 0)
-	send_to_char( "\n\r", ch );
 
-    if ( !IS_NPC(ch) && IS_SET(ch->act,PLR_VAMPIRE) )
-    {
 	sprintf( buf, "Beast: %d.  ", ch->beast );
 	send_to_char( buf, ch );
 	if      (ch->beast <  0 ) send_to_char("You are a cheat!\n\r",ch);
@@ -1268,7 +1485,10 @@ void do_score( CHAR_DATA *ch, char *argument )
 	else if (ch->beast <= 90) send_to_char("The power of the beast overwhelms you.\n\r",ch);
 	else if (ch->beast <= 99) send_to_char("You have almost lost your battle with the beast!\n\r",ch);
 	else                      send_to_char("The beast has taken over!\n\r",ch);
+
     }
+    else if (ch->level >= 0)
+	send_to_char( "\n\r", ch );
 
     if ( ch->level >= 0 )
     {
@@ -1297,12 +1517,12 @@ void do_score( CHAR_DATA *ch, char *argument )
 
          if (!IS_NPC(ch) && ch->level == 1 ) send_to_char( "a Mortal.\n\r", ch);
     else if (!IS_NPC(ch) && ch->level == 2 ) send_to_char( "a Mortal.\n\r", ch);
-    else if (!IS_NPC(ch) && ch->level == 4 ) send_to_char( "a Builder.\n\r", ch);
-    else if (!IS_NPC(ch) && ch->level == 5 ) send_to_char( "a Quest Maker.\n\r", ch);
-    else if (!IS_NPC(ch) && ch->level == 6 ) send_to_char( "an Enforcer.\n\r", ch);
-    else if (!IS_NPC(ch) && ch->level == 7 ) send_to_char( "a Judge.\n\r", ch);
-    else if (!IS_NPC(ch) && ch->level == 8 ) send_to_char( "a High Judge.\n\r", ch);
-    else if (!IS_NPC(ch) && ch->level == 9 ) send_to_char( "an Implementor.\n\r", ch);
+    else if (!IS_NPC(ch) && ch->level == 7 ) send_to_char( "a Builder.\n\r", ch);
+    else if (!IS_NPC(ch) && ch->level == 8 ) send_to_char( "a Quest Maker.\n\r", ch);
+    else if (!IS_NPC(ch) && ch->level == 9 ) send_to_char( "an Enforcer.\n\r", ch);
+    else if (!IS_NPC(ch) && ch->level == 10) send_to_char( "a Judge.\n\r", ch);
+    else if (!IS_NPC(ch) && ch->level == 11) send_to_char( "a High Judge.\n\r", ch);
+    else if (!IS_NPC(ch) && ch->level == 12) send_to_char( "an Implementor.\n\r", ch);
     else if (!IS_NPC(ch) && ch->race <= 0 ) send_to_char( "an Avatar.\n\r", ch);
     else if (!IS_NPC(ch) && ch->race <= 4 ) send_to_char( "an Immortal.\n\r", ch);
     else if (!IS_NPC(ch) && ch->race <= 9 ) send_to_char( "a Godling.\n\r", ch);
@@ -1343,10 +1563,35 @@ void do_score( CHAR_DATA *ch, char *argument )
 
     if (IS_AFFECTED(ch,AFF_HIDE)) send_to_char( "You are keeping yourself hidden from those around you.\n\r", ch );
 
-    if ( !IS_NPC(ch) && IS_SET(ch->act,PLR_VAMPIRE) && ch->pcdata->wolf > 0)
+    if ( !IS_NPC(ch) )
     {
-	sprintf(buf,"The beast is in control of your actions:  Affects Hitroll and Damroll by +%d.\n\r",ch->pcdata->wolf);
-	send_to_char( buf, ch );
+	if ( IS_CLASS(ch,CLASS_WEREWOLF) && ch->pcdata->powers[WPOWER_SILVER] > 0)
+	{
+	    sprintf(buf,"You have attained %d points of silver tolerance.\n\r",ch->pcdata->powers[WPOWER_SILVER]);
+	    send_to_char( buf, ch );
+	}
+	if ( IS_CLASS(ch,CLASS_VAMPIRE) && ch->pcdata->stats[UNI_RAGE] > 0)
+	{
+	    sprintf(buf,"The beast is in control of your actions:  Affects Hitroll and Damroll by +%d.\n\r",ch->pcdata->stats[UNI_RAGE]);
+	    send_to_char( buf, ch );
+	}
+	else if ( IS_SET(ch->special,SPC_WOLFMAN) && ch->pcdata->stats[UNI_RAGE] > 0)
+	{
+	    sprintf(buf,"You are raging:  Affects Hitroll and Damroll by +%d.\n\r",ch->pcdata->stats[UNI_RAGE]);
+	    send_to_char( buf, ch );
+	}
+	else if ( IS_CLASS( ch, CLASS_DEMON) && ch->pcdata->stats[DEMON_POWER] > 0)
+	{
+	    sprintf(buf,"You are wearing demonic armour:  Affects Hitroll and Damroll by +%d.\n\r",
+		(ch->pcdata->stats[DEMON_POWER] * ch->pcdata->stats[DEMON_POWER]));
+	    send_to_char( buf, ch );
+	}
+	else if ( IS_SET(ch->special,SPC_CHAMPION) && ch->pcdata->stats[DEMON_POWER] > 0)
+	{
+	    sprintf(buf,"You are wearing demonic armour:  Affects Hitroll and Damroll by +%d.\n\r",
+		(ch->pcdata->stats[DEMON_POWER] * ch->pcdata->stats[DEMON_POWER]));
+	    send_to_char( buf, ch );
+	}
     }
 
     if ( ch->affected != NULL )
@@ -1360,14 +1605,13 @@ void do_score( CHAR_DATA *ch, char *argument )
 	    if ( ch->level >= 0 )
 	    {
 		sprintf( buf,
-		    " modifies %s by %d for %d hours",
+		    " modifies %s by %d for %d hours with bits %s.\n\r",
 		    affect_loc_name( paf->location ),
 		    paf->modifier,
-		    paf->duration );
+		    paf->duration,
+		    affect_bit_name( paf->bitvector ) );
 		send_to_char( buf, ch );
 	    }
-
-	    send_to_char( ".\n\r", ch );
 	}
     }
 
@@ -1514,16 +1758,17 @@ void do_who( CHAR_DATA *ch, char *argument )
     char kav[MAX_STRING_LENGTH];
     char openb[5];
     char closeb[5];
+    char mage_col[10];
     DESCRIPTOR_DATA *d;
     int iLevelLower;
     int iLevelUpper;
     int nNumber;
     int nMatch;
-    int iClass;
-    bool rgfClass[MAX_CLASS];
     bool fClassRestrict;
     bool fImmortalOnly;
  
+    if (IS_NPC(ch)) return;
+
     /*
      * Set default arguments.
      */
@@ -1531,8 +1776,6 @@ void do_who( CHAR_DATA *ch, char *argument )
     iLevelUpper    = MAX_LEVEL;
     fClassRestrict = FALSE;
     fImmortalOnly  = FALSE;
-    for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
-	rgfClass[iClass] = FALSE;
 
     /*
      * Parse arguments.
@@ -1603,7 +1846,7 @@ void do_who( CHAR_DATA *ch, char *argument )
 	/*
 	 * Figure out what to print for class.
 	 */
-	class = class_table[wch->class].who_name;
+	class = " ";
 
         if ((IS_HEAD(wch,LOST_HEAD) || IS_EXTRA(wch,EXTRA_OSWITCH)) && wch->pcdata->chobj != NULL)
 	{
@@ -1617,15 +1860,33 @@ void do_who( CHAR_DATA *ch, char *argument )
 	switch ( wch->level )
 	{
 	default: break;
-	case MAX_LEVEL - 0:
+	case MAX_LEVEL -  0:
 		if (!str_cmp(wch->name,"KaVir")) class = "The Coder    ";
+		else if (!str_cmp(wch->name,"Merc")) class =   "Shadow       ";
+                else if (!str_cmp(wch->name,"Rotain")) class = "The Imp      ";
 		else class = "Implementor  "; break;
-	case MAX_LEVEL - 1: class = "High Judge   "; break;
-	case MAX_LEVEL - 2: class = "Judge        "; break;
-	case MAX_LEVEL - 3: class = "Enforcer     "; break;
-	case MAX_LEVEL - 4: class = "Quest Maker  "; break;
-	case MAX_LEVEL - 5: class = "Builder      "; break;
-	case MAX_LEVEL - 6:
+	case MAX_LEVEL -  1: class = "High Judge   "; break;
+	case MAX_LEVEL -  2: class = "Judge        "; break;
+	case MAX_LEVEL -  3: class = "Enforcer     "; break;
+	case MAX_LEVEL -  4: class = "Quest Maker  "; break;
+	case MAX_LEVEL -  5: class = "Builder      "; break;
+	case MAX_LEVEL -  6:
+	case MAX_LEVEL -  7:
+	case MAX_LEVEL -  8:
+	case MAX_LEVEL -  9:
+/*
+	    if (IS_SET(wch->act, PLR_DEMON) || IS_SET(wch->act, PLR_CHAMPION))
+	    {
+		     if (wch->race <= 0 ) class = "Avatar         ";
+		else if (wch->race <= 4 ) class = "Lesser Demon   ";
+		else if (wch->race <= 9 ) class = "Greater Demon  ";
+		else if (wch->race <= 14) class = "Demon Lord     ";
+		else if (wch->race <= 19) class = "ArchDemon      ";
+		else if (wch->race <= 24) class = "Devil          ";
+		else class = "ArchDevil      ";
+	    }
+*/
+
 		     if (wch->race <= 0 ) class = "Avatar       ";
 		else if (wch->race <= 4 ) class = "Immortal     ";
 		else if (wch->race <= 9 ) class = "Godling      ";
@@ -1634,30 +1895,130 @@ void do_who( CHAR_DATA *ch, char *argument )
 		else if (wch->race <= 24) class = "Greater God  ";
 		else class = "Supreme God  ";
 		break;
-	case MAX_LEVEL - 7: class = "Mortal       "; break;
-	case MAX_LEVEL - 8: class = "Mortal       "; break;
-	case MAX_LEVEL - 9: class = "Mortal       "; break;
+	case MAX_LEVEL - 10: class = "Mortal       "; break;
+	case MAX_LEVEL - 11: class = "Mortal       "; break;
+	case MAX_LEVEL - 12: class = "Mortal       "; break;
 	}
 	/*
 	 * Format it up.
 	 */
-	if ( IS_SET(wch->act, PLR_VAMPIRE) )
+	if ( IS_CLASS(wch, CLASS_VAMPIRE))
 	{ strcpy( openb, "<" ); strcpy( closeb, ">" ); }
+	else if ( IS_CLASS(wch, CLASS_WEREWOLF))
+	{ strcpy( openb, "(" ); strcpy( closeb, ")" ); }
+	else if ( IS_CLASS(wch,CLASS_MAGE))
+	{ strcpy( openb, "{" ); strcpy( closeb, "}" ); }
+	else if ( IS_CLASS(wch, CLASS_HIGHLANDER))
+	{ strcpy( openb, "-=" ); strcpy( closeb, "=-" ); }
 	else
 	{ strcpy( openb, "[" ); strcpy( closeb, "]" ); }
-	if ( IS_SET(ch->act, PLR_VAMPIRE) && wch->vampgen == 1 )
-	    sprintf( kav, ". %sMaster Vampire%s", openb, closeb );
-	else if ( IS_SET(ch->act, PLR_VAMPIRE) &&
-		wch->clan != NULL && strlen(wch->clan) > 1 )
-	{
-	    if (wch->vampgen == 2)
-	    	sprintf( kav, ". %sFounder of %s%s", openb, wch->clan, closeb );
-	    else if (IS_EXTRA(wch, EXTRA_PRINCE) && wch->sex == SEX_FEMALE)
-	    	sprintf( kav, ". %s%s Princess%s", openb, wch->clan, closeb );
-	    else if (IS_EXTRA(wch, EXTRA_PRINCE))
-	    	sprintf( kav, ". %s%s Prince%s", openb, wch->clan, closeb );
+	if ( ch->class > 0 || IS_IMMORTAL( ch ))
+	  {
+	    if ( IS_CLASS(wch, CLASS_DEMON) && IS_SET(wch->special, SPC_DEMON_LORD) )
+	    	sprintf( kav, ". %sDemon Lord%s", openb, closeb );
+	    else if ( IS_SET(wch->special, SPC_CHAMPION) )
+	    {
+		if (IS_SET(wch->special, SPC_PRINCE) && wch->sex == SEX_FEMALE)
+		    sprintf( kav, ". %sDemon Princess%s", openb,closeb );
+		else if (IS_SET(wch->special, SPC_PRINCE))
+		    sprintf( kav, ". %sDemon Prince%s", openb,closeb );
+		else if (IS_SET(wch->special, SPC_SIRE))
+		    sprintf( kav, ". %sDemon%s", openb,closeb );
+		else
+		    sprintf( kav, ". %sChampion of %s%s", openb,wch->lord,closeb );
+	    }
+	    else if ( IS_CLASS(wch, CLASS_VAMPIRE) && wch->pcdata->stats[UNI_GEN] == 1 )
+	    	sprintf( kav, ". %sMaster Vampire%s", openb, closeb );
+	    else if (IS_CLASS(wch, CLASS_WEREWOLF) && wch->pcdata->stats[UNI_GEN] == 1 )
+	    	sprintf( kav, ". %sMaster Werewolf%s", openb, closeb );
+	    else if ( IS_CLASS(wch, CLASS_VAMPIRE) && wch->clan != NULL )
+	    {
+		bool get_age = FALSE;
+		char clanname[20];
+
+		if (IS_SET(wch->special, SPC_INCONNU))
+		    get_age = TRUE;
+	    	else if (IS_SET(wch->special, SPC_ANARCH))
+		    get_age = TRUE;
+	    	else if (strlen(wch->clan) < 2)
+		    get_age = TRUE;
+	    	else if (wch->pcdata->stats[UNI_GEN] == 2)
+	    	    sprintf( kav, ". %sFounder of %s%s", openb, wch->clan, closeb );
+	    	else if (IS_SET(wch->special, SPC_PRINCE) && wch->sex == SEX_FEMALE)
+	    	    sprintf( kav, ". %s%s Princess%s", openb, wch->clan, closeb );
+	    	else if (IS_SET(wch->special, SPC_PRINCE))
+	    	    sprintf( kav, ". %s%s Prince%s", openb, wch->clan, closeb );
+	    	else get_age = TRUE;
+		if (get_age)
+		{
+		    if (IS_SET(wch->special, SPC_INCONNU))
+			strcpy( clanname, "Inconnu" );
+		    else if (IS_SET(wch->special, SPC_ANARCH))
+			strcpy( clanname, "Anarch" );
+		    else if (strlen(wch->clan) < 2)
+			strcpy( clanname, "Caitiff" );
+		    else
+			strcpy( clanname, wch->clan );
+		    if (wch->pcdata->stats[UNI_GEN] == 2)
+			sprintf( kav, ". %s%s Antediluvian%s", openb, clanname, closeb );
+		    else switch ( wch->pcdata->rank )
+		    {
+		    default:
+			sprintf( kav, ". %s%s Childe%s", openb, clanname, closeb );
+			break;
+		    case AGE_NEONATE:
+			sprintf( kav, ". %s%s Neonate%s", openb, clanname, closeb );
+			break;
+		    case AGE_ANCILLA:
+			sprintf( kav, ". %s%s Ancilla%s", openb, clanname, closeb );
+			break;
+		    case AGE_ELDER:
+			sprintf( kav, ". %s%s Elder%s", openb, clanname, closeb );
+			break;
+		    case AGE_METHUSELAH:
+			sprintf( kav, ". %s%s Methuselah%s", openb, clanname, closeb );
+			break;
+		    }
+		}
+	    }
+	    else if ( IS_CLASS(wch, CLASS_WEREWOLF)
+		&& wch->clan != NULL && strlen(wch->clan) > 1 )
+	    {
+	    	if (wch->pcdata->stats[UNI_GEN] == 2)
+	    	    sprintf( kav, ". %s%s Chief%s", openb, wch->clan, closeb );
+	    	else if (IS_SET(wch->special, SPC_PRINCE))
+	    	    sprintf( kav, ". %s%s Shaman%s", openb, wch->clan, closeb );
+	    	else
+	    	    sprintf( kav, ". %s%s%s", openb, wch->clan, closeb );
+	    }
+	    else if ( IS_CLASS(wch, CLASS_WEREWOLF)
+		&& wch->clan != NULL && strlen(wch->clan) < 1 )
+	    	sprintf( kav, ". %sRonin%s", openb, closeb );
+	    else if ( IS_CLASS(wch, CLASS_MAGE) )
+	    {
+		if (wch->pcdata->powers[MPOWER_RUNE0] == RED_MAGIC)
+		    strcpy( mage_col, "Red" );
+		else if (wch->pcdata->powers[MPOWER_RUNE0] == BLUE_MAGIC)
+		    strcpy( mage_col, "Blue" );
+		else if (wch->pcdata->powers[MPOWER_RUNE0] == GREEN_MAGIC)
+		    strcpy( mage_col, "Green" );
+		else if (wch->pcdata->powers[MPOWER_RUNE0] == YELLOW_MAGIC)
+		    strcpy( mage_col, "Yellow" );
+		else strcpy( mage_col, "Purple" );
+
+		if (wch->level == LEVEL_APPRENTICE)
+		    sprintf( kav, ". %s%s Apprentice%s", openb, mage_col, closeb );
+		else if (wch->level == LEVEL_MAGE)
+		    sprintf( kav, ". %s%s Mage%s", openb, mage_col, closeb );
+		else if (wch->level == LEVEL_ARCHMAGE)
+		    sprintf( kav, ". %s%s Archmage%s", openb, mage_col, closeb);
+	    }
+	    else if ( IS_CLASS(wch, CLASS_HIGHLANDER) )
+	    {
+		sprintf( kav, ". %sHighlander%s", openb, closeb);
+	    }
 	    else
-	    	sprintf( kav, ". %s%s%s", openb, wch->clan, closeb );
+	    	strcpy( kav, "." );
 	}
 	else
 	    strcpy( kav, "." );
@@ -1947,7 +2308,7 @@ void do_where( CHAR_DATA *ch, char *argument )
     {
 	send_to_char( "Players near you:\n\r", ch );
 	found = FALSE;
-	for ( d = descriptor_list; d; d = d->next )
+	for ( d = descriptor_list; d != NULL; d = d->next )
 	{
 	    if ( d->connected == CON_PLAYING
 	    && ( victim = d->character ) != NULL
@@ -2002,6 +2363,10 @@ void do_consider( CHAR_DATA *ch, char *argument )
     char *msg;
     int diff;
     int overall;
+    int con_hit;
+    int con_dam;
+    int con_ac;
+    int con_hp;
 
     one_argument( argument, arg );
     overall = 0;
@@ -2024,7 +2389,24 @@ void do_consider( CHAR_DATA *ch, char *argument )
 
     if (!IS_NPC(victim)) do_skill(ch,victim->name);
 
-    diff = victim->level - ch->level + victim->hitroll - ch->hitroll;
+    if (!IS_NPC(victim) && IS_CLASS(victim, CLASS_VAMPIRE) && 
+	IS_EXTRA(victim, EXTRA_FAKE_CON))
+    {
+	con_hit = victim->pcdata->fake_hit;
+	con_dam = victim->pcdata->fake_dam;
+	con_ac = victim->pcdata->fake_ac;
+	con_hp = victim->pcdata->fake_hp;
+    }
+    else
+    {
+	con_hit = char_hitroll(victim);
+	con_dam = char_damroll(victim);
+	con_ac = char_ac(victim);
+	con_hp = victim->hit;
+    }
+    if (con_hp < 1) con_hp = 1;
+
+    diff = victim->level - ch->level + con_hit - char_hitroll(ch);
          if ( diff <= -35 ) {msg = "You are FAR more skilled than $M."; overall = overall + 3;}
     else if ( diff <= -15 ) {msg = "$E is not as skilled as you are."; overall = overall + 2;}
     else if ( diff <=  -5 ) {msg = "$E doesn't seem quite as skilled as you."; overall = overall + 1;}
@@ -2034,7 +2416,7 @@ void do_consider( CHAR_DATA *ch, char *argument )
     else                    {msg = "$E is FAR more skilled than you."; overall = overall - 3;}
     act( msg, ch, NULL, victim, TO_CHAR );
 
-    diff = victim->level - ch->level + victim->damroll - ch->damroll;
+    diff = victim->level - ch->level + con_dam - char_damroll(ch);
          if ( diff <= -35 ) {msg = "You are FAR more powerful than $M."; overall = overall + 3;}
     else if ( diff <= -15 ) {msg = "$E is not as powerful as you are."; overall = overall + 2;}
     else if ( diff <=  -5 ) {msg = "$E doesn't seem quite as powerful as you."; overall = overall + 1;}
@@ -2044,7 +2426,7 @@ void do_consider( CHAR_DATA *ch, char *argument )
     else                    {msg = "$E is FAR more powerful than you."; overall = overall - 3;}
     act( msg, ch, NULL, victim, TO_CHAR );
 
-    diff = ch->hit * 100 / victim->hit;
+    diff = ch->hit * 100 / con_hp;
          if ( diff <=  10 ) {msg = "$E is currently FAR healthier than you are."; overall = overall - 3;}
     else if ( diff <=  50 ) {msg = "$E is currently much healthier than you are."; overall = overall - 2;}
     else if ( diff <=  75 ) {msg = "$E is currently slightly healthier than you are."; overall = overall - 1;}
@@ -2054,7 +2436,7 @@ void do_consider( CHAR_DATA *ch, char *argument )
     else                    {msg = "You are currently FAR healthier than $M."; overall = overall + 3;}
     act( msg, ch, NULL, victim, TO_CHAR );
 
-    diff = victim->armor - ch->armor;
+    diff = con_ac - char_ac(ch);
          if ( diff <= -100) {msg = "$E is FAR better armoured than you."; overall = overall - 3;}
     else if ( diff <= -50 ) {msg = "$E looks much better armoured than you."; overall = overall - 2;}
     else if ( diff <= -25 ) {msg = "$E looks better armoured than you."; overall = overall - 1;}
@@ -2122,6 +2504,28 @@ void do_title( CHAR_DATA *ch, char *argument )
 
     smash_tilde( argument );
     set_title( ch, argument );
+    send_to_char( "Ok.\n\r", ch );
+}
+
+
+
+void do_email( CHAR_DATA *ch, char *argument )
+{
+    if ( IS_NPC(ch) )
+	return;
+
+    if ( argument[0] == '\0' )
+    {
+	send_to_char( "What do you wish to set your email address to?\n\r", ch );
+	return;
+    }
+
+    if ( strlen(argument) > 50 )
+	argument[50] = '\0';
+
+    smash_tilde( argument );
+    free_string( ch->pcdata->email );
+    ch->pcdata->email = str_dup( argument );
     send_to_char( "Ok.\n\r", ch );
 }
 
@@ -2258,7 +2662,7 @@ void do_practice( CHAR_DATA *ch, char *argument )
 	{
 	    if ( skill_table[sn].name == NULL )
 		break;
-	    if ( ch->level < skill_table[sn].skill_level[ch->class] )
+	    if ( ch->level < skill_table[sn].skill_level )
 		continue;
 	    sprintf( buf, "%18s %3d%%  ",
 		skill_table[sn].name, ch->pcdata->learned[sn] );
@@ -2275,8 +2679,6 @@ void do_practice( CHAR_DATA *ch, char *argument )
     }
     else
     {
-	int adept;
-
 	if ( !IS_AWAKE(ch) )
 	{
 	    send_to_char( "In your dreams, or what?\n\r", ch );
@@ -2291,18 +2693,17 @@ void do_practice( CHAR_DATA *ch, char *argument )
 
 	if ( ( sn = skill_lookup( argument ) ) < 0
 	|| ( !IS_NPC(ch)
-	&&   ch->level < skill_table[sn].skill_level[ch->class] ) )
+	&&   ch->level < skill_table[sn].skill_level ) )
 	{
 	    send_to_char( "You can't practice that.\n\r", ch );
 	    return;
 	}
 
-	adept = IS_NPC(ch) ? 100 : class_table[ch->class].skill_adept;
-
-	if ( ch->pcdata->learned[sn] >= adept )
+	
+	if ( ch->pcdata->learned[sn] >= SKILL_ADEPT )
 	{
 	    sprintf( buf, "You are already an adept of %s.\n\r",
-		skill_table[sn].name );
+	         skill_table[sn].name );
 	    send_to_char( buf, ch );
 	}
 	else if ( ch->pcdata->learned[sn] > 0 &&
@@ -2330,14 +2731,14 @@ void do_practice( CHAR_DATA *ch, char *argument )
 	    	ch->exp -= (ch->pcdata->learned[sn]/2);
 	    	ch->pcdata->learned[sn] += int_app[get_curr_int(ch)].learn;
 	    }
-	    if ( ch->pcdata->learned[sn] < adept )
+	    if ( ch->pcdata->learned[sn] < SKILL_ADEPT )
 	    {
 		act( "You practice $T.",
 		    ch, NULL, skill_table[sn].name, TO_CHAR );
 	    }
 	    else
 	    {
-		ch->pcdata->learned[sn] = adept;
+		ch->pcdata->learned[sn] = SKILL_ADEPT;
 		act( "You are now an adept of $T.",
 		    ch, NULL, skill_table[sn].name, TO_CHAR );
 	    }
@@ -2477,7 +2878,8 @@ void do_password( CHAR_DATA *ch, char *argument )
     ch->pcdata->pwd = str_dup( pwdnew );
     if (!IS_EXTRA(ch,EXTRA_NEWPASS)) SET_BIT(ch->extra,EXTRA_NEWPASS);
     save_char_obj( ch );
-    send_to_char( "Ok.\n\r", ch );
+    if (ch->desc != NULL && ch->desc->connected == CON_PLAYING )
+	send_to_char( "Ok.\n\r", ch );
     return;
 }
 
@@ -2494,6 +2896,30 @@ void do_socials( CHAR_DATA *ch, char *argument )
     for ( iSocial = 0; social_table[iSocial].name[0] != '\0'; iSocial++ )
     {
 	sprintf( buf, "%-12s", social_table[iSocial].name );
+	send_to_char( buf, ch );
+	if ( ++col % 6 == 0 )
+	    send_to_char( "\n\r", ch );
+    }
+ 
+    if ( col % 6 != 0 )
+	send_to_char( "\n\r", ch );
+
+    return;
+}
+
+
+
+void do_xsocials( CHAR_DATA *ch, char *argument )
+{
+    char buf[MAX_STRING_LENGTH];
+    int iSocial;
+    int col;
+
+    col = 0;
+
+    for ( iSocial = 0; xsocial_table[iSocial].name[0] != '\0'; iSocial++ )
+    {
+	sprintf( buf, "%-12s", xsocial_table[iSocial].name );
 	send_to_char( buf, ch );
 	if ( ++col % 6 == 0 )
 	    send_to_char( "\n\r", ch );
@@ -2564,6 +2990,7 @@ void do_channels( CHAR_DATA *ch, char *argument )
 
     one_argument( argument, arg );
 
+    if (IS_NPC(ch)) return;
     if ( arg[0] == '\0' )
     {
 	if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_SILENCE) )
@@ -2574,11 +3001,11 @@ void do_channels( CHAR_DATA *ch, char *argument )
 
 	send_to_char( "Channels:", ch );
 
-	send_to_char( !IS_SET(ch->deaf, CHANNEL_AUCTION)
+/*	send_to_char( !IS_SET(ch->deaf, CHANNEL_AUCTION)
 	    ? " +AUCTION"
 	    : " -auction",
 	    ch );
-
+*/
 	send_to_char( !IS_SET(ch->deaf, CHANNEL_CHAT)
 	    ? " +CHAT"
 	    : " -chat",
@@ -2614,9 +3041,51 @@ void do_channels( CHAR_DATA *ch, char *argument )
 	    : " -shout",
 	    ch );
 
-	send_to_char( !IS_SET(ch->deaf, CHANNEL_YELL)
-	    ? " +YELL"
-	    : " -yell",
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_HOWL)
+	    ? " +HOWL"
+	    : " -howl",
+	    ch );
+
+	if (IS_IMMORTAL(ch))
+	{
+	    send_to_char( !IS_SET(ch->deaf, CHANNEL_LOG)
+		? " +LOG"
+		: " -log",
+		ch );
+	}
+
+        if (IS_CLASS( ch, CLASS_MAGE) || IS_IMMORTAL(ch))
+        {
+            send_to_char( !IS_SET(ch->deaf, CHANNEL_MAGETALK)
+                ? " +MAGE"
+                : " -mage",
+                ch );
+        }
+
+	if (IS_CLASS(ch, CLASS_DEMON) || IS_IMMORTAL(ch))
+	{
+	    send_to_char( !IS_SET(ch->deaf, CHANNEL_PRAY)
+		? " +PRAY"
+		: " -pray",
+		ch );
+	}
+
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_INFO)
+	    ? " +INFO"
+	    : " -info",
+	    ch );
+
+	if (IS_CLASS(ch, CLASS_VAMPIRE))
+	{
+	    send_to_char( !IS_SET(ch->deaf, CHANNEL_VAMPTALK)
+		? " +VAMP"
+		: " -vamp",
+		ch );
+	}
+
+	send_to_char( !IS_SET(ch->deaf, CHANNEL_TELL)
+	    ? " +TELL"
+	    : " -tell",
 	    ch );
 
 	send_to_char( ".\n\r", ch );
@@ -2634,8 +3103,8 @@ void do_channels( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	     if ( !str_cmp( arg+1, "auction"  ) ) bit = CHANNEL_AUCTION;
-        else if ( !str_cmp( arg+1, "chat"     ) ) bit = CHANNEL_CHAT;
+/*	     if ( !str_cmp( arg+1, "auction"  ) ) bit = CHANNEL_AUCTION;*/
+        if ( !str_cmp( arg+1, "chat"     ) ) bit = CHANNEL_CHAT;
 #if 0
 	else if ( !str_cmp( arg+1, "hacker"   ) ) bit = CHANNEL_HACKER;
 #endif
@@ -2644,6 +3113,14 @@ void do_channels( CHAR_DATA *ch, char *argument )
 	else if ( !str_cmp( arg+1, "question" ) ) bit = CHANNEL_QUESTION;
 	else if ( !str_cmp( arg+1, "shout"    ) ) bit = CHANNEL_SHOUT;
 	else if ( !str_cmp( arg+1, "yell"     ) ) bit = CHANNEL_YELL;
+	else if ( !str_cmp( arg+1, "howl"     ) ) bit = CHANNEL_HOWL;
+	else if (IS_IMMORTAL(ch) && !str_cmp( arg+1, "log") ) bit = CHANNEL_LOG;
+        else if ( !str_cmp( arg+1, "mage"     ) ) bit = CHANNEL_MAGETALK;
+	else if ((IS_SET(ch->special, SPC_CHAMPION) || (IS_IMMORTAL(ch))) && !str_cmp( arg+1, "pray") ) 
+	    bit = CHANNEL_PRAY;
+	else if ( !str_cmp( arg+1, "info"     ) ) bit = CHANNEL_INFO;
+	else if ( !str_cmp( arg+1, "vamp"     ) ) bit = CHANNEL_VAMPTALK;
+	else if ( !str_cmp( arg+1, "tell"     ) ) bit = CHANNEL_TELL;
 	else
 	{
 	    send_to_char( "Set or clear which channel?\n\r", ch );
@@ -2964,7 +3441,8 @@ void check_left_arm( CHAR_DATA *ch, CHAR_DATA *victim )
 	act("$N arms are both broken.",ch,NULL,victim,TO_CHAR);
     else if (IS_ARM_L(victim,BROKEN_ARM))
 	act("$N's left arm is broken.",ch,NULL,victim,TO_CHAR);
-    if (IS_ARM_L(victim,LOST_HAND) && IS_ARM_R(victim,LOST_HAND))
+    if (IS_ARM_L(victim,LOST_HAND) && IS_ARM_R(victim,LOST_HAND) &&
+	!IS_ARM_R(victim,LOST_ARM))
     {
 	act("$N has lost both of $S hands.",ch,NULL,victim,TO_CHAR);
 	if (IS_BLEEDING(victim,BLEEDING_HAND_L) && IS_BLEEDING(victim,BLEEDING_HAND_R))
@@ -3044,6 +3522,8 @@ void check_right_arm( CHAR_DATA *ch, CHAR_DATA *victim )
 	return;
     }
     if (!IS_ARM_L(victim,BROKEN_ARM) && IS_ARM_R(victim,BROKEN_ARM))
+	act("$N's right arm is broken.",ch,NULL,victim,TO_CHAR);
+    else if (IS_ARM_L(victim,LOST_ARM) && IS_ARM_R(victim,BROKEN_ARM))
 	act("$N's right arm is broken.",ch,NULL,victim,TO_CHAR);
     if (IS_ARM_L(victim,LOST_HAND) && IS_ARM_R(victim,LOST_HAND))
 	return;
@@ -3427,6 +3907,30 @@ void obj_score( CHAR_DATA *ch, OBJ_DATA *obj )
 	    sprintf (buf, "You surround your wielder with a shield of ice.\n\r");
 	else if (itemtype == 13)
 	    sprintf (buf, "You surround your wielder with a shield of acid.\n\r");
+	else if (itemtype == 14)
+	    sprintf (buf, "You protect your wielder from attacks from DarkBlade clan guardians.\n\r");
+	else if (itemtype == 15)
+	    sprintf (buf, "You surround your wielder with a shield of chaos.\n\r");
+	else if (itemtype == 16)
+	    sprintf (buf, "You regenerate the wounds of your wielder.\n\r");
+	else if (itemtype == 17)
+	    sprintf (buf, "You enable your wielder to move at supernatural speed.\n\r");
+	else if (itemtype == 18)
+	    sprintf (buf, "You can slice through armour without difficulty.\n\r");
+	else if (itemtype == 19)
+	    sprintf (buf, "You protect your wielder from player attacks.\n\r");
+	else if (itemtype == 20)
+	    sprintf (buf, "You surround your wielder with a shield of darkness.\n\r");
+	else if (itemtype == 21)
+	    sprintf (buf, "You grant your wielder superior protection.\n\r");
+	else if (itemtype == 22)
+	    sprintf (buf, "You grant your wielder supernatural vision.\n\r");
+	else if (itemtype == 23)
+	    sprintf (buf, "You make your wielder fleet-footed.\n\r");
+	else if (itemtype == 24)
+	    sprintf (buf, "You conceal your wielder from sight.\n\r");
+	else if (itemtype == 25)
+	    sprintf (buf, "You invoke the power of your wielders beast.\n\r");
 	else
 	    sprintf (buf, "You are bugged...please report it.\n\r");
 	if (itemtype > 0)
@@ -3464,6 +3968,30 @@ void obj_score( CHAR_DATA *ch, OBJ_DATA *obj )
 	    sprintf (buf, "You surround your wearer with a shield of ice.\n\r");
 	else if (obj->value[3] == 13)
 	    sprintf (buf, "You surround your wearer with a shield of acid.\n\r");
+	else if (obj->value[3] == 14)
+	    sprintf (buf, "You protect your wearer from attacks from DarkBlade clan guardians.\n\r");
+	else if (obj->value[3] == 15)
+	    sprintf (buf, "You surround your wielder with a shield of chaos.\n\r");
+	else if (obj->value[3] == 16)
+	    sprintf (buf, "You regenerate the wounds of your wielder.\n\r");
+	else if (obj->value[3] == 17)
+	    sprintf (buf, "You enable your wearer to move at supernatural speed.\n\r");
+	else if (obj->value[3] == 18)
+	    sprintf (buf, "You can slice through armour without difficulty.\n\r");
+	else if (obj->value[3] == 19)
+	    sprintf (buf, "You protect your wearer from player attacks.\n\r");
+	else if (obj->value[3] == 20)
+	    sprintf (buf, "You surround your wearer with a shield of darkness.\n\r");
+	else if (obj->value[3] == 21)
+	    sprintf (buf, "You grant your wearer superior protection.\n\r");
+	else if (obj->value[3] == 22)
+	    sprintf (buf, "You grant your wearer supernatural vision.\n\r");
+	else if (obj->value[3] == 23)
+	    sprintf (buf, "You make your wearer fleet-footed.\n\r");
+	else if (obj->value[3] == 24)
+	    sprintf (buf, "You conceal your wearer from sight.\n\r");
+	else if (obj->value[3] == 25)
+	    sprintf (buf, "You invoke the power of your wearers beast.\n\r");
 	else
 	    sprintf (buf, "You are bugged...please report it.\n\r");
 	if (obj->value[3] > 0)
@@ -3490,6 +4018,238 @@ void obj_score( CHAR_DATA *ch, OBJ_DATA *obj )
 	    send_to_char( buf, ch );
 	}
     }
+    return;
+}
 
+/* Do_prompt from Morgenes from Aldara Mud */
+void do_prompt( CHAR_DATA *ch, char *argument )
+{
+   char buf [ MAX_STRING_LENGTH ];
+
+   buf[0] = '\0';
+   if ( IS_NPC(ch) ) return;
+
+   if ( argument[0] == '\0' )
+   {
+       do_help( ch, "prompt" );
+       return;
+   }
+
+   if( !strcmp( argument, "on" ) )
+   {
+      if (IS_EXTRA(ch, EXTRA_PROMPT))
+         send_to_char("But you already have customised prompt on!\n\r",ch);
+      else
+      {
+         send_to_char("Ok.\n\r",ch);
+         SET_BIT(ch->extra, EXTRA_PROMPT);
+      }
+      return;
+   }
+   else if( !strcmp( argument, "off" ) )
+   {
+      if (!IS_EXTRA(ch, EXTRA_PROMPT))
+         send_to_char("But you already have customised prompt off!\n\r",ch);
+      else
+      {
+         send_to_char("Ok.\n\r",ch);
+         REMOVE_BIT(ch->extra, EXTRA_PROMPT);
+      }
+      return;
+   }
+   else if( !strcmp( argument, "clear" ) )
+   {
+      free_string(ch->prompt);
+      ch->prompt = str_dup( "" );
+      return;
+   }
+   else
+   {
+      if ( strlen( argument ) > 50 )
+	  argument[50] = '\0';
+      smash_tilde( argument );
+      strcat( buf, argument );
+   }
+
+   free_string( ch->prompt );
+   ch->prompt = str_dup( buf );
+   send_to_char( "Ok.\n\r", ch );
+   return;
+} 
+
+/* Do_prompt from Morgenes from Aldara Mud */
+void do_cprompt( CHAR_DATA *ch, char *argument )
+{
+   char buf [ MAX_STRING_LENGTH ];
+
+   buf[0] = '\0';
+   if ( IS_NPC(ch) ) return;
+
+   if ( argument[0] == '\0' )
+   {
+       do_help( ch, "cprompt" );
+       return;
+   }
+
+   if( !strcmp( argument, "clear" ) )
+   {
+      free_string(ch->cprompt);
+      ch->cprompt = str_dup( "" );
+      return;
+   }
+   else
+   {
+      if ( strlen( argument ) > 50 )
+	  argument[50] = '\0';
+      smash_tilde( argument );
+      strcat( buf, argument );
+   }
+
+   free_string( ch->cprompt );
+   ch->cprompt = str_dup( buf );
+   send_to_char( "Ok.\n\r", ch );
+   return;
+} 
+
+void do_finger( CHAR_DATA *ch, char *argument )
+{
+    char strsave[MAX_INPUT_LENGTH];
+    char *buf;
+    char buf2[MAX_INPUT_LENGTH];
+    FILE *fp;
+    int  num;
+    int  num2;
+    int  extra;
+
+    if ( IS_NPC(ch) ) return;
+
+    if (!check_parse_name( argument ))
+    {
+	send_to_char( "Thats an illegal name.\n\r", ch );
+	return;
+    }
+
+    if ( !char_exists(TRUE,argument) )
+    {
+	send_to_char( "That player doesn't exist.\n\r", ch );
+	return;
+    }
+
+    fclose( fpReserve );
+    sprintf( strsave, "%sbackup/%s", PLAYER_DIR, capitalize(argument) );
+    if ( ( fp = fopen( strsave, "r" ) ) != NULL )
+    {
+	send_to_char("--------------------------------------------------------------------------------\n\r",ch);
+	buf=fread_string( fp );
+	send_to_char(buf,ch);
+	send_to_char(" ",ch);
+	buf=fread_string( fp );
+	send_to_char(buf,ch);
+	send_to_char(".\n\r",ch);
+	send_to_char("--------------------------------------------------------------------------------\n\r",ch);
+	send_to_char("Last connected from ",ch);
+	buf=fread_string( fp );
+	send_to_char(buf,ch);
+	send_to_char(" at ",ch);
+	buf=fread_string( fp );
+	send_to_char(buf,ch);
+	send_to_char(".\n\r",ch);
+	send_to_char("--------------------------------------------------------------------------------\n\r",ch);
+	extra=fread_number( fp );
+	num=fread_number( fp );
+	send_to_char("Sex: ",ch);
+	buf=fread_string( fp );
+	if (num == SEX_MALE) send_to_char("Male. ",ch);
+	else if (num == SEX_FEMALE) 
+	{
+	    send_to_char("Female. ",ch);
+	    if (IS_SET(extra, EXTRA_PREGNANT)) other_age(ch,extra,TRUE,buf);
+	}
+	else send_to_char("None. ",ch);
+	buf=fread_string( fp );
+	other_age(ch,extra,FALSE,buf);
+	num=fread_number( fp );
+	num2=fread_number( fp );
+	switch ( num )
+	{
+	    default:
+		send_to_char("They are mortal, ",ch);
+		break;
+	    case LEVEL_AVATAR:
+	    case LEVEL_APPRENTICE:
+	    case LEVEL_MAGE:
+	    case LEVEL_ARCHMAGE:
+	    {
+		if (num2 < 1)
+		    send_to_char("They are an Avatar, ",ch);
+		else if (num2 < 5)
+		    send_to_char("They are an Immortal, ",ch);
+		else if (num2 < 10)
+		    send_to_char("They are a Godling, ",ch);
+		else if (num2 < 15)
+		    send_to_char("They are a Demigod, ",ch);
+		else if (num2 < 20)
+		    send_to_char("They are a Lesser God, ",ch);
+		else if (num2 < 25)
+		    send_to_char("They are a Greater God, ",ch);
+		else
+		    send_to_char("They are a Supreme God, ",ch);
+		break;
+	    }
+	    case LEVEL_BUILDER:
+		send_to_char("They are a Builder, ",ch);
+		break;
+	    case LEVEL_QUESTMAKER:
+		send_to_char("They are a Quest Maker, ",ch);
+		break;
+	    case LEVEL_ENFORCER:
+		send_to_char("They are an Enforcer, ",ch);
+		break;
+	    case LEVEL_JUDGE:
+		send_to_char("They are a Judge, ",ch);
+		break;
+	    case LEVEL_HIGHJUDGE:
+		send_to_char("They are a High Judge, ",ch);
+		break;
+	    case LEVEL_IMPLEMENTOR:
+		send_to_char("They are an Implementor, ",ch);
+		break;
+	}
+	num=fread_number( fp );
+	if (num > 0) num2 = (2*(num / 7200)); else num2 = 0;
+	sprintf(buf2,"and have been playing for %d hours.\n\r",num2);
+	send_to_char(buf2,ch);
+	buf=fread_string( fp );
+	if (strlen(buf) > 2)
+	{
+	    if (IS_SET(extra, EXTRA_MARRIED))
+		sprintf(buf2,"They are married to %s.\n\r",buf);
+	    else
+		sprintf(buf2,"They are engaged to %s.\n\r",buf);
+	    send_to_char(buf2,ch);
+	}
+	num=fread_number( fp );
+	num2=fread_number( fp );
+	sprintf(buf2,"Player kills: %d, Player Deaths: %d.\n\r",num,num2);
+	send_to_char(buf2,ch);
+	num=fread_number( fp );
+	num2=fread_number( fp );
+	sprintf(buf2,"Mob kills: %d, Mob Deaths: %d.\n\r",num,num2);
+	send_to_char(buf2,ch);
+	send_to_char("--------------------------------------------------------------------------------\n\r",ch);
+	buf=fread_string( fp );
+	if (strlen(buf) > 2)
+	{
+	    sprintf(buf2,"Email: %s\n\r",buf);
+	    send_to_char(buf2,ch);
+	    send_to_char("--------------------------------------------------------------------------------\n\r",ch);
+	}
+    }
+    else
+    {
+	bug( "Do_finger: fopen", 0 );
+    }
+    fclose( fp );
+    fpReserve = fopen( NULL_FILE, "r" );
     return;
 }

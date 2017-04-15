@@ -1,0 +1,97 @@
+#AREA	{ ALL } Rotain  Justice Halls~
+
+#HELPS
+0 $~
+
+#MOBILES
+#0
+
+#OBJECTS
+#0
+
+#ROOMS
+#6640
+The Halls Of Justice~
+You are standing a the hallway of justice.  To the north is were weapons 
+recall to.  To the south armor room.  To the west is magic items room.  To 
+the east you can see a huge portal.
+~
+67 8 1
+D0
+~
+~
+1 -1 6641
+D1
+~
+~
+1 -1 6642
+D2
+~
+~
+1 -1 6643
+D3
+~
+~
+1 -1 6644
+D4
+~
+~
+1 -1 3001
+S
+
+#6641
+The Weapons Room~
+You are standing in the weapons room.  Weapons are mount and rack on the 
+wall.  There are great axes, longsword and weapons of every description.
+~
+67 8 1
+D2
+~
+~
+1 -1 6640
+S
+
+#6642
+The Portal Of Justice~
+You are standing in the portal of justice.   There is a plague on the 
+wall with the true meaning and value of justice.
+~
+67 8 1
+D3
+~
+~
+1 -1 6640
+S
+
+#6643
+The Armour Room~
+You stand before a vast room. It is filled with spare bits of armour and 
+armour type junk.
+~
+67 8 1
+D0
+~
+~
+1 -1 6640
+S
+
+#6644
+The Magic Room~
+You are standing in the magic room.  This room hums and glows with 
+magical energy.
+~
+67 8 1
+D1
+~
+~
+1 -1 6640
+S
+#0
+
+#RESETS
+S
+
+#SPECIALS
+S
+
+#$

@@ -38,64 +38,21 @@ void	weather_update	args( ( void ) );
 void	char_update	args( ( void ) );
 void	obj_update	args( ( void ) );
 void	aggr_update	args( ( void ) );
-
-
-
-/*
- * Advancement stuff.
- */
-void advance_level( CHAR_DATA *ch )
-{
-    char buf[MAX_STRING_LENGTH];
-    int add_hp;
-    int add_mana;
-    int add_move;
-    int add_prac;
-
-    sprintf( buf, "the %s",
-	title_table [ch->class] [ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
-    set_title( ch, buf );
-
-    add_hp	= con_app[get_curr_con(ch)].hitp + number_range(
-		    class_table[ch->class].hp_min,
-		    class_table[ch->class].hp_max );
-    add_mana	= class_table[ch->class].fMana
-		    ? number_range(2, (2*get_curr_int(ch)+get_curr_wis(ch))/8)
-		    : 0;
-    add_move	= number_range( 5, (get_curr_con(ch)+get_curr_dex(ch))/4 );
-    add_prac	= wis_app[get_curr_wis(ch)].practice;
-
-    add_hp	= UMAX(  1, add_hp   );
-    add_mana	= UMAX(  0, add_mana );
-    add_move	= UMAX( 10, add_move );
-
-    ch->max_hit 	+= (add_hp);
-    ch->max_mana	+= (add_mana);
-    ch->max_move	+= (add_move);
-    ch->practice	+= add_prac;
-
-    if ( !IS_NPC(ch) )
-	REMOVE_BIT( ch->act, PLR_BOUGHT_PET );
-
-    sprintf( buf,
-	"Your gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
-	add_hp,		ch->max_hit,
-	add_mana,	ch->max_mana,
-	add_move,	ch->max_move,
-	add_prac,	ch->practice
-	);
-    send_to_char( buf, ch );
-    return;
-}   
+void    ww_update       args( ( void ) );
 
 
 
 void gain_exp( CHAR_DATA *ch, int gain )
 {
-    if ( IS_NPC(ch) && ch->mount != NULL && !IS_NPC(ch->mount))
-	ch->mount->exp += gain;
+    CHAR_DATA *mount = NULL;
+    CHAR_DATA *master = NULL;
 
-    if ( !IS_NPC(ch) && ch->level <= LEVEL_HERO )
+    if ( IS_NPC(ch) && (mount = ch->mount) != NULL && !IS_NPC(mount))
+    {
+	if ( (master = ch->master) == NULL || master != mount )
+	    mount->exp += gain;
+    }
+    if ( !IS_NPC(ch) && !IS_IMMORTAL(ch) )
 	ch->exp += gain;
     return;
 }
@@ -116,30 +73,29 @@ int hit_gain( CHAR_DATA *ch )
     }
     else
     {
+	if (IS_CLASS(ch, CLASS_VAMPIRE)) return 0;
 	gain = number_range( 10, 20 );
 
 	if ((conamount = (get_curr_con(ch)+1)) > 1)
 	{
 	    switch ( ch->position )
 	    {
-		case POS_SLEEPING: gain *= conamount;		break;
-		case POS_RESTING:  gain *= conamount / 2;	break;
+		case POS_MEDITATING: gain *= conamount * 0.5;	break;
+		case POS_SLEEPING:   gain *= conamount;		break;
+		case POS_RESTING:    gain *= conamount * 0.5;	break;
 	    }
 	}
 
-	if ( ch->pcdata->condition[COND_FULL]   == 0 && !IS_HERO(ch) &&
-		!IS_SET(ch->act, PLR_VAMPIRE) )
-	    gain /= 2;
+	if ( ch->pcdata->condition[COND_FULL]   == 0 && !IS_HERO(ch) )
+	    gain *= 0.5;
 
 	if ( ch->pcdata->condition[COND_THIRST] == 0 && !IS_HERO(ch) )
-	    gain /= 2;
+	    gain *= 0.5;
 
     }
 
-    if ( IS_AFFECTED(ch, AFF_POISON) || IS_AFFECTED(ch, AFF_FLAMING) )
-	gain /= 4;
-
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE)) gain = 0;
+    if ( IS_AFFECTED(ch, AFF_POISON) || IS_AFFECTED(ch, AFF_FLAMING))
+	gain *= 0.25;
 
     return UMIN(gain, ch->max_hit - ch->hit);
 }
@@ -157,30 +113,26 @@ int mana_gain( CHAR_DATA *ch )
     }
     else
     {
-	gain = UMIN( 5, ch->level / 2 );
-
+	if (IS_CLASS(ch, CLASS_VAMPIRE)) return 0;
 	gain = number_range( 10, 20 );
 
 	if ((intamount = (get_curr_int(ch)+1)) > 1)
 	{
 	    switch ( ch->position )
 	    {
-		case POS_SLEEPING: gain *= intamount;		break;
-		case POS_RESTING:  gain *= intamount / 2;	break;
+		case POS_MEDITATING: gain *= intamount * ch->level;	break;
+		case POS_SLEEPING:   gain *= intamount;			break;
+		case POS_RESTING:    gain *= intamount * 0.5;		break;
 	    }
 	}
 
-        if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE)) gain = 0;
-
 	if ( !IS_HERO(ch) && ch->pcdata->condition[COND_THIRST] == 0 )
-	    gain /= 2;
+	    gain *= 0.5;
 
     }
 
     if ( IS_AFFECTED( ch, AFF_POISON ) || IS_AFFECTED(ch, AFF_FLAMING) )
-	gain /= 4;
-
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE)) gain = 0;
+	gain *= 0.25;
 
     return UMIN(gain, ch->max_mana - ch->mana);
 }
@@ -198,27 +150,25 @@ int move_gain( CHAR_DATA *ch )
     }
     else
     {
+	if (IS_CLASS(ch, CLASS_VAMPIRE)) return 0;
 	gain = number_range( 10, 20 );
 
 	if ((dexamount = (get_curr_dex(ch)+1)) > 1)
 	{
 	    switch ( ch->position )
 	    {
-		case POS_SLEEPING: gain *= dexamount;		break;
-		case POS_RESTING:  gain *= dexamount / 2;	break;
+		case POS_MEDITATING: gain *= dexamount * 0.5;	break;
+		case POS_SLEEPING:   gain *= dexamount;		break;
+		case POS_RESTING:    gain *= dexamount * 0.5;	break;
 	    }
 	}
 
-    	if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE)) gain = 0;
-
 	if ( !IS_HERO(ch) && ch->pcdata->condition[COND_THIRST] == 0 )
-	    gain /= 2;
+	    gain *= 0.5;
     }
 
     if ( IS_AFFECTED(ch, AFF_POISON) || IS_AFFECTED(ch, AFF_FLAMING) )
-	gain /= 4;
-
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE)) gain = 0;
+	gain *= 0.25;
 
     return UMIN(gain, ch->max_move - ch->move);
 }
@@ -232,11 +182,12 @@ void gain_condition( CHAR_DATA *ch, int iCond, int value )
     if ( value == 0 || IS_NPC(ch) )
 	return;
 
-    if (!IS_NPC(ch) && IS_HERO(ch) && !IS_SET(ch->act, PLR_VAMPIRE) )
+    if (!IS_NPC(ch) && IS_HERO(ch) && !IS_CLASS(ch, CLASS_VAMPIRE) 
+	&& iCond != COND_DRUNK)
 	return;
 
     condition				= ch->pcdata->condition[iCond];
-    if (!IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE) )
+    if (!IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE) )
 	ch->pcdata->condition[iCond]	= URANGE( 0, condition + value, 48 );
     else
 	ch->pcdata->condition[iCond]	= URANGE( 0, condition + value, 100 );
@@ -246,7 +197,7 @@ void gain_condition( CHAR_DATA *ch, int iCond, int value )
 	switch ( iCond )
 	{
 	case COND_FULL:
-	    if (!IS_SET(ch->act, PLR_VAMPIRE))
+	    if (!IS_CLASS(ch, CLASS_VAMPIRE))
 	    {
 		send_to_char( "You are REALLY hungry.\n\r",  ch );
 		act( "You hear $n's stomach rumbling.", ch, NULL, NULL, TO_ROOM );
@@ -254,14 +205,14 @@ void gain_condition( CHAR_DATA *ch, int iCond, int value )
 	    break;
 
 	case COND_THIRST:
-	    if (!IS_SET(ch->act, PLR_VAMPIRE)) 
+	    if (!IS_CLASS(ch, CLASS_VAMPIRE)) 
 		send_to_char( "You are REALLY thirsty.\n\r", ch );
 	    else if (ch->hit > 0)
 	    {
 		send_to_char( "You are DYING from lack of blood!\n\r", ch );
 		act( "$n gets a hungry look in $s eyes.", ch, NULL, NULL, TO_ROOM );
 		ch->hit = ch->hit - number_range(2,5);
-		if (number_percent() <= ch->beast && ch->beast > 0) do_rage(ch,"");
+		if (number_percent() <= ch->beast && ch->beast > 0) vamp_rage(ch);
 		if (!IS_VAMPAFF(ch, VAM_FANGS)) do_fangs(ch,"");
 	    }
 	    break;
@@ -277,17 +228,17 @@ void gain_condition( CHAR_DATA *ch, int iCond, int value )
 	switch ( iCond )
 	{
 	case COND_FULL:
-	    if (!IS_SET(ch->act, PLR_VAMPIRE)) 
+	    if (!IS_CLASS(ch, CLASS_VAMPIRE)) 
 		send_to_char( "You feel hungry.\n\r",  ch );
 	    break;
 
 	case COND_THIRST:
-	    if (!IS_SET(ch->act, PLR_VAMPIRE)) 
+	    if (!IS_CLASS(ch, CLASS_VAMPIRE)) 
 		send_to_char( "You feel thirsty.\n\r", ch );
 	    else
 	    {
 		send_to_char( "You crave blood.\n\r", ch );
-		if (number_range(1,1000) <= ch->beast && ch->beast > 0) do_rage(ch,"");
+		if (number_range(1,1000) <= ch->beast && ch->beast > 0) vamp_rage(ch);
 		if (number_percent() > (ch->pcdata->condition[COND_THIRST]+75)
 		    && !IS_VAMPAFF(ch, VAM_FANGS)) do_fangs(ch,"");
 	    }
@@ -317,14 +268,247 @@ void mobile_update( void )
     {
 	ch_next = ch->next;
 
-	if ( !IS_NPC(ch) || ch->in_room == NULL || IS_AFFECTED(ch, AFF_CHARM) )
+	if ( ch->in_room == NULL ) continue;
+/*
+	if ( ch->hunting != NULL && ch->hunting != '\0' && 
+	    strlen(ch->hunting) > 1 )
+	{
+	    check_hunt( ch );
 	    continue;
+	}
+*/
+	if ( !IS_NPC(ch) )
+	{
+	    if (ch->pcdata->condition[COND_DRUNK] > 10 && number_range(1,10) == 1)
+	    {
+		send_to_char("You hiccup loudly.\n\r",ch);
+		act("$n hiccups.",ch,NULL,NULL,TO_ROOM);
+	    }
+	    if (ch->pcdata->stage[0] > 0 || ch->pcdata->stage[2] > 0)
+	    {
+		CHAR_DATA *vch;
+		if (ch->pcdata->stage[1] > 0 && ch->pcdata->stage[2] >= 225)
+		{
+		    ch->pcdata->stage[2] += 1;
+		    if ( ( vch = ch->pcdata->partner ) != NULL &&
+			!IS_NPC(vch) && vch->pcdata->partner == ch &&
+			((vch->pcdata->stage[2] >= 200 && vch->sex == SEX_FEMALE) ||
+			(ch->pcdata->stage[2] >= 200 && ch->sex == SEX_FEMALE)))
+		    {
+			if (ch->in_room != vch->in_room) continue;
+			if (vch->pcdata->stage[2] >= 225 &&
+			    ch->pcdata->stage[2] >= 225 &&
+			    vch->pcdata->stage[2] < 240 &&
+			    ch->pcdata->stage[2] < 240)
+			{
+			    ch->pcdata->stage[2] = 240;
+			    vch->pcdata->stage[2] = 240;
+			}
+			if (ch->sex == SEX_MALE && vch->pcdata->stage[2] >= 240)
+			{
+			    act("You thrust deeply between $N's warm, damp thighs.",ch,NULL,vch,TO_CHAR);
+			    act("$n thrusts deeply between your warm, damp thighs.",ch,NULL,vch,TO_VICT);
+			    act("$n thrusts deeply between $N's warm, damp thighs.",ch,NULL,vch,TO_NOTVICT);
+			    if (vch->pcdata->stage[2] > ch->pcdata->stage[2])
+				ch->pcdata->stage[2] = vch->pcdata->stage[2];
+			}
+			else if (ch->sex == SEX_FEMALE && vch->pcdata->stage[2] >= 240)
+			{
+			    act("You squeeze your legs tightly around $N, moaning loudly.",ch,NULL,vch,TO_CHAR);
+			    act("$n squeezes $s legs tightly around you, moaning loudly.",ch,NULL,vch,TO_VICT);
+			    act("$n squeezes $s legs tightly around $N, moaning loudly.",ch,NULL,vch,TO_NOTVICT);
+			    if (vch->pcdata->stage[2] > ch->pcdata->stage[2])
+				ch->pcdata->stage[2] = vch->pcdata->stage[2];
+			}
+		    }
+		    if (ch->pcdata->stage[2] >= 250)
+		    {
+			if ( ( vch = ch->pcdata->partner ) != NULL &&
+			    !IS_NPC(vch) && vch->pcdata->partner == ch &&
+			    ch->in_room == vch->in_room)
+			{
+			    vch->pcdata->stage[2] = 250;
+			    if (ch->sex == SEX_MALE)
+			    {
+				stage_update(ch,vch,2);
+				stage_update(vch,ch,2);
+			    }
+			    else
+			    {
+				stage_update(vch,ch,2);
+				stage_update(ch,vch,2);
+			    }
+			    ch->pcdata->stage[0] = 0;
+			    vch->pcdata->stage[0] = 0;
+			    if (!IS_EXTRA(ch, EXTRA_EXP))
+			    {
+				send_to_char("Congratulations on achieving a simultanious orgasm!  Recieve 100000 exp!\n\r",ch);
+				SET_BIT(ch->extra, EXTRA_EXP);
+				ch->exp += 100000;
+			    }
+			    if (!IS_EXTRA(vch, EXTRA_EXP))
+			    {
+				send_to_char("Congratulations on achieving a simultanious orgasm!  Recieve 100000 exp!\n\r",vch);
+				SET_BIT(vch->extra, EXTRA_EXP);
+				vch->exp += 100000;
+			    }
+			}
+		    }
+		}
+		else
+		{
+		    if (ch->pcdata->stage[0] > 0 && ch->pcdata->stage[2] < 1 &&
+			ch->position != POS_RESTING) 
+		    {
+			if (ch->pcdata->stage[0] > 1)
+			    ch->pcdata->stage[0] -= 1;
+			else
+			    ch->pcdata->stage[0] = 0;
+		    }
+		    else if (ch->pcdata->stage[2]>0 && ch->pcdata->stage[0] < 1)
+		    {
+			if (ch->pcdata->stage[2] > 10)
+			    ch->pcdata->stage[2] -= 10;
+			else
+			    ch->pcdata->stage[2] = 0;
+			if (ch->sex == SEX_MALE && ch->pcdata->stage[2] == 0)
+			    send_to_char("You feel fully recovered.\n\r",ch);
+		    }
+		}
+	    }
+	    if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) && IS_HERO(ch))
+	    {
+		if ( ch->position == POS_FIGHTING && ch->pcdata->stats[UNI_RAGE] > 0 
+		    && ch->pcdata->stats[UNI_RAGE] < 25 && !IS_ITEMAFF(ch, ITEMA_RAGER) )
+		    ch->pcdata->stats[UNI_RAGE] += 1;
+		else if (ch->pcdata->stats[UNI_RAGE] > 0 && !IS_ITEMAFF(ch, ITEMA_RAGER))
+		    ch->pcdata->stats[UNI_RAGE] -= 1;
+		if (ch->pcdata->stats[UNI_RAGE] < 1) continue;
+		if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+		    ch->move < ch->max_move )
+		    werewolf_regen(ch);
+		if (ch->loc_hp[6] > 0)
+		{
+		    int sn = skill_lookup( "clot" );
+		    (*skill_table[sn].spell_fun) (sn,ch->level,ch,ch);
+		}
+		else
+		{
+		    if ((ch->loc_hp[0] + ch->loc_hp[1] + ch->loc_hp[2] +
+			ch->loc_hp[3] + ch->loc_hp[4] + ch->loc_hp[5]) != 0)
+		    reg_mend(ch);
+		}
+	    }
+	    else if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_WEREWOLF) && IS_HERO(ch))
+	    {
+		if (ch->position == POS_FIGHTING && !IS_ITEMAFF(ch, ITEMA_RAGER))
+		{
+		    if (ch->pcdata->stats[UNI_RAGE] < 300)
+			ch->pcdata->stats[UNI_RAGE] += number_range(5,10);
+		    if (ch->pcdata->stats[UNI_RAGE] < 300 && ch->pcdata->powers[WPOWER_WOLF] > 3)
+			ch->pcdata->stats[UNI_RAGE] += number_range(5,10);
+		    if (!IS_SET(ch->special, SPC_WOLFMAN) && 
+			ch->pcdata->stats[UNI_RAGE] >= 100)
+			do_werewolf(ch,"");
+		}
+		else if (ch->pcdata->stats[UNI_RAGE] > 0 && !IS_ITEMAFF(ch, ITEMA_RAGER))
+		{
+		    ch->pcdata->stats[UNI_RAGE] -= 1;
+		    if (ch->pcdata->stats[UNI_RAGE] < 100) do_unwerewolf(ch,"");
+		}
+		if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+		    ch->move < ch->max_move )
+		    werewolf_regen(ch);
+		if (IS_CLASS(ch,CLASS_WEREWOLF) && ch->position == POS_SLEEPING
+		    && ch->pcdata->powers[WPOWER_BEAR] > 3 && ch->hit > 0)
+		{
+		    if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+			ch->move < ch->max_move )
+			werewolf_regen(ch);
+		    if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+			ch->move < ch->max_move )
+			werewolf_regen(ch);
+		    if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+			ch->move < ch->max_move )
+			werewolf_regen(ch);
+		    if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+			ch->move < ch->max_move )
+			werewolf_regen(ch);
+		}
+		if (ch->loc_hp[6] > 0)
+		{
+		    int sn = skill_lookup( "clot" );
+		    (*skill_table[sn].spell_fun) (sn,ch->level,ch,ch);
+		}
+		else
+		{
+		    if ((ch->loc_hp[0] + ch->loc_hp[1] + ch->loc_hp[2] +
+			ch->loc_hp[3] + ch->loc_hp[4] + ch->loc_hp[5]) != 0)
+		    reg_mend(ch);
+		}
+	    }
+	    else if (IS_ITEMAFF(ch, ITEMA_REGENERATE) || (!IS_NPC(ch) && 
+		IS_CLASS(ch, CLASS_HIGHLANDER)))
+	    {
+		if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+		    ch->move < ch->max_move )
+		    werewolf_regen(ch);
+		if (ch->loc_hp[6] > 0)
+		{
+		    int sn = skill_lookup( "clot" );
+		    (*skill_table[sn].spell_fun) (sn,ch->level,ch,ch);
+		}
+		else
+		{
+		    if ((ch->loc_hp[0] + ch->loc_hp[1] + ch->loc_hp[2] +
+			ch->loc_hp[3] + ch->loc_hp[4] + ch->loc_hp[5]) != 0)
+		    reg_mend(ch);
+		}
+	    }
+	    else if ((IS_CLASS(ch, CLASS_DEMON) || IS_SET(ch->special, SPC_CHAMPION)) && IS_HERO(ch)
+		&& ch->in_room != NULL && ch->in_room->vnum == 30000)
+	    {
+		if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+		    ch->move < ch->max_move )
+		    werewolf_regen(ch);
+		if (ch->hit > 0)
+		{
+		    if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+			ch->move < ch->max_move )
+			werewolf_regen(ch);
+		    if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+			ch->move < ch->max_move )
+			werewolf_regen(ch);
+		    if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+			ch->move < ch->max_move )
+			werewolf_regen(ch);
+		    if ( ch->hit < ch->max_hit || ch->mana < ch->max_mana || 
+			ch->move < ch->max_move )
+			werewolf_regen(ch);
+		}
+		if (ch->loc_hp[6] > 0)
+		{
+		    int sn = skill_lookup( "clot" );
+		    (*skill_table[sn].spell_fun) (sn,ch->level,ch,ch);
+		}
+		else
+		{
+		    if ((ch->loc_hp[0] + ch->loc_hp[1] + ch->loc_hp[2] +
+			ch->loc_hp[3] + ch->loc_hp[4] + ch->loc_hp[5]) != 0)
+		    reg_mend(ch);
+		}
+	    }
+	    continue;
+	}
+
+	if ( IS_AFFECTED(ch, AFF_CHARM) ) continue;
 
 	/* Examine call for special procedure */
 	if ( ch->spec_fun != 0 )
 	{
 	    if ( (*ch->spec_fun) ( ch ) )
 		continue;
+	    if (ch == NULL) continue;
 	}
 
 	/* That's all for sleeping / busy monster */
@@ -356,6 +540,7 @@ void mobile_update( void )
 		obj_from_room( obj_best );
 		obj_to_char( obj_best, ch );
 		act( "$n picks $p up.", ch, obj_best, NULL, TO_ROOM );
+		act( "You pick $p up.", ch, obj_best, NULL, TO_CHAR );
 	    }
 	}
 
@@ -366,7 +551,8 @@ void mobile_update( void )
 	&&   pexit->to_room != NULL
 	&&   !IS_SET(pexit->exit_info, EX_CLOSED)
 	&&   !IS_SET(pexit->to_room->room_flags, ROOM_NO_MOB)
-	&& ( !IS_SET(ch->act, ACT_STAY_AREA)
+	&& ( ch->hunting == NULL || strlen(ch->hunting) < 2 )
+	&& ( (!IS_SET(ch->act, ACT_STAY_AREA) && ch->level < 900)
 	||   pexit->to_room->area == ch->in_room->area ) )
 	{
 	    move_char( ch, door );
@@ -377,6 +563,8 @@ void mobile_update( void )
 	&& ( door = number_bits( 3 ) ) <= 5
 	&& ( pexit = ch->in_room->exit[door] ) != NULL
 	&&   pexit->to_room != NULL
+	&&   !IS_AFFECTED(ch, AFF_WEBBED)
+	&&   ch->level < 900
 	&&   !IS_SET(pexit->exit_info, EX_CLOSED)
 	&&   !IS_SET(pexit->to_room->room_flags, ROOM_NO_MOB) )
 	{
@@ -412,7 +600,9 @@ void weather_update( void )
 {
     char buf[MAX_STRING_LENGTH];
     DESCRIPTOR_DATA *d;
+    CHAR_DATA *ch = NULL;
     int diff;
+    bool char_up;
 
     buf[0] = '\0';
 
@@ -434,13 +624,33 @@ void weather_update( void )
 	break;
 
     case 20:
-	weather_info.sunlight = SUN_DARK;
+        weather_info.sunlight = SUN_DARK;
 	strcat( buf, "The night has begun.\n\r" );
 	break;
 
     case 24:
 	time_info.hour = 0;
 	time_info.day++;
+	for ( d = descriptor_list; d != NULL; d = d->next )
+	{
+	    char_up = FALSE;
+	    if ( d->connected == CON_PLAYING
+	    &&   (ch = d->character) != NULL
+	    &&  !IS_NPC(ch))
+	    {
+		send_to_char( "You hear a clock in the distance strike midnight.\n\r",ch);
+		if ( IS_CLASS(ch, CLASS_VAMPIRE) )
+		{
+		    if (ch->hit < ch->max_hit)
+			{ ch->hit = ch->max_hit; char_up = TRUE; }
+		    if (ch->mana < ch->max_mana)
+			{ ch->mana = ch->max_mana; char_up = TRUE; }
+		    if (ch->move < ch->max_move)
+			{ ch->move = ch->max_move; char_up = TRUE; }
+		    if (char_up) send_to_char( "You feel the strength of the kindred flow through your veins!\n\r", ch );
+		}
+	    }
+	}
 	break;
     }
 
@@ -556,6 +766,7 @@ void char_update( void )
     CHAR_DATA *ch_save;
     CHAR_DATA *ch_quit;
     bool is_obj;
+    bool drop_out = FALSE;
     time_t save_time;
 
     save_time	= current_time;
@@ -585,7 +796,15 @@ void char_update( void )
 	    ch_save	= ch;
 	    save_time	= ch->save_time;
 	}
-
+/*
+	if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_WEREWOLF) && !is_obj &&
+	    ch->pcdata->powers[WPOWER_BEAR] > 3 && ch->position == POS_SLEEPING)
+	{
+	    if ( ch->hit  < ch->max_hit  ) ch->hit  = ch->max_hit;
+	    if ( ch->mana < ch->max_mana ) ch->mana = ch->max_mana;
+	    if ( ch->move < ch->max_move ) ch->move = ch->max_move;
+	}
+*/
 	if ( ch->position > POS_STUNNED && !is_obj)
 	{
 	    if ( ch->hit  < ch->max_hit )
@@ -602,11 +821,13 @@ void char_update( void )
 	{
             ch->hit = ch->hit + number_range(2,4);
 	    update_pos( ch );
+/*
             if (ch->position > POS_STUNNED)
             {
                 act( "$n clambers back to $s feet.", ch, NULL, NULL, TO_ROOM );
                 act( "You clamber back to your feet.", ch, NULL, NULL, TO_CHAR );
             }
+*/
 	}
 
 	if ( !IS_NPC(ch) && ch->level < LEVEL_IMMORTAL && !is_obj)
@@ -649,21 +870,13 @@ void char_update( void )
 	    if ( ch->timer > 30 ) ch_quit = ch;
 
 	    gain_condition( ch, COND_DRUNK,  -1 );
-	    if (IS_SET(ch->act, PLR_WEREWOLF) && ch->position != POS_FIGHTING)
-	    {
-		ch->pcdata->wolf -= number_range(2,5);
-		if (IS_SET(ch->act, PLR_WOLFMAN) && ch->pcdata->wolf < 100)
-		    do_unwerewolf(ch,"");
-	    }
-	    if (!IS_SET(ch->act, PLR_VAMPIRE))
+	    if (!IS_CLASS(ch, CLASS_VAMPIRE))
 	    {
 	    	gain_condition( ch, COND_FULL, -1 );
 	    	gain_condition( ch, COND_THIRST, -1 );
 	    }
 	    else
 	    {
-		if ( ch->position != POS_FIGHTING && ch->pcdata->wolf > 0 )
-		    ch->pcdata->wolf -= 1;
 		blood = -1;
 		if (ch->beast > 0)
 		{
@@ -711,7 +924,7 @@ void char_update( void )
 	 *   MUST NOT refer to ch after damage taken,
 	 *   as it may be lethal damage (on NPC).
 	 */
-	if ( ch->loc_hp[6] > 0 && !is_obj )
+	if ( ch->loc_hp[6] > 0 && !is_obj && ch->in_room != NULL )
 	{
 	    int dam = 0;
 	    int minhit = 0;
@@ -782,34 +995,33 @@ void char_update( void )
 	    update_pos(ch);
 	    ch->in_room->blood += dam;
 	    if (ch->in_room->blood > 1000) ch->in_room->blood = 1000;
-	    if (ch == NULL) return;
 	    if (ch->hit <=-11 || (IS_NPC(ch) && ch->hit < 1))
 	    {
 		do_killperson(ch,ch->name);
-		return;
+		drop_out = TRUE;
 	    }
 	}
-	if ( IS_AFFECTED(ch, AFF_FLAMING) && !is_obj )
+	if ( IS_AFFECTED(ch, AFF_FLAMING) && !is_obj && !drop_out && ch->in_room != NULL )
 	{
 	    int dam;
 	    if (!IS_NPC(ch) && IS_HERO(ch)) break;
 	    if (!IS_NPC(ch) && IS_IMMUNE(ch, IMM_HEAT) &&
-		!IS_SET(ch->act, PLR_VAMPIRE)) break;
+		!IS_CLASS(ch, CLASS_VAMPIRE)) break;
 	    act( "$n's flesh burns and crisps.", ch, NULL, NULL, TO_ROOM );
 	    send_to_char( "Your flesh burns and crisps.\n\r", ch );
 	    dam = number_range(10,20);
 	    if (!IS_NPC(ch) && IS_IMMUNE(ch, IMM_HEAT)) dam /= 2;
-	    if (!IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE)) dam *= 2;
+	    if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE)) dam *= 2;
 	    ch->hit = ch->hit - dam;
 	    update_pos(ch);
 	    if (ch->hit <=-11)
 	    {
 		do_killperson(ch,ch->name);
-		return;
+		drop_out = TRUE;
 	    }
 	}
-	else if ( IS_SET(ch->act, PLR_VAMPIRE) && (!IS_AFFECTED(ch,AFF_SHADOWPLANE)) &&
-	    (!IS_NPC(ch) && !IS_IMMUNE(ch,IMM_SUNLIGHT)) &&
+	else if ( IS_CLASS(ch, CLASS_VAMPIRE) && (!IS_AFFECTED(ch,AFF_SHADOWPLANE)) &&
+	    (!IS_NPC(ch) && !IS_IMMUNE(ch,IMM_SUNLIGHT)) && ch->in_room != NULL &&
 	    (!ch->in_room->sector_type == SECT_INSIDE) && !is_obj &&
 	    (!room_is_dark(ch->in_room)) && (weather_info.sunlight != SUN_DARK) )
 	{
@@ -824,16 +1036,26 @@ void char_update( void )
 	    if (ch->hit <=-11)
 	    {
 		do_killperson(ch,ch->name);
-		return;
+		drop_out = TRUE;
 	    }
 	}
-	else if ( IS_AFFECTED(ch, AFF_POISON) && !is_obj )
+	else if ( IS_AFFECTED(ch, AFF_POISON) && !is_obj && !drop_out )
 	{
 	    act( "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
 	    send_to_char( "You shiver and suffer.\n\r", ch );
 	    damage( ch, ch, 2, gsn_poison );
 	}
-	else if ( ch->position == POS_INCAP && !is_obj )
+	else if ( !IS_NPC( ch ) && ch->paradox[1] > 0 )
+	{
+	    if ( ch->paradox[1] > 50 ) paradox( ch );
+	    else if ( ch->paradox[2] == 0 && ch->paradox[1] > 0 )
+	    {
+		ch->paradox[1] --;
+		ch->paradox[2] = PARADOX_TICK;
+	    }
+	    else ch->paradox[3] --;
+	}
+	else if ( ch->position == POS_INCAP && !is_obj && !drop_out )
 	{
 	    if (IS_HERO(ch))
                 ch->hit = ch->hit + number_range(2,4);
@@ -851,8 +1073,9 @@ void char_update( void )
                 send_to_char( "You clamber back to your feet.\n\r", ch );
             }
 	}
-	else if ( ch->position == POS_MORTAL && !is_obj )
+	else if ( ch->position == POS_MORTAL && !is_obj && !drop_out )
 	{
+	    drop_out = FALSE;
 	    if (IS_HERO(ch))
                 ch->hit = ch->hit + number_range(2,4);
 	    else
@@ -860,22 +1083,25 @@ void char_update( void )
                 ch->hit = ch->hit - number_range(1,2);
 		if (!IS_NPC(ch) && (ch->hit <=-11))
 		    do_killperson(ch,ch->name);
-		return;
+		drop_out = TRUE;
 	    }
-	    update_pos( ch );
-            if (ch->position == POS_INCAP)
-            {
-                act( "$n's wounds begin to close, and $s bones pop back into place.", ch, NULL, NULL, TO_ROOM );
-                send_to_char( "Your wounds begin to close, and your bones pop back into place.\n\r", ch );
-            }
+	    if (!drop_out)
+	    {
+	    	update_pos( ch );
+            	if (ch->position == POS_INCAP)
+            	{
+                    act( "$n's wounds begin to close, and $s bones pop back into place.", ch, NULL, NULL, TO_ROOM );
+                    send_to_char( "Your wounds begin to close, and your bones pop back into place.\n\r", ch );
+            	}
+	    }
 	}
-	else if ( ch->position == POS_DEAD && !is_obj )
+	else if ( ch->position == POS_DEAD && !is_obj && !drop_out )
 	{
 	   update_pos(ch);
 	   if (!IS_NPC(ch))
 		do_killperson(ch,ch->name);
-	   return;
 	}
+	drop_out = FALSE;
     }
 
     /*
@@ -1011,28 +1237,48 @@ void aggr_update( void )
     CHAR_DATA *ch_next;
     CHAR_DATA *vch;
     CHAR_DATA *vch_next;
-    CHAR_DATA *victim;
+    CHAR_DATA *victim = NULL;
 
-    OBJ_DATA *obj;
-    ROOM_INDEX_DATA *objroom;
+    OBJ_DATA *obj = NULL;
+    OBJ_DATA *chobj = NULL;
+    ROOM_INDEX_DATA *objroom = NULL;
     DESCRIPTOR_DATA *d;
 
-    for ( d = descriptor_list; d; d = d->next )
+    for ( d = descriptor_list; d != NULL; d = d->next )
     {
+/*
 	if ( d->connected == CON_PLAYING
 	&& ( ch = d->character ) != NULL
 	&&   !IS_NPC(ch)
-	&&   ch->pcdata->chobj != NULL)
+	&&   ch->pcdata->stage[1] > 0
+	&& ( victim = ch->pcdata->partner ) != NULL
+	&&   !IS_NPC(victim)
+	&&   ch->in_room != NULL
+	&&   victim->in_room != NULL
+	&&   victim->in_room != ch->in_room )
 	{
-	    obj=ch->pcdata->chobj;
-	    if (obj->carried_by != NULL && obj->carried_by != ch)
-	    	objroom = get_room_index(obj->carried_by->in_room->vnum);
-	    else if (obj->in_room != NULL)
-	    	objroom = get_room_index(obj->in_room->vnum);
+	    ch->pcdata->stage[1] = 0;
+	    victim->pcdata->stage[1] = 0;
+	}
+*/
+	if ( d->connected == CON_PLAYING
+	&& ( ch = d->character ) != NULL
+	&&   !IS_NPC(ch)
+	&&   ch->pcdata != NULL
+	&& ( obj = ch->pcdata->chobj ) != NULL )
+	{
+	    if (obj->in_room != NULL)
+	    	objroom = obj->in_room;
 	    else if (obj->in_obj != NULL)
 	    	objroom = get_room_index(ROOM_VNUM_IN_OBJECT);
+	    else if (obj->carried_by != NULL)
+	    {
+		if (obj->carried_by != ch && obj->carried_by->in_room != NULL)
+		    objroom = obj->carried_by->in_room;
+		else continue;
+	    }
 	    else continue;
-	    if (ch->in_room != objroom)
+	    if (ch->in_room != objroom && objroom != NULL)
 	    {
 	    	char_from_room(ch);
 	    	char_to_room(ch,objroom);
@@ -1042,12 +1288,13 @@ void aggr_update( void )
 	else if ( d->connected == CON_PLAYING
 	&& ( ch = d->character ) != NULL
 	&&   !IS_NPC(ch)
+	&&   ch->pcdata != NULL
 	&&   (IS_HEAD(ch,LOST_HEAD) || IS_EXTRA(ch,EXTRA_OSWITCH) || ch->pcdata->obj_vnum != 0) )
 	{
 	    if (ch->pcdata->obj_vnum != 0)
 	    {
 		bind_char(ch);
-		return;
+		continue;
 	    }
 	    if (IS_HEAD(ch,LOST_HEAD))
 	    {
@@ -1063,20 +1310,50 @@ void aggr_update( void )
 	    ch->morph = str_dup("");
 	    char_from_room(ch);
 	    char_to_room(ch,get_room_index(ROOM_VNUM_ALTAR));
+	    if ( ( chobj = ch->pcdata->chobj ) != NULL )
+		chobj->chobj = NULL;
 	    ch->pcdata->chobj = NULL;
 	    do_look(ch,"auto");
 	}
+	continue;
     }
 
     for ( wch = char_list; wch != NULL; wch = wch_next )
     {
 	wch_next = wch->next;
 	if ( IS_NPC(wch)
+	|| ( wch->desc != NULL && wch->desc->connected != CON_PLAYING )
 	||   wch->position <= POS_STUNNED
 	||   wch->level >= LEVEL_IMMORTAL
+	||   wch->pcdata == NULL
+	|| ( ( chobj = wch->pcdata->chobj ) != NULL )
 	||   wch->in_room == NULL )
 	    continue;
-
+/*
+	if ( (IS_CLASS(wch, CLASS_WEREWOLF) && IS_HERO(wch)) ||
+	    IS_ITEMAFF(wch, ITEMA_STALKER) )
+	{
+	    if ( wch->hunting != NULL && wch->hunting != '\0' && 
+		strlen(wch->hunting) > 1 && wch->pcdata->powers[WPOWER_LYNX] > 1)
+	    {
+		ROOM_INDEX_DATA *old_room = wch->in_room;
+		check_hunt( wch );
+		if (wch->in_room == old_room)
+		{
+		    free_string(wch->hunting);
+		    wch->hunting = str_dup( "" );
+		    continue;
+		}
+		check_hunt( wch );
+		if (wch->in_room == old_room)
+		{
+		    free_string(wch->hunting);
+		    wch->hunting = str_dup( "" );
+		}
+		continue;
+	    }
+	}
+*/
 	for ( ch = wch->in_room->people; ch != NULL; ch = ch_next )
 	{
 	    int count;
@@ -1106,6 +1383,8 @@ void aggr_update( void )
 
 		if ( !IS_NPC(vch)
 		&&   !no_attack(ch, vch)
+		&&   vch->pcdata != NULL
+		&& ( ( chobj = vch->pcdata->chobj ) == NULL )
 		&&   vch->level < LEVEL_IMMORTAL
 		&&   vch->position > POS_STUNNED
 		&&   ( !IS_SET(ch->act, ACT_WIMPY) || !IS_AWAKE(vch) )
@@ -1119,7 +1398,9 @@ void aggr_update( void )
 
 	    if ( victim == NULL )
 	    {
-		bug( "Aggr_update: null victim.", count );
+/*
+		bug( "Aggr_update: null victim attempt by mob %d.", ch->pIndexData->vnum );
+*/
 		continue;
 	    }
 
@@ -1130,6 +1411,42 @@ void aggr_update( void )
     return;
 }
 
+
+void ww_update( void )
+{
+    DESCRIPTOR_DATA *d;
+    CHAR_DATA       *victim;
+    float            dam = 0;
+
+    for ( d = descriptor_list; d != NULL; d = d->next )
+      {
+      if (!IS_PLAYING(d) || (victim = d->character) == NULL
+        || IS_NPC(victim) || IS_IMMORTAL(victim)
+	|| victim->in_room == NULL || victim->pcdata->chobj != NULL
+        || IS_CLASS(victim,CLASS_WEREWOLF))
+	{
+            continue;
+        }
+      if ( !IS_SET( d->character->in_room->room_flags, ROOM_BLADE_BARRIER ) )
+        continue;
+
+      act( "The scattered blades on the ground fly up into the air ripping into you.", d->character, NULL, NULL, TO_CHAR );
+      act( "The scattered blades on the ground fly up into the air ripping into $n.", d->character, NULL, NULL, TO_ROOM );
+
+      act( "The blades drop to the ground inert.", d->character, NULL, NULL, TO_CHAR );
+      act( "The blades drop to the ground inert.", d->character, NULL, NULL, TO_ROOM );
+
+      dam = number_range( 7, 14 );
+      dam = dam / 100;
+      dam = d->character->hit * dam;
+      if ( dam < 100 ) dam = 100;
+      d->character->hit = d->character->hit - dam;
+      if ( d->character->hit < -10 ) d->character->hit = -10;
+      update_pos( victim );
+      }
+
+    return;
+}
 
 
 /*
@@ -1143,6 +1460,13 @@ void update_handler( void )
     static  int     pulse_mobile;
     static  int     pulse_violence;
     static  int     pulse_point;
+    static  int     pulse_ww;
+
+    if ( --pulse_ww       <= 0 )
+    {
+        pulse_ww        = PULSE_WW;
+        ww_update       ( );
+    }
 
     if ( --pulse_area     <= 0 )
     {

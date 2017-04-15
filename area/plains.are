@@ -1,4 +1,4 @@
-#AREA	{ 1 20} Copper  Plains of the North~
+#AREA	Copper  Plains of the North~
 
 
 
@@ -621,7 +621,8 @@ S
 #315
 Gallow hill~
    You walk in the grassy plains. On this little hill you can see
-two gallows, with rotting human tissue hanging from the robe.
+two gallows, with rotting human tissue hanging from the robe.  Floating 
+above you is a glowing blue gateway.
 There is a sign here.
 ~
 3 0 4
@@ -645,6 +646,11 @@ The plains extend far to the west.
 ~
 ~
 0 -1 318
+D4
+A blue moongate.
+~
+moongate~
+1 -1 2400
 E
 sign~
 The sign says:

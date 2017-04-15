@@ -224,7 +224,36 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
     }
 
     if ( IS_NPC(ch) )
+    {
+    	switch ( paf->location )
+    	{
+	    default: break;
+	    case APPLY_NONE:						break;
+	    case APPLY_MANA:          ch->max_mana		+= mod;	break;
+	    case APPLY_HIT:           ch->max_hit		+= mod;	break;
+	    case APPLY_MOVE:          ch->max_move		+= mod;	break;
+	    case APPLY_AC:            ch->armor			+= mod;	break;
+	    case APPLY_HITROLL:       ch->hitroll		+= mod;	break;
+	    case APPLY_DAMROLL:       ch->damroll		+= mod;	break;
+	    case APPLY_SAVING_PARA:   ch->saving_throw		+= mod;	break;
+	    case APPLY_SAVING_ROD:    ch->saving_throw		+= mod;	break;
+	    case APPLY_SAVING_PETRI:  ch->saving_throw		+= mod;	break;
+	    case APPLY_SAVING_BREATH: ch->saving_throw		+= mod;	break;
+	    case APPLY_SAVING_SPELL:  ch->saving_throw		+= mod;	break;
+	    case APPLY_POLY:	      ch->polyaff		+= mod;	break;
+	}
 	return;
+    }
+
+    if ( IS_CLASS(ch, CLASS_HIGHLANDER) )
+    {
+    	switch ( paf->location )
+    	{
+	    default: break;
+	    case APPLY_NONE:						break;
+	}
+	return;
+    }
 
     switch ( paf->location )
     {
@@ -238,7 +267,10 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
     case APPLY_INT:           ch->pcdata->mod_int	+= mod;	break;
     case APPLY_WIS:           ch->pcdata->mod_wis	+= mod;	break;
     case APPLY_CON:           ch->pcdata->mod_con	+= mod;	break;
+/*
     case APPLY_SEX:           ch->sex			+= mod;	break;
+*/
+    case APPLY_SEX:						break;
     case APPLY_CLASS:						break;
     case APPLY_LEVEL:						break;
     case APPLY_AGE:						break;
@@ -257,6 +289,7 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
     case APPLY_SAVING_PETRI:  ch->saving_throw		+= mod;	break;
     case APPLY_SAVING_BREATH: ch->saving_throw		+= mod;	break;
     case APPLY_SAVING_SPELL:  ch->saving_throw		+= mod;	break;
+    case APPLY_POLY:	      ch->polyaff		+= mod;	break;
     }
 
     /*
@@ -264,6 +297,7 @@ void affect_modify( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd )
      * Guard against recursion (for weapons with affects).
      */
     if ( ( wield = get_eq_char( ch, WEAR_WIELD ) ) != NULL
+    &&   wield->item_type == ITEM_WEAPON
     &&   get_obj_weight(wield) > str_app[get_curr_str(ch)].wield )
     {
 	static int depth;
@@ -446,6 +480,12 @@ void char_from_room( CHAR_DATA *ch )
     &&   ch->in_room->light > 0 )
 	--ch->in_room->light;
 
+    if ( !IS_NPC(ch)  &&  IS_AFFECTED(ch, AFF_DARKNESS))
+    {
+	if (ch->in_room != NULL)
+	    REMOVE_BIT(ch->in_room->room_flags, ROOM_TOTAL_DARKNESS); 
+    }
+
     if ( ch == ch->in_room->people )
     {
 	ch->in_room->people = ch->next_in_room;
@@ -504,6 +544,9 @@ void char_to_room( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex )
 	++ch->in_room->light;
 
     if (ch->loc_hp[6] > 0 && ch->in_room->blood < 1000) ch->in_room->blood += 1;
+
+    if ( !IS_NPC(ch)  &&  IS_AFFECTED(ch, AFF_DARKNESS))
+        SET_BIT(ch->in_room->room_flags, ROOM_TOTAL_DARKNESS);  
 
     return;
 }
@@ -654,14 +697,88 @@ void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
 	act( "$n is zapped by $p and drops it.",  ch, obj, NULL, TO_ROOM );
 	obj_from_char( obj );
 	obj_to_room( obj, ch->in_room );
+	do_autosave( ch, "" );
+	return;
+    }
+
+    if ((IS_NPC(ch) || (!IS_CLASS(ch, CLASS_DEMON))) &&
+	IS_SET(obj->spectype, SITEM_DEMONIC))
+    {
+	act( "You are zapped by $p and drop it.", ch, obj, NULL, TO_CHAR );
+	act( "$n is zapped by $p and drops it.",  ch, obj, NULL, TO_ROOM );
+	obj_from_char( obj );
+	obj_to_room( obj, ch->in_room );
+	do_autosave( ch, "" );
+	return;
+    }
+    
+    if ((IS_NPC(ch) || !IS_IMMORTAL(ch)) && IS_SET(obj->quest,QUEST_RELIC)
+	&&  !IS_SET(obj->spectype,SITEM_DEMONIC)
+	&&  !IS_SET(obj->spectype,SITEM_HIGHLANDER)
+        &&  obj->chobj == NULL)
+    {
+	act( "You are zapped by $p and drop it.", ch, obj, NULL, TO_CHAR );
+	act( "$n is zapped by $p and drops it.",  ch, obj, NULL, TO_ROOM );
+	obj_from_char( obj );
+	obj_to_room( obj, ch->in_room );
+	do_autosave( ch, "" );
+	return;
+    }
+/*
+ * Mercpoint - commented out to enable wearing more than one artifact.
+ * Damcap is not modified by more than 500 on wearing more than one
+ * artifact due to the fact that the damcap modifier is based on whether
+ * a player is affected by ITEMA_ARTIFACT and as this can only be either
+ * on or off it only affects damcap once :)
+ * Therefore this enables a player to wear all the artifacts they have
+ * aquired (call it a reward for having got them) as because we have
+ * changed the code such that artifacts can no longer be put in bags,
+ * it now follows that a player with more than one artifact who is decapped
+ * will have his corpse looted for all of those artifacts.
+ * Hence he might as well can the benefit for having them.
+ *
+ * It miht be an idea to add a check such that if the player is still
+ * wearing an artifact when they remove one that the ITEMA_ARTIFACT bit
+ * isn't removed. - Merc (4/10/96)
+ *
+    if (IS_SET(obj->quest, QUEST_ARTIFACT) && IS_ITEMAFF(ch, ITEMA_ARTIFACT))
+    {
+	act( "You are zapped by $p and drop it.", ch, obj, NULL, TO_CHAR );
+	act( "$n is zapped by $p and drops it.",  ch, obj, NULL, TO_ROOM );
+	obj_from_char( obj );
+	obj_to_room( obj, ch->in_room );
+	do_autosave( ch, "" );
+	return;
+    }
+ */
+
+    if ((IS_NPC(ch) || !IS_IMMORTAL( ch )) && IS_SET(obj->spectype, SITEM_DROWWEAPON))
+    {
+	act( "You are zapped by $p and drop it.", ch, obj, NULL, TO_CHAR );
+	act( "$n is zapped by $p and drops it.",  ch, obj, NULL, TO_ROOM );
+	obj_from_char( obj );
+	obj_to_room( obj, ch->in_room );
+	do_autosave( ch, "" );
+	return;
+    }
+
+    if ((IS_NPC(ch) || !IS_CLASS(ch, CLASS_HIGHLANDER)) 
+	&& IS_SET(obj->spectype, SITEM_HIGHLANDER))
+    {
+	act( "You are zapped by $p and drop it.", ch, obj, NULL, TO_CHAR );
+	act( "$n is zapped by $p and drops it.",  ch, obj, NULL, TO_ROOM );
+	obj_from_char( obj );
+	obj_to_room( obj, ch->in_room );
+	do_autosave( ch, "" );
 	return;
     }
 
     if ( iWear == WEAR_SCABBARD_L ||
     	iWear == WEAR_SCABBARD_R ) {obj->wear_loc = iWear;return;}
 
-    ch->armor      	-= apply_ac( obj, iWear );
-    obj->wear_loc	 = iWear;
+    if ( IS_NPC(ch) || !IS_CLASS(ch, CLASS_HIGHLANDER) ) 
+	ch->armor -= apply_ac( obj, iWear );
+    obj->wear_loc = iWear;
 
     for ( paf = obj->pIndexData->affected; paf != NULL; paf = paf->next )
 	affect_modify( ch, paf, TRUE );
@@ -698,7 +815,10 @@ void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
     if ( obj->wear_loc == WEAR_NONE )
 	return;
     if (   ((obj->item_type == ITEM_ARMOR ) && (obj->value[3] >= 1   ))
-	|| ((obj->item_type == ITEM_WEAPON) && (obj->value[0] >= 1000)) )
+	|| ((obj->item_type == ITEM_WEAPON) && (obj->value[0] >= 1000))
+	|| IS_SET(obj->spectype, SITEM_SILVER)
+	|| IS_SET(obj->spectype, SITEM_DEMONIC)
+	|| IS_SET(obj->quest, QUEST_ARTIFACT) )
     {
 	/* It would be so much easier if weapons had 5 values *sigh*.  
 	 * Oh well, I'll just have to use v0 for two.  KaVir.
@@ -728,6 +848,19 @@ void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
 	else if ((sn == 11) && (IS_ITEMAFF(ch, ITEMA_FIRESHIELD)))  return;
 	else if ((sn == 12) && (IS_ITEMAFF(ch, ITEMA_ICESHIELD)))   return;
 	else if ((sn == 13) && (IS_ITEMAFF(ch, ITEMA_ACIDSHIELD)))  return;
+	else if ((sn == 14) && (IS_ITEMAFF(ch, ITEMA_DBPASS)))      return;
+	else if ((sn == 15) && (IS_ITEMAFF(ch, ITEMA_CHAOSSHIELD))) return;
+	else if ((sn == 16) && (IS_ITEMAFF(ch, ITEMA_REGENERATE)))  return;
+	else if ((sn == 17) && (IS_ITEMAFF(ch, ITEMA_SPEED)))       return;
+	else if ((sn == 18) && (IS_ITEMAFF(ch, ITEMA_VORPAL)))      return;
+	else if ((sn == 19) && (IS_ITEMAFF(ch, ITEMA_PEACE)))       return;
+	else if ((sn == 20) && (IS_ITEMAFF(ch, ITEMA_REFLECT)))     return;
+	else if ((sn == 21) && (IS_ITEMAFF(ch, ITEMA_RESISTANCE)))  return;
+	else if ((sn == 22) && (IS_ITEMAFF(ch, ITEMA_VISION)))      return;
+	else if ((sn == 23) && (IS_ITEMAFF(ch, ITEMA_STALKER)))     return;
+	else if ((sn == 24) && (IS_ITEMAFF(ch, ITEMA_VANISH)))      return;
+	else if ((sn == 25) && (IS_ITEMAFF(ch, ITEMA_RAGER)))       return;
+	else if ((sn == 60) && (IS_AFFECTED(ch, AFF_DETECT_HIDDEN)))return;
 	if (sn == 4)
 	{
 	    SET_BIT(ch->affected_by, AFF_BLIND);
@@ -763,6 +896,12 @@ void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
 	    SET_BIT(ch->affected_by, AFF_PASS_DOOR);
 	    send_to_char( "You turn translucent.\n\r", ch );
 	    act("$n turns translucent.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 60)
+	{
+	    SET_BIT(ch->affected_by, AFF_DETECT_HIDDEN);
+	    send_to_char( "You awarenes improves.\n\r", ch );
+	    act("$n eyes tingle.",ch,NULL,NULL,TO_ROOM);
 	}
 	else if (sn == 54 || sn == 7)
 	{
@@ -806,6 +945,77 @@ void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
 	    send_to_char( "You are surrounded by a bubbling shield of acid.\n\r", ch );
 	    act("$n is surrounded by a bubbling shield of acid.",ch,NULL,NULL,TO_ROOM);
 	}
+	else if (sn == 14)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_DBPASS);
+	    send_to_char( "You are now safe from the DarkBlade clan guardians.\n\r", ch );
+	}
+	else if (sn == 15)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_CHAOSSHIELD);
+	    send_to_char( "You are surrounded by a swirling shield of chaos.\n\r", ch );
+	    act("$n is surrounded by a swirling shield of chaos.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 16)
+	    SET_BIT(ch->itemaffect, ITEMA_REGENERATE);
+	else if (sn == 17)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_SPEED);
+	    send_to_char( "You start moving faster than the eye can follow.\n\r", ch );
+	    act("$n starts moving faster than the eye can follow.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 18)
+	    SET_BIT(ch->itemaffect, ITEMA_VORPAL);
+	else if (sn == 19)
+	    SET_BIT(ch->itemaffect, ITEMA_PEACE);
+	else if (sn == 20)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_REFLECT);
+	    send_to_char( "You are surrounded by flickering shield of darkness.\n\r", ch );
+	    act("$n is surrounded by a flickering shield of darkness.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 21)
+	    SET_BIT(ch->itemaffect, ITEMA_RESISTANCE);
+	else if (sn == 22)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_VISION);
+	    send_to_char( "Your eyes begin to glow bright white.\n\r", ch );
+	    act("$n's eyes begin to glow bright white.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 23)
+	    SET_BIT(ch->itemaffect, ITEMA_STALKER);
+	else if (sn == 24)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_VANISH);
+	    send_to_char( "You blend into the shadows.\n\r", ch );
+	    act("$n gradually fades into the shadows.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 25 && !IS_NPC(ch))
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_RAGER);
+	    if (IS_CLASS(ch, CLASS_WEREWOLF) && ch->pcdata->stats[UNI_RAGE] < 100)
+	    {
+		ch->pcdata->stats[UNI_RAGE] = 300;
+		do_werewolf(ch,"");
+	    }
+	    else if (IS_CLASS(ch, CLASS_WEREWOLF))
+		ch->pcdata->stats[UNI_RAGE] = 300;
+	    else if (IS_CLASS(ch, CLASS_VAMPIRE))
+		ch->pcdata->stats[UNI_RAGE] = 25;
+	}
+	if (IS_SET(obj->spectype, SITEM_DEMONIC) && !IS_NPC(ch))
+	    if (ch->pcdata->stats[DEMON_POWER] < 15) ch->pcdata->stats[DEMON_POWER] += 1;
+	if (IS_SET(obj->spectype, SITEM_HIGHLANDER) && !IS_NPC(ch) && obj->item_type == ITEM_WEAPON)
+	{
+	    if (obj->value[3] == ch->pcdata->powers[HPOWER_WPNSKILL])
+		SET_BIT(ch->itemaffect, ITEMA_HIGHLANDER);
+	}
+	if (IS_SET(obj->quest, QUEST_ARTIFACT))
+	    SET_BIT(ch->itemaffect, ITEMA_ARTIFACT);
+	if (IS_SET(obj->spectype, SITEM_SILVER) && obj->wear_loc == WEAR_WIELD)
+	    SET_BIT(ch->itemaffect, ITEMA_RIGHT_SILVER);
+	if (IS_SET(obj->spectype, SITEM_SILVER) && obj->wear_loc == WEAR_HOLD)
+	    SET_BIT(ch->itemaffect, ITEMA_LEFT_SILVER);
     }
     return;
 }
@@ -818,6 +1028,7 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
     CHAR_DATA   *chch;
     AFFECT_DATA *paf;
     int sn;
+    int oldpos = obj->wear_loc;
 
     if ( obj->wear_loc == WEAR_NONE )
     {
@@ -828,7 +1039,8 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
     if ( obj->wear_loc == WEAR_SCABBARD_L ||
     	obj->wear_loc == WEAR_SCABBARD_R ) {obj->wear_loc = -1;return;}
 
-    ch->armor		+= apply_ac( obj, obj->wear_loc );
+    if ( IS_NPC(ch) || !IS_CLASS(ch, CLASS_HIGHLANDER) ) 
+	ch->armor += apply_ac(obj, obj->wear_loc);
     obj->wear_loc	 = -1;
 
     for ( paf = obj->pIndexData->affected; paf != NULL; paf = paf->next )
@@ -864,7 +1076,10 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
 	kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
 
     if ( ((obj->item_type == ITEM_ARMOR ) && (obj->value[3] >= 1   ))
-      || ((obj->item_type == ITEM_WEAPON) && (obj->value[0] >= 1000)) )
+        || ((obj->item_type == ITEM_WEAPON) && (obj->value[0] >= 1000))
+	|| IS_SET(obj->spectype, SITEM_SILVER)
+	|| IS_SET(obj->spectype, SITEM_DEMONIC)
+	|| IS_SET(obj->quest, QUEST_ARTIFACT) )
     {
 	if (obj->item_type == ITEM_ARMOR)
 	    sn = obj->value[3];
@@ -933,6 +1148,12 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
 	    send_to_char( "You are no longer moving so quietly.\n\r", ch );
 	    act("$n is no longer moving so quietly.",ch,NULL,NULL,TO_ROOM);
 	}
+	else if (IS_AFFECTED(ch, AFF_DETECT_HIDDEN) && (sn == 60))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_DETECT_HIDDEN);
+	    send_to_char( "You feel less aware of your surrondings.\n\r",ch );
+	    act("$n eyes tingle.",ch,NULL,NULL,TO_ROOM);
+	}
 	else if (IS_ITEMAFF(ch, ITEMA_SHOCKSHIELD) && (sn == 10))
 	{
 	    REMOVE_BIT(ch->itemaffect, ITEMA_SHOCKSHIELD);
@@ -957,6 +1178,75 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
 	    send_to_char( "The bubbling shield of acid around you fades.\n\r", ch );
 	    act("The bubbling shield of acid around $n fades.",ch,NULL,NULL,TO_ROOM);
 	}
+	else if (IS_ITEMAFF(ch, ITEMA_DBPASS) && (sn == 14))
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_DBPASS);
+	    send_to_char( "You are no longer safe from the DarkBlade clan guardians.\n\r", ch );
+	}
+	else if (IS_ITEMAFF(ch, ITEMA_CHAOSSHIELD) && (sn == 15))
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_CHAOSSHIELD);
+	    send_to_char( "The swirling shield of chaos around you fades.\n\r", ch );
+	    act("The swirling shield of chaos around $n fades.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 16)
+	    REMOVE_BIT(ch->itemaffect, ITEMA_REGENERATE);
+	else if (IS_ITEMAFF(ch, ITEMA_SPEED) && (sn == 17))
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_SPEED);
+	    send_to_char( "Your actions slow down to normal speed.\n\r", ch );
+	    act("$n stops moving at supernatural speed.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 18)
+	    REMOVE_BIT(ch->itemaffect, ITEMA_VORPAL);
+	else if (sn == 19)
+	    REMOVE_BIT(ch->itemaffect, ITEMA_PEACE);
+	else if (IS_ITEMAFF(ch, ITEMA_REFLECT) && sn == 20)
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_REFLECT);
+	    send_to_char( "The flickering shield of darkness around you fades.\n\r", ch );
+	    act("The flickering shield of darkness around $n fades.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 21)
+	    REMOVE_BIT(ch->itemaffect, ITEMA_RESISTANCE);
+	else if (IS_ITEMAFF(ch, ITEMA_VISION) && sn == 22)
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_VISION);
+	    send_to_char( "Your eyes stop glowing bright white.\n\r", ch );
+	    act("$n's eyes stop glowing bright white.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 23)
+	    REMOVE_BIT(ch->itemaffect, ITEMA_STALKER);
+	else if (IS_ITEMAFF(ch, ITEMA_VANISH) && sn == 24)
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_VANISH);
+	    send_to_char( "You emerge from the shadows.\n\r", ch );
+	    act("$n gradually fades out of the shadows.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 25 && !IS_NPC(ch) && IS_ITEMAFF(ch, ITEMA_RAGER))
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_RAGER);
+	    if (IS_CLASS(ch, CLASS_WEREWOLF) && ch->pcdata->stats[UNI_RAGE] >= 100)
+	    {
+		ch->pcdata->stats[UNI_RAGE] = 0;
+		do_unwerewolf(ch,"");
+	    }
+	    ch->pcdata->stats[UNI_RAGE] = 0;
+	}
+	if (IS_SET(obj->spectype, SITEM_DEMONIC) && !IS_NPC(ch)
+	    && ch->pcdata->stats[DEMON_POWER] > 0)
+	    ch->pcdata->stats[DEMON_POWER] -= 1;
+	if (IS_SET(obj->spectype, SITEM_HIGHLANDER) && !IS_NPC(ch) && obj->item_type == ITEM_WEAPON)
+	{
+	    if (obj->value[3] == ch->pcdata->powers[HPOWER_WPNSKILL])
+		REMOVE_BIT(ch->itemaffect, ITEMA_HIGHLANDER);
+	}
+	if (IS_SET(obj->quest, QUEST_ARTIFACT)) 
+	    REMOVE_BIT(ch->itemaffect, ITEMA_ARTIFACT);
+	if (IS_SET(obj->spectype, SITEM_SILVER) && oldpos == WEAR_WIELD)
+	    REMOVE_BIT(ch->itemaffect, ITEMA_RIGHT_SILVER);
+	if (IS_SET(obj->spectype, SITEM_SILVER) && oldpos == WEAR_HOLD)
+	    REMOVE_BIT(ch->itemaffect, ITEMA_LEFT_SILVER);
     }
     return;
 }
@@ -1178,6 +1468,12 @@ void extract_obj( OBJ_DATA *obj )
 	    send_to_char("You return to your body.\n\r",ch);
 	}
     }
+    else if ( obj->chobj != NULL )
+    {
+	if (!IS_NPC(obj->chobj)) obj->chobj->pcdata->chobj = NULL;
+	obj->chobj = NULL;
+	bug( "Extract_obj: obj %d chobj invalid.", obj->pIndexData->vnum );
+    }
 
     for ( obj_content = obj->contains; obj_content; obj_content = obj_next )
     {
@@ -1259,6 +1555,8 @@ void extract_obj( OBJ_DATA *obj )
 void extract_char( CHAR_DATA *ch, bool fPull )
 {
     CHAR_DATA *wch;
+    CHAR_DATA *familiar;
+    CHAR_DATA *wizard;
     OBJ_DATA *obj;
     OBJ_DATA *obj_next;
 
@@ -1283,14 +1581,19 @@ void extract_char( CHAR_DATA *ch, bool fPull )
     
     char_from_room( ch );
 
+    if ( IS_NPC(ch) )
+	--ch->pIndexData->count;
+    else if ( ch->pcdata->chobj != NULL )
+    {
+	ch->pcdata->chobj->chobj = NULL;
+	ch->pcdata->chobj = NULL;
+    }
+
     if ( !fPull )
     {
 	char_to_room( ch, get_room_index( ROOM_VNUM_ALTAR ) );
 	return;
     }
-
-    if ( IS_NPC(ch) )
-	--ch->pIndexData->count;
 
     if ( ch->desc != NULL && ch->desc->original != NULL )
 	do_return( ch, "" );
@@ -1327,6 +1630,48 @@ void extract_char( CHAR_DATA *ch, bool fPull )
 
     if ( ch->desc )
 	ch->desc->character = NULL;
+
+    if ( (wizard = ch->wizard) != NULL)
+    {
+	if (!IS_NPC(wizard)) wizard->pcdata->familiar = NULL;
+	ch->wizard = NULL;
+    }
+    if ( !IS_NPC(ch) )
+    {
+	if ((familiar = ch->pcdata->familiar) != NULL)
+	{
+	    familiar->wizard = NULL;
+	    ch->pcdata->familiar = NULL;
+	    if (IS_NPC(familiar))
+	    {
+		act("$n slowly fades away to nothing.",familiar,NULL,NULL,TO_ROOM);
+		extract_char(familiar,TRUE);
+	    }
+	}
+	if ((familiar = ch->pcdata->partner) != NULL)
+	    ch->pcdata->partner = NULL;
+	if ((familiar = ch->pcdata->propose) != NULL)
+	    ch->pcdata->propose = NULL;
+	for ( familiar = char_list; familiar != NULL; familiar = familiar->next)
+	{
+	    if ( !IS_NPC(familiar) && familiar->pcdata->propose != NULL && 
+		familiar->pcdata->propose == ch )
+		familiar->pcdata->propose = NULL;
+	    if ( !IS_NPC(familiar) && familiar->pcdata->partner != NULL && 
+		familiar->pcdata->partner == ch )
+		familiar->pcdata->partner = NULL;
+	}
+    }
+    else if (IS_NPC(ch) && strlen(ch->lord) > 1)
+    {
+	for ( wch = char_list; wch != NULL ; wch = wch->next )
+	{
+	    if (IS_NPC(wch)) continue;
+	    if (str_cmp(wch->name, ch->lord)) continue;
+	    if (wch->pcdata->followers > 0) wch->pcdata->followers--;
+	}
+    }
+
     free_char( ch );
     return;
 }
@@ -1555,6 +1900,22 @@ OBJ_DATA *get_obj_here( CHAR_DATA *ch, char *argument )
 
 
 /*
+ * Find an obj in the room or in inventory.
+ */
+OBJ_DATA *get_obj_room( CHAR_DATA *ch, char *argument )
+{
+    OBJ_DATA *obj;
+
+    obj = get_obj_list( ch, argument, ch->in_room->contents );
+    if ( obj != NULL )
+	return obj;
+
+    return NULL;
+}
+
+
+
+/*
  * Find an obj in the world.
  */
 OBJ_DATA *get_obj_world( CHAR_DATA *ch, char *argument )
@@ -1691,7 +2052,24 @@ bool can_see( CHAR_DATA *ch, CHAR_DATA *victim )
     &&   get_trust( ch ) < get_trust( victim ) )
 	return FALSE;
 
+    if ( !IS_NPC(victim) && IS_SET(victim->act, PLR_INCOG)
+    &&   get_trust( ch ) < get_trust( victim ) 
+    &&   ch->in_room != victim->in_room )
+	return FALSE;
+
+
+    if ( IS_SET ( ch->in_room->room_flags, ROOM_TOTAL_DARKNESS))
+    {
+        if (!IS_IMMORTAL( ch ) && !IS_AFFECTED(ch, AFF_SHADOWSIGHT))
+	    return FALSE;
+        else
+	    return TRUE;
+    }
+
     if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_HOLYLIGHT) )
+	return TRUE;
+
+    if ( IS_ITEMAFF(ch, ITEMA_VISION) )
 	return TRUE;
 
     if (IS_AFFECTED(ch,AFF_SHADOWPLANE) && !IS_AFFECTED(victim,AFF_SHADOWPLANE)
@@ -1708,14 +2086,14 @@ bool can_see( CHAR_DATA *ch, CHAR_DATA *victim )
     if ( IS_HEAD(ch, LOST_EYE_L) && IS_HEAD(ch, LOST_EYE_R) )
 	return FALSE;
 
-    if ( IS_BODY(ch, BLINDFOLDED) )
+    if ( IS_EXTRA(ch, BLINDFOLDED) )
 	return FALSE;
 
-    if ( IS_AFFECTED(ch, AFF_BLIND) )
+    if ( IS_AFFECTED(ch, AFF_BLIND) && !IS_AFFECTED(ch, AFF_SHADOWSIGHT))
 	return FALSE;
 
     if ( room_is_dark( ch->in_room ) && !IS_AFFECTED(ch, AFF_INFRARED) 
-	&& !IS_VAMPAFF(ch, VAM_NIGHTSIGHT) )
+	&& (!IS_NPC( ch) && !IS_VAMPAFF(ch, VAM_NIGHTSIGHT)))
 	return FALSE;
 
     if ( IS_AFFECTED(victim, AFF_INVISIBLE)
@@ -1753,6 +2131,9 @@ bool can_see_obj( CHAR_DATA *ch, OBJ_DATA *obj )
     if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_HOLYLIGHT) )
 	return TRUE;
 
+    if ( IS_ITEMAFF(ch, ITEMA_VISION) )
+	return TRUE;
+
     if (( IS_SET(obj->extra_flags, ITEM_SHADOWPLANE)
     &&   obj->carried_by == NULL)
     &&   !IS_AFFECTED(ch, AFF_SHADOWSIGHT)
@@ -1774,17 +2155,17 @@ bool can_see_obj( CHAR_DATA *ch, OBJ_DATA *obj )
     if ( IS_HEAD(ch, LOST_EYE_L) && IS_HEAD(ch, LOST_EYE_R) )
 	return FALSE;
 
-    if ( IS_BODY(ch, BLINDFOLDED) )
+    if ( IS_EXTRA(ch, BLINDFOLDED) )
 	return FALSE;
 
-    if ( IS_AFFECTED( ch, AFF_BLIND ) )
+    if ( IS_AFFECTED( ch, AFF_BLIND ) && !IS_AFFECTED(ch, AFF_SHADOWSIGHT) )
 	return FALSE;
 
     if ( obj->item_type == ITEM_LIGHT && obj->value[2] != 0 )
 	return TRUE;
 
     if ( room_is_dark( ch->in_room ) && !IS_AFFECTED(ch, AFF_INFRARED) 
-	&& !IS_VAMPAFF(ch, VAM_NIGHTSIGHT) )
+	&& (!IS_NPC( ch ) && !IS_VAMPAFF(ch, VAM_NIGHTSIGHT)))
 	return FALSE;
 
     if ( IS_SET(obj->extra_flags, ITEM_INVIS)
@@ -1856,6 +2237,10 @@ char *item_type_name( OBJ_DATA *obj )
     case ITEM_QUEST:		return "quest token";
     case ITEM_QUESTCARD:	return "quest card";
     case ITEM_QUESTMACHINE:	return "quest generator";
+    case ITEM_SYMBOL:		return "magical symbol";
+    case ITEM_BOOK:		return "book";
+    case ITEM_PAGE:		return "page";
+    case ITEM_TOOL:		return "tool";
     }
 
     bug( "Item_type_name: unknown type %d.", obj->item_type );
@@ -1894,6 +2279,7 @@ char *affect_loc_name( int location )
     case APPLY_SAVING_PETRI:	return "save vs petrification";
     case APPLY_SAVING_BREATH:	return "save vs breath";
     case APPLY_SAVING_SPELL:	return "save vs spell";
+    case APPLY_POLY:		return "polymorph form";
     }
 
     bug( "Affect_location_name: unknown location %d.", location );
@@ -1933,6 +2319,9 @@ char *affect_bit_name( int vector )
     if ( vector & AFF_PASS_DOOR     ) strcat( buf, " pass_door"     );
     if ( vector & AFF_POLYMORPH     ) strcat( buf, " polymorph"     );
     if ( vector & AFF_SHADOWSIGHT   ) strcat( buf, " shadowsight"   );
+    if ( vector & AFF_WEBBED        ) strcat( buf, " web"           );
+    if ( vector & AFF_CONTRACEPTION ) strcat( buf, " contraception" );
+    if ( vector & AFF_DARKNESS      ) strcat( buf, " darkness" );
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
 
@@ -1960,8 +2349,42 @@ char *extra_bit_name( int extra_flags )
     if ( extra_flags & ITEM_LOYAL        ) strcat( buf, " loyal"        );
     if ( extra_flags & ITEM_SHADOWPLANE  ) strcat( buf, " shadowplane"  );
     if ( extra_flags & ITEM_THROWN       ) strcat( buf, " thrown"       );
-    if ( extra_flags & ITEM_SILVER       ) strcat( buf, " silver"       );
     if ( extra_flags & ITEM_KEEP         ) strcat( buf, " keep"         );
     if ( extra_flags & ITEM_VANISH       ) strcat( buf, " vanish"       );
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
+
+CHAR_DATA *get_char_world2( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *wch;
+
+    if (argument[0] == '\0') return NULL;
+
+    for ( wch = char_list; wch != NULL ; wch = wch->next )
+    {
+	if ( IS_NPC(wch) && !str_cmp( argument, wch->short_descr ) ) return wch;
+    }
+
+    return NULL;
+}
+
+OBJ_DATA *get_obj_world2( CHAR_DATA *ch, char *argument )
+{
+    OBJ_DATA *obj;
+    int vnum = 0;
+
+    if (argument[0] == '\0') return NULL;
+
+    for ( obj = object_list; obj != NULL; obj = obj->next )
+    {
+	if ( !str_cmp( argument, obj->short_descr ) )
+	{
+	    if ((vnum = obj->pIndexData->vnum) == 30037 || vnum == 30041)
+		continue;
+	    return obj;
+	}
+    }
+
+    return NULL;
+}
+

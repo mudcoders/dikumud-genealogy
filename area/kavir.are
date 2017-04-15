@@ -1,4 +1,4 @@
-#AREA	{ ALL } KaVir   Odds and ends~
+#AREA	KaVir   Odds and ends~
 
 
 
@@ -85,6 +85,72 @@ It looks like it would make a good mount...
 ~
 2050 0 -1000 S
 1 2 2 1d1+100 1d8+32
+100000 80000
+8 8 1
+#30007
+frog~
+a small green frog~
+A small green frog sits here.
+~
+It's small, green, and intelligent-looking.
+~
+2 552 1000 S
+1 2 2 1d1+30000 1d8+32
+100000 80000
+8 8 1
+#30008
+raven~
+a raven~
+A raven is flapping around here.
+~
+You notice that it is very intelligent-looking.
+~
+2 524840 1000 S
+1 2 2 1d1+30000 1d8+32
+100000 80000
+8 8 1
+#30009
+cat~
+a small black cat~
+A small black cat is curled up here.
+~
+It is very cute, and very intelligent-looking.
+~
+2 552 1000 S
+2 2 2 1d1+30000 1d8+32
+100000 80000
+8 8 1
+#30010
+dog~
+a small brown dog~
+A small brown dog is sitting here.
+~
+It is very cute, and very intelligent-looking.
+~
+2 552 1000 S
+10 2 2 1d1+30000 1d8+32
+100000 80000
+8 8 1
+#30011
+zombie lord~
+the Zombie Lord~
+The Zombie Lord is here.
+~
+He looks very evil, very intelligent, and very rotten.
+~
+2 552 -1000 S
+500 2 2 1d1+30000 1d8+32
+100000 80000
+8 8 1
+#30012
+eye~
+an eyeball~
+An eyeball is lying on the ground.
+~
+It stares right back at you!
+~
+2 552 1000 S
+1 2 2 1d1+30 1d8+32
 100000 80000
 8 8 1
 #0
@@ -460,6 +526,14 @@ A small machine sits on the floor.~
 35 0 0
 0 0 0 0
 5 5 5
+#30041
+protoplasm plasm ball~
+a ball of protoplasm~
+A ball of protoplasm floats in the air.~
+~
+13 0 1
+0 0 0 0
+0 0 0
 #0
 
 
@@ -469,7 +543,7 @@ A small machine sits on the floor.~
 Hell~
 You are standing in hell.
 ~
-0 8 1
+0 8|1024 1
 S
 #30001
 The Dark Crypt~
@@ -477,7 +551,7 @@ You are standing within a small dark crypt.
 ~
 0 8|1024 0
 D4
-Above you is a the temple altar.
+Above you is the temple altar.
 ~
 ~
 4 -1 3054
@@ -659,6 +733,7 @@ M  30002 spec_gremlin_born
 M  30003 spec_gremlin_born
 M  30004 spec_gremlin_born
 M  30005 spec_gremlin_original
+M  30011 spec_zombie_lord
 S
 
 

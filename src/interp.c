@@ -31,7 +31,9 @@
 
 bool	check_social	args( ( CHAR_DATA *ch, char *command,
 			    char *argument ) );
-
+bool	check_xsocial	args( ( CHAR_DATA *ch, char *command,
+			    char *argument ) );
+void	make_preg	args( ( CHAR_DATA *mother, CHAR_DATA *father ) );
 
 
 /*
@@ -69,25 +71,32 @@ const	struct	cmd_type	cmd_table	[] =
      * Common other commands.
      * Placed here so one and two letter abbreviations work.
      */
-    { "buy",		do_buy,		POS_RESTING,	 0,  LOG_NORMAL	},
+    { "buy",		do_buy,		POS_SITTING,	 0,  LOG_NORMAL	},
     { "cast",		do_cast,	POS_FIGHTING,	 0,  LOG_NORMAL	},
-    { "command",	do_command,	POS_RESTING,	 3,  LOG_NORMAL	},
+    { "chant",		do_chant,	POS_FIGHTING,	 4,  LOG_NORMAL	},
+    { "command",	do_command,	POS_SITTING,	 3,  LOG_NORMAL	},
     { "crack",		do_crack,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "diagnose",	do_diagnose,	POS_FIGHTING,	 0,  LOG_NORMAL	},
     { "dismount",	do_dismount,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "enter",		do_enter,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "exits",		do_exits,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "get",		do_get,		POS_RESTING,	 0,  LOG_NORMAL	},
+    { "exits",		do_exits,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "get",		do_get,		POS_SITTING,	 0,  LOG_NORMAL	},
+
     { "inventory",	do_inventory,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "kill",		do_kill,	POS_FIGHTING,	 0,  LOG_NORMAL	},
-    { "look",		do_look,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "look",		do_look,	POS_MEDITATING,	 0,  LOG_NORMAL	},
+    { "meditate",	do_meditate,	POS_MEDITATING,	 0,  LOG_NORMAL	},
     { "mount",		do_mount,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "order",		do_order,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "rest",		do_rest,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "order",		do_order,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "rest",		do_rest,	POS_MEDITATING,	 0,  LOG_NORMAL	},
+    { "sit",		do_sit,		POS_SITTING,	 0,  LOG_NORMAL	},
     { "stand",		do_stand,	POS_SLEEPING,	 0,  LOG_NORMAL	},
-    { "tell",		do_tell,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "wield",		do_wear,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "tell",		do_tell,	POS_MEDITATING,	 0,  LOG_NORMAL	},
+    { "whisper",	do_whisper,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "wield",		do_wear,	POS_SITTING,	 0,  LOG_NORMAL	},
     { "wizhelp",	do_wizhelp,	POS_DEAD,	 4,  LOG_NORMAL	},
+   /* { "version",	do_version,	POS_DEAD,	 0,  LOG_NORMAL	},
+    * { "donate",	        do_donate,	POS_SITTING,	 0,  LOG_NORMAL	},*/
 
     /*
      * Informational commands.
@@ -95,24 +104,30 @@ const	struct	cmd_type	cmd_table	[] =
     { "areas",		do_areas,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "bug",		do_bug,		POS_DEAD,	 0,  LOG_NORMAL	},
     { "commands",	do_commands,	POS_DEAD,	 0,  LOG_NORMAL },
-    { "compare",	do_compare,	POS_RESTING,	 0,  LOG_NORMAL },
-    { "consider",	do_consider,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "compare",	do_compare,	POS_SITTING,	 0,  LOG_NORMAL },
+    { "consider",	do_consider,	POS_SITTING,	 0,  LOG_NORMAL	},
     { "credits",	do_credits,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "equipment",	do_equipment,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "examine",	do_examine,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "examine",	do_examine,	POS_SITTING,	 0,  LOG_NORMAL	},
     { "help",		do_help,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "idea",		do_idea,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "report",		do_report,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "score",		do_score,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "skill",		do_skill,	POS_RESTING,	 0,  LOG_NORMAL },
-    { "spells",		do_spell,	POS_RESTING,	 0,  LOG_NORMAL },
+    { "skill",		do_skill,	POS_MEDITATING,	 0,  LOG_NORMAL },
+    { "spells",		do_spell,	POS_MEDITATING,	 0,  LOG_NORMAL },
     { "socials",	do_socials,	POS_DEAD,	 0,  LOG_NORMAL },
     { "time",		do_time,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "typo",		do_typo,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "weather",	do_weather,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "weather",	do_weather,	POS_SITTING,	 0,  LOG_NORMAL	},
     { "who",		do_who,		POS_DEAD,	 0,  LOG_NORMAL	},
     { "wizlist",	do_wizlist,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "introduce",	do_introduce,	POS_STANDING,	 1,  LOG_NORMAL	},
+/*
+    { "xemot",		do_huh,		POS_DEAD,	 1,  LOG_NORMAL },
+    { "xemote",		do_xemote,	POS_SITTING,	 1,  LOG_NORMAL },
+*/
+    { "xsocial",	do_huh,		POS_DEAD,	 1,  LOG_NORMAL },
+    { "xsocials",	do_xsocials,	POS_DEAD,	 1,  LOG_NORMAL },
 
     /*
      * Configuration commands.
@@ -131,68 +146,77 @@ const	struct	cmd_type	cmd_table	[] =
     { "autosac",	do_autosac,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "blank",		do_blank,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "brief",		do_brief,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "cprompt",	do_cprompt,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "prompt",		do_prompt,	POS_DEAD,	 0,  LOG_NORMAL	},
 
     /*
      * Communication commands.
      */
     { "answer",		do_answer,	POS_SLEEPING,	 0,  LOG_NORMAL },
-    { "auction",	do_auction,	POS_SLEEPING,	 0,  LOG_NORMAL	},
+ /*   { "auction",	do_auction,	POS_SLEEPING,	 0,  LOG_NORMAL},*/
     { "chat",		do_chat,	POS_DEAD,	 0,  LOG_NORMAL	},
     { ".",		do_chat,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "emote",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { ",",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "emote",		do_xemote,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { ",",		do_xemote,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "email",		do_email,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "gtell",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL	},
     { ";",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "howl",		do_howl,	POS_DEAD,	 1,  LOG_NORMAL	},
     { "music",		do_music,	POS_SLEEPING,	 0,  LOG_NORMAL },
-    { "note",		do_note,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "quest",		do_quest,	POS_RESTING,	 2,  LOG_ALWAYS	},
+    { "note",		do_note,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "pose",		do_emote,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "quest",		do_quest,	POS_SITTING,	 2,  LOG_ALWAYS	},
     { "question",	do_question,	POS_SLEEPING,	 0,  LOG_NORMAL },
-    { "reply",		do_reply,	POS_RESTING,	 0,  LOG_NORMAL },
-    { "say",		do_say,		POS_RESTING,	 0,  LOG_NORMAL	},
-    { "speak",		do_speak,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "'",		do_say,		POS_RESTING,	 0,  LOG_NORMAL	},
-    { "shout",		do_shout,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "yell",		do_yell,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "reply",		do_reply,	POS_MEDITATING,	 0,  LOG_NORMAL },
+    { "say",		do_say,		POS_MEDITATING,	 0,  LOG_NORMAL	},
+    { "speak",		do_speak,	POS_MEDITATING,	 0,  LOG_NORMAL	},
+    { "'",		do_say,		POS_MEDITATING,	 0,  LOG_NORMAL	},
+    { "shout",		do_shout,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "yell",		do_yell,	POS_SITTING,	 0,  LOG_NORMAL	},
 
     /*
      * Object manipulation commands.
      */
-    { "activate",	do_activate,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "brandish",	do_brandish,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "close",		do_close,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "activate",	do_activate,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "brandish",	do_brandish,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "close",		do_close,	POS_SITTING,	 0,  LOG_NORMAL	},
     { "draw",		do_draw,	POS_FIGHTING,	 0,  LOG_NORMAL	},
-    { "drink",		do_drink,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "drop",		do_drop,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "eat",		do_eat,		POS_RESTING,	 0,  LOG_NORMAL	},
-    { "empty",		do_empty,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "fill",		do_fill,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "give",		do_give,	POS_RESTING,	 0,  LOG_ALWAYS	},
-    { "hold",		do_wear,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "list",		do_list,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "lock",		do_lock,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "drink",		do_drink,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "drop",		do_drop,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "eat",		do_eat,		POS_SITTING,	 0,  LOG_NORMAL	},
+    { "empty",		do_empty,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "fill",		do_fill,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "give",		do_give,	POS_SITTING,	 0,  LOG_ALWAYS	},
+    { "hold",		do_wear,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "list",		do_list,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "lock",		do_lock,	POS_SITTING,	 0,  LOG_NORMAL	},
     { "morph",		do_morph,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "open",		do_open,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "pick",		do_pick,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "press",		do_press,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "pull",		do_pull,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "put",		do_put,		POS_RESTING,	 0,  LOG_NORMAL },
-    { "quaff",		do_quaff,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "recite",		do_recite,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "remove",		do_remove,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "sell",		do_sell,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "open",		do_open,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "pick",		do_pick,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "press",		do_press,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "pull",		do_pull,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "put",		do_put,		POS_SITTING,	 0,  LOG_NORMAL },
+    { "quaff",		do_quaff,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "recite",		do_recite,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "remove",		do_remove,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "sell",		do_sell,	POS_SITTING,	 0,  LOG_NORMAL	},
     { "sheath",		do_sheath,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "take",		do_get,		POS_RESTING,	 0,  LOG_NORMAL	},
+    { "take",		do_get,		POS_SITTING,	 0,  LOG_NORMAL	},
     { "reload",		do_reload,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "unload",		do_unload,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "read",		do_read,	POS_MEDITATING,	 0,  LOG_NORMAL	},
     { "shoot",		do_shoot,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "throw",		do_throw,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "twist",		do_twist,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "sacrifice",	do_sacrifice,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "unlock",		do_unlock,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "value",		do_value,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "wear",		do_wear,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "voodoo",		do_voodoo,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "zap",		do_zap,		POS_RESTING,	 0,  LOG_NORMAL	},
+    { "turn",		do_turn,	POS_MEDITATING,	 0,  LOG_NORMAL	},
+    { "twist",		do_twist,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "sacrifice",	do_sacrifice,	POS_SITTING,	 0,  LOG_NORMAL	},
+   /* { "showartifacts",	do_show_artifacts,POS_SITTING,	 1,  LOG_NORMAL	},  */
+    { "unlock",		do_unlock,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "value",		do_value,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "wear",		do_wear,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "write",		do_write,	POS_MEDITATING,	 0,  LOG_NORMAL	},
+    { "voodoo",		do_voodoo,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "zap",		do_zap,		POS_SITTING,	 0,  LOG_NORMAL	},
 
     /*
      * Combat commands.
@@ -212,19 +236,31 @@ const	struct	cmd_type	cmd_table	[] =
     /*
      * Miscellaneous commands.
      */
+    { "accep",		do_huh,		POS_STANDING,	 2,  LOG_NORMAL	},
+    { "accept",		do_accept,	POS_STANDING,	 2,  LOG_NORMAL	},
+    { "artifact",	do_artifact,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "birth",		do_birth,	POS_STANDING,	 1,  LOG_NORMAL	},
     { "blindfold",	do_blindfold,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "breaku",		do_huh,		POS_STANDING,	 2,  LOG_NORMAL	},
+    { "breakup",	do_breakup,	POS_STANDING,	 2,  LOG_NORMAL	},
     { "call",		do_call,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "claim",		do_claim,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "complete",	do_complete,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "follow",		do_follow,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "consen",		do_huh,		POS_STANDING,	 1,  LOG_NORMAL	},
+    { "consent",	do_consent,	POS_STANDING,	 1,  LOG_NORMAL	},
+    { "finger",		do_finger,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "follow",		do_follow,	POS_SITTING,	 0,  LOG_NORMAL	},
     { "gag",		do_gag,		POS_STANDING,	 3,  LOG_NORMAL	},
     { "gift",		do_gift,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "godless",	do_godless,	POS_DEAD,	 3,  LOG_ALWAYS	},
     { "group",		do_group,	POS_DEAD,	 0,  LOG_NORMAL	},
-    { "hide",		do_hide,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "hide",		do_hide,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "home",		do_home,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "hunt",		do_hunt,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "locate",		do_locate,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "practice",	do_practice,	POS_SLEEPING,	 0,  LOG_NORMAL	},
+    { "propos",		do_huh,		POS_STANDING,	 2,  LOG_NORMAL	},
+    { "propose",	do_propose,	POS_STANDING,	 2,  LOG_NORMAL	},
     { "qui",		do_qui,		POS_DEAD,	 0,  LOG_NORMAL	},
     { "quit",		do_quit,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "recall",		do_recall,	POS_FIGHTING,	 0,  LOG_NORMAL	},
@@ -237,134 +273,179 @@ const	struct	cmd_type	cmd_table	[] =
     { "sleep",		do_sleep,	POS_SLEEPING,	 0,  LOG_NORMAL	},
     { "smother",	do_smother,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "sneak",		do_sneak,	POS_STANDING,	 0,  LOG_NORMAL	},
-    { "split",		do_split,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "scan",		do_scan,	POS_RESTING,	 0,  LOG_NORMAL	},
-    { "spy",		do_spy,		POS_RESTING,	 0,  LOG_NORMAL	},
+    { "split",		do_split,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "scan",		do_scan,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "spy",		do_spy,		POS_SITTING,	 0,  LOG_NORMAL	},
     { "steal",		do_steal,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "summon",		do_summon,	POS_DEAD,	 0,  LOG_NORMAL	},
     { "tie",		do_tie,		POS_STANDING,	 3,  LOG_NORMAL	},
     { "token",		do_token,	POS_STANDING,	 2,  LOG_NORMAL	},
-    { "train",		do_train,	POS_RESTING,	 0,  LOG_NORMAL	},
+    { "track",		do_track,	POS_STANDING,	 0,  LOG_NORMAL	},
+    { "train",		do_train,	POS_SITTING,	 0,  LOG_NORMAL	},
+    { "unpolymorph",	do_unpolymorph,	POS_STANDING,	 4,  LOG_NORMAL },
     { "untie",		do_untie,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "visible",	do_visible,	POS_SLEEPING,	 0,  LOG_NORMAL },
     { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL	},
-    { "where",		do_where,	POS_RESTING,	 0,  LOG_NORMAL	},
-
+    { "where",		do_where,	POS_SITTING,	 0,  LOG_NORMAL	},
 
     /*
-     * Vampire commands.
+     * Vampire and werewolf commands.
      */
+    { "anarch",		do_anarch,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "bite",		do_bite,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "calm",		do_calm,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "champions",	do_champions,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "change",		do_change,	POS_STANDING,	 3,  LOG_NORMAL	},
-    { "clandisc",	do_clandisc,	POS_RESTING,	 1,  LOG_NORMAL	},
+    { "clandisc",	do_clandisc,	POS_SITTING,	 3,  LOG_NORMAL	},
     { "clanname",	do_clanname,	POS_STANDING,	 3,  LOG_ALWAYS	},
-    { "claws",		do_claws,	POS_RESTING,	 3,  LOG_NORMAL	},
+   /* { "claninfo",	do_show_clan_info,POS_SITTING,	 1,  LOG_NORMAL	},  */
+    { "claw",		do_claw,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "claws",		do_claws,	POS_SITTING,	 3,  LOG_NORMAL	},
     { "darkheart",	do_darkheart,	POS_STANDING,	 3,  LOG_NORMAL	},
-    { "evileye",	do_evileye,	POS_RESTING,	 3,  LOG_NORMAL	},
-    { "fangs",		do_fangs,	POS_RESTING,	 3,  LOG_NORMAL	},
-    { "favour",		do_favour,	POS_RESTING,	 3,  LOG_NORMAL	},
-    { "feed",		do_feed,	POS_RESTING,	 3,  LOG_NORMAL	},
+    { "demonarmour",	do_demonarmour,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "fangs",		do_fangs,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "favour",		do_favour,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "feed",		do_feed,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "flex",		do_flex,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "gcommand",	do_fcommand,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "ghoul",		do_ghoul,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "horns",		do_horns,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "hooves",		do_hooves,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "humanform",	do_humanform,	POS_SITTING,	 2,  LOG_NORMAL	},
+    { "inpart",		do_inpart,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "inconnu",	do_inconnu,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "leap",		do_leap,	POS_RESTING,	 2,  LOG_NORMAL	},
+    { "lifespan",	do_lifespan,	POS_RESTING,	 2,  LOG_NORMAL	},
+    { "majesty",	do_majesty,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "mask",		do_mask,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "mortal",		do_mortal,	POS_FIGHTING,	 3,  LOG_NORMAL	},
-    { "nightsight",	do_nightsight,	POS_RESTING,	 3,  LOG_NORMAL	},
+    { "nightsight",	do_nightsight,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "offersoul",	do_offersoul,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "pact",		do_pact,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "poison",		do_poison,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "pray",		do_pray,	POS_MEDITATING,	 1,  LOG_NORMAL	},
+    { "rage",		do_rage,	POS_FIGHTING,	 3,  LOG_NORMAL	},
     { "readaura",	do_readaura,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "regenerate",	do_regenerate,	POS_SLEEPING,	 3,  LOG_NORMAL	},
+    { "roll",		do_roll,	POS_RESTING,	 2,  LOG_NORMAL	},
     { "stake",		do_stake,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "scry",		do_scry,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "serpent",	do_serpent,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "shadowplane",	do_shadowplane,	POS_STANDING,	 3,  LOG_NORMAL	},
-    { "shadowsight",	do_shadowsight,	POS_RESTING,	 3,  LOG_NORMAL	},
-    { "shield",		do_shield,	POS_RESTING,	 3,  LOG_NORMAL	},
-    { "truesight",	do_truesight,	POS_RESTING,	 3,  LOG_NORMAL	},
+    { "shadowsight",	do_shadowsight,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "shield",		do_shield,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "teach",		do_teach,	POS_STANDING,	 5,  LOG_NORMAL	},
+    { "totems",		do_totems,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "tribe",		do_tribe,	POS_SITTING,	 3,  LOG_NORMAL	},
+    { "travel",		do_travel,	POS_STANDING,	 3,  LOG_NORMAL	},
+    { "truesight",	do_truesight,	POS_SITTING,	 3,  LOG_NORMAL	},
     { "upkeep",		do_upkeep,	POS_DEAD,	 3,  LOG_NORMAL	},
+    { "vanish",		do_vanish,	POS_STANDING,	 3,  LOG_NORMAL	},
     { "vclan",		do_vclan,	POS_DEAD,	 3,  LOG_NORMAL	},
+    { "weaponform",	do_weaponform,	POS_STANDING,	 2,  LOG_NORMAL	},
+    { "web",		do_web,		POS_FIGHTING,	 3,  LOG_NORMAL	},
+    { "wings",		do_wings,	POS_STANDING,	 3,  LOG_NORMAL	},
 
 
 
     /*
      * Immortal commands.
      */
-    { "trust",		do_trust,	POS_DEAD,	 8,  LOG_ALWAYS },
+    { "trust",		do_trust,	POS_DEAD,	11,  LOG_ALWAYS },
 
-    { "allow",		do_allow,	POS_DEAD,	 8,  LOG_ALWAYS	},
-    { "ban",		do_ban,		POS_DEAD,	 8,  LOG_ALWAYS	},
-    { "bind",		do_bind,	POS_DEAD,	 7,  LOG_ALWAYS	},
+    { "allow",		do_allow,	POS_DEAD,	11,  LOG_ALWAYS	},
+    { "ban",		do_ban,		POS_DEAD,	11,  LOG_ALWAYS	},
+    { "bind",		do_bind,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "clearstats",	do_clearstats,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "clearvam",	do_clearvam,	POS_STANDING,	 1,  LOG_NORMAL	},
-    { "clearvamp",	do_clearvamp,	POS_STANDING,	 8,  LOG_ALWAYS	},
-    { "create",		do_create,	POS_STANDING,	 5,  LOG_NORMAL	},
-    { "deny",		do_deny,	POS_DEAD,	 6,  LOG_ALWAYS	},
-    { "disconnect",	do_disconnect,	POS_DEAD,	 6,  LOG_ALWAYS	},
-    { "freeze",		do_freeze,	POS_DEAD,	 6,  LOG_ALWAYS	},
-    { "qset",		do_qset,	POS_DEAD,	 5,  LOG_ALWAYS	},
-    { "qstat",		do_qstat,	POS_DEAD,	 5,  LOG_ALWAYS	},
-    { "qtrust",		do_qtrust,	POS_DEAD,	 7,  LOG_ALWAYS	},
-    { "reboo",		do_reboo,	POS_DEAD,	 8,  LOG_NORMAL	},
-    { "reboot",		do_reboot,	POS_DEAD,	 8,  LOG_ALWAYS	},
-    { "shutdow",	do_shutdow,	POS_DEAD,	 8,  LOG_NORMAL	},
-    { "shutdown",	do_shutdown,	POS_DEAD,	 8,  LOG_ALWAYS	},
-    { "users",		do_users,	POS_DEAD,	 6,  LOG_NORMAL	},
-    { "wizlock",	do_wizlock,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "clearvamp",	do_clearvamp,	POS_STANDING,	11,  LOG_ALWAYS	},
+    { "create",		do_create,	POS_STANDING,	 8,  LOG_NORMAL	},
+    { "deny",		do_deny,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "disconnect",	do_disconnect,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "divorce",	do_divorce,	POS_DEAD,	 9,  LOG_ALWAYS	},
+    { "familiar",	do_familiar,	POS_STANDING,	12,  LOG_NORMAL	},
+    { "fcommand",	do_fcommand,	POS_STANDING,	 4,  LOG_NORMAL	},
+   /* { "fileupdate",	do_fileupdate,	POS_DEAD,	12,  LOG_ALWAYS	},*/
+    { "freeze",		do_freeze,	POS_DEAD,	 9,  LOG_ALWAYS	},
+    { "marry",		do_marry,	POS_DEAD,	 9,  LOG_ALWAYS	},
+    { "qset",		do_qset,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "qstat",		do_qstat,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "qtrust",		do_qtrust,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "ntrust",		do_ntrust,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "reboo",		do_reboo,	POS_DEAD,	10,  LOG_NORMAL	},
+    { "reboot",		do_reboot,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "shutdow",	do_shutdow,	POS_DEAD,	10,  LOG_NORMAL	},
+    { "shutdown",	do_shutdown,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "users",		do_users,	POS_DEAD,	 8,  LOG_NORMAL	},
+    { "wizlock",	do_wizlock,	POS_DEAD,	11,  LOG_ALWAYS	},
+    { "watche",		do_huh,		POS_DEAD,	 2,  LOG_NEVER	},
     { "watcher",	do_watcher,	POS_DEAD,	 2,  LOG_NEVER	},
 
-    { "force",		do_force,	POS_DEAD,	 6,  LOG_ALWAYS	},
-    { "mclear",		do_mclear,	POS_DEAD,	 6,  LOG_ALWAYS	},
-    { "mload",		do_mload,	POS_DEAD,	 4,  LOG_ALWAYS	},
-    { "mset",		do_mset,	POS_DEAD,	 5,  LOG_ALWAYS	},
-    { "noemote",	do_noemote,	POS_DEAD,	 6,  LOG_NORMAL	},
-    { "notell",		do_notell,	POS_DEAD,	 6,  LOG_NORMAL	},
-    { "oclone",		do_oclone,	POS_DEAD,	 5,  LOG_ALWAYS	},
-    { "oload",		do_oload,	POS_DEAD,	 4,  LOG_ALWAYS	},
-    { "oset",		do_oset,	POS_DEAD,	 5,  LOG_ALWAYS	},
-    { "otransfer",	do_otransfer,	POS_DEAD,	 5,  LOG_ALWAYS	},
-    { "pload",		do_pload,	POS_DEAD,	10,  LOG_ALWAYS	},
-    { "preturn",	do_preturn,	POS_DEAD,	10,  LOG_NORMAL	},
-    { "purge",		do_purge,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "qmake",		do_qmake,	POS_DEAD,	 7,  LOG_ALWAYS	},
-    { "release",	do_release,	POS_DEAD,	 7,  LOG_ALWAYS	},
+    { "force",		do_force,	POS_DEAD,	 9,  LOG_ALWAYS	},
+    { "mclear",		do_mclear,	POS_DEAD,	 9,  LOG_ALWAYS	},
+    { "mload",		do_mload,	POS_DEAD,	 7,  LOG_ALWAYS	},
+    { "mset",		do_mset,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "noemote",	do_noemote,	POS_DEAD,	 9,  LOG_NORMAL	},
+    { "notell",		do_notell,	POS_DEAD,	 9,  LOG_NORMAL	},
+    { "oclone",		do_oclone,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "oload",		do_oload,	POS_DEAD,	 7,  LOG_ALWAYS	},
+    { "oset",		do_oset,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "otransfer",	do_otransfer,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "pload",		do_pload,	POS_DEAD,	12,  LOG_ALWAYS	},
+    { "preturn",	do_preturn,	POS_DEAD,	 2,  LOG_NORMAL	},
+    { "pset",		do_pset,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "purge",		do_purge,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "qmake",		do_qmake,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "release",	do_release,	POS_DEAD,	 9,  LOG_ALWAYS	},
     { "relevel",	do_relevel,	POS_DEAD,	 1,  LOG_NEVER	},
-    { "restore",	do_restore,	POS_DEAD,	 5,  LOG_ALWAYS	},
+    { "restore",	do_restore,	POS_DEAD,	 8,  LOG_ALWAYS	},
     { "rset",		do_rset,	POS_DEAD,	 7,  LOG_ALWAYS	},
-    { "silence",	do_silence,	POS_DEAD,	 6,  LOG_NORMAL },
-    { "sla",		do_sla,		POS_DEAD,	 7,  LOG_NORMAL	},
-    { "slay",		do_slay,	POS_DEAD,	 7,  LOG_ALWAYS	},
-    { "special",	do_special,	POS_DEAD,	 7,  LOG_ALWAYS	},
+    { "silence",	do_silence,	POS_DEAD,	 9,  LOG_NORMAL },
+    { "sla",		do_sla,		POS_DEAD,	10,  LOG_NORMAL	},
+    { "slay",		do_slay,	POS_DEAD,	10,  LOG_ALWAYS	},
+    { "special",	do_special,	POS_DEAD,	10,  LOG_ALWAYS	},
     { "decapitate",	do_decapitate,	POS_STANDING,	 3,  LOG_ALWAYS	},
-    { "sset",		do_sset,	POS_DEAD,	 8,  LOG_ALWAYS },
-    { "transfer",	do_transfer,	POS_DEAD,	 5,  LOG_ALWAYS	},
+    { "sset",		do_sset,	POS_DEAD,	10,  LOG_ALWAYS },
+    { "tear",		do_tear,	POS_STANDING,	 3,  LOG_ALWAYS	},
+    { "transfer",	do_transfer,	POS_DEAD,	 7,  LOG_ALWAYS	},
 
-    { "at",		do_at,		POS_DEAD,	 5,  LOG_NORMAL	},
-    { "bamfin",		do_bamfin,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "bamfout",	do_bamfout,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "echo",		do_echo,	POS_DEAD,	 5,  LOG_ALWAYS	},
-    { "goto",		do_goto,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "holylight",	do_holylight,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "invis",		do_invis,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "log",		do_log,		POS_DEAD,	 6,  LOG_ALWAYS	},
+    { "transport",	do_transport,	POS_DEAD,	 0,  LOG_NORMAL	},
+
+    { "at",		do_at,		POS_DEAD,	 8,  LOG_NORMAL	},
+    { "bamfin",		do_bamfin,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "bamfout",	do_bamfout,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "echo",		do_echo,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "goto",		do_goto,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "holylight",	do_holylight,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "incog",          do_incog,       POS_DEAD,        7,  LOG_NORMAL },
+    { "invis",		do_invis,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "log",		do_log,		POS_DEAD,	 9,  LOG_ALWAYS	},
     { "memory",		do_memory,	POS_DEAD,	 7,  LOG_NORMAL	},
-    { "mfind",		do_mfind,	POS_DEAD,	 4,  LOG_NORMAL },
-    { "mstat",		do_mstat,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "mwhere",		do_mwhere,	POS_DEAD,	 5,  LOG_NORMAL },
-    { "ofind",		do_ofind,	POS_DEAD,	 4,  LOG_NORMAL },
-    { "ostat",		do_ostat,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "oswitch",	do_oswitch,	POS_DEAD,	 5,  LOG_NORMAL	},
-    { "oreturn",	do_oreturn,	POS_DEAD,	 5,  LOG_NORMAL	},
-    { "peace",		do_peace,	POS_DEAD,	 5,  LOG_NORMAL	},
-    { "recho",		do_recho,	POS_DEAD,	 5,  LOG_ALWAYS	},
-    { "return",		do_return,	POS_DEAD,	 5,  LOG_NORMAL	},
-    { "rstat",		do_rstat,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { "slookup",	do_slookup,	POS_DEAD,	 4,  LOG_NORMAL },
-    { "snoop",		do_snoop,	POS_DEAD,	 5,  LOG_NORMAL	},
-    { "switch",		do_switch,	POS_DEAD,	 5,  LOG_ALWAYS	},
+    { "mfind",		do_mfind,	POS_DEAD,	 7,  LOG_NORMAL },
+    { "mstat",		do_mstat,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "mwhere",		do_mwhere,	POS_DEAD,	 8,  LOG_NORMAL },
+    { "ofind",		do_ofind,	POS_DEAD,	 7,  LOG_NORMAL },
+    { "ostat",		do_ostat,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "oswitch",	do_oswitch,	POS_DEAD,	 8,  LOG_NORMAL	},
+    { "oreturn",	do_oreturn,	POS_DEAD,	 8,  LOG_NORMAL	},
+    { "peace",		do_peace,	POS_DEAD,	 8,  LOG_NORMAL	},
+    { "recho",		do_recho,	POS_DEAD,	 8,  LOG_ALWAYS	},
+    { "return",		do_return,	POS_DEAD,	 8,  LOG_NORMAL	},
+    { "rstat",		do_rstat,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { "slookup",	do_slookup,	POS_DEAD,	 7,  LOG_NORMAL },
+    { "snoop",		do_snoop,	POS_DEAD,	 8,  LOG_NORMAL	},
+    { "switch",		do_switch,	POS_DEAD,	 8,  LOG_ALWAYS	},
 
     { "vamptalk",	do_vamptalk,	POS_DEAD,	 1,  LOG_NORMAL	},
+    { "magetalk",	do_magetalk,	POS_DEAD,	 2,  LOG_NORMAL	},
     { "vtalk",		do_vamptalk,	POS_DEAD,	 1,  LOG_NORMAL	},
     { ">",		do_vamptalk,	POS_DEAD,	 1,  LOG_NORMAL	},
     { "vampire",	do_vampire,	POS_STANDING,	 0,  LOG_NORMAL	},
     { "immune",		do_immune,	POS_DEAD,	 0,  LOG_NORMAL	},
+    { "[",		do_fcommand,	POS_SITTING,	 3,  LOG_NORMAL	},
 
-    { "immtalk",	do_immtalk,	POS_DEAD,	 4,  LOG_NORMAL	},
-    { ":",		do_immtalk,	POS_DEAD,	 4,  LOG_NORMAL	},
+    { "immtalk",	do_immtalk,	POS_DEAD,	 7,  LOG_NORMAL	},
+    { ":",		do_immtalk,	POS_DEAD,	 7,  LOG_NORMAL	},
 
     /*
      * End of list.
@@ -522,7 +603,7 @@ const	struct	social_type	social_table [] =
         "$n pokes $N, and exclaims, 'WHERE'S THE BEEF????'",
         "$n pokes you and exclaims, 'WHERE'S THE BEEF????'",
         "You poke your fat rolls and exclaim, 'Oh, THERE'S THE BEEF!'",
-        "$n pokes his fat rolls, and exclaims, 'Oh, THERE'S THE BEEF!'"
+        "$n pokes $s fat rolls, and exclaims, 'Oh, THERE'S THE BEEF!'"
     },
    
     {
@@ -544,7 +625,7 @@ const	struct	social_type	social_table [] =
 	"$n begs you for money.",
 	"$n begs $N for a gold piece!",
 	"Begging yourself for money doesn't help.",
-	"$n begs himself for money."
+	"$n begs $mself for money."
     },
 
     {
@@ -747,6 +828,17 @@ const	struct	social_type	social_table [] =
     },
 
     {
+	"byron",
+	"You recite romantic poems to yourself.",
+	"$n mutters romantic poems to himself, must be practicing for someone.",
+	"You recite a romantic poem to $N.",
+	"$n recites a beautiful romantic poem for $N.",
+	"$n recites a heartstoppingly beautiful romantic poem for you.",
+	"You read yourself romantic poems.  Falling in love with yourself?",
+	"$n reads $mself a romantic poem.  Perhaps he loves $mself?",
+    },
+
+    {
 	"cackle",
 	"You throw back your head and cackle with insane glee!",
 	"$n throws back $s head and cackles with insane glee!",
@@ -793,7 +885,7 @@ const	struct	social_type	social_table [] =
     {
 	"cheer",
 	"ZIS BOOM BAH!  BUGS BUNNY BUGS BUNNY RAH RAH RAH!",
-	"$n says 'BUGS BUNNY BUGS BUNNY RAH RAH RAH!'",
+	"$n cheers 'BUGS BUNNY BUGS BUNNY RAH RAH RAH!'",
 	"You cheer loudly: 'Go $N Go!'",
 	"$n cheers loudly: 'Go $N Go!'",
 	"$n cheers you on!",
@@ -812,6 +904,17 @@ const	struct	social_type	social_table [] =
 	"$n looks around, muttering, 'Ver are the nuclear wessels?'"
     },
     
+    {
+	"chortle",
+	"You chortle with glee.",
+	"$n chortles with glee.",
+	"You chortle loudly at $M.",
+	"$n chortles loudly at $N.",
+	"$n chortles loudly at you.",
+	"You chortle loudly to yourself.",
+	"$n chortles loudly to $mself."
+    },
+
     {
 	"chuckle",
 	"You chuckle politely.",
@@ -884,7 +987,7 @@ const	struct	social_type	social_table [] =
 	"$n coughs loudly.",
 	"You cough loudly.  It must be $S fault, $E gave you this cold.",
 	"$n coughs loudly, and glares at $N, like it is $S fault.",
-	"$n coughs loudly, and glares at you.  Did you give $M that cold?",
+	"$n coughs loudly, and glares at you.  Did you give $m that cold?",
 	"You cough loudly.  Why don't you take better care of yourself?",
 	"$n coughs loudly.  $n should take better care of $mself." 
     },
@@ -1135,17 +1238,6 @@ const	struct	social_type	social_table [] =
     },
 
     {
-	"flex",
-	"You flex your bulging muscles at the beach crowd.",
-	"$n flexes $s muscles and puts yours to shame!",
-	"You flex your bulging muscles at $M.",
-	"$n flexes $s muscles at $N.",
-	"$n flexes $s muscles at you.  $n must be trying to impress you.",
-	"You flex your muscles at yourself.  Wow, you are HUGE!",
-	"$n flexes $s muscles at $mself.  How narcissistic!"
-    },
-    
-    {
 	"flip",
 	"You flip head over heels.",
 	"$n flips head over heels.",
@@ -1237,7 +1329,7 @@ const	struct	social_type	social_table [] =
 	"gasp",
 	"You gasp in astonishment.",
 	"$n gasps in astonishment.",
-	"You gasp as you realize what $e did.",
+	"You gasp as you realize what $E did.",
 	"$n gasps as $e realizes what $N did.",
 	"$n gasps as $e realizes what you did.",
 	"You look at yourself and gasp!",
@@ -1497,17 +1589,6 @@ const	struct	social_type	social_table [] =
 	NULL
     },
 
-    {
-	"howl",
-	"AHOOOOOOOOOOOOooooooooooooo.",
-	"$n howls over the smoking corpse.",
-	"You howl at $M.",
-	"$n howls at $N.  Someone's gonna die!",
-	"$n howls at you.  You must be good looking.",
-	"You howl at yourself.",
-	"$n howls at $mself."
-    },
-    
     {
 	"hug",
 	"Hug whom?",
@@ -2014,17 +2095,6 @@ const	struct	social_type	social_table [] =
 	"$n pouts."
     },
 
-    {
-	"pray",
-	"You feel righteous, and maybe a little foolish.",
-	"$n begs and grovels to the powers that be.",
-	"You crawl in the dust before $M.",
-	"$n falls down and grovels in the dirt before $N.",
-	"$n kisses the dirt at your feet.",
-	"Talk about narcissism ...",
-	"$n mumbles a prayer to $mself."
-    },
-
     {   
 	"pretend",
 	"You pretend you are a GOD, and slay everyone in sight!",
@@ -2034,17 +2104,6 @@ const	struct	social_type	social_table [] =
 	"$n pretends $e is a GOD, and says, 'You are demoted to level 1!'",
 	"You pretend you are an implementor, and you demote yourself to level 1.",
 	"$n pretends $e is a GOD, and demotes $mself to level 1."
-    },
-
-    {
-	"propose",
-	"You propose a contract game of bridge.",
-	"$n proposes a contract game of bridge.",
-	"You propose marriage to $M.",
-	"$n gets down on one knee and proposes to $N.",
-	"$n says quietly 'Will you marry me?'",
-	"Even you wouldn't marry yourself.",
-	"$n refuses the proposal made by $mself."
     },
 
     {
@@ -2103,7 +2162,7 @@ const	struct	social_type	social_table [] =
     },
     
     {
-	"roll",
+	"rolleyes",
 	"You roll your eyes.",
 	"$n rolls $s eyes.",
 	"You roll your eyes at $M.",
@@ -2272,7 +2331,7 @@ const	struct	social_type	social_table [] =
 	"Slap whom?",
 	NULL,
 	"You slap $M playfully.",
-	"$n slaps $N for hit stupidity.",
+	"$n slaps $N for $s stupidity.",
 	"$n slaps you for your stupidity.  OUCH!",
 	"You slap yourself.  You deserve it.",
 	"$n slaps $mself.  Why don't you join in?"
@@ -2287,6 +2346,17 @@ const	struct	social_type	social_table [] =
 	"$n slobbers all over you.",
 	"You slobber all down your front.",
 	"$n slobbers all over $mself."
+    },
+
+    {
+	"slut",
+	"You act like a total slut.",
+	"$n lounges about looking like a total slut.",
+	"You come on to $N, breathing sensuality.",
+	"$n comes on to $N, perhaps he's trying to take Rosario's reputation?",
+	"$n comes on to you, $n is like a living embodiment of sensuality.",
+	"You sigh, and say 40 partners is average for a 18 yr old, right?",
+	"$n sighs, and says 40 partners is about right for an 18 yr old right?"
     },
 
     {
@@ -2436,9 +2506,9 @@ const	struct	social_type	social_table [] =
 	"snuggle",
 	"Who?",
 	NULL,
-	"you snuggle $M.",
-	"$n snuggles up to $N.",
-	"$n snuggles up to you.",
+	"You snuggle up contentedly in $M lap.",
+	"$n snuggles up contentedly in $N's lap.",
+	"$n snuggles up contentedly in your lap.",
 	"You snuggle up, getting ready to sleep.",
 	"$n snuggles up, getting ready to sleep."
     },
@@ -2956,6 +3026,427 @@ const	struct	social_type	social_table [] =
 };
 
 
+/*
+ * The X-social table.
+ * Add new X-socials here.
+ * Alphabetical order is not required.
+ */
+const	struct	xsocial_type	xsocial_table [] =
+{
+
+    {
+	"x_earlobe",
+	"On whom do you wish to do this?",
+	NULL,
+	"You gently tug on $M earlobe with your teeth.",
+	"$n gently tugs on $N's earlobe with $s teeth.",
+	"$n gently tugs on your earlobe with $s teeth.",
+	"Not on yourself!",
+	NULL,
+	0, 0, 0, 1, 1, FALSE
+    },
+
+    {
+	"x_french",
+	"On whom do you wish to do this?",
+	NULL,
+	"You give $M a deep throbbing kiss, rolling your tongue around $S.",
+	"$n gives $N a deep throbbing kiss.",
+	"$n gives you a deep throbbing kiss, rolling $s tongue around yours.",
+	"Not on yourself!",
+	NULL,
+	0, 0, 0, 1, 1, FALSE
+    },
+
+    {
+	"x_kissneck",
+	"On whom do you wish to do this?",
+	NULL,
+	"You slowly and softly kiss and nuzzle $M neck.",
+	"$n slowly and softly kisses and nuzzles $N's neck.",
+	"$n slowly and softly kisses and nuzzles your neck.",
+	"Not on yourself!",
+	NULL,
+	0, 0, 0, 1, 1, FALSE
+    },
+
+    {
+	"x_moan",
+	"On whom do you wish to do this?",
+	NULL,
+	"You start moaning 'Oh $N...oh yes...don't stop...mmMMmm...'",
+	"$n starts moaning 'Oh $N...oh yes...don't stop...mmMMmm...'",
+	"$n starts moaning 'Oh $N...oh yes...don't stop...mmMMmm...'",
+	"Not on yourself!",
+	NULL,
+	0, 2, 0, 1, 1, FALSE
+    },
+
+    {
+	"x_nuttella",
+	"On whom do you wish to do this?",
+	NULL,
+	"You cover $N's naked flesh with a popular choc spread, before licking it off.",
+	"$n smears a chocolate spread over $N's body, licking $M clean with relish",
+	"$n smears a popular choc spread on your naked flesh, licking it off you",
+	"Not on yourself!",
+	NULL,
+	0, 0, 0, 5, 20, FALSE
+    },
+
+    {
+	"x_stroke",
+	"On whom do you wish to do this?",
+	NULL,
+	"You lightly run your fingers along the insides of $S thighs.",
+	"$n lightly runs $s fingers along the insides of $N's thighs.",
+	"$n lightly runs $s fingers along the insides of your thighs.",
+	"Not on yourself!",
+	NULL,
+	0, 0, 0, 5, 10, FALSE
+    },
+
+    {
+	"x_tender",
+	"On whom do you wish to do this?",
+	NULL,
+	"You run your fingers through $S hair and kiss $M tenderly on the lips.",
+	"$n runs $s fingers through $N's hair and kisses $M tenderly on the lips.",
+	"$n runs $s fingers through your hair and kisses you tenderly on the lips.",
+	"Not on yourself!",
+	NULL,
+	0, 0, 0, 1, 1, FALSE
+    },
+
+    {
+	"x_withdraw",
+	"On whom do you wish to do this?",
+	NULL,
+	"You gently pull yourself free of $M.",
+	"$n gently pulls $mself free of $N.",
+	"$n gently pulls $mself free of you.",
+	"Not on yourself!",
+	NULL,
+	0, 1, 0, 0, 0, FALSE
+    },
+
+    {
+	"xf_blowjob",
+	"On whom do you wish to do this?",
+	NULL,
+	"You take $N's hot member in your mouth, sucking $S shaft.",
+	"$n takes $N's throbbing penis in $s mouth, sucking $N's cock.",
+	"You gasp as $n takes your penis in $s mouth, licking your head.",
+	"On yourself? I'm impressed!",
+	NULL,
+	2, 1, 250, 10, 25, FALSE
+    },
+
+    {
+	"xf_breasts",
+	"On whom do you wish to do this?",
+	NULL,
+	"You take $S hands and press them to your breasts.",
+	"$n takes $N's hands and presses them to $m breasts.",
+	"$n takes your hands and presses them to $m breasts.",
+	"Not on yourself!",
+	NULL,
+	2, 0, 0, 5, 10, FALSE
+    },
+
+    {
+	"xf_contract",
+	"On whom do you wish to do this?",
+	NULL,
+	"You contract your vaginal muscles, driving $M wild.",
+	"$n contracts $m vaginal muscles, driving $N wild.",
+	"$n contracts $m vaginal muscles, driving you wild.",
+	"Not on yourself!",
+	NULL,
+	2, 2, 0, 10, 15, TRUE
+    },
+
+    {
+	"xf_floor",
+	"On whom do you wish to do this?",
+	NULL,
+	"You lie on your back, and pull $M between your parted legs.",
+	"$n lies on $m back, and pulls $N between $m parted legs.",
+	"$n lies on $m back, and pulls you between $m parted legs.",
+	"Not on yourself!",
+	NULL,
+	2, 1, 250, 25, 20, TRUE
+    },
+
+    {
+	"xf_grind",
+	"On whom do you wish to do this?",
+	NULL,
+	"You grind your hips up to meet $S thrusts.",
+	"$n grinds $m hips up to meet $N's thrusts.",
+	"$n grinds $m hips up to meet your thrusts.",
+	"Not on yourself!",
+	NULL,
+	2, 2, 0, 15, 10, TRUE
+    },
+
+    {
+	"xf_mount",
+	"On whom do you wish to do this?",
+	NULL,
+	"You push $M onto $S back, and slowly lower yourself onto $S erection.",
+	"$n pushes $N onto $S back, and slowly lowers $mself onto $S erection.",
+	"$n pushes you onto your back, and slowly lowers $mself onto your erection.",
+	"Not on yourself!",
+	NULL,
+	2, 1, 250, 25, 20, TRUE
+    },
+
+    {
+	"xf_nails",
+	"On whom do you wish to do this?",
+	NULL,
+	"You scratch your nails down $S back.",
+	"$n scratches $m nails down $N's back.",
+	"$n scratches $m nails down your back.",
+	"Not on yourself!",
+	NULL,
+	2, 2, 0, 5, 1, TRUE
+    },
+
+    {
+	"xf_pull",
+	"On whom do you wish to do this?",
+	NULL,
+	"You wrap your arms and legs around $M and pull $M into you.",
+	"$n wraps $m arms and legs around $N and pulls $M into $m.",
+	"$n wraps $m arms and legs around you and pulls you into $m.",
+	"Not on yourself!",
+	NULL,
+	2, 2, 0, 15, 10, TRUE
+    },
+
+    {
+	"xf_squeeze",
+	"On whom do you wish to do this?",
+	NULL,
+	"Your wrap your legs around $M and squeeze tightly.",
+	"$n wraps $m legs around $N and squeezes tightly.",
+	"$n wraps $m legs around you and squeezes tightly.",
+	"Not on yourself!",
+	NULL,
+	2, 2, 0, 15, 10, TRUE
+    },
+
+    {
+	"xf_titfuck",
+	"Whom do you wish to treat to this?",
+	NULL,
+	"You take $N's cock and place it between your breasts, as $N gently thrusts.",
+	"$n takes $N's penis, places it between $s breasts, and wanks $M off.",
+	"$n takes your cock, places it between her breasts, and wanks you gently with them.",
+	"Not on yourself!",
+	NULL,
+	2, 1, 0, 10, 20, FALSE
+    },
+
+    {
+	"xf_undress",
+	"On whom do you wish to do this?",
+	NULL,
+	"You push $N onto the floor, a gleam in your eyes, and tear $S clothes off.",
+	"$n pushes $N to the floor, tears $S clothes from $S body.",
+	"$n pushes you to the floor, grins, and rips your clothes from your body.",
+	"Not on yourself!",
+	NULL,
+	2, 0, 0, 1, 1, FALSE
+    },
+
+    {
+	"xm_breasts",
+	"On whom do you wish to do this?",
+	NULL,
+	"You gently run the tip of your tongue across $M naked breasts.",
+	"$n gently runs the tip of $s tongue across $N's naked breasts.",
+	"$n gently runs the tip of $s tongue across your naked breasts.",
+	"Not on yourself!",
+	NULL,
+	1, 0, 0, 5, 10, FALSE
+    },
+
+    {
+	"xm_cup",
+	"On whom do you wish to do this?",
+	NULL,
+	"You cup $N's breasts in your hands, and caress $S nipples.",
+	"$n cups $N's breasts in $s hands and caress' $S nipples.",
+	"$n cups your breasts in $s palms and caress' your nipples.",
+	"ON YOURSELF??",
+	NULL,
+	1, 0, 0, 1, 5, FALSE
+    },
+
+    {
+	"xm_doggy",
+	"On whom do you wish to do this?",
+	NULL,
+	"You roll $M onto all fours and penetrate $M hot flesh from behind.",
+	"$n rolls $N onto all fours and penetrates $M hot flesh from behind.",
+	"$n rolls you onto all fours and penetrates your hot flesh from behind.",
+	"Not on yourself!",
+	NULL,
+	1, 1, 250, 25, 15, FALSE
+    },
+
+    {
+	"xm_finger",
+	"On whom do you wish to do this?",
+	NULL,
+	"You slide your fingers between $M legs, gently stroking $M clitoris.",
+	"$n slides $s fingers between $N's legs, gently stroking $M clitoris.",
+	"$n slides $s fingers between your legs, gently stroking your clitoris.",
+	"Not on yourself!",
+	NULL,
+	1, 1, 250, 0, 10, FALSE
+    },
+
+    {
+	"xm_fist",
+	"On whom do you wish to do this? I hope you asked!",
+	NULL,
+	"You make a fist and thrust it up $N's spread wide vagina as she screams with pleasure.",
+	"$N gasps as $n pushes $s hand up between $S legs into $S vagina.",
+	"$n spreads your legs wide, and thrusts $s hand up your vagina making you cry out in pleasure.",
+	"C'est non possible.. I hope...",
+	NULL,
+        1, 1, 250, 5, 15, FALSE
+    },
+
+    {
+	"xm_floor",
+	"On whom do you wish to do this?",
+	NULL,
+	"You lower $M to the floor, and slide your body between $M parted legs.",
+	"$n lowers $N to the floor, and slides $s body between $M parted legs.",
+	"$n lowers you to the floor, and slides $s body between your parted legs.",
+	"Not on yourself!",
+	NULL,
+	1, 1, 250, 15, 10, TRUE
+    },
+	
+    {
+	"xm_nipple",
+	"On whom do you wish to do this?",
+	NULL,
+	"You gently twist $M nipple between your thumb and forefinger.",
+	"$n gently twists $N's nipple between $s thumb and forefinger.",
+	"$n gently twists your nipple between $s thumb and forefinger.",
+	"Not on yourself!",
+	NULL,
+	1, 0, 0, 5, 10, FALSE
+    },
+
+    {
+	"xm_oral",
+	"On whom do you wish to do this?",
+	NULL,
+	"$N squirms in delight as you bend down and run your tongue along and into $S vagina.",
+	"$N squirms ecstatically as $n licks and kisses $S loveslit.",
+	"$n wriggles $s tongue about between your legs, making you squirm in ecstacy.",
+	"Biologically impossible I think you'll find!",
+	NULL,
+	1, 0, 0, 10, 25, FALSE
+    },
+
+    {
+	"xm_press",
+	"On whom do you wish to do this?",
+	NULL,
+	"You press $M against the wall, pulling $M legs around your hips.",
+	"$n presses $N against the wall, pulling $M legs around $s hips.",
+	"$n presses you against the wall, pulling your legs around $s hips.",
+	"Not on yourself!",
+	NULL,
+	1, 1, 250, 25, 20, TRUE
+    },
+
+    {
+	"xm_pull",
+	"On whom do you wish to do this?",
+	NULL,
+	"You grab $M around the hips and pull $M firmly onto your erection.",
+	"$n grabs $N around the hips and pull $M firmly onto $s erection.",
+	"$n grabs you around the hips and pulls you firmly onto $s erection.",
+	"Not on yourself!",
+	NULL,
+	1, 2, 0, 10, 10, TRUE
+    },
+
+    {
+	"xm_spoon",
+	"On whom do you wish to do this?",
+	NULL,
+	"You roll $M onto $S side and penetrate $M hot flesh from behind.",
+	"$n rolls $N onto $S side and penetrates $M hot flesh from behind.",
+	"$n rolls you onto your side and penetrates your hot flesh from behind.",
+	"Not on yourself!",
+	NULL,
+	1, 1, 250, 20, 20, TRUE
+    },
+
+    {
+	"xm_suck",
+	"On whom do you wish to do this?",
+	NULL,
+	"You suck slowly on $M nipple, feeling it harden between your lips.",
+	"$n suck slowly on $N's nipple.",
+	"$n sucks slowly on your nipple, and you feel it harden between $s lips.",
+	"Not on yourself!",
+	NULL,
+	1, 0, 0, 5, 10, FALSE
+    },
+
+    {
+	"xm_thrust",
+	"On whom do you wish to do this?",
+	NULL,
+	"You thrust deeply between $M warm, slippery thighs.",
+	"$n thrusts deeply between $N's warm, slippery thighs.",
+	"$n thrusts deeply between your warm, slippery thighs.",
+	"Not on yourself!",
+	NULL,
+	1, 2, 0, 15, 10, TRUE
+    },
+
+    {
+	"xm_tug",
+	"On whom do you wish to do this?",
+	NULL,
+	"You gently tug $M nipple between your teeth.",
+	"$n gently tugs $N's nipple between $s teeth.",
+	"$n gently tugs your nipple between $s teeth.",
+	"Not on yourself!",
+	NULL,
+	1, 0, 0, 5, 10, FALSE
+    },
+
+    {
+	"xm_undress",
+	"Who do you wish to undress?",
+	NULL,
+	"You gently tug at $N's garments with your teeth, until $E stands naked before you.",
+	"$n gently tugs at $N's clothes with his teeth, until $E stands naked infront of $m.",
+	"$n gently tugs at your clothing with his teeth, you stand naked before $m.",
+	"Not on yourself!",
+	NULL,
+	1, 0, 0, 1, 1, FALSE
+    },
+
+    {
+	"",
+	NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, FALSE
+    }
+};
 
 /*
  * The main entry point for executing commands.
@@ -2965,10 +3456,10 @@ void interpret( CHAR_DATA *ch, char *argument )
 {
 /*  ROOMTEXT_DATA *rt;
     char kavirarg[MAX_INPUT_LENGTH]; */
-    char arg[MAX_INPUT_LENGTH];
-    char argu[MAX_INPUT_LENGTH];
-    char command[MAX_INPUT_LENGTH];
-    char logline[MAX_INPUT_LENGTH];
+    char arg[MAX_STRING_LENGTH];
+    char argu[MAX_STRING_LENGTH];
+    char command[MAX_STRING_LENGTH];
+    char logline[MAX_STRING_LENGTH];
     int cmd;
     int trust;
     bool found;
@@ -3052,12 +3543,22 @@ void interpret( CHAR_DATA *ch, char *argument )
 		else if (!str_cmp( cmd_table[cmd].name, "save"    )) found = TRUE;
 		else if (!str_cmp( cmd_table[cmd].name, "inventory" )) found = TRUE;
 		else if (!str_cmp( cmd_table[cmd].name, "oreturn" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "roll" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "leap" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "lifespan" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "nightsight" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "truesight" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "horns" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "fangs" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "cast" )) found = TRUE;
 		else if (!str_cmp( cmd_table[cmd].name, "quit" ) &&
+			!IS_NPC(ch) && ch->pcdata->obj_vnum != 0) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "humanform" ) &&
 			!IS_NPC(ch) && ch->pcdata->obj_vnum != 0) found = TRUE;
 		else {
 		    send_to_char( "Not without a body!\n\r", ch ); return; }
 	    }
-	    else if (IS_BODY(ch,TIED_UP) )
+	    else if (IS_EXTRA(ch,TIED_UP) )
 	    {
 		if      (!str_cmp( cmd_table[cmd].name, "say"  )) found = TRUE;
 		else if (!str_cmp( cmd_table[cmd].name, "'"    )) found = TRUE;
@@ -3094,6 +3595,9 @@ void interpret( CHAR_DATA *ch, char *argument )
 		else if (!str_cmp( cmd_table[cmd].name, "immune" )) found = TRUE;
 		else if (!str_cmp( cmd_table[cmd].name, "report" )) found = TRUE;
 		else if (!str_cmp( cmd_table[cmd].name, "goto" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "flex" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "change" )) found = TRUE;
+		else if (!str_cmp( cmd_table[cmd].name, "drink" )) found = TRUE;
 		else {
 		    send_to_char( "Not while tied up.\n\r", ch );
 		    if (ch->position > POS_STUNNED)
@@ -3132,7 +3636,10 @@ void interpret( CHAR_DATA *ch, char *argument )
 	 * Look for command in socials table.
 	 */
 	if ( !check_social( ch, command, argument ) )
-	    send_to_char( "Huh?\n\r", ch );
+	{
+	    if ( !check_xsocial( ch, command, argument ) )
+		send_to_char( "Huh?\n\r", ch );
+	}
 /*
 	else
 	{
@@ -3167,6 +3674,8 @@ void interpret( CHAR_DATA *ch, char *argument )
 	    send_to_char( "In your dreams, or what?\n\r", ch );
 	    break;
 
+	case POS_MEDITATING:
+	case POS_SITTING:
 	case POS_RESTING:
 	    send_to_char( "Nah... You feel too relaxed...\n\r", ch);
 	    break;
@@ -3204,7 +3713,7 @@ void interpret( CHAR_DATA *ch, char *argument )
 
 bool check_social( CHAR_DATA *ch, char *command, char *argument )
 {
-    char arg[MAX_INPUT_LENGTH];
+    char arg[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int cmd;
     bool found;
@@ -3317,6 +3826,330 @@ bool check_social( CHAR_DATA *ch, char *command, char *argument )
 }
 
 
+
+bool check_xsocial( CHAR_DATA *ch, char *command, char *argument )
+{
+    char arg[MAX_STRING_LENGTH];
+    CHAR_DATA *victim;
+    CHAR_DATA *partner = NULL;
+    int cmd;
+    int stage;
+    int amount;
+    bool is_ok = FALSE;
+    bool found = FALSE;
+    bool one = FALSE;
+    bool two = FALSE;
+
+    if (IS_NPC(ch)) return FALSE;
+
+    for ( cmd = 0; xsocial_table[cmd].name[0] != '\0'; cmd++ )
+    {
+	if ( command[0] == xsocial_table[cmd].name[0]
+	&&   !str_prefix( command, xsocial_table[cmd].name ) )
+	{
+	    found = TRUE;
+	    break;
+	}
+    }
+
+    if ( !found )
+	return FALSE;
+
+    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_NO_EMOTE) )
+    {
+	send_to_char( "You are anti-social!\n\r", ch );
+	return TRUE;
+    }
+    switch ( ch->position )
+    {
+    case POS_DEAD:
+	send_to_char( "Lie still; you are DEAD.\n\r", ch );
+	return TRUE;
+
+    case POS_INCAP:
+    case POS_MORTAL:
+	send_to_char( "You are hurt far too bad for that.\n\r", ch );
+	return TRUE;
+
+    case POS_STUNNED:
+	send_to_char( "You are too stunned to do that.\n\r", ch );
+	return TRUE;
+
+    case POS_SLEEPING:
+	send_to_char( "In your dreams, or what?\n\r", ch );
+	return TRUE;
+
+    }
+
+    one_argument( argument, arg );
+    victim = NULL;
+
+    if ( arg[0] == '\0' )
+    {
+	act( xsocial_table[cmd].others_no_arg, ch, NULL, victim, TO_ROOM    );
+	act( xsocial_table[cmd].char_no_arg,   ch, NULL, victim, TO_CHAR    );
+    }
+    else if ( ( victim = get_char_room( ch, arg ) ) == NULL )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+    }
+    else if ( victim == ch )
+    {
+	act( xsocial_table[cmd].others_auto,   ch, NULL, victim, TO_ROOM );
+	act( xsocial_table[cmd].char_auto,     ch, NULL, victim, TO_CHAR );
+    }
+    else if (IS_NPC(victim))
+    {
+	send_to_char("You can only perform xsocials on players.\n\r",ch);
+    }
+    else if (ch->sex != SEX_MALE && ch->sex != SEX_FEMALE)
+    {
+	send_to_char("You must be either male or female to use these socials.\n\r",ch);
+    }
+    else if (victim->sex != SEX_MALE && victim->sex != SEX_FEMALE)
+    {
+	send_to_char("They must be either male or female for these socials.\n\r",ch);
+    }
+    else if (ch->sex == victim->sex)
+    {
+	send_to_char("Please stick to people of the opposite gender.\n\r",ch);
+    }
+    else
+    {
+	if (xsocial_table[cmd].gender == SEX_MALE && ch->sex != SEX_MALE)
+	{
+	    send_to_char("Only men can perform this type of social.\n\r",ch);
+	}
+	else if (xsocial_table[cmd].gender == SEX_FEMALE && ch->sex != SEX_FEMALE)
+	{
+	    send_to_char("Only women can perform this type of social.\n\r",ch);
+	}
+	else if (xsocial_table[cmd].gender == SEX_MALE && victim->sex != SEX_FEMALE)
+	{
+	    send_to_char("You can only perform this social on a woman.\n\r",ch);
+	}
+	else if (xsocial_table[cmd].gender == SEX_FEMALE && victim->sex != SEX_MALE)
+	{
+	    send_to_char("You can only perform this social on a man.\n\r",ch);
+	}
+	else if ((partner = victim->pcdata->partner) == NULL || partner != ch)
+	{
+	    send_to_char("You cannot perform an xsocial on someone without their CONSENT.\n\r",ch);
+	}
+	else if (xsocial_table[cmd].stage == 0 && ch->pcdata->stage[0] < 1
+	    && ch->pcdata->stage[2] > 0 && ch->sex == SEX_MALE)
+	    send_to_char("You have not yet recovered from last time!\n\r",ch);
+	else if (xsocial_table[cmd].stage == 0 && victim->pcdata->stage[0] < 1
+	    && victim->pcdata->stage[2] > 0 && victim->sex == SEX_MALE)
+	    send_to_char("They have not yet recovered from last time!\n\r",ch);
+	else if (xsocial_table[cmd].stage > 0 && ch->pcdata->stage[0] < 100)
+	    send_to_char("You are not sufficiently aroused.\n\r",ch);
+	else if (xsocial_table[cmd].stage > 0 && victim->pcdata->stage[0] < 100)
+	    send_to_char("They are not sufficiently aroused.\n\r",ch);
+	else if (xsocial_table[cmd].stage > 1 && ch->pcdata->stage[1] < 1)
+	    send_to_char("You are not in the right position.\n\r",ch);
+	else if (xsocial_table[cmd].stage > 1 && victim->pcdata->stage[1] < 1)
+	    send_to_char("They are not in the right position.\n\r",ch);
+	else
+	{
+	    act(xsocial_table[cmd].others_found,  ch, NULL, victim, TO_NOTVICT);
+	    act(xsocial_table[cmd].char_found,    ch, NULL, victim, TO_CHAR   );
+	    act(xsocial_table[cmd].vict_found,    ch, NULL, victim, TO_VICT   );
+	    if (xsocial_table[cmd].chance)
+	    {
+		if (ch->sex == SEX_FEMALE && 
+		    !IS_EXTRA(ch, EXTRA_PREGNANT) && number_range(1,1000) == 1) 
+		make_preg(ch,victim);
+		else if (victim->sex == SEX_FEMALE && 
+		    !IS_EXTRA(victim, EXTRA_PREGNANT) && 
+		    number_range(1,1000) == 1) 
+		make_preg(victim,ch);
+	    }
+	    if (xsocial_table[cmd].stage == 1)
+	    {
+		ch->pcdata->stage[1] = xsocial_table[cmd].position;
+		victim->pcdata->stage[1] = xsocial_table[cmd].position;
+		if (!IS_SET(ch->extra, EXTRA_DONE))
+		{
+		    SET_BIT(ch->extra, EXTRA_DONE);
+		    if (ch->sex == SEX_FEMALE)
+		    {
+			act("You feel $n bleed as you enter $m.",ch,NULL,victim,TO_VICT);
+			act("You feel yourself bleed as $N enters you.",ch,NULL,victim,TO_CHAR);
+			ch->in_room->blood += 1;
+		    }
+		}
+		if (!IS_SET(victim->extra, EXTRA_DONE))
+		{
+		    SET_BIT(victim->extra, EXTRA_DONE);
+		    if (victim->sex == SEX_FEMALE)
+		    {
+			act("You feel $N bleed as you enter $M.",ch,NULL,victim,TO_CHAR);
+			act("You feel yourself bleed as $n enters you.",ch,NULL,victim,TO_VICT);
+			ch->in_room->blood += 1;
+		    }
+		}
+		stage = 2;
+	    }
+	    else stage = xsocial_table[cmd].stage;
+	    if (stage == 2) amount = ch->pcdata->stage[1];
+		else amount = 100;
+	    if (xsocial_table[cmd].self > 0)
+	    {
+		is_ok = FALSE;
+		if (ch->pcdata->stage[stage] >= amount) is_ok = TRUE;
+		ch->pcdata->stage[stage] += xsocial_table[cmd].self;
+		if (!is_ok && ch->pcdata->stage[stage] >= amount) 
+		{
+		    stage_update(ch,victim,stage);
+		    one = TRUE;
+		}
+	    }
+	    if (xsocial_table[cmd].other > 0)
+	    {
+		is_ok = FALSE;
+		if (victim->pcdata->stage[stage] >= amount) is_ok = TRUE;
+		victim->pcdata->stage[stage] += xsocial_table[cmd].other;
+		if (!is_ok && victim->pcdata->stage[stage] >= amount) 
+		{
+		    stage_update(victim,ch,stage);
+		    two = TRUE;
+		}
+	    }
+	    if ( one && two )
+	    {
+		ch->pcdata->stage[0] = 0;
+		victim->pcdata->stage[0] = 0;
+		if (!IS_EXTRA(ch, EXTRA_EXP))
+		{
+		    send_to_char("Congratulations on achieving a simultanious orgasm!  Recieve 100000 exp!\n\r",ch);
+		    SET_BIT(ch->extra, EXTRA_EXP);
+		    ch->exp += 100000;
+		}
+		if (!IS_EXTRA(victim, EXTRA_EXP))
+		{
+		    send_to_char("Congratulations on achieving a simultanious orgasm!  Recieve 100000 exp!\n\r",victim);
+		    SET_BIT(victim->extra, EXTRA_EXP);
+		    victim->exp += 100000;
+		}
+	    }
+	}
+    }
+    return TRUE;
+}
+
+void stage_update( CHAR_DATA *ch, CHAR_DATA *victim, int stage )
+{
+    if (IS_NPC(ch) || IS_NPC(victim)) return;
+    if (stage == 0)
+    {
+	if (ch->sex == SEX_MALE)
+	{
+	    send_to_char("You feel yourself harden.\n\r",ch);
+	    act("You feel $n harden.",ch,NULL,victim,TO_VICT);
+	    return;
+	}
+	else if (ch->sex == SEX_FEMALE)
+	{
+	    send_to_char("You feel moist.\n\r",ch);
+	    act("You feel $n dampen.",ch,NULL,victim,TO_VICT);
+	    return;
+	}
+    }
+    else if (stage == 2)
+    {
+	if (ch->sex == SEX_MALE)
+	{
+	    act("You clench your teeth as you cum in $M.",ch,NULL,victim,TO_CHAR);
+	    act("$n clenches $s teeth as $e cums in you.",ch,NULL,victim,TO_VICT);
+	    act("$n clenches $s teeth as $e cums in $N.",ch,NULL,victim,TO_NOTVICT);
+	    ch->pcdata->stage[0] = 0;
+	    ch->pcdata->stage[1] = 0;
+	    ch->pcdata->genes[8] += 1;
+	    victim->pcdata->genes[8] += 1;
+	    save_char_obj(ch);
+	    save_char_obj(victim);
+	    if (ch->pcdata->stage[0] <= 250) ch->pcdata->stage[0] = 0;
+		else victim->pcdata->stage[0] -= 250;
+	    victim->pcdata->stage[1] = 0;
+	    if (victim->sex == SEX_FEMALE && 
+		!IS_EXTRA(victim, EXTRA_PREGNANT) && number_percent() <= 8) 
+	    make_preg(victim,ch);
+	    return;
+	}
+	else if (ch->sex == SEX_FEMALE)
+	{
+	    act("You wimper as you cum.",ch,NULL,victim,TO_CHAR);
+	    act("$n wimpers as $e cums.",ch,NULL,victim,TO_ROOM);
+	    if (victim->pcdata->stage[2] < 1 || victim->pcdata->stage[2] >= 250)
+	    {
+		ch->pcdata->stage[2] = 0;
+		if (ch->pcdata->stage[0] >= 200) ch->pcdata->stage[0] -= 100;
+	    }
+	    else ch->pcdata->stage[2] = 200;
+	    return;
+	}
+    }
+    return;
+}
+
+void make_preg( CHAR_DATA *mother, CHAR_DATA *father )
+{
+    char *strtime;
+    char buf [MAX_STRING_LENGTH];
+
+    if (IS_NPC(mother) || IS_NPC(father)) return;
+    if (IS_AFFECTED(mother, AFF_CONTRACEPTION)) return;
+    strtime = ctime( &current_time );
+    strtime[strlen(strtime)-1] = '\0';
+    free_string(mother->pcdata->conception);
+    mother->pcdata->conception = str_dup(strtime);
+    sprintf(buf,"%s %s",mother->name,father->name);
+    free_string(mother->pcdata->cparents);
+    mother->pcdata->cparents = str_dup(buf);
+    SET_BIT(mother->extra, EXTRA_PREGNANT);
+    mother->pcdata->genes[0] = (mother->max_hit + father->max_hit) * 0.5;
+    mother->pcdata->genes[1] = (mother->max_mana + father->max_mana) * 0.5;
+    mother->pcdata->genes[2] = (mother->max_move + father->max_move) * 0.5;
+    if (IS_IMMUNE(mother, IMM_SLASH) && IS_IMMUNE(father, IMM_SLASH))
+	SET_BIT(mother->pcdata->genes[3], IMM_SLASH);
+    if (IS_IMMUNE(mother, IMM_STAB) && IS_IMMUNE(father, IMM_STAB))
+	SET_BIT(mother->pcdata->genes[3], IMM_STAB);
+    if (IS_IMMUNE(mother, IMM_SMASH) && IS_IMMUNE(father, IMM_SMASH))
+	SET_BIT(mother->pcdata->genes[3], IMM_SMASH);
+    if (IS_IMMUNE(mother, IMM_ANIMAL) && IS_IMMUNE(father, IMM_ANIMAL))
+	SET_BIT(mother->pcdata->genes[3], IMM_ANIMAL);
+    if (IS_IMMUNE(mother, IMM_MISC) && IS_IMMUNE(father, IMM_MISC))
+	SET_BIT(mother->pcdata->genes[3], IMM_MISC);
+    if (IS_IMMUNE(mother, IMM_CHARM) && IS_IMMUNE(father, IMM_CHARM))
+	SET_BIT(mother->pcdata->genes[3], IMM_CHARM);
+    if (IS_IMMUNE(mother, IMM_HEAT) && IS_IMMUNE(father, IMM_HEAT))
+	SET_BIT(mother->pcdata->genes[3], IMM_HEAT);
+    if (IS_IMMUNE(mother, IMM_COLD) && IS_IMMUNE(father, IMM_COLD))
+	SET_BIT(mother->pcdata->genes[3], IMM_COLD);
+    if (IS_IMMUNE(mother, IMM_LIGHTNING) && IS_IMMUNE(father, IMM_LIGHTNING))
+	SET_BIT(mother->pcdata->genes[3], IMM_LIGHTNING);
+    if (IS_IMMUNE(mother, IMM_ACID) && IS_IMMUNE(father, IMM_ACID))
+	SET_BIT(mother->pcdata->genes[3], IMM_ACID);
+    if (IS_IMMUNE(mother, IMM_VOODOO) && IS_IMMUNE(father, IMM_VOODOO))
+	SET_BIT(mother->pcdata->genes[3], IMM_VOODOO);
+    if (IS_IMMUNE(mother, IMM_HURL) && IS_IMMUNE(father, IMM_HURL))
+	SET_BIT(mother->pcdata->genes[3], IMM_HURL);
+    if (IS_IMMUNE(mother, IMM_BACKSTAB) && IS_IMMUNE(father, IMM_BACKSTAB))
+	SET_BIT(mother->pcdata->genes[3], IMM_BACKSTAB);
+    if (IS_IMMUNE(mother, IMM_KICK) && IS_IMMUNE(father, IMM_KICK))
+	SET_BIT(mother->pcdata->genes[3], IMM_KICK);
+    if (IS_IMMUNE(mother, IMM_DISARM) && IS_IMMUNE(father, IMM_DISARM))
+	SET_BIT(mother->pcdata->genes[3], IMM_DISARM);
+    if (IS_IMMUNE(mother, IMM_STEAL) && IS_IMMUNE(father, IMM_STEAL))
+	SET_BIT(mother->pcdata->genes[3], IMM_STEAL);
+    if (IS_IMMUNE(mother, IMM_SLEEP) && IS_IMMUNE(father, IMM_SLEEP))
+	SET_BIT(mother->pcdata->genes[3], IMM_SLEEP);
+    if (IS_IMMUNE(mother, IMM_DRAIN) && IS_IMMUNE(father, IMM_DRAIN))
+	SET_BIT(mother->pcdata->genes[3], IMM_DRAIN);
+    mother->pcdata->genes[4] = number_range(1,2);
+    return;
+}
 
 /*
  * Return true if an argument is completely numeric.

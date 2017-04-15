@@ -1,4 +1,4 @@
-#AREA	{10 20} Anon    Great Eastern Desert~
+#AREA	Anon    Great Eastern Desert~
 
 
 
@@ -1111,6 +1111,11 @@ Sand as far as the eye can see.
 ~
 ~
 0 0 5025
+D3
+You notice a great pyramid across the sands.
+~
+~
+0 0 2600
 S
 #5057
 Inside a small tent~

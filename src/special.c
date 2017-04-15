@@ -52,6 +52,13 @@ DECLARE_SPEC_FUN(	spec_eater		);
 DECLARE_SPEC_FUN(	spec_gremlin_original	);
 DECLARE_SPEC_FUN(	spec_gremlin_born	);
 DECLARE_SPEC_FUN(	spec_rogue		);
+DECLARE_SPEC_FUN(	spec_clan_guardian	);
+DECLARE_SPEC_FUN(	spec_clan_torcalta	);
+DECLARE_SPEC_FUN(	spec_clan_spiritknights	);
+DECLARE_SPEC_FUN(	spec_clan_werewolf	);
+DECLARE_SPEC_FUN(	spec_kavir_guardian	);
+DECLARE_SPEC_FUN(	spec_zombie_lord	);
+DECLARE_SPEC_FUN(	spec_dog		);
 
 
 
@@ -82,6 +89,13 @@ SPEC_FUN *spec_lookup( const char *name )
     if ( !str_cmp( name, "spec_gremlin_original"  ) ) return spec_gremlin_original;
     if ( !str_cmp( name, "spec_gremlin_born"	  ) ) return spec_gremlin_born;
     if ( !str_cmp( name, "spec_rogue"		  ) ) return spec_rogue;
+    if ( !str_cmp( name, "spec_clan_guardian"     ) ) return spec_clan_guardian;
+    if ( !str_cmp( name, "spec_clan_torcalta"     ) ) return spec_clan_torcalta;
+    if ( !str_cmp( name, "spec_clan_spiritknights") ) return spec_clan_spiritknights;
+    if ( !str_cmp( name, "spec_clan_werewolf"     ) ) return spec_clan_werewolf;
+    if ( !str_cmp( name, "spec_kavir_guardian"    ) ) return spec_kavir_guardian;
+    if ( !str_cmp( name, "spec_zombie_lord"       ) ) return spec_zombie_lord;
+    if ( !str_cmp( name, "spec_dog"		  ) ) return spec_dog;
     return 0;
 }
 
@@ -777,6 +791,7 @@ bool spec_gremlin_original( CHAR_DATA *ch )
    OBJ_DATA *object;
    OBJ_DATA *object_next;
    OBJ_DATA *obj;
+   char buf  [MAX_STRING_LENGTH];
 
    if ( !IS_AWAKE( ch ) )
       return FALSE;
@@ -785,7 +800,6 @@ bool spec_gremlin_original( CHAR_DATA *ch )
    {
 	CHAR_DATA *victim;
 	CHAR_DATA *v_next;
-	char buf  [MAX_INPUT_LENGTH];
 	/* Lets make this mob DO things!  KaVir */
 	int speech;
 	speech = number_range(1,8);
@@ -797,7 +811,11 @@ bool spec_gremlin_original( CHAR_DATA *ch )
 	}
 	if ( victim != NULL )
 	{
-	    if (speech == 1) do_say(ch,"Anyone got any food? I'm famished!");
+	    if (speech == 1) 
+	    {
+		strcpy(buf,"Anyone got any food? I'm famished!");
+		do_say(ch,buf);
+	    }
 	    if (speech == 2) do_emote(ch,"rubs his tummy hungrily.");
 	    if (speech == 3) do_emote(ch,"looks around for any scraps of food.");
 	    if (speech == 4)
@@ -809,7 +827,11 @@ bool spec_gremlin_original( CHAR_DATA *ch )
 		do_say(ch,buf);
 	    }
 
-	    if (speech == 5) do_say(ch,"If you're not hungry, drop that pie for me!");
+	    if (speech == 5)
+	    {
+		strcpy(buf,"If you're not hungry, drop that pie for me!");
+		do_say(ch,buf);
+	    }
 	    if (speech == 6)
 	    {
 		if(!IS_NPC(victim))
@@ -857,7 +879,8 @@ bool spec_gremlin_original( CHAR_DATA *ch )
          act( "$n picks $p up.", ch, object, NULL, TO_ROOM );
          obj_from_room( object );
          obj_to_char( object, ch );
-         do_say(ch,"Ah....foooood....goooood!");
+         strcpy(buf,"Ah....foooood....goooood!");
+         do_say(ch,buf);
          if (object->item_type == ITEM_CORPSE_NPC) do_get(ch,"all corpse");
          act( "$n eats $p.", ch, object, NULL, TO_ROOM );
          if (object != NULL) extract_obj(object);
@@ -884,6 +907,7 @@ bool spec_gremlin_born( CHAR_DATA *ch )
    EXIT_DATA	   *pexit;
    ROOM_INDEX_DATA *to_room;
    int		   door;
+   char            buf [MAX_STRING_LENGTH];
 
    /* When they first appear, they try to equip themselves as best they can */
    if ( ch->max_move == 100 )
@@ -895,14 +919,16 @@ bool spec_gremlin_born( CHAR_DATA *ch )
    ch->max_move = ch->max_move -1;
    if ( ch->max_mana > 249 )
    {
-	 do_say(ch,"I cannot go any further...my task is complete.");
+	 strcpy(buf,"I cannot go any further...my task is complete.");
+	 do_say(ch,buf);
          act( "$n falls to the floor and crumbles into dust.", ch, NULL, NULL, TO_ROOM );
          extract_char(ch,TRUE);
 	 return TRUE;
    }
    if ( ch->max_move < 5 )
    {
-	 do_say(ch,"Alas, there is not enough food to go around...");
+	 strcpy(buf,"Alas, there is not enough food to go around...");
+	 do_say(ch,buf);
          act( "$n falls to the floor and crumbles into dust.", ch, NULL, NULL, TO_ROOM );
          extract_char(ch,TRUE);
 	 return TRUE;
@@ -999,7 +1025,8 @@ bool spec_gremlin_born( CHAR_DATA *ch )
       {
          if (victim->name == ch->name)
 	 {
-	     do_say(ch,"Sorry brother, but I must eat you or I'll starve.");
+	     strcpy(buf,"Sorry brother, but I must eat you or I'll starve.");
+	     do_say(ch,buf);
              do_kill(ch,"gremlin");
              do_kill(ch,"2.gremlin");
              return TRUE;
@@ -1023,6 +1050,7 @@ bool spec_rogue( CHAR_DATA *ch )
     OBJ_DATA *object;
     OBJ_DATA *obj2;
     OBJ_DATA *object_next;
+    char buf [MAX_STRING_LENGTH];
 
     if ( !IS_AWAKE( ch ) )
 	return FALSE;
@@ -1034,6 +1062,9 @@ bool spec_rogue( CHAR_DATA *ch )
 	    continue;
 	    
 	if ( !IS_SET( object->wear_flags, ITEM_TAKE ) )
+	    continue;
+
+	if ( object->item_type == ITEM_CORPSE_NPC )
 	    continue;
 	    
 	if ( ( object->item_type != ITEM_DRINK_CON
@@ -1062,30 +1093,37 @@ bool spec_rogue( CHAR_DATA *ch )
 		    switch (object->item_type)
 		    {
 			default:
-			    do_say(ch,"Hey, what a find!");
+			    strcpy(buf,"Hey, what a find!");
+			    do_say(ch,buf);
 			    break;
 			case ITEM_FOOD:
-			    do_say(ch, "This looks like a tasty morsel!");
+			    strcpy(buf, "This looks like a tasty morsel!");
+			    do_say(ch,buf);
 			    do_eat(ch,object->name);
 			    break;
 			case ITEM_WAND:
-			    do_say(ch,"Wow, a magic wand!");
+			    strcpy(buf,"Wow, a magic wand!");
+			    do_say(ch,buf);
 			    wear_obj(ch,object,FALSE);
 			    break;
 			case ITEM_STAFF:
-			    do_say(ch,"Kewl, a magic staff!");
+			    strcpy(buf,"Kewl, a magic staff!");
+			    do_say(ch,buf);
 			    wear_obj(ch,object,FALSE);
 			    break;
 			case ITEM_WEAPON:
-			    do_say(ch,"Hey, this looks like a nifty weapon!");
+			    strcpy(buf,"Hey, this looks like a nifty weapon!");
+			    do_say(ch,buf);
 			    wear_obj(ch,object,FALSE);
 			    break;
 			case ITEM_ARMOR:
-			    do_say(ch,"Oooh...a nice piece of armor!");
+			    strcpy(buf,"Oooh...a nice piece of armor!");
+			    do_say(ch,buf);
 			    wear_obj(ch,object,FALSE);
 			    break;
 			case ITEM_POTION:
-			    do_say(ch, "Great!  I was feeling a little thirsty!");
+			    strcpy(buf, "Great!  I was feeling a little thirsty!");
+			    do_say(ch,buf);
 			    act( "You quaff $p.", ch, object, NULL ,TO_CHAR );
 			    act( "$n quaffs $p.", ch, object, NULL, TO_ROOM );
 			    obj_cast_spell( object->value[1], object->level, ch, ch, NULL );
@@ -1094,7 +1132,8 @@ bool spec_rogue( CHAR_DATA *ch )
 			    extract_obj( object );
 			    break;
 			case ITEM_SCROLL:
-			    do_say(ch,"Hmmm I wonder what this says?");
+			    strcpy(buf,"Hmmm I wonder what this says?");
+			    do_say(ch,buf);
 			    act( "You recite $p.", ch, object, NULL, TO_CHAR );
 			    act( "$n recites $p.", ch, object, NULL, TO_ROOM );
 			    obj_cast_spell( object->value[1], object->level, ch, NULL, object );
@@ -1108,13 +1147,15 @@ bool spec_rogue( CHAR_DATA *ch )
 		
 	    if ((object->level > obj2->level))
 	    {
-	    	do_say(ch,"Now THIS looks like an improvement!");
+	    	strcpy(buf,"Now THIS looks like an improvement!");
+		do_say(ch,buf);
 	    	remove_obj(ch,obj2->wear_loc,TRUE);
 	    	wear_obj(ch,object,FALSE);
 	    }
 	    else
 	    {
-	    	do_say(ch,"I don't want this piece of junk!");
+	    	strcpy(buf,"I don't want this piece of junk!");
+		do_say(ch,buf);
 	    	act("You don't like the look of $p.",ch,object,NULL,TO_CHAR);
 			do_drop(ch,object->name);
 			do_sacrifice(ch,object->name);
@@ -1124,4 +1165,1045 @@ bool spec_rogue( CHAR_DATA *ch )
     }
 
     return FALSE;
+}
+
+/*
+ * Rotains Clan Guardian Spec
+ * Original Code by Malice
+ */
+
+bool spec_clan_guardian(CHAR_DATA *ch)
+{
+   DESCRIPTOR_DATA       *d;
+   CHAR_DATA             *victim;
+   char                  buf[MAX_STRING_LENGTH];
+   OBJ_DATA              *obj;
+
+
+   if (ch->fighting) return FALSE;
+
+   if (ch->in_room == NULL) return FALSE;
+
+   /*if (ch->in_room < 6645 && ch->in_room > 6657) break;*/
+
+   for (d = descriptor_list; d != NULL; d = d->next)
+   {
+       if (!IS_PLAYING(d)
+	   || (victim = d->character) == NULL
+           || IS_NPC(victim)
+           || IS_IMMORTAL(victim)
+	   || victim->in_room == NULL
+           || victim->pcdata->chobj != NULL
+           || victim->in_room->area != ch->in_room->area
+           || victim->in_room == ch->in_room
+	   || (IS_CLASS(victim, CLASS_VAMPIRE) && IS_SET(victim->special, SPC_INCONNU))
+           || (victim->clan != NULL && !strcmp(victim->clan,"DarkLight") ))
+           {
+             continue;
+           }
+
+      if ((obj = get_obj_carry(victim, "dlwr5"))
+               && obj->pIndexData->vnum==6641)
+      {
+         return FALSE; 
+      }
+      else
+      {
+        if (ch->in_room != victim->in_room)
+        {
+           act("$n disappears in a haze of red!",victim,NULL,NULL,TO_ROOM);
+           act("You disappear into a haze of red!",victim,NULL,NULL,TO_CHAR);
+
+           char_from_room( victim );
+           char_to_room(victim, ch->in_room);
+
+           act("$n appears in a haze of red!",victim,NULL,NULL,TO_ROOM);
+           act("You appear into a haze of red!",victim,NULL,NULL,TO_CHAR);
+        }
+     
+        act("$n shouts at you \"You shall DIE!\"",ch,ch->long_descr,victim,TO_VICT);
+        act("You let out a battlecry as you defend the clan headquaters!",ch,NULL,victim,TO_CHAR);
+/*
+        spell_curse( 24 , 100 , ch , victim );
+*/
+        if (victim->position <= POS_MORTAL && IS_HERO(victim) &&
+	  ch->position == POS_STANDING)
+        {
+           char_from_room( victim );
+           char_to_room(victim, get_room_index(ROOM_VNUM_ALTAR));
+           continue;
+        }
+        sprintf( buf,"%s Is In DarkLight Headquarters! Attack!\n\r", victim->name); 
+        do_shout( ch , buf);
+      
+        multi_hit( ch, victim, gsn_backstab); /* Nice Backstab to start */
+
+        return TRUE;
+
+      }
+   }
+   return FALSE;
+}
+
+bool spec_clan_torcalta(CHAR_DATA *ch)
+{
+   DESCRIPTOR_DATA       *d;
+   CHAR_DATA             *victim;
+   char                  buf[MAX_STRING_LENGTH];
+
+
+   if (ch->fighting) return FALSE;
+
+   if (ch->in_room == NULL) return FALSE;
+
+   for (d = descriptor_list; d != NULL; d = d->next)
+   {
+       if (!IS_PLAYING(d)
+	   || (victim = d->character) == NULL
+           || IS_NPC(victim)
+           || IS_IMMORTAL(victim)
+	   || victim->in_room == NULL
+           || victim->pcdata->chobj != NULL
+           || victim->in_room->area != ch->in_room->area
+           || victim->in_room == ch->in_room
+	   || (IS_CLASS(victim, CLASS_VAMPIRE) && IS_SET(victim->special, SPC_INCONNU))
+           || (victim->clan != NULL && !strcmp(victim->clan,"Torc Alta") ))
+	{
+            continue;
+        }
+
+        if (ch->in_room!=victim->in_room)
+        {
+           act("$n disappears in a swirl of smoke!",ch,NULL,NULL,TO_ROOM);
+           act("You disappear in a swirl of smoke!",ch,NULL,NULL,TO_CHAR);
+
+           char_from_room( ch );
+           char_to_room(ch, victim->in_room);
+
+           act("$n appears in a swirl of smoke!",ch,NULL,NULL,TO_ROOM);
+           act("You appear in a swirl of smoke!",ch,NULL,NULL,TO_CHAR);
+        }
+     
+        act("$n shouts at you \"You shall DIE!\"",ch,ch->long_descr,victim,TO_VICT);
+        act("You let out a battlecry as you defend the clan headquarters!",ch,NULL,victim,TO_CHAR);
+
+        spell_curse( 24 , 100 , ch , victim ); /* No Recall */
+
+        if (victim->position <= POS_MORTAL && IS_HERO(victim) &&
+	  ch->position == POS_STANDING)
+        {
+           char_from_room( victim );
+           char_to_room(victim, get_room_index(ROOM_VNUM_ALTAR));
+           continue;
+        }
+        sprintf( buf,"%s Is in the Torc Alta Headquarters! Attack!\n\r", victim->name); 
+        do_shout( ch , buf);
+      
+        multi_hit( ch, victim, gsn_punch);
+
+        return TRUE;
+
+   }
+   return FALSE;
+}
+
+bool spec_clan_spiritknights(CHAR_DATA *ch)
+{
+   DESCRIPTOR_DATA       *d;
+   CHAR_DATA             *victim;
+   char                  buf[MAX_STRING_LENGTH];
+
+
+   if (ch->fighting) return FALSE;
+
+   if (ch->in_room == NULL) return FALSE;
+
+   for (d = descriptor_list; d != NULL; d = d->next)
+   {
+       if (!IS_PLAYING(d)
+	   || (victim = d->character) == NULL
+           || IS_NPC(victim)
+           || IS_IMMORTAL(victim)
+	   || victim->in_room == NULL
+           || victim->pcdata->chobj != NULL
+           || victim->in_room->area != ch->in_room->area
+           || victim->in_room == ch->in_room
+	   || (IS_CLASS(victim, CLASS_VAMPIRE) && IS_SET(victim->special, SPC_INCONNU))
+           || (victim->clan != NULL && !strcmp(victim->clan,"Spirit Knights") ))
+	{
+            continue;
+        }
+
+        if (ch->in_room!=victim->in_room)
+        {
+           act("$n disappears in a swirl of smoke!",ch,NULL,NULL,TO_ROOM);
+           act("You disappear in a swirl of smoke!",ch,NULL,NULL,TO_CHAR);
+
+           char_from_room( ch );
+           char_to_room(ch, victim->in_room);
+
+           act("$n appears in a swirl of smoke!",ch,NULL,NULL,TO_ROOM);
+           act("You appear in a swirl of smoke!",ch,NULL,NULL,TO_CHAR);
+        }
+     
+        act("$n shouts at you \"You shall DIE!\"",ch,ch->long_descr,victim,TO_VICT);
+        act("You let out a battlecry as you defend the clan headquarters!",ch,NULL,victim,TO_CHAR);
+
+        spell_curse( 24 , 100 , ch , victim ); /* No Recall */
+
+        if (victim->position <= POS_MORTAL && IS_HERO(victim) &&
+	  ch->position == POS_STANDING)
+        {
+           char_from_room( victim );
+           char_to_room(victim, get_room_index(ROOM_VNUM_ALTAR));
+           continue;
+        }
+        sprintf( buf,"%s Is in the Spirit Knights Headquarters! Attack!\n\r", victim->name); 
+        do_shout( ch , buf);
+      
+        multi_hit( ch, victim, gsn_punch);
+
+        return TRUE;
+
+   }
+   return FALSE;
+}
+
+bool spec_clan_werewolf(CHAR_DATA *ch)
+{
+   DESCRIPTOR_DATA       *d;
+   CHAR_DATA             *victim;
+
+    if ( ch->fighting != NULL )
+    {
+	if (number_range(1,2) == 1) return spec_breath_frost( ch );
+	else return spec_eater( ch );
+    }
+
+   if (ch->in_room == NULL) return FALSE;
+
+   for (d = descriptor_list; d != NULL; d = d->next)
+   {
+       if (!IS_PLAYING(d)
+	   || (victim = d->character) == NULL
+           || IS_NPC(victim)
+           || IS_IMMORTAL(victim)
+	   || victim->in_room == NULL
+           || victim->pcdata->chobj != NULL
+           || victim->in_room->area != ch->in_room->area
+           || IS_CLASS(victim,CLASS_WEREWOLF))
+	{
+            continue;
+        }
+
+        /* Stop Fenris jumping into his own stomach :) */
+        if (ch->in_room != victim->in_room
+         && victim->in_room->vnum != 29732 )
+        {
+           act("$n burrows into the ground!",ch,NULL,NULL,TO_ROOM);
+           act("You burrow into the ground!",ch,NULL,NULL,TO_CHAR);
+
+           char_from_room( ch );
+           char_to_room(ch, victim->in_room);
+
+           act("$n bursts from the ground!",ch,NULL,NULL,TO_ROOM);
+           act("You burst from the ground!",ch,NULL,NULL,TO_CHAR);
+        }
+     
+        if (victim->position <= POS_MORTAL && IS_HERO(victim) &&
+	  ch->position == POS_STANDING)
+        {
+           char_from_room( victim );
+           char_to_room(victim, get_room_index(ROOM_VNUM_ALTAR));
+           continue;
+        }
+	one_hit( ch, victim, ( TYPE_HIT + 10 ), 0 );
+        return TRUE;
+
+   }
+   return FALSE;
+}
+
+bool spec_kavir_guardian(CHAR_DATA *ch)
+{
+   DESCRIPTOR_DATA       *d;
+   CHAR_DATA             *victim;
+/*
+   char                  buf[MAX_STRING_LENGTH];
+*/
+   if (ch->in_room == NULL) return FALSE;
+
+   for (d = descriptor_list; d != NULL; d = d->next)
+   {
+       if (!IS_PLAYING(d)
+	   || (victim = d->character) == NULL
+           || IS_NPC(victim)
+           || IS_IMMORTAL(victim)
+	   || victim->in_room == NULL
+           || victim->pcdata->chobj != NULL
+           || victim->in_room->area != ch->in_room->area
+           || victim->in_room == ch->in_room
+	   || (IS_CLASS(victim, CLASS_VAMPIRE) && IS_SET(victim->special, SPC_INCONNU))
+           || (victim->clan != NULL && !strcmp(victim->clan,"DarkBlade") )
+	   || IS_ITEMAFF(victim, ITEMA_DBPASS))
+           {
+             continue;
+           }
+
+      if (ch->in_room!=victim->in_room)
+      {
+         act("A pair of skeletal hands reach up from the ground.",victim,NULL,NULL,TO_ROOM);
+         act("A pair of skeletal hands reach up from the ground.",victim,NULL,NULL,TO_CHAR);
+         act("The hands grab $n by the ankles and pull $m into the ground!",victim,NULL,NULL,TO_ROOM);
+         act("The hands grab you by the ankles and pull you into the ground!",victim,NULL,NULL,TO_CHAR);
+         char_from_room( victim );
+         char_to_room(victim, ch->in_room);
+      }
+ 
+      if (victim->position <= POS_MORTAL && IS_HERO(victim) &&
+	ch->position == POS_STANDING)
+      {
+/*
+         act("$n tears $N's head from $S shoulders!",ch,NULL,victim,TO_NOTVICT);
+         act("You tear $N's head from $S shoulders!",ch,NULL,victim,TO_CHAR);
+	 send_to_char("Your head is torn from your shoulders!\n\r",victim);
+	 sprintf( buf,"%s has been beheaded for his crimes against clan DarkBlade.",victim->name);
+	 do_info(ch, buf);
+         if (victim->level == 3) victim->level=victim->level-1;
+         victim->pdeath=victim->pdeath+1;
+*/
+	 char_from_room( victim );
+	 char_to_room(victim, get_room_index(ROOM_VNUM_ALTAR));
+/*
+	 behead( victim );
+*/
+         continue;
+      }
+      multi_hit( ch, victim, TYPE_UNDEFINED);
+      return TRUE;
+   }
+   return FALSE;
+}
+
+bool spec_zombie_lord( CHAR_DATA *ch )
+{
+    char buf [MAX_STRING_LENGTH];
+    OBJ_DATA		*obj;
+    OBJ_DATA		*obj_content;
+    OBJ_DATA		*obj_next;
+    CHAR_DATA		*victim;
+    MOB_INDEX_DATA	*pMobIndex;
+    EXIT_DATA		*pexit;
+    ROOM_INDEX_DATA	*to_room;
+    int door;
+    int consider 	= 4;
+    bool north_ok 	= TRUE;
+    bool east_ok 	= TRUE;
+    bool south_ok 	= TRUE;
+    bool west_ok 	= TRUE;
+    bool up_ok 		= TRUE;
+    bool down_ok 	= TRUE;
+    int countup 	= 6;
+    int option;
+
+    if ( ch->position <= POS_SITTING )
+    {
+	do_stand(ch,"");
+	return TRUE;
+    }
+    if ( (victim = ch->fighting) != NULL )
+    {
+	if (IS_AFFECTED(ch, AFF_FAERIE_FIRE))
+	{
+	    act("$n's eyes glow bright red for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_dispel_magic( skill_lookup( "dispel magic" ), ch->level, ch, ch );
+	}
+	else if (IS_AFFECTED(ch, AFF_POISON))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_cure_poison( skill_lookup( "cure poison" ), ch->level, ch, ch );
+	}
+	else if (IS_AFFECTED(ch, AFF_BLIND))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_cure_blindness( skill_lookup( "cure blindness" ), ch->level, ch, ch );
+	}
+	else if (IS_AFFECTED(ch, AFF_CURSE))
+	{
+	    act("$n's eyes glow bright purple for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_remove_curse( skill_lookup( "remove curse" ), ch->level, ch, ch );
+	}
+	else if (!IS_AFFECTED(ch, AFF_SANCTUARY))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_sanctuary( skill_lookup( "sanctuary" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("frenzy")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_frenzy( skill_lookup( "frenzy" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("darkblessing")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_darkblessing( skill_lookup( "darkblessing" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("bless")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_bless( skill_lookup( "bless" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("stone skin")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_stone_skin( skill_lookup( "stone skin" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("armor")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_armor( skill_lookup( "armor" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("shield")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_shield( skill_lookup( "shield" ), ch->level, ch, ch );
+	}
+	else if (!IS_AFFECTED(victim, AFF_FAERIE_FIRE) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright red for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_faerie_fire( skill_lookup( "faerie fire" ), ch->level, ch, victim );
+	}
+	else if (!IS_AFFECTED(victim, AFF_BLIND) && number_percent() < 15)
+	{
+	    act("$n's eyes glow bright red for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_blindness( skill_lookup( "blindness" ), ch->level, ch, victim );
+	}
+	else if (!IS_AFFECTED(victim, AFF_CURSE) && number_percent() < 15)
+	{
+	    act("$n's eyes glow bright red for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_curse( skill_lookup( "curse" ), ch->level, ch, victim );
+	}
+	else if (ch->loc_hp[6] > 0)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_clot( skill_lookup( "clot" ), ch->level, ch, ch );
+	}
+	else if (ch->hit < (ch->max_hit * 0.5) && number_percent() < 75)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_heal( skill_lookup( "heal" ), ch->level, ch, ch );
+	}
+	else if (ch->hit < (ch->max_hit * 0.25) && number_percent() < 50)
+	{
+	    do_flee(ch,"");
+	    ch->spectype = ZOMBIE_REST;
+	}
+	else if (ch->hit < (ch->max_hit * 0.1) && number_percent() < 25)
+	{
+	    act("$n's eyes glow bright green for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_teleport( skill_lookup( "teleport" ), ch->level, ch, ch );
+	    ch->spectype = ZOMBIE_REST;
+	}
+	else
+	{
+	    switch( number_range(1,10) )
+	    {
+		default:
+		    do_kick(ch,"");
+		    break;
+		case 1:
+		    do_disarm(ch,"");
+		    break;
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		    act("$n's eyes glow bright red for a moment.",ch,NULL,NULL,TO_ROOM);
+		    spell_dispel_magic( skill_lookup( "dispel magic" ), ch->level, ch, victim );
+		    break;
+		case 6:
+		case 7:
+		case 8:
+		    act("$n's eyes glow bright red for a moment.",ch,NULL,NULL,TO_ROOM);
+		    spell_harm( skill_lookup( "harm" ), ch->level, ch, victim );
+		    break;
+	    }
+	}
+	if ( (victim = ch->fighting) == NULL ) return TRUE;
+	switch( number_percent() )
+	{
+	    default:
+		break;
+	    case 1:
+		strcpy(buf,"Foolish mortal, you think you can kill what is already dead?");
+		do_say(ch,buf);
+		break;
+	    case 2:
+		if (IS_NPC(victim))
+		    sprintf(buf,"I shall feast on your soul for this, %s",victim->short_descr);
+		else
+		    sprintf(buf,"I shall feast on your soul for this, %s",victim->name);
+		do_say(ch,buf);
+	    case 3:
+		if (IS_NPC(victim))
+		    sprintf(buf,"%s shall pay for his arrogance!",victim->short_descr);
+		else
+		    sprintf(buf,"%s shall pay for his arrogance!",victim->name);
+		do_shout(ch,buf);
+		break;
+	    case 4:
+		strcpy(buf,"This fight shall be your last!");
+		do_say(ch,buf);
+		break;
+	}
+	return TRUE;
+    }
+
+    if (ch->spectype != ZOMBIE_TRACKING && ch->spectype != ZOMBIE_REST)
+    {
+	if ((obj = get_obj_here(ch,"corpse")) != NULL)
+	{
+	    if ( ( pMobIndex = get_mob_index( obj->value[2] ) ) == NULL )
+		return spec_rogue(ch);
+	    victim = create_mobile( pMobIndex );
+	    char_to_room(victim,ch->in_room);
+	    sprintf(buf,"zombie %s",victim->name);
+	    sprintf(buf,"The zombie of %s stands here.\n\r",victim->short_descr);
+	    free_string(victim->long_descr);
+	    victim->long_descr = str_dup(buf);
+	    free_string(victim->name);
+	    victim->name = str_dup(buf);
+	    sprintf(buf,"the zombie of %s",victim->short_descr);
+	    free_string(victim->short_descr);
+	    victim->short_descr = str_dup(buf);
+	    act("$n makes a few gestures over $p.",ch,obj,NULL,TO_ROOM);
+	    act("$n clambers to $s feet.",victim,NULL,NULL,TO_ROOM);
+	    free_string(victim->powertype);
+	    victim->powertype = str_dup("zombie");
+	    for ( obj_content = obj->contains; obj_content != NULL; obj_content = obj_next )
+	    {
+		obj_next = obj_content->next_content;
+		obj_from_obj(obj_content);
+		obj_to_char(obj_content,victim);
+	    }
+	    extract_obj(obj);
+/*
+	    victim->spec_fun = ch->spec_fun;
+*/
+	    do_wear(victim,"all");
+	    strcpy(buf,"I shall spread the corruption!  The time of the Apocalypse is at hand!");
+	    do_say(victim,buf);
+	}
+    	door = number_range(0,5);
+	for ( door = 0; door <= 5; door++ )
+	{
+	    if (((pexit = ch->in_room->exit[door]) == NULL) || 
+		(to_room = pexit->to_room) == NULL)
+	    {
+		switch (door)
+		{
+		    case DIR_NORTH: north_ok = FALSE; countup -= 1; break;
+		    case DIR_SOUTH: south_ok = FALSE; countup -= 1; break;
+		    case DIR_EAST:  east_ok  = FALSE; countup -= 1; break;
+		    case DIR_WEST:  west_ok  = FALSE; countup -= 1; break;
+		    case DIR_UP:    up_ok    = FALSE; countup -= 1; break;
+		    case DIR_DOWN:  down_ok  = FALSE; countup -= 1; break;
+		}
+	    }
+	}
+
+	if (countup < 1)
+	{
+	    strcpy(buf,"Damn, I hate it when this happens!");
+	    do_say(ch,buf);
+	    do_recall(ch,"");
+	    return TRUE;
+	}
+
+	for ( ; ; )
+	{
+	    option = number_range(0,5);
+	    if (((pexit = ch->in_room->exit[option]) == NULL) || 
+		(to_room = pexit->to_room) == NULL)
+		continue;
+	    if (countup > 1 && option == ch->specpower) continue;
+	    if (IS_SET(pexit->exit_info, EX_CLOSED))
+ 	    {
+	    	if (option == 0) do_open(ch,"north");
+	    	if (option == 1) do_open(ch,"east");
+	    	if (option == 2) do_open(ch,"south");
+	    	if (option == 3) do_open(ch,"west");
+	    	if (option == 4) do_open(ch,"up");
+	    	if (option == 5) do_open(ch,"down");
+   	    }
+	    switch (option)
+	    {
+		default: break;
+		case DIR_NORTH: ch->specpower = DIR_SOUTH; break;
+		case DIR_SOUTH: ch->specpower = DIR_NORTH; break;
+		case DIR_EAST:  ch->specpower = DIR_WEST;  break;
+		case DIR_WEST:  ch->specpower = DIR_EAST;  break;
+		case DIR_UP:    ch->specpower = DIR_DOWN;  break;
+		case DIR_DOWN:  ch->specpower = DIR_UP;    break;
+	    }
+   	    move_char(ch,option);
+	    break;
+	}
+
+    	for (victim = char_list; victim != NULL; victim = victim->next)
+    	{
+	    if (victim->in_room == NULL) continue;
+    	    if ( victim->in_room != ch->in_room
+	    || victim == ch
+	    || (!IS_NPC(victim) && IS_HERO(victim) && victim->hit < 0)
+            || IS_IMMORTAL(victim)
+	    || is_safe(ch,victim)
+	    || !IS_NPC(victim)
+	    || !can_see(ch,victim) )
+	    	continue;
+
+	    if (IS_NPC(victim) && !str_cmp(victim->powertype,"zombie")) continue;
+	    if (IS_NPC(victim) && victim->pIndexData->vnum == 30011) continue;
+	    if (victim->in_room == ch->in_room)
+      	    {
+	    	act("$n examines $N closely, looking for $S weaknesses.",ch,NULL,victim,TO_NOTVICT);
+	    	act("$n examines you closely, looking for your weaknesses.",ch,NULL,victim,TO_VICT);
+	    	if      (victim->hit > (ch->hit*1.5)) consider -= 1;
+	    	else if ((victim->hit*1.5) < ch->hit) consider += 1;
+	    	if      (char_ac(victim)-50 > char_ac(ch)) consider -= 1;
+	    	else if (char_ac(victim)+50 < char_ac(ch)) consider += 1;
+	    	if      (char_hitroll(victim)+10 < char_hitroll(ch)) consider += 1;
+	    	else if (char_hitroll(victim)-10 > char_hitroll(ch)) consider -= 1;
+	    	if      (char_damroll(victim)+10 < char_damroll(ch)) consider += 1;
+	    	else if (char_damroll(victim)-10 > char_damroll(ch)) consider -= 1;
+	    	switch (consider)
+	    	{
+		    default: break;
+		    case 8:
+		    	strcpy(buf,"This shouldn't take more than a few seconds!");
+			do_say(ch,buf);
+		    	break;
+		    case 7:
+		    	strcpy(buf,"Ha! You are no match for me!");
+			do_say(ch,buf);
+		    	break;
+		    case 6:
+		    	strcpy(buf,"I should be able to win this one...");
+			do_say(ch,buf);
+		    	break;
+		    case 5:
+		    	strcpy(buf,"Hmmm, close match, but I think I have the edge.");
+			do_say(ch,buf);
+		    	break;
+		    case 4:
+		    	strcpy(buf,"This one will be tricky...");
+			do_say(ch,buf);
+		    	break;
+		    case 3:
+		    	strcpy(buf,"Hmmm, I'm not sure if I can win this one.");
+			do_say(ch,buf);
+		    	break;
+		    case 2:
+		    	strcpy(buf,"Heheh better not risk it...");
+			do_say(ch,buf);
+		    	break;
+		    case 1:
+		    	strcpy(buf,"I'd need a lot of luck...better not.");
+			do_say(ch,buf);
+		    	break;
+		    case 0:
+		    	strcpy(buf,"I think I'll give this one a miss!!!");
+			do_say(ch,buf);
+		    	break;
+	    	}
+		if (IS_IMMORTAL(victim)) continue;
+	    	if (consider < 3) continue;
+	    	do_kill(ch,victim->name);
+            	return TRUE;
+	    }
+	}
+    }
+
+    switch ( ch->spectype )
+    {
+    default:
+    case ZOMBIE_NOTHING:
+	ch->spectype = number_range(1, 3);
+	return spec_rogue(ch);
+    case ZOMBIE_TRACKING:
+/*
+	if (strlen(ch->hunting) > 1)
+	{
+	    ch->spectype = number_range(1, 3);
+	    return spec_rogue(ch);
+	}
+	if      (strlen(ch->in_room->track[0]) > 1)
+	    strcpy(buf,ch->in_room->track[0]);
+	else if (strlen(ch->in_room->track[1]) > 1)
+	    strcpy(buf,ch->in_room->track[1]);
+	else if (strlen(ch->in_room->track[2]) > 1)
+	    strcpy(buf,ch->in_room->track[2]);
+	else if (strlen(ch->in_room->track[3]) > 1)
+	    strcpy(buf,ch->in_room->track[3]);
+	else if (strlen(ch->in_room->track[4]) > 1)
+	    strcpy(buf,ch->in_room->track[4]);
+	else {ch->spectype = number_range(1, 3);return spec_rogue(ch);}
+	do_hunt(ch,buf);
+	ch->spectype = number_range(1, 3);
+	return spec_rogue(ch);
+*/
+    case ZOMBIE_ANIMATE:
+    case ZOMBIE_CAST:
+	if (IS_AFFECTED(ch, AFF_FAERIE_FIRE))
+	{
+	    act("$n's eyes glow bright red for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_dispel_magic( skill_lookup( "dispel magic" ), ch->level, ch, ch );
+	}
+	else if (IS_AFFECTED(ch, AFF_POISON) && number_percent() < 75)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_cure_poison( skill_lookup( "cure poison" ), ch->level, ch, ch );
+	}
+	else if (IS_AFFECTED(ch, AFF_BLIND) && number_percent() < 75)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_cure_blindness( skill_lookup( "cure blindness" ), ch->level, ch, ch );
+	}
+	else if (IS_AFFECTED(ch, AFF_CURSE) && number_percent() < 75)
+	{
+	    act("$n's eyes glow bright purple for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_remove_curse( skill_lookup( "remove curse" ), ch->level, ch, ch );
+	}
+	else if (!IS_AFFECTED(ch, AFF_SANCTUARY) && number_percent() < 75)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_sanctuary( skill_lookup( "sanctuary" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("frenzy")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_frenzy( skill_lookup( "frenzy" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("darkblessing")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_darkblessing( skill_lookup( "darkblessing" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("bless")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_bless( skill_lookup( "bless" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("stone skin")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_stone_skin( skill_lookup( "stone skin" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("armor")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_armor( skill_lookup( "armor" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("shield")) && number_percent() < 50)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_shield( skill_lookup( "shield" ), ch->level, ch, ch );
+	}
+	else if (ch->loc_hp[6] > 0)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_clot( skill_lookup( "clot" ), ch->level, ch, ch );
+	}
+	else if (ch->hit < ch->max_hit)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_heal( skill_lookup( "heal" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("frenzy")))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_frenzy( skill_lookup( "frenzy" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("darkblessing")))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_darkblessing( skill_lookup( "darkblessing" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("bless")))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_bless( skill_lookup( "bless" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("stone skin")))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_stone_skin( skill_lookup( "stone skin" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("armor")))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_armor( skill_lookup( "armor" ), ch->level, ch, ch );
+	}
+	else if (!is_affected(ch,skill_lookup("shield")))
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_shield( skill_lookup( "shield" ), ch->level, ch, ch );
+	}
+	else ch->spectype = 0;
+	if (ch->hit < (ch->max_hit*0.25)) ch->spectype = ZOMBIE_REST;
+	return TRUE;
+    case ZOMBIE_REST:
+	if (ch->hit >= ch->max_hit)
+	{do_stand(ch,"");ch->spectype = 0;return TRUE;}
+	if (IS_AFFECTED(ch, AFF_CURSE))
+	{
+	    act("$n's eyes glow bright purple for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_remove_curse( skill_lookup( "remove curse" ), ch->level, ch, ch );
+	    return TRUE;
+	}
+	if (ch->in_room->vnum != ROOM_VNUM_ALTAR) do_recall(ch,"");
+	if (ch->in_room->vnum == ROOM_VNUM_TEMPLE) do_north(ch,"");
+	if (ch->position == POS_STANDING) do_rest(ch,"");
+	if (ch->hit < ch->max_hit)
+	{
+	    act("$n's eyes glow bright blue for a moment.",ch,NULL,NULL,TO_ROOM);
+	    spell_heal( skill_lookup( "heal" ), ch->level, ch, ch );
+	}
+	return TRUE;
+    }
+    return FALSE;
+}
+
+bool spec_dog( CHAR_DATA *ch )
+{
+    OBJ_DATA *obj;
+    OBJ_DATA *o_next;
+    CHAR_DATA *vch;
+    CHAR_DATA *vch_next;
+    EXIT_DATA		*pexit;
+    ROOM_INDEX_DATA	*to_room;
+    int door;
+    bool north_ok 	= TRUE;
+    bool east_ok 	= TRUE;
+    bool south_ok 	= TRUE;
+    bool west_ok 	= TRUE;
+    bool up_ok 		= TRUE;
+    bool down_ok 	= TRUE;
+    int countup 	= 6;
+    int option;
+    int random = number_range(1,5);
+
+    if ( !IS_AWAKE(ch) )
+    {
+	if (random <= 2)
+	    do_wake(ch,"");
+	return TRUE;
+    }
+    else if (ch->position < POS_STANDING)
+    {
+	if (random <= 2)
+	    do_stand(ch,"");
+	else
+	{
+	    if (ch->in_room->vnum == 29107 && number_range(1,4) <= 2)
+		act("$n eats some dog food from $s food bowl",ch,NULL,NULL,TO_ROOM);
+	    else if (ch->in_room->vnum == 29107)
+		act("$n drinks some water from $s water bowl",ch,NULL,NULL,TO_ROOM);
+	}
+	return TRUE;
+    }
+
+    if (ch->in_room == NULL) return TRUE;
+
+    if (ch->in_room->vnum == 29104 && random <= 2)
+    {
+	if ( (random = number_range(1,5)) == 1)
+	{
+	    act("$n curls up in front of the fire.",ch,NULL,NULL,TO_ROOM);
+	    do_sleep(ch,"");
+	}
+	else if (random == 2)
+	    act("$n starts scratching up the carpet.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 3)
+	    act("$n barks loudly.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 4)
+	{
+	    act("$n jumps onto the couch.",ch,NULL,NULL,TO_ROOM);
+	    do_sit(ch,"");
+	}
+	else if (random == 5)
+	    act("$n tries to crawl under a chair.",ch,NULL,NULL,TO_ROOM);
+	return TRUE;
+    }
+    else if (ch->in_room->vnum == 29104 && random <= 2)
+    {
+	if ( (random = number_range(1,5)) == 1)
+	{
+	    act("$n curls up under the dining table.",ch,NULL,NULL,TO_ROOM);
+	    do_sleep(ch,"");
+	}
+	else if (random == 2)
+	    act("$n starts scratching up the carpet.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 3)
+	    act("$n barks loudly.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 4)
+	{
+	    act("$n jumps onto a chair.",ch,NULL,NULL,TO_ROOM);
+	    do_sit(ch,"");
+	}
+	else if (random == 5)
+	    act("$n tries to crawl under a chair.",ch,NULL,NULL,TO_ROOM);
+	return TRUE;
+    }
+    else if (ch->in_room->vnum == 29113 && random <= 2)
+    {
+	if ( (random = number_range(1,5)) == 1)
+	    act("$n starts scratching up the carpet.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 2)
+	    act("$n tries to climb into the bath.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 3)
+	    act("$n barks loudly.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 4)
+	{
+	    act("$n sits behind the bathroom door.",ch,NULL,NULL,TO_ROOM);
+	    do_sit(ch,"");
+	}
+	else if (random == 5)
+	    act("$n tries to squeeze behind the sink.",ch,NULL,NULL,TO_ROOM);
+	return TRUE;
+    }
+    else if (ch->in_room->vnum == 29107 && random <= 2)
+    {
+	if ( (random = number_range(1,5)) == 1)
+	    act("$n sniffs around for food on the kitchen floor.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 2)
+	    act("$n looks up hungrilly at the cupboard.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 3)
+	    act("$n barks loudly.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 4)
+	{
+	    act("$n walks over to $s food bowl.",ch,NULL,NULL,TO_ROOM);
+	    do_sit(ch,"");
+	}
+	else if (random == 5)
+	    act("$n looks out the back door for cats to chase.",ch,NULL,NULL,TO_ROOM);
+	return TRUE;
+    }
+    else if ((ch->in_room->vnum == 29100 || ch->in_room->vnum == 29101 || 
+	ch->in_room->vnum == 29117) && random <= 2)
+    {
+	if ( (random = number_range(1,5)) == 1)
+	    act("$n sniffs a flower.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 2)
+	    act("$n rolls around on the grass.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 3)
+	    act("$n tries to eat a blade of grass.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 4)
+	    act("$n pounces on a grasshopper.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 5)
+	    act("$n sniffs the air and growls playfully.",ch,NULL,NULL,TO_ROOM);
+	return TRUE;
+    }
+    if (random <= 2)
+    {
+	if ( (random = number_range(1,5)) == 1)
+	    act("$n sniffs the carpet.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 2)
+	    act("$n barks loudly.",ch,NULL,NULL,TO_ROOM);
+	else if (random == 3)
+	    do_sit(ch,"");
+	return TRUE;
+    }
+
+    if ( number_range(1,5) <= 3 )
+    {
+    	door = number_range(0,5);
+	for ( door = 0; door <= 5; door++ )
+	{
+	    if (((pexit = ch->in_room->exit[door]) == NULL) || 
+		(to_room = pexit->to_room) == NULL)
+	    {
+		switch (door)
+		{
+		    case DIR_NORTH: north_ok = FALSE; countup -= 1; break;
+		    case DIR_SOUTH: south_ok = FALSE; countup -= 1; break;
+		    case DIR_EAST:  east_ok  = FALSE; countup -= 1; break;
+		    case DIR_WEST:  west_ok  = FALSE; countup -= 1; break;
+		    case DIR_UP:    up_ok    = FALSE; countup -= 1; break;
+		    case DIR_DOWN:  down_ok  = FALSE; countup -= 1; break;
+		}
+	    }
+	}
+
+	if (countup < 1)
+	{
+	    if (number_percent() < 80)
+		act("$n barks loudly",ch,NULL,NULL,TO_ROOM);
+	    else
+		do_sleep(ch,"");
+	    return TRUE;
+	}
+
+	for ( ; ; )
+	{
+	    option = number_range(0,5);
+	    if (((pexit = ch->in_room->exit[option]) == NULL) || 
+		(to_room = pexit->to_room) == NULL)
+		continue;
+	    if (countup > 1 && option == ch->specpower) continue;
+	    if (IS_SET(pexit->exit_info, EX_CLOSED))
+ 	    {
+		if (option == 0)
+		    act("$n scratches at the north door.",ch,NULL,NULL,TO_ROOM);
+		if (option == 1)
+		    act("$n scratches at the east door.",ch,NULL,NULL,TO_ROOM);
+		if (option == 2)
+		    act("$n scratches at the south door.",ch,NULL,NULL,TO_ROOM);
+		if (option == 3)
+		    act("$n scratches at the west door.",ch,NULL,NULL,TO_ROOM);
+		if (option == 4)
+		    act("$n scratches at the upward door.",ch,NULL,NULL,TO_ROOM);
+		if (option == 5)
+		    act("$n scratches at the downward door.",ch,NULL,NULL,TO_ROOM);
+		act("$n barks loudly at the door.",ch,NULL,NULL,TO_ROOM);
+		for ( vch = char_list; vch != NULL; vch = vch_next )
+		{
+		    vch_next	= vch->next;
+		    if ( vch->in_room == NULL || IS_NPC(vch) )
+			continue;
+		    if ( vch->in_room == ch->in_room )
+			continue;
+		    if ( vch->in_room->area == ch->in_room->area )
+			send_to_char("You hear the sound of a dog barking nearby.\n\r",vch);
+		}
+		return TRUE;
+   	    }
+	    switch (option)
+	    {
+		default: break;
+		case DIR_NORTH: ch->specpower = DIR_SOUTH; break;
+		case DIR_SOUTH: ch->specpower = DIR_NORTH; break;
+		case DIR_EAST:  ch->specpower = DIR_WEST;  break;
+		case DIR_WEST:  ch->specpower = DIR_EAST;  break;
+		case DIR_UP:    ch->specpower = DIR_DOWN;  break;
+		case DIR_DOWN:  ch->specpower = DIR_UP;    break;
+	    }
+   	    move_char(ch,option);
+	    break;
+	}
+    }
+
+    for ( obj = ch->in_room->contents; obj != NULL; obj = o_next )
+    {
+	o_next = obj->next_content;
+	if (number_range(1,2) == 1) continue;
+	act( "$n sniffs $p.", ch, obj, NULL, TO_ROOM );
+	if ( obj->item_type == ITEM_FOOD )
+	{
+	    act( "$n eats $p.", ch, obj, NULL, TO_ROOM );
+	    extract_obj(obj);
+	}
+	return TRUE;
+    }
+    return TRUE;
 }

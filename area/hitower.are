@@ -1,4 +1,4 @@
-#AREA	{10 30} Anon    High Tower of Sorcery~
+#AREA	Anon    High Tower of Sorcery~
 
 
 
@@ -1684,7 +1684,7 @@ You are lounging in a quiet cosy parlour, warmed by a gentle magical fire
 which twinkles happily in a warm fireplace.  There are no doors out.  Clearly
 the owner of this room needs none.
 ~
-0 8|512 0
+0 8|93196 0
 S
 #1300
 Entrance to the Shadow Grove~

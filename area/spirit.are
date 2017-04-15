@@ -1,0 +1,229 @@
+#AREA	{CLAN } Rotain  S K Clan Area~
+
+#HELPS
+0 $~
+
+#MOBILES
+#6031
+the spirit cleric~
+the spirit cleric~
+A Spirit Knights Cleric is here.
+~
+This cleric is dedicated to the clan.
+~
+2|64 8|128 1000 S
+50 -10 -20 1d1+29999 2d4+30
+0 -99000
+8 8 1
+
+#6032
+the Spirit Knights executioner~
+the executioner~
+The Spirit Knights Executioner is here.
+~
+The executioner is dedicated to the clan.
+~
+2|64 8|128 1000 S
+50 -10 -20 1d1+1499 2d4+30
+5000 50000
+8 8 1
+
+#6033
+the Spirit Knights guardian~
+the Spirit Knights guardian~
+The Spirit Knights Guardian is here.
+~
+The guardian is dedicated to the clan.
+~
+2|64 8|128 1000 S
+500 2 2 1d1+1499 2d4+30
+12000 80000
+8 8 1
+#0
+
+#OBJECTS
+#6031
+axe blade~
+an executioner axe~
+An executioner axe is here.~
+~
+5 1024|2048 1|8192
+57030 5 6 1
+30 30000 10000
+A 
+18 6
+A
+19 6
+#0
+
+#ROOMS
+#6031
+The Temple Of Spirit Knights~
+You stand before the mighty gates to the temple of Spirit Knights.  This 
+ancient temple is covered with carvings and markings to old to be understood.
+~
+67 8 1
+D1
+~
+~
+1 -1 6033
+D3
+~
+~
+1 -1 6035
+D4
+~
+~
+1 -1 6037
+D5
+~
+~
+1 -1 6032
+S
+
+#6032
+The Temple Alter~
+You stand before great alter to the god Kavir.  You feel his presence 
+all around you here.
+~
+30 8|1204 0
+D4
+~
+~
+1 -1 6031
+S
+
+#6033
+The Clan Portals~
+You stand before the clan portals.  These ancient portals where here 
+before the clan was here.  There strange marks are an ancient lanuage now 
+forgotten by man. To the north is the midgaard portal. To the south new 
+thalos portal.
+~ 
+67 8 1 
+D0
+~
+~
+1 -1 3001 
+D1 
+~ 
+~
+1 -1 6034
+D2
+~
+~
+1 -1 5300
+D3
+~ 
+~
+1 -1 6031
+S
+
+#6034
+The Clan Portals~
+You stand before the clan portals.  To the north is the high tower 
+portal. To the south galaxy portal.
+~ 
+67 8 1 
+D0
+~
+~
+1 -1 1312 
+D2
+~
+~
+1 -1 9302
+D3
+~ 
+~
+1 -1 6033 
+S
+
+#6035
+The Clan Portals~
+You stand before the clan portals.  To the north is the draco 
+portal. To the south the man-thor portal.
+~ 
+67 8 1 
+D0
+~
+~
+1 -1 9355
+D1
+~
+~
+1 -1 6031
+D2
+~
+~
+1 -1 2362
+D3
+~ 
+~
+1 -1 6036 
+S
+
+#6036
+The Clan Portals~
+You stand before the clan portals.  To the north is the mega city one 
+portal. To the south the draconian portal.
+~ 
+67 8 1 
+D0
+~
+~
+1 -1 8001
+D1
+~
+~
+1 -1 6035
+D2
+~
+~
+1 -1 2201
+S
+
+#6037
+The Clan Halls~
+You stand in the Spirit Knights clan halls.  To the north is a clan meeting 
+room. 
+~ 
+30 4 9 
+D0
+~
+~
+1 -1 6038
+D5
+~
+~
+1 -1 6031
+S
+
+#6038
+The Clan Meeting Room~
+You stand in the Spirit Knights clan meeting room.  This is the meeting room 
+where all clan policy is made a few good laughs had.
+~ 
+67 8 1
+D2
+~
+~
+1 -1 6037
+S
+
+#0
+
+#RESETS
+M 0 6031 1 6032             Spirit Cleric At temple
+M 0 6032 2 6032             Spirit Executioner
+E 1 6031 100 16             Executioners Axe 
+M 0 6033 6 6031             Spirit Guardian
+S
+
+#SPECIALS
+M 6031 spec_cast_adept
+M 6032 spec_rogue
+M 6033 spec_clan_guardian
+S
+
+#$

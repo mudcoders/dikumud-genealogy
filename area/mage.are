@@ -1,0 +1,400 @@
+#AREA	Mages Area ( Beware )~
+
+
+#ROOMS
+#20000
+The Entrace To The Mages Tower~
+You are standing in the entrace the mages fortress.  A single stoney digit
+pointing straight up towards the heavens it represents the power of the
+universe.  Simple, but having withstood the ravages of the years the magics
+which have been cast within have given the stonework a semi-intelligence all
+of its own.
+~
+0 1024|8192 1
+D0
+~
+~
+0 0 20001
+S
+#20001
+Main Hallway~
+Large wooden staircases lead up around the outside walls and meet at the
+top.  A large crystal chandelier hangs down illuminating all below.  Many
+statues of old mages are in small alcoves in the wall while at the very
+top of the staircase a large statue of the mage who made this tower watches
+over the current ensemble.
+~
+0 1024|8192 1
+D0
+~
+~
+0 0 20002
+D2
+~
+~
+0 0 20000
+D4
+~
+~
+0 0 20003
+S
+#20002
+The Spell Casting Camber~
+You stand in the centre of a large stone room which is at the very centre
+of the tower.  The five corners of the master pentagram are marked by a 
+large crystal ball held up by a dragons claw, a pool of water, a brazier 
+filled with flames, a lecturn with an open book and a sceptre.  The walls
+are covered by racks and racks of magical tombs which contain much of
+the arcane wisdom and lore of the meges. 
+~
+0 0 1
+D1
+~
+~
+0 0 20010
+D2
+~
+~
+0 0 20001
+D3
+~
+~
+0 0 20020
+S
+#20003
+Meeting Hall~
+Around a large oak table rests five chairs; one for each of the five arch-
+mages arranged as though in the form of a pentagram.  Behind each of the
+chairs a small stool waits for the arch-mages principle apprentice and
+advisor.  The heavy oak panneling gives off a heady armoma of beeswax
+which has been polished into it over the years.
+~
+0 1024|8192 1
+D0
+~
+~
+0 0 20004
+D1
+~
+~
+0 0 20040
+D2
+~
+~
+0 0 20030
+D3
+~
+~
+0 0 20060
+D5
+~
+~
+0 0 20001
+S
+#20004
+The Blue Temple~
+You enter the temple, looking around with wonder at the dusty monument's 
+interior.  From the carvings and inscriptions, you guess that it was built 
+by elves and dwarves together during a peaceful age long ago.  Dust covers 
+almost everything, especially the stairs leading down into the earth by 
+the nave.
+~
+0 1024|8192 1
+D1
+~
+~
+0 0 20050
+D2
+~
+~
+0 0 20003
+S
+#20010
+The ArchMage DarkDemon's Room~
+You are standing in darkdemon's room.
+~
+0 1024|8192 1
+D3
+~
+~
+0 0 20002
+S
+#20020
+The ArchMage Skeeve's Private Chamber~
+You are standing in Skeeve's Room.
+~
+0 1024|8192 1
+D1
+~
+~
+0 0 20002
+S
+#20030
+At the bottom of a green tower.~
+Before you stands a marble needle that thrusts it way up, stretching 
+higher than you can see into the black, storm-ridden sky.  Steps lead up 
+to a point where you think a door should exist, but it does not, and green 
+veins thread their way in an intricate pattern around the structure,  
+pulsing with an arcane life.  These veins draw you attention in an  
+abnormal manner as you you feel yourself being beckoned towards the 
+tower.  As you stumble closer, you hear hushed mutterings and whispers 
+from inside.  Your heartbeat starts to thud in your ears, thudding in time
+with the pulsing veins as you feel a sharp tug at your avatar.  Now would 
+be a good time to leave you think.
+~
+0 1024|8192 1
+D0
+~
+~
+0 0 20003
+T
+Kabbalah~
+The room pulses bright green a moment~
+copy~
+all~
+16384 20015 0
+S
+#20031
+Inside the Marble Tower.~
+You feel giddy as you materialise in this room.  You open your eyes to 
+see a massive room lined with green crystals of varying shapes and sizes 
+which cast light throughout the room.  Feeling a presence behind you, you 
+spin around in shock to stare upwards at a golem twice your height and 
+width! It motions with its hands and a metallic orb appears between them, 
+crackling as sparks of electricity shoot out in random directions.  You
+hear a sigh descending from above as a brilliant white light pours from 
+the ceiling, condensing into a portal.
+~
+0 1024|8192 1
+T
+Node~
+The room pulses bright green a moment.~
+copy~
+all~
+16384 20016 0
+T
+Kabbalah~
+The room pulses bright green a moment.~
+copy~
+all~
+16384 20014 0
+S
+#20032
+The Node Room.~
+Emerging into the room you find yourself confronted with a statue that 
+blasts out power in all directions.  You feel immensely invigorated, but you 
+realise that getting any nearer would result in excessive intake of 
+magical power which would probably result in death.  From where you are, 
+you can just about make out a plaque on its base.  A door leads south.
+
+A plaque on its base reads: "Here stands Queztalcoatl.  Once a great man, 
+but no-one can overcome the might the the Aztec God Huitzilopoctli."
+~
+0 1024|8192 1
+D4
+~
+~
+0 0 20033
+T
+Horizon Realm~
+The room pulses bright green a moment.~
+copy~
+all~
+16384 20018 0
+S
+#20033
+Fool's Paradise.~
+As you step into the room, you think WOW!  Jewels and money litters the 
+floor between extravagant plates of food.  Members of the opposite sex 
+dance around you lightening your mood.  Simple dancing turns slowly into 
+flirtation as you become more and more relaxed, enjoying the atmosphere. 
+The last thing you feel is a sharp pain in the centre of your back as 
+the Skriazit's claim their prize ...
+~
+0 1024|8192 1
+S
+#20034
+The Horizon Realm.~
+As you enter the room, things aren't quite what they seem.  You appear to 
+have stepped into an alternate reality.  The whole room is made from 
+completely green marble which exudes peace and serenity.  You feel as 
+though you could sleep here forever.  Strange runes and sigils are 
+enscribed all over the walls, each appearing to be linked in a strange 
+fashion, combining to some invisible end, and metallic emerald globes
+float in the air.  As you walk over to one to examine it further, a beam 
+of light fires out from one, hitting another, starting a chain reaction
+which causes the whole room to be filled with a blinding green light.  You 
+realise you had better leave before the master of the tower returns.
+~
+0 1024|8192 1
+T
+Node~
+The room pulses bright green a moment.~
+copy~
+all~
+16384 20016 0
+T
+Portal~
+The room pulses bright green a moment.~
+copy~
+all~
+16384 20011 0
+S
+#20040
+The ArchMage Shamus's Spell Chamber~
+You are standing in a spell chamber.  This chamber is full of books and 
+strange markings.  The markings are shaped in a pentogram on the floor.
+~
+0 1024|8192 1
+D3
+~
+~
+0 0 20003
+S
+#20050
+The Gateway To The Planes~
+In a small chamber with a high vaulted stone ceiling many painting hang
+upon the walls.  They show, in their faded paints, the masters who have
+worked in this chamber over tha ages.  To the west through an old curtain 
+the fabled gateway to other worlds awaits.
+~
+0 1024|8192 1
+D0
+~
+~
+0 0 20004
+D3
+~
+~
+0 0 20051
+S
+#20051
+Clan Portals~
+In ancient times the civilisation which built this tower constructed
+portals to other parts of their world.  Above each portal is a series of
+runes which are written in the strange symbols which are all over this
+ancient place.  You feel as though you could just step into the pictures and
+be there.  The east portal leads back into the temple, while to the north
+lies a portal to the Temple of Midgaard.  To the west of you lies the great
+Tower of High Sorcery, and to your south you see the tower of Draconia.  A
+set of stair lead downwards to another room similar to this one.  
+~
+0 16392 0
+D0
+~
+~
+0 0 3001
+D1
+~
+~
+0 0 20050
+D2
+~
+~
+0 0 2201
+D3
+~
+~
+0 0 1312
+D5
+~
+~
+0 0 20052
+S
+#20052
+Clan Portals~
+In ancient times the civilisation which built this place contructed
+portals to other parts of their world.  Above each portal is a series of
+runes which are written in the strange symbols which appear all around this
+ancient place.  Looking through the portals, you see clear images of far off
+places; To the east you spy a futuristic city, while to the west lies a huge
+webbed cave entrance.  The northern portal leads to a city populated by
+minotaurs, and looking south you see hundreds of stars in a scene of
+darkness.  The stairway continues further downwards.  
+~
+0 16392 0
+D0
+~
+~
+0 0 2362
+D1
+~
+~
+0 0 8001
+D2
+~
+~
+0 0 9302
+D3
+~
+~
+0 0 6132
+D4
+~
+~
+0 0 20051
+D5
+~
+~
+0 0 20053
+S
+#20053
+Clan Portals~
+You finally reach the bottom of the stairway.  To your north, the portal
+leads into a modern looking city of Thalos, whilst to your south you see the
+city of the gods.  The eastern portal leads to the great city of Ofcol,
+while looking through the western portal you see a city of evil drow.  
+~
+0 16392 0
+D0
+~
+~
+0 0 5300
+D1
+~
+~
+0 0 5552
+D2
+~
+~
+0 0 904
+D3
+~
+~
+0 0 5100
+D4
+~
+~
+0 0 20052
+S
+#20060
+The ArchMage Aldric's Spell Chamber~
+You are standing in a spell chamber.  This chamber is full of books and 
+strange markings.  The markings are shaped in a pentogram on the floor.
+~
+0 1024|8192 1
+D1
+~
+~
+0 0 20003
+S
+#0
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#SPECIALS
+S
+
+
+
+#$

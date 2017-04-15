@@ -32,9 +32,7 @@
  * Local functions.
  */
 ROOM_INDEX_DATA *	find_location	args( ( CHAR_DATA *ch, char *arg ) );
-void oset_affect args( ( CHAR_DATA *ch, OBJ_DATA *obj, int value, int affect, bool is_quest) );
-void call_all	 args( ( CHAR_DATA *ch ) );
-void quest_clone args( ( CHAR_DATA *ch, OBJ_DATA *obj ) );
+void			call_all	args( ( CHAR_DATA *ch ) );
 
 
 
@@ -93,7 +91,7 @@ void do_bamfout( CHAR_DATA *ch, char *argument )
 void do_godless( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     one_argument( argument, arg );
 
@@ -174,6 +172,41 @@ void do_summon( CHAR_DATA *ch, char *argument )
     return;
 }
 
+void do_transport( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+
+    one_argument( argument, arg );
+
+    if (IS_NPC(ch)) return;
+
+    if ( arg[0] == '\0')
+    {
+	send_to_char( "Do you wish to switch transport ON or OFF?\n\r", ch );
+	return;
+    }
+
+    if (IS_IMMUNE(ch, IMM_TRANSPORT) && !str_cmp(arg,"off"))
+    {
+	REMOVE_BIT(ch->immune, IMM_TRANSPORT);
+	send_to_char("You can no longer be the target of transport spells.\n\r", ch);
+    }
+    else if (!IS_IMMUNE(ch, IMM_TRANSPORT) && !str_cmp(arg,"off")) {
+	send_to_char("But it is already off!\n\r", ch);
+	return;}
+    else if (!IS_IMMUNE(ch, IMM_TRANSPORT) && !str_cmp(arg,"on"))
+    {
+	SET_BIT(ch->immune, IMM_TRANSPORT);
+	send_to_char("You can now be the target of transport spells.\n\r", ch);
+    }
+    else if (IS_IMMUNE(ch, IMM_TRANSPORT) && !str_cmp(arg,"on")) {
+	send_to_char("But it is already on!\n\r", ch);
+	return;}
+    else
+	send_to_char( "Do you wish to switch it ON or OFF?\n\r", ch );
+    return;
+}
+
 void do_watcher( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
@@ -182,7 +215,7 @@ void do_watcher( CHAR_DATA *ch, char *argument )
     one_argument( argument, arg );
 
     if (IS_NPC(ch) || !IS_SET(ch->act, PLR_WATCHER)
-	|| (ch->level > 3)
+	|| (ch->level > 6)
 	|| (ch->level < 2)
 	|| (ch->trust > 0) )
     {
@@ -232,7 +265,7 @@ void do_deny( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     sprintf(buf,"%s: Deny %s",ch->name,argument);
     if (ch->level < NO_WATCH) do_watching(ch,buf);
@@ -256,7 +289,8 @@ void do_deny( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -281,7 +315,7 @@ void do_deny( CHAR_DATA *ch, char *argument )
 void do_disconnect( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     DESCRIPTOR_DATA *d;
     CHAR_DATA *victim;
 
@@ -307,7 +341,8 @@ void do_disconnect( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -329,7 +364,54 @@ void do_disconnect( CHAR_DATA *ch, char *argument )
 }
 
 
+/*
+void do_howl( CHAR_DATA *ch, char *argument )
+{
+    DESCRIPTOR_DATA *d;
+    CHAR_DATA *vch;
+    char buf [MAX_STRING_LENGTH];
 
+    if (IS_NPC(ch)) return;
+    if (!IS_CLASS(ch, CLASS_WEREWOLF) && !IS_POLYAFF(ch, POLY_WOLF))
+    {
+	send_to_char("Huh?\n\r",ch);
+	return;
+    }
+    if ( argument[0] == '\0' )
+    {
+	send_to_char("What do you wish to howl?\n\r",ch);
+	return;
+    }
+    if (IS_SET(ch->deaf, CHANNEL_HOWL))
+    {
+	send_to_char("But you're not even on the channel!\n\r",ch);
+	return;
+    }
+
+    for ( d = descriptor_list; d != NULL; d = d->next )
+    {
+	if ( d->connected != CON_PLAYING ) continue;
+	if ( (vch = d->character) == NULL ) continue;
+	if ( IS_SET(vch->deaf, CHANNEL_HOWL) ) continue;
+	if ( vch == ch )
+	    act("You howl '$T'.", ch, NULL, argument, TO_CHAR);
+	else if (!IS_NPC(vch) && (IS_POLYAFF(ch, POLY_WOLF) ||
+	    IS_CLASS(vch, CLASS_WEREWOLF) || IS_IMMORTAL(vch)))
+	{
+	    sprintf(buf,"$n howls '%s'.", argument);
+	    act(buf, ch, NULL, vch, TO_VICT);
+	}
+	else if ( vch->in_room == ch->in_room )
+	    act("$n throws back $s head and howls loudly.", ch, NULL, vch, TO_VICT);
+	else if ( vch->in_room->area == ch->in_room->area )
+	    act("You hear a loud howl from nearby.", ch, NULL, vch, TO_VICT);
+	else
+	    act("You hear a loud howl in the distance.", ch, NULL, vch, TO_VICT);
+    }
+
+    return;
+}
+*/
 void do_info( CHAR_DATA *ch, char *argument )
 {
     DESCRIPTOR_DATA *d;
@@ -342,9 +424,10 @@ void do_info( CHAR_DATA *ch, char *argument )
     if (!IS_NPC(ch) && IS_IMMORTAL(ch) && IS_SET(ch->act,PLR_WIZINVIS))
 	return;
 
-    for ( d = descriptor_list; d; d = d->next )
+    for ( d = descriptor_list; d != NULL; d = d->next )
     {
-	if ( d->connected == CON_PLAYING )
+	if ( d->connected == CON_PLAYING &&
+		!IS_SET(d->character->deaf, CHANNEL_INFO) )
 	{
 	    send_to_char( "Info -> ",d->character );
 	    send_to_char( argument, d->character );
@@ -364,9 +447,11 @@ void do_watching( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    for ( d = descriptor_list; d; d = d->next )
+    for ( d = descriptor_list; d != NULL; d = d->next )
     {
-	if ( (d->connected == CON_PLAYING) && (IS_SET(d->character->act, PLR_WATCHER)) )
+	if ( d->connected == CON_PLAYING &&
+	    IS_SET(d->character->act, PLR_WATCHER) &&
+	    !IS_SET(d->character->deaf, CHANNEL_INFO) )
 	{
 	    send_to_char( "Monitor -> ",d->character );
 	    send_to_char( argument, d->character );
@@ -379,6 +464,7 @@ void do_watching( CHAR_DATA *ch, char *argument )
 
 void logchan( char *argument )
 {
+    CHAR_DATA *ch;
     DESCRIPTOR_DATA *d;
 
     if ( argument[0] == '\0' )
@@ -386,13 +472,15 @@ void logchan( char *argument )
 	return;
     }
 
-    for ( d = descriptor_list; d; d = d->next )
+    for ( d = descriptor_list; d != NULL; d = d->next )
     {
-	if ( (d->connected == CON_PLAYING) && IS_JUDGE(d->character) )
+	if ( ( ch = d->character ) == NULL ) continue;
+	if ( (d->connected == CON_PLAYING) && IS_JUDGE(ch) &&
+	    !IS_SET(ch->deaf,CHANNEL_LOG) )
 	{
-	    send_to_char( "[", d->character );
-	    send_to_char( argument, d->character );
-	    send_to_char( "]\n\r",  d->character );
+	    send_to_char( "[", ch );
+	    send_to_char( argument, ch );
+	    send_to_char( "]\n\r",  ch );
 	}
     }
 
@@ -402,7 +490,7 @@ void logchan( char *argument )
 void do_echo( CHAR_DATA *ch, char *argument )
 {
     DESCRIPTOR_DATA *d;
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     sprintf(buf,"%s: Echo %s",ch->name,argument);
     if (ch->level < NO_WATCH) do_watching(ch,buf);
@@ -413,7 +501,7 @@ void do_echo( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    for ( d = descriptor_list; d; d = d->next )
+    for ( d = descriptor_list; d != NULL; d = d->next )
     {
 	if ( d->connected == CON_PLAYING )
 	{
@@ -430,7 +518,7 @@ void do_echo( CHAR_DATA *ch, char *argument )
 void do_recho( CHAR_DATA *ch, char *argument )
 {
     DESCRIPTOR_DATA *d;
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     sprintf(buf,"%s: Recho %s",ch->name,argument);
     if (ch->level < NO_WATCH) do_watching(ch,buf);
@@ -441,7 +529,7 @@ void do_recho( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    for ( d = descriptor_list; d; d = d->next )
+    for ( d = descriptor_list; d != NULL; d = d->next )
     {
 	if ( d->connected == CON_PLAYING
 	&&   d->character->in_room == ch->in_room )
@@ -488,7 +576,7 @@ void do_transfer( CHAR_DATA *ch, char *argument )
 {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     ROOM_INDEX_DATA *location;
     DESCRIPTOR_DATA *d;
     CHAR_DATA *victim;
@@ -519,8 +607,9 @@ void do_transfer( CHAR_DATA *ch, char *argument )
 		sprintf( buf, "%s %s", d->character->name, arg2 );
 		if (!IS_NPC(d->character))
 		{
-		    	if (IS_SET(d->character->act, PLR_GODLESS))
-				return;
+		    	if (IS_SET(d->character->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        			&& !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
+				continue;
 		}
 		do_transfer( ch, buf );
 	    }
@@ -562,7 +651,8 @@ void do_transfer( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -591,7 +681,7 @@ void do_transfer( CHAR_DATA *ch, char *argument )
 void do_at( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     ROOM_INDEX_DATA *location;
     ROOM_INDEX_DATA *original;
     CHAR_DATA *wch;
@@ -939,7 +1029,8 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS) && !IS_JUDGE(ch))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -973,13 +1064,13 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     send_to_char( buf, ch );
 
     sprintf( buf,
-	"Lv: %d.  Class: %d.  Align: %d.  AC: %d.  Gold: %d.  Exp: %d.\n\r",
-	victim->level,       victim->class,        victim->alignment,
-	GET_AC(victim),      victim->gold,         victim->exp );
+	"Lv: %d.  Align: %d.  AC: %d.  Gold: %d.  Exp: %d.\n\r",
+	victim->level,       victim->alignment,
+	char_ac(victim),     victim->gold,         victim->exp );
     send_to_char( buf, ch );
 
     sprintf( buf, "Hitroll: %d.  Damroll: %d.  Position: %d.  Wimpy: %d.\n\r",
-	GET_HITROLL(victim), GET_DAMROLL(victim),
+	char_hitroll(victim), char_damroll(victim),
 	victim->position,    victim->wimpy );
     send_to_char( buf, ch );
 
@@ -996,6 +1087,39 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    victim->pcdata->condition[COND_DRUNK],
 	    victim->saving_throw );
 	send_to_char( buf, ch );
+
+	if (IS_CLASS(victim, CLASS_VAMPIRE) || IS_CLASS(victim, CLASS_WEREWOLF))
+	{
+	    if (strlen(victim->clan) > 1) sprintf( buf, "Clan: %s. ", victim->clan);
+	    else sprintf( buf, "Clan: None. ");
+	    send_to_char( buf, ch );
+	    sprintf( buf, "Rage: %d. ", victim->pcdata->stats[UNI_RAGE]);
+	    send_to_char( buf, ch );
+	    if (IS_CLASS(victim, CLASS_VAMPIRE))
+	    {
+		sprintf( buf, "Beast: %d. ", victim->beast);
+		send_to_char( buf, ch );
+		sprintf( buf, "Blood: %d.", victim->pcdata->condition[COND_THIRST]);
+		send_to_char( buf, ch );
+	    }
+	    send_to_char( "\n\r", ch );
+	}
+
+	if (IS_CLASS(victim, CLASS_DEMON) || IS_SET(victim->special, SPC_CHAMPION))
+	{
+	    if (IS_SET(victim->special, SPC_CHAMPION))
+	    {
+		if (strlen(victim->lord) > 1) sprintf( buf, "Lord: %s. ", victim->lord);
+		else sprintf( buf, "Lord: None. ");
+		send_to_char( buf, ch );
+	    }
+	    sprintf( buf, "Demonic armor: %d pieces. ", victim->pcdata->stats[DEMON_POWER]);
+	    send_to_char( buf, ch );
+	    sprintf( buf, "Power: %d (%d).",
+		victim->pcdata->stats[DEMON_CURRENT], victim->pcdata->stats[DEMON_TOTAL]);
+	    send_to_char( buf, ch );
+	    send_to_char( "\n\r", ch );
+	}
     }
 
     sprintf( buf, "Carry number: %d.  Carry weight: %d.\n\r",
@@ -1202,6 +1326,7 @@ void do_reboot( CHAR_DATA *ch, char *argument )
     sprintf( buf, "Reboot by %s.", ch->name );
     do_echo( ch, buf );
     do_forceauto(ch,"save");
+    do_autosave(ch,"");
     merc_down = TRUE;
     return;
 }
@@ -1225,6 +1350,7 @@ void do_shutdown( CHAR_DATA *ch, char *argument )
     strcat( buf, "\n\r" );
     do_echo( ch, buf );
     do_forceauto(ch,"save");
+    do_autosave(ch,"");
     merc_down = TRUE;
     return;
 }
@@ -1234,7 +1360,7 @@ void do_shutdown( CHAR_DATA *ch, char *argument )
 void do_snoop( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     DESCRIPTOR_DATA *d;
     CHAR_DATA *victim;
 
@@ -1278,7 +1404,8 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -1318,8 +1445,9 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 void do_oswitch( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     OBJ_DATA *obj;
+    CHAR_DATA *mount;
 
     sprintf(buf,"%s: Oswitch %s",ch->name,argument);
     if (ch->level < NO_WATCH) do_watching(ch,buf);
@@ -1365,7 +1493,7 @@ void do_oswitch( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ch->mount != NULL) do_dismount(ch,"");
+    if ( (mount = ch->mount) != NULL) do_dismount(ch,"");
     obj->chobj = ch;
     ch->pcdata->chobj = obj;
     SET_BIT(ch->affected_by, AFF_POLYMORPH);
@@ -1381,7 +1509,7 @@ void do_oswitch( CHAR_DATA *ch, char *argument )
 void do_oreturn( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     OBJ_DATA *obj;
 
     sprintf(buf,"%s: Oreturn",ch->name);
@@ -1415,7 +1543,7 @@ void do_oreturn( CHAR_DATA *ch, char *argument )
 void do_switch( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     sprintf(buf,"%s: Switch %s",ch->name,argument);
@@ -1475,7 +1603,7 @@ void do_switch( CHAR_DATA *ch, char *argument )
 
 void do_return( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     sprintf(buf,"%s: Return %s",ch->name,argument);
     if (ch->level < NO_WATCH) do_watching(ch,buf);
@@ -1503,7 +1631,7 @@ void do_return( CHAR_DATA *ch, char *argument )
 void do_mload( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     MOB_INDEX_DATA *pMobIndex;
     CHAR_DATA *victim;
 
@@ -1532,11 +1660,11 @@ void do_mload( CHAR_DATA *ch, char *argument )
 }
 
 
-
+/*
 void do_pload( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     char name[40];
     DESCRIPTOR_DATA *d;
     bool fOld;
@@ -1601,7 +1729,7 @@ void do_pload( CHAR_DATA *ch, char *argument )
 void do_preturn( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     DESCRIPTOR_DATA *d;
     bool fOld;
 
@@ -1627,6 +1755,102 @@ void do_preturn( CHAR_DATA *ch, char *argument )
     else if (ch != NULL)
 	extract_char(ch,TRUE);
     if (ch->desc) ch->desc->character = NULL;
+*
+    ch->next = char_list;
+    char_list = ch;
+*
+    fOld = load_char_obj(d, capitalize(arg));
+    if (ch->in_room != NULL)
+    	char_to_room(ch,ch->in_room);
+    else
+    	char_to_room(ch,get_room_index(3001));
+    free_string(ch->pload);
+    ch->pload = str_dup("");
+    return;
+}
+
+*/
+
+void do_pload( CHAR_DATA *ch, char *argument )
+{
+    char buf[MAX_STRING_LENGTH];
+    DESCRIPTOR_DATA *d;
+    ROOM_INDEX_DATA *in_room;
+    bool fOld;
+
+    if ( IS_NPC(ch) || ch->desc == NULL || ch->in_room == NULL ) return;
+
+    if ( argument[0] == '\0' )
+    {
+	send_to_char( "Syntax: pload <name>.\n\r", ch );
+	return;
+    }
+
+    if (!check_parse_name( argument ))
+    {
+	send_to_char( "Thats an illegal name.\n\r", ch );
+	return;
+    }
+
+    if ( !char_exists(TRUE,argument) )
+    {
+	send_to_char( "That player doesn't exist.\n\r", ch );
+	return;
+    }
+
+    sprintf(buf,"%s: Pload %s",ch->name,argument);
+    if (ch->level < NO_WATCH && ch->trust > 3) do_watching(ch,buf);
+
+    argument[0] = UPPER(argument[0]);
+
+    sprintf(buf,"You transform into %s.\n\r",argument);
+    send_to_char(buf,ch);
+    sprintf(buf,"$n transforms into %s.",argument);
+    act(buf,ch,NULL,NULL,TO_ROOM);
+
+    d = ch->desc;
+    do_autosave(ch,"");
+    in_room = ch->in_room;
+    extract_char(ch, TRUE);
+    d->character = NULL;
+    fOld = load_char_obj( d, argument );
+    ch   = d->character;
+    ch->next = char_list;
+    char_list = ch;
+    char_to_room(ch,in_room);
+    return;
+}
+
+
+
+void do_preturn( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
+    DESCRIPTOR_DATA *d;
+    bool fOld;
+
+    if (IS_NPC(ch)) {send_to_char("Huh?\n\r",ch);return;}
+
+    if (ch->pload == NULL) {send_to_char("Huh?\n\r",ch);return;}
+    sprintf(arg,ch->pload);
+    if (strlen(arg) < 3 || strlen(arg) > 8)
+	{send_to_char("Huh?\n\r",ch);return;}
+
+    if (!str_cmp(ch->name,arg)) {send_to_char("Huh?\n\r",ch);return;}
+
+    d = ch->desc;
+
+    sprintf(buf,"You transform back into %s.\n\r",capitalize(ch->pload));
+    send_to_char(buf,ch);
+    sprintf(buf,"$n transforms back into %s.",capitalize(ch->pload));
+    act(buf,ch,NULL,NULL,TO_ROOM);
+    do_autosave(ch,"");
+    if (ch != NULL && ch->desc != NULL)
+	extract_char(ch,TRUE);
+    else if (ch != NULL)
+	extract_char(ch,TRUE);
+    if (ch->desc) ch->desc->character = NULL;
 /*
     ch->next = char_list;
     char_list = ch;
@@ -1642,13 +1866,11 @@ void do_preturn( CHAR_DATA *ch, char *argument )
 }
 
 
-
-
 void do_oload( CHAR_DATA *ch, char *argument )
 {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     OBJ_INDEX_DATA *pObjIndex;
     OBJ_DATA *obj;
     int level;
@@ -1718,6 +1940,7 @@ void do_purge( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
+    CHAR_DATA *mount;
     OBJ_DATA *obj;
 
     one_argument( argument, arg );
@@ -1731,7 +1954,7 @@ void do_purge( CHAR_DATA *ch, char *argument )
 	for ( victim = ch->in_room->people; victim != NULL; victim = vnext )
 	{
 	    vnext = victim->next_in_room;
-	    if (IS_NPC(victim) && victim->desc == NULL && victim->mount == NULL)
+	    if (IS_NPC(victim) && victim->desc == NULL && (mount = victim->mount) == NULL)
 		extract_char( victim, TRUE );
 	}
 
@@ -1757,6 +1980,11 @@ void do_purge( CHAR_DATA *ch, char *argument )
 	send_to_char( "Not on PC's.\n\r", ch );
 	return;
     }
+    if ( victim->desc != NULL )
+    {
+	send_to_char( "Not on switched players.\n\r", ch );
+	return;
+    }
 
     act( "$n purges $N.", ch, NULL, victim, TO_NOTVICT );
     extract_char( victim, TRUE );
@@ -1769,7 +1997,7 @@ void do_trust( CHAR_DATA *ch, char *argument )
 {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int level;
 
@@ -1793,11 +2021,11 @@ void do_trust( CHAR_DATA *ch, char *argument )
     }
 
          if ( !str_cmp( arg2, "none"       ) ) level = 0;
-    else if ( !str_cmp( arg2, "builder"    ) ) level = 4;
-    else if ( !str_cmp( arg2, "questmaker" ) ) level = 5;
-    else if ( !str_cmp( arg2, "enforcer"   ) ) level = 6;
-    else if ( !str_cmp( arg2, "judge"      ) ) level = 7;
-    else if ( !str_cmp( arg2, "highjudge"  ) ) level = 8;
+    else if ( !str_cmp( arg2, "builder"    ) ) level = 7;
+    else if ( !str_cmp( arg2, "questmaker" ) ) level = 8;
+    else if ( !str_cmp( arg2, "enforcer"   ) ) level = 9;
+    else if ( !str_cmp( arg2, "judge"      ) ) level = 10;
+    else if ( !str_cmp( arg2, "highjudge"  ) ) level = 11;
     else
     {
 	send_to_char( "Please enter: None, Builder, Questmaker, Enforcer, Judge, or Highjudge.\n\r", ch );
@@ -1819,7 +2047,7 @@ void do_trust( CHAR_DATA *ch, char *argument )
 void do_restore( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     sprintf(buf,"%s: Restore %s",ch->name,argument);
@@ -1838,7 +2066,8 @@ void do_restore( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS) && !IS_JUDGE(ch))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -1865,7 +2094,7 @@ void do_restore( CHAR_DATA *ch, char *argument )
 void do_freeze( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     sprintf(buf,"%s: Freeze %s",ch->name,argument);
@@ -1891,7 +2120,8 @@ void do_freeze( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -1926,7 +2156,7 @@ void do_freeze( CHAR_DATA *ch, char *argument )
 void do_log( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     sprintf(buf,"%s: Log %s",ch->name,argument);
@@ -1989,7 +2219,7 @@ void do_log( CHAR_DATA *ch, char *argument )
 void do_noemote( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     sprintf(buf,"%s: Noemote %s",ch->name,argument);
@@ -2042,7 +2272,7 @@ void do_noemote( CHAR_DATA *ch, char *argument )
 void do_notell( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     sprintf(buf,"%s: Notell %s",ch->name,argument);
@@ -2074,7 +2304,8 @@ void do_notell( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -2101,7 +2332,7 @@ void do_notell( CHAR_DATA *ch, char *argument )
 void do_silence( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
 
     sprintf(buf,"%s: Silence %s",ch->name,argument);
@@ -2127,7 +2358,8 @@ void do_silence( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -2160,7 +2392,7 @@ void do_silence( CHAR_DATA *ch, char *argument )
 void do_peace( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     sprintf(buf,"%s: Peace %s",ch->name,argument);
     if (ch->level < NO_WATCH) do_watching(ch,buf);
@@ -2184,7 +2416,7 @@ void do_ban( CHAR_DATA *ch, char *argument )
 {
     char buf[MAX_STRING_LENGTH];
     char arg[MAX_INPUT_LENGTH];
-    char buf2[MAX_INPUT_LENGTH];
+    char buf2[MAX_STRING_LENGTH];
     BAN_DATA *pban;
 
     sprintf(buf2,"%s: Ban %s",ch->name,argument);
@@ -2238,7 +2470,7 @@ void do_ban( CHAR_DATA *ch, char *argument )
 void do_allow( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     BAN_DATA *prev;
     BAN_DATA *curr;
 
@@ -2280,7 +2512,7 @@ void do_allow( CHAR_DATA *ch, char *argument )
 void do_wizlock( CHAR_DATA *ch, char *argument )
 {
     extern bool wizlock;
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     sprintf(buf,"%s: Wizlock %s",ch->name,argument);
     if (ch->level < NO_WATCH) do_watching(ch,buf);
@@ -2343,7 +2575,7 @@ void do_sset( CHAR_DATA *ch, char *argument )
     char arg1 [MAX_INPUT_LENGTH];
     char arg2 [MAX_INPUT_LENGTH];
     char arg3 [MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int value;
     int sn;
@@ -2376,7 +2608,8 @@ void do_sset( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -2430,7 +2663,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
     char arg1 [MAX_INPUT_LENGTH];
     char arg2 [MAX_INPUT_LENGTH];
     char arg3 [MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     int value;
 
@@ -2463,7 +2696,8 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -2598,26 +2832,12 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	send_to_char("Ok.\n\r",ch);
 	return;
     }
-/*
-    if ( !str_cmp( arg2, "class" ) )
-    {
-	if ( value < 0 || value >= MAX_CLASS )
-	{
-	    char buf[MAX_STRING_LENGTH];
 
-	    sprintf( buf, "Class range is 0 to %d.\n", MAX_CLASS-1 );
-	    send_to_char( buf, ch );
-	    return;
-	}
-	victim->class = value;
-	return;
-    }
-*/
     if ( !str_cmp( arg2, "level" ) )
     {
-	if ( IS_NPC(victim) && ( value < 1 || value > 100 ) )
+	if ( IS_NPC(victim) && ( value < 1 || value > 250 ) )
 	{
-	    send_to_char( "Level range is 1 to 100 for mobs.\n\r", ch );
+	    send_to_char( "Level range is 1 to 250 for mobs.\n\r", ch );
 	    return;
 	}
 	else if (!IS_JUDGE(ch))
@@ -2627,17 +2847,21 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	}
 	     if ( !str_cmp( arg3, "mortal"     ) ) value = 2;
 	else if ( !str_cmp( arg3, "avatar"     ) ) value = 3;
-	else if ( !str_cmp( arg3, "builder"    ) ) value = 4;
-	else if ( !str_cmp( arg3, "questmaker" ) ) value = 5;
-	else if ( !str_cmp( arg3, "enforcer"   ) ) value = 6;
-	else if ( !str_cmp( arg3, "judge"      ) ) value = 7;
-	else if ( !str_cmp( arg3, "highjudge"  ) ) value = 8;
+	else if ( !str_cmp( arg3, "apprentice" ) ) value = 4;
+	else if ( !str_cmp( arg3, "mage"       ) ) value = 5;
+	else if ( !str_cmp( arg3, "archmage"   ) ) value = 6;
+	else if ( !str_cmp( arg3, "builder"    ) ) value = 7;
+	else if ( !str_cmp( arg3, "questmaker" ) ) value = 8;
+	else if ( !str_cmp( arg3, "enforcer"   ) ) value = 9;
+	else if ( !str_cmp( arg3, "judge"      ) ) value = 10;
+	else if ( !str_cmp( arg3, "highjudge"  ) ) value = 11;
 	else if (!IS_NPC(victim))
 	{
-	    send_to_char( "Level should be one of the following:\n\rMortal, Avatar, Builder, Questmaker, Enforcer, Judge, or Highjudge.\n\r", ch );
+	    send_to_char( "Level should be one of the following:\n\rMortal, Avatar, Apprentice, Mage, Archmage, Builder, Questmaker, Enforcer,\n\rJudge, or Highjudge.\n\r", ch );
 	    return;
 	}
-	if (value >= ch->level) send_to_char( "Sorry, no can do...\n\r", ch );
+	if (value >= ch->level && !IS_NPC(victim))
+	    send_to_char( "Sorry, no can do...\n\r", ch );
 	else {victim->level = value; send_to_char("Ok.\n\r",ch);}
 	return;
     }
@@ -2944,7 +3168,7 @@ void do_oset( CHAR_DATA *ch, char *argument )
     char arg1 [MAX_INPUT_LENGTH];
     char arg2 [MAX_INPUT_LENGTH];
     char arg3 [MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *victim;
     OBJ_DATA *obj;
     OBJ_DATA *morph;
@@ -2987,7 +3211,8 @@ void do_oset( CHAR_DATA *ch, char *argument )
     }
 
     if (obj->carried_by != NULL && !IS_NPC(obj->carried_by) &&
-	IS_SET(obj->carried_by->act, PLR_GODLESS))
+	IS_SET(obj->carried_by->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -3109,9 +3334,8 @@ void do_oset( CHAR_DATA *ch, char *argument )
 	else if ( !str_cmp( arg3, "noremove"     )) value = ITEM_NOREMOVE;
 	else if ( !str_cmp( arg3, "inventory"    )) value = ITEM_INVENTORY;
 	else if ( !str_cmp( arg3, "loyal"        )) value = ITEM_LOYAL;
-	else if ( !str_cmp( arg3, "silver"       )) value = ITEM_SILVER;
 	else {
-	    send_to_char("Extra flag can be from the following: Glow, Hum, Thrown, Vanish, Invis, Magic, Nodrop, Bless, Anti-Good, Anti-Evil, Anti-Neutral, Noremove, Inventory, Loyal, Silver.\n\r",ch); return;}
+	    send_to_char("Extra flag can be from the following: Glow, Hum, Thrown, Vanish, Invis, Magic, Nodrop, Bless, Anti-Good, Anti-Evil, Anti-Neutral, Noremove, Inventory, Loyal.\n\r",ch); return;}
 
 	/* Removing magic flag allows multiple enchants */
 	if (IS_SET(obj->extra_flags,value) && value == ITEM_MAGIC && !IS_JUDGE(ch))
@@ -3364,7 +3588,7 @@ void do_rset( CHAR_DATA *ch, char *argument )
     char arg1 [MAX_INPUT_LENGTH];
     char arg2 [MAX_INPUT_LENGTH];
     char arg3 [MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     ROOM_INDEX_DATA *location;
     int value;
 
@@ -3439,6 +3663,9 @@ void do_users( CHAR_DATA *ch, char *argument )
 	if ( d->character != NULL && can_see( ch, d->character ) )
 	{
 	    count++;
+
+	if (strlen(d->character->lasthost) < 2)
+	{
 	    sprintf( buf + strlen(buf), "[%3d %2d] %s@%s\n\r",
 		d->descriptor,
 		d->connected,
@@ -3446,6 +3673,18 @@ void do_users( CHAR_DATA *ch, char *argument )
 		d->character ? d->character->name : "(none)",
 		d->host
 		);
+	}
+	else
+	{
+	    sprintf( buf + strlen(buf), "[%3d %2d] %s@%s\n\r",
+		d->descriptor,
+		d->connected,
+		d->original  ? d->original->name  :
+		d->character ? d->character->name : "(none)",
+		d->character->lasthost
+		);
+	}
+
 	}
     }
 
@@ -3463,7 +3702,7 @@ void do_users( CHAR_DATA *ch, char *argument )
 void do_force( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
 
     sprintf(buf,"%s: Force %s",ch->name,argument);
     if (ch->level < NO_WATCH) do_watching(ch,buf);
@@ -3485,7 +3724,8 @@ void do_force( CHAR_DATA *ch, char *argument )
 	{
 	    vch_next = vch->next;
 
-	    if ( !IS_NPC(vch) && get_trust( vch ) < get_trust( ch ) && !IS_SET(vch->act, PLR_GODLESS))
+	    if ( !IS_NPC(vch) && get_trust( vch ) < get_trust( ch ) && !IS_SET(vch->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        	&& !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
 	    {
 		act( "$n forces you to '$t'.", ch, argument, vch, TO_VICT );
 		interpret( vch, argument );
@@ -3514,7 +3754,8 @@ void do_force( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if (IS_SET(victim->act, PLR_GODLESS))
+	if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
 	{
 	    send_to_char( "You failed.\n\r", ch );
 	    return;
@@ -3537,12 +3778,9 @@ void do_forceauto( CHAR_DATA *ch, char *argument )
     {
 	vch_next = vch->next;
 
-	if ( !IS_NPC(vch) )
+	if ( !IS_NPC(vch) && vch != ch )
 	{
-	    if (vch == ch)
-	        act( "Autocommand: $t.", ch, argument, vch, TO_CHAR );
-	    else
-	        act( "Autocommand: $t.", ch, argument, vch, TO_VICT );
+	    act( "Autocommand: $t.", ch, argument, vch, TO_VICT );
 	    interpret( vch, argument );
 	}
     }
@@ -3575,6 +3813,26 @@ void do_invis( CHAR_DATA *ch, char *argument )
     return;
 }
 
+void do_incog( CHAR_DATA *ch, char *argument )
+{
+    if ( IS_NPC(ch) )
+	return;
+
+    if ( IS_SET(ch->act, PLR_INCOG) )
+    {
+	REMOVE_BIT(ch->act, PLR_INCOG);
+	act( "$n slowly fades into existence.", ch, NULL, NULL, TO_ROOM );
+	send_to_char( "You slowly fade back into existence.\n\r", ch );
+    }
+    else
+    {
+	act( "$n slowly fades into thin air.", ch, NULL, NULL, TO_ROOM );
+	send_to_char( "You slowly vanish into thin air.\n\r", ch );
+	SET_BIT(ch->act, PLR_INCOG);
+    }
+
+    return;
+}
 
 
 void do_holylight( CHAR_DATA *ch, char *argument )
@@ -3607,7 +3865,7 @@ void do_safe( CHAR_DATA *ch, char *argument )
     else
 	send_to_char( "You are not safe from player attacks in this room.\n\r", ch );
 
-    if (!IS_SET(ch->act, PLR_VAMPIRE) )
+    if (!IS_CLASS(ch, CLASS_VAMPIRE) )
 	return;
 
     if (ch->in_room->sector_type == SECT_INSIDE)
@@ -4126,7 +4384,7 @@ void do_oclone( CHAR_DATA *ch, char *argument )
 
 void do_evileye( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     int value;
@@ -4252,263 +4510,35 @@ void do_clearvamp( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
     }
 
-    if (IS_SET(victim->act,PLR_VAMPIRE)) do_mortalvamp(victim,"");
-    free_string(victim->lord); free_string(victim->clan);
-    victim->lord     = str_dup("");
-    victim->clan     = str_dup("");
-    victim->vampgen  = 0;
-    victim->vampaff  = 0;
-    victim->vamppass = 0;
-    victim->beast    = 0;
+    if (IS_CLASS(victim,CLASS_VAMPIRE)) do_mortalvamp(victim,"");
+    free_string(victim->lord);
+    victim->lord     = str_dup( "" );
+    free_string(victim->clan);
+    victim->clan     = str_dup( "" );
+    victim->pcdata->stats[UNI_GEN]     = 0;
+    victim->pcdata->stats[UNI_AFF]     = 0;
+    victim->pcdata->stats[UNI_CURRENT] = -1;
+
+    REMOVE_BIT(victim->special, SPC_SIRE);
+    REMOVE_BIT(victim->special, SPC_PRINCE);
+    REMOVE_BIT(victim->special, SPC_ANARCH);
+    victim->pcdata->stats[UNI_RAGE] = 0;
+    victim->pcdata->rank = AGE_CHILDE;
 
     send_to_char( "Ok.\n\r", ch );
     return;
 }
 
-void oset_affect( CHAR_DATA *ch, OBJ_DATA *obj, int value, int affect, bool is_quest )
+void do_artifact( CHAR_DATA *ch, char *argument )
 {
-    char buf [MAX_INPUT_LENGTH];
-    AFFECT_DATA *paf;
-    int quest;
-    int range;
-    int cost;
-    int max;
-
-    if (IS_NPC(ch))
-    {
-	send_to_char("Switch back, smart ass.\n\r", ch);
-	return;
-    }
-
-    if (value == 0)
-    {
-	send_to_char("Please enter a positive or negative amount.\n\r", ch);
-	return;
-    }
-
-    if (!IS_JUDGE(ch) && (obj->questowner == NULL))
-    {
-	send_to_char("First you must set the owners name on the object.\n\r", ch);
-	return;
-    }
-
-    if (!IS_JUDGE(ch) && (obj->questmaker == NULL ||
-	str_cmp(ch->name,obj->questmaker)) && !is_quest )
-    {
-	send_to_char("That item has already been oset by someone else.\n\r", ch);
-	return;
-    }
-
-    if      ( affect == APPLY_STR     ) {range = 3;  cost = 20 ; quest = QUEST_STR;}
-    else if ( affect == APPLY_DEX     ) {range = 3;  cost = 20 ; quest = QUEST_DEX;}
-    else if ( affect == APPLY_INT     ) {range = 3;  cost = 20 ; quest = QUEST_INT;}
-    else if ( affect == APPLY_WIS     ) {range = 3;  cost = 20 ; quest = QUEST_WIS;}
-    else if ( affect == APPLY_CON     ) {range = 3;  cost = 20 ; quest = QUEST_CON;}
-    else if ( affect == APPLY_HIT     ) {range = 25; cost =  5 ; quest = QUEST_HIT;}
-    else if ( affect == APPLY_MANA    ) {range = 25; cost =  5 ; quest = QUEST_MANA;}
-    else if ( affect == APPLY_MOVE    ) {range = 25; cost =  5 ; quest = QUEST_MOVE;}
-    else if ( affect == APPLY_HITROLL ) {range = 5;  cost = 30 ; quest = QUEST_HITROLL;}
-    else if ( affect == APPLY_DAMROLL ) {range = 5;  cost = 30 ; quest = QUEST_DAMROLL;}
-    else if ( affect == APPLY_AC      ) {range = 25; cost = 10 ; quest = QUEST_AC;}
-    else return;
-
-    if ( obj->pIndexData->vnum == OBJ_VNUM_PROTOPLASM ) {range *= 2;
-	max = 750 + (ch->race * 10);}
-    else
-	max = 400 + (ch->race * 10);
-
-    if ( !IS_JUDGE(ch) && ((value > 0 && value > range) ||
-	(value < 0 && value < (range-range-range))) )
-    {
-	send_to_char("That is not within the acceptable range...\n\r", ch);
-	send_to_char("Str, Dex, Int, Wis, Con... max =   3 each, at  20 quest points per +1 stat.\n\r", ch);
-	send_to_char("Hp, Mana, Move............ max =  25 each, at   5 quest point per point.\n\r", ch);
-	send_to_char("Hitroll, Damroll.......... max =   5 each, at  30 quest points per point.\n\r", ch);
-	send_to_char("Ac........................ max = -25,      at  10 points per point.\n\r", ch);
-	send_to_char("\n\rNote: Created items can have upto 2 times the above maximum.\n\r", ch);
-	return;
-    }
-
-    if ( quest >= QUEST_HIT && value < 0 ) cost *= (value - (value*2));
-    else cost *= value;
-
-    if ( cost < 0 ) cost = 0;
-
-    if (!IS_JUDGE(ch) && IS_SET(obj->quest, quest) )
-    {
-	send_to_char("That affect has already been set on this object.\n\r", ch);
-	return;
-    }
-
-    if (!IS_JUDGE(ch) && (obj->points + cost > max))
-    {
-	sprintf(buf,"You are limited to %d quest points per item.\n\r",max);
-	send_to_char(buf, ch);
-	return;
-    }
-
-    if (is_quest && ch->pcdata->quest < cost)
-    {
-	sprintf(buf,"That costs %d quest points, while you only have %d.\n\r",cost, ch->pcdata->quest);
-	send_to_char(buf, ch);
-	return;
-    }
-
-    if (!IS_SET(obj->quest, quest) ) SET_BIT(obj->quest,quest);
-
-    if (is_quest) ch->pcdata->quest -= cost;
-    obj->points += cost;
-    if (obj->questmaker != NULL) free_string(obj->questmaker);
-    obj->questmaker = str_dup(ch->name);
-
-    if ( affect_free == NULL )
-    {
-	paf		= alloc_perm( sizeof(*paf) );
-    }
-    else
-    {
-	paf		= affect_free;
-	affect_free	= affect_free->next;
-    }
-
-    paf->type	= 0;
-    paf->duration	= -1;
-    paf->location	= affect;
-    paf->modifier	= value;
-    paf->bitvector	= 0;
-    paf->next		= obj->affected;
-    obj->affected	= paf;
-
-    send_to_char("Ok.\n\r",ch);
-    return;
-}
-
-void do_call( CHAR_DATA *ch, char *argument )
-{
-    char arg[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
-    ROOM_INDEX_DATA *chroom;
-    ROOM_INDEX_DATA *objroom;
-
-    one_argument( argument, arg );
-
-    if ( arg[0] == '\0' )
-    {
-	send_to_char( "What object do you wish to call?\n\r", ch );
-	return;
-    }
-
-    act("Your eyes flicker with yellow energy.",ch,NULL,NULL,TO_CHAR);
-    act("$n's eyes flicker with yellow energy.",ch,NULL,NULL,TO_ROOM);
-
-    if (!str_cmp(arg,"all"))
-    {
-	call_all(ch);
-	return;
-    }
-
-    if ( ( obj = get_obj_world( ch, arg ) ) == NULL )
-    {
-	send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch );
-	return;
-    }
-
-    if (obj->questowner == NULL || str_cmp(obj->questowner,ch->name))
-    {
-	send_to_char( "Nothing happens.\n\r", ch );
-	return;
-    }
-
-    if (obj->carried_by != NULL && obj->carried_by != ch)
-    {
-    	act("$p suddenly vanishes from your hands!",obj->carried_by,obj,NULL,TO_CHAR);
-    	act("$p suddenly vanishes from $n's hands!",obj->carried_by,obj,NULL,TO_ROOM);
-	obj_from_char(obj);
-    }
-    else if (obj->in_room != NULL)
-    {
-    	chroom = ch->in_room;
-    	objroom = obj->in_room;
-    	char_from_room(ch);
-    	char_to_room(ch,objroom);
-    	act("$p vanishes from the ground!",ch,obj,NULL,TO_ROOM);
-	if (chroom == objroom) act("$p vanishes from the ground!",ch,obj,NULL,TO_CHAR);
-    	char_from_room(ch);
-    	char_to_room(ch,chroom);
-	obj_from_room(obj);
-    }
-    else if (obj->in_obj != NULL) obj_from_obj(obj);
-    else {send_to_char( "Nothing happens.\n\r", ch ); return;}
-
-    obj_to_char(obj,ch);
-    if (IS_SET(obj->extra_flags,ITEM_SHADOWPLANE))
-	REMOVE_BIT(obj->extra_flags,ITEM_SHADOWPLANE);
-    act("$p materializes in your hands.",ch,obj,NULL,TO_CHAR);
-    act("$p materializes in $n's hands.",ch,obj,NULL,TO_ROOM);
-    return;
-}
-
-void call_all( CHAR_DATA *ch )
-{
-    OBJ_DATA *obj;
-    OBJ_DATA *in_obj;
-    ROOM_INDEX_DATA *chroom;
-    ROOM_INDEX_DATA *objroom;
-    bool found;
-
-    found = FALSE;
-    for ( obj = object_list; obj != NULL; obj = obj->next )
-    {
-	if ( obj->questowner == NULL || str_cmp( ch->name, obj->questowner ) )
-	    continue;
-
-	found = TRUE;
-
-	for ( in_obj = obj; in_obj->in_obj != NULL; in_obj = in_obj->in_obj )
-	    ;
-
-	    if (obj->carried_by != NULL && obj->carried_by != ch)
-	    {
-	    	act("$p suddenly vanishes from your hands!",obj->carried_by,obj,NULL,TO_CHAR);
-	    	act("$p suddenly vanishes from $n's hands!",obj->carried_by,obj,NULL,TO_ROOM);
-		obj_from_char(obj);
-	    }
-	    else if (obj->in_room != NULL)
-	    {
-	    	chroom = ch->in_room;
-	    	objroom = obj->in_room;
-	    	char_from_room(ch);
-	    	char_to_room(ch,objroom);
-	    	act("$p vanishes from the ground!",ch,obj,NULL,TO_ROOM);
-		if (chroom == objroom) act("$p vanishes from the ground!",ch,obj,NULL,TO_CHAR);
-	    	char_from_room(ch);
-	    	char_to_room(ch,chroom);
-		obj_from_room(obj);
-	    }
-	    else if (obj->in_obj != NULL) obj_from_obj(obj);
-	    else continue;
-	    obj_to_char(obj,ch);
-	    if (IS_SET(obj->extra_flags,ITEM_SHADOWPLANE))
-		REMOVE_BIT(obj->extra_flags,ITEM_SHADOWPLANE);
-	    act("$p materializes in your hands.",ch,obj,NULL,TO_CHAR);
-	    act("$p materializes in $n's hands.",ch,obj,NULL,TO_ROOM);
-    }
-
-    if ( !found )
-	send_to_char( "Nothing happens.\n\r", ch );
-
-    return;
-}
-
-void do_locate( CHAR_DATA *ch, char *argument )
-{
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     OBJ_DATA *obj;
     OBJ_DATA *in_obj;
     bool found;
@@ -4518,7 +4548,50 @@ void do_locate( CHAR_DATA *ch, char *argument )
     found = FALSE;
     for ( obj = object_list; obj != NULL; obj = obj->next )
     {
-	if ( !can_see_obj( ch, obj ) || obj->questowner == NULL || str_cmp( ch->name, obj->questowner ) )
+	if ( !IS_SET(obj->quest, QUEST_ARTIFACT) ) continue;
+
+	found = TRUE;
+
+	for ( in_obj = obj; in_obj->in_obj != NULL; in_obj = in_obj->in_obj )
+	    ;
+
+	if ( in_obj->carried_by != NULL )
+	{
+	    sprintf( buf, "%s created by %s and carried by %s.\n\r",
+		obj->short_descr, obj->questmaker,
+		PERS(in_obj->carried_by, ch) );
+	}
+	else
+	{
+	    sprintf( buf, "%s created by %s and in %s.\n\r",
+		obj->short_descr, obj->questmaker,
+		in_obj->in_room == NULL ? "somewhere" : in_obj->in_room->name );
+	}
+
+	buf[0] = UPPER(buf[0]);
+	send_to_char( buf, ch );
+    }
+
+    if ( !found )
+	send_to_char( "There are no artifacts in the game.\n\r", ch );
+
+    return;
+}
+
+void do_locate( CHAR_DATA *ch, char *argument )
+{
+    char buf[MAX_STRING_LENGTH];
+    OBJ_DATA *obj;
+    OBJ_DATA *in_obj;
+    bool found;
+
+    if (IS_NPC(ch)) {send_to_char("Not while switched.\n\r",ch); return;}
+
+    found = FALSE;
+    for ( obj = object_list; obj != NULL; obj = obj->next )
+    {
+	if ( !can_see_obj( ch, obj ) || obj->questowner == NULL ||
+	    strlen(obj->questowner) < 2 || str_cmp( ch->name, obj->questowner ))
 	    continue;
 
 	found = TRUE;
@@ -4570,7 +4643,8 @@ void do_claim( CHAR_DATA *ch, char *argument )
 
     if (obj->item_type == ITEM_QUEST || obj->item_type == ITEM_AMMO ||
         obj->item_type == ITEM_EGG   || obj->item_type == ITEM_VOODOO ||
-        obj->item_type == ITEM_MONEY || obj->item_type == ITEM_TREASURE)
+        obj->item_type == ITEM_MONEY || obj->item_type == ITEM_TREASURE ||
+        obj->item_type == ITEM_PAGE  || IS_SET(obj->quest, QUEST_ARTIFACT))
     {
 	send_to_char( "You cannot claim that item.\n\r", ch );
 	return;
@@ -4719,1198 +4793,11 @@ void do_create( CHAR_DATA *ch, char *argument )
     return;
 }
 
-
-void do_quest( CHAR_DATA *ch, char *argument )
-{
-    char arg1 [MAX_INPUT_LENGTH];
-    char arg2 [MAX_INPUT_LENGTH];
-    char arg3 [MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
-    OBJ_DATA *obj;
-    OBJ_INDEX_DATA *pObjIndex;
-    int value;
-    int add;
-    int remove;
-
-    if (IS_NPC(ch)) {send_to_char("Not while switched.\n\r",ch); return;}
-
-    smash_tilde( argument );
-    argument = one_argument( argument, arg1 );
-    argument = one_argument( argument, arg2 );
-    strcpy( arg3, argument );
-
-    if ( arg1[0] != '\0' && !str_cmp( arg1, "create" ) && ch->pcdata->quest > 0 )
-    {
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not allowed to create new objects.\n\r",ch);
-	    return;
-	}
-    	else if ( arg2[0] == '\0' )
-	{
-	    send_to_char("Syntax: quest create <object> <field>\n\rObject being one of: Light (10 QP), Weapon <type> (50 QP), Armor (30 QP),\n\rContainer (10 QP), Boat (10 QP), Fountain <type> (10 QP), Stake (10 QP).\n\r",ch);
-	    return;
-	}
-    	     if (!str_cmp(arg2,"light"    )) {add = ITEM_LIGHT;     value = 10;}
-    	else if (!str_cmp(arg2,"weapon"   )) {add = ITEM_WEAPON;    value = 50;}
-    	else if (!str_cmp(arg2,"armor"    )) {add = ITEM_ARMOR;     value = 20;}
-    	else if (!str_cmp(arg2,"armour"   )) {add = ITEM_ARMOR;     value = 20;}
-    	else if (!str_cmp(arg2,"container")) {add = ITEM_CONTAINER; value = 10;}
-    	else if (!str_cmp(arg2,"boat"     )) {add = ITEM_BOAT;      value = 10;}
-    	else if (!str_cmp(arg2,"fountain" )) {add = ITEM_FOUNTAIN;  value = 10;}
-    	else if (!str_cmp(arg2,"stake"    )) {add = ITEM_STAKE;     value = 10;}
-	else
-	{
-	    send_to_char("Syntax: quest create <object> <field>\n\rObject being one of: Light (1 QP), Weapon <type> (5 QP), Armor (1 QP),\n\rContainer (1 QP), Boat (1 QP), Fountain <type> (1 QP), Stake (1 QP).\n\r",ch);
-	    return;
-	}
-	if (ch->pcdata->quest < value)
-	{
-	    sprintf(buf,"You don't have the required %d quest points.\n\r",value);
-	    send_to_char(buf,ch);
-	    return;
-	}
-    	if ( ( pObjIndex = get_obj_index( OBJ_VNUM_PROTOPLASM ) ) == NULL )
-    	{
-	    send_to_char( "Error...missing object, please inform KaVir.\n\r", ch );
-	    return;
-    	}
-    	obj = create_object( pObjIndex, 25 );
-    	obj->weight = 1;
-    	obj->cost   = 1000;
-    	obj->item_type = add;
-	if (add == ITEM_WEAPON)
-	{
-	    if (arg3[0] == '\0')
-	    {
-		send_to_char("Please specify weapon type: Slice, Stab, Slash, Whip, Claw, Blast, Pound,\n\rCrush, Pierce, or Suck.\n\r",ch);
-		if (obj != NULL) extract_obj(obj);
-		return;
-	    }
-	    else if (!str_cmp(arg3,"slice" )) obj->value[3] = 1;
-	    else if (!str_cmp(arg3,"stab"  )) obj->value[3] = 2;
-	    else if (!str_cmp(arg3,"slash" )) obj->value[3] = 3;
-	    else if (!str_cmp(arg3,"whip"  )) obj->value[3] = 4;
-	    else if (!str_cmp(arg3,"claw"  )) obj->value[3] = 5;
-	    else if (!str_cmp(arg3,"blast" )) obj->value[3] = 6;
-	    else if (!str_cmp(arg3,"pound" )) obj->value[3] = 7;
-	    else if (!str_cmp(arg3,"crush" )) obj->value[3] = 8;
-	    else if (!str_cmp(arg3,"pierce")) obj->value[3] = 11;
-	    else if (!str_cmp(arg3,"suck"  )) obj->value[3] = 12;
-	    else {
-		send_to_char("Please specify weapon type: Slice, Stab, Slash, Whip, Claw, Blast, Pound,\n\rCrush, Pierce, or Suck.\n\r",ch);
-		if (obj != NULL) extract_obj(obj);
-		return;}
-	    obj->value[1] = 10;
-	    obj->value[2] = 20;
-	    obj->level    = 50;
-	}
-	else if (add == ITEM_FOUNTAIN)
-	{
-	    if (arg3[0] == '\0')
-	    {
-		send_to_char("Please specify fountain contents: Water, Beer, Wine, Ale, Darkale, Whisky,\n\rFirebreather, Specialty, Slime, Milk, Tea, Coffee, Blood, Saltwater.\n\r",ch);
-		if (obj != NULL) extract_obj(obj);
-		return;
-	    }
-	    else if (!str_cmp(arg3,"water"        )) obj->value[2] = 0;
-	    else if (!str_cmp(arg3,"beer"         )) obj->value[2] = 1;
-	    else if (!str_cmp(arg3,"wine"         )) obj->value[2] = 2;
-	    else if (!str_cmp(arg3,"ale"          )) obj->value[2] = 3;
-	    else if (!str_cmp(arg3,"darkale"      )) obj->value[2] = 4;
-	    else if (!str_cmp(arg3,"whisky"       )) obj->value[2] = 5;
-	    else if (!str_cmp(arg3,"firebreather" )) obj->value[2] = 7;
-	    else if (!str_cmp(arg3,"specialty"    )) obj->value[2] = 8;
-	    else if (!str_cmp(arg3,"slime"        )) obj->value[2] = 9;
-	    else if (!str_cmp(arg3,"milk"         )) obj->value[2] = 10;
-	    else if (!str_cmp(arg3,"tea"          )) obj->value[2] = 11;
-	    else if (!str_cmp(arg3,"coffee"       )) obj->value[2] = 12;
-	    else if (!str_cmp(arg3,"blood"        )) obj->value[2] = 13;
-	    else if (!str_cmp(arg3,"saltwater"    )) obj->value[2] = 14;
-	    else {
-		send_to_char("Please specify fountain contents: Water, Beer, Wine, Ale, Darkale, Whisky,\n\rFirebreather, Specialty, Slime, Milk, Tea, Coffee, Blood, Saltwater.\n\r",ch);
-		if (obj != NULL) extract_obj(obj);
-		return;}
-	    obj->value[0] = 1000;
-	    obj->value[1] = 1000;
-	}
-	else if (add == ITEM_CONTAINER)
-	    obj->value[0] = 999;
-	else if (add == ITEM_LIGHT)
-	    obj->value[2] = -1;
-	else if (add == ITEM_ARMOR)
-	    obj->value[0] = 15;
-	ch->pcdata->quest -= value;
-    	obj_to_char(obj,ch);
-	SET_BIT(obj->quest,QUEST_FREENAME);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-    	if (obj->questowner != NULL) free_string(obj->questowner);
-    	obj->questowner = str_dup(ch->name);
-    	act( "You reach up into the air and draw out a ball of protoplasm.", ch, obj, NULL, TO_CHAR );
-    	act( "$n reaches up into the air and draws out a ball of protoplasm.", ch, obj, NULL, TO_ROOM );
-	return;
-    }
-
-    if ( arg1[0] == '\0' || arg2[0] == '\0' )
-    {
-	send_to_char( "- - - - - - - - - - ----====[ QUEST ITEM COSTS ]====---- - - - - - - - - - -\n\r",	 ch );
-	send_to_char( "Create: Creates a new personalized object, costing between 10 and 50 QP.\n\r",ch );
-	send_to_char( "Name/Short/Long: Rename the object.  1 QP for all three.\n\r",ch );
-	send_to_char( "Clone: Clones the object for original's cost (minimum of 5 QP).\n\r",ch );
-	send_to_char( "Protection: Sets AC on armour at 1 QP per point.\n\r", ch );
-	send_to_char( "Min/Max: Sets min/max damage on weapon at 1 QP per point.\n\r", ch );
-	send_to_char( "Weapon: Sets weapon type for 10 QP.\n\r", ch );
-	send_to_char( "Extra (add/remove): Glow(1/1), Hum(1/1), Invis(1/1), Anti-Good(1/10),\n\r                    Anti-Neutral(1/10), Anti-Evil(1/10), Loyal(10/1).\n\r",ch );
-	send_to_char( "Wear: Select location, costs 20 QP's.  Type 'quest <obj> wear' to see locations.\n\r",ch );
-	send_to_char( "Power: Spell power for spell weapons.  Costs 1 QP per power point.\n\r",ch );
-	send_to_char( "Spell: Spell weapons or affect.  Costs 50 QP.\n\r",ch );
-	send_to_char( "Transporter: Future transportation to that room.  Costs 50 QP.\n\r",ch );
-	send_to_char( "Special: Set activate/twist/press/pull flags.\n\r",ch );
-	send_to_char( "You-in/You-out/Other-in/Other-out: Renames for transporter actions.\n\r",ch );
-	send_to_char( "You-wear/You-remove/You-use: What you see when you wear/remove/use.\n\r",ch );
-	send_to_char( "Other-wear/Other-remove/Other-use: What others see when you wear/remove/use.\n\r",ch );
-	send_to_char( "Weight: Set objects weight to 1.  Costs 10 QP.\n\r",ch );
-	send_to_char( "Str, Dex, Int, Wis, Con... max =   3 each, at  20 quest points per +1 stat.\n\r", ch);
-	send_to_char( "Hp, Mana, Move............ max =  25 each, at   5 quest points per point.\n\r", ch);
-	send_to_char( "Hitroll, Damroll.......... max =   5 each, at  30 quest points per point.\n\r", ch);
-	send_to_char( "Ac........................ max = -25,      at  10 points per point.\n\r", ch);
-	send_to_char( "- - - - - - - - - - ----====[ QUEST ITEM COSTS ]====---- - - - - - - - - - -\n\r",	 ch );
-	return;
-    }
-
-    if ( ( obj = get_obj_carry( ch, arg1) ) == NULL )
-    {
-	send_to_char( "You are not carrying that item.\n\r", ch );
-	return;
-    }
-
-    if (obj->item_type == ITEM_QUEST || obj->item_type == ITEM_AMMO ||
-        obj->item_type == ITEM_EGG   || obj->item_type == ITEM_VOODOO ||
-        obj->item_type == ITEM_MONEY || obj->item_type == ITEM_TREASURE)
-    {
-	send_to_char( "You cannot quest-change that item.\n\r", ch );
-	return;
-    }
-
-    if (!IS_IMMORTAL(ch) && (obj->questowner == NULL || str_cmp(ch->name,obj->questowner)))
-    {
-	send_to_char("You can only change an item you own.\n\r", ch);
-	return;
-    }
-
-    /*
-     * Snarf the value (which need not be numeric).
-     */
-    if ( arg3[0] != '\0' ) value = atoi( arg3 );
-    else value = 0;
-
-    if ( !str_cmp( arg2, "protection" ) )
-    {
-	if ( arg3[0] == '\0' )
-		{send_to_char("How much armor class?\n\r", ch); return;}
-	if (obj->item_type != ITEM_ARMOR)
-	{
-	    send_to_char("That item is not armor.\n\r", ch);
-	    return;
-	}
-	else if (obj->item_type == ITEM_ARMOR && (value+obj->value[0]) > 15)
-	{
-	    if (obj->value[0] < 15)
-	    	sprintf(buf,"The armor class can be increased by %d.\n\r",(15 - obj->value[0]));
-	    else
-	    	sprintf(buf,"The armor class cannot be increased any further.\n\r");
-	    send_to_char(buf, ch);
-	    return;
-	}
-	else if (value > ch->pcdata->quest)
-	{
-	    send_to_char("You don't have enough quest points.\n\r", ch);
-	    return;
-	}
-	else
-		obj->value[0] += value;
-	send_to_char("Ok.\n\r",ch);
-	ch->pcdata->quest -= value;
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "min" ) )
-    {
-	if ( arg3[0] == '\0' )
-		{send_to_char("How much min damage?\n\r", ch); return;}
-	if (obj->item_type != ITEM_WEAPON)
-	{
-	    send_to_char("That item is not a weapon.\n\r", ch);
-	    return;
-	}
-	else if (obj->item_type == ITEM_WEAPON && (value+obj->value[1]) > 10)
-	{
-	    if (obj->value[1] < 10)
-	    	sprintf(buf,"The minimum damage can be increased by %d.\n\r",(10 - obj->value[1]));
-	    else
-	    	sprintf(buf,"The minimum damage cannot be increased any further.\n\r");
-	    send_to_char(buf, ch);
-	    return;
-	}
-	else if (value > ch->pcdata->quest)
-	{
-	    send_to_char("You don't have enough quest points.\n\r", ch);
-	    return;
-	}
-	else
-		obj->value[1] += value;
-	send_to_char("Ok.\n\r",ch);
-	ch->pcdata->quest -= value;
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "max" ) )
-    {
-	if ( arg3[0] == '\0' )
-		{send_to_char("How much max damage?\n\r", ch); return;}
-	if (obj->item_type != ITEM_WEAPON)
-	{
-	    send_to_char("That item is not a weapon.\n\r", ch);
-	    return;
-	}
-	else if (obj->item_type == ITEM_WEAPON && (value+obj->value[2]) > 20)
-	{
-	    if (obj->value[2] < 20)
-	    	sprintf(buf,"The maximum damage can be increased by %d.\n\r",(20 - obj->value[2]));
-	    else
-	    	sprintf(buf,"The maximum damage cannot be increased any further.\n\r");
-	    send_to_char(buf, ch);
-	    return;
-	}
-	else if (value > ch->pcdata->quest)
-	{
-	    send_to_char("You don't have enough quest points.\n\r", ch);
-	    return;
-	}
-	else
-		obj->value[2] += value;
-	send_to_char("Ok.\n\r",ch);
-	ch->pcdata->quest -= value;
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "weapon" ) )
-    {
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not allowed to change weapon types.\n\r",ch);
-	    return;
-	}
-	if (obj->item_type == ITEM_WEAPON)
-	{
-	    if (ch->pcdata->quest < 10)
-	    {
-	    	send_to_char("You don't have enough quest points.\n\r", ch);
-	    	return;
-	    }
-	    if (arg3[0] == '\0')
-	    {
-		send_to_char("Please specify weapon type: Slice, Stab, Slash, Whip, Claw, Blast, Pound,\n\rCrush, Pierce, or Suck.\n\r",ch);
-		return;
-	    }
-	    else if (!str_cmp(arg3,"slice" )) value = 1;
-	    else if (!str_cmp(arg3,"stab"  )) value = 2;
-	    else if (!str_cmp(arg3,"slash" )) value = 3;
-	    else if (!str_cmp(arg3,"whip"  )) value = 4;
-	    else if (!str_cmp(arg3,"claw"  )) value = 5;
-	    else if (!str_cmp(arg3,"blast" )) value = 6;
-	    else if (!str_cmp(arg3,"pound" )) value = 7;
-	    else if (!str_cmp(arg3,"crush" )) value = 8;
-	    else if (!str_cmp(arg3,"pierce")) value = 11;
-	    else if (!str_cmp(arg3,"suck"  )) value = 12;
-	    else
-	    {
-		send_to_char("Please specify weapon type: Slice, Stab, Slash, Whip, Claw, Blast, Pound,\n\rCrush, Pierce, or Suck.\n\r",ch);
-		return;
-	    }
-	    if (obj->value[3] == value)
-	    {
-		send_to_char("It is already that weapon type.\n\r",ch);
-		return;
-	    }
-	    obj->value[3] = value;
-	    ch->pcdata->quest -= 10;
-	    send_to_char("Ok.\n\r",ch);
-	    if (obj->questmaker != NULL) free_string(obj->questmaker);
-	    obj->questmaker = str_dup(ch->name);
-	}
-	else
-	{
-	    send_to_char("That item is not a weapon.\n\r", ch);
-	    return;
-	}
-	return;
-    }
-
-    if ( !str_cmp( arg2, "extra" ) )
-    {
-	if ( arg3[0] == '\0' )
-	{
-	    send_to_char("Enter one of: Glow, Hum, Invis, Anti-good, Anti-evil, Anti-neutral, Loyal.\n\r",ch);
-	    return;
-	}
-	if      ( !str_cmp( arg3, "glow"         )) {value = ITEM_GLOW; add = 1; remove = 1;}
-	else if ( !str_cmp( arg3, "hum"          )) {value = ITEM_HUM; add = 1; remove = 1;}
-	else if ( !str_cmp( arg3, "invis"        )) {value = ITEM_INVIS; add = 1; remove = 1;}
-	else if ( !str_cmp( arg3, "anti-good"    )) {value = ITEM_ANTI_GOOD; add = 1; remove = 10;}
-	else if ( !str_cmp( arg3, "anti-evil"    )) {value = ITEM_ANTI_EVIL; add = 1; remove = 10;}
-	else if ( !str_cmp( arg3, "anti-neutral" )) {value = ITEM_ANTI_NEUTRAL; add = 1; remove = 10;}
-	else if ( !str_cmp( arg3, "loyal"        )) {value = ITEM_LOYAL; add = 10; remove = 1;}
-	else
-	{
-	    send_to_char("Enter one of: Glow, Hum, Invis, Anti-good, Anti-evil, Anti-neutral, Loyal.\n\r",ch);
-	    return;
-	}
-
-	if (IS_SET(obj->extra_flags,value))
-	{
-	    if (ch->pcdata->quest < remove)
-	    {
-		sprintf(buf,"Sorry, you need %d quest points to remove that flag.\n\r",remove);
-		send_to_char(buf,ch);return;
-	    }
-	    ch->pcdata->quest -= remove;
-	    REMOVE_BIT(obj->extra_flags, value);
-	}
-	else
-	{
-	    if (ch->pcdata->quest < add)
-	    {
-		sprintf(buf,"Sorry, you need %d quest points to remove that flag.\n\r",add);
-		send_to_char(buf,ch);return;
-	    }
-	    ch->pcdata->quest -= add;
-	    SET_BIT(obj->extra_flags, value);
-	}
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "wear" ) )
-    {
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not allowed to change object wear locations.\n\r",ch);
-	    return;
-	}
-	if ( arg3[0] == '\0' )
-	{
-	    send_to_char("Wear location can be from: Finger, Neck, Body, Head, Legs, Hands, Arms,\n\rAbout, Waist, Wrist, Hold, Face.\n\r",ch);
-	    return;
-	}
-	if      ( !str_cmp( arg3, "finger" )) value = ITEM_WEAR_FINGER;
-	else if ( !str_cmp( arg3, "neck"   )) value = ITEM_WEAR_NECK;
-	else if ( !str_cmp( arg3, "body"   )) value = ITEM_WEAR_BODY;
-	else if ( !str_cmp( arg3, "head"   )) value = ITEM_WEAR_HEAD;
-	else if ( !str_cmp( arg3, "legs"   )) value = ITEM_WEAR_LEGS;
-	else if ( !str_cmp( arg3, "feet"   )) value = ITEM_WEAR_FEET;
-	else if ( !str_cmp( arg3, "hands"  )) value = ITEM_WEAR_HANDS;
-	else if ( !str_cmp( arg3, "arms"   )) value = ITEM_WEAR_ARMS;
-	else if ( !str_cmp( arg3, "about"  )) value = ITEM_WEAR_ABOUT;
-	else if ( !str_cmp( arg3, "waist"  )) value = ITEM_WEAR_WAIST;
-	else if ( !str_cmp( arg3, "wrist"  )) value = ITEM_WEAR_WRIST;
-	else if ( !str_cmp( arg3, "hold"   )) value = ITEM_WIELD;
-	else if ( !str_cmp( arg3, "face"   )) value = ITEM_WEAR_FACE;
-	else {
-	    send_to_char("Wear location can be from: Finger, Neck, Body, Head, Legs, Hands, Arms, About, Waist, Wrist, Hold, Face.\n\r",ch); return;}
-	if (IS_SET(obj->wear_flags,ITEM_TAKE) ) value += 1;
-	if (obj->wear_flags == value || obj->wear_flags == (value+1) )
-	{
-	    act("But $p is already worn in that location!",ch,obj,NULL,TO_CHAR);
-	    return;
-	}
-	else if ( (value != ITEM_WIELD && value != (ITEM_WIELD+1) )
-		&& obj->item_type == ITEM_WEAPON)
-	{
-	    act("You can only HOLD a weapon.",ch,obj,NULL,TO_CHAR);
-	    return;
-	}
-	else if (ch->pcdata->quest < 20 && !(obj->pIndexData->vnum == 30037 && obj->wear_flags == 1))
-	{
-	    send_to_char("It costs 20 quest points to change a location.\n\r", ch);
-	    return;
-	}
-	if (!(obj->pIndexData->vnum == 30037 && obj->wear_flags == 1))
-	    ch->pcdata->quest -= 20;
-	obj->wear_flags = value;
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "replacespell" ) )
-    {
-	int weapon = 0;
-	int affect = 0;
-	if ( arg3[0] == '\0' )
-	{
-	    send_to_char("Spell weapons: Acid, Dark, Holy, Vampiric, Flaming, Electrified, Poisonous.\n\r",ch);
-	    send_to_char("Spell affects: Blind, Seeinvis, Fly, Infravision, Invis, Passdoor, Protection,\n\rSanct, Sneak, Shockshield, Fireshield, Iceshield, Acidshield.\n\r",ch);
-	    return;
-	}
-	if      ( !str_cmp( arg3, "acid"        )) weapon = 1;
-	else if ( !str_cmp( arg3, "dark"        )) weapon = 4;
-	else if ( !str_cmp( arg3, "holy"        )) weapon = 30;
-	else if ( !str_cmp( arg3, "vampiric"    )) weapon = 34;
-	else if ( !str_cmp( arg3, "flaming"     )) weapon = 37;
-	else if ( !str_cmp( arg3, "electrified" )) weapon = 48;
-	else if ( !str_cmp( arg3, "poisonous"   )) weapon = 53;
-	else if ( !str_cmp( arg3, "infravision" )) affect = 1;
-	else if ( !str_cmp( arg3, "seeinvis"    )) affect = 2;
-	else if ( !str_cmp( arg3, "fly"         )) affect = 3;
-	else if ( !str_cmp( arg3, "blind"       )) affect = 4;
-	else if ( !str_cmp( arg3, "invis"       )) affect = 5;
-	else if ( !str_cmp( arg3, "passdoor"    )) affect = 6;
-	else if ( !str_cmp( arg3, "protection"  )) affect = 7;
-	else if ( !str_cmp( arg3, "sanct"       )) affect = 8;
-	else if ( !str_cmp( arg3, "sneak"       )) affect = 9;
-	else if ( !str_cmp( arg3, "shockshield" )) affect = 10;
-	else if ( !str_cmp( arg3, "fireshield"  )) affect = 11;
-	else if ( !str_cmp( arg3, "iceshield"   )) affect = 12;
-	else if ( !str_cmp( arg3, "acidshield"  )) affect = 13;
-	else
-	{
-	    send_to_char("Spell weapons: Dark, Holy, Vampiric, Flaming, Electrified, Poisonous.\n\r",ch);
-	    send_to_char("Spell affects: Blind, Seeinvis, Fly, Infravision, Invis, Passdoor, Protection,\n\rSanct, Sneak, Shockshield, Fireshield, Iceshield, Acidshield.\n\r",ch);
-	    return;
-	}
-
-	if (obj->item_type != ITEM_WEAPON && weapon > 0)
-	{
-	    send_to_char("You can only put that power on a weapon.\n\r", ch);
-	    return;
-	}
-	else if (obj->item_type != ITEM_WEAPON && obj->item_type != ITEM_ARMOR && affect > 0)
-	{
-	    send_to_char("You can only put that power on a weapon or a piece of armour.\n\r", ch);
-	    return;
-	}
-	else if (ch->pcdata->quest < 50 )
-	{
-	    send_to_char("It costs 50 quest points to create a spell weapon or affect.\n\r", ch);
-	    return;
-	}
-	if (weapon > 0)
-	{
-	    if (obj->value[0] >= 1000)
-		obj->value[0] = ((obj->value[0] / 1000) * 1000);
-	    else obj->value[0] = 0;
-	    obj->value[0] += weapon;
-	}
-	else if (affect > 0)
-	{
-	    if (obj->item_type == ITEM_WEAPON)
-	    {
-	    	if (obj->value[0] >= 1000)
-		    obj->value[0] -= ((obj->value[0] / 1000) * 1000);
-	    	obj->value[0] += (affect*1000);
-	    }
-	    else if (obj->item_type == ITEM_ARMOR)
-	    	obj->value[3] = affect;
-	}
-	ch->pcdata->quest -= 50;
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "spell" ) )
-    {
-	int weapon = 0;
-	int affect = 0;
-	if ( arg3[0] == '\0' )
-	{
-	    send_to_char("Spell weapons: Acid, Dark, Holy, Vampiric, Flaming, Electrified, Poisonous.\n\r",ch);
-	    send_to_char("Spell affects: Blind, Seeinvis, Fly, Infravision, Invis, Passdoor, Protection,\n\rSanct, Sneak, Shockshield, Fireshield, Iceshield, Acidshield.\n\r",ch);
-	    return;
-	}
-	if      ( !str_cmp( arg3, "acid"        )) weapon = 1;
-	else if ( !str_cmp( arg3, "dark"        )) weapon = 4;
-	else if ( !str_cmp( arg3, "holy"        )) weapon = 30;
-	else if ( !str_cmp( arg3, "vampiric"    )) weapon = 34;
-	else if ( !str_cmp( arg3, "flaming"     )) weapon = 37;
-	else if ( !str_cmp( arg3, "electrified" )) weapon = 48;
-	else if ( !str_cmp( arg3, "poisonous"   )) weapon = 53;
-	else if ( !str_cmp( arg3, "infravision" )) affect = 1;
-	else if ( !str_cmp( arg3, "seeinvis"    )) affect = 2;
-	else if ( !str_cmp( arg3, "fly"         )) affect = 3;
-	else if ( !str_cmp( arg3, "blind"       )) affect = 4;
-	else if ( !str_cmp( arg3, "invis"       )) affect = 5;
-	else if ( !str_cmp( arg3, "passdoor"    )) affect = 6;
-	else if ( !str_cmp( arg3, "protection"  )) affect = 7;
-	else if ( !str_cmp( arg3, "sanct"       )) affect = 8;
-	else if ( !str_cmp( arg3, "sneak"       )) affect = 9;
-	else if ( !str_cmp( arg3, "shockshield" )) affect = 10;
-	else if ( !str_cmp( arg3, "fireshield"  )) affect = 11;
-	else if ( !str_cmp( arg3, "iceshield"   )) affect = 12;
-	else if ( !str_cmp( arg3, "acidshield"  )) affect = 13;
-	else
-	{
-	    send_to_char("Spell weapons: Dark, Holy, Vampiric, Flaming, Electrified, Poisonous.\n\r",ch);
-	    send_to_char("Spell affects: Blind, Seeinvis, Fly, Infravision, Invis, Passdoor, Protection,\n\rSanct, Sneak, Shockshield, Fireshield, Iceshield, Acidshield.\n\r",ch);
-	    return;
-	}
-
-	if (obj->item_type != ITEM_WEAPON && weapon > 0)
-	{
-	    send_to_char("You can only put that power on a weapon.\n\r", ch);
-	    return;
-	}
-	else if (obj->item_type != ITEM_WEAPON && obj->item_type != ITEM_ARMOR && affect > 0)
-	{
-	    send_to_char("You can only put that power on a weapon or a piece of armour.\n\r", ch);
-	    return;
-	}
-	else if (ch->pcdata->quest < 50 )
-	{
-	    send_to_char("It costs 50 quest points to create a spell weapon or affect.\n\r", ch);
-	    return;
-	}
-	if (weapon > 0)
-	{
-	    if ( obj->value[0] - ((obj->value[0] / 1000) * 1000) != 0 )
-	    {
-		send_to_char("That item already has a spell weapon power.  If you wish to replace the \n\rcurrent spell power, use the format: quest <object> replacespell <spell>.\n\r",ch);
-		return;
-	    }
-	    if (obj->value[0] >= 1000)
-		obj->value[0] = ((obj->value[0] / 1000) * 1000);
-	    else obj->value[0] = 0;
-	    obj->value[0] += weapon;
-	}
-	else if (affect > 0)
-	{
-	    if (obj->item_type == ITEM_WEAPON)
-	    {
-	    	if ( obj->value[0] >= 1000 )
-	    	{
-		    send_to_char("That item already has a spell affect power.  If you wish to replace the \n\rcurrent spell power, use the format: quest <object> replacespell <spell>.\n\r",ch);
-		    return;
-	    	}
-	    	if (obj->value[0] >= 1000)
-		    obj->value[0] -= ((obj->value[0] / 1000) * 1000);
-	    	obj->value[0] += (affect*1000);
-	    }
-	    else if (obj->item_type == ITEM_ARMOR)
-	    {
-	    	if ( obj->value[3] > 0 )
-	    	{
-		    send_to_char("That item already has a spell affect power.  If you wish to replace the \n\rcurrent spell power, use the format: quest <object> replacespell <spell>.\n\r",ch);
-		    return;
-	    	}
-	    	obj->value[3] = affect;
-	    }
-	}
-	ch->pcdata->quest -= 50;
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "power" ) )
-    {
-	if ( arg3[0] == '\0' )
-	{
-	    send_to_char("Please specify the amount of power.\n\r",ch);
-	    return;
-	}
-	if (obj->item_type != ITEM_WEAPON)
-	{
-	    send_to_char("Only weapons have a spell power.\n\r",ch);
-	    return;
-	}
-	else if (obj->level >= 50)
-	{
-	    send_to_char("This weapon can hold no more spell power.\n\r",ch);
-	    return;
-	}
-	else if (value + obj->level > 50)
-	{
-	    sprintf(buf,"You can only add %d more spell power to this weapon.\n\r",(50 - obj->level));
-	    send_to_char(buf,ch);
-	    return;
-	}
-	else if (value > ch->pcdata->quest)
-	{
-	    send_to_char("You don't have enough quest points to increase the spell power.\n\r",ch);
-	    return;
-	}
-	obj->level += value;
-	ch->pcdata->quest -= value;
-	send_to_char("Ok.\n\r",ch);
-	if (obj->questmaker != NULL) free_string(obj->questmaker);
-	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "weight" ) )
-    {
-	if (obj->weight < 2)
-	{
-	    send_to_char("You cannot reduce the weight of this item any further.\n\r",ch);
-	    return;
-	}
-	else if (ch->pcdata->quest < 10)
-	{
-	    send_to_char("It costs 10 quest point to remove the weight of an object.\n\r",ch);
-	    return;
-	}
-	obj->weight = 1;
-	ch->pcdata->quest -= 10;
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "transporter" ) )
-    {
-    	if (IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{ send_to_char("This item is already a transporter.\n\r",ch);
-	  return;}
-    	else if (IS_SET(obj->spectype, SITEM_TELEPORTER))
-	{ send_to_char("This item is already a teleporter.\n\r",ch);
-	  return;}
-    	else if (IS_SET(obj->spectype, SITEM_SPELL))
-	{ send_to_char("This item is already a spell caster.\n\r",ch);
-	  return;}
-    	else if (IS_SET(obj->spectype, SITEM_OBJECT))
-	{ send_to_char("This item is already an object creator.\n\r",ch);
-	  return;}
-    	else if (IS_SET(obj->spectype, SITEM_MOBILE))
-	{ send_to_char("This item is already a creature creator.\n\r",ch);
-	  return;}
-    	else if (IS_SET(obj->spectype, SITEM_ACTION))
-	{ send_to_char("This item is already a commanding device.\n\r",ch);
-	  return;}
-	else if (ch->pcdata->quest < 50)
-	{
-	    send_to_char("It costs 50 quest point to create a transporter.\n\r",ch);
-	    return;
-	}
-	SET_BIT(obj->spectype, SITEM_ACTIVATE);
-	SET_BIT(obj->spectype, SITEM_TRANSPORTER);
-	obj->specpower = ch->in_room->vnum;
-	ch->pcdata->quest -= 50;
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-    	if (obj->chpoweron != NULL) free_string(obj->chpoweron);
-    	obj->chpoweron = str_dup("You transform into a fine mist and seep into the ground.");
-    	if (obj->victpoweron != NULL) free_string(obj->victpoweron);
-    	obj->victpoweron = str_dup("$n transforms into a fine mist and seeps into the ground.");
-    	if (obj->chpoweroff != NULL) free_string(obj->chpoweroff);
-    	obj->chpoweroff = str_dup("You seep up from the ground and reform your body.");
-    	if (obj->victpoweroff != NULL) free_string(obj->victpoweroff);
-    	obj->victpoweroff = str_dup("A fine mist seeps up from the ground and reforms into $n.");
-    	if (obj->chpoweruse != NULL) free_string(obj->chpoweruse);
-    	obj->chpoweruse = str_dup("You activate $p.");
-    	if (obj->victpoweruse != NULL) free_string(obj->victpoweruse);
-    	obj->victpoweruse = str_dup("$n activates $p.");
-	return;
-    }
-
-    if ( !str_cmp( arg2, "clone" ) )
-    {
-	value = obj->points;
-	if (value < 5) value = 5;
-	if (obj->item_type == ITEM_QUEST || obj->item_type == ITEM_QUESTCARD)
-	{
-	    send_to_char("I think not...\n\r",ch);
-	    return;
-	}
-	else if (obj->questowner == NULL || str_cmp(obj->questowner,ch->name))
-	{
-	    send_to_char("You can only clone something you own.\n\r",ch);
-	    return;
-	}
-	else if (ch->pcdata->quest < value)
-	{
-	    sprintf(buf,"It will cost you %d quest points to clone %s.\n\r",
-		value,obj->short_descr);
-	    send_to_char(buf,ch);
-	    return;
-	}
-	ch->pcdata->quest -= value;
-	quest_clone(ch,obj);
-	return;
-    }
-
-    if ( arg3[0] == '\0' )
-    {
-	send_to_char( "- - - - - - - - - - ----====[ QUEST ITEM COSTS ]====---- - - - - - - - - - -\n\r",	 ch );
-	send_to_char( "Create: Creates a new personalized object, costing between 10 and 50 QP.\n\r",ch );
-	send_to_char( "Name/Short/Long: Rename the object.  1 QP for all three.\n\r",ch );
-	send_to_char( "Clone: Clones the object for original's cost (minimum of 5 QP).\n\r",ch );
-	send_to_char( "Protection: Sets AC on armour at 1 QP per point.\n\r", ch );
-	send_to_char( "Min/Max: Sets min/max damage on weapon at 1 QP per point.\n\r", ch );
-	send_to_char( "Weapon: Sets weapon type for 10 QP.\n\r", ch );
-	send_to_char( "Extra (add/remove): Glow(1/1), Hum(1/1), Invis(1/1), Anti-Good(1/10),\n\r                    Anti-Neutral(1/10), Anti-Evil(1/10), Loyal(10/1).\n\r",ch );
-	send_to_char( "Wear: Select location, costs 20 QP's.  Type 'quest <obj> wear' to see locations.\n\r",ch );
-	send_to_char( "Power: Spell power for spell weapons.  Costs 1 QP per power point.\n\r",ch );
-	send_to_char( "Spell: Spell weapons or affect.  Costs 50 QP.\n\r",ch );
-	send_to_char( "Transporter: Future transportation to that room.  Costs 50 QP.\n\r",ch );
-	send_to_char( "Special: Set activate/twist/press/pull flags.\n\r",ch );
-	send_to_char( "You-in/You-out/Other-in/Other-out: Renames for transporter actions.\n\r",ch );
-	send_to_char( "You-wear/You-remove/You-use: What you see when you wear/remove/use.\n\r",ch );
-	send_to_char( "Other-wear/Other-remove/Other-use: What others see when you wear/remove/use.\n\r",ch );
-	send_to_char( "Weight: Set objects weight to 1.  Costs 10 QP.\n\r",ch );
-	send_to_char( "Str, Dex, Int, Wis, Con... max =   3 each, at  20 quest points per +1 stat.\n\r", ch);
-	send_to_char( "Hp, Mana, Move............ max =  25 each, at   5 quest points per point.\n\r", ch);
-	send_to_char( "Hitroll, Damroll.......... max =   5 each, at  30 quest points per point.\n\r", ch);
-	send_to_char( "Ac........................ max = -25,      at  10 points per point.\n\r", ch);
-	send_to_char( "- - - - - - - - - - ----====[ QUEST ITEM COSTS ]====---- - - - - - - - - - -\n\r",	 ch );
-	return;
-    }
-
-    if      ( !str_cmp( arg2, "hitroll" ) || !str_cmp( arg2, "hit" ) )
-	{oset_affect(ch,obj,value,APPLY_HITROLL,TRUE);return;}
-    else if ( !str_cmp( arg2, "damroll" ) || !str_cmp( arg2, "dam" ) )
-	{oset_affect(ch,obj,value,APPLY_DAMROLL,TRUE);return;}
-    else if ( !str_cmp( arg2, "armor" ) || !str_cmp( arg2, "ac" ) )
-	{oset_affect(ch,obj,value,APPLY_AC,TRUE);return;}
-    else if ( !str_cmp( arg2, "hitpoints" ) || !str_cmp( arg2, "hp" ) )
-	{oset_affect(ch,obj,value,APPLY_HIT,TRUE);return;}
-    else if ( !str_cmp( arg2, "mana" ) )
-	{oset_affect(ch,obj,value,APPLY_MANA,TRUE);return;}
-    else if ( !str_cmp( arg2, "move" ) || !str_cmp( arg2, "movement" ) )
-	{oset_affect(ch,obj,value,APPLY_MOVE,TRUE);return;}
-    else if ( !str_cmp( arg2, "str" ) || !str_cmp( arg2, "strength" ) )
-	{oset_affect(ch,obj,value,APPLY_STR,TRUE);return;}
-    else if ( !str_cmp( arg2, "dex" ) || !str_cmp( arg2, "dexterity" ) )
-	{oset_affect(ch,obj,value,APPLY_DEX,TRUE);return;}
-    else if ( !str_cmp( arg2, "int" ) || !str_cmp( arg2, "intelligence" ) )
-	{oset_affect(ch,obj,value,APPLY_INT,TRUE);return;}
-    else if ( !str_cmp( arg2, "wis" ) || !str_cmp( arg2, "wisdom" ) )
-	{oset_affect(ch,obj,value,APPLY_WIS,TRUE);return;}
-    else if ( !str_cmp( arg2, "con" ) || !str_cmp( arg2, "constitution" ) )
-	{oset_affect(ch,obj,value,APPLY_CON,TRUE);return;}
-
-    if ( !str_cmp( arg2, "name" ) )
-    {
-	value = 1;
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not allowed to rename objects.\n\r",ch);
-	    return;
-	}
-	if (!IS_SET(obj->quest,QUEST_NAME) &&
-	    (IS_SET(obj->quest,QUEST_SHORT) || IS_SET(obj->quest,QUEST_LONG)))
-	{
-	    SET_BIT(obj->quest,QUEST_NAME);
-	    value = 0;
-	}
-	else if (IS_SET(obj->quest,QUEST_NAME))
-	{
-	    REMOVE_BIT(obj->quest,QUEST_SHORT);
-	    REMOVE_BIT(obj->quest,QUEST_LONG);
-	}
-	else
-	    SET_BIT(obj->quest,QUEST_NAME);
-	if (IS_SET(obj->quest,QUEST_FREENAME))
-	{
-	    value = 0;
-	    REMOVE_BIT(obj->quest,QUEST_FREENAME);
-	}
-	if (ch->pcdata->quest < value)
-	{
-	    send_to_char("It costs 1 quest point to rename an object.\n\r",ch);
-	    return;
-	}
-	ch->pcdata->quest -= value;
-	free_string( obj->name );
-	obj->name = str_dup( arg3 );
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "short" ) )
-    {
-	value = 1;
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not allowed to rename objects.\n\r",ch);
-	    return;
-	}
-	if (!IS_SET(obj->quest,QUEST_SHORT) &&
-	    (IS_SET(obj->quest,QUEST_NAME) || IS_SET(obj->quest,QUEST_LONG)))
-	{
-	    SET_BIT(obj->quest,QUEST_SHORT);
-	    value = 0;
-	}
-	else if (IS_SET(obj->quest,QUEST_SHORT))
-	{
-	    REMOVE_BIT(obj->quest,QUEST_NAME);
-	    REMOVE_BIT(obj->quest,QUEST_LONG);
-	}
-	else
-	    SET_BIT(obj->quest,QUEST_SHORT);
-	if (IS_SET(obj->quest,QUEST_FREENAME))
-	{
-	    value = 0;
-	    REMOVE_BIT(obj->quest,QUEST_FREENAME);
-	}
-	if (ch->pcdata->quest < value)
-	{
-	    send_to_char("It costs 1 quest point to rename an object.\n\r",ch);
-	    return;
-	}
-	ch->pcdata->quest -= value;
-	free_string( obj->short_descr );
-	obj->short_descr = str_dup( arg3 );
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if ( !str_cmp( arg2, "long" ) )
-    {
-	value = 1;
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not allowed to rename objects.\n\r",ch);
-	    return;
-	}
-	if (!IS_SET(obj->quest,QUEST_LONG) &&
-	    (IS_SET(obj->quest,QUEST_NAME) || IS_SET(obj->quest,QUEST_SHORT)))
-	{
-	    SET_BIT(obj->quest,QUEST_LONG);
-	    value = 0;
-	}
-	else if (IS_SET(obj->quest,QUEST_LONG))
-	{
-	    REMOVE_BIT(obj->quest,QUEST_NAME);
-	    REMOVE_BIT(obj->quest,QUEST_SHORT);
-	}
-	else
-	    SET_BIT(obj->quest,QUEST_LONG);
-	if (IS_SET(obj->quest,QUEST_FREENAME))
-	{
-	    value = 0;
-	    REMOVE_BIT(obj->quest,QUEST_FREENAME);
-	}
-	if (ch->pcdata->quest < value)
-	{
-	    send_to_char("It costs 1 quest point to rename an object.\n\r",ch);
-	    return;
-	}
-	ch->pcdata->quest -= value;
-	free_string( obj->description );
-	obj->description = str_dup( arg3 );
-	send_to_char("Ok.\n\r",ch);
-    	if (obj->questmaker != NULL) free_string(obj->questmaker);
-    	obj->questmaker = str_dup(ch->name);
-	return;
-    }
-
-    if (!str_cmp(arg2,"special"))
-    {
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not permitted to change an object in this way.\n\r",ch);
-	    return;
-	}
-	if (arg3[0] == '\0')
-	{
-	    send_to_char("Please enter ACTIVATE, TWIST, PRESS or PULL.\n\r",ch);
-	    return;
-	}
-	if (str_cmp(arg3,"activate") && str_cmp(arg3,"twist") &&
-	    str_cmp(arg3,"press"   ) && str_cmp(arg3,"pull" ))
-	{
-	    send_to_char("Please enter ACTIVATE, TWIST, PRESS or PULL.\n\r",ch);
-	    return;
-	}
-	if (IS_SET(obj->spectype, SITEM_ACTIVATE))
-	    REMOVE_BIT(obj->spectype, SITEM_ACTIVATE);
-	if (IS_SET(obj->spectype, SITEM_TWIST))
-	    REMOVE_BIT(obj->spectype, SITEM_TWIST);
-	if (IS_SET(obj->spectype, SITEM_PRESS))
-	    REMOVE_BIT(obj->spectype, SITEM_PRESS);
-	if (IS_SET(obj->spectype, SITEM_PULL))
-	    REMOVE_BIT(obj->spectype, SITEM_PULL);
-	if (!str_cmp(arg3,"activate")) SET_BIT(obj->spectype, SITEM_ACTIVATE);
-	if (!str_cmp(arg3,"twist"   )) SET_BIT(obj->spectype, SITEM_TWIST);
-	if (!str_cmp(arg3,"press"   )) SET_BIT(obj->spectype, SITEM_PRESS);
-	if (!str_cmp(arg3,"pull"    )) SET_BIT(obj->spectype, SITEM_PULL);
-	arg3[0] = UPPER(arg3[0]);
-	sprintf(buf,"%s flag set.\n\r",arg3);
-	send_to_char(buf,ch);
-	return;
-    }
-
-    if (!str_cmp(arg2,"you-out") || !str_cmp(arg2,"you-wear"))
-    {
-    	if (!str_cmp(arg2,"you-out") && !IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{
-	    send_to_char("That item is not a transporter.\n\r",ch);
-	    return;
-	}
-    	if (!str_cmp(arg2,"you-wear") && IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{
-	    send_to_char("Not on a transporter.\n\r",ch);
-	    return;
-	}
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not permitted to change an object in this way.\n\r",ch);
-	    return;
-	}
-	if (obj->chpoweron != NULL) strcpy(buf,obj->chpoweron);
-	if (!str_cmp(arg3,"clear"))
-	{
-	    free_string( obj->chpoweron );
-	    obj->chpoweron = str_dup( "(null)" );
-	}
-	else if (obj->chpoweron != NULL && buf[0] != '\0' && str_cmp(buf,"(null)"))
-	{
-	    if (strlen(buf)+strlen(arg3) >= MAX_STRING_LENGTH-4)
-	    {
-		send_to_char("Line too long.\n\r",ch);
-		return;
-	    }
-	    else
-	    {
-	    	free_string( obj->chpoweron );
-	    	strcat( buf, "\n\r" );
-	    	strcat( buf, arg3 );
-	    	obj->chpoweron = str_dup( buf );
-	    }
-	}
-	else
-	{
-	    free_string( obj->chpoweron );
-	    obj->chpoweron = str_dup( arg3 );
-	}
-    }
-    else if (!str_cmp(arg2,"other-out") || !str_cmp(arg2,"other-wear") )
-    {
-    	if (!str_cmp(arg2,"other-out") && !IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{
-	    send_to_char("That item is not a transporter.\n\r",ch);
-	    return;
-	}
-    	if (!str_cmp(arg2,"other-wear") && IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{
-	    send_to_char("Not on a transporter.\n\r",ch);
-	    return;
-	}
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not permitted to change an object in this way.\n\r",ch);
-	    return;
-	}
-	if (obj->victpoweron != NULL) strcpy(buf,obj->victpoweron);
-	if (!str_cmp(arg3,"clear"))
-	{
-	    free_string( obj->victpoweron );
-	    obj->victpoweron = str_dup( "(null)" );
-	}
-	else if (obj->victpoweron != NULL && buf[0] != '\0' && str_cmp(buf,"(null)"))
-	{
-	    if (strlen(buf)+strlen(arg3) >= MAX_STRING_LENGTH-4)
-	    {
-		send_to_char("Line too long.\n\r",ch);
-		return;
-	    }
-	    else
-	    {
-	    	free_string( obj->victpoweron );
-	    	strcat( buf, "\n\r" );
-	    	strcat( buf, arg3 );
-	    	obj->victpoweron = str_dup( buf );
-	    }
-	}
-	else
-	{
-	    free_string( obj->victpoweron );
-	    obj->victpoweron = str_dup( arg3 );
-	}
-    }
-    else if (!str_cmp(arg2,"you-in") || !str_cmp(arg2,"you-remove") )
-    {
-    	if (!str_cmp(arg2,"you-in") && !IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{
-	    send_to_char("That item is not a transporter.\n\r",ch);
-	    return;
-	}
-    	if (!str_cmp(arg2,"you-remove") && IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{
-	    send_to_char("Not on a transporter.\n\r",ch);
-	    return;
-	}
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not permitted to change an object in this way.\n\r",ch);
-	    return;
-	}
-	if (obj->chpoweroff != NULL) strcpy(buf,obj->chpoweroff);
-	if (!str_cmp(arg3,"clear"))
-	{
-	    free_string( obj->chpoweroff );
-	    obj->chpoweroff = str_dup( "(null)" );
-	}
-	else if (obj->chpoweroff != NULL && buf[0] != '\0' && str_cmp(buf,"(null)"))
-	{
-	    if (strlen(buf)+strlen(arg3) >= MAX_STRING_LENGTH-4)
-	    {
-		send_to_char("Line too long.\n\r",ch);
-		return;
-	    }
-	    else
-	    {
-	    	free_string( obj->chpoweroff );
-	    	strcat( buf, "\n\r" );
-	    	strcat( buf, arg3 );
-	    	obj->chpoweroff = str_dup( buf );
-	    }
-	}
-	else
-	{
-	    free_string( obj->chpoweroff );
-	    obj->chpoweroff = str_dup( arg3 );
-	}
-    }
-    else if (!str_cmp(arg2,"other-in") || !str_cmp(arg2,"other-remove") )
-    {
-    	if (!str_cmp(arg2,"other-in") && !IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{
-	    send_to_char("That item is not a transporter.\n\r",ch);
-	    return;
-	}
-    	if (!str_cmp(arg2,"other-remove") && IS_SET(obj->spectype, SITEM_TRANSPORTER))
-	{
-	    send_to_char("Not on a transporter.\n\r",ch);
-	    return;
-	}
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not permitted to change an object in this way.\n\r",ch);
-	    return;
-	}
-	if (obj->victpoweroff != NULL) strcpy(buf,obj->victpoweroff);
-	if (!str_cmp(arg3,"clear"))
-	{
-	    free_string( obj->victpoweroff );
-	    obj->victpoweroff = str_dup( "(null)" );
-	}
-	else if (obj->victpoweroff != NULL && buf[0] != '\0' && str_cmp(buf,"(null)"))
-	{
-	    if (strlen(buf)+strlen(arg3) >= MAX_STRING_LENGTH-4)
-	    {
-		send_to_char("Line too long.\n\r",ch);
-		return;
-	    }
-	    else
-	    {
-	    	free_string( obj->victpoweroff );
-	    	strcat( buf, "\n\r" );
-	    	strcat( buf, arg3 );
-	    	obj->victpoweroff = str_dup( buf );
-	    }
-	}
-	else
-	{
-	    free_string( obj->victpoweroff );
-	    obj->victpoweroff = str_dup( arg3 );
-	}
-    }
-    else if (!str_cmp(arg2,"you-use") )
-    {
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not permitted to change an object in this way.\n\r",ch);
-	    return;
-	}
-	if (obj->chpoweruse != NULL) strcpy(buf,obj->chpoweruse);
-	if (!str_cmp(arg3,"clear"))
-	{
-	    free_string( obj->chpoweruse );
-	    obj->chpoweruse = str_dup( "(null)" );
-	}
-	else if (obj->chpoweruse != NULL && buf[0] != '\0' && str_cmp(buf,"(null)"))
-	{
-	    if (strlen(buf)+strlen(arg3) >= MAX_STRING_LENGTH-4)
-	    {
-		send_to_char("Line too long.\n\r",ch);
-		return;
-	    }
-	    else
-	    {
-	    	free_string( obj->chpoweruse );
-	    	strcat( buf, "\n\r" );
-	    	strcat( buf, arg3 );
-	    	obj->chpoweruse = str_dup( buf );
-	    }
-	}
-	else
-	{
-	    free_string( obj->chpoweruse );
-	    obj->chpoweruse = str_dup( arg3 );
-	}
-    }
-    else if (!str_cmp(arg2,"other-use") )
-    {
-	if (!IS_EXTRA(ch,EXTRA_TRUSTED))
-	{
-	    send_to_char("You are not permitted to change an object in this way.\n\r",ch);
-	    return;
-	}
-	if (obj->victpoweruse != NULL) strcpy(buf,obj->victpoweruse);
-	if (!str_cmp(arg3,"clear"))
-	{
-	    free_string( obj->victpoweruse );
-	    obj->victpoweruse = str_dup( "(null)" );
-	}
-	else if (obj->victpoweruse != NULL && buf[0] != '\0' && str_cmp(buf,"(null)"))
-	{
-	    if (strlen(buf)+strlen(arg3) >= MAX_STRING_LENGTH-4)
-	    {
-		send_to_char("Line too long.\n\r",ch);
-		return;
-	    }
-	    else
-	    {
-	    	free_string( obj->victpoweruse );
-	    	strcat( buf, "\n\r" );
-	    	strcat( buf, arg3 );
-	    	obj->victpoweruse = str_dup( buf );
-	    }
-	}
-	else
-	{
-	    free_string( obj->victpoweruse );
-	    obj->victpoweruse = str_dup( arg3 );
-	}
-    }
-    return;
-}
-
 void do_token( CHAR_DATA *ch, char *argument )
 {
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     OBJ_INDEX_DATA *pObjIndex;
     OBJ_DATA *obj;
     CHAR_DATA *victim;
@@ -5932,7 +4819,7 @@ void do_token( CHAR_DATA *ch, char *argument )
     else
     {
         value = atoi( arg1 );
-	if ( value < 1 || value > 50 )
+	if ( value < 1 || value > 100 )
         {
 	    send_to_char( "Quest token should have a value between 1 and 50.\n\r", ch );
 	    return;
@@ -6044,6 +4931,65 @@ void do_qtrust( CHAR_DATA *ch, char *argument )
     return;
 }
 
+void do_ntrust( CHAR_DATA *ch, char *argument )
+{
+    char arg1[MAX_INPUT_LENGTH];
+    char arg2[MAX_INPUT_LENGTH];
+    CHAR_DATA *victim;
+
+    argument = one_argument( argument, arg1 );
+    argument = one_argument( argument, arg2 );
+
+    if ( arg1[0] == '\0' )
+    {
+	send_to_char( "Syntax: ntrust <char> <on/off>.\n\r", ch );
+	return;
+    }
+
+    if ( arg2[0] == '\0' )
+    {
+	send_to_char( "Do you wish to set ntrust ON or OFF?\n\r", ch );
+	return;
+    }
+
+    if ( ( victim = get_char_room( ch, arg1 ) ) == NULL )
+    {
+	send_to_char( "That player is not here.\n\r", ch);
+	return;
+    }
+
+    if (str_cmp(arg2,"on") && str_cmp(arg2,"off"))
+    {
+	send_to_char( "Do you want to set their ntrust ON or OFF?\n\r",ch);
+	return;
+    }
+    if (!str_cmp(arg2,"off"))
+    {
+	if (!IS_EXTRA(victim, EXTRA_TRUSTED))
+	{
+	    send_to_char("Their ntrust is already off.\n\r",ch);
+	    return;
+	}
+	REMOVE_BIT(victim->extra, EXTRA_NOTE_TRUST);
+	send_to_char("Note trust OFF.\n\r",ch);
+	send_to_char("You are no longer note trusted.\n\r",victim);
+	return;
+    }
+    else if (!str_cmp(arg2,"on"))
+    {
+	if (IS_EXTRA(victim, EXTRA_NOTE_TRUST))
+	{
+	    send_to_char("Their ntrust is already on.\n\r",ch);
+	    return;
+	}
+	SET_BIT(victim->extra, EXTRA_NOTE_TRUST);
+	send_to_char("Note trust ON.\n\r",ch);
+	send_to_char("You are now note trusted.\n\r",victim);
+	return;
+    }
+    return;
+}
+
 void do_mclear( CHAR_DATA *ch, char *argument )
 {
     OBJ_DATA *obj;
@@ -6071,7 +5017,8 @@ void do_mclear( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if (IS_SET(victim->act, PLR_GODLESS) && !IS_JUDGE(ch))
+    if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -6080,7 +5027,8 @@ void do_mclear( CHAR_DATA *ch, char *argument )
     for ( obj = victim->carrying; obj != NULL; obj = obj_next )
     {
 	obj_next = obj->next_content;
-	if ( obj->wear_loc != WEAR_NONE ) unequip_char(ch, obj);
+	if ( obj->wear_loc != WEAR_NONE )
+	{obj_from_char(obj); obj_to_char(obj,victim);}
     }
     while ( victim->affected )
 	affect_remove( victim, victim->affected );
@@ -6106,9 +5054,56 @@ void do_mclear( CHAR_DATA *ch, char *argument )
     victim->pcdata->mod_wis = 0;
     victim->pcdata->mod_dex = 0;
     victim->pcdata->mod_con = 0;
+    victim->pcdata->followers = 0;
     save_char_obj( victim );
     send_to_char("Your stats have been cleared.  Please rewear your equipment.\n\r",victim);
     send_to_char("Ok.\n\r",ch);
+    return;
+}
+
+void do_clearstats( CHAR_DATA *ch, char *argument )
+{
+    OBJ_DATA *obj;
+    OBJ_DATA *obj_next;
+
+    if (ch->in_room == NULL || ch->in_room->vnum != 3054)
+    {
+	send_to_char("You can only clear your stats at the Temple Altar of Midgaard.\n\r",ch);
+	return;
+    }
+
+    for ( obj = ch->carrying; obj != NULL; obj = obj_next )
+    {
+	obj_next = obj->next_content;
+	if ( obj->wear_loc != WEAR_NONE )
+	{obj_from_char(obj); obj_to_char(obj,ch);}
+    }
+    while ( ch->affected )
+	affect_remove( ch, ch->affected );
+    if (IS_AFFECTED(ch,AFF_POLYMORPH) && IS_AFFECTED(ch,AFF_ETHEREAL))
+    {
+    	ch->affected_by	 = AFF_POLYMORPH + AFF_ETHEREAL;
+    }
+    else if (IS_AFFECTED(ch,AFF_POLYMORPH))
+    	ch->affected_by	 = AFF_POLYMORPH;
+    else if (IS_AFFECTED(ch,AFF_ETHEREAL))
+    	ch->affected_by	 = AFF_ETHEREAL;
+    else
+    	ch->affected_by	 = 0;
+    ch->armor		 = 100;
+    ch->hit		 = UMAX( 1, ch->hit  );
+    ch->mana		 = UMAX( 1, ch->mana );
+    ch->move		 = UMAX( 1, ch->move );
+    ch->hitroll		 = 0;
+    ch->damroll		 = 0;
+    ch->saving_throw	 = 0;
+    ch->pcdata->mod_str	 = 0;
+    ch->pcdata->mod_int	 = 0;
+    ch->pcdata->mod_wis	 = 0;
+    ch->pcdata->mod_dex	 = 0;
+    ch->pcdata->mod_con	 = 0;
+    save_char_obj( ch );
+    send_to_char("Your stats have been cleared.  Please rewear your equipment.\n\r",ch);
     return;
 }
 
@@ -6152,7 +5147,8 @@ void do_otransfer( CHAR_DATA *ch, char *argument )
 
     if (obj->carried_by != NULL)
     {
-	if (!IS_NPC(obj->carried_by) && IS_SET(obj->carried_by->act,PLR_GODLESS))
+	if (!IS_NPC(obj->carried_by) && IS_SET(obj->carried_by->act,PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
 	{
 	    send_to_char("You failed.\n\r",ch);
 	    act("$p flickers briefly with energy.",obj->carried_by,obj,NULL,TO_CHAR);
@@ -6186,67 +5182,6 @@ void do_otransfer( CHAR_DATA *ch, char *argument )
     return;
 }
 
-void quest_clone( CHAR_DATA *ch, OBJ_DATA *obj )
-{
-    OBJ_INDEX_DATA *pObjIndex;
-    OBJ_DATA *obj2;
-    AFFECT_DATA *paf;
-    AFFECT_DATA *paf2;
-
-    pObjIndex = get_obj_index( obj->pIndexData->vnum);
-    obj2 = create_object( pObjIndex, obj->level );
-    /* Copy any changed parts of the object. */
-    free_string(obj2->name);
-    obj2->name=str_dup(obj->name);
-    free_string(obj2->short_descr);
-    obj2->short_descr=str_dup(obj->short_descr);
-    free_string(obj2->description);
-    obj2->description=str_dup(obj->description);
-    if (obj->questmaker != NULL && strlen(obj->questmaker) > 1)
-    {
-	free_string(obj2->questmaker);
-	obj2->questmaker=str_dup(obj->questmaker);
-    }
-    obj2->item_type	 = obj->item_type;
-    obj2->extra_flags	 = obj->extra_flags;
-    obj2->wear_flags	 = obj->wear_flags;
-    obj2->weight	 = obj->weight;
-    obj2->condition	 = obj->condition;
-    obj2->toughness	 = obj->toughness;
-    obj2->resistance	 = obj->resistance;
-    obj2->quest		 = obj->quest;
-    obj2->points	 = obj->points;
-    obj2->cost		 = obj->cost;
-    obj2->value[0]	 = obj->value[0];
-    obj2->value[1]	 = obj->value[1];
-    obj2->value[2]	 = obj->value[2];
-    obj2->value[3]	 = obj->value[3];
-    /*****************************************/
-    obj_to_char(obj2,ch);
-    if (obj->affected != NULL)
-    {
-    	for ( paf = obj->affected; paf != NULL; paf = paf->next )
-    	{
-	    if (affect_free == NULL)
-	        paf2 = alloc_perm( sizeof(*paf) );
-	    else
-	    {
-		paf2 = affect_free;
-		affect_free = affect_free->next;
-	    }
-	    paf2->type  	= 0;
-	    paf2->duration	= paf->duration;
-	    paf2->location	= paf->location;
-	    paf2->modifier	= paf->modifier;
-	    paf2->bitvector	= 0;
-	    paf2->next  	= obj2->affected;
-	    obj2->affected	= paf2;
-    	}
-    }
-    act( "$p splits into two identical objects.", ch, obj, NULL, TO_CHAR );
-    return;
-}
-
 void bind_char( CHAR_DATA *ch )
 {
     OBJ_DATA *obj;
@@ -6259,14 +5194,14 @@ void bind_char( CHAR_DATA *ch )
     if ( ( pObjIndex = get_obj_index( ch->pcdata->obj_vnum ) ) == NULL )
 	return;
 
-    if ( ch->in_room != NULL )
-	location = ch->in_room;
-    else
+    if ( ch->in_room == NULL || ch->in_room->vnum == ROOM_VNUM_IN_OBJECT )
     {
 	location = get_room_index(ROOM_VNUM_ALTAR);
     	char_from_room(ch);
     	char_to_room(ch,location);
     }
+    else location = ch->in_room;
+
     obj = create_object( pObjIndex, 50 );
     obj_to_room(obj,location);
     obj->chobj = ch;
@@ -6322,7 +5257,8 @@ void do_bind( CHAR_DATA *ch, char *argument )
 	send_to_char( "Only on mortals or avatars.\n\r", ch);
 	return;
     }
-    else if (IS_SET(victim->act, PLR_GODLESS))
+    else if (IS_SET(victim->act, PLR_GODLESS) && get_trust(ch) < NO_GODLESS
+        && !IS_SET(ch->extra , EXTRA_ANTI_GODLESS))
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;

@@ -1,4 +1,4 @@
-#AREA	{ 5 30} Diku    Sewer~
+#AREA	Diku    Sewer~
 
 
 
@@ -155,7 +155,7 @@ it moves closer.  'Can one NEVER sleep in peace ... Hsss'.
 100000 450000
 8 8 0
 #7041
-sea hag~
+hag~
 the sea hag~
 The sea hag is swimming around here.
 ~

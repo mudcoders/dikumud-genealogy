@@ -36,14 +36,171 @@ void	get_obj		args( ( CHAR_DATA *ch, OBJ_DATA *obj,
 			    OBJ_DATA *container ) );
 CD *	find_keeper	args( ( CHAR_DATA *ch ) );
 int	get_cost	args( ( CHAR_DATA *keeper, OBJ_DATA *obj, bool fBuy ) );
-int	place_object	args( ( CHAR_DATA *ch, int object ) );
 void	sheath		args( ( CHAR_DATA *ch, bool right ) );
 void	draw		args( ( CHAR_DATA *ch, bool right ) );
 char	*special_item_name args( ( OBJ_DATA *obj ) );
+void 	call_all	args( ( CHAR_DATA *ch ) );
 #undef	CD
 
 
 
+void do_call( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+    OBJ_DATA *obj;
+    CHAR_DATA *victim = NULL;
+    ROOM_INDEX_DATA *chroom;
+    ROOM_INDEX_DATA *objroom;
+
+    one_argument( argument, arg );
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char( "What object do you wish to call?\n\r", ch );
+	return;
+    }
+
+    if (IS_NPC(ch)) {send_to_char("Not while switched.\n\r",ch); return;}
+
+    if (!IS_HEAD(ch, LOST_HEAD))
+    {
+    	act("Your eyes flicker with yellow energy.",ch,NULL,NULL,TO_CHAR);
+    	act("$n's eyes flicker with yellow energy.",ch,NULL,NULL,TO_ROOM);
+    }
+
+    if (!str_cmp(arg,"all"))
+    {
+	call_all(ch);
+	return;
+    }
+
+    if ( ( obj = get_obj_world( ch, arg ) ) == NULL )
+    {
+	send_to_char( "Nothing like that in hell, earth, or heaven.\n\r", ch );
+	return;
+    }
+
+    if (obj->questowner == NULL || strlen(obj->questowner) < 2 ||
+	str_cmp(obj->questowner,ch->name) || obj->item_type == ITEM_PAGE)
+    {
+	send_to_char( "Nothing happens.\n\r", ch );
+	return;
+    }
+
+    if (obj->carried_by != NULL && obj->carried_by != ch)
+    {
+	victim = obj->carried_by;
+	if (!IS_NPC(victim) && victim->desc != NULL && victim->desc->connected != CON_PLAYING) return;
+    	act("$p suddenly vanishes from your hands!",victim,obj,NULL,TO_CHAR);
+    	act("$p suddenly vanishes from $n's hands!",victim,obj,NULL,TO_ROOM);
+	obj_from_char(obj);
+    }
+    else if (obj->in_room != NULL)
+    {
+    	chroom = ch->in_room;
+    	objroom = obj->in_room;
+    	char_from_room(ch);
+    	char_to_room(ch,objroom);
+    	act("$p vanishes from the ground!",ch,obj,NULL,TO_ROOM);
+	if (chroom == objroom) act("$p vanishes from the ground!",ch,obj,NULL,TO_CHAR);
+    	char_from_room(ch);
+    	char_to_room(ch,chroom);
+	obj_from_room(obj);
+    }
+    else if (obj->in_obj != NULL) obj_from_obj(obj);
+    else
+    {
+	if (!IS_HEAD(ch, LOST_HEAD))
+	    send_to_char( "Nothing happens.\n\r", ch );
+	return;
+    }
+
+    obj_to_char(obj,ch);
+    if (IS_SET(obj->extra_flags,ITEM_SHADOWPLANE))
+	REMOVE_BIT(obj->extra_flags,ITEM_SHADOWPLANE);
+    act("$p materializes in your hands.",ch,obj,NULL,TO_CHAR);
+    act("$p materializes in $n's hands.",ch,obj,NULL,TO_ROOM);
+    do_autosave(ch,"");
+    if (victim != NULL) do_autosave(victim,"");
+    return;
+}
+
+void call_all( CHAR_DATA *ch )
+{
+    OBJ_DATA *obj;
+    OBJ_DATA *in_obj;
+    CHAR_DATA *victim = NULL;
+    DESCRIPTOR_DATA *d;
+    ROOM_INDEX_DATA *chroom;
+    ROOM_INDEX_DATA *objroom;
+    bool found = FALSE;
+
+    for ( obj = object_list; obj != NULL; obj = obj->next )
+    {
+	if ( obj->questowner == NULL || strlen(obj->questowner) < 2 || 
+	    str_cmp( ch->name, obj->questowner ) || obj->item_type == ITEM_PAGE)
+	    continue;
+
+	found = TRUE;
+
+	for ( in_obj = obj; in_obj->in_obj != NULL; in_obj = in_obj->in_obj )
+	    ;
+
+	if (in_obj->carried_by != NULL)
+	{
+	    if (in_obj->carried_by == ch) continue;
+	}
+
+	if (obj->carried_by != NULL)
+	{
+	    if (obj->carried_by == ch || obj->carried_by->desc == NULL || 
+		obj->carried_by->desc->connected != CON_PLAYING) 
+	    {
+		if (!IS_NPC(obj->carried_by)) return;
+	    }
+	    act("$p suddenly vanishes from your hands!",obj->carried_by,obj,NULL,TO_CHAR);
+	    act("$p suddenly vanishes from $n's hands!",obj->carried_by,obj,NULL,TO_ROOM);
+	    SET_BIT(obj->carried_by->extra, EXTRA_CALL_ALL);
+	    obj_from_char(obj);
+	}
+	else if (obj->in_room != NULL)
+	{
+	    chroom = ch->in_room;
+	    objroom = obj->in_room;
+	    char_from_room(ch);
+	    char_to_room(ch,objroom);
+	    act("$p vanishes from the ground!",ch,obj,NULL,TO_ROOM);
+	    if (chroom == objroom) act("$p vanishes from the ground!",ch,obj,NULL,TO_CHAR);
+	    char_from_room(ch);
+	    char_to_room(ch,chroom);
+	    obj_from_room(obj);
+	}
+	else if (obj->in_obj != NULL) obj_from_obj(obj);
+	else continue;
+	obj_to_char(obj,ch);
+	if (IS_SET(obj->extra_flags,ITEM_SHADOWPLANE))
+	    REMOVE_BIT(obj->extra_flags,ITEM_SHADOWPLANE);
+	if (!IS_HEAD(ch, LOST_HEAD))
+	{
+	    act("$p materializes in your hands.",ch,obj,NULL,TO_CHAR);
+	    act("$p materializes in $n's hands.",ch,obj,NULL,TO_ROOM);
+	}
+    }
+
+    if ( !found && !IS_HEAD(ch, LOST_HEAD) )
+	send_to_char( "Nothing happens.\n\r", ch );
+
+    for ( d = descriptor_list; d != NULL; d = d->next )
+    {
+	if ( d->connected != CON_PLAYING ) continue;
+	if ( (victim = d->character) == NULL ) continue;
+	if ( IS_NPC(victim) ) continue;
+	if ( ch != victim && !IS_EXTRA(victim,EXTRA_CALL_ALL) ) continue;
+	REMOVE_BIT(victim->extra, EXTRA_CALL_ALL);
+	do_autosave(victim,"");
+    }
+    return;
+}
 
 void get_obj( CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container )
 {
@@ -309,7 +466,7 @@ void do_get( CHAR_DATA *ch, char *argument )
 	    }
 	}
     }
-
+    do_autosave(ch,"");
     return;
 }
 
@@ -382,6 +539,12 @@ void do_put( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
+	if ( IS_SET( obj->quest, QUEST_ARTIFACT) )
+	{
+	    send_to_char("You cannot put artifacts in a container.\n\r",ch);
+	    return;
+	}
+
 	if ( !can_drop_obj( ch, obj ) )
 	{
 	    send_to_char( "You can't let go of it.\n\r", ch );
@@ -417,6 +580,7 @@ void do_put( CHAR_DATA *ch, char *argument )
 	    &&   can_see_obj( ch, obj )
 	    &&   obj->wear_loc == WEAR_NONE
 	    &&   obj != container
+	    &&   !IS_SET( obj->quest, QUEST_ARTIFACT)
 	    &&   can_drop_obj( ch, obj )
 	    &&   get_obj_weight( obj ) + get_obj_weight( container )
 		 <= container->value[0] )
@@ -443,7 +607,7 @@ void do_put( CHAR_DATA *ch, char *argument )
 	    }
 	}
     }
-
+    do_autosave(ch,"");
     return;
 }
 
@@ -513,6 +677,7 @@ void do_drop( CHAR_DATA *ch, char *argument )
 	obj_to_room( create_money( amount ), ch->in_room );
 	act( "$n drops some gold.", ch, NULL, NULL, TO_ROOM );
 	send_to_char( "OK.\n\r", ch );
+	do_autosave(ch,"");
 	return;
     }
 
@@ -576,6 +741,7 @@ void do_drop( CHAR_DATA *ch, char *argument )
 	}
     }
 
+    do_autosave(ch,"");
     return;
 }
 
@@ -641,6 +807,8 @@ void do_give( CHAR_DATA *ch, char *argument )
 	act( "$n gives $N some gold.",  ch, NULL, victim, TO_NOTVICT );
 	act( "You give $N some gold.",  ch, NULL, victim, TO_CHAR    );
 	send_to_char( "OK.\n\r", ch );
+	do_autosave(ch,"");
+	do_autosave(victim,"");
 	return;
     }
 
@@ -697,6 +865,8 @@ void do_give( CHAR_DATA *ch, char *argument )
     act( "$n gives $p to $N.", ch, obj, victim, TO_NOTVICT );
     act( "$n gives you $p.",   ch, obj, victim, TO_VICT    );
     act( "You give $p to $N.", ch, obj, victim, TO_CHAR    );
+    do_autosave(ch,"");
+    do_autosave(victim,"");
     return;
 }
 
@@ -866,7 +1036,7 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	    return;
     	}
 
-	if ( liquid != 13 && IS_SET(ch->act,PLR_VAMPIRE) )
+	if ( liquid != 13 && IS_CLASS(ch,CLASS_VAMPIRE) )
 	{
 	    send_to_char( "You can only drink blood.\n\r", ch );
 	    break;
@@ -885,20 +1055,20 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	gain_condition( ch, COND_THIRST,
 	    amount * liq_table[liquid].liq_affect[COND_THIRST ] );
 
-	if ( !IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE) &&
+	if ( !IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE) &&
 		ch->pcdata->condition[COND_DRUNK]  > 10 )
 	    send_to_char( "You feel drunk.\n\r", ch );
-	if ( !IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE) &&
+	if ( !IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE) &&
 		ch->pcdata->condition[COND_FULL]   > 50 )
 	    send_to_char( "You are full.\n\r", ch );
-	if ( !IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE) &&
+	if ( !IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE) &&
 		ch->pcdata->condition[COND_THIRST] > 50 )
 	    send_to_char( "You do not feel thirsty.\n\r", ch );
-	if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE) &&
+	if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) &&
 		ch->pcdata->condition[COND_THIRST] >= 100 )
 	    send_to_char( "Your blood thirst is sated.\n\r", ch );
 
-	if ( obj->value[3] != 0 && (!IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE)))
+	if ( obj->value[3] != 0 && (!IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE)))
 	{
 	    /* The shit was poisoned ! */
 	    AFFECT_DATA af;
@@ -927,7 +1097,7 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	    liquid = obj->value[2] = 0;
 	}
 
-	if ( liquid != 13 && IS_SET(ch->act,PLR_VAMPIRE) )
+	if ( liquid != 13 && IS_CLASS(ch,CLASS_VAMPIRE) )
 	{
 	    send_to_char( "You can only drink blood.\n\r", ch );
 	    break;
@@ -947,20 +1117,20 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	gain_condition( ch, COND_THIRST,
 	    amount * liq_table[liquid].liq_affect[COND_THIRST ] );
 
-	if ( !IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE) &&
+	if ( !IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE) &&
 		ch->pcdata->condition[COND_DRUNK]  > 10 )
 	    send_to_char( "You feel drunk.\n\r", ch );
-	if ( !IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE) &&
+	if ( !IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE) &&
 		ch->pcdata->condition[COND_FULL]   > 50 )
 	    send_to_char( "You are full.\n\r", ch );
-	if ( !IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE) &&
+	if ( !IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE) &&
 		ch->pcdata->condition[COND_THIRST] > 50 )
 	    send_to_char( "You do not feel thirsty.\n\r", ch );
-	if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE) &&
+	if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) &&
 		ch->pcdata->condition[COND_THIRST] >= 100 )
 	    send_to_char( "Your blood thirst is sated.\n\r", ch );
 	
-	if ( obj->value[3] != 0 && (!IS_NPC(ch) && !IS_SET(ch->act, PLR_VAMPIRE)))
+	if ( obj->value[3] != 0 && (!IS_NPC(ch) && !IS_CLASS(ch, CLASS_VAMPIRE)))
 	{
 	    /* The shit was poisoned ! */
 	    AFFECT_DATA af;
@@ -1043,6 +1213,7 @@ void do_eat( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
     OBJ_DATA *obj;
+    int level;
 
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
@@ -1059,21 +1230,27 @@ void do_eat( CHAR_DATA *ch, char *argument )
 
     if ( !IS_IMMORTAL(ch) )
     {
-	if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_VAMPIRE) && obj->item_type == ITEM_FOOD)
+	if ( !IS_NPC(ch) && IS_CLASS(ch, CLASS_VAMPIRE) && obj->item_type == ITEM_FOOD)
 	{   
 	    send_to_char( "You are unable to stomach it.\n\r", ch );
 	    return;
 	}
 
 	if ( obj->item_type != ITEM_FOOD && obj->item_type != ITEM_PILL &&
-	    obj->item_type != ITEM_EGG && obj->item_type != ITEM_QUEST )
+	     obj->item_type != ITEM_EGG && obj->item_type != ITEM_QUEST )
 	{
-	    send_to_char( "That's not edible.\n\r", ch );
-	    return;
+	    if (IS_NPC(ch) || !IS_SET(ch->special,SPC_WOLFMAN) || 
+		obj->item_type != ITEM_TRASH)
+	    {
+		send_to_char( "That's not edible.\n\r", ch );
+		return;
+	    }
 	}
 
-	if ( !IS_NPC(ch) && ch->pcdata->condition[COND_FULL] > 50 )
-	{   
+	if ( !IS_NPC(ch) && ch->pcdata->condition[COND_FULL] > 50 &&
+	    obj->item_type != ITEM_TRASH && obj->item_type != ITEM_QUEST &&
+	    obj->item_type != ITEM_PILL)
+	{
 	    send_to_char( "You are too full to eat more.\n\r", ch );
 	    return;
 	}
@@ -1084,6 +1261,8 @@ void do_eat( CHAR_DATA *ch, char *argument )
 
     switch ( obj->item_type )
     {
+    default:
+	break;
 
     case ITEM_FOOD:
 	if ( !IS_NPC(ch) )
@@ -1116,9 +1295,18 @@ void do_eat( CHAR_DATA *ch, char *argument )
 	break;
 
     case ITEM_PILL:
-	obj_cast_spell( obj->value[1], obj->value[0], ch, ch, NULL );
-	obj_cast_spell( obj->value[2], obj->value[0], ch, ch, NULL );
-	obj_cast_spell( obj->value[3], obj->value[0], ch, ch, NULL );
+	level = obj->value[0];
+	if (level < 1) level = 1;
+	if (level > MAX_SPELL) level = MAX_SPELL;
+
+	obj_cast_spell( obj->value[1], level, ch, ch, NULL );
+	obj_cast_spell( obj->value[2], level, ch, ch, NULL );
+	obj_cast_spell( obj->value[3], level, ch, ch, NULL );
+	if (ch->position == POS_FIGHTING) 
+	{
+	    if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch, 6 );
+	}
 	break;
 
     case ITEM_QUEST:
@@ -1200,6 +1388,11 @@ bool remove_obj( CHAR_DATA *ch, int iWear, bool fReplace )
  */
 void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 {
+    bool wolf_ok = FALSE;
+
+    if (!IS_NPC(ch) && IS_CLASS(ch, CLASS_WEREWOLF) && 
+	IS_SET(obj->spectype, SITEM_WOLFWEAPON)) wolf_ok = TRUE;
+
     if ( CAN_WEAR( obj, ITEM_WIELD ) || CAN_WEAR( obj, ITEM_HOLD ) ||
 	CAN_WEAR( obj, ITEM_WEAR_SHIELD ) || obj->item_type == ITEM_LIGHT )
     {
@@ -1217,7 +1410,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    send_to_char("You are unable to use it.\n\r",ch);
 	    return;
 	}
-	if (get_eq_char( ch, WEAR_WIELD ) == NULL && is_ok_to_wear(ch,"right_hand"))
+	if (get_eq_char( ch, WEAR_WIELD ) == NULL && is_ok_to_wear(ch,wolf_ok,"right_hand"))
 	{
 	    if ( obj->item_type == ITEM_LIGHT )
 	    {
@@ -1249,7 +1442,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    equip_char( ch, obj, WEAR_WIELD );
 	    return;
 	}
-	else if (get_eq_char( ch, WEAR_HOLD ) == NULL && is_ok_to_wear(ch,"left_hand"))
+	else if (get_eq_char( ch, WEAR_HOLD ) == NULL && is_ok_to_wear(ch,wolf_ok,"left_hand"))
 	{
 	    if ( obj->item_type == ITEM_LIGHT )
 	    {
@@ -1281,7 +1474,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    equip_char( ch, obj, WEAR_HOLD );
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"left_hand") && !is_ok_to_wear(ch,"right_hand"))
+	if (!is_ok_to_wear(ch,wolf_ok,"left_hand") && !is_ok_to_wear(ch,wolf_ok,"right_hand"))
 	    send_to_char( "You cannot use anything in your hands.\n\r", ch );
 	else
 	    send_to_char( "You have no free hands.\n\r", ch );
@@ -1311,21 +1504,21 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    return;
 	}
 
-	if ( get_eq_char( ch, WEAR_FINGER_L ) == NULL && is_ok_to_wear(ch,"left_finger"))
+	if ( get_eq_char( ch, WEAR_FINGER_L ) == NULL && is_ok_to_wear(ch,wolf_ok,"left_finger"))
 	{
 	    act( "$n wears $p on $s left finger.",    ch, obj, NULL, TO_ROOM );
 	    act( "You wear $p on your left finger.",  ch, obj, NULL, TO_CHAR );
 	    equip_char( ch, obj, WEAR_FINGER_L );
 	    return;
 	}
-	else if ( get_eq_char( ch, WEAR_FINGER_R ) == NULL && is_ok_to_wear(ch,"right_finger"))
+	else if ( get_eq_char( ch, WEAR_FINGER_R ) == NULL && is_ok_to_wear(ch,wolf_ok,"right_finger"))
 	{
 	    act( "$n wears $p on $s right finger.",   ch, obj, NULL, TO_ROOM );
 	    act( "You wear $p on your right finger.", ch, obj, NULL, TO_CHAR );
 	    equip_char( ch, obj, WEAR_FINGER_R );
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"left_finger") && !is_ok_to_wear(ch,"right_finger"))
+	if (!is_ok_to_wear(ch,wolf_ok,"left_finger") && !is_ok_to_wear(ch,wolf_ok,"right_finger"))
 	    send_to_char( "You cannot wear any rings.\n\r", ch );
 	else
 	    send_to_char( "You cannot wear any more rings.\n\r", ch );
@@ -1390,7 +1583,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    send_to_char("You are unable to wear it.\n\r",ch);
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"head"))
+	if (!is_ok_to_wear(ch,wolf_ok,"head"))
 	{
 	    send_to_char("You have no head to wear it on.\n\r",ch);
 	    return;
@@ -1410,7 +1603,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    send_to_char("You are unable to wear it.\n\r",ch);
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"face"))
+	if (!is_ok_to_wear(ch,wolf_ok,"face"))
 	{
 	    send_to_char("You have no face to wear it on.\n\r",ch);
 	    return;
@@ -1430,7 +1623,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    send_to_char("You are unable to wear it.\n\r",ch);
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"legs"))
+	if (!is_ok_to_wear(ch,wolf_ok,"legs"))
 	{
 	    send_to_char("You have no legs to wear them on.\n\r",ch);
 	    return;
@@ -1450,7 +1643,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    send_to_char("You are unable to wear it.\n\r",ch);
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"feet"))
+	if (!is_ok_to_wear(ch,wolf_ok,"feet"))
 	{
 	    send_to_char("You have no feet to wear them on.\n\r",ch);
 	    return;
@@ -1470,7 +1663,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    send_to_char("You are unable to wear it.\n\r",ch);
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"hands"))
+	if (!is_ok_to_wear(ch,wolf_ok,"hands"))
 	{
 	    send_to_char("You have no hands to wear them on.\n\r",ch);
 	    return;
@@ -1490,7 +1683,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    send_to_char("You are unable to wear it.\n\r",ch);
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"arms"))
+	if (!is_ok_to_wear(ch,wolf_ok,"arms"))
 	{
 	    send_to_char("You have no arms to wear them on.\n\r",ch);
 	    return;
@@ -1544,7 +1737,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    return;
 	}
 
-	if ( get_eq_char( ch, WEAR_WRIST_L ) == NULL && is_ok_to_wear(ch,"right_wrist"))
+	if ( get_eq_char( ch, WEAR_WRIST_L ) == NULL && is_ok_to_wear(ch,wolf_ok,"right_wrist"))
 	{
 	    act( "$n slides $s left wrist into $p.",
 		ch, obj, NULL, TO_ROOM );
@@ -1553,7 +1746,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    equip_char( ch, obj, WEAR_WRIST_L );
 	    return;
 	}
-	else if ( get_eq_char( ch, WEAR_WRIST_R ) == NULL && is_ok_to_wear(ch,"left_wrist"))
+	else if ( get_eq_char( ch, WEAR_WRIST_R ) == NULL && is_ok_to_wear(ch,wolf_ok,"left_wrist"))
 	{
 	    act( "$n slides $s left wrist into $p.",
 		ch, obj, NULL, TO_ROOM );
@@ -1562,7 +1755,7 @@ void wear_obj( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace )
 	    equip_char( ch, obj, WEAR_WRIST_R );
 	    return;
 	}
-	if (!is_ok_to_wear(ch,"left_wrist") && !is_ok_to_wear(ch,"right_wrist"))
+	if (!is_ok_to_wear(ch,wolf_ok,"left_wrist") && !is_ok_to_wear(ch,wolf_ok,"right_wrist"))
 	    send_to_char( "You cannot wear anything on your wrists.\n\r", ch );
 	else
 	    send_to_char( "You cannot wear any more on your wrists.\n\r", ch );
@@ -1634,7 +1827,8 @@ void do_wear( CHAR_DATA *ch, char *argument )
 
     one_argument( argument, arg );
 
-    if (IS_AFFECTED(ch,AFF_POLYMORPH) && !IS_NPC(ch) && !IS_VAMPAFF(ch,VAM_DISGUISED) )
+    if (IS_AFFECTED(ch,AFF_POLYMORPH) && !IS_NPC(ch) && 
+	!IS_VAMPAFF(ch,VAM_DISGUISED) && !IS_CLASS(ch, CLASS_WEREWOLF))
     {
 	send_to_char( "You cannot wear anything in this form.\n\r", ch );
 	return;
@@ -1734,8 +1928,7 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 
     if ( !CAN_WEAR(obj, ITEM_TAKE) || obj->item_type == ITEM_QUEST ||
 	 obj->item_type == ITEM_MONEY || obj->item_type == ITEM_TREASURE ||
-	 obj->item_type == ITEM_QUESTCARD ||
-	 obj->pIndexData->vnum == 12 || obj->pIndexData->vnum == 30005 ||
+	 obj->item_type == ITEM_QUESTCARD || IS_SET(obj->quest, QUEST_ARTIFACT) ||
 	( obj->questowner != NULL && strlen(obj->questowner) > 1 && str_cmp(ch->name,obj->questowner)))
     {
 	act( "You are unable to drain any energy from $p.", ch, obj, 0, TO_CHAR );
@@ -1752,19 +1945,19 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 	expgain = 1;
     if (expgain > 50)
 	expgain = 50;
-    ch->exp = ch->exp + expgain;
+    ch->exp += expgain;
     sprintf( buf,"You drain %d exp of energy from $p.", expgain );
     act( buf, ch, obj, NULL, TO_CHAR );
     act( "$p disintegrates into a fine powder.", ch, obj, NULL, TO_CHAR );
     act( "$n drains the energy from $p.", ch, obj, NULL, TO_ROOM );
     act( "$p disintegrates into a fine powder.", ch, obj, NULL, TO_ROOM );
-    if (obj->points > 0 && !IS_NPC(ch))
+    if (obj->points > 0 && !IS_NPC(ch) && obj->item_type != ITEM_PAGE)
     {
 	sprintf( buf, "You receive a refund of %d quest points from $p.", obj->points);
 	act( buf, ch, obj, NULL, TO_CHAR );
 	ch->pcdata->quest += obj->points;
     }
-    if (obj != NULL) extract_obj( obj );
+    extract_obj( obj );
     return;
 }
 
@@ -1774,6 +1967,7 @@ void do_quaff( CHAR_DATA *ch, char *argument )
 {
     char arg[MAX_INPUT_LENGTH];
     OBJ_DATA *obj;
+    int level;
 
     one_argument( argument, arg );
 
@@ -1798,12 +1992,20 @@ void do_quaff( CHAR_DATA *ch, char *argument )
     act( "$n quaffs $p.", ch, obj, NULL, TO_ROOM );
     act( "You quaff $p.", ch, obj, NULL ,TO_CHAR );
 
-    obj_cast_spell( obj->value[1], obj->value[0], ch, ch, NULL );
-    obj_cast_spell( obj->value[2], obj->value[0], ch, ch, NULL );
-    obj_cast_spell( obj->value[3], obj->value[0], ch, ch, NULL );
+    level = obj->value[0];
+    if (level < 1) level = 1;
+    if (level > MAX_SPELL) level = MAX_SPELL;
+
+    obj_cast_spell( obj->value[1], level, ch, ch, NULL );
+    obj_cast_spell( obj->value[2], level, ch, ch, NULL );
+    obj_cast_spell( obj->value[3], level, ch, ch, NULL );
 
     extract_obj( obj );
-    if (ch->position == POS_FIGHTING) WAIT_STATE(ch, 6 );
+    if (ch->position == POS_FIGHTING) 
+    {
+	if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch, 6 );
+    }
     return;
 }
 
@@ -1816,6 +2018,7 @@ void do_recite( CHAR_DATA *ch, char *argument )
     CHAR_DATA *victim;
     OBJ_DATA *scroll;
     OBJ_DATA *obj;
+    int level;
 
     argument = one_argument( argument, arg1 );
     argument = one_argument( argument, arg2 );
@@ -1850,12 +2053,20 @@ void do_recite( CHAR_DATA *ch, char *argument )
     act( "$n recites $p.", ch, scroll, NULL, TO_ROOM );
     act( "You recite $p.", ch, scroll, NULL, TO_CHAR );
 
-    obj_cast_spell( scroll->value[1], scroll->value[0], ch, victim, obj );
-    obj_cast_spell( scroll->value[2], scroll->value[0], ch, victim, obj );
-    obj_cast_spell( scroll->value[3], scroll->value[0], ch, victim, obj );
+    level = scroll->value[0];
+    if (level < 1) level = 1;
+    if (level > MAX_SPELL) level = MAX_SPELL;
+
+    obj_cast_spell( scroll->value[1], level, ch, victim, obj );
+    obj_cast_spell( scroll->value[2], level, ch, victim, obj );
+    obj_cast_spell( scroll->value[3], level, ch, victim, obj );
 
     extract_obj( scroll );
-    if (ch->position == POS_FIGHTING) WAIT_STATE(ch, 6 );
+    if (ch->position == POS_FIGHTING) 
+    {
+    	if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch, 6 );
+    }
     return;
 }
 
@@ -1868,6 +2079,7 @@ void do_brandish( CHAR_DATA *ch, char *argument )
     OBJ_DATA *temp;
     OBJ_DATA *staff;
     int sn;
+    int level;
 
     staff = get_eq_char( ch, WEAR_WIELD );
     temp = get_eq_char( ch, WEAR_HOLD );
@@ -1897,7 +2109,8 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    WAIT_STATE( ch, 2 * PULSE_VIOLENCE );
+    if (!IS_IMMORTAL( ch))
+	WAIT_STATE( ch, 2 * PULSE_VIOLENCE );
 
     if ( staff->value[2] > 0 )
     {
@@ -1934,7 +2147,11 @@ void do_brandish( CHAR_DATA *ch, char *argument )
 		break;
 	    }
 
-	    obj_cast_spell( staff->value[3], staff->value[0], ch, vch, NULL );
+	    level = staff->value[0];
+	    if (level < 1) level = 1;
+	    if (level > MAX_SPELL) level = MAX_SPELL;
+
+	    obj_cast_spell( staff->value[3], level, ch, vch, NULL );
 	}
     }
 
@@ -1957,6 +2174,7 @@ void do_zap( CHAR_DATA *ch, char *argument )
     OBJ_DATA *temp;
     OBJ_DATA *wand;
     OBJ_DATA *obj;
+    int level;
 
     one_argument( argument, arg );
     if ( arg[0] == '\0' && ch->fighting == NULL )
@@ -2008,7 +2226,8 @@ void do_zap( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    WAIT_STATE( ch, 2 * PULSE_VIOLENCE );
+    if (!IS_IMMORTAL( ch))
+	WAIT_STATE( ch, 2 * PULSE_VIOLENCE );
 
     if ( wand->value[2] > 0 )
     {
@@ -2023,7 +2242,11 @@ void do_zap( CHAR_DATA *ch, char *argument )
 	    act( "You zap $P with $p.", ch, wand, obj, TO_CHAR );
 	}
 
-	obj_cast_spell( wand->value[3], wand->value[0], ch, victim, obj );
+	level = wand->value[0];
+	if (level < 1) level = 1;
+	if (level > MAX_SPELL) level = MAX_SPELL;
+
+	obj_cast_spell( wand->value[3], level, ch, victim, obj );
     }
 
     if ( --wand->value[2] <= 0 )
@@ -2068,7 +2291,15 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    WAIT_STATE( ch, skill_table[gsn_steal].beats );
+    if ( IS_IMMORTAL( victim ))
+    {
+	send_to_char("Steal from an immortal are you crasy!\n\r", ch);
+	return;
+    }
+
+    if (!IS_IMMORTAL( ch))
+    	WAIT_STATE( ch, skill_table[gsn_steal].beats );
+
     percent  = number_percent( ) + ( IS_AWAKE(victim) ? 10 : -50 );
 
     if ( ( ch->level + number_range(1,20) < victim->level          )
@@ -2120,6 +2351,8 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	victim->gold -= amount;
 	sprintf( buf, "Bingo!  You got %d gold coins.\n\r", amount );
 	send_to_char( buf, ch );
+	do_autosave(ch,"");
+	do_autosave(victim,"");
 	return;
     }
 
@@ -2151,7 +2384,9 @@ void do_steal( CHAR_DATA *ch, char *argument )
 
     obj_from_char( obj );
     obj_to_char( obj, ch );
-    send_to_char( "Ok.\n\r", ch );
+    send_to_char( "You got it!\n\r", ch );
+    do_autosave(ch,"");
+    do_autosave(victim,"");
     return;
 }
 
@@ -2164,6 +2399,7 @@ CHAR_DATA *find_keeper( CHAR_DATA *ch )
 {
     CHAR_DATA *keeper;
     SHOP_DATA *pShop;
+    char buf [MAX_STRING_LENGTH];
 
     pShop = NULL;
     for ( keeper = ch->in_room->people; keeper; keeper = keeper->next_in_room )
@@ -2183,13 +2419,15 @@ CHAR_DATA *find_keeper( CHAR_DATA *ch )
      */
     if ( time_info.hour < pShop->open_hour )
     {
-	do_say( keeper, "Sorry, come back later." );
+	strcpy( buf, "Sorry, come back later." );
+	do_say( keeper, buf );
 	return NULL;
     }
     
     if ( time_info.hour > pShop->close_hour )
     {
-	do_say( keeper, "Sorry, come back tomorrow." );
+	strcpy( buf, "Sorry, come back tomorrow." );
+	do_say( keeper, buf );
 	return NULL;
     }
 
@@ -2198,7 +2436,8 @@ CHAR_DATA *find_keeper( CHAR_DATA *ch )
      */
     if ( !can_see( keeper, ch ) )
     {
-	do_say( keeper, "I don't trade with folks I can't see." );
+	strcpy( buf, "I don't trade with folks I can't see." );
+	do_say( keeper, buf );
 	return NULL;
     }
 
@@ -2293,12 +2532,6 @@ void do_buy( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( IS_SET(ch->act, PLR_BOUGHT_PET) )
-	{
-	    send_to_char( "You already bought one pet this level.\n\r", ch );
-	    return;
-	}
-
 	if ( ch->gold < 10 * pet->level * pet->level )
 	{
 	    send_to_char( "You can't afford it.\n\r", ch );
@@ -2313,7 +2546,6 @@ void do_buy( CHAR_DATA *ch, char *argument )
 
 	ch->gold		-= 10 * pet->level * pet->level;
 	pet			= create_mobile( pet->pIndexData );
-	SET_BIT(ch->act, PLR_BOUGHT_PET);
 	SET_BIT(pet->act, ACT_PET);
 	SET_BIT(pet->affected_by, AFF_CHARM);
 
@@ -2656,8 +2888,12 @@ void do_activate( CHAR_DATA *ch, char *argument )
 	kavitem(str_dup(obj->victpoweruse),ch,obj,NULL,TO_ROOM);
     if ( IS_SET(obj->spectype, SITEM_SPELL))
     {
-	obj_cast_spell( obj->specpower, number_range(20,30), ch, victim, NULL );
-	WAIT_STATE(ch,6);
+	int castlevel = obj->level;
+	if (castlevel < 1) castlevel = 1;
+	else if (castlevel > 60) castlevel = 60;
+	obj_cast_spell( obj->specpower, castlevel, ch, victim, NULL );
+    	if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch,6);
 	if ( IS_SET(obj->spectype, SITEM_DELAY1)) WAIT_STATE(ch,6);
 	if ( IS_SET(obj->spectype, SITEM_DELAY2)) WAIT_STATE(ch,12);
 	return;
@@ -2682,6 +2918,17 @@ void do_activate( CHAR_DATA *ch, char *argument )
     	if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
 	    && str_cmp(obj->victpoweroff,"(null)") )
 	    kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+       if (!IS_SET(obj->quest, QUEST_ARTIFACT) &&
+            IS_SET(ch->in_room->room_flags, ROOM_NO_TELEPORT) &&
+            CAN_WEAR(obj,ITEM_TAKE))
+        {
+            send_to_char("A powerful force hurls you from the room.\n\r",ch);
+            act("$n is hurled from the room by a powerful force.",ch,NULL,NULL,TO_ROOM);
+            ch->position = POS_STUNNED;
+            char_from_room(ch);
+            char_to_room(ch,get_room_index(ROOM_VNUM_LIMBO));
+            act("$n appears in the room, and falls to the ground stunned.",ch,NULL,NULL,TO_ROOM);
+        }
     	if ( (mount = ch->mount) == NULL) return;
     	char_from_room( mount );
     	char_to_room( mount, ch->in_room );
@@ -2707,6 +2954,17 @@ void do_activate( CHAR_DATA *ch, char *argument )
     	if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
 	    && str_cmp(obj->victpoweroff,"(null)") )
 	    kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+        if (!IS_SET(obj->quest, QUEST_ARTIFACT) &&
+            IS_SET(ch->in_room->room_flags, ROOM_NO_TELEPORT) &&
+            CAN_WEAR(obj,ITEM_TAKE))
+        {
+            send_to_char("A powerful force hurls you from the room.\n\r",ch);
+            act("$n is hurled from the room by a powerful force.",ch,NULL,NULL,TO_ROOM);
+            ch->position = POS_STUNNED;
+            char_from_room(ch);
+            char_to_room(ch,get_room_index(ROOM_VNUM_LIMBO));
+            act("$n appears in the room, and falls to the ground stunned.",ch,NULL,NULL,TO_ROOM);
+        }
     	if ( (mount = ch->mount) == NULL) return;
     	char_from_room( mount );
     	char_to_room( mount, ch->in_room );
@@ -2809,10 +3067,22 @@ void do_press( CHAR_DATA *ch, char *argument )
 	kavitem(str_dup(obj->victpoweruse),ch,obj,NULL,TO_ROOM);
     if ( IS_SET(obj->spectype, SITEM_SPELL))
     {
-	obj_cast_spell( obj->specpower, number_range(20,30), ch, victim, NULL );
-	WAIT_STATE(ch,6);
-	if ( IS_SET(obj->spectype, SITEM_DELAY1)) WAIT_STATE(ch,6);
-	if ( IS_SET(obj->spectype, SITEM_DELAY2)) WAIT_STATE(ch,12);
+	int castlevel = obj->level;
+	if (castlevel < 1) castlevel = 1;
+	else if (castlevel > 60) castlevel = 60;
+	obj_cast_spell( obj->specpower, castlevel, ch, victim, NULL );
+ 	if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch,6);
+	if ( IS_SET(obj->spectype, SITEM_DELAY1)) 
+        {
+	    if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch,6);
+	}
+	if ( IS_SET(obj->spectype, SITEM_DELAY2)) 
+	{
+	    if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch,12);
+	}
 	return;
     }
     else if ( IS_SET(obj->spectype, SITEM_TRANSPORTER))
@@ -2835,6 +3105,17 @@ void do_press( CHAR_DATA *ch, char *argument )
     	if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
 	    && str_cmp(obj->victpoweroff,"(null)") )
 	    kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+       if (!IS_SET(obj->quest, QUEST_ARTIFACT) &&
+            IS_SET(ch->in_room->room_flags, ROOM_NO_TELEPORT) &&
+            CAN_WEAR(obj,ITEM_TAKE))
+        {
+            send_to_char("A powerful force hurls you from the room.\n\r",ch);
+            act("$n is hurled from the room by a powerful force.",ch,NULL,NULL,TO_ROOM);
+            ch->position = POS_STUNNED;
+            char_from_room(ch);
+            char_to_room(ch,get_room_index(ROOM_VNUM_LIMBO));
+            act("$n appears in the room, and falls to the ground stunned.",ch,NULL,NULL,TO_ROOM);
+        }
     	if ( (mount = ch->mount) == NULL) return;
     	char_from_room( mount );
     	char_to_room( mount, ch->in_room );
@@ -2860,6 +3141,17 @@ void do_press( CHAR_DATA *ch, char *argument )
     	if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
 	    && str_cmp(obj->victpoweroff,"(null)") )
 	    kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+        if (!IS_SET(obj->quest, QUEST_ARTIFACT) &&
+            IS_SET(ch->in_room->room_flags, ROOM_NO_TELEPORT) &&
+            CAN_WEAR(obj,ITEM_TAKE))
+        {
+            send_to_char("A powerful force hurls you from the room.\n\r",ch);
+            act("$n is hurled from the room by a powerful force.",ch,NULL,NULL,TO_ROOM);
+            ch->position = POS_STUNNED;
+            char_from_room(ch);
+            char_to_room(ch,get_room_index(ROOM_VNUM_LIMBO));
+            act("$n appears in the room, and falls to the ground stunned.",ch,NULL,NULL,TO_ROOM);
+        }
     	if ( (mount = ch->mount) == NULL) return;
     	char_from_room( mount );
     	char_to_room( mount, ch->in_room );
@@ -2962,10 +3254,22 @@ void do_twist( CHAR_DATA *ch, char *argument )
 	kavitem(str_dup(obj->victpoweruse),ch,obj,NULL,TO_ROOM);
     if ( IS_SET(obj->spectype, SITEM_SPELL))
     {
-	obj_cast_spell( obj->specpower, number_range(20,30), ch, victim, NULL );
-	WAIT_STATE(ch,6);
-	if ( IS_SET(obj->spectype, SITEM_DELAY1)) WAIT_STATE(ch,6);
-	if ( IS_SET(obj->spectype, SITEM_DELAY2)) WAIT_STATE(ch,12);
+	int castlevel = obj->level;
+	if (castlevel < 1) castlevel = 1;
+	else if (castlevel > 60) castlevel = 60;
+	obj_cast_spell( obj->specpower, castlevel, ch, victim, NULL );
+    	if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch,6);
+	if ( IS_SET(obj->spectype, SITEM_DELAY1)) 
+	{
+	    if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch,6);
+	}
+	if ( IS_SET(obj->spectype, SITEM_DELAY2))
+	{
+     		if (!IS_IMMORTAL( ch))
+			WAIT_STATE(ch,12);
+	}
 	return;
     }
     else if ( IS_SET(obj->spectype, SITEM_TRANSPORTER))
@@ -2988,6 +3292,17 @@ void do_twist( CHAR_DATA *ch, char *argument )
     	if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
 	    && str_cmp(obj->victpoweroff,"(null)") )
 	    kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+       if (!IS_SET(obj->quest, QUEST_ARTIFACT) &&
+            IS_SET(ch->in_room->room_flags, ROOM_NO_TELEPORT) &&
+            CAN_WEAR(obj,ITEM_TAKE))
+        {
+            send_to_char("A powerful force hurls you from the room.\n\r",ch);
+            act("$n is hurled from the room by a powerful force.",ch,NULL,NULL,TO_ROOM);
+            ch->position = POS_STUNNED;
+            char_from_room(ch);
+            char_to_room(ch,get_room_index(ROOM_VNUM_LIMBO));
+            act("$n appears in the room, and falls to the ground stunned.",ch,NULL,NULL,TO_ROOM);
+        }
     	if ( (mount = ch->mount) == NULL) return;
     	char_from_room( mount );
     	char_to_room( mount, ch->in_room );
@@ -3013,6 +3328,17 @@ void do_twist( CHAR_DATA *ch, char *argument )
     	if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
 	    && str_cmp(obj->victpoweroff,"(null)") )
 	    kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+       if (!IS_SET(obj->quest, QUEST_ARTIFACT) &&
+            IS_SET(ch->in_room->room_flags, ROOM_NO_TELEPORT) &&
+            CAN_WEAR(obj,ITEM_TAKE))
+        {
+            send_to_char("A powerful force hurls you from the room.\n\r",ch);
+            act("$n is hurled from the room by a powerful force.",ch,NULL,NULL,TO_ROOM);
+            ch->position = POS_STUNNED;
+            char_from_room(ch);
+            char_to_room(ch,get_room_index(ROOM_VNUM_LIMBO));
+            act("$n appears in the room, and falls to the ground stunned.",ch,NULL,NULL,TO_ROOM);
+        }
     	if ( (mount = ch->mount) == NULL) return;
     	char_from_room( mount );
     	char_to_room( mount, ch->in_room );
@@ -3115,10 +3441,22 @@ void do_pull( CHAR_DATA *ch, char *argument )
 	kavitem(str_dup(obj->victpoweruse),ch,obj,NULL,TO_ROOM);
     if ( IS_SET(obj->spectype, SITEM_SPELL))
     {
-	obj_cast_spell( obj->specpower, number_range(20,30), ch, victim, NULL );
-	WAIT_STATE(ch,6);
-	if ( IS_SET(obj->spectype, SITEM_DELAY1)) WAIT_STATE(ch,6);
-	if ( IS_SET(obj->spectype, SITEM_DELAY2)) WAIT_STATE(ch,12);
+	int castlevel = obj->level;
+	if (castlevel < 1) castlevel = 1;
+	else if (castlevel > 60) castlevel = 60;
+	obj_cast_spell( obj->specpower, castlevel, ch, victim, NULL );
+    	if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch,6);
+	if ( IS_SET(obj->spectype, SITEM_DELAY1))
+	{
+		if (!IS_IMMORTAL( ch))
+			WAIT_STATE(ch,6);
+	}
+	if ( IS_SET(obj->spectype, SITEM_DELAY2)) 
+	{
+	    if (!IS_IMMORTAL( ch))
+		WAIT_STATE(ch,12);
+	}
 	return;
     }
     else if ( IS_SET(obj->spectype, SITEM_TRANSPORTER))
@@ -3141,6 +3479,17 @@ void do_pull( CHAR_DATA *ch, char *argument )
     	if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
 	    && str_cmp(obj->victpoweroff,"(null)") )
 	    kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+       if (!IS_SET(obj->quest, QUEST_ARTIFACT) &&
+            IS_SET(ch->in_room->room_flags, ROOM_NO_TELEPORT) &&
+            CAN_WEAR(obj,ITEM_TAKE))
+        {
+            send_to_char("A powerful force hurls you from the room.\n\r",ch);
+            act("$n is hurled from the room by a powerful force.",ch,NULL,NULL,TO_ROOM);
+            ch->position = POS_STUNNED;
+            char_from_room(ch);
+            char_to_room(ch,get_room_index(ROOM_VNUM_LIMBO));
+            act("$n appears in the room, and falls to the ground stunned.",ch,NULL,NULL,TO_ROOM);
+        }
     	if ( (mount = ch->mount) == NULL) return;
     	char_from_room( mount );
     	char_to_room( mount, ch->in_room );
@@ -3166,6 +3515,17 @@ void do_pull( CHAR_DATA *ch, char *argument )
     	if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
 	    && str_cmp(obj->victpoweroff,"(null)") )
 	    kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+       if (!IS_SET(obj->quest, QUEST_ARTIFACT) &&
+            IS_SET(ch->in_room->room_flags, ROOM_NO_TELEPORT) &&
+            CAN_WEAR(obj,ITEM_TAKE))
+        {
+            send_to_char("A powerful force hurls you from the room.\n\r",ch);
+            act("$n is hurled from the room by a powerful force.",ch,NULL,NULL,TO_ROOM);
+            ch->position = POS_STUNNED;
+            char_from_room(ch);
+            char_to_room(ch,get_room_index(ROOM_VNUM_LIMBO));
+            act("$n appears in the room, and falls to the ground stunned.",ch,NULL,NULL,TO_ROOM);
+        }
     	if ( (mount = ch->mount) == NULL) return;
     	char_from_room( mount );
     	char_to_room( mount, ch->in_room );
@@ -3207,7 +3567,7 @@ void do_pull( CHAR_DATA *ch, char *argument )
     return;
 }
 
-bool is_ok_to_wear( CHAR_DATA *ch, char *argument )
+bool is_ok_to_wear( CHAR_DATA *ch, bool wolf_ok, char *argument )
 {
     char arg [MAX_INPUT_LENGTH];
     int count;
@@ -3223,7 +3583,7 @@ bool is_ok_to_wear( CHAR_DATA *ch, char *argument )
     }
     else if (!str_cmp(arg,"left_hand"))
     {
-	if (!IS_NPC(ch) && IS_SET(ch->act, PLR_WOLFMAN)) return FALSE;
+	if (!IS_NPC(ch) && IS_SET(ch->special, SPC_WOLFMAN) && !wolf_ok) return FALSE;
 	if (IS_ARM_L(ch,LOST_ARM)) return FALSE;
 	else if (IS_ARM_L(ch,BROKEN_ARM)) return FALSE;
 	else if (IS_ARM_L(ch,LOST_HAND)) return FALSE;
@@ -3238,7 +3598,7 @@ bool is_ok_to_wear( CHAR_DATA *ch, char *argument )
     }
     else if (!str_cmp(arg,"right_hand"))
     {
-	if (!IS_NPC(ch) && IS_SET(ch->act, PLR_WOLFMAN)) return FALSE;
+	if (!IS_NPC(ch) && IS_SET(ch->special, SPC_WOLFMAN) && !wolf_ok) return FALSE;
 	if (IS_ARM_R(ch,LOST_ARM)) return FALSE;
 	else if (IS_ARM_R(ch,BROKEN_ARM)) return FALSE;
 	else if (IS_ARM_R(ch,LOST_HAND)) return FALSE;
@@ -3412,58 +3772,64 @@ void do_recharge( CHAR_DATA *ch, char *argument )
     obj->description = str_dup( buf );
     act("You take $p from $P.",ch,obj,qobj,TO_CHAR);
     act("$n takes $p from $P.",ch,obj,qobj,TO_ROOM);
-    sprintf(buf,"%s has completed a quest!.",ch->name);
+    if (!IS_NPC(ch))
+    {
+	ch->pcdata->score[SCORE_NUM_QUEST]++;
+	ch->pcdata->score[SCORE_QUEST] += value;
+	sprintf(buf,"%s has completed a quest!.",ch->name);
+    }
+    else sprintf(buf,"%s has completed a quest!.",ch->short_descr);
+    buf[0] = UPPER(buf[0]);
     do_info(ch,buf);
+    do_autosave(ch,"");
     return;
 }
 
 void quest_object( CHAR_DATA *ch, OBJ_DATA *obj )
 {
-    if (obj == NULL || obj->item_type != ITEM_QUESTCARD) return;
-    obj->value[0] = place_object( ch, obj->value[0] );
-    obj->value[1] = place_object( ch, obj->value[1] );
-    obj->value[2] = place_object( ch, obj->value[2] );
-    obj->value[3] = place_object( ch, obj->value[3] );
-    return;
-}
-
-int place_object( CHAR_DATA *ch, int object )
-{
-    OBJ_DATA *obj;
-    OBJ_INDEX_DATA *pObjIndex;
-
-    for ( ; ; )
+    static const sh_int quest_selection[] = 
     {
-	object = number_range( 100, 9500 );
-	pObjIndex = get_obj_index( object );
-	if ( pObjIndex == NULL ) continue;
-	if (!IS_SET(pObjIndex->wear_flags, ITEM_TAKE)) continue;
-	if ((obj = get_obj_world(ch,pObjIndex->name)) == NULL) continue;
+	 102,
+	 9201, 9225,  605, 1329, 2276, 5112, 6513, 6517, 6519, 5001,
+	 5005, 5011, 5012, 5013, 2902, 1352, 2348, 2361, 3005, 5011,
+	 5012, 5013, 2902, 1352, 2348, 2361, 3005,  300,  303,  307,
+	 7216, 1100,  100,30315, 5110, 6001, 3050,  301, 5230,30302,
+	  663, 7303, 2915, 2275, 8600, 8601, 8602, 8603, 5030, 9321,
+	 6010, 1304, 1307, 1332, 1333, 1342, 1356, 1361, 2304, 2322,
+	 2331, 2382, 8003, 8005, 5300, 5302, 5309, 5310, 5311, 4000,
+	  601,  664,  900,  906,  923,  311, 7203, 7206, 1101, 5214,
+	 5223, 5228, 2804, 1612, 5207, 9302, 5301, 5224, 7801, 9313,
+	 6304, 2003, 3425, 3423, 608,  1109,30319, 8903, 9317, 9307,
+	 4050,  911, 2204, 4100, 3428,  310, 5113, 3402, 5319, 6512,
+	 5114,  913,30316, 2106, 8007, 6601, 2333, 3610, 2015, 5022,
+	 1394, 2202, 1401, 6005, 1614,  647, 1388, 9311, 3604, 4701,
+	30325, 6106, 2003, 7190, 9322, 1384, 3412, 2342, 1374, 2210,
+	 2332, 2901, 7200, 7824, 3410, 2013, 1510, 8306, 3414, 2005
+    };
+    int object;
+    if (obj == NULL || obj->item_type != ITEM_QUESTCARD) return;
 
-	object = obj->pIndexData->vnum;
-	pObjIndex = get_obj_index(object);
-	if ( pObjIndex == NULL ) continue;
-	if (!IS_SET(pObjIndex->wear_flags, ITEM_TAKE)) continue;
+    object = number_range(obj->level, obj->level + 100);
+    if (object < 1 || object > 150) object = 0;
+    obj->value[0] = quest_selection[object];
 
-	if (obj->carried_by != NULL && !IS_NPC(obj->carried_by)) continue;
-	if (obj->in_obj != NULL && obj->in_obj->carried_by != NULL &&
-	    !IS_NPC(obj->in_obj->carried_by)) continue;
-	if (obj->timer > 0) continue;
-	if (obj->item_type == ITEM_TREASURE)     continue;
-	if (obj->item_type == ITEM_MONEY)        continue;
-	if (obj->item_type == ITEM_PORTAL)       continue;
-	if (obj->item_type == ITEM_VOODOO)       continue;
-	if (obj->item_type == ITEM_QUEST)        continue;
-	if (obj->item_type == ITEM_QUESTCARD)    continue;
-	if (obj->item_type == ITEM_QUESTMACHINE) continue;
-	break;
-    }
-    return object;
+    object = number_range(obj->level, obj->level + 100);
+    if (object < 1 || object > 150) object = 0;
+    obj->value[1] = quest_selection[object];
+
+    object = number_range(obj->level, obj->level + 100);
+    if (object < 1 || object > 150) object = 0;
+    obj->value[2] = quest_selection[object];
+
+    object = number_range(obj->level, obj->level + 100);
+    if (object < 1 || object > 150) object = 0;
+    obj->value[3] = quest_selection[object];
+    return;
 }
 
 void do_complete( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_INPUT_LENGTH];
+    char buf[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     OBJ_DATA *qobj;
@@ -3539,6 +3905,11 @@ void do_complete( CHAR_DATA *ch, char *argument )
 	send_to_char( "You cannot use that item.\n\r", ch );
 	return;
     }
+    if (obj->pIndexData->vnum == 30037 || obj->pIndexData->vnum == 30041)
+    {
+	send_to_char( "That item has lost its quest value, you must collect a new one.\n\r", ch );
+	return;
+    }
     if (qobj->value[0] != -1)
 	{pObjIndex = get_obj_index( qobj->value[0] );
 	if ( pObjIndex != NULL &&
@@ -3604,6 +3975,11 @@ void do_draw( CHAR_DATA *ch, char *argument )
 
     one_argument(argument,arg);
 
+    if (!IS_NPC(ch) && IS_SET(ch->special, SPC_WOLFMAN))
+    {
+	send_to_char("Not in this form.\n\r",ch);
+	return;
+    }
     if (arg[0] == '\0') send_to_char("Which hand, left or right?\n\r",ch);
     else if (!str_cmp(arg,"all") || !str_cmp(arg,"both"))
     {
