@@ -35,7 +35,6 @@ AFFECT_DATA *		affect_free;
 /*
  * Local functions.
  */
-void	affect_modify	args( ( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd ) );
 
 
 
@@ -78,10 +77,7 @@ int get_curr_str( CHAR_DATA *ch )
     if ( IS_NPC(ch) )
 	return 13;
 
-    if ( class_table[ch->class].attr_prime == APPLY_STR )
-	max = 25;
-    else
-	max = 20;
+    max = 25;
 
     return URANGE( 3, ch->pcdata->perm_str + ch->pcdata->mod_str, max );
 }
@@ -98,10 +94,7 @@ int get_curr_int( CHAR_DATA *ch )
     if ( IS_NPC(ch) )
 	return 13;
 
-    if ( class_table[ch->class].attr_prime == APPLY_INT )
-	max = 25;
-    else
-	max = 20;
+    max = 25;
 
     return URANGE( 3, ch->pcdata->perm_int + ch->pcdata->mod_int, max );
 }
@@ -118,10 +111,7 @@ int get_curr_wis( CHAR_DATA *ch )
     if ( IS_NPC(ch) )
 	return 13;
 
-    if ( class_table[ch->class].attr_prime == APPLY_WIS )
-	max = 25;
-    else
-	max = 20;
+    max = 25;
 
     return URANGE( 3, ch->pcdata->perm_wis + ch->pcdata->mod_wis, max );
 }
@@ -138,10 +128,7 @@ int get_curr_dex( CHAR_DATA *ch )
     if ( IS_NPC(ch) )
 	return 13;
 
-    if ( class_table[ch->class].attr_prime == APPLY_DEX )
-	max = 25;
-    else
-	max = 20;
+    max = 25;
 
     return URANGE( 3, ch->pcdata->perm_dex + ch->pcdata->mod_dex, max );
 }
@@ -158,10 +145,7 @@ int get_curr_con( CHAR_DATA *ch )
     if ( IS_NPC(ch) )
 	return 13;
 
-    if ( class_table[ch->class].attr_prime == APPLY_CON )
-	max = 25;
-    else
-	max = 20;
+    max = 25;
 
     return URANGE( 3, ch->pcdata->perm_con + ch->pcdata->mod_con, max );
 }
@@ -451,7 +435,12 @@ void char_from_room( CHAR_DATA *ch )
     if ( !IS_NPC(ch) )
 	--ch->in_room->area->nplayer;
 
-    if ( ( obj = get_eq_char( ch, WEAR_LIGHT ) ) != NULL
+    if ( ( obj = get_eq_char( ch, WEAR_WIELD ) ) != NULL
+    &&   obj->item_type == ITEM_LIGHT
+    &&   obj->value[2] != 0
+    &&   ch->in_room->light > 0 )
+	--ch->in_room->light;
+    else if ( ( obj = get_eq_char( ch, WEAR_HOLD ) ) != NULL
     &&   obj->item_type == ITEM_LIGHT
     &&   obj->value[2] != 0
     &&   ch->in_room->light > 0 )
@@ -505,10 +494,16 @@ void char_to_room( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex )
     if ( !IS_NPC(ch) )
 	++ch->in_room->area->nplayer;
 
-    if ( ( obj = get_eq_char( ch, WEAR_LIGHT ) ) != NULL
+    if ( ( obj = get_eq_char( ch, WEAR_WIELD ) ) != NULL
     &&   obj->item_type == ITEM_LIGHT
     &&   obj->value[2] != 0 )
 	++ch->in_room->light;
+    else if ( ( obj = get_eq_char( ch, WEAR_HOLD ) ) != NULL
+    &&   obj->item_type == ITEM_LIGHT
+    &&   obj->value[2] != 0 )
+	++ch->in_room->light;
+
+    if (ch->loc_hp[6] > 0 && ch->in_room->blood < 1000) ch->in_room->blood += 1;
 
     return;
 }
@@ -520,12 +515,13 @@ void char_to_room( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex )
  */
 void obj_to_char( OBJ_DATA *obj, CHAR_DATA *ch )
 {
+    if (obj == NULL) return;
     obj->next_content	 = ch->carrying;
     ch->carrying	 = obj;
     obj->carried_by	 = ch;
     obj->in_room	 = NULL;
     obj->in_obj		 = NULL;
-    ch->carry_number	+= get_obj_number( obj );
+    ch->carry_number	+= 1;
     ch->carry_weight	+= get_obj_weight( obj );
 }
 
@@ -538,6 +534,7 @@ void obj_from_char( OBJ_DATA *obj )
 {
     CHAR_DATA *ch;
 
+    if (obj == NULL) return;
     if ( ( ch = obj->carried_by ) == NULL )
     {
 	bug( "Obj_from_char: null ch.", 0 );
@@ -570,7 +567,7 @@ void obj_from_char( OBJ_DATA *obj )
 
     obj->carried_by	 = NULL;
     obj->next_content	 = NULL;
-    ch->carry_number	-= get_obj_number( obj );
+    ch->carry_number	-= 1;
     ch->carry_weight	-= get_obj_weight( obj );
     return;
 }
@@ -603,6 +600,9 @@ int apply_ac( OBJ_DATA *obj, int iWear )
     case WEAR_WRIST_L:	return     obj->value[0];
     case WEAR_WRIST_R:	return     obj->value[0];
     case WEAR_HOLD:	return     obj->value[0];
+    case WEAR_FACE:	return     obj->value[0];
+    case WEAR_SCABBARD_L:return 0;
+    case WEAR_SCABBARD_R:return 0;
     }
 
     return 0;
@@ -633,7 +633,9 @@ OBJ_DATA *get_eq_char( CHAR_DATA *ch, int iWear )
  */
 void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
 {
+    CHAR_DATA   *chch;
     AFFECT_DATA *paf;
+    int sn;
 
     if ( get_eq_char( ch, iWear ) != NULL )
     {
@@ -655,6 +657,9 @@ void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
 	return;
     }
 
+    if ( iWear == WEAR_SCABBARD_L ||
+    	iWear == WEAR_SCABBARD_R ) {obj->wear_loc = iWear;return;}
+
     ch->armor      	-= apply_ac( obj, iWear );
     obj->wear_loc	 = iWear;
 
@@ -668,23 +673,160 @@ void equip_char( CHAR_DATA *ch, OBJ_DATA *obj, int iWear )
     &&   ch->in_room != NULL )
 	++ch->in_room->light;
 
+    if (!IS_NPC(ch))
+    {
+    	if ( (chch = get_char_world(ch,ch->name)) == NULL ) return;
+    	if ( chch->desc != ch->desc) return;
+    }
+
+    if (obj->chpoweron != NULL && obj->chpoweron != '\0'
+	&& str_cmp(obj->chpoweron,"(null)")
+	&& !IS_SET(obj->spectype, SITEM_TELEPORTER)
+	&& !IS_SET(obj->spectype, SITEM_TRANSPORTER) )
+	{
+	    kavitem(str_dup(obj->chpoweron),ch,obj,NULL,TO_CHAR);
+	    if (IS_SET(obj->spectype, SITEM_ACTION))
+		kavitem(str_dup(obj->chpoweron),ch,obj,NULL,TO_ROOM);
+	}
+    if (obj->victpoweron != NULL && obj->victpoweron != '\0'
+	&& str_cmp(obj->victpoweron,"(null)")
+	&& !IS_SET(obj->spectype, SITEM_ACTION)
+	&& !IS_SET(obj->spectype, SITEM_TELEPORTER)
+	&& !IS_SET(obj->spectype, SITEM_TRANSPORTER) )
+	kavitem(str_dup(obj->victpoweron),ch,obj,NULL,TO_ROOM);
+
+    if ( obj->wear_loc == WEAR_NONE )
+	return;
+    if (   ((obj->item_type == ITEM_ARMOR ) && (obj->value[3] >= 1   ))
+	|| ((obj->item_type == ITEM_WEAPON) && (obj->value[0] >= 1000)) )
+    {
+	/* It would be so much easier if weapons had 5 values *sigh*.  
+	 * Oh well, I'll just have to use v0 for two.  KaVir.
+	 */
+	if (obj->item_type == ITEM_ARMOR)
+	    sn = obj->value[3];
+	else
+	    sn = obj->value[0] / 1000;
+
+	if      ((sn ==  4) && (IS_AFFECTED(ch, AFF_BLIND)))        return;
+	else if ((sn == 27) && (IS_AFFECTED(ch, AFF_DETECT_INVIS))) return;
+	else if ((sn == 39) && (IS_AFFECTED(ch, AFF_FLYING)))       return;
+	else if ((sn == 45) && (IS_AFFECTED(ch, AFF_INFRARED)))     return;
+	else if ((sn == 46) && (IS_AFFECTED(ch, AFF_INVISIBLE)))    return;
+	else if ((sn == 52) && (IS_AFFECTED(ch, AFF_PASS_DOOR)))    return;
+	else if ((sn == 54) && (IS_AFFECTED(ch, AFF_PROTECT)))      return;
+	else if ((sn == 57) && (IS_AFFECTED(ch, AFF_SANCTUARY)))    return;
+	else if ((sn == 2 ) && (IS_AFFECTED(ch, AFF_DETECT_INVIS))) return;
+	else if ((sn == 3 ) && (IS_AFFECTED(ch, AFF_FLYING)))       return;
+	else if ((sn == 1 ) && (IS_AFFECTED(ch, AFF_INFRARED)))     return;
+	else if ((sn == 5 ) && (IS_AFFECTED(ch, AFF_INVISIBLE)))    return;
+	else if ((sn == 6 ) && (IS_AFFECTED(ch, AFF_PASS_DOOR)))    return;
+	else if ((sn == 7 ) && (IS_AFFECTED(ch, AFF_PROTECT)))      return;
+	else if ((sn == 8 ) && (IS_AFFECTED(ch, AFF_SANCTUARY)))    return;
+	else if ((sn == 9 ) && (IS_AFFECTED(ch, AFF_SNEAK)))        return;
+	else if ((sn == 10) && (IS_ITEMAFF(ch, ITEMA_SHOCKSHIELD))) return;
+	else if ((sn == 11) && (IS_ITEMAFF(ch, ITEMA_FIRESHIELD)))  return;
+	else if ((sn == 12) && (IS_ITEMAFF(ch, ITEMA_ICESHIELD)))   return;
+	else if ((sn == 13) && (IS_ITEMAFF(ch, ITEMA_ACIDSHIELD)))  return;
+	if (sn == 4)
+	{
+	    SET_BIT(ch->affected_by, AFF_BLIND);
+	    send_to_char( "You cannot see a thing!\n\r", ch );
+	    act("$n seems to be blinded!",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 27 || sn == 2)
+	{
+	    SET_BIT(ch->affected_by, AFF_DETECT_INVIS);
+	    send_to_char( "Your eyes tingle.\n\r", ch );
+	    act("$n's eyes flicker with light.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 39 || sn == 3)
+	{
+	    SET_BIT(ch->affected_by, AFF_FLYING);
+	    send_to_char( "Your feet rise off the ground.\n\r", ch );
+	    act("$n's feet rise off the ground.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 45 || sn == 1)
+	{
+	    SET_BIT(ch->affected_by, AFF_INFRARED);
+	    send_to_char( "Your eyes glow red.\n\r", ch );
+	    act("$n's eyes glow red.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 46 || sn == 5)
+	{
+	    SET_BIT(ch->affected_by, AFF_INVISIBLE);
+	    send_to_char( "You fade out of existance.\n\r", ch );
+	    act("$n fades out of existance.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 52 || sn == 6)
+	{
+	    SET_BIT(ch->affected_by, AFF_PASS_DOOR);
+	    send_to_char( "You turn translucent.\n\r", ch );
+	    act("$n turns translucent.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 54 || sn == 7)
+	{
+	    SET_BIT(ch->affected_by, AFF_PROTECT);
+	    send_to_char( "You are surrounded by a divine aura.\n\r", ch );
+	    act("$n is surrounded by a divine aura.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 57 || sn == 8)
+	{
+	    SET_BIT(ch->affected_by, AFF_SANCTUARY);
+	    send_to_char( "You are surrounded by a white aura.\n\r", ch );
+	    act("$n is surrounded by a white aura.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 9)
+	{
+	    SET_BIT(ch->affected_by, AFF_SNEAK);
+	    send_to_char( "Your footsteps stop making any sound.\n\r", ch );
+	    act("$n's footsteps stop making any sound.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 10)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_SHOCKSHIELD);
+	    send_to_char( "You are surrounded by a crackling shield of lightning.\n\r", ch );
+	    act("$n is surrounded by a crackling shield of lightning.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 11)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_FIRESHIELD);
+	    send_to_char( "You are surrounded by a burning shield of flames.\n\r", ch );
+	    act("$n is surrounded by a burning shield of flames.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 12)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_ICESHIELD);
+	    send_to_char( "You are surrounded by a shimmering shield of ice.\n\r", ch );
+	    act("$n is surrounded by a shimmering shield of ice.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (sn == 13)
+	{
+	    SET_BIT(ch->itemaffect, ITEMA_ACIDSHIELD);
+	    send_to_char( "You are surrounded by a bubbling shield of acid.\n\r", ch );
+	    act("$n is surrounded by a bubbling shield of acid.",ch,NULL,NULL,TO_ROOM);
+	}
+    }
     return;
 }
-
-
 
 /*
  * Unequip a char with an obj.
  */
 void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
 {
+    CHAR_DATA   *chch;
     AFFECT_DATA *paf;
+    int sn;
 
     if ( obj->wear_loc == WEAR_NONE )
     {
 	bug( "Unequip_char: already unequipped.", 0 );
 	return;
     }
+
+    if ( obj->wear_loc == WEAR_SCABBARD_L ||
+    	obj->wear_loc == WEAR_SCABBARD_R ) {obj->wear_loc = -1;return;}
 
     ch->armor		+= apply_ac( obj, obj->wear_loc );
     obj->wear_loc	 = -1;
@@ -700,6 +842,122 @@ void unequip_char( CHAR_DATA *ch, OBJ_DATA *obj )
     &&   ch->in_room->light > 0 )
 	--ch->in_room->light;
 
+    if ( (chch = get_char_world(ch,ch->name)) == NULL ) return;
+    if ( chch->desc != ch->desc) return;
+
+    if (!IS_NPC(ch) && (ch->desc != NULL && ch->desc->connected != CON_PLAYING)) return;
+
+    if (obj->chpoweroff != NULL && obj->chpoweroff != '\0'
+	&& str_cmp(obj->chpoweroff,"(null)")
+	&& !IS_SET(obj->spectype, SITEM_TELEPORTER)
+	&& !IS_SET(obj->spectype, SITEM_TRANSPORTER) )
+	{
+	    kavitem(str_dup(obj->chpoweroff),ch,obj,NULL,TO_CHAR);
+	    if (IS_SET(obj->spectype, SITEM_ACTION))
+		kavitem(str_dup(obj->chpoweroff),ch,obj,NULL,TO_ROOM);
+	}
+    if (obj->victpoweroff != NULL && obj->victpoweroff != '\0'
+	&& str_cmp(obj->victpoweroff,"(null)")
+	&& !IS_SET(obj->spectype, SITEM_ACTION)
+	&& !IS_SET(obj->spectype, SITEM_TELEPORTER)
+	&& !IS_SET(obj->spectype, SITEM_TRANSPORTER) )
+	kavitem(str_dup(obj->victpoweroff),ch,obj,NULL,TO_ROOM);
+
+    if ( ((obj->item_type == ITEM_ARMOR ) && (obj->value[3] >= 1   ))
+      || ((obj->item_type == ITEM_WEAPON) && (obj->value[0] >= 1000)) )
+    {
+	if (obj->item_type == ITEM_ARMOR)
+	    sn = obj->value[3];
+	else
+	    sn = obj->value[0] / 1000;
+	if (IS_AFFECTED(ch, AFF_BLIND) && (sn == 4)
+		&& !is_affected(ch, 4))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_BLIND);
+	    send_to_char( "You can see again.\n\r", ch );
+	    act("$n seems to be able to see again.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_AFFECTED(ch, AFF_DETECT_INVIS) && (sn == 27 || sn == 2)
+		&& !is_affected(ch, 27))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_DETECT_INVIS);
+	    send_to_char( "Your eyes stop tingling.\n\r", ch );
+	    act("$n's eyes stop flickering with light.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_AFFECTED(ch, AFF_FLYING) && (sn == 39 || sn == 3)
+		&& !is_affected(ch, 39))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_FLYING);
+	    send_to_char( "You slowly float to the ground.\n\r", ch );
+	    act("$n slowly floats to the ground.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_AFFECTED(ch, AFF_INFRARED) && (sn == 45 || sn == 1)
+		&& !is_affected(ch, 45))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_INFRARED);
+	    send_to_char( "Your eyes stop glowing red.\n\r", ch );
+	    act("$n's eyes stop glowing red.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_AFFECTED(ch, AFF_INVISIBLE) && (sn == 46 || sn == 5)
+		&& !is_affected(ch, 46))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_INVISIBLE);
+	    send_to_char( "You fade into existance.\n\r", ch );
+	    act("$n fades into existance.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_AFFECTED(ch, AFF_PASS_DOOR) && (sn == 52 || sn == 6)
+		&& !is_affected(ch, 52))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_PASS_DOOR);
+	    send_to_char( "You feel solid again.\n\r", ch );
+	    act("$n is no longer translucent.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_AFFECTED(ch, AFF_PROTECT) && (sn == 54 || sn == 7)
+		&& !is_affected(ch, 54))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_PROTECT);
+	    send_to_char( "The divine aura around you fades.\n\r", ch );
+	    act("The divine aura around $n fades.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_AFFECTED(ch, AFF_SANCTUARY) && (sn == 57 || sn == 8)
+		&& !is_affected(ch, 57))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_SANCTUARY);
+	    send_to_char( "The white aura around your body fades.\n\r", ch );
+	    act("The white aura about $n's body fades.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_AFFECTED(ch, AFF_SNEAK) && (sn == 9)
+		&& !is_affected(ch, 80))
+	{
+	    REMOVE_BIT(ch->affected_by, AFF_SNEAK);
+	    send_to_char( "You are no longer moving so quietly.\n\r", ch );
+	    act("$n is no longer moving so quietly.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_ITEMAFF(ch, ITEMA_SHOCKSHIELD) && (sn == 10))
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_SHOCKSHIELD);
+	    send_to_char( "The crackling shield of lightning around you fades.\n\r", ch );
+	    act("The crackling shield of lightning around $n fades.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_ITEMAFF(ch, ITEMA_FIRESHIELD) && (sn == 11))
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_FIRESHIELD);
+	    send_to_char( "The burning shield of fire around you fades.\n\r", ch );
+	    act("The burning shield of fire around $n fades.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_ITEMAFF(ch, ITEMA_ICESHIELD) && (sn == 12))
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_ICESHIELD);
+	    send_to_char( "The shimmering shield of ice around you fades.\n\r", ch );
+	    act("The shimmering shield of ice around $n fades.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_ITEMAFF(ch, ITEMA_ACIDSHIELD) && (sn == 13))
+	{
+	    REMOVE_BIT(ch->itemaffect, ITEMA_ACIDSHIELD);
+	    send_to_char( "The bubbling shield of acid around you fades.\n\r", ch );
+	    act("The bubbling shield of acid around $n fades.",ch,NULL,NULL,TO_ROOM);
+	}
+    }
     return;
 }
 
@@ -732,6 +990,7 @@ void obj_from_room( OBJ_DATA *obj )
 {
     ROOM_INDEX_DATA *in_room;
 
+    if (obj == NULL) return;
     if ( ( in_room = obj->in_room ) == NULL )
     {
 	bug( "obj_from_room: NULL.", 0 );
@@ -774,6 +1033,7 @@ void obj_from_room( OBJ_DATA *obj )
  */
 void obj_to_room( OBJ_DATA *obj, ROOM_INDEX_DATA *pRoomIndex )
 {
+    if (obj == NULL) return;
     obj->next_content		= pRoomIndex->contents;
     pRoomIndex->contents	= obj;
     obj->in_room		= pRoomIndex;
@@ -789,6 +1049,7 @@ void obj_to_room( OBJ_DATA *obj, ROOM_INDEX_DATA *pRoomIndex )
  */
 void obj_to_obj( OBJ_DATA *obj, OBJ_DATA *obj_to )
 {
+    if (obj == NULL) return;
     obj->next_content		= obj_to->contains;
     obj_to->contains		= obj;
     obj->in_obj			= obj_to;
@@ -797,11 +1058,8 @@ void obj_to_obj( OBJ_DATA *obj, OBJ_DATA *obj_to )
 
     for ( ; obj_to != NULL; obj_to = obj_to->in_obj )
     {
-	if ( obj_to->carried_by != NULL )
-	{
-	    obj_to->carried_by->carry_number += get_obj_number( obj );
+	if ( obj_to->carried_by != NULL && !IS_SET(obj_to->spectype,SITEM_MORPH))
 	    obj_to->carried_by->carry_weight += get_obj_weight( obj );
-	}
     }
 
     return;
@@ -816,6 +1074,7 @@ void obj_from_obj( OBJ_DATA *obj )
 {
     OBJ_DATA *obj_from;
 
+    if (obj == NULL) return;
     if ( ( obj_from = obj->in_obj ) == NULL )
     {
 	bug( "Obj_from_obj: null obj_from.", 0 );
@@ -851,11 +1110,8 @@ void obj_from_obj( OBJ_DATA *obj )
 
     for ( ; obj_from != NULL; obj_from = obj_from->in_obj )
     {
-	if ( obj_from->carried_by != NULL )
-	{
-	    obj_from->carried_by->carry_number -= get_obj_number( obj );
+	if ( obj_from->carried_by != NULL && !IS_SET(obj_from->spectype,SITEM_MORPH))
 	    obj_from->carried_by->carry_weight -= get_obj_weight( obj );
-	}
     }
 
     return;
@@ -868,9 +1124,11 @@ void obj_from_obj( OBJ_DATA *obj )
  */
 void extract_obj( OBJ_DATA *obj )
 {
+    CHAR_DATA *ch;
     OBJ_DATA *obj_content;
     OBJ_DATA *obj_next;
 
+    if ( obj == NULL ) return;
     if ( obj->in_room != NULL )
 	obj_from_room( obj );
     else if ( obj->carried_by != NULL )
@@ -878,10 +1136,53 @@ void extract_obj( OBJ_DATA *obj )
     else if ( obj->in_obj != NULL )
 	obj_from_obj( obj );
 
+    if ( ( ch = obj->chobj ) != NULL
+    &&   !IS_NPC(ch)
+    &&   ch->pcdata->chobj == obj
+    &&   IS_HEAD(ch,LOST_HEAD))
+    {
+	REMOVE_BIT(ch->loc_hp[0],LOST_HEAD);
+	REMOVE_BIT(ch->affected_by,AFF_POLYMORPH);
+	free_string(ch->morph);
+	ch->morph = str_dup("");
+	ch->hit = 1;
+	char_from_room(ch);
+	char_to_room(ch,get_room_index(ROOM_VNUM_ALTAR));
+	ch->pcdata->chobj = NULL;
+	obj->chobj = NULL;
+	send_to_char("You have been KILLED!!\n\r",ch);
+	do_look(ch,"auto");
+	ch->position = POS_RESTING;
+    }
+    else if ( ( ch = obj->chobj ) != NULL
+    &&   !IS_NPC(ch)
+    &&   ch->pcdata->chobj == obj
+    &&   (IS_EXTRA(ch,EXTRA_OSWITCH) || ch->pcdata->obj_vnum != 0))
+    {
+	if (ch->pcdata->obj_vnum != 0)
+	{
+	    send_to_char("You have been destroyed!\n\r",ch);
+	    ch->pcdata->chobj = NULL;
+	    obj->chobj = NULL;
+	}
+	else
+	{
+	    REMOVE_BIT(ch->extra,EXTRA_OSWITCH);
+	    REMOVE_BIT(ch->affected_by,AFF_POLYMORPH);
+	    free_string(ch->morph);
+	    ch->morph = str_dup("");
+	    char_from_room(ch);
+	    char_to_room(ch,get_room_index(ROOM_VNUM_ALTAR));
+	    ch->pcdata->chobj = NULL;
+	    obj->chobj = NULL;
+	    send_to_char("You return to your body.\n\r",ch);
+	}
+    }
+
     for ( obj_content = obj->contains; obj_content; obj_content = obj_next )
     {
 	obj_next = obj_content->next_content;
-	extract_obj( obj->contains );
+	if (obj->contains != NULL) extract_obj( obj->contains );
     }
 
     if ( object_list == obj )
@@ -936,6 +1237,14 @@ void extract_obj( OBJ_DATA *obj )
     free_string( obj->name        );
     free_string( obj->description );
     free_string( obj->short_descr );
+    if (obj->chpoweron    != NULL) free_string( obj->chpoweron   );
+    if (obj->chpoweroff   != NULL) free_string( obj->chpoweroff  );
+    if (obj->chpoweruse   != NULL) free_string( obj->chpoweruse  );
+    if (obj->victpoweron  != NULL) free_string( obj->victpoweron );
+    if (obj->victpoweroff != NULL) free_string( obj->victpoweroff);
+    if (obj->victpoweruse != NULL) free_string( obj->victpoweruse);
+    if (obj->questmaker   != NULL) free_string( obj->questmaker  );
+    if (obj->questowner   != NULL) free_string( obj->questowner  );
     --obj->pIndexData->count;
     obj->next	= obj_free;
     obj_free	= obj;
@@ -952,6 +1261,8 @@ void extract_char( CHAR_DATA *ch, bool fPull )
     CHAR_DATA *wch;
     OBJ_DATA *obj;
     OBJ_DATA *obj_next;
+
+    if ( ch == NULL ) return;
 
     if ( ch->in_room == NULL )
     {
@@ -1034,11 +1345,14 @@ CHAR_DATA *get_char_room( CHAR_DATA *ch, char *argument )
 
     number = number_argument( argument, arg );
     count  = 0;
-    if ( !str_cmp( arg, "self" ) )
+    if ( !str_cmp( arg, "self" ) && (IS_NPC(ch) || ch->pcdata->chobj == NULL))
 	return ch;
     for ( rch = ch->in_room->people; rch != NULL; rch = rch->next_in_room )
     {
-	if ( !can_see( ch, rch ) || !is_name( arg, rch->name ) )
+	if ( !IS_NPC(rch) && IS_HEAD(rch, LOST_HEAD) ) continue;
+	else if ( !IS_NPC(rch) && IS_EXTRA(rch, EXTRA_OSWITCH) ) continue;
+	else if ( !can_see( ch, rch ) || ( !is_name( arg, rch->name ) &&
+	    ( IS_NPC(rch) || !is_name( arg, rch->morph ))))
 	    continue;
 	if ( ++count == number )
 	    return rch;
@@ -1067,7 +1381,10 @@ CHAR_DATA *get_char_world( CHAR_DATA *ch, char *argument )
     count  = 0;
     for ( wch = char_list; wch != NULL ; wch = wch->next )
     {
-	if ( !can_see( ch, wch ) || !is_name( arg, wch->name ) )
+	if ( !IS_NPC(wch) && IS_HEAD(wch, LOST_HEAD) ) continue;
+	else if ( !IS_NPC(wch) && IS_EXTRA(wch, EXTRA_OSWITCH) ) continue;
+	else if ( !can_see( ch, wch ) || ( !is_name( arg, wch->name ) &&
+	    ( IS_NPC(wch) || !is_name( arg, wch->morph ))))
 	    continue;
 	if ( ++count == number )
 	    return wch;
@@ -1114,6 +1431,40 @@ OBJ_DATA *get_obj_list( CHAR_DATA *ch, char *argument, OBJ_DATA *list )
 	{
 	    if ( ++count == number )
 		return obj;
+	}
+    }
+
+    return NULL;
+}
+
+
+
+/*
+ * Find an object within the object you are in.
+ */
+OBJ_DATA *get_obj_in_obj( CHAR_DATA *ch, char *argument )
+{
+    char arg[MAX_INPUT_LENGTH];
+    OBJ_DATA *obj;
+    OBJ_DATA *obj2;
+    int number;
+    int count;
+
+    number = number_argument( argument, arg );
+    count  = 0;
+    if (IS_NPC(ch) || ch->pcdata->chobj == NULL || ch->pcdata->chobj->in_obj == NULL)
+	return NULL;
+    obj = ch->pcdata->chobj;
+    if (obj->in_obj->item_type != ITEM_CONTAINER && obj->in_obj->item_type != ITEM_CORPSE_NPC &&
+    	obj->in_obj->item_type != ITEM_CORPSE_PC ) return NULL;
+
+    for ( obj2 = obj->in_obj->contains; obj2 != NULL; obj2 = obj2->next_content )
+    {
+	if (obj != obj2
+	&&  is_name( arg, obj2->name ) )
+	{
+	    if ( ++count == number )
+		return obj2;
 	}
     }
 
@@ -1195,6 +1546,9 @@ OBJ_DATA *get_obj_here( CHAR_DATA *ch, char *argument )
     if ( ( obj = get_obj_wear( ch, argument ) ) != NULL )
 	return obj;
 
+    if ( ( obj = get_obj_in_obj( ch, argument ) ) != NULL )
+	return obj;
+
     return NULL;
 }
 
@@ -1257,27 +1611,6 @@ OBJ_DATA *create_money( int amount )
     }
 
     return obj;
-}
-
-
-
-/*
- * Return # of objects which an object counts as.
- * Thanks to Tony Chamberlain for the correct recursive code here.
- */
-int get_obj_number( OBJ_DATA *obj )
-{
-    int number;
-
-    if ( obj->item_type == ITEM_CONTAINER )
-	number = 0;
-    else
-	number = 1;
-
-    for ( obj = obj->contains; obj != NULL; obj = obj->next_content )
-	number += get_obj_number( obj );
-
-    return number;
 }
 
 
@@ -1352,7 +1685,7 @@ bool can_see( CHAR_DATA *ch, CHAR_DATA *victim )
 {
     if ( ch == victim )
 	return TRUE;
-    
+
     if ( !IS_NPC(victim)
     &&   IS_SET(victim->act, PLR_WIZINVIS)
     &&   get_trust( ch ) < get_trust( victim ) )
@@ -1361,10 +1694,28 @@ bool can_see( CHAR_DATA *ch, CHAR_DATA *victim )
     if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_HOLYLIGHT) )
 	return TRUE;
 
+    if (IS_AFFECTED(ch,AFF_SHADOWPLANE) && !IS_AFFECTED(victim,AFF_SHADOWPLANE)
+	&& !IS_AFFECTED(ch,AFF_SHADOWSIGHT))
+	return FALSE;
+
+    if (!IS_AFFECTED(ch,AFF_SHADOWPLANE) && IS_AFFECTED(victim,AFF_SHADOWPLANE)
+	&& !IS_AFFECTED(ch,AFF_SHADOWSIGHT))
+	return FALSE;
+
+    if ( !IS_NPC(ch) && IS_VAMPAFF(ch, VAM_SONIC) )
+	return TRUE;
+
+    if ( IS_HEAD(ch, LOST_EYE_L) && IS_HEAD(ch, LOST_EYE_R) )
+	return FALSE;
+
+    if ( IS_BODY(ch, BLINDFOLDED) )
+	return FALSE;
+
     if ( IS_AFFECTED(ch, AFF_BLIND) )
 	return FALSE;
 
-    if ( room_is_dark( ch->in_room ) && !IS_AFFECTED(ch, AFF_INFRARED) )
+    if ( room_is_dark( ch->in_room ) && !IS_AFFECTED(ch, AFF_INFRARED) 
+	&& !IS_VAMPAFF(ch, VAM_NIGHTSIGHT) )
 	return FALSE;
 
     if ( IS_AFFECTED(victim, AFF_INVISIBLE)
@@ -1372,10 +1723,22 @@ bool can_see( CHAR_DATA *ch, CHAR_DATA *victim )
 	return FALSE;
 
     if ( IS_AFFECTED(victim, AFF_HIDE)
-    &&   !IS_AFFECTED(ch, AFF_DETECT_HIDDEN)
-    &&   victim->fighting == NULL
-    &&   ( IS_NPC(ch) ? !IS_NPC(victim) : IS_NPC(victim) ) )
+    &&   !IS_AFFECTED(ch, AFF_DETECT_HIDDEN) )
 	return FALSE;
+
+    if ( !IS_NPC(ch) && IS_HEAD(ch, LOST_HEAD) )
+	return TRUE;
+
+    if ( !IS_NPC(ch) && IS_EXTRA(ch, EXTRA_OSWITCH) )
+	return TRUE;
+
+    if ( !IS_NPC(ch) && IS_HEAD(ch, LOST_HEAD) &&
+	ch->in_room != NULL && ch->in_room->vnum == ROOM_VNUM_IN_OBJECT)
+	return TRUE;
+
+    if ( !IS_NPC(ch) && IS_EXTRA(ch, EXTRA_OSWITCH) &&
+	ch->in_room != NULL && ch->in_room->vnum == ROOM_VNUM_IN_OBJECT)
+	return TRUE;
 
     return TRUE;
 }
@@ -1390,8 +1753,29 @@ bool can_see_obj( CHAR_DATA *ch, OBJ_DATA *obj )
     if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_HOLYLIGHT) )
 	return TRUE;
 
+    if (( IS_SET(obj->extra_flags, ITEM_SHADOWPLANE)
+    &&   obj->carried_by == NULL)
+    &&   !IS_AFFECTED(ch, AFF_SHADOWSIGHT)
+    &&   !IS_AFFECTED(ch, AFF_SHADOWPLANE))
+	return FALSE;
+
+    if (( !IS_SET(obj->extra_flags, ITEM_SHADOWPLANE)
+    &&   obj->carried_by == NULL)
+    &&   !IS_AFFECTED(ch, AFF_SHADOWSIGHT)
+    &&   IS_AFFECTED(ch, AFF_SHADOWPLANE))
+	return FALSE;
+
+    if ( !IS_NPC(ch) && IS_VAMPAFF(ch, VAM_SONIC) )
+	return TRUE;
+
     if ( obj->item_type == ITEM_POTION )
 	return TRUE;
+
+    if ( IS_HEAD(ch, LOST_EYE_L) && IS_HEAD(ch, LOST_EYE_R) )
+	return FALSE;
+
+    if ( IS_BODY(ch, BLINDFOLDED) )
+	return FALSE;
 
     if ( IS_AFFECTED( ch, AFF_BLIND ) )
 	return FALSE;
@@ -1399,12 +1783,21 @@ bool can_see_obj( CHAR_DATA *ch, OBJ_DATA *obj )
     if ( obj->item_type == ITEM_LIGHT && obj->value[2] != 0 )
 	return TRUE;
 
-    if ( room_is_dark( ch->in_room ) && !IS_AFFECTED(ch, AFF_INFRARED) )
+    if ( room_is_dark( ch->in_room ) && !IS_AFFECTED(ch, AFF_INFRARED) 
+	&& !IS_VAMPAFF(ch, VAM_NIGHTSIGHT) )
 	return FALSE;
 
     if ( IS_SET(obj->extra_flags, ITEM_INVIS)
     &&   !IS_AFFECTED(ch, AFF_DETECT_INVIS) )
 	return FALSE;
+
+    if ( !IS_NPC(ch) && IS_HEAD(ch, LOST_HEAD) &&
+	ch->in_room != NULL && ch->in_room->vnum == ROOM_VNUM_IN_OBJECT)
+	return TRUE;
+
+    if ( !IS_NPC(ch) && IS_EXTRA(ch, EXTRA_OSWITCH) &&
+	ch->in_room != NULL && ch->in_room->vnum == ROOM_VNUM_IN_OBJECT)
+	return TRUE;
 
     return TRUE;
 }
@@ -1454,6 +1847,15 @@ char *item_type_name( OBJ_DATA *obj )
     case ITEM_CORPSE_PC:	return "pc corpse";
     case ITEM_FOUNTAIN:		return "fountain";
     case ITEM_PILL:		return "pill";
+    case ITEM_PORTAL:		return "portal";
+    case ITEM_EGG:		return "egg";
+    case ITEM_VOODOO:		return "voodoo doll";
+    case ITEM_STAKE:		return "stake";
+    case ITEM_MISSILE:		return "missile";
+    case ITEM_AMMO:		return "ammo";
+    case ITEM_QUEST:		return "quest token";
+    case ITEM_QUESTCARD:	return "quest card";
+    case ITEM_QUESTMACHINE:	return "quest generator";
     }
 
     bug( "Item_type_name: unknown type %d.", obj->item_type );
@@ -1514,7 +1916,7 @@ char *affect_bit_name( int vector )
     if ( vector & AFF_DETECT_INVIS  ) strcat( buf, " detect_invis"  );
     if ( vector & AFF_DETECT_MAGIC  ) strcat( buf, " detect_magic"  );
     if ( vector & AFF_DETECT_HIDDEN ) strcat( buf, " detect_hidden" );
-    if ( vector & AFF_HOLD          ) strcat( buf, " hold"          );
+    if ( vector & AFF_SHADOWPLANE   ) strcat( buf, " shadowplane"   );
     if ( vector & AFF_SANCTUARY     ) strcat( buf, " sanctuary"     );
     if ( vector & AFF_FAERIE_FIRE   ) strcat( buf, " faerie_fire"   );
     if ( vector & AFF_INFRARED      ) strcat( buf, " infrared"      );
@@ -1522,13 +1924,15 @@ char *affect_bit_name( int vector )
     if ( vector & AFF_FLAMING       ) strcat( buf, " flaming"       );
     if ( vector & AFF_POISON        ) strcat( buf, " poison"        );
     if ( vector & AFF_PROTECT       ) strcat( buf, " protect"       );
-    if ( vector & AFF_PARALYSIS     ) strcat( buf, " paralysis"     );
+    if ( vector & AFF_ETHEREAL      ) strcat( buf, " ethereal"      );
     if ( vector & AFF_SLEEP         ) strcat( buf, " sleep"         );
     if ( vector & AFF_SNEAK         ) strcat( buf, " sneak"         );
     if ( vector & AFF_HIDE          ) strcat( buf, " hide"          );
     if ( vector & AFF_CHARM         ) strcat( buf, " charm"         );
     if ( vector & AFF_FLYING        ) strcat( buf, " flying"        );
     if ( vector & AFF_PASS_DOOR     ) strcat( buf, " pass_door"     );
+    if ( vector & AFF_POLYMORPH     ) strcat( buf, " polymorph"     );
+    if ( vector & AFF_SHADOWSIGHT   ) strcat( buf, " shadowsight"   );
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
 
@@ -1544,17 +1948,20 @@ char *extra_bit_name( int extra_flags )
     buf[0] = '\0';
     if ( extra_flags & ITEM_GLOW         ) strcat( buf, " glow"         );
     if ( extra_flags & ITEM_HUM          ) strcat( buf, " hum"          );
-    if ( extra_flags & ITEM_DARK         ) strcat( buf, " dark"         );
-    if ( extra_flags & ITEM_LOCK         ) strcat( buf, " lock"         );
-    if ( extra_flags & ITEM_EVIL         ) strcat( buf, " evil"         );
     if ( extra_flags & ITEM_INVIS        ) strcat( buf, " invis"        );
     if ( extra_flags & ITEM_MAGIC        ) strcat( buf, " magic"        );
     if ( extra_flags & ITEM_NODROP       ) strcat( buf, " nodrop"       );
-    if ( extra_flags & ITEM_BLESS        ) strcat( buf, " bless"        );
     if ( extra_flags & ITEM_ANTI_GOOD    ) strcat( buf, " anti-good"    );
     if ( extra_flags & ITEM_ANTI_EVIL    ) strcat( buf, " anti-evil"    );
     if ( extra_flags & ITEM_ANTI_NEUTRAL ) strcat( buf, " anti-neutral" );
+    if ( extra_flags & ITEM_BLESS        ) strcat( buf, " bless"        );
     if ( extra_flags & ITEM_NOREMOVE     ) strcat( buf, " noremove"     );
     if ( extra_flags & ITEM_INVENTORY    ) strcat( buf, " inventory"    );
+    if ( extra_flags & ITEM_LOYAL        ) strcat( buf, " loyal"        );
+    if ( extra_flags & ITEM_SHADOWPLANE  ) strcat( buf, " shadowplane"  );
+    if ( extra_flags & ITEM_THROWN       ) strcat( buf, " thrown"       );
+    if ( extra_flags & ITEM_SILVER       ) strcat( buf, " silver"       );
+    if ( extra_flags & ITEM_KEEP         ) strcat( buf, " keep"         );
+    if ( extra_flags & ITEM_VANISH       ) strcat( buf, " vanish"       );
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }

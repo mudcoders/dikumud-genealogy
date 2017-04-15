@@ -250,7 +250,7 @@ The sword Excalibur~
 A sword gleams by the light of its magical silvery blade.~
 ~
 5 1|64|1024|2048 8193
-0 5 4 3
+30 5 4 3
 15 12157 50
 A
 18 3
@@ -340,7 +340,7 @@ a shadow cloak~
 The shadows in the corner of the room seems strange ...~
 ~
 9 64 1025
-10 0 0 0
+10 0 0 52
 1 4000 1
 A
 14 -30

@@ -451,7 +451,7 @@ a fiery dagger~
 A dagger made of fire crackles mysteriously here.~
 ~
 5 1 8193
-0 4 4 11
+37 4 4 11
 2 100000 2000
 A
 19 4
@@ -461,7 +461,7 @@ a flame red cape~
 A cape made of ethereal red fiber lies neatly folded on the ground here.~
 ~
 9 1 5
-11 0 0 0
+11 0 0 11
 3 100000 2000
 A
 19 1
@@ -471,7 +471,7 @@ the wind boots~
 A pair of boots that look fast standing still are here.~
 ~
 9 64 65
-10 0 0 0
+10 0 0 39
 1 100000 2000
 A
 2 2
@@ -481,7 +481,7 @@ a humming hurricane helmet~
 A helmet that looks like it has weathered many storms has been set here.~
 ~
 9 2 17
-9 0 0 0
+9 0 0 52
 4 200000 4000
 A
 23 -4
@@ -491,7 +491,7 @@ a sparking lightning sword~
 A lightning bolt fashioned into a sword spits sparks here.~
 ~
 5 3 8193
-0 6 3 3
+48 6 3 3
 10 100000 2000
 A
 18 -1
@@ -503,7 +503,7 @@ an electric shield~
 A shield made entirely of energy buzzes here.~
 ~
 9 2 513
-11 0 0 0
+11 0 0 10
 8 1000000 2000
 A
 1 -1
@@ -515,10 +515,12 @@ an icy girth~
 A girth made of magical ice has been left here.~
 ~
 9 0 2049
-10 0 0 0
+10 0 0 12
 10 100000 1000
 A
 5 -2
+A
+19 2
 #9210
 cloak waterfall~
 a waterfall cloak~
@@ -540,7 +542,7 @@ An amulet depicting fire, water, lightning, earth, and air lies here.~
 7 0 0 0
 1 100000 5000
 A
-23 -5
+12 25
 #9212
 bracelet elemental~
 an elemental bracelet~
@@ -563,6 +565,8 @@ A
 1 1
 A
 4 -2
+A
+19 2
 #9214
 legbands platinum bands~
 some platinum leg bands~
@@ -575,6 +579,8 @@ A
 2 1
 A
 3 -2
+A
+19 2
 #9215
 wand~
 elemental wand of fire~
@@ -669,7 +675,7 @@ a flame lance~
 A lance of blue flame burns the ground around it.~
 ~
 5 1 8193
-0 2 15 3
+11038 2 15 3
 14 5000 500
 A
 13 -20
@@ -681,7 +687,7 @@ an icicle~
 A glowing icicle dagger lies here amid a patch of frost.~
 ~
 5 1 8193
-0 7 3 11
+12 7 3 11
 1 19000 900
 A
 19 2
@@ -715,7 +721,7 @@ The Shock Whip~
 A whip hums innocently too itself.~
 ~
 5 2 8193
-0 4 4 2
+59 4 4 4
 10 10000 900
 A
 19 3

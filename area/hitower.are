@@ -1054,7 +1054,7 @@ spectacles glasses~
 a pair of spectacles~
 A pair of wire-rimmed spectacles has been left here.~
 ~
-9 64 17
+9 64 32769
 0 0 0 0
 4 10000 5000
 A
@@ -1081,6 +1081,10 @@ A
 4 2
 A
 5 -1
+A
+12 25
+A
+13 -25
 #1338
 chest~
 a large chest~
@@ -1116,7 +1120,7 @@ A travel worn cloak has carelessly been left here.~
 0 0 0 0
 5 2000 250
 A
-17 -5
+17 -15
 A
 24 -3
 #1342
@@ -1130,7 +1134,9 @@ Some multicolored cloth is on the ground here~
 A
 2 2
 A
-17 -3
+17 -15
+A
+18 2
 #1343
 boots worn~
 a pair of old boots~
@@ -1186,7 +1192,7 @@ shackles chain~
 some chain shackles~
 Some chain shackles have been discarded here~
 ~
-13 192 1
+13 192 4097
 0 0 0 0
 15 750 1000
 A
@@ -1359,6 +1365,10 @@ A runed chisel is here.~
 6 1500 500
 A
 2 1
+A
+18 3
+A
+19 3
 #1377
 pouch belt beltpouch~
 a beltpouch~
@@ -1381,10 +1391,10 @@ a dark cowl~
 A dark cowl is here.~
 ~
 9 576 5
-0 0 0 0
+0 0 0 4
 5 1200 400
 A
-17 -8
+17 -15
 A
 24 -3
 #1380
@@ -1453,10 +1463,10 @@ a ward minor~
 A small clear cube is sitting here.~
 ~
 9 65 16385
-0 0 0 0
+0 0 0 57
 5 5000 1000
 A
-17 -5
+17 -15
 #1387
 robe black~
 a black robe~
@@ -1541,12 +1551,12 @@ an ivory hilted dagger~
 An ivory hilted dagger has been left here~
 ~
 5 1344 8193
-0 2 6 11
+24 2 6 11
 8 12000 1500
 A
-18 1
+18 6
 A
-19 2
+19 3
 #1395
 collar spiked~
 a spiked collar~
@@ -1580,7 +1590,9 @@ A small ring with a green gemstone is here.~
 0 0 0 0
 5 50000 10000
 A
-12 20
+12 25
+A
+13 25
 #1398
 bracelet emerald~
 an emerald bracelet~
@@ -1592,6 +1604,10 @@ A beautifully crafted hoop of emerald is here.~
 A
 17 -5
 A
+18 1
+A
+19 1
+A
 3 1
 #1399
 ward major clear crystal~
@@ -1599,10 +1615,10 @@ a ward major~
 A large clear crystal cube is here.~
 ~
 9 65 16385
-0 0 0 0
+0 0 0 57
 6 20000 2000
 A
-17 -10
+17 -25
 A
 24 -2
 #1400
@@ -1611,7 +1627,7 @@ the ebony kris~
 A wavy bladed knife made of ebony is here.~
 ~
 5 64 8193
-0 3 4 11
+34 3 4 11
 9 60000 5000
 A
 2 2

@@ -197,7 +197,7 @@ A cow is here, waiting to be milked.
 ~
 The cow is just standing here.  She moos at you and otherwise ignores you.
 ~
-2 0 0 S
+2050 0 0 S
 5 16 5 5d5+50 1d8+3
 0 600
 8 8 2
@@ -209,7 +209,7 @@ A young horse is here, grazing.
 The horse whinnies at you, then runs around you a few times, then just goes
 back to grazing.
 ~
-160 0 0 S
+2208 0 0 S
 6 15 4 6d6+60 1d8+4
 0 750
 8 8 0
@@ -523,6 +523,8 @@ An emerald ring is on the floor, gathering dust.~
 8 64 3
 0 0 0 0
 1 10000 100
+A
+18 3
 #607
 glass trinket~
 a glass trinket~
@@ -801,6 +803,10 @@ A
 12 5
 A
 3 1
+A
+18 2
+A
+19 2
 #634
 boots silver~
 silver boots~
@@ -813,6 +819,10 @@ A
 12 5
 A
 4 1
+A
+18 2
+A
+19 2
 #635
 gauntlets silver~
 silver gauntlets~
@@ -963,7 +973,7 @@ Holy Avenger~
 A glowing silvery sword is hovering here, ready to possess an owner.~
 ~
 5 64|1024 1|8192
-0 5 6 1
+30 5 6 1
 25 10000 10000
 A
 18 1
@@ -1010,7 +1020,7 @@ A very shiny symbol is on the floor.~
 8 0 0 0
 5 1000 1000
 A
-12 10
+12 25
 A
 4 2
 #653

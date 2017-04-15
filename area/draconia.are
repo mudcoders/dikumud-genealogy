@@ -262,30 +262,36 @@ a dragon's tooth knife~
 A dangerous looking knife made from a dragon's tooth has been left here.~
 ~
 5 0 8193
-0 3 5 11
+68 3 5 11
 8 100000 50000
 A
 2 1
 A
 19 2
 #2203
-bracelet dragon~
-a dragon skin bracelet~
-A scaly bracelet lies on the ground.~
+bracer dragon strength~
+a bracer of dragon strength~
+A mighty looking bracer lies on the ground.~
 ~
 9 0 4097  
 6 0 0 0
 10 40000 10000
+A
+1 2
+A
+19 2
 #2204
-belt silk black~
-a black silk belt~
-A black belt made of the finest silk is hanging here.~
+dragon dragonskin girth~
+a dragonskin girth~
+A thick girth made of dragonskin is hanging here.~
 ~
 9 0 2049
 6 0 0 0
 25 10000 4000
 A
 5 2
+A
+19 2
 #2210
 belt silk white~
 a white silk belt.~
@@ -304,6 +310,8 @@ A tarnished platinum bracelet has been dropped here.~
 9 1 4097
 7 0 0 0
 5 50000 25000
+A
+13 20
 #2220
 symbol holy~
 a holy symbol~
@@ -330,7 +338,7 @@ an emerald sword~
 An emerald long sword is leaning against the wall.~
 ~
 5 0 8193
-0 3 6 3
+53 3 6 3
 24 200000 100000
 #2223
 club stone~
@@ -362,6 +370,8 @@ A copper ring is here.~
 1 100000 25000
 A
 4 2
+A
+19 2
 #2231
 key steel~
 a steel key~
@@ -514,7 +524,7 @@ a diamond brooch~
 A diamond brooch.~
 ~
 9 64 5 
-4 0 0 0 
+4 0 0 57
 2 10000 4000
 A
 12 25 
@@ -536,6 +546,8 @@ A pair of dragon skin gloves are lying on the ground.~
 5 40000 15000
 A
 2 2
+A
+19 1
 #2275
 helm dragon~
 a helm of dragon kind~
@@ -546,6 +558,8 @@ A helm made of a dragon's skull is lying on the ground.~
 15 30000 6000
 A
 13 15
+A
+19 1
 #2276
 fur cloak~
 a fur cloak~

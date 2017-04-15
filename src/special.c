@@ -42,13 +42,16 @@ DECLARE_SPEC_FUN(	spec_cast_cleric	);
 DECLARE_SPEC_FUN(	spec_cast_judge		);
 DECLARE_SPEC_FUN(	spec_cast_mage		);
 DECLARE_SPEC_FUN(	spec_cast_undead	);
-DECLARE_SPEC_FUN(	spec_executioner	);
 DECLARE_SPEC_FUN(	spec_fido		);
 DECLARE_SPEC_FUN(	spec_guard		);
 DECLARE_SPEC_FUN(	spec_janitor		);
 DECLARE_SPEC_FUN(	spec_mayor		);
 DECLARE_SPEC_FUN(	spec_poison		);
 DECLARE_SPEC_FUN(	spec_thief		);
+DECLARE_SPEC_FUN(	spec_eater		);
+DECLARE_SPEC_FUN(	spec_gremlin_original	);
+DECLARE_SPEC_FUN(	spec_gremlin_born	);
+DECLARE_SPEC_FUN(	spec_rogue		);
 
 
 
@@ -69,13 +72,16 @@ SPEC_FUN *spec_lookup( const char *name )
     if ( !str_cmp( name, "spec_cast_judge"	  ) ) return spec_cast_judge;
     if ( !str_cmp( name, "spec_cast_mage"	  ) ) return spec_cast_mage;
     if ( !str_cmp( name, "spec_cast_undead"	  ) ) return spec_cast_undead;
-    if ( !str_cmp( name, "spec_executioner"	  ) ) return spec_executioner;
     if ( !str_cmp( name, "spec_fido"		  ) ) return spec_fido;
     if ( !str_cmp( name, "spec_guard"		  ) ) return spec_guard;
     if ( !str_cmp( name, "spec_janitor"		  ) ) return spec_janitor;
     if ( !str_cmp( name, "spec_mayor"		  ) ) return spec_mayor;
     if ( !str_cmp( name, "spec_poison"		  ) ) return spec_poison;
     if ( !str_cmp( name, "spec_thief"		  ) ) return spec_thief;
+    if ( !str_cmp( name, "spec_eater"		  ) ) return spec_eater;
+    if ( !str_cmp( name, "spec_gremlin_original"  ) ) return spec_gremlin_original;
+    if ( !str_cmp( name, "spec_gremlin_born"	  ) ) return spec_gremlin_born;
+    if ( !str_cmp( name, "spec_rogue"		  ) ) return spec_rogue;
     return 0;
 }
 
@@ -420,44 +426,6 @@ bool spec_cast_undead( CHAR_DATA *ch )
 
 
 
-bool spec_executioner( CHAR_DATA *ch )
-{
-    char buf[MAX_STRING_LENGTH];
-    CHAR_DATA *victim;
-    CHAR_DATA *v_next;
-    char *crime;
-
-    if ( !IS_AWAKE(ch) || ch->fighting != NULL )
-	return FALSE;
-
-    crime = "";
-    for ( victim = ch->in_room->people; victim != NULL; victim = v_next )
-    {
-	v_next = victim->next_in_room;
-
-	if ( !IS_NPC(victim) && IS_SET(victim->act, PLR_KILLER) )
-	    { crime = "KILLER"; break; }
-
-	if ( !IS_NPC(victim) && IS_SET(victim->act, PLR_THIEF) )
-	    { crime = "THIEF"; break; }
-    }
-
-    if ( victim == NULL )
-	return FALSE;
-
-    sprintf( buf, "%s is a %s!  PROTECT THE INNOCENT!  MORE BLOOOOD!!!",
-	victim->name, crime );
-    do_shout( ch, buf );
-    multi_hit( ch, victim, TYPE_UNDEFINED );
-    char_to_room( create_mobile( get_mob_index(MOB_VNUM_CITYGUARD) ),
-	ch->in_room );
-    char_to_room( create_mobile( get_mob_index(MOB_VNUM_CITYGUARD) ),
-	ch->in_room );
-    return TRUE;
-}
-
-
-
 bool spec_fido( CHAR_DATA *ch )
 {
     OBJ_DATA *corpse;
@@ -481,7 +449,7 @@ bool spec_fido( CHAR_DATA *ch )
 	    obj_from_obj( obj );
 	    obj_to_room( obj, ch->in_room );
 	}
-	extract_obj( corpse );
+	if (corpse != NULL) extract_obj( corpse );
 	return TRUE;
     }
 
@@ -496,25 +464,21 @@ bool spec_guard( CHAR_DATA *ch )
     CHAR_DATA *victim;
     CHAR_DATA *v_next;
     CHAR_DATA *ech;
-    char *crime;
     int max_evil;
+    int rand;
 
     if ( !IS_AWAKE(ch) || ch->fighting != NULL )
 	return FALSE;
 
     max_evil = 300;
     ech      = NULL;
-    crime    = "";
 
     for ( victim = ch->in_room->people; victim != NULL; victim = v_next )
     {
 	v_next = victim->next_in_room;
 
-	if ( !IS_NPC(victim) && IS_SET(victim->act, PLR_KILLER) )
-	    { crime = "KILLER"; break; }
-
-	if ( !IS_NPC(victim) && IS_SET(victim->act, PLR_THIEF) )
-	    { crime = "THIEF"; break; }
+	if ( !IS_NPC(victim) && victim->race > 24 && number_percent() > 95)
+	    break;
 
 	if ( victim->fighting != NULL
 	&&   victim->fighting != ch
@@ -527,15 +491,56 @@ bool spec_guard( CHAR_DATA *ch )
 
     if ( victim != NULL )
     {
-	sprintf( buf, "%s is a %s!  PROTECT THE INNOCENT!!  BANZAI!!",
-	    victim->name, crime );
-	do_shout( ch, buf );
-	multi_hit( ch, victim, TYPE_UNDEFINED );
+	rand=number_range(1,5);
+	if (rand == 1)
+	{
+	    sprintf( buf, "It is an honour to meet you, %s!",
+	        victim->name);
+	    do_say( ch, buf );
+	}
+	else if (rand == 2)
+	{
+	    act("You bow deeply before $N.",ch,NULL,victim,TO_CHAR);
+	    act("$n bows deeply before you.",ch,NULL,victim,TO_VICT);
+	    act("$n bows deeply before $N.",ch,NULL,victim,TO_NOTVICT);
+	}
+	else if (rand == 3)
+	{
+	    act("You shake $N's hand.",ch,NULL,victim,TO_CHAR);
+	    act("$n shakes your hand.",ch,NULL,victim,TO_VICT);
+	    act("$n shakes $N's hand.",ch,NULL,victim,TO_NOTVICT);
+	    sprintf( buf, "It's a pleasure to see you again, %s!",
+	        victim->name);
+	    do_say( ch, buf );
+	}
+	else if (rand == 4)
+	{
+	    act("You pat $N on the back.",ch,NULL,victim,TO_CHAR);
+	    act("$n pats you on the back.",ch,NULL,victim,TO_VICT);
+	    act("$n pats $N on the back.",ch,NULL,victim,TO_NOTVICT);
+	    sprintf( buf, "Greetings %s!  If you need anything, just say!",
+	        victim->name);
+	    do_say( ch, buf );
+	}
+	else
+	{
+	    act("You beam a smile at $N.",ch,NULL,victim,TO_CHAR);
+	    act("$n beams a smile at you.",ch,NULL,victim,TO_VICT);
+	    act("$n beams a smile at $N.",ch,NULL,victim,TO_NOTVICT);
+	}
 	return TRUE;
     }
 
     if ( ech != NULL )
     {
+	if (!IS_NPC(ech) && ech->race >= 25)
+	{
+	    sprintf( buf, "How DARE you attack %s? You shall DIE!",
+	        ech->name);
+	    do_say( ch, buf );
+	    do_rescue( ch, ech->name );
+	    return TRUE;
+	}
 	act( "$n screams 'PROTECT THE INNOCENT!!  BANZAI!!",
 	    ch, NULL, NULL, TO_ROOM );
 	multi_hit( ch, ech, TYPE_UNDEFINED );
@@ -710,6 +715,7 @@ bool spec_thief( CHAR_DATA *ch )
 	v_next = victim->next_in_room;
 
 	if ( IS_NPC(victim)
+	||   (!IS_NPC(victim) && IS_IMMUNE(victim, IMM_STEAL))
 	||   victim->level >= LEVEL_IMMORTAL
 	||   number_bits( 2 ) != 0
 	||   !can_see( ch, victim ) )	/* Thx Glop */
@@ -728,6 +734,391 @@ bool spec_thief( CHAR_DATA *ch )
 	    gold = victim->gold * number_range( 1, 20 ) / 100;
 	    ch->gold     += 7 * gold / 8;
 	    victim->gold -= gold;
+	    return TRUE;
+	}
+    }
+
+    return FALSE;
+}
+
+bool spec_eater( CHAR_DATA *ch )
+{
+  /* The spec_eater is a hungry bugger who eats players.  If they get 
+   * eaten, they get transported to the room with the same vnum as the 
+   * mob Example:  A spec_eater dragon with the vnum 31305 would send 
+   * anybody eaten to room 31305.
+   * KaVir.
+   */
+   CHAR_DATA       *victim;
+   ROOM_INDEX_DATA *pRoomIndex;
+   if ( ch->position != POS_FIGHTING )
+   {
+      return FALSE;
+   }
+   if (number_percent() > 50 ) return FALSE;
+   victim=ch->fighting;
+   act( "$n stares at $N hungrily and licks $s lips!",  ch, NULL, victim, TO_NOTVICT    );
+   act( "$n stares at you hungrily and licks $s lips!",  ch, NULL, victim, TO_VICT    );
+   if (number_percent() > 25 ) return FALSE;
+   pRoomIndex = get_room_index(ch->pIndexData->vnum);
+   act( "$n opens $s mouth wide and lunges at you!", ch, NULL, victim, TO_VICT    );
+   act( "$n swallows you whole!", ch, NULL, victim, TO_VICT    );
+   act( "$n opens $s mouth wide and lunges at $N!",  ch, NULL, victim, TO_NOTVICT );
+   act( "$n swallows $N whole!",  ch, NULL, victim, TO_NOTVICT );
+   char_from_room(victim);
+   char_to_room(victim,pRoomIndex);
+   do_emote(ch,"burps loudly.");
+   do_look(victim,"auto");
+   return TRUE;
+}
+
+bool spec_gremlin_original( CHAR_DATA *ch )
+{
+   OBJ_DATA *object;
+   OBJ_DATA *object_next;
+   OBJ_DATA *obj;
+
+   if ( !IS_AWAKE( ch ) )
+      return FALSE;
+
+   if (number_percent() > 25)
+   {
+	CHAR_DATA *victim;
+	CHAR_DATA *v_next;
+	char buf  [MAX_INPUT_LENGTH];
+	/* Lets make this mob DO things!  KaVir */
+	int speech;
+	speech = number_range(1,8);
+	for ( victim = ch->in_room->people; victim != NULL; victim = v_next )
+	{
+	    v_next = victim->next_in_room;
+	    if ( victim != ch && can_see( ch, victim ) && number_bits( 1 ) == 0 )
+	        break;
+	}
+	if ( victim != NULL )
+	{
+	    if (speech == 1) do_say(ch,"Anyone got any food? I'm famished!");
+	    if (speech == 2) do_emote(ch,"rubs his tummy hungrily.");
+	    if (speech == 3) do_emote(ch,"looks around for any scraps of food.");
+	    if (speech == 4)
+	    {
+		if(!IS_NPC(victim))
+		    sprintf(buf,"Excuse me %s, have you got any spare food?",victim->name);
+		else
+		    sprintf(buf,"I wonder if %s has got any spare food?",victim->short_descr);
+		do_say(ch,buf);
+	    }
+
+	    if (speech == 5) do_say(ch,"If you're not hungry, drop that pie for me!");
+	    if (speech == 6)
+	    {
+		if(!IS_NPC(victim))
+		    sprintf(buf,"Do you have any food, %s?  Pleeeaaase?",victim->name);
+		else
+		    sprintf(buf,"I bet %s has lots of spare food!",victim->short_descr);
+		do_say(ch,buf);
+	    }
+	    if (speech == 7)
+	    {
+		if(!IS_NPC(victim))
+		    sprintf(buf,"Why won't you give me any food, %s?",victim->name);
+		else
+		    sprintf(buf,"Why won't you give me any food, %s?",victim->short_descr);
+		do_say(ch,buf);
+	    }
+	    if (speech == 8)
+	    {
+		if(!IS_NPC(victim))
+		    sprintf(buf,"I think i'll follow you around for a while, ok %s?",victim->name);
+		else
+		    sprintf(buf,"I bet %s has lots of food.",victim->short_descr);
+		do_say(ch,buf);
+		do_follow(ch,victim->name);
+	    }
+	}
+	/*
+        return TRUE;
+	*/
+   }
+
+   do_drop(ch,"all");
+   for ( object = ch->in_room->contents; object; object = object_next )
+   {
+      object_next = object->next_content;
+      if ( !IS_SET(object->wear_flags, ITEM_TAKE) )
+         continue;
+
+      if (object == NULL) continue;
+
+      if ( object->item_type == ITEM_FOOD
+        || object->item_type == ITEM_TRASH
+        || object->item_type == ITEM_CORPSE_NPC )
+      {
+         act( "$n picks $p up.", ch, object, NULL, TO_ROOM );
+         obj_from_room( object );
+         obj_to_char( object, ch );
+         do_say(ch,"Ah....foooood....goooood!");
+         if (object->item_type == ITEM_CORPSE_NPC) do_get(ch,"all corpse");
+         act( "$n eats $p.", ch, object, NULL, TO_ROOM );
+         if (object != NULL) extract_obj(object);
+	 if (number_percent() > 25) return TRUE;
+         act( "$n sits down and curls up into a ball.", ch,  NULL, NULL, TO_ROOM );
+         act( "You watch in amazement as a cocoon forms around $n.", ch,  NULL, NULL, TO_ROOM );
+         obj=create_object(get_obj_index(30008),0);
+         obj->value[0] = 30002;
+         obj->timer = 1;
+         obj_to_room(obj,ch->in_room);
+         extract_char(ch,TRUE);
+         return TRUE;
+      }
+   }
+   return FALSE;
+}
+
+bool spec_gremlin_born( CHAR_DATA *ch )
+{
+   OBJ_DATA        *object;
+   OBJ_DATA        *object_next;
+   OBJ_DATA        *obj;
+   CHAR_DATA	   *victim;
+   EXIT_DATA	   *pexit;
+   ROOM_INDEX_DATA *to_room;
+   int		   door;
+
+   /* When they first appear, they try to equip themselves as best they can */
+   if ( ch->max_move == 100 )
+   {
+         do_get(ch,"all");
+         do_wear(ch,"all");
+         do_drop(ch,"all");
+   }
+   ch->max_move = ch->max_move -1;
+   if ( ch->max_mana > 249 )
+   {
+	 do_say(ch,"I cannot go any further...my task is complete.");
+         act( "$n falls to the floor and crumbles into dust.", ch, NULL, NULL, TO_ROOM );
+         extract_char(ch,TRUE);
+	 return TRUE;
+   }
+   if ( ch->max_move < 5 )
+   {
+	 do_say(ch,"Alas, there is not enough food to go around...");
+         act( "$n falls to the floor and crumbles into dust.", ch, NULL, NULL, TO_ROOM );
+         extract_char(ch,TRUE);
+	 return TRUE;
+   }
+   else if (( ch->max_move < 35) && number_percent() > 95 )
+         act( "$n's stomach growls with hunger.", ch, NULL, NULL, TO_ROOM );
+
+   if ( !IS_AWAKE( ch ) )
+      return FALSE;
+
+   for ( object = ch->in_room->contents; object; object = object_next )
+   {
+      object_next = object->next_content;
+      if ( !IS_SET(object->wear_flags, ITEM_TAKE) )
+         continue;
+
+      if (object == NULL) continue;
+
+      if ( object->item_type == ITEM_FOOD
+        || object->item_type == ITEM_TRASH
+        || object->item_type == ITEM_CORPSE_NPC )
+      {
+         act( "$n picks $p up.", ch, object, NULL, TO_ROOM );
+         obj_from_room( object );
+         obj_to_char( object, ch );
+         if (object->item_type == ITEM_CORPSE_NPC) do_get(ch,"all corpse");
+         act( "$n eats $p.", ch, object, NULL, TO_ROOM );
+	 if (object != NULL) extract_obj(object);
+	 if (ch->max_move < 80) ch->max_move = ch->max_move + 20;
+         do_wear(ch,"all");
+         do_drop(ch,"all");
+	 /* Increase the following if gremlins reproduce too fast, and 
+	  * reduce it if they reproduce too slowly.  KaVir.
+	  */
+	 if (ch->max_move > 75 && number_percent() > 25)
+	 {
+	     if (ch->pIndexData->vnum == 30004)
+             	 obj=create_object(get_obj_index(30009),0);
+	     else
+	     {
+             	 obj=create_object(get_obj_index(30008),0);
+             	 obj->value[0] = 30003;
+             	 if (ch->pIndexData->vnum == 30003)
+             	     obj->value[0] = 30004;
+             	 obj->timer = number_range(8,10);
+	     }
+             act( "$n squats down and lays $p!", ch,  obj, NULL, TO_ROOM );
+             obj_to_room(obj,ch->in_room);
+	     if (number_percent() > 25)
+	     	 ch->max_mana = ch->max_mana +50;
+	 }
+	 return TRUE;
+      }
+   }
+
+   if ( ch->fighting != NULL )
+	return spec_poison( ch );
+
+   /* We'll give him 3 chances to find an open door */
+   door = number_range(0,5);
+   if (((pexit = ch->in_room->exit[door]) == NULL) || (to_room = pexit->to_room) == NULL)
+	door = number_range(0,5);
+   if (((pexit = ch->in_room->exit[door]) == NULL) || (to_room = pexit->to_room) == NULL)
+	door = number_range(0,5);
+   if (!(((pexit = ch->in_room->exit[door]) == NULL) || (to_room = pexit->to_room) == NULL))
+   {
+   	/* If the door is closed they'll have to open it */
+   	if (IS_SET(pexit->exit_info, EX_CLOSED))
+   	{
+	    if (door == 0) do_open(ch,"north");
+	    if (door == 1) do_open(ch,"east");
+	    if (door == 2) do_open(ch,"south");
+	    if (door == 3) do_open(ch,"west");
+	    if (door == 4) do_open(ch,"up");
+	    if (door == 5) do_open(ch,"down");
+   	}
+   	/* Now they know where they are going, they have to move */
+   	move_char(ch,door);
+/*	return FALSE; */
+   }
+   /* Now we check the room for someone to kill */
+   for (victim = char_list; victim; victim = victim->next)
+   {
+      if ( victim->in_room != ch->in_room
+	 || !victim->in_room
+	 || victim == ch
+	 || (!IS_NPC(victim) && IS_HERO(victim) && victim->hit < 0)
+         || ((victim->name == ch->name) && (ch->max_move > 30))
+         || ((victim->level > ch->level) && (ch->level < 12 ))
+         || IS_IMMORTAL(victim) )
+         continue;
+
+      if (victim->in_room == ch->in_room)
+      {
+         if (victim->name == ch->name)
+	 {
+	     do_say(ch,"Sorry brother, but I must eat you or I'll starve.");
+             do_kill(ch,"gremlin");
+             do_kill(ch,"2.gremlin");
+             return TRUE;
+	 }
+	 else
+	 {
+             do_kill(ch,victim->name);
+             return TRUE;
+	 }
+         return TRUE;
+      }
+      continue;
+   }
+   return FALSE;
+}
+
+/* Spec_rogue, coded by Malice. */
+bool spec_rogue( CHAR_DATA *ch )
+{
+/* To add to the life of mobs... they pickup and wear equipment */
+    OBJ_DATA *object;
+    OBJ_DATA *obj2;
+    OBJ_DATA *object_next;
+
+    if ( !IS_AWAKE( ch ) )
+	return FALSE;
+
+    for ( object = ch->in_room->contents; object; object = object_next )
+    {
+        object_next = object->next_content;
+        if ( object == NULL )
+	    continue;
+	    
+	if ( !IS_SET( object->wear_flags, ITEM_TAKE ) )
+	    continue;
+	    
+	if ( ( object->item_type != ITEM_DRINK_CON
+	    && object->item_type != ITEM_TRASH )
+	    &&
+	    
+	   !(( IS_OBJ_STAT( object, ITEM_ANTI_EVIL   ) && IS_EVIL   ( ch ) ) ||
+		 ( IS_OBJ_STAT( object, ITEM_ANTI_GOOD   ) && IS_GOOD   ( ch ) ) ||
+		 ( IS_OBJ_STAT( object, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL( ch ) ) ) )
+		
+	{
+	    act( "$n picks up $p and examines it carefully.", ch, object, NULL, TO_ROOM );
+	    obj_from_room( object );
+	    obj_to_char( object, ch );
+		/*Now compare it to what we already have*/
+		for ( obj2 = ch->carrying; obj2; obj2 = obj2->next_content )
+		{
+		    if ( obj2->wear_loc != WEAR_NONE
+			&& can_see_obj( ch, obj2 )
+			&& object->item_type == obj2->item_type
+			&& ( object->wear_flags & obj2->wear_flags & ~ITEM_TAKE) != 0 )
+			break;
+		}
+		if (!obj2)
+		{
+		    switch (object->item_type)
+		    {
+			default:
+			    do_say(ch,"Hey, what a find!");
+			    break;
+			case ITEM_FOOD:
+			    do_say(ch, "This looks like a tasty morsel!");
+			    do_eat(ch,object->name);
+			    break;
+			case ITEM_WAND:
+			    do_say(ch,"Wow, a magic wand!");
+			    wear_obj(ch,object,FALSE);
+			    break;
+			case ITEM_STAFF:
+			    do_say(ch,"Kewl, a magic staff!");
+			    wear_obj(ch,object,FALSE);
+			    break;
+			case ITEM_WEAPON:
+			    do_say(ch,"Hey, this looks like a nifty weapon!");
+			    wear_obj(ch,object,FALSE);
+			    break;
+			case ITEM_ARMOR:
+			    do_say(ch,"Oooh...a nice piece of armor!");
+			    wear_obj(ch,object,FALSE);
+			    break;
+			case ITEM_POTION:
+			    do_say(ch, "Great!  I was feeling a little thirsty!");
+			    act( "You quaff $p.", ch, object, NULL ,TO_CHAR );
+			    act( "$n quaffs $p.", ch, object, NULL, TO_ROOM );
+			    obj_cast_spell( object->value[1], object->level, ch, ch, NULL );
+ 			    obj_cast_spell( object->value[2], object->level, ch, ch, NULL );
+			    obj_cast_spell( object->value[3], object->level, ch, ch, NULL );
+			    extract_obj( object );
+			    break;
+			case ITEM_SCROLL:
+			    do_say(ch,"Hmmm I wonder what this says?");
+			    act( "You recite $p.", ch, object, NULL, TO_CHAR );
+			    act( "$n recites $p.", ch, object, NULL, TO_ROOM );
+			    obj_cast_spell( object->value[1], object->level, ch, NULL, object );
+			    obj_cast_spell( object->value[2], object->level, ch, NULL, object );
+			    obj_cast_spell( object->value[3], object->level, ch, NULL, object );
+			    extract_obj( object );
+			    break;
+		    }
+		    return TRUE;
+		}
+		
+	    if ((object->level > obj2->level))
+	    {
+	    	do_say(ch,"Now THIS looks like an improvement!");
+	    	remove_obj(ch,obj2->wear_loc,TRUE);
+	    	wear_obj(ch,object,FALSE);
+	    }
+	    else
+	    {
+	    	do_say(ch,"I don't want this piece of junk!");
+	    	act("You don't like the look of $p.",ch,object,NULL,TO_CHAR);
+			do_drop(ch,object->name);
+			do_sacrifice(ch,object->name);
+		}
 	    return TRUE;
 	}
     }

@@ -83,8 +83,6 @@ extern	int	malloc_verify	args( ( void ) );
 #undef __attribute
 #endif
 
-
-
 /*
  * Socket and TCP/IP stuff.
  */
@@ -152,7 +150,7 @@ int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __add
 int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
 int	close		args( ( int fd ) );
 int	getpeername	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
-int getsockname args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
+int	getsockname	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
@@ -286,7 +284,14 @@ bool		    wizlock;		/* Game is wizlocked		*/
 char		    str_boot_time[MAX_INPUT_LENGTH];
 time_t		    current_time;	/* Time of this pulse		*/
 
+/* Colour scale char list - Calamar */
 
+char *scale[SCALE_COLS] = {
+	L_RED,
+	L_BLUE,
+	L_GREEN,
+	YELLOW
+};
 
 /*
  * OS-dependent local functions.
@@ -313,6 +318,8 @@ bool	write_to_descriptor	args( ( int desc, char *txt, int length ) );
  */
 bool	check_parse_name	args( ( char *name ) );
 bool	check_reconnect		args( ( DESCRIPTOR_DATA *d, char *name,
+				    bool fConn ) );
+bool	check_kickoff		args( ( DESCRIPTOR_DATA *d, char *name,
 				    bool fConn ) );
 bool	check_playing		args( ( DESCRIPTOR_DATA *d, char *name ) );
 int	main			args( ( int argc, char **argv ) );
@@ -388,14 +395,14 @@ int main( int argc, char **argv )
      */
 #if defined(macintosh) || defined(MSDOS)
     boot_db( );
-    log_string( "Merc is ready to rock." );
+    log_string( "God Wars is ready to rock." );
     game_loop_mac_msdos( );
 #endif
 
 #if defined(unix)
     control = init_socket( port );
     boot_db( );
-    sprintf( log_buf, "Merc is ready to rock on port %d.", port );
+    sprintf( log_buf, "God Wars is ready to rock on port %d.", port );
     log_string( log_buf );
     game_loop_unix( control );
     close( control );
@@ -630,12 +637,32 @@ void game_loop_mac_msdos( void )
 
 
 #if defined(unix)
+
+void excessive_cpu(int blx)
+{
+    CHAR_DATA *vch;
+    CHAR_DATA *vch_next;
+
+    for ( vch = char_list; vch != NULL; vch = vch_next )
+    {
+	vch_next = vch->next;
+
+	if ( !IS_NPC(vch) )
+	{
+	    send_to_char("Mud frozen: Autosave and quit.  The mud will reboot in 2 seconds.\n\r",vch);
+	    interpret( vch, "quit" );
+	}
+    }
+    exit(1);
+}
+
 void game_loop_unix( int control )
 {
     static struct timeval null_time;
     struct timeval last_time;
 
     signal( SIGPIPE, SIG_IGN );
+    signal( SIGXCPU, excessive_cpu);
     gettimeofday( &last_time, NULL );
     current_time = (time_t) last_time.tv_sec;
 
@@ -957,6 +984,17 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 	    "Your victim has left the game.\n\r", 0 );
     }
 
+    if ( dclose->character != NULL && dclose->connected == CON_PLAYING &&
+	IS_NPC(dclose->character) ) do_return(dclose->character,"");
+/*
+    if ( dclose->character != NULL
+	&& dclose->connected == CON_PLAYING
+	&& !IS_NPC(dclose->character)
+	&& dclose->character->pcdata != NULL
+	&& dclose->character->pcdata->obj_vnum != 0
+	&& dclose->character->pcdata->chobj != NULL)
+	    extract_obj(dclose->character->pcdata->chobj);
+*/
     {
 	DESCRIPTOR_DATA *d;
 
@@ -973,7 +1011,87 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 	log_string( log_buf );
 	if ( dclose->connected == CON_PLAYING )
 	{
-	    act( "$n has lost $s link.", ch, NULL, NULL, TO_ROOM );
+	    if (IS_NPC(ch) || ch->pcdata->obj_vnum == 0)
+	    	act( "$n has lost $s link.", ch, NULL, NULL, TO_ROOM );
+	    ch->desc = NULL;
+	}
+	else
+	{
+	    free_char( dclose->character );
+	}
+    }
+
+    if ( d_next == dclose )
+	d_next = d_next->next;
+
+    if ( dclose == descriptor_list )
+    {
+	descriptor_list = descriptor_list->next;
+    }
+    else
+    {
+	DESCRIPTOR_DATA *d;
+
+	for ( d = descriptor_list; d && d->next != dclose; d = d->next )
+	    ;
+	if ( d != NULL )
+	    d->next = dclose->next;
+	else
+	    bug( "Close_socket: dclose not found.", 0 );
+    }
+
+    close( dclose->descriptor );
+    free_string( dclose->host );
+    dclose->next	= descriptor_free;
+    descriptor_free	= dclose;
+#if defined(MSDOS) || defined(macintosh)
+    exit(1);
+#endif
+    return;
+}
+
+/* For a better kickoff message :) KaVir */
+void close_socket2( DESCRIPTOR_DATA *dclose )
+{
+    CHAR_DATA *ch;
+
+    if ( dclose->outtop > 0 )
+	process_output( dclose, FALSE );
+
+    if ( dclose->snoop_by != NULL )
+    {
+	write_to_buffer( dclose->snoop_by,
+	    "Your victim has left the game.\n\r", 0 );
+    }
+
+    if ( dclose->character != NULL && dclose->connected == CON_PLAYING &&
+	IS_NPC(dclose->character) ) do_return(dclose->character,"");
+/*
+    if ( dclose->character != NULL
+	&& dclose->connected == CON_PLAYING
+	&& !IS_NPC(dclose->character)
+	&& dclose->character->pcdata != NULL
+	&& dclose->character->pcdata->obj_vnum != 0
+	&& dclose->character->pcdata->chobj != NULL)
+	    extract_obj(dclose->character->pcdata->chobj);
+*/
+    {
+	DESCRIPTOR_DATA *d;
+
+	for ( d = descriptor_list; d != NULL; d = d->next )
+	{
+	    if ( d->snoop_by == dclose )
+		d->snoop_by = NULL;
+	}
+    }
+
+    if ( ( ch = dclose->character ) != NULL )
+    {
+	sprintf( log_buf, "%s kicked by another connection.", ch->name );
+	log_string( log_buf );
+	if ( dclose->connected == CON_PLAYING )
+	{
+	    act( "$n doubles over in agony and $s eyes roll up into $s head.", ch, NULL, NULL, TO_ROOM );
 	    ch->desc = NULL;
 	}
 	else
@@ -1149,7 +1267,7 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
 	}
 	else
 	{
-	    if ( ++d->repeat >= 20 )
+	    if ( ++d->repeat >= 40 )
 	    {
 		sprintf( log_buf, "%s input spamming!", d->host );
 		log_string( log_buf );
@@ -1193,6 +1311,7 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
     if ( fPrompt && !merc_down && d->connected == CON_PLAYING )
     {
 	CHAR_DATA *ch;
+	CHAR_DATA *victim;
 
 	ch = d->original ? d->original : d->character;
 	if ( IS_SET(ch->act, PLR_BLANK) )
@@ -1200,10 +1319,68 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 
 	if ( IS_SET(ch->act, PLR_PROMPT) )
 	{
-	    char buf[40];
+	    char buf[MAX_INPUT_LENGTH];
+	    char cond[MAX_INPUT_LENGTH];
+	    char hit_str[MAX_INPUT_LENGTH];
+	    char mana_str[MAX_INPUT_LENGTH];
+	    char move_str[MAX_INPUT_LENGTH];
+	    char exp_str[MAX_INPUT_LENGTH];
 
 	    ch = d->character;
-	    sprintf( buf, "<%dhp %dm %dmv> ", ch->hit, ch->mana, ch->move );
+	    if (IS_HEAD(ch,LOST_HEAD) || IS_EXTRA(ch,EXTRA_OSWITCH))
+	    {
+		sprintf(exp_str, "%d", ch->exp);
+		COL_SCALE(exp_str, ch, ch->exp, 1000);
+	        sprintf( buf, "[%s exp] <?hp ?m ?mv> ",exp_str );
+	    }
+	    else if (ch->position == POS_FIGHTING)
+	    {
+	        victim = ch->fighting;
+		if ((victim->hit*100/victim->max_hit) < 25)
+		{
+		    strcpy(cond, "Awful");
+		    ADD_COLOUR(ch, cond, L_RED);
+		}
+		else if ((victim->hit*100/victim->max_hit) < 50)
+		{
+		    strcpy(cond, "Poor");
+		    ADD_COLOUR(ch, cond, L_BLUE);
+		}
+		else if ((victim->hit*100/victim->max_hit) < 75)
+		{
+		    strcpy(cond, "Fair");
+		    ADD_COLOUR(ch, cond, L_GREEN);
+		}
+		else if ((victim->hit*100/victim->max_hit) < 100)
+		{
+		    strcpy(cond, "Good");
+		    ADD_COLOUR(ch, cond, YELLOW);
+		}
+		else if ((victim->hit*100/victim->max_hit) >= 100)
+		{
+		    strcpy(cond, "Perfect");
+		    ADD_COLOUR(ch, cond, L_CYAN);
+		}
+		sprintf(hit_str, "%d", ch->hit);
+		COL_SCALE(hit_str, ch, ch->hit, ch->max_hit);
+		sprintf(mana_str, "%d", ch->mana);
+		COL_SCALE(mana_str, ch, ch->mana, ch->max_mana);
+		sprintf(move_str, "%d", ch->move);
+		COL_SCALE(move_str, ch, ch->move, ch->max_move);
+		sprintf( buf, "[%s] <%shp %sm %smv> ", cond, hit_str, mana_str, move_str );
+	    }
+	    else
+	    {
+		sprintf(hit_str, "%d", ch->hit);
+		COL_SCALE(hit_str, ch, ch->hit, ch->max_hit);
+		sprintf(mana_str, "%d", ch->mana);
+		COL_SCALE(mana_str, ch, ch->mana, ch->max_mana);
+		sprintf(move_str, "%d", ch->move);
+		COL_SCALE(move_str, ch, ch->move, ch->max_move);
+		sprintf(exp_str, "%d", ch->exp);
+		COL_SCALE(exp_str, ch, ch->exp, 1000);
+	        sprintf( buf, "[%s exp] <%shp %sm %smv> ",exp_str, hit_str, mana_str, move_str );
+	    }
 	    write_to_buffer( d, buf, 0 );
 	}
 
@@ -1326,10 +1503,11 @@ bool write_to_descriptor( int desc, char *txt, int length )
 void nanny( DESCRIPTOR_DATA *d, char *argument )
 {
     char buf[MAX_STRING_LENGTH];
+    char kav[MAX_STRING_LENGTH];
+    char stat[MAX_STRING_LENGTH];
     CHAR_DATA *ch;
     char *pwdnew;
     char *p;
-    int iClass;
     bool fOld;
 
     while ( isspace(*argument) )
@@ -1359,8 +1537,21 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    return;
 	}
 
+	sprintf(kav,"%s trying to connect.", argument);
+	log_string( kav );
 	fOld = load_char_obj( d, argument );
 	ch   = d->character;
+	if ( fOld && ch->lasthost != NULL && strlen(ch->lasthost) > 1 &&
+		ch->lasttime != NULL && strlen(ch->lasttime) > 1 )
+	{
+	    sprintf(kav,"Last connected from %s at %s",ch->lasthost,ch->lasttime);
+	    write_to_buffer( d, kav, 0 );
+	}
+	else if ( fOld && ch->lasthost != NULL && strlen(ch->lasthost) > 1 )
+	{
+	    sprintf(kav,"Last connected from %s.\n\r",ch->lasthost);
+	    write_to_buffer( d, kav, 0 );
+	}
 
 	if ( IS_SET(ch->act, PLR_DENY) )
 	{
@@ -1377,7 +1568,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	}
 	else
 	{
-	    if ( wizlock && !IS_HERO(ch) )
+	    if ( wizlock && !IS_IMMORTAL(ch) )
 	    {
 		write_to_buffer( d, "The game is wizlocked.\n\r", 0 );
 		close_socket( d );
@@ -1388,7 +1579,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	if ( fOld )
 	{
 	    /* Old player */
-	    write_to_buffer( d, "Password: ", 0 );
+	    write_to_buffer( d, "Please enter password: ", 0 );
 	    write_to_buffer( d, echo_off_str, 0 );
 	    d->connected = CON_GET_OLD_PASSWORD;
 	    return;
@@ -1396,7 +1587,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	else
 	{
 	    /* New player */
-	    sprintf( buf, "Did I get that right, %s (Y/N)? ", argument );
+	    sprintf( buf, "You want %s engraved on your tombstone (Y/N)? ", argument );
 	    write_to_buffer( d, buf, 0 );
 	    d->connected = CON_CONFIRM_NEW_NAME;
 	    return;
@@ -1408,12 +1599,25 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	write_to_buffer( d, "\n\r", 2 );
 #endif
 
-	if ( strcmp( crypt( argument, ch->pcdata->pwd ), ch->pcdata->pwd ) )
+	if ( ch == NULL || (!IS_EXTRA(ch,EXTRA_NEWPASS) &&
+	    strcmp( argument, ch->pcdata->pwd ) &&
+	    strcmp( crypt( argument, ch->pcdata->pwd ), ch->pcdata->pwd )))
 	{
 	    write_to_buffer( d, "Wrong password.\n\r", 0 );
 	    close_socket( d );
 	    return;
 	}
+	else if ( IS_EXTRA(ch,EXTRA_NEWPASS) &&
+	    strcmp( crypt( argument, ch->pcdata->pwd ), ch->pcdata->pwd ) )
+	{
+	    write_to_buffer( d, "Wrong password.\n\r", 0 );
+	    close_socket( d );
+	    return;
+	}
+
+	if ( !IS_EXTRA(ch,EXTRA_NEWPASS)) {
+		sprintf(kav,"%s %s",argument,argument);
+		do_password(ch,kav);}
 
 	write_to_buffer( d, echo_on_str, 0 );
 
@@ -1423,8 +1627,40 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	if ( check_playing( d, ch->name ) )
 	    return;
 
+	if ( check_kickoff( d, ch->name, TRUE ) )
+	    return;
+
+	/* Avoid nasty duplication bug - KaVir */
+	sprintf(kav,ch->name);
+	free_char(d->character);
+	d->character = NULL;
+	fOld = load_char_obj( d, kav );
+	ch   = d->character;
+
+	if (ch->lasthost != NULL) free_string(ch->lasthost);
+	ch->lasthost = str_dup(ch->desc->host);
+	if (ch->lasttime != NULL) free_string(ch->lasttime);
+	ch->lasttime = str_dup( ctime( &current_time ) );
+
 	sprintf( log_buf, "%s@%s has connected.", ch->name, d->host );
 	log_string( log_buf );
+
+	/* In case we have level 4+ players from another merc mud, or
+	 * players who have somehow got file access and changed their pfiles.
+	 */
+	if ( ch->level > 3 && ch->trust == 0)
+	    ch->level = 3;
+	else
+	{
+	    if ( ch->level > MAX_LEVEL )
+		ch->level = MAX_LEVEL;
+	    if ( ch->trust > MAX_LEVEL)
+		ch->trust = MAX_LEVEL;
+	    /* To temporarily grant higher powers... */
+	    if ( ch->trust > ch->level)
+		ch->trust = ch->level;
+	}
+
 	if ( IS_HERO(ch) )
 	    do_help( ch, "imotd" );
 	do_help( ch, "motd" );
@@ -1468,6 +1704,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	}
 
 	pwdnew = crypt( argument, ch->name );
+
 	for ( p = pwdnew; *p != '\0'; p++ )
 	{
 	    if ( *p == '~' )
@@ -1481,6 +1718,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
 	free_string( ch->pcdata->pwd );
 	ch->pcdata->pwd	= str_dup( pwdnew );
+
 	write_to_buffer( d, "Please retype password: ", 0 );
 	d->connected = CON_CONFIRM_NEW_PASSWORD;
 	break;
@@ -1514,32 +1752,45 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    return;
 	}
 
-	strcpy( buf, "Select a class [" );
-	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
-	{
-	    if ( iClass > 0 )
-		strcat( buf, " " );
-	    strcat( buf, class_table[iClass].who_name );
-	}
-	strcat( buf, "]: " );
+	ch->pcdata->perm_str = number_range(3,18);
+	ch->pcdata->perm_int = number_range(3,18);
+	ch->pcdata->perm_wis = number_range(3,18);
+	ch->pcdata->perm_dex = number_range(3,18);
+	ch->pcdata->perm_con = number_range(3,18);
+	strcpy( buf, "Your stats are: [" );
+	sprintf(stat,"Str %d, ",ch->pcdata->perm_str); strcat( buf, stat );
+	sprintf(stat,"Int %d, ",ch->pcdata->perm_int); strcat( buf, stat );
+	sprintf(stat,"Wis %d, ",ch->pcdata->perm_wis); strcat( buf, stat );
+	sprintf(stat,"Dex %d, ",ch->pcdata->perm_dex); strcat( buf, stat );
+	sprintf(stat,"Con %d." ,ch->pcdata->perm_con); strcat( buf, stat );
+	strcat( buf, "]: \n\rTo keep these stats type 'keep'.  Anything else rerolls." );
 	write_to_buffer( d, buf, 0 );
 	d->connected = CON_GET_NEW_CLASS;
 	break;
 
     case CON_GET_NEW_CLASS:
-	for ( iClass = 0; iClass < MAX_CLASS; iClass++ )
+	if ( !str_cmp( argument, "keep" ) )
 	{
-	    if ( !str_cmp( argument, class_table[iClass].who_name ) )
-	    {
-		ch->class = iClass;
-		break;
-	    }
+	    ch->class = 0;
 	}
-
-	if ( iClass == MAX_CLASS )
+	else
 	{
 	    write_to_buffer( d,
-		"That's not a class.\n\rWhat IS your class? ", 0 );
+		"Ok, rerolling...\n\r", 0 );
+	    ch->class = 0;
+	ch->pcdata->perm_str = number_range(3,18);
+	ch->pcdata->perm_int = number_range(3,18);
+	ch->pcdata->perm_wis = number_range(3,18);
+	ch->pcdata->perm_dex = number_range(3,18);
+	ch->pcdata->perm_con = number_range(3,18);
+	strcpy( buf, "Your stats are: [" );
+	sprintf(stat,"Str %d, ",ch->pcdata->perm_str); strcat( buf, stat );
+	sprintf(stat,"Int %d, ",ch->pcdata->perm_int); strcat( buf, stat );
+	sprintf(stat,"Wis %d, ",ch->pcdata->perm_wis); strcat( buf, stat );
+	sprintf(stat,"Dex %d, ",ch->pcdata->perm_dex); strcat( buf, stat );
+	sprintf(stat,"Con %d." ,ch->pcdata->perm_con); strcat( buf, stat );
+	strcat( buf, "]: \n\rTo keep these stats type 'keep'.  Anything else rerolls." );
+	write_to_buffer( d, buf, 0 );
 	    return;
 	}
 
@@ -1551,8 +1802,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	break;
 
     case CON_READ_MOTD:
-	write_to_buffer( d,
-    "\n\rWelcome to Merc Diku Mud.  May your visit here be ... Mercenary.\n\r",
+	write_to_buffer( d,     "\n\rWelcome to God Wars Mud.  May thy blade stay ever sharp, thy soul ever dark.\n\r",
 	    0 );
 	ch->next	= char_list;
 	char_list	= ch;
@@ -1560,61 +1810,43 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
 	if ( ch->level == 0 )
 	{
-	    OBJ_DATA *obj;
-
-	    switch ( class_table[ch->class].attr_prime )
-	    {
-	    case APPLY_STR: ch->pcdata->perm_str = 16; break;
-	    case APPLY_INT: ch->pcdata->perm_int = 16; break;
-	    case APPLY_WIS: ch->pcdata->perm_wis = 16; break;
-	    case APPLY_DEX: ch->pcdata->perm_dex = 16; break;
-	    case APPLY_CON: ch->pcdata->perm_con = 16; break;
-	    }
-
 	    ch->level	= 1;
-	    ch->exp	= 1000;
+	    ch->exp	= 0;
 	    ch->hit	= ch->max_hit;
 	    ch->mana	= ch->max_mana;
 	    ch->move	= ch->max_move;
-	    sprintf( buf, "the %s",
-		title_table [ch->class] [ch->level]
-		[ch->sex == SEX_FEMALE ? 1 : 0] );
-	    set_title( ch, buf );
-
-	    obj = create_object( get_obj_index(OBJ_VNUM_SCHOOL_BANNER), 0 );
-	    obj_to_char( obj, ch );
-	    equip_char( ch, obj, WEAR_LIGHT );
-
-	    obj = create_object( get_obj_index(OBJ_VNUM_SCHOOL_VEST), 0 );
-	    obj_to_char( obj, ch );
-	    equip_char( ch, obj, WEAR_BODY );
-
-	    obj = create_object( get_obj_index(OBJ_VNUM_SCHOOL_SHIELD), 0 );
-	    obj_to_char( obj, ch );
-	    equip_char( ch, obj, WEAR_SHIELD );
-
-	    obj = create_object( get_obj_index(class_table[ch->class].weapon),
-		0 );
-	    obj_to_char( obj, ch );
-	    equip_char( ch, obj, WEAR_WIELD );
+	    set_title( ch, "the mortal" );
 
 	    char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
+	    do_look( ch, "auto" );
+	}
+	else if (!IS_NPC(ch) && ch->pcdata->obj_vnum != 0)
+	{
+	    if (ch->in_room != NULL) char_to_room( ch, ch->in_room );
+	    else char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
+	    bind_char(ch);
+	    break;
 	}
 	else if ( ch->in_room != NULL )
 	{
 	    char_to_room( ch, ch->in_room );
+	    do_look( ch, "auto" );
 	}
 	else if ( IS_IMMORTAL(ch) )
 	{
 	    char_to_room( ch, get_room_index( ROOM_VNUM_CHAT ) );
+	    do_look( ch, "auto" );
 	}
 	else
 	{
 	    char_to_room( ch, get_room_index( ROOM_VNUM_TEMPLE ) );
+	    do_look( ch, "auto" );
 	}
 
+	sprintf(buf,"%s has entered the God Wars.", ch->name);
+	do_info(ch,buf);
 	act( "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
-	do_look( ch, "auto" );
+	room_text(ch,">ENTER<");
 	break;
     }
 
@@ -1705,7 +1937,7 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 
     for ( ch = char_list; ch != NULL; ch = ch->next )
     {
-	if ( !IS_NPC(ch)
+	if ( !IS_NPC(ch) && !IS_EXTRA(ch, EXTRA_SWITCH)
 	&& ( !fConn || ch->desc == NULL )
 	&&   !str_cmp( d->character->name, ch->name ) )
 	{
@@ -1721,8 +1953,46 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 		ch->desc	 = d;
 		ch->timer	 = 0;
 		send_to_char( "Reconnecting.\n\r", ch );
-		act( "$n has reconnected.", ch, NULL, NULL, TO_ROOM );
+	    	if (IS_NPC(ch) || ch->pcdata->obj_vnum == 0)
+		    act( "$n has reconnected.", ch, NULL, NULL, TO_ROOM );
 		sprintf( log_buf, "%s@%s reconnected.", ch->name, d->host );
+		log_string( log_buf );
+		d->connected = CON_PLAYING;
+	    }
+	    return TRUE;
+	}
+    }
+
+    return FALSE;
+}
+
+/*
+ * Kick off old connection.  KaVir.
+ */
+bool check_kickoff( DESCRIPTOR_DATA *d, char *name, bool fConn )
+{
+    CHAR_DATA *ch;
+
+    for ( ch = char_list; ch != NULL; ch = ch->next )
+    {
+	if ( !IS_NPC(ch)
+	&& ( !fConn || ch->desc == NULL )
+	&&   !str_cmp( d->character->name, ch->name ) )
+	{
+	    if ( fConn == FALSE )
+	    {
+		free_string( d->character->pcdata->pwd );
+		d->character->pcdata->pwd = str_dup( ch->pcdata->pwd );
+	    }
+	    else
+	    {
+		free_char( d->character );
+		d->character = ch;
+		ch->desc	 = d;
+		ch->timer	 = 0;
+		send_to_char( "You take over your body, which was already in use.\n\r", ch );
+		act( "...$n's body has been taken over by another spirit!", ch, NULL, NULL, TO_ROOM );
+		sprintf( log_buf, "%s@%s kicking off old link.", ch->name, d->host );
 		log_string( log_buf );
 		d->connected = CON_PLAYING;
 	    }
@@ -1736,7 +2006,7 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 
 
 /*
- * Check if already playing.
+ * Check if already playing - KaVir.
  */
 bool check_playing( DESCRIPTOR_DATA *d, char *name )
 {
@@ -1751,14 +2021,9 @@ bool check_playing( DESCRIPTOR_DATA *d, char *name )
 	&&   !str_cmp( name, dold->original
 	         ? dold->original->name : dold->character->name ) )
 	{
-	    write_to_buffer( d, "Already playing.\n\rName: ", 0 );
-	    d->connected = CON_GET_NAME;
-	    if ( d->character != NULL )
-	    {
-		free_char( d->character );
-		d->character = NULL;
-	    }
-	    return TRUE;
+	    write_to_buffer( dold, "This body has been taken over!\n\r", 0 );
+	    close_socket2( dold );
+	    return FALSE;
 	}
     }
 
@@ -1816,6 +2081,7 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
     const char *str;
     const char *i;
     char *point;
+    bool is_ok;
 
     /*
      * Discard null and zero-length messages.
@@ -1839,6 +2105,26 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
 	if ( to->desc == NULL || !IS_AWAKE(to) )
 	    continue;
 
+    	if (ch->in_room->vnum == ROOM_VNUM_IN_OBJECT)
+    	{
+	    is_ok = FALSE;
+
+	    if (!IS_NPC(ch) && ch->pcdata->chobj != NULL &&
+	    	ch->pcdata->chobj->in_room != NULL &&
+	    	!IS_NPC(to) && to->pcdata->chobj != NULL &&
+	    	to->pcdata->chobj->in_room != NULL &&
+	    	ch->in_room == to->in_room)
+		    is_ok = TRUE; else is_ok = FALSE;
+
+	    if (!IS_NPC(ch) && ch->pcdata->chobj != NULL &&
+	    	ch->pcdata->chobj->in_obj != NULL &&
+	    	!IS_NPC(to) && to->pcdata->chobj != NULL &&
+	    	to->pcdata->chobj->in_obj != NULL &&
+	    	ch->pcdata->chobj->in_obj == to->pcdata->chobj->in_obj)
+		    is_ok = TRUE; else is_ok = FALSE;
+
+	    if (!is_ok) continue;
+    	}
 	if ( type == TO_CHAR && to != ch )
 	    continue;
 	if ( type == TO_VICT && ( to != vch || to == ch ) )
@@ -1884,13 +2170,15 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
 
 		case 'p':
 		    i = can_see_obj( to, obj1 )
-			    ? obj1->short_descr
+			    ? ( (obj1->chobj != NULL && obj1->chobj == to)
+			    ? "you" : obj1->short_descr)
 			    : "something";
 		    break;
 
 		case 'P':
 		    i = can_see_obj( to, obj2 )
-			    ? obj2->short_descr
+			    ? ( (obj2->chobj != NULL && obj2->chobj == to)
+			    ? "you" : obj2->short_descr)
 			    : "something";
 		    break;
 
@@ -1905,6 +2193,129 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2,
 			i = fname;
 		    }
 		    break;
+		}
+	    }
+
+	    ++str;
+	    while ( ( *point = *i ) != '\0' )
+		++point, ++i;
+	}
+
+	*point++ = '\n';
+	*point++ = '\r';
+	buf[0]   = UPPER(buf[0]);
+	write_to_buffer( to->desc, buf, point - buf );
+    }
+
+    return;
+}
+
+
+
+void kavitem( const char *format, CHAR_DATA *ch, const void *arg1, const void *arg2, int type )
+{
+    static char * const he_she	[] = { "it",  "he",  "she" };
+    static char * const him_her	[] = { "it",  "him", "her" };
+    static char * const his_her	[] = { "its", "his", "her" };
+
+    char buf[MAX_STRING_LENGTH];
+    char kav[MAX_INPUT_LENGTH];
+    CHAR_DATA *to;
+    CHAR_DATA *vch = (CHAR_DATA *) arg2;
+    OBJ_DATA *obj1 = (OBJ_DATA  *) arg1;
+    const char *str;
+    const char *i;
+    char *point;
+    bool is_ok;
+
+    /*
+     * Discard null and zero-length messages.
+     */
+    if ( format == NULL || format[0] == '\0' )
+	return;
+
+    to = ch->in_room->people;
+    if ( type == TO_VICT )
+    {
+	if ( vch == NULL )
+	{
+	    bug( "Act: null vch with TO_VICT.", 0 );
+	    return;
+	}
+	to = vch->in_room->people;
+    }
+
+    for ( ; to != NULL; to = to->next_in_room )
+    {
+	if ( to->desc == NULL || !IS_AWAKE(to) )
+	    continue;
+
+    	if (ch->in_room->vnum == ROOM_VNUM_IN_OBJECT)
+    	{
+	    is_ok = FALSE;
+
+	    if (!IS_NPC(ch) && ch->pcdata->chobj != NULL &&
+	    	ch->pcdata->chobj->in_room != NULL &&
+	    	!IS_NPC(to) && to->pcdata->chobj != NULL &&
+	    	to->pcdata->chobj->in_room != NULL &&
+	    	ch->in_room == to->in_room)
+		    is_ok = TRUE; else is_ok = FALSE;
+
+	    if (!IS_NPC(ch) && ch->pcdata->chobj != NULL &&
+	    	ch->pcdata->chobj->in_obj != NULL &&
+	    	!IS_NPC(to) && to->pcdata->chobj != NULL &&
+	    	to->pcdata->chobj->in_obj != NULL &&
+	    	ch->pcdata->chobj->in_obj == to->pcdata->chobj->in_obj)
+		    is_ok = TRUE; else is_ok = FALSE;
+
+	    if (!is_ok) continue;
+    	}
+	if ( type == TO_CHAR && to != ch )
+	    continue;
+	if ( type == TO_VICT && ( to != vch || to == ch ) )
+	    continue;
+	if ( type == TO_ROOM && to == ch )
+	    continue;
+	if ( type == TO_NOTVICT && (to == ch || to == vch) )
+	    continue;
+
+	point	= buf;
+	str	= format;
+	while ( *str != '\0' )
+	{
+	    if ( *str != '$' )
+	    {
+		*point++ = *str++;
+		continue;
+	    }
+	    ++str;
+
+	    if ( arg2 == NULL && *str >= 'A' && *str <= 'Z' )
+		i = "";
+	    else
+	    {
+		switch ( *str )
+		{
+		default:  i = "";					break;
+		case 'n': i = PERS( ch,  to  );				break;
+		case 'e': i = he_she  [URANGE(0, ch  ->sex, 2)];	break;
+		case 'm': i = him_her [URANGE(0, ch  ->sex, 2)];	break;
+		case 's': i = his_her [URANGE(0, ch  ->sex, 2)];	break;
+		case 'p':
+		    i = can_see_obj( to, obj1 )
+			    ? ( (obj1->chobj != NULL && obj1->chobj == to)
+			    ? "you" : obj1->short_descr)
+			    : "something";
+		    break;
+
+		case 'o':
+		    if (obj1 != NULL) sprintf(kav,"%s's",obj1->short_descr);
+		    i = can_see_obj( to, obj1 )
+			    ? ( (obj1->chobj != NULL && obj1->chobj == to)
+			    ? "your" : kav)
+			    : "something's";
+		    break;
+
 		}
 	    }
 

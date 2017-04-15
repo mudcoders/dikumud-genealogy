@@ -55,87 +55,207 @@ Share and enjoy.
 
 
 
+-1 GODWARS~
+God Wars was created by Richard Woolcock, aka KaVir.
+Thanks also go to the following people (in order of help given):
+
+...Zarkas, for teaching me how to mud properly.
+...Malice, for getting me into the implementor and coder side of things.
+...ShadoWeaver, for providing me with my first (and free) site.
+...Rotain, for helping with the code - and the debugging.
+...Calamar, for adding some nifty code that I still don't understand.
+...Stephen from ACK mud, for coding advise and suggestions.
+...Monochrome BBS, for supplying me with a decent free site.
+...Lucifur, for providing a USA mirror site for the USA players.
+...Shaddai, for a mirror site, code snippets and bug reports.
+...Arioch, for comments, suggestions, and help running the mud.
+...Tepic, for writing the web pages, and helping run the mud.
+...Pandora, for trying to bring some semblance of order to the mud.
+...All the players, for finally showing me why God Wars doesn't work.
+
+Note: This mud is based upon the October 1995 version of the code.
+See also: GODWARS-HISTORY, GODWARS-INFO, GODWARS-TREE
+~
+
+
+
+-1 GODWARS-HISTORY~
+Around the end of 1994, I - Richard Woolcock (aka KaVir) - was helping 
+Ben Walding (aka Malice) write a mud called Eternal Conflict.  I supplied
+suggestions, whilst he did almost all of the coding.  In order to help 
+out with the code, I decided to download a copy of Merc 2.1 and 'have a 
+play' with it.  I taught myself how to code in C, but as a side affect I 
+created another mud - God Wars.  The mud was very primitive, but was also 
+quite fun to play on, so I spoke with a friend of mine and managed to get 
+a temporary site - just to show him what I had written.  The mud proved 
+popular, and was offered a permanent site elsewhere.  After about 6 months 
+work, one of the players (who called himself Joker) requested a copy of 
+the mud to help with his University project.  In return for his word that 
+the mud would be for personal use only, I agreed.  He broke his word, and 
+ran the mud as Vampire Wars, making practically no further changes to the 
+code.  A few months later, I began to jointly run a second version of God 
+Wars in the USA, because of the severe lag the American players suffered 
+from whilst playing on the UK based mud.  This mud began developing on its 
+own, until eventually the site owner and his coder fell out, and another
+version of God Wars was created.  In 1997 another copy of Godwars was stolen 
+and given out freely over the net.  Since then I began developing the mud in
+a very different direction - stopping only briefly to create God Wars Deluxe,
+which unfortunately was also stolen and eventually leaked out.
+~
+
+
+
+-1 GODWARS-INFO~
+Apart from a couple of bug fixes, this version of God Wars was last modified 
+in October 1995.  It is the version that ran on the US mirror site, and is
+pretty much the same code used by Vampire Wars.  Look out for other muds in
+the series!  God Wars (1996 version of this), Dark City (my evolved God Wars 
+derivative), God Wars Deluxe (a cut-down, smoothed out version of Dark City) 
+and Last City - my current mud, which (at the moment of writing this) is not 
+QUITE ready to play, but is getting close.  There are also a number of other
+God Wars derivatives which were not written by me - for example Sage's "Lords
+of War" and Aronacus' "Planes of Hades", to name but two.
+
+There may well be other derivatives that I don't know about yet.  Most of
+the current ones come from the Leaked God Wars, although I suspect there
+will soon be some based on the God Wars Deluxe.  Unfortunately the original
+1996 copy of the code was lost (I didn't keep copies of the mud in it's
+different stages - I just kept working on it until one day I decided it
+needed a new name and called it Dark City).  Last City got another rename
+because a movie came out called Dark City and I didn't want people getting
+confused about the theme.
+
+For more information, check out the GODWARS-TREE help file.
+~
+
+
+
+-1 GODWARS-TREE~
+This is the official God Wars family tree.
+
+                                                 God Wars (1995)*
+                                                        |
+                                             -----------------------
+                                             |                     |
+                                      God Wars (1996)*        Vampire Wars
+                                             |
+                             ---------------------------------
+                             |                               |
+                 Dark City (pre-wilderness)*          Leaked God Wars
+                             |                               |
+               -----------------------------           -------------
+               |                           |           |           |
+   Dark City (post-wilderness)*    God Wars Deluxe*   LoW        others
+               |                                       |
+           Last City*                            -------------
+                                                 |           |
+                                                PoH        others
+
+* Indicates the version was written by KaVir.
+
+For more information, check out the GODWARS-INFO help file.
+~
+
+
+
 -1 WIZLIST~
-This entry contains the administrators of this Mud.
+----------------------------------------------------------------------
+                             God Wars MUD
+----------------------------------------------------------------------
+                 --==> I M P L E M E N T O R S <==--
+
+                 --===> H I G H   J U D G E S <===--
+
+                 -----=====> J U D G E S <=====-----
+
+                 ---====> E N F O R C E R S <====---
+
+                 --==> Q U E S T   M A K E R S <==--
+
+                 ----====> B U I L D E R S <====----
+
+----------------------------------------------------------------------
 ~
 
 
 
 -1 GREETING~
 .
-                    M          E          R          C
+    ------------------------------------------------------------------
+                            -= God Wars MUD =-
+    ------------------------------------------------------------------
+        Diku Mud was created by Hans Henrik St{rfeldt, Katja Nyboe,
+            Tom Madsen, Michael Seifert, and Sebastian Hammer.
+    ------------------------------------------------------------------
+             01 Aug 1993    Merc 2.1    Furey, Hatchet, Kahn.
+    ------------------------------------------------------------------
+                      God Wars was created by KaVir.
+    ------------------------------------------------------------------
 
-    Diku Mud was created by Hans Henrik St{rfeldt, Katja Nyboe,
-      Tom Madsen, Michael Seifert, and Sebastian Hammer.
-
-                    D          I          K          U
-
-    Thanks to all the people who have released their Mud code, worlds,
-      ideas, and bug fixes.  'If I have seen far it is because I have
-      stood on the shoulders of giants.'  -- Isaac Newton
-
-                               M          U          D
-
-    01 Aug 1993    Merc 2.1    Furey, Hatchet, Kahn
-
-By what name do you wish to be known? ~
+What name do you want engraved on your tombstone? ~
 
 
 
 -1 MOTD~
-* We frown upon player killing and stealing.  If you wish to pk and steal
-  there are other muds for you.
+* This is a player killing and stealing mud.
+* Type 'help' for help.  To see the changes type 'help changes'.
 
-* Type 'help' for help.  Also check 'help news'.
-
-* Mud School!  New players (or old players with new characters) start in Mud
-  School for introduction to Mud and basic equipment.  Be sure to train your
-  WIS (more practices) and CON (more hp's).
-
-* For your own safety: don't sleep or fight in the middle of town.
+* PLEASE READ THE NEWS!
+* ^^^^^^^^^^^^^^^^^^^^^
 
 Press RETURN to continue: ~
 
 
 
-36 IMOTD~
-* Hello, immortal!  This is the immortal motd.
-
+4 IMOTD~
+* Quest point values have changed.  Please check the new costs.
 ~
 
 
 -1 NEWS~
-We have more channels and better control over them.
+To see the changes, type 'help changes'.
 
-Numerous small things were changed, fixed, improved.
+Scavengers and mutants have temporarily been removed because:
+(1) There are not enough players for it to work properly,
+(2) The majority of players seem to want to be renegades anyway, and
+(3) The code required is going to take longer than I thought, and I don't 
+like leaving something half finished.
 
+They will be added later when the other mud stuff is fixed and we have a 
+few more players...unless everybody really doesn't want them.
+
+QUEST POINTS!
+Quest point values have changed drastically.  Most things now cost 10 
+times as much, with renames and a couple of other things being the 
+exceptions.  To find out the new costs, type: quest
+
+EXP! EXP! EXP!
+You now get much more exp per kill, depending on your opponents difficulty.
+Training costs have also changed.
+~
+
+
+
+3 RULES~
+The Ten Commandments:
+1)  Kill and decapitate other immortals, or else:
+2)  Other immortals will kill and decapitate you.
+3)  Forgiveness may be divine, but vengeance is much more fun.
+4)  Don't whine or complain, or someone will kill you.
+5)  If someone whines or complains, you should kill them.
+6)  If someone DOESN'T whine or complain, kill them anyway.
+7)  Might makes right; A corpse will never betray you.
+8)  Friends are useful.  So are the exp you get for decapitating them.
+9)  Rules and alliences are there to be broken; never trust anyone.
+10) Stop reading the stupid rules and let the slaughter commence!
 ~
 
 
 
 -1 STORY~
-One hundred and fifty years ago ...
-
-Nomads from the Great Eastern desert brought spices and slaves to the Thalos
-Market.  Dwarven miners, rough and rude, sold precious stones and drank the
-town dry of firebreathers.  Stone golems, created by mages from the Tower of
-High Sorcery, stood sentry duty in the watch towers.
-
-It was dawn on the Day of Thunder.  The Mayor of Midgaard (great-grand-father
-of today's Mayor) arrived early to pay tribute at City Hall.  He entered the
-Grand Gate unchallenged.  He found the streets and markets empty.  Seeing a
-nearby lamia, he asked her about the residents.  Where were all the people?
-
-The lamia didn't act like a lamia.  Instead of answering him in the helpful but
-stupid lamia manner, she stabbed the Mayor with a long, slim dagger.  Other
-lamias, hearing the tumult, arrived and attacked.  The Mayor was killed.
-
-Now Thalos is abandoned.  Wild lamias roam the streets, killing intruders and
-sacrificing their bodies at the Temple of Thalos.  The golems no longer respond
-to command and now watch eternally from their ruined towers.
-
-Midgaard is next.
-
+It is a time of great magic.  Powerful immortals battle across the world
+for domination, slaying and pillaging at will.  Only the greatest can 
+survive...are you one of them?
 ~
 
 
@@ -152,7 +272,7 @@ wear wield hold                   report score time weather where who
 recite quaff zap brandish         channels config description password title
 lock unlock open close pick       auction chat music question answer shout yell
 inventory equipment look compare  emote pose say tell
-eat drink fill                    bug idea typo
+eat drink fill empty              bug idea typo
 list buy sell value               note
 
 COMBAT                            OTHER
@@ -167,22 +287,82 @@ Also help on: CHANGES DAMAGE DEATH EXPERIENCE NEWS STORY TICK WIZLIST
 
 
 0 CHANGES~
-This entry contains recent changes made to this mud.
 
+* Improved combat system includes critical hits and death moves.
+* Levels and classes removed.
+* PK avatars that can only die by decapitation and complete destruction 
+  of their head and brain.
+* Improved 'consider' command now gives much more information.
+* New training system uses exp to improve stats, skills, hp, mana, move, 
+  primal, become avatar, and gain immunities/resistances.
+* KILLER and THIEF flags removed, and player corpse looting allowed.
+* Spell casting weapons and spell affect armour coded.
+* Godless option, for player who dislike interferring gods.
+* Vampires coded.  Type 'help vampire' for more details.
+* Spell/weapon proficiencies that increase with use.
+* Left/Right hand locations rather than wield/shield/light/held.
+* Object manipulation commands for wear/remove/activate/etc.
+* Mounts and missile weapons added.
+* ANSI colour added.  Type 'ansi' to switch it on.
+* Special hard-coded quest point system for Quest Makers and players.
+* Oswitch and oreturn, allowing imms to switch into objects and back.
+* 26 extra skills/spells, new item types, extra mob specs, and the rest 
+  of the usual stuff people generally add to their muds.
 ~
 
 
 
 0 DAMAGE~
-When one character attacks another, the severity of the damage is shown in the
-verb used in the damage message.  Here are all the damage verbs listed from
-least damage to most damage:
+When someone attacks someone else, a damage message is displayed to give 
+you an idea of how much damage you have caused.  The following messages 
+represent the following amounts of damage.
 
-    miss        wound           MUTILATE        DEMOLISH
-    scratch     maul            DISEMBOWEL      ANNIHILATE
-    graze       decimate        EVISCERATE
-    hit         devastate       MASSACRE
-    injure      maim
+If you missed, then you did 0 points of damage.
+If you lightly hit, then you did 1 to 4 points of damage.   
+If you hit, then you did 5 to 10 points of damage.
+If you hit hard, then you did 11 to 20 points of damage.
+If you hit very hard, then you did 32 to 40 points of damage.
+If you hit extremely hard, then you did 41 to 99 points of damage.
+If you hit incredably hard, then you did 100 or more points of damage.
+
+You final blow will be a death move, depending on your weapon type.
+~
+
+
+
+0 CLAIM CALL GIFT LOCATE~
+Syntax: claim <object>
+Syntax: call <object>
+Syntax: call all
+Syntax: gift <object> <player>
+Syntax: locate
+
+By claiming an object (which costs 500 exp), that object becomes your 
+personal property.  Using the 'locate' command you can find what items 
+currently belong to you and where they are in the mud.  If you are not 
+carrying the item, you can get it back by calling it with the 'call' 
+command.  You can change the ownership of your own items by use of the 
+'gift' command.
+~
+
+
+
+0 DECAPITATE~
+Do this to another avatar when they are mortally wounded, and you will 
+suck out some of their lifeforce (represented by 1000exp), making them 
+mortal again.  You may also loot their corpse, of course, and if you are 
+hungry you can even eat their head ;)
+Decapitation alone is not enough to completely destroy another avatar 
+however, for their head will retain their remaining lifeforce.  To truely 
+kill them, you must crack open their head and eat (or in some other way 
+destroy) their brain.
+~
+
+
+
+0 CRACK~
+While holding a head in either your left or right hand, typing 'crack' 
+will crack the head open, spilling the brains out onto the floor.
 ~
 
 
@@ -190,57 +370,237 @@ least damage to most damage:
 0 DEATH~
 When your character dies, you are reincarnated back at the Altar of the Temple
 of Midgaard.  Your corpse is left behind in the room where you were killed,
-together with all of your equipment.  Your gold stays with you (God wants you
-to have your gold).
+together with all of your equipment.  Your gold stays with you.
 
 Any spells which were affecting you are canceled by death.
 
 Following and groups are not affected by death.
 
-You lose experience points for dying.  The amount you lose is half-way back to
-the beginning of your level.  Thus if you have a bad day and die several times,
-the penalties won't clobber you.
+You lose experience points for dying.  The amount you lose is half of your 
+current amount, so it's a good idea not to hoard exp.
 
 Corpses decay after time, and the objects inside corpses decay with them.
 Player corpses last *roughly* 30 hours of game time (15 minutes of real time).
-Only the player who died, or someone in the same group, can retrieve objects
-from a player's corpse.
-
 ~
 
 
 
-0 EXPERIENCE LEVEL XP~
-Your character advances in power by gaining experience.  You need 1000
-experience points for each level of experience.
+0 ESCAPE~
+This command allows you to transport to the temple of midgaard when 
+mortally wounded.  Unfortunately, it also reduces both your mana and move 
+to 0, and informs everyone else on the mud that you are lying defenseless 
+at recall...so be careful how you use it.
+~
 
-You gain experience by:
 
-    being part of a group that kills a monster
 
-You lose experience by:
+0 MOUNT DISMOUNT~
+Syntax: mount <creature>
+Syntax: dismount
 
-    fleeing from combat
-    recalling out of combat
-    being the target of certain spells
-    dying
+This allows the character to mount the specified creature.  Only 
+creatures such as horses and the like may be mounted, and they will aid 
+their rider in combat.
+
+For information on the MOUNT spell, type 'help mountspell'.
+~
+
+
+
+0 QUESTS~
+Quest Makers (and occasionally higher levels) can set quests for one or 
+more players to participate in.  The rewards for such quests can be in 
+the form of specially modified equipment.  A number of quest points-worth 
+will be allocated depending on the difficulty of the quest, using the 
+following guidelines for point costs (QP's = Quest Points):
+
+Stats (Str/Dex/Int/Wis/Con): 20 QP's per +1, max allowed is +3 per stat.
+Hp/Mana/Move: 5 QP per +1, max allowed is +25 on each.
+Hitroll/Damroll: 30 QP's per +1, max allowed is +5 on each.
+Ac: 10 QP's per -1, max allowed is -25.
+
+Once a certain affect (str, hitroll, ac, etc) is selected, it cannot be 
+chosen again for that item even if you didn't select the maximum allowed 
+amount.  Choosing to have penalties on an item will not decrease its 
+cost, although some Quest Makers may allow extra points if you select a 
+few disadvantages on the item.
+
+For more information, type 'quest'.
+~
+
+
+
+0 QUEST TOKEN~
+Syntax: quest <field> <value>
+Syntax: token <value>
+
+QUEST will allow you to spend any quest points you might have.  For a 
+list of the cost (in quest points), type 'quest'.
+
+TOKEN will allow you to create a quest token, with the value of the token 
+set to the value specified.  The tokens value must be within 1 and 50, 
+and it cannot be greater than the number of quest points you currently 
+have.
+
+For information on the QUEST spell, type 'help questspell'.
+~
+
+
+
+0 QUESTCARD COMPLETE RECHARGE~
+Syntax: complete card
+Syntax: complete card <object>
+Syntax: recharge card machine
+
+A quest card requires 4 objects to complete.  To find out what 4 objects 
+you need, type 'complete card'.  When you find these items, you should 
+type 'complete card <object>'.  Once you have completed all 4 items on 
+the card you will be told that you have completed the card.  Then you 
+should go and find the dark crypt, where there is a machine, and type 
+'recharge card machine'.  You will receive a quest token reward, which 
+you should eat, and the card will be recharged with 4 new items to find.
+
+HINT:  Vallandar's tomb can be found by going 2 south, 7 east, 2 north 
+from recall.  Once you have found that area, you should look for the 
+guardian and solve his riddle, enter the portal he creates, and you'll be 
+in the dark crypt.
+~
+
+
+
+0 QUEST-TYPES~
+The following are a few examples of quest types:
+* Find the object/s.  Examples: Find 5 different coloured potions, Find a 
+  pitch black longsword that flames brightly, Find a dragon dagger, belt 
+  and bracer, etc.
+* Kill the mob/s.  These can be hunt down and kill, or simple placing the 
+  player in the same room as the mob/s.  Can also be combined with finding 
+  objects - Example: Find and kill two different dragons and bring me 
+  their claws.
+* Solve a puzzle.  For example find a certain room, solve a riddle in an 
+  area, or successfully get out of a maze.  These are particularly good 
+  when several players of different ability are competing in the quest.
+* Duel: A one-on-one fight pitting either a player against a mob, or 
+  (more usually) a player against another player.  The conditions will be 
+  decided beforehand, and can include any conditions that both sides 
+  agree on.  Example: No sanctuary, no potions (or maybe a limited number),
+  no spells, no weapons, or whatever.
+* Skirmishes: Like a duel, but involves several players on either side.  
+  Although the sides don't have to be equal in number, it is generally a 
+  good idea to make sure they are roughly equal in power.
+* There are also several more obscure quests that can be run - for 
+  example you could require that the player brings you 3 small green 
+  eggs, then load mob 30005 into the players room.  Another battle might 
+  involve no melee - all combat must be with missile weapons.
+~
+
+
+
+0 EXPERIENCE XP~
+Your character advances in power by gaining experience.
+
+You gain experience by being part of a group that kills someone/something.
+
+You lose experience by dying or being decapitated.
 
 The experience you get from a kill depends on several things: how many players
-are in your group; your level versus the level of the monster; your alignment
-versus the monster's alignment; how many of this monster have been killed
-lately; and some random variation.
+are in your group; your alignment versus your opponent's alignment; how 
+many of this monster have been killed lately (if they are an NPC); and 
+some random variation.
+
+See also help on 'status'.
+~
+
+
+
+0 STATUS~
+
+This represents the 'danger' of the player.  You only have a status if 
+you are level 3.  It grants no extra powers, but is a good measure of 
+how deadly that player is in combat.  Each time you decapitate an 
+Immortal+ (or an Avatar if you are also an Avatar) your status goes up by 
+one and their status goes down by one (to a minimum of zero).  The 
+following shows how many kills (minus deaths) you need for each status:
+
+     0  = Avatar
+ 1 - 4  = Immortal
+ 5 - 9  = Godling
+10 - 14 = Demigod
+15 - 19 = Lesser God
+20 - 24 = Greater God
+25 +    = Supreme God
+
+Remember, if your status is Immortal or above you gain nothing for 
+decapitating an Avatar (except a free loot, a head, and an enemy).
+~
+
+
+
+0 SKILL~
+Syntax: skill | skill <player>
+
+This shows the target player's skill with the weapon they are currently 
+wielding and the stance they are in (if it's a specialized stance).
+
+Weapon skill				 Stance skill
+
+ 1) Totally unskilled.			 1) Totally unskilled.
+ 2) Slightly skilled.			 2) An apprentice.
+ 3) Reasonable.				 3) A trainee.
+ 4) Fairly competent.			 4) A student.
+ 5) Highly skilled.			 5) Fairly experienced.
+ 6) Very dangerous.			 6) Well trained.
+ 7) Extremely deadly.			 7) Highly skilled.
+ 8) An expert.				 8) An expert.
+ 9) A master.				 9) A master.
+10) A grandmaster.			10) A grandmaster.
+
+Note that these are only rough estimates; one master might well be 
+slightly more skilled than another master, and so on.
+~
+
+
+
+0 SPELL SPELLS~
+Syntax: spells | spell <colour>
+
+This shows your spell casting ability with the various types of magic.
+
+1) Untrained.				 6) An adept.
+2) An apprentice.			 7) A mage.
+3) A student.				 8) A warlock.
+4) A scholar.				 9) A master wizard.
+5) A magus.				10) A grand sorcerer.
+
+Note that these are only rough estimates; one master wizard might well be 
+slightly more skilled than another master wizard, and so on.
+~
+
+
+
+0 GODLESS~
+By typing this, you will no longer be affected by most god commands, 
+including restore, force, slay, mset, transfer, deny, freeze, etc.  You 
+can toggle your godless flag on and off at will, and everyone in the mud 
+is informed each time you do this.
+~
+
+
+
+0 HOME~
+To set your recall point, enter the desired room and type 'home here'.  
+From that point on you will recall to that point rather than the Temple 
+of Midgaard (although you still go to the Templar Altar if you die).
+
+A home cannot be a safe room.
 ~
 
 
 
 0 PET PETS~
-You can buy pets in the pet shop.  You may buy one more pet each time you
-advance in level.  Your pet-buying opportunities do not accumulate; use them or
-lost them.  This policy prevents wholesale abuse of pets.
-
-You are responsible for the actions of your pets.  Conversely, if you attack
-someone else's pet, you will be penalized as if you attacked them.  It is
-a good idea to refrain from attacking creatures labelled '(Charmed)'.
+You can buy pets in the pet shop.  Your pet-buying opportunities do not 
+accumulate; use them or lost them.  This policy prevents wholesale abuse 
+of pets.
 ~
 
 
@@ -257,8 +617,6 @@ amount varies randomly from 15 seconds to 45 seconds.
 Area resetting happens roughly every 3 minutes if no one is in the area; less
 often (15 minutes) if some one is.  Also note that objects lying on the ground
 will not be regenerated if anyone is in the area when it resets.
-
-You can tell when an area is about to reset by the patter of little feet.
 ~
 
 
@@ -285,7 +643,7 @@ Syntax: cast <spell> <target>
 
 Before you can cast a spell, you have to practice it.  The more you practice,
 the higher chance you have of success when casting.  Casting spells costs mana.
-The mana cost decreases as your level increases.
+The mana cost decreases as your magical ability increases.
 
 The <target> is optional.  Many spells which need targets will use an
 appropriate default target, especially during combat.
@@ -353,24 +711,116 @@ you are currently wearing or wielding of the same type.
 COMPARE doesn't consider any special modifiers of the objects.
 ~
 
-0 BACKSTAB BS DISARM KILL MURDER~
+0 BACKSTAB BERSERK BS DISARM KICK PUNCH KILL~
 Syntax: backstab <character>
+Syntax: berserk
 Syntax: disarm
 Syntax: kick
+Syntax: punch    <character>
 Syntax: kill     <character>
-Syntax: murder   <character>
 
 KILL starts a fight, and, hopefully, kills something.  BACKSTAB is another way
 to start a fight, used by thieves.  BS is a synonym for BACKSTAB.
 
-MURDER is used to kill other player characters.  There are restrictions on
-murdering low level players, and there are penalties for using MURDER.
-
+BERSERK will make you strike out at every creature in the room.  It will 
+hit players as well as mobiles, so it's a good idea not to use this skill 
+while you are grouped.
 DISARM is an auxiliary fighting command to disarm your opponent.  Similarly,
 KICK will inflict more damage during combat by kicking.
+PUNCH will inflict a small amount of damage, and stun your opponent for a 
+short period of time.  It also has a chance of breaking your opponents 
+nose or jaw.
 
-In order to BACKSTAB, DISARM, or KICK successfully, you must practice
+In order to BACKSTAB, DISARM, KICK or PUNCH successfully, you must practice
 the appropriate skill.
+~
+
+0 FASTDRAW~
+
+FASTDRAW is automatic, if you have it.  If another player attacks you 
+while you have any sheathed weapons, you will draw them out with 
+lightning speed and strike your opponent before they are able to land any 
+blows on you.  If you have any items in your hands at the time, you will 
+throw them aside before drawing your weapons.
+~
+
+0 ANSI COLOUR~
+Syntax: ansi
+
+This will show things in colour.  Spells will appear in their appropriate 
+colour, and important messages will be highlighted.  Your exp (or opponents
+condition if you're fighting), hp, mana and move are shown in scaled colour.
+Scaled colour is represented as follows:
+
+Cyan   : Maximum.
+Yellow : 75% to just below maximum.
+Green  : 50% to just below 75%
+Blue   : 25% to just below 50%
+Red    : Below 25%
+
+Ansi colour can be toggled on and off with the 'ansi' or 'config' commands.
+~
+
+0 STANCE~
+Syntax: combat <style>
+
+In combat, the stance of the fighter plays a very important role; you 
+can't just stand there and exchange blow for blow unless you are very 
+confident of your ability.  Each fighting stance has advantages and 
+disadvantages, the basic outline of which follows:
+VIPER: For a very fast and aggressive style of combat, concentrating 
+primarily on strong frontal attacks.
+CRANE: For a wide, sweeping style of combat, which provides considerable 
+defence and vicious counter-attacks.
+CRAB: A crouching stance, allowing for low cuts and stabs to be combined 
+with agile footwork.
+MONGOOSE: A light-footed stance, which relies on leaps and acrobatics to 
+be combined with fast strikes and quick retreats before the opponent can 
+strike back.
+BULL: A low stance designed for very powerful and aggressive attacks.
+~
+
+0 FIGHT STYLE FIGHTSTYLE~
+Syntax: fightstyle <number> <style>
+
+This is used for unarmed combat, and it allows the fighter to decide on 
+their style of unarmed attack.  Many different types of attack are 
+possible, each with different advantages and disadvantages.  Your first 
+attack in combat always uses the first number slot.  If you have a second 
+attack, this will draw a fighting technique from slots 1 to 4.  If you 
+have a third attack, it will draw a fighting technique from slots 5 to 
+8.  Any other attacks are randomly drawn from any of slots 1 to 8.  If 
+the slot is blank (0) then the attack is a standard unarmed attack.
+~
+
+0 HURL~
+Syntax: hurl <name>
+Syntax: hurl <name> <direction>
+
+This ability allows you to hurl the target into walls, through exits, or 
+through doors.  Hurling someone through an exit does a little damage.  
+Hurling them into walls does twice as much, and hurling them through 
+doors does three times as much.  If you don't specify a direction to hurl 
+the target, it will be random (north, south, east or west).  You cannot 
+hurl someone who is already injured.
+~
+
+0 SCAN SPY THROW~
+Syntax: scan
+Syntax: spy   <direction>
+Syntax: throw <direction> <target>
+
+SCAN allows you to see all the mobs/players within 1 room of you.
+
+SPY allows you to see all the mobs/players within 3 rooms in a specified 
+direction.
+
+THROW allows you to hurl an object you are holding (in your right hand, 
+or if that's empty left hand) to a target mob/player in a specified 
+direction.  The object can be throw up to 3 rooms.  If it fails to reach 
+the target by that time it will land on the floor.
+
+For information on the SCAN spell, type 'help scanspell'.
 ~
 
 0 FLEE RESCUE~
@@ -432,6 +882,8 @@ you won't hear many things happen.
 
 Use STAND or WAKE to come back to a standing position.  You can
 also WAKE other sleeping characters.
+
+For info on the sleep spell, type: 'help sleepspell'.
 ~
 
 0 GTELL ; REPLY SAY TELL~
@@ -552,6 +1004,7 @@ an option, CONFIG turns that option on or off.
 
 The options are:
 
+    ANSI      You view things in colour.
     AUTOEXIT  You automatically see exits.
     AUTOLOOT  You automatically loot corpses.
     AUTOSAC   You automatically sacrifice corpses.
@@ -600,32 +1053,311 @@ Syntax: commands
 Syntax: socials
 
 AREAS shows you all the areas in the game, with the author's name and the
-suggested levels.
+levels of the mobs that inhabit that area.
 
 COMMANDS shows you all the (non-social) commands available to you.
 
 SOCIALS shows you all the social commands available to you.
 ~
 
+0 PRIMAL~
+
+Primal energy is the ultimate form of energy in the multiverse, the one 
+from which all other energies are derived.  Unfortunately, unlike mana, 
+primal energy is only one use, and is generally used for very powerful 
+spells, such as 'voodoo' (which uses 5 points) and 'quest' (which uses 
+between 1 and 50 points).
+~
+
+0 WEREWOLF WEREWOLVES~
+
+Werewolves are not yet coded.  When they are, they will include:
+* 5 Forms: Homid ("Man"), Glabro ("Near-Man"), Crinos ("Wolf-Man"),
+  Hispo ("Near-Wolf"), and Lupus ("Wolf").
+* Double damage from silver, half from other physical attacks.
+* Tribes with tribal powers and a tribal totem.
+* Auspice gifts: Ragabash, Theurge, Philodox, Galliard and Ahroun.
+~
+
+0 VAMPIRE VAMPIRES~
+
+Vampires are the creatures of the night and thus take damage if exposed 
+to daylight.  Vampires cannot eat food, or drink any liquids except for 
+blood.  If they cannot drink blood for a long duration of time they will 
+start taking damage or maybe even go berserk, so it's a good idea to store 
+some blood in a drinking container.  Vampires take half damage from cold, 
+none from gas, and double from fire, although those with the Heat 
+immunity take normal fire damage rather than double.  Other abilities:
+
+* Fangs - Gives a free bite attack in combat, and required to 'bite' people.
+* Bite - Transforms target into a vampire, but costs the vampire 1000 exp.
+* Order - As if target lower generation vampire of your clan was charmed.
+* Introduce - Informs everyone in the room of your vampire lineage.
+* Vamptalk - A special vampire channel which distinguishes between clans.
+* Regenerate - Vampire cannot regenerate naturally; they need to use this.
+* Vclan - Shows information on the other members of a vampires clan.
+* Feed - For feeding other vampires with your blood.
+* Favour - Make a vampire a Prince, or allow them to sire a childe.
+
+In addition, all vampires get 4 or more disciplines, each of which grant 
+one or more extra powers.  For more information type 'help disciplines'.
+The VAMPIRE command toggles on/off whether vampires may bite/feed you.
+~
+
+0 BEAST~
+
+Vampires, like mortals, are creatures of instinct.  However, the 
+instincts of the vampire are those of a hunter, not a gatherer.  Vampires 
+are the ultimate predators and stand at the apex of the food chain.  
+They are highly developed killing machines - the harbringers of death.
+For vampires to survive in modern society, however, they must learn to 
+keep the Beast in check.  The instincts of violence (the Beast) so 
+essential in the wild serve only to endanger the vampire in today's 
+complex world.  The Beast's rage has its uses, but the blindness it 
+creates far outweighs its benefits.
+Vampires struggle to suppress the Beast, but, no matter how hard they 
+try, they do not always prevail, and when it gets loose, the havoc it 
+creates goes far beyond the horror of any mortal rage.
+~
+
+0 FAVOUR SIRE PRINCE~
+Syntax: favour <target> <sire/prince>
+
+Favour is an ability available to second generation vampires and vampire 
+princes.
+
+SIRE allows the target vampire of your clan to sire another vampire.  
+Once a single vampire has been created the power is lost, but can be 
+granted again if the Antediluvian or Prince so desire.
+
+PRINCE turns the target vampire into a prince, who is then able to allow 
+other vampires the ability to sire more vampires still.  Only an 
+Antediluvian has the power to make some a prince (or to remove the 
+prince's powers).
+~
+
+0 DISCIPLINE DISCIPLINES~
+
+Each vampire (except for the original one) has three disciplines from 
+which their powers come, although these disciplines vary from clan to 
+clan.  In addition to the basic three, vampires are allowed to select 
+from one to three additional personal disciplines, depending on their 
+generation.  Personal disciplines are identical to clan disciplines in 
+all ways, except that they are not passed on to further generations.
+
+There are nine disciplines, each with the following powers:
+
+* Protean       - Nightsight, Claws, Change.
+* Celerity      - Extra attacks.
+* Fortitude     - Improved hitpoints, Damage resistance.
+* Potence       - Improved damage.
+* Obfuscate     - Mask, Mortal, Shield.
+* Obtenebration - Shadowplane, Shadowsight, Nightsight.
+* Serpentis     - Darkheart, Serpent, Poison.
+* Auspex        - Truesight, Scry, Readaura.
+* Dominate      - Evileye, Command, Shield.
+
+For more information, type 'help <discipline name>'.
+~
+
+0 PROTEAN~
+
+This Discipline allows a vampire to transform either their entire body or 
+a part of their body into something inhuman.  The vampire can thus grow 
+claws, turn into a bat, transform into a wolf or dissolve into a fine 
+mist.  A vampire can use most other Disciplines while shapeshifted, but 
+may not cast spells.  Full transformation is not possible during combat, 
+although claws can be grown if you are fighting.  While shapeshifted the 
+vampire cannot wear any equipment.
+
+The powers available to this Discipline are as follows:
+* Nightsight: Gives the vampire full night vision, which is much better 
+than normal infravision.
+* Claws: Enables the user to grow inch-long claws on each finger.  These 
+claws have no effect if the vampire is armed, however if not they cause 
+considerably more damage than a normal unarmed attack.
+* Change: Allow the vampire to transform into bat, wolf or mist.  Bat 
+form can fly and detect almost everything (invis, hidden, etc).  While in 
+wolf form, the vampire enjoys the benefit of an extra 50hp and greatly 
+enhanced combat abilities.  Mist form is impervious to attacks and can 
+pass through doors.  Beware though, for two vampires in mist form CAN 
+attack each other.
+~
+
+0 CELERITY~
+
+This Discipline explains the legendary superior quickness of vampires.  
+Using the Celerity Discipline allows a vampire to move extremely quickly 
+and have extra attacks in the same round.
+~
+
+0 FORTITUDE~
+
+Fortitude describes a type of supernatural toughness and vigor which
+allows Kindred to resist harm.  Many vampires are very tough and are able
+to withstand a lot of injury inflicted by weapons and spells.  However 
+with the Fortitude power, they resist damage even further by often keeping 
+the weapons from harming them at all.
+~
+
+0 POTENCE~
+
+This Discipline defines the superior strength that vampires often 
+possess.  This physical might allows the user to inflict much larger 
+amounts of damage in combat than normal.
+~
+
+0 OBFUSCATE~
+
+Kindred with this Discipline excel at hiding among and away from crowds.  
+When they do not wish to be seen, others rarely notice them even if they 
+are standing in plain view.  Though this Discipline affects others minds 
+and does not actually render the users invisible, the end result is much 
+the same.  Obfuscate is the opposing Discipline to Auspex, and they 
+cancel out many of each others powers.
+
+Kindred with this power gain the following advantages:
+* Mask: Allows you to disguise yourself as another player.
+* Shield: Protects you from the Auspex 'scry' and 'readaura' powers.
+* Mortal: Switches between vampire and mortal mode.  While in mortal 
+  form, you loose all vampire advantages and disadvantages, and are 
+  undetectable from a normal mortal.
+~
+
+0 OBTENEBRATION~
+
+Obtenebration allows the user to manipulate the powers of darkness.  By 
+using their powers they are able to switch between the normal world and 
+the plane of shadows at will.  They may also view things in both planes 
+simultaneously if they so wish.
+~
+
+0 SERPENTIS~
+
+Serpentis is the art of temptation and corruption.  Vampires with this 
+Discipline have the ability to tear out their own hearts, rendering 
+themselves immune to being staked.  Serpentis users also gain the ability 
+to transform themselves into a giant serpent and back at will.  The third 
+ability available to vampires with this Discipline is the ability to run 
+their tongues along weapons, coating them with a deadly snake venom.
+~
+
+0 AUSPEX~
+
+This Discipline is one of extrasensory awareness, empathy and 
+perception.  Those using this Discipline tend to be strongly affected by 
+environmental phenomena.  Vampires with Auspex are able to see and sense 
+things most other people cannot.  Auspex is the opposing Discipline to 
+Obfuscate, and they cancel out many of each others powers.
+
+This Discipline allows the following powers:
+* Truesight: The user can see everything, whether invisible or whatever.
+* Scry: Allows you to view the room that the specified target is in.
+* Readaura: Gives you detailed information about a creature or object.
+~
+
+0 DOMINATE~
+
+This discipline reflects the mystical ability of vampires to influence 
+the minds and actions of others.  Dominate is an aspect of the power of 
+the mind and the will.
+
+This Discipline allows the following powers:
+* Evileye: The user gains a lot of control over people foolish enough to 
+  look at them.  Not yet fully working.
+* Command: The user can issue a command that the target will be compelled 
+  to obey.  This will only work on those who's minds are much weaker than 
+  the vampire's.
+* Shield: Protects you from the Auspex 'scry' and 'readaura' powers.
+~
+
+0 IMMUNE IMMUNITY IMMUNITIES RESISTANCES~
+
+Immunities and resistances give you protection from the following:
+Slash     : Slashing/Slicing weapons inflict 10hp less.
+Stab      : Stabbing/Piercing weapons inflict 10hp less.
+Smash     : Blasting/Crushing/Pounding weapons inflict 10hp less.
+Beast     : Clawing/Biting weapons inflict 10hp less.
+Grab      : Grepping/Whipping/Sucking weapons inflict 10hp less.
+Charm     : You are no longer affected by the Charm Person spell.
+Heat      : You are unaffected by Burning Hands, Fireball, etc.
+Cold      : You are unaffected by Frost Breath, Chill Touch, etc.
+Lightning : You are unaffected by Lightning bolt, Call Lightning, etc.
+Acid      : You are unaffected by Acid Blast, Acid Breath, etc.
+Drain     : You are unaffected by the Energy Drain spell.
+Summon    : You cannot be summoned by other players.
+Hurl      : You cannot be hurled.
+Backstab  : You cannot be backstabbed.
+Kick      : Kicks do no damage whatsoever to you.
+Disarm    : You cannot be disarmed by other players or by mobs.
+Steal     : Other players and mobs cannot steal from you.
+Bite      : Vampires may not bite you or feed you blood.
+Stake     : If you're a vampire with this, you cannot be staked down.
+~
+
+0 TIE UNTIE GAG BLINDFOLD~
+Syntax: tie <target>
+Syntax: untie <target>
+Syntax: gag <target>
+Syntax: blindfold <target>
+
+TIE allows you yo tie up another player, who must be stunned, 
+incapitated, or mortally wounded.  While tied up, a players actions are 
+limited - they cannot move, quit, or do many other commands.
+
+UNTIE will untie a player who is currently tied up.  A player cannot 
+untie themself.
+
+GAG places a gag over the mouth of the target player, who must first be 
+tied up.  This command will also remove a gag.  A player can only remove 
+a gag from themself if they are no longer tied up.  It is not possible 
+to talk or use any of the channels while gagged.
+
+BLINDFOLD places a blindfold over the eyes of the target player, who must 
+first be tied up.  The blindfold can also be removed with this command.  
+A player can only remove a blindfold from themself if they are no longer 
+tied up.  Unsurprisingly, blindfolded players cannot see.
+~
+
+0 DIAGNOSE~
+Syntax: diagnose <target>
+
+This will show you any injuries received by the target player or mob.  If 
+that person is bleeding to death, this will also be shown.
+~
+
+0 TERMS~
+There are many terms and abbreviations used in muds.  Here are a few to 
+help you along...
+AFK     : Away From Keyboard.
+BBL     : Be Back Later.
+BRB     : Be Right Back.
+BRT     : Be Right There.
+CYA     : See you later/goodbye.
+IRL     : In Real Life...ie, not in the mud.
+L8R     : Later/goodbye.
+LO      : Hello.
+TTYL    : Talk To You Later
+BF/GF   : Boyfriend/Girlfriend
+TANK    : The person (in a group) who takes the damage in combat.
+BS      : Backstab
+STABBER : A (usually decent) backstabbing weapon.
+DUPING  : An illegal method of copying items by crashing the mud.
+MULTI   : The process of playing more than one character at a time.
+MAXED   : At maximum.  Eg: "I'm maxed" (hitpoints, mana and move at max), 
+          or "my stats are maxed" (your five stats are all trained to 18).
+~
+
 0 WHO~
 Syntax: who
-Syntax: who <level-range>
-Syntax: who <class>
-Syntax: who <class> <level-range>
+Syntax: who <avatar/god>
 
 WHO shows the people currently in the game.  Some people may choose to
 remain unseen and won't appear on the WHO
  
 WHO without any arguments shows all of the (visible) people currently playing.
 
-With arguments, WHO can show players of certain classes or levels.
-For example:
- 
-who 10          lists all players of level 10 or above
-who 15 20       lists all players between level 15 and 20
-who cleric      lists all clerics playing
-who immortal    lists all immortals playing
-who cleric 1 5  lists all clerics between levels 1 and 5
+With arguments, WHO can show avatars (level 3's) or gods (level 4's and 5's).
 ~
 
 0 WHERE~
@@ -672,8 +1404,8 @@ Syntax: title <string>
 
 Sets your title to a given string.
 
-The game supplies a title when your character is created and when you
-advance a level.  You can use TITLE to set your title to something else.
+The game supplies a title when your character is created.  You can use 
+TITLE to set your title to something else. 
 ~
 
 0 WIMPY~
@@ -704,7 +1436,7 @@ PICK can open a lock without having the key.  In order to PICK successfully,
 you must practice the appropriate skill.
 ~
 
-0 DRINK EAT FILL~
+0 DRINK EAT FILL EMPTY~
 Syntax: drink <object>
 Syntax: eat   <object>
 Syntax: fill  <object>
@@ -713,7 +1445,9 @@ When you are thirsty, DRINK something.
 
 When you are hungry, EAT something.
 
-FILL fills a drink container with water.
+FILL fills a drink container from a fountain.
+
+EMPTY empties the container onto the floor.
 ~
 
 0 BUY LIST SELL VALUE~
@@ -736,10 +1470,19 @@ VALUE asks the shop keeper how much he, she, or it will buy the item for.
 0 SACRIFICE~
 Syntax: sacrifice <object>
 
-SACRIFICE offers an object to your God.  God may reward you for the sacrifice.
-The nature of the reward depends upon the type of object.
+SACRIFICE drains the energy matter from an object, transferring the 
+energy to you in the form of exp.
 
-Hint: God likes corpses.
+The number of exp gained vary according to the value of the object.
+~
+
+0 SMOTHER~
+Syntax: smother <name>
+
+This is used to try and smother the flames on a burning player or mob.  
+You cannot do this on yourself, and it may take several attempts to 
+work.  Also, there is a small chance that the person smothering might 
+catch on fire as well...
 ~
 
 0 BRANDISH QUAFF RECITE ZAP~
@@ -787,9 +1530,6 @@ kick out the <character> from your group.  Characters can also leave your
 group by using a FOLLOW command to stop following you.
 
 GROUP with no argument shows statistics for each character in your group.
-
-You may FOLLOW and GROUP only with characters who are within five levels of
-your own.
 ~
 
 0 HIDE SNEAK VISIBLE~
@@ -797,7 +1537,9 @@ Syntax: HIDE
 Syntax: SNEAK
 Syntax: VISIBLE
 
-If you successfully HIDE, then other characters can't see you.
+If you successfully HIDE, then other characters can't see you.  If you 
+attack while hidden, the surprise attack will inflict one and a half 
+times your normal damage (assuming your opponent cannot see you).
 
 If you successfully SNEAK, then you can move in and out of rooms without
 being noticed.
@@ -814,7 +1556,7 @@ Syntax: QUIT
 Syntax: RENT ... not!
 Syntax: SAVE
 
-SAVE saves your character and objects.  You must be at least second level to
+SAVE saves your character and objects.  You must be a mortal or avatar to
 save.  The game will auto-save your character every few minutes whether you
 save or not.
 
@@ -838,10 +1580,7 @@ Syntax: RECALL
 RECALL prays to God for miraculous transportation from where you are back to
 the Temple of Midgaard.  '/' is a synonym for RECALL.
 
-If you RECALL during combat, you will lose experience (more than for fleeing),
-and you will have a chance of failing (again, more than for fleeing).
-
-RECALL costs half of your movement points.
+RECALL may take you to a different location if you belong to a clan.
 
 RECALL doesn't work in certain God-forsaken rooms.  Characters afflicted by a
 curse may not recall at all.
@@ -861,7 +1600,7 @@ Syntax: STEAL <object> <character>
 
 STEAL attempts to steal coins, or an object, from a character.
 
-There are penalties for using STEAL on other players.
+There are *NO* penalties for using STEAL on other players.
 
 In order to STEAL successfully, you must practice the appropriate skill.
 ~
@@ -870,45 +1609,39 @@ In order to STEAL successfully, you must practice the appropriate skill.
 Syntax: PRACTICE
 Syntax: PRACTICE <skill|spell>
 
-PRACTICE without an argument tells you your current ability level in all
-the skills and spells available to you.  You can check this anywhere.
+PRACTICE without an argument tells you your current ability in all the 
+skills and spells available to you.  You can check this anywhere.
 
 PRACTICE with an argument practice that skill or spell.  Your learning
 percentage varies from 0% (unlearned) to a some maximum between 80% and 100%,
 depending on your class.  You must be at a guild master to practice.
 
 The higher your intelligence, the more you will learn at each practice
-session.  The higher your wisdom, the more practice sessions you will
-have each time you gain a level.  Unused sessions are saved until you
-do use them.
+session.  Unused sessions are saved until you do use them.
 ~
 
 0 TRAIN~
 Syntax: train <'str'|'int'|'wis'|'dex'|'con'>
+Syntax: train <'avatar'|'mortal'|'practices'|'hp'|'mana'|'move'>
+Syntax: train <'slash'|'stab'|'smash'|'beast'|'grab'>
+Syntax: train <'charm'|'heat'|'cold'|'lightning'|'acid'>
 
 TRAIN increases one of your attributes.  When you start the game, your
-character has standard atttributes based on your class, and several
-initial practice sessions.  You can increase your attributes by
-using these practice sessions at a trainer (there are several in town).
+character has standard attributes based on your class.  You can increase 
+your attributes by spending experience points (exp) at a trainer.
 
-It costs five practice to train an attribute, except that it costs
-only three practice to train your prime attribute.
+It costs 200 exp to train a stat (str, int, etc), except that it costs 
+only 100 exp to train your primary stat.  Practice sessions cost 500 exp 
+each, and hp/mana/move cost your current amount in that particular area 
+minus your con (for hp and move) or wis (for mana) per point.  Becoming a 
+mortal or an avatar costs 1000 exp each.
 
-The best attributes to train first are WIS and CON.  WIS gives you more
-practice when you gain a level.  CON gives you more hit points.
-In the long run, your character will be most powerful if you train
-WIS and CON both to 18 before practising or training anything else.
+You can also train weapon resistances (reduces between 1 and all of the 
+damage per blow for that weapon type) and spell immunities (those types 
+of spell do no damage to you).  These cost 10000 exp each.
 ~
 
-40 ADVANCE~
-Syntax: advance <character> <level>
-
-ADVANCE sets a character's level to the specified value.  It is the
-only way to create new immortal characters within the game.  ADVANCE
-may also be used to demote characters.
-~
-
-40 TRUST~
+8 TRUST~
 Syntax: trust <character> <level>
 
 TRUST sets a character's trust to the specified level.  This is similar to
@@ -921,7 +1654,7 @@ natural level.
 A trust of 0 means to use the character's natural level again.
 ~
 
-39 ALLOW BAN~
+8 ALLOW BAN~
 Syntax: allow   <site>
 Syntax: ban     <site>
 Syntax: ban
@@ -937,7 +1670,7 @@ Site bans are not saved; every time the server is rebooted, the site
 ban list is cleared.  
 ~
 
-39 REBOOT SHUTDOWN WIZLOCK~
+8 REBOOT SHUTDOWN WIZLOCK~
 Syntax: reboot
 Syntax: shutdown
 Syntax: wizlock
@@ -954,7 +1687,7 @@ below level 36 may not log in.  Players who lose their links, however,
 may reconnect.
 ~
 
-39 DENY DISCONNECT FREEZE~
+6 DENY DISCONNECT FREEZE~
 Syntax: deny       <character>
 Syntax: disconnect <character>
 Syntax: freeze     <character>
@@ -970,7 +1703,7 @@ FREEZE <character> is a toggle which prevents a character from issuing any
 commands at all.
 ~
 
-39 FORCE~
+6 FORCE~
 Syntax: force <character> <command>
 Syntax: force all <command>
 
@@ -980,7 +1713,7 @@ FORCE 'all' forces all player characters to execute a command.
 This is typically used for 'force all save'.
 ~
 
-39 USERS~
+6 USERS~
 Syntax: users
 
 USERS reports all of the visible users connected to the server, including users
@@ -989,33 +1722,69 @@ number and the 'connected' state.  The 'connected' states are listed in merc.h:
 0 is CON_PLAYING; non-zero values are various states of logging in.
 ~
 
-38 MLOAD OLOAD~
+4 MLOAD OLOAD PLOAD~
 Syntax: mload <vnum>
 Syntax: oload <vnum>
 Syntax: oload <vnum> <level>
+Syntax: pload <player>
 
 MLOAD loads a mobile given its vnum (virtual number).  The vnum's are just
 the #NNNN numbers that appear in world.obj.
 
 OLOAD loads an object given its vnum.  It takes an optional parameter for
 the level of the object to be loaded.
+
+PLOAD loads the specified player under your control.  To get back, simply 
+quit and log back on as your normal character.
 ~
 
-38 MSET OSET RSET SSET~
+5 MSET OSET RSET SSET QSET~
 Syntax: mset <character> <field> <value>
 Syntax: oset <object>    <field> <value>
 Syntax: rset <location>  <field> <value>
 Syntax: sset <character> <skill> <value>
 Syntax: sset <character> all     <value>
+Syntax: qset <object>    <field> <value>
 
 MSET, OSET, and RSET set the properties of mobiles, objects, and rooms,
-respectively.  SSET sets a skill or spell level on a PC.
+respectively.  SSET sets a skill or spell level on a PC.  QSET sets 
+special properties and text messages on objects.
 
 There is currently no way to enter more than one line of text for a
 string-valued option.
 ~
 
-38 NOEMOTE NOTELL SILENCE~
+5 OCLONE~
+Syntax: oclone <object>
+
+This creates an identical copy of the specified object, with the only 
+exceptions being that the cloned objects creator is the person creating 
+the clone, and the cloned objects owner is not set.
+~
+
+5 OTRANSFER~
+Syntax: otransfer <object>
+Syntax: otransfer <object> <character>
+
+This will transfer the specified object to the specified character.  The 
+character is defaulted to yourself.
+~
+
+6 MCLEAR~
+Syntax: mclear <player>
+
+This resets the target players stats to their correct value.
+~
+
+7 QTRUST~
+Syntax: qtrust <character> <on/off>
+
+A player with qtrust on is allowed to use the QUEST command to change the 
+name/long/short descriptions on an object, as well as change the wear 
+location.
+~
+
+6 NOEMOTE NOTELL SILENCE~
 Syntax: noemote <character>
 Syntax: notell  <character>
 Syntax: silence <character>
@@ -1026,14 +1795,7 @@ Characters who are no'telled will also not receive those forms of
 communication.
 ~
 
-38 PARDON~
-Syntax: pardon <character> killer
-Syntax: pardon <character> thief
-
-PARDON pardons a player for their crimes.
-~
-
-38 PURGE~
+4 PURGE~
 Syntax: purge
 Syntax: purge <character>
 
@@ -1044,14 +1806,14 @@ character from anywhere in the world.
 PURGE will not get rid of PC's.
 ~
 
-38 RESTORE~
+5 RESTORE~
 Syntax: restore <character>
 
 RESTORE restores full hit points, mana points, and movement points to the
 target character.
 ~
 
-38 SLAY~
+7 SLAY~
 Syntax: slay <character>
 
 SLAY kills a character in cold blood, no saving throw.
@@ -1059,7 +1821,7 @@ SLAY kills a character in cold blood, no saving throw.
 SLAY bypasses auto actions such as AUTOLOOT and AUTOSAC.
 ~
 
-38 TRANSFER~
+5 TRANSFER~
 Syntax: transfer <character>
 Syntax: transfer all
 Syntax: transfer <character> <location>
@@ -1069,7 +1831,7 @@ TRANSFER transfers the target character, or ALL player characters,
 to your current location (default) or to a specified location.
 ~
 
-37 AT~
+5 AT~
 Syntax: at <location> <command>
 
 AT executes the given command (which may have arguments) at the given
@@ -1081,7 +1843,7 @@ command, and then moving you back (if the command didn't change your
 location).
 ~
 
-37 ECHO RECHO~
+5 ECHO RECHO~
 Syntax: echo  <message>
 Syntax: recho <message>
 
@@ -1092,7 +1854,7 @@ RECHO sends a message to all players in your room, without any prefix
 indicating who sent it.
 ~
 
-37 GOTO~
+4 GOTO~
 Syntax: goto <location>
 
 GOTO takes you to a location.  The location may be specified as a vnum,
@@ -1101,9 +1863,14 @@ as the name of a mobile, or as the name of an object.
 You may not GOTO a room if it is PRIVATE and has two (or more) characters
 already present, or if it is SOLITARY and has one (or more) characters
 already present.
+
+Some useful numbers for new imms are:
+Limbo: 2, The Temple of Midgaard: 3001, The Entrance to Mud School: 3700,
+The Chat Room: 1200, The Dark Crypt: 30001, The Temple Altar: 3054,
+Hell: 30000.
 ~
 
-37 HOLYLIGHT INVIS~
+4 HOLYLIGHT INVIS~
 Syntax: holylight
 Syntax: invis
 
@@ -1118,7 +1885,7 @@ HOLYLIGHT will not allow you to see immortal INVIS characters who are
 higher level than you.
 ~
 
-37 MEMORY~
+7 MEMORY~
 Syntax: memory
 
 MEMORY reports the size of your mud.
@@ -1133,7 +1900,7 @@ The 'Perms' line shows permanently allocated memory blocks.  There is no limit
 on the number and size of these blocks.
 ~
 
-37 MFIND OFIND~
+4 MFIND OFIND~
 Syntax: mfind <name>
 Syntax: ofind <name>
 
@@ -1142,11 +1909,12 @@ MFIND finds all mobile types with a particular name.
 OFIND finds all object types with a particular name.
 ~
 
-37 MSTAT OSTAT RSTAT~
+4 MSTAT OSTAT RSTAT QSTAT~
 Syntax: mstat <character>
 Syntax: ostat <object>
 Syntax: rstat <location>
 Syntax: rstat
+Syntax: qstat <object>
 
 MSTAT shows you statistics on a character.
 
@@ -1154,21 +1922,23 @@ OSTAT shows you statistics on an object.
 
 RSTAT shows you statistics on a location. The location may be specified as
 a vnum, as the name of a mobile, or as the name of an object.
+
+QSTAT shows you the special properties and strings on an object.
 ~
 
-37 MWHERE~
+5 MWHERE~
 Syntax: mwhere <name>
 
 MWHERE shows you the locations of all mobiles with a particular name.
 ~
 
-37 PEACE~
+5 PEACE~
 Syntax: peace
 
 PEACE causes all characters in a room to stop fighting.
 ~
 
-37 BAMFIN BAMFOUT~
+4 BAMFIN BAMFOUT~
 Syntax: bamfin  <message>
 Syntax: bamfout <message>
 
@@ -1177,7 +1947,7 @@ The standard messages for GOTO are 'arrives in a swirling mist' and
 your own choosing using the BAMFIN and BAMFOUT commands.
 ~
 
-37 SLOOKUP~
+4 SLOOKUP~
 Syntax: slookup <skill-or-spell>
 Syntax: slookup all
 
@@ -1189,7 +1959,7 @@ the actual skill and spell names.
 SLOOKUP ALL shows this information for all skills and spells.
 ~
 
-37 LOG SNOOP~
+5 LOG SNOOP~
 Syntax: log   <character>
 Syntax: log   all
 Syntax: snoop <character>
@@ -1210,22 +1980,27 @@ character at a time.
 SNOOP yourself to cancel all outstanding snoops.
 ~
 
-37 SWITCH RETURN~
+5 SWITCH RETURN OSWITCH ORETURN~
 Syntax: switch <character>
 Syntax: return
+Syntax: oswitch <object>
+Syntax: oreturn
 
 SWITCH switches you into the body of another character (who must not
 already have a descriptor, e.g. you can't switch into a PC).
 
-RETURN returns you to your original body.
+OSWITCH acts like switch, except it switches you into an object.
+
+RETURN and ORETURN return you to your original body.
 ~
 
-36 IMMTALK :~
+4 IMMTALK :~
 Syntax: immtalk <message>
 
 IMMTALK sends a message to all immortals.  : is a synonym for IMMTALK.
 ~
-36 WIZHELP~
+
+4 WIZHELP~
 Syntax: wizhelp
 
 WIZHELP provides a list of all the immortal commands.
@@ -1251,6 +2026,17 @@ Syntax: cast blindness <victim>
 This spell renders the target character blind.
 ~
 
+0 BREW SCRIBE CARVE ENGRAVE BAKE~
+Syntax: cast brew <potion> <spell>
+Syntax: cast scribe <scroll> <spell>
+Syntax: cast carve <wand> <spell>
+Syntax: cast engrave <staff> <spell>
+Syntax: cast bake <pill> <spell>
+
+These spells allow other spells to be embedded in the specified object, 
+which is usually created via the 'minor creation' spell.
+~
+
 0 'ACID BLAST' 'BURNING HANDS' 'COLOUR SPRAY' FIREBALL 'LIGHTNING BOLT'
   'MAGIC MISSILE' 'SHOCKING GRASP'~
 Syntax: cast 'acid blast'     <victim>
@@ -1261,8 +2047,7 @@ Syntax: cast 'lightning bolt' <victim>
 Syntax: cast 'magic missile'  <victim>
 Syntax: cast 'shocking grasp' <victim>
 
-These spells inflict damage on the victim.  The higher-level spells do
-more damage.
+These spells inflict damage on the victim.
 ~
 
 0 'CALL LIGHTNING'~
@@ -1278,11 +2063,10 @@ Syntax: cast 'cause serious'  <victim>
 Syntax: cast 'cause critical' <victim>
 Syntax: cast harm             <victim>
 
-These spells inflict damage on the victim.  The higher-level spells do
-more damage.
+These spells inflict damage on the victim.
 ~
 
-37 'CHANGE SEX'~
+0 'CHANGE SEX'~
 Syntax: cast 'change sex' <victim>
 
 This spell changes the sex of the victim (temporarily).
@@ -1356,8 +2140,7 @@ Syntax: cast 'cure serious'  <character>
 Syntax: cast 'cure critical' <character>
 Syntax: cast 'heal'          <character>
 
-These spells cure damage on the target character.  The higher-level spells
-heal more damage.
+These spells cure damage on the target character.
 ~
 
 0 CURSE~
@@ -1366,6 +2149,13 @@ Syntax: cast 'curse' <character>
 This spell reduces the character's to-hit roll by 1 and save versus spells
 by 1.  It also renders the character unclean in the eyes of God and
 unable to RECALL.
+~
+
+0 DARKBLESSING~
+Syntax: cast 'darkblessing' <name>
+
+This spell infuses the target with demonic energy, improving their 
+abilities in combat.
 ~
 
 0 'DETECT EVIL'~
@@ -1439,8 +2229,7 @@ target.
 0 'FAERIE FIRE'~
 Syntax: cast 'faerie fire' <victim>
 
-This spell increases (makes worse) the armor class of its victim.  For each
-level of the caster, the victim's armor class is increased by two points.
+This spell increases (makes worse) the armor class of its victim.
 ~
 
 0 'FAERIE FOG'~
@@ -1462,7 +2251,14 @@ Syntax: cast 'fly' <character>
 This spell enables the target character to fly.
 ~
 
-37 GATE~
+0 FRENZY~
+Syntax: cast 'frenzy' <character>
+
+This spell causes the target to enter a berserk fighting rage, improving 
+their damage and chances to hit, but also making them easier to be hit. 
+~
+
+0 GATE~
 Syntax: cast gate
 
 This spell gates in a guardian vampire.  Player characters don't have much use
@@ -1473,6 +2269,13 @@ for it, but high demons, and guardian vampires themselves, like it a lot.
 Syntax: cast 'giant strength' <character>
 
 This spell increases the strength of the target character.
+~
+
+0 GUARDIAN~
+Syntax: cast 'guardian'
+
+This spell summons a demonic guardian to aid the caster in combat (or 
+just to show off to your friends ;).
 ~
 
 0 IDENTIFY~
@@ -1510,6 +2313,29 @@ Syntax: cast 'locate object' <name>
 This spell reveals the location of all objects with the given name.
 ~
 
+0 MANA~
+Syntax: cast 'mana' <name>
+
+With this spell, the caster draws the energy from around them and focuses 
+it into the target person (defaulted to themself).  This is very 
+exhausting for the caster, but allows a faster recovery of mana.
+~
+
+0 'MINOR CREATION'~
+Syntax: cast 'minor creation' <object>
+
+This spell creates an empty potion, scroll, wand, staff or pill, which 
+can then be enchanted by the caster using other spells.
+~
+
+0 MOUNTSPELL~
+Syntax: cast mount
+
+This spell summons a mystical creature to serve as the casters mount.  
+The type of mount summoned is dependant on the casters alignment, and the 
+toughness of the mount is dependant on the casters spellcasting ability.
+~
+
 0 'PASS DOOR'~
 Syntax: cast 'pass door'
 
@@ -1521,6 +2347,22 @@ Syntax: cast poison <victim>
 
 This spell reduces the strength of the victim by two, as well as reducing the
 victim's regeneration rate.
+~
+
+0 PORTAL~
+Syntax: cast portal <victim>
+
+This spell creates a magical portal between the caster and the target.  
+The portal remains in existance for 2 or 3 hours (mud time), during which 
+time anyone can 'enter' the portal on one side and come out on the other.
+~
+
+0 PRESERVE~
+Syntax: cast preserve <object>
+
+This spell will stop the specified object decaying.  It's primary use is 
+on severed body parts, which can be stored away safely in case the player 
+should loose any limbs in combat.
 ~
 
 0 PROTECTION SANCTUARY~
@@ -1536,6 +2378,15 @@ by one half.
 These spells may be used simultaneously for cumulative effect.
 ~
 
+0 QUESTSPELL~
+Syntax: cast quest
+
+This spell creates a quest card.  The quest-point value of the card is 
+the same as the amount of primal the caster has at the time of casting 
+(and this primal is used up during the casting of the spell).  No more 
+than 50 primal will be used on any one casting of this spell.
+~
+
 0 REFRESH~
 Syntax: cast refresh <character>
 
@@ -1549,6 +2400,26 @@ Syntax: cast 'remove curse' <character>
 This spell removes a curse from a character.
 ~
 
+0 REGENERATE CLOT MEND~
+Syntax: cast 'regenerate' <body part> <character>
+Syntax: cast 'clot' <character>
+Syntax: cast 'mend' <character>
+
+REGENERATE will replace lost body parts on the target, while CLOT will 
+stop them bleeding and MEND will fix any broken bones or cut open throats.
+~
+
+0 SCANSPELL REPAIR~
+Syntax: cast scan
+Syntax: cast repair
+
+The SCAN spell will tell you all the items you are carrying which are 
+currently in need of repairing.
+
+The REPAIR spell will repair all the items you are carrying which are 
+currently in need of repairing.
+~
+
 0 SHIELD 'STONE SKIN'~
 Syntax: cast shield
 Syntax: cast 'stone skin'
@@ -1558,10 +2429,25 @@ class.  SHIELD provides 20 points of armor.  STONE SKIN provides 40 points of
 armor.
 ~
 
-0 SLEEP~
+0 SLEEPSPELL~
 Syntax: cast sleep <victim>
 
 This spell puts its victim to sleep.
+~
+
+0 SOULBLADE~
+Syntax: cast soulblade
+
+This spell summons the casters personal (named) soulblade, which is an 
+extremely deadly weapon.  The weapon is permanent.
+~
+
+0 SPELLPROOF~
+Syntax: cast spellproof <object>
+
+This spell makes the target object immune to the destructive powers of 
+the various magical attacks.  No protection from physical attacks is 
+granted.
 ~
 
 0 SUMMON~
@@ -1578,6 +2464,13 @@ This spell takes you from your current location to a random location somewhere
 in the world.
 ~
 
+0 TRANSPORT~
+Syntax: cast transport <object> <character>
+
+This spell will transport the specified object from your inventory to 
+that of the specified character.
+~
+
 0 VENTRILOQUATE~
 Syntax: cast ventriloquate <speaker> <message>
 
@@ -1586,6 +2479,22 @@ character in the room is saying your message.  Victims who make their saving
 throw will know that someone is using ventriloquism, but not who.  Victims who
 fail their saving throw will think that the object or character really did say
 your message.
+~
+
+0 VOODOO~
+Syntax: Spell:   cast voodoo <victim>
+        Ability: voodoo <victim> <action>
+
+Voodoo magic allows the caster to do things to another player indirectly.
+First, a body part of the victim is needed.  The caster should hold this 
+part and cast the spell on the target (they don't have to be in the same 
+room).  This will create the voodoo doll, which the caster the voodoo 
+commands on to interfere with the victim.
+There are three voodoo actions.  The first, 'Stab', is only of use as a 
+warning to the victim, or to cause annoyance.  The second, 'Throw', will 
+hurl the victim from their feet and cause a small amount of damage.  The 
+third and final action, 'Burn', will set the victim on fire, as well as 
+destroy the doll itself.
 ~
 
 0 WEAKEN~
@@ -1612,42 +2521,12 @@ Syntax: cast 'lightning breath' <victim>
 These spells are for the use of dragons.  Acid, fire, frost, and lightning
 damage one victim, whereas gas damages every PC in the room.  Fire and
 frost can break objects, and acid can damage armor.
-
-High level mages may learn and cast these spells as well.
-~
-
-0 DODGE~
-
-This skill lets you dodge incoming attacks, taking no damage from them.
-Use of the skill is automatic once you have practice it.
-~
-
-0 'ENHANCED DAMAGE'~
-
-This skill increases the damage you inflict when attacking.  Use of the skill
-is automatic once you have practice it.
-~
-
-0 PARRY~
-
-This skill wards off incoming attacks, taking no damage from them.  Use of the
-skill is automatic once you have practice it.  You must be wielding a weapon
-to parry.
 ~
 
 0 PEEK~
 
 This skill shows you a character's inventory when you look at a character.
 Use of the skill is automatic once you have practice it.
-~
-
-0 'SECOND ATTACK' 'THIRD ATTACK'~
-
-These skills let you attack more than once during a combat round.  Use of
-these skills is automatic once you have practice them.
-
-You can practice THIRD ATTACK before you have mastered SECOND ATTACK,
-although it isn't efficient to do so.
 ~
 
 0 $~

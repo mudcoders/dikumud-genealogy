@@ -170,7 +170,7 @@ a snake headed whip~
 A whip with two snakes heads lies here.~
 ~
 5 65 8193
-0 2 6 4
+53 2 6 4
 0 1750 500
 A
 18 2
@@ -182,7 +182,7 @@ a snake headed whip~
 A whip with three snake heads has been left here.~
 ~
 5 65 8193
-0 2 7 4
+53 2 7 4
 0 5000 740
 A
 18 2
@@ -194,7 +194,7 @@ a snake headed whip~
 A whip with four snake heads has been left here.~
 ~
 5 65 8193
-0 2 8 4
+53 2 8 4
 0 10250 900
 A
 18 2
@@ -218,7 +218,7 @@ a snake headed whip~
 A whip with five snake heads is lying here.~
 ~
 5 577 8193
-0 3 6 4
+53 3 6 4
 0 12000 4000
 A
 1 -1
@@ -230,7 +230,7 @@ a snake headed whip~
 A whip with six snake heads has been dropped here.~
 ~
 5 577 8193
-0 4 5 4
+53 4 5 4
 0 15000 5000
 A
 1 -2
@@ -288,7 +288,7 @@ a spider shaped dagger~
 A dagger with spider leg shaped blades lies on the ground.~
 ~
 5 576 8193
-0 3 4 11
+34 3 4 11
 2 12000 1500
 A
 18 3

@@ -59,7 +59,6 @@ TIME_INFO_DATA		time_info;
 WEATHER_DATA		weather_info;
 
 sh_int			gsn_backstab;
-sh_int			gsn_dodge;
 sh_int			gsn_hide;
 sh_int			gsn_peek;
 sh_int			gsn_pick_lock;
@@ -67,12 +66,12 @@ sh_int			gsn_sneak;
 sh_int			gsn_steal;
 
 sh_int			gsn_disarm;
-sh_int			gsn_enhanced_damage;
+sh_int			gsn_fastdraw;
+sh_int			gsn_berserk;
+sh_int			gsn_punch;
 sh_int			gsn_kick;
-sh_int			gsn_parry;
+sh_int			gsn_hurl;
 sh_int			gsn_rescue;
-sh_int			gsn_second_attack;
-sh_int			gsn_third_attack;
 
 sh_int			gsn_blindness;
 sh_int			gsn_charm_person;
@@ -103,6 +102,7 @@ char			str_empty	[1];
 
 int			top_affect;
 int			top_area;
+int			top_rt;
 int			top_ed;
 int			top_exit;
 int			top_help;
@@ -428,6 +428,7 @@ void load_mobiles( FILE *fp )
 
 	pMobIndex->act			= fread_number( fp ) | ACT_IS_NPC;
 	pMobIndex->affected_by		= fread_number( fp );
+	pMobIndex->itemaffect		= 0;
 	pMobIndex->pShop		= NULL;
 	pMobIndex->alignment		= fread_number( fp );
 	letter				= fread_letter( fp );
@@ -529,10 +530,10 @@ void load_objects( FILE *fp )
 	pObjIndex->weight		= fread_number( fp );
 	pObjIndex->cost			= fread_number( fp );	/* Unused */
 	/* Cost per day */		  fread_number( fp );
-
+/*
 	if ( pObjIndex->item_type == ITEM_POTION )
 	    SET_BIT(pObjIndex->extra_flags, ITEM_NODROP);
-
+*/
 	for ( ; ; )
 	{
 	    char letter;
@@ -564,6 +565,18 @@ void load_objects( FILE *fp )
 		ed->next		= pObjIndex->extra_descr;
 		pObjIndex->extra_descr	= ed;
 		top_ed++;
+	    }
+
+	    else if ( letter == 'Q' )
+	    {
+		pObjIndex->chpoweron	= fread_string( fp );
+		pObjIndex->chpoweroff	= fread_string( fp );
+		pObjIndex->chpoweruse	= fread_string( fp );
+		pObjIndex->victpoweron	= fread_string( fp );
+		pObjIndex->victpoweroff	= fread_string( fp );
+		pObjIndex->victpoweruse	= fread_string( fp );
+		pObjIndex->spectype	= fread_number( fp );
+		pObjIndex->specpower	= fread_number( fp );
 	    }
 
 	    else
@@ -769,6 +782,8 @@ void load_rooms( FILE *fp )
 	pRoomIndex->room_flags		= fread_number( fp );
 	pRoomIndex->sector_type		= fread_number( fp );
 	pRoomIndex->light		= 0;
+	pRoomIndex->blood		= 0;
+	pRoomIndex->roomtext		= NULL;
 	for ( door = 0; door <= 5; door++ )
 	    pRoomIndex->exit[door] = NULL;
 
@@ -818,6 +833,22 @@ void load_rooms( FILE *fp )
 		ed->next		= pRoomIndex->extra_descr;
 		pRoomIndex->extra_descr	= ed;
 		top_ed++;
+	    }
+	    else if ( letter == 'T' )
+	    {
+		ROOMTEXT_DATA *rt;
+
+		rt			= alloc_perm( sizeof(*rt) );
+		rt->input		= fread_string( fp );
+		rt->output		= fread_string( fp );
+		rt->choutput		= fread_string( fp );
+		rt->name		= fread_string( fp );
+		rt->type		= fread_number( fp );
+		rt->power		= fread_number( fp );
+		rt->mob			= fread_number( fp );
+		rt->next		= pRoomIndex->roomtext;
+		pRoomIndex->roomtext	= rt;
+		top_rt++;
 	    }
 	    else
 	    {
@@ -1045,7 +1076,7 @@ void fix_exits( void )
 			to_room->vnum,    rev_dir[door],
 			(pexit_rev->to_room == NULL)
 			    ? 0 : pexit_rev->to_room->vnum );
-		    bug( buf, 0 );
+/*		    bug( buf, 0 ); */
 		}
 	    }
 	}
@@ -1082,9 +1113,10 @@ void area_update( void )
 		&&   pch->in_room != NULL
 		&&   pch->in_room->area == pArea )
 		{
-		    send_to_char( "You hear the patter of little feet.\n\r",
+		    send_to_char( "You hear an agonised scream in the distance.\n\r",
 			pch );
 		}
+
 	    }
 	}
 
@@ -1199,7 +1231,7 @@ void reset_area( AREA_DATA *pArea )
 		break;
 	    }
 
-	    obj       = create_object( pObjIndex, number_fuzzy( level ) );
+	    obj       = create_object( pObjIndex, number_range( 1,50 ) );
 	    obj->cost = 0;
 	    obj_to_room( obj, pRoomIndex );
 	    last = TRUE;
@@ -1227,7 +1259,7 @@ void reset_area( AREA_DATA *pArea )
 		break;
 	    }
 	    
-	    obj = create_object( pObjIndex, number_fuzzy( obj_to->level ) );
+	    obj = create_object( pObjIndex, number_range( 1,50 ) );
 	    obj_to_obj( obj, obj_to );
 	    last = TRUE;
 	    break;
@@ -1272,7 +1304,7 @@ void reset_area( AREA_DATA *pArea )
 	    }
 	    else
 	    {
-		obj = create_object( pObjIndex, number_fuzzy( level ) );
+		obj = create_object( pObjIndex, number_range( 1,50 ) );
 	    }
 	    obj_to_char( obj, mob );
 	    if ( pReset->command == 'E' )
@@ -1369,8 +1401,10 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
     mob->short_descr	= pMobIndex->short_descr;
     mob->long_descr	= pMobIndex->long_descr;
     mob->description	= pMobIndex->description;
+
     mob->spec_fun	= pMobIndex->spec_fun;
 
+    mob->home		= 3001;
     mob->level		= number_fuzzy( pMobIndex->level );
     mob->act		= pMobIndex->act;
     mob->affected_by	= pMobIndex->affected_by;
@@ -1383,7 +1417,10 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 				mob->level * mob->level / 4,
 				mob->level * mob->level );
     mob->hit		= mob->max_hit;
-	    
+
+    mob->hitroll	= mob->level;
+    mob->damroll	= mob->level;
+
     /*
      * Insert in list.
      */
@@ -1428,6 +1465,19 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     obj->name		= pObjIndex->name;
     obj->short_descr	= pObjIndex->short_descr;
     obj->description	= pObjIndex->description;
+
+    if (pObjIndex->chpoweron != NULL)
+    {
+	obj->chpoweron    = pObjIndex->chpoweron;
+	obj->chpoweroff   = pObjIndex->chpoweroff;
+	obj->chpoweruse   = pObjIndex->chpoweruse;
+	obj->victpoweron  = pObjIndex->victpoweron;
+	obj->victpoweroff = pObjIndex->victpoweroff;
+	obj->victpoweruse = pObjIndex->victpoweruse;
+	obj->spectype     = pObjIndex->spectype;
+	obj->specpower    = pObjIndex->specpower;
+    }
+
     obj->item_type	= pObjIndex->item_type;
     obj->extra_flags	= pObjIndex->extra_flags;
     obj->wear_flags	= pObjIndex->wear_flags;
@@ -1438,6 +1488,10 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     obj->weight		= pObjIndex->weight;
     obj->cost		= number_fuzzy( 10 )
 			* number_fuzzy( level ) * number_fuzzy( level );
+
+    obj->condition	= 100;
+    obj->toughness	= 5;
+    obj->resistance	= 25;
 
     /*
      * Mess with object properties.
@@ -1460,6 +1514,15 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     case ITEM_CORPSE_NPC:
     case ITEM_CORPSE_PC:
     case ITEM_FOUNTAIN:
+    case ITEM_PORTAL:
+    case ITEM_EGG:
+    case ITEM_VOODOO:
+    case ITEM_STAKE:
+    case ITEM_MISSILE:
+    case ITEM_AMMO:
+    case ITEM_QUEST:
+    case ITEM_QUESTCARD:
+    case ITEM_QUESTMACHINE:
 	break;
 
     case ITEM_SCROLL:
@@ -1474,12 +1537,19 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 	break;
 
     case ITEM_WEAPON:
+/*
 	obj->value[1]	= number_fuzzy( number_fuzzy( 1 * level / 4 + 2 ) );
 	obj->value[2]	= number_fuzzy( number_fuzzy( 3 * level / 4 + 6 ) );
+*/
+	obj->value[1]	= number_range( 1, 10 );
+	obj->value[2]	= number_range((obj->value[1]+1),(obj->value[1]*2));
 	break;
 
     case ITEM_ARMOR:
+/*
 	obj->value[0]	= number_fuzzy( level / 4 + 2 );
+*/
+	obj->value[0]	= number_range( 5, 15 );
 	break;
 
     case ITEM_POTION:
@@ -1513,10 +1583,19 @@ void clear_char( CHAR_DATA *ch )
     ch->short_descr		= &str_empty[0];
     ch->long_descr		= &str_empty[0];
     ch->description		= &str_empty[0];
+    ch->lord			= &str_empty[0];
+    ch->clan			= &str_empty[0];
+    ch->morph			= &str_empty[0];
+    ch->createtime		= &str_empty[0];
+    ch->lasthost		= &str_empty[0];
+    ch->powertype		= &str_empty[0];
+    ch->poweraction		= &str_empty[0];
+    ch->pload			= &str_empty[0];
+
     ch->logon			= current_time;
     ch->armor			= 100;
     ch->position		= POS_STANDING;
-    ch->practice		= 21;
+    ch->practice		= 0;
     ch->hit			= 20;
     ch->max_hit			= 20;
     ch->mana			= 100;
@@ -1554,6 +1633,14 @@ void free_char( CHAR_DATA *ch )
     free_string( ch->short_descr	);
     free_string( ch->long_descr		);
     free_string( ch->description	);
+    free_string( ch->lord 		);
+    free_string( ch->clan 		);
+    free_string( ch->morph 		);
+    free_string( ch->createtime 	);
+    free_string( ch->lasthost 		);
+    free_string( ch->powertype 		);
+    free_string( ch->poweraction 	);
+    free_string( ch->pload 		);
 
     if ( ch->pcdata != NULL )
     {
@@ -2096,6 +2183,7 @@ void do_memory( CHAR_DATA *ch, char *argument )
 
     sprintf( buf, "Affects %5d\n\r", top_affect    ); send_to_char( buf, ch );
     sprintf( buf, "Areas   %5d\n\r", top_area      ); send_to_char( buf, ch );
+    sprintf( buf, "RmTxt   %5d\n\r", top_rt        ); send_to_char( buf, ch );
     sprintf( buf, "ExDes   %5d\n\r", top_ed        ); send_to_char( buf, ch );
     sprintf( buf, "Exits   %5d\n\r", top_exit      ); send_to_char( buf, ch );
     sprintf( buf, "Helps   %5d\n\r", top_help      ); send_to_char( buf, ch );
@@ -2513,10 +2601,13 @@ void bug( const char *str, int param )
 void log_string( const char *str )
 {
     char *strtime;
+    char logout [MAX_INPUT_LENGTH];
 
     strtime                    = ctime( &current_time );
     strtime[strlen(strtime)-1] = '\0';
     fprintf( stderr, "%s :: %s\n", strtime, str );
+    strcpy ( logout, str );
+    logchan( logout );
     return;
 }
 

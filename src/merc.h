@@ -109,11 +109,13 @@ typedef void SPELL_FUN	args( ( int sn, int level, CHAR_DATA *ch, void *vo ) );
  * Increase the max'es if you add more of something.
  * Adjust the pulse numbers to suit yourself.
  */
-#define MAX_SKILL		   90
+#define MAX_SKILL		  111
 #define MAX_CLASS		    4
-#define MAX_LEVEL		   40
-#define LEVEL_HERO		   (MAX_LEVEL - 4)
-#define LEVEL_IMMORTAL		   (MAX_LEVEL - 3)
+#define MAX_LEVEL		    9
+#define NO_WATCH		   10
+#define LEVEL_HERO		   (MAX_LEVEL - 6)
+#define LEVEL_IMMORTAL		   (MAX_LEVEL - 5)
+#define LEVEL_JUDGE		   (MAX_LEVEL - 2)
 
 #define PULSE_PER_SECOND	    4
 #define PULSE_VIOLENCE		  ( 3 * PULSE_PER_SECOND)
@@ -177,6 +179,7 @@ struct	weather_data
 #define CON_GET_NEW_SEX			 6
 #define CON_GET_NEW_CLASS		 7
 #define CON_READ_MOTD			 8
+#define CON_NOT_PLAYING			 9
 
 
 
@@ -356,6 +359,35 @@ struct	kill_data
 
 
 /*
+ * Immunities, for players.  KaVir.
+ */
+#define IMM_SLASH	      1	/* Resistance to slash, slice. 		*/
+#define IMM_STAB	      2	/* Resistance to stab, pierce. 		*/
+#define IMM_SMASH	      4	/* Resistance to blast, pound, crush. 	*/
+#define IMM_ANIMAL	      8	/* Resistance to bite, claw. 		*/
+#define IMM_MISC	     16	/* Resistance to grep, suck, whip. 	*/
+#define IMM_CHARM	     32	/* Immune to charm spell. 		*/
+#define IMM_HEAT	     64	/* Immune to fire/heat spells. 		*/
+#define IMM_COLD	    128	/* Immune to frost/cold spells.		*/
+#define IMM_LIGHTNING	    256	/* Immune to lightning spells.		*/
+#define IMM_ACID	    512	/* Immune to acid spells.		*/
+#define IMM_SUMMON	   1024	/* Immune to being summoned.		*/
+#define IMM_VOODOO	   2048	/* Immune to voodoo magic.		*/
+#define IMM_VAMPIRE	   4096	/* Allow yourself to become a vampire.	*/
+#define IMM_STAKE	   8192	/* Immune to being staked (vamps only).	*/
+#define IMM_SUNLIGHT	  16384	/* Immune to sunlight (vamps only).	*/
+#define IMM_SHIELDED	  32768 /* For Obfuscate. Block scry, etc.	*/
+#define IMM_HURL	  65536 /* Cannot be hurled.			*/
+#define IMM_BACKSTAB	 131072 /* Cannot be backstabbed.		*/
+#define IMM_KICK	 262144 /* Cannot be kicked.			*/
+#define IMM_DISARM	 524288 /* Cannot be disarmed.			*/
+#define IMM_STEAL	1048576 /* Cannot have stuff stolen.		*/
+#define IMM_SLEEP	2097152 /* Immune to sleep spell.		*/
+#define IMM_DRAIN	4194304 /* Immune to energy drain.		*/
+
+
+
+/*
  * ACT bits for mobs.
  * Used in #MOBILES.
  */
@@ -368,6 +400,7 @@ struct	kill_data
 #define ACT_PET			    256		/* Auto set for pets	*/
 #define ACT_TRAIN		    512		/* Can train PC's	*/
 #define ACT_PRACTICE		   1024		/* Can practice PC's	*/
+#define ACT_MOUNT		   2048		/* Can be mounted	*/
 
 
 
@@ -381,21 +414,119 @@ struct	kill_data
 #define AFF_DETECT_INVIS	      8
 #define AFF_DETECT_MAGIC	     16
 #define AFF_DETECT_HIDDEN	     32
-#define AFF_HOLD		     64		/* Unused	*/
+#define AFF_SHADOWPLANE		     64 /* Creatures in shadow plane - KaVir */
 #define AFF_SANCTUARY		    128
 #define AFF_FAERIE_FIRE		    256
 #define AFF_INFRARED		    512
 #define AFF_CURSE		   1024
-#define AFF_FLAMING		   2048		/* Unused	*/
+#define AFF_FLAMING		   2048 /* For burning creatures - KaVir */
 #define AFF_POISON		   4096
 #define AFF_PROTECT		   8192
-#define AFF_PARALYSIS		  16384		/* Unused	*/
+#define AFF_ETHEREAL		  16384 /* For ethereal creatures - KaVir */
 #define AFF_SNEAK		  32768
 #define AFF_HIDE		  65536
 #define AFF_SLEEP		 131072
 #define AFF_CHARM		 262144
 #define AFF_FLYING		 524288
 #define AFF_PASS_DOOR		1048576
+#define AFF_POLYMORPH		2097152 /* For polymorphed creatures - KaVir */
+#define AFF_SHADOWSIGHT		4194304 /* Can see between planes - KaVir */
+
+
+/*
+ * Bits for 'itemaffect'.
+ * Used in #MOBILES.
+ */
+#define ITEMA_SHOCKSHIELD	      1
+#define ITEMA_FIRESHIELD	      2
+#define ITEMA_ICESHIELD		      4
+#define ITEMA_ACIDSHIELD	      8
+
+
+/* Colour scale macros - added 12th Aug 1995 by Calamar */
+
+#define NO_COLOUR	""		/* Blank */
+#define GREY		"[0;1;30m"	/* Dark Grey */
+#define D_RED		"[0;0;31m"	/* Dark Red */
+#define L_RED		"[0;1;31m"	/* Light Red */
+#define D_GREEN		"[0;0;32m"	/* Dark Green */
+#define L_GREEN		"[0;1;32m"	/* Light Green */
+#define BROWN		"[0;0;33m"	/* Brown */
+#define YELLOW		"[0;1;33m"	/* Yellow */
+#define D_BLUE		"[0;0;34m"	/* Dark Blue */
+#define L_BLUE		"[0;1;34m"	/* Light Blue */
+#define MAGENTA		"[0;0;35m"	/* Magenta */
+#define PINK		"[0;1;35m"	/* Pink */
+#define D_CYAN		"[0;0;36m"	/* Dark Cyan */
+#define L_CYAN		"[0;1;36m"	/* Light Cyan */
+#define NORMAL		"[0;0;37m"	/* Light Grey */
+#define WHITE		"[0;0;38m"	/* White */
+
+#define ADD_COLOUR(_player,_str,_col) {char swh_temp[255]; \
+if (!IS_NPC(_player) && IS_SET(_player->act, PLR_ANSI)) {swh_temp[0] = '\0'; \
+strcpy(swh_temp, _col); strcat(swh_temp, _str); strcat(swh_temp, NORMAL); \
+strcpy(_str, swh_temp);}} 
+
+#define SCALE_COLS 4
+
+#define COL_SCALE(_swh_str,_swh_ch,_swh_curr,_swh_max) \
+	ADD_COLOUR(_swh_ch, _swh_str, \
+	(_swh_curr < 1) ? L_RED : \
+	(_swh_curr < _swh_max) ? \
+	scale[(SCALE_COLS * _swh_curr) / ((_swh_max > 0) \
+	? _swh_max : 1)] : L_CYAN)
+
+extern char *scale[SCALE_COLS];
+
+/*
+ * Bits for 'vampire'.
+ * Used for player vampires.
+ */
+#define VAM_FANGS		      1
+#define VAM_CLAWS		      2
+#define VAM_NIGHTSIGHT		      4
+#define VAM_FLYING		      8 /* For flying creatures */
+#define VAM_SONIC		     16 /* For creatures with full detect */
+#define VAM_CHANGED		     32 /* Changed using a vampire power */
+
+#define VAM_PROTEAN		     64 /* Claws, nightsight, and change */
+#define VAM_CELERITY		    128 /* 66%/33% chance 1/2 extra attacks */
+#define VAM_FORTITUDE		    256 /* 5 hp less per hit taken */
+#define VAM_POTENCE		    512 /* Deal out 1.5 times normal damage */
+#define VAM_OBFUSCATE		   1024 /* Disguise and invis */
+#define VAM_AUSPEX		   2048 /* Truesight, etc */
+#define VAM_OBTENEBRATION	   4096 /* Shadowplane/sight and shadowbody */
+#define VAM_SERPENTIS		   8192 /* Eyes/serpent, heart/darkness, etc */
+
+#define VAM_DISGUISED		  16384 /* For the Obfuscate disguise ability */
+#define VAM_MORTAL		  32768 /* For Obfuscate mortal ability. */
+
+#define VAM_DOMINATE		  65536 /* Evileye, command */
+
+#define VAM_EVILEYE		 131072 /* Evileye, command */
+
+
+
+/*
+ * Bits for 'polymorph'.
+ * Used for players.
+ */
+#define POLY_BAT		      1
+#define POLY_WOLF		      2
+#define POLY_MIST		      4
+#define POLY_SERPENT		      8
+
+
+
+/*
+ * Mounts
+ */
+#define IS_ON_FOOT		      0
+#define IS_MOUNT		      1
+#define IS_RIDING		      2
+#define IS_CARRIED		      4
+#define IS_CARRYING		      8
+
 
 
 
@@ -427,6 +558,7 @@ struct	kill_data
 #define OBJ_VNUM_MUSHROOM	     20
 #define OBJ_VNUM_LIGHT_BALL	     21
 #define OBJ_VNUM_SPRING		     22
+#define OBJ_VNUM_BLOOD_SPRING	     23
 
 #define OBJ_VNUM_SCHOOL_MACE	   3700
 #define OBJ_VNUM_SCHOOL_DAGGER	   3701
@@ -434,6 +566,37 @@ struct	kill_data
 #define OBJ_VNUM_SCHOOL_VEST	   3703
 #define OBJ_VNUM_SCHOOL_SHIELD	   3704
 #define OBJ_VNUM_SCHOOL_BANNER     3716
+
+/* For KaVir's stuff */
+#define OBJ_VNUM_SOULBLADE	  30000
+#define OBJ_VNUM_PORTAL		  30001
+#define OBJ_VNUM_EGG		  30002
+#define OBJ_VNUM_EMPTY_EGG	  30003
+#define OBJ_VNUM_SPILLED_ENTRAILS 30004
+#define OBJ_VNUM_QUIVERING_BRAIN  30005
+#define OBJ_VNUM_SQUIDGY_EYEBALL  30006
+#define OBJ_VNUM_SPILT_BLOOD      30007
+#define OBJ_VNUM_VOODOO_DOLL      30010
+#define OBJ_VNUM_RIPPED_FACE      30012
+#define OBJ_VNUM_TORN_WINDPIPE    30013
+#define OBJ_VNUM_CRACKED_HEAD     30014
+#define OBJ_VNUM_SLICED_EAR	  30025
+#define OBJ_VNUM_SLICED_NOSE	  30026
+#define OBJ_VNUM_KNOCKED_TOOTH	  30027
+#define OBJ_VNUM_TORN_TONGUE	  30028
+#define OBJ_VNUM_SEVERED_HAND	  30029
+#define OBJ_VNUM_SEVERED_FOOT	  30030
+#define OBJ_VNUM_SEVERED_THUMB	  30031
+#define OBJ_VNUM_SEVERED_INDEX	  30032
+#define OBJ_VNUM_SEVERED_MIDDLE	  30033
+#define OBJ_VNUM_SEVERED_RING	  30034
+#define OBJ_VNUM_SEVERED_LITTLE	  30035
+#define OBJ_VNUM_SEVERED_TOE	  30036
+#define OBJ_VNUM_PROTOPLASM	  30037
+#define OBJ_VNUM_QUESTCARD	  30039
+#define OBJ_VNUM_QUESTMACHINE	  30040
+#define MOB_VNUM_GUARDIAN	  30001
+#define MOB_VNUM_MOUNT		  30006
 
 
 
@@ -461,6 +624,15 @@ struct	kill_data
 #define ITEM_CORPSE_PC		     24
 #define ITEM_FOUNTAIN		     25
 #define ITEM_PILL		     26
+#define ITEM_PORTAL		     27
+#define ITEM_EGG		     28
+#define ITEM_VOODOO		     29
+#define ITEM_STAKE		     30
+#define ITEM_MISSILE		     31 /* Ammo vnum, cur, max, type */
+#define ITEM_AMMO		     32 /* ???, dam min, dam max, type */
+#define ITEM_QUEST		     33
+#define ITEM_QUESTCARD		     34
+#define ITEM_QUESTMACHINE	     35
 
 
 
@@ -470,9 +642,9 @@ struct	kill_data
  */
 #define ITEM_GLOW		      1
 #define ITEM_HUM		      2
-#define ITEM_DARK		      4
-#define ITEM_LOCK		      8
-#define ITEM_EVIL		     16
+#define ITEM_THROWN		      4
+#define ITEM_KEEP		      8
+#define ITEM_VANISH		     16
 #define ITEM_INVIS		     32
 #define ITEM_MAGIC		     64
 #define ITEM_NODROP		    128
@@ -482,6 +654,9 @@ struct	kill_data
 #define ITEM_ANTI_NEUTRAL	   2048
 #define ITEM_NOREMOVE		   4096
 #define ITEM_INVENTORY		   8192
+#define ITEM_LOYAL		  16384
+#define ITEM_SHADOWPLANE	  32768
+#define ITEM_SILVER		  65536
 
 
 
@@ -504,6 +679,55 @@ struct	kill_data
 #define ITEM_WEAR_WRIST		   4096
 #define ITEM_WIELD		   8192
 #define ITEM_HOLD		  16384
+#define ITEM_WEAR_FACE		  32768
+
+
+
+/*
+ * Special types.
+ * Used in #OBJECTS for special items - KaVir.
+ */
+#define SITEM_ACTIVATE		      1
+#define SITEM_TWIST		      2
+#define SITEM_PRESS		      4
+#define SITEM_PULL		      8
+#define SITEM_TARGET		      16
+#define SITEM_SPELL		      32
+#define SITEM_TRANSPORTER	      64
+#define SITEM_TELEPORTER	      128
+#define SITEM_DELAY1		      256
+#define SITEM_DELAY2		      512
+#define SITEM_OBJECT		     1024
+#define SITEM_MOBILE		     2048
+#define SITEM_ACTION		     4096
+#define SITEM_MORPH		     8192
+
+
+
+
+/*
+ * Apply types (for quest affects).
+ * Used in #OBJECTS.
+ */
+#define QUEST_STR		      1
+#define QUEST_DEX		      2
+#define QUEST_INT		      4
+#define QUEST_WIS		      8
+#define QUEST_CON		     16
+#define QUEST_HITROLL		     32
+#define QUEST_DAMROLL		     64
+#define QUEST_HIT		    128
+#define QUEST_MANA		    256
+#define QUEST_MOVE		    512
+#define QUEST_AC		   1024
+
+#define QUEST_NAME		   2048
+#define QUEST_SHORT		   4096
+#define QUEST_LONG		   8192
+#define QUEST_FREENAME		  16384
+
+#define QUEST_ENCHANTED		  32768
+#define QUEST_SPELLPROOF	  65536
 
 
 
@@ -559,6 +783,10 @@ struct	kill_data
 #define ROOM_VNUM_TEMPLE	   3001
 #define ROOM_VNUM_ALTAR		   3054
 #define ROOM_VNUM_SCHOOL	   3700
+#define ROOM_VNUM_HELL		  30000
+#define ROOM_VNUM_CRYPT		  30001
+#define ROOM_VNUM_DISCONNECTION	  30002
+#define ROOM_VNUM_IN_OBJECT	  30008
 
 
 
@@ -574,6 +802,36 @@ struct	kill_data
 #define ROOM_SOLITARY		   2048
 #define ROOM_PET_SHOP		   4096
 #define ROOM_NO_RECALL		   8192
+
+
+
+/*
+ * Room text flags (KaVir).
+ * Used in #ROOMS.
+ */
+#define RT_LIGHTS		      1 /* Toggles lights on/off */
+#define RT_SAY			      2 /* Use this if no others powers */
+#define RT_ENTER		      4
+#define RT_CAST			      8
+#define RT_THROWOUT		     16 /* Erm...can't remember ;) */
+#define RT_OBJECT		     32 /* Creates an object */
+#define RT_MOBILE		     64 /* Creates a mobile */
+#define RT_LIGHT		    128 /* Lights on ONLY */
+#define RT_DARK			    256 /* Lights off ONLY */
+#define RT_OPEN_LIFT		    512 /* Open lift */
+#define RT_CLOSE_LIFT		   1024 /* Close lift */
+#define RT_MOVE_LIFT		   2048 /* Move lift */
+#define RT_SPELL		   4096 /* Cast a spell */
+#define RT_PORTAL		   8192 /* Creates a one-way portal */
+#define RT_TELEPORT		  16384 /* Teleport player to room */
+
+#define RT_ACTION		  32768
+#define RT_BLANK_1		  65536
+#define RT_BLANK_2		 131072
+
+#define RT_RETURN		1048576 /* Perform once */
+#define RT_PERSONAL		2097152 /* Only shows message to char */
+#define RT_TIMER		4194304 /* Sets object timer to 1 tick */
 
 
 
@@ -621,7 +879,7 @@ struct	kill_data
 
 
 /*
- * Equpiment wear locations.
+ * Equipment wear locations.
  * Used in #RESETS.
  */
 #define WEAR_NONE		     -1
@@ -643,7 +901,114 @@ struct	kill_data
 #define WEAR_WRIST_R		     15
 #define WEAR_WIELD		     16
 #define WEAR_HOLD		     17
-#define MAX_WEAR		     18
+#define WEAR_FACE		     18
+#define WEAR_SCABBARD_L		     19
+#define WEAR_SCABBARD_R		     20
+#define MAX_WEAR		     21
+
+
+
+
+/*
+ * Locations for damage.
+ */
+#define LOC_HEAD		      0
+#define LOC_BODY		      1
+#define LOC_ARM_L		      2
+#define LOC_ARM_R		      3
+#define LOC_LEG_L		      4
+#define LOC_LEG_R		      5
+
+/*
+ * For Head
+ */
+#define LOST_EYE_L		       1
+#define LOST_EYE_R		       2
+#define LOST_EAR_L		       4
+#define LOST_EAR_R		       8
+#define LOST_NOSE		      16
+#define BROKEN_NOSE		      32
+#define BROKEN_JAW		      64
+#define BROKEN_SKULL		     128
+#define LOST_HEAD		     256
+#define LOST_TOOTH_1		     512 /* These should be added..... */
+#define LOST_TOOTH_2		    1024 /* ...together to caculate... */
+#define LOST_TOOTH_4		    2048 /* ...the total number of.... */
+#define LOST_TOOTH_8		    4096 /* ...teeth lost.  Total..... */
+#define LOST_TOOTH_16		    8192 /* ...possible is 31 teeth.   */
+#define LOST_TONGUE		   16384
+
+/*
+ * For Body
+ */
+#define BROKEN_RIBS_1		       1 /* Remember there are a total */
+#define BROKEN_RIBS_2		       2 /* of 12 pairs of ribs in the */
+#define BROKEN_RIBS_4		       4 /* human body, so not all of  */
+#define BROKEN_RIBS_8		       8 /* these bits should be set   */
+#define BROKEN_RIBS_16		      16 /* at the same time.          */
+#define BROKEN_SPINE		      32
+#define BROKEN_NECK		      64
+#define CUT_THROAT		     128
+#define TIED_UP			     256
+#define GAGGED			     512
+#define BLINDFOLDED		    1024
+
+/*
+ * For Arms
+ */
+#define BROKEN_ARM		       1
+#define LOST_ARM		       2
+#define LOST_HAND		       4
+#define LOST_FINGER_I		       8 /* Index finger */
+#define LOST_FINGER_M		      16 /* Middle finger */
+#define LOST_FINGER_R		      32 /* Ring finger */
+#define LOST_FINGER_L		      64 /* Little finger */
+#define LOST_THUMB		     128
+#define BROKEN_FINGER_I		     256 /* Index finger */
+#define BROKEN_FINGER_M		     512 /* Middle finger */
+#define BROKEN_FINGER_R		    1024 /* Ring finger */
+#define BROKEN_FINGER_L		    2048 /* Little finger */
+#define BROKEN_THUMB		    4096
+
+/*
+ * For Legs
+ */
+#define BROKEN_LEG		       1
+#define LOST_LEG		       2
+#define LOST_FOOT		       4
+#define LOST_TOE_A		       8
+#define LOST_TOE_B		      16
+#define LOST_TOE_C		      32
+#define LOST_TOE_D		      64 /* Smallest toe */
+#define LOST_TOE_BIG		     128
+#define BROKEN_TOE_A		     256
+#define BROKEN_TOE_B		     512
+#define BROKEN_TOE_C		    1024
+#define BROKEN_TOE_D		    2048 /* Smallest toe */
+#define BROKEN_TOE_BIG		    4096
+
+/*
+ * For Bleeding
+ */
+#define BLEEDING_HEAD		       1
+#define BLEEDING_THROAT		       2
+#define BLEEDING_ARM_L		       4
+#define BLEEDING_ARM_R		       8
+#define BLEEDING_HAND_L		      16
+#define BLEEDING_HAND_R		      32
+#define BLEEDING_LEG_L		      64
+#define BLEEDING_LEG_R		     128
+#define BLEEDING_FOOT_L		     256
+#define BLEEDING_FOOT_R		     512
+
+
+/*
+ * For Spec powers on players
+ */
+#define EYE_SPELL		       1 /* Spell when they look at you */
+#define EYE_SELFACTION		       2 /* You do action when they look */
+#define EYE_ACTION		       4 /* Others do action when they look */
+
 
 
 
@@ -694,6 +1059,7 @@ struct	kill_data
 
 #define PLR_HOLYLIGHT		   4096
 #define PLR_WIZINVIS		   8192
+#define PLR_ANSI		  16384
 
 #define	PLR_SILENCE		  32768
 #define PLR_NO_EMOTE		  65536
@@ -701,8 +1067,36 @@ struct	kill_data
 #define PLR_LOG			 524288
 #define PLR_DENY		1048576
 #define PLR_FREEZE		2097152
-#define PLR_THIEF		4194304
-#define PLR_KILLER		8388608
+#define PLR_WOLFMAN		4194304
+#define PLR_WEREWOLF		8388608
+#define PLR_GODLESS	       16777216
+#define PLR_WATCHER	       33554432
+#define PLR_VAMPIRE	       67108864
+
+
+
+/*
+ * EXTRA bits for players. (KaVir)
+ */
+#define EXTRA_SIRE		      1
+#define EXTRA_PRINCE		      2
+#define EXTRA_TRUSTED		      4
+#define EXTRA_NEWPASS		      8
+#define EXTRA_OSWITCH		     16
+#define EXTRA_SWITCH		     32
+
+
+
+/*
+ * Stances for combat
+ */
+#define STANCE_NONE		     -1
+#define STANCE_NORMAL		      0
+#define STANCE_VIPER		      1
+#define STANCE_CRANE		      2
+#define STANCE_CRAB		      3
+#define STANCE_MONGOOSE		      4
+#define STANCE_BULL		      5
 
 
 
@@ -728,6 +1122,7 @@ struct	kill_data
 #define	CHANNEL_QUESTION	     32
 #define	CHANNEL_SHOUT		     64
 #define	CHANNEL_YELL		    128
+#define	CHANNEL_VAMPTALK	    256
 
 
 
@@ -740,16 +1135,38 @@ struct	mob_index_data
     MOB_INDEX_DATA *	next;
     SPEC_FUN *		spec_fun;
     SHOP_DATA *		pShop;
+    CHAR_DATA *		mount;
     char *		player_name;
     char *		short_descr;
     char *		long_descr;
     char *		description;
+    char *		lord;
+    char *		clan;
+    char *		morph;
+    char *		createtime;
+    char *		lasttime;
+    char *		lasthost;
+    char *		powertype;
+    char *		poweraction;
+    char *		pload;
+    sh_int		spectype;
+    sh_int		specpower;
+    sh_int		loc_hp	[7];
     sh_int		vnum;
     sh_int		count;
     sh_int		killed;
     sh_int		sex;
+    sh_int		mounted;
+    sh_int		home;
     sh_int		level;
+    int			immune;
+    int			polyaff;
+    int			vampaff;
+    int			itemaffect;
+    int			vamppass;
+    int			form;
     int			act;
+    int			extra;
     int			affected_by;
     sh_int		alignment;
     sh_int		hitroll;		/* Unused */
@@ -776,6 +1193,7 @@ struct	char_data
     CHAR_DATA *		leader;
     CHAR_DATA *		fighting;
     CHAR_DATA *		reply;
+    CHAR_DATA *		mount;
     SPEC_FUN *		spec_fun;
     MOB_INDEX_DATA *	pIndexData;
     DESCRIPTOR_DATA *	desc;
@@ -789,9 +1207,35 @@ struct	char_data
     char *		short_descr;
     char *		long_descr;
     char *		description;
+    char *		lord;
+    char *		clan;
+    char *		morph;
+    char *		createtime;
+    char *		lasttime;
+    char *		lasthost;
+    char *		poweraction;
+    char *		powertype;
+    char *		pload;
     sh_int		sex;
     sh_int		class;
     sh_int		race;
+    int			immune;
+    int			polyaff;
+    int			vampaff;
+    int			itemaffect;
+    int			vamppass;
+    int			form;
+    sh_int		vampgen;
+    sh_int		spectype;
+    sh_int		specpower;
+    sh_int		loc_hp	[7];
+    sh_int		wpn	[13];
+    sh_int		spl	[5];
+    sh_int		cmbt	[8];
+    sh_int		stance	[11];
+    sh_int		beast;
+    sh_int		mounted;
+    sh_int		home;
     sh_int		level;
     sh_int		trust;
     int			played;
@@ -799,6 +1243,10 @@ struct	char_data
     time_t		save_time;
     sh_int		timer;
     sh_int		wait;
+    sh_int		pkill;
+    sh_int		pdeath;
+    sh_int		mkill;
+    sh_int		mdeath;
     sh_int		hit;
     sh_int		max_hit;
     sh_int		mana;
@@ -808,6 +1256,7 @@ struct	char_data
     int			gold;
     int			exp;
     int			act;
+    int			extra;
     int			affected_by;
     sh_int		position;
     sh_int		practice;
@@ -830,6 +1279,7 @@ struct	char_data
 struct	pc_data
 {
     PC_DATA *		next;
+    OBJ_DATA *		chobj;
     char *		pwd;
     char *		bamfin;
     char *		bamfout;
@@ -844,6 +1294,9 @@ struct	pc_data
     sh_int		mod_wis;
     sh_int		mod_dex;
     sh_int		mod_con;
+    sh_int		quest;
+    sh_int		wolf;
+    sh_int		obj_vnum;
     sh_int		condition	[3];
     sh_int		learned		[MAX_SKILL];
 };
@@ -888,12 +1341,27 @@ struct	obj_index_data
     char *		name;
     char *		short_descr;
     char *		description;
+    char *		chpoweron;
+    char *		chpoweroff;
+    char *		chpoweruse;
+    char *		victpoweron;
+    char *		victpoweroff;
+    char *		victpoweruse;
+    char *		questmaker;
+    char *		questowner;
     sh_int		vnum;
     sh_int		item_type;
     sh_int		extra_flags;
     sh_int		wear_flags;
     sh_int		count;
     sh_int		weight;
+    sh_int		spectype;
+    sh_int		specpower;
+    sh_int		condition;
+    sh_int		toughness;
+    sh_int		resistance;
+    int			quest;
+    sh_int		points;
     int			cost;			/* Unused */
     int			value	[4];
 };
@@ -910,6 +1378,7 @@ struct	obj_data
     OBJ_DATA *		contains;
     OBJ_DATA *		in_obj;
     CHAR_DATA *		carried_by;
+    CHAR_DATA *		chobj;
     EXTRA_DESCR_DATA *	extra_descr;
     AFFECT_DATA *	affected;
     OBJ_INDEX_DATA *	pIndexData;
@@ -917,11 +1386,26 @@ struct	obj_data
     char *		name;
     char *		short_descr;
     char *		description;
+    char *		chpoweron;
+    char *		chpoweroff;
+    char *		chpoweruse;
+    char *		victpoweron;
+    char *		victpoweroff;
+    char *		victpoweruse;
+    char *		questmaker;
+    char *		questowner;
     sh_int		item_type;
     sh_int		extra_flags;
     sh_int		wear_flags;
     sh_int		wear_loc;
     sh_int		weight;
+    sh_int		spectype;
+    sh_int		specpower;
+    sh_int		condition;
+    sh_int		toughness;
+    sh_int		resistance;
+    int			quest;
+    sh_int		points;
     int			cost;
     sh_int		level;
     sh_int		timer;
@@ -942,6 +1426,23 @@ struct	exit_data
     char *		keyword;
     char *		description;
 };
+
+
+
+/*
+ * Room text checking data.
+ */
+typedef struct roomtext_data
+{
+    int				type;
+    int				power;
+    int				mob;
+    char *			input;
+    char *			output;
+    char *			choutput;
+    char *			name;
+    struct roomtext_data	*next;
+} ROOMTEXT_DATA;
 
 
 
@@ -998,11 +1499,13 @@ struct	room_index_data
     EXTRA_DESCR_DATA *	extra_descr;
     AREA_DATA *		area;
     EXIT_DATA *		exit	[6];
+    ROOMTEXT_DATA *	roomtext;
     char *		name;
     char *		description;
     sh_int		vnum;
     sh_int		room_flags;
     sh_int		light;
+    sh_int		blood;
     sh_int		sector_type;
 };
 
@@ -1026,6 +1529,12 @@ struct	room_index_data
 #define TAR_CHAR_DEFENSIVE	    2
 #define TAR_CHAR_SELF		    3
 #define TAR_OBJ_INV		    4
+
+#define PURPLE_MAGIC		    0
+#define RED_MAGIC		    1
+#define BLUE_MAGIC		    2
+#define GREEN_MAGIC		    3
+#define YELLOW_MAGIC		    4
 
 
 
@@ -1053,20 +1562,19 @@ struct	skill_type
  * These are skill_lookup return values for common skills and spells.
  */
 extern	sh_int	gsn_backstab;
-extern	sh_int	gsn_dodge;
 extern	sh_int	gsn_hide;
 extern	sh_int	gsn_peek;
 extern	sh_int	gsn_pick_lock;
 extern	sh_int	gsn_sneak;
 extern	sh_int	gsn_steal;
 
+extern	sh_int	gsn_fastdraw;
+extern	sh_int	gsn_berserk;
+extern	sh_int	gsn_punch;
 extern	sh_int	gsn_disarm;
-extern	sh_int	gsn_enhanced_damage;
+extern	sh_int	gsn_hurl;
 extern	sh_int	gsn_kick;
-extern	sh_int	gsn_parry;
 extern	sh_int	gsn_rescue;
-extern	sh_int	gsn_second_attack;
-extern	sh_int	gsn_third_attack;
 
 extern	sh_int	gsn_blindness;
 extern	sh_int	gsn_charm_person;
@@ -1096,9 +1604,26 @@ extern	sh_int	gsn_sleep;
  * Character macros.
  */
 #define IS_NPC(ch)		(IS_SET((ch)->act, ACT_IS_NPC))
+#define IS_JUDGE(ch)		(get_trust(ch) >= LEVEL_JUDGE)
 #define IS_IMMORTAL(ch)		(get_trust(ch) >= LEVEL_IMMORTAL)
 #define IS_HERO(ch)		(get_trust(ch) >= LEVEL_HERO)
 #define IS_AFFECTED(ch, sn)	(IS_SET((ch)->affected_by, (sn)))
+#define IS_ITEMAFF(ch, sn)	(IS_SET((ch)->itemaffect, (sn)))
+#define IS_IMMUNE(ch, sn)	(IS_SET((ch)->immune, (sn)))
+#define IS_VAMPAFF(ch, sn)	(IS_SET((ch)->vampaff, (sn)))
+#define IS_VAMPPASS(ch, sn)	(IS_SET((ch)->vamppass, (sn)))
+#define IS_FORM(ch, sn)		(IS_SET((ch)->form, (sn)))
+#define IS_POLYAFF(ch, sn)	(IS_SET((ch)->polyaff, (sn)))
+#define IS_EXTRA(ch, sn)	(IS_SET((ch)->extra, (sn)))
+#define IS_STANCE(ch, sn)	(IS_SET((ch)->stance[0], (sn)))
+
+#define IS_HEAD(ch, sn)		(IS_SET((ch)->loc_hp[0], (sn)))
+#define IS_BODY(ch, sn)		(IS_SET((ch)->loc_hp[1], (sn)))
+#define IS_ARM_L(ch, sn)	(IS_SET((ch)->loc_hp[2], (sn)))
+#define IS_ARM_R(ch, sn)	(IS_SET((ch)->loc_hp[3], (sn)))
+#define IS_LEG_L(ch, sn)	(IS_SET((ch)->loc_hp[4], (sn)))
+#define IS_LEG_R(ch, sn)	(IS_SET((ch)->loc_hp[5], (sn)))
+#define IS_BLEEDING(ch, sn)	(IS_SET((ch)->loc_hp[6], (sn)))
 
 #define IS_GOOD(ch)		(ch->alignment >= 350)
 #define IS_EVIL(ch)		(ch->alignment <= -350)
@@ -1121,7 +1646,7 @@ extern	sh_int	gsn_sleep;
 
 
 /*
- * Object macros.
+ * Object Macros.
  */
 #define CAN_WEAR(obj, part)	(IS_SET((obj)->wear_flags,  (part)))
 #define IS_OBJ_STAT(obj, stat)	(IS_SET((obj)->extra_flags, (stat)))
@@ -1133,7 +1658,9 @@ extern	sh_int	gsn_sleep;
  */
 #define PERS(ch, looker)	( can_see( looker, (ch) ) ?		\
 				( IS_NPC(ch) ? (ch)->short_descr	\
-				: (ch)->name ) : "someone" )
+				: ( IS_AFFECTED( (ch), AFF_POLYMORPH) ?   \
+				(ch)->morph : (ch)->name ) )		\
+				: "someone" )
 
 
 
@@ -1205,6 +1732,7 @@ extern		BAN_DATA	  *	ban_free;
 extern		CHAR_DATA	  *	char_free;
 extern		DESCRIPTOR_DATA	  *	descriptor_free;
 extern		EXTRA_DESCR_DATA  *	extra_descr_free;
+extern		ROOMTEXT_DATA     *	roomtext_free;
 extern		NOTE_DATA	  *	note_free;
 extern		OBJ_DATA	  *	obj_free;
 extern		PC_DATA		  *	pcdata_free;
@@ -1224,101 +1752,177 @@ extern		WEATHER_DATA		weather_info;
  * Command functions.
  * Defined in act_*.c (mostly).
  */
-DECLARE_DO_FUN(	do_advance	);
+DECLARE_DO_FUN(	do_activate	);
+DECLARE_DO_FUN(	do_alignment	);
 DECLARE_DO_FUN(	do_allow	);
+DECLARE_DO_FUN(	do_ansi		);
 DECLARE_DO_FUN(	do_answer	);
 DECLARE_DO_FUN(	do_areas	);
 DECLARE_DO_FUN(	do_at		);
 DECLARE_DO_FUN(	do_auction	);
+DECLARE_DO_FUN(	do_autoexit	);
+DECLARE_DO_FUN(	do_autoloot	);
+DECLARE_DO_FUN(	do_autosac	);
 DECLARE_DO_FUN(	do_backstab	);
 DECLARE_DO_FUN(	do_bamfin	);
 DECLARE_DO_FUN(	do_bamfout	);
 DECLARE_DO_FUN(	do_ban		);
+DECLARE_DO_FUN(	do_beastlike	);
+DECLARE_DO_FUN(	do_berserk	);
+DECLARE_DO_FUN(	do_bind		);
+DECLARE_DO_FUN(	do_bite		);
+DECLARE_DO_FUN(	do_blank	);
+DECLARE_DO_FUN(	do_blindfold	);
 DECLARE_DO_FUN(	do_brandish	);
+DECLARE_DO_FUN(	do_brief	);
 DECLARE_DO_FUN(	do_bug		);
 DECLARE_DO_FUN(	do_buy		);
+DECLARE_DO_FUN(	do_call		);
 DECLARE_DO_FUN(	do_cast		);
+DECLARE_DO_FUN(	do_change	);
+DECLARE_DO_FUN(	do_changelight	);
 DECLARE_DO_FUN(	do_channels	);
 DECLARE_DO_FUN(	do_chat		);
+DECLARE_DO_FUN(	do_claim	);
+DECLARE_DO_FUN(	do_clandisc	);
+DECLARE_DO_FUN(	do_clanname	);
+DECLARE_DO_FUN(	do_claws	);
+DECLARE_DO_FUN(	do_clearvam	);
+DECLARE_DO_FUN(	do_clearvamp	);
 DECLARE_DO_FUN(	do_close	);
+DECLARE_DO_FUN(	do_command	);
 DECLARE_DO_FUN(	do_commands	);
 DECLARE_DO_FUN(	do_compare	);
+DECLARE_DO_FUN(	do_complete	);
 DECLARE_DO_FUN(	do_config	);
 DECLARE_DO_FUN(	do_consider	);
+DECLARE_DO_FUN(	do_crack	);
+DECLARE_DO_FUN(	do_create	);
 DECLARE_DO_FUN(	do_credits	);
+DECLARE_DO_FUN(	do_darkheart	);
+DECLARE_DO_FUN(	do_decapitate	);
 DECLARE_DO_FUN(	do_deny		);
 DECLARE_DO_FUN(	do_description	);
+DECLARE_DO_FUN(	do_diagnose	);
+DECLARE_DO_FUN(	do_dismount	);
 DECLARE_DO_FUN(	do_disarm	);
 DECLARE_DO_FUN(	do_disconnect	);
 DECLARE_DO_FUN(	do_down		);
+DECLARE_DO_FUN(	do_draw		);
 DECLARE_DO_FUN(	do_drink	);
 DECLARE_DO_FUN(	do_drop		);
 DECLARE_DO_FUN(	do_east		);
 DECLARE_DO_FUN(	do_eat		);
 DECLARE_DO_FUN(	do_echo		);
+DECLARE_DO_FUN(	do_empty	);
+DECLARE_DO_FUN(	do_escape	);
+DECLARE_DO_FUN(	do_info		);
 DECLARE_DO_FUN(	do_emote	);
+DECLARE_DO_FUN(	do_enter	);
 DECLARE_DO_FUN(	do_equipment	);
+DECLARE_DO_FUN(	do_evileye	);
 DECLARE_DO_FUN(	do_examine	);
 DECLARE_DO_FUN(	do_exits	);
+DECLARE_DO_FUN(	do_fangs	);
+DECLARE_DO_FUN(	do_favour	);
+DECLARE_DO_FUN(	do_feed		);
+DECLARE_DO_FUN(	do_fightstyle	);
 DECLARE_DO_FUN(	do_fill		);
 DECLARE_DO_FUN(	do_flee		);
 DECLARE_DO_FUN(	do_follow	);
 DECLARE_DO_FUN(	do_force	);
+DECLARE_DO_FUN(	do_forceauto	);
 DECLARE_DO_FUN(	do_freeze	);
+DECLARE_DO_FUN(	do_gag		);
 DECLARE_DO_FUN(	do_get		);
+DECLARE_DO_FUN(	do_gift		);
 DECLARE_DO_FUN(	do_give		);
+DECLARE_DO_FUN(	do_godless	);
 DECLARE_DO_FUN(	do_goto		);
 DECLARE_DO_FUN(	do_group	);
 DECLARE_DO_FUN(	do_gtell	);
 DECLARE_DO_FUN(	do_help		);
 DECLARE_DO_FUN(	do_hide		);
+DECLARE_DO_FUN(	do_home		);
 DECLARE_DO_FUN(	do_holylight	);
+DECLARE_DO_FUN(	do_humanity	);
+DECLARE_DO_FUN(	do_hurl		);
 DECLARE_DO_FUN(	do_idea		);
+DECLARE_DO_FUN(	do_immune	);
 DECLARE_DO_FUN(	do_immtalk	);
+DECLARE_DO_FUN(	do_introduce	);
 DECLARE_DO_FUN(	do_inventory	);
 DECLARE_DO_FUN(	do_invis	);
 DECLARE_DO_FUN(	do_kick		);
 DECLARE_DO_FUN(	do_kill		);
+DECLARE_DO_FUN(	do_killperson	);
 DECLARE_DO_FUN(	do_list		);
+DECLARE_DO_FUN(	do_locate	);
 DECLARE_DO_FUN(	do_lock		);
 DECLARE_DO_FUN(	do_log		);
 DECLARE_DO_FUN(	do_look		);
+DECLARE_DO_FUN(	do_mask		);
+DECLARE_DO_FUN(	do_mclear	);
 DECLARE_DO_FUN(	do_memory	);
 DECLARE_DO_FUN(	do_mfind	);
 DECLARE_DO_FUN(	do_mload	);
+DECLARE_DO_FUN(	do_mount	);
+DECLARE_DO_FUN(	do_morph	);
+DECLARE_DO_FUN(	do_mortal	);
+DECLARE_DO_FUN(	do_mortalvamp	);
 DECLARE_DO_FUN(	do_mset		);
 DECLARE_DO_FUN(	do_mstat	);
 DECLARE_DO_FUN(	do_mwhere	);
-DECLARE_DO_FUN(	do_murde	);
-DECLARE_DO_FUN(	do_murder	);
 DECLARE_DO_FUN(	do_music	);
+DECLARE_DO_FUN(	do_nightsight	);
 DECLARE_DO_FUN(	do_noemote	);
 DECLARE_DO_FUN(	do_north	);
 DECLARE_DO_FUN(	do_note		);
 DECLARE_DO_FUN(	do_notell	);
+DECLARE_DO_FUN(	do_oclone	);
 DECLARE_DO_FUN(	do_ofind	);
 DECLARE_DO_FUN(	do_oload	);
 DECLARE_DO_FUN(	do_open		);
 DECLARE_DO_FUN(	do_order	);
+DECLARE_DO_FUN(	do_oreturn	);
 DECLARE_DO_FUN(	do_oset		);
 DECLARE_DO_FUN(	do_ostat	);
-DECLARE_DO_FUN(	do_pardon	);
+DECLARE_DO_FUN(	do_oswitch	);
+DECLARE_DO_FUN(	do_otransfer	);
 DECLARE_DO_FUN(	do_password	);
 DECLARE_DO_FUN(	do_peace	);
 DECLARE_DO_FUN(	do_pick		);
+DECLARE_DO_FUN(	do_pload	);
+DECLARE_DO_FUN(	do_poison	);
 DECLARE_DO_FUN(	do_pose		);
 DECLARE_DO_FUN(	do_practice	);
+DECLARE_DO_FUN(	do_press	);
+DECLARE_DO_FUN(	do_preturn	);
+DECLARE_DO_FUN(	do_pull		);
+DECLARE_DO_FUN(	do_punch	);
 DECLARE_DO_FUN(	do_purge	);
 DECLARE_DO_FUN(	do_put		);
+DECLARE_DO_FUN(	do_qmake	);
 DECLARE_DO_FUN(	do_quaff	);
+DECLARE_DO_FUN(	do_qset		);
+DECLARE_DO_FUN(	do_qstat	);
+DECLARE_DO_FUN(	do_qtrust	);
+DECLARE_DO_FUN(	do_quest	);
 DECLARE_DO_FUN(	do_question	);
 DECLARE_DO_FUN(	do_qui		);
 DECLARE_DO_FUN(	do_quit		);
+DECLARE_DO_FUN(	do_rage		);
+DECLARE_DO_FUN(	do_readaura	);
 DECLARE_DO_FUN(	do_reboo	);
 DECLARE_DO_FUN(	do_reboot	);
 DECLARE_DO_FUN(	do_recall	);
+DECLARE_DO_FUN(	do_recharge	);
 DECLARE_DO_FUN(	do_recho	);
 DECLARE_DO_FUN(	do_recite	);
+DECLARE_DO_FUN(	do_regenerate	);
+DECLARE_DO_FUN(	do_release	);
+DECLARE_DO_FUN(	do_relevel	);
+DECLARE_DO_FUN(	do_reload	);
 DECLARE_DO_FUN(	do_remove	);
 DECLARE_DO_FUN(	do_rent		);
 DECLARE_DO_FUN(	do_reply	);
@@ -1330,47 +1934,86 @@ DECLARE_DO_FUN(	do_return	);
 DECLARE_DO_FUN(	do_rset		);
 DECLARE_DO_FUN(	do_rstat	);
 DECLARE_DO_FUN(	do_sacrifice	);
+DECLARE_DO_FUN(	do_safe		);
 DECLARE_DO_FUN(	do_save		);
 DECLARE_DO_FUN(	do_say		);
+DECLARE_DO_FUN(	do_scan		);
 DECLARE_DO_FUN(	do_score	);
+DECLARE_DO_FUN(	do_scry		);
 DECLARE_DO_FUN(	do_sell		);
+DECLARE_DO_FUN(	do_serpent	);
+DECLARE_DO_FUN(	do_shadowplane	);
+DECLARE_DO_FUN(	do_shadowsight	);
+DECLARE_DO_FUN(	do_sheath	);
+DECLARE_DO_FUN(	do_shield	);
+DECLARE_DO_FUN(	do_shoot	);
 DECLARE_DO_FUN(	do_shout	);
 DECLARE_DO_FUN(	do_shutdow	);
 DECLARE_DO_FUN(	do_shutdown	);
+DECLARE_DO_FUN(	do_side		);
 DECLARE_DO_FUN(	do_silence	);
+DECLARE_DO_FUN(	do_skill	);
 DECLARE_DO_FUN(	do_sla		);
 DECLARE_DO_FUN(	do_slay		);
 DECLARE_DO_FUN(	do_sleep	);
 DECLARE_DO_FUN(	do_slookup	);
+DECLARE_DO_FUN(	do_speak	);
+DECLARE_DO_FUN(	do_special	);
+DECLARE_DO_FUN(	do_spell	);
+DECLARE_DO_FUN(	do_stake	);
+DECLARE_DO_FUN(	do_stance	);
+DECLARE_DO_FUN(	do_smother	);
 DECLARE_DO_FUN(	do_sneak	);
 DECLARE_DO_FUN(	do_snoop	);
 DECLARE_DO_FUN(	do_socials	);
 DECLARE_DO_FUN(	do_south	);
 DECLARE_DO_FUN(	do_split	);
+DECLARE_DO_FUN(	do_spy		);
+DECLARE_DO_FUN(	do_spydirection	);
 DECLARE_DO_FUN(	do_sset		);
 DECLARE_DO_FUN(	do_stand	);
 DECLARE_DO_FUN(	do_steal	);
+DECLARE_DO_FUN(	do_summon	);
 DECLARE_DO_FUN(	do_switch	);
 DECLARE_DO_FUN(	do_tell		);
+DECLARE_DO_FUN(	do_throw	);
+DECLARE_DO_FUN(	do_tie		);
 DECLARE_DO_FUN(	do_time		);
 DECLARE_DO_FUN(	do_title	);
+DECLARE_DO_FUN(	do_token	);
+DECLARE_DO_FUN(	do_tradition	);
 DECLARE_DO_FUN(	do_train	);
 DECLARE_DO_FUN(	do_transfer	);
+DECLARE_DO_FUN(	do_truesight	);
 DECLARE_DO_FUN(	do_trust	);
+DECLARE_DO_FUN(	do_twist	);
 DECLARE_DO_FUN(	do_typo		);
+DECLARE_DO_FUN(	do_unload	);
 DECLARE_DO_FUN(	do_unlock	);
+DECLARE_DO_FUN(	do_untie	);
+DECLARE_DO_FUN(	do_unwerewolf	);
 DECLARE_DO_FUN(	do_up		);
+DECLARE_DO_FUN(	do_upkeep	);
 DECLARE_DO_FUN(	do_users	);
 DECLARE_DO_FUN(	do_value	);
+DECLARE_DO_FUN(	do_vampire	);
+DECLARE_DO_FUN(	do_vamptalk	);
+DECLARE_DO_FUN(	do_vclan	);
 DECLARE_DO_FUN(	do_visible	);
+DECLARE_DO_FUN(	do_voodoo	);
 DECLARE_DO_FUN(	do_wake		);
+DECLARE_DO_FUN(	do_watcher	);
+DECLARE_DO_FUN(	do_watching	);
 DECLARE_DO_FUN(	do_wear		);
+DECLARE_DO_FUN(	do_wearaffect	);
 DECLARE_DO_FUN(	do_weather	);
+DECLARE_DO_FUN(	do_werewolf	);
 DECLARE_DO_FUN(	do_west		);
 DECLARE_DO_FUN(	do_where	);
 DECLARE_DO_FUN(	do_who		);
 DECLARE_DO_FUN(	do_wimpy	);
 DECLARE_DO_FUN(	do_wizhelp	);
+DECLARE_DO_FUN(	do_wizlist	);
 DECLARE_DO_FUN(	do_wizlock	);
 DECLARE_DO_FUN(	do_yell		);
 DECLARE_DO_FUN(	do_zap		);
@@ -1455,6 +2098,31 @@ DECLARE_SPELL_FUN(	spell_fire_breath	);
 DECLARE_SPELL_FUN(	spell_frost_breath	);
 DECLARE_SPELL_FUN(	spell_gas_breath	);
 DECLARE_SPELL_FUN(	spell_lightning_breath	);
+
+DECLARE_SPELL_FUN(	spell_guardian		);
+DECLARE_SPELL_FUN(	spell_soulblade		);
+DECLARE_SPELL_FUN(	spell_mana		);
+DECLARE_SPELL_FUN(	spell_frenzy		);
+DECLARE_SPELL_FUN(	spell_darkblessing	);
+DECLARE_SPELL_FUN(	spell_portal		);
+DECLARE_SPELL_FUN(	spell_energyflux	);
+DECLARE_SPELL_FUN(	spell_voodoo		);
+DECLARE_SPELL_FUN(	spell_transport		);
+DECLARE_SPELL_FUN(	spell_regenerate	);
+DECLARE_SPELL_FUN(	spell_clot		);
+DECLARE_SPELL_FUN(	spell_mend		);
+DECLARE_SPELL_FUN(	spell_quest		);
+DECLARE_SPELL_FUN(	spell_minor_creation	);
+DECLARE_SPELL_FUN(	spell_brew		);
+DECLARE_SPELL_FUN(	spell_scribe		);
+DECLARE_SPELL_FUN(	spell_carve		);
+DECLARE_SPELL_FUN(	spell_engrave		);
+DECLARE_SPELL_FUN(	spell_bake		);
+DECLARE_SPELL_FUN(	spell_mount		);
+DECLARE_SPELL_FUN(	spell_scan		);
+DECLARE_SPELL_FUN(	spell_repair		);
+DECLARE_SPELL_FUN(	spell_spellproof	);
+DECLARE_SPELL_FUN(	spell_preserve		);
 
 
 
@@ -1601,23 +2269,45 @@ void	add_follower	args( ( CHAR_DATA *ch, CHAR_DATA *master ) );
 void	stop_follower	args( ( CHAR_DATA *ch ) );
 void	die_follower	args( ( CHAR_DATA *ch ) );
 bool	is_same_group	args( ( CHAR_DATA *ach, CHAR_DATA *bch ) );
+void	room_text	args( ( CHAR_DATA *ch, char *argument ) );
+char    *strlower       args( ( char * ip ) );
+void	excessive_cpu	args( ( int blx ) );
 
 /* act_info.c */
 void	set_title	args( ( CHAR_DATA *ch, char *title ) );
+void	show_list_to_char	args( ( OBJ_DATA *list, CHAR_DATA *ch,
+				    bool fShort, bool fShowNothing ) );
 
 /* act_move.c */
 void	move_char	args( ( CHAR_DATA *ch, int door ) );
+void	open_lift	args( ( CHAR_DATA *ch ) );
+void	close_lift	args( ( CHAR_DATA *ch ) );
+void	move_lift	args( ( CHAR_DATA *ch, int to_room ) );
+void	move_door	args( ( CHAR_DATA *ch ) );
+void	thru_door	args( ( CHAR_DATA *ch, int doorexit ) );
+void	open_door	args( ( CHAR_DATA *ch, bool be_open ) );
+bool	is_open		args( ( CHAR_DATA *ch ) );
+bool	same_floor	args( ( CHAR_DATA *ch, int cmp_room ) );
 
 /* act_obj.c */
+bool	is_ok_to_wear	args( ( CHAR_DATA *ch, char *argument ) );
+void	quest_object	args( ( CHAR_DATA *ch, OBJ_DATA *obj ) );
+bool	remove_obj	args( ( CHAR_DATA *ch, int iWear, bool fReplace ) );
+void	wear_obj	args( ( CHAR_DATA *ch, OBJ_DATA *obj, bool fReplace ) );
 
 /* act_wiz.c */
+void	bind_char	args( ( CHAR_DATA *ch ) );
+void	logchan		args( ( char *argument ) );
 
 /* comm.c */
 void	close_socket	args( ( DESCRIPTOR_DATA *dclose ) );
+void	close_socket2	args( ( DESCRIPTOR_DATA *dclose ) );
 void	write_to_buffer	args( ( DESCRIPTOR_DATA *d, const char *txt,
 			    int length ) );
 void	send_to_char	args( ( const char *txt, CHAR_DATA *ch ) );
 void	act		args( ( const char *format, CHAR_DATA *ch,
+			    const void *arg1, const void *arg2, int type ) );
+void	kavitem		args( ( const char *format, CHAR_DATA *ch,
 			    const void *arg1, const void *arg2, int type ) );
 
 /* db.c */
@@ -1628,6 +2318,7 @@ OD *	create_object	args( ( OBJ_INDEX_DATA *pObjIndex, int level ) );
 void	clear_char	args( ( CHAR_DATA *ch ) );
 void	free_char	args( ( CHAR_DATA *ch ) );
 char *	get_extra_descr	args( ( const char *name, EXTRA_DESCR_DATA *ed ) );
+char *	get_roomtext	args( ( const char *name, ROOMTEXT_DATA    *rt ) );
 MID *	get_mob_index	args( ( int vnum ) );
 OID *	get_obj_index	args( ( int vnum ) );
 RID *	get_room_index	args( ( int vnum ) );
@@ -1667,6 +2358,7 @@ void	damage		args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dam,
 			    int dt ) );
 void	update_pos	args( ( CHAR_DATA *victim ) );
 void	stop_fighting	args( ( CHAR_DATA *ch, bool fBoth ) );
+bool	no_attack	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 
 /* handler.c */
 int	get_trust	args( ( CHAR_DATA *ch ) );
@@ -1704,6 +2396,7 @@ CD *	get_char_world	args( ( CHAR_DATA *ch, char *argument ) );
 OD *	get_obj_type	args( ( OBJ_INDEX_DATA *pObjIndexData ) );
 OD *	get_obj_list	args( ( CHAR_DATA *ch, char *argument,
 			    OBJ_DATA *list ) );
+OD *	get_obj_in_obj	args( ( CHAR_DATA *ch, char *argument ) );
 OD *	get_obj_carry	args( ( CHAR_DATA *ch, char *argument ) );
 OD *	get_obj_wear	args( ( CHAR_DATA *ch, char *argument ) );
 OD *	get_obj_here	args( ( CHAR_DATA *ch, char *argument ) );
@@ -1720,6 +2413,7 @@ char *	item_type_name	args( ( OBJ_DATA *obj ) );
 char *	affect_loc_name	args( ( int location ) );
 char *	affect_bit_name	args( ( int vector ) );
 char *	extra_bit_name	args( ( int extra_flags ) );
+void	affect_modify	args( ( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd ) );
 
 /* interp.c */
 void	interpret	args( ( CHAR_DATA *ch, char *argument ) );

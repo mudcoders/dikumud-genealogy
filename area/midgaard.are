@@ -688,8 +688,12 @@ an executioner's axe~
 An executioner's axe is here waiting to possess its next user.~
 ~
 5 1024|2048 1|8192
-0 5 6 1
-60 30000 10000
+57030 5 6 1
+30 30000 10000
+A
+18 5
+A
+19 5
 E
 axe blade~
 It is quite heavy.  The blade is made of some metal that you can't even
@@ -1542,7 +1546,7 @@ mound upon which the temple is built and ends on the temple square below.
    Equally large steps lead UP through a small door into the ENTRANCE to MUD 
 SCHOOL.  (type 'up' to go to MUD SCHOOL.)  A small plaque is on this wall.
 ~
-30 4|8|1024 0
+30 4|8 0
 D0
 At the northern end of the temple hall is a statue and a huge altar.
 ~
@@ -1564,6 +1568,12 @@ This entire world has been integrated, modified, debugged, and enhanced by
 Hatchet, Kahn, and Furey of MERC Industries to be run by any MERC Mud.
 1992 December 17
 ~
+T
+|blood*~
+The earth splits open and $p pours from the ground.~
+copy~
+|kavir*~
+1048608 30007 0
 S
 #3002
 Cleric's Inner Sanctum~
@@ -4078,7 +4088,7 @@ S
 #SPECIALS
 M  3000 spec_cast_mage
 M  3005 spec_thief
-M  3011 spec_executioner
+M  3011 spec_rogue
 M  3012 spec_cast_adept
 M  3020 spec_cast_mage
 M  3021 spec_cast_cleric

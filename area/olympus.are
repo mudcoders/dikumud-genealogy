@@ -295,7 +295,7 @@ A large horse with wings is here.
 This horse is snow white with large wings.  Although it doesn't look very
 threatening, it seems as though it would be dangerous if provoked.
 ~
-4 2|8|32|128|8192|524288 0 S
+2052 2|8|32|128|8192|524288 0 S
 8 12 4 1d8+110 2d5+3
 800 3000
 8 8 0
@@ -343,7 +343,7 @@ The Thunder Bolt~
 A huge hammer has been carelessly dropped here.~
 ~
 5 32|64|1024 1|8192
-0 6 5 8
+48 6 5 8
 24 200000 150000
 A
 18 3
@@ -353,7 +353,7 @@ A Winged Helmet~
 A helmet with small wings lies here.~
 ~
 9 32|64|1024 1|16
-10 0 0 0
+10 0 0 39
 5 150000 5000
 A
 2 2
@@ -362,7 +362,7 @@ spear ares~
 the Spear of Ares~
 A wicked spear rests on the ground here.~
 ~
-9 32|64|512 1|8192
+5 32|64|512 1|8192
 0 5 5 2
 18 200000 10000
 A
@@ -375,7 +375,7 @@ a pair of winged sandals~
 A pair of well made sandals lies here.~
 ~
 9 32|64|1024 1|64
-8 0 0 0
+8 0 0 39
 5 100000 2500
 #905
 staff ivory~
@@ -431,7 +431,7 @@ a glowing necklace~
 A necklace with an inner glow lies here.~
 ~
 9 32|64|1024 1|4
-4 0 0 0
+4 0 0 57
 2 10000 4000
 A
 12 25
@@ -453,7 +453,7 @@ a brightly glowing shield~
 A shield lies here, filling the room with its aura.~
 ~
 9 32|64|1024 1|512
-9 0 0 0
+9 0 0 57
 10 200000 50000
 A
 4 1
@@ -535,7 +535,7 @@ the Amulet of Ra~
 A sun shaped medallion is lying here.~
 ~
 9 32|64|1024 1|4
-2 0 0 0
+2 0 0 45
 1 10000 2000
 A
 12 50
@@ -545,7 +545,7 @@ the Sword of the Sun~
 A beautiful sword with the rising sun etched on the pommel is lying here.~
 ~
 5 32|64|1024 1|8192
-0 6 5 3
+68 6 5 3
 20 1000000 150000
 A
 19 2

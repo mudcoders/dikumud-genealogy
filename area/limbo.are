@@ -36,7 +36,7 @@ A pile of gold coins.~
 1 0 0
 #10
 corpse~
-corpse of %s~
+the corpse of %s~
 The corpse of %s is lying here.~
 ~
 23 0 1
@@ -44,47 +44,47 @@ The corpse of %s is lying here.~
 100 0 0
 #11
 corpse~
-corpse of %s~
+the corpse of %s~
 The corpse of %s is lying here.~
 ~
 24 0 0
 0 0 0 1
 100 0 0
 #12
-head~
-head of %s~
+head %s~
+the severed head of %s~
 The severed head of %s is lying here.~
 ~
-19 0 1
-10 0 0 0
+13 0 16385
+10 0 12 0
 5 0 0
 #13
-heart~
-heart of %s~
+heart %s~
+the torn-out heart of %s~
 The torn-out heart of %s is lying here.~
 ~
-19 0 1
-16 0 0 0
+19 0 16385
+16 0 13 0
 2 0 0
 #14
-arm~
-arm of %s~
+arm %s~
+the sliced-off arm of %s~
 The sliced-off arm of %s is lying here.~
 ~
-19 0 1
-20 0 0 0
+19 0 16385
+20 0 14 0
 5 0 0
 #15
-leg~
-leg of %s~
+leg %s~
+the sliced-off leg of %s~
 The sliced-off leg of %s is lying here.~
 ~
-19 0 1
-20 0 0 0
+19 0 16385
+20 0 15 0
 5 0 0
 #16
 turd~
-steaming turd~
+the steaming turds of %s~
 The steaming turds of %s assail your nostrils.~
 ~
 13 0 0
@@ -114,6 +114,14 @@ A magical spring flows from the ground here.~
 ~
 25 64 0
 100000 100000 0 0
+5000 10 100000
+#23
+spring blood~
+a blood spring~
+A spring of dark red liquid flows from the ground here.~
+~
+25 64 0
+100000 100000 13 0
 5000 10 100000
 #0
 

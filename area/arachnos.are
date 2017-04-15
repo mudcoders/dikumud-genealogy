@@ -220,7 +220,7 @@ This disgusting creature is at the size of a small elephant.  It has eight
 huge, hairy legs that would give it a tremendous speed on almost any surface
 if it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.
 ~
-67 8 -1000 S
+2115 8 -1000 S
 15 6 -4 15d15+150 2d8+2
 0 12000
 8 8 2
@@ -246,7 +246,7 @@ visor black knight's~
 a black knight's visor~
 A black visor sits here.~
 ~
-9 96 17
+9 96 32769
 6 0 0 0
 5 20000 5000
 A

@@ -231,6 +231,24 @@ diploma is yours.
 3 18 8 2d4+30 1d6+1
 300 100
 8 8 0
+#3721
+spirit~
+the spirit~
+The spirit of the mud school is here to help you.
+~
+He is the spirit of a once-mighty player killer, who was forced to 
+repent his sins after death by helping young newbies for a hundred and 
+one years, after which time his soul will be allowed eternal peace.
+
+He can conjure up sub-issue vests, swords, daggers, maces, shields, and
+war banners.  He also knows a few good area for new players...Maybe you
+should ask him about the smurf village, the gnomes, the shire, or the
+dwarven drop-off centre?
+~
+2 16936 1000 S
+1 2 2 1d1+30000 1d8+32
+100000 80000
+8 8 1
 #0
 
 
@@ -501,6 +519,125 @@ You see the one way door into the Arena of Mud School.
 ~
 door~
 1 -1 3744
+T
+>ENTER<~
+The spirit says 'Welcome to mud school, $n!'
+The spirit says 'If you need any help, just ask.'~
+copy~
+all~
+1048576 0 3721
+T
+&thank*spirit*~
+The spirit says 'You are welcome, $n.'.~
+copy~
+all~
+1048576 0 3721
+T
+|hello*hi *~
+The spirit says 'Hello there $n, can I be of service?.'.~
+copy~
+all~
+1048576 0 3721
+T
+|yes*~
+The spirit says 'Sorry $n but you'll need to be more specific.'.~
+copy~
+all~
+1048576 0 3721
+T
+|help*~
+The spirit says 'Look at me to see what I can do.'~
+copy~
+all~
+1048576 0 3721
+T
+&where*go*~
+The spirit says 'First you should go north through mud school.'.~
+copy~
+all~
+1048576 0 3721
+T
+&what*do*~
+The spirit says 'Just go north and follow the signs!'.~
+copy~
+all~
+1048576 0 3721
+T
+|mace*~
+The spirit says 'Here you go $n, maybe this mace will help!'.
+The spirit gives $n $p.~
+The spirit says 'Here you go $n, maybe this mace will help!'.
+The spirit gives you $p.~
+all~
+1048608 3700 3721
+T
+|dagger*~
+The spirit says 'Here you go $n, maybe this dagger will help!'.
+The spirit gives $n $p.~
+The spirit says 'Here you go $n, maybe this dagger will help!'.
+The spirit gives you $p.~
+all~
+1048608 3701 3721
+T
+|sword*~
+The spirit says 'Here you go $n, maybe this sword will help!'.
+The spirit gives $n $p.~
+The spirit says 'Here you go $n, maybe this sword will help!'.
+The spirit gives you $p.~
+all~
+1048608 3702 3721
+T
+|vest*~
+The spirit says 'Here you go $n, maybe this vest will help!'.
+The spirit gives $n $p.~
+The spirit says 'Here you go $n, maybe this vest will help!'.
+The spirit gives you $p.~
+all~
+1048608 3703 3721
+T
+|shield*~
+The spirit says 'Here you go $n, maybe this shield will help!'.
+The spirit gives $n $p.~
+The spirit says 'Here you go $n, maybe this shield will help!'.
+The spirit gives you $p.~
+all~
+1048608 3704 3721
+T
+|banner*light*~
+The spirit says 'Here you go $n, maybe this war banner will help!'.
+The spirit gives $n $p.~
+The spirit says 'Here you go $n, maybe this war banner will help!'.
+The spirit gives you $p.~
+all~
+1048608 3716 3721
+T
+|smurf*~
+The spirit says 'To get to the smurf village from recall,'.
+The spirit says 'Go 2 south, 3 west, and keep going north!'.~
+copy~
+all~
+1048576 0 3721
+T
+|gnome*~
+The spirit says 'To get to the gnome village from recall,'.
+The spirit says 'Go 2 south, 5 east, and then go south.'.~
+copy~
+all~
+1048576 0 3721
+T
+|shire*~
+The spirit says 'To get to the shire from recall,'.
+The spirit says 'Go 2 south, 5 west, and then keep going north.'.~
+copy~
+all~
+1048576 0 3721
+T
+|dwarven*drop*~
+The spirit says 'To get to the dwarven drop-off centre from recall,'.
+The spirit says 'Go 2 south, 6 east, 1 down, then go south.'.~
+copy~
+all~
+1048576 0 3721
 S
 #3701
 A Room in Mud School~
@@ -1961,6 +2098,7 @@ S
 
 
 #RESETS
+M 0 3721 1 3700          [Newbie helper - KaVir]
 M 0 3700 1 3701           (acolyte of FRAG)
 D 0 3700 2 1
 M 0 3701 1 3710           blob

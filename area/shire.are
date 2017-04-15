@@ -85,7 +85,7 @@ The cow looks like it hasn't been milked in quite some time.  Although she
 is past her prime, you see that she still has a lot of years left, and that
 if provoked, her rear kick can be quite deadly.
 ~
-64 0 0 S
+2112 0 0 S
 4 17 6 4d4+44 1d4+3
 0 200
 5 5 0
@@ -133,7 +133,7 @@ A horse becomes frightened by your presence.
 ~
 The horse looks at you and turns away.  You can tell that it is afraid of you.
 ~
-66 0 0 S
+2114 0 0 S
 4 17 6 4d4+44 1d8+0
 2 460
 8 8 0
@@ -484,8 +484,8 @@ one ring~
 the One Ring~
 The One Ring is here.~
 ~
-9 64 16387
-0 0 0 0
+9 64 3
+0 0 0 46
 3 2500 1900
 A
 17 10

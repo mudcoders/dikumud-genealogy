@@ -478,10 +478,12 @@ a silvery breast plate~
 There is a silvery breast plate on the floor.~
 ~
 9 64|256|1024|2048 9
-8 0 0 0
+8 0 0 54
 40 25000 6000
 A
 1 3
+A
+18 4
 E
 plate breast silvery~
 On the breast plate you notice a relief of large rose. The metal seems to be 
@@ -493,10 +495,14 @@ some silvery leg plates~
 On the floor you see some silvery leg plates.~
 ~
 9 64|256|1024|2048 33
-8 0 0 0 
+8 0 0 52
 20 12500 5000
 A
 3 3
+A
+18 2
+A
+19 2
 E
 leg plates silvery~
 They seem to be made from silver or platinum.  You see the outline of a rose.
@@ -516,17 +522,23 @@ gloves silvery~
 The gloves are made of silver threads.
 ~
 A
-18 1
+18 2
+A
+19 2
 #7220
 helmet silvery~
 a silvery helmet~
 The silvery helmet lies here.~
 ~
 9 64|256|1024|2048 17
-9 0 0 0
+9 0 0 27
 35 9000 3000
 A
 4 3
+A
+18 2
+A
+19 2
 E
 helmet silvery~
 The helmet is made from platinum or silver and has a white fur brush attached
@@ -541,7 +553,7 @@ The shield of the rose rests on the floor.~
 10 0 0 0
 60 15000 1000
 A
-17 -10
+17 -50
 E
 shield~
 On the shield you see a clear and perfect painting of a dark red rose on a white
@@ -553,10 +565,14 @@ a pair of silvery boots~
 A pair of silvery boots stand on the floor.~
 ~
 9 64|256|1024|2048 65
-8 0 0 0
+8 0 0 39
 40 2000 1000
 A
 2 3
+A
+18 2
+A
+19 2
 E
 boots silvery~
 The boots are made from a silvery metal.
@@ -571,6 +587,10 @@ On the floor you see some silvery arm plates.~
 40 12500 7000
 A
 5 3
+A
+18 2
+A
+19 2
 E
 plates arm silvery~
 They seem to be made from silver or platinum. You see the outline of a rose.
@@ -581,8 +601,12 @@ a white cloak~
 A white cloak lies on the floor.~
 ~
 9 64|256|1024|2048 1025
-10 0 0 0
+10 0 0 57
 20 10000 5000
+A
+18 2
+A
+19 2
 E
 cloak white~
 This is a very fine made cloak from an unknown material, in a bright white
@@ -653,7 +677,7 @@ There is a pile of red dragonscale on the floor.~
 A
 2 -1
 A
-19 2
+19 3
 #7305
 leggings red~
 red dragonscale leggings~
@@ -665,7 +689,7 @@ On the floor you see two red dragonscale leggings.~
 A
 2 -1
 A
-19 2
+19 3
 #7306
 claws dragonclaws red~
 a pair of red dragon claws~
@@ -675,7 +699,7 @@ You can see a pair of large red dragon claws on the floor.~
 9 0 0 0
 4 900 1000
 A
-19 2
+19 3
 #7307
 skull dragonhelm red~
 a red dragonhelm~
@@ -687,7 +711,7 @@ A helmet fashioned into the likeness of a dragon skull is here.~
 A
 2 -1
 A
-19 2
+19 3
 A
 4 2
 #7308
@@ -699,7 +723,7 @@ A large red dragon shield rests on the floor.~
 10 0 0 0
 10 15000 1000
 A
-19 2
+19 3
 #7309
 greaves red~
 a pair of a red dragon's rear claws~
@@ -709,7 +733,7 @@ A pair of a red dragon's rear claws is on the floor.~
 9 0 0 0
 40 2000 1000
 A
-19 2
+19 3
 A
 2 -1
 #7310
@@ -721,7 +745,7 @@ On the ground you see two red arm guards.~
 9 0 0 0
 40 12500 7000
 A
-19 2
+19 3
 A
 2 -1
 #0

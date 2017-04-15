@@ -441,9 +441,9 @@ These gloves are plated with metal plates that provide strength and
 protection.
 ~
 A
-18 1
+18 2
 A
-19 1
+19 2
 #2301
 spiked armor garde~
 a suit of spiked garde armor~
@@ -453,7 +453,7 @@ A pile of spiked chainmail lies here.~
 7 0 0 0
 8 25000 5000
 A
-19 2
+19 4
 #2302
 greaves black~
 A pair of black minotaur greaves~
@@ -462,6 +462,8 @@ Some black metal greaves lie here.~
 9 0 33
 9 0 0 0
 9 25000 5000
+A
+19 1
 #2303
 vambraces black~
 A pair of black minotaur vambraces~
@@ -470,6 +472,8 @@ Some black metal vambraces lie here.~
 9 0 257
 9 0 0 0
 9 25000 5000
+A
+19 1
 #2304
 rod weaponry~
 the rod of weaponry~
@@ -506,6 +510,8 @@ A black plate collar rests here.~
 10 10000 1500
 A
 4 1
+A
+18 3
 #2307
 spiked gauntlets~
 a pair of spiked gauntlets~
@@ -533,6 +539,10 @@ shield shadow~
 You look into the depths of the shield and shiver at the evil it contains.
 ~
 A
+17 -10
+A
+18 1
+A
 23 -3
 #2309
 nightbringer short sword shortsword~
@@ -540,7 +550,7 @@ a shortsword named "Nightbringer"~
 A very evil looking shortsword lies here.~
 ~
 5 4|64|512|2048 8193
-0 5 4 11
+4 5 4 11
 9 75000 10000
 E
 nightbringer short sword shortsword~
@@ -571,14 +581,16 @@ A large golden breast plate lies here.~
 15 0 0 0
 18 35000 6500
 A
+12 25
+A
 13 25
 #2312
 cape white billowing silk~
-a billowing white cape ~
+a billowing white cape~
 A pile of white silk lies here.~
 ~
 9 1|64 5
-5 0 0 0
+5 0 0 54
 5 15000 3500
 A
 9 20
@@ -594,13 +606,15 @@ E
 shield huge tower~
 A pure white shield with a gold cross emblazoned across it.
 ~
+A
+17 -25
 #2314
 dawnbringer mace huge~
 a huge mace named "Dawnbringer"~
 A huge mace lies here. It radiates an aura of power.~
 ~
 5 1|64|1024|2048 8193
-0 5 5 6
+13 5 5 6
 24 50000 10000
 E
 dawnbringer mace huge~
@@ -616,7 +630,7 @@ a pair of wire rimmed spectacles~
 A small pair of wire rimmed spectacles rests here.~
 ~
 9 64 17
-1 0 0 0
+1 0 0 27
 2 25000 2500
 E
 spectacles wire rimmed~
@@ -637,7 +651,7 @@ ring banded~
 The ring has entwined bands of gold and silver.
 ~
 A
-12 30
+12 35
 A
 9 10
 #2317
@@ -652,8 +666,6 @@ E
 globe minor~
 Shimmering colors move inside the globe.
 ~
-A
-25 -5
 A
 23 -5
 #2318
@@ -720,8 +732,10 @@ a huge mithril mace~
 A huge mace made of mithril metal lies here.~
 ~
 5 1|64 8193
-0 4 4 6
+31 4 4 6
 13 25000 5000
+A
+1 2
 A
 18 2
 A
@@ -744,6 +758,10 @@ A thick ring made of marble~
 9 64 3
 4 0 0 0
 5 10000 1000
+A
+1 2
+A
+18 2
 #2326
 bracelet thick marble~
 a thick marble bracelet~
@@ -753,7 +771,11 @@ A thick bracelet made of marble lies here.~
 4 0 0 0
 8 30000 3000
 A
+1 2
+A
 5 1
+A
+18 2
 #2327
 boots striding~
 boots of striding~
@@ -774,7 +796,7 @@ an icy white cloak~
 A cold pile of white cloth lies here.~
 ~
 9 65 1025
-8 0 0 0
+8 0 0 12
 5 25000 2500
 E
 cloak icy white~
@@ -805,6 +827,10 @@ A wooden ring is on the floor.~
 1 0 0 0
 3 25000 2500
 A
+12 10
+A
+13 10
+A
 18 1
 A
 19 1
@@ -830,12 +856,14 @@ A strange belt lies here.~
 9 50000 5500
 A
 5 3
+A
+13 20
 #2333
 stone blood red~
 a blood red stone~
 A blood red stone lies here collecting dust.~
 ~
-9 66 16384
+9 66 16385
 3 0 0 0
 2 45000 4500
 E
@@ -843,7 +871,7 @@ stone blood red~
 The stone pulses with your own heart beat.
 ~
 A
-13 20
+13 30
 #2334
 crossbow huge~
 a huge crossbow~
@@ -876,6 +904,10 @@ A hood made of black leather rests here.~
 9 64 17
 5 0 0 0
 5 25000 2500
+A
+18 1
+A
+19 1
 #2337 
 sleeves black leather~
 a pair of black leather sleeves~
@@ -884,6 +916,10 @@ Some leather sleeves lie here.~
 9 0 257
 7 0 0 0
 5 3500 1000
+A
+18 1
+A
+19 1
 #2338
 pants black leather~
 a pair of black leather pants~
@@ -896,13 +932,17 @@ E
 pants black leather~
 They look sneaky.
 ~
+A
+18 1
+A
+19 1
 #2339
 sword wicked short shortsword~
 a wicked shortsword~
 A wicked looking shortsword lies here.~
 ~
 5 64 8193
-0 3 5 11
+34 3 5 11
 11 50000 5000
 E
 sword wicked short shortsword~
@@ -938,6 +978,10 @@ A
 1 1
 A
 5 1
+A
+18 1
+A
+19 1
 #2342
 buckler spiked~
 a spiked buckler~
@@ -946,6 +990,8 @@ A small spiked buckler rests here.~
 9 0 513
 10 0 0 0
 5 22500 5000
+A
+18 2
 A
 19 2
 #2343
@@ -956,6 +1002,8 @@ A small studded ring lies here.~
 9 64 3
 5 0 0 0
 1 5000 1000
+A
+13 15
 A
 19 1
 #2344
@@ -972,28 +1020,32 @@ Mahn-Tor's Great Axe~
 An extremely huge axe is resting here.~
 ~
 5 2|64 8193
-0 5 5 3
+42 5 5 3
 26 100000 25000
 E
 axe great~
 The runes "DeAtH" are scrawled along the blade.
 ~
 A
-18 2
+18 4
 A
-19 2
+19 4
 #2346
 plate ethereal suit~
 a suit of ethereal plate~
 A suit of shimmering plate rests here.~
 ~
 9 513 9
-10 0 0 0
+10 0 0 46
 2 50000 10000
 E
 plate ethereal suit~
 You can almost see through it.
 ~
+A
+18 1
+A
+19 1
 A
 24 -3
 #2347
@@ -1002,28 +1054,32 @@ an ethereal helm~
 A shimmering helm rests here.~
 ~
 9 513 17
-8 0 0 0
+8 0 0 27
 5 15000 3500
 E
 helm ethereal~
-You can almost see through it.
-~
-#2348
-blade ethereal~
-an ethereal blade~
-A shimmering blade lies here.~
-~
-5 513 8193
-0 4 3 3
-3 10000 1000
-E
-blade ethereal~
 You can almost see through it.
 ~
 A
 18 1
 A
 19 1
+#2348
+blade ethereal~
+an ethereal blade~
+A shimmering blade lies here.~
+~
+5 513 8193
+52034 4 3 3
+3 10000 1000
+E
+blade ethereal~
+You can almost see through it.
+~
+A
+18 3
+A
+19 3
 #2349
 branch willow~
 a willow branch~
@@ -1134,6 +1190,10 @@ A white pelt lies here.~
 9 0 1025
 8 0 0 0
 9 5000 750
+A
+1 3
+A
+13 10
 #2362
 sword kopesh~
 a kopesh sword~
@@ -1196,9 +1256,11 @@ A huge halberd has been left here.~
 0 9 2 3
 18 20000 5000
 A
-18 1
+1 2
 A
-19 1
+18 2
+A
+19 3
 #2369
 visor blue steel helm~
 a blue steel helm and visor~
@@ -1207,6 +1269,10 @@ A helm and visor of blue steel rests here.~
 9 0 17
 8 0 0 0
 8 10000 2500
+A
+18 1
+A
+19 1
 #2370
 greaves blue steel~
 a pair of blue steel greaves~
@@ -1215,6 +1281,10 @@ Some greaves made of blue steel rest here.~
 9 0 33
 8 0 0 0
 8 10000 2500
+A
+18 1
+A
+19 1
 #2371
 vambraces blue steel~
 a pair of blue steel vambraces~
@@ -1223,6 +1293,10 @@ Some vambraces made of blue steel rest here.~
 9 0 257
 8 0 0 0
 8 10000 2500
+A
+18 1
+A
+19 1
 #2372
 sword two two-handed~
 a two-handed sword~
@@ -1243,6 +1317,10 @@ A helm and visor made of red steel rests here.~
 9 0 17
 9 0 0 0
 8 20000 5000
+A
+12 15
+A
+13 15
 #2374
 greaves red steel~
 a pair of red steel greaves~
@@ -1251,6 +1329,10 @@ Some greaves made of red steel rest here.~
 9 0 33
 9 0 0 0
 8 20000 5000
+A
+12 15
+A
+13 15
 #2375
 vambraces red steel~
 a pair of red steel vambraces~
@@ -1259,6 +1341,10 @@ Some vambraces made of red steel rest here.~
 9 0 257
 9 0 0 0
 8 20000 5000
+A
+12 15
+A
+13 15
 #2376
 glaive~
 a minotaur glaive~
@@ -1270,7 +1356,7 @@ A very large glaive rests here.~
 A
 18 1
 A 
-19 1
+19 3
 #2377
 visor helm crimson steel~
 a crimson steel helm and visor~
@@ -1279,6 +1365,10 @@ A helm and visor made of crimson steel rests here.~
 9 0 17
 10 0 0 0
 8 40000 7500
+A
+12 15
+A
+13 15
 #2378
 greaves crimson steel~
 a pair of crimson steel greaves~
@@ -1287,6 +1377,10 @@ Some greaves made of crimson steel rest here.~
 9 0 33
 10 0 0 0
 8 40000 7500
+A
+12 15
+A
+13 15
 #2379
 vambraces crimson steel~
 a pair of crimson steel vambraces~
@@ -1295,6 +1389,10 @@ Some vambraces made of crimson steel rest here.~
 9 0 257
 10 0 0 0
 8 40000 7500
+A
+12 15
+A
+13 15
 #2380
 star morning morningstar~
 a huge morningstar~
@@ -1383,6 +1481,10 @@ A rough bearskin rests here.~
 9 0 1025
 8 0 0 0
 12 3500 900
+A
+1 1
+A
+13 10
 #2389
 ear ring earring feathered~
 a pair of feathered earrings~
