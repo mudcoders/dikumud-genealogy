@@ -1,10 +1,11 @@
+
 /* ************************************************************************
 *  file: handler.c , Handler module.                      Part of DIKUMUD *
 *  Usage: Various routines for moving about objects/players               *
 *  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
 ************************************************************************* */
 
-#include <string.h>
+#include <strings.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <assert.h>
@@ -28,9 +29,10 @@ int str_cmp(char *arg1, char *arg2);
 void free_char(struct char_data *ch);
 void stop_fighting(struct char_data *ch);
 void remove_follower(struct char_data *ch);
+extern char *index();
+void clearMemory(struct char_data *ch);
+void update_crash(struct char_data *ch);
 void log(char *str);
-
-
 
 char *fname(char *namelist)
 {
@@ -95,7 +97,7 @@ void affect_modify(struct char_data *ch, byte loc, byte mod, long bitv, bool add
 	switch(loc)
 	{
 		case APPLY_NONE:
- 			break;
+			break;
 
 		case APPLY_STR:
 			GET_STR(ch) += mod;
@@ -130,7 +132,7 @@ void affect_modify(struct char_data *ch, byte loc, byte mod, long bitv, bool add
 			break;
 
 		case APPLY_AGE:
-			ch->player.time.birth -= ((long)SECS_PER_MUD_YEAR*(long)mod);
+/*			ch->player.time.birth += mod; */
 			break;
 
 		case APPLY_CHAR_WEIGHT:
@@ -553,7 +555,7 @@ int get_number(char **name) {
 
 	int i;
 	char *ppos;
-  char number[MAX_INPUT_LENGTH] = "";
+	char number[MAX_INPUT_LENGTH] = "";
 
 	if (ppos = index(*name, '.')) {
 		*ppos++ = '\0';
@@ -917,9 +919,7 @@ void extract_char(struct char_data *ch)
 	}
 
 	if (ch->in_room == NOWHERE) {
-      /* leaves nothing ! */
-
-		log("NOWHERE, extracting char.");
+		log("NOWHERE extracting char. (handler.c, extract_char)");
 		exit(1);
 	}
 
@@ -1006,15 +1006,23 @@ void extract_char(struct char_data *ch)
 
 	if (ch->desc)
 	{
-		if (ch->desc->original)
+		if (ch->desc->original) {
 			do_return(ch, "", 0);
+		}
+		else {
+			if (ch->specials.wizInvis) {  /* before quitting, go vis */
+			   do_wizinvis(ch, "", 0);
+			}
+		}
 		save_char(ch, NOWHERE);
+		update_crash(ch);
 	}
 
 	if (IS_NPC(ch))
 	{
 		if (ch->nr > -1) /* if mobile */
 			mob_index[ch->nr].number--;
+                clearMemory(ch);   /* Only NPC's can have memory */
 		free_char(ch);
 	}
 

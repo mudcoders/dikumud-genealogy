@@ -162,3 +162,4 @@ struct attack_hit_type {
   char *singular;
   char *plural;
 };
+

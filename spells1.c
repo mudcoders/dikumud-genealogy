@@ -65,7 +65,6 @@ void cast_burning_hands( byte level, struct char_data *ch, char *arg, int type,
 void cast_call_lightning( byte level, struct char_data *ch, char *arg, int type,
   struct char_data *victim, struct obj_data *tar_obj )
 {
-  extern struct weather_data weather_info;
 
 	switch (type) {
 		case SPELL_TYPE_SPELL:

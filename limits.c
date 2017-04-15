@@ -12,10 +12,9 @@
 #include "spells.h"
 #include "comm.h"
 
-#define READ_TITLE(ch) \
-   ( GET_SEX(ch) == SEX_MALE ? \
-	  titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].title_m : \
-	  titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].title_f )
+#define READ_TITLE(ch) (GET_SEX(ch) == SEX_MALE ?   \
+	titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].title_m :  \
+	titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].title_f)
 
 
 extern struct char_data *character_list;
@@ -43,7 +42,7 @@ int graf(int age, int p0, int p1, int p2, int p3, int p4, int p5, int p6)
 
 	if (age < 15)
 		return(p0);                               /* < 15   */
-	else if (age <= 29)
+	else if (age <= 29) 
 		return (int) (p1+(((age-15)*(p2-p1))/15));  /* 15..29 */
 	else if (age <= 44)
 		return (int) (p2+(((age-30)*(p3-p2))/15));  /* 30..44 */
@@ -62,11 +61,13 @@ int mana_limit(struct char_data *ch)
 {
 	int max;
 
-	if (!IS_NPC(ch))
-		max = (100); /* + (graf(age(ch).year, 0,0,10,30,50,70,60)); */
-	else
+	if (!IS_NPC(ch)) {
+		max = (100);  /* + (graf(age(ch).year, 0,0,10,30,50,70,60)); */
+		max = MAX(ch->points.max_mana, max);
+ 	}
+	else {
 		max = 100;
-
+	}
 	return(max);
 }
 
@@ -78,14 +79,14 @@ int hit_limit(struct char_data *ch)
 	if (!IS_NPC(ch))
 		max = (ch->points.max_hit) +
 		      (graf(age(ch).year, 2,4,17,14,8,4,3));
-	else
+	else 
 		max = (ch->points.max_hit);
 
 
 /* Class/Level calculations */
 
 /* Skill/Spell calculations */
-
+	
   return (max);
 }
 
@@ -94,12 +95,14 @@ int move_limit(struct char_data *ch)
 {
 	int max;
 
-	if (!IS_NPC(ch))
+	if (!IS_NPC(ch)) {
 		/* HERE SHOULD BE CON CALCULATIONS INSTEAD */
 		max = graf(age(ch).year, 50,70,160,120,100,40,20);
-	else
+		max = MAX(ch->points.max_move, max);
+	}
+	else {
 		max = ch->points.max_move;
-
+	}
 /* Class/Level calculations */
 
 /* Skill/Spell calculations */
@@ -138,7 +141,8 @@ int mana_gain(struct char_data *ch)
 				break;
 		}
 
-		if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
+		if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC)
+		    ||IS_SET(ch->specials.act,PLR_ISMULTIMU)||IS_SET(ch->specials.act,PLR_ISMULTICL))
 			gain += gain;
 	}
 
@@ -147,7 +151,7 @@ int mana_gain(struct char_data *ch)
 
 	if((GET_COND(ch,FULL)==0)||(GET_COND(ch,THIRST)==0))
 		gain >>= 2;
-
+ 
   return (gain);
 }
 
@@ -182,7 +186,8 @@ int hit_gain(struct char_data *ch)
 				break;
 		}
 
-		if ((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))
+		if (((GET_CLASS(ch) == CLASS_MAGIC_USER) || (GET_CLASS(ch) == CLASS_CLERIC))&&
+		   (!IS_SET(ch->specials.act,PLR_ISMULTIWA)&&!IS_SET(ch->specials.act,PLR_ISMULTITH)))
 			gain >>= 1;
   }
 
@@ -206,7 +211,7 @@ int move_gain(struct char_data *ch)
 	int gain;
 
 	if(IS_NPC(ch)) {
-		return(GET_LEVEL(ch));
+		return(GET_LEVEL(ch));	
 		/* Neat and fast */
 	} else {
 		gain = graf(age(ch).year, 12,18,22,21,14,10,6);
@@ -245,42 +250,67 @@ int move_gain(struct char_data *ch)
 void advance_level(struct char_data *ch)
 {
 	int add_hp, i;
+	int add_mana;
 
 	extern struct wis_app_type wis_app[];
 	extern struct con_app_type con_app[];
 
-
+	
 	add_hp = con_app[GET_CON(ch)].hitp;
 
 	switch(GET_CLASS(ch)) {
 
 		case CLASS_MAGIC_USER : {
 			add_hp += number(3, 8);
+			add_mana = number(GET_LEVEL(ch),(int)(1.5*GET_LEVEL(ch))); 
+			add_mana = MIN(add_mana, 10);
 		} break;
 
 		case CLASS_CLERIC : {
 			add_hp += number(5, 10);
+			add_mana = number(GET_LEVEL(ch),(int)(1.5*GET_LEVEL(ch)));
+			add_mana = MIN(add_mana, 10);
 		} break;
 
 		case CLASS_THIEF : {
 			add_hp += number(7,13);
+			add_mana = 0;
 		} break;
 
 		case CLASS_WARRIOR : {
 			add_hp += number(10,15);
+			add_mana = 0;
 		} break;
 	}
 
+	if (IS_SET(ch->specials.act,PLR_ISMULTITH)||
+	    IS_SET(ch->specials.act,PLR_ISMULTICL)||
+	    IS_SET(ch->specials.act,PLR_ISMULTIWA)||
+	    IS_SET(ch->specials.act,PLR_ISMULTIMU)){
+		add_hp /= 2;
+	} /* Dual classed chars only gain 1/2 hp */
+
 	ch->points.max_hit += MAX(1, add_hp);
+        if ((GET_LEVEL(ch) != 1) && (ch->points.max_mana < 160)) {
+   	   ch->points.max_mana = ch->points.max_mana + (sh_int)add_mana;
+  	} /* if */
 
 	if (GET_CLASS(ch) == CLASS_MAGIC_USER || GET_CLASS(ch) == CLASS_CLERIC)
 		ch->specials.spells_to_learn += MAX(2, wis_app[GET_WIS(ch)].bonus);
 	else
 		ch->specials.spells_to_learn += MIN(2,MAX(1, wis_app[GET_WIS(ch)].bonus));
 
-	if (GET_LEVEL(ch) > 20)
+	if (IS_TRUSTED(ch)){
 		for (i = 0; i < 3; i++)
 			ch->specials.conditions[i] = -1;
+	} else {
+		/* Temporary kludge since I inadvertently gave mortals
+		 * immortals' special hunger/thirst/drunk conditions. -Swift
+		 */
+		for(i=0;i<3;i++){
+			ch->specials.conditions[i]=1;
+		}
+	}
 }
 
 
@@ -301,10 +331,20 @@ void gain_exp(struct char_data *ch, int gain)
 	int i;
   bool is_altered = FALSE;
 
-	if (IS_NPC(ch) || ((GET_LEVEL(ch) < 21) && (GET_LEVEL(ch) > 0))) {
+	if (IS_NPC(ch) || (!IS_TRUSTED(ch) && GET_LEVEL(ch) > 0 &&
+	    GET_LEVEL(ch)<LV_IMMORTAL)) {
 
 		if (gain > 0) {
 			gain = MIN(100000, gain);
+			if (!IS_NPC(ch)){ /* Dual class gain 1/2 exp */
+				if (IS_SET(ch->specials.act,PLR_ISMULTITH)||
+				    IS_SET(ch->specials.act,PLR_ISMULTIMU)||
+				    IS_SET(ch->specials.act,PLR_ISMULTIWA)||
+				    IS_SET(ch->specials.act,PLR_ISMULTICL)){
+					gain /= 3; 
+				}
+			}
+
 			GET_EXP(ch) += gain;
 			if (!IS_NPC(ch)) {
 				for (i = 0; titles[GET_CLASS(ch)-1][i].exp <= GET_EXP(ch); i++) {
@@ -348,7 +388,7 @@ void gain_exp_regardless(struct char_data *ch, int gain)
 				}
 			}
 		}
-		if (gain < 0)
+		if (gain < 0) 
 			GET_EXP(ch) += gain;
 		if (GET_EXP(ch) < 0)
 			GET_EXP(ch) = 0;
@@ -412,19 +452,31 @@ void check_idling(struct char_data *ch)
 			send_to_char("You have been idle, and are pulled into a void.\n\r", ch);
 			char_from_room(ch);
 			char_to_room(ch, 1);  /* Into room number 0 */
+			/* Swiftest: I added the following two lines */
+			save_char(ch,NOWHERE);
+			save_obj2(ch);
 		}
 		else if (ch->specials.timer > 48)
 		{
 			if (ch->in_room != NOWHERE)
 				char_from_room(ch);
+			/* Swiftest: want to put all link deads in
+			limbo instead of extract... 
 			if (ch->specials.was_in_room != NOWHERE)
 				char_to_room(ch, ch->specials.was_in_room);
 			else
 				char_to_room(ch, 1);
+			*/
+			char_to_room(ch,1);
 			if (ch->desc)
 				close_socket(ch->desc);
 			ch->desc = 0;
+			/* Swiftest: Want to save their equipment..
 			extract_char(ch);
+			So I added the following instead. Hope it works...
+			*/
+			save_char(ch,NOWHERE);
+			save_obj2(ch);
 		}
 }
 
@@ -434,7 +486,7 @@ void check_idling(struct char_data *ch)
 
 /* Update both PC's & NPC's and objects*/
 void point_update( void )
-{
+{	
 	void update_char_objects( struct char_data *ch ); /* handler.c */
   void extract_obj(struct obj_data *obj); /* handler.c */
 	struct char_data *i, *next_dude;
@@ -459,7 +511,7 @@ void point_update( void )
 		if (!IS_NPC(i))
 		{
 			update_char_objects(i);
-			if (GET_LEVEL(i) < 22)
+			if (GET_LEVEL(i) <= LV_DEMIGOD)
 				check_idling(i);
 		}
 		gain_condition(i,FULL,-1);

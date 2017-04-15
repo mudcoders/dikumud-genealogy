@@ -1,3 +1,4 @@
+
 /* ************************************************************************
 *  file: comm.c , Communication module.                   Part of DIKUMUD *
 *  Usage: Communication, central game loop.                               *
@@ -15,7 +16,7 @@
 #include <sys/wait.h>
 #include <netinet/in.h>
 #include <netdb.h>
-#include <string.h>
+#include <strings.h>
 #include <sys/time.h>
 #include <fcntl.h>
 #include <signal.h>
@@ -46,7 +47,7 @@ extern struct room_data *world;	  /* In db.c */
 extern int top_of_world;            /* In db.c */
 extern struct time_info_data time_info;  /* In db.c */
 extern char help[];
-extern bool wizlock;
+extern struct ban_t *ban_list;		/* In db.c */
 
 /* local globals */
 
@@ -76,7 +77,7 @@ struct timeval timediff(struct timeval *a, struct timeval *b);
 void flush_queues(struct descriptor_data *d);
 void nonblock(int s);
 void parse_name(struct descriptor_data *desc, char *arg);
-
+int number_playing(void);
 
 /* extern fcnts */
 
@@ -93,6 +94,7 @@ void perform_violence(void);
 void stop_fighting(struct char_data *ch);
 void show_string(struct descriptor_data *d, char *input);
 void gr(int s);
+void save_objs2(struct char_data *ch);
 
 void check_reboot(void);
 
@@ -190,7 +192,7 @@ int run_the_game(int port)
 
 	void signal_setup(void);
 	int load(void);
-	void coma();
+	void coma(int s);
 
 	PROFILE(monstartup((int) 2, etext);)
 
@@ -205,7 +207,7 @@ int run_the_game(int port)
 	if (lawful && load() >= 6)
 	{
 		log("System load too high at startup.");
-		coma();
+		coma(0);
 	}
 
 	boot_db();
@@ -235,13 +237,24 @@ int run_the_game(int port)
 /* Accept new connects, relay commands, and call 'heartbeat-functs' */
 int game_loop(int s)
 {
-	int tmp_room, old_len;
+	int tmp_room, old_len, retval;
 	fd_set input_set, output_set, exc_set;
 	struct timeval last_time, now, timespent, timeout, null_time;
 	static struct timeval opt_time;
 	char comm[MAX_INPUT_LENGTH];
+	char prompt[MAX_INPUT_LENGTH];
+	char temp[MAX_INPUT_LENGTH];
 	struct descriptor_data *t, *point, *next_point;
-	int pulse = 0, mask;
+	int pulse = 0, mask, pulse2 = 0;
+        bool disp;
+	char buf[100];
+
+	/*
+ 	 * Since we are rebooting, move any crash files to
+	 * the "oldcrash" directory.  These files will remain
+	 * until the player logs on again.
+	 */
+	system("mv crash/*.crash oldcrash");
 
 	null_time.tv_sec = 0;
 	null_time.tv_usec = 0;
@@ -251,18 +264,29 @@ int game_loop(int s)
 	gettimeofday(&last_time, (struct timeval *) 0);
 
 	maxdesc = s;
-	avail_descs = getdtablesize() - 2; /* !! Change if more needed !! */
 
-#if __linux__
+#ifdef __CYGWIN__
+	retval = setdtablesize(100);
+	if (retval == -1)
+		log("unable to set table size");
+	else {
+		sprintf(buf, "%s %d\n", "dtablesize set to: ", retval);
+		log(buf);
+	}
+#endif
+
+	avail_descs = getdtablesize() - 8;  /*  !! Change if more needed !! */
+	sprintf(buf,"avail_descs set to: %d",avail_descs);
+	log(buf);
+
+#ifdef __linux__
 	mask = sigprocmask(SIGUSR1) | sigprocmask(SIGUSR2) | sigprocmask(SIGINT) |
 		sigprocmask(SIGPIPE) | sigprocmask(SIGALRM) | sigprocmask(SIGTERM) |
-		sigprocmask(SIGURG) | sigprocmask(SIGXCPU) | sigprocmask(SIGHUP) |
-		sigprocmask(SIGVTALRM);
+		sigprocmask(SIGURG) | sigprocmask(SIGXCPU) | sigprocmask(SIGHUP);
 #else
 	mask = sigmask(SIGUSR1) | sigmask(SIGUSR2) | sigmask(SIGINT) |
 		sigmask(SIGPIPE) | sigmask(SIGALRM) | sigmask(SIGTERM) |
-		sigmask(SIGURG) | sigmask(SIGXCPU) | sigmask(SIGHUP) |
-		sigmask(SIGVTALRM);
+		sigmask(SIGURG) | sigmask(SIGXCPU) | sigmask(SIGHUP);
 #endif
 
 	/* Main loop */
@@ -352,7 +376,6 @@ int game_loop(int s)
 						point->character->specials.was_in_room);
 					point->character->specials.was_in_room = NOWHERE;
 					act("$n has returned.",	TRUE, point->character, 0, 0, TO_ROOM);
-					affect_total(point->character);
 				}
 
 				point->wait = 1;
@@ -387,17 +410,52 @@ int game_loop(int s)
 		for (point = descriptor_list; point; point = point->next)
 			if (point->prompt_mode)
 			{
-				if (point->str)
+				if (point->str) {
 					write_to_descriptor(point->descriptor, "] ");
-				else if (!point->connected)
-					if (point->showstr_point)
+				}
+				else if (!point->connected) {
+					if (point->showstr_point)  {
 						write_to_descriptor(point->descriptor,
 							"*** Press return ***");
-					else
-						write_to_descriptor(point->descriptor, "> ");
+					}
+					else {
+					   strcpy(prompt, "<");
+					   disp = FALSE;
+
+					   if (point->character->specials.dispHp) {
+                                              sprintf(temp, " %dh",
+ 					         GET_HIT(point->character));
+					      strcat(prompt, temp);
+					      disp = TRUE;
+					   } /* if */
+
+					   if (point->character->specials.dispMana) {
+                                              sprintf(temp, " %ds",
+ 					         GET_MANA(point->character));
+					      strcat(prompt, temp);
+					      disp = TRUE;
+					   } /* if */
+
+					   if (point->character->specials.dispMove) {
+                                              sprintf(temp, " %dmv",
+ 					         GET_MOVE(point->character));
+					      strcat(prompt, temp);
+					      disp = TRUE;
+					   } /* if */
+
+					   if (disp) {
+					      strcat(prompt, " > ");
+					   }
+					   else {
+					      strcat(prompt, "> ");
+   					   } /* if */
+					   disp = FALSE;
+
+   					   write_to_descriptor(point->descriptor, prompt);
+					} /* if */
+				} /* if */
 				point->prompt_mode = 0;
 			}
-
 
 
 		/* handle heartbeat stuff */
@@ -427,7 +485,29 @@ int game_loop(int s)
 				update_time();
 		}
 
+		/* Every 1/2 hour, delete all crash files */
+		/* and make new ones only for current players */
+
+		/* Modified by Swiftest: 12 was original value */
+		/* 12 == 1/2 hour (?), 24 == 1 hour, 24*6 == 6 hours */
+		/* So that crash file is destroyed every 6 hours */
+		/* Let's not destroy it at all...
+
+		if (pulse2 == (12*2*6)) {
+			system("rm crash/*.crash");
+			for (point = descriptor_list; point; point = next_point) {
+				next_point = point->next;
+				if (!IS_NPC(point->character))
+					save_obj2(point->character);
+			}
+			pulse2 = 0;
+		}
+		*/
+
 		if (pulse >= 2400) {
+			if (pulse2 >= 0) {
+				pulse2++;   /* crash file deletion timer */
+			} /* if */
 			pulse = 0;
 			if (lawful)
 				night_watchman();
@@ -439,16 +519,9 @@ int game_loop(int s)
 }
 
 
-
-
-
-
 /* ******************************************************************
 *  general utility stuff (for local use)									 *
 ****************************************************************** */
-
-
-
 
 int get_from_q(struct txt_q *queue, char *dest)
 {
@@ -633,7 +706,17 @@ int new_connection(int s)
 }
 
 
+int number_playing(void)
+{
+	struct descriptor_data *d;
 
+	int i;
+
+	for(i=0,d=descriptor_list;d;d=d->next){
+		i++;
+	}
+	return(i);
+}
 
 
 int new_descriptor(int s)
@@ -643,19 +726,15 @@ int new_descriptor(int s)
 	int size;
 	struct sockaddr_in sock;
 	struct hostent *from;
+	struct ban_t *tmp;
 	char buf[10];
 
 	if ((desc = new_connection(s)) < 0)
 		return (-1);
 
-	if (wizlock)
-	{
-		write_to_descriptor(desc, "The game is wizlocked...");
-		close(desc);
-		return(0);
-	}
 
-	if ((desc + 1) >= avail_descs)
+/*	if ((maxdesc + 1) >= avail_descs) */
+	if ( (number_playing()+6) >= avail_descs)
 	{
 		write_to_descriptor(desc, "Sorry.. The game is full...\n\r");
 		close(desc);
@@ -677,12 +756,27 @@ int new_descriptor(int s)
 	else if (!(from = gethostbyaddr((char*)&sock.sin_addr,
 		sizeof(sock.sin_addr), AF_INET)))
 	{
-		strcpy(newd->host, inet_ntoa(sock.sin_addr));
+		perror("gethostbyaddr");
+		*newd->host = '\0';
 	}
 	else
 	{
 		strncpy(newd->host, from->h_name, 49);
 		*(newd->host + 49) = '\0';
+	}
+
+	/* Swiftest: I added the following to ban sites. I don't
+	endorse banning of sites, but Copper has few descriptors now
+	and some people from certain sites keep abusing access by
+	using automated 'autodialers' and leaving connections hanging.
+	*/
+	for(tmp=ban_list;tmp;tmp=tmp->next){
+		if(!str_cmp(tmp->name,newd->host)){
+			write_to_descriptor(desc, "Your site has been temporarily banned from Copper!\n\r");
+			close(desc);
+			free(newd);
+			return(0);
+		}
 	}
 
 
@@ -998,17 +1092,16 @@ void coma(int s)
 
 	log("Entering comatose state.");
 
-#if __linux__
+#ifdef __linux__
 	sigsetmask(sigprocmask(SIGUSR1) | sigprocmask(SIGUSR2) | sigprocmask(SIGINT) |
 		sigprocmask(SIGPIPE) | sigprocmask(SIGALRM) | sigprocmask(SIGTERM) |
-		sigprocmask(SIGURG) | sigprocmask(SIGXCPU) | sigprocmask(SIGHUP) |
-		sigprocmask(SIGVTALRM));
+		sigprocmask(SIGURG) | sigprocmask(SIGXCPU) | sigprocmask(SIGHUP));
 #else
 	sigsetmask(sigmask(SIGUSR1) | sigmask(SIGUSR2) | sigmask(SIGINT) |
 		sigmask(SIGPIPE) | sigmask(SIGALRM) | sigmask(SIGTERM) |
-		sigmask(SIGURG) | sigmask(SIGXCPU) | sigmask(SIGHUP) |
-		sigmask(SIGVTALRM));
+		sigmask(SIGURG) | sigmask(SIGXCPU) | sigmask(SIGHUP));
 #endif
+
 
 	while (descriptor_list)
 		close_socket(descriptor_list);
@@ -1165,7 +1258,8 @@ void act(char *str, int hide_invisible, struct char_data *ch,
 	for (; to; to = to->next_in_room)
 	{
 		if (to->desc && ((to != ch) || (type == TO_CHAR)) &&
-			(CAN_SEE(to, ch) || !hide_invisible) && AWAKE(to) &&
+			(CAN_SEE(to, ch) || !hide_invisible ||
+			 (type == TO_VICT)) && AWAKE(to) &&
 			!((type == TO_NOTVICT) && (to == (struct char_data *) vict_obj)))
 		{
 			for (strp = str, point = buf;;)

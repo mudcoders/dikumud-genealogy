@@ -8,6 +8,90 @@ Puff the Fractal Dragon is here, contemplating a higher reality.
 26 1 -1 5d10+550 4d6+3
 10000 155000
 8 8 2
+#23
+figure shadow goon~
+The shadow assassin of Mr. Audran~
+A shadow assassin of Mr. Audran is waiting in the shadows patiently...
+~
+  The assassin is HUGE yet somehow sneaks easily in and out of the shadows
+around himself...dressed in all black, looking both mysterious and DANGEROUS.
+You feel compelled to do what he asks.
+~
+64 524348 0 S
+30 0 -10 1d1+1000 4d8+2
+1000 5000
+8 8 1
+#30
+big Mr. godfather father Audran master sir~
+Mr. Audran~
+Mr. Audran is standing here looking at you very closely.
+~
+Mr. Audran ...is well....Mr. Audran ...enough said...down to business.
+~
+64 60 0 S
+30 0 -10 1d1+2000 100d1+100
+1000 5000 
+8 8 1
+#1000
+fairy dragon~
+A fairy dragon~
+A fairy dragon is fluttering around here looking for something to do...
+~
+  Its a cute little multi-colored dragon...about 2 foot long.
+It gracefully dances around your head.
+~
+64 24 500 S
+5 16 5 1d1+64 2d4+1
+20 900
+8 8 0
+#1001
+griffon~
+A griffon~
+A large black winged griffon swoops into an attack...
+~
+  Golden maned...and black all over its quite a beautiful creature if not
+for the fact it is hungry and is attacking you!
+~
+96 0 300 S
+8 14 4 1d1+104 2d5+2
+500 3750
+8 8 1
+#1203
+executioner~
+The executioner~
+The executioner is here polishing his blade.
+~
+A masked man with muscles bulging all over his body.  You can tell by
+the look in his eyes that he enjoys seeing you cower in his presence.
+~
+66 524296 -1000 S
+30 0 -10 1d1+499 5d10+0
+0 500000
+8 8 1
+#1205
+salesman man~
+the salesman~
+A salesman is here, peddling his wares.
+~
+Not all salespeople follow the stereotype of their kind too closely, but this
+one sure does. From the seventies-style polyester suit to the friendly grin
+that doesn't quite ring true, this guy doesn't vary from the image one bit.
+~
+129 0 350 S
+14 5 1 4d8+138 3d6+9
+100 500
+8 8 1
+#1206
+scum~
+the pond scum~
+Some pond scum is floating on the surface of the water.
+~
+Well, it's scummy and it's floating on the pond.
+~
+2 0 0 S
+3 8 -1 2d8+8 1d5+0
+5 200
+8 8 2
 #3000
 wizard~
 the Wizard~
@@ -17,8 +101,8 @@ The wizard looks old and senile, and yet he looks like a very powerful
 wizard. He is equipped with fine clothing, and is wearing many fine
 rings and bracelets.
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
+3 0 900 S
+23 2 2 6d10+690 3d8+12
 10000 80000
 8 8 1
 #3001
@@ -29,8 +113,8 @@ The Baker looks at you calmly, wiping flour from his face with one hand.
 A fat, nice looking baker. But you can see that he has many scars on his
 body.
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
+2050 0 900 S
+23 2 2 6d10+390 2d8+12
 2000 80000
 8 8 1
 #3002
@@ -40,8 +124,8 @@ A grocer stands at the counter, with a slightly impatient look on his face.
 ~
 A tall grocer, who moves two 200 pounds bag of flour around on his shoulders.
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
+2050 0 900 S
+23 2 2 6d10+590 2d8+12
 2000 80000
 8 8 1
 #3003
@@ -51,9 +135,9 @@ A weaponsmith.
 ~
 A young weaponsmith, who still has lots to learn.
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
-10000 80000
+2050 0 900 S
+23 2 2 6d10+590 2d8+12
+2000 80000
 8 8 1
 #3004
 armourer~
@@ -63,21 +147,22 @@ An Armourer stands here.
 An old but very strong armourer, he has made more armours in his
 lifetime than you have ever seen.
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
-10000 80000
+2050 0 900 S
+23 2 2 6d10+590 2d8+12
+2000 80000
 8 8 1
 #3005
-receptionist~
-the Receptionist~
-A receptionist stands in front of you, looking at you like you were the
-center of the universe.
+receptionist goddess~
+the Receptionist Goddess~
+A Receptionist Goddess floats in front of you, looking at you like you
+were the center of the universe. You really don't want to mess with her.
+You could not harm a hair on this beautiful vixen's body...
 ~
-You notice a tired look in her face.
+You notice a tired look in her face. She beams a pretty smile at you!
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
-2000 80000
+2050 0 900 S
+30 0 -10 9d10+5000 4d8+15
+90000 600000
 8 8 2
 #3006
 captain~
@@ -86,8 +171,8 @@ A retired Captain stands here, selling boats.
 ~
 This Captain has eaten more sharks than you have killed peas.
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
+2050 0 900 S
+23 2 2 6d10+590 2d8+12
 2000 80000
 8 8 1
 #3007
@@ -98,42 +183,19 @@ A Sailor stands here, waiting to help you.
 He looks like a strong, fit sailor.
 ~
 2 0 900 S
-23 2 2 6d10+390 1d8+12
+23 2 2 6d10+490 2d8+12
 2000 80000
 8 8 1
 #3008
-pet shop boy~
-the Pet Shop Boy~
-A Pet Shop Boy is here, humming gently.
+uncle Juan~
+Uncle Juan~
+Uncle Juan is here ready to take your order.
 ~
-He is young and close-cropped and looks quite happy.
+He looks like he may or may not have a green card.
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
+2050 0 900 S
+23 2 2 6d10+490 2d8+12
 2000 80000
-8 8 1
-#3009
-jeweller~
-the Jeweller~
-The Jeweller is standing behind the desk.
-~
-He is fat and has a content although watchful look on his face.
-~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
-10000 80000
-8 8 1
-#3010
-leather worker~
-the Leather Worker~
-The Leather Worker is sitting by the table, sewing a leather cap.
-~
-He looks as an honest, hard-working artisan who only just earns enough to
-keep himself going.
-~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
-10000 80000
 8 8 1
 #3020
 guildmaster master~
@@ -144,8 +206,8 @@ Even though your guildmaster looks old and tired, you can clearly see the
 vast amount of knowledge she posesses. She is wearing fine magic clothing,
 and you notice that she is surrounded by a blue shimmering aura.
 ~
-2 0 1000 S
-24 0 0 6d10+440 3d8+4
+2050 0 1000 S
+24 0 0 6d10+540 3d8+4
 8794 100000
 8 8 2
 #3021
@@ -156,8 +218,8 @@ Your guildmaster is standing here.
 You are in no doubt that this guildmaster is truly close to your god; he has
 a peaceful, loving look. You notice that he is surrounded by a white aura.
 ~
-2 128 1000 S
-24 0 0 6d10+440 3d8+4
+2050 128 1000 S
+24 0 0 6d10+540 3d8+4
 8794 100000
 8 8 1
 #3022
@@ -169,8 +231,8 @@ You realize that whenever your guildmaster moves, you fail to notice it -
 the way of the true thief. She is to be dressed in poor clothing, having
 the appearance of a beggar.
 ~
-2 0 1000 S
-24 0 0 6d10+440 3d8+4
+2050 0 1000 S
+24 0 0 6d10+540 3d8+4
 8794 100000
 8 8 2
 #3023
@@ -182,8 +244,8 @@ This is your master. Big and strong with bulging muscles. Several scars
 across his body proves that he was using arms before you were born. He
 has a calm look on his face.
 ~
-2 0 1000 S
-24 0 0 6d10+440 3d8+4
+2050 0 1000 S
+24 0 0 6d10+540 3d8+4
 8794 100000
 8 8 1
 #3024
@@ -192,11 +254,11 @@ the Sorcerer~
 A sorcerer is guarding the entrance.
 ~
 He is an experienced mage who has specialized in the field of Combat Magic.
-He is here to guard the Mage's Guild and his superior knowledge of offensive
-as well as defensive spells make him a deadly opponent.
+He is here to guard the Mage's Guild and his superior knowledge of offensive as
+well as defensive spells make him a deadly opponent.
 ~
-2 0 800 S
-23 2 2 6d10+390 1d8+12
+2050 0 800 S
+23 2 2 6d10+590 1d8+12
 2000 80000
 8 8 1
 #3025
@@ -209,8 +271,8 @@ His duty is to protect the faithful from persecution and infidel attacks and
 his religious devotion combined with his superior skill makes him a deadly
 opponent.
 ~
-2 0 800 S
-23 2 2 6d10+390 1d8+12
+2050 0 800 S
+23 2 2 6d10+590 1d8+12
 2000 80000
 8 8 1
 #3026
@@ -222,8 +284,8 @@ He is a thief who has specialized in killing others as effectively as possible,
 using all sorts of weapons.  His superior knowledge of how and where to use
 them combined with his extraordinary stealth makes him a deadly opponent.
 ~
-2 0 800 S
-23 4 4 6d10+390 1d8+12
+2050 0 800 S
+23 4 4 6d10+590 1d8+12
 2000 80000
 8 8 1
 #3027
@@ -236,8 +298,8 @@ chivalrous deeds.  His duty is to protect the Guild of Swordsmen and his
 extreme skill combined with his experience in warfare makes him a deadly
 opponent.
 ~
-2 0 800 S
-23 0 0 6d10+390 1d8+12
+2050 0 800 S
+23 0 0 6d10+590 1d8+12
 2000 80000
 8 8 1
 #3040
@@ -247,8 +309,8 @@ A Bartender watches you calmly, while he skillfully mixes a drink.
 ~
 A tired looking Bartender who hates trouble in his bar.
 ~
-2 0 900 S
-23 2 2 1d1+30000 1d8+12
+2050 0 900 S
+23 2 2 6d10+590 1d8+12
 2000 80000
 8 8 1
 #3041
@@ -258,7 +320,7 @@ A waiter is going around from one place to another.
 ~
 A tired looking waiter.
 ~
-2 0 900 S
+2050 0 900 S
 23 2 2 6d10+390 1d8+12
 2000 80000
 8 8 1
@@ -269,27 +331,27 @@ A man who in his young days was a famous sorcerer but now leads a quiet,
 peaceful life as a waiter.
 ~
 ~
-2 0 600 S
+2050 0 600 S
 23 1 2 6d10+390 1d8+12
 2000 80000
 8 8 1
 #3043
 waiter~
 the Waiter~
-A waiter who seems to have reach contact with God.
+A waiter who seems to have reached contact with God.
 ~
 ~
-2 0 600 S
+2050 0 600 S
 23 1 2 6d10+390 1d8+12
 2000 80000
 8 8 1
 #3044
 waiter~
 the Waiter~
-A waiter who knows where all his costumers has their money.
+A waiter who knows where all his customers has their money.
 ~
 ~
-2 0 600 S
+2050 0 600 S
 23 1 2 6d10+390 1d8+12
 2000 80000
 8 8 1
@@ -299,7 +361,7 @@ the Waiter~
 A waiter who easily could kill you, and still carry quite a few firebreathers.
 ~
 ~
-2 0 600 S
+2050 0 600 S
 23 1 2 6d10+390 1d8+12
 2000 80000
 8 8 1
@@ -311,9 +373,21 @@ Filthy is standing here, eager to serve you a special drink.
 Filthy looks real, ehm, dirty. He likes to keep his costumers happy,
 but do not mess with him or else he'll get upset.
 ~
-2 0 600 S
-23 1 2 1d1+30000 1d8+12
+2050 0 600 S
+23 1 2 6d10+390 1d8+12
 2000 80000
+8 8 1
+#3059
+guard elite red~
+the Elite Red Guard~
+An Elite Red Guard stands here eyeing you suspiciously. 
+~
+A big, strong, dangerous-looking guard with battle scars
+to match his cold personality.
+~
+2241 0 1000 S
+17 4 1 1d12+250 3d6+4
+500 12000
 8 8 1
 #3060
 cityguard guard~
@@ -322,8 +396,8 @@ A cityguard stands here.
 ~
 A big, strong, helpful, trustworthy guard.
 ~
-193 0 1000 S
-10 10 2 1d12+123 1d8+3
+2241 0 1000 S
+12 10 2 1d12+150 1d8+3
 500 9000
 8 8 1
 #3061
@@ -332,8 +406,8 @@ the Janitor~
 A janitor is walking around, cleaning up.
 ~
 ~
-1 0 900 S
-1 20 9 2d6+10 1d5+0
+2049 0 900 S
+1 20 9 2d6+15 1d5+0
 34 100
 8 8 1
 #3062
@@ -355,7 +429,7 @@ A Mercenary waiting for a job.
 ~
 He looks pretty mean.
 ~
-4 0 -200 S
+2052 0 -200 S
 5 16 5 2d6+60 1d8+0
 47 900
 8 8 1
@@ -386,7 +460,7 @@ odif yltsaeb~
 the Odif Yltsaeb~
 Odif Yltsaeb is here, walking backwards.
 ~
-Odif is a small dog that has been reversed by some god.
+Odif is a small god that has been reversed by some dog.
 ~
 161 0 -200 S
 0 20 10 1d6+4 1d4+0
@@ -399,9 +473,45 @@ A cityguard is here, guarding the gate.
 ~
 A big, strong, helpful, trustworthy guard.
 ~
-67 0 1000 S
+2115 0 1000 S
 10 10 2 1d12+123 1d8+3
 500 9000
+8 8 1
+#3068
+green gelatinous blob~
+the horrid green gelatinous blob~
+An oozing green gelatinous blob is here, sucking in bits of debris.
+~
+A horrid looking thing; it's huge, greenish, and looks
+like the blob.
+~
+129 8 0 S
+20 0 0 1d11+355 2d9+2
+1000 40000
+8 8 0
+#3069
+jester funny~
+the funny jester~
+A jester wearing bright, neon colors is here making fun of people.
+~
+His face is painted with vivid colors designed to provoke people.
+His brand of humor is rather caustic.
+~
+2241 0 0 S
+5 16 5 5d2+60 2d4+1
+100 500
+8 8 0
+#3070
+mage elite black~
+the Elite Black Mage~
+The Elite Black Mage wanders around mumbling strange noises.
+~
+The mage looks old and decrepit, yet he seems to be a wise old
+man content to let others be.
+~
+193 0 1000 S
+21 2 0 2d12+550 3d6+4
+15000 22000
 8 8 1
 #3090
 kitten~
@@ -466,7 +576,7 @@ The Maid is waiting for your order.
 She is very beautiful with golden hair, and deep blue eyes. A good reason
 for coming here more often.
 ~
-2 0 1000 S
+2050 0 1000 S
 23 2 2 6d10+390 1d8+12
 2000 80000
 8 8 2
@@ -477,7 +587,7 @@ A Sexton is sitting here, drinking hot tea.
 ~
 The Sexton looks like he is relaxing after another gravedigging job.
 ~
-2 0 800 S
+2050 0 800 S
 3 18 7 2d6+35 1d7+0
 13 350
 6 6 1
@@ -526,13 +636,13 @@ The duck is quite fat.  It looks like it is enjoying life.
 0 75
 8 8 0
 #3140
-captain~
-the Captain~
-The Captain of the Guard is looking very upset.
+chief~
+the Chief~
+The Chief Guard is looking very upset.
 ~
-The very angry Captain of the Guard.
+A very angry chief.
 ~
-38 8 1000 S
+2086 8 1000 S
 17 4 1 1d12+210 1d8+8
 0 28000
 8 8 1
@@ -543,7 +653,7 @@ A cityguard stands here, looking very upset.
 ~
 A big, strong, angry guard.
 ~
-38 0 1000 S
+2086 0 1000 S
 10 10 2 1d12+123 1d8+3
 0 9000
 8 8 1
@@ -558,7 +668,7 @@ She looks very busy.
 The Secretary says 'Sorry, but the Mayor is extremely busy today.'
 The Secretary says 'Please sit down and have a seat in the meantime.'
 ~
-2 0 900 S
+2050 0 900 S
 12 9 2 1d12+148 2d7+1
 100 13000
 8 8 2
@@ -569,7 +679,7 @@ The Mayor is sitting in his huge chair, snoring loudly.
 ~
 He is a stocky, middle-aged man with thin, grey hair.
 ~
-3 0 900 S
+2051 0 900 S
 23 2 2 6d10+390 1d8+12
 1000 80000
 4 4 1
@@ -580,7 +690,7 @@ The Town Crier is here, weeping quietly.
 ~
 He is very good at his job - completely dissolved in tears.
 ~
-128 0 900 S
+2176 0 900 S
 1 20 9 2d6+10 1d5+0
 34 100
 8 8 1
@@ -594,45 +704,265 @@ that the cat has exceptionally big claws - guess it's nothing to worry
 about as long as you leave it alone.
 ~
 66 8 1000 S
-30 0 -10 1d1+500 20d20+100
-0 0
-5 5 0
-#3600
-henry gardener~
-Henry the Gardener~
-Henry the Gardener is sitting here, looking drunk.
+1 20 8 1d11+11 2d2+1
+30 100
+5 5 2
+#3400
+skeleton bony~
+the bony skeleton~
+A bony skeleton is here.
 ~
-He is a tall but bulky man in his late fifties.  His features are worn with
-decades of hard work and his somewhat crouched expression is one of deep
-sorrow and depression.  He is haunted by a memory of a lost paradise.
+  Brown bones with tufts of clothing still hanging from them. This 
+skeleton looks very mindless but still dangerous...
 ~
-64 0 350 S
-4 15 8 1d12+48 1d6+1
-50 800
+32 0 0 S
+1 20 9 1d1+19 1d6+0
+15 100
+8 8 1
+#3401
+undead zombie~
+The undead zombie~
+An undead zombie sits here munching on something...
+~
+  His body is totally white and slowly rotting away.  Each Zombie looks
+quite different from the next because they were, of course, once alive and
+human.
+~
+34 40 -100 S
+4 17 6 1d1+49 1d8+0
+50 600
+8 8 1
+#3402
+undead ghoul~
+The ghoul~
+A ghoul is here staring at you hungrily.
+~
+The ghoul no longer resembles the adventurer he once was.  Nonetheless
+he looks like he hasn't forgot his fighting skills.
+~
+32 8 -500 S
+6 15 4 1d1+79 2d5+1
+150 1500
+8 8 1
+#3403
+undead wraith~
+The wraith~
+You spot a wraith advancing towards you from the shadows.
+~
+The wraith no longer has a material form.  He is wearing a tattered
+black robe which hides all but the darkness of his face and the glimmer
+in his eyes.
+~
+34 42 -750 S
+12 9 2 1d1+149 3d6+0
+1000 13000
+8 8 1
+#3404
+undead guardian vampire~
+The guardian vampire~
+A vampire is here hiding his face from your light source.
+~
+The guardian vampire looks quite EVIL.  Just by looking at him the hair on your
+arms raises. He looks mighty tough to be just a minor minion.
+~
+2083 40 -1000 S
+23 0 -4 1d1+385 4d5+30
+15000 55000
+8 8 1
+#3405
+priest~
+The priest~
+A priest of all gods stands here solemnly speaking words of praise.
+~
+Obviously a goodly man, you feel somehow...closer to the gods just
+by gazing upon this man.  Dressed in white, fine white hair, and
+a soft slighty wrinkled face...this man has an sacred beauty.
+You'd swear you saw a halo around his head.
+~
+2050 168 1000 S
+30 0 -10 1d1+433 2d4+2
+400 9000
+8 8 1
+#3406
+Mi-Go Fungi~
+The Mi-Go~
+A Mig-Go is walking around here
+~
+Mi-Go, the Fungi from Yuggoth...it is a pinkish being about five feet long;
+with a custaceous body bearing a vast pair of or membraneous wings and several
+sets of articulate limbs, and with a sort of convuluted ellipsoid, covered with
+multitudes of very small antennae, where a head would ordinarily be. ... These
+beings sometimes walk on all their legs and sometimes on the hindmost pair only
+~
+32 0 -500 S
+12 9 2 1d1+149 2d7+2
+650 13000
+8 8 0
+#3407
+nightgaunt~
+The nightgaunt~
+A nightgaunt is standing here
+~
+...shocking and uncouth black thing with smooth, oily, skin, unpleasant horns
+that curve inward toward each other, bat wings whose beating make no sound,
+ugly prehensile paws, and a barbed tail that lashes disquietingly.  And worst
+of all, it makes absolutely no sound or speach and smiles not at all because
+it has no face, only a suggestive blackness where a face ought to be...
+~
+96 1572864 -1000 S
+10 11 1 1d1+109 2d6+1
+150 3750
+8 8 0
+#3408
+hunting horror~
+The hunting horror~
+The hunting horror is here in wait of an unwary traveler...
+~
+Serving Nyarlathotep, and now Roch'tar these beings are hunting for victims.
+These beings resemble enormous ropy black serpents or worms possessing bat-
+like or umbrella-like wings.  Their forms continually shift and change,
+twitching and writhing, so it is hard to look at them.  They speak in great
+harsh voices. A hunting horror is HUGE, normally around 40 feet long.
+~
+32 40 -1000 S
+20 1 -2 1d1+259 3d6+2
+2000 40000
+8 8 0
+#3409
+weeds~
+Some cave weeds spring up out of the ground and~
+Some weeds are creeping across the floor 
+~
+  Just some unpleasant looking vine-like growths...
+~
+36 1572872 0 S
+6 15 4 1d1+75 1d8+1
+83 1500
+8 8 0
+#3410
+snapper joe~
+Snapper Joe~
+Snapper Joe is standing here leering at you chillingly
+~
+  What an ugly fiend! He is about 6'6'' and has mostly greenish skin with
+bright red hair. Half his face is burnt off and he has a perpetual smile.
+He is called up from his service in hell in order to aid the Undying One.
+~
+3 8 -750 S
+20 0 -1 1d1+365 4d3+15
+2222 40000
+8 8 1
+#3411
+X'ist flesh eater~
+The X'ist flesh eater~
+An X'ist flesh eater is sitting here munching on some coffin remains
+~
+  A large hairy monsterous beast, the only LIVE thing you have seen down
+here. It stands approximately 8 feet tall and hunches over to fit in this
+small room. It has a pair of tremendous claws that he uses to rip and tear.
+It has dog-like face except ...different... Bright glowing eyes and a grimace
+lend you to believe that he knew that you were coming...
+~ 
+35 8 -1000 S
+17 4 1 1d1+215 4d2+7
+1560 28000
+8 8 1
+#3412
+spirit ghost king crotus~
+The spirit of King Crotus~
+The spirit of King Crotus is floating here lazing above the floor
+~
+  Floating above the ground here and looking a bit dead, he whispers
+softly into the air : "The forces of evil have unlocked my spirit as
+                       well as one other. Free me from this misery
+                       anyone that can hear. The peace of the grave
+                       calls me but I am blocked from its quiet."
+~
+2 40 350 S
+20 0 -1 1d1+260 4d6+5
+50 40000
+8 8 1
+#3413
+rock slug~
+The rock slug~
+A rock slug is slowly creeping along, leaving a slime trail behind it
+~
+  It is a large brownish slug. Got any salt? Didnt think so...
+~
+4 0 0 S
+3 18 7 1d1+42 1d7+0
+5 350
+8 8 0
+#3414
+etcher~
+The mad etcher~
+The mad etcher is sitting here babbling to himself and working on the wall
+~
+  Quite insane, the mad etcher has been here it seems for decades...
+His hair is white; he babbles nonsense to himself; a layer of dust covers
+his out of date clothing; and he seems to be working on the same portion of
+the wall near the base...oh and he seems quite blind.
+
+      He leers insanely at you ans says 'heh heh what can I do for you 
+children?  Please dont mind my wife, she is always like that...hello
+dear can you make some tea for our company? Oh good! Now sit right down
+will you? would you like hot or cold tea? Yes the weather is....'
+
+And on he babbles.... 
+~
+64 1 1000 S
+5 5 3 1d1+80 2d6+1
+50 900
 6 6 1
-#3601
-corpse zombie~
-the rotting corpse~
-A rotting corpse is staggering towards you with outstretched hands.
+#3415
+wife ghost specter~
+The specteral etchers wife~
+The specteral wife of the etcher is very faintly floating here
 ~
-Maggots crawl all over its decaying body.
+  Yes you can barely make her out...though it almost makes you vomit.
+She is missing half her head...the one half is smashed in horribly like 
+she took a nasty fall. Her one damaged eye hangs on its own. She smiles
+insanely at you thru a broken jaw and missing teeth. One hand of hers is 
+resting on the shoulder of the etcher...her husband.
 ~
-34 0 -750 S
-4 16 5 2d6+60 1d8+2
-0 1200
-8 8 0
-#3602
-ghoul~
-the ghastly ghoul~
-A ghastly ghoul is here.
+3 1048576 1000 S
+7 14 4 1d1+86 2d4+3
+125 2250
+8 8 2
+#3416
+corpse body~
+The half-decomposed body~
+A half-decomposed body is lying in the corner here
 ~
-It is a walking corpse with long fangs and long, sharp nails that most of
-resemble claws.  Its eyes are a dark yellow colour and glare hungrily at you.
+  YUK! Its ugly, disgusting ...it smells ...it just also moving a bit!
 ~
-34 0 -750 S
-6 15 4 2d6+72 1d10+2
-0 2000
-8 8 0
+36 0 -350 S
+6 15 4 1d1+80 2d5+1
+83 1500
+8 8 1
+#3500
+wyvern~
+The wyvern~
+A monsterous wyvern slowly circles just above your heads...
+~
+This huge winged creature looks really menacing...(insert desc.)
+~
+64 0 -200 S
+8 13 3 8d10+20 2d6+1
+400 3575
+8 8 2
+#3501
+goblin~
+The goblin~
+A mountain goblin is wandering around mumbling to himself...
+~
+You see before you a small and twisted creature with knotted
+muscles...
+~
+96 0 -250 S
+4 17 6 1d1+55 1d8+0
+50 600
+8 8 1
 #4000
 snake~
 the snake~
@@ -707,7 +1037,7 @@ seen before.
 ~
 Well surely a strong, brainless fighter.
 ~
-102 0 -300 S
+2148 0 -300 S
 12 8 4 10d10+50 2d8+1
 1000 12000
 8 8 1
@@ -718,7 +1048,7 @@ A tall warrior.
 ~
 He seems to know his way with weapons.
 ~
-100 0 -400 S
+2148 0 -400 S
 7 13 5 3d10+80 2d5+0
 200 3500
 8 8 1
@@ -777,6 +1107,61 @@ Well he doesn't seem to be friendly.
 8 13 2 3d10+100 2d5+2
 150 7000
 8 8 1
+#4057
+lion mountain~
+the mountain lion~
+A mountain lion is here growling at you.
+~
+The lion looks very nasty with huge claws and big teeth.
+~
+96 0 -100 S
+5 16 5 1d10+60 2d4+0
+0 900
+8 8 1
+#4058
+giant hill~
+the hill giant~
+A hill giant is here tossing some rocks around.
+~
+The hill giant looks like he's about 9 feet tall. By his actions you 
+come to the conclusion that he's not very inteligent.
+~
+64 0 0 S
+13 8 2 1d10+160 2d10+0
+1000 16500
+8 8 1
+#4060
+tawny cougar~
+Tawny the cougar~
+Tawny, Kahl's pet cougar lies here lazily and gazes at you through large
+golden eyes.
+~
+Tawny is a very sleek, yet very large, cougar.  About 4 feet tall at the 
+shoulder he is quite a threatening creature...and the massive fangs that he
+reveals when yawning don't tend to give you any more confidence.  His tawny
+fur is perfect and his rippling muscles provide a grace that makes him look
+like molten gold when moving.  Tawny looks piercingly at you with his large
+golden eyes.
+~
+192 0 1000 S
+10 10 2 1d1+499 2d10+20
+0 100000
+8 8 1
+#4061
+maenad~
+the Maenad~
+the Maenad is frantically looking around.
+~
+The Maenad is a beautiful woman, well-dressed and covered with jewels.
+Her red hair falls just below her shoulders, and her curves can stop
+a man in his tracks.  She is under the spell of Dionysos, the God of
+Wine and Partying, and appears to have been driven mad.  I wouldn't
+want to mess with her.
+~
+5 8200 1000 S
+10 10 2 1d1+499 3d8+20
+0 100000
+8 8 2 
 #4100
 mage~
 the Mage~
@@ -785,7 +1170,7 @@ knows his way with the magic.
 ~
 His IQ makes almost any dikumud player look stupid..
 ~
-39 8 -100 S
+2048 8 -100 S
 13 10 2 3d20+100 2d6+0
 1500 17000
 8 8 1
@@ -808,7 +1193,7 @@ A large green snake, looks like a guardian for an evil force.
 You see a evil creature.
 ~
 39 0 -700 S
-10 8 5 2d30+50 2d5+2
+10 8 5 2d30+50 3d5+2
 0 9000
 8 8 1
 #4103
@@ -816,9 +1201,9 @@ thief~
 the Thief~
 A thief, all dressed in black.
 ~
-Well COUNT you money..!
+Well, COUNT your money..!
 ~
-69 0 100 S
+2117 0 100 S
 8 13 3 1d10+100 2d5+1
 100 4000
 8 8 1
@@ -851,7 +1236,7 @@ A human warrior is here. He has a evil grin in his face.
 ~
 He doesn't look friendly at all...
 ~
-100 0 -300 S
+2148 0 -300 S
 9 10 3 3d10+100 2d6+1
 500 9000
 8 8 1
@@ -866,258 +1251,621 @@ It looks slimy..
 7 14 4 2d10+20 1d10+0
 20 3000
 8 8 1
-#4150
-bat blue~
-the blue bat~
-A blue bat is here.
-~
-It looks electric.
-~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 2200
-8 8 0
-#4151
-bat red~
-the red bat~
-A red bat is here.
-~
-It looks warm.
-~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 2200
-8 8 0
-#4152
-bat green~
-the green bat~
-A green bat is here.
-~
-It looks poisonous.
-~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 2200
-8 8 0
-#4153
-bat white~
-the white bat~
-A white bat is here.
-~
-It looks cold.
-~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 2200
-8 8 0
-#4154
-bat black~
-the black bat~
-A black bat is here.
-~
-It looks corrosive.
-~
-35 0 -100 S
-7 15 4 3d10+70 1d7+1
-0 2200
-8 8 0
-#4155
-thief~
-the thief~
-A sneaky thief is here.
-~
-He looks quite professional.
-~
-69 524290 400 S
-12 7 1 3d20+130 2d7+1
-2000 14000
-8 8 1
-#4156
-troll~
-the troll~
-A large ugle troll is here.
-~
-He looks quite mean.
-~
-38 0 -700 S
-14 8 1 8d20+140 2d7+1
-3000 20000
-8 8 1
-#4157
-mage~
-the Mage~
-A small mage is here.
-~
-He is reading in his magic books.
-~
-101 0 -200 S
-11 10 2 4d10+80 2d5+1
-800 11000
-8 8 1
-#4158
-snake~
-the snake~
-A brown snake is here.
-~
-It looks angry.
-~
-35 0 200 S
-9 12 3 1d10+110 2d5+1
-0 8000
-8 8 1
-#4159
-troll~
-the small troll~
-A small troll is here.
-~
-He looks like a normal troll, the standard mud troll..
-~
-101 0 -300 S
-8 13 3 3d10+80 2d5+2
-500 5000
-8 8 1
-#4160
-orc~
-the orc~
-A large orc is here.
-~
-He looke quite aggressive.
-~
-101 0 -200 S
-9 12 3 1d20+100 2d5+1
-500 6000
-8 8 1
 #5000
-druid Aruncus~
-Aruncus the Druid~
-Aruncus the Druid is walking around here, searching for herbs.
+dervish raggity~
+The dervish~
+The raggity dervish walks on aimlessly.
 ~
-Aruncus is a tall, skinny druid with a face marked by nature.
-He seems to be in peace with himself and his surroundings.
+Dressed in loose fitting rags, this man looks like he could use
+some rest.
 ~
-192 8 -500 S
-13 8 2 6d6+150 3d5+2
-500 15000
+196 524288 900 S
+5 15 5 1d10+60 2d4+0
+70 1100
 8 8 1
 #5001
-hermit sorbus~
-Sorbus the Hermit~
-Sorbus the Hermit is sitting here, roasting a rabbit.
+dervish large~
+The dervish~
+The large dervish watches for signs of trouble.
 ~
-Sorbus bares the marks of a long, hard life in solitude.
-He is dressed in simple clothing and looks like he has little
-or nothing to say.
+Dressed in loose fitting rags, this man looks like he could use
+LOTS of rest.
 ~
-2 0 0 S
-4 16 6 8d8+20 1d9+2
-1 400
-6 6 1
+96 524288 650 S
+8 12 3 2d6+100 2d6+1
+150 7000
+8 8 1
 #5002
-merchant~
-street merchant~
-A street merchant is here, selling out from his extensive inventory.
+snake coral~
+The coral snake~
+A brightly colored snake slithers along the sands.
 ~
-The street merchant looks like he knows his way about.
-His face is scarred from numerous attacks, which he so far obviously
-has won.
+This relatively harmless snake has bright alternating bands of red, yellow
+and black.
 ~
-197 0 0 S
-21 0 0 15d10+200 4d8+4
-3000 55000
-8 8 1
+64 0 -10 S
+4 17 4 1d6+40 1d9+0
+0 600
+8 8 0
 #5003
-citizen~
-the citizen~
-There is a citizen of Ofcol here glaring at you.. stranger!
+scorpion small~
+The small scorpion~
+A small, red scorpion scuttles away at your approach.
 ~
-He looks the average citizen of Ofcol.
-Basically he seems like a nice person with no interrest in harming
-you or others.
-He wears normal, light clothing and has an anonymous face.
+The little tail is mighty dangerous for such a small creature.
 ~
-68 0 0 S
-5 16 5 4d10+40 2d4+2
-200 2800
-8 8 1
+64 0 -50 S
+3 17 1 1d6+40 1d8+0
+0 500
+8 8 0
 #5004
-citizen~
-the citizen~
-There is a citizen of Ofcol here glaring at you.. stranger!
+worm giant~
+The giant, purple sand worm~
+A giant, purple sand worm thrusts up out of the sand and attacks!
 ~
-She looks the average citizen of Ofcol.
-Basically she seems like a nice person with no interrest in harming
-you or others.
-She wears a minimum of clothing and has big....eyes.
+He's big, mean, and purple. Watch out!
 ~
-68 0 0 S
-5 16 5 3d10+40 2d4+1
-100 2400
-8 8 2
+34 0 -100 S
+21 0 3 2d10+320 3d7+4
+2540 55000
+8 8 0
 #5005
-worm Shudde-M'ell~
-Shudde-M'ell~
-Shudde-M'ell the Giant worm of G'harne is guarding his treasure.
+dragon brass~
+The brass dragon~
+A very large brass dragon steps out of the darkess and says "Hello".
+Then adds to it, "Prepare to die, have a nice day!"
 ~
-Shudde-M'ell is about 15 ft long and is surrounded by an evil stench,
-The worm is the protector of the treasure of G'harne and has been so
-for as long anyone can remember.
+~
+2083 136 450 S
+20 1 0 2d6+300 2d9+2
+500 35000
+8 8 2
+#5006
+nomad leader~
+The nomad leader~
+The nomad leader sits silently in prayer.
+~
+He is clad in silk robes lined with gold thread. At his side
+is a large, engraved cutlass. He has an especially haughty air
+about him.
+~
+2240 0 950 S
+14 7 0 2d6+170 3d8+2
+1000 30000
+6 6 1
+#5007
+nomad commander~
+The nomad commander~
+The nomad commander stands here staring suspiciously at you.
+~
+This is the nomad leader's second in command. His clothes are richly
+woven of silk and gold thread. A nasty cutlass hangs at his side.
+~
+2050 0 900 S
+12 8 1 2d6+135 3d5+1
+600 20000
+8 8 1
+#5008
+nomad warrior~
+The nomad warrior~
+A proud nomad warrior stands here.
+~
+~
+2 0 700 S
+10 12 2 1d6+105 4d3+0
+300 7000
+8 8 1
+#5009
+slave young~
+The slave~
+A young slave sits here staring at you with pleading eyes.
+~
+~
+130 0 1000 S
+3 18 9 1d4+25 1d5+0
+0 300
+5 5 2
+#5010
+dracolich lich~
+The dracolich~
+A pile of bones rises up to form a skeletal dracolich.
+~
+The dracolich is now only bone with pieces of flesh hanging from it.
+Obviously it no longer fears death.
+~
+2082 136 -1000 S
+20 1 -2 1d12+420 25d2+0
+75000 75000
+8 8 0
+#5011
+drider drow~
+The drider~
+The drider looks at you viciously while it draws it's sword.
+~
+This half-spider, half-drow creature is a formidable opponent.
+~
+96 8 -1000 S
+8 12 2 1d6+95 2d6+2
+200 4000
+8 8 2
+#5012
+duergar dwarf~
+The dark dwarf~
+A duergar is here mining precious stones with his pick.
+~
+The duergar could crush your head as easily as it does those rocks.
+~
+96 8 -850 S
+5 16 3 1d11+60 2d5+1
+170 750
+8 8 1
+#5013
+myconoid fungusman~
+The myconoid~
+A myconoid lumbers along peacefully.
+~
+The myconoid looks something like a giant mushroom (and probably
+has the same effect).
+~
+192 8 850 S
+6 15 4 1d12+68 2d7+0
+50 600
+8 8 1
+#5014
+myconoid shaman~
+The myconoid shaman~
+A rather large myconoid stands here chanting in a strange tounge.
+~
+The shaman shoots spores into the air.
+~
+130 136 850 S
+8 13 2 1d12+100 2d7+2
+1500 4000
+8 8 1
+#5015
+dustdigger~
+The dustdigger~
+A small oasis invites you to dive in.~
+~
+38 1048576 -200 S
+7 10 1 1d6+85 3d4+0
+450 14000
+8 8 0
+#5017
+camel rabid~
+The rabid camel~
+A very dangerous rabid camel snorts at you.
+~
+Don't mess with this animal.
+~
+34 0 -351 S
+5 12 6 1d6+60 2d4+3
+270 3500
+8 8 0
+#5100
+goblin slave~
+The goblin slave~
+A goblin slave lies here asleep.
+~
+The defenseless goblin begs for mercy.
+~
+130 0 -450 S
+1 20 9 1d11+11 1d5+0
+0 100
+4 4 1
+#5101
+Drow commoner~
+The Drow commoner~
+A drow commoner walks around n guard duty.
+~
+I doubt he is the type to give directions.
+~
+104 8 -1000 S
+10 12 0 1d10+130 12d1+5
+300 4750
+8 8 1
+#5102
+drow noble warrior~
+The drow warrior noble~
+The drow warrior noble stands here guarding his home.
+~
+He looks kind of p.o.ed!
 ~
 34 8 -1000 S
-24 0 0 300d2+50 3d8+4
-13666 75000
+12 9 0 1d5+160 15d1+2
+1000 15000
+8 8 1
+#5103
+drow noble mage~
+The drow mage noble~
+The drow mage noble is here protectng his home.
+~
+The mage prepares to cast a spell...at you!!
+~
+34 8 -1000 S
+15 8 2 1d12+190 8d2+2
+2000 21000
+8 8 1
+#5104
+drow priestess~
+The drow priestess~
+The drow priestess is here shouting orders.
+~
+I wouldn't want go get on her bad side!
+~
+34 8 -1000 S
+17 5 0 1d11+205 17d1+2
+4000 28000
+8 8 2
+#5105
+drow master~
+The drow master~
+The drow master stares at you angrily.
+~
+The drow master is ALWAYS ready for a fight.
+~
+34 8 -1000 S
+21 0 0 1d12+248 18d1+4
+10000 60000
+8 8 1
+#5106
+drow weaponsmaster~
+The weaponsmaster~
+The drow weaponsmaster is here shadow boxing.
+~
+He definitely know his way around in combat.
+~
+34 8 -1000 S
+23 0 -2 1d25+405 12d2+4
+15000 80000
+8 8 1
+#5107
+drow matron mother~
+The Matron Mother~
+The Matron Mother of the house is standing here.
+~
+She looks really p.o.ed!!!!
+~
+34 8 -1000 S
+24 0 -3 1d50+450 15d2+4
+30000 130000
+8 8 2
+#5108
+drow matron mother~
+The Matron Mother~
+The Matron Mother of the 1st house is waiting for you.
+~
+She looks like she is about to rip your head of and eat it.
+~
+34 136 -1000 S
+25 0 -4 1d50+350 20d2+4
+40000 150000
+8 8 2
+#5109
+yochlol~
+The yochlol~
+A yochlol forms out of a swirling mist.
+~
+The yochlol is not in a good mood.
+~
+2082 136 -1000 S
+19 0 -6 25d2+200 15d2+30
+60000 200000
+8 8 2
+#5200
+beholder~
+The mighty beholder~
+You meet a beholder's deadly gaze!
+~
+It has a large central eye that projects an anti-magic ray and ten
+eyestalks atop the round body which can do anything from charm you
+to disintegrate you.  Beholders are not known for their personality.
+~
+2210 8 -870 S
+25 6 0 1d14+550 6d9+5
+28560 74000
 8 8 0
-#5006
-luxan shopkeeper~
-Luxan~
-Luxan the Shopkeeper is here, eager to sell you anything.
+#5201
+lamia beast~
+The lamia~
+A strange lamia stands here waiting for her next meal. 
 ~
-Luxan is dressed in a strange jacket.
-He looks like a mean trader from the outskirts of Midgaard.
-His life is seems to be totally occupied with trading.
-He looks very fit and capable of protecting his goods.
+This is a creature with the upper torso of a beautiful woman, but the lower
+body of a four-legged beast. She licks her lips as she looks at you greedily.
 ~
-7 0 400 S
-23 0 0 1d1+30000 2d10+0
-8000 80000
-8 8 1
-#5007
-daughter matty~
-Matty~
-Matty the daughter of Luxan is here, looking after the stored items.
-Matty is eager to serve you.
-~
-As you study Matty you notice that she has exactly the same taste
-in clothing as you.
-~
-3 0 800 S
-22 0 0 2d2+28997 2d8+2
-0 80000
+2148 0 -999 S
+9 12 3 1d10+180 3d5+1
+1500 6000
 8 8 2
-#5008
-keeper innkeeper~
-the Innkeeper~
-An Innkeeper is here waiting for your order.
+#5202
+mimic chest~
+The mimic~
+A strong chest lies in one corner of the room.
 ~
-The Innkeeper looks skilled in brewing different beers and mixing the
-weirdest drinks known. He also looks very big.
+A strong, wooden chest bound with iron straps and a heavy pad-lock on the
+front.
 ~
-3 0 -100 S
-23 0 0 1d1+30000 2d10+1
-100 80000
+2 0 10 S
+11 10 1 1d20+130 2d7+0
+0 13000
+6 6 0
+#5203
+mimic boulder~
+The mimic~
+Two skeletons lie crushed under a large boulder.
+~
+~
+2 0 -10 S
+11 12 1 1d15+120 3d5+1
+0 15000
+6 6 0
+#5204
+mimic floor~
+The mimic~
+The stone floor of this house has been ripped apart.
+~
+~
+2 0 -140 S
+11 11 3 2d6+110 2d6+0
+0 10500
+6 6 0
+#5205
+mimic potery~
+The mimic~
+Some broken shards of potery lie strewn about the floor.
+~
+~
+2 0 200 S
+11 14 0 1d8+90 2d5+1
+0 9000
+6 6 0
+#5206
+mimic planks~
+The mimic~
+A few wooden planks lie stacked on a low shelf.
+~
+~
+2 0 0 S
+11 9 0 1d12+110 4d3+1
+0 14000
+6 6 0
+#5207 
+lizard horned~
+The horned lizard~
+A small horned lizard flicks his tounge and slithers away.
+~
+A cute little lizard, that is, if you like reptiles!
+~
+128 0 0 S
+3 17 4 1d4+30 1d4+0
+0 300
+8 8 0
+#5208
+golem stone~
+The stone golem~
+In the corner you see a large, stone golem faithfully standing watch.
+~
+It is a big chunk of rock that has been magically formed into a giant
+stone creature. He stands here still guarding the city.
+~
+2 0 600 S
+25 2 0 2d6+500 3d7+3
+4250 85000
+8 8 0
+#5300
+dervish fanatical~
+the dervish~
+A fanatical dervish lunges for your throat.
+~
+This man is one of the many defenders of the pyramid. He is dressed
+in loose fitting rags and has a wild look in his eyes.
+~
+100 524296 -150 S
+12 9 0 2d10+180 2d8+2
+230 13000
 8 8 1
-#5050
-dragon pet~
-the pet dragon~
-Ravan's pet dragon is bouncing around here flapping her cute wings.
+#5301
+slime green~
+some green slime~
+Some green slime drips on your head from the ceiling.
 ~
-Ravan's pet dragon is about 3 ft. tall with small pointy teeth.
-The small wings are eagerly trying to lift her from the ground,
-but so far they haven't succeeded.
+Green slime covers the walls, ceiling, and part of the floor. It seems
+to pulse with a life of its own.
 ~
-130 4194440 1000 S
-1 0 0 10d10+100 10d10+0
-0 30000
+32 8 0 S
+4 17 6 1d1+40 8d3+0
+0 600
+8 8 1
+#5302
+jackel hungry~
+a hungry jackel~
+A hungry jackel stands here staring at you and licking his chops.
+~
+~
+34 0 100 S
+8 13 3 1d13+97 5d2+1
+300 3750
 8 8 2
+#5303
+statue possessed~
+the statue~
+A large looming statue of some dark lord advances toward you.
+~
+This is one of the statues that were created for this gallery. It's eyes
+glow a fiery red as if it is possessed by another.
+~
+34 8 -1 S
+25 0 8 1d5+40 35d1+0
+0 43500
+8 8 1
+#5304
+dervish priest~
+the dervish priest~
+A small, but fierce, dervish priest turns from the altar and glares at you.
+~
+His size is deceiving, as he is VERY determined to kill you and your party.
+He wears the robes of his dark masters.
+~
+34 524424 -500 S
+15 6 -1 2d6+170 4d4+2
+23687 26000
+8 8 1
+#5305
+weird water~
+the water weird~
+This strange magical water seems to move and shape itself.
+~
+34 1048576 -980 S
+7 6 -8 3d6+80 2d7+1
+0 3400
+8 8 0
+#5306
+statue statues~
+a living statue~
+The statue's eyes begin to glow at your approach.
+~
+The statue almost seems to be alive.
+~
+2 137 0 S
+19 2 -4 1d11+236 5d2+0
+0 35000
+8 8 0
+#5307
+dervish highpriest priest~
+the dervish highpriest~
+Silently, the dervish highpriest sits in reflective thought and meditation.
+~
+He wears fine silken robes woven with magical threads supplied to him by
+his dark lords. He looks very old, but the glimmer in his eye suggests
+that there is more to him than meets the eye.
+~
+34 524424 -300 S
+18 3 -4 2d5+250 5d5+2
+34765 36000
+4 8 1
+#5309
+glabrazu demon~
+the glabrezu demon~
+A four-armed demon rises to block your path.
+~
+The glabrezu lets out a bellowing roar as it clashes its pincers violently.
+~
+34 16 -1000 S
+22 0 -4 1d50+350 8d4+0
+40000 60000
+8 8 1
+#5350
+cambion major~
+the cambion~
+A major cambion walks around patrolling the area.
+~
+He looks like a NASTY black, scaly-skinned demi-human with horns and fangs.
+~
+96 136 -1000 S
+15 6 1 1d17+180 8d2+2
+4000 21000
+8 8 1
+#5351
+cambion baron~
+the cambion~
+A baron cambion stands here watching his horde of major cambions.
+~
+He looks like a VERY NASTY black, scaly-skinned demi-human with horns and
+fangs.
+~
+96 136 -1000 S
+17 4 1 1d12+220 6d3+2
+12000 28000
+8 8 1
+#5352
+cambion marquis~
+the cambion~
+A solitary marquis cambion directs his forces into battle.
+~
+His arrogance shows through his otherwise expressionless face. He is
+EXTREMELY nasty...not a demi-human to fool around with.
+~
+96 136 -1000 S
+20 1 0 1d13+280 7d3+2
+20700 40000
+8 8 1
+#5353
+shade terrible~
+the shade~
+A terrible shade stands guard against intruders.
+~
+You can barely make out the outline of the shade. He blends in with the
+darkness around you, making hard to attack something which you can't see.
+~
+34 1572872 -569 S
+23 0 -7 1d50+400 8d5+1 
+3000 75000 
+8 8 2
+#5375
+shadow your~
+your shadow~
+Your shadow grins evilly as it leaps from the wall to attack.
+~
+~
+96 1572872 -700 S
+15 3 -8 1d8+186 3d6+0
+3700 19500
+8 8 1
+#5376
+mastiff shadow~
+a shadow mastiff~
+You hear a low snarl from a ferocious shadow mastiff behind you.
+~
+~
+96 1572872 -750 S
+17 2 -9 2d8+210 3d6+3
+4500 25000
+8 8 0
+#5377
+dragon shadow~
+the shadow dragon~
+A menacing shadow dragon stands here protecting his masters.
+~
+This large dragon is entirely black, probably comprised of shadows himself.
+The cloud of darkness encircling him and his vicious breath surely make up
+for his small useless wings and forelimbs.
+~
+34 1572872 -1000 S
+24 0 -6 1d50+450 8d7+3
+31000 80000
+8 8 1
+#5390
+marak knight death~
+Lord Marak~
+Standing before you is Lord Marak, Bringer of Chaos, ready to obliterate you
+for invading his realm.
+~
+Lord Marak utters the words, 'drthue'
+You feel your life slowly slipping away!
+
+>
+One of 12 death knights in existance, he is not too prepared to let
+you make that 11.
+~
+38 136 -1000 S
+27 0 -6 1d50+550 25d2+0
+75000 250000
+8 8 1
+#5391
+darkanian shadowstar lord~
+Darkanian Shadowstar~
+Darkanian Shadowstar, Highlord of the Shadowrealm, prepares to do you in.
+~
+Darkanian Shadowstar utters the words, 'fldmstikr'
+A pillar of flame surrounds you and torches your flesh.
+
+>
+He is enraged that you have made it this far.
+~
+38 1572872 -1000 S
+28 0 -8 1d50+650 15d3+5 
+5000 290000
+8 8 1
 #6000
 john lumberjack~
 John the Lumberjack~
@@ -1127,7 +1875,7 @@ He is six feet tall and looks quite strong, muscles bulging under his heavy,
 chequered shirt.  His features are worn with hard work and his expression is
 one of a peaceful man leading a simple life.
 ~
-64 0 350 S
+2112 0 350 S
 5 15 7 1d12+48 1d8+2
 50 1000
 8 8 1
@@ -1247,7 +1995,7 @@ Its roots are extremely big and large parts of them are above ground.
 The enormous grey trunk shivers slightly, as if sighing deeply.
 ~
 80 524296 0 S
-30 1 -10 1d1+999 2d4+10
+30 1 -10 3d9+999 2d5+10
 0 500000
 8 8 0
 #6111
@@ -1261,7 +2009,7 @@ Its roots are extremely big and large parts of them are above ground.
 The enormous grey trunk emits a deep, moaning sound.
 ~
 80 524296 0 S
-30 1 -10 1d1+999 2d4+10
+30 1 -10 5d9+999 2d6+10
 0 500000
 8 8 0
 #6112
@@ -1287,9 +2035,9 @@ This disgusting creature is at the size of a human crawling on all four.  It
 has eight hairy legs that gives it a tremendous speed on almost any surface and
 sharp poisonous fangs to paralyze or kill its prey.
 ~
-99 0 -350 S
+91 0 -350 S
 8 13 2 1d12+98 2d5+1
-0 6000
+0 4000
 8 8 0
 #6114
 queen spider~
@@ -1300,9 +2048,9 @@ This disgusting creature is at the size of a small elephant.  It has eight
 huge, hairy legs that would give it a tremendous speed on almost any surface
 if it wasn't so immensely fat.  Its large, bulbous eyes stare back at you.
 ~
-99 8 -1000 S
-15 6 1 1d12+185 2d8+2
-0 28000
+611 8 -1000 S
+15 6 1 1d12+225 2d8+2
+0 21000
 8 8 2
 #6115
 shargugh brownie~
@@ -1316,6 +2064,586 @@ he is having great fun.
 148 524298 1000 S
 10 1 -10 1d12+47 1d8+0
 1000 9000
+8 8 1
+#6116
+elder druid~
+the Elder Druid~
+the elder druid is here ...he looks very upset about your presence in his home.
+~
+The druid looks quite old.  You would think of him as venerable but yet you know
+he would be a tough foe.
+~
+38 8 0 S
+17 4 1 1d12+210 2d8+2
+5000 28000
+8 8 1
+#6301
+spider young~
+the young spider~
+The young spider is ballooning by you.
+~
+He looks freshly hatched and sprightly.  His young fangs are just
+growing in as of late.
+~
+68 8 0 S
+5 17 8 5d4+10 2d4+1
+100 500
+8 8 2
+#6302
+dragon Yevaud~
+Yevaud~
+Yevaud the Usurper of Midgaard is here, grinning evilly at you.
+~
+Old, scaly, but still with a lot of bite in him left.
+~
+2150 8 -1000 S
+24 2 0 5d4+350 4d6+3
+10000 35100
+8 8 1
+#6303
+spider wolf~
+the Wolf Spider~
+The Wolf Spider is here, licking its bloody fangs.
+~
+The Wolf Spider is hairy, very hairy.
+~
+34 0 -300 S
+6 12 6 3d8+70 2d5+3
+1250 6000
+8 8 2
+#6304
+orc~
+the orc~
+The orc is stuck in the web and he can't get out.
+~
+You notice an evil look in his eyes.
+~
+2 0 -400 S
+5 15 5 2d10+60 2d4+0
+100 1300
+8 8 1
+#6305
+wasp queen~
+the Queen Wasp~
+The Queen Wasp is here, thinking that you would make a tasty offering
+to her master.
+~
+You notice a glazed look in her eyes.
+~
+34 0 -800 S
+14 7 1 1d8+172 2d8+1
+1500 18000
+8 8 2
+#6306
+spider drone~
+the drone spider~
+The drone spider walks around doing her master's bidding.
+~
+An ordinary drone spider.
+~
+68 0 -300 S
+6 12 6 3d8+70 2d4+0
+200 2000
+8 8 1
+#6307
+spider ethereal~
+the ethereal spider~
+The ethereal spider strides here, traveling to different worlds.
+~
+She winks in and out.
+~
+68 0 1000 S
+10 10 2 1d12+123 2d4+4
+1250 9000
+8 8 2
+#6308
+slave human~
+the slave of Arachnos~
+The slave works here relentlessly.
+~
+The slave does not mind you, but will fight like a warrior if attacked.
+~
+68 0 0 S
+12 8 4 10d10+5 2d8+1
+1000 12000
+8 8 1
+#6309
+quasit~
+the quasit~
+The quasit blinks in and out, grinning at you.
+~
+Demonic in nature, but more mischievous.  He twiddles his thumbs
+and creates a magical treasure!
+~
+148 524298 1000 S
+10 1 -10 1d12+47 1d8+0
+1000 9000
+8 8 1
+#6310
+spider bird~
+the Bird Spider~
+The Bird Spider snaps its powerful jaws.
+~
+The Bird Spider has very powerful jaws.
+~
+34 0 -800 S
+14 7 1 1d8+100 2d9+2
+1750 18000
+8 8 2
+#6311
+hermit~
+the Hermit~
+The Hermit sits here and warns, "Go back before it's too late!"
+~
+A dishevelled veteran warrior in disguise is what he is, but he
+means well.
+~
+2054 8 -400 S
+7 13 5 3d10+80 2d5+0
+750 3500
+8 8 1
+#6312
+donjonkeeper~
+the Donjonkeeper~
+The Donjonkeeper eyes you and wonders how pure your soul is.
+~
+He delves deeper into you as you stare at him.
+~
+2054 8 1000 S
+25 4 1 1d12+600 2d8+8
+6000 95000
+8 8 1
+#6313
+guardian~
+The guardian~
+The guardian is obviously not doing his job.
+~
+He looks like a lazy bum who sleeps half the time.
+~
+96 524288 250 S
+17 4 1 1d12+200 1d8+8
+600 24000
+4 4 1
+#6314
+spider empress arachnos~
+Arachnos~
+Arachnos the Empress of Spiders welcomes you with an evil smile.
+~
+She is a very attractive spider with an ornate gown.  She tempts you
+into being one of her many slaves.  She does not possess the venomous
+fangs of normal spiders, but then, as you realize, she does not need
+them.
+~
+1574 1048584 -1000 S
+26 2 2 6d10+650 1d8+20
+10000 95000
+8 8 2
+#6315
+ki-rin~
+the Ki-Rin~
+The Ki-Rin smiles good-naturedly to you.
+~
+She is the last bastion of good in this realm.  Her mission is to
+someday free the slaves of the Empress.
+~
+6 8 1000 S
+26 0 -2 10d8+4500 3d4+12
+15000 150000
+8 8 1
+#6316
+dragon wormkin young~
+the young dragon wormkin~
+A wormkin with no teeth plays here.
+~
+Rather small, you almost feel sad in killing it.
+~
+2 8 1000 S
+23 2 0 5d4+80 1d6+3
+1000 3500
+8 8 1
+#6317
+dragon wormkin elder~
+the elder dragon wormkin~
+A wormkin that has grown a bit stares at you inquisitively.
+~
+A medium-sized dragon--seems it hasn't killed anything yet by itself.
+~
+2 8 100 S
+23 2 0 5d4+150 2d6+3
+5000 7500
+8 8 1
+#6500
+dwarven guard~
+dwarf guard~
+A dwarven guard is here.
+~
+The guard looks very tough and mean.
+~
+2050 8 500 S
+24 0 -2 10d20+700 5d8+4
+10000 100000
+8 8 1
+#6501
+dwarven worker~
+dwarf worker~
+A dwarven mining worker is here.
+~
+He is very dirty, and looks extremely over-worked.
+~
+2112 0 900 S
+17 4 1 25d5+200 2d7+1
+3500 20000
+8 8 1
+#6502
+wraith~
+a wraith~
+A wraith is awaiting your first move here.
+~
+A black, almost transparent wraith.
+~
+34 16777256 -900 S
+29 0 -9 90d4+900 4d6+15
+50000 325000
+8 8 1
+#6503
+storekeeper~
+the Hide & Tooth storekeeper~
+There is the Hide & Tooth storekeeper standing here, waiting patiently.
+~
+The storekeeper is very rotund, but looks like a sharp guy.
+~
+2050 0 900 S
+23 2 2 6d10+990 2d9+17
+1000 80000
+8 8 1
+#6504
+baker~
+Granite Head the baker~
+Granite Head, the baker, is waiting for a customer here.
+~
+Granite Head is covered with flour and grains.
+~
+2050 0 900 S
+23 2 2 7d10+990 2d9+19
+1000 80000
+8 8 1
+#6505
+lizard~
+The giant lizard~
+A giant lizard is here.
+~
+This scaly creature looks like it is well adapted to it's underground
+habitat.  He looks very powerful.
+~
+64 8 100 S
+18 7 2 10d20+500 4d4+5
+1200 25000
+8 8 1
+#6506
+giant~
+The giant~
+A giant is here.
+~
+The giant is about 8 feet tall, with arms of steel, and looks very
+strong.
+~
+64 0 0 S
+16 5 1 4d20+300 3d7+5
+2000 24000
+8 8 1
+#6507
+miner mineworker~
+A dwarven mineworker~
+A dwarven mineworker is here.
+~
+The mineworker is very tired, and very dirty, and he has bulging muscles.
+~
+2050 0 0 S
+4 14 7 3d3+270 3d9+9
+40 700
+8 8 1
+#6508
+mine leader~
+A dwarven mine leader~
+A dwarven mine leader is here.
+~
+The mine leader is very big and very strong.
+~
+2050 0 0 S
+21 0 -1 5d3+400 3d9+3
+20000 52000
+8 8 1
+#6509
+dwarven doctor~
+the dwarven doctor~
+The dwarven doctor is here.
+~
+He is a very skilled surgeon, with hands of steel.
+~
+2050 136 1000 S
+9 15 4 9d4+450 3d4+12
+1500 15000
+8 8 1
+#6510
+dwarven peon~
+the dwarven peon~
+A dwarven peon is awaiting help here.
+~
+~
+2050 0 500 S
+3 16 6 5d3+55 3d4+3
+75 400
+8 8 1
+#6511
+dwarf~
+the dwarf~
+A grinning dwarf is here.
+~
+~
+2050 0 500 S
+9 10 2 5d5+200 3d4+1
+1250 6000
+8 8 1
+#6512
+unwanted son~
+the unwanted son~
+An unwanted son is here. You feel sorry for the guy.
+~
+~
+64 0 250 S
+9 12 3 3d4+125 3d5+5
+50 5000
+8 8 1
+#6513
+unwanted daughter~
+the unwanted daughter~
+An unwanted daughter is here. You feel sorry for her.
+~
+~
+64 0 250 S
+10 11 2 3d4+135 3d5+7
+50 5000
+8 8 1
+#6514
+barrack guard~
+the barrack's guard~
+A barrack guard is here.
+~
+~
+2050 0 100 S
+16 5 1 8d10+600 3d6+8
+3000 35000
+8 8 1
+#6515
+waiting man~
+the man in waiting~
+A man in waiting is here. He looks nervous and unsure of himself.
+~
+~
+2050 0 300 S
+15 12 7 6d8+180 3d7+5
+6969 20000
+8 8 1
+#6516
+mazekeeper~
+the mazekeeper~
+A mazekeeper is here.
+~
+He looks VERY tough.
+~
+2082 128 -1000 S
+29 0 -9 25d5+999 4d8+15
+80000 400000
+8 8 1
+#6517
+giant snake~
+the giant snake~
+There is a giant snake here.
+~
+~
+34 0 -1000 S
+15 7 2 3d7+432 3d7+6
+3000 30000
+8 8 1
+#6520
+quintic dinkelmann the dealer~
+Quintic the dealer~
+Quintic Dinkelmann the Dealer is standing here.
+~
+~
+2050 0 1000 S
+25 0 -5 40d3+600 5d6+15
+10000 101000
+8 8 1
+#6521
+johnny lemonade~
+Johnny the lemonade stand man~
+Johnny the lemonade stand man is here.
+~
+~
+2050 0 1000 S
+25 0 -5 40d2+450 5d6+6
+10000 100000
+8 8 1
+#6530
+monkey~
+the monkey~
+A monkey is jumping around here.
+~
+~
+64 0 500 S
+1 19 10 2d6+1 1d3+1
+15 10
+8 8 1
+#6531
+giraffe~
+the giraffe~
+A giraffe is craning it's neck to see you here.
+~
+~
+64 0 400 S
+0 19 10 2d8+2 1d3+2
+15 10
+8 8 1
+#6532
+goat~
+the goat~
+A goat is mulling around here.
+~
+~
+64 0 400 S
+0 19 10 1d8+5 1d2+2
+15 10
+8 8 1
+#6533
+pelican~
+the pelican~
+A pelican is swimming around in a shallow pool here.
+~
+~
+2 0 100 S
+0 19 10 3d4+2 1d3+1
+20 10
+8 8 1
+#6534
+horse~
+the horse~
+A horse is standing here.
+~
+~
+64 0 800 S
+0 19 10 4d8+4 2d3+4
+50 50
+8 8 1
+#6535
+chicken~
+the chicken~
+A chicken is pecking at the dirt here.
+~
+~
+64 0 500 S
+0 19 10 2d4+3 1d3+1
+10 10
+8 8 1
+#6536
+platypus~
+the platypus~
+A platypus is flopping around here.
+~
+~
+64 0 500 S
+0 19 10 3d9+4 2d3+0
+25 20
+8 8 1
+#6537
+kangaroo~
+the kangaroo~
+A kangaroo hops around here.
+~
+~
+64 0 0 S
+0 19 10 4d9+5 3d2+1
+30 24
+8 8 1
+#6538
+worm~
+the worm~
+A worm is slithering around here.
+~
+~
+64 0 500 S
+0 19 10 1d4+2 2d2+1
+5 10
+8 8 1
+#6539
+armadillo~
+the armadillo~
+An armadillo is here.
+~
+~
+64 0 1000 S
+5 16 5 8d2+50 3d3+2
+70 800
+8 8 1
+#6540
+sloth~
+the sloth~
+A sloth is being lethargic here.
+~
+~
+64 0 100 S
+0 19 10 3d6+3 2d3+2
+25 100
+8 8 1
+#6541
+skunk~
+the skunk~
+A very smelly skunk is here.
+~
+~
+64 0 -832 S
+0 19 9 9d2+3 2d2+1
+30 100
+8 8 1
+#6542
+leopard~
+the leopard~
+A leopard is eyeing you up and down here.
+~
+~
+64 0 0 S
+5 16 6 9d2+50 3d3+0
+100 900
+8 8 1
+#6543
+lion~
+the lion~
+A ferocious lion is here.
+~
+~
+64 0 0 S
+6 15 4 4d3+80 3d3+1
+100 1300
+8 8 1
+#6544
+bear~
+the bear~
+There is a bear here.
+~
+~
+64 0 -300 S
+5 18 9 2d8+50 4d2+1
+95 880
+8 8 1
+#6545
+elephant~
+the elephant~
+There is an elephant here.
+~
+~
+64 0 0 S
+5 16 3 6d9+30 4d2+1
+150 800
 8 8 1
 #6900
 bug~
@@ -1342,7 +2670,7 @@ and a short skirt made from black scales joined with silver threads.  Her back
 is covered by a large, hooded cloak as black as her skin and in her broad
 silver belt hangs a long, slender sword in a silver scabbard.
 ~
-1 524296 -1000 S
+2049 524296 -1000 S
 20 1 0 1d12+245 3d6+4
 5000 40000
 8 8 2
@@ -1353,7 +2681,7 @@ Death the Grim Reaper is observing you silently from empty eye sockets.
 ~
 The dark-robed skeletal figure radiates an unendurable coldness.
 ~
-2 524296 -1000 S
+2050 524296 -1000 S
 30 0 -10 1d1+665 1d100+0
 0 500000
 8 8
@@ -1379,7 +2707,7 @@ The small fierce-looking bat is hanging from the ceiling, obviously sleeping.
 ~
 You have never in your entire life seen such a mean looking small creature,
 though it looks rather peaceful, hanging there, sleeping. The thought of 
-arousing this cruel creature doesn't seem appealing.
+arousing this cruel creaturedoesn'
 ~
 96 524288 -500 S
 1 20 4 5d2+6 1d5+0
@@ -1391,7 +2719,7 @@ The Great Sewer Rat~
 The Huge Hungry-looking Sewer Rat sits here
 ~
 ~
-32 0 -1000 S
+32 33554432 -1000 S
 5 16 5 1d12+48 2d4+0
 40 1000
 8 8 1
@@ -1448,12 +2776,12 @@ The evil wanderer is very thin. He is dressed in a grey cloak.
 8 8 1
 #7008
 homonculus homo~
-the creature homonculus~
-The creature homonculus is here, looking at you with an evil look.
+the creature homonculous~
+The creature homonculous is here, looking at you with an evil look.
 ~
-The Homonculus appears in a man-like form, about 18'' tall, it has a
+The Homonculous appers in a man-like form, about 18'' tall, have a
 greenish, reptilian skin, leathery wings, and a batlike mouth, with
-teeth gleaming yellow.
+teeth passing on a venom.
 ~
 0 8 -780 S
 11 10 1 6d3+130 2d6+2
@@ -1468,9 +2796,9 @@ The Knight is standing here, smiling at you. He is dressed all in
 white, blue and silver. He looks VERY strong, as he stands here, ready to
 help the innocent.
 ~
-64 136 1000 S
-29 0 -9 20d10+700 2d6+14
-0 500000
+2400 8 1000 S
+26 0 -2 10d8+550 2d6+12
+0 170000
 8 8 1
 #7010
 chr-eff'n chr~
@@ -1486,12 +2814,11 @@ The head and torso of a chr-eff'n is copper-covered, with yellow
 8 8 0
 #7011
 morkoth~
-the shadowy Morkoth~
-The Morkoth is standing here, waiting for someone to KILL!
+the shadowy morkoth~
+The morkoth are standing here, waiting for someone to KILL!
 ~
-It's a five feet tall, shadow monster. The shape of this creature lies
-somewhere between a human and a rat. It breaths very heavily, while staring
-at you with such a glint in the eyes that reminds you of immense hunger.
+It's a five feet tall, shadow monster. This has the shape between
+a human and a rat. It breaths very heavely, while it stares at you.
 ~
 160 0 -900 S
 10 12 3 1d20+120 2d6+0
@@ -1507,24 +2834,10 @@ mother of the town, sometimes playing with the children, sometimes
 helping the old people, with their daily work. All this in spite of
 her own hard work.
 ~
-212 0 1000 S
+2048 0 1000 S
 2 19 7 1d2+23 1d6+1
 6 150
 8 8 2   
-#7013
-mud monster mudmonster~
-The horrifying Mudmonster~
-A horrifying Mudmonster is slowly evolving from the mud ...
-~
-It sure looks like something out of a horrormovie. It strongly resembles
-a huge figure made up from mud alone, and it sure looks like it had human 
-flesh for breakfast and is strongly intent on having the same for dinner
-- Perhaps you?
-~
-96 524288 -250 S
-12 9 2 4d6+140 2d7+1
-1000 15000
-5 5 0
 #7040
 red dragon~
 The red dragon~
@@ -1534,7 +2847,7 @@ The red dragon stares at you, angrilly, as it wakes when you
 arrives.  It says 'Oh, human YOU woke me up...Hsssss', while
 it moves closer ,'Can one NEVER sleep in peace..Hssss'.
 ~
-35 8 -1000 S
+34 8 -1000 S
 19 2 0 5d4+230 3d6+3
 10000 35100
 8 8 0
@@ -1575,14 +2888,15 @@ The basilisk is a reptilian monster. It has eight legs, and a strong
 toothy jaws. It is dull brown with yellowish underbell. It's eyes are
 glowing pale green.
 ~
-36 8 -250 S
+4 8 -250 S
 13 11 0 1d12+160 2d7+2
 350 16000
 8 8 0
 #7044
 lemure blob~
 The lemure~
-The lemure blob slithers terribly precisely towards you for an attack!~
+The lemure blob slithers towards you for an attack!
+~
 This looks like a vaguely human blob. Big black yellow eyes, and a
 mouth going a little bit out from the face. The lemure does not look
 interested in you at all, but anyway it attackes. It looks like it's
@@ -1595,19 +2909,21 @@ mind has been burned out.
 #7045
 jones cruncher ettin~
 Jones 'cruncher' the ettin~
-Jones is standing here glaring at you.~
+Jones is standing here glaring at you.
+~
 At the first sight you thought Jones was an Orc, but when it came
 closer you saw his second head. He wears an animal skinn dress,
 filthy and moth eaten. Jones really stinks...
 ~
-36 0 -480 S
+4 0 -480 S
 10 11 2 1d5+130 2d6+2
 60 11000
 5 5 1
 #7046
 herald mouse killer ettin~
 Herald 'the mouse-killer' ettin~
-Herald is standing here looking confused at you.~
+Herald is standing here looking confused at you.
+~
 When you look at Herald, you feel petty. His dress are really poor,
 and the one of his heads hangs down. At the rope around his stomach
 hangs dead mouses and rats. He does not smell good.
@@ -1663,7 +2979,7 @@ An ugly wererat is here, looking at you with a strange flick in his eyes.
 The wererat is about four foot tall. It looks very much like rat, exept
 that it is standing.
 ~
-100 0 -700 S
+100 33554432 -700 S
 6 15 3 4d6+69 2d4+2
 50 1500
 8 8 0
@@ -1675,7 +2991,7 @@ There is a gigantic rat here, looking at you with a hungry look.
 The gigantic rat is about ten foot long from head to tail and has claws
 the size of your head looking very nasty.
 ~
-34 0 -800 S
+34 33554432 -800 S
 12 9 2 1d10+150 2d6+2
 2513 13000
 4 8 1
@@ -1718,7 +3034,7 @@ It appears to be a vaguely man-shaped (but larger than man-sized!) hole
 in the fabric of reality... looking closely, you can see stars, either 
 inside it, or far beyond it...
 ~
-2 8 400 S
+2050 8 400 S
 10 10 0 10d6+90 1d6+8
 0 9000
 5 5 0
@@ -1781,23 +3097,96 @@ his belt hangs a strange, bluish whip
 When ne notices your intense scrutiny, he looks at you coldly, until you
 are forced to look away.
 ~
-0 0 400 S
+2048 0 400 S
 5 10 6 5d6+45 2d4+0
 40 2000 
 8 8 1
-#8900
-hierophant~
-The Hierophant~
-The old Hierophant of the holy grove is here, gathering hollies.
+#9101
+harpy~
+The screaming, filthy harpy~
+The screaming, filthy harpy claws madly at your face!
 ~
-He is a very old man, dressed in an old robe, but from the glint in his clear
-blue eyes You can see that He is aware of the world, and Wise to its traps
-and pitfalls.
+The harpy looks at you with blood in her eyes.  Her entire body is
+caked in filth and grime and she stinks to high heaven.  Her razor-
+sharp talons flex as she considers you for her dinner.
 ~
-192 136 +1000 S
-20 0 5 1d1+370 1d8+3
-50 40000
+36 524396 -500 S
+20 1 0 2d6+260 4d6+4
+30500 15000
+8 8 2
+#9102
+harpy leader~
+The screaming harpy leader~
+The screaming harpy leader tries to scratch your eyes out!
+~
+The harpy leader looks at you and grins menacingly.  She stretches
+her wings and you see insects crawling around them.  Her hair is
+matted and greasy and you are sickened by the stench that pervades
+her presence.
+~
+38 524396 -750 S
+23 8 2 4d7+510 4d8+5
+42500 15000
+8 8 2
+#9103
+air elemental~
+The ghostly air elemental~
+The ghostly air elemental.
+~
+The air elemental is hard to see.  You know that it is there
+because objects behind it seem to waver and are slightly blurred.
+~
+36 1572972 0 S
+25 0 -4 5d10+600 4d7+7
+1000 45000
+8 8 0
+#9104
+mysterious effreeti~
+The mysterious effreeti~
+The mysterious effreeti grins in delight at its new prey.
+~
+The effreeti towers menacingly over you.  It is dressed in the
+finest ghostly silks and a headdress with an elaborate brooch.
+~
+20 524424 -100 S
+27 0 -7 10d7+700 5d6+4 
+50000 60000
+8 8 0
+#9105
+roc~
+The gigantic roc~
+The gigantic roc.
+~
+This bird has a wingspan that stretches several spearlengths.  It
+moves surprisingly fast for something of its size.~
+64 0 50 S
+24 0 -3 6d9+500 3d10+5
+0 40000
+8 8 2
+#9106
+roc~
+The gigantic roc~
+The gigantic roc stares menacingly at you.
+~
+This bird has a wingspan that stretches several spear-lengths.  It
+moves surprisingly fast for something of its size.
+~
+64 0 50 S
+28 0 -8 5d9+800 5d6+15
+40000 80000
 8 8 1
+#9107
+wicked witch~
+the ugly, wicked witch~
+The ugly, wicked witch cackles maniacally.
+~
+The witch has jet black hair and sickly green skin.  She is covered
+with warts and boils.  Her nails are long and sharp and look like
+they would be quite painful.  Her eyes pierce your very soul.
+~
+38 136 -600 S
+31 0 -11 9d10+1200 5d9+5
+200000 200000
+8 8 2
 #10000
 $~
-

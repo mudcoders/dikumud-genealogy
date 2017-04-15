@@ -181,6 +181,10 @@ void cast_blindness( byte level, struct char_data *ch, char *arg, int type,
 {
 	struct affected_type af;
 
+  if (IS_SET(world[ch->in_room].room_flags,SAFE)){
+	send_to_char("You can't blind anyone in a safe area!\n\r",ch);
+	return;
+  }
   switch (type) {
     case SPELL_TYPE_SPELL:
 			if ( IS_AFFECTED(tar_ch, AFF_BLIND) ){
@@ -266,7 +270,6 @@ void cast_control_weather( byte level, struct char_data *ch, char *arg, int type
   struct char_data *tar_ch, struct obj_data *tar_obj )
 {
 	char buffer[MAX_STRING_LENGTH];
-	extern struct weather_data weather_info;
 
   switch (type) {
     case SPELL_TYPE_SPELL:
@@ -408,6 +411,10 @@ void cast_cure_light( byte level, struct char_data *ch, char *arg, int type,
 void cast_curse( byte level, struct char_data *ch, char *arg, int type,
   struct char_data *tar_ch, struct obj_data *tar_obj )
 {
+  if (IS_SET(world[ch->in_room].room_flags,SAFE)){
+	send_to_char("You can't curse someone in a safe area!\n\r",ch);
+	return;
+  }
   switch (type) {
     case SPELL_TYPE_SPELL:
 			if (tar_obj)   /* It is an object */
@@ -709,6 +716,10 @@ void cast_locate_object( byte level, struct char_data *ch, char *arg, int type,
 void cast_poison( byte level, struct char_data *ch, char *arg, int type,
   struct char_data *tar_ch, struct obj_data *tar_obj )
 {
+  if(IS_SET(world[ch->in_room].room_flags,SAFE)){
+	send_to_char("You can't poision someone in a safe area!\n\r",ch);
+	return;
+  }
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_poison(level, ch, tar_ch, tar_obj);
@@ -845,6 +856,10 @@ void cast_sanctuary( byte level, struct char_data *ch, char *arg, int type,
 void cast_sleep( byte level, struct char_data *ch, char *arg, int type,
   struct char_data *tar_ch, struct obj_data *tar_obj )
 {
+  if (IS_SET(world[ch->in_room].room_flags,SAFE)){
+	send_to_char("You can't sleep someone in a safe area!\n\r",ch);
+	return;
+  }
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_sleep(level, ch, tar_ch, 0);
@@ -1060,7 +1075,7 @@ void cast_fire_breath( byte level, struct char_data *ch, char *arg, int type,
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_fire_breath(level, ch, tar_ch, 0);
-			break;   /* It's a spell.. But people can't cast it! */
+			break;   /* It's a spell.. But people can'c cast it! */
       default :
          log("Serious screw-up in firebreath!");
          break;
@@ -1073,7 +1088,7 @@ void cast_frost_breath( byte level, struct char_data *ch, char *arg, int type,
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_frost_breath(level, ch, tar_ch, 0);
-			break;   /* It's a spell.. But people can't cast it! */
+			break;   /* It's a spell.. But people can'c cast it! */
       default :
          log("Serious screw-up in frostbreath!");
          break;
@@ -1086,7 +1101,7 @@ void cast_acid_breath( byte level, struct char_data *ch, char *arg, int type,
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_acid_breath(level, ch, tar_ch, 0);
-			break;   /* It's a spell.. But people can't cast it! */
+			break;   /* It's a spell.. But people can'c cast it! */
       default :
          log("Serious screw-up in acidbreath!");
          break;
@@ -1116,7 +1131,7 @@ void cast_lightning_breath( byte level, struct char_data *ch, char *arg, int typ
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_lightning_breath(level, ch, tar_ch, 0);
-			break;   /* It's a spell.. But people can't cast it! */
+			break;   /* It's a spell.. But people can'c cast it! */
       default :
          log("Serious screw-up in lightningbreath!");
          break;

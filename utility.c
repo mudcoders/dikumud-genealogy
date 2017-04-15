@@ -5,7 +5,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <assert.h>
 
 #include "structs.h"
@@ -27,7 +27,7 @@ int MAX(int a, int b)
 }
 
 /* creates a random number in interval [from;to] */
-int number(int from, int to)
+int number(int from, int to) 
 {
 	return((random() % (to - from + 1)) + from);
 }
@@ -35,7 +35,7 @@ int number(int from, int to)
 
 
 /* simulates dice roll */
-int dice(int number, int size)
+int dice(int number, int size) 
 {
   int r;
   int sum = 0;
@@ -69,7 +69,7 @@ int str_cmp(char *arg1, char *arg2)
 		if (chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i)))
 			if (chk < 0)
 				return (-1);
-			else
+			else 
 				return (1);
 	return(0);
 }
@@ -86,7 +86,7 @@ int strn_cmp(char *arg1, char *arg2, int n)
 		if (chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i)))
 			if (chk < 0)
 				return (-1);
-			else
+			else 
 				return (1);
 
 	return(0);
@@ -105,7 +105,7 @@ void log(char *str)
 	*(tmstr + strlen(tmstr) - 1) = '\0';
 	fprintf(stderr, "%s :: %s\n", tmstr, str);
 }
-
+	
 
 
 void sprintbit(long vektor, char *names[], char *result)

@@ -11,7 +11,7 @@
 #include "utils.h"
 #include "comm.h"
 #include "db.h"
-#include "interpreter.h"
+#include "interpreter.h" 
 #include "spells.h"
 #include "handler.h"
 
@@ -29,13 +29,17 @@
 }
 
 #define SPELL_LEVEL(ch, sn)               \
-  ( (GET_CLASS(ch) == CLASS_CLERIC) ?     \
-  spell_info[sn].min_level_cleric : spell_info[sn].min_level_magic)
+  (GET_CLASS(ch) == CLASS_CLERIC ||IS_SET(ch->specials.act,PLR_ISMULTICL) ?\
+   spell_info[sn].min_level_cleric : spell_info[sn].min_level_magic)
 
 
 /* 100 is the MAX_MANA for a character */
 #define USE_MANA(ch, sn)                            \
-  MAX(spell_info[sn].min_usesmana, 100/(2+GET_LEVEL(ch)-SPELL_LEVEL(ch,sn)))
+  (((2+GET_LEVEL(ch)-SPELL_LEVEL(ch,sn))!=0)?	\
+  MAX(spell_info[sn].min_usesmana, 101/(2+GET_LEVEL(ch)-SPELL_LEVEL(ch,sn))):\
+  MAX(spell_info[sn].min_usesmana, 20))
+/* Note.. I changed the above to avoid a possible divide by zero error. */
+/* Swiftest. */
 
 /* Global data */
 
@@ -138,7 +142,7 @@ char *spells[]=
    "remove curse",
    "sanctuary",
    "shocking grasp",
-   "zzzzz",
+   "sleep",
    "strength",
    "summon",
    "ventriloquate",      /* 41 */
@@ -202,6 +206,9 @@ void affect_update( void )
 			next_af_dude = af->next;
 			if (af->duration >= 1)
 				af->duration--;
+			else if (af->duration == -1) 
+				/* No action */
+				af->duration = -1;  /* GODs only! unlimited */
 			else {
 				if ((af->type > 0) && (af->type <= 52)) /* It must be a spell */
 					if (!af->next || (af->next->type != af->type) ||
@@ -387,6 +394,7 @@ void add_follower(struct char_data *ch, struct char_data *leader)
 
 	assert(!ch->master);
 
+
 	ch->master = leader;
 
 	CREATE(k, struct follow_type, 1);
@@ -492,7 +500,7 @@ bool saves_spell(struct char_data *ch, sh_int save_type)
 
 	if (!IS_NPC(ch)) {
 		save += saving_throws[GET_CLASS(ch)-1][save_type][GET_LEVEL(ch)];
-		if (GET_LEVEL(ch) > 20)
+		if (IS_TRUSTED(ch))
 			return(TRUE);
 	}
 
@@ -523,12 +531,16 @@ void do_cast(struct char_data *ch, char *argument, int cmd)
 	if (IS_NPC(ch))
 		return;
 
-	if (GET_LEVEL(ch) < 21) {
-		if (GET_CLASS(ch) == CLASS_WARRIOR) {
-				send_to_char("Think you had better stick to fighting...\n\r", ch);
+	if(!IS_TRUSTED(ch)){
+		if ((GET_CLASS(ch) == CLASS_WARRIOR)&&
+		    (!IS_SET(ch->specials.act,PLR_ISMULTIMU))&&
+		    (!IS_SET(ch->specials.act,PLR_ISMULTICL))) {
+				send_to_char("I think you had better stick to fighting...\n\r", ch);
 				return;
-		}	else if (GET_CLASS(ch) == CLASS_THIEF) {
-				send_to_char("Think you should stick to robbing and killing...\n\r", ch);
+		}	else if ((GET_CLASS(ch) == CLASS_THIEF)&&
+				  (!IS_SET(ch->specials.act,PLR_ISMULTIMU))&&
+				  (!IS_SET(ch->specials.act,PLR_ISMULTICL))) {
+				send_to_char("I think you should stick to robbing and pillaging...\n\r", ch);
 				return;
 		}
 	}
@@ -584,17 +596,32 @@ void do_cast(struct char_data *ch, char *argument, int cmd)
 			} /* Switch */
 		}	else {
 
-			if (GET_LEVEL(ch) < 21) {
-				if ((GET_CLASS(ch) == CLASS_MAGIC_USER) &&
-				   (spell_info[spl].min_level_magic > GET_LEVEL(ch))) {
+			if(!IS_TRUSTED(ch)){	/* MU or multi MU--Swiftest */
+			    if (((GET_CLASS(ch)==CLASS_MAGIC_USER)&&
+				    IS_SET(ch->specials.act,PLR_ISMULTICL))||
+				    ((GET_CLASS(ch)==CLASS_CLERIC)&&
+				    IS_SET(ch->specials.act,PLR_ISMULTIMU)))
+			    {
+				if ((spell_info[spl].min_level_magic> GET_LEVEL(ch))&&
+				    (spell_info[spl].min_level_cleric> GET_LEVEL(ch))) {
+					send_to_char("Sorry, it ain't happening yet.\n\r",ch);
+					return;
+				}
+			    } else {
+
+				if (((GET_CLASS(ch) == CLASS_MAGIC_USER) ||
+				     IS_SET(ch->specials.act,PLR_ISMULTIMU))&&
+				     (spell_info[spl].min_level_magic > GET_LEVEL(ch))) {
 					send_to_char("Sorry, you can't do that.\n\r", ch);
 					return;
 				}
-				if ((GET_CLASS(ch) == CLASS_CLERIC) &&
-				   (spell_info[spl].min_level_cleric > GET_LEVEL(ch))) {
+				if ( ((GET_CLASS(ch) == CLASS_CLERIC) ||
+				      IS_SET(ch->specials.act,PLR_ISMULTICL))&&
+				      (spell_info[spl].min_level_cleric > GET_LEVEL(ch))) {
 					send_to_char("Sorry, you can't do that.\n\r", ch);
 					return;
-				}
+				} 
+			    } /* if they ain't both caster types */
 			}
 
 			argument+=qend+1;	/* Point to the last ' */
@@ -709,7 +736,7 @@ void do_cast(struct char_data *ch, char *argument, int cmd)
 				}
 			}
 
-			if (GET_LEVEL(ch) < 21) {
+			if(!IS_TRUSTED(ch)){
 				if (GET_MANA(ch) < USE_MANA(ch, spl)) {
 					send_to_char("You can't summon enough energy to cast the spell.\n\r", ch);
 					return;
@@ -811,7 +838,7 @@ void assign_spell_pointers(void)
 	SPELLO( 4,12,POSITION_STANDING, 8,  6, 5,
 	 TAR_CHAR_ROOM, cast_blindness);
 
-	SPELLO(7,12,POSITION_STANDING, 14, 21, 5,
+	SPELLO(7,12,POSITION_STANDING, 14, 21, 40,
 	 TAR_CHAR_ROOM | TAR_SELF_NONO, cast_charm_person);
 
 	SPELLO( 9,12,POSITION_STANDING,15, 21, 40,
@@ -859,7 +886,7 @@ void assign_spell_pointers(void)
 	SPELLO(29,12,POSITION_STANDING, 4, 21, 5,
 	 TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM | TAR_OBJ_EQUIP, cast_invisibility);
 
-	SPELLO(31,12,POSITION_STANDING, 6, 10, 20,
+	SPELLO(31,12,POSITION_STANDING, 6, 21, 20,
 	 TAR_OBJ_WORLD, cast_locate_object);
 
 	SPELLO(33,12,POSITION_STANDING,21,  8, 10,

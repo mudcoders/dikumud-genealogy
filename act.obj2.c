@@ -5,7 +5,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <assert.h>
 
 #include "structs.h"
@@ -92,6 +92,7 @@ void do_drink(struct char_data *ch, char *argument, int cmd)
 	struct obj_data *temp;
 	struct affected_type af;
 	int amount,i;
+ 	int weight;
 
 
 	one_argument(argument,buf);
@@ -134,9 +135,13 @@ void do_drink(struct char_data *ch, char *argument, int cmd)
 			else
 		  	amount = number(3,10);
 
-			amount = MIN(amount,temp->obj_flags.value[1]);
+			amount = MIN(amount, temp->obj_flags.value[1]);
+			/*
+			 * You can't subtract more than the object weighs
+			 */
+			weight = MIN(amount, temp->obj_flags.weight);
 
-			weight_change_object(temp, -amount);  /* Subtract amount */
+			weight_change_object(temp, -weight);  /* Subtract amount */
 
 			gain_condition(ch,DRUNK,(int)((int)drink_aff
 				[temp->obj_flags.value[2]][DRUNK]*amount)/4);
@@ -158,7 +163,7 @@ void do_drink(struct char_data *ch, char *argument, int cmd)
 
 			if(temp->obj_flags.value[3]) /* The shit was poisoned ! */
 			{
-				act("Ooups, it tasted rather strange ?!!?",FALSE,ch,0,0,TO_CHAR);
+				act("Ooops, it tasted rather strange ?!!?",FALSE,ch,0,0,TO_CHAR);
 				act("$n chokes and utters some strange sounds.",
 				   TRUE,ch,0,0,TO_ROOM);
 				af.type = SPELL_POISON;
@@ -175,6 +180,10 @@ void do_drink(struct char_data *ch, char *argument, int cmd)
 				temp->obj_flags.value[2]=0;
 				temp->obj_flags.value[3]=0;
 				name_from_drinkcon(temp);
+			}
+			if(temp->obj_flags.value[1]<=0) { /*empty now*/
+				act("It is now empty, and it magically disappears in a puff of smoke!",FALSE,ch,0,0,TO_CHAR);
+				extract_obj(temp);
 			}
 			return;
 
@@ -202,7 +211,7 @@ void do_eat(struct char_data *ch, char *argument, int cmd)
 		return;
 	}
 
-	if((temp->obj_flags.type_flag != ITEM_FOOD) && (GET_LEVEL(ch) < 22))
+	if(temp->obj_flags.type_flag != ITEM_FOOD && (GET_LEVEL(ch) < LV_DEMIGOD || !IS_TRUSTED(ch)))
 	{
 		act("Your stomach refuses to eat that!?!",FALSE,ch,0,0,TO_CHAR);
 		return;
@@ -222,9 +231,9 @@ void do_eat(struct char_data *ch, char *argument, int cmd)
 	if(GET_COND(ch,FULL)>20)
 		act("You are full.",FALSE,ch,0,0,TO_CHAR);
 
-	if(temp->obj_flags.value[3] && (GET_LEVEL(ch) < 21)) /* The shit was poisoned ! */
+	if(temp->obj_flags.value[3] && !IS_TRUSTED(ch)) /* The shit was poisoned ! */
 	{
-		act("Ooups, it tasted rather strange ?!!?",FALSE,ch,0,0,TO_CHAR);
+		act("Ooops, it tasted rather strange ?!!?",FALSE,ch,0,0,TO_CHAR);
 		act("$n coughs and utters some strange sounds.",FALSE,ch,0,0,TO_ROOM);
 
 		af.type = SPELL_POISON;
@@ -308,6 +317,12 @@ void do_pour(struct char_data *ch, char *argument, int cmd)
 		return;
 	}
 
+	if (to_obj == from_obj)
+	{
+		act("A most unproductive effort.",FALSE,ch,0,0,TO_CHAR);
+		return;
+ 	}
+
 	if((to_obj->obj_flags.value[1]!=0)&&
 		(to_obj->obj_flags.value[2]!=from_obj->obj_flags.value[2]))
 	{
@@ -333,30 +348,29 @@ void do_pour(struct char_data *ch, char *argument, int cmd)
 	to_obj->obj_flags.value[2]=from_obj->obj_flags.value[2];
 
 	/* Then how much to pour */
-	/* if to_obj can contail it all give it all */
-	amount = to_obj->obj_flags.value[0]-to_obj->obj_flags.value[1];
-	if (amount > from_obj->obj_flags.value[1])
-		amount = from_obj->obj_flags.value[1];
+	from_obj->obj_flags.value[1]-= (amount=
+		(to_obj->obj_flags.value[0]-to_obj->obj_flags.value[1]));
 
-	/* take away from from_obj */
-	from_obj->obj_flags.value[1]-=amount;
-	weight_change_object(from_obj, -amount);
+	to_obj->obj_flags.value[1]=to_obj->obj_flags.value[0];
 
-	/* give it to to_obj */
-	to_obj->obj_flags.value[1]+=amount;
-	weight_change_object(to_obj, amount);
-
-	/* Then the poison boogie */
-	to_obj->obj_flags.value[3]=
-		(to_obj->obj_flags.value[3]||from_obj->obj_flags.value[3]);
-
-	if(from_obj->obj_flags.value[1]=0)    /* from_obj is empty */
+	if(from_obj->obj_flags.value[1]<0)    /* There was to little */
 	{
+		to_obj->obj_flags.value[1]+=from_obj->obj_flags.value[1];
+		amount += from_obj->obj_flags.value[1];
 		from_obj->obj_flags.value[1]=0;
 		from_obj->obj_flags.value[2]=0;
 		from_obj->obj_flags.value[3]=0;
 		name_from_drinkcon(from_obj);
 	}
+
+	/* Then the poison boogie */
+	to_obj->obj_flags.value[3]=
+		(to_obj->obj_flags.value[3]||from_obj->obj_flags.value[3]);
+
+	/* And the weight boogie */
+
+	weight_change_object(from_obj, -amount);
+	weight_change_object(to_obj, amount);   /* Add weight */
 
 	return;
 }

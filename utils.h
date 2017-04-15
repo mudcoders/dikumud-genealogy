@@ -1,7 +1,10 @@
+
 /* ************************************************************************
 *  file: utils.h, Utility module.                         Part of DIKUMUD *
 *  Usage: Utility macros                                                  *
 ************************************************************************* */
+
+extern struct weather_data weather_info;
 
 #define TRUE  1
 
@@ -15,7 +18,7 @@
 /* #define MAX(a,b) (((a) > (b)) ? (a) : (b)) */
 /* #define MIN(a,b) (((a) < (b)) ? (a) : (b)) */
 
-#define ISNEWL(ch) ((ch) == '\n' || (ch) == '\r')
+#define ISNEWL(ch) ((ch) == '\n' || (ch) == '\r') 
 
 #define IF_STR(st) ((st) ? (st) : "\0")
 
@@ -37,19 +40,30 @@
 
 #define IS_AFFECTED(ch,skill) ( IS_SET((ch)->specials.affected_by, (skill)) )
 
-#define IS_DARK(room)  (!world[room].light && IS_SET(world[room].room_flags, DARK))
+#define IS_DARK(room)  ( !world[room].light && \
+                         (IS_SET(world[room].room_flags, DARK) || \
+                          ( ( world[room].sector_type != SECT_INSIDE && \
+                              world[room].sector_type != SECT_CITY ) && \
+                            (weather_info.sunlight == SUN_SET || \
+			     weather_info.sunlight == SUN_DARK)) ) )
 
-#define IS_LIGHT(room)  (world[room].light || !IS_SET(world[room].room_flags, DARK))
+#define IS_LIGHT(room)  (!IS_DARK(room))
 
 #define SET_BIT(var,bit)  ((var) = (var) | (bit))
 
 #define REMOVE_BIT(var,bit)  ((var) = (var) & ~(bit) )
 
 /* Can subject see character "obj"? */
-#define CAN_SEE(sub, obj)   ( ((!IS_AFFECTED((obj),AFF_INVISIBLE) ||        \
+#define CAN_SEE(sub, obj) ((((!IS_AFFECTED((obj),AFF_INVISIBLE) ||    \
+                               IS_AFFECTED((sub),AFF_INFRARED) || \
+                                (IS_TRUSTED(sub))  ||  \
                                  IS_AFFECTED((sub),AFF_DETECT_INVISIBLE)) &&\
                                 !IS_AFFECTED((sub),AFF_BLIND) ) &&            \
-                                 IS_LIGHT(sub->in_room) )
+                                (IS_AFFECTED((sub),AFF_INFRARED) || \
+				IS_LIGHT((sub)->in_room) )) || \
+                                 (sub)->specials.holyLite) && \
+                                 !((obj)->specials.wizInvis && \
+                                   (GET_LEVEL(obj) > GET_LEVEL(sub)) )
 
 #define GET_REQ(i) (i<2  ? "Awful" :(i<4  ? "Bad"     :(i<7  ? "Poor"      :\
 (i<10 ? "Average" :(i<14 ? "Fair"    :(i<20 ? "Good"    :(i<24 ? "Very good" :\
@@ -62,7 +76,7 @@
 	(((ch)->player.sex == 1) ? "he" : "she") : "it")
 
 #define HMHR(ch) ((ch)->player.sex ? 					\
-	(((ch)->player.sex == 1) ? "him" : "her") : "it")
+	(((ch)->player.sex == 1) ? "him" : "her") : "it")	
 
 #define ANA(obj) (index("aeiouyAEIOUY", *(obj)->name) ? "An" : "A")
 
@@ -71,6 +85,9 @@
 #define IS_NPC(ch)  (IS_SET((ch)->specials.act, ACT_ISNPC))
 
 #define IS_MOB(ch)  (IS_SET((ch)->specials.act, ACT_ISNPC) && ((ch)->nr >-1))
+
+#define IS_TRUSTED(ch)	(!IS_NPC(ch)&& GET_LEVEL(ch)>=LV_IMMORTAL && \
+			 IS_SET((ch)->specials.act, PLR_ISTRUSTED))
 
 #define GET_POS(ch)     ((ch)->specials.position)
 
@@ -144,11 +161,16 @@
 
 
 /* Object And Carry related macros */
+/* Added SECRET item only viewable by LV_GOD && !IS_NPC */
 
 #define CAN_SEE_OBJ(sub, obj)                                    \
-	( (( !IS_SET((obj)->obj_flags.extra_flags, ITEM_INVISIBLE) ||   \
+	((( (( !IS_SET((obj)->obj_flags.extra_flags, ITEM_INVISIBLE) ||   \
 	     IS_AFFECTED((sub),AFF_DETECT_INVISIBLE) ) &&               \
-	     !IS_AFFECTED((sub),AFF_BLIND)) && IS_LIGHT(sub->in_room) )
+	     !IS_AFFECTED((sub),AFF_BLIND)) && IS_LIGHT(sub->in_room) ) \
+	     || (sub)->specials.holyLite )&& \
+	(!IS_SET((obj)->obj_flags.extra_flags, ITEM_SECRET)|| \
+	 ((GET_LEVEL(sub)==LV_GOD)&&(!IS_NPC(sub)))))
+
 
 #define GET_ITEM_TYPE(obj) ((obj)->obj_flags.type_flag)
 

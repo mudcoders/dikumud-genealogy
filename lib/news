@@ -1,33 +1,81 @@
-                 THE DIKUMUD HERALD - Sunday, April 7th - 1991
+                      THE DIKUMUD HERALD - May 24th, 1991
 
-We do NOT want people to play more than one character at the time! If we catch
-someone doing this, we'll... we'll, er... anyhow, it's gonna hurt -
-don't do it. It's considered cheating, and will be treated as such.
+NEW STUFF ::
 
-It now takes TIME for a thief to steal!
+-- SAVE now saves items as well as your character.  In the event of
+   a crash, your items are automatically re-imbursed, provided you
+   saved.  You will have about 2 hours after a crash to log in 
+   before the crash files are removed.
 
-     +------------------------------------------------------------------+
-     | A leather worker and a jeweller have opened shops in Midgaard.   |
-     +------------------------------------------------------------------+
+-- The DISPLAY command lets you see your hit pts, move pts, or mana 
+   at all times. (Eg., display hp, display move, display all.)
 
-        +-------------------------------------------------------------+
-        | Rumors say that the graveyard is haunted by evil entities.  |
-        | Players are encouraged to investigate and report to H.Q.    |
-        +-------------------------------------------------------------+
+-- WIMPY mode makes you flee when you get hurt bad.
 
-          +---------------------------------------------------------+
-          | The Mayor of Midgaard City have proclaimed, that there  |
-          | now leads a small path on the outside of the wall.      |
-          | To the north of the city you can enter the plains.      |
-          +---------------------------------------------------------+
+-- Non-dark outside rooms (ie. light forest) now get dark
+   when the sun goes down, and light when it comes up.
 
-The source for this game is now available via anonymous ftp, from
-belch.berkeley.edu.
+NEW AREAS ::
+
+--  Drow/desert/lost city sections have been added.
+
+--  New area south of the dump (not made by us).  Its kinda 
+    screwed I think, but feel free to look anyway.
+
+--  Check out the graveyard!!!
+
+NEW MONSTER FEATURES ::
+
+Most of these features are not being used by very many mobiles
+at this time, but they could be in the future.
+
+--  Infrared vision.
+--  Aggressiveness based on the victims alignment.
+--  Some monsters have memory. (grin)
+
 
 P.S. If you find any errors or things that would need a fix, please tell us!
 
      You can use the commands 'bug', 'typo', and 'idea' for this. Or, for
      longer suggestions, etc:
+
+--------------------------------------------------------------------------
+                      THE DIKUMUD HERALD - June 9th, 1991
+
+NEW STUFF ::
+
+-- get all.obj and put all.obj are now available.
+
+-- lwho == local who; displays just the people in your zone, 
+	   and their location.
+
+-- Shopkeepers are now on the Domino's system, and carry no more
+   than a fixed amount of gold.
+
+-- Display : all and none can be used now.
+
+-- Practice will now display your skill abilities outside of your guild.
+
+-- Crash files will now remain until the next time you log on.
+   This should reduce re-imbursements to zero, but ya never know :-)
+
+MORE DRAMATIC CHANGES :
+
+In an attempt to make the game more fair for mages and clerics,
+they will now earn mana points as they gain levels.  Also, 
+intelligence and wisdom now play a role in your hit percentage.
+Fighters/Thieves should expect to miss a little more now, but
+that's why you've got the hit points.  There are objects that
+raise wisdom/int....
+
+Experience requirements for clerics/thieves/fighters have been 
+raised to make things a little more even.  
+
+P.S. If you find any errors or things that would need a fix, please tell us!
+     You can use the commands 'bug', 'typo', and 'idea' for this. Or, for
+     longer suggestions, etc:
+
+the original creators:
 
      by email : bombman@freja.diku.dk   (Grimm)
                 noop@freja.diku.dk      (Stormbringer)
@@ -39,4 +87,13 @@ P.S. If you find any errors or things that would need a fix, please tell us!
 
 The daily joke:
 
-We hereby declare DikuMUD free of bugs.
+We hereby declare DikuMUD free of bugs.  (yeah, it's getting a little old)
+       ...but it is true!!!!! ;)
+
+
+
+
+
+
+There is another update...lemme see if I can find it.
+

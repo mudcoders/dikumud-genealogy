@@ -1,3 +1,4 @@
+
 /* ************************************************************************
 *  File: fight.c , Combat module.                         Part of DIKUMUD *
 *  Usage: Combat system and messages.                                     *
@@ -5,7 +6,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <assert.h>
 
 #include "structs.h"
@@ -34,8 +35,12 @@ char *fread_string(FILE *f1);
 void stop_follower(struct char_data *ch);
 void do_flee(struct char_data *ch, char *argument, int cmd);
 void hit(struct char_data *ch, struct char_data *victim, int type);
+void forget(char *name, struct char_data *ch);
+void remember(char *name, struct char_data *ch);
+bool is_in_safe(struct char_data *ch, struct char_data *victim);
+bool is_first_level(struct char_data *ch, struct char_data *victim);
+bool nokill(struct char_data *ch, struct char_data *victim);
 void log(char *str);
-
 
 /* Weapon attack texts */
 struct attack_hit_type attack_hit_text[] =
@@ -56,15 +61,46 @@ struct attack_hit_type attack_hit_text[] =
 
 /* The Fight related routines */
 
+void check_killer(struct char_data *ch, struct char_data *victim)
+{
+/* This routine sets the player's KILLER flag if he/she attacks another
+** player and the victim is not a thief or a killer, and the attacker's
+** killer flag is not yet set. It is OK to attack someone with either flag set.
+** This routine is disabled in the arena (you're supposed to kill people
+** in the arena!).
+*/
+	if ( IS_SET(world[ch->in_room].room_flags,ARENA)) {
+		return;
+	}
+
+	if (    !IS_NPC(ch)
+	    &&  !IS_NPC(victim)
+	    &&  (ch!=victim)
+	    &&  !IS_SET(ch->specials.act,PLR_ISKILLER)
+	    &&  !IS_TRUSTED(ch)
+	    &&  !IS_SET(victim->specials.act,PLR_ISKILLER)
+	    &&  !IS_SET(victim->specials.act,PLR_ISTHIEF)
+	    ) {
+
+		send_to_char("** You are now an outlaw!! **\n\r",ch);
+		SET_BIT(ch->specials.act, PLR_ISKILLER);
+	}
+}
 
 void appear(struct char_data *ch)
 {
-  act("$n slowly fade into existence.", FALSE, ch,0,0,TO_ROOM);
+  act("$n slowly fades into existence.", FALSE, ch,0,0,TO_ROOM);
 
   if (affected_by_spell(ch, SPELL_INVISIBLE))
     affect_from_char(ch, SPELL_INVISIBLE);
 
   REMOVE_BIT(ch->specials.affected_by, AFF_INVISIBLE);
+
+  /*
+   * Remove wizinvis too.
+   */
+  ch->specials.wizInvis = FALSE;
+
 }
 
 
@@ -215,25 +251,33 @@ void make_corpse(struct char_data *ch)
 	  (IS_NPC(ch) ? ch->player.short_descr : GET_NAME(ch)));
 	corpse->short_description = strdup(buf);
 
-	corpse->contains = ch->carrying;
-	if ( (GET_GOLD(ch)>0) &&
-        ( IS_NPC(ch) || (ch->desc) ) )
-	{
-		money = create_money(GET_GOLD(ch));
-		GET_GOLD(ch)=0;
-		obj_to_obj(money,corpse);
-	}
-
 	corpse->obj_flags.type_flag = ITEM_CONTAINER;
 	corpse->obj_flags.wear_flags = ITEM_TAKE;
 	corpse->obj_flags.value[0] = 0; /* You can't store stuff in a corpse */
-	corpse->obj_flags.value[3] = 1; /* corpse identifyer */
+  corpse->obj_flags.value[3] = 1; /* corpse identifyer */
 	corpse->obj_flags.weight = GET_WEIGHT(ch)+IS_CARRYING_W(ch);
 	corpse->obj_flags.cost_per_day = 100000;
 	if (IS_NPC(ch))
 		corpse->obj_flags.timer = MAX_NPC_CORPSE_TIME;
 	else
 		corpse->obj_flags.timer = MAX_PC_CORPSE_TIME;
+
+	if(!IS_NPC(ch)&&IS_SET(world[ch->in_room].room_flags,ARENA)){
+		obj_to_room(corpse, ch->in_room);
+		corpse->next = object_list;
+		object_list = corpse;
+		return;
+
+	} /* create an 'empty' token corpse in the arena */
+
+	corpse->contains = ch->carrying;
+	if(GET_GOLD(ch)>0)
+	{
+		money = create_money(GET_GOLD(ch));
+		GET_GOLD(ch)=0;
+
+		obj_to_obj(money,corpse);
+	}
 
 	for (i=0; i<MAX_WEAR; i++)
 		if (ch->equipment[i])
@@ -260,14 +304,14 @@ void change_alignment(struct char_data *ch, struct char_data *victim)
 
 	if ((align = GET_ALIGNMENT(ch)-GET_ALIGNMENT(victim)) > 0) {
 		if (align > 650)
-			GET_ALIGNMENT(ch) = MIN(1000,GET_ALIGNMENT(ch) + ((align-650) / 4));
+			GET_ALIGNMENT(ch) = MIN(1000,GET_ALIGNMENT(ch) + ((align-650) >> 3));
 		else
-			GET_ALIGNMENT(ch) /= 2;
+			GET_ALIGNMENT(ch) >>= 1;
 	} else {
 		if (align < -650)
-			GET_ALIGNMENT(ch) = MAX(-1000, GET_ALIGNMENT(ch) + ((align+650) / 4));
+			GET_ALIGNMENT(ch) = MAX(-1000, GET_ALIGNMENT(ch) + ((align+650) >> 3));
 		else
-			GET_ALIGNMENT(ch) /= 2;
+			GET_ALIGNMENT(ch) >>= 1;
 	}
 }
 
@@ -278,7 +322,7 @@ void death_cry(struct char_data *ch)
 	struct char_data *victim;
 	int door, was_in;
 
-	act("Your blood freezes as you hear $ns death cry.", FALSE, ch,0,0,TO_ROOM);
+	act("Your blood freezes as you hear $n's death cry.", FALSE, ch,0,0,TO_ROOM);
 	was_in = ch->in_room;
 
 	for (door = 0; door <= 5; door++) {
@@ -298,9 +342,24 @@ void raw_kill(struct char_data *ch)
 		stop_fighting(ch);
 
 	death_cry(ch);
-
 	make_corpse(ch);
-	affect_total(ch);
+	/* Clear flags if PC dies unless died in arena combat */
+	if(!IS_NPC(ch)){
+		if(IS_SET(world[ch->in_room].room_flags,ARENA)) {
+			/* like remove his arena flag */
+			if(ch->specials.arena > ARENA_NOTPLAYING){
+				GET_HIT(ch) = ch->specials.arena_hits;
+				GET_MOVE(ch)= ch->specials.arena_move;
+				GET_MANA(ch)= ch->specials.arena_mana;
+				ch->specials.arena=ARENA_NOTPLAYING;
+			} /* restore his previous stats */
+			update_pos(ch);
+			send_to_char("\n\r*** The power of the Arena Gods intervene and you are rescued by divine forces!\n\r",ch);
+			/* send him to temple */
+			spell_word_of_recall(20,ch,ch,0);
+			return;	/* no extract necessary */
+		}
+	}
 	extract_char(ch);
 }
 
@@ -308,8 +367,18 @@ void raw_kill(struct char_data *ch)
 
 void die(struct char_data *ch)
 {
-	gain_exp(ch, -(GET_EXP(ch)/2));
+	if(!IS_SET(world[ch->in_room].room_flags,ARENA)&&!IS_NPC(ch)) {
+		gain_exp(ch, -(GET_EXP(ch)/2));
+	}
 	raw_kill(ch);
+	if(!IS_NPC(ch)){
+		/*  Killers and thieves can only be pardoned by god now
+		if(!IS_SET(world[ch->in_room].room_flags,ARENA)) {
+			REMOVE_BIT(ch->specials.act,PLR_ISKILLER);
+			REMOVE_BIT(ch->specials.act,PLR_ISTHIEF);
+		}
+		*/
+	}
 }
 
 
@@ -401,11 +470,11 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim,
 
 	 {"$n misses $N with $s #W.",                           /*    0    */
 	  "You miss $N with your #W.",
-	  "$n miss you with $s #W." },
+	  "$n misses you with $s #W." },
 
    {"$n tickles $N with $s #W.",                          /*  1.. 2  */
     "You tickle $N as you #W $M.",
-    "$n tickle you as $e #W you." },
+    "$n tickles you as $e #W you." },
 
    {"$n barely #W $N.",                                   /*  3.. 4  */
     "You barely #W $N.",
@@ -427,9 +496,9 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim,
 	  "You #W $N extremely hard.",
 	  "$n #W you extremely hard."},
 
-	 {"$n massacre $N to small fragments with $s #W.",     /* > 20    */
+	 {"$n massacres $N to small fragments with $s #W.",     /* > 20    */
 	  "You massacre $N to small fragments with your #W.",
-	  "$n massacre you to small fragments with $s #W."}
+	  "$n massacres you to small fragments with $s #W."}
 	};
 
 	w_type -= TYPE_HIT;   /* Change to base of table with text */
@@ -503,18 +572,39 @@ void damage(struct char_data *ch, struct char_data *victim,
 	char buf[MAX_STRING_LENGTH];
 	struct message_type *messages;
 	int i,j,nr,max_hit,exp;
+	char buf2[200];
 
 	int hit_limit(struct char_data *ch);
 
-	assert(GET_POS(victim) > POSITION_DEAD);
+	/* assert(GET_POS(victim) > POSITION_DEAD); */
+	if (GET_POS(victim)<=POSITION_DEAD){
+		fprintf(0,"Fight.c: assert in damage() failed by %s, %s (ch,vict).\n\r",
+		   GET_NAME(ch),GET_NAME(victim));
+		send_to_char("He's dead already, report this bug.\n\r",ch);
+		send_to_char("You're dead. Report bug to gods.\n\r",victim);
+		return;
+	}
 
-	if ((GET_LEVEL(victim)>20) && !IS_NPC(victim)) /* You can't damage an immortal! */
+	if (IS_TRUSTED(victim)) /* You can't damage an immortal! */
 		dam=0;
 
 	if (victim != ch) {
+		if(is_in_safe(ch,victim)==TRUE){ return; }
+		if(is_first_level(ch,victim)==TRUE){ return; }
+		if(nokill(ch,victim)==TRUE){ return; }
+		check_killer(ch,victim);
+
+		if (IS_NPC(ch)&&IS_AFFECTED(ch, AFF_CHARM) &&
+		    !IS_NPC(victim)&&(victim->specials.fighting!=ch)){
+			send_to_char("You cannot harm another player!\n\r",ch);
+			return;
+		}
 		if (GET_POS(victim) > POSITION_STUNNED) {
 			if (!(victim->specials.fighting))
 				set_fighting(victim, ch);
+			if (IS_NPC(victim) && !IS_TRUSTED(ch)){
+                           remember(ch->player.name, victim);
+                        }
 			GET_POS(victim) = POSITION_FIGHTING;
 		}
 
@@ -523,7 +613,7 @@ void damage(struct char_data *ch, struct char_data *victim,
 				set_fighting(ch, victim);
 
 			if (IS_NPC(ch) && IS_NPC(victim) &&
-          victim->master &&
+		            victim->master &&
 			    !number(0,10) && IS_AFFECTED(victim, AFF_CHARM) &&
 			    (victim->master->in_room == ch->in_room)) {
 				if (ch->specials.fighting)
@@ -549,7 +639,8 @@ void damage(struct char_data *ch, struct char_data *victim,
 
 	GET_HIT(victim)-=dam;
 
-	if (ch != victim)
+	/* No exp for arena fighting */
+	if (ch != victim && !IS_SET(world[ch->in_room].room_flags,ARENA))
 		gain_exp(ch,GET_LEVEL(victim)*dam);
 
 	update_pos(victim);
@@ -569,7 +660,7 @@ void damage(struct char_data *ch, struct char_data *victim,
 			for(j=1,messages=fight_messages[i].msg;(j<nr)&&(messages);j++)
 				messages=messages->next;
 
-			if (!IS_NPC(victim) && (GET_LEVEL(victim) > 20)) {
+			if (IS_TRUSTED(victim)) {
 				act(messages->god_msg.attacker_msg, FALSE, ch, ch->equipment[WIELD], victim, TO_CHAR);
 				act(messages->god_msg.victim_msg, FALSE, ch, ch->equipment[WIELD], victim, TO_VICT);
 				act(messages->god_msg.room_msg, FALSE, ch, ch->equipment[WIELD], victim, TO_NOTVICT);
@@ -592,21 +683,25 @@ void damage(struct char_data *ch, struct char_data *victim,
 	}
 	}
 	switch (GET_POS(victim)) {
+		/*
+		 * Use send_to_char, because act() doesn't send
+		 * message if you are DEAD.
+ 		*/
 		case POSITION_MORTALLYW:
 			act("$n is mortally wounded, and will die soon, if not aided.", TRUE, victim, 0, 0, TO_ROOM);
-			act("You are mortally wounded, and will die soon, if not aided.", FALSE, victim, 0, 0, TO_CHAR);
+			send_to_char("You are mortally wounded, and will die soon, if not aided.", victim);
 			break;
 		case POSITION_INCAP:
 			act("$n is incapacitated and will slowly die, if not aided.", TRUE, victim, 0, 0, TO_ROOM);
-			act("You are incapacitated an will slowly die, if not aided.", FALSE, victim, 0, 0, TO_CHAR);
+			send_to_char("You are incapacitated an will slowly die, if not aided.", victim);
 			break;
 		case POSITION_STUNNED:
-			act("$n is stunned, but will probably regain conscience again.", TRUE, victim, 0, 0, TO_ROOM);
-			act("You're stunned, but will probably regain conscience again.", FALSE, victim, 0, 0, TO_CHAR);
+			act("$n is stunned, but might regain consciousness again.", TRUE, victim, 0, 0, TO_ROOM);
+			send_to_char("You're stunned, but you might regain consciousness again.", victim);
 			break;
 		case POSITION_DEAD:
 			act("$n is dead! R.I.P.", TRUE, victim, 0, 0, TO_ROOM);
-			act("You are dead!  Sorry...", FALSE, victim, 0, 0, TO_CHAR);
+              		send_to_char("You are dead!  Sorry...", victim);
 			break;
 
 		default:  /* >= POSITION SLEEPING */
@@ -614,14 +709,21 @@ void damage(struct char_data *ch, struct char_data *victim,
 			max_hit=hit_limit(victim);
 
 			if (dam > (max_hit/5))
-				act("That Really did HURT!",FALSE, victim, 0, 0, TO_CHAR);
+				act("Ouch! That Really did HURT!",FALSE, victim, 0, 0, TO_CHAR);
 
 			if (GET_HIT(victim) < (max_hit/5)) {
 
-				act("You wish that your wounds would stop BLEEDING that much!",FALSE,victim,0,0,TO_CHAR);
-				if (IS_NPC(victim))
+				act("You wish that your wounds would stop BLEEDING so much!",FALSE,victim,0,0,TO_CHAR);
+				if (IS_NPC(victim)) {
 					if (IS_SET(victim->specials.act, ACT_WIMPY))
 						do_flee(victim, "", 0);
+				}
+				else {
+					/* WIMPY for PC's */
+					if (IS_AFFECTED(victim, AFF_WIMPY)) {
+						do_flee(victim, "", 0);
+					}
+				}
 			}
 			break;
 	}
@@ -646,6 +748,8 @@ void damage(struct char_data *ch, struct char_data *victim,
 
 	if (GET_POS(victim) == POSITION_DEAD) {
 		if (IS_NPC(victim) || victim->desc)
+		    /* Cannot get exp in the arena */
+		    if(!IS_SET(world[ch->in_room].room_flags,ARENA)) {
 			if (IS_AFFECTED(ch, AFF_GROUP)) {
 					group_gain(ch, victim);
 			} else {
@@ -659,13 +763,18 @@ void damage(struct char_data *ch, struct char_data *victim,
 				gain_exp(ch, exp);
 				change_alignment(ch, victim);
 			}
-		if (!IS_NPC(victim)) {
+		   } /* if not in arena area */
+		if (!IS_NPC(victim) && /* No logging if arena 'death' */
+		    !IS_SET(world[ch->in_room].room_flags,ARENA)) {
 			sprintf(buf, "%s killed by %s at %s",
 				GET_NAME(victim),
 				(IS_NPC(ch) ? ch->player.short_descr : GET_NAME(ch)),
 				world[victim->in_room].name);
 			log(buf);
 		}
+                if (IS_NPC(ch) && !IS_NPC(victim)) {
+                   forget(victim->player.name, ch);
+                } /* if */
 		die(victim);
 	}
 }
@@ -732,7 +841,8 @@ void hit(struct char_data *ch, struct char_data *victim, int type)
 
 	calc_thaco -= str_app[STRENGTH_APPLY_INDEX(ch)].tohit;
 	calc_thaco -= GET_HITROLL(ch);
-
+	calc_thaco -= (int)((GET_INT(ch) - 13)/1.5);    /*Smartness helps!*/
+	calc_thaco -= (int)((GET_WIS(ch) - 13)/1.5);    /*So does wisdom */
 	diceroll = number(1,20);
 
 	victim_ac  = GET_AC(victim)/10;

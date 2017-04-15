@@ -1,3 +1,4 @@
+
 /* ************************************************************************
 *  file: mobact.c , Mobile action module.                 Part of DIKUMUD *
 *  Usage: Procedures generating 'intelligent' behavior in the mobiles.    *
@@ -22,11 +23,12 @@ void log(char *str);
 
 void mobile_activity(void)
 {
-   char buf[256];
 	register struct char_data *ch;
-	struct char_data *tmp_ch;
+	struct char_data *tmp_ch, *vict;
 	struct obj_data *obj, *best_obj, *worst_obj;
 	int door, found, max, min;
+	char buf[100];
+	MEMtMemoryRec *names;
 
 	extern int no_specials;
 
@@ -39,8 +41,10 @@ void mobile_activity(void)
 			/* Examine call for special procedure */
 			if (IS_SET(ch->specials.act, ACT_SPEC) && !no_specials) {
 				if (!mob_index[ch->nr].func) {
-					sprintf(buf, "Non-Existing MOB[%d] SPEC procedure (mobact.c)",mob_index[ch->nr].virtual);
+					sprintf(buf,"%s %d",ch->player.name,
+						(int)ch->nr);
 					log(buf);
+					log("Attempting to call a non-existing MOB func. (mobact.c)");
 					REMOVE_BIT(ch->specials.act, ACT_SPEC);
 				} else {
 			   	if ((*mob_index[ch->nr].func)	(ch, 0, ""))
@@ -92,17 +96,49 @@ void mobile_activity(void)
 
 
 				if (IS_SET(ch->specials.act,ACT_AGGRESSIVE)) {
-					found = FALSE;
-					for (tmp_ch = world[ch->in_room].people; tmp_ch && !found;
-					     tmp_ch = tmp_ch->next_in_room) {
-						if (!IS_NPC(tmp_ch) && CAN_SEE(ch, tmp_ch)) {
-							if (!IS_SET(ch->specials.act, ACT_WIMPY) || !AWAKE(tmp_ch)) {
-								hit(ch, tmp_ch, 0);
-								found = TRUE;
-							}
-						}
-					}
+				   found = FALSE;
+				   for (tmp_ch = world[ch->in_room].people; tmp_ch && !found;
+				      tmp_ch = tmp_ch->next_in_room) {
+				      if (!IS_NPC(tmp_ch) && CAN_SEE(ch, tmp_ch)) {
+				         if (!IS_SET(ch->specials.act, ACT_WIMPY) || !AWAKE(tmp_ch)) {
+				            if ((IS_SET(ch->specials.act, ACT_AGGRESSIVE_EVIL) &&
+				                 IS_EVIL(tmp_ch)) ||
+					        (IS_SET(ch->specials.act, ACT_AGGRESSIVE_GOOD) &&
+					         IS_GOOD(tmp_ch)) ||
+					        (IS_SET(ch->specials.act, ACT_AGGRESSIVE_NEUTRAL) &&
+					         IS_NEUTRAL(tmp_ch)) ||
+						(!IS_SET(ch->specials.act, ACT_AGGRESSIVE_EVIL) &&
+						 !IS_SET(ch->specials.act, ACT_AGGRESSIVE_NEUTRAL) &&
+						 !IS_SET(ch->specials.act, ACT_AGGRESSIVE_GOOD) )
+						) {
+						hit(ch, tmp_ch, 0);
+						found = TRUE;
+				            }
+				         }
+				      }
+				   }
 				}
-			} /* If AWAKE(ch)   */
+
+                                if (IS_SET(ch->specials.act, ACT_MEMORY)) {
+				   found = FALSE;
+				   for (tmp_ch = world[ch->in_room].people;
+                                        tmp_ch != NULL && !found;
+              			        tmp_ch = tmp_ch->next_in_room) {
+				      for (names = ch->specials.memory;
+          			           names != NULL && !found;
+ 				           names = names->next) {
+				         if (str_cmp(names->name, tmp_ch->player.name) == 0) {
+				            found = TRUE;
+				            vict = tmp_ch;
+ 				         }
+				      }
+				   }
+
+				   if (found) {
+				      act("\"Hey! You're the fiend that attacked me!!!!!\", exclaims the $n.", TRUE, ch, 0, 0, TO_ROOM);
+                                      hit(ch, vict, 0);
+                                   }
+ 				}
 		}   /* If IS_MOB(ch)  */
+	}
 }

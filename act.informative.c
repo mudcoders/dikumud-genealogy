@@ -5,9 +5,10 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <ctype.h>
 #include <time.h>
+#include <assert.h>
 
 #include "structs.h"
 #include "utils.h"
@@ -28,7 +29,7 @@ extern char credits[MAX_STRING_LENGTH];
 extern char news[MAX_STRING_LENGTH];
 extern char info[MAX_STRING_LENGTH];
 extern char wizlist[MAX_STRING_LENGTH];
-extern char *dirs[];
+extern char *dirs[]; 
 extern char *where[];
 extern char *color_liquid[];
 extern char *fullness[];
@@ -42,6 +43,43 @@ void page_string(struct descriptor_data *d, char *str, int keep_internal);
 
 void list_obj_to_char(struct obj_data *list,struct char_data *ch, int mode,
 	bool show);
+char *score_to_str(int); /* This func returns how good attrib is */
+char *get_class(int num,struct char_data *ch);
+ /* This function returns a string specifying class */
+
+
+char *score_to_str(int num) /* assume num is between 3 and 18 */ 
+{
+	static char *score[]={
+		
+		"horrible", 	/* 3 */
+		"horrible",	/* 4 */
+		"bad",		/* 5 */
+		"bad",		/* 6 */
+		"poor",		/* 7 */
+		"poor",		/* 8 */
+		"average",	/* 9 */
+		"average",	/* 10 */
+		"average", 	/* 11 */
+		"above average",/* 12 */
+		"good",		/* 13 */
+		"good",		/* 14 */
+		"very good",	/* 15 */
+		"very good",	/* 16 */
+		"excellent",	/* 17 */
+		"awesome"	/* 18 */
+	};
+	static char *outofrange[]= {"unbelievably bad",
+		"mighty" };
+
+	if(num<3) {
+		return(outofrange[0]);
+	} else if (num>18) {
+		return(outofrange[1]);
+	} else {
+		return(score[num-3]);
+	}
+}
 
 
 /* Procedures related to 'look' */
@@ -107,7 +145,7 @@ void show_obj_to_char(struct obj_data *object, struct char_data *ch, int mode)
 	if ((mode == 0) && object->description)
 		strcpy(buffer,object->description);
 	else 	if (object->short_description && ((mode == 1) ||
-	      (mode == 2) || (mode==3) || (mode == 4)))
+	      (mode == 2) || (mode==3) || (mode == 4))) 
 		strcpy(buffer,object->short_description);
 	else if (mode == 5) {
 		if (object->obj_flags.type_flag == ITEM_NOTE)
@@ -132,7 +170,7 @@ void show_obj_to_char(struct obj_data *object, struct char_data *ch, int mode)
 		}
 	}
 
-	if (mode != 3) {
+	if (mode != 3) { 
 		found = FALSE;
 		if (IS_OBJ_STAT(object,ITEM_INVISIBLE)) {
 			 strcat(buffer,"(invisible)");
@@ -160,7 +198,7 @@ void show_obj_to_char(struct obj_data *object, struct char_data *ch, int mode)
 	page_string(ch->desc, buffer, 1);
 
 /*
-	if (((mode == 2) || (mode == 4)) && (GET_ITEM_TYPE(object) ==
+	if (((mode == 2) || (mode == 4)) && (GET_ITEM_TYPE(object) == 
 		ITEM_CONTAINER)) {
 		strcpy(buffer,"The ");
 		strcat(buffer,fname(object->name));
@@ -172,18 +210,18 @@ void show_obj_to_char(struct obj_data *object, struct char_data *ch, int mode)
 */
 }
 
-void list_obj_to_char(struct obj_data *list,struct char_data *ch, int mode,
+void list_obj_to_char(struct obj_data *list,struct char_data *ch, int mode, 
 	bool show) {
 	struct obj_data *i;
 	bool found;
 
 	found = FALSE;
-	for ( i = list ; i ; i = i->next_content ) {
+	for ( i = list ; i ; i = i->next_content ) { 
 		if (CAN_SEE_OBJ(ch,i)) {
 			show_obj_to_char(i, ch, mode);
 			found = TRUE;
-		}
-	}
+		}    
+	}  
 	if ((! found) && (show)) send_to_char("Nothing\n\r", ch);
 }
 
@@ -205,12 +243,22 @@ void show_char_to_char(struct char_data *i, struct char_data *ch, int mode)
 
 		if (!(i->player.long_descr)||(GET_POS(i) != i->specials.default_pos)){
 			/* A player char or a mobile without long descr, or not in default pos. */
-			if (!IS_NPC(i)) {
-				strcpy(buffer,GET_NAME(i));
-				strcat(buffer," ");
-				strcat(buffer,GET_TITLE(i));
+			if (!IS_NPC(i)) {	
+				if(IS_SET(world[i->in_room].room_flags,ARENA)){
+					if(i->specials.arena==ARENA_BLUE_PLR){
+						sprintf(buffer,"[BLUE] %s %s",GET_NAME(i),GET_TITLE(i));
+					} else if (i->specials.arena==ARENA_RED_PLR) {
+						sprintf(buffer,"[RED] %s %s",GET_NAME(i),GET_TITLE(i));
+					} else if (i->specials.arena=ARENA_WATCHER) {
+						sprintf(buffer,"<watcher> %s %s",GET_NAME(i),GET_TITLE(i));
+					} else {
+						sprintf(buffer,"%s %s",GET_NAME(i),GET_TITLE(i));
+					}
+				} else {	/* Not in arena */
+					sprintf(buffer,"%s %s",GET_NAME(i),GET_TITLE(i));
+				}
 			} else {
-				strcpy(buffer, i->player.short_descr);
+				strcpy(buffer,i->player.short_descr);
 				CAP(buffer);
 			}
 
@@ -218,21 +266,21 @@ void show_char_to_char(struct char_data *i, struct char_data *ch, int mode)
 			   strcat(buffer," (invisible)");
 
 			switch(GET_POS(i)) {
-				case POSITION_STUNNED  :
+				case POSITION_STUNNED  : 
 					strcat(buffer," is lying here, stunned."); break;
-				case POSITION_INCAP    :
+				case POSITION_INCAP    : 
 					strcat(buffer," is lying here, incapacitated."); break;
-				case POSITION_MORTALLYW:
+				case POSITION_MORTALLYW: 
 					strcat(buffer," is lying here, mortally wounded."); break;
-				case POSITION_DEAD     :
+				case POSITION_DEAD     : 
 					strcat(buffer," is lying here, dead."); break;
-				case POSITION_STANDING :
+				case POSITION_STANDING : 
 					strcat(buffer," is standing here."); break;
-				case POSITION_SITTING  :
+				case POSITION_SITTING  : 
 					strcat(buffer," is sitting here.");  break;
-				case POSITION_RESTING  :
+				case POSITION_RESTING  : 
 					strcat(buffer," is resting here.");  break;
-				case POSITION_SLEEPING :
+				case POSITION_SLEEPING : 
 					strcat(buffer," is sleeping here."); break;
 				case POSITION_FIGHTING :
 					if (i->specials.fighting) {
@@ -278,7 +326,7 @@ void show_char_to_char(struct char_data *i, struct char_data *ch, int mode)
 
 			send_to_char(buffer, ch);
 		}
-
+							
 		if (IS_AFFECTED(i,AFF_SANCTUARY))
 			act("$n glows with a bright light!", FALSE, i, 0, ch, TO_VICT);
 
@@ -340,7 +388,8 @@ void show_char_to_char(struct char_data *i, struct char_data *ch, int mode)
 				}
 			}
 		}
-		if ((GET_CLASS(ch) == CLASS_THIEF) && (ch != i)) {
+		if (((GET_CLASS(ch) == CLASS_THIEF)||(GET_LEVEL(ch)>=LV_LESSERGOD && IS_TRUSTED(ch))||
+		     (IS_SET(ch->specials.act,PLR_ISMULTITH))) && (ch != i)) {
 			found = FALSE;
 			send_to_char("\n\rYou attempt to peek at the inventory:\n\r", ch);
 			for(tmp_obj = i->carrying; tmp_obj; tmp_obj = tmp_obj->next_content) {
@@ -363,15 +412,25 @@ void show_char_to_char(struct char_data *i, struct char_data *ch, int mode)
 
 
 
-void list_char_to_char(struct char_data *list, struct char_data *ch,
+void list_char_to_char(struct char_data *list, struct char_data *ch, 
 	int mode) {
 	struct char_data *i;
 
 	for (i = list; i ; i = i->next_in_room) {
-		if ( (ch!=i) && (IS_AFFECTED(ch, AFF_SENSE_LIFE) ||
-		     (CAN_SEE(ch,i) && !IS_AFFECTED(i, AFF_HIDE))) )
+		if ( (ch!=i) && 
+		     ((IS_AFFECTED(ch, AFF_SENSE_LIFE) 
+                       && !i->specials.wizInvis) ||
+		     (CAN_SEE(ch,i) && !IS_AFFECTED(i, AFF_HIDE))) ) {
 			show_char_to_char(i,ch,0);
-	}
+		}
+		else {
+		   if ((IS_DARK(ch->in_room)) && 
+                       (IS_AFFECTED(i, AFF_INFRARED))) {
+		      /* Monster with infra red : can't see him */
+		      send_to_char("You see a pair of glowing red eyes looking your way.", ch);
+		   } /* if */
+		} /* if */
+	} 
 }
 
 
@@ -387,7 +446,7 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 	struct obj_data *tmp_object, *found_object;
 	struct char_data *tmp_char;
 	char *tmp_desc;
-	static char *keywords[]= {
+	static char *keywords[]= { 
 		"north",
 		"east",
 		"south",
@@ -408,8 +467,10 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 		send_to_char("You can't see anything, you're sleeping!\n\r", ch);
 	else if ( IS_AFFECTED(ch, AFF_BLIND) )
 		send_to_char("You can't see a damn thing, you're blinded!\n\r", ch);
-	else if ( IS_DARK(ch->in_room) )
+	else if ( IS_DARK(ch->in_room) && !ch->specials.holyLite ) {
 		send_to_char("It is pitch black...\n\r", ch);
+		list_char_to_char(world[ch->in_room].people, ch, 0);
+	} 
 	else {
 		argument_split_2(argument,arg1,arg2);
 		keyword_no = search_block(arg1, keywords, FALSE); /* Partiel Match */
@@ -428,10 +489,10 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 			/* look <dir> */
 			case 0 :
 			case 1 :
-			case 2 :
-			case 3 :
+			case 2 : 
+			case 3 : 
 			case 4 :
-			case 5 : {
+			case 5 : {   
 
 				if (EXIT(ch, keyword_no)) {
 
@@ -442,7 +503,7 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 						send_to_char("You see nothing special.\n\r", ch);
 					}
 
-					if (IS_SET(EXIT(ch, keyword_no)->exit_info, EX_CLOSED) &&
+					if (IS_SET(EXIT(ch, keyword_no)->exit_info, EX_CLOSED) && 
 						(EXIT(ch, keyword_no)->keyword)) {
 							sprintf(buffer, "The %s is closed.\n\r",
 								fname(EXIT(ch, keyword_no)->keyword));
@@ -522,6 +583,9 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 					if (tmp_char) {
 						show_char_to_char(tmp_char, ch, 1);
 						if (ch != tmp_char) {
+							if (GET_LEVEL(ch)>=LV_LESSERGOD && ch->specials.wizInvis==TRUE && IS_TRUSTED(ch)) {
+								return;
+							}
 							act("$n looks at you.", TRUE, ch, 0, tmp_char, TO_VICT);
 							act("$n looks at $N.", TRUE, ch, 0, tmp_char, TO_NOTVICT);
 						}
@@ -533,7 +597,7 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 
 					/* Extra description in room?? */
 					if (!found) {
-						tmp_desc = find_ex_description(arg2,
+						tmp_desc = find_ex_description(arg2, 
 							world[ch->in_room].ex_description);
 						if (tmp_desc) {
 							page_string(ch->desc, tmp_desc, 0);
@@ -550,7 +614,7 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 						for (j = 0; j< MAX_WEAR && !found; j++) {
 							if (ch->equipment[j]) {
 								if (CAN_SEE_OBJ(ch,ch->equipment[j])) {
-									tmp_desc = find_ex_description(arg2,
+									tmp_desc = find_ex_description(arg2, 
 										ch->equipment[j]->ex_description);
 									if (tmp_desc) {
 										page_string(ch->desc, tmp_desc, 1);
@@ -564,11 +628,11 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 					/* In inventory */
 
 					if (!found) {
-						for(tmp_object = ch->carrying;
-							tmp_object && !found;
+						for(tmp_object = ch->carrying; 
+							tmp_object && !found; 
 							tmp_object = tmp_object->next_content) {
 							if CAN_SEE_OBJ(ch, tmp_object) {
-								tmp_desc = find_ex_description(arg2,
+								tmp_desc = find_ex_description(arg2, 
 									tmp_object->ex_description);
 								if (tmp_desc) {
 									page_string(ch->desc, tmp_desc, 1);
@@ -581,11 +645,11 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 					/* Object In room */
 
 					if (!found) {
-						for(tmp_object = world[ch->in_room].contents;
-							tmp_object && !found;
+						for(tmp_object = world[ch->in_room].contents; 
+							tmp_object && !found; 
 							tmp_object = tmp_object->next_content) {
 							if CAN_SEE_OBJ(ch, tmp_object) {
-								tmp_desc = find_ex_description(arg2,
+								tmp_desc = find_ex_description(arg2, 
 									tmp_object->ex_description);
 								if (tmp_desc) {
 									page_string(ch->desc, tmp_desc, 1);
@@ -613,7 +677,7 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 			break;
 
 
-			/* look ''		*/
+			/* look ''		*/ 
 			case 8 : {
 
 				send_to_char(world[ch->in_room].name, ch);
@@ -629,7 +693,7 @@ void do_look(struct char_data *ch, char *argument, int cmd)
 			break;
 
 			/* wrong arg	*/
-			case -1 :
+			case -1 : 
 				send_to_char("Sorry, I didn't understand that!\n\r", ch);
 				break;
 		}
@@ -690,7 +754,7 @@ void do_exits(struct char_data *ch, char *argument, int cmd)
 	int door;
 	char buf[MAX_STRING_LENGTH];
 	char *exits[] =
-	{
+	{	
 		"North",
 		"East ",
 		"South",
@@ -705,7 +769,8 @@ void do_exits(struct char_data *ch, char *argument, int cmd)
 		if (EXIT(ch, door))
 			if (EXIT(ch, door)->to_room != NOWHERE &&
 			    !IS_SET(EXIT(ch, door)->exit_info, EX_CLOSED))
-				if (IS_DARK(EXIT(ch, door)->to_room))
+				if (IS_DARK(EXIT(ch, door)->to_room) &&
+                                    !ch->specials.holyLite)
 					sprintf(buf + strlen(buf), "%s - Too dark to tell\n\r", exits[door]);
 				else
 					sprintf(buf + strlen(buf), "%s - %s\n\r", exits[door],
@@ -723,7 +788,7 @@ void do_exits(struct char_data *ch, char *argument, int cmd)
 void do_score(struct char_data *ch, char *argument, int cmd)
 {
 	struct time_info_data playing_time;
-	static char buf[100];
+	static char buf[160];
 
 	struct time_info_data real_time_passed(time_t t2, time_t t1);
 
@@ -737,17 +802,29 @@ void do_score(struct char_data *ch, char *argument, int cmd)
 
 	if (GET_COND(ch,DRUNK)>10)
 		send_to_char("You are intoxicated.\n\r", ch);
-	if (!GET_COND(ch,THIRST))
-		send_to_char("You are thirsty.\n\r", ch);
-	if (!GET_COND(ch,FULL))
-		send_to_char("You are hungry.\n\r", ch);
 
-	sprintf(buf,
+	sprintf(buf, 
 		"You have %d(%d) hit, %d(%d) mana and %d(%d) movement points.\n\r",
 		GET_HIT(ch),GET_MAX_HIT(ch),
 		GET_MANA(ch),GET_MAX_MANA(ch),
 		GET_MOVE(ch),GET_MAX_MOVE(ch));
 	send_to_char(buf,ch);
+   if(GET_LEVEL(ch)>2){
+	sprintf(buf,"You have %s strength, %s dexterity, %s intelligence,\n\r%s wisdom, and %s constitution.\n\r",
+		score_to_str(GET_STR(ch)), score_to_str(GET_DEX(ch)),
+		score_to_str(GET_INT(ch)), score_to_str(GET_WIS(ch)),
+		score_to_str(GET_CON(ch)));
+	send_to_char(buf,ch);
+	if(IS_GOOD(ch)){
+		send_to_char("Your alignment is good.",ch);
+	} else if (IS_EVIL(ch)) {
+		send_to_char("Your alignment is evil.",ch);
+	} else {
+		send_to_char("You are neutrally aligned.",ch);
+	}
+	sprintf(buf," Your Armor Class is %d.\n\r", GET_AC(ch));
+	send_to_char(buf,ch);
+   }  /* need to be at least level 3 to see this info */
 
 	sprintf(buf,"You have scored %d exp, and have %d gold coins.\n\r",
 		GET_EXP(ch),GET_GOLD(ch));
@@ -757,8 +834,8 @@ void do_score(struct char_data *ch, char *argument, int cmd)
 	   ch->player.time.played, 0);
 	sprintf(buf,"You have been playing for %d days and %d hours.\n\r",
 		playing_time.day,
-		playing_time.hours);
-	send_to_char(buf, ch);
+		playing_time.hours);		
+	send_to_char(buf, ch);		
 
 	sprintf(buf,"This ranks you as %s %s (level %d).\n\r",
 		GET_NAME(ch),
@@ -766,19 +843,19 @@ void do_score(struct char_data *ch, char *argument, int cmd)
 	send_to_char(buf,ch);
 
 	switch(GET_POS(ch)) {
-		case POSITION_DEAD :
+		case POSITION_DEAD : 
 			send_to_char("You are DEAD!\n\r", ch); break;
 		case POSITION_MORTALLYW :
 			send_to_char("You are mortally wounded!, you should seek help!\n\r", ch); break;
-		case POSITION_INCAP :
+		case POSITION_INCAP : 
 			send_to_char("You are incapacitated, slowly fading away\n\r", ch); break;
-		case POSITION_STUNNED :
+		case POSITION_STUNNED : 
 			send_to_char("You are stunned! You can't move\n\r", ch); break;
-		case POSITION_SLEEPING :
+		case POSITION_SLEEPING : 
 			send_to_char("You are sleeping.\n\r",ch); break;
-		case POSITION_RESTING  :
+		case POSITION_RESTING  : 
 			send_to_char("You are resting.\n\r",ch); break;
-		case POSITION_SITTING  :
+		case POSITION_SITTING  : 
 			send_to_char("You are sitting.\n\r",ch); break;
 		case POSITION_FIGHTING :
 			if (ch->specials.fighting)
@@ -787,10 +864,87 @@ void do_score(struct char_data *ch, char *argument, int cmd)
 			else
 				send_to_char("You are fighting thin air.\n\r", ch);
 			break;
-		case POSITION_STANDING :
+		case POSITION_STANDING : 
 			send_to_char("You are standing.\n\r",ch); break;
 		default :
 			send_to_char("You are floating.\n\r",ch); break;
+	}
+
+	if(IS_AFFECTED(ch,AFF_GROUP)){
+		send_to_char("You are grouped.\n\r",ch);
+	}
+	send_to_char("You are affected by:\n\r",ch);
+	if(IS_AFFECTED(ch,AFF_SNEAK)){
+		send_to_char("Sneak\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_HIDE)){
+		send_to_char("Hide\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_DODGE)){
+		send_to_char("Dodge\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_BLIND)){
+		send_to_char("Blind\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_INVISIBLE)){
+		send_to_char("Invisible\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_DETECT_EVIL)){
+		send_to_char("Detect Evil\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_DETECT_INVISIBLE)){
+		send_to_char("Detect Invisible\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_DETECT_MAGIC)){
+		send_to_char("Detect Magic\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_SENSE_LIFE)){
+		send_to_char("Sense Life\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_HOLD)){
+		send_to_char("Hold\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_SANCTUARY)){
+		send_to_char("Sanctuary\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_CURSE)){
+		send_to_char("Curse\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_FLAMING)){
+		send_to_char("Flaming\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_POISON)){
+		send_to_char("Poison\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_PROTECT_EVIL)){
+		send_to_char("Protection from Evil\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_PARALYSIS)){
+		send_to_char("Paralysis\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_MORDEN_SWORD)){
+		send_to_char("Morden's sword\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_FLAMING_SWORD)){
+		send_to_char("Flaming sword\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_SLEEP)){
+		send_to_char("Sleep\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_FEAR)){
+		send_to_char("Fear\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_CHARM)){
+		send_to_char("Charm\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_FOLLOW)){
+		send_to_char("Follow\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_WIMPY)){
+		send_to_char("Wimpy\n\r",ch);
+	}
+	if(IS_AFFECTED(ch,AFF_INFRARED)){
+		send_to_char("Infrared\n\r",ch);
 	}
 
 }
@@ -845,7 +999,6 @@ void do_time(struct char_data *ch, char *argument, int cmd)
 
 void do_weather(struct char_data *ch, char *argument, int cmd)
 {
-	extern struct weather_data weather_info;
 	static char buf[100];
 	char static *sky_look[4]= {
 	"cloudless",
@@ -854,7 +1007,7 @@ void do_weather(struct char_data *ch, char *argument, int cmd)
 	"lit by flashes of lightning"};
 
 	if (OUTSIDE(ch)) {
-		sprintf(buf,
+		sprintf(buf, 
 		"The sky is %s and %s.\n\r",
 			sky_look[weather_info.sky],
 			(weather_info.change >=0 ? "you feel a warm wind from south" :
@@ -944,7 +1097,7 @@ do_wizhelp(struct char_data *ch, char *argument, int cmd)
 	extern struct command_info cmd_info[];
 	                         /* cmd_info[1] ~~ commando[0]            */
 
-	if (IS_NPC(ch))
+	if (!IS_TRUSTED(ch))
 		return;
 
 	send_to_char("The following privileged comands are available:\n\r\n\r", ch);
@@ -953,7 +1106,7 @@ do_wizhelp(struct char_data *ch, char *argument, int cmd)
 
 	for (no = 1, i = 0; *command[i] != '\n'; i++)
 		if ((GET_LEVEL(ch) >= cmd_info[i+1].minimum_level) &&
-			(cmd_info[i+1].minimum_level >= 21) && (i != 217))
+			(cmd_info[i+1].minimum_level >= 21))
 		{
 
 			sprintf(buf + strlen(buf), "%-10s", command[i]);
@@ -966,63 +1119,267 @@ do_wizhelp(struct char_data *ch, char *argument, int cmd)
 }
 
 
+char *get_class(int num,struct char_data *ch)
+	/* This function returns a string specifying class */
+	/* used by the do_who() function */
+{
+	static char *class[]={
+		"Mu",
+		"Cl",
+		"Th",
+		"Wa",
+	};
+	static char *god[]={
+		"IMM",
+		"DEMI",
+		"GOD",
+		"IMPL"
+	};
+
+	char combo[80];
+	static char buf[80];
+
+	assert((num>=1)&&(num<5));
+
+	if(IS_TRUSTED(ch)){
+		return(god[GET_LEVEL(ch)-LV_IMMORTAL]);
+	}
+
+	if(IS_SET(ch->specials.act,PLR_ISMULTIMU)){
+		strcpy(combo,"Mu");
+	} else if (IS_SET(ch->specials.act,PLR_ISMULTICL)) {
+		strcpy(combo,"Cl");
+	} else if (IS_SET(ch->specials.act,PLR_ISMULTITH)) {
+		strcpy(combo,"Th");
+	} else if (IS_SET(ch->specials.act,PLR_ISMULTIWA)) {
+		strcpy(combo,"Wa");
+	} else {
+		strcpy(combo,"");
+	}
+	sprintf(buf,"%s/%s",class[num-1],combo);
+
+	return(buf);
+}
 
 
 void do_who(struct char_data *ch, char *argument, int cmd)
 {
 	struct descriptor_data *d;
 	char buf[256];
+	int number=0;
 
-	send_to_char("Players\n\r-------\n\r", ch);
+	if(IS_NPC(ch))return;
+	send_to_char("-------\n\rPlayers\n\r-------\n\r", ch);
+
 	for (d = descriptor_list; d; d = d->next)
 	{
-		if ((!d->connected) &&
-		    (CAN_SEE(ch, d->character) || (GET_LEVEL(ch) >= 23)))
+		if (!d->connected && CAN_SEE(ch, d->character))
 		{
-
-			if(d->original) /* If switched */
-				sprintf(buf, "%s %s\n\r",
+			number++;
+			if(d->original) { /* If switched */			
+				if(IS_TRUSTED(ch) &&
+				   GET_LEVEL(ch)<GET_LEVEL(d->character)){
+					number--;
+					continue;
+				}
+				sprintf(buf, "[%2d %-5s] %s %s", 
+				   GET_LEVEL(d->original),
+				   get_class(GET_CLASS(d->original),
+					d->original),
 				   GET_NAME(d->original),
 				  	d->original->player.title);
-			else
-				sprintf(buf, "%s %s\n\r",
+			} else {
+				if(IS_TRUSTED(ch) &&
+				   GET_LEVEL(ch)<GET_LEVEL(d->character)){
+					number--;
+					continue;
+				}
+				sprintf(buf, "[%2d %-5s] %s %s", 
+				   GET_LEVEL(d->character),
+				   get_class(GET_CLASS(d->character),
+					d->character),
 				   GET_NAME(d->character),
 				   d->character->player.title);
+			}
+			if (IS_SET(d->character->specials.act, PLR_ISTHIEF)) {
+				strcat(buf," (thief)");
+			}
+			if (IS_SET(d->character->specials.act, PLR_ISKILLER)) {
+				strcat(buf," (killer)");
+			}
+			if (IS_AFFECTED(d->character, AFF_INVISIBLE)){
+				strcat(buf," (invis)");
+			}
+			strcat(buf,"\n\r");
 
-		send_to_char(buf, ch);
+			send_to_char(buf, ch);
+		}
+	}
+	sprintf(buf,"\n\rThere are %d visible players.\n\r",number);
+	send_to_char(buf,ch);
+}
+
+
+void do_localwho(struct char_data *ch, char *argument, int cmd)
+{
+	struct descriptor_data *d;
+	char buf[256];
+	char team[80];
+
+	if(IS_NPC(ch)) return;
+	send_to_char("--------------------\n\rPlayers in your Zone\n\r--------------------\n\r", ch);
+
+	for (d = descriptor_list; d; d = d->next) {
+		if (!d->connected && CAN_SEE(ch, d->character) &&
+                (world[d->character->in_room].zone == 
+                world[ch->in_room].zone)&&
+		!IS_AFFECTED(d->character,AFF_HIDE)) {
+			if(!CAN_SEE(ch, d->character) ||
+			  (GET_LEVEL(d->character)>GET_LEVEL(ch) &&
+			  !IS_TRUSTED(ch))){
+				continue;
+			}
+			if(d->original) { 	/* If switched */
+				sprintf(buf, "%15s %-30s\n\r", 
+				   GET_NAME(d->original),
+				  	d->original->player.title);
+			} else {
+				if(IS_SET(world[d->character->in_room].room_flags,ARENA)) {	/* In arena */
+					switch(d->character->specials.arena) {
+						case ARENA_BLUE_PLR: case ARENA_BLUE_CAPT:
+							sprintf(team,"[BLUE] %s", GET_NAME(d->character)); break;
+						case ARENA_RED_PLR: case ARENA_RED_CAPT:
+							sprintf(team,"[RED] %s", GET_NAME(d->character)); break;
+						case ARENA_WATCHER:
+							sprintf(team,"<watcher> %s", GET_NAME(d->character)); break;
+						default:
+							sprintf(team,"%s", GET_NAME(d->character)); break;
+					} /*switch*/
+				} else { 	/* not in arena */
+					sprintf(team,"%s",GET_NAME(d->character));
+				} /*else*/
+
+				sprintf(buf, "%-30s - %s\n\r", 
+				   team,
+                                   world[d->character->in_room].name);	
+			}
+          		send_to_char(buf, ch);
 		}
 	}
 }
 
+void do_sockets(struct char_data *ch, char *argument, int cmd)
+{
+	char buf[MAX_STRING_LENGTH];
+	char name[MAX_INPUT_LENGTH];
+	int num_can_see=0;
 
+	struct descriptor_data *d;
 
+	if(!IS_TRUSTED(ch)) return;
+	one_argument(argument,name);
+
+	strcpy(buf, "Socket Stats:\n\r------------\n\r");
+	send_to_char(buf,ch);
+	
+	for (d = descriptor_list; d; d = d->next)
+	{
+		if (d->character && d->character->player.name 
+		    && !CAN_SEE(ch,d->character)){
+			continue;
+		}
+		if(*name){ /* when an argument is present */
+			if(strcmp(name,d->character->player.name)){
+				continue; /* names don't match */
+			}
+		}
+		if(IS_TRUSTED(ch) &&
+		   GET_LEVEL(ch)<GET_LEVEL(d->character)) {
+			continue;
+		}
+		num_can_see++;
+		sprintf(buf,"%3d : %-30s / ",d->descriptor, d->host);
+		if(d->original)
+			sprintf(buf, "%s %-16s --",buf,d->original->player.name);
+		else
+			sprintf(buf, "%s %-16s --",buf,d->character->player.name);
+		send_to_char(buf,ch);
+		switch(d->connected){
+		  case CON_PLYNG:
+			strcpy(buf,"playing"); break;
+		  case CON_NME:
+			strcpy(buf,"input name");break;
+		  case CON_NMECNF:
+			strcpy(buf,"conf new name");break;
+		  case CON_PWDNRM:
+			strcpy(buf,"pw known player");break;
+		  case CON_PWDGET:
+			strcpy(buf,"pw new player");break;
+		  case CON_PWDCNF:
+			strcpy(buf,"pwdcnf");break;
+		  case CON_QSEX:
+			strcpy(buf,"query sex");break;
+		  case CON_RMOTD:
+			strcpy(buf,"reading motd");break;
+		  case CON_SLCT:
+			strcpy(buf,"slct");break;
+		  case CON_EXDSCR:
+			strcpy(buf,"exdscr");break;
+		  case CON_QCLASS:
+			strcpy(buf,"query class");break;
+		  case CON_LDEAD:
+			strcpy(buf,"link dead");break;
+		  case CON_PWDNEW:
+			strcpy(buf,"pwdnew");break;
+		  case CON_PWDNCNF:
+			strcpy(buf,"pwdncnf");break;
+		  case CON_CLOSE:
+			strcpy(buf,"closed");break;
+		  default:
+			strcpy(buf,"***UNKNOWN***");break;
+		}
+		strcat(buf,"\n\r");
+		send_to_char(buf, ch);
+	}
+	sprintf(buf,"\n\rThere are %d users playing\n\r",
+		num_can_see);
+	send_to_char(buf,ch);
+}
 
 void do_users(struct char_data *ch, char *argument, int cmd)
 {
 	char buf[MAX_STRING_LENGTH], line[200];
-
+	int count;
 	struct descriptor_data *d;
 
+	if(!IS_TRUSTED(ch)) return;
 	strcpy(buf, "Connections:\n\r------------\n\r");
-
-	for (d = descriptor_list; d; d = d->next)
+	
+	for (count=0, d = descriptor_list; d; d = d->next)
 	{
-		if (d->character && d->character->player.name)
+		if (d->character && d->character->player.name
+		    && (GET_LEVEL(ch)>=GET_LEVEL(d->character)) )
 		{
-		if(d->original)
-			sprintf(line, "%-16s: ", d->original->player.name);
-		else
-			sprintf(line, "%-16s: ", d->character->player.name);
-		}
-		else
+			count++;
+			if(d->original)
+				sprintf(line, "%-16s: ", d->original->player.name);
+			else
+				sprintf(line, "%-16s: ", d->character->player.name);
+		} else if (GET_LEVEL(ch)<GET_LEVEL(d->character)){
+			continue;
+		} else {
+			count++;
 			strcpy(line, "UNDEFINED       : ");
-		if ((d->host) && *(d->host))
+		}
+		if (d->host)
 			sprintf(line + strlen(line), "[%s]\n\r", d->host);
 		else
 			strcat(line, "[Hostname unknown]\n\r");
 
 		strcat(buf, line);
 	}
+	send_to_char(buf,ch);
+	sprintf(buf,"\n\rThere are %d users playing.\n\r",count);
 	send_to_char(buf, ch);
 }
 
@@ -1092,32 +1449,35 @@ void do_where(struct char_data *ch, char *argument, int cmd)
 	register struct obj_data *k;
 	struct descriptor_data *d;
 
+	if(IS_NPC(ch)) return;
 	one_argument(argument, name);
-
 	if (!*name) {
-		if (GET_LEVEL(ch) < 21)
+		if (!IS_TRUSTED(ch))
 		{
-			send_to_char("What are you looking for?\n\r", ch);
+			/*send_to_char("What are you looking for?\n\r", ch);*/
+			/* Do a local who instead */
+			do_localwho(ch,argument,cmd);
 			return;
 		}
 		else
 		{
 			strcpy(buf, "Players:\n\r--------\n\r");
-
+		
 			for (d = descriptor_list; d; d = d->next) {
-				if (d->character && (d->connected == CON_PLYNG) && (d->character->in_room != NOWHERE)) {
+				if (d->character && d->connected == CON_PLYNG && d->character->in_room != NOWHERE &&
+				   GET_LEVEL(ch)>=GET_LEVEL(d->character)) {
 					if (d->original)   /* If switched */
-						sprintf(buf, "%-20s - %s [%d] In body of %s\n\r",
+						sprintf(buf, "%-20s - [%d] %s (In body of %s)\n\r",
 						  d->original->player.name,
-						  world[d->character->in_room].name,
 						  world[d->character->in_room].number,
+						  world[d->character->in_room].name,
 						  fname(d->character->player.name));
 					else
-						sprintf(buf, "%-20s - %s [%d]\n\r",
+						sprintf(buf, "%-20s - [%d] %s \n\r",
 						  d->character->player.name,
-						  world[d->character->in_room].name,
-						  world[d->character->in_room].number);
-
+						  world[d->character->in_room].number,
+						  world[d->character->in_room].name);
+						 
 					send_to_char(buf, ch);
 				}
 			}
@@ -1130,8 +1490,8 @@ void do_where(struct char_data *ch, char *argument, int cmd)
 	for (i = character_list; i; i = i->next)
 		if (isname(name, i->player.name) && CAN_SEE(ch, i) )
 		{
-			if ((i->in_room != NOWHERE) && ((GET_LEVEL(ch)>20) ||
-			    (world[i->in_room].zone == world[ch->in_room].zone))) {
+			if (i->in_room != NOWHERE && (IS_TRUSTED(ch) ||
+			    (world[i->in_room].zone == world[ch->in_room].zone && !IS_AFFECTED(i,AFF_HIDE)))){
 
 				if (IS_NPC(i))
 					sprintf(buf, "%-30s- %s ", i->player.short_descr,
@@ -1140,7 +1500,7 @@ void do_where(struct char_data *ch, char *argument, int cmd)
 					sprintf(buf, "%-30s- %s ", i->player.name,
 						world[i->in_room].name);
 
-				if (GET_LEVEL(ch) >= 21)
+				if (IS_TRUSTED(ch))
 					sprintf(buf2,"[%d]\n\r", world[i->in_room].number);
 				else
 					strcpy(buf2, "\n\r");
@@ -1148,14 +1508,14 @@ void do_where(struct char_data *ch, char *argument, int cmd)
 				strcat(buf, buf2);
 				send_to_char(buf, ch);
 
-				if (GET_LEVEL(ch) < 21)
+				if (!IS_TRUSTED(ch))
 					break;
 			}
 		}
 
-	if (GET_LEVEL(ch) > 20) {
+	if (IS_TRUSTED(ch)){
 		for (k = object_list; k; k = k->next)
-			if (isname(name, k->name) && CAN_SEE_OBJ(ch, k) &&
+			if (isname(name, k->name) && CAN_SEE_OBJ(ch, k) && 
 				(k->in_room != NOWHERE)) {
 					sprintf(buf, "%-30s- %s [%d]\n\r",
 						k->short_description,
@@ -1176,8 +1536,6 @@ void do_levels(struct char_data *ch, char *argument, int cmd)
 {
 	int i;
 	char buf[MAX_STRING_LENGTH];
-	char arg[MAX_INPUT_LENGTH];
-	int class;
 
 	extern const struct title_type titles[4][25];
 
@@ -1186,30 +1544,20 @@ void do_levels(struct char_data *ch, char *argument, int cmd)
 		send_to_char("You ain't nothin' but a hound-dog.\n\r", ch);
 		return;
 	}
-	class = GET_CLASS(ch);
-
-	one_argument(argument,arg);
-
-	if (*arg) {
-		if (!str_cmp(arg,"magic")) class = 1;
-		else if (!str_cmp(arg,"cleric")) class =  2;
-		else if (!str_cmp(arg,"thief")) class =  3;
-		else if (!str_cmp(arg,"fighter")) class = 4;
-	}
 
 	*buf = '\0';
-
+	
 	for (i = 1; i < 21; i++)
 	{
 		sprintf(buf + strlen(buf), "%7d-%-7d : ",
-			titles[class - 1][i].exp,
-			titles[class - 1][i + 1].exp);
+			titles[GET_CLASS(ch) - 1][i].exp,
+			titles[GET_CLASS(ch) - 1][i + 1].exp-1);
 		switch(GET_SEX(ch))
 		{
 			case SEX_MALE:
-				strcat(buf, titles[class - 1][i].title_m); break;
+				strcat(buf, titles[GET_CLASS(ch) - 1][i].title_m); break;
 			case SEX_FEMALE:
-				strcat(buf, titles[class - 1][i].title_f); break;
+				strcat(buf, titles[GET_CLASS(ch) - 1][i].title_f); break;
 			default:
 				send_to_char("Oh dear.\n\r", ch); break;
 		}
@@ -1265,7 +1613,13 @@ void do_consider(struct char_data *ch, char *argument, int cmd)
 		send_to_char("Do you feel lucky, punk?\n\r", ch);
 	else if (diff <= 10)
 		send_to_char("Are you mad!?\n\r", ch);
-	else if (diff <= 100)
+	else if (diff <= 15)
 		send_to_char("You ARE mad!\n\r", ch);
+	else if (diff <= 20)
+		send_to_char("Why don't you just lie down and pretend you're dead instead?\n\r",ch);
+	else if (diff <= 25)
+		send_to_char("What do you want your epitaph to say?!?\n\r",ch);
+	else if (diff <= 100)
+		send_to_char("Your epitaph will read: Here lies one dead and very dumb Diku-player.\n\r",ch);
 
 }

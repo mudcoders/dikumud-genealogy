@@ -5,7 +5,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <ctype.h>
 
 #include "structs.h"
@@ -31,7 +31,7 @@ void log(char *str);
 
 void hit(struct char_data *ch, struct char_data *victim, int type);
 void do_shout(struct char_data *ch, char *argument, int cmd);
-
+void save_obj2(struct char_data *ch);
 
 
 void do_qui(struct char_data *ch, char *argument, int cmd)
@@ -76,6 +76,7 @@ void do_save(struct char_data *ch, char *argument, int cmd)
 	sprintf(buf, "Saving %s.\n\r", GET_NAME(ch));
 	send_to_char(buf, ch);
 	save_char(ch, NOWHERE);
+	save_obj2(ch);
 }
 
 
@@ -162,17 +163,22 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 	  return;
 	}
 
-	WAIT_STATE(ch, 10); /* It takes TIME to steal */
+	if (IS_SET(world[ch->in_room].room_flags,ARENA)) {
+		send_to_char("The Arena Gods frown upon stealing!\n\r",ch);
+		return;
+	}
+	if (IS_SET(world[ch->in_room].room_flags,SAFE)){
+		send_to_char("No stealing permitted in safe areas!\n\r",ch);
+		return;
+	}
 
 	/* 101% is a complete failure */
 	percent=number(1,101) - dex_app_skill[GET_DEX(ch)].p_pocket;
 
-   percent += AWAKE(victim) ? 10 : -50;
-
 	if (GET_POS(victim) < POSITION_SLEEPING)
 		percent = -1; /* ALWAYS SUCCESS */
 
-	if (GET_LEVEL(victim)>20) /* NO NO With Imp's and Shopkeepers! */
+	if (IS_TRUSTED(victim)) /* NO NO With Imp's and Shopkeepers! */
 		percent = 101; /* Failure */
 
 	if (str_cmp(obj_name, "coins") && str_cmp(obj_name,"gold")) {
@@ -188,10 +194,11 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 				}
 
 			if (!obj) {
-				act("$E has not got that item.",FALSE,ch,0,victim,TO_CHAR);
+				act("$E does not have that item.",FALSE,ch,0,victim,TO_CHAR);
 				return;
 			} else { /* It is equipment */
-				if ((GET_POS(victim) > POSITION_STUNNED)) {
+				if (((GET_POS(victim) > POSITION_STUNNED))||
+				    (IS_SET(ch->specials.act,PLR_ISTHIEF))) {
 					send_to_char("Steal the equipment now? Impossible!\n\r", ch);
 					return;
 				} else {
@@ -204,7 +211,8 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 
 			percent += GET_OBJ_WEIGHT(obj); /* Make heavy harder */
 
-			if (percent > ch->skills[SKILL_STEAL].learned) {
+			if ((AWAKE(victim) && (percent > ch->skills[SKILL_STEAL].learned))||
+			    (IS_SET(ch->specials.act,PLR_ISTHIEF))) {
 				ohoh = TRUE;
 				act("Oops..", FALSE, ch,0,0,TO_CHAR);
 				act("$n tried to steal something from you!",FALSE,ch,0,victim,TO_VICT);
@@ -221,7 +229,7 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 			}
 		}
 	} else { /* Steal some coins */
-		if (percent > ch->skills[SKILL_STEAL].learned) {
+		if ((AWAKE(victim) && (percent > ch->skills[SKILL_STEAL].learned))||(IS_SET(ch->specials.act,PLR_ISTHIEF))) {
 			ohoh = TRUE;
 			act("Oops..", FALSE, ch,0,0,TO_CHAR);
 			act("You discover that $n has $s hands in your wallet.",FALSE,ch,0,victim,TO_VICT);
@@ -241,7 +249,7 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 		}
 	}
 
-	if (ohoh && IS_NPC(victim) && AWAKE(victim))
+	if (ohoh && IS_NPC(victim) && AWAKE(victim)) {
 		if (IS_SET(victim->specials.act, ACT_NICE_THIEF)) {
 			sprintf(buf, "%s is a bloody thief.", GET_NAME(ch));
 			do_shout(victim, buf, 0);
@@ -250,7 +258,16 @@ void do_steal(struct char_data *ch, char *argument, int cmd)
 		} else {
 			hit(victim, ch, TYPE_UNDEFINED);
 		}
+	} else {
 
+		if(ohoh && !IS_NPC(victim) && AWAKE(victim)
+		   && !IS_SET(ch->specials.act,PLR_ISTHIEF) ) {
+			SET_BIT(ch->specials.act,PLR_ISTHIEF);
+			send_to_char("** You are branded a thief! **\n\r",ch);
+			sprintf(buf,"%s is a bloody thief!\n\r", GET_NAME(ch));
+			send_to_char(buf,victim);
+		}
+	}
 }
 
 
@@ -273,7 +290,16 @@ void do_pick(struct char_data *ch, char *argument, int cmd)
 #endif
 
 void do_practice(struct char_data *ch, char *arg, int cmd) {
-	send_to_char("You can only practise in a guild.\n\r", ch);
+	/*
+	 * Call "guild" with a null string for an argument.
+	 * This displays the character's skills.
+	 */
+	if (arg[0] != '\0') {
+	   send_to_char("You can only practice skills in your guild.\n\r", ch);
+ 	}
+	else {
+	   (void)guild(ch, cmd, "");
+	} /* if */
 }
 
 
@@ -439,6 +465,7 @@ void do_group(struct char_data *ch, char *argument, int cmd)
 	struct char_data *victim, *k;
 	struct follow_type *f;
 	bool found;
+	int diff;
 
 	one_argument(argument, name);
 
@@ -487,10 +514,15 @@ void do_group(struct char_data *ch, char *argument, int cmd)
 		}
 
 		if (found) {
+			diff=GET_LEVEL(ch)-GET_LEVEL(victim);
 			if (IS_AFFECTED(victim, AFF_GROUP)) {
 				act("$n has been kicked out of the group!", FALSE, victim, 0, ch, TO_ROOM);
 				act("You are no longer a member of the group!", FALSE, victim, 0, 0, TO_CHAR);
 				REMOVE_BIT(victim->specials.affected_by, AFF_GROUP);
+			} else if ((diff>6)||(diff< -6)&&!IS_TRUSTED(ch)){
+
+					send_to_char("You cannot group members with more than 6 levels difference.\n\r",ch);
+					return;
 			} else {
 				act("$n is now a group member.", FALSE, victim, 0, 0, TO_ROOM);
 				act("You are now a group member.", FALSE, victim, 0, 0, TO_CHAR);
@@ -657,4 +689,95 @@ void do_use(struct char_data *ch, char *argument, int cmd)
 	} else {
 		send_to_char("Use is normally only for wand's and staff's.\n\r", ch);
   }
+}
+
+/*****************************************************************/
+/* New code : by Dionysos.                                       */
+/*****************************************************************/
+
+void do_wimpy(struct char_data *ch, char *argument, int cmd)
+{
+ 	if (IS_AFFECTED(ch, AFF_WIMPY)) {
+	   send_to_char("You are no longer a wimp....maybe.\n\r", ch);
+	   REMOVE_BIT(ch->specials.affected_by, AFF_WIMPY);
+	}
+	else {
+	   send_to_char("You are now an official wimp.\n\r", ch);
+	   SET_BIT(ch->specials.affected_by, AFF_WIMPY);
+	} /* if */
+}
+
+void do_display(struct char_data *ch, char *argument, int cmd)
+{
+   char option[256];
+
+/*	if (IS_NPC(ch))
+		return;
+*/
+
+   one_argument(argument, option);
+
+   if (option[0] != '\0') {
+      if (strcmp(option, "hp") == 0) {
+         if (ch->specials.dispHp) {
+            send_to_char("Hit point display off.\n\r", ch);
+            ch->specials.dispHp = FALSE;
+         }
+         else {
+            send_to_char("Hit point display on.\n\r", ch);
+            ch->specials.dispHp = TRUE;
+	} /* if */
+      }
+      else if (strcmp(option, "mana") == 0) {
+         if (ch->specials.dispMana) {
+            send_to_char("Mana display off.\n\r", ch);
+            ch->specials.dispMana = FALSE;
+         }
+         else {
+            send_to_char("Mana display on.\n\r", ch);
+            ch->specials.dispMana = TRUE;
+	} /* if */
+      }
+      else if (strcmp(option, "move") == 0) {
+         if (ch->specials.dispMove) {
+            send_to_char("Movement point display off.\n\r", ch);
+            ch->specials.dispMove = FALSE;
+         }
+         else {
+            send_to_char("Movement point display on.\n\r", ch);
+            ch->specials.dispMove = TRUE;
+	} /* if */
+      }
+      else if (strcmp(option, "all") == 0) {
+         send_to_char("Full display on.\n\r", ch);
+         ch->specials.dispMana = TRUE;
+         ch->specials.dispMove = TRUE;
+         ch->specials.dispHp = TRUE;
+      }
+      else if (strcmp(option, "none") == 0) {
+         send_to_char("Display off.\n\r", ch);
+         ch->specials.dispMana = FALSE;
+         ch->specials.dispMove = FALSE;
+         ch->specials.dispHp = FALSE;
+      }
+      else {
+         send_to_char("Display what???\n\r", ch);
+      } /* if */
+   }
+   else {
+      send_to_char("Display usage : display [hp mana move all none].", ch);
+   } /* if */
+
+} /* do_display */
+
+void
+do_nokill(struct char_data *ch, char *argument, int cmd)
+{
+	if(ch->specials.nokill==TRUE){
+		ch->specials.nokill=FALSE;
+		send_to_char("You may now attack players, you bully!\n\r",ch);
+	} else {
+		ch->specials.nokill=TRUE;
+		send_to_char("You will be prevented from attacking playrs now, you nice person.\n\r",ch);
+	}
 }

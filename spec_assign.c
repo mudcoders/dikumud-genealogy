@@ -1,3 +1,4 @@
+
 /* ************************************************************************
 *  file: spec_assign.c , Special module.                  Part of DIKUMUD *
 *  Usage: Procedures assigning function pointers.                         *
@@ -32,23 +33,24 @@ void assign_mobiles(void)
 	int snake(struct char_data *ch, int cmd, char *arg);
 	int thief(struct char_data *ch, int cmd, char *arg);
 	int magic_user(struct char_data *ch, int cmd, char *arg);
-	int bat_red(struct char_data *ch, int cmd, char *arg);
-	int bat_blue(struct char_data *ch, int cmd, char *arg);
-	int bat_green(struct char_data *ch, int cmd, char *arg);
-	int bat_black(struct char_data *ch, int cmd, char *arg);
-	int bat_white(struct char_data *ch, int cmd, char *arg);
-
+	int offensive(struct char_data *ch, int cmd, char *arg);
+	int brass_dragon(struct char_data *ch, int cmd, char *arg);
+	int jester(struct char_data *ch, int cmd, char *arg);
 
 	mob_index[real_mobile(1)].func = puff;
-
+	mob_index[real_mobile(5005)].func = brass_dragon;
+	mob_index[real_mobile(4061)].func = cityguard;
+	mob_index[real_mobile(3059)].func = cityguard;
 	mob_index[real_mobile(3060)].func = cityguard;
-	mob_index[real_mobile(3067)].func = cityguard;
 	mob_index[real_mobile(3061)].func = janitor;
+	mob_index[real_mobile(3067)].func = cityguard;
 	mob_index[real_mobile(3062)].func = fido;
 	mob_index[real_mobile(3066)].func = fido;
+	mob_index[real_mobile(3068)].func = janitor;
+	mob_index[real_mobile(3070)].func = offensive;
+	mob_index[real_mobile(3069)].func = jester;
 
 	mob_index[real_mobile(3005)].func = receptionist;
-	mob_index[real_mobile(5007)].func = receptionist;
 
 	mob_index[real_mobile(3020)].func = guild;
 	mob_index[real_mobile(3021)].func = guild;
@@ -62,29 +64,23 @@ void assign_mobiles(void)
 
 	mob_index[real_mobile(3143)].func = mayor;
 
+        /* Tombs and Catacombs */
+	mob_index[real_mobile(3410)].func = fido;
+	mob_index[real_mobile(3411)].func = fido;
+	mob_index[real_mobile(3415)].func = cityguard;
+	mob_index[real_mobile(3404)].func = snake;
+
 	/* MORIA */
 	mob_index[real_mobile(4000)].func = snake;
 	mob_index[real_mobile(4001)].func = snake;
-
 	mob_index[real_mobile(4053)].func = snake;
 
 	mob_index[real_mobile(4103)].func = thief;
 	mob_index[real_mobile(4100)].func = magic_user;
 	mob_index[real_mobile(4102)].func = snake;
 
-	mob_index[real_mobile(4150)].func = bat_blue;
-	mob_index[real_mobile(4151)].func = bat_red;
-	mob_index[real_mobile(4152)].func = bat_green;
-	mob_index[real_mobile(4153)].func = bat_white;
-	mob_index[real_mobile(4154)].func = bat_black;
-	mob_index[real_mobile(4155)].func = thief;
-	mob_index[real_mobile(4157)].func = magic_user;
-	mob_index[real_mobile(4158)].func = snake;
-
-
 	/* SEWERS */
 	mob_index[real_mobile(7006)].func = snake;
-	mob_index[real_mobile(7040)].func = bat_red;
 
 	/* FOREST */
 	mob_index[real_mobile(6113)].func = snake;
@@ -102,8 +98,10 @@ void assign_mobiles(void)
 void assign_objects(void)
 {
 	int board(struct char_data *ch, int cmd, char *arg);
+	int GODboard(struct char_data *ch, int cmd, char *arg);
 
 	obj_index[real_object(3099)].func = board;
+ 	obj_index[real_object(3098)].func = GODboard;
 }
 
 
@@ -114,12 +112,18 @@ void assign_rooms(void)
 	int dump(struct char_data *ch, int cmd, char *arg);
 	int chalice(struct char_data *ch, int cmd, char *arg);
 	int kings_hall(struct char_data *ch, int cmd, char *arg);
-	int pet_shops(struct char_data *ch, int cmd, char *arg);
+  	int pet_shops(struct char_data *ch, int cmd, char *arg);
 	int mar_gate(struct char_data *ch, int cmd, char *arg);
 	int pray_for_items(struct char_data *ch, int cmd, char *arg);
-	int worm_ritual(struct char_data *ch, int cmd, char *arg);
+  	int arena_shop(struct char_data *ch, int cmd, char *arg);
+	int arena_guard(struct char_data *ch, int cmd, char *arg);
+	int remove_team(struct char_data *ch, int cmd, char *arg);
+	int do_multiclass(struct char_data *ch, int cmd, char *arg);
 
-	world[real_room(5039)].funct = worm_ritual;
+	world[real_room(3751)].funct = remove_team;
+	world[real_room(3702)].funct = arena_guard;
+	world[real_room(3703)].funct = arena_guard;
+	world[real_room(3755)].funct = do_multiclass;
 	world[real_room(3030)].funct = dump;
 	world[real_room(3054)].funct = pray_for_items;
 
@@ -127,7 +131,10 @@ void assign_rooms(void)
 	world[real_room(704)].funct = chalice;
 	world[real_room(2518)].funct = kings_hall;
 */
-
+	world[real_room(1203)].funct = kings_hall;
 	world[real_room(3031)].funct = pet_shops;
+	world[real_room(3701)].funct = arena_shop;
 	world[real_room(8001)].funct = mar_gate;
+
 }
+

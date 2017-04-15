@@ -1,3 +1,4 @@
+
 /**************************************************************************
 *  file: db.c , Database module.                          Part of DIKUMUD *
 *  Usage: Loading/Saving chars, booting world, resetting etc.             *
@@ -5,7 +6,7 @@
 ***************************************************************************/
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <ctype.h>
 #include <time.h>
 
@@ -15,6 +16,7 @@
 #include "comm.h"
 #include "handler.h"
 #include "limits.h"
+#include "spells.h"
 
 #define NEW_ZONE_SYSTEM
 
@@ -26,6 +28,8 @@ struct room_data *world;              /* dyn alloc'ed array of rooms     */
 int top_of_world = 0;                 /* ref to the top element of world */
 struct obj_data  *object_list = 0;    /* the global linked list of obj's */
 struct char_data *character_list = 0; /* global l-list of chars          */
+struct ban_t *ban_list=0;	      /* list of banned site--sigh 	 */
+int log_all=0;			      /* If 1, log all commands to syslog*/
 
 struct zone_data *zone_table;         /* table of reset data             */
 int top_of_zone_table = 0;
@@ -57,7 +61,7 @@ int top_of_helpt;                     /* top of help index table         */
 struct time_info_data time_info;	/* the infomation about the time   */
 struct weather_data weather_info;	/* the infomation about the weather */
 
-bool wizlock = FALSE;                 /* is the game wizlocked           */
+
 
 
 /* local procedures */
@@ -96,6 +100,14 @@ struct help_index_element *build_help_index(FILE *fl, int *num);
 *  routines for booting the system                                       *
 *********************************************************************** */
 
+void memset(char *s, char c, int n)
+{
+   int i;
+
+   for (i = 0; i < n; i++) {
+      s[i] = c;
+   } /* for */
+}
 
 /* body of the booting system */
 void boot_db(void)
@@ -368,7 +380,7 @@ void build_player_index(void)
 	struct char_file_u dummy;
 	FILE *fl;
 
-	if (!(fl = fopen(PLAYER_FILE, "rb+")))
+	if (!(fl = fopen(PLAYER_FILE, "r+")))
 	{
 		perror("build player index");
 		exit(0);
@@ -1670,6 +1682,9 @@ void store_to_char(struct char_file_u *st, struct char_data *ch)
 	ch->abilities = st->abilities;
 	ch->tmpabilities = st->abilities;
 	ch->points = st->points;
+	if (ch->points.max_mana < 100) {
+           ch->points.max_mana = 100;
+    	} /* if */
 
 	for (i = 0; i <= MAX_SKILLS - 1; i++)
 		ch->skills[i] = st->skills[i];
@@ -1723,7 +1738,10 @@ void char_to_store(struct char_data *ch, struct char_file_u *st)
 	}
 
 	for(af = ch->affected, i = 0; i<MAX_AFFECT; i++) {
-		if (af) {
+		if (af &&
+		    (!(af->type == SPELL_INVISIBLE &&
+		       af->bitvector == AFF_INVISIBLE &&
+		       ch->specials.wizInvis))) {
 			st->affected[i] = *af;
 			st->affected[i].next = 0;
 			/* subtract effect of the spell or the effect will be doubled */
@@ -1798,7 +1816,10 @@ void char_to_store(struct char_data *ch, struct char_file_u *st)
 	  st->conditions[i] = GET_COND(ch, i);
 
 	for(af = ch->affected, i = 0; i<MAX_AFFECT; i++) {
-		if (af) {
+		if (af &&
+		    (!(af->type == SPELL_INVISIBLE &&
+		       af->bitvector == AFF_INVISIBLE &&
+		       ch->specials.wizInvis))) {
 			/* Add effect of the spell or it will be lost */
 			/* When saving without quitting               */
 			affect_modify( ch, st->affected[i].location,
@@ -1867,7 +1888,7 @@ void save_char(struct char_data *ch, sh_int load_room)
 
 	if (expand = (ch->desc->pos > top_of_p_file))
 	{
-		strcpy(mode, "a+");
+		strcpy(mode, "a");
 		top_of_p_file++;
 	}
 	else
@@ -1884,13 +1905,8 @@ void save_char(struct char_data *ch, sh_int load_room)
 		exit(1);
 	}
 
-  	fflush(fl);
-   if (expand)
-   {
-   	fwrite(&st, sizeof(struct char_file_u), 1, fl);
-	}
-
-	fseek(fl, ch->desc->pos * sizeof(struct char_file_u), 0);
+	if (!expand)
+		fseek(fl, ch->desc->pos * sizeof(struct char_file_u), 0);
 
 	fwrite(&st, sizeof(struct char_file_u), 1, fl);
 
@@ -1990,6 +2006,11 @@ void free_char(struct char_data *ch)
 		free(ch->player.long_descr);
 	if(ch->player.description)
 		free(ch->player.description);
+
+    	if (ch->specials.poofIn != NULL)
+	   	free(ch->specials.poofIn);
+	if (ch->specials.poofOut != NULL)
+		free(ch->specials.poofOut);
 
 	for (af = ch->affected; af; af = af->next)
 		affect_remove(ch, af);
@@ -2098,6 +2119,8 @@ void reset_char(struct char_data *ch)
 	ch->specials.default_pos = POSITION_STANDING;
 	ch->specials.carry_weight = 0;
 	ch->specials.carry_items = 0;
+	ch->specials.wizInvis = FALSE;
+	ch->specials.holyLite = FALSE;
 
 	if (GET_HIT(ch) <= 0)
 		GET_HIT(ch) = 1;
@@ -2112,19 +2135,31 @@ void reset_char(struct char_data *ch)
 /* clear ALL the working variables of a char and do NOT free any space alloc'ed*/
 void clear_char(struct char_data *ch)
 {
-	memset(ch, '\0', sizeof(struct char_data));
+	memset((char *)ch, (char)'\0', (int)sizeof(struct char_data));
 
 	ch->in_room = NOWHERE;
 	ch->specials.was_in_room = NOWHERE;
 	ch->specials.position = POSITION_STANDING;
 	ch->specials.default_pos = POSITION_STANDING;
+
+        ch->specials.dispHp = FALSE;
+        ch->specials.dispMana = FALSE;
+        ch->specials.dispMove = FALSE;
+	ch->specials.poofIn = NULL;
+	ch->specials.poofOut = NULL;
+	ch->specials.wizInvis = FALSE;
+	ch->specials.holyLite = FALSE;
+
 	GET_AC(ch) = 100; /* Basic Armor */
+        if (ch->points.max_mana < 100) {
+           ch->points.max_mana = 100;
+        } /* if */
 }
 
 
 void clear_object(struct obj_data *obj)
 {
-	memset(obj, '\0', sizeof(struct obj_data));
+	memset((char *)obj, (char)'\0', (int)sizeof(struct obj_data));
 
 	obj->item_number = -1;
 	obj->in_room	  = NOWHERE;
@@ -2176,6 +2211,7 @@ void init_char(struct char_data *ch)
 		ch->player.height = number(150,180);
 	}
 
+	ch->points.max_mana = 100;
 	ch->points.mana = GET_MAX_MANA(ch);
 	ch->points.hit = GET_MAX_HIT(ch);
 	ch->points.move = GET_MAX_MOVE(ch);

@@ -10,7 +10,7 @@
 #include <sys/time.h>
 #include <fcntl.h>
 #include <ctype.h>
-#include <string.h>
+#include <strings.h>
 
 void watch(int port, char *text);
 void wave(int sock, char *text);
@@ -163,20 +163,21 @@ int init_socket(int port)
 	sa.sin_family = hp->h_addrtype;
 	sa.sin_port	= htons(port);
 	s = socket(AF_INET, SOCK_STREAM, 0);
-	if (s < 0)
+	if (s < 0) 
 	{
 		perror("Init-socket");
 		exit();
  	}
 	if (setsockopt (s, SOL_SOCKET, SO_REUSEADDR,
-		(char *) &opt, sizeof (opt)) < 0)
+		(char *) &opt, sizeof (opt)) < 0) 
 	{
 		perror ("setsockopt REUSEADDR");
 		exit ();
 	}
 
 	ld.l_onoff = 1;
-	ld.l_linger = 1000;
+	/*ld.l_linger = 1000;*/
+	ld.l_linger = 0;
 	if (setsockopt(s, SOL_SOCKET, SO_LINGER, &ld, sizeof(ld)) < 0)
 	{
 		perror("setsockopt LINGER");
@@ -211,7 +212,7 @@ int write_to_descriptor(int desc, char *txt)
 			return(-1);
 		}
 		sofar += thisround;
-	}
+	} 
 	while (sofar < total);
 
 	return(0);

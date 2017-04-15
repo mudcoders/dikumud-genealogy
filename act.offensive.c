@@ -5,7 +5,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 
 #include "structs.h"
 #include "utils.h"
@@ -18,12 +18,67 @@
 
 /* extern variables */
 
+extern struct room_data *world;
 extern struct descriptor_data *descriptor_list;
 extern struct room_data *world;
 
 
 void raw_kill(struct char_data *ch);
-void stop_follower(struct char_data *ch);
+void check_killer(struct char_data *ch, struct char_data *victim);
+bool is_in_safe(struct char_data *ch, struct char_data *victim);
+bool is_first_level(struct char_data *ch, struct char_data *victim);
+bool nokill(struct char_data *ch, struct char_data *victim);
+
+/* Nokill--user can toggle this option so they don't inadvertently
+get the flag for killing a player. Swiftest.
+*/
+
+bool nokill(struct char_data *ch, struct char_data *victim)
+{
+	if((ch->specials.nokill==TRUE)&&!IS_NPC(ch)&&!IS_NPC(victim)&&
+	   (ch!=victim)&&!(IS_SET(world[ch->in_room].room_flags,ARENA))){
+		if(victim->specials.fighting==ch){ /* NOKILL ignored if attacked */
+			return(FALSE);
+		}
+		send_to_char("*** Turn NOKILL off first ***",ch);
+		return(TRUE);
+	}
+	return(FALSE);
+}
+		
+/* Do not allow a first level char to attack another player until 2nd lv */
+/* and do not allow someone to kill a first level player */
+bool is_first_level(struct char_data *ch, struct char_data *victim)
+{
+	if (IS_NPC(victim)||IS_NPC(ch)){
+		return FALSE;
+	}
+	/* No rule exists for NPCs.. only PCs should get to next statement */
+	if ((!IS_NPC(victim))&&(GET_EXP(ch)<1500)){
+		send_to_char("You may not attack a player until you have at least 1,500 exp!\n\r",ch);
+		return TRUE;
+	} else if ( (GET_LEVEL(ch)>1)&&(GET_LEVEL(victim)==1) ){
+		send_to_char("You may not attack a first level player.\n\r",ch);
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
+
+bool is_in_safe(struct char_data *ch, struct char_data *victim)
+	/* checks to see if PC is in safe room*/
+{
+
+	if(IS_NPC(ch)||IS_NPC(victim)){
+		return FALSE;
+	}
+	if(IS_SET(world[ch->in_room].room_flags,SAFE)){
+		send_to_char("No fighting permitted in this room.\n\r",ch);
+		return TRUE;
+	} else {
+		return FALSE;
+	}
+}
 
 void do_hit(struct char_data *ch, char *argument, int cmd)
 {
@@ -36,10 +91,22 @@ void do_hit(struct char_data *ch, char *argument, int cmd)
 	if (*arg) {
 		victim = get_char_room_vis(ch, arg);
 		if (victim) {
+			if (!IS_NPC(victim)){
+				send_to_char("You must MURDER a player.\n\r",ch);
+				return;
+			}
 			if (victim == ch) {
 				send_to_char("You hit yourself..OUCH!.\n\r", ch);
 				act("$n hits $mself, and says OUCH!", FALSE, ch, 0, victim, TO_ROOM);
 			} else {
+				if (is_in_safe(ch,victim)==TRUE){
+					return;
+				}
+
+				if (is_first_level(ch,victim)==TRUE){
+					return;
+				}
+
 				if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master == victim)) {
 					act("$N is just such a good friend, you simply can't hit $M.",
 					  FALSE, ch,0,victim,TO_CHAR);
@@ -57,11 +124,50 @@ void do_hit(struct char_data *ch, char *argument, int cmd)
 			send_to_char("They aren't here.\n\r", ch);
 		}
 	} else {
-		send_to_char("Hit who?\n\r", ch);
+		send_to_char("Hit whom?\n\r", ch);
 	}
 }
 
 
+void do_murder(struct char_data *ch, char *argument, int cmd)
+{
+	char arg[MAX_STRING_LENGTH];
+	char buffer[MAX_STRING_LENGTH];
+	struct char_data *victim;
+
+	one_argument(argument, arg);
+
+	if (*arg) {
+		victim = get_char_room_vis(ch, arg);
+		if (victim) {
+			if (victim == ch) {
+				send_to_char("You hit yourself..OUCH!.\n\r", ch);
+				act("$n hits $mself, and says OUCH!", FALSE, ch, 0, victim, TO_ROOM);
+			} else {
+				if(is_in_safe(ch,victim)==TRUE){ return; }
+				if(is_first_level(ch,victim)==TRUE){ return; }
+				if(nokill(ch,victim)==TRUE){ return; }
+
+				if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master == victim)) {
+					act("$N is just such a good friend, you simply can't hit $M.",
+					  FALSE, ch,0,victim,TO_CHAR);
+					return;
+				}
+				if ((GET_POS(ch)==POSITION_STANDING) &&
+				    (victim != ch->specials.fighting)) {
+					hit(ch, victim, TYPE_UNDEFINED);
+					WAIT_STATE(ch, PULSE_VIOLENCE+2); /* HVORFOR DET?? */
+				} else {
+					send_to_char("You do the best you can!\n\r",ch);
+				}
+			}
+		} else {
+			send_to_char("They aren't here.\n\r", ch);
+		}
+	} else {
+		send_to_char("Hit whom?\n\r", ch);
+	}
+}
 
 void do_kill(struct char_data *ch, char *argument, int cmd)
 {
@@ -69,21 +175,21 @@ void do_kill(struct char_data *ch, char *argument, int cmd)
 	char buf[70];
 	struct char_data *victim;
 
-	if ((GET_LEVEL(ch) < 24) || IS_NPC(ch)) {
+	if (GET_LEVEL(ch) < LV_GOD || IS_NPC(ch)) {
 		do_hit(ch, argument, 0);
-    return;
+    		return;
 	}
 
 	one_argument(argument, arg);
 
 	if (!*arg)
 	{
-		send_to_char("Kill who?\n\r", ch);
+		send_to_char("Slay whom?\n\r", ch);
 	}
 	else
 	{
 		if (!(victim = get_char_room_vis(ch, arg)))
-   		send_to_char("They aren't here.\n\r", ch);
+   		send_to_char("He/she isn't here.\n\r", ch);
 		else
    		if (ch == victim)
       	send_to_char("Your mother would be so sad.. :(\n\r", ch);
@@ -106,15 +212,20 @@ void do_backstab(struct char_data *ch, char *argument, int cmd)
 
 	one_argument(argument, name);
 
+
 	if (!(victim = get_char_room_vis(ch, name))) {
 		send_to_char("Backstab who?\n\r", ch);
 		return;
 	}
-
+	
 	if (victim == ch) {
 		send_to_char("How can you sneak up on yourself?\n\r", ch);
 		return;
 	}
+
+	if(is_in_safe(ch,victim)==TRUE){ return; }
+	if(is_first_level(ch,victim)==TRUE){ return; }
+	if(nokill(ch,victim)==TRUE){ return; }
 
 	if (!ch->equipment[WIELD]) {
 		send_to_char("You need to wield a weapon, to make it a succes.\n\r",ch);
@@ -158,7 +269,7 @@ void do_order(struct char_data *ch, char *argument, int cmd)
 	         str_cmp("follower", name) && str_cmp("followers", name))
 			send_to_char("That person isn't here.\n\r", ch);
 	else if (ch == victim)
-		send_to_char("You obviously suffer from skitzofrenia.\n\r", ch);
+		send_to_char("You obviously suffer from schitzophrenia.\n\r", ch);
 
 	else {
 		if (IS_AFFECTED(ch, AFF_CHARM)) {
@@ -174,18 +285,6 @@ void do_order(struct char_data *ch, char *argument, int cmd)
 			if ( (victim->master!=ch) || !IS_AFFECTED(victim, AFF_CHARM) )
 				act("$n has an indifferent look.", FALSE, victim, 0, 0, TO_ROOM);
 			else {
-				if (saves_spell(victim,SAVING_SPELL)) {
-					if (saves_spell(victim,SAVING_SPELL)&&
-						 saves_spell(victim,SAVING_SPELL)&&
-						 saves_spell(victim,SAVING_SPELL)) {
-						/* make it easyer to use charmn */
-						stop_follower(victim);
-						if (IS_NPC(victim))
-							hit(victim,ch);
-					} else {
-						act("$n has an indifferent look.", FALSE, victim, 0, 0, TO_ROOM);
-					}
-				}
 				send_to_char("Ok.\n\r", ch);
 				command_interpreter(victim, message);
 			}
@@ -199,25 +298,13 @@ void do_order(struct char_data *ch, char *argument, int cmd)
 				if (org_room == k->follower->in_room)
 					if (IS_AFFECTED(k->follower, AFF_CHARM)) {
 						found = TRUE;
-						if (saves_spell(victim,SAVING_SPELL)) {
-							if (saves_spell(victim,SAVING_SPELL)&&
-							    saves_spell(victim,SAVING_SPELL)&&
-							    saves_spell(victim,SAVING_SPELL)) {
-								/* make it easyer to use charmn */
-								stop_follower(victim);
-								if (IS_NPC(victim))
-								hit(victim,ch);
-								} else {
-									act("$n has an indifferent look.", FALSE, victim, 0, 0, TO_ROOM);
-								}
-						}
 						command_interpreter(k->follower, message);
 					}
 			}
 			if (found)
 				send_to_char("Ok.\n\r", ch);
 			else
-				send_to_char("Nobody here are loyal subjects of yours!\n\r", ch);
+				send_to_char("Nobody here is a loyal subject of yours!\n\r", ch);
 		}
 	}
 }
@@ -240,7 +327,6 @@ void do_flee(struct char_data *ch, char *argument, int cmd)
 				if ((die = do_simple_move(ch, attempt, FALSE))== 1) {
 					/* The escape has succeded */
 					send_to_char("You flee head over heels.\n\r", ch);
-					return;
 				} else {
 					if (!die) act("$n tries to flee, but is too exhausted!", TRUE, ch, 0, 0, TO_ROOM);
 					return;
@@ -257,13 +343,14 @@ void do_flee(struct char_data *ch, char *argument, int cmd)
 		if (CAN_GO(ch, attempt) &&
 		   !IS_SET(world[EXIT(ch, attempt)->to_room].room_flags, DEATH)) {
 			act("$n panics, and attempts to flee.", TRUE, ch, 0, 0, TO_ROOM);
-			if ((die = do_simple_move(ch, attempt, FALSE))== 1) {
+			if ((die = do_simple_move(ch, attempt, FALSE))== 1) { 
               /* The escape has succeded */
 				loose = GET_MAX_HIT(ch->specials.fighting)-GET_HIT(ch->specials.fighting);
 				loose *= GET_LEVEL(ch->specials.fighting);
 
-				if (!IS_NPC(ch))
+				if (!IS_NPC(ch)&&!IS_SET(world[ch->in_room].room_flags,ARENA)) {
 					gain_exp(ch, -loose);
+				} /* Don't lose exp in the arena */
 
 				send_to_char("You flee head over heels.\n\r", ch);
 
@@ -295,7 +382,8 @@ void do_bash(struct char_data *ch, char *argument, int cmd)
 
 	one_argument(argument, name);
 
-	if (GET_CLASS(ch) != CLASS_WARRIOR) {
+	if ((GET_CLASS(ch) != CLASS_WARRIOR) &&
+	    (!IS_SET(ch->specials.act,PLR_ISMULTIWA))) {
 		send_to_char("You better leave all the martial arts to fighters.\n\r", ch);
 		return;
 	}
@@ -304,16 +392,19 @@ void do_bash(struct char_data *ch, char *argument, int cmd)
 		if (ch->specials.fighting) {
 			victim = ch->specials.fighting;
 		} else {
-			send_to_char("Bash who?\n\r", ch);
+			send_to_char("Bash whom?\n\r", ch);
 			return;
 		}
 	}
-
-
+	
 	if (victim == ch) {
 		send_to_char("Aren't we funny today...\n\r", ch);
 		return;
 	}
+
+	if(is_in_safe(ch,victim)==TRUE) { return; }
+	if(is_first_level(ch,victim)==TRUE){ return; }
+	if (nokill(ch,victim)==TRUE){ return; }
 
 	if (!ch->equipment[WIELD]) {
 		send_to_char("You need to wield a weapon, to make it a success.\n\r",ch);
@@ -368,7 +459,8 @@ void do_rescue(struct char_data *ch, char *argument, int cmd)
 	}
 
 
-	if (GET_CLASS(ch) != CLASS_WARRIOR)
+	if ((GET_CLASS(ch) != CLASS_WARRIOR) &&
+	    (!IS_SET(ch->specials.act,PLR_ISMULTIWA)))
 		send_to_char("But only true warriors can do this!", ch);
 	else {
 		percent=number(1,101); /* 101% is a complete failure */
@@ -388,6 +480,7 @@ void do_rescue(struct char_data *ch, char *argument, int cmd)
 		if (ch->specials.fighting)
 			stop_fighting(ch);
 
+		check_killer(ch, tmp_ch); /* so rescuing an NPC who is fighting a PC does not result in the other guy getting killer flag */
 		set_fighting(ch, tmp_ch);
 		set_fighting(tmp_ch, ch);
 
@@ -404,8 +497,8 @@ void do_kick(struct char_data *ch, char *argument, int cmd)
 	char name[256], buf[256];
 	byte percent;
 
-
-	if (GET_CLASS(ch) != CLASS_WARRIOR) {
+	if ((GET_CLASS(ch) != CLASS_WARRIOR) &&
+	    (!IS_SET(ch->specials.act,PLR_ISMULTIWA))) {
 		send_to_char("You better leave all the martial arts to fighters.\n\r", ch);
 		return;
 	}
@@ -416,7 +509,7 @@ void do_kick(struct char_data *ch, char *argument, int cmd)
 		if (ch->specials.fighting) {
 			victim = ch->specials.fighting;
 		} else {
-			send_to_char("Kick who?\n\r", ch);
+			send_to_char("Kick whom?\n\r", ch);
 			return;
 		}
 	}
@@ -425,6 +518,10 @@ void do_kick(struct char_data *ch, char *argument, int cmd)
 		send_to_char("Aren't we funny today...\n\r", ch);
 		return;
 	}
+
+	if(is_in_safe(ch,victim)==TRUE){ return; }
+	if(is_first_level(ch,victim)==TRUE){ return; }
+	if(nokill(ch,victim)==TRUE){ return; }
 
 	percent=((10-(GET_AC(victim)/10))<<1) + number(1,101); /* 101% is a complete failure */
 
@@ -435,3 +532,4 @@ void do_kick(struct char_data *ch, char *argument, int cmd)
 	}
 	WAIT_STATE(ch, PULSE_VIOLENCE*3);
 }
+

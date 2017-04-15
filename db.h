@@ -51,7 +51,7 @@ struct obj_data *read_object(int nr, int type);
 struct char_data *read_mobile(int nr, int type);
 
 #define MENU         \
-"\n\rWelcome to DikuMUD\n\r\n\
+"\n\rWelcome to DikuMUD at Copper\n\r\n\
 0) Exit from DikuMud.\n\r\
 1) Enter the game.\n\r\
 2) Enter description.\n\r\
@@ -62,30 +62,32 @@ struct char_data *read_mobile(int nr, int type);
 
 #define GREETINGS \
 "\n\r\n\r  \
-                           DikuMUD I (GAMMA 0.0)\n\r\n\r \
+                          Copper DikuMUD I (B.1)\n\r\n\r \
                               Created by\n\r \
                   Hans Henrik Staerfeldt, Katja Nyboe,\n\r \
-           Tom Madsen, Michael Seifert, and Sebastian Hammer\n\r\n\r"
+           Tom Madsen, Michael Seifert, and Sebastian Hammer\n\r\n\r \
+        Maintained by Swiftest (l1ngo@copper.Denver.Colorado.EDU)\n\r\n\r"
 
 #define WELC_MESSG \
-"\n\rWelcome to the land of DikuMUD. May your visit here be... Interesting.\
+"\n\rWelcome to the land of Copper DikuMUD. May your visit here be... Interesting.\
 \n\r\n\r"
 
 
 #define STORY     \
-"This will soon be the background story of DIKU-MUD.\n\r\n\r"
+"This will soon be the background story of DIKU-MUD.\n\r\n\r \
+But don't hold your breath! :)\n\r\n\r"
 
 
 /* structure for the reset commands */
 struct reset_com
 {
-	char command;   /* current command                      */
+	char command;   /* current command                      */ 
 	bool if_flag;   /* if TRUE: exe only if preceding exe'd */
 	int arg1;       /*                                      */
 	int arg2;       /* Arguments to the command             */
 	int arg3;       /*                                      */
 
-	/*
+	/* 
 	*  Commands:              *
 	*  'M': Read a mobile     *
 	*  'O': Read an object    *
@@ -137,7 +139,7 @@ struct index_data
 struct reset_q_element
 {
 	int zone_to_reset;            /* ref to zone_data */
-	struct reset_q_element *next;
+	struct reset_q_element *next;	
 };
 
 

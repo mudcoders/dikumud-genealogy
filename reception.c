@@ -94,16 +94,18 @@ bool recep_offer(struct char_data *ch,	struct char_data *receptionist,
 		act(buf,FALSE,receptionist,0,ch,TO_VICT);
 		return(FALSE);
 	}
+/* 100 coins a day is very reasonable to me! Swiftest */
+	cost->total_cost=100;
 
 	sprintf(buf, "$n tells you 'It will cost you %d coins per day'", cost->total_cost);
 	act(buf,FALSE,receptionist,0,ch,TO_VICT);
 
 	if (cost->total_cost > GET_GOLD(ch)) {
-		if (GET_LEVEL(ch) < 21)
+		if (!IS_TRUSTED(ch)){
 			act("$n tells you 'Which I can see you can't afford'",
 			  FALSE,receptionist,0,ch,TO_VICT);
-		else {
-			act("$n tells you 'Well, since you're a God, I guess it's okay'",
+		} else {
+			act("$n tells you 'Well, since you're a God, I guess it's okay",
 			  FALSE,receptionist,0,ch,TO_VICT);
 			cost->total_cost = 0;
 		}
@@ -183,7 +185,7 @@ void load_char_objs(struct char_data *ch)
 	FILE *fl;
 	int pos, i, j;
 	bool found = FALSE;
-	float timegold;
+	double timegold;
 	struct obj_file_u st;
 
 
@@ -205,13 +207,17 @@ void load_char_objs(struct char_data *ch)
 
 		obj_store_to_char(ch, &st);
 
-		/* To avoid overflow of int */
+		/* timegold = (((double)st.total_cost *
+                             (double)(time(0) - st.last_update)) /
+                             (double)(SECS_PER_REAL_DAY));
+		*/
 
-		timegold =
-       (unsigned) (((float) st.total_cost*(float) (time(0) - st.last_update))
-                  / (float) (SECS_PER_REAL_DAY));
+		/* Only 6 coins per item, per day -- Swiftest */
+		timegold = (((double)(6)*
+                             (double)(time(0) - st.last_update)) /
+                             (double)(SECS_PER_REAL_DAY));
 
-		GET_GOLD(ch) -= timegold;
+		GET_GOLD(ch) -= (long int)timegold;
 
 		if (GET_GOLD(ch) < 0)
 			GET_GOLD(ch) = 0;
@@ -388,7 +394,7 @@ void update_obj_file(void)
 	struct char_file_u ch_st;
 	struct char_data tmp_char;
 	int pos, no_read, player_i;
-	long days_passed, secs_lost;
+	double days_passed;
 	char buf[MAX_STRING_LENGTH];
 
 	int find_name(char *name);
@@ -416,14 +422,17 @@ void update_obj_file(void)
 		if ((!feof(fl)) && (no_read > 0) && st.owner[0]) {
 			sprintf(buf, "   Processing %s[%d].", st.owner, pos);
 			log(buf);
-			days_passed = ((time(0) - st.last_update) / SECS_PER_REAL_DAY);
-			secs_lost = ((time(0) - st.last_update) % SECS_PER_REAL_DAY);
+			days_passed = (
+                           ((double)time(0) - (double)st.last_update) /
+                           (double)SECS_PER_REAL_DAY);
 
 			if (days_passed > 0) {
-				if ((st.total_cost*days_passed) > st.gold_left) {
-
+				if (((long)((double)st.total_cost*days_passed)) > st.gold_left) {
 					if ((player_i = find_name(st.owner)) < 0) {
 						perror("   Character not in list. (update_obj_file)");
+						/* Swiftest.. it broke here */
+						log("---Continuing---");
+						break;
 						exit(1);
 					}
 
@@ -448,8 +457,8 @@ void update_obj_file(void)
 
 					sprintf(buf, "   Updating %s", st.owner);
 					log(buf);
-					st.gold_left  -= (st.total_cost*days_passed);
-					st.last_update = time(0)-secs_lost;
+					st.gold_left  -= (long)((double)st.total_cost*days_passed);
+					st.last_update = time(0);
 					update_file(fl, pos-1, &st);
 				}
 			}

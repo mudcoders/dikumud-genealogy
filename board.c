@@ -1,4 +1,5 @@
-#include <string.h>
+
+#include <strings.h>
 #include <stdio.h>
 #include <ctype.h>
 
@@ -8,24 +9,33 @@
 
 
 #define MAX_MSGS 50	               /* Max number of messages.          */
-#define SAVE_FILE "board.messages"	/* Name of file for saving messages */
+#define MORTAL_SAVE_FILE "board.messages" /* Name of file for saving messages */
+#define GOD_SAVE_FILE "god.messages"    /* File for god's board */
 #define BOARD_OBJECT  xxx           /* what are we?                     */
 #define BOARD_ROOM    xxx           /* where are we?                    */
-#define MAX_MESSAGE_LENGTH 4000     /* that should be enough            */
+#define MAX_MESSAGE_LENGTH 2048     /* that should be enough            */
 
-char *msgs[MAX_MSGS];
-char *head[MAX_MSGS];
-int msg_num;
+char *MORTmsgs[MAX_MSGS];
+char *MORThead[MAX_MSGS];
+int MORTmsg_num;
 
-void board_write_msg(struct char_data *ch, char *arg);
-int board_display_msg(struct char_data *ch, char *arg);
-int board_remove_msg(struct char_data *ch, char *arg);
-void board_save_board();
-void board_load_board();
-void board_reset_board();
+char *GODmsgs[MAX_MSGS];
+char *GODhead[MAX_MSGS];
+int GODmsg_num;
+
+void board_write_msg(struct char_data *ch, char *arg, 
+                     char **head, char **msgs, int *msg_num);
+int board_display_msg(struct char_data *ch, char *arg,
+                     char **head, char **msgs, int msg_num);
+int board_remove_msg(struct char_data *ch, char *arg,
+                     char **head, char **msgs, int *msg_num);
+void board_save_board(char *file, char **head, char **msgs, int *msg_num);
+void board_load_board(char *file, char **head, char **msgs, int *msg_num);
+void board_reset_board(char **head, char **msgs, int *msg_num);
 void error_log();
 void board_fix_long_desc(int num, char *headers[MAX_MSGS]);
-int board_show_board(struct char_data *ch, char *arg);
+int board_show_board(struct char_data *ch, char *arg,
+                     char **head, char **msgs, int msg_num);
 
 /* I have used cmd number 180-182 as the cmd numbers here. */
 /* The commands would be, in order : NOTE <header>         */
@@ -55,6 +65,9 @@ int board_show_board(struct char_data *ch, char *arg);
 int board(struct char_data *ch, int cmd, char *arg)
 {
 	static int has_loaded = 0;
+ 	static int message_written = 0;   /* true after a write, until saved */
+ 	int irc;
+
 
 	if (!ch->desc)
 		return(FALSE); /* By MS or all NPC's will be trapped at the board */
@@ -66,28 +79,117 @@ int board(struct char_data *ch, int cmd, char *arg)
 
 	if (!has_loaded)
 	{
-		board_load_board();
+		board_load_board(MORTAL_SAVE_FILE,
+                                 MORThead, MORTmsgs, &MORTmsg_num);
 		has_loaded = 1;
 	}
 
 	switch (cmd) {
 		case 15:  /* look */
-			return(board_show_board(ch, arg));
+			irc = board_show_board(ch, arg,
+                                               MORThead, MORTmsgs, MORTmsg_num);
+			break;
 		case 149: /* write */
-			board_write_msg(ch, arg);
-		return 1;
+			board_write_msg(ch, arg,
+                                        MORThead, MORTmsgs, &MORTmsg_num);
+			message_written = TRUE;
+			return (1);    /* Dont save in this case */
+			break;
 		case 63: /* read */
-			return(board_display_msg(ch, arg));
+			irc = board_display_msg(ch, arg,
+                                                MORThead, MORTmsgs, MORTmsg_num);
+			break;
 		case 66: /* remove */
-			return(board_remove_msg(ch, arg));
+			irc = board_remove_msg(ch, arg,
+                                               MORThead, MORTmsgs, &MORTmsg_num);
+			board_save_board(MORTAL_SAVE_FILE,
+                                  MORThead, MORTmsgs, &MORTmsg_num);
+			break;
 		default:
-			return 0;
-	}
+			irc = 0;
+			break;
+	} /* switch */
+
+ 	if (message_written) {
+		message_written = FALSE;
+		board_save_board(MORTAL_SAVE_FILE,
+                                 MORThead, MORTmsgs, &MORTmsg_num);
+	} /* if */
+
+   	return irc;
 }
 
+/************* New for GODS board ********************/
 
-void board_write_msg(struct char_data *ch, char *arg) {
-	if (msg_num > MAX_MSGS - 1) {
+int GODboard(struct char_data *ch, int cmd, char *arg)
+{
+	static int has_loaded = 0;
+ 	static int message_written = 0;   /* true after a write, until saved */
+ 	int irc;
+
+
+	if (!ch->desc)
+		return(FALSE); /* By MS or all NPC's will be trapped at the board */
+
+	/* note: I'll let display and remove return 0 if the arg was non-board- */
+	/* related. Thus, it'll be possible to read other things than the board */
+	/* while you're in the room. Conceiveably, you could do this for write, */
+	/* too, but I'm not in the mood for such hacking.                       */
+
+	if (!has_loaded)
+	{
+		board_load_board(GOD_SAVE_FILE, GODhead, GODmsgs, &GODmsg_num);
+		has_loaded = 1;
+	}
+
+	switch (cmd) {
+		case 15:  /* look */
+			irc = board_show_board(ch, arg, 
+                                               GODhead, GODmsgs, GODmsg_num);
+			break;
+		case 149: /* write */
+			board_write_msg(ch, arg, 
+                                        GODhead, GODmsgs, &GODmsg_num);
+			message_written = TRUE;
+			return (1);    /* Dont save in this case */
+			break;
+		case 63: /* read */
+			irc = board_display_msg(ch, arg,
+                                                GODhead, GODmsgs, GODmsg_num);
+			break;
+		case 66: /* remove */
+			irc = board_remove_msg(ch, arg,
+                                               GODhead, GODmsgs, &GODmsg_num);
+			board_save_board(GOD_SAVE_FILE,
+                                         GODhead, GODmsgs, &GODmsg_num);
+			break;
+		default:
+			irc = 0;
+			break;
+	} /* switch */
+
+ 	if (message_written) {
+		message_written = FALSE;
+		board_save_board(GOD_SAVE_FILE, GODhead, GODmsgs, &GODmsg_num);
+	} /* if */
+
+   	return irc;
+}
+
+/***************************************************/
+
+
+
+void board_write_msg(struct char_data *ch, char *arg,
+                     char **head, char **msgs, int *num) {
+
+      	if (head == GODhead && !IS_TRUSTED(ch)){
+		send_to_char("You are not holy enough.\n\r", ch);
+		return;
+	} /* if */		
+
+
+	if (*num > MAX_MSGS - 1) {
 		send_to_char("The board is full already.\n\r", ch);
 		return;
 	}
@@ -97,37 +199,36 @@ void board_write_msg(struct char_data *ch, char *arg) {
 		send_to_char("We must have a headline!\n\r", ch);
 		return;
 	}
-	head[msg_num] = (char *)malloc(strlen(arg) + strlen(GET_NAME(ch)) + 4);
+	head[*num] = (char *)malloc(strlen(arg) + strlen(GET_NAME(ch)) + 4);
 	/* +4 is for a space and '()' around the character name. */
-	if (!head[msg_num]) {
+	if (!head[*num]) {
 		error_log("Malloc for board header failed.\n\r");
 		send_to_char("The board is malfunctioning - sorry.\n\r", ch);
 		return;
 	}
-	strcpy(head[msg_num], arg);
-	/* Is this clumsy?  - four strcat() in a row I mean..*/
-	strcat(head[msg_num], " (");
-	strcat(head[msg_num], GET_NAME(ch));
-	strcat(head[msg_num], ")");
-	msgs[msg_num] = NULL;
+        sprintf(head[*num],"%s (%s)",arg,GET_NAME(ch));
+	msgs[*num] = NULL;
 
 	send_to_char("Write your message. Terminate with a @.\n\r\n\r", ch);
 	act("$n starts to write a message.", TRUE, ch, 0, 0, TO_ROOM);
 
-	ch->desc->str = &msgs[msg_num];
+	ch->desc->str = &msgs[*num];
 	ch->desc->max_str = MAX_MESSAGE_LENGTH;
 
-	msg_num++;
+	(*num)++;
 }
 
 
-int board_remove_msg(struct char_data *ch, char *arg) {
+int board_remove_msg(struct char_data *ch, char *arg, 
+                     char **head, char **msgs, int *msg_num) {
 	int ind, msg;
 	char buf[256], number[MAX_INPUT_LENGTH];
 
-	if (GET_LEVEL(ch) < 10) {
-		send_to_char("Due to misuse of the REMOVE command, only 10th level\n\r", ch);
+	if (!IS_TRUSTED(ch)){
+		send_to_char("Due to misuse of the REMOVE command, only immortals\n\r", ch);
 		send_to_char("and above can remove messages.\n\r", ch);
+		send_to_char("And due to some bug, you can't remove equipment while\n\r", ch);
+		send_to_char("next to a bulletin board.\n\r", ch);
 		return;
 	}
 
@@ -136,47 +237,55 @@ int board_remove_msg(struct char_data *ch, char *arg) {
 	if (!*number || !isdigit(*number))
 		return(0);
 	if (!(msg = atoi(number))) return(0);
+
+      	if (head == GODhead && !IS_TRUSTED(ch)){
+		send_to_char("You are not holy enough.\n\r", ch);
+		return(0);
+	} /* if */		
+
+
 	if (!msg_num) {
 		send_to_char("The board is empty!\n\r", ch);
 		return(1);
 	}
-	if (msg < 1 || msg > msg_num) {
+	if (msg < 1 || msg > *msg_num) {
 		send_to_char("That message exists only in your imagination..\n\r",
 			ch);
 		return(1);
-	}
+	}       
 
 	ind = msg;
 	free(head[--ind]);
 	if (msgs[ind])
 		free(msgs[ind]);
-	for (; ind < msg_num -1; ind++) {
+	for (; ind < ((*msg_num)-1); ind++) {
 		head[ind] = head[ind + 1];
 		msgs[ind] = msgs[ind + 1];
 	}
-	msg_num--;
+	(*msg_num)--;
 	send_to_char("Message removed.\n\r", ch);
-	sprintf(buf, "$n just removed message %d.", ind + 1);
+	sprintf(buf, "$n just removed message %d.", msg + 1);
 	act(buf, FALSE, ch, 0, 0, TO_ROOM);
-	board_save_board();
 
 	return(1);
 }
 
-void board_save_board() {
-	FILE *the_file;
+void board_save_board(char *file, char **head, char **msgs, int *msg_num) {
+	FILE *the_file;		
 	int ind, len;
-	if (!msg_num) {
+
+
+	if (!*msg_num) {
 		error_log("No messages to save.\n\r");
 		return;
 	}
-	the_file = fopen(SAVE_FILE, "wb");
+	the_file = fopen(file, "wb");
 	if (!the_file) {
 		error_log("Unable to open/create savefile..\n\r");
 		return;
 	}
-	fwrite(&msg_num, sizeof(int), 1, the_file);
-	for (ind = 0; ind < msg_num; ind++) {
+	fwrite(msg_num, sizeof(int), 1, the_file);
+	for (ind = 0; ind < *msg_num; ind++) {
 		len = strlen(head[ind]) + 1;
 		fwrite(&len, sizeof(int), 1, the_file);
 		fwrite(head[ind], sizeof(char), len, the_file);
@@ -185,33 +294,34 @@ void board_save_board() {
 		fwrite(msgs[ind], sizeof(char), len, the_file);
 	}
 	fclose(the_file);
-	board_fix_long_desc(msg_num, head);
+/*	board_fix_long_desc(msg_num, head);   */
 	return;
 }
 
-void board_load_board() {
+void board_load_board(char *file, char **head, char **msgs, int *msg_num) {
 	FILE *the_file;
 	int ind, len = 0;
 
-	board_reset_board();
-	the_file = fopen(SAVE_FILE, "rb");
+	board_reset_board(head, msgs, msg_num);
+	the_file = fopen(file, "rb");
 	if (!the_file) {
 		error_log("Can't open message file. Board will be empty.\n\r",0);
 		return;
 	}
-	fread(&msg_num, sizeof(int), 1, the_file);
-
-	if (msg_num < 1 || msg_num > MAX_MSGS || feof(the_file)) {
+	fread(msg_num, sizeof(int), 1, the_file);
+	/*changed 1 to a 0 below this line---randall*/
+	if (*msg_num < 0 || *msg_num > MAX_MSGS || feof(the_file)) {
 		error_log("Board-message file corrupt or nonexistent.\n\r");
+                *msg_num = 0;
 		fclose(the_file);
 		return;
 	}
-	for (ind = 0; ind < msg_num; ind++) {
+	for (ind = 0; ind < *msg_num; ind++) {
 		fread(&len, sizeof(int), 1, the_file);
 		head[ind] = (char *)malloc(len + 1);
 		if (!head[ind]) {
 			error_log("Malloc for board header failed.\n\r");
-			board_reset_board();
+			board_reset_board(head, msgs, msg_num);
 			fclose(the_file);
 			return;
 		}
@@ -220,25 +330,25 @@ void board_load_board() {
 		msgs[ind] = (char *)malloc(len + 1);
 		if (!msgs[ind]) {
 			error_log("Malloc for board msg failed..\n\r");
-			board_reset_board();
+			board_reset_board(head, msgs, msg_num);
 			fclose(the_file);
 			return;
 		}
 		fread(msgs[ind], sizeof(char), len, the_file);
 	}
 	fclose(the_file);
-	board_fix_long_desc(msg_num, head);
+/*	board_fix_long_desc(msg_num, head);  */
 	return;
 }
 
-void board_reset_board() {
+void board_reset_board(char **head, char **msgs, int *msg_num) {
 	int ind;
 	for (ind = 0; ind < MAX_MSGS; ind++) {
 		free(head[ind]);
 		free(msgs[ind]);
 	}
-	msg_num = 0;
-	board_fix_long_desc(0, 0);
+	*msg_num = 0;
+/* 	board_fix_long_desc(0, head);   */
 	return;
 }
 
@@ -248,13 +358,22 @@ void error_log(char *str) {	/* The original error-handling was MUCH */
 	return;
 }
 
-int board_display_msg(struct char_data *ch, char *arg) {
+int board_display_msg(struct char_data *ch, char *arg,
+                      char **head, char **msgs, int msg_num) {
 	char buf[512], number[MAX_INPUT_LENGTH], buffer[MAX_STRING_LENGTH];
 	int msg;
+
+
 	one_argument(arg, number);
 	if (!*number || !isdigit(*number))
 		return(0);
 	if (!(msg = atoi(number))) return(0);
+
+	if (head == GODhead && !IS_TRUSTED(ch)){
+		send_to_char("Your eyes are not holy enough.\n\r", ch);
+		return(0);
+	} /* if */		
+
 	if (!msg_num) {
 		send_to_char("The board is empty!\n\r", ch);
 		return(1);
@@ -280,7 +399,9 @@ int board_display_msg(struct char_data *ch, char *arg) {
 }
 
 
-
+#if defined XYZZY
+/* Disabled */
+		
 void board_fix_long_desc(int num, char *headers[MAX_MSGS]) {
 
 	struct obj_data *ob;
@@ -301,7 +422,7 @@ void board_fix_long_desc(int num, char *headers[MAX_MSGS]) {
 	4 	: Groo got hungry again - bug or sabotage?
 
 	Well...something like that..;) 			   ****/
-
+	
 	/**** It is always to contain the first line and   ****/
 	/**** the second line will vary in how many notes  ****/
 	/**** the board has. Then the headers and message  ****/
@@ -309,10 +430,11 @@ void board_fix_long_desc(int num, char *headers[MAX_MSGS]) {
 	return;
 }
 
+#endif
 
 
-
-int board_show_board(struct char_data *ch, char *arg)
+int board_show_board(struct char_data *ch, char *arg,
+                     char **head, char **msgs, int msg_num)
 {
 	int i;
 	char buf[MAX_STRING_LENGTH], tmp[MAX_INPUT_LENGTH];
@@ -321,6 +443,12 @@ int board_show_board(struct char_data *ch, char *arg)
 
 	if (!*tmp || !isname(tmp, "board bulletin"))
 		return(0);
+
+      	if (head == GODhead && !IS_TRUSTED(ch)){
+		send_to_char("Your eyes are not holy enough.\n\r",
+				ch);
+		return(0);
+	} /* if */		
 
 	act("$n studies the board.", TRUE, ch, 0, 0, TO_ROOM);
 

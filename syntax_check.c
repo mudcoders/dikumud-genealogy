@@ -5,7 +5,7 @@
 ***************************************************************************/
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <ctype.h>
 #include <time.h>
 
@@ -47,8 +47,7 @@ int top_of_mobt = 0;                  /* top of mobile index table       */
 int top_of_objt = 0;                  /* top of object index table       */
 int top_of_wldt = 0;
 
-struct time_data time_info;		/* the infomation about the time   */
-struct weather_data weather_info;	/* the infomation about the weather */
+extern struct time_data time_info;	  /* the infomation about the time   */
 
 
 

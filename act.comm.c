@@ -5,7 +5,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 
 #include "structs.h"
 #include "utils.h"
@@ -39,27 +39,26 @@ void do_say(struct char_data *ch, char *argument, int cmd)
 }
 
 
-
+/* Changed to only shout to people in your zone */
+/* Changed it back. I like global shouts. Changed so only level 2 or above */
+/* can use. -Swiftest */
 
 void do_shout(struct char_data *ch, char *argument, int cmd)
 {
 	static char buf1[MAX_STRING_LENGTH];
-  struct descriptor_data *i;
+	struct descriptor_data *i;
 
 
-	if (IS_SET(ch->specials.act, PLR_NOSHOUT))
+	if (!IS_NPC(ch) && IS_SET(ch->specials.act, PLR_NOSHOUT))
 	{
 		send_to_char("You can't shout!!\n\r", ch);
 		return;
 	}
 
-	if (GET_MOVE(ch) < 10)
-	{
-		send_to_char("You are too exhausted.\n\r", ch);
+	if (!IS_NPC(ch) && GET_EXP(ch)<1500) {
+		send_to_char("Due to misuse, you need to have at least 1,500 exp to shout.\n\r",ch);
 		return;
 	}
-
-	GET_MOVE(ch) -= 10;
 
 	for (; *argument == ' '; argument++);
 
@@ -72,7 +71,11 @@ void do_shout(struct char_data *ch, char *argument, int cmd)
 
     	for (i = descriptor_list; i; i = i->next)
       	if (i->character != ch && !i->connected &&
-			!IS_SET(i->character->specials.act, PLR_NOSHOUT))
+            !IS_SET(i->character->specials.act, PLR_NOSHOUT) 
+/* && 
+            (world[i->character->in_room].zone == 
+             world[ch->in_room].zone)
+*/				)
 				act(buf1, 0, ch, 0, i->character, TO_VICT);
 	}
 }
@@ -84,12 +87,6 @@ void do_tell(struct char_data *ch, char *argument, int cmd)
 	char name[100], message[MAX_STRING_LENGTH],
 		buf[MAX_STRING_LENGTH];
 
-	if (IS_SET(ch->specials.act, PLR_NOTELL))
-	{
-		send_to_char("Your message didn't get through!!\n\r", ch);
-		return;
-	}
-
 	half_chop(argument,name,message);
 
 	if(!*name || !*message)
@@ -98,8 +95,9 @@ void do_tell(struct char_data *ch, char *argument, int cmd)
 		send_to_char("No-one by that name here..\n\r", ch);
 	else if (ch == vict)
 		send_to_char("You try to tell yourself something.\n\r", ch);
-	else if ((GET_POS(vict) == POSITION_SLEEPING) ||
-	         IS_SET(vict->specials.act, PLR_NOTELL))
+	else if (((GET_POS(vict) == POSITION_SLEEPING) ||
+                 (IS_SET(vict->specials.act, PLR_NOTELL)))&&
+		 (GET_LEVEL(ch)<LV_DEMIGOD && !IS_TRUSTED(ch)))
 	{
 		act("$E can't hear you.",FALSE,ch,0,vict,TO_CHAR);
 	}
@@ -185,7 +183,7 @@ void do_write(struct char_data *ch, char *argument, int cmd)
 		return;
 
 	if (!*papername)  /* nothing was delivered */
-	{
+	{   
 		send_to_char(
 			"Write? with what? ON what? what are you trying to do??\n\r", ch);
 		return;
@@ -206,7 +204,7 @@ void do_write(struct char_data *ch, char *argument, int cmd)
 		}
 	}
 	else  /* there was one arg.let's see what we can find */
-	{
+	{			
 		if (!(paper = get_obj_in_list_vis(ch, papername, ch->carrying)))
 		{
 			sprintf(buf, "There is no %s in your inventory.\n\r", papername);
@@ -236,13 +234,13 @@ void do_write(struct char_data *ch, char *argument, int cmd)
 			send_to_char("The stuff in your hand is invisible! Yeech!!\n\r", ch);
 			return;
 		}
-
+		
 		if (pen)
 			paper = ch->equipment[HOLD];
 		else
 			pen = ch->equipment[HOLD];
 	}
-
+			
 	/* ok.. now let's see what kind of stuff we've found */
 	if (pen->obj_flags.type_flag != ITEM_PEN)
 	{
@@ -257,7 +255,7 @@ void do_write(struct char_data *ch, char *argument, int cmd)
 	else
 	{
 		/* we can write - hooray! */
-
+				
 		send_to_char("Ok.. go ahead and write.. end the note with a @.\n\r",
 			ch);
 		act("$n begins to jot down a note.", TRUE, ch, 0,0,TO_ROOM);

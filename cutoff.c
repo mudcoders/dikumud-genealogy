@@ -19,20 +19,26 @@
 	(c == CLASS_THIEF ?      "<THIEF>"  :  \
 	(c == CLASS_WARRIOR ?    "<FIGHT>"  : "<UNDEF>"))))
 
-void list(char *filename);
+void list(char *filename, char *outfile, int days);
 
 main(int argc, char **argv)
 {
-	if (argc != 2)
-		fprintf(stderr, "Usage: %s <DikuMUD playerfile-name>\n", argv[0]);
-	else
-		list(argv[1]);
+	if (argc != 4) {
+		fprintf(stderr, "Usage: %s <playerfile> <outfile> <cut-off days>\n", argv[0]);
+		fprintf(" cut-off days is max day which they haven't played\n");
+	} else {
+		if (atoi(argv[3])==0){
+			printf("days must be positive integer\n");
+			exit(1);
+		}
+		list(argv[1], argv[2], atoi(argv[3]));
+	}
 }
 
 
-void list(char *filename)
+void list(char *filename, char *outfile, int cutoff)
 {
-	FILE *fl;
+	FILE *fl, *fout;
 	struct char_file_u buf;
 	char *point;
 	int num, days;
@@ -41,6 +47,10 @@ void list(char *filename)
 	if (!(fl = fopen(filename, "r")))
 	{
 		perror(filename);
+		exit(1);
+	}
+	if( (fout=fopen(outfile,"w"))==0){
+		perror(outfile);
 		exit(1);
 	}
 
@@ -72,9 +82,18 @@ void list(char *filename)
 			printf("'%c':%d ", *point, *point);
 		putchar('\n');
 */			
+		if( days >= cutoff){
+			printf("******* Deleting this character!\n");
+		} else {
+			if(fwrite(&buf, sizeof(buf), 1, fout)!=1){
+				perror("fwrite");
+				exit(1);
+			}
+		}
 	}
 
 	fclose(fl);
+	fclose(fout);
 
 	printf("\nGrand total time played is %d seconds\n", played);
 	printf("   (First started on Sat Feb  2 19:20:55 1991)\n\n");

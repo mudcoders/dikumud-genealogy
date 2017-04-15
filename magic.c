@@ -26,7 +26,8 @@ bool saves_spell(struct char_data *ch, sh_int spell);
 void weight_change_object(struct obj_data *obj, int weight);
 char *strdup(char *source);
 int dice(int number, int size);
-
+void check_killer(struct char_data *ch, struct char_data *victim);
+bool nokill(struct char_data *ch, struct char_data *victim);
 
 /* Offensive Spells */
 
@@ -176,7 +177,8 @@ void spell_energy_drain(byte level, struct char_data *ch,
 	void gain_exp(struct char_data *ch, int gain);
 
   assert(victim && ch);
-  assert((level >= 13) && (level <=  30));
+  /* assert((level >= 13) && (level <=  30)); (original) */
+  assert(level >= 13); /* Swiftest--changed this to accomodate new levels */
 
   if ( !saves_spell(victim, SAVING_SPELL) ) {
 		GET_ALIGNMENT(ch) = MIN(-1000, GET_ALIGNMENT(ch)-200);
@@ -240,7 +242,7 @@ void spell_earthquake(byte level, struct char_data *ch,
 	dam =  dice(1,8)+level;
 
   send_to_char("The earth trembles beneath your feet!\n\r", ch);
-  act("$n makes the earth trembles and shivers\n\rYou fall, and hit yourself!",
+  act("$n makes the earth tremble and shiver\n\rYou fall, and hit yourself!",
 	  FALSE, ch, 0, 0, TO_ROOM);
 
 
@@ -251,7 +253,7 @@ void spell_earthquake(byte level, struct char_data *ch,
 			damage(ch, tmp_victim, dam, SPELL_EARTHQUAKE);
     } else
       if (world[ch->in_room].zone == world[tmp_victim->in_room].zone)
-        send_to_char("The earth trembles and shivers\n\r", tmp_victim);
+        send_to_char("The earth trembles and shiver", tmp_victim);
   }
 
 }
@@ -292,8 +294,6 @@ void spell_call_lightning(byte level, struct char_data *ch,
   struct char_data *victim, struct obj_data *obj)
 {
   int dam;
-
-  extern struct weather_data weather_info;
 
   assert(victim && ch);
   assert((level >= 12) && (level <= 30));
@@ -363,6 +363,8 @@ void spell_teleport(byte level, struct char_data *ch,
 	int to_room;
 	extern int top_of_world;      /* ref to the top element of world */
 
+  void do_look(struct char_data *ch, char *argument, int cmd);
+
 	assert(ch);
 
 	do {
@@ -376,7 +378,7 @@ void spell_teleport(byte level, struct char_data *ch,
 
 	do_look(ch, "", 0);
 
-	if (IS_SET(world[to_room].room_flags, DEATH) && GET_LEVEL(ch) < 21) {
+	if (IS_SET(world[to_room].room_flags, DEATH) && !IS_TRUSTED(ch)) {
     death_cry(ch);
     extract_char(ch);
   }
@@ -429,6 +431,8 @@ void spell_blindness(byte level, struct char_data *ch,
   assert(ch && victim);
   assert((level >= 0) && (level <= 30));
 
+  if(nokill(ch,victim)==TRUE){ return; }
+  check_killer(ch,victim);
 
   if (saves_spell(victim, SAVING_SPELL) ||
 	   affected_by_spell(victim, SPELL_BLINDNESS))
@@ -519,7 +523,6 @@ void spell_create_water(byte level, struct char_data *ch,
 {
 	int water;
 
-  extern struct weather_data weather_info;
 	void name_to_drinkcon(struct obj_data *obj,int type);
 	void name_from_drinkcon(struct obj_data *obj);
 
@@ -623,33 +626,40 @@ void spell_curse(byte level, struct char_data *ch,
   assert(victim || obj);
   assert((level >= 0) && (level <= 30));
 
+  if(nokill(ch,victim)==TRUE){ return; }
+  check_killer(ch,victim);
   if (obj) {
-    SET_BIT(obj->obj_flags.extra_flags, ITEM_EVIL);
-    SET_BIT(obj->obj_flags.extra_flags, ITEM_NODROP);
+     SET_BIT(obj->obj_flags.extra_flags, ITEM_EVIL);
+     SET_BIT(obj->obj_flags.extra_flags, ITEM_NODROP);
 
-    /* LOWER ATTACK DICE BY -1 */
-    if(obj->obj_flags.type_flag == ITEM_WEAPON)
-      obj->obj_flags.value[2]--;
-		act("$p glows red.", FALSE, ch, obj, 0, TO_CHAR);
-	} else {
-    if ( saves_spell(victim, SAVING_SPELL) ||
-		   affected_by_spell(victim, SPELL_CURSE))
-      return;
+     /* LOWER ATTACK DICE BY -1 */
+     if(obj->obj_flags.type_flag == ITEM_WEAPON)  {
+         if (obj->obj_flags.value[2] > 1) {
+            obj->obj_flags.value[2]--;
+            act("$p glows red.", FALSE, ch, obj, 0, TO_CHAR);
+         }
+	 else {
+	    send_to_char("Nothing happens.\n\r", ch);
+	 }
+      }
+   } else {
+      if ( saves_spell(victim, SAVING_SPELL) ||
+		   affected_by_spell(victim, SPELL_CURSE))   return;
 
-    af.type      = SPELL_CURSE;
-    af.duration  = 24*7;       /* 7 Days */
-    af.modifier  = -1;
-    af.location  = APPLY_HITROLL;
-    af.bitvector = AFF_CURSE;
-    affect_to_char(victim, &af);
+      af.type      = SPELL_CURSE;
+      af.duration  = 24*7;       /* 7 Days */
+      af.modifier  = -1;
+      af.location  = APPLY_HITROLL;
+      af.bitvector = AFF_CURSE;
+      affect_to_char(victim, &af);
 
-    af.location = APPLY_SAVING_PARA;
-    af.modifier = 1; /* Make worse */
-    affect_to_char(victim, &af);
+      af.location = APPLY_SAVING_PARA;
+      af.modifier = 1; /* Make worse */
+      affect_to_char(victim, &af);
 
-    act("$n briefly reveal a red aura!", FALSE, victim, 0, 0, TO_ROOM);
-		act("You feel very uncomfortable.",FALSE,victim,0,0,TO_CHAR);
-	}
+      act("$n briefly reveal a red aura!", FALSE, victim, 0, 0, TO_ROOM);
+  		act("You feel very uncomfortable.",FALSE,victim,0,0,TO_CHAR);
+   }
 }
 
 
@@ -866,7 +876,7 @@ void spell_locate_object(byte level, struct char_data *ch,
         send_to_char(buf,ch);
       } else {
         sprintf(buf,"%s in %s.\n\r",i->short_description,
-          (i->in_room == NOWHERE ? "use, but uncertain." : world[i->in_room].name));
+          (i->in_room == NOWHERE ? "Used but uncertain." : world[i->in_room].name));
         send_to_char(buf,ch);
       j--;
       }
@@ -887,6 +897,8 @@ void spell_poison(byte level, struct char_data *ch,
 	assert(victim || obj);
 
   if (victim) {
+    if(nokill(ch,victim)==TRUE){ return; }
+    check_killer(ch,victim);
     if(!saves_spell(victim, SAVING_PARA))
     {
       af.type = SPELL_POISON;
@@ -988,7 +1000,7 @@ void spell_sanctuary(byte level, struct char_data *ch,
 		act("You start glowing.",TRUE,victim,0,0,TO_CHAR);
 
     af.type      = SPELL_SANCTUARY;
-    af.duration  = (level<21) ? 3 : level;
+    af.duration  = (!IS_TRUSTED(ch)) ? 3 : level;
     af.modifier  = 0;
 		af.location  = APPLY_NONE;
 		af.bitvector = AFF_SANCTUARY;
@@ -1002,8 +1014,22 @@ void spell_sleep(byte level, struct char_data *ch,
   struct char_data *victim, struct obj_data *obj)
 {
   struct affected_type af;
+  char buf[80];
 
 	assert(victim);
+
+  /* You can't sleep someone higher level than you except in the arena*/
+
+  if ((GET_LEVEL(ch)<GET_LEVEL(victim))&&
+     !IS_SET(world[ch->in_room].room_flags,ARENA)){
+	sprintf(buf,"%s laughs in your face at your feeble attempt.\n\r",
+		GET_NAME(victim));
+	send_to_char(buf,ch);
+	sprintf(buf,"%s tries to sleep you, but fails horribly.\n\r",
+		GET_NAME(ch));
+	send_to_char(buf,ch);
+	return;
+  }
 
   if ( !saves_spell(victim, SAVING_SPELL) )
   {
@@ -1105,13 +1131,24 @@ void spell_summon(byte level, struct char_data *ch,
 
 	assert(ch && victim);
 
+	if ((IS_SET(world[victim->in_room].room_flags, SAFE) ||
+	     IS_SET(world[victim->in_room].room_flags, ARENA))&&
+	     !IS_TRUSTED(ch)){
+		send_to_char("That person is in a safe area!\n\r",ch);
+		return;
+	}
+	if(IS_NPC(victim)&& !IS_TRUSTED(ch) &&
+	   (IS_SET(world[ch->in_room].room_flags, SAFE)||
+	    IS_SET(world[ch->in_room].room_flags, ARENA))){
+		send_to_char("You can't summon creatures to a safe area!\n\r",ch);
+		return;
+	}
 	if (GET_LEVEL(victim) > MIN(20,level+3)) {
 		send_to_char("You failed.\n\r",ch);
 		return;
 	}
 
-  if ((IS_NPC(victim) && saves_spell(victim, SAVING_SPELL)) ||
-      IS_SET(world[victim->in_room].room_flags,PRIVATE)) {
+  if (IS_NPC(victim) && saves_spell(victim, SAVING_SPELL) ) {
 		send_to_char("You failed.\n\r", ch);
 		return;
 	}
@@ -1381,11 +1418,11 @@ void spell_fire_breath(byte level, struct char_data *ch,
 		if (!saves_spell(victim, SAVING_BREATH) )
 		{
 			for(burn=victim->carrying ;
-				burn && !(((burn->obj_flags.type_flag==ITEM_SCROLL) ||
-				(burn->obj_flags.type_flag==ITEM_WAND) ||
-				(burn->obj_flags.type_flag==ITEM_STAFF) ||
-				(burn->obj_flags.type_flag==ITEM_NOTE)) &&
-            (number(0,2)==0)) ;
+				burn && (burn->obj_flags.type_flag!=ITEM_SCROLL) &&
+				(burn->obj_flags.type_flag!=ITEM_WAND) &&
+				(burn->obj_flags.type_flag!=ITEM_STAFF) &&
+				(burn->obj_flags.type_flag!=ITEM_NOTE) &&
+            (number(0,2)==0) ;
 				 burn=burn->next_content);
 			if(burn)
 			{
@@ -1424,10 +1461,10 @@ void spell_frost_breath(byte level, struct char_data *ch,
 		if (!saves_spell(victim, SAVING_BREATH) )
 		{
 			for(frozen=victim->carrying ;
-				frozen && !(((frozen->obj_flags.type_flag==ITEM_DRINKCON) ||
-				(frozen->obj_flags.type_flag==ITEM_FOOD) ||
-				(frozen->obj_flags.type_flag==ITEM_POTION)) &&
-            (number(0,2)==0)) ;
+				frozen && (frozen->obj_flags.type_flag!=ITEM_DRINKCON) &&
+				(frozen->obj_flags.type_flag!=ITEM_FOOD) &&
+				(frozen->obj_flags.type_flag!=ITEM_POTION) &&
+            (number(0,2)==0) ;
 				 frozen=frozen->next_content);
 			if(frozen)
 			{
@@ -1468,17 +1505,17 @@ void spell_acid_breath(byte level, struct char_data *ch,
 		if (!saves_spell(victim, SAVING_BREATH) )
 		{
 			for(damaged = 0; damaged<MAX_WEAR &&
-				!((victim->equipment[damaged]) &&
+				(victim->equipment[damaged]) &&
 				(victim->equipment[damaged]->obj_flags.type_flag!=ITEM_ARMOR) &&
 				(victim->equipment[damaged]->obj_flags.value[0]>0) &&
-            (number(0,2)==0)) ; damaged++);
+            (number(0,2)==0) ; damaged++);
 			if(damaged<MAX_WEAR)
 			{
 				act("$o is damaged.",0,victim,victim->equipment[damaged],0,TO_CHAR);
 				GET_AC(victim)-=apply_ac(victim,damaged);
-				victim->equipment[damaged]->obj_flags.value[0]-=number(1,7);
+				ch->equipment[damaged]->obj_flags.value[0]-=number(1,7);
 				GET_AC(victim)+=apply_ac(victim,damaged);
-				victim->equipment[damaged]->obj_flags.cost = 0;
+				ch->equipment[damaged]->obj_flags.cost = 0;
 			}
 		}
 	}

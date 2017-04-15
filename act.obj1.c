@@ -1,3 +1,4 @@
+
 /* ************************************************************************
 *  file: act.obj1.c , Implementation of commands.         Part of DIKUMUD *
 *  Usage : Commands mainly moving around objects.                         *
@@ -5,7 +6,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 
 #include "structs.h"
 #include "utils.h"
@@ -23,14 +24,16 @@ extern struct descriptor_data *descriptor_list;
 extern struct room_data *world;
 
 /* extern functions */
-void log(char *str);
-
+char *fname(char *namelist);
+int isname(char *arg, char *arg2);
 struct obj_data *create_money( int amount );
+void do_put(struct char_data *ch, char *argument, int cmd);
 
 
 /* procedures related to get */
 void get(struct char_data *ch, struct obj_data *obj_object,
-	struct obj_data *sub_object) {
+	struct obj_data *sub_object)
+{
 struct char_data *tmp_char;
 char buffer[MAX_STRING_LENGTH];
 
@@ -76,6 +79,9 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 	bool found = FALSE;
 	bool fail  = FALSE;
 	int type   = 3;
+	bool alldot = FALSE;
+	char allbuf[MAX_STRING_LENGTH];
+
 
 	argument_interpreter(argument, arg1, arg2);
 
@@ -84,13 +90,28 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 		type = 0;
 	}
 	if (*arg1 && !*arg2) {
+		alldot = FALSE;
+		allbuf[0] = '\0';
+		if ((str_cmp(arg1, "all") != 0) &&
+		    (sscanf(arg1, "all.%s", allbuf) != 0)) {
+			strcpy(arg1, "all");
+			alldot = TRUE;
+		}
 		if (!str_cmp(arg1,"all")) {
 			type = 1;
 		} else {
 			type = 2;
 		}
 	}
+
 	if (*arg1 && *arg2) {
+		alldot = FALSE;
+		allbuf[0] = '\0';
+		if ((str_cmp(arg1,"all") != 0) &&
+		    (sscanf(arg1, "all.%s", allbuf) != 0)) {
+			strcpy(arg1, "all");
+			alldot = TRUE;
+		}
 		if (!str_cmp(arg1,"all")) {
 			if (!str_cmp(arg2,"all")) {
 				type = 3;
@@ -120,6 +141,12 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 				obj_object;
 				obj_object = next_obj) {
 				next_obj = obj_object->next_content;
+
+				/* IF all.obj, only get those named "obj" */
+				if (alldot && !isname(allbuf,obj_object->name)) {
+				   continue;
+				} /* if */
+
 				if (CAN_SEE_OBJ(ch,obj_object)) {
 					if ((IS_CARRYING_N(ch) + 1) <= CAN_CARRY_N(ch)) {
 						if ((IS_CARRYING_W(ch) + obj_object->obj_flags.weight) <=
@@ -134,7 +161,7 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 						} else {
 							sprintf(buffer,"%s : You can't carry that much weight.\n\r",
 								fname(obj_object->name));
-							send_to_char(buffer, ch);
+								send_to_char(buffer, ch);
 							fail = TRUE;
 						}
 					} else {
@@ -145,7 +172,11 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 					}
 				}
 			}
+			if (found) {
+				send_to_char("OK.\n\r", ch);
+			} else {
 				if (!fail) send_to_char("You see nothing here.\n\r", ch);
+			}
 		} break;
 		/* get ??? */
 		case 2:{
@@ -198,47 +229,53 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 			}
 			if (sub_object) {
 				if (GET_ITEM_TYPE(sub_object) == ITEM_CONTAINER) {
-					if (!IS_SET(sub_object->obj_flags.value[1], CONT_CLOSED)) {
-						for(obj_object = sub_object->contains;
-							obj_object;
-							obj_object = next_obj) {
-							next_obj = obj_object->next_content;
-							if (CAN_SEE_OBJ(ch,obj_object)) {
-								if ((IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch))) {
-									if ((IS_CARRYING_W(ch) + obj_object->obj_flags.weight) <
-										CAN_CARRY_W(ch)) {
-										if (CAN_WEAR(obj_object,ITEM_TAKE)) {
-											get(ch,obj_object,sub_object);
-											found = TRUE;
-										} else {
-											send_to_char("You can't take that\n\r", ch);
-											fail = TRUE;
-										}
+					if (IS_SET(sub_object->obj_flags.value[1], CONT_CLOSED)) {
+					   sprintf(buffer,"The %s is closed.\n\r", fname(sub_object->name));
+					   send_to_char(buffer, ch);
+					   return;
+					} /* if */
+					for(obj_object = sub_object->contains;
+						obj_object;
+						obj_object = next_obj) {
+						next_obj = obj_object->next_content;
+
+						/* IF all.obj, only get those named "obj" */
+						if (alldot && !isname(allbuf,obj_object->name) ) {
+						   continue;
+						} /* if */
+
+						if (CAN_SEE_OBJ(ch,obj_object)) {
+							if ((IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch))) {
+								if ((IS_CARRYING_W(ch) + obj_object->obj_flags.weight) <
+									CAN_CARRY_W(ch)) {
+									if (CAN_WEAR(obj_object,ITEM_TAKE)) {
+										get(ch,obj_object,sub_object);
+										found = TRUE;
 									} else {
-										sprintf(buffer,"%s : You can't carry that much weight.\n\r",
-											fname(obj_object->name));
-										send_to_char(buffer, ch);
+										send_to_char("You can't take that\n\r", ch);
 										fail = TRUE;
 									}
 								} else {
-									sprintf(buffer,"%s : You can't carry that many items.\n\r",
+									sprintf(buffer,"%s : You can't carry that much weight.\n\r",
 										fname(obj_object->name));
 									send_to_char(buffer, ch);
 									fail = TRUE;
 								}
+							} else {
+								sprintf(buffer,"%s : You can't carry that many items.\n\r",
+									fname(obj_object->name));
+								send_to_char(buffer, ch);
+								fail = TRUE;
 							}
 						}
-						if (!found && !fail) {
-							sprintf(buffer,"You do not see anything in the %s.\n\r",
+					}
+					if (!found && !fail) {
+						sprintf(buffer,"You do not see anything in the %s.\n\r",
 							fname(sub_object->name));
-							send_to_char(buffer, ch);
-							fail = TRUE;
-						}
+						send_to_char(buffer, ch);
+						fail = TRUE;
 					}
-					else { /* container closed */
-						send_to_char("It's closed.\n\r", ch);
-					}
-				}else {
+				} else {
 					sprintf(buffer,"The %s is not a container.\n\r",
 						fname(sub_object->name));
 					send_to_char(buffer, ch);
@@ -264,40 +301,40 @@ void do_get(struct char_data *ch, char *argument, int cmd)
 			}
 			if (sub_object) {
 				if (GET_ITEM_TYPE(sub_object) == ITEM_CONTAINER) {
-					if (!IS_SET(sub_object->obj_flags.value[1], CONT_CLOSED)) {
-						obj_object = get_obj_in_list_vis(ch, arg1, sub_object->contains);
-						if (obj_object) {
-							if ((IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch))) {
-								if ((IS_CARRYING_W(ch) + obj_object->obj_flags.weight) <
-									CAN_CARRY_W(ch)) {
-									if (CAN_WEAR(obj_object,ITEM_TAKE)) {
-										get(ch,obj_object,sub_object);
-										found = TRUE;
-									} else {
-										send_to_char("You can't take that\n\r", ch);
-										fail = TRUE;
-									}
+					if (IS_SET(sub_object->obj_flags.value[1], CONT_CLOSED)) {
+					   sprintf(buffer,"The %s is closed.\n\r", fname(sub_object->name));
+					   send_to_char(buffer, ch);
+					   return;
+					} /* if */
+					obj_object = get_obj_in_list_vis(ch, arg1, sub_object->contains);
+					if (obj_object) {
+						if ((IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch))) {
+							if ((IS_CARRYING_W(ch) + obj_object->obj_flags.weight) <
+								CAN_CARRY_W(ch)) {
+								if (CAN_WEAR(obj_object,ITEM_TAKE)) {
+									get(ch,obj_object,sub_object);
+									found = TRUE;
 								} else {
-									sprintf(buffer,"%s : You can't carry that much weight.\n\r",
-										fname(obj_object->name));
-									send_to_char(buffer, ch);
+									send_to_char("You can't take that\n\r", ch);
 									fail = TRUE;
 								}
 							} else {
-								sprintf(buffer,"%s : You can't carry that many items.\n\r",
+								sprintf(buffer,"%s : You can't carry that much weight.\n\r",
 									fname(obj_object->name));
 								send_to_char(buffer, ch);
 								fail = TRUE;
 							}
 						} else {
-							sprintf(buffer,"The %s does not contain the %s.\n\r",
-								fname(sub_object->name), arg1);
+							sprintf(buffer,"%s : You can't carry that many items.\n\r",
+								fname(obj_object->name));
 							send_to_char(buffer, ch);
 							fail = TRUE;
 						}
-					}
-					else {
-						send_to_char("It's closed.\n\r", ch);
+					} else {
+						sprintf(buffer,"The %s does not contain the %s.\n\r",
+							fname(sub_object->name), arg1);
+						send_to_char(buffer, ch);
+						fail = TRUE;
 					}
 				} else {
 					sprintf(buffer,"The %s is not a container.\n\r", fname(sub_object->name));
@@ -326,6 +363,10 @@ bool test = FALSE;
 	argument=one_argument(argument, arg);
 	if(is_number(arg))
 	{
+		if(strlen(arg)>7){
+			send_to_char("Number field too big.\n\r",ch);
+			return;
+		}
 		amount = atoi(arg);
 		argument=one_argument(argument,arg);
 		if (str_cmp("coins",arg) && str_cmp("coin",arg))
@@ -403,7 +444,29 @@ bool test = FALSE;
 	}
 }
 
+void do_putalldot(struct char_data *ch, char *name, char *target, int cmd)
+{
+	struct obj_data *tmp_object;
+	struct obj_data *next_object;
+        char buf[MAX_STRING_LENGTH];
+	bool found = FALSE;
 
+        /* If "put all.object bag", get all carried items
+         * named "object", and put each into the bag.
+         */
+	for (tmp_object = ch->carrying; tmp_object;
+             tmp_object = next_object) {
+	     next_object = tmp_object->next_content;
+	   if (isname(name, tmp_object->name) ) {
+	      sprintf(buf, "%s %s", name, target);
+	      found = TRUE;
+	      do_put(ch, buf, cmd);
+           }
+    	}
+	if (!found) {
+	   send_to_char("You don't have one.", ch);
+        } /* if */
+}
 
 void do_put(struct char_data *ch, char *argument, int cmd)
 {
@@ -414,10 +477,16 @@ void do_put(struct char_data *ch, char *argument, int cmd)
 	struct obj_data *sub_object;
 	struct char_data *tmp_char;
 	int bits;
+	char allbuf[MAX_STRING_LENGTH];
 
 	argument_interpreter(argument, arg1, arg2);
 	if (*arg1) {
 		if (*arg2) {
+			allbuf[0] = '\0';
+			if (sscanf(arg1, "all.%s", allbuf) != 0) {
+				do_putalldot(ch, allbuf, arg2, cmd);
+				return;
+			}
 			obj_object = get_obj_in_list_vis(ch, arg1, ch->carrying);
 			if (obj_object) {
 				bits = generic_find(arg2, FIND_OBJ_INV | FIND_OBJ_ROOM,
@@ -447,7 +516,7 @@ void do_put(struct char_data *ch, char *argument, int cmd)
 									/* Dow we need obj_to_room???(sub_object,ch);    */
 								}
 
-								act("$n puts $p in $s $P",TRUE, ch, obj_object, sub_object, TO_ROOM);
+								act("$n puts $p in $P",TRUE, ch, obj_object, sub_object, TO_ROOM);
 							} else {
 								send_to_char("It won't fit.\n\r", ch);
 							}
@@ -489,6 +558,10 @@ void do_give(struct char_data *ch, char *argument, int cmd)
 	argument=one_argument(argument,obj_name);
 	if(is_number(obj_name))
 	{
+		if(strlen(obj_name)>7){
+			send_to_char("Number field too large.\n\r",ch);
+			return;
+	 	}
 		amount = atoi(obj_name);
 		argument=one_argument(argument, arg);
 		if (str_cmp("coins",arg) && str_cmp("coin",arg))
@@ -501,7 +574,7 @@ void do_give(struct char_data *ch, char *argument, int cmd)
 			send_to_char("Sorry, you can't do that!\n\r",ch);
 			return;
 		}
-		if((GET_GOLD(ch)<amount) && (IS_NPC(ch) || (GET_LEVEL(ch) < 22)))
+		if(GET_GOLD(ch)<amount && (IS_NPC(ch) || (GET_LEVEL(ch) < LV_LESSERGOD && !IS_TRUSTED(ch))))
 		{
 			send_to_char("You haven't got that many coins!\n\r",ch);
 			return;
@@ -521,12 +594,9 @@ void do_give(struct char_data *ch, char *argument, int cmd)
 		sprintf(buf,"%s gives you %d gold coins.\n\r",PERS(ch,vict),amount);
 		send_to_char(buf,vict);
 		act("$n gives some gold to $N.", 1, ch, 0, vict, TO_NOTVICT);
-		if (IS_NPC(ch) || (GET_LEVEL(ch) < 22))
+		/* Lose gold only if you're an NPC or mortal */
+		if (IS_NPC(ch) || (GET_LEVEL(ch) < LV_LESSERGOD || !IS_TRUSTED(ch)))
 			GET_GOLD(ch)-=amount;
-		if ((GET_LEVEL(ch) > 20) && (!IS_NPC(ch)) && (!IS_NPC(vict))) {
-			sprintf(buf,"%s gives %s %d gold coins.",GET_NAME(ch),GET_NAME(vict),amount);
-			log(buf);
-		}
 		GET_GOLD(vict)+=amount;
 		return;
 	}

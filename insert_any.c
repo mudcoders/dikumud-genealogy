@@ -5,7 +5,7 @@
 ***************************************************************************/
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <ctype.h>
 #include <time.h>
 
@@ -73,7 +73,7 @@ void merge(FILE *fl1, FILE *fl2)
 				printf("%s", buf1);
 			return;
 		}
-
+			
 
 		/* Merge the rooms */
 

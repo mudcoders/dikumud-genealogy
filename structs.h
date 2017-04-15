@@ -18,8 +18,13 @@ typedef char byte;
 #define WAIT_SEC       4
 #define WAIT_ROUND     4
 
+#define LV_IMMORTAL	21
+#define LV_DEMIGOD	(LV_IMMORTAL+1)
+#define LV_LESSERGOD	(LV_DEMIGOD+1)
+#define LV_GOD		(LV_LESSERGOD+1)
+
 #define MAX_STRING_LENGTH   4096
-#define MAX_INPUT_LENGTH      80
+#define MAX_INPUT_LENGTH     80 
 #define MAX_MESSAGES          60
 #define MAX_ITEMS            153
 
@@ -50,7 +55,7 @@ typedef char byte;
 #define ITEM_MISSILE    7
 #define ITEM_TREASURE   8
 #define ITEM_ARMOR      9
-#define ITEM_POTION    10
+#define ITEM_POTION    10 
 #define ITEM_WORN      11
 #define ITEM_OTHER     12
 #define ITEM_TRASH     13
@@ -66,17 +71,17 @@ typedef char byte;
 
 /* Bitvector For 'wear_flags' */
 
-#define ITEM_TAKE              1
+#define ITEM_TAKE              1 
 #define ITEM_WEAR_FINGER       2
 #define ITEM_WEAR_NECK         4
 #define ITEM_WEAR_BODY         8
 #define ITEM_WEAR_HEAD        16
 #define ITEM_WEAR_LEGS        32
 #define ITEM_WEAR_FEET        64
-#define ITEM_WEAR_HANDS      128
+#define ITEM_WEAR_HANDS      128 
 #define ITEM_WEAR_ARMS       256
 #define ITEM_WEAR_SHIELD     512
-#define ITEM_WEAR_ABOUT     1024
+#define ITEM_WEAR_ABOUT     1024 
 #define ITEM_WEAR_WAISTE    2048
 #define ITEM_WEAR_WRIST     4096
 #define ITEM_WIELD          8192
@@ -98,7 +103,7 @@ typedef char byte;
 #define ITEM_ANTI_GOOD     512 /* not usable by good people    */
 #define ITEM_ANTI_EVIL    1024 /* not usable by evil people    */
 #define ITEM_ANTI_NEUTRAL 2048 /* not usable by neutral people */
-
+#define ITEM_SECRET	  4096 /* Can only be found by search command */
 
 /* Some different kind of liquids */
 #define LIQ_WATER      0
@@ -124,6 +129,12 @@ typedef char byte;
 #define CONT_PICKPROOF      2
 #define CONT_CLOSED         4
 #define CONT_LOCKED         8
+
+struct ban_t /* Struct to ban certain sites */
+{
+	char *name;		/* Name of site */
+	struct ban_t *next;	/* next in list */
+};
 
 struct extra_descr_data
 {
@@ -158,7 +169,7 @@ struct obj_affected_type {
 struct obj_data
 {
 	sh_int item_number;            /* Where in data-base               */
-	sh_int in_room;                /* In what room -1 when conta/carr  */
+	sh_int in_room;                /* In what room -1 when conta/carr  */ 
 	struct obj_flag_data obj_flags;/* Object information               */
 	struct obj_affected_type
 	    affected[MAX_OBJ_AFFECT];  /* Which abilities in PC to change  */
@@ -184,7 +195,7 @@ struct obj_data
 
 /* Bitvector For 'room_flags' */
 
-#define DARK           1
+#define DARK           1	/* signed short int for these */
 #define DEATH          2
 #define NO_MOB         4
 #define INDOORS        8
@@ -194,6 +205,8 @@ struct obj_data
 #define NO_MAGIC     128
 #define TUNNEL       256
 #define PRIVATE      512
+#define ARENA       1024
+#define SAFE        2048
 
 /* For 'dir_option' */
 
@@ -224,8 +237,8 @@ struct obj_data
 
 struct room_direction_data
 {
-	char *general_description;       /* When look DIR.                  */
-	char *keyword;                   /* for open/close                  */
+	char *general_description;       /* When look DIR.                  */ 
+	char *keyword;                   /* for open/close                  */	
 	sh_int exit_info;                /* Exit info                       */
 	sh_int key;		                   /* Key's number (-1 for no key)    */
 	sh_int to_room;                  /* Where direction leeds (NOWHERE) */
@@ -241,10 +254,10 @@ struct room_data
 	char *description;           /* Shown when entered                 */
 	struct extra_descr_data *ex_description; /* for examine/look       */
 	struct room_direction_data *dir_option[6]; /* Directions           */
-	sh_int room_flags;           /* DEATH,DARK ... etc                 */
+	sh_int room_flags;           /* DEATH,DARK ... etc                 */ 
 	byte light;                  /* Number of lightsources in room     */
 	int (*funct)();              /* special procedure                  */
-
+         
 	struct obj_data *contents;   /* List of items in room              */
 	struct char_data *people;    /* List of NPC / PC in room           */
 };
@@ -295,6 +308,7 @@ struct room_data
 #define AFF_SENSE_LIFE        32
 #define AFF_HOLD              64
 #define AFF_SANCTUARY         128
+
 #define AFF_GROUP             256
 #define AFF_CURSE             1024
 #define AFF_FLAMING           2048
@@ -303,6 +317,7 @@ struct room_data
 #define AFF_PARALYSIS         16384
 #define AFF_MORDEN_SWORD      32768
 #define AFF_FLAMING_SWORD     65536
+
 #define AFF_SLEEP             131072
 #define AFF_DODGE             262144
 #define AFF_SNEAK             524288
@@ -310,6 +325,8 @@ struct room_data
 #define AFF_FEAR              2097152
 #define AFF_CHARM             4194304
 #define AFF_FOLLOW            8388608
+#define AFF_WIMPY            16777216
+#define AFF_INFRARED         33554432
 
 /* modifiers to char's abilities */
 
@@ -382,16 +399,36 @@ struct room_data
 #define ACT_STAY_ZONE   64     /* MOB Must stay inside its own zone       */
 #define ACT_WIMPY      128     /* MOB Will flee when injured, and if      */
                                /* aggressive only attack sleeping players */
+/*
+ * For ACT_AGGRESSIVE_XXX, you must also set ACT_AGGRESSIVE
+ * These switches can be combined, if none are selected, then
+ * the mobile will attack any alignment (same as if all 3 were set)
+ */
+#define ACT_AGGRESSIVE_EVIL 256  /* auto attack evil PC's only */
+#define ACT_AGGRESSIVE_GOOD 512  /* auto attack good PC's only */
+#define ACT_AGGRESSIVE_NEUTRAL 1024 /* auto attack neutral PC's only */
+#define ACT_MEMORY             2048 /* remember your attackers */
+                                    /* only if you are struck first */
 
 /* For players : specials.act */
 #define PLR_BRIEF        1
 #define PLR_NOSHOUT      2
 #define PLR_COMPACT      4
-#define PLR_DONTSET      8 /* Dont EVER set */
+#define PLR_DONTSET      8   /* Dont EVER set */
 #define PLR_NOTELL      16
-#define PLR_NOEMOTE     32
-#define PLR_LOG         64 /* log activities of this player. */
-#define PLR_FREEZE     128 /* No commands available */
+#define PLR_ISTHIEF     32   /* Marks you as thief */
+#define PLR_ISKILLER    64   /* Marks you as a PC Killer */
+#define PLR_ISTRUSTED	128  /* May become an immortal */
+#define PLR_ISMULTITH	256  /* Is a multi-classed char thief*/
+#define PLR_ISMULTIWA	512  /* warrior		*/
+#define PLR_ISMULTICL	1024 /* cleric		*/
+#define PLR_ISMULTIMU	2048 /* magic user 	*/
+
+typedef struct MEMtMemoryRec {
+   char name[80];    /* This must be large enuf for player name. */  
+   struct MEMtMemoryRec *next;
+} MEMtMemoryRec;
+
 
 /* This structure is purely intended to be an easy way to transfer */
 /* and return information about time (real or mudwise).            */
@@ -421,8 +458,7 @@ struct char_player_data
 	byte level;         /* PC / NPC s level                     */
 	int hometown;       /* PC s Hometown (zone)                 */
 	bool talks[MAX_TOUNGE]; /* PC s Tounges 0 for NPC           */
- 	struct time_data time; /* PC s AGE in days                  */
-	struct time_data tmptime; /* PC s AGE in days, modified     */
+ 	struct time_data time; /* PC s AGE in days                 */
 	ubyte weight;       /* PC / NPC s weight                    */
 	ubyte height;       /* PC / NPC s height                    */
 };
@@ -431,23 +467,23 @@ struct char_player_data
 /* Used in CHAR_FILE_U *DO*NOT*CHANGE* */
 struct char_ability_data
 {
-	sbyte str;
+	sbyte str; 
 	sbyte str_add;      /* 000 - 100 if strength 18             */
 	sbyte intel;
-	sbyte wis;
-	sbyte dex;
-	sbyte con;
+	sbyte wis; 
+	sbyte dex; 
+	sbyte con; 
 };
 
 
 /* Used in CHAR_FILE_U *DO*NOT*CHANGE* */
 struct char_point_data
 {
-	sh_int mana;
+	sh_int mana;         
 	sh_int max_mana;     /* Not useable may be erased upon player file renewal */
-	sh_int hit;
+	sh_int hit;   
 	sh_int max_hit;      /* Max hit for NPC                         */
-	sh_int move;
+	sh_int move;  
 	sh_int max_move;     /* Max move for NPC                        */
 
 	sh_int armor;        /* Internal -100..100, external -10..10 AC */
@@ -464,11 +500,11 @@ struct char_special_data
 	struct char_data *fighting; /* Opponent                             */
 	struct char_data *hunting;  /* Hunting person..                     */
 
-	long affected_by;        /* Bitvector for spells/skills affected by */
+	unsigned long affected_by;        /* Bitvector for spells/skills affected by */ 
 
 	byte position;           /* Standing or ...                         */
 	byte default_pos;        /* Default position for NPC                */
-	ubyte act;               /* flags for NPC behavior                  */
+	unsigned long  act;               /* flags for NPC behavior                  */
 
 	byte spells_to_learn;    /* How many can you learn yet this level   */
 
@@ -484,8 +520,29 @@ struct char_special_data
 	byte last_direction;      /* The last direction the monster went    */
 	int attack_type;          /* The Attack Type Bitvector for NPC's    */
 	int alignment;            /* +-1000 for alignments                  */
+
+	bool dispHp; 		  /* If TRUE, display Hit points in prompt  */
+	bool dispMove; 		  /* If TRUE, display Move points in prompt */
+	bool dispMana; 		  /* If TRUE, display Mana points in prompt */
+  	char *poofIn;		  /* Description on arrival of a god. */
+	char *poofOut; 		  /* Description upon a god's exit. */
+	bool holyLite;            /* Holy lite mode */
+  	bool wizInvis;            /* If on, people can't see you. */
+  
+        MEMtMemoryRec *memory;             /* List of attackers to remember... */
+	sh_int arena;		/* The arena flag */
+	int arena_move;		/* Stats to save when entering arena so */
+	int arena_mana;		/* we can restore them upon leaving. */
+	int arena_hits;
+	bool nokill;		/* No attack of players unless this is false*/
 };
 
+#define ARENA_NOTPLAYING	0
+#define ARENA_BLUE_PLR		1
+#define ARENA_BLUE_CAPT		2
+#define ARENA_RED_PLR		3
+#define ARENA_RED_CAPT		4
+#define ARENA_WATCHER		5	/* Unimplemented at this time*/
 
 /* Used in CHAR_FILE_U *DO*NOT*CHANGE* */
 struct char_skill_data
@@ -600,11 +657,12 @@ struct char_file_u
 
 	/* specials */
 
-	byte spells_to_learn;
-	int alignment;
+	byte spells_to_learn;  
+	int alignment;     
 
 	time_t last_logon;  /* Time (in secs) of last logon */
-	ubyte act;          /* ACT Flags                    */
+	unsigned long act;          /* ACT Flags -- used to be ubyte 
+					except I changed it--Swiftest */
 
 	/* char data */
 	char name[20];
@@ -622,7 +680,7 @@ struct char_file_u
 #define MAX_OBJ_SAVE 15 /* Used in OBJ_FILE_U *DO*NOT*CHANGE* */
 
 
-struct obj_file_elem
+struct obj_file_elem 
 {
 	sh_int item_number;
 
@@ -680,10 +738,11 @@ struct txt_q
 #define CON_LDEAD   11
 #define CON_PWDNEW  12
 #define CON_PWDNCNF 13
+#define CON_CLOSE   14
 
 struct snoop_data
 {
-	struct char_data *snooping;
+	struct char_data *snooping;	
 		/* Who is this char snooping */
 	struct char_data *snoop_by;
 		/* And who is snooping on this char */
@@ -692,6 +751,7 @@ struct snoop_data
 struct descriptor_data
 {
 	int descriptor;	            /* file descriptor for socket */
+        char *name; 		   /* Copy of the player name (pw bug) */
 	char host[50];                /* hostname                   */
 	char pwd[12];                 /* password                   */
 	int pos;                      /* position in player-file    */
@@ -712,7 +772,7 @@ struct descriptor_data
 	struct descriptor_data *next; /* link to next descriptor    */
 };
 
-struct msg_type
+struct msg_type 
 {
 	char *attacker_msg;  /* message to attacker */
 	char *victim_msg;    /* message to victim   */
@@ -776,3 +836,5 @@ struct con_app_type
 	sh_int hitp;
 	sh_int shock;
 };
+
+

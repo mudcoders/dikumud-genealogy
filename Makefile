@@ -1,8 +1,14 @@
-CC=gcc
-CFLAGS = -ansi
+CC = gcc
+CFLAGS = -g -ansi
 LFLAGS = -lcrypt
-HEADERFILES = structs.h utils.h comm.h interpreter.h db.h maildef.h
-dmserver : comm.o act.comm.o act.informative.o act.movement.o act.obj1.o act.obj2.o act.offensive.o act.other.o act.social.o act.wizard.o handler.o db.o interpreter.o utility.o spec_assign.o shop.o limits.o mobact.o fight.o modify.o weather.o spell_parser.o spells1.o spells2.o reception.o constants.o spec_procs.o signals.o board.o mar_fiz_maz.o magic.o mail.o changes.o
+HEADERFILES = structs.h utils.h comm.h interpreter.h db.h
+dmserver : comm.o memory.o crash.o act.comm.o act.informative.o act.movement.o act.obj1.o act.obj2.o act.offensive.o act.other.o act.social.o act.wizard.o handler.o db.o interpreter.o utility.o spec_assign.o shop.o limits.o mobact.o fight.o modify.o weather.o spell_parser.o spells1.o spells2.o reception.o constants.o spec_procs.o signals.o board.o mar_fiz_maz.o magic.o atm.o
+atm.o : atm.c structs.h utils.h comm.h
+	$(CC) -c $(CFLAGS) atm.c
+memory.o : memory.c structs.h utils.h
+	$(CC) -c  $(CFLAGS) memory.c
+crash.o : crash.c structs.h utils.h comm.h handler.h db.h
+	$(CC) -c  $(CFLAGS) crash.c
 comm.o : comm.c structs.h utils.h comm.h interpreter.h handler.h db.h
 	$(CC) -c -g $(CFLAGS) comm.c
 act.comm.o : act.comm.c structs.h utils.h comm.h interpreter.h handler.h \
@@ -38,14 +44,14 @@ db.o : db.c structs.h utils.h db.h comm.h handler.h
 	$(CC) -c $(CFLAGS) db.c
 interpreter.o : interpreter.c structs.h comm.h interpreter.h db.h utils.h \
   limits.h
-	$(CC) -c $(CFLAGS) interpreter.c
+	$(CC) -c $(CFLAGS) -o interpreter.o interpreter.c
 utility.o : utility.c structs.h utils.h
 	$(CC) -c $(CFLAGS) utility.c
 spec_assign.o : spec_assign.c structs.h db.h
 	$(CC) -c $(CFLAGS) spec_assign.c
 spec_procs.o : spec_procs.c structs.h utils.h comm.h interpreter.h \
   handler.h db.h spells.h limits.h
-	$(CC) -c $(CFLAGS) spec_procs.c
+	$(CC) -c -g $(CFLAGS) spec_procs.c
 limits.o : limits.c limits.h structs.h utils.h spells.h comm.h
 	$(CC) -c $(CFLAGS) limits.c
 fight.o : fight.c structs.h utils.h comm.h handler.h interpreter.h db.h \
@@ -87,10 +93,5 @@ signals.o : signals.c utils.h
 mar_fiz_maz.o : mar_fiz_maz.c structs.h utils.h comm.h interpreter.h \
   handler.h db.h spells.h limits.h
 	$(CC) -c $(CFLAGS) mar_fiz_maz.c
-mail.o : mail.c maildef.h
-	$(CC) -c $(CFLAGS) mail.c
-changes.o : changes.c structs.h utils.h comm.h interpreter.h \
-  handler.h db.h spells.h limits.h
-	$(CC) -c $(CFLAGS) changes.c
-dmserver : comm.c act.comm.c act.informative.c act.movement.c act.obj1.c act.obj2.c act.offensive.c act.other.c act.social.c act.wizard.c handler.c db.c interpreter.c utility.c spec_assign.c shop.c limits.c mobact.c fight.c modify.c weather.c spells1.c spells2.c spell_parser.c reception.c constants.c spec_procs.c signals.c board.c mar_fiz_maz.c magic.c mail.c changes.c
-	$(CC) -o dmserver $(CFLAGS) comm.o act.comm.o act.informative.o act.movement.o act.obj1.o act.obj2.o act.offensive.o act.other.o act.social.o act.wizard.o handler.o db.o interpreter.o utility.o spec_assign.o shop.o limits.o mobact.o fight.o modify.o weather.o spells1.o spells2.o spell_parser.o reception.o constants.o spec_procs.o signals.o board.o mar_fiz_maz.o magic.o mail.o changes.o $(LFLAGS)
+dmserver : comm.c crash.c act.comm.c memory.c act.informative.c act.movement.c act.obj1.c act.obj2.c act.offensive.c act.other.c act.social.c act.wizard.c handler.c db.c interpreter.c utility.c spec_assign.c shop.c limits.c mobact.c fight.c modify.c weather.c spells1.c spells2.c spell_parser.c reception.c constants.c spec_procs.c signals.c board.c mar_fiz_maz.c magic.c atm.c
+	$(CC) -o dmserver -g $(CFLAGS) comm.o memory.o crash.o act.comm.o act.informative.o act.movement.o act.obj1.o act.obj2.o act.offensive.o act.other.o act.social.o act.wizard.o handler.o db.o interpreter.o utility.o spec_assign.o shop.o limits.o mobact.o fight.o modify.o weather.o spells1.o spells2.o spell_parser.o reception.o constants.o spec_procs.o signals.o board.o mar_fiz_maz.o magic.o atm.o $(LFLAGS)

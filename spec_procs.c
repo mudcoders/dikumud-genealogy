@@ -1,3 +1,4 @@
+
 /* ************************************************************************
 *  file: spec_procs.c , Special module.                   Part of DIKUMUD *
 *  Usage: Procedures handling special procedures for object/room/mobile   *
@@ -5,7 +6,7 @@
 ************************************************************************* */
 
 #include <stdio.h>
-#include <string.h>
+#include <strings.h>
 #include <ctype.h>
 
 #include "structs.h"
@@ -24,43 +25,13 @@ extern struct char_data *character_list;
 extern struct descriptor_data *descriptor_list;
 extern struct index_data *obj_index;
 extern struct time_info_data time_info;
-
+extern struct title_type titles[4][25];
 
 /* extern procedures */
 
 void hit(struct char_data *ch, struct char_data *victim, int type);
 void gain_exp(struct char_data *ch, int gain);
 char *strdup(char *source);
-
-void cast_burning_hands( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *victim, struct obj_data *tar_obj );
-void cast_chill_touch( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *victim, struct obj_data *tar_obj );
-void cast_colour_spray( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *victim, struct obj_data *tar_obj );
-void cast_energy_drain( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *victim, struct obj_data *tar_obj );
-void cast_fireball( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *victim, struct obj_data *tar_obj );
-void cast_magic_missile( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *victim, struct obj_data *tar_obj );
-void cast_blindness( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *tar_ch, struct obj_data *tar_obj );
-void cast_curse( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *tar_ch, struct obj_data *tar_obj );
-void cast_sleep( byte level, struct char_data *ch, char *arg, int type,
-	struct char_data *tar_ch, struct obj_data *tar_obj );
-/* Dragon breath .. */
-void cast_fire_breath( byte level, struct char_data *ch, char *arg, int type,
-  struct char_data *tar_ch, struct obj_data *tar_obj );
-void cast_frost_breath( byte level, struct char_data *ch, char *arg, int type,
-  struct char_data *tar_ch, struct obj_data *tar_obj );
-void cast_acid_breath( byte level, struct char_data *ch, char *arg, int type,
-  struct char_data *tar_ch, struct obj_data *tar_obj );
-void cast_gas_breath( byte level, struct char_data *ch, char *arg, int type,
-  struct char_data *tar_ch, struct obj_data *tar_obj );
-void cast_lightning_breath( byte level, struct char_data *ch, char *arg, int type,
-  struct char_data *tar_ch, struct obj_data *tar_obj );
 
 
 /* Data declarations */
@@ -302,7 +273,7 @@ int guild(struct char_data *ch, int cmd, char *arg) {
 
 
 
-int dump(struct char_data *ch, int cmd, char *arg)
+int dump(struct char_data *ch, int cmd, char *arg) 
 {
    struct obj_data *k;
 	char buf[100];
@@ -330,7 +301,7 @@ int dump(struct char_data *ch, int cmd, char *arg)
 
 	for(k = world[ch->in_room].contents; k ; k = world[ch->in_room].contents)
 	{
-		sprintf(buf, "The %s vanish in a puff of smoke.\n\r",fname(k->name));
+		sprintf(buf, "The %s vanishes in a puff of smoke.\n\r",fname(k->name));
 		for(tmp_char = world[ch->in_room].people; tmp_char;
 			tmp_char = tmp_char->next_in_room)
 			if (CAN_SEE_OBJ(tmp_char, k))
@@ -340,7 +311,7 @@ int dump(struct char_data *ch, int cmd, char *arg)
 		extract_obj(k);
 	}
 
-	if (value)
+	if (value) 
 	{
 		act("You are awarded for outstanding performance.", FALSE, ch, 0, 0, TO_CHAR);
 		act("$n has been awarded for being a good citizen.", TRUE, ch, 0,0, TO_ROOM);
@@ -609,7 +580,7 @@ void npc_steal(struct char_data *ch,struct char_data *victim)
 	int gold;
 
 	if(IS_NPC(victim)) return;
-	if(GET_LEVEL(victim)>20) return;
+	if(IS_TRUSTED(victim)) return;
 
 	if (AWAKE(victim) && (number(0,GET_LEVEL(ch)) == 0)) {
 		act("You discover that $n has $s hands in your wallet.",FALSE,ch,0,victim,TO_VICT);
@@ -633,8 +604,8 @@ int snake(struct char_data *ch, int cmd, char *arg)
    if(cmd) return FALSE;
 
 	if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
-
-	if(ch->specials.fighting &&
+	
+	if(ch->specials.fighting && 
 		(ch->specials.fighting->in_room == ch->in_room) &&
 		(number(0,32-GET_LEVEL(ch))==0))
 		{
@@ -656,8 +627,8 @@ int thief(struct char_data *ch, int cmd, char *arg)
 	if(GET_POS(ch)!=POSITION_STANDING)return FALSE;
 
 	for(cons = world[ch->in_room].people; cons; cons = cons->next_in_room )
-		if((!IS_NPC(cons)) && (GET_LEVEL(cons)<21) && (number(1,5)==1))
-			npc_steal(ch,cons);
+		if(!IS_NPC(cons) && !IS_TRUSTED(cons) && (number(1,5)==1))
+			npc_steal(ch,cons); 
 
 	return TRUE;
 }
@@ -666,17 +637,36 @@ int magic_user(struct char_data *ch, int cmd, char *arg)
 {
 	struct char_data *vict;
 
+	void cast_burning_hands( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_chill_touch( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_colour_spray( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_energy_drain( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_fireball( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_magic_missile( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_blindness( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *tar_ch, struct obj_data *tar_obj );
+	void cast_curse( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *tar_ch, struct obj_data *tar_obj );
+	void cast_sleep( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *tar_ch, struct obj_data *tar_obj );
+
 	if(cmd) return FALSE;
 
 	if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
-
+	
 	if(!ch->specials.fighting) return FALSE;
 
 
-	/* Find a dude to do evil things upon ! */
+	/* Find a dude to to evil things upon ! */
 
 	for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
-		if (vict->specials.fighting==ch && number(0,2)==0)
+		if (vict->specials.fighting==ch)
 			break;
 
 	if (!vict)
@@ -744,123 +734,9 @@ int magic_user(struct char_data *ch, int cmd, char *arg)
 			break;
 	}
 	return TRUE;
+
 }
 
-int bat_red(struct char_data *ch, int cmd, char *arg)
-{
-	struct char_data *vict;
-
-	if(cmd) return FALSE;
-
-	if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
-
-	if(!ch->specials.fighting) return FALSE;
-
-	/* Find a dude to do evil things upon ! */
-
-	for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
-		if (vict->specials.fighting==ch && number(0,2)==0)
-			break;
-
-	if (!vict)
-		return FALSE;
-
-	act("$n breathes fire.",1, ch, 0, 0, TO_ROOM);
-	cast_fire_breath(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-
-	return TRUE;
-}
-
-int bat_white(struct char_data *ch, int cmd, char *arg)
-{
-	struct char_data *vict;
-
-	if(cmd) return FALSE;
-
-	if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
-
-	if(!ch->specials.fighting) return FALSE;
-
-	/* Find a dude to do evil things upon ! */
-
-	for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
-		if (vict->specials.fighting==ch && number(0,2)==0)
-			break;
-
-	if (!vict)
-		return FALSE;
-
-	act("$n breathes frost.",1, ch, 0, 0, TO_ROOM);
-	cast_frost_breath(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-
-	return TRUE;
-}
-
-int bat_black(struct char_data *ch, int cmd, char *arg)
-{
-	struct char_data *vict;
-
-	if(cmd) return FALSE;
-
-	if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
-
-	if(!ch->specials.fighting) return FALSE;
-
-	/* Find a dude to do evil things upon ! */
-
-	for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
-		if (vict->specials.fighting==ch && number(0,2)==0)
-			break;
-
-	if (!vict)
-		return FALSE;
-
-	act("$n breathes acid.",1, ch, 0, 0, TO_ROOM);
-	cast_acid_breath(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-
-	return TRUE;
-}
-
-int bat_blue(struct char_data *ch, int cmd, char *arg)
-{
-	struct char_data *vict;
-
-	if(cmd) return FALSE;
-
-	if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
-
-	if(!ch->specials.fighting) return FALSE;
-
-	/* Find a dude to do evil things upon ! */
-
-	for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
-		if (vict->specials.fighting==ch && number(0,2)==0)
-			break;
-
-	if (!vict)
-		return FALSE;
-
-	act("$n breathes lightning.",1, ch, 0, 0, TO_ROOM);
-	cast_lightning_breath(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
-
-	return TRUE;
-}
-
-int bat_green(struct char_data *ch, int cmd, char *arg)
-{
-	if(cmd) return FALSE;
-
-	if(GET_POS(ch)!=POSITION_FIGHTING) return FALSE;
-
-	if(!ch->specials.fighting) return FALSE;
-
-	if(number(0,3)!=0) return FALSE;
-
-	act("$n breathes gas.",1, ch, 0, 0, TO_ROOM);
-	cast_gas_breath(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, 0, 0);
-
-	return TRUE;
-}
 
 /* ********************************************************************
 *  Special procedures for mobiles                                      *
@@ -872,35 +748,137 @@ int guild_guard(struct char_data *ch, int cmd, char *arg)
 
 	if (cmd>6 || cmd<1)
 		return FALSE;
+	if (IS_TRUSTED(ch)){
+		return FALSE;
+	}
 
 	strcpy(buf,  "The guard humiliates you, and block your way.\n\r");
 	strcpy(buf2, "The guard humiliates $n, and blocks $s way.");
 
 	if ((ch->in_room == real_room(3017)) && (cmd == 3)) {
-		if (GET_CLASS(ch) != CLASS_MAGIC_USER) {
+		if ((GET_CLASS(ch) != CLASS_MAGIC_USER)&&
+		    (!IS_SET(ch->specials.act,PLR_ISMULTIMU))) {
 			act(buf2, FALSE, ch, 0, 0, TO_ROOM);
 			send_to_char(buf, ch);
 			return TRUE;
 		}
 	} else if ((ch->in_room == real_room(3004)) && (cmd == 1)) {
-		if (GET_CLASS(ch) != CLASS_CLERIC) {
+		if ((GET_CLASS(ch) != CLASS_CLERIC)&&
+		    (!IS_SET(ch->specials.act,PLR_ISMULTICL))) {
 			act(buf2, FALSE, ch, 0, 0, TO_ROOM);
 			send_to_char(buf, ch);
 			return TRUE;
 		}
 	} else if ((ch->in_room == real_room(3027)) && (cmd == 2)) {
-		if (GET_CLASS(ch) != CLASS_THIEF) {
+		if ((GET_CLASS(ch) != CLASS_THIEF)&&
+		    (!IS_SET(ch->specials.act,PLR_ISMULTITH))) {
 			act(buf2, FALSE, ch, 0, 0, TO_ROOM);
 			send_to_char(buf, ch);
 			return TRUE;
 		}
 	} else if ((ch->in_room == real_room(3021)) && (cmd == 2)) {
-		if (GET_CLASS(ch) != CLASS_WARRIOR) {
+		if ((GET_CLASS(ch) != CLASS_WARRIOR)&&
+		    (!IS_SET(ch->specials.act,PLR_ISMULTIWA))) {
 			act(buf2, FALSE, ch, 0, 0, TO_ROOM);
 			send_to_char(buf, ch);
 			return TRUE;
 		}
 
+	}
+
+	return FALSE;
+
+}
+
+int remove_team(struct char_data *ch, int cmd, char *arg)
+{
+	char buf[256], buf2[256];
+
+	if (cmd!=4)
+		return FALSE;
+
+	strcpy(buf,  "The Arena Gods bid you farewell.\n\r");
+	strcpy(buf2, "The Arena Gods bid $n farewell.\n\r");
+
+	if ((ch->in_room == real_room(3751)) && (cmd == 4)) {/*EXIT room*/
+		act(buf2, FALSE, ch, 0, 0, TO_ROOM);
+		send_to_char(buf, ch);
+		if(ch->specials.arena > ARENA_NOTPLAYING){
+			ch->specials.arena=ARENA_NOTPLAYING;
+			GET_MOVE(ch)=ch->specials.arena_move;
+			GET_MANA(ch)=ch->specials.arena_mana;
+			GET_HIT(ch)=ch->specials.arena_hits;
+		}
+		return FALSE;
+	}
+
+	return FALSE;
+
+}
+
+
+int arena_guard(struct char_data *ch, int cmd, char *arg)
+{
+	char buf[256], buf2[256];
+
+	if ((cmd!=3) && (cmd!=1))
+		return FALSE;
+	if (IS_NPC(ch)) {
+		return FALSE;
+	}
+
+	strcpy(buf,  "The Arena Gods prevent you from entering since you're an outlaw.\n\r");
+	strcpy(buf2, "The Arena Gods prevent the outlaw, $n, from entering.");
+
+	if ((ch->in_room == real_room(3702)) && (cmd == 1)) {/*BLUE room*/
+		if (IS_SET(ch->specials.act,PLR_ISTHIEF)||
+		    IS_SET(ch->specials.act,PLR_ISKILLER)) {
+			act(buf2, FALSE, ch, 0, 0, TO_ROOM);
+			send_to_char(buf, ch);
+			return TRUE;
+		}
+
+		if (ch->specials.arena!=ARENA_BLUE_PLR) {
+			act("The Arena Gods bar $n's way since this is the BLUE team's exit\n\r",FALSE,ch,0,0,TO_ROOM);
+			send_to_char("You can't enter the ARENA here without the BLUE team color!\n\r",ch);
+			return TRUE;
+		}
+
+	} else if ((ch->in_room == real_room(3703)) && (cmd == 3)) { /*RED*/
+		if (IS_SET(ch->specials.act,PLR_ISTHIEF)||
+		    IS_SET(ch->specials.act,PLR_ISKILLER)) {
+			act(buf2, FALSE, ch, 0, 0, TO_ROOM);
+			send_to_char(buf, ch);
+			return TRUE;
+		}
+		if (ch->specials.arena!=ARENA_RED_PLR) {
+			act("The Arena Gods bar $n's way since this is the RED team's entrance.\n\r",FALSE,ch,0,0,TO_ROOM);
+			send_to_char("You can't enter the ARENA here without the RED team color!\n\r",ch);
+			return TRUE;
+		}
+	}
+	/* Save stats so we can restore them when you leave the Arena */
+	ch->specials.arena_move=GET_MOVE(ch);
+	ch->specials.arena_mana=GET_MANA(ch);
+	ch->specials.arena_hits=GET_HIT(ch);
+	return FALSE;
+
+}
+
+int brass_dragon(struct char_data *ch, int cmd, char *arg)
+{
+	char buf[256], buf2[256];
+
+	if (cmd>6 || cmd<1)
+		return FALSE;
+
+	strcpy(buf,  "The brass dragon humiliates you, and blocks your way.\n\r");
+	strcpy(buf2, "The brass dragon humiliates $n, and blocks $s way.");
+
+	if ((ch->in_room == real_room(5065)) && (cmd == 4)) {
+		act(buf2, FALSE, ch, 0, 0, TO_ROOM);
+		send_to_char(buf, ch);
+		return TRUE;
 	}
 
 	return FALSE;
@@ -932,7 +910,7 @@ int puff(struct char_data *ch, int cmd, char *arg)
 			return(0);
 	}
 }
-
+					
 int fido(struct char_data *ch, int cmd, char *arg)
 {
 
@@ -943,7 +921,7 @@ int fido(struct char_data *ch, int cmd, char *arg)
 
 	for (i = world[ch->in_room].contents; i; i = i->next_content) {
 		if (GET_ITEM_TYPE(i)==ITEM_CONTAINER && i->obj_flags.value[3]) {
-			act("$n savagely devour a corpse.", FALSE, ch, 0, 0, TO_ROOM);
+			act("$n savagely devours a corpse.", FALSE, ch, 0, 0, TO_ROOM);
 			for(temp = i->contains; temp; temp=next_obj)
 			{
 				next_obj = temp->next_content;
@@ -957,6 +935,8 @@ int fido(struct char_data *ch, int cmd, char *arg)
 	return(FALSE);
 }
 
+
+
 int janitor(struct char_data *ch, int cmd, char *arg)
 {
 	struct obj_data *i, *temp, *next_obj;
@@ -965,7 +945,7 @@ int janitor(struct char_data *ch, int cmd, char *arg)
 		return(FALSE);
 
 	for (i = world[ch->in_room].contents; i; i = i->next_content) {
-		if (IS_SET(i->obj_flags.wear_flags, ITEM_TAKE) &&
+		if (IS_SET(i->obj_flags.wear_flags, ITEM_TAKE) && 
       ((i->obj_flags.type_flag == ITEM_DRINKCON) ||
 		  (i->obj_flags.cost <= 10))) {
 			act("$n picks up some trash.", FALSE, ch, 0, 0, TO_ROOM);
@@ -978,6 +958,7 @@ int janitor(struct char_data *ch, int cmd, char *arg)
 	return(FALSE);
 }
 
+
 int cityguard(struct char_data *ch, int cmd, char *arg)
 {
 	struct char_data *tch, *evil;
@@ -986,11 +967,11 @@ int cityguard(struct char_data *ch, int cmd, char *arg)
 	if (cmd || !AWAKE(ch) || (GET_POS(ch) == POSITION_FIGHTING))
 		return (FALSE);
 
-	max_evil = 300;
+	max_evil = 1000;
 	evil = 0;
 
 	for (tch=world[ch->in_room].people; tch; tch = tch->next_in_room) {
-		if (tch->specials.fighting) {
+		if (tch->specials.fighting && CAN_SEE(ch,tch)) {
          if ((GET_ALIGNMENT(tch) < max_evil) &&
              (IS_NPC(tch) || IS_NPC(tch->specials.fighting))) {
 				max_evil = GET_ALIGNMENT(tch);
@@ -999,13 +980,22 @@ int cityguard(struct char_data *ch, int cmd, char *arg)
 		}
 	}
 
-	if (evil && !IS_EVIL(evil->specials.fighting))
-	{
+	if (evil && (GET_ALIGNMENT(evil->specials.fighting) >= 0)) {
 		act("$n screams 'PROTECT THE INNOCENT!  BANZAI!!! CHARGE!!! ARARARAGGGHH!'", FALSE, ch, 0, 0, TO_ROOM);
 		hit(ch, evil, TYPE_UNDEFINED);
 		return(TRUE);
 	}
 
+	for(tch=world[ch->in_room].people; tch; tch=tch->next_in_room) {
+		if (!IS_NPC(tch) && CAN_SEE(ch, tch) &&
+		    (IS_SET(tch->specials.act,PLR_ISKILLER)||
+ 		     IS_SET(tch->specials.act,PLR_ISTHIEF))){
+			act("$n screams 'Outlaw! Fresh blood! Kill!'", FALSE, ch, 0, 0, TO_ROOM);
+			hit(ch, tch, TYPE_UNDEFINED);
+			return(TRUE);
+		}
+	}
+		
 	return(FALSE);
 }
 
@@ -1050,7 +1040,7 @@ int pet_shops(struct char_data *ch, int cmd, char *arg)
 		if (*pet_name) {
 			sprintf(buf,"%s %s", pet->player.name, pet_name);
 			free(pet->player.name);
-			pet->player.name = strdup(buf);
+			pet->player.name = strdup(buf);		
 
 			sprintf(buf,"%sA small sign on a chain around the neck says 'My Name is %s'\n\r",
 			  pet->player.description, pet_name);
@@ -1075,6 +1065,205 @@ int pet_shops(struct char_data *ch, int cmd, char *arg)
 	return(FALSE);
 }
 
+#define PER_LEVEL	10	/* coins per level needed to play in arena */
+
+int arena_shop(struct char_data *ch, int cmd, char *arg)
+{
+	char buf[MAX_STRING_LENGTH];
+	int gold_needed;
+
+	gold_needed=GET_LEVEL(ch)*PER_LEVEL;
+
+	if (cmd==59) { /* List */
+		send_to_char("Your choice of team colors are:\n\r", ch);
+		send_to_char("\n\rRED\n\rBLUE\n\r\n\r",ch);
+		send_to_char("You may JOIN RED, or JOIN BLUE\n\r\n\r",ch);
+		send_to_char("No outlaws are allowed in the Holy Arena\n\r",ch);
+		sprintf(buf,"It will cost you %d coins to join a team.\n\r",
+			gold_needed);
+		send_to_char(buf,ch);
+		return(TRUE);
+	} else if (cmd==228) { /* JOIN */
+
+		if(IS_SET(ch->specials.act,PLR_ISTHIEF)||
+		   IS_SET(ch->specials.act,PLR_ISKILLER)){
+			send_to_char("The Arena Gods forbid outlaws from joining!\n\r",ch);
+			return(FALSE);
+		}
+
+		arg = one_argument(arg, buf);
+		if(!strcmp(buf,"red")&&!strcmp(buf,"blue")) {
+			send_to_char("You can only join a RED or BLUE team.\n\r",ch);
+			return(TRUE);
+		}
+
+		if(GET_GOLD(ch)<gold_needed){
+			sprintf(buf,"You need %d coins to join!! Go away\n\r",
+				gold_needed);
+			send_to_char(buf,ch);
+			return(TRUE);
+		}
+
+		if (!strcmp(buf,"red")) {
+			ch->specials.arena=ARENA_RED_PLR;
+			send_to_char("You are now a member of the RED team!\n\r",ch);
+			return(TRUE);
+		}
+
+		if (!strcmp(buf,"blue")) {
+			ch->specials.arena=ARENA_BLUE_PLR;
+			send_to_char("You are now a member of the BLUE team!\n\r",ch);
+			return(TRUE);
+		}
+
+		send_to_char("The Gods decree that you may only join red or blue teams!\n\r",ch);
+		return(TRUE);
+			
+	}
+
+	/* All commands except list and buy */
+	return(FALSE);
+}
+
+void
+new_class(struct char_data *ch, int newclass)
+{
+	char oldclass[80];
+	char sendbuf[80];
+	char buf[80];
+
+	switch(GET_CLASS(ch)){
+	  case CLASS_THIEF:
+		SET_BIT(ch->specials.act,PLR_ISMULTITH);
+		strcpy(oldclass,"Thief"); break;
+	  case CLASS_MAGIC_USER:
+		SET_BIT(ch->specials.act,PLR_ISMULTIMU);
+		strcpy(oldclass,"Magic User"); break;
+	  case CLASS_CLERIC:
+		SET_BIT(ch->specials.act,PLR_ISMULTICL);
+		strcpy(oldclass,"Cleric"); break;
+	  case CLASS_WARRIOR:
+		SET_BIT(ch->specials.act,PLR_ISMULTIWA);
+		strcpy(oldclass,"Warrior"); break;
+	  default:
+		send_to_char("Invalid class!\n\r",ch);
+		return;
+	}
+	GET_CLASS(ch)=newclass;
+	switch(GET_CLASS(ch)){
+	  case CLASS_WARRIOR:
+		sprintf(buf,"Warrior/%s",oldclass);break;
+	  case CLASS_THIEF:
+		sprintf(buf,"Thief/%s",oldclass);break;
+	  case CLASS_CLERIC:
+		sprintf(buf,"Cleric/%s",oldclass);break;
+	  case CLASS_MAGIC_USER:
+		sprintf(buf,"Magic User/%s",oldclass);break;
+	  default:
+		send_to_char("Serious error in new class!\n\r",ch);
+		return;
+	}
+	sprintf(sendbuf,"You are now a %s!\n\r",buf);
+	send_to_char(sendbuf,ch);
+}
+
+#define MULTI_MIN_LEV		5	/* minimum level to change class*/
+#define MULTI_COST_PER_LEV	100000	/* 100k per level to change */
+
+int
+do_multiclass(struct char_data *ch, int cmd, char *arg)
+{
+
+	char buf[300];
+	long cost;
+
+	if (cmd!=233){
+		return(FALSE);
+	}
+
+	if (IS_NPC(ch)) {
+		send_to_char("Monsters have no class, go away!\n\r",ch);
+		return(TRUE);
+	}
+
+	arg = one_argument(arg, buf);
+	if(strcmp(buf,"cleric")&&strcmp(buf,"mu")&&
+	   strcmp(buf,"thief")&&strcmp(buf,"warrior")) {
+		send_to_char("You can only switch to a THIEF, CLERIC, MU, or WARRIOR.\n\r",ch);
+		return(TRUE);
+	}
+
+	if(IS_SET(ch->specials.act,PLR_ISMULTITH)||
+	   IS_SET(ch->specials.act,PLR_ISMULTIWA)||
+	   IS_SET(ch->specials.act,PLR_ISMULTIMU)||
+	   IS_SET(ch->specials.act,PLR_ISMULTICL)){
+		send_to_char("You can't switch more than once (yet).\n\r",ch);
+		return(TRUE);
+	}
+
+	if (GET_LEVEL(ch)<MULTI_MIN_LEV){
+		send_to_char("You need more levels first!\n\r",ch);
+		return(TRUE);
+	}
+
+	if (GET_LEVEL(ch)>LV_IMMORTAL || IS_TRUSTED(ch)){
+		send_to_char("Gods may not multiclass!\n\r",ch);
+		return(TRUE);
+	}
+
+	cost=GET_LEVEL(ch)*MULTI_COST_PER_LEV;
+
+	if(GET_GOLD(ch)<cost){
+		sprintf(buf,"You need %d coins to change class at your level.\n\r",cost);
+		send_to_char(buf,ch);
+		return(TRUE);
+	}
+
+	if(GET_EXP(ch)<titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].exp){
+		sprintf(buf,"You need %d experience points to multiclass at your level.\n\r",titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].exp);
+		send_to_char(buf,ch);
+		return(TRUE);
+	}
+
+	if(!strcmp(buf,"cleric")&&(GET_CLASS(ch)!=CLASS_CLERIC)){
+		new_class(ch,CLASS_CLERIC);
+	} else if (!strcmp(buf,"mu")&&(GET_CLASS(ch)!=CLASS_MAGIC_USER)){
+		new_class(ch,CLASS_MAGIC_USER);
+	} else if (!strcmp(buf,"thief")&&(GET_CLASS(ch)!=CLASS_THIEF)){
+		new_class(ch,CLASS_THIEF);
+	} else if (!strcmp(buf,"warrior")&&(GET_CLASS(ch)!=CLASS_WARRIOR)){
+		new_class(ch,CLASS_WARRIOR);
+	} else {
+		send_to_char("You are already that class!\n\r",ch);
+		return(TRUE);
+	}
+
+	GET_GOLD(ch) -= cost;
+	sprintf(buf,"It costs you %d coins to switch class.\n\r",cost);
+	send_to_char(buf,ch);
+
+	/* Change class. Set player's level at 1. Zero experience. Give
+	necessary stats to new class.*/
+
+	GET_LEVEL(ch) = 1;
+	GET_EXP(ch) = 1;
+	ch->specials.spells_to_learn = 0;
+	set_title(ch);
+
+	switch (GET_CLASS(ch)) {
+
+		case CLASS_THIEF : {
+			ch->skills[SKILL_SNEAK].learned = 10;
+			ch->skills[SKILL_HIDE].learned =  5;
+			ch->skills[SKILL_STEAL].learned = 15;
+			ch->skills[SKILL_BACKSTAB].learned = 10;
+			ch->skills[SKILL_PICK_LOCK].learned = 10;
+		} break;
+
+	}
+	send_to_char("You feel awesome power surge coarse through your veins.\n\r",ch);
+	send_to_char("You feel like a new person!\n\r",ch);
+}
 
 /* Idea of the LockSmith is functionally similar to the Pet Shop */
 /* The problem here is that each key must somehow be associated  */
@@ -1121,6 +1310,7 @@ int pray_for_items(struct char_data *ch, int cmd, char *arg)
         found = TRUE;
       }
 
+
   if (found) {
     GET_GOLD(ch) -= gold;
     GET_GOLD(ch) = MAX(0, GET_GOLD(ch));
@@ -1130,75 +1320,7 @@ int pray_for_items(struct char_data *ch, int cmd, char *arg)
   return FALSE;
 }
 
-int worm_ritual(struct char_data *ch, int cmd, char *arg)
-{
-	struct obj_data *scroll, *herbs, *blood;
-	struct char_data *tmpch;
-	char buf[MAX_INPUT_LENGTH];
-	bool found, equipped = FALSE;
-	int room;
-	static int scroll_nr = -1, herbs_nr = -1, blood_nr = -1, to_room = -1;
 
-	if (scroll_nr < 1) {
-		scroll_nr = real_object(5012);
-		herbs_nr = real_object(5002);
-		blood_nr = real_object(5003);
-		to_room = real_room(5040);
-	}
-
-	if (cmd != 207)
-		return FALSE;
-
-   arg = one_argument(arg,buf);
-
-	if (!(scroll = get_obj_in_list_vis(ch,buf,ch->carrying))) {
-		scroll = ch->equipment[HOLD];
-		equipped = TRUE;
-	}
-
-   /* which scroll */
-	found = (scroll && (scroll->item_number == scroll_nr));
-
-	if (!found)
-		return FALSE;
-
-	act("$n recites $p.", TRUE, ch, scroll, 0, TO_ROOM);
-	act("You recite $p which dissolves.",FALSE,ch,scroll,0,TO_CHAR);
-
-	room = ch->in_room;
-	blood = get_obj_in_list_num(blood_nr,world[room].contents);
-	herbs = get_obj_in_list_num(herbs_nr,world[room].contents);
-
-	if (!blood || !herbs || (blood->obj_flags.value[1] < 2))
-		return TRUE;
-
-   act("$p dissolves into thin air.", TRUE, ch, herbs, 0, TO_ROOM);
-	act("$p dissolves into thin air.", TRUE, ch, herbs, 0, TO_CHAR);
-	act("$p is emptied from blood.", FALSE, ch, blood, 0, TO_ROOM);
-	act("$p is emptied from blood.", FALSE, ch, blood, 0, TO_CHAR);
-
-	obj_from_room(herbs);
-	extract_obj(herbs);            /* herbs dissapear */
-	blood->obj_flags.value[1] = 0; /* empty for blood */
-	blood->obj_flags.weight -= 2;  /* correct weight  */
-
-   if (equipped)
-      unequip_char(ch, HOLD);
-
-   extract_obj(scroll);
-
-   act("You feel yanked downwards.....", FALSE, ch, 0, 0, TO_ROOM);
-	act("You feel yanked downwards.....", FALSE, ch, 0, 0, TO_CHAR);
-
-	/* Move'em */
-	tmpch = world[room].people;
-	while (world[room].people){
-		char_from_room(tmpch);
-		char_to_room(tmpch,to_room);
-		tmpch = world[room].people;
-	}
-	return TRUE;
-}
 /* ********************************************************************
 *  Special procedures for objects                                     *
 ******************************************************************** */
@@ -1235,8 +1357,8 @@ int chalice(struct char_data *ch, int cmd, char *arg)
 				if (!(chalice = get_obj_in_list_num(achl,
 					world[ch->in_room].contents)) && CAN_SEE_OBJ(ch, chalice))
 					return(0);
-
-			/* we found a chalice.. now try to get us */
+	
+			/* we found a chalice.. now try to get us */			
 			do_get(ch, arg, cmd);
 			/* if got the altar one, switch her */
 			if (chalice == get_obj_in_list_num(achl, ch->carrying))
@@ -1281,6 +1403,9 @@ int chalice(struct char_data *ch, int cmd, char *arg)
 	}
 }
 
+
+
+
 int kings_hall(struct char_data *ch, int cmd, char *arg)
 {
 	if (cmd != 176)
@@ -1296,4 +1421,147 @@ int kings_hall(struct char_data *ch, int cmd, char *arg)
 	char_to_room(ch, real_room(1420));  /* behind the altar */
 	do_look(ch, "", 15);
 	return(1);
+}
+
+int offensive(struct char_data *ch, int cmd, char *arg)
+{
+	struct char_data *vict;
+
+	void cast_burning_hands( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_chill_touch( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_colour_spray( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_energy_drain( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_fireball( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_magic_missile( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *victim, struct obj_data *tar_obj );
+	void cast_blindness( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *tar_ch, struct obj_data *tar_obj );
+	void cast_curse( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *tar_ch, struct obj_data *tar_obj );
+	void cast_sleep( byte level, struct char_data *ch, char *arg, int type,
+		struct char_data *tar_ch, struct obj_data *tar_obj );
+
+	if(cmd) return FALSE;
+
+	if(!AWAKE(ch)) return FALSE;
+
+	/* Find a pc-killer or a thief to do battle with */
+	if(GET_POS(ch)!=POSITION_FIGHTING || !ch->specials.fighting) {
+		for(vict=world[ch->in_room].people; vict; vict=vict->next_in_room){
+			if(!IS_NPC(vict) && CAN_SEE(ch, vict) &&
+			   (IS_SET(vict->specials.act, PLR_ISKILLER) ||
+			    IS_SET(vict->specials.act, PLR_ISTHIEF))){
+				act("$n screams 'Outlaw! Fresh blood! Kill!'", FALSE, ch, 0, 0, TO_ROOM);
+				hit(ch, vict, TYPE_UNDEFINED);
+				return(TRUE);
+			}
+		}
+		return (FALSE);
+	}
+
+	/* We're fighting someone, so
+	 * Find a dude to to evil things upon ! */
+
+	for (vict = world[ch->in_room].people; vict; vict = vict->next_in_room )
+		if (vict->specials.fighting==ch)
+			break;
+
+	if (!vict)
+		return FALSE;
+
+
+	if( (vict!=ch->specials.fighting) && (GET_LEVEL(ch)>13) && (number(0,4)==0) )
+	{
+		act("$n utters the words 'dilan oso'.", 1, ch, 0, 0, TO_ROOM);
+		cast_sleep(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+		return TRUE;
+	}
+
+	if( (GET_LEVEL(ch)>12) && (number(0,4)==0) )
+	{
+		act("$n utters the words 'gharia miwi'.", 1, ch, 0, 0, TO_ROOM);
+		cast_curse(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+		return TRUE;
+	}
+
+	if( (GET_LEVEL(ch)>7) && (number(0,3)==0) )
+	{
+		act("$n utters the words 'k4holian dia'.", 1, ch, 0, 0, TO_ROOM);
+		cast_blindness(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+		return TRUE;
+	}
+
+	if( (GET_LEVEL(ch)>12) && (number(0,5)==0) && IS_EVIL(ch))
+	{
+		act("$n utters the words 'ib er dranker'.", 1, ch, 0, 0, TO_ROOM);
+		cast_energy_drain(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+		return TRUE;
+	}
+
+	switch (number(0,16)) {
+		case 0: break; /* do nothing */
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+			act("$n utters the words 'hahili duvini'.", 1, ch, 0, 0, TO_ROOM);
+			cast_magic_missile(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+			break;
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+			act("$n utters the words 'grynt oef'.", 1, ch, 0, 0, TO_ROOM);
+			cast_burning_hands(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+			break;
+		case 9:
+		case 10:
+			act("$n utters the words 'sjulk divi'.", 1, ch, 0, 0, TO_ROOM);
+			cast_lightning_bolt(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+			break;
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+			act("$n utters the words 'nasson hof'.", 1, ch, 0, 0, TO_ROOM);
+			cast_colour_spray(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+			break;
+		default:
+			act("$n utters the words 'tuborg'.", 1, ch, 0, 0, TO_ROOM);
+			cast_fireball(GET_LEVEL(ch), ch, "", SPELL_TYPE_SPELL, vict, 0);
+			break;
+	}
+	return TRUE;
+
+}
+
+int jester(struct char_data *ch, int cmd, char *arg)
+{
+	void do_say(struct char_data *ch, char *argument, int cmd);
+
+	if (cmd)
+		return(0);
+
+	switch (number(0, 60))
+	{
+		case 0:
+			do_say(ch, "You are a real stinker!", 0);
+		   return(1);
+		case 1:
+			do_say(ch, "Have you considered getting a lobotomy?", 0);
+			return(1);
+		case 2:
+			do_say(ch, "You're as stupid as you look!", 0);
+			return(1);
+		case 3:
+			do_say(ch, "Get a real hair-cut!", 0);
+			return(1);
+		default:
+			return(0);
+	}
 }

@@ -1,3 +1,4 @@
+
 /* ************************************************************************
 *  file: constants.c                                      Part of DIKUMUD *
 *  Usage: For constants used by the game.                                 *
@@ -10,7 +11,7 @@
 
 const char *spell_wear_off_msg[] = {
   "RESERVED DB.C",
-  "You feel less proctected.",
+  "You feel less protected.",
   "!Teleport!",
   "You feel less righteous.",
   "You feel a cloak of blindness disolve.",
@@ -47,7 +48,7 @@ const char *spell_wear_off_msg[] = {
   "!Remove Curse!",
   "The white aura around your body fades.",
   "!Shocking Grasp!",
-  "You feel les tired.",
+  "You feel less tired.",
   "You feel weaker.",
   "!Summon!",
   "!Ventriloquate!",
@@ -66,15 +67,15 @@ const char *spell_wear_off_msg[] = {
 };
 
 
-const int rev_dir[] =
+const int rev_dir[] = 
 {
 	2,
 	3,
 	0,
-	1,
+	1,	
 	5,
 	4
-};
+}; 
 
 const int movement_loss[]=
 {
@@ -88,7 +89,7 @@ const int movement_loss[]=
   1   /* Unswimable */
 };
 
-const char *dirs[] =
+const char *dirs[] = 
 {
 	"north",
 	"east",
@@ -99,13 +100,13 @@ const char *dirs[] =
 	"\n"
 };
 
-const char *weekdays[7] = {
+const char *weekdays[7] = { 
 	"the Day of the Moon",
 	"the Day of the Bull",
 	"the Day of the Deception",
 	"the Day of Thunder",
 	"the Day of Freedom",
-	"the day of the Great Gods",
+	"the Day of the Great Gods",
 	"the Day of the Sun" };
 
 const char *month_name[17] = {
@@ -160,8 +161,8 @@ const char *where[] = {
 	"<worn around wrist>  ",
 	"<worn around wrist>  ",
 	"<wielded>            ",
-	"<held>               "
-};
+	"<held>               " 
+}; 
 
 const char *drinks[]=
 {
@@ -272,10 +273,10 @@ const struct title_type titles[4][25] = {
   {"the Wizard","the Wizard",3000000},
   {"the Warlock","the War Witch",3375000},
   {"the Sorcerer","the Sorceress",3750000},
-  {"the Immortal Warlock","the Immortal Enchantress",4000000},
+  {"the Warlock","the Enchantress",4000000},
   {"the Avatar of Magic","the Empress of Magic",5000000},
   {"the God of magic","the Goddess of magic",6000000},
-  {"the Implementator","the Implementress",7000000} },
+  {"the Implementor","the Implementress",7000000} },
 
 { {"the Man","the Woman",0},
   {"the Believer","the Believer",1},
@@ -294,14 +295,14 @@ const struct title_type titles[4][25] = {
   {"the Monk","the Nunne",1350000},
   {"the Healer","the Healess",1575000},
   {"the Chaplain","the Chaplain",1800000},
-  {"the Expositor","the Expositress",2025000},
-  {"the Bishop","the Bishop",2250000},
-  {"the Arch Bishop","the Arch Lady of the Church",2475000},
-  {"the Patriarch","the Matriarch",2700000},
-  {"the Immortal Cardinal","the Immortal Priestess",3000000},
+  {"the Expositor","the Expositress",2100000},
+  {"the Bishop","the Bishop",2400000},
+  {"the Arch Bishop","the Arch Lady of the Church",2700000},
+  {"the Patriarch","the Matriarch",3600000},
+  {"the Cardinal","the Priestess",4000000},
   {"the Inquisitor","the Inquisitress",5000000},
   {"the God of good and evil","the Goddess of good and evil",6000000},
-  {"the Implementator","the Implementress",7000000} },
+  {"the Implementor","the Implementress",7000000} },
 
 { {"the Man","the Woman",0},
   {"the Pilferer","the Pilferess",1},
@@ -319,15 +320,15 @@ const struct title_type titles[4][25] = {
   {"the Highwayman","the Highwaywoman",660000},
   {"the Burglar","the Burglaress",880000},
   {"the Thief","the Thief",1100000},
-  {"the Knifer","the Knifer",1320000},
-  {"the Quick-Blade","the Quick-Blade",1540000},
-  {"the Killer","the Murderess",1760000},
-  {"the Brigand","the Brigand",1980000},
-  {"the Cut-Throat","the Cut-Throat",2200000},
-  {"the Immortal Assasin","the Immortal Assasin",2500000},
+  {"the Knifer","the Knifer",1500000},
+  {"the Quick-Blade","the Quick-Blade",2000000},
+  {"the Killer","the Murderess",2500000},
+  {"the Brigand","the Brigand",3000000},
+  {"the Cut-Throat","the Cut-Throat",3500000},
+  {"the Assassin","the Assassin",4000000},
   {"the Demi God of thieves","the Demi Goddess of thieves",5000000},
   {"the God of thieves and tradesmen","the Goddess of thieves and tradesmen",6000000},
-  {"the Implementator","the Implementress",7000000} },
+  {"the Implementor","the Implementress",7000000} },
 
 { {"the Man","the Woman",0},
   {"the Swordpupil","the Swordpupil",1},
@@ -344,16 +345,16 @@ const struct title_type titles[4][25] = {
   {"the Myrmidon","the Myrmidon",1000000},
   {"the Swashbuckler","the Swashbuckleress",1250000},
   {"the Mercenary","the Mercenaress",1500000},
-  {"the Swordmaster","the Swordmistress",1750000},
-  {"the Lieutenant","the Lieutenant",2000000},
-  {"the Champion","the Lady Champion",2250000},
-  {"the Dragoon","the Lady Dragoon",2500000},
-  {"the Cavalier","the Cavalier",2750000},
-  {"the Knight","the Lady Knight",3000000},
-  {"the Immortal Warlord","the Immortal Lady of War",3250000},
+  {"the Swordmaster","the Swordmistress",1850000},
+  {"the Lieutenant","the Lieutenant",2200000},
+  {"the Champion","the Lady Champion",2550000},
+  {"the Dragoon","the Lady Dragoon",2900000},
+  {"the Cavalier","the Cavalier",3250000},
+  {"the Knight","the Lady Knight",3600000},
+  {"the Warlord","the Lady of War",4000000},
   {"the Extirpator","the Queen of Destruction",5000000},
   {"the God of war","the Goddess of war",6000000},
-  {"the Implementator","the Implementress",7000000} }
+  {"the Implementor","the Implementress",7000000} }
 };
 
 const char *item_types[] = {
@@ -395,7 +396,7 @@ const char *wear_bits[] = {
 	"ARMS",
 	"SHIELD",
 	"ABOUT",
-	"WAISTE",
+	"WAIST",
 	"WRIST",
 	"WIELD",
 	"HOLD",
@@ -417,6 +418,7 @@ const char *extra_bits[] = {
 	"ANTI-GOOD",
 	"ANTI-EVIL",
 	"ANTI-NEUTRAL",
+	"SECRET",
 	"\n"
 };
 
@@ -431,6 +433,8 @@ const char *room_bits[] = {
 	"NO_MAGIC",
 	"TUNNEL",
 	"PRIVATE",
+	"ARENA",
+	"SAFE",
 	"\n"
 };
 
@@ -467,15 +471,15 @@ const char *equipment_types[] = {
 	"Worn on arms",
 	"Worn as shield",
 	"Worn about body",
-	"Worn around waiste",
+	"Worn around waist",
 	"Worn around right wrist",
 	"Worn around left wrist",
 	"Wielded",
 	"Held",
 	"\n"
 };
-
-const char *affected_bits[] =
+	
+const char *affected_bits[] = 
 {	"BLIND",
 	"INVISIBLE",
 	"DETECT-EVIL",
@@ -500,7 +504,8 @@ const char *affected_bits[] =
 	"FEAR",
 	"CHARM",
 	"FOLLOW",
-	"SAVED_OBJECTS",
+	"WIMPY",
+	"INFRARED",
 	"\n"
 };
 
@@ -557,6 +562,10 @@ const char *action_bits[] = {
 	"AGGRESSIVE",
 	"STAY-ZONE",
 	"WIMPY",
+	"AGGRESSIVE_EVIL",
+	"AGGRESSIVE_GOOD",
+	"AGGRESSIVE_NEUTRAL",
+ 	"MEMORY",
 	"\n"
 };
 
@@ -567,9 +576,13 @@ const char *player_bits[] = {
 	"COMPACT",
 	"DONTSET",
 	"NOTELL",
-	"NOEMOTE",
-	"",
-	"FREEZE",
+	"THIEF",
+	"KILLER",
+	"TRUSTED",
+	"MULTI-THIEF",
+	"MULTI-WARRIOR",
+	"MULTI-CLERIC",
+	"MULTI-MU",
 	"\n"
 };
 
@@ -682,22 +695,22 @@ const byte backstab_mult[25] = {
 	2,
 	2,
 	2,
-	3,   /* 5 */
+	2,   /* 5 */
+	2,
+	2,
+	3,
+	3,
+	3,   /* 10 */
 	3,
 	3,
 	3,
 	4,
-	4,   /* 10 */
+	4,   /* 15 */
 	4,
 	4,
 	4,
-	5,
-	5,   /* 15 */
-	5,
-	5,
-	5,
-	5,
-	5,   /* 20 */
+	4,
+	4,   /* 20 */
 	5,
 	5,
 	5,
@@ -823,3 +836,4 @@ struct wis_app_type wis_app[26] = {
 	6,
 	6   /* 25 */
 };
+
