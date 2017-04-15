@@ -8,9 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -180,7 +180,7 @@ char *fread_action(FILE * fl, int nr)
 
   fgets(buf, MAX_STRING_LENGTH, fl);
   if (feof(fl)) {
-    fprintf(stderr, "fread_action - unexpected EOF near action #%d", nr);
+    fprintf(stderr, "SYSERR: fread_action: unexpected EOF near action #%d", nr);
     exit(1);
   }
   if (*buf == '#')
@@ -204,7 +204,7 @@ void boot_social_messages(void)
 
   /* open social file */
   if (!(fl = fopen(SOCMESS_FILE, "r"))) {
-    sprintf(buf, "Can't open socials file '%s'", SOCMESS_FILE);
+    sprintf(buf, "SYSERR: can't open socials file '%s'", SOCMESS_FILE);
     perror(buf);
     exit(1);
   }
@@ -225,7 +225,7 @@ void boot_social_messages(void)
       log(buf);
     }
     if (fscanf(fl, " %d %d \n", &hide, &min_pos) != 2) {
-      fprintf(stderr, "Format error in social file near social '%s'\n",
+      fprintf(stderr, "SYSERR: format error in social file near social '%s'\n",
 	      next_soc);
       exit(1);
     }

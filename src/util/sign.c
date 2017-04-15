@@ -1,5 +1,6 @@
 /*
  * sign.c: a program to present text on a TCP port
+ *
  * Author: Jeremy Elson (jelson@cs.jhu.edu)
  *  Usage: sign <port> <filename> or
  *         sign <port> -
@@ -15,18 +16,9 @@
 #define MAX_FILESIZE	8192
 #define LINEBUF_SIZE	128
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <sys/wait.h>
-#include <sys/time.h>
-#include <sys/resource.h>
-#include <string.h>
-#include <unistd.h>
-#include <signal.h>
-#include <netinet/in.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 /*
  * init_socket sets up the mother descriptor - creates the socket, sets
@@ -52,19 +44,10 @@ int init_socket(int port)
     perror("Create socket");
     exit(1);
   }
-
 #if defined(SO_REUSEADDR)
   opt = 1;
   if (setsockopt(s, SOL_SOCKET, SO_REUSEADDR, (char *) &opt, sizeof(opt)) < 0) {
     perror("setsockopt REUSEADDR");
-    exit(1);
-  }
-#endif
-
-#if defined(SO_REUSEPORT)
-  opt = 1;
-  if (setsockopt(s, SOL_SOCKET, SO_REUSEPORT, (char *) &opt, sizeof(opt)) < 0) {
-    perror("setsockopt REUSEPORT");
     exit(1);
   }
 #endif
@@ -75,7 +58,7 @@ int init_socket(int port)
 
     ld.l_onoff = 0;
     ld.l_linger = 0;
-    if (setsockopt(s, SOL_SOCKET, SO_LINGER, &ld, sizeof(ld)) < 0) {
+    if (setsockopt(s, SOL_SOCKET, SO_LINGER, (char *) &ld, sizeof(ld)) < 0) {
       perror("setsockopt LINGER");
       exit(1);
     }
@@ -86,7 +69,7 @@ int init_socket(int port)
   sa.sin_port = htons(port);
   sa.sin_addr.s_addr = htonl(INADDR_ANY);
 
-  if (bind(s, (struct sockaddr *) & sa, sizeof(sa)) < 0) {
+  if (bind(s, (struct sockaddr *) &sa, sizeof(sa)) < 0) {
     perror("bind");
     close(s);
     exit(1);
@@ -116,7 +99,7 @@ char *get_text(char *fname)
   }
 
   while (fgets(tmp, LINEBUF_SIZE, fl)) {
-    if (strlen(tmp) + strlen(t) < MAX_FILESIZE-1)
+    if (strlen(tmp) + strlen(t) < MAX_FILESIZE - 1)
       strcat(t, strcat(tmp, "\r"));
     else {
       fprintf(stderr, "String too long.  Truncated.\n");
@@ -129,10 +112,9 @@ char *get_text(char *fname)
 
 
 /* clean up our zombie kids to avoid defunct processes */
-reap()
+RETSIGTYPE reap(int sig)
 {
-  while (waitpid(-1, NULL, WNOHANG) > 0)
-    ;
+  while (waitpid(-1, NULL, WNOHANG) > 0);
 
   signal(SIGCHLD, reap);
 }
@@ -147,7 +129,6 @@ int main(int argc, char *argv[])
     fprintf(stderr, "usage: %s <portnum> <\"-\" | filename>\n", argv[0]);
     exit(1);
   }
-
   s = init_socket(port);
   len = strlen(txt = get_text(argv[2]));
 
@@ -155,7 +136,6 @@ int main(int argc, char *argv[])
     fprintf(stderr, "Sign started on port %d (pid %d).\n", port, child);
     exit(0);
   }
-
   signal(SIGCHLD, reap);
 
   for (;;) {

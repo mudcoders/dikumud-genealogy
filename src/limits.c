@@ -8,11 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <assert.h>
-#include <string.h>
+#include "conf.h"
+#include "sysdep.h"
+
 #include "structs.h"
 #include "utils.h"
 #include "spells.h"
@@ -20,18 +18,16 @@
 #include "db.h"
 #include "handler.h"
 
-#define READ_TITLE(ch) (GET_SEX(ch) == SEX_MALE ?   \
-	titles[(int)GET_CLASS(ch)][(int)GET_LEVEL(ch)].title_m :  \
-	titles[(int)GET_CLASS(ch)][(int)GET_LEVEL(ch)].title_f)
-
 
 extern struct char_data *character_list;
 extern struct obj_data *object_list;
-extern struct title_type titles[NUM_CLASSES][LVL_IMPL + 1];
 extern struct room_data *world;
 extern int max_exp_gain;
 extern int max_exp_loss;
 
+int level_exp(int class, int level);
+char *title_male(int class, int level);
+char *title_female(int class, int level);
 
 /* When age < 15 return the value p0 */
 /* When age in 15..29 calculate the line between p1 & p2 */
@@ -181,23 +177,27 @@ int move_gain(struct char_data * ch)
       gain += (gain >> 3);	/* Divide by 8 */
       break;
     }
+
+    if (IS_AFFECTED(ch, AFF_POISON))
+      gain >>= 2;
+
+    if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
+      gain >>= 2;
+
+    return gain;
   }
-
-  if (IS_AFFECTED(ch, AFF_POISON))
-    gain >>= 2;
-
-  if ((GET_COND(ch, FULL) == 0) || (GET_COND(ch, THIRST) == 0))
-    gain >>= 2;
-
-  return (gain);
 }
 
 
 
 void set_title(struct char_data * ch, char *title)
 {
-  if (title == NULL)
-    title = READ_TITLE(ch);
+  if (title == NULL) {
+    if (GET_SEX(ch) == SEX_FEMALE)
+      title = title_female(GET_CLASS(ch), GET_LEVEL(ch));
+    else
+      title = title_male(GET_CLASS(ch), GET_LEVEL(ch));
+  }
 
   if (strlen(title) > MAX_TITLE_LENGTH)
     title[MAX_TITLE_LENGTH] = '\0';
@@ -211,10 +211,12 @@ void set_title(struct char_data * ch, char *title)
 
 void check_autowiz(struct char_data * ch)
 {
+#ifndef CIRCLE_UNIX
+  return;
+#else
   char buf[100];
   extern int use_autowiz;
   extern int min_wizlist_lev;
-  pid_t getpid(void);
 
   if (use_autowiz && GET_LEVEL(ch) >= LVL_IMMORT) {
     sprintf(buf, "nice ../bin/autowiz %d %s %d %s %d &", min_wizlist_lev,
@@ -222,6 +224,7 @@ void check_autowiz(struct char_data * ch)
     mudlog("Initiating autowiz.", CMP, LVL_IMMORT, FALSE);
     system(buf);
   }
+#endif /* CIRCLE_UNIX */
 }
 
 
@@ -243,7 +246,7 @@ void gain_exp(struct char_data * ch, int gain)
     gain = MIN(max_exp_gain, gain);	/* put a cap on the max gain per kill */
     GET_EXP(ch) += gain;
     while (GET_LEVEL(ch) < LVL_IMMORT &&
-	GET_EXP(ch) >= titles[(int) GET_CLASS(ch)][GET_LEVEL(ch) + 1].exp) {
+	GET_EXP(ch) >= level_exp(GET_CLASS(ch), GET_LEVEL(ch) + 1)) {
       GET_LEVEL(ch) += 1;
       num_levels++;
       advance_level(ch);
@@ -280,7 +283,7 @@ void gain_exp_regardless(struct char_data * ch, int gain)
 
   if (!IS_NPC(ch)) {
     while (GET_LEVEL(ch) < LVL_IMPL &&
-	GET_EXP(ch) >= titles[(int) GET_CLASS(ch)][GET_LEVEL(ch) + 1].exp) {
+	GET_EXP(ch) >= level_exp(GET_CLASS(ch), GET_LEVEL(ch) + 1)) {
       GET_LEVEL(ch) += 1;
       num_levels++;
       advance_level(ch);
@@ -384,6 +387,11 @@ void point_update(void)
   /* characters */
   for (i = character_list; i; i = next_char) {
     next_char = i->next;
+	
+    gain_condition(i, FULL, -1);
+    gain_condition(i, DRUNK, -1);
+    gain_condition(i, THIRST, -1);
+	
     if (GET_POS(i) >= POS_STUNNED) {
       GET_HIT(i) = MIN(GET_HIT(i) + hit_gain(i), GET_MAX_HIT(i));
       GET_MANA(i) = MIN(GET_MANA(i) + mana_gain(i), GET_MAX_MANA(i));
@@ -401,9 +409,6 @@ void point_update(void)
       if (GET_LEVEL(i) < LVL_GOD)
 	check_idling(i);
     }
-    gain_condition(i, FULL, -1);
-    gain_condition(i, DRUNK, -1);
-    gain_condition(i, THIRST, -1);
   }
 
   /* objects */

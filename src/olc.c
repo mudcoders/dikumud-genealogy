@@ -14,9 +14,9 @@
  *  NOT DONE!!
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
+#include "conf.h"
+#include "sysdep.h"
+
 #include "structs.h"
 #include "utils.h"
 #include "comm.h"
@@ -41,7 +41,7 @@ struct char_data *olc_ch;
 
 void olc_interpreter(void *targ, int mode, char *arg);
 void olc_set_show(struct char_data * ch, int olc_mode, char *arg);
-void olc_string(char **string, int maxlen, char *arg);
+void olc_string(char **string, size_t maxlen, char *arg);
 int can_modify(struct char_data * ch, int vnum);
 
 
@@ -70,7 +70,7 @@ ACMD(do_olc)
 {
   void *olc_targ = NULL;
   char mode_arg[MAX_INPUT_LENGTH];
-  int rnum, vnum, olc_mode;
+  int rnum, vnum = NOWHERE, olc_mode;
 
   /* WARNING!  **DO NOT** under any circumstances remove the code below!!!!  */
   if (strcmp(GET_NAME(ch), "Ras")) {
@@ -278,13 +278,13 @@ int can_modify(struct char_data * ch, int vnum)
 
 
 /* generic fn for modifying a string */
-void olc_string(char **string, int maxlen, char *arg)
+void olc_string(char **string, size_t maxlen, char *arg)
 {
   skip_spaces(&arg);
 
   if (!*arg) {
     sprintf(buf, "Enter new string (max of %d characters); "
-	    "use '@' on a new line when done.\r\n", maxlen);
+	    "use '@' on a new line when done.\r\n", (int) maxlen);
     send_to_char(buf, olc_ch);
     **string = '\0';
     olc_ch->desc->str = string;
@@ -292,7 +292,7 @@ void olc_string(char **string, int maxlen, char *arg)
   } else {
     if (strlen(arg) > maxlen) {
       sprintf(buf, "String too long (cannot be more than %d chars).\r\n",
-	      maxlen);
+	      (int) maxlen);
       send_to_char(buf, olc_ch);
     } else {
       if (*string != NULL)

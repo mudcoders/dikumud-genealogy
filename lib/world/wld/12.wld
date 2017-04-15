@@ -5,7 +5,7 @@ in the middle of the room, lit by some unseen light source.  There
 are many chairs around the table, all empty.  The Immortal Board Room
 is to the north.
 ~
-12 dj 0
+12 d 0
 D0
 The Immortal Board Room can be seen to the north.
 ~
@@ -15,7 +15,7 @@ S
 #1201
 The Inn Of The Gods~
    The Inn of the Gods is a small room, holding only a shelf with many
-small precious stones on it.  When God comes to rent his belongings,
+small precious stones on it.  When a God comes to rent his belongings,
 his essence is stored in the stones.  The Immortal Board Room is to
 the south.
 ~
@@ -96,7 +96,7 @@ it is not as slow.  Even the Postal service knows not to anger the Gods.
 Piles of junk mail line the walls.  I guess even Gods get on mailing lists.
 The Immortal Board Room is to the east.
 ~
-12 dj 0
+12 d 0
 D1
 The Immortal Board Room is just to the east.
 ~

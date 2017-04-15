@@ -8,11 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <assert.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -294,13 +292,15 @@ void affect_remove(struct char_data * ch, struct affected_type * af)
 
 
 /* Call affect_remove with every spell of spelltype "skill" */
-void affect_from_char(struct char_data * ch, sh_int type)
+void affect_from_char(struct char_data * ch, int type)
 {
-  struct affected_type *hjp;
+  struct affected_type *hjp, *next;
 
-  for (hjp = ch->affected; hjp; hjp = hjp->next)
+  for (hjp = ch->affected; hjp; hjp = next) {
+    next = hjp->next;
     if (hjp->type == type)
       affect_remove(ch, hjp);
+  }
 }
 
 
@@ -309,7 +309,7 @@ void affect_from_char(struct char_data * ch, sh_int type)
  * Return if a char is affected by a spell (SPELL_XXX), NULL indicates
  * not affected
  */
-bool affected_by_spell(struct char_data * ch, sh_int type)
+bool affected_by_spell(struct char_data * ch, int type)
 {
   struct affected_type *hjp;
 
@@ -376,9 +376,9 @@ void char_from_room(struct char_data * ch)
 
 
 /* place a character in a room */
-void char_to_room(struct char_data * ch, int room)
+void char_to_room(struct char_data * ch, room_rnum room)
 {
-  if (!ch || room < 0 || room > top_of_world)
+  if (ch == NULL || room < 0 || room > top_of_world)
     log("SYSERR: Illegal value(s) passed to char_to_room");
   else {
     ch->next_in_room = world[room].people;
@@ -594,7 +594,7 @@ struct obj_data *get_obj_in_list_num(int num, struct obj_data * list)
 
 
 /* search the entire world for an object number, and return a pointer  */
-struct obj_data *get_obj_num(int nr)
+struct obj_data *get_obj_num(obj_rnum nr)
 {
   struct obj_data *i;
 
@@ -608,7 +608,7 @@ struct obj_data *get_obj_num(int nr)
 
 
 /* search a room for a char, and return a pointer if found..  */
-struct char_data *get_char_room(char *name, int room)
+struct char_data *get_char_room(char *name, room_rnum room)
 {
   struct char_data *i;
   int j = 0, number;
@@ -630,7 +630,7 @@ struct char_data *get_char_room(char *name, int room)
 
 
 /* search all over the world for a char num, and return a pointer if found */
-struct char_data *get_char_num(int nr)
+struct char_data *get_char_num(mob_rnum nr)
 {
   struct char_data *i;
 
@@ -644,7 +644,7 @@ struct char_data *get_char_num(int nr)
 
 
 /* put an object in a room */
-void obj_to_room(struct obj_data * object, int room)
+void obj_to_room(struct obj_data * object, room_rnum room)
 {
   if (!object || room < 0 || room > top_of_world)
     log("SYSERR: Illegal value(s) passed to obj_to_room");
@@ -885,7 +885,7 @@ void extract_char(struct char_data * ch)
     freed = 1;
   }
 
-  if (ch->desc) {
+  if (!freed && ch->desc != NULL) {
     STATE(ch->desc) = CON_MENU;
     SEND_TO_Q(MENU, ch->desc);
   } else {  /* if a player gets purged from within the game */
@@ -897,9 +897,9 @@ void extract_char(struct char_data * ch)
 
 
 /* ***********************************************************************
-   Here follows high-level versions of some earlier routines, ie functions
-   which incorporate the actual player-data.
-   *********************************************************************** */
+* Here follows high-level versions of some earlier routines, ie functions*
+* which incorporate the actual player-data                               *.
+*********************************************************************** */
 
 
 struct char_data *get_player_vis(struct char_data * ch, char *name, int inroom)
@@ -1174,7 +1174,7 @@ int generic_find(char *arg, int bitvector, struct char_data * ch,
   }
   if (IS_SET(bitvector, FIND_OBJ_EQUIP)) {
     for (found = FALSE, i = 0; i < NUM_WEARS && !found; i++)
-      if (GET_EQ(ch, i) && str_cmp(name, GET_EQ(ch, i)->name) == 0) {
+      if (GET_EQ(ch, i) && isname(name, GET_EQ(ch, i)->name)) {
 	*tar_obj = GET_EQ(ch, i);
 	found = TRUE;
       }

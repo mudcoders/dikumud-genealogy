@@ -8,13 +8,8 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <time.h>
-#include <errno.h>
-#include <sys/time.h>
+#include "conf.h"
+#include "sysdep.h"
 
 #include "structs.h"
 #include "utils.h"
@@ -30,7 +25,6 @@ extern struct room_data *world;
 extern struct descriptor_data *descriptor_list;
 extern struct char_data *character_list;
 extern struct obj_data *object_list;
-extern struct title_type titles[NUM_CLASSES][LVL_IMPL + 1];
 extern struct command_info cmd_info[];
 
 extern char *credits;
@@ -51,7 +45,11 @@ extern char *class_abbrevs[];
 extern char *room_bits[];
 extern char *spells[];
 
+/* extern functions */
 long find_class_bitvector(char arg);
+int level_exp(int class, int level);
+char *title_male(int class, int level);
+char *title_female(int class, int level);
 
 void show_obj_to_char(struct obj_data * object, struct char_data * ch,
 			int mode)
@@ -107,7 +105,7 @@ void show_obj_to_char(struct obj_data * object, struct char_data * ch,
 
 
 void list_obj_to_char(struct obj_data * list, struct char_data * ch, int mode,
-		           bool show)
+		           int show)
 {
   struct obj_data *i;
   bool found;
@@ -162,7 +160,10 @@ void look_at_char(struct char_data * i, struct char_data * ch)
   int j, found;
   struct obj_data *tmp_obj;
 
-  if (i->player.description)
+  if (!ch->desc)
+    return;
+
+   if (i->player.description)
     send_to_char(i->player.description, ch);
   else
     act("You see nothing special about $m.", FALSE, i, 0, ch, TO_VICT);
@@ -306,7 +307,7 @@ void do_auto_exits(struct char_data * ch)
   for (door = 0; door < NUM_OF_DIRS; door++)
     if (EXIT(ch, door) && EXIT(ch, door)->to_room != NOWHERE &&
 	!IS_SET(EXIT(ch, door)->exit_info, EX_CLOSED))
-      sprintf(buf, "%s%c ", buf, LOWER(*dirs[door]));;
+      sprintf(buf, "%s%c ", buf, LOWER(*dirs[door]));
 
   sprintf(buf2, "%s[ Exits: %s]%s\r\n", CCCYN(ch, C_NRM),
 	  *buf ? buf : "None! ", CCNRM(ch, C_NRM));
@@ -355,6 +356,9 @@ ACMD(do_exits)
 
 void look_at_room(struct char_data * ch, int ignore_brief)
 {
+  if (!ch->desc)
+    return;
+
   if (IS_DARK(ch->in_room) && !CAN_SEE_IN_DARK(ch)) {
     send_to_char("It is pitch black...\r\n", ch);
     return;
@@ -453,9 +457,13 @@ void look_in_obj(struct char_data * ch, char *arg)
       if (GET_OBJ_VAL(obj, 1) <= 0)
 	send_to_char("It is empty.\r\n", ch);
       else {
-	amt = ((GET_OBJ_VAL(obj, 1) * 3) / GET_OBJ_VAL(obj, 0));
-	sprintf(buf, "It's %sfull of a %s liquid.\r\n", fullness[amt],
-		color_liquid[GET_OBJ_VAL(obj, 2)]);
+	if (GET_OBJ_VAL(obj,0) <= 0 || GET_OBJ_VAL(obj,1)>GET_OBJ_VAL(obj,0)) {
+	  sprintf(buf, "Its contents seem somewhat murky.\r\n"); /* BUG */
+	} else {
+	  amt = (GET_OBJ_VAL(obj, 1) * 3) / GET_OBJ_VAL(obj, 0);
+	  sprinttype(GET_OBJ_VAL(obj, 2), color_liquid, buf2);
+	  sprintf(buf, "It's %sfull of a %s liquid.\r\n", fullness[amt], buf2);
+	}
 	send_to_char(buf, ch);
       }
     }
@@ -487,6 +495,9 @@ void look_at_target(struct char_data * ch, char *arg)
   struct char_data *found_char = NULL;
   struct obj_data *obj = NULL, *found_obj = NULL;
   char *desc;
+
+  if (!ch->desc)
+    return;
 
   if (!*arg) {
     send_to_char("Look at what?\r\n", ch);
@@ -653,7 +664,7 @@ ACMD(do_score)
   if (!IS_NPC(ch)) {
     if (GET_LEVEL(ch) < LVL_IMMORT)
       sprintf(buf, "%sYou need %d exp to reach your next level.\r\n", buf,
-	(titles[(int) GET_CLASS(ch)][GET_LEVEL(ch) + 1].exp) - GET_EXP(ch));
+	level_exp(GET_CLASS(ch), GET_LEVEL(ch) + 1) - GET_EXP(ch));
 
     playing_time = real_time_passed((time(0) - ch->player.time.logon) +
 				  ch->player.time.played, 0);
@@ -837,8 +848,7 @@ ACMD(do_weather)
 ACMD(do_help)
 {
   extern int top_of_helpt;
-  extern struct help_index_element *help_index;
-  extern FILE *help_fl;
+  extern struct help_index_element *help_table;
   extern char *help;
 
   int chk, bot, top, mid, minlen;
@@ -852,41 +862,34 @@ ACMD(do_help)
     page_string(ch->desc, help, 0);
     return;
   }
-  if (!help_index) {
+  if (!help_table) {
     send_to_char("No help available.\r\n", ch);
     return;
   }
+
   bot = 0;
   top = top_of_helpt;
+  minlen = strlen(argument);
 
   for (;;) {
-    mid = (bot + top) >> 1;
-    minlen = strlen(argument);
+    mid = (bot + top) / 2;
 
-    if (!(chk = strn_cmp(argument, help_index[mid].keyword, minlen))) {
-
-      /* trace backwards to find first matching entry. Thanks Jeff Fink! */
-      while ((mid > 0) &&
-	 (!(chk = strn_cmp(argument, help_index[mid - 1].keyword, minlen))))
-	mid--;
-      fseek(help_fl, help_index[mid].pos, SEEK_SET);
-      *buf2 = '\0';
-      for (;;) {
-	fgets(buf, 128, help_fl);
-	if (*buf == '#')
-	  break;
-	buf[strlen(buf) - 1] = '\0';	/* cleave off the trailing \n */
-	strcat(buf2, strcat(buf, "\r\n"));
-      }
-      page_string(ch->desc, buf2, 1);
-      return;
-    } else if (bot >= top) {
+    if (bot > top) {
       send_to_char("There is no help on that word.\r\n", ch);
       return;
-    } else if (chk > 0)
-      bot = ++mid;
-    else
-      top = --mid;
+    } else if (!(chk = strn_cmp(argument, help_table[mid].keyword, minlen))) {
+      /* trace backwards to find first matching entry. Thanks Jeff Fink! */
+      while ((mid > 0) &&
+	 (!(chk = strn_cmp(argument, help_table[mid - 1].keyword, minlen))))
+	mid--;
+      page_string(ch->desc, help_table[mid].entry, 0);
+      return;
+    } else {
+      if (chk > 0)
+        bot = mid + 1;
+      else
+        top = mid - 1;
+    }
   }
 }
 
@@ -901,7 +904,8 @@ ACMD(do_who)
   struct char_data *tch;
   char name_search[MAX_INPUT_LENGTH];
   char mode;
-  int i, low = 0, high = LVL_IMPL, localwho = 0, questwho = 0;
+  size_t i;
+  int low = 0, high = LVL_IMPL, localwho = 0, questwho = 0;
   int showclass = 0, short_list = 0, outlaws = 0, num_can_see = 0;
   int who_room = 0;
 
@@ -1052,7 +1056,8 @@ ACMD(do_users)
   char name_search[MAX_INPUT_LENGTH], host_search[MAX_INPUT_LENGTH];
   struct char_data *tch;
   struct descriptor_data *d;
-  int low = 0, high = LVL_IMPL, i, num_can_see = 0;
+  size_t i;
+  int low = 0, high = LVL_IMPL, num_can_see = 0;
   int showclass = 0, outlaws = 0, playing = 0, deadweight = 0;
 
   host_search[0] = name_search[0] = '\0';
@@ -1376,14 +1381,14 @@ ACMD(do_levels)
 
   for (i = 1; i < LVL_IMMORT; i++) {
     sprintf(buf + strlen(buf), "[%2d] %8d-%-8d : ", i,
-	    titles[(int) GET_CLASS(ch)][i].exp, titles[(int) GET_CLASS(ch)][i + 1].exp);
+	    level_exp(GET_CLASS(ch), i), level_exp(GET_CLASS(ch), i+1) - 1);
     switch (GET_SEX(ch)) {
     case SEX_MALE:
     case SEX_NEUTRAL:
-      strcat(buf, titles[(int) GET_CLASS(ch)][i].title_m);
+      strcat(buf, title_male(GET_CLASS(ch), i));
       break;
     case SEX_FEMALE:
-      strcat(buf, titles[(int) GET_CLASS(ch)][i].title_f);
+      strcat(buf, title_female(GET_CLASS(ch), i));
       break;
     default:
       send_to_char("Oh dear.  You seem to be sexless.\r\n", ch);
@@ -1391,7 +1396,9 @@ ACMD(do_levels)
     }
     strcat(buf, "\r\n");
   }
-  send_to_char(buf, ch);
+  sprintf(buf + strlen(buf), "[%2d] %8d          : Immortality\r\n",
+	  LVL_IMMORT, level_exp(GET_CLASS(ch), LVL_IMMORT));
+  page_string(ch->desc, buf, 1);
 }
 
 

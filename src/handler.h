@@ -13,8 +13,8 @@ void	affect_total(struct char_data *ch);
 void	affect_modify(struct char_data *ch, byte loc, sbyte mod, long bitv, bool add);
 void	affect_to_char(struct char_data *ch, struct affected_type *af);
 void	affect_remove(struct char_data *ch, struct affected_type *af);
-void	affect_from_char(struct char_data *ch, sh_int type);
-bool	affected_by_spell(struct char_data *ch, sh_int type);
+void	affect_from_char(struct char_data *ch, int type);
+bool	affected_by_spell(struct char_data *ch, int type);
 void	affect_join(struct char_data *ch, struct affected_type *af,
 bool add_dur, bool avg_dur, bool add_mod, bool avg_mod);
 
@@ -37,9 +37,9 @@ struct obj_data *unequip_char(struct char_data *ch, int pos);
 struct obj_data *get_obj_in_list(char *name, struct obj_data *list);
 struct obj_data *get_obj_in_list_num(int num, struct obj_data *list);
 struct obj_data *get_obj(char *name);
-struct obj_data *get_obj_num(int nr);
+struct obj_data *get_obj_num(obj_rnum nr);
 
-void	obj_to_room(struct obj_data *object, int room);
+void	obj_to_room(struct obj_data *object, room_rnum room);
 void	obj_from_room(struct obj_data *object);
 void	obj_to_obj(struct obj_data *obj, struct obj_data *obj_to);
 void	obj_from_obj(struct obj_data *obj);
@@ -49,12 +49,12 @@ void	extract_obj(struct obj_data *obj);
 
 /* ******* characters ********* */
 
-struct char_data *get_char_room(char *name, int room);
-struct char_data *get_char_num(int nr);
+struct char_data *get_char_room(char *name, room_rnum room);
+struct char_data *get_char_num(mob_rnum nr);
 struct char_data *get_char(char *name);
 
 void	char_from_room(struct char_data *ch);
-void	char_to_room(struct char_data *ch, int room);
+void	char_to_room(struct char_data *ch, room_rnum room);
 void	extract_char(struct char_data *ch);
 
 /* find if character can see */

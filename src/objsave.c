@@ -8,12 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <string.h>
-#include <sys/time.h>
-#include <ctype.h>
-#include <unistd.h>
-#include <errno.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "comm.h"
@@ -85,7 +82,7 @@ int Obj_to_store(struct obj_data * obj, FILE * fl)
     object.affected[j] = obj->affected[j];
 
   if (fwrite(&object, sizeof(struct obj_file_elem), 1, fl) < 1) {
-    perror("Error writing object in Obj_to_store");
+    perror("SYSERR: error writing object in Obj_to_store");
     return 0;
   }
   return 1;
@@ -275,7 +272,7 @@ void Crash_listrent(struct char_data * ch, char *name)
 int Crash_write_rentcode(struct char_data * ch, FILE * fl, struct rent_info * rent)
 {
   if (fwrite(rent, sizeof(struct rent_info), 1, fl) < 1) {
-    perror("Writing rent code.");
+    perror("SYSERR: writing rent code");
     return 0;
   }
   return 1;
@@ -359,7 +356,7 @@ int Crash_load(struct char_data * ch)
   while (!feof(fl)) {
     fread(&object, sizeof(struct obj_file_elem), 1, fl);
     if (ferror(fl)) {
-      perror("Reading crash file: Crash_load.");
+      perror("SYSERR: Reading crash file: Crash_load");
       fclose(fl);
       return 1;
     }
@@ -835,8 +832,7 @@ int gen_receptionist(struct char_data * ch, struct char_data * recep,
     act("$n helps $N into $S private chamber.", FALSE, recep, 0, ch, TO_NOTVICT);
     save_room = ch->in_room;
     extract_char(ch);
-    ch->in_room = world[save_room].number;
-    save_char(ch, ch->in_room);
+    save_char(ch, save_room);
   } else {
     Crash_offer_rent(ch, recep, TRUE, mode);
     act("$N gives $n an offer.", FALSE, ch, 0, recep, TO_ROOM);

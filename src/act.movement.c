@@ -8,8 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <string.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -119,7 +120,7 @@ int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
     }
   }
   if (IS_SET(ROOM_FLAGS(EXIT(ch, dir)->to_room), ROOM_TUNNEL) &&
-      world[EXIT(ch, dir)->to_room].people != NULL) {
+      num_pc_in_room(&(world[EXIT(ch, dir)->to_room])) > 1) {
     send_to_char("There isn't enough room there for more than one person!\r\n", ch);
     return 0;
   }
@@ -175,7 +176,7 @@ int perform_move(struct char_data *ch, int dir, int need_specials_check)
 
     for (k = ch->followers; k; k = next) {
       next = k->next;
-      if ((was_in == k->follower->in_room) &&
+      if ((k->follower->in_room == was_in) &&
 	  (GET_POS(k->follower) >= POS_STANDING)) {
 	act("You follow $N.\r\n", FALSE, k->follower, 0, ch, TO_CHAR);
 	perform_move(k->follower, dir, 1);
@@ -291,7 +292,7 @@ const int flags_door[] =
 
 void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd)
 {
-  int other_room;
+  int other_room = 0;
   struct room_direction_data *back = 0;
 
   sprintf(buf, "$n %ss ", cmd_door[scmd]);
@@ -331,11 +332,14 @@ void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd)
     act(buf, FALSE, ch, obj, obj ? 0 : EXIT(ch, door)->keyword, TO_ROOM);
 
   /* Notify the other room */
-  if (((scmd == SCMD_OPEN) || (scmd == SCMD_CLOSE)) && (back)) {
+  if ((scmd == SCMD_OPEN || scmd == SCMD_CLOSE) && back) {
     sprintf(buf, "The %s is %s%s from the other side.\r\n",
 	 (back->keyword ? fname(back->keyword) : "door"), cmd_door[scmd],
 	    (scmd == SCMD_CLOSE) ? "d" : "ed");
-    send_to_room(buf, EXIT(ch, door)->to_room);
+    if (world[EXIT(ch, door)->to_room].people) {
+      act(buf, FALSE, world[EXIT(ch, door)->to_room].people, 0, 0, TO_ROOM);
+      act(buf, FALSE, world[EXIT(ch, door)->to_room].people, 0, 0, TO_CHAR);
+    }
   }
 }
 
@@ -350,7 +354,7 @@ int ok_pick(struct char_data *ch, int keynum, int pickproof, int scmd)
     if (keynum < 0)
       send_to_char("Odd - you can't seem to find a keyhole.\r\n", ch);
     else if (pickproof)
-      send_to_char("It resists your attempts at picking it.\r\n", ch);
+      send_to_char("It resists your attempts to pick it.\r\n", ch);
     else if (percent > GET_SKILL(ch, SKILL_PICK_LOCK))
       send_to_char("You failed to pick the lock.\r\n", ch);
     else
@@ -384,7 +388,7 @@ int ok_pick(struct char_data *ch, int keynum, int pickproof, int scmd)
 
 ACMD(do_gen_door)
 {
-  int door, keynum;
+  int door = -1, keynum;
   char type[MAX_INPUT_LENGTH], dir[MAX_INPUT_LENGTH];
   struct obj_data *obj = NULL;
   struct char_data *victim = NULL;
@@ -611,7 +615,7 @@ ACMD(do_wake)
   one_argument(argument, arg);
   if (*arg) {
     if (GET_POS(ch) == POS_SLEEPING)
-      send_to_char("You can't wake people up if you're asleep yourself!\r\n", ch);
+      send_to_char("Maybe you should wake yourself up first.\r\n", ch);
     else if ((vict = get_char_room_vis(ch, arg)) == NULL)
       send_to_char(NOPERSON, ch);
     else if (vict == ch)
@@ -620,6 +624,8 @@ ACMD(do_wake)
       act("$E is already awake.", FALSE, ch, 0, vict, TO_CHAR);
     else if (IS_AFFECTED(vict, AFF_SLEEP))
       act("You can't wake $M up!", FALSE, ch, 0, vict, TO_CHAR);
+    else if (GET_POS(vict) < POS_SLEEPING)
+      act("$E's in pretty bad shape!", FALSE, ch, 0, vict, TO_CHAR);
     else {
       act("You wake $M up.", FALSE, ch, 0, vict, TO_CHAR);
       act("You are awakened by $n.", FALSE, ch, 0, vict, TO_VICT | TO_SLEEP);

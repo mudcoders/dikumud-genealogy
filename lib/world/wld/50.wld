@@ -52,8 +52,8 @@ D3
 0 -1 5002
 S
 #5004
-A Long Tunnel~
-   The tunnel branches off to the south.
+A Tunnel Intersection~
+   The tunnel branches off to the north and south.
 ~
 50 ad 7
 D0
@@ -97,16 +97,17 @@ D3
 ~
 ~
 0 -1 5004
-D4
-~
-~
-0 -1 5016
 S
 #5006
 A Long Narrow Tunnel~
-   The tunnel rises sharply to the east.
+   The tunnel rises sharply to the east.  Another narrow tunnel
+leads away to the north.
 ~
 50 adi 5
+D0
+~
+~
+0 -1 5016
 D1
 ~
 ~
@@ -185,7 +186,8 @@ S
 #5011
 A Giant Cave~
    This cavern overwhelms you.  The walls and ceiling seem miles away.
-Bones of previous adventurers lie strewn on the cavern floor.
+Bones of previous adventurers lie strewn on the cavern floor.  There is
+a passage that spirals downwards in the northeast corner of the cavern.
 ~
 50 ad 5
 D4
@@ -193,6 +195,7 @@ D4
 ~
 0 -1 5010
 D5
+The passageway spirals down into the gloom.
 ~
 ~
 0 -1 5100
@@ -245,7 +248,7 @@ An Underground Pool~
    You are wading in a knee deep pool of lime-water.
 ~
 50 ad 6
-D2
+D1
 ~
 ~
 0 -1 5016
@@ -256,19 +259,19 @@ D3
 S
 #5016
 A Damp Hallway~
-   The walls of the tunnel are extremely damp here.  You hear the faint 
-sound of running water to the south.
+   The walls of the tunnel are extremely damp here.  The tunnel
+leads sharply upwards to the south as it starts to get narrow.
 ~
 50 ad 5
-D0
+D2
+~
+~
+0 -1 5006
+D3
 You hear drops of water.
 ~
 ~
 0 -1 5015
-D2
-~
-~
-0 -1 5005
 S
 #5017
 A Narrow Crawlway~
@@ -358,18 +361,18 @@ A Sloping Passage~
    You follow a path sloping down from the fungus temple.
 ~
 50 ad 5
+D0
+~
+~
+0 -1 5023
 D2
 ~
 ~
 0 -1 5021
-D5
-~
-~
-0 -1 5023
 S
 #5023
 A Sloping Passage~
-   You are on a path that gently slops up from the underground pool.
+   You are on a path that gently slopes up from the underground pool.
 ~
 50 ad 5
 D0
@@ -377,7 +380,7 @@ You hear sounds of trickling water.
 ~
 ~
 0 -1 5005
-D4
+D2
 ~
 ~
 0 -1 5022
@@ -775,15 +778,16 @@ Sand as far as the eye can see.
 S
 #5039
 The Great Eastern Desert~
-   A vast desert stretches for miles, the sands constantly shifting around  
-you.  A pyramid lies to the south.
+   A vast desert stretches for miles, the sands constantly shifting
+around you.  A pyramid lies to the south.  The gates of a city lie a
+short distance off to the north.
 ~
 50 0 2
 D0
-Sand as far as the eye can see.
+Some city gates stand off to the north.
 ~
 ~
-0 -1 5046
+0 -1 5411
 D1
 Sand as far as the eye can see.
 ~
@@ -1344,6 +1348,10 @@ breaks and you fall...
                                     ... to your death on the rocks below.
 ~
 50 bd 5
+D3
+~
+~
+0 -1 5053
 S
 #5063
 The Wind-Swept Ledge~
@@ -1473,3 +1481,4 @@ D4
 0 -1 5009
 S
 $
+

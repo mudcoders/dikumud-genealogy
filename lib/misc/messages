@@ -121,7 +121,6 @@ $N gracefully levitates as the earth shifts beneath $S feet under $M.
 You gracefully levitate as the earth shifts underneath you.
 $N gracefully levitates as the earth shifts beneath $S feet under $M.
 
-
 * Energy Drain
 M
  25
@@ -154,14 +153,30 @@ How shameful to throw fireballs at a GOD!!!
 You choose to ignore $n's shameful attempt to fireball you.
 $n's fireball is tactfully ignored by $N.
 
+* Harm
+M
+  27
+As you finish the incantation of the spell, $N falls dead due to the amount of harm $E takes!
+You feel light headed as $n completes a spell which causes you so much harm that you just snuff it.
+As $n touches $M, $N takes the full brunt of a harm spell and collapses.  Dead.
+Swinging out at $N, you miss and your harm spell goes off harmlessly.
+You duck out of the way of $n and $s harm spell misses you.
+Showing remarkable dexterity, $N avoids $n's reach and subsequent harm spell.
+You watch the pained expression on $N's face as you hit $M with your harm spell.
+You grimace in pain as $n's harm spell strikes you.
+A large grin crosses $n's face as $s harm spell causes $N grievous pain.
+Harm a god?  Are you serious?  Of course $N avoids is casually.
+$n tries to harm you.  Poor sod.
+What a buffoon!  $n looks somewhat perturbed as $N ignores the recently cast harm spell.
+
 * Lightning Bolt
 M
  30
 Your lightning bolt shatters $N to pieces!
 You feel enlightened by the lightning bolt $n sends, and then all is darkness -- R.I.P.!
-$N recieves the full blast of a lightning bolt from $n ... and is no more.
+$N recieves the full blast of a lightning bolt from $n... and is no more.
 Your aim goes from bad to worse, and your lightning bolt misses $N!
-$n has bad aim and the lightning bolt misses you!
+$n has bad aim and $s lightning bolt misses you!
 $n tries to hit $N with a lightning bolt but only hits the sky!
 The lightning bolt hits $N with full impact!
 YOU'RE HIT!  A lightning bolt from $n has reached its goal!
@@ -342,7 +357,7 @@ $N ducks under $n's fist as $e takes a swing at $M.
 #
 #
 #
-It's not polite to swing at a GOD!!
+It isn't polite to swing at a GOD!
 $n tries to take a swing at you -- how pathetic!
 $n pathetically tries to take a swing at $N - ha!
 
@@ -351,7 +366,7 @@ M
  301
 You drive a sting directly into the heart of $N, killing $M!
 With a powerful driving force, $n's sting tears right through your chest causing instant death!
-$n drives $s whip through $N's chest, killing $M!
+$n drives $s sting through $N's chest, killing $M!
 You miss $N with your stinging blow!
 $n drives $s stinging blow at you, barely missing!
 You watch in fright as $n stings at $N, missing by mere inches!
@@ -361,6 +376,20 @@ You watch in fright as $n stings at $N, missing by mere inches!
 Sting -- God... What are you thinking?
 $n tries to sting you, somewhat comical to tell the truth.
 $n stings at $N, then looks horrified as $N grins at $m!
+M
+ 301
+You violently sting $N repeatedly, causing $S death!
+You die a horrid death as $n stings you repeatedly all over your body!
+As $n stings $N all over the place, $N falls lifeless to the ground.
+You sting towards $N, but miss $M!
+$n misses you with $s sting!
+You watch on as $n stings at $N, but misses!
+#
+#
+#
+You sting at $N, and all that happens is that $E slaps himself as if a mosquito bit $M.
+Was that a bee you just felt?  Oh.. wait, it was just $n.
+$N begins to slap at $Mself as $n tries to sting $M.
 
 * Whip
 M
@@ -375,7 +404,7 @@ $n cracks $s whip at $N but only hits $mself in the face!
 #
 #
 You'd better stop before $N whips your butt.
-Pathetic little $n is trying to whip you.. how cute.
+Pathetic little $n is trying to whip you... how cute.
 $n tries to whip $N - isn't he cute?
 M
  302
@@ -427,7 +456,7 @@ $N cries out in agony as you slash $S ribcage open!
 Your ribcage is slashed open by $n -- R.I.P.!
 $n nicely dissects $N's ribcage with a single slash!
 You try to slash $N but miss by a mile.
-$n's slash misses you by mile.
+$n's slash misses you by a mile.
 $n's slash at $N misses $M by a mile.
 #
 #
@@ -447,8 +476,8 @@ $n cools $N with the breeze of $s missed slash.
 #
 #
 Yeah, right.
-$n tries to slash you.. yeah, right.
-$n tries to slash $N.. yeah, right.
+$n tries to slash you... yeah, right.
+$n tries to slash $N... yeah, right.
 
 * Bite
 M
@@ -462,7 +491,7 @@ $n fiercly snaps $s teeth at $N but misses the mark.
 #
 #
 #
-How dare you try to bite a GOD!!!
+You attempt to bite $N.  Ouch!  That hurt!
 $n tries to bite you, how funny.
 $n tries to bite $N - funny, huh?
 M
@@ -553,8 +582,22 @@ $n looks perturbed as $s pound misses $N!
 #
 #
 You pound $N!  And $E thanks you for it?  *boggle*
-$n gives you a pound.  Wonder what the exchange rate is....
+$n gives you a pound.  Wonder what the exchange rate is...
 $n starts giving pounds to $N who begins to count the money.
+M
+ 307
+You pound on $N with reckless abandon when you realize that $E is dead.
+With $s reckless pounding attacks, you succomb to death.
+$N falls under $n's pounding blows, yet $n continues $s attack!
+You hear the air whistle as you split the air with your pound!
+$n pounds in your direction, causing a whistling sound!
+With a loud whistle through the air, $n misses $s pounding attack upon $N!
+#
+#
+#
+Who are you trying to kid?
+Hmmm... I think you missed the joke that $n was trying to tell you.
+$N looks somewhat perplexed as $n tries to pound him!
 
 * Claw
 M
@@ -644,7 +687,7 @@ $n lunges at $N but can't pierce $M.
 #
 #
 #
-The great $N sends you a piercing look, OOPS!!
+The great $N sends you a piercing look, OOPS!
 You return $n's pierce with a piercing look, hmmm...
 $N returns $n's pierce with a piercing look, hmmm...
 
@@ -661,7 +704,7 @@ $n misses $N with $s wild blast!  What luck $N seems to have!
 #
 #
 Are you kidding?  What do you expect your feeble blast to do to $N?
-Heh.  $n tried to blast you.  Good thing you have blastproof armor.
+Heh.  $n tried to blast you.  Good thing you have blastproof armour.
 $n looks afraid of the consequences as $e tries fruitlessly to blast $N.
 
 * Punch
@@ -744,7 +787,7 @@ Suffer god room -- should never see.
 M
  33
 #
-Poison burns intensely in your veins.. you shiver.. you die.
+Poison burns intensely in your veins... you shiver... you die.
 $N has a few cramps and dies, suffering.
 #
 suffer miss victim - should never see.
@@ -764,80 +807,80 @@ $N has somehow become poisioned.
 * Fire Breath
 M
  202
-$N killed.
+$N is killed by fire breath.
 You are burned to ash, as $n breathes on you.
 $n makes $N to ash.
-$N missed.
+$N is missed by fire breath.
 $n breathes fire at you, but you avoids it.
 $N avoids $n's firebreath.
-$N hit.
+$N is hit by fire breath.
 $n burns you.
 $N is partly made ash, as $n breaths fire.
-$N immortal.
+$N, being immortal, is just warmed.
 $n warms you.
 $n warms $N.
 
 * Gas Breath
 M
  203
-$N killed.
+$N is killed by gas breath.
 You die from the gas $n breathes on you.
 $n kills $N with a gas breath.
-$N missed.
+$N is missed by gas breath.
 $n breathes gas at you, but it has no effect.
 $N avoids $n's gas.
-$N hit.
+$N is hit by gas breath.
 $n gasses you.
 $N is gassed by $n.
-$N immortal.
+$N is immortal, so can't be gassed.
 $n wants to gas you, but can't.
 $n tries to gas $N, but can't.
 
 * Frost Breath
 M
  204
-$N killed.
-You are frosen to ice, as $n breathes on you.
+$N is killed by frost breath.
+You are frozen to ice, as $n breathes on you.
 $n makes $N to ice.
-$N missed.
-$n breathes frost at you, but you avoids it.
-$N avoids $n's frostbreath.
-$N hit.
-$n frezes you.
-$N is partly made ice, as $n breaths frost.
-$N immortal.
-$n supplies you with airconditioning.
-$n supplies $N with airconditioning.
+$N is missed by frost breath.
+$n breathes frost at you, but you avoid it.
+$N avoids $n's frost breath.
+$N is hit by frost breath.
+$n freezes you with $s breath.
+$N is partly made ice, as $n breathes frost.
+$N is immortal, and thus avoids your frost breath.
+$n supplies you with air conditioning.
+$n supplies $N with air conditioning.
 
 * Acid Breath
 M
  205
-$N killed.
+$N is killed by your acid breath.
 You are corroded to nothing, as $n breathes on you.
 $n corrodes $N to nothing.
-$N missed.
+$N is missed by acid.
 $n breathes acid at you, but you avoids it.
 $N avoids $n's acidbreath.
-$N hit.
+$N is hit by acid.
 $n corrodes you.
 $N is corroded as $n breaths acid.
-$N immortal.
+$N is immortal, and thus is immune to acid.
 $n helps you clean your hands with a little acid.
 $n helps $N cleaning.
 
 * Lightning Breath
 M
  206
-$N killed.
+$N is killed by your lightning breath.
 You are killed by $n's lightning breath.
 $n killes $N with a lightning breath.
-$N missed.
+$N is missed by your lightning breath.
 $n breathes lightning at you, but you avoids it.
 $N avoids $n's lightning breath.
-$N hit.
+$N is hit by your lightning breath.
 $n hits you with a lightning breath.
 $N is hit by $n's lightning breath.
-$N immortal.
+$N is immortal and immune to lightning breath.
 $n tries to breath lightning upon you.
 $n tries to breath lightning upon $N.
 

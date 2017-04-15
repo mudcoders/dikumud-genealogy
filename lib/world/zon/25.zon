@@ -190,6 +190,7 @@ P 1 2504 200 2501               Traveller's Bread
 O 0 2502 1 2520         Meat Locker
 P 1 2505 1 2502                 Chunk Of Meat
 P 1 2506 1 2502                 Finger Sandwich
+R 0 2520 2503
 O 0 2503 3 2520         Spice Rack
 O 0 2507 2 2533         Broom
 O 0 2507 2 2533         Broom

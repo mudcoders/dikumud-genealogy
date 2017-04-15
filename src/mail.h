@@ -69,10 +69,10 @@ struct header_data_type {
 
 /* size of the data part of a header block */
 #define HEADER_BLOCK_DATASIZE \
-	(BLOCK_SIZE - sizeof(long) - sizeof(struct header_data_type) - 1)
+	(BLOCK_SIZE - sizeof(long) - sizeof(struct header_data_type) - sizeof(char))
 
 /* size of the data part of a data block */
-#define DATA_BLOCK_DATASIZE (BLOCK_SIZE - sizeof(long) - 1)
+#define DATA_BLOCK_DATASIZE (BLOCK_SIZE - sizeof(long) - sizeof(char))
 
 /* note that an extra space is allowed in all string fields for the
    terminating null character.  */

@@ -1,7 +1,17 @@
-
 CircleMUD 3.00 README file
 
 Welcome to CircleMUD 3.0!  I hope you enjoy your stay.
+
+More information about CircleMUD can be found at the CircleMUD Home Page:
+http://www.circlemud.org.  That site has the latest source distributions,
+code contributions, areas, and documentation (online in HTML form, and
+downloadable in ASCII or Postscript.)  CircleMUD's official FTP site is
+ftp://ftp.circlemud.org.
+
+There is a mailing list for CircleMUD administrators and coders available.
+To subscribe, write mail to listserv@post.queensu.ca with a message
+body of "subscribe circle".  Write to listserv@post.queensu.ca to send
+mail to the list.
 
 Use of this software in any capacity implies that you have read, understood,
 and agreed to abide by the terms and conditions set down by the CircleMUD
@@ -13,105 +23,243 @@ it if you would not simply remove it and all references to the word "Circle"
 everywhere in the MUD.
 
 Jeremy Elson
-jelson@jhu.edu
+jelson@circlemud.org
 
 ----------------------------------------------------------------------------
 
-CircleMUD for UNIX QuickStart Guide
+CircleMUD QuickStart Guide
 
-If you are an experienced MUD implementor and you know what you're doing,
-you can probably get up and running with this README file.  Be aware that
-there's a wealth of other information in the doc directory, though, and
+If you are an experienced MUD player and you know your way around a compiler,
+you can probably get up and running with this README file alone.  Be aware
+that there's a wealth of other information in the doc directory, though, and
 if you have problems or questions, that's the first place you should look
 for answers.
 
+As of Version 3.0, the basic CircleMUD source distribution compiles under
+most variants of UNIX including SunOS 4.x, Solaris 2.x, IRIX 4.x/5.x,
+Linux 1.x/2.x (including MkLinux for the Power Mac), Ultrix 4.x, HP/UX,
+and others.  It also has been ported to compile under Windows 95/NT, OS/2,
+and the Amiga; see the files README.WIN, README.OS2, and README.AMIGA,
+respectively.
 
-1)  Make sure you have the very latest version of CircleMUD.  The latest
-    version can always be found at the following anonymous FTP sites:
-        ftp.cs.jhu.edu:/pub/CircleMUD
-        cambot.res.jhu.edu:/pub/CircleMUD
+The Version 3.0 source currently does NOT compile under DOS, Windows 3.x,
+Windows for Workgroups, or Mac System 7.  There are currently no binary
+distributions available except a very old Amiga binary of CircleMUD 2.20.
+If you are interested in creating a new port to a platforms, see the file
+PORTING for some tips.
 
-2)  In the src directory, check the beginning of the Makefile for
-    instructions specific to your operating system.
+For a small, private MUD, or a MUD used only for testing and development,
+about 10 megs of disk space and 16 megs of memory should be sufficient.
+For large, public MUDs with a large player base, 30 megs to 50 megs of
+disk space and at least 32 megs of memory are recommended.  Free memory
+is much more important than CPU speed; CircleMUD uses virtually no CPU
+time.
 
-3)  Also in the src directory, type 'make' to build the CircleMUD server
-    alone, or 'make all' to build the server with all the utilities.
 
-4)  Back in Circle's root directory, type 'autorun &' to start the server
-    running in the background.  A file called 'syslog' will start growing
-    that contains Circle's log messages (and boot messages).
+QuickStart instructions:
 
-5)  Wait until the line 'No connections.  Going to sleep.' appears in the
+1)  Download the latest version of CircleMUD.  You can always find the latest
+    version at the following anonymous FTP sites:
+
+        ftp.circlemud.org:/pub/CircleMUD
+        ftp2.circlemud.org:/pub/CircleMUD
+
+    You can also find information at the WWW site:
+
+        http://www.circlemud.org/
+
+    The archive is offered in two formats, one which ends in .tar.gz and
+    one which ends in .zip.  The files have the same contents but have
+    been compressed using different programs.  You should use the .tar.gz
+    version if you're using UNIX; use the .zip version if you're using
+    Windows 95 or OS/2.
+
+
+2)  Unpack the archive.  If you have the .tar.gz version, uncompress it using
+    gzip (GNU unzip) and the tar archiver.  (Both of these utilities can be
+    downloaded from ftp.gnu.ai.mit.edu:/pub/gnu if you don't have them.)
+    To unpack the archive on a UNIX system, type:
+
+        gzip -dc circle30xxxx.tar.gz | tar xvf -
+
+    If you have the .zip version, make sure to use an UNZIP program capable of
+    handling long filenames and which preserves the original directory
+    structure of the archive (PKUNZIP 2.04 does NOT do either of these things
+    by default.)  The best unzip program is the one made by the Info-Zip
+    team; it is compatible with all UNIX variants, Windows, OS/2, the Amiga,
+    and every other computer on the planet.  For more information, see the URL
+    http://quest.jpl.nasa.gov/info-zip/UnZip.html.  If you have Windows 95,
+    another good choice is WinZip (http://www.winzip.com/).
+
+
+The rest of the instructions apply *only* to UNIX systems.  If you are using
+a non-UNIX platform such as Windows or OS/2, stop here and read the README
+file specific to your operating system instead (e.g. README.WIN, README.OS2,
+etc.)
+
+
+3)  Configure CircleMUD for your system.  Circle must be configured using
+    the 'configure' program which attempts to guess correct values for
+    various system-dependent variables used during compilation.  It uses
+    those values to create a 'Makefile' and a header file called 'conf.h'.
+
+    From Circle's root directory, type
+
+        ./configure
+
+    If you're using 'csh' on an old version of System V, csh might try to
+    execute 'configure' itself, giving you a message like "Permission denied"
+    when you try to run "./configure".  If so, type "sh ./configure" instead.
+
+    'configure' can take several minutes if you're using a slow computer.
+
+    'configure' will attempt to use the 'gcc' compiler if it exists; if not,
+    it will try 'cc'.  If you want to use a different compiler, set the
+    'CC' environment variable to the name of the compiler you wish to use.
+
+    For example, if your shell is csh or tcsh:
+
+	setenv CC xlc
+	./configure
+
+    If you're using sh or bash:
+
+	CC=xlc ./configure
+
+    This will tell 'configure' to use the 'xlc' compiler instead of 'gcc'.
+
+
+4)  Build the CircleMUD server.  This must be done from the 'src' directory.
+    Type:
+   
+        cd src; make all
+
+    This will build CircleMUD proper as well as its 10 or so ancillary
+    utilities, which can take anywhere from 5 minutes to an hour depending
+    on the speed of your computer.
+
+    Note that in the future, when you need to recompile Circle as you make
+    changes to the code, it is NOT necessary to run 'configure' again (it
+    should only be run once, after the first time you unpack Circle from
+    its .tar file).  If you move the source code to a different computer,
+    you should reconfigure it by deleting the file 'config.cache' and
+    running 'configure' again.
+
+    The first time you try to compile Circle, you will be asked to read the
+    CircleMUD license.  Please read it!
+
+
+5)  Go back to Circle's root directory (by typing "cd ..") and run the
+    CircleMUD server.  The easiest way to do this the first time is
+    to use the 'autorun' script, which can be run in the background by
+    typing:
+
+        ./autorun &
+
+    Make sure to do this in Circle's root directory, not the src directory
+    that you used for the previous step.  A file called 'syslog' will start
+    growing in the same directory that contains Circle's log messages.
+
+
+6)  Wait until the line 'No connections.  Going to sleep.' appears in the
     syslog.  This indicates that the server is ready and waiting for
-    connections.  It shouldn't take more than a few moments for the MUD
+    connections.  It shouldn't take more than about 30 seconds for the MUD
     to reach this state, though performance will vary depending on how fast
     your computer is.
 
-6)  Type 'telnet localhost 4000' to connect.  The first person to log in
-    will be made an implementor (level 34) with all powers.
+    If a file appears called 'syslog.CRASH', the MUD has terminated
+    (probably abnormally).  Check the contents of syslog.CRASH to see
+    what error was encountered.
 
-7)  Make sure to read the CircleMUD license before doing anything else.
+
+7)  Type 'telnet localhost 4000' to connect.  The first person to log in
+    will be made an implementor (level 34) with all powers.
 
 
 Other Documentation
 -------------------
-If the 7-step-guide above isn't enough to get you running, there's a lot
+If the 7-step guide above isn't enough to get you running, there's a lot
 more information available.  All documentation (other than this file) is
-in the /doc directory.
+in the doc directory and available on-line at http://www.circlemud.org.
 
-The README file in the /doc directory describes each documentation file
-in detail, but there are several main files which should be of interest.
-For the administrative side of mudding, running.doc gives an overall
-description of how Circle works, how to get it to compile for the first
-time and get it running, and hints on maintenance and day-to-day
-administration.  For the coding side, coding.doc dives into Circle's
-code and describes how to add new commands, spells, skills, socials,
-classes, and whatnot.  For the builders in your group, building.doc
-describes how to create new worlds, including rooms, objects, mobiles,
-and shops.
+The README file in the doc directory describes each documentation file
+in detail, but there are several main files which should be of interest:
+
+"The CircleMUD Administrator's Guide" (admin.txt, admin.ps)
+    A good place to start after reading this README file, admin.txt gives
+an overall description of how Circle works, how to get it to compile and
+run for the first time, information about customizing and configuration
+options and command-line arguments, and tips on maintenance and day-to-day
+MUD administration. 
+
+"The CircleMUD Builder's Manual" (building.txt, building.ps)
+    For the builders in your group, this documents the world-file format 
+and describes how to create new rooms, objects, and monsters.  Also, it 
+describes how to add new areas to the MUD and gives some tips about game 
+balance and world-file debugging.
+
+"The CircleMUD Coder's Manual" (coding.txt, coding.ps)
+    For the coders in your group, a technical reference describing some of
+the more basic coding tasks such as how to add new commands, spells,
+skills, socials, and classes.  Note that it assumes the reader already has
+an excellent knowledge of C; the manual is not a C tutorial.
+
+"The CircleMUD SYSERR List" (syserr.txt, syserr.ps)
+    A comprehensive list of all the possible SYSERR messages CircleMUD 
+can generate, and a description of what can cause each problem and how to 
+solve it.  An excellent guide for troubleshooting and area debugging.
 
 
 Getting Help
-------------
+------------ 
 If you have strange problems -- and you can't figure out the answer by
-reading the docs -- fear not, there are many other resources you can
-turn to.  The best is probably the CircleMUD Mailing List, which you can
-subscribe to by writing mail to "majordomo@pvv.unit.no" with a message
-body of "subscribe circle".  If you want to write mail to the list, address
-it to "circle@pvv.unit.no".  Over 200 CircleMUD imps read that list
-regularly, so chances are you'll get help quickly.
+reading the documentation -- fear not, there are many other resources you
+can turn to.  The best is probably the CircleMUD Mailing List, which you
+can subscribe to by writing mail to "listserv@post.queensu.ca" with a
+message body of "subscribe circle".  If you want to write mail to the
+list, address it to "circle@post.queensu.ca".  Over 300 CircleMUD imps
+read that list regularly, so chances are you'll get help quickly. 
 
 If that doesn't work, you can always contact me directly by writing to
-jelson@jhu.edu.  Or, take a look at the CircleMUD Home Page which is
-at http://www.cs.jhu.edu/~jelson/circle.html, which may eventually
-have some on-line documentation for Circle.
+jelson@circlemud.org.  Or, take a look at the CircleMUD Home Page which is
+at http://www.circlemud.org which has extensive, up-to-date documentation
+and patches on-line.
+
+Finally, if you have USENET access and are very brave, you can try posting
+to the newsgroups rec.games.mud.diku or rec.games.mud.admin.
 
 If you write mail asking for help, either to the mailing list or to me,
 make sure to include the following information:
-  -- The exact version of CircleMUD you're using (type "version").
-  -- The exact text of any error messages, compilation errors, or the like.
-  -- The exact type of hardware, operating system, and compiler you're using.
+
+  -- The exact version of CircleMUD you're using (e.g., "CircleMUD 2.20",
+     "CircleMUD 3.0 beta patchlevel 12", etc.).
+  -- The EXACT text of any error messages, compiler errors, link errors,
+     or any other errors you're getting.
+  -- The exact type of hardware, operating system name and version, and
+     compiler you're using.
   -- A description of ANY changes you've made, no matter how small, that
      might have contributed to the error.
+  -- If you are having trouble getting Circle running for the very first
+     time, also be sure to include the output of 'configure' and the file
+     'config.log'.
 
-Note, messages that look like this: "Hi I need some help with CircleMUD.
-I tried compiling it on my system but I got all sorts of errors, and when
-I type bin/circle like it says in the manual it doesn't work." are likely
-to be ignored because they contain no information useful for solving your
-problem.
+Remember, I get dozens of pieces of email every day.  If you don't bother to
+give me an excellent description of your problem, I will be somewhat annoyed
+and will not be able to help you.  Here is a sample of a piece of mail I got:
+
+     hi I need some help with CircleMUD....i tried compiling it on my system
+     but I got all sorts of errors, and when i type bin/circle like it says
+     in the manual it doesn't work.  Can you help????  you can log into my
+     system if you want, the password is mud5.
+
+Letters like that are always ignored.  I get a lot of them.
+
 
 Good luck, and have fun!
 
 Jeremy Elson
 aka Ras/Rasmussen
-jelson@jhu.edu
-
-Version 2.20 release: November 17, 1993
-Version 2.11 release: September 19, 1993
-Version 2.10 release: September 1, 1993
-Version 2.02 release: Late August sometime..
-Version 2.01 release: Early August sometime..
-Version 2.00 release: July 16, 1993
+jelson@circlemud.org
 
 
 USE OF THIS SOFTWARE IN ANY CAPACITY IMPLIES THAT YOU HAVE READ, UNDERSTOOD,

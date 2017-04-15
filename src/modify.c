@@ -8,11 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#include <time.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -83,7 +81,7 @@ void string_add(struct descriptor_data *d, char *str)
     } else {
       if (!(*d->str = (char *) realloc(*d->str, strlen(*d->str) +
 				       strlen(str) + 3))) {
-	perror("string_add");
+	perror("SYSERR: string_add");
 	exit(1);
       }
       strcat(*d->str, str);
@@ -211,162 +209,173 @@ ACMD(do_skillset)
 }
 
 
-/* db stuff *********************************************** */
 
+/*********************************************************************
+* New Pagination Code
+* Michael Buselli submitted the following code for an enhanced pager
+* for CircleMUD.  All functions below are his.  --JE 8 Mar 96
+*
+*********************************************************************/
 
-/* One_Word is like one_argument, execpt that words in quotes "" are */
-/* regarded as ONE word                                              */
+#define PAGE_LENGTH     22
+#define PAGE_WIDTH      80
 
-char *one_word(char *argument, char *first_arg)
+/* Traverse down the string until the begining of the next page has been
+ * reached.  Return NULL if this is the last page of the string.
+ */
+char *next_page(char *str)
 {
-  int found, begin, look_at;
+  int col = 1, line = 1, spec_code = FALSE;
 
-  found = begin = 0;
+  for (;; str++) {
+    /* If end of string, return NULL. */
+    if (*str == '\0')
+      return NULL;
 
-  do {
-    for (; isspace(*(argument + begin)); begin++);
+    /* If we're at the start of the next page, return this fact. */
+    else if (line > PAGE_LENGTH)
+      return str;
 
-    if (*(argument + begin) == '\"') {	/* is it a quote */
+    /* Check for the begining of an ANSI color code block. */
+    else if (*str == '\x1B' && !spec_code)
+      spec_code = TRUE;
 
-      begin++;
+    /* Check for the end of an ANSI color code block. */
+    else if (*str == 'm' && spec_code)
+      spec_code = FALSE;
 
-      for (look_at = 0; (*(argument + begin + look_at) >= ' ') &&
-	   (*(argument + begin + look_at) != '\"'); look_at++)
-	*(first_arg + look_at) = LOWER(*(argument + begin + look_at));
+    /* Check for everything else. */
+    else if (!spec_code) {
+      /* Carriage return puts us in column one. */
+      if (*str == '\r')
+	col = 1;
+      /* Newline puts us on the next line. */
+      else if (*str == '\n')
+	line++;
 
-      if (*(argument + begin + look_at) == '\"')
-	begin++;
-
-    } else {
-
-      for (look_at = 0; *(argument + begin + look_at) > ' '; look_at++)
-	*(first_arg + look_at) = LOWER(*(argument + begin + look_at));
-
-    }
-
-    *(first_arg + look_at) = '\0';
-    begin += look_at;
-  } while (fill_word(first_arg));
-
-  return (argument + begin);
-}
-
-
-struct help_index_element *build_help_index(FILE * fl, int *num)
-{
-  int nr = -1, issorted, i;
-  struct help_index_element *list = 0, mem;
-  char buf[128], tmp[128], *scan;
-  long pos;
-  int count_hash_records(FILE * fl);
-
-  i = count_hash_records(fl) * 5;
-  rewind(fl);
-  CREATE(list, struct help_index_element, i);
-
-  for (;;) {
-    pos = ftell(fl);
-    fgets(buf, 128, fl);
-    *(buf + strlen(buf) - 1) = '\0';
-    scan = buf;
-    for (;;) {
-      /* extract the keywords */
-      scan = one_word(scan, tmp);
-
-      if (!*tmp)
-	break;
-
-      nr++;
-
-      list[nr].pos = pos;
-      CREATE(list[nr].keyword, char, strlen(tmp) + 1);
-      strcpy(list[nr].keyword, tmp);
-    }
-    /* skip the text */
-    do
-      fgets(buf, 128, fl);
-    while (*buf != '#');
-    if (*(buf + 1) == '~')
-      break;
-  }
-  /* we might as well sort the stuff */
-  do {
-    issorted = 1;
-    for (i = 0; i < nr; i++)
-      if (str_cmp(list[i].keyword, list[i + 1].keyword) > 0) {
-	mem = list[i];
-	list[i] = list[i + 1];
-	list[i + 1] = mem;
-	issorted = 0;
+      /* We need to check here and see if we are over the page width,
+       * and if so, compensate by going to the begining of the next line.
+       */
+      else if (col++ > PAGE_WIDTH) {
+	col = 1;
+	line++;
       }
-  } while (!issorted);
-
-  *num = nr;
-  return (list);
+    }
+  }
 }
 
 
+/* Function that returns the number of pages in the string. */
+int count_pages(char *str)
+{
+  int pages;
 
+  for (pages = 1; (str = next_page(str)); pages++);
+  return pages;
+}
+
+
+/* This function assigns all the pointers for showstr_vector for the
+ * page_string function, after showstr_vector has been allocated and
+ * showstr_count set.
+ */
+void paginate_string(char *str, struct descriptor_data *d)
+{
+  int i;
+
+  if (d->showstr_count)
+    *(d->showstr_vector) = str;
+
+  for (i = 1; i < d->showstr_count && str; i++)
+    str = d->showstr_vector[i] = next_page(str);
+
+  d->showstr_page = 0;
+}
+
+
+/* The call that gets the paging ball rolling... */
 void page_string(struct descriptor_data *d, char *str, int keep_internal)
 {
   if (!d)
     return;
 
+  if (!str || !*str) {
+    send_to_char("", d->character);
+    return;
+  }
+  CREATE(d->showstr_vector, char *, d->showstr_count = count_pages(str));
+
   if (keep_internal) {
-    CREATE(d->showstr_head, char, strlen(str) + 1);
-    strcpy(d->showstr_head, str);
-    d->showstr_point = d->showstr_head;
+    d->showstr_head = str_dup(str);
+    paginate_string(d->showstr_head, d);
   } else
-    d->showstr_point = str;
+    paginate_string(str, d);
 
   show_string(d, "");
 }
 
 
-
+/* The call that displays the next page. */
 void show_string(struct descriptor_data *d, char *input)
 {
-  char buffer[MAX_STRING_LENGTH], buf[MAX_INPUT_LENGTH];
-  register char *scan, *chk;
-  int lines = 0, toggle = 1;
+  char buffer[MAX_STRING_LENGTH];
+  int diff;
 
   one_argument(input, buf);
 
-  if (*buf) {
+  /* Q is for quit. :) */
+  if (LOWER(*buf) == 'q') {
+    free(d->showstr_vector);
+    d->showstr_count = 0;
     if (d->showstr_head) {
       free(d->showstr_head);
       d->showstr_head = 0;
     }
-    d->showstr_point = 0;
     return;
   }
-  /* show a chunk */
-  for (scan = buffer;; scan++, d->showstr_point++) {
-    if ((((*scan = *d->showstr_point) == '\n') || (*scan == '\r')) &&
-	((toggle = -toggle) < 0))
-      lines++;
-    else if (!*scan || (lines >= 22)) {
-      if (lines >= 22) {
-	/* We need to make sure that if we're breaking the input here, we
-	 * must set showstr_point to the right place and null terminate the
-	 * character after the last '\n' or '\r' so we don't lose it.
-	 * -- Michael Buselli
-	 */
-	d->showstr_point++;
-	*(++scan) = '\0';
-      }
-      SEND_TO_Q(buffer, d);
+  /* R is for refresh, so back up one page internally so we can display
+   * it again.
+   */
+  else if (LOWER(*buf) == 'r')
+    d->showstr_page = MAX(0, d->showstr_page - 1);
 
-      /* see if this is the end (or near the end) of the string */
-      for (chk = d->showstr_point; isspace(*chk); chk++);
-      if (!*chk) {
-	if (d->showstr_head) {
-	  free(d->showstr_head);
-	  d->showstr_head = 0;
-	}
-	d->showstr_point = 0;
-      }
-      return;
+  /* B is for back, so back up two pages internally so we can display the
+   * correct page here.
+   */
+  else if (LOWER(*buf) == 'b')
+    d->showstr_page = MAX(0, d->showstr_page - 2);
+
+  /* Feature to 'goto' a page.  Just type the number of the page and you
+   * are there!
+   */
+  else if (isdigit(*buf))
+    d->showstr_page = MAX(0, MIN(atoi(buf) - 1, d->showstr_count - 1));
+
+  else if (*buf) {
+    send_to_char(
+		  "Valid commands while paging are RETURN, Q, R, B, or a numeric value.\r\n",
+		  d->character);
+    return;
+  }
+  /* If we're displaying the last page, just send it to the character, and
+   * then free up the space we used.
+   */
+  if (d->showstr_page + 1 >= d->showstr_count) {
+    send_to_char(d->showstr_vector[d->showstr_page], d->character);
+    free(d->showstr_vector);
+    d->showstr_count = 0;
+    if (d->showstr_head) {
+      free(d->showstr_head);
+      d->showstr_head = NULL;
     }
+  }
+  /* Or if we have more to show.... */
+  else {
+    strncpy(buffer, d->showstr_vector[d->showstr_page],
+	    diff = ((int) d->showstr_vector[d->showstr_page + 1])
+	    - ((int) d->showstr_vector[d->showstr_page]));
+    buffer[diff] = '\0';
+    send_to_char(buffer, d->character);
+    d->showstr_page++;
   }
 }

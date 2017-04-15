@@ -1,0 +1,1195 @@
+
+Release history:
+
+Version 3.00 beta pl11 release: April 14, 1996
+Version 3.00 beta pl10 release: March 11, 1996
+Version 3.00 beta pl9 release: February 6, 1996
+Version 3.00 beta pl8 release: May 23, 1995
+Version 3.00 beta pl7 release: March 9, 1995
+Version 3.00 beta pl6 release: March 6, 1995
+Version 3.00 beta pl5 release: February 23, 1995
+Version 3.00 beta pl4 release: September 28, 1994
+Version 3.00 beta pl1-3, internal releases for beta-testers.
+Version 3.00 alpha: Ran on net for testing.  Code not released.
+Version 2.20 release: November 17, 1993
+Version 2.11 release: September 19, 1993
+Version 2.10 release: September 1, 1993
+Version 2.02 release: Late August 1993
+Version 2.01 release: Early August 1993
+Version 2.00 release: July 16, 1993 (Initial public release)
+
+
+
+Legend
+------
+JE = Jeremy Elson (jelson@circlemud.org)
+
+
+--- CircleMUD 3.0 patchlevel 3
+
+8/31/94 JE      Added a GET_REAL_LEVEL macro which returns the actual
+                level taking switched characters into account.  Used
+                in CAN_SEE so that switched immorts can't see invis
+                gods.
+
+8/31/94 JE      Added restriction to interpreter.c so that immort commands
+                cannot be used by NPCs.  Removed all the IS_NPC checks from
+                the individual god commands since they are now redundant.
+
+8/31/94 JE      Made newsign.c into sign.c and deleted the old DIKU sign.c.
+                newsign.c forks to handle its kids and is generally more
+                concise and robust.
+
+8/31/94 JE      Changed the type argument of affect_from_char and
+                affected_by_spell to sh_int (from char) to match the fact
+                that the 'type' member of the affected_type structure is
+                now a sh_int instead of a char.  Spotted by Jean-Jack
+                Riethoven.
+
+8/31/94 JE      Fixed MIN statement using uninitialized 'water' var in
+                spell_create_water.  Spotted by JJR.
+
+8/31/94 JE      Ken Cavness noted that MOBs were getting past guildguards.
+                Not surprising, since I changed the relationship between
+                do_move/do_simple_move/perform_move so many times.  The
+                discipline has now changed again; MOBs calling perform_move
+                must call with 3rd arg of 1 instead of 0.  Changed the
+                arg from 'following' to 'need_specials_check' so its purpose
+                would be clearer.
+
+8/31/94 JE      Added 'worn_on' short integer to obj_data structure to go
+                with worn_by char_data pointer.  Indicates which eq pos
+                eq is being worn on.  (Will be used to facilitate a cleaner
+                version of objectmagic.)
+
+8/31/94 JE      extract_obj now automatically unequips the obj first if it
+                is being used as equipment (uses worn_by and the new worn_on).
+                do_use no longer unequips.  objectmagic didn't have to be
+                changed since extract_obj automatically does the work now. :)
+
+8/31/94 JE      Fixed cityguard routine with a CAN_SEE check so that blinded
+                guards no longer banzai people, and so that guards don't
+                banzai invis people etc.  Spotted by Ken Cavness.
+
+8/31/94 JE      Fixed do_reply to make sure the person you're replying to
+                is still in the game before calling perform_tell.  Note, I
+                think it still may be possible for your reply to go to
+                someone else if the recipient logs out and someone else logs
+                in.  In particular, this will break in a big way if I ever
+                implement some scheme where it keeps a pool of char_data
+                structures for reuse.
+
+8/31/94 JE      CHA added to display when rerolling a character.
+
+8/31/94 JE      Changed TOUNGE to TONGUE throughout.
+
+8/31/94 JE      Made the '*' (ignore) case in zone reset tables (used for
+                invalid vnums) set last_cmd = 0 for proper resetting.
+
+8/31/94 JE      Enhanced (added?) NeXT compatibility with FOPEN_MAX, my_signal,
+                and O_NDELAY.
+
+8/31/94 JE      Changed boards back to listing lowest to highest since people
+                seemed to hate it the other way.
+
+8/31/94 JE      Added sanity checks to perform_move since king_welmar seems
+                to cause crashes when he's moving on occassion, and I'd rather
+                remove that area than try to debug it.
+
+8/31/94 JE      Changed 'SEC' to 'RL_SEC' in structs.h to avoid conflicts
+                with many OS's #defines of SEC
+
+9/1/94  JE      Good God, is it September already?
+
+9/1/94  JE      Changed list_skills to accumulate in a buffer instead of
+                using send_to_char, and use page_string.  This system really
+                sucks.  There should be a "page_to_char" command, or something.
+                It shouldn't even require too much conceptual difference now
+                that output buffers are limited!
+
+9/1/94  JE      Added a 'sort_spells()' function and changed list_skills
+                to use sorted spell list instead of arbitrarily ordered list.
+                sort_spells() called once on boot from db.c.
+
+9/1/94  JE      Finally finished making the background story paged.  Now that
+                process_input and command_interpreter, etc., have been
+                rewritten, all it took was changing it from SEND_TO_Q to
+                page_string.  Whoo hoo!
+
+9/1/94  JE      Jeff Fink suggested having perform_act do some run-time
+                sanity checking in order to make it more robust.  Thus,
+                I created the CHECK_NULL macro for it in comm.c.
+
+9/1/94  JE      Made mobs hit you if you try to cast an offensive spell
+                at them and fail.
+
+9/1/94  JE      Completed line-by-line zone-parsing routines.  Instead of
+                using scanf() to read from disk, Circle now uses fgets().
+                This allows MUCH more robustness, more accurate and sensitive
+                error-checking of zone files, both at boot-time and run-time.
+                In addition, the error reporting now gives you a specific
+                _line number_ in the zone file of the error. :)
+
+9/2/94  JE      Made a 'qecho' command, combined with qsay in do_qcomm
+                of act.comm.c.
+
+9/2/94  JE      Updated the README file.
+
+9/2/94  JE      Circle 3.00 beta patchlevel 3 released
+
+
+-- Patchlevel 4
+
+
+9/9/94  JE      Added IS_NPC check to do_score to prevent crashes.
+
+9/9/94  JE      Added #undef MAX and MIN for NeXT compatibility.
+
+9/19/94 JE      Started work again after 10 days of real life (school's
+                starting up again, ya know.)
+
+9/19/94 JE      Changed lantern-handling in update_char_objects in handler.c;
+                now gives warning one tick before the light expires (idea
+                from Chris <ttl6u@fulton.seas.virginia.edu>) and correctly
+                decrements world[ch->in_room].light as it should have from
+                the very beginning.
+
+9/19/94 JE      Changed the build_house parser in house.c to allow for
+                a house which has more than one exit (i.e., only one of
+                which is access-controlled) because people seem to want
+                multi-room access-controlled areas.
+
+9/19/94 JE      Fixed multi-room-shared-atrium bug in house_control_house,
+                house.c (I haven't heard of this bug ever manifesting itself
+                but looking at the code I realized the error.)
+
+
+9/19/94 JE      Changed 'long' to 'time_t' where appropriate.
+
+9/19/94 JE      Added graceful handling of missing playerfile in db.c
+
+
+-- Patchlevel 5
+
+10/4/94 JE      ban.c:98: long int format, time_t arg, fixed with cast
+
+10/4/94 JE      Made default action of hcontrol to be a help screen;
+                added 'show' subcommand.
+
+10/4/94 JE      Added reni's NeXT function prototypes to utils.h
+
+10/5/94 JE      Fixed !IS_NPC in do_score (act.informative.c)
+
+10/9/94 JE      Added charisma-to-25 code to do_restore (act.wizard.c)
+
+-- Sanity break
+
+2/20/95 JE      Added max length check to set_title in limits.c -- all
+                title setting should go through this function
+
+2/22/95 JE      Added check for null name in 'show player'
+
+2/22/95 JE      included unistd.h in house.c, boards.c and objsave.c
+                for unlink prototype
+
+2/22/95 JE      Low-lev imms can no longer see invstart people above their
+                level entering game
+
+2/22/95 JE      Changed 'color' and 'syslog' to show current levels if typed
+                without arguments, instead of help text.
+
+2/22/95 JE      fixed castle by adding terminator to end of move string
+                reported by Ed Mackey (emackey@BIX.com)
+
+2/22/95 JE      If you try to return to your original body, and someone else
+                has connected into it, disconnect them.  act.wizard.c,
+                do_return().
+                reported by Aaron Mills
+
+2/22/95 JE      interpreter.c - changed the code to sense if a switched
+                persona of yourself is connected when you log in.  Should
+                make switch more stable.
+                reported by Aaron Mills
+
+2/22/95 JE      new timediff in comm.c to work on systems for which
+                tv_sec and tv_usec are unsigned
+                reported by Steven Serocki <ss@sirocco.cup.hp.com>
+
+2/22/95 JE      change RLIMIT code for systems that don't have RLIMIT_INFINITY
+                reported by Steven Serocki <ss@sirocco.cup.hp.com>
+
+2/22/95 JE      changed title_type[4][35] to [NUM_CLASSES][LVL_IMPL + 1]
+                throughout
+                reported by Darel Cullen
+
+2/22/95 JE      changed "his arm" to "$s arm" in act.obj.c
+                reported by Chris Epler <cepler@ucsee.eecs.berkeley.edu>
+
+2/22/95 JE      act.other.c, do_quit() -- kill off all sockets connected to
+                the same player as the one who is trying to quit.  Helps to
+                maintain sanity as well as prevent duping.
+                duping reported by Chris Epler <cepler@ucsee.eecs.berkeley.edu>
+
+2/22/95 JE      installed new version of Jeff Fink's shop.c code
+
+2/22/95 JE      Patched bug in Jeff Fink's shop code reported by him.
+                Patch sent by Jeff Fink
+
+2/22/95 JE      created player_specials structure for new players coming in
+                after having been deleted.  Yet another example of a bug that
+                could have been avoided completely if we'd been using C++.
+                Reported by Jeff Fink
+
+2/22/95 JE      Added code to support 'R' command in zone resets (remove
+                obj from room).  Code sent by Jeff Fink.
+
+2/22/95 JE      Changed plain 'stat' to make better assumptions about what
+                you're trying to stat.
+                Code sent by Jeff Fink
+
+2/22/95 JE      Added go_gen_door code written by Jeff Fink to eliminate
+                duplication of checks, etc. for open/close/lock/unlock/pick
+
+2/22/95 JE      Fixed shop code -- changed keeper = 0 to keeper = me
+
+2/22/95 JE      Added magic_alter_objs code submitted by Jeff Fink
+
+2/22/95 JE      Added break statement to mag_damage, energy drain       
+                Spotted by Jeff Fink
+
+2/22/95 JE      Added ascii flag system to db.c for world, obj, mob files
+
+2/22/95 JE      Brought in the new 3.0 world files from Furry
+
+2/23/95 JE      Created 'random.c' as Circle's new, portable random number
+                generator.
+
+2/23/95 JE      Added 'POSIX_NONBLOCK_BROKEN' option to work around OSs
+                such as AIX which don't implement POSIX nonblocking I/O
+                correctly, causing the MUD to hang in places such as the
+                Password: prompt.
+
+2/23/95 JE      Added a case for sgi (IRIX) in utils.h OS-specific header
+                section for cleaner compiles
+
+
+-- Patchlevel 6
+
+2/24/95 JE      Fixed asciiflag_conv in db.c for uppercase flags (typo,
+                'a' instead of 'A').
+
+2/24/95 JE      Added max_bad_pws to config.c.
+
+2/24/95 JE      (logged retroactively) Added max_filesize to config.c to
+                set max limit on size of bug, typo and idea files to prevent
+                bombing
+
+2/24/95 JE      Moved 'pfilepos' from descriptor_data to char_data where is
+                belongs.  More logical, plus fixes the switch-into-a-PC-and
+                save bug reported on rec.games.mud.diku by
+                shruew@amiserv.xnet.com (Johnny Mnemonic).
+
+2/24/95 JE      Similarly moved password from descriptor to character.
+
+2/24/95 JE      Changed nonblock to OR-in O_NONBLOCK to the current flag
+                bitvector of descriptors instead of setting directly.
+
+2/24/95 JE      Changed 'last_tell' (used by reply) to use player ID number
+                instead of a pointer to the character.  Much safer because
+                I don't have to worry about pointer reuse, plus it'll still
+                work if the person you're replying to logs out and back in
+                again.
+
+2/24/95 JE      Changed distribution-default of nameserver_is_slow to NO.
+
+2/24/95 JE      Fixed src/util/showplay.c
+
+2/24/95 JE      Added MAG_ALTER_OBJS to SPELL_INVISIBILITY in spell_parser.c
+
+2/25/95 JE      Fixed PC/NPC checks in act.wizard.c, do_set.
+                Reported by Eric Green and Stefan Wasilewski
+
+2/25/95 JE      Fixed carried-by/worn-by reporting of objects
+                act.wizard.c, do_stat_object.
+                Reported by Eric Green and Stefan Wasilewski
+
+2/25/95 JE      Deleted 'equipment status' from do_stat_obj in act.wizard.c
+                --didn't seem particularly useful and took up valuable screen
+                space
+
+2/25/95 JE      do_wiznet, act.wizard.c, wiznet chops off first letter of
+                message when levels are used.  Reported by Eric Green and
+                Stefan Wasilewski
+
+2/25/95 JE      do_ungroup, act.other.c, fixed so that disbanding a group
+                doesn't un-charm charmed mobs following you.
+                Reported by Eric Green and Stefan Wasilewski
+
+2/25/95 JE      magic.c, changed so you can't sanct sancted mobs
+                Reported by Eric Green and Stefan Wasilewski
+
+2/25/95 JE      Brought in fixed world files from furry and corresponding
+                castle.c and spec_assign.c for new specproc assignments
+
+2/26/95 JE      Removed minor output display but on object statting, do_stat,
+                act.wizard.c  Spotted by Eric Green.
+
+2/26/95 JE      Added max string length checks in perform_subst(), comm.c
+                Reported by Eric Green and Stefan Wasilewski.  Also added
+                comments to the function.
+
+2/26/95 JE      Similar length checks in perform_complex_alias, interpreter.c
+
+2/26/95 JE      Made buffers MAX_INPUT_LENGTH size to handle very large output;
+                tmp_name in interpreter.c, *_search in do_who and do_users
+                in act.informative.c
+
+2/26/95 JE      Rewrote most of do_group, act.other.c
+
+2/26/95 JE      do_ungroup, act.other.c - disbanding a group also ungroups
+                yourself.
+
+2/27/95 JE      Added olc.c and olc.h.
+
+2/28/95 JE      Added bank card specproc to spec_assign.c
+
+2/28/95 JE      Updated FAQ and README-BETA
+
+3/3/95  JE      Patchlevel 6 released
+
+
+--- Patchlevel 7
+
+3/4/95  JE      Added PFILEPOS assignment in interpreter.c so deleted 
+		characters are not replicated in plrfile.  (near "Did I get
+		that right, X?")
+
+3/4/95- JE      Extensive rewrite of documentation
+3/7/95
+
+3/8/95  JE      Changed qecho to LVL_IMMORT (interpreter.c)
+
+3/8/95  JE      Created GET_PFILEPOS macro and used it throughout.
+
+3/8/95  JE      Changed extern declaration of thaco in fight.c from [4][35]
+                to [NUM_CLASSES][LVL_IMPL+1].  Spotted by Marcin Zaranski.
+
+3/8/95  JE      Problems reported with stop_fighting called when char not
+                fighting.  Most probably the call of stop_fighting() in
+                hit() when ch->in_room != vict->in_room.  Added check for
+                FIGHTING(ch) before calling stop_fighting.  Also made
+                stop_fighting tolerant of being called at the wrong time.
+                Problem spotted by Marcin Zaranski.
+
+3/8/95 JE       Also changed stop_fighting to use REMOVE_FROM_LIST macro.
+
+3/9/95 JE       Implemented ROOM_TUNNEL.
+
+3/9/95 JE       Fixed a bug causing the MUD to crash under pathological
+                input-overflow conditions (such as someone holding down a
+                key for 60 seconds.)
+                Reported by Carl Tashian <TASHIACM@ctrvax.Vanderbilt.Edu>
+
+3/9/95 JE       "set class" output corrected.
+                Spotted by Ryan Baker <ed209@free.org>.
+
+3/9/95 JE       Added Jeff Fink's do_gen_door patch for picking.  Also
+                initialized obj and vict to NULL, might have been causing
+                double messages.
+
+3/9/95 JE       Fixed find_door to give a better message with a null arg.
+
+3/9/95 JE       Brought in new version of world files from Furry
+                Deleted that stupid '#99999' from the end of all the world
+                files since the new parser doesn't need them.
+
+3/9/95 JE       Changed perform_group so "group all" doesn't group people
+                you can't see.
+
+
+--- Patchlevel 8
+
+5/5/95	JE	Changed my email address to jelson@jhu.edu throughout.
+
+5/5/95	JE	Implemented AFF_WATERWALK flag.
+
+5/5/95	JE	Implemented MOB_AWARE flag (mobs that cannot be backstabbed).
+
+5/5/95	JE	Implemented MOB_NOBASH flag.
+
+5/5/95	JE	db.c, added support for type E (Enhanced) mobs
+
+5/5/95	JE	Implemented ROOM_PEACEFUL flag (rooms in which fighting
+		is not permitted.)
+
+5/5/95	JE	Implemented ROOM_NOTRACK flag.
+
+5/5/95	JE	Implemented AFF_NOTRACK.
+
+5/5/95	JE	Added some sanity checking to obj_to_obj.
+
+5/5/95	JE	Neatened up the saving throw table in magic.c.
+
+5/10/95	JE	Implemented bless and curse spells for objects.
+		Code submitted by Jeff Fink.
+
+5/10/95	JE	Implemented poisioned objects and remove-poison for objs.
+		Code submitted by Jeff Fink.
+
+5/10/95	JE	Implemented MOB_NOCHARM flag.
+
+5/17/95	JE	Completely new building.doc world builders' documentation.
+
+5/20/95	JE	Imported latest version of Furry's world files
+
+5/21/95	JE	handler.c, extract_char()... if a char is extracted and
+		has no descriptor associated with it, free the char.
+		Prevents a memory leak if players get purged.
+		Suggested by Eric Green.
+
+5/21/95	JE	Set mob's default charisma to 11.
+		Spotted by Jeff Fink.
+
+5/21/95	JE	Changed obj num loaded for 'create food' to 10, waybread.
+
+5/21/95	JE	Removed strange code from db.c, reset_zone, 'O' command,
+		that seemed to prevent two objs of the same vnum from being
+		loaded in the same room.
+		Suggested by Jeff Fink.
+
+5/21/95	JE	handler.c, affect_join() - fixed bug preventing spells
+		with multiple effects from coexisting.
+		First reported by Thomas Katzlberger. 
+
+5/21/95	JE	boards.c - changed board so it will respond to 'examine'
+		as well as 'look'
+		Suggested by Chris Epler.
+
+5/21/95	JE	Initialized GET_LAST_TELL to NOBODY.
+		Spotted by Eric Green and Stefan Wasilewski
+
+5/21/95	JE	Changed around wiz-inivisibility for better compatibility with
+                the 'visible' command, and to give better messages.
+		Suggested by Chris Epler.
+
+5/21/95	JE	Fixed mag_groups so caster is only hit once per cast.
+		Spotted by dodger@WPI.EDU (DoDGeR)
+
+5/21/95	JE	Fixed the bug causing crashes on some systems if an
+		incorrect class is entered when a new character is created.
+		For the record I think this was happening on architectures
+		on which the 'char' type is defined as being unsigned.
+
+5/21/95	JE	Made is_abbrev asymmetrical as it should be; fixes
+		"look ingerwal" as being interpreted as "look in"
+		Reported by Mike Higuchi and others.
+
+5/21/95	JE	Changed spells_to_learn from byte to int; used one of the
+		spares in the playerfile so that people already running
+		MUDs with 3.0 won't get screwed (grrrrr....).
+		Spotted by Marcin
+
+5/21/95	JE	spell_parser.c, say_spell() - target of spell now only
+		sees caster casting if they're in the room together.
+		Spotted by Marcin
+
+5/21/95	JE	Also changed say_spell so that object messages will be
+		correctly reported if target obj is in caster's inventory
+		as well as in same room.
+
+5/21/95	JE	Changed mag_alter_objs to give the room a message as well
+		as the caster.
+
+5/21/95	JE	handler.c, char_from_room(), changed so that if char is
+		fighting when removed from room, stop_fighting is called
+		immediately to stop the fight.
+		Problem found by Marcin
+
+5/21/95	JE	Corrected errors with RUSAGE section in comm.c.
+		Spotted by Thomas Knight
+
+5/21/95	JE	Fixed the ancient "pour canteen out" bug -- the problem
+		was that any drink container whose weight was less than
+		its quantity could go negative since the MUD assumes that
+		all drinks weigh one pound per unit of drink.  parse_room,
+		db.c, now checks drink containers and fountains to make
+		sure that weight is greater than quantity.
+
+5/21/95	JE	Fixed the cleaning woman in Welmar's castle so that she
+		only picks up trash.
+		Fix submitted by Christopher Dickey
+
+5/21/95	JE	Fixed up show_string so that the display works properly;
+		fix submitted by Michael Buselli
+
+5/21/95	JE	Player killers' damage no longer set to 0 if they're inflicting
+		damage on themselves.
+		Reported by Julian Fong.
+
+5/21/95	JE	Fixed do_gen_door to correctly sense when no arg is given.
+		Problem spotted by Eric Green
+
+5/21/95	JE	*** WAIT_STATE set for all uses of magic items ***
+		Suggested by Eric Green
+
+5/21/95	JE	Found irrefutable clues & figured out who shot Mr. Burns.
+
+5/21/95	JE	Bug in mobact.c prevented alignment-aggressive monsters from
+		working if they were set not in conjunction with the normal
+		AGGRESSIVE bit.
+		Problem spotted by Chris Epler
+
+5/21/95	JE	Problem with HELPER mobs getting extra hits fixed.
+		Problem spotted by Chris Epler
+
+5/22/95	JE	Created the CircleMUD License.  Changed Makefile so that
+		the license is displayed the first time the MUD is compiled.
+		Sorry if this is a dickish thing to do, but it's a Derek
+		Snyder countermeasure.
+
+5/22/95	JE	Added logging for whole-world-resets using zreset command.
+
+5/22/95	JE	fight.c, hit() -- Changed declaration of all intermediate
+		vars used to calculate hitroll and damroll to be int to
+		avoid problems with unsigned bytes on certain architectures.
+		Same change to 'percent' vars in act.offensive.c.
+		Suggested by Al Thompson
+
+5/22/95	JE	Rewrote mag_affects in magic.c to be more readable and easier
+		to use, as well as correcting some old bugs (i.e., being able
+		to un-affect mobs by re-affecting them and then waiting for
+		the affect to fade.)
+
+5/22/95	JE	fight.c, damage() - WIMPY mobs do not flee if they are
+		damaging themselves.
+
+5/22/95	JE	comm.c, close_socket().  When a player loses link, all
+		players with same idnum are also disconnected.  Fixes a
+		duping bug.
+		Found by Clay Hardin
+
+5/22/95	JE	Added "NOEFFECT" char constant to config.c.
+
+5/22/95	JE	Fixed bug in zone-reset 'R' command where second arg was
+		being resolved as a room vnum instead of an obj vnum.
+		Fix sent in by BUG.
+
+5/22/95	JE	Added two prototypes to comm.h so that comm.c will compile
+		cleanly under ultrix.
+
+5/22/95	JE	spell_parser.c, cast_spell() - prevents ungrouped chars from
+		casting MAG_GROUPS classes of spells (returns error msg and
+		does not take mana).
+
+5/22/95	JE	Added the GET_EQ macro for character equipment and SECT
+		macro for sector types; changed code throughout to use
+		the new macros.
+
+5/22/95	JE	act.movement.c, has_boat - added has_boat function so that
+		unwearable boats in inventory and boats worn will work as
+		boats.
+
+5/22/95	JE	Added sun386 (SunOS 4.0.x) compatibility by defining
+		sigaction as signal for it.
+		Patch sent by Tim Aldric.
+
+5/22/95	JE	Implemented detect poison as a manual spell.
+
+5/22/95	JE	Fixed up mag_areas (generally) and earthquake (specifically).
+
+5/22/95	JE	Changed 'invis' command so it will not work on mobs.
+		Bug spotted by v932459@si.hhs.nl.
+
+5/23/95	JE	Fixed get_char_room_vis so that you can no longer access
+		PC's throughout the world with the '.' syntax.  (Oops..)
+
+5/23/95	JE	Changed GET_POS==FIGHTING check to if(FIGHTING) in
+		cityguard specproc, spec_procs.c
+		Bug spotted & fix submitted by Jason Fischer
+
+5/23/95	JE	fight.c, perform_violence() - Implemented wait states for
+		mobs, so that mobs who are bashed etc. are actually taken out
+		of the violence for some number of rounds (depending on the
+		skill), like it is supposed to be.
+
+5/23/95	JE	limits.c, gain_exp*(), changed level message so you aren't
+		spammed if you gain more than one level at once.
+
+5/23/95	JE	Added bash as a level 12 warrior skill.
+		If successful, your opponent loses 1 round.
+		If unsuccessful, you lose 2 rounds of combat.
+		You cannot try to bash again for 2 rounds.
+
+5/23/95	JE	Fully implemented the bash-class of skills; i.e., for skills
+		where it tells you you fall on your ass and have to stand up
+		again, you actually lose the rounds of combat while you're
+		still sitting.
+
+5/23/95	JE	Brought in new lib/misc/messages file from Furry with some
+		additional attack types.
+
+5/23/95	JE	Wrote the E-Spec parser and brought in Furry's world files
+		that use E-Specs.
+
+5/23/95	JE	Fixed all the utilities, including autowiz which now works
+		again.
+
+5/23/95	JE	Took out the scheck utility and replaced it with the -c
+		option on the server (Check syntax only - do not run game).
+		Another fantastic idea from Gekke Eekhoorn, the source of many
+		fantastic ideas.
+
+5/23/95	JE	Deleted some extraneous lines from the Makefile (rules for
+		compiling utiltities that no longer exist).
+		Found by Jared McDonald
+
+5/23/95	JE	Released patchlevel 8.
+
+
+--- Patchlevel 9
+
+(No dates on this patchlevel... sorry!)
+-- Made Circle self-configuring using the GNU 'autoconf' package; created
+   new header files conf.h and sysdep.h.  Most standard library files are
+   now conditionally included from sysdep.h and have been removed from the
+   .c files.  -lsocket/-lnsl libraries are automatically used if needed.
+   Circle's built-in 'random' function is used only if there is no random()
+   on the system.. many other autoconfigured aspects as well.
+
+-- Rewrote much of the code for the login/load sequence to prevent duping.
+   Duping should hopefully be impossible now.  Fixed the dumb bug that allowed
+   people to cut off players by logging in and out without a password.
+
+-- Added 20 second limit to entering a password before you're cut off.
+
+-- Fixed the braindead way LOADROOM works.  Syntax is now simply "set ras
+   loadroom <vnum>" or "set ras loadroom off".  Loadroom now properly set
+   when someone quits out of their house, so they go back there by default.
+
+-- Truncate message board titles to 80 characters or less - fixes a crash
+   bug.
+
+-- Changed tunnels so that they are "full" only if filled with a PC, not
+   just any char.
+
+-- Redid the code for setting the minimum levels classes need to be before
+   they can use spells and skills, and moved it to class.c.  It's now *much*
+   easier to add new classes--- stupidly, under the old system, every time
+   you added a new class all of the existing spello() calls had to be
+   changed!  See class.c to see how spell-level setting is done now.
+
+-- Fixed the bug which popped up in systems such as FreeBSD which incorrectly
+   reported the number of available file descriptors if the number was
+   unlimited (RLIM_INFINITY).
+
+-- Fixed a bug causing crashes if text files (motd/imotd/news/etc) are empty.
+
+-- FINALLY fixed the dumb bug causing the first char (implementor) to log
+   in to come in with all stats of 0.
+
+-- Changed magic.c so the number of affects a spell can have is not
+   arbitrarily limited to 2.
+
+-- Immortals can walk past guildguards.
+
+-- Fixed up some spells (create water works now).
+
+-- Added 'show houses' for Mr. Christopher Epler.  :)
+
+-- Fixed a small error in one of the comments in boards.c describing how
+   to add a new board.
+   Found by Stefan Rensing
+
+******** Patchlevel 10 ***************************************************
+
+-- Fixed all the (dumb) definitions of str_app, int_app, etc. -- these
+   used to be arrays of 36 because a long time ago I stupidly thought those
+   arrays had to be extended to the number of levels on the MUD.  They have
+   been correctly changed to reflect the possible attribute values of
+   characters (3-18 for PCs, 3-25 for NPCs and Gods).
+
+-- Added Michael Buselli's patches for an enhanced "more" pager that lets
+   you go back, forward, refresh, etc.  Nice work, Michael.
+
+-- Made Circle compile under HP/UX with the help of Ben Denckla (required
+   an #ifdef for RLIM_INFINITY).  Made some other fixes to get_max_descs()
+   in comm.c as well.  I hate this function.
+
+-- Removed the REUSEPORT setsockopt() call from comm.c when opening the
+   mother connection.  This never made any sense in the first place since
+   REUSEPORT is a UDP and not a TCP thing, plus it broke Circle under IRIX
+   5.3+.
+
+-- Incorporated David Carver's OS/2 patches.  Circle should now compile
+   under OS/2 more or less out of the box (instructions included).
+
+-- Added error checking to number() in case its called with the arguments
+   backwards.
+
+-- Added the skill_name() function to safely resolve spell numbers to
+   spell or skill names.  Now used to stat potions, staves, etc.
+
+-- Fixed the but in the usage of is_abbrev in find_skill_num that prevented
+   spell names from being abbreviated.  Reported by numerous people.
+
+-- Fixed a bug which prevented mag_materials() from working at all (although
+   it isn't used in standard Circle code, anyway.)
+
+-- Changed a str_cmp to isname in the FIND_OBJ_EQUIP case of generic_find()
+   in handler.c for better location of objects.
+   Sent by one of our best bugfinding teams, Eric Green and Stefan Wasilewski,
+   KEEP IT UP, GUYS!  :-)
+
+-- Fixed the operation of peaceful rooms so that bash, etc, also don't work.
+
+-- Fixed a dumb bug where aliases (which use player_specials) were freed
+   *after* player_specials were freed.  Reported by numerous people.
+
+-- Added values for movement loss for flying and underwater sector types.
+
+-- Bug fixed in do_set which made the PC/NPC checks not work.
+
+-- Changed backstab multipliers from a table to a formula to make adding
+   new levels easier.  (Adding new levels is now trivial; you just have to
+   change the #defines in structs.h for the LVL_xx constants, and then 
+   define the titles and exp required for each level in constants.c).
+
+-- do_stat_obj (act.wizard.c) updated to reflect building.doc (very old
+   bugs lurking in here) -- stat display changed to reflect real meanings
+   of values[0] - values[3] of objects.
+
+-- do_steal changed to simplify the no-psteal code (psteal simply always
+   fails on muds where it is not allowed).
+
+-- You can't wake up someone who's dying. (do_wake)
+   Patch sent by Lincoln Chan <linc@CSUA.Berkeley.EDU>
+
+-- Message seen when a door opens from the other side fixed. (do_open)
+   Patch sent by Lincoln Chan <linc@CSUA.Berkeley.EDU>
+
+-- All utilities ported and fixed.
+
+-- Some changes to Makefile template Makefile.in
+
+-- Help system completely rewritten to use split help files and an
+   'index' file just like the world files; help files are loaded into
+   memory entirely instead of keeping file positions and an open file.
+   New copy of help files imported from Chris Epler (cepler@cambot.res.jhu.edu)
+
+-- Rewrote one_word() in interpreter.c (used to be modify.c) as part of the
+   help system rewrite.
+
+-- New world/ hierarchy from Furry (furry@cambot.res.jhu.edu)
+
+-- New 'messages' file from Furry (furry@cambot.res.jhu.edu)
+
+-- New 'configure' script which should detect nsl and socket libraries
+   more reliably.
+
+-- All scripts rewritten (autorun, automaint, purgeobjs, etc.) to use sh
+   instead of csh.  They've been fixed, too (most of them were broken because
+   they had not been modified since the location of certain files changed).
+   Autorun rewrite by Stuart Lamble
+
+-- New FAQ by Furry (furry@cambot.res.jhu.edu)
+
+
+******** Patchlevel 11 ***************************************************
+
+
+-- Patches to make Circle compile under MSCV++ 4.0 under Windows 95:
+	Created a 'conf.h.win' to act as Windows' conf.h.  Created a new
+        constant, CIRCLE_WINDOWS, to use for #ifdef's.  Changed OS2's constant
+        from OS2 to CIRCLE_OS2 for consistency.
+
+        Changes to some of the types throughout the code (e.g. changing some
+        int's to size_t's.
+
+	Changed the type of all sockets from int to socket_t; sysdep.h
+	typedef's int as being socket_t under UNIX and SOCKET to socket_t
+	under Windows.
+
+	Changes to some of the code in comm.c (with ifdef's) to account for
+	some of the differences between WinSock and Berkeley Sockets.
+
+        Wrote a "fake" gettimeofday() function which is an interface to the
+        Win32 GetTickCount() and a WinSock-compatible nonblock().
+
+	Renamed 'act.obj.c' to 'act.item.c' to defeat an apparent bug in
+	MSVC++ that refuses to properly object files that have the word
+	"obj" in their name (i.e. act.obj.obj).
+
+        Changed the boot-up procedure so that the max player calculation is
+        done before socket initialization (this is done so that the max can
+        be reduced from the MAX_PLAYERS value in comm.c if WSAStartup() tells
+        us we have less than that number of max sockets available.
+
+	Created a CLOSE_SOCKET macro: under UNIX, this is #defined as
+	close(); under Windows, it's defined as closesocket.
+
+        #defined log(x) as basic_mud_log(x) to prevent namespace collision
+        with the mathematical log() function.
+
+-- Various fixes to the 'configure' script:
+       The '-lsocket' library should hopefully be detected more reliably
+       (by detecting -lnsl first; some systems need -lnsl before -lsocket
+       will link successfully).
+
+       The -cckr option is given to the compiler if we are not using gcc and
+       it is determined that your system's cc can take the -cckr argument.
+
+       -fno-strict-prototypes given if we're using gcc (this should hopefully
+       alleviate the continuing headache of getting function prototypes to
+       work).
+
+       Include a prototype for random and srandom if it's determined that
+       we're using Circle's random/srandom functions and not libc's.
+
+       Check for the presence of arpa/telnet.h, and use our own local copy
+       (telnet.h is now included with the Circle distribution) if it does
+       not exist.
+
+       Check for sys/types.h before including it.
+
+       Configure recreated with GNU autoconf v2.9 (previously was 2.7).
+
+-- Made some fixes to the autorun script: most notably, it was not passing
+   command-line parameters to the MUD, meaning that you had to change the
+   port in config.c in order for it to be changed if you were using autorun.
+   This means that port-number changing now works the way it was documented
+   (autorun setting takes precedence over config.c).
+
+-- Made some changes to conf.h.os2 to reflect the new configure script and
+   the changing of the constant from OS2 to CIRCLE_OS2.
+
+-- Moved heartbeat functions out of game_loop and into their own function
+   which is called by game_loop (seems more logical this way to me).
+
+-- game_loop, comm.c: The code which controls the tick-timing was rewritten;
+   the timer is now much more accurate (does not drift with time), and
+   gracefully handles making up for lost ticks if the MUD is suspended for
+   more than a single tick-length (e.g. if the scheduler keeps it waiting
+   for a long time under heavy load).  Added a 'timeadd' function to add
+   two timevals for use with the calculations.
+
+-- Added a timeout to the "What is your name?" prompt; should prevent denial
+   of service attacks whereby people use up all available descriptors by
+   repeatedly telnetting into the game and staying idle.  (Though I have not
+   received reports of this happening, I'm sure someone has thought of it.)
+
+-- Fixed various typos in the code, help files, and libraries.
+
+-- do_advance, act.wizard.c: Does not allow someone to be advanced to the
+   level they already are.
+
+-- invalid_name, ban.c: Changed the buffer size from MAX_NAME_LENGTH to
+   MAX_INPUT_LENGTH; was causing crashes when very long names were given.
+
+-- Fixed look_in_obj, act.informative.c, to prevent crashes when looking into
+   fountains or cups with invalid values.
+
+-- Changed the semantics of top_of_helpt so that it points to the top element,
+   not the number of elements, in the help table (done to be consistent with
+   the other top_of_xxx variables).  Fixed do_help in act.informative.c to
+   prevent crashes if "help zzzzzz" is typed.
+
+-- Reshuffled the position of alias freeing in free_char yet again (I think
+   I've finally gotten this one right).
+
+-- handler.c, affect_from_char(): Changed the list traversal over to the
+   classic method used when traversing a list and deleting items as we go
+   (i.e. keeping around a temp variable with hjp->next).  (This bug was found
+   courtesy of Win95's completely unforgiving memory manager.. unlike most
+   UNIX memory managers, it causes crashes if you try to use memory that
+   was just freed.... Win95 is almost as good as Electric Fence! :-))
+   
+-- handler.c, extract_char(): Changed "if (ch->desc != NULL)" to
+   "if (!freed && ch->desc != NULL)" because ch was potentially freed in the
+   previous statement.  (This bug was also found by Win 95...)
+
+-- limits.c, point_update(): gain_condition called first rather than last;
+   causes crashes when gain_condition() is called on a character that has just
+   bled to death (i.e. killed by point_update()).  (This bug was also found
+   by Win 95...)
+
+-- Some similar cases of structures being used after they were freed in
+   shop.c fixed (found by Win95...)
+
+-- Fixed the pet shops so pets are no longer priced at 0 coins; pet prices
+   are now 300 coins times the level of the pet.
+
+-- spell_parser.c, get_skillname(): If the skill is -1, return UNUSED instead
+   of UNDEFINED (makes stat and scroll of identify output look better).
+
+-- Added more sanity checks to spell_parser.c (spell_level() and cast_spell())
+   to prevent crashes if scrolls are created with wild spell numbers.
+
+-- spell_parser.c, spello() and unused_spell(): Changed to use a loop
+   instead of enumerating all classes; should make adding new classes easier.
+
+-- spells.h: Changed types of mana_{min,max,change} to int to correctly handle
+   spells which take large mana requirements.
+
+-- handler.c, generic_find(): Silly bug introduced in pl10 fixed whereby
+   you can't look in objects if you are equipped.
+
+-- mail.h: Changed a '1' to a 'sizeof(char)' in the MudMail system (caused
+   assertion failures on architectures where sizeof(char) != 1)
+
+-- utils.c, sprinttype(): Cleaned up the code.  Looked silly before.
+
+-- Fixes to autowiz.c: Added an fflush() at the end so that wizlists are
+   correctly updated.  Also removed some old bzero() calls that were still
+   lurking from the old days (modern SYSV systems don't like bzero() at all.)
+   Took out the SO_REUSEPORT socket option.
+
+-- Fixed wld2html.c: The parser code was quite old and could not handle
+   the 3.0 world files with ASCII bitvectors.  wld2html now works correctly.
+
+-- Changed "++col" to "col++" in Michael Buselli's pager code (patch sent by
+   him).
+
+-- Brought in the new world files and 'messages' file from Furry (scrolls
+   of identify and the 'harm' spell now work) and new help files from
+   Chris Epler.
+
+-- Took out the very old bug, typo, and idea files from the standard
+   distribution.
+
+
+******** Patchlevel 12 ***************************************************
+
+-- I changed the logic of prompt generation so that prompts are generated
+   as plain output, the same as all other output (e.g. using send_to_char()),
+   specifically so that both the regular output and the player's new prompt
+   can be written to the operating system using a single write() system call.
+   In many cases, this cuts in half the number of TCP packets generated
+   and received!  This is a big win for slow machines and machines with
+   slow Internet links (e.g. a modem)!
+
+
+To illustrate this point, I'll show typical TCP exchanges between MUD
+clients and servers under pl11 vs. pl12.  These exchanges were all
+recorded using Van Jacobson's tcpdump tool, which can be downloaded from
+ftp.ee.lbl.gov.  The window advertisements have been removed from the
+output to make it more readable.
+	
+Here's a typical packet exchange between a MUD client and server under
+pl11 when a player enters a command (in this case, "look"):
+
+16:17:35.287187 client.32877 > mudserver.4000: P 41:47(6) ack 2579
+16:17:35.333721 mudserver.4000 > client.32877: . ack 47
+16:17:35.334197 mudserver.4000 > client.32877: P 2579:3132(553) ack 47
+16:17:35.376089 client.32877 > mudserver.4000: . ack 3132 win 8760 (DF)
+16:17:35.376162 mudserver.4000 > client.32877: P 3132:3134(2) ack 47
+16:17:35.426039 client.32877 > mudserver.4000: . ack 3134
+
+The first packet is the 6-byte command, "look\r\n", sent from client to
+server.  The second packet is the server's TCP acknowledgement (ACK) of
+those 6 bytes.  The third packet is the 553-byte output of the command
+"look" sent from server to client.  The fourth packet is the client's TCP
+ACK of those 553 bytes.  The fifth and sixth packets are the 2-byte prompt
+sent from client to server followed by the client's TCP ACK.
+
+Note that the second and third packets are often compressed into a single
+packet, if the MUD happens to service that player before the server TCP
+stack's delayed ACK timer expires.
+
+This is a much bigger waste of resources than you might expect; keep in
+mind that each of these packets usually carry at least 40 bytes worth of
+overhead, and IP packet processing is typically takes a lot of CPU time.
+	
+Here's the same exchange under pl12:
+	
+16:20:15.445465 client.32878 > mudserver.4000: P 29:35(6) ack 2016
+16:20:15.492610 mudserver.4000 > client.32878: . ack 35
+16:20:15.504223 mudserver.4000 > client.32878: P 2016:2571(555) ack 35
+16:20:15.549806 client.32878 > mudserver.4000: . ack 2571
+
+The same exchange now requires only 4 packets instead of 6.  (Or, if we
+service the client before the delayed ACK timer expires, we could do it in
+3 packets.)  Note that the third packet is now both the 553-byte output of
+"look" *and* the 2-byte prompt.  This causes only a single TCP ACK from
+the client, instead of two ACKs as in the previous example.
+
+Here's a typical round of combat under pl11:
+
+16:19:02.673794 mudserver.4000 > client.32875: P 4976:5067(91) ack 120
+16:19:02.717357 client.32875 > mudserver.4000: . ack 5067
+16:19:02.717409 mudserver.4000 > client.32875: P 5067:5069(2) ack 120
+16:19:02.767418 client.32875 > mudserver.4000: . ack 5069
+
+The first packet is the combat message (e.g., "The beastly fido hits you
+very hard.")  The second packet is the client's TCP ACK of those bytes.
+The third and fourth packets are the 2-byte prompt and its ACK.
+	
+Under pl12:
+
+16:21:33.572363 mudserver.4000 > client.32876: P 8418:8505(87) ack 131
+16:21:33.620336 client.32876 > mudserver.4000: . ack 8505
+
+Each round of combat is reported using only a single TCP packet, which in
+turn elicits only a single ACK from the client.  The exchange requires
+only 2 packets instead of 4.  If you have a large MUD, where many players
+might simultaneously be in combat, the savings can be very significant.
+MUDs with slow links or slow CPUs will probably benefit the most from this
+change.
+
+
+-- comm.c, and structs.h, various functions: replaced the "prompt_mode"
+   variable with the less obfuscated "has_prompt", which has the opposite
+   meaning.
+
+-- mobact.c:mobile_activity() - What a terrible bug!!  Mob spec-procs
+   were never called if the mob was fighting or asleep.  The mayor would
+   never wake up, but more importantly, mobs with special specprocs for
+   fighting (e.g. mobs that use magic during battle) were never getting
+   called.  The check for FIGHTING and !AWAKE has been moved to after
+   the specproc calls but before the mob default actions.
+   Found by realm@styx.ph.msstate.edu.
+
+-- act.offensive.c:do_flee() - Added check to make sure you're at least in
+   POS_FIGHTING (not injured) to flee; necessary because wimpy calls
+   do_flee() directly and doesn't go through the interpreter.
+
+-- spells.c:spell_summon() - Changed so that a MOB_NOSUMMON flag prevents
+   mobs from being summoned instead of MON_NOCHARM.  Found by Daniel
+   Burke.
+
+-- magic.c:mag_affects() - Changed the protection against re-affecting
+   affected mobs to check all possible spell affects instead of only the
+   first two (an oversight from when mag_affects was changed from 2
+   affects to an arbitrary number).  Found by Daniel Burke.
+
+-- shop.c, shop.h: Moved 3 arrays from shop.h to shop.c so that shop.h can be
+   multiply included if necessary.  Suggested by Anil Mahajan.
+
+-- act.wizard.c:do_advance(): Changed to show the diminishment message to
+   the victim instead of the imp.  Found by glennmc@ccsi.com.
+
+-- act.wizard.c:do_stat_character(): Added error checking to aff->type
+   array indexing to prevent crashes.  Suggested by Anil Mahajan.
+
+-- act.offensive.c:check_killer(): Using 'murder' automatically sets your
+   KILLER flag (if pk is not allowed), even if you miss the first hit.
+   Suggested by Alex Fletcher <furry@circlemud.org>.
+
+-- magic.c:mag_points(): Added update_pos to the end to correctly upgrade
+   (or downgrade) the position of your victim after healing.  Found by
+   Johan Dustler.
+
+-- act.wizard.c:do_set(): Broke this monster into two functions, which
+   makes it easier to read and plugs the 'set file' memory leak.
+
+-- spells.c:create_water(): Only remove the name from the drink container
+   if it wasn't previously empty.  Prevents permanent keywords from being
+   removed.  Found by Eric Green.
+
+-- fight.c:group_gain(): Made the max possible exp gain when killing
+   a player equal to 2/3 the max_exp_loss.  This prevents illegal exp
+   creation on pk muds.  Found by Apua Cesar de Miranda Paquola
+   <apua@dcc.unicamp.br> and Dirani (spharion@dcc.unicamp.br).
+
+-- fight.c:damage(): Cleaned up code, fixed similar bug to prevent
+   exp gain by bleeding to death.
+
+   CHANGED:  You no longer gain xp when you're damaging yourself.
+
+-- shop.h; shop.c:trade_with(): Clarified the error message given to
+   people attempting to sell a worthless item to a shop.  Submitted by
+   Chris Epler <cepler@circlemud.org>.
+
+-- act.wizard.c, do_dc(): If you try to disconnect a God you can't see,
+   you are given "No such connection" to hide the presence of the God.
+   Suggested by Fred Herbert <herb8590@swampfox.fmarion.edu>.
+
+-- act.wizard.c, do_gecho(): Added delete_doubledollar() to prevent
+   $$'s on gechos.  Suggested by Jestyr Saaven <jestyr7@the-hermes.net>.
+
+-- act.wizard.c, do_show(): Changed 'show godrooms' to traverse the world
+   print rooms marked GODROOM instead of printing rooms in a particular zone
+   number.  Suggested by Jestyr Saaven <jestyr7@the-hermes.net>.
+
+-- act.wizard.c, do_stat_room(): Changed to display the zone's vnum, not
+   rnum.  Found by Jay Vanderwood <infoteq@dragon.azstarnet.com>
+
+-- Tried to use the typedefs mob_rnum, mob_vnum, room_rnum, room_vnum,
+   obj_rnum and obj_vnum consistently throughout the code.  Don't know
+   if I found them all, but here's hoping...
+
+-- fight.c:damage() - Added die() after an "attempt to damage a corpse",
+   so if someone does manage to get into the POS_DEAD state, they'll
+   die for real.  Suggested by root <root@cthulhu.dorm.umd.edu>.
+
+-- ban.c:Read_Invalid_List() - Changed so that names are read with one
+   pass through the file instead of two.
+
+-- act.item.c:perform_drop_gold() - Changed hide_invis from FALSE to TRUE
+   on act() so room observers cannot see invis people dropping gold; changed
+   to be consistent with item dropping which already works this way.
+   Suggested by Chris Epler <cepler@circlemud.org>
+
+-- fight.c:damage() - Changed handling of AFF_SANCTUARY so that damage
+   is only cut in half if it is 2 or more (i.e. to prevent 1 from turning
+   into 0).  Indirectly suggested by dodger@WPI.EDU (DoDGeR) who reported:
+   "If you bash a sanct'ed mob, you always see the failure message because
+    the sanct turns the damage from 1 to 0 and that tells skill_message to
+    print the miss message."
+
+-- autorun.pl: Made part of the standard distribution (perl version of
+   autorun), by D. Hall of Vi'Rage Studios
+
+-- Updated FAQ and PORTING documents
+
+-- Made many changes to configure.in and regenerated 'configure' script
+   with most recent version of autoconf (2.12).  configure now checks
+   which libc functions and system calls are correctly prototyped, and
+   only prototypes those functions that aren't.  Also, it doesn't include
+   the malloc, nsl, socket, and crypt libraries unless those functions
+   are missing from libc.  This solves problems that autoconf was having
+   with IRIX, where it would use lsocket and lnsl, unneccesarily generating
+   linker warnings when those libraries would shadow libc functions.  On
+   the other hand, this will cause a problem on OS's where a dummy
+   crypt() is shadowed by a real crypt in libcrypt.  Future releases may
+   check crypt() to see if it actually works.
+
+-- constants.c: changed experience and title tables to be functions
+   returning values instead of arrays, to avoid crashes when newbie imps
+   try to add levels by changing the LVL_xx constants without extending
+   the arrays appropriately.  SYSERR message is generated to indicate
+   incorrectly set up xp tables.
+
+-- comm.c, various functions - Made some changes to make porting to other
+   platforms easier; introduced the CIRCLE_UNIX constant.
+
+-- db.c, various functions: tried to make the parser a bit better at
+   reporting error messages (and not crashing.. ugh.)
+
+-- Various files: replaced ">> 2" with "/ 4".  I can be a real idiot
+   sometimes.
+
+-- Added preliminary Amiga support with the help of Jack Patton and
+   Steffen Haeuser.
+
+-- act.wizard.c:do_dc() and structs.h:descriptor_data -- Added a
+   "close_me" flag to descriptor_data that dc uses to indicate a descriptor
+   should be killed off; just having dc() call close_socket() crashes if
+   you're disconnecting the person below you in the descriptor list.
+	
+-- The script I use to pack up Circle into a tar and zip file was changed
+   to add token files to all empty directories to work around buggy unzip
+   programs that don't bother creating empty directories.
+
+-- act.other.c:do_display(): Now complains about unknown arguments.
+
+-- act.wizard.c:do_shutdown(); db.h: Added the constants FASTBOOT_FILE,
+   KILLSCRIPT_FILE, and PAUSE_FILE to the header file, and used them
+   instead of the literals in the code.
+
+-- olc.c:do_olc(): Fixed the warning given by gcc.  Just FYI, (for whoever
+   "Y"ou are), I left that warning in on purpose, sort of as a subtle
+   reminder that OLC is not done.  However I finally decided to change it
+   after the 10,000th "bug report".
+
+-- Gave the utilities their own Makefile (Makefile.in, actually; Makefile
+   is generated by configure)

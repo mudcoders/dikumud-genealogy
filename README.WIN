@@ -1,0 +1,137 @@
+                     Compiling CircleMUD Version 3.0
+                under Microsoft Windows 95 or Windows NT
+                 by Jeremy Elson (jelson@circlemud.org)
+
+CircleMUD 3.0 compiles relatively easily under Windows 95 and NT using the
+Microsoft Visual C++ compiler version 4.x.  It should be possible to
+compile it using other compilers, or previous versions of MSVC++ that are
+designed for Windows95/NT (they must support long filenames), but I
+haven't tried it and can't give you any help.  However, it not easy (and
+maybe even impossible) to compile at all under Windows 3.x or DOS because
+they lack a number of features that Circle requires such as the Win32 API
+and long filenames.  It is theoretically possible to compile under Windows
+3.x by finding 3.x API equivalents to the Win32 API calls, and changing
+all the filenames in the entire distribution to fit the 8.3 DOS/Win3.x
+filenaming standard, but I will never do this.  You can try it if you
+want, but don't write to me for help. 
+
+The Win32 code was developed under Microsoft Visual C++ version 4.x.  If
+you have a previous version of MSVC++, or if you have a different brand of
+compiler, I can't make any guarantees about how easily the code will
+compile or if it will even compile at all.  You are welcome to try to
+compile the code using a different compiler (such as Turbo C++, Borland
+C++, etc.) however please *do not* write me mail asking for help because I
+have never used those compilers before and know *nothing* about them. 
+
+Note MSVC++ 4.x is a commercial product and must be bought from your local
+software store.  It can't be downloaded from any (legal) FTP sites, and I
+will not send you a copy, so please don't ask. 
+
+
+Installation:
+
+1) Download and uncompress the latest version of CircleMUD according to the
+   instructions in the main README file.  (The FTP site is ftp.circlemud.org,
+   in the pub/CircleMUD directory).  MAKE SURE to use an unzip program that
+   can handle long filenames.
+
+2) Open a window with an MS-DOS prompt.  Note, this does not mean you are
+   "compiling under DOS" -- the MS-DOS prompt is just a command-line
+   interface to Windows 95.  This step can be done by going to the Start
+   menu, going to the Programs submenu, and selecting "MS-DOS prompt".  All
+   the following commands are performed at the MS-DOS prompt. 
+
+3) Use the CD command to switch to the main CircleMUD directory.  For
+   exmaple, type "CD \circle30bpl12", but this may vary depending on the
+   version of Circle you downloaded and where you decided to uncompress it.
+
+4) Go to the src directory and rename conf.h.win to conf.h, and replace
+   the Makefile with Makefile.win.  This can be accomplished with the
+   following commands:
+
+	cd src
+	copy conf.h.win conf.h
+	del Makefile
+	copy Makefile.win Makefile
+	
+5) If you have MSVC++ 4.x installed in C:\MSDEV, skip to the next step. 
+   Otherwise, bring up the Makefile in your favorite text editor (for
+   example, to use the DOS EDIT command, type "EDIT MAKEFILE".)  Find the two
+   lines that start with "CLFAGS =" and "LIB=", respectively.  On BOTH lines,
+   change the part that says "C:\MSDEV\" to reflect where your copy of MSVC++
+   4.x is installed.  Then, save the Makefile and exit the editor.  You
+   should still be in the "src"  directory. 
+
+6) Make sure that MSVC++ binary directory (i.e., the directory where the
+   actual programs are kept, such as NMAKE.EXE) is in your PATH.  You can see
+   what your path is by typing PATH.  Your MSVC++ binary directory should be
+   listed (for example, C:\MSDEV\BIN).  Add MSVC's binary directory to your
+   path if it's not already there.  If you do not know how to change your
+   path, contact someone who knows how to use the DOS command prompt for
+   help, or check the manual to learn how to use the PATH command. 
+
+7) To compile Circle, stay in the src directory and type: 
+
+        NMAKE
+
+   This will invoke Microsoft's make program and should build the entire
+   CircleMUD server and create a file called 'circle.exe'.  If you see the
+   error message "Bad command or filename", then MSVC++'s binary directory is
+   not in your path, so your computer can't find MS's NMAKE program.  Go back
+   to step 6. 
+
+8) Make sure your TCP/IP stack is installed, correctly configured, and
+   running.  If you are already using TCP/IP applications from your
+   Windows machine such as Netscape or telnet, then no changes should be
+   necessary; otherwise go to the Control Panel's "Network" settings,
+   select "Add Protocol", and add Microsoft's TCP/IP.  Consult the
+   documentation for Windows 95 (do not write me mail) if you have any
+   additional questions about how to set up TCP/IP under Windows 95. 
+
+   YOU MUST INSTALL AND CONFIGURE YOUR TCP/IP STACK, EVEN IF YOU ARE NOT 
+   CONNECTED TO THE INTERNET.
+
+9) Go back to Circle's main directory (like in Step 3), and run the server
+   by typing "src\circle".  You should see boot messages appearing on the
+   screen.  Wait until the line "No connections.  Going to sleep." appears
+   at the bottom of the screen -- this means Circle is ready to accept
+   connections.  Go on to step 10 if you see this.
+
+   If you see "Winsock Error #10047", your TCP/IP stack is not correctly
+   configured; go back to Step 8.  If you see "error changing to lib
+   directory: no such file or directory", be sure your current directory
+   is Circle's MAIN directory, NOT the src directory (i.e., the same
+   directory you were in at step 3).  Then try again. 
+
+10) Start a telnet program (SEE NOTE BELOW).  Open a connection to your
+   own machine ("localhost", or whatever the name of your machine happens
+   to be) on port 4000.  You should see the MUD's login screen welcoming
+   you and asking for your name.
+
+   VERY IMPORTANT NOTE:  The standard telnet program that comes free with
+   Windows 95 and NT does *not* work correctly for connecting to any MUD
+   because it does not support telnet's line-mode interface (so you can't
+   see what you are typing).  Note that simply turning on the "local echo"
+   option does not fix the problem; this prevents echo from being turned
+   off while you're typing your password, and screws up the display if you
+   try to hit the backspace key too many times.
+
+   Do not use Microsoft's telnet applet -- instead, use EWAN, CRT, zMUD, or
+   any other Winsock telnet application.  EWAN and CRT can be downloaded
+   from any number of sites (for example, www.windows95.com).  zMUD is an
+   excellent MUD client; for more information, see the official home page
+   at http://www.trail.com/~zugg/zmud.html.
+
+
+If you have problems, read this document again.  Most of the questions I
+receive in email are answered in this README file.  If you're still having
+problems and you're *sure* that this document doesn't answer your question,
+try reading the CircleMUD FAQ at ftp://ftp.circlemud.org/pub/CircleMUD/FAQ.
+If all else fails, you can send me mail for help.  Note, however, that if
+you ask me any question that is answered in this document, all I'll do is
+mail it to you. 
+
+Have fun!
+
+Jeremy Elson
+jelson@circlemud.org

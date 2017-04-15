@@ -42,7 +42,9 @@ M 0 7000 8 7281         The Horrifying Mudmonster
 M 0 7000 8 7281         The Horrifying Mudmonster
 M 0 7000 8 7280         The Horrifying Mudmonster
 * Objects
+R 0 7206 7206
 O 0 7206 4 7206         Skull
+R 0 7211 7208
 O 0 7208 20 7211        Light Stick
 * Doors
 D 0 7201 3 2            Treasury Door

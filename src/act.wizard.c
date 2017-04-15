@@ -8,12 +8,8 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <sys/time.h>
-#include <sys/types.h>
+#include "conf.h"
+#include "sysdep.h"
 
 #include "structs.h"
 #include "utils.h"
@@ -31,11 +27,10 @@ extern struct room_data *world;
 extern struct char_data *character_list;
 extern struct obj_data *object_list;
 extern struct descriptor_data *descriptor_list;
-extern struct title_type titles[NUM_CLASSES][LVL_IMPL + 1];
 extern struct index_data *mob_index;
 extern struct index_data *obj_index;
-extern struct int_app_type int_app[36];
-extern struct wis_app_type wis_app[36];
+extern struct int_app_type int_app[];
+extern struct wis_app_type wis_app[];
 extern struct zone_data *zone_table;
 extern int top_of_zone_table;
 extern int restrict;
@@ -48,6 +43,7 @@ extern int top_of_p_table;
 extern char *item_types[];
 extern char *wear_bits[];
 extern char *extra_bits[];
+extern char *container_bits[];
 extern char *drinks[];
 
 /* for rooms */
@@ -69,6 +65,8 @@ extern char *preference_bits[];
 extern char *position_types[];
 extern char *connected_types[];
 
+/* extern functions */
+int level_exp(int class, int level);
 
 
 ACMD(do_echo)
@@ -118,7 +116,7 @@ ACMD(do_send)
 
 
 /* take a string, and return an rnum.. used for goto, at, etc.  -je 4/6/93 */
-sh_int find_target_room(struct char_data * ch, char *rawroomstr)
+room_rnum find_target_room(struct char_data * ch, char *rawroomstr)
 {
   int tmp;
   sh_int location;
@@ -346,7 +344,8 @@ void do_stat_room(struct char_data * ch)
 
   sprinttype(rm->sector_type, sector_types, buf2);
   sprintf(buf, "Zone: [%3d], VNum: [%s%5d%s], RNum: [%5d], Type: %s\r\n",
-	  rm->zone, CCGRN(ch, C_NRM), rm->number, CCNRM(ch, C_NRM), ch->in_room, buf2);
+	  zone_table[rm->zone].number, CCGRN(ch, C_NRM), rm->number,
+	  CCNRM(ch, C_NRM), ch->in_room, buf2);
   send_to_char(buf, ch);
 
   sprintbit((long) rm->room_flags, room_bits, buf2);
@@ -501,27 +500,26 @@ void do_stat_object(struct char_data * ch, struct obj_data * j)
 
   switch (GET_OBJ_TYPE(j)) {
   case ITEM_LIGHT:
-    sprintf(buf, "Color: [%d], Type: [%d], Hours: [%d]",
-	    GET_OBJ_VAL(j, 0), GET_OBJ_VAL(j, 1), GET_OBJ_VAL(j, 2));
+    if (GET_OBJ_VAL(j, 2) == -1)
+      strcpy(buf, "Hours left: Infinite");
+    else
+      sprintf(buf, "Hours left: [%d]", GET_OBJ_VAL(j, 2));
     break;
   case ITEM_SCROLL:
   case ITEM_POTION:
-    sprintf(buf, "Spells: %d, %d, %d, %d", GET_OBJ_VAL(j, 0),
-	    GET_OBJ_VAL(j, 1), GET_OBJ_VAL(j, 2), GET_OBJ_VAL(j, 3));
+    sprintf(buf, "Spells: (Level %d) %s, %s, %s", GET_OBJ_VAL(j, 0),
+	    skill_name(GET_OBJ_VAL(j, 1)), skill_name(GET_OBJ_VAL(j, 2)),
+	    skill_name(GET_OBJ_VAL(j, 3)));
     break;
   case ITEM_WAND:
   case ITEM_STAFF:
-    sprintf(buf, "Spell: %d, Mana: %d", GET_OBJ_VAL(j, 0),
-	    GET_OBJ_VAL(j, 1));
+    sprintf(buf, "Spell: %s at level %d, %d (of %d) charges remaining",
+	    skill_name(GET_OBJ_VAL(j, 3)), GET_OBJ_VAL(j, 0),
+	    GET_OBJ_VAL(j, 2), GET_OBJ_VAL(j, 1));
     break;
-  case ITEM_FIREWEAPON:
   case ITEM_WEAPON:
-    sprintf(buf, "Tohit: %d, Todam: %dd%d, Type: %d", GET_OBJ_VAL(j, 0),
+    sprintf(buf, "Todam: %dd%d, Message type: %d",
 	    GET_OBJ_VAL(j, 1), GET_OBJ_VAL(j, 2), GET_OBJ_VAL(j, 3));
-    break;
-  case ITEM_MISSILE:
-    sprintf(buf, "Tohit: %d, Todam: %d, Type: %d", GET_OBJ_VAL(j, 0),
-	    GET_OBJ_VAL(j, 1), GET_OBJ_VAL(j, 3));
     break;
   case ITEM_ARMOR:
     sprintf(buf, "AC-apply: [%d]", GET_OBJ_VAL(j, 0));
@@ -531,26 +529,30 @@ void do_stat_object(struct char_data * ch, struct obj_data * j)
 	    GET_OBJ_VAL(j, 0), GET_OBJ_VAL(j, 1));
     break;
   case ITEM_CONTAINER:
-    sprintf(buf, "Max-contains: %d, Locktype: %d, Corpse: %s",
-	    GET_OBJ_VAL(j, 0), GET_OBJ_VAL(j, 1),
-	    GET_OBJ_VAL(j, 3) ? "Yes" : "No");
+    sprintbit(GET_OBJ_VAL(j, 1), container_bits, buf2);
+    sprintf(buf, "Weight capacity: %d, Lock Type: %s, Key Num: %d, Corpse: %s",
+	    GET_OBJ_VAL(j, 0), buf2, GET_OBJ_VAL(j, 2),
+	    YESNO(GET_OBJ_VAL(j, 3)));
     break;
   case ITEM_DRINKCON:
   case ITEM_FOUNTAIN:
     sprinttype(GET_OBJ_VAL(j, 2), drinks, buf2);
-    sprintf(buf, "Max-contains: %d, Contains: %d, Poisoned: %s, Liquid: %s",
-	    GET_OBJ_VAL(j, 0), GET_OBJ_VAL(j, 1),
-	    GET_OBJ_VAL(j, 3) ? "Yes" : "No", buf2);
+    sprintf(buf, "Capacity: %d, Contains: %d, Poisoned: %s, Liquid: %s",
+	    GET_OBJ_VAL(j, 0), GET_OBJ_VAL(j, 1), YESNO(GET_OBJ_VAL(j, 3)),
+	    buf2);
     break;
   case ITEM_NOTE:
     sprintf(buf, "Tongue: %d", GET_OBJ_VAL(j, 0));
     break;
   case ITEM_KEY:
-    sprintf(buf, "Keytype: %d", GET_OBJ_VAL(j, 0));
+    strcpy(buf, "");
     break;
   case ITEM_FOOD:
-    sprintf(buf, "Makes full: %d, Poisoned: %d",
-	    GET_OBJ_VAL(j, 0), GET_OBJ_VAL(j, 3));
+    sprintf(buf, "Makes full: %d, Poisoned: %s", GET_OBJ_VAL(j, 0),
+	    YESNO(GET_OBJ_VAL(j, 3)));
+    break;
+  case ITEM_MONEY:
+    sprintf(buf, "Coins: %d", GET_OBJ_VAL(j, 0));
     break;
   default:
     sprintf(buf, "Values 0-3: [%d] [%d] [%d] [%d]",
@@ -558,7 +560,7 @@ void do_stat_object(struct char_data * ch, struct obj_data * j)
 	    GET_OBJ_VAL(j, 2), GET_OBJ_VAL(j, 3));
     break;
   }
-  send_to_char(buf, ch);
+  send_to_char(strcat(buf, "\r\n"), ch);
 
   /*
    * I deleted the "equipment status" code from here because it seemed
@@ -566,7 +568,7 @@ void do_stat_object(struct char_data * ch, struct obj_data * j)
    */
 
   if (j->contains) {
-    sprintf(buf, "Contents:%s", CCGRN(ch, C_NRM));
+    sprintf(buf, "\r\nContents:%s", CCGRN(ch, C_NRM));
     for (found = 0, j2 = j->contains; j2; j2 = j2->next_content) {
       sprintf(buf2, "%s %s", found++ ? "," : "", j2->short_description);
       strcat(buf, buf2);
@@ -773,7 +775,8 @@ void do_stat_character(struct char_data * ch, struct char_data * k)
     for (aff = k->affected; aff; aff = aff->next) {
       *buf2 = '\0';
       sprintf(buf, "SPL: (%3dhr) %s%-21s%s ", aff->duration + 1,
-	      CCCYN(ch, C_NRM), spells[aff->type], CCNRM(ch, C_NRM));
+	      CCCYN(ch, C_NRM), (aff->type >= 0 && aff->type <= MAX_SPELLS) ?
+	      spells[aff->type] : "TYPE UNDEFINED", CCNRM(ch, C_NRM));
       if (aff->modifier) {
 	sprintf(buf2, "%+d to %s", aff->modifier, apply_types[(int) aff->location]);
 	strcat(buf, buf2);
@@ -889,19 +892,19 @@ ACMD(do_shutdown)
     sprintf(buf, "(GC) Reboot by %s.", GET_NAME(ch));
     log(buf);
     send_to_all("Rebooting.. come back in a minute or two.\r\n");
-    touch("../.fastboot");
+    touch(FASTBOOT_FILE);
     circle_shutdown = circle_reboot = 1;
   } else if (!str_cmp(arg, "die")) {
     sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
     log(buf);
     send_to_all("Shutting down for maintenance.\r\n");
-    touch("../.killscript");
+    touch(KILLSCRIPT_FILE);
     circle_shutdown = 1;
   } else if (!str_cmp(arg, "pause")) {
     sprintf(buf, "(GC) Shutdown by %s.", GET_NAME(ch));
     log(buf);
     send_to_all("Shutting down for maintenance.\r\n");
-    touch("../pause");
+    touch(PAUSE_FILE);
     circle_shutdown = 1;
   } else
     send_to_char("Unknown shutdown option.\r\n", ch);
@@ -1152,11 +1155,40 @@ ACMD(do_purge)
 
 
 
+static char *logtypes[] = {
+"off", "brief", "normal", "complete", "\n"};
+
+ACMD(do_syslog)
+{
+  int tp;
+
+  one_argument(argument, arg);
+
+  if (!*arg) {
+    tp = ((PRF_FLAGGED(ch, PRF_LOG1) ? 1 : 0) +
+	  (PRF_FLAGGED(ch, PRF_LOG2) ? 2 : 0));
+    sprintf(buf, "Your syslog is currently %s.\r\n", logtypes[tp]);
+    send_to_char(buf, ch);
+    return;
+  }
+  if (((tp = search_block(arg, logtypes, FALSE)) == -1)) {
+    send_to_char("Usage: syslog { Off | Brief | Normal | Complete }\r\n", ch);
+    return;
+  }
+  REMOVE_BIT(PRF_FLAGS(ch), PRF_LOG1 | PRF_LOG2);
+  SET_BIT(PRF_FLAGS(ch), (PRF_LOG1 * (tp & 1)) | (PRF_LOG2 * (tp & 2) >> 1));
+
+  sprintf(buf, "Your syslog is now %s.\r\n", logtypes[tp]);
+  send_to_char(buf, ch);
+}
+
+
+
 ACMD(do_advance)
 {
   struct char_data *victim;
   char *name = arg, *level = buf2;
-  int newlevel;
+  int newlevel, oldlevel;
   void do_start(struct char_data *ch);
 
   void gain_exp(struct char_data * ch, int gain);
@@ -1194,9 +1226,16 @@ ACMD(do_advance)
     send_to_char("Yeah, right.\r\n", ch);
     return;
   }
+  if (newlevel == GET_LEVEL(victim)) {
+    send_to_char("They are already at that level.\r\n", ch);
+    return;
+  }
+  oldlevel = GET_LEVEL(victim);
   if (newlevel < GET_LEVEL(victim)) {
     do_start(victim);
     GET_LEVEL(victim) = newlevel;
+    send_to_char("You are momentarily enveloped by darkness!\r\n"
+		 "You feel somewhat diminished.\r\n", victim);
   } else {
     act("$n makes some strange gestures.\r\n"
 	"A strange feeling comes upon you,\r\n"
@@ -1215,10 +1254,10 @@ ACMD(do_advance)
   send_to_char(OK, ch);
 
   sprintf(buf, "(GC) %s has advanced %s to level %d (from %d)",
-	  GET_NAME(ch), GET_NAME(victim), newlevel, GET_LEVEL(victim));
+	  GET_NAME(ch), GET_NAME(victim), newlevel, oldlevel);
   log(buf);
   gain_exp_regardless(victim,
-	 (titles[(int) GET_CLASS(victim)][newlevel].exp) - GET_EXP(victim));
+	 level_exp(GET_CLASS(victim), newlevel) - GET_EXP(victim));
   save_char(victim, NOWHERE);
 }
 
@@ -1332,6 +1371,7 @@ ACMD(do_gecho)
   struct descriptor_data *pt;
 
   skip_spaces(&argument);
+  delete_doubledollar(argument);
 
   if (!*argument)
     send_to_char("That must be a mistake...\r\n", ch);
@@ -1380,7 +1420,7 @@ ACMD(do_dc)
 
   one_argument(argument, arg);
   if (!(num_to_dc = atoi(arg))) {
-    send_to_char("Usage: DC <connection number> (type USERS for a list)\r\n", ch);
+    send_to_char("Usage: DC <user number> (type USERS for a list)\r\n", ch);
     return;
   }
   for (d = descriptor_list; d && d->desc_num != num_to_dc; d = d->next);
@@ -1390,10 +1430,20 @@ ACMD(do_dc)
     return;
   }
   if (d->character && GET_LEVEL(d->character) >= GET_LEVEL(ch)) {
-    send_to_char("Umm.. maybe that's not such a good idea...\r\n", ch);
+    if (!CAN_SEE(ch, d->character))
+      send_to_char("No such connection.\r\n", ch);
+    else
+      send_to_char("Umm.. maybe that's not such a good idea...\r\n", ch);
     return;
   }
-  close_socket(d);
+
+  /* We used to just close the socket here using close_socket(), but
+   * various people pointed out this could cause a crash if you're
+   * closing the person below you on the descriptor list.  Just setting
+   * to CON_CLOSE leaves things in a massively inconsistent state so I
+   * had to add this new flag to the descriptor.
+   */
+  d->close_me = 1;
   sprintf(buf, "Connection #%d closed.\r\n", num_to_dc);
   send_to_char(buf, ch);
   sprintf(buf, "(GC) Connection closed by %s.", GET_NAME(ch));
@@ -1830,11 +1880,12 @@ ACMD(do_show)
   char self = 0;
   struct char_data *vict;
   struct obj_data *obj;
-  char field[40], value[40], birth[80];
+  char field[MAX_INPUT_LENGTH], value[MAX_INPUT_LENGTH], birth[80];
   extern char *class_abbrevs[];
   extern char *genders[];
   extern int buf_switches, buf_largecount, buf_overflows;
   void show_shops(struct char_data * ch, char *value);
+  void hcontrol_list_houses(struct char_data *ch);
 
   struct show_struct {
     char *cmd;
@@ -1849,6 +1900,7 @@ ACMD(do_show)
     { "death",		LVL_GOD },
     { "godrooms",	LVL_GOD },
     { "shops",		LVL_IMMORT },
+    { "houses",		LVL_GOD },
     { "\n", 0 }
   };
 
@@ -1970,16 +2022,17 @@ ACMD(do_show)
     send_to_char(buf, ch);
     break;
   case 7:
-#define GOD_ROOMS_ZONE 2
     strcpy(buf, "Godrooms\r\n--------------------------\r\n");
     for (i = 0, j = 0; i < top_of_world; i++)
-      if (world[i].zone == GOD_ROOMS_ZONE)
-	sprintf(buf, "%s%2d: [%5d] %s\r\n", buf, j++, world[i].number,
-		world[i].name);
+    if (ROOM_FLAGGED(i, ROOM_GODROOM))
+      sprintf(buf,"%s%2d: [%5d] %s\r\n",buf,++j,world[i].number,world[i].name);
     send_to_char(buf, ch);
     break;
   case 8:
     show_shops(ch, value);
+    break;
+  case 9:
+    hcontrol_list_houses(ch);
     break;
   default:
     send_to_char("Sorry, I don't understand that.\r\n", ch);
@@ -1987,6 +2040,8 @@ ACMD(do_show)
   }
 }
 
+
+/***************** The do_set function ***********************************/
 
 #define PC   1
 #define NPC  2
@@ -2002,24 +2057,14 @@ ACMD(do_show)
 
 #define RANGE(low, high) (value = MAX((low), MIN((high), (value))))
 
-ACMD(do_set)
-{
-  int i, l;
-  struct char_data *vict;
-  struct char_data *cbuf;
-  struct char_file_u tmp_store;
-  char field[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH], val_arg[MAX_INPUT_LENGTH];
-  int on = 0, off = 0, value = 0;
-  char is_file = 0, is_mob = 0, is_player = 0;
-  int player_i;
-  int parse_class(char arg);
 
+/* The set options available */
   struct set_struct {
     char *cmd;
     char level;
     char pcnpc;
     char type;
-  }          fields[] = {
+  } set_fields[] = {
    { "brief",		LVL_GOD, 	PC, 	BINARY },  /* 0 */
    { "invstart", 	LVL_GOD, 	PC, 	BINARY },  /* 1 */
    { "title",		LVL_GOD, 	PC, 	MISC },
@@ -2037,7 +2082,7 @@ ACMD(do_set)
    { "wis", 		LVL_GRGOD, 	BOTH, 	NUMBER },
    { "dex", 		LVL_GRGOD, 	BOTH, 	NUMBER },  /* 15 */
    { "con", 		LVL_GRGOD, 	BOTH, 	NUMBER },
-   { "sex", 		LVL_GRGOD, 	BOTH, 	MISC },
+   { "cha",		LVL_GRGOD, 	BOTH, 	NUMBER },
    { "ac", 		LVL_GRGOD, 	BOTH, 	NUMBER },
    { "gold",		LVL_GOD, 	BOTH, 	NUMBER },
    { "bank",		LVL_GOD, 	PC, 	NUMBER },  /* 20 */
@@ -2067,93 +2112,60 @@ ACMD(do_set)
    { "idnum",		LVL_IMPL, 	PC, 	NUMBER },
    { "passwd",		LVL_IMPL, 	PC, 	MISC },    /* 45 */
    { "nodelete", 	LVL_GOD, 	PC, 	BINARY },
-   { "cha",		LVL_GRGOD, 	BOTH, 	NUMBER },
+   { "sex", 		LVL_GRGOD, 	BOTH, 	MISC },
    { "\n", 0, BOTH, MISC }
   };
 
-  half_chop(argument, name, buf);
-  if (!strcmp(name, "file")) {
-    is_file = 1;
-    half_chop(buf, name, buf);
-  } else if (!str_cmp(name, "player")) {
-    is_player = 1;
-    half_chop(buf, name, buf);
-  } else if (!str_cmp(name, "mob")) {
-    is_mob = 1;
-    half_chop(buf, name, buf);
-  }
-  half_chop(buf, field, buf);
-  strcpy(val_arg, buf);
 
-  if (!*name || !*field) {
-    send_to_char("Usage: set <victim> <field> <value>\r\n", ch);
-    return;
-  }
-  if (!is_file) {
-    if (is_player) {
-      if (!(vict = get_player_vis(ch, name, 0))) {
-	send_to_char("There is no such player.\r\n", ch);
-	return;
-      }
-    } else {
-      if (!(vict = get_char_vis(ch, name))) {
-	send_to_char("There is no such creature.\r\n", ch);
-	return;
-      }
-    }
-  } else if (is_file) {
-    CREATE(cbuf, struct char_data, 1);
-    clear_char(cbuf);
-    if ((player_i = load_char(name, &tmp_store)) > -1) {
-      store_to_char(&tmp_store, cbuf);
-      if (GET_LEVEL(cbuf) >= GET_LEVEL(ch)) {
-	free_char(cbuf);
-	send_to_char("Sorry, you can't do that.\r\n", ch);
-	return;
-      }
-      vict = cbuf;
-    } else {
-      free(cbuf);
-      send_to_char("There is no such player.\r\n", ch);
-      return;
-    }
-  }
+int perform_set(struct char_data *ch, struct char_data *vict, int mode,
+		char *val_arg)
+{
+  int i, on = 0, off = 0, value = 0;
+  char output[MAX_STRING_LENGTH];
+  int parse_class(char arg);
+
+  /* Check to make sure all the levels are correct */
   if (GET_LEVEL(ch) != LVL_IMPL) {
     if (!IS_NPC(vict) && GET_LEVEL(ch) <= GET_LEVEL(vict) && vict != ch) {
       send_to_char("Maybe that's not such a great idea...\r\n", ch);
-      return;
+      return 0;
     }
   }
-  for (l = 0; *(fields[l].cmd) != '\n'; l++)
-    if (!strncmp(field, fields[l].cmd, strlen(field)))
-      break;
-
-  if (GET_LEVEL(ch) < fields[l].level) {
+  if (GET_LEVEL(ch) < set_fields[mode].level) {
     send_to_char("You are not godly enough for that!\r\n", ch);
-    return;
+    return 0;
   }
-  if (IS_NPC(vict) && !(fields[l].pcnpc && NPC)) {
+
+  /* Make sure the PC/NPC is correct */
+  if (IS_NPC(vict) && !(set_fields[mode].pcnpc & NPC)) {
     send_to_char("You can't do that to a beast!\r\n", ch);
-    return;
-  } else if (!IS_NPC(vict) && !(fields[l].pcnpc && PC)) {
+    return 0;
+  } else if (!IS_NPC(vict) && !(set_fields[mode].pcnpc & PC)) {
     send_to_char("That can only be done to a beast!\r\n", ch);
-    return;
+    return 0;
   }
-  if (fields[l].type == BINARY) {
+
+  /* Find the value of the argument */
+  if (set_fields[mode].type == BINARY) {
     if (!strcmp(val_arg, "on") || !strcmp(val_arg, "yes"))
       on = 1;
     else if (!strcmp(val_arg, "off") || !strcmp(val_arg, "no"))
       off = 1;
     if (!(on || off)) {
-      send_to_char("Value must be on or off.\r\n", ch);
-      return;
+      send_to_char("Value must be 'on' or 'off'.\r\n", ch);
+      return 0;
     }
-  } else if (fields[l].type == NUMBER) {
+    sprintf(output, "%s %s for %s.", set_fields[mode].cmd, ONOFF(on),
+	    GET_NAME(vict));
+  } else if (set_fields[mode].type == NUMBER) {
     value = atoi(val_arg);
+    sprintf(output, "%s's %s set to %d.", GET_NAME(vict),
+	    set_fields[mode].cmd, value);
+  } else {
+    strcpy(output, "Okay.");  /* can't use OK macro here 'cause of \r\n */
   }
 
-  strcpy(buf, "Okay.");  /* can't use OK macro here 'cause of \r\n */
-  switch (l) {
+  switch (mode) {
   case 0:
     SET_OR_REMOVE(PRF_FLAGS(vict), PRF_BRIEF);
     break;
@@ -2162,11 +2174,11 @@ ACMD(do_set)
     break;
   case 2:
     set_title(vict, val_arg);
-    sprintf(buf, "%s's title is now: %s", GET_NAME(vict), GET_TITLE(vict));
+    sprintf(output, "%s's title is now: %s", GET_NAME(vict), GET_TITLE(vict));
     break;
   case 3:
     SET_OR_REMOVE(PRF_FLAGS(vict), PRF_SUMMONABLE);
-    on = !on;			/* so output will be correct */
+    sprintf(output, "Nosummon %s for %s.\r\n", ONOFF(!on), GET_NAME(vict));
     break;
   case 4:
     vict->points.max_hit = RANGE(1, 5000);
@@ -2244,16 +2256,12 @@ ACMD(do_set)
     affect_total(vict);
     break;
   case 17:
-    if (!str_cmp(val_arg, "male"))
-      vict->player.sex = SEX_MALE;
-    else if (!str_cmp(val_arg, "female"))
-      vict->player.sex = SEX_FEMALE;
-    else if (!str_cmp(val_arg, "neutral"))
-      vict->player.sex = SEX_NEUTRAL;
-    else {
-      send_to_char("Must be 'male', 'female', or 'neutral'.\r\n", ch);
-      return;
-    }
+    if (IS_NPC(vict) || GET_LEVEL(vict) >= LVL_GRGOD)
+      RANGE(3, 25);
+    else
+      RANGE(3, 18);
+    vict->real_abils.cha = value;
+    affect_total(vict);
     break;
   case 18:
     vict->points.armor = RANGE(-100, 100);
@@ -2279,21 +2287,21 @@ ACMD(do_set)
   case 24:
     if (GET_LEVEL(ch) < LVL_IMPL && ch != vict) {
       send_to_char("You aren't godly enough for that!\r\n", ch);
-      return;
+      return 0;
     }
     GET_INVIS_LEV(vict) = RANGE(0, GET_LEVEL(vict));
     break;
   case 25:
     if (GET_LEVEL(ch) < LVL_IMPL && ch != vict) {
       send_to_char("You aren't godly enough for that!\r\n", ch);
-      return;
+      return 0;
     }
     SET_OR_REMOVE(PRF_FLAGS(vict), PRF_NOHASSLE);
     break;
   case 26:
     if (ch == vict) {
       send_to_char("Better not -- could be a long winter!\r\n", ch);
-      return;
+      return 0;
     }
     SET_OR_REMOVE(PLR_FLAGS(vict), PLR_FROZEN);
     break;
@@ -2305,17 +2313,17 @@ ACMD(do_set)
   case 30:
   case 31:
     if (!str_cmp(val_arg, "off")) {
-      GET_COND(vict, (l - 29)) = (char) -1;
-      sprintf(buf, "%s's %s now off.", GET_NAME(vict), fields[l].cmd);
+      GET_COND(vict, (mode - 29)) = (char) -1; /* warning: magic number here */
+      sprintf(output, "%s's %s now off.", GET_NAME(vict), set_fields[mode].cmd);
     } else if (is_number(val_arg)) {
       value = atoi(val_arg);
       RANGE(0, 24);
-      GET_COND(vict, (l - 29)) = (char) value;
-      sprintf(buf, "%s's %s set to %d.", GET_NAME(vict), fields[l].cmd,
-	      value);
+      GET_COND(vict, (mode - 29)) = (char) value; /* and here too */
+      sprintf(output, "%s's %s set to %d.", GET_NAME(vict),
+	      set_fields[mode].cmd, value);
     } else {
       send_to_char("Must be 'off' or a value from 0 to 24.\r\n", ch);
-      return;
+      return 0;
     }
     break;
   case 32:
@@ -2327,7 +2335,7 @@ ACMD(do_set)
   case 34:
     if (value > GET_LEVEL(ch) || value > LVL_IMPL) {
       send_to_char("You can't do that.\r\n", ch);
-      return;
+      return 0;
     }
     RANGE(0, LVL_IMPL);
     vict->player.level = (byte) value;
@@ -2335,7 +2343,7 @@ ACMD(do_set)
   case 35:
     if ((i = real_room(value)) < 0) {
       send_to_char("No room exists with that number.\r\n", ch);
-      return;
+      return 0;
     }
     char_from_room(vict);
     char_to_room(vict, i);
@@ -2352,7 +2360,7 @@ ACMD(do_set)
   case 39:
     if ((i = parse_class(*val_arg)) == CLASS_UNDEFINED) {
       send_to_char("That is not a class.\r\n", ch);
-      return;
+      return 0;
     }
     GET_CLASS(vict) = i;
     break;
@@ -2363,17 +2371,22 @@ ACMD(do_set)
     SET_OR_REMOVE(PRF_FLAGS(vict), PRF_QUEST);
     break;
   case 42:
-    if (!str_cmp(val_arg, "on"))
-      SET_BIT(PLR_FLAGS(vict), PLR_LOADROOM);
-    else if (!str_cmp(val_arg, "off"))
+    if (!str_cmp(val_arg, "off")) {
       REMOVE_BIT(PLR_FLAGS(vict), PLR_LOADROOM);
-    else {
-      if (real_room(i = atoi(val_arg)) > -1) {
-	GET_LOADROOM(vict) = i;
-	sprintf(buf, "%s will enter at %d.", GET_NAME(vict),
+    } else if (is_number(val_arg)) {
+      value = atoi(val_arg);
+      if (real_room(value) != NOWHERE) {
+        SET_BIT(PLR_FLAGS(vict), PLR_LOADROOM);
+	GET_LOADROOM(vict) = value;
+	sprintf(output, "%s will enter at room #%d.", GET_NAME(vict),
 		GET_LOADROOM(vict));
-      } else
-	sprintf(buf, "That room does not exist!");
+      } else {
+	send_to_char("That room does not exist!\r\n", ch);
+	return 0;
+      }
+    } else {
+      send_to_char("Must be 'off' or a room's virtual number.\r\n", ch);
+      return 0;
     }
     break;
   case 43:
@@ -2381,88 +2394,134 @@ ACMD(do_set)
     break;
   case 44:
     if (GET_IDNUM(ch) != 1 || !IS_NPC(vict))
-      return;
+      return 0;
     GET_IDNUM(vict) = value;
     break;
   case 45:
-    if (!is_file)
-      return;
     if (GET_IDNUM(ch) > 1) {
       send_to_char("Please don't use this command, yet.\r\n", ch);
-      return;
+      return 0;
     }
     if (GET_LEVEL(vict) >= LVL_GRGOD) {
       send_to_char("You cannot change that.\r\n", ch);
-      return;
+      return 0;
     }
-    strncpy(tmp_store.pwd, CRYPT(val_arg, tmp_store.name), MAX_PWD_LENGTH);
-    tmp_store.pwd[MAX_PWD_LENGTH] = '\0';
-    sprintf(buf, "Password changed to '%s'.", val_arg);
+    strncpy(GET_PASSWD(vict), CRYPT(val_arg, GET_NAME(vict)), MAX_PWD_LENGTH);
+    *(GET_PASSWD(vict) + MAX_PWD_LENGTH) = '\0';
+    sprintf(output, "Password changed to '%s'.", val_arg);
     break;
   case 46:
     SET_OR_REMOVE(PLR_FLAGS(vict), PLR_NODELETE);
     break;
   case 47:
-    if (IS_NPC(vict) || GET_LEVEL(vict) >= LVL_GRGOD)
-      RANGE(3, 25);
-    else
-      RANGE(3, 18);
-    vict->real_abils.cha = value;
-    affect_total(vict);
+    if (!str_cmp(val_arg, "male"))
+      vict->player.sex = SEX_MALE;
+    else if (!str_cmp(val_arg, "female"))
+      vict->player.sex = SEX_FEMALE;
+    else if (!str_cmp(val_arg, "neutral"))
+      vict->player.sex = SEX_NEUTRAL;
+    else {
+      send_to_char("Must be 'male', 'female', or 'neutral'.\r\n", ch);
+      return 0;
+    }
     break;
 
   default:
-    sprintf(buf, "Can't set that!");
+    send_to_char("Can't set that!\r\n", ch);
+    return 0;
     break;
   }
 
-  if (fields[l].type == BINARY) {
-    sprintf(buf, "%s %s for %s.\r\n", fields[l].cmd, ONOFF(on),
-	    GET_NAME(vict));
-    CAP(buf);
-  } else if (fields[l].type == NUMBER) {
-    sprintf(buf, "%s's %s set to %d.\r\n", GET_NAME(vict),
-	    fields[l].cmd, value);
-  } else
-    strcat(buf, "\r\n");
-  send_to_char(CAP(buf), ch);
-
-  if (!is_file && !IS_NPC(vict))
-    save_char(vict, NOWHERE);
-
-  if (is_file) {
-    char_to_store(vict, &tmp_store);
-    fseek(player_fl, (player_i) * sizeof(struct char_file_u), SEEK_SET);
-    fwrite(&tmp_store, sizeof(struct char_file_u), 1, player_fl);
-    free_char(cbuf);
-    send_to_char("Saved in file.\r\n", ch);
-  }
+  strcat(output, "\r\n");
+  send_to_char(CAP(output), ch);
+  return 1;
 }
 
 
-static char *logtypes[] = {
-"off", "brief", "normal", "complete", "\n"};
-
-ACMD(do_syslog)
+ACMD(do_set)
 {
-  int tp;
+  struct char_data *vict = NULL, *cbuf = NULL;
+  struct char_file_u tmp_store;
+  char field[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH],
+	val_arg[MAX_INPUT_LENGTH];
+  int mode = -1, len = 0, player_i = 0, retval;
+  char is_file = 0, is_mob = 0, is_player = 0;
 
-  one_argument(argument, arg);
+  half_chop(argument, name, buf);
 
-  if (!*arg) {
-    tp = ((PRF_FLAGGED(ch, PRF_LOG1) ? 1 : 0) +
-	  (PRF_FLAGGED(ch, PRF_LOG2) ? 2 : 0));
-    sprintf(buf, "Your syslog is currently %s.\r\n", logtypes[tp]);
-    send_to_char(buf, ch);
+  if (!strcmp(name, "file")) {
+    is_file = 1;
+    half_chop(buf, name, buf);
+  } else if (!str_cmp(name, "player")) {
+    is_player = 1;
+    half_chop(buf, name, buf);
+  } else if (!str_cmp(name, "mob")) {
+    is_mob = 1;
+    half_chop(buf, name, buf);
+  }
+  half_chop(buf, field, buf);
+  strcpy(val_arg, buf);
+
+  if (!*name || !*field) {
+    send_to_char("Usage: set <victim> <field> <value>\r\n", ch);
     return;
   }
-  if (((tp = search_block(arg, logtypes, FALSE)) == -1)) {
-    send_to_char("Usage: syslog { Off | Brief | Normal | Complete }\r\n", ch);
-    return;
-  }
-  REMOVE_BIT(PRF_FLAGS(ch), PRF_LOG1 | PRF_LOG2);
-  SET_BIT(PRF_FLAGS(ch), (PRF_LOG1 * (tp & 1)) | (PRF_LOG2 * (tp & 2) >> 1));
 
-  sprintf(buf, "Your syslog is now %s.\r\n", logtypes[tp]);
-  send_to_char(buf, ch);
+  /* find the target */
+  if (!is_file) {
+    if (is_player) {
+      if (!(vict = get_player_vis(ch, name, 0))) {
+	send_to_char("There is no such player.\r\n", ch);
+	return;
+      }
+    } else {
+      if (!(vict = get_char_vis(ch, name))) {
+	send_to_char("There is no such creature.\r\n", ch);
+	return;
+      }
+    }
+  } else if (is_file) {
+    /* try to load the player off disk */
+    CREATE(cbuf, struct char_data, 1);
+    clear_char(cbuf);
+    if ((player_i = load_char(name, &tmp_store)) > -1) {
+      store_to_char(&tmp_store, cbuf);
+      if (GET_LEVEL(cbuf) >= GET_LEVEL(ch)) {
+	free_char(cbuf);
+	send_to_char("Sorry, you can't do that.\r\n", ch);
+	return;
+      }
+      vict = cbuf;
+    } else {
+      free(cbuf);
+      send_to_char("There is no such player.\r\n", ch);
+      return;
+    }
+  }
+
+  /* find the command in the list */
+  len = strlen(field);
+  for (mode = 0; *(set_fields[mode].cmd) != '\n'; mode++)
+    if (!strncmp(field, set_fields[mode].cmd, len))
+      break;
+
+  /* perform the set */
+  retval = perform_set(ch, vict, mode, val_arg);
+
+  /* save the character if a change was made */
+  if (retval) {
+    if (!is_file && !IS_NPC(vict))
+      save_char(vict, NOWHERE);
+    if (is_file) {
+      char_to_store(vict, &tmp_store);
+      fseek(player_fl, (player_i) * sizeof(struct char_file_u), SEEK_SET);
+      fwrite(&tmp_store, sizeof(struct char_file_u), 1, player_fl);
+      send_to_char("Saved in file.\r\n", ch);
+    }
+  }
+
+  /* free the memory if we allocated it earlier */
+  if (is_file)
+    free_char(cbuf);
 }
+

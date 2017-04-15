@@ -8,8 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <string.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -27,6 +28,7 @@ extern int pk_allowed;
 
 /* extern functions */
 void raw_kill(struct char_data * ch);
+void check_killer(struct char_data * ch, struct char_data * vict);
 
 
 ACMD(do_assist)
@@ -85,9 +87,13 @@ ACMD(do_hit)
     act("$N is just such a good friend, you simply can't hit $M.", FALSE, ch, 0, vict, TO_CHAR);
   else {
     if (!pk_allowed) {
-      if (!IS_NPC(vict) && !IS_NPC(ch) && (subcmd != SCMD_MURDER)) {
-	send_to_char("Use 'murder' to hit another player.\r\n", ch);
-	return;
+      if (!IS_NPC(vict) && !IS_NPC(ch)) {
+	if (subcmd != SCMD_MURDER) {
+	  send_to_char("Use 'murder' to hit another player.\r\n", ch);
+	  return;
+	} else {
+	  check_killer(ch, vict);
+	}
       }
       if (IS_AFFECTED(ch, AFF_CHARM) && !IS_NPC(ch->master) && !IS_NPC(vict))
 	return;			/* you can't order a charmed pet to attack a
@@ -238,6 +244,11 @@ ACMD(do_order)
 ACMD(do_flee)
 {
   int i, attempt, loss;
+
+  if (GET_POS(ch) < POS_FIGHTING) {
+    send_to_char("You are in pretty bad shape, unable to flee!\r\n", ch);
+    return;
+  }
 
   for (i = 0; i < 6; i++) {
     attempt = number(0, NUM_OF_DIRS - 1);	/* Select a random direction */

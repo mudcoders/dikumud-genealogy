@@ -149,7 +149,7 @@ joined with silver threads.  Her back is covered by a large, hooded
 cloak as black as her skin and in her broad silver belt hangs a long,
 slender sword in a silver scabbard.
 ~
-bml dks -1000 S
+abml dks -1000 S
 20 1 0 1d12+245 3d6+4
 5000 40000
 8 8 2

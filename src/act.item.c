@@ -1,5 +1,5 @@
 /* ************************************************************************
-*   File: act.obj1.c                                    Part of CircleMUD *
+*   File: act.item.c                                    Part of CircleMUD *
 *  Usage: object handling routines -- get/drop and container handling     *
 *                                                                         *
 *  All rights reserved.  See license.doc for complete information.        *
@@ -8,9 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -342,7 +342,7 @@ void perform_drop_gold(struct char_data * ch, int amount,
       } else {
 	send_to_char("You drop some gold.\r\n", ch);
 	sprintf(buf, "$n drops %s.", money_desc(amount));
-	act(buf, FALSE, ch, 0, 0, TO_ROOM);
+	act(buf, TRUE, ch, 0, 0, TO_ROOM);
 	obj_to_room(obj, ch->in_room);
       }
     } else {
@@ -629,8 +629,6 @@ ACMD(do_give)
 }
 
 
-/* Everything from here down is what was formerly act.obj2.c */
-
 
 void weight_change_object(struct obj_data * obj, int weight)
 {
@@ -869,15 +867,14 @@ ACMD(do_pour)
 {
   char arg1[MAX_INPUT_LENGTH];
   char arg2[MAX_INPUT_LENGTH];
-  struct obj_data *from_obj;
-  struct obj_data *to_obj;
+  struct obj_data *from_obj = NULL, *to_obj = NULL;
   int amount;
 
   two_arguments(argument, arg1, arg2);
 
   if (subcmd == SCMD_POUR) {
     if (!*arg1) {		/* No arguments */
-      act("What do you want to pour from?", FALSE, ch, 0, 0, TO_CHAR);
+      act("From what do you want to pour?", FALSE, ch, 0, 0, TO_CHAR);
       return;
     }
     if (!(from_obj = get_obj_in_list_vis(ch, arg1, ch->carrying))) {
@@ -1070,6 +1067,12 @@ void wear_message(struct char_data * ch, struct obj_data * obj, int where)
 
 void perform_wear(struct char_data * ch, struct obj_data * obj, int where)
 {
+  /*
+   * ITEM_WEAR_TAKE is used for objects that do not require special bits
+   * to be put into that position (e.g. you can hold any object, not just
+   * an object with a HOLD bit.)
+   */
+
   int wear_bitvectors[] = {
     ITEM_WEAR_TAKE, ITEM_WEAR_FINGER, ITEM_WEAR_FINGER, ITEM_WEAR_NECK,
     ITEM_WEAR_NECK, ITEM_WEAR_BODY, ITEM_WEAR_HEAD, ITEM_WEAR_LEGS,

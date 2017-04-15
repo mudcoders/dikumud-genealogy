@@ -17,9 +17,9 @@
 
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "conf.h"
+#include "sysdep.h"
+
 #include "structs.h"
 #include "db.h"
 #include "utils.h"
@@ -174,12 +174,6 @@ int guild_info[][3] = {
 
 /* Brass Dragon */
   {-999 /* all */ ,	5065,	SCMD_WEST},
-
-/* New Sparta */
-  {CLASS_MAGIC_USER,	21075,	SCMD_NORTH},
-  {CLASS_CLERIC,	21019,	SCMD_WEST},
-  {CLASS_THIEF,		21014,	SCMD_SOUTH},
-  {CLASS_WARRIOR,	21023,	SCMD_SOUTH},
 
 /* this must go last -- add new guards above! */
 {-1, -1, -1}};
@@ -405,6 +399,30 @@ void advance_level(struct char_data * ch)
 }
 
 
+/*
+ * This simply calculates the backstab multiplier based on a character's
+ * level.  This used to be an array, but was changed to be a function so
+ * that it would be easier to add more levels to your MUD.  This doesn't
+ * really create a big performance hit because it's not used very often.
+ */
+int backstab_mult(int level)
+{
+  if (level <= 0)
+    return 1;	  /* level 0 */
+  else if (level <= 7)
+    return 2;	  /* level 1 - 7 */
+  else if (level <= 13)
+    return 3;	  /* level 8 - 13 */
+  else if (level <= 20)
+    return 4;	  /* level 14 - 20 */
+  else if (level <= 28)
+    return 5;	  /* level 21 - 28 */
+  else if (level < LVL_IMMORT)
+    return 6;	  /* all remaining mortal levels */
+  else
+    return 20;	  /* immortals */
+}
+
 
 /*
  * invalid_class is used by handler.c to determine if a piece of equipment is
@@ -423,153 +441,565 @@ int invalid_class(struct char_data *ch, struct obj_data *obj) {
 
 
 
-/* Names of class/levels and exp required for each level */
 
-const struct title_type titles[NUM_CLASSES][LVL_IMPL + 1] = {
-  {{"the Man", "the Woman", 0},
-  {"the Apprentice of Magic", "the Apprentice of Magic", 1},
-  {"the Spell Student", "the Spell Student", 2500},
-  {"the Scholar of Magic", "the Scholar of Magic", 5000},
-  {"the Delver in Spells", "the Delveress in Spells", 10000},
-  {"the Medium of Magic", "the Medium of Magic", 20000},
-  {"the Scribe of Magic", "the Scribess of Magic", 40000},
-  {"the Seer", "the Seeress", 60000},
-  {"the Sage", "the Sage", 90000},
-  {"the Illusionist", "the Illusionist", 135000},
-  {"the Abjurer", "the Abjuress", 250000},
-  {"the Invoker", "the Invoker", 375000},
-  {"the Enchanter", "the Enchantress", 750000},
-  {"the Conjurer", "the Conjuress", 1125000},
-  {"the Magician", "the Witch", 1500000},
-  {"the Creator", "the Creator", 1875000},
-  {"the Savant", "the Savant", 2250000},
-  {"the Magus", "the Craftess", 2625000},
-  {"the Wizard", "the Wizard", 3000000},
-  {"the Warlock", "the War Witch", 3375000},
-  {"the Sorcerer", "the Sorceress", 3750000},
-  {"the Necromancer", "the Necromancress", 4000000},
-  {"the Thaumaturge", "the Thaumaturgess", 4300000},
-  {"the Student of the Occult", "the Student of the Occult", 4600000},
-  {"the Disciple of the Uncanny", "the Disciple of the Uncanny", 4900000},
-  {"the Minor Elemental", "the Minor Elementress", 5200000},
-  {"the Greater Elemental", "the Greater Elementress", 5500000},
-  {"the Crafter of Magics", "the Crafter of Magics", 5950000},
-  {"the Shaman", "Shaman", 6400000},
-  {"the Keeper of Talismans", "the Keeper of Talismans", 6850000},
-  {"the Archmage", "Archwitch", 7400000},
-  {"the Immortal Warlock", "the Immortal Enchantress", 8000000},
-  {"the Avatar of Magic", "the Empress of Magic", 9000000},
-  {"the God of Magic", "the Goddess of Magic", 9500000},
-  {"the Implementor", "the Implementress", 10000000}
-  },
-  {{"the Man", "the Woman", 0},
-  {"the Believer", "the Believer", 1},
-  {"the Attendant", "the Attendant", 1500},
-  {"the Acolyte", "the Acolyte", 3000},
-  {"the Novice", "the Novice", 6000},
-  {"the Missionary", "the Missionary", 13000},
-  {"the Adept", "the Adept", 27500},
-  {"the Deacon", "the Deaconess", 55000},
-  {"the Vicar", "the Vicaress", 110000},
-  {"the Priest", "the Priestess", 225000},
-  {"the Minister", "the Lady Minister", 450000},
-  {"the Canon", "the Canon", 675000},
-  {"the Levite", "the Levitess", 900000},
-  {"the Curate", "the Curess", 1125000},
-  {"the Monk", "the Nunne", 1350000},
-  {"the Healer", "the Healess", 1575000},
-  {"the Chaplain", "the Chaplain", 1800000},
-  {"the Expositor", "the Expositress", 2100000},
-  {"the Bishop", "the Bishop", 2400000},
-  {"the Arch Bishop", "the Arch Lady of the Church", 2700000},
-  {"the Patriarch", "the Matriarch", 3000000},
-  {"the Patriarch (21)", "the Matriarch (21)", 3250000},
-  {"the Patriarch (22)", "the Matriarch (22)", 3500000},
-  {"the Patriarch (23)", "the Matriarch (23)", 3800000},
-  {"the Patriarch (24)", "the Matriarch (24)", 4100000},
-  {"the Patriarch (25)", "the Matriarch (25)", 4400000},
-  {"the Patriarch (26)", "the Matriarch (26)", 4800000},
-  {"the Patriarch (27)", "the Matriarch (27)", 5200000},
-  {"the Patriarch (28)", "the Matriarch (28)", 5600000},
-  {"the Patriarch (29)", "the Matriarch (29)", 6000000},
-  {"the Patriarch (30)", "the Matriarch (30)", 6400000},
-  {"the Immortal Cardinal", "the Immortal Priestess", 7000000},
-  {"the Inquisitor", "the Inquisitress", 9000000},
-  {"the God of good and evil", "the Goddess of good and evil", 9500000},
-  {"the Implementor", "the Implementress", 10000000}
-  },
-  {{"the Man", "the Woman", 0},
-  {"the Pilferer", "the Pilferess", 1},
-  {"the Footpad", "the Footpad", 1250},
-  {"the Filcher", "the Filcheress", 2500},
-  {"the Pick-Pocket", "the Pick-Pocket", 5000},
-  {"the Sneak", "the Sneak", 10000},
-  {"the Pincher", "the Pincheress", 20000},
-  {"the Cut-Purse", "the Cut-Purse", 30000},
-  {"the Snatcher", "the Snatcheress", 70000},
-  {"the Sharper", "the Sharpress", 110000},
-  {"the Rogue", "the Rogue", 160000},
-  {"the Robber", "the Robber", 220000},
-  {"the Magsman", "the Magswoman", 440000},
-  {"the Highwayman", "the Highwaywoman", 660000},
-  {"the Burglar", "the Burglaress", 880000},
-  {"the Thief", "the Thief", 1100000},
-  {"the Knifer", "the Knifer", 1500000},
-  {"the Quick-Blade", "the Quick-Blade", 2000000},
-  {"the Killer", "the Murderess", 2500000},
-  {"the Brigand", "the Brigand", 3000000},
-  {"the Cut-Throat", "the Cut-Throat", 3500000},
-  {"the Cut-Throat (21)", "the Cut-Throat", 3650000},
-  {"the Cut-Throat (22)", "the Cut-Throat", 3800000},
-  {"the Cut-Throat (23)", "the Cut-Throat", 4100000},
-  {"the Cut-Throat (24)", "the Cut-Throat", 4400000},
-  {"the Cut-Throat (25)", "the Cut-Throat", 4700000},
-  {"the Cut-Throat (26)", "the Cut-Throat", 5100000},
-  {"the Cut-Throat (27)", "the Cut-Throat", 5500000},
-  {"the Cut-Throat (28)", "the Cut-Throat", 5900000},
-  {"the Cut-Throat (29)", "the Cut-Throat", 6300000},
-  {"the Cut-Throat (30)", "the Cut-Throat", 6650000},
-  {"the Immortal Assasin", "the Immortal Assasin", 7000000},
-  {"the Demi God of thieves", "the Demi Goddess of thieves", 9000000},
-  {"the God of thieves and tradesmen", "the Goddess of thieves and tradesmen", 9500000},
-  {"the Implementor", "the Implementress", 10000000}
-  },
-  {{"the Man", "the Woman", 0},
-  {"the Swordpupil", "the Swordpupil", 1},
-  {"the Recruit", "the Recruit", 2000},
-  {"the Sentry", "the Sentress", 4000},
-  {"the Fighter", "the Fighter", 8000},
-  {"the Soldier", "the Soldier", 16000},
-  {"the Warrior", "the Warrior", 32000},
-  {"the Veteran", "the Veteran", 64000},
-  {"the Swordsman", "the Swordswoman", 125000},
-  {"the Fencer", "the Fenceress", 250000},
-  {"the Combatant", "the Combatess", 500000},
-  {"the Hero", "the Heroine", 750000},
-  {"the Myrmidon", "the Myrmidon", 1000000},
-  {"the Swashbuckler", "the Swashbuckleress", 1250000},
-  {"the Mercenary", "the Mercenaress", 1500000},
-  {"the Swordmaster", "the Swordmistress", 1850000},
-  {"the Lieutenant", "the Lieutenant", 2200000},
-  {"the Champion", "the Lady Champion", 2550000},
-  {"the Dragoon", "the Lady Dragoon", 2900000},
-  {"the Cavalier", "the Cavalier", 3250000},
-  {"the Knight", "the Lady Knight", 3600000},
-  {"the Knight (21)", "the Lady Knight (21)", 3900000},
-  {"the Knight (22)", "the Lady Knight (22)", 4200000},
-  {"the Knight (23)", "the Lady Knight (23)", 4500000},
-  {"the Knight (24)", "the Lady Knight (24)", 4800000},
-  {"the Knight (25)", "the Lady Knight (25)", 5150000},
-  {"the Knight (26)", "the Lady Knight (26)", 5500000},
-  {"the Knight (27)", "the Lady Knight (27)", 5950000},
-  {"the Knight (28)", "the Lady Knight (28)", 6400000},
-  {"the Knight (29)", "the Lady Knight (29)", 6850000},
-  {"the Knight (30)", "the Lady Knight (30)", 7400000},
-  {"the Immortal Warlord", "the Immortal Lady of War", 8000000},
-  {"the Extirpator", "the Queen of Destruction", 9000000},
-  {"the God of war", "the Goddess of war", 9500000},
-  {"the Implementor", "the Implementress", 10000000}
+/*
+ * SPELLS AND SKILLS.  This area defines which spells are assigned to
+ * which classes, and the minimum level the character must be to use
+ * the spell or skill.
+ */
+void init_spell_levels(void)
+{
+  /* MAGES */
+  spell_level(SPELL_MAGIC_MISSILE, CLASS_MAGIC_USER, 1);
+  spell_level(SPELL_DETECT_INVIS, CLASS_MAGIC_USER, 2);
+  spell_level(SPELL_DETECT_MAGIC, CLASS_MAGIC_USER, 2);
+  spell_level(SPELL_CHILL_TOUCH, CLASS_MAGIC_USER, 3);
+  spell_level(SPELL_INFRAVISION, CLASS_MAGIC_USER, 3);
+  spell_level(SPELL_INVISIBLE, CLASS_MAGIC_USER, 4);
+  spell_level(SPELL_ARMOR, CLASS_MAGIC_USER, 4);
+  spell_level(SPELL_BURNING_HANDS, CLASS_MAGIC_USER, 5);
+  spell_level(SPELL_LOCATE_OBJECT, CLASS_MAGIC_USER, 6);
+  spell_level(SPELL_STRENGTH, CLASS_MAGIC_USER, 6);
+  spell_level(SPELL_SHOCKING_GRASP, CLASS_MAGIC_USER, 7);
+  spell_level(SPELL_SLEEP, CLASS_MAGIC_USER, 8);
+  spell_level(SPELL_LIGHTNING_BOLT, CLASS_MAGIC_USER, 9);
+  spell_level(SPELL_BLINDNESS, CLASS_MAGIC_USER, 9);
+  spell_level(SPELL_DETECT_POISON, CLASS_MAGIC_USER, 10);
+  spell_level(SPELL_COLOR_SPRAY, CLASS_MAGIC_USER, 11);
+  spell_level(SPELL_ENERGY_DRAIN, CLASS_MAGIC_USER, 13);
+  spell_level(SPELL_CURSE, CLASS_MAGIC_USER, 14);
+  spell_level(SPELL_FIREBALL, CLASS_MAGIC_USER, 15);
+  spell_level(SPELL_CHARM, CLASS_MAGIC_USER, 16);
+  spell_level(SPELL_ENCHANT_WEAPON, CLASS_MAGIC_USER, 26);
+
+
+  /* CLERICS */
+  spell_level(SPELL_CURE_LIGHT, CLASS_CLERIC, 1);
+  spell_level(SPELL_ARMOR, CLASS_CLERIC, 1);
+  spell_level(SPELL_CREATE_FOOD, CLASS_CLERIC, 2);
+  spell_level(SPELL_CREATE_WATER, CLASS_CLERIC, 2);
+  spell_level(SPELL_DETECT_POISON, CLASS_CLERIC, 3);
+  spell_level(SPELL_DETECT_ALIGN, CLASS_CLERIC, 4);
+  spell_level(SPELL_CURE_BLIND, CLASS_CLERIC, 4);
+  spell_level(SPELL_BLESS, CLASS_CLERIC, 5);
+  spell_level(SPELL_DETECT_INVIS, CLASS_CLERIC, 6);
+  spell_level(SPELL_BLINDNESS, CLASS_CLERIC, 6);
+  spell_level(SPELL_INFRAVISION, CLASS_CLERIC, 7);
+  spell_level(SPELL_PROT_FROM_EVIL, CLASS_CLERIC, 8);
+  spell_level(SPELL_GROUP_ARMOR, CLASS_CLERIC, 9);
+  spell_level(SPELL_CURE_CRITIC, CLASS_CLERIC, 9);
+  spell_level(SPELL_SUMMON, CLASS_CLERIC, 10);
+  spell_level(SPELL_REMOVE_POISON, CLASS_CLERIC, 10);
+  spell_level(SPELL_WORD_OF_RECALL, CLASS_CLERIC, 12);
+  spell_level(SPELL_EARTHQUAKE, CLASS_CLERIC, 12);
+  spell_level(SPELL_DISPEL_EVIL, CLASS_CLERIC, 14);
+  spell_level(SPELL_DISPEL_GOOD, CLASS_CLERIC, 14);
+  spell_level(SPELL_SANCTUARY, CLASS_CLERIC, 15);
+  spell_level(SPELL_CALL_LIGHTNING, CLASS_CLERIC, 15);
+  spell_level(SPELL_HEAL, CLASS_CLERIC, 16);
+  spell_level(SPELL_CONTROL_WEATHER, CLASS_CLERIC, 17);
+  spell_level(SPELL_HARM, CLASS_CLERIC, 19);
+  spell_level(SPELL_GROUP_HEAL, CLASS_CLERIC, 22);
+  spell_level(SPELL_REMOVE_CURSE, CLASS_CLERIC, 26);
+
+
+  /* THIEVES */
+  spell_level(SKILL_SNEAK, CLASS_THIEF, 1);
+  spell_level(SKILL_PICK_LOCK, CLASS_THIEF, 2);
+  spell_level(SKILL_BACKSTAB, CLASS_THIEF, 3);
+  spell_level(SKILL_STEAL, CLASS_THIEF, 4);
+  spell_level(SKILL_HIDE, CLASS_THIEF, 5);
+  spell_level(SKILL_TRACK, CLASS_THIEF, 6);
+
+
+  /* WARRIORS */
+  spell_level(SKILL_KICK, CLASS_WARRIOR, 1);
+  spell_level(SKILL_RESCUE, CLASS_WARRIOR, 3);
+  spell_level(SKILL_TRACK, CLASS_WARRIOR, 9);
+  spell_level(SKILL_BASH, CLASS_WARRIOR, 12);
+}
+
+
+/*
+ * This is the exp given to implementors -- it must always be greater
+ * than the exp required for immortality, plus at least 20,000 or so.
+ */
+#define EXP_MAX  10000000
+
+/* Function to return the exp required for each class/level */
+int level_exp(int class, int level)
+{
+  if (level > LVL_IMPL || level < 0) {
+    log("SYSERR: Requesting exp for invalid level!");
+    return 0;
   }
 
-};
+  /*
+   * Gods have exp close to EXP_MAX.  This statement should never have to
+   * changed, regardless of how many mortal or immortal levels exist.
+   */
+   if (level > LVL_IMMORT) {
+     return EXP_MAX - ((LVL_IMPL-level) * 1000);
+   }
+
+  /* Exp required for normal mortals is below */
+
+  switch (class) {
+
+    case CLASS_MAGIC_USER:
+    switch (level) {
+      case  0: return 0;	break;
+      case  1: return 1;	break;
+      case  2: return 2500;	break;
+      case  3: return 5000;	break;
+      case  4: return 10000;	break;
+      case  5: return 20000;	break;
+      case  6: return 40000;	break;
+      case  7: return 60000;	break;
+      case  8: return 90000;	break;
+      case  9: return 135000;	break;
+      case 10: return 250000;	break;
+      case 11: return 375000;	break;
+      case 12: return 750000;	break;
+      case 13: return 1125000;	break;
+      case 14: return 1500000;	break;
+      case 15: return 1875000;	break;
+      case 16: return 2250000;	break;
+      case 17: return 2625000;	break;
+      case 18: return 3000000;	break;
+      case 19: return 3375000;	break;
+      case 20: return 3750000;	break;
+      case 21: return 4000000;	break;
+      case 22: return 4300000;	break;
+      case 23: return 4600000;	break;
+      case 24: return 4900000;	break;
+      case 25: return 5200000;	break;
+      case 26: return 5500000;	break;
+      case 27: return 5950000;	break;
+      case 28: return 6400000;	break;
+      case 29: return 6850000;	break;
+      case 30: return 7400000;	break;
+      /* add new levels here */
+      case LVL_IMMORT: return 8000000;	break;
+    }
+    break;
+
+    case CLASS_CLERIC:
+    switch (level) {
+      case  0: return 0;	break;
+      case  1: return 1;	break;
+      case  2: return 1500;	break;
+      case  3: return 3000;	break;
+      case  4: return 6000;	break;
+      case  5: return 13000;	break;
+      case  6: return 27500;	break;
+      case  7: return 55000;	break;
+      case  8: return 110000;	break;
+      case  9: return 225000;	break;
+      case 10: return 450000;	break;
+      case 11: return 675000;	break;
+      case 12: return 900000;	break;
+      case 13: return 1125000;	break;
+      case 14: return 1350000;	break;
+      case 15: return 1575000;	break;
+      case 16: return 1800000;	break;
+      case 17: return 2100000;	break;
+      case 18: return 2400000;	break;
+      case 19: return 2700000;	break;
+      case 20: return 3000000;	break;
+      case 21: return 3250000;	break;
+      case 22: return 3500000;	break;
+      case 23: return 3800000;	break;
+      case 24: return 4100000;	break;
+      case 25: return 4400000;	break;
+      case 26: return 4800000;	break;
+      case 27: return 5200000;	break;
+      case 28: return 5600000;	break;
+      case 29: return 6000000;	break;
+      case 30: return 6400000;	break;
+      /* add new levels here */
+      case LVL_IMMORT: return 7000000;	break;
+    }
+    break;
+
+    case CLASS_THIEF:
+    switch (level) {
+      case  0: return 0;	break;
+      case  1: return 1;	break;
+      case  2: return 1250;	break;
+      case  3: return 2500;	break;
+      case  4: return 5000;	break;
+      case  5: return 10000;	break;
+      case  6: return 20000;	break;
+      case  7: return 30000;	break;
+      case  8: return 70000;	break;
+      case  9: return 110000;	break;
+      case 10: return 160000;	break;
+      case 11: return 220000;	break;
+      case 12: return 440000;	break;
+      case 13: return 660000;	break;
+      case 14: return 880000;	break;
+      case 15: return 1100000;	break;
+      case 16: return 1500000;	break;
+      case 17: return 2000000;	break;
+      case 18: return 2500000;	break;
+      case 19: return 3000000;	break;
+      case 20: return 3500000;	break;
+      case 21: return 3650000;	break;
+      case 22: return 3800000;	break;
+      case 23: return 4100000;	break;
+      case 24: return 4400000;	break;
+      case 25: return 4700000;	break;
+      case 26: return 5100000;	break;
+      case 27: return 5500000;	break;
+      case 28: return 5900000;	break;
+      case 29: return 6300000;	break;
+      case 30: return 6650000;	break;
+      /* add new levels here */
+      case LVL_IMMORT: return 7000000;	break;
+    }
+    break;
+
+    case CLASS_WARRIOR:
+    switch (level) {
+      case  0: return 0;	break;
+      case  1: return 1;	break;
+      case  2: return 2000;	break;
+      case  3: return 4000;	break;
+      case  4: return 8000;	break;
+      case  5: return 16000;	break;
+      case  6: return 32000;	break;
+      case  7: return 64000;	break;
+      case  8: return 125000;	break;
+      case  9: return 250000;	break;
+      case 10: return 500000;	break;
+      case 11: return 750000;	break;
+      case 12: return 1000000;	break;
+      case 13: return 1250000;	break;
+      case 14: return 1500000;	break;
+      case 15: return 1850000;	break;
+      case 16: return 2200000;	break;
+      case 17: return 2550000;	break;
+      case 18: return 2900000;	break;
+      case 19: return 3250000;	break;
+      case 20: return 3600000;	break;
+      case 21: return 3900000;	break;
+      case 22: return 4200000;	break;
+      case 23: return 4500000;	break;
+      case 24: return 4800000;	break;
+      case 25: return 5150000;	break;
+      case 26: return 5500000;	break;
+      case 27: return 5950000;	break;
+      case 28: return 6400000;	break;
+      case 29: return 6850000;	break;
+      case 30: return 7400000;	break;
+      /* add new levels here */
+      case LVL_IMMORT: return 8000000;	break;
+    }
+    break;
+  }
+
+  /*
+   * This statement should never be reached if the exp tables in this function
+   * are set up properly.  If you see exp of 123456 then the tables above are
+   * incomplete -- so, complete them!
+   */
+  log("SYSERR: XP tables not set up correctly in class.c!");
+  return 123456;
+}
+
+
+/* 
+ * Default titles of male characters.
+ */
+char *title_male(int class, int level)
+{
+  if (level <= 0 || level > LVL_IMPL)
+    return "the Man";
+  if (level == LVL_IMPL)
+    return "the Implementor";
+
+  switch (class) {
+
+    case CLASS_MAGIC_USER:
+    switch (level) {
+      case  1: return "the Apprentice of Magic"; break;
+      case  2: return "the Spell Student"; break;
+      case  3: return "the Scholar of Magic"; break;
+      case  4: return "the Delver in Spells"; break;
+      case  5: return "the Medium of Magic"; break;
+      case  6: return "the Scribe of Magic"; break;
+      case  7: return "the Seer"; break;
+      case  8: return "the Sage"; break;
+      case  9: return "the Illusionist"; break;
+      case 10: return "the Abjurer"; break;
+      case 11: return "the Invoker"; break;
+      case 12: return "the Enchanter"; break;
+      case 13: return "the Conjurer"; break;
+      case 14: return "the Magician"; break;
+      case 15: return "the Creator"; break;
+      case 16: return "the Savant"; break;
+      case 17: return "the Magus"; break;
+      case 18: return "the Wizard"; break;
+      case 19: return "the Warlock"; break;
+      case 20: return "the Sorcerer"; break;
+      case 21: return "the Necromancer"; break;
+      case 22: return "the Thaumaturge"; break;
+      case 23: return "the Student of the Occult"; break;
+      case 24: return "the Disciple of the Uncanny"; break;
+      case 25: return "the Minor Elemental"; break;
+      case 26: return "the Greater Elemental"; break;
+      case 27: return "the Crafter of Magics"; break;
+      case 28: return "the Shaman"; break;
+      case 29: return "the Keeper of Talismans"; break;
+      case 30: return "the Archmage"; break;
+      case LVL_IMMORT: return "the Immortal Warlock"; break;
+      case LVL_GOD: return "the Avatar of Magic"; break;
+      case LVL_GRGOD: return "the God of Magic"; break;
+      default: return "the Mage"; break;
+    }
+    break;
+
+    case CLASS_CLERIC:
+    switch (level) {
+      case  1: return "the Believer"; break;
+      case  2: return "the Attendant"; break;
+      case  3: return "the Acolyte"; break;
+      case  4: return "the Novice"; break;
+      case  5: return "the Missionary"; break;
+      case  6: return "the Adept"; break;
+      case  7: return "the Deacon"; break;
+      case  8: return "the Vicar"; break;
+      case  9: return "the Priest"; break;
+      case 10: return "the Minister"; break;
+      case 11: return "the Canon"; break;
+      case 12: return "the Levite"; break;
+      case 13: return "the Curate"; break;
+      case 14: return "the Monk"; break;
+      case 15: return "the Healer"; break;
+      case 16: return "the Chaplain"; break;
+      case 17: return "the Expositor"; break;
+      case 18: return "the Bishop"; break;
+      case 19: return "the Arch Bishop"; break;
+      case 20: return "the Patriarch"; break;
+      /* no one ever thought up these titles 21-30 */
+      case LVL_IMMORT: return "the Immortal Cardinal"; break;
+      case LVL_GOD: return "the Inquisitor"; break;
+      case LVL_GRGOD: return "the God of good and evil"; break;
+      default: return "the Cleric"; break;
+    }
+    break;
+
+    case CLASS_THIEF:
+    switch (level) {
+      case  1: return "the Pilferer"; break;
+      case  2: return "the Footpad"; break;
+      case  3: return "the Filcher"; break;
+      case  4: return "the Pick-Pocket"; break;
+      case  5: return "the Sneak"; break;
+      case  6: return "the Pincher"; break;
+      case  7: return "the Cut-Purse"; break;
+      case  8: return "the Snatcher"; break;
+      case  9: return "the Sharper"; break;
+      case 10: return "the Rogue"; break;
+      case 11: return "the Robber"; break;
+      case 12: return "the Magsman"; break;
+      case 13: return "the Highwayman"; break;
+      case 14: return "the Burglar"; break;
+      case 15: return "the Thief"; break;
+      case 16: return "the Knifer"; break;
+      case 17: return "the Quick-Blade"; break;
+      case 18: return "the Killer"; break;
+      case 19: return "the Brigand"; break;
+      case 20: return "the Cut-Throat"; break;
+      /* no one ever thought up these titles 21-30 */
+      case LVL_IMMORT: return "the Immortal Assasin"; break;
+      case LVL_GOD: return "the Demi God of thieves"; break;
+      case LVL_GRGOD: return "the God of thieves and tradesmen"; break;
+      default: return "the Thief"; break;
+    }
+    break;
+
+    case CLASS_WARRIOR:
+    switch(level) {
+      case  1: return "the Swordpupil"; break;
+      case  2: return "the Recruit"; break;
+      case  3: return "the Sentry"; break;
+      case  4: return "the Fighter"; break;
+      case  5: return "the Soldier"; break;
+      case  6: return "the Warrior"; break;
+      case  7: return "the Veteran"; break;
+      case  8: return "the Swordsman"; break;
+      case  9: return "the Fencer"; break;
+      case 10: return "the Combatant"; break;
+      case 11: return "the Hero"; break;
+      case 12: return "the Myrmidon"; break;
+      case 13: return "the Swashbuckler"; break;
+      case 14: return "the Mercenary"; break;
+      case 15: return "the Swordmaster"; break;
+      case 16: return "the Lieutenant"; break;
+      case 17: return "the Champion"; break;
+      case 18: return "the Dragoon"; break;
+      case 19: return "the Cavalier"; break;
+      case 20: return "the Knight"; break;
+      /* no one ever thought up these titles 21-30 */
+      case LVL_IMMORT: return "the Immortal Warlord"; break;
+      case LVL_GOD: return "the Extirpator"; break;
+      case LVL_GRGOD: return "the God of war"; break;
+      default: return "the Warrior"; break;
+    }
+    break;
+  }
+
+  /* Default title for classes which do not have titles defined */
+  return "the Classless";
+}
+
+
+/* 
+ * Default titles of female characters.
+ */
+char *title_female(int class, int level)
+{
+  if (level <= 0 || level > LVL_IMPL)
+    return "the Woman";
+  if (level == LVL_IMPL)
+    return "the Implementress";
+
+  switch (class) {
+
+    case CLASS_MAGIC_USER:
+    switch (level) {
+      case  1: return "the Apprentice of Magic"; break;
+      case  2: return "the Spell Student"; break;
+      case  3: return "the Scholar of Magic"; break;
+      case  4: return "the Delveress in Spells"; break;
+      case  5: return "the Medium of Magic"; break;
+      case  6: return "the Scribess of Magic"; break;
+      case  7: return "the Seeress"; break;
+      case  8: return "the Sage"; break;
+      case  9: return "the Illusionist"; break;
+      case 10: return "the Abjuress"; break;
+      case 11: return "the Invoker"; break;
+      case 12: return "the Enchantress"; break;
+      case 13: return "the Conjuress"; break;
+      case 14: return "the Witch"; break;
+      case 15: return "the Creator"; break;
+      case 16: return "the Savant"; break;
+      case 17: return "the Craftess"; break;
+      case 18: return "the Wizard"; break;
+      case 19: return "the War Witch"; break;
+      case 20: return "the Sorceress"; break;
+      case 21: return "the Necromancress"; break;
+      case 22: return "the Thaumaturgess"; break;
+      case 23: return "the Student of the Occult"; break;
+      case 24: return "the Disciple of the Uncanny"; break;
+      case 25: return "the Minor Elementress"; break;
+      case 26: return "the Greater Elementress"; break;
+      case 27: return "the Crafter of Magics"; break;
+      case 28: return "Shaman"; break;
+      case 29: return "the Keeper of Talismans"; break;
+      case 30: return "Archwitch"; break;
+      case LVL_IMMORT: return "the Immortal Enchantress"; break;
+      case LVL_GOD: return "the Empress of Magic"; break;
+      case LVL_GRGOD: return "the Goddess of Magic"; break;
+      default: return "the Witch"; break;
+    }
+    break;
+
+    case CLASS_CLERIC:
+    switch (level) {
+      case  1: return "the Believer"; break;
+      case  2: return "the Attendant"; break;
+      case  3: return "the Acolyte"; break;
+      case  4: return "the Novice"; break;
+      case  5: return "the Missionary"; break;
+      case  6: return "the Adept"; break;
+      case  7: return "the Deaconess"; break;
+      case  8: return "the Vicaress"; break;
+      case  9: return "the Priestess"; break;
+      case 10: return "the Lady Minister"; break;
+      case 11: return "the Canon"; break;
+      case 12: return "the Levitess"; break;
+      case 13: return "the Curess"; break;
+      case 14: return "the Nunne"; break;
+      case 15: return "the Healess"; break;
+      case 16: return "the Chaplain"; break;
+      case 17: return "the Expositress"; break;
+      case 18: return "the Bishop"; break;
+      case 19: return "the Arch Lady of the Church"; break;
+      case 20: return "the Matriarch"; break;
+      /* no one ever thought up these titles 21-30 */
+      case LVL_IMMORT: return "the Immortal Priestess"; break;
+      case LVL_GOD: return "the Inquisitress"; break;
+      case LVL_GRGOD: return "the Goddess of good and evil"; break;
+      default: return "the Cleric"; break;
+    }
+    break;
+
+    case CLASS_THIEF:
+    switch (level) {
+      case  1: return "the Pilferess"; break;
+      case  2: return "the Footpad"; break;
+      case  3: return "the Filcheress"; break;
+      case  4: return "the Pick-Pocket"; break;
+      case  5: return "the Sneak"; break;
+      case  6: return "the Pincheress"; break;
+      case  7: return "the Cut-Purse"; break;
+      case  8: return "the Snatcheress"; break;
+      case  9: return "the Sharpress"; break;
+      case 10: return "the Rogue"; break;
+      case 11: return "the Robber"; break;
+      case 12: return "the Magswoman"; break;
+      case 13: return "the Highwaywoman"; break;
+      case 14: return "the Burglaress"; break;
+      case 15: return "the Thief"; break;
+      case 16: return "the Knifer"; break;
+      case 17: return "the Quick-Blade"; break;
+      case 18: return "the Murderess"; break;
+      case 19: return "the Brigand"; break;
+      case 20: return "the Cut-Throat"; break;
+      case 34: return "the Implementress"; break;
+      /* no one ever thought up these titles 21-30 */
+      case LVL_IMMORT: return "the Immortal Assasin"; break;
+      case LVL_GOD: return "the Demi Goddess of thieves"; break;
+      case LVL_GRGOD: return "the Goddess of thieves and tradesmen"; break;
+      default: return "the Thief"; break;
+    }
+    break;
+
+    case CLASS_WARRIOR:
+    switch(level) {
+      case  1: return "the Swordpupil"; break;
+      case  2: return "the Recruit"; break;
+      case  3: return "the Sentress"; break;
+      case  4: return "the Fighter"; break;
+      case  5: return "the Soldier"; break;
+      case  6: return "the Warrior"; break;
+      case  7: return "the Veteran"; break;
+      case  8: return "the Swordswoman"; break;
+      case  9: return "the Fenceress"; break;
+      case 10: return "the Combatess"; break;
+      case 11: return "the Heroine"; break;
+      case 12: return "the Myrmidon"; break;
+      case 13: return "the Swashbuckleress"; break;
+      case 14: return "the Mercenaress"; break;
+      case 15: return "the Swordmistress"; break;
+      case 16: return "the Lieutenant"; break;
+      case 17: return "the Lady Champion"; break;
+      case 18: return "the Lady Dragoon"; break;
+      case 19: return "the Cavalier"; break;
+      case 20: return "the Lady Knight"; break;
+      /* no one ever thought up these titles 21-30 */
+      case LVL_IMMORT: return "the Immortal Lady of War"; break;
+      case LVL_GOD: return "the Queen of Destruction"; break;
+      case LVL_GRGOD: return "the Goddess of war"; break;
+      default: return "the Warrior"; break;
+    }
+    break;
+  }
+
+  /* Default title for classes which do not have titles defined */
+  return "the Classless";
+}
 

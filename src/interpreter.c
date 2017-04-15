@@ -10,10 +10,8 @@
 
 #define __INTERPRETER_C__
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+#include "conf.h"
+#include "sysdep.h"
 
 #include "structs.h"
 #include "comm.h"
@@ -26,7 +24,7 @@
 #include "screen.h"
 
 
-extern const struct title_type titles[NUM_CLASSES][LVL_IMPL+1];
+extern const struct title_type titles[NUM_CLASSES][LVL_IMPL + 1];
 extern char *motd;
 extern char *imotd;
 extern char *background;
@@ -34,6 +32,7 @@ extern char *MENU;
 extern char *WELC_MESSG;
 extern char *START_MESSG;
 extern struct char_data *character_list;
+extern struct descriptor_data *descriptor_list;
 extern struct player_index_element *player_table;
 extern int top_of_p_table;
 extern int restrict;
@@ -42,12 +41,12 @@ extern struct index_data *obj_index;
 extern struct room_data *world;
 
 /* external functions */
-void echo_on(struct descriptor_data * d);
-void echo_off(struct descriptor_data * d);
-void do_start(struct char_data * ch);
-void init_char(struct char_data * ch);
+void echo_on(struct descriptor_data *d);
+void echo_off(struct descriptor_data *d);
+void do_start(struct char_data *ch);
+void init_char(struct char_data *ch);
 int create_entry(char *name);
-int special(struct char_data * ch, int cmd, char *arg);
+int special(struct char_data *ch, int cmd, char *arg);
 int isbanned(char *hostname);
 int Valid_Name(char *newname);
 
@@ -181,7 +180,7 @@ ACMD(do_zreset);
 
 
 /* This is the Master Command List(tm).
- *
+
  * You can put new commands in, take commands out, change the order
  * they appear in, etc.  You can adjust the "priority" of commands
  * simply by changing the order they appear in the command list.
@@ -549,6 +548,8 @@ char *fill[] =
 
 char *reserved[] =
 {
+  "a",
+  "an",
   "self",
   "me",
   "all",
@@ -563,7 +564,7 @@ char *reserved[] =
  * It makes sure you are the proper level and position to execute the command,
  * then calls the appropriate function.
  */
-void command_interpreter(struct char_data * ch, char *argument)
+void command_interpreter(struct char_data *ch, char *argument)
 {
   int cmd, length;
   extern int no_specials;
@@ -584,7 +585,7 @@ void command_interpreter(struct char_data * ch, char *argument)
   if (!isalpha(*argument)) {
     arg[0] = argument[0];
     arg[1] = '\0';
-    line = argument+1;
+    line = argument + 1;
   } else
     line = any_one_arg(argument, arg);
 
@@ -626,8 +627,7 @@ void command_interpreter(struct char_data * ch, char *argument)
     case POS_FIGHTING:
       send_to_char("No way!  You're fighting for your life!\r\n", ch);
       break;
-    }
-  else if (no_specials || !special(ch, cmd, line))
+  } else if (no_specials || !special(ch, cmd, line))
     ((*cmd_info[cmd].command_pointer) (ch, line, cmd, cmd_info[cmd].subcmd));
 }
 
@@ -636,7 +636,7 @@ void command_interpreter(struct char_data * ch, char *argument)
   **************************************************************************/
 
 
-struct alias *find_alias(struct alias * alias_list, char *str)
+struct alias *find_alias(struct alias *alias_list, char *str)
 {
   while (alias_list != NULL) {
     if (*str == *alias_list->alias)	/* hey, every little bit counts :-) */
@@ -650,7 +650,7 @@ struct alias *find_alias(struct alias * alias_list, char *str)
 }
 
 
-void free_alias(struct alias * a)
+void free_alias(struct alias *a)
 {
   if (a->alias)
     free(a->alias);
@@ -671,7 +671,7 @@ ACMD(do_alias)
 
   repl = any_one_arg(argument, arg);
 
-  if (!*arg) {  /* no argument specified -- list currently defined aliases */
+  if (!*arg) {			/* no argument specified -- list currently defined aliases */
     send_to_char("Currently defined aliases:\r\n", ch);
     if ((a = GET_ALIASES(ch)) == NULL)
       send_to_char(" None.\r\n", ch);
@@ -682,20 +682,19 @@ ACMD(do_alias)
 	a = a->next;
       }
     }
-  } else { /* otherwise, add or remove aliases */
+  } else {			/* otherwise, add or remove aliases */
     /* is this an alias we've already defined? */
     if ((a = find_alias(GET_ALIASES(ch), arg)) != NULL) {
       REMOVE_FROM_LIST(a, GET_ALIASES(ch), next);
       free_alias(a);
     }
-
     /* if no replacement string is specified, assume we want to delete */
     if (!*repl) {
       if (a == NULL)
 	send_to_char("No such alias.\r\n", ch);
       else
 	send_to_char("Alias deleted.\r\n", ch);
-    } else { /* otherwise, either add or redefine an alias */
+    } else {			/* otherwise, either add or redefine an alias */
       if (!str_cmp(arg, "alias")) {
 	send_to_char("You can't alias 'alias'.\r\n", ch);
 	return;
@@ -716,9 +715,9 @@ ACMD(do_alias)
 }
 
 /*
- * Valid numeric replacements are only &1 .. &9 (makes parsing a little
+ * Valid numeric replacements are only $1 .. $9 (makes parsing a little
  * easier, and it's not that much of a limitation anyway.)  Also valid
- * is "&*", which stands for the entire original line after the alias.
+ * is "$*", which stands for the entire original line after the alias.
  * ";" is used to delimit commands.
  */
 #define NUM_TOKENS       9
@@ -744,7 +743,7 @@ void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a)
   for (temp = a->replacement; *temp; temp++) {
     if (*temp == ALIAS_SEP_CHAR) {
       *write_point = '\0';
-      buf[MAX_INPUT_LENGTH-1] = '\0';
+      buf[MAX_INPUT_LENGTH - 1] = '\0';
       write_to_q(buf, &temp_queue, 1);
       write_point = buf;
     } else if (*temp == ALIAS_VAR_CHAR) {
@@ -755,15 +754,14 @@ void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a)
       } else if (*temp == ALIAS_GLOB_CHAR) {
 	strcpy(write_point, orig);
 	write_point += strlen(orig);
-      } else
-	if ((*(write_point++) = *temp) == '$') /* redouble $ for act safety */
-	  *(write_point++) = '$';
+      } else if ((*(write_point++) = *temp) == '$')	/* redouble $ for act safety */
+	*(write_point++) = '$';
     } else
       *(write_point++) = *temp;
   }
 
   *write_point = '\0';
-  buf[MAX_INPUT_LENGTH-1] = '\0';
+  buf[MAX_INPUT_LENGTH - 1] = '\0';
   write_to_q(buf, &temp_queue, 1);
 
   /* push our temp_queue on to the _front_ of the input queue */
@@ -784,7 +782,7 @@ void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a)
  *   1: String was _not_ modified in place; rather, the expanded aliases
  *      have been placed at the front of the character's input queue.
  */
-int perform_alias(struct descriptor_data * d, char *orig)
+int perform_alias(struct descriptor_data *d, char *orig)
 {
   char first_arg[MAX_INPUT_LENGTH], *ptr;
   struct alias *a, *tmp;
@@ -825,7 +823,7 @@ int perform_alias(struct descriptor_data * d, char *orig)
  * it to be returned.  Returns -1 if not found; 0..n otherwise.  Array
  * must be terminated with a '\n' so it knows to stop searching.
  */
-int search_block(char *arg, char **list, bool exact)
+int search_block(char *arg, char **list, int exact)
 {
   register int i, l;
 
@@ -859,26 +857,42 @@ int is_number(char *str)
   return 1;
 }
 
-
+/*
+ * Function to skip over the leading spaces of a string.
+ */
 void skip_spaces(char **string)
 {
   for (; **string && isspace(**string); (*string)++);
 }
 
 
+/*
+ * Given a string, change all instances of double dollar signs ($$) to
+ * single dollar signs ($).  When strings come in, all $'s are changed
+ * to $$'s to avoid having users be able to crash the system if the
+ * inputted string is eventually sent to act().  If you are using user
+ * input to produce screen output AND YOU ARE SURE IT WILL NOT BE SENT
+ * THROUGH THE act() FUNCTION (i.e., do_gecho, do_title, but NOT do_say),
+ * you can call delete_doubledollar() to make the output look correct.
+ *
+ * Modifies the string in-place.
+ */
 char *delete_doubledollar(char *string)
 {
   char *read, *write;
 
+  /* If the string has no dollar signs, return immediately */
   if ((write = strchr(string, '$')) == NULL)
     return string;
 
+  /* Start from the location of the first dollar sign */
   read = write;
 
-  while (*read)
-    if ((*(write++) = *(read++)) == '$')
+
+  while (*read)   /* Until we reach the end of the string... */
+    if ((*(write++) = *(read++)) == '$') /* copy one char */
       if (*read == '$')
-	read++;
+	read++; /* skip if we saw 2 $'s in a row */
 
   *write = '\0';
 
@@ -922,6 +936,40 @@ char *one_argument(char *argument, char *first_arg)
 }
 
 
+/*
+ * one_word is like one_argument, except that words in quotes ("") are
+ * considered one word.
+ */
+char *one_word(char *argument, char *first_arg)
+{
+  char *begin = first_arg;
+
+  do {
+    skip_spaces(&argument);
+
+    first_arg = begin;
+
+    if (*argument == '\"') {
+      argument++;
+      while (*argument && *argument != '\"') {
+        *(first_arg++) = LOWER(*argument);
+        argument++;
+      }
+      argument++;
+    } else {
+      while (*argument && !isspace(*argument)) {
+        *(first_arg++) = LOWER(*argument);
+        argument++;
+      }
+    }
+
+    *first_arg = '\0';
+  } while (fill_word(begin));
+
+  return argument;
+}
+
+
 /* same as one_argument except that it doesn't ignore fill words */
 char *any_one_arg(char *argument, char *first_arg)
 {
@@ -944,8 +992,9 @@ char *any_one_arg(char *argument, char *first_arg)
  */
 char *two_arguments(char *argument, char *first_arg, char *second_arg)
 {
-  return one_argument(one_argument(argument, first_arg), second_arg);	/* :-) */
+  return one_argument(one_argument(argument, first_arg), second_arg); /* :-) */
 }
+
 
 
 /*
@@ -998,7 +1047,7 @@ int find_command(char *command)
 }
 
 
-int special(struct char_data * ch, int cmd, char *arg)
+int special(struct char_data *ch, int cmd, char *arg)
 {
   register struct obj_data *i;
   register struct char_data *k;
@@ -1075,17 +1124,141 @@ int _parse_name(char *arg, char *name)
 }
 
 
+#define RECON		1
+#define USURP		2
+#define UNSWITCH	3
+
+int perform_dupe_check(struct descriptor_data *d)
+{
+  struct descriptor_data *k, *next_k;
+  struct char_data *target = NULL, *ch, *next_ch;
+  int mode = 0;
+
+  int id = GET_IDNUM(d->character);
+
+  /*
+   * Now that this descriptor has successfully logged in, disconnect all
+   * other descriptors controlling a character with the same ID number.
+   */
+
+  for (k = descriptor_list; k; k = next_k) {
+    next_k = k->next;
+
+    if (k == d)
+      continue;
+
+    if (k->original && (GET_IDNUM(k->original) == id)) {    /* switched char */
+      SEND_TO_Q("\r\nMultiple login detected -- disconnecting.\r\n", k);
+      STATE(k) = CON_CLOSE;
+      if (!target) {
+	target = k->original;
+	mode = UNSWITCH;
+      }
+      if (k->character)
+	k->character->desc = NULL;
+      k->character = NULL;
+      k->original = NULL;
+    } else if (k->character && (GET_IDNUM(k->character) == id)) {
+      if (!target && STATE(k) == CON_PLAYING) {
+	SEND_TO_Q("\r\nThis body has been usurped!\r\n", k);
+	target = k->character;
+	mode = USURP;
+      }
+      k->character->desc = NULL;
+      k->character = NULL;
+      k->original = NULL;
+      SEND_TO_Q("\r\nMultiple login detected -- disconnecting.\r\n", k);
+      STATE(k) = CON_CLOSE;
+    }
+  }
+
+ /*
+  * now, go through the character list, deleting all characters that
+  * are not already marked for deletion from the above step (i.e., in the
+  * CON_HANGUP state), and have not already been selected as a target for
+  * switching into.  In addition, if we haven't already found a target,
+  * choose one if one is available (while still deleting the other
+  * duplicates, though theoretically none should be able to exist).
+  */
+
+  for (ch = character_list; ch; ch = next_ch) {
+    next_ch = ch->next;
+
+    if (IS_NPC(ch))
+      continue;
+    if (GET_IDNUM(ch) != id)
+      continue;
+
+    /* ignore chars with descriptors (already handled by above step) */
+    if (ch->desc)
+      continue;
+
+    /* don't extract the target char we've found one already */
+    if (ch == target)
+      continue;
+
+    /* we don't already have a target and found a candidate for switching */
+    if (!target) {
+      target = ch;
+      mode = RECON;
+      continue;
+    }
+
+    /* we've found a duplicate - blow him away, dumping his eq in limbo. */
+    if (ch->in_room != NOWHERE)
+      char_from_room(ch);
+    char_to_room(ch, 1);
+    extract_char(ch);
+  }
+
+  /* no target for swicthing into was found - allow login to continue */
+  if (!target)
+    return 0;
+
+  /* Okay, we've found a target.  Connect d to target. */
+  free_char(d->character); /* get rid of the old char */
+  d->character = target;
+  d->character->desc = d;
+  d->original = NULL;
+  d->character->char_specials.timer = 0;
+  REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);
+  STATE(d) = CON_PLAYING;
+
+  switch (mode) {
+  case RECON:
+    SEND_TO_Q("Reconnecting.\r\n", d);
+    act("$n has reconnected.", TRUE, d->character, 0, 0, TO_ROOM);
+    sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
+    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
+    break;
+  case USURP:
+    SEND_TO_Q("You take over your own body, already in use!\r\n", d);
+    act("$n suddenly keels over in pain, surrounded by a white aura...\r\n"
+	"$n's body has been taken over by a new spirit!",
+	TRUE, d->character, 0, 0, TO_ROOM);
+    sprintf(buf, "%s has re-logged in ... disconnecting old socket.",
+	    GET_NAME(d->character));
+    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
+    break;
+  case UNSWITCH:
+    SEND_TO_Q("Reconnecting to unswitched char.", d);
+    sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
+    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
+    break;
+  }
+
+  return 1;
+}
+
+
 
 /* deal with newcomers and other non-playing sockets */
-void nanny(struct descriptor_data * d, char *arg)
+void nanny(struct descriptor_data *d, char *arg)
 {
   char buf[128];
   int player_i, load_result;
   char tmp_name[MAX_INPUT_LENGTH];
   struct char_file_u tmp_store;
-  struct char_data *tmp_ch;
-  struct descriptor_data *k, *next;
-  extern struct descriptor_data *descriptor_list;
   extern sh_int r_mortal_start_room;
   extern sh_int r_immort_start_room;
   extern sh_int r_frozen_start_room;
@@ -1093,7 +1266,7 @@ void nanny(struct descriptor_data * d, char *arg)
   extern int max_bad_pws;
   sh_int load_room;
 
-  int load_char(char *name, struct char_file_u * char_element);
+  int load_char(char *name, struct char_file_u *char_element);
   int parse_class(char arg);
 
   skip_spaces(&arg);
@@ -1139,7 +1312,7 @@ void nanny(struct descriptor_data * d, char *arg)
 
 	  SEND_TO_Q("Password: ", d);
 	  echo_off(d);
-
+	  d->idle_tics = 0;
 	  STATE(d) = CON_PASSWORD;
 	}
       } else {
@@ -1159,7 +1332,7 @@ void nanny(struct descriptor_data * d, char *arg)
       }
     }
     break;
-  case CON_NAME_CNFRM:		/* wait for conf. of new name	 */
+  case CON_NAME_CNFRM:		/* wait for conf. of new name    */
     if (UPPER(*arg) == 'Y') {
       if (isbanned(d->host) >= BAN_NEW) {
 	sprintf(buf, "Request for new char %s denied from [%s] (siteban)",
@@ -1171,7 +1344,7 @@ void nanny(struct descriptor_data * d, char *arg)
       }
       if (restrict) {
 	SEND_TO_Q("Sorry, new players can't be created at the moment.\r\n", d);
-	sprintf(buf, "Request for new char %s denied from %s (wizlock)",
+	sprintf(buf, "Request for new char %s denied from [%s] (wizlock)",
 		GET_NAME(d->character), d->host);
 	mudlog(buf, NRM, LVL_GOD, TRUE);
 	STATE(d) = CON_CLOSE;
@@ -1191,9 +1364,18 @@ void nanny(struct descriptor_data * d, char *arg)
       SEND_TO_Q("Please type Yes or No: ", d);
     }
     break;
-  case CON_PASSWORD:		/* get pwd for known player	 */
-    /* turn echo back on */
-    echo_on(d);
+  case CON_PASSWORD:		/* get pwd for known player      */
+    /*
+     * To really prevent duping correctly, the player's record should
+     * be reloaded from disk at this point (after the password has been
+     * typed).  However I'm afraid that trying to load a character over
+     * an already loaded character is going to cause some problem down the
+     * road that I can't see at the moment.  So to compensate, I'm going to
+     * (1) add a 15 or 20-second time limit for entering a password, and (2)
+     * re-add the code to cut off duplicates when a player quits.  JE 6 Feb 96
+     */
+
+    echo_on(d);    /* turn echo back on */
 
     if (!*arg)
       close_socket(d);
@@ -1212,9 +1394,11 @@ void nanny(struct descriptor_data * d, char *arg)
 	}
 	return;
       }
+
+      /* Password was correct. */
       load_result = GET_BAD_PWS(d->character);
       GET_BAD_PWS(d->character) = 0;
-      save_char(d->character, NOWHERE);
+      d->bad_pws = 0;
 
       if (isbanned(d->host) == BAN_SELECT &&
 	  !PLR_FLAGGED(d->character, PLR_SITEOK)) {
@@ -1233,62 +1417,10 @@ void nanny(struct descriptor_data * d, char *arg)
 	mudlog(buf, NRM, LVL_GOD, TRUE);
 	return;
       }
-      /*
-       * first, check to see if this person is already logged in, but
-       * switched.  If so, disconnect the switched persona.
-       */
-      for (k = descriptor_list; k; k = k->next)
-	if (k->original && (GET_IDNUM(k->original) == GET_IDNUM(d->character))) {
-	  SEND_TO_Q("Disconnecting for return to unswitched char.\r\n", k);
-	  STATE(k) = CON_CLOSE;
-	  free_char(d->character);
-	  d->character = k->original;
-	  d->character->desc = d;
-	  d->original = NULL;
-	  d->character->char_specials.timer = 0;
-	  if (k->character)
-	    k->character->desc = NULL;
-	  k->character = NULL;
-	  k->original = NULL;
-	  SEND_TO_Q("Reconnecting to unswitched char.", d);
-	  REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);
-	  STATE(d) = CON_PLAYING;
-	  sprintf(buf, "%s [%s] has reconnected.",
-		  GET_NAME(d->character), d->host);
-	  mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
-	  return;
-	}
-      /* now check for linkless and usurpable */
-      for (tmp_ch = character_list; tmp_ch; tmp_ch = tmp_ch->next)
-	if (!IS_NPC(tmp_ch) &&
-	    GET_IDNUM(d->character) == GET_IDNUM(tmp_ch)) {
-	  if (!tmp_ch->desc) {
-	    SEND_TO_Q("Reconnecting.\r\n", d);
-	    act("$n has reconnected.", TRUE, tmp_ch, 0, 0, TO_ROOM);
-	    sprintf(buf, "%s [%s] has reconnected.", GET_NAME(d->character), d->host);
-	    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
-	  } else {
-	    sprintf(buf, "%s has re-logged in ... disconnecting old socket.",
-		    GET_NAME(tmp_ch));
-	    mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(tmp_ch)), TRUE);
-	    SEND_TO_Q("This body has been usurped!\r\n", tmp_ch->desc);
-	    STATE(tmp_ch->desc) = CON_CLOSE;
-	    tmp_ch->desc->character = NULL;
-	    tmp_ch->desc = NULL;
-	    SEND_TO_Q("You take over your own body, already in use!\r\n", d);
-	    act("$n suddenly keels over in pain, surrounded by a white aura...\r\n"
-		"$n's body has been taken over by a new spirit!",
-		TRUE, tmp_ch, 0, 0, TO_ROOM);
-	  }
+      /* check and make sure no other copies of this player are logged in */
+      if (perform_dupe_check(d))
+	return;
 
-	  free_char(d->character);
-	  tmp_ch->desc = d;
-	  d->character = tmp_ch;
-	  tmp_ch->char_specials.timer = 0;
-	  REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);
-	  STATE(d) = CON_PLAYING;
-	  return;
-	}
       if (GET_LEVEL(d->character) >= LVL_IMMORT)
 	SEND_TO_Q(imotd, d);
       else
@@ -1303,6 +1435,7 @@ void nanny(struct descriptor_data * d, char *arg)
 		CCRED(d->character, C_SPR), load_result,
 		(load_result > 1) ? "S" : "", CCNRM(d->character, C_SPR));
 	SEND_TO_Q(buf, d);
+	GET_BAD_PWS(d->character) = 0;
       }
       SEND_TO_Q("\r\n\n*** PRESS RETURN: ", d);
       STATE(d) = CON_RMOTD;
@@ -1355,7 +1488,7 @@ void nanny(struct descriptor_data * d, char *arg)
 
     break;
 
-  case CON_QSEX:		/* query sex of new user	 */
+  case CON_QSEX:		/* query sex of new user         */
     switch (*arg) {
     case 'm':
     case 'M':
@@ -1397,29 +1530,19 @@ void nanny(struct descriptor_data * d, char *arg)
     mudlog(buf, NRM, LVL_IMMORT, TRUE);
     break;
 
-  case CON_RMOTD:		/* read CR after printing motd	 */
+  case CON_RMOTD:		/* read CR after printing motd   */
     SEND_TO_Q(MENU, d);
     STATE(d) = CON_MENU;
     break;
 
-  case CON_MENU:		/* get selection from main menu	 */
+  case CON_MENU:		/* get selection from main menu  */
     switch (*arg) {
     case '0':
-      close_socket(d);
+      SEND_TO_Q("Goodbye.\r\n", d);
+      STATE(d) = CON_CLOSE;
       break;
 
     case '1':
-
-      /* this code is to prevent people from multiply logging in */
-      for (k = descriptor_list; k; k = next) {
-	next = k->next;
-	if (!k->connected && k->character &&
-	    !str_cmp(GET_NAME(k->character), GET_NAME(d->character))) {
-	  SEND_TO_Q("Your character has been deleted.\r\n", d);
-	  STATE(d) = CON_CLOSE;
-	  return;
-	}
-      }
       reset_char(d->character);
       if (PLR_FLAGGED(d->character, PLR_INVSTART))
 	GET_INVIS_LEV(d->character) = GET_LEVEL(d->character);
@@ -1429,22 +1552,22 @@ void nanny(struct descriptor_data * d, char *arg)
       send_to_char(WELC_MESSG, d->character);
       d->character->next = character_list;
       character_list = d->character;
-      if (GET_LEVEL(d->character) >= LVL_IMMORT) {
-	if (PLR_FLAGGED(d->character, PLR_LOADROOM)) {
-	  if ((load_room = real_room(GET_LOADROOM(d->character))) < 0)
-	    load_room = r_immort_start_room;
-	} else
+
+      if ((load_room = GET_LOADROOM(d->character)) != NOWHERE)
+	load_room = real_room(load_room);
+
+      /* If char was saved with NOWHERE, or real_room above failed... */
+      if (load_room == NOWHERE) {
+	if (GET_LEVEL(d->character) >= LVL_IMMORT) {
 	  load_room = r_immort_start_room;
-      } else {
-	if (PLR_FLAGGED(d->character, PLR_FROZEN))
-	  load_room = r_frozen_start_room;
-	else {
-	  if (d->character->in_room == NOWHERE)
-	    load_room = r_mortal_start_room;
-	  else if ((load_room = real_room(d->character->in_room)) < 0)
-	    load_room = r_mortal_start_room;
+	} else {
+	  load_room = r_mortal_start_room;
 	}
       }
+
+      if (PLR_FLAGGED(d->character, PLR_FROZEN))
+	load_room = r_frozen_start_room;
+
       char_to_room(d->character, load_room);
       act("$n has entered the game.", TRUE, d->character, 0, 0, TO_ROOM);
 
@@ -1458,21 +1581,21 @@ void nanny(struct descriptor_data * d, char *arg)
 	send_to_char("You have mail waiting.\r\n", d->character);
       if (load_result == 2) {	/* rented items lost */
 	send_to_char("\r\n\007You could not afford your rent!\r\n"
-	     "Your possesions have been donated to the Salvation Army!\r\n",
+	  "Your possesions have been donated to the Salvation Army!\r\n",
 		     d->character);
       }
-      d->prompt_mode = 1;
+      d->has_prompt = 0;
       break;
 
     case '2':
-      SEND_TO_Q("Enter the text you'd like others to see when they look at you.\r\n", d);
-      SEND_TO_Q("Terminate with a '@' on a new line.\r\n", d);
       if (d->character->player.description) {
 	SEND_TO_Q("Old description:\r\n", d);
 	SEND_TO_Q(d->character->player.description, d);
 	free(d->character->player.description);
 	d->character->player.description = NULL;
       }
+      SEND_TO_Q("Enter the new text you'd like others to see when they look at you.\r\n", d);
+      SEND_TO_Q("Terminate with a '@' on a new line.\r\n", d);
       d->str = &d->character->player.description;
       d->max_str = EXDSCR_LENGTH;
       STATE(d) = CON_EXDESC;

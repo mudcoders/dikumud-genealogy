@@ -9,10 +9,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#include <sys/types.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -651,12 +650,10 @@ SPECIAL(cleaning)
       obj_from_room(i);
       obj_to_char(i, ch);
       return TRUE;
-    } else
-      return FALSE;
+    }
   }
   return FALSE;
 }
-
 
 
 /* Routine CastleGuard */

@@ -1,25 +1,54 @@
-#!/bin/csh -f
+#!/bin/sh
 #
-# CircleMUD 2.0 autorun script
-# Originally by Fred C. Merkel
-# Copyright (c) 1993 The Trustees of The Johns Hopkins University
+# CircleMUD 3.0 autorun script
+# Contributions by Fred Merkel, Stuart Lamble, and Jeremy Elson
+# Copyright (c) 1996 The Trustees of The Johns Hopkins University
 # All Rights Reserved
 # See license.doc for more information
+#
+#############################################################################
+#
+# This script can be used to run CircleMUD over and over again (i.e., have it
+# automatically reboot if it crashes).  It will run the game, and copy some
+# of the more useful information from the system logs to the 'log' directory
+# for safe keeping.
+#
+# You can control the operation of this script by creating and deleting files
+# in Circle's root directory, either manually or by using the 'shutdown'
+# command from within the MUD.
+#
+# Creating a file called .fastboot makes the script wait only 5 seconds
+# between reboot attempts instead of the usual 60.  If you want a quick
+# reboot, use the "shutdown reboot" command from within the MUD.
+#
+# Creating a file called .killscript makes the script terminate (i.e., stop
+# rebooting the MUD).  If you want to shut down the MUD and make it stay
+# shut down, use the "shutdown die" command from within the MUD.
+#
+# Finally, if a file called pause exists, the script will not reboot the MUD
+# again until pause is removed.  This is useful if you want to turn the MUD
+# off for a couple of minutes and then bring it back up without killing the
+# script.  Type "shutdown pause" from within the MUD to activate this feature.
+#
 
-# If .fastboot exists, the script will sleep for only 5 seconds between reboot
-# attempts.  If .killscript exists, the script commit suicide (and remove
-# .killscript).  If pause exists, the script will repeatedly sleep for
-# 60 seconds and will not restart the mud until pause is removed.
+# The port on which to run the MUD
+PORT=4000
 
-set PORT=4000
-set FLAGS='-q'
+# Default flags to pass to the MUD server (see admin.txt for a description
+# of all flags).
+FLAGS='-q'
 
-while (1)
+#############################################################################
 
-  set DATE = (`date`);
-  echo "autoscript starting game $DATE" >> syslog
+while ( : ) do
 
-  bin/circle $FLAGS $PORT >>& syslog
+  DATE=`date`
+  echo "autorun starting game $DATE" >> syslog
+  echo "running bin/circle $FLAGS $PORT" >> syslog
+
+  bin/circle $FLAGS $PORT >> syslog 2>&1
+
+  tail -30 syslog > syslog.CRASH
 
   fgrep "self-delete" syslog >> log/delete
   fgrep "death trap" syslog >> log/dts
@@ -42,23 +71,22 @@ while (1)
   mv syslog       log/syslog.6
   touch syslog
 
-  if (! -r .fastboot) then
-    sleep 40
+  if [ ! -r .fastboot ]; then
+    sleep 60
   else
     rm .fastboot
     sleep 5
-  endif
+  fi
 
-  if (-r .killscript) then
-    set DATE = (`date`);
+  if [ -r .killscript ]; then
+    DATE=`date`;
     echo "autoscript killed $DATE"  >> syslog
     rm .killscript
     exit
-  endif 
+  fi
 
-  while (-r pause) 
+  while [ -r pause ]; do
     sleep 60
-  end
+  done
 
-end
-
+done

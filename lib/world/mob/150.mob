@@ -205,7 +205,7 @@ village of Townsbridge.  He was imprisoned, and here he is - a shadow
 of the undoubtedly great warrior he once was, but still to be reckoned
 with.
 ~
-cefhno sp -1000 S
+acefhno sp -1000 S
 13 8 2 3d6+155 2d8+2
 0 18000
 6 6 1
@@ -417,7 +417,7 @@ It is a horrifying thing, this demonic creature from the depths of the
 Abyss.  It glares down at you through blood-red eyes, and bares its huge
 white fangs and its razor-sharp talons.
 ~
-beflnopqr dfhk 1000 S
+abeflnopqr dfhk 1000 S
 33 0 -10 3d60+1480 4d8+16
 35000 1000000
 6 8 1

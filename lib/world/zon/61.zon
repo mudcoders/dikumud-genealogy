@@ -46,9 +46,13 @@ O 0 6102 1 6103         Hollow Tree
 O 0 6103 1 6113         Branch, Light
 O 0 6104 1 6125         Branch, Weapon
 O 0 6105 1 6105         Branch, Unusable
+R 0 6104 6106
 O 0 6106 4 6104         Toadstool
+R 0 6111 6106
 O 0 6106 4 6111         Toadstool
+R 0 6122 6106
 O 0 6106 4 6122         Toadstool
+R 0 6119 6107
 O 0 6107 4 6119         Poisonous Toadstool
 * Doors
 D 1 6152 1 1            Tree

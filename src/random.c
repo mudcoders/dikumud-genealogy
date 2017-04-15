@@ -1,6 +1,6 @@
 /* ************************************************************************
 *   File: random.c                                      Part of CircleMUD *
-*  Usage: random number generator                                         *
+*  Usage: pseudo-random number generator                                  *
 ************************************************************************ */
 
 /*
@@ -13,6 +13,14 @@
  * around, but I like it because it's very short and simple, and for our
  * purposes it's "random enough".
  *               --Jeremy Elson  2/23/95
+ *
+ * Now that we're using GNU's autoconf, I've coded Circle to always use
+ * random(), and automatically link in this object file if random() isn't
+ * supported on the target system.  -JE 2/3/96
+ *
+ * Well, despite autoconf we're back to using this random all the
+ * time.  Oh well, there's no harm in changing my mind on this one
+ * from release to release...  -JE 10/28/97
  */
 
 /***************************************************************************/
@@ -54,13 +62,13 @@
 
 static unsigned long seed;
 
-void my_srand(unsigned long initial_seed)
+void circle_srandom(unsigned long initial_seed)
 {
     seed = initial_seed; 
 }
 
 
-unsigned long my_rand(void)
+unsigned long circle_random(void)
 {
    register int lo, hi, test;
 

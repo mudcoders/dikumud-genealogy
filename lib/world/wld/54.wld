@@ -2273,8 +2273,8 @@ The Witch's Brew~
    The first thing you notice as you walk into this spacious shop is
 the hundreds of candles that line the shelves.  The swirling mist that
 surrounds your feet makes it seem that you have stepped into a gateway
-to another plane.  A tall brunette stands behind her clutterd table
-unaware of your entrance.
+to another plane.  A cluttered table stands near the far wall, opposite
+the doorway.
 ~
 54 d 0
 D2
@@ -2637,7 +2637,7 @@ remove the offensive by-product of such beasts.
 D1
 ~
 ~
-0 -1 54K9
+0 -1 5549
 D2
 ~
 ~
@@ -3685,10 +3685,6 @@ D0
 D1
 ~
 ~
-0 -1 5606
-D1
-~
-~
 0 -1 5608
 S
 #5608
@@ -3729,14 +3725,16 @@ deep within the eastern mountains.  The ledge turns north following
 the shape of the valley and a steep trail continues to the east.
 ~
 54 0 5
+D0
+This can be used to add something onto... such as the valley that is 
+supposed to exist here. (=
+~
+~
+0 -1 -1
 D1
 ~
 ~
 0 -1 5611
-D3
-~
-~
-0 -1 2415
 S
 #5611
 A Path Through The Mountains~
@@ -3867,11 +3865,20 @@ D3
 S
 #5619
 The Headwaters Of The River Of Lost Souls~
-   The waters of the swamp pool in this low area and begin to flow
-southward.
+   You are at the headwaters of what is oft called the darkest river
+in the land.  Looking at the swampy water pooling in this rocky valley,
+you can see why the water downstream is so dark.  The rock walls reach
+up around you blocking all exits except that to the north up onto the
+banks, and to the south where the river flows.
 ~
 54 0 7
+D0
+There is a small path leading away from the bank just to the north.
+~
+~
+0 -1 1500
 D2
+The waters of this swampy pool are flowing slowly towards the south.
 ~
 ~
 0 -1 5634
@@ -5099,10 +5106,6 @@ D1
 ~
 ~
 0 -1 5696
-D2
-~
-~
-0 -1 11081
 D3
 ~
 ~

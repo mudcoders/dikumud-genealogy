@@ -116,7 +116,7 @@ A strange lamia stands here waiting for her next meal.
 This is a creature with the upper torso of a beautiful woman, but the lower
 body of a four-legged beast.  She licks her lips as she looks at you greedily.
 ~
-bfg f -500 S
+abfg f -500 S
 9 10 3 1d12+120 1d4+5
 1500 7000
 8 8 2

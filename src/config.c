@@ -10,6 +10,9 @@
 
 #define __CONFIG_C__
 
+#include "conf.h"
+#include "sysdep.h"
+
 #include "structs.h"
 
 #define TRUE	1
@@ -83,7 +86,7 @@ char *NOEFFECT = "Nothing seems to happen.\r\n";
 
 /*
  * Should the MUD allow you to 'rent' for free?  (i.e. if you just quit,
- * your objects are saved at no cost, as in Merc-type MUDs.
+ * your objects are saved at no cost, as in Merc-type MUDs.)
  */
 int free_rent = YES;
 
@@ -130,7 +133,7 @@ sh_int frozen_start_room = 1202;
 
 /*
  * virtual numbers of donation rooms.  note: you must change code in
- * do_drop of act.obj1.c if you change the number of non-NOWHERE
+ * do_drop of act.item.c if you change the number of non-NOWHERE
  * donation rooms.
  */
 sh_int donation_room_1 = 3063;
@@ -144,7 +147,12 @@ sh_int donation_room_3 = NOWHERE;	/* unused - room for expansion */
 
 /* GAME OPERATION OPTIONS */
 
-/* default port the game should run on if no port given on command-line */
+/*
+ * This is the default port the game should run on if no port is given on
+ * the command-line.  NOTE WELL: If you're using the 'autorun' script, the
+ * port number there will override this setting.  Change the PORT= line in
+ * instead of (or in addition to) changing this.
+ */
 int DFLT_PORT = 4000;
 
 /* default directory to use as data directory */
@@ -153,7 +161,7 @@ char *DFLT_DIR = "lib";
 /* maximum number of players allowed before game starts to turn people away */
 int MAX_PLAYERS = 300;
 
-/* maximum size of bug, typo and idea files (to prevent bombing) */
+/* maximum size of bug, typo and idea files in bytes (to prevent bombing) */
 int max_filesize = 50000;
 
 /* maximum number of password attempts before disconnection */
@@ -224,8 +232,11 @@ char *START_MESSG =
 
 /* AUTOWIZ OPTIONS */
 
-/* Should the game automatically create a new wizlist/immlist every time
-   someone immorts, or is promoted to a higher (or lower) god level? */
+/*
+ * Should the game automatically create a new wizlist/immlist every time
+ * someone immorts, or is promoted to a higher (or lower) god level?
+ * NOTE: this only works under UNIX systems.
+ */
 int use_autowiz = YES;
 
 /* If yes, what is the lowest level which should be on the wizlist?  (All

@@ -11,9 +11,6 @@
 
 /* preamble *************************************************************/
 
-
-#include <sys/types.h>
-
 #define NOWHERE    -1    /* nil reference for room-database	*/
 #define NOTHING	   -1    /* nil reference for objects		*/
 #define NOBODY	   -1    /* nil reference for mobiles		*/
@@ -404,11 +401,22 @@
 
 /* other #defined constants **********************************************/
 
+/*
+ * **DO**NOT** blindly change the number of levels in your MUD merely by
+ * changing these numbers and without changing the rest of the code to match.
+ * Other changes throughout the code are required.  See coding.doc for
+ * details.
+ *
+ * LVL_IMPL should always be the HIGHEST possible immortal level, and
+ * LVL_IMMORT should always be the LOWEST immortal level.  The number of
+ * mortal levels will always be LVL_IMMORT - 1.
+ */
 #define LVL_IMPL	34
 #define LVL_GRGOD	33
 #define LVL_GOD		32
 #define LVL_IMMORT	31
 
+/* Level of the 'freeze' command */
 #define LVL_FREEZE	LVL_GRGOD
 
 #define NUM_OF_DIRS	6	/* number of directions in a room (nsewud) */
@@ -421,9 +429,13 @@
 #define PULSE_MOBILE    (10 RL_SEC)
 #define PULSE_VIOLENCE  (2 RL_SEC)
 
-#define SMALL_BUFSIZE		1024
-#define LARGE_BUFSIZE		(12 * 1024)
-#define GARBAGE_SPACE		32
+/* Variables for the output buffering system */
+#define MAX_SOCK_BUF            (12 * 1024) /* Size of kernel's sock buf   */
+#define MAX_PROMPT_LENGTH       96          /* Max length of prompt        */
+#define GARBAGE_SPACE		32          /* Space for **OVERFLOW** etc  */
+#define SMALL_BUFSIZE		1024        /* Static output buffer size   */
+/* Max amount of output that can be buffered */
+#define LARGE_BUFSIZE	   (MAX_SOCK_BUF - GARBAGE_SPACE - MAX_PROMPT_LENGTH)
 
 #define MAX_STRING_LENGTH	8192
 #define MAX_INPUT_LENGTH	256	/* Max length per *line* of input */
@@ -440,9 +452,9 @@
 #define MAX_OBJ_AFFECT		6 /* Used in obj_file_elem *DO*NOT*CHANGE* */
 
 
-/***********************************************************************
- * Structures                                                          *
- **********************************************************************/
+/**********************************************************************
+* Structures                                                          *
+**********************************************************************/
 
 
 typedef signed char		sbyte;
@@ -450,10 +462,18 @@ typedef unsigned char		ubyte;
 typedef signed short int	sh_int;
 typedef unsigned short int	ush_int;
 typedef char			bool;
-typedef char			byte;
 
-typedef sh_int	room_num;
-typedef sh_int	obj_num;
+#ifndef CIRCLE_WINDOWS
+typedef char			byte;
+#endif
+
+typedef sh_int	room_vnum;	/* A room's vnum type */
+typedef sh_int	obj_vnum;	/* An object's vnum type */
+typedef sh_int	mob_vnum;	/* A mob's vnum type */
+
+typedef sh_int	room_rnum;	/* A room's real (internel) number type */
+typedef sh_int	obj_rnum;	/* An object's real (internal) num type */
+typedef sh_int	mob_rnum;	/* A mobile's real (internal) num type */
 
 
 /* Extra description: used in objects, mobiles, and rooms */
@@ -490,8 +510,8 @@ struct obj_affected_type {
 
 /* ================== Memory Structure for Objects ================== */
 struct obj_data {
-   obj_num item_number;		/* Where in data-base			*/
-   room_num in_room;		/* In what room -1 when conta/carr	*/
+   obj_vnum item_number;	/* Where in data-base			*/
+   room_rnum in_room;		/* In what room -1 when conta/carr	*/
 
    struct obj_flag_data obj_flags;/* Object information               */
    struct obj_affected_type affected[MAX_OBJ_AFFECT];  /* affects */
@@ -517,7 +537,7 @@ struct obj_data {
 /* ====================== File Element for Objects ======================= */
 /*                 BEWARE: Changing it will ruin rent files		   */
 struct obj_file_elem {
-   obj_num item_number;
+   obj_vnum item_number;
 
    int	value[4];
    int	extra_flags;
@@ -557,14 +577,14 @@ struct room_direction_data {
    char	*keyword;		/* for open/close			*/
 
    sh_int exit_info;		/* Exit info				*/
-   obj_num key;			/* Key's number (-1 for no key)		*/
-   room_num to_room;		/* Where direction leads (NOWHERE)	*/
+   obj_vnum key;		/* Key's number (-1 for no key)		*/
+   room_rnum to_room;		/* Where direction leads (NOWHERE)	*/
 };
 
 
 /* ================== Memory Structure for room ======================= */
 struct room_data {
-   room_num number;		/* Rooms number	(vnum)		      */
+   room_vnum number;		/* Rooms number	(vnum)		      */
    sh_int zone;                 /* Room zone (for resetting)          */
    int	sector_type;            /* sector type (move/hide)            */
    char	*name;                  /* Rooms name 'You are ...'           */
@@ -597,7 +617,7 @@ typedef struct memory_rec_struct memory_rec;
 /* This structure is purely intended to be an easy way to transfer */
 /* and return information about time (real or mudwise).            */
 struct time_info_data {
-   byte hours, day, month;
+   int hours, day, month;
    sh_int year;
 };
 
@@ -707,7 +727,7 @@ struct player_special_data_saved {
    int	wimp_level;		/* Below this # of hit points, flee!	*/
    byte freeze_level;		/* Level of god who froze char, if any	*/
    sh_int invis_level;		/* level of invisibility		*/
-   room_num load_room;		/* Which room to place char in		*/
+   room_vnum load_room;		/* Which room to place char in		*/
    long	pref;			/* preference flags for PC's.		*/
    ubyte bad_pws;		/* number of bad password attemps	*/
    sbyte conditions[3];         /* Drunk, full, thirsty			*/
@@ -793,8 +813,8 @@ struct follow_type {
 struct char_data {
    int pfilepos;			 /* playerfile pos		  */
    sh_int nr;                            /* Mob's rnum			  */
-   room_num in_room;                     /* Location (real room number)	  */
-   room_num was_in_room;		 /* location for linkdead people  */
+   room_rnum in_room;                    /* Location (real room number)	  */
+   room_rnum was_in_room;		 /* location for linkdead people  */
 
    struct char_player_data player;       /* Normal data                   */
    struct char_ability_data real_abils;	 /* Abilities without modifiers   */
@@ -867,19 +887,23 @@ struct txt_q {
 
 
 struct descriptor_data {
-   int	descriptor;		/* file descriptor for socket		*/
+   socket_t	descriptor;	/* file descriptor for socket		*/
    char	host[HOST_LENGTH+1];	/* hostname				*/
+   byte close_me;               /* flag: this desc. should be closed    */
    byte	bad_pws;		/* number of bad pw attemps this login	*/
+   byte idle_tics;		/* tics idle at password prompt		*/
    int	connected;		/* mode of 'connectedness'		*/
    int	wait;			/* wait for how many loops		*/
    int	desc_num;		/* unique num assigned to desc		*/
    time_t login_time;		/* when the person connected		*/
-   char	*showstr_head;		/* for paging through texts		*/
-   char	*showstr_point;		/*		-			*/
+   char *showstr_head;		/* for keeping track of an internal str	*/
+   char **showstr_vector;	/* for paging through texts		*/
+   int  showstr_count;		/* number of pages to page through	*/
+   int  showstr_page;		/* which page are we currently showing?	*/
    char	**str;			/* for the modify-str system		*/
-   int	max_str;		/*		-			*/
+   size_t max_str;	        /*		-			*/
    long	mail_to;		/* name for mail system			*/
-   int	prompt_mode;		/* control of prompt-printing		*/
+   int	has_prompt;		/* is the user at a prompt?             */
    char	inbuf[MAX_RAW_INPUT_LENGTH];  /* buffer for raw input		*/
    char	last_input[MAX_INPUT_LENGTH]; /* the last input			*/
    char small_outbuf[SMALL_BUFSIZE];  /* standard output buffer		*/

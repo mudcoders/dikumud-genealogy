@@ -8,9 +8,8 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-/* FEATURES & INSTALLATION INSTRUCTIONS ***********************************
 
-Written by Jeremy "Ras" Elson (jelson@cs.jhu.edu)
+/* FEATURES & INSTALLATION INSTRUCTIONS ***********************************
 
 This board code has many improvements over the infamously buggy standard
 Diku board code.  Features include:
@@ -38,19 +37,16 @@ TO ADD A NEW BOARD, simply follow our easy 4-step program:
 	Filename of this board, in quotes.
 	Last field must always be 0.
 
-4 - In spec_procs.c, find the section which assigns the special procedure
+4 - In spec_assign.c, find the section which assigns the special procedure
     gen_board to the other bulletin boards, and add your new one in a
     similar fashion.
 
 */
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <sys/time.h>
-#include <unistd.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -86,7 +82,7 @@ struct board_info_type board_info[NUM_OF_BOARDS] = {
 char *msg_storage[INDEX_SIZE];
 int msg_storage_taken[INDEX_SIZE];
 int num_of_msgs[NUM_OF_BOARDS];
-int CMD_READ, CMD_LOOK, CMD_EXAMINE, CMD_WRITE, CMD_REMOVE;
+int ACMD_READ, ACMD_LOOK, ACMD_EXAMINE, ACMD_WRITE, ACMD_REMOVE;
 struct board_msginfo msg_index[NUM_OF_BOARDS][MAX_BOARD_MESSAGES];
 
 
@@ -143,11 +139,11 @@ void init_boards(void)
     Board_load_board(i);
   }
 
-  CMD_READ = find_command("read");
-  CMD_WRITE = find_command("write");
-  CMD_REMOVE = find_command("remove");
-  CMD_LOOK = find_command("look");
-  CMD_EXAMINE = find_command("examine");
+  ACMD_READ = find_command("read");
+  ACMD_WRITE = find_command("write");
+  ACMD_REMOVE = find_command("remove");
+  ACMD_LOOK = find_command("look");
+  ACMD_EXAMINE = find_command("examine");
 
   if (fatal_error)
     exit(1);
@@ -166,22 +162,22 @@ SPECIAL(gen_board)
   if (!ch->desc)
     return 0;
 
-  if (cmd != CMD_WRITE && cmd != CMD_LOOK && cmd != CMD_EXAMINE &&
-      cmd != CMD_READ && cmd != CMD_REMOVE)
+  if (cmd != ACMD_WRITE && cmd != ACMD_LOOK && cmd != ACMD_EXAMINE &&
+      cmd != ACMD_READ && cmd != ACMD_REMOVE)
     return 0;
 
   if ((board_type = find_board(ch)) == -1) {
     log("SYSERR:  degenerate board!  (what the hell...)");
     return 0;
   }
-  if (cmd == CMD_WRITE) {
+  if (cmd == ACMD_WRITE) {
     Board_write_message(board_type, ch, argument);
     return 1;
-  } else if (cmd == CMD_LOOK || cmd == CMD_EXAMINE)
+  } else if (cmd == ACMD_LOOK || cmd == ACMD_EXAMINE)
     return (Board_show_board(board_type, ch, argument));
-  else if (cmd == CMD_READ)
+  else if (cmd == ACMD_READ)
     return (Board_display_msg(board_type, ch, argument));
-  else if (cmd == CMD_REMOVE)
+  else if (cmd == ACMD_REMOVE)
     return (Board_remove_msg(board_type, ch, argument));
   else
     return 0;
@@ -211,6 +207,9 @@ void Board_write_message(int board_type, struct char_data * ch, char *arg)
   /* skip blanks */
   skip_spaces(&arg);
   delete_doubledollar(arg);
+
+  /* JE 27 Oct 95 - Truncate headline at 80 chars if it's longer than that */
+  arg[81] = '\0';
 
   if (!*arg) {
     send_to_char("We must have a headline!\r\n", ch);
@@ -457,7 +456,8 @@ void Board_load_board(int board_type)
 
 
   if (!(fl = fopen(FILENAME(board_type), "rb"))) {
-    perror("Error reading board");
+    if (errno != ENOENT)
+      perror("Error reading board");
     return;
   }
   fread(&(num_of_msgs[board_type]), sizeof(int), 1, fl);

@@ -9,8 +9,9 @@
 ************************************************************************ */
 
 
-#include <stdio.h>
-#include <string.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -193,6 +194,7 @@ struct syllable syls[] = {
   {"v", "z"}, {"w", "x"}, {"x", "n"}, {"y", "l"}, {"z", "k"}, {"", ""}
 };
 
+
 int mag_manacost(struct char_data * ch, int spellnum)
 {
   int mana;
@@ -257,6 +259,29 @@ void say_spell(struct char_data * ch, int spellnum, struct char_data * tch,
 }
 
 
+char *skill_name(int num)
+{
+  int i = 0;
+
+  if (num <= 0) {
+    if (num == -1)
+      return "UNUSED";
+    else
+      return "UNDEFINED";
+  }
+
+  while (num && *spells[i] != '\n') {
+    num--;
+    i++;
+  }
+
+  if (*spells[i] != '\n')
+    return spells[i];
+  else
+    return "UNDEFINED";
+}
+
+	 
 int find_skill_num(char *name)
 {
   int index = 0, ok;
@@ -271,7 +296,7 @@ int find_skill_num(char *name)
     temp = any_one_arg(spells[index], first);
     temp2 = any_one_arg(name, first2);
     while (*first && *first2 && ok) {
-      if (!is_abbrev(first, first2))
+      if (!is_abbrev(first2, first))
 	ok = 0;
       temp = any_one_arg(temp, first);
       temp2 = any_one_arg(temp2, first2);
@@ -363,27 +388,32 @@ int call_magic(struct char_data * caster, struct char_data * cvict,
 
   if (IS_SET(SINFO.routines, MAG_MANUAL))
     switch (spellnum) {
-    case SPELL_ENCHANT_WEAPON:  MANUAL_SPELL(spell_enchant_weapon); break;
     case SPELL_CHARM:		MANUAL_SPELL(spell_charm); break;
-    case SPELL_WORD_OF_RECALL:  MANUAL_SPELL(spell_recall); break;
-    case SPELL_IDENTIFY:	MANUAL_SPELL(spell_identify); break;
-    case SPELL_SUMMON:		MANUAL_SPELL(spell_summon); break;
-    case SPELL_LOCATE_OBJECT:   MANUAL_SPELL(spell_locate_object); break;
+    case SPELL_CREATE_WATER:	MANUAL_SPELL(spell_create_water); break;
     case SPELL_DETECT_POISON:	MANUAL_SPELL(spell_detect_poison); break;
+    case SPELL_ENCHANT_WEAPON:  MANUAL_SPELL(spell_enchant_weapon); break;
+    case SPELL_IDENTIFY:	MANUAL_SPELL(spell_identify); break;
+    case SPELL_LOCATE_OBJECT:   MANUAL_SPELL(spell_locate_object); break;
+    case SPELL_SUMMON:		MANUAL_SPELL(spell_summon); break;
+    case SPELL_WORD_OF_RECALL:  MANUAL_SPELL(spell_recall); break;
     }
 
   return 1;
 }
 
 /*
- * mag_objectmagic: This is the entry-point for all magic items.
+ * mag_objectmagic: This is the entry-point for all magic items.  This should
+ * only be called by the 'quaff', 'use', 'recite', etc. routines.
  *
+ * For reference, object values 0-3:
  * staff  - [0]	level	[1] max charges	[2] num charges	[3] spell num
  * wand   - [0]	level	[1] max charges	[2] num charges	[3] spell num
  * scroll - [0]	level	[1] spell num	[2] spell num	[3] spell num
  * potion - [0] level	[1] spell num	[2] spell num	[3] spell num
  *
- * Staves and wands will default to level 14 if the level is not specified.
+ * Staves and wands will default to level 14 if the level is not specified;
+ * the DikuMUD format did not specify staff and wand levels in the world
+ * files (this is a CircleMUD enhancement).
  */
 
 void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
@@ -523,6 +553,14 @@ void mag_objectmagic(struct char_data * ch, struct obj_data * obj,
 int cast_spell(struct char_data * ch, struct char_data * tch,
 	           struct obj_data * tobj, int spellnum)
 {
+  char buf[256];
+
+  if (spellnum < 0 || spellnum > TOP_SPELL_DEFINE) {
+    sprintf(buf, "SYSERR: cast_spell trying to call spellnum %d\n", spellnum);
+    log(buf);
+    return 0;
+  }
+    
   if (GET_POS(ch) < SINFO.min_position) {
     switch (GET_POS(ch)) {
       case POS_SLEEPING:
@@ -634,7 +672,7 @@ ACMD(do_cast)
 
     if (!target && IS_SET(SINFO.targets, TAR_OBJ_EQUIP)) {
       for (i = 0; !target && i < NUM_WEARS; i++)
-	if (GET_EQ(ch, i) && !str_cmp(t, GET_EQ(ch, i)->name)) {
+	if (GET_EQ(ch, i) && isname(t, GET_EQ(ch, i)->name)) {
 	  tobj = GET_EQ(ch, i);
 	  target = TRUE;
 	}
@@ -706,16 +744,45 @@ ACMD(do_cast)
 }
 
 
-/* Assign the spells on boot up */
 
-void spello(int spl, int mlev, int clev, int tlev, int wlev,
-	         int max_mana, int min_mana, int mana_change, int minpos,
+void spell_level(int spell, int class, int level)
+{
+  char buf[256];
+  int bad = 0;
+
+  if (spell < 0 || spell > TOP_SPELL_DEFINE) {
+    sprintf(buf, "SYSERR: attempting assign to illegal spellnum %d", spell);
+    log(buf);
+    return;
+  }
+
+  if (class < 0 || class >= NUM_CLASSES) {
+    sprintf(buf, "SYSERR: assigning '%s' to illegal class %d",
+	    skill_name(spell), class);
+    log(buf);
+    bad = 1;
+  }
+
+  if (level < 1 || level > LVL_IMPL) {
+    sprintf(buf, "SYSERR: assigning '%s' to illegal level %d",
+	    skill_name(spell), level);
+    log(buf);
+    bad = 1;
+  }
+
+  if (!bad)    
+    spell_info[spell].min_level[class] = level;
+}
+
+
+/* Assign the spells on boot up */
+void spello(int spl, int max_mana, int min_mana, int mana_change, int minpos,
 	         int targets, int violent, int routines)
 {
-  spell_info[spl].min_level[CLASS_MAGIC_USER] = mlev;
-  spell_info[spl].min_level[CLASS_CLERIC] = clev;
-  spell_info[spl].min_level[CLASS_THIEF] = tlev;
-  spell_info[spl].min_level[CLASS_WARRIOR] = wlev;
+  int i;
+
+  for (i = 0; i < NUM_CLASSES; i++)
+    spell_info[spl].min_level[i] = LVL_IMMORT;
   spell_info[spl].mana_max = max_mana;
   spell_info[spl].mana_min = min_mana;
   spell_info[spl].mana_change = mana_change;
@@ -725,229 +792,235 @@ void spello(int spl, int mlev, int clev, int tlev, int wlev,
   spell_info[spl].routines = routines;
 }
 
+
+void unused_spell(int spl)
+{
+  int i;
+
+  for (i = 0; i < NUM_CLASSES; i++)
+    spell_info[spl].min_level[i] = LVL_IMPL + 1;
+  spell_info[spl].mana_max = 0;
+  spell_info[spl].mana_min = 0;
+  spell_info[spl].mana_change = 0;
+  spell_info[spl].min_position = 0;
+  spell_info[spl].targets = 0;
+  spell_info[spl].violent = 0;
+  spell_info[spl].routines = 0;
+}
+
+#define skillo(skill) spello(skill, 0, 0, 0, 0, 0, 0, 0);
+
+
 /*
  * Arguments for spello calls:
  *
- * spellnum, levels (MCTW), maxmana, minmana, manachng, minpos, targets,
- * violent?, routines.
+ * spellnum, maxmana, minmana, manachng, minpos, targets, violent?, routines.
  *
  * spellnum:  Number of the spell.  Usually the symbolic name as defined in
- * spells.h (such as SPELL_HEAL). levels  :  Minimum level (mage, cleric,
- * thief, warrior) a player must be to cast this spell.  Use 'X' for immortal
- * only. maxmana :  The maximum mana this spell will take (i.e., the mana it
- * will take when the player first gets the spell). minmana :  The minimum
- * mana this spell will take, no matter how high level the caster is.
+ * spells.h (such as SPELL_HEAL).
+ *
+ * maxmana :  The maximum mana this spell will take (i.e., the mana it
+ * will take when the player first gets the spell).
+ *
+ * minmana :  The minimum mana this spell will take, no matter how high
+ * level the caster is.
+ *
  * manachng:  The change in mana for the spell from level to level.  This
  * number should be positive, but represents the reduction in mana cost as
  * the caster's level increases.
  *
  * minpos  :  Minimum position the caster must be in for the spell to work
  * (usually fighting or standing). targets :  A "list" of the valid targets
- * for the spell, joined with bitwise OR ('|'). violent :  TRUE or FALSE,
- * depending on if this is considered a violent spell and should not be cast
- * in PEACEFUL rooms or on yourself. routines:  A list of magic routines
- * which are associated with this spell. Also joined with bitwise OR ('|').
+ * for the spell, joined with bitwise OR ('|').
+ *
+ * violent :  TRUE or FALSE, depending on if this is considered a violent
+ * spell and should not be cast in PEACEFUL rooms or on yourself.  Should be
+ * set on any spell that inflicts damage, is considered aggressive (i.e.
+ * charm, curse), or is otherwise nasty.
+ *
+ * routines:  A list of magic routines which are associated with this spell
+ * if the spell uses spell templates.  Also joined with bitwise OR ('|').
  *
  * See the CircleMUD documentation for a more detailed description of these
  * fields.
  */
 
-#define UU (LVL_IMPL+1)
-#define UNUSED UU,UU,UU,UU,0,0,0,0,0,0,0
-
-#define X LVL_IMMORT
+/*
+ * NOTE: SPELL LEVELS ARE NO LONGER ASSIGNED HERE AS OF Circle 3.0 bpl9.
+ * In order to make this cleaner, as well as to make adding new classes
+ * much easier, spell levels are now assigned in class.c.  You only need
+ * a spello() call to define a new spell; to decide who gets to use a spell
+ * or skill, look in class.c.  -JE 5 Feb 1996
+ */
 
 void mag_assign_spells(void)
 {
   int i;
 
+  /* Do not change the loop below */
   for (i = 1; i <= TOP_SPELL_DEFINE; i++)
-    spello(i, UNUSED);
-		   /* C L A S S E S      M A N A   */
-		   /* Ma  Cl  Th  Wa   Max Min Chn */
-  spello(SPELL_ARMOR,  4,  1,  X,  X,  30,  15,  3,
-	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+    unused_spell(i);
+  /* Do not change the loop above */
 
-  spello(SPELL_BLESS,  X,  5,  X,  X,  35,   5,  3,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_AFFECTS | MAG_ALTER_OBJS);
+  spello(SPELL_ARMOR, 30, 15, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
 
-  spello(SPELL_BLINDNESS, 9, 6, X, X, 35, 25, 1,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_NOT_SELF, FALSE, MAG_AFFECTS);
+  spello(SPELL_BLESS, 35, 5, 3, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_AFFECTS | MAG_ALTER_OBJS);
 
-  spello(SPELL_BURNING_HANDS, 5, X, X, X, 30, 10, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  spello(SPELL_BLINDNESS, 35, 25, 1, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_NOT_SELF, FALSE, MAG_AFFECTS);
 
-  spello(SPELL_CALL_LIGHTNING, X, 15, X, X, 40, 25, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  spello(SPELL_BURNING_HANDS, 30, 10, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_CHARM, 16, X, X, X, 75, 50, 2,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_NOT_SELF, TRUE, MAG_MANUAL);
+  spello(SPELL_CALL_LIGHTNING, 40, 25, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_CHILL_TOUCH, 3, X, X, X, 30, 10, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE | MAG_AFFECTS);
-  /* C L A S S E S      M A N A   */
-  /* Ma  Cl  Th  Wa   Max Min Chn */
-  spello(SPELL_CLONE, X, X, X, X, 80, 65, 5,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_MANUAL);
+  spello(SPELL_CHARM, 75, 50, 2, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_NOT_SELF, TRUE, MAG_MANUAL);
 
-  spello(SPELL_COLOR_SPRAY, 11, X, X, X, 30, 15, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  spello(SPELL_CHILL_TOUCH, 30, 10, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE | MAG_AFFECTS);
 
-  spello(SPELL_CONTROL_WEATHER, X, 17, X, X, 75, 25, 5,
-	 POS_STANDING, TAR_IGNORE, FALSE, MAG_MANUAL);
+  spello(SPELL_CLONE, 80, 65, 5, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_MANUAL);
 
-  spello(SPELL_CREATE_FOOD, X, 2, X, X, 30, 5, 4,
-	 POS_STANDING, TAR_IGNORE, FALSE, MAG_CREATIONS);
+  spello(SPELL_COLOR_SPRAY, 30, 15, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_CREATE_WATER, X, 2, X, X, 30, 5, 4,
-	 POS_STANDING, TAR_OBJ_INV | TAR_OBJ_EQUIP, FALSE, MAG_CREATIONS);
+  spello(SPELL_CONTROL_WEATHER, 75, 25, 5, POS_STANDING,
+	TAR_IGNORE, FALSE, MAG_MANUAL);
 
-  spello(SPELL_CURE_BLIND, X, 4, X, X, 30, 5, 2,
-	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_UNAFFECTS);
+  spello(SPELL_CREATE_FOOD, 30, 5, 4, POS_STANDING,
+	TAR_IGNORE, FALSE, MAG_CREATIONS);
 
-  spello(SPELL_CURE_CRITIC, X, 9, X, X, 30, 10, 2,
-	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_POINTS);
-  /* C L A S S E S      M A N A   */
-  /* Ma  Cl  Th  Wa   Max Min Chn */
-  spello(SPELL_CURE_LIGHT, X, 1, X, X, 30, 10, 2,
-	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_POINTS);
+  spello(SPELL_CREATE_WATER, 30, 5, 4, POS_STANDING,
+	TAR_OBJ_INV | TAR_OBJ_EQUIP, FALSE, MAG_MANUAL);
 
-  spello(SPELL_CURSE, 14, X, X, X, 80, 50, 2,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, TRUE, MAG_AFFECTS | MAG_ALTER_OBJS);
+  spello(SPELL_CURE_BLIND, 30, 5, 2, POS_STANDING,
+	TAR_CHAR_ROOM, FALSE, MAG_UNAFFECTS);
 
-  spello(SPELL_DETECT_ALIGN, X, 4, X, X, 20, 10, 2,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+  spello(SPELL_CURE_CRITIC, 30, 10, 2, POS_FIGHTING,
+	TAR_CHAR_ROOM, FALSE, MAG_POINTS);
 
-  spello(SPELL_DETECT_INVIS, 2, 6, X, X, 20, 10, 2,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+  spello(SPELL_CURE_LIGHT, 30, 10, 2, POS_FIGHTING,
+	TAR_CHAR_ROOM, FALSE, MAG_POINTS);
 
-  spello(SPELL_DETECT_MAGIC, 2, X, X, X, 20, 10, 2,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
-  /* C L A S S E S      M A N A   */
-  /* Ma  Cl  Th  Wa   Max Min Chn */
-  spello(SPELL_DETECT_POISON, 10, 3, X, X, 15, 5, 1,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL);
+  spello(SPELL_CURSE, 80, 50, 2, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_OBJ_INV, TRUE, MAG_AFFECTS | MAG_ALTER_OBJS);
 
-  spello(SPELL_DISPEL_EVIL, X, 14, X, X, 40, 25, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  spello(SPELL_DETECT_ALIGN, 20, 10, 2, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
 
-  spello(SPELL_DISPEL_GOOD, X, 14, X, X, 40, 25, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  spello(SPELL_DETECT_INVIS, 20, 10, 2, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
 
-  spello(SPELL_EARTHQUAKE, X, 12, X, X, 40, 25, 3,
-	 POS_FIGHTING, TAR_IGNORE, TRUE, MAG_AREAS);
+  spello(SPELL_DETECT_MAGIC, 20, 10, 2, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
 
-  spello(SPELL_ENCHANT_WEAPON, 26, X, X, X, 150, 100, 10,
-	 POS_STANDING, TAR_OBJ_INV | TAR_OBJ_EQUIP, FALSE, MAG_MANUAL);
+  spello(SPELL_DETECT_POISON, 15, 5, 1, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL);
 
-  spello(SPELL_ENERGY_DRAIN, 13, X, X, X, 40, 25, 1,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE | MAG_MANUAL);
+  spello(SPELL_DISPEL_EVIL, 40, 25, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_GROUP_ARMOR, X, 9, X, X, 50, 30, 2,
-	 POS_STANDING, TAR_IGNORE, FALSE, MAG_GROUPS);
-  /* C L A S S E S      M A N A   */
-  /* Ma  Cl  Th  Wa   Max Min Chn */
-  spello(SPELL_FIREBALL, 15, X, X, X, 40, 30, 2,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  spello(SPELL_DISPEL_GOOD, 40, 25, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_GROUP_HEAL, X, 22, X, X, 80, 60, 5,
-	 POS_STANDING, TAR_IGNORE, FALSE, MAG_GROUPS);
+  spello(SPELL_EARTHQUAKE, 40, 25, 3, POS_FIGHTING,
+	TAR_IGNORE, TRUE, MAG_AREAS);
 
-  spello(SPELL_HARM, X, 19, X, X, 75, 45, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  spello(SPELL_ENCHANT_WEAPON, 150, 100, 10, POS_STANDING,
+	TAR_OBJ_INV | TAR_OBJ_EQUIP, FALSE, MAG_MANUAL);
 
-  spello(SPELL_HEAL, X, 16, X, X, 60, 40, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_POINTS | MAG_AFFECTS | MAG_UNAFFECTS);
+  spello(SPELL_ENERGY_DRAIN, 40, 25, 1, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE | MAG_MANUAL);
 
-  spello(SPELL_INFRAVISION, 3, 7, X, X, 25, 10, 1,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+  spello(SPELL_GROUP_ARMOR, 50, 30, 2, POS_STANDING,
+	TAR_IGNORE, FALSE, MAG_GROUPS);
 
-  spello(SPELL_INVISIBLE, 4, X, X, X, 35, 25, 1,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_AFFECTS | MAG_ALTER_OBJS);
+  spello(SPELL_FIREBALL, 40, 30, 2, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_LIGHTNING_BOLT, 9, X, X, X, 30, 15, 1,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
-  /* C L A S S E S      M A N A   */
-  /* Ma  Cl  Th  Wa   Max Min Chn */
-  spello(SPELL_LOCATE_OBJECT, 6, X, X, X, 25, 20, 1,
-	 POS_STANDING, TAR_OBJ_WORLD, FALSE, MAG_MANUAL);
+  spello(SPELL_GROUP_HEAL, 80, 60, 5, POS_STANDING,
+	TAR_IGNORE, FALSE, MAG_GROUPS);
 
-  spello(SPELL_MAGIC_MISSILE, 1, X, X, X, 25, 10, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+  spello(SPELL_HARM, 75, 45, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_POISON, X, X, X, X, 50, 20, 3,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_OBJ_INV, TRUE, MAG_AFFECTS | MAG_ALTER_OBJS);
+  spello(SPELL_HEAL, 60, 40, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM, FALSE, MAG_POINTS | MAG_AFFECTS | MAG_UNAFFECTS);
 
-  spello(SPELL_PROT_FROM_EVIL, X, 8, X, X, 40, 10, 3,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+  spello(SPELL_INFRAVISION, 25, 10, 1, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
 
-  spello(SPELL_REMOVE_CURSE, X, 26, X, X, 45, 25, 5,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_UNAFFECTS | MAG_ALTER_OBJS);
+  spello(SPELL_INVISIBLE, 35, 25, 1, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_AFFECTS | MAG_ALTER_OBJS);
 
-  spello(SPELL_SANCTUARY, X, 15, X, X, 110, 85, 5,
-	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+  spello(SPELL_LIGHTNING_BOLT, 30, 15, 1, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_SHOCKING_GRASP, 7, X, X, X, 30, 15, 3,
-	 POS_FIGHTING, TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
-  /* C L A S S E S      M A N A   */
-  /* Ma  Cl  Th  Wa   Max Min Chn */
-  spello(SPELL_SLEEP, 8, X, X, X, 40, 25, 5,
-	 POS_STANDING, TAR_CHAR_ROOM, TRUE, MAG_AFFECTS);
+  spello(SPELL_LOCATE_OBJECT, 25, 20, 1, POS_STANDING,
+	TAR_OBJ_WORLD, FALSE, MAG_MANUAL);
 
-  spello(SPELL_STRENGTH, 6, X, X, X, 35, 30, 1,
-	 POS_STANDING, TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+  spello(SPELL_MAGIC_MISSILE, 25, 10, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
 
-  spello(SPELL_SUMMON, X, 10, X, X, 75, 50, 3,
-	 POS_STANDING, TAR_CHAR_WORLD | TAR_NOT_SELF, FALSE, MAG_MANUAL);
+  spello(SPELL_POISON, 50, 20, 3, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_NOT_SELF | TAR_OBJ_INV, TRUE, MAG_AFFECTS | MAG_ALTER_OBJS);
 
-  spello(SPELL_WORD_OF_RECALL, X, 12, X, X, 20, 10, 2,
-	 POS_FIGHTING, TAR_CHAR_ROOM, FALSE, MAG_MANUAL);
+  spello(SPELL_PROT_FROM_EVIL, 40, 10, 3, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
 
-  spello(SPELL_REMOVE_POISON, X, 10, X, X, 40, 8, 4,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_UNAFFECTS | MAG_ALTER_OBJS);
+  spello(SPELL_REMOVE_CURSE, 45, 25, 5, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_OBJ_INV, FALSE, MAG_UNAFFECTS | MAG_ALTER_OBJS);
 
-  spello(SPELL_SENSE_LIFE, X, X, X, X, 20, 10, 2,
-	 POS_STANDING, TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+  spello(SPELL_SANCTUARY, 110, 85, 5, POS_STANDING,
+	TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_SHOCKING_GRASP, 30, 15, 3, POS_FIGHTING,
+	TAR_CHAR_ROOM | TAR_FIGHT_VICT, TRUE, MAG_DAMAGE);
+
+  spello(SPELL_SLEEP, 40, 25, 5, POS_STANDING,
+	TAR_CHAR_ROOM, TRUE, MAG_AFFECTS);
+
+  spello(SPELL_STRENGTH, 35, 30, 1, POS_STANDING,
+	TAR_CHAR_ROOM, FALSE, MAG_AFFECTS);
+
+  spello(SPELL_SUMMON, 75, 50, 3, POS_STANDING,
+	TAR_CHAR_WORLD | TAR_NOT_SELF, FALSE, MAG_MANUAL);
+
+  spello(SPELL_WORD_OF_RECALL, 20, 10, 2, POS_FIGHTING,
+	TAR_CHAR_ROOM, FALSE, MAG_MANUAL);
+
+  spello(SPELL_REMOVE_POISON, 40, 8, 4, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_UNAFFECTS | MAG_ALTER_OBJS);
+
+  spello(SPELL_SENSE_LIFE, 20, 10, 2, POS_STANDING,
+	TAR_CHAR_ROOM | TAR_SELF_ONLY, FALSE, MAG_AFFECTS);
+
+
+  /* NON-castable spells should appear here */
+  spello(SPELL_IDENTIFY, 0, 0, 0, 0,
+	TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL);
 
 
   /*
-   * SKILLS
-   * 
-   * The only parameters needed for skills are only the minimum levels for each
-   * class.  The remaining 8 fields of the structure should be filled with
-   * 0's.
+   * Declaration of skills - this actually doesn't do anything except
+   * set it up so that immortals can use these skills by default.  The
+   * min level to use the skill for other classes is set up in class.c.
    */
 
-  /* Ma  Cl  Th  Wa  */
-  spello(SKILL_BACKSTAB, X, X, 3, X,
-	 0, 0, 0, 0, 0, 0, 0);
-
-  spello(SKILL_BASH, X, X, X, 12,
-	 0, 0, 0, 0, 0, 0, 0);
-
-  spello(SKILL_HIDE, X, X, 5, X,
-	 0, 0, 0, 0, 0, 0, 0);
-
-  spello(SKILL_KICK, X, X, X, 1,
-	 0, 0, 0, 0, 0, 0, 0);
-
-  spello(SKILL_PICK_LOCK, X, X, 2, X,
-	 0, 0, 0, 0, 0, 0, 0);
-
-  spello(SKILL_RESCUE, X, X, X, 3,
-	 0, 0, 0, 0, 0, 0, 0);
-
-  spello(SKILL_SNEAK, X, X, 1, X,
-	 0, 0, 0, 0, 0, 0, 0);
-
-  spello(SKILL_STEAL, X, X, 4, X,
-	 0, 0, 0, 0, 0, 0, 0);
-  /* Ma  Cl  Th  Wa  */
-  spello(SKILL_TRACK, X, X, 6, 9,
-	 0, 0, 0, 0, 0, 0, 0);
-
-
-  spello(SPELL_IDENTIFY, 0, 0, 0, 0, 0, 0, 0, 0,
-	 TAR_CHAR_ROOM | TAR_OBJ_INV | TAR_OBJ_ROOM, FALSE, MAG_MANUAL);
+  skillo(SKILL_BACKSTAB);
+  skillo(SKILL_BASH);
+  skillo(SKILL_HIDE);
+  skillo(SKILL_KICK);
+  skillo(SKILL_PICK_LOCK);
+  skillo(SKILL_PUNCH);
+  skillo(SKILL_RESCUE);
+  skillo(SKILL_SNEAK);
+  skillo(SKILL_STEAL);
+  skillo(SKILL_TRACK);
 }
 

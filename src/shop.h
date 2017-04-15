@@ -1,3 +1,13 @@
+/* ************************************************************************
+*   File: shop.h                                        Part of CircleMUD *
+*  Usage: shop file definitions, structures, constants                    *
+*                                                                         *
+*  All rights reserved.  See license.doc for complete information.        *
+*                                                                         *
+*  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
+*  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
+************************************************************************ */
+
 
 struct shop_buy_data {
    int type;
@@ -50,6 +60,7 @@ struct shop_data {
 #define OBJECT_DEAD		0
 #define OBJECT_NOTOK		1
 #define OBJECT_OK		2
+#define OBJECT_NOVAL		3
 
 
 /* Types of lists to read */
@@ -86,15 +97,6 @@ struct stack_data {
 #define MAX_OPER		4
 
 
-const char *operator_str[] = {
-	"[({",
-	"])}",
-	"|+",
-	"&*",
-	"^'"
-} ;
-
-
 #define SHOP_NUM(i)		(shop_index[(i)].virtual)
 #define SHOP_KEEPER(i)		(shop_index[(i)].keeper)
 #define SHOP_OPEN1(i)		(shop_index[(i)].open1)
@@ -123,18 +125,6 @@ const char *operator_str[] = {
 #define NOTRADE_WARRIOR(i)	(IS_SET(SHOP_TRADE_WITH((i)), TRADE_NOWARRIOR))
 
 
-/* Constant list for printing out who we sell to */
-const char *trade_letters[] = {
-	"Good",			/* First, the alignment based ones */
-	"Evil",
-	"Neutral",
-	"Magic User",		/* Then the class based ones */
-	"Cleric",
-	"Thief",
-	"Warrior",
-	"\n"
-} ;
-
 
 #define	WILL_START_FIGHT	1
 #define WILL_BANK_MONEY		2
@@ -142,11 +132,6 @@ const char *trade_letters[] = {
 #define SHOP_KILL_CHARS(i)	(IS_SET(SHOP_BITVECTOR(i), WILL_START_FIGHT))
 #define SHOP_USES_BANK(i)	(IS_SET(SHOP_BITVECTOR(i), WILL_BANK_MONEY))
 
-char *shop_bits[] = {
-	"WILL_FIGHT",
-	"USES_BANK",
-	"\n"
-} ;
 
 #define MIN_OUTSIDE_BANK	5000
 #define MAX_OUTSIDE_BANK	15000

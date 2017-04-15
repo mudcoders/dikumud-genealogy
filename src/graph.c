@@ -16,8 +16,9 @@
    or hidden doors.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -61,7 +62,7 @@ static struct bfs_queue_struct *queue_head = 0, *queue_tail = 0;
 			  (!IS_MARKED(TOROOM(x, y))))
 #endif
 
-void bfs_enqueue(sh_int room, char dir)
+void bfs_enqueue(sh_int room, int dir)
 {
   struct bfs_queue_struct *curr;
 

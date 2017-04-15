@@ -5,13 +5,18 @@ the wind can howl undisturbed since nothing but you bars its way.  However
 you are not the first to wander here.  Before you somebody has left a small
 path.  The path looks rather bewildered and is not the kind of path to lead
 to anywhere significant or important but it seems to have made up its mind
-to enter the hills far away north.
+to enter the hills far away north.  A narrow trail scars its way off to the
+east as it leads up towards a hillside.
 ~
 35 0 1
 D0
 ~
 ~
 0 -1 4000
+D1
+~
+~
+0 -1 3300
 D2
 ~
 ~
@@ -476,7 +481,7 @@ soaked into the ground.  Two carcasses lie in front of you, seeming to look
 up at you.  The forest is impassible to the south, but the other directions
 look ok.
 ~
-35 a 3
+35 1 3
 D0
 Darkness...
 ~
@@ -820,7 +825,7 @@ hospitality of the Innkeeper, but as of late, he only serves the
 few adventurers that manage to survive a trip through the forest.
 You can leave south and return to the common room.
 ~
-35 dh 1
+35 df 1
 D2
 You may retreat south back to the common room.
 ~
@@ -929,3 +934,4 @@ Back to along the trail.
 0 -1 3583
 S
 $
+

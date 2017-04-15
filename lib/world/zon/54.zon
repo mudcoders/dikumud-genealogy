@@ -2,7 +2,7 @@
 New Thalos~
 5699 20 2
 *
-* Created by Duke of SillyMud?
+* Created by Duke and Conner of SillyMud
 *
 * Edited and modified for CircleMUD by Furry
 *
@@ -325,7 +325,9 @@ M 0 5489 1 5554         Mayor
 G 1 5401 1                      Key To The City Of New Thalos
 M 0 5490 1 5561         Chef
 * Objects
+R 0 5521 3034
 O 0 3034 10 5521        ATM
+R 0 5406 5402
 O 0 5402 1 5406         Large Central Fountain
 * Doors
 D 0 5413 2 2            The South Gate

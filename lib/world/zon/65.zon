@@ -92,15 +92,20 @@ M 0 6514 4 6521         Barrack Guard
 E 1 6509 100 16                 Two-Handed Dwarven Axe
 M 0 6516 1 6553         Mazekeeper
 E 1 6500 1 17                   Key To The Treasury
+O 1 6501 1 6554         Treasure
 M 0 6517 2 6548         Giant Snake
 M 0 6517 2 6549         Giant Snake
 * Objects
-O 1 6501 1 6554         Treasure
+R 0 6513 6507
 O 0 6507 4 6513         Long Black Light Stick
+R 0 6505 6507
 O 0 6507 4 6505         Long Black Light Stick
+R 0 6503 6507
 O 0 6507 4 6503         Long Black Light Stick
+R 0 6540 6507
 O 0 6507 4 6540         Long Black Light Stick
 O 0 6513 6 6545         Chunk Of Coal
+R 0 6551 6514
 O 0 6514 3 6551         Mining Pick
 O 0 6516 1 6532         Key To The Mine Maze
 * Doors

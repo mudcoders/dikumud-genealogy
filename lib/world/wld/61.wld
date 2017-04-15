@@ -1132,9 +1132,15 @@ S
 #6137
 At The End Of The Trail Through The Deep, Dark Forest~
    You are on a dusty trail leading through the deep, dark forest.  Ancient
-grey trees loom all around you.  The only exit is east.
+grey trees loom all around you.  A small trail leads northwards and the only
+other exit is east, along the main trail.
 ~
 61 ad 3
+D0
+A narrow trail leads northwards through the underbrush.
+~
+~
+0 -1 6138
 D1
 The dusty trail leads east through the trees.
 ~
@@ -1144,6 +1150,51 @@ E
 tree trees trunk trunks~
 The ancient grey giants seem to observe you silently.
 ~
+S
+#6138
+On The Narrow Trail~
+   The trail continues to the north and south as it leads through
+the heavy underbrush of this part of the Haon-Dor Forest.  Ancient
+grey trees loom all around you.  The brush seems to be bending
+closely over the path in a somewhat ominous manner, but you easily
+shrug it off.  The trail looks to open up somewhat a short distance
+to the south.
+~
+61 ad 3
+D0
+The narrow trail continues northwards through the underbrush.
+~
+~
+0 -1 6139
+D2
+The dusty trail leads east through the trees.
+~
+~
+0 -1 6137
+E
+tree trees trunk trunks~
+The ancient grey giants seem to observe you silently.
+~
+S
+#6139
+On The Narrow Trail~
+   The trail continues to the north and south as it leads through
+the heavy underbrush of this part of the Haon-Dor Forest.  The
+trail looks surprisingly well trodden along this part.  The brush
+seems to be bending closely over the path in a somewhat ominous
+manner, but you easily shrug it off.
+~
+61 ad 3
+D0
+A short distance to the north, you can see something shimmering.
+~
+~
+0 -1 6203
+D2
+The path leads southwards through the underbrush.
+~
+~
+0 -1 6138
 S
 #6142
 Outside A Cave In The Deep, Dark Forest~
@@ -1293,4 +1344,5 @@ The hallway to the north looks quite grand.
 ~
 0 -1 6154
 S
-$
+#99999
+$~

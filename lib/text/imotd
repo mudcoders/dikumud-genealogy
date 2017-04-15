@@ -1,19 +1,18 @@
-      Welcome to
-
-        C    I    R    C    L    E    M    U    D         3    .    0
-                  "We addict players for their own enjoyment."
-	 Created by Jeremy Elson (jelson@jhu.edu) at Johns Hopkins U
 
 
-Scrolls of identify now work better.
+Welcome to the long-awaited, oft-belated, highly-rated CircleMUD 3.0!
 
-Spell abbreviations work (i.e. 'prot f ev' for 'protection from evil').
+This is the immortal MOTD -- the file that immortals will see when they
+log in to the game.  You should change it to something more interesting
+when you get a chance (as well as most of the other files in lib/text.)
 
-Speed-walking should be re-enabled.  Please let me know how the new comm
-code interacts with tintin and other burst-mode clients.
 
-There is now a 'gold' command.
+ATTENTION ALL CIRCLEMUD IMPLEMENTORS:
+   There is now a CircleMUD mailing list available!  So, if you'd like
+to exchange ideas, ask for coding help, find people who'd like to swap
+areas, or report any BUGS (gasp!) you may find, the mailing list is the
+best place to do it.
 
-Aliases are now in!  Type HELP ALIAS for more information.  Note that aliases
-are not yet saved when you quit, although they will be in the (very) near
-future.
+   The address of the CircleMUD mailing list is circle@pvv.unit.no.
+Write to majordomo@pvv.unit.no if you want to subscribe.
+

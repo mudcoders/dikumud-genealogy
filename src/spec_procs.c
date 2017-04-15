@@ -8,11 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <sys/types.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -150,7 +148,7 @@ SPECIAL(guild)
   int skill_num, percent;
 
   extern struct spell_info_type spell_info[];
-  extern struct int_app_type int_app[26];
+  extern struct int_app_type int_app[];
 
   if (IS_NPC(ch) || !CMD_IS("practice"))
     return 0;
@@ -474,6 +472,9 @@ SPECIAL(guild_guard)
   if (!IS_MOVE(cmd) || IS_AFFECTED(guard, AFF_BLIND))
     return FALSE;
 
+  if (GET_LEVEL(ch) >= LVL_IMMORT)
+    return FALSE;
+
   for (i = 0; guild_info[i][0] != -1; i++) {
     if ((IS_NPC(ch) || GET_CLASS(ch) != guild_info[i][0]) &&
 	world[ch->in_room].number == guild_info[i][1] &&
@@ -609,6 +610,8 @@ SPECIAL(cityguard)
 }
 
 
+#define PET_PRICE(pet) (GET_LEVEL(pet) * 300)
+
 SPECIAL(pet_shops)
 {
   char buf[MAX_STRING_LENGTH], pet_name[256];
@@ -620,7 +623,7 @@ SPECIAL(pet_shops)
   if (CMD_IS("list")) {
     send_to_char("Available pets are:\r\n", ch);
     for (pet = world[pet_room].people; pet; pet = pet->next_in_room) {
-      sprintf(buf, "%8d - %s\r\n", 3 * GET_EXP(pet), GET_NAME(pet));
+      sprintf(buf, "%8d - %s\r\n", PET_PRICE(pet), GET_NAME(pet));
       send_to_char(buf, ch);
     }
     return (TRUE);
@@ -633,11 +636,11 @@ SPECIAL(pet_shops)
       send_to_char("There is no such pet!\r\n", ch);
       return (TRUE);
     }
-    if (GET_GOLD(ch) < (GET_EXP(pet) * 3)) {
+    if (GET_GOLD(ch) < PET_PRICE(pet)) {
       send_to_char("You don't have enough gold!\r\n", ch);
       return (TRUE);
     }
-    GET_GOLD(ch) -= GET_EXP(pet) * 3;
+    GET_GOLD(ch) -= PET_PRICE(pet);
 
     pet = read_mobile(GET_MOB_RNUM(pet), REAL);
     GET_EXP(pet) = 0;

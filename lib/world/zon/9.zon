@@ -41,6 +41,7 @@ E 1 908 30 16                   Trident
 M 0 911 3 910           Crab
 M 0 911 3 910           Crab
 * Objects
+R 0 910 909
 O 0 909 12 910          Boots Of Water Walking
 * Doors
 D 0 921 1 2             Treasure Room Door

@@ -2,8 +2,9 @@
 Newbie Zone~
 18699 10 2
 *
-* Created by Maynard of NoWHeReMUD and StrangeMUD
+* Created by Maynard of StrangeMUD
 *
+* Mobiles
 M 0 18601 1 18605       Pit Beast
 E 1 18604 50 12                 Cloak
 M 0 18602 3 18600       Newbie Monster
@@ -61,5 +62,4 @@ D 0 18611 1 1           Alchemist's Chamber
 D 0 18612 3 1
 *
 S
-
 $

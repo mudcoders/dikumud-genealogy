@@ -2,6 +2,10 @@
 Redferne's Residence~
 7999 50 2
 *
+* Created for DikuMud
+*
+* Modified by Cyron of VieMud
+*
 * Mobiles
 M 0 7900 1 7900         Grand Knight of Paladins
 E 1 7901 4 17                   Copper Key
@@ -22,7 +26,9 @@ E 1 7907 6 15                   Spiked Bracelet
 E 1 7911 2 6                    Large Helmet
 G 1 7902 1                      Steel Key
 * Objects
+R 0 7907 7908
 O 0 7908 40 7907        Waybread
+R 0 7908 7921
 O 0 7921 10 7908        Water Barrel
 O 0 7904 1 7903         Chest
 P 1 7903 1 7904                 Money

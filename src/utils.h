@@ -13,13 +13,15 @@
 
 extern struct weather_data weather_info;
 
+#define log(x) basic_mud_log(x)
+
 /* public functions in utils.c */
 char	*str_dup(const char *source);
 int	str_cmp(char *arg1, char *arg2);
 int	strn_cmp(char *arg1, char *arg2, int n);
-void	log(char *str);
+void	basic_mud_log(char *str);
 int	touch(char *path);
-void	mudlog(char *str, char type, sbyte level, byte file);
+void	mudlog(char *str, char type, int level, byte file);
 void	log_death_trap(struct char_data *ch);
 int	number(int from, int to);
 int	dice(int number, int size);
@@ -28,6 +30,11 @@ void	sprinttype(int type, char *names[], char *result);
 int	get_line(FILE *fl, char *buf);
 int	get_filename(char *orig_name, char *filename, int mode);
 struct time_info_data age(struct char_data *ch);
+int	num_pc_in_room(struct room_data *room);
+
+/* random functions in random.c */
+void circle_srandom(unsigned long initial_seed);
+unsigned long circle_random(void);
 
 /* undefine MAX and MIN so that our functions are used instead */
 #ifdef MAX
@@ -437,105 +444,14 @@ void	update_pos(struct char_data *victim);
 #endif
 
 /*
- * Some systems such as Sun's don't have prototyping in their header files.
- * Thus, we try to compensate for them.
- *
- * Much of this is from Merc 2.2, used with permission.
+ * NOCRYPT can be defined by an implementor manually in sysdep.h.
+ * CIRCLE_CRYPT is a variable that the 'configure' script
+ * automatically sets when it determines whether or not the system is
+ * capable of encrypting.
  */
-
-#if defined(_AIX)
-char	*crypt(const char *key, const char *salt);
-#endif
-
-#if defined(apollo)
-int	atoi (const char *string);
-void	*calloc( unsigned nelem, size_t size);
-char	*crypt( const char *key, const char *salt);
-#endif
-
-#if defined(hpux)
-char	*crypt(char *key, const char *salt);
-#endif
-
-#if defined(linux)
-char	*crypt( const char *key, const char *salt);
-#endif
-
-#if defined(MIPS_OS)
-char	*crypt(const char *key, const char *salt);
-#endif
-
-#if defined(NeXT)
-char	*crypt(const char *key, const char *salt);
-int	unlink(const char *path);
-int	getpid(void);
-#endif
-
-/*
- * The proto for [NeXT's] getpid() is defined in the man pages are returning
- * pid_t but the compiler pukes on it (cc). Since pid_t is just
- * normally a typedef for int, I just use int instead.
- * So far I have had no other problems but if I find more I will pass
- * them along...
- * -reni
- */
-
-#if defined(sequent)
-char	*crypt(const char *key, const char *salt);
-int	fclose(FILE *stream);
-int	fprintf(FILE *stream, const char *format, ... );
-int	fread(void *ptr, int size, int n, FILE *stream);
-int	fseek(FILE *stream, long offset, int ptrname);
-void	perror(const char *s);
-int	ungetc(int c, FILE *stream);
-#endif
-
-#if defined(sun)
-#include <memory.h>
-void	bzero(char *b, int length);
-char	*crypt(const char *key, const char *salt);
-int	fclose(FILE *stream);
-int	fflush(FILE *stream);
-void	rewind(FILE *stream);
-int	sscanf(const char *s, const char *format, ... );
-int	fprintf(FILE *stream, const char *format, ... );
-int	fscanf(FILE *stream, const char *format, ... );
-int	fseek(FILE *stream, long offset, int ptrname);
-size_t	fread(void *ptr, size_t size, size_t n, FILE *stream);
-size_t	fwrite(const void *ptr, size_t size, size_t n, FILE *stream);
-void	perror(const char *s);
-int	ungetc(int c, FILE *stream);
-time_t	time(time_t *tloc);
-int	system(const char *string);
-#endif
-
-#if defined(ultrix)
-char	*crypt(const char *key, const char *salt);
-#endif
-
-#if defined(DGUX_TARGET)
-#ifndef NOCRYPT
-#include <crypt.h>
-#endif
-#define bzero(a, b) memset((a), 0, (b))
-#endif
-
-#if defined(sgi)
-#include <bstring.h>
-#ifndef NOCRYPT
-#include <crypt.h>
-#endif
-#endif
-
-
-/*
- * The crypt(3) function is not available on some operating systems.
- * In particular, the U.S. Government prohibits its export from the
- *   United States to foreign countries.
- * Turn on NOCRYPT to keep passwords in plain text.
- */
-#ifdef NOCRYPT
+#if defined(NOCRYPT) || !defined(CIRCLE_CRYPT)
 #define CRYPT(a,b) (a)
 #else
 #define CRYPT(a,b) ((char *) crypt((a),(b)))
 #endif
+

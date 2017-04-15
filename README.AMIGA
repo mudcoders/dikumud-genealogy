@@ -1,0 +1,38 @@
+		Compiling CircleMUD version 3.0 on the Amiga
+			      By Jack Patton
+
+To compile this under the amiga, you need the following:
+* AmiTCP 3.0b and up or some other Amiga TCP/IP stack.
+* GCC 2.6.3
+* Ixemul.library 43.0+ (plus the SDK package)
+* tar and gzip utilities
+* 5 megs ram (Might work with less, untested)
+* Compiles under AmigaDOS 2.x, 68000 CPU or better.
+(All of these utilities are available at wuarchive.wustl.edu:/pub/aminet/
+or at an aminet mirror near you.)
+--------------------------------------------------------
+Installation Instructions:
+* Follow the procedure in the main README to unpack the distribution.
+* cd to the src directory.
+* Copy Makefile.amiga to Makefile
+* Copy conf.h.amiga to conf.h
+* Make sure your stack is set to at least 100K (stack 100000)
+* Type make all
+--------------------------------------------------------
+Running the game:
+Make sure you have your TCP/IP stack running.
+Follow the regular CircleMUD documentation.
+If the autorun script doesn't work for you, from the circle30 directory,
+type bin/circle.
+If you get a malloc() can't allocate memory error and the game quits when
+you fire it up, this means you don't have enough memory to load the entire
+world. You have two options, 1) run it in minimized mode (bin/circle -m)
+or 2) Go into the lib/world/* directories, edit the index files to chop
+out some of the zones.
+---------------------------------------------------------
+NOTES: General questions about CircleMUD can be addressed to the author,
+Jeremy Elson, jelson@circlemud.org, questions about the Amiga port of
+CircleMUD should be addressed to me at the address listed below.
+ 
+
+Jack Patton <jpatton@intserv.com>

@@ -9,8 +9,9 @@
 ************************************************************************ */
 
 
-#include <stdio.h>
-#include <string.h>
+#include "conf.h"
+#include "sysdep.h"
+
 #include "structs.h"
 #include "utils.h"
 #include "comm.h"
@@ -71,11 +72,12 @@ ASPELL(spell_create_water)
     } else {
       water = MAX(GET_OBJ_VAL(obj, 0) - GET_OBJ_VAL(obj, 1), 0);
       if (water > 0) {
+	if (GET_OBJ_VAL(obj, 1) >= 0)
+	  name_from_drinkcon(obj);
 	GET_OBJ_VAL(obj, 2) = LIQ_WATER;
 	GET_OBJ_VAL(obj, 1) += water;
-	weight_change_object(obj, water);
-	name_from_drinkcon(obj);
 	name_to_drinkcon(obj, LIQ_WATER);
+	weight_change_object(obj, water);
 	act("$p is filled.", FALSE, ch, obj, 0, TO_CHAR);
       }
     }
@@ -158,7 +160,7 @@ ASPELL(spell_summon)
     }
   }
 
-  if (MOB_FLAGGED(victim, MOB_NOCHARM) ||
+  if (MOB_FLAGGED(victim, MOB_NOSUMMON) ||
       (IS_NPC(victim) && mag_savingthrow(victim, SAVING_SPELL))) {
     send_to_char(SUMMON_FAIL, ch);
     return;

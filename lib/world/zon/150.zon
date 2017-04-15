@@ -2,9 +2,9 @@
 King Welmar's Castle~
 15099 120 2
 *
-* Created by ?
+* Created by Pjotr and Sapowox of CircleMUD
 *
-* Modifed, edited, and added to for CircleMUD by Furry
+* Heavily modifed, edited, and added to for CircleMUD by Furry
 *
 * Mobiles
 M 0 15001 1 15017       King Welmar
@@ -12,7 +12,6 @@ E 1 15002 1 17                  Golden Sceptre
 E 1 15003 1 6                   Golden Crown
 E 1 15004 1 0                   Golden Apple
 G 1 15014 1                     Key To King's Quarters
-* Guards
 M 0 15003 1 15042       Jim The Royal Guard
 E 1 3022 100 16                 Long Sword
 E 1 15015 50 5                  Chain Mail Hauberk
@@ -43,10 +42,37 @@ E 1 15015 50 5                  Chain Mail Hauberk
 M 0 15012 1 15023       Peter
 E 1 15015 50 5                  Chain Mail Hauberk
 E 1 15016 10 16                 Broadsword
+M 0 15013 1 15023       Training Master
+E 1 3022 100 16                 Long Sword
+M 0 15014 1 15017       Herald
+M 0 15016 1 15027       Butler
+G 1 15009 1                     Key To The Butler's Quarters
+M 0 15017 5 15010       Cleaning Woman
+M 0 15017 5 15010       Cleaning Woman
+M 0 15017 5 15041       Cleaning Woman
+M 0 15017 5 15041       Cleaning Woman
+M 0 15017 5 15038       Cleaning Woman
+M 0 15019 1 15052       Astrologer
+G 1 3052 100                    Scroll Of Recall 
+G 1 3050 100                    Scroll Of Identify 
+G 1 15012 10                    Brown Potion
 M 0 15020 1 15017       Tim The King's Lifeguard
 E 1 3022 100 16                 Long Sword
 E 1 15015 50 5                  Chain Mail Hauberk
 M 0 15021 1 15017       Tom The King's Lifeguard
+E 1 3022 100 16                 Long Sword
+E 1 15015 50 5                  Chain Mail Hauberk
+M 0 15022 1 15005       Chef
+G 1 15019 50                    Lobster
+G 1 15020 50                    Some Russian Caviar
+M 0 15023 2 15005       Cook
+G 1 15010 1                     Key To The Chest
+M 0 15023 2 15005       Cook
+M 0 15024 1 15036       David The Royal Guard
+E 1 3022 100 16                 Long Sword
+E 1 15015 50 5                  Chain Mail Hauberk
+G 1 15007 1                     Key To The Treasury
+M 1 15025 1 15036       Dick The Royal Guard
 E 1 3022 100 16                 Long Sword
 E 1 15015 50 5                  Chain Mail Hauberk
 M 0 15026 1 15008       Jerry The Royal Guard
@@ -61,42 +87,13 @@ E 1 15015 50 5                  Chain Mail Hauberk
 M 0 15029 1 15009       Boris The Royal Guard
 E 1 3022 100 16                 Long Sword
 E 1 15015 50 5                  Chain Mail Hauberk
-* Mobiles
-M 0 15013 1 15023       Training Master
-E 1 3022 100 16                 Long Sword
-M 0 15014 1 15017       Herald
-M 0 15016 1 15027       Butler
-G 1 15009 1                     Key To The Butler's Quarters
-M 0 15017 5 15010       Cleaning Woman
-M 0 15017 5 15010       Cleaning Woman
-M 0 15017 5 15041       Cleaning Woman
-M 0 15017 5 15041       Cleaning Woman
-M 0 15017 5 15038       Cleaning Woman
-* Shopkeepers
-M 0 15019 1 15052       Astrologer
-G 1 3052 100                    Scroll Of Recall 
-G 1 3050 100                    Scroll Of Identify 
-G 1 15012 10                    Brown Potion
-M 0 15022 1 15005       Chef
-G 1 15019 50                    Lobster
-G 1 15020 50                    Some Russian Caviar
-* Mobiles
-M 0 15023 2 15005       Cook
-G 1 15010 1                     Key To The Chest
-M 0 15023 2 15005       Cook
-* Guards
-M 0 15024 1 15036       David The Royal Guard
-E 1 3022 100 16                 Long Sword
-E 1 15015 50 5                  Chain Mail Hauberk
-G 1 15007 1                     Key To The Treasury
-M 1 15025 1 15036       Dick The Royal Guard
-E 1 3022 100 16                 Long Sword
-E 1 15015 50 5                  Chain Mail Hauberk
 * Objects
-O 0 3021 100 15023      Small Sword
-O 0 3021 100 15023      Small Sword
-O 0 3022 100 15023      Long Sword
+R 0 15023 3020
 O 0 3020 100 15023      Dagger
+R 0 15023 3021
+O 0 3021 100 15023      Small Sword
+R 0 15023 3022
+O 0 3022 100 15023      Long Sword
 O 1 15001 1 15037       Treasure
 O 0 15005 1 15052       Telescope
 O 0 15011 1 15026       Chest

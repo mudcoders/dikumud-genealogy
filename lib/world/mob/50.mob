@@ -175,17 +175,21 @@ dustdigger oasis~
 the dustdigger~
 A small oasis invites you to dive in.
 ~
+Looking a little closer at this oasis, you begin to wonder why
+it seems to be moving about...
 ~
 bcfqr 0 -200 S
 7 10 1 1d6+85 3d4+0
 450 2250
 8 8 0
 #5017
-camel rabid~
-the rabid camel~
-A very dangerous rabid camel snorts at you.
+camel~
+the camel~
+A very dangerous creature, a camel, snorts at you.
 ~
-Don't mess with this animal.
+It is advisable not to mess with this creature.  After all, you
+have heard many a horror story about experiences with camels.
+Bad experiences.
 ~
 bfq 0 -351 S
 5 12 6 1d6+60 2d4+3

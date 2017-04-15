@@ -33,7 +33,7 @@ The Black Rook is a very large man-made tomb on wheels.  Just
 from the looks of it, it will probably be YOUR tomb.
 ~
 bpqr d -600 S
-27 11 12 2d6+500 3d8+5
+27 11 1 2d6+500 3d8+5
 5000 85000
 8 8 0
 #3603
@@ -45,7 +45,7 @@ The White Rook is a very large man-made tomb on wheels.  Just
 from the looks of it, it will probably be YOUR tomb.
 ~
 bpqr d 600 S
-27 11 12 2d6+500 3d8+5
+27 11 1 2d6+500 3d8+5
 5000 85000
 8 8 0
 #3604
@@ -57,7 +57,7 @@ The Black Knight is here, riding his ebony black war horse.  His eyes
 flash behind his visor in vengence.
 ~
 bf d -400 S
-18 8 9 4d8+350 2d8+1
+18 8 0 4d8+350 2d8+1
 3000 22500
 8 8 0
 #3605
@@ -69,7 +69,7 @@ The White Knight is here, riding his ivory white war horse.  His eyes
 gleam behind his visor in joy.
 ~
 bf d 400 S
-18 8 9 4d8+350 2d8+1
+18 8 0 4d8+350 2d8+1
 3000 22500
 8 8 0
 #3606
@@ -81,7 +81,7 @@ The Black Bishop seems willing to help you straight into your grave so
 he can bless you properly.
 ~
 b d -500 S
-24 11 10 2d5+350 3d6+13
+24 11 1 2d5+350 3d6+13
 4000 43500
 8 8 0
 #3607
@@ -93,7 +93,7 @@ The White Bishop seems willing to help you in any possible so that he can
 attain a higher spirituality.
 ~
 b d 500 S
-24 11 10 2d5+350 3d6+13
+24 11 1 2d5+350 3d6+13
 4000 43500
 8 8 0
 #3608
@@ -106,7 +106,7 @@ mass of dark hair that crowns her head like a black cloud.  If looks
 could kill, you would already be dead.
 ~
 bcfl dh -750 S
-32 11 17 5d10+900 4d6+13
+32 11 -3 5d10+900 4d6+13
 10000 200000
 8 8 0
 #3609
@@ -119,7 +119,7 @@ of light hair that frames her head like the sun.  This is surely love at
 first sight for you.
 ~
 bcfl dh 750 S
-32 11 17 5d10+900 4d6+13
+32 11 -3 5d10+900 4d6+13
 10000 200000
 8 8 0
 #3610
@@ -131,7 +131,7 @@ The Black King is a menacing figure.  You can easily understand why he
 is the king and you are not.
 ~
 bcefl dh -999 S
-36 14 20 10d10+2000 5d8+20
+36 14 -6 10d10+2000 5d8+20
 20000 300000
 8 8 0
 #3611
@@ -143,8 +143,7 @@ The White King is a stately figure.  You can easily understand why he
 is the king and you are not.
 ~
 bcefl dh 999 S
-36 14 20 10d10+2000 5d8+20
+36 14 -6 10d10+2000 5d8+20
 20000 300000
 8 8 0
-
 $

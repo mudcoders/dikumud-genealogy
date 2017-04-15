@@ -9,16 +9,17 @@
 ************************************************************************ */
 
 #define ACMD(name)  \
-   void (name)(struct char_data *ch, char *argument, int cmd, int subcmd)
+   void name(struct char_data *ch, char *argument, int cmd, int subcmd)
 
 #define CMD_NAME (cmd_info[cmd].command)
 #define CMD_IS(cmd_name) (!strcmp(cmd_name, cmd_info[cmd].command))
 #define IS_MOVE(cmdnum) (cmdnum >= 1 && cmdnum <= 6)
 
 void	command_interpreter(struct char_data *ch, char *argument);
-int	search_block(char *arg, char **list, bool exact);
+int	search_block(char *arg, char **list, int exact);
 char	lower( char c );
 char	*one_argument(char *argument, char *first_arg);
+char	*one_word(char *argument, char *first_arg);
 char	*any_one_arg(char *argument, char *first_arg);
 char	*two_arguments(char *argument, char *first_arg, char *second_arg);
 int	fill_word(char *argument);

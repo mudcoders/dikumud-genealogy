@@ -1,5 +1,5 @@
 #5300
-egyptian mace~
+mace egyptian~
 an egyptian mace~
 A hierogylph-engraved mace has been left here.~
 ~
@@ -7,25 +7,25 @@ A hierogylph-engraved mace has been left here.~
 0 2 6 7
 10 800 50
 E
-egyptian mace~
+mace egyptian~
 The mace is formed from solid brass, and engraved in strange hieroglyphs.
 ~
 #5301
-sand robes~
-sand-colored robes~
+robe sand~
+some sand-colored robes~
 Sand-colored robes lie here.~
 ~
 9 0 1025
 4 0 0 0
 5 500 40
 E
-sand robes~
+robes sand~
 The robes are colored a sandy off-white, and are in fact caked and covered
 with sand as well.  You don't seem to be able to remove all of the sand, no
 matter how much you try.
 ~
 #5302
-obsidian dirk~
+dirk obsidian~
 an obsidian dirk~
 A flat dirk made of chipped obsidian lies here.~
 ~
@@ -37,11 +37,11 @@ A
 A
 18 1
 E
-obsidian dirk~
+dirk obsidian~
 The blade of the dirk is black, glassy obsidian, chipped razor sharp.
 ~
 #5303
-cloth turban~
+turban cloth~
 a dirty cloth turban~
 A dirty cloth turban has been forgotten here.~
 ~
@@ -53,12 +53,12 @@ A
 A
 13 5
 E
-cloth turban~
+turban cloth~
 The turban used to be white cloth, now it is covered with oil and dirt from
 the head and hair of its previous owner, who must not have bathed much.
 ~
 #5304
-cloth wrappings~
+wrappings cloth~
 some cloth wrappings~
 Long cloth wrappings lie on the ground in a pile.~
 ~
@@ -66,7 +66,7 @@ Long cloth wrappings lie on the ground in a pile.~
 5 0 0 0
 15 1250 175
 E
-cloth wrappings~
+wrappings cloth~
 The cloth wrappings are old, wrinkled, and stink of embalming fluid.
 ~
 #5305
@@ -110,7 +110,7 @@ ball fire~
 The ball of fire is hot to the touch and very very bright.
 ~
 #5308
-stone scimitar~
+scimitar stone~
 a stone scimitar~
 A curved scimitar made of stone rests on the ground.~
 ~
@@ -122,12 +122,12 @@ A
 A
 19 3
 E
-stone scimitar~
+scimitar stone~
 The scimitar is formed from solid stone, chipped and carved to perfection,
 with a sharp, cold blade that is marred only by a few nicks here and there.
 ~
 #5309
-stone key~
+key stone~
 a stone key~
 A stone key has been dropped here.~
 ~
@@ -135,11 +135,11 @@ A stone key has been dropped here.~
 5309 0 0 0
 15 0 0
 E
-stone key~
+key stone~
 The key is made from stone, but is otherwise unremarkable.
 ~
 #5310
-stone sarcophagus~
+sarcophagus stone~
 a mighty stone sarcophagus~
 A mighty stone sarcophagus lies in the center of the tomb.~
 ~
@@ -147,7 +147,7 @@ A mighty stone sarcophagus lies in the center of the tomb.~
 500 15 5309 0
 5000 5000 5000
 E
-stone sarcophagus~
+sarcophagus stone~
 The sarcophagus is engraved on the sides with the images of pharoahs,
 great wars fought long ago, mighty pyramids being constructed...
 
@@ -170,7 +170,7 @@ The dust is old.  As you sift it through your hands you find tiny chips
 of aged bone inside -- it must be the ancient remains of something.
 ~
 #5312
-scarab~
+scarab emerald~
 a small emerald scarab~
 A small emerald scarab lies here on the ground.~
 ~
@@ -178,7 +178,7 @@ A small emerald scarab lies here on the ground.~
 5312 0 0 0
 5 0 0
 E
-scarab~
+scarab emerald~
 The scarab is intricately detailed, down to the tiny hairs on its
 insectile legs and the faceting of the emeralds in its eyes.
 ~
@@ -231,7 +231,7 @@ to surprise, confuse, and amuse you.  You find yourself bewildered
 by its contents and put it down to sort your head out.
 ~
 #5316
-lion paw~
+paw lion~
 a lion's paw~
 The mighty paw of a lion-like creature has been dropped here.~
 ~
@@ -243,13 +243,13 @@ A
 A
 18 4
 E
-lion paw~
+paw lion~
 The massive paw has straps on it formed of bronze, so that it will
 fit snugly over your hand.  As you put it on, it melds with your hand,
 becoming an extension of your arm.
 ~
 #5317
-answer~
+parchment answer~
 the answer~
 A small piece of parchment covered in hieroglyphics lies here.~
 ~
@@ -257,7 +257,7 @@ A small piece of parchment covered in hieroglyphics lies here.~
 5317 0 0 0
 1 1 1
 E
-answer hieroglyphics~
+answer hieroglyphics parchment~
 You cannot decipher the strange hieroglyphics that cover the
 sheet of parchment.
 ~
@@ -275,7 +275,7 @@ The treasure is incredibly large, filled with gold coins and valuables, more
 wealth than you could ever possibly imagine accumulated in one place.
 ~
 #5319
-pile sand~
+sand pile~
 a pile of sand~
 You see a small pile of sand.~
 ~
@@ -283,7 +283,7 @@ You see a small pile of sand.~
 12986 0 0 0
 12 12986 0
 E
-pile sand~
+sand pile~
 You think you see some coins and valuables glinting amongst the grains of
 sand.
 ~
@@ -306,7 +306,7 @@ cursed for all eternity, and that the descendents of that person shall
 likewise be cursed for ten generations to follow.
 ~
 #5321
-small elixir~
+elixir small glass~
 a small elixir~
 A small glass elixir lies under your feet.~
 ~
@@ -314,13 +314,13 @@ A small glass elixir lies under your feet.~
 30 39 1 36
 2 10000 500
 E
-small elixir~
+elixir small glass~
 The elixir is deceptively small.  Something tells you that its
 contents are truly quite potent.  Perhaps too potent for ordinary
 mortals to attempt to consume.
 ~
 #5322
-golden mask~
+mask golden~
 a golden mask~
 A beautiful, intricately detailed mask has been forgotten here.~
 ~
@@ -332,7 +332,7 @@ A
 A
 13 10
 E
-golden mask~
+mask golden~
 This beautiful mask was shaped from solid gold and magically enchanted
 to perfectly fit the face of any who choose to wear it, its golden features
 and turquoise highlights even moving to match the expressions of the face
@@ -354,9 +354,9 @@ You see a multifaceted gemstone, which strangely reflects no
 light, making it very hard to see when it lies on the ground.
 ~
 #5324
-sun wand~
+wand sun brass pipe~
 a blazing sun wand~
-A small length of brass shines here with its own light.~
+A small length of brass pipe shines here with its own light.~
 ~
 3 agp 16385
 35 25 25 27
@@ -366,15 +366,15 @@ A
 A
 24 -5
 E
-sun wand~
+wand sun brass pipe~
 This small brass shaft is a holy weapon used by the ancient people of 
 this land to defend against the deadliest of foes.  It shines with the 
 brilliant blazing light of the sun.
 ~
 #5325
-sandy ring~
-A sandy-colored ring~
-A small sandy-colored ring has been carelessly dropped here.~
+ring sandy~
+a sandy-coloured ring~
+A small sandy-coloured ring has been carelessly dropped here.~
 ~
 9 bg 3
 8 0 0 0
@@ -384,12 +384,12 @@ A
 A
 12 35
 E
-sandy ring~
-The ring is small, smooth, sandy-colored and unremarkable, save that
+ring sandy~
+The ring is small, smooth, sandy-coloured and unremarkable, save that
 it gives off a continuous low humming noise that tickles your fingertips.
 ~
 #5326
-golden sphinx~
+sphinx golden~
 a small golden sphinx~
 A small golden sphinx glints in the light.~
 ~
@@ -399,13 +399,13 @@ A small golden sphinx glints in the light.~
 A
 4 2
 E
-golden sphinx~
+sphinx golden~
 The golden sphinx is incredibly detailed and very small, fitting easily
 into the palm of your hand.  You can even make out the expression
 of wisdom and peace on its face.
 ~
 #5327
-spinhxian leggings~
+leggings sphinxian~
 a pair of sphinxian leggings~
 Massive leggings formed from the body of a sphinx stand here.~
 ~
@@ -417,7 +417,7 @@ A
 A
 14 80
 E
-sphinxian leggings~
+leggings sphinxian~
 These magically fashioned leggings impart the strength and stamina
 of the mightiest of the ancient sphinxes.  You feel ancient power 
 emanating from them; they seem to be almost alive.

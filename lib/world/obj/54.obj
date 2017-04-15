@@ -3,7 +3,7 @@ palace key~
 the palace key of New Thalos~
 A large key bearing the crest of New Thalos lies here.~
 ~
-18 c 13685
+18 c ao
 5400 0 0 0
 5 0 0
 #5401
@@ -11,7 +11,7 @@ city key~
 the Key to the City of New Thalos~
 The heavy city key lies here in the dust~
 ~
-18 c 13685
+18 c ao
 5401 0 0 0
 5 0 0
 #5402
@@ -20,8 +20,8 @@ the large central fountain~
 The large central fountain domintating the central square rests here.~
 ~
 23 ce 0
-999999 999999 0 0
-1000 0 0
+9999 9999 0 0
+9999 0 0
 #5403
 morningstar morning star~
 a morningstar~
@@ -552,24 +552,39 @@ a glowing blue vial~
 A glowing blue vial lies here.~
 ~
 10 ag 16385
-12 -1 -1 -1
+12 1 3 -1
 1 800 15
+E
+vial glowing blue~
+The blueish liquid inside this potion bottle is glowing with
+a strange light.  There is a small label that reads 'Protection'
+~
 #5471
 potion green~
 a deep-green potion~
 A deep-green potion lies here.~
 ~
 10 ag 16385
-10 -1 -1 -1
+10 15 35 -1
 1 5000 15
+E
+potion green~
+The potion inside the bottle is a greenish colour and has a
+small label which reads 'Curative'
+~
 #5472
 potion crystal clear~
 a crystal clear potion~
 A crystal clear potion lies here.~
 ~
 10 g 16385
-10 69 -1 -1
+10 50 51 35
 1 3000 15
+E
+potion crystal clear~
+This glass bottle appears to contain a clear liquid.  There is a
+label on the bottle which reads 'Preparation'
+~
 #5473
 potion white~
 an off-white potion~
@@ -578,14 +593,23 @@ An off-white potion lies here.~
 10 0 16385
 15 14 28 36
 1 3000 15
+E
+potion white~
+This potion bottle contains a whitish liquid that looks rather thick.
+A small label reads 'Redemption'
+~
 #5474
 potion dark blue~
 a dark blue potion~
 A dark blue potion lies here.~
 ~
 10 0 16385
-10 68 -1 -1
+10 35 14 -1
 1 4000 15
+E
+potion dark blue~
+This dark blue potion has a small label on it reading 'Restoration'
+~
 #5475
 beer bottle scorpion flaming~
 a flaming scorpion~

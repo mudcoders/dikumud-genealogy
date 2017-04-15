@@ -8,13 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
-#include <time.h>
-#include <unistd.h>
-#include <errno.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 
 #include "structs.h"
@@ -53,12 +49,12 @@ int House_get_filename(int vnum, char *filename)
 
 
 /* Load all objects for a house */
-int House_load(int vnum)
+int House_load(room_vnum vnum)
 {
   FILE *fl;
   char fname[MAX_STRING_LENGTH];
   struct obj_file_elem object;
-  int rnum;
+  room_rnum rnum;
 
   if ((rnum = real_room(vnum)) == -1)
     return 0;
@@ -119,7 +115,7 @@ void House_restore_weight(struct obj_data * obj)
 
 
 /* Save all objects in a house */
-void House_crashsave(int vnum)
+void House_crashsave(room_vnum vnum)
 {
   int rnum;
   char buf[MAX_STRING_LENGTH];
@@ -167,7 +163,7 @@ void House_delete_file(int vnum)
 
 
 /* List all objects in a house file */
-void House_listrent(struct char_data * ch, int vnum)
+void House_listrent(struct char_data * ch, room_vnum vnum)
 {
   FILE *fl;
   char fname[MAX_STRING_LENGTH];
@@ -209,7 +205,7 @@ void House_listrent(struct char_data * ch, int vnum)
  *  Functions for house administration (creation, deletion, etc.  *
  *****************************************************************/
 
-int find_house(sh_int vnum)
+int find_house(room_vnum vnum)
 {
   int i;
 
@@ -303,7 +299,7 @@ void hcontrol_list_houses(struct char_data * ch)
 {
   int i, j;
   char *timestr, *temp;
-  char built_on[50], last_pay[50], own_name[50];
+  char built_on[128], last_pay[128], own_name[128];
 
   if (!num_of_houses) {
     send_to_char("No houses have been defined.\r\n", ch);
@@ -579,7 +575,7 @@ void House_save_all(void)
 
 
 /* note: arg passed must be house vnum, so there. */
-int House_can_enter(struct char_data * ch, sh_int house)
+int House_can_enter(struct char_data * ch, room_vnum house)
 {
   int i, j;
 

@@ -53,7 +53,7 @@ This Arabian beauty is obviously the daughter of some high ranking
 official.  As you attempt to sneak a peek under her veil you notice
 a small moon-shaped birthmark on her left cheek.
 ~
-blno d 800 S
+ablno d 800 S
 10 -10 -10 1d1+1871 10d20+10
 1 5000
 6 6 2
@@ -248,7 +248,7 @@ The statue of Brahman stands here.
 The statue made of solid marble depicts the mighty God defeating Siva
 in magical combat.
 ~
-belnopqr dhk 1000 S
+abelnopqr dhk 1000 S
 15 -10 -10 1d1+1200 6d10+10
 1200 12000
 8 8 0
@@ -260,7 +260,7 @@ The statue of Siva stands here.
 The statue of the High Lord of Destruction stands here beings attacked
 by Brahman in magical combat.
 ~
-belnopqr dhk -1000 S
+abelnopqr dhk -1000 S
 15 -10 -10 1d1+1200 6d10+10
 1200 12000
 8 8 0
@@ -271,7 +271,7 @@ The statue of Indra stands here.
 ~
 This statue looks like an enormous elephant.
 ~
-belnopqr dhk 1000 S
+abelnopqr dhk 1000 S
 15 -10 -10 1d1+1200 6d10+10
 1200 12000
 8 8 0
@@ -282,7 +282,7 @@ The statue of Yama stands here.
 ~
 This is a statue of the God of Death.  It is covered with odd runes.
 ~
-belnopqr dhk 0 S
+abelnopqr dhk 0 S
 15 -10 -10 1d1+1200 6d10+10
 1200 12000
 8 8 0
@@ -294,7 +294,7 @@ The statue of Surya stands here.
 The statue of Surya, the God in charge of the Sun, almost glows
 with a firey aura.
 ~
-belnopqr dhk 1000 S
+abelnopqr dhk 1000 S
 15 -10 -10 1d1+1200 6d10+10
 1200 12000
 8 8 0
@@ -306,7 +306,7 @@ The statue of Kali stands here.
 The statue of the Black Mother, Kali, is made of black marble and
 is covered with silver runes.
 ~
-belnopqr dhk -1000 S
+abelnopqr dhk -1000 S
 15 -10 -10 1d1+1200 6d10+10
 1200 12000
 8 8 0
@@ -318,7 +318,7 @@ The statue of Brihaspati stands here.
 The statue of Brihaspati, the God of Scholars and Knowledge is made
 of a weathered marble.
 ~
-belnopqr dhk 0 S
+abelnopqr dhk 0 S
 15 -10 -10 1d1+1200 6d10+10
 1200 12000
 8 8 0
@@ -330,7 +330,7 @@ The statue of Puchan stands here.
 The statue of Puchan, God of Travellers, is covered with dust and worn
 as if it had been dragged a long way down a dusty road.
 ~
-belnopqr dhk 1000 S
+abelnopqr dhk 1000 S
 15 -10 -10 1d1+1200 6d10+10
 1200 12000
 8 8 0
@@ -339,6 +339,7 @@ aziz human canon~
 Aziz~
 Aziz the Human Canon stands here.
 ~
+This big and burly man grins at you as he draws his sword.
 ~
 gh d 0 S
 11 14 0 2d11+40 2d5+2
@@ -349,6 +350,7 @@ mustafah human robber~
 Mustafah~
 Mustafah the Human Robber stands here.
 ~
+This man is lithe and has an evil smirk upon his face.
 ~
 gh d 0 S
 7 17 30 3d8+41 2d4+1
@@ -359,16 +361,19 @@ fatima elf invoker~
 Fatima~
 Fatima the Elven Invoker stands here.
 ~
+This female elf has dusky skin and black hair.  A combination you don't
+see very often on elves.
 ~
 gh d 0 S
 9 18 50 2d6+25 3d3+0
 1 93
-8 8 1
+8 8 2
 #5432
 kareem dwarf mercenary~
 Kareem~
 Kareem the Dwarven Mercenary stands here.
 ~
+This short stocky fellow has a chest the girth of a barrel.
 ~
 gh d 0 S
 12 9 0 4d4+50 2d6+5
@@ -393,7 +398,7 @@ A bodyguard sizes you up.
 ~
 The large half-orc quickly glances you over and returns to his duties.
 ~
-beflm dk 0 S
+abeflm dk 0 S
 12 10 3 3d10+100 1d6+3
 1 400
 8 8 1
@@ -461,7 +466,7 @@ Daghdha the Arch-Magi stands here.
 ~
 This man is dressed in long brown robes and has a penetrating gaze.
 ~
-g dhk 200 S
+ag dhk 200 S
 15 5 3 5d2+180 1d6+2
 0 8700
 8 8 1
@@ -632,7 +637,7 @@ Allah is here.
 ~
 You see the all-knowing Allah.
 ~
-befiklnopqr dhks 1000 S
+abefiklnopqr dhks 1000 S
 11 0 0 2d3+2300 2d20+20
 0 45000 
 5 5 0
@@ -700,7 +705,7 @@ A guard stands here, protecting the innocent.
 ~
 You see a trained fighter, ready to help those in need.
 ~
-gh 0 1000 S
+agh 0 1000 S
 10 10 9 2d4+120 1d8+0
 150 2500
 8 8 1
@@ -711,7 +716,7 @@ A guard stands here, watching the gate.
 ~
 You see a trained fighter, ready to defend the city.
 ~
-bg 0 1000 S
+abg 0 1000 S
 10 10 8 2d4+120 1d8+1
 150 2500
 8 8 1
@@ -722,7 +727,7 @@ The Chief of the Sultan's Guard stands here.
 ~
 You see a large man skilled in hunting and killing.
 ~
-g d 1000 S
+ag d 1000 S
 15 0 0 4d5+251 2d8+1
 435 5000
 8 8 1
@@ -900,9 +905,9 @@ bglmpq dgk 1000 S
 0 6500 
 8 8 0
 #5479
-elvira~
-Elvria~
-Elvira stands here mixing a love potion.
+elriva~
+Elriva~
+Elriva stands here mixing a love potion.
 ~
 You see a very healthy female dressed in black, with long flowing
 hair to match her outfit.
@@ -910,7 +915,7 @@ hair to match her outfit.
 blno 0 0 S
 35 10 0 1d1+30000 1d10+10
 1 2000
-8 8 1
+8 8 2
 #5480
 braheem~
 Braheem~
@@ -941,7 +946,7 @@ An Elite Royal Guard stands here smiling happily.
 You see one of the Royal Guards of New Thalos who seems to have undergone
 some heavy training.
 ~
-belmno dhk 1000 S
+abelmno dhk 1000 S
 15 0 -6 5d20+900 1d10+6
 1500 25000 
 8 8 1
@@ -1039,5 +1044,4 @@ b 0 400 S
 14 6 6 10d2+5 2d10+5
 16 40
 8 8 1
-
 $

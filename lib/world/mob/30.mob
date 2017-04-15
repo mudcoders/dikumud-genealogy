@@ -457,7 +457,7 @@ The kitten looks like a cute, little, fierce fighter.
 ~
 bc 0 0 E
 1 20 9 1d6+11 1d4+0
-0 0
+0 100
 8 8 0
 BareHandAttack: 8
 E
@@ -469,8 +469,8 @@ A small loyal puppy is here.
 The puppy looks like a cute, little, fierce fighter.
 ~
 bc 0 0 E
-1 20 9 1d6+11 1d4+0
-0 0
+1 20 9 1d6+13 1d4+0
+0 125
 8 8 0
 BareHandAttack: 8
 E
@@ -483,7 +483,7 @@ The beagle looks like a fierce fighter.
 ~
 bc 0 0 E
 2 19 8 1d12+22 1d6+0
-0 0
+0 200
 8 8 0
 BareHandAttack: 4
 E
@@ -496,7 +496,7 @@ The rottweiler looks like a strong, fierce fighter.
 ~
 bc 0 0 E
 3 18 7 1d12+35 1d7+0
-0 0
+0 800
 8 8 0
 BareHandAttack: 4
 E
@@ -509,7 +509,7 @@ The wolf looks like a strong, fearless fighter.
 ~
 bc 0 0 E
 4 17 6 1d12+47 1d8+0
-0 0
+0 1600
 8 8 0
 BareHandAttack: 4
 E

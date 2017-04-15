@@ -14,6 +14,7 @@
 #define DB_BOOT_OBJ	2
 #define DB_BOOT_ZON	3
 #define DB_BOOT_SHP	4
+#define DB_BOOT_HLP	5
 
 /* names of various files and directories */
 #define INDEX_FILE	"index"		/* index of world files		*/
@@ -23,13 +24,13 @@
 #define OBJ_PREFIX	"world/obj"	/* object prototypes		*/
 #define ZON_PREFIX	"world/zon"	/* zon defs & command tables	*/
 #define SHP_PREFIX	"world/shp"	/* shop definitions		*/
+#define HLP_PREFIX	"text/help"	/* for HELP <keyword>		*/
 
 #define CREDITS_FILE	"text/credits"	/* for the 'credits' command	*/
 #define NEWS_FILE	"text/news"	/* for the 'news' command	*/
 #define MOTD_FILE	"text/motd"	/* messages of the day / mortal	*/
 #define IMOTD_FILE	"text/imotd"	/* messages of the day / immort	*/
-#define HELP_KWRD_FILE	"text/help_table"/* for HELP <keywrd>		*/
-#define HELP_PAGE_FILE	"text/help"	/* for HELP <CR>		*/
+#define HELP_PAGE_FILE	"text/help/screen" /* for HELP <CR>		*/
 #define INFO_FILE	"text/info"	/* for INFO			*/
 #define WIZLIST_FILE	"text/wizlist"	/* for WIZLIST			*/
 #define IMMLIST_FILE	"text/immlist"	/* for IMMLIST			*/
@@ -49,6 +50,15 @@
 #define BAN_FILE	"etc/badsites"	/* for the siteban system	*/
 #define HCONTROL_FILE	"etc/hcontrol"  /* for the house system		*/
 
+#ifdef CIRCLE_AMIGA
+#define FASTBOOT_FILE   "/.fastboot"    /* autorun: boot without sleep  */
+#define KILLSCRIPT_FILE "/.killscript"  /* autorun: shut mud down       */
+#define PAUSE_FILE      "/pause"        /* autorun: don't restart mud   */
+#else
+#define FASTBOOT_FILE   "../.fastboot"  /* autorun: boot without sleep  */
+#define KILLSCRIPT_FILE "../.killscript"/* autorun: shut mud down       */
+#define PAUSE_FILE      "../pause"      /* autorun: don't restart mud   */
+#endif
 
 /* public procedures in db.c */
 void	boot_db(void);
@@ -151,8 +161,10 @@ struct player_index_element {
 
 struct help_index_element {
    char	*keyword;
-   long	pos;
+   char *entry;
+   int duplicate;
 };
+
 
 /* don't change these */
 #define BAN_NOT 	0

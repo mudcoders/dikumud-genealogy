@@ -8,13 +8,10 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <time.h>
-#include <sys/types.h>
-#include <sys/stat.h>
+#define __ACT_OTHER_C__
+
+#include "conf.h"
+#include "sysdep.h"
 
 #include "structs.h"
 #include "utils.h"
@@ -45,13 +42,14 @@ ACMD(do_quit)
   void die(struct char_data * ch);
   void Crash_rentsave(struct char_data * ch, int cost);
   extern int free_rent;
+  sh_int save_room;
   struct descriptor_data *d, *next_d;
 
   if (IS_NPC(ch) || !ch->desc)
     return;
 
   if (subcmd != SCMD_QUIT && GET_LEVEL(ch) < LVL_IMMORT)
-    send_to_char("You have to type quit - no less, to quit!\r\n", ch);
+    send_to_char("You have to type quit--no less, to quit!\r\n", ch);
   else if (GET_POS(ch) == POS_FIGHTING)
     send_to_char("No way!  You're fighting for your life!\r\n", ch);
   else if (GET_POS(ch) < POS_STUNNED) {
@@ -71,14 +69,19 @@ ACMD(do_quit)
     for (d = descriptor_list; d; d = next_d) {
       next_d = d->next;
       if (d == ch->desc)
-	continue;
+        continue;
       if (d->character && (GET_IDNUM(d->character) == GET_IDNUM(ch)))
-	close_socket(d);
+        close_socket(d);
     }
 
-    if (free_rent)
+   save_room = ch->in_room;
+   if (free_rent)
       Crash_rentsave(ch, 0);
     extract_char(ch);		/* Char is saved in extract char */
+
+    /* If someone is quitting in their house, let them load back here */
+    if (ROOM_FLAGGED(save_room, ROOM_HOUSE))
+      save_char(ch, save_room);
   }
 }
 
@@ -89,10 +92,12 @@ ACMD(do_save)
   if (IS_NPC(ch) || !ch->desc)
     return;
 
+  /* Only tell the char we're saving if they actually typed "save" */
   if (cmd) {
     sprintf(buf, "Saving %s.\r\n", GET_NAME(ch));
     send_to_char(buf, ch);
   }
+
   save_char(ch, NOWHERE);
   Crash_crashsave(ch);
   if (ROOM_FLAGGED(ch->in_room, ROOM_HOUSE_CRASH))
@@ -157,11 +162,10 @@ ACMD(do_steal)
 {
   struct char_data *vict;
   struct obj_data *obj;
-  char vict_name[240];
-  char obj_name[240];
-  int percent, gold, eq_pos, pcsteal = 0;
+  char vict_name[MAX_INPUT_LENGTH], obj_name[MAX_INPUT_LENGTH];
+  int percent, gold, eq_pos, pcsteal = 0, ohoh = 0;
   extern int pt_allowed;
-  bool ohoh = FALSE;
+
 
   ACMD(do_gen_comm);
 
@@ -175,32 +179,18 @@ ACMD(do_steal)
     send_to_char("Come on now, that's rather stupid!\r\n", ch);
     return;
   }
-  if (!pt_allowed) {
-    if (!IS_NPC(vict) && !PLR_FLAGGED(vict, PLR_THIEF) &&
-	!PLR_FLAGGED(vict, PLR_KILLER) && !PLR_FLAGGED(ch, PLR_THIEF)) {
-      /*
-       * SET_BIT(ch->specials.act, PLR_THIEF); send_to_char("Okay, you're the
-       * boss... you're now a THIEF!\r\n",ch); sprintf(buf, "PC Thief bit set
-       * on %s", GET_NAME(ch)); log(buf);
-       */
-      pcsteal = 1;
-    }
-    if (PLR_FLAGGED(ch, PLR_THIEF))
-      pcsteal = 1;
 
-    /*
-     * We'll try something different... instead of having a thief flag, just
-     * have PC Steals fail all the time.
-     */
-  }
   /* 101% is a complete failure */
   percent = number(1, 101) - dex_app_skill[GET_DEX(ch)].p_pocket;
 
   if (GET_POS(vict) < POS_SLEEPING)
     percent = -1;		/* ALWAYS SUCCESS */
 
-  /* NO NO With Imp's and Shopkeepers! */
-  if ((GET_LEVEL(vict) >= LVL_IMMORT) || pcsteal ||
+  if (!pt_allowed && !IS_NPC(vict))
+    pcsteal = 1;
+
+  /* NO NO With Imp's and Shopkeepers, and if player thieving is not allowed */
+  if (GET_LEVEL(vict) >= LVL_IMMORT || pcsteal ||
       GET_MOB_SPEC(vict) == shop_keeper)
     percent = 101;		/* Failure */
 
@@ -261,8 +251,12 @@ ACMD(do_steal)
       if (gold > 0) {
 	GET_GOLD(ch) += gold;
 	GET_GOLD(vict) -= gold;
-	sprintf(buf, "Bingo!  You got %d gold coins.\r\n", gold);
-	send_to_char(buf, ch);
+        if (gold > 1) {
+	  sprintf(buf, "Bingo!  You got %d gold coins.\r\n", gold);
+	  send_to_char(buf, ch);
+	} else {
+	  send_to_char("You manage to swipe a solitary gold coin.\r\n", ch);
+	}
       } else {
 	send_to_char("You couldn't get any gold...\r\n", ch);
       }
@@ -686,7 +680,7 @@ ACMD(do_wimpy)
 
 ACMD(do_display)
 {
-  int i;
+  size_t i;
 
   if (IS_NPC(ch)) {
     send_to_char("Mosters don't need displays.  Go away.\r\n", ch);
@@ -695,7 +689,7 @@ ACMD(do_display)
   skip_spaces(&argument);
 
   if (!*argument) {
-    send_to_char("Usage: prompt { H | M | V | all | none }\r\n", ch);
+    send_to_char("Usage: prompt { { H | M | V } | all | none }\r\n", ch);
     return;
   }
   if ((!str_cmp(argument, "on")) || (!str_cmp(argument, "all")))
@@ -714,6 +708,10 @@ ACMD(do_display)
       case 'v':
 	SET_BIT(PRF_FLAGS(ch), PRF_DISPMOVE);
 	break;
+      default:
+	send_to_char("Usage: prompt { { H | M | V } | all | none }\r\n", ch);
+	return;
+	break;
       }
     }
   }
@@ -726,7 +724,7 @@ ACMD(do_display)
 ACMD(do_gen_write)
 {
   FILE *fl;
-  char *tmp, *filename;
+  char *tmp, *filename, buf[MAX_STRING_LENGTH];
   struct stat fbuf;
   extern int max_filesize;
   time_t ct;

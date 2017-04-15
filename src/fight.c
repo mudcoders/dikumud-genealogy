@@ -8,10 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -33,6 +32,7 @@ extern struct obj_data *object_list;
 extern int pk_allowed;		/* see config.c */
 extern int auto_save;		/* see config.c */
 extern int max_exp_gain;	/* see config.c */
+extern int max_exp_loss;	/* see config.c */
 
 /* External procedures */
 char *fread_action(FILE * fl, int nr);
@@ -92,7 +92,7 @@ void load_messages(void)
   char chk[128];
 
   if (!(fl = fopen(MESS_FILE, "r"))) {
-    sprintf(buf2, "Error reading combat message file %s", MESS_FILE);
+    sprintf(buf2, "SYSERR: Error reading combat message file %s", MESS_FILE);
     perror(buf2);
     exit(1);
   }
@@ -113,7 +113,7 @@ void load_messages(void)
     for (i = 0; (i < MAX_MESSAGES) && (fight_messages[i].a_type != type) &&
 	 (fight_messages[i].a_type); i++);
     if (i >= MAX_MESSAGES) {
-      fprintf(stderr, "Too many combat messages.  Increase MAX_MESSAGES and recompile.");
+      fprintf(stderr, "SYSERR: Too many combat messages.  Increase MAX_MESSAGES and recompile.");
       exit(1);
     }
     CREATE(messages, struct message_type, 1);
@@ -145,7 +145,6 @@ void load_messages(void)
 
 void update_pos(struct char_data * victim)
 {
-
   if ((GET_HIT(victim) > 0) && (GET_POS(victim) > POS_STUNNED))
     return;
   else if (GET_HIT(victim) > 0)
@@ -354,7 +353,7 @@ void perform_group_gain(struct char_data * ch, int base,
 
 void group_gain(struct char_data * ch, struct char_data * victim)
 {
-  int tot_members, base;
+  int tot_members, base, tot_gain;
   struct char_data *k;
   struct follow_type *f;
 
@@ -371,10 +370,14 @@ void group_gain(struct char_data * ch, struct char_data * victim)
       tot_members++;
 
   /* round up to the next highest tot_members */
-  base = (GET_EXP(victim) / 3) + tot_members - 1;
+  tot_gain = (GET_EXP(victim) / 3) + tot_members - 1;
+
+  /* prevent illegal xp creation when killing players */
+  if (!IS_NPC(victim))
+    tot_gain = MIN(max_exp_loss * 2 / 3, tot_gain);
 
   if (tot_members >= 1)
-    base = MAX(1, GET_EXP(victim) / (3 * tot_members));
+    base = MAX(1, tot_gain / tot_members);
   else
     base = 0;
 
@@ -386,6 +389,30 @@ void group_gain(struct char_data * ch, struct char_data * victim)
       perform_group_gain(f->follower, base, victim);
 }
 
+
+void solo_gain(struct char_data * ch, struct char_data * victim)
+{
+  int exp;
+
+  exp = MIN(max_exp_gain, GET_EXP(victim) / 3);
+
+  /* Calculate level-difference bonus */
+  if (IS_NPC(ch))
+    exp += MAX(0, (exp * MIN(4, (GET_LEVEL(victim) - GET_LEVEL(ch)))) / 8);
+  else
+    exp += MAX(0, (exp * MIN(8, (GET_LEVEL(victim) - GET_LEVEL(ch)))) / 8);
+
+  exp = MAX(exp, 1);
+
+  if (exp > 1) {
+    sprintf(buf2, "You receive %d experience points.\r\n", exp);
+    send_to_char(buf2, ch);
+  } else
+    send_to_char("You receive one lousy experience point.\r\n", ch);
+
+  gain_exp(ch, exp);
+  change_alignment(ch, victim);
+}
 
 
 char *replace_string(char *str, char *weapon_singular, char *weapon_plural)
@@ -587,60 +614,63 @@ int skill_message(int dam, struct char_data * ch, struct char_data * vict,
 void damage(struct char_data * ch, struct char_data * victim, int dam,
 	    int attacktype)
 {
-  int exp;
-
   if (GET_POS(victim) <= POS_DEAD) {
     log("SYSERR: Attempt to damage a corpse.");
+    die(victim);
     return;			/* -je, 7/7/92 */
   }
-  /* You can't damage an immortal! */
-  if (!IS_NPC(victim) && (GET_LEVEL(victim) >= LVL_IMMORT))
-    dam = 0;
+
+  /* peaceful rooms */
+  if (ch != victim && ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
+    send_to_char("This room just has such a peaceful, easy feeling...\r\n", ch);
+    return;
+  }
 
   /* shopkeeper protection */
   if (!ok_damage_shopkeeper(ch, victim))
     return;
 
-  if (victim != ch) {
-    if (GET_POS(ch) > POS_STUNNED) {
-      if (!(FIGHTING(ch)))
-	set_fighting(ch, victim);
+  /* You can't damage an immortal! */
+  if (!IS_NPC(victim) && (GET_LEVEL(victim) >= LVL_IMMORT))
+    dam = 0;
 
-      if (IS_NPC(ch) && IS_NPC(victim) && victim->master &&
-	  !number(0, 10) && IS_AFFECTED(victim, AFF_CHARM) &&
-	  (victim->master->in_room == ch->in_room)) {
-	if (FIGHTING(ch))
-	  stop_fighting(ch);
-	hit(ch, victim->master, TYPE_UNDEFINED);
-	return;
-      }
-    }
-    if (GET_POS(victim) > POS_STUNNED && !FIGHTING(victim)) {
+  if (victim != ch) {
+    /* Start the attacker fighting the victim */
+    if (GET_POS(ch) > POS_STUNNED && (FIGHTING(ch) == NULL))
+      set_fighting(ch, victim);
+
+    /* Start the victim fighting the attacker */
+    if (GET_POS(victim) > POS_STUNNED && (FIGHTING(victim) == NULL)) {
       set_fighting(victim, ch);
-      if (MOB_FLAGGED(victim, MOB_MEMORY) && !IS_NPC(ch) &&
-	  (GET_LEVEL(ch) < LVL_IMMORT))
+      if (MOB_FLAGGED(victim, MOB_MEMORY) && !IS_NPC(ch))
 	remember(victim, ch);
     }
   }
+
+  /* If you attack a pet, it hates your guts */
   if (victim->master == ch)
     stop_follower(victim);
 
+  /* If the attacker is invisible, he becomes visible */
   if (IS_AFFECTED(ch, AFF_INVISIBLE | AFF_HIDE))
     appear(ch);
 
-  if (IS_AFFECTED(victim, AFF_SANCTUARY))
-    dam >>= 1;		/* 1/2 damage when sanctuary */
+  /* Cut damage in half if victim has sanct, to a minimum 1 */
+  if (IS_AFFECTED(victim, AFF_SANCTUARY) && dam >= 2)
+    dam /= 2;
 
+  /* Check for PK if this is not a PK MUD */
   if (!pk_allowed) {
     check_killer(ch, victim);
-
     if (PLR_FLAGGED(ch, PLR_KILLER) && (ch != victim))
       dam = 0;
   }
 
+  /* Set the maximum damage per round and subtract the hit points */
   dam = MAX(MIN(dam, 100), 0);
   GET_HIT(victim) -= dam;
 
+  /* Gain exp for the hit */
   if (ch != victim)
     gain_exp(ch, GET_LEVEL(victim) * dam);
 
@@ -663,8 +693,9 @@ void damage(struct char_data * ch, struct char_data * victim, int dam,
     if (GET_POS(victim) == POS_DEAD || dam == 0) {
       if (!skill_message(dam, ch, victim, attacktype))
 	dam_message(dam, ch, victim, attacktype);
-    } else
+    } else {
       dam_message(dam, ch, victim, attacktype);
+    }
   }
 
   /* Use send_to_char -- act() doesn't send message if you are DEAD. */
@@ -687,10 +718,10 @@ void damage(struct char_data * ch, struct char_data * victim, int dam,
     break;
 
   default:			/* >= POSITION SLEEPING */
-    if (dam > (GET_MAX_HIT(victim) >> 2))
+    if (dam > (GET_MAX_HIT(victim) / 4))
       act("That really did HURT!", FALSE, victim, 0, 0, TO_CHAR);
 
-    if (GET_HIT(victim) < (GET_MAX_HIT(victim) >> 2)) {
+    if (GET_HIT(victim) < (GET_MAX_HIT(victim) / 4)) {
       sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\r\n",
 	      CCRED(victim, C_SPR), CCNRM(victim, C_SPR));
       send_to_char(buf2, victim);
@@ -705,6 +736,7 @@ void damage(struct char_data * ch, struct char_data * victim, int dam,
     break;
   }
 
+  /* Help out poor linkless people who are attacked */
   if (!IS_NPC(victim) && !(victim->desc)) {
     do_flee(victim, "", 0, 0);
     if (!FIGHTING(victim)) {
@@ -714,31 +746,20 @@ void damage(struct char_data * ch, struct char_data * victim, int dam,
       char_to_room(victim, 0);
     }
   }
-  if (!AWAKE(victim))
-    if (FIGHTING(victim))
-      stop_fighting(victim);
 
+  /* stop someone from fighting if they're stunned or worse */
+  if ((GET_POS(victim) <= POS_STUNNED) && (FIGHTING(victim) != NULL))
+    stop_fighting(victim);
+
+  /* Uh oh.  Victim died. */
   if (GET_POS(victim) == POS_DEAD) {
-    if (IS_NPC(victim) || victim->desc)
+    if ((ch != victim) && (IS_NPC(victim) || victim->desc)) {
       if (IS_AFFECTED(ch, AFF_GROUP))
 	group_gain(ch, victim);
-      else {
-	exp = MIN(max_exp_gain, GET_EXP(victim) / 3);
+      else
+        solo_gain(ch, victim);
+    }
 
-	/* Calculate level-difference bonus */
-	if (IS_NPC(ch))
-	  exp += MAX(0, (exp * MIN(4, (GET_LEVEL(victim) - GET_LEVEL(ch)))) >> 3);
-	else
-	  exp += MAX(0, (exp * MIN(8, (GET_LEVEL(victim) - GET_LEVEL(ch)))) >> 3);
-	exp = MAX(exp, 1);
-	if (exp > 1) {
-	  sprintf(buf2, "You receive %d experience points.\r\n", exp);
-	  send_to_char(buf2, ch);
-	} else
-	  send_to_char("You receive one lousy experience point.\r\n", ch);
-	gain_exp(ch, exp);
-	change_alignment(ch, victim);
-      }
     if (!IS_NPC(victim)) {
       sprintf(buf2, "%s killed by %s at %s", GET_NAME(victim), GET_NAME(ch),
 	      world[victim->in_room].name);
@@ -758,21 +779,19 @@ void hit(struct char_data * ch, struct char_data * victim, int type)
   int w_type, victim_ac, calc_thaco, dam, diceroll;
 
   extern int thaco[NUM_CLASSES][LVL_IMPL+1];
-  extern byte backstab_mult[];
   extern struct str_app_type str_app[];
   extern struct dex_app_type dex_app[];
 
+  int backstab_mult(int level);
+
+  /* Do some sanity checking, in case someone flees, etc. */
   if (ch->in_room != victim->in_room) {
     if (FIGHTING(ch) && FIGHTING(ch) == victim)
       stop_fighting(ch);
     return;
   }
 
-  if (ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
-    send_to_char("This room just has such a peaceful, easy feeling...\r\n", ch);
-    return;
-  }
-
+  /* Find the weapon type (for display purposes only) */
   if (wielded && GET_OBJ_TYPE(wielded) == ITEM_WEAPON)
     w_type = GET_OBJ_VAL(wielded, 3) + TYPE_HIT;
   else {
@@ -782,60 +801,74 @@ void hit(struct char_data * ch, struct char_data * victim, int type)
       w_type = TYPE_HIT;
   }
 
-  /* Calculate the raw armor including magic armor.  Lower AC is better. */
-
+  /* Calculate the THAC0 of the attacker */
   if (!IS_NPC(ch))
     calc_thaco = thaco[(int) GET_CLASS(ch)][(int) GET_LEVEL(ch)];
   else		/* THAC0 for monsters is set in the HitRoll */
     calc_thaco = 20;
-
   calc_thaco -= str_app[STRENGTH_APPLY_INDEX(ch)].tohit;
   calc_thaco -= GET_HITROLL(ch);
   calc_thaco -= (int) ((GET_INT(ch) - 13) / 1.5);	/* Intelligence helps! */
   calc_thaco -= (int) ((GET_WIS(ch) - 13) / 1.5);	/* So does wisdom */
-  diceroll = number(1, 20);
 
+
+  /* Calculate the raw armor including magic armor.  Lower AC is better. */
   victim_ac = GET_AC(victim) / 10;
-
   if (AWAKE(victim))
     victim_ac += dex_app[GET_DEX(victim)].defensive;
-
   victim_ac = MAX(-10, victim_ac);	/* -10 is lowest */
+
+  /* roll the die and take your chances... */
+  diceroll = number(1, 20);
 
   /* decide whether this is a hit or a miss */
   if ((((diceroll < 20) && AWAKE(victim)) &&
        ((diceroll == 1) || ((calc_thaco - diceroll) > victim_ac)))) {
+    /* the attacker missed the victim */
     if (type == SKILL_BACKSTAB)
       damage(ch, victim, 0, SKILL_BACKSTAB);
     else
       damage(ch, victim, 0, w_type);
   } else {
     /* okay, we know the guy has been hit.  now calculate damage. */
+
+    /* Start with the damage bonuses: the damroll and strength apply */
     dam = str_app[STRENGTH_APPLY_INDEX(ch)].todam;
     dam += GET_DAMROLL(ch);
 
-    if (wielded)
+    if (wielded) {
+      /* Add weapon-based damage if a weapon is being wielded */
       dam += dice(GET_OBJ_VAL(wielded, 1), GET_OBJ_VAL(wielded, 2));
-    else {
+    } else {
+      /* If no weapon, add bare hand damage instead */
       if (IS_NPC(ch)) {
 	dam += dice(ch->mob_specials.damnodice, ch->mob_specials.damsizedice);
-      } else
-	dam += number(0, 2);	/* Max. 2 dam with bare hands */
+      } else {
+	dam += number(0, 2);	/* Max 2 bare hand damage for players */
+      }
     }
 
+    /*
+     * Include a damage multiplier if victim isn't ready to fight:
+     *
+     * Position sitting  1.33 x normal
+     * Position resting  1.66 x normal
+     * Position sleeping 2.00 x normal
+     * Position stunned  2.33 x normal
+     * Position incap    2.66 x normal
+     * Position mortally 3.00 x normal
+     *
+     * Note, this is a hack because it depends on the particular
+     * values of the POSITION_XXX constants.
+     */
     if (GET_POS(victim) < POS_FIGHTING)
       dam *= 1 + (POS_FIGHTING - GET_POS(victim)) / 3;
-    /* Position  sitting  x 1.33 */
-    /* Position  resting  x 1.66 */
-    /* Position  sleeping x 2.00 */
-    /* Position  stunned  x 2.33 */
-    /* Position  incap    x 2.66 */
-    /* Position  mortally x 3.00 */
 
-    dam = MAX(1, dam);		/* at least 1 hp damage min per hit */
+    /* at least 1 hp damage min per hit */
+    dam = MAX(1, dam);
 
     if (type == SKILL_BACKSTAB) {
-      dam *= backstab_mult[(int) GET_LEVEL(ch)];
+      dam *= backstab_mult(GET_LEVEL(ch));
       damage(ch, victim, dam, SKILL_BACKSTAB);
     } else
       damage(ch, victim, dam, w_type);

@@ -1,5 +1,5 @@
 /* ************************************************************************
-*   File: wld2html.c					                  *
+*   File: wld2html.c                                                      *
 *  Usage: Convert a DikuMUD .wld file into a series of .html files        *
 *                                                                         *
 *  This program is in the public domain.                                  *
@@ -7,16 +7,13 @@
 *  Based on the Circle 3.0 syntax checker program (scheck.c)              *
 ************************************************************************ */
 
-#define log(msg) puts(msg)
+#define log(msg) fprintf(stderr, "%s\n", msg)
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <time.h>
+#include "conf.h"
+#include "sysdep.h"
 
 
-#define NOWHERE    -1		/* nil reference for room-database	 */
+#define NOWHERE    -1		/* nil reference for room-database         */
 
 /* The cardinal directions: used as index to room_data.dir_option[] */
 #define NORTH          0
@@ -34,10 +31,10 @@
 
 
 /* Exit info: used in room_data.dir_option.exit_info */
-#define EX_ISDOOR		(1 << 0)	/* Exit is a door		 */
-#define EX_CLOSED		(1 << 1)	/* The door is closed	 */
-#define EX_LOCKED		(1 << 2)	/* The door is locked	 */
-#define EX_PICKPROOF		(1 << 3)	/* Lock can't be picked	 */
+#define EX_ISDOOR		(1 << 0)	/* Exit is a door          */
+#define EX_CLOSED		(1 << 1)	/* The door is closed      */
+#define EX_LOCKED		(1 << 2)	/* The door is locked      */
+#define EX_PICKPROOF		(1 << 3)	/* Lock can't be picked    */
 
 #define MAX_STRING_LENGTH	8192
 
@@ -57,23 +54,26 @@ char buf1[MAX_STRING_LENGTH];
 char buf2[MAX_STRING_LENGTH];
 char arg[MAX_STRING_LENGTH];
 
-/* room-related structures ************************************************/
+int get_line(FILE * fl, char *buf);
+int real_room(int virtual, int reference);
+
+/* room-related structures *********************************************** */
 
 
 struct room_direction_data {
-  char *general_description;	/* When look DIR.			 */
+  char *general_description;	/* When look DIR.                        */
 
-  char *keyword;		/* for open/close			 */
+  char *keyword;		/* for open/close                        */
 
-  sh_int exit_info;		/* Exit info				 */
-  obj_num key;			/* Key's number (-1 for no key)		 */
-  room_num to_room;		/* Where direction leads (NOWHERE)	 */
+  sh_int exit_info;		/* Exit info                             */
+  obj_num key;			/* Key's number (-1 for no key)          */
+  room_num to_room;		/* Where direction leads (NOWHERE)       */
 };
 
 struct extra_descr_data {
   char *keyword;		/* Keyword in look/examine          */
   char *description;		/* What to see                      */
-  struct extra_descr_data *next;/* Next in list                     */
+  struct extra_descr_data *next;	/* Next in list                     */
 };
 
 struct reset_com {
@@ -100,8 +100,8 @@ struct zone_data {
   int top;			/* upper limit for rooms in this zone */
 
   int reset_mode;		/* conditions for reset (see below)   */
-  int number;			/* virtual number of this zone	  */
-  struct reset_com *cmd;	/* command table for reset	          */
+  int number;			/* virtual number of this zone    */
+  struct reset_com *cmd;	/* command table for reset                */
 
   /*
    * Reset mode:                              * 0: Don't reset, and don't
@@ -112,7 +112,7 @@ struct zone_data {
 
 /* ================== Memory Structure for room ======================= */
 struct room_data {
-  room_num number;		/* Rooms number	(vnum)		      */
+  room_num number;		/* Rooms number (vnum)                */
   sh_int zone;			/* Room zone (for resetting)          */
   int sector_type;		/* sector type (move/hide)            */
   char *name;			/* Rooms name 'You are ...'           */
@@ -123,6 +123,7 @@ struct room_data {
 
   byte light;			/* Number of lightsources in room     */
 };
+
 /* ====================================================================== */
 
 
@@ -130,11 +131,9 @@ struct room_data {
 *  declarations of most of the 'global' variables                         *
 ************************************************************************ */
 
-struct room_data *world = NULL;	/* array of rooms		 */
-int top_of_world = 0;		/* ref to top element of world	 */
+struct room_data *world = NULL;	/* array of rooms                */
+int top_of_world = 0;		/* ref to top element of world   */
 
-struct zone_data *zone_table = NULL;
-int top_of_zone_table = 0;
 
 
 /* local functions */
@@ -146,13 +145,12 @@ void parse_room(FILE * fl, int virtual_nr);
 void parse_mobile(FILE * mob_f, int nr);
 char *parse_object(FILE * obj_f, int nr);
 void assign_rooms(void);
-int file_to_string(char *name, char *buf);
-int file_to_string_alloc(char *name, char **buf);
 void renum_world(void);
 void write_output(void);
 
 
-char *dir_names[] = {"North", "East", "South", "West", "Up", "Down"};
+char *dir_names[] =
+{"North", "East", "South", "West", "Up", "Down"};
 
 
 /*************************************************************************
@@ -162,8 +160,6 @@ char *dir_names[] = {"North", "East", "South", "West", "Up", "Down"};
 /* body of the booting system */
 int main(int argc, char **argv)
 {
-  int i;
-
   if (argc != 2) {
     fprintf(stderr, "Usage: %s <world-file-name>\n", argv[0]);
     exit(1);
@@ -175,7 +171,9 @@ int main(int argc, char **argv)
 
   log("Writing output.");
   write_output();
-  log("Boot db -- DONE.");
+  log("Done.");
+
+  return 0;
 }
 
 
@@ -187,7 +185,7 @@ void write_output(void)
   register int door, found;
 
   for (i = 0; i <= top_of_world; i++) {
-    sprintf(buf, "%d", world[i].number);
+    sprintf(buf, "Writing %d.html", world[i].number);
     log(buf);
     sprintf(buf, "%d.html", world[i].number);
 
@@ -235,8 +233,7 @@ int count_hash_records(FILE * fl)
 
 void index_boot(char *name)
 {
-  char *index_filename, *prefix;
-  FILE *index, *db_file;
+  FILE *db_file;
   int rec_count = 0;
 
   if (!(db_file = fopen(name, "r"))) {
@@ -266,7 +263,7 @@ void discrete_load(FILE * fl)
     if (*line == '#') {
       last = nr;
       if (sscanf(line, "#%d", &nr) != 1) {
-	fprintf(stderr, "Format error after room #%d\n", nr);
+	fprintf(stderr, "Format error after room #%d\n", last);
 	exit(1);
       }
       if (nr >= 99999)
@@ -274,21 +271,41 @@ void discrete_load(FILE * fl)
       else
 	parse_room(fl, nr);
     } else {
-      fprintf(stderr, "Format error near room #%d\n", nr);
+      fprintf(stderr, "Format error in world file near room #%d\n", nr);
       fprintf(stderr, "Offending line: '%s'\n", line);
       exit(1);
     }
   }
 }
 
+long asciiflag_conv(char *flag)
+{
+  long flags = 0;
+  int is_number = 1;
+  register char *p;
 
+  for (p = flag; *p; p++) {
+    if (islower(*p))
+      flags |= 1 << (*p - 'a');
+    else if (isupper(*p))
+      flags |= 1 << (26 + (*p - 'A'));
+
+    if (!isdigit(*p))
+      is_number = 0;
+  }
+
+  if (is_number)
+    flags = atol(flag);
+
+  return flags;
+}
 
 /* load the rooms */
 void parse_room(FILE * fl, int virtual_nr)
 {
   static int room_nr = 0, zone = 0;
   int t[10], i;
-  char line[256];
+  char line[256], flags[128];
   struct extra_descr_data *new_descr;
 
   sprintf(buf2, "room #%d", virtual_nr);
@@ -298,12 +315,12 @@ void parse_room(FILE * fl, int virtual_nr)
   world[room_nr].name = fread_string(fl, buf2);
   world[room_nr].description = fread_string(fl, buf2);
 
-  if (!get_line(fl, line) || sscanf(line, " %d %d %d ", t, t + 1, t + 2) != 3) {
+  if (!get_line(fl, line) || sscanf(line, " %d %s %d ", t, flags, t + 2) != 3) {
     fprintf(stderr, "Format error in room #%d\n", virtual_nr);
     exit(1);
   }
   /* t[0] is the zone number; ignored with the zone-file system */
-  world[room_nr].room_flags = t[1];
+  world[room_nr].room_flags = asciiflag_conv(flags);
   world[room_nr].sector_type = t[2];
 
   world[room_nr].light = 0;	/* Zero light sources */
@@ -387,7 +404,8 @@ void renum_world(void)
       if (world[room].dir_option[door])
 	if (world[room].dir_option[door]->to_room != NOWHERE)
 	  world[room].dir_option[door]->to_room =
-	    real_room(world[room].dir_option[door]->to_room);
+	      real_room(world[room].dir_option[door]->to_room,
+			world[room].number);
 }
 
 
@@ -396,7 +414,6 @@ void renum_world(void)
 *  procedures for resetting, both play-time and boot-time	 	 *
 *********************************************************************** */
 
-
 /* read and allocate space for a '~'-terminated string from a given file */
 char *fread_string(FILE * fl, char *error)
 {
@@ -404,19 +421,21 @@ char *fread_string(FILE * fl, char *error)
   register char *point;
   int done = 0, length = 0, templength = 0;
 
-  bzero(buf, MAX_STRING_LENGTH);
+  *buf = '\0';
+
   do {
     if (!fgets(tmp, 512, fl)) {
       fprintf(stderr, "SYSERR: fread_string: format error at or near %s\n",
 	      error);
       exit(1);
     }
-    /* If there is a '~', end the string; else an "\r\n" over the '\n'. */
+    /* If there is a '~', end the string; else put an "\r\n" over the '\n'. */
     if ((point = strchr(tmp, '~')) != NULL) {
       *point = '\0';
       done = 1;
     } else {
       point = tmp + strlen(tmp) - 1;
+      *(point++) = '\r';
       *(point++) = '\n';
       *point = '\0';
     }
@@ -425,6 +444,7 @@ char *fread_string(FILE * fl, char *error)
 
     if (length + templength >= MAX_STRING_LENGTH) {
       log("SYSERR: fread_string: string too large (db.c)");
+      log(error);
       exit(1);
     } else {
       strcat(buf + length, tmp);
@@ -432,8 +452,9 @@ char *fread_string(FILE * fl, char *error)
     }
   } while (!done);
 
+  /* allocate space for the new string and copy it */
   if (strlen(buf) > 0) {
-    CREATE(rslt, char, strlen(buf) + 1);
+    CREATE(rslt, char, length + 1);
     strcpy(rslt, buf);
   } else
     rslt = NULL;
@@ -442,44 +463,9 @@ char *fread_string(FILE * fl, char *error)
 }
 
 
-/* read contents of a text file, and place in buf */
-int file_to_string(char *name, char *buf)
-{
-  FILE *fl;
-  char tmp[100];
-
-  *buf = '\0';
-
-  if (!(fl = fopen(name, "r"))) {
-    sprintf(tmp, "Error reading %s", name);
-    perror(tmp);
-    *buf = '\0';
-    return (-1);
-  }
-  do {
-    fgets(tmp, 99, fl);
-
-    if (!feof(fl)) {
-      if (strlen(buf) + strlen(tmp) + 2 > MAX_STRING_LENGTH) {
-	log("SYSERR: fl->strng: string too big (db.c, file_to_string)");
-	*buf = '\0';
-	return (-1);
-      }
-      strcat(buf, tmp);
-      *(buf + strlen(buf) + 1) = '\0';
-      *(buf + strlen(buf)) = '\r';
-    }
-  } while (!feof(fl));
-
-  fclose(fl);
-
-  return (0);
-}
-
-
 
 /* returns the real number of the room with given virtual number */
-int real_room(int virtual)
+int real_room(int virtual, int reference)
 {
   int bot, top, mid;
 
@@ -493,7 +479,7 @@ int real_room(int virtual)
     if ((world + mid)->number == virtual)
       return (mid);
     if (bot >= top) {
-      fprintf(stderr, "Room %d does not exist in database\n", virtual);
+      fprintf(stderr, "Room %d does not exist in database (referenced in room %d)\n", virtual, reference);
       return (-1);
     }
     if ((world + mid)->number > virtual)

@@ -167,14 +167,14 @@
 
 struct spell_info_type {
    byte min_position;	/* Position for caster	 */
-   byte mana_min;	/* Min amount of mana used by a spell (highest lev) */
-   byte mana_max;	/* Max amount of mana used by a spell (lowest lev) */
-   byte mana_change;	/* Change in mana used by spell from lev to lev */
+   int mana_min;	/* Min amount of mana used by a spell (highest lev) */
+   int mana_max;	/* Max amount of mana used by a spell (lowest lev) */
+   int mana_change;	/* Change in mana used by spell from lev to lev */
 
-   byte min_level[NUM_CLASSES];
+   int min_level[NUM_CLASSES];
    int routines;
    byte violent;
-   sh_int targets;         /* See below for use with TAR_XXX  */
+   int targets;         /* See below for use with TAR_XXX  */
 };
 
 /* Possible Targets:
@@ -208,7 +208,7 @@ struct attack_hit_type {
 
 
 #define ASPELL(spellname) \
-void	spellname(byte level, struct char_data *ch, \
+void	spellname(int level, struct char_data *ch, \
 		  struct char_data *victim, struct obj_data *obj)
 
 #define MANUAL_SPELL(spellname)	spellname(level, caster, cvict, ovict);
@@ -241,7 +241,7 @@ void mag_groups(int level, struct char_data *ch, int spellnum, int savetype);
 
 void mag_masses(int level, struct char_data *ch, int spellnum, int savetype);
 
-void mag_areas(byte level, struct char_data *ch, int spellnum, int savetype);
+void mag_areas(int level, struct char_data *ch, int spellnum, int savetype);
 
 void mag_summons(int level, struct char_data *ch, struct obj_data *obj,
  int spellnum, int savetype);
@@ -265,3 +265,9 @@ void	mag_objectmagic(struct char_data *ch, struct obj_data *obj,
 
 int	cast_spell(struct char_data *ch, struct char_data *tch,
   struct obj_data *tobj, int spellnum);
+
+
+/* other prototypes */
+void spell_level(int spell, int class, int level);
+void init_spell_levels(void);
+char *skill_name(int num);

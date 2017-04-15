@@ -14,12 +14,9 @@ Written by Jeremy Elson (jelson@cs.jhu.edu)
 
 *************************************************************************/
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <ctype.h>
-#include <string.h>
-#include <time.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -379,7 +376,6 @@ char *read_delete(long recipient)
   string_size = (sizeof(char) * (strlen(buf) + strlen(header.txt) + 1));
   CREATE(message, char, string_size);
   strcpy(message, buf);
-  message[strlen(buf)] = '\0';
   strcat(message, header.txt);
   message[string_size - 1] = '\0';
   following_block = header.header_data.next_block;

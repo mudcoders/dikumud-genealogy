@@ -6,7 +6,7 @@ The big, ugly pit-beast is standing here sizing you up.
 Ick... what a disgusting creature!  It is black and green and slimy
 and it is drooling everywhere... looks mean too.
 ~
-6 33554432 -750 S
+6 0 -750 S
 5 17 5 4d6+42 1d5+1
 100 1200
 8 8 0
@@ -32,7 +32,7 @@ Awwww... how cute!  A little baby dragon.  He's about 3 feet long and you
 just want to cuddle him to death... no, you really want to kill him to tell
 the truth.  But, remember, even a little dragon can be a big problem.
 ~
-0 33554432 100 S
+0 0 100 S
 4 17 6 1d4+50 1d6+1
 0 1000
 8 8 1
@@ -70,7 +70,7 @@ A creepy little crawling thing is scuttling along the floor at your feet.
 Yuck!  If they'd ever clean this place maybe it wouldn't attract vermin
 like this disgusting, little, six-legged, brown bug.
 ~
-64 33554432 -250 S
+64 0 -250 S
 1 20 10 1d4+8 1d4+0
 0 100
 8 8 0
@@ -95,7 +95,7 @@ Little green, vaguely humoniod shaped creature, with a long pointed tail.
 It is hard to say because before you ever get a good look at it, it darts
 back into the shadows.
 ~
-228 33554432 -800 S
+228 0 -800 S
 3 19 7 1d10+30 1d4+1
 0 300
 8 8 1
@@ -109,7 +109,7 @@ but not nearly as smart.  Actually, now that you consider it... he looks
 a heck of a lot meaner than any bull you have ever seen... and he is
 coming this way!
 ~
-1600 33554432 -1000 S
+1600 0 -1000 S
 7 15 5 3d5+85 2d4+1
 1000 3000
 8 8 1

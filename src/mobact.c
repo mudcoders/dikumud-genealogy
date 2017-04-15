@@ -8,8 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -41,13 +42,13 @@ void mobile_activity(void)
   for (ch = character_list; ch; ch = next_ch) {
     next_ch = ch->next;
 
-    if (!IS_MOB(ch) || FIGHTING(ch) || !AWAKE(ch))
+    if (!IS_MOB(ch))
       continue;
 
     /* Examine call for special procedure */
     if (MOB_FLAGGED(ch, MOB_SPEC) && !no_specials) {
       if (mob_index[GET_MOB_RNUM(ch)].func == NULL) {
-	sprintf(buf, "%s (#%d): Attempting to call non-existing mob func",
+	sprintf(buf, "SYSERR: %s (#%d): Attempting to call non-existing mob func",
 		GET_NAME(ch), GET_MOB_VNUM(ch));
 	log(buf);
 	REMOVE_BIT(MOB_FLAGS(ch), MOB_SPEC);
@@ -56,6 +57,11 @@ void mobile_activity(void)
 	  continue;		/* go to next char */
       }
     }
+
+    /* If the mob has no specproc, do the default actions */
+    if (FIGHTING(ch) || !AWAKE(ch))
+      continue;
+
     /* Scavenger (picking up objects) */
     if (MOB_FLAGGED(ch, MOB_SCAVENGER) && !FIGHTING(ch) && AWAKE(ch))
       if (world[ch->in_room].contents && !number(0, 10)) {
@@ -142,7 +148,7 @@ void remember(struct char_data * ch, struct char_data * victim)
   memory_rec *tmp;
   bool present = FALSE;
 
-  if (!IS_NPC(ch) || IS_NPC(victim))
+  if (!IS_NPC(ch) || IS_NPC(victim) || (GET_LEVEL(victim) >= LVL_IMMORT))
     return;
 
   for (tmp = MEMORY(ch); tmp && !present; tmp = tmp->next)
@@ -161,7 +167,7 @@ void remember(struct char_data * ch, struct char_data * victim)
 /* make ch forget victim */
 void forget(struct char_data * ch, struct char_data * victim)
 {
-  memory_rec *curr, *prev;
+  memory_rec *curr, *prev = NULL;
 
   if (!(curr = MEMORY(ch)))
     return;

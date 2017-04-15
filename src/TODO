@@ -16,7 +16,7 @@
 *force room bug
 *spell word abbrev
 *god can unlock doors w/o key
--fix loadroom
+*fix loadroom
 *invis start bug
 *infrared bug
 *xnames bug
@@ -48,10 +48,10 @@
 *make 'player_specials_saved'
 -large buf freeing
 *?verify correctness of process_input
--change stat to use spell names instead of numbers
+*change stat to use spell names instead of numbers
 *line-by-line zone parsing
 *reply command
 -newbie command
--rewrite help system to use internal
+*rewrite help system to use internal
 -make '! ras' work
-/fix the utilities, most of which are broken at the moment
+*fix the utilities, most of which are broken at the moment

@@ -12,10 +12,9 @@
  * The entire shop rewrite for Circle 3.0 was done by Jeff Fink.  Thanks Jeff!
  ***/
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+#include "conf.h"
+#include "sysdep.h"
+
 #include "structs.h"
 #include "comm.h"
 #include "handler.h"
@@ -49,6 +48,33 @@ struct shop_data *shop_index;
 int top_shop = 0;
 int cmd_say, cmd_tell, cmd_emote, cmd_slap, cmd_puke;
 
+/* config arrays */
+const char *operator_str[] = {
+        "[({",
+        "])}",
+        "|+",
+        "&*",
+        "^'"
+} ;
+
+/* Constant list for printing out who we sell to */
+const char *trade_letters[] = {
+        "Good",                 /* First, the alignment based ones */
+        "Evil",
+        "Neutral",
+        "Magic User",           /* Then the class based ones */
+        "Cleric",
+        "Thief",
+        "Warrior",
+        "\n"
+} ;
+
+
+char *shop_bits[] = {
+        "WILL_FIGHT",
+        "USES_BANK",
+        "\n"
+} ;
 
 int is_ok_char(struct char_data * keeper, struct char_data * ch, int shop_nr)
 {
@@ -170,7 +196,10 @@ int evaluate_expression(struct obj_data * obj, char *expr)
   int temp, index;
 
   if (!expr)
-    return (TRUE);
+    return TRUE;
+
+  if (!isalpha(*expr))
+	return TRUE;
 
   ops.len = vals.len = 0;
   ptr = expr;
@@ -223,7 +252,7 @@ int trade_with(struct obj_data * item, int shop_nr)
   int counter;
 
   if (GET_OBJ_COST(item) < 1)
-    return (OBJECT_NOTOK);
+    return (OBJECT_NOVAL);
 
   if (IS_OBJ_STAT(item, ITEM_NOSELL))
     return (OBJECT_NOTOK);
@@ -401,7 +430,7 @@ void shopping_buy(char *arg, struct char_data * ch,
 		       struct char_data * keeper, int shop_nr)
 {
   char tempstr[200], buf[MAX_STRING_LENGTH];
-  struct obj_data *obj, *last_obj;
+  struct obj_data *obj, *last_obj = NULL;
   int goldamt = 0, buynum, bought = 0;
 
   if (!(is_ok(keeper, ch, shop_nr)))
@@ -526,6 +555,10 @@ struct obj_data *get_selling_obj(struct char_data * ch, char *name,
     return (obj);
 
   switch (result) {
+  case OBJECT_NOVAL:
+    sprintf(buf, "%s You've got to be kidding, that thing is worthless!",
+	    GET_NAME(ch));
+    break;
   case OBJECT_NOTOK:
     sprintf(buf, shop_index[shop_nr].do_not_buy, GET_NAME(ch));
     break;
@@ -533,7 +566,7 @@ struct obj_data *get_selling_obj(struct char_data * ch, char *name,
     sprintf(buf, "%s %s", GET_NAME(ch), MSG_NO_USED_WANDSTAFF);
     break;
   default:
-    sprintf(buf, "Illegal return value of %d from trade_with() (shop.c)",
+    sprintf(buf, "SYSERR: Illegal return value of %d from trade_with() (shop.c)",
 	    result);
     log(buf);
     sprintf(buf, "%s An error has occurred.", GET_NAME(ch));
@@ -649,11 +682,11 @@ void shopping_sell(char *arg, struct char_data * ch,
 		   sell_price(ch, obj, shop_nr)) && (sold < sellnum)) {
     sold++;
 
-    obj_from_char(obj);
-    tag = slide_obj(obj, keeper, shop_nr);
-
     goldamt += sell_price(ch, obj, shop_nr);
     GET_GOLD(keeper) -= sell_price(ch, obj, shop_nr);
+	
+    obj_from_char(obj);
+    tag = slide_obj(obj, keeper, shop_nr);
     obj = get_selling_obj(ch, name, keeper, shop_nr, FALSE);
   }
 
@@ -835,6 +868,7 @@ SPECIAL(shop_keeper)
     act(argm, FALSE, ch, 0, keeper, TO_CHAR);
     return (TRUE);
   }
+
   if (CMD_IS("buy")) {
     shopping_buy(argument, ch, keeper, shop_nr);
     return (TRUE);
@@ -902,7 +936,7 @@ int end_read_list(struct shop_buy_data * list, int len, int error)
 void read_line(FILE * shop_f, char *string, void *data)
 {
   if (!get_line(shop_f, buf) || !sscanf(buf, string, data)) {
-    fprintf(stderr, "Error in shop #%d\n", SHOP_NUM(top_shop));
+    fprintf(stderr, "SYSERR: Error in shop #%d\n", SHOP_NUM(top_shop));
     exit(1);
   }
 }

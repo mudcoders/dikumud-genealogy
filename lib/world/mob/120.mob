@@ -140,7 +140,7 @@ A poor peddler is standing here, trying to support his meager existence.
 ~
 You see a small, dirty man who doesn't look very healthy.  
 ~
-gh 0 250 S
+bghn 0 250 S
 4 17 6 3d4+40 1d8+0
 100 600
 8 8 1
@@ -235,7 +235,7 @@ Julius Caesar, the Emperor of Rome, is sitting here.
 You see a man who is dressed in the finest of clothes, has eaten the best of
 foods and lived in the most opulent palace that Rome has ever known. 
 ~
-bl dhp 990 S
+abl dhp 990 S
 27 0 -7 10d5+650 3d7+15
 24763 150000
 8 8 1

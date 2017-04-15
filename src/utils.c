@@ -8,16 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <assert.h>
-#include <limits.h>
-#include <time.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <arpa/telnet.h>
-#include <netinet/in.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -29,13 +22,18 @@
 extern struct time_data time_info;
 extern struct room_data *world;
 
-unsigned long my_rand(void);
-
 
 /* creates a random number in interval [from;to] */
 int number(int from, int to)
 {
-  return ((my_rand() % (to - from + 1)) + from);
+  /* error checking in case people call number() incorrectly */
+  if (from > to) {
+    int tmp = from;
+    from = to;
+    to = tmp;
+  }
+
+  return ((circle_random() % (to - from + 1)) + from);
 }
 
 
@@ -48,7 +46,7 @@ int dice(int number, int size)
     return 0;
 
   while (number-- > 0)
-    sum += ((my_rand() % size) + 1);
+    sum += ((circle_random() % size) + 1);
 
   return sum;
 }
@@ -157,9 +155,9 @@ int touch(char *path)
  * mudlog -- log mud messages to a file & to online imm's syslogs
  * based on syslog by Fen Jul 3, 1992
  */
-void mudlog(char *str, char type, sbyte level, byte file)
+void mudlog(char *str, char type, int level, byte file)
 {
-  char buf[256];
+  char buf[MAX_STRING_LENGTH];
   extern struct descriptor_data *descriptor_list;
   struct descriptor_data *i;
   char *tmp, tp;
@@ -190,18 +188,18 @@ void mudlog(char *str, char type, sbyte level, byte file)
 
 
 
-void sprintbit(long vektor, char *names[], char *result)
+void sprintbit(long bitvector, char *names[], char *result)
 {
   long nr;
 
   *result = '\0';
 
-  if (vektor < 0) {
-    strcpy(result, "SPRINTBIT ERROR!");
+  if (bitvector < 0) {
+    strcpy(result, "<INVALID BITVECTOR>");
     return;
   }
-  for (nr = 0; vektor; vektor >>= 1) {
-    if (IS_SET(1, vektor)) {
+  for (nr = 0; bitvector; bitvector >>= 1) {
+    if (IS_SET(bitvector, 1)) {
       if (*names[nr] != '\n') {
 	strcat(result, names[nr]);
 	strcat(result, " ");
@@ -213,18 +211,22 @@ void sprintbit(long vektor, char *names[], char *result)
   }
 
   if (!*result)
-    strcat(result, "NOBITS ");
+    strcpy(result, "NOBITS ");
 }
 
 
 
 void sprinttype(int type, char *names[], char *result)
 {
-  int nr;
+  int nr = 0;
 
-  for (nr = 0; (*names[nr] != '\n'); nr++);
-  if (type < nr)
-    strcpy(result, names[type]);
+  while (type && *names[nr] != '\n') {
+    type--;
+    nr++;
+  }
+
+  if (*names[nr] != '\n')
+    strcpy(result, names[nr]);
   else
     strcpy(result, "UNDEFINED");
 }
@@ -286,45 +288,6 @@ struct time_info_data age(struct char_data * ch)
 
   return player_age;
 }
-
-
-
-
-/*
- * Turn off echoing (specific to telnet client)
- */
-void echo_off(struct descriptor_data *d)
-{
-  char off_string[] =
-  {
-    (char) IAC,
-    (char) WILL,
-    (char) TELOPT_ECHO,
-    (char) 0,
-  };
-
-  SEND_TO_Q(off_string, d);
-}
-
-
-/*
- * Turn on echoing (specific to telnet client)
- */
-void echo_on(struct descriptor_data *d)
-{
-  char on_string[] =
-  {
-    (char) IAC,
-    (char) WONT,
-    (char) TELOPT_ECHO,
-    (char) TELOPT_NAOFFD,
-    (char) TELOPT_NAOCRD,
-    (char) 0,
-  };
-
-  SEND_TO_Q(on_string, d);
-}
-
 
 
 /* Check if making CH follow VICTIM will create an illegal */
@@ -496,3 +459,19 @@ int get_filename(char *orig_name, char *filename, int mode)
   sprintf(filename, "%s/%s/%s.%s", prefix, middle, name, suffix);
   return 1;
 }
+
+
+int num_pc_in_room(struct room_data *room)
+{
+  int i = 0;
+  struct char_data *ch;
+
+  for (ch = room->people; ch != NULL; ch = ch->next_in_room)
+    if (!IS_NPC(ch))
+      i++;
+
+  return i;
+}
+
+
+  

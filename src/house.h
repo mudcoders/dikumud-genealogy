@@ -5,8 +5,8 @@
 
 
 struct house_control_rec {
-   sh_int vnum;			/* vnum of this house		*/
-   sh_int atrium;		/* vnum of atrium		*/
+   room_vnum vnum;		/* vnum of this house		*/
+   room_vnum atrium;		/* vnum of atrium		*/
    sh_int exit_num;		/* direction of house's exit	*/
    time_t built_on;		/* date this house was built	*/
    int mode;			/* mode of ownership		*/
@@ -30,8 +30,8 @@ struct house_control_rec {
 #define TOROOM(room, dir) (world[room].dir_option[dir] ? \
 			    world[room].dir_option[dir]->to_room : NOWHERE)
 
-void	House_listrent(struct char_data *ch, int vnum);
+void	House_listrent(struct char_data *ch, room_vnum vnum);
 void	House_boot(void);
 void	House_save_all(void);
-int	House_can_enter(struct char_data *ch, sh_int house);
-void	House_crashsave(int vnum);
+int	House_can_enter(struct char_data *ch, room_vnum house);
+void	House_crashsave(room_vnum vnum);

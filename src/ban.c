@@ -8,13 +8,9 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <time.h>
-#include <sys/types.h>
+#include "conf.h"
+#include "sysdep.h"
+
 
 #include "structs.h"
 #include "utils.h"
@@ -46,7 +42,7 @@ void load_banned(void)
   ban_list = 0;
 
   if (!(fl = fopen(BAN_FILE, "r"))) {
-    perror("Unable to open banfile");
+    perror("SYSERR: Unable to open banfile");
     return;
   }
   while (fscanf(fl, " %s %s %d %s ", ban_type, site_name, &date, name) == 4) {
@@ -106,7 +102,7 @@ void write_ban_list(void)
   FILE *fl;
 
   if (!(fl = fopen(BAN_FILE, "w"))) {
-    perror("write_ban_list");
+    perror("SYSERR: write_ban_list");
     return;
   }
   _write_one_node(fl, ban_list);/* recursively write from end to start */
@@ -235,16 +231,16 @@ ACMD(do_unban)
  *  Written by Sharon P. Goza						  *
  **************************************************************************/
 
-typedef char namestring[MAX_NAME_LENGTH];
+#define MAX_INVALID_NAMES	200
 
-namestring *invalid_list = NULL;
+char *invalid_list[MAX_INVALID_NAMES];
 int num_invalid = 0;
 
 int Valid_Name(char *newname)
 {
   int i;
 
-  char tempname[MAX_NAME_LENGTH];
+  char tempname[MAX_INPUT_LENGTH];
 
   /* return valid if list doesn't exist */
   if (!invalid_list || num_invalid < 1)
@@ -267,24 +263,20 @@ int Valid_Name(char *newname)
 void Read_Invalid_List(void)
 {
   FILE *fp;
-  int i = 0;
-  char string[80];
+  char temp[256];
 
   if (!(fp = fopen(XNAME_FILE, "r"))) {
-    perror("Unable to open invalid name file");
+    perror("SYSERR: Unable to open invalid name file");
     return;
   }
-  /* count how many records */
-  while (fgets(string, 80, fp) != NULL && strlen(string) > 1)
-    num_invalid++;
 
-  rewind(fp);
+  num_invalid = 0;
+  while (get_line(fp, temp) && num_invalid < MAX_INVALID_NAMES)
+    invalid_list[num_invalid++] = str_dup(temp);
 
-  CREATE(invalid_list, namestring, num_invalid);
-
-  for (i = 0; i < num_invalid; i++) {
-    fgets(invalid_list[i], 80, fp);	/* read word */
-    invalid_list[i][strlen(invalid_list[i]) - 1] = '\0'; /* cleave off \n */
+  if (num_invalid >= MAX_INVALID_NAMES) {
+    fprintf(stderr, "SYSERR: Too many invalid names; change MAX_INVALID_NAMES in ban.c\n");
+    exit(1);
   }
 
   fclose(fp);

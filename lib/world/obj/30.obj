@@ -39,11 +39,11 @@ A dark bottle has been left here.~
 8 8 8 0
 10 20 7
 #3005
-key rusty small~
-a small rusty key~
-A small key has been lfet to rust here.~
+key dull metal~
+a key of dull metal~
+A key made of a dull metal is lying on the ground here.~
 ~
-18 c 16385
+18 cdq 16385
 3005 0 0 0
 1 0 0
 #3009
@@ -228,7 +228,7 @@ the large fountain~
 A large fountain carved from blue-streaked marble is here, bubbling merrily.~
 ~
 23 cdeg 0
-999999 999999 15 0
+9999 9999 15 0
 9999 0 0
 E
 marble blue streaked~
@@ -242,7 +242,7 @@ cashcard card atm~
 a cashcard~
 A handy dandy cashcard is sitting on the ground here.~
 ~
-12 deg 16385
+12 cdeg 16385
 0 0 0 0
 1 10000 10 
 E
@@ -252,6 +252,42 @@ There is some writing on the back of the card which reads:
 To use, type 'BALANCE', 'WITHDRAW <amount>', or 'DEPOSIT <amount>'.
 Please report any strange occurrences to the bank manager.
 
+~
+#3037
+candle~
+a candle~
+A candle lies here, unlit.~
+~
+1 0 16385
+0 0 4 0
+1 5 1
+E
+candle~
+A home-made candle, how quaint!
+~
+#3038
+nail~
+a nail~
+A penny nail lies in the dust.~
+~
+5 0 8193
+0 1 1 11
+1 5 1
+E
+nail~
+Its a common iron nail, used for carpentry work.
+~
+#3039
+pot~
+a pot~
+A cast-iron pot sits on the ground.~
+~
+15 0 1
+10 0 0 0
+10 100 20
+E
+pot~
+It is a nice pot.  You could use it, if you ever settled down.
 ~
 #3040
 plate breast~
@@ -556,4 +592,5 @@ E
 bulletin~
 Use 'look board' to read the board.
 ~
-$
+$~
+

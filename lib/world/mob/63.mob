@@ -99,7 +99,7 @@ A quasit blinks in and out, grinning at you.
 Demoniac in nature, but more mischievous.  He twiddles his thumbs
 and creates a magical treasure!
 ~
-cgh bdfs -300 S
+acgh bdfs -300 S
 10 1 -10 1d12+47 1d8+0
 1500 11000
 8 8 1

@@ -85,7 +85,6 @@ E 1 3021 100 16                 Small Sword
 E 1 3043 100 5                  Leather Jacket
 E 1 12005 3 6                   Hairpin
 G 1 12027 5                     Staff Of Latumfus
-* Shopkeeper
 M 0 12011 1 12006       Titus' Shopkeeper
 G 1 3020 100                    Dagger
 G 1 3021 100                    Small Sword
@@ -97,7 +96,6 @@ G 1 12008 100                   Leather Sandals
 E 1 3022 100 16                 Long Sword
 E 1 12008 100 8                 Leather Sandals
 G 1 12034 1                     Key To The Back Room
-* Mobiles
 M 0 12012 1 12032       Peddler
 E 1 12008 100 8                 Leather Sandals
 G 1 12006 100                   Apple
@@ -224,7 +222,6 @@ E 1 12016 3 17                  Quenched Sword
 E 1 12021 1 13                  Loincloth
 M 0 12033 1 12059       Mercury
 E 1 12023 1 8                   Winged Sandals
-* Shopkeeper
 M 0 12034 1 12042       Froboz' Shopkeeper
 G 1 3050 500                    Scroll Of Identify
 G 1 3051 500                    Yellow Potion
@@ -235,10 +232,8 @@ G 1 12030 10                    Blaze Orange Potion
 E 1 3022 100 16                 Long Sword
 E 1 12008 100 8                 Leather Sandals
 G 1 12038 1                     Key To Froboz' Workshop
-* Mobile
 M 0 12035 1 12061       Executioner
 G 1 12031 10                    Executioner's Mace
-* Shopkeepers
 M 0 12036 1 12062       Baker
 G 1 3000 100                    Beer Barrel
 G 1 3001 100                    Beer Bottle
