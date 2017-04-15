@@ -1,5 +1,13 @@
-Merc Release 2.0
-Sunday 04 July 1993
+ROM Release 2.3
+March 4th, 1993
+
+The player files for ROM have a different format from Merc files, but standard
+Merc files can be read in. The original rom files are available as 
+players.tar.Z.
+
+<This is the original Merc 2.1 release document>
+Merc Release 2.1
+Sunday 01 August 1993
 
 Furey	mec@shell.portal.com
 Hatchet	hatchet@uclink.berkeley.edu

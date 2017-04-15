@@ -15,6 +15,16 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+/***************************************************************************
+*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM has been brought to you by the ROM consortium		   *
+*	    Russ Taylor (rtaylor@pacinfo.com)				   *
+*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
+*	    Brian Moore (rom@rom.efn.org)				   *
+*	By using this code, you have agreed to follow the terms of the	   *
+*	ROM license, in the file Rom24/doc/rom.license			   *
+***************************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -30,18 +40,29 @@
 
 #include "merc.h"
 #include "db.h"
+#include "recycle.h"
+#include "music.h"
+#include "lookup.h"
 
-
-#if defined(unix)
-extern int getrlimit(int resource, struct rlimit *rlp);
-extern int setrlimit(int resource, struct rlimit *rlp);
-#endif
 
 #if !defined(macintosh)
 extern	int	_filbuf		args( (FILE *) );
 #endif
 
+#if !defined(OLD_RAND)
+long random();
+void srandom(unsigned int);
+int getpid();
+time_t time(time_t *tloc);
+#endif
 
+
+/* externals for counting purposes */
+extern	OBJ_DATA	*obj_free;
+extern	CHAR_DATA	*char_free;
+extern  DESCRIPTOR_DATA *descriptor_free;
+extern	PC_DATA		*pcdata_free;
+extern  AFFECT_DATA	*affect_free;
 
 /*
  * Globals.
@@ -52,11 +73,7 @@ HELP_DATA *		help_last;
 SHOP_DATA *		shop_first;
 SHOP_DATA *		shop_last;
 
-CHAR_DATA *		char_free;
-EXTRA_DESCR_DATA *	extra_descr_free;
 NOTE_DATA *		note_free;
-OBJ_DATA *		obj_free;
-PC_DATA *		pcdata_free;
 
 char			bug_buf		[2*MAX_INPUT_LENGTH];
 CHAR_DATA *		char_list;
@@ -70,6 +87,7 @@ WEATHER_DATA		weather_info;
 
 sh_int			gsn_backstab;
 sh_int			gsn_dodge;
+sh_int			gsn_envenom;
 sh_int			gsn_hide;
 sh_int			gsn_peek;
 sh_int			gsn_pick_lock;
@@ -92,7 +110,8 @@ sh_int			gsn_mass_invis;
 sh_int			gsn_poison;
 sh_int			gsn_plague;
 sh_int			gsn_sleep;
-
+sh_int			gsn_sanctuary;
+sh_int			gsn_fly;
 /* new gsns */
 
 sh_int  		gsn_axe;
@@ -158,7 +177,7 @@ int			newobjs = 0;
  * Increase MAX_STRING if you have too.
  * Tune the others only if you understand what you're doing.
  */
-#define			MAX_STRING	1150976
+#define			MAX_STRING	1413120
 #define			MAX_PERM_BLOCK	131072
 #define			MAX_MEM_LIST	11
 
@@ -200,34 +219,17 @@ void	load_shops	args( ( FILE *fp ) );
 void 	load_socials	args( ( FILE *fp ) );
 void	load_specials	args( ( FILE *fp ) );
 void	load_notes	args( ( void ) );
+void	load_bans	args( ( void ) );
 
 void	fix_exits	args( ( void ) );
 
 void	reset_area	args( ( AREA_DATA * pArea ) );
-
-#if defined(unix)
-/* RT max open files fix */
- 
-void maxfilelimit()
-{
-    struct rlimit r;
- 
-    getrlimit(RLIMIT_NOFILE, &r);
-    r.rlim_cur = r.rlim_max;
-    setrlimit(RLIMIT_NOFILE, &r);
-}
-#endif
 
 /*
  * Big mama top level function.
  */
 void boot_db( void )
 {
-
-#if defined(unix)
-    /* open file fix */
-    maxfilelimit();
-#endif
 
     /*
      * Init some data space stuff.
@@ -370,13 +372,15 @@ void boot_db( void )
      * Fix up exits.
      * Declare db booting over.
      * Reset all areas once.
-     * Load up the notes file.
+     * Load up the songs, notes and ban files.
      */
     {
 	fix_exits( );
 	fBootDb	= FALSE;
 	area_update( );
 	load_notes( );
+	load_bans();
+	load_songs();
     }
 
     return;
@@ -394,7 +398,11 @@ void load_area( FILE *fp )
     pArea		= alloc_perm( sizeof(*pArea) );
     pArea->reset_first	= NULL;
     pArea->reset_last	= NULL;
+    pArea->file_name	= fread_string(fp);
     pArea->name		= fread_string( fp );
+    pArea->credits	= fread_string( fp );
+    pArea->min_vnum	= fread_number(fp);
+    pArea->max_vnum	= fread_number(fp);
     pArea->age		= 15;
     pArea->nplayer	= 0;
     pArea->empty	= FALSE;
@@ -497,7 +505,7 @@ void load_old_mob( FILE *fp )
 	pMobIndex->pShop		= NULL;
 	pMobIndex->alignment		= fread_number( fp );
 	letter				= fread_letter( fp );
-	pMobIndex->level		= number_fuzzy( fread_number( fp ) );
+	pMobIndex->level		= fread_number( fp );
 
 	/*
 	 * The unused stuff is for imps who want to use the old-style
@@ -515,7 +523,7 @@ void load_old_mob( FILE *fp )
 					  fread_number( fp );	/* Unused */
 	/* '+'		*/		  fread_letter( fp );	/* Unused */
 					  fread_number( fp );	/* Unused */
-        pMobIndex->gold                 = fread_number( fp );	/* Unused */
+        pMobIndex->wealth               = fread_number( fp )/20;	
 	/* xp can't be used! */		  fread_number( fp );	/* Unused */
 	pMobIndex->start_pos		= fread_number( fp );	/* Unused */
 	pMobIndex->default_pos		= fread_number( fp );	/* Unused */
@@ -616,6 +624,7 @@ void load_old_obj( FILE *fp )
 
 	pObjIndex->short_descr[0]	= LOWER(pObjIndex->short_descr[0]);
 	pObjIndex->description[0]	= UPPER(pObjIndex->description[0]);
+	pObjIndex->material		= str_dup("");
 
 	pObjIndex->item_type		= fread_number( fp );
 	pObjIndex->extra_flags		= fread_flag( fp );
@@ -651,6 +660,7 @@ void load_old_obj( FILE *fp )
 		AFFECT_DATA *paf;
 
 		paf			= alloc_perm( sizeof(*paf) );
+		paf->where		= TO_OBJECT;
 		paf->type		= -1;
 		paf->level		= 20; /* RT temp fix */
 		paf->duration		= -1;
@@ -757,6 +767,8 @@ void load_resets( FILE *fp )
 	pReset->arg2	= fread_number( fp );
 	pReset->arg3	= (letter == 'G' || letter == 'R')
 			    ? 0 : fread_number( fp );
+	pReset->arg4	= (letter == 'P' || letter == 'M')
+			    ? fread_number(fp) : 0;
 			  fread_to_eol( fp );
 
 	/*
@@ -880,6 +892,7 @@ void load_rooms( FILE *fp )
 	fBootDb = TRUE;
 
 	pRoomIndex			= alloc_perm( sizeof(*pRoomIndex) );
+	pRoomIndex->owner		= str_dup("");
 	pRoomIndex->people		= NULL;
 	pRoomIndex->contents		= NULL;
 	pRoomIndex->extra_descr		= NULL;
@@ -897,6 +910,10 @@ void load_rooms( FILE *fp )
 	for ( door = 0; door <= 5; door++ )
 	    pRoomIndex->exit[door] = NULL;
 
+	/* defaults */
+	pRoomIndex->heal_rate = 100;
+	pRoomIndex->mana_rate = 100;
+
 	for ( ; ; )
 	{
 	    letter = fread_letter( fp );
@@ -904,7 +921,24 @@ void load_rooms( FILE *fp )
 	    if ( letter == 'S' )
 		break;
 
-	    if ( letter == 'D' )
+	    if ( letter == 'H') /* healing room */
+		pRoomIndex->heal_rate = fread_number(fp);
+	
+	    else if ( letter == 'M') /* mana room */
+		pRoomIndex->mana_rate = fread_number(fp);
+
+	   else if ( letter == 'C') /* clan */
+	   {
+		if (pRoomIndex->clan)
+	  	{
+		    bug("Load_rooms: duplicate clan fields.",0);
+		    exit(1);
+		}
+		pRoomIndex->clan = clan_lookup(fread_string(fp));
+	    }
+	
+
+	    else if ( letter == 'D' )
 	    {
 		EXIT_DATA *pexit;
 		int locks;
@@ -928,9 +962,13 @@ void load_rooms( FILE *fp )
 		{
 		case 1: pexit->exit_info = EX_ISDOOR;                break;
 		case 2: pexit->exit_info = EX_ISDOOR | EX_PICKPROOF; break;
+		case 3: pexit->exit_info = EX_ISDOOR | EX_NOPASS;    break;
+		case 4: pexit->exit_info = EX_ISDOOR|EX_NOPASS|EX_PICKPROOF;
+			break;
 		}
 
 		pRoomIndex->exit[door]	= pexit;
+		pRoomIndex->old_exit[door] = pexit;
 		top_exit++;
 	    }
 	    else if ( letter == 'E' )
@@ -944,6 +982,18 @@ void load_rooms( FILE *fp )
 		pRoomIndex->extra_descr	= ed;
 		top_ed++;
 	    }
+
+	    else if (letter == 'O')
+	    {
+		if (pRoomIndex->owner[0] != '\0')
+		{
+		    bug("Load_rooms: duplicate owner.",0);
+		    exit(1);
+		}
+
+		pRoomIndex->owner = fread_string(fp);
+	    }
+
 	    else
 	    {
 		bug( "Load_rooms: vnum %d has flag not 'DES'.", vnum );
@@ -1040,92 +1090,6 @@ void load_specials( FILE *fp )
 }
 
 
-
-/*
- * Snarf notes file.
- */
-void load_notes( void )
-{
-    FILE *fp;
-    NOTE_DATA *pnotelast;
-
-    if ( ( fp = fopen( NOTE_FILE, "r" ) ) == NULL )
-	return;
-
-    pnotelast = NULL;
-    for ( ; ; )
-    {
-	NOTE_DATA *pnote;
-	char letter;
-
-	do
-	{
-	    letter = getc( fp );
-	    if ( feof(fp) )
-	    {
-		fclose( fp );
-		return;
-	    }
-	}
-	while ( isspace(letter) );
-	ungetc( letter, fp );
-
-	pnote		= alloc_perm( sizeof(*pnote) );
-
-	if ( str_cmp( fread_word( fp ), "sender" ) )
-	    break;
-	pnote->sender	= fread_string( fp );
-
-	if ( str_cmp( fread_word( fp ), "date" ) )
-	    break;
-	pnote->date	= fread_string( fp );
-
-	if ( str_cmp( fread_word( fp ), "stamp" ) )
-	    break;
-	pnote->date_stamp = fread_number(fp);
-
-	if ( str_cmp( fread_word( fp ), "to" ) )
-	    break;
-	pnote->to_list	= fread_string( fp );
-
-	if ( str_cmp( fread_word( fp ), "subject" ) )
-	    break;
-	pnote->subject	= fread_string( fp );
-
-	if ( str_cmp( fread_word( fp ), "text" ) )
-	    break;
-	pnote->text	= fread_string( fp );
-
- 	if ( pnote->date_stamp < current_time - (14*24*60*60) /* 2 wks */)
-        {
-            free_string( pnote->text );
-            free_string( pnote->subject );
-            free_string( pnote->to_list );
-            free_string( pnote->date );
-            free_string( pnote->sender );
-            pnote->next     = note_free;
-            note_free       = pnote;
-            pnote           = NULL;
-	    continue;
-        }
-
-	if ( note_list == NULL )
-	    note_list		= pnote;
-	else
-	    pnotelast->next	= pnote;
-
-	pnotelast	= pnote;
-    }
-
-    strcpy( strArea, NOTE_FILE );
-    fpArea = fp;
-    bug( "Load_notes: bad key word.", 0 );
-    exit( 1 );
-    return;
-}
-
-
-
 /*
  * Translate all room exits from virtual to real.
  * Has to be done after all rooms are read in.
@@ -1206,6 +1170,7 @@ void fix_exits( void )
 void area_update( void )
 {
     AREA_DATA *pArea;
+    char buf[MAX_STRING_LENGTH];
 
     for ( pArea = area_first; pArea != NULL; pArea = pArea->next )
     {
@@ -1223,6 +1188,9 @@ void area_update( void )
 	    ROOM_INDEX_DATA *pRoomIndex;
 
 	    reset_area( pArea );
+	    sprintf(buf,"%s has just been reset.",pArea->name);
+	    wiznet(buf,NULL,NULL,WIZ_RESETS,0,0);
+	
 	    pArea->age = number_range( 0, 3 );
 	    pRoomIndex = get_room_index( ROOM_VNUM_SCHOOL );
 	    if ( pRoomIndex != NULL && pArea == pRoomIndex->area )
@@ -1259,6 +1227,7 @@ void reset_area( AREA_DATA *pArea )
 	EXIT_DATA *pexit;
 	OBJ_DATA *obj;
 	OBJ_DATA *obj_to;
+	int count, limit;
 
 	switch ( pReset->command )
 	{
@@ -1285,6 +1254,21 @@ void reset_area( AREA_DATA *pArea )
 		break;
 	    }
 
+	    count = 0;
+	    for (mob = pRoomIndex->people; mob != NULL; mob = mob->next_in_room)
+		if (mob->pIndexData == pMobIndex)
+		{
+		    count++;
+		    if (count >= pReset->arg4)
+		    {
+		    	last = FALSE;
+		    	break;
+		    }
+		}
+
+	    if (count >= pReset->arg4)
+		break;
+
 	    mob = create_mobile( pMobIndex );
 
 	    /*
@@ -1298,8 +1282,8 @@ void reset_area( AREA_DATA *pArea )
 		    SET_BIT(mob->act, ACT_PET);
 	    }
 
-	    if ( room_is_dark( pRoomIndex ) )
-		SET_BIT(mob->affected_by, AFF_INFRARED);
+	    /* set area */
+	    mob->zone = pRoomIndex->area;
 
 	    char_to_room( mob, pRoomIndex );
 	    level = URANGE( 0, mob->level - 2, LEVEL_HERO - 1 );
@@ -1346,18 +1330,34 @@ void reset_area( AREA_DATA *pArea )
 		continue;
 	    }
 
-	    if ( pArea->nplayer > 0
-	    || ( obj_to = get_obj_type( pObjToIndex ) ) == NULL
-	    || ( obj_to->in_room == NULL && !last)
-	    ||   count_obj_list( pObjIndex, obj_to->contains ) > 0 )
+            if (pReset->arg2 > 50) /* old format */
+                limit = 6;
+            else if (pReset->arg2 == -1) /* no limit */
+                limit = 999;
+            else
+                limit = pReset->arg2;
+
+	    if (pArea->nplayer > 0
+	    || (obj_to = get_obj_type( pObjToIndex ) ) == NULL
+	    || (obj_to->in_room == NULL && !last)
+	    || ( pObjIndex->count >= limit && number_range(0,4) != 0)
+	    || (count = count_obj_list(pObjIndex,obj_to->contains)) 
+		> pReset->arg4 )
 	    {
 		last = FALSE;
 		break;
 	    }
 
-	    
-	    obj = create_object( pObjIndex, number_fuzzy(obj_to->level) );
-	    obj_to_obj( obj, obj_to );
+	    while (count < pReset->arg4)
+	    {
+	        obj = create_object( pObjIndex, number_fuzzy(obj_to->level) );
+	    	obj_to_obj( obj, obj_to );
+		count++;
+		if (pObjIndex->count >= limit)
+		    break;
+	    }
+	    /* fix object lock state! */
+	    obj_to->value[1] = obj_to->pIndexData->value[1];
 	    last = TRUE;
 	    break;
 
@@ -1382,14 +1382,30 @@ void reset_area( AREA_DATA *pArea )
 
 	    if ( mob->pIndexData->pShop != NULL )
 	    {
-		int olevel;
+		int olevel = 0,i,j;
 
-		switch ( pObjIndex->item_type )
+		if (!pObjIndex->new_format)
+		    switch ( pObjIndex->item_type )
 		{
-		default:		olevel = 0;                      break;
-		case ITEM_PILL:		olevel = number_range(  0, 10 ); break;
-		case ITEM_POTION:	olevel = number_range(  0, 10 ); break;
-		case ITEM_SCROLL:	olevel = number_range(  5, 15 ); break;
+		case ITEM_PILL:
+		case ITEM_POTION:
+		case ITEM_SCROLL:
+		    olevel = 53;
+		    for (i = 1; i < 5; i++)
+		    {
+			if (pObjIndex->value[i] > 0)
+			{
+		    	    for (j = 0; j < MAX_CLASS; j++)
+			    {
+				olevel = UMIN(olevel,
+				         skill_table[pObjIndex->value[i]].
+						     skill_level[j]);
+			    }
+			}
+		    }
+		   
+		    olevel = UMAX(0,(olevel * 3 / 4) - 2);
+		    break;
 		case ITEM_WAND:		olevel = number_range( 10, 20 ); break;
 		case ITEM_STAFF:	olevel = number_range( 15, 25 ); break;
 		case ITEM_ARMOR:	olevel = number_range(  5, 15 ); break;
@@ -1403,7 +1419,6 @@ void reset_area( AREA_DATA *pArea )
 
 	    else
 	    {
-		int limit;
 		if (pReset->arg2 > 50) /* old format */
 		    limit = 6;
 		else if (pReset->arg2 == -1) /* no limit */
@@ -1412,8 +1427,19 @@ void reset_area( AREA_DATA *pArea )
 		    limit = pReset->arg2;
 
 		if (pObjIndex->count < limit || number_range(0,4) == 0)
+		{
 		    obj=create_object(pObjIndex,UMIN(number_fuzzy(level),
 		    LEVEL_HERO - 1));
+		    /* error message if it is too high */
+		    if (obj->level > mob->level + 3
+		    ||  (obj->item_type == ITEM_WEAPON 
+		    &&   pReset->command == 'E' 
+		    &&   obj->level < mob->level -5 && obj->level < 45))
+			fprintf(stderr,
+			    "Err: obj %s (%d) -- %d, mob %s (%d) -- %d\n",
+			    obj->short_descr,obj->pIndexData->vnum,obj->level,
+			    mob->short_descr,mob->pIndexData->vnum,mob->level);
+		}
 		else
 		    break;
 	    }
@@ -1489,6 +1515,7 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 {
     CHAR_DATA *mob;
     int i;
+    AFFECT_DATA af;
 
     mobile_count++;
 
@@ -1498,29 +1525,37 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 	exit( 1 );
     }
 
-    if ( char_free == NULL )
-    {
-	mob		= alloc_perm( sizeof(*mob) );
-    }
-    else
-    {
-	mob		= char_free;
-	char_free	= char_free->next;
-    }
+    mob = new_char();
 
-    clear_char( mob );
     mob->pIndexData	= pMobIndex;
 
     mob->name		= pMobIndex->player_name;
+    mob->id		= get_mob_id();
     mob->short_descr	= pMobIndex->short_descr;
     mob->long_descr	= pMobIndex->long_descr;
     mob->description	= pMobIndex->description;
     mob->spec_fun	= pMobIndex->spec_fun;
+    mob->prompt		= NULL;
+
+    if (pMobIndex->wealth == 0)
+    {
+	mob->silver = 0;
+	mob->gold   = 0;
+    }
+    else
+    {
+	long wealth;
+
+	wealth = number_range(pMobIndex->wealth/2, 3 * pMobIndex->wealth/2);
+	mob->gold = number_range(wealth/200,wealth/100);
+	mob->silver = wealth - (mob->gold * 100);
+    } 
 
     if (pMobIndex->new_format)
     /* load in new style */
     {
 	/* read from prototype */
+ 	mob->group		= pMobIndex->group;
 	mob->act 		= pMobIndex->act;
 	mob->comm		= COMM_NOCHANNELS|COMM_NOSHOUT|COMM_NOTELL;
 	mob->affected_by	= pMobIndex->affected_by;
@@ -1539,6 +1574,13 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 	mob->damage[DICE_NUMBER]= pMobIndex->damage[DICE_NUMBER];
 	mob->damage[DICE_TYPE]	= pMobIndex->damage[DICE_TYPE];
 	mob->dam_type		= pMobIndex->dam_type;
+        if (mob->dam_type == 0)
+    	    switch(number_range(1,3))
+            {
+                case (1): mob->dam_type = 3;        break;  /* slash */
+                case (2): mob->dam_type = 7;        break;  /* pound */
+                case (3): mob->dam_type = 11;       break;  /* pierce */
+            }
 	for (i = 0; i < 4; i++)
 	    mob->armor[i]	= pMobIndex->ac[i]; 
 	mob->off_flags		= pMobIndex->off_flags;
@@ -1551,15 +1593,10 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
         if (mob->sex == 3) /* random sex */
             mob->sex = number_range(1,2);
 	mob->race		= pMobIndex->race;
-	if (pMobIndex->gold == 0)
-	    mob->gold = 0;
-	else
-	    mob->gold		= number_range(pMobIndex->gold/2,
-					       pMobIndex->gold * 3/2);
 	mob->form		= pMobIndex->form;
 	mob->parts		= pMobIndex->parts;
 	mob->size		= pMobIndex->size;
-	mob->material		= pMobIndex->material;
+	mob->material		= str_dup(pMobIndex->material);
 
 	/* computed on the spot */
 
@@ -1599,10 +1636,60 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
             
         mob->perm_stat[STAT_STR] += mob->size - SIZE_MEDIUM;
         mob->perm_stat[STAT_CON] += (mob->size - SIZE_MEDIUM) / 2;
+
+	/* let's get some spell action */
+	if (IS_AFFECTED(mob,AFF_SANCTUARY))
+	{
+	    af.where	 = TO_AFFECTS;
+	    af.type      = skill_lookup("sanctuary");
+	    af.level     = mob->level;
+	    af.duration  = -1;
+	    af.location  = APPLY_NONE;
+	    af.modifier  = 0;
+	    af.bitvector = AFF_SANCTUARY;
+	    affect_to_char( mob, &af );
+	}
+
+	if (IS_AFFECTED(mob,AFF_HASTE))
+	{
+	    af.where	 = TO_AFFECTS;
+	    af.type      = skill_lookup("haste");
+    	    af.level     = mob->level;
+      	    af.duration  = -1;
+    	    af.location  = APPLY_DEX;
+    	    af.modifier  = 1 + (mob->level >= 18) + (mob->level >= 25) + 
+			   (mob->level >= 32);
+    	    af.bitvector = AFF_HASTE;
+    	    affect_to_char( mob, &af );
+	}
+
+	if (IS_AFFECTED(mob,AFF_PROTECT_EVIL))
+	{
+	    af.where	 = TO_AFFECTS;
+	    af.type	 = skill_lookup("protection evil");
+	    af.level	 = mob->level;
+	    af.duration	 = -1;
+	    af.location	 = APPLY_SAVES;
+	    af.modifier	 = -1;
+	    af.bitvector = AFF_PROTECT_EVIL;
+	    affect_to_char(mob,&af);
+	}
+
+        if (IS_AFFECTED(mob,AFF_PROTECT_GOOD))
+        {
+	    af.where	 = TO_AFFECTS;
+            af.type      = skill_lookup("protection good");
+            af.level     = mob->level;
+            af.duration  = -1;
+            af.location  = APPLY_SAVES;
+            af.modifier  = -1;
+            af.bitvector = AFF_PROTECT_GOOD;
+            affect_to_char(mob,&af);
+        }
     }
     else /* read in old format and convert */
     {
-	mob->act		= pMobIndex->act|ACT_WARRIOR;
+	mob->act		= pMobIndex->act;
 	mob->affected_by	= pMobIndex->affected_by;
 	mob->alignment		= pMobIndex->alignment;
 	mob->level		= pMobIndex->level;
@@ -1632,11 +1719,10 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
 	mob->start_pos		= pMobIndex->start_pos;
 	mob->default_pos	= pMobIndex->default_pos;
 	mob->sex		= pMobIndex->sex;
-	mob->gold		= pMobIndex->gold/100;
 	mob->form		= pMobIndex->form;
 	mob->parts		= pMobIndex->parts;
 	mob->size		= SIZE_MEDIUM;
-	mob->material		= 0;
+	mob->material		= "";
 
         for (i = 0; i < MAX_STATS; i ++)
             mob->perm_stat[i] = 11 + mob->level/4;
@@ -1667,6 +1753,7 @@ void clone_mobile(CHAR_DATA *parent, CHAR_DATA *clone)
     clone->short_descr	= str_dup(parent->short_descr);
     clone->long_descr	= str_dup(parent->long_descr);
     clone->description	= str_dup(parent->description);
+    clone->group	= parent->group;
     clone->sex		= parent->sex;
     clone->class	= parent->class;
     clone->race		= parent->race;
@@ -1681,6 +1768,7 @@ void clone_mobile(CHAR_DATA *parent, CHAR_DATA *clone)
     clone->move		= parent->move;
     clone->max_move	= parent->max_move;
     clone->gold		= parent->gold;
+    clone->silver	= parent->silver;
     clone->exp		= parent->exp;
     clone->act		= parent->act;
     clone->comm		= parent->comm;
@@ -1700,7 +1788,7 @@ void clone_mobile(CHAR_DATA *parent, CHAR_DATA *clone)
     clone->form		= parent->form;
     clone->parts	= parent->parts;
     clone->size		= parent->size;
-    clone->material	= parent->material;
+    clone->material	= str_dup(parent->material);
     clone->off_flags	= parent->off_flags;
     clone->dam_type	= parent->dam_type;
     clone->start_pos	= parent->start_pos;
@@ -1733,8 +1821,9 @@ void clone_mobile(CHAR_DATA *parent, CHAR_DATA *clone)
  */
 OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 {
-    static OBJ_DATA obj_zero;
+    AFFECT_DATA *paf;
     OBJ_DATA *obj;
+    int i;
 
     if ( pObjIndex == NULL )
     {
@@ -1742,17 +1831,8 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 	exit( 1 );
     }
 
-    if ( obj_free == NULL )
-    {
-	obj		= alloc_perm( sizeof(*obj) );
-    }
-    else
-    {
-	obj		= obj_free;
-	obj_free	= obj_free->next;
-    }
+    obj = new_obj();
 
-    *obj		= obj_zero;
     obj->pIndexData	= pObjIndex;
     obj->in_room	= NULL;
     obj->enchanted	= FALSE;
@@ -1766,7 +1846,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     obj->name		= pObjIndex->name;
     obj->short_descr	= pObjIndex->short_descr;
     obj->description	= pObjIndex->description;
-    obj->material	= pObjIndex->material;
+    obj->material	= str_dup(pObjIndex->material);
     obj->item_type	= pObjIndex->item_type;
     obj->extra_flags	= pObjIndex->extra_flags;
     obj->wear_flags	= pObjIndex->wear_flags;
@@ -1796,7 +1876,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 	if (obj->value[2] == 999)
 		obj->value[2] = -1;
 	break;
-    case ITEM_TREASURE:
+
     case ITEM_FURNITURE:
     case ITEM_TRASH:
     case ITEM_CONTAINER:
@@ -1809,6 +1889,21 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     case ITEM_FOUNTAIN:
     case ITEM_MAP:
     case ITEM_CLOTHING:
+    case ITEM_PORTAL:
+	if (!pObjIndex->new_format)
+	    obj->cost /= 5;
+	break;
+
+    case ITEM_TREASURE:
+    case ITEM_WARP_STONE:
+    case ITEM_ROOM_KEY:
+    case ITEM_GEM:
+    case ITEM_JEWELRY:
+	break;
+
+    case ITEM_JUKEBOX:
+	for (i = 0; i < 5; i++)
+	   obj->value[i] = -1;
 	break;
 
     case ITEM_SCROLL:
@@ -1824,6 +1919,8 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 	    obj->value[1]	= number_fuzzy( obj->value[1] );
 	    obj->value[2]	= obj->value[1];
 	}
+	if (!pObjIndex->new_format)
+	    obj->cost *= 2;
 	break;
 
     case ITEM_WEAPON:
@@ -1854,7 +1951,11 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
 	    obj->value[0]	= obj->cost;
 	break;
     }
-
+  
+    for (paf = pObjIndex->affected; paf != NULL; paf = paf->next) 
+	if ( paf->location == APPLY_SPELL_AFFECT )
+	    affect_to_obj(obj,paf);
+  
     obj->next		= object_list;
     object_list		= obj;
     pObjIndex->count++;
@@ -1867,7 +1968,7 @@ void clone_object(OBJ_DATA *parent, OBJ_DATA *clone)
 {
     int i;
     AFFECT_DATA *paf;
-/*    EXTRA_DESCR_DATA *ed,*ed_new; */
+    EXTRA_DESCR_DATA *ed,*ed_new;
 
     if (parent == NULL || clone == NULL)
 	return;
@@ -1883,7 +1984,7 @@ void clone_object(OBJ_DATA *parent, OBJ_DATA *clone)
     clone->cost		= parent->cost;
     clone->level	= parent->level;
     clone->condition	= parent->condition;
-    clone->material	= parent->material;
+    clone->material	= str_dup(parent->material);
     clone->timer	= parent->timer;
 
     for (i = 0;  i < 5; i ++)
@@ -1896,17 +1997,14 @@ void clone_object(OBJ_DATA *parent, OBJ_DATA *clone)
 	affect_to_obj(clone,paf);
 
     /* extended desc */
-/*
-    for (ed = parent->extra_descr; ed != NULL; ed = ed->next);
+    for (ed = parent->extra_descr; ed != NULL; ed = ed->next)
     {
-        ed_new              = alloc_perm( sizeof(*ed_new) );
-
+        ed_new                  = new_extra_descr();
         ed_new->keyword    	= str_dup( ed->keyword);
         ed_new->description     = str_dup( ed->description );
         ed_new->next           	= clone->extra_descr;
         clone->extra_descr  	= ed_new;
     }
-*/
 
 }
 
@@ -1925,20 +2023,19 @@ void clear_char( CHAR_DATA *ch )
     ch->short_descr		= &str_empty[0];
     ch->long_descr		= &str_empty[0];
     ch->description		= &str_empty[0];
+    ch->prompt                  = &str_empty[0];
     ch->logon			= current_time;
-    ch->last_note		= 0;
     ch->lines			= PAGELEN;
     for (i = 0; i < 4; i++)
     	ch->armor[i]		= 100;
-    ch->comm			= 0;
     ch->position		= POS_STANDING;
-    ch->practice		= 0;
     ch->hit			= 20;
     ch->max_hit			= 20;
     ch->mana			= 100;
     ch->max_mana		= 100;
     ch->move			= 100;
     ch->max_move		= 100;
+    ch->on			= NULL;
     for (i = 0; i < MAX_STATS; i ++)
     {
 	ch->perm_stat[i] = 13; 
@@ -1946,55 +2043,6 @@ void clear_char( CHAR_DATA *ch )
     }
     return;
 }
-
-
-
-/*
- * Free a character.
- */
-void free_char( CHAR_DATA *ch )
-{
-    OBJ_DATA *obj;
-    OBJ_DATA *obj_next;
-    AFFECT_DATA *paf;
-    AFFECT_DATA *paf_next;
-    
-    if (IS_NPC(ch))
-	mobile_count--;
-
-    for ( obj = ch->carrying; obj != NULL; obj = obj_next )
-    {
-	obj_next = obj->next_content;
-	extract_obj( obj );
-    }
-
-    for ( paf = ch->affected; paf != NULL; paf = paf_next )
-    {
-	paf_next = paf->next;
-	affect_remove( ch, paf );
-    }
-
-    free_string( ch->name		);
-    free_string( ch->short_descr	);
-    free_string( ch->long_descr		);
-    free_string( ch->description	);
-
-    if ( ch->pcdata != NULL )
-    {
-	free_string( ch->pcdata->pwd		);
-	free_string( ch->pcdata->bamfin		);
-	free_string( ch->pcdata->bamfout	);
-	free_string( ch->pcdata->title		);
-	ch->pcdata->next = pcdata_free;
-	pcdata_free      = ch->pcdata;
-    }
-
-    ch->next	     = char_free;
-    char_free	     = ch;
-    return;
-}
-
-
 
 /*
  * Get an extra description from a list.
@@ -2165,12 +2213,19 @@ long fread_flag( FILE *fp)
 {
     int number;
     char c;
+    bool negative = FALSE;
 
     do
     {
 	c = getc(fp);
     }
     while ( isspace(c));
+
+    if (c == '-')
+    {
+	negative = TRUE;
+	c = getc(fp);
+    }
 
     number = 0;
 
@@ -2194,6 +2249,9 @@ long fread_flag( FILE *fp)
 
     else if  ( c != ' ')
 	ungetc(c,fp);
+
+    if (negative)
+	return -1 * number;
 
     return number;
 }
@@ -2501,8 +2559,6 @@ char *fread_word( FILE *fp )
     return NULL;
 }
 
-
-
 /*
  * Allocate some ordinary memory,
  *   with the expectation of freeing it someday.
@@ -2510,29 +2566,36 @@ char *fread_word( FILE *fp )
 void *alloc_mem( int sMem )
 {
     void *pMem;
+    int *magic;
     int iList;
+
+    sMem += sizeof(*magic);
 
     for ( iList = 0; iList < MAX_MEM_LIST; iList++ )
     {
-	if ( sMem <= rgSizeList[iList] )
-	    break;
+        if ( sMem <= rgSizeList[iList] )
+            break;
     }
 
     if ( iList == MAX_MEM_LIST )
     {
-	bug( "Alloc_mem: size %d too large.", sMem );
-	exit( 1 );
+        bug( "Alloc_mem: size %d too large.", sMem );
+        exit( 1 );
     }
 
     if ( rgFreeList[iList] == NULL )
     {
-	pMem		  = alloc_perm( rgSizeList[iList] );
+        pMem              = alloc_perm( rgSizeList[iList] );
     }
     else
     {
-	pMem              = rgFreeList[iList];
-	rgFreeList[iList] = * ((void **) rgFreeList[iList]);
+        pMem              = rgFreeList[iList];
+        rgFreeList[iList] = * ((void **) rgFreeList[iList]);
     }
+
+    magic = (int *) pMem;
+    *magic = MAGIC_NUM;
+    pMem += sizeof(*magic);
 
     return pMem;
 }
@@ -2546,17 +2609,31 @@ void *alloc_mem( int sMem )
 void free_mem( void *pMem, int sMem )
 {
     int iList;
+    int *magic;
+
+    pMem -= sizeof(*magic);
+    magic = (int *) pMem;
+
+    if (*magic != MAGIC_NUM)
+    {
+        bug("Attempt to recyle invalid memory of size %d.",sMem);
+        bug((char*) pMem + sizeof(*magic),0);
+        return;
+    }
+
+    *magic = 0;
+    sMem += sizeof(*magic);
 
     for ( iList = 0; iList < MAX_MEM_LIST; iList++ )
     {
-	if ( sMem <= rgSizeList[iList] )
-	    break;
+        if ( sMem <= rgSizeList[iList] )
+            break;
     }
 
     if ( iList == MAX_MEM_LIST )
     {
-	bug( "Free_mem: size %d too large.", sMem );
-	exit( 1 );
+        bug( "Free_mem: size %d too large.", sMem );
+        exit( 1 );
     }
 
     * ((void **) pMem) = rgFreeList[iList];
@@ -2564,7 +2641,6 @@ void free_mem( void *pMem, int sMem )
 
     return;
 }
-
 
 
 /*
@@ -2667,7 +2743,7 @@ void do_areas( CHAR_DATA *ch, char *argument )
     for ( iArea = 0; iArea < iAreaHalf; iArea++ )
     {
 	sprintf( buf, "%-39s%-39s\n\r",
-	    pArea1->name, (pArea2 != NULL) ? pArea2->name : "" );
+	    pArea1->credits, (pArea2 != NULL) ? pArea2->credits : "" );
 	send_to_char( buf, ch );
 	pArea1 = pArea1->next;
 	if ( pArea2 != NULL )
@@ -2937,10 +3013,18 @@ int number_bits( int width )
  * Best to leave the constants alone unless you've read Knuth.
  * -- Furey
  */
+
+/* I noticed streaking with this random number generator, so I switched
+   back to the system srandom call.  If this doesn't work for you, 
+   define OLD_RAND to use the old system -- Alander */
+
+#if defined (OLD_RAND)
 static  int     rgiState[2+55];
+#endif
  
 void init_mm( )
 {
+#if defined (OLD_RAND)
     int *piState;
     int iState;
  
@@ -2956,13 +3040,17 @@ void init_mm( )
         piState[iState] = (piState[iState-1] + piState[iState-2])
                         & ((1 << 30) - 1);
     }
+#else
+    srandom(time(NULL)^getpid());
+#endif
     return;
 }
  
  
  
-int number_mm( void )
+long number_mm( void )
 {
+#if defined (OLD_RAND)
     int *piState;
     int iState1;
     int iState2;
@@ -2981,6 +3069,9 @@ int number_mm( void )
     piState[-2]         = iState1;
     piState[-1]         = iState2;
     return iRand >> 6;
+#else
+    return random() >> 6;
+#endif
 }
 
 
@@ -3193,7 +3284,6 @@ void append_file( CHAR_DATA *ch, char *file, char *str )
 void bug( const char *str, int param )
 {
     char buf[MAX_STRING_LENGTH];
-    FILE *fp;
 
     if ( fpArea != NULL )
     {
@@ -3218,12 +3308,13 @@ void bug( const char *str, int param )
 
 	sprintf( buf, "[*****] FILE: %s LINE: %d", strArea, iLine );
 	log_string( buf );
-
+/* RT removed because we don't want bugs shutting the mud 
 	if ( ( fp = fopen( "shutdown.txt", "a" ) ) != NULL )
 	{
 	    fprintf( fp, "[*****] %s\n", buf );
 	    fclose( fp );
 	}
+*/
     }
 
     strcpy( buf, "[*****] BUG: " );

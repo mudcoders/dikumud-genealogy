@@ -1,4 +1,32 @@
-/* db_new.c */
+
+
+/***************************************************************************
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
+ *                                                                         *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
+ *                                                                         *
+ *  In order to use any part of this Merc Diku Mud, you must comply with   *
+ *  both the original Diku license in 'license.doc' as well the Merc       *
+ *  license in 'license.txt'.  In particular, you may not remove either of *
+ *  these copyright notices.                                               *
+ *                                                                         *
+ *  Much time and thought has gone into this software and you are          *
+ *  benefitting.  We hope that you share your changes too.  What goes      *
+ *  around, comes around.                                                  *
+ ***************************************************************************/
+
+/***************************************************************************
+*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM has been brought to you by the ROM consortium		   *
+*	    Russ Taylor (rtaylor@pacinfo.com)				   *
+*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
+*	    Brian Moore (rom@rom.efn.org)				   *
+*	By using this code, you have agreed to follow the terms of the	   *
+*	ROM license, in the file Rom24/doc/rom.license			   *
+***************************************************************************/
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -13,11 +41,12 @@
 
 #include "merc.h"
 #include "db.h"
+#include "lookup.h"
 
 
 /* values for db2.c */
-struct 					social_type	social_table		[MAX_SOCIALS];
-int						social_count		= 0;
+struct		social_type	social_table		[MAX_SOCIALS];
+int		social_count;
 
 /* snarf a socials file */
 void load_socials( FILE *fp)
@@ -39,6 +68,10 @@ void load_socials( FILE *fp)
     	temp = fread_word(fp);
     	if (!strcmp(temp,"#0"))
 	    return;  /* done */
+#if defined(social_debug) 
+	else 
+	    fprintf(stderr,"%s\n\r",temp);
+#endif
 
     	strcpy(social.name,temp);
     	fread_to_eol(fp);
@@ -160,7 +193,7 @@ void load_mobiles( FILE *fp )
     for ( ; ; )
     {
         sh_int vnum;
-        char letter,temp;
+        char letter;
         int iHash;
  
         letter                          = fread_letter( fp );
@@ -201,7 +234,7 @@ void load_mobiles( FILE *fp )
 					| race_table[pMobIndex->race].aff;
         pMobIndex->pShop                = NULL;
         pMobIndex->alignment            = fread_number( fp );
-        letter                          = fread_letter( fp );
+        pMobIndex->group                = fread_number( fp );
 
         pMobIndex->level                = fread_number( fp );
         pMobIndex->hitroll              = fread_number( fp );  
@@ -226,7 +259,7 @@ void load_mobiles( FILE *fp )
 	pMobIndex->damage[DICE_TYPE]	= fread_number( fp );
 					  fread_letter( fp );
 	pMobIndex->damage[DICE_BONUS]	= fread_number( fp );
-	pMobIndex->dam_type		= fread_number( fp );
+	pMobIndex->dam_type		= attack_lookup(fread_word(fp));
 
 	/* read armor class */
 	pMobIndex->ac[AC_PIERCE]	= fread_number( fp ) * 10;
@@ -245,35 +278,61 @@ void load_mobiles( FILE *fp )
 					| race_table[pMobIndex->race].vuln;
 
 	/* vital statistics */
-	pMobIndex->start_pos		= fread_number( fp );
-	pMobIndex->default_pos		= fread_number( fp );
-	pMobIndex->sex			= fread_number( fp );
-	pMobIndex->gold			= fread_number( fp );
+	pMobIndex->start_pos		= position_lookup(fread_word(fp));
+	pMobIndex->default_pos		= position_lookup(fread_word(fp));
+	pMobIndex->sex			= sex_lookup(fread_word(fp));
+
+	pMobIndex->wealth		= fread_number( fp );
 
 	pMobIndex->form			= fread_flag( fp )
 					| race_table[pMobIndex->race].form;
 	pMobIndex->parts		= fread_flag( fp )
 					| race_table[pMobIndex->race].parts;
 	/* size */
-	temp				= fread_letter( fp );
-	switch (temp)
-	{
-	    case ('T') :		pMobIndex->size = SIZE_TINY;	break;
-	    case ('S') :		pMobIndex->size = SIZE_SMALL;	break;
-	    case ('M') :		pMobIndex->size = SIZE_MEDIUM;	break;
-	    case ('L') :		pMobIndex->size = SIZE_LARGE; 	break;
-	    case ('H') :		pMobIndex->size = SIZE_HUGE;	break;
-	    case ('G') :		pMobIndex->size = SIZE_GIANT;	break;
-	    default:			pMobIndex->size = SIZE_MEDIUM; break;
-	}
-	pMobIndex->material		= material_lookup(fread_word( fp ));
+	pMobIndex->size			= size_lookup(fread_word(fp));
+	pMobIndex->material		= str_dup(fread_word( fp ));
  
-        if ( letter != 'S' )
+	for ( ; ; )
         {
-            bug( "Load_mobiles: vnum %d non-S.", vnum );
-            exit( 1 );
-        }
- 
+            letter = fread_letter( fp );
+
+            if (letter == 'F')
+            {
+		char *word;
+		long vector;
+
+                word                    = fread_word(fp);
+		vector			= fread_flag(fp);
+
+		if (!str_prefix(word,"act"))
+		    REMOVE_BIT(pMobIndex->act,vector);
+                else if (!str_prefix(word,"aff"))
+		    REMOVE_BIT(pMobIndex->affected_by,vector);
+		else if (!str_prefix(word,"off"))
+		    REMOVE_BIT(pMobIndex->affected_by,vector);
+		else if (!str_prefix(word,"imm"))
+		    REMOVE_BIT(pMobIndex->imm_flags,vector);
+		else if (!str_prefix(word,"res"))
+		    REMOVE_BIT(pMobIndex->res_flags,vector);
+		else if (!str_prefix(word,"vul"))
+		    REMOVE_BIT(pMobIndex->vuln_flags,vector);
+		else if (!str_prefix(word,"for"))
+		    REMOVE_BIT(pMobIndex->form,vector);
+		else if (!str_prefix(word,"par"))
+		    REMOVE_BIT(pMobIndex->parts,vector);
+		else
+		{
+		    bug("Flag remove: flag not found.",0);
+		    exit(1);
+		}
+	     }
+	     else
+	     {
+		ungetc(letter,fp);
+		break;
+	     }
+	}
+
         iHash                   = vnum % MAX_KEY_HASH;
         pMobIndex->next         = mob_index_hash[iHash];
         mob_index_hash[iHash]   = pMobIndex;
@@ -324,16 +383,60 @@ void load_objects( FILE *fp )
         pObjIndex->name                 = fread_string( fp );
         pObjIndex->short_descr          = fread_string( fp );
         pObjIndex->description          = fread_string( fp );
-        pObjIndex->material		= material_lookup(fread_string( fp ));
+        pObjIndex->material		= fread_string( fp );
  
-        pObjIndex->item_type            = fread_number( fp );
+        pObjIndex->item_type            = item_lookup(fread_word( fp ));
         pObjIndex->extra_flags          = fread_flag( fp );
         pObjIndex->wear_flags           = fread_flag( fp );
-        pObjIndex->value[0]             = fread_flag( fp );
-        pObjIndex->value[1]             = fread_flag( fp );
-        pObjIndex->value[2]             = fread_flag( fp );
-        pObjIndex->value[3]             = fread_flag( fp );
-	pObjIndex->value[4]		= fread_flag( fp );
+	switch(pObjIndex->item_type)
+	{
+	case ITEM_WEAPON:
+	    pObjIndex->value[0]		= weapon_type(fread_word(fp));
+	    pObjIndex->value[1]		= fread_number(fp);
+	    pObjIndex->value[2]		= fread_number(fp);
+	    pObjIndex->value[3]		= attack_lookup(fread_word(fp));
+	    pObjIndex->value[4]		= fread_flag(fp);
+	    break;
+	case ITEM_CONTAINER:
+	    pObjIndex->value[0]		= fread_number(fp);
+	    pObjIndex->value[1]		= fread_flag(fp);
+	    pObjIndex->value[2]		= fread_number(fp);
+	    pObjIndex->value[3]		= fread_number(fp);
+	    pObjIndex->value[4]		= fread_number(fp);
+	    break;
+        case ITEM_DRINK_CON:
+	case ITEM_FOUNTAIN:
+            pObjIndex->value[0]         = fread_number(fp);
+            pObjIndex->value[1]         = fread_number(fp);
+            pObjIndex->value[2]         = liq_lookup(fread_word(fp));
+            pObjIndex->value[3]         = fread_number(fp);
+            pObjIndex->value[4]         = fread_number(fp);
+            break;
+	case ITEM_WAND:
+	case ITEM_STAFF:
+	    pObjIndex->value[0]		= fread_number(fp);
+	    pObjIndex->value[1]		= fread_number(fp);
+	    pObjIndex->value[2]		= fread_number(fp);
+	    pObjIndex->value[3]		= skill_lookup(fread_word(fp));
+	    pObjIndex->value[4]		= fread_number(fp);
+	    break;
+	case ITEM_POTION:
+	case ITEM_PILL:
+	case ITEM_SCROLL:
+ 	    pObjIndex->value[0]		= fread_number(fp);
+	    pObjIndex->value[1]		= skill_lookup(fread_word(fp));
+	    pObjIndex->value[2]		= skill_lookup(fread_word(fp));
+	    pObjIndex->value[3]		= skill_lookup(fread_word(fp));
+	    pObjIndex->value[4]		= skill_lookup(fread_word(fp));
+	    break;
+	default:
+            pObjIndex->value[0]             = fread_flag( fp );
+            pObjIndex->value[1]             = fread_flag( fp );
+            pObjIndex->value[2]             = fread_flag( fp );
+            pObjIndex->value[3]             = fread_flag( fp );
+	    pObjIndex->value[4]		    = fread_flag( fp );
+	    break;
+	}
 	pObjIndex->level		= fread_number( fp );
         pObjIndex->weight               = fread_number( fp );
         pObjIndex->cost                 = fread_number( fp ); 
@@ -363,12 +466,48 @@ void load_objects( FILE *fp )
                 AFFECT_DATA *paf;
  
                 paf                     = alloc_perm( sizeof(*paf) );
+		paf->where		= TO_OBJECT;
                 paf->type               = -1;
                 paf->level              = pObjIndex->level;
                 paf->duration           = -1;
                 paf->location           = fread_number( fp );
                 paf->modifier           = fread_number( fp );
                 paf->bitvector          = 0;
+                paf->next               = pObjIndex->affected;
+                pObjIndex->affected     = paf;
+                top_affect++;
+            }
+
+	    else if (letter == 'F')
+            {
+                AFFECT_DATA *paf;
+ 
+                paf                     = alloc_perm( sizeof(*paf) );
+		letter 			= fread_letter(fp);
+		switch (letter)
+	 	{
+		case 'A':
+                    paf->where          = TO_AFFECTS;
+		    break;
+		case 'I':
+		    paf->where		= TO_IMMUNE;
+		    break;
+		case 'R':
+		    paf->where		= TO_RESIST;
+		    break;
+		case 'V':
+		    paf->where		= TO_VULN;
+		    break;
+		default:
+            	    bug( "Load_objects: Bad where on flag set.", 0 );
+            	   exit( 1 );
+		}
+                paf->type               = -1;
+                paf->level              = pObjIndex->level;
+                paf->duration           = -1;
+                paf->location           = fread_number(fp);
+                paf->modifier           = fread_number(fp);
+                paf->bitvector          = fread_flag(fp);
                 paf->next               = pObjIndex->affected;
                 pObjIndex->affected     = paf;
                 top_affect++;
@@ -391,25 +530,6 @@ void load_objects( FILE *fp )
                 ungetc( letter, fp );
                 break;
             }
-        }
-
-        /*
-         * Translate spell "slot numbers" to internal "skill numbers."
-         */
-        switch ( pObjIndex->item_type )
-        {
-        case ITEM_PILL:
-        case ITEM_POTION:
-        case ITEM_SCROLL:
-            pObjIndex->value[1] = slot_lookup( pObjIndex->value[1] );
-            pObjIndex->value[2] = slot_lookup( pObjIndex->value[2] );
-            pObjIndex->value[3] = slot_lookup( pObjIndex->value[3] );
-            break;
- 
-        case ITEM_STAFF:
-        case ITEM_WAND:
-            pObjIndex->value[3] = slot_lookup( pObjIndex->value[3] );
-            break;
         }
  
         iHash                   = vnum % MAX_KEY_HASH;

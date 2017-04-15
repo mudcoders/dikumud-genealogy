@@ -1,9 +1,18 @@
-#AREA	{ 5 35} Merc    Prototype for New Area~
+#AREA	
+proto.are~
+protype~
+{ 5 35} Merc    Prototype for New Area~
+XX00 XX99
 
 
 
 #HELPS
 0 $~
+
+
+
+#SOCIALS
+#0
 
 
 

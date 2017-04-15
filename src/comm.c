@@ -2,7 +2,7 @@
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
  *                                                                         *
- *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Merc Diku vMud improvments copyright (C) 1992, 1993 by Michael          *
  *  Chastain, Michael Quan, and Mitchell Tse.                              *
  *                                                                         *
  *  In order to use any part of this Merc Diku Mud, you must comply with   *
@@ -17,6 +17,16 @@
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
  ***************************************************************************/
+
+/***************************************************************************
+*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM has been brought to you by the ROM consortium		   *
+*	    Russ Taylor (rtaylor@pacinfo.com)				   *
+*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
+*	    Brian Moore (rom@rom.efn.org)				   *
+*	By using this code, you have agreed to follow the terms of the	   *
+*	ROM license, in the file Rom24/doc/rom.license			   *
+***************************************************************************/
 
 /*
  * This file contains all of the OS-dependent stuff:
@@ -48,12 +58,14 @@
 #include <time.h>
 
 #include "merc.h"
+#include "recycle.h"
 
 /* command procedures needed */
 DECLARE_DO_FUN(do_help		);
 DECLARE_DO_FUN(do_look		);
 DECLARE_DO_FUN(do_skills	);
 DECLARE_DO_FUN(do_outfit	);
+DECLARE_DO_FUN(do_unread	);
 
 
 /*
@@ -104,7 +116,7 @@ const	char 	go_ahead_str	[] = { '\0' };
 #include <netdb.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-#include <arpa/telnet.h>
+#include "telnet.h"
 const	char	echo_off_str	[] = { IAC, WILL, TELOPT_ECHO, '\0' };
 const	char	echo_on_str	[] = { IAC, WONT, TELOPT_ECHO, '\0' };
 const	char 	go_ahead_str	[] = { IAC, GA, '\0' };
@@ -135,11 +147,11 @@ void	bzero		args( ( char *b, int length ) );
 #endif
 
 #if	defined(__hpux)
-int accept args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
-int bind args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
+int	accept		args( ( int s, void *addr, int *addrlen ) );
+int	bind		args( ( int s, const void *addr, int addrlen ) );
 void	bzero		args( ( char *b, int length ) );
-int getpeername args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
-int getsockname args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
+int	getpeername	args( ( int s, void *addr, int *addrlen ) );
+int	getsockname	args( ( int s, void *name, int *addrlen ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	setsockopt	args( ( int s, int level, int optname,
@@ -153,11 +165,11 @@ int	socket		args( ( int domain, int type, int protocol ) );
 #endif
 
 #if	defined(linux)
-int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
-int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
+int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
+int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
 int	close		args( ( int fd ) );
-int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
-int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
+int	getpeername	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
+int	getsockname	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
@@ -279,7 +291,6 @@ int	write		args( ( int fd, char *buf, int nbyte ) );
 /*
  * Global variables.
  */
-DESCRIPTOR_DATA *   descriptor_free;	/* Free list for descriptors	*/
 DESCRIPTOR_DATA *   descriptor_list;	/* All open descriptors		*/
 DESCRIPTOR_DATA *   d_next;		/* Next descriptor in loop	*/
 FILE *		    fpReserve;		/* Reserved file handle		*/
@@ -304,7 +315,7 @@ bool	write_to_descriptor	args( ( int desc, char *txt, int length ) );
 #if defined(unix)
 void	game_loop_unix		args( ( int control ) );
 int	init_socket		args( ( int port ) );
-void	new_descriptor		args( ( int control ) );
+void	init_descriptor		args( ( int control ) );
 bool	read_from_descriptor	args( ( DESCRIPTOR_DATA *d ) );
 bool	write_to_descriptor	args( ( int desc, char *txt, int length ) );
 #endif
@@ -324,6 +335,7 @@ void	nanny			args( ( DESCRIPTOR_DATA *d, char *argument ) );
 bool	process_output		args( ( DESCRIPTOR_DATA *d, bool fPrompt ) );
 void	read_from_buffer	args( ( DESCRIPTOR_DATA *d ) );
 void	stop_idling		args( ( CHAR_DATA *ch ) );
+void    bust_a_prompt           args( ( CHAR_DATA *ch ) );
 
 
 int main( int argc, char **argv )
@@ -541,6 +553,9 @@ void game_loop_mac_msdos( void )
 		}
 	    }
 
+	    if (d->character != NULL && d->character->daze > 0)
+		--d->character->daze;
+
 	    if ( d->character != NULL && d->character->wait > 0 )
 	    {
 		--d->character->wait;
@@ -554,7 +569,7 @@ void game_loop_mac_msdos( void )
 		stop_idling( d->character );
 
 		if ( d->connected == CON_PLAYING )
-		    interpret( d->character, d->incomm );
+		    substitute_alias( d, d->incomm );
 		else
 		    nanny( d, d->incomm );
 
@@ -685,7 +700,7 @@ void game_loop_unix( int control )
 	 * New connection?
 	 */
 	if ( FD_ISSET( control, &in_set ) )
-	    new_descriptor( control );
+	    init_descriptor( control );
 
 	/*
 	 * Kick out the freaky folks.
@@ -727,6 +742,9 @@ void game_loop_unix( int control )
 		}
 	    }
 
+	    if (d->character != NULL && d->character->daze > 0)
+		--d->character->daze;
+
 	    if ( d->character != NULL && d->character->wait > 0 )
 	    {
 		--d->character->wait;
@@ -742,7 +760,7 @@ void game_loop_unix( int control )
 		if (d->showstr_point)
 		    show_string(d,d->incomm);
 		else if ( d->connected == CON_PLAYING )
-		    interpret( d->character, d->incomm );
+		    substitute_alias( d, d->incomm );
 		else
 		    nanny( d, d->incomm );
 
@@ -832,12 +850,10 @@ void game_loop_unix( int control )
 
 
 #if defined(unix)
-void new_descriptor( int control )
+void init_descriptor( int control )
 {
-    static DESCRIPTOR_DATA d_zero;
     char buf[MAX_STRING_LENGTH];
     DESCRIPTOR_DATA *dnew;
-    BAN_DATA *pban;
     struct sockaddr_in sock;
     struct hostent *from;
     int desc;
@@ -864,17 +880,8 @@ void new_descriptor( int control )
     /*
      * Cons a new descriptor.
      */
-    if ( descriptor_free == NULL )
-    {
-	dnew		= alloc_perm( sizeof(*dnew) );
-    }
-    else
-    {
-	dnew		= descriptor_free;
-	descriptor_free	= descriptor_free->next;
-    }
+    dnew = new_descriptor();
 
-    *dnew		= d_zero;
     dnew->descriptor	= desc;
     dnew->connected	= CON_GET_NAME;
     dnew->showstr_head	= NULL;
@@ -905,11 +912,7 @@ void new_descriptor( int control )
 	log_string( log_buf );
 	from = gethostbyaddr( (char *) &sock.sin_addr,
 	    sizeof(sock.sin_addr), AF_INET );
-	if (from && (!str_cmp(from->h_name,"ursula.uoregon.edu")
-		 ||  !str_cmp(from->h_name,"monet.ucdavis.edu")))
-	    dnew->host = str_dup("white.nextwork.rose-hulman.edu");
-	else
-	    dnew->host = str_dup( from ? from->h_name : buf );
+	dnew->host = str_dup( from ? from->h_name : buf );
     }
 
     /*
@@ -920,49 +923,14 @@ void new_descriptor( int control )
      *
      * Furey: added suffix check by request of Nickel of HiddenWorlds.
      */
-    for ( pban = ban_list; pban != NULL; pban = pban->next )
+    if ( check_ban(dnew->host,BAN_ALL))
     {
-	if ( !str_suffix( pban->name, dnew->host ) )
-	{
-	    write_to_descriptor( desc,
-		"Your site has been banned from this Mud.\n\r", 0 );
-	    close( desc );
-	    free_string( dnew->host );
-/*	    free_string( dnew->outbuf );
-	    free_string( dnew->inbuf );  */
-	    free_mem( dnew->outbuf, dnew->outsize );
-	    dnew->next		= descriptor_free;
-	    descriptor_free	= dnew;
-	    return;
-	}
-    }
-/*
-    if (!str_suffix("digex.com", dnew->host)
-    ||  !str_suffix("digex.net",dnew->host))
-    {
-	write_to_descriptor(desc,"Get a life, Cat. Don't see me trying to harrass you, but then again my life isn't as pathetic as yours, is it?  Now be a good girl and and run back to Jedi, where they might actually WANT you. (actually, they don't there either, do they?)\n\r",0);
-	write_to_descriptor(desc,"If this isn't Cat, blame her for the lock-out.  I don't need immature people trying to ruin the game for the 70-100 players who are logged in right now.\n\r",0);
-	close(desc);
-	free_string(dnew->host);
-	free_mem(dnew->outbuf,dnew->outsize);
-	dnew->next	= descriptor_free;
-	descriptor_free = dnew;
+	write_to_descriptor( desc,
+	    "Your site has been banned from this mud.\n\r", 0 );
+	close( desc );
+	free_descriptor(dnew);
 	return;
     }
-*/
-/*
-    if (!str_suffix("niu.edu",dnew->host))
-    {
-	write_to_descriptor(desc,"This site is no longer welcome on ROM, due to excessive obscenities from\n\rNIU students.  ROM is not a public service of the internet, nor\n\ris any right to connect in any way assured.\n\rFurther connection attemps will result in legal action.\n\r",0);
-	close(desc);
-	free_string(dnew->host);
-	free_mem(dnew->outbuf,dnew->outsize);
-	dnew->next	= descriptor_free;
-	descriptor_free = dnew;
-	return;
-   }
-*/
-
     /*
      * Init descriptor data.
      */
@@ -1016,6 +984,7 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 	if ( dclose->connected == CON_PLAYING )
 	{
 	    act( "$n has lost $s link.", ch, NULL, NULL, TO_ROOM );
+	    wiznet("Net death has claimed $N.",ch,NULL,WIZ_LINKS,0,0);
 	    ch->desc = NULL;
 	}
 	else
@@ -1044,12 +1013,7 @@ void close_socket( DESCRIPTOR_DATA *dclose )
     }
 
     close( dclose->descriptor );
-    free_string( dclose->host );
-    /* RT socket leak fix -- I hope */
-    free_mem(dclose->outbuf,dclose->outsize);
-/*    free_string(dclose->showstr_head); */
-    dclose->next	= descriptor_free;
-    descriptor_free	= dclose;
+    free_descriptor(dclose);
 #if defined(MSDOS) || defined(macintosh)
     exit(1);
 #endif
@@ -1186,7 +1150,7 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
     /*
      * Deal with bozos with #repeat 1000 ...
      */
-/*
+
     if ( k > 1 || d->incomm[0] == '!' )
     {
     	if ( d->incomm[0] != '!' && strcmp( d->incomm, d->inlast ) )
@@ -1199,13 +1163,25 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
 	    {
 		sprintf( log_buf, "%s input spamming!", d->host );
 		log_string( log_buf );
+		wiznet("Spam spam spam $N spam spam spam spam spam!",
+		       d->character,NULL,WIZ_SPAM,0,get_trust(d->character));
+		if (d->incomm[0] == '!')
+		    wiznet(d->inlast,d->character,NULL,WIZ_SPAM,0,
+			get_trust(d->character));
+		else
+		    wiznet(d->incomm,d->character,NULL,WIZ_SPAM,0,
+			get_trust(d->character));
+
+		d->repeat = 0;
+/*
 		write_to_descriptor( d->descriptor,
 		    "\n\r*** PUT A LID ON IT!!! ***\n\r", 0 );
 		strcpy( d->incomm, "quit" );
+*/
 	    }
 	}
     }
-*/
+
 
     /*
      * Do '!' substitution.
@@ -1247,7 +1223,7 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 	ch = d->character;
 
         /* battle prompt */
-        if ((victim = ch->fighting) != NULL)
+        if ((victim = ch->fighting) != NULL && can_see(ch,victim))
         {
             int percent;
             char wound[100];
@@ -1286,14 +1262,9 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 	if (!IS_SET(ch->comm, COMM_COMPACT) )
 	    write_to_buffer( d, "\n\r", 2 );
 
-	if ( IS_SET(ch->comm, COMM_PROMPT) )
-	{
-	    char buf[40];
 
-	    ch = d->character;
-	    sprintf( buf, "<%dhp %dm %dmv> ", ch->hit,ch->mana,ch->move);
-	    write_to_buffer( d, buf, 0 );
-	}
+        if ( IS_SET(ch->comm, COMM_PROMPT) )
+            bust_a_prompt( d->character );
 
 	if (IS_SET(ch->comm,COMM_TELNET_GA))
 	    write_to_buffer(d,go_ahead_str,0);
@@ -1331,6 +1302,148 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
     }
 }
 
+/*
+ * Bust a prompt (player settable prompt)
+ * coded by Morgenes for Aldara Mud
+ */
+void bust_a_prompt( CHAR_DATA *ch )
+{
+    char buf[MAX_STRING_LENGTH];
+    char buf2[MAX_STRING_LENGTH];
+    const char *str;
+    const char *i;
+    char *point;
+    char doors[MAX_INPUT_LENGTH];
+    EXIT_DATA *pexit;
+    bool found;
+    const char *dir_name[] = {"N","E","S","W","U","D"};
+    int door;
+
+    point = buf;
+    str = ch->prompt;
+    if (str == NULL || str[0] == '\0')
+    {
+        sprintf( buf, "<%dhp %dm %dmv> %s",
+	    ch->hit,ch->mana,ch->move,ch->prefix);
+	send_to_char(buf,ch);
+	return;
+    }
+
+   if (IS_SET(ch->comm,COMM_AFK))
+   {
+	send_to_char("<AFK> ",ch);
+	return;
+   }
+
+   while( *str != '\0' )
+   {
+      if( *str != '%' )
+      {
+         *point++ = *str++;
+         continue;
+      }
+      ++str;
+      switch( *str )
+      {
+         default :
+            i = " "; break;
+	case 'e':
+	    found = FALSE;
+	    doors[0] = '\0';
+	    for (door = 0; door < 6; door++)
+	    {
+		if ((pexit = ch->in_room->exit[door]) != NULL
+		&&  pexit ->u1.to_room != NULL
+		&&  (can_see_room(ch,pexit->u1.to_room)
+		||   (IS_AFFECTED(ch,AFF_INFRARED)
+		&&    !IS_AFFECTED(ch,AFF_BLIND)))
+		&&  !IS_SET(pexit->exit_info,EX_CLOSED))
+		{
+		    found = TRUE;
+		    strcat(doors,dir_name[door]);
+		}
+	    }
+	    if (!found)
+	 	strcat(buf,"none");
+	    sprintf(buf2,"%s",doors);
+	    i = buf2; break;
+ 	 case 'c' :
+	    sprintf(buf2,"%s","\n\r");
+	    i = buf2; break;
+         case 'h' :
+            sprintf( buf2, "%d", ch->hit );
+            i = buf2; break;
+         case 'H' :
+            sprintf( buf2, "%d", ch->max_hit );
+            i = buf2; break;
+         case 'm' :
+            sprintf( buf2, "%d", ch->mana );
+            i = buf2; break;
+         case 'M' :
+            sprintf( buf2, "%d", ch->max_mana );
+            i = buf2; break;
+         case 'v' :
+            sprintf( buf2, "%d", ch->move );
+            i = buf2; break;
+         case 'V' :
+            sprintf( buf2, "%d", ch->max_move );
+            i = buf2; break;
+         case 'x' :
+            sprintf( buf2, "%d", ch->exp );
+            i = buf2; break;
+	 case 'X' :
+	    sprintf(buf2, "%d",
+	    (ch->level + 1) * exp_per_level(ch,ch->pcdata->points) - ch->exp);
+	    i = buf2; break;
+         case 'g' :
+            sprintf( buf2, "%ld", ch->gold);
+            i = buf2; break;
+	 case 's' :
+	    sprintf( buf2, "%ld", ch->silver);
+	    i = buf2; break;
+         case 'a' :
+            if( ch->level > 9 )
+               sprintf( buf2, "%d", ch->alignment );
+            else
+               sprintf( buf2, "%s", IS_GOOD(ch) ? "good" : IS_EVIL(ch) ?
+                "evil" : "neutral" );
+            i = buf2; break;
+         case 'r' :
+            if( ch->in_room != NULL )
+               sprintf( buf2, "%s",
+		((!IS_NPC(ch) && IS_SET(ch->act,PLR_HOLYLIGHT)) ||
+		 (!IS_AFFECTED(ch,AFF_BLIND) && !room_is_dark( ch->in_room )))
+		? ch->in_room->name : "darkness");
+            else
+               sprintf( buf2, " " );
+            i = buf2; break;
+         case 'R' :
+            if( IS_IMMORTAL( ch ) && ch->in_room != NULL )
+               sprintf( buf2, "%d", ch->in_room->vnum );
+            else
+               sprintf( buf2, " " );
+            i = buf2; break;
+         case 'z' :
+            if( IS_IMMORTAL( ch ) && ch->in_room != NULL )
+               sprintf( buf2, "%s", ch->in_room->area->name );
+            else
+               sprintf( buf2, " " );
+            i = buf2; break;
+         case '%' :
+            sprintf( buf2, "%%" );
+            i = buf2; break;
+      }
+      ++str;
+      while( (*point = *i) != '\0' )
+         ++point, ++i;
+   }
+   write_to_buffer( ch->desc, buf, point - buf );
+
+   if (ch->prefix[0] != '\0')
+        write_to_buffer(ch->desc,ch->prefix,0);
+   return;
+}
+
 
 
 /*
@@ -1361,7 +1474,7 @@ void write_to_buffer( DESCRIPTOR_DATA *d, const char *txt, int length )
     {
 	char *outbuf;
 
-        if (d->outsize > 32000)
+        if (d->outsize >= 32000)
 	{
 	    bug("Buffer overflow. Closing.\n\r",0);
 	    close_socket(d);
@@ -1427,8 +1540,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     CHAR_DATA *ch;
     char *pwdnew;
     char *p;
-    int iClass,race,i,notes;
-    NOTE_DATA *pnote;
+    int iClass,race,i,weapon;
     bool fOld;
 
     while ( isspace(*argument) )
@@ -1461,12 +1573,19 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	fOld = load_char_obj( d, argument );
 	ch   = d->character;
 
-	if ( IS_SET(ch->act, PLR_DENY) )
+	if (IS_SET(ch->act, PLR_DENY))
 	{
 	    sprintf( log_buf, "Denying access to %s@%s.", argument, d->host );
 	    log_string( log_buf );
 	    write_to_buffer( d, "You are denied access.\n\r", 0 );
 	    close_socket( d );
+	    return;
+	}
+
+	if (check_ban(d->host,BAN_PERMIT) && !IS_SET(ch->act,PLR_PERMIT))
+	{
+	    write_to_buffer(d,"Your site has been banned from this mud.\n\r",0);
+	    close_socket(d);
 	    return;
 	}
 
@@ -1476,7 +1595,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	}
 	else
 	{
-	    if ( wizlock && !IS_HERO(ch))
+	    if ( wizlock && !IS_IMMORTAL(ch))
 	    {
 		write_to_buffer( d, "The game is wizlocked.\n\r", 0 );
 		close_socket( d );
@@ -1501,15 +1620,15 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
                 close_socket( d );
                 return;
             }
-    if (!str_suffix("niu.edu",d->host))
-    {
-        write_to_buffer(d,"This site is no longer welcome on ROM, due to
-excessive obscenities from\n\rNIU students.  ROM is not a public service of the
-internet, nor\n\ris any right to connect in any way assured.\n\rFurther connecti
-on attemps will result in legal action.\n\r",0);
-	close_socket(d);
-        return;
-   }
+
+	    if (check_ban(d->host,BAN_NEWBIES))
+	    {
+		write_to_buffer(d,
+		    "New players are not allowed from your site.\n\r",0);
+		close_socket(d);
+		return;
+	    }
+
 	    sprintf( buf, "Did I get that right, %s (Y/N)? ", argument );
 	    write_to_buffer( d, buf, 0 );
 	    d->connected = CON_CONFIRM_NEW_NAME;
@@ -1529,25 +1648,19 @@ on attemps will result in legal action.\n\r",0);
 	    return;
 	}
 
-	if ( ch->pcdata->pwd[0] == NULL)
-	{
-	    write_to_buffer( d, "Warning! Null password!\n\r",0 );
-	    write_to_buffer( d, "Please report old password with bug.\n\r",0);
-	    write_to_buffer( d,
-		"Type 'password null <new password>' to fix.\n\r",0);
-	}
-
 	write_to_buffer( d, echo_on_str, 0 );
+
+	if (check_playing(d,ch->name))
+	    return;
 
 	if ( check_reconnect( d, ch->name, TRUE ) )
 	    return;
 
-	if ( check_playing( d, ch->name ) )
-	    return;
-
 	sprintf( log_buf, "%s@%s has connected.", ch->name, d->host );
 	log_string( log_buf );
-	if ( IS_HERO(ch) )
+	wiznet(log_buf,NULL,NULL,WIZ_SITES,0,get_trust(ch));
+
+	if ( IS_IMMORTAL(ch) )
 	{
 	    do_help( ch, "imotd" );
 	    d->connected = CON_READ_IMOTD;
@@ -1571,7 +1684,8 @@ on attemps will result in legal action.\n\r",0);
 		if (d_old == d || d_old->character == NULL)
 		    continue;
 
-		if (str_cmp(ch->name,d_old->character->name))
+		if (str_cmp(ch->name,d_old->original ?
+		    d_old->original->name : d_old->character->name))
 		    continue;
 
 		close_socket(d_old);
@@ -1785,6 +1899,9 @@ on attemps will result in legal action.\n\r",0);
 
 	sprintf( log_buf, "%s@%s new player.", ch->name, d->host );
 	log_string( log_buf );
+	wiznet("Newbie alert!  $N sighted.",ch,NULL,WIZ_NEWBIE,0,0);
+        wiznet(log_buf,NULL,NULL,WIZ_SITES,0,get_trust(ch));
+
 	write_to_buffer( d, "\n\r", 2 );
 	write_to_buffer( d, "You may be good, neutral, or evil.\n\r",0);
 	write_to_buffer( d, "Which alignment (G/N/E)? ",0);
@@ -1819,7 +1936,7 @@ case CON_DEFAULT_CHOICE:
         switch ( argument[0] )
         {
         case 'y': case 'Y':
-	    ch->gen_data = alloc_perm(sizeof(*ch->gen_data) );
+	    ch->gen_data = new_gen_data();
 	    ch->gen_data->points_chosen = ch->pcdata->points;
 	    do_help(ch,"group header");
 	    list_group_costs(ch);
@@ -1831,13 +1948,48 @@ case CON_DEFAULT_CHOICE:
         case 'n': case 'N':
 	    group_add(ch,class_table[ch->class].default_group,TRUE);
             write_to_buffer( d, "\n\r", 2 );
-            do_help( ch, "motd" );
-            d->connected = CON_READ_MOTD;
+	    write_to_buffer(d,
+		"Please pick a weapon from the following choices:\n\r",0);
+	    buf[0] = '\0';
+	    for ( i = 0; weapon_table[i].name != NULL; i++)
+		if (ch->pcdata->learned[*weapon_table[i].gsn] > 0)
+		{
+		    strcat(buf,weapon_table[i].name);
+		    strcat(buf," ");
+		}
+	    strcat(buf,"\n\rYour choice? ");
+	    write_to_buffer(d,buf,0);
+            d->connected = CON_PICK_WEAPON;
             break;
         default:
             write_to_buffer( d, "Please answer (Y/N)? ", 0 );
             return;
         }
+	break;
+
+    case CON_PICK_WEAPON:
+	write_to_buffer(d,"\n\r",2);
+	weapon = weapon_lookup(argument);
+	if (weapon == -1 || ch->pcdata->learned[*weapon_table[weapon].gsn] <= 0)
+	{
+	    write_to_buffer(d,
+		"That's not a valid selection. Choices are:\n\r",0);
+            buf[0] = '\0';
+            for ( i = 0; weapon_table[i].name != NULL; i++)
+                if (ch->pcdata->learned[*weapon_table[i].gsn] > 0)
+                {
+                    strcat(buf,weapon_table[i].name);
+		    strcat(buf," ");
+                }
+            strcat(buf,"\n\rYour choice? ");
+            write_to_buffer(d,buf,0);
+	    return;
+	}
+
+	ch->pcdata->learned[*weapon_table[weapon].gsn] = 40;
+	write_to_buffer(d,"\n\r",2);
+	do_help(ch,"motd");
+	d->connected = CON_READ_MOTD;
 	break;
 
     case CON_GEN_GROUPS:
@@ -1850,10 +2002,22 @@ case CON_DEFAULT_CHOICE:
 	            exp_per_level(ch,ch->gen_data->points_chosen));
 	    if (ch->pcdata->points < 40)
 		ch->train = (40 - ch->pcdata->points + 1) / 2;
+	    free_gen_data(ch->gen_data);
+	    ch->gen_data = NULL;
 	    send_to_char(buf,ch);
             write_to_buffer( d, "\n\r", 2 );
-            do_help( ch, "motd" );
-            d->connected = CON_READ_MOTD;
+            write_to_buffer(d,
+                "Please pick a weapon from the following choices:\n\r",0);
+            buf[0] = '\0';
+            for ( i = 0; weapon_table[i].name != NULL; i++)
+                if (ch->pcdata->learned[*weapon_table[i].gsn] > 0)
+                {
+                    strcat(buf,weapon_table[i].name);
+		    strcat(buf," ");
+                }
+            strcat(buf,"\n\rYour choice? ");
+            write_to_buffer(d,buf,0);
+            d->connected = CON_PICK_WEAPON;
             break;
         }
 
@@ -1872,8 +2036,16 @@ case CON_DEFAULT_CHOICE:
 	break;
 
     case CON_READ_MOTD:
+        if ( ch->pcdata == NULL || ch->pcdata->pwd[0] == '\0')
+        {
+            write_to_buffer( d, "Warning! Null password!\n\r",0 );
+            write_to_buffer( d, "Please report old password with bug.\n\r",0);
+            write_to_buffer( d,
+                "Type 'password null <new password>' to fix.\n\r",0);
+        }
+
 	write_to_buffer( d,
-    "\n\rWelcome to ROM II.  Please do not feed the mobiles.\n\r",
+    "\n\rWelcome to ROM 2.4.  Please do not feed the mobiles.\n\r",
 	    0 );
 	ch->next	= char_list;
 	char_list	= ch;
@@ -1900,8 +2072,6 @@ case CON_DEFAULT_CHOICE:
 	    do_outfit(ch,"");
 	    obj_to_char(create_object(get_obj_index(OBJ_VNUM_MAP),0),ch);
 
- 	    ch->pcdata->learned[get_weapon_sn(ch)]= 40;
-
 	    char_to_room( ch, get_room_index( ROOM_VNUM_SCHOOL ) );
 	    send_to_char("\n\r",ch);
 	    do_help(ch,"NEWBIE INFO");
@@ -1923,13 +2093,8 @@ case CON_DEFAULT_CHOICE:
 	act( "$n has entered the game.", ch, NULL, NULL, TO_ROOM );
 	do_look( ch, "auto" );
 
-	if (ch->gold > 250000 && !IS_IMMORTAL(ch))
-	{
-	    sprintf(buf,"You are taxed %d gold to pay for the Mayor's bar.\n\r",
-		(ch->gold - 250000) / 2);
-	    send_to_char(buf,ch);
-	    ch->gold -= (ch->gold - 250000) / 2;
-	}
+	wiznet("$N has left real life behind.",ch,NULL,
+		WIZ_LOGINS,WIZ_SITES,get_trust(ch));
 
 	if (ch->pet != NULL)
 	{
@@ -1937,23 +2102,7 @@ case CON_DEFAULT_CHOICE:
 	    act("$n has entered the game.",ch->pet,NULL,NULL,TO_ROOM);
 	}
 
-	/* check notes */
-	notes = 0;
-
-	for ( pnote = note_list; pnote != NULL; pnote = pnote->next)
-	    if (is_note_to(ch,pnote) && str_cmp(ch->name,pnote->sender)
-	    &&  pnote->date_stamp > ch->last_note)
-	     	notes++;
-
-	if (notes == 1)
-	    send_to_char("\n\rYou have one new note waiting.\n\r",ch);
-
-	else if (notes > 1)
-	{
-	    sprintf(buf,"\n\rYou have %d new notes waiting.\n\r",notes);
-	    send_to_char(buf,ch);
-	}
-
+	do_unread(ch,"");
 	break;
     }
 
@@ -1970,11 +2119,12 @@ bool check_parse_name( char *name )
     /*
      * Reserved words.
      */
-    if ( is_name( name, "all auto immortal self someone something the you" ) )
+    if ( is_name( name,
+	"all auto immortal self someone something the you demise balance circle loner honor") )
 	return FALSE;
 
-    if (str_cmp(capitalize(name),"Alander") && (!str_prefix("aland",name)
-    || !str_suffix("alander",name)))
+    if (str_cmp(capitalize(name),"Alander") && (!str_prefix("Alan",name)
+    || !str_suffix("Alander",name)))
 	return FALSE;
 
     /*
@@ -2000,18 +2150,33 @@ bool check_parse_name( char *name )
      */
     {
 	char *pc;
-	bool fIll;
+	bool fIll,adjcaps = FALSE,cleancaps = FALSE;
+ 	int total_caps = 0;
 
 	fIll = TRUE;
 	for ( pc = name; *pc != '\0'; pc++ )
 	{
 	    if ( !isalpha(*pc) )
 		return FALSE;
+
+	    if ( isupper(*pc)) /* ugly anti-caps hack */
+	    {
+		if (adjcaps)
+		    cleancaps = TRUE;
+		total_caps++;
+		adjcaps = TRUE;
+	    }
+	    else
+		adjcaps = FALSE;
+
 	    if ( LOWER(*pc) != 'i' && LOWER(*pc) != 'l' )
 		fIll = FALSE;
 	}
 
 	if ( fIll )
+	    return FALSE;
+
+	if (cleancaps || (total_caps > (strlen(name)) / 2 && strlen(name) < 3))
 	    return FALSE;
     }
 
@@ -2060,14 +2225,23 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 	    }
 	    else
 	    {
+		OBJ_DATA *obj;
+
 		free_char( d->character );
 		d->character = ch;
 		ch->desc	 = d;
 		ch->timer	 = 0;
-		send_to_char( "Reconnecting.\n\r", ch );
+		send_to_char(
+		    "Reconnecting. Type replay to see missed tells.\n\r", ch );
 		act( "$n has reconnected.", ch, NULL, NULL, TO_ROOM );
+		if ((obj = get_eq_char(ch,WEAR_LIGHT)) != NULL
+		&&  obj->item_type == ITEM_LIGHT && obj->value[2] != 0)
+		    --ch->in_room->light;
+
 		sprintf( log_buf, "%s@%s reconnected.", ch->name, d->host );
 		log_string( log_buf );
+		wiznet("$N groks the fullness of $S link.",
+		    ch,NULL,WIZ_LINKS,0,0);
 		d->connected = CON_PLAYING;
 	    }
 	    return TRUE;
@@ -2142,7 +2316,13 @@ void send_to_char( const char *txt, CHAR_DATA *ch )
 void page_to_char( const char *txt, CHAR_DATA *ch )
 {
     if ( txt == NULL || ch->desc == NULL)
+
+
+    if (ch->lines == 0 )
+    {
+	send_to_char(txt,ch);
 	return;
+    }
 
 #if defined(macintosh)
 	send_to_char(txt,ch);
@@ -2271,7 +2451,7 @@ void act_new( const char *format, CHAR_DATA *ch, const void *arg1,
         if ( to->desc == NULL || to->position < min_pos )
             continue;
 
-        if ( type == TO_CHAR && to != ch )
+        if ( (type == TO_CHAR) && to != ch )
             continue;
         if ( type == TO_VICT && ( to != vch || to == ch ) )
             continue;

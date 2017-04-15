@@ -1,4 +1,5 @@
-src/merc
+src/rom
 *.exe
 *.o
 *.log
+area/shutdown.txt

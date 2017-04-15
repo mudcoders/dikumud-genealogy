@@ -1,3 +1,31 @@
+
+/***************************************************************************
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,	   *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
+ *									   *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael	   *
+ *  Chastain, Michael Quan, and Mitchell Tse.				   *
+ *									   *
+ *  In order to use any part of this Merc Diku Mud, you must comply with   *
+ *  both the original Diku license in 'license.doc' as well the Merc	   *
+ *  license in 'license.txt'.  In particular, you may not remove either of *
+ *  these copyright notices.						   *
+ *									   *
+ *  Much time and thought has gone into this software and you are	   *
+ *  benefitting.  We hope that you share your changes too.  What goes	   *
+ *  around, comes around.						   *
+ ***************************************************************************/
+ 
+/***************************************************************************
+*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM has been brought to you by the ROM consortium		   *
+*	    Russ Taylor (rtaylor@pacinfo.com)				   *
+*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
+*	    Brian Moore (rom@rom.efn.org)				   *
+*	By using this code, you have agreed to follow the terms of the	   *
+*	ROM license, in the file Rom24/doc/rom.license			   *
+***************************************************************************/
+
 /* this is a listing of all the commands and command related data */
 
 /* for command types */
@@ -13,6 +41,8 @@
 #define IM	LEVEL_IMMORTAL 	/* angel */
 #define HE	LEVEL_HERO	/* hero */
 
+#define COM_INGORE	1
+
 
 /*
  * Structure for a command in the command lookup table.
@@ -24,7 +54,7 @@ struct	cmd_type
     sh_int		position;
     sh_int		level;
     sh_int		log;
-    bool              show;
+    sh_int              show;
 };
 
 /* the command table itself */
@@ -35,6 +65,10 @@ extern	const	struct	cmd_type	cmd_table	[];
  * Defined in act_*.c (mostly).
  */
 DECLARE_DO_FUN(	do_advance	);
+DECLARE_DO_FUN( do_affects	);
+DECLARE_DO_FUN( do_afk		);
+DECLARE_DO_FUN( do_alia		);
+DECLARE_DO_FUN( do_alias	);
 DECLARE_DO_FUN(	do_allow	);
 DECLARE_DO_FUN( do_answer	);
 DECLARE_DO_FUN(	do_areas	);
@@ -85,10 +119,13 @@ DECLARE_DO_FUN(	do_east		);
 DECLARE_DO_FUN(	do_eat		);
 DECLARE_DO_FUN(	do_echo		);
 DECLARE_DO_FUN(	do_emote	);
+DECLARE_DO_FUN( do_enter	);
+DECLARE_DO_FUN( do_envenom	);
 DECLARE_DO_FUN(	do_equipment	);
 DECLARE_DO_FUN(	do_examine	);
 DECLARE_DO_FUN(	do_exits	);
 DECLARE_DO_FUN(	do_fill		);
+DECLARE_DO_FUN( do_flag		);
 DECLARE_DO_FUN(	do_flee		);
 DECLARE_DO_FUN(	do_follow	);
 DECLARE_DO_FUN(	do_force	);
@@ -98,15 +135,19 @@ DECLARE_DO_FUN(	do_get		);
 DECLARE_DO_FUN(	do_give		);
 DECLARE_DO_FUN( do_gossip	);
 DECLARE_DO_FUN(	do_goto		);
+DECLARE_DO_FUN( do_grats	);
 DECLARE_DO_FUN(	do_group	);
 DECLARE_DO_FUN( do_groups	);
 DECLARE_DO_FUN(	do_gtell	);
+DECLARE_DO_FUN( do_guild    	);
 DECLARE_DO_FUN( do_heal		);
 DECLARE_DO_FUN(	do_help		);
 DECLARE_DO_FUN(	do_hide		);
 DECLARE_DO_FUN(	do_holylight	);
 DECLARE_DO_FUN(	do_idea		);
 DECLARE_DO_FUN(	do_immtalk	);
+DECLARE_DO_FUN( do_incognito	);
+DECLARE_DO_FUN( do_clantalk	);
 DECLARE_DO_FUN( do_imotd	);
 DECLARE_DO_FUN(	do_inventory	);
 DECLARE_DO_FUN(	do_invis	);
@@ -145,14 +186,23 @@ DECLARE_DO_FUN(	do_order	);
 DECLARE_DO_FUN(	do_oset		);
 DECLARE_DO_FUN(	do_ostat	);
 DECLARE_DO_FUN( do_outfit	);
+DECLARE_DO_FUN( do_owhere	);
 DECLARE_DO_FUN(	do_pardon	);
 DECLARE_DO_FUN(	do_password	);
 DECLARE_DO_FUN(	do_peace	);
 DECLARE_DO_FUN( do_pecho	);
+DECLARE_DO_FUN( do_penalty	);
+DECLARE_DO_FUN( do_permban	);
 DECLARE_DO_FUN(	do_pick		);
+DECLARE_DO_FUN( do_play		);
+DECLARE_DO_FUN( do_pmote	);
 DECLARE_DO_FUN(	do_pose		);
+DECLARE_DO_FUN( do_pour		);
 DECLARE_DO_FUN(	do_practice	);
+DECLARE_DO_FUN( do_prefi	);
+DECLARE_DO_FUN( do_prefix	);
 DECLARE_DO_FUN( do_prompt	);
+DECLARE_DO_FUN( do_protect	);
 DECLARE_DO_FUN(	do_purge	);
 DECLARE_DO_FUN(	do_put		);
 DECLARE_DO_FUN(	do_quaff	);
@@ -160,6 +210,7 @@ DECLARE_DO_FUN( do_question	);
 DECLARE_DO_FUN(	do_qui		);
 DECLARE_DO_FUN( do_quiet	);
 DECLARE_DO_FUN(	do_quit		);
+DECLARE_DO_FUN( do_quote	);
 DECLARE_DO_FUN( do_read		);
 DECLARE_DO_FUN(	do_reboo	);
 DECLARE_DO_FUN(	do_reboot	);
@@ -168,6 +219,7 @@ DECLARE_DO_FUN(	do_recho	);
 DECLARE_DO_FUN(	do_recite	);
 DECLARE_DO_FUN(	do_remove	);
 DECLARE_DO_FUN(	do_rent		);
+DECLARE_DO_FUN( do_replay	);
 DECLARE_DO_FUN(	do_reply	);
 DECLARE_DO_FUN(	do_report	);
 DECLARE_DO_FUN(	do_rescue	);
@@ -185,6 +237,7 @@ DECLARE_DO_FUN( do_scroll	);
 DECLARE_DO_FUN(	do_sell		);
 DECLARE_DO_FUN( do_set		);
 DECLARE_DO_FUN(	do_shout	);
+DECLARE_DO_FUN( do_show		);
 DECLARE_DO_FUN(	do_shutdow	);
 DECLARE_DO_FUN(	do_shutdown	);
 DECLARE_DO_FUN( do_sit		);
@@ -193,6 +246,7 @@ DECLARE_DO_FUN(	do_sla		);
 DECLARE_DO_FUN(	do_slay		);
 DECLARE_DO_FUN(	do_sleep	);
 DECLARE_DO_FUN(	do_slookup	);
+DECLARE_DO_FUN( do_smote	);
 DECLARE_DO_FUN(	do_sneak	);
 DECLARE_DO_FUN(	do_snoop	);
 DECLARE_DO_FUN( do_socials	);
@@ -215,10 +269,13 @@ DECLARE_DO_FUN(	do_transfer	);
 DECLARE_DO_FUN( do_trip		);
 DECLARE_DO_FUN(	do_trust	);
 DECLARE_DO_FUN(	do_typo		);
+DECLARE_DO_FUN( do_unalias	);
 DECLARE_DO_FUN(	do_unlock	);
+DECLARE_DO_FUN( do_unread	);
 DECLARE_DO_FUN(	do_up		);
 DECLARE_DO_FUN(	do_value	);
 DECLARE_DO_FUN(	do_visible	);
+DECLARE_DO_FUN( do_violate	);
 DECLARE_DO_FUN( do_vnum		);
 DECLARE_DO_FUN(	do_wake		);
 DECLARE_DO_FUN(	do_wear		);
@@ -231,6 +288,8 @@ DECLARE_DO_FUN(	do_wimpy	);
 DECLARE_DO_FUN(	do_wizhelp	);
 DECLARE_DO_FUN(	do_wizlock	);
 DECLARE_DO_FUN( do_wizlist	);
+DECLARE_DO_FUN( do_wiznet	);
 DECLARE_DO_FUN( do_worth	);
 DECLARE_DO_FUN(	do_yell		);
 DECLARE_DO_FUN(	do_zap		);
+DECLARE_DO_FUN( do_zecho	);

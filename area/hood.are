@@ -1,63 +1,81 @@
-#AREA	{ 5 15} Raff    Dangerous Neighborhood~
-
-
+#AREA
+hood.are~
+Gangland~
+{ 5 15} Raff    Dangerous Neighborhood~
+2100 2199
 
 #MOBILES
 #2101
-ogre gang member~
-a gang member~
-A member of the Ogres wanders about here.
+troll gang member~
+a troll gang member~
+A member of the Trolls wanders about here.
 ~
 He's lived a life of violence ever since he was little.
 ~
-84 0 -100 S
-5 15 5 5d5+50 1d5+5
-200 600
-8 8 1
+human~
+ACEG 0 -100 2100
+5 0 2d6+60 1d1+99 1d6+1 punch
+5 5 5 9
+DFNU 0 0 0
+stand stand male 10
+0 0 medium 0
 #2102
-troll gang member~
-a gang member~
-A member of the Trolls wanders about here.
+ogre gang member~
+an ogre gang member~
+A member of the Ogres wanders about here.
 ~
-He wants to rid the world of every last Ogre gang member.
+He wants to rid the world of every last Troll gang member.
 ~
-84 0 +100 S
-5 15 5 5d5+50 1d7+5
-210 700
-8 8 1
+human~
+ACEG 0 100 2101
+5 0 2d6+60 1d1+99 1d6+1 punch
+5 5 5 9
+FJNR 0 0 0
+stand stand male 10
+0 0 medium 0
 #2103
-gang leader~
-the gang leader~
+gang leader troll~
+the Troll gang leader~
 The gang leader is not pleased you found his hideout!
 ~
-He's risen to be leader through brute force and cunning leadership.
+He's risen to be leader through brute force and cunning leadership, you'd
+guess mostly brute force from the size of his muscles.
 ~
-98 0 0 S
-13 8 2 13d13+130 1d10+12
-2000 10000
-8 8 1
+human~
+ABFGT 0 0 2100
+13 0 2d20+170 1d1+99 2d5+5 punch
+-1 -1 -1 8
+CDEKU 0 E 0
+stand stand male 100
+0 0 medium 0
 #2104
-bruiser~
+bruiser troll~
 a bruiser~
 A big, mean bruiser is looking for limbs to break.
 ~
-He's 6'6" 245 pounds and enough muscle to bash your head in.
+He's 6'6" 245 pounds and enough muscle to bash your head in. How like a Troll.
 ~
-228 8 -333 S
-10 9 -1 10d10+100 1d6+10
-1500 4500
-8 8 1
+human~
+ACFGHT D -333 2100
+11 0 4d8+134 1d1+99 1d10+3 punch
+1 1 1 8
+CDKU 0 C 0
+stand stand male 75
+0 0 medium 0
 #2105
-doll~
+gang doll~
 a doll~
 A gang doll looks naughty and nice.
 ~
 She's a beauty (ok in RELATIVE terms) but you better not touch!
 ~
-212 0 0 S
-7 8 3 7d7+70 1d6+4
-1000 1500
-8 8 2
+human~
+ACGHS 0 0 0
+7 0 2d6+85 1d1+99 1d8+1 slap
+4 4 4 9
+FHNU 0 0 0
+stand stand female 50
+0 0 medium 0
 #2106
 patrolman patrol man~
 a patrolman~
@@ -65,21 +83,27 @@ A patrolman is trying to keep the peace.
 ~
 He'd rather be at the local pub then out here with these nasty kids.
 ~
-64 0 +700 S
-8 13 4 8d8+80 1d6+8
-7000 2000
-8 8 1
+human~
+AGT 0 700 0
+8 0 2d7+115 1d1+99 1d7+2 punch
+3 3 3 9
+CKLU 0 0 0
+stand stand male 350
+0 0 medium 0
 #2107
-vandal~
+vandal ogre~
 a vandal~
 A vandal is spray painting pro-gang slogans on the wall here.
 ~
 He has a wary eye and a fine hand for art.
 ~
-128 32768 -400 S
-10 10 1 10d10+100 1d6+6
-500 3800
-8 8 1
+human~
+AGHS P -400 2101
+10 0 2d7+121 1d1+99 2d4+2 punch
+1 1 1 8
+FHJNU 0 0 0
+stand stand male 25
+0 0 medium 0
 #2108
 dog pit bull pitbull~
 a pitbull~
@@ -88,79 +112,123 @@ A vicious pitbull is foaming at the mouth in rabid anticipation.
 You get a nice close look at him while he's tearing at your throat.
 His fangs are blood-stained from hearty meals of ... steak?!
 ~
-98 65536|8 -100 S
-5 10 2 5d5+50 1d6+3
-10 700
-8 8 1
+dog~
+ABFG DQ -100 0
+5 2 4d6+60 2d9+100 1d8+1 bite
+5 5 5 9
+CEGQR 0 0 0
+stand stand male 0
+0 0 small 0
+#2109
+punk troll~
+a punk~
+A punk is here, carving his initials into a wall.
+~
+He's a sterling example of rehabilitation at work.  Not nice.
+~
+human~
+AFHS P -400 2100
+10 0 2d7+121 1d1+99 2d4+2 punch
+1 1 1 8
+CDFJU 0 0 0
+stand stand male 25
+0 0 medium 0
+#2110
+gang leader ogre~
+the Ogre gang leader~
+The Ogre gang leader snaps out his stiletto. "Care to dance?"
+~
+He's smaller, but undoubtably smarter, than the Troll's leader. 
+~
+human~
+ABFGS 0 0 2101
+13 0 2d10+160 1d1+99 2d5+3 punch
+-1 -1 -1 8
+EFHJKNU 0 G 0
+stand stand male 100
+0 0 medium 0
+#2111
+thug~
+a thug~
+An ugly, scarred thug is here, looking for dogs to kick.
+~
+The thug isn't quite as big as the Troll's bruisers, but you can tell he loves
+breaking heads for the Ogres.
+~
+human~
+ACFGHT D -333 2101
+11 0 2d8+134 1d1+99 1d10+2 punch
+1 1 1 8
+JKNU 0 C 0
+stand stand male 75
+0 0 medium 0
 #0
-
-
 
 #OBJECTS
 #2101
-ogre jacket~
-an Ogre gang jacket~
-An Ogre gang jacket has been carelessly tossed here.~
-~
-9 0 9
-5 0 0 0
-2 100 10
-#2102
 troll jacket~
 a Troll gang jacket~
 A Troll gang jacket has been carelessly tossed here.~
-~
-9 0 9
-5 0 0 0
-2 100 10
+leather~
+armor 0 AD
+3 5 4 0 0
+5 20 970 A
+#2102
+ogre jacket~
+an Ogre gang jacket~
+An Ogre gang jacket has been carelessly tossed here.~
+leather~
+armor 0 AD
+5 4 3 0 0
+5 20 970 A
 #2103
 chain~
 a hefty length of chain~
 A hefty length of chain lies in a heap here on the floor.~
-~
-5 1 8193
-0 2 7 4
-10 900 30
+iron~
+weapon A AN
+whip 2 6 whip 0
+12 100 960 A
 A
-17 -5
+17 -2
 A
 18 1
 #2104
 metal cover shield~
 a metal shield~
 A garbage can lid has been dropped on the floor.~
-~
-9 0 513
-3 0 0 0
-3 125 1
+steel~
+armor 0 AJ
+3 3 3 1 0
+3 30 500 A
 #2105
 spray paint can~
 a spray paint can~
 A can of spray paint has been discarded here.~
-~
-3 2 16385
-11 2 2 10
-1 1000 20
+aluminum~
+wand B AO
+11 2 2 'colour spray' 0
+12 10 2200 G
 #2106
 stiletto~
 a stiletto~
 A killer stiletto has been forgotten here.~
-~
-5 0 8193
-0 7 2 11
-2 600 165
+steel~
+weapon 0 AN
+dagger 5 2 pierce 0
+9 20 1090 G
 A
 18 4
 A
-17 20
+17 2
 #2107
 spiked heel boots~
 spiked heeled boots~
 A pair of black leather boots with 6 inch spikes have been left here.~
-~
-9 0 65
-3 0 0 0
-4 2000 150
+leather~
+armor 0 AG
+3 3 3 0 0
+5 40 260 G
 A
 2 -1
 A
@@ -169,57 +237,127 @@ A
 mirror~
 a mirror~
 A small mirror has been left here.~
-~
-3 65 16385
-20 10 10 4
-1 1000 1
+glass~
+wand AG AO
+20 10 10 'blindness' 0
+8 10 1910 P
 #2109
 gloves~
 comfortable leather gloves~
 A pair of soft lined leather gloves lie here.~
-~
-9 0 129
-2 0 0 0
-2 500 50
+leather~
+armor 0 AH
+4 3 4 0 0
+7 20 1010 G
 A
 1 1
 #2110
 patrol club~
 a patrol club~
 A patrolman's club has carelessly been forgotten here.~
-~
-5 0 8193
-0 1 12 7
-1 200 30
+wood~
+weapon 0 AN
+mace 1 10 pound 0
+9 10 980 G
 A
 18 3
 A
-14 10
+14 5
 #2111
 signet ring~
 a troll signet ring~
 A signet ring bearing the crest of a troll lies in the dust here.~
-~
-9 0 3
-4 0 0 0
-1 10000 100
+bronze~
+jewelry 0 AB
+0 0 0 0 0
+10 10 1090 P
+A
+17 -2
 A
 1 1
 #2112
 knuckles brass~
 brass knuckles~
 A set of brass knuckles left from a fight are here on the ground.~
+brass~
+armor 0 AH
+1 1 1 0 0
+5 10 300 A
+A
+18 1
+#2113
+pipe lead length~
+a lead pipe~
+A length of lead pipe sits here, just right for bashing heads.~
+lead~
+weapon 0 AN
+mace 2 6 pound 0
+11 60 0 A
+A
+18 -1
+A
+19 1
+#2114
+troll jacket studded~
+a studded Troll gang jacket~
+A Troll gang jacket with sewn-in metal studs waits for an owner.~
+leather~
+armor 0 AD
+4 6 5 0 0
+10 30 1470 G
+#2115
+ogre jacket studded~
+a studded Ogre gang jacket~
+An Ogre gang jacket with sewn-in metal studs waits for an owner.~
+leather~
+armor 0 AD
+6 5 4 0 0
+10 30 1470 P
+#2116
+whistle steel police~
+a police whistle~
+You spot a steel whistle on a fine silver chain here.~
+steel~
+clothing 0 AC
+0 0 0 0 0
+0 2 100 G
+#2117
+pants black leather~
+a pair of black leather pants~
+You see some tight-fitting leather pants sitting on the ground.~
+leather~
+armor 0 AF
+3 4 4 0 0
+5 0 420 G
+E
+pants black leather~
+They're worn, but they look suprisingly tough.
 ~
-9 2 129
--15 0 0 0
-1 2000 100
+#2118
+switchblade knife~
+a switchblade~
+A strange looking knife is here.~
+steel~
+weapon 0 AN
+dagger 1 12 stab 0
+9 5 760 G
 A
-13 -15
+18 2
+#2119
+bottle broken~
+a broken bottle~
+Yowch! You cut your foot on a broken bottle.~
+glass~
+weapon 0 AN
+dagger 2 7 slash 0
+11 10 0 W
 A
-18 5
+18 -2
+E
+bottle broken~
+It appears to be a broken wine bottle, but what do you know about brewing?
+~
 #0
-
-
 
 #ROOMS
 #2101
@@ -230,17 +368,18 @@ it says:    This section has been designed for levels 5 through 10
             If you are above level 15 please don't expect much fun.
             If you are below level 5 enter at your own risk.
 Another section of graffiti says "Raff Rules!"
-There is a boulevard to the east and Wall Road East is to the west.
+There is a boulevard to the east and Emerald Avenue is visible to the west.
 ~
-21 5 1
-D3
-~
-~
-0 -1 2172
+0 AC 1
 D1
 ~
 ~
 0 -1 2102
+D3
+You can see Emerald Avenue, a much nicer place to be.
+~
+~
+0 -1 3119
 S
 #2102
 Beginning of White Dragon Boulevard~
@@ -251,7 +390,7 @@ streets.  All the shops and homes have been boarded up and abandoned.
 An alleyway is to the west and the street continues east.  An over-
 grown lot is to the south.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -272,7 +411,7 @@ lie everywhere and broken sticks and abandoned knifes are strewn here
 and there.  An over-grown lot is to the south.  White Dragon Boulevard leads
 east and west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -292,7 +431,7 @@ Only gang members dare wander the streets here.
 What used to be the armory lies to the south.  White Dragon Boulevard
 leads east and west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -312,7 +451,7 @@ Black Dragon Avenue used to run south from here but the way has been
 blocked by the toppling of a building into the street.  White Dragon
 boulevard continues east and west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -328,7 +467,7 @@ Ice Dragon Way leads south from here.  It used to run the whole length
 of the neighborhood and way lined with beautiful crystal sculptures.
 White Dragon boulevard leads east and west from here.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -348,7 +487,7 @@ A once majestic inn with a white marble facade lies to the south.
 Unfortunately, it has fallen into disrepair and decay.  You can continue
 east or west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -363,7 +502,7 @@ Corner of Bronze and White Dragon~
 This is the north-east corner of the neighborhood. White Dragon
 boulevard heads west and Bronze Dragon street heads south.
 ~
-21 0 1
+0 0 1
 D2
 ~
 ~
@@ -379,7 +518,7 @@ A huge building was going to be built here, but they gave the
 project up when violence took over the town.  Now it is just a
 weed-strewn plot of land.  The lot continues east and there is a road north.
 ~
-21 0 2
+0 0 2
 D0
 ~
 ~
@@ -396,7 +535,7 @@ of town by the gang.  Now it is just a dusty square of land. The
 park was started to the south.  The lot continues west and there
 is a street to the north.
 ~
-21 0 2
+0 0 2
 D0
 ~
 ~
@@ -417,7 +556,7 @@ all been stolen or broken beyond repair. The back wall of the
 building has been bashed down, allowing you to go south.  White
 Dragon Boulevard is north.
 ~
-21 8 1
+0 D 1
 D0
 ~
 ~
@@ -432,7 +571,7 @@ A Bend in the Way~
 Ice Dragon Way bends east and south from here.  You notice a lot of
 blood dried into the dirt here.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -448,7 +587,7 @@ Ice Dragon Way bends to the north and west here.  There are footprints
 here.  They seem to indicate a large struggle took place here
 recently.  What used to be the town Magic shop is to the east.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -469,7 +608,7 @@ died and they took all his stuff and used it on their fellowmen.
 The front door leads west back out to the street.  There is a back
 door leading to another street to the east.
 ~
-21 8 1
+0 D 1
 D1
 ~
 ~
@@ -484,7 +623,7 @@ Bronze Dragon Street at wizard's back door~
 Bronze Dragon street goes north and south.  The back door to what
 remains of the magic shop is west.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -500,13 +639,13 @@ D3
 S
 #2116
 Dracolich Plaza~
-They began construction of a pleasant plaza here.  You wouldn't have
-known it though if i hadn't told you.  It has been renamed in honor
+They began construction of a pleasant plaza here, though you wouldn't
+have known it if I hadn't told you.  It has been renamed in honor
 of the Dragon gang's idol, the Dracolich.  It has become sort of a
 training ground.  There is a short cut to the east and an overgrown
 lot of land to the north.
 ~
-21 0 2
+0 0 2
 D0
 ~
 ~
@@ -521,7 +660,7 @@ Shortcut~
 This is a shortcut between Dracolich Plaza and the center of town.
 Dracolich Plaza is to the west and the shortcut continues south.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -541,7 +680,7 @@ Several smashed crystal statues line the Way here.  You begin to wonder
 who smashed them, and with what.  The Way bends out of sight to the north
 and continues south.  To the east is a courtyard.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -562,7 +701,7 @@ someone forgot to water the plants and they all died.  Then again,
 you wonder how many people have died here too.  The courtyard extends
 to the south and there is a road to the west.
 ~
-21 8 1
+0 D 1
 D2
 ~
 ~
@@ -574,10 +713,10 @@ D3
 S
 #2120
 Bronze Dragon Street~
-There used to be a gate out to the east here which led to distant lands.
+There used to be a gate out to the east here which led to the rest of Midgaard.
 The gate has rusted permanently shut.  The street goes north and south.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -591,7 +730,7 @@ S
 Shortcut~
 The shortcut extends north.  There is a street to the east.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -607,7 +746,7 @@ The Way continues north and intersects with Yellow Dragon Avenue
 to the south.  For some reason, you somehow realize that there is a
 shortcut to the west that leads to Dracolich Plaza.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -628,7 +767,7 @@ stairs used to extend up to a suite of rooms but the set is missing
 stairs 3-15.  The courtyard extends north and there is a street to
 the south.
 ~
-21 8 1
+0 D 1
 D0
 ~
 ~
@@ -645,7 +784,7 @@ disrepair like everything else.  It is now the hideout of the
 Dragon gang.  The gang leader runs his reign of terror from here.
 There is a wooden door barely on the hinges to the east.
 ~
-21 9 1
+0 AD 1
 D1
 ~
 wooden door east~
@@ -656,7 +795,7 @@ Bronze Dragon Street at Warehouse~
 The street runs north and south.  There is an old wooden door leading
 to a warehouse to the west.  The warehouse LOOKS abandoned. . .
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -675,7 +814,7 @@ Yellow Dragon Road~
 Yellow Dragon Road is the southern boundary of Troll Territory.  The
 road extends east.  You enter "no-man's land" to the south.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -689,7 +828,7 @@ S
 Yellow Dragon Road~
 The road runs east and west.  Ice Dragon Way leads north from here.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -708,7 +847,7 @@ Yellow Dragon Road~
 The roads continues east and west.  There is a courtyard to the north.
 You enter "no man's land" to the south.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -732,7 +871,7 @@ There is a barred window to the north.  There appears to be a light
 coming from the cracks around it.  The road extends east and west
 from here.  Or you can enter "no man's land" south from here.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -745,13 +884,18 @@ D3
 ~
 ~
 0 -1 2128
+E
+window~
+Looking through the window, you see a gang leader plotting the demise of
+the ogres.
+~
 S
 #2130
 Yellow Dragon Road~
 Bronze Dragon Street intersects here and runs north.  Yellow Dragon ends
 here but continues to the west.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -767,7 +911,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues south
 and east; or there is a street to the north.
 ~
-21 0 5
+0 0 5
 D0
 ~
 ~
@@ -787,7 +931,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues south
 east and west.
 ~
-21 0 5
+0 0 5
 D1
 ~
 ~
@@ -807,7 +951,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues south,
 east and west; or there is a street to the north.
 ~
-21 0 5
+0 0 5
 D0
 ~
 ~
@@ -831,7 +975,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues south,
 east, and west; or there is a street to the north.
 ~
-21 0 5
+0 0 5
 D0
 ~
 ~
@@ -855,7 +999,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues south
 and west.
 ~
-21 0 5
+0 0 5
 D2
 ~
 ~
@@ -871,7 +1015,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues north
 and east; or there is a street to the south.
 ~
-21 0 5
+0 0 5
 D0
 ~
 ~
@@ -891,7 +1035,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues north,
 east and west.
 ~
-21 0 5
+0 0 5
 D0
 ~
 ~
@@ -911,7 +1055,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues north,
 east, and west; or there is a street to the south.
 ~
-21 0 5
+0 0 5
 D0
 ~
 ~
@@ -935,7 +1079,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues north,
 east, and west.
 ~
-21 0 5
+0 0 5
 D0
 ~
 ~
@@ -955,7 +1099,7 @@ This is the section of town between the two gang's territories.  This
 is usually where the violence starts.  No Man's land continues south
 and west; or there is a street to the south.
 ~
-21 0 5
+0 0 5
 D0
 ~
 ~
@@ -974,7 +1118,7 @@ Bend in Hector Street~
 Hector street bends to the east and the south here.  "No Man's Land"
 entrance is to the north.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -994,7 +1138,7 @@ Hector street runs east and west.  The Bakery used to be to the south
 but the entrance is sealed off.  Probably just a bunch of stale pies in
 there anyways.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -1011,7 +1155,7 @@ There is an entrance to "No Man's Land" to the north.  On the
 southwest corner of this intersection, it looks like a building
 was recently burned down.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1035,7 +1179,7 @@ Once a bright spot in the town, it now looks like one of the
 hardest hit by the violence.  The building could collapse at any
 moment.  The street continues east and west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -1051,7 +1195,7 @@ There is a grand fountain to the east but the water doesn't
 look good to drink.  Ajax street heads south and Hector
 goes back west.  "No Man's Land" is to the north.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1071,7 +1215,7 @@ The street is full of garbage here.  An odd building lies to the west,
 but you don't seem to be able to find a way into it.  The street
 runs north and south here.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1087,7 +1231,7 @@ The town bards sang of the victory parades that used to pass along this
 route.  It was once a major way through the center of town.  The street
 goes south to a bend and north to an intersection.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1104,7 +1248,7 @@ It is now desecrated by graffiti and vandalism.  Perhaps its worst
 defilement is that it is the hangout of the Ogre gang.  There is a street to
 the east through a rusty metal door.
 ~
-21 9 1
+0 AD 1
 D1
 ~
 rusted door metal~
@@ -1116,7 +1260,7 @@ The temple to honor the minor gods is through a rusty metal door
 to the west.  The street continues north and south.  You hear the
 muffled sounds of screams coming from the chapel.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1137,7 +1281,7 @@ great warriors.  You think it's odd that it has not been defiled,
 but then you sense a aura protecting it.  Achilles runs east
 and south, while Hector heads out to the north.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1152,13 +1296,13 @@ D2
 0 -1 2156
 S
 #2151
-Hector street~
+Achilles Avenue~
 A large open space, possibly a cemetery, lies to the south.
 There is a large wrought-iron fence with spikes on top
 which prevents you from entering the area.  The street
 continues east and west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -1173,7 +1317,7 @@ A bend in the road~
 Achilles Avenue bends to the north and west here.  There
 is also a narrow alley to the south.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1195,7 +1339,7 @@ received!  Blood is splattered and dried all over the walls here.
 It looks like a great deal of carnage happened here.  The way
 out to the east leads out onto a street.
 ~
-21 8 0
+0 D 0
 D1
 ~
 ~
@@ -1206,7 +1350,7 @@ Ajax street at Weaponshop (or whats left of it)~
 The street goes north and south.  The stables used to be to the
 east, but I bet all the horses are dead or gone.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1228,7 +1372,7 @@ the area.  There seems to be some kind of memorial to the
 great Mongol warrior Khan being crudely constructed here.
 There is a street to the east and another to the south.
 ~
-21 0 2
+0 0 2
 D1
 ~
 ~
@@ -1243,7 +1387,7 @@ Achilles avenue at entrance to park~
 A ... park?! lies to the west.  The street runs south to an
 intersection and curves to the north.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1263,7 +1407,7 @@ The roads bends south and east here.  You barely notice
 a small alley leading north.  Some kind of tunnel entrance
 is to the west but it has been crushed under its own weight.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1284,7 +1428,7 @@ this intersection.  Most of the walls and ceiling have long since
 been demolished.  An inn/pub is to the south.  The street bends
 to the east or west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -1303,7 +1447,7 @@ Curve in the road~
 The street goes north or west from here.  A narrow street once
 headed southeast from here.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1323,11 +1467,16 @@ One patch of graffiti actually looks readable:
 In another spot it says "now entering Ogre territory..."
 A street lies to the west and a major road to the east.
 ~
-21 5 1
+0 AC 1
 D1
 ~
 ~
 0 -1 2161
+D3
+You see the end of Elm street. Looks much safer.
+~
+~
+0 -1 3144
 S
 #2161
 Alexander Road~
@@ -1337,7 +1486,7 @@ other citizens have been run out of town.  All the former
 homes are boarded up and uninhabitable.  The road continues
 east and west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -1352,7 +1501,7 @@ Alexander Street at park entrance~
 A park-looking area lies to the north and a passage between
 two buildings leads to another street to the south.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1371,7 +1520,7 @@ Achilles Avenue~
 The Avenue Runs north and south.  You sense you are deep within
 Ogre gang territory, and a chill goes up your spine.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1386,7 +1535,7 @@ Ajax Street~
 You can see a sinister black wrought-iron fence to the west.
 You wonder if it's keeping you out, or the ghouls in?
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1404,7 +1553,7 @@ into oblivion sometimes.  It looks as if the beer is still on tap!!!
 A hallway leads south and you spy a street through the doorway
 to the north.
 ~
-21 8 0
+0 D 0
 D0
 ~
 ~
@@ -1420,7 +1569,7 @@ This street forms the southern boundary of Ogre territory.  The
 street extends far to the east.  There is also a pathway between
 buildings which leads to another street to the north.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1435,7 +1584,7 @@ Intersection of Achilles and Solomon~
 Solomon street is to the east and west.  The other part of the
 T is Achilles Avenue, starting here and winding to the north.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1456,7 +1605,7 @@ cemetery here to the north.  The evil just seems too strong to
 to consider entering.  You feel you should stick with the "lesser"
 evils along the road to the east and west.
 ~
-21 0 1
+0 0 1
 D1
 ~
 ~
@@ -1472,7 +1621,7 @@ The two roads meet at a corner here.  Ajax runs north and
 Solomon heads west.  An inn/pub is through a back doorway
 to the east.
 ~
-21 0 1
+0 0 1
 D0
 ~
 ~
@@ -1493,7 +1642,7 @@ The stairs leading up to the guest rooms here do not seem
 advisable to climb.  A doorway empties out into Solomon
 street to the west.
 ~
-21 9 0
+0 AD 0
 D0
 ~
 ~
@@ -1503,193 +1652,240 @@ D3
 ~
 0 -1 2169
 S
-#2171
-Wall Road~
-The road extends south along the inside of the wall surrounding
-the city.  You spy a city gate to the north.
-~
-21 0 1
-D0
-~
-~
-0 -1 3041
-D2
-~
-~
-0 -1 2172
-S
-#2172
-Wall Road~
-Wall road extends north along the inside of the city wall.  A dark
-alley lies to the east.
-~
-21 0 1
-D0
-~
-~
-0 -1 2171
-D1
-~
-~
-0 -1 2101
-S
 #0
 
-
-
 #RESETS
-D 0 2124 1 1        /* closes the door out from the warehouse */
-D 0 2125 3 1        /* closes the door into the warehouse */
-D 0 2148 1 1        /* closes the door out of the chapel */
-D 0 2149 3 1        /* closes the door into the chapel */
-M 0 2103 2 2124          /* loads a gang leader in the warehouse */
-E 1 2111 5 1        /* equips Ogre gang leader with signet(finger) */
-M 0 2103 2 2148          /* loads a gang leader in chapel */
-E 1 2106 5 16       /* equips Troll leader with stiletto (wield) */
-E 1 2112 6 17       /* equips Troll leader with knuckles (hands)*/
-M 0 2108 12 2124    /* loads a pit bull in the warehouse */
-M 0 2108 12 2124    /* loads a pit bull in the warehouse */
-M 0 2108 12 2124    /* loads a pit bull in the warehouse */
-M 0 2108 12 2124    /* loads a pit bull in the warehouse */
-M 0 2108 12 2148    /* loads a pit bull in the chapel */
-M 0 2108 12 2148    /* loads a pit bull in the chapel */
-M 0 2108 12 2148    /* loads a pit bull in the chapel */
-M 0 2108 12 2148    /* loads a pit bull in the chapel */
-M 0 2104 10 2116    /* loads a bruiser */
-E 1 2104 10 11      /* equips bruiser with a cover (shield) */
-E 1 2103 10 16      /* equips bruiser with a chain (wield) */
-M 0 2104 10 2155    /* loads a bruiser */
-E 1 2104 10 11      /* equips bruiser with a cover (shield) */
-E 1 2109 2 9        /* equips bruiser with gloves (hands) */
-M 0 2104 10 2114    /* loads a bruiser */
-E 1 2103 10 16      /* equips bruiser with a chain (wield) */
-M 0 2104 10 2108    /* loads a bruiser */
-E 1 2109 2 9        /* equips bruiser with gloves (hands) */
-M 0 2104 10 2170    /* loads a bruiser */
-E 1 2111 5 1        /* equips bruiser with signet (finger) */
-E 1 2104 10 11      /* equips bruiser with cover (shield) */
-M 0 2105 10 2125    /* loads doll */
-E 1 2108 20 17      /* equips doll with mirror (held) */
-E 1 2107 10 8       /* equips doll with boots (feet) */
-M 0 2105 10 2149    /* loads doll */
-E 1 2107 10 8       /* equips doll with boots (feet) */
-E 1 2108 20 17      /* equips doll with mirror (held) */
-M 0 2105 10 2152    /* loads doll */
-E 1 2108 20 17      /* equips doll with mirror (held) */
-M 0 2105 10 2123    /* loads doll */
-E 1 2108 20 17      /* equips doll with mirror (held) */
-M 0 2106 15 2131    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2132    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2133    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2134    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2135    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2136    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2137    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2138    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2139    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2106 15 2140    /* loads patrolman in no-mans land */
-E 1 2110 15 16      /* equips patrolman with club */
-M 0 2107 4 2102          /* loads vandal */
-E 1 2105 8 17       /* equips vandal with spray can (held) */
-M 0 2107 4 2114          /* loads vandal */
-E 1 2105 8 17       /* equips vandal with spray can (held) */
-M 0 2107 4 2165          /* loads vandal */
-E 1 2105 8 17       /* equips vandal with spray can (held) */
-M 0 2107 4 2161          /* loads vandal */
-E 1 2105 8 17       /* equips vandal with spray can (held) */
-M 0 2101 25 2102    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2103    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2104    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2105    /* loads ogre gang member */
-M 0 2101 25 2106    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2107    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2108    /* loads ogre gang member */
-M 0 2101 25 2109    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2110    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2111    /* loads ogre gang member */
-M 0 2101 25 2112    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2113    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2114    /* loads ogre gang member */
-M 0 2101 25 2115    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2116    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2117    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2118    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2119    /* loads ogre gang member */
-M 0 2101 25 2120    /* loads ogre gang member */
-M 0 2101 25 2121    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2122    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2101 25 2128    /* loads ogre gang member */
-M 0 2101 25 2130    /* loads ogre gang member */
-E 1 2101 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2142    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2145    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2146    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2150    /* loads troll gang member */
-M 0 2102 25 2151    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2152    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2153    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2154    /* loads troll gang member */
-M 0 2102 25 2155    /* loads troll gang member */
-M 0 2102 25 2156    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2157    /* loads troll gang member */
-M 0 2102 25 2158    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2159    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2160    /* loads troll gang member */
-M 0 2102 25 2161    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2162    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2163    /* loads troll gang member */
-M 0 2102 25 2164    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2165    /* loads troll gang member */
-M 0 2102 25 2165    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2165    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2165    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2166    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2167    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
-M 0 2102 25 2169    /* loads troll gang member */
-E 1 2102 30 5       /* equips gang member with jacket (body) */
+D 0 2124   1    1	* Old Abandoned Warehouse east
+D 0 2125   3    1	* Bronze Dragon Street at Warehouse west
+D 0 2148   1    1	* A small ruined chapel east
+D 0 2149   3    1	* Ajax Avenue at chapel west
+M 0 2103   1 2124  1	* the Troll gang leader
+E 1 2119  -1   16	*   a broken bottle
+E 1 2111   5    1	*   a troll signet ring
+E 1 2114  -1    5	*   a studded Troll gang jacket
+M 0 2108  12 2124  6	* a pitbull
+M 0 2108  12 2124  6	* a pitbull
+M 0 2108  12 2124  6	* a pitbull
+M 0 2108  12 2124  6	* a pitbull
+M 0 2104   5 2116  1	* a bruiser
+E 1 2114  -1    5	*   a studded Troll gang jacket
+E 1 2104  10   11	*   a metal shield
+E 1 2103  10   16	*   a hefty length of chain
+M 0 2104   5 2114  1	* a bruiser
+E 1 2114  -1    5	*   a studded Troll gang jacket
+E 1 2111   5    1	*   a troll signet ring
+E 1 2103  10   16	*   a hefty length of chain
+M 0 2104   5 2108  1	* a bruiser
+E 1 2114  -1    5	*   a studded Troll gang jacket
+E 1 2109   5    9	*   comfortable leather gloves
+E 1 2113  10   16	*   a lead pipe
+M 0 2104   5 2135  1	* a bruiser
+E 1 2114  -1    5	*   a studded Troll gang jacket
+E 1 2104  10   11	*   a metal shield
+E 1 2111   5    1	*   a troll signet ring
+M 0 2104   5 2123  1	* a bruiser
+E 1 2114  -1    5	*   a studded Troll gang jacket
+E 1 2113  10   16	*   a lead pipe
+E 1 2117  10    7	*   a pair of black leather pants
+M 0 2109   3 2102  1	* a punk
+E 1 2105   8   17	*   a spray paint can
+E 1 2114  -1    5	*   a studded Troll gang jacket
+M 0 2109   3 2114  1	* a punk
+E 1 2114  -1    5	*   a studded Troll gang jacket
+E 1 2118  10   16	*   a switchblade
+M 0 2109   3 2128  1	* a punk
+E 1 2114  -1    5	*   a studded Troll gang jacket
+E 1 2105   8   17	*   a spray paint can
+E 1 2118  10   16	*   a switchblade
+M 0 2101  25 2102  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2103  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2104  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2105  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2106  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2107  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2108  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2109  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2110  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2111  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2112  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2113  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2114  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2115  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2116  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2117  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2118  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2119  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2120  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2121  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2122  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2128  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2130  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2131  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2101  25 2134  1	* a troll gang member
+E 1 2101  -1    5	*   a Troll gang jacket
+M 0 2110   1 2148  1	* the Ogre gang leader
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+E 1 2106   5   16	*   a stiletto
+E 1 2112   6    9	*   brass knuckles
+M 0 2108  12 2148  6	* a pitbull
+M 0 2108  12 2148  6	* a pitbull
+M 0 2108  12 2148  6	* a pitbull
+M 0 2108  12 2148  6	* a pitbull
+M 0 2111   5 2155  1	* a thug
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+E 1 2104  10   11	*   a metal shield
+E 1 2109   3    9	*   comfortable leather gloves
+M 0 2111   5 2170  1	* a thug
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+E 1 2104  10   11	*   a metal shield
+E 1 2117  10    7	*   a pair of black leather pants
+M 0 2111   5 2138  1	* a thug
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+E 1 2103  10   16	*   a hefty length of chain
+E 1 2109   3    9	*   comfortable leather gloves
+M 0 2111   5 2153  1	* a thug
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+E 1 2113  10   16	*   a lead pipe
+E 1 2117  10    7	*   a pair of black leather pants
+M 0 2111   5 2147  1	* a thug
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+E 1 2103  10   16	*   a hefty length of chain
+E 1 2112   6    9	*   brass knuckles
+M 0 2107   3 2165  1	* a vandal
+E 1 2105   8   17	*   a spray paint can
+E 1 2118  10   16	*   a switchblade
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+M 0 2107   3 2161  1	* a vandal
+E 1 2105   8   17	*   a spray paint can
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+M 0 2107   3 2143  1	* a vandal
+E 1 2118  10   16	*   a switchblade
+E 1 2115  -1    5	*   a studded Ogre gang jacket
+M 0 2102  25 2142  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2145  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2146  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2150  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2151  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2152  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2153  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2154  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2155  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2156  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2157  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2158  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2159  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2160  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2161  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2162  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2163  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2164  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2165  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2170  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2166  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2167  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2169  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2137  1	* an ogre gang member
+E 1 2102  -1    5	*   an Ogre gang jacket
+M 0 2102  25 2140  1	* an ogre gang member
+M 0 2105  10 2125  2	* a doll
+E 1 2108  20   17	*   a mirror
+E 1 2107  10    8	*   spiked heeled boots
+M 0 2105  10 2149  2	* a doll
+E 1 2107  10    8	*   spiked heeled boots
+E 1 2108  20   17	*   a mirror
+M 0 2105  10 2152  2	* a doll
+E 1 2108  20   17	*   a mirror
+M 0 2105  10 2123  2	* a doll
+E 1 2108  20   17	*   a mirror
+M 0 2105  10 2132  2	* a doll
+E 1 2107  10    8	*   spiked heeled boots
+M 0 2106  10 2131  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+E 1 2116  10    3	*   a police whistle
+M 0 2106  10 2132  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+M 0 2106  10 2133  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+E 1 2116  10    3	*   a police whistle
+M 0 2106  10 2134  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+M 0 2106  10 2135  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+M 0 2106  10 2136  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+E 1 2116  10    3	*   a police whistle
+M 0 2106  10 2137  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+M 0 2106  10 2138  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+E 1 2116  10    3	*   a police whistle
+M 0 2106  10 2139  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
+E 1 2116  10    3	*   a police whistle
+M 0 2106  10 2140  1	* a patrolman
+E 1 2110  15   16	*   a patrol club
 S
 
+#SHOPS
+0
 
+#SPECIALS
+M 2101 spec_troll_member   	* a troll gang member
+M 2102 spec_ogre_member    	* an ogre gang member
+M 2103 spec_troll_member   	* the Troll gang leader
+M 2104 spec_troll_member   	* a bruiser
+M 2106 spec_patrolman      	* a patrolman
+M 2107 spec_ogre_member    	* a vandal
+M 2109 spec_troll_member   	* a punk
+M 2110 spec_ogre_member    	* the Ogre gang leader
+M 2111 spec_ogre_member    	* a thug
+S
 
 #$

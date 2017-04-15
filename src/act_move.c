@@ -15,6 +15,16 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
+/***************************************************************************
+*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM has been brought to you by the ROM consortium		   *
+*	    Russ Taylor (rtaylor@pacinfo.com)				   *
+*	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
+*	    Brian Moore (rom@rom.efn.org)				   *
+*	By using this code, you have agreed to follow the terms of the	   *
+*	ROM license, in the file Rom24/doc/rom.license			   *
+***************************************************************************/
+
 #if defined(macintosh)
 #include <types.h>
 #include <time.h>
@@ -80,8 +90,9 @@ void move_char( CHAR_DATA *ch, int door, bool follow )
 	return;
     }
 
-    if ( IS_SET(pexit->exit_info, EX_CLOSED)
-    &&   !IS_AFFECTED(ch, AFF_PASS_DOOR) )
+    if (IS_SET(pexit->exit_info, EX_CLOSED)
+    &&  (!IS_AFFECTED(ch, AFF_PASS_DOOR) || IS_SET(pexit->exit_info,EX_NOPASS))
+    &&   !IS_TRUSTED(ch,ANGEL))
     {
 	act( "The $d is closed.", ch, NULL, pexit->keyword, TO_CHAR );
 	return;
@@ -95,7 +106,7 @@ void move_char( CHAR_DATA *ch, int door, bool follow )
 	return;
     }
 
-    if ( room_is_private( to_room ) )
+    if ( !is_room_owner(ch,to_room) && room_is_private( to_room ) )
     {
 	send_to_char( "That room is private right now.\n\r", ch );
 	return;
@@ -165,6 +176,14 @@ void move_char( CHAR_DATA *ch, int door, bool follow )
 
         move /= 2;  /* i.e. the average */
 
+
+	/* conditional effects */
+	if (IS_AFFECTED(ch,AFF_FLYING) || IS_AFFECTED(ch,AFF_HASTE))
+	    move /= 2;
+
+	if (IS_AFFECTED(ch,AFF_SLOW))
+	    move *= 2;
+
 	if ( ch->move < move )
 	{
 	    send_to_char( "You are too exhausted.\n\r", ch );
@@ -176,13 +195,13 @@ void move_char( CHAR_DATA *ch, int door, bool follow )
     }
 
     if ( !IS_AFFECTED(ch, AFF_SNEAK)
-    && ( IS_NPC(ch) || !IS_SET(ch->act, PLR_WIZINVIS) ) )
+    &&   ch->invis_level < LEVEL_HERO)
 	act( "$n leaves $T.", ch, NULL, dir_name[door], TO_ROOM );
 
     char_from_room( ch );
     char_to_room( ch, to_room );
     if ( !IS_AFFECTED(ch, AFF_SNEAK)
-    && ( IS_NPC(ch) || !IS_SET(ch->act, PLR_WIZINVIS) ) )
+    &&   ch->invis_level < LEVEL_HERO)
 	act( "$n has arrived.", ch, NULL, NULL, TO_ROOM );
 
     do_look( ch, "auto" );
@@ -198,7 +217,8 @@ void move_char( CHAR_DATA *ch, int door, bool follow )
 	&&   fch->position < POS_STANDING)
 	    do_stand(fch,"");
 
-	if ( fch->master == ch && fch->position == POS_STANDING )
+	if ( fch->master == ch && fch->position == POS_STANDING 
+	&&   can_see_room(fch,to_room))
 	{
 
 	    if (IS_SET(ch->in_room->room_flags,ROOM_LAW)
@@ -208,7 +228,7 @@ void move_char( CHAR_DATA *ch, int door, bool follow )
 		    ch,NULL,fch,TO_CHAR);
 		act("You aren't allowed in the city.",
 		    fch,NULL,NULL,TO_CHAR);
-		return;
+		continue;
 	    }
 
 	    act( "You follow $N.", fch, NULL, ch, TO_CHAR );
@@ -327,8 +347,35 @@ void do_open( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) != NULL )
     {
+ 	/* open portal */
+	if (obj->item_type == ITEM_PORTAL)
+	{
+	    if (!IS_SET(obj->value[1], EX_ISDOOR))
+	    {
+		send_to_char("You can't do that.\n\r",ch);
+		return;
+	    }
+
+	    if (!IS_SET(obj->value[1], EX_CLOSED))
+	    {
+		send_to_char("It's already open.\n\r",ch);
+		return;
+	    }
+
+	    if (IS_SET(obj->value[1], EX_LOCKED))
+	    {
+		send_to_char("It's locked.\n\r",ch);
+		return;
+	    }
+
+	    REMOVE_BIT(obj->value[1], EX_CLOSED);
+	    act("You open $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n opens $p.",ch,obj,NULL,TO_ROOM);
+	    return;
+ 	}
+
 	/* 'open object' */
-	if ( obj->item_type != ITEM_CONTAINER )
+	if ( obj->item_type != ITEM_CONTAINER)
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
 	if ( !IS_SET(obj->value[1], CONT_CLOSED) )
 	    { send_to_char( "It's already open.\n\r",      ch ); return; }
@@ -338,7 +385,7 @@ void do_open( CHAR_DATA *ch, char *argument )
 	    { send_to_char( "It's locked.\n\r",            ch ); return; }
 
 	REMOVE_BIT(obj->value[1], CONT_CLOSED);
-	send_to_char( "Ok.\n\r", ch );
+	act("You open $p.",ch,obj,NULL,TO_CHAR);
 	act( "$n opens $p.", ch, obj, NULL, TO_ROOM );
 	return;
     }
@@ -394,6 +441,29 @@ void do_close( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) != NULL )
     {
+	/* portal stuff */
+	if (obj->item_type == ITEM_PORTAL)
+	{
+
+	    if (!IS_SET(obj->value[1],EX_ISDOOR)
+	    ||   IS_SET(obj->value[1],EX_NOCLOSE))
+	    {
+		send_to_char("You can't do that.\n\r",ch);
+		return;
+	    }
+
+	    if (IS_SET(obj->value[1],EX_CLOSED))
+	    {
+		send_to_char("It's already closed.\n\r",ch);
+		return;
+	    }
+
+	    SET_BIT(obj->value[1],EX_CLOSED);
+	    act("You close $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n closes $p.",ch,obj,NULL,TO_ROOM);
+	    return;
+	}
+
 	/* 'close object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -403,7 +473,7 @@ void do_close( CHAR_DATA *ch, char *argument )
 	    { send_to_char( "You can't do that.\n\r",      ch ); return; }
 
 	SET_BIT(obj->value[1], CONT_CLOSED);
-	send_to_char( "Ok.\n\r", ch );
+	act("You close $p.",ch,obj,NULL,TO_CHAR);
 	act( "$n closes $p.", ch, obj, NULL, TO_ROOM );
 	return;
     }
@@ -472,6 +542,45 @@ void do_lock( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) != NULL )
     {
+	/* portal stuff */
+	if (obj->item_type == ITEM_PORTAL)
+	{
+	    if (!IS_SET(obj->value[1],EX_ISDOOR)
+	    ||  IS_SET(obj->value[1],EX_NOCLOSE))
+	    {
+		send_to_char("You can't do that.\n\r",ch);
+		return;
+	    }
+	    if (!IS_SET(obj->value[1],EX_CLOSED))
+	    {
+		send_to_char("It's not closed.\n\r",ch);
+	 	return;
+	    }
+
+	    if (obj->value[4] < 0 || IS_SET(obj->value[1],EX_NOLOCK))
+	    {
+		send_to_char("It can't be locked.\n\r",ch);
+		return;
+	    }
+
+	    if (!has_key(ch,obj->value[4]))
+	    {
+		send_to_char("You lack the key.\n\r",ch);
+		return;
+	    }
+
+	    if (IS_SET(obj->value[1],EX_LOCKED))
+	    {
+		send_to_char("It's already locked.\n\r",ch);
+		return;
+	    }
+
+	    SET_BIT(obj->value[1],EX_LOCKED);
+	    act("You lock $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n locks $p.",ch,obj,NULL,TO_ROOM);
+	    return;
+	}
+
 	/* 'lock object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -485,7 +594,7 @@ void do_lock( CHAR_DATA *ch, char *argument )
 	    { send_to_char( "It's already locked.\n\r",    ch ); return; }
 
 	SET_BIT(obj->value[1], CONT_LOCKED);
-	send_to_char( "*Click*\n\r", ch );
+	act("You lock $p.",ch,obj,NULL,TO_CHAR);
 	act( "$n locks $p.", ch, obj, NULL, TO_ROOM );
 	return;
     }
@@ -541,6 +650,45 @@ void do_unlock( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) != NULL )
     {
+ 	/* portal stuff */
+	if (obj->item_type == ITEM_PORTAL)
+	{
+	    if (IS_SET(obj->value[1],EX_ISDOOR))
+	    {
+		send_to_char("You can't do that.\n\r",ch);
+		return;
+	    }
+
+	    if (!IS_SET(obj->value[1],EX_CLOSED))
+	    {
+		send_to_char("It's not closed.\n\r",ch);
+		return;
+	    }
+
+	    if (obj->value[4] < 0)
+	    {
+		send_to_char("It can't be unlocked.\n\r",ch);
+		return;
+	    }
+
+	    if (!has_key(ch,obj->value[4]))
+	    {
+		send_to_char("You lack the key.\n\r",ch);
+		return;
+	    }
+
+	    if (!IS_SET(obj->value[1],EX_LOCKED))
+	    {
+		send_to_char("It's already unlocked.\n\r",ch);
+		return;
+	    }
+
+	    REMOVE_BIT(obj->value[1],EX_LOCKED);
+	    act("You unlock $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n unlocks $p.",ch,obj,NULL,TO_ROOM);
+	    return;
+	}
+
 	/* 'unlock object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -554,7 +702,7 @@ void do_unlock( CHAR_DATA *ch, char *argument )
 	    { send_to_char( "It's already unlocked.\n\r",  ch ); return; }
 
 	REMOVE_BIT(obj->value[1], CONT_LOCKED);
-	send_to_char( "*Click*\n\r", ch );
+	act("You unlock $p.",ch,obj,NULL,TO_CHAR);
 	act( "$n unlocks $p.", ch, obj, NULL, TO_ROOM );
 	return;
     }
@@ -622,7 +770,7 @@ void do_pick( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    if ( !IS_NPC(ch) && number_percent( ) > ch->pcdata->learned[gsn_pick_lock] )
+    if ( !IS_NPC(ch) && number_percent( ) > get_skill(ch,gsn_pick_lock))
     {
 	send_to_char( "You failed.\n\r", ch);
 	check_improve(ch,gsn_pick_lock,FALSE,2);
@@ -631,6 +779,44 @@ void do_pick( CHAR_DATA *ch, char *argument )
 
     if ( ( obj = get_obj_here( ch, arg ) ) != NULL )
     {
+	/* portal stuff */
+	if (obj->item_type == ITEM_PORTAL)
+	{
+	    if (!IS_SET(obj->value[1],EX_ISDOOR))
+	    {	
+		send_to_char("You can't do that.\n\r",ch);
+		return;
+	    }
+
+	    if (!IS_SET(obj->value[1],EX_CLOSED))
+	    {
+		send_to_char("It's not closed.\n\r",ch);
+		return;
+	    }
+
+	    if (obj->value[4] < 0)
+	    {
+		send_to_char("It can't be unlocked.\n\r",ch);
+		return;
+	    }
+
+	    if (IS_SET(obj->value[1],EX_PICKPROOF))
+	    {
+		send_to_char("You failed.\n\r",ch);
+		return;
+	    }
+
+	    REMOVE_BIT(obj->value[1],EX_LOCKED);
+	    act("You pick the lock on $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n picks the lock on $p.",ch,obj,NULL,TO_ROOM);
+	    check_improve(ch,gsn_pick_lock,TRUE,2);
+	    return;
+	}
+
+	    
+
+
+	
 	/* 'pick object' */
 	if ( obj->item_type != ITEM_CONTAINER )
 	    { send_to_char( "That's not a container.\n\r", ch ); return; }
@@ -644,9 +830,9 @@ void do_pick( CHAR_DATA *ch, char *argument )
 	    { send_to_char( "You failed.\n\r",             ch ); return; }
 
 	REMOVE_BIT(obj->value[1], CONT_LOCKED);
-	send_to_char( "*Click*\n\r", ch );
+        act("You pick the lock on $p.",ch,obj,NULL,TO_CHAR);
+        act("$n picks the lock on $p.",ch,obj,NULL,TO_ROOM);
 	check_improve(ch,gsn_pick_lock,TRUE,2);
-	act( "$n picks $p.", ch, obj, NULL, TO_ROOM );
 	return;
     }
 
@@ -689,20 +875,90 @@ void do_pick( CHAR_DATA *ch, char *argument )
 
 void do_stand( CHAR_DATA *ch, char *argument )
 {
+    OBJ_DATA *obj = NULL;
+
+    if (argument[0] != '\0')
+    {
+	if (ch->position == POS_FIGHTING)
+	{
+	    send_to_char("Maybe you should finish fighting first?\n\r",ch);
+	    return;
+	}
+	obj = get_obj_list(ch,argument,ch->in_room->contents);
+	if (obj == NULL)
+	{
+	    send_to_char("You don't see that here.\n\r",ch);
+	    return;
+	}
+	if (obj->item_type != ITEM_FURNITURE
+	||  (!IS_SET(obj->value[2],STAND_AT)
+	&&   !IS_SET(obj->value[2],STAND_ON)
+	&&   !IS_SET(obj->value[2],STAND_IN)))
+	{
+	    send_to_char("You can't seem to find a place to stand.\n\r",ch);
+	    return;
+	}
+	if (ch->on != obj && count_users(obj) >= obj->value[0])
+	{
+	    act_new("There's no room to stand on $p.",
+		ch,obj,NULL,TO_ROOM,POS_DEAD);
+	    return;
+	}
+    }
+    
     switch ( ch->position )
     {
     case POS_SLEEPING:
 	if ( IS_AFFECTED(ch, AFF_SLEEP) )
 	    { send_to_char( "You can't wake up!\n\r", ch ); return; }
-
-	send_to_char( "You wake and stand up.\n\r", ch );
-	act( "$n wakes and stands up.", ch, NULL, NULL, TO_ROOM );
+	
+	if (obj == NULL)
+	{
+	    send_to_char( "You wake and stand up.\n\r", ch );
+	    act( "$n wakes and stands up.", ch, NULL, NULL, TO_ROOM );
+	    ch->on = NULL;
+	}
+	else if (IS_SET(obj->value[2],STAND_AT))
+	{
+	   act_new("You wake and stand at $p.",ch,obj,NULL,TO_CHAR,POS_DEAD);
+	   act("$n wakes and stands at $p.",ch,obj,NULL,TO_ROOM);
+	}
+	else if (IS_SET(obj->value[2],STAND_ON))
+	{
+	    act_new("You wake and stand on $p.",ch,obj,NULL,TO_CHAR,POS_DEAD);
+	    act("$n wakes and stands on $p.",ch,obj,NULL,TO_ROOM);
+	}
+	else 
+	{
+	    act_new("You wake and stand in $p.",ch,obj,NULL,TO_CHAR,POS_DEAD);
+	    act("$n wakes and stands in $p.",ch,obj,NULL,TO_ROOM);
+	}
 	ch->position = POS_STANDING;
+	do_look(ch,"auto");
 	break;
 
     case POS_RESTING: case POS_SITTING:
-	send_to_char( "You stand up.\n\r", ch );
-	act( "$n stands up.", ch, NULL, NULL, TO_ROOM );
+	if (obj == NULL)
+	{
+	    send_to_char( "You stand up.\n\r", ch );
+	    act( "$n stands up.", ch, NULL, NULL, TO_ROOM );
+	    ch->on = NULL;
+	}
+	else if (IS_SET(obj->value[2],STAND_AT))
+	{
+	    act("You stand at $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n stands at $p.",ch,obj,NULL,TO_ROOM);
+	}
+	else if (IS_SET(obj->value[2],STAND_ON))
+	{
+	    act("You stand on $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n stands on $p.",ch,obj,NULL,TO_ROOM);
+	}
+	else
+	{
+	    act("You stand in $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n stands on $p.",ch,obj,NULL,TO_ROOM);
+	}
 	ch->position = POS_STANDING;
 	break;
 
@@ -722,11 +978,72 @@ void do_stand( CHAR_DATA *ch, char *argument )
 
 void do_rest( CHAR_DATA *ch, char *argument )
 {
+    OBJ_DATA *obj = NULL;
+
+    if (ch->position == POS_FIGHTING)
+    {
+	send_to_char("You are already fighting!\n\r",ch);
+	return;
+    }
+
+    /* okay, now that we know we can rest, find an object to rest on */
+    if (argument[0] != '\0')
+    {
+	obj = get_obj_list(ch,argument,ch->in_room->contents);
+	if (obj == NULL)
+	{
+	    send_to_char("You don't see that here.\n\r",ch);
+	    return;
+	}
+    }
+    else obj = ch->on;
+
+    if (obj != NULL)
+    {
+        if (!IS_SET(obj->item_type,ITEM_FURNITURE) 
+    	||  (!IS_SET(obj->value[2],REST_ON)
+    	&&   !IS_SET(obj->value[2],REST_IN)
+    	&&   !IS_SET(obj->value[2],REST_AT)))
+    	{
+	    send_to_char("You can't rest on that.\n\r",ch);
+	    return;
+    	}
+
+        if (obj != NULL && ch->on != obj && count_users(obj) >= obj->value[0])
+        {
+	    act_new("There's no more room on $p.",ch,obj,NULL,TO_CHAR,POS_DEAD);
+	    return;
+    	}
+	
+	ch->on = obj;
+    }
+
     switch ( ch->position )
     {
     case POS_SLEEPING:
-	send_to_char( "You wake up and start resting.\n\r", ch );
-	act ("$n wakes up and starts resting.",ch,NULL,NULL,TO_ROOM);
+	if (obj == NULL)
+	{
+	    send_to_char( "You wake up and start resting.\n\r", ch );
+	    act ("$n wakes up and starts resting.",ch,NULL,NULL,TO_ROOM);
+	}
+	else if (IS_SET(obj->value[2],REST_AT))
+	{
+	    act_new("You wake up and rest at $p.",
+		    ch,obj,NULL,TO_CHAR,POS_SLEEPING);
+	    act("$n wakes up and rests at $p.",ch,obj,NULL,TO_ROOM);
+	}
+        else if (IS_SET(obj->value[2],REST_ON))
+        {
+            act_new("You wake up and rest on $p.",
+                    ch,obj,NULL,TO_CHAR,POS_SLEEPING);
+            act("$n wakes up and rests on $p.",ch,obj,NULL,TO_ROOM);
+        }
+        else
+        {
+            act_new("You wake up and rest in $p.",
+                    ch,obj,NULL,TO_CHAR,POS_SLEEPING);
+            act("$n wakes up and rests in $p.",ch,obj,NULL,TO_ROOM);
+        }
 	ch->position = POS_RESTING;
 	break;
 
@@ -735,19 +1052,51 @@ void do_rest( CHAR_DATA *ch, char *argument )
 	break;
 
     case POS_STANDING:
-	send_to_char( "You rest.\n\r", ch );
-	act( "$n sits down and rests.", ch, NULL, NULL, TO_ROOM );
+	if (obj == NULL)
+	{
+	    send_to_char( "You rest.\n\r", ch );
+	    act( "$n sits down and rests.", ch, NULL, NULL, TO_ROOM );
+	}
+        else if (IS_SET(obj->value[2],REST_AT))
+        {
+	    act("You sit down at $p and rest.",ch,obj,NULL,TO_CHAR);
+	    act("$n sits down at $p and rests.",ch,obj,NULL,TO_ROOM);
+        }
+        else if (IS_SET(obj->value[2],REST_ON))
+        {
+	    act("You sit on $p and rest.",ch,obj,NULL,TO_CHAR);
+	    act("$n sits on $p and rests.",ch,obj,NULL,TO_ROOM);
+        }
+        else
+        {
+	    act("You rest in $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n rests in $p.",ch,obj,NULL,TO_ROOM);
+        }
 	ch->position = POS_RESTING;
 	break;
 
     case POS_SITTING:
-	send_to_char("You rest.\n\r",ch);
-	act("$n rests.",ch,NULL,NULL,TO_ROOM);
+	if (obj == NULL)
+	{
+	    send_to_char("You rest.\n\r",ch);
+	    act("$n rests.",ch,NULL,NULL,TO_ROOM);
+	}
+        else if (IS_SET(obj->value[2],REST_AT))
+        {
+	    act("You rest at $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n rests at $p.",ch,obj,NULL,TO_ROOM);
+        }
+        else if (IS_SET(obj->value[2],REST_ON))
+        {
+	    act("You rest on $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n rests on $p.",ch,obj,NULL,TO_ROOM);
+        }
+        else
+        {
+	    act("You rest in $p.",ch,obj,NULL,TO_CHAR);
+	    act("$n rests in $p.",ch,obj,NULL,TO_ROOM);
+	}
 	ch->position = POS_RESTING;
-	break;
-
-    case POS_FIGHTING:
-	send_to_char( "You are already fighting!\n\r", ch );
 	break;
     }
 
@@ -758,28 +1107,113 @@ void do_rest( CHAR_DATA *ch, char *argument )
 
 void do_sit (CHAR_DATA *ch, char *argument )
 {
+    OBJ_DATA *obj = NULL;
+
+    if (ch->position == POS_FIGHTING)
+    {
+	send_to_char("Maybe you should finish this fight first?\n\r",ch);
+	return;
+    }
+
+    /* okay, now that we know we can sit, find an object to sit on */
+    if (argument[0] != '\0')
+    {
+	obj = get_obj_list(ch,argument,ch->in_room->contents);
+	if (obj == NULL)
+	{
+	    send_to_char("You don't see that here.\n\r",ch);
+	    return;
+	}
+    }
+    else obj = ch->on;
+
+    if (obj != NULL)                                                              
+    {
+	if (!IS_SET(obj->item_type,ITEM_FURNITURE)
+	||  (!IS_SET(obj->value[2],SIT_ON)
+	&&   !IS_SET(obj->value[2],SIT_IN)
+	&&   !IS_SET(obj->value[2],SIT_AT)))
+	{
+	    send_to_char("You can't sit on that.\n\r",ch);
+	    return;
+	}
+
+	if (obj != NULL && ch->on != obj && count_users(obj) >= obj->value[0])
+	{
+	    act_new("There's no more room on $p.",ch,obj,NULL,TO_CHAR,POS_DEAD);
+	    return;
+	}
+
+	ch->on = obj;
+    }
     switch (ch->position)
     {
 	case POS_SLEEPING:
-	    send_to_char("You wake up.\n\r",ch);
-	    act("$n wakes and sits up.\n\r",ch,NULL,NULL,TO_ROOM);
+            if (obj == NULL)
+            {
+            	send_to_char( "You wake and sit up.\n\r", ch );
+            	act( "$n wakes and sits up.", ch, NULL, NULL, TO_ROOM );
+            }
+            else if (IS_SET(obj->value[2],SIT_AT))
+            {
+            	act_new("You wake and sit at $p.",ch,obj,NULL,TO_CHAR,POS_DEAD);
+            	act("$n wakes and sits at $p.",ch,obj,NULL,TO_ROOM);
+            }
+            else if (IS_SET(obj->value[2],SIT_ON))
+            {
+            	act_new("You wake and sit on $p.",ch,obj,NULL,TO_CHAR,POS_DEAD);
+            	act("$n wakes and sits at $p.",ch,obj,NULL,TO_ROOM);
+            }
+            else
+            {
+            	act_new("You wake and sit in $p.",ch,obj,NULL,TO_CHAR,POS_DEAD);
+            	act("$n wakes and sits in $p.",ch,obj,NULL,TO_ROOM);
+            }
+
 	    ch->position = POS_SITTING;
 	    break;
- 	case POS_RESTING:
-	    send_to_char("You stop resting.\n\r",ch);
+	case POS_RESTING:
+	    if (obj == NULL)
+		send_to_char("You stop resting.\n\r",ch);
+	    else if (IS_SET(obj->value[2],SIT_AT))
+	    {
+		act("You sit at $p.",ch,obj,NULL,TO_CHAR);
+		act("$n sits at $p.",ch,obj,NULL,TO_ROOM);
+	    }
+
+	    else if (IS_SET(obj->value[2],SIT_ON))
+	    {
+		act("You sit on $p.",ch,obj,NULL,TO_CHAR);
+		act("$n sits on $p.",ch,obj,NULL,TO_ROOM);
+	    }
 	    ch->position = POS_SITTING;
 	    break;
 	case POS_SITTING:
 	    send_to_char("You are already sitting down.\n\r",ch);
 	    break;
-	case POS_FIGHTING:
-	    send_to_char("Maybe you should finish this fight first?\n\r",ch);
-	    break;
 	case POS_STANDING:
-	    send_to_char("You sit down.\n\r",ch);
-	    act("$n sits down on the ground.\n\r",ch,NULL,NULL,TO_ROOM);
-	    ch->position = POS_SITTING;
-	    break;
+	    if (obj == NULL)
+    	    {
+		send_to_char("You sit down.\n\r",ch);
+    	        act("$n sits down on the ground.",ch,NULL,NULL,TO_ROOM);
+	    }
+	    else if (IS_SET(obj->value[2],SIT_AT))
+	    {
+		act("You sit down at $p.",ch,obj,NULL,TO_CHAR);
+		act("$n sits down at $p.",ch,obj,NULL,TO_ROOM);
+	    }
+	    else if (IS_SET(obj->value[2],SIT_ON))
+	    {
+		act("You sit on $p.",ch,obj,NULL,TO_CHAR);
+		act("$n sits on $p.",ch,obj,NULL,TO_ROOM);
+	    }
+	    else
+	    {
+		act("You sit down in $p.",ch,obj,NULL,TO_CHAR);
+		act("$n sits down in $p.",ch,obj,NULL,TO_ROOM);
+	    }
+    	    ch->position = POS_SITTING;
+    	    break;
     }
     return;
 }
@@ -787,6 +1221,8 @@ void do_sit (CHAR_DATA *ch, char *argument )
 
 void do_sleep( CHAR_DATA *ch, char *argument )
 {
+    OBJ_DATA *obj = NULL;
+
     switch ( ch->position )
     {
     case POS_SLEEPING:
@@ -796,9 +1232,58 @@ void do_sleep( CHAR_DATA *ch, char *argument )
     case POS_RESTING:
     case POS_SITTING:
     case POS_STANDING: 
-	send_to_char( "You go to sleep.\n\r", ch );
-	act( "$n goes to sleep.", ch, NULL, NULL, TO_ROOM );
-	ch->position = POS_SLEEPING;
+	if (argument[0] == '\0' && ch->on == NULL)
+	{
+	    send_to_char( "You go to sleep.\n\r", ch );
+	    act( "$n goes to sleep.", ch, NULL, NULL, TO_ROOM );
+	    ch->position = POS_SLEEPING;
+	}
+	else  /* find an object and sleep on it */
+	{
+	    if (argument[0] == '\0')
+		obj = ch->on;
+	    else
+	    	obj = get_obj_list( ch, argument,  ch->in_room->contents );
+
+	    if (obj == NULL)
+	    {
+		send_to_char("You don't see that here.\n\r",ch);
+		return;
+	    }
+	    if (obj->item_type != ITEM_FURNITURE
+	    ||  (!IS_SET(obj->value[2],SLEEP_ON) 
+	    &&   !IS_SET(obj->value[2],SLEEP_IN)
+	    &&	 !IS_SET(obj->value[2],SLEEP_AT)))
+	    {
+		send_to_char("You can't sleep on that!\n\r",ch);
+		return;
+	    }
+
+	    if (ch->on != obj && count_users(obj) >= obj->value[0])
+	    {
+		act_new("There is no room on $p for you.",
+		    ch,obj,NULL,TO_CHAR,POS_DEAD);
+		return;
+	    }
+
+	    ch->on = obj;
+	    if (IS_SET(obj->value[2],SLEEP_AT))
+	    {
+		act("You go to sleep at $p.",ch,obj,NULL,TO_CHAR);
+		act("$n goes to sleep at $p.",ch,obj,NULL,TO_ROOM);
+	    }
+	    else if (IS_SET(obj->value[2],SLEEP_ON))
+	    {
+	        act("You go to sleep on $p.",ch,obj,NULL,TO_CHAR);
+	        act("$n goes to sleep on $p.",ch,obj,NULL,TO_ROOM);
+	    }
+	    else
+	    {
+		act("You go to sleep in $p.",ch,obj,NULL,TO_CHAR);
+		act("$n goes to sleep in $p.",ch,obj,NULL,TO_ROOM);
+	    }
+	    ch->position = POS_SLEEPING;
+	}
 	break;
 
     case POS_FIGHTING:
@@ -832,9 +1317,8 @@ void do_wake( CHAR_DATA *ch, char *argument )
     if ( IS_AFFECTED(victim, AFF_SLEEP) )
 	{ act( "You can't wake $M!",   ch, NULL, victim, TO_CHAR );  return; }
 
-    victim->position = POS_STANDING;
-    act( "You wake $M.", ch, NULL, victim, TO_CHAR );
-    act( "$n wakes you.", ch, NULL, victim, TO_VICT );
+    act_new( "$n wakes you.", ch, NULL, victim, TO_VICT,POS_SLEEPING );
+    do_stand(victim,"");
     return;
 }
 
@@ -847,9 +1331,13 @@ void do_sneak( CHAR_DATA *ch, char *argument )
     send_to_char( "You attempt to move silently.\n\r", ch );
     affect_strip( ch, gsn_sneak );
 
-    if ( IS_NPC(ch) || number_percent( ) < ch->pcdata->learned[gsn_sneak] )
+    if (IS_AFFECTED(ch,AFF_SNEAK))
+	return;
+
+    if ( number_percent( ) < get_skill(ch,gsn_sneak))
     {
 	check_improve(ch,gsn_sneak,TRUE,3);
+	af.where     = TO_AFFECTS;
 	af.type      = gsn_sneak;
 	af.level     = ch->level; 
 	af.duration  = ch->level;
@@ -873,7 +1361,7 @@ void do_hide( CHAR_DATA *ch, char *argument )
     if ( IS_AFFECTED(ch, AFF_HIDE) )
 	REMOVE_BIT(ch->affected_by, AFF_HIDE);
 
-    if ( IS_NPC(ch) || number_percent( ) < ch->pcdata->learned[gsn_hide] )
+    if ( number_percent( ) < get_skill(ch,gsn_hide))
     {
 	SET_BIT(ch->affected_by, AFF_HIDE);
 	check_improve(ch,gsn_hide,TRUE,3);
@@ -927,7 +1415,7 @@ void do_recall( CHAR_DATA *ch, char *argument )
 	return;
 
     if ( IS_SET(ch->in_room->room_flags, ROOM_NO_RECALL)
-    ||   IS_AFFECTED(ch, AFF_CURSE) )
+    ||   IS_AFFECTED(ch, AFF_CURSE))
     {
 	send_to_char( "Mota has forsaken you.\n\r", ch );
 	return;
@@ -937,10 +1425,7 @@ void do_recall( CHAR_DATA *ch, char *argument )
     {
 	int lose,skill;
 
-	if (IS_NPC(ch))
-	    skill = 40 + ch->level;
-	else
-	    skill = ch->pcdata->learned[gsn_recall];
+	skill = get_skill(ch,gsn_recall);
 
 	if ( number_percent() < 80 * skill / 100 )
 	{

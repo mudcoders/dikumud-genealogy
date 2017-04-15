@@ -1,79 +1,99 @@
-#AREA	{10 20} Anon    Great Eastern Desert~
-
-
+#AREA
+eastern.are~
+Sands of Sorrow~
+{10 20} Anon    Sands of Sorrow~
+5000 5099
 
 #MOBILES
 #5000
-dervish raggity~
+oldstyle dervish raggity~
 The dervish~
 The raggity dervish walks on aimlessly.
 ~
 Dressed in loose fitting rags, this man looks like he could use
 some rest.
 ~
-196 32768 900 S
-5 15 5 5d5+50 2d4+0
-70 700
-8 8 1
+human~
+ACGH P 900 0
+5 0 2d6+60 2d9+100 1d6+1 none
+5 5 5 9
+EFNU 0 0 0
+stand stand male 3
+0 0 medium 0
 #5001
-dervish large~
+oldstyle dervish large~
 The dervish~
 The large dervish watches for signs of trouble.
 ~
 Dressed in loose fitting rags, this man looks like he could use
 LOTS of rest.
 ~
-96 32768 650 S
-8 11 1 8d8+80 2d6+1
-150 2000
-8 8 1
+human~
+AFG P 650 0
+8 0 2d7+96 4d9+100 1d7+2 none
+3 3 3 9
+EFNU 0 0 0
+stand stand male 7
+0 0 medium 0
 #5002
-snake coral~
+oldstyle snake coral~
 The coral snake~
 A brightly colored snake slithers along the sands.
 ~
 This relatively harmless snake has bright alternating bands of red, yellow
 and black.
 ~
-64 0 -10 S
-4 17 4 4d4+40 1d9+0
-0 500
-8 8 0
+snake~
+AG 0 -10 0
+4 0 2d7+46 2d9+100 1d5+1 none
+6 6 6 9
+EFNR 0 0 0
+stand stand none 0
+0 0 medium 0
 #5003
-scorpion small~
+oldstyle scorpion small~
 The small scorpion~
 A small, red scorpion scuttles away at your approach.
 ~
 The little tail is mighty dangerous for such a small creature.
 ~
-64 0 -50 S
-3 17 1 3d3+30 1d8+0
-0 500
-8 8 0
+human~
+AG 0 -50 0
+3 0 2d6+35 1d9+100 1d6+0 none
+7 7 7 10
+EFNU 0 0 0
+stand stand none 0
+0 0 medium 0
 #5004
-worm giant~
+oldstyle worm giant purple~
 The giant, purple sand worm~
 A giant, purple sand worm thrusts up out of the sand and attacks!
 ~
 He's big, mean, and purple. Watch out!
 ~
-2|32 0 -100 S
-18 -1 0 18d18+180 3d6+4
-2540 50000
-8 8 0
+human~
+ABF 0 -100 0
+18 0 3d9+283 9d9+100 2d7+4 none
+-3 -3 -3 7
+EFNU 0 0 0
+stand stand none 127
+0 0 medium 0
 #5005
-dragon brass~
+oldstyle dragon brass~
 the brass dragon~
 The brass dragon steps out of the darkness and says 'Hello'.
 Then adds to it, 'Prepare to die, have a nice day!'
 ~
 ~
-2|4|32 8|128 450 S
-30 -10 -10 30d30+300 1d9+25
-5500 295000
-8 8 2
+dragon~
+ABCF DH 450 0
+30 0 6d12+853 15d9+100 4d6+8 none
+-9 -9 -9 6
+EFNR 0 0 0
+stand stand female 275
+0 0 medium 0
 #5006
-nomad leader~
+oldstyle nomad leader~
 The nomad leader~
 The nomad leader sits silently in prayer.
 ~
@@ -81,415 +101,445 @@ He is clad in silk robes lined with gold thread. At his side
 is a large, engraved cutlass. He has an especially haughty air
 about him.
 ~
-2240 0 950 S
-14 7 0 14d14+140 3d8+2
-1000 17000
-6 6 1
+human~
+AGHL 0 950 0
+14 0 2d10+190 7d9+100 1d12+3 none
+-1 -1 -1 8
+EFNU 0 0 0
+sit sit male 50
+0 0 medium 0
 #5007
-nomad commander~
+oldstyle nomad commander~
 The nomad commander~
 The nomad commander stands here staring suspiciously at you.
 ~
 This is the nomad leader's second in command. His clothes are richly
 woven of silk and gold thread. A nasty cutlass hangs at his side.
 ~
-2050 0 900 S
-12 8 1 12d12+120 3d5+1
-600 11000
-8 8 1
+human~
+ABL 0 900 0
+12 0 2d10+150 6d9+100 1d10+3 none
+0 0 0 8
+EFNU 0 0 0
+stand stand male 30
+0 0 medium 0
 #5008
-nomad warrior~
+oldstyle nomad warrior~
 The nomad warrior~
 A proud nomad warrior stands here.
 ~
 ~
-2 0 700 S
-10 10 0 10d10+100 4d3+0
-300 4000
-8 8 1
+human~
+AB 0 700 0
+10 0 2d7+121 5d9+100 2d4+2 none
+1 1 1 8
+EFNU 0 0 0
+stand stand male 15
+0 0 medium 0
 #5009
-slave young~
+oldstyle slave young~
 The slave~
 A young slave sits here staring at you with pleading eyes.
 ~
 ~
-130 0 1000 S
-3 18 9 3d3+30 1d5+0
-0 200
-5 5 2
+human~
+ABH 0 1000 0
+3 0 2d6+35 1d9+100 1d6+0 none
+7 7 7 10
+EFNU 0 0 0
+rest rest female 0
+0 0 medium 0
 #5010
-dracolich lich~
+oldstyle dracolich lich~
 The dracolich~
 A pile of bones rises up to form a skeletal dracolich.
 ~
 The dracolich is now only bone with pieces of flesh hanging from it.
 Obviously it no longer fears death.
 ~
-2083 136 -1000 S
-20 1 -2 20d20+200 25d2+0
-75000 50000
-8 8 0
+human~
+ABFL DH -1000 0
+30 0 6d12+853 15d9+100 4d6+8 none
+-9 -9 -9 6
+EFNU 0 0 0
+stand stand none 3750
+0 0 medium 0
 #5011
-drider drow~
+oldstyle drider drow~
 The drider~
 The drider looks at you viciously while it draws its sword.
 ~
 This half-spider, half-drow creature is a formidable opponent.
 ~
-96 8 -1000 S
-8 12 2 8d8+80 2d6+2
-200 2000
-8 8 2
+human~
+AFG D -1000 0
+8 0 2d7+96 4d9+100 1d7+2 none
+3 3 3 9
+EFNU 0 0 0
+stand stand female 10
+0 0 medium 0
 #5012
-duergar dwarf~
+oldstyle duergar dwarf~
 The dark dwarf~
 A duergar is here mining precious stones with his pick.
 ~
 The duergar could crush your head as easily as it does those rocks.
 ~
-96 8 -850 S
-5 16 3 5d5+50 2d5+1
-170 750
-8 8 1
+human~
+AFG D -850 0
+5 0 2d6+60 2d9+100 1d6+1 none
+5 5 5 9
+EFNU 0 0 0
+stand stand male 8
+0 0 medium 0
 #5013
-myconoid~
+oldstyle myconoid~
 the myconoid~
 A myconoid lumbers along peacefully.
 ~
 The myconoid looks something like a giant mushroom (and probably
 has the same effect).
 ~
-192 8 850 S
-6 15 4 6d6+60 2d7+0
-50 700
-8 8 1
+human~
+AGH D 850 0
+6 0 2d7+71 3d9+100 1d7+1 none
+4 4 4 9
+EFNU 0 0 0
+stand stand male 2
+0 0 medium 0
 #5014
-myconoid shaman~
+oldstyle myconoid shaman~
 The myconoid shaman~
 A rather large myconoid stands here chanting in a strange tongue.
 ~
 The shaman shoots spores into the air.
 ~
-130 136 850 S
-8 13 2 8d8+80 2d7+2
-1500 3000
-8 8 1
+human~
+ABHQ DH 850 0
+8 0 2d7+96 8d9+100 1d7+2 none
+3 3 3 8
+EIKU 0 0 0
+stand stand male 75
+0 0 medium 0
 #5015
-dustdigger~
+oldstyle dustdigger~
 The dustdigger~
-A small oasis invites you to dive in.~
+A small oasis invites you to dive in.
 ~
-38 65536 -200 S
-7 10 1 7d7+70 3d4+0
-450 1500
-8 8 0
+~
+human~
+ABCF 0 -200 0
+7 0 2d6+85 3d9+100 1d8+1 none
+4 4 4 9
+EFNU 0 0 0
+stand stand none 22
+0 0 medium 0
 #5017
-camel~
+oldstyle camel~
 The rabid camel~
 A very dangerous rabid camel snorts at you.
 ~
 Don't mess with this animal.
 ~
-34 0 -351 S
-5 12 6 6d6+60 2d4+3
-270 700
-8 8 0
+human~
+ABF 0 -351 0
+5 0 2d6+60 2d9+100 1d6+1 none
+5 5 5 9
+EFNU 0 0 0
+stand stand none 13
+0 0 medium 0
 #0
-
-
 
 #OBJECTS
 #5000
 pick~
-A small mining pick~
+a small mining pick~
 A small mining pick made of what appears to be silver lies on the ground.~
-~
-5 512 8193
-0 1 9 11
-3 600 200
+oldstyle~
+weapon J AN
+mace 1 9 pierce 0
+5 30 320 P
 #5001
 banded mail~
-A glowing suit of banded mail~
+a glowing suit of banded mail~
 A glowing suit of banded mail lies on the ground.~
-~
-9 65 9
-7 0 0 0
-0 75000 20000
-A
-2 2
+oldstyle~
+armor AG AD
+7 7 7 0 0
+23 0 7300 P
 A
 17 -4
+A
+2 2
 #5002
 halberd~
 the halberd~
 A mighty halberd lies against the wall.~
-~
-5 320 8193
-0 3 7 2
-16 12000 4000
-A
-18 2
+oldstyle~
+weapon GI AN
+polearm 2 14 cleave F
+29 160 1620 P
 A
 19 2
+A
+18 2
 #5003
 amulet~
 the amulet~
 A mushroom shaped amulet lies on the ground.~
-~
-9 64 5
-0 0 0 0
-2 1500 500
+oldstyle~
+jewelry G AC
+0 0 0 0 0
+5 20 550 P
 A
-5 2
+5 1
 #5005
 bone~
-A large leg bone~
+a large leg bone~
 A large leg bone rests on the ground.~
-~
-5 0 8193
-0 1 4 7
-5 300 60
+oldstyle~
+weapon 0 AN
+mace 1 4 pound 0
+0 50 140 P
 #5006
 cactus~
 a small cactus cup~
 A small cactus cup lies on the ground.~
-~
-17 0 1
-5 5 0 0
-6 30 5
+oldstyle~
+drink 0 A
+5 5 'water' 0 0
+0 60 5 P
 #5007
 basket~
 a small wicker basket~
 A small wicker basket sits on the ground.~
-~
-15 0 1
-100 5 -1 0
-50 5000 500
+oldstyle~
+container 0 A
+100 AC 0 10 100
+0 20 20 P
 #5008
 basket~
 a small wicker basket~
 A small wicker basket sits on the ground.~
-~
-15 0 1
-100 5 -1 0
-50 5000 500
+oldstyle~
+container 0 A
+100 AC 0 10 100
+0 20 20 P
 #5009
 basket~
 a small wicker basket~
 A small wicker basket sits on the ground.~
-~
-15 0 1
-100 5 -1 0
-50 5000 500
+oldstyle~
+container 0 A
+100 AC 0 10 100
+0 20 20 P
 #5010
 basket~
 a small wicker basket~
 A small wicker basket sits on the ground.~
-~
-15 0 0
-100 5 -1 0
-50 5000 500
+oldstyle~
+container 0 0
+100 AC 0 0 100
+0 0 0 P
 #5011
 rope~
 a coil of rope~
 A long coil of rope lies on the ground.~
-~
-12 0 1
-0 0 0 0
-12 450 45
+oldstyle~
+furniture 0 A
+0 0 0 0 0
+0 120 20 P
 #5012
 stakes~
 a bunch of stakes~
 A small bundle of stakes lies here.~
-~
-12 0 1
-0 0 0 0
-6 250 30
+oldstyle~
+furniture 0 A
+0 0 0 0 0
+0 60 20 P
 #5013
 map~
 an old, tattered map~
 An old, tattered, and much faded map lies here.~
-~
-12 0 1
-0 0 0 0
-1 300 20
+oldstyle~
+furniture 0 A
+0 0 0 0 0
+0 10 5 P
 #5014
 turban~
 a thick padded turban~
 A thick padded turban lies here.~
-~
-9 192 17
-0 0 0 0
-15 4300 1200
+oldstyle~
+clothing GH AE
+0 0 0 0 0
+0 10 10 P
 A
 17 1
 #5015
 coins~
 a great pile of treasure~
 A great, gleaming pile of treasure lies at your feet.~
-~
-20 0 1
-46270 0 0 0
-0 0 0
+oldstyle~
+money 0 A
+427 12 0 0 0
+0 0 0 P
 #5016
 sabre~
 a long, curved sabre~
 A long, curved sabre stands upright in the ground.~
-~
-5 2048 8193
-0 2 8 3
-7 1050 230
+oldstyle~
+weapon L AN
+sword 2 8 slash 0
+16 70 1410 P
 A
 18 2
 #5017
 scimitar~
 a curved scimitar~
 A curved scimitar lies at your feet.~
-~
-5 2048 8193
-0 2 7 3
-6 600 150
+oldstyle~
+weapon L AN
+sword 2 7 slash 0
+12 60 990 P
 A
 18 1
 #5018
 cutlass~
 a long, pointed cutlass~
 A long, pointed cutlass lies here.~
-~
-5 2048 8193
-0 2 7 3
-5 550 120
+oldstyle~
+weapon L AN
+sword 2 7 slash 0
+12 50 930 P
 #5019
 potion pink~
 a pink potion~
 A pink potion stands here.~
-~
-10 0 1
-25 28 35 -1
-6 600 110
+oldstyle~
+potion 0 A
+25 'heal' 'remove curse' '' ''
+13 60 1220 P
 #5020
 wand platinum~
 a platinum wand~
 A platinum wand lies here.~
-~
-3 2 16385
-30 10 10 32
-8 1900 900
+oldstyle~
+wand B AO
+30 10 10 'magic missile' 0
+2 80 990 P
 #5021
 bow energy strange~
 a strange energy bow~
 A strange energy bow lies here.~
-blast~
-5 1|2|64|256 8193
-0 4 5 6
-20 150000 10000
+oldstyle~
+weapon ABGI AN
+exotic 4 5 blast 0
+21 200 2600 P
 #5022
 scroll encrypted~
-An encrypted scroll~
+an encrypted scroll~
 An encrypted scroll lies at your feet.~
-~
-2 0 1
-22 14 35 43
-7 1500 540
+oldstyle~
+scroll 0 A
+22 'cure blindness' 'remove curse' 'cure poison' ''
+11 70 1730 P
 #5023
 chest~
 an iron bound chest~
 An iron bound chest with a shiny lock sits here.~
-~
-15 0 0
-200 13 5024 0
-200 1000 100
+oldstyle~
+container 0 0
+200 ACD 5024 200 100
+0 0 0 P
 #5024
 key golden~
 a golden key~
 A shiny golden key lies here.~
-~
-18 0 1
-10 0 0 0
-1 150 15
+oldstyle~
+key 0 A
+10 0 0 0 0
+0 10 0 P
 #5025
 bracelet copper~
 a copper bracelet~
 A tarnished copper bracelet lies at your feet.~
-~
-9 192 4097
-5 0 0 0
-10 23000 2500
-A
-13 10
+oldstyle~
+jewelry GH AM
+0 0 0 0 0
+20 100 1300 P
 A
 19 2
+A
+13 10
 #5026
 gem ruby~
-A large ruby~
+a large ruby~
 A large ruby lies on the ground collecting dust.~
-~
-8 64 1
-20 0 0 0
-9 4000 1500
+oldstyle~
+gem G AO
+20 0 0 0 0
+0 1 5000 P
 #5027
-gem diamond~
-A glittering diamond~
+gem diamond glittering~
+a glittering diamond~
 A glittering diamond lies at your feet.~
-~
-8 64 1
-21 0 0 0
-10 9500 3200
+oldstyle~
+gem G AO
+21 0 0 0 0
+0 1 6000 P
 #5028
 gem sapphire~
-A brilliant sapphire~
+a brilliant sapphire~
 A brilliant sapphire lies here twinkling.~
-~
-8 64 1
-22 0 0 0
-7 3500 1100
+oldstyle~
+gem G AO
+22 0 0 0 0
+0 1 2000 P
 #5029
 gem lapis~
 a deep blue lapis lazuli~
 A deep blue lapis lazuli gem lies here.~
-~
-8 64 1
-24 0 0 0
-11 8500 2400
+oldstyle~
+gem G AO
+24 0 0 0 0
+0 1 800 P
 #5030
 jewel tiger~
 the tiger jewel~
 The Tiger Jewel lies here blazing.~
-~
-8 256 16385
-0 0 0 0
-23 3000 4500
+oldstyle~
+gem I AO
+0 0 0 0 0
+5 1 550 P
 A
 2 1
 #5031
 jewel red-eyed~
 the red-eyed jewel~
 The red-eyed jewel glares at you greedily.~
-~
-8 0 16385
-0 0 0 0
-30 5000 2600
+oldstyle~
+gem 0 AO
+0 0 0 0 0
+15 1 2600 P
 A
 3 2
 #5032
 gem emerald~
 a fiery green emerald~
 A fiery green emerald sits here.~
-~
-8 64 1
-23 0 0 0
-7 5500 1550
+oldstyle~
+warp_stone T AO
+23 0 0 0 0
+0 1 4000 P
 #0
-
-
 
 #ROOMS
 #5001
 A long tunnel~
-    You encounter some rapids as you enter this tunnel cut out of
+You encounter some rapids as you enter this tunnel cut out of
 the mountains by the river.
 ~
-50 9 7
+0 AD 7
 D1
 ~
 ~
@@ -501,9 +551,9 @@ D3
 S
 #5002
 A long tunnel~
-     The tunnel branches off north.
+The tunnel branches off north.
 ~
-50 9 7
+0 AD 7
 D0
 ~
 ~
@@ -519,9 +569,9 @@ D3
 S
 #5003
 A long tunnel~
-    The tunnel branches off south.
+The tunnel branches off south.
 ~
-50 9 7
+0 AD 7
 D1
 ~
 ~
@@ -537,9 +587,9 @@ D3
 S
 #5004
 A long tunnel~
-    The tunnel branches off to the south.
+The tunnel branches off to the south.
 ~
-50 9 7
+0 AD 7
 D1
 ~
 ~
@@ -555,12 +605,12 @@ D3
 S
 #5005
 An underground lake~
-    You are floating on a jet-black underground lake fed by dripping
+You are floating on a jet-black underground lake fed by dripping
 water and lime from above. The tunnel continues to the east and the river
 leads back west. To the north is a roughly-hewn hallway. There is also
 a tunnel south.
 ~
-50 9 7
+0 AD 7
 D0
 ~
 ~
@@ -580,9 +630,9 @@ D3
 S
 #5006
 A long narrow tunnel~
-     The tunnel rises sharply to the east.
+The tunnel rises sharply to the east.
 ~
-50 9 5
+0 AD 5
 D1
 ~
 ~
@@ -594,10 +644,10 @@ D3
 S
 #5007
 A wide tunnel~
-    The tunnel continues east and west. To the east the tunnel dives
+The tunnel continues east and west. To the east the tunnel dives
 down into a bright light.
 ~
-50 9 5
+0 AD 5
 D1
 ~
 ~
@@ -609,10 +659,10 @@ D3
 S
 #5008
 Cave-in~
-   You stand at the edge of a large pile of rubble created from the last
+You stand at the edge of a large pile of rubble created from the last
 rockslide.
 ~
-50 9 5
+0 AD 5
 D2
 ~
 ~
@@ -624,10 +674,10 @@ You can easily slide down the rocks without getting hurt.~
 S
 #5009
 At the foot of the rubble~
-    You are at the bottom of a large pile of rubble. A tunnel branches
+You are at the bottom of a large pile of rubble. A tunnel branches
 off to the north and east.
 ~
-50 9 5
+0 AD 5
 D0
 ~
 ~
@@ -643,10 +693,10 @@ D4
 S
 #5010
 Cave entrance~
-     You stand in the middle of a large and beautiful cave. A path leads
+You stand in the middle of a large and beautiful cave. A path leads
 deeper into the darkness.
 ~
-50 9 5
+0 AD 5
 D2
 ~
 ~
@@ -658,10 +708,10 @@ You look down into the cave. Bones are strewn about everywhere.~
 S
 #5011
 Giant cave~
-    This cavern overwhelms you. The walls and ceiling seem miles away.
+This cavern overwhelms you. The walls and ceiling seem miles away.
 Bones of previous adventurers lie strewn on the cavern floor.
 ~
-50 9 5
+0 AD 5
 D4
 ~
 ~
@@ -669,9 +719,9 @@ D4
 S
 #5012
 Narrow bend~
-    The tunnel turns to the south and west.
+The tunnel turns to the south and west.
 ~
-50 9 5
+0 AD 5
 D2
 ~
 ~
@@ -683,9 +733,9 @@ D3
 S
 #5013
 Large cave~
-    You are standing in a large cave. Many furs are spread out on the floor.
+You are standing in a large cave. Many furs are spread out on the floor.
 ~
-50 9 5
+0 AD 5
 D0
 ~
 ~
@@ -697,9 +747,9 @@ D1
 S
 #5014
 Damp hallway~
-    The walls here are extremely damp, as well as the floor.
+The walls here are extremely damp, as well as the floor.
 ~
-50 9 5
+0 AD 5
 D1
 You hear drops of water.~
 ~
@@ -711,9 +761,9 @@ D3
 S
 #5015
 Underground pool~
-    You are wading in a knee deep pool of lime-water.
+You are wading in a knee deep pool of lime-water.
 ~
-50 9 6
+0 AD 6
 D2
 ~
 ~
@@ -725,10 +775,10 @@ D3
 S
 #5016
 Damp hallway~
-   The walls of the tunnel are extremely damp here. You hear the faint
+The walls of the tunnel are extremely damp here. You hear the faint
 sound of running water to the south.
 ~
-50 9 5
+0 AD 5
 D0
 You hear drops of water.~
 ~
@@ -740,10 +790,10 @@ D2
 S
 #5017
 Narrow crawlway~
-    This crawlway is just big enough for a human to crawl through or a
+This crawlway is just big enough for a human to crawl through or a
 halfling to walk through.
 ~
-50 9 5
+0 AD 5
 D0
 ~
 ~
@@ -759,10 +809,10 @@ You smell the fragrant odor of fungus.~
 S
 #5018
 Large cavern~
-    You have entered a very large cavern. The rock formations would amaze
+You have entered a very large cavern. The rock formations would amaze
 almost any dwarf.
 ~
-50 9 5
+0 AD 5
 D0
 ~
 ~
@@ -774,10 +824,10 @@ D3
 S
 #5019
 Fungus patch~
-    As you walk through the fungus patch, you are shot at by many millions of
+As you walk through the fungus patch, you are shot at by many millions of
 spores. You can hardly breathe.
 ~
-50 9 5
+0 AD 5
 D0
 ~
 ~
@@ -789,10 +839,10 @@ The fragrant smell of fungus spores continues to the east~
 S
 #5020
 Fungus path~
-    As you walk along the path, millions of spores are shot at you. You can
+As you walk along the path, millions of spores are shot at you. You can
 hardly breathe.
 ~
-50 9 5
+0 AD 5
 D2
 A giant mushroom temple stands to the south.~
 ~
@@ -804,10 +854,10 @@ The fragrant smell of spores continues to the west.~
 S
 #5021
 Fungus temple~
-   You find yourself standing inside of a giant mushroom. The inside
+You find yourself standing inside of a giant mushroom. The inside
 is decorated in the fashion of a temple.
 ~
-50 9 5
+0 AD 5
 D0
 ~
 ~
@@ -819,9 +869,9 @@ D1
 S
 #5022
 Sloping passage~
-    You follow a path sloping down from the fungus temple.
+You follow a path sloping down from the fungus temple.
 ~
-50 9 5
+0 AD 5
 D3
 ~
 ~
@@ -833,9 +883,9 @@ D5
 S
 #5023
 Sloping passage~
-   You are on a path that gently slopes up from the underground pool.
+You are on a path that gently slopes up from the underground pool.
 ~
-50 9 5
+0 AD 5
 D0
 You hear sounds of trickling water.~
 ~
@@ -846,11 +896,11 @@ D4
 0 0 5022
 S
 #5024
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 Sand as far as the eye can see.
 ~
@@ -873,11 +923,11 @@ Sand as far as the eye can see.
 0 0 5026
 S
 #5025
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 You see a nomad camp by an oasis.
 ~
@@ -900,11 +950,11 @@ Sand as far as the eye can see.
 0 0 5024
 S
 #5026
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 Sand as far as the eye can see.
 ~
@@ -927,11 +977,11 @@ Sand as far as the eye can see.
 0 0 5025
 S
 #5027
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 Sand as far as the eye can see.
 ~
@@ -954,11 +1004,11 @@ You see a river flowing into the mountain.
 0 0 5007
 S
 #5028
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 Sand as far as the eye can see.
 ~
@@ -981,18 +1031,18 @@ Sand as far as the eye can see.
 0 0 5027
 S
 #5029
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 Sand as far as the eye can see.
 ~
 ~
 0 0 5026
 D1
-The sand is *glowing* in this direction.
+The sand is glowing in this direction.
 ~
 ~
 0 0 5062
@@ -1008,11 +1058,11 @@ Sand as far as the eye can see.
 0 0 5028
 S
 #5030
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 Sand as far as the eye can see.
 ~
@@ -1035,11 +1085,11 @@ Sand as far as the eye can see.
 0 0 5032
 S
 #5031
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 Sand as far as the eye can see.
 ~
@@ -1051,7 +1101,7 @@ Sand as far as the eye can see.
 ~
 0 0 5032
 D2
-You see a tiny ledge.
+Sand as far as the eye can see.
 ~
 ~
 0 0 5063
@@ -1062,11 +1112,11 @@ Sand as far as the eye can see.
 0 0 5030
 S
 #5032
-The Great Eastern Desert~
+The Sands of Sorrow~
 A vast desert stretches for miles, the sand constantly shifting around you.
 You feel lost.
 ~
-50 8192 10
+0 N 10
 D0
 Sand as far as the eye can see.
 ~
@@ -1078,7 +1128,7 @@ Sand as far as the eye can see.
 ~
 0 0 5030
 D2
-Sand as far as the eye can see.
+You see a tiny ledge.
 ~
 ~
 0 0 5026
@@ -1090,12 +1140,12 @@ Sand as far as the eye can see.
 S
 #5056
 A nomad camp~
-    This small group of desert nomads has stopped for the day to rest
+This small group of desert nomads has stopped for the day to rest
 and refresh themselves beside this beautiful oasis. Three tents and some
 camels make up the party. From within two of the tents you hear muffled
 voices, obviously surprised at your visit.
 ~
-50 0 2
+0 0 2
 D0
 You see ill-tempered camels.
 ~
@@ -1114,11 +1164,16 @@ Sand as far as the eye can see.
 S
 #5057
 Inside a small tent~
-    This is a small and simple tent with few possessions in sight. Lying
+This is a small and simple tent with few possessions in sight. Lying
 here and there are young-looking men and women, possibly slaves to the
 leader of this band.
 ~
-50 0 2
+0 0 2
+D1
+Waving in the heat over the sand you see a HUGE pyramid.
+~
+~
+0 -1 8700
 D3
 You see the center of the nomad camp.
 ~
@@ -1127,11 +1182,11 @@ You see the center of the nomad camp.
 S
 #5058
 Beside the camels~
-    Here stand about ten camels, all hitched to some stakes plugged into
+Here stand about ten camels, all hitched to some stakes plugged into
 the ground. To the east you see a small tent while to the north you see a
 larger, fancier tent.
 ~
-50 0 2
+0 0 2
 D0
 This tent seems to be the temporary abode of the nomad leader. You make a
 mental note to visit it before you leave.~
@@ -1150,10 +1205,10 @@ You see the center of the nomad camp.
 S
 #5059
 The warrior's tent.~
-     This tent has a few furnishings, but mainly it holds the band's
+This tent has a few furnishings, but mainly it holds the band's
 protectors. They all stare at you coldly as you enter.
 ~
-50 128 2
+0 H 2
 D3
 Outside you see some peaceful camels.
 ~
@@ -1162,11 +1217,11 @@ Outside you see some peaceful camels.
 S
 #5060
 The main tent~
-     This tent is as lavishly decorated on the inside as it is on the
+This tent is as lavishly decorated on the inside as it is on the
 outside. A fancy carpet lies on the sand and numerous baskets line the
 walls.
 ~
-50 128 2
+0 H 2
 D1
 ~
 ~
@@ -1179,11 +1234,11 @@ You see some peaceful camels.
 S
 #5061
 The main tent~
-     This is where the leader of this band of nomads resides. He is
+This is where the leader of this band of nomads resides. He is
 definitely rich as you inspect the tapestries, baskets, and a few
 paintings as well.
 ~
-50 128 2
+0 H 2
 D3
 You see the entrance to this tent.
 ~
@@ -1192,11 +1247,11 @@ You see the entrance to this tent.
 S
 #5062
 Strange Glowing Sand~
-A vast desert stretches for miles, the sand constantly shifting around you.
-But this patch of desert looks different ... the sand glows.  You see a
+A vast desert stretches for miles, the sand constantly shifting around
+you.  But this patch of desert looks different...the sand glows.  You see a
 futuristic city to the south.
 ~
-50 4|8 5
+0 CD 5
 D2
 You see a futuristic city.
 ~
@@ -1210,11 +1265,11 @@ Sand as far as the eye can see.
 S
 #5063
 The wind-swept ledge~
-    Being very careful not to lose your balance, you look around and
+Being very careful not to lose your balance, you look around and
 find that this canyon is about a half a kilometer deep. To the west is
 a dark cave leading under the desert sands.
 ~
-50 0 5
+0 0 5
 D0
 Sand as far as the eye can see.
 ~
@@ -1228,11 +1283,11 @@ You see a dark cave.
 S
 #5064
 The cave mouth~
-   The air in here is MUCH cooler than outside. From the west you hear
+The air in here is MUCH cooler than outside. From the west you hear
 strange sounds, but can see nothing. The cave slopes down into the
 darkness.
 ~
-50 9 5
+0 AD 5
 D1
 Outside is lighter and very windy.~
 ~
@@ -1244,12 +1299,12 @@ D3
 S
 #5065
 The mysterious lair.~
-    You have stumbled upon the home of something. From the treasure
+You have stumbled upon the home of something. From the treasure
 haphazardly strewn about and the rotting carcasses, you would guess that
 this is a dragon's lair. As to what type, you can't really say. The cave
 narrows out into a tunnel to the west.
 ~
-50 137 5
+0 ADH 5
 D1
 ~
 ~
@@ -1261,10 +1316,10 @@ door~
 S
 #5066
 A wide tunnel~
-    This tunnel seems to go on forever into the darkness. You carefully
+This tunnel seems to go on forever into the darkness. You carefully
 feel your way along the walls.
 ~
-50 13 5
+0 ACD 5
 D1
 ~
 door~
@@ -1276,10 +1331,10 @@ D3
 S
 #5067
 A narrower tunnel~
-    The tunnel becomes very narrow and you fight to squeeze your way through.
+The tunnel becomes very narrow and you fight to squeeze your way through.
 The floor seems to level off a little.
 ~
-50 9 5
+0 AD 5
 D1
 ~
 ~
@@ -1291,10 +1346,10 @@ D2
 S
 #5068
 A narrow crack~
-     This part of the tunnel is the hardest to move through as the walls
+This part of the tunnel is the hardest to move through as the walls
 move in to meet you.
 ~
-50 9 5
+0 AD 5
 D0
 ~
 ~
@@ -1306,10 +1361,10 @@ D3
 S
 #5069
 A small cavern.~
-     It is dark and damp and bats hang from the ceiling. A narrow crack is
+It is dark and damp and bats hang from the ceiling. A narrow crack is
 in the east wall. The floor now slopes upwards.
 ~
-50 9 5
+0 AD 5
 D0
 ~
 ~
@@ -1321,10 +1376,10 @@ D1
 S
 #5070
 A small shaft~
-     From within this shaft you can see a narrow hole in the roof just
-large enough for one person. Back east is the cavern.
+From within this shaft you can see a narrow hole in the roof just
+large enough for one person. Back south is the cavern.
 ~
-50 9 5
+0 AD 5
 D2
 ~
 ~
@@ -1336,103 +1391,76 @@ D4
 S
 #0
 
-
-
 #RESETS
-R 0 5024 4		 Maze!
-R 0 5025 4
-R 0 5026 4
-R 0 5027 4
-R 0 5028 4
-R 0 5029 4
-R 0 5030 4
-R 0 5031 4
-R 0 5032 4
-*
-D 0 5065 3 2
-D 0 5066 1 2
-*
-M 0 5015 4 5024          Dustdigger
-M 0 5015 4 5026          Dustdigger
-M 0 5015 4 5030          Dustdigger
-M 0 5015 4 5032          Dustdigger
-*
-M 0 5000 3 5025          Dervish
-E 1 3021 25 16             (short sword)
-M 0 5000 3 5027          Dervish
-E 1 3021 25 16             (short sword)
-M 0 5000 3 5029          Dervish
-E 1 3021 25 16             (short sword)
-M 0 5001 1 5031          Large Dervish
-E 1 3022 25 16             (long sword)
-*
-M 0 5002 5 5031          Snake, coral
-M 0 5003 5 5028          Scorpion, small
-*
-M 0 5004 1 5028          Purple Worm
-G 1 5019 10                (pink potion)
-G 1 5020 5                 (platinum wand)
-G 1 5021 1                 (energy bow)
-*
-M 0 5005 1 5065          Brass Dragon
-G 1 5024 1                 (golden key)
-G 1 5022 10                (encrypted scroll)
-*
-O 0 5023 1 5070          iron chest
-P 1 5025 3 5023            (bracelet)
-P 1 5026 3 5023            (ruby)
-P 1 5027 3 5023            (diamond)
-P 1 5028 3 5023            (sapphire)
-P 1 5029 3 5023            (lapis)
-P 1 5030 1 5023            (Tiger Jewel)
-P 1 5031 1 5023            (Red-eyed jewel)
-P 1 5032 3 5023            (emerald)
-*
-O 0 5015 1 5070          $$$
-*
-M 0 5017 1 5058          Rabid Camel
-*
-M 0 5006 1 5061          Nomad leader
-E 1 5016 10 16             (sabre)
-M 0 5007 1 5060          Nomad Comm.
-E 1 5017 15 16             (scimitar)
-M 0 5008 5 5059          Nomad Warriors
-E 1 5018 25 16             (cutlass)
-M 0 5009 10 5057         Slaves
-*
-M 0 5010 1 5011          Dracolich
-E 1 5001 8 5                (Banded mail)
-E 1 5002 8 16               (Halberd)
-*
-M 0 5011 3 5009          Driders
-E 1 3022 50 16             (long sword)
-M 0 5012 3 5014          Duergars
-E 1 5000 15 16             (mining pick)
-*
-M 0 5013 4 5021          myconoids
-M 0 5014 1 5021          Shaman, myc.
-E 1 5003 5 3
-*
-O 0 5005 1 5011          bone
-O 0 5007 1 5060          basket in commanders tent
-P 0 5012 1 5007            (stakes)
-P 0 5011 1 5007            (coil o' rope)
-O 0 5008 1 5061          1st basket leaders tent
-P 1 5014 5 5008            (turban)
-O 0 5009 1 5061          2nd basket leaders tent
-O 0 5010 1 5061          3rd basket leaders tent
-P 1 5013 50 5010           (tattered map)
-*
+D 0 5065   3    2	* The mysterious lair. west
+D 0 5066   1    2	* A wide tunnel east
+M 0 5015   4 5024  1	* The dustdigger
+M 0 5015   4 5026  1	* The dustdigger
+M 0 5015   4 5030  1	* The dustdigger
+M 0 5015   4 5032  1	* The dustdigger
+M 0 5000   3 5025  1	* The dervish
+E 1 3021  25   16	*   a small sword
+M 0 5000   3 5027  1	* The dervish
+E 1 3021  25   16	*   a small sword
+M 0 5000   3 5029  1	* The dervish
+E 1 3021  25   16	*   a small sword
+M 0 5001   1 5031  1	* The dervish
+E 1 3022  25   16	*   a long sword
+M 0 5002   5 5031  5	* The coral snake
+M 0 5003   5 5028  5	* The small scorpion
+M 0 5004   1 5028  1	* The giant, purple sand worm
+G 1 5019  -1     	*   a pink potion
+G 1 5020   5     	*   a platinum wand
+G 1 5021   1     	*   a strange energy bow
+M 0 5005   1 5065  1	* the brass dragon
+G 1 5024   1     	*   a golden key
+G 1 5022  10     	*   an encrypted scroll
+O 0 5023   1 5070	* an iron bound chest
+P 1 5025   3 5023  1	*   a copper bracelet
+P 1 5026   3 5023  1	*   a large ruby
+P 1 5027   3 5023  1	*   a glittering diamond
+P 1 5028   3 5023  1	*   a brilliant sapphire
+P 1 5029   3 5023  1	*   a deep blue lapis lazuli
+P 1 5030   1 5023  1	*   the tiger jewel
+P 1 5031   1 5023  1	*   the red-eyed jewel
+P 1 5032   3 5023  1	*   a fiery green emerald
+M 0 5017   1 5058  1	* The rabid camel
+O 0 5015   1 5070	* a great pile of treasure
+M 0 5006   1 5061  1	* The nomad leader
+E 1 5016  10   16	*   a long, curved sabre
+M 0 5007   1 5060  1	* The nomad commander
+E 1 5017  15   16	*   a curved scimitar
+M 0 5008   5 5059  5	* The nomad warrior
+E 1 5018  25   16	*   a long, pointed cutlass
+M 0 5009   6 5057  6	* The slave
+M 0 5010   1 5011  1	* The dracolich
+G 1 5001   8     	*   a glowing suit of banded mail
+G 1 5002   8     	*   the halberd
+M 0 5011   3 5009  3	* The drider
+E 1 3022  50   16	*   a long sword
+M 0 5012   3 5014  3	* The dark dwarf
+E 1 5000  15   16	*   a small mining pick
+M 0 5013   4 5021  4	* the myconoid
+M 0 5014   1 5021  1	* The myconoid shaman
+E 1 5003   5    3	*   the amulet
+O 0 5005   1 5011	* a large leg bone
+O 0 5007   1 5060	* a small wicker basket
+P 1 5012   1 5007  1	*   a bunch of stakes
+P 1 5011   1 5007  1	*   a coil of rope
+O 0 5008   1 5061	* a small wicker basket
+P 1 5014   5 5008  1	*   a thick padded turban
+O 0 5009   1 5061	* a small wicker basket
+O 0 5010   1 5061	* a small wicker basket
+P 1 5013  50 5010  1	*   an old, tattered map
 S
 
-
+#SHOPS
+0
 
 #SPECIALS
-M  5005 spec_breath_any
-M  5010 spec_breath_fire
-M  5014 spec_cast_cleric
+M 5005 spec_breath_any     	* the brass dragon
+M 5010 spec_breath_fire    	* The dracolich
+M 5014 spec_cast_cleric    	* The myconoid shaman
 S
-
-
 
 #$
