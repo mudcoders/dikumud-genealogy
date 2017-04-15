@@ -1,0 +1,2510 @@
+#AREADATA
+Name        {40-100} Haunted Graveyard   Milantha~
+Levels      40 100
+Builders    Reklar~
+VNUMs       10301 10400
+Security    100
+Recall      25001
+Flags       0
+Color       6
+End
+
+
+
+#MOBILES
+#10301
+leota~
+Leota, the Bride~
+Leota stands here smiling happily...
+~
+Leota is dressed in a plain white wedding gown.  She smiles happily at
+you and her other saviors.  Now that she is realeased from the madman's foul
+grasp, she can rest in peace.  
+~
+8259 167796864 0 16 S
+97 0 0 10237d0+0 0d0+0
+512 16 2 0
+0 0 2
+0 0 0
+#10302
+black cat~
+A black cat~
+A black cat walks across your path.
+~
+It is a non-descript black cat...what did you expect?
+~
+8257 8744 0 1000 S
+45 0 0 3200d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10303
+haunt~
+A haunt~
+A haunt jangles its chains at you.
+~
+The haunt is a ghost which is doomed to forever stay behind and frequent
+the sites which it roamed during life.  It is a tortured spirit, and seeks
+vengeance from those who are still living.  
+~
+8261 268960392 0 -500 S
+52 0 0 4420d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10304
+Stan~
+Stan~
+Stan the undertaker is looking for some corpses to bury.
+~
+Stan is an interesting man in his early 40's.  He is not particularly
+handsome at first glance, but there is something that draws you to him. 
+Maybe it's his soft dark eyes, or possibly the intonation of his voice. 
+More likely, however, it is a concoction of pheremones he collected from
+various dead insects.  He reminds you somewhat of a biology professor, and
+you can imagine him out in the field collecting insects and putting them in
+dead jars.  The mud on his boots and the stench of the grave betray his
+occupation, however.  Stan is an undertaker, and he loves his work..  
+
+~
+67 335552512 0 0 S
+69 0 0 6250d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10305
+spirit restless~
+A restless spirit~
+A restless spirit seeks vengeance for its murder.
+~
+The restless spirit is not free from its earthly bonds.  Before it can
+go to its final resting place, it must find its murderer and see that they
+are brought to justice.
+~
+8259 9352 0 1000 S
+54 0 0 6080d0+0 0d0+0
+0 0 0 0
+0 0 2
+65536 0 0
+#10306
+ghoul~
+A ghoul~
+A ghoul is looking for graves to plunder
+~
+The ghoul is a revolting creature which digs in graves looking for bodies
+to eat and jewels to steal.  Its eyes burn into you with the fires of hell. 
+~
+8293 100679816 0 -600 S
+76 0 0 8100d0+0 0d0+0
+125 2 15 0
+0 0 0
+0 0 0
+#10307
+shade~
+A shade~
+A shade is a ghost of its former self.
+~
+A shade is the ghost of an ancestor.  Apparently, someone is disturbed by
+the events that have taken place in this house.  
+~
+8289 40 0 0 S
+45 0 0 4250d0+0 0d0+0
+0 45 0 0
+0 0 0
+0 0 0
+#10308
+piano player man~
+A piano player~
+A ghostly piano player pounds the keys.
+~
+The piano player is a gaunt and ghostly apparition.  Your hand passes
+right through him, but he is substantial enough to play a piano.  Very
+odd.
+~
+8259 503316616 0 50 S
+89 0 0 8575d0+0 0d0+0
+106 12 52 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc($n)
+cackle
+else
+say Greetings!  Do you seek entrance
+say into the upper levels of the mansion?
+endif
+~
+>speech_prog yes~
+say Bring me back a key from this level and I will grant you access.
+emote motions you out of his way.
+~
+>speech_prog no~
+say Go away, then and let me alone.
+emote turns his back to you and starts playing...
+~
+>give_prog all~
+if number ($o) == 10302
+say So be it!  You are granted access.
+mpechoaround $n $n disappears before your eyes.
+mpechoat $n You have been transferred!
+mptransfer $n 10340
+mpjunk $o
+endif
+if number ($o) == 10325
+say so be it! You are granted access.
+mpechoaround $n $n disappears before your eyes.
+mpechoat $n You are transferred!
+mptransfer $n 10340
+mpjunk $o
+endif
+~
+|
+#10309
+dancing couple~
+A dancing couple~
+A dancing couple waltzes in front of you...
+~
+These ethereal beings are dancing right before your very eyes.  The man
+is wearing a tuxedo, and the woman is wearing an evening gown.
+~
+8385 41000 0 1000 S
+41 0 0 2850d0+0 0d0+0
+0 37 0 0
+0 0 0
+0 0 0
+>rand_prog 5~
+mpecho &PThe man dips his lovely partner with a low sweep of his hands.
+~
+|
+#10310
+haunt~
+A haunt~
+A haunt jangles its chains at you.
+~
+A haunt is a person whose spirit has been left behind.  They are doomed
+to walk the paths they did during life for all eternity.  
+~
+8263 524936 0 -500 S
+43 0 0 2840d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10311
+toasting man~
+A man~
+A man lifts his glass as if to toast you.
+~
+An apparation in a tuxedo lifts his glass as if to toast you.  As you
+watch, he slowly fades into nothingness.  
+~
+8259 168 0 1000 S
+45 0 0 3400d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10312
+statue marble~
+A marble statue~
+The marble statue speaks to you...
+~
+The marble statue is representative of a greek god.  He is well-muscled
+and carries a powerful marble weapon.  Think twice before messing with
+him.
+~
+8259 67117736 16 100 S
+65 0 0 6250d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+bow
+say You have done well so far...
+say You must kill me to go any farther.
+emote steadfastly blocks your path.
+~
+>death_prog 100~
+say You have done it!
+emote staggers and falls to the floor.
+emote breaks up into tiny bits of stone.
+mpechoat $n You are transferred!
+mpechoaround $n $n disappears before your eyes.
+mptransfer $n 10339
+mpgoto 1
+~
+>rand_prog 5~
+say What, are you too afraid to fight?
+~
+|
+#10313
+tea woman~
+A woman~
+A woman sits here sipping tea and chatting.
+~
+This prim and proper lady is chatting with her friends and having tea. 
+She looks a little unsubstantial, however, and you see the tea pouring
+through her body to puddle on the chair she's sitting on.  
+~
+8385 100671528 0 1000 S
+72 0 0 10400d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10314
+banshee~
+A banshee~
+A banshee wails at you!
+~
+The banshee is a large spirit with an incredible voice.  Apparently, it
+is upset about something, and it screams dreadfully at you.
+~
+8293 369623040 0 -500 S
+81 0 0 10250d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>fight_prog 25~
+shriek
+~
+|
+#10315
+ghost~
+A ghost~
+A ghost sees you and attacks!
+~
+This ghost is a murdered member of the family that was living here.  Instead
+of trying to find an explanation from you, it wants vengeance!
+~
+8289 234882088 0 0 S
+65 0 0 6250d0+0 0d0+0
+30 0 0 0
+0 0 0
+0 0 0
+#10316
+man madman~
+A Madman~
+A madman curses and mutters under his breath.
+~
+The madman must be ancient.  The clothes hanging from his back are a
+tattered mess, and his grey hair sticks up all over.  Dark and fiery red
+eyes peer out of a face that looks like a skull with skin stretched over it.
+~
+8263 503333544 0 -1000 S
+100 0 0 9600d0+0 0d0+0
+1200 82 106 0
+0 0 1
+2 0 0
+>all_greet_prog 100~
+if isimmort($n)
+emote ignores you and continues with his senseless ramblings.
+break
+if ispc($n)
+say How dare you disturb me and my bride!
+say You thought you could take her but I won't let you!
+say Die Mortal scum!
+mpkill $n
+cackle
+ endif
+endif
+~
+|
+#10317
+skeleton~
+A skeleton~
+A skeleton jangles on a clothes hanger...
+~
+This skeleton appears to have gotten itself in a jam.  Its skull is trapped
+in a clothes hanger.
+~
+8291 0 0 -1000 S
+83 0 0 21500d0+0 0d0+0
+0 0 0 0
+0 0 0
+69632 0 0
+#10318
+henchman~
+A zombie henchman~
+A stupid zombie henchman gropes about for you.
+~
+A big ugly humanoid figure is covered in tattered clothing.
+~
+8289 8744 0 0 S
+100 0 0 25600d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#0
+
+
+
+#OBJECTS
+#10301
+rusty key~
+a rusty key~
+A rusty key lies here.~
+~
+18 0 0 0 262145 40
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+This is a simple rusted iron key. Perhaps it can open something.
+~
+#10302
+silver key~
+a silver key~
+A small silver key lies here.~
+~
+18 0 0 0 1 40
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+silver key~
+This is a beautiful silver key. A long complicated flower pattern intertwines
+in the silver making a beautiful piece of work.
+~
+#10309
+spiritual chains~
+some spiritual chains~
+Some chains lies in a pile here.~
+~
+5 268439681 0 0 8193 70
+0~ 0~ 0~ 4~
+10 70 0 0 0
+5 0
+shocking grasp~
+4 4
+0 0 0
+A
+12 70
+A
+25 21
+A
+19 21
+A
+18 70
+E
+spiritual~
+The chains might be used as a weapon.
+~
+E
+chains~
+These Long iron chains look useful as a weapon.
+~
+#10310
+glass wine~
+a glass of wine~
+A glass of wine sets here.~
+~
+17 0 0 0 16385 40
+3~ 3~ 2~ 0~
+1 1 11 0 0
+0 0
+create food~
+0 0
+0 0 0
+A
+4 1
+A
+3 1
+E
+wine~
+Deep violet grape wine. It smells sweet. It ripples slightly in its glass.
+~
+E
+glass~
+A tall thin glass filled to the brim with wine.
+~
+#10311
+black leather collar~
+a black leather collar~
+A black leather collar has been left here.~
+~
+9 4 0 0 5 40
+0~ 0~ 0~ 0~
+1 1 18 0 0
+0 0
+detect invis~
+0 0
+0 0 0
+A
+4 1
+A
+2 1
+E
+black leather collar~
+A small black leather cat collar has iron rivots evenly spaced around it
+and a small jingling bell attached.
+~
+#10312
+note~
+a small note~
+A small note is here.~
+~
+13 0 0 0 1 10
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+note~
+The note is tattered and worn, but you can read:
+ 
+The key to finding me is through three.
+ 
+The denizen one increment herein binds eve.
+~
+#10325
+brass key~
+a brass key~
+A small brass key is here.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+brass key~
+A small brass key has rusted over the years, but has no design or pattern
+upon it.
+~
+#10326
+tuxedo~
+a tuxedo with tails~
+A large black tuxedo complete with tails.~
+~
+9 4 0 0 9 80
+0~ 0~ 0~ 0~
+6 120 0 0 0
+5 0
+charm person~
+4 4
+0 0 0
+A
+14 20
+A
+13 80
+A
+5 2
+A
+4 2
+E
+tuxedo~
+A tattered long, black tuxedo with even longer tails that drag on the ground
+and collect dirt. It looks like one that you might wear to formal parties.
+~
+#10349
+icy stare~
+the icy stare~
+&CAn icy stare of maddening chaos looms here.~
+~
+27 872417280 0 0 131073 100
+100~ 5~ 5~ identify~
+8 250 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 5
+A
+14 60
+A
+25 33
+A
+12 100
+A
+17 -100
+A
+13 70
+E
+stare~
+Its the Stare of a madman. It cuts into your soul and sees beyond normal vision.
+~
+E
+icy~
+This Stare looks so very cold.
+~
+#10351
+shades spectacles~
+the shades of a shade~
+A pair of strange, dark spectacles lie here.~
+~
+27 4 0 0 131073 50
+50~ 1~ 1~  ~
+2 0 50 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 36
+A
+17 -12
+A
+12 50
+E
+shades spectacles~
+These look like tainted glasses. They seem to reflect all light and echo with darkness.
+~
+#10352
+marble sword~
+a marble sword~
+A huge and heavy marble sword lies here.~
+~
+5 262 5171 16408 8193 60
+0~ 0~ 0~ 3~
+13 20 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 -1
+A
+19 60
+A
+18 51
+E
+sword~
+A sword cut from pure red marble. Its blade is sharp yet oddly chipped. It
+looks as if it would cause great pain in the right hands.
+~
+E
+marble~
+Clean red solid marble. Quite beautiful.
+~
+#10353
+whip~
+a Banshee's Whip~
+The flaming whip of chaos...~
+~
+5 100663362 0 0 8193 70
+0~ 0~ 0~ 4~
+3 0 0 0 0
+5 0
+warcry~
+4 4
+0 0 0
+A
+13 70
+A
+19 21
+A
+18 70
+E
+whip~
+A long black flaming whip of chaos. It seems to give off a slight amount
+of sound. Like a humming.
+~
+#10354
+mail ice~
+the Ice Mail~
+A finely crafted mail made all from ice...~
+~
+9 67108928 2564 29340 9 90
+30~ 0~ 0~ 0~
+10 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+23 5
+A
+25 30
+A
+12 20
+A
+13 90
+A
+17 -90
+E
+mail~
+The ice seems to be formed into a suit of Plate mail.
+~
+E
+ice~
+This armor is crafted from solid ice. But doesnt seem to melt.
+~
+#10355
+icy vambraces ice~
+the Ice Vambraces~
+Some icy vambraces lie here.~
+~
+9 67113024 0 25244 257 90
+20~ 0~ 0~ 0~
+3 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+A
+12 50
+A
+13 90
+A
+1 3
+A
+2 2
+E
+icy~
+Solid, unwavering ice. It doesn't seem to be melting.
+~
+E
+vambraces~
+These are like no others. Made of solid ice, and quite protective of your
+skin, they don't even feel cold.
+~
+E
+ice~
+Solid, unwavering, ice. Doesnt seem to ever melt.
+~
+#10356
+icy blades evil~
+a set of evil blades~
+A set of icy blades have been left here.~
+~
+5 67125776 5299 0 8193 100
+0~ 0~ 0~ 3~
+5 310 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+3 3
+A
+1 3
+A
+19 120
+A
+18 80
+E
+blades~
+These look as if they could be held and used as long 18 inch claws to hack
+someone or something to bits.
+~
+E
+ice~
+These are Crafted from solid ice. It doesnt melt and doesnt feel cold.
+~
+#10357
+fingernail~
+a sharp, dirty fingernail~
+A very long, very dirty fingernail of a ghoul...~
+~
+5 16976 4290 0 8193 40
+0~ 0~ 0~ 5~
+1 0 35 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 40
+A
+1 -2
+E
+fingernail~
+An ugly, dirty, grimey and disgusting fingernail. It's probably the longest
+fingernail you've ever seen. It is so long, you could probably use it as a
+weapon.
+~
+#10358
+marble ring~
+a marble ring~
+A glowing ring of polished marble...~
+~
+9 65 0 0 3 60
+0~ 0~ 0~ 0~
+16 5 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+A
+1 2
+A
+13 60
+E
+ring~
+A Simple marble shape. Just big enough to fit on your finger.
+~
+E
+marble~
+Solid red marble. Costructed into a simple ring.
+~
+#0
+
+
+
+#ROOMDATA
+#10301
+On a Windswept Hill~
+You are on a wind-swept knoll overlooking a desolate land.  In the
+distance you can see the hilly tussocks which cover the graves of people
+long dead.  A sudden flash of lightning brightens the sky like the noonday
+sun.  The resounding clap of thunder sends chills down your neck.  
+~
+0 270349 0
+Rd     0
+D0
+~
+~
+0 0 10302
+D2
+~
+~
+0 0 25121
+S
+#10302
+Path to the Tombstones~
+The long and dusty path to the cemetary is enclosed tightly on each edge
+by tall skeletal trees.  Flaming red eyes peer out at you from a hollow in a
+tree and are quickly gone.  The distant howl of wolves makes you question
+the wisdom of coming here.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 10303
+D2
+~
+~
+0 0 10301
+S
+#10303
+Path to the tombstones~
+As you walk down the cemetary path, you get the strange feeling that you
+are being watched.  Looking over your shoulder, you see nothing, but you
+cannot shake the feeling, nonetheless.  A tree that has bent over in the
+wind seems to claw at your garments like a great outstretched hand.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10304
+D3
+~
+~
+0 0 10302
+S
+#10304
+Path to the Tombstones~
+The path continues on to the north here and begins to climb up a small
+hill.  The continual crashes of lightning overhead make you nervous.  Just a
+little distance up ahead, a lightning bolt crashes into a dead tree, sending
+pieces of wood flying all over the place.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10305
+D2
+~
+~
+0 0 10303
+S
+#10305
+Path to the Tombstones~
+The path which is winding up a hill, turns to the east here.  The dust
+from the path clings to your clothes like the stench of death to a grave.  A
+cold wind whips leaves around you in a small funnel.  The distant sound of
+wolves on a hunt make you hustle your steps.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 10306
+D2
+~
+~
+0 0 10304
+S
+#10306
+Path to the Tombstones~
+You have reached the top of the hill.  Looking down to the north, you can
+see the outlines of the many tombstones which fill this ancient graveyard. 
+Large drops of rain are now falling on your head, and the mansion in the
+distance, although scary-looking, might afford some protection from the
+elements.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10307
+D3
+~
+~
+0 0 10305
+S
+#10307
+Path to the Tombstones~
+Here on the edge of the hill, you can look to the north and see the
+ancient cemetary and mansion.  The wind and rain which you are in rip at
+your clothes and chill you to the bone.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10308
+D2
+~
+~
+0 0 10306
+S
+#10308
+Path to the Tombstones~
+To the north, you can see the beginning of the graveyard.  It is a
+veritable maze here in the darkness, and you wonder if you will be able to
+make it through.  The mansion, which is barely discernable above the tall
+grave markers, lies to the north.  
+~
+0 401437 0
+Rd     0
+D0
+~
+~
+0 0 10309
+D2
+~
+~
+0 0 10307
+S
+#10309
+Beginning of the Maze~
+You are at the beginning of a maze of tombstones.  Without the proper
+guidance, you don't think you will ever make it out.  A flash of lightning
+illuminates the area, and you think you can discern something moving between
+the tombstones.  
+~
+0 401437 0
+Rd     0
+D1
+~
+~
+0 0 10310
+D2
+~
+~
+0 0 10308
+S
+#10310
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10311
+D1
+~
+~
+0 0 10309
+D2
+~
+~
+0 0 10310
+D3
+~
+~
+0 0 10309
+S
+#10311
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10311
+D1
+~
+~
+0 0 10312
+D2
+~
+~
+0 0 10310
+D3
+~
+~
+0 0 10310
+S
+#10312
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10313
+D1
+~
+~
+0 0 10310
+D2
+~
+~
+0 0 10312
+D3
+~
+~
+0 0 10311
+S
+#10313
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10314
+D1
+~
+~
+0 0 10310
+D2
+~
+~
+0 0 10312
+D3
+~
+~
+0 0 10311
+S
+#10314
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10314
+D1
+~
+~
+0 0 10315
+D2
+~
+~
+0 0 10313
+D3
+~
+~
+0 0 10312
+S
+#10315
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10316
+D1
+~
+~
+0 0 10310
+D2
+~
+~
+0 0 10311
+D3
+~
+~
+0 0 10314
+S
+#10316
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10314
+D1
+~
+~
+0 0 10317
+D2
+~
+~
+0 0 10315
+D3
+~
+~
+0 0 10310
+S
+#10317
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10318
+D1
+~
+~
+0 0 10316
+D2
+~
+~
+0 0 10310
+D3
+~
+~
+0 0 10316
+S
+#10318
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10319
+D1
+~
+~
+0 0 10317
+D2
+~
+~
+0 0 10317
+D3
+~
+~
+0 0 10314
+S
+#10319
+Maze of Tombstones~
+You are wandering aimlessly in a maze of tombstones.  The ground is very
+uneven here, and you trip and stumble often.  There seems to be no method to
+the tombstones; they are laid out will-nilly all over the place.  Hopefully,
+you know which way you are going.  
+~
+0 131101 0
+Rd     0
+D0
+~
+~
+0 0 10311
+D1
+~
+~
+0 0 10320
+D2
+~
+~
+0 0 10318
+D3
+~
+~
+0 0 10313
+S
+#10320
+End of the Maze~
+Finally, you have reached the end of the tombstones.  Just up ahead to
+the north, the ancient and decrepit mansion looms above you.  The windows
+are shuttered, and an old door hangs in the doorway.  Terrible noises which
+might be caused by the wind can be heard around the perimeter of the
+building as well as inside it.  To your east, you spy a small and ancient
+looking pathway.  
+~
+0 401433 0
+Rd     0
+E
+door~
+A door hangs from its hinges ahead of you, to the north.
+~
+D0
+A door hangs from its hinges ahead of you, to the north.
+~
+door~
+83 0 10321
+D1
+~
+~
+0 0 22071
+D3
+~
+~
+0 0 10319
+S
+#10321
+Foyer of the Haunted Mansion~
+The foyer of the mansion is covered in thick cobwebs, and dust at least
+an inch thick covers the floor.  Once a majestic dwelling, the splendor of a
+forgotten age can still be discerned by a sharp eye beneath the thick layers
+of dust.  
+~
+0 401433 0
+Rd     0
+E
+door~
+A door hangs from its hinges.
+~
+D0
+~
+~
+0 0 10322
+D2
+A door hangs from its hinges.
+~
+door~
+83 0 10320
+S
+#10322
+Hallway~
+You are at the intersection of two hallways in the mansion.  At the ends
+of these hallways, there are closed doors.  Above you, a majestic candelabra
+hangs from the ceiling.  Made of beautiful crystal, its splendor is now
+dampened by generations of spiders' webs.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10325
+D1
+~
+~
+0 0 10323
+D2
+~
+~
+0 0 10321
+D3
+~
+~
+0 0 10324
+S
+#10323
+Hallway~
+To the east, the hallway ends at a large wooden door.  Behind you, it
+intersects with a hallway which runs from the north to the south.  Some old
+and musty carpeting is under your feet, and cobwebs hang in your hair.  The
+brass doorknob in front of you is tarnished and carries at least a century
+of dust.  
+~
+0 401433 0
+Rd     0
+D1
+A large wooden door stands here.
+~
+door~
+119 10325 10327
+D3
+~
+~
+0 0 10322
+S
+#10324
+Hallway~
+The hallway ends to the west at a large wooden door.  The doorknob is made
+of pure silver which has tarnished to a dark black color.  Some scratches
+made by the claws of a tiny animal can be seen on the bottom of the door,
+and pieces of chewed up carpet still remain on the floor.  
+~
+0 401433 0
+Rd     0
+E
+door~
+A large wooden door stands here.
+~
+D1
+~
+~
+0 0 10322
+D3
+A large wooden door stands here.
+~
+door~
+119 10302 10330
+S
+#10325
+Hallway~
+To the north, a very large and elaborately carved door stands closed. 
+From behind the door, you think you hear the sounds of a banquet taking
+place.  A piano is playing loudly, and you hear the joyous laughter of many
+people.  Maybe the house isn't deserted after all..  But why is it in such
+disarray?  
+~
+0 401433 0
+Rd     0
+E
+door~
+A very large and elaborately designed door stands here.
+~
+D0
+A very large and elaborately designed door stands here.
+~
+door~
+19 0 10336
+D2
+~
+~
+0 0 10322
+S
+#10326
+Bedroom~
+The northern wall of this bedroom does not look quite right.  You cannot
+quite place your finger on what is wrong, however.  A giant mirror hangs on
+part of the wall, and its glass is still perfectly intact.  An ancient
+bureau stands here as well, and a lady's silver brush, comb, and mirror lie
+upon it.  
+~
+0 131097 0
+Rd     0
+E
+mirror~
+The mirror is huge... you can see the image of yourself reflecting back at
+you.
+~
+E
+silver~
+A silver vanity set is displayed on the bureau.
+~
+D2
+~
+~
+0 0 10327
+S
+#10327
+Bedroom~
+As you enter, the dust of many ages is stirred up and nearly chokes you. 
+When the dust settles down, you see an old bedroom.  A huge canopy bed which
+used to be white stands in the middle of the room.  Lying on the bed is a
+skeleton with long hair.  Upon closer inspection, you realize a knife is
+stuck through the ribcage.  Around the skeleton are heavy brown stains.  
+~
+0 401417 0
+Rd     0
+E
+door~
+A rather large door stands here on the west wall.
+~
+D0
+~
+~
+0 0 10326
+D2
+~
+~
+0 0 10328
+D3
+A rather large door stands here on the west wall.
+~
+door~
+119 10325 10323
+S
+#10328
+Bedroom~
+An old wooden chair draped with festive clothing dating back over a century
+stands in the corner.  A thick layer of dust covers everything here, and
+moving even a bit stirs up enough to cause a coughing fit.  You wonder what
+could have possibly happened here in this house.  Everything appears to have
+been left vacant over a very short period of time, and many valuables have
+been left behind.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10327
+S
+#10329
+Bedroom~
+A large painting hangs on the northern wall here.  It depicts a beautiful
+woman in a handsome man's embrace.  Before your eyes, the man grows fangs
+and attacks the neck of the woman.  A trickle of human blood flows down the
+painting.  An old vanity stands against the eastern wall, with jewelry and
+makeup vials still standing on it as if to be used.  Apparently, the owner
+was planning to come back at some point.  
+~
+0 131097 0
+Rd     0
+D2
+~
+~
+0 0 10330
+S
+#10330
+Bedroom~
+A large and sturdy bed stands in the middle of the room.  Its sheets and
+blankets are turned down as if ready for someone to sleep in it.  As you
+take a closer look at the bed, a rat runs out from beneath the covers,
+startling you half to death.  
+~
+0 401433 0
+Rd     0
+E
+door~
+A door stands here in the east wall.
+~
+D0
+~
+~
+0 0 10329
+D1
+A door stands here in the east wall.
+~
+door~
+119 10302 10324
+D2
+~
+~
+0 0 10331
+S
+#10331
+Bedroom~
+The southern end of this bedroom lies empty except for a very large
+accumulation of dust.  A painting on the wall shows a very beautiful woman
+with a wild and hairy satyr taunting her.  As you turn to walk away, you
+think you feel eyes on your back.  Whipping around violently, you barely
+catch the satyr's eyes turning back toward the lady.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 10330
+S
+#10332
+Ballroom~
+In this corner of the banquet room, a piano is playing, seemingly on its
+own.  You listen to the aged tune and can imagine people whirling in dance. 
+As you are listening and watching the piano, you see a player materialize
+out of nowhere...  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 10333
+D2
+~
+~
+0 0 10335
+S
+#10333
+Ballroom~
+A large banquet table still has the moldy and mostly decayed remains of a
+feast on it.  Set around the table are many plain wooden chairs, and in
+front of each chair is a place setting.  As you turn to walk away, a shadowy
+figure materializes across the table and lifts its glass as if toasting you.
+~
+0 401437 0
+Rd     0
+D1
+~
+~
+36 0 10334
+D2
+~
+~
+0 0 10336
+D3
+~
+~
+0 0 10332
+S
+#10334
+Ballroom~
+A small serving table with a leaded crystal decanter stands in the
+corner.  Inside the decanter, a small amount of wine can still be seen.  A
+few crystal wine glasses contain the dusty and dried remains of a vintage
+red wine.  Over eveything, a thick layer of dust and cobwebs rests.  To the
+east, there is a door, but it appears to be unopenable.  
+~
+0 401437 0
+Rd     0
+E
+door~
+There is a door set into the east wall. Examining it closely, you can't find
+a door handle, a keyhole or anything to that effect.
+~
+D1
+There is a door set into the east wall. Examining it closely, you can't find
+a door handle, a keyhole or anything to that effect.
+~
+door~
+119 0 10338
+D2
+~
+~
+0 0 10337
+D3
+~
+~
+36 0 10333
+S
+#10335
+Ballroom~
+You are at the western end of a dance floor.  Underneath the dust, a
+highly polished floor can be seen.  Listening to the mysterious music, you
+can imagine men and women twirling across the floor.  Almost as if conjured,
+dance partners materialize out of nowhere, whirling and twirling on a
+long-dead melody.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10332
+D1
+~
+~
+0 0 10336
+S
+#10336
+Ballroom~
+You are in a very large room.  Directly in front of you, you see a large
+banquet table, and to the east and west you see a large dance floor.  In the
+corner to the west, a piano can be seen mysteriously beating out a lively
+tune.  If you didn't know better, you could swear there was a party going
+on.  
+~
+0 401433 0
+Rd     0
+E
+door~
+There is a door in the south wall here.
+~
+D0
+~
+~
+0 0 10333
+D1
+~
+~
+0 0 10337
+D2
+There is a door in the south wall here.
+~
+door~
+19 0 10325
+D3
+~
+~
+0 0 10335
+S
+#10337
+Ballroom~
+You are at the eastern end of a dance floor.  Underneath the dust, a
+highly polished floor can be seen.  Listening to the mysterious music, you
+can imagine men and women twirling across the floor.  Almost as if conjured,
+dance partners materialize out of nowhere, whirling and twirling on a
+long-dead melody.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10334
+D3
+~
+~
+0 0 10336
+S
+#10338
+Under the stairs~
+A rickety staircase leads up into the dark here.  A closed door is to the
+west, which you guess leads into the ballroom.  The passageway you are in is
+cramped, and the air is very stuffy and old.  Some cobwebs hanging from the
+ceiling seem to attack you as you pass underneath them, nearly suffocating
+you.  
+~
+0 401433 0
+Rd     0
+E
+door~
+A door stands here in the west wall.
+~
+E
+staircase~
+A staircase leads up into darkness.
+~
+E
+up~
+A staircase leads up into darkness.
+~
+D2
+~
+~
+0 0 10339
+D3
+A door stands here in the west wall, although examining it closely, you
+can see no way to get through it.
+~
+door~
+119 0 10334
+D4
+~
+~
+0 0 10342
+S
+#10339
+Hallway~
+This room is large and dusty, just like the rest of the rooms in the
+mansion.  To the north, you think you can discern a staircase, and to the
+south is a wall with the outline of a door in it.  Trying to open it does no
+good, for it has been stuck for a long time.  Thinking back, this must
+explain why the northern bedroom wall looked so strange...  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10338
+S
+#10340
+Secret Passage~
+You are in some sort of secret passageway!  The purpose of the passage is
+not clear, though, for you see no exits on any of the walls.  With a
+panicked feeling, you realize you might be trapped here for all time..  
+~
+0 401433 0
+Rd     0
+D2
+~
+~
+0 0 10341
+S
+#10341
+Secret Passage~
+This room is rather plain and bland in the ways of design, except for the
+marble statue standing next to the southern wall. Made of fine marble, it
+looks as though it could be alive. Such detail!
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10340
+S
+#10342
+Top of a Staircase~
+A rickety staircase descends into darkness here.  You are in the parlor,
+which is lavishly decorated with turn of the century furnishings.  The
+architect who designed this house must have been kind of wacky to have
+placed a staircase in the parlor.  
+~
+0 29 0
+Rd     0
+E
+staircase~
+A staircase leads down into darkness.
+~
+E
+down~
+A staircase leads down into darkness.
+~
+D2
+~
+~
+0 0 10343
+D3
+~
+~
+0 0 10344
+D5
+~
+~
+0 0 10338
+S
+#10343
+In the Parlor~
+A pretty settee with maroon upholstery sits in the corner next to a
+broken window.  The material is soaking wet with all the rain pouring in
+through the window, and it has a musty smell.  When the house was still kept
+up, it must have been a nice place to sit.  
+~
+0 401433 0
+Rd     0
+E
+settee~
+A very lovely chair, upholstered with a maroon velvety material. Too bad
+it's been ruined.
+~
+E
+window~
+The glass that was once in the window lies all over the floor, shattered.
+~
+D0
+~
+~
+0 0 10342
+D3
+~
+~
+0 0 10345
+S
+#10344
+In the Parlor~
+This corner of the parlor has a few straight-backed wooden chairs with
+covered seats.  The material covering the seats has rotted away, leaving
+only the stuffing.  The room must have been really cozy years ago, and you
+can imagine someone having tea in here.  
+~
+0 131097 0
+Rd     0
+D1
+~
+~
+0 0 10342
+D2
+~
+~
+0 0 10345
+S
+#10345
+In the Parlor~
+There is a large wooden door to the west, and a large coffee table sits
+in the middle of the room directly in front of you.  A silver tea set which
+is black with the tarnish of many years is placed on the table.  
+~
+0 401433 0
+Rd     0
+E
+door~
+A large wooden door stands here in the west wall.
+~
+D0
+~
+~
+0 0 10344
+D1
+~
+~
+0 0 10343
+D3
+A large wooden door stands here in the west wall.
+~
+door~
+83 0 10359
+S
+#10346
+Guest room~
+This room is apparently a guest room.  Simple yet elegant furniture
+stands in the room with years and years of dust on it.  A crystal vase with
+the dead remains of a dozen roses is placed on a small table next to the
+door, which is in the western wall.  
+~
+0 401433 0
+Rd     0
+E
+remains~
+A small pile of dust rests underneath the vase.
+~
+E
+vase~
+A lovely glazed vase is mauve in color, or at least it used to be. The
+fragrance of the color has faded through the years.
+~
+E
+door~
+A plain wooden door stands in the west wall.
+~
+D1
+~
+~
+0 0 10347
+D2
+~
+~
+0 0 10348
+D3
+A plain wooden door stands in the west wall.
+~
+door~
+83 0 10361
+S
+#10347
+Guest room~
+The floor of this room was heavily carpeted, but the carpet has rotted
+away, leaving only scraps.  A small nightstand is in this corner of the
+room, and a few personal items are still standing on it.  To the south, a
+very large bed can be seen.  
+~
+0 401433 0
+Rd     0
+E
+bed~
+A lovely canopy bed. Sheets used to hang around it, as you can see shredded
+remnants still hanging from the bedposts.
+~
+E
+nightstand~
+The nightstand is made of a mahogany wood. There are a few personal affects
+resting atop it. A hairbrush, who's bristles have turned to dust, and a hand
+mirror that has been broken.
+~
+D2
+~
+~
+0 0 10349
+D3
+~
+~
+0 0 10346
+S
+#10348
+Guest room~
+A large mirror hangs on the western wall.  As you look at yourself, you
+detect a transformation in the mirror.  Before your eyes, you see yourself
+rapidly age, suffer, and die.  In horror, you turn, breaking the spell of
+the mirror.  When you look back, you see yourself as you should be.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10346
+D1
+~
+~
+0 0 10349
+S
+#10349
+Guest room~
+A very large sleigh bed is in this corner of the room.  Made of the
+finest oak wood, the bed could be sold for a high price these days.  Like
+every other room in the house, items are left strewn around the room as if
+the owner had planned on returning shortly.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10347
+D3
+~
+~
+0 0 10348
+S
+#10350
+Bedroom~
+You are in another bedroom in the strange mansion.  A giant spider's web
+covers most of this corner of the room.  Unlike most of them, this web is
+freshly spun, and a giant spider sits in the middle of it.  You do your best
+to try and avoid the spider and its web.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 10351
+D2
+~
+~
+0 0 10352
+S
+#10351
+Bedroom~
+A small but comfortable-looking bed lies along the east wall here.  The
+bedding was originally a light mauve color, but it has faded due to the dust
+and the light that must shine in through the window.  The bare wood floor is
+highly polished beneath the thick layers of dust.  
+~
+0 401433 0
+Rd     0
+E
+window~
+The window is covered in dust.
+~
+D2
+~
+~
+0 0 10353
+D3
+~
+~
+0 0 10350
+S
+#10352
+Bedroom~
+A small table with dried flowers stands against the west wall here. 
+Covered under a thick layer of dust are some cuff links and a man's pocket
+timepiece.  An old pipe which is still filled with tobacco also lies here. 
+The owner must have planned on coming back to have a smoke.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10350
+D1
+~
+~
+0 0 10353
+S
+#10353
+Bedroom~
+There is a door in the eastern wall which leads out into the main hall. 
+The tattered remains of a rug lie on the floor, and the walls of this room
+are a heavily patterned forest green color.  The wallpaper is peeling and
+faded, and the room smells extremely musty.  
+~
+0 401433 0
+Rd     0
+E
+door~
+A wooden door stands along the eastern wall here.
+~
+D0
+~
+~
+0 0 10351
+D1
+A wooden door stands along the eastern wall here.
+~
+door~
+83 0 10359
+D3
+~
+~
+0 0 10352
+S
+#10354
+Bedroom~
+The northwest corner of this room is equally peculiar.  Not a speck of
+dust can be seen in this room.  In fact, it looks like it is recently lived
+in.  A comb and a basin of water stand on a table here.  
+~
+0 401433 0
+Rd     0
+E
+comb~
+A wooden comb rests here. Not a speck of dust upon it.
+~
+E
+water~
+The water is fresh from what you can tell.
+~
+E
+basin~
+A lovely basin made of pottery, with a single flower painted upon it.
+~
+D1
+~
+~
+0 0 10355
+D2
+~
+~
+0 0 10356
+S
+#10355
+Bedroom~
+The carpeting in this room is in good condition.  Plush and of a very
+elaborate design, it looks like it was installed yesterday.  The wallpaper,
+too, is in very good condition, and not a single piece is faded.  It is
+almost as if someone was living here.  But that couldn't be possible, could
+it?  
+~
+0 401433 0
+Rd     0
+E
+door~
+There is a door here in the east wall.
+~
+D1
+There is a door here in the east wall.
+~
+door~
+83 0 10361
+D2
+~
+~
+0 0 10357
+D3
+~
+~
+0 0 10354
+S
+#10356
+Bedroom~
+A large four-post bed is standing here in the corner of the room. 
+Curtains run along all sides of it, forming an enclosed bed.  Afraid of what
+you will find, you pull back the curtains exposing a freshly made bed.  You
+breathe a sigh of relief, but you can't help being a little nervous.  Where
+is the inhabitant of this room, and why is he living here?  
+~
+0 16 0
+Rd     0
+D0
+~
+~
+0 0 10354
+D1
+~
+~
+0 0 10357
+S
+#10357
+Bedroom~
+A painting of a young and beautiful woman hangs in the corner here.  Her
+long blonde hair cascades over her pale white shoulders, and her soft ruby
+lips give you a sensuous smile.  She is wearing a soft rose gown, and the
+soft curves of the material accuentuate the curves of her body.  On a table
+beneath the picture, a single fresh red rose lies.  An unexplainable chill
+runs up and down your spine.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10355
+D3
+~
+~
+0 0 10356
+S
+#10358
+Under the Staircase~
+A staircase rises up into the darkness of the attic above you.  You have
+the feeling that you are very close to your goal, intangible though it is. 
+The pounding of your heart in your chest echoes in your ears as you place
+your foot on the first step.  It's now or never...  
+~
+0 401433 0
+Rd     0
+D2
+A door stands here in the south wall.
+~
+door~
+119 0 10359
+D4
+~
+~
+0 0 10371
+S
+#10359
+Hallway~
+To the north, east, and west, solid wooden doors stand.  The eastern
+and western doors are unlocked, but you can't seem to budge the northern
+one.  You try to peek through the northern door's keyhole, but you cannot
+see anything in the pitch darkness.  
+~
+0 401433 0
+Rd     0
+E
+keyhole~
+You can see nothing through the darkness.
+~
+D0
+There is a wooden door here to the north.
+~
+"northern door"~
+119 10301 10358
+D1
+A door stands here in the eastern wall.
+~
+"eastern door"~
+83 0 10345
+D2
+~
+~
+0 0 10360
+D3
+A door stands here in the western wall.
+~
+"western door"~
+83 0 10353
+S
+#10360
+Hallway~
+You are at the intersection of two hallways.  Lamps with glass chimneys
+are fastened to the wall, and blackened smoke stains can be seen on the
+walls.  A long and fancy rug runs the length of the north-south hallway, and
+there are footprints in the dust going south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10359
+D1
+~
+~
+0 0 10365
+D2
+~
+~
+0 0 10361
+D3
+~
+~
+0 0 10364
+S
+#10361
+Hallway~
+The footsteps turn to the west here and enter a room which is barred by a
+door.  The handle turns freely, however, and you brace yourself for what
+might be inside.  Another door can be seen to the east and is also barred by
+a plain wooden door.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10360
+D1
+~
+door~
+83 0 10346
+D2
+~
+~
+0 0 10362
+D3
+~
+door~
+83 0 10355
+S
+#10362
+Hallway~
+The hallway ends here and is decorated by a small half-circle table and a
+few paintings on the wall.  Some rats scurry across the floor and run down
+the hallway.  The plaster on the walls is cracking, and it crumbles at your
+touch.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10361
+S
+#10363
+Hallway~
+The hallway abruptly ends here.  A painting of some flowers in a vase is
+set into a gilt frame on the wall.  A long a jagged rip in the painting
+attests to the abuse it has received by the many haunts.  Unable to bear the
+thought of fresh, alive flowers, they have destroyed the painting.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 10364
+S
+#10364
+Hallway~
+The hallway continues to the west here, and to the east, it intersects
+with another hallway.  The walls of the hallway are cracking, and plaster
+falls from them at your touch.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 10360
+D3
+~
+~
+0 0 10363
+S
+#10365
+Hallway~
+The hallway ends abruptly at a door in the eastern wall and intersects
+with another hallway to the west.  By the dimensions of the bedrooms, you
+guess that the door to the east is just a closet.  You might find a clue to
+the owner of the house, however.  
+~
+0 401433 0
+Rd     0
+D1
+A door, which you assume to be a closet is here in the east wall.
+~
+closet~
+83 0 10366
+D3
+~
+~
+0 0 10360
+S
+#10366
+Closet~
+You are in a damp and musty closet.  Rats and other vile vermin crawl all
+over the floor, and the chewed up remains of a fur coat brush against your
+face.  Out of the corner of your eye, you detect movement deeper in the
+closet.  You go to investigate and find..  
+~
+0 131097 0
+Rd     0
+D3
+There is a door in the west wall of this tiny room.
+~
+"closet door"~
+83 0 10365
+S
+#10367
+In the Attic~
+Old boxes and packages fill this corner of the attic.  Broken windows
+give you a view of the surrounding area outside the mansion.  The storm has
+not abated; instead it has gotten more furious.  The wind smashes a tree
+branch against the building, making a tapping sound.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10375
+D1
+~
+~
+0 0 10368
+D3
+~
+~
+0 0 10374
+S
+#10368
+Sanctuary of the Madman~
+As you move into this area from behind a stack of boxes, a man turns
+furiously on you.  As he turns, he reveals a corpse wearing a long, flowing
+wedding dress.  She is laid out on a table as if sleeping, but her badly
+decomposed body tells you that she's no sleeping beauty that will wake up
+with a kiss.  A dark stain over her left breast gives you just a hint of
+what is going on here.  The madman sees your glance and begins to rant at
+you without making a sound you can hear.  
+~
+0 131097 0
+Rd     0
+D0
+~
+~
+0 0 10369
+D3
+~
+~
+0 0 10367
+S
+#10369
+In the Attic~
+A stack of boxes and other assorted items is stacked very high here.  A
+trunk is wide open here, and it looks like someone was interrupted while
+packing.  You think you can hear murmuring coming from behind the boxes to
+the south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10370
+D2
+~
+~
+0 0 10368
+D3
+~
+~
+0 0 10375
+S
+#10370
+In the Attic~
+You are at the top of the stairs which lead down to the second level of the
+mansion.  You are in the attic of the mansion now, and you see many items
+which have been packed away for future use.  From the looks of the rest of
+the mansion, however, there was not much of a future for anyone here.  
+~
+0 401433 0
+Rd     0
+D2
+~
+~
+0 0 10369
+D3
+~
+~
+0 0 10371
+S
+#10371
+In the Attic~
+You are at the top of the stairs which lead down to the second level
+of the mansion.  You are in the attic of the mansion now, and you see many
+items which have been packed away for future use.  From the looks of the
+rest of the mansion, however, there was not much of a future for anyone
+here.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 10370
+D2
+~
+~
+0 0 10375
+D3
+~
+~
+0 0 10372
+D5
+~
+~
+0 0 10358
+S
+#10372
+In the Attic~
+The northwest corner of the attic has many large storage trunks which are
+firmly closed.  A few open crates of household items stand open as if they
+were placed hastily there for temporary storage.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 10371
+D2
+~
+~
+0 0 10373
+S
+#10373
+In the Attic~
+More items are in storage here.  A box of old toys, a baby carriage, and
+other child-related items are in this section of the attic.  Because none of
+the rooms in the mansion were decorated for a child, you infer that these
+toys were packed away long before the house was deserted.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10372
+D1
+~
+~
+0 0 10375
+D2
+~
+~
+0 0 10374
+S
+#10374
+In the Attic~
+The southwest corner of the attic has more stored items.  The air up here
+in the attic is extremely heavy, and you find it hard to breathe despite the
+open window.  The horrible stench of old death pervades from somewhere, but
+you can't quite pinpoint it.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10373
+D1
+~
+~
+0 0 10367
+S
+#10375
+In the Attic~
+The center of the attic is devoid of any stored items, allowing access to
+all corners.  Boxes are piled on the perimeter of the open area, blocking
+your view of the items which are stored along the walls.  You hear a
+murmuring noise, but you can't pinpoint the direction.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 10371
+D1
+~
+~
+0 0 10369
+D2
+~
+~
+0 0 10367
+D3
+~
+~
+0 0 10373
+S
+#10376
+Honeymoon Suite~
+This honeymoon suite is the finest in all the lands.  A big brass bed
+with soft white comforters stands against the north wall.  Gossamer curtains
+billow in the windows, and a bottle of champagne is chilling on a table next
+to the bed.  
+~
+0 131092 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 10303 spec_cast_undead
+M 10304 spec_fido
+M 10305 spec_cast_ghost
+M 10306 spec_thief
+M 10307 spec_cast_undead
+M 10308 spec_cast_mage
+M 10309 spec_cast_mage
+M 10310 spec_cast_undead
+M 10311 spec_cast_mage
+M 10313 spec_cast_cleric
+M 10314 spec_cast_mage
+M 10316 spec_cast_mage
+M 10317 spec_cast_ghost
+S
+
+
+
+#RESETS
+M 0 10302 5 10304
+E 0 10311 0 3
+O 0 10312 0 10309
+M 0 10306 5 10314
+E 0 10357 0 20
+M 0 10307 3 10322
+E 0 10351 0 7
+M 0 10310 1 10323
+G 0 10325 0
+E 0 10309 0 20
+M 0 10303 1 10324
+G 0 10302 0
+E 0 10309 0 20
+M 0 10305 1 10327
+M 0 10308 1 10332
+E 0 10326 0 5
+M 0 10311 1 10333
+E 0 10310 0 22
+M 0 10309 5 10335
+M 0 10312 1 10341
+E 0 10352 0 20
+E 0 10358 0 1
+E 0 10358 0 2
+M 0 10313 3 10344
+M 0 10315 1 10347
+O 0 10301 0 10354
+M 0 10314 3 10360
+E 0 10353 0 20
+M 0 10317 1 10366
+M 0 10316 1 10368
+E 0 10354 0 5
+E 0 10355 0 14
+E 0 10356 0 20
+E 0 10349 0 7
+M 0 10318 5 10375
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

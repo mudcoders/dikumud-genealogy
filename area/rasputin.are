@@ -1,0 +1,2672 @@
+#AREADATA
+Name        { 50-55} House of Domination Rasputin~
+Levels      50 55
+Builders    None~
+VNUMs       22000 22100
+Security    1
+Recall      25001
+Flags       0
+Sounds      You catch the sound of a storm approaching.~
+End
+
+
+
+#MOBILES
+#22000
+marize dominatrix~
+Marize the Dominatrix~
+Marize stands here with her whip in hand!
+~
+Marize is a tall, masked woman.  Her long, black hair hangs loosely on her
+shoulders.  The corset she wears is fixed with spikes and shackles.  In her
+firm hand, she holds her whip.  You gasp at the sight of her legs - they
+seem to be as long as your entire body.  The thigh high boots she wears, are
+made of leather, just like her other garments.  You feel helplessly inferior
+to Marize.
+~
+1966083 33570952 0 -1000 S
+55 0 0 4000d0+0 0d0+0
+0 65 0 0
+0 0 2
+0 0 0
+>act_prog p looks at you.~
+emote raises her arm high and cracks her whip at you!
+cackle $n
+~
+>all_greet_prog 100~
+emote Cracks her whip at YOU!
+glare $n
+say You are mine now!
+~
+|
+#22001
+slave obedient~
+A slave~
+An obedient slave kneels here.
+~
+The slave is kneeling effortlessly.  His hands are fastened with handcuffs
+and a blindfold covers his eyes.  He awaits for his mistress to command him.
+The slave mumbles a few words.
+~
+97 128 0 -104 S
+52 0 0 5440d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+nod $n
+else
+if ispc ($n)
+emote kneels before you.
+say Have you seen my mistress Marize?
+endif
+~
+|
+#22002
+slave~
+A slave~
+A slave is here curled up into the fetal position.
+~
+This slave appears to be in great fear. He is curled up into the fetal
+position. That is, he looks like a helpless baby. His ankles are fastened
+with chains and his wrists with handcuffs. The slave quivers with agony.
+~
+3 128 0 260 S
+52 0 0 5440d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say Will we ever find freedom?
+else
+if ispc ($n)
+emote strugles to break free from his handcuffs.
+bleed
+endif
+~
+|
+#22003
+servant obedience~
+The Servant~
+The Servant of Obedience will teach you a lesson.
+~
+The servant stands tall and is keen on teaching you.  She is wearing a full
+body latex suit.  You wonder whom her superior is.
+~
+3 128 0 400 S
+54 0 0 6080d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say You have been saved.
+else
+if name ($n) == Rasputin
+say You are the only one who can disobey me, Rasputin!
+else
+say Obey me!
+endif
+~
+|
+#22004
+servant discipline~
+The Servant~
+The Servant of Discipline will shape you up.
+~
+The servant is very muscular.  He stands well over two feet about you.  He is
+wearing his leather outfit.  The superior of this man must be quite a beast!
+~
+3 128 0 400 S
+54 0 0 6080d0+0 0d0+0
+0 63 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say You have been saved.
+else
+if name ($n) == Rasputin
+say You are the only one who may slouch around me, Rasputin!
+else
+say You will learn a few things from me!
+endif
+~
+|
+#22005
+Grappler~
+Grappler~
+Grappler drools as he sees you enter the room.
+~
+Grappler has been kept in this room for too long.  He must be clinically
+insane by now.  On his face, is a black leather mask with a zipper on the 
+mouth.  He wears his leather jacket and pants, as well as his spiked
+collar.  It must get awfully lonely in this room.  Better keep your 
+distance from Grappler.
+~
+3 301990016 0 -638 S
+53 0 0 3600d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say Well well!
+else
+drool $n
+say Why don't you come a little closer?
+endif
+~
+|
+#22006
+Simon~
+Simon~
+Simon the Cook is preparing a feast.
+~
+Simon is dressed in white garnments.  The traditional chef's hat
+he wears, makes him look like a giant.  If you don't plan to help him
+with the food, you'd better leave.
+~
+3 67109000 0 270 S
+51 0 0 4160d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+>act_prog p looks at you.~
+say I'll spoon you to death if you don't get out of here!
+emote opens a drawer and takes out a silver spoon.
+~
+>all_greet_prog 100~
+if isnpc ($n)
+say Don't bug me, I'm busy.
+else
+if name ($n) == Rasputin
+say Sorry Rasputin, I'm all out of Nachos.
+comfort Rasputin
+else
+say What are YOU doing in MY kitchen?
+frown $n
+endif
+~
+|
+#22007
+Mrs. Benson~
+Mrs. Benson~
+Mrs. Benson the Piano Teacher will teach you!
+~
+Mrs. Benson is an old woman.  Her days as a great pianist are over.  All
+she can do now, is teach.  The years of discipline  have made her 
+an angry woman.  Better hit all the right notes today!
+~
+3 134217856 0 394 S
+51 0 0 4160d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say Hello.
+else
+say Please join me in a duet!
+look $n
+say Don't you touch the keys!
+raise
+endif
+~
+>act_prog p looks at you.~
+emote turns to look at you.
+say I don't charge much for lessons!
+smile $n
+~
+|
+#22008
+Helena~
+Helena the Housekeeper~
+Helena the Housekeeper is dusting.
+~
+Helena looks like something you would see in the movies.
+She is fairly young, and is wearing a maid's outfit.
+~
+65 16512 0 1000 S
+51 0 0 4160d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say Hiya!
+else
+say You must be one of Marize's guests.  Make yourself at home.
+endif
+~
+>act_prog p looks at you.~
+if isnpc ($n)
+nod $n
+else
+say You must be looking for Marize.
+cackle $n
+endif
+~
+|
+#22009
+Arthur~
+Arthur~
+Arthur the Butler is at your service.
+~
+Arthur is wearing a tuxedo.  You try to hide an evil grin as he reminds you
+of a penguin.  Arthur is also very gallant.
+~
+65 33554560 0 1000 S
+51 0 0 4160d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say Hello.
+else
+bow $n
+say Hello $n!
+say My mistress is occupied at the moment.  Can I help you?
+emote awaits your answer.
+endif
+~
+>act_prog p looks at you.~
+smile $n
+say Tis a lovely day, isn't it?
+blush
+emote tries to zip up his fly, and realizes you are watching him.
+endif
+~
+|
+#22010
+gnome~
+A small garden gnome~
+A small gnome wanders happily here.
+~
+The gnome is approximately 3'6" in height.  It's white beard and red hat give
+it a friendly appearance.  However, the look in it's eyes does not.  The
+gnome has gone completely mad.  It refuses to simply stand still, any
+further.
+~
+97 134225960 0 -262 S
+53 0 0 5700d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#22011
+gnome large~
+The large gnome~
+A large gnome stands here in the garden.
+~
+This gnome is much larger then the other ones.  He stands still with an
+evil grin on his face.  The pitchfork he is wielding is covered with blood.
+His dirty overalls make you laugh as he reminds you of an old farmer.
+~
+3 134226088 0 -523 S
+53 0 0 4680d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say Howdie!
+else
+emote raises his pitchfork towards the sky.
+say Halt!!!
+endif
+~
+>act_prog p looks at you.~
+say If you think you are getting past me, you are wrong!
+tackle $n
+~
+|
+#22012
+rat~
+a rat~
+A monstrous rat claws at your feet.
+~
+The rat is covered with slime.  He stinks!  His long whiskers drag along the
+floor as he crawls.  The rat is extremely hairy.  A bite from him would
+most likely ensure a serious disease.
+
+~
+35 335560744 0 -620 S
+54 0 0 4631d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+say Grrrrr..  Get out of here now
+else
+glare $n
+endif
+~
+>act_prog p looks at you.~
+if ispc ($r)
+tell $n I don't like your face!
+else
+say What do you want?
+endif
+~
+|
+#22013
+cockroach~
+A cockroach~
+A mediteranean cockroach dwells here.
+~
+The cockroach's compact outer shell protects it from most of it's predators.
+It seems to have made it's home here, in this tunnel. 
+~
+69 201330728 0 -193 S
+53 0 0 6492d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+if isnpc ($n)
+emote begins to collide with $n
+else
+emote crawls towards you.
+say You are the vermin here!
+endif
+~
+|
+#22014
+jet~
+The water jet~
+The strong jet of the Jacuzzi.
+~
+As you get closer to the jacuzzi, you accidentally push the ON button.
+A violent jet of hot water comes spurting out at you.  There is no sense
+in turning if OFF now.  You must fight it.
+ 
+~
+3 134234282 0 -373 S
+51 0 0 4373d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#22015
+husband~
+a crippled man~
+Marize's abused Husband
+~
+You take a few steps towards this crippled man.  He cries helplessly,
+on the dusty floorboards of the attic.  Suddenly he turns around.
+His eyes, wide open, from the years of light deprivation.  He is
+starved.  You quickly realize that this man must be the husband
+of the woman the maid talked about.  Marize, was the name.  How
+could she have done such a thing?
+~
+3 33570946 0 1000 S
+55 0 0 4000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>act_prog p looks at you.~
+if isnpc ($n)
+say Help me!
+else
+if ispc ($n)
+say Please, help me out of here!
+beg $n
+endif
+~
+|
+#22016
+rose-bud rose plant~
+a rose-bud~
+A &rrose-bud&P extends it's pricks at you
+~
+This dangerous looking plant has many sharp pricks along it's spine.
+The lovely scent it gives off is very deceiving.  It's petals look
+fragile, maybe your best chance to kill it would be to aim for
+them!
+~
+3 33554432 0 -328 S
+50 0 0 4800d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>fight_prog 30~
+emote pricks you on the arm!
+endif
+~
+|
+#22017
+cactus plant~
+a cactus~
+A mean &gcactus&P stands here
+~
+This large cactus has been imported from Arizona.  It's deadly
+pricks are much more dangerous then the ones on the rose-bud.  Things
+could be worse, you could be in a desert.
+~
+3 67108864 0 -255 S
+50 0 0 4800d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>fight_prog 35~
+emote makes you wince as it scratches you!
+endif
+~
+|
+#22018
+strange plant~
+&Y a Strange plant.~
+&YA &GStrange&P plant relaxes in a corner.
+~
+This strange looking plant is hidden in a corner.  It lies under a hot
+lamp, absorbing the light.  You give a quick glance around the room
+and pick a few leaves for yourself.  
+~
+3 16384 0 1000 S
+51 0 0 5120d0+0 0d0+0
+0 0 0 0
+0 0 0
+128 0 0
+>act_prog p looks at you.~
+if ispc($n)
+say Don't look at me like that, you're making me paranoid!
+emote pushes you away.
+endif
+~
+|
+#22019
+Madge bartender~
+Madge~
+Madge is behind the bar, smiling as usual
+~
+Madge is a middle-aged man.  His long hair is tied back in a pony tail,
+and his goatee neatly trimmed.  The shirt and vest he wears give him an
+elegant appearance.  As he says hello to you, you notice his british
+accent.  This is possibly the nicest bartender that ever existed.
+~
+3 33554560 0 1000 S
+55 0 0 5200d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>speech_prog pint beer lager~
+if name ($n) == Rasputin
+smile Rasputin
+mpoload 22025
+give pint Rasputin
+say That one's on the house, mate!
+else
+if ispc($n)
+mpoload 22025
+nod $n
+give pint $n
+say Here you are!
+endif
+~
+>speech_prog wine champagne~
+if name ($n) == Rasputin
+mpoload 22026
+grin Rasputin
+say Oh oh!  Looks like you're getting shitty tonight!
+give champagne Rasputin
+else
+if ispc($n)
+mpoload 22026
+smile $n
+say Wine is for drunks!  Champagne is more suitable for you!
+give wine $n
+endif
+~
+>all_greet_prog 100~
+if name ($n) == Rasputin
+emote looks up at Rasputin and nods.
+say Hey Rasp, long time no see!
+else
+emote turns to look at $n
+say Any friend of Rasputin's is a friend of mine.
+smile $n
+endif
+~
+>speech_prog p hell~
+if ispc($n)
+say $n, the vnum you are looking for is 22098.
+wiggle $n
+endif
+~
+|
+#22020
+Doorman~
+Doorman~
+A Doorman stands here inviting you inside the House of Domination.
+~
+~
+67 16512 0 0 S
+50 0 0 4800d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>greet_prog 100~
+say Welcome $n, to the House of Domination.
+~
+|
+#0
+
+
+
+#OBJECTS
+#22000
+key silver~
+a silver key~
+A silver key glitters here.~
+~
+18 0 0 0 1 50
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+This is a small key made out of silver. It has a complex and buetiful floral pattern on it.
+~
+#22001
+key black~
+a black Key~
+The black key lies here.~
+~
+18 0 0 0 1 50
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+black~
+This key is made of solid black iron.
+~
+E
+key~
+This key is complex and its teeth are many and complicated.
+~
+#22002
+key red~
+a red Key~
+A red key is here.~
+~
+18 0 0 0 1 50
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+red~
+This key is made of a red marble.
+~
+E
+key~
+This is a simple key.  Its color is red marble and its complex pattern on
+it is very beautiful.  
+~
+#22003
+corset spiked~
+a spiked Corset~
+A spiked corset with silver shackles.~
+~
+9 516 0 15260 9 55
+1~ 0~ 0~ 0~
+3 0 17 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 55
+A
+17 -50
+A
+13 32
+E
+spiked~
+This piece of armor has 2 inch spikes protruding forth.
+~
+E
+corset~
+This is a corset with long gawdy spikes coming out of it.
+~
+#22004
+boots leather thigh high~
+leather thigh high boots~
+A pair of black thigh high boots.~
+~
+9 516 0 64412 65 55
+20~ 0~ 0~ 0~
+3 0 13 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 25
+A
+2 2
+A
+4 -1
+E
+boots~
+If you are quite tall and petite in size, these boots will go up a ways
+past your knees.
+~
+E
+thigh high leather~
+If you are quite tall and petite in size, these boots will go up a ways
+past your knees.  They are made of a soft leather, and the sole is made of a
+very hard leather.  Laces tie up from the palm of the foot to just under the
+knee.  
+~
+#22005
+whip dominatrix~
+a Dominatrix's whip~
+The whip of a Dominatrix.~
+~
+5 516 0 0 8193 55
+0~ 0~ 0~ 4~
+2 0 35 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 42
+A
+19 33
+A
+18 110
+E
+whip~
+This is a long black leather whip.  The ends have been frayed to add to
+the pain upon use.  
+~
+#22006
+duster~
+a feather Duster~
+A feather duster collects dust.~
+~
+3 516 0 0 16385 50
+50~ 4~ 4~ fireball~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+duster~
+This is duster made out of osterich feathers. It hasnt been used for a long time and thus collects dust. Kind of ironic.
+~
+#22007
+hat chef~
+a chef's Hat~
+A tall chef's hat.~
+~
+9 1026 0 4096 17 50
+30~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 3
+A
+13 30
+E
+hat~
+It is a tall white chef's Hat.
+~
+E
+chef~
+This is the kind of old fashion hat a chef would wear.
+~
+#22008
+spatula~
+a silver Spatula~
+A silver spatula with a plastic handle.~
+~
+5 1026 0 0 8193 50
+0~ 15~ 35~ 1~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 70
+A
+18 80
+E
+spatula~
+This is the kind of spatula people beg to lick as kids.
+~
+#22009
+apron~
+a white Apron~
+A clean white apron.~
+~
+9 1026 512 0 9 50
+45~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -20
+A
+5 1
+E
+apron~
+This is a plain white apron. The type of a apron a cook would wear.
+~
+#22010
+gloves~
+a pair of white Gloves~
+The butler's white gloves.~
+~
+9 1088 0 0 129 51
+25~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 5
+A
+13 51
+A
+12 -50
+E
+gloves~
+These are white butlers gloves. They are made of a soft cotten.
+~
+#22011
+statue stone~
+a Stone Statue~
+The stone statue of Marize.~
+~
+12 0 0 0 0 1
+0~ 0~ 0~ 0~
+999 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+stone statue~
+The statue is made of the finest marble. A triad of white shades swirl in
+a pattern all about it.
+~
+E
+marize~
+Marize is indeed a beautiful woman. Somehow you know that this statue
+could never bestow her true beauty. Her delicate face is framed with long
+and luscious locks of thick curls. Beautiful almond-shaped eyes look up into
+the heavens as if giving thanks. Her curvacious body has no recognizable
+flaws.
+~
+#22012
+leggings crotchless pair~
+a Pair of Crotchless Leggings~
+A pair of raunchy leggings.~
+~
+9 33554944 4226 0 33 53
+30~ 0~ 0~ 0~
+3 0 8 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 48
+A
+1 1
+A
+2 -2
+E
+leggings~
+These leggings seem to have had the crotch cut out of them.
+~
+E
+pair crotchless raunchy~
+These leggings seem to have had the crotch cut out of them.
+~
+#22013
+collar spikes~
+a Collar with Metal Spikes~
+A collar with razor sharp spikes.~
+~
+9 33554944 4134 0 5 53
+1~ 0~ 0~ 0~
+2 0 7 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 3
+A
+12 -50
+A
+13 -50
+E
+collar~
+A long metal collar with razor sharp spikes pointing out of it.
+~
+E
+spikes~
+The collar is adjustable so that almost any humanoid can wear it. It is
+made of a black hard-leather and has a few metal spikes on it.
+~
+#22014
+handcuffs~
+a Pair of Handcuffs~
+A pair of restrictive handcuffs.~
+~
+9 536877088 8 0 4097 53
+25~ 0~ 0~ 0~
+2 0 2 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 -35
+A
+2 -3
+E
+handcuffs~
+Kinky iron handcuffs. They look quite restrictive.
+~
+#22015
+glasses~
+an Old pair of Glasses~
+A pair of glasses with triple lense thickness.~
+~
+27 32 520 0 131073 50
+0~ 0~ 0~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 50
+A
+3 1
+A
+13 -30
+E
+glasses~
+These glasses are incredibly thick and seem to magnify everything almost five or six times.
+~
+#22016
+unused~
+a mailbox~
+A golden mailbox is fixed to the wall.~
+~
+15 0 0 0 0 200
+100000~ 5~ 0~ 0~
+10000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22017
+drawer ~
+a Drawer~
+A long and narrow drawer.~
+~
+15 0 0 0 0 0
+50~ 15~ 22019~ 0~
+11 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22018
+ring~
+a red ring of Discipline~
+A red ring of Discipline.~
+~
+9 33554944 68 0 3 53
+25~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 3
+E
+ring~
+This is the ring of discipline. Only those you are learned of its ways may wear it.
+~
+#22019
+key green~
+a green Key~
+The green key shines here.~
+~
+18 0 0 0 1 50
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+green~
+The key has been painted seaweed green.
+~
+E
+key~
+This is a simple drawer key.
+~
+#22020
+ring~
+a green ring of Obedience~
+The green ring of Obedience.~
+~
+9 2 0 0 3 53
+20~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 52
+A
+4 -1
+A
+3 1
+E
+ring~
+This is the ring of Obedience. It can be worn only if you Obey.
+~
+#22021
+belt~
+a male Chasity Belt~
+The chastity belt will lock on you.~
+~
+9 4611 192 0 2049 55
+25~ 0~ 0~ 0~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 -1
+A
+13 45
+A
+14 -55
+E
+belt~
+This is much like a females chsity belt except this is designed for a male. It has a lock and will protect any males verginity if it is placed.
+~
+#22022
+box~
+a Small Metal Box~
+A tiny metal box is stacked on some books~
+~
+15 36 0 0 0 200
+100~ 5~ 0~ 0~
+10000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+box~
+This is a small metal safe like box. It doesnt seem to have a lock. Just a latch to close it with.
+~
+#22023
+unused~
+a treasure map~
+The map to the treasure of Anselmo~
+~
+18 16384 0 0 1 53
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22025
+Used but in an unnessecery office~
+a pint of Lager~
+A pint of Foster's lager~
+~
+17 0 0 0 1 103
+15~ 15~ 1~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22026
+Used but in an unnessecery office~
+a glass of bubbly~
+A tall glass of french champagne~
+~
+17 0 0 0 1 0
+15~ 15~ 8~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22027
+Used but in an unnessecery office~
+an electric guitar~
+A black Gibson electric guitar~
+~
+12 0 0 0 16385 103
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22028
+Used but in an unnessecery office~
+a pool table~
+A large mahogany pool table lies here~
+~
+12 0 0 0 0 200
+0~ 0~ 0~ 0~
+10000000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22029
+Used but in an unnessecery office~
+a fireplace~
+A romantic fireplace provides a dim light~
+~
+12 0 0 0 0 200
+0~ 0~ 0~ 0~
+10000000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22030
+doormat~
+a Doormat~
+A doormat lies here inviting you in the &YHouse Of Domination~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+99 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#22000
+The Dark Passage~
+You have entered into a somber hallway.  Numerous torches provide
+a dim light and give you a brief glimpse of where you are.  As you
+focus onto the arched ceiling, you notice it is covered with
+shimmering pigments.
+~
+0 9 0
+Rd     0
+E
+pigments~
+Looking as close as you can at the pigments... you can see that there is
+some kind of door cut out into the ceiling, and what you are seeing is the
+colour from the carpet up above this floor.
+~
+D0
+~
+~
+0 0 22001
+D4
+~
+ceiling~
+3 0 22029
+S
+#22001
+The Dark Passage~
+You proceed down the hallway, guiding your steps carefully.  You 
+wonder how you ever found this secret passage.  Something must be
+being kept hidden down here.  You are amazed at the ceiling 
+texture.
+~
+0 9 0
+Rd     0
+E
+ceiling~
+The ceiling is made with a funny cement type of material.
+~
+D0
+~
+~
+0 0 22002
+D2
+~
+~
+0 0 22000
+S
+#22002
+The Dark Passage~
+You are at the bottom of a stone staircase.  The rough steps are carved
+from the rock beneath the house.  The air is stale here as if not much fresh
+air makes its way this far in.  You hear what sounds like screams of pain
+and suffering coming from the top of the stairs.  
+~
+0 9 0
+Rd     0
+D2
+~
+~
+0 0 22001
+D4
+A stone stairway leads to the upper floor.
+~
+staircase~
+0 0 22003
+S
+#22003
+The Dark Passage~
+You are at the top of a flight of stone stairs.  Screams can be heard
+echoing through the halls, some of them don't sound quite human, almost as
+if they have a ghostly echo to them.  You can follow the stairs downward or
+follow the hall to the north.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 22004
+D5
+A set of stone stairs lead down to the lower floor.
+~
+stairs~
+0 0 22002
+S
+#22004
+The Dark Passage~
+You begin to wonder if this hallway has an end, as the torturous
+screaming sends shivers down your spine.  You notice a door in the east wall
+that is covered with spider webs and several cracks.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 22006
+D1
+A door in the east wall is adorned with cracks and spider webs.
+~
+door~
+3 0 22005
+D2
+~
+~
+0 0 22003
+S
+#22005
+A Cellar~
+You push the wooden door wide open and enter into a small room.  There is
+a table in the center of the room.  On the table, you manage to read the
+carved words "obedience" and "discipline".  The room is covered in blood and
+urine and has a very prominant odor about it.  
+~
+0 9 0
+Rd     0
+D3
+A wooden door stands in the west wall.
+~
+door~
+3 0 22004
+S
+#22006
+The Intersection~
+You have reached a junction in the hallway.  There is a larger wooden
+door to the north.  The loud screams appear to be coming from within.
+You take a deep breath and look to the west.  The left wing appears to
+be a dead end.  You turn to the right wing and squint your eyes as you
+are nearly blinded by a bright light.  In the center of the intersection
+lies a statue of stone.  It's shape is that of a nude woman.  The 
+inscription at the bottom reads "Marize".  You assume she must be a 
+goddess of some sort.
+~
+0 8 0
+Rd     0
+D0
+A large wooden door is set into the northern wall. Screams of pain come from
+within.
+~
+door~
+103 22000 22009
+D1
+~
+~
+0 0 22007
+D2
+~
+~
+0 0 22004
+D3
+~
+~
+0 0 22010
+S
+#22007
+The Right Wing~
+You proceed into the right wing, covering your eyes from the light
+emanating from the east.  To the south is an empty room used for the
+benefit of the owner of the house.  Stains cover the walls in this
+hallway.  
+~
+0 8 0
+Rd     0
+E
+stains~
+The stains are probably of some unspeakable substance. ;)
+~
+D1
+~
+~
+0 0 22008
+D2
+Some whipping and pleasurable slashing sounds come from the south exit.
+~
+door~
+0 0 22014
+D3
+~
+~
+0 0 22006
+S
+#22008
+Into the Light~
+You have entered a blinding light.  You can see nothing else around you
+due to the intensity of such a light.  You press on in the direction you
+where moving and hope that what awaits you on the other side is safe.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 22015
+D3
+~
+~
+0 0 22007
+S
+#22009
+The Hall of Obedience~
+You are in the Hall of Obedience.  A strong urge to kneel overcomes you
+as you become more submissive.  Your mind relieves you of all ambitions. 
+Many mortals have passed through here at one point or another, but few have
+ever felt the desire to leave.  Here you will be taught how to obey your
+superior.  Proceed to the north, if you survive.  Obedience is the only
+way...  
+~
+0 0 0
+Rd     0
+D0
+There is a door here to the north.
+~
+door~
+103 22002 22011
+D2
+A large wooden door is set into the southern wall.
+~
+"large door" "door"~
+103 22000 22006
+S
+#22010
+The Left Wing~
+As you hesitantly move into the left wing, you let out a sigh of
+despair.  There does not appear to be another exit other then the 
+one you came through.  The walls are dirty and cold.  The air does
+not reach your lungs as easily, in this underground tunnel.  As you
+pause to regain your courage, you tell yourself that this must be
+a dead end.
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 22006
+D5
+A grate is here in the floor under your feet.
+~
+grate~
+3 0 22013
+S
+#22011
+The Hall of Discipline~
+You are now in the Hall of Discipline.  You have passed the first test -
+Obedience.  Can you pass the next one?  You shall soon find out.  This room
+is quite similar to the previous one.  Here you must learn how to serve your
+superior.  A code of conduct will be taught to you.  An immense steel door
+blocks your way to the north.  Pleasures of the flesh await you behind it. 
+Discipline is the only way...  
+~
+0 8 0
+Rd     0
+D0
+A large metallic door stands here in the northern wall.
+~
+"large steel door" "door"~
+103 22001 22012
+D2
+A door is set here into the southern wall.
+~
+door~
+103 22002 22009
+S
+#22012
+Marize's Room of Punishment~
+Marize's room is conveniently decorated for her special needs as a
+dominatrix.  You quickly glance at the surrounding walls to discover they 
+are covered with the different 'tools' Marize uses.  The ceiling in this
+room is very high.  Several chains hang from it.  The soft glow of candles
+provides an almost calm atmosphere.  Marize's bedding is made of red satin.
+You kneel before your mistress and lower your head.
+Obedience and discipline shall be given to you.
+~
+0 8 0
+Rd     0
+D2
+There is a door here set into the southern wall.
+~
+door~
+103 22001 22011
+S
+#22013
+The Padded Room~
+As you enter this secluded room, you can hear almost no sounds from outside 
+of it. The walls are covered with a soft, rubber-like material as if it were
+made for protecting whomever was within them. There is a small lantern hanging
+far above you from the ceiling to add some light here. A few small holes have
+been cut out high in each wall, perhaps for watching the inhabitants from the
+outside.
+~
+0 9 0
+Rd     0
+D4
+A small grate is the only possible exit from this room.
+~
+grate~
+3 0 22010
+S
+#22014
+The Whipping Room~
+This room sends a chill down your spine.  Two shackles hang from chains
+in the center of the ceiling.  On a small table, several different
+whips can be seen.  You can tell by the fresh blood puddles on the ground
+that this room was recently used.  You reflect on what it would feel 
+like to be bonded by such chains and decide you are quite happy the way
+you are.
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 22007
+S
+#22015
+The Ledge~
+When you finally open your eyes, the images slowly come back into focus. 
+You are on a ledge, along a brick wall.  It is now obvious that the blinding
+light was coming from the sun's rays.  You immediately notice that you are
+high above the ground but fail to balance your weight correctly.  You freeze
+up for a few seconds before you fall over the ledge!  
+~
+0 167804932 4
+Rd     0
+D5
+~
+~
+0 0 22016
+S
+#22016
+Falling...~
+You falling down the side of a brick wall. You can feel the air whisk by you
+as you speed to the ground below. Any second now, you will land with a splat.
+~
+0 32772 4
+Rd     15
+D5
+~
+~
+0 0 22017
+S
+#22017
+SPLAT!!!~
+Your fall comes to an end as you hit the ground, hard!  You remain there
+for a short time.  Eventually you gather enough strength to rise.  You
+should really watch your step more carefully.  Where are you now?
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 22018
+S
+#22018
+The Backyard~
+You are in the backyard of the House of Domination. You can see the large
+building towering over you. Looking up, you can see a ledge on the brick wall.
+There does not seem to be a door that leads back into the house anywhere near-
+by.
+~
+0 4 4
+Rd     0
+D0
+~
+~
+0 0 22043
+D1
+~
+~
+0 0 22019
+D2
+~
+~
+0 0 22020
+S
+#22019
+The Backyard~
+The backyard is soft with green grass. And lovely pastels from all of the
+flowers in the garden can be seen from every viewpoint. The House of Domination
+towers above you, and looks quite hard in contrast to the beautiful backyard
+scene.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 22042
+D2
+~
+~
+0 0 22021
+D3
+~
+~
+0 0 22018
+S
+#22020
+The Backyard~
+The backyard is a lovely sharade of greens and soft pastels. Very much in
+contrast to the House which towers above you. Butterflies flit around here
+in the gardens, and the occasional dragonfly can be see as well.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 22018
+D3
+~
+~
+0 0 22022
+S
+#22021
+The Backyard~
+The backyard is quite a nice size. A small waterhole has been cut out into
+the lawn to make a small wading pool for whomever wishes to use it. A few
+men and women can be seen strolling around (in their birthday suits!) admiring
+the garden, and eachother.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 22019
+D1
+~
+~
+0 0 22023
+S
+#22022
+The Backyard~
+The garden is lovely no matter what time of day you come to see it. The area
+is lit up rather well, with torches and sconces hanging about it well-placed
+areas of the yard. At all hours, men and women of all shapes and sizes can
+be seen strolling through the garden enjoying eachother's company.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 22020
+S
+#22023
+The Backyard~
+My my, this garden must be rather large in size. How long have you been
+wandering here. Familiar soft, green grass grows under your feet and flowers
+perk up all around you in the gardens. Along this small section, you notice
+a hole in the ground that seems to lead somewhere.
+~
+0 0 4
+Rd     0
+E
+hole~
+A small hole in the ground leads down into darkness.
+~
+D3
+~
+~
+0 0 22021
+D5
+A small hole in the ground leads down into darkness.
+~
+hole~
+3 0 22024
+S
+#22024
+The Tunnel Entrance~
+You have found a hole in the ground of the backyard.  You crawl down
+into it and follow it to see where it will lead you.  You find
+yourself burried to your knees in mud and earth.  Your movements
+are restricted.  Don't look down, you might see lots of nasty bugs trying
+to bite at your toes.
+~
+0 9 0
+Rd     0
+D2
+~
+~
+0 0 22025
+D4
+~
+~
+3 0 22023
+S
+#22025
+Tunnel~
+You follow the tunnel into which you have entered.
+Trying to shake the mud off yourself.  You should go back up to one
+of the bathrooms and take a bath!
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 22024
+D2
+~
+~
+0 0 22026
+S
+#22026
+Tunnel~
+The tunnel continues along a straight path.  To the west is a small cave.
+It's threshold doesn't look very sturdy.  You better decide quickly
+if you want to enter or not.
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 22025
+D2
+~
+~
+0 0 22028
+D3
+~
+~
+0 0 22027
+S
+#22027
+A Small Cave~
+You have entered into a small cave.  Several stalactites have been
+formed on the ceiling.  They are quite sharp, better stay low.
+Small stones cover the floor on which you stand.  A giant rat is
+confronting you.  It's ugly wiskers extend beyond it's outline.
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 22026
+S
+#22028
+The End of the Tunnel~
+You have reached the end of the tunnel.  You cannot go any further.
+With your fingernails, you begin to claw at the rocks on the tunnel
+wall.  In a few minutes's time, a beam of light seaps through into the
+tunnel.  YOU DID IT!  You created an opening big enough to exit
+through.  What are you waiting for...go ahead.
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 22026
+D2
+~
+~
+3 0 22000
+S
+#22029
+The Living Room~
+As you enter the living room, you immediately notice the carpet in the
+middle of the floor is hand woven.  There are a few armchairs and a big
+couch here placed in front of the fire place which provides warmth during
+the winter seasons.  
+~
+0 8 0
+Rd     0
+D1
+~
+door~
+3 0 22045
+D2
+~
+~
+0 0 22040
+D3
+~
+~
+0 0 22030
+D5
+~
+carpet~
+3 0 22000
+S
+#22030
+The Kitchen~
+The kitchen is the brightest room in the house.  It's windows also look
+onto the backyard.  The sweet aroma you smelled earlier is coming from one
+of the pots on the the beautiful woodstove that burns constantly, providing
+both heat and a cooking surface.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 22029
+D2
+~
+~
+0 0 22033
+D3
+~
+~
+0 0 22031
+S
+#22031
+The Dining Room~
+The main piece of furniture in this room is the dining table.  It is
+made of the finest mahogany wood and matches the chairs and china
+cabinets.  Although it is large enough to accommodate eight persons,
+it is only set for one.  As you look into the china cabinet near the
+far wall, you notice plates and glasses of great value.  Some are
+imports from all around the world.  The owner of this house posseses
+a great appreciation for material things.  The windows in this room
+look onto the backyard.  The door to the greenhouse is to the 
+east.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 22030
+D2
+~
+~
+0 0 22032
+S
+#22032
+The Family Room~
+"Those leather sofas look comfortable!", you say to yourself as you 
+walk into the family room.  You sit down for an instant, wondering 
+why this home is called the house of domination.  A few magazines are
+neatly piled on the table next to the sofa.  You pick one up and begin
+to read the cover page.  "Doms and Subs" is it's title.  You read a 
+few pages and put it down.  It's interesting, to say the least.
+The windows in this room look out to the front of the house.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 22031
+D1
+~
+~
+0 0 22033
+S
+#22033
+The Entrance Hall~
+You enter into the house of domination and shut the door behind
+you.  You forget to remove your shoes, like always, not thinking
+about your manners.  You see a curved staircase directly in front
+of you, leading to the second floor.  A crystal chandelier hangs 
+high up on the ceiling.  There are several paintings carefully
+positioned on the walls.  A sweet odor is coming from the north.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 22030
+D1
+~
+~
+0 0 22040
+D2
+~
+~
+3 0 22041
+D3
+~
+~
+0 0 22032
+D4
+~
+~
+0 0 22034
+S
+#22034
+Hallway Leading to Bedrooms~
+This hallway leads to the bedrooms of the house.  Some tapestries 
+decorate the walls.  To the west are the master chambers.  To the
+east is another bedroom and a bathroom.  Perhaps the attic is
+that way.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 22035
+D3
+~
+~
+0 0 22036
+D5
+~
+~
+0 0 22033
+S
+#22035
+Hallway~
+You are in the hallway.  To the north is a green bathroom.  By the
+looks of it, the housekeeper must clean that room often.  To the east
+is another bedroom.  A few fumbling noises seem to be coming from
+above the ceiling.  Is that possible?
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 22037
+D1
+~
+~
+0 0 22038
+D3
+~
+~
+0 0 22034
+S
+#22036
+The Master Bedroom~
+The room you have entered is immense.  A king size bed is centrally
+placed next to one of the walls.  You stand in the threshold in awe.  The
+enchanting scent of Chanel perfume fills the room.  As you walk past, you
+reach out and touch the bedding.  You have never felt such a smooth material
+before.  There are two mirrored closets on either side of the bed.  Several
+paintings add to the beautiful decor of this room.  You search the ceiling
+for a door to the attic without success.  You should look in the other
+bedroom.  To the south is a bathroom.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 22034
+D2
+~
+~
+0 0 22039
+S
+#22037
+A Bathroom~
+This small bathroom is painted with green.  As you look in the mirror
+to fix your hair, you notice that this room is very neat.  There is
+one sink here, with a soap resting in the holder.  All the cabinets
+and drawers are closed.  The bathtub occupies some space in the 
+corner.  A shower head hangs above it.  Green shower curtains cling
+to the rod.  Everything is Spic and Span!
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 22035
+S
+#22038
+A Bedroom~
+From the looks of this room, you conclude that it has not been used
+in a long time.  The double bed lies against the far wall, under the
+window.  It's bedding appears faded from the sunlight.  You walk to 
+the closet in this room, and look inside.  There are a few hangers,
+but no clothing.  Even the drawer on the desk, here, proves to be
+empty.  A red chair has left imprints in the carpet from being in
+the same place for too long.  On the ceiling is the panel that leads
+to the attic.
+~
+0 1032 0
+Rd     0
+D3
+~
+~
+0 0 22035
+D4
+~
+~
+3 0 22044
+S
+#22039
+The Bathroom~
+This bathroom seems very symmetrical.  There are two sinks, two
+showers, two toilets, two of everything.  To the left is the
+hers side, while to the right is the his side.  There are walk-in
+closets here.  You think to yourself that the owner of this house
+must own a lot of clothing.  Near the far wall, you see a large
+bathtub.  Further examination of it reveals that it is also a jacuzzi.
+Behind the faucets, a weaved basket is filled with scented soaps.
+Their smell create a charming atmosphere.  If only you had brought a
+bottle of bubblebath oil.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 22036
+S
+#22040
+The Piano Room~
+The room you enter is quite small.  You wonder how they ever managed
+to fit that Grand Piano in here.  There are several ornaments which
+have been placed onto the piano.  Amongst them you notice the
+sculpted heads of many famous piano players.  There is a pile of
+music books in one corner of the room.  You raise your hands to hit a
+few notes, but stop yourself in time.  Perhaps you should take a few
+lessons from Mrs. Benson first.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 22029
+D3
+~
+~
+0 0 22033
+S
+#22041
+The Door to the House of Domination~
+You have reached the front of the House of Domination.  The facade
+of this abode is immense in size.  It appears to be two stories
+high, however there may be some floors beyond your sight range.  The
+house is made of brick and looks quite modern.  The front door is 
+also quite large.  The golden doorknob matches the mailbox fixed on 
+the wall.  Some of the curtains have been closed in the upstairs
+windows.  For a moment you think you see the outline of a person 
+looking down at you.  An inviting doormat lies below the door.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 22033
+D3
+~
+~
+0 0 22051
+S
+#22042
+The Backyard~
+~
+0 0 4
+Rd     0
+D2
+~
+~
+0 0 22019
+S
+#22043
+The Backyard~
+~
+0 0 4
+Rd     0
+D2
+~
+~
+0 0 22018
+S
+#22044
+The Attic~
+You climb up to the attic.  It is cold and very dark in here.  You
+brush a few spider webs out of your way and take a look around.
+Many tarnished brass objects lie here.  Some furniture and a few
+large garbage bags are also scattered about.  The housekeeper
+obviously does not come up into this room.  Dust is everywhere.  In
+the far corner of the room is a small, metal box.
+~
+0 134217737 0
+Rd     0
+D5
+~
+~
+3 0 22038
+S
+#22045
+The Glass Hallway~
+You have entered the glass hallway.  The smell of vegetation fills
+the air around you.  You can see the backyard from where you stand.
+At the end of the hallway is the greenhouse.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22046
+D3
+~
+door~
+3 0 22029
+S
+#22046
+The Glass Hallway~
+You arrive at the door to the greenhouse.  You take a peak at the
+inside through the window on the door.  Plants are everywhere.  Big
+and small.  You decide to open the door and proceed into the greenhouse.
+Why else would you have come this far?
+~
+0 0 0
+Rd     0
+D1
+~
+door~
+3 0 22047
+D3
+~
+~
+0 0 22045
+S
+#22047
+The Greenhouse~
+You step into the greenhouse and take a deep breath.  The air seems
+fresh here.  Four rows of tables display the amazing array of wildlife
+in this room.  In each isle, a small carpet has been placed.  Some of
+the plants seem to be moving.  Could it just be the shadows?  As you
+take a closer look, you realize that they might be carnivorous.
+Perhaps you should be careful around them...after all, you are not
+exactly a green thumb!
+~
+0 0 0
+Rd     0
+D3
+~
+~
+3 0 22046
+S
+#22049
+Along a Dirt Path~
+You are standing on a somewhat crude, and seldom-used path, which runs to
+the east and west.  Small clouds of dust funnel up from beneath your feet as
+you walk along, getting into your eyes and nose.  
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 22050
+D3
+~
+~
+0 0 22067
+S
+#22050
+Along a Small Path~
+The path continues to the east and west here, cutting its crude trail
+through the area.  It looks to have been made many years ago, and seldom
+used thereafter.  
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 22052
+D3
+~
+~
+0 0 22049
+S
+#22051
+A Quiet Walk~
+You are standing on a walkway that leads from a large house to the grassy
+fields to the south.  The house is very large and surpriseingly well kept
+considering its relative remoteness from the city of bethaven.  
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 22041
+D2
+~
+~
+0 0 22064
+S
+#22052
+Along a Small Path~
+The path makes a turn here, leaving south and west as your current
+choices of travel.  To the south you can see a vast and wide open field.  A
+butterfly floats by you on its way to the field, stopping to rest for a
+moment on your shoulder before continuing it's journey.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 22053
+D3
+~
+~
+0 0 22050
+S
+#22053
+Grassy Fields~
+You stand at the edge of the grassy fields.  To the north lies the city
+walls of Bethaven.  To the south of you stretches a vast grassy field.  The
+grass here seems of a strong breed unaffected by changes in weather.  You
+may continue to the north and south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 22052
+D2
+~
+~
+0 0 22054
+S
+#22054
+Grassy Fields~
+You stand in a grassy field.  All around you are more grassy fields.  You
+hear the sound of animals scurrying about.  The grass sways in the breeze,
+and brushes against you.  You can continue your travels in any direction,
+but all lead to more grassy fields.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22053
+D1
+~
+~
+0 0 22056
+D2
+~
+~
+0 0 22055
+D3
+~
+~
+0 0 22057
+S
+#22055
+Grassy Fields~
+Grass is about the only thing you can see for miles around you except
+that far off to the north you can just barely make out the walls of the
+great city of bethaven.  Birds can be heard chirping happily as they nest
+somewhere off in the tall grass.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22054
+D1
+~
+~
+0 0 22065
+D2
+~
+~
+0 0 22060
+D3
+~
+~
+0 0 22066
+S
+#22056
+Grassy Fields~
+The fields stretch out around you for mile, the grass so tall that you
+can barely see over it sways slightly in the wing.  A long ways off to the
+north east the walls of the great city bethaven rise up around you.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 22059
+D3
+~
+~
+0 0 22054
+S
+#22057
+Grassy Fields~
+Standing in the middle of a grassy field you can see forever.  To the
+north east the huge walls of bethaven rise up to meet the skys.  Tiny wild
+flowers of every color imaginable can be seen growing freely in the tall
+grasses.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22054
+D2
+~
+~
+0 0 22058
+S
+#22058
+Grassy Fields~
+You are walking through a huge field, tiny mice skitter to get out of
+your way and birds start and fly off to a safe distance.  The area is fairly
+quiet with only mother natures music to sing to you as you continue on your
+way.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22057
+D1
+~
+~
+0 0 22055
+D2
+~
+~
+0 0 22066
+S
+#22059
+Grassy Fields~
+As you walk through the tall grass, something touches your foot and runs
+off.  You hope it was just one of the many tiny field mice you have seen
+racing through the grass.  Tiny wild flowers grow abundantly here and send
+up a sweet fragrance as you walk.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22056
+D2
+~
+~
+0 0 22065
+D3
+~
+~
+0 0 22055
+S
+#22060
+Grassy Fields~
+The tall grass around you sways slighty in the wind creating a soothing
+swishing sound.  Somewhere you can here a female sparrow calling to her mate
+and not to far off a squirrel chatters excitedly.  You can continue in a
+north or south direction.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22055
+D2
+~
+~
+0 0 22061
+S
+#22061
+Grassy Fields~
+Tiny wild flowers grow abundently amongst the tall grasses that can be
+seen swaying in the wind.  The flowers adding a spray of bright colors to
+the otherwise drab greens and browns of the grass.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22060
+D2
+~
+~
+0 0 22062
+S
+#22062
+Grassy Fields~
+Tiny wild flowers grow abundently amongst the tall grasses that can be
+seen swaying in the wind.  The flowers adding a spray of bright colors to
+the otherwise drab greens and browns of the grass.  A spiders web attached
+to a couple of tall blades is covered with sparking dew drops that make the
+web glisten in even the smallest light, as if it where set with jewels.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22061
+D1
+~
+~
+0 0 22063
+S
+#22063
+Grassy Fields~
+The gassy field stretches you before you on all side.  Tiny wild flowers
+send up a sweet fragerance as they sway in the wind, constantly brushed by
+the grass around them.  The flowers give the area a much needed splash of
+color as the drab browns and greens of the grass threaten to take over the
+area.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22064
+D3
+~
+~
+0 0 22062
+S
+#22064
+Grassy Fields~
+You stand within a great semi circle of trees.  As you look at the trees
+the seem to grow together blocking any further travel.  You come to the
+realization that the only directions you may go are west and north.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22051
+D3
+~
+~
+0 0 22063
+S
+#22065
+Grassy Fields~
+As you look about your surroundings, you see tiny field mice playing
+around your feet.  You see a patch of wild flowers a short distance to the
+north.  Looking to the west you nothing but more grassy fields.  As you
+decide to move on you try not to step on the tiny field mice playing near
+your feet.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22059
+D3
+~
+~
+0 0 22055
+S
+#22066
+Grassy Fields~
+You stand in a grassy field.  The grass seems of a hardy breed and seems
+as if it could withstand the change of seasons without notice.  To the north
+and east are more grassy fields.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22058
+D1
+~
+~
+0 0 22055
+S
+#22067
+On a Small Dirt Path~
+The dirt path is very primitive in nature, and appears to be unused for
+many years.  It stretches to the east and west from this point, allowing you
+passage in either direction.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22049
+D3
+~
+~
+0 0 22068
+S
+#22068
+On a Small Path~
+Though the path is very ancient looking, and appears to be unused, it has
+still maintained it's shape, and looks to be in better condition than would
+be expected.  You may continue to the east and west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22067
+D3
+~
+~
+0 0 22069
+S
+#22069
+Travelling a Small Dirt Path~
+The dust from the path rises and settles with your every step, throing up
+clouds which cause some discomfort in breathing.  You may continue along the
+path to the east and west from this point.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22068
+D3
+~
+~
+0 0 22070
+S
+#22070
+On a Small Dirt Path~
+There is no vegetation grwoing along the sides of the pathway here, or on
+the path itself, almost as though the wildlife of the surrounding forests
+prefer to stay as far away from it as possible.  The path continues to the
+east and west from here.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22069
+D3
+~
+~
+0 0 22071
+S
+#22071
+A Small Path~
+The small path was made as a runoff of the ancient graveyard which lies
+to the west.  From this point it runs to the east and west, allowing you to
+make a choice as to which way you wish to go.  
+~
+0 4 0
+Rd     0
+D1
+~
+~
+0 0 22070
+D3
+~
+~
+0 0 10320
+S
+#22095
+The Billiard Room~
+Cigar smoke fills the air in this room.  The massive pool table in the
+center hovers in and out of it.  As you grab your personal cue and chalk
+it, you think of all the games you played back in England.  You set up the
+table and begin with a thunderous break.  Nothing like a few games of pool
+and a pint or twenty-three to top off a day.  
+~
+0 132108 0
+Rd     0
+D3
+~
+~
+0 0 22099
+S
+#22096
+The Music Room~
+The name of this room is quite appropriate.  On one side, an immense
+stereo system awaits to be played, while on the other, racks and racks
+of amps are ready to shatter some glass.  You notice the many knobs
+on the 80 watt Peavy amp.  A few leads are here so feel free to plug
+in.  A large CD collection is stacked besides the Sony stereo.  A
+50 disc changer that would make Kirk proud is all loaded up.  Just hit
+play and you'll have some White Zombie, NiN, Ministry or even some
+Pink Floyd.  There are a few guitars lying around.  I wouldn't touch
+them without permission if I were you.
+~
+0 132108 0
+Rd     0
+D1
+~
+~
+0 0 22099
+S
+#22097
+Rasputin's Saloon~
+As you walk into this saloon through the double revolving doors, you feel
+as though you have stepped back in time.  There are a few tables here,
+in front of the bar.  You take a seat and light a cigarette while you
+decide what to have to drink.  Madge, the bartender awaits your order
+as he cleans empty pint glasses.  There is a juke box on the wall.
+~
+0 132104 0
+Rd     0
+D0
+~
+~
+0 0 22099
+S
+#22098
+&pRasputin's Private Hell&w~
+&rAs your eyes open, they are burnt by the lashing &Yflames&r that haunt
+this terrible place.  Only those who have discovered a gateway have ever
+been here.  Your stay here shall be temporary...  Unlike Rasputin's.  This
+poor being has been kept here against his will by the &zdevil&r himself. 
+Forced to perform satanic deeds, he awaits salvation...  As should
+&pYOU&r!!!  
+~
+0 140944396 0
+Rd     0
+S
+#22099
+Rasputin's Office~
+Books of all topics are neatly placed into the many bookcases in this
+room.  They cover each wall completely.  On the floor is a large
+carpet from India.  Its fabric and design are incredible.  A sturdy
+wooden desk holds many objects.  Amongst these is a grey laptop
+computer, of great importance to Rasputin.  A comfortable leather
+chair of black color is near the desk.  An old fashioned lamp provides
+a reading light.  
+~
+0 140300 0
+Rd     0
+D1
+~
+~
+0 0 22095
+D2
+~
+~
+0 0 22097
+D3
+~
+~
+0 0 22096
+D4
+~
+~
+0 0 22100
+S
+#22100
+&WThe Cloud of Tranquility~
+&CAs you float up onto the cloud, you forget about the troublesome world
+you are leaving behind.  Your body suddenly relaxes and becomes
+weightless.  All worries and frustrations are no more.  You take a deep
+breath and close your eyes for a moment.  It sure feels good to get
+away from it all.  At last, peace and quiet!
+~
+0 134351884 0
+Rd     0
+D5
+~
+~
+0 0 22099
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+R 0 22003 2
+M 0 22002 1 22005
+E 0 22014 0 19
+O 0 22011 0 22006
+M 0 22001 1 22007
+M 0 22003 1 22009
+G 0 22002 0
+M 0 22001 2 22010
+M 0 22004 1 22011
+G 0 22001 0
+M 0 22000 1 22012
+E 0 22003 0 5
+E 0 22004 0 11
+E 0 22005 0 20
+M 0 22005 1 22013
+G 0 22000 0
+E 0 22012 0 11
+E 0 22013 0 3
+M 0 22010 1 22019
+M 0 22010 1 22022
+M 0 22011 1 22023
+M 0 22013 2 22025
+M 0 22012 1 22027
+M 0 22012 1 22028
+M 0 22006 1 22030
+E 0 22007 0 6
+E 0 22008 0 20
+E 0 22009 0 5
+M 0 22009 1 22031
+E 0 22010 0 13
+M 0 22008 1 22035
+E 0 22009 0 5
+E 0 22006 0 22
+O 0 22017 0 22037
+P 0 22020 0 22017
+P 0 22018 0 22017
+M 0 22014 1 22039
+G 0 22019 0
+M 0 22007 1 22040
+E 0 22015 0 7
+M 0 22020 1 22041
+O 0 22030 0 22041
+M 0 22015 1 22044
+E 0 22021 0 17
+O 0 22022 0 22044
+M 0 22016 1 22047
+M 0 22017 1 22047
+M 0 22018 1 22047
+O 0 22028 0 22095
+O 0 22027 0 22096
+M 0 22019 1 22097
+O 0 22029 0 22099
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

@@ -1,0 +1,2062 @@
+#AREADATA
+Name        {??-???} PROTO AREA          Midnight~
+Levels      0 0
+Builders    Kit~
+VNUMs       7000 7150
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#7000
+whisper cat silvery-white white small~
+Whisper~
+A small, silvery-white cat purrs lavishly at you.
+~
+~
+65 0 0 0 S
+5 0 0 100d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#7018
+carp fish~
+A carp~
+A colourful carp is swimming in the waters around you.
+~
+This large fish looks like an over-grown gold fish.  It and its bretheren
+swarm up to you searching for food you may have on your person.  They come
+in many colors ranging from pure white to fiery red to a rich gold.  
+~
+65 0 0 0 S
+65 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 0
+131072 0 0
+#7027
+mai lin woman~
+Mai Lin~
+Mai Lin is here singing with her nightingale companion.
+~
+Mai Lin is a beautiful young woman who appears to be in her late teens,
+but her eyes betray age and knowledge most teens never know.  Her black silk
+hair is piled onto her head in an elaborate headdress.  She smiles softly
+and goes back to singing with her nightingale.  
+~
+67 136 0 1000 S
+78 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+smile $n
+say Welcome, Gajin.
+~
+|
+#7029
+spirit blossom cherry woman~
+the cherry blossom spirit~
+A young woman with bright pink hair is playing a set of pipes.
+~
+A woman with pink hair that reaches to her waist is playing a soft,
+pleasant tune on a set of reed pipes.  As you stop to listen you feel your
+will slipping away and you start to feel sleepy.  You don't think you'll be
+able to wake up on your own if you lay down on that inviting bed of cherry
+blossoms.  
+~
+67 65664 0 0 S
+75 0 0 14000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#7054
+mayor hou phat~
+Hou Phat~
+The mayor of Shou Lung is here greeting visitors.
+~
+Hou Phat is a large oriental man with a Foo Man Chu mustache that he's
+very proud of.  He is garbed in fine silks and his long hair is pulled up
+into a topknot that denotes honor amongst his people.  
+~
+67 136 0 500 S
+80 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+bow $n
+say Konnichiwa!
+~
+|
+#7056
+peacock cock~
+a &zp&Be&Pa&gc&Po&Bc&zk&X~
+A &zp&Be&Pa&gc&Po&bc&zk&X is here strutting his stuff.
+~
+This beautiful bird's tail feathers are spread in a large fan shape of
+many colors.  The feathers have small black dots on them that look as if a
+million eyes are watching you.  
+~
+65 0 0 0 S
+65 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#7064
+fish ornamental red~
+an ornamental fish~
+A bright red fish is swimming effortlessly through the water.
+~
+This fish is the color of blood.  Its fins are long and delicate looking
+and its eyes look like they're ready to pop out of its head.  It doesn't
+look like it would make for very good eating, tho.  It seems to be mostly
+fins and eyes.  
+~
+65 0 0 0 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+131072 0 0
+#7072
+man wizard wu jen~
+a wu jen~
+A man in wizard's robes looks up from the book he was reading.
+~
+Wu Jen are oriental mages.  Most of them use black magic and do evil
+rituals, thus shunning them from most society, but not all follow the path
+of darkness.  This one seems to be more of the scholarly type and looks to
+be a bit annoyed at your intrusion into his room.  
+~
+67 67108872 0 0 S
+75 0 0 14000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#7087
+dancer woman~
+a dancer~
+A woman dressed in armor dances about for an unseen audience.
+~
+This is a small woman with long black hair pulled up onto her head in
+some kind of headdress.  Her face has been painted a bright white and she's
+dressed in armor.  She seems to be practicing for a performance later on. 
+She whips her fan about at enemies only she can see and blocks unseen blows
+with her shield.  You decide to leave her to her practice.  
+~
+67 16392 0 200 S
+70 0 0 12000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#7088
+dancer woman~
+a dancer~
+A dancer is here limbering up for her next performance.
+~
+This woman looks different from the people that live in this village. 
+Her skin tone is lighter and her hair is a deep red instead of the rich
+silken black of the other women.  Her blue eyes sparkle happily as she sees
+you and she goes on with her warm-ups.  
+~
+67 0 0 100 S
+70 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#7092
+kappa demon water~
+a kappa~
+A small water demon glares evilly at you.
+~
+The kappa are a race of amphibious humanoid creatures found in lakes,
+ponds, rivers and streams of fresh water.  They are little creatures,
+standing approximately two feet hight with the general proportions of a
+young boy.  On their back is a thick tortoise-like shell.  The top of their
+head is concave, forming a small bowl filled with water from which they draw
+their power.  
+~
+67 0 0 -1000 S
+75 0 0 17500d0+0 0d0+0
+0 0 0 0
+0 0 0
+131072 0 0
+#7099
+dancer wind spirit air whisper~
+the wind dancer~
+An air spirit dances madly about in the air before you.
+~
+A tiny woman with wispy wings and white silken hair, she doesn't seem to
+notice you as she dances about in the space before you.  This one's
+movements sound like someone whispering and you decide to call her that.  
+~
+67 524288 0 1000 S
+70 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#0
+
+
+
+#OBJECTS
+#7027
+cherry~
+&wa &Rcherry&B~
+A large ripened cherry looks ready to eat.~
+~
+19 0 0 0 1 30
+50~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7028
+cherry blossom~
+&wa &rc&Rh&Per&Rr&ry &wblossom&B~
+A &rc&Rh&Per&Rr&ry &wblossom&X has blown into the room to land at your feet.~
+~
+17 536870912 0 0 1 30
+500~ 500~ 0~ 0~
+1 3 0 0 0
+1 7027
+reserved~
+30 30
+0 0 0
+#7029
+pipes reed~
+&csome &Oreed &cpipes&X~
+A delicate looking set of pipes has been dropped here.~
+~
+3 536871939 6348 0 16385 60
+100~ 15~ 15~ sleep~
+1 0 0 0 0
+5 0
+song of charm~
+5 5
+0 0 0
+#7041
+bath~
+the large bath~
+A large sunken bath looks very warm and inviting.~
+~
+29 0 0 0 0 0
+7100~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7054
+kimono silken~
+a silken &Rkimono&X~
+A kimono crafted of silken is lying in a pile on the floor.~
+~
+9 536871936 0 8320 9 75
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -60
+A
+24 -10
+A
+12 30
+A
+19 10
+#7055
+necklace jade elegant~
+&wan &Celegant &Gjade &wnecklace&X~
+An elegant necklace made of jade is lying in the dust.~
+~
+9 1024 1536 512 5 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 55
+A
+1 2
+A
+19 10
+A
+13 30
+#7056
+nightingale~
+&ca &znig&wht&Wi&wng&zale&X~
+A &znig&wht&Wi&wng&zale&X is singing it sweet song here.~
+~
+9 536871938 1024 3584 32769 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+song of sight~
+5 5
+0 0 0
+A
+17 -35
+A
+12 50
+A
+13 40
+A
+19 14
+#7072
+flame blue~
+&wa &Bb&Clu&Be &wflame&X~
+A &Bb&Clu&Be&X flame is burning brightly here.~
+~
+5 33554944 6860 0 8193 75
+0~ 0~ 0~ 6~
+1 0 0 0 0
+5 0
+fireshield~
+2 2
+0 0 0
+A
+19 20
+A
+12 30
+A
+13 -10
+A
+17 -40
+#7086
+fan metal~
+&ca &zmetal &cfan&X~
+A fan with sharp metal edges is lying in the dust.~
+~
+5 0 0 0 8193 70
+0~ 0~ 0~ 3~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 15
+#7087
+shield lotus petal~
+&wa &Wlotus petal &wshield&X~
+A shield made of &Wlotus petals &Xis lying here.~
+~
+9 536871936 0 0 513 70
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -60
+A
+13 50
+A
+12 55
+A
+19 10
+#7088
+rose color color-changing -'-{@~
+&g-'-{&.@&w~
+A &.c&.o&.l&.o&.r&w-&.c&.h&.a&.n&.g&.i&.n&.g &Xrose is floating here.~
+~
+8 1025 1536 8832 16385 65
+0~ 0~ 0~ 0~
+0 0 0 15 0
+5 0
+faerie fire~
+10 10
+0 0 0
+A
+17 -40
+A
+13 65
+A
+12 65
+A
+2 2
+E
+rose~
+This rose must have been crafted by unearthly hands for you have never
+seen such perfect petals, leaves and even thorns.  The fact that it changes
+color each time you look upon it is reason enough to wonder how it came to
+be.  A delicate aroma reaches your nose from it and you know that no mortal
+could have created this treasure.  
+~
+#7099
+earring feather colored~
+&wa &Yf&re&pa&Wt&ph&Ce&Wr &wearring&X~
+&wA brightly &rc&wo&Wl&Yo&Rr&be&Wd&w feather earring lies here.~
+~
+9 805306368 7419 0 524289 70
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+chaos field~
+2 2
+0 0 0
+A
+13 50
+A
+18 30
+A
+19 25
+A
+2 2
+#7100
+towel bath~
+a bath towel~
+A bath towel is here to step into when you're done in the bath.~
+~
+29 0 0 0 0 0
+7041~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#7000
+Nearing a Large Village~
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 7001
+S
+#7001
+Nearing a Large Village~
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7000
+D2
+~
+~
+0 0 7002
+S
+#7002
+Outside a Guardhouse~
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7001
+D1
+~
+~
+0 0 7089
+D3
+~
+~
+0 0 7003
+S
+#7003
+The Road to Shou Lung~
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7002
+D3
+~
+~
+0 0 7004
+S
+#7004
+The Road to Shou Lung~
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7003
+D2
+~
+~
+0 0 7005
+S
+#7005
+Koryaz Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7004
+D1
+~
+~
+0 0 7006
+D2
+~
+~
+0 0 7013
+D3
+~
+~
+0 0 7007
+S
+#7006
+Kun Chau's Clothing Shop~
+~
+0 1032 0
+Rd     0
+D3
+~
+~
+0 0 7005
+S
+#7007
+The Fireworks Factory~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 7005
+D5
+~
+secret trapdoor~
+3 0 7008
+S
+#7008
+A Dark Cellar~
+~
+0 9 0
+Rd     0
+D2
+~
+~
+0 0 7009
+D3
+~
+~
+0 0 7011
+D4
+~
+secret trapdoor~
+3 0 7007
+S
+#7009
+A Dark Cellar~
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 7008
+D3
+~
+~
+0 0 7010
+S
+#7010
+A Dark Cellar~
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 7011
+D1
+~
+~
+0 0 7009
+S
+#7011
+A Dark Cellar~
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 7008
+D2
+~
+~
+0 0 7010
+S
+#7012
+Exotic Goods and Jewelry~
+~
+0 1032 0
+Rd     0
+D1
+~
+~
+0 0 7013
+S
+#7013
+Koryaz Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7005
+D2
+~
+~
+0 0 7022
+D3
+~
+~
+0 0 7012
+S
+#7014
+The Armoury~
+~
+0 1032 0
+Rd     0
+D2
+~
+~
+0 0 7023
+S
+#7015
+Ikiryo's Place of Armor~
+~
+0 1032 0
+Rd     0
+D2
+~
+~
+0 0 7024
+S
+#7016
+A Small Fishpond~
+~
+0 0 6
+Rd     0
+D1
+~
+~
+0 0 7017
+D2
+~
+~
+0 0 7026
+D5
+~
+~
+0 0 7092
+S
+#7017
+A Small Fishpond~
+~
+0 0 6
+Rd     0
+D1
+~
+~
+0 0 7018
+D2
+~
+~
+0 0 7027
+D3
+~
+~
+0 0 7016
+D5
+~
+~
+0 0 7093
+S
+#7018
+A Small Fishpond~
+~
+0 0 6
+Rd     0
+D2
+~
+~
+0 0 7028
+D3
+~
+~
+0 0 7017
+D5
+~
+~
+0 0 7094
+S
+#7019
+Fenghsintzu Road~
+~
+0 0 1
+Rd     0
+D1
+~
+~
+0 0 7020
+D2
+~
+~
+0 0 7032
+S
+#7020
+Fenghsintzu Road~
+~
+0 0 1
+Rd     0
+D1
+~
+~
+0 0 7021
+D2
+~
+~
+0 0 7033
+D3
+~
+~
+0 0 7019
+S
+#7021
+Fenghsintzu Road~
+~
+0 0 1
+Rd     0
+D1
+~
+~
+0 0 7022
+D2
+~
+~
+0 0 7034
+D3
+~
+~
+0 0 7020
+S
+#7022
+The Village Square~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7013
+D1
+~
+~
+0 0 7023
+D2
+~
+~
+0 0 7035
+D3
+~
+~
+0 0 7021
+D4
+~
+~
+0 0 7099
+S
+#7023
+Kozakura Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7014
+D1
+~
+~
+0 0 7024
+D3
+~
+~
+0 0 7022
+S
+#7024
+Kozakura Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7015
+D1
+~
+~
+0 0 7025
+D3
+~
+~
+0 0 7023
+S
+#7025
+Kozakura Road~
+~
+0 0 1
+Rd     0
+D2
+~
+~
+0 0 7038
+D3
+~
+~
+0 0 7024
+S
+#7026
+A Small Fishpond~
+~
+0 0 6
+Rd     0
+D0
+~
+~
+0 0 7016
+D1
+~
+~
+0 0 7027
+D5
+~
+~
+0 0 7095
+S
+#7027
+A Small Fishpond~
+~
+0 0 6
+Rd     0
+D0
+~
+~
+0 0 7017
+D1
+~
+~
+0 0 7028
+D2
+~
+~
+0 0 7040
+D3
+~
+~
+0 0 7026
+D5
+~
+~
+0 0 7096
+S
+#7028
+A Small Fishpond~
+~
+0 0 6
+Rd     0
+D0
+~
+~
+0 0 7018
+D1
+~
+~
+0 0 7029
+D3
+~
+~
+0 0 7027
+D5
+~
+~
+0 0 7097
+S
+#7029
+A Cherry Blossom Tree~
+In the center of a small island is a large cherry tree.  Its branches are
+completely covered with cherry blossoms.  An unseen musician plays a soft
+melody on reed pipes.  You feel yourself nodding off as the music and the
+fragrance of the cherry blossoms work at putting you into a nice, relaxing
+slumber.  A small fish pond lies to the west of you.  
+~
+0 4 2
+Rd     0
+D3
+~
+~
+0 0 7028
+S
+#7030
+Chambers of Meditation~
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 7043
+S
+#7031
+Akane's Magic Shop~
+~
+0 1032 0
+Rd     0
+D1
+~
+~
+0 0 7032
+S
+#7032
+Fenghsintzu Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7019
+D2
+~
+~
+0 0 7045
+D3
+~
+~
+0 0 7031
+S
+#7033
+Teng Lou's Dry Goods~
+~
+0 1032 0
+Rd     0
+D0
+~
+~
+0 0 7020
+S
+#7034
+Chae Lee's Flower Stand~
+~
+0 1032 0
+Rd     0
+D0
+~
+~
+0 0 7021
+S
+#7035
+Hungsete Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7022
+D1
+~
+~
+0 0 7036
+D2
+~
+~
+0 0 7048
+S
+#7036
+The Village Smithy~
+~
+0 67108864 0
+Rd     0
+D3
+~
+~
+0 0 7035
+S
+#7037
+The Shrine of Mercy~
+~
+0 2098184 0
+Rd     0
+D1
+~
+~
+0 0 7038
+S
+#7038
+Kozakura Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7025
+D2
+~
+~
+0 0 7051
+D3
+~
+~
+0 0 7037
+S
+#7039
+A Small Fish Pond~
+~
+0 0 6
+Rd     0
+D1
+~
+~
+0 0 7040
+D2
+~
+~
+0 0 7052
+S
+#7040
+A Small Fishpond~
+~
+0 0 6
+Rd     0
+D0
+~
+~
+0 0 7027
+D3
+~
+~
+0 0 7039
+S
+#7041
+A Bathing Chamber~
+You stand within a large bathing chamber.  Towels, silken robes, spices
+and oils line the large tub in the center of the room.  It looks deep enough
+to relaxe within and be thoroughly cleansing.  A small window overlooks the
+pond outside to the north of you and you can see cherry blossoms float by
+the window.  It looks as if the bath is continually cleaning itself as the
+water flows in and out from a grate that you assume is directly connected to
+the small pond.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 7054
+S
+#7042
+Living Quarters~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+3 0 7043
+S
+#7043
+Temple Altar~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7030
+D1
+~
+~
+0 0 7044
+D2
+~
+~
+0 0 7057
+D3
+~
+~
+3 0 7042
+S
+#7044
+The Temple Foyer~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 7045
+D3
+~
+~
+0 0 7043
+S
+#7045
+The Temple Courtyard~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7032
+D1
+~
+~
+0 0 7046
+D2
+~
+~
+0 0 7058
+D3
+~
+~
+0 0 7044
+S
+#7046
+The Temple Training Grounds~
+~
+0 0 1
+Rd     0
+D2
+~
+~
+0 0 7059
+D3
+~
+~
+0 0 7045
+S
+#7047
+Chiang Lung Inn~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7049
+D1
+~
+~
+0 0 7063
+S
+#7048
+Hungsete Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7035
+D1
+~
+~
+3 0 7049
+D2
+~
+~
+0 0 7062
+S
+#7049
+Chiang Lung Inn~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 7050
+D2
+~
+~
+0 0 7047
+D3
+~
+~
+3 0 7048
+S
+#7050
+A Large Kitchen~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 7049
+S
+#7051
+Kozakura Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7038
+D1
+~
+~
+0 0 7052
+S
+#7052
+A Small Bridge~
+~
+0 4 1
+Rd     0
+D0
+~
+~
+0 0 7039
+D1
+~
+~
+3 0 7053
+D2
+~
+~
+0 0 7064
+D3
+~
+~
+0 0 7051
+S
+#7053
+The Mayor's Home~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 7054
+D3
+~
+~
+3 0 7052
+S
+#7054
+The Receiving Room~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7041
+D1
+~
+~
+0 0 7055
+D2
+~
+~
+0 0 7066
+D3
+~
+~
+0 0 7053
+S
+#7055
+A Tea Room~
+You stand within a small room adorned only with a small table that sits
+low to the ground.  It is in here where the mayor and his guests all sit
+around the table and perform the tea ceremony that holds so much importance
+to this village.  It doesn't look as if one is being held at the moment so
+it seems safe to look around.  A door leads out to the east and you can the
+sounds of pots being hit together coming from the south.  Or you may go to
+the reception area to the west of you.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+3 0 7056
+D2
+~
+~
+0 0 7067
+D3
+~
+~
+0 0 7054
+S
+#7056
+The Aviary~
+You take in your surroundings and smile in content.  You'd never think
+that here, in the middle of the desert, you'd find so many trees and birds
+in once place.  Peacocks, nightingales, canaries and a multitude of other
+birds create a loud cacophany of noise.  Whomever owns this aviary obviously
+cares for it quite a bit.  The only obvious exit seems to be through a rice
+paper door to the west.  
+~
+0 8 0
+Rd     0
+D3
+~
+~
+3 0 7055
+S
+#7057
+Temple Library~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7043
+S
+#7058
+The Temple Training Grounds~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7045
+D1
+~
+~
+0 0 7059
+S
+#7059
+The Temple Training Grounds~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7046
+D3
+~
+~
+0 0 7058
+S
+#7060
+Shan Sao's Pet Shop~
+~
+0 5128 0
+Rd     0
+D1
+~
+~
+0 0 7062
+S
+#7061
+Pet Storage~
+~
+0 2491412 0
+Rd     0
+S
+#7062
+Hungsete Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7048
+D2
+~
+~
+0 0 7071
+D3
+~
+~
+0 0 7060
+S
+#7063
+An Inn Hall~
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 7073
+D3
+~
+~
+0 0 7047
+S
+#7064
+A Small Fish Pond~
+~
+0 0 6
+Rd     0
+D0
+~
+~
+0 0 7052
+S
+#7065
+Hou Phat's Chambers~
+~
+0 1024 0
+Rd     0
+D1
+~
+~
+0 0 7066
+S
+#7066
+A Small Hall~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7054
+D2
+~
+~
+0 0 7098
+D3
+~
+~
+0 0 7065
+S
+#7067
+A Kitchen~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7055
+S
+#7068
+Chukei Road~
+~
+0 0 1
+Rd     0
+D1
+~
+~
+0 0 7069
+D2
+~
+~
+0 0 7075
+S
+#7069
+Chukei Road~
+~
+0 0 1
+Rd     0
+D1
+~
+~
+0 0 7070
+D2
+~
+~
+0 0 7076
+D3
+~
+~
+0 0 7068
+S
+#7070
+Chukei Road~
+~
+0 0 1
+Rd     0
+D1
+~
+~
+0 0 7071
+D2
+~
+~
+0 0 7077
+D3
+~
+~
+0 0 7069
+S
+#7071
+Hungsete Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7062
+D2
+~
+~
+0 0 7078
+D3
+~
+~
+0 0 7070
+S
+#7072
+The Red Room~
+&RYou stand in a room with rice paper walls and red painted wood.  The
+wardrobe and chest of drawers have been stained to a deep red, matching the
+crimson curtains on the window that adorns the west wall.  The bed is
+dressed in red velvet bed covers and pink silk sheets.  The only obvious
+exit out is through a door to the east.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+3 0 7073
+S
+#7073
+An Inn Hall~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7063
+D1
+~
+~
+3 0 7074
+D2
+~
+~
+3 0 7080
+D3
+~
+~
+3 0 7072
+S
+#7074
+The Green Room~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+3 0 7073
+S
+#7075
+A Rice Paper House~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7068
+S
+#7076
+A Rice Paper House~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7069
+S
+#7077
+A Rice Paper House~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7070
+S
+#7078
+Hungsete Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7071
+D1
+~
+~
+3 0 7085
+D2
+~
+~
+0 0 7079
+S
+#7079
+Hungsete Road~
+~
+0 0 1
+Rd     0
+D0
+~
+~
+0 0 7078
+D2
+~
+~
+0 0 7091
+D3
+~
+~
+0 0 7081
+S
+#7080
+The Blue Room~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+3 0 7073
+S
+#7081
+Hungsete Road~
+~
+0 0 1
+Rd     0
+D1
+~
+~
+0 0 7079
+D3
+~
+~
+0 0 7082
+S
+#7082
+Outside a Guardhouse~
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7081
+D2
+~
+~
+0 0 7090
+D3
+~
+~
+0 0 7083
+S
+#7083
+The Road to Shou Lung~
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7082
+D2
+~
+~
+0 0 7084
+S
+#7084
+The Road to Shou Lung~
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7083
+S
+#7085
+Entrance to the Dancer's Pavillion~
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 7086
+D3
+~
+~
+3 0 7078
+S
+#7086
+The Audience~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7085
+D1
+~
+~
+0 0 7087
+S
+#7087
+The Stage~
+You stand upon a large wooden stage.  Red silk curtains look like they
+lead to some kind of room to the east of you and to the west of you you can
+see rows of logs for people to sit on as they watch the shows.  Small cubby
+holes are to the north and south of you for actors and dancers to wait for
+their cue to go on stage.  Wooden katanas and other fake weapons lie strewn
+about waiting for their owners to pick them up and resume their mock
+battles.  
+~
+0 8 0
+Rd     0
+D1
+~
+curtain~
+3 0 7088
+D3
+~
+~
+0 0 7086
+S
+#7088
+The Dressing Room~
+You find yourself within the dressing rooms of the dancers' pavillion. 
+Costumes of all sorts are hanging from pegs and from the backs of chairs. 
+Props for many different performances rest within the wardrobes standing
+along the wall and small instruments sit within their cases.  A counter with
+a large mirror is lined with make-up and perfumes.  The only obvious exit is
+through a curtain to the west.  
+~
+0 8 0
+Rd     0
+D3
+~
+curtain~
+3 0 7087
+S
+#7089
+A Small Guardhouse~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 7002
+S
+#7090
+A Small Guardhouse~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7082
+S
+#7091
+The Fish Market~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7079
+S
+#7092
+In the Fishpond~
+~
+0 0 8
+Rd     0
+D1
+~
+~
+0 0 7093
+D2
+~
+~
+0 0 7095
+D4
+~
+~
+0 0 7016
+S
+#7093
+In the Fishpond~
+~
+0 0 8
+Rd     0
+D1
+~
+~
+0 0 7094
+D2
+~
+~
+0 0 7096
+D3
+~
+~
+0 0 7092
+D4
+~
+~
+0 0 7017
+S
+#7094
+In the Fishpond~
+~
+0 0 8
+Rd     0
+D2
+~
+~
+0 0 7097
+D3
+~
+~
+0 0 7093
+D4
+~
+~
+0 0 7018
+S
+#7095
+In the Fishpond~
+~
+0 0 8
+Rd     0
+D0
+~
+~
+0 0 7092
+D1
+~
+~
+0 0 7096
+D4
+~
+~
+0 0 7026
+S
+#7096
+In the Fishpond~
+~
+0 0 8
+Rd     0
+D0
+~
+~
+0 0 7093
+D1
+~
+~
+0 0 7097
+D3
+~
+~
+0 0 7095
+D4
+~
+~
+0 0 7027
+S
+#7097
+In the Fishpond~
+~
+0 0 8
+Rd     0
+D0
+~
+~
+0 0 7094
+D3
+~
+~
+0 0 7096
+D4
+~
+~
+0 0 7028
+S
+#7098
+Mai Lin's Chambers~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 7066
+S
+#7099
+Above the Town Fountain~
+~
+0 33554432 9
+Rd     0
+D5
+~
+~
+0 0 7022
+S
+#7100
+In the Bath~
+&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\
+&WYou sink low into the tub, letting the warm waters soothe away
+all your aches and pains.  No worries trouble you as you splash
+about. Along the edges of the tub are various oils and spices
+to add to the water for your choice of aromatherapy. Now if you
+only had someone to wash your back to get those places you have
+a hard time reaching for yourself...
+&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\&C/&B\
+~
+0 516 6
+Rd     0
+S
+#7101
+~
+~
+0 4 0
+Rd     0
+S
+#7102
+~
+~
+0 4 0
+Rd     0
+S
+#7103
+~
+~
+0 4 0
+Rd     0
+S
+#7104
+~
+~
+0 4 0
+Rd     0
+S
+#7105
+~
+~
+0 4 0
+Rd     0
+S
+#7106
+~
+~
+0 4 0
+Rd     0
+S
+#7109
+~
+~
+0 4 0
+Rd     0
+S
+#7140
+~
+~
+0 4 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 7027 spec_cast_mage
+M 7072 spec_cast_mage
+S
+
+
+
+#RESETS
+M 0 7018 4 7016
+M 0 7018 4 7018
+M 0 7064 4 7028
+M 0 7029 1 7029
+E 0 7029 0 22
+G 0 7028 0
+M 0 7018 4 7039
+M 0 7064 4 7040
+O 0 7041 0 7041
+M 0 7054 1 7054
+M 0 7056 1 7056
+M 0 7027 1 7056
+E 0 7056 0 9
+E 0 7055 0 3
+E 0 7054 0 5
+M 0 7064 4 7064
+M 0 7072 1 7072
+E 0 7072 0 20
+M 0 7087 1 7087
+E 0 7087 0 15
+E 0 7086 0 20
+M 0 7088 1 7088
+E 0 7088 0 22
+M 0 7092 3 7092
+M 0 7018 4 7093
+M 0 7064 4 7095
+M 0 7099 1 7099
+E 0 7099 0 23
+O 0 7100 0 7100
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

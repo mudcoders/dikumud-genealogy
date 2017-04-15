@@ -1,0 +1,4587 @@
+#AREADATA
+Name        { 10-40} The Fortress        Davian~
+Levels      10 40
+Builders    None~
+VNUMs       9500 9600
+Security    98
+Recall      25001
+Flags       0
+Color       6
+Sounds      none~
+End
+
+
+
+#MOBILES
+#9500
+stag deer~
+A fleefooted stag~
+&OA stag deer snorts in defiance of your presence.
+~
+The deer stands it's ground, digging into the earth with it's hooves. 
+Lowering it's head, it threatens you with it's antlers.  Is good condition. 
+With an almost majestic attitude, it considers itself the king of the woods. 
+~
+193 512 0 0 S
+13 0 0 320d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#9501
+owl~
+A small owl~
+&OAn owl swoops down and settles on a nearby branch.
+~
+This very fine specimen of an owl has dark brown feathers, making it
+blend in with it's surroundings.  Feeding on mice and rats, it does not go
+hungry.  It's head shifts from left to right continually searching for it's
+next meal.  
+~
+65 524800 0 0 S
+11 0 0 240d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#9502
+bobcat~
+A bobcat~
+&OA bobcat slinks along the ground pursuing it's prey.
+~
+The bobcat sneaks along the ground, carefully not to scare it's prey. 
+It's yellow eyes capture every movement in the area, and it's ears are erect
+to any sound.  Letting out a small hiss, you see the razor sharp fangs, and
+paws that hide deadly claws.  It will feed on almost any animal it can
+catch, and looking at it, it catches a lot.  It considers you with it's
+eyes, and decide to wait until you lie dead on the ground.  
+~
+69 512 0 0 S
+15 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#9503
+bear~
+A huge bear~
+&OA large bear roars at you for upsetting it's sleep.
+~
+This huge bear's thick fur is almost as black as night.  Foam drips from
+it's mouth as it growls at you, showing you it's huge mouth with rows of
+sharp fangs.  It's enormous paws could kill a deer in one blow, and standing
+up on two feet, it ranges high over an average man.  It's dark eyes display
+hunger and anger, and it will not hesitate to kill you.  
+~
+99 544 0 0 S
+17 0 0 480d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>rand_prog 10~
+mpat 9515 mpecho &wA faint growl can be heard to the southeast.
+mpat 9527 mpecho &wA rumbling growl can be heard to the southeast.
+mpat 9528 mpecho a deep growling can be heard to the south.
+~
+|
+#9504
+norgoroth ranger~
+Norgoroth~
+&gNorgoroth the ranger watches your every move.
+~
+Norgoroth is an retired ranger.  With his great love for the forest and
+it's inhabitants, he has taken upon himself to protect the Vale.  His dark
+eyes carefully watch your moves, making sure you do no harm to the Vale. 
+He's of massive build.  His brown and silver hair is tied back in a string
+and he is wearing green and brown clothing that blend in with the woods.  
+~
+65 73728 0 500 S
+27 0 0 1230d0+0 0d0+0
+0 10 20 0
+0 0 1
+0 0 0
+#9505
+guard~
+A young guard~
+A guard is posted here, looking for mischief.
+~
+His hair is plain black, and his eyes are dark.  He is fairly new within
+the Fortress guard, you can tell by his young face as well as no scars or
+other distinct battle wounds.  He is of athletic build, showing upcoming
+strength in years to come, if he lives that long that is.  
+~
+67 0 0 250 S
+17 0 0 480d0+0 0d0+0
+0 0 80 0
+0 0 1
+0 0 0
+#9506
+guard~
+A young guard~
+A guard is standing at her post.
+~
+She is of athletic build, her armor is well kept.  She carries no scars
+of battle, she's fairly young.  Her brown hair is cut short, her eyes are
+dark and her skin is tanned.  She carefully looks you over before letting
+you pass.  
+~
+67 0 0 200 S
+18 0 0 520d0+0 0d0+0
+0 0 80 0
+0 0 2
+0 0 0
+#9507
+Sammual keeper tavern~
+Sammual, Keeper of the Sun~
+Sammual, the taverns keeper, is pouring drinks behind the bar.
+~
+Sammual, the owner and bartender of this inn, has his hands full.  He
+pours many drinks and is slapping plates on the counter for his waitresses
+to take to their customers.  His hair is grey, his face is still full of
+life though.  His cheeks are red and his eyes are deep green.  Looking up to
+take your order, you notice he quickly looks you over to make sure you won't
+cause any problems.  
+~
+917571 40 0 0 S
+22 0 0 780d0+0 0d0+0
+0 0 120 0
+0 0 1
+0 0 0
+#9508
+serving maid~
+The serving maid~
+The serving maid is rushing about, placing drinks and plates on the tables.
+~
+The serving maid rushes back and forth, serving all the people in the
+tavern.  She is fairly young, her hair was at one point tied up to keep from
+dancing in her face.  She is wearing an apron that once was white.  Even in
+her rush she's got a smile for every customer.  
+~
+67 0 0 50 S
+20 0 0 600d0+0 0d0+0
+0 0 96 0
+0 0 2
+0 0 0
+#9509
+guard~
+A guard~
+A guard is on his break here.
+~
+The guard looks up as you enter the room, placing his cards on the table.
+Being on his break, he has ridden himself of the heavy armor.  Dressed in a
+white shirt and soft leather pants he spends his spare time drinking wine
+and playing poker.  
+~
+67 0 0 150 S
+21 0 0 690d0+0 0d0+0
+0 0 79 0
+0 0 1
+0 0 0
+#9510
+guard~
+A guard~
+A guard looks up from her cards.
+~
+This guard looks you over and dismisses you as no threat.  Her light hair
+is short cut and her blue eyes sparkle.  This guard grew up in harsh lands,
+you can tell by the small scars on her hands.  She dismisses you as no
+threat.  
+~
+67 0 0 250 S
+19 0 0 560d0+0 0d0+0
+0 0 56 0
+0 0 2
+0 0 0
+#9511
+guard~
+A guard~
+A guard sits here polishing his sword.
+~
+The guard sits on his bunk, polishing his sword.  Proud to be chosen to
+be a fortress guard, he keeps his equipment in mint condition, making sure
+his superiors don't have anything to complain about.  
+~
+67 0 0 250 S
+20 0 0 600d0+0 0d0+0
+0 0 39 0
+0 0 1
+0 0 0
+#9512
+guard~
+A guard~
+A guard is taking a nap before duty.
+~
+This guard is sleeping in full armor with her helmet pulled over her
+eyes.  Her hands rest over her sword, ready to jump up at any sound of
+danger.  
+~
+67 131072 0 250 S
+20 0 0 600d0+0 0d0+0
+0 0 40 0
+0 0 2
+0 0 0
+#9513
+zand guard captain~
+Zand, the guard captain~
+Captain Zand sits behind his desk.
+~
+A very large man, Zand the captain of the guards is sitting here behind
+his desk trying to catch up on the paperwork that always seems to pile up. 
+His armor shines, and he carries many scars.  There is no doubt that this
+man is very capable with his sword.  
+~
+1966147 0 0 500 S
+40 0 0 2500d0+0 0d0+0
+3 5 0 0
+0 0 1
+0 0 0
+>fight_prog 25~
+disarm $n
+~
+>fight_prog 50~
+trip $n
+~
+|
+#9514
+guard veteran~
+A veteran guard~
+A veteran guard is polishing her armor.
+~
+As a veteran guard, this woman has been granted a bunk back near the rear
+of the compound. She has a red scar running over her neck, and her eyes are
+always on the watch.  
+~
+67 0 0 350 S
+23 0 0 870d0+0 0d0+0
+0 0 129 0
+0 0 2
+0 0 0
+#9515
+guard veteran~
+A veteran guard~
+A veteran checks his equipment.
+~
+As a veteran guard, this man has been granted a bunk near the back of the
+compound.  With eyes of experience, he checks his sword and armor for
+damage.  Muscles bulk under his shirt, and scars run up and down his arms. 
+~
+67 0 0 350 S
+24 0 0 960d0+0 0d0+0
+0 0 132 0
+0 0 1
+0 0 0
+#9516
+Josaph~
+Josaph, the Stablemaster~
+Josaph, lounges around here slacking.
+~
+Josaph, the Stablemaster of the fortress whose responsibility it is to
+care for his Lord's horses, slacks around here.  Chewing on a straw, he has
+made sure the Lord's horses are in great condition.  His build shows his
+love for wine and good food, but he is still a massive man.  
+~
+67 0 0 0 S
+26 0 0 1140d0+0 0d0+0
+0 16 0 0
+0 0 1
+0 0 0
+#9517
+horse~
+A horse~
+A horse stands here dozing in the shade.
+~
+An older horse stands here in the shade dozing.  Occasionally he will
+flick his tail trying to get rid of the flies buzzing around.  
+~
+67 0 0 0 S
+23 0 0 870d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#9518
+horse~
+A horse~
+A horse stands here busily swatting at the swarming flies with it's tail.
+~
+A young filly stomps her feet at your arrival.  She seems full of spirit
+and willing to go on a nice long run.  She busily swats her tail at the
+swarming flies.  
+~
+67 0 0 0 S
+24 0 0 960d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#9519
+Asgorn smithy~
+Asgorn the Smithy~
+Asgorn is here pounding some metal into a finely honed weapon.
+~
+Asgorn, the smithy, stands here, sweat pouring down his body as he pounds
+on some shapeless lump of metal with one of the biggest hammers you've ever
+seen.  His heat burnt hands are big, and his body is massive.  He could
+probably kill a horse with one blow.  
+~
+393283 33554472 0 500 S
+40 0 0 2000d0+0 0d0+0
+0 9 260 0
+0 0 1
+0 0 0
+#9520
+servant~
+A servant~
+A servant rushes onward on a mission of utmost importance.
+~
+This servant has clean short cut hair and is neatly dressed.  Being a
+servant for the people in the keep, he has to make a good appearance.  
+~
+65 0 0 100 S
+21 0 0 690d0+0 0d0+0
+0 0 30 0
+0 0 1
+0 0 0
+#9521
+trader merchant~
+A trader~
+A trader is here looking for a bargain.
+~
+This trader is dressed in foreign clothing, and she smells of exotic
+spices.  Her face is weary after many travels, her eyes have seen most of
+what the world has to offer.  Making a living selling her wares, she is
+experienced with thieves and scoundrels.  
+~
+65 0 0 150 S
+26 0 0 1140d0+0 0d0+0
+0 11 50 0
+0 0 2
+0 0 0
+#9522
+guard~
+A guard~
+A guard walks around looking for signs of trouble.
+~
+This guards walks around the inner courtyard of the fortress keeping his
+eyes open for signs of trouble.  If needed he can call on his brothers and
+sisters to help deal with any problems he finds.  
+~
+65 0 0 500 S
+26 0 0 1140d0+0 0d0+0
+0 5 30 0
+0 0 1
+0 0 0
+#9523
+guard~
+A guard~
+A guard eyes you suspiciously.
+~
+This guard catches every suspicious behavior in the people that want to
+enter the Keep.  He is very loyal to his Lord and Lady, and will do anything
+to stop any attempts to hurt them.  
+~
+67 0 0 500 S
+28 0 0 1320d0+0 0d0+0
+0 15 4 0
+0 0 1
+0 0 0
+#9524
+guard~
+A guard~
+A guard eyes you suspiciously.
+~
+This guard is set here to single out any threats to the people inside the
+keep.  After doing a security check, she tells you to move on.  
+~
+67 0 0 500 S
+29 0 0 1410d0+0 0d0+0
+0 17 3 0
+0 0 2
+0 0 0
+#9525
+beggar~
+A beggar~
+A pitiful man begs you for money.
+~
+This pitiful looking man, dressed only in rags, looks up at you with a
+pleading look in his eye and asks if you can spare a few gold for a man upon
+who's life has played many a cruel joke.  
+~
+67 0 0 0 S
+20 0 0 600d0+0 0d0+0
+0 0 2 0
+0 0 1
+0 0 0
+#9526
+noble~
+A nobleman~
+A noble of the land looks around for something interesting to do.
+~
+A man dressed in fancy clothes walks around the courtyard looking for
+something to do.  As he spots you he sticks his nose up in the air and walks
+off.  
+~
+65 0 0 -100 S
+28 0 0 1320d0+0 0d0+0
+0 18 0 0
+0 0 1
+0 0 0
+#9527
+dog mongrel~
+A mangy mongrel~
+A mangy mongrel wanders around here, whimpering for handouts.
+~
+One sorry looking excuse for a dog runs up to you and starts sniffing
+around your boots.  It looks up at you with pitiful eyes seeming to beg for
+something to eat.  
+~
+67 0 0 0 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#9528
+mugger thief~
+A mugger~
+A mugger is hidden in the shadows
+~
+An unshaven, ugly looking man with a scar running down his face looks for
+an easy victim.  This man will not hesitate to back stab you to get to your
+money.  
+~
+99 65568 0 -500 S
+21 0 0 690d0+0 0d0+0
+0 10 8 0
+0 0 1
+0 0 0
+#9529
+mage babel~
+Babel the Mage~
+The mage stands here, slightly upset.
+~
+An eccentric looking man dressed in black robes with all kinds of strange
+symbols on them stands here.  On his right hand a glove glows slightly with
+restrained power.  His white hair is a mess and sweat runs down his face.  
+~
+67 268435456 0 0 S
+42 0 0 2560d0+0 0d0+0
+0 20 0 0
+0 0 1
+4 0 0
+>rand_prog 7~
+say A demon! How could I?!?
+say Bloodmoss, not bloodpearl! BLOODMOSS! How could I be so stupid?!
+~
+|
+#9530
+demon~
+A large demon~
+&CA demon sheathed in flames growls loudly here.
+~
+A horrifying creature, the demon has the horns of a bull and the legs of
+a goat.  It unfolds it's black as night wings, like those found on bats. 
+Sheathed in flames and growling in hunger, the eyes yellow as the sun, burn
+with rage.  
+~
+99 33554432 0 -750 S
+35 0 0 1600d0+0 0d0+0
+0 0 0 0
+0 0 0
+128 0 0
+#9531
+zidon priest man~
+Zidon the priest~
+The priest stands here devoutly offering prayers up to his god.
+~
+A large pious man in white flowing robes stands here.  He continually
+chants strange sounding words as he prays with outstretched arms.  
+~
+1572931 128 0 750 S
+40 0 0 2000d0+0 0d0+0
+0 10 0 0
+0 0 1
+8192 0 0
+>fight_prog ~
+cast 'dispel magic' $n
+~
+>fight_prog ~
+cast flamestrike $n
+~
+|
+#9532
+squire james~
+Squire James~
+Squire James is here, working at his desk.
+~
+Squire James sits behind his desk looking over all the paperwork that has
+accumulated on it.  He busily scribbles something on one of the sheets and
+puts it on the other side of the desk.  
+~
+393283 0 0 250 S
+34 0 0 1900d0+0 0d0+0
+0 24 0 0
+0 0 1
+0 0 0
+>fight_prog 25~
+circle $n
+~
+|
+#9533
+tyrus lord~
+Lord Tyrus~
+Lord Tyrus sits on his great throne.
+~
+Lord Tyrus of the Fortress sits here taking care of the day to day
+business involved in running his castle.  He is a rather handsome man, with
+no scars to his face.  
+~
+917571 8320 0 0 S
+44 0 0 3120d0+0 0d0+0
+0 43 0 0
+0 0 1
+0 0 0
+#9534
+melita lady~
+Lady Melita~
+Lady Melita sits here.
+~
+Lady Melita sits here watching her husband take care of the day to day
+routine of keeping the Fortress running.  Occasionally a member of the
+nobility will come up and she will whisper something to them and then they
+will leave.  Her deep green velvet gown makes her sky blue eyes sparkle in
+her pale face.  Draped about her neck is a finely crafted necklace,
+encrusted with jewels.  
+~
+67 128 0 0 S
+41 0 0 2280d0+0 0d0+0
+0 35 0 0
+0 0 2
+0 0 0
+#9535
+ambassador~
+An Ambassador~
+An ambassador from a foreign land is here to meet with Lord Tyrus.
+~
+A strange looking man dressed in an outlandish outfit stands here.  He seems
+to be an ambassador from some far away land who's managed to corner one of
+the barons of the court.  
+~
+67 0 0 -2000 S
+35 0 0 2000d0+0 0d0+0
+0 25 0 0
+0 0 1
+0 0 0
+#9536
+baron~
+A Baron~
+A baron is here trying to avoid the ambassador.
+~
+A husky man with a wary look on his face stands here in the corner. 
+Looking about continuously, he tries to avoid talking to the ambassador. 
+Upon noticing you he acts as if he has an important message for you.  Once
+out of earshot from the ambassador however, he grumbles "Excuse me" and
+walks off.  
+~
+67 8192 0 200 S
+37 0 0 2200d0+0 0d0+0
+0 16 10 0
+0 0 1
+0 0 0
+#9537
+baroness~
+A Baroness~
+A Baroness wanders around here chatting with people.
+~
+A baroness dressed in a beautiful velvet gown wanders around the court
+looking bored out of her mind.  Upon seeing you her eyes light up.  She
+starts to drone on and on about the weather, the flowers, the castle,
+clothes, servants, food, blah, blah, blah.  Finally someone else catches her
+attention and she excuses herself.  
+~
+65 8192 0 200 S
+37 0 0 2200d0+0 0d0+0
+0 28 9 0
+0 0 2
+0 0 0
+#9538
+man~
+A man~
+A man kneels here among the pews deep in prayer.
+~
+A pious man dressed in plain clothes is bent down on one knee with his
+head bowed in prayer.  
+~
+67 8192 0 750 S
+32 0 0 1700d0+0 0d0+0
+0 22 0 0
+0 0 1
+0 0 0
+#9539
+woman~
+A woman~
+A woman has her head bowed in prayer here.
+~
+A woman wearing a plain, slightly worn, dress kneels in the pews here
+with her head bowed in prayer.  It looks as if she may be weeping in
+sorrow.  
+~
+67 8192 0 550 S
+31 0 0 1600d0+0 0d0+0
+0 7 0 0
+0 0 2
+0 0 0
+#9540
+servant man~
+A servant~
+A servant wanders around here doing some dusting.
+~
+A very non-descript man dressed in plain clothes wanders around
+meticulously dusting the items and paintings on display.  
+~
+65 0 0 0 S
+31 0 0 1600d0+0 0d0+0
+0 17 0 0
+0 0 1
+0 0 0
+#9541
+servant woman~
+A servant~
+A servant wanders around the court serving drinks.
+~
+A cute looking girl barely out of her teens wanders around the throne
+room serving drink to anyone who wants them.  
+~
+69 0 0 0 S
+30 0 0 1500d0+0 0d0+0
+0 19 0 0
+0 0 2
+0 0 0
+#9542
+servant woman~
+A servant~
+A woman on a cot stirs slightly in her sleep.
+~
+An ugly old woman dressed in what appears'to be something just a step up
+from rags stirs slightly on her cot.  
+~
+71 131072 0 0 S
+31 0 0 1370d0+0 0d0+0
+0 19 8 0
+0 0 2
+0 0 0
+#9543
+servant man~
+A servant~
+A man glares at you for invading his room.
+~
+A plain looking man dressed no better than a beggar looks up at you and
+fixes you with a glare for poking your nose in here.  
+~
+71 0 0 0 S
+33 0 0 1800d0+0 0d0+0
+0 23 0 0
+0 0 0
+0 0 0
+#9544
+servant~
+A servant~
+A servant hastens on about her task.
+~
+A petite woman in a fetchingly short skirt and slightly revealing blouse
+hurries to complete some errand that Squire James requested of her.  As she
+passes, she bows her head and casts her gaze away avoiding eye contact with
+you.  
+~
+69 0 0 0 S
+32 0 0 1700d0+0 0d0+0
+0 8 0 0
+0 0 2
+0 0 0
+#9545
+guard~
+A guard~
+A guard stands tall here at his post.
+~
+A large barrel chested guard stands here in dress uniform at perfect
+attention watching all who goes by.  
+~
+67 0 0 250 S
+31 0 0 1600d0+0 0d0+0
+0 21 0 0
+0 0 1
+0 0 0
+#9546
+guard~
+A guard~
+A guard posted here stands at attention.
+~
+A petite guard dressed in full battle attire stands at attention here
+watching all who go by.  
+~
+67 0 0 250 S
+32 0 0 1700d0+0 0d0+0
+0 22 0 0
+0 0 2
+0 0 0
+#9547
+guard~
+A guard~
+The guard stands here looking you over intently.
+~
+A guard with arms like tree trunks stands here in full armor with his
+weapons at his side as he looks you over intently.  
+~
+67 0 0 500 S
+37 0 0 2200d0+0 0d0+0
+0 29 0 0
+0 0 1
+0 0 0
+#9548
+guard~
+A guard~
+The guard glares at you as her eyes pass over your weapons.
+~
+A small female guard is standing here at attention.  She is dressed in
+the Fortresses finest armor.  She remains motionless as you look her over,
+displaying the utmost discipline of her post.  
+~
+67 0 0 500 S
+38 0 0 2300d0+0 0d0+0
+0 29 17 0
+0 0 2
+0 0 0
+#0
+
+
+
+#OBJECTS
+#9500
+key twisted wood~
+a small twisted piece of wood~
+A twisted piece of wood blends in with it's surroundings.~
+~
+18 0 0 0 1 10
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+A twisted piece of wood, looks very much like a key
+~
+E
+twisted~
+A twisted piece of wood, looks very much like a key.
+~
+E
+wood~
+A twisted piece of wood, looks very much like a key.
+~
+#9501
+spring~
+natural spring~
+Clear spring water bubbles up from the ground here.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#9502
+sign~
+a small sign in the vale~
+A sign is nailed to a tree here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sign~
+Hail and welcome to my Vale.  My name is Norgoroth and I am a retired
+ranger, I have taken it upon myself to retire in this vale and keep and
+protect it from the ravages of men.  I will be about the vale keeping my eye
+on you.  I do not suggest you do anything to harm any of the creatures or
+plants in the vale.  
+Signed,
+Norgoroth the Retired Ranger Lord
+~
+#9503
+bearskin skin pelt bear~
+a shaggy bearskin~
+The shaggy skin of a bear raises a stink here.~
+~
+9 0 0 0 1025 17
+0~ 0~ 0~ 0~
+4 0 8 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+E
+skin~
+A bearskin pelt looks as if it would offer some protection from the cold 
+~
+E
+bear~
+A bearskin pelt looks as if it would offer some protection from the cold 
+~
+E
+bearskin~
+A bearskin pelt looks as if it would offer some protection from the cold 
+~
+E
+pelt~
+A bearskin pelt looks as if it would offer some protection from the cold 
+~
+#9504
+elven blade sword~
+an &CElven blade~
+A blade of Elven manufacture lies discarded here.~
+~
+5 0 5175 160 8193 27
+0~ 0~ 0~ 3~
+2 0 17 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 54
+A
+18 43
+E
+elven~
+This is a finely made sword that is exceptionally sharp.  
+~
+E
+sword~
+This is a finely made sword that is exceptionally sharp.
+~
+E
+blade~
+This is a finely made sword that is exceptionally sharp.
+~
+#9505
+satchel bag~
+&Oa leather satchel&X~
+A leather satchel lies here.~
+~
+15 268435520 0 0 1 10
+637~ 0~ 0~ 0~
+3 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+satchel ~
+This is a handmade satchel crafted out of soft leather.  It seems able to
+carry a great deal of weight without tearing.  
+~
+E
+bag~
+This is a handmade satchel crafted out of soft leather.  It seems able to
+carry a great deal of weight without tearing.  
+~
+#9506
+gauche dagger~
+a gauche dagger~
+There is a gauche dagger lying here.~
+~
+5 0 4098 2 8193 21
+0~ 0~ 0~ 11~
+5 0 10 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -21
+A
+18 30
+A
+19 21
+E
+gauche~
+This dagger is used as a parrying weapon, most often held in the left
+hand or your off-hand.  
+~
+E
+dagger~
+This dagger is used as a parrying weapon, most often held in the left
+hand or your off-hand.  
+~
+#9507
+tunic mottled~
+&ga mottled tunic&W~
+There is a mottled tunic crumpled up here.~
+~
+9 64 0 29340 9 27
+0~ 0~ 0~ 0~
+3 0 7 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -1
+A
+17 -27
+E
+mottled~
+This is a tunic of mottled greens and browns, providing good camouflage
+in the forests.  
+~
+E
+tunic~
+This is a tunic of mottled greens and browns, providing good camouflage
+in the forests.  
+~
+#9508
+chest~
+a small chest~
+A small chest draws your attention.~
+~
+15 0 0 0 0 0
+500~ 13~ 9530~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+chest~
+This is a very solid iron chest, secured with a padlock.
+~
+#9509
+blue vial~
+a &Blight blue vial~
+A light blue vial is set here.~
+~
+10 268435456 0 0 1 21
+21~ cure light~ cure light~ cure light~
+1 0 35 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+blue~
+This vial contains some kind of liquid, held in by a small cork.
+~
+E
+vial~
+This vial contains some kind of liquid, held in by a small cork.
+~
+#9510
+vial red~
+a &rred vial~
+A red vial is set here.~
+~
+10 268435456 0 0 1 21
+26~ fireshield~ reserved~ reserved~
+1 0 0 110 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+red~
+This red vial is corked up to prevent the liquid from spilling.
+~
+E
+vial~
+This red vial is corked up to prevent the liquid from spilling.
+~
+#9511
+copper coins pile~
+a pile of coins~
+A small pile of coins is here.~
+~
+20 0 0 0 1 1
+0~ 0~ 80~ 0~
+2 0 0 80 0
+0 0
+reserved~
+0 0
+0 0 0
+#9512
+sword~
+the sword of a Fortress guard~
+A much used and slightly dented sword rests here.~
+~
+5 0 5175 2 8193 17
+0~ 0~ 0~ 3~
+6 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 28
+A
+19 30
+E
+sword~
+This is a basic issue guard sword bearing the crest of the Fortress.
+~
+#9513
+wine glass chilled~
+a glass of wine~
+A chilled glass of wine sparkles invitingly.~
+~
+17 0 0 0 1 1
+25~ 25~ 2~ 0~
+1 0 0 39 0
+0 0
+reserved~
+0 0
+0 0 0
+#9514
+whiskey shot~
+a shot of whiskey~
+A small shot glass full of whiskey practically dares you to drink it.~
+~
+17 0 0 0 1 1
+25~ 25~ 5~ 0~
+1 0 0 54 0
+0 0
+reserved~
+0 0
+0 0 0
+#9515
+loaf bread~
+a loaf of bread~
+A loaf of fresh bread lies here.~
+~
+19 0 0 0 1 1
+15~ 0~ 0~ 0~
+1 0 0 29 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+loaf~
+This loaf of bread will still your hunger for a while, and it smells wonderful!
+~
+E
+bread~
+This loaf of bread will still your hunger for a while, and it smells wonderful!
+~
+#9516
+leg lamb~
+a leg of lamb~
+A delicious leg of lamb lies here.~
+~
+19 0 0 0 1 1
+25~ 0~ 0~ 0~
+1 0 0 43 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+lamb~
+A tempting leg of smoked lamb smells wonderful.
+~
+E
+leg~
+A tempting leg of smoked lamb smells wonderful.
+~
+#9517
+shield wooden~
+a &Owooden shield~
+A shield made of solid wood lies here.~
+~
+9 0 0 16412 513 25
+0~ 0~ 0~ 0~
+11 0 8 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+wooden~
+This wooden shield has markings of the Fortress carved in it.
+~
+E
+shield~
+This wooden shield has markings of the Fortress carved in it.
+~
+#9518
+gauntlet bladed blade~
+a &wbladed gauntlet~
+A gauntlet with blades protruding from it rests here.~
+~
+5 0 4102 2 8193 40
+0~ 0~ 0~ 11~
+5 0 12 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 4
+A
+17 -40
+A
+18 50
+A
+19 43
+E
+blade~
+This gauntlet is made out of the finest metal, marked with the Fortress champion crest.
+~
+E
+bladed~
+This gauntlet is made out of the finest metal, marked with the Fortress champion crest.
+~
+E
+gauntlet~
+This gauntlet is made out of the finest metal, marked with the Fortress champion crest.
+~
+#9519
+hauberk chain mail~
+a &Wchain mail hauberk~
+A hauberk of finely woven chain links is here.~
+~
+9 0 5681 31388 9 17
+0~ 0~ 0~ 0~
+20 0 1 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hauberk~
+Thousands of small chain links produce this fine shirt, offering a fair
+amount of protection.  
+~
+E
+mail~
+Thousands of small chain links produce this fine shirt, offering a fair
+amount of protection.  
+~
+E
+chain~
+Thousands of small chain links produce this fine shirt, offering a fair
+amount of protection.  
+~
+#9520
+boots winged translucent~
+winged boots~
+A pair of translucent boots float just above your feet.~
+~
+9 268444896 6660 57096 65 42
+0~ 0~ 0~ 0~
+1 0 39 0 0
+0 0
+fly~
+0 0
+0 0 0
+A
+110 -1
+A
+17 20
+A
+13 -20
+#9521
+pitchfork~
+a pitchfork~
+A pitchfork lies here.~
+~
+5 0 0 0 8193 23
+0~ 0~ 0~ 11~
+6 0 2 9 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 20
+A
+19 25
+E
+pitchfork~
+The wooden handle is worn from frequent use, the metal tines are sharp.
+~
+#9522
+jacket splint mail~
+a &wsplint mail jacket~
+A jacket of splint mail lies here.~
+~
+9 0 7991 29342 9 20
+0~ 0~ 0~ 0~
+25 0 11 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+splint~
+The splint mail doesn't restrict your movements, the way it's designed
+it's a good armor as well as comfortable to wear.  
+~
+E
+mail~
+The splint mail doesn't restrict your movements, the way it's designed
+it's a good armor as well as comfortable to wear.  
+~
+E
+jacket~
+The splint mail doesn't restrict your movements, the way it's designed
+it's a good armor as well as comfortable to wear.  
+~
+#9523
+coif chain~
+a &wchain coif~
+A coif made of fine links of chain mail lies here.~
+~
+9 0 5683 12930 17 20
+0~ 0~ 0~ 0~
+4 0 9 2 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+E
+chain~
+The coif is made with a fine mesh of chained links, providing protection
+to your head.  
+~
+E
+coif~
+The coif is made with a fine mesh of chained links, providing protection
+to your head.  
+~
+#9524
+pick military~
+&Oa military pick&W~
+A long wooden pike with a metal point lies here~
+~
+5 0 5171 0 8193 20
+0~ 0~ 0~ 11~
+5 0 0 100 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 17
+A
+17 -5
+A
+19 10
+E
+pick~
+A metal spearhead is attached to the end of this long wooden shaft.
+~
+E
+military~
+A metal spearhead is attached to the end of this long wooden shaft.
+~
+#9525
+sabre steel~
+a steel sabre~
+A wicked looking sabre is thrust into the ground here.~
+~
+5 0 0 0 8193 20
+0~ 0~ 0~ 3~
+3 0 8 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+18 30
+A
+19 25
+E
+steel sabre~
+A dagger-sized weapon with a slight curve to the blade. It would be perfect
+for dual wielding and parrying off attacks.
+~
+#9526
+belt power~
+a &Ybelt of power&R~
+A powerful looking belt hums with repressed strength.~
+~
+9 2 0 0 2049 40
+0~ 0~ 0~ 0~
+3 0 35 0 0
+0 0
+giant strength~
+0 0
+0 0 0
+A
+1 2
+E
+belt~
+This broad leather belt has been enchanted, making it hum.
+Upon closer examination, you notice a tag that says; One size fits all.
+~
+E
+power~
+This broad leather belt has been enchanted, making it hum.
+~
+#9527
+dagger silver~
+a &Wsilver dagger~
+A nice-looking silver dagger lies here.~
+~
+5 0 6146 2 8193 25
+0~ 0~ 0~ 11~
+3 0 14 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 35
+A
+18 35
+A
+24 1
+E
+silver ~
+This dagger is made of 100% silver, it almost shines by itself.  It's
+ornated with small red stones around the hilt.  
+~
+E
+dagger~
+This dagger is made of 100% silver, it almost shines by itself. It's ornated with small red stones around the hilt.
+~
+#9528
+rapier sword~
+a &wrapier&W~
+An iron rapier lies here.~
+~
+5 0 5171 2 8193 27
+0~ 0~ 0~ 3~
+3 0 17 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 43
+A
+26 3
+A
+19 35
+E
+sword~
+This is a finely made iron rapier, the handle carries the Fortress crest on it.
+~
+E
+rapier~
+This is a finely made iron rapier, the handle carries the Fortress crest on it.
+~
+#9529
+fountain statue~
+courtyard fountain~
+A large fountain with a statue of a man riding a horse is here.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+statue~
+The fountain is dominated by a large bronze statue, displaying Lord Tyrus
+on his steed.  
+~
+E
+fountain~
+The fountain is dominated by a large bronze statue, displaying Lord Tyrus
+on his steed.  
+~
+#9530
+key iron~
+an iron key~
+A solid iron key has been left here.~
+~
+18 32 0 0 1 10
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+iron~
+This is a simple key, but made to last. 
+~
+E
+key~
+This is a simple key, but made to last. 
+~
+#9531
+silk sash~
+a &rsilk sash~
+A silken sash lies neatly folded here.~
+~
+9 0 1715 0 2049 40
+0~ 0~ 0~ 0~
+1 0 35 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+102 -1
+A
+5 2
+E
+sash~
+This fine sash is spun from a deep red silk, smooth to touch and nice to wear.
+~
+E
+silk~
+This fine sash is spun from a deep red silk, smooth to touch and nice to wear.
+~
+#9532
+glove chaos~
+&Gthe &BGlove &Gof &RChaos~
+A glove lies here glowing with restrained power.~
+~
+5 67108929 7116 12928 8193 41
+0~ 0~ 0~ 6~
+3 1 12 0 0
+0 0
+reserved~
+0 0
+9538 0 0
+A
+19 56
+A
+18 64
+A
+12 40
+E
+glove~
+The glove glowes softly, almost creating a light by itself.  Looking
+closer you see only half of the Fortress crest upon it.  
+~
+E
+chaos~
+The glove glows softly, almost creating a light by itself. Looking
+closer, you see only half of the Fortress crest upon it.
+~
+#9533
+bracer rune black~
+a &zblack runed bracer~
+A black bracer with runes on it lies here.~
+~
+9 0 0 29340 4097 40
+0~ 0~ 0~ 0~
+1 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 40
+A
+17 -40
+E
+rune~
+The bracer is made of fine polished wood, runes cover most of it's
+surface.  
+~
+E
+bracer~
+The bracer is made of fine polished wood, runes cover most of it's
+surface.  
+~
+E
+black~
+The bracer is made of fine polished wood, runes cover most of it's
+surface.  
+~
+#9534
+gold coins pile~
+a pile of coins~
+A large pile of gold coins glitters brightly in the dim light.~
+~
+20 0 0 0 1 1
+50~ 0~ 0~ 0~
+21 50 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#9535
+key rune~
+a rune marked key~
+A key marked with runes lies here.~
+~
+18 32 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+The key is marked with strange runes. 
+~
+E
+rune~
+The key is marked with strange runes. 
+~
+#9536
+parchment scrap~
+a scrap of parchment~
+A worn scrap of parchment lies rolled up here.~
+~
+2 0 0 0 16385 30
+35~ combat mind~ reserved~ reserved~
+1 0 20 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+scrap~
+Taking a close look at the parchment you see all kinds of symbols and
+words.  Down near the bottom of the scrap there is a passage that has what
+looks to be a translation.  It says: Gain the wisdom of a warrior.  
+~
+E
+parchment~
+Taking a close look at the parchment you see all kinds of symbols and
+words.  Down near the bottom of the scrap there is a passage that has what
+looks to be a translation.  It says: Gain the wisdom of a warrior.  
+~
+#9537
+blade order~
+the &RBlade &Gof &BOrder&W~
+A short blade hums softly here.~
+~
+5 33554498 6967 2 8193 41
+0~ 0~ 0~ 1~
+5 0 20 0 0
+0 0
+reserved~
+0 0
+9538 0 0
+A
+19 82
+A
+18 66
+A
+26 4
+E
+order~
+The short blade has an oddly shaped handle, looking closer you see it
+carries only half of the Fortress crest.  
+~
+E
+blade~
+The short blade has an oddly shaped handle, looking closer you see it
+carries only half of the Fortress crest.  
+~
+#9538
+blade glove harmony~
+the &PBlade-Glove &Gof &PHarmony~
+A glove with wicked blades protruding radiates power.~
+~
+5 805306371 4102 0 8193 41
+0~ 0~ 0~ 3~
+2 0 37 0 0
+0 0
+reserved~
+0 0
+0 9532 9537
+A
+26 4
+A
+17 -35
+A
+18 65
+A
+19 72
+E
+harmony~
+Having fitted the blade into the glove, has created a powerful weapon. 
+The Fortress crest is complete, inscribed with the words: "Togehter in
+harmony, order and chaos bring power."  
+~
+E
+glove~
+Having fitted the blade into the glove, has created a powerful weapon. 
+The Fortress crest is complete, inscribed with the words: "Togehter in
+harmony, order and chaos bring power."  
+~
+E
+blade~
+Having fitted the blade into the glove, has created a powerful weapon. 
+The Fortress crest is complete, inscribed with the words: "Togehter in
+harmony, order and chaos bring power."  
+~
+#9539
+mace holy~
+the &BHoly Mace~
+A silver mace lies here, glowing with holy power.~
+~
+5 1089 7684 17920 8193 41
+0~ 0~ 0~ 7~
+0 0 37 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 72
+A
+18 56
+A
+121 -1
+E
+mace~
+The mace is made out of fine silver, the handle is crested with holy symbols.
+~
+E
+holy~
+The mace is made out of fine silver, the handle is crested with holy symbols.
+~
+#9540
+belt holy~
+a &BHoly Belt~
+A holy belt lies curled up here~
+~
+9 1089 1536 17920 2049 40
+0~ 0~ 0~ 0~
+3 0 35 0 0
+0 0
+bless~
+0 0
+0 0 0
+A
+12 40
+A
+17 -40
+E
+holy~
+It's a simple rope, used as a belt. It glows from being blessed by a priest.
+~
+E
+belt~
+It's a simple rope, used as a belt. It glows from being blessed by a priest.
+~
+#9541
+boots stealth leather~
+&Cthe Boots of Stealth&W~
+A pair of soft leather boots are set here.~
+~
+9 0 0 12928 65 34
+0~ 0~ 0~ 0~
+3 0 24 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+109 -1
+#9542
+gloves thieves~
+&Othieves' gloves&W~
+A pair of worn gloves lie here.~
+~
+9 128 0 12928 129 34
+0~ 0~ 0~ 0~
+2 0 12 8 0
+0 0
+pick lock~
+0 0
+0 0 0
+A
+124 -1
+E
+thieves~
+These leather gloves are just about worn out from use. 
+~
+E
+gloves ~
+These leather gloves are just about worn out from use. 
+~
+#9543
+tri-bladed dagger~
+&Ya tri-bladed dagger&W~
+A glint of metal from a dagger with three blades catches your eye.~
+~
+5 0 4098 2 8193 34
+0~ 0~ 0~ 11~
+1 0 24 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+17 -34
+A
+18 50
+A
+19 45
+E
+dagger~
+This three bladed dagger is polished to a fine sheen.  It is extremely
+light and designed to catch the blow of thine enemies weapon. 
+~
+E
+tri-bladed~
+This three bladed dagger is polished to a fine sheen.  It is extremely
+light and designed to catch the blow of thine enemies weapon. 
+~
+#9544
+chainmail drow suit~
+&ga suit of drow chainmail&W~
+A set of chainmail lies here.~
+~
+9 1 5683 29340 9 40
+0~ 0~ 0~ 0~
+5 0 7 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+17 -40
+E
+chainmail~
+This chainmail is a work  of art, made of drows. Being able to use metal, they have created a mail shirt that provides good protection.
+Their work is almost identical to their elven cousins.
+~
+E
+drow~
+This chainmail is a work  of art, made of drows. Being able to use metal, they have created a mail shirt that provides good protection.
+Their work is almost identical to their elven cousins.
+~
+#9545
+helm shadow shadowhelm~
+the &zShadowHelm~
+A helm of shadows blends into the background.~
+~
+9 96 0 12928 17 40
+0~ 0~ 0~ 0~
+4 0 7 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 40
+A
+2 2
+E
+shadowhelm~
+You can't make out what material this helm is made of.  Being
+transparent, it swirls with shadows.  
+~
+E
+shadow~
+You can't make out what material this helm is made of.  Being
+transparent, it swirls with shadows.  
+~
+E
+helm~
+You can't make out what material this helm is made of.  Being
+transparent, it swirls with shadows.  
+~
+#9546
+symbol holy~
+a Holy symbol~
+A holy symbol lies here.~
+~
+9 536871936 3584 17920 16385 40
+0~ 0~ 0~ 0~
+3 0 35 0 0
+5 0
+turn undead~
+0 -1
+0 0 0
+A
+12 20
+E
+symbol~
+The holy symbol bares many signs, which only the maker can translate. 
+~
+E
+holy~
+The holy symbol bares many signs, which only the maker can translate. 
+~
+#9547
+scale mail shirt scalemail~
+a scalemail shirt~
+A scaled shirt lies here.~
+~
+9 0 7991 29340 9 31
+0~ 0~ 0~ 0~
+23 0 21 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 2
+A
+17 -31
+E
+mail~
+The overlapping scales is made of metal, creating a good armor. 
+~
+E
+scalemail~
+The overlapping scales is made of metal, creating a good armor. 
+~
+E
+shirt~
+The overlapping scales is made of metal, creating a good armor. 
+~
+E
+scale~
+The overlapping scales is made of metal, creating a good armor. 
+~
+#9548
+sword silver plain~
+a plain &wsilver sword~
+A plainly made silver sword lies here.~
+~
+5 0 7223 0 8193 31
+0~ 0~ 0~ 3~
+5 0 21 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 3
+A
+18 40
+A
+19 43
+E
+plain~
+The silver sword has been polished to shine and have a few dents after use.
+Other then that, it is a pretty simple but effective sword.
+~
+E
+sword~
+The silver sword has been polished to shine and have a few dents after use.
+Other then that, it is a pretty simple but effective sword.
+~
+E
+silver ~
+The silver sword has been polished to shine and have a few dents after use.
+Other then that, it is a pretty simple but effective sword.
+~
+#9549
+livery fortress tunic~
+the fortress livery~
+A tunic with the Fortress markings lies here.~
+~
+9 0 0 0 9 30
+0~ 0~ 0~ 0~
+3 0 3 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tunic~
+This is a woolen tunic, with the colorful crest of the Fortress.
+~
+E
+fortress~
+This is a woolen tunic, with the colorful crest of the Fortress.
+~
+E
+livery~
+This is a woolen tunic, with the colorful crest of the Fortress.
+~
+#9550
+haramaki shirt~
+a haramaki~
+A shirt of overlapping flaps lies here.~
+~
+9 0 0 0 9 35
+0~ 0~ 0~ 0~
+7 0 3 9 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+haramaki~
+This armor can be draped over the head to provide protection to the chest
+and back.  There are straps along the sides to adjust for a comfortable fit.
+It is made of a very hard material similar to cured leather.  
+~
+#9551
+katana sword~
+a katana~
+A sharp edged sword of strange manufature is here.~
+~
+5 0 5175 0 8193 35
+0~ 0~ 0~ 1~
+2 0 13 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 51
+A
+18 48
+E
+sword~
+This is a long thin-bladed sword, with a slight curve.  The hilt is
+tightly wrapped with leather cord.  It appears to be made of hardened steel
+and polished to a shine.  The edge is razor sharp.  
+~
+E
+katana~
+This is a long thin-bladed sword, with a slight curve.  The hilt is
+tightly wrapped with leather cord.  It appears to be made of hardened steel
+and polished to a shine.  The edge is razor sharp.  
+~
+#9552
+wakizashi dagger~
+a wakizashi~
+A short curved dagger lies here in it's sheath.~
+~
+5 0 4102 0 8193 35
+0~ 0~ 0~ 3~
+3 0 9 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 49
+A
+18 55
+E
+wakizashi~
+This is a long thin-bladed dagger, with a slight curve.  The hilt is
+tightly wrapped with leather cord.  It appears to be made of hardened steel
+and polished to a shine.  The edge is razor sharp.  
+~
+E
+dagger~
+This is a long thin-bladed dagger, with a slight curve.  The hilt is
+tightly wrapped with leather cord.  It appears to be made of hardened steel
+and polished to a shine.  The edge is razor sharp.  
+~
+#9553
+ring ruby~
+a ruby ring~
+You see ring containing a large red ruby.~
+~
+9 64 2048 29340 3 37
+0~ 0~ 0~ 0~
+1 0 8 4 0
+0 0
+charm person~
+0 0
+0 0 0
+A
+13 25
+A
+12 25
+E
+ruby~
+The ring is a simple band of silver encrusted with a large red ruby.
+~
+E
+ring~
+The ring is a simple band of silver encrusted with a large red ruby.
+~
+#9554
+gown elegant velvet~
+&gan elegant velvet gown&W~
+A gown of beautiful velvet material has been tossed here.~
+~
+9 0 0 29340 9 39
+0~ 0~ 0~ 0~
+4 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -2
+A
+14 30
+A
+2 -1
+E
+gown~
+An elegant gown made from a deep green velvet.  It is hemmed with golden
+lace.  
+~
+E
+elegant~
+An elegant gown made from a deep green velvet.  It is hemmed with golden
+lace.  
+~
+E
+velvet~
+An elegant gown made from a deep green velvet.  It is hemmed with golden
+lace.  
+~
+#9555
+key iron~
+an iron key~
+A key made of iron lies here.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+This is a simple iron key used to unlock doors.
+~
+E
+iron~
+This is a simple iron key used to unlock doors.
+~
+#9556
+flask tin~
+a tin flask~
+There is a tin flask here.~
+~
+17 0 0 0 1 1
+100~ 100~ 0~ 0~
+2 0 0 10 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+flask~
+This flask is designed to hold liquids.
+~
+E
+tin~
+This flask is designed to hold liquids.
+~
+#9557
+meat beef side~
+a side of beef~
+A side of beef has been left out to spoil.~
+~
+19 0 0 0 1 1
+25~ 0~ 0~ 1~
+5 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+meat~
+This beef looks rancid and gives off a strong odor.
+~
+E
+beef~
+This beef looks rancid and give off a strong odor.
+~
+E
+side~
+This beef looks rancid and give off a strong odor.
+~
+#9558
+bread loaf~
+a loaf of bread~
+A fresh loaf of bread looks delicious.~
+~
+19 0 0 0 1 1
+30~ 0~ 0~ 0~
+2 0 1 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bread~
+The bread smells fresh and looks tasty.
+~
+E
+loaf~
+The bread smells fresh and looks tasty.
+~
+#9559
+knapsack sack leather~
+a leather knapsack~
+A worn leather knapsack has been left here.~
+~
+15 0 0 0 1 20
+300~ 0~ 0~ 0~
+10 0 8 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+knapsack knap~
+The knap has two shoulder straps designed to be worn on the back. It looks
+to be able to hold an average amount of supplies.
+~
+E
+sack~
+The knap has two shoulder straps designed to be worn on the back.  It
+looks to be able to hold an average amount of supplies. 
+~
+E
+leather~
+The knap has two shoulder straps designed to be worn on the back.  It
+looks to be able to hold an average amount of supplies. 
+~
+#9560
+horseshoe shoe~
+&wa silver horseshoe&G~
+A shiny horseshoe has been left on the ground here.~
+~
+8 1024 3588 26144 16385 29
+0~ 0~ 0~ 0~
+1 0 19 0 0
+5 0
+sanctuary~
+1 1
+0 0 0
+A
+24 -2
+E
+horseshoe~
+Ohh, horseshoes are supposed to bring luck right? How lucky you are, you
+are the proud owner of a shiny silver horseshoe!
+~
+E
+shoe~
+Ohh, horseshoes are supposed to bring luck right?  How lucky you are,
+you are the proud owner of a shiny silver horseshoe!  
+~
+#9561
+bucket~
+&Wbucket of &Odirty&W water~
+&GA bucket of &Odirty&G water is set on the floor used to quench the hot metals.~
+~
+15 0 0 0 0 0
+2~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bucket~
+It looks like there might be something in the dirty water, maybe you
+should examine the bucket closer?  
+~
+#9562
+carriage~
+a fancy carriage~
+A very nice carriage is parked here.~
+~
+15 0 0 0 0 0
+800~ 5~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+carriage~
+The carriage looks unlocked...Maybe the Royals left something valuable inside?
+~
+#9563
+cheese~
+a piece of cheese~
+A tempting wedge of fine cheese is set here.~
+~
+19 0 0 0 1 1
+15~ 0~ 0~ 0~
+1 0 0 16 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+cheese~
+The cheese looks to be of finest quality.
+~
+#9564
+tray~
+&Ya golden tray&W~
+&YA golden tray is attached upon a pedestal of stone.~
+~
+15 0 0 0 0 0
+100~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tray~
+&WA tray made of solid &Ygold&W is attached to a pedestal of stone. 
+Looking closer you see writing in the gold...
+&Y"The Gods will smile upon your soul for your donation."
+~
+#9565
+coin copper~
+&Oa copper coin&X~
+&OA single copper coin...~
+~
+20 0 0 0 1 1
+0~ 0~ 1~ 0~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#9501
+Entrance to the Vale~
+&GThis little grove separates the Vale from Bethaven.  Looking through
+the &Ygate&G to the west, you can see the city of Bethaven.  The vale to the
+North and South is filled with lush trees.  You can hear birds singing from
+every vantage point.  The well worn trail to the East leads to what appears
+to be a Fortress.  
+~
+0 4 3
+Rd     0
+E
+gate~
+You look at a small iron gate, leading into Bethaven.
+~
+D0
+~
+~
+0 0 9502
+D1
+~
+~
+0 0 9506
+D2
+~
+~
+0 0 9503
+D3
+A gate stands here to the west leading into the city of Bethaven.
+~
+gate~
+3 0 25037
+S
+#9502
+Along the East Wall~
+&GHere on the west side of the vale, trees grow everywhere.  Shrubs,
+trees and wildflowers colorfully accent the area.  All around you can hear
+the sounds of the local wildlife, you even manage to catch a glimpse of a
+deer as it bounds back deeper into the vale.  To the South a small trail can
+be seen leading in an east-west direction.  A small path leads off to the
+East, while the Northern path continues along the East Wall.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 9504
+D1
+~
+~
+0 0 9507
+D2
+~
+~
+0 0 9501
+S
+#9503
+Along the East Wall~
+&GThis part of the Vale is all peaceful, the trees provide a pleasant
+shade and the slight sounds of the forest creatures provide a gentle
+background.  All around you life grows and flourishes, it's amazing that
+being this close to the city no one has managed to destroy this wonderful
+glade.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 9501
+D1
+~
+~
+0 0 9508
+D2
+~
+~
+0 0 9505
+S
+#9504
+NorthWest Corner of the Vale~
+&GYou have reached the Northwest corner of the Vale.  To your north and
+west huge trees with massive trunks form a barrier.  You most definitely
+cannot make your way through them.  Over to the east you can see one tree
+rising high above all the rest.  In the distance you can hear a bird call as
+it flies off looking for food.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 9509
+D2
+~
+~
+0 0 9502
+S
+#9505
+SouthWest Corner of the Vale~
+&GIn the Southwest corner of the glade, the underbrush grows thick. 
+Looking around you can see signs that someone has been here before you. 
+Several footprints are formed in the damp earth.  Off to the east you can
+hear a gurgling sound.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 9503
+D1
+~
+~
+0 0 9510
+S
+#9506
+A Small Game Trail~
+&GLooking East you can see the trail widen as it approaches the Fortress.
+On either side of you the trees and undergrowth rise up to hem you in
+somewhat.  Standing here, you can't seem to shake the feeling that you're
+being watched.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 9507
+D1
+~
+~
+0 0 9511
+D2
+~
+~
+0 0 9508
+D3
+~
+~
+0 0 9501
+S
+#9507
+Deep in the Vale~
+&GOn all sides trees loom above your head.  A comfortable breeze blows
+through the leaves here, bringing up the scent of growing trees and moist
+earth.  Off to your right you hear a branch snap, but when you turn to see
+what caused it there's nothing in sight.  Over to the east you can see the
+top of the big tree that rises above all the rest.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 9509
+D1
+~
+~
+0 0 9512
+D2
+~
+~
+0 0 9506
+D3
+~
+~
+0 0 9502
+S
+#9508
+A Small Clearing~
+&GEntering this part of the Vale the trees part slightly and a small
+clearing becomes apparent.  Footprints of all types of creatures lead to a
+natural &Bspring&G, flowing forth from the ground.  Looking around you can
+see that whichever direction you choose to take will once again take you
+back into the jungle of trees and undergrowth.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 9506
+D1
+~
+~
+0 0 9513
+D2
+~
+~
+0 0 9510
+D3
+~
+~
+0 0 9503
+S
+#9509
+Deep in the Vale~
+&GHere the trees grow even thicker around you.  Every now and again you
+catch a glimpse of an animal, flitting from tree to tree.  You definitely
+have the feeling that your movements in the Vale are closely watched.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 9514
+D2
+~
+~
+0 0 9507
+D3
+~
+~
+0 0 9504
+S
+#9510
+The South Side of the Vale~
+&GHere on the south side of the vale the growth is the same as most
+everywhere else.  Your way south is blocked by major undergrowth and trees
+that grow so close their trunks almost connect.  Off to the north gurgling
+sounds can be heard, along with the normal sounds of the wildlife that
+inhabit the vale.  To the East you see the contours of a cliff.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 9508
+D1
+~
+~
+0 0 9515
+D3
+~
+~
+0 0 9505
+S
+#9511
+Along the Road~
+&GHere the game trail forms into a full fledged road.  The road heads
+East toward the Fortress.  Looking more closely at the Fortress from your new
+vantage point you can see a pair of large gates.  To the North, the path is
+darkened by the shadow of a huge tree.  A path leads South.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9512
+D1
+~
+~
+0 0 9516
+D2
+~
+~
+0 0 9513
+D3
+~
+~
+0 0 9506
+S
+#9512
+The Huge Tree~
+&GYou come upon a small glade dominated by probably the biggest &Ytree&G
+you've ever seen.  It seems very quiet here, prompting you to look around. 
+You notice no distinct activity or movement.  
+~
+0 4 3
+Rd     0
+E
+tree~
+Upon closer examination of the tree you see a small &Ghole&W carved into
+the trunk, and looking up you see what appears to be a &Gtrapdoor&W through
+a huge branch.  
+~
+E
+trapdoor~
+You see a trapdoor way up there, creating an opening through the huge
+branch.  Now how to get up there?  
+~
+E
+hole~
+It's just a carved hole, might it have something to do with the trapdoor?  
+~
+D0
+~
+~
+0 0 9514
+D1
+~
+~
+0 0 9517
+D2
+~
+~
+0 0 9511
+D3
+~
+~
+0 0 9507
+D4
+A hole in the trunk of the tree seems out of place.
+~
+trapdoor~
+7 9500 9521
+S
+#9513
+The Path~
+&GHere on the Eastern side of the Vale, trees are as plentiful as dirt
+and shrubs.  You see something fly by at great speed and fail to identify it
+before it disappears in the foliage of a tree.  Off to your East the ground
+becomes rocky, lacking any trees, containing all but a few scrawny shrubs. 
+To the North the path merges into a road.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 9511
+D1
+~
+~
+0 0 9518
+D2
+~
+~
+0 0 9515
+D3
+~
+~
+0 0 9508
+S
+#9514
+NorthEast Corner of the Vale~
+&GIn this corner of the Vale a number of creatures are moving amongst the
+trunks of the trees.  Upon your arrival they scatter to other parts of the
+Vale.  Looking to the north more large trees and large quantities of
+underbrush form an impassable barrier.  To the East a huge cliff rises up
+towards the heavens and its sheer face offers you no purchase for climbing. 
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 9512
+D3
+~
+~
+0 0 9509
+S
+#9515
+SouthEast Corner of the Vale~
+&GIn this corner of the Vale, trees tower above you on all sides To the
+South a great cliff rises up blocking any movement in that direction.  There
+is a path to the North and West.  To the East, there is a wall of dead
+&Obranches&c.  
+~
+0 0 3
+Rd     0
+E
+branches~
+Looking closer at the branches you also notice a number of huge
+footprints, which abruptly end.  
+~
+D0
+~
+~
+0 0 9513
+D1
+A path of footprints ends abruptly at the branches, leading you to assume
+there is a passageway here.  
+~
+branches~
+3 0 9527
+D3
+~
+~
+0 0 9510
+S
+#9516
+Before the Pass~
+&wThe growth of trees ends abruptly here.  Occasionally you can hear the
+sound of a rock tumbling down the cliff wall.  The wind carries the sound of
+bird chatter from the Vale, and the smell of trees linger through the air. 
+To the East a road leads towards the Fortress.  A rocky path leads North and
+South.  To the West you can see the Vale.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9517
+D1
+~
+~
+0 0 9519
+D2
+~
+~
+0 0 9518
+D3
+~
+~
+0 0 9511
+S
+#9517
+Along the Cliff Wall~
+&wHere on the side of the road there is a definite lack of greenery. 
+Mostly rocks and sand are all that thrive here except for the single shrub
+that has attached itself to the cliff wall and seems to eke out a pathetic
+existence.  To the east, the walls of the cliffs rise up blocking any
+progress in that direction, while to the North the cliff breaks open into a
+small pass.  
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 6794
+D2
+~
+~
+0 0 9516
+D3
+~
+~
+0 0 9512
+S
+#9518
+Along the Cliff Wall~
+&wThere are no shrubs or trees here.  A small &Ylizard&w does make itself
+known by scurrying out of your way as you clamber over the rocks.  The wall
+of the cliff rises up sheer as glass preventing any progress to the East or
+South.  To the West, the forest grows forth, and you can see a path.  
+~
+0 0 5
+Rd     0
+E
+lizard ~
+Looking up at you with one yellow eye, and the other on a bug, the lizard
+decides the bug to be more of a meal and scurries into a crack between the
+rocks.  
+~
+D0
+~
+~
+0 0 9516
+D3
+~
+~
+0 0 9513
+S
+#9519
+In the Pass~
+&wHere it looks like nature has carved a small pass through the mountain.
+Looking up you can see there is no chance of climbing the sheer faces of the
+cliffs and decide the only direction you can continue is East or West.  To
+the East there is a huge gate leading into the Fortress, which rises as high
+up as the cliffs.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9520
+D3
+~
+~
+0 0 9516
+S
+#9520
+Before the Gate~
+&wThe huge Fortress &Ygate&w dominates your East view, while the sheer
+cliff walls block your view to the North and South.  You can see a narrow
+pass through the cliffs to the West.  
+~
+0 0 0
+Rd     0
+E
+gate~
+No matter how hard you look, you can't seem to find a doorbell!  How
+about just OPENING it?  :) 
+~
+D1
+A gate stands here in the west.
+~
+gate~
+1 0 9530
+D3
+~
+~
+0 0 9519
+S
+#9521
+On a Huge Branch~
+&GStanding on a huge branch, you have a marvelous view of the Vale.  The
+branch has a &Ytrapdoor&G in it which leads directly down to the base of the
+tree.  To the East you see the most amazing walkway, carved directly into
+the tree.  With a railing made of branches and thick ropes, it looks very
+sturdy.  
+~
+0 0 9
+Rd     0
+D1
+~
+~
+0 0 9522
+D5
+A semi-hidden trapdoor leads down from here.
+~
+trapdoor~
+7 9500 9512
+S
+#9522
+On the Tree Walkway~
+&GLooking over the railing, you see that there is no way anybody could
+see you up here, although you have an excellent view of the area below.  A
+&Pcrossbow&G is mounted on the railing here, it is covered in cobwebs. 
+Apparently whoever built this had some enemies, or was trying to protect
+something.  The Walkway continues to the North.  To the West you see a huge
+branch.  
+~
+0 0 0
+Rd     0
+E
+crossbow~
+This is a Very Large crossbow!  Aimed down to the ground, it is a very
+efficient defense.  There is no way to remove it without destroying it.  
+~
+D0
+~
+~
+0 0 9523
+D3
+~
+~
+0 0 9521
+S
+#9523
+A Dead End~
+&GThere seems to be only one apparent exit on this part of the
+&YWalkway&G, and that is South.  A branch to the East blocks your view of
+the ground here.  
+~
+0 0 0
+Rd     0
+E
+walkway~
+Looking closer here, you suddenly notice a faint outline of a
+&Ytrapdoor&W above your head!  Your curiosity finally pays off!  
+~
+E
+trapdoor~
+It doesn't seem to be locked!  Wow, can you believe your luck here?  
+~
+D2
+~
+~
+0 0 9522
+D4
+A trapdoor is semi-hidden here above you.
+~
+trapdoor~
+3 0 9524
+S
+#9524
+A Room Inside the Tree~
+&GLooking around you find yourself in a room carved inside the tree, a
+window is set in one wall with a table below it.  To the South an archway
+leads into yet another room.  Looking at the floor you see a &Ytrapdoor&G. 
+The window is closed, still you feel a cool draft coming from the Northern
+&Ywall&G.  
+~
+0 0 0
+Rd     0
+E
+trapdoor~
+A trapdoor leads down.  
+~
+E
+wall~
+As you slide your hands over the wall to see where the draft comes from,
+you notice a small &Phole&W!  
+~
+E
+hole~
+Peeking into the hole you see the contours of something, now how to get
+in there...  Must be a &Ydoor&W here somewhere?  
+~
+E
+door~
+After intensely searching the wall, you find a &Psecret &Wdoor&W!  This
+just MUST be your lucky day!  
+~
+E
+secret~
+Try opening it! Duh....
+~
+D0
+A door is hidden here in the north wall.
+~
+"secret door"~
+7 9500 9526
+D2
+~
+~
+0 0 9525
+D5
+A trapdoor is here.
+~
+trapdoor~
+3 0 9523
+S
+#9525
+A simple Bedroom~
+&GPassing through the archway you find yourself in a small bedroom. 
+Placed against one wall is a mattress lying on the floor, while over in the
+corner there is a chest covered with dust.  The room doesn't look like it's
+been used in quite a while but it is still basically tidy.  The archway
+North goes back to the what appears to be a living room.  
+~
+0 0 0
+Rd     0
+E
+chest~
+It's rotted and obviously empty.  
+~
+E
+mattress~
+Ewww!  Stains of...  Whatever, and it smells!  
+~
+D0
+~
+~
+0 0 9524
+S
+#9526
+A Secret Room~
+&GYou find yourself in a little room that was probably intended to be
+kept secret.  Looking around you see many chipped and used weapons along
+with a few sets of very worn and dented armor.  But the thing that draws
+your attention is the small &Bchest&G in the middle of the room.  
+~
+0 131088 0
+Rd     0
+D2
+There seems to be a secret door hidden here in the south wall.
+~
+"secret door"~
+7 9500 9524
+S
+#9527
+A Dark Cave~
+&OYou stand in a somewhat large cave.  A heavy scent lingers through the
+damp air.  You try to peer farther in but you just can't penetrate the
+darkness.  As you move around you can hear an occasional crunch as you step
+on &wsomething&O dry and brittle.  To the West you see some light filtering
+through the branches.  You notice an opening in the East.  
+~
+0 9 0
+Rd     0
+E
+something~
+Putting your light to the ground, you see a trail of enormous paw prints
+amongst some scattered bones.  
+~
+D1
+~
+~
+0 0 9528
+D3
+Some branches lead to the west if you move them.
+~
+branches~
+3 0 9515
+S
+#9528
+In a Dark Cave~
+&OThe cave is actually darker here.  The only light you have to rely on
+is the one you carry with you, and even that only sheds enough light to keep
+you from tripping over yourself.  The smell of an animal is strong here.  
+~
+0 9 0
+Rd     0
+D2
+~
+~
+0 0 9529
+D3
+~
+~
+0 0 9527
+S
+#9529
+A Bear Den~
+&OThe smell here is over powering.  You can hardly move because of the
+darkness.  Pointing your light to the ground you can make out bits of fur in
+the trodden dirt.  The walls are cold and damp.  A reliving breeze of fresh
+air comes from the North.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 9528
+S
+#9530
+A Covered Pass~
+&wThis space between the West &YGate&w and Eastern &Y&Y&YPortcullis&w&w
+is the Fortress' main defensive position.  There are small holes lining the
+ceiling.  The walls are covered with slick oil and patches of dried pitch
+cover the ground.  
+~
+0 12 0
+Rd     0
+E
+gate~
+The thick reinforced Gate leads out to the Pass between the Cliffs.  
+~
+E
+portcullis~
+This heavy portcullis is leading into the Fortress Courtyard.  Looking in
+you see the Courtyard bustling with activity.  
+~
+D1
+A portcullis is here in the east.
+~
+portcullis~
+1 0 9531
+D3
+A gate is here in the west.
+~
+gate~
+1 0 9520
+S
+#9531
+The Cobbled Road~
+&wThe small cobbled road leads East to the courtyard.  To the South
+laughter floats out of a slightly open &Ydoor&w.  To your West you have the
+massive &YPortcullis&w leading out of the Fortress.  The wall to the North
+is flourished with decorative plants and flowers.  
+~
+0 0 0
+Rd     0
+E
+portcullis~
+The Portcullis protects the Fortress from any attacks.  
+~
+E
+door~
+There is a sign on the door that reads: &RGUARD BARRACKS 
+~
+D1
+~
+~
+0 0 9535
+D2
+A door stands partly open here to the south.
+~
+door~
+129 0 9532
+D3
+A portcullis is here to the west.
+~
+portcullis~
+1 0 9530
+S
+#9532
+The Guards Barracks~
+&wLooking around you see a multitude of cheaply made weapons and armor
+stacked up against the walls.  A table is here, with bottles of wine and a
+deck of cards.  The guards spend their breaks here, playing cards, drinking
+their wine, and telling bad jokes.  To the West is the guards Bunkhouse.  
+~
+0 131080 0
+Rd     0
+D0
+A door stands here in the north wall.
+~
+door~
+129 0 9531
+D3
+~
+~
+0 0 9533
+S
+#9533
+The Bunkhouse~
+&wLooking around the room you see a number of bunks and cots in various
+states of use and abuse.  The bunks are unmade, the guards clothes are
+scattered throughout the room.  Cleaning and making beds are not the guards
+priority.  The younger guards are bunked up here while the veterans have
+placed themselves to the South.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 9532
+D2
+~
+~
+0 0 9534
+S
+#9534
+The Veteran's Bunkroom~
+&wWhere the other bunkroom has unkempt bunks and equipment strewn around,
+this area is kept very clean.  The bunks are all made and the equipment is
+all stored in it's proper places.  Where the young soldiers lack discipline,
+the veterans make up for it here.  To the South a &Ydoor&w with a fancy
+plaque on it dominates the wall.  
+~
+0 8 0
+Rd     0
+E
+plaque~
+The plaque reads: "Captain Zand Weg, Fortress Champion"
+~
+E
+door~
+A Silver Plaque is attached to the door.  It reads: "Captain Zand Werg,
+Fortress Champion" 
+~
+D0
+~
+~
+0 0 9533
+D2
+A door with a fancy plaque on it stands in the south wall.
+~
+door~
+3 0 9556
+S
+#9535
+The Courtyard~
+This is the Courtyard.  Here traders, artisans, children, housewives and
+even an occasional noble mix mingle through the streets.  A huge fountain to
+the East marks the center of the Courtyard.  The Courtyard widens to the
+North, and South.  To the West you can see the Fortress Portcullis.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9536
+D1
+~
+~
+0 0 9540
+D2
+~
+~
+0 0 9537
+D3
+~
+~
+0 0 9531
+S
+#9536
+The Courtyard~
+Here in the Courtyard all can mix and mingle with anyone else from the
+Fortress with little or no thought for any social rank.  Nobles talk and
+haggle with traders while guards instead of shooing beggars away give them a
+small coin or two.  To the North is the entrance to what looks to be a small
+alcove, a distance to the East you can hear the sounds of a smithy hammering
+away.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9538
+D1
+~
+~
+0 0 9541
+D2
+~
+~
+0 0 9535
+S
+#9537
+The Courtyard~
+The Courtyard is filled with everything from pets to nobles.  The scent
+of spices and fruit lingers in the air, witnessing the traders place in this
+Fortress.  Off to the East you can hear the sounds of horses, while South is
+an entrance to what seems to be a Tavern.  Laughter and singing can be heard
+floating from the open doorway.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9535
+D1
+~
+~
+0 0 9542
+D2
+~
+~
+0 0 9539
+S
+#9538
+An Alcove~
+This is a quiet Alcove, shaded by the walls of the Fortress.  There is a
+small garden of neatly trimmed hedges, and a bench allowing you to sit and
+rest here.  Pigeons peck about, searching for food.  To the South you see
+peasants and nobles mingle around doing their daily routine.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 9536
+S
+#9539
+Tavern of the Sun~
+&YThe staggering volume of people laughing and singing.  The smell of
+food and wine fills the air.  All around people are drinking and having a
+good time.  There is not much space in here, the Tavern is filled with
+people.  The most activity is at the bar, where drink and food orders are
+shouted out to deafen the other noises.  The walls have small &Rpaintings&Y,
+lamps and ale stains from the last brawl.  North you see the Courtyard.  
+~
+0 0 0
+Rd     0
+E
+paintings~
+Scraggy looking paintings hang here.  Some of them portrait a wench in a
+corset, a brave warrior with his kill and the Fortress Champion, Captain
+Zand.  
+~
+D0
+~
+~
+0 0 9537
+S
+#9540
+Center of the Courtyard~
+&YHere in the center of the Courtyard a large &CFountain&c &Ysprays forth
+cool water.  Around the Fountain are a number of benches that you can take a
+seat on and rest for awhile.  To the North lies the Smithy, the South is the
+Tavern and the Stables, while to the East you see the entrance of the Keep. 
+To the West is the entrance to the Courtyard.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9541
+D1
+~
+~
+0 0 9545
+D2
+~
+~
+0 0 9542
+D3
+~
+~
+0 0 9535
+S
+#9541
+The Courtyard~
+Various carts and traders line up in parts of the Courtyard.  Bringing
+exotic merchandise and various tools from far off places.  Some as gifts for
+the Lord and the Lady of the Keep, some for trading.  To the North, you can
+hear the hammering and see smoke rising up above the building.  South is the
+Courtyard, displaying a Fountain.  To the East and West are other parts of
+the Courtyard.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9543
+D1
+~
+~
+0 0 9546
+D2
+~
+~
+0 0 9540
+D3
+~
+~
+0 0 9536
+S
+#9542
+The Courtyard~
+The crowd thins here a little.  To the South a small Cul-de-sac is formed
+by the walls of the Fortress, the Tavern and the Stables.  North you can
+hear the sounds of running water of a fountain spraying water into the air. 
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9540
+D1
+~
+~
+0 0 9547
+D2
+~
+~
+0 0 9544
+D3
+~
+~
+0 0 9537
+S
+#9543
+The Smithy~
+&wIt's a bit darker in here than the Courtyard.  Tools, horseshoes, and
+twisted nails scatter the floor.  The room is very hot, and smoke floats
+lightly over your head.  On the walls you see everything from broken swords
+to big plows.  Along the East wall, between the forge and the anvil, there
+is a &Obucket&w of dirty water.  South you hear the chatter of traders and
+customers.  
+~
+0 603980812 0
+Rd     0
+D2
+~
+~
+0 0 9541
+S
+#9544
+A Cul-de-sac~
+This is a small Cul-de-sac off of the Courtyard.  Walls bounds on the
+East, West and South side.  It's much darker in here than it is out in the
+main part of the Courtyard.  This place is strangely empty, nothing to look
+at.  The dark shadows here seem to waver about.  
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 9542
+S
+#9545
+Before the Keep~
+The massive &Ygate&c of the Keep dominates this area.  People of all
+classes will come here to wait for an audience with the Lord and Lady of the
+Fortress.  To the South you hear the sounds of horses in the Stable, from
+the West the sound of the Fountain breezes in along with the voices of
+people.  North you see another part of the Courtyard.  
+~
+0 0 0
+Rd     0
+E
+gate~
+The ornate gate decorated with gold and silver, indicates the wealth and
+importance of the inhabitants.  
+~
+D0
+~
+~
+0 0 9546
+D1
+There is a gate here to the east.
+~
+gate~
+3 0 9554
+D2
+~
+~
+0 0 9547
+D3
+~
+~
+0 0 9540
+S
+#9546
+The Courtyard~
+Here in the Northeastern side of the courtyard many races and classes mix
+and mingle as if there were no difference between them.  West you can here
+the sounds of the smithy hard at work, while a distance to the South, beyond
+the gate of the Keep, lies the Stable.  West the Courtyard continues, while
+a small niche is to the North.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9548
+D2
+~
+~
+0 0 9545
+D3
+~
+~
+0 0 9541
+S
+#9547
+The Carriage House~
+This is the carriage house.  Josaph, the stable master, can sometimes be
+found around here doing close to nothing, except making sure the
+&Ycarriage&c of the Lord and Lady is in top condition and ready to go.  The
+distinct smell of horse manure fills the air, and prints of horse hooves
+leads South.  To the East a small alley leads around the main building of
+the Fortress.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9545
+D2
+~
+~
+0 0 9549
+D3
+~
+~
+0 0 9542
+S
+#9548
+A Small Niche~
+&gYou are in a small niche formed from the walls of the Fortress, the
+Smithy and the Keep.  You hear the hammering through the West wall.  There's
+not really much of interest here.  To the South lies the Courtyard proper,
+where you see a crowd of people.  A small alley continues to the East
+between the walls of the Fortress and the Keep.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9550
+D2
+~
+~
+0 0 9546
+S
+#9549
+The Stables~
+The stench is almost overwhelming, it seems the place hasn't had a good
+cleaning in a number of days.  A number of stalls contain the Royal carriage
+horses.  Along the stall walls there is a number of saddles, with the
+associated harnesses, reins and bridles.  Flies buzz about, making the
+horses flick with their tails.  The horses whinny softly as they feel a
+presence.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9547
+S
+#9550
+A Small Alley~
+&gThis small alley runs alongside the Fortress proper.  It's somewhat
+dark here, the weeds grow thick on the ground.  Bits of trash are scattered
+about here.  An accumulation of several empty wine bottles laying by a
+trampled down area, shows a frequent visitor here.  
+~
+0 1 0
+Rd     0
+D1
+~
+~
+0 0 9552
+D3
+~
+~
+0 0 9548
+S
+#9551
+A small alley~
+&gThe Fortress wall continues along the North side, running parallel to
+the Keep wall on the south.  They are only separated by the narrow neglected
+alley.  Not much light makes it's way over the high walls, leaving the alley
+dark and cool.  A rat scurries into a crack as you approach, carrying it's
+meal to safety.  
+~
+0 1 0
+Rd     0
+D1
+~
+~
+0 0 9553
+D3
+~
+~
+0 0 9552
+S
+#9552
+A small, dark alley~
+&gThere is a slight chill in the air.  Trash is scattered about along
+with the tall growing weeds.  You hear noises, but can't make out what they
+are, or from which direction.  Some light filters in from the West while
+getting darker still to the East.  
+~
+0 1 0
+Rd     0
+D1
+~
+~
+0 0 9551
+D3
+~
+~
+0 0 9550
+S
+#9553
+A Dark Alley~
+&gThis is a dead end.  Looking around you see nothing but stubby weeds
+and pieces of trash that litter the ground.  The walls stand tall around
+you, almost closing you in.  A small amount of light leaks in far from the
+East.  You hear a loud &GSqueak&g!  
+~
+0 1 0
+Rd     0
+E
+paper~
+Things to do:
+get eggs from market
+milk the cow
+do the washing
+get horseshoe back from Asgorn
+get fresh fruit for Ambassador's visit
+clean the royal throne
+~
+E
+squeak~
+As you look for the source of the sound you see two rats fighting over a
+scrap of paper..  As you move closer they forget about the &Opaper&W and
+flee in fear.  
+~
+D3
+~
+~
+0 0 9551
+S
+#9554
+Bailey~
+The Bailey is usually occupied by one or more guards, who check in on
+visitors who may have made it past the front gate.  The nobles cannot be too
+cautious in these trying times, and have taken every measure to insure their
+own safety.  A gate to the West leads to the Courtyard, while a gate is
+placed to East, leading into the Keep.  
+~
+0 8 0
+Rd     0
+D1
+A gate stands here to the east.
+~
+gate~
+3 0 9557
+D3
+A gate stands here to the west.
+~
+gate~
+3 0 9545
+S
+#9555
+Open Room~
+~
+0 4 0
+Rd     0
+S
+#9556
+Captain Zand's Office~
+&BThis room belongs to a higher standing officer.  Taking a quick look
+around you see a very used and slightly cluttered desk, a small bookshelf,
+and a chair.  The walls are filled with plaques of accomplishments.  One of
+these is a plaque of solid gold.  It is bestowed upon a Fortress Champion, a
+very high standing title for the few that earn it.  
+~
+0 131080 0
+Rd     0
+D0
+There is a door here in the northern wall.
+~
+~
+3 0 9534
+S
+#9557
+Hallway of the Keep~
+&pAlong the walls torches light up the hallway, giving a soft glow to the
+rooms.  Paintings of nobles decorate parts of the walls.  Occasionally you
+see a servant hurry past, to keep it's masters bidding.  West you see the
+gate leading out to the Bailey, and at the end of the long hallway to the
+East, you can make out a huge door.  North and South small alcoves are built
+in.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9558
+D1
+~
+~
+0 0 9560
+D2
+~
+~
+0 0 9559
+D3
+A gate stands here to the west.
+~
+gate~
+3 0 9554
+S
+#9558
+A Darkened Alcove~
+The Alcove is very dark.  Without a light you wouldnt be able to see the
+small couch or table with refreshments.  A person could sit here and watch
+people in the hallway without being noticed.  Your light makes your shadow
+dance on the wall, and it's eerily quiet in here.  
+~
+0 16393 0
+Rd     0
+D2
+~
+~
+0 0 9557
+S
+#9559
+The Cloak Room~
+Racks used to hang visitors cloaks encompass the room.  Common looking
+cloaks are hung on worn pine racks along the back of the room, while more
+elegant ones hang on a lavishly decorated rack up front.  There is usually
+one or more guards here watching for potential thieves.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 9557
+S
+#9560
+Hallway of the Keep~
+&pA plush red carpet flourishes the entire length of the hallway floor. 
+There are two corridors here, one North where you hear people hustle around,
+and one to the South where you hear soft murmurs of prayers.  To the East a
+pair of large oak doors ends the hallway, and to the West you see a gate.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9561
+D1
+~
+~
+0 0 9583
+D2
+~
+~
+0 0 9569
+D3
+~
+~
+0 0 9557
+S
+#9561
+A Side Corridor~
+&OLooking around you can see the corridor run North for a bit then takes
+a sharp turn to the right.  The walls are basically empty, except from a
+torch here and there.  There is no carpet decorating the floor or any
+paintings on the wall.  Servants hustle around at all times, not even giving
+you a second glance.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9562
+D2
+~
+~
+0 0 9560
+S
+#9562
+The Servants Corridor~
+&OServants literally run around on the beck and call of the Lord and
+Lady.  Not even noticing you, they manage to avoid pushing you over as they
+make haste from one end to another.  Occasionally shouting out a new order
+or request.  Taking a peek to the North and South, you see the servant's
+rooms.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 9563
+D2
+~
+~
+0 0 9561
+S
+#9563
+The servants hall~
+You continue down the servant's hall.  Off to either side of you there
+are small alcoves leading to what you suspect are the rooms that are
+allotted to the servants to sleep in.  Farther down the hall you can see
+where it ends with a door located on each side of the corridor.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9564
+D1
+~
+~
+0 0 9566
+D2
+~
+~
+0 0 9565
+D3
+~
+~
+0 0 9562
+S
+#9564
+Servant's Room~
+Stepping through one of the alcoves you exit the hall and enter a small,
+plainly furnished room.  There are a number of cots set up against the walls
+with a chest at the foot of each one.  A small torch burns fitfully on the
+wall barely providing enough illumination to see by.  All in all this is a
+boring place.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 9563
+S
+#9565
+Servant's Room~
+You exit the hall and enter through the archway into a well kept servant
+room.  A mirror decorates one of the walls and a large pine closet is set in
+a corner.  An oil lamp on a table, placed in the center of the room,
+provides the only light here.  A wooden vase with flowers is set next to the
+lamp, otherwise brightening the stale room.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9563
+S
+#9566
+Servants Hall~
+&OOn the East wall you see an enormous painting of Lady Melita and Lord
+Tyrus.  Torches mounted to either side illuminate it.  Looking South you see
+a solid wooden door banded in iron.  You notice a &wsign&O nailed on the
+door to the North.  
+~
+0 8 0
+Rd     0
+E
+sign~
+A rusty nail barely keeps this sign up on the door.  The sign reads in
+nice lettering: 
+                  Squire James 
+     Lord Tyrons Appointed  Representative
+~
+D0
+There is a door here to the north.
+~
+door~
+3 0 9567
+D2
+There is a door here to the south.
+~
+door~
+71 9555 9568
+D3
+~
+~
+0 0 9563
+S
+#9567
+Squire James' Room~
+Looking around you can see a bed with an ornate chest located at it's
+end.  Also a desk sits against the wall with a chair behind it.  The desk is
+cluttered with stacks of parchment, a couple of feather quills, small vials
+of ink and two oil lamps to provide enough light to work well into the
+evening twilight.  
+~
+0 8 0
+Rd     0
+D2
+There is a door here in the south wall.
+~
+door~
+3 0 9566
+S
+#9568
+Storage Room~
+&OEntering this room it is immediately apparent it is a storage room. 
+Shelves line the walls on all sides and are filled with everyday items such
+as beverages, food and sacks.  You can root around in here, who knows, maybe
+even locate something you need, if you don't get caught first that is.  
+~
+0 8 0
+Rd     0
+D0
+A door stands here in the northern wall.
+~
+door~
+71 9555 9566
+S
+#9569
+Corridor~
+The walls here are dark, nothing decorates it but two torches on either
+side of the East door.  The door is decorated with various religious
+symbols, and you hear spiritual aria playing from within.  South you see a
+stairwell.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9560
+D1
+There is a door here to the east.
+~
+door~
+3 0 9570
+D2
+~
+~
+0 0 9574
+S
+#9570
+Chapel~
+Large candles on both sides of the West door fill the air with sweet
+incense.  Pews line both sides of a narrow aisle, centered on a tabernacle
+to the East.  A mural adorns the Northern wall, showing a holy man with a
+white aura.  His lips form a gentle smile, and a mere peasant kneels before
+his feet.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 9572
+D2
+~
+~
+0 0 9571
+D3
+There is a door here in the west wall.
+~
+door~
+3 0 9569
+S
+#9571
+Chapel~
+All you can see about you at the moment is pews, pews and more pews. 
+Here and there scattered among the pews a man or woman is kneeling with
+their head bowed in prayer.  Ethereal words echo throughout the chapel.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9570
+D1
+~
+~
+0 0 9573
+S
+#9572
+Chapel Altar~
+Statues of holy men and women are recessed into the wall behind the
+altar.  Dozens of candles are lit to provide enough light to see the
+colorful tapestries on the North and Eastern wall.  South you can spot out a
+confession booth.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 9573
+D3
+~
+~
+0 0 9570
+S
+#9573
+Chapel~
+In the Southeast corner is a confessional.  It's painted in dark colors,
+and a red velvet cloth covers the openings.  An offering &Ytray&c is placed
+upon a stone pedestal next to the booth.  A couple of rows of pews are set
+here, and more are lined to the West.  To the North you see the candles
+light up the altar.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9572
+D3
+~
+~
+0 0 9571
+S
+#9574
+Bottom of Spiral Staircase~
+&wA spiral staircase, cut from granite blocks, leads upwards into
+darkness.  The stone walls are filled with magical runes etched into the
+hard granite by a powerful mage.  Torches are mounted on the wall, giving
+the runes a magical aura as the flames flicker softly in a draft.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9569
+D4
+~
+~
+0 0 9575
+S
+#9575
+Spiral Staircase~
+&wMore runes mark the walls around you, but these ones glow in the dim
+light.  A cool draft from below whistles through the many cracks in the
+wall.  The staircase seems to be endless in both directions.  
+~
+0 9 0
+Rd     0
+D4
+~
+~
+0 0 9576
+D5
+~
+~
+0 0 9574
+S
+#9576
+Spiral Staircase~
+&wWhile the walls still carry the ever glowing runes there are also a
+number of scorch marks here and there to accompany them.  Not a sound is to
+be heard, not even a whisk of wind reaches this part of the staircase. 
+Looking up and down you see the staircase continue into obscurity.  
+~
+0 9 0
+Rd     0
+D4
+~
+~
+0 0 9577
+D5
+~
+~
+0 0 9575
+S
+#9577
+Top of Staircase~
+&wA small window is formed into the circular wall, and as you look out
+from this height, you find you have an excellent view of the entire
+Fortress.  The glowing runes are so strong they create an imaginary
+crescendo of warning.  Torches on either side of a door located on the South
+wall light up the words, 'Disturb at your own peril!' The granite
+staircase winds down into the darkness...  
+~
+0 8 0
+Rd     0
+D2
+There is a door here to the south.
+~
+door~
+3 0 9578
+D5
+~
+~
+0 0 9576
+S
+#9578
+Babel's Chamber~
+&RBooks and scrolls are thrown around haphazardly all over the place. 
+The sound of boiling liquid percolating through glass tubes, and a smell of
+sulfur powder permeate the air.  Shelves lined up with different vials,
+urns, sacks and bottles dominate the West wall.  The workshop continues to
+the South.  A soft glow is coming from the room to the East, you have a door
+to the North.  
+~
+0 8 0
+Rd     0
+D0
+There is a door here in the north wall.
+~
+door~
+3 0 9577
+D1
+~
+~
+0 0 9580
+D2
+~
+~
+0 0 9579
+S
+#9579
+Babel's Chamber~
+&RThe shelves in this room are filled with all types of roots, leaves,
+and extracts, ranging from the healing ginseng to the deadly mandrake.  Some
+items show signs of use while many are covered in layers of dust and
+cobwebs.  A smell of burning sulfur is coming from the North.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9578
+D1
+~
+~
+0 0 9581
+S
+#9580
+Babel's Pentagon~
+&RThe first thing to catch your attention is the giant glowing pentagram
+inscribed on the floor.  A red candle burns at each point, and strange
+glyphs are drawn on the walls.  Electric charges spark in the air and the
+floor wavers in the center of the pentagram.  Some of the glyphs look
+different from the others.  Broken staffs and wands are scattered on the
+floor.  
+~
+0 8 0
+Rd     0
+E
+wall ~
+You notice the runes become irregular at one point, and looking at the
+floor you see half-moon scrape marks.  
+~
+E
+glyphs~
+You notice the runes become irregular at one point, and looking at the
+floor you see half-moon scrape marks.  
+~
+D1
+The east wall seems strangely out of place when you look closely upon it.
+~
+wall~
+103 9535 9582
+D2
+~
+~
+0 0 9581
+D3
+~
+~
+0 0 9578
+S
+#9581
+Babel's Study~
+&RYou stand among a clutter of magical implements, most looking as if
+they have been exhausted.  There is a small cot in the corner with a rumpled
+blanket tossed on it.  A worn desk with a tattered chair is located in the
+center of the East wall.  A pile of crumpled up papers lies next to it.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9580
+D3
+~
+~
+0 0 9579
+S
+#9582
+Babel's Hidden Stock-Pile~
+&RThis room is very neat and very organized.  The walls are lined with a
+number of shelves that contain books, scrolls and parchments.  They look as
+if they've all been well taken care of.  A few other items are located on
+the shelves and some may even be magical.  A variety of staves and wands are
+carefully placed upon a table, some of them glowing with energy.  
+~
+0 8 0
+Rd     0
+D3
+Looking closely, you notice something strange about the western wall.
+~
+wall~
+103 9535 9580
+S
+#9583
+Hallway of the Keep~
+&pYou see a number of pictures lining the wall, many depict major battles
+that Lord Tyrus took part in.  Each has a date listed below it and they
+proceed in chronological order.  The last dated picture is a strange one
+though, it depicts this very Fortress straddling the pass.  Over the
+Fortress a black sky reigns and lightning bolts burst forth to strike some
+of the towers.  Among the black clouds some very vague shapes can be seen as
+if the painter wanted the viewer to almost see a mind behind the storm. 
+Under the painting the plaque showing the dates has the starting date, but
+no finishing date.  The hall continues East and West.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 9584
+D3
+~
+~
+0 0 9560
+S
+#9584
+Hallway of the Keep~
+&pStatues of knights armor is decorating either side of the hallway.  All
+carrying different weapons from a lance to a two-edged ax.  Huge urns are
+placed between each figurine, filled with glorious flowers of all colors. 
+The red carpet continues up and down the hallway.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 9585
+D3
+~
+~
+0 0 9583
+S
+#9585
+Before the Double Doors~
+&pThe huge double doors to the East span the entire width of the hallway
+and rise up to the ceiling.  A heavy wrought iron pull is attached to each
+of the massive doors.  The red velvet carpet stops just short from the sweep
+of the doors allowing them to open unhindered.  
+~
+0 12 0
+Rd     0
+D1
+The the east there stands a set of doors.
+~
+doors~
+3 0 9586
+D3
+~
+~
+0 0 9584
+S
+#9586
+The Ballroom~
+&CYou are in a very large ballroom.  Many chains extend from the ceiling,
+each having a lavish candelabra attached to the end.  Far across the
+ballroom to the East you can see Lord Tyrus's throne.  Several colorful,
+velvet davenport's located along the North wall provide weary dancers a good
+place to rest while being able to view the others.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 9590
+D2
+~
+~
+0 0 9588
+D3
+A set of doors are here in the west wall.
+~
+doors~
+3 0 9585
+S
+#9587
+The Kitchen~
+&OYou smell the aroma of fresh baked bread.  It is very warm in here next
+to the oven.  Copper pots hang from the walls, and shelves with spices are
+lined up on the South wall.  Wine racks contain the finest wines of the
+land.  Servants hustle in and out the door to the East, bringing
+refreshments and food to the guests.  
+~
+0 8 0
+Rd     0
+D1
+There is a door in the east wall here.
+~
+door~
+3 0 9589
+S
+#9588
+Trophy Room~
+&CA number of banners decorate this wall here.  Under each banner is a
+small plaque describing from which clan/enemy the banner was taken, along
+with when and where the battle occurred.  Several display cases show off
+prized possessions of vanquished foes.  A series of &Ypaintings &Ccatch your
+attention.  
+~
+0 8 0
+Rd     0
+E
+paintings~
+This series of paintings tells a story.  You see Lord Tyrus in battle,
+and a mage coming to aid him.  The mage is giving Lord Tyrus a glowing glow,
+which he combines with his sword.  The united items glows with power, and
+flames shoot out from it.  On the last picture you see Lord Tyrus separate
+the weapons, giving the mage the glowing glove.  
+~
+D0
+~
+~
+0 0 9586
+D1
+~
+~
+0 0 9591
+S
+#9589
+Banquet Hall~
+&OA fine mahogany banquet table is stretched across the room.  Many red
+velvet covered chairs are lined up along the table.  Extravagant pewter
+dinner service is set out before every seat.  Silver candle holders are
+evenly spaced along the length of the table.  The centerpiece is a golden
+swan decorated with flowers.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 9590
+D3
+There is a door here in the western wall.
+~
+~
+3 0 9587
+S
+#9590
+The Ballroom~
+&CMany chains extend from the ceiling, each having a lavish candelabra
+attached to the end.  The red velvet carpet covers the steps East up to the
+throne.  The floor is pure marble pieces, polished to shine along with the
+light.  The ballroom extends to the West, while velvet curtains lead North
+into the banquet hall.  South you make out display cases and portraits.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9589
+D1
+~
+~
+0 0 9592
+D2
+~
+~
+0 0 9591
+D3
+~
+~
+0 0 9586
+S
+#9591
+Room of Heritage~
+&CA pedestal is placed in the center of the room.  It is illuminated by a
+small glowing light the hovers in mid-air and resist all attempts to budge. 
+On the pedestal an unrolled parchment rests under glass.  Taking a look at
+the parchment you can see it's the original deed to the land upon which this
+fortress is situated on.  Portraits of ancestral family members hang on the
+walls, each with it's own plaque with length of reign.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 9590
+D3
+~
+~
+0 0 9588
+S
+#9592
+Lord Tyrus' Throne~
+&YYou are on some velvet covered steps.  A great throne is set on top
+of the stairs, with a smaller looking throne next to it.  Heavy velvet
+drapes arch the wall behind the thrones.  Large golden candle holders are
+placed to the sides of the thrones.  Two flag staffs hold the Fortress coat
+of arms and family crest angle outwards from the walls.  
+~
+0 12 0
+Rd     0
+D3
+~
+~
+0 0 9590
+S
+#9593
+South of Bethaven~
+&GYou are placed in a wooded area, just past the South gate of Bethaven. 
+All around you trees thrust up into the air reaching for the sun.  You can
+hear the sounds of many of the local wildlife rooting around in the trees
+looking for lunch or maybe looking for each other to make the other lunch. 
+The path continues to the South and curves to your East.  
+~
+0 4 0
+Rd     0
+D0
+A gate faces you from the north.
+~
+gate~
+3 0 25014
+D1
+~
+~
+0 0 9596
+D2
+~
+~
+0 0 4600
+S
+#9594
+Following the Path~
+&GYou work your way down a path, looking around you can see the forest
+thickening.  Taking a closer look at the path you can see many footprints
+all headed South but none going back the other way.  Off to the North you
+can still make out the gate leading to the city, while to the South you can
+see the path continuing.  The scent of something dying is strong here...  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 4665
+D2
+~
+~
+0 0 9595
+S
+#9595
+An Arch of Trees~
+&GTo the South, you can see some sort of elegant castle, which looks to
+shine with a magnificent brilliance of it's own against the dreary backdrop
+of the forest.  You may enter the castle to the South, or travel the road to
+the North.  To the East lies a small inlet to a narrow forest path leading
+off into the distance.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9594
+D1
+~
+~
+0 0 5313
+D2
+~
+~
+0 0 20201
+S
+#9596
+A Path along the City Walls~
+&GThis well-travelled path leads Eastward, winding between the southern
+forest and the mighty walls of Bethaven.  Although the path is rather
+hidden, it has seen many travellers coming and going.  
+~
+0 4 3
+Rd     0
+D1
+~
+~
+0 0 22049
+D3
+~
+~
+0 0 9593
+S
+#0
+
+
+
+#SPECIALS
+M 9520 spec_janitor
+M 9522 spec_guard
+M 9523 spec_guard
+M 9529 spec_cast_mage
+M 9531 spec_healer
+M 9532 spec_thief
+M 9535 spec_cast_psionicist
+M 9536 spec_cast_adept
+S
+
+
+
+#RESETS
+O 0 9502 0 9501
+M 0 9500 1 9508
+O 0 9501 0 9508
+M 0 9501 3 9509
+M 0 9502 2 9511
+M 0 9504 1 9512
+E 0 9504 0 20
+E 0 9507 0 5
+G 0 9500 0
+M 0 9505 1 9520
+E 0 9512 0 20
+E 0 9519 0 5
+M 0 9506 1 9520
+E 0 9512 0 20
+E 0 9519 0 5
+O 0 9530 0 9525
+O 0 9508 0 9526
+P 0 9505 0 9508
+P 0 9511 0 9508
+M 0 9503 1 9529
+E 0 9503 0 16
+M 0 9509 1 9532
+E 0 9512 0 20
+E 0 9519 0 5
+M 0 9510 1 9532
+E 0 9512 0 20
+E 0 9519 0 5
+M 0 9511 1 9533
+E 0 9512 0 20
+E 0 9519 0 5
+M 0 9512 1 9533
+E 0 9512 0 20
+E 0 9519 0 5
+M 0 9514 1 9534
+E 0 9512 0 20
+E 0 9519 0 5
+M 0 9515 1 9534
+E 0 9512 0 20
+E 0 9519 0 5
+M 0 9527 1 9537
+M 0 9525 1 9538
+M 0 9507 1 9539
+G 0 9516 0
+G 0 9513 0
+G 0 9514 0
+G 0 9515 0
+M 0 9508 2 9539
+M 0 9520 3 9540
+E 0 9506 0 20
+O 0 9529 0 9540
+M 0 9521 2 9541
+E 0 9527 0 20
+E 0 9507 0 5
+M 0 9522 2 9542
+E 0 9517 0 15
+E 0 9512 0 20
+M 0 9519 1 9543
+G 0 9522 0
+G 0 9523 0
+G 0 9524 0
+G 0 9525 0
+E 0 9526 0 17
+G 0 9526 0
+O 0 9561 0 9543
+P 0 9560 0 9561
+M 0 9528 1 9544
+E 0 9506 0 20
+E 0 9507 0 5
+M 0 9526 1 9545
+E 0 9528 0 20
+E 0 9519 0 5
+M 0 9516 1 9547
+E 0 9521 0 20
+O 0 9562 0 9547
+P 0 9563 0 9562
+P 0 9558 0 9562
+P 0 9513 0 9562
+M 0 9517 1 9549
+M 0 9518 1 9549
+M 0 9523 1 9554
+E 0 9519 0 5
+E 0 9524 0 20
+E 0 9517 0 15
+M 0 9524 1 9554
+E 0 9525 0 20
+E 0 9523 0 6
+E 0 9519 0 5
+M 0 9513 1 9556
+E 0 9518 0 20
+E 0 9519 0 5
+E 0 9531 0 17
+M 0 9545 1 9558
+E 0 9547 0 5
+E 0 9548 0 20
+M 0 9546 1 9559
+E 0 9547 0 5
+E 0 9548 0 20
+M 0 9544 5 9564
+E 0 9549 0 5
+M 0 9542 1 9565
+E 0 9549 0 5
+M 0 9543 1 9565
+E 0 9549 0 5
+M 0 9532 1 9567
+E 0 9541 0 12
+E 0 9542 0 13
+E 0 9543 0 20
+G 0 9555 0
+O 0 9556 0 9568
+O 0 9556 0 9568
+O 0 9558 0 9568
+O 0 9558 0 9568
+O 0 9558 0 9568
+O 0 9557 0 9568
+O 0 9557 0 9568
+O 0 9559 0 9568
+M 0 9539 1 9571
+E 0 9549 0 5
+M 0 9531 1 9572
+E 0 9539 0 20
+E 0 9540 0 17
+E 0 9546 0 22
+M 0 9538 1 9573
+E 0 9549 0 5
+O 0 9564 0 9573
+P 0 9565 0 9564
+M 0 9530 1 9580
+M 0 9529 1 9581
+E 0 9532 0 20
+E 0 9533 0 19
+G 0 9535 0
+O 0 9534 0 9582
+O 0 9536 0 9582
+M 0 9547 1 9585
+E 0 9547 0 5
+E 0 9548 0 20
+M 0 9548 1 9585
+E 0 9547 0 5
+E 0 9548 0 20
+M 0 9540 1 9587
+E 0 9549 0 5
+M 0 9541 1 9588
+E 0 9549 0 5
+M 0 9537 1 9589
+E 0 9554 0 5
+E 0 9553 0 2
+M 0 9535 1 9591
+E 0 9550 0 5
+E 0 9551 0 20
+E 0 9552 0 21
+M 0 9536 1 9591
+E 0 9547 0 5
+E 0 9548 0 20
+E 0 9553 0 2
+M 0 9533 1 9592
+E 0 9537 0 20
+E 0 9544 0 5
+E 0 9545 0 6
+M 0 9534 1 9592
+E 0 9554 0 5
+S
+
+
+
+#SHOPS
+9507 17 19 0 0 0 120 75 0 23
+9519 9 5 0 0 0 125 75 7 21
+0
+
+
+
+#$

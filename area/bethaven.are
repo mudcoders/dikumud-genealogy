@@ -1,0 +1,5673 @@
+#AREADATA
+Name        {  All } Bethaven            Ichiban~
+Levels      5 106
+Builders    Thalador Angi Dolguard~
+VNUMs       25000 25200
+Security    98
+Recall      25001
+Flags       0
+Color       6
+End
+
+
+
+#MOBILES
+#25000
+oracle bethaven healer~
+The Oracle of Bethaven~
+&BThe eternal Oracle towers overhead.
+~
+The oracle looks to have been here a long time, and looks as though it is
+ready to stand here just as long.  
+
+~
+1441795 33579692 16 1000 S
+112 0 0 80000d0+0 0d0+0
+0 0 0 0
+0 0 0
+72068 0 0
+>greet_prog 30~
+smile $n
+say Welcome $n, please be at rest here...
+tell $n Let this be your sanctuary.
+~
+>speech_prog heal hurt dying pain~
+if level($n) < 6
+  t $n Ahhh, you are still in training...
+  t $n For this reason, I shall grant you extended help.
+  c 'cure serious' $n
+endif
+~
+|
+#25001
+jezabel jez~
+Jezabel~
+Jezabel is here protecting the good citizens of Bethaven.
+~
+Jezabel is a striking woman, with raven black hair and piercing brown
+eyes.  She is Bethavens Judge, Jury and Executioner and even the most
+hardened of criminals cringe at the very mention of her name.  She looks by
+no mean to be an easy kill.  
+~
+1441795 469787276 16 1000 S
+108 0 0 60000d0+0 0d0+0
+0 0 0 0
+0 0 2
+33007 0 0
+>greet_prog 100~
+if isimmort($n) == 1
+   if sex($n) == 1
+        say Greeting Lord $n.
+      bow $n
+      break
+  else
+  if sex($n) == 2
+   say Greeting Lady $n.
+   curtsey $n
+   break
+ endif
+endif
+if ispc($n) == 1
+   if isgood($n) == 1
+       smile $n
+       say Enjoy your stay in Bethaven $n.
+       break
+   else
+       glare $n
+       say Watch thine step $n.
+       break
+    endif
+endif
+~
+>hitprcnt_prog 20~
+If ispc($n)
+say You shall die for your dishoner, $n...
+yell Guards! Bring eternal damnation upon this fool named $n!
+mpmload 127
+mpforce guard mpkill $n
+endif
+~
+>fight_prog 55~
+yell Alas, $n breeds dishonor... it is time for $n to die!
+c 'fireball' $n
+c 'fireball' $n
+~
+>hitprcnt_prog 50~
+mpecho Jezabel calls upon the higher powers.
+cast 'shatter' $n
+cast 'shatter' $n
+cast 'complete heal' self
+~
+>fight_prog 60~
+mpechoat $n Jezabel attempts to disarm you!
+disarm $n
+~
+|
+#25002
+rat rodent~
+A vicious rat~
+A sickly looking rat leaps at you.
+~
+A huge, gross looking rat stares at you with beady little eyes.  It
+shivers all over as if it was dying.  
+~
+65 32768 0 0 S
+6 0 0 115d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#25003
+Zak alchemist~
+Zak~
+Zak the alchemist is here selling potions and pills.
+~
+Zak stands about five foot four, and is very scrawny and meek looking. 
+But upon further examination you can see a light of power burning brightly
+in his wise old eyes.  He looks like one who holds the knowledge of the
+universe in his hands.  
+~
+1441859 8872 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+look $n
+if ispc($n) == 1
+   if isgood($n) == 1
+      say Welcome to my humble shop $n.
+      smile $n
+   else
+      say I've got my eye on you $n!
+      glare $n
+   endif
+else
+    mpforce $n east
+  break
+endif
+~
+|
+#25004
+desiray armourer bethaven~
+Desiray~
+Desiray is here pounding metal into suits of armour.
+~
+Desiray stands about six foot two, and she is built like a tank.  She
+glances at you with eyes that have seen many a battle, and know how to
+escape death during them.  She looks to know everything there is to know
+about protection during combat, and you feel that you could trust her armour
+to stand up to the worst.  
+~
+393219 8872 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25005
+petra shop owner dealer bethaven~
+Petra~
+The furniture dealer stands here waiting to sell you furniture.
+~
+Dressed in an odd looking suit, the dealer breaks out a huge grin as she
+wonders what you've brought her today.  She's known all over for her strange
+behaviour, maybe you shouldn't hang around too long.  
+~
+1048643 8328 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25006
+jani bethaven~
+Jani~
+A woman with flowing red hair is here forging metal to blade.
+~
+Jani is a strikingly beautiful woman, her hair long and red.  She smiles
+delicately at you, but as the whole town knows, she was once a member of the
+most deadly assasination guild, she knows her weapons and she is very good
+at what she does, prefering quality over quantity.  
+~
+3 8872 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25007
+jenna jeweller bethaven~
+Jenna~
+A beautiful women stands here selling finely wrought jewellery.
+~
+Jenna stands over the cases of jewellery which line the walls of this
+building.  She is in her mid 30's but doesn't look a day over 20.  Her
+flowing golden locks rival even the glittering of the golden trinkets which
+she sells.  
+~
+1048579 8360 0 1000 S
+100 0 0 30000d0+0 0d0+0
+340 0 0 0
+0 0 2
+0 0 0
+#25008
+Jahrem scribe~
+Jahrem~
+A scholar in flowing black robes is here scribing spell to scroll.
+~
+Jahrem looks furiously busy fussing around with assorted spells and
+scrolls.  His wide set face is all scrunched up as he concentrates on his
+next invention.  He is known for being hard of hearing, so you might want to
+speak up a bit.  
+~
+3 8360 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+t $n Welcome to my store, type &Rlist&W to see what I sell.
+-
+~
+|
+#25009
+Disantai~
+Disantai~
+A woman in a flowing red gown is here to sell you magical oddities.
+~
+Disantai glances at you with knowing eyes, she smiles at your scrutiny. 
+She looks to have seen many of the magical oddities the storm has to offer. 
+She sweeps her hand back over the items she has to offer.  
+~
+3 8360 0 100 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+say Welcome $n, type LIST to see what I can sell you.
+~
+|
+#25010
+selena bethaven~
+&RNOT RESET~
+A woman is a flowing white gown stands here waiting to serve you.
+~
+~
+3 8320 0 1000 S
+-126 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25011
+sheridan thief bethaven~
+Sheridan~
+A small man eyes you suspiciously.
+~
+Sheridan crouches behind his counter, eyeing you over suspiciously.  He
+doesn't trust too many folks who enter his store, in his profession one
+learns not to trust very many.  
+~
+3 8360 0 -1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#25012
+bandal bethaven~
+Bandal~
+A pious looking man blesses you as you enter.
+~
+A rather young gentleman, Bandal is well known throughout the Storm for
+his generousity and kindness.  His light blue eyes gaze upon you, awaiting
+to help whoever enters his store.  
+~
+1048643 8328 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25013
+Galom general storekeeper bethaven~
+Galom~
+The storekeeper is here waiting to sell you what you need.
+~
+Humming a tune lightly to himself, the storekeeper nods in your
+direction.  As you continue looking at him, he ruffles around some papers
+uncomfortably.  He's a rather shy fellow to be running a store.  
+~
+3 8328 0 200 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25014
+frem baker bethaven~
+Frem~
+A rather robust man stands here wiping flour from an ever smiling face.
+~
+Frem's rosy red cheeks and big round eyes give him a friendly disposure. 
+He enjoys his profession, as one can tell from his stocky physique.  A
+joyful fellow, Frem welcomes all of you whose sweet tooth can't keep you
+away.  
+~
+393219 8328 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25015
+Merc barkeep~
+Merc~
+A small bearded man stands here selling beer and smoking cigars.
+~
+~
+3 8328 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+if ispc($n) == 1
+    say G'Day $n!
+break
+endif
+~
+|
+#25016
+guard councillor mabrook~
+Mabrook~
+The Guard Councillor paces about... thinking.
+~
+Mabrook was born into royalty and knighthood. He is mostly known to others
+as The Guard Councillor, and is often said to be Jezabel's brother. This
+is not true, though he has the same raven hair and dark eyes as she. This
+rumour along with another... that he and Jezabel were once lovers. It is
+said that they could not persue their love because of their deeper loves of
+the towns' people. In any case, they are both known for their oath to protect
+the good of Bethaven.
+~
+1966083 201343164 48 0 S
+110 0 0 75000d0+0 0d0+0
+1000 0 0 0
+0 0 0
+7 0 0
+>all_greet_prog 100~
+if ispc($n) == 1
+  emote smiles gently as he sees you enter.
+  say Greetings.
+endif
+
+if number($t) == 14013
+  if level($n) <= 45
+    say Ahh.. I see you found the young man who robbed the Bethaven bank.
+    say I don't have much of a reward.
+    say But I'm sure I could come up with something. Do you want it?
+  else
+    say Fine job $n, thank you for your bravery.
+    emote gives you a pat on the back.
+    mppurge man
+  endif
+endif
+~
+>act_prog p shudders~
+if isnpc($n)
+say Ahhh... the young offender finally finds himself at my mercy.
+say Whatever shall I do to punish you?
+endif
+~
+>speech_prog yes y sure~
+if ispc($n)
+ if level($n) <= 45
+emote goes to the desk and pulls out a small box.
+mpoload 14018
+give kit $n
+say Take it and leave me to deal with this heathen.
+emote takes the young man to his apartment.
+mpecho You hear a *click* and a bang.
+emote appears from behind the portable wall.
+say He is well taken care of, not to fear. He'll pay his dues.
+mppurge man
+ break
+ else
+ say I am sorry, but you are too high of level for that.
+endif
+endif
+endif
+~
+>speech_prog Lord!~
+say Now, brave adventurer. I don't have much of a reward.
+say But I'm sure it will help you on your trek.
+say Would you like it?
+~
+|
+#25017
+Bergram storekeeper pet shop bethaven~
+Bergram~
+The storekeeper of the pet shop stands here selling animals.
+~
+The storekeeper wears a friendly smile as you approach the animals.  She
+is rather young looking to own a store, but her customers are frequent
+within Bethaven.  Nobody can resist the cute animals waiting for their next
+owner.  
+~
+1441795 8328 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25018
+headmaster man bethaven~
+The headmaster~
+A well armoured man stands here hiring out his mercenaries.
+~
+Friendly enough, this man stands patiently awaiting his next customer. 
+In his business, he gets paid fairly well.  The price of mercenaries doesn't
+go cheap.  
+~
+393219 8200 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25019
+puppy dog~
+A puppy~
+A small puppy wags his tail happily here.
+~
+This puppy looks well taken care of.  He barks playfully in your
+direction, wishing you would play with him.  
+~
+257 0 0 0 S
+3 0 0 30d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>rand_prog 15~
+if ispc($r)
+  ,pees on $r's shoes.
+endif
+~
+|
+#25020
+pitbull pit bull dog bethaven~
+A pitbull~
+A rather large pitbull growls ominously.
+~
+Fearful and aggressive looking, the pitbull glares into your eyes.  His
+large, sharp teeth bare themselves as he growls ferociously.  
+~
+257 8 0 0 S
+8 0 0 150d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25021
+kitten cat bethaven~
+A kitten~
+A small kitten purrs happily at you.
+~
+As this little kitten lets out a tiny meow, you can only wish to reach
+out and cuddle it.  Lined with a gorgeous white coat and a big bushy tail,
+it meandors over to you and rubs against your leg.  
+~
+257 512 0 0 S
+2 0 0 15d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25022
+hawk bird bethaven~
+A hawk~
+A beautiful hawk perches here.
+~
+A wonder to the beholder is the rare and carefree hawk.  Only on rare
+occasions can one find such a creature soaring high above the Storm.  
+~
+257 524296 0 100 S
+5 0 0 99d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25023
+wolf dog bethaven~
+A wolf~
+A magnificant grey wolf stalks around here.
+~
+He looks into your eyes, sending shivers down your spine.  This wolf's
+beautiful black silken hair and dark, piercing eyes make it a wonder to
+view.  You might not want to get too close though, this one's ferocious.  
+~
+257 8 0 -100 S
+6 0 0 275d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25024
+mage mercenary~
+A mage~
+A stately mage stands here.
+~
+Standing tall and proud, this mage holds his head up high, keeping a look
+out for evil on its way.  
+~
+257 524296 0 400 S
+15 0 0 340d0+0 0d0+0
+0 0 64 0
+0 0 0
+0 0 0
+#25025
+warrior barbarian~
+A barbarian~
+A well muscled barbarian stands here.
+~
+His rippling muscles intimidate the most fearless of warriors throughout
+the Storm.  If you have this barbarian on your side, consider yourself one
+of the lucky few.  
+~
+257 64 0 100 S
+20 0 0 600d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25026
+cleric priest~
+A priest~
+A priest in flowing white robes stands here.
+~
+A wise priest wrapped in flowing white robes stands before you.  His brow
+scrunches up as he tries to get a good look at you, trying to discover what
+side of evil you belong to.  
+~
+257 136 0 1000 S
+20 0 0 563d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25027
+guard bethaven~
+A guard~
+One of Bethavens many guards wanders the street in search of crime.
+~
+The guard looks weary, but still very alert.  He watches the streets and
+corners for any sign of crime or beligerence.  You don't think it would be
+wise to upset him.  
+~
+65 8 0 1000 S
+22 0 0 775d0+0 0d0+0
+0 0 100 0
+0 0 0
+0 0 0
+#25028
+guard gate bethaven~
+A guard~
+One of Bethavens many guards stands post over the gates.
+~
+The guard watches you as you approach the gates of the mighty city of
+Bethaven.  You know that he is waiting for you to do something wrong.  He
+looks very stressed out.  
+~
+67 32768 0 1000 S
+24 0 0 945d0+0 0d0+0
+1 0 52 0
+0 0 1
+0 0 0
+#25029
+gate guard~
+A guard~
+One of Bethaven's many guards stands post over the gates.
+~
+The guard watches you carefully as you approach the gate.  
+~
+67 0 0 1000 S
+20 0 0 556d0+0 0d0+0
+0 0 26 0
+0 0 1
+0 0 0
+#25030
+guard gate bethaven~
+A guard~
+One of Bethaven's many guards stands here guarding the Southern gate.
+~
+The guard is huge and burly, you know you wouldn't want to mess with him. 
+He watches you suspiciously as you approach the gate at the might city of
+Bethaven.  
+~
+67 524296 0 0 S
+26 0 0 1135d0+0 0d0+0
+0 10 0 0
+0 0 1
+0 0 0
+#25031
+vagabond vag bethaven~
+A vagabond~
+A scrawny vagabond roams the streets of Bethaven.
+~
+His beady little eyes gives him a mischievious look.  Often times
+oncomers shy away from this gruesome fellow, who pesters citizens of
+Bethaven constantly.  
+~
+65 8 0 -500 S
+10 0 0 202d0+0 0d0+0
+0 0 28 0
+0 0 1
+0 0 0
+#25032
+child bethaven~
+A child~
+One of Bethaven's children plays in the streets here.
+~
+This child is a young boy of an apparent age of about 15.  From his clothing,
+he appears to already be following in the footsteps of his father or mother
+as an adventurer.
+~
+65 0 0 500 S
+5 0 0 79d0+0 0d0+0
+0 0 7 0
+0 0 1
+0 0 0
+#25033
+citizen bethaven~
+A citizen of Bethaven~
+A citizen of Bethaven strolls through the town looking for things to buy.
+~
+An everyday by-passer of Bethaven, this young lady looks as if she has a
+lot on her mind.  She hurriedly scurries about finishing up her last minute
+shopping before sundown.  
+~
+65 0 0 100 S
+14 0 0 330d0+0 0d0+0
+0 0 65 0
+0 0 2
+0 0 0
+#25034
+citizen bethaven~
+A citizen of Bethaven~
+A citizen of Bethaven is wandering the streets here.
+~
+Dressed in plain clothes, this gentleman portrays the typical Bethaven
+citizen.  Looking into his solemn eyes, one often wonders what he did in his
+younger years.  
+~
+65 0 0 500 S
+14 0 0 360d0+0 0d0+0
+0 0 64 0
+0 0 1
+0 0 0
+#25035
+caretaker care taker bethaven~
+A Caretaker~
+A Caretaker cleans up after the messy citizens.
+~
+Old beyond his years, this caretaker definitely looks as if he's had a
+tough day's work.  His full head of hair and beard have turned silver over
+the years.  
+~
+65 0 0 100 S
+10 0 0 180d0+0 0d0+0
+0 0 4 0
+0 0 1
+0 0 0
+#25036
+hound dog~
+A hound~
+A hound roams the streets sniffing through rubbish.
+~
+His mangled fur is full of grease and dirt, as it looks as if this poor
+hound has been searching for food all day.  
+~
+65 8 0 0 S
+5 0 0 100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25037
+cat alley~
+An alley cat~
+An alley cat prowls the street in search of mice.
+~
+This cat is obviously on its own from the look of its hair, but it appears
+to be eating quite well from its size; you would assume there are plenty of
+people who favor cats in this city.
+~
+193 544 0 0 S
+4 0 0 48d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#25038
+beggar bethaven~
+A beggar~
+A beggar hobbles about the streets here.
+~
+Dirt and grime cover this man's face as he begs you for a morsel of food.
+There was once a time when no man or woman went hungry here at the Storm,
+long ago.  
+~
+69 8192 0 100 S
+11 0 0 228d0+0 0d0+0
+0 0 19 0
+0 0 1
+0 0 0
+>greet_prog 20~
+if sex($n) == 1
+  say spare some coins good sir?
+    break
+else
+    say spare some coins m'lady?
+    break
+endif
+~
+>act_prog p looks at you.~
+emote smiles toothlessly at you in hopes of a coin.
+~
+>bribe_prog 2~
+mpoload 25048
+say THANK YOU!!! My GOD!!!
+give cloak $n
+say A gift for your generousity!
+mpjunk all
+~
+>bribe_prog 1~
+say Gee your kind...
+sarc $n
+east
+north
+west
+south
+~
+|
+#25039
+mage bethaven~
+A mage of Bethaven~
+One of Bethaven's mages wanders the street here.
+~
+This mage is appears to be a female in her early twenties, but then, with
+magic there is no way to be sure of her real age.  Her clothing matches that of her profession.
+~
+65 33554472 0 100 S
+24 0 0 955d0+0 0d0+0
+1 1 12 0
+0 0 2
+0 0 0
+>speech_prog p ouch!  I could REALLY use a fireshield.~
+if rand(20)
+  if ispc($n)
+    if level($n) < 15
+      smile $n
+      say Well, I guess I can supply you with a shield if its needed that badly.
+      cast 'fireshield' $n
+      break
+    endif
+  endif
+endif
+mpecho &B$I places a finger to the sky and disappears!
+mpteleport
+mpecho &B$I steps out of the shadows.
+~
+|
+#25040
+veteran army bethaven~
+A veteran~
+A veteran of Bethaven's army is here.
+~
+Armed with a great steel mace, this veteran knows how to protect himself.
+His narrow slits for eyes seem to look you over carefully.  
+~
+65 0 0 100 S
+18 0 0 519d0+0 0d0+0
+0 8 12 0
+0 0 1
+0 0 0
+#25041
+keeper lost found~
+The Keeper~
+The Keeper of the Lost and Found stands here to assist you.
+~
+A tall slender man, standing nearly six and a half feet.  He looks almost
+asleep, but I wouldn't let that fool you - the keeper is built like a TANK! 
+~
+3 100663424 0 1000 S
+110 0 0 75000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25042
+gruam man smithy~
+Gruam~
+Gruam looms over his forge repairing the items brought for him.
+~
+Quite tired looking, this man looks like he's put in a long day's work. 
+Perspiration drips from his brow as he searches for a cloth to clean up. 
+Customers are always a first priority!  
+~
+393283 100687872 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+39 0 0
+#25043
+thug bethaven~
+A thug~
+A thug strolls through the streets...
+~
+A seedy looking individual with a broken nose and a few teeth missing. Just
+by his appearance and his behavior, you know this guy is up to no good!
+~
+69 0 0 -333 S
+20 0 0 550d0+0 0d0+0
+0 1 8 0
+0 0 1
+0 0 0
+#25044
+lady woman beautiful~
+A beautiful Woman~
+A beautiful woman leans on the citywalls...
+~
+This Lady is giving you her best smile! She tries to hide in the shadows
+of the citywall, and you ponder why she does that....hmmm.
+~
+195 2 0 200 S
+12 0 0 300d0+0 0d0+0
+0 1 2 0
+0 0 2
+0 0 0
+#25045
+dukkoti grocer storekeeper bethaven~
+Dukkoti~
+The storekeeper is here behind the counter reading a book.
+~
+A middle-aged woman with a soft face smiles up at you from her book.
+She is very beautiful and her wisdom is easy to see behind her eyes.
+Her long golden hair is streaked with silver and hangs loosely in a tied
+knot at her back. Every move that she makes tells you that she is quite
+experienced in dealing with the unknown. This woman will not be one to
+trifle with.
+~
+1048579 128 16 800 S
+108 0 0 44800d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote looks up from her book to cast a smile upon you.
+say Welcome to my shoppe $n. Feel free to browse.
+emote casually finds her place in her book once again.
+endif
+~
+>speech_prog imports~
+if ispc($n)
+mpjunk all
+tell $n I offer the following imports today;
+tell $n A stick of sugarcane, some sunflower seeds
+tell $n and a cherry blossom.
+mpechoat $n Please SAY sugarcane, seeds, or cherry to make your choice.
+endif
+~
+>speech_prog sugarcane~
+if goldamt($n) >= 5
+mpjunk all
+mpoload 6650
+tell $n This sugarcane was rather tough to get.
+smile
+tell $n That comes to a total of 5 gold, please.
+mpechoat $n GIVE 5 GOLD DUKKOTI to receive item.
+ else
+tell $n I'm sorry, but you don't have exact change.
+endif
+~
+>bribe_prog 5~
+if ispc($n)
+say Thank you very much, and enjoy.
+give sugarcane $n
+say Luck to you.
+endif
+~
+>speech_prog seeds~
+if goldamt($n) >= 1
+mpjunk all
+mpoload 6665
+tell $n I had to find my way through a maze to get these.
+tell $n They are very good.
+tell $n 1 gold please.
+mpechoat $n GIVE 1 GOLD DUKKOTI to make the purchase.
+ else
+say I'm sorry but I accept exact change only.
+endif
+~
+>bribe_prog 1~
+if ispc($n)
+say Thank you, and luck to you.
+give seeds $n
+endif
+~
+>speech_prog cherry~
+if goldamt($n) >= 3
+mpjunk all
+mpoload 7028
+tell $n This water is very sweet and delicious.
+tell $n That will be 3 gold, please.
+mpechoat $n GIVE 3 GOLD DUKKOTI to purchase a cherry blossom.
+ else
+tell $n I'm sorry but I accept exact change only.
+endif
+~
+>bribe_prog 3~
+if ispc($n)
+say This will leave a sweet taste on your lips.
+smile
+give cherry $n
+endif
+~
+|
+#25046
+gowron storekeeper minotaur~
+Gowron~
+Gowron towers over you behind the counter.
+~
+&OGowron is a minotaur. That, you can plainly see. He is very large, even for
+a minotaur -- he is about eight feet tall (not including his horns). He has
+been through many battles and has come to serve the public of Bethaven in
+return for the city's many favours to him. He is a friendly sort, and is
+happy to repay his debt of gratitude to the citizens of Bethaven.
+~
+393219 552 16 400 S
+100 0 0 32000d0+0 0d0+0
+0 0 0 0
+0 0 0
+19 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote speaks to you in a heavily accented, low tone of voice...
+  if sex($n) == 1
+  say Greetings Lord. What can I get for you today?
+else
+  say Good day Ma'am. What can I get for you today?
+endif
+  endif
+  endif
+~
+|
+#25047
+drunk man~
+The drunk~
+&gA slobbering drunk stumbles around here...
+~
+This man has obviously been up all night drinking. He reeks of alcohol
+and has a five o'clock shadow on his face. He's definately wasted!
+~
+65 0 0 150 S
+5 0 0 90d0+0 0d0+0
+0 0 24 0
+0 0 1
+0 0 0
+>rand_prog 15~
+emote mumbles some unintelligable words as he stumbles every which way.
+~
+|
+#25048
+pixie tiny~
+A pixie~
+A tiny pixie flutters about you.
+~
+Silvery wings sparkle as this pixie tries to maneuver her way through the
+crowd.  She is so tiny, only those with the keenest of eyesight usually spot
+her.  Pixie's are a friendly bunch though, but often shy away from large
+crowds.  
+~
+65 524288 64 0 S
+6 0 0 115d0+0 0d0+0
+0 3 4 0
+0 0 2
+0 0 0
+#25097
+artifactor~
+The Artifactor~
+A wizened old man stand here in the shadows.
+~
+An elderly gentleman, stooped from age stands here before you.  You
+notice how lined and weathered his face is, the slightly sad look in his
+eyes, and the slight droop to the corners of his mouth.  He shuffles over
+towards you as you enter.  
+~
+3 16512 0 1000 S
+110 0 0 10000000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>speech_prog legion~
+if ispc($n)
+  tell $n Ahh so you remember the likes of Legion! Excellent! Mighty
+  tell $n were they and certainly the most numerous of all the clans
+  tell $n in the storm. At first their leader was Nemesis but when
+  tell $n he resigned the leadership fell on Keirkan. Also, the clan
+  tell $n included the likes of Galad, Stargazer and Malabar. The
+  tell $n clan spell of Legion was DarkInvis, a spell which rendered
+  tell $n its users invisible to all!
+  tell $n Receive now the knowlege and skills of Legion!
+endif
+~
+>speech_prog p The Hand~
+if ispc($n)
+  t $n The clan The Hand was dedicated to the merciless wholesale
+  t $n slaughter of innocents, peacefuls and pkillers. They were
+  t $n mercenaries for hire who had the capability to kill any
+  t $n player on the mud. This assassinatory clan was based on
+  t $n stealth, deception and wealth. The leader was Sturm, the
+  t $n deity was Hugh and the clan skill was Assassinate--a
+  t $n plus 300 damroll backstab! Very formidable!
+  t $n Receive now the stealth of The Hand!
+endif
+~
+>speech_prog retribution~
+if ispc($n)
+  t $n Retribution, lead by the veteran Insane Bung was a clan well
+  t $n versed in the game of pkill. With voodoo as their clan skill
+  t $n they had an awesome stun spell that would take their
+  t $n enemies out of action for quite some time! Retribution was
+  t $n obviously the theme for this clan as well as total domination
+  t $n in the world of pkill!
+  t $n Receive now the blessing of Retribution!
+endif
+~
+>speech_prog p Unholy Plague~
+if ispc($n)
+  t $n Unholy Plague...the most ruthless and efficient pkillers to
+  t $n grace this mud. In fact they were so good at pkill that it
+  t $n often thought that this clan cheated to win. Lead by the
+  t $n infamous Batlin, with clan members Dumax and Holyone, few
+  t $n could stop such a powerful clan. Unholy Strength was their
+  t $n clan skill which rendered the user immune to all weapon
+  t $n attacks for a limited amount of time.
+  t $n Receive now their Unholy Blessing!
+endif
+~
+>speech_prog Illuminati~
+if ispc($n)
+  t $n Lead by Brinna the Fyst and her clan sister Misery Fyst,
+  t $n Illuminati was one of the original and oldest clans in the
+  t $n history of EoS. This clan had very high standards of their
+  t $n members as in order to be a member you HAD to induct your
+  t $n first and primary character into their clan. Only those
+  t $n in high ranking with the clan had access to the clan spell
+  t $n Transmute, a spell which made equipmennt indestructable.
+  t $n Receive now the helping hand of Illuminati!
+endif
+~
+>speech_prog stormwatch~
+if ispc($n)
+  t $n Stormwatchers, the friendliest and most helpful of all the
+  t $n clans in the Eye of the Storm. Based on a gypsy theme and
+  t $n lead by the tireless Xavier, this clan would help those in
+  t $n need whenever they were called upon. Annice was their
+  t $n diety and their clan spell was Farsight, a spell which
+  t $n allowed them to see which room any person or mob in the mud
+  t $n was in at the time.
+  t $n Receive now the healing of Stormwatch!
+endif
+~
+>speech_prog hello hi~
+if ispc($n)
+say Hello $n, welcome to my humble shop.
+say Type &RLIST&X to see what services I provide.
+say I hope I can be of some help.
+bow
+endif
+~
+|
+#25099
+benjamin ben banker bethaven~
+Benjamin the Banker~
+Benjamin the Banker waits patiently for your money
+~
+A serious looking fellow, Benjamin takes great pride in his bank.  You
+can be reassured that your funds will be in good hands here.  Afterall, how
+can you resist that smile?  
+~
+1441795 128 0 0 S
+110 0 0 75000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isimmort($n) == 1
+  if sex($n) == 1
+     say Greetings M'lord $n!
+     grovel $n
+     break
+   else
+  if sex($n) == 2
+     say Greetings M'lady $n!
+     grovel $n
+     break
+  endif
+endif
+if ispc($n) == 1
+  if isgood($n) == 1
+    say Welcome to my humble bank, $n!
+    bow $n
+    break
+  endif
+endif
+if ispc($n) == 1
+  say Tread carefully here $n, as I have little patience for evil.
+  frown $n
+endif
+~
+>rand_prog 5~
+mpecho Benjamin glances around towards the vault without thinking, quietly
+mpecho reassuring himself that it is still secure.~
+>give_prog "all"~
+mpecho Benjamin looks carefully at the $o for a few seconds.
+give $o $n
+say The $o is very interesting, $n.
+~
+>speech_prog information knowledge help money~
+mpechoat $n $i begins whispering to you as he hears something you say.
+mpechoat $n 'Ye be interested in help eh? Perhaps you should try asking
+mpechoat $n champions' he says.
+mpechoaround $n $i whispers quietly to $n, you wonder what about.
+~
+|
+#25124
+bethaven post master~
+Bethaven Postmaster~
+The Bethaven Postmaster is here.
+~
+This man looks very weary trying to keep up with all the demands of
+the residents' communications.  
+~
+65603 0 0 1000 S
+100 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#25132
+questmaster quest master~
+&WA &cQuest Master&W~
+&WOne of Bethaven's wise old &cQuest Masters&W stands here.
+~
+&W An aging old man stands before you, wise beyond his years.  His
+peaceful blue eyes lower to meet your gaze, and you sense a feeling of
+warmth and kindness all over.  He stands before you quietly, waiting for the
+next &cquestor&W to arrive.  
+~
+32771 0 0 0 S
+106 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n) 
+say Welcome $n.  To get a list of commands type quest.
+endif
+~
+|
+#0
+
+
+
+#OBJECTS
+#25000
+hammer Bethaven silver~
+the hammer of Bethaven~
+&wThe great silver hammer of Bethaven lies here.~
+~
+5 3137 6660 0 8193 100
+0~ 0~ 0~ 7~
+26 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 5
+A
+24 -20
+A
+18 30
+A
+19 30
+E
+silver hammer bethaven~
+&WA warm glow surrounds this huge hammer.  It shines in the most darkest
+of nights, keeping out the evil in Bethaven.  
+~
+#25001
+box donation bethaven~
+a donation box~
+A box has been left here for donations.~
+~
+15 64 0 0 0 0
+100000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+donation box~
+&rA box made of the finest mahogany... it seems small in appearance, but
+it can hold many things.
+~
+#25002
+fountain bethaven~
+fountain~
+&BA &wh&zu&Wg&we &Wm&wa&zr&wb&Wl&we f&zo&Wu&wn&zt&Wa&wi&wn &Bsprays clear water into the air.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+3000 1500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fountain marble~
+The Bethaven fountain is an often visited place, where people from all
+over come to rest or stop by during their travels.  It's sunken in with a
+ledge for one to rest and soak their feet in the cool water.  
+~
+#25003
+hauberk chainmail chain bethaven~
+a chain hauberk~
+&wA chain hauberk lies in the dust.~
+~
+9 0 0 12928 17 20
+0~ 0~ 0~ 0~
+4 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hauberk chainmail chain~
+&wA heavy chain hauberk is smart protection during your journeys.  It is
+finely crafted with massive chain links.  
+~
+#25004
+vest chain link bethaven~
+a chain link vest~
+&wA chain vest lies here forgotten.~
+~
+9 0 0 0 9 20
+0~ 0~ 0~ 0~
+6 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+vest chain link~
+A well sized chain link vest is made of only the best material for your
+protection.  
+~
+#25005
+leggings chain bethaven~
+some chain leggings~
+&wA pair of chain leggings have been left here.~
+~
+9 0 0 0 33 20
+0~ 0~ 0~ 0~
+4 0 2 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+chain legging leggings~
+Created by past warriors of the Storm, these chain leggings were well
+known for armoring only the most swiftest fighter.  
+~
+#25006
+broadsword broad sword bethaven~
+&wa broadsword&W~
+&wA broadsword has been forgotten here.~
+~
+5 1 0 0 8193 20
+0~ 0~ 0~ 3~
+6 0 5 2 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 40
+A
+19 32
+E
+broadsword sword broad~
+This magnificent sword invites you to use it's power, and relish in it's
+strength.  
+~
+#25007
+pants leather bethaven~
+leather pants~
+A pair of leather pants have been left here.~
+~
+9 0 0 0 33 12
+0~ 0~ 0~ 0~
+2 0 0 50 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+E
+leather pants~
+Made of thick durable leather, these pants look comfortable enough to
+sleep in!  
+~
+#25008
+jerkin leather bethaven~
+a leather jerkin~
+A leather jerkin has been left here.~
+~
+9 0 0 0 9 10
+0~ 0~ 0~ 0~
+3 0 2 2 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+leather jerkin~
+A finely crafted leather jerkin made of a soft brown leather lies here.  
+~
+#25009
+longsword rusty blade bethaven~
+a rusty longsword~
+&OA rusty blade has been forgotten here.~
+~
+5 0 0 0 8193 8
+0~ 0~ 0~ 1~
+5 0 0 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 10
+E
+rusty blade longsword long sword~
+&OAlthough rusty with wear, this sword's sharp edge can slice through the
+toughest of flesh.  
+~
+#25010
+helmet leather bethaven~
+a leather helmet~
+A leather helmet has been left here.~
+~
+9 0 0 12928 17 10
+0~ 0~ 0~ 0~
+1 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+leather helmet~
+This leather helmet would fit nicely over an average sized fighter.  
+~
+#25011
+cloak brown woolen~
+&Oa brown woolen cloak&W~
+&OA brown woolen cloak lies here in a pile.~
+~
+9 0 0 0 1025 12
+0~ 0~ 0~ 0~
+2 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+E
+brown woolen cloak pile~
+&OWorn and old looking, this woolen cloak doesn't look very special.  It
+looks warm enough to ward off the chilly weather though.  
+~
+#25012
+boots leather bethaven~
+some leather boots~
+A pair of comfortable leather boots have been forgotten here.~
+~
+9 0 0 0 65 12
+0~ 0~ 0~ 0~
+2 0 2 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+leather boots boot~
+Made of tough leather, one can walk miles in these comfortable hand sewn
+boots.  
+~
+#25013
+gloves silken silk bethaven~
+silken gloves~
+A pair of delicate silk gloves have been left here.~
+~
+9 64 0 0 129 16
+0~ 0~ 0~ 0~
+1 0 2 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 12
+E
+silk silken glove gloves delicate~
+Worn by a most beautiful lady, these gloves should be worn with care.  
+~
+#25014
+necklace bead bethaven~
+bead necklace~
+A bead necklace has been left here.~
+~
+9 0 0 0 5 16
+0~ 0~ 0~ 0~
+2 0 3 0 0
+5 0
+detect invis~
+1 1
+0 0 0
+A
+14 15
+E
+bead necklace neck lace~
+This necklace is beautifully decorated with strange tiny beads resembling
+pictures of various animals.  
+~
+#25015
+robes purple cloth bethaven~
+purple robes~
+A pile of purple cloth lies here.~
+~
+9 65 0 0 9 22
+0~ 0~ 0~ 0~
+5 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 20
+E
+purple robe robes cloth~
+A beautiful silk robe with a soft purple glow emitting about it.  
+~
+#25016
+staff gnarled oaken bethaven~
+a gnarled oaken staff~
+A gnarled oaken staff lies here.~
+~
+4 64 0 0 16385 20
+20~ 2~ 2~ fly~
+3 0 6 0 0
+0 0
+fly~
+1 1
+0 0 0
+E
+gnarled oak oaken staff~
+Old and gnarled from age, this ancient staff was once owned by a well
+know wizard of the Storm.  May it help you along your journeys.  
+~
+#25017
+bracers leather bethaven~
+&Osome leather bracers&W~
+&OA pair of strong leather bracers have been left here.~
+~
+9 0 0 0 257 10
+0~ 0~ 0~ 0~
+2 0 0 9 0
+5 0
+giant strength~
+2 2
+0 0 0
+E
+leather bracer bracers~
+Made of tough leather, these bracers should be worn about your arms to
+protect you in battle.  
+~
+#25018
+mace steel bethaven~
+a steel mace~
+&wA huge steel mace has been left here.~
+~
+5 256 0 0 8193 16
+0~ 0~ 0~ 8~
+8 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 25
+E
+steel mace huge~
+A massive steel mace made for a strong fighter, this will get you through
+the toughest of battles.  
+~
+#25019
+blue potion healing bethaven~
+&Ba blue potion&W~
+&BA blue potion of healing has been left here.~
+~
+10 268435520 0 0 1 8
+100~ heal~ reserved~ reserved~
+1 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+blue potion~
+A magical blue substance bubbles before you.  Made by wizards throughout
+the Storm for your protection.  
+~
+E
+healing~
+A magical blue substance bubbles in the flask before you. Made by the
+wizards of the Storm for your protection.
+~
+#25020
+potion white mana bethaven~
+&Wa white potion&W~
+&WA white potion of mana has been left here.~
+~
+10 268435520 0 0 1 8
+100~ mana~ reserved~ reserved~
+1 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+white potion mana~
+&WA potion with silvery liquid bubbles over.  It can be used to rejuvenate
+your spell casting.  
+~
+#25021
+pill orange protection bethaven~
+&Oan orange pill&W~
+&OAn orange pill of protection has been left here.~
+~
+26 0 0 0 1 8
+20~ armor~ reserved~ reserved~
+1 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+orange pill protection~
+&OThis magical pill can be used to aid you during battle, by enhancing your
+armor.  
+~
+#25022
+potion yellow detect invis invisible bethaven~
+&Ya yellow potion&R~
+&YA yellow potion of detect invisible lies here.~
+~
+10 268435456 0 0 1 8
+50~ detect invis~ reserved~ reserved~
+1 0 7 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+yellow potion detect invis~
+&YGlowing with a yellow substance, this potion is known to lend the powers
+of sight to those who quaff it.  
+~
+#25023
+bethaven scroll recall~
+scroll of recall~
+A scroll of recall has been forgotten here.~
+~
+2 0 0 0 1 8
+100~ word of recall~ reserved~ reserved~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+recall scroll~
+This magical scroll has wonderous powers!  Be sure to remember some when
+you journey out of town, to bring you home safely.  
+~
+#25024
+bethaven scroll tattered~
+tattered scroll~
+A tattered scroll has been left here.~
+~
+2 2 0 0 1 8
+100~ remove curse~ reserved~ reserved~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tattered scroll~
+Although rather ordinary looking, reciting this scroll will replenish
+your body of evil!  
+~
+#25025
+scroll identify bethaven~
+a scroll of identify~
+A scroll of identify has been left here.~
+~
+2 0 0 0 1 8
+100~ identify~ reserved~ reserved~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+identify scroll~
+This scroll will magically reveal things about your equipment!  Remember
+to check all your equipment to see how it affects you.  
+~
+#25026
+pie pot bethaven~
+a big pot pie~
+A big pot pie has been left here in the dirt.~
+~
+19 0 0 0 1 1
+4~ 0~ 0~ 0~
+2 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+big pot pie~
+A delicious pot pie filled with different kinds of meat will make your
+mouth water!  Be sure to pack lots for out of town trips.  
+~
+#25027
+bread loaf bethaven~
+a loaf of bread~
+A loaf of bread has been left here.~
+~
+19 0 0 0 1 1
+10~ 0~ 0~ 0~
+2 0 0 10 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+loaf bread~
+A healthy chunk of bread every now that then will help fend off hunger
+pangs. There is nothing better than homemade bread.
+~
+#25028
+cake chocolate bethaven~
+some chocolate cake~
+A chocolate cake sits here on the ground.~
+~
+19 0 0 0 1 1
+2~ 0~ 0~ 0~
+3 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+chocolate cake choco~
+Mmmm!  Filled with scrumptious rasberry jam and chocolate syrup, once you
+start eating these you can't seem to stop!  
+~
+#25029
+cheesecake slice bethaven~
+a slice of cheesecake~
+A delicious looking slice of cheesecake has been left here.~
+~
+19 0 0 0 1 1
+4~ 0~ 0~ 0~
+2 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+slice cheesecake cheese cake~
+This cheesecake has been delicately decorated by Bethaven's famous chef. 
+Chocolate swirls cover the creamy cheese within.  
+~
+#25030
+sack cloth bethaven~
+a cloth sack~
+A cloth sack has been left here.~
+~
+15 0 0 0 1 2
+45~ 0~ 0~ 0~
+3 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+cloth sack~
+This cloth sack is indeed a necessity for those new to Bethaven.  You
+can't get very far by trying to hold everything in your hands.  
+~
+#25031
+pouch belt leather bethaven~
+a belt pouch~
+A leather belt pouch has been left here.~
+~
+15 0 0 0 2049 4
+75~ 1~ 0~ 0~
+1 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+belt pouch leather~
+This convenient belt pouch is made out of durable leather and can be worn
+around your waist.  
+~
+E
+leather~
+Made of fine soft leather.
+~
+#25032
+skin water bloated bethaven~
+a bloated water skin~
+A bloated water skin lies on the ground here.~
+~
+17 0 0 0 1 1
+100~ 100~ 0~ 0~
+2 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+water skin waterskin bloated~
+Drink often to replenish your body!  You can always refill this at the
+fountain in Bethaven.  
+~
+#25033
+beef chunk dried bethaven~
+some dried beef~
+A chunk of dried beef has been left here.~
+~
+19 0 0 0 1 2
+10~ 0~ 0~ 0~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+dried beef chunk~
+The choice of many travellers, this dried beef will be sure to satisfy
+the most hungry adventurer.  
+~
+#25034
+lantern covered bethaven~
+a covered lantern~
+A covered lantern has been tossed aside here.~
+~
+1 0 0 0 16385 5
+0~ 0~ 25~ 0~
+2 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+lantern covered~
+Always travel with a light source, you never know when you might run into
+a dark, creepy alley.  
+~
+#25035
+wand maple missiles bethaven~
+a wand of missiles~
+A small maple wand lies on the ground here.~
+~
+3 64 0 0 16385 15
+17~ 3~ 3~ magic missile~
+4 0 3 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+maple wand missiles missile~
+Bring forth the magic your fellow Storm wizards have created!  Use this
+with care, and sparingly.  
+~
+#25036
+dagger copper bethaven~
+copper dagger~
+A copper dagger has been left here.~
+~
+5 0 0 0 8193 8
+0~ 0~ 0~ 11~
+1 0 0 11 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 8
+E
+dagger copper~
+Pierce through your enemies with a vengeance!  
+~
+#25037
+mace copper bethaven~
+a copper mace~
+&OA copper mace has been left here.~
+~
+5 0 0 0 8193 8
+0~ 0~ 0~ 8~
+3 0 1 4 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 11
+A
+19 10
+E
+mace copper~
+This copper mace is perfect as a blunt weapon to ward off evil and good
+alike.  
+~
+#25038
+vest plate mail copper bethaven~
+a copper plate vest~
+&OA plate mail vest made of copper has been left here.~
+~
+9 0 0 0 9 9
+0~ 0~ 0~ 0~
+9 0 2 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+copper plate mail vest~
+&OA simple yet protective plate mail vest made from copper.
+~
+#25039
+leggings copper bethaven~
+copper leggings~
+&OA pair of copper leggings have been left here.~
+~
+9 0 0 0 33 8
+0~ 0~ 0~ 0~
+5 0 1 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+copper leggings legging~
+Sturdy copper leggings will be sure to add to your set of armor, helping
+protect you.  
+~
+E
+copper leggings~
+&OPlated copper has been made into a pair of protective leggings.
+~
+#25040
+vambraces copper bethaven~
+copper vambraces~
+&OA pair of copper vambraces have been tossed aside here.~
+~
+9 0 0 0 257 8
+0~ 0~ 0~ 0~
+5 0 2 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+E
+vambrace vambraces copper~
+Wear these vambraces to protect you during battle, they will make you
+stronger!  
+~
+#25041
+helmet copper bethaven~
+a copper helmet~
+&OA copper helmet has been left here.~
+~
+9 0 0 4096 17 6
+0~ 0~ 0~ 0~
+3 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+helmet copper~
+&OGood armor is a must, even for new fighters of the Storm.  Made of thick
+copper with a leather strap to fasten underneath.  
+~
+#25042
+gauntlets copper bethaven~
+copper gauntlets~
+&OA pair of shiny copper gauntlets have been left here.~
+~
+9 1 0 0 129 9
+0~ 0~ 0~ 0~
+2 0 3 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+E
+gauntlet gauntlets copper~
+&OThese are not just any ordinary copper gauntlets.  They have a mysterious
+glow about them.  Be wise and be sure to examine everything closely.  
+~
+#25043
+faceplate copper bethaven~
+a copper faceplate~
+&OA copper faceplate has been left here.~
+~
+9 0 0 0 65537 8
+0~ 0~ 0~ 0~
+2 0 2 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -5
+E
+faceplate face plate copper~
+&OThis will protect you from fierce mobs and guards alike!  A smart figher
+is one who knows their equipment thoroughly, so don't forget to identify
+things.  
+~
+#25044
+bottle beer bethaven~
+bottle of beer~
+A bottle of beer has been left here.~
+~
+17 0 0 0 16385 2
+10~ 10~ 1~ 0~
+2 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+#25045
+rations iron bethaven~
+some iron rations~
+Some iron rations have been left here.~
+~
+19 0 0 0 1 1
+12~ 0~ 0~ 0~
+2 0 0 12 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+rations iron~
+Various nuts, dried fruits and vegetables are good when making long
+distance travel plans. They are easy to come by, not costly, and offer
+a variety while filling your tummy. Contained here are various nuts of
+all types, dried fruits such as apricot, apple, raisins and more. Some
+dried tomato, peppers and spices are also mixed within to add a bit of
+flavour.
+~
+#25046
+rations specialty bethaven~
+specialty rations~
+Some rations have been left here.~
+~
+19 536870976 0 0 1 1
+24~ 0~ 0~ 0~
+5 0 2 10 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+specialty rations~
+These rations are made up of some very large rationing foods, probably
+unlike any you have seen before. Everything is is abnormally large. From
+a variety of dried fruits and nuts to edible flowers, it is all super-sized.
+Did you see the size of that macadamian nut?!
+~
+#25047
+steak bethaven~
+a delicious steak~
+&OA delicious steak has been left here.~
+~
+19 0 0 0 1 1
+10~ 0~ 0~ 0~
+1 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+steak~
+&OThe steak is fair in size, and looks very tasty. It is spiced and covered
+in a yummy &Rtomato sauce&O, barbequed to perfection. Medium-well done.
+~
+#25048
+cloak invisibility invis bethaven~
+a cloak of invisibility~
+Something shimmers on the ground here.~
+~
+9 64 0 0 1025 15
+0~ 0~ 0~ 0~
+1 0 3 0 0
+5 0
+mass invis~
+10 10
+0 0 0
+A
+108 -1
+A
+100 -1
+A
+19 3
+E
+cloak invisibility invis~
+The cloak wavers in and out of visibility.
+~
+#25049
+bracelet leather bethaven~
+&Oa leather bracelet&W~
+&OA stylish leather bracelet is lying here.~
+~
+9 4 0 0 4097 12
+10~ 0~ 0~ 0~
+1 0 0 25 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+E
+leather bracelet~
+The bracelet itself is quite plain, but there are a few beads that have
+been sewn into it to give it some colour.
+~
+#25050
+bethaven parchment scroll blank~
+blank parchment~
+A piece of blank parchment lies here.~
+~
+2 64 0 0 16385 1
+0~ reserved~ reserved~ reserved~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+blank parchment~
+This piece of blank parchment can be handy for magic users throughout the
+Storm.  Who knows what kind of magic is brewing in their heads!  
+~
+#25051
+bethaven quill magical~
+magical quill~
+A feather quill has been left here.~
+~
+13 65 0 0 16385 1
+0~ 0~ 0~ 0~
+4 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+magic magical quill feather~
+This, combined with parchment to write on, is how magic users can start
+learning to create spells of their own!  
+~
+#25052
+bethaven potion flask~
+empty flask~
+An empty flask has been left here.~
+~
+10 268435520 0 0 16385 1
+0~ reserved~ reserved~ reserved~
+1 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+flask empty~
+This seemingly ordinary flask has been known to be quite useful to many
+magic users throughout.  
+~
+#25053
+bethaven cauldron~
+iron cauldron~
+A large iron cauldron has been left here.~
+~
+13 2 0 0 1 50
+0~ 0~ 0~ 0~
+20 0 45 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+large iron cauldron~
+This amazingly heavy cauldron can be used to brew up all kinds of magic!  
+~
+#25054
+bethaven fire magic magical~
+magical fire~
+&RA magical fire roars up from the ground.~
+~
+1 64 0 0 1 45
+0~ 0~ -1~ 0~
+1 0 35 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+magic magical fire~
+&RFierce flames roar about you, yet they do not burn you!  
+~
+#25055
+bethaven ink magical~
+magical ink~
+A bottle of magical ink has been left here.~
+~
+13 64 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+ink bottle magic magical~
+The ink is bubbling over the bottle, with a light smoke rising above it. 
+A definite necessity for magic users throughout the Storm.  
+~
+#25056
+ring limestone bethaven~
+&ga limestone ring&W~
+&gA small limestone ring has been left here.~
+~
+8 64 0 0 3 2
+0~ 0~ 0~ 0~
+1 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+E
+limestone ring lime stone~
+The pure green stone glistens with magic.  Perhaps you should identify
+this to see what it does.  
+~
+#25057
+bracers rusty bethaven~
+rusty bracers~
+A set of rusty bracers lie here~
+~
+9 64 0 0 257 4
+0~ 0~ 0~ 0~
+2 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+2 1
+E
+rusty bracers~
+Some well-worn bracers look like they could protect you still.
+~
+#25058
+collar dog bethaven~
+dog collar~
+An old ratty dog collar lies here.~
+~
+9 65 0 0 5 5
+0~ 0~ 0~ 0~
+3 0 0 10 0
+5 0
+cure light~
+1 1
+0 0 0
+A
+5 1
+E
+dog collar ratty old~
+There is something different about this seemingly useless dog collar. 
+Perhaps you should examine it more closely.  
+~
+#25059
+tree christmas~
+&Ga giant Christmas tree&X~
+&GA huge Christmas tree dominates Market Square.~
+~
+12 1 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tree~
+You gaze skyward at the enormous tree before you.  It is covered from top
+to bottom, with various ornaments and trimmings.  It looks as if each
+ornament on the tree bears the name of the many inhabitants of the storm.. 
+Even you.  At the very top of the tree, stands an angel, yet it looks
+vaguely familiar.  An angel?  No..  Lacey!  Dressed as an angel?!  
+-- hehe  Happy holidays to you all *<:) --
+~
+#25060
+pill green poison cure bethaven~
+&Ga green pill&W~
+&GA wonderful greeish coloured pill lies here.~
+~
+26 64 0 0 16385 5
+50~ cure poison~ reserved~ reserved~
+1 0 0 35 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+green pill greenish coloured~
+&GIt would be wise to have one of these handy while off fighting.  Many
+mobs have been known for their nasty habit of poisoning you.  
+~
+#25061
+xavier statue bethaven~
+a statue in the likeness of Xavier~
+A statue immortalizing Xavier stands here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+statue~
+Before you stands a 20 foot tall statue made from the finest bronze,
+carved in the likeness of Xavier.  This memorial was erected here to forever
+memorialize Xavier's favorite spot in all the realms.  Whenever anyone
+needed help, or just a focal point to get back to town, one could always
+count on this brave warrior to be here to serve that purpose.  How Xavier
+ever gained enough experience to achieve hero status, one will never know,
+because he never left this spot.  There is a small plaque on the base of the
+statue.  It reads, 'Please scrape the bird crap off me occasionally.  ' 
+~
+#25062
+bethaven paper postal~
+a small stack of postal paper~
+A stack of postal paper has been dropped here.~
+~
+2 0 0 0 1 1
+5~ reserved~ reserved~ reserved~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+small stack postal paper~
+Use this paper to keep important notes addressed to you as part of your
+inventory.  
+~
+#25063
+bethaven note letter~
+a note from %s~
+A note from %s lies here.~
+~
+8 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#25064
+eggshell bomb egg smoke bethaven~
+an eggshell bomb~
+An egg lies here.~
+~
+13 0 0 0 1 15
+0~ 0~ 0~ 0~
+1 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+eggshell egg smoke bomb~
+This very useful, but very fragile tool is used for a quick get-a-way.
+Hiding and sneaking may be easier if you have a eggshell bomb.
+~
+#25065
+bethaven dwarven work~
+a unfinished piece of dwarven work~
+An unfinished piece of dwarven work lies on a small forge.~
+~
+9 64 0 0 1 30
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#25066
+bethaven weapon dwarven~
+an unfinished dwarven crafted weapon~
+An unfinished dwarven crafted weapon rests upon a small forge.~
+~
+5 0 0 0 1 30
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#25067
+ward object~
+dO NOT CHANGE THIS OBJECT!~
+(no description)~
+~
+1 0 0 0 0 0
+0~ 0~ -1~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#25068
+table torture bethaven~
+a torture table~
+&CA &RTorture Table&C sits in the middle of the room here.~
+~
+12 536870912 0 0 1 1
+0~ 0~ 0~ 0~
+3 50 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+>rand_prog 2~
+0
+say &.So, who wants to be next!?
+~
+>rand_prog 2~
+0
+emote throws $r on the table, ties $K on the table then starts to do it's torture thing.
+~
+|
+#25069
+painting picture~
+a painting of two dogs playing poker~
+A painting is hanging here.~
+~
+12 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+painting~
+You see a picture of two dogs playing poker, as you look closer the two
+dogs in the picture seem almost as though their alive.  
+~
+>look_prog 100~
+0
+slap $n
+~
+>get_prog 100~
+0
+fume
+say Hey!?! Hang me back up!
+~
+>drop_prog 100 ~
+0
+say Thanks for hanging me somewhere.
+~
+|
+#25070
+chair~
+a chair~
+&OA wooden chair is here waiting for you to sit on it.~
+~
+12 64 0 0 1 1
+0~ 0~ 0~ 0~
+6 10 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+>rand_prog 4~
+0
+say $r, Sit on me!!
+~
+>rand_prog 4~
+0
+emote sneaks up and bumps $r from behind, forcing $K to take a seat.
+~
+|
+#25071
+gauntlets defense~
+gauntlets of Defense~
+A strange pair of Gauntlets are lying on the ground here.~
+~
+9 3 0 0 129 100
+0~ 0~ 0~ 0~
+10 6000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+3 -1
+A
+4 -2
+A
+1 -1
+A
+2 -2
+A
+17 -70
+E
+gauntlets~
+The gauntlets are made very well, but are very heavy and may slow you down.
+~
+#25072
+helmet enhanced iron~
+an Enhanced Iron Helmet~
+A strange helmet is on the ground here.~
+~
+9 3 0 4096 17 100
+0~ 0~ 0~ 0~
+5 3500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 -15
+A
+17 -50
+A
+23 20
+E
+helmet enhanced iron~
+A helmet seems to be made from reinforced iron.
+~
+#25073
+blanket leather magical~
+magical leather blanket~
+A strange blanket is lying on the ground here.~
+~
+9 3 0 0 1025 100
+0~ 0~ 0~ 0~
+7 4000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 -3
+A
+23 5
+A
+24 -5
+A
+17 -10
+E
+blanket magical leather~
+The blanket seems to be a normal leather blanket.. but you can feel that
+there are some magical properties about it.
+~
+#25074
+shield bethaven~
+bethaven Warrior's Shield~
+A Warrior's shield has been left collecting dust here.~
+~
+9 3 0 0 513 100
+0~ 0~ 0~ 0~
+10 5000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 -50
+A
+17 -100
+A
+12 -150
+A
+23 5
+E
+shield bethaven~
+The crest of Bethaven, made up into a shield.
+~
+#25075
+quartz star rose stone bethaven~
+a star rose quartz~
+&pA very pretty stone lies here.~
+~
+8 0 0 0 16385 1
+0~ 0~ 0~ 0~
+1 50 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+star rose quartz stone~
+&pA &wsmoky&p rose-coloured stone with a &Wwhite&p star center.
+~
+#25076
+agate eye ornamental stone bethaven~
+an eye agate stone~
+An ornamental looking stone has been left here.~
+~
+8 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 15 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+eye agate stone ornamental~
+&wA lovely stone with &Wwhite&w, &Obrown&w, &Bblue&w, &ggreen&w and gray
+circles. It's tacky in a way, but lovely at the same time.
+~
+#25077
+garnet red fancy stone bethaven~
+a red garnet stone~
+&rA fancy deep red stone has been left here.~
+~
+8 0 0 0 16385 20
+0~ 0~ 0~ 0~
+1 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+garnet stone red fancy~
+&rA deep red stone with a jagged texture. Quite a fancy.
+~
+#25078
+pearl black precious bethaven~
+a black pearl~
+&bA precious black pearl has been left here.~
+~
+8 0 0 0 16385 20
+0~ 0~ 0~ 0~
+0 225 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+black pearl precious bethaven~
+&bA precious black pearl. These are very rare in this continent. Treasure
+it always.
+~
+#25079
+opal fire gem bethaven~
+a fire opal~
+&RA bright gem has been left here.~
+~
+8 0 0 0 16385 65
+0~ 0~ 0~ 0~
+2 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fire opal gem~
+&RA fiery red gem, oval in shape, and quite large with a three inch
+diameter.
+~
+#25080
+jewel star sapphire bethaven~
+&Ca &Wstar &Csapphire~
+&CA precious jewel glitters here with an inner &Wlight&C.~
+~
+8 1 0 0 1 85
+0~ 0~ 0~ 0~
+2 5000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+star sapphire jewel bethaven~
+&CA beautiful sapphire jewel with a &Wwhite star&C shape bursting from
+the center.
+~
+#25081
+leg turkey bethaven~
+a leg of turkey~
+&OA leg of turkey lies here.~
+~
+19 0 0 0 1 1
+6~ 0~ 0~ 0~
+1 0 0 6 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+leg turkey~
+&OA leg of turkey is very large, and looks very delicious. This bird must
+have been huge. The drum of the leg is about three inches in diameter and
+the leg is around eight inches long. Beautifully spiced with herbs and a light
+butter it is barbequed to a crispy golden-brown.
+~
+#25082
+jerky beef strips bethaven~
+some beef jerky~
+&OSome strips of beef jerky have been left here.~
+~
+19 0 0 0 1 1
+5~ 0~ 0~ 0~
+1 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+beef jerky strips~
+&OThe strips of beef have been spiced mildly and dried to a crisp sensation.
+~
+#25083
+egg hard boiled bethaven~
+a hard-boiled egg~
+&WAn egg lies here at your feet.~
+~
+19 0 0 0 1 1
+2~ 0~ 0~ 0~
+0 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+egg hard boiled~
+&WAn egg in it's shell feels more solid than a fresh egg would. This leaves
+you to assume it is a hard-boiled egg. It is a hen's egg.
+~
+#25099
+sign informative~
+an informative sign~
+An informative sign rests here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sign~
+Bethaven City Vault
+ 
+DEPOSIT <currency_type> <# of coins>
+   This will deposit this number of coins into your account.
+ 
+WITHDRAW <currency_type> <# of coins>
+   This will withdraw this number of coins from your account.
+ 
+ACCOUNT
+   This will tell you what your current balance is.
+~
+#25100
+ravenwood~
+ravenwood Portal~
+A portal to Ravenwood stands here.~
+~
+29 33554432 0 0 0 0
+1300~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#25101
+bethaven~
+bethaven Portal~
+A portal to Bethaven stands against the wall.~
+~
+29 1 0 0 0 0
+25000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#25119
+sign~
+a Sign~
+&RA sign burning brightly with mystic flames hovers above you.~
+~
+12 33554432 0 0 0 0
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sign~
+Welcome to the Bethaven Lost and Found.  This is where others have been
+kind enough to donate items for all to use.  Please only take what you need,
+and try to send something in its place.  
+The exits lead to the following:
+North - Armor Room
+South - Supplies
+West  - Weapons
+Down  - Magical Items
+ 
+Feel free to take whatever you wish, and have a nice day.
+The Management
+~
+#25120
+plaque~
+plaque of the Champions~
+A large plaque hangs here listing EoSII's Champions.~
+~
+8 805306433 0 0 0 0
+0~ 0~ 0~ 0~
+5000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+monk~
+&z_____________________________________________________________________
+|&BChampions of the &RMONK&B Class                                       &z |
+|-------------------------------------------------------------------|
+|&CSayn            Rajaan          Slith           Raekwon            &z|
+|&CSin                                                                &z|
+|___________________________________________________________________|
+~
+E
+necromancer~
+&z_____________________________________________________________________
+|&BChampions of the &RNECROMANCER &BClass&z                                 |
+|-------------------------------------------------------------------|
+|&CBelial          Tristan           Monique                          &z|
+|___________________________________________________________________|
+~
+E
+werewolf~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RWEREWOLF&B Class                                    &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CGuadalupine     Joram           Mors            Vurt               &z|
+&z|&CLuposian        Rumor           Kaismir         Lucifer            &z|
+&z|&CShyrad          Oorg            Wendigo         Grendel            &z|
+&z|&CValdimar        Blacktooth      Hope            Myboe              &z|
+&z|&CQuinthalas      Wynn            Oboe                               &z|
+&z|___________________________________________________________________&z|
+~
+E
+ranger~
+&z_____________________________________________________________________
+|&BChampions of the &RRANGER &BClass&z                                      |
+|-------------------------------------------------------------------|
+|&CAdryl           Arkhane         Darter          Radian             &z|
+|&CTyre            Vermilion       Xanna           Yenlar             &z|
+|&CSisconda        Felecia         Jucandus        Arrowhawk          &z|
+|&CSamdar          Vanion          Radian          Maro               &z|
+|___________________________________________________________________|
+~
+E
+bard~
+&z_____________________________________________________________________
+&z|&BChampions of the &RBARD&B Class                                        &z|
+&z|-------------------------------------------------------------------|
+&z|&CAoife                                                              &z|
+&z|___________________________________________________________________|
+~
+E
+paladin~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RPALADIN&B Class                                     &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CDragonbait      Galad           Sirac          Aria                &z|
+&z|&CIpicles         Dolguard        Leo            Quiver              &z|
+&z|___________________________________________________________________&z|
+~
+E
+druid~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RDRUID&B Class                                       &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CCorinth         Karrak                                             &z|
+&z|___________________________________________________________________&z|
+~
+E
+vampire~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RVAMPIRE&B Class                                     &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CBlackavar       Midnight        Wyseth          Dragoon            &z|
+&z|___________________________________________________________________&z|
+~
+E
+thief~
+&z_____________________________________________________________________
+&z|&BChampions of the &RTHIEF&B Class                                       &z|
+&z|-------------------------------------------------------------------|
+&z|&CSerendib        Rift            Teria           Leinsha            &z|
+&z|&CTalera          Staerel         Morelock        Dinin              &z|
+&z|&CMason           Caedes          Rydic           Silveress          &z|
+&z|&CRellik          Samson          Mordak          Danielle           &z|
+&z|___________________________________________________________________&z|
+~
+E
+warrior~
+&z_____________________________________________________________________
+|&BChampions of the &RWARRIOR&B Class                                     &z|
+|-------------------------------------------------------------------|
+|&CJacen           Kindo           Kisha           Kitiara            &z|
+|&CLogan           Rage            Tanis           Kragmoor           &z|
+|&CAgelmar         Strife          Xenon           Nexus              &z|
+|&CSelinar         Panacea                                            &z|
+|___________________________________________________________________|
+~
+E
+cleric~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RCLERIC&B Class                                      &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CEylane          Whisper         Aegis           Rikus              &z|
+&z|&COwehn           Damien          Fazoul          Kristie            &z|
+&z|&CDeurmont                                                           &z|
+&z|___________________________________________________________________&z|
+~
+E
+mage~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RMAGE&B Class                                        &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CAshin           Kitharan        Norcimo         Shadeling          &z|
+&z|&CTraveller       Thorn           Khorlon         Solathan           &z|
+&z|&CBalthazar       Glendar         Ariakas         Aegean             &z|
+&z|&CLeviathon       Malicia         Mazzy           Spokes             &z|
+&z|&CBalkaan         Penance         Aristotle       Madcat             &z|
+&z|&CKhelben         Kreldor         Kenafin         Liah               &z|
+&z|&CTaur            Alexandra                                          &z|
+&z|___________________________________________________________________&z|
+~
+E
+plaque~
+&z_______________________________________________________________________________
+&z|                                                                             &z|
+&z| &CHere in lies the names of those heros of the ages, the Champions of EosII!  &z|
+&z| &CMay you forever respect their undying bravery and fear their unrelenting    &z|
+&z| &Cstupidity.  For tis only ones such as they, lacking any sort of common      &z|
+&z| &Csense, that would be able to bring themselves to fight half of this realm's &z|
+&z| &Ccreations.                                                                  &z|
+&z| &BSyntax&w: &cLook &r<&cclass&r>                                                        &z|
+&z|                                                                             &z|
+&z|                           &CHave mercy upon our souls with these likes about, &z|
+&z|                           &rLacey&c,&r Decklarean &w& &rArch                          &z|
+&z|_____________________________________________________________________________|
+~
+E
+psionisist~
+&z_____________________________________________________________________
+&z|&BChampions of the &RPSIONISIST&B Class                                  &z|
+&z|-------------------------------------------------------------------|
+&z|&CAxelrod         Cataclyst                                          &z|
+&z|___________________________________________________________________|
+~
+#25198
+spells skills suggestion board~
+skills/spells suggestion board~
+This board has been placed here for Spells/Skills suggestions ONLY!~
+~
+11 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#25199
+magic magical door way doorway arena grand great~
+doorway~
+The Magical Doorway to the Great Arena is Out of Order~
+~
+29 65 0 0 0 0
+25200~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#25200
+drain shiny brass sewer~
+drain~
+&BThe water runs into a &Oshiny brass drain&B in the ground.~
+~
+29 0 0 0 0 0
+19701~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#25000
+Temple of Bethaven~
+Within this chamber stands the great and ancient Oracle.  He has stood in
+this spot since long before the dawning of the Storm, and shall continue
+into eternity.  Standing directly in the centre of the room is a huge altar
+carved from one solid granite stone.  It's surface is carved with intricate
+designs and symbols.  It is here that the citizens of Bethaven come to heal
+and rest, and to share in the glory of eternity.  There is a door set into
+the northern wall, with an inscription carved upon it.  
+~
+0 2360328 0
+Rd     0
+E
+door~
+The door bears an inscription which reads:
+&BTo the Bethaven Botanical Gardens
+~
+D0
+~
+door~
+3 0 14000
+D1
+~
+~
+0 0 25120
+D2
+~
+~
+0 0 25001
+D3
+~
+~
+0 0 25119
+S
+#25001
+Judgement Pass~
+Judgement Pass stands just outside of the mighty Temple of Bethaven.  It
+is here that the greatest warrior in the land stands her post, protecting
+the citizens of Bethaven from the evil that dwells in every heart.  It is
+here that judgement is dealt, swift and without mercy.  There is a set of
+stairs leading upwards into the academy, where newcomers to the Storm can
+learn to survive in the harsh and rugged land.  
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 25000
+D2
+~
+~
+0 0 25002
+D4
+~
+~
+0 0 805
+S
+#25002
+Fountain Plaza~
+A large fountain stands in the middle of the plaza and offers a drink to
+any passing traveller.  The water is clear and cool, and the fountain itself
+is large and carved out of marble.  Adventurers from across the realm gather
+here to replenish their drinking supply and to exchange gossip and tales of
+the wild lands beyond the Bethaven gates.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25001
+D1
+~
+~
+0 0 25021
+D2
+~
+~
+0 0 25003
+D3
+~
+~
+0 0 25020
+S
+#25003
+Main Street~
+The main street of Bethaven is a very wide cobblestone street. Adventurers
+of all races and occupations can be seen walking up and down the street.
+Common citizens of Bethaven can also be seen going about their daily
+activities. The occasional cityguard ensures that peace and justice will
+be upheld in this fine city, although the thugs and ruffians do present a
+minor crime problem.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 25002
+D2
+~
+~
+0 0 25004
+S
+#25004
+Crossing of Main and Storm~
+The crossing of Storm and Main is busy, but the throng of people is still
+bearable.  Every now and then, a fight erupts between an arrogant mage and
+an equally arrogant adventurer.  Sounds of pyrotechnics, hacking, slashing,
+and screams of pain fill the air.  Few people take notice of these actions
+because they have grown accustomed to open feuding in the streets.  The
+cityguards pay little heed also, only stepping in when they believe the
+fight is unjustified.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25003
+D1
+~
+~
+0 0 25033
+D2
+~
+~
+0 0 25005
+D3
+~
+~
+0 0 25052
+S
+#25005
+Main Street~
+The continual stream of people on Main is no different here.  Clerics
+clutch their holy books, Mages seem absorbed in scholarly thought, and
+Warriors tote around their swords, blaring out curses at passersby who
+accidently run into them.  The cobblestones of the street are well-worn by
+the many hundreds of feet which pass over them every day, and the buildings
+which line the street are very stout and seem prepared for any blow, natural
+or unnatural.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25004
+D2
+~
+~
+0 0 25006
+S
+#25006
+Main Street~
+A throng of people enter Main Street from the south, and you can hear the
+chattering and bartering of people at a market.  Your pace is slowed down by
+the continual flow of people, and the odor coming from the tightly packed
+people is very intense.  Blending in with their odor are the varied smells
+coming from the market.  You think you can detect the smell of food and
+various potion-making herbs, and possibly even the smell of pet animals. 
+You push forward against the crowd, eager to see what the merchants have for
+sale.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25005
+D2
+~
+~
+0 0 25007
+S
+#25007
+Market Square~
+The Market Square is arguably the busiest intersection in all of
+Bethaven.  Street vendors hawking illegal wares try to escape the notice of
+cityguards.   Adventurers run from one store to another collecting supplies
+for journeys outside the town, and common citizens meander down the streets.
+The whole intersection is a swirling vortex of colors, odors, and sounds. 
+Clutching your head, you attempt to find a quieter place in the city.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25006
+D1
+~
+~
+0 0 25061
+D2
+~
+~
+0 0 25008
+D3
+~
+~
+0 0 25060
+S
+#25008
+Main Street~
+Crowds of people swarm out of the Market Square to the north, jostling
+each other as they vie for a good position in the crowd.  A small child
+meanders out into the middle of the Street and gets cut off from its mother.
+The wailing from the child and the answering shrieks of terror from the
+panicked mother give you a headache.  To the south, Main street appears to
+be less hectic.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25007
+D2
+~
+~
+0 0 25009
+S
+#25009
+Main Street~
+The crowds have thinned out here, and you find the travelling manageable. 
+The occasional gruff adventurer shoves you out of his way, and beggars
+approach you for a few coins.  Overall though, the journey is enjoyable. 
+Your feet make sharp clattering noises which echo off of the buildings
+surrounding Main Street.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25008
+D2
+~
+~
+0 0 25010
+S
+#25010
+Crossing of Main and Tower~
+Main Street intersects with Tower Street here.  Tower is aptly named for
+the twin lookout towers which extend far above you to the east and west. 
+The cobblestones do not fit as nicely here, and the buildings surrounding
+the intersection look old and run-down.  Compared to the world outside the
+city gates, Bethaven is very safe.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25009
+D1
+~
+~
+0 0 25070
+D2
+~
+~
+0 0 25011
+D3
+~
+~
+0 0 25069
+S
+#25011
+Main Street~
+Main Street is deserted here except for the occasional rough character
+lurking in the buildings along the street.  Off in the distance, you hear
+the scream of some poor soul who is being beaten up by a ruffian.  The few
+people you meet on the street avoid eye contact and look around nervously.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25010
+D2
+~
+~
+0 0 25012
+S
+#25012
+Main Street~
+More seedy individuals prowl the streets here.  Occasional bands of
+ruffians and thieves can be seen slinking through the back alleys.  You see
+people eyeing your belongings with dark and greedy eyes.  Acrid smells
+barrage your senses as they waft through the stale air.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25011
+D2
+~
+~
+0 0 25013
+S
+#25013
+Crossing of Main and Wayfairer~
+The crossing of Wayfairer and Main is pretty deserted, except for the
+occasional drunk or adventurer.  Most of the city's inhabitants stay closer
+to the center of town because the outer edges of the city tend to be more
+dangerous and attract seedy individuals.  To the south, you can make out the
+edges of the city gates.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25012
+D1
+~
+~
+0 0 25079
+D2
+~
+~
+0 0 25014
+D3
+~
+~
+0 0 25078
+S
+#25014
+Southern gate of Bethaven~
+The southern gate of Bethaven is heavily guarded, and people seeking
+entry and exit must give an extensive report to the guards.  Travelling
+papers must be in order, or dire consequences can result.  The gates
+themselves are very large and made out of polished oak.  They are barred
+against invasion from the outside, and have never been penetrated.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 25013
+D2
+&OThe gate is made of polished oak, and leads south out of the city.
+~
+gate~
+3 0 4600
+S
+#25015
+Western gate of Bethaven~
+The western gate of Bethaven is heavily guarded, and the gates are
+sturdily barred.  The threat from an outside invasion is always present, and
+Bethaven, with its great riches, is a prime target of raids.  The cityguards
+look at you sternly, and question what business you have in the city.  In
+the distance you can hear wagon wheels crunching over the road leading up to
+the gate.  
+~
+0 4 0
+Rd     0
+D1
+~
+~
+0 0 25016
+D3
+&OA large polished oak gate stands here to the west.
+~
+gate~
+3 0 904
+S
+#25016
+Corner of Trafar and Eternity~
+The corner of Trafar and Eternity is rather unspectacular.  The buildings
+which line the streets are simple dwellings made out of wood and native
+stone.  The roofs are thatched with marsh grasses, and the outside of the
+buildings are whitewashed.  The streets are made of fine cobbles which are
+well-fitted by talented craftsmen.  Overall, the city of Bethaven appears to
+be well taken care of, and the people seem to be wanting for little.  To the
+north, you see the mighty northern gates of Bethaven.  
+~
+0 0 0
+Rd     0
+D0
+&OSome very large oaken gates stand here to the north.
+~
+"gate" "gates"~
+3 0 25122
+D1
+~
+~
+0 0 25017
+D2
+~
+~
+0 0 25038
+D3
+~
+~
+0 0 25015
+S
+#25017
+Trafar Road West~
+As you move along Trafar Road, you come across the occasional holy man or
+woman who is deeply lost in religious ponderings.  The other travellers are
+diverse and come from all of the corners of the realm.  The variation in
+dress is remarkable, as are the differences in size and color of the people.
+Just because there are so many different people does not mean they live
+together in harmony, however.  The occasional scuffle between rival clans
+keeps the blood flowing in the streets of Bethaven.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25018
+D3
+~
+~
+0 0 25016
+S
+#25018
+Trafar Road West~
+The mix of people here on Trafar Road is fascinating.  Tiny pixies dance
+and dart between the crowds as they avoid being squashed, their eyes
+sparkling with excitement.  Great demons hulk over everyone, their piercing
+and fiery gazes sending pangs of fear into the most seasoned warrior. 
+Occasionally, an even rarer humanoid is seen, like the slender and graceful
+elves of the forest, who cast a disdainful look upon all they meet. 
+Overall, the mix of exotic peoples is astounding.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25019
+D3
+~
+~
+0 0 25017
+S
+#25019
+Trafar Road West~
+The crowds are noticeably thicker here, closer to the heart of the city. 
+People from various walks of life and various lands come to Bethaven for
+many reasons.  Some are refugees which seek shelter, and others are
+adventurers looking to tell their tales of glory.  Still others are pilgrims
+seeking holy enlightenment, and there are scholars seeking the knowledge of
+the sages.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25020
+D3
+~
+~
+0 0 25018
+S
+#25020
+Trafar Road West~
+A significant crowd of people here is impeding traffic.  Ahead is the
+Fountain Plaza of Bethaven, which is a place of respite for road-weary
+travellers and is on the road to the Temple of Bethaven.  Among the throng
+of people are a significant number of the sick and the dying.  They are
+probably being taken to the famed Oracle of Bethaven in the hope that a
+miracle can be performed.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25002
+D3
+~
+~
+0 0 25019
+S
+#25021
+Trafar Road East~
+To the west, you can see the Fountain Plaza and the many people which
+gather there.  Coming out of the plaza can be seen many of the most devout
+religious men and women of the city.  Covering their heads and refusing to
+speak with anyone, these religious fanatics speak only with their gods.  The
+stench of the animals they sacrifice and burn is repugnant, and it clings to
+their clothes like a baby clings to its mother.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 25022
+D3
+~
+~
+0 0 25002
+S
+#25022
+Trafar Road East~
+The peaceful tranquility along Trafar Road is exploded in an instant as a
+fight breaks out between an adventurer of one clan and an adventurer of
+another.  The citizens of Bethaven watch this development with bored
+disinterest; their only concern is staying out of the crossfire.  These
+fights between clan members are usually to the death, and the open warfare
+between the clans is mostly ignored by the city, as long as none of its
+citizens get pulled into the frays.  
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+0 0 25023
+D3
+~
+~
+0 0 25021
+S
+#25023
+Trafar Road East~
+Trafar Road is peaceful here, and the crowds are thin enough that
+movement is easily accomplished.  Here and there a loose cobble trips you up
+as you walk along, betraying the age of the street.  Founded over a hundered
+years ago, Bethaven was originally a small dwelling of peasants who gathered
+together for protection against raiding bands.  Since that time, it has
+grown into the incredible city that stands today.  
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+0 0 25024
+D3
+~
+~
+0 0 25022
+S
+#25024
+Trafar Road East~
+The number of people on Trafar Road is bearable here.  The crowds can be
+streaming in from the city gates to the east and from the fountain plaza to
+the west.  The incredible number of people which visit Bethaven each day is
+astounding.  It should not be too surprising, though, for Bethaven is the
+center for commerce in the entire realm.  
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+0 0 25025
+D3
+~
+~
+0 0 25023
+S
+#25025
+Corner of Trafar and Tempest~
+The corner of Trafar and Tempest is ordinary in appearance.  The
+cobblestone streets resound with the sharp footsteps of the many travelers,
+and the utilitarian buildings which edge the street look warm and inviting. 
+The economic diversity of the people living in Bethaven is striking.  Women
+wearing expensive jewelry and splendid clothing are just as common as the
+beggars wearing rags and looking for their next meal.  You notice a small
+rusty gate blocking a barren path leading northwards...  
+~
+0 8 0
+Rd     0
+D0
+~
+Gate~
+3 0 25121
+D1
+~
+~
+0 0 25026
+D2
+~
+~
+0 0 25027
+D3
+~
+~
+0 0 25024
+S
+#25026
+Eastern gate of Bethaven~
+The eastern gate of Bethaven is carefully guarded, and the gates are
+heavily barred.  The city walls are at least 10 meters high and are made of
+solid stone dragged in from the cliffs near the city.  The gates are equally
+seen here keeping a close watch on things, they eye everyone suspiciously
+but allow most to pass without any hardship.
+~
+0 4 0
+Rd     0
+D1
+The eastern gate into Bethaven is here.
+~
+gate~
+3 0 900
+D3
+~
+~
+0 0 25025
+S
+#25027
+Tempest Street North~
+Tempest street is the beginning of one of the biggest residential areas
+in Bethaven.  The houses here are made out of thick river stone and solid
+wood from the nearby forest.  The roofs are thatched with tough marsh
+grasses, and the entire structure is whitewashed.  Here and there, simple
+touches made by the inhabitants have distinguished the otherwise identical
+houses from each other.  Off in an alley, you hear the hiss of a stray cat. 
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25025
+D2
+~
+~
+0 0 25028
+S
+#25028
+Intersection of Tempest and Storm~
+Very few people can be seen here on Tempest Street, which is not
+surprising.  The only thing which can be found on this street are
+nondescript residences of the city's inhabitants.  From the building on your
+right, you hear the squall of a young child.  The answering slap can be
+heard shortly afterward.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25027
+D2
+~
+~
+0 0 25029
+D3
+~
+~
+0 0 25036
+S
+#25029
+Tempest Street North~
+More of the simple thatch-roofed houses can be seen along the street.  A
+group of boys are playing a game in a nearby alley, and a shy little girl
+watches on, wishing she could join them.  By the looks of her, though, her
+family is destitute and needs all the help they can get.  A voice can be
+heard yelling for her, and she turns around reluctantly and slinks away.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25028
+D2
+~
+~
+0 0 25030
+S
+#25030
+Tempest Street North~
+The number of houses are thinning out here, gradually being replaced by
+business which cannot afford the rent on a shop on Merchant Street.  To the
+east, the smell of baked goods wafts out onto the street.  The few houses
+which line the street here are more run-down than the others you have seen
+in Bethaven.  Most of these people depend on back-breaking labor in the
+mines to support themselves.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25029
+D1
+~
+~
+0 0 25089
+D2
+~
+~
+0 0 25031
+S
+#25031
+Intersection of Tempest and Merchant~
+The mainly residential Tempest Street meets up with Merchant Street at
+this intersection.  The crowds are heavy on Merchant, but they seem to be
+thinned out on this end of the street.  The store to the east is an
+exception.  Adventurers can be seen going in and out of this store on a
+regular basis.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25030
+D1
+~
+~
+0 0 25090
+D2
+~
+~
+0 0 25032
+D3
+~
+~
+0 0 25064
+S
+#25032
+Tempest Street South~
+The bustle of Merchant street to the north makes you appreciate the
+relative quietness of this residential section of Bethaven.  The houses
+lining the streets look extremely decrepit here, and you feel a pull at your
+heart as you see a dirty and malnourished child sitting quietly in the
+street.  Too tired to spend any energy crying about the pains in its belly,
+it just looks at you with its haunting eyes.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25031
+D2
+~
+~
+0 0 25053
+S
+#25033
+Storm Street East~
+Storm Street, an important residential avenue, stretches to the east
+here, and to the west it intersects with Main Street.  Retired warriors and
+heroes of the Storm relax here and enjoy the fruits of their wild younger
+days.  In time of great need, they also provide a strong arm for the defense
+of the city.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25034
+D3
+~
+~
+0 0 25004
+S
+#25034
+Storm Street East~
+Storm Street is fairly deserted.  The only business which might bring you
+to this area of the city would be an attempt to employ a veteran of the
+land.  The amount of money needed to persuade one of these heroes to aid you
+in your travels is astronomical, and only the wealthiest of adventurers
+could possibly persuade anyone to help them.  On occasion, a burly man can
+be seen entering one of the dwellings, or a child can be seen peeking out of
+a window.  
+~
+0 0 0
+Rd     0
+E
+child window~
+A pretty young girl is here, about the age of eleven.
+~
+D1
+~
+~
+0 0 25035
+D3
+~
+~
+0 0 25033
+S
+#25035
+Storm Street East~
+A group of strapping young boys can be seen playing a rough game of some
+sort on the edges of the street.  More than just a game, this activity
+prepares the boys for the rough life they will face ahead.  Following in the
+footsteps of their fathers, they will become brave warriors who will either
+find their calling as cityguards or as adventurers.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25036
+D3
+~
+~
+0 0 25034
+S
+#25036
+Storm Street East~
+A pretty and buxom young woman stares dejectedly out the window.  Her
+beauty is stunning, and you wonder what could possibly upset her so.  From
+the inside of the house, you hear someone yelling at her.  She rolls her
+eyes, sighs, and walks away.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25028
+D3
+~
+~
+0 0 25035
+S
+#25037
+Corner of Tempest and Wayfairer~
+You stand at the corner of Tempest and Wayfairer... the south eastern gate
+of Bethaven, through which you can see a small vale. The passers-by in
+this neighbourhood don't look very friendly, and some are even on the
+way to unconsciousness as they stumble home from the Tavern to the west.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25056
+D1
+The southeast gate leads out to a small vale.
+~
+gate~
+3 0 9501
+D3
+~
+~
+0 0 25082
+S
+#25038
+Eternity Street North~
+The magnificent houses found along Eternity Street here obviously belong
+to the well-off of Bethaven; mostly mages and clerics.  Mages are in
+constant demand by the common people which request magical aids including
+hexes and magical enchancements on weapons.  Clerics are paid well for their
+spiritual guidance, and even receive money in exchange for prayers and
+sacrifices to the Gods.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25016
+D2
+~
+~
+0 0 25039
+S
+#25039
+Intersection of Eternity and Storm~
+More dwelling places of the affluent line the crossing of Eternity and
+Storm.  More than their size, the uniqueness of these houses sets them apart
+from the dwellings of common folk.  Intricate runes of protection and
+ordinary designs decorate the outsides of these houses, and exotic flora
+from across the realm can be found in special gardens of the wealthy
+homeowners.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25038
+D1
+~
+~
+0 0 25049
+D2
+~
+~
+0 0 25040
+S
+#25040
+Eternity Street North~
+Eternity Street continues to the north and south from here.  The throng
+of people is almost impenetrable, and a great deal of pushing and shoving
+occurs as people try to get their business done.  
+~
+0 0 0
+Rd     0
+E
+sign~
+Bethaven Botanical Gardens
+~
+D0
+~
+~
+0 0 25039
+D2
+~
+~
+0 0 25041
+S
+#25041
+Eternity Street North~
+An awful smell and clatter is coming out of the building to the west. 
+Zak's famous Magic Emporium is located in this small and bright building. 
+Famous throughout the land for quality healing potions, Zak has amassed
+quite a fortune for himself.  
+~
+0 0 0
+Rd     0
+E
+zak~
+&GLooking through Zaks window, you can see him preparing a batch of his
+famous potions.  Zak cackles insanely when he notices you spying on him and
+beckons you into his store.  
+~
+D0
+~
+~
+0 0 25040
+D2
+~
+~
+0 0 25042
+D3
+~
+~
+0 0 25087
+S
+#25042
+Intersection of Eternity and Merchant~
+Eternity Street intersects with Merchant Street here.  The throng of
+people is almost impenetrable, and a great deal of pushing and shoving
+occurs as people try to get their business done.  Desiray's Armoury is to
+the west, and you can hear the clanging of the hammer against the anvil out
+here on the street.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25041
+D1
+~
+~
+0 0 25057
+D2
+~
+~
+0 0 25043
+D3
+~
+~
+0 0 25088
+S
+#25043
+Eternity Street South~
+To the north, Eternity Street meets with Merchant Street.  You can see
+the throngs of people shopping for various goods of merchants from here. 
+Only the occasional cityguard and vagrant can be found here on Eternity. 
+The only other people on this street are adventurers looking for help from
+the Mercenary's Guild.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25042
+D2
+~
+~
+0 0 25044
+S
+#25044
+Eternity Street South~
+The clinking sound made by your boots on the cobblestones of Eternity
+Street seem eerie in the silence that pervades this area.  The street is
+completely deserted, and the only sounds you hear are from the barking dogs
+and screeching cats hunting for prey in the back alleys.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25043
+D2
+~
+~
+0 0 25045
+S
+#25045
+Eternity Street South~
+The dark building to the west is the famed Mercenary's Guild of Bethaven.
+Adventurers seeking help on a dangerous quest or simply seeking
+companionship can find it for a price there.  A few muscle-bound warriors
+can be seen bringing out a mage, and some of the weaker adventurers are
+renting out strong warriors.  Except for these people, however, the street
+is deserted.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25044
+D2
+~
+~
+0 0 25046
+D3
+~
+~
+0 0 25117
+S
+#25046
+Eternity Street South~
+The few people you meet here on southern Eternity Street are most likely
+residents of Bethaven.  There really isn't much reason for an adventurer to
+be in this section of town, and the looks the residents give you are very
+suspicious.  One woman in particular looks mistrustful, and she grabs her
+child and runs with him into the nearest building.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25045
+D2
+~
+~
+0 0 25047
+S
+#25047
+Eternity Street South~
+The buildings on Eternity Street here appear to be more run down than
+they are further to the north.  Apparently, a crowd of unsavory individuals
+have taken over the southern section of the city.  Although not as dangerous
+as the world outside the city gates, it is nonetheless a very unpopular
+place to live.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25046
+D2
+~
+~
+0 0 25048
+S
+#25048
+Corner of Eternity and Wayfairer~
+Here at the corner of Eternity and Wayfairer, the people you meet appear
+to be rather seedy.  Unkempt drunks which appear to have been in the tavern
+all night long stagger around on their way to their homes, and heavily-
+painted women call to you from the shadows.  A piercing scream in the
+distance attests to the frightening nature of the people who frequent this
+place.  An old battered wooden gate can be seen off to the west.  
+~
+0 0 0
+Rd     0
+E
+gate~
+&OA Battered wooden gate lays to the West.
+~
+D0
+~
+~
+0 0 25047
+D1
+~
+~
+0 0 25075
+D3
+&OAn old wooden gate is almost battered down to the west.
+~
+gate~
+3 0 11101
+S
+#25049
+Storm Street West~
+Storm Street crosses through one of the more affluent regions of
+Bethaven.  Almost all of the people living on this street are retired heroes
+of the realm.  Rich off the poils of their many adventures, they are now
+seeking a peaceful life in the most prosperous cities in the realm.  To the
+south hangs a sign indicating the Post Office.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25050
+D2
+~
+~
+0 0 25124
+D3
+~
+~
+0 0 25039
+S
+#25050
+Storm Street West~
+The occasional man you see in the street greets you with a solemn nod,
+and the women stare at you from the doorway of their houses.  The
+neighbourhood is happy, and crime is not a problem.  It is a well-known fact
+that the majority of people living on Storm Street are powerful adventurers.
+This is enough information to keep most criminals away.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25051
+D3
+~
+~
+0 0 25049
+S
+#25051
+Storm Street West~
+Storm Street is all but deserted.  A few people coming from their houses
+or going to them greet you solemnly on the street.  Everyone you meet is in
+astounding physical shape, probably because they are all ex-warriors.  Their
+children, too, are of astounding physical strength and are incredibly
+healthy and vigorous.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25052
+D3
+~
+~
+0 0 25050
+S
+#25052
+Storm Street West~
+The occasional child or animal looks your way, apparently perturbed by
+your presence.  Visitors are seldom seen here on Storm Street, and strangers
+are looked upon as a curiosity.  A bird screeches at you from an overhead
+branch, offended that you have intruded on her territory.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25004
+D3
+~
+~
+0 0 25051
+S
+#25053
+Tempest Street South~
+The poverty-stricken families of Tempest Street watch you from doorways
+as you go by.  From dawn to dusk, these people work in order to scrape up
+enough money to get by.  Without any sort of aid from the city of Bethaven,
+they must depend on the handouts of others to supplement their meager
+income.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25032
+D2
+~
+~
+0 0 25054
+S
+#25054
+Tempest Street South~
+The houses which line Tempest Street are well-kept here.  Bordering on
+some poorer areas to the north, these people seem to be doing well enough to
+provide for the basics in life.  The pet store to the east would indicate
+that they are doing well enough to support a small pet to keep them company,
+as well.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25053
+D1
+~
+~
+0 0 25115
+D2
+~
+~
+0 0 25055
+S
+#25055
+Tempest Street South~
+Some children are playing a complicated-looking game with all manner of
+stones out in the street.  They are so engrossed in their game, they hardly
+pay you any attention at all.  The clattering of your feet on the
+cobblestones is strangely calming, and you whistle a tune as you move along.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25054
+D2
+~
+~
+0 0 25056
+S
+#25056
+Tempest Street South~
+Still more houses line Tempest Street here.  Bethaven is definitely one
+of the more populated places in the realm, and it is no wonder.  A city with
+every possible store, a magnificent temple, and the protection of cityguards
+provide its citizens with many comforts.  Still, this life isn't for just
+anyone.  Many adventurers would cringe at the thought of settling down in
+one of these confining little houses.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25055
+D2
+~
+~
+0 0 25037
+S
+#25057
+Merchant Street West~
+Merchant Street is overrun with people.  The major market center in all
+of the realm, the finest goods can be found in Bethaven.  To the north, a
+furniture shop attracts many local individuals.  Merchant Street continues
+to the east and to the west.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25091
+D1
+~
+~
+0 0 25058
+D3
+~
+~
+0 0 25042
+S
+#25058
+Intersection of Merchant and Tower~
+To the north is a weapon shop and smithy, and to the south Tower Street
+leads off.  The incessant babble of people at the market is really annoying,
+and the close press of so many bodies creates an awful stench.  Here and
+there, you can see minor dispute erupt between people, and constant
+bartering with street vendors goes on.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25092
+D1
+~
+~
+0 0 25059
+D2
+~
+~
+0 0 25065
+D3
+~
+~
+0 0 25057
+S
+#25059
+Merchant Street West~
+Merchant Street continues to the east and west here.  To the north, a
+very heavily guarded shop stands almost empty.  The sparkling jewels inside
+indicate why.  Only the wealthiest members of the land, or adventurers
+wishing to sell booty need bother with this store.  The common people of
+Bethaven can only look and dream.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25093
+D1
+~
+~
+0 0 25060
+D3
+~
+~
+0 0 25058
+S
+#25060
+Merchant Street West~
+This section of Merchant Street is especially busy.  To the north, the
+scribe shop sells all manner of scrolls and magical wards.  Heading toward
+the south are various members of the realm which are clutching vast sums of
+money to their chests.  The iron bars in the window and the heavily armed
+guards indicate that you are before the Bank of Bethaven.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25094
+D1
+~
+~
+0 0 25007
+D2
+~
+~
+0 0 25099
+D3
+~
+~
+0 0 25059
+S
+#25061
+Merchant Street East~
+Many warrior types can be seen entering the store to the north.  Offering
+magical devices for those who are unable to cast spells, the shop is a great
+aid for the brauny adventurer.  A few loose cobblestones can be seen in the
+heavily traveled Merchant Street.  Apparently, all of the traffic has caused
+them to come loose.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25095
+D1
+~
+~
+0 0 25062
+D2
+~
+~
+0 0 25123
+D3
+~
+~
+0 0 25007
+S
+#25062
+Merchant Street East~
+Travelling along this busy street, you notice many people going in and
+out of shops.  This is the most frequented street in central Bethaven, and
+where you can find many necessities for your journeys.  Merchant Street
+continues both east and west from here, with shops branching out at many
+intervals.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25063
+D2
+~
+~
+0 0 25101
+D3
+~
+~
+0 0 25061
+S
+#25063
+Intersection of Merchant and Tower~
+A seedy looking store can be seen to the north, and Tower Street leads
+off to the south of Merchant Street.  A fight erupts out on the street
+between a vendor and a customer who believes they were cheated.  At the
+approach of the cityguards, the vendor hastily grabs his products and flees.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25097
+D1
+~
+~
+0 0 25064
+D2
+~
+~
+0 0 25074
+D3
+~
+~
+0 0 25062
+S
+#25064
+Merchant Street East~
+A store selling holy items can be seen to the north, and the end
+of Merchant Street can be seen to the east.  The street is littered with
+items dropped by careless shoppers, and the whole street has a worn
+appearance to it.  Street cleaners can be seen trying to keep the streets
+clean, but the sheer number of people are too many for the cleaner to keep
+up with.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25098
+D1
+~
+~
+0 0 25031
+D2
+~
+~
+0 0 25100
+D3
+~
+~
+0 0 25063
+S
+#25065
+Tower Street~
+Tower Street, aptly named for the twin lookout towers in the southern
+city, contains the main city defenses.  Always fearful of attack from the
+south, veteran soldiers of the Bethaven army are on constant duty here.  Any
+person entering this area should have a very sound reason why they are doing
+so.  The army has much more important things to deal with than nosey
+adventurers.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25058
+D2
+~
+~
+0 0 25066
+S
+#25066
+Tower Street~
+Army officers and regular enlisted men can be seen patrolling this area. 
+Only the sharpest and best warriors may apply for enlistment in the Bethaven
+army, and many fine men are turned down.  Of the men who make it into the
+ranks, the best of these are then chosen to be the officers of the army.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25065
+D2
+~
+~
+0 0 25067
+S
+#25067
+A Bend in Tower Street~
+Tower Street makes a sharp turn here, following the city walls.  These
+walls provide the first line of the defense for the city, and are at least
+ten meters high and two meters thick.  Stone from the distant mountains were
+brought in by mule train to build the walls, and they are legendary in the
+realm.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25066
+D1
+~
+~
+0 0 25068
+S
+#25068
+Tower Street~
+The western tower can be seen to the north, and Tower Street stretches to
+the east and to the west from here.  An armed patrol passes by, giving you
+suspicious glances.  The wisdom of staying in this highly guarded area is
+questionable, especially since you are obviously an outsider.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25083
+D1
+~
+~
+0 0 25069
+D3
+~
+~
+0 0 25067
+S
+#25069
+Tower Street~
+Tower Street stretches along the city wall to the west and intersects
+Main Street to the east.  The occasional army officer can be seen staggering
+into the compound from a night out on the town.  If anyone in Bethaven
+deserves a drink at the bar, it's these men.  The incredible stress of their
+position can really wear at them.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25010
+D3
+~
+~
+0 0 25068
+S
+#25070
+Tower Street~
+Tower Street stretches along the city wall to the east, and to the west
+it intersects Main Street.  The muscle-bound warriors which comprise the
+Bethaven army are very dedicated and disciplined.  Not a single on-duty
+member is napping at their post.  All are alert and ready for battle at a
+moment's notice.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25071
+D3
+~
+~
+0 0 25010
+S
+#25071
+Tower Street~
+The Easter Tower is to the north, and Tower Street itself makes a sharp
+turn to the north directly east of here.  Jutting out from the rest of the
+city, the square-shaped military compound serves as a planning center for
+raids into other cities and also for a city defense.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25084
+D1
+~
+~
+0 0 25072
+D3
+~
+~
+0 0 25070
+S
+#25072
+Corner of Tower Street~
+Tower Street bends sharply here at the corner of the city walls.  Built
+high enough to keep out any danger, the city walls are made of very thick
+stone.  In times of war, defending champions of the city can rush up on the
+walls to send volleys of arrows or cauldrons of oil down upon the heads of
+the attacking army.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25073
+D3
+~
+~
+0 0 25071
+S
+#25073
+Tower Street~
+Tower Street continues to the north and south here.  The occasional sharp
+glance of the city's defense guard makes you feel a bit uneasy.  Although
+you are up to nothing insidious, you nonetheless feel like you do not belong
+here.  The wisdom of remaining any longer is questionable.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25074
+D2
+~
+~
+0 0 25072
+S
+#25074
+Tower Street~
+Tower Street intersects with Merchant Street to the north, and it
+continues along the city wall to the south.  Armed members of the Bethaven
+army patrol this area regularly, looking for any possible infiltration
+attempt by enemies.  The guards give you a suspicious look but let you pass.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25063
+D2
+~
+~
+0 0 25073
+S
+#25075
+Wayfairer Street West~
+A suspicious man begins to approach you from behind.  Spinning around
+rapidly, you take him off-guard and he flees back into the shadows. 
+Clearly, this is not a very safe corner of Bethaven.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25076
+D3
+~
+~
+0 0 25048
+S
+#25076
+Wayfairer Street West~
+From the edge of the street, you hear a woman's voice calling at you. 
+She offers you companionship for the night in exchange for some money or
+food.  On close scrutiny, she appears to be very sick and very thin.  You
+wonder what happened that caused her to end up on the street as you continue
+on your way.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25077
+D3
+~
+~
+0 0 25075
+S
+#25077
+Wayfairer Street West~
+This part of Bethaven is rather quiet.  Since there aren't many shops
+along this side of town, not too many folks seem in a rush here.  During a
+beautiful summer's day, one can often see folks strolling down Wayfairer
+Street, enjoying the fresh air.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25078
+D3
+~
+~
+0 0 25076
+S
+#25078
+Wayfairer Street West~
+To the east, you can see the intersection of Wayfairer and Main.  The
+area still looks rather shady, but not nearly as bad as it does to the west.
+The cityguard still patrol this area, but the crime is so bad they cannot
+keep up.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25013
+D3
+~
+~
+0 0 25077
+S
+#25079
+Wayfairer Street East~
+A cold breeze sends a chill up your spine and makes you look uneasily
+over your shoulder.  The street is dark and the people you pass by are
+unwholesome looking.  The cityguards do their best to keep down on the
+crime, but the occasional murder still slips through their grasp.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25080
+D3
+~
+~
+0 0 25013
+S
+#25080
+Wayfairer Street East~
+Customers coming out of the store to the north generally either look very
+embarassed or have a wicked gleam in their eyes.  The leather shop, although
+it does make practical equipment, also makes interesting toys for the
+sadistically inclined.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25086
+D1
+~
+~
+0 0 25081
+D3
+~
+~
+0 0 25079
+S
+#25081
+Wayfairer Street East~
+A gang of young punks eyes you from a back alley.  Seeing your build and
+your obvious lack of fear, they pass you by and look for a new target.  Like
+all large cities, Bethaven has its share of crime despite attempts to keep
+it safe.  The institution of an executioner is helping to crack down on many
+of the worst criminals, however.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25082
+D3
+~
+~
+0 0 25080
+S
+#25082
+Wayfairer Street East~
+A brightly painted building to the north looks out of place in this
+dismal section of town.  A solemn reminder of what this part of the town
+used to look like, its windows and doors are boarded up, and vagrants
+inhabit the building.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25037
+D3
+~
+~
+0 0 25081
+S
+#25083
+Entrance to the Western Tower~
+You stand before one of the massive lookout towers of Bethaven.  Made of
+solid stone pieced together carefully by the realm's finest masons, the
+towers serve a very important purpose for the city of Bethaven.  Not only do
+they provide a view from which to detect approaching invaders, they also
+provide an excellent vantage point from which to launch a counter-attack.  
+The ground here is well-trodden, like it it used quite a bit. The door
+into the tower seems to be well taken care of and recently oiled.
+~
+0 0 0
+Rd     0
+E
+door~
+A large wooden door with wrought iron hinges leads into the Western Tower.
+~
+D0
+A large wooden door with wrought iron hinges.
+~
+door~
+3 0 25085
+D2
+~
+~
+0 0 25068
+S
+#25084
+Entrance to the Eastern Tower~
+You stand before one of the massive lookout towers of Bethaven.  Made of
+solid stone pieced together carefully by the realm's finest masons, the
+towers serve a very important purpose for the city of Bethaven.  Not only do
+they provide a view from which to detect approaching invaders, they also
+provide an excellent vantage point from which to launch a counter-attack.  
+This area seems to be relatively unused, as there are no recent tracks in
+the ground here. The door to the tower is old and rotting.
+~
+0 0 0
+Rd     0
+E
+north door~
+The door into the tower looks as though it hasn't been used in some time.
+The hinges are rusted and the wood is slowly rotting. Bethaven must have
+a good reputation for low-crime or this tower would be busy.
+~
+D2
+~
+~
+0 0 25071
+S
+#25085
+Inside the Western Tower~
+This large room is the main floor in the western tower. The floor is made of
+large cobblestones and the walls are also made of stone. There are no windows
+here but there are always torches lit that hang all about the circular
+chamber. A staircase spirals up from here.
+~
+0 12 0
+Rd     0
+E
+door~
+A large wooden door with wrought iron hinges.
+~
+D2
+A large wooden door with wrought iron hinges.
+~
+door~
+3 0 25083
+D4
+~
+~
+0 0 25096
+S
+#25086
+Sheridan's Thieving Supplies~
+This small rundown shop is home to the supplier of some of the most vile
+individuals you will ever meet in your life...  THIEVES.  The room has
+various powders for throwing at an opponent, as well as other strange
+looking tools strewn all about in a disorderly fashion.  If you are a thief
+in need of a few special supplies, this is the place to be.  
+~
+0 1036 0
+Rd     0
+D2
+~
+~
+0 0 25080
+S
+#25087
+Zak's Magic Emporium~
+A horrendous smell assaults your nostrils as you enter Zak's Magic
+Emporium.  The counters in this shop are filled with potions and pills, and
+in the back of the shop you can see a complete laboratory.  Something black
+and viscous is bubbling in a distillation apparatus back there, and you
+guess that this is where the hideous smell is coming from.  
+~
+0 1036 0
+Rd     0
+E
+counter~
+&GThe counter seems to be made of the finest marble.  It gleams as light
+from the window hits it.
+~
+E
+window~
+&GLooking outside you can see the filthy streets, most people would
+rather stay and put up with Zak's insane laughter than wander back
+onto the streets.
+~
+E
+laboratory~
+&GYou can't quite see what Zak has in the back of his laboratory, 
+rubbernecking only brings looks of reproof from Zak himself, it seems
+that he would like to keep his well kept secrets that way.
+~
+E
+black~
+&zA black liquid boils and gurgles to itself, how anything that makes
+that kind of smell could be healing you'll never know.
+~
+D1
+~
+~
+0 0 25041
+S
+#25088
+Desiray's Armoury~
+The walls of Desiray's Armoury are covered with pieces of armour for every
+part of the body.  The styles are varied, as Desiray accepts trade-ins for
+purchase of new armour.  The armour which she gets for trade is either
+refurbished and sold, or it is melted down to use in new pieces of armour. 
+The quality of the armour is rumored to be the best in the realm, but this
+quality comes at a price.  
+~
+0 1036 0
+Rd     0
+D1
+~
+~
+0 0 25042
+S
+#25089
+Frem's Bakery~
+The comforting smell of bread baking greets you as you come into this
+building.  All manner of pastries and breads fill racks upon racks in this
+store.  Everything is bright and cheery, and the place is kept spotlessly
+clean.  Frem beams a smile at you as he places another tray of pastries into
+the brick oven.  
+~
+0 1036 0
+Rd     0
+D3
+~
+~
+0 0 25030
+S
+#25090
+General Store~
+The Bethaven General Store offers goods necessary for the well-prepared
+adventurer.  Stocks of dried meat, light sources, and storage containers are
+just the beginning of the list of items carried here.  The prices are
+reasonable, and the quality of the equipment is good.  Although you could
+find the items for less money elsewhere, you would not dare trust the
+average street vendor's items.  The quality of equipment is a matter of life
+or death.  
+~
+0 1036 0
+Rd     0
+D3
+~
+~
+0 0 25031
+S
+#25091
+Furniture Shop~
+The furniture shop has a wide variety of furnishings for the average
+homemaker.  A nice table and chair set made of cherry is just one example of
+the fine craftsmanship which goes into these pieces.  
+~
+0 1036 0
+Rd     0
+D2
+~
+~
+0 0 25057
+S
+#25092
+Jani's Weapon Smithy~
+As you enter this store, you are immediately astonished by the large
+number and variety of weapons hanging on the walls.  More than that, though,
+you are taken aback by the incredible quality and workmanship exhibited in
+these weapons.  Jani, who you can see working the forge in the back of the
+store, has impeccable taste in weapons.  She is willing to take weapons in
+trade, but they must be of exceptional make, or she melts them down for raw
+materials.  
+~
+0 1036 0
+Rd     0
+D2
+~
+~
+0 0 25058
+S
+#25093
+Jenna's Jewellry~
+Your eyes gleam and your fingers twitch as you enter this store.  In vast
+glass cases, every piece of jewelry imaginable glimmers under the bright
+lamplight.  Glimmering most of all, however, is the jeweller.  Her business
+turns a handsome penny, and she herself is very beautiful.  The thought of
+stealing a small trinket quickly flees your mind as you take one look at the
+stocky bodyguards.  
+~
+0 1036 0
+Rd     0
+D2
+~
+~
+0 0 25059
+S
+#25094
+Jahrem's Scribe Shop~
+The smells of ink and old parchment assail your nostrils as you enter
+this store.  Varied scrolls are on display in the shop, and each appear to
+be in a different magical language.  In order to stay in business, the
+scrolls are specially treated to disappear once they have been recited.  As
+a result, the wise adventurer should buy multiple copies or risk being
+hopelessly lost or torn to bits by vicious creatures.  
+~
+0 1036 0
+Rd     0
+D2
+~
+~
+0 0 25060
+S
+#25095
+Disantai's Emporium~
+Disantai's Emporium is arguably the best magic store in all the realm.  A
+powerful mage and even more powerful merchant, Disantai's prices are steep,
+but her goods are high quality.  If you are looking for a hex or a powerful
+magical aid, you have come to the right place.  Disantai herself comes to
+the counter to greet you and display her wares.  
+~
+0 1036 0
+Rd     0
+D2
+~
+~
+0 0 25061
+S
+#25096
+Top Floor of the Western Tower~
+This is where the Guard Councillor of Bethaven makes his office and home.
+A small portable wall has been made for him to separate his office from his
+little apartment here in the tower.  He is almost always here because his
+duty is his life.  He sleeps rarely, as you notice from the made-up bed
+behind the portable wall.  The apartment (from what you can see) is kept
+clean and tidy and his office is likewise to guard specifications.  A large
+desk with papers all about it are stacked neatly in small containers marked
+INBOX and OUTBOX.  An ink vial and quill also sit neatly upon the desk.  
+~
+0 2098188 0
+Rd     0
+E
+outbox~
+Among the papers in the OUTBOX container, you spot one that has the name of
+Merc's Tavern upon it. Also with this are several invoices of payment
+references to each Guard working in the city of Bethaven.
+~
+E
+inbox~
+Filed here in the INBOX are several applications of guards-to-be.
+~
+E
+apartment~
+&cMabrook's apartment takes up almost half of the upper tower floor. It is
+kept neat and tidy. A large bed is the centerpiece to the room, as well as
+his own writing desk (which is closed). A dried wreath of flowers hangs above
+the desk... perhaps a gift from mother. A map also hangs beside the writing
+desk.
+~
+E
+map~
+&OThe map has been well taken care of. It is in very good condition despite
+it's age. It is a map of Bethaven.
+~
+D5
+~
+~
+0 0 25085
+S
+#25097
+The Artifactor's Emporium~
+This room is dimly lit, a single candle burning on a small table in the
+center of the room.  Incense pleasantly fills the air, and soft music plays
+in the background.  An elderly man stands silently in the corner of the
+room, almost obscured in the shadows.  He moves slowly towards you as you
+enter.  Perhaps you should say hello.  
+~
+0 1036 0
+Rd     0
+D2
+~
+~
+0 0 25063
+S
+#25098
+Bandal's Clergy Utilities~
+Bandals' clerical supply store has every holy item imaginable.  Totems
+containing spirits of the dead, and holy water are just a few of the many
+items which are available for purchase.  
+~
+0 1036 0
+Rd     0
+D2
+~
+~
+0 0 25064
+S
+#25099
+Bethaven City Vault~
+You are standing in a large metallic room.  This is where the citizens of
+Bethaven may do all of their financial transactions.  The room is glowing
+with a faint blue protective aura, keeping all of the money safe and secure.
+~
+0 16778252 0
+Rd     0
+D0
+~
+~
+0 0 25060
+S
+#25100
+Graystar Imports~
+This quaint little shop is neatly kept. Shelves lined with bottled and
+jarred goods show no sign of dust or disrepair, and are clearly labelled
+to make the storekeeper's job easier. The floor here is clean, and new. The
+floorboards, as you can see were recently put in, and varnished to a shine.
+The counter along the west wall is stained a dark brown and is made of new
+wood. A red and white marble countertop accents it nicely. A slight smell
+of pine wafts throughout the shop due to the potpourri cheesecloths that
+someone has strategically placed about. There is a small sign here for all
+to read.
+~
+0 2098188 0
+Rd     0
+E
+bottles jars goods~
+Jars of pickled vegetables, jams, sauces... bottled dressings and oils of
+all types.
+~
+E
+potpourri cheesecloths pine~
+The scent of pine lightly wafts throughout the store by means of the
+cheesecloths (containing fresh pine needles) hanging in various places.
+~
+E
+sign~
+&pWelcome to my humble shoppe citizens and travellers.
+ 
+I have come to settle here in Bethaven and to sell my fine wares
+to all. I have travelled through many continents and also have
+imports as per your inquiry.
+ 
+Dukkoti Graystar -- retired cleric.
+~
+D0
+~
+~
+0 0 25064
+S
+#25101
+Gowron's Meats and Specialties~
+When you enter, the smell of spiced meats assails your senses.  All around
+you, you can see nicely-sized cuts of meats from all over the continent.  A
+few shelves line the southern wall of the store, while to the east, there is
+a small back room where you can see more meats hanging fresh on their
+meathooks.  The counter along the west wall is made of stainless steel to
+prevent bacterias from passing around when Gowron cuts his fine meat into
+orders.  
+~
+0 1036 0
+Rd     0
+D0
+~
+~
+0 0 25062
+S
+#25115
+Pet Shop~
+As you enter this store, various animal smells come to your attention. 
+The little animals in their tiny cages perk up as you walk by them, and the
+pathetic begging looks in their eyes tug at your heart.  Enough food and
+water is provided, and their cages are kept clean, but you feel sorry for
+them nonetheless.  A hawk screeches at you in defiance, and a little kitten
+mews for attention.  The bored-looking storekeeper watches these
+interactions with disinterest.  
+~
+0 5132 0
+Rd     0
+D3
+~
+~
+0 0 25054
+S
+#25116
+Where the pets are~
+These pets are waiting to be sold in the Bethaven pet shop.
+~
+0 132108 0
+Rd     0
+S
+#25117
+Mercenary Guild~
+The famed Mercenary's Guild of Bethaven has able men and women of all
+classes and races to rent as companions on dangerous adventures.  The cost
+is not cheap, but the service is well worth any cost.  These mercenaries are
+willing to lay down their lives for the person who rents their services. 
+They have little choice, for failing a client means a lifetime of indentured
+servitude for the Mercenary's Guild.  
+~
+0 5124 0
+Rd     0
+D1
+~
+~
+0 0 25045
+S
+#25118
+Where the mercenaries Are~
+The mercenaries of Bethaven are waiting here to be hired out to customers.
+~
+0 164892 0
+Rd     0
+S
+#25119
+Donation Anti Chamber~
+Upon entering this rather small room, the first thing you notice is a
+large brutish man standing in what looks to be a box with some arcane
+writing scribbled on it.  The room has five exits all leading in different
+directions.  Occasionaly you see a fellow adventurer leaving one of these
+other rooms with a smile on their faces, and a new item strapped to their
+backpack.  
+~
+0 132100 0
+Rd     0
+D0
+~
+~
+0 0 25126
+D1
+~
+~
+0 0 25000
+D2
+~
+~
+0 0 25128
+D3
+~
+~
+0 0 25127
+D5
+~
+~
+0 0 25129
+S
+#25120
+Note Room~
+The rules of the noteboard:
+Send all notes to ALL.
+ 
+Write about any ideas for new skills/spells.
+Write about any Skill/spell that should be axed.
+Write about spells you'd like to see modified.
+Report any bugged spells/skills (even if they benefit you)
+ 
+PLEASE keep the notes on topic!
+~
+0 8569868 0
+Rd     0
+D3
+~
+~
+0 0 25000
+S
+#25121
+A Barren Path~
+You are just inside the rusty gate. The land to the north looks barren and
+desolate. A chilling wind blows from the hills nearby. To the south are the
+familiar buildings of Bethaven.
+The barren path continues eastwards along the city walls...
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10301
+D1
+~
+~
+0 0 11836
+D2
+A gate is here leading into Bethaven.
+~
+gate~
+3 0 25025
+S
+#25122
+Outside the Northern Gates~
+As you step out this northern gate, you notice immediately that this is
+going to be a tough trip.  This area appears to be well travelled, yet
+deserted at the same time.  It suddenly comes to you that though the path is
+well marked, you don't think that many of the travellers have come back this
+way.  
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 2000
+D2
+This gate leads into the city of Bethaven.
+~
+gate~
+3 0 25016
+S
+#25123
+Gruam's Smithy~
+Gruam's Shop is swelteringly hot.  Sparks fly as Gruam pounds out metal
+on an anvil.  His sweat-soaked body ripples with muscles, and he looks up as
+you walk in.  Gruam's prices are reasonable, and it is very much more
+affordable to fix an item than to risk life and limb in replacing a broken
+item.  
+~
+0 67109900 0
+Rd     0
+D0
+~
+~
+0 0 25061
+S
+#25124
+Bethaven Post Office~
+Here is where the citizens of Bethaven congregate to find out the latest
+news, communicate with one another, and just generally socialize.  Along the
+back wall is a rack filled with pigeon holes.  Each hole seems to be crammed
+with notes and such.  There is a &Rsign&c here.
+~
+0 1036 0
+Rd     0
+E
+sign~
+&WWelcome to the Bethaven Post Office!  Here is where you can buy quill
+and paper, and learn how to remove a note from your list of notes.  To learn
+about writing a note, type help note.  To get a hard copy of a note sent to
+you, have some postal paper and a quill ready.  Now type &Rnote take # &W
+which will put the note into your inventory.  This will remove the note from
+the list, removing it from all recipients, and you will now have a note in
+your inventory titled "note from <sender>".  
+~
+D0
+~
+~
+0 0 25049
+S
+#25126
+Armor Room~
+Here you will find armor that has been donated for the less fortunate
+adventurers.  Feel free to take what you need, but we ask that you only take
+what you need and leave what you don't need for some others less fortunate
+than yourselves.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 25119
+S
+#25127
+Weapon Room~
+Here you will find weapons of all types and styles.  Feel free to take one
+that suits your needs and station here.  Please take only what you need
+for there are others less fortunate than you wandering these realms.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 25119
+S
+#25128
+Supply Room~
+In this room, you can find all manners of supplies donated by helpful
+adventurers.  Feel free to help yourself with anything left here.  Take  
+what you need and leave what you do not for the next needy adventurer.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25119
+S
+#25129
+The Magical AnteChamber of Bethaven~
+&PYou have entered an antechamber that has been magically sealed.  Runes
+surround you on pillars and walls.  Each possessing binding forces, for
+this room holds magical artifacts donated by adventurers exploring The
+Storm.  Some magical artifacts have minds of their own and the city of
+Bethaven will not permit those artifacts to be unattended.  Take what you
+wish, but be warned that magic is extremely powerful and most unpredictable.
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 25119
+S
+#25130
+The Morgue~
+Somehow in your travels you have managed to prove your own mortality to
+yourself, and those around you, by dying.  Fortunately, the gods were
+watching you and took pity upon you, granting you a new body.  If you are
+under level 20, your corpse should be here, if you are over level 20, you
+must go back to where you died to get it.  You can get the items from your
+corpse by typing GET ALL CORPSE.  If you wish to go to your temple, enter
+one of the portals, either ravenwood or bethaven depending on which town is
+yours.  Simply type enter bethaven or enter ravenwood to proceed.  Keep in
+mind, if you are not evil aligned, and go to Ravenwood, you will be jailed
+if you run into one of the guards.  
+~
+0 2098204 0
+Rd     0
+S
+#25131
+Vacant~
+~
+0 134348820 0
+Rd     0
+S
+#25132
+QuestMaster's Quarters~
+The only lumination in this room comes from a single candle burning
+brightly upon a small table.  The sweet smell of incense pleasantly fills
+the air, and the low strains of music seem to surround you.  Almost obscured
+by the shadows is a wizened old man.  He turns to look at you as you enter. 
+~
+0 394268 0
+Rd     0
+S
+#25200
+Entrance to the Grand Arena~
+You are standing in a small room.  The room is bare of any furnishings to
+prevent any form of combustion.  Within the room is a portal which leads to
+the Grand Arena.  It is safe to stand within the spectators area, but is
+quite dangerous within the gladiator wings.
+~
+0 132124 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 25000 spec_healer
+M 25001 spec_executioner
+M 25016 spec_cast_cleric
+M 25024 spec_cast_mage
+M 25026 spec_cast_cleric
+M 25027 spec_executioner
+M 25028 spec_executioner
+M 25029 spec_executioner
+M 25030 spec_executioner
+M 25031 spec_thief
+M 25035 spec_janitor
+M 25036 spec_fido
+M 25039 spec_cast_mage
+M 25040 spec_executioner
+M 25044 spec_thief
+S
+
+
+
+#RESETS
+M 0 25000 1 25000
+O 0 25001 0 25000
+M 0 25001 1 25001
+E 0 25000 0 20
+E 0 25003 0 6
+E 0 25004 0 5
+E 0 25005 0 11
+M 0 25002 1 25002
+O 0 25200 0 25002
+O 0 25002 0 25002
+M 0 25036 3 25003
+E 0 25058 0 3
+M 0 25037 6 25004
+M 0 25002 3 25005
+M 0 25037 6 25006
+M 0 25048 4 25007
+M 0 25039 1 25010
+E 0 25015 0 5
+E 0 25016 0 22
+M 0 25040 3 25011
+E 0 25018 0 20
+E 0 25017 0 14
+M 0 25030 2 25014
+E 0 25004 0 5
+E 0 25006 0 20
+M 0 25028 2 25015
+E 0 25004 0 5
+E 0 25006 0 20
+M 0 25048 4 25018
+M 0 25043 3 25021
+E 0 25007 0 11
+E 0 25036 0 20
+G 0 25044 0
+M 0 25048 4 25023
+M 0 25032 4 25025
+E 0 25056 0 1
+M 0 25029 2 25026
+E 0 25004 0 5
+E 0 25006 0 20
+M 0 25032 4 25027
+E 0 25056 0 1
+M 0 25043 3 25031
+E 0 25007 0 11
+E 0 25036 0 20
+M 0 25037 6 25032
+M 0 25031 2 25034
+E 0 25009 0 20
+M 0 25036 3 25035
+E 0 25058 0 3
+M 0 25037 6 25037
+M 0 25032 4 25038
+E 0 25056 0 1
+M 0 25037 6 25040
+M 0 25037 6 25041
+M 0 25033 3 25044
+E 0 25011 0 16
+M 0 25040 3 25046
+E 0 25018 0 20
+E 0 25017 0 14
+M 0 25047 1 25048
+M 0 25036 3 25050
+E 0 25058 0 3
+M 0 25038 3 25054
+M 0 25034 3 25056
+E 0 25007 0 11
+M 0 25031 2 25060
+E 0 25009 0 20
+M 0 25038 3 25061
+M 0 25032 4 25070
+M 0 25048 4 25072
+M 0 25040 3 25076
+E 0 25018 0 20
+E 0 25017 0 14
+M 0 25038 3 25078
+M 0 25043 3 25079
+E 0 25007 0 11
+E 0 25036 0 20
+G 0 25044 0
+M 0 25044 1 25080
+E 0 25049 0 18
+M 0 25034 3 25081
+E 0 25011 0 16
+M 0 25002 3 25082
+M 0 25011 1 25086
+G 0 25064 0
+G 0 25052 0
+M 0 25003 1 25087
+G 0 25019 0
+G 0 25020 0
+G 0 25021 0
+G 0 25022 0
+G 0 25060 0
+M 0 25004 1 25088
+G 0 25003 0
+G 0 25038 0
+G 0 25039 0
+G 0 25040 0
+G 0 25041 0
+G 0 25042 0
+G 0 25043 0
+G 0 25071 0
+G 0 25072 0
+G 0 25073 0
+G 0 25074 0
+M 0 25014 1 25089
+G 0 25026 0
+G 0 25027 0
+G 0 25028 0
+G 0 25029 0
+M 0 25013 1 25090
+G 0 25030 0
+G 0 25031 0
+G 0 25032 0
+G 0 25033 0
+G 0 25034 0
+G 0 25045 0
+G 0 25046 0
+M 0 25005 1 25091
+G 0 25068 0
+G 0 25069 0
+M 0 25006 1 25092
+G 0 25009 0
+G 0 25036 0
+G 0 25037 0
+M 0 25007 1 25093
+G 0 25075 0
+G 0 25076 0
+G 0 25077 0
+G 0 25078 0
+G 0 25079 0
+G 0 25080 0
+M 0 25008 1 25094
+G 0 25023 0
+G 0 25024 0
+G 0 25025 0
+G 0 25050 0
+G 0 25051 0
+G 0 25055 0
+M 0 25009 1 25095
+G 0 25016 0
+G 0 25035 0
+M 0 25016 1 25096
+M 0 25097 1 25097
+M 0 25012 1 25098
+G 0 25052 0
+G 0 25053 0
+G 0 25054 0
+M 0 25099 1 25099
+O 0 25099 0 25099
+M 0 25045 1 25100
+G 0 25026 0
+M 0 25046 1 25101
+G 0 25047 0
+G 0 25081 0
+G 0 25082 0
+G 0 25083 0
+M 0 25017 1 25115
+M 0 25019 1 25116
+M 0 25020 1 25116
+M 0 25021 1 25116
+M 0 25022 1 25116
+M 0 25023 1 25116
+M 0 25018 1 25117
+M 0 25024 1 25118
+M 0 25025 1 25118
+M 0 25026 1 25118
+M 0 25041 1 25119
+O 0 25119 0 25119
+O 0 25198 0 25120
+M 0 25042 1 25123
+M 0 25124 1 25124
+G 0 25051 0
+G 0 25062 0
+O 0 25101 0 25130
+O 0 25100 0 25130
+M 0 25132 1 25132
+O 0 25199 0 25200
+S
+
+
+
+#SHOPS
+25003 26 10 0 0 0 100 75 0 24
+25004 9 0 0 0 0 120 60 0 24
+25005 12 0 0 0 0 130 60 0 24
+25006 5 0 0 0 0 110 70 0 24
+25007 8 0 0 0 0 105 60 9 18
+25008 2 13 0 0 0 110 90 0 24
+25009 3 4 27 29 0 125 70 0 24
+25010 13 9 0 0 0 120 80 0 24
+25011 5 9 13 0 0 120 80 0 24
+25012 13 9 3 10 0 100 60 9 18
+25013 1 17 19 15 0 100 100 0 24
+25014 19 0 0 0 0 105 90 0 24
+25015 17 19 13 0 0 120 100 0 24
+25045 19 17 0 0 0 105 90 0 23
+25046 19 0 0 0 0 110 60 9 17
+25124 0 0 0 0 0 100 60 0 23
+0
+
+
+
+#$

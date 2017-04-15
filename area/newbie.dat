@@ -1,0 +1,55 @@
+#worth~
+By typing worth, you can view your strength, wisdom, intelligence, dexterity, constitution, and charisma.~
+It will also show you how much money you are carrying, as well as how much experience points you need to gain your next level.~
+#skills~
+Skills, unlike spells cost nothing in the ways of points. But your character has to practice them (measured in %) to know and use that skill.~
+Some skills are automatic, but most skills need a command from you to be used. Typing help skills and slist will give you some information on what skills you have or can use at each level of experience.~
+#class~
+You chose your class when you created your character. Help class will give you a list of all classes. Typing score will display your class, along with other useful information about you.~
+At a higher level, you will have a channel that only those in your class can see.If you type keywords found in your score, even "score", I can help you with those also.~
+#hitpoint~
+Your hitpoints measure your character's lifeline. Don't let them get too low without resting.~
+As you gain levels, your hitpoints will rise.~
+#group~
+Typing group will show you what level and class you are, and some basic statistics about yourself.~
+I can also give you help about what is shown when you type group.~
+#experience~
+By typing score, group or worth, you can view your experience points.~
+Each mob you fight will give you experience points to help you reach your next level.~
+#level~
+Soon you will be able to leave Mudschool. Type help level for more information.~
+You gain levels by gaining experience points, which you earn by fighting mobs.~
+#score~
+By typing score and pressing enter, you can view all kinds of information about yourself.~
+I can also give you help about the things listed in score.~
+#help~
+Are you alright? Maybe I can help!~
+Type help by itself, and type help <keyword> for more specific help.~
+#practice~
+You can practice at Hatchet, he's very wise!~
+He will only teach you part way though, and then you must learn on your own.~
+#race~
+You chose your race when you created your character. Type score to see what race you are.~
+You can also type help race, to view our different races. There is also help on each individual race as well.~
+#afk~
+By typing afk at any time, you inform everyone that you are &RA&Cway &RF&Crom &RK&Ceyboard.~
+This is shown to all by a flag on your character. It will disappear automatically when a command is typed into the keyboard.~
+#mana~
+All characters have mana, except Vampires who have blood points.~
+You need mana to cast spells. Each spell you cast costs a certain amount of your mana.~
+#blah~
+blah blha~
+blah blah blah~
+#bp~
+Vampires use &RB&Clood &RP&Coints to cast their spells as opposed to mana points.~
+Each spell costs a set amount of points when cast, be it blood or mana. Typing help spells will direct you to more information on your spells and spell costs.~
+#prompt~
+Your prompt displays your current Hit Points, Mana or Blood Points, and Movement points.~
+By typing help prompt, you will receive more information on how to adjust your prompt to suit you.~
+#channels~
+You already know how to use the "say" channel. Let's test out another of your channels.~
+After level 3 you will have access to all channels. To see what is available type channels. A + or - indicates if that channel is on or off respectively. All channels can be toggled.~
+#who~
+By typing who at any point, you will see a list of all players visible in the game... their titles, levels, races, classes... including your own.~
+Help who will give you more variations on how to get that list. It can be quite useful because the game can get quite busy, and rather than searching the whole list, you can search by class, race etc.~
+#END~

@@ -1,0 +1,239 @@
+#AREADATA
+Name        {??-???} PROTO AREA          Cluff~
+Levels      0 0
+Builders    Cluff~
+VNUMs       941 960
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#944
+scout~
+(no short description)~
+(no long description)
+~
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#960
+Sir Sedrick~
+(no short description)~
+(no long description)
+~
+~
+67 33554560 0 1000 S
+100 0 0 24000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#0
+
+
+
+#OBJECTS
+#945
+padlock Key~
+padlock Key~
+A metal key~
+~
+18 0 0 0 16385 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#950
+Embrace~
+&bCluff's &RLoving &WEmbrace~
+A faint white glow...~
+~
+9 3 879 0 9 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#959
+Adamant Helm~
+&cAdamant &zHelm~
+An indestructable helmet~
+~
+9 536870912 0 4096 17 100
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#960
+Adamant Blade~
+&cAdamant &zBlade~
+An indestructable sword, shining brightly~
+~
+5 603981891 311 0 8193 100
+0~ 0~ 0~ 3~
+12 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 40
+A
+18 20
+A
+12 75
+A
+13 100
+A
+17 -100
+A
+26 100
+#0
+
+
+
+#ROOMDATA
+#941
+Entrance to the Tower~
+Before you is the entrance to a rather small tower.  It looks as if it
+was used as a scouter's outpost at one point in time.  The bricks are faded
+and the condition of the stones is just short of being called a complete
+wreck.  It's a wonder that the tower is still standing..  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+51 0 942
+S
+#942
+The Base of the Tower~
+You stand in the base of the tower.  It is rather cramped, with barrels
+and bags lining the walls.  It looks as if the barrels and bags are rations,
+buy you can't be sure.  In front of you is a stairway leading up to the rest
+of the tower.  
+~
+0 131073 0
+Rd     0
+D2
+~
+~
+51 0 941
+D4
+~
+~
+0 0 943
+S
+#943
+Stairwell~
+This stairwell is dark and musty. Everything around you is not pretty
+to look at, and the stairs are even worse. Each step you take results
+in a loud creak...
+~
+0 131073 0
+Rd     0
+D4
+~
+~
+0 0 944
+D5
+~
+~
+0 0 942
+S
+#944
+First Landing~
+After a nervous trip up the stairs, you arrive on the first landing.  The
+room is dark, save the light coming from arrow slots in the walls.  More
+barrels and bags line the walls.  The dust in the place is amazingly low,
+then you soon realize why.  A man dressed in a dark cloak is pacing around
+the room, a sword in hand.  A trapdoor above you closes off the stairwell.  
+~
+0 0 0
+Rd     0
+D4
+~
+trapdoor~
+7 945 946
+D5
+~
+~
+0 0 943
+S
+#946
+Stairwell~
+You continue up the stairwell of creaky wooden steps.  No much is
+different from the stairs you travelled on earlier.  The air is musty and
+hard to breathe, and you cough mildly.  
+~
+0 131073 0
+Rd     0
+D4
+~
+~
+0 0 947
+D5
+~
+trapdoor~
+7 945 944
+S
+#947
+Second Landing~
+The second landing looks almost identical to the first.  Barrels and bags
+line the walls and light shines through arrow slots.  Above you is another
+trapdoor, but the key is nowhere to be seen.  A man wearing a heavy grey
+cloak is standing here.  Maybe he knows where the key is..  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 948
+D5
+~
+~
+0 0 946
+S
+#948
+Stairwell~
+~
+0 1 0
+Rd     0
+D5
+~
+~
+0 0 947
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

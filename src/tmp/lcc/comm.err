@@ -1,0 +1,29 @@
+cpp: d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c:45 Could not find include file <sys/time.h>
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: d:\cygwin\home\unknown\eos\eos\src\tmp\merc.h: 3553  Syntax error; missing semicolon before  `args'
+Warning d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: d:\cygwin\home\unknown\eos\eos\src\tmp\merc.h: 3553  no type specified. Defaulting to int
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: d:\cygwin\home\unknown\eos\eos\src\tmp\merc.h: 3553  syntax error; found `(' expecting `)'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: d:\cygwin\home\unknown\eos\eos\src\tmp\merc.h: 3553  skipping `(' `CHAR_DATA' `*' `ch'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: d:\cygwin\home\unknown\eos\eos\src\tmp\merc.h: 3553  Syntax error; missing semicolon before  `)'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: d:\cygwin\home\unknown\eos\eos\src\tmp\merc.h: 3553  skipping `)'
+cpp: d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c:116 Could not find include file <netdb.h>
+cpp: d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c:117 Could not find include file <netinet/in.h>
+cpp: d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c:118 Could not find include file <sys/socket.h>
+cpp: d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c:119 Could not find include file <arpa/telnet.h>
+cpp: d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c:371 Could not find include file <arpa/inet.h>
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 61  missing parameter type
+Warning d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 61  no type specified. Defaulting to int
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 61  syntax error; found `*' expecting `)'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 61  skipping `*' `in_set' `,' `fd_set' `*' `out_set' `,' `fd_set' ... up to `)'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 63  syntax error; found `*' expecting `)'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 63  skipping `*' `in_set' `,' `fd_set' `*' `out_set' `,' `fd_set' ... up to `)'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 63  extraneous old-style parameter list
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 116  undeclared identifier `IAC'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 116  initializer must be constant
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 116  undeclared identifier `WILL'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 116  initializer must be constant
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 116  undeclared identifier `TELOPT_ECHO'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 116  initializer must be constant
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 117  initializer must be constant
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 117  undeclared identifier `WONT'
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 117  initializer must be constant
+Error d:\cygwin\home\unknown\eos\eos\src\tmp\comm.c: 117  too many errors

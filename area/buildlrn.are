@@ -1,0 +1,281 @@
+#AREADATA
+Name        {IMMS}   Builder's School    Arch/Grunt~
+Levels      0 0
+Builders    Grunt~
+VNUMs       667 699
+Security    1
+Recall      25001
+Flags       16
+Color       6
+Sounds      &WA voice tells you '&gOload item &G667 &gand &pLEARN&W'~
+End
+
+
+
+#MOBILES
+#667
+Teacher~
+A teacher~
+The Room Building Teacher stands here to help you learn.
+~
+He's not much to look at, but he knows his stuff.
+~
+3 128 0 0 S
+103 0 0 33333d0+0 0d0+0
+0 0 0 0
+0 0 0
+15 0 0
+>act_prog p looks at you.~
+Say Hello, $n
+say one Room builders guide coming up!
+mpoload 667
+give guide1 $n
+say look guide1 to get started
+smile
+~
+|
+#0
+
+
+
+#OBJECTS
+#667
+food hours reference book~
+the Food Hours Reference Book~
+The Food Hours Reference Book for Builders is here.~
+~
+13 0 0 0 1 107
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+value miscellaneous~
+&YGENERAL COST VALUE FOR FOODS
+ 
+1 copper per food hour.
+Anything over 10 hours is 1 silver per food hour.
+
+&p**&YExotics and rare dishes are expensive. Most food in castles or
+  manors will be over-priced.&p**
+ 
+&YI'm sure that there are many food types and dishes that I have missed
+in this book. However, use your good judgement, and/or take the max
+from something in this book that is Like what you have. Don't make
+things with too little or too many food hours.
+ 
+&WHappy building and stay creative!
+ 
+                          Sherf Falconhand. &B[CREATION HEAD]&W July '97
+~
+E
+rations~
+&YRATIONS FOOD HOURS REFERENCE GUIDE
+ 
+COPY Bethaven vnums &p25045&Y and/or &p25046&Y. These are described as various
+dried fruits, veggies, nuts, spices (survival food) and is the best
+deal, but not very RP to eat all the time. I don't want to see these
+everywhere so &pPLEASE USE ONLY IN LARGE TOWNS &Ythat will have a
+general, grocery or travel store.
+~
+E
+food hours book contents~
+&YCONTENTS
+ 
+BAKED GOODS
+SOUPS
+VEGETABLES and FRUITS
+MEATS
+RATIONS
+VALUE and MISCELLANEOUS
+ 
+&WThis reference book created by Sherf Falconhand.
+~
+E
+meats~
+&YMEATS FOOD HOURS REFERENCE GUIDE
+ 
+&pDRIED &Ymax 4-6 food hours.
+&pSTEAKS &Ymax 8-10 food hours.
+&pPASTA w/MEAT dishes&Y max 12 food hours.
+&pCHICKEN WINGS &Ymax 5 food hours.
+&pROASTS&Y &Ymax 10-12 food hours.
+&pPOULTRY &Ymaxes 8-10 food hours.
+&pEGGS &Ymax 3 food hours.
+ 
+&p**&YI want to see almost ALL raw meats with a poison flag (v1)&p**
+~
+E
+vegetables fruits~
+&YVEGETABLES and FRUITS FOOD HOURS REFERENCE GUIDE
+ 
+&pFRESH FRUIT&Y maxes 2-4 food hours.
+&pFRESH VEGETABLES&Y max 4 food hours.
+&pCOOKED VEGETABLES&Y max 6 food hours.
+&pBEANS and LENTILS&Y max 5 food hours.
+&pSALADS&Y max 3 food hours.
+&pSALADS w/MEAT&Y max 6 food hours.
+&pPASTA SALADS &Ymax 5 food hours.
+~
+E
+soups~
+&YSOUPS FOOD HOURS REFERENCE GUIDE
+ 
+&pVEGETABLE&Y soup maxes 5 food hours.
+&pMEAT&Y soup maxes 6 food hours.
+&pVEGETABLE/PASTA&Y maxes 6 food hours.
+&pMEAT/PASTA&Y maxes 7 food hours.
+&pMEAT/VEGETABLE/PASTA &Ymaxes out at 9 food hours.
+&pBROTHS&Y max at 3 food hours.
+~
+E
+baked goods~
+&YBAKED GOODS FOOD HOURS REFERENCE GUIDE
+ 
+&pPASTRIES&Y,&pCAKES&Y and the like max 2-4 food hours.
+&pROLLS&Y,&pBAGELS&Y,&pPITAS&Y,&pMUFFINS&Y,&pTOAST&Y max out at 4-6 food hours.
+&pLOAVES&Y max at 6-10 food hours.
+&pPASTA&Y maxes out at 8-10 food hours.
+&pCEREALS&Y max out at 5 food hours.
+ 
+~
+#0
+
+
+
+#ROOMDATA
+#667
+Entrance to Builders University~
+Welcome to the School for new builders.  As you travel through each room,
+carefully study the lessons taught within.  The final room will have an
+exam, which you must send me a note with the answers.  If you pass, you will
+be allowed to build, if you fail, you go back to school until you learn. 
+Building is not for everybody, and I wish to be selective in who I choose.  
+ 
+&zArch Shaldyr
+&z-<&CHead of Creation&z>-
+~
+0 402436 0
+Rd     0
+D0
+~
+~
+0 0 668
+S
+#668
+&WHOW TO DO RESETS~
+The syntax is:
+&RMreset &P(mob vnum) &B(Max in AREA) &w-resets a mob to CURRENT ROOM
+&ROreset &P(obj vnum) &B(Mob name) &W(wear-loc)&w-resets an obj to mob in room.
+&ROreset &P(obj vnum) -resets an obj in room on floor/ground
+ 
+&YUse common sense when doing resets. There's a certain order which works:
+Mob. Items on mob. Items on floor.
+If there's more than one mob, make sure they don't have the same name, 
+or things will get screwy.
+Also, make the mob SENTINEL while you type in the resets, then remove it.
+The mud needs the mob in the room to do the resets correctly.
+ 
+If there's more than one mob, make sure you FINISH EQUIPPING 
+The FIRST MOB before moving on to the next one!
+ 
+Only reset mobs/objs from the vnums you were given.. don't reset stuff from other areas.
+ 
+If there's more than one of the SAME MOB (same vnum):
+ 
+set the max that should be in entire area.. (so if the same mob apears
+once in 2 different rooms.. max is 2)
+equip only one mob in each room.
+simple.
+~
+0 1032 0
+Rd     0
+E
+sign~
+Ok first you need to create a room.
+REDIT create (vnum) (our examples will use 1234)
+you should use one of the vnums assigned to you for this.
+You will get a Room Created message. (Hint: ALWAYS watch the replies you get)
+Next Up: Short desc. this is the NAME of the room
+The name of the room you are in is 'A lesson in ROOM editting' for example.
+After you have set the name, the next part is the Long Description.
+This is what people will see, your chance to give information about the room
+itself.
+You can edit the room desc. by typing desc and enter
+(Note after typing in the description, always .f (format) and .s (show
+this allows you to proofread your work and make it look neat.)
+You now have a room. With a description.
+What next? Exits! People may want to leave occasionally..
+The syntax is:
+dir (dig/link/room) vnum
+Dir is for north,south,east,west,up,down
+dig= Digs a 2 way exit and creates the vnum room specified
+link= links this room to another existing room with a 2 way exit.
+room= makes a one way exit (Use only in RARE instances)
+Want a door? make one!
+the syntax is direction (flag)
+available flags are:
+door: makes a door
+closed: defaults the door closed
+locked: the door is locked. you need a key to open it,
+the thing to do is make an object and use it's vnum as the key
+so if the door is locked, south key vnum sets the obj vnum as the key.
+other flags to add are:
+pickproof: picklock always fails.
+bashproof: You hit the door hard, but it wont budge
+NOTE: Make sure BOTH sides of the door have a key flag, unless
+it is a one-way locking door (coffin lid, secret passage)
+ALSO: if it's a door, make sure it is named that
+the door flag does not name the exit a door, just makes
+a door there.
+use dir name exitname
+ex: south exit door
+or north exit gate
+~
+D2
+~
+~
+0 0 667
+S
+#669
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 670
+S
+#670
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 669
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

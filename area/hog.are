@@ -1,0 +1,589 @@
+#AREADATA
+Name        {  IMM } Hall of the Gods    Kadyr~
+Levels      0 0
+Builders    Sherf~
+VNUMs       2200 2299
+Security    0
+Recall      25001
+Flags       16
+Color       6
+Sounds      The winds of eternity blow through your mind.~
+End
+
+
+
+#MOBILES
+#2202
+george purple thing~
+George~
+There is a purple thing crawling on the ceiling here.
+~
+The critter is a one eyed, one horned, crawling, purple, people eater.
+It tries to eat anyone that enters the room but since he has no teeth, he just slobbers all over you.
+~
+129 128 0 250 S
+3 0 0 30d0+0 0d0+0
+0 0 5 0
+0 0 1
+67108867 0 0
+#2205
+Servant~
+A Zombie~
+A Zombie
+~
+~
+67 0 0 0 S
+1 0 0 20d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>speech_prog Wine~
+say Yes $n
+say Your Wine
+mpolo 9513
+give wine $n
+smile
+~
+|
+#2212
+demon inner~
+Grunt's Inner Demons~
+A mass of burning souls howls in agony as it twists about the room.
+~
+The inner demons have somehow escaped from Grunt's subconcious and
+manifested themselves upon the physical world.  Looking closely you see
+flashes of pain, fear, despair, and hate sweep across the faces which rise
+to the surface of this hovering mass.  To fight this abomination is useless,
+for only Grunt himself can release it from this world, and that is a
+difficult task, even for him.  
+~
+67 100679720 0 -1000 S
+115 0 0 999999d0+0 0d0+0
+0 0 0 0
+0 0 0
+67587 0 0
+#2220
+test~
+(no short description)~
+(no long description)
+~
+~
+1 0 0 1000 S
+113 0 0 100000d0+0 0d0+0
+10000000 0 0 0
+0 0 0
+0 0 0
+>act_prog ~
+~
+|
+#2232
+Marlboro Man~
+A scruffy coughing man~
+The Marlboro Man is here puffing away
+~
+The Marlboro man looks at you inquisitivly and says 'sup dude, gotta smoke? I'm fresh out'
+~
+65 167788796 0 1 S
+111 0 0 150000d0+0 0d0+0
+0 0 0 0
+0 0 1
+396 0 0
+>greet_prog 100~
+if name ($n) == Belwar
+mpoload 20506
+say Hey Belwar, here's those smokes buddy. Light up!
+give cigarette belwar
+else
+emo coughs loudly as he puffs away on a Marlboro
+endif
+~
+>rand_prog 9~
+mpecho The Marlboro Man coughs loudly and mutters something about lung cancer
+~
+>act_prog ~
+~
+|
+#2233
+Dormamu~
+&rD&Ro&Yr&Wm&Ra&Rm&ru~
+&rD&Ro&Yr&Wm&Ya&Rm&ru &gthe &Yholy &gmerchant resides here!
+~
+~
+67 369124016 0 1000 S
+100 0 0 50000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>act_prog p spanks you playfully.  OUCH!~
+if name ($n) == Barlow
+say Thank you sir, may i have another.
+say I like it, I love it, I want more of it.
+emote bends over your knee.
+else 
+smile $n
+say Spank your own monkey pervert!
+say this will teach you!
+mpforce $n rem all
+mpforce $n drop all
+smile $n
+say Have a very nice day!
+cackle $n
+endif
+~
+>speech_prog p go get me a woman!~
+if name ($n) == barlow
+emote twiddles his paws in the air.
+say a blond nympho tonight barlow? 
+mpmload 11898
+say She is hot and ready tonight barlow.
+emote rubs his paws all over the nympho.
+mpforce nymphette nasty barlow
+else 
+cackle $n
+say go get your own woman, you ugly bum!
+laugh $n
+endif
+~
+>act_prog p looks at you.~
+if name ($n) == Barlow
+mpecho The Cujo dog looks at Barlow.
+whistle BARLOW
+else
+fume $n
+growl $n
+endif
+~
+>greet_prog 100~
+look $n
+if is npc ($n)
+say What are you doing in here! Im the only mob in here!
+emote barks loudly and growls at $n.
+mpkill $n
+else
+note to barlow
+note subject $n has come
+note + $n has entered
+note post
+endif
+?
+~
+>rand_prog 0~
+look cujo
+say darn, that Barlow is &.cool, eh? 
+emote looks around the room, man he sure loves &.Eos.
+endif
+~
+|
+#2244
+arrow cooshie _SHERF~
+Arrow~
+A big Cooshie sits here obediently.
+~
+When you look upon the Cooshie, it has an appearance somewhat like a dog
+or a hyena. It is yellowish in colour, with brownish spots. It's paws are
+round and stubby, and teeth are bared in a permanent grin.
+~
+3 128 16 0 S
+40 0 0 2500d0+0 0d0+0
+0 35 0 0
+0 0 0
+4099 0 0
+#0
+
+
+
+#OBJECTS
+#2202
+no name~
+(no short description)~
+(no description)~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2205
+Phalse's Enchanted Drafting Table~
+Phalse's Mystical Drafting Table~
+Phalse's Mystical Drafting Table~
+~
+12 3 0 0 0 1
+0~ 0~ 0~ 0~
+1000 110 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2208
+key oak Flint~
+a key made of oak~
+A key made of oak is here~
+~
+18 0 0 0 0 0
+1~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2217
+ISABO fireplace~
+iSABO'S fireplace (and no one elses :P)~
+&RA fireplace roars cheerfully here.~
+~
+29 33554432 0 0 0 0
+25000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2237
+mug~
+Flint's Coffee Mug~
+Flint's Coffee Mug~
+~
+17 1 0 0 0 0
+16385~ 100~ 12~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2244
+chair SHERF~
+large chair with straps~
+A phenomenally huge, straight-backed steel chair with restrictive leather straps.~
+~
+29 1 0 0 0 1
+25000~ 0~ 0~ 0~
+50000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#2200
+Dandin's Office~
+~
+0 4 0
+Rd     0
+S
+#2201
+Artemis' Garden~
+&g      ,sssss,
+            &g    Sa$--^^-$$ .,....,
+        &g       ` &Y^.sSSSm,`&gS$$$$$$a,.
+       &g  % .amSSS&Y SS$$$SS &gS$$$$$$$$$a%
+     &g  %aSS$$$$$$,&Y`2SSSS-.&g`$$$$$$$$$$$%
+    &g  %,%S$$$$$$$$$sn^ ,k   %`$$$$$$$$$%
+    &g  %S$$$%$$$$$^ Ssds$s % % %-S$$$$$$%
+    &g   S$$$$$$$-  dd$$$$$$s%     `^^^^`%
+         -S$$$$$- %|S$$$$$$$$%          ll,
+           -^^-   %%S$$$$$$$$%         dSSs.
+                  %`S$$$$$$$$%       a$$$$$$
+                    `S$$$$$$^'     ,$$$$$$$$
+                      -^^^^ SSs  ,$$$S$$$$$%
+                          `d$$. .$$$$$$$$s%
+                             $$f,$$$$$$$%
+                              $$$,%$$s^
+                               `$$
+                                %$$.
+                                 %$$
+              %%%%%%%%%ddsf%ffdss%$$%sdfgfd%%%%%%%
+                      %%%%%%%%%%S$$`%%%%%%%%%%%%%%%%
+ 
+ 
+~
+0 4 0
+Rd     0
+S
+#2202
+Draco's Assylum~
+This room is where the sane become crazy and the crazy become sane.
+~
+0 12 0
+Rd     0
+S
+#2203
+Tarlis' Sanctuary~
+This is a temporary desc, til you tell me what you want. You may also
+have one pet and one object.
+~
+0 393236 0
+Rd     0
+S
+#2205
+Phalse's Office~
+Welcome to Phalse's Drafting room.  Walking in you see plans tacked up
+everywhere.  In the center of the room is Phalse's Drafting Table (it too is
+covered with sketches, plans, etc.)  
+~
+0 1028 0
+Rd     0
+S
+#2206
+&WW&Ch&We&Cr&We &CD&Wr&Ce&Wa&Cm&Ws &CA&Wr&Ce &WM&Ca&Wd&Ce&W~
+&CIf there were &Wclouds&C in the Hall of the Gods, this would be the place.
+This is where all &Wdreams&C are made. It is said that all forms of Earthly
+Weather are made by the Gods of &BCREATION&C. This "legend" is in fact, a truth.
+This weather, as they say is the actual brain storming of the creators at
+work. No decision is made lightly, and no idea is born unconsidered. Care and
+detail are put into every creation born, as there is nothing more important
+to the Gods than the Children of &YThe Storm&C.
+~
+0 4 0
+Rd     0
+E
+creation~
+&BCREATION is a team of kick-ass builders who strive on making their Mud
+a better and bigger Mud. Always looking to improve, improvise and add more
+exciting ways to enjoy your stay.
+ 
+We rock.
+~
+E
+dreams~
+&pRemember, when making your area always keep with the medieval theme
+that we have going here on our Mud. It is usually a good idea to have
+mapped out some or all of your area (on paper) before getting to work
+online. This will give you more of an idea as to how many vnums you will
+need and where you will go with it. No idea is a bad idea, although
+modifications are often necessary. You all work very hard at what you
+do. We at The Storm appreciate you and send out our gratitude. Work
+hard, pace yourself and get things done right the first time.
+ 
+A little ditty from Sherf. :)
+~
+E
+clouds~
+&WKnow ye that herein lie the rules that govern &BCREATION&W.  Out of the
+chaos of the premature destruction of &YThe Storm&W were we created, and out
+of this we must create order.  This is our duty and responsibility.  To this
+end, the following guidelines and procedures are to be met.  
+ 
+&B-&WIf an area is ready to be checked, it is your duty to make sure that it is
+ complete and to inform &RThe Storm Lord&W and &BCreation Guildmaster&W.
+&B-&WIn doing this, you must state two(2) options of where you wish the area to be
+ linked (you know your area best, use your good judgement).
+&B-&WThe &BCreation Guildmaster&W will then go through the area, informing you of any
+ critiques regarding the quality of the area
+&B-&WAll guidelines found in &YGrunt Neanderthal's Unabuilder&W and in the
+&Y Mobprogramming Guide by Angi and Wynn &Wmust be followed unless cleared by
+&R The Storm Lord&W or &BCreation Guildmaster&W.
+&B-&WNo one but &RThe Storm Lord&W or &BCreation Guildmaster&W is to link an area
+ or build in areas not their own (unless appointed by the &RLord&W or &BGuildmaster&W).
+&B-&WAll new areas to be built are to be approved by &RThe Storm Lord&W and/or
+&B Creation Guildmaster &Wbefore vnums are assigned.
+&B-&WIn order to receive varification, you must inform the &BGuildmaster&W of
+ the concept, level range and size of the area when requesting vnums.
+&B-&WIt is the responsibility of the &BGuildmaster to check and link areas as
+ soon as possible and to ensure quality.
+&B-&WIt it the duty of the Guild &BMembers &Wto be thorough and to keep the
+ Guild informed.
+&B-&WProlonged negligence of the above rules shall be viewed as grounds for
+ dismissal from the Guild. In additiong, extended periods of time in which a
+&B Member &Wdoes not accomplish any of the above functions can be viewed as
+ grounds for dismissal from the &BGuild&W.
+&B-&WAbove all, remember that we are here to serve &YThe Storm&W and are
+ basically nothing more than glorified builders with administrative
+ responsibilities.
+ 
+~
+S
+#2212
+&pThe House of &RNeanderthal&p.~
+The room is very large and extremely cold, with no windows whatsoever as
+far as you can see.  The air is very damp and stale, and the dim light given
+off by a couple of flickering black candles is barely enough to see by.  The
+presence of some sort of dreary sorrow hangs about the room like a thick
+fog, enveloping you and attempting to suck you in.  
+~
+0 84018712 0
+Rd     0
+E
+blah~
+Blah 
+~
+D5
+~
+~
+0 0 25000
+S
+#2213
+REKLARS CAVE~
+&b&b&B&Y'' ' ' ''' ' '' ' ' '' ' ' ''' ' ' '' ' '' '' ' ' '' ' ' ' ''  ' ''''
+' ' ' ' '' ' '' ' ' '' ' ' ' '' ''' ''  '' ''''''''' ' '' ' ' ''''''' 
+'''''' '' ' '      ' '' ' ' '     ' '' ' ' ' '' ' '  ' ' ''   ' '' ' '
+' ' ' ' '' ' '' ' ' '' ' ' ' '' ''' ''  '' ''''''''' ' '' ' ' ''''''' 
+' ' ' ' '' ' '' ' ' '' ' ' ' '' ''' ''  '' ''''''''' ' '' ' ' ''''''' 
+' ' ' ' '' ' '' ' ' '' ' ' ' '' ''' ''  '' ''''''''' ' '' ' ' ''''''' 
+'''''' '' ' '      ' '' ' ' '     ' '' ' ' ' '' ' '  ' ' ''   ' '' ' '
+'''''' '' ' '      ' '' ' ' '     ' '' ' ' ' '' ' '  ' ' ''   ' '' ' '
+' ' ' ' '' ' '' ' ' '' ' ' ' '' ''' ''  '' ''''''''' ' '' ' ' ''''''' 
+'''''' '' ' '      ' '' ' ' '     ' '' ' ' ' '' ' '  ' ' ''   ' '' ' '
+' ' ' ' '' ' '' ' ' '' ' ' ' '' ''' ''  '' ''''''''' ' '' ' ' ''''''' 
+' ' ' ' '' ' '' ' ' '' ' ' ' '' ''' ''  '' ''''''''' ' '' ' ' ''''''' 
+'''''' '' ' '      ' '' ' ' '     ' '' ' ' ' '' ' '  ' ' ''   ' '' ' '
+' ' ' ' '' ' '' ' ' '' ' ' ' '' ''' ''  '' ''''''''' ' '' ' ' ''''''' 
+'''''' '' ' '      ' '' ' ' '     ' '' ' ' ' '' ' '  ' ' ''   ' '' ' '
+~
+0 12 0
+Rd     0
+S
+#2214
+Angi and Xavier's Special Room~
+&YThis is Angi's special room.  Here Angi sits back and watches the world
+go by.  A huge fireplace is built into one wall.  It's warm, soft glow is
+the only light in the room.  A deep plush couch seems to be Angi's favorite
+spot as it is where you can find her most nights.  Whether she is curled up,
+gazing into the romantic flames or sitting on the edge of the couch, working
+on the code, she's always here.  Feel privileged, and don't make a lot of
+noise.  This is Angi's special place.  
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 60
+S
+#2216
+&rVermilions Office~
+&z=&G===================&z=
+&PIt looks as if Vermilion is waiting for his interior decorator to show
+Up.  Boxes filled with junk litter the floor and the wallpaper is starting
+To fade and peel.  There is a picture of a very BEAUTIFUL woman on the wall.
+&z=&G===================&z=&P
+~
+0 0 0
+Rd     0
+E
+picture~
+Setting your eyes on the wall, you are overcome with awe because of the
+beauty of the woman in the picture.  Her reddish hair is braided down her
+back, and just about touches the floor, attached to that hair is a beaming
+youthful face.  The picture is enscribed...  
+&YMonique Dubeau, the Princess Ranger  87/02/18
+~
+D0
+~
+~
+0 0 25124
+S
+#2217
+Isabo's Room Of Strange Occurences~
+&CThis is Isabos playroom.  It is bright and cheerful with many toys to
+entertain you.  Only they are floating around of their own volition so
+beware of being hit.  A happy fireplace is in the center of the room with a
+cheerful &Yf&Ri&Or&Ye &Cblazing all around.  
+~
+0 84289560 0
+Rd     0
+D5
+~
+~
+0 0 25001
+S
+#2231
+Squad Room~
+&YThis is the hub of all Mud Police activity.  All, at least most
+operations are conducted from here.  In the far corner sits a beat-up old
+typewriter awaiting a report to be hammered out on it.  Located in a more
+cental part of the room is a large coffee machine and a box of doughnuts
+ready for the next shift.  There are four desks piled high with papers,
+reports, empty take-out coffee mugs, junk food wrappers and the odd pair of
+handcufffs.  Xavier's desk is the largest and sits off to one side.  You can
+never tell if he is there or not, as it is impossible to see over the huge
+pile on his desk.  
+~
+0 12 0
+Rd     0
+S
+#2232
+Xavier's Home for Old Warriors of the Storm~
+You have entered Xavier's Home for Old Warriors of the Storm.  This room
+is a spot where old friends can meet and reminicse about old times and
+fallen comrades.  In one corner there is a pretty young pixie in a nurses
+uniform serving a mild decaffinated coffee for those who are weak of
+bladder.  In the far corner, there is a bar specializing in drinks for those
+of a slightly stronger constitution.  Have no fear, all drinks are based
+upon prune juice.  There are lots of ways for all of our aged warriors to
+relax here.  In the middle of the room there is a nice pool table, and you
+think you see a couple of your former brothers-in-arms at the shuffle board
+area over against the wall.  To your amazment, you realize that this place
+is what you finally deserve after all those years of battle, a nice quiet
+place to relax, swap lies about monsters you fought and complain about
+how today's warriors just don't seem as tough as in your day. Enjoy yourself
+here!  
+Look plaque for a list of fallen comrades and brothers-in-arms who we miss.
+~
+0 4 0
+Rd     0
+E
+plaque~
+Here is a list of fallen comrades whose passing we mourn:
+Belwar, KaLourin, Zleen, Kevin, Stargazer, Malabar, Misery, Tamarick, Galad,
+Insane, Annice, Aglovale, Narcissia, Nemesis, Brinna, Seryna, Trenz, Mik, Ozzy,
+Lance, Ishma, Sturm, Magius, Keirkan, Zalasta, Sin, Aldwin, Kalten, Muerte,
+ 
+Any mistakes/others you'd like to see added, please send a note to Xavier.
+~
+S
+#2233
+Flint's Secret Office~
+Flint's office seems to be more like a library than an office.  Floor to
+ceiling oak bookshelves line this room.  Each shelf contains books, scrolls,
+and parchments of all types.  On the northern wall, there is a huge bay
+window, with a balcony where Flint can stretch out and relax.  Near the
+window, is a large wooden desk, that is covered with papers, books, and
+various implements of death.  Hanging over the doors, are a set of epees,
+crossed in the center of the blades.  A large slate pool table is sitting
+near the east wall.  
+~
+0 4 0
+Rd     0
+S
+#2244
+Sherf's Happy Place~
+When you enter the room a sweet aroma comes over you that you simply cannot
+place. A sensation of great power relaxes you and puts you at ease.
+You suddenly feel an uncontrollable urge to sit down...
+~
+0 8204 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+M 0 2202 1 2202
+M 0 2205 1 2205
+O 0 2205 0 2205
+O 0 2217 0 2217
+M 0 2232 1 2232
+M 0 2244 1 2244
+O 0 2244 0 2244
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

@@ -1,0 +1,1659 @@
+#AREADATA
+Name        { 50-70} DeathFang Manor     Calis~
+Levels      50 70
+Builders    Calis Vala~
+VNUMs       11800 11899
+Security    100
+Recall      25001
+Flags       0
+End
+
+
+
+#MOBILES
+#11800
+Deathfang kurat~
+Kurat~
+Kurat, One of the unholy defenders of the Manor
+~
+The Kurat Guards are what you could call primal.  They appear to have
+only come out of the tree's within the last century or so
+They are truly hideous beasts, with hairy bodies consisting of a brown matted
+fur and long tusks that are upturned at the snout.  They are however
+very loyal to Raisk, for who knows what reason. And they guard the halls
+of his Manor effeciantly and without regard for their own lives.
+~
+65 17056 0 -200 S
+60 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>fight_prog 30~
+emote tries to kick you.
+kick
+~
+|
+#11801
+Guardian~
+DeathFang Guardian~
+A Guardian of the Manor stands here
+~
+These are the ugliest creatures you have ever seen before in your life! 
+They stand here guarding their ancestrol home of DeathFang Manor.  
+~
+35 268436136 0 -200 S
+50 0 0 4000d0+0 0d0+0
+0 0 0 0
+0 0 0
+43 0 0
+#11802
+P'Rusky Guardian~
+P'Rusky~
+P'Rusky is upset at your intrusion, and Attacks!!
+~
+Before you stands the famous P'Rusky Guardians of the Manor
+They are tall beings, standing almost 7 feet in height, their bodies are 
+almost totally devoid of hair.  And long fangs are apparent at the top of their
+mouths dripping acidic saliva onto the floor.
+~
+3 67109544 0 -750 S
+54 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>fight_prog 30~
+say &R$n, &Cyou shall pay for disturbing me.
+kick
+~
+>fight_prog 29~
+say &R Give me that weapon, you don't need it where your going.
+disarm
+~
+>fight_prog 28~
+wear all
+~
+|
+#11803
+Deathfang Raisk~
+Raisk DeathFang~
+Raisk is sitting here upon his Throne of Bones
+~
+Before you stands a being of pure and utter evil. Raisk is a creature who rules
+his Manor with an Iron Fist and does not take kindly to uninvited visitors,
+He sits before you on his throne of bones, made from the remains of the
+previous adventurers that have unfortunatly made his aquaintance.
+~
+3 239075496 0 -1000 S
+70 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>greet_prog 100~
+muhaha
+say &R$n, you've made it this far and this is where you shall die.
+say &Rnobody meets me and lives to talk about it.
+~
+>fight_prog 30~
+emote tries to kick you.
+kick
+~
+>fight_prog ~
+say &RGive me that weapon, you don't need it.
+disarm
+get all
+~
+|
+#11804
+vault keeper~
+Vault Keeper~
+The Keeper of the Vaults Attacks at your Intrusion!
+~
+Before you stands a man, loyal to and trusted by Raisk to guard his many
+and valuable treasures.  He will fight to the death before he allows an 
+intruder to make off with anything he has been set to guard.
+~
+99 268436008 0 -650 S
+57 0 0 6500d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#11805
+Kulm~
+Kulm~
+Kulm, leader of the Guardians attacks with a fury!
+~
+Sitting at his desk, sits Kulm, leader of the Guardians.
+Kulm is Raisk's right hand man. His sole job is to see that noone makes it
+so far into the manor as to create a disturbance to his Lord.  In honoring
+that oath to his Master.  Kulm has spelled the end for many.
+~
+3 17056 0 -250 S
+53 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#11806
+Meri~
+Meri~
+Meri heals all that come his way.
+~
+Before you sits a man of honour. Tricked into service by the  
+evil Raisk DeathFang, he is forced to heal the guards and employees in his employ.
+Meri has no chance to escape, but in hopes that one day some brave
+adventurer will destroy Raisk, Meri heals those that will pass, in hopes of
+someday gaining his freedom
+~
+3 128 0 1000 S
+50 0 0 4500d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11807
+vastik doorman~
+vastik~
+The Doorman to this Manor grins at you.
+~
+Vastik, who is a former guardian for Raisk, now spends his day as a doorman.
+He is about 6 feet tall, and has a body devoid of any hair, and log pointed 
+fangs upturned at his horrible snout.
+~
+3 128 0 -30 S
+51 0 0 3000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#11808
+Tiffany~
+Tiffany~
+A beautifull Nymphomaniac sits here promoting safe sex.
+~
+This sweet young looking girl is in eternal service to Calis.
+She has a massive apetite towards the carnal desires, but she is an advocate
+to safe sex, and defends that furiously.
+~
+3 128 0 0 S
+1 0 0 1d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>greet_prog 100~
+if ispc ($n) == 1
+smile $n
+say Hi! Calis will be with you in a moment if he can, in the meantime, may i entertain you? 
+wink $n
+lick
+tell calis $n is in your Love Shack, please see what $n wants, im scared.
+endif
+~
+|
+#11809
+Deathfang Vampire~
+Undead vampire~
+An undead vampire walks around looking for a puddle of blood.
+~
+~
+8257 128 0 -100 S
+50 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#11815
+mob~
+mob~
+(no long description)
+~
+~
+1 0 0 0 S
+100 0 0 2d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11897
+joe~
+Joe~
+Joe the test shopkeeper
+~
+~
+3 128 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11898
+chick blond nymphette~
+Blond Busty Nymphette~
+A Beautifull Blond Nymphette is here waiting to pleasure you.
+~
+This womans sole goal in life is to pleasure you!
+~
+1 0 0 1000 S
+50 0 0 3500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>act_prog ~
+~
+|
+#11899
+someone~
+someone~
+Kickass
+~
+~
+65 234898048 0 0 S
+101 0 0 100000d0+0 0d0+0
+0 0 0 0
+0 0 0
+4092 0 0
+#0
+
+
+
+#OBJECTS
+#11800
+sword destruction blade~
+destruction~
+A long bladed sword lies here.~
+~
+5 535 0 0 8193 50
+0~ 27~ 64~ 3~
+10 0 0 0 0
+5 0
+energy drain~
+10 25
+0 0 0
+A
+1 -2
+A
+2 -2
+A
+19 5
+A
+18 4
+#11801
+Ring Hatred Circlet~
+ring of Raisk~
+A Circlet of pure hatred hovers here.~
+~
+9 691 226 0 3 58
+-50~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 2
+A
+18 6
+A
+19 6
+A
+17 -40
+A
+13 -40
+#11802
+Veil ice ~
+veil of Ice~
+A veil of sheer ice melts upon the ground~
+~
+9 1 0 0 65537 52
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 20
+A
+19 3
+A
+18 2
+A
+12 65
+A
+17 -20
+#11803
+sword gore~
+gore~
+A long, Gore encrusted blade lies here~
+~
+5 49 0 0 8193 50
+0~ 18~ 69~ 6~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 35
+A
+17 -10
+A
+1 -1
+A
+13 -10
+#11804
+blade frosty shiver scimitar~
+shiver~
+A long thin frosty blade lies here.~
+~
+5 1 0 0 8193 51
+0~ 17~ 65~ 11~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 3
+A
+18 5
+A
+1 1
+A
+3 2
+A
+5 -3
+#11805
+Ring signet~
+deathFang Guardian's Signet Ring~
+A Ring made of Bone lies here.~
+~
+9 32 0 0 3 50
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 5
+A
+19 5
+A
+17 -20
+#11806
+mace~
+spiked Mace~
+An evil looking mace writhes in the corner.~
+~
+5 33 0 0 8193 50
+0~ 22~ 67~ 7~
+12 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11807
+sword~
+sword made of Silver~
+A gleaming sword of silver hangs upon the wall~
+~
+5 0 0 0 8193 50
+0~ 15~ 55~ 1~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11808
+bow~
+useless Bow~
+A perfectly useless bow sits here gathering dust~
+~
+13 0 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11809
+dagger~
+bloody Dagger~
+A perfectly good looking bloody dagger lies here.~
+~
+5 0 0 0 8193 50
+0~ 25~ 55~ 11~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 5
+A
+18 4
+A
+1 1
+A
+2 1
+#11810
+note board pad~
+a Message pad,~
+A well used message pad lays on the table here.~
+~
+11 0 0 0 0 0
+11811~ 105~ 1~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11811
+name decoder~
+calis's Decoder~
+A Super secret decoder lay's here that could very possibly slay you if your not Calis/~
+~
+13 64 0 0 0 1
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11812
+scroll drahatsu~
+scroll of Drahatsu~
+A scroll of Drahatsu lies here~
+~
+2 0 0 0 1 108
+50~ shockshield~ fireshield~ chaos field~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11813
+scroll davai~
+scroll of Davai~
+A scroll with "Davai" etched onto it lies here.~
+~
+2 0 0 0 1 107
+50~ sanctuary~ iceshield~ vibrate~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11814
+Ring Hatred Circlet~
+ring of Raisk~
+A Circlet of pure hatred hovers here.~
+~
+9 563 0 0 3 58
+-50~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+18 3
+A
+5 2
+A
+12 15
+A
+19 5
+A
+13 15
+#11815
+key amethyst~
+an amethyst key~
+A key carved from a chunk of amethyst has been left here.~
+~
+18 0 0 0 16385 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11816
+portal~
+a portal~
+A portal is set into the floor here, filled with swirling mists.~
+~
+29 0 0 0 0 0
+25000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11817
+deathfang guardian ring~
+&CA &Rguardian's&C ring~
+A guardian's ring lies here on the ground.~
+~
+9 2576 226 0 3 50
+23~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+A
+13 -100
+A
+19 3
+E
+ring~
+As you investigate the guardian's ring closer, you feel an immense power of evil eminating from it.
+~
+E
+guardian~
+As you investigate the guardian's ring closer, you feel an immense power of evil eminating from it.
+~
+#11818
+deathfang Guardian Breastplate~
+&CA &RGuardian&C breastplate.~
+A strange breastplate lying on the ground here catches your eye.~
+~
+9 3089 162 0 9 50
+17~ 0~ 0~ 0~
+4 0 0 0 0
+5 0
+cure poison~
+2 2
+0 0 0
+A
+13 20
+A
+17 -30
+A
+14 -100
+A
+19 15
+A
+18 15
+E
+breastplate~
+You see a glowing breastplate of pure evil
+~
+E
+strange~
+You see a glowing breastplate of pure evil
+~
+#11819
+deathfang pile gold coins~
+100000 gold coins~
+Some gold coins lay on the ground here.~
+~
+20 0 0 0 1 0
+100000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11820
+Deathfang keepers belt~
+&CThe &RVault Keepers&C belt~
+&CA belt of pure evil lies on the ground here.~
+~
+9 2576 224 0 2049 57
+20~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 -20
+A
+13 -50
+A
+17 -50
+#11821
+deathfang sword~
+&CThe &RVault Keepers&C sword~
+&CA strange sword lies on the ground here.~
+~
+5 6674 0 0 8193 57
+0~ 12~ 40~ 1~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+A
+17 -10
+A
+19 35
+A
+4 -1
+A
+3 -1
+A
+1 -1
+E
+sword~
+A strange sword of unknown origin that emits an evil aura.
+~
+E
+strange~
+A strange sword of unknown origin that emits an evil aura.
+~
+#11822
+staff light~
+&RP'Rusky's &CStaff of Light~
+&RP'Rusky's &CStaff of Light is glows on the ground here~
+~
+1 4113 6348 0 1 50
+0~ 0~ -1~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 20
+A
+23 -15
+A
+24 -15
+A
+3 2
+E
+p'rusky~
+You see an evil staff that emits light in a strange fashion
+~
+E
+light~
+You see an evil staff that emits light in a strange fashion
+~
+E
+staff~
+You see an evil staff that emits light in a strange fashion
+~
+#11823
+Gore II~
+a Gore II~
+&B long, GoreII encrusted blade lies here.~
+~
+5 4273 0 0 8193 50
+0~ 14~ 42~ 6~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 -10
+A
+1 -1
+A
+17 -10
+A
+19 35
+#11896
+condom~
+condom~
+A Condom~
+~
+13 0 0 0 16385 1
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11897
+sword~
+sword~
+Sword~
+~
+5 0 0 0 8193 55
+0~ 21~ 93~ 2~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 55
+#11898
+box~
+box~
+A box of Trojan extra large lies in the corner.~
+~
+15 0 0 0 0 100
+999999~ 1~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11899
+waterbed~
+waterbed~
+A Massive Vibrating Kingsize Waterbed sits here.~
+~
+13 3 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#11800
+Entrance to The DeathFang Manor~
+You have foud yourself upon the fron gates of a large, dark building.
+A brass sign upon the door proclaims the name "DeathFang Manor". The name
+itself is enough to run chills up your spine.
+~
+0 0 2
+Rd     0
+D0
+~
+~
+3 0 11801
+D2
+~
+~
+0 0 11843
+S
+#11801
+The Grand Foyer~
+Ack! The Door has vanished behind you! It looks as though you are trapped
+in this horrible place.  You glance around and notice hallways leading both 
+east and west of here.  The shrieking of tortured souls, and the smell of 
+rotting flesh assault your senses, as you decide where to go.
+~
+0 12 0
+Rd     0
+D1
+~
+~
+0 0 11802
+D3
+~
+~
+0 0 11803
+S
+#11802
+Hallway Off the Grand Foyer~
+You find yourself in a long hallway just off the Main Foyer. The hallway
+continues of into the distance to dissapear around a bend.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11804
+D3
+~
+~
+0 0 11801
+S
+#11803
+East of the Grand Foyer~
+You are just east of the entrance to the Manor.  This hallway seems to be 
+relatively straight, leading west, to what appears to be a bend.  You hope
+that bend may lead to an exit out of here.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11801
+D3
+~
+~
+0 0 11805
+S
+#11804
+At a Bend in The Hallway~
+You find yourself at a bend in the hallway leading north. You have a gut
+feeling that things are about to turn dramatically worse from here on in.
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 11807
+D3
+~
+~
+0 0 11802
+S
+#11805
+Bend in the Hallway~
+At this point the hallway seems to take a turn towards the north. You hope
+with this turn, that your luck may not take a turn for the worse.  You curse
+yourself in vain, for ever entering this god forsaken place.
+~
+0 262157 0
+Rd     0
+D0
+~
+~
+0 0 11806
+D1
+~
+~
+0 0 11803
+S
+#11806
+Another Bend in the Hallway~
+At this point you can either follow the hallway south or east.  Everywhere you
+look you see the blood and gore lying in heaps.  Evidence that the guardians
+are not far to be found.
+You notice a slight colour variation on the north wall.
+~
+0 262157 0
+Rd     0
+D0
+~
+~
+3 0 11808
+D1
+~
+~
+0 0 11809
+D2
+~
+~
+0 0 11805
+S
+#11807
+At a Three way intersection~
+You are at an intersection of the hallways with exits leading in many different
+directions.  You look around at your suroundings in the dim light afforded you,
+you gasp in horror as you see blood stains covering the walls and floor.
+It would seem many a previous adventurer have met their end here.
+You notice the faint outlines of a door to the north.
+~
+0 262153 0
+Rd     0
+D0
+~
+~
+3 0 11814
+D2
+~
+~
+0 0 11804
+D3
+~
+~
+0 0 11811
+S
+#11808
+Entrance to the Vaults~
+This is your lucky day! You have found the treasure vaults of DeathFang Manor.
+Everywhere you look you see piles of gold, and jewellry. Obviously this is
+Where much of the loot from the nearby villages that Raisk, the lord of the
+Manor has ordered sacced and burned.
+The Vaults continue to the East.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11812
+D2
+~
+~
+3 0 11806
+S
+#11809
+Continuing along the Hallway~
+You continue along the hallway, noticing a junction directly to the North.
+Your senses are being viciously attacked by strange smells and horrible
+sounds echoing throughout this place.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11810
+D3
+~
+~
+0 0 11806
+S
+#11810
+Junction leading deeper into The Manor~
+As you enter this area of the Manor, you notice a definate chill in the air
+you wonder what could possibly be causing this. With no answer available
+you shrug it off as a breeze coming from an open window. Or at least thats what
+you would like to believe.  You see another passageway leading off to the 
+north, directly into the chill.
+~
+0 13 0
+Rd     0
+D0
+~
+~
+0 0 11813
+D1
+~
+~
+0 0 11811
+D3
+~
+~
+0 0 11809
+S
+#11811
+Dark Hallway~
+Your in a Dark Hallway that seems to lead in an east west direction.  The 
+walls are covered in a thick toxic looking slime, and the smell permeating
+from deeper within the Manor, continues to assault you senses.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11807
+D3
+~
+~
+0 0 11810
+S
+#11812
+Eastern end of The Treasure Vaults~
+This part of the vault, you notice, seems to be where Raisk keeps his own 
+personal arms.  Everywhere you see the are exotic and expensive weapons hanginng
+from the walls. Crossbows, and barrels of Bolts. Swords and Rapiers cover the
+south wall, while armor polished to a brilliant gleen adorns the North wall.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+3 0 11813
+D3
+~
+~
+0 0 11808
+S
+#11813
+Deeper in the Shadows~
+It is definately getting chilly.  You begin to shiver as you stand feeling
+all alone in this corridor.  You see a slight glow far off in the distance
+ahead.  You feel a need to get out of this corridor back into the light.
+~
+0 262157 0
+Rd     0
+D0
+~
+~
+0 0 11815
+D2
+~
+~
+0 0 11810
+D3
+~
+~
+3 0 11812
+S
+#11814
+Guardians Bedchamber~
+You have stumbled upon the resting place of some of the Guardians of 
+this horrible Manor. They seem not at all pleased that you have disturbed their
+rest.
+~
+0 262153 0
+Rd     0
+D0
+~
+~
+0 0 11820
+D2
+~
+~
+3 0 11807
+S
+#11815
+Nearing the End of the Corridor~
+You look around upon arrival of this part of the corridor, the glow is 
+definately getting brighter towards the North. You rest a moment against
+the wall and feel cold through your armour. You touch a bare finger to 
+the wall and discover a fine layer of frost!  Whatever could have caused this
+you have no idea, and no wish to ever find out.
+~
+0 262153 0
+Rd     0
+D0
+~
+~
+0 0 11816
+D2
+~
+~
+0 0 11813
+S
+#11816
+Kulm's Sitting Room~
+Frost and Ice cover the walls of this room. It's no wonder because the
+cause of all of this is sitting at his desk in the corner.  You have
+walked into the office of Kulm, leader of the Guardians, and personal
+assistant of Raisk, Lord of the Manor.  His jon being to destroy intruders
+like yourself.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11822
+D2
+~
+~
+0 0 11815
+D3
+~
+~
+0 0 11817
+S
+#11817
+Along the Hallway~
+You continue along this hallway heading in an east-west direstion.  You 
+notice some light to the west, and some frost on the walls.  The source
+of the frost is most likely from Kulm, who is directly east of you.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11816
+D3
+~
+~
+0 0 11818
+S
+#11818
+Junction in the Corridor~
+You find yourself at a junction in the corridor.  You feel yourself being
+affected by the utter evil and hatred of this place, and you are frightened
+to think of what you may find at it's end.
+You also notice a blood stained door to the south.
+~
+0 134479881 0
+Rd     0
+D0
+~
+~
+0 0 11824
+D1
+~
+~
+0 0 11817
+D2
+~
+~
+3 0 11819
+S
+#11819
+The Guardians Hangout~
+As soon as you enter this room, you immediately regret it. Everywhere you see
+their are guardians everywhere. All in attack poses, ready to try you on.
+~
+0 262153 0
+Rd     0
+D0
+~
+~
+3 0 11818
+S
+#11820
+Recreation Room~
+You are in the recreation area of the Guardians of the Manor. Here they sit
+back and relax, after a hard day of killing intruders. You see a ping pong
+table in the corner and piles of used dishes heaped upon a table along the
+east wall.
+~
+0 262153 0
+Rd     0
+D2
+~
+~
+0 0 11814
+S
+#11821
+The Kitchen~
+You have wandered into the Kitchen of the Manor. Feeling a tad bit hungry
+you decide to check the cauldron to see whats cooking.
+Hmm..Smells good. You bring a spoon up to your mouth to taste this fine
+smelling Broth and flinch in horror as you realize what it is
+It seems you were about to eat a eye cooked in blood. Nasty!
+~
+0 262153 0
+Rd     0
+D0
+~
+~
+0 0 11822
+S
+#11822
+Junction in the Corridor~
+Everywhere you look, their are hallways leading off into the dark.  You
+can't decide where to go from here, Nowhere seems to be safe.  You do notice
+however a little bit of light coming from the east.  A closer look tells you
+it seems to be a balcony overlooking the grounds surrounding the manor.
+~
+0 262153 0
+Rd     0
+D0
+~
+~
+3 0 11827
+D1
+~
+~
+0 0 11823
+D2
+~
+~
+0 0 11821
+D3
+~
+~
+0 0 11816
+S
+#11823
+The Balcony~
+You have wandered upon a Blacony overlooking the Manor Grounds.
+As you gaze upon the lands surrounding this horrible place, you begin to
+shiver uncomfortably.  Hideous beast wander about, looking
+for something to eat.  Possibly a nice tasty adventurer.  You quickly decide 
+that maybe it would be best to stay indoors, even with all the horrors you have
+already unfortunatley encountered.
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 11822
+S
+#11824
+Bend in the Hallway~
+You are at yet another bend in the hallway.  You are not sure if your 
+going around in circles, or hopefully getting closer to a way out of this
+horrible place.  As always, you see bloodstains covering
+the walls, but the screaming you heard before seems to be getting louder, 
+as you head deeper into the Manor.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11825
+D2
+~
+~
+0 0 11818
+S
+#11825
+A final Corridor~
+You are definatley starting to get closer to the end of this horrible place,
+You don't know how you know that, but you have a deep feeling coming from
+your soul that tells you that the way out is North.  You begin to Ponder
+what you may find once you hit the end, and find the thought much too
+disturbing to dwell on, lest you depress yourself too much to carry on.
+~
+0 262153 0
+Rd     0
+D0
+~
+~
+0 0 11828
+D1
+~
+~
+1 0 11826
+D3
+~
+~
+0 0 11824
+S
+#11826
+Raisk's BedChamber~
+You have entered into what appears to be the private Bedchamber of Raisk.
+In the corner you see a massive vibrating waterbed that raisk evedently
+uses for his own personal pleasures.  The 5 young Nymphettes tell you also that
+Raisk has quite the appetite.
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11827
+D3
+~
+~
+1 0 11825
+S
+#11827
+Dressing Area~
+You seem to have stumbled upon Raisk DeathFang's personal apartments.
+As you look around you wonder if you can learn something about the man 
+before you actually meet him.
+~
+0 262153 0
+Rd     0
+D2
+~
+~
+3 0 11822
+D3
+~
+~
+0 0 11826
+S
+#11828
+Entering the Inner Sanctum of the Manor~
+You begin to enter the inner sanctum of the Manor. From stories you have
+heard htis is apparently the area where the Mighty Raisk lives.  As you
+look around pondering whether to enter or not you notice a bluish haze coming
+from the north. Wondering what it must be, you decide to look.
+~
+0 262153 0
+Rd     0
+D0
+~
+~
+0 0 11829
+D2
+~
+~
+0 0 11825
+S
+#11829
+Meri's room~
+You have walked into a room that is greatly out of place in this manor.  You
+get an overwhelming feeling of peace and tranquility as you look around.
+The walls are relatively clear of blood and gore, and someone has
+even made an attempt to sweep the floor.  An amazing thing this place.
+Makes you wonder if this Raisk guy isn't so bad after all, maybe just has 
+some bad staff?
+~
+0 1036 0
+Rd     0
+D1
+~
+~
+0 0 11830
+D2
+~
+~
+0 0 11828
+S
+#11830
+Long Dark Hallway~
+Your in a long dark hallway, sharply contrasting the healers to the west. 
+You begin to feel a little shiver up your spine.  Something farther to the 
+east seems to be alerting your senses, warning you to give up and go back
+to that nice little town where you came from.
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 11831
+D3
+~
+~
+0 0 11829
+S
+#11831
+Long Dark Hallway~
+You are in a long Dark Hallway that takes you in an east west Direction.
+Somwhere up ahead you feel a surge of overpowering evil. Wonder what that
+could be?
+~
+0 262153 0
+Rd     0
+D1
+~
+~
+0 0 11832
+D3
+~
+~
+0 0 11830
+S
+#11832
+Before the Lair~
+You find yourself just before the Lair of Raisk.  The feeling of dread
+within you is tearing away at your soul.  You know from the tales of 
+lore that many an adventurer has met their end with Raisk.  Wishing their was
+another way out of here, you resign yourself to making this awful creatures
+aquaintance, and hope he lets you live.
+~
+0 262157 0
+Rd     0
+D0
+~
+~
+0 0 11833
+D3
+~
+~
+0 0 11831
+S
+#11833
+The Lair of Raisk~
+As you enter the throne room of Raisk, Lord of DeathFang Manor, you feel
+an inner sense of dread.  You see the mighty lord sitting upon his throne of
+Human Bones, and can't help wondering if you may one day become a part of
+his furniture.  Behind Raisk you notice a door, apparantly the only exit out
+of this manor.  You desparetly try the door, wanting to get out before
+Raisk, turns his attention to you.  Too late, the door is locked and Raisk
+has the only key.  
+~
+0 393224 0
+Rd     0
+D2
+~
+door~
+7 11815 11851
+S
+#11834
+A Barren Path~
+The path is marred by many stains here, of things dead and decomposed. 
+There is a nasty smell coming from a small puddle on the ground, who knows
+what was dying there.  You may continue to the east and west.  
+~
+0 262145 2
+Rd     0
+D1
+~
+~
+0 0 11843
+D3
+~
+~
+0 0 11842
+S
+#11835
+A Barren Path~
+The landscape surround you looks rather bleak, and is devoid of any life.
+The path continues to the east and west, carving a gloomy trail through the
+area.  
+~
+0 262149 2
+Rd     0
+D1
+~
+~
+0 0 11840
+D3
+~
+~
+0 0 11836
+S
+#11836
+A Barren Path~
+You continue your travels along the mighty north walls of Bethaven. The
+area just north of the city is rather desolate and uninviting. The path
+leads further eastward.
+~
+0 262145 2
+Rd     0
+D1
+~
+~
+0 0 11835
+D3
+~
+~
+0 0 25121
+S
+#11837
+The Catacombs~
+You have entered a room that appears to be engulfed in complete darkness.
+You begin to grope along the walls looking for an exit out of this room, you
+eventually find a passage leaving towards the east.  Knowing you entered the
+room from the north you attempt to leave back that way and find only the cold,
+stone wall beneath your hands.  How curious.  Wonder where the exit
+may have dissapeared to.  You seem to have little choice as to where you may go and resign yourself
+to following where your destiny may take you.
+~
+0 262149 0
+Rd     0
+S
+#11838
+Within the Catacombs~
+You are in a dark, musty smelling room.  You see exits leading off into the
+darkness in every direction. You have lost all sense of coordination and a
+feeling of despair begins to eat away at your soul.
+~
+0 262156 0
+Rd     0
+S
+#11839
+Within the Catacombs~
+You are in a dark, musty smelling room. You see exits leading off into the
+darkness in every direction. You have lost all sense of coordination and a
+fleeing of despair begins to eat away at your soul.
+~
+0 262148 0
+Rd     0
+S
+#11840
+A Barren Path~
+The path continues to the east and west from here, and looks to be
+deserted and somewhat unkept.  There are weeds growing up from the ground,
+and many potholes lining the surface of the road here.  
+~
+0 262145 2
+Rd     0
+D1
+~
+~
+0 0 11841
+D3
+~
+~
+0 0 11835
+S
+#11841
+A Barren Path~
+The path is unusually quiet, and has many dead and wilted leaves clumped
+along the side of the road.  You may continue to the east or west from this
+point in the road.  
+~
+0 262145 2
+Rd     0
+D1
+~
+~
+0 0 11842
+D3
+~
+~
+0 0 11840
+S
+#11842
+A Barren Path~
+Several small insects buzz by your ears here, and you can catch the sound
+of a cricket chirping under a rock somewhere.  Other than that, the air is
+quite still, giving forth a sense of forewarning.  The road runs to the east
+and west.  
+~
+0 262145 2
+Rd     0
+D1
+~
+~
+0 0 11834
+D3
+~
+~
+0 0 11841
+S
+#11843
+A Turn in the Path~
+The path makes a sharp turn here, forming a curve which allows for
+passage to the north and west.  Up ahead to the north, you catch sight of a
+strange looking mansion.  
+~
+0 262145 2
+Rd     0
+D0
+~
+~
+0 0 11800
+D3
+~
+~
+0 0 11834
+S
+#11850
+An Alcove~
+This small niche is dark, damp, and has a strong musty smell.  It certainly
+doesn't feel like a safe place, and you hurry to leave here.
+~
+0 1032 0
+Rd     0
+D0
+~
+~
+0 0 25052
+S
+#11851
+A Room of Transportation~
+There is a portal set into the center of the floor here, which bears a
+small script along the edges that reads: "To Bethaven".  You may enter the
+portal, or leave the room to the north.  
+~
+0 1036 0
+Rd     0
+D0
+~
+door~
+7 11815 11833
+S
+#11898
+Joe's Shield Emporium~
+test store
+You enter a brightly lit, cramped room.  The walls are covered
+with bookshelves and on these shelves you see stacks of rolled up scrolls.
+Being the adventurer that you are, always in the market for a good new scroll 
+you pick on up and blow the layer of dust off it. Just as you attempt
+to recite this scroll a scrawny little lunatic comes dashing out from
+behind a curtain and snatches it from your hands.  Hmm...Seems he wants 
+some sort of monetary compensation for it.
+~
+0 131076 0
+Rd     0
+S
+#11899
+Calis's private Sanctuary~
+~
+0 262148 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 11806 spec_healer
+M 11898 spec_executioner
+M 11899 spec_summon_demon
+S
+
+
+
+#RESETS
+M 0 11807 1 11800
+M 0 11800 1 11801
+E 0 11805 0 1
+E 0 11800 0 20
+E 0 11805 0 2
+M 0 11800 2 11806
+E 0 11800 0 20
+E 0 11805 0 1
+E 0 11805 0 2
+M 0 11800 2 11807
+E 0 11805 0 1
+E 0 11805 0 2
+E 0 11806 0 20
+M 0 11804 1 11808
+M 0 11804 1 11812
+G 0 11807 0
+G 0 11808 0
+G 0 11809 0
+O 0 11819 0 11812
+G 0 11823 0
+E 0 11821 0 20
+E 0 11820 0 17
+M 0 11802 1 11814
+M 0 11800 8 11815
+E 0 11805 0 1
+E 0 11805 0 2
+E 0 11800 0 20
+M 0 11805 1 11816
+E 0 11804 0 20
+E 0 11805 0 1
+E 0 11805 0 2
+E 0 11802 0 8
+E 0 11804 0 21
+M 0 11801 1 11819
+E 0 11817 0 1
+E 0 11818 0 5
+M 0 11802 2 11820
+E 0 11805 0 1
+M 0 11802 1 11821
+M 0 11800 10 11823
+E 0 11805 0 1
+E 0 11805 0 2
+E 0 11806 0 21
+E 0 11806 0 20
+M 0 11800 2 11825
+O 0 11899 0 11826
+M 0 11898 5 11826
+M 0 11806 1 11829
+M 0 11800 2 11831
+E 0 11800 0 20
+M 0 11803 1 11833
+E 0 11801 0 1
+E 0 11803 0 20
+G 0 11815 0
+M 0 11809 1 11834
+M 0 11809 1 11840
+O 0 11816 0 11851
+M 0 11897 1 11898
+S
+
+
+
+#SHOPS
+11897 0 2 10 0 0 125 60 0 24
+0
+
+
+
+#$

@@ -1,0 +1,5640 @@
+#AREADATA
+Name        {80-105} Unholy Fortress     Hannibal~
+Levels      80 105
+Builders    Hannibal Sin Monique Derelor~
+VNUMs       4000 4299
+Security    1
+Recall      25001
+Flags       16
+Color       6
+Sounds      &wEchoes of &rbloody &wgurgling sounds reach your ears...~
+End
+
+
+
+#MOBILES
+#4000
+Order Ebon Hand Guard~
+The Order of the Ebon Hand~
+A man in black armor is here guarding the fortress from intruders.
+~
+As you gaze upon this devoted follower of Evil, you can clearly see his
+battle scars aswell as his countless number of skulls saved from previous
+encounters.  You're first thought is to run, but after you're return to
+faith, you decide to destroy this unholy cleric.  
+~
+99 104 131072 -500 S
+85 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28673 0 0
+#4008
+Armor Thrull~
+An Armor Thrull~
+A thrull with a very hard exo-skeleton cowers away from you.
+~
+~
+129 8256 262272 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 0
+22529 0 0
+>death_prog 100~
+mptrans $n 4299
+mpoload 4008
+drop corpse
+mptrans $n
+mpecho &rYou hear $I's death cry.
+mpgoto 4299
+~
+|
+#4009
+Mindstab thrull~
+A Mindstab Thrull~
+A small, intelligent looking thrull.
+~
+The only way to describe this deformed creature is ugly.  It's members
+seem to be misorganisedand it appears to be quite threathening.  The only
+solution seems ot be the destruction of this thing.  
+~
+1 49152 262144 -500 S
+73 0 0 18000d0+0 0d0+0
+0 0 0 0
+0 0 0
+20480 0 0
+#4010
+necrite thrull guard~
+A Necrite~
+A deadly looking thrull guards the entrance to the lair.
+~
+~
+16419 98410 131072 -1000 S
+82 0 0 18500d0+0 0d0+0
+0 0 0 0
+0 0 0
+22528 0 0
+>fight_prog 40~
+Mpechoat $n &Y$I slams $l fists on both sides of your head.
+if isnpc($n)
+     mpechoaround $n &Y$I slams $l fists on both sides of $N's head.
+     stun
+break
+else
+     mpechoaround $n &Y$I slams $l fists on both sides of $n's head.
+     stun
+break
+endif
+~
+>fight_prog 50~
+mpechoat $n &Y$I feints and you lose sight of $k.
+if isnpc($n)
+     mpechoaround $n &Y$I stealthily gets around $N.
+     circle
+break
+else
+     mpechoaround $n &Y$I stealthily gets around $n.
+     circle
+break
+endif
+~
+>fight_prog 60~
+mpechoat $n &Y$I thrusts $l hand into your face.
+if isnpc($n)
+     mpechoaround $n &Y$I thrusts $l hand into $N's face.
+     gouge
+break
+else
+      mpechoaround $n &Y$I thrusts $l hand into $n's face.
+      gouge
+break
+endif
+~
+|
+#4011
+necrite thrull~
+A Necrite~
+A deadly looking thrull stealthily moves around the pit.
+~
+~
+1 98410 0 -1000 S
+80 0 0 18500d0+0 0d0+0
+0 0 0 0
+0 0 0
+22528 0 0
+>fight_prog 40~
+Mpechoat $n &Y$I slams $l fists on both sides of your head.
+if isnpc($n)
+     mpechoaround $n &Y$I slams $l fists on both sides of $N's head.
+     stun
+break
+else
+     mpechoaround $n &Y$I slams $l fists on both sides of $n's head.
+     stun
+break
+endif
+~
+>fight_prog 50~
+mpechoat $n &Y$I feints and you lose sight of $k.
+if isnpc($n)
+     mpechoaround $n &Y$I stealthily gets around $N.
+     circle
+break
+else
+     mpechoaround $n &Y$I stealthily gets around $n.
+     circle
+break
+endif
+~
+>fight_prog 60~
+mpechoat $n &Y$I thrusts $l hand into your face.
+if isnpc($n)
+     mpechoaround $n &Y$I thrusts $l hand into $N's face.
+      gouge
+break
+else
+     mpechoaround $n &Y$I thrusts $l hand into $n's face.
+     gouge
+break
+endif
+~
+>fight_prog 100~
+wield talon
+~
+|
+#4012
+Thrull Champion~
+The Thrull Champion~
+The mightiest thrull stands here.
+~
+~
+16419 301990120 131072 -300 S
+85 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 0
+22532 0 0
+>all_greet_prog 100~
+say Wonder why I'm the champion?
+say Here's what a mindstab showed me...
+c ultrablast
+~
+>fight_prog 15~
+c ultrablast
+~
+>fight_prog 30~
+c confusion
+~
+>fight_prog 35~
+c 'ego whip'
+~
+>fight_prog 40~
+Mpechoat $n &Y$I slams $l forehead into yours.
+if isnpc($n)
+     mpechoaround $n &Y$I slams $l head on $N's.
+     stun
+break
+else
+     mpechoaround $n &Y$I slams $l head on $n's.
+     stun
+break
+endif
+~
+|
+#4019
+Pitt Lord~
+The Lord of the Pitt~
+A huge demon snaps his neck towards you.
+~
+~
+67 369623272 131072 -1000 S
+110 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 0
+67129473 0 0
+>all_greet_prog 100~
+say You dare disturb me in my lair!
+say Now you shall DIE!
+c 'gas breath'
+~
+>fight_prog 30~
+mpecho $I gets a screaming goblin from his food pit.
+mpoload 4018
+eat goblin
+~
+|
+#4022
+Knight Black~
+A Black Knight~
+A knight in black armor walks the halls.
+~
+~
+65 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There can only be evil in these halls!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say Holy people can NEVER be allowed to live!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+>entry_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There can only be evil in these halls!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say Holy people can NEVER be allowed to live!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4024
+Knight Black~
+A Black Knight~
+A knight in black armor walks the halls.
+~
+~
+65 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There can only be evil in these halls!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say Holy people can NEVER be allowed to live!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+>entry_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There can only be evil in these halls!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say Holy people can NEVER be allowed to live!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4027
+Knight Black~
+A Black Knight~
+A knight in black armor walks the halls.
+~
+~
+65 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There can only be evil in these halls!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say Holy people can NEVER be allowed to live!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+>entry_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There can only be evil in these halls!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say Holy people can NEVER be allowed to live!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4029
+Knight Black~
+A Black Knight~
+A knight in black armor walks the halls.
+~
+~
+65 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There can only be evil in these halls!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say Holy people can NEVER be allowed to live!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+>entry_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There can only be evil in these halls!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say Holy people can NEVER be allowed to live!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4030
+Ihsan Shade~
+Ihsan's Shade~
+Ihsan's Shade, the fallen serra paladin, is here.
+~
+&WKnown as the most unholy of them all, this once angel is now considered
+to be the most threathening enemy for the cause of good.  He stares around
+looking for something to kill, his hatred for humankind is so deep that the
+world will suffer from it.  Maybe you will be his next victim.  
+~
+3 34619520 295072 -100 S
+105 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+67139589 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no place for the good here!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say There is no place for the Holy here, not even evil.
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+>fight_prog 20~
+c 'dispel magic' $n
+~
+>fight_prog 45~
+c 'dancing' $n
+~
+>fight_prog 50~
+c 'faerie fire' $n
+~
+>fight_prog 100~
+c 'holy f' $n
+~
+|
+#4032
+Master Dungeon~
+The Dungeon Master~
+A man is watching over the dungeon from his office.
+~
+~
+16387 369107072 0 0 S
+90 0 0 23000d0+0 0d0+0
+0 0 0 0
+0 0 1
+20480 0 0
+>speech_prog p let me in.~
+mpat 4033 mpoload 4001
+mpat 4033 unlock north
+mpat 4033 open north
+emote pulls on a lever behind his desk.
+mpecho &wClick!
+say The gate is open, you may enter.
+mpjunk key
+~
+>all_greet_prog 100~
+mpat 4033 mpoload 4001
+mpat 4033 close north
+mpat 4033 lock north
+mpjunk key
+~
+|
+#4035
+Dungeon Assistant~
+The Dungeon Master's Assistant~
+A man is here to let people out of the dungeon.
+~
+~
+3 234889344 0 0 S
+87 0 0 21500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>speech_prog p let me out.~
+mpat 4034 mpoload 4001
+mpat 4034 unlock south
+mpat 4034 open south
+yell Open Up!  A visitor wants to leave.
+mpat 4032 mpforce master emote pulls on a lever behind his desk.
+mpecho &wClick!
+mpat 4032 mpecho &wClick!
+mpat 4032 mpforce master yell Ok, it's open!
+say You may exit the dungeon now.
+mpjunk key
+~
+>all_greet_prog 100~
+mpat 4034 mpoload 4001
+mpat 4034 close south
+mpat 4034 lock south
+mpjunk key
+~
+|
+#4039
+Knight Black Guard~
+A Black Knight~
+A black knight is guarding the cell.
+~
+~
+16387 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoner escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4043
+Knight Black Patrol~
+A Black Knight~
+A black knight is patroling the dungeon.
+~
+~
+1 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoners escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+>entry_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoners escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4047
+Knight Black Guard~
+A Black Knight~
+A black knight is guarding the cell.
+~
+~
+16387 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoner escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4050
+Knight Black Patrol~
+A Black Knight~
+A black knight is patroling the dungeon.
+~
+~
+1 8264 0 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoners escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+>entry_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoners escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4051
+Knight Black Guard~
+A Black Knight~
+A black knight is guarding the cell.
+~
+~
+3 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoner escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4055
+Knight Black Patrol~
+A Black Knight~
+A black knight is patroling the dungeon.
+~
+~
+1 8264 163840 -1000 S
+85 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+28672 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoners escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+>entry_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say There is no use, you cannot help the prisoners escape!
+          mpkill $n
+     break
+     else
+          if class($n) == 1
+          or class($n) == 7
+               say We cannot trust the likes of you, you would free them too!
+               mpkill $n
+          break
+          endif
+     break
+     endif
+break
+endif
+~
+|
+#4058
+Angel Serraph~
+The Serraph~
+A grim looking Angel is trapped here.
+~
+~
+1 134750400 393216 1000 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 2
+69632 0 0
+#4062
+Angel Serra~
+The Serra Angel~
+The protector of the Serra Paladins has been locked up by Ihsan's Shade.
+~
+~
+1 134750400 393360 1000 S
+90 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+31104 0 0
+>greet_prog 100~
+if isgood($n)
+  say Save me!
+  break
+else
+  say You!  You must work for them!
+  say It will not be easy to kill me!
+  mpkill $n
+  break
+endif
+~
+>fight_prog 50~
+if isgood($n)
+  mpechoat $n &C$I says to you, 'Why are you doing this!?'
+  mpechoat $n &C$I says to you, 'You are better than Him!'
+  break
+else
+  mpechoat $n &C&C$I says to you, 'Fool!  You are not Ihsan!'
+  mpechoat $n &C&C$I says to you, 'You do not have his power, you will perish!'
+  stun
+  stun
+  stun
+  stun
+  c blind $n
+  stun
+  sneak
+  break
+endif
+~
+>fight_prog 100~
+if isgood($n)
+  stun
+  stun
+  stun
+  break
+else
+  mpechoat $n &P$I cackles at you.
+  mpechoat $n &C$I says to you, 'You are nothing.  You will Die!'
+  c 'dispel magic' $n
+  c 'dispel magic' $n
+  c 'dispel magic' $n
+  c 'dispel magic' $n
+  stun
+  stun
+  break
+endif
+~
+|
+#4065
+twin~
+The Northern Paladin~
+A northern paladin
+~
+~
+1 40 16 1000 S
+100 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>speech_prog p Heal Me Brother!~
+c healing paladin
+~
+>speech_prog p Sanc Me Brother!~
+if name($n) == Paladin North Northern
+c sanc paladin
+endif
+~
+>speech_prog p Make Me Golden Brother!~
+if name($n) == Paladin North Northern
+c golden Hannibal
+endif
+~
+|
+#4066
+Paladin North Northern~
+The Northern Paladin~
+A paladin from the northern lands is locked in this cell.
+~
+~
+1 8384 393376 1000 S
+115 0 0 27500d0+0 0d0+0
+0 0 0 0
+0 0 1
+290819 0 0
+>speech_prog p help me, please.~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          c 'healing hands' $n
+     break
+     else
+          say You are not worthy of my help.
+     break
+     endif
+break
+endif
+~
+>fight_prog 50~
+mpmload 4065
+say Heal Me Brother!
+mppurge twin
+~
+|
+#4083
+Beast Guardian~
+The Guardian Beast~
+The Guardian Beast is here protecting the ancient artifacts of the fortress.
+~
+~
+16451 8296 0 -100 S
+90 0 0 40000d0+0 0d0+0
+0 0 0 0
+0 0 0
+65539 0 0
+>all_greet_prog 100~
+if inroom($n) == 4083
+      emote looks up.
+      growl
+      say Do NOT touch the artifacts.
+      mpat 4299 c 'true sight'
+endif
+~
+>rand_prog 95~
+if inroom($i) == 4083
+break
+else
+     mpecho &B$I leaves west.
+     mpgoto 4083
+     mpecho &B$I arrives from the east.
+break
+endif
+~
+>act_prog p gets~
+growl
+say I said DO NOT touch the artifacts!
+mpkill $n
+~
+|
+#4093
+Initiate Ebon Hand~
+An Initiate of the Ebon Hand~
+A small robed figure runs about tending to the circle.
+~
+~
+37 8256 131072 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>fight_prog 100~
+stun
+stun
+stun
+stun
+stun
+~
+|
+#4094
+Initiate Ebon Hand~
+An Initiate of the Ebon Hand~
+A small robed figure kneels in worship here.
+~
+~
+37 8256 131072 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 100~
+stun
+stun
+stun
+stun
+stun
+~
+|
+#4095
+Initiate Ebon Hand~
+An Initiate of the Ebon Hand~
+A small robed figure kneels in worship here.
+~
+~
+37 8256 131072 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>fight_prog 100~
+stun
+stun
+stun
+stun
+stun
+~
+|
+#4096
+Initiate Ebon Hand~
+An Initiate of the Ebon Hand~
+A small robed figure runs about tending to the circle.
+~
+~
+37 8256 131072 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 100~
+stun
+stun
+stun
+stun
+stun
+~
+|
+#4097
+Initiate Ebon Hand~
+An Initiate of the Ebon Hand~
+A small robed figure kneels in worship here.
+~
+~
+37 8256 131072 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 100~
+stun
+stun
+stun
+stun
+stun
+~
+|
+#4098
+Mephistopholes~
+Mephistopholes~
+A huge demon stands here, proud to be the element of worship.
+~
+&WThou should not look at thee, for ye shall find the rage and hatred
+hidden inside thyself.  As ruler of this fortress Mephistopheles is a
+dangerous opponent to consider fighting against.  Lurking about at over 12
+feet in height, one whip from his chain would destroy your skull, better
+flee while you are still alive within this realm.  
+~
+3 503341288 426128 -1000 S
+115 0 0 35000d0+0 0d0+0
+0 0 0 0
+0 0 1
+97411 0 0
+>all_greet_prog 100~
+if isnpc($n)
+break
+else
+     if isgood($n)
+          say Foolish mortal!  The goodness within you will not save you!
+          say Prepare to meet the maker you foolishly worship!
+          mpkill $n
+     break
+     else
+          say Welcome, please be at rest here.
+          say Do, however, show a little respect.
+          mpforce $n worship $i
+          grin
+     break
+     endif
+break
+endif
+~
+>rand_prog 95~
+if inroom($i) == 4098
+break
+else
+     mpecho &R$I is consumed by a blinding explosion of fire and is gone.
+     mpgoto 4098
+     mpecho &RAn explosion of fire occurs, revealing $I as the flames dissipate.
+break
+endif
+~
+>fight_prog 5~
+if isnpc($n)
+break
+else
+mpechoat $n $I says, 'Fool! I command the Abyss!'
+mpecho $I raises his hands and sum a demon from the Abyss.
+mpmload 4299
+say Kill My Child!
+break
+endif
+~
+>fight_prog 60~
+bite
+gouge
+bite
+gouge
+~
+>fight_prog 80~
+cackle
+mpechoat $n &C$I says, 'You are so petty!'
+muh $n
+stun
+stun
+stun
+stun
+stun
+~
+>fight_prog 100~
+mpecho &R&Y$I &w&Yopens a &Bportal&Y&Y&w &Yto the &zAbyss&w &Yand grabs a tortured soul.
+mpoload 4100
+mpecho &Y$I &Ywaves his hand and the &Bportal&Y closes.
+eat soul
+~
+|
+#4099
+Initiate Ebon Hand~
+An Initiate of the Ebon Hand~
+A small robed figure runs about tending to the circle.
+~
+~
+37 8256 131072 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 100~
+stun
+stun
+stun
+stun
+stun
+~
+|
+#4100
+Initiate Ebon Hand~
+An Initiate of the Ebon Hand~
+A small robed figure kneels in worship here.
+~
+~
+37 8256 131072 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 100~
+stun
+stun
+stun
+stun
+stun
+~
+|
+#4101
+Initiate Ebon Hand~
+An Initiate of the Ebon Hand~
+A small robed figure runs about tending to the circle.
+~
+~
+37 8256 131072 -100 S
+70 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>fight_prog 100~
+stun
+stun
+stun
+stun
+stun
+~
+|
+#4112
+Keeper Minion~
+The Keeper~
+The Keeper of the Minions sits behind his desk.
+~
+~
+3 301998248 0 0 S
+80 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+mpechoat $n &P$I raises his head at your arrival.
+mpechoaround $n &P$I raises his head at $n's arrival.
+mpechoat $n &C$I asks you, 'You want in there?'
+mpechoaround $n &C$Iasks $n something.
+mpechoat $n &P$I waves his hand easternly.
+endif
+~
+>speech_prog Yes~
+if ispc($n)
+mpechoaround $n &C$I says something to $n then asks $m something.
+mpechoat $n &C$I says to you, 'I can't just let you waltz in, can I?'
+mpechoat $n &C$I says to you, 'Here is a riddle, answer it and you can enter.'
+mpechoat $n &C$I says to you, 'Blood in my head, I look at the world'
+mpechoat $n &C                        'from a different angle, yet see with my ears.'
+mpechoat $n &C$I asks you, 'What am I?'
+mpechoat $n &P$I cocks an eyebrow as he waits for your response.
+mpechoaround $n &P$I cocks his eyebrow as he waits for $n's response.
+endif
+~
+>speech_prog p a bat~
+if ispc($n)
+mpecho &P$I raises his eyebrow.
+mpechoaround $n &C$I says something to $n.
+mpechoat $n &C$I says to you, 'Well done, well done.'
+mpechoat $n &C$I says to you, 'I will meet you at the gate.'
+mpforce $n south
+mpoload 4111
+mpecho &B$I &wleaves south.
+mpat 4111 mpecho &B$I arrives from the north.
+mpat 4111 unlock east
+mpat 4111 open east
+mpat 4111 mpechoaround $n &C$I says something to $n.
+mpat 4111 mpechoat $n &C$I says to you, 'There you go.'
+mpat 4111 mpecho &B$I &wleaves north.
+mpecho &B$I arrives from the south.
+mpjunk key
+endif
+~
+|
+#4115
+Minion Tevesh Szat~
+The Minion of Tevesh Szat~
+A ghastly humanoid shape stands here, a look of hunger in it's eyes.
+~
+~
+35 411050176 0 -1000 S
+85 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#4117
+Minion Leshrac~
+The Minion of Leshrac~
+A hungry looking bat-like demon swoops above you and dives.
+~
+~
+35 302604994 425984 -1000 S
+105 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+mpecho &P$I swoops down at you!
+~
+>fight_prog 50~
+stun
+stun
+shriek
+shriek
+~
+>fight_prog 100~
+shriek
+shriek
+~
+|
+#4126
+dweller murk humanoid~
+The Murk Dweller~
+A strange looking humanoid rumages about the room.
+~
+~
+3 192 163840 0 S
+85 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>greet_prog 50~
+mepchoat $n $I looks up at you.
+mpechoaround $n $I looks up at $n.
+mpechoat $n &C$I says to you, 'Look at this marvel!'
+mpechoaround $n &C$I says something to $n.
+mpechoat $n $I flashes a broken skull key at you.
+mpechoaroun $n $I flashes something at $n, but you can't make out what.
+~
+|
+#4132
+Eye Evil Orm Gore~
+The Evil Eye of Orms-by-Gore~
+A huge beholder-like eye looks back at you, shrieks, and attacks.
+~
+~
+8227 33554624 163840 0 S
+95 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#4147
+guard high lim-dul~
+Lim-Dul's High Guard~
+One of Lim-Dul's most trusted high guard watches over his chamber.
+~
+~
+33 167780416 131072 -1000 S
+95 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+mpechoat $n &C$I shouts at you, 'You must get past us to kill our Master!'
+~
+>fight_prog 30~
+cackle $n
+stun
+stun
+circle
+~
+|
+#4148
+Necromancer Lim-Dul~
+Lim-Dul the Necromancer~
+A man in a long black robe utters a few incantations as you enter.
+~
+~
+33 503341248 426128 0 S
+101 0 0 27000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+>death_prog 100~
+mpat 4299 mptransfer lich 4148
+mpecho $I slowly rises to his feet...
+mpat 4148 mpforce lich say Foolish Mortal, I am a Necromancer!
+mpat 4148 mpforce lich say I AM DEATH INCARNATE!
+mpgoto 4299
+~
+>all_greet_prog 100~
+say BEGONE!
+~
+|
+#4149
+lich lim-dul necromancer~
+The Lich of Lim-Dul~
+The reanimated Lich of Lim-Dul screams at you.
+~
+~
+8225 8256 426128 -1000 S
+125 0 0 50000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#4162
+angel fallen~
+A Fallen Angel~
+An angel, long forgotten, contemplates the actions that has made her a fallen.
+~
+~
+3 192 0 -250 S
+85 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#4186
+Paladin Lim-Dul~
+Lim-Dul's Paladin~
+A knight of the highest order of Lim-Dul stands here.
+~
+~
+35 301990080 131072 -500 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#4299
+demon minor~
+A minor demon~
+A minor demon stands here, ready for battle.
+~
+~
+291 33554624 131072 0 S
+90 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>fight_prog 100~
+rescue mephistopholes
+~
+|
+#0
+
+
+
+#OBJECTS
+#4000
+key ebony small~
+a Small Ebony Key~
+A small piece of ebony has been dropped here.~
+~
+18 4 0 0 16385 50
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4001
+key dungeon~
+the Dungeon Key~
+A big key lies here on the floor.~
+~
+18 0 0 0 1 90
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4008
+armor thrull corpse~
+corpse of An Armor Thrull~
+The corpse of An Armor Thrull is lying here.~
+~
+15 20 0 0 9 75
+20~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -100
+A
+13 75
+#4010
+talon thurll~
+a thrull talon~
+A long mouthed talon has been thrown away here.~
+~
+5 0 5139 0 8193 80
+0~ 50~ 100~ 11~
+10 170 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 40
+#4012
+pit breeding~
+a portable breeding pit~
+A pit with ugly beings comming out of it.~
+~
+15 536871444 162 0 1 85
+300~ 0~ 0~ 0~
+50 170 0 0 0
+2 4011
+reserved~
+5 5
+0 0 0
+#4016
+goblin sacrifice~
+A goblin runs frantically in the pit.~
+A goblin runs frantically in the pit.~
+~
+19 0 0 0 0 1
+-1~ 0~ 0~ 0~
+0 1 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4017
+pit sacrificial~
+the Lord's Sacraficial Food Pit~
+A huge pit full of screaming goblins.~
+~
+15 536870912 0 0 0 101
+200~ 0~ 0~ 0~
+10 1250 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4018
+goblin sacrifice~
+a screaming goblin~
+A golbin waits to be eaten by the Lord.~
+~
+26 8192 0 0 1 101
+101~ complete healing~ complete healing~ complete healing~
+1 2000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4019
+claw pitt lord~
+the Lord of the Pitt's Claw~
+The claw of the now defunct Lord of the Pitt.~
+~
+5 33573396 5139 88 8193 101
+0~ 50~ 100~ 5~
+10 1200 0 0 0
+5 0
+dark blessing~
+7 7
+0 0 0
+A
+13 101
+A
+17 -50
+A
+19 60
+A
+18 20
+#4021
+boots black pitch~
+&wa pair of &zpitch black &wboots~
+Some black armored boots are cocked against the wall here.~
+~
+9 596 130 88 65 90
+40~ 0~ 0~ 0~
+5 350 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -90
+A
+108 -1
+A
+13 50
+#4022
+leggings black~
+&wa pair of &zpitch black &wleggings~
+Pitch black leggings lie in a corner, barely noticable.~
+~
+9 596 131 88 33 90
+40~ 0~ 0~ 0~
+5 200 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 90
+A
+17 -30
+#4023
+armplates arm plates black pitch~
+&wa set of &zpitch black &warmplates~
+Some pitch black armplates lies on the floor.~
+~
+9 596 4147 88 257 90
+40~ 0~ 0~ 0~
+5 275 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+A
+13 30
+A
+1 3
+#4024
+black pitch gauntlets~
+&wa pair of &zpitch black &wgauntlets~
+A pair of black gauntlets rest upon the floor.~
+~
+9 596 130 88 129 90
+40~ 0~ 0~ 0~
+5 200 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+2 -2
+A
+17 -50
+A
+12 50
+#4025
+sword black pitch longsword~
+&wa &zpitch black &wlongsword~
+A sword as black as night radiates power here.~
+~
+5 67109460 4273 88 8193 90
+0~ 50~ 100~ 3~
+5 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 30
+A
+26 50
+A
+18 20
+A
+13 50
+#4026
+cloak black pitch~
+&wa &zpitch black &wcloak~
+A cloak blacker than black flutters in the light wind.~
+~
+9 596 130 88 1025 90
+40~ 0~ 0~ 0~
+1 100 0 0 0
+5 0
+mist form~
+1 1
+0 0 0
+A
+24 -3
+A
+23 -3
+A
+2 2
+A
+17 -25
+#4027
+shield black pitch~
+&wa &zpitch black &wshield~
+A shield of the purest black glistens in the moonlight.~
+~
+9 596 4145 88 513 90
+40~ 0~ 0~ 0~
+15 200 0 0 0
+5 0
+inertial barrier~
+5 5
+0 0 0
+A
+12 50
+A
+19 10
+A
+13 75
+A
+1 2
+#4028
+bracer serra~
+&wa &zBlackened &wSerra Paladin Bracer~
+A black Serra Paladin bracer lies here, tarnished.~
+~
+9 532 130 88 4097 101
+40~ 0~ 0~ 0~
+2 200 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 101
+A
+24 -10
+A
+17 -80
+#4029
+black pitch plate full~
+&wa &zpitch black &wfull plate~
+A huge full plate armor lies here, seemingly black than night.~
+~
+9 596 130 88 9 90
+40~ 0~ 0~ 0~
+10 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -75
+A
+13 90
+#4030
+sword pitch black broadsword~
+&wa &zpitch black &wbroadsword~
+A huge broadsword radiates power here.~
+~
+5 67109396 130 88 8193 100
+0~ 50~ 100~ 3~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -5
+A
+24 -5
+A
+13 100
+A
+17 -100
+A
+12 75
+#4058
+wing serraph protective~
+a Serraph's Protective Wing~
+A wing from the Serraph Angel lies here.~
+~
+9 3072 3604 17920 5 103
+40~ 0~ 0~ 0~
+1 1000 0 0 0
+5 0
+animate dead~
+5 5
+0 0 0
+A
+110 -1
+A
+12 100
+A
+13 150
+A
+17 -150
+#4062
+blade spiritual~
+a Spiritual Blade~
+A blade seemingly made of mist floats about the room.~
+~
+5 805309728 3584 0 8193 90
+0~ 25~ 80~ 3~
+1 275 0 0 0
+5 0
+holy strength~
+1 1
+0 0 0
+A
+24 -5
+A
+12 30
+A
+13 90
+A
+23 -5
+#4066
+shield northern paladin~
+a Paladin's Shield~
+A white shield with the emblem of the northern lands lays here.~
+~
+9 536874305 1653 16896 513 103
+40~ 0~ 0~ 0~
+10 1000 2 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -6
+A
+24 -6
+A
+17 -103
+A
+13 100
+A
+2 2
+#4067
+sword avenger holy~
+the Holy Avenger~
+A huge snow white sword pulses brightly here.~
+~
+5 33557763 1552 1544 8193 103
+0~ 100~ 200~ 1~
+5 1000 0 0 0
+5 0
+dispel magic~
+5 5
+0 0 0
+A
+26 50
+A
+13 100
+A
+18 50
+A
+19 70
+#4083
+Lotus Black~
+a &zBlack &RLotus~
+A small, black flower radiates power.~
+~
+8 536875141 6860 0 16385 101
+0~ 0~ 0~ 0~
+1 1000 0 0 0
+5 0
+mana~
+10 10
+0 0 0
+A
+12 50
+A
+24 -15
+A
+23 -15
+A
+17 -50
+#4093
+earring thousand mercy pleas~
+a thousand pleas for mercy~
+An earring screams for mercy here.~
+~
+9 598 130 0 524289 102
+40~ 0~ 0~ 0~
+1 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 75
+A
+25 33
+A
+24 -5
+#4095
+bracer lava molten~
+&Ra &rmolten lava &Rbracer~
+A bracer made from molten lava lies here, smoldering.~
+~
+9 838861332 4258 88 4097 102
+50~ 0~ 0~ 0~
+1 1000 0 0 0
+5 0
+burning hands~
+0 -1
+0 0 0
+A
+24 -5
+A
+17 -80
+A
+13 75
+#4097
+pillar hellfire hell~
+&rbl&Oazi&Yng &rhe&zll&wfi&Wre~
+A roaring pillar of hellfire lights up the room.~
+~
+1 570425856 130 88 1 102
+0~ 0~ -1~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+17 -102
+A
+25 25
+A
+12 75
+#4098
+chains chain~
+the Chains of Mephistopholes~
+Some huge chains have been left here to rust away.~
+~
+5 637551124 130 88 8193 102
+0~ 0~ 0~ 4~
+8 1200 0 0 0
+5 0
+entangle~
+10 10
+0 0 0
+A
+13 100
+A
+17 -80
+A
+19 70
+A
+26 50
+#4100
+soul tortured~
+a tortured soul~
+A tiny tortured soul lies here.~
+~
+26 0 0 0 1 102
+102~ complete healing~ complete healing~ complete healing~
+1 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4107
+ring skull~
+a broken skull ring~
+A chipped skull on a ring lies here.~
+~
+13 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 1 0 0
+0 0
+reserved~
+0 0
+4137 0 0
+#4111
+key minions~
+the key to the minions~
+A key with two twisted heads carved into it lies here.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4114
+wing minion leshrac~
+a Wing of Leshrac's Minion~
+A huge bat-like veined wing lies half-open here.~
+~
+9 805308948 419 88 5 101
+40~ 0~ 0~ 0~
+1 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+17 -100
+A
+110 -1
+#4117
+teeth minion~
+the Teeth of Leshrac's Minion~
+Some huge razor sharp teeth lies here.~
+~
+9 268438100 163 88 65537 101
+40~ 0~ 0~ 0~
+1 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+17 -100
+A
+25 100
+#4126
+key skull broken~
+a broken skull key~
+One half of a broken skull key lies here.~
+~
+13 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+4137 0 0
+#4132
+eye evil orm gore~
+the Evil Eye of Orms-by-Gore~
+A huge eye radiates evil from a pool of blood.~
+~
+27 2561 0 0 131073 101
+95~ -1~ -1~ disintegrate~
+1 1000 0 0 0
+5 0
+true sight~
+5 5
+0 0 0
+A
+24 -5
+A
+17 -100
+A
+13 110
+A
+124 -1
+#4137
+key skull~
+a skull key~
+An intricately carved skull key lies here.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 4107 4126
+#4146
+knife bloody sacraficial sengir~
+&wa &rbloody &zsengir &wknife~
+A sacraficial knife lies in a pool of blood.~
+~
+5 100680276 4258 66 8193 100
+0~ 100~ 2000~ 11~
+2 1000 0 0 0
+5 0
+bloodbath~
+0 -1
+0 0 0
+A
+19 42
+A
+24 -15
+A
+17 -100
+A
+25 30
+A
+18 28
+#4147
+scimitar wicked~
+a wicked scimitar~
+A wicked looking scimitar seems to grin at you from the corner.~
+~
+5 67127892 4608 88 8193 101
+0~ 75~ 100~ 7~
+5 1000 0 0 0
+3 4147
+reserved~
+10 10
+0 0 0
+A
+18 30
+A
+26 50
+A
+19 60
+#4148
+staff lim-dul~
+the Staff of Lim-Dul~
+A black staff with bloody engravings lies here.~
+~
+9 536877636 130 0 16385 1
+0~ 0~ 0~ 0~
+10 2000 0 0 0
+5 0
+cure light~
+0 -1
+0 0 0
+A
+3 3
+A
+4 3
+A
+13 20
+#4185
+shield ages~
+the Shield of the Ages~
+A shield as old as the earth lies here.~
+~
+9 268435797 1059 0 513 100
+40~ 0~ 0~ 0~
+20 1000 0 0 0
+5 0
+aura of peace~
+3 3
+0 0 0
+A
+13 100
+A
+17 -100
+#4186
+blade knoledge~
+the Blade of Knowledge~
+&gA blade as old as dust lies here, accumulating dust.~
+~
+5 532 130 88 8193 95
+0~ 100~ 200~ 2~
+15 1250 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 35
+A
+18 15
+A
+13 95
+A
+26 15
+A
+12 100
+#4299
+picture hannibal~
+hannibal picture~
+A beautiful picture of Hannibal lies here, forgotten.~
+~
+8 256 0 0 16385 1
+0~ 0~ 0~ 0~
+1 30 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+picture~
+&W                       ________________
+&W                      |  ____________  |
+&W                      | |    &z\\|//   &W| |
+&W                      | |    &wC &cOo&w|   &W| |
+&W                      | |    &w_|&RU&w/_   &W| |
+&W                      | |____________| |
+&W                      |________________|
+~
+#0
+
+
+
+#ROOMDATA
+#4000
+Entrance to the Fortress~
+You arrive at the front gates of a HUGE fortress.  It spans probably a
+mile from on end to the other.  It is fashionned from dark black bricks that
+seem to have been welded together.  It is like looking at a huge puzzle.  In
+front of you are the gates to this dark looking place.  There is a small
+outpost for guards next to one of the gates.  Either leave or enter, because
+staying here is a bad idea.  
+~
+0 270337 0
+Rd     0
+D0
+~
+gate~
+7 4000 4001
+S
+#4001
+Inside the Fortress~
+The inside of the Fortress is dark and ominous.  Evil can be felt and
+tasted in the air.  Strange sounds float from the northern passageway.  Deep
+and hollow, it is best to be wary there.  A cast iron door hangs to the
+east.  An &zEbon Banner&c is engraved deep into the metal.  Directly west is a
+wide passage leading it seems, to a southern tower.  
+~
+0 131081 0
+Rd     0
+E
+banner~
+&z/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+|                                        |
+|     &wDarkness reigns supreme            &z|
+|  &wWary to those who oppose the          &z|
+|       &zEbon &wPaladins...&z                 |
+|                                        |
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+~
+D0
+~
+~
+0 0 4002
+D1
+~
+~
+3 0 4020
+D2
+~
+~
+7 0 4000
+D3
+~
+~
+0 0 4068
+S
+#4002
+&wBefore the &zPits&w~
+&cAs you assend into the northern passageway, the acrid smell burns your
+sinuses.  It smells like &zcharred flesh&c and burning hair here.  North of
+you and to the east are great pits.  What they hold, only the &zUnholy&c may
+be privileged to that kind of information...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4003
+D1
+~
+~
+0 0 4013
+D2
+~
+~
+0 0 4001
+S
+#4003
+&wEdge of the &zBreeding Pit&w~
+&cAbruptly you stop at the edge of this deep narrow shaft.  From the
+moans below, you can almost guess that the gruesome dance of some loathsome
+beasts, smelly and fierce, must be causing the ground to shudder so under
+your feet.  Beware!  Don't fall in there...  
+~
+0 33955853 0
+Rd     0
+D2
+~
+~
+0 0 4002
+D5
+~
+~
+0 0 4004
+S
+#4004
+&zFalling Down the Pit!&w~
+&zYour foot slips on the sandy, rock-strewn edge and down you fall, your
+hands grasp at the rapidly passing sides of the shaft...  To no avail.  
+~
+0 33955853 0
+Rd     0
+D4
+~
+~
+0 0 4003
+D5
+~
+~
+0 0 4005
+S
+#4005
+&zFalling Further Down the Pit!&w~
+&zFarther still you plummet, your head and body bouncing off of the
+earthen sides of this narrow shaft to only God knows where!  
+The squeals of mating beasts grow louder as you fall...
+~
+0 33955853 0
+Rd     0
+D4
+~
+~
+0 0 4004
+D5
+~
+~
+0 0 4006
+S
+#4006
+&zBottom of the Pit&w~
+&zWHAP!  Your body strikes the ground with a resounding thud as you land
+in piles of creamy goo!  You can hardly imagine exactly "what" this
+substance is, almost afraid to guess.  The smell here is horrific.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4007
+D2
+~
+~
+0 0 4011
+D4
+~
+~
+0 0 4005
+S
+#4007
+&wWithin the &zBreeding Pit&w~
+&zYou stumble around here, your steps catching on various regurgitated
+fodder and puddles of &Wmilky &Gglowing&z goo...  The mating cries of huge
+beasts echo about the caverns making their place of origin hard to place. 
+You can only hope that you can find your way out of this place with your
+hide intact.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4008
+D2
+~
+~
+0 0 4010
+D3
+~
+~
+0 0 4006
+S
+#4008
+&wWithin the &zBreeding Pit&w~
+&zThe light here is so dim, you can barely see where you are going.  The
+caverns here seem to venture southward, and back to the west.  You almost
+slip in the gooey &Gglowing&z slime that seems to be everywhere throughtout
+the cavern floors.  You struggle to hold down your lunch...  
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4009
+D3
+~
+~
+0 0 4007
+S
+#4009
+&wWithin the &zBreeding Pit&w~
+&zAs you grope and feel your way around the cavern, you stick your hand
+right in some nasty &Gslime&z!  It smells awful and carries with it a
+slightly burning sensation.  Small swirls of smoke waft from your skin and
+armor - wherever the substance touches you.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4008
+D3
+~
+~
+0 0 4010
+S
+#4010
+&wEntrance to a &rStrange Cavern&w~
+&zCarefully picking your way around the puddles of goo and feces of these
+creatures, you come upon the Entrance to a &rStrange Cavern&z.  The growling
+here is at it's loudest.  You can barely hear the pounding of your heart in
+your ears as you stare about you in the darkness, looking for a place to
+hide!  &GSlime&z drips from the entrance...  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4007
+D1
+~
+~
+0 0 4009
+D2
+~
+~
+0 0 4012
+D3
+~
+~
+0 0 4011
+S
+#4011
+&wWithin the &zBreeding Pit&w~
+&zDeep gouges as if from great claws have grated the floors and walls of
+this dismal place.  The air here smells damp and fetid.  An occasional
+scream from the violent mating rituals burns at your ears as it rattles the
+very walls!  Carefully, you tredge onward...  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4006
+D1
+~
+~
+0 0 4010
+S
+#4012
+&zLair of the &RThrull Champion&w~
+&zYou charge into the Lair of the &RThrull Champion&z!
+Be prepared to...DIE!
+~
+0 393229 0
+Rd     0
+D0
+~
+~
+0 0 4010
+S
+#4013
+&wEdge of a &zHuge Pit&w~
+&wYou stop just in time to keep from plummeting head-long into a huge
+pit!  The edge crumbles beneath your feet as you grasp for purchase!  The
+crumbling rocks bounce off of the walls of the pit as they disappear from
+view...  Into nothingness...  
+~
+0 33955853 0
+Rd     0
+E
+pit~
+&zThe pit seems bottomless...
+~
+D3
+~
+~
+0 0 4002
+D5
+~
+~
+0 0 4014
+S
+#4014
+&zFalling...~
+&wYour foot slips and you find yourself plunging swiftly down a huge pit!
+You grasp at the sides to no avail...  
+~
+0 33955853 0
+Rd     0
+D5
+~
+~
+0 0 4015
+S
+#4015
+&z...and Falling...&w~
+&zYour &Rbloody&z fingers grasp helplessly at the sheer sides of the huge
+pit as you fall...down...down... .  .
+~
+0 33955853 0
+Rd     0
+D5
+~
+~
+0 0 4016
+S
+#4016
+&z...and Falling...&w~
+&zDownward you slide and tumble through the Huge Pit, your face
+&Rbloody&z from scraping the rough sides and your knees and elbows abused
+from the falling...the falling...the endless falling...
+~
+0 33955853 0
+Rd     0
+D5
+~
+~
+0 0 4017
+S
+#4017
+&z...and Falling...&w~
+&zAs you fall helplessly, banging from one side of the Huge Pit to the
+other as you go, you think that you can see the bottom of this place through
+the &Rscarlet veil&z of &Rblood&z that has managed to mingle with dirt in
+your eyes as you grapple, trying to save yourself...  
+~
+0 33955853 0
+Rd     0
+D5
+~
+~
+0 0 4018
+S
+#4018
+&wBottom of the &zHuge Pit&w~
+&zWHAM!  You hit the bottom of the Huge Pit with a dull thud, knocking
+the wind out of you!  You lay there for a few seconds and take mental
+inventory of your body parts.  Finally deciding that you are still in one
+piece, you gather your wits for there is nothing to do now but continue
+onward.  
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 4019
+S
+#4019
+A Huge Cave~
+~
+0 393225 0
+Rd     0
+D2
+~
+~
+0 0 4018
+S
+#4020
+A Small Intersection~
+Sounds of chains can be heard distinctly towards the northern passage. 
+An iron door hangs tightly on its hinges, firmly nailed into the western
+stone wall.  Towards the east shines an eerie &Rcrimson &cglow.  Sounds of
+marching can be heard, muffled slightly.  
+~
+0 131085 0
+Rd     0
+D0
+~
+~
+0 0 4031
+D1
+~
+~
+0 0 4021
+D3
+~
+~
+3 0 4001
+S
+#4021
+Entrance to the Hall of the Black Knights~
+A dark arch adorned with violent depictions of battle serves as the
+entryway into what seems to be a large hall.  Thick &Rcrimson &ccarpeting
+covers the floor.  The walls are decorated with silk banners.  Shields and
+weapons are delicately embroidered onto the banners.  An extreme sense of
+evil and danger radiates from this hall.  Sounds of footsteps and armor can
+be heard from what seems to be all directions.  Echoing in this unholy
+bastion.  The source of the mysterious sounds can not be seen.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4022
+D1
+~
+~
+0 0 4026
+D2
+~
+~
+0 0 4027
+D3
+~
+~
+0 0 4020
+S
+#4022
+North-West Corner of the Hall~
+&cThis corner of the hall is veiled in a dark, &zsmoky&c mist.  To the
+south, a faint light struggles to enter this hall.  Other than that, the
+darkness grows darker in every direction.  The walls here are made of solid
+stone.  It is reinforced with a strange silver metal.  The walls are bare
+and cold.  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4023
+D2
+~
+~
+0 0 4021
+S
+#4023
+Northern Section of the Hall~
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4024
+D2
+~
+~
+0 0 4026
+D3
+~
+~
+0 0 4022
+S
+#4024
+North-Eastern Corner of the Hall~
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 4025
+D3
+~
+~
+0 0 4023
+S
+#4025
+End of the Hall~
+The end of the Hall allows passage deeper east, into the source of the
+strange mist.  Danger and despair flows through this room.  The sounds of
+the barely visible denizens of this Fortress seem to be closing in on this
+room.  The mist grows thicker...  As does the fear.  
+~
+0 131085 0
+Rd     0
+D0
+~
+~
+0 0 4024
+D1
+~
+porticulis~
+1 0 4030
+D2
+~
+~
+0 0 4029
+D3
+~
+~
+0 0 4026
+S
+#4026
+Hall of the Black Knights~
+Surrounded by complete &zdarkness&c...  The Hall of the Black Knights
+pulses with raw evil.  The light sounds of footsteps and clinking of armor
+come from all around this room.  Standing in the center of this room, one
+would feel as if they had lost their sight.  A wispy mist, barely noticable,
+blows from the east.  The smell is bittersweet and sickly.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4023
+D1
+~
+~
+0 0 4025
+D2
+~
+~
+0 0 4028
+D3
+~
+~
+0 0 4021
+S
+#4027
+South-Western Corner of the Hall~
+The corner of the hall is pitch black.  Without a light, darkness reigns
+supreme.  The carpeting hugs the wall tightly.  Almost trying to absorb the
+walls itself.  In the dimness, the walls itself look as if it is absorbing
+what little light is shining.  Devouring the light and warmth.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4021
+D1
+~
+~
+0 0 4028
+S
+#4028
+Southern Section of the Hall~
+The southern wall is the only visible surface here.  Deep carvings can be
+seen in the stones.  They resemble letters of a language that is
+undecipherable.  Although, the structure of the words are in the shape of a
+poem.  A single word can be made out, '&RIhsan&c'.  All except the wall and
+letters are shrouded by the cloak of darkness.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4026
+D1
+~
+~
+0 0 4029
+D3
+~
+~
+0 0 4027
+S
+#4029
+South-Eastern Section of the Hall~
+The darkness grows thicker in this corner.  Light struggles to shine as
+the hall spreads inky blackness.  The sounds of footsteps softly moving
+about is clear as a bell.  The lack of light seems to have heightened sounds
+in this area.  A porticulis is barely noticable towards the north.  It can
+be seen due to a strange and sinister glow radiating further east.  The wall
+is decorated with images of a single heavily-armored paladin.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4025
+D3
+~
+~
+0 0 4028
+S
+#4030
+Ihsan's Shade's Chamber~
+As you cross the porticulis, you notice a clear change in the room
+atmosphere.  The room is lavisheously furnished, there is a huge table in
+the middle of it.  There are paintings depicting angels on every wall.  Upon
+closed inspection, you can see that the canvas where some of the angel's
+wings are has been torn.  You see a huge statue in a corner of the room; it
+seems to be a paladin of the highest order.  At the base of the statue is a
+small plaque. 
+~
+0 131085 0
+Rd     0
+E
+plaque~
+&W_____________________________________
+| The Serra Paladinhood reconises     |
+| the heart and courage of Ihsan,     |
+| and thus present him with this      |
+| statue of himself.                  |
+| -- The High Council                 |
+|      of the Paladinhood             |
+|_____________________________________|
+~
+D3
+~
+porticulis~
+1 0 4025
+S
+#4031
+A Small Corridor~
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4032
+D2
+~
+~
+0 0 4020
+S
+#4032
+A Small Office~
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 4031
+D3
+~
+~
+0 0 4033
+S
+#4033
+At the Dungeon's Gate~
+~
+0 131081 0
+Rd     0
+D0
+~
+gate~
+119 4001 4034
+D1
+~
+~
+0 0 4032
+S
+#4034
+Entrance to the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4035
+D2
+~
+~
+119 4001 4033
+S
+#4035
+A Small Office Within the Dungeon~
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+0 0 4036
+D3
+~
+~
+0 0 4034
+S
+#4036
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4037
+D2
+~
+~
+0 0 4055
+D3
+~
+~
+0 0 4035
+S
+#4037
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4038
+D2
+~
+~
+0 0 4036
+S
+#4038
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4039
+D2
+~
+~
+0 0 4037
+S
+#4039
+Before a Cell~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4040
+D2
+~
+cell~
+3 0 4056
+D3
+~
+~
+0 0 4038
+S
+#4040
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4041
+D3
+~
+~
+0 0 4039
+S
+#4041
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4042
+D3
+~
+~
+0 0 4040
+S
+#4042
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4043
+D3
+~
+~
+0 0 4041
+S
+#4043
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4044
+D3
+~
+~
+0 0 4042
+S
+#4044
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4045
+D3
+~
+~
+0 0 4043
+S
+#4045
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4046
+D3
+~
+~
+0 0 4044
+S
+#4046
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4045
+D2
+~
+~
+0 0 4047
+S
+#4047
+Before a Cell~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4046
+D2
+~
+~
+0 0 4048
+D3
+~
+cell~
+3 0 4060
+S
+#4048
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4047
+D3
+~
+~
+0 0 4049
+S
+#4049
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4048
+D3
+~
+~
+0 0 4050
+S
+#4050
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4049
+D3
+~
+~
+0 0 4051
+S
+#4051
+Before a Cell~
+~
+0 401417 0
+Rd     0
+D0
+~
+cell~
+3 0 4064
+D1
+~
+~
+0 0 4050
+D3
+~
+~
+0 0 4052
+S
+#4052
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4051
+D3
+~
+~
+0 0 4053
+S
+#4053
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4052
+D3
+~
+~
+0 0 4054
+S
+#4054
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4053
+D3
+~
+~
+0 0 4055
+S
+#4055
+Within the Dungeon~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4036
+D1
+~
+~
+0 0 4054
+S
+#4056
+Inside a Cell~
+~
+0 401421 0
+Rd     0
+D0
+~
+cell~
+3 0 4039
+D1
+~
+~
+0 0 4059
+D2
+~
+~
+0 0 4057
+S
+#4057
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4056
+D1
+~
+~
+0 0 4058
+S
+#4058
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4059
+D3
+~
+~
+0 0 4057
+S
+#4059
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4058
+D3
+~
+~
+0 0 4056
+S
+#4060
+Inside a Cell~
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 4063
+D1
+~
+cell~
+3 0 4047
+D3
+~
+~
+0 0 4061
+S
+#4061
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4062
+D1
+~
+~
+0 0 4060
+S
+#4062
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4063
+D2
+~
+~
+0 0 4061
+S
+#4063
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4060
+D3
+~
+~
+0 0 4062
+S
+#4064
+Inside a Cell~
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 4065
+D2
+~
+~
+3 0 4051
+D3
+~
+~
+0 0 4067
+S
+#4065
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4064
+D3
+~
+~
+0 0 4066
+S
+#4066
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4065
+D2
+~
+~
+0 0 4067
+S
+#4067
+Inside a Cell~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4066
+D1
+~
+~
+0 0 4064
+S
+#4068
+&wAnother &zIntersection&w~
+&wMaze-like now, you feel like you may be becoming hopelessly lost in
+this never ending &zhallway&w buried deep beneath the &zfortress&w within
+the bowels of wickedness.  You have no choice but to press onward and see
+what life - what is left of it - has in store for you now.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4075
+D1
+~
+~
+0 0 4001
+D2
+~
+~
+0 0 4069
+S
+#4069
+&wA Small &bDamp &zCorridor&w~
+&wNarrowing further is this, a &bdamp&w and musty place.  It smells of
+&grot&w and &gmold&w here.  Your nose begins to burn and your eyes water at
+the &gstench&w.  You can hear water slightly trickling all around you.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4068
+D3
+~
+~
+0 0 4070
+S
+#4070
+&wA Small &bDamp &zCorridor&w~
+&wThe floor is slick with the &gslime&w of this dank and putrid tunnel
+like corridor.  Your feet slide in it.  You would hate like hell to fall
+down into this stuff, for no one knows the composition of it - whether it is
+alive.  Or not.  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4069
+D2
+~
+~
+0 0 4071
+S
+#4071
+&wA Small &bDamp &zCorridor&w~
+&wDeeper and deeper into the seemingly endless network of corridors you
+travel, hopelessly lost.  The contant &bdrip-drip-dripping&w of the moisture
+here is driving you mad!  And the smell here is almost unbearable.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4070
+D2
+~
+~
+0 0 4072
+S
+#4072
+&wA Small &bDamp &zCorridor&w~
+&wThe walls seem to be closing in on you now, so close and stifling the
+environment here.  The walls glisten with moisure, and you imagine that you
+must be very close to water here.  You hope that the danger of the walls
+caving in from the pressure of the water which is seeping in from all
+directions is not too great...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4071
+D3
+~
+~
+0 0 4073
+S
+#4073
+&wA Small &bDamp &zCorridor&w~
+&wYour eyes burn as you strain to see in the darkness, the smell almost
+overpowering.  Your footfalls make watery noises as you proceed with extreme
+caution.  Occationally, you pause to study the walls, hoping for a clue as
+to what this place is or where it may lead.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4074
+D1
+~
+~
+0 0 4072
+S
+#4074
+&wThe Bottom of Some &zOlde Stone Stairs&w~
+&wFinally you arrive at the foot of some olde stone stairs.  The moisture
+has corroded small niches from the cracks in each landing.  You can see now
+that the moisture is dripping from somewhere above these steps.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 4073
+D4
+~
+~
+0 0 4187
+S
+#4075
+&wA &zDark hallway&w~
+&wHere the hallway narrows even further, and - crypt-like - you cannot
+even see your hand before your face, it is so pitch dark here.  
+You press onward...
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 4068
+D3
+~
+~
+0 0 4076
+S
+#4076
+&wAnother &zIntersection&w~
+&wYet again, another intersection avails itself to you.  You can go back
+to the south whence you came.  Or journey either to the east or the west to
+entertain careless folly.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4077
+D1
+~
+~
+0 0 4075
+D3
+~
+~
+0 0 4080
+S
+#4077
+&wA &zDark Hallway&w~
+&wHere, the walls narrow in on themselves just a bit, making the area
+seem to close in on you.  You can smell the dank and dampness seeping from
+the &Wsparkling&w walls.  As you run your hands over the cold stoney
+surface, you question your own sanity...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4078
+D2
+~
+~
+0 0 4076
+S
+#4078
+&wBend in the &zHallway&w~
+&wYou creep around a bend in the hallway, the &Wsparkles&w embedded in
+the rough hewn walls glinting and grabbing at your attention.  You have two
+options: to continue on maybe to certain doom, or go back whence you came...
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4079
+D2
+~
+~
+0 0 4077
+S
+#4079
+&wBottom of the &zDark Stairs&w~
+&wCarefully you creep to the bottom of the stairs, trying not to make
+noise.  Who knows what lurks around down here in this horrible place!?  You
+think you feel something breathing down the back of your neck, and spin
+around nervously.  Nothing there.  Keep going...  
+~
+0 131081 0
+Rd     0
+D3
+~
+~
+0 0 4078
+D4
+~
+~
+0 0 4118
+S
+#4080
+&wYet Another &zIntersection&w~
+&wAnother intersection challenges your decision making processes.  This
+place seems so maze-like and confusing - just one enormous puzzle that seems
+to be leading forever downwards and into the &zdarkness&w.
+Maybe to &rHell&w itself...
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4081
+D1
+~
+~
+0 0 4076
+D2
+~
+~
+0 0 4084
+S
+#4081
+&wA &zDimly &wLit &zHall&w~
+&wHere the hallway leads up at a slight incline to the south from the
+decline to the west.  The way south looks more brightly illuminated, but not
+much to be of any comfort.  You peer into the darkness, however, in each
+direction...  
+~
+0 131080 0
+Rd     0
+D2
+~
+~
+0 0 4080
+D3
+~
+~
+0 0 4082
+S
+#4082
+&wA &zDimly &wLit &zHall&w~
+&zHere the dark hallway changes.  You find yourself standing in a slight
+depression of the floor.  To the east, the hallway continues into darkness. 
+To the west, however, is a small jagged opening. It is pitch black in there...
+~
+0 131085 0
+Rd     0
+D1
+~
+~
+0 0 4081
+D2
+~
+~
+0 0 4090
+D3
+~
+~
+0 0 4083
+S
+#4083
+&wThe &zChamber&w of &rRelics &wand &rArtifacts&w~
+&zYou enter into a small dark chamber.  As your eyes adjust you can make
+out countless small depressions in the very walls around you.  Small glints
+of the reflection of your light reveal small trinkets and treasures so
+obscure that only the priests might be able to hint at their true meaning.  
+~
+0 4358153 0
+Rd     0
+D1
+~
+~
+0 0 4082
+S
+#4084
+&wA &zDimly &wLit &zHall&w~
+&wYou have happened into a very dark hallway.  The walls, ceiling and
+floor seem to be made of ancient materials and are very close and cramped. 
+In the distance you think you can hear voices, but one cannot be sure as the
+sound seems to carry in a most peculiar way here.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4080
+D3
+~
+~
+0 0 4085
+S
+#4085
+&wA &zDimly &wLit &zHall&w~
+&wAs you journey further into the darkness of the hallway, you can hear
+your footfalls echoing back and forth from wall to wall to wall.  It
+sometimes matches the very cadence of the pounding of your heart at times,
+magnifying both sounds in a sureal way.  You carefully pick your way through
+the darkness...  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4084
+D3
+~
+~
+0 0 4086
+S
+#4086
+&wA &zDimly &wLit &zHall&w~
+&wHere the little hallway seems to narrow down even smaller - something
+that seems almost impossible.  You have to almost stoop down to keep from
+scraping your head on the ceiling at this point.  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4085
+D3
+~
+~
+0 0 4087
+S
+#4087
+&wA &zDimly &wLit &zHall&w~
+&wYou almost bang your nose on the wall as the hall sharply curves to the
+north.  You can barely make out where you are going or where you have
+been...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4088
+D1
+~
+~
+0 0 4086
+S
+#4088
+&wBefore the &zHuge &rWard Sealed &zDoors&w~
+&zInset into the wall is a set of Huge &rWard Sealed &zDoors&z.  A thin
+sliver of light creeps from beneath them, throwing large shadows from even
+the smallest chunk of dirt.  As you take a moment to pause and contemplate
+the barrier, faint obscure noises can be heard coming from the other side.  
+~
+0 131085 0
+Rd     0
+D0
+~
+~
+0 0 4091
+D1
+~
+~
+0 0 4089
+D2
+~
+~
+0 0 4087
+D3
+~
+~
+115 0 4093
+S
+#4089
+&wA &zDimly &wLit &zHall&w~
+&zHere the hallway curves back away from the huge ominous doors.  The
+incline of the floor gives the distinct impression that you are venturing
+downward and to who-knows-what.  The air here is oppressive...  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4090
+D3
+~
+~
+0 0 4088
+S
+#4090
+&wA &zDimly &wLit &zHall&w~
+&zHere you come upon another curve in the hallway and again to the north.
+Even though you are venturing at a slight incline downwards, the hallway
+seems to open up somewhat here and afford a bit more room to move around.  
+The spooky part is, however, that it has become deathly quiet here...
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4082
+D3
+~
+~
+0 0 4089
+S
+#4091
+&wA &rCrumbling &zHallway&w~
+&zAll around you a &rCrumbling &zHallway surrounds you as you pick your
+way past the rubble and debris that has sloughed from the walls and ceiling
+of this damp earthy place.  The smell of fresh-dug earth and slimy
+earthworms and fetid mulch stings at your nose.  The smell is stronger to
+the north...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4092
+D2
+~
+~
+0 0 4088
+S
+#4092
+&wTop of Some &rCrumbling &zStairs&w~
+&zYou stop, pebbles and dust bounce into the darkness below you as you
+stand at the top of some &rCrumbling &zStairs.  The way down looks dark and
+you see a &Gglowing &Wmist&z floating below at the bottom of the steps.  The
+smell of mold and fresh damp earth invades your senses...  
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 4091
+S
+#4093
+&wThe &rCircle &wof &zWorship&w~
+&zYou enter into the sacred circle of worship.  All around are demure
+creatures clothed in red and black robes.  Upon closer inspection of them,
+you find that they are not small and wrinkling old men, but nubile young
+damsels caught up in the throes of devotion and worship for their god... 
+Whomever that may be...  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4094
+D1
+~
+~
+115 0 4088
+D2
+~
+~
+0 0 4099
+D3
+~
+~
+0 0 4098
+S
+#4094
+&wThe &rCircle &wof &zWorship&w~
+&zAs you follow the circle around, you notice a wall of fire in the
+center of this circle.  It appears to be hiding something of great value -
+possibly an idol, as this seems to be the center of attention for the
+beautiful maidens of the Ebon Hand.  
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4093
+D3
+~
+~
+0 0 4095
+S
+#4095
+&wThe &rCircle &wof &zWorship&w~
+&zFalling into step behind the young women here, your feet shuffle upon
+the dirt floor which has been worn smooth by the thousands of miles trekked
+about the large circumfrence just on the edge of the pyre.  
+~
+0 401416 0
+Rd     0
+D0
+~
+tapestry~
+115 0 4102
+D1
+~
+~
+0 0 4094
+D2
+~
+~
+0 0 4098
+D3
+~
+~
+0 0 4096
+S
+#4096
+&wThe &rCircle &wof &zWorship&w~
+&zAt this, the far end of the circle, the air is becoming most unpleasant
+here.  The young waifs seem to be enthralled by the fire and sway their
+young bodies to steps of a silent dirge.  For reasons unexplained, you feel
+compelled to the fire.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4095
+D2
+~
+~
+0 0 4097
+S
+#4097
+&wThe &rCircle &wof &zWorship&w~
+&zThe maidens bow in unison towards the great fire before you, tears of
+sublime ecstacy upon their face.  At closer inspection, however, you note a
+tinge of sublime fear as well.  You look from the faces of the initiates... 
+And then back again to the fire...  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4096
+D1
+~
+~
+0 0 4098
+D2
+~
+~
+0 0 4101
+S
+#4098
+&wThe &rInfernal Altar &wof &zWorship&w~
+&zHere - at the pinacle of the most &rsupreme &Revil&z - you shiver to
+your bones at the sight which has revealed itself before you!  The black
+stone beneath your feet is nearly burning through your boots!  The altar
+gleams in the flame it's ebony magic, grabbing at your very soul!  
+May the gods show mercy...
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 4095
+D1
+~
+~
+0 0 4093
+D2
+~
+~
+0 0 4100
+D3
+~
+~
+0 0 4097
+S
+#4099
+The Circle of Worship~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4093
+D3
+~
+~
+0 0 4100
+S
+#4100
+&wThe &rCircle &wof &zWorship&w~
+&zThe smell of sulpher burns your nose and brings water to your eyes. 
+The shadows mingle with the initiates here, creating many optical illusions
+to tantalize your senses.  All are facing the fire at the center of the
+circle, their faces blistered from the contant and nearly overwhelming
+intense heat here.  You can feel your eyelashes curl...  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4098
+D1
+~
+~
+0 0 4099
+D2
+~
+Tapestry~
+115 0 4108
+D3
+~
+~
+0 0 4101
+S
+#4101
+&wThe &rCircle &wof &zWorship&w~
+&zYou crouch here in this corner, contemplating the sanity of being here
+and watching the initiates of the Ebon Hand in their mindless dance.  They
+seem to be drawn to the fire as like a moth to a flame.  Some of their robes
+have been singed, no doubt in the height of the passion of their worship.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4097
+D1
+~
+~
+0 0 4100
+S
+#4102
+Behind the Northern Tapestry~
+~
+0 393229 0
+Rd     0
+D1
+~
+~
+0 0 4103
+D2
+~
+Tapestry~
+115 0 4095
+S
+#4103
+A Small Passageway~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4104
+D3
+~
+~
+0 0 4102
+S
+#4104
+A Small Passageway~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4105
+D2
+~
+~
+0 0 4103
+S
+#4105
+A Small Passageway~
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4106
+D3
+~
+~
+0 0 4104
+S
+#4106
+A Small Passageway~
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4107
+D3
+~
+~
+0 0 4105
+S
+#4107
+A Dead End~
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 4106
+S
+#4108
+Behind the Southern Tapestry~
+~
+0 401421 0
+Rd     0
+D0
+~
+tapestry~
+115 0 4100
+D1
+~
+~
+0 0 4109
+S
+#4109
+A Smelly Hallway~
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4110
+D3
+~
+~
+0 0 4108
+S
+#4110
+A Smelly Hallway~
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4109
+D1
+~
+~
+0 0 4111
+S
+#4111
+Before a HUGE Steel Door~
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 4112
+D1
+~
+~
+119 4111 4113
+D3
+~
+~
+0 0 4110
+S
+#4112
+The Keeper's Office~
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4111
+S
+#4113
+Inside the Lair~
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 4116
+D1
+~
+~
+0 0 4114
+D3
+~
+~
+119 4111 4111
+S
+#4114
+Inside the Lair~
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 4115
+D3
+~
+~
+0 0 4113
+S
+#4115
+Lair of the Minion of Tevesh Szat~
+~
+0 134619149 0
+Rd     0
+D1
+~
+~
+0 0 4117
+D2
+~
+~
+0 0 4114
+D3
+~
+~
+0 0 4116
+S
+#4116
+Inside the Lair~
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+0 0 4115
+D2
+~
+~
+0 0 4113
+S
+#4117
+Lair of the Minion of Leshrac~
+~
+0 138813453 0
+Rd     0
+D3
+~
+~
+0 0 4115
+S
+#4118
+&wTop of the &zDark Stairs&w~
+&wStanding upon the top landing of a &zdark stairs&w, you peer down into
+the darkness.  There is no way to tell exactly what awaits you below without
+actually going down.  Wisely, you consider turning around and going back.  
+~
+0 131081 0
+Rd     0
+D3
+~
+~
+0 0 4119
+D5
+~
+~
+0 0 4079
+S
+#4119
+&wBefore a &zBlack Runed Door&w~
+&wRight before you looms a huge &zblack steel door&w.  It is etched with
+ancient &zrunes&w which seem to &Cglow&w in the wicked darkness here.  On
+either stretches dark hallways, lending escape should the need arise.  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4118
+D2
+~
+~
+115 0 4127
+D3
+~
+~
+0 0 4120
+S
+#4120
+Hallway on the Second Floor~
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4121
+D1
+~
+~
+0 0 4119
+S
+#4121
+Hallway on the Second Floor~
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 4120
+D3
+~
+~
+0 0 4122
+S
+#4122
+Hallway on the Second Floor~
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4121
+D3
+~
+~
+0 0 4123
+S
+#4123
+Hallway on the Second Floor~
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4122
+D3
+~
+~
+0 0 4124
+S
+#4124
+Hallway on the Second Floor~
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4123
+D3
+~
+~
+0 0 4125
+S
+#4125
+Hallway on the Second Floor~
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4124
+D2
+~
+~
+0 0 4126
+S
+#4126
+End of the Hallway~
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4125
+S
+#4127
+&wBeyond the &zDoor&w~
+&wStepping through the door, you find yourself within an alcove of stone.
+The walls &Wsparkle&w with a &Cdazzling &Wbrilliance!  &wIt seems as if
+crushed &Wdiamonds&w make up a major part of the composition of the ceiling
+and walls which surrond you.  Though very dark here, you cannot resist
+exploring just a bit further, the possibility of treasure and fortune
+overwhelming!  The huge old wooden door before you is slightly cracked and
+begging to be opened!  The huge old wooden door before you is slightly
+cracked and begging to be opened!  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+115 0 4119
+D2
+~
+~
+0 0 4128
+S
+#4128
+&wA &rBattle &zScarred&w Room~
+&wYour eyes play tricks on you, the &zshadows&w mock your senses.
+There is nothing in this room...'cept a strange door to the north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4127
+D3
+~
+~
+0 0 4129
+S
+#4129
+&wA &rScarred &zIntersection&w~
+&wHere the hallway branches off, signs of violence prevail throughout. 
+You may continue to the north, further down the hallway.  Or, You can go
+back to the south wence you came.  There is a room to the east - was that
+movement that you saw there?  Or merely your imagination...  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 4130
+D1
+~
+~
+0 0 4128
+D2
+~
+~
+0 0 4133
+S
+#4130
+&wA &rScarred &zHallway&w~
+&wAs you continue on your journey, you begin to see even heavier traces
+of conflict etched upon the smooth cold walls of this inner fortress.  Even
+the floors are sticky with &rdried &Rblood&w in spatters and smears amidst
+the deep trenches gouged by the weapons of the damned.  
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 4129
+D3
+~
+~
+0 0 4131
+S
+#4131
+&wBefore a &YGlowing &WDoor &win the &rScarred &zHallway&w~
+&wYou pause here to study a strange &Yglowing &w&Wdoor&w to the west.  It
+looks out of place in this &zominous&w hallway.  You may continue to the
+east and south through the anciant hall, though the &Cmystical&w door
+tantalizes your imagination.  You carefully weigh your options.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4130
+D2
+~
+~
+0 0 4139
+D3
+~
+~
+67 0 4132
+S
+#4132
+&zRoom of the &GEye&w~
+&wHere is kept the &zEvil &GEye &wof &zOrm's-by-Gore&w!
+It's awefulness is out-done only by it's ugliness
+here, in this God forsaken place! May They have mercy upon your soul!
+~
+0 4595721 0
+Rd     0
+D1
+~
+~
+67 0 4131
+S
+#4133
+&wA &rScarred &zHallway&w~
+&wMore battle-weary walls loom around you, bearing the scars of war and
+&Rbloody&w conflicts.  Quietly you continue, mustering courage.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4129
+D3
+~
+~
+0 0 4134
+S
+#4134
+&wA &rScarred &zHallway&w~
+&wMore battered walls surround you, the cuts in the stone etched deep. 
+Some have traces of flesh and bone embedded within them.
+And some...  fresh &Rblood&w.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4133
+D3
+~
+~
+0 0 4135
+S
+#4135
+&wA &rScarred &zHallway&w~
+&wThe walls here are pitted and scratched, as if much fierce fighting has
+taken place here.  Some of the gouges appear to be fresh.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4134
+D3
+~
+~
+0 0 4136
+S
+#4136
+&wA &zBend &win the &zHallway&w~
+&wHere the hallway bends to the north and to the east.  But on the west
+wall you notice erosion close to the floor.  You bend closer to get a better
+look at it.  Further east is a dim hallway.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4137
+D1
+~
+~
+0 0 4135
+D3
+~
+crack~
+3 0 4143
+S
+#4137
+&wBefore a &rHex Rune &zWarded &wDoor~
+&wYou pause to regard a huge door deeply recessed into the wall.  It is
+adorned with strange symbols.  You stare at it, mesmerized.  Something very
+valuble or important must need great protection to be put behind such a
+barrier. The hair stands up on the back of your neck...
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4140
+D1
+~
+~
+0 0 4138
+D2
+~
+~
+0 0 4136
+D3
+~
+~
+55 4137 4147
+S
+#4138
+&wA &rScarred &zHallway&w~
+&wStill further you traverse this wicked place.  It smells of &rmeat&w
+and &Rblood&w.  The &Wghosts&w of the &zdead&w flicker before your eyes,
+their moans echo and bounce, distorting your senses.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4139
+D3
+~
+~
+0 0 4137
+S
+#4139
+&wA &rScarred &zHallway&w~
+&wThe &zhallway&w continues to wind it's way through the fortress. 
+Neither the &Ylight&w of &Wday&w nor the &Cglowing&w &cmoon&Clight&w will ever strike this
+&zominous&w hall where countless men and women have died.  You can almost
+feel the haunted souls around you as you continue...  onward.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4131
+D3
+~
+~
+0 0 4138
+S
+#4140
+&wA &zForgotten &wPassage~
+&wYou stumble into a forgotten passage.  The opening is small, but you
+manage to make your way through the darkness.  Cobwebs cling to your face
+and head, giving you the creeps.  You have to paw them back to get through. 
+It seems that even the &zspiders&w have even abandoned this place.
+You hope...
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 4141
+D2
+~
+~
+0 0 4137
+S
+#4141
+&wA &zBend&w in the &zPassage&w~
+&wHere the passage takes a bend to the east.  The walls are bumpy and
+rough to the touch.  All sorts of nasty things could be hiding in here, but
+it is too dark to detect them.  Hopefully your intrusion upon their hiding
+place will go unheeded.  But, then again, that seems quite impossible.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 4142
+D2
+~
+~
+0 0 4140
+S
+#4142
+&wA &rBroken &zStairway&w~
+&wQuite unexpectedly, you chance upon a broken stairway.  It is almost
+completely hidden by cobwebs.  The steps are the remnants of crumbling
+mortar and carved rock and gravel.  It is in quite a state of disrepair.  
+Only a complete fool would chance the climb.
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+0 0 4141
+D4
+~
+~
+0 0 4149
+S
+#4143
+A Small Passage Behind the Crack~
+&wHere behind the craigy crack in the stones is a small dusty passageway.
+With any luck, you will be able to squeeze through and see what lies ahead. 
+You hope that you won't tear your clothing or scratch your armour.  
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+3 0 4136
+D2
+~
+~
+0 0 4144
+S
+#4144
+&zA Decaying Passage&w~
+&wBent and crouched, you feel your way along this crumbling way to
+Goddess knows where, exactly.  Light is scarse here and you squint to see
+through the dust which is being churned from your foot steps from the
+powdery floor.  You struggle to keep from choking.  
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 4143
+D1
+~
+~
+0 0 4145
+S
+#4145
+&zA Decaying Passage&w~
+&wIt is here that the passage seems to have bottle-necked to a very small
+opening just ahead of you.  You break off some of the crumbling edge around
+the opening so you can chance a better look.  
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+0 0 4146
+D3
+~
+~
+0 0 4144
+S
+#4146
+&zA Decaying Chamber&w~
+&wSuch an olde and dusty place, no window permits the light of the world
+to enter here.  The stench of the dead permeate the thick, dank suspended
+air.  No one here gets out alive.  &w 
+~
+0 4595721 0
+Rd     0
+D3
+~
+~
+0 0 4145
+S
+#4147
+&RLim-Dul's &zHex&w~
+&wYou have entered the Chamber of &RLim-Dul!&w
+You are doomed - nothing can save you now...
+~
+0 268836873 0
+Rd     400
+D3
+~
+~
+119 4137 4148
+S
+#4148
+Chamber of the Necromancer~
+~
+0 401421 0
+Rd     0
+S
+#4149
+&wThe &rAbandonned &zTower&w~
+&wYou stand in the center of a very olde tower.  It seems to have been
+abandoned as it looks as though no one has happened upon this place nor
+visited this tower for a very long time.  You turn and gaze about you
+slowly, peering through the dust and stray cobwebs which surronds you here. 
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4150
+D1
+~
+~
+0 0 4159
+D2
+~
+~
+0 0 4157
+D3
+~
+~
+0 0 4155
+D5
+~
+~
+0 0 4142
+S
+#4150
+Arch Leading to the Balcony~
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4151
+D1
+~
+~
+0 0 4160
+D2
+~
+~
+0 0 4149
+D3
+~
+~
+0 0 4154
+S
+#4151
+On the Balcony~
+can see graveyard covered by mist far below
+~
+0 131073 0
+Rd     0
+D1
+~
+~
+0 0 4153
+D2
+~
+~
+0 0 4150
+D3
+~
+~
+0 0 4152
+S
+#4152
+On the Balcony~
+can see graveyard covered by mist far below
+~
+0 131073 0
+Rd     0
+D1
+~
+~
+0 0 4151
+S
+#4153
+On the Balcony~
+can see graveyard covered by mist far below
+~
+0 131073 0
+Rd     0
+D3
+~
+~
+0 0 4151
+S
+#4154
+&wWithin the &rAbandonned &zTower&w~
+&wYet another corner of this dismal place reveals nothing to you.  The
+dust floats up from your every footstep, nearly blinding and choking you.  
+You cance to wander further and hope not to get lost...
+~
+0 131073 0
+Rd     0
+D1
+~
+~
+0 0 4150
+D2
+~
+~
+0 0 4155
+S
+#4155
+&wWithin the &rAbandonned &zTower&w~
+&wStill nothing of interest avails itself to you here.  But from the
+south you feel a draft and a shifting of air.  You notice that the dust
+seems to swirl a bit more here instead of floating aimlessly.  The cobwebs
+don't seem as prolific here, as well.  You strain your eyes to see more
+clearly...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4154
+D1
+~
+~
+0 0 4149
+D2
+~
+~
+0 0 4156
+S
+#4156
+&wWithin the &rAbandonned &zTower&w~
+&wYou immediately feel a draft from above and instinctively look up. 
+Upon careful inspection, you discover a place in the ceiling that has been
+worn away to expose an opening.  You crane your neck and peer at it, but
+nothing discernable can be seen.  Broken beams and splintered boards aford a
+way to climb upwards for a better look.  
+~
+0 131073 0
+Rd     0
+D0
+~
+~
+0 0 4155
+D1
+~
+~
+0 0 4157
+D4
+~
+~
+0 0 4161
+S
+#4157
+&wWithin the &rAbandonned &zTower&w~
+&wThe darkness here conceals nothing of great importance as you grope
+your way around the room.  Dust and small debris litter this neglected
+place, making exploration easy, if not hazerdous.  You peer into the
+darkness trying to find your way.  To the south is a paneless window.  A
+shutter hangs from it's broken frame.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4149
+D1
+~
+~
+0 0 4158
+D2
+~
+window~
+3 0 4163
+D3
+~
+~
+0 0 4156
+S
+#4158
+&wWithin the &rAbandonned &zTower&w~
+&wThe dark corners of this small neglected tower have an &zominous&w
+quality about them.  You can scarcely see the hand in front of your face. 
+Your feet trip on crumbling debris here and there.  Watch your step.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4159
+D3
+~
+~
+0 0 4157
+S
+#4159
+&wWithin the &rAbandonned &zTower&w~
+&wThe walls and floor here are bare except for the inch or so of dust and
+the obscure &zspider&w or two which peers down at you from the &zshadows&w. 
+You strain to see about you in the dark.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4160
+D2
+~
+~
+0 0 4158
+D3
+~
+~
+0 0 4149
+S
+#4160
+&wWithin the &rAbandonned &zTower&w~
+&wHere in this dark corner you find nothing to help you in finding the
+answers to the questions for which you seek.  Just more dust and creepy
+shadows which seem to conceal things that are watching you.  
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 4159
+D3
+~
+~
+0 0 4150
+S
+#4161
+&zRotted &rTower &zRoof&w~
+&wMiraculously, you make your way to the roof of the tower.  What is left
+of it, that is, for it is broken and in bad repair.  Rotted boards threaten
+to break and spill you into the abandonned room below should you not
+practice extreme caution.  Stray splinters of wood crack underfoot and
+possibly announce your presence here.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 4162
+D5
+~
+~
+0 0 4156
+S
+#4162
+&zRoof &wof the &zTower&w~
+&wFrom this vantage point you can see almost the entire realm!  Hundreds
+of feet above the land, you feel a closeness with beings not of this world. 
+Possibly God.  Or could it be...  another, more ominous entity for which you
+have lofted closer to here in this strangest of places?  
+~
+0 131072 0
+Rd     0
+D2
+~
+~
+0 0 4161
+S
+#4163
+&wThe &zRooftop&w~
+&wOlde brick tiles scale the surface of the roof of the &zFortress&w. 
+They are black in colour, but have become &Gslimey&w with &gmoss&w over
+time.  You chose your footing wisely, so as not to topple hundreds of feet
+through the thick dark clouds which surrond the entire structure.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+3 0 4157
+D3
+~
+~
+0 0 4164
+S
+#4164
+&wThe &zRooftop&w~
+&wBravely, you make your way about the roof.  It seems that others have
+come this way in the not-to-distant past, for you notice that the moss has
+been torn away from the tiles exposing the obsidian hue of the roofwork.  
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+0 0 4163
+D2
+~
+~
+0 0 4165
+S
+#4165
+&wThe &zRooftop&w~
+&wFurther and further you carefully pick your way across the rooftop,
+avoiding what apear to be weak spots that look like good places to fall
+through.  The going is slow and slippery.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 4164
+D1
+~
+~
+0 0 4166
+S
+#4166
+&wThe &zRooftop&w~
+&wFar out among the peeks and gables of the roof you wander, the tiles
+slick with dew.  You have traveled precariously close to the edge now.  Your
+feet slip, causing you to grab at the tiles with your hands, for it is also
+steeper here than the area closer to the tower.  You can almost catch a
+glimps of the edge.  
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+0 0 4167
+D3
+~
+~
+0 0 4165
+S
+#4167
+&wThe &rEdge &wof the &zRooftop&w~
+&wSuddenly!  You find you have slid quickly to the edge of the
+&zrooftop&w - almost plummeting over the side!  But you have caught yourself
+by the edge of the tiles, just barely!  You hang on for dear life, trying
+frantically not to fall through the &zominous&w clouds to sure death below. 
+~
+0 131072 0
+Rd     0
+D2
+~
+window~
+3 0 4179
+D3
+~
+~
+0 0 4166
+S
+#4168
+&wTop of the &rStairs&w~
+&wYou arrive at the top of the stairs of the &rSouthern Tower&w.  To the
+east and to the west there is an obscure walkway.  Sharp cornered, it is
+almost impossible to see where it leads.  You can step forward to
+investigate.  Or turn and RUN LIKE HELL!  back down the stairs...  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4173
+D2
+~
+~
+0 0 4169
+D3
+~
+~
+0 0 4172
+D5
+~
+~
+0 0 4187
+S
+#4169
+&wOn the &zBalcony&w~
+&wGazing over the realm from the &zBalcony of the &rSouthern Tower&w, you
+sense impending &zdoom&w all about.  &WLightning&w streaks the sky, even on
+a clear day.  &gMoss&w clings to the stone here, on the walls and the
+walkway.  The rail is olde and rotted.  Don't fall.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 4168
+D1
+~
+~
+0 0 4171
+D3
+~
+~
+0 0 4170
+S
+#4170
+&wOn the &zBalcony&w~
+&wThe west end of the balcony is sturdy, yet olde.  &gMoss&w here is not
+as prolific, and the &zclouds&w are not nearly as thick here.  You can
+almost make out the ground below through the mist and dampness.  
+~
+0 131072 0
+Rd     0
+E
+ground~
+&wRocks and dead trees litter the ground here...
+~
+E
+clouds~
+&zThick and &Wshimmering &zwith dazzling &Wflashes&z of &Clightning!&z
+~
+D1
+~
+~
+0 0 4169
+S
+#4171
+&wOn the &zBalcony&w~
+&wHere at the eastern end of the roomy balcony the &gmoss&w is thickest,
+as the morning haze, if ever, is the only &Wlight&w that this place gets. 
+There seems to be a perpetual &zcloud&w hanging here about the outside of
+the &rtower&w.  You cannot see the ground.  
+~
+0 131072 0
+Rd     0
+E
+moss~
+&gDamp and slimy &Gmoss&g covers the stone.
+It smells &zmusty&g. It wriggles with &Oinsects&g.
+~
+E
+sky~
+&wThe &Csky&w is cut with &Wblinding streaks&w of &Wlightning&w!
+~
+D3
+~
+~
+0 0 4169
+S
+#4172
+&rSouthern Tower &zWalkway&w~
+&wSquare cut, granite stone makes up the &zgothic &wstyle of this, the
+western path of the &rSouthern Tower &zWalkway&w.  The way is dry - even
+dusty - but fairly passable.  You press onward...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4184
+D1
+~
+~
+0 0 4168
+S
+#4173
+&rSouthern Tower &zWalkway&w~
+&wSquare cut, granite stone makes up the &zgothic&w style of this, the
+eastern path of the &rSouthern Tower &zWalkway&w.  The way is dry - even
+dusty - but fairly passable.  You press onward...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4174
+D3
+~
+~
+0 0 4168
+S
+#4174
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4175
+D2
+~
+~
+0 0 4173
+S
+#4175
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4176
+D3
+~
+~
+0 0 4174
+S
+#4176
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 4175
+D3
+~
+~
+0 0 4177
+S
+#4177
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouther Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4178
+D1
+~
+~
+0 0 4176
+S
+#4178
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 4177
+D3
+~
+~
+0 0 4179
+S
+#4179
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D0
+~
+window~
+3 0 4167
+D1
+~
+~
+0 0 4178
+D3
+~
+~
+0 0 4180
+S
+#4180
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zwalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4179
+D2
+~
+~
+0 0 4181
+S
+#4181
+&rSouthern Tower &zwalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zwalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4180
+D3
+~
+~
+0 0 4182
+S
+#4182
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4181
+D2
+~
+~
+0 0 4183
+S
+#4183
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 4182
+D1
+~
+~
+0 0 4184
+S
+#4184
+&rSouthern Tower &zWalkway&w~
+&wThe way here is dark along the &rSouthern Tower &zWalkway&w.  Your
+footfalls echo upon the stagnant air.  You press onward...  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 4185
+D2
+~
+~
+0 0 4172
+D3
+~
+~
+0 0 4183
+S
+#4185
+&wThe &rSouthern Tower &zWalkway&w~
+&wThe way here is &zdark&w along the &rSouthern Tower &zWalkway&w.  An
+irregularity in the cut of the stones catches your eye, however.  As you run
+your hand over the rough surface of the wall, a door makes itself known to
+you.  It is difficult to open...  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+3 0 4186
+D3
+~
+~
+0 0 4184
+S
+#4186
+&rLim-Dul's &zPaladin's &wWatch Room~
+&wThis dark stone room is the vantage point of the &rLim-Dul &zPaladin&w.
+The walls reveal slots carved through the stones, giving the &zknight&w a
+bird's eye view of his surroundings, thus guarding the &rSouthern Tower&w. 
+The walls drip of his gruesome trophies...  The heads of his enemies.  
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+3 0 4185
+S
+#4187
+&wAmidst Some &zOlde Stone Stairs&w~
+&wThe steps here are slick with &gslime&w where &Galgae&w has tried to
+grow from the dim illumination coming from the top of the stairs.  The rough
+hewn stones glitter with dampness here.  The steps themselves rutted from
+travel...  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 4168
+D5
+~
+~
+0 0 4074
+S
+#4299
+The mpat room~
+Mpat room for rooms to mpat & mpgoto.
+ 
+&zH&wannibal &zK&wing
+~
+0 401412 0
+Rd     0
+E
+who2~
+&z[&W   1 Dum Ass   &z] &Y&C[1045] &wThalador &r-<Head Honchos>-
+&z[&W  MENTALLY AFK &z] &R<AFK> &z(Wizinvis 1) &wFlint &r-<Mud Cops>-
+&z[&W_]_Mr_Fix_iT_[_&z] &R<&WBuilding&R> &wHannibal King 
+&z[&WWar/Thi     Drw&z] &wRage will kick your Ass.
+&z[&W     (null)    &z] &z(Wizinvis 110) &R<&WBuilding&R> &wGrimfang &r-<HH>-
+&wMag&z[&W0&z] &wCle&z[&W0&z] &wThi&z[&W0&z] &wWar&z[&W1&z] &wPsi&z[&W1&z] &wDru&z[&W1&z] &wRng&z[&W1&z] &wPal&z[&W1&z] &wBrd&z[&W0&z] &wVam&z[&W3&z] &wNec&z[&W0&z]
+&wWwf&z[&W0&z] &wMnk&z[&W0&z] &RImms&z[&W7&z]
+&cYou see &W6 &cplayers in the game.
+~
+E
+who1~
+&z[&W  MENTALLY AFK &z] &R<AFK> &c(Wizinvis 1) &wFlint &r-<Mud Cops>-
+&z[&W   1 Dum Ass   &z] &Y[1045] &wThalador &r-<Head Honchos>-
+&z[&W_]_Mr_Fix_iT_[_&z] &R<&WBuilding&R> &wHannibal King 
+&z[&W     (null)    &z] &c(Wizinvis 110) &R<&WBuilding&R> &wGrimfang &r-<HH>-
+&z[&WWar/Thi     Drw&z] &wRage will kick your Ass.
+&wMag&z[&R0&z] &wCle&z[&R0&z] &wThi&z[&R0&z] &wWar&z[&R1&z] &wPsi&z[&R1&z] &wDru&z[&R1&z] &wRng&z[&R1&z] &wPal&z[&R1&z] &wBrd&z[&R0&z] &wVam&z[&R3&z] &wNec&z[&R0&z]
+&wWwf&z[&R0&z] &wMnk&z[&R0&z] &RImms&z[&W7&z]
+&cYou see &W6 &cplayers in the game.
+~
+S
+#0
+
+
+
+#SPECIALS
+M 4000 spec_guard
+M 4009 spec_cast_psionicist
+M 4010 spec_poison
+M 4011 spec_poison
+M 4012 spec_breath_acid
+M 4019 spec_breath_fire
+M 4030 spec_summon_demon
+M 4039 spec_guard
+M 4043 spec_guard
+M 4047 spec_guard
+M 4050 spec_guard
+M 4051 spec_guard
+M 4055 spec_guard
+M 4058 spec_summon_light
+M 4062 spec_breath_frost
+M 4083 spec_cast_psionicist
+M 4093 spec_thief
+M 4094 spec_thief
+M 4095 spec_thief
+M 4096 spec_thief
+M 4097 spec_thief
+M 4098 spec_cast_undead
+M 4099 spec_thief
+M 4100 spec_thief
+M 4101 spec_thief
+M 4132 spec_cast_psionicist
+M 4148 spec_cast_undead
+M 4149 spec_cast_undead
+M 4299 spec_breath_fire
+S
+
+
+
+#RESETS
+M 0 4000 2 4000
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4023 0 14
+E 0 4025 0 20
+E 0 4025 0 21
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4029 0 5
+G 0 4000 0
+M 0 4008 4 4008
+M 0 4009 3 4009
+M 0 4010 2 4010
+E 0 4010 0 20
+E 0 4010 0 21
+M 0 4011 4 4011
+E 0 4010 0 20
+E 0 4010 0 21
+M 0 4012 1 4012
+M 0 4019 1 4019
+E 0 4019 0 20
+E 0 4019 0 21
+O 0 4017 0 4019
+P 0 4016 0 4017
+P 0 4016 0 4017
+P 0 4016 0 4017
+P 0 4016 0 4017
+M 0 4022 1 4022
+E 0 4022 0 11
+E 0 4023 0 14
+E 0 4024 0 13
+E 0 4021 0 12
+E 0 4026 0 16
+E 0 4025 0 20
+E 0 4025 0 21
+E 0 4029 0 5
+M 0 4024 2 4024
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4023 0 14
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4025 0 20
+E 0 4027 0 15
+E 0 4029 0 5
+M 0 4027 1 4027
+E 0 4027 0 15
+E 0 4025 0 20
+E 0 4021 0 12
+E 0 4022 0 11
+E 0 4023 0 14
+E 0 4024 0 13
+E 0 4026 0 16
+E 0 4029 0 5
+M 0 4029 2 4029
+E 0 4025 0 20
+E 0 4025 0 21
+E 0 4021 0 12
+E 0 4022 0 11
+E 0 4023 0 14
+E 0 4024 0 13
+E 0 4026 0 16
+E 0 4029 0 5
+M 0 4030 1 4030
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4023 0 14
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4030 0 20
+E 0 4030 0 21
+E 0 4028 0 18
+E 0 4028 0 19
+E 0 4029 0 5
+M 0 4032 1 4032
+M 0 4035 1 4035
+M 0 4039 2 4039
+E 0 4027 0 15
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4023 0 14
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4025 0 20
+M 0 4043 1 4043
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4023 0 14
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4025 0 21
+E 0 4025 0 20
+M 0 4047 2 4047
+E 0 4027 0 15
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4023 0 14
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4025 0 20
+M 0 4050 1 4050
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4023 0 14
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4025 0 20
+E 0 4025 0 21
+M 0 4051 2 4051
+E 0 4027 0 15
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4023 0 14
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4025 0 20
+M 0 4055 1 4055
+E 0 4026 0 16
+E 0 4024 0 13
+E 0 4023 0 14
+E 0 4022 0 11
+E 0 4021 0 12
+E 0 4025 0 20
+E 0 4025 0 21
+M 0 4058 1 4058
+E 0 4058 0 3
+E 0 4058 0 4
+M 0 4062 1 4062
+E 0 4062 0 20
+E 0 4062 0 21
+M 0 4066 1 4066
+E 0 4066 0 15
+E 0 4067 0 20
+M 0 4083 1 4083
+O 0 4083 0 4083
+M 0 4093 1 4093
+M 0 4094 2 4094
+M 0 4095 1 4095
+M 0 4096 1 4096
+M 0 4097 2 4097
+M 0 4098 1 4098
+E 0 4098 0 20
+E 0 4098 0 21
+E 0 4093 0 23
+E 0 4095 0 18
+E 0 4095 0 19
+E 0 4097 0 0
+M 0 4099 1 4099
+M 0 4100 2 4100
+M 0 4101 2 4101
+O 0 4107 0 4107
+M 0 4112 1 4112
+M 0 4115 1 4115
+M 0 4117 1 4117
+E 0 4117 0 8
+E 0 4114 0 3
+E 0 4114 0 4
+M 0 4126 1 4126
+G 0 4126 0
+M 0 4132 1 4132
+E 0 4132 0 7
+M 0 4147 2 4147
+E 0 4147 0 20
+E 0 4147 0 21
+M 0 4148 1 4148
+E 0 4148 0 22
+E 0 4146 0 20
+M 0 4162 2 4162
+M 0 4186 1 4186
+E 0 4186 0 20
+E 0 4185 0 15
+M 0 4149 1 4299
+E 0 4148 0 22
+E 0 4146 0 20
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

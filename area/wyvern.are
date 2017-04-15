@@ -1,1675 +1,1855 @@
-#AREA	{ 5 30} Tyrst   Wyvern's Tower~
+#AREADATA
+Name        {75-100} Castle Wyvern       Midnight~
+Levels      75 100
+Builders    None~
+VNUMs       2700 2749
+Security    99
+Recall      25001
+Flags       0
+Color       6
+Sounds      &rA red mist seeps all around you...~
+End
 
 
 
 #MOBILES
-#1601
-killer frog~
-a killer frog~
-A killer frog rises up out of the water.
+#2700
+beast displacer tentacled panther cat~
+A displacer beast~
+A tentacled panther glares at you and attacks!
 ~
-The killer frog looks ravenous.
+This beast seems to be a larger-than-normal sized panther with glowing
+green eyes and two tentacles sprouting from its shoulders.  It swipes at you
+with its extended claws and you jump away lest you get sliced into bits.  
 ~
-2|32|64 0 -300 S
-5 16 6 5d5+55 1d5+4
-20 700
-8 animal~ 0
-#1602
-stone gargoyle~
-the stone gargoyle~
-A stone gargoyle looms over you.
+99 520 0 -1000 S
+80 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#2701
+nightmare horse mare~
+A nightmare~
+A nightmare snorts fire at you through its flaming nostrils.
 ~
-As you look, the figure seems to shift and move ...
+This hell horse is gaunt and skeletal with a huge head, glowing red eyes,
+flaming orange nostrils and hooves which burn like embers.  The coat is dead
+black and the creature's silver mane and tail are wild and rugged.  
 ~
-2|32|64|128 0 -400 S
-9 13 1 9d9+90 4d3+2
-400 2500
-8 god~ 1
-#1603
-angry gargoyle~
-an angry gargoyle~
-An angry gargoyle glares at you.
+67 34078720 0 -500 S
+85 0 0 18000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#2702
+ki-rin unicorn horse~
+The Ki-Rin~
+A scrawny horse of gold and rose colours is standing defiantly here.
 ~
-He looks ready to attack!
+The coat of the ki-rin is luminous gold, much as a sunrise on a clear
+day.  Its mane and tail are a darker gold.  Its horn and hooves are golden
+pink.  Its eyes are violet.  You guess it to be some sort of winged unicorn
+of another plane of existance.  
 ~
-4|32|64 0 -600 S
-10 12 1 10d10+100 4d3+3
-500 3000
-8 god~ 1
-#1604
-elite gargoyle~
-the elite gargoyle~
-An elite gargoyle guards this room against intrusion.
+67 268959872 0 1000 S
+95 0 0 17600d0+0 0d0+0
+0 0 0 0
+0 0 0
+1 0 0
+>all_greet_prog 100~
+emote neighs softly.
+say Please, save me from these dungeons or else kill me.
+mpechoat $n A feeling of sadness overwhelms you.
 ~
-He snarls at you and says LEAVE OR DIE!
+>rand_prog 4~
+emote looks sadly upwards to where they sky should be.
 ~
-2|4 0 -600 S
-12 10 0 12d12+120 6d2+4
-800 5000
-8 god~ 1
-#1605
-gargoyle shaman~
-the gargoyle shaman~
-The gargoyle shaman is here, preparing to do battle.
+>speech_prog p glasya~
+say Speak not that foul witch's name around me!
 ~
-She says 'I can SEE you! I have been waiting ...'.
+|
+#2703
+gorgon woman snakes~
+The Gorgon~
+A woman with snakes on her head hisses menacingly at you!
 ~
-2|4|64 8|32 -900 S
-13 8 -1 13d13+130 6d3+4
-3000 9000
-8 god~ 2
-#1606
-carnivorous plant~
-a carnivorous plant~
-Amidst the jungle here, a huge Carnivorous plant reaches out to grab you!
+This woman might have once been beautiful, but years as a dungeon guard
+have made her wrinkled, old and bitter.  The snakes on her head (looks like
+her hair!) hiss angrily and lash out at you, as if they reflect her mood.  
 ~
-The plant looks something like a Venus fly-trap, only MUCH larger.
+3 520 0 -350 S
+90 0 0 25000d0+0 0d0+0
+350 0 0 0
+0 0 2
+0 0 0
+#2704
+lilith priestess dark evil demon~
+The dark priestess~
+Lilith, the priestess of evil, is kneeling before an onyx altar.
 ~
-2|32|64 0 0 S
-9 12 3 9d9+90 3d3+3
-16 2800
-8 plant~ 0
-#1607
-gruesome ogre~
-a gruesome ogre~
-A huge, gruesome ogre is sprawled here, gnawing some strange meat.
+Fabled to have been Adam's first wife, this demoness turns her pale green
+eyes to look in your direction.  Long, night black hair frames her
+beautiful, lily-white face and tumbles to her waist in a dark cloud.  Her
+blood-red lips curve into a wicked smile and you finally notice the sharp
+points of her white teeth.  
 ~
-It thinks that perhaps you would make a better meal.
+1048643 268435584 0 -1000 S
+98 0 0 19500d0+0 0d0+0
+900 0 0 0
+0 0 2
+1 0 0
+>all_greet_prog 100~
+emote grins wickedly.
+say Welcome to our dark temple, child. Join us or die!
 ~
-2|4|32|64 0 -200 S
-10 12 2 10d10+100 4d2+4
-1200 3500
-6 ogre~ 0
-#1608
-shadow~
-a shadow~
-A dark shadow moves about the room.
+>rand_prog 3~
+mpecho &zBlack &Brobed priests drag in a screaming child.&G
+mpecho &WYou are torn between saving the child and killing it.&G
+mpecho ...
+emote ties the child to the altar and raises her dagger high!
+mpecho &RThe death scream of the child deafens you as the dagger descends.&G
+mpecho ...
+mpecho &CLilith says 'As all shall fall before us...'&G
+emote kneels before the altar and says a silent prayer.
+mpecho ...
+mpecho &BThe &zblack &Brobed priests all shuffle out of the room.&G
 ~
-The Shadow is vaguely humanoid. Two glowing pinpoints look at you.
+|
+#2705
+minotaur bull bull-headed creature~
+The minotaur~
+A large, bull-headed creature dominates the room.
 ~
-4|32|64 2|8|32 -1000 S
-10 12 0 10d10+100 4d3+4
-900 4000
-8 human~ 0
-#1609
-evil wight~
-an evil wight~
-An evil wight lurks in the shadows!
+The minotaur could almost pass for a large man if you ignored the
+bull-head that sits on top of his shoulders.  He wears a large ring through
+his nose from which he is normally kept on a chain by.  
 ~
-He glares at you savagely and charges!
+67 512 0 0 S
+95 0 0 27500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#2706
+wyvern~
+A wyvern~
+A nasty tempered wyvern glares in your direction.
 ~
-2|4|32|64 8|32 -1000 S
-12 10 -2 12d12+120 6d2+3
-2200 7000
-8 undead~ 1
-#1610
-burly minotaur~
-A burly minotaur~
-A burly minotaur watches you solemnly.
+This small gray dragon with ruby red eyes is the size of a large german
+shepard.  It has no front claws, but it has clawed wings and hind feet that
+are nasty enough to fight and maneuver with.  You wonder if you should try
+your equipment against its acid breath.  
 ~
-This powerful creature wonders whether to kill you or not ...
+65 524288 0 0 S
+90 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#2707
+hag night spectre~
+A night hag~
+A horrible spectre swirls up to you and screeches loudly.
 ~
-4|64 8 -600 S
-14 9 0 14d14+140 5d3+4
-1500 11000
-8 minotaur~ 1
-#1612
-savage minotaur~
-the savage minotaur~
-A bloodthirsty minotaur slowly counts his loot
+A minion of hell and one of the guardians, this night hag glares at you
+with her glowing red eyes and screeches loudly as she leaps at your throat. 
+It is her job to protect something in here.  You wonder what it could be.  
 ~
-He looks up at you and screams 'SO! Coming to steal my hoard!'
+35 520 0 -650 S
+90 0 0 25000d0+0 0d0+0
+350 0 0 0
+0 0 0
+0 0 0
+#2708
+caterwaul cat~
+A caterwaul~
+&bA caterwaul is lurking in the shadows...
 ~
-2|4|32|64 8 -600 S
-15 8 0 15d15+150 5d3+5
-0 14000
-8 minotaur~ 1
-#1613
-minotaur captain~
-the captain~
-Sitting here in this room is the Minotaur Captain.
+The caterwaul is a solitary, vicious feline bipedal predator with short
+midnight-blue fur, yellow eyes and a long tail.  Its razor claws look to be
+about an inch long.  
 ~
-He looks at you, and a sinister grin slowly spreads on his face ...
+65 512 0 0 S
+85 0 0 22500d0+0 0d0+0
+200 400 0 0
+0 0 0
+0 0 0
+#2709
+deva angel man~
+Deva~
+An angelic looking man is imprisoned here.
 ~
-2|4|32|64 8 -900 S
-17 5 -3 17d17+170 5d3+6
-0 18000
-8 minotaur~ 1
-#1614
-black pudding~
-the black pudding~
-A huge black pudding fills the center of the room!!
+You see before you a handsome man.  Tall, slender and graceful he looks
+to be what humans call an angel.  He has golden skin and hair, amber eyes,
+and large white wings tinted with gold.  
 ~
-It is a huge black blob that oozes about the room. Its heading toward YOU!
+67 67108992 0 1000 S
+100 0 0 21000d0+0 0d0+0
+1 25 0 0
+0 0 0
+5 0 0
+>all_greet_prog 100~
+emote looks at you hopefully.
+say Have you come to liberate this land from Glasya's evil grasp?
 ~
-4|32|64 0 -1000 S
-15 9 0 15d15+150 8d2+5
-0 14000
-8 object~ 0
-#1615
-lesser golem~
-a lesser golem~
-A lesser Golem stands guarding the entrance.
+>speech_prog p yes~
+say Locked away somewhere in these dungeons is my sword.
+say I hear that it is in a chest, guard by a night hag.
+say Use it to defeat the evil Glasya. She must be stopped!
+say Good luck, my friend. May the light prevail!
+emote smiles at you.
 ~
-The golem appears to be made of some kind of clay, enchanted to come to life!
+>speech_prog p no~
+emote sighs softly.
+say Then you are not the ordained hero written in the scriptures.
+say The Princess of Hell must be defeated and once again...
+say ... turn the balance towards the side of light.
+shake
+say Go... leave me be.
 ~
-2|64 8 0 S
-16 8 -2 16d16+160 8d2+7
-0 18000
-8 god~ 0
-#1616
-ancient wyvern~
-the ancient wyvern~
-An enormous, ancient wyvern stares down at your tiny form...
+>speech_prog p glasya~
+say You must stop her now! Defeat the evil in her lair!
 ~
-It thunders loudly 'I must protect my Master's wealth!'
+>fight_prog 12~
+emote flies up as far as he can and dives at you!
+stun $n
 ~
-4|32|64 8|32 -1000 S
-18 5 -2 18d18+180 10d2+8
-0 28000
-8 mist~ 1
-#1617
-spectre~
-the spectre~
-A spectre has begun to materialize in front of you!
+>fight_prog 30~
+trip $n
 ~
-Terror fills your heart as you view this master of the undead.
+>fight_prog 50~
+disarm $n
+cast 'dispel magic' $n
 ~
-4|32|64 138 -1000 S
-19 2 -8 19d19+190 8d3+7
-0 30000
-8 undead~ 1 
-
-#1702
-trapper~
-a trapper~
-A trapper stands here, bartering his pelts.
+|
+#2710
+glasya princess demon~
+Glasya~
+Glasya, a princess of Hell, is here smiling at you from her throne.
 ~
-The trapper is clad mostly in the fur of various animals he's caught.
+This beautiful woman is the first daughter of Satan, Lord of Hell.  Her
+hair is raven black and her skin is blood red.  Her long sinuous tail ends
+in a deadly looking barb.  She has come to our plane of existance to start
+her own kingdom.  You wonder whether to join her or stop her.  Her lovely
+smile tugs at you towards the former.  
 ~
-4 0 0 S
-6 15 4 6d6+60 2d4+1
-120 800
-8 gnome~ 1
-#1704
-hunter~
-a hunter~
-A hunter rests in here, carrying a fresh kill.
+1441859 33554600 0 -1000 S
+102 0 0 24700d0+0 0d0+0
+1550 0 0 0
+0 0 2
+129 0 0
+>all_greet_prog 100~
+emote beams a sly smile at you.
+say Welcome to my home, little one. Look around as you like.
+say I hope you decide to stay for... quite some time.
+mpechoat $n You notice that Glasya grins to herself at this.
 ~
-The hunter is rugged and sturdy from his occupation.
+>speech_prog p deva~
+eyebrow
+say Him? He was a bore that chose to insult me and the lifestyle I lead.
+say Even as a guest here, he got what he deserves.
+wink $n
+say I only keep him alive because of his pretty face.
 ~
-4 0 0 S
-8 13 3 8d8+80 2d4+2
-120 1500
-5 human~ 1
-#1706
-ranger~
-a ranger~
-A grim ranger reclines at a table.
+>speech_prog p ki-rin~
+say Ahhh. A steed I have yet to break in.
+say Pity that it chooses to be stubborn about the whole thing.
+sigh
+say But time will break anyone or anything.
 ~
-The years of wanderings have left the ranger hardened and strong.
+>fight_prog 30~
+c 'dispel magic' $n
 ~
-4|64 8 200 S
-12 11 0 12d12+120 3d4+3
-0 7500
-5 giant~ 1
-#1707
-ranger leader~
-a ranger leader~
-A leader of the Rangers is watching you solemnly.
+>fight_prog 30~
+emote rakes her nails across your face!
+rake $n
 ~
-This individual has quite a reputation at the local trading posts!
+>fight_prog 30~
+disarm $n
 ~
-2|4 8 300 S
-15 7 -3 15d15+150 4d4+4
-0 14500
-8 giant~ 1
-#1708
-ranger lord~
-the Lord of the Rangers~
-The Lord of the Rangers catches your eye.
+>fight_prog 40~
+emote Thwacks you mightily upon the head!
+stun
 ~
+|
+#2711
+knight death~
+A Death Knight~
+A skeletal Death Knight is here keeping a close eye socket on you.
 ~
-2|4 8 400 S
-20 1 -9 20d20+200 6d4+5
-0 40000
-8 giant~ 1
-#1710
-male centaur~
-a centaur~
-A male centaur wanders about this area.
+Death knights are the dreadful creations of Glasya.  They are a
+horrifying form of lich created from a fallen human paladin.  The shining
+armor it still wears is a mockery to the holiness that paladins represent. 
+Its grinning visage stares blankly at you.  
 ~
-The centaur has the upper torso of a man and lower body of a horse.
+65 0 0 -750 S
+90 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+67584 0 0
+#2712
+homonculus~
+homonculus~
+An homonculus glares evilly in your direction.
 ~
-4 0 200 S
-7 14 4 7d7+70 2d4+1
-120 1000
-8 animal~ 1
-#1711
-female centaur~
-a centaur~
-A female centaur wanders about this area.
+This tiny demon-like creature glows with magic.  It is a magically
+created creature made to be a mindless servant to whomever it's been ordered
+to be the slave of.  It looks blankly at you not sure if you're a threat or
+not.  
 ~
-The centaur has the upper torso of a woman and lower body of a horse.
+65 524800 0 0 S
+80 0 0 20000d0+0 0d0+0
+30 27 18 0
+0 0 0
+0 0 0
+#2713
+succubus demon~
+The Succubus~
+A sultry succubus is chained here to the floor.
 ~
-4 0 200 S
-7 14 4 7d7+70 2d4+1
-110 1000
-8 animal~ 2
-#1712
-old centaur~
-an old centaur~
-An old centaur is resting in a corner.
+Beautiful beyond belief, this demon radiates sensuality.  She appears to
+be a tall and beautiful human woman, but the bat-like wings and tiny horns
+sprouting from her head quickly show otherwise.  She beams you a stunning
+smile and preens under your attention.  
 ~
-This centaur has lived a full life.
+1441859 16384 0 -1000 S
+85 0 0 18000d0+0 0d0+0
+240 0 0 0
+0 0 2
+1 0 0
+>all_greet_prog 100~
+emote purrs "Have you come to play?"
+emote runs a soft hand along your cheek.
 ~
-4 0 200 S
-6 15 5 6d6+60 2d4+0
-110 800
-5 animal~ 1
-#1714
-centaur elder~
-an elder centaur~
-One of the centaur elders is here, watching you.
+>rand_prog 3~
+emote glances seductively at you.
 ~
-The elders act as counselors and advisors to the chief.
+>speech_prog p glasya~
+say I do anything for my Mistress. I serve only her...
+say but I have time to fill your needs too if you like.
+wink $n
 ~
-2|4 2 200 S
-9 13 2 9d9+90 2d4+2
-0 3000
-8 animal~ 1
-#1715
-centaur guard~
-a centaur guard~
-A strong centaur is standing guard here.
+>speech_prog p deva~
+say Bah! He insulted my Mistress in her own home!
+say I hope he rots in his cell below. But enough of him...
+snuggle $n
+say Let's talk about you and I.
+emote smiles wickedly.
 ~
-He appears to be blocking entrance to the next room.
+>speech_prog p ki-rin~
+emote gets a look of disgust on her face.
+say I am not into that kind of thing.
+emote glances meaningfully towards the bed.
+say Let's talk about something else instead.
 ~
-2 2 200 S
-10 12 1 10d10+100 2d4+3
-0 4000
-8 animal~ 1 
-#1716
-centaur chief~
-the centaur chief~
-The chief of the centaur villagers reclines here.
+>speech_prog p play~
+mpecho &PYou feel your cheeks grow warm as the Succubus presses up close.
+emote whispers softly, &C'Yes. You know... you and me... alone.'
+say Just a quick little romp.
+strip $n
 ~
-He has been the leader of this tribe for many years, and has acquired much
-wisdom.
+|
+#2714
+gremlin~
+A gremlin~
+An evil little gremlin is standing here looking very wicked.
 ~
-2|4 2 200 S
-12 11 1 12d12+120 2d4+3
-0 7000
-5 animal~ 1
-#1720
-displacer beast~
-a displacer beast~
-A displacer beast is grazing nearby.
+A tiny winged demon with dark green skin and glowing red eyes is grinning
+at you with a look of maliciousness on its tiny face.  
 ~
-As you watch this strange creature, its position seems to flicker and shift.
+67 65538 0 -500 S
+20 0 0 2050d0+0 0d0+0
+0 0 500 0
+0 0 0
+0 0 0
+#2715
+graz'zt demon black prince~
+Graz'zt~
+A large black demon looks at you with undisguised contempt.
 ~
-128 0 0 S
-10 11 -3 10d10+100 4d3+2
-0 4500
-8 animal~ 0
+A rather handsome demon with black skin, glowing green eyes and six
+fingers and toes.  His long pointed ears and teeth and incredible height
+distinguish him from a mere drow elf.  He is the demon prince and has come
+to court the princess Glasya.  He seems surprised to see you here.  
+~
+67 33554432 0 -1000 S
+95 0 0 22000d0+0 0d0+0
+600 0 0 0
+0 0 1
+1 0 0
 #0
 
 
 
 #OBJECTS
-#1601
-rusty cleaver~
-a rusty cleaver~
-A rusty cleaver lies on a counter top.~
+#2703
+sword holy avenger golden~
+the &WHoly &YA&Wve&wn&Wge&Yr&X~
+&wA &Ygolden &wsword glitters brightly on the ground.~
 ~
-5 0 8193
-0~ 1~ 6~ 3~
-2 5 5
-#1602
-fine mace~
-the fine mace~
-There is a large mace of fine quality here.~
-~
-5 64 8193
-0~ 2~ 5~ 7~
-11 900 200
+5 838862081 4659 16956 8193 100
+0~ 0~ 0~ 3~
+20 800 0 0 0
+5 0
+mental block~
+5 5
+0 0 0
 A
-18 1
-#1603
-elven dagger~
-a long elven dagger~
-A long elven dagger made of adamantite is here.~
-~
-5 65 8193
-0~ 2~ 5~ 11~
-2 1000 250
+107 -1
 A
-18 2
-#1604
-steel broad sword~
-a steel broad sword~
-A fine steel broad sword is lying on the ground.~
-~
-5 65 8193
-0~ 2~ 6~ 3~
-12 1200 350
+2 -2
 A
-18 1
+13 100
 A
-19 1            
-#1606
-rod might~
-the rod of might~
-A Rod of Might is lying here.~
-~
-5 66 8193
-0~ 2~ 7~ 6~
-13 4000 550
+19 180
 A
-18 2	
+17 -50
 A
-1 1            
-#1612
-black kite shield~
-a black kite shield~
-There is a large black kite shield lying here.~
-~
-9 65 513
-6~ 0~ 0~ 0~
-6 1000 150
-A
-24 1
-#1614
-helm~
-a commander's helm~
-A commander's helm rests on a table here.~
-~
-9 65 17
-7~ 0~ 0~ 0~
-4 2000 350
+18 110
 E
-helm~
-This elegant helm is plated in mithril and silver.~
+holy avenger golden sword~
+&YThe holy avenger is a very large sword and is very heavy as well, due to
+its immense size. You can't help but feel something magical about it. This
+must have belonged to someone, or was intended for someone very important.
+~
+#2704
+sword vorpal~
+the Vorpal Sword~
+An extremely sharp sword is humming here on the ground.~
+~
+5 603980294 5171 0 8193 100
+0~ 0~ 0~ 3~
+25 500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 A
-4 1
-#1615
-bracer~
-a mithril bracer~
-A magical bracer made from mithril lies on the ground!~
-~
-9 66 257
-6~ 0~ 0~ 0~
-2 6500 1000
+13 100
 A
-1 1	
-#1616   
-dark blue cloak~
-a dark blue cloak~
-A valuable cloak of dark blue cloth lies on the floor.~
-~
-9 65 5
-1~ 0~ 0~ 0~
-2 1600 1500
+19 200
 A
-17 -6	
+18 170
 A
-12 5	
-#1621
-dark red potion~
-a dark red potion~
-A dark red potion rests on the ground.~
-~
-10 65 16385
-9~ cure blindness~ cure critical~ ~
-1 450 150 
-#1651
-bronze chest~
-a bronze chest~
-There is a sturdy bronze chest in the corner.~
-~
-15 0 1
-30~ 5~ -1~ 0~
-10 500 200
-#1652
-ale barrel~
-a barrel of ale~
-There is a small barrel in one corner.~
-~
-17 0 1
-5~ 2~ 3~ 0~
-8 10 10
-#1691
-key twin towers~
-the twin towers key~
-There is a shiny skeleton key on the ground here.~
-~
-18 0 1
-1~ 0~ 0~ 0~
-1 400 1000
-#1692
-strange key~
-a strange key~
-There is a very strange-looking key on the ground here.~
-~
-18 65 16385
-2~ 0~ 0~ 0~
-1 1200 2000
+26 15
+A
+17 -75
 E
-strange key~
-This key is of an unusual shape ... must go to an unusual lock!~
-A                        			
-17 -5
-
-#1701
-short bow~
-a short bow~
-A short bow has been carelessly left here.~
+vorpal sword~
+This sword looks sharp indeed.  Legend has it, that it will decapitate
+it's wielder's victims at its own will.  
 ~
-5 0 8193
-0~ 2~ 4~ 11~
-5 150 20
+#2705
+dagger unholy serpentine~
+an Unholy Dagger~
+A serpentine dagger is lying here in a pool of blood.~
+~
+5 603984388 4098 0 8193 98
+0~ 0~ 0~ 11~
+4 500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 -2
+A
+17 -75
+A
+25 10
+A
+12 90
+A
+19 137
+A
+18 140
 E
-short bow~
-It looks like the bows used by rustin hunters.
+serpentine dagger unholy~
+A dagger in which the hilt is of coiling snakes.  It seems to be some
+sort of religious artifact.  
 ~
-#1702
-long bow~
-a long bow~
-A long bow has been foolishly abandoned here.~
+#2706
+chest crimson~
+&wa &rcrimson&w chest&X~
+&wA &rcrimson&w coloured chest is lying in the center of the room.~
 ~
-5 65 8193
-0~ 2~ 6~ 11~
-8 500 100
+15 1 0 0 0 0
+500~ 15~ 2722~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2707
+tail forked~
+a forked tail~
+Some demon or devil seems to have dropped their tail here.~
+~
+9 33575424 0 0 2049 95
+0~ 0~ 0~ 0~
+2 0 50 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 -50
+A
+17 -75
+A
+25 -20
+A
+2 3
+#2708
+horns daemonic tiny~
+daemonic horns~
+A pair of tiny horns are lying here in a pool of blood.~
+~
+9 33559040 0 4096 17 95
+0~ 0~ 0~ 0~
+2 0 30 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 10
+A
+12 -100
+A
+17 -40
+A
+1 1
 E
-long bow~
-It looks like the bows used by rustin hunters.
+daemonic horns tiny~
+A pair of tiny black horns.
 ~
-A
-18 1
-#1703
-gnarled staff~
-a gnarled staff~
-A gnarled looking staff lies on the ground.~
+#2709
+wings bat-like leathery~
+a pair of bat-like wings~
+A large pair of leathery, bat-like wings are lying here.~
 ~
-5 65 8193
-0~ 2~ 6~ 7~
-7 800 120
+9 570425856 0 0 1025 100
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 A
-13 5
-#1704
-ancient sword~
-an ancient long sword~
-An ancient long sword has been left here.~
+110 -1
+A
+17 -75
+A
+2 -1
+E
+bat-like wings leathery large~
+A pair of large wings that look like those of a bat.
 ~
-5 66 8193
-0~ 2~ 8~ 3~
-10 10000 4000
-A
-18 3 
-A
-19 3
-#1711
-fur cap~
-a fur cap~
-A fur cap lies here on the ground.~
+#2710
+necklace pearl string pearls~
+&wa &Wpearl &wnecklace~
+A string of pearls is lying on the floor.~
 ~
-9 0 17
-2~ 0~ 0~ 0~
-1 50 10
-#1712
-travelling boots~
-a pair of travelling boots~
-A sturdy pair of travelling boots lies here.~
-~
-9 64 65
-5~ 0~ 0~ 0~
-2 3500 700
+9 536877185 0 0 5 85
+0~ 0~ 0~ 0~
+2 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 A
-14 10
-#1713
-bronze ring~
-a bronze ring~
-A ring of etched bronze gleams dimly on the ground.~
-~
-9 64 3
-3~ 0~ 0~ 0~
-1 2000 400
+3 -2
 A
-12 5
+12 -50
+A
+17 -50
+A
+25 28
+A
+19 8
+E
+necklace~
+A prize that looks like it belongs in the royal treasure, this string of
+the finest pearls glows softly with its own inner light 
+~
+E
+pearl~
+A prize that looks like it belongs in the royal treasury, this string of
+the finest pearls glows softly with its own inner light.  
+~
+#2711
+bikini chainmail pile metal~
+a chainmail bikini~
+A small pile of linked metal chains is lying here on the ground.~
+~
+9 570427396 1584 0 9 100
+0~ 0~ 0~ 0~
+4 150 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -10
+A
+17 -100
+A
+13 100
+E
+chainmail bikini pile metal~
+An itsy bitsy teeny weeny chainmail bikini.
+~
+#2712
+candle black twisted~
+&wa &zBlack &wCandle~
+A twisted black candle is here burning with a bright light.~
+~
+1 570425861 0 0 1 98
+0~ 0~ -1~ 0~
+2 40 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+A
+23 -13
+A
+13 75
+#2713
+throne fire~
+the throne of fire~
+&GA throne composed completely of &Rf&Yir&re&G is sitting here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+9999 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2714
+altar onyx~
+an onyx altar~
+&BAn altar made of &zonyx&B is here awaiting fresh sacrifices.~
+~
+12 33554432 0 0 0 1
+0~ 0~ 0~ 0~
+99999 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2715
+gown black slinky~
+&wa &rslinky &zblack &wgown~
+A black, low-cut gown is lying crumpled on the ground.~
+~
+9 516 0 0 9 98
+0~ 0~ 0~ 0~
+3 58 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 -20
+A
+17 -100
+A
+12 100
+E
+gown slinky black~
+A slinky black gown, got a date?
+~
+#2716
+waterfall pool~
+a waterfall~
+A small waterfall falls into a pool of crystal clear water.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+99999 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2717
+horn golden unicorn~
+&wa &Ygolden&w horn~
+A golden unicorn's horn is lying on the ground.~
+~
+9 1537 0 4096 17 95
+0~ 0~ 0~ 0~
+3 400 0 0 0
+5 0
+dispel magic~
+5 5
+0 0 0
+A
+1 2
+A
+17 -20
+A
+12 100
+A
+19 9
+E
+unicorn horn golden~
+A golden spiral of a horn.
+~
+#2718
+chains shackles~
+some chains~
+A set of shackles and chains are lying here on the floor.~
+~
+9 4096 0 0 4097 50
+0~ 0~ 0~ 0~
+50 0 50 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 -2
+A
+17 50
+E
+chains~
+These look to be very strong chains of some unknown metal.  The shackles
+are padded but tinged in blood.
+~
+E
+shackles~
+These are very heavy chains, cursed be the one who wears these accessories!
+~
+#2719
+key iron black wyvern~
+an iron key~
+A black iron key is lying here on the ground.~
+~
+18 0 0 0 1 80
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2720
+key shadow~
+&ba shadow key&X~
+&bA small shadow phases in and out of this reality.~
+~
+18 0 0 0 1 80
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+shadow key~
+&bThe key continues to phase in and out of reality.
+~
+#2721
+key rusty~
+&Oa rusty key~
+A&O rusty key&X is lying here.~
+~
+18 0 0 0 1 80
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+rusty~
+&OThis key is almost made out of rust, it would seem. Could this thing
+actually work in its condition?
+~
+#2722
+key crimson red~
+&wa &rcrimson&w key&R~
+&wA &rblood-red&w key is lying on the ground.~
+~
+18 0 0 0 1 80
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key crimson red~
+&wThe key is a bit heavy, as it is made of red-coloured cast iron.
+~
+#2723
+key black~
+a black key~
+A small key glows with a black light.~
+~
+18 1 0 0 1 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+The key is very small in size and is a midnight black in colour. It's hard
+to say what it is made from.
+~
+E
+black~
+Examining the key, you assume it is made from a treated onyx of some sort.
+~
+#2726
+teddy lace black~
+&wa &zbl&wa&zck l&wac&ze &wteddy~
+A teddy made of fine black lace is lying crumpled on the floor.~
+~
+9 536870912 0 0 9 85
+0~ 0~ 0~ 0~
+2 80 0 0 0
+0 0
+vibrate~
+0 0
+0 0 0
+A
+17 -50
+A
+25 20
+A
+1 1
+A
+24 -5
 #0
 
 
 
-#ROOMS
-#1601
-Rough East-West Path~
-You are on a very rough and overgrown path heading east-west over rugged
-terrain.  To the east the path passes between low hills.
+#ROOMDATA
+#2700
+The Royal Boudoir~
+Ebony walls surround you as you stand within this large bedroom.  A large
+canopy bed with silk curtains dominates the center of the room.  Devoid of
+almost everything else but for a fireplace on the eastern wall, you have no
+doubts in your mind that this is not a social place.  And then you catch
+sight of the chains attached to the floor.  
 ~
-16 0 4
-D1
-The road heads into low hills this way.
-~
-~
-0 0 1602
-D3
-The cross-roads and a trading post lie in this direction.
-~
-~
-0 0 1702
-S
-#1602
-Rough Path Between the Hills~
-Here the path passes between low hills. The going is very rough, but
-to the east the ground is smoother. In that direction a pair of tower
-looms above the hills.
-~
-16 0 4
-D1
-You see a pair of tall towers in the distance.
-~
-~
-0 0 1603
-D3
-The road continues.
-~
-~
-0 0 1601
-S
-#1603
-Path through an Open Area~
-You are on a path through an open area. East of here loom two tall towers,
-joined by a barbican and surrounded by a murky moat. West the path passes
-between low hills.
-~
-16 0 2
-D1
-Two fantastic towers surrounded by a moat rise before you.
-~
-~
-0 0 1604
-D3
-The road continues.
-~
-~
-0 0 1602
-S
-#1604
-West Side of Moat~
-You stand on the west side of a moat that encircles two towers, each
-over 50 feet high. You will need a boat to go east across the moat. A
-rugged path heads west, and another one heads north to a cluster of low 
-buildings.
-~
-16 0 2
-D0
-A worn path leads to a cluster of low buildings.
-~
-~
-0 0 1605
-D1
-The Towers loom directly over you, just beyond the moat.
-~
-~
-0 0 1620
-D3
-An old ill-kept roads leads away to the west.
-~
-~
-0 0 1603
-S
-#1605
-Path North of Moat~
-You walk on a faint path heading south toward the west side of the moat,
-and north to three small buildings.
-~
-16 0 2
-D0
-Several low buildings lie this way.
-~
-~
-0 0 1606
+0 131072 0
+Rd     0
 D2
-The path ends west of the moat.
+There is a door here to the south.
 ~
-~
-0 0 1604
+door~
+3 0 2701
 S
-#1606
-Cluster of Buildings~
-You are in the middle of a cluster of small buildings. There is a building
-to the north, east, and west.  A sign over the eastern building says
-'House of Pancakes'.
+#2701
+Glasya's Throne Room~
+You enter into an impressive looking room with an incredibly tall, arched
+ceiling.  Murals have been painted on the ceiling and walls to represent all
+the different planes of existance.  A throne at the eastern end of the room
+is wreathed in flames, both real and painted.  This is Glasya's throne room
+where she greets all of her guests.  There is a crimson colored door to the
+north of you and a large set of double doors leading west of you.  
 ~
-16 0 1
+0 131072 0
+Rd     0
 D0
-There is an entrance to a building.
+&rA crimson door is here to the north.
 ~
-~
-0 0 1609
-D1
-A sign over the door reads 'House of Pancakes'.
-~
-~
-0 0 1607
-D2
-A path heads south toward the west side of the towers.
-~
-~
-0 0 1605
+"crimson colored door" "door"~
+3 0 2700
 D3
-There is an entrance to a building here.
+A large set of double doors is here to the west.
 ~
-~
-0 0 1608
+"large set of double doors" "doors"~
+3 0 2702
 S
-#1607
-House of Pancakes~
-The moment you enter this room, the ceiling descends and crushes you
-into a pancake.  Don't you hate it when that happens?
+#2702
+Top of the Staircase~
+You stand at the top of a long spiraling staircase.  The rail is made of
+black iron and the stairs themselves are made of red and gray marbled stone.
+You look to the east of you and see a large set of double doors with ornate
+carvings and silver door handles.  The stairs also descend to the landing
+below you.  
 ~
-16 2 0
-S
-#1608
-Old Store Room~
-You have entered what appears to be an old storeroom. Most of the items
-that were in here appear to have been ruined long ago.
-~
-16 9 0
+0 131072 0
+Rd     0
 D1
+A large set of double doors are here.
 ~
-~
-0 0 1606
-S
-#1609
-Empty Room~
-This room appears to be completely empty. The only exit seems to be the
-way you came.  There are some scratches around the floor.
-~
-16 9 0
-D2
-~
-~
-0 0 1606
-D5
-You see a concealed opening leading down.
-~
-~
-0 0 1610
-S
-#1610
-Minotaur's Room~
-You have entered a secret chamber under the empty room. In this room is
-the worn but cared-for gear and trappings of some large humanoid.
-~ 
-16 13 0
-D4
-~
-~
-0 0 1609
-S
-#1620
-Western Moat~
-You are in the middle of the moat, on the west side of the tower.  There is a
-landing on both sides of the moat.  Deep throated 'ribbids' come from the
-water all around you.
-~
-16 0 7
-D0
-~
-~
-0 0 1621
-D1
-~
-~
-0 0 1623
-D2
-~
-~
-0 0 1622
-D3
-~
-~
-0 0 1604
-S
-#1621
-Northern Moat~
-You are in the middle of the moat, on the north side of the tower.  There is
-no place to land here.  Deep throated 'ribbids' come from the water all
-around you.
-~
-16 0 7
-D2
-~
-~
-0 0 1620
-S
-#1622
-Southern Moat~
-You are in the middle of the moat, on the south side of the tower.  There is
-no place to land here.  Deep throated 'ribbids' come from the water all
-around you.
-~
-16 0 7
-D0
-~
-~
-0 0 1620
-S
-#1623
-Tower Foyer~
-You are on a foyer on the west side of the structure. The moat is west of 
-here. There is also a large door eastward into the structure.  You notice that
-the walls are ornately decorated with very life-like stone gargoyles.
-~
-16 9 0
-D1
-~
-~
-0 0 1624
-D3
-~
-~
-0 0 1620
-S
-#1624
-The Grand Lobby~
-You have entered a vast lobby. This lobby appears to have once been very
-ornately furnished, but now everything is decayed and moldering.  A highly
-ornate balcony surrounds the lobby. To the east, below the balcony, is an
-opening. The door leading out is west.  You notice that the balcony is
-covered in highly ornate and life-like stone gargoyles.
-~
-16 9 0
-D1
-~
-~
-0 0 1625
-D3
-~
-~
-0 0 1623
-S
-#1625
-Base of the Western Tower~
-You stand in the center of the Western tower's base. Torch brackets occupy
-the four corners of this huge room. Above each torch is a lifelike ornate
-stone gargoyle.  There are doors north and south, and passages east and west.
-~
-16 8 0
-D0
-~
-~
-0 0 1627
-D1
-~
-~
-0 0 1626
-D2
-~
-~
-0 0 1628
-D3
-~
-~
-0 0 1624
-S
-#1626
-The Musty Corridor~
-You are walking along a musty east-west corridor joining the two towers.
-There are room on each side of the corridor, and openings at each end.
-~
-16 9 0
-D0
-~
-~
-0 0 1629
-D1
-~
-~
-0 0 1631
-D2
-~
-~
-0 0 1630
-D3
-~
-~
-0 0 1625
-S
-#1627
-Kitchen~
-You have entered what must once have been a kitchen. The rusting remains of
-various utensils lie on countertops. There is also an old wash basin and a
-pot-belly stove.  There is a door south, and a serving hatch east.
-~
-16 9 0
-D2
-~
-~
-0 0 1625
-S
-#1628
-Conservatory~
-You are in the tower's private conservatory. However, through years of neglect,
-the plants have grown into a hideous jungle.  The only exit is north.
-~
-16 9 0
-D0
-~
-~
-0 0 1625
-S
-#1629
-The Dining Hall~
-You have entered a fabulous dining hall.  The wrecked remains of a long table
-dominate the room. A horrible odor pervades the room, like some foul-smelling
-beast has been eating and shitting in here.  There is a serving hatch west and
-a door south.
-~
-16 9 0
-D2
-~
-~
-0 0 1626
-S
-#1630
-Art Gallery~
-You are in the ruined remains of an art gallery. Everything appears to
-have been stolen long ago, however.  The only exit is north.
-~
-16 9 1
-D0
-~
-~
-0 0 1626
-S
-#1631
-Base of the Eastern Tower~
-You stand in the center of the Eastern tower's base. Torch brackets occupy the
-four corners of this huge room.  Above each torch is a lifelike ornate stone
-gargoyle.  There are are open doors to the north and south, and passages east
-and west.  In addition, a spiral staircase leads up to the next level of this
-tower.
-~
-16 8 1
-D0
-~
-~
-0 0 1632
-D2
-~
-~
-0 0 1633
-D3
-~
-~
-0 0 1626
-D4
-You see a spiral staircase leading up.
-~
-~
-0 0 1635
-S
-#1632
-The Common Room~
-You are in what must once have been a common room for all residents of the
-tower. There is a huge fire pit with a chimney in the center, and the smashed
-remains of a great many table and chairs.  The exit is south.
-~
-16 8 0
-D2
-~
-~
-0 0 1631
-D5
-You notice a grate in the bottom of the fire pit.  Maybe it's an opening ...
-~
-~
-1 -1 1634
-S
-#1633
-Servant's Quarters~
-You are in what once was the servant's quarters, as evidenced by the shabby
-belongings and decor. What little remains is rotting and of little value
-anyway.  The only exit is north.
-~
-16 9 0
-D0
-~
-~
-0 0 1631
-S
-#1634
-A Large Murky Cellar~
-You are in a large, murky cellar. An almost tangible air of horror pervades
-the room.  A thin layer of nitre covers the walls and ceiling.  Rotting
-furniture looms obliquely about the room.
-~
-16 9 1
-D4
-~
-~
-1 -1 1632
-S
-#1635
-On the First Staircase~
-You are on a Spiral staircase connecting the first and second levels of
-the eastern tower. You can go up or down.
-~
-16 9 2
-D4
-~
-~
-0 0 1636
+"large set of double doors" "doors"~
+3 0 2701
 D5
 ~
 ~
-0 0 1631
+0 0 2728
 S
-#1636
-Second Level of the Eastern Tower~
-You are in the center of the second level of the Eastern tower. This large
-room appears quite empty, except for the candle abras firmly fixed to the
-walls.  An opening leads westward, and a spiral staircase leads down.
+#2703
+The Black Road~
+You travel along a road that's as black as night.  The ground beneath you
+is firm, but it isn't dirt or any other pavement you've seen before.  The
+trees around you aren't the green of normal trees.  Their leaves have grown
+in black, but they aren't dead.  The woods and bushes are oddly silent and
+the only noises are coming from your movement along the road.  
 ~
-16 9 1
+0 0 2
+Rd     0
 D3
 ~
 ~
-0 0 1637
+0 0 2704
+S
+#2704
+The Road to Castle Wyvern~
+You walk along a black road towards a small, dark castle.  The trees and
+plants around you are as black as night, but otherwise are as healthy as a
+green plant.  Sometimes you can hear the eviling cackling of some unseen
+creature nearby.  The road continues east and west towards the castle.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 2703
+D3
+~
+~
+0 0 2705
+S
+#2705
+The Road to Castle Wyvern~
+You stand on a black road in front of a dark castle.  The iron gates
+before you give you a glimpse into a cobblestoned courtyard to the west. 
+Black trees and bushes grow on the road around you and the sky seems to be
+dark with storm clouds.  You wonder if the light ever reaches this castle as
+you feel an aura of evil eminating from it.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 2704
+D3
+Some iron gates are here to the west.
+~
+gates~
+7 2719 2707
+S
+#2706
+The Courtyard~
+You stand in the northeastern corner of the courtyard.  Red cobblestones
+have been layed in paths to the west and south of you.  A lone tree looks to
+have been an oak but now is adorned with black leaves instead of green.  The
+clouds above you add to the dreariness you feel around you.  
+~
+0 131072 0
+Rd     0
+D2
+~
+~
+0 0 2707
+D3
+~
+~
+0 0 2709
+S
+#2707
+The Courtyard~
+Dark red cobblestones pave the courtyard here before the castle.  The air
+is warm despite the dark clouds overhead.  Black grass grows in patches
+around trees with black leaves.  A large iron gate goes east to a dark road.
+The courtyard extends north and south and something seems to be glowing with
+a bright red light to the west.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 2706
+D1
+Some large iron gates lead east here.
+~
+gates~
+7 2719 2705
+D2
+~
+~
+0 0 2708
+D3
+~
+~
+0 0 2710
+S
+#2708
+The Courtyard~
+You find yourself standing within the southeastern corner of this bloody
+courtyard.  Patches of black colored grass grow between the cobblestoned
+paths leading north and west of you.  You can make out the castle to the
+west of you and a red glow is coming from the northwest.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2707
+D1
+~
+~
+0 0 5328
+D3
+~
+~
+0 0 2711
+S
+#2709
+The Courtyard~
+Cobblestones have been placed very precisely to make paths going in all
+directions. Black grass and shrubberies grow in small patches of ground
+that are free of the cobblestones. Exits go east and west and something
+seems to be glowing red from the south of you.
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+0 0 2706
+D2
+~
+~
+0 0 2710
+D3
+~
+~
+0 0 2712
+S
+#2710
+The Bloody Pentagram~
+&YIn the center of the cobblestoned courtyard is a large, glowing red pentagram
+that pulses in time like a heartbeat. In the center of this pentagram is a
+dark demon that doesn't seem to be trapped here at all.
+ 
+                       &r ..-=------=-..
+                      &R*&r'              `&R*
+                   &r ,' &R\-=._      _.=-/ &r',
+                   &r 7  &R \   -=__=-   /  &r T
+                   &r |   &R \_.=-  -=._/   &r |
+                   &r |&R_.=- \        / -=._&r|
+                    &RL------\------/------7
+                   &r `.     &R \    /      &r.'
+                     &r *,    &R \  /     &r,*
+                       &r ``-=__&R\/&r__=-''
+ 
+&YThis seems to be a transporter point where the denizens of hell come to this
+plane of existance. The castle entrance lies to the west of you and paths go
+in all cardinal directions.
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 2709
+D1
+~
+~
+0 0 2707
+D2
+~
+~
+0 0 2711
+D3
+~
+~
+0 0 2713
+S
+#2711
+The Courtyard~
+The storm clouds above you seem to be the only natural things that you
+can find in this area.  Black grass and shrubberies grow inbetween blood red
+cobblestones.  A wave of nausia overcomes you as you try to make out what's
+causing the red glow coming from the north of you.  The courtyard extends to
+the west north and south.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2710
+D1
+~
+~
+0 0 2708
+D3
+~
+~
+0 0 2714
+S
+#2712
+The Courtyard~
+You wander about here in the northwestern corner of the courtyard and
+find yourself standing before a dark stable.  Black trees and grass line the
+cobblestoned paths to the east and south and a black iron rail leads into
+the stable to the west of you.  The castle stands tall to the west and
+something red is glowing brightly to the southeast of you.  
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+0 0 2709
+D2
+~
+~
+0 0 2713
+D3
+~
+"black iron rail" "rail"~
+3 0 2715
+S
+#2713
+The Castle Doors~
+You stand in a courtyard that's been meticulously paved with blood red
+cobblestones.  Storm clouds rumble above you but the air is warm without
+humidity.  You see a large door into the castle west of you and to the east
+of you is a large, glowing red pentagram.  The courtyard continues to the
+north and south of you.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2712
+D1
+~
+~
+0 0 2710
+D2
+~
+~
+0 0 2714
+D3
+~
+"door to the Castle" "door"~
+3 0 2716
+S
+#2714
+The Courtyard~
+You stand in this quiet, southwestern corner of the cobblestoned
+courtyard and take in your surroundings.  Black weeds grow up in the corners
+of the cobblestones and you wonder if the castle groundskeeper has been here
+recently to take care of them.  Black hedges trimmed to look like different
+scenes from out of your nightmares seem to come to life in the shadows.  The
+courtyard extends north and east of you.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2713
+D1
+~
+~
+0 0 2711
+S
+#2715
+The Royal Stables~
+This is the royal stable of Castle Wyvern.  Several stalls line the walls
+of this long building, but none of them have doors on them, allowing the
+inhabitants to roam free in here.  You finally notice that there's a large
+open hole in the ceiling and a place in the center of the stable that looks
+as if it's a launching pad.  You don't think you can exit out through the
+roof, but an exit leads east from the stable.  
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+3 0 2712
+S
+#2716
+Entrance to Castle Wyvern~
+You stand in the entryhall to Castle Wyvern.  Gray marble arched ceilings
+tower above you and the hallway itself seems to be able to hold a small town
+within its confines.  Tapestries of many colors line the walls depicting
+battle scenes of wars being won.  A guard room lies to the south and the
+door leading to the courtyard lies to the east.  The hallway continues to
+the west.  
+~
+0 131072 0
+Rd     0
+D1
+There is a door here in the east wall.
+~
+door~
+3 0 2713
+D2
+~
+~
+0 0 2717
+D3
+~
+~
+0 0 2720
+S
+#2717
+Guard Room~
+You look around in this dark guard's room and find large racks of
+weapons, training dummies and a long bench and desk along the walls.  It's
+in here where you come to announce yourself to the head of the guard to see
+Glasya.  If you're lucky, she might even agree to have an audience with you,
+otherwise you'll be turned out on your ear.  The only obvious exit is out to
+the north.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2716
+S
+#2718
+A Guest's Room~
+You find yourself in a large bedroom that you guess to be one of many
+similar guest rooms.  A large canopy bed sits in the center of the room.  A
+vanity and a chest of drawers sit near a large window looking out onto a
+veranda.  Several crystal lanterns light the room giving off an almost
+cheery glow.  It seems to be very different from the rest of the castle you
+have seen so far.  A door leads out to a hall to the west of you.  
+~
+0 131072 0
+Rd     0
+D3
+~
+~
+0 0 2723
+S
+#2719
+The Temple of Darkness~
+&zBlack candles sitting in silver candelabrums light this evil temple of
+darkness with an eerie glow.  Shadows dance on the walls making it seem as
+if they've come to life.  An onyx alter sits on the east wall of the room. 
+Blood-stained chains are attaced to the altar, but not a single spec of
+blood seems to have stained the altar itself.  Sceneless black tapestries
+line the walls.  One of the tapestries seems to be blowing from a breeze
+coming from somewhere behind it.  Doors lead out to the west and south.  
+~
+0 131072 0
+Rd     0
+E
+tapestry~
+You think you see a door leading down hidden behind the tapestry.  
+~
+D2
+There is a door here in the south wall.
+~
+door~
+3 0 2720
+D3
+There is a door here in the west wall.
+~
+door~
+3 0 2724
 D5
+There is a little bump under the tapestry on the floor here.
 ~
-~
-0 0 1635
+tapestry~
+3 0 2733
 S
-#1637
-The Elegant Hall~
-You are in what was once a elegant hall, although everything is moldering now.
-The rotted remains of a plush carpet covers the floor, while several moldy
-tapestries adorn the each side of the hall.  There are door north and south,
-and openings east and west.
+#2720
+The Main Hall~
+You stand in a wide, well-lit hallway.  Suits of black mithril armor
+stand at attention along the wall with long sharp pikes held at ready. 
+Tapestries line the walls behind them showing signs of battles in progress
+along with all the bloodshed that happens in war.  They're actually quite
+gruesome upon closer inspection.  A door leads north of you, a waterfall lies
+to the west and the hallway conintues to the east.  
 ~
-16 9 0
+0 131072 0
+Rd     0
 D0
+A door is here to the north.
 ~
-~
-0 0 1638
+door~
+3 0 2719
 D1
 ~
 ~
-0 0 1636
-D2
-~
-~
-0 0 1639
+0 0 2716
 D3
 ~
 ~
-0 0 1640
+0 0 2725
 S
-#1638
-The Shaman's Room~
-You have entered an elegantly furnished room that looks to be still in use!
-Costly paintings and pieces of furniture are tastefully situated.  On the
-north wall is an altar to Knar, the ghastly patron of Gargoyles.  The only
-exit is south.
+#2721
+An Elegant Dining Room~
+A dark crystal chandelier lights this room, causing shadows to dance
+strangely about in the corners of the room.  Your light doesn't seem to help
+the eeriness but instead adds to it.  A long, black oak table dominates the
+center of the room.  Silver platters, golden forks and knives, and fine
+china rest upon the table as if ready to sprout a grand feast at any moment.
+The sounds of dishes being washed and cooking comes from the south and the
+hallway lies to the west.  
 ~
-16 8 0
+0 131072 0
+Rd     0
 D2
+There is a door here to the south.
+~
+door~
+3 0 2722
+D3
 ~
 ~
-0 0 1637
+0 0 2726
 S
-#1639
-The Library~
-This room appears to have been a library.  Empty book shelves line each wall.
-The only exit is north.
+#2722
+An Incredibly Hot Kitchen~
+You wipe your brow with the edge of your sleeve as you enter into this
+hot, bustling kitchen.  Several stoves are on at full blast cooking pastries
+and other delights.  You look into one of the large black cauldrons and
+cringe back in horror.  Inside you see several fingers and the occasionally
+squidgey eyeball floating in the wierd soup.  The exits are through a door
+north of you and the hallway lies to the west.  
 ~
-16 9 0
+0 131072 0
+Rd     0
 D0
+There is a door here to the north.
+~
+door~
+3 0 2721
+D3
 ~
 ~
-0 0 1637
+0 0 2727
 S
-#1640
-Second Level of the Western Tower~
-You are in the center of the western tower's second floor.  A large spiral 
-staircase of 29 steps connects this level with the third.  There are doors
-to the east and west.  Except for a torch bracket in each corner, the 
-room is barren.
+#2723
+A Dark Hallway~
+You stand at the north end of a dark hallway.  Black tapestries depicting
+bloody and gruesome sacrifices line the walls.  Inbetween are dark blue
+candles sitting in matte-black candle holders.  The dark blue carpet beneath
+your feet not only seems to absorb the light, but all sounds too.  The exits
+are to a dark room east of you or you can continue down the hallway to the
+south of you.  
 ~
-16 8 1
+0 131072 0
+Rd     0
 D1
 ~
 ~
-0 0 1637
+0 0 2718
+D2
+~
+~
+0 0 2724
+S
+#2724
+A Dark Hallway~
+Dark blue candles in matte-black candelabrum light the hall with a dark(?)
+light.  The black flames flicker as you walk by causing you to wonder if
+they're not trying to jump out at you!  The carpet here is a deep blue color
+that seems to absorb the little bit of light that manages to escape from
+your light source.  There is a closed door to the east of you and the hall
+continues to the north.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2723
+D1
+There is a door here to the east.
+~
+door~
+3 0 2719
+D2
+~
+~
+0 0 2725
+S
+#2725
+A Small Waterfall~
+You stand witin a small atrium with incredibly high ceilings.  A
+miniature waterfall is here trickling down a set of granite rocks into a
+small pool.  Large leafy plants grow on either side of the pool and bright
+red fish you have never seen before swim in the waters.  A door leads to the
+west of you and the hallways go north, east and south.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2724
+D1
+~
+~
+0 0 2720
+D2
+~
+~
+0 0 2726
 D3
+There is a door here to the west.
+~
+door~
+3 0 2728
+S
+#2726
+A Golden Hallway~
+You walk down a hallway with golden torches and gold filigreed walls that
+glow brightly with the flickering of the flames.  Wood paneled floors echo
+softly under your boots as you move about.  Exits lead to the north towards
+a fountain and south further down the hall.  East of you seems to be a large
+dining room.  
+~
+0 131072 0
+Rd     0
+D0
 ~
 ~
-0 0 1641
+0 0 2725
+D1
+~
+~
+0 0 2721
+D2
+~
+~
+0 0 2727
+S
+#2727
+A Golden Hallway~
+You stand at the southern end of a large golden hall.  Golden candles in
+crystal chandeliers light the hallway brightly.  Suits of armor and
+tapestries line the walls.  You almost swear that the heads of the suits
+turn in your direction as you walk by, but when you turn to look, all seems
+normal.  The hall continues to the north and a blast of heat hits you from
+the east.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2726
+D1
+~
+~
+0 0 2722
+S
+#2728
+A Large Stairwell~
+You find yourself on the bottom step of a red and gray marbled stairwell
+with a black iron railing to hold on to.  It spirals upwards into the dark
+or you can go east to the mail hallway.  Small crystalline torches line the
+walls but don't radiate enough light to make out what lies above you.  
+~
+0 131072 0
+Rd     0
+D1
+There is a door here to the east.
+~
+door~
+3 0 2725
 D4
-You see the spiral staircase leading up.
 ~
 ~
-0 0 1642
+0 0 2702
 S
-#1641
-On the Balcony~
-You are on the balcony overlooking the Grand lobby.  You have a fabulous
-view of the entire room.  The only exit is the way you came in.
+#2729
+A Dank Cell~
+Dirty straw and stale hay line the floor of this cell as well as the
+droppings of some equine animal.  It looks like it's a stable of some sort,
+but there is no stall, nor any way to get the horse out.  Scrapes and gouges
+in the walls and door look to have come from a heavy object, almost like
+hooves, you'd say.  The only exit out looks to be through a door to the
+south.  
 ~
-16 8 2
-D1
+0 131073 0
+Rd     0
+D2
+There is a door here to the south.
 ~
-~
-0 0 1640
+door~
+3 0 2730
 S
-#1642
-The Spiral Stairs~
-You are on a large spiral staircase of 29 steps, leading between the 
-second and third floors.  You can go up or down.
+#2730
+A Cell Block~
+You stand in a corner of the dungeon where two cell doors are located. 
+There doesn't seem to be a guard sitting in here to prevent the inhabitants
+from escaping and you wonder if they are, indeed inhabited.  Bits of straw
+and water litters the floor making for a bit of a rotting stench to permeate
+the area.  There are cell doors to the north and south of you and the
+dungeons continue to the west.  
 ~
-16 8 2
+0 131073 0
+Rd     0
+D0
+~
+"cell door" "door~
+3 0 2729
+D2
+~
+"cell door" "door"~
+3 0 2731
+D3
+~
+~
+0 0 2734
+S
+#2731
+A Dank Cell~
+A small cot and a dirty pot are set up in this tiny cell.  Moss is
+growing on the damp walls and dirty straw lines the floor.  Surprisingly
+enough, no foul smells are coming from the chamber pot in the corner and
+there aren't any fleas or other bugs infesting the cot or straw.  The only
+exit out seems to be through a door to the north.  
+~
+0 131073 0
+Rd     0
+D0
+~
+"cell door" "door"~
+3 0 2730
+S
+#2732
+A Metal Cage~
+You stand in a room that seems to have been slightly torn apart, despite
+the fact that the walls are made of some kind of metal.  You examine the
+walls and find the metal to be of a very good make and even seem to have an
+enchantment on them.  Whatever they are meant to keep in or keep out, it
+looks as if they won't hold up for very much longer.  Your only escape is
+through a door to the west of you.  
+~
+0 131073 0
+Rd     0
+D3
+~
+door~
+3 0 2736
+S
+#2733
+Entrance to the Dungeons~
+You are at the bottom of a dark, spiralling staircase leading up.  The
+air down here seems a bit damp and musty.  Strangely enough, instead of
+being cold, the air in here is almost uncomfortably warm.  The exits out are
+through a rusty door to the west and a large door to the south, or you can
+climb the stairway up.  
+~
+0 131073 0
+Rd     0
+D2
+A large door stands here in the south wall.
+~
+"large door" "door"~
+3 0 2734
+D3
+A rusty old door stands here to the west.
+~
+"rusty door" "door"~
+7 2721 2737
 D4
+A stairway leads up into darkness.  But you can tell from here that it is
+not a fading-into-darkness.  Something is blocking the stairway at the top. 
 ~
-~
-0 0 1643
-D5
-~
-~
-0 0 1640
+"something" "darkness"~
+3 0 2719
 S
-#1643
-Third Level of Western Tower~
-You stand in the center of the western tower's third floor.  This large room
-glows mysteriously with a strange light all its own.  From a door to the east
-comes a strange inky blackness.  A spiral staircase leads down.
+#2734
+A Damp Tunnel~
+Water drips down the walls from the ceiling above you and pools into small
+puddles on the floor.  Your footsteps splash as you walk along.  The water
+and the warmth of the tunnel make it almost humid in here and you begin to
+wish you had something to cool yourself down with.  You spot a cell block to
+the east of you and more tunnel to the south of you.  You can also go
+through a door to the north.  
 ~
-16 8 1
-D1
-~
-~
-1 -1 1644
-D5
-~
-~
-0 0 1642
-S
-#1644
-It's too dark to see anything!~
-It's too dark to see anything!
-~
-16 9 3
+0 131073 0
+Rd     0
 D0
+A door stands here in the north wall.
 ~
-~
-1 -1 1645
+door~
+3 0 2733
 D1
 ~
 ~
-1 -1 1647
+0 0 2730
 D2
 ~
 ~
-1 -1 1646
-D3        
-~
-~
-1 -1 1643
+0 0 2735
 S
-#1645
-The Armory~
-In this room, which has somehow evaded the ravages of time, are neatly stored
-racks of common weapons.  They appear to be quite ordinary; however, a chest
-in one corner catches your eye.  The only exit is the way you came in.
+#2735
+A Damp Tunnel~
+You hear the sounds of water dripping all around you as you slosh through
+this damp, warm tunnel.  A bright green moss grows on the walls, casting off
+a glow of their own.  It's almost bright enough that you don't need a light,
+but not quite.  The tunnel continues to the north and to the south of you.  
 ~
-16 9 0
-D2
-~
-~
-1 -1 1644
-S
-#1646
-The Officer's Quarters~
-You have entered a lavish but functional room decked out in a military style.
-Murals on the wall show battle scenes in gargoyles, minotaurs, and huge,
-flying snake-like reptiles with poisonous tails fight humans and dwarves.
-Various objects in the room give evidence that it is occupied by individuals
-of authority.  The only door is north.
-~
-16 9 0
+0 131073 0
+Rd     0
 D0
 ~
 ~
-1 -1 1644
-S
-#1647
-Third Level of Eastern Tower~
-You are in the center of the Eastern Tower's third floor.  The room you are in
-glows with a mysterious light that has no source.  In the center of the room a
-ladder climbs up to a hatchway in the ceiling.  The hatchway is a strange
-looking keyhole.  There is also a door to the west.
-~
-16 8 1
-D3
-~
-~
-1 -1 1644
-D4
-The hatchway appears securely fastened.  In it is a strange keyhole.
-~
-~
-1 -1 1648
-S
-#1648
-Turret of the Eastern Tower~
-You stand in the turret of the eastern tower.  A huge hole has been
-made in the roof by some enormous beast, letting the daylight (or moonlight)
-in.  There is a hatchway in the floor, and an opening to the west leading out
-onto a catwalk.
-~
-16 0 1
-D3
-There is a small opening this way.
-~
-~
-0 0 1649
-D5
-~
-~
-1 -1 1647
-S
-#1649
-On the Catwalk~
-You are outdoors on a catwalk between the turrets of the eastern and 
-western towers.  There is a 40 foot drop to the north and south.  You have
-a fabulous view of the surrounding countryside, which consists of a bleak
-wilderness.  At the east end of the catwalk is a small opening leading
-inside the eastern turret.  At the western end, a strange mirror-like portal
-leads into the western turret.
-~
-16 0 3
-D1
-~
-~ 
-0 0 1648
-D3
-A mirror-like portal glimmers, allowing entry into the western turret.
-~
-~
-0 0 1650
-S
-#1650
-Turret of the Western Tower~
-You are in the turret of the western tower.  You feel very strange here.
-Scattered about this room are a great many coins and valuable articles.
-Yet you can't get rid of a feeling of dread!  A mirror-like portal is in the
-western wall.
-~
-16 9 0
-D1
-~
-~
-0 0 1649
-D3
-A mirror-like portal glimmers in this wall.
-~
-~
-0 0 1651
-S
-#1651
-On the Other Side~
-You are outdoors on a catwalk between the turrets of the Eastern and Western
-towers.  There is no opening into the western tower of any kind.  You have a
-fabulous view of your surroundings, a murky city partially obscured by strange
-smoke that creeps along the ground instead of rising. The city stretches as far
-as the eye can see under the conditions.
-~
-16 0 3
-D1
-~
-~
-0 0 1650
-D3
-~
-~
-0 0 1652
-S
-#1652
-The Chamber~
-You are in a small carpeted chamber. The chamber is empty except for a single
-chair facing a mirror on the wall.
-~
-16 0 0
-D1
-~
-~
-0 0 1651
-S
-#1701
-Main Eastern Road~
-You are on the old Eastern Road.  The crossroads to the east joins ANOTHER
-northern route to this road, which continues east.  South of the crossroads is
-an old building.  The area around here is lightly timbered.
-~
-17 0 3
-D1
-You see a cross roads and an old building.
-~
-~
-0 0 1702
-D3
-~
-~
-0 0 5267
-S
-#1702
-Crossroads to the Wilderness~
-You are at a crossroads to the wilderness areas east and north of here,
-and the more civilized areas to the west. The main road is west, an
-older road continues east, and a simple trail heads north.  To the south,
-an old ram-shackle building is being used as a trading post for the
-surrounding wilderness. 
-~
-17 0 3
-D0
-You see a trail leading north.
-~
-~
-0 0 1704
-D1
-The old Eastern road continues this way.
-~
-~
-0 0 1601
+0 0 2734
 D2
-An old, ram-shackle building serves as a trading post here.
 ~
 ~
-0 0 1703
-D3
-~
-~
-0 0 1701
+0 0 2736
 S
-#1703
-Trading Post~
-You are in a trading post just south of the crossroads, where rangers,
-trappers and hunters from the surrounding area come to buy, sell, and
-barter goods.
+#2736
+A Dark Tunnel~
+You are at one end of a pitch-black hall.  Your light doesn't seem to
+shed enough light to look what may be north of you, but the sounds of
+dripping water comes from the north.  A large wooden door dominates the east
+wall and you think you can spot some claw mark of some sort on the door and
+walls nearby.  The hall seems to continue to the west.  
 ~
-17 8 0
+0 131073 0
+Rd     0
 D0
-The door opens out on the crossroads.
 ~
 ~
-0 0 1702
-S
-#1704
-Trail north of crossroads~
-You are on a primitive north-south trail. South of here is a major cross-
-roads and an old building. To the north the trail continues toward a
-deep, dark forest.
-~
-17 0 3
-D0
-The trail continues toward a deep, dark, forest.
-~
-~
-0 0 1705
-D2
-A major crossroads and a building lie in this direction.
-~
-~
-0 0 1702
-S
-#1705
-Trail south of forest~
-You are on a primitive north-south trail.  Just north of here looms the
-entrance to a deep, dark forest. To the south the trail continues.
-~
-17 0 3
-D0
-The trail enters a dark forest of thick oaks this way.
-~
-~
-0 0 1706
-D2
-The trail continues.
-~
-~
-0 0 1704
-S
-#1706
-Entrance to the forest~
-You are at the entrance to dark forest comprised mostly of huge black oak
-and towering firs.  A trail from the south continues north on into the
-woods at this point.
-~
-17 0 3
-D0
-You see the trail continuing into the forest.
-~
-~
-0 0 1707
-D2
-You see the trail head back on south.
-~
-~
-0 0 1705
-S
-#1707
-Trail in Dark Oak Forest~
-The trail here passes through groves of closely knit Black Oak. Some of
-these trees are of enormous size.  Rustling and other low noises come
-from the forest on either side of the trail.  The trail continues on north
-and south.
-~
-17 0 4
-D0
-You see the trail continue into thick, dark forest.
-~
-~
-0 0 1708
-D2
-The edge of the forest is visible in this direction.
-~
-~
-0 0 1706
-S
-#1708
-Junction in Dark Forest~
-You are in the midst of a deep dark forest of huge oak trees.  There is a
-junction of trails here, with paths leading south, west and east.
-~
-17 0 4
+0 0 2735
 D1
-A path disappears into thick forest.
+A large wooden door dominates the east wall here.
 ~
-~
-0 0 1720
-D2
-A path disappears into thick forest.
-~
-~
-0 0 1707
+"large wooden door" "door"~
+3 0 2732
 D3
-You see the path to the Centaur village.
 ~
 ~
-0 0 1709
+0 0 2740
 S
-#1709
-Path to Centaur Village~
-You are on an east-west path in the forest.  Here the forest is mostly
-towering firs, not quite as dense as the oak groves that can be seen eastward.
-Westward, the trail heads toward a small clearing.
+#2737
+A Musty Tunnel~
+You move through a musty tunnel and it seems hard to breathe in here. 
+You pull a handkerchief to your nose to try to breathe easier, but it
+doesn't seem to help much.  Looks like this place isn't just old, but the
+dark magicks here permeate the air making it so horrible.  The skittling of
+claws on stone reaches your ears and you hope it's just rats.  You can leave
+through a rusty door to the east or continue down the tunnel to the west.  
 ~
-17 0 3
+0 131073 0
+Rd     0
 D1
-A path disappears into thick forest.
+A rusty door is here in the east wall.
 ~
-~
-0 0 1708
+"rusty door" "door"~
+7 2721 2733
 D3
-There is a small clearing in this direction.
 ~
 ~
-0 0 1710
+0 0 2741
 S
-#1710
-The East side of the Centaur Clearing~
-You are on the east side of a clearing.  Small primitive huts are scattered
-about the edges of this clearing.  Beyond these on all sides are towering
-fir trees.  A path leads east out of the clearing. The clearing continues to
-the west.
+#2738
+The Minotaur's Lair~
+You look about and see the humanoid skeletons of previous explorers lying
+about the room in no particular order.  A large pit of fire sits in the
+northeast corner of the room, making the heat in here unbearable.  You
+wonder how in the world anyone manages to put up with it, but judging by the
+chains and the lock on the door, they wouldn't seem to have any choice.  The
+only escape looks to be through the black door south of you.  
 ~
-17 0 2
+0 131073 0
+Rd     0
+D2
+A black door stands here in the south wall.
+~
+"black door" "door"~
+7 2723 2739
+S
+#2739
+The Castle Dungeon~
+You are at the end of a tunnel in the castle dungeons in front of a
+large black door to the north of you.  The limestone walls radiate heat and
+you wipe your brow wishing it weren't so hot!  You can exit through the
+black door to the north of you or you can wander down the tunnel to the west
+of you.  
+~
+0 131073 0
+Rd     0
 D0
-There is a hut here.
+A large black door stands here in the north wall.
 ~
-~
-0 0 1712
-D1
-A path leads away through the forest.
-~
-~
-0 0 1709
-D2
-There is a hut here.
-~
-~
-0 0 1713
+"black door" "door"~
+7 2723 2738
 D3
-You see the west side of the clearing.
 ~
 ~
-0 0 1711
+0 0 2743
 S
-#1711
-West side of the Centaur Clearing~
-You are on the west side of the clearing in the center of the Centaur village.
-Huts surround the clearing on all sides, and beyond are towering firs.  The
-clearing continues to the east.  To the west is a very large hut.
+#2740
+In the Dark Tunnel~
+You check your light to make sure it's still glowing as you look around
+this part of the tunnel.  There are torch holders lining the walls, but they
+are devoid of any forms of light to help make the area easier to see in. 
+The tunnel seems to continue to the east and to the west 
 ~
-17 0 2
+0 131073 0
+Rd     0
+D1
+~
+~
+0 0 2736
+D3
+~
+~
+0 0 2744
+S
+#2741
+A Musty Tunnel~
+As you move on the warm stones in this musty tunnel, you can hear
+footsteps echoing throughout the place.  A low moan escapes into the air
+from somewhere close to you.  The sounds and sights of the tunnel begin to
+play tricks on you.  The exits are east along the musty tunnel andn south
+through a large shadowy door.  
+~
+0 131073 0
+Rd     0
+D1
+~
+~
+0 0 2737
+D2
+A shadowy door stands here in the south wall.
+~
+"shadowy door" "door"~
+103 2720 2742
+S
+#2742
+A Crimson Room~
+You hold your light up and wonder for a moment if it's suddenly shedding
+off the wrong color light, for you are within a room with walls as red as
+blood.  You reach out a hand to touch the walls and find it isn't blood
+afterall.  The floor is carpeted in thick red fur of some type.  The walls
+are gilded in gold trimming and glitter brightly, giving off the effect of
+fire.  The only exit seems to be through a shadowy door to the north.  
+~
+0 131073 0
+Rd     0
 D0
-There is a hut here.
+A very shadowy door stands here in the north wall.
 ~
+"shadowy door" "door"~
+103 2720 2741
+S
+#2743
+Deep Within the Dungeons~
+You move about in the dungeons beneath Castle Wyvern wondering where the
+exit has gotten itself to.  The sounds of claws on stone and an occasional
+hiss reaches your ears.  You adjust your armor as the heat in here starts to
+get to you.  The dungeons look like they continue to the east and to the
+south of you.  
 ~
-0 0 1714
+0 131073 0
+Rd     0
 D1
-You see the east side of the clearing.
 ~
 ~
-0 0 1710
+0 0 2739
 D2
-There is a hut here.
 ~
 ~
-0 0 1715
-D3
-There is a hut here.
-~
-~
-0 0 1716
+0 0 2744
 S
-#1712
-A Centaur's Hut~
-You are inside a smallish hut, the home of a family of Centaurs.  The hut
-is sparsely furnished, mostly the trappings of survival.
+#2744
+In the Castle Dungeons~
+You are in the tunnels underneath Castle Wyvern.  The walls radiate heat
+as if there may be fire just on the other side of them.  The limestone floor
+echoes as you move along the tunnel, letting every living and non-living
+creature in the dungeons know of your presence.  The tunnels continue
+to the north and to the east of you.  
 ~
-17 8 0
-D2
-The opening leads out onto the clearing.
-~
-~
-0 0 1710
-S
-#1713
-A Centaur's Hut~
-You are inside a smallish hut, the home of a family of Centaurs.  The hut
-is sparsely furnished, mostly the trappings of survival.
-~
-17 8 0
+0 131073 0
+Rd     0
 D0
-The opening leads out onto the clearing.
 ~
 ~
-0 0 1710
-S
-#1714
-A Centaur's Hut~
-You are inside a smallish hut, the home of a family of Centaurs.  The hut
-is sparsely furnished, mostly the trappings of survival.
-~
-17 8 0
-D2
-The opening leads out onto the clearing.
-~
-~
-0 0 1711
-S
-#1715
-A Centaur's Hut~
-You are inside a smallish hut, the home of a family of Centaurs.  The hut
-is sparsely furnished, mostly the trappings of survival.
-~
-17 8 0
-D0
-The opening leads out onto the clearing.
-~
-~
-0 0 1711
-S
-#1716
-Entrance to a Large Hut~
-You are in the entry foyer of a large hut.  A curtain separates this section
-of the hut from the next section to the west.  To the east is an opening out
-onto the clearing.
-~
-17 8 0
+0 0 2743
 D1
-The opening leads out onto the clearing.
 ~
 ~
-0 0 1711
-D3
-There is a curtain here separating this section from the next.
-~
-~
-0 0 1717
-S
-#1717
-Back of a Large Hut~
-You are in the back of a large hut.  A curtain separates this section from
-the front of the hut to the east.  This room is finely decorated, if
-somewhat primitive.  The decor suggests someone of authority lives here.
-~
-17 8 0
-D1
-There is a curtain here separating this room from the front of the hut.
-~
-~
-0 0 1716 
-S
-#1720
-Eastern Path in Dark Forest~
-You are on an east-west path through extremely old growths of oak.  The path
-is fairly faint here.  Undergrowth closes in so closely that little can
-be seen in any direction.
-~
-17 0 4
-D3
-The path continues west through thick forest.
-~
-~
-0 0 1708
+0 0 2740
 S
 #0
-
-
-
-#RESETS
-* D 0 1647 4 2		;Lock strange door
-* D 0 1648 5 2
-* D 0 1623 2 1		;Close Main door
-* D 0 1624 4 1
-* D 0 1633 5 1		;Close grate
-* D 0 1634 4 1
-R 0 1644 0 4		;Maze the dark room
-O 0 1652 2 1608		;Put barrel in storeroom
-O 0 1601 2 1627		;Load rusty cleaver
-O 0 1651 1 1645		;Load chest in Armory
-P 0 1603 1 1651		;Put dagger in chest
-M 0 1601 2 1620		;Load two frogs
-M 0 1601 2 1620
-M 0 1601 3 1621		;Load 1 frog < 3 existing
-M 0 1601 3 1622		;Load 1 frog < 3 existing
-M 0 1602 2 1623		;Load 2 Stone gargoyles
-M 0 1602 2 1623
-M 0 1602 4 1624		;Load 2 Stone gargoyles
-M 0 1602 4 1624
-M 0 1602 5 1625		;Load a Stone gargoyle
-M 0 1602 6 1631		;Load a Stone gargoyle
-M 0 1603 1 1630		;Load Angry gargoyle
-M 0 1603 2 1632		;Load Angry gargoyle
-M 0 1603 3 1637		;Load Angry gargoyle
-M 0 1604 2 1636		;Load 2 Elite gargoyles 
-E 1 1604 10 16			;Equip them large spear
-M 0 1604 2 1636
-E 1 1604 10 16				
-M 0 1604 2 1639		;Load 2 Elite gargoyles
-M 0 1604 2 1639
-M 0 1605 1 1638		;Load Gargoyle Shaman
-E 1 1602 6 16			;Equip her fine mace
-E 1 1621 3 13			;Equip her scarlet belt
-M 0 1606 1 1628		;Load Carn. Plant
-M 0 1607 1 1629		;Load Ogre
-M 0 1608 4 1644		;Load shadow < 4 existing
-M 0 1609 1 1634		;Load the Wight
-E 1 1692 1 17			;Hold Strange key
-M 0 1610 2 1645		;Load 2 Burly minotaurs
-M 0 1610 2 1645
-M 0 1612 1 1610		;Load the Savage minotaur
-E 0 1604 5 16			;Equip him broad sword
-E 1 1612 3 11			;Equip him black shield
-M 0 1613 1 1646		;Load Minotaur Captain
-E 1 1604 5 16			;Equip him broad sword
-E 1 1614 3 6			;Equip him Commander's helm
-M 0 1614 1 1643		;Load Black Pudding
-M 0 1615 2 1647		;Load Lesser Golem < 2 existing
-E 1 1606 2 16			;Equip him Might rod
-M 0 1616 1 1648		;Load the Ancient Wyvern!
-E 1 1615 2 17			;Equip him bracers
-G 1 1621 5			;Red potion in inv.
-M 0 1617 1 1650		;Load the Spectre!
-E 1 1616 2 3			;Equip him blue cloak
-*
-*
-*
-M 0 1702 2 1703		;Load 2 trappers
-E 1 1711 5 6			;Equip them cap
-M 0 1702 2 1703
-E 1 1711 5 6
-M 0 1704 2 1703		;Load 2 Hunters	
-M 0 1704 2 1703
-E 1 1701 10 16			;Equip one a short bow
-M 0 1706 1 1703		;Load the Ranger
-E 1 1702 5 16			;Equip him long bow
-G 1 1621 5			;Red Potion in inv.
-M 0 1710 1 1704		;Load male Centaur
-E 1 1701 10 16                  ;Equip him short bow
-M 0 1710 2 1708		;Load another one
-E 1 1701 10 16			;Equip him short bow
-M 0 1710 3 1710		;Load another, no bow
-M 0 1711 1 1706		;Load female Centaur
-M 0 1711 2 1709         ;Load female Centaur
-M 0 1712 1 1710		;Load Old Centaur
-M 0 1712 2 1712		;Load Old Centaur
-M 0 1712 3 1713		;Load Old Centaur
-M 0 1714 1 1711		;Load Centaur Elder
-M 0 1714 2 1714		;Load Centaur Elder
-M 0 1714 3 1715		;Load Centaur Elder
-M 0 1715 2 1716		;Load 2 Centaur Guards
-E 1 1604 10 16			;Equip them large spear
-M 0 1715 2 1716
-E 1 1604 10 16		
-M 0 1716 1 1717		;Load the Centaur Chief	
-E 1 1713 1 2			;Equip him Bronze ring
-S
 
 
 
 #SPECIALS
-M  1605 spec_cast_cleric
-M  1609 spec_cast_undead
-M  1614 spec_breath_acid
-M  1616 spec_breath_any
-M  1617 spec_cast_undead
-M  1716 spec_cast_undead
+M 2702 spec_cast_psionicist
+M 2706 spec_breath_acid
+M 2710 spec_cast_mage
+M 2711 spec_guard
 S
+
+
+
+#RESETS
+M 0 2713 1 2700
+E 0 2710 0 3
+O 0 2718 0 2700
+E 0 2726 0 5
+M 0 2710 1 2701
+E 0 2704 0 20
+E 0 2705 0 21
+E 0 2707 0 17
+E 0 2708 0 6
+E 0 2709 0 16
+E 0 2711 0 5
+O 0 2713 0 2701
+M 0 2714 1 2704
+G 0 2719 0
+M 0 2711 4 2709
+M 0 2715 1 2710
+M 0 2706 2 2714
+M 0 2701 2 2715
+M 0 2711 4 2717
+M 0 2704 1 2719
+O 0 2714 0 2719
+G 0 2722 0
+E 0 2715 0 5
+E 0 2712 0 0
+E 0 2705 0 20
+O 0 2716 0 2725
+M 0 2706 2 2725
+M 0 2702 1 2729
+E 0 2717 0 6
+M 0 2709 1 2731
+M 0 2700 1 2732
+G 0 2723 0
+M 0 2703 1 2733
+M 0 2712 2 2734
+M 0 2705 1 2738
+G 0 2721 0
+M 0 2708 1 2740
+M 0 2707 1 2741
+G 0 2720 0
+O 0 2706 0 2742
+P 0 2703 0 2706
+S
+
+
+
+#SHOPS
+0
 
 
 

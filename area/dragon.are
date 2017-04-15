@@ -1,0 +1,4270 @@
+#AREADATA
+Name        {25-110} Dragon Valley       Nosferatu~
+Levels      25 110
+Builders    None~
+VNUMs       10101 10200
+Security    100
+Recall      25000
+Flags       16
+Color       6
+Sounds      &cYou hear the &Rroaring &cof dragons off in the distance....~
+End
+
+
+
+#MOBILES
+#10101
+Dragon Prince~
+The Dragon Prince~
+The Dragon Prince raises his mighty head...
+~
+The Dragon Prince is aweinspiring! He is well over 400 feet long and his
+steps make the Royal Lair tremble.
+He spreads his wings and raises his mighty head and stares at you..
+"What do YOU want, mortals?" he roars through the cavern...
+~
+67 369648316 0 -400 S
+102 0 0 13300d0+0 0d0+0
+1500 0 0 0
+0 0 1
+386 0 0
+>greet_prog 100~
+If ispc($n) == 1
+mpecho &RThe Dragon Prince roars angrily as you enter his domain!
+say Begone Mortal, We do not desire thy puny presence here!
+Break
+Endif
+~
+>fight_prog 40~
+say You shall never be allowed to live desecrator!
+roar
+cast 'frost breath' $n
+cast 'acid breath' $n
+cast 'fire breath' $n
+~
+>fight_prog 30~
+say You shall never take me mortal!
+muhah
+c 'dispel magic' $n
+c 'acid breath' $n
+c shatter $n
+~
+>fight_prog 20~
+stun
+~
+|
+#10102
+Siegfried~
+Siegfried~
+Siegfried, the Dragonslayer guards the Royal Lair...
+~
+Here stands Siegfried, the retired Dragonslayer. The Dragon King, well aware
+of Siegfried's formidable swordsplay, persuaded the hero to guard the royal
+lair. 
+Now Siegfried, himself a Prince, protects these halls with a keen eye and 
+and even keener blade.
+~
+71 469770920 0 500 S
+102 0 0 15000d0+0 0d0+0
+1000 0 0 0
+0 0 1
+2 0 0
+>fight_prog 20~
+mpecho Siegfried slams his body into you!
+stun
+~
+|
+#10103
+Mamba~
+The Mamba~
+A vicious black Mamba strikes at you!
+~
+The black Mamba is not only huge, but also very aggressive! It bares its
+poisonous fangs and strikes at you immediately.
+~
+99 67199658 0 0 S
+95 0 0 13000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#10104
+Cobra~
+The Cobra~
+The Cobra raises its head and attacks!
+~
+This Cobra is bigger than any other snake you have seen before!
+The snake is very disturbed by your arrival here and strikes lightning
+fast!
+~
+99 123562 0 0 S
+90 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#10105
+Viper~
+The Viper~
+A venomous Viper attacks you!
+~
+This Viper is over 20 feet long and thick as a tree trunk! Obviously, you
+have startled the snake.....and you should never startle a snake, especially
+not one as big and poisonous as this one!
+~
+99 123562 0 0 S
+85 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#10106
+dragolich~
+The Dragolich~
+The Dragolich hates intruders!
+~
+Although mature Dragons are immortal, sometimes they can be killed by a
+brave adventurer. Then they turn into vengeful undead creatures obsessed
+with the destruction of anything living...Dragolichs!
+~
+99 369631912 0 -1000 S
+90 0 0 10000d0+0 0d0+0
+200 0 0 0
+0 0 0
+3 0 0
+#10107
+Drake Skeletal~
+Skeletal Drake~
+A hidious creature made from wicked bones attacks you!
+~
+This drake is the evil creation of a demented wizard. Although that wizard
+has died long since and his bones are rotting in these catacombs, somehow
+his creation has survived all this time....feeding on careless victims and
+the insaturable hatred it carries for all living things.
+~
+103 269026088 0 -1000 S
+85 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10108
+Pixie~
+A Pixie~
+A beautiful Pixie flutters by...
+~
+This tiny creature is a breathtakingly beautiful woman. She beams a smile
+at you and performs some airial acrobatics. Then she flies down, gives you
+a hug and a kiss and soars in the air again. She waves and giggles and 
+swiftly flies away...
+~
+193 533136 0 0 S
+25 0 0 700d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10109
+Egg~
+An Egg~
+A newborn Dragon peers through its cracked egg shell...
+~
+A cute little Dragon baby peers through its cracked egg shell. It is hard
+to imagine that this little guy will grow to such immense size over the
+centuries. 
+The tiny dragon looks at you and makes a chirping noise...maybe it thinks
+you are its mother?
+~
+67 8872 0 1000 S
+22 0 0 500d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10110
+Hatchling~
+A Hatchling~
+A Dragon Hatchling is playing here...
+~
+The Dragon Hatchling is about 5 feet tall and looks very humanoid. He is
+playing happily with his peers. When he notices you, he tugs on your 
+armor as if he would like you to join their games.
+~
+67 8872 0 500 S
+28 0 0 1000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10111
+Maiden~
+A Maiden~
+A beautiful maiden tries to hide from you...
+~
+You look in the eyes of a gorgeous young woman. Just recently, she has been
+abducted by the Dragons, but she seems to be very happy here. Against 
+common belief, Dragons do not capture maidens for a quick snack, but to 
+enjoy the beauty of these human females.
+Her tender skin does not bare any marks of violence...speaking of skin,
+you just realize that this lady is totally nude...
+~
+195 8744 0 1000 S
+25 0 0 800d0+0 0d0+0
+0 0 100 0
+0 0 2
+0 0 0
+#10112
+Nurse~
+A Nurse~
+A Nurse rushes to see after the hatchlings...
+~
+This Nurse is an older lady with a worried look on her face. Obviously, 
+she takes her duties with the dragon hatchlings very serious. 
+She just glances at you for a moment, then she if off to she after her
+charges.
+~
+193 8764 0 500 S
+30 0 0 1500d0+0 0d0+0
+0 20 0 0
+0 0 2
+0 0 0
+#10113
+Wyrm~
+A Wyrm~
+A Wyrm is studying here...
+~
+The Wyrm is about 7 feet tall and looks like an alligator on two legs.
+Much like human teenagers, he does not really like being here in school
+and spend so much time with the books. Especially, when there is a whole 
+world out there waiting to be explored.
+The Wyrm wears a strange pair of spectacles, probably the latest in dragon
+fashions.
+~
+67 134218408 0 333 S
+40 0 0 1800d0+0 0d0+0
+0 30 0 0
+0 0 0
+0 0 0
+#10114
+Drake~
+A Drake~
+A Drake is working out here...
+~
+The Drake looks almost like a minature dragon. His wings are developed
+and he practices hard to make them stronger so they can support his 
+weight. In a few years, he will be able to soar through the shies without
+the help of magic.
+~
+67 34079400 0 0 S
+55 0 0 2500d0+0 0d0+0
+0 65 0 0
+0 0 0
+0 0 0
+#10116
+Theodor~
+Theodor~
+Theodor, seated on a rock, greets you friendly...
+~
+This old man is without any doubt Theodor, the famous Dragon researcher.
+You have read much about him in the libraries of the realm. He is a 
+friendly man and is happy to have a conversation with you.
+He tells you about the runestones he has planted all over this area with
+advice and warnings for adventurers like yourself.
+~
+67 9217 0 500 S
+25 0 0 1000d0+0 0d0+0
+0 0 150 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if level($n) > 39
+AND level($n) < 104
+  say I'd be careful around them Dragons in there.  They seem to have grown in strength since I last studied them.
+  break
+else
+  if level($n) < 40
+    say You really shouldn't be up here...  Don't you know to the north lies the mighty Dragons of Dragon Valley?  They'd tear you in half!
+  endif
+  break
+endif
+~
+|
+#10117
+Servant~
+A Servant~
+A Servant running an errand passes by...
+~
+This Servant is dressed in a plain grey robe. He appears to be very busy 
+with some task he has to perform for one of the Dragon Lords.
+He briefly glances at you, then he is gone...
+~
+133 8744 0 500 S
+25 0 0 900d0+0 0d0+0
+0 0 150 0
+0 0 1
+0 0 0
+#10118
+Teacher~
+A Teacher~
+A Teacher with a stern look studies some scrolls...
+~
+This Teacher looks really mean. He brings back memories of your own time
+in school. Right now, he is studying some scrolls and prepares an exam
+for the Wyrms tomorrow. The leather whip he carries, suggests that failure
+to perform in school has dire consequences.
+~
+67 8744 0 -333 S
+32 0 0 1500d0+0 0d0+0
+0 22 0 0
+0 0 1
+0 0 0
+#10119
+Worshipper~
+A Worshipper~
+A Dragon Worshipper walks the valley...
+~
+This Worshipper wanders around the valley, looking for his Dragon deity.
+Unlike you, he is not very aware of the surroundings, he seems to be 
+preoccupied with something else.
+~
+1 134226472 0 0 S
+45 0 0 2000d0+0 0d0+0
+0 45 0 0
+0 0 0
+0 0 0
+#10120
+Queen Dragon~
+The Dragon Queen~
+The Dragon Queen smiles at you...
+~
+Her Majesty, Queen Throck, is a gigantic Dragon Lady. Despite her size and
+immense weight, she moves very gracefully!
+When she notices that you have entered her domain, she welcomes you with a
+toothy smile: Please, honoured guests, tell us about your journeys...
+~
+67 369648316 0 0 S
+104 0 0 15000d0+0 0d0+0
+1500 0 0 0
+0 0 2
+0 0 0
+#10121
+King Dragon~
+The Dragon King~
+The Dragon King grants you an audience...
+~
+His Majesty, King Skybade is an enormous golden Dragon. He is obviously
+very pleased to see you here.
+His voice roars through the lair: Welcome Mortals! We are greatly pleased
+that you have passed our tests! We greet you as our honoured guests. You
+may wander freely throughout Our domain and may purchase items of great
+power in the Royal Shops!"
+~
+67 369648316 0 0 S
+105 0 0 16500d0+0 0d0+0
+2000 0 0 0
+0 0 1
+0 0 0
+#10122
+Dragon Bronze~
+The Bronze Dragon~
+The Bronze Dragon stares at you...
+~
+The Bronze Dragon is fairly surprised to see your kind this high up in 
+the sky. He stares at you curiously, and quickly realizes the means of 
+transportation you employed. 
+With a few flaps of his wings he gains more altitude and flies towards
+the horizon...
+~
+67 101196456 0 0 S
+90 0 0 10000d0+0 0d0+0
+350 0 0 0
+0 0 1
+0 0 0
+#10123
+Cloud Dragon~
+The Cloud Dragon~
+The Cloud Dragon howls insanely!
+~
+The Cloud Dragon looks very confused! She seems to have lost her way in 
+her own clouds. She is so frustrated that she attacks you immediately 
+upon your arrival here.
+~
+99 201859720 0 0 S
+75 0 0 6000d0+0 0d0+0
+100 0 0 0
+0 0 2
+0 0 0
+#10124
+Shadow Dragon~
+The Shadow Dragon~
+The Shadow Dragon attacks with a great fury!
+~
+The Shadow Dragon is a cruel and evil creature. The other Dragon Lords 
+have banned him into these tunnels for the countless crimes he has 
+committed against dragonkind and other races.
+But the Shadow Dragon never changed his ways, he attacks you the moment 
+you enter his prison.
+~
+99 602666 0 -1000 S
+65 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>fight_prog 15~
+growl
+say You shall not take me mortal... Feel the power of my sting!
+c 'chain lightning' $n
+c 'psychic quake' $n
+say Let it enfold you mortal, it hurts less when you don't struggle!
+laugh
+~
+|
+#10125
+Shadowgator~
+A Shadowgator~
+A Shadowgator attacks from its hiding place!
+~
+The Shadowgator is not really a creature..more a phantom! Nevertheless, 
+it can hurt you pretty bad with its long jagged teeth and sharp talons!
+~
+97 74280 0 -500 S
+50 0 0 3000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10126
+Red Dragon~
+The Red Dragon~
+The Red Dragon Lord loves to practice his breath attack!
+~
+The Red Dragon Lord is always ill-tempered as you are about to find out.
+He takes great pleasure in torching living things and watch them burn.
+This Dragon is not at all civilized!
+~
+67 34087592 0 0 S
+110 0 0 28000d0+0 0d0+0
+2000 0 0 0
+0 0 1
+0 0 0
+>fight_prog 10~
+laugh
+lick $n
+say I have lived for hundreds of your mortal years! Do you think I am afraid of you?
+c 'meteor swarm' $n
+c 'fire breath' $n
+say feel the fires of hell mortal!
+~
+|
+#10127
+Green Dragon~
+The Green Dragon~
+The Green Dragon does not like intruders!
+~
+The Green Dragon Lady is not found of visitors. She has a very bad temper
+and takes great pride in her deadly acid breath attack.
+Your arrival just gave her a new practice target!
+~
+67 67642024 0 0 S
+110 0 0 28000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10128
+Rainbow Dragon~
+The Rainbow Dragon~
+The Rainbow Dragon looks a pretty confused...
+~
+The Rainbow Dragon is by far the most beautiful dragon you have encountered
+in the valley. Her shiny scales really sparkle in all colours of the 
+rainbow. However, for some reason, this Dragon Lady does not seem quite
+sane. She looks very confused and mutters strange incarnation in the old
+dragon tongue.
+~
+67 268985000 0 0 S
+78 0 0 4800d0+0 0d0+0
+100 0 0 0
+0 0 2
+0 0 0
+#10129
+Alchemist~
+The Royal Alchemist~
+The Alchemist tries to hide his goods from you...
+~
+The Royal Alchemist has heard of your coming. Although he dutifully obeys
+the orders of the dragon king, he jealously tries to hide his precious 
+potions and herbs.
+~
+67 285221560 0 0 S
+106 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10130
+Wizard~
+The Royal Wizard~
+The Royal Wizard tries to hide behind his cauldren...
+~
+The Royal Wizard is a very old humanoid woman, most likely an Elf. She is
+not happy to see you here since she is very protective of her special
+goods. But since the Dragon King has declared you the honoured guests,
+she finally shows you her various merchandise.
+~
+67 285221560 0 0 S
+106 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10131
+Yellow Dragon~
+The Yellow Dragon~
+The Yellow Dragon attacks with venomous slime!
+~
+It seems that you just woke up the Yellow Dragon Lord, who was sleeping
+in a large puddle of yellow slime. It seems the Yellow Dragon does not
+like to be disturb while sleeping and you are about to find out just how
+much he does not like it!
+~
+67 268968584 0 0 S
+110 0 0 28000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>fight_prog 30~
+emote slams it's tail into the back of your head causing you to lose concentration...
+cast 'dispel magic' $n
+~
+|
+#10132
+Blue Dragon~
+The Blue Dragon~
+The Blue Dragon looks surprised to see you here...
+~
+The Blue Dragon Lady is very surprised to see you here. She does not get
+visitors very often, and she is really happy to see you. She asks you many
+questions about your travels and the world of the mortals.
+~
+67 134750888 0 0 S
+110 0 0 28000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 25~
+emote charges it's massive weight towards you barreling you down...
+stun
+~
+|
+#10133
+Black Dragon~
+The Black Dragon~
+The Black Dragon grins hideously at you!
+~
+The Black Dragon Lord is very cruel. He loves to torture his victims and
+enjoys to listen to the screams. Only after hours, even days of torment
+and mutilation, he will get bored and kills his toys.
+The Black Dragon is delighted to see you here! This week will be exciting,
+at least for him...
+~
+99 549544 0 0 S
+110 0 0 28000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>fight_prog 100~
+emote snarls viciously at you as a black hazy aura emits from his maw...
+cast 'stench of decay' $n
+~
+|
+#10134
+White Dragon~
+The White Dragon~
+The White Dragon likes solitude...
+~
+The Frost Dragon Lady is not pleased with your intrusion. She likes to be
+left alone in her cold realm. Although she does not attack you, she makes
+it quite clear that she does not want you here at all.
+~
+67 134750888 0 0 S
+110 0 0 28000d0+0 0d0+0
+0 0 0 0
+0 0 2
+256 0 0
+>fight_prog 20~
+look $n
+smirk
+emote pulls in a huge breath
+c 'frost breath' $n
+c 'icestorm' $n
+~
+|
+#10135
+Silver Dragon~
+The Silver Dragon~
+The Silver Dragon welcomes you to her lair...
+~
+The Silver Dragon Lady is a shiny, stunning creature! Her scales sparkle
+in the light of your torches. She is glad to see you here, and welcomes 
+you to her lair. Apparently, she is very curious about the ways of the 
+mortals and asks you alot of questions.
+~
+67 369648296 0 0 S
+111 0 0 14000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 15~
+emote claws at your eyes savagely.
+rake
+~
+>fight_prog 20~
+cast 'dispel magic' $n
+~
+|
+#10136
+Gold Dragon~
+The Gold Dragon~
+The Gold Dragon looks at you benevolent...
+~
+The Gold Dragon Lord is a very impressive Dragon! He is well over 300 feet
+long and his scales gleam like pure gold. He is quite used to mortals like
+yourself and starts a rather casual conversation with you.
+~
+67 369648296 0 0 S
+111 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>fight_prog 20~
+emote roars loudly, shattering your thoughts!
+cast 'dispel magic' $n
+~
+|
+#10137
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drakes serve as guards for the Dragon Lords. The have received
+special training...always ready, always present yet never seen.
+This Drake has been assigned to guard the entrance to this lair.
+~
+67 74240 0 0 S
+52 0 0 5500d0+0 0d0+0
+0 100 0 0
+0 0 1
+0 0 0
+#10138
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drakes serve as guards for the Dragon Lords. The have received
+special training...always ready, always present yet never seen.
+This Drake has been assigned to guard the entrance to this lair.
+~
+67 74240 0 0 S
+52 0 0 5500d0+0 0d0+0
+0 100 0 0
+0 0 2
+0 0 0
+#10139
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drakes serve as guards for the Dragon Lords. The have received
+special training...always ready, always present yet never seen.
+This Drake has been assigned to guard the entrance to this lair.
+~
+67 74240 0 0 S
+52 0 0 5500d0+0 0d0+0
+0 100 0 0
+0 0 1
+0 0 0
+#10140
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drakes serve as guards for the Dragon Lords. The have received
+special training...always ready, always present yet never seen.
+This Drake has been assigned to guard the entrance to this lair.
+~
+67 74240 0 0 S
+52 0 0 5500d0+0 0d0+0
+0 100 0 0
+0 0 2
+0 0 0
+#10141
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drakes serve as guards for the Dragon Lords. The have received
+special training...always ready, always present yet never seen.
+This Drake has been assigned to guard the entrance to this lair.
+~
+67 74240 0 0 S
+52 0 0 5500d0+0 0d0+0
+0 100 0 0
+0 0 1
+0 0 0
+#10142
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drakes serve as guards for the Dragon Lords. The have received
+special training...always ready, always present yet never seen.
+This Drake has been assigned to guard the entrance to this lair.
+~
+67 74240 0 0 S
+52 0 0 5500d0+0 0d0+0
+0 100 0 0
+0 0 2
+0 0 0
+#10143
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drakes serve as guards for the Dragon Lords. The have received
+special training...always ready, always present yet never seen.
+This Drake has been assigned to guard the entrance to this lair.
+~
+67 74240 0 0 S
+52 0 0 5500d0+0 0d0+0
+0 100 0 0
+0 0 1
+0 0 0
+#10144
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drakes serve as guards for the Dragon Lords. The have received
+special training...always ready, always present yet never seen.
+This Drake has been assigned to guard the entrance to this lair.
+~
+67 74240 0 0 S
+52 0 0 5500d0+0 0d0+0
+0 100 0 0
+0 0 2
+0 0 0
+#10145
+Dragonguard~
+A Dragonguard~
+A Dragonguard guards this lair entrance...
+~
+Some Drake serve as guards for the Dragon Lords. They have received 
+special training...always ready, always present yet never seen.
+This Drake has been assigned to partol the valley.
+~
+65 74368 0 0 S
+52 0 0 3000d0+0 0d0+0
+0 100 0 0
+0 0 1
+0 0 0
+#10200
+Garby~
+Garby~
+Garby, the Samaritan tends your wounds...
+~
+Garby is a women of an undefined catlike race. You cannot tell how old 
+she really is, but her experience in curing the injured suggests that
+she has been doing it for a very long time.
+Garby smiles at you in a friendly manner...
+~
+67 520118952 0 1000 S
+110 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#0
+
+
+
+#OBJECTS
+#10101
+scales~
+the Mighty Scales~
+The mighty scales of the Dragon Prince...~
+~
+9 536870915 7991 16412 9 100
+0~ 0~ 0~ 0~
+50 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 -1
+A
+13 100
+A
+17 -100
+A
+14 -100
+A
+1 2
+A
+24 -20
+A
+23 -20
+#10102
+Charm~
+a Dragon Charm~
+A charm in the shape of a dragon...~
+~
+15 536871041 0 0 5 100
+45~ 5~ 0~ 0~
+5 700 0 0 0
+5 5
+detect evil~
+-1 -1
+0 0 0
+A
+23 -10
+A
+24 -10
+A
+13 50
+A
+17 -50
+#10103
+skull mask~
+the Skull Mask~
+The Skull of the Dragon Prince...~
+~
+9 1 0 0 65537 100
+0~ 0~ 0~ 0~
+2 500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 10
+A
+12 50
+A
+13 50
+A
+17 -100
+A
+24 -10
+A
+23 -10
+#10104
+claws~
+the Rear Claws~
+The sewered rear claws of the Dragon Prince...~
+~
+9 1 0 0 65 100
+0~ 0~ 0~ 0~
+10 600 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 -1
+A
+13 50
+A
+17 -60
+A
+14 50
+#10105
+claw taloned talon dragon~
+&cthe long-taloned claw of a dragon&w~
+A huge talon severed from its body...~
+~
+5 805323009 7223 0 8193 100
+0~ 0~ 0~ 5~
+8 200 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+19 120
+A
+18 80
+#10106
+ring cursed~
+a Cursed Ring~
+A signet ring glows evilly...~
+~
+9 268441809 0 0 3 100
+0~ 0~ 0~ 0~
+1 0 0 1 0
+5 0
+curse~
+10 10
+0 0 0
+A
+12 200
+A
+17 300
+A
+24 10
+#10107
+balmung~
+the Balmung~
+Balmung, the Dragonslayer sword...~
+~
+5 3 5175 8 8193 101
+0~ 0~ 0~ 3~
+5 1300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 -15
+A
+19 210
+A
+18 179
+A
+1 3
+#10108
+Plates~
+the Scaly Arm Plates~
+Large arm plates made from dragon scales...~
+~
+9 1 1335 0 257 100
+0~ 0~ 0~ 0~
+5 700 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+2 2
+A
+17 -100
+A
+24 -10
+A
+23 -10
+#10109
+cloak~
+a Leathery Cloak~
+A sturdy leather cloak...~
+~
+9 1025 0 0 1025 95
+0~ 0~ 0~ 0~
+2 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -50
+A
+12 100
+A
+13 100
+#10110
+skin~
+a Snake Skin~
+A ugly black snake skin dripping with poison...~
+~
+9 16385 0 0 2049 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -5
+A
+25 33
+A
+17 -50
+A
+2 2
+A
+13 75
+#10111
+club bone~
+a Club of Bone~
+A huge club made from the leg bones of some animal...~
+~
+5 513 4742 0 8193 90
+0~ 0~ 0~ 8~
+8 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 140
+A
+19 180
+A
+25 -20
+A
+12 -40
+A
+14 -100
+#10112
+Leggings~
+a Pair of Bone Leggings~
+A pair of leggings carved out of a huge hip bone...~
+~
+9 513 130 0 33 90
+0~ 0~ 0~ 0~
+5 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 -100
+A
+17 -80
+A
+13 50
+A
+23 -5
+#10113
+Diamond~
+a Diamond~
+A large sparkling diamond with a perfect cut...~
+~
+8 1 0 0 1 25
+0~ 0~ 0~ 0~
+1 0 1000 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10114
+potion glowing~
+a Glowing Potion~
+A glowing potion bursting with energy...~
+~
+10 268435521 0 0 16385 30
+50~ mana~ mana~ mana~
+1 0 200 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10115
+Ruby~
+a Ruby~
+A beautiful red ruby...~
+~
+8 1 0 0 1 25
+0~ 0~ 0~ 0~
+1 0 800 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10116
+Sapphire~
+a Sapphire~
+A sparkling, well polished Sapphire... ~
+~
+8 1 0 0 1 25
+0~ 0~ 0~ 0~
+1 0 600 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10117
+Thermometer~
+a Thermometer~
+A strangly glowing thermometer...~
+~
+8 1 0 0 16385 30
+0~ 0~ 0~ 0~
+3 0 0 200 0
+5 0
+psychic healing~
+30 30
+0 0 0
+A
+5 2
+A
+13 25
+#10118
+Shades~
+a Pair of Dark Shades~
+A pair of stylish sunglasses...~
+~
+9 1 0 0 131073 40
+0~ 0~ 0~ 0~
+1 0 50 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+103 -1
+A
+24 -5
+A
+13 25
+#10119
+Gem~
+a Gem of Levitation~
+A strange gem is floating in the air...~
+~
+9 3 0 0 32769 55
+0~ 0~ 0~ 0~
+0 0 100 0 0
+5 0
+fly~
+35 35
+0 0 0
+A
+24 -3
+A
+17 -30
+A
+12 25
+A
+13 50
+#10120
+Gem~
+a Gem of Concentration~
+A strange gem that seems to focus your thoughts...~
+~
+9 3 0 0 32769 55
+0~ 0~ 0~ 0~
+1 0 100 0 0
+5 0
+adrenaline control~
+35 35
+0 0 0
+A
+17 -30
+A
+3 2
+A
+13 50
+A
+12 70
+#10121
+vial dragon blood~
+a vial of Dragon &RBlood~
+A vial of Dragon &RBlood...~
+~
+10 805306688 0 0 1 85
+100~ cure critical~ cure critical~ cure critical~
+2 100 100 100 0
+5 0
+bloodbath~
+1 1
+0 0 0
+#10125
+Uthra~
+the Uthra~
+A strange twisted staff that glows brightly... ~
+~
+1 536870977 0 0 1 15
+0~ 0~ -1~ 0~
+1 0 0 75 0
+5 0
+teleport~
+1 1
+0 0 0
+A
+3 1
+A
+4 1
+A
+13 10
+#10126
+flask amber~
+an Amber Flask~
+An amber flask filled with some chemicals...~
+~
+10 268435520 0 0 1 20
+50~ cure poison~ remove curse~ bless~
+2 0 0 50 0
+0 0
+reserved~
+0 0
+0 0 0
+#10127
+robe gray~
+a Gray Robe~
+A plain gray cotton robe...~
+~
+9 256 0 0 1025 25
+0~ 0~ 0~ 0~
+2 0 0 100 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 25
+A
+17 -25
+#10128
+whip~
+a Leather Whip~
+A mean looking leather whip... ~
+~
+9 530 5175 0 16385 32
+0~ 0~ 0~ 0~
+3 0 20 0 0
+5 0
+ego whip~
+15 15
+0 0 0
+A
+18 64
+A
+19 19
+A
+3 2
+#10129
+Scroll Protection~
+a Scroll of Protection~
+An old magical scroll...~
+~
+2 1 0 0 1 32
+50~  ~ energy containment~ intellect fortress~
+1 0 20 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10130
+staff black~
+a Black Staff~
+A staff carved from black oak...~
+~
+5 320 6860 0 8193 45
+0~ 0~ 0~ 7~
+2 0 40 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 63
+A
+19 81
+A
+23 -5
+A
+24 -5
+#10131
+vial copper potion~
+a Copper Vial~
+A vial crafted from red shiny copper...~
+~
+10 268435521 0 0 1 45
+60~ flesh armor~ thought shield~ stone skin~
+1 0 35 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10132
+polished scale mirror~
+a Huge Polished Scale~
+A huge, reflecting dragon scale stands here...~
+~
+29 65 0 0 0 200
+10210~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10133
+polished scale mirror~
+a Huge Polished Scale~
+A huge, reflecting dragon scale stands here...~
+~
+29 65 0 0 0 200
+25000~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10134
+Mirror~
+a Gleaming Mirror~
+A large, gleaming mirror stands here...~
+~
+29 65 0 0 0 200
+10910~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10135
+Chalice~
+a Glowing Chalice~
+A large glowing chalice is placed next to Theodor...~
+~
+15 65 0 0 0 200
+100000~ 1~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10136
+Chalice~
+a Glowing Chalice~
+A large glowing chalice has been placed here...~
+~
+15 65 0 0 0 200
+100000~ 1~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10137
+Chalice~
+a Glowing Chalice~
+A large glowing chalice has been placed here...~
+~
+15 65 0 0 0 200
+100000~ 1~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10138
+helmet bronze~
+a Bronze Helmet~
+A highly polished bronze helmet...~
+~
+9 1025 0 4096 17 70
+0~ 0~ 0~ 0~
+5 70 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 2
+A
+17 -30
+A
+13 50
+A
+12 50
+#10139
+Grail Lightning~
+the Grail of Lightning~
+A Grail loaded with electricity...~
+~
+15 67 0 0 16385 70
+53~ 5~ 0~ 0~
+3 50 0 0 0
+5 0
+shockshield~
+5 5
+0 0 0
+#10140
+Grail Chaos~
+the Grail of Chaos~
+A strangely twisted grail that glows and hums...~
+~
+15 67 0 0 16385 65
+53~ 5~ 0~ 0~
+3 30 0 0 0
+5 0
+chaos field~
+5 5
+0 0 0
+#10141
+Fiery Ring~
+a Fiery Ring~
+A red, burning ring...~
+~
+9 513 0 0 3 60
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+fire breath~
+15 15
+0 0 0
+A
+13 50
+A
+23 -5
+A
+18 5
+A
+19 5
+#10142
+Acid Ring~
+an Acid Ring~
+A ring pitted and etched with acid...~
+~
+9 513 0 0 3 65
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+acid breath~
+15 15
+0 0 0
+A
+13 50
+A
+23 -5
+A
+18 5
+A
+19 5
+#10143
+Grail Protection~
+the Grail of Protection~
+A grail with runes of protection engraved upon it...~
+~
+15 195 0 0 16385 75
+53~ 5~ 0~ 0~
+3 30 0 0 0
+5 0
+energy containment~
+5 5
+0 0 0
+#10144
+Sphere Gas~
+the Sphere of Gas~
+A sphere bursting with green, toxic gas...~
+~
+9 643 0 0 16385 75
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+gas breath~
+20 20
+0 0 0
+A
+12 75
+A
+13 75
+#10145
+Sphere Lightning~
+the Sphere of Lightning~
+A sphere humming with electric charges...~
+~
+9 1155 0 0 16385 70
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+lightning breath~
+20 20
+0 0 0
+A
+12 75
+A
+13 75
+#10146
+Sphere Astral~
+the Astral Sphere~
+A strange sphere made from starlight...~
+~
+9 195 1 0 16385 95
+0~ 0~ 0~ 0~
+5 0 0 0 0
+5 0
+astral walk~
+15 15
+0 0 0
+A
+13 100
+A
+14 100
+A
+17 -50
+#10147
+Charm Death~
+the Charm of Death~
+A chilling necklace with the stench of decay...~
+~
+9 513 202 0 5 85
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+death field~
+10 10
+0 0 0
+A
+12 -50
+A
+17 -25
+A
+25 25
+A
+19 8
+A
+18 8
+#10148
+Charm Frost~
+&wthe &WCharm &wof &CFrost&w~
+A large frost-covered charm...~
+~
+9 65 0 0 5 85
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+iceshield~
+8 8
+0 0 0
+A
+18 7
+A
+19 7
+A
+13 25
+A
+17 -25
+#10149
+Gauntlets~
+the Gauntlets of Blessing~
+A pair of shiny silver gauntlets... ~
+~
+9 1345 4 0 129 90
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+bless~
+-1 -1
+0 0 0
+A
+3 1
+A
+17 -25
+A
+18 8
+A
+19 10
+A
+13 50
+#10150
+Gauntlets~
+the Gauntlets of Strength~
+A pair of gleaming golden gauntlets...~
+~
+9 2369 0 0 129 95
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+giant strength~
+-1 -1
+0 0 0
+A
+5 1
+A
+18 9
+A
+19 10
+A
+13 50
+A
+17 -25
+#10151
+parchment enhancement~
+parchment of Enhancement~
+A very old parchment with some runes on it...~
+~
+2 5 0 0 1 100
+100~ enhance armor~ reserved~ reserved~
+1 800 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10152
+syringe~
+a Syringe~
+A syringe filled with some drug...~
+~
+8 65 0 0 16385 90
+0~ 0~ 0~ 0~
+3 1000 0 0 0
+5 0
+adrenaline control~
+-1 -1
+0 0 0
+#10153
+vial defense potion~
+a Vial of Defense~
+A large vial containing a strange liquid...~
+~
+10 268435521 0 0 1 100
+75~ sanctuary~  ~ inertial barrier~
+1 400 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10154
+Herb Shields~
+an Herb of Shields~
+Some dried herbal leaves...~
+~
+26 65 0 0 1 90
+75~ displacement~ mental barrier~ thought shield~
+2 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10155
+flamberge sword~
+a Flamberge~
+A huge twisted two-handed sword...~
+~
+5 1 5175 0 8193 52
+0~ 0~ 0~ 1~
+10 0 40 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 70
+A
+19 104
+A
+13 25
+A
+14 -50
+A
+2 -2
+A
+1 1
+#10156
+scalearmor armor~
+a Scalearmor~
+A Heavy armor made from dragon scales...~
+~
+9 1 7991 0 9 50
+0~ 0~ 0~ 0~
+20 0 40 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 2
+A
+23 -10
+A
+17 -50
+A
+2 -2
+A
+14 -50
+#10157
+claws gauntlets~
+a Pair of Claws~
+A pair of cursed clawed gauntlets...~
+~
+9 4097 2048 0 129 52
+0~ 0~ 0~ 0~
+5 0 30 0 0
+5 0
+curse~
+10 10
+0 0 0
+A
+2 1
+A
+26 -5
+A
+13 20
+A
+17 -40
+#10158
+humming potion~
+a Humming Potion~
+A fiery, humming potion...~
+~
+10 268435490 0 0 1 85
+70~ vibrate~ poison~  ~
+1 500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10159
+Dragon Fountain~
+the Dragon Fountain~
+The Dragon Fountain stands here...~
+~
+25 1 0 0 0 200
+0~ 0~ 0~ 0~
+30 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fountain~
+<<<     ALIA JACTA EST     >>>
+ 
+~
+#10160
+Anti-Magic Scroll~
+a Scroll of Anti-Magic~
+A very old and very brittle scroll...~
+~
+2 66 0 0 1 100
+101~ dispel magic~ remove curse~ cancellation~
+1 200 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10161
+earring sapphire~
+a Sapphire Earring~
+A beautiful, rose-shaped earring made from blue sapphire...~
+~
+9 268435457 0 0 524289 25
+10~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -10
+A
+19 2
+A
+13 10
+#10162
+ice-encased dragonscale massive scale~
+&ca massive &Bic&be&C-&ce&wn&cc&Ca&bs&Bed &cdragonscale&w~
+&BA giant ice-encased shield made from a dragon's scale lies here.~
+~
+9 805306432 772 88 513 101
+0~ 0~ 0~ 0~
+25 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -60
+A
+12 55
+A
+17 -125
+A
+13 100
+A
+2 -2
+#10163
+massive scales dragon~
+&cthe massive scales of a dragon&w~
+&BThe massive scales of a dragon's body lie here.~
+~
+9 805306432 836 88 1025 102
+0~ 0~ 0~ 0~
+30 800 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+17 -115
+A
+12 105
+A
+23 -45
+A
+24 -40
+A
+2 -3
+A
+14 -150
+#10164
+massive spread wings dragon~
+&cthe massive spread wings of a dragon&w~
+&BThe massive wings of a dragon lie spread out here.~
+~
+9 805308480 772 88 257 101
+0~ 0~ 0~ 0~
+20 500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+110 -1
+A
+14 200
+A
+13 100
+A
+24 -20
+A
+23 -20
+A
+2 2
+A
+12 125
+#10165
+massive golden eyes dragon~
+&cmassive &Ygolden eyes&c of a dragon&w~
+&BGiant disembodied &Ygolden eyes&B probably belonging to a dead dragon lie here.~
+~
+27 805306432 0 0 131073 100
+105~ -1~ 0~ identify~
+3 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+124 -1
+A
+117 -1
+A
+24 -25
+A
+13 100
+A
+17 -85
+#10183
+Key Golden~
+a Golden Scaly Key~
+A golden scaly key that opens a lair...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10184
+Key Silver~
+a Silver Scaly Key~
+A Silver scaly key that opens a lair...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10185
+Key White~
+a White Scaly Key~
+A White scaly key that opens a lair...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10186
+Key Black~
+a Black Scaly Key~
+A Black scaly key that opens a lair...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10187
+Key Yellow~
+a Yellow Scaly Key~
+A Yellow scaly key that opens a lair...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10188
+Key Blue~
+a Blue Scaly Key~
+A Blue scaly key that opens a lair...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10189
+Key Green~
+a Green Scaly Key~
+A green scaly key that opens a lair...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10190
+Key Red~
+a Red Scaly Key~
+A red scaly key that opens a lair...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10191
+Mamba Key~
+the Mamba Key~
+A disgusting looking, venomous key...~
+~
+18 16384 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10192
+Cobra Key~
+the Cobra Key~
+A slimy, poisoned key...~
+~
+18 16384 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10193
+Viper Key~
+the Viper Key~
+A nasty key soiled with poison...~
+~
+18 16384 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10194
+old key~
+an Old Key~
+A rusty old key to a grate lock... ~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10195
+Device~
+a Rainbow Device~
+A strange, rainbow-colored, key-shaped object...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10196
+Symbol~
+the Snake Symbol~
+A key shaped like a snake...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10197
+Key~
+a Golden Key~
+A finely crafted golden key...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10198
+Pendant~
+the Pendant of Pestilence~
+A dreadful looking pendant...~
+~
+9 3 0 0 5 112
+20~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10199
+sockets~
+the Hollow Eye Sockets~
+The hollow eye sockets of the Dragolich...~
+~
+27 536871009 0 0 131073 90
+100~ -1~ -1~ identify~
+1 0 0 0 0
+0 0
+identify~
+-1 -1
+0 0 0
+A
+17 -25
+A
+12 -25
+A
+13 50
+A
+19 8
+A
+18 8
+A
+3 1
+A
+4 1
+#10200
+key shadows~
+a key to shadows~
+A piece of what looks like a shadow lies here.~
+~
+18 67108960 0 0 16385 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#10101
+An Overlook~
+You are at the entrance to a large and wonderous valley that stretches
+out here to the north.  A large rock in front of you seems to be carved out
+into some sort of throne.  A mountain, to trecherous to climb juts out of
+the earth in front of you to the north.  
+~
+0 1074003972 4
+Rd     0
+E
+runestone~
+Welcome to the Dragon Valley! This area is mostly for higher 
+level characters, but there are some low level mobs as well.
+The Area is listed as Level 25 - 100.
+ 
+Most of this area is no recall except for specifically marked rooms.
+Make sure to read all the other Runestones along the way, for they
+will give you much insight in the secrets of the Dragon Valley.
+ 
+Enjoy, Nosferatu!
+~
+D0
+~
+~
+0 0 10102
+D2
+~
+~
+0 0 2085
+S
+#10102
+A Dusty Road~
+The dusty road stretches further north from here. Back to the south, you 
+can see Theodor waving after you. The surrounding mountains are so high, 
+their snow-covered tops seem to touch the sky.
+~
+0 1074143232 4
+Rd     0
+D0
+~
+~
+0 0 10103
+D2
+~
+~
+0 0 10101
+S
+#10103
+A Dusty Road~
+The road descends rather steeply now. To the north you can see a golden 
+gate sparkle in the sun. Did you remember to take the key from Theodor's
+chalice? It seems you will need it soon.
+Near the road is a small clear mountain lake. Many colourful birds roams the
+clear skies.
+~
+0 1074143232 4
+Rd     0
+D0
+~
+~
+0 0 10104
+D2
+~
+~
+0 0 10102
+S
+#10104
+Before a Golden Gate~
+The road is blocked to the north by a huge gate made from pure gold resting
+on two great stone pillars. The gate is locked tightly and any attempt to
+break it down would appear to be futile. Fortunately, you remember the golden
+key that Theodor gave you and unlock the World of Great Dragons!
+~
+0 1074143232 4
+Rd     0
+D0
+~
+gate~
+119 10197 10105
+D2
+~
+~
+0 0 10103
+S
+#10105
+Entrance to the Valley~
+You are just inside of the mighty golden gate. To the north stretches a 
+well travelled path deeper into the valley. To the east and west gentle
+slopes rise towards the mountains.
+~
+0 1074135044 4
+Rd     0
+D0
+~
+~
+0 0 10106
+D1
+~
+~
+0 0 10166
+D2
+~
+gate~
+119 10197 10104
+D3
+~
+~
+0 0 10161
+S
+#10106
+A Road Crossing~
+You have reached a wide road crossing. One path leads north deeper into the 
+valley and south to the golden gate, the other path heads up the mountains
+east and west respectively. 
+High above the clouds, you see a large shadow circling over the valley. It
+seems, you are watching a huge bird...or is it a dragon?
+~
+0 1074143232 4
+Rd     0
+D0
+~
+~
+0 0 10107
+D1
+~
+~
+0 0 10168
+D2
+~
+~
+0 0 10105
+D3
+~
+~
+0 0 10173
+D4
+~
+~
+0 0 10142
+S
+#10107
+Red-Green Intersection~
+This intersection is very busy. Dragon Worshippers and Severant are coming
+and going all the time. To the east, you see torched land while west of
+this intersection it appears that something or someone has etched the 
+rocks with some strong acid. 
+Nearby, you notice and old and rusty grate on the ground. It appears to be
+locked tightly. Another Runestone stands here as well.
+~
+0 1074143232 4
+Rd     0
+E
+runestone~
+Grate = Evil
+~
+D0
+~
+~
+0 0 10108
+D1
+~
+~
+0 0 10175
+D2
+~
+~
+0 0 10106
+D3
+~
+~
+0 0 10178
+D5
+~
+grate~
+119 10194 10145
+S
+#10108
+Blue-Yellow Intersection~
+The main road through the valley is met by smaller trails from the east and
+west. East of here, the landscape seems to glow in an azure colour while to
+the west all things are covered with some disgusting yellow slime.
+A large, dragonshaped fountain marks this small square. The water from it
+is fresh and clear...and you feel very thirsty all of a sudden.
+~
+0 1074143232 4
+Rd     0
+D0
+~
+~
+0 0 10109
+D1
+~
+~
+0 0 10181
+D2
+~
+~
+0 0 10107
+D3
+~
+~
+0 0 10185
+S
+#10109
+Black-White Intersection~
+You have come to yet another intersection. One path leads off to the east 
+into something that could be best described as a swamp hole, while to the 
+west the land and trees are covered with show and ice. A chilling breeze
+blows from that direction clearing the air from the swamp gas that drifts
+from the east.
+Nearby, you notice a large hole in the ground. It is covered with a strong
+lit that shines in all the colours of the rainbow!
+~
+0 1074143232 4
+Rd     0
+D0
+~
+~
+0 0 10110
+D1
+~
+~
+0 0 10188
+D2
+~
+~
+0 0 10108
+D3
+~
+~
+0 0 10191
+D5
+~
+lit~
+119 10195 10156
+S
+#10110
+Gold-Silver Intersection~
+You have reached another small plaza in the valley. The main road is 
+intersected here by another road going from east to west. Looking eastward,
+you see silvery trees and bushes while to the west, everything seems to be
+covered with some golden dust.
+High above you howers are strange dark cloud...is it going to rain soon?
+There is another Runestone at your feet.
+~
+0 1074143232 4
+Rd     0
+E
+runestone~
+Danger above!
+~
+D0
+~
+~
+0 0 10111
+D1
+~
+~
+0 0 10194
+D2
+~
+~
+0 0 10109
+D3
+~
+~
+0 0 10197
+D4
+~
+~
+0 0 10151
+S
+#10111
+Preparing for the Great Tests~
+You have reached the northern end of the Dragon Vale. A huge door is 
+blocking your way into the mountain caverns north of you. Nearby stands a
+giant tree, almost as high as the surrounding mountains. West of here,
+you can see a barren path...the wind carries the sweet smell for decaying 
+flesh from that direction.
+Next to the door, you notice another Runestone...
+~
+0 1074135040 4
+Rd     0
+E
+runestone~
+Recall possible.
+Tests north...DANGER
+~
+D0
+~
+door~
+119 10196 10112
+D1
+~
+~
+0 0 10134
+D2
+~
+~
+0 0 10110
+D3
+~
+~
+0 0 10125
+S
+#10112
+The First Test~
+In order to reach the famed shops of the land of the Dragons, you must
+first pass through a series of tests.  The first one, which you are facing,
+is a very large and very nasty viper.  Even as you try to sneak past it, it
+rears up in preparation to strike.  
+~
+0 1078337549 0
+Rd     0
+D0
+~
+door~
+119 10193 10113
+D5
+~
+trapdoor~
+3 0 10118
+S
+#10113
+The Second Test~
+The second of the tests to reach the land of the Dragons is equally if
+not more difficult than the first.  A giant cobra hisses in the bottom of a
+pit, threatening you with its flared out hood and large fangs.  The putrid
+stench of previous victims fills the rooms, and skeletons of all races
+litter the ground.  
+~
+0 1078337545 0
+Rd     0
+D0
+~
+door~
+119 10192 10114
+D5
+~
+trapdoor~
+3 0 10118
+S
+#10114
+The Final Test~
+Finally, you have reached the final test.  If you can only pass the giant
+mamba, all of the riches of the Dragon lands will be at your feet.  Passing
+the mamba will be no small feat, however.  The immense size of the snake
+sends quivers through your legs.  Incensed by the interruption into its pit,
+it strikes out toward you.  
+~
+0 1078337545 0
+Rd     0
+D0
+~
+door~
+119 10191 10115
+D5
+~
+trapdoor~
+3 0 10118
+S
+#10115
+Entrance to the Royal Lair~
+The tests behind you, you now face the entrance to the lair of the
+Dragons.  The famous dragonslayer Siegfried stands guard over the lair,
+questioning any who seek audience with the royal family.  The entrance is
+immense: it stands 15 meters high and is equally broad.  You stand in awe of
+the incredible size of the royal lair.  
+~
+0 1078337561 0
+Rd     0
+D0
+~
+~
+0 0 10116
+S
+#10116
+An Intersection in the Royal Lair~
+The royal lair is a finely carved series of caverns.  Each is smoothly
+vaulted high in the air, and the stone seems to be granite.  Carvings of
+Dragons roasting entire villages of people are carved into the walls, a
+sight that makes you uncomfortable even though aggressions between mortals
+and Dragons is long in the past.  
+~
+0 1074143241 0
+Rd     0
+D0
+~
+~
+0 0 10117
+D1
+~
+~
+0 0 10119
+D2
+~
+~
+0 0 10115
+D3
+~
+~
+0 0 10122
+S
+#10117
+The Lair of the Dragon Prince~
+The lair of the dragon prince is opulent.  Large piles of jewels and
+coins lie strewn about him, and some of the jewels can be seen encrusting
+his body.  Apparently, the many years of sitting on the jewels caused them
+to become a part of his skin.  He looks like he would be a formidable enemy
+despite the years of apparent laziness.  The stench of dragon and the acrid
+scent of smoke fill your nostrils.  
+~
+0 1078337545 0
+Rd     0
+D2
+~
+~
+0 0 10116
+S
+#10118
+The Way Out...~
+You have discovered the way out of the tests.  The dragons, knowing that
+foolish mortals will often attempt to gain entrance into their domain, have
+offered a way out other than death.  Not the incredibly cold-hearted beasts
+that most people believe they are, the dragons are actually very
+compassionate.  The only request they make of the mortals is that they be
+left in peace.  Knowing this won't happen, though, they devised the tests to
+keep them out.  They also have employed the assistance of Garby to tend the
+wounds of the mortals lucky enough to escape the trials.  
+~
+0 1076233228 0
+Rd     0
+S
+#10119
+A Catacomb leading to His Majesty~
+This finely carved tunnel leads to the most powerful ruler in all of the
+realms.  The Dragon King's word in law, and none would dare cross him.  The
+roof of the rock tunnel must be at least 20 meters in the air, and they are
+purposefully left in their rough state to show off the many quartz crystals
+hanging from them.  
+~
+0 1074143241 0
+Rd     0
+D0
+~
+~
+0 0 10120
+D3
+~
+~
+0 0 10116
+S
+#10120
+Lair of His Majesty~
+You stand in the presence of the Dragon King.  His Majesty puts you in
+awe.  Not only is he the largest dragon you have ever seen, you are also
+stunned by the splendor of his scales; they outshine the immense amount of
+gold lying strewn about on the floor.  For a second, you almost consider
+taking some of the bounty of this room.  Another look at the King changes
+your mind.  
+~
+0 1078337545 0
+Rd     0
+D0
+~
+door~
+3 0 10121
+D2
+~
+~
+0 0 10119
+S
+#10121
+Royal Potions & Herbs~
+The smell of pungent herbs and the heavy cloud of smoke which greet you
+at the door immediately reveal your location: the royal alchemist's shop. 
+Various packages of herbs and incense are strewn about the shop, and a large
+humanoid with features reminiscent of a dragon looks disdainfully at you. 
+The natural magick of these shop items are well known throughout the land,
+and the knowledge of how to make them is a well-guarded secret.  
+~
+0 1076241417 0
+Rd     0
+D2
+~
+door~
+3 0 10120
+S
+#10122
+A catacomb leading to Her Majesty~
+This large tunnel carved out of the rock leads to the Queen of the
+Dragons.  Equally as impressive as her husband, this wise ruler is the
+King's closest advisor.  Large opals which have been imbedded in the ceiling
+of the rock cave shine like the inside of a beautiful seashell.  
+~
+0 1074143241 0
+Rd     0
+D0
+~
+~
+0 0 10123
+D1
+~
+~
+0 0 10116
+S
+#10123
+Lair of Her Majesty~
+The lair of the Dragon Queen is immense!  It must be, for the Dragon
+Queen herself is immense!  Even though her cavern is gargantuan size, she
+still takes up most of it with her size.  Splendid treasure covers the
+ground, and intricate carvings abound on the walls.  
+~
+0 1078337545 0
+Rd     0
+D0
+~
+door~
+3 0 10124
+D2
+~
+~
+0 0 10122
+S
+#10124
+Royal Scrolls & Wands~
+The magickal items that fill the shop make you gasp in wonder.  Every
+type of device possible is here.  There are items to make you stronger,
+items to enchance how well you do in battle, and amusingly enough, items to
+make someone fall in love.  A great cauldren bubbles and boils in the back
+of the shop, and by the looks of the things floating up now and then, it's
+not your average chicken soup.  
+~
+0 2491401 0
+Rd     0
+D2
+~
+door~
+3 0 10123
+S
+#10125
+A Barren Path~
+This area is really desolate! Trees and other vegitation have died here a 
+long time ago. No sounds of nature and no signs of life...and the stench of
+decay is even stronger...
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10111
+D3
+~
+~
+0 0 10126
+S
+#10126
+A Small Intersection~
+You have reached a small interection. This area is void of any life signs.
+From a cavern, positioned slighly below the place you are standing now, a
+horrible stench arises! To the north leads a small small trail up into the
+impressive mountain range that marks the northern border of the Dragon Vale.
+~
+0 1074143232 4
+Rd     0
+D0
+~
+~
+0 0 10127
+D1
+~
+~
+0 0 10125
+D3
+~
+~
+3 0 10171
+D5
+~
+~
+0 0 10128
+S
+#10127
+Thin Trail to the Dragon Valley~
+You are on a small mountain trail. You must be at least 4000 meters above
+sea level now. The air is fresh and clean, but the elevation makes breathing
+rather difficult. The trail seems to desend rather steeply to the south, 
+while it is winding even higher to north.
+~
+0 1074143236 5
+Rd     0
+D0
+~
+~
+0 0 10184
+D2
+~
+~
+0 0 10126
+S
+#10128
+Entrance to the Graveyard~
+You are in a strange desolate place. These caverns to the west are huge and
+frightening. The awful odor of decay is getting stronger and stronger and
+seems to originate from within the caverns...
+~
+0 1074143236 2
+Rd     0
+D3
+~
+~
+0 0 10129
+D4
+~
+~
+0 0 10126
+S
+#10129
+The Dragon Graveyard~
+You are literally knee-deep in bones! All over the place are the remains of
+animals, dragons and humanoid races. These eerie caverns must serve as the
+graveyard of the valley. The foul air makes you nauseous!
+~
+0 1074143232 2
+Rd     0
+D0
+~
+~
+0 0 10130
+D1
+~
+~
+0 0 10128
+D2
+~
+~
+0 0 10131
+D3
+~
+~
+0 0 10132
+S
+#10130
+Lair of the Dragolich~
+This bone-filled cave smells so bad, you have the urge to vomit. However, 
+you have larger problems than an upset stomach...the Dragolich, who resides
+in this terrible place wants you dead! Judging by his size and power, he
+has a good chance to get his wish...
+~
+0 1078337544 0
+Rd     0
+D2
+~
+~
+0 0 10129
+S
+#10131
+A Dark Catacomb~
+This dark catacomb is filled with bones and corpses. To the south, the 
+skeletons pile up so high that it is impossible for you to proceed any 
+deeper into this cavern.
+~
+0 1078329353 0
+Rd     0
+D0
+~
+~
+0 0 10129
+S
+#10132
+A Dark Catacomb~
+This dark catacomb is filled with bones and corpses. To the south, the 
+skeletons pile up so high that it's nearly impossible for you to proceed any 
+deeper into this cavern.
+~
+0 1078337545 0
+Rd     0
+D1
+~
+~
+0 0 10129
+D2
+~
+rock~
+3 0 10133
+S
+#10133
+Cave of the Skeletal Drake~
+As you enter this cave, you immediately sense your mistake.  A huge
+dragon made entirely of bone looms far overhead.  The things only nightmares
+are made of, the dragon looks surprisingly substantial and ominous despite
+having no flesh.  As it moves to attack, you can hear the clicking of bone
+against bone.  
+~
+0 1078337545 0
+Rd     0
+D0
+~
+rock~
+3 0 10132
+S
+#10134
+At a Giant Tree~
+You are at the base of a gigantic tree.  Its top seems to be as high as
+the snow covered mountains nearby.  Huge, leafy branches hide a substancial
+part of this area from the sunlight.  Many animals are all around its
+moss-covered trunk and its immense roots.  To the east, you spy a small path
+partially overgrown by shrubbery.  
+~
+0 1074143236 3
+Rd     0
+D1
+~
+~
+0 0 11201
+D3
+~
+~
+0 0 10111
+D4
+~
+~
+0 0 10135
+S
+#10135
+Up the Tree~
+You have reached the lower branches of the ancient tree. Beams of sunlight
+shine through the lucious green branches. There is life all around you,
+birds, squirrels and many insects are in this area of the tree.
+As you look up, you can tell you still have a long way to go to reach the
+tree top.
+~
+0 1074143232 9
+Rd     0
+D4
+~
+~
+0 0 10136
+D5
+~
+~
+0 0 10134
+S
+#10136
+High up in the Tree~
+You are now high over the Dragon Valley. The branches getting thinner up 
+here and more sunlight reaches this area. There are a few, colorful birds
+up here and strange, yet beautiful creatures hovering between the leaves...
+you think you hear them giggle?
+~
+0 1074143232 9
+Rd     0
+D4
+~
+~
+0 0 10137
+D5
+~
+~
+0 0 10135
+S
+#10137
+On the Tree Roof~
+Finally you have reached the tree top of this ancient tree. All around you
+are small huts made from the leaves and branches of the trees. Lots of small
+winged humanoids are flying and playing in the air. When they notice you, 
+they get very curious. Some of them bolt out of the sky to give you a hug
+or a kiss, then, with much giggling they soar back up in the air...
+~
+0 1074143232 9
+Rd     0
+D0
+~
+~
+0 0 10138
+D1
+~
+~
+0 0 10140
+D2
+~
+~
+0 0 10139
+D3
+~
+~
+0 0 10141
+D5
+~
+~
+0 0 10136
+S
+#10138
+Kytara's House~
+Kytara's house has a reocurring theme.  Every piece of furniture and
+every other item you see is made of diamond.  The sparkling diamonds scatter
+the light that enters from the window, making beautiful rainbows that splash
+the whole room with color.  Kytara greets you with a hug and giggles
+happily.  
+~
+0 1074143240 0
+Rd     0
+D2
+~
+~
+0 0 10137
+S
+#10139
+Milantha's House~
+Milantha's house is a study in chaos.  Bright ruby objects lie strewn
+about the floor, and a gore-coated ruby morning star is propped up against
+the far wall.  The lady of the house is not in, which you take as a good
+sign.  She may be just a little pixie, but by the looks of things she's very
+dangerous.  
+~
+0 1074143240 0
+Rd     0
+D0
+~
+~
+0 0 10137
+S
+#10140
+Crystal's House~
+Everything in this tiny house is just that.  Tiny.  The owner of the
+dwelling likes diminutive things, for being small herself, she prefers to be
+around things her own size.  A small indentation on the floor holds pillows
+and a velvet blanket, and on a table in the center of the room holds a
+little pitcher of Rose nectar, and a plate of ambrosia biscuits.  All who
+enter are welcome, and she greets each arrival with a kiss and a giggle.  
+~
+0 1074143240 0
+Rd     0
+D3
+~
+~
+0 0 10137
+S
+#10141
+A Pixie Tree House~
+This tiny little house has peach wallpaper and plush carpet.  A tiny
+little table has a freshly cut lily of the valley in a small crystal vase. 
+The owner of the house doesn't seem to be at home.  She's probably out with
+her pixie friends playing in the forest.  
+~
+0 1074143240 0
+Rd     0
+D1
+~
+~
+0 0 10137
+S
+#10142
+Soaring in the Air...~
+You are soaring into the fresh, clean mountain air above the valley.
+Quite a view from up here, isn't it?
+~
+0 1074143236 9
+Rd     0
+D4
+~
+~
+0 0 10143
+D5
+~
+~
+0 0 10106
+S
+#10143
+High above the Valley...~
+Now you know how the birds and dragons must feel when they soar the skies!
+It is breathtaking! Around you are the tops of the show covered mountains,
+below you stretches the strange and wonderous valley. Far north, you see
+a huge golden creature circling in the azure sky...could this be a dragon?
+~
+0 1074143232 9
+Rd     0
+D0
+~
+~
+0 0 10144
+D5
+~
+~
+0 0 10142
+S
+#10144
+Meeting the Bronze Dragon~
+Wow, you have come face to face with one of the oldest and most powerful
+creatures of the realm! 
+While you are gasping and gaping, the giant dragon slowly flies a few 
+rounds around you, observing, analysing. Then he just nodded to you and
+takes off towards the horizon, his bronze body gleaming in the sun...
+~
+0 1074143232 9
+Rd     0
+D2
+~
+~
+0 0 10143
+S
+#10145
+A Dark Tunnel~
+You have entered a pitchblack tunnel. The stagnant air smells like decay
+and feces. You can feel the presence of some very unfriendly life forms 
+nearby...
+~
+0 1074143241 0
+Rd     0
+D0
+~
+~
+0 0 10146
+D1
+~
+~
+0 0 10145
+D2
+~
+~
+0 0 10147
+D3
+~
+~
+0 0 10145
+D4
+~
+grate~
+119 10194 10107
+S
+#10146
+A Dark Tunnel~
+You have entered a pitchblack tunnel. The stagnant air smells like decay
+and feces. You can feel the presence of some very unfriendly life forms 
+nearby...
+~
+0 1074143241 0
+Rd     0
+D0
+~
+~
+0 0 10149
+D1
+~
+~
+0 0 10146
+D2
+~
+~
+0 0 10145
+D3
+~
+~
+0 0 10146
+S
+#10147
+A Dark Tunnel~
+You have entered a pitchblack tunnel. The stagnant air smells like decay
+and feces. You can feel the presence of some very unfriendly life forms 
+nearby...
+~
+0 1074143241 0
+Rd     0
+D0
+~
+~
+0 0 10145
+D1
+~
+~
+0 0 10147
+D2
+~
+~
+0 0 10148
+D3
+~
+~
+0 0 10147
+S
+#10148
+A Dead End~
+You have reached a dead end in the tunnel. Water is dripping from the 
+ceiling, making puddles all around your feet. The air is now so bad, that 
+you almost vomit everytime you take a breath.
+~
+0 1074143241 0
+Rd     0
+D0
+~
+~
+0 0 10147
+S
+#10149
+Before a Dark Cave~
+The tunnel comes to an abrupt end here. With your hands, you touch the 
+slimey, fungus-covered walls around you in the search of hidden doors.
+An awful sound echos through these strange caverns...something evil is 
+very near...
+There is a damaged Runestone nearby.
+~
+0 1074143241 0
+Rd     0
+E
+runestone~
+Danger...Shadow Dra......east of he..
+Cannot use magic....evil creatu..
+Y..unable to fle....or reca...
+~
+D1
+~
+Celldoor~
+3 0 10150
+D2
+~
+~
+0 0 10146
+S
+#10150
+Cell of the Shadow Dragon~
+You have entered a foul and evil place! And you are regretting that you 
+have ever come down here. The Shadow Dragon attacks you immediately as you
+enter its ancient prison. There is no escape, no help and all your magic 
+seems to fail...
+~
+0 1078370313 0
+Rd     0
+D3
+~
+~
+3 0 10149
+S
+#10151
+In the air...~
+You are floating a few hundred meters above the ground. The air is clear
+and fresh, birds and insects are flying everywhere. Yet above you hovers 
+this strange, dark cloud...
+~
+0 1074143236 9
+Rd     0
+D4
+~
+~
+0 0 10152
+D5
+~
+~
+0 0 10110
+S
+#10152
+Below a Large Cloud~
+The Dragon valley has shrunk to minature size. You are now almost as high up
+as the snow covered mountains that surround this area. That strange cloud is
+just above your head...you can almost touch it!
+~
+0 1074143232 9
+Rd     0
+D4
+~
+~
+0 0 10153
+D5
+~
+~
+0 0 10151
+S
+#10153
+A Strange Cloud~
+You are in the wet mists of the strange cloud. Unlike normal clouds, this
+one seems to have somewhat more substance to it...
+~
+0 1074143232 9
+Rd     0
+D1
+~
+~
+0 0 10153
+D2
+~
+~
+0 0 10154
+D3
+~
+~
+0 0 10153
+D4
+~
+~
+0 0 10153
+D5
+~
+~
+0 0 10152
+S
+#10154
+A Strange Cloud~
+You are in the wet mists of the strange cloud. Unlike normal clouds, this
+one seems to have somewhat more substance to it...
+~
+0 1074143232 9
+Rd     0
+D0
+~
+~
+0 0 10153
+D1
+~
+~
+0 0 10153
+D2
+~
+~
+0 0 10154
+D3
+~
+~
+0 0 10155
+D4
+~
+~
+0 0 10153
+D5
+~
+~
+0 0 10152
+S
+#10155
+Lair of the Cloud Dragon~
+You have reached something like a cavern made from fog. In it resides, or 
+better insanely raves the Cloud Dragon!
+When she realizes that you have entered her domain, she howls furiously:
+"No more, begone you dark dreams, BEGONE!"
+~
+0 1078337536 9
+Rd     0
+D0
+~
+~
+0 0 10153
+D1
+~
+~
+0 0 10154
+D2
+~
+~
+0 0 10155
+D3
+~
+~
+0 0 10153
+D4
+~
+~
+0 0 10154
+D5
+~
+~
+0 0 10152
+S
+#10156
+A Rainbow Tunnel~
+You are in a rainbow tunnel.  The swirling vortex of colors makes you
+alternately giddy and sick to your stomach.  The tunnel itself is made of
+some soft chalky material, and as you walk along, you hear nothing.  
+~
+0 1074143245 0
+Rd     0
+D0
+~
+~
+0 0 10156
+D1
+~
+~
+0 0 10157
+D2
+~
+~
+0 0 10156
+D3
+~
+~
+0 0 10156
+D4
+~
+lit~
+119 10195 10109
+S
+#10157
+A Rainbow Tunnel~
+You are in a rainbow tunnel.  The swirling vortex of colors makes you
+alternately giddy and sick to your stomach.  The tunnel itself is made of
+some soft chalky material, and as you walk along, you hear nothing.  
+~
+0 1074143245 0
+Rd     0
+D0
+~
+~
+0 0 10157
+D1
+~
+~
+0 0 10157
+D2
+~
+~
+0 0 10158
+D3
+~
+~
+0 0 10156
+S
+#10158
+A Rainbow Tunnel~
+You are in a rainbow tunnel.  The swirling vortex of colors makes you
+alternately giddy and sick to your stomach.  The tunnel itself is made of
+some soft chalky material, and as you walk along, you hear nothing.  
+~
+0 1074143245 0
+Rd     0
+D0
+~
+~
+0 0 10157
+D1
+~
+~
+0 0 10158
+D2
+~
+~
+0 0 10159
+D3
+~
+~
+0 0 10158
+S
+#10159
+Before a Colourful Cave~
+You stand in front of the most magnificent cave you have ever seen. 
+Carved out of a soft chalky stone, every color of the rainbow can be seen in
+it.  From inside, you think you can hear a low rumble and a language which
+you have never heard before.  
+~
+0 1074143245 0
+Rd     0
+D0
+~
+~
+0 0 10158
+D3
+~
+door~
+3 0 10160
+S
+#10160
+Lair of the Rainbow Dragon~
+The lair of the rainbow dragon is large and swelteringly hot.  Jewels and
+coins of all types and ages lie strewn about the floor.  In the middle of
+the pile of booty is a gigantic and beautiful dragon.  Her scales shimmer
+and vary with every color of the rainbow.  
+~
+0 1078337545 0
+Rd     0
+D1
+~
+door~
+3 0 10159
+S
+#10161
+A Gentle Slope~
+You are on a little slope that leads into the child-rearing center of the
+dragon lands.  To the west, you can hear the peeps and chirps of the newly
+hatched dragon babies.  The nurses who look after them have their hands
+full.  Not only do the babies have sharp little teeth, but they can also
+breath spouts of flame, ice, or lightning.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10105
+D2
+~
+~
+0 0 10163
+D3
+~
+~
+0 0 10162
+S
+#10162
+The Dragon Nursery~
+The dragon nursery is kept swelteringly warm in order to insure the
+proper development of the tiny dragon bodies inside the eggs.  Nurses keep a
+frantic watch over the eggs watching for the first sign of the young
+breaking out of the shell.  They chirp and roar encouragement to them, and
+in desperate cases help pry them from the shells.  
+~
+0 1074143240 0
+Rd     0
+D1
+~
+~
+0 0 10161
+S
+#10163
+A Small Cave~
+This cave is separated into two main sections.  To the south is the
+Cavern of the Maidens, and to the west is the Cavern of the Nurses.  The
+dragons have carved these chambers out of solid granite, and you can still
+see the clawmarks imbedded in the stone.  
+~
+0 1074143240 0
+Rd     0
+D0
+~
+~
+0 0 10161
+D2
+~
+door~
+3 0 10164
+D3
+~
+~
+0 0 10165
+S
+#10164
+Cavern of the Maidens~
+As you enter the room, you are starled to see a group of beautiful young
+women.  With a start, you realize you must be in the cavern of the maidens. 
+The beautiful golden and brown tresses of the women flow down over their
+shoulders and accentuate the curves of their bodies.  The temperature in the
+room is very comfortable and is provided by dragon fire.  Each woman seems
+to have her own bed and personal items.  It appears they are being well
+taken care of by the Dragons.  
+~
+0 1074143240 0
+Rd     0
+D0
+~
+door~
+3 0 10163
+S
+#10165
+Cavern of the Nurses~
+The cavern of the nurses is filled with frantic older dragon ladies who
+bustle back and forth from this room which holds supplies to the dragon
+nursery to the north.  The nurses look a little haggard, overworked, and in
+some cases singed.  
+~
+0 1074143240 0
+Rd     0
+D1
+~
+~
+0 0 10163
+S
+#10166
+A Gentle Slope~
+To the east, you can hear the chaotic sound of children at play.  The
+Dragon youth love to play games, and the parents are often happy to get rid
+of them for a while.  Raising Dragon young is difficult work even for the
+most patient parent.  Since there are no natural enemies around, the youth
+are free to roam about the playground unsupervised.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10167
+D3
+~
+~
+0 0 10105
+S
+#10167
+The Dragon Kindergarten~
+The Dragon hatchlings stop their game and greet you as you walk in.  A
+large ball that appears to be made out of an animal bladder is left standing
+in the middle of the playground.  The Dragon hatchlings look surprisingly
+human at this stage in their development, and you feel a pang of
+somesickness at the sight of them.  
+~
+0 1074143240 0
+Rd     0
+D3
+~
+~
+0 0 10166
+S
+#10168
+A Steep Slope~
+The steep slope leads high up into the mountains to the east.  Dragons
+can be seen circling far ahead.  The road which you are on is not very good;
+it is full of ruts and overgrown with weeds.  The dragons have no use for
+roads because they can fly from adolescence on.  Roads, then, are only for
+the wingless visitors which are rare in the Dragon lands.  
+~
+0 1074143232 5
+Rd     0
+D1
+~
+~
+0 0 10169
+D3
+~
+~
+0 0 10106
+S
+#10169
+The Dragon School~
+Just like in the mortal lands, young Dragons are sent to school to learn
+about the world.  Since their life spans are so enormous, though, school can
+constitute four centuries of study.  These young Dragons seem to be sick of
+studying, and most of them are daydreaming about far off places.  
+~
+0 1074143240 0
+Rd     0
+D3
+~
+~
+0 0 10168
+S
+#10170
+A Small Cave~
+This small cave has been carved out of the native rock.  Its purpose
+seems obscure and you wonder why it was built.  Chambers to the west and to
+the south might give some clues as to the purpose.  
+~
+0 1074143240 0
+Rd     0
+D2
+~
+~
+0 0 10171
+D3
+~
+door~
+3 0 10172
+S
+#10171
+Cavern of the Servants~
+The servants of the Dragon Lords eke out their meager existances here. 
+Instead of the palatial lairs of the Dragon Lords, these servants have a
+tiny and cramped lair, and they must share it with several other Dragons. 
+The fact that they have a lair at all is some comfort, however.  At least
+they don't have to sleep on a mountaintop.  
+~
+0 1074143240 0
+Rd     0
+D0
+~
+~
+0 0 10170
+D1
+~
+door~
+3 0 10126
+S
+#10172
+Cavern of the Teachers~
+The cavern of the teachers was built to provide housing for the teachers
+which is close to the school.  It is here that they provide their "daily"
+lessons.  Instead of lasting a mere twenty-four hours, however, these
+lectures can drag on for weeks, insuring that the young dragons will
+experience incredible bouts of boredom.  
+~
+0 1074143240 0
+Rd     0
+D1
+~
+door~
+3 0 10170
+S
+#10173
+A Steep Slope~
+The mountains looming to west seem to be almost impassible.  The road is
+poor at best here, and in some places, there isn't a road at all.  You look
+at the dragons circling above with much envy, and you wish one would swoop
+down and offer you a ride.  What you wouldn't give for wings!  
+~
+0 1074143232 5
+Rd     0
+D1
+~
+~
+0 0 10106
+D3
+~
+~
+0 0 10174
+S
+#10174
+The Dragon Gym~
+Every imaginable exercise machine can be seen here in the Dragon Gym.  In
+order to support the immense weight of the Dragon bodies, the wing
+musculature has to be very strong.  The exercise machines have been
+specially designed to pinpoint the major muscle groups involved in flying.  
+~
+0 1074143240 0
+Rd     0
+D1
+~
+~
+0 0 10173
+S
+#10175
+A Torched Slope~
+This slope looks as if a major forest fire has hit it.  The few trees
+that are still living are torched on the tops, and many of the trees have
+been reduced to charcoal.  Soot and the stench of burning fills the area. 
+You wonder what could have possibly caused this massive destruction.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10176
+D3
+~
+~
+0 0 10107
+S
+#10176
+Before a Smoldering Cave~
+The cause of the desctruction of the lands below is now apparent.  You
+stand before a smoldering cave.  The heat is so intense even out here that
+you almost pass out.  Inside, you can hear the low rumble of a Dragon
+sleeping.  At least, you hope he's sleeping.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+cave~
+119 10190 10177
+D3
+~
+~
+0 0 10175
+S
+#10177
+Lair of the Red Dragon~
+As you enter the Red Dragon's Lair, you immediately see your mistake. 
+Not only is the Red Dragon not asleep, he's actually sitting at the entrance
+of his lair waiting for something to roast.  The quick look you get at him
+reveals a marvelous set of flame-red scales.  Smoke billows out of his
+nostrils, and he moves to attack.  
+~
+0 1074143261 0
+Rd     0
+D3
+~
+cave~
+119 10190 10176
+S
+#10178
+An Acid-Pitted Slope~
+The black gooey masses of what used to be trees and animals lie spread
+out in waste over this slope.  The acrid stench and the caustic result of
+breathing the air into your lungs makes you question the sanity of being
+here.  Not only is it hazardous to your health, you might also run into the
+cause of this devastation.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10107
+D3
+~
+~
+0 0 10179
+S
+#10179
+Before a Fuming Cave~
+You stand in front of a fuming cave.  Every breath you take sears your
+lungs, and a sour taste is in your mouth.  The desolation and destruction
+around you is complete.  From within the cave, you think you can hear the
+deep rumbling breathing of a Dragon.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10178
+D3
+~
+cave~
+119 10189 10180
+S
+#10180
+Lair of the Green Dragon~
+As you walk in the entrance to the lair, you realize you should have
+waited for an invitation from the Green Dragon Lady.  Her scales are
+magnificent, and her breath is deadly.  Clouds of smoking acid billow out of
+her mouth and nostrils, and you marvel at this feat.  You don't marvel long
+because she begins her attack.  
+~
+0 1074143245 0
+Rd     0
+D1
+~
+cave~
+119 10189 10179
+S
+#10181
+A Blue Slope~
+The steep slope you are walking on is covered with vegetation of all
+kinds.  Mostly, however, it is covered with beautiful blue flowers of all
+kinds.  Used to seeing destruction, you take a moment to relax, breathe some
+fresh air, and enjoy the flowers.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10182
+D3
+~
+~
+0 0 10108
+S
+#10182
+Before a Blue Cave~
+You stand in front of the cave of the Blue Dragon.  A low rumbling sound
+can be heard inside, and a soft sibilant voice as well.  You try to get the
+attention of the Dragon inside by knocking on the door, but there is no
+answer and you only hurt your hand.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+cave~
+119 10188 10183
+D3
+~
+~
+0 0 10181
+S
+#10183
+Lair of the Blue Dragon~
+Expecting the worse, you carefully pull open the cave entrance and walk
+in.  A splendid looking blue dragon raises its graceful head and peers at
+you intently, then blinks.  Prepared for an all-out battle, you are
+surprised when she opens her mouth and greets you happily.  After talking
+with her for a day and a half, though, you think maybe death would have been
+better.  
+~
+0 1074143261 0
+Rd     0
+D3
+~
+cave~
+119 10188 10182
+S
+#10184
+On a Weatherbeaten Trail~
+The trail becomes wider and somewhat difficult to traverse here, and the
+weather has begun to drop in temperature.  The trail continues to the north
+and south from this point, and looks to be in horrible shape. 
+~
+0 1078337540 5
+Rd     0
+D0
+~
+~
+0 0 10299
+D2
+~
+~
+0 0 10127
+S
+#10185
+A Slimey Slope~
+Traveling up the slope would be hard enough if the ground were rough, but
+it is covered with a disgusting and sticky goo.  Every footstep is
+precarious, and you slip and fall on your face several times.  The slime not
+only looks putrid, but it smells disgusting too.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10108
+D3
+~
+~
+0 0 10186
+S
+#10186
+Before a Slimey Cave~
+Yellow slime drips down the sides of this cave.  From the inside of the
+cave, you think you can hear the low rumble of a Dragon breathing.  All
+around you, slime is covering everything, and you feel like you have landed
+in a giant sneeze.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10185
+D3
+~
+cave~
+119 10187 10187
+S
+#10187
+Lair of the Yellow Dragon~
+The lair of the Yellow Dragon is slippery and sticky with yellow slime. 
+Although the idea of a frost dragon or a fire dragon does not surprise you,
+you had no idea that there could also be a slime dragon.  You are just about
+to laugh when a large and slimey head rears up from the floor.  After one
+piercing and furious gaze at you, the Yellow Dragon opens its mouth to
+attack.  
+~
+0 1074143261 0
+Rd     0
+D1
+~
+cave~
+119 10187 10186
+S
+#10188
+Swampland~
+The foul, hideous odor of the swamp is overpowering, and you afraid you
+will pass out into the murk of the swamp.  With every footstep you seem to
+sink deeper into the swamp, and the sucking sound the mud makes at your
+boots is disgusting.  A small set of red, beady eyes stares at you from the
+brush surrounding the swamp.  
+~
+0 1074143232 6
+Rd     0
+D1
+~
+~
+0 0 10189
+D3
+~
+~
+0 0 10109
+S
+#10189
+Before a Swamp Hole~
+You are standing before a very large swamp hole.  You can't imagine what
+could possibly be big enough to have made such a hole, but you guess it must
+be a Dragon Lord.  Surely only the most foul and evil of the Dragons would
+choose to live in this disgusting place.  A swamp snake strikes out at you,
+and you chop it in half just in the nick of time.  
+~
+0 1074143232 6
+Rd     0
+D1
+~
+hole~
+119 10186 10190
+D3
+~
+~
+0 0 10188
+S
+#10190
+Lair of the Black Dragon~
+The lair of the Black Dragon is actually nothing more than a big hole in
+the swamp.  In the middle of it is the Black Dragon himself.  Swamp ooze
+slides of his scales as he rises up out of the hole to tower over you. 
+Puffs of thick, acrid smoke come out of his nostrils, and his eyes burn with
+an unholy fire.  He seems to be the most incredibly cruel Dragon you have
+ever met.  
+~
+0 1074143261 6
+Rd     0
+D3
+~
+hole~
+119 10186 10189
+S
+#10191
+Arctic Wasteland~
+Trudging up the mountain path is almost impossible.  A huge howling ice
+and snow storm surrounds you, tugging at your clothes and chilling you to
+the bone.  Snow drifts up to three meters high dwarf you, and they are
+almost impossible to cross.  
+~
+0 1074143232 2
+Rd     0
+D1
+~
+~
+0 0 10109
+D3
+~
+~
+0 0 10192
+S
+#10192
+Before an Icy Cave~
+You are before a cave made entirely out of ice.  Through the thick
+glass-like walls, you think you can see a large creature moving.  A rumbling
+and creaking sound clues you into the nature of the beast.  It must be the
+home of the Ice Dragon!  
+~
+0 1074143232 2
+Rd     0
+D1
+~
+~
+0 0 10191
+D3
+~
+cave~
+119 10185 10193
+S
+#10193
+Lair of the White Dragon~
+The lair of the White Dragon is blindingly bright.  Sun streams down
+through the ice walls, illuminating everything within.  The White Dragon
+does not seem pleased to see you, and from the look in her yes, you can tell
+she considers attacking you.  She must not find you worth her while,
+however, for she does not attack.  It might be a good idea to get out of
+here before she changes her mind, though.  
+~
+0 1074012189 0
+Rd     0
+D1
+~
+cave~
+119 10185 10192
+S
+#10194
+A Silvery Slope~
+Silver maple trees, birch trees, and other silvery foliage dominates this
+slope.  The metallic look of the landscape gives it an other-worldly look,
+and the crunch of the branches sends chills up your spine.  This area is
+down-right creepy.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10195
+D3
+~
+~
+0 0 10110
+S
+#10195
+Before a Shiny Cave~
+A large and very shiny silver cave stands reflecting brightly in the sun.
+It looks very cold and very foreign, and you wonder why even a Dragon would
+choose to live in this bizarre cave.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+cave~
+119 10184 10196
+D3
+~
+~
+0 0 10194
+S
+#10196
+Lair of the Silver Dragon~
+The Silver Dragon is a truly magnificent creature.  Here on the inside of
+the cave, the walls have been left unpolished, making them seem dull in
+coparison with the Dragon Lady.  Always concerned about the reception you
+will receive from the Dragon Lords and Ladies, you approach her cautiously. 
+She seems pleased to see you however, and offers you a seat in a beautiful
+silver throne.  
+~
+0 1074143261 0
+Rd     0
+D3
+~
+cave~
+119 10184 10195
+S
+#10197
+A Golden Slope~
+A thin layer of gold dust covers everything in this area.  You reach out
+and touch a leaf, and the gold dust sticks to your finger.  You are amazed
+and curious by this strange dust.  It appears to be real gold, but you have
+no idea how it could have gotten here.  The amount of powder looks like it
+could add up to a fortune, though.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10110
+D3
+~
+~
+0 0 10198
+S
+#10198
+Before a Golden Cave~
+You are standing in front of a shiny golden cave.  The roaring from
+within indicates that the Master of the Lair must currently be in.  One of
+the most respected Dragon Lords, the Golden Dragon is rumored to be kind and
+generous.  The fierce sound of the roar makes you wonder, however.  
+~
+0 1074143232 4
+Rd     0
+D1
+~
+~
+0 0 10197
+D3
+~
+cave~
+119 10183 10199
+S
+#10199
+Lair of the Gold Dragon~
+The Gold Dragon is a splendid creature.  His scales sparkle and shimmer,
+and he towers high above you, his head almost reaching the ceiling of his
+lair.  Being a very vain Dragon, he has absolutely no gold of any kind in
+his lair, afraid that it might outshine him.  Instead, he has every possible
+color of gemstone, and the rainbow colors are magnificent.  
+~
+0 1074143261 0
+Rd     0
+D1
+~
+door~
+119 10183 10198
+S
+#0
+
+
+
+#SPECIALS
+M 10101 spec_breath_any
+M 10102 spec_executioner
+M 10103 spec_poison
+M 10104 spec_poison
+M 10105 spec_poison
+M 10106 spec_breath_lightning
+M 10107 spec_guard
+M 10108 spec_healer
+M 10111 spec_cast_cleric
+M 10112 spec_cast_cleric
+M 10113 spec_breath_lightning
+M 10114 spec_breath_lightning
+M 10117 spec_janitor
+M 10118 spec_cast_mage
+M 10120 spec_breath_any
+M 10121 spec_breath_any
+M 10122 spec_breath_lightning
+M 10123 spec_breath_lightning
+M 10124 spec_breath_lightning
+M 10125 spec_poison
+M 10126 spec_breath_fire
+M 10127 spec_breath_acid
+M 10128 spec_cast_psionicist
+M 10129 spec_summon_demon
+M 10130 spec_summon_demon
+M 10131 spec_breath_gas
+M 10132 spec_breath_lightning
+M 10133 spec_breath_gas
+M 10134 spec_breath_frost
+M 10135 spec_breath_frost
+M 10136 spec_breath_any
+M 10137 spec_guard
+M 10138 spec_guard
+M 10139 spec_guard
+M 10140 spec_guard
+M 10141 spec_guard
+M 10142 spec_guard
+M 10143 spec_guard
+M 10144 spec_guard
+M 10145 spec_guard
+M 10200 spec_healer
+S
+
+
+
+#RESETS
+M 0 10116 1 10101
+E 0 10125 0 0
+G 0 10126 0
+G 0 10126 0
+G 0 10126 0
+O 0 10135 0 10101
+P 0 10197 0 10135
+G 0 10197 0
+M 0 10119 7 10107
+E 0 10130 0 20
+G 0 10131 0
+G 0 10131 0
+O 0 10159 0 10108
+M 0 10145 4 10111
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+M 0 10105 1 10112
+G 0 10193 0
+O 0 10158 0 10112
+O 0 10158 0 10112
+M 0 10104 1 10113
+G 0 10192 0
+O 0 10158 0 10113
+O 0 10158 0 10113
+M 0 10103 1 10114
+E 0 10110 0 17
+G 0 10191 0
+O 0 10158 0 10114
+O 0 10158 0 10114
+M 0 10102 1 10115
+E 0 10107 0 20
+E 0 10108 0 14
+E 0 10109 0 16
+M 0 10101 1 10117
+E 0 10103 0 8
+E 0 10105 0 20
+E 0 10106 0 2
+E 0 10106 0 1
+M 0 10200 1 10118
+M 0 10121 1 10120
+E 0 10101 0 5
+E 0 10102 0 3
+E 0 10105 0 20
+E 0 10108 0 14
+O 0 10133 0 10120
+M 0 10129 1 10121
+G 0 10153 0
+G 0 10154 0
+G 0 10158 0
+G 0 10121 0
+M 0 10120 1 10123
+E 0 10102 0 3
+E 0 10104 0 12
+E 0 10105 0 20
+G 0 10113 0
+O 0 10132 0 10123
+M 0 10130 1 10124
+G 0 10151 0
+G 0 10152 0
+G 0 10160 0
+M 0 10106 1 10130
+E 0 10199 0 7
+E 0 10111 0 20
+E 0 10112 0 11
+M 0 10107 1 10133
+G 0 10194 0
+M 0 10108 6 10137
+G 0 10113 0
+E 0 10114 0 22
+O 0 10136 0 10139
+P 0 10196 0 10136
+O 0 10134 0 10141
+M 0 10122 1 10144
+E 0 10138 0 6
+E 0 10148 0 3
+M 0 10125 3 10148
+M 0 10124 1 10150
+G 0 10140 0
+M 0 10123 1 10155
+G 0 10139 0
+M 0 10128 1 10160
+G 0 10143 0
+M 0 10109 4 10162
+M 0 10111 4 10164
+G 0 10116 0
+E 0 10161 0 23
+M 0 10112 4 10165
+E 0 10117 0 22
+M 0 10110 4 10167
+G 0 10115 0
+M 0 10113 4 10169
+E 0 10118 0 7
+M 0 10117 5 10171
+E 0 10127 0 16
+M 0 10118 3 10172
+G 0 10129 0
+G 0 10129 0
+O 0 10137 0 10172
+P 0 10195 0 10137
+E 0 10128 0 22
+M 0 10114 4 10174
+E 0 10119 0 9
+E 0 10120 0 10
+M 0 10137 2 10176
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+E 0 10190 0 22
+M 0 10126 1 10177
+E 0 10141 0 2
+O 0 10190 0 10177
+E 0 10105 0 20
+M 0 10138 2 10179
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+E 0 10189 0 22
+M 0 10127 1 10180
+E 0 10142 0 2
+O 0 10189 0 10180
+E 0 10105 0 20
+M 0 10139 2 10182
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+E 0 10188 0 22
+M 0 10132 1 10183
+E 0 10145 0 22
+O 0 10188 0 10183
+E 0 10105 0 20
+M 0 10140 2 10186
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+E 0 10187 0 22
+M 0 10131 1 10187
+E 0 10144 0 22
+O 0 10187 0 10187
+E 0 10105 0 20
+M 0 10141 2 10189
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+E 0 10186 0 22
+M 0 10133 1 10190
+E 0 10147 0 3
+O 0 10186 0 10190
+E 0 10105 0 20
+M 0 10142 2 10192
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+E 0 10185 0 22
+M 0 10134 1 10193
+E 0 10148 0 3
+O 0 10185 0 10193
+E 0 10105 0 20
+M 0 10143 2 10195
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+E 0 10184 0 22
+M 0 10135 1 10196
+E 0 10149 0 13
+O 0 10184 0 10196
+E 0 10163 0 16
+E 0 10162 0 15
+E 0 10105 0 20
+M 0 10144 2 10198
+E 0 10155 0 20
+E 0 10156 0 5
+E 0 10157 0 13
+E 0 10183 0 22
+M 0 10136 1 10199
+G 0 10146 0
+E 0 10150 0 13
+O 0 10183 0 10199
+E 0 10164 0 14
+E 0 10165 0 7
+E 0 10105 0 21
+E 0 10105 0 20
+S
+
+
+
+#SHOPS
+10129 10 26 0 0 0 100 75 0 24
+10130 2 3 18 0 0 100 75 0 24
+0
+
+
+
+#$

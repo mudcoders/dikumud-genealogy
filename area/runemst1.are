@@ -1,0 +1,5298 @@
+#AREADATA
+Name        { 50-60} The Labyrinth       Rune~
+Levels      50 60
+Builders    None~
+VNUMs       11601 11750
+Security    100
+Recall      25001
+Flags       0
+Color       6
+Sounds      none~
+End
+
+
+
+#MOBILES
+#11601
+wolfen~
+A wolfen~
+A wolfen jumps out of the darkness, it's claws aimed for your throat!
+~
+The wolfen is obviously a magical creature.  About the size of a normal
+wolf, it has been horribly changed.  Its legs seem longer than a normal
+wolf's, and appear to have an extra joint.  Several claws, each as long as a
+man's finger, glisten wetly with the poison that the wolfen secretes.  The
+jaws of the wolfen are huge as well, crammed full of more teeth than would
+be possible in nature.  Perhaps the most frightening feature of the wolfen
+is the almost human intelligence that peers at you through yellow eyes.  You
+get the feeling that the wolfen is looking at you like most hunters look at
+a rabbit.  
+~
+101 66090 0 0 S
+55 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 0
+2048 0 0
+>death_prog 100~
+if ispc($n)
+mpoload 11601
+endif
+~
+|
+#11602
+gholam~
+A gholam~
+A gholam shuffles out of the darkness, its eyeless head searching you out.
+~
+The pale mannequin before you is the most disgustion creature in the
+Labyrinth.  They were created long ago as undead golems, but for some reason
+gained a horrible semblance of life: they could reproduce.  Such offspring
+were of similar appearance to their undead ancestors, with pale, bloodless
+skin and slow gait.  But there the differences ended.  While undead have
+limited mental facilities, the gholam possess many mental powers.  These
+powers make up for a large physical deformity the gholam have: they are born
+blind.  But that does not stop them from being the fiercest creature in the
+Labyrinth.  
+~
+101 16425 16 0 S
+52 0 0 5440d0+0 0d0+0
+0 59 0 0
+0 0 0
+32800 0 0
+>fight_prog 20~
+c 'confusion' $n
+~
+>fight_prog 30~
+c 'mental probe' $n
+c 'mental probe' $n
+~
+>fight_prog 50~
+c 'psionic blast' $n
+c 'psionic blast' $n
+c 'psionic blast' $n
+~
+|
+#11603
+phade phantom ghost~
+a phade~
+A phade looms before you, its blade solidifying as it swings for your neck!
+~
+Very little is known about phades.  While they have been 'seen' before,
+no one has been able to provide an accurate description.  Believed to come
+from one of the demi-planes, phades are thought to be able to dematerialize
+at will, allowing them to flow through walls and other objects.  For some
+unknown reason however, this ability does not allow them to change shape. 
+Phades always have the general form of a humanoid, complete with armor and
+weapons that change consistancy as the phade does.  Phades are dark
+creatures, wearing black and blending well with the night, and possessing
+all of the abilities that 'normal' nocturnal creatures do.  
+~
+8293 1573416 0 -100 S
+58 0 0 9200d0+0 0d0+0
+0 71 0 0
+0 0 0
+69024 0 0
+>fight_prog 15~
+if ispc($n)
+cast 'blindness' $n
+else
+mptransfer $n 11684
+endif
+~
+>fight_prog 25~
+if ispc($n)
+c 'curse' $n
+cackle
+else
+mptransfer $n 11651
+endif
+~
+>fight_prog 50~
+if ispc($n)
+drain $n
+else
+mptransfer $n 11662
+endif
+~
+|
+#11604
+spirit lost mad wind~
+The Mad Wind~
+The Mad Wind howls at you out of the darkness.
+~
+Only the legends speak of the Mad Wind.  One of the inhabitants of the
+outer planes, the Mad Wind feeds off of fear and suffering.  Apparently, the
+Labyrinth is rich in such feelings for it to become its home.  The Wind is
+difficult to look at; it seems solid one moment and indistinct the next. 
+That is, when it can be seen at all.  
+~
+8293 1671722 0 -500 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+493682 0 0
+>fight_prog 10~
+if isimmort($n)
+bow $n
+else
+mpecho The Mad Wind seizes control of $n 's mind!
+mpforce $n rem all
+mpforce $n drop all
+get all
+mpecho The haunting laughter of the Mad Wind echos all around you..
+endif
+ 
+~
+>fight_prog 20~
+If rand(50)
+mpecho The Mad Wind makes $n disappear.
+mptransfer $n 11640
+else
+c 'fireball' $n
+c 'fireball' $n
+endif
+~
+>fight_prog 80~
+if rand(50)
+c 'confusion' $n
+else
+if rand(25)
+mpecho The Mad Wind summons help.
+mpmload 11603
+mpforce phade kill $n
+else
+mpecho The Mad Wind causes $n to go to sleep!
+mpforce $n sleep
+endif
+endif
+~
+|
+#11605
+lich renu fal terra~
+the lich of Renu~
+The animated corpse of Renu looks at you, then leaps to attack!
+~
+The corpse of Renu has not aged well.  Strips of flesh, where not
+entirely missing from his body, are wrinkled and grey.  An odour of decay
+emanates from his body, nearly making you gag.  The lich of Renu would be
+indistinguishable from a normal zombie except for the angry red glow that
+shines from his empty eye sockets.  
+~
+8295 33555072 0 -25 S
+60 0 0 8000d0+0 0d0+0
+0 75 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+shout You dare defile my tomb? Begone!
+c invis Renu
+c shield
+c armor renu
+c web $n
+~
+>fight_prog 25~
+if ispc($n)
+if rand(25)
+c 'charm person' $n
+mpecho The lich of Renu takes control of $n!
+mpforce $n ass Renu
+else
+c 'confusion' $n
+c 'curse' $n
+c 'fumble' $n
+endif
+else
+mpforce $n rem all
+mpforce $n drop all
+mpforce $n sleep
+get all
+endif
+~
+>fight_prog 50~
+if rand(25)
+c 'chain lightning'
+else
+c 'icestorm' $n
+c 'fireball' $n
+c 'acid blast' $n
+endif
+~
+>fight_prog 75~
+if rand(40)
+c 'magic missle' $n
+c 'magic missle' $n
+c 'colour spray' $n
+else
+c 'energy drain' $n
+c 'chill touch' $n
+endif
+~
+|
+#11606
+doom guard~
+A Doom Guard~
+A doom guard stands silently, waiting for your response.
+~
+The doom guard before you appears to be a man wearing a suit of black armor. 
+However, that is not so, for when you look into its open visor, you see
+nothing but a fiery red glow where its eyes should be.  The doom guard also
+moves slower than a normal person would, as if it was not exactly sure of
+how each part of its body relates to the others.  Aside from the open visor,
+there is no other chinks in the guards armor.  
+~
+67 552 0 0 S
+58 0 0 9200d0+0 0d0+0
+0 71 0 0
+0 0 0
+338048 0 0
+>all_greet_prog 100~
+if ispc($n)
+say What is the name of the Great Wizard?
+endif
+~
+>speech_prog "Renu Fal-Terra"~
+if ispc($n)
+say Go in peace, and gaze upon the greatest wizard of all.
+drop all.black
+endif
+~
+>death_prog 100~
+mpecho As the last blow is dealt, the guard's armor starts to crackle with energy.
+mpecho Suddenly, it dissolves into a fine black dust, which falls to the ground.
+mpjunk armor
+ 
+~
+>fight_prog 35~
+if rand(50)
+invoke mace $n
+else
+invoke gauntlet $n
+endif
+~
+|
+#11607
+mist demon monster~
+A mist demon~
+The small winged shape of a mist demon floats by in the grey fog.
+~
+Small and weak are two adjectives that have often been used to describe
+mist demons.  With tiny horns and puny wings, these creatures seem laughable
+when compared to their large, more fiercesome cousins.  They are so weak
+that they cannot survive outside of the Grey Mists, and must wander here for
+all eternity.  However, this does give them some advantages.  Their grey
+skins blend perfectly with the fog, making them difficult to see.  As well,
+mist demons are excellent tricksters, and have been known to cause many
+people to become lost in this realm with them.  
+~
+69 623106 0 0 S
+56 0 0 8400d0+0 0d0+0
+0 67 0 0
+0 0 0
+0 0 0
+>all_greet_prog 99~
+if ispc($n)
+mpkill $n
+endif
+~
+>rand_prog 75~
+if ispc($n)
+steal bag $n
+steal pack $n
+steal coins $n
+endif
+~
+|
+#11608
+gold golem~
+a golden golem~
+The gold golem attacks you, the light reflecting brightly off its skin.
+~
+This golem is shaped like a normal humanoid, if not a little more
+squarish.  Rivets of steel can be easily seen on it, holding the gold plates
+that make up its skin together.  The gold golem has small emeralds as eyes,
+and even a ruby carved like lips for a mouth.  It seems harmless, but when
+you look at its hands you notice that each edge has been sharpened to razor
+thiness.  Obviously, the gold golem was not meant to be just an ornament.  
+~
+71 544 16 0 S
+57 0 0 8800d0+0 0d0+0
+0 69 0 0
+0 0 0
+0 0 0
+>death_prog 100~
+if ispc($n)
+mpecho The golem strikes the floor with a loud 'CLANG', jarring many parts loose.
+mpoload 11615
+mpoload 11630
+endif
+~
+|
+#11609
+lesser demon kazarath~
+a small green demon~
+A small demon hisses at you, its green fur standing on end.
+~
+This small green demon seems to be quite excited.  It flitters from place
+to place, unable to stay still for even a short period of time. 
+Unfortunately, it looks quite strange doing this, with its long green fur
+and puny wings.  Its yellow eyes, slitted like those of a cat's, glare at
+you warrily when you look at it.  There is no doubt in your mind that this
+demon would try to destroy you if it was not restrained.  
+~
+67 541224 0 0 S
+50 0 0 4800d0+0 0d0+0
+0 0 0 0
+0 0 0
+896 0 0
+#11610
+demon red Vassago~
+a small red demon~
+A small red demon glances at you and yawns.
+~
+The demon before you is quite a fearsome creature.  Its red fur covers
+its entire body, making it look dangerous.  Long black horns and sharp teeth
+also help its appearance, with a tail and wings ending off the typical
+description of a demon.  There the similarities end though.  While demons
+are portrayed as dumb creatures, this one looks at you with an intelligence
+that is somehow more than human.  The small grin on its face makes you
+believe that its amused by what its looking at.  
+~
+67 786474 0 0 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+165944 0 0
+#11611
+protector~
+Protector~
+The Protector turns its head slowly to stare at you as you enter.
+~
+Standing at least twice the height of a normal humanoid, the Guardian
+must weigh a thousand pounds.  Constructed of black granite, the Guardian is
+covered with glowing runes that animate him.  You get the feeling that the
+Guardian has no emotions, and will therefore never attack you.  
+~
+71 520 0 0 S
+55 0 0 8000d0+0 0d0+0
+0 65 0 0
+0 0 0
+0 0 0
+#0
+
+
+
+#OBJECTS
+#11601
+wolfen skin fur~
+a wolfen skin~
+The skin of a wolfen has been casually left here.~
+~
+9 0 0 0 1025 55
+0~ 0~ 0~ 0~
+3 0 65 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+A
+2 2
+A
+100 -1
+E
+fur~
+&OThe skin is brown in colour and course in texture. It is medium-sized.
+~
+E
+wolfen~
+&OThe skin is brown in colour and course in texture. It is medium-sized.
+~
+E
+skin~
+&OThe skin is brown in colour and course in texture. It is medium-sized.
+~
+#11602
+stone ring red~
+a stone ring~
+A ring made of red stone is sitting here.~
+~
+9 64 0 0 3 52
+0~ 0~ 0~ 0~
+1 0 59 0 0
+5 0
+psionic blast~
+2 2
+0 0 0
+A
+3 1
+E
+stone~
+&rA ring made of a strange red stone.
+~
+E
+red~
+&rA ring made of a strange red stone.
+~
+E
+stone~
+&rA ring made of a strange red stone.
+~
+#11603
+black sword phade blade~
+a black sword~
+A black sword that seems to absorb the light is lying here.~
+~
+5 582 4322 0 8193 58
+0~ 0~ 0~ 3~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 2
+A
+18 92
+A
+19 80
+E
+black~
+&zEven as you look upon the blade, you can see that it absorbs some of the
+light around it.
+~
+E
+sword~
+&zEven as you look upon the blade, you can see that it absorbs some of the
+light around it.
+~
+E
+phade~
+&zEven as you look upon the blade, you can see that it absorbs some of the
+light around it.
+~
+E
+blade~
+&zEven as you look upon the blade, you can see that it absorbs some of the
+light around it.
+~
+#11604
+black bracer phade~
+a black bracer~
+A black bracer rests here.~
+~
+9 580 0 0 4097 58
+0~ 0~ 0~ 0~
+1 0 35 0 0
+5 0
+blindness~
+3 4
+0 0 0
+A
+17 -15
+E
+bracer~
+&zAn ordinary looking black bracer... or is it?
+~
+E
+black~
+&zAn ordinary looking black bracer... or is it?
+~
+E
+phade~
+&zAn ordinary looking black bracer... or is it?
+~
+#11605
+large black granite key~
+a large stone key~
+A large key rests here, constructed out of black granite.~
+~
+18 64 0 0 16385 50
+0~ 0~ 0~ 0~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+black~
+A black granite key is quite heavy, and quite large... about 6 inches in
+length.
+ 
+~
+E
+key~
+A black granite key is quite heavy, and quite large... about 6 inches in
+length.
+~
+#11606
+black granite stone casket sarcophagus~
+a black stone casket~
+A large sarcophagus, constructed out of black granite lies here.~
+~
+15 65 0 0 0 50
+10000~ 5~ 0~ 0~
+110000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+casket~
+&zA large casket made of the smoothest of granite.
+~
+E
+granite~
+&zA large casket made of the smoothest of granite.
+~
+E
+stone~
+&zA large casket made of the smoothest of granite.
+~
+E
+black~
+&zA large casket made of the smoothest of granite.
+~
+#11607
+silver key~
+a silver key~
+A small silver key rests here.~
+~
+18 0 0 0 16385 55
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+&wA small silver key looks like your average key.
+~
+E
+silver~
+&wA small silver key looks like your average key.
+~
+#11608
+staff renu black oak~
+a black staff~
+A staff made of black oak and carved with sigla rests here.~
+~
+5 67 712 29324 8193 60
+0~ 0~ 0~ 7~
+3 0 40 0 0
+5 0
+icestorm~
+3 3
+0 0 0
+A
+18 75
+A
+19 90
+A
+1 2
+E
+oak~
+A black oak staff glows slightly from the sigla.
+~
+E
+black~
+A black oak staff glows slightly from the sigla.
+~
+E
+renu~
+A black oak staff glows slightly from the sigla.
+~
+E
+staff~
+A black oak staff glows slightly from the sigla.
+~
+#11609
+tattered robe red renu~
+a tattered red robe~
+An old red robe lies here in a heap.~
+~
+9 0 0 0 1025 60
+0~ 0~ 0~ 0~
+4 0 30 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+E
+renu~
+&rA red robe is almost in pieces, but can still be worn.
+~
+E
+red~
+&rA red robe is almost in pieces, but can still be worn.
+~
+E
+robe~
+&rA red robe is almost in pieces, but can still be worn.
+~
+E
+tattered~
+&rA red robe is almost in pieces, but can still be worn.
+~
+#11610
+black helmet doom~
+a black helmet~
+A black helmet, embossed with gold, lies here.~
+~
+9 64 7701 60350 17 59
+0~ 0~ 0~ 0~
+3 0 14 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 2
+A
+17 -50
+E
+black~
+The helmet is black in colour, and embossed with golden pattern of some
+sort. You can't tell if it actually dipicts something, but it sure looks nice.
+~
+E
+helmet~
+The helmet is black in colour, and embossed with golden patterns of some sort.
+You can't tell if it actually dipicts something, but it sure looks nice.
+~
+E
+doom~
+The helmet is black in colour, and embossed with golden pattern of some sort.
+You can't tell if it actually dipicts something, but is sure looks nice.
+~
+#11611
+black gauntlets gloves~
+a pair of black gauntlets~
+A pair of black gauntlets, embossed with gold, lie here.~
+~
+9 64 261 64190 129 59
+0~ 0~ 0~ 0~
+2 0 14 0 0
+5 0
+shocking grasp~
+3 3
+0 0 0
+A
+18 1
+A
+19 4
+A
+17 -50
+E
+gauntlets~
+A pair of black gauntlets are embossed in gold, however you can't make out what
+the design depicts, if anything.
+~
+E
+gloves~
+A pair of black gauntlets are embossed in gold, however you you can't make out what
+the design depicts, if anything.
+ed edit gauntlets
+~
+E
+black~
+A pair of black gauntlets are embossed in gold, however you can't make out what
+the design depicts, if anything.
+~
+#11612
+shield black~
+a black shield~
+A black shield, embossed with gold, lies here.~
+~
+9 64 5173 18478 513 59
+0~ 0~ 0~ 0~
+6 0 14 0 0
+5 0
+armor~
+2 2
+0 0 0
+A
+17 -20
+E
+shield~
+A black shield embossed with gold is well-crafted. You can't make out the
+design, if there is supposed to be one.
+~
+E
+shield~
+A black shield embossed with gold is well-crafted. You can't make out the
+design, if there is supposed to be one.
+~
+#11613
+black mace~
+a black mace~
+A black mace that exudes darkness lies here.~
+~
+5 68 4756 51262 8193 59
+0~ 0~ 0~ 8~
+5 0 14 0 0
+5 0
+harm~
+3 3
+0 0 0
+A
+18 45
+A
+19 95
+E
+black~
+The mace is made of a black metal, and is intricately crafted right down to
+the archaic design carved into the handle.
+~
+E
+mace~
+The mace is made of a black metal, and is intricately crafted right down to
+the archaic design carved into the handle.
+~
+#11614
+black armor~
+a suit of black armor~
+A suit of black armor, embossed with gold, lies here.~
+~
+9 68 5687 62126 8 59
+3~ 0~ 0~ 0~
+20 0 14 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+black~
+A suit of black armor is embossed with an intricate gold pattern, although
+you can't make heads or tails of it.
+~
+E
+armor~
+A suit of black armor is embossed with an intricate gold pattern, although
+you can't make heads or tails of it.
+~
+#11615
+gold mask golem~
+a gold mask~
+A gold mask, inset with emeralds and rubies, glows softly here.~
+~
+9 65 0 0 65537 57
+0~ 0~ 0~ 0~
+5 0 30 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+2 2
+E
+golem~
+&YA gold mask is beautifully inset with &gemeralds&Y and &Rrubies&Y of all shapes
+and sizes.
+~
+E
+mask~
+&YA gold mask is beautifully inset with &gemeralds &Yand &Rrubies&Y of all shappes
+and sizes.
+~
+E
+gold~
+&YA gold mask is beautifully inset with emeralds and rubies of all shapes
+and sizes.
+~
+#11616
+black granite stone box~
+a black stone box~
+A sigla covered box, constructed of black granite, sits here.~
+~
+15 1 0 0 0 55
+500~ 5~ 0~ 0~
+1000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+black~
+&zA black granite box is covered in glowing sigla.
+~
+E
+granite~
+&zA black granite box is covered in glowing sigla.
+~
+E
+stone~
+&zA black granite box is covered in glowing sigla.
+~
+E
+box~
+&zA black granite box is covered in glowing sigla.
+~
+#11617
+helmet helm frost~
+a frost covered helm~
+A silver helmet, covered in frost, lies here.~
+~
+9 65 5173 43660 17 55
+0~ 0~ 0~ 0~
+3 0 12 0 0
+5 0
+iceshield~
+2 2
+0 0 0
+A
+5 1
+A
+17 -50
+E
+helmet~
+&CThe helmet is cold to the touch, and is covered with a thin layer of frost.
+~
+E
+helm~
+&CThe helmet is cold to the touch, and is covered with a thin layer of frost.
+~
+E
+frost~
+&CThe helmet is cold to the touch, and is covered with a thin layer of frost.
+~
+#11618
+recall scroll tattered~
+a tattered scroll~
+An old scroll, tattered and dusty, lies here.~
+~
+2 64 0 0 1 30
+70~ word of recall~ reserved~ reserved~
+1 2 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+scroll~
+&OAn old tattered scroll practically crumbles as you look upon it.
+~
+E
+recall~
+&OAn old tattered scroll practically crumbles as you look upon it.
+~
+E
+tattered~
+&OAn old tattered scroll practically crumbles as you look upon it.
+~
+#11619
+scroll elements~
+a Scroll of the Elements~
+A small scroll, made of red paper, is lying here.~
+~
+2 64 198 0 16385 60
+65~ icestorm~ lightning bolt~ fireball~
+1 10 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+scroll~
+&GThe scroll is made of &rred&G paper and is written with &Cblue&G, &wsilver&G,
+and &Rred &Ginscriptions.
+~
+E
+elements~
+&GThe scroll is made of &rred &Gpaper and is written with &Cblue&G, &wsilver&G,
+and &Rred &Ginscriptions.
+~
+#11620
+quartz container green potion~
+a pale green potion~
+A quartz container holding a pale green liquid sits here.~
+~
+10 268435520 0 0 1 50
+65~ heal~ remove curse~ bless~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+quartz~
+&GA quartz container holds a &gpale green liquid&G.
+~
+E
+container~
+&GA quartz container holds a &gpale green liquid&G.
+~
+E
+green~
+&GA quartz container holds a &gpale green liquid&G.
+~
+E
+potion~
+&GA quartz container holds a &gpale green liquid&g.
+~
+#11621
+bottle smoke green~
+a small bottle~
+&wA small bottle containing &ggreen&w smoke lies here.~
+~
+13 66 0 0 16385 55
+0~ 0~ 0~ 0~
+1 0 0 3 0
+2 11609
+reserved~
+1 1
+0 0 0
+E
+bottle~
+&wA small bottle contains some &ggreen&w smoke.
+~
+E
+smoke~
+&wA small bottle contains some &ggreen &wsmoke.
+~
+E
+green~
+&wA small bottle contains &ggreen &wsmoke.
+~
+#11622
+bottle smoke red~
+a small bottle~
+&wA small bottle containing &rred&w smoke is here.~
+~
+13 66 0 0 16385 55
+0~ 0~ 0~ 0~
+1 0 0 3 0
+2 11610
+reserved~
+1 1
+0 0 0
+E
+red~
+&wA small bottle contains &rred&w smoke.
+~
+E
+bottle~
+&wA small bottle contains &rred &wsmoke.
+~
+E
+smoke~
+&wA small bottle contains &rred &wsmoke.
+~
+#11623
+necklace ravens~
+the Necklace of Ravens~
+A gold necklace with two obsidian ravens attached to it sits here.~
+~
+9 0 0 0 5 55
+0~ 0~ 0~ 0~
+2 0 6 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+110 -1
+A
+4 2
+A
+3 2
+E
+necklace~
+&YA gold necklace with two &zobsidian ravens&Y.
+~
+E
+ravens~
+&YA gold necklace with two &zobsidian raven &Ypendants.
+~
+#11624
+brown ioun stone~
+a brown ioun stone~
+&OA dark brown stone spins slowlyin midair here.~
+~
+9 64 0 0 32769 25
+0~ 0~ 0~ 0~
+0 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 50
+E
+brown~
+&OAn ioun stone is brown in colour.
+~
+E
+ioun~
+&OA beautiful brown ioun stone is smooth and perfect.
+~
+E
+stone~
+&OAn ioun stone is small, perfectly round, and brown in colour.
+~
+#11625
+clear ioun stone~
+a clear ioun stone~
+&WA clear stone spins slowly in midair here.~
+~
+9 64 0 0 32769 25
+0~ 0~ 0~ 0~
+0 2 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 16
+A
+12 25
+E
+clear~
+&WThe ioun stone is perfectly clear, small and round.
+~
+E
+ioun~
+&WThe ioun stone is perfectly clear, small and round.
+~
+E
+stone~
+&WThe ioun stone is perfectly clear, small and round.
+~
+#11626
+orange ioun stone~
+an orange ioun stone~
+A dark orange stone spins slowly in midair here.~
+~
+9 64 0 0 32769 25
+0~ 0~ 0~ 0~
+0 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -15
+E
+orange~
+&OThe ioun stone is dark orange in colour and is misshapen.
+~
+E
+ioun~
+&OThe ioun stone is dark orange in colour and is misshapen.
+~
+E
+stone~
+&OThe ioun stone is dark orange in colour and is misshapen.
+~
+#11627
+dark red ioun stone~
+a red ioun stone~
+&rA dark red stone spins slowly in midair here.~
+~
+9 64 0 0 32769 25
+0~ 0~ 0~ 0~
+0 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -25
+E
+dark~
+&rAn ioun stone is dark red in colour and is an abstract shape.
+~
+E
+red~
+&rAn ioun stone is dark red in colour and is an abstract shape.
+~
+E
+stone~
+&rAn ioun stone is dark red in colour and is an abstract shape.
+~
+E
+ioun~
+&rAn ioun stone is dark red in colour and is an abstract shape.
+~
+#11628
+leather pouch~
+a pouch~
+A small pouch, made from a dark leather, lies here in a heap.~
+~
+15 64 0 0 2049 25
+20~ 5~ 0~ 0~
+1 0 11 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pouch~
+&OA small leather pouch is dark brown in colour, and is very light in
+weight.
+~
+E
+leather~
+&OA small leather pouch is dark brown in colour and weighs very little.
+~
+#11630
+gem gear gold~
+a gem encrusted gear~
+A small gold gear, covered with jewels, lies here.~
+~
+8 64 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+gear~
+&YThe gear is covered with all sorts of small jewels.
+~
+E
+gold~
+&YThe gear is covered with all sorts of small jewels.
+~
+E
+gem~
+&YThe gear is covered with all sorts of small jewels.
+~
+#0
+
+
+
+#ROOMDATA
+#11602
+A Rocky Path~
+You appear to be in a land of black rock.  All around you, as far as you
+can see, lie chunks of black granite embedded in the barren ground.  Some of
+the smaller pieces could be called boulders, but the larger ones are nearly
+the size of a house.  Such a profusion of dark rock can only be magical; the
+large black building ahead of you only confirms this suspicion.  The path
+that you are following winds in between boulders, stopping at the huge
+wooden gate that marks the entrance to the Labyrinth.  A small plaque,
+unrusted despite its age, has been attached somehow to a nearby boulder.  
+~
+0 25 2
+Rd     0
+E
+plaque~
+The plaque reads as follows: "Beware all who enter here.  The Labyrinth
+is the resting place of my father, Renu Fal-Terra.  I have placed many great
+wards around him to preserve him and his for all eternity.  My wrath shall
+fall on all who enter.  Signed Merra Mal-Renu, High Wizard."  
+~
+D0
+~
+~
+0 0 11603
+D2
+~
+~
+0 0 19773
+S
+#11603
+Before the Gate~
+A huge black wall stretches to the east and west of you.  Made of the
+same black granite that predominates the area, the wall seems impregnable. 
+Add to that the glowing sigla that entirely cover the wall, and you have a
+structure that is meant to last until the end of time.  A huge gate set into
+the wall appears to be the only entrance.  Some words seem to have been
+carved into the stone above the door.  The entire area emanates a sense of
+foreboding, nearly making you want to flee.  Aside from entering the
+Labyrinth, the only other way to leave the area is to the south.  
+~
+0 1053 2
+Rd     0
+E
+carving~
+Written in archaic Common, the words are difficult to read.  You think
+they say: 
+                          THE FIRST GATE
+~
+D0
+Made from black oak, the gate would be difficult to destroy on its own. 
+However, sigla cover the gate as well, no doubt making it indestructable.  
+~
+"first gate"~
+19 0 11604
+D2
+~
+~
+0 0 11602
+S
+#11604
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  Exits to the north, west and east lead into unexplored parts of
+the maze.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11618
+D1
+~
+~
+0 0 11628
+D2
+The gate looks exactly the same as it does on the outside, except there
+are no sigla carved into it.  
+~
+"first gate" first gate~
+19 0 11603
+D3
+~
+~
+0 0 11605
+S
+#11605
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness
+of this place makes it hard for you to see the walls of the passage on
+either side of you.  The ceiling is low as well, which when combined with
+the narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The hallway continues to the east and west.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11604
+D3
+~
+~
+0 0 11606
+S
+#11606
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  A corner has been built here, allowing you to move to the north
+and east.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11607
+D1
+~
+~
+0 0 11605
+S
+#11607
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The dank hallway continues to the north and south, leading to
+uncharted areas.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11608
+D2
+~
+~
+0 0 11606
+S
+#11608
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  Exits lead to the east and south.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11609
+D2
+~
+~
+0 0 11607
+S
+#11609
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The hairs on your arms stand up, and a strange tingling sensation
+seems to have found a new home in your temples.  You sense that there's
+something strange in the area, but are unable to determine exactly where. 
+Exits lead to the north, south, east and west.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11610
+D1
+~
+~
+0 0 11611
+D2
+~
+~
+0 0 11612
+D3
+~
+~
+0 0 11608
+S
+#11610
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The dusty hall continues to both the north and south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11613
+D2
+~
+~
+0 0 11609
+S
+#11611
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  A corner is formed here, allowing you to travel north or west.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11619
+D3
+~
+~
+0 0 11609
+S
+#11612
+At the Stairs~
+This section of the Labyrinth is different than the rest of it.  The most
+obvious change is the return of light.  Glowing symbols cover the wall,
+their feeble illumination making it slightly easier to see.  Strangely
+enough though, their light reaches the boundries of the room and stops
+abruptly.  An archway in the southern wall leads to a set of stairs, their
+bottom shrouded in darkness.  Something has been carved into the rock above
+the arch.  The only other exit from the room is to the north, into the maze
+of the Labyrinth.  
+~
+0 401432 0
+Rd     0
+E
+carving~
+The carving, chiseled deep into the black granite, reads:
+ 
+                         THE GREAT STAIRS
+ 
+~
+D0
+~
+~
+0 0 11609
+D5
+~
+~
+0 0 11629
+S
+#11613
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The hall continues to both the west and south.  
+~
+0 401433 0
+Rd     0
+D2
+~
+~
+0 0 11610
+D3
+~
+~
+0 0 11614
+S
+#11614
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The hall bends here, allowing you to walk east and south into
+uncharted territory.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11613
+D2
+~
+~
+0 0 11615
+S
+#11615
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The darkened expanse of narrow hall continues to both the north
+and south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11614
+D2
+~
+~
+0 0 11616
+S
+#11616
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The enshrouding darkness makes it difficult to see where you are
+going, but you sense that the passage continues to the north and south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11615
+D2
+~
+~
+0 0 11617
+S
+#11617
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The hallway splits here, leading off to the north, west and east. 
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11616
+D1
+~
+~
+0 0 11626
+D3
+~
+~
+0 0 11618
+S
+#11618
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  A hallway bends here, so that the only exits are to the south and
+east.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11617
+D2
+~
+~
+0 0 11604
+S
+#11619
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The hallway continues to both the north and the south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11620
+D2
+~
+~
+0 0 11611
+S
+#11620
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The dark hall you are in stretches to the east and west,
+apparently without end.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11621
+D3
+~
+~
+0 0 11613
+S
+#11621
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The dusty passage continues to the east and west, leading to
+darkened parts of the Labyrinth.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11622
+D3
+~
+~
+0 0 11620
+S
+#11622
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you nice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The ominous corridor you are in has exits leading to both the east
+and west.  The foreboding black stones of the walls reflect the light back
+at you dully, showing you that the passage continues to both the east and
+west.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11623
+D3
+~
+~
+0 0 11621
+S
+#11623
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly f, although no magical symbols adorn
+the walls of this grim place.  The dust on the floor is not thick,
+considering how long it has been since the Labyrinth has been sealed. 
+However, in the grime that has accumulated, you notice the tracks of many
+different creatures.  Obviously, you are not as alone as you thought.  The
+hall you stand in continues to both the east and west.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11624
+D3
+~
+~
+0 0 11622
+S
+#11624
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  A corner is formed here, as the northern wall turns south.  Exits
+lead to the west and south.  
+~
+0 401433 0
+Rd     0
+D2
+~
+~
+0 0 11625
+D3
+~
+~
+0 0 11623
+S
+#11625
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The dismal hallway continues to both the north and south, leading
+you into other, perhaps more dangerous, areas of the Labyrinth.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11624
+D2
+~
+~
+0 0 11626
+S
+#11626
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The passage you are in continues to both the north and south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11625
+D2
+~
+~
+0 0 11627
+S
+#11627
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The hallway bends here, forcing you to go either north or west.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11626
+D3
+~
+~
+0 0 11628
+S
+#11628
+In the Labyrinth~
+You are in the deserted halls of the Labyrinth.  The magical darkness of
+this place makes it hard for you to see the walls of the passage on either
+side of you.  The ceiling is low as well, which when combined with the
+narrow hall, makes you feel slightly claustrophobic.  The inside of the
+Labyrinth is made of the same black rock that the outer wall was made of,
+although no magical symbols adorn the walls of this grim place.  The dust on
+the floor is not thick, considering how long it has been since the Labyrinth
+has been sealed.  However, in the grime that has accumulated, you notice the
+tracks of many different creatures.  Obviously, you are not as alone as you
+thought.  The dark passage continues to the east and west.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11627
+D3
+~
+~
+0 0 11604
+S
+#11629
+On the Great Stairs~
+The magical darkness does not prevent you from seeing the majesty of the
+Great Stair.  Constructed of the same black granite that the rest of the
+Labyrinth is made of, the Great Stair seems less sinister than the rest of
+the Labyrinth.  Wide enough to allow passage for twenty men, the Stair
+echoes forlornly with your footsteps.  Perhaps, eons ago, the High Wizard
+walked down these steps as she visited her father's resting place one last
+time.  If she did however, her passage has long since been covered by the
+thick coating of dust that lies all around you.  The dust is not completely
+undisturbed: many of the Labyrinth's inhabitants have left their tracks here
+as they have climbed or descended these steps.  The stairs continue their
+trek into darkness to the east.  Above you awaits the first level of the
+Labyrinth.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11630
+D4
+~
+~
+0 0 11612
+S
+#11630
+On the Great Stairs~
+The magical darkness does not prevent you from seeing the majesty of the
+Great Stair.  Constructed of the same black granite that the rest of the
+Labyrinth is made of, the Great Stair seems less sinister than the rest of
+the Labyrinth.  Wide enough to allow passage for twenty men, the Stair
+echoes forlornly with your footsteps.  Perhaps, eons ago, the High Wizard
+walked down these steps as she visited her father's resting place one last
+time.  If she did however, her passage has long since been covered by the
+thick coating of dust that lies all around you.  The dust is not completely
+undisturbed: many of the Labyrinth's inhabitants have left their tracks here
+as they have climbed or descended these steps.  You figure that you are
+about halfway down the stairs, with steps leading upwards to the west and
+down.  
+~
+0 401433 0
+Rd     0
+D3
+~
+~
+0 0 11629
+D5
+~
+~
+0 0 11631
+S
+#11631
+On the Great Stairs~
+The magical darkness does not prevent you from seeing the majesty of the
+Great Stair.  Constructed of the same black granite that the rest of the
+Labyrinth is made of, the Great Stair seems less sinister than the rest of
+the Labyrinth.  Wide enough to allow passage for twenty men, the Stair
+echoes forlornly with your footsteps.  Perhaps, eons ago, the High Wizard
+walked down these steps as she visited her father's resting place one last
+time.  If she did however, her passage has long since been covered by the
+thick coating of dust that lies all around you.  The dust is not completely
+undisturbed: many of the Labyrinth's inhabitants have left their tracks here
+as they have climbed or descended these steps.  The Great Stair continues
+downwards to the west; above you is the way to return to light.  
+~
+0 401433 0
+Rd     0
+D3
+~
+~
+0 0 11632
+D4
+~
+~
+0 0 11630
+S
+#11632
+On the Great Stairs~
+The magical darkness does not prevent you from seeing the majesty of the
+Great Stair.  Constructed of the same black granite that the rest of the
+Labyrinth is made of, the Great Stair seems less sinister than the rest of
+the Labyrinth.  Wide enough to allow passage for twenty men, the Stair
+echoes forlornly with your footsteps.  Perhaps, eons ago, the High Wizard
+walked down these steps as she visited her father's resting place one last
+time.  If she did however, her passage has long since been covered by the
+thick coating of dust that lies all around you.  The dust is not completely
+undisturbed: many of the Labyrinth's inhabitants have left their tracks here
+as they have climbed or descended these steps.  East of you the stair
+returns to the first level of the Labyrinth.  Below you, in the awaiting
+darkness, lies the unknown.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11631
+D5
+~
+~
+0 0 11633
+S
+#11633
+On the Great Stairs~
+The magical darkness does not prevent you from seeing the majesty of the
+Great Stair.  Constructed of the same black granite that the rest of the
+Labyrinth is made of, the Great Stair seems less sinister than the rest of
+the Labyrinth.  Wide enough to allow passage for twenty men, the Stair
+echoes forlornly with your footsteps.  Perhaps, eons ago, the High Wizard
+walked down these steps as she visited her father's resting place one last
+time.  If she did however, her passage has long since been covered by the
+thick coating of dust that lies all around you.  The dust is not completely
+undisturbed: many of the Labyrinth's inhabitants have left their tracks here
+as they have climbed or descended these steps.  You feel a slight breeze
+stirring the air, making you think that you are close to the bottom.  Exits
+lead downwards to the east, and upwards above you.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11634
+D4
+~
+~
+0 0 11632
+S
+#11634
+On the Great Stairs~
+The magical darkness does not prevent you from seeing the majesty of the
+Great Stair.  Constructed of the same black granite that the rest of the
+Labyrinth is made of, the Great Stair seems less sinister than the rest of
+the Labyrinth.  Wide enough to allow passage for twenty men, the Stair
+echoes forlornly with your footsteps.  Perhaps, eons ago, the High Wizard
+walked down these steps as she visited her father's resting place one last
+time.  If she did however, her passage has long since been covered by the
+thick coating of dust that lies all around you.  The dust is not completely
+undisturbed: many of the Labyrinth's inhabitants have left their tracks here
+as they have climbed or descended these steps.  Below you, you can barely
+make out where the floor straightens; the darkness prevents you from seeing
+more.  Somewhere above you, at the other end of the steps, lies the first
+floor of the Labyrinth.  
+~
+0 401433 0
+Rd     0
+D3
+~
+~
+0 0 11633
+D5
+~
+~
+0 0 11635
+S
+#11635
+At the Stairs~
+The room you are in is similar to the one at the top of the stairs. 
+Magical symbols on the black granite walls provide dim illumination.  The
+same state of uncleanliness is abound here as well: dust, ages old, lies
+everywhere.  The only exits are to the south and up, each of which is
+shrouded in a magical darkness making it impossible to see what lies in that
+direction.  
+~
+0 401424 0
+Rd     0
+E
+carving~
+The glowing letters spell out three words in archaic common:
+ 
+                         THE GREAT STAIRS
+ 
+~
+D2
+~
+~
+0 0 11636
+D4
+~
+~
+0 0 11634
+S
+#11636
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  Exits lead in all directions.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11635
+D1
+~
+~
+0 0 11637
+D2
+~
+~
+0 0 11669
+D3
+~
+~
+0 0 11649
+S
+#11637
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black passage continues to the east and west. 
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11638
+D3
+~
+~
+0 0 11636
+S
+#11638
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall splits here, allowing you to go east,
+west or south.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11639
+D2
+~
+~
+0 0 11658
+D3
+~
+~
+0 0 11637
+S
+#11639
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The southern wall bends here, forming a corner. 
+Exits lead to the west and north.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11640
+D3
+~
+~
+0 0 11638
+S
+#11640
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted hallunding like the spirits of a thousand dead.  However blackness
+that surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall you are following splits here, allowing
+you to go east, west or south.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11653
+D2
+~
+~
+0 0 11639
+D3
+~
+~
+0 0 11641
+S
+#11641
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  You can barely see that the black granite that
+surrounds you continues to the east and west.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11640
+D3
+~
+~
+0 0 11642
+S
+#11642
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A slight tingle runs over your body as you enter
+this part of the passage, but you cannot spot anything out of the ordinary. 
+Exits lead to the east and west.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11641
+D3
+~
+~
+0 0 11643
+S
+#11643
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A slight tingle runs over your body as you stand
+here, but you cannot find the source of it.  Exits lead to the east and
+west.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11642
+D3
+~
+~
+0 0 11644
+S
+#11644
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The southern wall bends north here, forming a
+corner which allows you to go north or east.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11645
+D1
+~
+~
+0 0 11643
+S
+#11645
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A corner is formed here, allowing you to go east
+or south.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11646
+D2
+~
+~
+0 0 11644
+S
+#11646
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear the occasional bumps in the darkness, as if something
+was trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black passage continues to the east and west.
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11647
+D3
+~
+~
+0 0 11645
+S
+#11647
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hallway splits here, allowing you to go east,
+west or south.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11655
+D2
+~
+~
+0 0 11648
+D3
+~
+~
+0 0 11646
+S
+#11648
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  This passage continues to the north and south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11647
+D2
+~
+~
+0 0 11649
+S
+#11649
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall splits here, allowing you to go north,
+west or east.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11648
+D1
+~
+~
+0 0 11636
+D3
+~
+~
+0 0 11650
+S
+#11650
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The magical darkness makes it difficult to see,
+but you think that exits lead to the east and west.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11649
+D3
+~
+~
+0 0 11651
+S
+#11651
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The northern wall bends southwards here, forming
+a corner.  The only exits are to the south and east.  
+~
+0 401433 0
+Rd     0
+D1
+~
+~
+0 0 11650
+D2
+~
+~
+0 0 11652
+S
+#11652
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  You sense something strange, but can't exactly
+define what it is.  Shrugging the feeling off as paranoia, you peer into the
+darkness, trying to decide whether to go north or south.  
+~
+0 401433 0
+Rd     0
+D0
+~
+~
+0 0 11651
+D2
+~
+~
+0 0 11700
+S
+#11653
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The only exits from this portion of the dank
+hallway is to the north and west.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11654
+D3
+~
+~
+0 0 11640
+S
+#11654
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black passgae that you are in continues to
+the north and south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11680
+D2
+~
+~
+0 0 11653
+S
+#11655
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black granite halls that seem to extend
+forever do not end here unfortunately.  Exits lead to the east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11656
+D3
+~
+~
+0 0 11647
+S
+#11656
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The magical darkness around you prevents you from
+determining how long the hall is, but you can see that it leads to both the
+east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11657
+D3
+~
+~
+0 0 11655
+S
+#11657
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black walls extend into darkness to both the
+east and west.  
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+0 0 11709
+D3
+~
+~
+0 0 11656
+S
+#11658
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The passage splits here, allowing you to move in
+all the cardinal directions.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11638
+D1
+~
+~
+0 0 11660
+D2
+~
+~
+0 0 11663
+D3
+~
+~
+0 0 11659
+S
+#11659
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  You feel that something is strange about this
+room, but cannot determine what it is.  Exits lead to the east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11658
+D3
+~
+~
+0 0 11696
+S
+#11660
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The dingy corridor you are in continues to the
+east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11661
+D3
+~
+~
+0 0 11658
+S
+#11661
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The only exit from this dead end is to the north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11662
+S
+#11662
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall stretches into darkness to the north and
+south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11699
+D2
+~
+~
+0 0 11661
+S
+#11663
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A corner is formed here, as the west wall meets
+the one to the south.  The only exits are to the east and north.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11658
+D1
+~
+~
+0 0 11664
+S
+#11664
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black granite seems oppressive to you, as you
+stare at the walls extending east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11665
+D3
+~
+~
+0 0 11663
+S
+#11665
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall splits here, allowing you to go north,
+south or west.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11661
+D2
+~
+~
+0 0 11666
+D3
+~
+~
+0 0 11664
+S
+#11666
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A corner is formed here, as the southern wall
+bends north.  Exits lead to the north and west.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11665
+D3
+~
+~
+0 0 11667
+S
+#11667
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hallway splits here, allowing you to move to
+the south, east or west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11666
+D2
+~
+~
+0 0 11704
+D3
+~
+~
+0 0 11668
+S
+#11668
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  Exits lead to both the west and east.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11667
+D3
+~
+~
+0 0 11692
+S
+#11669
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black granite walls of the corridor extend to
+both the north and south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11636
+D2
+~
+~
+0 0 11670
+S
+#11670
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hallway splits here, allowing you to go in
+all four cardinal directions.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11669
+D1
+~
+~
+0 0 11681
+D2
+~
+~
+0 0 11675
+D3
+~
+~
+0 0 11671
+S
+#11671
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall makes a sudden twist here, forming a
+corner.  Exits from this area lead to the north and east. 
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11672
+D1
+~
+~
+0 0 11670
+S
+#11672
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  Another corner is formed here, with the exits to
+the west and south.  
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 11671
+D3
+~
+~
+0 0 11673
+S
+#11673
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A corner is formed here as the western wall
+intersects with one to the north.  Exits lead to the east and south.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11672
+D2
+~
+~
+0 0 11674
+S
+#11674
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A tingling sensation runs over you as you enter
+this room, but you cannot find its cause.  Exits lead to the north and
+south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11673
+D2
+~
+~
+0 0 11679
+S
+#11675
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A sudden bend in the hallway makes a corner form
+here, allowing you to move either north or west.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11670
+D3
+~
+~
+0 0 11676
+S
+#11676
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The corridor splits here, with exits extending
+into darkness to the east, west and south.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11675
+D2
+~
+~
+0 0 11702
+D3
+~
+~
+0 0 11677
+S
+#11677
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The magical darkness that surrounds you makes it
+difficult to see where you are going, but you can determine that exits lead
+to the east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11676
+D3
+~
+~
+0 0 11678
+S
+#11678
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall splits here, allowing you to go north,
+south or east.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11679
+D1
+~
+~
+0 0 11677
+D2
+~
+~
+0 0 11680
+S
+#11679
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The dingy passage continues to the north and
+south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11674
+D2
+~
+~
+0 0 11678
+S
+#11680
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The magical darkness continues to the north and
+south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11678
+D2
+~
+~
+0 0 11654
+S
+#11681
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A corner is formed here, allowing you to go west
+or south.  
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 11682
+D3
+~
+~
+0 0 11670
+S
+#11682
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black walls continue to both the north and
+south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11681
+D2
+~
+~
+0 0 11683
+S
+#11683
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  Th this level than others.  You can hear
+occasional bumps in the darkness, as if something was trying to move around
+stealthily.  A slight breeze moans through the deserted halls, sounding like
+the spirits of a thousand dead.  However you find that the most disturbing
+thing is not the thick blackness that surrounds you, but rather the faint
+glimmers of light that can be seen farther down the hall periodically,
+making you think that you will soon find the source of the tracks.  The hall
+splits here, with exits leading to the north, west and east.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11682
+D1
+~
+~
+0 0 11701
+D3
+~
+~
+0 0 11684
+S
+#11684
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  A corner has been made here, as the northern wall
+intersects with the western one.  Exits lead to the east and south.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11683
+D2
+~
+~
+0 0 11685
+S
+#11685
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The passage has been made into a three way split
+here, with exits leading north, east and west.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11684
+D1
+~
+~
+0 0 11693
+D3
+~
+~
+0 0 11686
+S
+#11686
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The magical darkness that surrounds you makes it
+difficult to see, so that you nearly walk into a wall as the corridor makes
+a sudden bend.  Exits lead south and east.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11685
+D2
+~
+~
+0 0 11687
+S
+#11687
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The passage splits here, with exits to the north,
+east and west leading into darkness.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11686
+D1
+~
+~
+0 0 11691
+D3
+~
+~
+0 0 11688
+S
+#11688
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The dust stirs silently around your feet as you
+trudge through this portion of the hall.  Exits lead to the east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11687
+D3
+~
+~
+0 0 11689
+S
+#11689
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hallway bends here, forming a corner.  Exits
+lead to the north and south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11690
+D1
+~
+~
+0 0 11688
+S
+#11690
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  Exits lead to the north and south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11674
+D2
+~
+~
+0 0 11689
+S
+#11691
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black walls of the passage extend into
+darkness to both the east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11692
+D3
+~
+~
+0 0 11687
+S
+#11692
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  You sense something strange in the area, but
+dismiss it when you cannot find the source.  The only exit from this dead
+end is to the west.  
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+0 0 11691
+S
+#11693
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black walls of the passage continue to both
+the east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11694
+D3
+~
+~
+0 0 11685
+S
+#11694
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall splits here, allowing you to go east,
+west or south.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11697
+D2
+~
+~
+0 0 11695
+D3
+~
+~
+0 0 11693
+S
+#11695
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall bends here, making exits to the north
+and east.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11694
+D1
+~
+~
+0 0 11696
+S
+#11696
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall stretches into darkness to the east and
+west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11659
+D3
+~
+~
+0 0 11695
+S
+#11697
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black granite hallway has exits to the east
+and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11698
+D3
+~
+~
+0 0 11694
+S
+#11698
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The corrider splits here, allowing you to go
+north, south or west.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11700
+D2
+~
+~
+0 0 11699
+D3
+~
+~
+0 0 11697
+S
+#11699
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black hall that you are in continues to the
+north and south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11698
+D2
+~
+~
+0 0 11662
+S
+#11700
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  You feel something strange about this area, but
+are unable to determine what.  Dismissing this feeling a paranoia, you
+notice that exits lead to the north and south.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11652
+D2
+~
+~
+0 0 11698
+S
+#11701
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The black hall that you are in continues to the
+east and west.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11659
+D3
+~
+~
+0 0 11683
+S
+#11702
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hall bends sharply here, making a corner. 
+Exits lead to the north and west.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 11676
+D3
+~
+~
+0 0 11703
+S
+#11703
+The Halls of the Dead~
+You are surrounded by darkness, only barely able to see a few feet in
+front of you.  What you can see does not seem very encouraging: black stone
+walls that dully reflect light back at you; the tracks of many creatures in
+the eon old dust on the floor.  There are more noises on this level than
+others.  You can hear occasional bumps in the darkness, as if something was
+trying to move around stealthily.  A slight breeze moans through the
+deserted halls, sounding like the spirits of a thousand dead.  However you
+find that the most disturbing thing is not the thick blackness that
+surrounds you, but rather the faint glimmers of light that can be seen
+farther down the hall periodically, making you think that you will soon find
+the source of the tracks.  The hallway bends again here, as the northern
+walls meets the western one.  Exits lead to the south and east.  
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 11702
+D2
+~
+~
+0 0 11722
+S
+#11704
+At the Stairs of Light~
+This room is like any other part of the Labyrinth except for one thing:
+the door.  Entirely filling an arch laid into the wall, the door is at least
+twice the height that you are.  Made of the same black granite that the rest
+of the Labyrinth is constructed of, the door only has one symbol carved on
+it, as if to contrast the the many glowing sigla on the walls of this room. 
+The light from these sigla extends to the edge of the room, then stops, held
+back by some unseeable magical force.  Something has been carved into the
+arch above the door.  Aside from the door, the only other exit is to the
+north.  
+~
+0 401416 0
+Rd     0
+E
+words~
+Chiseled deep into the soft white rock, the words read:
+ 
+                       THE STAIRS OF LIGHT
+ 
+~
+E
+carving~
+Chiseled deeply into the black granite, the carving reads:
+ 
+                        THE STAIRS OF LIGHT
+~
+D0
+~
+~
+0 0 11667
+D5
+This huge piece of black granite is highly polished, and bears only one
+marking: a symbol carved in its exact center.  
+~
+door~
+19 0 11705
+S
+#11705
+On the Stairs of Light~
+It is obvious that the maker of the Labyrinth had a small sense of humor.
+Far from being well lit, as the name would imply, the Stairs of Light are
+nearly as dank as the rest of the Labyrinth.  Sigla, glowing softly despite
+their age, carved on wall barely provide enough light for you to keep your
+footing.  There is enough light to show you one thing though: this portion
+of the Labyrinth has been unused for centuries - at least by anything with
+feet.  The dust lies all around you, thick and unbroken, except for your
+footprints.  The Stairs of Light are more silent than the levels above you,
+with only your footsteps to remind you that you are not dead.  But, as you
+have often learned, silence can hide many things.  The stairway continues
+downwards to the east, and above you is the Halls of the Dead.  
+~
+0 401416 0
+Rd     0
+D1
+~
+~
+0 0 11706
+D4
+This side of the door is the exact same as the other side, except for the
+absence of the symbol.
+~
+door~
+19 0 11704
+S
+#11706
+On the Stairs of Light~
+It is obvious that the maker of the Labyrinth had a small sense of humor.
+Far from being well lit, as the name would imply, the Stairs of Light are
+nearly as dank as the rest of the Labyrinth.  Sigla, glowing softly despite
+their age, carved on wall barely provide enough light for you to keep your
+footing.  There is enough light to show you one thing though: this portion
+of the Labyrinth has been unused for centuries - at least by anything with
+feet.  The dust lies all around you, thick and unbroken, except for your
+footprints.  The Stairs of Light are more silent than the levels above you,
+with only your footsteps to remind you that you are not dead.  But, as you
+have often learned, silence can hide many things.  The stairs continues
+downwards, and slope upwards to the west.  
+~
+0 401416 0
+Rd     0
+D3
+~
+~
+0 0 11705
+D5
+~
+~
+0 0 11707
+S
+#11707
+On the Stairs of Light~
+It is obvious that the maker of the Labyrinth had a small sense of humor.
+Far from being well lit, as the name would imply, the Stairs of Light are
+nearly as dank as the rest of the Labyrinth.  Sigla, glowing softly despite
+their age, carved on wall barely provide enough light for you to keep your
+footing.  There is enough light to show you one thing though: this portion
+of the Labyrinth has been unused for centuries - at least by anything with
+feet.  The dust lies all around you, thick and unbroken, except for your
+footprints.  The Stairs of Light are more silent than the levels above you,
+with only your footsteps to remind you that you are not dead.  But, as you
+have often learned, silence can hide many things.  The stairs continue
+downwards to the west, and lead upwards above you.  
+~
+0 401416 0
+Rd     0
+D3
+~
+~
+0 0 11708
+D4
+~
+~
+0 0 11706
+S
+#11708
+On the Stairs of Light~
+It is obvious that the maker of the Labyrinth had a small sense of humor.
+Far from being well lit, as the name would imply, the Stairs of Light are
+nearly as dank as the rest of the Labyrinth.  Sigla, glowing softly despite
+their age, carved on wall barely provide enough light for you to keep your
+footing.  There is enough light to show you one thing though: this portion
+of the Labyrinth has been unused for centuries - at least by anything with
+feet.  The dust lies all around you, thick and unbroken, except for your
+footprints.  The Stairs of Light are more silent than the levels above you,
+with only your footsteps to remind you that you are not dead.  But, as you
+have often learned, silence can hide many things.  The bottom of the stairs
+is visible to you directly below you, and they start to slope upwards to the
+east.  
+~
+0 401416 0
+Rd     0
+D1
+~
+~
+0 0 11707
+D5
+~
+~
+0 0 11710
+S
+#11709
+Down in the Pit~
+As you step over the threshold of this part of the hall, you notice one
+very strange thing: there is no floor.  You fall down the pit, trying
+desperately to grab onto something to slow your descent.  Unfortunately, the
+walls are just as smooth as elsewhere in the Labyrinth, so you are unable to
+find anything.  You land on the floor of the pit with a loud thump, not
+doing any serious damage to yourself Luckily, the bottom was not far from
+the top, which is a few lengths above your head.  Deciding that you will
+never be able to climb back out, you look around the small room hunting for
+a way to escape.  You find one quite easily: a large man-made tunnel runs
+east, leading to unknown portions of the Labyrinth.  
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+0 0 11707
+S
+#11710
+A Mist Shrouded Room~
+The room that you stand in is similar to all the other parts of the
+Labyrinth: bare and dusty.  This room is slightly different though.  Where
+all the other rooms were made with black granite, this one has been made
+with grey marble.  Or at least that is what you think until you get a closer
+look at the walls.  You then realize that it is the same black granite as
+elsewhere, and that it is only mist coming out of a doorway to the south
+that makes the room look grey.  Aside from the fog enshrouded doorway, the
+only other exit from this room is up the Stairs of Light.  A small plaque
+has been inserted into one wall here.  
+~
+0 401420 0
+Rd     0
+E
+plaque~
+The brass plaque has been engraved with a flowing script, reading:
+ 
+                          THE GREY MISTS
+~
+D2
+~
+~
+0 0 11711
+D4
+~
+~
+0 0 11708
+S
+#11711
+In the Grey Mists~
+You do not know if you are falling or flying.  The grey mist that
+surrounds you distorts your senses, making it difficult to determine which
+way is up, much less if you are moving in a particular direction.  The fog
+swirls around you, seeping into your every pore and making you shiver,
+although it is not cold or damp.  The mist makes itself seem to extend in
+all directions forever; and for all you know about this place, it may.  It
+is said that the Grey Mists are one of the demi-planes where the demons
+begin their existance.  You hope that this is not true, for the dark fog
+could hide a million demons without your knowledge.  To the north of you,
+appears to be a door floating in the mist, with no apparent support.  In all
+other directions lies the mist.  
+~
+0 401417 9
+Rd     0
+D0
+~
+~
+0 0 11710
+D1
+~
+~
+0 0 11712
+D2
+~
+~
+0 0 11714
+D3
+~
+~
+0 0 11715
+D4
+~
+~
+0 0 11718
+D5
+~
+~
+0 0 11718
+S
+#11712
+In the Grey Mists~
+You do not know if you are falling or flying.  The grey mist that
+surrounds you distorts your senses, making it difficult to determine which
+way is up, much less if you are moving in a particular direction.  The fog
+swirls around you, seeping into your every pore and making you shiver,
+although it is not cold or damp.  The mist makes itself seem to extend in
+all directions forever; and for all you know about this place, it may.  It
+is said that the Grey Mists are one of the demi-planes where the demons
+begin their existance.  You hope that this is not true, for the dark fog
+could hide a million demons without your knowledge.  Mist lies about you in
+all directions.  
+~
+0 401417 9
+Rd     0
+D0
+~
+~
+0 0 11714
+D1
+~
+~
+0 0 11715
+D2
+~
+~
+0 0 11713
+D3
+~
+~
+0 0 11711
+D4
+~
+~
+0 0 11717
+D5
+~
+~
+0 0 11714
+S
+#11713
+In the Grey Mists~
+You do not know if you are falling or flying.  The grey mist that
+surrounds you distorts your senses, making it difficult to determine which
+way is up, much less if you are moving in a particular direction.  The fog
+swirls around you, seeping into your every pore and making you shiver,
+although it is not cold or damp.  The mist makes itself seem to extend in
+all directions forever; and for all you know about this place, it may.  It
+is said that the Grey Mists are one of the demi-planes where the demons
+begin their existance.  You hope that this is not true, for the dark fog
+could hide a million demons without your knowledge.  Mist lies around you in
+all directions.  
+~
+0 401417 9
+Rd     0
+D0
+~
+~
+0 0 11712
+D1
+~
+~
+0 0 11714
+D2
+~
+~
+0 0 11712
+D3
+~
+~
+0 0 11715
+D4
+~
+~
+0 0 11716
+D5
+~
+~
+0 0 11717
+S
+#11714
+In the Grey Mists~
+You do not know if you are falling or flying.  The grey mist that
+surrounds you distorts your senses, making it difficult to determine which
+way is up, much less if you are moving in a particular direction.  The fog
+swirls around you, seeping into your every pore and making you shiver,
+although it is not cold or damp.  The mist makes itself seem to extend in
+all directions forever; and for all you know about this place, it may.  It
+is said that the Grey Mists are one of the demi-planes where the demons
+begin their existance.  You hope that this is not true, for the dark fog
+could hide a million demons without your knowledge.  Dense grey fog lies in
+all directions.  
+~
+0 401417 9
+Rd     0
+D0
+~
+~
+0 0 11711
+D1
+~
+~
+0 0 11717
+D2
+~
+~
+0 0 11712
+D3
+~
+~
+0 0 11717
+D4
+~
+~
+0 0 11712
+D5
+~
+~
+0 0 11715
+S
+#11715
+In the Grey Mists~
+You do not know if you are falling or flying.  The grey mist that
+surrounds you distorts your senses, making it difficult to determine which
+way is up, much less if you are moving in a particular direction.  The fog
+swirls around you, seeping into your every pore and making you shiver,
+although it is not cold or damp.  The mist makes itself seem to extend in
+all directions forever; and for all you know about this place, it may.  It
+is said that the Grey Mists are one of the demi-planes where the demons
+begin their existance.  You hope that this is not true, for the dark fog
+could hide a million demons without your knowledge.  Thick dark mist swirls
+violently in whichever direction you look.  
+~
+0 401417 9
+Rd     0
+D0
+~
+~
+0 0 11718
+D1
+~
+~
+0 0 11711
+D2
+~
+~
+0 0 11717
+D3
+~
+~
+0 0 11712
+D4
+~
+~
+0 0 11714
+D5
+~
+~
+0 0 11714
+S
+#11716
+In the Grey Mists~
+You do not know if you are falling or flying.  The grey mist that
+surrounds you distorts your senses, making it difficult to determine which
+way is up, much less if you are moving in a particular direction.  The fog
+swirls around you, seeping into your every pore and making you shiver,
+although it is not cold or damp.  The mist makes itself seem to extend in
+all directions forever; and for all you know about this place, it may.  It
+is said that the Grey Mists are one of the demi-planes where the demons
+begin their existance.  You hope that this is not true, for the dark fog
+could hide a million demons without your knowledge.  A doorway to the south,
+seemingly suspended in mid-air, leads to a well lighted room.  
+~
+0 401417 9
+Rd     0
+D0
+~
+~
+0 0 11711
+D1
+~
+~
+0 0 11713
+D2
+~
+~
+0 0 11719
+D3
+~
+~
+0 0 11715
+D4
+~
+~
+0 0 11714
+D5
+~
+~
+0 0 11713
+S
+#11717
+In the Grey Mists~
+You do not know if you are falling or flying.  The grey mist that
+surrounds you distorts your senses, making it difficult to determine which
+way is up, much less if you are moving in a particular direction.  The fog
+swirls around you, seeping into your every pore and making you shiver,
+although it is not cold or damp.  The mist makes itself seem to extend in
+all directions forever; and for all you know about this place, it may.  It
+is said that the Grey Mists are one of the demi-planes where the demons
+begin their existance.  You hope that this is not true, for the dark fog
+could hide a million demons without your knowledge.  Grey mist lies as far
+as you can see in all directions.  
+~
+0 401417 9
+Rd     0
+D0
+~
+~
+0 0 11715
+D1
+~
+~
+0 0 11714
+D2
+~
+~
+0 0 11718
+D3
+~
+~
+0 0 11714
+D4
+~
+~
+0 0 11713
+D5
+~
+~
+0 0 11712
+S
+#11718
+In the Grey Mists~
+You do not know if you are falling or flying.  The grey mist that
+surrounds you distorts your senses, making it difficult to determine which
+way is up, much less if you are moving in a particular direction.  The fog
+swirls around you, seeping into your every pore and making you shiver,
+although it is not cold or damp.  The mist makes itself seem to extend in
+all directions forever; and for all you know about this place, it may.  It
+is said that the Grey Mists are one of the demi-planes where the demons
+begin their existance.  You hope that this is not true, for the dark fog
+could hide a million demons without your knowledge.  The dark fog extends as
+fas as you can see in all directions.  
+~
+0 401421 9
+Rd     0
+D0
+~
+~
+0 0 11717
+D1
+~
+~
+0 0 11718
+D2
+~
+~
+0 0 11715
+D3
+~
+~
+0 0 11718
+D4
+~
+~
+0 0 11711
+D5
+~
+~
+0 0 11711
+S
+#11719
+A Mist Shrouded Room~
+The black granite walls of this room are hard to see with all the mist in
+this room.  It flows out of a door to the north, pouring out as if it came
+from a never ending supply.  It makes it difficult to walk in this room, so
+that you nearly fall down the stairs when you come to them.  Aside from the
+door leading into the grey fog to the north, the stairs are the only exit
+from the room, their bottom hidden in darkness.  
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 11716
+D5
+~
+~
+0 0 11720
+S
+#11720
+Before the Burial Chamber~
+This room seems more grandoise than the rest of the Labyrinth somehow:
+larger, more imposing.  Yet overlaid with this feeling of completion, there
+is also a sense of peacefulness that permeates the room.  Perhaps it is
+because of the stillness.  No breeze wails through this room, nor do any
+noises break the silence.  Tall stone pillars stretch upwards, their tops
+lost in darkness.  Aside from the stairs, the only other exit is to the
+south, through a large granite door, above which something seems to have
+been carved.  
+~
+0 401417 0
+Rd     0
+E
+carving~
+==============================================================================
+============================ Renu Fal-Terra ==================================
+==============================================================================
+~
+D2
+Constructed of black granite, the door is unadorned, except for a large
+lock carved from the same material along its one side.  
+~
+door~
+23 11605 11721
+D4
+~
+~
+0 0 11719
+S
+#11721
+The Burial Chamber of Renu Fal-Terra~
+The burial chamber has lain undisturbed for eons.  As you enter, you can
+still see the footprints of the last person to enter - the tracks of Merra
+Mal-Renu are plainly visible in the thick dust.  The room only has one
+adornment: a huge stone casket, constructed out of the same black granite of
+the rest of the Labyrinth is, lies in the exact center of the room.  A red
+sigil glows brightly on the lid of the casket, unbroken despite its age. 
+The only exit from this room is the door to the north.  
+~
+0 4595721 0
+Rd     0
+D0
+A large door, carved out of a single piece of black granite.
+~
+door~
+23 11605 11720
+S
+#11722
+At the Stairs of Light~
+This room is like any other part of the Labyrinth except for one thing:
+the door.  Entirely filling an arch laid into the wall, the door is at least
+twice the height that you are.  Made of the same black granite that the rest
+of the Labyrinth is constructed of, the door only has one symbol carved on
+it, as if to contrast the many glowing sigla on the walls of this room.  The
+dim glow from these sigla extends to the edge of the room, then stops, help
+back be some unseeable magical force.  Aside from the door, the only other
+exit from this room is to the north.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11703
+D5
+Made of a polished piece of black granite, the door only has one marking:
+a glowing sigla in its center.  
+~
+door~
+19 0 11723
+S
+#11723
+On the Stairs of Light~
+It is obvious that the maker of the Labyrinth had a small sense of humor.
+Far from being well lit, as the name would imply, the Stairs of Light are
+nearly as dank as the rest of the Labyrinth.  Sigla, glowing softly despite
+their age, carved on wall barely provide enough light for you to keep your
+footing.  There is enough light to show you one thing though: this portion
+of the Labyrinth has been unused for centuries - at least by anything with
+feet.  The dust lies all around you, thick and unbroken, except for your
+footprints.  The Stairs of Light are more silent than the levels above you,
+with only your footsteps to remind you that you are not dead.  But, as you
+have often learned, silence can hide many things.  The stairs lead downwards
+to the east, and end directly above you.  
+~
+0 401416 0
+Rd     0
+D1
+~
+~
+0 0 11724
+D4
+The door is exactly the same as the other side, except that there is nor
+sigla.  
+~
+door~
+19 0 11722
+S
+#11724
+On the Stairs of Light~
+It is obvious that the maker of the Labyrinth had a small sense of humor.
+Far from being well lit, as the name would imply, the Stairs of Light are
+nearly as dank as the rest of the Labyrinth.  Sigla, glowing softly despite
+their age, carved on wall barely provide enough light for you to keep your
+footing.  There is enough light to show you one thing though: this portion
+of the Labyrinth has been unused for centuries - at least by anything with
+feet.  The dust lies all around you, thick and unbroken, except for your
+footprints.  The Stairs of Light are more silent than the levels above you,
+with only your footsteps to remind you that you are not dead.  But, as you
+have often learned, silence can hide many things.  The stairs continue below
+you, and lead upwards to the west.  
+~
+0 401416 0
+Rd     0
+D3
+~
+~
+0 0 11723
+D5
+~
+~
+0 0 11725
+S
+#11725
+On the Stairs of Light~
+It is obvious that the maker of the Labyrinth had a small sense of humor.
+Far from being well lit, as the name would imply, the Stairs of Light are
+nearly as dank as the rest of the Labyrinth.  Sigla, glowing softly despite
+their age, carved on wall barely provide enough light for you to keep your
+footing.  There is enough light to show you one thing though: this portion
+of the Labyrinth has been unused for centuries - at least by anything with
+feet.  The dust lies all around you, thick and unbroken, except for your
+footprints.  The Stairs of Light are more silent than the levels above you,
+with only your footsteps to remind you that you are not dead.  But, as you
+have often learned, silence can hide many things.  The stairs lead downwards
+to the west, and continue directly above you.  
+~
+0 401416 0
+Rd     0
+D3
+~
+~
+0 0 11726
+D4
+~
+~
+0 0 11724
+S
+#11726
+On the Stairs of Light~
+It is obvious that the maker of the Labyrinth had a small sense of humor.
+Far from being well lit, as the name would imply, the Stairs of Light are
+nearly as dank as the rest of the Labyrinth.  Sigla, glowing softly despite
+their age, carved on wall barely provide enough light for you to keep your
+footing.  There is enough light to show you one thing though: this portion
+of the Labyrinth has been unused for centuries - at least by anything with
+feet.  The dust lies all around you, thick and unbroken, except for your
+footprints.  The Stairs of Light are more silent than the levels above you,
+with only your footsteps to remind you that you are not dead.  But, as you
+have often learned, silence can hide many things.  Below you, you can barely
+make out the bottom of the stairs, which lead upwards to the east.  
+~
+0 401416 0
+Rd     0
+D1
+~
+~
+0 0 11725
+D5
+~
+~
+0 0 11727
+S
+#11727
+The Bottom of the Stairs~
+The black granite walls that surround you are like any other portion of
+the Labyrinth except for one thing: there have been magical symbols engraved
+on them.  All of the sigla are exactly the same, and they each give of a dim
+glow.  The light reveals a state of dustiness similar to all the other
+floors but for one thing.  Any markings you make in this dust disappear
+after a few seconds wait, effectively wiping out your trail.  A small plaque
+has been attached to the wall, and something has been carved above the arch
+leading to the stairs.  The only other exit from this room is to the south. 
+~
+0 401416 0
+Rd     0
+E
+carving~
+These words have been deeply engraved into the black stone:
+ 
+                          THE STAIRS OF LIGHT
+~
+E
+plaque~
+The small gold plaque bears only four words:
+ 
+                         THE HALLS OF ILLUSION
+~
+D2
+~
+~
+0 0 11728
+D4
+~
+~
+0 0 11726
+S
+#11728
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11727
+D2
+~
+~
+0 0 11729
+S
+#11729
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11728
+D2
+~
+~
+0 0 11730
+S
+#11730
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exact breezes; no echoes or sudden shifts in
+temperature to help you decide if you have been in this part of the hall
+already or not.  The only sign that you are moving at all is the steady ache
+that has been growing in your legs: you would only feel this tired after
+walking quite some ways.  The hall splits here, leading to the north, south,
+east and west.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11729
+D1
+~
+~
+0 0 11733
+D2
+~
+~
+0 0 11731
+D3
+~
+~
+0 0 11736
+S
+#11731
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11730
+D2
+~
+~
+0 0 11732
+S
+#11732
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11731
+D2
+~
+~
+0 0 11734
+S
+#11733
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the west and south.  
+~
+0 401416 0
+Rd     0
+D2
+~
+~
+0 0 11734
+D3
+~
+~
+0 0 11730
+S
+#11734
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11733
+D2
+~
+~
+0 0 11735
+S
+#11735
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11734
+D2
+~
+~
+0 0 11731
+S
+#11736
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits from this room are to the east and south.  
+~
+0 401416 0
+Rd     0
+D1
+~
+~
+0 0 11730
+D2
+~
+~
+0 0 11737
+S
+#11737
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11736
+D2
+~
+~
+0 0 11738
+S
+#11738
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired g quite some ways.  The
+only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11737
+D2
+~
+~
+0 0 11739
+S
+#11739
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The hall splits here, leading to the north, south, east and
+west.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11738
+D1
+~
+~
+0 0 11743
+D2
+~
+~
+0 0 11742
+D3
+~
+~
+0 0 11740
+S
+#11740
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the east and south.  
+~
+0 401416 0
+Rd     0
+D1
+~
+~
+0 0 11739
+D2
+~
+~
+0 0 11741
+S
+#11741
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11740
+D2
+~
+~
+0 0 11734
+S
+#11742
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11739
+D2
+~
+~
+0 0 11729
+S
+#11743
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the west and south.  
+~
+0 401416 0
+Rd     0
+D2
+~
+~
+0 0 11744
+D3
+~
+~
+0 0 11739
+S
+#11744
+The Halls of Illusion~
+The sigla that surround you provide dim light, showing you a grim scene. 
+Where the halls above you were merely repetitive, these are exactly the
+same.  Footprints that you leave in the dust disappear after a few steps. 
+Even the magical symbols are exactly alike, each one exuding the same amount
+of light.  There are no breezes; no echoes or sudden shifts in temperature
+to help you decide if you have been in this part of the hall already or not.
+The only sign that you are moving at all is the steady ache that has been
+growing in your legs: you would only feel this tired after walking quite
+some ways.  The only exits are to the north and south.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11743
+D2
+~
+~
+0 0 11745
+S
+#11745
+At the Stairs~
+You stand at the top of a flight of stairs, the bottom of which are
+shrouded in darkness.  The light from the sigla carved on the walls do not
+reach down any further than the first few steps, as if it was held back by
+some unseen barrier.  Aside from that however, this room is much the same as
+any other part of the Labyrrinth, with black granite walls and centuries of
+dust on the floor.  The only exits from this room is the hall to the north,
+and the stairs leading down.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 11744
+D5
+~
+~
+0 0 11746
+S
+#11746
+The Vault of Renu Fal-Terra~
+Magical darkness surrounds you once again, making it difficult to see. 
+You can barely make out the black stone walls around you.  Suprisingly, the
+floors here are dust free, as if the Labyrinth actually cared about what lay
+in these rooms.  Or, as if something was here to clean the area.  The only
+exits are to the south and up the stairs above you.  
+~
+0 401421 0
+Rd     0
+D2
+~
+~
+0 0 11747
+D4
+~
+~
+0 0 11745
+S
+#11747
+The Vault of Renu Fal-Terra~
+This room appears to be a dead end.  Black stone walls surround you on
+three sides, each with no apparent opening.  It is only when you take a
+closer look that you notice how the walls are highly polished, and each has
+a silver faceplate with a small keyhole in it.  This room is different than
+other rooms.  Pillars, made of the same black rock, stretch upwards
+supporting a high ceiling that not even the magical darkness can hide.  The
+floor remains dust free, whether by mechanical of magical means you know
+not.  Aside from the three locked doors, the only exit is to the north.  
+~
+0 434185 0
+Rd     0
+D0
+~
+~
+0 0 11746
+D1
+A large piece of polished black granite, bearing only a silver faceplate.
+~
+~
+55 11607 11749
+D2
+A large piece of polished black granite, bearing only a silver faceplate.
+~
+door~
+55 11607 11750
+D3
+A large piece of polished black granite, bearing only a silver faceplate.
+~
+~
+55 11607 11748
+S
+#11748
+The Vault of Renu Fal-Terra~
+This room seems like it should not belong in the Labyrinth at all.  It is
+ablaze with the light from hundreds of sigla inscribed on the wall.  While
+looking at the walls is nearly impossible, you can tell by squinting that
+they are constructed of the same black granite that the rest of the
+Labyrinth is.  While the room seems like it was designed to hold something
+important, it does not, for the room is bare.    
+~
+0 401416 0
+Rd     0
+D1
+~
+~
+55 0 11747
+S
+#11749
+The Vault of Renu Fal-Terra~
+This room seems like it should not belong in the Labyrinth at all.  It is
+ablaze with the light from hundreds of sigla inscribed on the wall.  While
+looks at the walls is nearly impossible now, you can tell by squinting that
+they are constructed of the same black granite as the rest of the Labyrinth
+is.  While the room seems like it was designed to hold something important,
+it does not, for the room is bare.    
+~
+0 401416 0
+Rd     0
+D3
+~
+~
+55 0 11747
+S
+#11750
+The Vault of Renu Fal-Terra~
+This room seems like it should not belong in th Labyrinth at all.  It si
+ablaze with the light from hundreds of sigla inscribed on the walls.  While
+looking at the walls is nearly impossible now, you can tell that they are
+constructed of the same black granite that the rest of the Labyrinth is. 
+The only furnishing in this room is the black stone box that sits in the
+exact center of the room, as if to draw your attention.  The only exit from
+this room is to the north.  
+~
+0 394252 0
+Rd     0
+D0
+~
+~
+55 0 11747
+S
+#0
+
+
+
+#SPECIALS
+M 11601 spec_poison
+M 11602 spec_fido
+M 11603 spec_fido
+M 11604 spec_cast_undead
+M 11605 spec_cast_mage
+M 11606 spec_guard
+M 11607 spec_fido
+M 11609 spec_breath_gas
+M 11610 spec_breath_fire
+S
+
+
+
+#RESETS
+M 0 11602 12 11606
+E 0 11602 0 1
+R 0 11609 3
+M 0 11602 12 11611
+E 0 11602 0 2
+M 0 11602 12 11614
+E 0 11602 0 1
+M 0 11602 12 11622
+E 0 11602 0 2
+M 0 11601 9 11624
+M 0 11602 12 11627
+E 0 11602 0 2
+M 0 11601 9 11638
+M 0 11601 9 11641
+M 0 11603 7 11645
+E 0 11603 0 20
+E 0 11604 0 18
+M 0 11602 12 11649
+E 0 11602 0 1
+M 0 11603 7 11654
+E 0 11603 0 20
+E 0 11604 0 19
+M 0 11602 12 11656
+E 0 11602 0 1
+R 0 11658 3
+M 0 11601 9 11660
+E 0 11601 0 16
+M 0 11601 9 11663
+M 0 11602 12 11665
+E 0 11602 0 1
+R 0 11670 3
+M 0 11602 12 11672
+E 0 11602 0 1
+R 0 11676 3
+M 0 11602 12 11679
+E 0 11602 0 2
+M 0 11601 9 11681
+M 0 11601 9 11687
+M 0 11603 7 11689
+E 0 11603 0 20
+E 0 11604 0 19
+M 0 11602 12 11692
+E 0 11602 0 2
+M 0 11601 9 11694
+E 0 11601 0 16
+M 0 11603 7 11699
+E 0 11603 0 20
+E 0 11604 0 18
+M 0 11601 9 11700
+M 0 11604 1 11701
+M 0 11602 12 11702
+E 0 11602 0 2
+M 0 11603 7 11709
+E 0 11603 0 20
+E 0 11604 0 18
+R 0 11711 5
+R 0 11711 0
+R 0 11712 5
+R 0 11712 5
+R 0 11713 5
+M 0 11607 2 11713
+R 0 11714 5
+R 0 11715 5
+R 0 11716 5
+R 0 11716 0
+R 0 11717 5
+R 0 11718 5
+M 0 11607 2 11718
+M 0 11606 2 11720
+E 0 11610 0 6
+E 0 11611 0 13
+E 0 11612 0 15
+E 0 11613 0 20
+E 0 11614 0 5
+G 0 11605 0
+M 0 11606 2 11720
+E 0 11610 0 6
+E 0 11614 0 5
+E 0 11612 0 15
+E 0 11613 0 20
+O 0 11606 0 11721
+P 0 11607 0 11606
+M 0 11605 1 11721
+E 0 11608 0 20
+E 0 11609 0 16
+M 0 11603 7 11731
+E 0 11603 0 20
+E 0 11604 0 18
+M 0 11603 7 11737
+E 0 11603 0 20
+E 0 11604 0 19
+M 0 11608 2 11748
+M 0 11608 2 11749
+O 0 11616 0 11750
+P 0 11617 0 11616
+P 0 11618 0 11616
+P 0 11618 0 11616
+P 0 11619 0 11616
+P 0 11620 0 11616
+P 0 11620 0 11616
+P 0 11621 0 11616
+P 0 11622 0 11616
+P 0 11628 0 11616
+P 0 11624 0 11628
+P 0 11623 0 11616
+P 0 11625 0 11628
+P 0 11626 0 11628
+P 0 11627 0 11628
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

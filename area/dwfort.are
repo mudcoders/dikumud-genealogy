@@ -1,0 +1,1676 @@
+#AREADATA
+Name        { 20-40} Dwarven Fort        Fui~
+Levels      20 40
+Builders    Reklar~
+VNUMs       700 799
+Security    100
+Recall      25001
+Flags       0
+Color       6
+End
+
+
+
+#MOBILES
+#700
+undead battlerager~
+The Undead Battlerager~
+The undead Battlerager is here waiting to find peace.
+~
+You see a rather emaciated, ashen warrior. He looks like he ought to be
+harmless, but there's really only one way to tell...
+~
+3 544 0 0 S
+20 0 0 600d0+0 0d0+0
+0 2 8 0
+0 0 1
+0 0 0
+#701
+undead dwarven citizen~
+The undead citizen~
+An undead dwarven citizen lurks about.
+~
+The short, recycled citizen looks quite a bit the worse for wear. His
+tattered garments look like he's slept in them off and on for quite a
+while.
+~
+3 66050 0 -500 S
+20 0 0 600d0+0 0d0+0
+0 10 0 0
+0 0 0
+0 0 0
+#732
+armouress tralla~
+Tralla~
+The Armouress stands behind the counter waiting for you to make a purchase.
+~
+This armouress is definately NOT armorous!  Tralla looks a little frazzled.
+Clan wars have caused a major run on dwarven armour.  
+~
+1310723 8360 0 0 S
+40 0 0 1625d0+0 0d0+0
+0 30 0 0
+0 0 2
+0 0 0
+#733
+forkal storekeeper~
+Forkal~
+The storekeeper stands here ready to work a deal.
+~
+You see a bald old dwarf pressed into service since the last storekeeper
+left for a better offer.  This one was hired because he packs a pretty good
+punch in spite of his advanced years.  
+~
+3 8360 0 0 S
+40 0 0 2000d0+0 0d0+0
+0 35 0 0
+0 0 1
+0 0 0
+#734
+bogdor weaponsmith~
+Bogdor~
+The Weaponsmith wants to know if you have a requisition form.
+~
+The weaponsmith has absolutely no couth.  He's picking his teeth with
+what looks to be an expensive dagger, and is wondering if you are a customer
+or a play toy.  
+~
+3 8872 0 0 S
+40 0 0 2000d0+0 0d0+0
+0 35 0 0
+0 0 1
+0 0 0
+#770
+miner~
+A miner~
+A short and sweaty miner is digging at the bare walls for gold.
+~
+The miner's muscles bulge from years of overwork.
+~
+1 552 0 0 S
+30 0 0 1500d0+0 0d0+0
+0 10 0 0
+0 0 1
+0 0 0
+#771
+miner~
+The miner~
+A miner is here looking for silver.
+~
+You'd feel guilty harming such a diligent worker.
+~
+3 544 0 0 S
+30 0 0 1500d0+0 0d0+0
+0 5 0 0
+0 0 1
+0 0 0
+#786
+battlerager rager~
+A battlerager~
+A young battlerager takes a break from his arduous training sessions.
+~
+This battlerager is going into a rage.  He is frothing at the mouth and
+his eyes are crazy wide.  I think he has determined YOU are the enemy and is
+moving purposefully in your direction.  
+~
+193 134217856 0 0 S
+30 0 0 975d0+0 0d0+0
+0 20 0 0
+0 0 1
+0 0 0
+>fight_prog 15~
+emote headbutts you!
+stun $n
+~
+|
+#787
+instructor~
+The Instructor~
+A combat instructor stands here studying a field notebook.
+~
+You see a strong and very nimble martial arts specialist.  He looks at
+you through narrowed eyes as if trying to decide whether to use a weapon or
+just pulverize you with his bare hands.  
+~
+97 33570944 0 0 S
+32 0 0 850d0+0 0d0+0
+0 22 0 0
+0 0 1
+0 0 0
+>fight_prog 15~
+~
+>fight_prog 25~
+disarm $n
+trip $n
+~
+|
+#788
+barmog king~
+King Barmog~
+The Kind stares at you in total disbelief.
+~
+The king is an older, highborn dwarf with a long, white beard and
+narrow piercing eyes.  He wears the blue-edged, scarlet robes of
+royalty and polished black boots.
+~
+35 33555112 16 0 S
+40 0 0 1750d0+0 0d0+0
+0 35 0 0
+0 0 1
+0 0 0
+>speech_prog yes yup sure y~
+say Since thou has agreed to service me, Thou shall be given a title.
+mpforce $n title The &YHonorary &RBattleRager &GFor &PKing Barmog!
+say You are now known as $N.
+say Go forth and service the Dwarven Empire.
+~
+>all_greet_prog 100~
+say How dare Thou Enter my Fortress, $n!
+Say Dost Thou Service Me?
+say Answer!!
+~
+>speech_prog no nope n~
+say If Thou shall not service me then Thou shall die!
+mpecho &PThe King summons one of his Royal Guards.
+mpmload 794
+mpforce guard mpkill $n
+mpkill $n
+say Die!
+~
+|
+#792
+undead royal guard~
+The undead Royal Guard~
+An undead Royal Guard wanders here awaiting a chance for redemption.
+~
+The guard looks almost embarrased.  His royal robes have moth holes in
+them and the insignia on his belt is green with tarnish.  You'd be doing him
+a great favor by providing him a fresh start.  
+~
+3 672 0 -500 S
+25 0 0 840d0+0 0d0+0
+0 2 0 0
+0 0 1
+0 0 0
+#794
+guard royal~
+A Royal Guard~
+A Royal Guard stands here eyeing you suspiciously.
+~
+You see a short, blond-haired guard who has lost his patience with
+foreign intruders.  
+~
+35 16544 0 0 S
+40 0 0 1700d0+0 0d0+0
+0 35 0 0
+0 0 1
+0 0 0
+#796
+tax collector dwarven bureaucrat~
+The Tax Collector~
+A sneaky little bureaucrat is here demanding your back taxes.
+~
+This little guy is one of the King's many functionaries dedicated to
+keeping the royal coffers stocked ...  At your expense of course.  
+~
+65 98818 0 0 S
+20 0 0 550d0+0 0d0+0
+0 10 0 0
+0 0 1
+0 0 0
+#797
+drog leader~
+Drog~
+The Clan Leader winks at you.
+~
+Drog is taller and stouter than most of the other dwarves around.  A few
+cuts on his face indicate he's seen more than his share of brutal combat.  
+~
+35 33555112 0 0 S
+35 0 0 1300d0+0 0d0+0
+0 25 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote looks up from the battle plans.
+say Gentlemen, I believe we have an intruder.
+emote looks around the room at his men.
+endif
+~
+>fight_prog 15~
+kick $n
+~
+>fight_prog 30~
+punch $n
+~
+>fight_prog 31~
+emote slams into you with his head!
+stun $n
+~
+|
+#798
+soldier~
+A clan soldier~
+A clan soldier is here.
+~
+From the rank on his lapels, this soldier appears to be a lieutenant and
+in charge of the stronghold security.  He's short, quick and could probably
+land the killing blow very easily. 
+~
+35 16512 0 0 S
+33 0 0 1170d0+0 0d0+0
+0 23 0 0
+0 0 1
+0 0 0
+>fight_prog 10~
+disarm $n
+~
+>act_prog 20~
+trip $n
+~
+|
+#799
+dwarven citizen~
+A dwarven citizen~
+A stronghold citizen is here smiling in your direction.
+~
+You see an ordinary dwarven citizen dressed in ordinary dwarven clothing
+going about his ordinary business.  You almost hate to upset his life by
+hacking him to pieces.  
+~
+3 8320 0 0 S
+35 0 0 1500d0+0 0d0+0
+0 10 0 0
+0 0 1
+0 0 0
+#0
+
+
+
+#OBJECTS
+#700
+sign~
+the entry sign~
+A sign wobbles in the breeze.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sign~
+*** For Levels 20 - 40 ***
+ Proceed at your own Risk
+~
+#701
+pair dwarven boots~
+a pair of dwarven boots~
+A pair of strong dwarven boots rest here.~
+~
+9 0 0 0 65 20
+1~ 0~ 0~ 0~
+12 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 -15
+A
+13 20
+E
+pair dwarven boots~
+A strong and sturdy pair of hard-leather boots.
+~
+#702
+sapphires handful~
+&ca small handful of tiny sapphires&X~
+&cA small handful of tiny sapphires is here.~
+~
+8 0 0 0 1 40
+0~ 0~ 0~ 0~
+2 14 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#713
+hammer tool smithy~
+a smithy's hammer~
+A big smithy hammer rests upon the huge anvil.~
+~
+13 2 0 32763 16385 30
+0~ 0~ 0~ 0~
+30 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hammer tool smithy~
+A great hammer indeed! A feeling of awe overcomes you as you stare upon the
+precious runes that only the most ancient of dwarven kind can read.
+~
+#714
+anvil~
+a huge anvil~
+A huge anvil rest in the center of the room, waiting.~
+~
+12 3 0 0 0 50
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+anvil~
+A large anvil flares up here waiting for the forge to be of use.
+~
+#715
+forge~
+a blazing forge~
+A blazing forge burns away, waiting to be used.~
+~
+12 33554432 0 0 0 50
+0~ 0~ 0~ 0~
+1000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+forge~
+The forge blazes eternally.
+~
+#740
+fountain~
+a fountain~
+A fountain is bubbling with crystal clear water.~
+~
+25 0 0 0 0 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+fireshield~
+0 0
+0 0 0
+#750
+battleaxe battle axe~
+a battleaxe~
+A very sharp battleaxe rests here.~
+~
+5 0 0 51578 8193 40
+0~ 0~ 0~ 13~
+9 2 8 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 64
+A
+2 -1
+E
+battleaxe~
+&wA very powerful looking battleaxe is made of a fine metal.
+~
+E
+battle axe~
+&wA battleaxe has been well crafted of the finest of metals.
+~
+#751
+warhammer royal barmog~
+the royal warhammer of Barmog~
+A gem encrusted warhammer rests here.~
+~
+5 1 4612 0 8193 40
+0~ 0~ 0~ 8~
+12 0 35 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 40
+A
+19 70
+A
+2 -1
+A
+1 1
+E
+royal warhammer~
+A very prestigious hammer indeed. Encrusted with gems of all sorts, this
+is definately the hammer of a King.
+~
+#753
+green token~
+&ga green token&W~
+&gA green token has been lost here.~
+~
+9 1 0 0 32769 37
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 6
+E
+token~
+A small green token.
+~
+#754
+miner goggles~
+a set of miner's goggles~
+A pair of protective goggles rests here.~
+~
+27 0 0 0 131585 30
+30~ 2~ 2~ faerie fire~
+5 0 0 7 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+E
+miner goggles~
+A pair of well-used protective goggles.
+~
+#755
+key sky-blue~
+&Ca sky-blue key&X~
+&CA sky-blue key rests here.~
+~
+18 0 0 0 16385 40
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sky-blue key~
+&CA sky-blue key... almost like it's made of a blue crystal.
+~
+#756
+helmet obsidian dwarven~
+an obsidian helmet~
+A rock hard dwarven helmet rests here.~
+~
+9 0 0 48000 17 20
+0~ 0~ 0~ 0~
+3 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -20
+A
+1 1
+E
+obsidian helmet~
+A blackened helmet made of a very hard material, like rock.
+~
+#757
+gold pile~
+a gold pile~
+A pile of gold rests on the ground.~
+~
+20 0 0 0 1 1
+25~ 0~ 0~ 0~
+1 25 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#758
+rock bracelet~
+a rock bracelet~
+A rock bracelet rests on the ground here.~
+~
+9 0 0 0 4097 30
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+A
+2 1
+E
+rock bracelet~
+A simple rock bracelet. It is rugged around the edges but the different
+colors through it are kind of pretty in a rough way. Bits of silver can
+be seen in the bracelet as well.
+~
+#775
+fountain~
+fountain~
+The fountain is bubbling with clear water.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+1100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#776
+pick miner~
+a miner's pick~
+A miner's pick rests here.~
+~
+5 0 0 0 8193 30
+0~ 0~ 0~ 13~
+5 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 40
+A
+19 50
+E
+pick miner~
+A simple mining tool to hack away at rock and stone.
+~
+#778
+ring goold~
+&Ya gold ring&X~
+&YA gold ring sparkles in the available light.~
+~
+9 2 0 0 3 35
+0~ 0~ 0~ 0~
+6 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+5 1
+E
+gold ring~
+&YA simple gold band.
+~
+#781
+azure key~
+an azure key~
+An azure key rests on the ground here.~
+~
+18 0 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+azure key~
+&cAn azure key is a lovely color but has no distinct markings.
+~
+#0
+
+
+
+#ROOMDATA
+#700
+Wide Spot On the Mountain Path~
+This area is the clearing of the forests.  Wild flowers grow in the
+bushes surrounding the area.  Small trees grow around the clearing but the
+area inside is too tightly stomped down for any life to poke through.  A
+hole in the ground leads down and a dark trail splinters off to the north.  
+~
+0 4 4
+Rd     0
+E
+hole~
+Alot of foliage covers the majority of the hole and it wouldn't be safe to
+try to get a closer look. The only way to find out is to venture forth.
+~
+E
+trail~
+Looks like some sort of dark tunnel.
+~
+D0
+Looks like some sort of dark tunnel.
+~
+~
+0 0 701
+D5
+The hole is covered by much foliage. Trying to get a better look would be
+dangerous. The only way to be sure is to check it out.
+~
+~
+0 0 2111
+S
+#701
+Tunnel~
+The trail here ends and enters into a tunnel.  The tunnel is made of a
+dark colored material reflecting the light from the entrance.  The walls in
+this area are smooth except for a carving on a far wall.  
+~
+0 5 3
+Rd     0
+E
+carving~
+This tunnel marks the beginning of the Dratbrat dwarven stronghold.  The
+dwarves here hate all races save dwarven, and INTENSELY hate all intruders. 
+Over the centuries, they've evolved quite a military clan system with the
+single aim of making the Dratbrat stronghold the dominant hold in the realm.
+I fear for the worst!   - Lor Reth, adventurer -
+~
+D0
+~
+~
+0 0 702
+D2
+~
+~
+0 0 700
+S
+#702
+Central Core~
+As you look over the edge of this yawning cavity, you can just barely
+detect the bottom hundreds of feet below.  Perhaps if you were VERY careful
+you could climb down.  Tunnels stretch in all directions from here.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 703
+D1
+~
+~
+0 0 710
+D2
+~
+~
+0 0 701
+D3
+~
+~
+0 0 707
+D5
+~
+~
+0 0 720
+S
+#703
+Northern Corner~
+This is a tight corner to make.  The solid rocks become slightly jagged
+in this area.  Silence is slightly available here.  The tunnel continues
+south and east.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 705
+D2
+~
+~
+0 0 702
+S
+#705
+End of the Northern Corridor~
+You are at the end of a short granite corridor.  Rancid water drips from
+the ceiling creating an odd smell.  A worse odor pours in from the
+underneath of the east doorway.  
+~
+0 8 0
+Rd     0
+E
+door~
+A door stands here in the east.
+~
+E
+doorway~
+A doorway stands here in the east.
+~
+D1
+You see a door.
+~
+door~
+3 0 706
+D3
+~
+~
+0 0 703
+S
+#706
+Tomb~
+This room looks as if it may be used as a tomb.  The solid black stone
+walls create a slight fog on the floor.  A single, long black coffin sits in
+the center.  Whatever it was designed to hold obviously got away, since the
+cover of the coffin lies against the north wall.  
+~
+0 8 0
+Rd     0
+E
+door~
+A door stands here in the west wall.
+~
+D3
+A door stands here in the west wall.
+~
+door~
+3 0 705
+S
+#707
+Western Corner~
+This is another tunnel inside the fortress.  It resembles the other
+tunnels with its clean black solid walls.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 708
+D1
+~
+~
+0 0 702
+S
+#708
+End of Corridor~
+The tunnel comes to an abrupt end here.  A door would appear to had been
+cut into the northern wall.  Odd sounds echo forth from it.  The tunnel
+continues on its way south.  
+~
+0 8 0
+Rd     0
+E
+door~
+A door stands here in the northern wall. Evidently, to keep out unwanted
+visitors.
+~
+D0
+You see a door which was evidently placed here to keep out unwanted
+visitors.  
+~
+~
+3 0 709
+D2
+~
+~
+0 0 707
+S
+#709
+A Rather Nondescript Crypt~
+You've wandered into what passes for the crypt low-rent district, a
+wooden box rests on the granite floor with nothing in it.  The granite here
+changes slightly from the others.  This granite has been mixed with other
+minerals to form a speckled colored rock-face.  The simple wooden box in the
+middle of this crypt is empty and its simple lid sits on the ground broken
+and battered.  For certain, something did not like to be boxed up.  
+~
+0 8 0
+Rd     0
+E
+door~
+A door stands here in the southern wall.
+~
+D2
+A door stands here in the southern wall.
+~
+door~
+3 0 708
+S
+#710
+Eastern Corner of Corridor~
+Lots of tunnels around here, and this one, like most of them, was
+laboriously hacked out of granite.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 711
+D3
+~
+~
+0 0 702
+S
+#711
+End of Eastern Corridor~
+You stand at yet another dead end in this dark, gloomy mountain resort.
+There are sounds coming from the north tunnel.  A slight breeze echoes
+through this area of the tunnel.  A door of shining wood stands proudly to
+the south.  
+~
+0 8 0
+Rd     0
+E
+door~
+You spot a door made of purloined oak.
+~
+D0
+~
+~
+0 0 710
+D2
+You spot a door made of purloined oak.
+~
+~
+3 0 712
+S
+#712
+Royal Crypt~
+Most of the inhabitants here were rather high up in the dwarven
+hierarchy.  Some of the more lively ones are unhappy with their fate and
+have climbed out of their containers.  
+~
+0 8 0
+Rd     0
+D0
+A door stands here in the northern wall.
+~
+door~
+3 0 711
+S
+#713
+An Abandoned Smithy~
+Although this room looks abandoned when you first glance at it from
+behind the rubble, you notice a huge anvil and the very hot looking forge
+next to it, in the center of the room.  There is also a huge hammer set upon
+the anvil.  It looks like a very good tool.  It's pretty easy to figure out
+that this is where the dwarves come to create their metallic masterpieces.  
+~
+0 2264092 5
+Rd     0
+D1
+A great pile of rubble blocks the east passage.
+~
+rubble~
+3 0 768
+S
+#720
+In the Central Core~
+This a large core hole in the ground.  Water drips down making the
+granite slippery and hard to grip.  Climbing is difficult but possible.  
+~
+0 8 0
+Rd     0
+D4
+~
+~
+0 0 702
+D5
+~
+~
+0 0 721
+S
+#721
+Busy Intersection ~
+There are shops and residences to the east and west of here.  It looks
+like a pretty peaceful area.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 722
+D3
+~
+~
+0 0 727
+D4
+~
+~
+0 0 720
+D5
+~
+~
+0 0 735
+S
+#722
+Much Travelled Tunnel~
+The granite floor here is polished from centuries of foot traffic. Someone
+has taken the liberty of littering the corner with their garbage.
+~
+0 8 0
+Rd     0
+E
+garbage~
+There are some leftover pieces of dried venison here. It has long since
+gone bad.
+~
+D1
+~
+~
+0 0 723
+D3
+~
+~
+0 0 721
+S
+#723
+End of Tunnel~
+This is the eastern end of the merchant tunnel.  To the north is the
+armory while to the south is the general store.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 724
+D1
+A non-descript door is here at the eastern end of the tunnel.
+~
+~
+3 0 725
+D2
+~
+~
+0 0 726
+D3
+~
+~
+0 0 722
+S
+#724
+Dwarven Armory~
+This is the Dwarven Armor Store.  Although most of the attitude in the
+fortress is against all outsiders it might be possible to actually buy items
+here.  
+~
+0 1032 0
+Rd     0
+D2
+~
+~
+0 0 723
+S
+#725
+Home of a Dwarven Citizen~
+Furniture here is pretty scarce.  Taxes must be taking their toll in this
+household.  Looks like the owner could only a afford a small mattress on the
+floor, and a little writing table with chair.  
+~
+0 8 0
+Rd     0
+D3
+A non-descript door stands here in the west wall.
+~
+door~
+3 0 723
+S
+#726
+General Store~
+Most dwarves aren't too keen on leaving the mountain, but for those who
+dare, the General Store supplies their basic adventuring necessities.  
+~
+0 1032 0
+Rd     0
+D0
+~
+~
+0 0 723
+S
+#727
+Merchant Tunnel~
+The Merchants' Association has pasted a sign on the wall offering a
+reward for the capture, dead or alive, of the fugitive or fugitives who
+snuck in and stole all the better equipment.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 721
+D3
+~
+~
+0 0 728
+S
+#728
+West End~
+You are amazed at the stupidity of a race which would hack this many
+tunnels out of solid granite.  There are doors to the north and west, while
+to the south lurks Bogdor, the Weaponsmith.  
+~
+0 8 0
+Rd     0
+D0
+A rather non-descript little door stands in the north wall.
+~
+door~
+3 0 729
+D1
+~
+~
+0 0 727
+D2
+~
+~
+0 0 731
+D3
+A small door stands almost hidden in the west wall.
+~
+door~
+3 0 730
+S
+#729
+House of a Citizen~
+This is one of the many homes in the dwarven fortress.  This like most of
+the others is scarcely furnished due to the lack of money to go around.  
+~
+0 0 0
+Rd     0
+D2
+~
+door~
+3 0 728
+S
+#730
+Citizen's Home~
+You see the nicely furnished home of a common dwarven citizen who dreams
+of someday joining the Clan and bettering his humble lot in life.  It
+appears you've dropped in just in time for dinner.  The table is set with
+steaming lizard stew being the main course.  
+~
+0 8 0
+Rd     0
+E
+stew~
+&gMmMMmMmmmmm... green, but yummy.
+~
+D1
+A door stands over in the east wall.
+~
+door~
+3 0 728
+S
+#731
+Weapon Shop~
+Standing behind an onyx counter, Bogdor, the arms custodian, is busy
+signing out weapons of mass destruction.  You look around and realize you
+don't have the required requisition form.  Hmmm...  You wonder if you might
+bribe Bogdor with a little cash.  
+~
+0 1032 0
+Rd     0
+D0
+~
+~
+0 0 728
+S
+#735
+Further Down the Central Core~
+This is another section of the central core of rock in the dwarven
+fortress.  It is solid granite.  It's moist sides gleam in thier own
+elegance.  The rancid smell of damp air stings at your nostrils.  
+~
+0 12 0
+Rd     0
+D4
+~
+~
+0 0 721
+D5
+~
+~
+0 0 736
+S
+#736
+Clan Intersection~
+You stand in the center of a north south corridor and you notice a small
+sign carved in the rock: 
+ 
+            - Per Battlerager Clan -
+            Absolutely NO ADMITTANCE!
+   Slaves and non-clan entities will be killed on sight!
+ 
+
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 737
+D2
+~
+~
+0 0 740
+D4
+~
+~
+0 0 735
+D5
+~
+~
+0 0 760
+S
+#737
+Northern Clan Tunnel~
+You get the distinct impression you really don't belong here.  The
+crests hanging off the walls don't make a whole lot of sense.  The strange
+vibration coming from the north scares the stuffing out of you, and, come to
+think of it, you remember you have an appointment with a tooth-extraction
+mage somewhere far, far away from this mountain.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 738
+D1
+~
+~
+0 0 793
+D2
+~
+~
+0 0 736
+S
+#738
+Entrance to Clan Headquarters~
+You can still turn back, and that would probably be a good idea.  The
+door to the west looks like it was closed for a reason.  This is the
+Entrance to the Clan Headquaters.  The door to the west stands trying to
+keep unwanted visitors from entering.  
+~
+0 12 0
+Rd     0
+D2
+~
+~
+0 0 737
+D3
+You see a massive wooden door with a NO ADMITTANCE sign on it.
+~
+door~
+3 0 739
+S
+#739
+Clan Leader's Headquarters~
+This place is very busy.  Campaign charts hang from the walls.  A huge
+table stands in the center of the room with miniature combatants
+strategically placed all over a map there.  Soldiers are gathered around the
+table intently planning their next raid.
+~
+0 8200 0
+Rd     0
+E
+door~
+A large wooden door stands in the east wall here.
+~
+D1
+A large wooden door stands in the east wall here.
+~
+door~
+3 0 738
+S
+#740
+Fountain of Rest and Restoration~
+A fountain with clear water has been built here to help unwanted guests
+prepare for their final journey.  
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 736
+D1
+~
+~
+0 0 741
+S
+#741
+Battlerager Arena~
+You can hear the clashing of axes and the grunting and groaning of
+serious contenders for the clan leader's favour.  This appears to be the
+practice arena where really good battleragers become truly excellent
+battleragers.  Enter at your own risk.  
+~
+0 8200 0
+Rd     0
+D0
+~
+~
+0 0 742
+D1
+~
+~
+0 0 746
+D2
+~
+~
+0 0 743
+D3
+~
+~
+0 0 740
+S
+#742
+Northwest Corner~
+It gets a little cramped in here from time to time.  The only way to get
+breathing room is to kill off all the battleragers you can find.  
+~
+0 8200 0
+Rd     0
+D1
+~
+~
+0 0 747
+D2
+~
+~
+0 0 741
+S
+#743
+Arena~
+You are at the southwest corner of the arena.  You almost forget in all
+the commotion you are hundreds of feet below the surface of the mountain and
+that an earthquake event could occur at any time.  
+~
+0 8200 0
+Rd     0
+D0
+~
+~
+0 0 741
+D1
+~
+~
+0 0 744
+S
+#744
+Arena~
+You've arrived at the southeast corner of the arena.  It is said that
+when the ragers totally lose it and run out of victims they bash themselves
+senseless on these rock walls.  
+~
+0 8200 0
+Rd     0
+D0
+~
+~
+0 0 746
+D3
+~
+~
+0 0 743
+S
+#746
+Arena~
+This is the east end of the arena.  The walls are pitted and streaked
+with blood.  
+~
+0 8200 0
+Rd     0
+D0
+~
+~
+0 0 747
+D2
+~
+~
+0 0 744
+D3
+~
+~
+0 0 741
+S
+#747
+Northeast Corner~
+Broken weapons litter the floor here...  The majority of them being axe
+handles.  There is the occasional mace head and dagger.  The floor is
+covered in stains of dried blood.  
+~
+0 8200 0
+Rd     0
+D2
+~
+~
+0 0 746
+D3
+~
+~
+0 0 742
+S
+#760
+In the Central Core~
+Light from the top is getting pretty weak here and you start to get a
+little worried there might not be a way out of this mountain.  
+~
+0 8 0
+Rd     0
+D4
+~
+~
+0 0 736
+D5
+~
+~
+0 0 761
+S
+#761
+Tunnel Intersection~
+Exits stretch in all directions.  You can hear hacking and banging all
+around you. The musty air makes it hard for you to breathe, but it's nothing
+you can't handle.
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 762
+D1
+~
+~
+0 0 765
+D2
+~
+~
+0 0 769
+D3
+~
+~
+0 0 768
+D4
+~
+~
+0 0 760
+D5
+~
+~
+0 0 780
+S
+#762
+Mine Tunnel~
+Most of these mine tunnels look pretty much alike: dark, dreary,
+with the sour smell of sweat pervading the area.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 763
+D2
+~
+~
+0 0 761
+S
+#763
+North End~
+The passage to the north doesn't look like it would take you very far
+as it has been all mined out. South is the only interesting option.
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 762
+S
+#765
+Mining Tunnel~
+You can see by the bare walls that the dwarven miners didn't miss much in
+their findings.  The corridor is pretty bare of traffic as well.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 766
+D3
+~
+~
+0 0 761
+S
+#766
+East End~
+This part of the mine comes to an abrupt stop. Something big must have
+happened to make the mining dwarves put a halt to their work.
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 765
+S
+#768
+Tunnel~
+The rock here is laced with gold and several broken mining axes litter
+the floor.  Seems there was a rockslide of some sort, judging from the
+rubble near the western wall.  
+~
+0 8 0
+Rd     0
+E
+rubble~
+A large pile of rubble blocks the passageway to the west.
+~
+D1
+~
+~
+0 0 761
+D3
+A large pile of rubble blocks the passageway to the west.
+~
+rubble~
+3 0 713
+S
+#769
+South Tunnel~
+The excavation of this area has only recently been started. Fresh piles
+of boulders and small pebbles from digging lie about. A few mining tools
+can also be seen. An empty silence echoes in this area.
+~
+0 8388616 0
+Rd     0
+D0
+~
+~
+0 0 761
+S
+#780
+Bottom of the Central Core~
+Having reached the bottom of the central core you breathe a sigh of
+relief.  You managed to outwit the gods with your continued survival.  There
+is only one exit ...  A gaping hole to the west.  
+~
+0 8 0
+Rd     0
+E
+hole~
+There is a very large hole here in the west wall.
+~
+D3
+A large hole makes for passage in the west wall here.
+~
+~
+0 0 781
+D4
+~
+~
+0 0 761
+S
+#781
+Crystal Tunnel~
+You are amazed at the brilliance of the work here.  It must have taken a
+lot of pick-axes to make the slightest dent in this very expensive looking
+rock.  You are troubled by the notion that if they would go to all this
+trouble, there must be a pretty good reason nearby.  
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 782
+D1
+~
+~
+0 0 780
+S
+#782
+Royal Guard Station~
+The guards here look like they'd enjoy beating your paltry hide against
+these granite walls just for thinking bad thoughts about the King.  By the
+way, the King can be heard shouting profanities to the east. It sounds like
+he hasn't been having a very good day.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 783
+D2
+~
+~
+0 0 781
+S
+#783
+Throne Room~
+This is the King's Throne room.  A jewel encrusted throne shows off the
+king's wealth.  It shows that in the olden days mining must have been somewhat
+profitable.  Gems, rubies and diamonds shine intensely as you enter.  
+~
+0 8200 0
+Rd     0
+E
+door~
+A small secret door is above you in the ceiling.
+~
+D3
+~
+~
+0 0 782
+D4
+A small hidden door. You almost missed it.
+~
+"safe door"~
+23 755 785
+S
+#785
+Secret Room~
+You could barely squeeze yourself through the entrance but it appears to
+have been worth the trouble.  This looks like the king's version of a hidden
+safe.  
+~
+0 8 0
+Rd     0
+E
+safe~
+The safe door is small and well hidden. You almost missed it.
+~
+D4
+~
+~
+0 0 702
+D5
+There is a door beneath your feet.
+~
+"safe door"~
+23 755 783
+S
+#793
+Bellow Fellow Tavern~
+This is the battlerager party room.  A couple of the patrons are
+comfortably propped in the chandeliers snoring soundly.  Beer and smoke
+stains smear the walls.  In between rages this room gets a lot of use.  
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 737
+S
+#0
+
+
+
+#SPECIALS
+M 796 spec_thief
+S
+
+
+
+#RESETS
+O 0 700 0 700
+M 0 700 1 706
+E 0 701 0 12
+M 0 701 1 709
+M 0 792 1 712
+E 0 756 0 6
+O 0 713 0 713
+O 0 714 0 713
+O 0 715 0 713
+M 0 732 1 724
+M 0 799 1 725
+M 0 733 1 726
+M 0 799 1 729
+M 0 799 1 730
+M 0 734 1 731
+M 0 796 1 735
+E 0 753 0 9
+M 0 797 1 739
+E 0 778 0 2
+E 0 750 0 20
+M 0 798 2 739
+E 0 750 0 20
+O 0 775 0 740
+M 0 786 2 741
+E 0 750 0 20
+M 0 787 1 741
+E 0 750 0 20
+M 0 771 1 762
+E 0 776 0 20
+E 0 758 0 19
+M 0 770 1 765
+E 0 776 0 20
+E 0 754 0 7
+M 0 794 2 782
+E 0 750 0 20
+M 0 788 1 783
+E 0 751 0 20
+E 0 755 0 22
+E 0 756 0 6
+O 0 757 0 785
+O 0 702 0 785
+S
+
+
+
+#SHOPS
+732 9 0 0 0 0 100 60 1 24
+733 19 17 1 15 0 100 60 1 24
+734 5 0 0 0 0 100 60 1 24
+0
+
+
+
+#$

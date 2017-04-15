@@ -1,0 +1,3788 @@
+#AREADATA
+Name        {40-100} Ralisan             Aegean~
+Levels      0 0
+Builders    Aegean~
+VNUMs       5550 5651
+Security    1
+Recall      7445
+Flags       16
+Color       6
+Sounds      &OSmall pillars of dust arise about you as carts move along their way.~
+End
+
+
+
+#MOBILES
+#5595
+jharel shopkeeper searnia~
+Jharel~
+Jharel, the local dabbler in the arcane arts, is here.
+~
+Dull grey colored hair spills down his back in neatly tied bundles with
+two in the front on either side and one larger one down the middle of his
+back.  A worn looking purple robe lies about his shoulders with enough
+wrinkles to suggest it's been slept in more often than not.  Small slippers
+peek out from beneath the robe's low hem.  Yet for all his appearance of
+being absent-minded his blue eyes shine with a crystal light betraying a
+deep intelligence beneath them.  His gaze searches your appearance
+questioningly as he turns his head in your direction.  
+~
+67 67649704 0 0 S
+100 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>rand_prog 2~
+mpecho &YSparks&c of &Ylightning&c dance about the ends of Jharel's fingers
+mpecho &cas he murmuers a few words and produces yet another scroll that he
+mpecho &cplaces amoung his stock of spells.
+mpasound &YBright light&w flickers from beneath the door to the south.
+~
+|
+#5596
+rinnus shopkeeper searnia~
+Rinnus~
+A strong armed man, named Rinnus, tends shop here.
+~
+Sweat trickles down the near stone-cut face of this hard man before you. 
+His leg-thick arms alone make you ponder to yourself about how much he'd be
+able to lift if needed.  A soot covered black leather blacksmith's vest
+covers his chest and he's holding a heavy looking steel hammer in one hand
+with it half-raised to strike down upon the piece of metal at the anvil he
+was working before you came in.  His dark hazel eyes regard you somewhat
+questioningly as he moves near where you wait.  
+~
+67 33554600 0 0 S
+100 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>rand_prog 10~
+mpasound The loud hammering of steel on steel rings in your ears from the east.
+if rand(45)
+  mpecho Rinnus brings down his hammer swinging methodically to shape a piece
+  mpecho &wof metal held in a pair of metal tongs above an anvil.
+endif
+~
+|
+#5597
+deariv shopkeeper searnia~
+Deariv~
+Deariv, the town's weaponsmith, stands here polishing a broadsword.
+~
+A look of hard experience lies behind the dark hazel eyes regarding you. 
+Deariv stands calmly polishing a long broadsword's blade with an oily rag. 
+As you enter he sets turns the sword in his hand resting it's point into the
+ground with his hands resting peacefully, or so you hope, upon the massive
+hilt.  A look of question spreads across his face for just a moment at your
+appearance, but disappears as quickly as it came.  
+~
+67 134217896 0 0 S
+100 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#5598
+arais shopkeeper searnia~
+Arais~
+A plump looking woman in a spotless white apron hustles about here.
+~
+Dry-washing her hands, Arais walks over and bobs a formal curtsey to you.
+A look of open friendliness is shown on her face, first of it you've seen in
+these lands, wether geniune or for business you find yourself not even
+really caring.  Glancing at her casually you see by her appearance and the
+appearance of her inn that she's very professional at her job and takes
+pride in it.  Her face might have held a fair amount of beauty a dozen years
+ago, but with time and the obvious strain of life as she's lived it wrinkles
+have begun to mar that beauty.  
+~
+67 16552 0 0 S
+100 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#5599
+dlamar shopkeeper searnia~
+Dlamar~
+A tall, lanky man with flaring mustaches stands here.
+~
+Standing nearly a half a head taller than you while skinny to the point
+of abnormally for his size, Dlamar makes an odd sight compared to his fellow
+Searnian citizens.  Flaring black mustaches fan out on either side of
+Dlamar's face as he looks at you questioningly.  
+~
+67 67109032 0 0 S
+100 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#5600
+elder man searnia~
+The Village Elder~
+The village's elder walks about here checking on his citizens.
+~
+Wrinkles crease the man's elderly face like a piece of crumpled up paper.
+Yet despite his appearant age the man's intelligence seems still firmly in
+control behind those piercing blue eyes.  A large medalion hangs about his
+neck marking his rank of elder, thought very little about this man's actions
+don't mark him as some form of leader.  Not through pushiness, but in the
+way that people part before him with a warm smile and acknowledge his
+presence as he walks by.  Small town or no, this man commands the kind of
+respect few kings find in their followers.  
+~
+65 234881256 0 0 S
+100 0 0 7250d0+0 0d0+0
+0 6 40 0
+0 0 1
+3 0 0
+#5602
+man citizen ralisan searnia~
+A village citizen~
+One of the village's many citizens wanders by here on an errand.
+~
+Carrying a bundled up sack of items his wife's sent him out to fetch this
+man steps cautiously out of your way with merely a sidelong questioning
+glance at your appearance.  Muttering to himself about the sack's weight he
+continues on about his business paying you little outright attention.  
+~
+65 104 131072 0 S
+70 0 0 12000d0+0 0d0+0
+0 0 10 0
+0 0 1
+3 0 0
+#5603
+woman citizen ralisan searnia~
+A village citizen~
+One of Ralisan's female citizens wanders about idling shoping.
+~
+Looking much like any other female citizen within the small cliff village
+this lady steps out of your way cautiously sparing a sidelong questioning
+glance in your direction.  Adjusting the basket of fruit looped around one
+of her arms she moves on about her shopping for food without paying you any
+more attention.  
+~
+65 104 131072 0 S
+70 0 0 11000d0+0 0d0+0
+0 0 12 0
+0 0 2
+3 0 0
+#5604
+boy child ralisan searnia~
+A child~
+A small boy from Ralisan wanders about here.
+~
+Short and skinny, this little boy hops about looking for new mischief to
+get himself into.  His hazel eyes regard you for a moment with a question in
+them, but he quickly looks away looking for something of more interest to
+his life.  Walking barefoot he pads by you, with a pair of brown breeches
+and a grayish-tan colored tunic as the rest of his outfit, by a casual
+glance.  
+~
+65 104 0 0 S
+40 0 0 3000d0+0 0d0+0
+0 0 5 0
+0 0 1
+3 0 0
+#5605
+girl child ralisan searnia~
+A child~
+A young girl walks about smiling at nearby villagers.
+~
+A young girl strides by with a warm smile on her face waving at nearby
+villagers.  She glances at your appearance questioningly, then looks away
+for something of more interest to her.  A white blouse paired with a skirt
+of light brown cloth her down to her bare feet as she walks down the street.
+~
+65 104 0 0 S
+40 0 0 3000d0+0 0d0+0
+0 0 5 0
+0 0 2
+3 0 0
+#5606
+keim captain guard ralisan searnia~
+Keim~
+Keim, Captain of the Ralisan Garrison, walks here keeping the peace.
+~
+You size Keim up with your glance noting his rather well trained stance,
+ready to handle any problems this town may incur.  One hand lies above his
+eyes shielding them from the sky's light while the other rests on the hilt
+of his sword.  His armor glistens with an almost glassy look while made of
+chain rings making you wonder if it's completely natural.  
+~
+16449 134242496 131120 1000 S
+110 0 0 25000d0+0 0d0+0
+15 130 1000 0
+0 0 1
+11 0 0
+#5607
+guard ralisan searnia~
+A Ralisan gateguard~
+A stocky gateguard stands here watching Ralisan's exit.
+~
+Dark hazel eyes study you from behind an experience hardened face as the
+guard stands at his post at the Ralisan gate.  Lifting a hand to shade his
+eyes he looks in your way with a weighing glance.  The shadow of a question
+brushes past his facial features, but he lets it slip and allows you to pass
+unhindered.  The hand resting on his sword hilt in an almost casual way
+betrays his distrust of your appearance though.  
+~
+67 167772392 0 0 S
+100 0 0 17500d0+0 0d0+0
+1 17 65 0
+0 0 1
+3 0 0
+#5608
+athrel gleeman ralisan searnia~
+Athrel~
+A man wearing a cloak made of colourful patches walks about juggling balls.
+~
+A large colourful cloak made from nearly two hundred differently colored
+patches covers Athrel.  Black hair hangs in a short tail at his neck with
+the rest of it hand-scrubbed out of his face.  A wooden flute case and harp
+case hang over his shoulder tied together by a small black cord.  Noticing
+your eyes, he whips his hand drawing a throwing knife from somewhere within
+his cloak and just as quickly resheathing it back within those patches. 
+Athrel unconciously resumes his juggling performance switching from his
+circle of eight colorful balls to two circles of four that intertwine.  
+~
+65 573544 131072 0 S
+100 0 0 17600d0+0 0d0+0
+0 45 85 0
+0 0 1
+3 0 0
+>entry_prog 100~
+emote flurishes his multi-coloured cloak of patches as he enters the room.
+if inroom($i) == 5607
+  north
+endif
+~
+|
+#5609
+serving girl ralisan searnia~
+A serving girl~
+A slim serving girl rushes about to do her job.
+~
+Long dark hair curles it's way down her back dangling down the back of
+her white serving dress.  A white apron is tied around her front containing
+few smuges of dirt.  At your look she flashes you a quick smile, with only a
+hint of interest at your appearance in her hazel eyes.  She turns away and
+hurries over to serve a mug of ale to a patron at the end of the bar.  
+~
+67 40 0 0 S
+65 0 0 5700d0+0 0d0+0
+0 0 25 0
+0 0 2
+3 0 0
+#5610
+drunk ralisan searnia~
+A drunk~
+A man curled around a mug of ale sits at the bar here.
+~
+Wrapped about his mug of ale, this man sits at the bar muttering to
+himself about his own troubles.  One of his bushy eyebrows raise slightly in
+your direction questioningly as you glance his way.  Seeing you're not
+comming over to buy him an ale he goes back to his examining of his mug.  
+~
+67 104 0 0 S
+69 0 0 7800d0+0 0d0+0
+0 0 4 0
+0 0 1
+0 0 0
+#5611
+lady merchant-lady ralisan searnia~
+A wealthy merchant~
+A wealthy merchant lady sits in her wagon here.
+~
+Sitting casually in her wagon seemingly ignoring the citizens passing by,
+this wealthy merchant lady idly studies one of her ringed fingers.  Her blue
+silk gown doesn't even have a single wrinkle perched in her seat with yellow
+embriodery up it's arms and middle.  A belt of woven silver encircles her
+slim waist hidden almost completely by the folds of her gown, pushed up from
+the wagon seat.  She glances at you with a mild interest at your appearance.
+~
+67 32832 16 0 S
+95 0 0 15000d0+0 0d0+0
+6 35 75 0
+0 0 2
+0 0 0
+>rand_prog 30~
+if rand(25)
+  say Driver, head west.
+  west
+  break
+else
+  if rand(27)
+    say Driver, head north.
+    north
+    break
+  else
+    if rand(30)
+      say Driver, head east.
+      east
+      break
+    else
+      if rand(99)
+        say Driver, head south.
+        south
+      endif
+    endif
+  endif
+endif
+~
+|
+#5612
+guard guardone ralisan searnia~
+A merchant's guard~
+A sour-looking merchant's guard stands here clearing a way for the wagon.
+~
+Spitting of to the side, the guard glances in your direction with a
+suspicious look.  As any citizens come too close to the wagon or just don't
+move out of it's way as the wagon moves he pokes them with the butt off his
+spear, pushing them out of the wagon's way.  
+~
+67 41064 0 0 S
+100 0 0 17000d0+0 0d0+0
+0 4 25 0
+0 0 1
+3 0 0
+#5613
+guard ralisan searnia~
+A Ralisan guard~
+One of Ralisan's village guards wanders here keeping the peace.
+~
+Heavy set and covered wit,h hard leather armor with steel discs sewn into
+it this man wanders the streets of Ralisan keeping the peace.  Glancing in
+your direction suspiciously his hand hovers just a slighty bit over his
+sheathed sword's hilt.  
+~
+65 134226112 16 0 S
+100 0 0 14000d0+0 0d0+0
+2 8 25 0
+0 0 1
+3 0 0
+#5614
+driver wagondriver merchant-driver ralisan searnia~
+A wagon driver~
+The driver of the merchant's wagon sits atop the wagon seat directing it.
+~
+Bushy white hair peeks out from beneath a black wide-brimmed hat perched
+atop this older man's head.  Long mustaches snake down either side of his
+face still retaining some dark flecks of hair mixed in with the mainly white
+colors.  Dressed in a simple countryman's garb he sits upon the wagon's seat
+watching the road ahead calling for citizens to make way and deftly keeping
+the wagon's animals from running into anyone.  
+~
+67 32872 0 0 S
+95 0 0 13200d0+0 0d0+0
+0 15 35 0
+0 0 0
+3 0 0
+>speech_prog "Driver, head west."~
+mpecho The wagon driver pulls the reins a little and the horses vear west.
+mpasound The creaking of a wagon's heavy wheels sounds off somewhere nearby.
+west
+mpecho A merchant's wagon procession rolls in from the east.
+~
+>speech_prog "Driver, head north."~
+mpecho The wagon driver pulls the reins a little and the horses vear north.
+mpasound The creaking of a wagon's heavy wheels sounds off somewhere nearby.
+north
+mpecho A merchant's wagon procession rolls in from the south.
+~
+>speech_prog "Driver, head east."~
+mpecho The wagon driver pulls the reins a little and the horses vear east.
+mpasound The creaking of a wagon's heavy wheels sounds off somewhere nearby.
+east
+mpecho A merchant's wagon procession rolls in from the west.
+~
+>speech_prog "Driver, head south."~
+mpecho The wagon driver pulls the reins a little and the horses vear south.
+mpasound The creaking of a wagon's heavy wheels sounds off somewhere nearby.
+south
+mpecho A merchant's wagon procession rolls in from the north.
+~
+>entry_prog 100~
+mptransfer guardone
+mptransfer guardtwo
+mptransfer guardthree
+~
+|
+#5615
+guard guardtwo ralisan searnia~
+A merchant's guard~
+A sour-looking merchant's guard stands here clearing a way for the wagon.
+~
+Spitting of to the side, the guard glances in your direction with a
+suspicious look.  As any citizens come too close to the wagon or just don't
+move out of it's way as the wagon moves he pokes them with the butt off his
+spear, pushing them out of the wagon's way.
+~
+67 41064 0 0 S
+100 0 0 17000d0+0 0d0+0
+0 4 28 0
+0 0 1
+3 0 0
+#5616
+guard guardthree ralisan searnia~
+A merchant's guard~
+A sour-looking merchant's guard stands here clearing a way for the wagon.
+~
+Spitting of to the side, the guard glances in your direction with a
+suspicious look.  As any citizens come too close to the wagon or just don't
+move out of it's way as the wagon moves he pokes them with the butt off his
+spear, pushing them out of the wagon's way.
+~
+67 41064 0 0 S
+100 0 0 17000d0+0 0d0+0
+0 5 23 0
+0 0 1
+3 0 0
+#0
+
+
+
+#OBJECTS
+#5559
+bladed black platemail bracers ralisan searnia~
+&bbladed &zblack platemail &bbracers~
+&bA pair of bracers made of &zblack platemail &blie here with blades sticking out.~
+~
+9 536870916 0 49180 4097 101
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 5635 5639
+A
+24 -13
+A
+18 10
+A
+17 -105
+A
+13 100
+A
+19 11
+A
+1 1
+#5560
+scroll recall ralisan searnia~
+&ca scroll of recall&w~
+&BA scroll used for invoking the arts of recalling lies here.~
+~
+2 805306369 0 0 1 1
+100~ refresh~ word of recall~ reserved~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5561
+hilt light ralisan searnia~
+&cthe &Whilt &cof &Wlight&w~
+&bA &Wbrightly shining hilt&b lies here.~
+~
+8 805307648 0 0 1 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+4 5643
+reserved~
+0 -1
+0 0 0
+A
+121 -1
+#5562
+scaleri root ralisan searnia~
+&ca piece of &Gscaleri &croot&w~
+&BA piece of scaleri root lies here.~
+~
+26 805306368 0 0 1 25
+100~ refresh~ refresh~ cure poison~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5563
+blue flask hp-potion ralisan searnia~
+&ca &Bblue &cflask&w~
+&BA blue flask lies here awaiting consumption.~
+~
+10 268435521 0 0 1 25
+100~ heal~ heal~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5564
+white flask mana-potion ralisan searnia~
+&ca &Wwhite &cflask&w~
+&BA white flask lies here awaiting consumption.~
+~
+10 268435521 0 0 1 25
+100~ mana~ mana~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5565
+scroll knowledge ralisan searnia~
+&ca scroll of &Cknowledge&w~
+&BA bright scroll lies here forming the key to unlocked knowledge.~
+~
+2 805306368 0 0 1 25
+100~ identify~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5566
+vial detection ralisan searnia~
+&ca &Cvial &cof &Pdetection&w~
+&BA vial of detection lies here, glowing slightly.~
+~
+10 268435521 0 0 1 25
+10~ detect invis~ detect hidden~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5567
+scroll case magical ralisan searnia~
+&ca sturdy scroll case&w~
+&BA large sturdy scroll case lies here perfect for storing scribed pieces of parchment.~
+~
+15 805306368 2828 0 257 25
+200~ 5~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5595
+robe purple ralisan searnia~
+&cJharel's &Ppurple &crobes&X~
+A large bundle of purple matriel lies here in a heap.~
+~
+9 68 7166 0 1025 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5596
+leather blacksmith vest ralisan searnia~
+&ca &Oleather &cblacksmith's vest&w~
+A dark leather blacksmith's vest from the forge lies here.~
+~
+9 0 0 0 9 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5597
+steel hammer ralisan searnia~
+&ca blacksmith's &Csteel &chammer&w~
+A heavy blacksmith's hammer with a ten-pound end on it lies here.~
+~
+9 536870912 0 0 16385 100
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 10
+A
+17 -75
+#5598
+white apron ralisan searnia~
+&wa &Wwhite&w apron~
+A long white apron lies in a heap here.~
+~
+9 0 0 0 9 50
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5599
+ledger book ralisan searnia~
+&OA &Yyellow paged &Orecord ledger~
+&OA &zblack leather&O bound ledger with &Ybright yellow&O pages.~
+~
+8 0 0 0 16385 1
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5600
+chain office ralisan searnia~
+&ca &wsilver chain &cof the Elder's office~
+&bA &wsilver chain &bbearing the symbol of the Ralisan Elder's office lies here.~
+~
+9 1 0 0 5 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5602
+basket fruit ralisan searnia~
+a large basket of fruit~
+&BA large wicker basket of fruit lies turned on it's side here.~
+~
+9 0 0 0 16385 50
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5603
+sword broadsword ralisan searnia~
+&ca merchant guard's spear&w~
+&BA long hafted spear with a foot-long steel tip lies here.~
+~
+5 33570880 34 0 8193 90
+0~ 23~ 72~ 2~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 25
+A
+18 25
+A
+13 75
+A
+17 -80
+A
+1 2
+#5604
+belt ralisan searnia~
+&ca sword belt&w~
+&BA guard's sword belt lies here with an empty scabbard attached.~
+~
+9 0 1 0 2049 90
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+A
+18 9
+A
+17 -75
+A
+1 1
+#5605
+leather jerkin ralisan searnia~
+&ca &Oleather jerkin &cwith &wsteel discs&c attached~
+&BA large heap of leather material with steel discs sewn into it lies here.~
+~
+9 536870912 0 0 9 90
+0~ 0~ 0~ 0~
+9 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 22
+A
+18 25
+A
+17 -95
+A
+2 2
+#5606
+iron helm ralisan searnia~
+&can &wiron &chelm&w~
+&BA small helm of iron construct lies covered in the dirt here.~
+~
+9 0 4197 4096 17 90
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+A
+18 9
+A
+17 -25
+A
+2 1
+A
+5 1
+A
+24 -30
+A
+23 -30
+#5607
+medalion ralisan searnia~
+&cthe captain's medalion of rank~
+A large medalion connected to a silver chain lies here.~
+~
+9 1024 4 0 5 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 10
+A
+13 75
+A
+24 -25
+A
+23 -25
+A
+17 -45
+#5608
+balls gleeman colourful ralisan searnia~
+&ca gleeman's &Rc&Bo&Cl&zo&Gu&Wr&Pf&Yu&Rl&c juggling balls~
+The colourful juggling balls of a village entertainer lie here.~
+~
+8 0 0 0 16385 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+19 10
+A
+18 10
+A
+17 -50
+#5609
+gleeman cloak ralisan searnia~
+&Ca gleeman's &rc&bo&cl&Oo&wu&gr&pf&ru&bl &Ccloak of patches~
+A large cloak built from dozens of patches of different colors lies here.~
+~
+9 805306368 7935 0 9 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 39
+A
+18 21
+A
+17 -125
+A
+23 -20
+A
+24 -20
+A
+13 100
+A
+26 50
+#5610
+gleeman flute silver ralisan searnia~
+&ca gleeman's &wsilver flute&c~
+&bA &wsilver flute&b lies here on the ground.~
+~
+9 65 7935 0 129 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+enchanted song~
+10 10
+0 0 0
+A
+19 10
+A
+18 10
+A
+17 -75
+A
+13 75
+A
+1 2
+#5611
+gleeman harp case ralisan searnia~
+&ca gleeman's &Owooden &charp case~
+&bLying half buried in the ground is a &Owooden &charp case.~
+~
+9 536870912 7935 0 1025 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 10
+A
+17 -50
+A
+13 75
+A
+23 -20
+A
+24 -20
+#5612
+oily rag ralisan searnia~
+&wa small &zoily &wrag~
+&bA small &wwhite rag&b with spots of &zoil&b staining it.~
+~
+13 0 0 0 16385 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5613
+staff ralisan searnia~
+&Oa walking staff&c~
+A long hafted walking staff lies here on the ground.~
+~
+5 268443648 6348 0 8193 100
+0~ 29~ 73~ 7~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 100
+A
+19 15
+A
+18 20
+A
+23 -15
+A
+24 -15
+A
+13 100
+#5614
+breeches brown ralisan searnia~
+&Obaggy brown breeches&c~
+&bA pair of baggy &Obrown breeches&b lie here.~
+~
+9 0 0 0 33 40
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 4
+A
+17 -30
+#5615
+gray tan tunic ralisan searnia~
+&ca &wgrayish-&Otan &ctunic~
+&bA &wgrayish-&Otan &btunic lies here in a heap.~
+~
+9 0 0 0 9 40
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+#5616
+brown skirt ralisan searnia~
+&ca &Olight brown &cskirt~
+&bA set of &Olight brown &bskirts lie here in a heap.~
+~
+9 0 4 256 33 40
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 4
+A
+23 -15
+#5617
+white blouse ralisan searnia~
+&ca &Wwhite blouse&c~
+&bA &Wbright white blouse&b lies here on the ground collecting dirt.~
+~
+9 0 0 0 9 40
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 5
+A
+18 3
+A
+17 -25
+#5618
+shiny chainmail vest ralisan searnia~
+&ca &Cshiny chainmail &cvest&w~
+&bA vest of chainmail links lies here in a heap shining in the &Ysunlight&b.~
+~
+9 536870912 0 0 9 100
+0~ 0~ 0~ 0~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 85
+A
+2 -2
+A
+1 2
+A
+17 -125
+A
+18 25
+A
+19 35
+#5620
+fountain spring ralisan searnia~
+&Ca gushing water spring~
+&CA stone-ringed fountain gushing water out it's top.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+3000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5621
+mug ale ralisan searnia~
+&ca large mug of &zdark-ale&c~
+&bA large mug of some &zdark colored liquid&b lies here.~
+~
+17 268443652 0 0 16385 50
+40~ 40~ 4~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5622
+pouch tabac ralisan searnia~
+&Ca pouch of tabac~
+&bA small pouch of tabac lies here.~
+~
+15 0 0 0 1 50
+30~ 5~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5623
+roasted chicken ralisan searnia~
+&ca medium sized &rroasted &Ychicken~
+&bA medium sized &rroasted &Ochicken &blies here &csteaming&b.~
+~
+19 33554432 0 0 1 20
+48~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5624
+saddle bags ralisan searnia~
+&zblack leather saddle bags~
+&bA set of &zblack leather saddle bags&b lie here on the ground.~
+~
+15 536870912 0 0 9 100
+500~ 5~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5625
+lantern ralisan searnia~
+&ca &Ybrightly lighted &clantern~
+&cA &Ybrightly lit &clantern lies here in the ground.~
+~
+1 33554433 0 0 1 100
+0~ 0~ 100~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5626
+blue silk gown ralisan searnia~
+&ca &Bblue silk &cgown~
+&bA &Bdark blue silk&b gown lies here in the dirt.  What a waste!~
+~
+9 0 0 0 9 95
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 20
+A
+18 25
+A
+13 90
+A
+17 -85
+#5627
+sword broadsword ralisan searnia~
+&ba ralisan guard's steel broadsword~
+&bThe heavy broadsword of a ralisan guard lies here.~
+~
+5 570441792 51 0 8193 100
+0~ 30~ 79~ 3~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -115
+A
+13 95
+A
+2 -1
+A
+1 2
+A
+18 26
+A
+19 34
+#5628
+hat ralisan searnia~
+&ca &zdark &cwide-brimmed hat&w~
+&bA &zblack wide-brimmed hat&b lies on the ground here.~
+~
+9 268443712 7116 4096 17 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 11
+A
+18 10
+A
+17 -50
+A
+24 -30
+#5629
+wagon merchantwagon ralisan searnia~
+a merchant's wagon~
+&OA merchant's large wagon digs deep ruts in the ground here passing by.~
+~
+15 1610620928 0 0 0 40
+9999~ 5~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#5630
+sturdy steel helm ralisan searnia~
+&ca sturdy &Csteel &chelm&w~
+A large helm made of steel lies here in the ground with a few dents in it.~
+~
+9 0 4197 0 17 65
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 6
+A
+13 65
+A
+1 1
+A
+17 -45
+A
+19 7
+E
+steel~
+Several dents mar the once polished surface of this steel helm showing
+it's long use.  The remains of dirt still crammed into the corners where
+metal parts connect even after being polished give weight in your mind as to
+just how long it's been used.
+~
+E
+helm~
+Several dents mar the once polished surface of this steel helm showing
+it's long use.  The remains of dirt still crammed into the corners where
+metal parts connect even after being polished give weight in your mind as to
+just how long it's been used.  
+~
+#5631
+shattershield shield ralisan searnia~
+&Ba b&ba&Ct&cte&Cr&be&Bd sh&ba&Ct&ct&We&wr&Ws&ch&Ci&be&Bld~
+A large shield covered in what looks like ice lies here battered.~
+~
+9 805314560 7166 0 513 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+5 0
+shatter~
+3 3
+0 0 0
+A
+13 90
+A
+12 100
+A
+1 2
+A
+17 -110
+A
+18 9
+A
+19 11
+E
+shattershield~
+A blueish ice encases the entire shield from top to bottom giving it a
+faint glow, yet not making it abnormally cool to the touch.  Looking on the
+inside of the shield you notice what appears to be latch marks to connect
+the shield to arm gear.  
+~
+E
+shield~
+A blueish ice encases the entire shield from top to bottom giving it a
+faint glow, yet not making it abnormally cool to the touch.  Looking on the
+inside of the shield you notice what appears to be latch marks to connect
+the shield to arm gear.  
+~
+#5632
+green cloak ralisan searnia~
+&ca &gdark green &ctraveling cloak~
+&bA large heap of &ggreen &bcloth lies here.~
+~
+9 0 0 0 1025 85
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -45
+A
+18 9
+A
+23 -25
+A
+24 -25
+A
+13 75
+A
+19 7
+#5633
+chainmail shirt ralisan searnia~
+&ca chainmail shirt&w~
+A shirt of old rusted chainmail links lies here in a heap.~
+~
+9 0 101 0 9 83
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+2 -1
+A
+13 65
+A
+17 -80
+A
+18 25
+A
+19 23
+#5634
+ringmail sleeves ralisan searnia~
+&ca pair of ringmail sleeves&w~
+&bSleeves made of shining ringmail links lie here reflecing the sunlight.~
+~
+9 0 357 0 257 35
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 15
+A
+18 3
+A
+19 4
+A
+17 -35
+#5635
+black platemail gauntlets ralisan searnia~
+&zblack platemail &cgauntlets~
+&bA pair of gauntlets made of glistening &zblack platemail &blie here.~
+~
+9 536870912 357 0 129 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+5559 0 0
+A
+17 -95
+A
+19 10
+A
+18 10
+A
+13 55
+A
+1 2
+E
+gauntlets~
+&BGlistening &zdark black&B in the &Ysunlight&B these gauntlets of
+platemail give a great amount of protection from attack, but make agility a
+problem.  Towards the wrist end of the gauntlets seems to be small latches
+to fasten them to something to your wrist.  
+~
+#5636
+leather gloves ralisan searnia~
+&ca pair of &zblack leather gloves&c~
+&bA pair of &zblack leather gloves&b lie crumpled in a heap here.~
+~
+9 0 0 0 129 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 135
+A
+18 12
+A
+19 8
+A
+17 -25
+A
+2 2
+E
+gloves~
+Examining them a bit closer you see a thin line of fur lacing the inside
+of the gloves, while on the outside they seem near skin-tight.  Not made
+much for protection, these leather gloves offer an amount of agility in hand
+movement making them suitable for cutthroats.  
+~
+#5637
+steel visor ralisan searnia~
+&ca &Csteel &cvisor clamp&w~
+A piece of metal with a couple eye slits lies here on the ground.~
+~
+9 0 4197 0 65537 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 75
+A
+23 -19
+A
+17 -85
+A
+19 8
+A
+18 12
+#5638
+heavy leather boots ralisan searnia~
+&ca pair of &Oheavy leather &cboots~
+&ODust &bcollects at the soles of a pair of &Oheavy leather &bboots here.~
+~
+9 0 0 0 65 100
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+18 11
+A
+17 -75
+A
+13 65
+A
+19 8
+#5639
+blade tipped bracers ralisan searnia~
+&ca blade-tipped bracer&w~
+A steel wrist bracer lies here with a four inch blade tip on it's end.~
+~
+9 0 0 0 4097 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+5559 0 0
+A
+18 7
+A
+19 8
+A
+17 -55
+A
+13 75
+E
+bracer~
+A four inch long steel blade lies fastened to the sides of the bracer at
+it's front adding to the protection of your hands.  Small latches line the
+rim of the hand side of the bracer for some reason.  
+~
+E
+blade~
+A four inch long steel blade lies fastened to the sides of the bracer at
+it's front adding to the protection of your hands.  Small latches line the
+rim of the hand side of the bracer for some reason.
+~
+E
+tipped~
+A four inch long steel blade lies fastened to the sides of the bracer at
+it's front adding to the protection of your hands.  Small latches line the
+rim of the hand side of the bracer for some reason.
+~
+#5640
+silver ankle guard ralisan searnia~
+&ca &wsilver &cankle guard~
+&bA small piece of metal made for covering over a boot top lies here.~
+~
+9 0 2048 0 1048577 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 8
+A
+18 12
+A
+13 50
+A
+17 -40
+#5643
+shield light ralisan searnia~
+&cthe &Wshield &cof &Wlight~
+&bA &Wbrightly glowing &bshield lies here in the ground dispelling dirt from it.~
+~
+9 805315841 8029 0 513 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+4 5561
+reserved~
+0 -1
+0 0 0
+A
+19 11
+A
+1 2
+A
+12 100
+A
+13 50
+A
+24 -35
+A
+17 -105
+#0
+
+
+
+#ROOMDATA
+#5550
+Searnia Valley Information Room~
+~
+0 4 0
+Rd     0
+E
+searnia~
+SEARNIA AREAS:
+&W
+Sub-areas:&w
+________________________________________________________________________________
+| Sub-Area Name         | 1st Vnum | Last Vnum | Level Range | Grouped areas?  |
+|-----------------------|----------|-----------|-------------|-----------------|
+| Mareci Pass           |   5551   |   5594    |     N\A     | Ralisan &       |
+| Ralisan               |   5595   |   5651    |   40 - 100  | Mareci Pass     |
+|-----------------------|----------|-----------|-------------|-----------------|
+| North Averil Forest   |   5652   |   6124    |    1 - 100  | Averil Forest,  |
+| Fire Wells Lake       |   6125   |   6147    |     N\A     | Fire Wells Lake,|
+| Thief's Lair          |   6148   |   6173    |   65 - 70   | & Thief's Lair  |
+|-----------------------|----------|-----------|-------------|-----------------|
+| Dreylin Keep          |   6174   |   6226    |   50 - 65   | N\A             |
+|-----------------------|----------|-----------|-------------|-----------------|
+| Harim's Tower         |   6227   |   6296    |   35 - 50   | N\A             |
+|-----------------------|----------|-----------|-------------|-----------------|
+| Alor Tyer             |   6297   |   6349    |   70 - 85   | N\A             |
+|-----------------------|----------|-----------|-------------|-----------------|
+| Alor Raharo           |   ????   |   ????    |    1 - 100  | N\A             |
+|_______________________|__________|___________|_____________|_________________|
+~
+E
+ralisan~
+&zRALISAN ITEMS:
+_______________________________________________________________________
+| Vnum | Name                      | Vnum | Name                      |
+|------|---------------------------|------|---------------------------|
+&z|&R05595 &z|&B Jharel's purple robes     &z|&R05624 &z|&B a saddle                  &z|
+&z|&R05596 &z|&B leather blacksmith's vest &z|&R05625 &z|&B lantern                   &z|
+&z|&R05597 &z|&B blacksmith's steel hammer &z|&R05626 &z|&B blue silk gown            &z|
+&z|&R05598 &z|&B white apron               &z|&R05627 &z|&B guard's sword             &z|
+&z|&R05599 &z|&B ledger of records         &z|&R05628 &z|&B merchant driver's hat     &z|
+&z|&R05600 &z|&B chain of office           &z|&R05629 &z|&B merchant wagon            &z|
+&z|&R05601 &z|&B druid robe                &z|&R05630 &z|&B sturdy steel helm         &z|
+&z|&R05602 &z|&B basket full of fruit      &z|&R05631 &z|&B battered shattershield    &z|
+&z|&R05603 &z|&B guard's spear             &z|&R05632 &z|&B green traveler's cloak    &z|
+&z|&R05604 &z|&B sword belt                &z|&R05633 &z|&B chainmail shirt           &z|
+&z|&R05605 &z|&B leather jerkin w/discs    &z|&R05634 &z|&B ringmail sleeves          &z|
+&z|&R05606 &z|&B hard leather helm         &z|&R05635 &z|&B black platemail gauntlets &z|
+&z|&R05607 &z|&B captain's medalion        &z|&R05636 &z|&B leather gloves            &z|
+&z|&R05608 &z|&B gleeman's juggling balls  &z|&R05637 &z|&B steel visor               &z|
+&z|&R05609 &z|&B gleeman's patched cloak   &z|&R05638 &z|&B heavy leather boots       &z|
+&z|&R05610 &z|&B gleeman's flute           &z|&R05639 &z|&B blade-tipped bracer       &z|
+&z|&R05611 &z|&B gleeman's harp case       &z|&R05640 &z|&B silver ankle guards       &z|
+&z|&R05612 &z|&B oily rag                  &z|&R05641 &z|&B ring of hatred            &z|
+&z|&R05613 &z|&B village elder's staff     &z|&R05642 &z|&B band of justice           &z|
+&z|&R05614 &z|&B brown breeches            &z|&R05643 &z|&B shield of light           &z|
+&z|&R05615 &z|&B grayish-tan tunic         &z|&R05644 &z|&B pendant of duty           &z|
+&z|&R05616 &z|&B light brown skirts        &z|&R05645 &z|&B dark amulet               &z|
+&z|&R05617 &z|&B white blouse              &z|&R05646 &z|&B sling                     &z|
+&z|&R05618 &z|&B heavy chainmail vest      &z|&R05647 &z|&B wooden longbow            &z|
+&z|&R05619 &z|&B gleeman's throwing knife  &z|&R05648 &z|&B oak  quarterstaff         &z|
+&z|&R05620 &z|&B fountain (village green)  &z|&R05649 &z|&B throwing knife            &z|
+&z|&R05621 &z|&B mug of ale                &z|&R05650 &z|&B spellbook                 &z|
+&z|&R05622 &z|&B pouch of tabac            &z|&R05651 &z|&B a heightened sense...     &z|
+&z|&R05623 &z|&B roasted chicken           &z|&R      &z|&B ...of awareness           &z|
+|______|___________________________|______|___________________________|
+~
+E
+map~
+&z*** &RLanAs of &BSearnia&R. &z***
+&OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+&OAAAAAAAAAAA&G***********&O..&B%%%&O...&G**&B%%%%&OAAAAAAAA
+&OAAAAAAA&G*********&z___&G**&O..&B%%%%%%&O..&G*&B%&z___&B%&OAAAAAAA
+&OAAAAA&G***********&z|&r5&z|&G******&B%%%%%&O..&B%&z|&r1&z|&B%&G*&OAAAAAA
+&OAAAA&G************&z---&G*************&B%&z---&B%&G*&OAAAAAA
+&OAAA&G*****************************&B%%&O.&B%%&G*&OAAA.&G*&OA
+&OAA&G**********************************&OAAA...&G*&OA
+&OAA&G***** &rNorthern&G ********************&O.....&G*&OA
+&OAA&G****** &rAveril&G ***********************&O...&G*&OA
+&OAA&G****** &rForest&G *********&R%%%&G***************&OA
+&OAA&G**********************&R%%%%%%&G*************&OA
+&OAA&G***********************&R%%%%%%&G******&B%%&G****&OA
+&OAA&G*************************&R%%&G*******&O.&B%%%&O..&G*&OA
+&OAA&G*********************************&O.&z___&B%&O..&G*&OA
+&OAA&G**************&OAAAAAAAAAAAAAAAA&G*&O...&z|&r2&z|&B%&O..&G*&OA
+&OAA&G************&OAAAAAAAAAAAAAAAAAAAAA&O.&z---&B%&G*&O.&G*&OA
+&OAA&G***********&OAAAAA&c?????????????&OAAAAA...&B%%&G**&OA
+&OAAA&G*******&OAAAAA&c??????????????????&OAAAA..&B%%%&G*&OA
+&OA&O..A.....AAAA&c??????????????????????&OAAA&B%%%%&c?&OA
+&OA&z___&OA.&z___&O.AAA&c?????? &rSouthern&c ??????&OAAA&c?????&OA
+&OA&z|&r3&z|&Od.&z|&r4&z|&O..AAA&c?????? &rAveril&c ???????&OAAA&c?????&OA
+&OA&z---&O.A&z---&O.AAAA&c?????? &rForest&c ????????&OAAA&c????&OA
+&OA&O....A...AAAA&G*&c???????????????????&OAAAAAA&c????&OA
+&OA&O.AAA....&G****&c?????????????????????&OAAAAA&c????&OA
+&OA&O........AA&G**&c???????????????????????&OAAAA&c???&OA
+&OAA&O..AAAAAAAA&G**&c???????????????????????&OAAA?&c??&OA
+&OAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+&w                     
+         &z--- &WLandmarks & Cities &z---
+&z1&w.&B Alor Tyer                 &z4&w.&B Mareci Pass
+&z2&w.&B Alor Raharo               &z5&w.&B Baron's Tower
+&z3&w.&B Ralisan
+&w
+            &z--- &WMap Features &z---
+&G*&C - Forest                   &Od&C - Mountains
+&z___                          &B%&C - River
+&z|&r#&z| &C- Building\City          &R%&C - Fire Wells Lake
+&z"""                          &c?&C - Unknown
+who
+~
+S
+#5551
+Just beyond the woods~
+The Northern Averil forest stretches both north and west of you, turning
+the open Mareci Pass into a thick, forest of trees, too dark to see far in. 
+The western edge of the monsterous Harad Peak knife's it's way into the
+forest's edge a ways to the east.  South of you the Mareci Pass extends
+beyond your line of sight.  
+~
+0 -2147352571 2
+Rd     0
+D1
+~
+~
+0 0 5552
+D2
+~
+~
+0 0 5554
+S
+#5552
+Just beyond the woods~
+Harad's western edge lies out blocking your eastward travel.  It's base
+connecting to the Northern Averil forest, which spreads out northward past
+your line of sight.  The Mareci Pass extends south of you on into the
+horizon.  
+~
+0 -2147352571 2
+Rd     0
+D2
+~
+~
+0 0 5555
+D3
+~
+~
+0 0 5551
+S
+#5553
+Just beyond the woods~
+The northern half of the Averil forest stretches on northward of you
+connecting to the lower cliff's west of the Mareci Pass to bar your passage.
+To the south and east the Mareci Pass extends beyond your eyesight.  
+~
+0 -2147352571 2
+Rd     0
+D1
+~
+~
+0 0 5554
+D2
+~
+~
+0 0 5560
+S
+#5554
+Near the end of the Pass~
+Off to the distance in the north you can see the edge of the Northern
+Averil forest stretching it's way into the valley of Searnia.  Harad Peak
+skyrockets into the clouds in the east, it's &Bs&bn&Co&cw&wy &Bp&be&Ca&ck&Y &creaching for the
+heavens.  The pass extends southward of you beyond the horizon.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5551
+D1
+~
+~
+0 0 5555
+D2
+~
+~
+0 0 5561
+D3
+~
+~
+0 0 5553
+S
+#5555
+Nearing the end of the Pass~
+An outcropping of the Harad Peak extends itself south of you, blocking
+view of the Pass beyond it.  Off to the north in the distance you're able to
+make out the southern edge of the Northern Averil forest.  A small
+passageway in the cliff face to your east snakes it's way southeastward.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5552
+D1
+~
+~
+0 0 5556
+D3
+~
+~
+0 0 5554
+S
+#5556
+A small passageway in the cliff~
+The Harad Peak's western cliff face towers above you to the north and
+east.  A bit off to the south it looms nearly seventy paces into the air as
+well.  The passageway continues to the south and west.  
+~
+0 -2147352575 4
+Rd     0
+D2
+~
+~
+0 0 5557
+D3
+~
+~
+0 0 5555
+S
+#5557
+The Cave Enterance~
+The sounds of dripping water carry over outside of the cave's mouth to
+you from the west.  Rock faces nearly seventy paces high above your head by
+your guess loom to the south and east as well as not far off to the north. 
+The passageway continues northward to it's exit and westward into the cave. 
+~
+0 -2147352575 4
+Rd     0
+D0
+~
+~
+0 0 5556
+D3
+~
+~
+0 0 5558
+S
+#5558
+Inside the cavern~
+&cSmall drops of water fall from the ceiling into a large pool of water
+that lays in the middle of the cave.  Light from outside the cave's mouth
+spills in halfway into the room illuminating it enough to see.  Also, the
+cave's own pool reflects what light touches it's surface brightening the
+cavern even more.  
+~
+0 -2012872695 4
+Rd     0
+D1
+~
+~
+0 0 5557
+S
+#5559
+Inside the cavern~
+~
+0 -2013134839 0
+Rd     0
+D1
+~
+~
+0 0 5560
+S
+#5560
+Outside a cave in the cliffside~
+The Mareci Pass extends beyond your line of sight to the south until far
+off in the distance you can make out a cliff at it's southern end.  Harad
+Peak stands guard on the pass's east balanced by the high western cliff,
+that houses a small village by what rooftops you can see over the edge.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5553
+D1
+~
+~
+0 0 5561
+D2
+~
+~
+0 0 5562
+D3
+~
+~
+0 0 5559
+S
+#5561
+Twist in the Pass~
+The eastern cliff face bends inward on the pass here for a bit, before
+widening back out at it's nothern edge.  South of you the rest of the pass
+extends for quite some distance before being greeted by a cliff bordering
+the southern mountains of Searnia.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5554
+D2
+~
+~
+0 0 5563
+D3
+~
+~
+0 0 5560
+S
+#5562
+Just east of Ralisan~
+&cThe rooftops of a village poke out just above the edge of the cliff.  If
+not for the small smoke comming out of individual homes amoung the town you
+would probably not even have seen it.  To the east, north and south the pass
+extends beyond the horizon.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5560
+D1
+~
+~
+0 0 5563
+D2
+~
+~
+0 0 5565
+S
+#5563
+Down the middle of the Pass~
+Standing nearly in the middle of the the Mareci Pass you stop for a
+moment to take in the breath-taking view.  Towering Harad Peak's western
+face ends in a sheer cliff forming the eastern boundry of the pass, while to
+the west another equally sheer cliff rises up nearly seventy paces above
+you.  Just over the edge of the western cliff you're able to make out the
+rooftops of a village.  To the north and south the Pass extends beyond your
+range of sight.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5561
+D1
+~
+~
+0 0 5564
+D2
+~
+~
+0 0 5566
+D3
+~
+~
+0 0 5562
+S
+#5564
+At the bottom of Harad Peak's western side~
+Standing just west of the eastern cliff face in the Pass you scan the
+surrounding areas.  North a bit the eastern cliff edge bends inward to form
+a near point before angling back sharply eastward.  Off to the west the
+eastern cliff edge of the lower cliff lands of Searnia loom into the sky. 
+Far to the south you can barely make out the top of the Pass' southern cliff
+just beyond the horizon.  
+~
+0 -2147352575 2
+Rd     0
+D2
+~
+~
+0 0 5567
+D3
+~
+~
+0 0 5563
+S
+#5565
+Just east of Ralisan~
+&cFaint sounds of a village carry down the side of the rockface to the
+west, loom nearly sixty paces above your head.  A small town is set atop it
+with faint trails of smoke exiting individual homes' rooftops.  The Mareci
+Pass itself continues on north and southward beyond the horizon with the two
+cliff faces on the east and west to mark it's boundries.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5562
+D1
+~
+~
+0 0 5566
+D2
+~
+~
+0 0 5569
+S
+#5566
+Down the middle of the Pass~
+The path down the middle of the Mareci Pass continues here on towards the
+north or southeast to it's other end.  Cliffs towering around sixty to
+eighty paces above your head by your best guess from a distance rise up on
+either side of the Pass blocking much view beyond in either direction.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5563
+D1
+~
+~
+0 0 5567
+D2
+~
+~
+0 0 5570
+D3
+~
+~
+0 0 5565
+S
+#5567
+Down the middle of the Pass~
+The path down the middle of the Mareci Pass continues here on towards the
+northwest and south to it's end.  Towering cliffs nearly sixty to eighty
+paces above your head, at a guess from their distance, loom on either side
+of the valley blocking passage in either direction.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5564
+D1
+~
+~
+0 0 5568
+D2
+~
+~
+0 0 5571
+D3
+~
+~
+0 0 5566
+S
+#5568
+At the bottom of Harad Peak's western side~
+&cThe eastern cliff of the Pass, in truth Harad Peak's western mountain
+side cut off in a sheer face at the bottom, looms high above you nearly
+eighty paces to where it angles out towards the mountain's snowy peak.  The
+valley's eastern cliff boundry wraps around north of you, blocking passage
+in that direction as well.  South the valley pass continues to it's end up
+against another cliff face.  
+~
+0 -2147352575 2
+Rd     0
+D2
+~
+~
+0 0 5572
+D3
+~
+~
+0 0 5567
+S
+#5569
+Just east of Ralisan~
+The Pass' western cliff face towers roughly sixty paces above you to the
+west and south blocking passage in both directions.  Mareci Pass itself
+continues to the northward or to the southeast.  The faint sounds of a
+village carry down from just beyond the cliff's edge on top of it.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5565
+D1
+~
+~
+0 0 5570
+S
+#5570
+Nearing the western edge of the Pass~
+Just beyond the western cliff top of the Pass you're able to make out the
+rooftops of a small village, but it is far enough to remain out of earshot. 
+Harad Peak towers into the clouds to the east encasing the mountain pass
+between them.  To the north and southeast the Mareci Pass continues.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5566
+D1
+~
+~
+0 0 5571
+D2
+~
+~
+0 0 5574
+D3
+~
+~
+0 0 5569
+S
+#5571
+Down the middle of the Pass~
+The Pass continues on to the northwest and southeast directions from this
+point along it's middle.  The mountain pass's western and eastern cliff
+edges tower at least sixty paces above you on either side neatly encasing
+the pass itself between their bulky rock formations.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5567
+D1
+~
+~
+0 0 5572
+D2
+~
+~
+0 0 5575
+D3
+~
+~
+0 0 5570
+S
+#5572
+Near the eastern edge of the Pass~
+Harad Peak's western mountain side bends inward to the east for a bit
+here making a small curve in the pass along it's eastern side.  It's cliff
+face towers roughly eighty paces above you before angling off to build on to
+it's peak.  To the south and northwest the pass continues.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5568
+D1
+~
+~
+0 0 5573
+D2
+~
+~
+0 0 5576
+D3
+~
+~
+0 0 5571
+S
+#5573
+At the bottom of Harad Peak's western edge~
+The Peak's western cliff side bends inward in an easterly direciton here
+for a bit to make a small curve on the eastern edge of the Mareci Pass. 
+From here the pass itself continues to the northwest and south.  
+~
+0 -2147352575 2
+Rd     0
+D2
+~
+~
+0 0 5577
+D3
+~
+~
+0 0 5572
+S
+#5574
+Just east of Ralisan~
+The faint sounds of a small village come from just beyond the top of the
+cliff's edge on the western side of the Mareci Pass.  The cliff itself
+towers nearly sixty paces above you before ending abruptly in a plateau
+known as the lower cliffs in Searnia.  To the southeast and north the pass
+continues.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5570
+D1
+~
+~
+0 0 5575
+D2
+~
+~
+0 0 5578
+S
+#5575
+Down the middle of the Pass~
+Directly to the south of you and to the northwest the Mareci Pass
+continues.  Encasing the valley in cliffs stand Harad Peak's western side of
+the mountain and the edge of the lower cliffs of Searnia.  Just above the
+lower cliff's edge you're able to make out the rooftops of a small village. 
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5571
+D1
+~
+~
+0 0 5576
+D2
+~
+~
+0 0 5579
+D3
+~
+~
+0 0 5574
+S
+#5576
+Twist in the Mareci Pass~
+Harad Peak's western cliff side bends inward towards the east a bit here
+forming a small curve in the eastern edge of the pass.  Roughly eighty paces
+above you it angles out to build up to it's cloud cloaked peak.  Off to the
+west the lower cliff's rockface looms nearly as tall as it's eastern
+counter-part.  The pass continues to the northwest and south.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5572
+D1
+~
+~
+0 0 5577
+D2
+~
+~
+0 0 5580
+D3
+~
+~
+0 0 5575
+S
+#5577
+At the foot of Harad Peak's western face~
+The western mountain side of Harad Peak bends inward here heading in an
+eastward direction forming a small curve in the Mareci Pass.  Shade cloaks
+the land about you from the cliff's soaring eighty paces to it's edge before
+it builds towards the mountain's cloud enshrouded peak.  To the northwest
+and south the pass continues.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5573
+D3
+~
+~
+0 0 5576
+S
+#5578
+Just east of Ralisan~
+The Mareci Pass snakes tighter into a funnel-like neck at this point
+along the pass.  From just beyond the clifftop's edge on the western side of
+the pass you can make out the faint sounds of a small village.  To the north
+and the southeast the pass continues.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5574
+D1
+~
+~
+0 0 5579
+D2
+~
+~
+0 0 5582
+S
+#5579
+Down the middle of the Pass~
+The pass tightens into a near funnel-like neck here along the pass,
+squeezed between the lower cliff's on the west and Harad Peak's towering
+bulk on the east, before it widens out into the south end of the valley. 
+Just beyond the western low land cliffs you're able to make out a small
+village to the northwest.  To the northwest and south the pass continues.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5575
+D1
+~
+~
+0 0 5580
+D2
+~
+~
+0 0 5583
+D3
+~
+~
+0 0 5578
+S
+#5580
+At the southwest edge of the Harad peak~
+Harad Peak's southwestern edge ends here in a jagged finger pointing
+westward as it hooks across the pass making this a near funnel-neck in the
+length of the valley.  To the southeast the pass exits to a forest in the
+distance, while off to the southwest it branches out over the horizon.  To
+the north and south the pass continues.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5576
+D2
+~
+~
+0 0 5584
+D3
+~
+~
+0 0 5579
+S
+#5581
+Just below Ralisan's southeastern edge~
+Standing at the foot of the southeastern edge of Searnia's lower cliffs
+you can hear the faint sounds of a small village carried by the wind down
+into the valley.  That you can hear the sounds at all suggests that the
+valley itself amplifies sound some.  To the southwest the pass exits into a
+small passageway in the cliffs heading straight west.  Directly southish the
+valley's southern cliff border towers nearly seventy paces into the air by
+your guess from here.  
+~
+0 -2147352575 2
+Rd     0
+D1
+~
+~
+0 0 5582
+D2
+~
+~
+0 0 5587
+S
+#5582
+A twist in the pass~
+The southeastern edge of Searnia's lower cliffs looms overhead with it's
+edge nearly sixty paces above you.  To the southwest the Mareci Pass outlets
+into a narrow passageway through the cliffs.  The Pass continues to the
+north and southeast or southwest.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5578
+D1
+~
+~
+0 0 5583
+D2
+~
+~
+0 0 5588
+D3
+~
+~
+0 0 5581
+S
+#5583
+Down the middle of the Pass~
+The pathway in the middle of the pass widens a ways here having come out
+of the bottle-neck like section in the pass to the north.  The northern end
+of the pathway extends beyond your sight past the horizon, while the
+southern end goes a little south before branching into a T that heads in
+either the west or the east.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5579
+D1
+~
+~
+0 0 5584
+D2
+~
+~
+0 0 5589
+D3
+~
+~
+0 0 5582
+S
+#5584
+Down the middle of the Pass~
+&cA light mist seems to shroud the valley floor here not quite to your
+knee's height, but thick enough to conceal the ground.  The mist itself
+seems to be comming from the southeastern direction at which the southeast
+end of the Mareci Pass exits into a thick forest.  The northern end of the
+pass is beyond your range of sight over the horizon from here.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5580
+D1
+~
+~
+0 0 5585
+D2
+~
+~
+0 0 5590
+D3
+~
+~
+0 0 5583
+S
+#5585
+The southern side of Harad Peak~
+&cReaching nearly to your knee's height, a light mist cloaks the ground
+from your sight.  Harad Peak's bulky form lies directly northeast of you
+from here, shadowing the valley with it's immensity.  To the southeast the
+Mareci Pass exits out into a dark forest with the same fog enshrouding it's
+floor.
+~
+0 -2147352571 2
+Rd     0
+D2
+~
+~
+0 0 5591
+D3
+~
+~
+0 0 5584
+S
+#5586
+Western exit of the Mareci Pass~
+The Mareci Pass narrows into a thin bottle-neck exit here as it forms
+it's southwestern end into a small passageway through the cliffs of
+Searnia's western lands.  The cliff's edge towers roughly sixty paces above
+your head, casting dark shadows across the passageway's width.  The
+passageway leads west.  
+~
+0 -2147352571 2
+Rd     0
+D1
+~
+~
+0 0 5587
+D3
+~
+~
+0 0 5595
+S
+#5587
+Nearing the west exit of the Pass~
+Just a little bit to the west the Mareci Pass exits out it's southwestern
+end into a small passageway through the lower cliff's of Searnia's western
+lands.  The western cliff itself bathes the passageway in shadows preventing
+you from being able to see too far into it.  Directly south of you towers
+the southern cliff boundry of the Mareci Pass.  Off to the north the pass
+extends beyond the horizon.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5581
+D1
+~
+~
+0 0 5588
+D3
+~
+~
+0 0 5586
+S
+#5588
+At the southern end of the Pass~
+A ways off to the west you're able to see where the pass exits out into a
+narrow passageway through the lower cliffs of Searnia's western lands.  The
+shadows cloaking the passageway cast by the towering bulk of the lower
+cliff's southern side prevents you from see beyond the passage's enterance. 
+The Mareci Pass itself continues far to the north beyond your range of sight
+past the horizon.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5582
+D1
+~
+~
+0 0 5589
+D3
+~
+~
+0 0 5587
+S
+#5589
+Nearing the end of the Pass~
+The southern cliff of the pass bends in here a bit extending into a small
+alcove to the south a bit.  Far to the west you're able to make out a small
+passageway that the southwestern end of the valley exits into and nearly
+that same distance you can make out a dark forest the southeastern end of
+the valley exits to.  The valley itself stretches on beyond the horizon
+heading northward.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5583
+D1
+~
+~
+0 0 5590
+D2
+~
+~
+0 0 5593
+D3
+~
+~
+0 0 5588
+S
+#5590
+Nearing the end of the Pass~
+&cA light mist cloaks the ground about you heading in the eastern direction
+of the valley's southern west-east pathway.  Far off in the distance the
+southeastern end of the pass exits into a dark forest similarly cloaked with
+the not quite knee-high mist.  To the northwest the valley continues beyond
+the horizon.  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5584
+D1
+~
+~
+0 0 5591
+D2
+~
+~
+0 0 5594
+D3
+~
+~
+0 0 5589
+S
+#5591
+Nearing the east exit of the Pass~
+&cYou pick your way carefully across the ground, not being able to see it
+due to a light mist covering it entirely nearly up to your knees.  Not
+far to the east the Mareci Pass exits out into a dark forest, similarly
+covered with the same mist.  The pass extends to the northwest beyond
+your range of sight.
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5585
+D1
+~
+~
+0 0 5592
+D3
+~
+~
+0 0 5590
+S
+#5592
+Eastern exit of the Mareci Pass~
+&cStanding at the edge of a dark forest to the east, you study the light
+mist beneath your knees for a moment.  It cloaks the ground entirely and yet
+when you place your hand in it you feel no moisture within the mist. 
+Darkness cloaks the forest that this end of the Mareci Pass exits into
+giving a definate feel of unwelcomeness.  To the northwest the pass
+continues on past your range of sight.  
+~
+0 -2147352571 2
+Rd     0
+D3
+~
+~
+0 0 5591
+S
+#5593
+At the foot of the valley's southern cliff~
+The southern cliff boundry of the Mareci Pass bends inward here to form a
+small alcove blocking out the sun's heat for a moment.  Within the shade of
+the cliffside a cool blast of air hits you, freezing you to the bone far
+more than any wind should when surrounded by temperature like this. 
+Something about this entire valley's weather doesn't seem right.  How could
+it be this warm weathered when it lies north of even the Arctic Wastelands? 
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5589
+D1
+~
+~
+0 0 5594
+S
+#5594
+At the foot of the valley's southern cliff~
+The southern cliff bondry of the Mareci Pass bends inward here to form a
+small alcove blocking out the sun's heat for a moment.  The coolness of the
+shade seems almost on the edge of creating frost though, which shouldn't be
+considering the rather warm weather outside this shady area.  If this land
+is truely north of the Arctic Wastelands as you were lead to believe
+shouldn't it be encased in thick ice?  
+~
+0 -2147352575 2
+Rd     0
+D0
+~
+~
+0 0 5590
+D3
+~
+~
+0 0 5593
+S
+#5595
+Entrance to the lower cliffs passageway~
+A narrow passageway running beneath the southern edge of Searnia's lower
+cliffs runs on to the west from here.  To the east the passageway broadens
+out into the Mareci Pass, which runs up between the lower cliffs and Harad
+Peak to the nothern averil forest.  
+~
+0 -2147352571 4
+Rd     0
+D1
+~
+~
+0 0 5586
+D3
+~
+~
+0 0 5596
+S
+#5596
+A narrow passageway in the cliffs~
+The narrow passageway beneath the lower cliff's southern edge snakes
+southward from here away from the Mareci Pass.  Shadows bathe the entire
+pathway making it hard to disearn the ending of the passageway.  The pathway
+itself is only a little bit wider than a horse's width.
+~
+0 -2147352575 4
+Rd     0
+D1
+~
+~
+0 0 5595
+D2
+~
+~
+0 0 5597
+S
+#5597
+A twist in the passageway in the cliffs~
+Off to the west the narrow passageway you stand in bends northward making
+it a blind corner.  To the other end the pathway heads north and bends east
+towards the Mareci Pass.  Towering above you is the southern edge of
+Searnia's lower cliffs.  To the south lies the Kaeln Mountains.  
+~
+0 -2147352575 4
+Rd     0
+D0
+~
+~
+0 0 5596
+D3
+~
+~
+0 0 5598
+S
+#5598
+A west-east pathway beneath the cliffs~
+Just off to the west the passageway bends northward behind a blind corner
+in the narrow pathway south of Searnia's lower cliffs.  Eastward the
+passageway bends northward a bit and immediately bends back east towards the
+massive Mareci Pass.  South of you the Kaeln Mountains soar up beyond the
+clouds covering any view of the Arctic Wastelands to the southeast and
+Hammerheim's mountain city to the south.  
+~
+0 -2147352575 4
+Rd     0
+D1
+~
+~
+0 0 5597
+D3
+~
+~
+0 0 5599
+S
+#5599
+A twist in the passageway in the cliffs~
+The passageway bends northward here heading away from the Mareci Pass far
+to the east.  A ways off into the east the passageway's narrow path bends
+northward out of sight.  The Kaeln Mountains loom off to the south blocking
+view of the lands you're familar with.  The pathway continues north far off
+into the distance.  
+~
+0 -2147352575 4
+Rd     0
+D0
+~
+~
+0 0 5600
+D1
+~
+~
+0 0 5598
+S
+#5600
+A fork in the passageway~
+You stand in a passageway that runs from far off into the north directly
+to the south where it bends eastward just a little ways off.  Beyond the
+east bend lies the Kaeln Mountains towering up into the sky marking
+Searnia's southern border.  A small alcove in the passageway is just off to
+the west.  
+~
+0 -2147352575 4
+Rd     0
+D0
+~
+~
+0 0 5604
+D2
+~
+~
+0 0 5599
+D3
+~
+~
+0 0 5601
+S
+#5601
+A small alcove~
+The Western Spires mountain range towers above you to the north and south
+in this small alcove.  Just to the east the alcove heads off northward into
+a long pathway and southward into a jagged little turn ending in an eastward
+direction.  Southeast of you the Kaeln Mountains loom up above the clouds
+marking Searnia's southern border.  
+~
+0 -2013134335 4
+Rd     0
+D1
+~
+~
+0 0 5600
+S
+#5602
+A closed in alcove~
+You stand inside a small closed in alcove with only one exit heading out
+to the north where a smaller passageway leads west into a longer and
+slightly wider pathway through the lower cliffs.  Sound seems to echo
+slightly within the alcove with each footstep you make.  
+~
+0 -2013134335 4
+Rd     0
+D0
+~
+~
+0 0 5603
+S
+#5603
+A narrower passageway leading off a bit~
+Branching off eastward from the slightly wider passageway this small
+pathway bends immediately south into a small alcove hidding by shadows.
+The lower cliffs of Searnia loom above you in every direction giving the
+narrow pathway a boxed-in feel to it.
+~
+0 -2147352575 4
+Rd     0
+D2
+~
+~
+0 0 5602
+D3
+~
+~
+0 0 5604
+S
+#5604
+Another fork in the passageway~
+The passageway you stand in leads far off into the north towards a small
+village's outer gate and off into the south towards an eastward bend.  Just
+to the east a narrower pathway leads off a bit before bending sharply south
+into a shadowy alcove.
+~
+0 -2147352575 4
+Rd     0
+D0
+~
+~
+0 0 5605
+D1
+~
+~
+0 0 5603
+D2
+~
+~
+0 0 5600
+S
+#5605
+Nearing a small village~
+Just off to the south lies the outer gate of a small village.  Peering
+that direction as best you can you're able to make out the forms of a couple
+stocky guards standing at the gate.  The pathway you stand in runs on
+southward beyond your range of sight until they hit the base of the Kaeln
+Mountains.  
+~
+0 -2147352575 4
+Rd     0
+D0
+~
+~
+0 0 5607
+D2
+~
+~
+0 0 5604
+S
+#5606
+Ralisan Garrison~
+&bBarrels containing old, rusty swords lie stacked along the walls of
+this fair sized room.  Along one wall lies a rack of short hafted spears
+with blades nearly a foot long mounting their tops.  A staircase in the back
+leads upward, but ends at a trapdoor locked with a large padlock.  An
+assortment of chairs lie in a circle formation in front of a large oak desk
+covered with papers.  A large broadsword lies tip-down in the ground resting
+with it's hilt up against the side of the desk.  Written in small black
+lettering is a small wooden sign bearing the words, &C"&zKeim, Captain of
+the Ralisan Garrison, Defender of the Pass, Lord of Ralisan.  &C"&b.  
+~
+0 -2147352564 1
+Rd     0
+D0
+~
+~
+0 0 5608
+S
+#5607
+Southern Gate of Ralisan~
+&bTall white walls end here into a large golden gate with gilded
+framework leading from the top to the ground.  The gate is split in the
+middle with the half on your right turned open slightly.  Two stockily built
+guards stand here watching those who enter the mountain village of Ralisan. 
+~
+0 -2147352576 4
+Rd     0
+D0
+~
+~
+0 0 5609
+D2
+~
+~
+0 0 5605
+S
+#5608
+Eastend Street~
+&bYou stand at the west end of the Eastend street.  The village's
+towering &Wwhite&b walls surround you to the north and west.  The street
+itself continues on eastward far off into the distance.  South lies a large
+building made of stone blocks unlike the thatched roofed wooden homes of the
+rest of Ralisan's buildings.  
+&b
+&BSouth &W- &CRalisan Garrison
+~
+0 -2147352576 1
+Rd     0
+D1
+~
+~
+0 0 5621
+D2
+~
+~
+0 0 5606
+S
+#5609
+Cliff Road~
+&bThe loud sounds of a medium sized village crowd around your ears
+derailing your train of thought slightly.  A small alleyway leads west of
+you into the dark.  Onward into the north continues the street named Cliff
+Road, with it's unbalanced cobblestone paving.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5613
+D2
+~
+~
+0 0 5607
+D3
+~
+~
+0 0 5610
+S
+#5610
+&zA dark alley~
+&bYour feet echo slightly as you step upon the rough, uneven cobblestone
+of this small dark alley.  &zShadows&b cloak everything beyond your small
+globe of light.  The alleyway continues on southward.  To the east the alley
+opens up into a small road heading to the north or the south.  
+~
+0 -2013134847 1
+Rd     0
+D1
+~
+~
+0 0 5609
+D2
+~
+~
+0 0 5611
+S
+#5611
+&zA dark alley's end~
+&bThe sounds of your feet echo a bit as you step on the uneven
+cobblestone of this narrow alley.  Everything seems to lie in the
+&zshadows&b just beyond the reach of your light.  The alley itself ends
+abruptly here with it's exit lying to the north towards a bit of light.  
+~
+0 -2013134847 1
+Rd     0
+D0
+~
+~
+0 0 5610
+S
+#5612
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147352564 1
+Rd     0
+D0
+~
+~
+0 0 5614
+S
+#5613
+Intersection of Cliff Road & Carellin Street~
+&bThe sounds of the village dance about your ears as you walk into this
+large intersection.  Heading off towards the north is a cobblestone road
+called Cliff Road while to the east runs a semi-paved pathway called
+Carellin Street.  A ways to the south the village's southern gate lies a bit
+open with sentries guarding it's enterance.  Just to the west is a building
+with a sign hanging over it's door.  
+&b
+&BWest &W- &CDlamar's Supply Store&b.
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5637
+D1
+~
+~
+0 0 5614
+D2
+~
+~
+0 0 5609
+D3
+A small wooden sign hangs above the oak door reading, &C"&bDlamar's
+Supply Store&C"&w, sways back and forth in the wind.  
+~
+door~
+3 0 5616
+S
+#5614
+Carellin Street~
+&bYou stand in the middle of a street paved slightly better than it's
+surrounding counterparts with crushed gravel smoothed as if by a river lying
+in cover of the ground.  Off to the west the street connects with a slightly
+shabbier looking road and branches off into several directions.  East is the
+&GVillage Green&b a center to the entire town, if not in the exact heart of
+the village.  A private home with a thatched roof lies to your south.  
+~
+0 -2147352576 1
+Rd     0
+D1
+~
+~
+0 0 5615
+D2
+~
+~
+0 0 5612
+D3
+~
+~
+0 0 5613
+S
+#5615
+&GVillage Green~
+&G&gA large fountain springs out of the middle of this grassy town square. 
+Center Street and Carellin Street both meet here bending into a paved circle
+around the green's fountain with branches for each end of the road in the
+four compass directions with Carellin heading from the west to the east and
+Center from the north to the south.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5635
+D1
+~
+~
+0 0 5617
+D2
+~
+~
+0 0 5620
+D3
+~
+~
+0 0 5614
+S
+#5616
+Dlamar's Supply Store~
+&bShelves line each wall of the small store's interior with jars and odd
+assortments of containers covering them from their fronts to the wall backs.
+A large counter built with large glass planes connected at the edges by
+glossily waxed oak wood comprises the main piece of furniture in the entire
+store.  
+~
+0 -2147081204 1
+Rd     0
+D1
+~
+door~
+3 0 5613
+S
+#5617
+Carellin Street~
+&bYou stand in the middle of one of Ralisan's larger streets as various
+wagons and carts of merchants or farmers wheel by.  Just to the west lies
+the &GVillage Green&b with it's large patch of grass and artistic fountain
+spraying water into the air.  Eastward the Carellin street ends up against
+the eastern wall of the village.  A painted sign hangs from a door directly
+to the south.  
+&b
+&BSouth &W- &CThe "&bCliff Side Inn&C".
+~
+0 -2147352576 1
+Rd     0
+D1
+~
+~
+0 0 5632
+D2
+A wooden sign hangs from atop the door's threshold proclaiming the name,
+&C"&bCliff Side Inn&C" &w and showing a picture of a high cliff's edge
+overlooking the expanse of the Mareci Pass off to the east.  
+~
+~
+3 0 5618
+D3
+~
+~
+0 0 5615
+S
+#5618
+The &C"&BCliff Side Inn&C" &Wcommon room~
+Straw covers the hard-pacted dirt ground semi-neatly as you step in
+through the door with it's painted sign hanging above.  Darkness seems to
+have swallowed half of the common room except in small sections bathed
+slightly in the light of a few lanterns hanging from the ceiling.  Men and a
+few women sit in chairs around various tables either talking with companions
+or simply content to peer into the depths of their mugs.  Serving girls rush
+about with trays of mugs held balanced upon an arm with an air of experience
+as they meander between tables collecting money from patrons or setting a
+mug before one of them.  A slightly-plump woman walks towards you
+dry-washing her hands with a smile on her face.  
+~
+0 -2147081208 1
+Rd     0
+D0
+~
+~
+3 0 5617
+S
+#5619
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147352564 1
+Rd     0
+D2
+~
+~
+0 0 5623
+S
+#5620
+Center Street~
+&bStanding in one of Ralisan's main streets you glance to the northern
+end and the southern end of this street.  Directly north the street leads
+into the town's &GVillage Green&b and even further beyond your able to make
+out anything lies the &Wbright white&b walls of Ralisan's northern boundry. 
+A look in the other direction shows a few side streets along the way, but an
+equally &Wwhite&b walled boundry covering the south.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5615
+D2
+~
+~
+0 0 5621
+S
+#5621
+Intersection of Center Street & Eastend Street~
+&bCenter street's wide gravel-paved road mixes in with the east-west
+running uneven cobblestone road of the Eastend street.  The noise of several
+crowds hammer in your ears as you glance around.  Eastend street ends
+directly off to your west and heads off quite a ways to the east to end
+before a section of Ralisan's large &Wwhite&b outer walls.  To the north,
+Center street continues a ways before entering the &GVillage Green&b
+slightly visible from here as a large patch of grass with a stone fountain
+in the middle.  South, the road continues on with a few sides streets until
+it runs up against the souther wall of Ralisan.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5620
+D1
+~
+~
+0 0 5622
+D2
+~
+~
+0 0 5626
+D3
+~
+~
+0 0 5608
+S
+#5622
+Eastend Street~
+&bThe uneven cobblestone heads on eastward from where you stand a ways
+before reaching Ralisan's eastern &Wwhite&b outer walls and stretches west a
+ways just after intersecting with Center street before ending against a
+section of the western outer wall.  The backs of buildings greet you to the
+north and the south.  
+~
+0 -2147352576 1
+Rd     0
+D1
+~
+~
+0 0 5623
+D3
+~
+~
+0 0 5621
+S
+#5623
+Eastend Street~
+&bThe steady clopping of horses sounds about you as the carts of farmers
+and wagons of merchans wheel by on the uneven cobblestone of this street.  A
+private dweling lies directly to the north and the back of one to the south.
+Far to the west the street continues until reaching the western wall of
+Ralisan's outer walls.  Just to the east the road ends abruptly at the foot
+of Ralisan's eastern outer wall.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5619
+D1
+~
+~
+0 0 5624
+D3
+~
+~
+0 0 5622
+S
+#5624
+Eastend Street~
+&bThe eastern &Wbright white&b wall of Ralisan's boundry snakes it's way
+around you to the north, east and then south just behind the building to the
+south.  A sign hangs above the door to the south swaying lazily in the wind.
+&b
+&BSouth &W- &CJharel's Magic Store&b.
+~
+0 -2147352576 1
+Rd     0
+D2
+A large sign hangs in the middle of this worn oaken door depicting a
+scene of some man holding up a flaming scroll.  Written in neat letters that
+stand out in sharp contrast to the shabby picture is: &C"&bJharel's Magic
+Store&C"&B.  
+~
+door~
+3 0 5625
+D3
+~
+~
+0 0 5623
+S
+#5625
+Jharel's Magic Store~
+&bPotions of colors varying from a &rdeep red&b to a &pswirling violet&b
+line the shelves in this medium sized room.  A rack of tubes fastened
+together hang braced against a wall with dozens of &Yyellow&b pieces of
+parchment containing spells of all sorts rolled up and placed within them. 
+A simple oak counter lies in the back of the store with trays of vials and
+pills with a blend of near rainbow scattered color.  
+~
+0 -2147351540 1
+Rd     0
+D0
+~
+door~
+3 0 5624
+S
+#5626
+Center Street~
+&bThe wagons of merchants and carts of farmers creak as they wheel by
+pacting down even harder the crushed gravel that forms the pavement of this
+street.  Just to the south the street takes a sharp bend east becoming the
+Kaeln Avenue while to the north it continues beyond your range of clear
+sight until it meets at the foot of Ralisan's northern wall.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5621
+D1
+~
+~
+0 0 5627
+D2
+~
+~
+0 0 5628
+S
+#5627
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147352564 1
+Rd     0
+D3
+~
+~
+0 0 5626
+S
+#5628
+Intersection of Center Street and Kaeln Avenue~
+&bThe crushed gravel paving of Center street blends in with that of Kaeln
+avenue's uneven cobblestone paving here at this intersecting bend.  The
+south end of Ralisan's outer &Wwhite&b walls looms above you to the south
+and the west as Center street ends and bends east to become Kaeln avenue.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5626
+D1
+~
+~
+0 0 5629
+S
+#5629
+Kaeln Avenue~
+&bThe south end of Ralisan's outer wall towers above you directly south
+with the side of some citizen's home blocking the north, neatly turning this
+avenue into little more than a back alley.  To the west, Kaeln avenue bends
+sharply north turning into Center street while to the east the avenue leads
+on a bit just before ending at the foot of the eastern wall boundry of
+Ralisan.  
+~
+0 -2147352576 1
+Rd     0
+D1
+~
+~
+0 0 5630
+D3
+~
+~
+0 0 5628
+S
+#5630
+Kaeln Avenue~
+&bThe Kaeln avenue's east end abruptly ends here at the foot of Ralisan's
+eastern wall boundry.  A ways off to the west the avenue bends sharply to
+the north becoming Center street on it's northward journey through Ralisan's
+heart.  Directly north of you lies the entrance to a citizen's private home.
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5631
+D3
+~
+~
+0 0 5629
+S
+#5631
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147352564 1
+Rd     0
+D2
+~
+~
+0 0 5630
+S
+#5632
+Carellin Street~
+&bThe crushed gravel paving of this street ends to the east directly at
+the foot of the eastern wall of Ralisan's outer boundry.  Off to the west a
+ways lies the town's &GVillage Green&b with it's large patch of grass and
+stone fountain spraying water into the air artisticly.  Just to the north
+lies the enterance to a citizen's private home.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5633
+D3
+~
+~
+0 0 5617
+S
+#5633
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147352564 1
+Rd     0
+D2
+~
+~
+0 0 5632
+S
+#5634
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147352564 1
+Rd     0
+D3
+~
+~
+0 0 5635
+S
+#5635
+Center Street~
+&bCrushed gravel grinds beneath your boots as you walk down the middle of
+the street, stepping lightly as to avoid passing carts and wagons along with
+those on horse.  Just to the south lies the &GVillage Green&b with a large
+stone fountain in it's center.  A ways off to the north the street bends
+sharply west at the foot of Ralisan's northern wall.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5641
+D1
+~
+~
+0 0 5634
+D2
+~
+~
+0 0 5615
+S
+#5636
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147082228 1
+Rd     0
+D3
+~
+~
+0 0 5637
+S
+#5637
+Cliff Road~
+&bYou step lightly aside as a farmer's cart rolls by close to where you
+were standing.  The echoing sounds of the village vibrate all about you as
+the citizens of Ralisan go about their daily lives.  The uneven cobblestone
+road you stand in heads on towards the north before bending eastward and it
+heads to the south until it meet's Ralisan's southern gate a ways off.  
+~
+0 -2147082240 1
+Rd     0
+D0
+~
+~
+0 0 5639
+D1
+~
+~
+0 0 5636
+D2
+~
+~
+0 0 5613
+S
+#5638
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147082228 1
+Rd     0
+D1
+~
+~
+0 0 5639
+S
+#5639
+Cliff Road~
+&bA door to a citizen's home lies to the west with the back of a store
+lying to the east along the road you're travelling.  Off a ways to the north
+the road itself bends sharply eastward at the foot of Ralisan's northern
+wall.  Southward the road continues on far into the distance to the
+village's southern gate.  
+~
+0 -2147082240 1
+Rd     0
+D0
+~
+~
+0 0 5645
+D2
+~
+~
+0 0 5637
+D3
+~
+~
+0 0 5638
+S
+#5640
+Deariv's Weaponsmithy~
+&bOld wooden barrels lie areas of the store's inner walls containing odd
+assortments of sword, broadswords, halberds, spears, quarterstaffs or axes
+of varying size.  A forge's heat comes from behind a closed door to the
+back, along with the sounds of hammering.  Walking in a bit further you come
+to a counter containing various daggers and throwing knives set on their
+sides with the tip facing outward.  
+~
+0 -2147351540 1
+Rd     0
+D1
+~
+door~
+3 0 5641
+S
+#5641
+Center Street~
+&bThe village's noise rings around you as you walk down this gravel-paved
+street.  Just off to the north the street bends sharply west becoming the
+Council Road, while to the south it continues on past the &GVillage Green&b
+before reaching Ralisan's southern wall.  A large wooden sign hangs over a
+thick oak door to the west.  
+&b
+&BWest &W- &CDeariv's Weaponsmithy
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5643
+D2
+~
+~
+0 0 5635
+D3
+A plain wooden sign hangs just above the oak door before you bearing the
+words, &C"&bDeariv's Weaponsmithy&C"&w.
+~
+~
+3 0 5640
+S
+#5642
+Rinnus' Blacksmithy & Armor Shop~
+&bIntense heat envelopes you as you enter the room, drawing beads of
+sweat upon your forehead.  A few men work at a large set of pillows keeping
+the forge's fire hot, while another man works steadily bringing down a heavy
+blacksmith's hammer upon a piece of metal resting on a black anvil.  Bits
+and pieces of armor hang up along the walls all across the walls, except for
+a section to the back that holds tools ranging from tongs to chippers of all
+sorts.  
+~
+0 -2147351540 1
+Rd     0
+D3
+~
+door~
+1 0 5643
+S
+#5643
+Center Street~
+&bThe loud sounds of metal ringing on metal echo from the east.  An
+abnormal heat seems to linger in the air from that direction as well.  A
+citizen walks in pushing open the door and a blast of heat knifes it's way
+out.  Just to the north the street bends sharply west becoming the Council
+Road.  On to the south the street passes through the &GVillage Green&b
+before heading to the foot of Ralisan's southern gate.  
+&b
+&BEast &W- &CRinnus' Blacksmithy & Armor Shop
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5650
+D1
+An ornate piece of anvil-worked metal hangs from the door making for an
+odd sign compared to it's plain oak door.  Etched into the metal's surface
+and painted are the words &C"&bRinnus' Blacksmithy & Armor Shop&C"&w.  
+~
+~
+1 0 5642
+D2
+~
+~
+0 0 5641
+S
+#5644
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147082232 1
+Rd     0
+D3
+~
+~
+0 0 5645
+S
+#5645
+Cliff Road~
+&bYou stumble slightly on the uneven cobblestone paving of this road as
+you head along your way.  Just to the north the road itself bends sharply
+east, becoming the Council Road.  Southward this road continues off until it
+meets Ralisan's southern gate and the cliff passageway beyond.  A small
+alley turns off to the west.  An oak door to a private home lies directly to
+the east.  
+~
+0 -2147082240 1
+Rd     0
+D0
+~
+~
+0 0 5648
+D1
+~
+~
+0 0 5644
+D2
+~
+~
+0 0 5639
+D3
+~
+~
+0 0 5646
+S
+#5646
+A small alley~
+&YSunlight&b streams in overhead from above the buildings to the north
+and south lighting half of the alley, while leaving the other half cloaked
+in &zshadows&b.  The oak door to a citizen's home lies open to the north. 
+Just to the east the alley exits into a road branching to the left or right.
+~
+0 -2147082240 1
+Rd     0
+D0
+~
+~
+0 0 5647
+D1
+~
+~
+0 0 5645
+S
+#5647
+A private residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147082228 1
+Rd     0
+D2
+~
+~
+0 0 5646
+S
+#5648
+Intersection of Cliff Road & Council Road~
+&bHere the Cliff Road heading in from the south bends eastward to be
+renamed as the Council Road.  A ways off to the east the road bends again to
+the south.  Ralisan's northern wall looms above you on the north side while
+the side of a citizen's home blocks the west just before the western wall of
+Ralisan towers up.  
+~
+0 -2147082240 1
+Rd     0
+D1
+~
+~
+0 0 5649
+D2
+~
+~
+0 0 5645
+S
+#5649
+Council Road~
+&bUneven cobblestone shifts a bit under your feet as you walk down this
+road.  You step to the side quickly to get out of the way of some farmer's
+cart and continue on with the sound of horses' hooves clopping on the stones
+behind you.  To the west the road bends southward becoming the Cliff Road
+while to the east it bends southward as well becoming Center Street.  An oak
+door of a private residence lies to the north.  
+~
+0 -2147352576 1
+Rd     0
+D0
+~
+~
+0 0 5651
+D1
+~
+~
+0 0 5650
+D3
+~
+~
+0 0 5648
+S
+#5650
+Intersection of Center Street & Council Road~
+&bUneven cobblestone mixes in with small bits of crushed gravel here as the
+Council Road bends to the south becoming Center Street, one of Ralisan's
+major pathways.  The village's northern wall looms above you to the north
+with the eastern wall blocking the east as well.  
+~
+0 -2147352576 1
+Rd     0
+D2
+~
+~
+0 0 5643
+D3
+~
+~
+0 0 5649
+S
+#5651
+Village Elder's residence~
+&bThe cobblestone of the streets end here as you enter this private home.
+The ground is simple bare dirt, if pacted down hard.  A couple blankets lie
+off to one corner as bedding for the home's owners while the most spacious
+piece of furniture seems to be that of a small table with a few chairs
+ringed around it.  
+~
+0 -2147352564 1
+Rd     0
+D2
+~
+~
+0 0 5649
+S
+#0
+
+
+
+#SPECIALS
+M 5604 spec_janitor
+M 5605 spec_janitor
+M 5606 spec_executioner
+M 5607 spec_executioner
+M 5609 spec_janitor
+M 5612 spec_guard
+M 5613 spec_executioner
+M 5615 spec_guard
+M 5616 spec_guard
+S
+
+
+
+#RESETS
+M 0 5606 1 5606
+E 0 5607 0 3
+E 0 5604 0 17
+E 0 5606 0 6
+E 0 5618 0 5
+E 0 5627 0 20
+E 0 5634 0 14
+E 0 5637 0 8
+E 0 5639 0 18
+E 0 5639 0 19
+E 0 5638 0 12
+E 0 5643 0 15
+E 0 5632 0 16
+E 0 5635 0 13
+M 0 5607 2 5607
+E 0 5627 0 20
+E 0 5627 0 21
+E 0 5605 0 5
+E 0 5604 0 17
+E 0 5606 0 6
+M 0 5608 1 5615
+E 0 5608 0 22
+E 0 5609 0 5
+E 0 5610 0 13
+E 0 5611 0 16
+M 0 5611 1 5615
+E 0 5626 0 5
+M 0 5614 1 5615
+E 0 5628 0 6
+M 0 5612 1 5615
+E 0 5603 0 20
+E 0 5603 0 21
+E 0 5605 0 5
+E 0 5606 0 6
+M 0 5615 1 5615
+E 0 5603 0 20
+E 0 5603 0 21
+E 0 5605 0 5
+E 0 5606 0 6
+M 0 5616 1 5615
+E 0 5603 0 20
+E 0 5603 0 21
+E 0 5605 0 5
+E 0 5606 0 6
+O 0 5620 0 5615
+O 0 5629 0 5615
+M 0 5599 1 5616
+G 0 5624 0
+G 0 5625 0
+M 0 5598 1 5618
+E 0 5598 0 5
+G 0 5621 0
+G 0 5622 0
+G 0 5623 0
+M 0 5609 1 5618
+E 0 5598 0 5
+M 0 5610 2 5618
+E 0 5621 0 22
+M 0 5595 1 5625
+E 0 5595 0 16
+G 0 5562 0
+G 0 5563 0
+G 0 5564 0
+G 0 5565 0
+G 0 5566 0
+G 0 5567 0
+M 0 5597 1 5640
+E 0 5612 0 22
+M 0 5596 1 5642
+E 0 5596 0 5
+E 0 5597 0 22
+G 0 5631 0
+G 0 5632 0
+G 0 5633 0
+G 0 5636 0
+G 0 5640 0
+M 0 5600 1 5651
+E 0 5599 0 22
+E 0 5600 0 3
+E 0 5613 0 20
+S
+
+
+
+#SHOPS
+5595 2 10 26 15 0 100 100 0 24
+5596 9 1 8 0 0 100 100 0 23
+5597 5 0 0 0 0 100 100 0 23
+5598 19 17 13 15 0 100 100 0 24
+5599 15 19 17 1 0 100 100 0 23
+0
+
+
+
+#$

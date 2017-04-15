@@ -1,0 +1,229 @@
+#AREADATA
+Name        {??-???} Dragon Orphanage    Fyraxx~
+Levels      5 20
+Builders    Fyraxx~
+VNUMs       21700 21749
+Security    99
+Recall      25000
+Flags       16
+Color       2
+End
+
+
+
+#MOBILES
+#21700
+Baby Dragon~
+A Baby Dragon~
+A cute baby dragon toddles around here.
+~
+This cute little baby dragon must have been abandoned at a young age.  It
+wanders the grounds of the Dragon Orphanage.  Every once in awhile it spits
+out a bit of fire, though it is a small amount.  
+
+The baby looks up at you with interest, studying this foreigner.
+~
+65 0 0 100 S
+5 0 0 100d0+0 0d0+0
+0 0 22 0
+0 0 1
+0 0 0
+#0
+
+
+
+#OBJECTS
+#21700
+Sign~
+a large sign~
+A large sign is stuck into the ground here.~
+~
+13 0 0 0 0 7
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sign~
+A large sign is stuck into the ground here.  Written on it in a flowery
+script are the words: 
+
+Welcome to the Home for Lost Dragons!
+This area is for levels 5-15 only.
+This area was created by Fyraxx, 7/97.
+
+Enjoy!
+~
+#21701
+dragon key~
+a small dragon-shaped key~
+A small, dragon-shaped key has been forgotten here.~
+~
+18 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+This is a small key, shaped like the head of a dragon.
+~
+#0
+
+
+
+#ROOMDATA
+#21700
+Entrance to the Dragon Orphanage~
+~
+0 0 2
+Rd     0
+D0
+~
+~
+1 0 21701
+S
+#21701
+Foyer of the Dragon Orphanage~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 21704
+D1
+~
+~
+0 0 21703
+D2
+~
+~
+1 0 21700
+D3
+~
+~
+0 0 21702
+S
+#21702
+West Grounds of the Dragon Orphanage~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 21706
+D1
+~
+~
+0 0 21701
+D3
+~
+~
+0 0 21707
+S
+#21703
+East Grounds of the Dragon Orphanage~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 21701
+S
+#21704
+Passage~
+~
+0 4 0
+Rd     0
+D0
+~
+~
+3 0 21705
+D2
+~
+~
+0 0 21701
+S
+#21705
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+3 0 21704
+S
+#21706
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 21702
+D3
+~
+~
+0 0 21708
+S
+#21707
+West Grounds of the Dragon Orphanage~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 21708
+D1
+~
+~
+0 0 21702
+S
+#21708
+West Grounds of the Dragon Orphanage~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 21706
+D2
+~
+~
+0 0 21707
+S
+#0
+
+
+
+#SPECIALS
+M 21700 spec_breath_lightning
+S
+
+
+
+#RESETS
+O 0 21700 0 21700
+M 0 21700 2 21702
+M 0 21700 2 21703
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

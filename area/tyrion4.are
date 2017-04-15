@@ -1,0 +1,3814 @@
+#AREADATA
+Name        { 80-90} Tolaria             Tyrion~
+Levels      80 90
+Builders    Tyrion Reklar~
+VNUMs       9101 9199
+Security    1
+Recall      25001
+Flags       0
+End
+
+
+
+#MOBILES
+#9101
+maltor~
+Maltor~
+Maltor is here pounding our armour.
+~
+~
+67 436207744 0 0 S
+80 0 0 9000d0+0 0d0+0
+170 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings!  I am Maltor, a blacksmith.
+~
+>speech_prog blacksmith~
+say Yes, I make armor.  Type LIST to see what I have.
+~
+>speech_prog bye~
+say Fare thee well!
+~
+>speech_prog hi hello~
+say Greetings!
+~
+|
+#9102
+grundle~
+Grundle~
+Grundle is here, forging weapons.
+~
+~
+67 369098880 0 0 S
+80 0 0 9000d0+0 0d0+0
+170 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+'Greetings, traveller!  I am Grundle, a weaponsmith.
+~
+>speech_prog weaponsmith smith~
+eye
+say Indeed, I make weapons.  Type LIST to see what I have.
+~
+>speech_prog hi hello~
+smile
+say Hello there!
+~
+>speech_prog bye~
+wave
+say Have a pleasant journey!
+~
+|
+#9103
+shyndar~
+Shyndar~
+Shyndar is here, tending his store.
+~
+~
+67 302006400 0 300 S
+81 0 0 9200d0+0 0d0+0
+180 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Hi!
+~
+>speech_prog hi hello~
+say I am Shyndar.  I used to be an adventurer,
+say but now I run this store.
+emote shows off his store proudly.
+~
+>speech_prog store~
+say Yes, this store.  Type LIST to see what I have.
+~
+>speech_prog adventurer~
+say Yes, I even once killed a Dragon!
+~
+>speech_prog dragon~
+emote spits on the floor.
+say One of Zhakarius' minions.
+~
+>speech_prog zhakarius~
+say Yes, you know, the sorcerer who lives in the tower.
+~
+>speech_prog tower~
+say The Chrystal Tower, of course.
+~
+>speech_prog chrystal~
+say Sorry, but I do not know its location.
+~
+>speech_prog bye~
+wave $n
+say Fare thee well, friend!
+~
+|
+#9104
+Eberynn~
+Eberynn~
+Eberynn is here, tending his restaurant.
+~
+~
+67 201343104 0 200 S
+83 0 0 9675d0+0 0d0+0
+200 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Hello there!
+~
+>speech_prog hi hello~
+say Welcome to my restaurant!  Type LIST to see what
+say I sell.
+~
+>speech_prog bye~
+say Come again, and tell your friends!
+~
+|
+#9105
+corci~
+Corci~
+Corci stands behind the counter.
+~
+~
+67 0 0 100 S
+80 0 0 20000d0+0 0d0+0
+100 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+emote looks up as you enter the room.
+~
+>speech_prog hi hello~
+say Hello, welcome to the bank.  Use the same commands as
+say you would use in Bethaven.
+~
+>speech_prog bye~
+say Thank you for doing business with us.
+~
+|
+#9106
+vaevictus mayor~
+Vaevictus~
+Vaevictus, the Mayor of Tolaria, is here.
+~
+~
+67 335544448 0 500 S
+83 0 0 10750d0+0 0d0+0
+200 0 0 0
+0 0 1
+0 0 0
+>speech_prog hi hello~
+say Greetings.  I am the mayor of this town.
+~
+>speech_prog mayor town~
+emote nods his head.
+say Yes, I watch over things, hear rumors, and keep the
+say peace.
+~
+>speech_prog rumors peace~
+say This town was built in a magical realm, and was the
+say gateway to the Chaos Wastes.
+~
+>speech_prog realm chaos wastes~
+say It is said that the reminants of the Chaos Orb still
+say exist in this town!
+~
+>speech_prog orb~
+say Sorry, I know nothing more.
+~
+>speech_prog bye~
+wave $n
+say Bye, and please don't cause any trouble!
+~
+|
+#9107
+mishara~
+Mishara~
+Lady Mishara, the repair smithy, is here.
+~
+~
+67 369098880 0 200 S
+85 0 0 10125d0+0 0d0+0
+240 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+smile
+say Well hello there!  Welcome to the Repair Shoppe.
+~
+>speech_prog hi hello~
+say Hi!  Welcome to my repair shoppe.
+~
+>speech_prog repair shoppe~
+nod
+say Yes, type REPAIR ALL to repair your equipment.
+smile
+~
+>speech_prog bye~
+say Have a safe journey, traveller!
+~
+|
+#9108
+shund~
+Shund~
+Shund is here, keeping to himself.
+~
+~
+67 369098752 32 -200 S
+80 0 0 9000d0+0 0d0+0
+200 0 0 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+emote notices you enter the room.
+~
+>speech_prog hi hello~
+say Yes?  What do you want?
+~
+>speech_prog death knights~
+say Yes, there are four of them.  Each one has a name.
+~
+>speech_prog name~
+say I have no idea any of them.  But I heard that a High 
+say Cleric knows them all.
+~
+>speech_prog high cleric~
+say Ask him about Falsehood, Cowardice, Greed, and Hate.  I
+say think he resides in a Forest Shrine near here.
+~
+>speech_prog bye~
+say Bye.
+~
+>act_prog "moves the potted plant over."~
+if class($n) == 2
+  emote looks around suspiciously for any non-thieves.
+  emote whispers, 'Ya be looking for the thief's lair, do ya?'
+  emote unlocks a trapdoor hidden beneath where the plant was.
+  emote ushers you through the trapdoor quickly shutting it behind you.
+  mptransfer $n 9152
+  break
+else
+  emote frowns angrily.
+  say What do ya think ye be doing, eh?!
+  say Get out of here!
+  mptransfer $n 9126
+  break
+endif
+~
+|
+#9109
+thorack~
+Thorack~
+Thorack is here, continuously mixing potions.
+~
+~
+67 268435456 0 0 S
+80 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Welcome to my shoppe.
+~
+>speech_prog hi hello~
+say Welcome to my shoppe.
+~
+>speech_prog bye~
+say Have a wonderful adventure!
+~
+|
+#9110
+Gha-Ren~
+Gha-Ren~
+Gha-Ren, high master Sorcerer, prepares scrolls.
+~
+~
+67 33554432 0 0 S
+80 0 0 16000d0+0 0d0+0
+200 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Welcome to my Shoppe.
+~
+>speech_prog hi hello~
+say Welcome to my Shoppe.
+~
+>speech_prog bye~
+say Fare thee well!
+~
+|
+#9111
+gwenna~
+Gwenna~
+Gwenna, the Furniture saleswoman, is here hard at work.
+~
+~
+67 134234240 0 0 S
+84 0 0 11000d0+0 0d0+0
+220 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+say Welcome to my store.  I buy and sell used furniture!
+~
+>speech_prog hi hello~
+say Hi!  I buy and sell used furniture.
+~
+>speech_prog bye~
+say Bu-bye!
+~
+|
+#9112
+hazezon tamar~
+Hazezon Tamar~
+Hazezon Tamar is here, to help practice your skills.
+~
+~
+1091 0 32 0 S
+80 0 0 16000d0+0 0d0+0
+170 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote smiles as you enter the room.
+~
+>speech_prog hi hello~
+say Hello.  I am Hazezon Tamar, I can help you.
+~
+>speech_prog help~
+nod
+say Yes, I heard some information that may be of use
+say to you.
+~
+>speech_prog information~
+say All I can remember is that Ramses Overdark knows
+say much of Zhakarius.
+~
+>speech_prog ramses overdark zhakarius~
+say Sorry, thats all I can remember.
+~
+>speech_prog bye~
+say Farewell, and remember, I can help you practice
+say your skills!
+~
+|
+#9113
+johan~
+Johan~
+Johan is here, tending his counter.
+~
+~
+67 201342976 0 -100 S
+83 0 0 10750d0+0 0d0+0
+200 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote looks up from his duties and smiles.
+~
+>speech_prog hi hello~
+say Hi there, welcome to my shop.  I deal in treasure!
+~
+>speech_prog treasure~
+say Anything you might find.
+~
+>speech_prog bye~
+say See ya later!
+~
+|
+#9114
+ramses overdark~
+Ramses Overdark~
+Ramses Overdark is here, ready to help you train.
+~
+~
+579 16384 0 200 S
+80 0 0 16000d0+0 0d0+0
+150 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote smiles
+say Hello $n.
+~
+>speech_prog hi hello~
+say Hi!  I can help you train your attributes.
+~
+>speech_prog zhakarius~
+say Who told you about that?
+~
+>speech_prog p hazezon tamar~
+say Well, yes, I was once in Zhakarius' Army.
+~
+>speech_prog army~
+say His army was lead by the four Death Knights.
+~
+>speech_prog death knights~
+nod
+say The owner of the Thieve's Guild knows about them.
+say I refuse to talk about them.
+emote looks pretty scared.
+~
+>speech_prog chrystal tower~
+say The Tower can only be entered if the password is spoken.
+~
+>speech_prog password~
+say I do not know it, but someone in the ghost town knows,
+say he is the only survivor there, to my knowledge.
+~
+>speech_prog bye~
+say Have a good day, and remember, I can help you train!
+~
+|
+#9115
+xira~
+Xira~
+Xira, the pet store owner, is here.
+~
+Xira, one of the most beautiful in all of Tolaria, is here.  She runs the
+pet store, and is a mute.  
+~
+67 201326720 0 200 S
+82 0 0 10500d0+0 0d0+0
+180 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+smile $n
+~
+>speech_prog hi hello~
+emote waves at $n happily.
+~
+>speech_prog bye~
+wave $n
+~
+|
+#9116
+tuknir deathlock~
+Tuknir Deathlock~
+Tuknir Deathlock is here, eminating immense magic
+~
+~
+67 503316608 0 500 S
+90 0 0 8750d0+0 0d0+0
+800 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote is aware of your presense.
+~
+>speech_prog hi hello~
+say Greetings, Traveller.  I am Tuknir Deathlock, and I
+say have mastered many magics.  Speak the word 'commands'
+say to see what I can do.
+~
+>speech_prog commands com~
+mpechoat $n Cost   Spell            Voice Command
+mpechoat $n ----   -----            -------------
+mpechoat $n Free   True Sight       truesight
+mpechoat $n 3000   Purge            purge
+mpechoat $n 12000  Invisibility     invis
+mpechoat $n 12000  Fly              fly
+mpechoat $n 55000  Healing Hands    heal
+mpechoat $n 6000   Bless            bless
+mpechoat $n 175000 Sanctuary        sanctuary
+mpechoat $n 30000  Giant Strength   giant
+mpechoat $n &w
+mpechoat $n Truesight - Casts on himself, to see the Phased
+mpechoat $n Purge     - Purges the room, thus destroying everything in it
+mpechoat $n &w          - Usefull for rapidly destroying mass equipment
+mpechoat $n Help      - Other help
+mpechoat $n &w
+~
+>speech_prog p purge~
+if goldamt($n) > 3000
+mpforce $n give 3000 coins tuknir
+say I will destroy everything before me.
+mppurge
+break
+else
+say You do not have enough money for that.
+endif
+~
+>speech_prog p invis~
+if goldamt($n) > 11999
+mpforce $n give 12000 coins tuknir
+say You are now invisible.
+cast 'invis' $n
+break
+else
+say You do not have enough money for that.
+endif
+
+~
+>speech_prog p fly~
+if goldamt($n) > 11999
+mpforce $n give 12000 coins tuknir
+say You now fly.
+cast 'fly' $n
+break
+else
+say You do not have enough money for that.
+endif
+~
+>speech_prog p heal~
+if goldamt($n) > 54999
+mpforce $n give 55000 coins tuknir
+say You are now completely healthy.
+cast 'healing hands' $n
+break
+else
+say You do not have enough money for that.
+endif
+~
+>speech_prog p bless~
+if goldamt($n) > 5999
+mpforce $n give 6000 coins tuknir
+say You are now blessed.
+cast 'bless' $n
+break
+else
+say You do not have enough money for that.
+endif
+
+~
+>speech_prog p sanctuary~
+if goldamt($n) > 174999
+mpforce $n give 175000 coins tuknir
+say You are now surrounded by a sanctuary of protection.
+cast 'sanctuary' $n
+break
+else
+say You do not have enough money for that.
+endif
+~
+>speech_prog p giant~
+if goldamt($n) > 29999
+mpforce $n give 30000 coins tuknir
+say You now have more superior strength.
+cast 'giant strength' $n
+break
+else
+say You do not have enough money for that.
+endif
+~
+>speech_prog help~
+mpechoat $n By speaking the commands, you will automatically pay the corresponding
+mpechoat $n amount of gold, and the spell will be cast on you.
+mpechoat $n CAUTION: This will NOT work if you are Phase Shifted, or any other
+mpechoat $n &w         similar spell!  Use the 'truesight' command so that Tuknir
+mpechoat $n &w         Deathlock can see you.
+~
+>speech_prog bye~
+say Fare thee well, adventurer!
+~
+>speech_prog p truesight~
+say I can now see the phased.
+cast 'true sight'
+~
+>act_prog "Darkness closes in about you."~
+mpforce $r sleep
+mptransfer $r 9134
+mpgoto 9134
+mpoload 9140
+mpoload 9141
+mpoload 9142
+mpoload 9143
+drop all
+mppurge mirror
+mpforce $r stand
+mpecho &BShards of glass explode about you as the twisted mirror shatters in all directions!
+~
+|
+#9117
+joshua~
+Joshua~
+Joshua, a loyal citizen, wanders the streets.
+~
+~
+65 0 0 200 S
+83 0 0 21500d0+0 0d0+0
+150 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 50~
+smile $n
+~
+>speech_prog p hi~
+say &G Hello there!
+~
+>speech_prog bye~
+say Have a pleasant day!
+smile
+~
+|
+#9118
+martha~
+Martha~
+Martha is here, wandering the streets.
+~
+~
+65 167772288 0 200 S
+82 0 0 10500d0+0 0d0+0
+100 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if ispc($n) == 1
+emote winks at you.
+endif
+~
+>speech_prog p secret~
+nod
+say Yep!  But I'll never tell!
+~
+>act_prog p kisses you.~
+smile $n
+say Well, ok, I'll tell you.
+tell $n The Chaos Orb exists in this town, but it is split into several pieces.
+~
+>act_prog p gives you a long and passionate kiss.~
+smile $n
+say Well, ok, I'll tell you.
+tell $n The Chaos Orb exists in this town, but it is split into several pieces.
+~
+>speech_prog p bye~
+wave $n
+wink $n
+say Bye!
+~
+|
+#9119
+othar~
+Othar~
+Othar is here, humming quietly to himself.
+~
+~
+65 268451968 0 -200 S
+81 0 0 10250d0+0 0d0+0
+130 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 50~
+say Ah hell, I know what that means..
+~
+>all_greet_prog 50~
+emote looks around
+say Are you sure about that?
+~
+>all_greet_prog 50~
+emote nods very quickly
+say Yes, master!
+~
+>speech_prog hi hello claw~
+say What was that?  Kill them?
+~
+>speech_prog kill~
+emote shakes his head quickly.
+say No, I must save the corn!
+~
+>speech_prog corn~
+say The claw!  Its the claw I tell you!
+~
+>speech_prog bye~
+emote looks around
+say I'm a lumberjack and I'm OK!
+~
+|
+#9120
+geoffry~
+Geoffry~
+Geoffry, a child, is at play here.
+~
+~
+65 16512 0 -200 S
+80 0 0 13000d0+0 0d0+0
+10 25 300 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote giggles at something.
+~
+>speech_prog hi hello~
+say HI!!!!!!
+~
+>speech_prog bye~
+say See ya!
+~
+>rand_prog 40~
+emote giggles again.
+~
+|
+#9121
+delse~
+Delse~
+Delse is here, playing quietly.
+~
+~
+65 16512 0 200 S
+85 0 0 14625d0+0 0d0+0
+14 50 200 0
+0 0 2
+0 0 0
+>all_greet_prog 75~
+emote attempts to run away
+south
+west
+~
+>speech_prog hi hello~
+blush
+~
+>speech_prog bye~
+wave
+~
+|
+#9122
+guard~
+The Guard~
+A Guard walks around, keeping an eye on things.
+~
+~
+65 234881152 0 200 S
+81 0 0 10250d0+0 0d0+0
+150 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 50~
+emote nods as you approach.
+~
+|
+#9123
+guard~
+The Guard~
+A Guard wanders around, keeping a lookout for trouble.
+~
+~
+65 335560832 0 0 S
+81 0 0 10250d0+0 0d0+0
+150 0 0 0
+0 0 1
+0 0 0
+#9124
+guard~
+The Guard~
+The Guard stands at his post, guarding the main entryway.
+~
+~
+67 469762176 0 0 S
+81 0 0 10250d0+0 0d0+0
+150 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Welcome to Tolaria!  The mayor's office is directly south
+say of here.
+~
+>speech_prog hi hello~
+say Hello, and welcome to Tolaria!
+~
+>speech_prog bye~
+say Fare thee well, traveller!
+~
+|
+#9125
+wyvern~
+The Wyvern~
+A Wyvern walks along here.
+~
+It is some kind of dracoform, but not entirely like a dragon.
+~
+257 335544320 0 0 S
+80 0 0 13000d0+0 0d0+0
+100 30 50 0
+0 0 0
+0 0 0
+#9126
+dragon~
+The Dragon~
+A young Dragon wanders around, minding its own business.
+~
+It is a young, silver dragon.
+~
+257 469762048 0 0 S
+85 0 0 11200d0+0 0d0+0
+50 200 100 0
+0 0 0
+0 0 0
+#9127
+image reflection twisted~
+A reflection~
+A twisted reflection of you is here.
+~
+From head to toe this image seems to mirror every feature of your
+appearance.  As you raise a hand towards it, your reflection raises a hand
+in the exact gesture towards your extended arm.  
+~
+67 369098856 0 0 S
+80 0 0 9000d0+0 0d0+0
+50 50 30 0
+0 0 0
+3 0 0
+>act_prog "steps out of the"~
+if isimmort($n) == 1
+    Say "&B Welcome Immortal"
+break
+endif
+mpecho &RAn &GEerrie Green&R mist spreads about your form as you step out of the mirror.
+emote grins maliciously.
+say One's own vices are what lead to a great many adventurers deaths.
+say Do you think you yourself able to best your own?
+&Wemote screams, "&CThen let you face who you were!"
+if class($n) == 2
+    backstab $n
+    break
+else
+    if class($n) == 10
+        cast 'hex' $n
+        break
+    else
+        mpkill $n
+    endif
+endif
+~
+>fight_prog 25~
+mppurge
+mpmload 9128
+if class($n) == 0
+OR class($n) == 1
+  emote raises it's hands in mimicry of your actions...
+  cast 'dispel magic' $n
+endif
+if class($n) == 2
+OR class($n) == 3
+OR class($n) == 8
+  if class($n) == 2
+    emote spins about in mimicry of you attempting to sneak behind you...
+    mpecho ...&Pand slams straight into you it's action...
+    stun
+  endif
+  if class($n) == 3
+    emote leaps at you in mimicry of your actions...
+    stun
+  endif
+  if class($n) == 8
+    emote sings aloud entrancing your thoughts...
+    stun
+  endif
+endif
+if class($n) == 6
+OR class($n) == 7
+OR class($n) == 9
+  emote attempts to wrestle your weapon from your grasp...
+  disarm
+endif
+if class($n) == 5
+  emote calls upon the powers of nature to destroy you...
+  cast 'curse of nature' $n
+endif
+if class($n) == 11
+  mpecho &PA reflection's chilling howl instills fear in you.
+  cast 'curse of nature' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+if class($n) == 4
+  emote hammers out wildly with it's mind...
+  cast 'ultrablast'
+endif
+~
+>fight_prog 27~
+mppurge
+mpmload 9128
+if class($n) == 0
+or class($n) == 9
+or class($n) == 8
+  mpecho &CE&Pn&Cer&Pg&Cy&w crackles about the reflection's fingertips as a &RBl&raz&Oin&Yg &Rb&ra&Ol&Yl &Ro&Yf &RF&rI&OR&YE &wstrikes
+  mpecho &wtowards you.
+  cast 'fireball' $n
+endif
+if class($n) == 1
+  emote summons the strength of $s deity...
+  cast 'dancing lights' $n
+endif
+if class($n) == 6
+or class($n) == 7
+  emote attempts to smash $s swordbutt against your head...
+  stun
+endif
+if class($n) == 3
+or class($n) == 11
+or class($n) == 2
+  emote attempts to wrestle your weapon from you...
+  disarm
+endif
+if class($n) == 5
+  emote sends bolts of &Ylightning&P flashing before your eyes!
+  cast 'blindness' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+if class($n) == 4
+  emote attempts to jumble your thoughts...
+  cast 'confusion' $n
+endif
+~
+>fight_prog 30~
+~
+>fight_prog 99~
+if class($n) == 0
+or class($n) == 9
+or class($n) == 8
+  mpecho &CE&Pn&Cer&Pg&Cy&w crackles about the reflection's fingertips as a &RBl&raz&Oin&Yg &Rb&ra&Ol&Yl &Ro&Yf &RF&rI&OR&YE &wstrikes
+  mpecho &wtowards you.
+  cast 'fireball' $n
+endif
+if class($n) == 1
+  emote summons the strength of $s deity...
+  cast 'holy flames' $n
+endif
+if class($n) == 2
+  emote slips about behind you stealthfully...
+  circle
+endif
+if class($n) == 3
+or class($n) == 11
+  emote growls enragedly...
+  if class($n) == 3
+    berserk
+  endif
+  if class($n) == 11
+    frenzy
+  endif
+endif
+if class($n) == 6
+  cast 'harm' $n
+endif
+if class($n) == 7
+  emote attempts to wrestle your weapon from you...
+  disarm
+endif
+if class($n) == 5
+  emote calls upon the help of the Fairy realm...
+  cast 'faerie fire' $n
+endif
+if class($n) == 4
+  emote penatrates into your thoughts of the past, demoralizing you...
+  cast 'ego whip' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+~
+>death_prog 100~
+mpecho &wYour &cReflection &CSHATTERS &wbefore you spraying tiny shards of glass all about!
+mpecho &wYour &CReflection&w appears before you.
+mpecho &wYour image twists before your very eyes.
+mpmload 9128
+say Are you ready for the next challenge?
+mpecho &W(&BREPLY&w: &w"&zI stand ready to be judged.&w"&W)
+~
+|
+#9128
+image reflection image2~
+A reflection~
+A twisted reflection of you is here.
+~
+From head to toe this image seems to mirror every feature of your
+appearance.  As you raise a hand towards it, your reflection raises a hand
+in the exact gesture towards your extended arm.
+~
+67 234897576 0 0 S
+90 0 0 9750d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+>fight_prog 25~
+mppurge
+mpmload 9129
+if class($n) == 0
+OR class($n) == 1
+  emote raises it's hands in mimicry of your actions...
+  cast 'dispel magic' $n
+endif
+if class($n) == 2
+OR class($n) == 3
+OR class($n) == 8
+  if class($n) == 2
+    emote spins about in mimicry of you attempting to sneak behind you...
+    mpecho ...&Pand slams straight into you it's action...
+    stun
+  endif
+  if class($n) == 3
+    emote leaps at you in mimicry of your actions...
+    stun
+  endif
+  if class($n) == 8
+    emote sings aloud entrancing your thoughts...
+    stun
+  endif
+endif
+if class($n) == 6
+OR class($n) == 7
+OR class($n) == 9
+  emote attempts to wrestle your weapon from your grasp...
+  disarm
+endif
+if class($n) == 5
+  emote calls upon the powers of nature to destroy you...
+  cast 'curse of nature' $n
+endif
+if class($n) == 11
+  mpecho &PA reflection's chilling howl instills fear in you.
+  cast 'curse of nature' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+if class($n) == 4
+  emote hammers out wildly with it's mind...
+  cast 'ultrablast'
+endif
+~
+>fight_prog 27~
+mppurge
+mpmload 9129
+if class($n) == 0
+or class($n) == 9
+or class($n) == 8
+  mpecho &CE&Pn&Cer&Pg&Cy&w crackles about the reflection's fingertips as a &RBl&raz&Oin&Yg &Rb&ra&Ol&Yl &Ro&Yf &RF&rI&OR&YE &wstrikes
+  mpecho &wtowards you.
+  cast 'fireball' $n
+endif
+if class($n) == 1
+  emote summons the strength of $s deity...
+  cast 'dancing lights' $n
+endif
+if class($n) == 6
+or class($n) == 7
+  emote attempts to smash $s swordbutt against your head...
+  stun
+endif
+if class($n) == 3
+or class($n) == 11
+or class($n) == 2
+  emote attempts to wrestle your weapon from you...
+  disarm
+endif
+if class($n) == 5
+  emote sends bolts of &Ylightning&P flashing before your eyes!
+  cast 'blindness' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+if class($n) == 4
+  emote attempts to jumble your thoughts...
+  cast 'confusion' $n
+endif
+~
+>fight_prog 30~
+mppurge
+mpmload 9129
+if class($n) == 0
+or class($n) == 9
+or class($n) == 8
+  mpecho &CE&Pn&Cer&Pg&Cy&w crackles about the reflection's fingertips as a &RBl&raz&Oin&Yg &Rb&ra&Ol&Yl &Ro&Yf &RF&rI&OR&YE &wstrikes
+  mpecho &wtowards you.
+  cast 'fireball' $n
+endif
+if class($n) == 1
+  emote summons the strength of $s deity...
+  cast 'dancing lights' $n
+endif
+if class($n) == 6
+or class($n) == 7
+  emote attempts to smash $s swordbutt against your head...
+  stun
+endif
+if class($n) == 3
+or class($n) == 11
+or class($n) == 2
+  emote attempts to wrestle your weapon from you...
+  disarm
+endif
+if class($n) == 5
+  emote sends bolts of &Ylightning&P flashing before your eyes!
+  cast 'blindness' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+if class($n) == 4
+  emote attempts to jumble your thoughts...
+  cast 'confusion' $n
+endif
+~
+>fight_prog 99~
+if class($n) == 0
+or class($n) == 9
+or class($n) == 8
+  mpecho &CE&Pn&Cer&Pg&Cy&w crackles about the reflection's fingertips as a &RBl&raz&Oin&Yg &Rb&ra&Ol&Yl &Ro&Yf &RF&rI&OR&YE &wstrikes
+  mpecho &wtowards you.
+  cast 'fireball' $n
+endif
+if class($n) == 1
+  emote summons the strength of $s deity...
+  cast 'holy flames' $n
+endif
+if class($n) == 2
+  emote slips about behind you stealthfully...
+  circle
+endif
+if class($n) == 3
+or class($n) == 11
+  emote growls enragedly...
+  if class($n) == 3
+    berserk
+  endif
+  if class($n) == 11
+    frenzy
+  endif
+endif
+if class($n) == 6
+  cast 'harm' $n
+endif
+if class($n) == 7
+  emote attempts to wrestle your weapon from you...
+  disarm
+endif
+if class($n) == 5
+  emote calls upon the help of the Fairy realm...
+  cast 'faerie fire' $n
+endif
+if class($n) == 4
+  emote penatrates into your thoughts of the past, demoralizing you...
+  cast 'ego whip' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+~
+>death_prog 100~
+mpecho &wYour &cReflection &CSHATTERS &wbefore you spraying tiny shards of glass all about!
+mpecho &wYour &CReflection&w appears before you.
+mpecho &wYour image twists before your very eyes.
+mpmload 9129
+say Are you ready for the next challenge?
+mpecho &W(&BREPLY&w: &w"&zI stand ready to be judged.&w"&W)
+~
+>speech_prog "I stand ready to be judged."~
+if isimmort($n) == 1
+    say &R This test was built for mortals only, sorry $n.
+    break
+endif
+mpoload 9152
+mpoload 9154
+mpat 9101 wear all
+say &R You have defeated the vices of your past, but it is also the sins and
+say &R misdeeds of our present.
+say &R The &YGods&R judgement of your character is not yet finished, mortal.
+emote says, &C"Prepare to face who you are!"
+if class($n) == 2
+    backstab $n
+    break
+else
+    if class($n) == 10
+        cast 'Hex' $n
+        break
+else 
+    mpkill $n
+endif
+endif
+~
+|
+#9129
+image reflection twisted image3~
+A reflection~
+A twisted reflection of you is here.
+~
+From head to toe this image seems to mirror every feature of your
+appearance.  As you raise a hand towards it, your reflection raises a hand
+in the exact gesture towards your extended arm.
+~
+67 503333032 0 0 S
+86 0 0 8050d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+>fight_prog 25~
+if class($n) == 0
+OR class($n) == 1
+  emote raises it's hands in mimicry of your actions...
+  cast 'dispel magic' $n
+endif
+if class($n) == 2
+OR class($n) == 3
+OR class($n) == 8
+  if class($n) == 2
+    emote spins about in mimicry of you attempting to sneak behind you...
+    mpecho ...&Pand slams straight into you it's action...
+    stun
+  endif
+  if class($n) == 3
+    emote leaps at you in mimicry of your actions...
+    stun
+  endif
+  if class($n) == 8
+    emote sings aloud entrancing your thoughts...
+    stun
+  endif
+endif
+if class($n) == 6
+OR class($n) == 7
+OR class($n) == 9
+  emote attempts to wrestle your weapon from your grasp...
+  disarm
+endif
+if class($n) == 5
+  emote calls upon the powers of nature to destroy you...
+  cast 'curse of nature' $n
+endif
+if class($n) == 11
+  mpecho &PA reflection's chilling howl instills fear in you.
+  cast 'curse of nature' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+if class($n) == 4
+  emote hammers out wildly with it's mind...
+  cast 'ultrablast'
+endif
+~
+>fight_prog 27~
+~
+>fight_prog 30~
+~
+>fight_prog 99~
+if class($n) == 0
+or class($n) == 9
+or class($n) == 8
+  mpecho &CE&Pn&Cer&Pg&Cy&w crackles about the reflection's fingertips as a &RBl&raz&Oin&Yg &Rb&ra&Ol&Yl &Ro&Yf &RF&rI&OR&YE &wstrikes
+  mpecho &wtowards you.
+  cast 'fireball' $n
+endif
+if class($n) == 1
+  emote summons the strength of $s deity...
+  cast 'holy flames' $n
+endif
+if class($n) == 2
+  emote slips about behind you stealthfully...
+  circle
+endif
+if class($n) == 3
+or class($n) == 11
+  emote growls enragedly...
+  if class($n) == 3
+    berserk
+  endif
+  if class($n) == 11
+    frenzy
+  endif
+endif
+if class($n) == 6
+  cast 'harm' $n
+endif
+if class($n) == 7
+  emote attempts to wrestle your weapon from you...
+  disarm
+endif
+if class($n) == 5
+  emote calls upon the help of the Fairy realm...
+  cast 'faerie fire' $n
+endif
+if class($n) == 4
+  emote penatrates into your thoughts of the past, demoralizing you...
+  cast 'ego whip' $n
+endif
+if class($n) == 10
+  emote taps into the power of the afterlife to destroy you...
+  cast 'stench of decay' $n
+endif
+~
+>death_prog 100~
+mpecho &wYour &cReflection &CSHATTERS &wbefore you spraying tiny shards of glass all about!
+mpecho &CTuknir's reflection says "You are worthy of the title champion, Hero $n.
+mpecho &C      You've managed to overcome the vices of your past, the sins of your
+mpecho &C      present & the unknown problems of your future.  The gods have judged
+mpecho &C      you worthy of the heralded &YChaos Orb&C!"
+mpecho &PTuknir's voice booms throughout the room as the area about you shakes
+mpecho &Pviolently.
+mpecho &zDarkness closes in about you.
+mpoload 9140
+mpoload 9141
+mpoload 9142
+mpoload 9143
+mpat 9134 mppurge
+mpat 9134 mpmload 9116
+mpat 9134 drop all
+mptransfer $n 9134
+mpat 9134 mpecho &PYou weakly regain your conciousness...
+mpat 9134 mpecho &BShards of glass explode about you as the twisted mirror shatters in all directions!
+mpat 9134 mpecho &CTuknir says "Now you have only to assemble these shards of glass and seek
+mpat 9134 mpecho &C      out the palm made for holding this sacred orb of magic."
+~
+>speech_prog "I stand ready to be judged."~
+if isimmort($n) == 1 
+    say &CThis test was built for mortals only, sorry $n.
+    break
+endif
+mpoload 9153
+mpoload 9154
+say &R The vices of your past and the sins of your present are purged from your
+say &R soul mortal but.
+&G emote screams, &C"Prepare to face who you will be."
+if class($n) == 2
+    backstab $n
+    break
+else
+if class($n) == 10
+    cast 'hex' $n
+    break
+else
+    mpkill $n
+endif
+endif
+~
+|
+#9130
+Terik thief shopkeeper elder~
+&zTerik&w~
+&zTerik, one of this realm's elder thieves, stands here tending shop.
+~
+&zCrystal blue eyes watch your every move, without even seeming to. 
+Standing calmly against a wall's rack of shelves, he looks completely at
+ease, but you sense the readiness of a coiled spring ready to pounce upon a
+second's time.&w
+~
+1603 98360 0 -1000 S
+90 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>all_greet_prog 100~
+~
+|
+#9146
+wyvern~
+The Wyvern~
+A Wyvern walks along here.
+~
+It is some kind of dracoform, but not entirely like a dragon.
+~
+257 335544320 0 0 S
+90 0 0 16250d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#0
+
+
+
+#OBJECTS
+#9101
+fountain~
+fountain~
+A fountain bubbles quietly in the centre of the street.~
+~
+25 1 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#9102
+donation box~
+donation box~
+A box for donations rests agains the northernmost wall.~
+~
+15 1 0 0 0 0
+99999~ 1~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#9103
+golden armguards~
+a golden pair of armguards~
+A golden pair of armguards rests at your feet.~
+~
+9 1 0 0 257 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 80
+A
+3 -1
+A
+1 3
+A
+17 -75
+E
+golden~
+These armguards are made of some of the finest gold around. It sparkles and looks quite Valuable.
+~
+E
+armguards~
+This larg chunk of gold has been shaped into armguards.
+~
+#9104
+gloves~
+a pair of gloves~
+A pair of gloves sit on the ground.~
+~
+9 1 0 0 129 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 8
+A
+17 -80
+A
+12 80
+A
+13 25
+E
+gloves~
+A pair of simple chain mail gloves. They Look fairly good at keeping your weapon in your hand.
+~
+#9105
+necklace~
+a necklace~
+A necklace sits, discarded here.~
+~
+13 3 0 0 5 81
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 81
+A
+25 27
+A
+12 80
+A
+14 -50
+A
+1 3
+E
+necklace~
+Its Made out of bones and iron. A heavy little thing.
+~
+#9106
+diamond earrings~
+a pair of diamond earrings~
+A pair of very beautiful, diamond earrings, lies at your feet.~
+~
+9 0 0 0 524289 82
+0~ 0~ 0~ 0~
+0 0 0 0 0
+5 0
+sanctuary~
+5 5
+0 0 0
+A
+4 3
+A
+25 27
+A
+14 -80
+A
+12 82
+A
+13 82
+E
+earrings~
+Small clips with a Jewel on it. Wonder which jewel?
+~
+E
+diamond~
+These Earrings made out of Diamonds! Surely for only the richest members of society.
+~
+#9107
+diamond bracelet~
+a diamond bracelet~
+A gorgeous diamond bracelet sits neatly on the ground.~
+~
+9 3 0 0 4097 82
+0~ 0~ 0~ 0~
+0 0 0 0 0
+5 0
+sanctuary~
+5 5
+0 0 0
+A
+13 -20
+A
+12 82
+A
+3 1
+A
+1 -1
+A
+4 1
+E
+bracelet~
+Small ring of iron with a Jewel on it. Wonder which jewel?
+~
+E
+diamond~
+This bracelet is made out of Diamonds! Surely for only the richest members of society.
+~
+#9108
+gold coin~
+a gold coin~
+&YOne miserable gold coin.~
+~
+9 64 0 0 32769 85
+0~ 0~ 0~ 0~
+0 0 0 0 0
+5 0
+protection evil~
+10 10
+0 0 0
+A
+12 85
+A
+13 85
+A
+17 -50
+A
+1 3
+A
+25 24
+E
+gold~
+If this gold coin had many more brothers it might mean something.
+~
+E
+coin~
+Round flat yellowish piece of metal. It looks lonely. Get more.
+~
+#9109
+tower shield~
+a tower shield~
+A Shield Shaped like a Tower Sits here.~
+~
+9 65 0 0 513 80
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -80
+A
+13 80
+A
+3 -1
+A
+1 2
+E
+shield~
+This is a large protective shield. Looks as if made of small ivory blocks and shaped into a form of a tower.
+~
+E
+tower~
+This shield looks exactly like it were a tower of ivory.
+~
+#9110
+platinum gauntlets~
+a pair of platinum fieldplate gauntlets~
+A Pair Of Platinum Fieldplate Gauntlets sit here gleaming.~
+~
+9 1 0 0 129 85
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 85
+A
+12 85
+A
+3 3
+A
+25 23
+A
+14 85
+E
+gauntlets~
+This piece of platinum has been shaped into a pair of fieldplate gauntlets.
+~
+E
+platinum~
+Solid shiny platinum. Very strong. But fairly heavy.
+~
+#9111
+warhammer~
+a warhammer~
+A Warhammer sits here.~
+~
+5 65 0 0 8193 80
+0~ 0~ 0~ 8~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 112
+A
+19 144
+A
+13 80
+E
+warhammer~
+A large black obsidian hammer of war. Looks like it could crush through a skull like a hot knife through butter.
+~
+#9112
+push dagger~
+a push dagger~
+A dagger with a serrated, curved blade, sits here.~
+~
+5 65 0 0 8193 85
+0~ 0~ 0~ 11~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 128
+A
+19 85
+A
+13 -50
+A
+12 85
+A
+25 28
+E
+dagger~
+This small handled blade is quite a dangerous dagger.
+~
+E
+push~
+Unlike most daggers this is not one to be held its handle is designed for pushing into its enemies backs.
+~
+#9113
+chicken wings~
+chicken wings~
+Chicken wings lie here.~
+~
+19 0 0 0 1 1
+120~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+wing~
+This is a wing off some kind of bird.
+~
+E
+chicken~
+Yes. A simple wing from a chicken.
+~
+#9114
+pasta~
+a plate of pasta~
+A plate of pasta sits here.~
+~
+19 0 0 0 1 1
+150~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pasta~
+A platter of long yellowish noodles. It has a sauce on top of it. Yummy.
+~
+#9115
+beef stew~
+a bowl of beef stew~
+A bowl of beef stew sits here.~
+~
+19 0 0 0 1 1
+180~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+stew~
+A large bowl of thick stew with beef in it.
+~
+E
+beef~
+Large chucks of beef float in this bowl of dark suace.
+~
+#9116
+glass water~
+a glass of water~
+A glass of water sits here.~
+~
+17 0 0 0 1 1
+5~ 5~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+water~
+That clear stuff thats inside this glass.
+~
+E
+glass~
+A round glass. WIth a clear liquid in it.
+~
+#9117
+mug ale~
+a mug of ale~
+A mug of ale sits here.~
+~
+17 0 0 0 1 1
+30~ 30~ 3~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+ale~
+Dark calored ale floats in this mug.
+~
+E
+mug~
+This thick cup is more like a beer mug than anything else.
+~
+#9118
+pitcher beer~
+a pitcher of beer~
+A pitcher of beer is here.~
+~
+17 0 0 0 1 1
+120~ 120~ 1~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+beer~
+A dark liquid of  beer floats in this Half gallon pitcher,
+~
+E
+pitcher~
+A large pitcher with Beer in it.
+~
+#9119
+potted plant~
+potted plant~
+A potted plant sits in the corner.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+plant~
+The plant is very green and healthy looking.
+~
+#9120
+plat~
+potted plant~
+A potted plant sits in the corner.~
+~
+15 0 0 0 0 0
+5~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+plant~
+The plant is very green and healthy looking.
+~
+#9121
+shimmering portal~
+shimmering portal~
+A shimmering portal floats in the air.~
+~
+29 65 0 0 0 0
+21485~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#9123
+speed potion~
+a potion of extreme speed~
+A potion sits on the ground.~
+~
+10 268435521 0 0 1 80
+75~ bio-acceleration~ cell adjustment~ haste~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+speed~
+This is a potion speed. Drink it and you shall move fast.
+~
+E
+potion~
+A small flask full of a purple liquid.
+~
+#9124
+potion might~
+a potion of might~
+A potion sits on the ground.~
+~
+10 301989952 0 0 1 75
+75~ giant strength~ enhanced strength~ reserved~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+potion~
+This is a small flask full of a green liguid.
+~
+E
+might~
+This is the potion of giants. It will make you strong. But it tastes teribly.
+~
+#9125
+potion avoidance~
+a potion of avoidance~
+A potion sits on the ground~
+~
+10 335544384 0 0 1 75
+75~ invis~ mental block~ phase shift~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+potion~
+This is a flask full of a orange liquid. Smells like socks.
+~
+E
+avoidance~
+This is the potion of avoidance. With this you can avoid the rigors of combat.
+~
+#9126
+potion visions~
+a potion of visions~
+A potion sits on the ground.~
+~
+10 268435777 0 0 1 90
+100~ true sight~ reserved~ reserved~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+visions~
+This potion is so potent it will cause you to see almost everything.
+~
+E
+potion~
+Thi is a flask full of a black liquid. Smells like horse manure.
+~
+#9127
+scroll reincarnation~
+a scroll of reincarnation~
+A scroll sits on the ground.~
+~
+2 67108928 0 0 1 75
+75~ animate dead~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+reincarnation~
+This scroll will raise the dead. But the dead often suffer from Crankiness, sore joints, and bad breath.
+~
+E
+scroll~
+A small piece of paper with runic writtings on it.
+~
+#9128
+scroll illusions~
+a scroll of illusions~
+A scroll sits on the ground.~
+~
+2 66 0 0 1 85
+75~ pass door~ aura sight~  ~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+scroll~
+A piece of paper with the spell of illusions upon it.
+~
+E
+illusions~
+Recite this and your illusions of granduer will come true.
+~
+#9129
+mug~
+an everfull mug~
+A mug of water glows on the ground here.~
+~
+17 65 0 0 1 80
+99999~ 99999~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+mug~
+This mug is eternaly full of water. Or so it appears.
+~
+#9130
+bag~
+a bag of berries~
+A plump looking bag sits on the ground.~
+~
+15 65 0 0 1 90
+4~ 1~ 0~ 0~
+0 0 0 0 0
+1 9131
+reserved~
+-1 -1
+0 0 0
+E
+bag~
+This bag is full of berrys. But it will never need to be filled.
+~
+#9131
+berry~
+a berry~
+A berry hums on the ground.~
+~
+19 66 0 0 1 30
+40~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+berry~
+This is a small blue magical berry.
+~
+#9132
+wire anklet~
+a wire anklet~
+A wire anklet sits on the ground.~
+~
+9 64 0 0 1048577 50
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+A
+19 5
+A
+18 5
+A
+17 -20
+E
+anklet~
+A small loop of silver wire.
+~
+E
+wire~
+This anklet is made of a thin piece of silver wire.
+~
+#9133
+shirt~
+a Tolarian shirt~
+A Tolarian shirt, with crest, sits neatly at your feet.~
+~
+9 0 0 0 9 80
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 25
+A
+18 10
+E
+shirt~
+A shirt with the crest of Tolaria.
+ 
+&R&R&R&R&R###############################
+###############################
+###                         ###
+###                         ###
+###          TTTTT          ###
+###          TTTTT          ###
+###   &Y&RUUUUUUUTTTTTUUUUUUU   ###
+###   UUUUUUUTTTTTUUUUUUU   ###
+###          TTTTT          ###
+###          TTTTT          ###
+###          T   T          ###
+###         T     T         ###
+###         T     T         ###
+###         T     T         ###
+###          T   T          ###
+###          TTTTT          ###
+###          TTTTT          ###
+###############################
+~
+#9134
+pants~
+a pair of Tolarian pants~
+A pair of Tolarian pants sits here in a crumpled mess.~
+~
+9 0 0 0 33 80
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 8
+A
+19 8
+E
+pants~
+Simple leather Tolarian Pants.
+~
+#9135
+boots~
+a pair of Tolarian boots~
+A pair of boots sits on the ground.~
+~
+9 64 0 0 65 80
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 3
+A
+14 80
+A
+13 20
+E
+boots ~
+Simple leather Tolarian Boots.
+~
+#9136
+sword~
+a long sword~
+A long sword sits on the ground.~
+~
+5 65 0 0 8193 83
+0~ 0~ 0~ 3~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 20
+A
+13 20
+A
+19 20
+A
+18 20
+E
+sword~
+A long iron Tolarian sword. Looks quite Deadly.
+~
+#9137
+dagger~
+a dagger~
+A dagger sits on the ground.~
+~
+5 64 0 0 8193 83
+0~ 0~ 0~ 11~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 20
+A
+12 20
+A
+19 15
+A
+18 35
+E
+dagger~
+A long slim dagger of cold steel.
+~
+#9138
+staff~
+a staff~
+A staff rests gently on the ground.~
+~
+5 65 6348 0 8193 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+fireball~
+5 5
+0 0 0
+A
+12 80
+A
+13 50
+A
+19 15
+A
+18 20
+E
+staff~
+A long staff of wood. It is the staff of fire.
+~
+#9139
+wand flame~
+a wand of flame~
+A burning wand sits on the ground.~
+~
+3 33554496 0 0 16385 30
+75~ 5~ 2~ fireshield~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+flame~
+This wand burns slightly.
+~
+E
+wand~
+A Small wand of flame made by the mages of Tolaria.
+~
+#9140
+glass~
+a piece of glass~
+&cA piece of &Rred &Cglass &cfrom your past reflection is here.~
+~
+8 64 0 0 1 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+9149 0 0
+E
+glass~
+The glass has a purple side.
+~
+#9141
+glass~
+a piece of glass~
+&cA piece of &Bblue &Cglass&c from your reflection is here.~
+~
+8 64 0 0 1 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+9147 0 0
+E
+glass~
+The glass has a green side.
+~
+#9142
+glass~
+a piece of glass~
+&cA piece of &Ggreen &Cglass &cfrom your future reflection is here.~
+~
+8 64 0 0 1 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+9150 0 0
+E
+glass~
+The glass has a blue side.
+~
+#9143
+glass~
+a piece of glass~
+&cA piece of &Ppurple &Cglass &cfrom a shattered mirror is here.~
+~
+8 64 0 0 1 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+9149 0 0
+E
+glass~
+The glass has a red side.
+~
+#9144
+orb~
+the Chaos Orb~
+An orb of incredible power sits here.~
+~
+9 67110916 0 0 32769 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+9147 9149 9150
+A
+1 3
+A
+2 3
+A
+13 100
+A
+24 -7
+A
+23 -7
+A
+12 100
+E
+orb~
+It seems to be broken.
+~
+#9145
+claw~
+a claw~
+A claw with a very rounded palm sits on the ground.~
+~
+9 64 0 0 16385 30
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+9147 0 0
+A
+13 30
+A
+19 5
+E
+claw~
+A paw from some animal. It looks like the hand came along.
+~
+#9146
+mirror odd twisted image~
+&Ban oddly twisted mirror~
+&BAn oddly twisted mirror stands here reflecting a twisted image of you.~
+~
+29 0 0 0 0 0
+9151~ 0~ 0~ 0~
+7000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#9147
+orb~
+the Chaos Orb~
+An orb of incredible power sits here.~
+~
+9 67110916 0 0 32769 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+chaos field~
+12 12
+0 0 0
+A
+19 15
+A
+18 8
+A
+13 75
+A
+23 -10
+A
+24 -10
+A
+17 -40
+E
+orb~
+An orb of complete and utter chaos floats here.
+~
+#9148
+necklace~
+a gold necklace~
+A gold necklace is here.~
+~
+9 65 0 0 5 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+A
+19 5
+E
+necklace~
+A necklace made of solid gold.
+~
+#9149
+glass~
+a piece of glass~
+A piece of glass sits on the ground.~
+~
+8 1 0 0 1 90
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+9144 9140 9143
+E
+glass~
+It is a red and purple piece of glass.
+~
+#9150
+glass~
+a piece of glass~
+A piece of glass sits on the ground.~
+~
+8 1 0 0 1 90
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+9144 9141 9142
+E
+glass~
+It is a blue and green piece of glass.
+~
+E
+glass~
+A strange piece of glass doesn't look quite right. It's missing something.
+But what?
+~
+#9151
+shard glass~
+&ca &Cshard &cof &Cglass&w~
+&BA long jagged shard of glass lies here.~
+~
+5 8448 0 0 8193 70
+0~ 0~ 0~ 11~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -40
+A
+23 -25
+A
+26 -100
+A
+19 190
+A
+18 190
+E
+shard glass ~
+A long shard of glass is very sharp, be careful with it.
+~
+#9152
+shard glass~
+&ca &Cshard &cof &Cglass&w~
+&BA long shard of glass lies here.~
+~
+5 268460288 0 0 8193 90
+0~ 0~ 0~ 11~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 -140
+A
+24 -90
+A
+23 -45
+A
+19 280
+A
+18 280
+E
+shard glass~
+A long shard of glass is very sharp. Be careful.
+~
+#9153
+shard glass~
+&ca &Cshard &cof &Cglass&X~
+&BA long shard of glass lies here.~
+~
+5 268460288 0 0 8193 107
+0~ 0~ 0~ 11~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 350
+A
+18 350
+A
+26 -210
+A
+24 -120
+A
+23 -55
+E
+shard glass~
+A plain shard of glass. It is quite sharp, so be careful.
+~
+#9154
+reflected image~
+&cyour &Creflected &cimage&w~
+&BA plane of glass from a mirror lies here.~
+~
+9 805314816 0 0 9 70
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 25
+A
+18 20
+A
+24 -80
+A
+23 -35
+E
+reflected image~
+&BYour image is reflected back at you, only it doesn't look like you. It is
+warped in some way.
+~
+E
+plane glass mirror~
+A small piece of a mirror has a strange aura about it.
+~
+#9155
+ladder wooden~
+a ladder~
+&OA long wooden ladder leads up to a trapdoor here.~
+~
+13 805306368 0 0 0 0
+0~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+ladder wooden~
+A plain wooden ladder with steel plates around each rung.
+~
+#9156
+table chairs~
+&Oa table and chairs&X~
+&OA large wooden table with a couple chairs around it lies here.~
+~
+13 805306368 0 0 0 0
+0~ 0~ 0~ 0~
+400 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+table chairs~
+A plain wooden table and matching chairs rest here waiting for use.
+~
+#9157
+shadow elixir thief-potion~
+&wa &zshadow&w'&zs &Gelixir&X~
+&BA &Ggreen&B colored liquid wrapped about by &zshadows&B lies here.~
+~
+10 805306368 0 0 1 10
+100~ cure critical~ cure critical~ mana~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+shadow elixir~
+A shadow's elixir emanates a dreary aura. It is green in color, but it
+makes you feel black and dark.
+~
+E
+thief-potion~
+The shadow's elixir, known as the thief-potion, is very rare in these
+parts of the realm. They are known to have curing affects.
+~
+#9158
+dark mushroom~
+&wa &zdark&w mushroom&X~
+&BA large &zdark coloured &Bmushroom grows here.~
+~
+26 268451840 1019 0 1 90
+100~ invis~ phase shift~ poison~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+dark mushroom~
+&BThis mushroom looks almost like a toadstool, or even like the odd fungus
+you might see growing on the sides of trees. It is greyish in color.
+~
+#9159
+Metal necklace~
+&Ya &Cmetal&Y necklace&X~
+&YA &Cmetal&Y necklace is lying here collecting dust.~
+~
+9 7169 0 0 5 85
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -40
+E
+metal necklace~
+The metal necklace is simply that. A necklace made from scrap metal. It is
+quite lovely though, regardless of where it's parts came from.
+~
+#9160
+diamond necklace~
+&CA &Rdiamond &Cnecklace&X~
+&CA &Rdiamond &Cnecklace is lying on the ground here.~
+~
+9 1 2049 0 5 90
+3~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -5
+A
+24 -5
+A
+17 -90
+A
+13 50
+E
+diamond necklace~
+&WA diamond necklace is so beautifully crafted, that the very small size of
+each diamond is nary a thought. There are so many of them cut to perfection.
+~
+#0
+
+
+
+#ROOMDATA
+#9101
+Corner of Prince and Princess Street~
+You have come to the corner of Prince and Princess street.  The clanging of
+armor can easily be heard to the west.  The two streets lead off to the east
+and to the south.  The immense magic of this place can be felt focusing in
+the eastern direction.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9102
+D2
+~
+~
+0 0 9124
+D3
+~
+~
+0 0 9136
+S
+#9102
+Princess Street~
+You are walking along Princess street, which extends to the east and west.  The
+clanging of metal striking metal can be heard to the south of here.  You can
+feel a strong sense of magic to the east.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9103
+D2
+~
+~
+0 0 9137
+D3
+~
+~
+0 0 9101
+S
+#9103
+Princess Street~
+You are walking along Princess street, which stretches out to the east and
+west. Many houses line the north and south side of this street.  You can
+feel a source of incredible magic power to the east.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9104
+D3
+~
+~
+0 0 9102
+S
+#9104
+Crossing of King and Princess Street~
+You have come to the intersection of King and Princess street.  An incredible
+source of magic is eminating from the building to the north, its power seeming
+to draw you closer.  Princess street leads to the east and west, while King
+street goes off to the south.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9134
+D1
+~
+~
+0 0 9105
+D2
+~
+~
+0 0 9125
+D3
+~
+~
+0 0 9103
+S
+#9105
+Princess Street~
+You are walking along princess street, which extends to the east and west.  You
+can see a bunch of houses to the north and south, packed together like a bunch
+of sardines.  You feel an immense source of power to the west.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9106
+D3
+~
+~
+0 0 9104
+S
+#9106
+Princess Street~
+You are walking along Princess street, its bricks leading to the east and the
+west. You can feel a source of magic coming from the west, as though a
+river of energy flows along the streets.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9107
+D3
+~
+~
+0 0 9105
+S
+#9107
+Corner of Queen and Princess Street~
+You have come to the corner of Queen and Princess street.  The clinking of
+coins can be heard to the north, perhaps a bank lies in that direction.  The
+two streets lead off to the west and to the south.  The immense magic of this 
+place can be felt focusing in the western direction.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9135
+D2
+~
+~
+0 0 9108
+D3
+~
+~
+0 0 9106
+S
+#9108
+Queen Street~
+You are walking along the northern end of Queen Street.  A building lies
+directly to the west of here, and all is quiet inside.  Queest Street
+continues to the north and the south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9107
+D2
+~
+~
+0 0 9109
+D3
+~
+~
+0 0 9138
+S
+#9109
+Queen Street~
+You are walking along the northern end of Queen Street.  Many small houses line
+both sides of the street, each having some sort of pottery displayed in its
+window. The street stretches to the north and to the south.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9108
+D2
+~
+~
+0 0 9110
+S
+#9110
+Crossing of Queen and Czar Street~
+You are at the crossing of Queen Street and Czar Street, just to the west
+of the towns general store.  This section of town is always bustling with
+activity, with people wandering here and there, all of them too busy to pay
+any attention to you.  Queen Street goes off to the north and the south,
+while Czar Street stretches to the west.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9109
+D1
+~
+~
+0 0 9142
+D2
+~
+~
+0 0 9111
+D3
+~
+~
+0 0 9133
+S
+#9111
+Queen Street~
+You are walking along the southern side of Queen Street, the smell of food is
+ripe in the air.  Some houses line both sides of the street.  You happen to 
+glance at the sky, and notice that there does not appear to be one.  You can go
+north or south from here.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9110
+D2
+~
+~
+0 0 9112
+S
+#9112
+Queen Street~
+You are walking along the southern half of Queen Street.  The streets
+themselves are kept in very good shape, as though they have not seen the
+wear and tear of weather in their lifetime.  You can travel to the north or
+to the south from here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9111
+D2
+~
+~
+0 0 9113
+S
+#9113
+Crossing of Queen and Royalle Street~
+You are at the crossing of Queen Street and Royalle Street, and what a
+sight it is.  It seems that the entire community comes to a restaurant
+located to the east of here, perhaps you can find some decent food there. 
+Queen Street will lead you north, while Royalle Street would lead you west. 
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9112
+D1
+~
+~
+0 0 9147
+D3
+~
+~
+0 0 9114
+S
+#9114
+Royalle Street~
+You are walking along Royalle Street, its neverending pleasant atmosphere
+bringing joy to its inhabitants.  A large building to the north has the
+sounds of many things coming from it, you can't help but wonder what is
+there.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9146
+D1
+~
+~
+0 0 9113
+D3
+~
+~
+0 0 9115
+S
+#9115
+Royalle Stret~
+You are walking along Royalle Street, just to the east of King Street. 
+Several houses are located to the north and to the south, and they seem to
+be quite a bit larger than the ones located on Queen Street.  You conclude
+this must be the richer neighbourhood.  You can go east or west from here.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9114
+D3
+~
+~
+0 0 9116
+S
+#9116
+Crossing of King and Royalle Street~
+You have come to the crossing of King Street and Royalle Street.  A very
+large building is located to the south of here, with a sign located directly
+above its main door.  Royalle Street leads to the east and west, while King
+Street goes to the north.  
+~
+0 0 0
+Rd     0
+E
+sign~
+The sign reads, 'Mayor's Office'
+~
+D0
+~
+~
+0 0 9129
+D1
+~
+~
+0 0 9115
+D2
+~
+~
+0 0 9149
+D3
+~
+~
+0 0 9117
+S
+#9117
+Royalle Street~
+You are walking by some very large houses on the north and south side of
+the street.  The houses look fit enough to hold a king, perhaps the fact
+that the street name signifies royalty wasn't a mistake.  Royalle Street
+leads to the east and west from here.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9116
+D3
+~
+~
+0 0 9118
+S
+#9118
+Royalle Street~
+You are travelling along the intricate brickwork that forms Royalle
+Street.  Its patters, that of stars and moons, must have taken a very long
+time to build.  It seems to be giving off a magical quality.  The street
+goes to the east and west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9117
+D3
+~
+~
+0 0 9119
+S
+#9119
+Crossing of Prince and Royalle Street~
+You have reached the crossing of Prince and Royall Street.  A fairly
+large, but not overly large, building is to the south of here, its doors
+continuously open.  A sign hangs over its main entrance.  The two streets go
+to the north and east of here.  
+~
+0 0 0
+Rd     0
+E
+sign~
+The sign reads, 'Prince Furniture'
+~
+D0
+~
+~
+0 0 9120
+D1
+~
+~
+0 0 9118
+D2
+~
+~
+0 0 9148
+S
+#9120
+Prince Street~
+As you walk along the southern end of Prince Street, you happen to come
+across a building which eminates magical energies.  It is located to the
+east of here.  The street continues to the north and to the south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9121
+D1
+~
+~
+0 0 9145
+D2
+~
+~
+0 0 9119
+S
+#9121
+Prince Street~
+You are walking along Prince Street, just to the south of Czar Street. 
+The many houses lining the streets of this town are all full, without a
+vacancy in sight.  The exits from here are to the north and south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9122
+D2
+~
+~
+0 0 9120
+S
+#9122
+Crossing of Prince and Czar Street~
+You have arrived at the crossing of Prince Street and Czar Street, just
+to the east of the repair shop.  You can hear the clanging of metal from
+there, and from the north.  You can go to the north or south, following
+Prince Street, or you can follow Czar Street to the east.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9123
+D1
+~
+~
+0 0 9130
+D2
+~
+~
+0 0 9121
+D3
+~
+~
+0 0 9141
+S
+#9123
+Prince Street~
+You are walking along the northern end of Prince Street.  A rather large
+house is located to the west of here, but it has been boarded up.  The
+street continues to the north and the south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9124
+D2
+~
+~
+0 0 9122
+S
+#9124
+Prince Street~
+You are travelling along a rather long street.  The clanging of metal can
+easily be heard to the north and the south, and is very loud to the east. 
+Prince Street leads off in the north and south directions.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9101
+D2
+~
+~
+0 0 9123
+S
+#9125
+King Street~
+You are walking along the northern end of the main street of Tolaria,
+King Street.  You can feel a very strong sense of magic to the north of
+here, it seems to be drawing you in that direction.  You can move to the
+north or south from here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9104
+D2
+~
+~
+0 0 9126
+S
+#9126
+King Street~
+You are walking along the northern end of King Street, and you happen to
+come across a building with a closed door, located to the east.  It is the
+only closed door in the entire town.  The street continues to the north or
+the south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9125
+D1
+~
+~
+3 0 9140
+D2
+~
+~
+0 0 9127
+S
+#9127
+Crossing of King and Czar Street~
+You have come to the central crossing of King and Czar street, the main
+crossing of Tolaria.  A large, translucent staircase leads up to a portal
+leading out of the city.  The two main streets, King Street and Czar Street,
+lead in the north- south direction and east-west direction respectively. 
+This city is vast in its wealth, and deserves some exploration.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9126
+D1
+~
+~
+0 0 9132
+D2
+~
+~
+0 0 9128
+D3
+~
+~
+0 0 9131
+D4
+~
+~
+0 0 9150
+S
+#9128
+King Street~
+You are travelling along the southern end of King Street, and you spy a
+building with a friendly atmosphere to the west.  You can move along King
+Street to the north or to the south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9127
+D2
+~
+~
+0 0 9129
+D3
+~
+~
+0 0 9143
+S
+#9129
+King Street~
+You are walking along the south side of King Street, nearest to Royalle Street,
+when you happen to come across a small crack in the road.  You find it odd that
+every other street is in perfect condition, but there is a crack here.  The street
+continues to the north and south.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9128
+D2
+~
+~
+0 0 9116
+S
+#9130
+Czar Street~
+As you walk along Czar street, you are amazed by the fine craftmanship of the 
+houses. Its long, sloping rooftops, the beautifully designed brickwork, all
+combine to make a brilliant work of art.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9131
+D3
+~
+~
+0 0 9122
+S
+#9131
+Czar Street~
+You are walking along Czar Street, just to the west of King Street.  A
+small building is located directly to the north, its doors perpetually open.
+The street continues to the east or west.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9139
+D1
+~
+~
+0 0 9127
+D3
+~
+~
+0 0 9130
+S
+#9132
+Czar Street~
+You are walking along Czar street.  There is a large, open building to
+the south, with the sounds of swordplay coming from it.  The street itself
+leads to the east and west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9133
+D2
+~
+~
+0 0 9144
+D3
+~
+~
+0 0 9127
+S
+#9133
+Czar Street~
+You are walking through Czar street, directly west of Queen Street.  You
+can easily see the general store a little ways to the east of here.  The
+street also traverses to the west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9110
+D3
+~
+~
+0 0 9132
+S
+#9134
+The Hall of Power~
+You have entered a room and are almost emediately blown away by the
+immense magical powers eminating from within.  The walls themselves pulse
+with untold power, all seeming to focus on Tuknir Deathlock, a sorcerer whos
+power is equaled by no other.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 9104
+S
+#9135
+Bank of Tolaria~
+All around people are conducting their transactions in a solumn manner. 
+From the mere phesants to the heirchy of royalty, Corsi treats them all with
+the same respect.  The safe door stands slightly ajar, giving a limited view
+to the storage area, which appears to be quite full.  Business here must be
+good.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 9107
+S
+#9136
+Maltor's Armoury~
+Surrounding the three walls are shelves stocked with every type of armour
+imaginable, from the basic to the powerful.  All it takes is gold, and lots
+of it, to equip yourself to withstand the poundings of even the most hideous
+of creatures.  
+~
+0 1032 0
+Rd     0
+D1
+~
+~
+0 0 9101
+S
+#9137
+Grundle's Weaponry~
+Although this shop is not overly large, Grundle has used every bit of
+open space to display his blades.  Upon closer examination, it appears
+that these blades have been well-cared for.  Their edges honed to a
+razor-sharp finish, and the steel shines so bright it seems like thousands
+of prisms adorn the room.  The choices here are endless and one could get so
+confused trying to decide.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9102
+S
+#9138
+Johan's Treasure Trove~
+Shelves laden with trinkets twinkle, catching the eye.  Some look rare,
+some not so rare.  Customers come to buy and sell any baubles they've
+collected along their way.  Johan appears from behind a strangely-woven
+tapestry, moving as silent as a shadow.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9108
+S
+#9139
+Gha-Ren's Scroll Shoppe~
+Magical energy crackles all through this room.  Scrolls are stacked
+neatly upon the shelves, strange writings upon their parchments.  Some even
+seem to emit a glow.  Now's the time to stock up on those scrolls you may
+need to continue your quest here.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 9131
+S
+#9140
+The Thieve's Guild~
+You have entered a rather small building, home to all thieves.  It is a store,
+but you cannot imagine what you could possible buy here.  A large doorway lies
+on the west wall, and is the only exit.
+~
+0 0 0
+Rd     0
+D3
+~
+~
+3 0 9126
+S
+#9141
+Mishara's Repairs~
+Here you can repair any equipment that may have become damaged in past
+battles.  Mishara looks as if she knows her stuff about repairs, and perhaps
+a little more than she lets on.  Judging by the way she's looking at you,
+perhaps you could use some equipment repairing.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9122
+S
+#9142
+Shyndar's General Store~
+This is where the well-stocked adventurers shop.  Racks are lined with
+every kind of supply any adventurer could possibly need or require for their
+next quest.  If you need something and don't see it here, ask Shyndar, he
+may be able to tell you where to aquire it.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 9110
+S
+#9143
+Hazezon's Practice Salon~
+Here is where any adventurer can practice any newly aquired spells and
+skills.  The room has a very serene aura to it, as if peace abounds here. 
+The smell of incense faintly assails your nostrils, not an unpleasant aroma
+in the least.  The lighting is low, and soothing music plays faintly in the
+background.  Hazezon is a large presence here, yet a comforting one.  Feel
+free to question Hazezon for he may know something.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9128
+S
+#9144
+Ramses' Training Room~
+The clanging of steel on steel rings throughout the room as adventurers
+train their attributes here.  Sweat permeates the air, and the groans of the
+weak echo all around.  You take stock of yourself to see if you too could
+use a bit of training.  Ramses stand here glaring, his form filling the
+room.  He looks as if he knows things he wishes he did not.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9132
+S
+#9145
+Thorack's Shoppe~
+You have entered a magical shoppe, its walls lined with potion upon
+potion upon potion.  The main exit, to the west, has an elaborate archway
+for a door.  The long countertop is the blocker between you and Thorack, to
+prevent theft.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 9120
+S
+#9146
+Pet Store~
+This shoppe houses a selected assortment of Dracoforms for you to buy as
+pets.  They are costly, but more than worth the purchase.  The only exit is
+the way you came, to the south.  The pet shop is, for the moment, closed.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 9114
+S
+#9147
+Eberynn's Restaurant~
+You have entered the best, and only, restaurant in all of Tolaria.  The smell
+of good food, although suprising, is very relaxing.  The only exit is the way
+you came, the archway to the west.
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 9113
+S
+#9148
+Prince Furniture~
+You have entered a shoddy shop, its contents a mess, but still stately
+furniture.  Most if it is in a state of disrepair, but I'm sure there may be
+something that is still put together.  The exit is to the north.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9119
+S
+#9149
+The Mayor's Office~
+You have entered the mayor's office, and it is very stately.  The two
+east and west walls have large murals of the town, while a painting of a
+giant yellow orb is situated on the south wall.  The only exit is north.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9116
+S
+#9150
+Above the Fountain~
+You are atop a large, translucet stairwell, overlooking the main fountain
+of Tolaria.  The stairs are magnificant in every way, and you realize just
+how magical this tent actually is.  A shimmering portal leads back to the
+beach.  
+~
+0 0 0
+Rd     0
+D5
+~
+~
+0 0 9127
+S
+#9151
+The Hall of Power~
+&YYou have entered a room and are almost emediately blown away by the
+immense magical powers eminating from within.  The walls themselves pulse
+with untold power, all seeming to focus on Tuknir Deathlock, a sorcerer whos
+power is equaled by no other.
+&B     An oddly twisted mirror stands here reflecting a twisted image of you.
+&PTuknir Deathlock's reflection is here, eminating immense magic
+&W    Tuknir Deathlock's body is veiled in a glowing white mist.
+&R    Tuknir Deathlock's body is burning with unfelt heat.
+&B    Tuknir Deathlock's body is sparking with electricity.
+&C    Tuknir Deathlock's body is covered in frost and ice.
+&Y    Tuknir Deathlock's body shimmers randomly with raw chaos.
+~
+0 4 0
+Rd     0
+E
+tuknir~
+&wYou see nothing special about him.
+&WTuknir Deathlock is in perfect health.
+~
+S
+#9152
+A small crawlway~
+Climbing the length of a long wooden ladder, you glance up above you at
+the closed trapdoor, wondering how much longer Shund will be able to keep
+this hiding place secret.  Several braces of iron strapped across the wooden
+boards reinforce the door to hold against nearly any attack, save fire. 
+Beneath you lies a small cavern area hiding away the secret meeting place of
+this storm's Guild of Thieves.  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 9140
+D5
+~
+~
+0 0 9153
+S
+#9153
+The bottom of the shaft~
+A small cloud of dust rises beneath your boots as you enter this section
+of the guild.  Just above you lies the end of a long wooden ladder leading
+straight up to the Thieve's Guild in Tolaria.  Eastward the cave continues
+to a small shop only the craftiest of thieves is aware of.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 9154
+D4
+~
+~
+0 0 9152
+S
+#9154
+Terik's Thieving Utilities~
+Dust covered shelves line the walls of this, somewhat finished room,
+built into the end of a cave.  Dirt from parts where the wall wasn't
+finished trickles down upon some of the shelves as you step about the shop. 
+The watchful eyes of Terik, one of this realm's elder thieves, follow you
+about the room.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 9153
+S
+#0
+
+
+
+#SPECIALS
+M 9103 spec_cast_mage
+M 9104 spec_cast_mage
+M 9106 spec_cast_psionicist
+M 9111 spec_cast_mage
+M 9115 spec_cast_mage
+M 9117 spec_cast_psionicist
+M 9119 spec_cast_psionicist
+M 9122 spec_guard
+M 9123 spec_guard
+M 9124 spec_guard
+S
+
+
+
+#RESETS
+M 0 9117 1 9102
+E 0 9133 0 5
+E 0 9134 0 11
+E 0 9138 0 20
+G 0 9108 0
+M 0 9123 1 9104
+E 0 9133 0 5
+E 0 9134 0 11
+E 0 9135 0 12
+E 0 9136 0 20
+E 0 9136 0 21
+G 0 9129 0
+M 0 9118 1 9109
+E 0 9133 0 5
+E 0 9134 0 11
+E 0 9137 0 20
+M 0 9121 1 9113
+E 0 9159 0 3
+M 0 9122 1 9116
+E 0 9133 0 5
+E 0 9134 0 11
+E 0 9135 0 12
+E 0 9136 0 20
+E 0 9137 0 21
+G 0 9129 0
+M 0 9119 1 9118
+E 0 9133 0 5
+E 0 9134 0 11
+M 0 9120 1 9124
+E 0 9132 0 24
+O 0 9101 0 9127
+M 0 9124 1 9127
+E 0 9133 0 5
+E 0 9134 0 11
+E 0 9136 0 20
+E 0 9135 0 12
+G 0 9129 0
+M 0 9116 1 9134
+O 0 9146 0 9134
+M 0 9105 1 9135
+O 0 9119 0 9135
+M 0 9101 1 9136
+O 0 9119 0 9136
+G 0 9160 0
+G 0 9110 0
+G 0 9109 0
+M 0 9102 1 9137
+O 0 9119 0 9137
+G 0 9111 0
+G 0 9112 0
+M 0 9113 1 9138
+O 0 9119 0 9138
+E 0 9136 0 20
+E 0 9133 0 5
+E 0 9107 0 18
+M 0 9110 1 9139
+G 0 9127 0
+G 0 9128 0
+O 0 9119 0 9139
+M 0 9108 1 9140
+G 0 9125 0
+G 0 9145 0
+O 0 9119 0 9140
+M 0 9107 1 9141
+O 0 9119 0 9141
+M 0 9103 1 9142
+G 0 9130 0
+E 0 9133 0 5
+E 0 9134 0 11
+E 0 9135 0 12
+E 0 9136 0 20
+O 0 9119 0 9142
+M 0 9112 1 9143
+O 0 9120 0 9143
+P 0 9142 0 9120
+M 0 9114 1 9144
+O 0 9119 0 9144
+M 0 9109 1 9145
+G 0 9123 0
+G 0 9124 0
+G 0 9126 0
+O 0 9120 0 9145
+P 0 9148 0 9120
+M 0 9115 1 9146
+E 0 9103 0 14
+E 0 9133 0 5
+E 0 9134 0 11
+E 0 9137 0 20
+O 0 9119 0 9146
+M 0 9104 1 9147
+E 0 9104 0 13
+E 0 9133 0 5
+E 0 9134 0 11
+O 0 9119 0 9147
+G 0 9118 0
+G 0 9117 0
+G 0 9116 0
+G 0 9115 0
+G 0 9114 0
+G 0 9113 0
+O 0 9119 0 9148
+M 0 9111 1 9148
+E 0 9133 0 5
+E 0 9105 0 3
+E 0 9106 0 23
+E 0 9138 0 20
+O 0 9119 0 9148
+M 0 9106 1 9149
+E 0 9132 0 24
+E 0 9133 0 5
+E 0 9134 0 11
+E 0 9135 0 12
+E 0 9136 0 20
+E 0 9136 0 21
+O 0 9102 0 9149
+P 0 9139 0 9102
+P 0 9148 0 9102
+O 0 9121 0 9150
+M 0 9127 1 9151
+E 0 9151 0 20
+E 0 9154 0 5
+O 0 9155 0 9152
+O 0 9156 0 9153
+M 0 9130 1 9154
+G 0 9157 0
+G 0 9158 0
+S
+
+
+
+#SHOPS
+9101 9 27 0 0 0 120 60 0 24
+9102 5 0 0 0 0 120 60 0 24
+9103 1 13 15 30 17 120 60 0 24
+9104 19 17 31 0 0 120 60 0 24
+9108 8 18 26 3 4 300 60 0 24
+9109 10 0 0 0 0 120 60 0 24
+9110 2 0 0 0 0 120 60 0 24
+9111 12 0 0 0 0 120 60 0 24
+9113 8 0 0 0 0 120 60 0 24
+9130 26 9 10 0 0 100 100 0 24
+0
+
+
+
+#$

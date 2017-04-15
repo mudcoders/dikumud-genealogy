@@ -1,0 +1,2838 @@
+#AREADATA
+Name        { 40-65} Silver Castle       Lucid~
+Levels      40 65
+Builders    Flint~
+VNUMs       20200 20299
+Security    99
+Recall      25001
+Flags       16
+Color       6
+Sounds      &CThe melodious sounds of the Court Bard's harp music fills the air.~
+End
+
+
+
+#MOBILES
+#20201
+sir morty torturer~
+Sir Morty~
+Sir Morty the torturer awaits his next victim.
+~
+A tall, dark man looms over you.  His blackened eyes bore into your soul,
+making you wish you never met up with such an evil man.  His wide set jaw,
+sunken cheeks and pale face give people the impression that he isn't even
+mortal...  
+~
+67 268435584 16 500 S
+69 0 0 10000d0+0 0d0+0
+0 400 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+emote grins evilly at you.
+say Ahh, there you are.
+say Sit down, I have something for you.
+emote goes over to the fire and removes a brand.
+mpoload 20255
+wield brand
+~
+>rand_prog 5~
+emote oils the chains on the rack.
+~
+>rand_prog 8~
+emote sharpens the spikes on the Iron Maiden.
+~
+>fight_prog 35~
+say I will crush your skull!
+kick
+~
+>fight_prog 40~
+say You are no match for me!
+stun
+~
+>fight_prog 55~
+emote grabs a hot brand from the forge.
+say Now, you will wear my mark!
+c 'burning hands' $n
+~
+>act_prog p leaves~
+remove brand
+mpjunk brand
+~
+>act_prog p flies~
+remove brand
+mpjunk brand
+~
+|
+#20202
+sir jonathon guard~
+Sir Jonathon~
+Sir Jonathon stands guard here.
+~
+Jonathon's stern rugged face reminds you of someone very loyal and law
+abiding.  His clear grey eyes are small and set wide apart, and the fine
+lines about them don't attempt to hide his age.  He has a kind smile, but
+remains a serious stance as he continues to guard the west end of the
+Castle.  
+~
+67 0 0 500 S
+62 0 0 10500d0+0 0d0+0
+15 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+if sex($n) == 1
+    say Greetings, Sir.
+    break
+endif
+if sex($n) == 2
+    say Greetings, Madam.
+    break
+endif
+if sex($n) == 0
+    say Greetings, my friend.
+    break
+endif
+~
+>fight_prog 35~
+say You shall die!
+stun
+~
+>fight_prog 35~
+say This will teach you!
+kick
+~
+|
+#20203
+sir dennis guard~
+Sir Dennis~
+Sir Dennis stands guard here.
+~
+Sir Dennis wears a rather amusing smile as he looks down upon you.  His
+face is difficult to read, it seems as if he is debating whether or not to
+drag you to the dungeons for disturbing him and the other guards on duty. 
+His big bushy eyebrows lean inwards, and a look of concentration covers his
+face.  
+~
+67 0 0 500 S
+64 0 0 11500d0+0 0d0+0
+10 50 0 0
+0 0 1
+0 0 0
+>greet_prog 80~
+say I am the greatest knight!
+emote looks about.
+say If anyone says different, I'll kill them.
+~
+>fight_prog 35~
+say I will crush your skull!
+kick
+~
+>fight_prog 50~
+emote laughs at your puny combat skills.
+kick
+~
+>speech_prog p you aren't the greatest knight~
+emote growls.
+mpkill $n
+say You are going to die now, $n!
+~
+|
+#20204
+sir leon guard train~
+Sir Leon~
+Sir Leon is ready to train is fellow knights
+~
+Leon's small frame and lean body doesn't quite look as one of a castle's
+trainer for it's guards.  But don't let that fool you, he is an expert in
+his field.  His well defined face is friendly, and his sandy blonde hair
+falls lightly across his forehead, making it difficult to see into his deep
+blue eyes.  
+~
+67 0 0 500 S
+70 0 0 15000d0+0 0d0+0
+0 500 0 0
+0 0 1
+0 0 0
+>rand_prog 9~
+emote sharpens his sword.
+grin
+~
+>fight_prog 35~
+say You're going to die!
+kick
+~
+>fight_prog 80~
+say You should of stayed home, where it's safe.
+stun
+~
+|
+#20205
+sir james guard~
+Sir James~
+Sir James stand guard here
+~
+A tall, burly man stands before you, here to protect King Elton.  His
+thin lips are pursed together tightly, and his tiny black eyes squint
+together as he looks you over.  This guard takes his job very seriously, he
+will do anything to protect his King.  
+~
+67 64 0 500 S
+66 0 0 12595d0+0 0d0+0
+30 0 200 0
+0 0 1
+0 0 0
+>fight_prog 40~
+kick
+~
+|
+#20206
+sir francis guard~
+Sir Francis~
+Sir Francis stands guard here
+~
+This knight looks as though he has seen a few battles.  While not an overly large man, he walks with a grace and litheness that suggests his strategy in battle rests more on speed than brute force.
+~
+65 0 0 500 S
+68 0 0 8000d0+0 0d0+0
+30 0 0 0
+0 0 1
+0 0 0
+>greet_prog 80~
+say I am Sir Francis!
+~
+>fight_prog 35~
+say You're not going to see another day!
+kick
+~
+>fight_prog 35~
+say You shouldn't be messing with me!
+stun
+kick
+~
+|
+#20207
+sir terrence guard~
+Sir Terrence~
+Sir Terrence appears to be half asleep.
+~
+Sir Terrence has a rather drowsy look in his eyes.  He has a stocky build
+and is well suited to guard the castle.  His huge hands grip loosely to a
+huge silver broadsword, ready to slay any who threaten the Castle.  
+~
+65 131072 0 500 S
+60 0 0 10000d0+0 0d0+0
+0 0 700 0
+0 0 1
+0 0 0
+>greet_prog 80~
+emote scratches himself obscenely.
+say Five more minutes Sarge...
+emote snores.
+~
+>rand_prog 10~
+emote grumbles in his sleep.
+emote snores loudly.
+~
+>rand_prog 30~
+stand
+yawn
+say Sooo tired....
+~
+>fight_prog 45~
+say Please let me sleep!
+kick
+gouge
+~
+|
+#20208
+knight champion sir ed edward guard~
+Sir Edward~
+Knight Champion Sir Edward stands guard here
+~
+&CFlecks of &Wwhite&C streak along the sides of his &zdark black&C hair
+hanging loose beneath his large &wsilver&C helm.  The icy &Bblue&C eyes of
+experience regard you casually assessing how much of a threat you pose to
+his leige's castle.  The room's own light seems to dance off the surface of
+his gleaming &wsilver platemail&C armor giving him a slight &Wglow&C.  
+~
+67 134217960 0 1000 S
+80 0 0 17500d0+0 0d0+0
+100 500 500 0
+0 0 1
+0 0 0
+>greet_prog 90~
+emote rests a hand on the haft of his axe and examines you casually.
+if isgood($n)
+  emote releases his axe.
+  emote rumbles, &B'&wWelcome friend!  Enjoy your time in our castle.&B'
+  break
+else
+  emote growls, &B'&wYou're kind is not welcome here.  Time you be leaving.&B'
+  break
+endif
+~
+>rand_prog 8~
+say I am the Kings personal knight!
+say Tis a mighty honour!
+emote smiles proudly.
+~
+>rand_prog 8~
+emote checks his equipment.
+say A good knight is always prepared.
+~
+>death_prog 100~
+say You have bested me in battle!
+~
+>fight_prog 25~
+emote slips by and slams the butt of his axe against your head.
+stun
+~
+>fight_prog 50~
+emote attempts to purge the evil magic from within you...
+c 'dispel magic' $n
+~
+>fight_prog 99~
+emote summons the wraith of his gods to defend the realm...
+c 'fireball' $n
+~
+|
+#20209
+head chef~
+the Head Chef~
+The Head Chef stands here yelling in a foreign tongue
+~
+The Chef looks like he spends just as much time making his food as he
+does eating it.  Rolls of fat appear everywhere from his massive body.  But,
+after seeing the way he swings around the massive roasts that he is cooking,
+you suspect that he has a great ammount of strength in there somewhere.  
+~
+3 64 0 0 S
+50 0 0 6000d0+0 0d0+0
+0 10 10 0
+0 0 1
+128 0 0
+>greet_prog 100~
+say Mind yer step...
+emote looks at $n distastefully.
+say An don't touch me foods!
+~
+>rand_prog 8~
+emote begins chopping vegetables into a stew.
+~
+>rand_prog 6~
+emote begins crimping a pie crust.
+~
+>fight_prog ~
+say I'm trying to cook, leave me alone.
+kick
+~
+|
+#20210
+high priest lambda~
+High Priest Lambda~
+The High Priest Lambda prays silently here
+~
+The good Priest stands before the altar, praying to the God of War.  It
+would probably be best not to desturb him, as incuring the wrath of the War
+God can be hazardous to ones health.  
+~
+3 16777344 0 1000 S
+65 0 0 12500d0+0 0d0+0
+20 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+say Greetings my Brother...
+smile
+say May you find peace and enlightenment in Tith-Onanka's home.
+~
+>rand_prog 8~
+emote sings a hymn to the God of War.
+~
+>rand_prog 2~
+emote pulls a rope.
+mpecho DONG!!  DONG!!  DONG!!
+emote clears his throat.
+mpecho Many parishiners file into the church.
+say Greetings Brothers!
+emote gives a stirring service.
+say Go in Peace Brothers!
+mpecho The parishiners file out of the church.
+~
+|
+#20211
+king elton~
+King Elton~
+King Elton majestically stands here
+~
+Elton is every bit the King type.  He stands proudly in the room, and his
+presence demands your attention.  By looking at his large frame you can tell
+that he was once a warrior of great ability, but age is starting to claim
+him.  This does not stop him from ruling over the lands with wisdom and
+compassion though.  
+~
+3 192 0 250 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+smile
+say Greetings my Loyal Subjects!
+~
+>rand_prog 5~
+say It's GOOD to be the King!!!
+emote smiles happily.
+~
+>rand_prog 5~
+emote looks around.
+emote disguises his voice and says "Long Live the King!!!"
+emote smiles happily.
+say Thank you my Loyal Subjects!  Thy love touches my heart!
+~
+>fight_prog 45~
+say Traitor! I let you in my castle and this is how you repay me!
+stun
+kick
+~
+|
+#20212
+queen sarah~
+Queen Sarah~
+Queen Sarah stands regally before you
+~
+This proud lady is every bit the Queen.  From the elegance and grace with with she carries herself, to the warm smile that she greets you with, you can tell that you are in the presence of greatness. 
+~
+3 64 0 500 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 2
+128 0 0
+>greet_prog 100~
+say Shhh...
+say Step quietly, the prince is sleeping.
+smile
+~
+>rand_prog 5~
+emote smiles at you.
+say Have you seen my beautiful son yet?
+sa When he wakes, I'll take you to meet him.
+~
+>rand_prog 5~
+emote begins knitting a small hat for the prince.
+~
+>fight_prog 45~
+say I am but a simple queen!
+gouge
+~
+|
+#20213
+baby prince kestrel~
+Prince Kestrel~
+The baby Prince Kestrel goos and gaws here
+~
+This tiny baby is the obviously the son of the Queen and King.  Even at his young age, he dosn't cry much, and seems content to wait for the future when he will rule this realm.
+~
+3 0 0 1000 S
+1 0 0 20d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+>rand_prog 5~
+emote attempts to put his entire fist in his mouth.
+~
+>rand_prog 8~
+emote gurgles happily to himself.
+~
+>rand_prog 5~
+emote rolls around in his crib
+~
+|
+#20214
+royal squire~
+The Royal Squire~
+The Royal Squire scuttles about 
+~
+This young man has hopes of becoming a knight someday, and by the looks
+of him, it won't be a problem.  Although still in his teens, he stands over
+six foot, and looks to be about two hundred pounds.  His training sword is
+held at the ready as you, a stanger to his masters castle, approach him.  
+~
+65 64 0 100 S
+52 0 0 6500d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+>greet_prog 50~
+say Outta my way!
+say I'm on an important errand for the King!
+strut
+~
+>fight_prog 35~
+say The kings needs me, I must finish with you!
+gouge
+~
+>fight_prog 55~
+say Take that!
+kick
+~
+|
+#20215
+royal page~
+The Royal Page~
+The Royal Page rushes bout
+~
+THe Royal Page wanders around the castle with little noticable purpose.  His elegant dress makes one wonder if he is possibly the Royal Money Spender as well.
+~
+65 64 0 100 S
+52 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+>greet_prog 100~
+if ispc($n)
+   emote puts his hands to his mouth and inhales.
+   yell  Sir $n is here to see the king!
+endif
+~
+>fight_prog 50~
+say I will crush your skull!
+gouge
+~
+|
+#20216
+castle servant~
+a Castle Servant~
+A Castle Servant bustles past you
+~
+One of many, this nameless servant runs about on one errant or another
+for his master.  He seems to shrink away from you or the prospect of being
+sent on another job by you, that will overload his already busy schedule.  
+~
+69 0 0 50 S
+54 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>rand_prog 6~
+emote mutters about low wages and busy work.
+~
+>fight_prog 50~
+say You scoundrel, wait 'til the sirs get you!
+kick
+~
+|
+#20217
+moat monster~
+Moat Monster~
+The friendly Moat Monster swims here
+~
+This large, green, scaly monster swims about the moat, doing more scaring
+of visitors, than actual attacking.  She is mainly a peaceful creature, but
+will fight if provoked.  
+~
+65 16777344 0 -250 S
+70 0 0 10000d0+0 0d0+0
+0 0 1 0
+0 0 2
+0 0 0
+>greet_prog 80~
+emote snorts bubble through its nose as a greeting.
+~
+>rand_prog 5~
+emote scoops his head into the water and plucks out a fish.
+mpecho After eating the skinny fish, the moat monster spits out the bones.
+~
+|
+#20218
+archer tower~
+A Tower Archer~
+A Tower Archer holds an arrow half cocked towards you
+~
+This warrior has been around long enough and has seen enough battles,
+that he has been left alone on the parapet to guard the castle.  He carries
+himself with a warriors grace and is constantly on the lookout for one who may
+wish to plunder his masters castle.  He eyes you as you approach, tasking
+careful note of your weapons, and how you carry them.  
+~
+3 64 0 100 S
+52 0 0 6250d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+>rand_prog 5~
+emote tests the pull on his bow.
+~
+>rand_prog 6~
+emote surveys the grounds below the castle for enemies.
+~
+>fight_prog 45~
+say Finally, I'll have an enemies body to bring to my master!
+kick
+stun
+~
+|
+#20219
+melkor advisor~
+Melkor~
+Melkor, the Kings Advisor, mumbles to himself here
+~
+The old wizard has been around long enough to serve many kings.  His bent
+old frame looks tiny compared to the massive labratory in which he works to
+the extent that he is almost hard to find!  Although he is small and frail,
+there is a fire in his eye that suggests he would not be an easy one to best
+in battle.  After all, he Is a wizard.  
+~
+3 33554432 0 250 S
+70 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+>greet_prog 100~
+if ispc($n)
+   say Aye?!?!  Watch your step you clumsy oaf!
+endif
+~
+>rand_prog 5~
+emote mutters the words "Argle blattle mock!"
+mpecho The room shudders, and a small furry rodent falls from the air.
+say Darn...still not a rabbit...
+emote mutters to himself.
+~
+>rand_prog 5~
+mpecho You smell a distinct burning smell.
+emote suddenly jumps about, as great clouds of smoke come from his robes.
+emote pulls a small burning ball of fire from his robes.
+say Drat!  I hate it when that happens!
+emote makes the ball of fire vanish!
+~
+>rand_prog 5~
+emote begins to cast a difficult spell.
+mpecho A great cloud of smoke appears.
+say Hummmpph...that isn't right.
+emote coughs on the smoke.
+say Away!
+emote waves a hand distractedly at the smoke.
+mpecho The smoke clears.
+~
+>give_prog potion mind calming~
+mpjunk $o
+say Eh?  What's this?
+emote sniffs the bottle.
+shrug
+emote quaffs the potion.
+emote suddenly stands up straight, and his eyes clear.
+say Oh!
+emote begins to sob.
+say That elixer brings sad sad memories...
+say I wasn't always a crumpled old man, I was once a young
+say mage in a society of mystics!  The Pelrenes.
+emote has a faint smile on his face.
+say Oh how I miss them!  They accidently imprisoned
+say themselves into pure fire!  If only I weren't so old, perhaps
+say I could rescue them!!!  Hmmmm....
+emote looks you up and down.
+mpoload 20200
+give mass $n
+say Perhaps YOU can save them!
+say This energy mass will allow you access onto the Energy Grid.
+say I believe that there may be a clue there that will
+say convert my friends back into there true forms!
+emote shudders, suddenly his eyes cloud over in senility.
+say Eh?  Eh?  Who are you?  What dyoo want??
+ 
+~
+|
+#20220
+court bard~
+The Court Bard~
+The Court Bard stands here struming the strings on his harp.
+~
+This comic bard wanders around the caslte singing, laughing, and making
+others do the same in his wake.  His entire appearance is that of a clown,
+and he gives you a wink and a smile as he wanders by.  
+~
+65 0 0 100 S
+55 0 0 8000d0+0 0d0+0
+0 60 50 0
+0 0 1
+0 0 0
+>rand_prog 15~
+emote carefully puts away his &Ygolden harp&P into it's case.
+emote beginnings juggling a couple of balls.
+mpecho &CSweat begins to show on the bard's face.
+mpecho A servant drops a serving tray in the distance distracting the bard.
+mpecho &wA &Rbright red &wball falls on the Bard's head.
+wince
+mpecho &wA &Bbright blue &wball falls on the Bard's head.
+wince
+mpecho &wA &Gbright green &wball falls on the Bard's head.
+say Ouch!
+mpecho &wThe light sound of pain echoes though the room.
+emote grimaces with a suffered look and pulls his harp back out.
+~
+>rand_prog 35~
+emote plucks lightly at the strings on his harp singing softly.
+mpasound &wThe sound of a court entertainer's singing wafts by.
+~
+>fight_prog 35~
+emote bellows loudly for help and swings around you swinging his harp...
+circle
+~
+|
+#20221
+Watcher~
+Tower Watcher~
+A Watcher is here ready to sound the alarm.
+~
+The tower watcher stands here.  He does not even notice you until you are
+almost on top of him, he is so intent on his job of watching over the wall
+for enemies.  He is an older soldier and jumps when you approach him.  
+~
+3 64 0 100 S
+55 0 0 7500d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+>greet_prog 40~
+say Not now!
+say Can't you see I'm busy!
+~
+>fight_prog 50~
+say I do not have time for this!
+kick
+gouge
+~
+|
+#0
+
+
+
+#OBJECTS
+#20200
+silver ball electricity sparkling glowing~
+&ca &wsilver ball&c of electricity&w~
+&BA small ball made of &wbright silver&B glows electrically here.~
+~
+1 536871937 2048 0 1 60
+0~ 0~ -1~ 0~
+1 0 0 0 0
+0 0
+true sight~
+0 0
+0 0 0
+A
+19 6
+A
+18 3
+A
+17 -10
+A
+24 -25
+#20201
+pair silver platemail boots~
+&ca pair of &wsilver platemail&c boots&w~
+&BA pair of &wsilver platemail&B boots lie here.~
+~
+9 1025 2048 16412 65 60
+-30~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 2
+A
+23 -10
+A
+17 -30
+#20202
+pair silver platemail gauntlets~
+&ca pair of &wsilver platemail &cgauntlets~
+&BA pair of &wsilver platemail &Bgauntlets lie here.~
+~
+9 1 2048 16398 129 60
+-20~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -40
+A
+19 6
+A
+1 2
+#20203
+pair silver platemail leggings~
+&ca pair of &wsilver platemail&c leggings&w~
+&BA pair of &wsilver platemail &Bleggings lie here.~
+~
+9 1025 2048 16412 33 60
+-30~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 3
+A
+17 -25
+A
+18 2
+#20204
+pair silver platemail arm armguards guards~
+&ca pair of &wsilver platemail &carmguards&c~
+&BA pair of &wsilver platemail &Barmguards lie here.~
+~
+9 1025 2048 16412 257 60
+-30~ 0~ 0~ 0~
+5 0 20 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -45
+A
+13 20
+A
+19 3
+A
+18 3
+#20205
+silver helm helmet~
+&ca &wsilver &chelm&w~
+&BA &wsilver helm&B lies here.~
+~
+9 1285 2048 20508 17 60
+-30~ 0~ 0~ 0~
+10 0 60 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -10
+A
+19 4
+A
+17 -20
+#20206
+silver platemail breastplate breast plate~
+&ca &wsilver platemail&c breastplate&w~
+&BA &wsilver platemail&B breastplate lies here.~
+~
+9 1025 2048 0 9 60
+-40~ 0~ 0~ 0~
+25 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 25
+A
+18 25
+A
+17 -25
+A
+13 50
+#20207
+silver face guard plate faceguard~
+&ca &wsilver platemail &cface guard&w~
+&BA &wsilver platemail &Bface guard lies here.~
+~
+9 1025 2048 16412 65537 60
+-30~ 0~ 0~ 0~
+5 0 30 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -28
+A
+19 5
+A
+18 7
+#20208
+silver cloak silver-cloak~
+&ca &wsilver &ccloak&w~
+&BA cloak made of &wpure silver&B lies here.~
+~
+15 536871169 2048 0 1025 50
+200~ 0~ 0~ 0~
+1 0 50 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20209
+silver long sword~
+&ca &wknight's silver &cbroadsword&w~
+&BA knight's &wsilver broadsword&B lies here half buried.~
+~
+5 1025 2048 0 8193 60
+0~ 96~ 120~ 3~
+9 0 75 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 23
+A
+18 17
+A
+1 1
+#20210
+Broom~
+&Oa dusting &Ybroom&O~
+&BYou see a &Obroom&B for cleaning up here.~
+~
+5 1 0 0 8193 40
+0~ 10~ 25~ 7~
+4 0 0 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 5
+A
+18 5
+#20211
+Scope~
+&ca long &Obrass&c eye scope&w~
+&BA long &Obrass&B eye scope lies here.~
+~
+9 0 0 0 131073 38
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+scry~
+3 3
+0 0 0
+A
+24 -15
+#20212
+training Sword~
+&ca long practice sword of bundled &Obamboo&w~
+&BA sword made of bundled &Obamboo&B lies here ready for practicing.~
+~
+5 257 0 0 8193 15
+0~ 0~ 0~ 7~
+3 0 0 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 15
+#20213
+long silver bow~
+&ca long &wsilver &cbow&w~
+A bow made of silver lies here~
+~
+5 257 2048 0 8193 55
+0~ 0~ 0~ 6~
+6 0 0 25 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+#20214
+silver Bracer~
+&ca &wbright silver &cbracer~
+A Bracer Glinting with Silver lies forgotten~
+~
+9 1025 2048 0 4096 75
+-15~ 0~ 0~ 0~
+2 5 10 50 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -15
+A
+1 1
+A
+13 25
+#20215
+giant silver battle-axe axe~
+&ca giant &wsilver &cbattle-axe&w~
+&BA giant &wpolished silver &Bbattle-axe lies here.~
+~
+5 17665 2048 0 8193 75
+0~ 0~ 0~ 1~
+9 75 30 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 30
+A
+1 2
+A
+18 20
+A
+24 -20
+#20216
+rolling pin~
+&ca &Owooden rolling &cpin&w~
+&BA &Owooden rolling &Bpin lies here.~
+~
+5 1088 0 0 8193 50
+0~ 0~ 0~ 8~
+3 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+A
+18 2
+A
+19 18
+#20217
+greasy apron~
+&ca &zgreasy &Wwhite apron&w~
+&BA &Wwhite apron &Bcovered with &zgrease&B lies here.~
+~
+9 0 0 0 9 50
+0~ 0~ 0~ 0~
+2 0 15 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -15
+A
+17 -25
+#20218
+holy symbol~
+&ca &Wholy symbol&c of Tith-Onanka&w~
+&BA &Wholy symbol &Bof Tith-Onanka lies here.~
+~
+9 0 0 0 5 65
+15~ 0~ 0~ 0~
+3 0 200 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 3
+A
+19 3
+A
+12 100
+#20219
+silver mace~
+a Silver Mace~
+A Silver mace rests here~
+~
+5 1025 2048 0 8193 65
+0~ 30~ 50~ 8~
+3 15 50 100 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 50
+A
+19 10
+A
+18 10
+#20220
+crown silver king ~
+&cKing Elton's &wsilver &ccrown&w~
+&BA &wsilver crown&B belong to King Elton's throne lies here.~
+~
+9 1025 2048 4096 17 60
+0~ 0~ 0~ 0~
+5 25 50 0 0
+5 0
+awe~
+3 3
+0 0 0
+A
+13 50
+A
+17 -55
+A
+19 12
+A
+24 -10
+#20221
+coat surcoat knight~
+&ca knight's &Bblue &c& &Wwhite &csurcoat&w~
+&BThe surcoat of a knight lies here.~
+~
+9 257 0 0 1025 75
+-25~ 0~ 0~ 0~
+1 75 250 500 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 8
+A
+18 7
+A
+24 -25
+A
+23 -15
+A
+13 75
+E
+sircoat~
+&CThe image of a &Rred-tailed &Cfox dances about over the background of a
+&Whalf-white &C& &Bhalf-blue &Cdisc surrounded by a lighter &Bblue&C color. 
+~
+E
+surcoat~
+&CThe image of a &Rred-tailed &Cfox dances about over the background of a
+&Whalf-white &C& &Bhalf-blue &Cdisc surrounded by a lighter &Bblue &Ccolor. 
+~
+#20222
+queen sarah silver crown~
+&cQueen Sarah's &wsilver &ccrown&w~
+&BA small &csilver crown&B belonging to Queen Sarah rests here.~
+~
+9 1 2048 4096 17 60
+0~ 0~ 0~ 0~
+2 0 70 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -12
+A
+19 9
+A
+18 9
+A
+17 -35
+#20223
+beautiful silk gown~
+&ca beautiful &Bblue silk &cgown&w~
+&BA beautiful blue silk gown lies in a heap here.~
+~
+9 256 0 0 9 60
+0~ 0~ 0~ 0~
+2 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -25
+A
+17 15
+#20224
+stuffed teddy bear~
+&ca small stuffed &Oteddy bear&w~
+&BA stuffed &Oteddy bear &Blies here.~
+~
+13 0 0 0 16385 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20225
+fancy cloak~
+&ca fancy &zblack &c& &Ggreen &ccloak&w~
+&BA fancy cloak of &zblack &B& &Ggreen&B.~
+~
+9 0 0 0 9 52
+0~ 0~ 0~ 0~
+3 3 20 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+17 -45
+A
+19 16
+#20226
+pair fancy breeches~
+&ca pair of fancy &zblack &cbreeches&w~
+&BA pair of fancy &zblack &Bbreeches lie here in a heap.~
+~
+9 0 0 0 33 52
+0~ 0~ 0~ 0~
+2 2 20 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 4
+A
+18 6
+A
+17 -15
+#20227
+fancy ruff~
+&ca fancy ruff&w~
+&BA fancy ruff rests here.~
+~
+9 0 0 0 5 55
+0~ 0~ 0~ 0~
+2 0 20 50 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 4
+A
+19 6
+A
+17 -5
+#20228
+archery glove three-fingered~
+&ca three-fingered archery glove&w~
+&BA three-fingered archery glove lies here.~
+~
+9 0 0 0 129 52
+0~ 0~ 0~ 0~
+2 0 20 0 0
+0 0
+haste~
+0 0
+0 0 0
+A
+2 1
+A
+18 9
+#20229
+pair melkor sandle sandles~
+&ca pair of Melkor's sandles&w~
+&BA pair of Melkor's sandles rest here.~
+~
+9 64 0 24704 65 70
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+mana~
+5 5
+0 0 0
+A
+14 50
+A
+19 7
+A
+18 7
+A
+24 -25
+#20230
+pair melkor glasses~
+&ca pair of Melkor's &Ygold &crimmed glasses&w~
+&BA pair of Melkor's &Ygolden &Brimmed glasses rest here.~
+~
+9 64 0 0 131073 70
+0~ 0~ 0~ 0~
+1 40 0 0 0
+5 0
+detect magic~
+6 6
+0 0 0
+A
+12 100
+A
+3 2
+A
+24 -15
+A
+19 7
+#20231
+archer leather wrist brace~
+&can archer's &Oleather wrist &cbrace&w~
+&BThe &Oleather wrist brace&B of an archer lies here.~
+~
+9 536870976 0 0 4097 20
+0~ 0~ 0~ 0~
+2 0 15 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 3
+A
+18 1
+A
+17 -15
+#20232
+wand faerie fire~
+&ca wand of &Rfa&re&Or&Yie &Rf&ri&Or&Ye&w~
+&BA long wand of magical fairy's fire lies here.~
+~
+3 64 0 0 16385 70
+50~ 5~ 5~ faerie fire~
+1 0 40 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20233
+staff oaken melkor~
+&cMelkor's gnarled &Ooaken &cstaff&w~
+&BA gnarled &Ooaken staff &Blies here.~
+~
+5 570425664 716 0 8193 70
+0~ 0~ 0~ 7~
+1 50 30 0 0
+5 0
+fireball~
+5 5
+0 0 0
+A
+18 30
+A
+19 15
+A
+23 -25
+A
+24 -35
+#20234
+court bard plumed hat~
+&ca court bard's &Ppurple &c& &zblack&c plumed hat&w~
+&BA court bard's &Ppurple &B& &zblack &Bplumed hat lies here.~
+~
+9 4099 6911 4096 17 60
+0~ 0~ 0~ 0~
+2 50 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+A
+17 -45
+A
+13 50
+#20235
+large gilded golden harp~
+&ca large gilded &Ygolden &charp&w~
+&BA large &Ygolden harp &Bwith gilded artwork along it's surface lies here.~
+~
+5 1 0 0 8193 50
+0~ 0~ 0~ 8~
+10 0 45 25 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 18
+A
+18 12
+#20236
+ring signet golden~
+&cKing Elton's &Ygolden &csignet ring&w~
+&BA &Ygolden&B signet rings lies here shining &Wbrightly&B.~
+~
+9 1025 0 0 3 60
+0~ 0~ 0~ 0~
+1 70 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -15
+A
+18 4
+A
+3 2
+A
+19 7
+#20237
+catapult large~
+&ca large &Ocatapult&w~
+&BA &Olarge catapult &bsits here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20238
+large ballisti~
+&ca large &Oballista&w~
+&BA massive &Oballista &Bsits here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20239
+great altar~
+a great altar~
+&BA large &Ygolden &Baltar lies here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20240
+great silver throne~
+&ca great &wsilver &cthrone&w~
+&BA great &wsilver throne&B rests here.~
+~
+13 0 2048 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20241
+gate waygate portal~
+&ca massive &Ywaygate&c~
+&BA massive &Ywaygate&B erupts &Ychaotically&B from the ground here.~
+~
+29 64 0 0 0 0
+15100~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20242
+tapestry~
+&cthe colourful tapestry~
+&BA colourful tapestry decorates the eastern wall here.~
+~
+8 0 0 0 0 1
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tapestry~
+&OXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+&OX&w                   .   |-_-|   .                     &OX
+&OX&w                  / \  | &BO&w |  / \                    &OX
+&OX&w             |&R--&w  |+|_-|-_-|-_|+|    |&R--             &OX
+&OX \&w          / \   | |         | |   / \&O       __     &OX
+&OX   \_&w      /___\  | | #  #  # | |  /___\&O    _/       &OX
+&OX     \&w     | # |_-|-_-_-_-_-_-_-|-_| # |&O---/         &OX
+&OX       \---&w|   |     &zo o&w _ &zo o&w     |   |             &OX
+&OX           &w| # | # #  ___$___  # # | # |             &OX
+&OX   &Gw&O    &Gw&O  &w|   |       &z_____ &w      |   |   &Gw&O    &Gw&O    &OX
+&OX    &Gw&O ___--&w| | | ||    &z#&OHHH&z#&w    || | | |&O--___  &Gw&O   &Gw&O &OX
+&OX __```     &w|___|_______&z#   #&w_______|___|&G -   '''&O___  &OX
+&OX &G       -  -   --   - &z///|\\\&G -  --    --   -        &OX
+&OX &G    -   --   -   -  &z///|||\\\&G -  --  -   -          &OX
+&OXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+                                 &RLucid
+~
+#20243
+belt quiver~
+&ca &Ohard leather&c belt quiver&w~
+&BThe &Ohard leather &Bbelt attached quiver of an archer lies here.~
+~
+15 536870912 0 0 2049 50
+75~ 0~ 0~ 0~
+0 0 0 100 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -40
+A
+19 5
+A
+13 50
+A
+5 2
+#20244
+coat surcoat knight~
+&ca knight's &zblack &c& &Bblue &csurcoat&w~
+&BThe surcoat of a knight lies here.~
+~
+9 257 0 0 1025 60
+0~ 0~ 0~ 0~
+1 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 6
+A
+18 6
+A
+24 -15
+A
+23 -10
+A
+13 45
+E
+sircoat~
+&CThe image of a &zblack bull &Ccharging lies in the center of a circle
+comprised halfway of &zblack &Cand halfway of &Bblue&C on this garment.  
+~
+E
+surcoat~
+&CThe image of a &zblack bull&C charging lies in the center of a circle
+comprised halfway of &zblack&C and halfway of &Bblue&C on this garment.  
+~
+#20245
+coat surcoat knight~
+&ca knight's &Ccyan &c& &Yyellow &csurcoat&w~
+&BThe surcoat of a knight lies here.~
+~
+9 257 0 0 1025 60
+0~ 0~ 0~ 0~
+1 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 8
+A
+5 2
+A
+13 30
+A
+19 4
+E
+sircoat~
+&CA large &zblack panther &Craces across a background of cyan &
+&Yyellow&C on this garment identifying Sir Jonathon's family house.  
+~
+E
+surcoat~
+&CA large &zblack panther &Craces across a background of cyan &
+&Yyellow&C on this garment identifying Sir Jonathon's family house.  
+~
+#20246
+coat surcoat knight~
+&ca knight's &Ggreen &c& &Bblue &csurcoat&w~
+&BThe surcoat of a knight lies here.~
+~
+9 257 0 0 1025 60
+0~ 0~ 0~ 0~
+1 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+17 -55
+A
+18 5
+A
+19 7
+E
+sircoat~
+&CA large ram rests peaceful on a mountainous landscape in front of a
+circle of half &Ggreen &C& half &Bblue &Con this garment identifying Sir
+Dennis' family house.  
+~
+E
+surcoat~
+&CA large ram rests peacefully on a mountainous landscape in front of a
+circle of half &Ggreen&C & half &Bblue&C on this garment identifying Sir
+Dennis' family house.  
+~
+#20247
+coat surcoat knight~
+&ca knight's &Rred &c& &Ccyan &csurcoat&w~
+&BThe surcoat of a knight lies here.~
+~
+9 257 0 0 1025 60
+0~ 0~ 0~ 0~
+1 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 2
+A
+23 -35
+A
+24 -40
+A
+12 60
+E
+sircoat~
+&CA shaggy grey wolfhead glares at you from the center of this sircoat
+inside a chest sized circle of half &Rred &C& cyan identifying Sir Leon's
+family house.  
+~
+E
+surcoat~
+&CA shaggy grey wolfhead glards at you from the center of this surcoat
+inside a chest sized circle of half &Rred &C& cyan identifying Sir Leon's
+family house.  
+~
+#20248
+coat surcoat knight~
+&ca knight's &zblack &c& &Wwhite &csurcoat&w~
+&BThe surcoat of a knight lies here.~
+~
+9 257 0 0 1025 60
+0~ 0~ 0~ 0~
+1 0 50 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 60
+A
+3 2
+A
+4 2
+A
+18 6
+A
+19 6
+E
+sircoat~
+&CA &wgrey eagle &Csoars across the center of this garment inside a large
+circle half made of &zblack&C and the other half of &Wwhite&C &Cidentifying
+Sir James' family house.  
+~
+E
+surcoat~
+&CA &wgrey eagle &Csoars across the center of this garment inside a large
+circle half made of &zblack &Cand the other half of &Wwhite &Cidentifying
+Sir James' family house.  
+~
+#20249
+coat surcoat knight~
+&ca knight's &Rred &c& &Ppurple &csurcoat&w~
+&BThe surcoat of a knight lies here.~
+~
+9 257 0 0 1025 60
+0~ 0~ 0~ 0~
+1 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -20
+A
+12 40
+A
+13 100
+A
+18 7
+A
+19 5
+E
+sircoat~
+&CResting perched upon a tree's limb, a &Bs&bn&co&Cw&wy &Cowl, watches
+you with it's shining &Yyellow eyes&C inside a circle of &Rred &C&
+&Ppurple&C identifying Sir Francis' house.  
+~
+E
+surcoat~
+&CResting perched upon a tree's limb, a &Bs&bn&co&Cw&wy &Cowl, watches
+you with it's shining &Yyellow eyes&C inside a circle of &Rred &C&
+&Ppurple&C identifying Sir Francis' house.  
+~
+#20250
+coat surcoat knight~
+&ca knight's &Wwhite &c& &Ggreen &csurcoat&w~
+&BThe surcoat of a knight lies here.~
+~
+9 257 0 0 1025 60
+0~ 0~ 0~ 0~
+1 0 40 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 7
+A
+19 5
+A
+13 40
+A
+17 -50
+A
+2 2
+E
+sircoat~
+&CSwooping down in the sky the image of a falcon strikes it's prey inside
+a circle of &Wwhite &C& &Ggreen&C identifying Sir Terrence's family house.  
+~
+E
+surcoat~
+&CSwooping down in the sky the image of a falcon strikes it's prey inside
+a circle of &Wwhite &C& &Ggreen &Cidentifying Sir Terrence's family house.  
+~
+#20251
+livery black green servant~
+&clivery in Elton's &zblack &c& &Ggreen&w~
+&BThe livery of a servant in King Elton's &zblack &c& &Ggreen &Blies here.~
+~
+9 0 0 0 1025 40
+0~ 0~ 0~ 0~
+2 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -40
+A
+13 40
+A
+18 4
+A
+19 4
+#20252
+silver serving tray~
+&ca large &wsilver serving &ctray&w~
+&BA large &wsilver serving &Btray lies here.~
+~
+8 0 2048 0 16385 40
+0~ 0~ 0~ 0~
+2 0 40 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20253
+royal robe black green elton king~
+&cKing Elton's &zblack &c& &Ggreen &croyal robe&w~
+&BThe long flowing royal robes of King Elton lie here.~
+~
+9 257 0 0 1025 60
+0~ 0~ 0~ 0~
+3 75 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -55
+A
+13 50
+A
+1 2
+A
+4 2
+#20254
+silver shield knight~
+&ca &wsilver &cshield&w~
+&BA large shield made of &wbright silver&B lies here.~
+~
+13 536872193 2048 0 513 60
+0~ 0~ 0~ 0~
+16 0 100 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+2 -1
+A
+17 -60
+A
+19 12
+#20255
+Brand~
+a Burning Brand~
+A brand that will really leave an impression if you let it get too close!~
+~
+5 33554432 0 0 8193 69
+0~ 110~ 97~ 3~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#20200
+Lucids Standing Spot~
+This is where Lucid stood as he created the Castle of the Silver Knights.
+~
+0 4 0
+Rd     0
+S
+#20201
+Before the Silver Castle~
+You are standing before a well kept castle.  There is a deeply dug moat
+surrounding the keep, and two tall towers high above you.  The pennants
+flying from the walls pronounce this to be the Castle of the Silver Knights.
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 9595
+D2
+~
+~
+0 0 20203
+S
+#20202
+Within the Moat to the East of the Drawbridge~
+&BYou are in the dark muddy and waters.  Bull rushes rise up from the moat, it
+appears that this moat has been here for a long time, because the weeds are
+full grown.  This moat serves as a very strong defense for the castle.
+~
+0 4 6
+Rd     0
+D1
+~
+~
+0 0 20203
+S
+#20203
+Standing Upon the Drawbridge~
+You are standing upon a sturdy oak drawbridge.  As you look down you
+become queasy from the swirling murky water.  To the south of you looms the
+entrance into the Castle of the Silver Knights.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 20201
+D1
+~
+~
+0 0 20204
+D2
+~
+~
+0 0 20209
+D3
+~
+~
+0 0 20202
+S
+#20204
+Within the Moat to the West of the Drawbridge~
+&BYou are in the dark and muddy waters.  The water has a build up of scum
+and yellow foam upon it.  The horrid stench of the liquid repels most
+would-be invaders to the castle.  
+~
+0 4 6
+Rd     0
+D1
+~
+~
+0 0 20205
+D3
+~
+~
+0 0 20203
+S
+#20205
+Within the Moat~
+&BYou are in the dark and muddy waters.  Out of the corner of your eye you
+sense movement.  You shudder to think what kind of foul beast would make it's
+home in such a stagnant and repulsive place.
+~
+0 0 6
+Rd     0
+D1
+~
+~
+0 0 20206
+D3
+~
+~
+0 0 20204
+S
+#20206
+Within the Moat at the Corner of the Castle~
+&BYou are in the dark and muddy waters.  The moat has been delicately dug
+to flow around the corner of the castle, making the castle inaccessible from
+the front and the west side.  You wonder how deep such a trench might be.  
+~
+0 0 6
+Rd     0
+D2
+~
+~
+0 0 20212
+D3
+~
+~
+0 0 20205
+S
+#20207
+Base of the Western Tower~
+You are standing at the bottom of a long flight of spiralling steps.  The
+towers are used to keep watch against enemies.  Within the height of these
+tall spires, warning of approaching armies can be given several days before
+the armies reach the castle.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 20208
+D4
+~
+~
+0 0 20240
+S
+#20208
+The West Sentry Post~
+You are standing in a small room.  There are slots in the wall allowing a
+person to shoot arrows into the entrance of the castle.  This is where
+guards stand while the castle is under siege.  A person wanting to enter the
+castle, while the defenses are up, would have a very difficult time.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 20209
+D3
+~
+~
+0 0 20207
+S
+#20209
+Entrance to the Castle of the Silver Knights~
+You are standing in the entrance to the Castle of the Silver Knights. 
+You see a great portcullus fixed firmly in place above you.  In the event of
+a siege, this castle would raise the drawbridge and lower the portcullus.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 20203
+D1
+~
+~
+0 0 20210
+D2
+~
+~
+0 0 20214
+D3
+~
+~
+0 0 20208
+S
+#20210
+The East Sentry Post~
+In this small room, a wooden table and chairs are placed in the center. 
+It appears that the guards probably play cards to help pass the time while
+defending the castle.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 20211
+D3
+~
+~
+0 0 20209
+S
+#20211
+Base of the Eastern Tower~
+You are standing at the bottom of a long flight of spiralling steps. 
+Both of the tall towers are ringed with merlins to protect the castles
+archers as they shoot upon their enemies below.  Each tower is also topped
+by a catapault and a ballisti for extra protection.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 20210
+D4
+~
+~
+0 0 20242
+S
+#20212
+Within the Moat Alongside the Castle~
+&BYou are in the dark and muddy waters.  The moat runs alongside the entire
+eastern wall of the castle.  Looking west, you see that there is a scant
+two inches of land between the castle and the moat.
+~
+0 0 6
+Rd     0
+D0
+~
+~
+0 0 20206
+D2
+~
+~
+0 0 20219
+S
+#20213
+In the Midst of the Servants Quarters~
+This section of the castle is rather busy, with servants rushing around
+getting their work done.  It doesn't seem very welcoming here, maybe it's
+not a good idea to explore here.  It is rumored that the servants can become
+quite angry when disturbed during their duties.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 20216
+S
+#20214
+Large Central Hallway~
+You are standing in a large hallway, hand crafted tapestries lining the
+walls on either side of you.  If you look above, you will notice a large
+diamond encrusted chandelier holding many burning candles.  
+~
+0 1073741824 0
+Rd     0
+E
+chandelier encrusted diamond~
+&WDiamonds glitter in the soft candlelight, making the chandelier sparkle
+with life.  Tiny dots of light reflecting from the gems dance about the
+ceiling.  It gives you a sense of comfort, although possibly misleading...  
+~
+D0
+~
+~
+0 0 20209
+D2
+~
+~
+0 0 20217
+S
+#20215
+Food Cellar~
+It is dark and chilly in here, sending shivers down your spine.  This is
+where all of the food for the castle is stored.  Dried vegetables hang from
+the roof, and many canned goods are stacked neatly on the shelves for future
+use.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 20218
+S
+#20216
+Entrance to the Servant Quarters~
+You are standing at the entrance to the servant quarters.  A castle of
+this size has many men and women serving permanently within it, and this is
+where they live.  The accomodations are modest, but they are clean and warm.
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 20213
+D1
+~
+~
+0 0 20217
+D2
+~
+~
+0 0 20221
+S
+#20217
+Large Intersection of Hallways~
+Portraits of what looks to be members of the King's family hang
+delicately throughout the hallway, emitting a sense of authority.  If you
+listen closely, you can hear a light chopping sound coming from the east. 
+This large corridor runs north and south, with exits branching off both east
+and west.  
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 20214
+D1
+~
+~
+0 0 20218
+D2
+~
+~
+0 0 20222
+D3
+~
+~
+0 0 20216
+S
+#20218
+In the Great Kitchen~
+This is Zumitra's kitchen, where he prepares the royal family's meals
+each day.  Many large ovens line the walls, and huge counters are on either
+side of you.  The aroma of fresh bread seems to be coming from one of the
+ovens, perhaps you are in time for dinner.  
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 20215
+D2
+~
+~
+0 0 20223
+D3
+~
+~
+0 0 20217
+S
+#20219
+Within the Moat Alongside the Castle~
+&BYou are in the dark and muddy waters.  To the west is the far south
+corner of the castle.  Looking south you can see that the moat has ended. 
+The castle's back wall doesn't need the added protection of the moat due to
+it's extra thick walls.  
+~
+0 0 6
+Rd     0
+D0
+~
+~
+0 0 20212
+D2
+~
+~
+0 0 20239
+S
+#20220
+Behind the Altar to Tith-Onanka~
+You are standing upon a raised dais.  Upon the dais is a great altar, and
+upon the altar are many types of weapons.  It was said that the great god
+Tith-Onanka became mortal for the love of a woman, but was drafted into a
+war, and his true love died.  Ever since, Tith-Onanka looks over soldiers
+gone off to war.
+~
+0 1024 0
+Rd     0
+D2
+~
+~
+0 0 20224
+S
+#20221
+The Castle Lavatory~
+You are standing in a great room.  There are many individual compartments
+of where the residents of the castle relieve themselves.  There air is kept
+magically clear of infection and odor.  The royal families chamber pots are
+emptied into the vats below this room as well.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 20216
+S
+#20222
+Northern Court of the Silver Knights~
+You have arrived at a larger section of the castle, the Northern Court. 
+This part of the corridor is not as gloomy, for beams of light shine through
+the stained glass window on the far wall during sunny afternoons.  A
+beautiful tapestry decorates the oak wall on the eastern side.  
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 20217
+D2
+~
+~
+0 0 20226
+S
+#20223
+The Mess Hall~
+All around you are many oak tables and chairs, awaiting the next meal. 
+This is where the guards, knights, and servants spend their dinners,
+seperate from the royal family.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 20218
+S
+#20224
+Within the Temple of Tith-Onanka~
+You are standing amongst the pews of the temple to the god Tith-Onanka.  The
+order of Tith-Onanka will heal soldiers, as well as give divinatory magic
+to it's worshippers.  It is quite common practice for a military leader to
+build a temple to this god for these benefits.
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 20220
+D1
+~
+~
+0 0 20225
+S
+#20225
+Entrance to the Temple of Tith-Onanka~
+You are standing at the entrance to the Castle Temple.  This temple
+worships Tith-Onanka, the God of Warfare.  There are implements of death
+embedded into the archway above the entrance into the temple.  
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+0 0 20226
+D3
+~
+~
+0 0 20224
+S
+#20226
+Northern Court of the Silver Knights~
+Nearing the rear of the Northern Court, you notice exits branching off in
+many directions.  Be careful not to distrub the servants or thier King, you
+shall often find them residing in this section of the castle.  
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 20222
+D1
+~
+~
+0 0 20227
+D2
+~
+~
+0 0 20230
+D3
+~
+~
+0 0 20225
+D5
+~
+~
+0 0 20247
+S
+#20227
+The Knights Barracks~
+You are standing in a large bunk house.  There are bunks lining the walls
+and at the foot of each one is a small chest.  This is where the guards and
+knights of the castle spend their nights.
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+0 0 20228
+D3
+~
+~
+0 0 20226
+S
+#20228
+The Knights Training Hall~
+This is where Sir Leon, the guards' trainer, resides.  Guards frequent
+here often to brush up on their fighting skills and learn new ones.  The
+shouts of dueling pairs can be heard quite distinctly.  
+~
+0 1073741824 0
+Rd     0
+D0
+~
+secret~
+3 0 20237
+D3
+~
+~
+0 0 20227
+S
+#20229
+Within the Guest Chambers~
+This is a rather extravagant room, the royal family treats its guests
+well.  Off to the side sits a large oak vanity, with gold trim adorning the
+mirrors.  The four-poster king size bed in the center of the room looks very
+inviting, covered with a white lace duvet and feather pillows.  
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+0 0 20230
+S
+#20230
+The Banquet Hall~
+You are standing in a great hall.  Large wooden tables and chairs line
+the sides of this massive room.  During meal times, servants prepare this
+hall for the royal family to dine.  Many ceremonies and royal gatherings are
+held here as well.  
+~
+0 1073741832 0
+Rd     0
+D0
+~
+~
+0 0 20226
+D1
+~
+~
+0 0 20231
+D2
+~
+~
+0 0 20234
+D3
+~
+~
+0 0 20229
+S
+#20231
+Entrance to the Royal Living Quarters~
+The royal bedrooms of King Elton and Queen Sarah can be found branching
+off of this corridor.  This section of the castle is elegantly decorated. 
+Sometimes in the evenings when it is quiet, you can hear the Queen humming a
+soft tune as she prepares for bed.  
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+0 0 20232
+D2
+~
+~
+0 0 20235
+D3
+~
+~
+0 0 20230
+S
+#20232
+Queen Sarah's Bedroom~
+This is where Queen Sarah finds her peace, and she doesn't approve of
+intruders.  Trinkets and memorabilia can be found lying on the handcrafted
+oak dresser and night stand.  Beyond the wooden shutters on the eastern wall
+lies a vast green valley, filled with blossoming flowers and abundant
+wildlife.  
+~
+0 1073741824 0
+Rd     0
+D2
+~
+~
+0 0 20236
+D3
+~
+~
+0 0 20231
+S
+#20233
+King Elton's Tactical Room~
+A huge oak table rests in the center of this office, covered with maps of
+the surrounding areas.  You'll often find Melkor, the Royal Advisor, busy at
+work here.  This is where the state decisions are really made by the King,
+with Melkor at his side.  
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+0 0 20234
+S
+#20234
+King Elton's Throne Room~
+You are standing before a large silver throne.  This is where King Elton
+holds court.  The throne is raised upon a richly carpetted dais, and there
+are tapestries lining the walls behind it.  The room has a majestic and
+regal feel to it.
+~
+0 1073741828 0
+Rd     0
+D0
+~
+~
+0 0 20230
+D3
+~
+~
+0 0 20233
+S
+#20235
+King Elton's Bedroom~
+You are standing in a modestly furnished bedroom.  Although the
+furnishings are simple and few, they are exquisitely crafted.  There is a
+wooden dresser and a matching bed, both expertly carved out of sandalwood.  
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 20231
+S
+#20236
+Prince Kestrel's Nursery~
+You are standing in a large nursery.  There is a large crib in the center
+of the room, and a playpen beside it.  Within the playpen you can see many
+expensive and finely crafted toys for the Prince-Heir to play with.
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 20232
+S
+#20237
+Secret Royal Hiding Place~
+You are standing in a secret room.  There are several beds and stacks of
+dried food stores here.  This is a small sanctuary for the King and his
+family.  In the event of the castle being over taken, royalty and other
+important people hide here.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 20238
+D2
+~
+~
+3 0 20228
+S
+#20238
+Within the Walls of a Secret Corridor~
+You are standing in a secret corridor.  This small passageway serves as a
+hiding place for the King and his family should the need arise.  The walls
+are narrow and dark, making it difficult to see very far.  
+~
+0 1073741828 0
+Rd     0
+D0
+~
+~
+3 0 20239
+D2
+~
+secret~
+3 0 20250
+D3
+~
+~
+0 0 20237
+S
+#20239
+On a Small Landing Inside the Moat~
+You are standing upon a scant piece of ground.  There are only two feet
+between the moat and the castle wall.  It seems strange that the moat diggers
+would leave this area to stand upon.  Perhaps there is a secret involved.
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 20219
+D2
+~
+secret~
+3 0 20238
+S
+#20240
+Middle of the Western Tower~
+You are standing upon spiralling stone steps.  The steps are solidly
+built so that four man abreast can climb these stairs to man the battlements
+and catapault above.  The tower is void of any decorations, being used
+strictly by the soldiers.  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 20241
+D5
+~
+~
+0 0 20207
+S
+#20241
+Top of the Western Tower~
+You are standing at the top of the western tower.  You see a great
+catapult aimed towards the front of the castle.  The pennants are flying the
+Silver Knights insignia.  You can see far across the land, this is the
+perfect watch tower for the castle.  
+~
+0 0 0
+Rd     0
+D5
+~
+~
+0 0 20240
+S
+#20242
+Middle of the Eastern Tower~
+You are standing upon spiralling stone steps.  The steps are cold and
+impersonal, being used only by the soldiers to man the upper battlements
+and the ballisti above.
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 20243
+D5
+~
+~
+0 0 20211
+S
+#20243
+Top of the Eastern Tower~
+You are standing at the top of the eastern tower.  You see a great ballisti
+aimed towards the front of the castle.  Looking across the tower you can see
+the western tower.  Between the two towers, many miles can be seen, giving
+the castle ample warning of any impending doom.
+~
+0 0 0
+Rd     0
+D5
+~
+~
+0 0 20242
+S
+#20244
+Within the Iron Maiden~
+You are standing in a small small room.  There are spikes protruding from
+the walls and digging into you.  You have made a foolish mistake by entering
+here, because there is no escape, save magic. 
+~
+0 4 0
+Rd     0
+S
+#20245
+Within the Torture Chamber~
+You are standing in a small room.  From the implements of pain adorning the
+walls, you guess this to be a torture chamber.  Upon the walls chains and
+manacles dangle, and to the north an Iron Maiden stands.
+~
+0 1073741824 0
+Rd     0
+E
+forge~
+A large forge stands in the corner of the room.  Various brands and other tools of Sir Morty's trade lie about it, or are hung on the wall nearby.
+~
+D0
+~
+~
+0 0 20244
+D2
+~
+~
+0 0 20247
+S
+#20246
+Within a Cell~
+You are standing in a damp and smelly cell.  The cell appears to have been
+empty for a long time.  It is well known that King Elton prefers to not throw
+anyone into his dungeon.
+~
+0 1073741824 0
+Rd     0
+D1
+~
+~
+3 0 20247
+S
+#20247
+The Royal Dungeons~
+You are standing in a damp and smelly dungeon.  To the east, west and south
+of you, there are jail cells.  A pale green moss appears to be growing over
+the walls and floors.
+~
+0 1073741828 0
+Rd     0
+D0
+~
+~
+0 0 20245
+D1
+~
+~
+3 0 20248
+D2
+~
+~
+3 0 20249
+D3
+~
+~
+3 0 20246
+D4
+~
+~
+0 0 20226
+S
+#20248
+Within a Cell~
+You are standing in a damp and smelly cell.  The cell appears to have been
+empty for a long time.  It is well known that King Elton prefers to not throw
+anyone into his dungeon.
+~
+0 1073741824 0
+Rd     0
+D3
+~
+~
+3 0 20247
+S
+#20249
+Within a Cell~
+You are standing in a damp and smelly cell.  The cell appears to have been
+empty for a long time.  It is well known that King Elton prefers to not throw
+anyone into his dungeon.
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+3 0 20247
+S
+#20250
+Secret Waygate~
+This room differs greatly from the others within the castle.  It looks as
+if nobody has been in this part of the castle for years.  Dust and cobwebs
+cover what looks to be a gate of some kind.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 20238
+S
+#0
+
+
+
+#SPECIALS
+M 20201 spec_guard
+M 20202 spec_guard
+M 20203 spec_guard
+M 20204 spec_guard
+M 20205 spec_guard
+M 20206 spec_guard
+M 20207 spec_guard
+M 20208 spec_guard
+M 20210 spec_healer
+M 20219 spec_cast_mage
+S
+
+
+
+#RESETS
+M 0 20202 1 20208
+E 0 20206 0 5
+E 0 20209 0 20
+E 0 20209 0 21
+G 0 20208 0
+M 0 20203 1 20210
+E 0 20205 0 6
+E 0 20206 0 5
+E 0 20209 0 20
+E 0 20200 0 0
+M 0 20217 1 20212
+M 0 20216 3 20213
+E 0 20210 0 20
+E 0 20251 0 16
+M 0 20216 5 20216
+E 0 20210 0 20
+E 0 20251 0 16
+M 0 20209 1 20218
+E 0 20217 0 5
+E 0 20216 0 20
+O 0 20239 0 20220
+M 0 20210 1 20220
+E 0 20218 0 3
+E 0 20219 0 20
+M 0 20216 3 20221
+E 0 20210 0 20
+E 0 20251 0 16
+O 0 20242 0 20222
+M 0 20207 1 20227
+E 0 20202 0 13
+E 0 20203 0 11
+E 0 20206 0 5
+E 0 20209 0 20
+G 0 20208 0
+E 0 20250 0 16
+M 0 20204 1 20228
+E 0 20201 0 12
+E 0 20202 0 13
+E 0 20203 0 11
+E 0 20204 0 14
+E 0 20209 0 21
+E 0 20200 0 0
+G 0 20208 0
+E 0 20247 0 16
+M 0 20214 1 20230
+E 0 20225 0 5
+E 0 20226 0 11
+E 0 20212 0 20
+M 0 20215 1 20230
+E 0 20212 0 20
+E 0 20225 0 5
+E 0 20226 0 11
+E 0 20227 0 3
+M 0 20220 1 20230
+E 0 20234 0 6
+E 0 20235 0 20
+M 0 20206 1 20231
+E 0 20209 0 20
+E 0 20209 0 21
+E 0 20200 0 0
+G 0 20208 0
+E 0 20249 0 16
+M 0 20212 1 20232
+E 0 20222 0 6
+E 0 20223 0 5
+M 0 20219 1 20233
+E 0 20229 0 12
+E 0 20230 0 8
+M 0 20211 1 20234
+E 0 20236 0 1
+E 0 20201 0 12
+E 0 20202 0 13
+E 0 20203 0 11
+E 0 20204 0 14
+E 0 20220 0 6
+E 0 20206 0 5
+E 0 20209 0 20
+E 0 20209 0 21
+E 0 20253 0 16
+M 0 20205 1 20234
+G 0 20208 0
+E 0 20202 0 13
+E 0 20204 0 14
+E 0 20209 0 21
+E 0 20209 0 20
+M 0 20213 1 20236
+E 0 20224 0 22
+M 0 20208 1 20237
+E 0 20201 0 12
+E 0 20202 0 13
+E 0 20203 0 11
+E 0 20204 0 14
+E 0 20205 0 6
+E 0 20206 0 5
+E 0 20207 0 8
+E 0 20215 0 20
+E 0 20200 0 0
+G 0 20208 0
+E 0 20214 0 18
+E 0 20214 0 19
+E 0 20215 0 21
+E 0 20221 0 16
+O 0 20237 0 20241
+M 0 20218 1 20241
+E 0 20228 0 13
+E 0 20213 0 20
+E 0 20231 0 18
+E 0 20243 0 17
+M 0 20221 1 20243
+E 0 20213 0 20
+E 0 20211 0 7
+O 0 20238 0 20243
+M 0 20201 1 20245
+E 0 20201 0 12
+E 0 20202 0 13
+E 0 20203 0 11
+E 0 20204 0 14
+O 0 20241 0 20250
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

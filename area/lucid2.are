@@ -1,0 +1,3262 @@
+#AREADATA
+Name        { 30-45} Mount Cano          Lucid~
+Levels      30 45
+Builders    Lucid Arrowhawk Angi Artemis~
+VNUMs       4400 4499
+Security    1
+Recall      25001
+Flags       0
+Sounds      You hear the rumbling of the mighty volcano.~
+End
+
+
+
+#MOBILES
+#4400
+statue man hooded~
+The Statue~
+A Statue of a small hooded man holding a torch sits here
+~
+~
+67 128 0 0 S
+50 0 0 4800d0+0 0d0+0
+0 55 0 0
+0 0 0
+0 0 0
+>rand_prog 5~
+emote seems to be in a different position than it was before.
+~
+>give_prog living flame~
+emote suddenly bursts into flames as it recieves the flame.
+mpjunk $o
+say Thank you traveller!  You are wise and brave.
+say Come, join us in our transcendental state of holy pureness.
+smile
+say Travel to the wisest creature in the hottest land, and give him this.
+mpoload 4408
+give stone $n
+say He will understand the meaning, and aid you on your quest.
+smile
+say Take the power of the flame with you to help you attain your goals.
+emote returns to stone.
+c fireshield $n
+ 
+~
+>all_greet_prog 100~
+~
+|
+#4401
+small baby cano native~
+The Cano Native Baby~
+A small baby lies contently on the floor.
+~
+A small Cano baby with deep blue eyes and fiery red hair lies here.  He
+looks at you inquisitively and follows you with his gaze.  The baby shakes
+his rattle trying to get your attention, but you don't want to disturb it so
+you keep your distance.  
+~
+65 0 0 800 S
+1 0 0 10d0+0 0d0+0
+0 0 5 0
+0 0 1
+0 0 0
+>rand_prog 5~
+emote begins crying.
+~
+>rand_prog 5~
+emote shakes his rattle.
+~
+>act_prog ~
+~
+|
+#4402
+small native boy~
+The Native Boy~
+A small native boy in ceremonial paints jumps about
+~
+A small boy not more than 10 years old by human reckoning is standing
+here.  He has the deep blue eyes of his tribe, but his brown hair is a sharp
+contrast to the rest of the tribe.  The boy is carrying a plain wooden staff
+from his adventures out of the shadow of Cano Mountain.  Maybe he has some
+tales to tell you.  
+~
+67 0 0 200 S
+30 0 0 1500d0+0 0d0+0
+0 20 0 0
+0 0 1
+0 0 0
+>speech_prog Darius~
+say Thats my name
+say Want me to tell you of a dark secret?
+~
+>greet_prog 100~
+if ispc($n)
+   emote looks at you with interest.
+say Hello stranger.
+say Be sure to talk to our chieftain while you're here.
+say Tell him Darius thought you could use some help.
+say Good day now.
+smile
+endif
+~
+>speech_prog secret~
+emote smiles knowingly.
+say I once wandered down the volcano on an adventure.
+say There's a city with people living in it down there.
+say I couldn't get past the guards to get a closer look.
+~
+>speech_prog adventure city people living guards look~
+say I swear, that's all I know
+~
+|
+#4403
+cano native woman~
+The Cano Native Woman~
+A chillingly beautiful Cano Native woman stands here.
+~
+A beautiful Cano woman wanders aimlessly.  She has deep blue eyes and
+fiery red hair typical of the Cano tribe.  She is wearing a lava bush skirt
+and a skull necklace which emphasizes her strong cheekbones and small nose. 
+~
+65 0 0 250 S
+33 0 0 1800d0+0 0d0+0
+0 23 0 0
+0 0 2
+0 0 0
+>greet_prog 100~
+say Shhhh...  my baby is sleeping.
+smile
+~
+>rand_prog 5~
+emote adjusts here ceremonial makeup.
+~
+|
+#4404
+cano native man~
+The Cano Native Man~
+A Cano Native jumps about in religious ecstasy
+~
+A man with a ceremonial mask to hide his features is looking back at you.
+It's a good thing he has no weapon, because he looks like he might attack
+you if he had one.  The man looks like a fierce and proud Cano warrior,
+ready to die for his tribe.  Naturally you keep your distance as he passes
+you by.  
+~
+65 0 0 200 S
+33 0 0 1800d0+0 0d0+0
+0 23 0 0
+0 0 1
+0 0 0
+>rand_prog 5~
+emote jumps up and down in religious ecstacy.
+~
+>rand_prog 5~
+emote runs in circles, screaming out his devotion to his god.
+~
+>entry_prog 80~
+emote walks up to you and headbuts you in greeting.
+~
+|
+#4405
+cano native farmer~
+The Cano Native Farmer~
+A Cano Native stands here tending the lava bushes
+~
+A man with the distinctive Cano tribe features is standing here looking
+for weeds.  His tanned skin and enormous physique attest to his months
+outside farming the land.  The hat the farmer is wearing looks valuable,
+since it's the only thing you've seen that will protect your eyes in the
+glaring sunlight.  
+~
+65 0 0 250 S
+35 0 0 2000d0+0 0d0+0
+0 25 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+say Hey!  Yer tramplin all over me crops!
+emote grumples obscenities at you.
+~
+>rand_prog 5~
+emote bends over, and plucks a weed from the ground.
+say Damn weeds!   
+emote grumbles to himself.
+~
+>rand_prog 5~
+say Phew!  Tiss hot to be out in the field today!
+smile
+say Tiss hot to be out in the field ANY day next to this here fire-mountain!
+~
+>death_prog 100~
+say It is a good day to die.
+say My only wish is that Darius, my son grows up happily.
+sniff
+~
+|
+#4406
+chief cano man~
+The Cano Chief~
+A Cano Chief stands here covered in revolting red war paint.
+~
+The Cano Chief, dressed in his customary ceremonial garb, is an imposing
+figure in the room.  His deep blue eyes watch your every move through the
+Cano ceremonial mask.  Fortunately for you, he likes to talk to guests, so
+it appears there is no threat of a surprise attack.  With the mean looking
+skull on his stick, he can probably smash through stone with one swing,
+though you dont want to test your theory.  
+~
+67 0 0 250 S
+37 0 0 2200d0+0 0d0+0
+0 29 0 0
+0 0 1
+0 0 0
+>speech_prog Talonfire~
+say Talonfire the Great Red Dragon?
+say I can take that beast 1 on 100 of em!
+mpforce $n follow self
+east
+east
+south
+mpoload 4441
+unlock up
+open up
+up
+mpkill talonfire
+~
+>speech_prog "lost city"~
+say You want directions to the Lost City?
+say Go down the volcano and go east.
+mpoload 4440
+give key $n
+say That's a key i found around here.
+say I still think it's a bad idea to go down there.
+~
+>speech_prog Darius~
+shiver
+say Darius told you about the Lost City?
+say You must be some guests!
+smile $n
+say All I know is that it is fiercely guarded.
+say There might be great treasures for those that can get past the guards.
+say I wouldn't go there if I were you, that place is very dangerous.
+~
+>speech_prog crude animals~
+say Yes, those drawings are from a people
+say that inhabited these parts a long time ago.
+say Legend says they were magic users,
+say and they dominated the whole region.
+sigh
+say To see that much power I would die happy.
+~
+>speech_prog symbol symbols beast~
+say Yes, the drawings tell of a huge dragon that attacked 
+say the Magi, killing most of them.
+say Only few survive, at least that's what the symbols mean.
+say I haven't seen any dragons, nor do I want to.
+~
+>give_prog all~
+if number ($o) == 4410
+say Amazing! You have found the key to the Lost City.
+say I will gladly take you there!
+say That is... if you would like to go?
+mpechoat $n The Cano Chief leads you to the Lost City.
+mpechoat $n There is a virtual maze to find your way there.
+mpechoat $n Finding your way back will be a test of skill.
+mptrans $n 4473
+endif
+~
+>speech_prog people drawings~
+say What I wouldn't give to have lived among those people.
+say All that power. The possibilities would be endless.
+say Ahhh... but I am a simple man. I am no magic-user of Legend.
+~
+|
+#4407
+cano witch doctor man~
+The Cano Witch Doctor~
+A short man covered in feathers and paint jumps about
+~
+Definitely the most heavily armored man in the Cano village, the
+ceremonial garb looks like it can withstand a beating.  The witch doctor is
+the also the most respected member of the Cano tribe, next to the chief. 
+The village people often come to him for guidance.  With his ceremonial mask
+and body painted, he is definitely the scariest member of the Cano tribe.  
+~
+65 0 0 0 S
+38 0 0 2300d0+0 0d0+0
+0 31 0 0
+0 0 1
+0 0 0
+>act_prog 15~
+emote chants, "Ooo Eee Ooo Ah Ah..."
+~
+>rand_prog 25~
+emote chants, "...Bing, Bang, Walla Walla Bing Bang..."
+~
+>act_prog 15~
+emote chants, "...Bing Bang, Walla Walla, Bing Bang!"
+~
+>rand_prog 7~
+belly
+~
+>rand_prog 10~
+emote piddles himself in his excitement.
+~
+>rand_prog 10~
+emote jumps about waving his hands in the air.
+~
+>act_prog p pokes you in the ribs.~
+say DON'T TOUCH ME!!!
+say DON'T EVER TOUCH ME!!!!
+say AHHHH!!!  AHHHH!!!!
+yell $n is TOUCHING ME!!!
+emote screams his bloody head off!
+yell AHHH!! AHHH!!!  $n POKED ME!!!!
+emote runs off screaming.
+mpgoto 1
+ 
+~
+|
+#4408
+fire rat~
+The Fire Rat~
+A bright red rat walks about on the lava
+~
+A rat with very long, glowing claws looks menacingly towards you.  She
+does not enjoy your presence here.  Flee before her claws tear the cartilage
+from your throat.  
+~
+97 512 0 -100 S
+40 0 0 2500d0+0 0d0+0
+0 35 0 0
+0 0 2
+128 0 0
+#4409
+crazy hermit short man~
+The Crazy Hermit~
+A short man in tattered rags is looking throughthe fruit on the floor
+~
+This crazy man looks dirty and ragged.  He probably hasn't changed
+outfits in many years.  His smell knocks you back, it's just that
+disgusting.  He looks like hes carrying some food on him, probably the food
+that the Cano's throw down the volcano.  His sandals look valuable in this
+dreadful heat.  
+~
+65 512 0 250 S
+42 0 0 1600d0+0 0d0+0
+0 39 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+say What what??  Who zat??
+emote looks you over.
+say You ain't wonna them crazy natives!
+smile
+~
+>rand_prog 5~
+laugh
+say Them natives have been dropping food in here for years.  
+say So it's been an easy life, for years.
+~
+>rand_prog 5~
+emote pulls a red apple out from within his robes.
+emote eats the red apple.
+smile
+say Stupid natives.
+~
+>give_prog all~
+if number ($o) == 4411
+say Ah, you've found a rattle for me to play with.
+say I'll trade you this piece of key for that rattle.
+mpoload 4441
+give iron $n
+endif
+~
+|
+#4410
+living flame flickering~
+the Living Flame~
+A flickering flame wobbles unsteadily in the lava
+~
+This apparition looks like a man on fire.  It has no features except for
+it's eyes, which are even more red than the flames that burn around it.  You
+keep a respectful distance wondering if your weapons will even affect this
+creature.  
+~
+65 33555072 0 0 S
+43 0 0 2310d0+0 0d0+0
+0 41 0 0
+0 0 0
+128 0 0
+>entry_prog 100~
+mpecho A great gout of flame erupts from the lava.
+~
+>rand_prog 5~
+emote flickers about.
+~
+|
+#4411
+lava large mass man~
+The Lava Man~
+A large mass of lava stands before you in the shape of a man
+~
+This huge brute looks like it can crush you into a squishy pulp in one
+swing.  The lava man has better armor than most, indeed several things look
+valuable.  He doesn't like being looked at, so he's coming for ya.  
+~
+97 33555072 0 -500 S
+44 0 0 2535d0+0 0d0+0
+0 43 0 0
+0 0 0
+128 0 0
+>greet_prog 100~
+emote suddenly glows even brighter.
+~
+|
+#4412
+keeper living flame~
+Keeper of the Living Flame~
+The Keeper of the Living Flame blazes flickers nearby
+~
+The keeper looks like he can hold his own in a tight battle.  The many
+knicks and cuts on his blade only enhance your estimation of him.  It looks
+vaguely humanlike, but because it's burning you can't really tell.  
+~
+67 512 0 -500 S
+46 0 0 4600d0+0 0d0+0
+0 47 0 0
+0 0 0
+128 0 0
+>greet_prog 100~
+say Come, pit thy strength against me!
+~
+>rand_prog 5~
+say I am the holder of the sacred flame.
+say When the order entered the flame,
+say I remained to hold their focus.
+~
+>rand_prog 5~
+say Come, attempt to vanquish me.
+say I shall only return to the flames.
+~
+>death_prog 100~
+emote returns to the flames in which he was made.
+mpoload 4407
+~
+|
+#4413
+small little woman lava sprite~
+The Lava Sprite~
+A small little woman surrounded in glowing fire.
+~
+This small being flutters in random directions, aimlessly wandering.  You
+don't want to touch her, the flames look very hot, indeed she radiates an
+intense heat.  She appears to be in a happy mood today.  
+~
+65 128 0 300 S
+45 0 0 3400d0+0 0d0+0
+0 45 0 0
+0 0 2
+0 0 0
+>greet_prog 100~
+smile
+wave
+say Hello Big Person!
+smile
+bounce
+~
+>rand_prog 5~
+say Do you think I'm cute?
+giggle
+~
+>rand_prog 5~
+emote dances happily about.
+~
+>rand_prog 5~
+say It certainly is a peachy day!
+smile
+~
+|
+#4414
+fat pig greasy~
+The fat pig~
+A fat greasy pig stands here waiting to be butchered
+~
+This fat pig lays here, contently eating an apple.  The pig looks like a
+normal pig, except for it has no tail.  This pig is the noisiest of the
+bunch, and so will be sacrificed on the next celebration.  
+~
+67 0 0 0 S
+30 0 0 1500d0+0 0d0+0
+0 20 0 0
+0 0 2
+0 0 0
+>greet_prog 100~
+emote sqeals like pig.
+~
+>rand_prog 10~
+emote roots in the dirt.
+emote goes, "GRRUUUuuuunt..."
+emote snorts.
+~
+>rand_prog 5~
+say Oink Oink!
+~
+>death_prog 100~
+mpoload 4435
+mpoload 4436
+mpecho The pigs tail falls off!
+~
+|
+#4415
+beautifull little girl~
+The Little Girl~
+A beautifull little girl stands here waiting to be sacrificed
+~
+A little girl lays frightened in a corner of the room.  She's sobbing and
+crying, so she doesn't see you come in for a long time.  Underneath all the
+dirt, you can tell she is a very beautifull little girl.  The filmy white
+dress she is wearing does not hide much to the imagination.  
+~
+67 0 0 1000 S
+30 0 0 1500d0+0 0d0+0
+0 20 0 0
+0 0 2
+0 0 0
+>greet_prog 100~
+say Please don't hurt me!
+cringe $n
+~
+>rand_prog 5~
+say I'm so scared!
+~
+|
+#4416
+elder lost~
+the Elder~
+The Elder of the Lost City is here.
+~
+The Elder of the Lost City is here meditating.  He looks very old,
+perhaps from a time long forgotten.  
+~
+67 0 0 0 S
+20 0 0 0d0+0 0d0+0
+0 0 3 0
+0 0 1
+0 0 0
+>speech_prog dragon~
+say The dragon? His name is Talonfire!
+say He's the meanest dragon I've ever seen.
+nod
+say You actually want to fight the dragon....amazing!
+say It's only a short trip, east and then up 
+say from the Southwing of the Great Library
+say Talonfire's Lair used to be the attic, 
+say but now only he is ever in there sleeping.
+~
+>all_greet_prog 100~
+tell $n Your not from around these parts as far as I can tell.
+tell $n Undoubtedly you have come to face Talonfire, 
+tell $n the greatest dragon to ever pillage the land.
+tell $n Only a group of the strongest heroes can withstand the
+tell $n breath of Talonfire
+tell $n Go ahead if you think you're strong enough.
+tell $n But I think this will be a short battle.
+mpoload 4443
+give key $n
+~
+|
+#4417
+Talonfire~
+TalonFire, dragon incarnate~
+Talonfire, the greatest dragon to ever live, is here.
+~
+~
+97 503333057 229428 -1000 S
+130 0 0 25000d0+0 0d0+0
+15000 2000 1000 0
+0 0 1
+67217647 0 0
+>fight_prog 50~
+cas 'shatter'
+cas 'meteor sw'
+~
+>all_greet_prog 100~
+tell $n You have come here to die, foolish mortal!
+tell $n Now you will face the awesome power of
+tell $n myself, the greatest dragon to pillage 
+tell $n the land
+~
+|
+#0
+
+
+
+#OBJECTS
+#4401
+lava bubbling stream~
+lava~
+A bubbling stream of lava flows by you.~
+~
+1 1 0 0 0 0
+0~ 0~ -1~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4402
+large bonfire fire heat~
+bonfire~
+A large bonfire is throwing off great amounts of heat here.~
+~
+1 1 0 0 0 0
+0~ 0~ -1~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+large bonfire fire heat~
+A large bonfire, with flames sometimes reaching 10 feet into the sky, is
+noisily roasting a pile of lava bushes.  The lava bushes are stacked neatly.
+~
+#4403
+iron cast cauldron pot~
+the Cauldron~
+A great cast iron cauldron is bubbling merrily upon the fire~
+~
+17 0 0 0 0 0
+99999~ 99999~ 9~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+cauldron~
+A large cauldron, a radius of a foot and a half, is cooking something. 
+You can't tell what the Cano's are making, but it has a pungent smell to it.
+As you continue to look into the simmering pot, you notice berries floating
+at the top of the cauldron.  
+~
+#4404
+thin yellow bush~
+the Lava Bush~
+A thin dull yellow bush is growing here~
+~
+15 1 0 0 0 0
+100~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4405
+lava berry bunch berries~
+lava Berries~
+A bunch of bright red berries lie here~
+~
+26 1 0 0 1 25
+25~ faerie fire~ faerie fire~ faerie fire~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4407
+living flame~
+the Living Flame~
+The Living Flame sits here~
+~
+1 1 0 0 1 1
+0~ 0~ -1~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4408
+stone pyramid~
+a stone pyramid~
+A stone in the shape of a pyramid lies here~
+~
+18 1 0 0 16385 25
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4409
+Chieftain's Desk~
+the Chieftain's Desk~
+A boulder that's being used for a desk sits here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4410
+key iron~
+an iron key~
+A very old key lies here.~
+~
+18 0 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 4441 4440
+#4411
+rattle skull full pebbles~
+a Skull Full of Pebbles~
+A small rodent skull full of pebbles lies here~
+~
+13 0 0 0 16385 1
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+rattle skull full pebbles~
+This piece of junk is worth nothing to you, but it may be worth something
+to the village people.  You resist the urge to smash the skull to get the
+pebbles in case you find a use for this.  
+~
+#4412
+diaper lava bush bushes~
+a Diaper made from Lava Bush~
+A Diaper made from Lava Bushes lies here~
+~
+9 0 0 0 33 1
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+diaper lava bush~
+The diaper is made of lava bush leaves.  If you want to look in the
+diaper you are truly insane!  The smell is really gettin on your nerves.  
+~
+#4413
+lava bush skirt~
+a Lava Bush Skirt~
+A Lava Bush Skirt lies here.~
+~
+13 0 0 0 2049 30
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+A
+14 30
+E
+lava bush skirt~
+This skirt was made from the bushes that live in the Cano valley.  It's
+about 2 feet long and it fits comfortably around your waist.  
+~
+#4414
+rodent skull necklace~
+a Rodent Skull Necklace~
+A Rodent Skull Necklace lies here~
+~
+9 0 0 0 5 33
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 20
+E
+rodent skull necklace~
+A necklace that has tiny rodent skulls partitioned by beads makes you
+suddenly want to crush the necklace into tiny pieces of bone.  You don't
+know why, but you're more agitated than you've ever been before.  
+~
+#4415
+cano ceremonial mask~
+a Cano Ceremonial Mask~
+A Cano Ceremonial Mask lies here~
+~
+9 1 0 0 65537 33
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 20
+A
+17 -10
+E
+cano ceremonial mask~
+This mask is big enough to cover your entire face.  It's been painted
+black with red markings on it.  This mask is obviously an important facet of
+the Cano religion, since it appears the Cano's never part with it.  
+~
+#4416
+long stick skull staff~
+a Long Stick with a Skull on the End~
+A Long Stick with a Skull on the End lies here~
+~
+5 64 6348 0 8193 37
+0~ 0~ 0~ 8~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 5
+A
+18 25
+E
+long stick skull staff~
+The skull of a fierce rat is stuck on the end of this stick.  The result
+is a deadly hammer that will crush solid bone.  The staff looks plain
+enough, except for the Chieftain's markings on it.  
+~
+#4417
+sling shot bird skull skulls~
+a Sling Shot and some small Bird Skulls~
+A Sling Shot and some small Bird Skulls lie here~
+~
+5 0 0 0 8193 30
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 40
+A
+19 -30
+E
+sling shot bird skull~
+A small sling shot, that was used quite effectively by the Cano boy, is a
+small but powerfull sling shot.  The sling is made from a deformed lava
+bush.  
+~
+#4418
+crooked stick wand~
+a Crooked Stick~
+A Long Crooked Stick lies here~
+~
+3 64 0 0 16385 38
+25~ 3~ 3~ fireball~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+crooked stick wand~
+This crooked stick looks plain enough, but you can sense some form of
+power deep within the staff.  As you study it more, you're sure it's
+emanating an inner heat somehow, which is even more strange to you.  
+~
+#4419
+basket wicker lava bush~
+a Basket made from Lava Bush~
+A Large Wicker Basket lies here~
+~
+15 0 0 0 1 1
+25~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+basket wicker lava bush~
+The basket, made from the leaves from the lava bushes that are native to
+this area, is yellowish in color.  It looks like it can hold at least a
+little of your equipment and provisions, but only a little.  
+~
+#4420
+wide brimmed hat lava bush~
+a Wide Brimmed Hat woven from Lava Bush~
+A Hat woven from lava bush lies here~
+~
+9 1 0 4096 17 35
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+E
+wide brimmed hat lava bush~
+This wide brimmed, yellowish hat, is excellent protection from the
+searing sun in the Cano valley region.  It totally covers the top of your
+head and more importantly your eyes from the sun.  
+~
+#4421
+pair rat paws claws lava~
+a pair of Lava Rat Claws~
+A pair of amputated rat paws lie here~
+~
+9 1 0 0 129 40
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 2
+A
+19 6
+E
+pair rat claws~
+These claws are faintly glowing.  Because the claws are wickedly sharp
+and long, it would make an excellent weapon.  
+~
+#4422
+tattered rag rags pile shirt~
+a Tattered Bunch of Rags~
+A tattered pile of rags lie here~
+~
+9 0 0 0 9 42
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+E
+tattered rags~
+This pile of rags ins't even worth noticing.  It can fit you, but why you
+would want to wear it is another story.  It also smells of rotten fruits and
+a faint trace of rotten flesh.  
+~
+#4423
+pair sandals~
+a pair of sandals~
+A Pair of sandals lie here~
+~
+9 0 0 0 65 42
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -2
+E
+pair sandals~
+These sandals look worn and torn.  However, in the Cano valley area,
+anything on your feet to protect from the lava and heat is a blessing.  
+~
+#4424
+ripe melon~
+a Ripe Melon~
+A ripe melon lies here~
+~
+19 0 0 0 16385 1
+8~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+ripe melon~
+A round juicy melon is here.  It's a greenish color, with some yellow. 
+You can tell it's ripe, since when you taste it it's very sweet.  
+~
+#4425
+fresh red apple~
+a Red Apple~
+A fresh red apple lies here~
+~
+19 0 0 0 16385 1
+2~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fresh red apple~
+This bright red apple must have come from somewhere else, since you
+haven't seen any apple trees in the Cano valley.  You wonder where it came
+from.  
+s.
+~
+#4426
+juicy orange~
+a Juicy Orange~
+A juicy orange lies here~
+~
+19 0 0 0 16385 1
+3~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+juicy orange~
+This juicy orange is a tasty treat.  You want to save it so you don't
+peel it.  The orange is nice and fresh too.  
+~
+#4427
+pair lava boot boots red~
+a pair of Lava Boots~
+A pair of red lava boots lie here~
+~
+9 1 0 0 65 44
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -30
+E
+pair lava boots~
+The lava boots have been made from solidified lava.  It's not very hard
+to break the boots, but you can sense that it has certain magical
+properties.  
+~
+#4428
+lava breast plate red breastplate~
+a Lava Breast Plate~
+A red lava breast plate lies here~
+~
+9 1 0 0 9 44
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -12
+A
+17 -30
+E
+lava breast plate~
+A breast plate red in color, is made of solidified lava.  Although not
+very hard to pierce, you sense it has a resistance to magical attack.  
+~
+#4429
+club lava large~
+a Club of Lava~
+A large club of lava lies here~
+~
+5 1 0 0 8193 44
+0~ 0~ 0~ 8~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 -5
+A
+19 30
+E
+club lava large~
+A large club of lava would make an excellent weapon for short, stocky
+warriors.  The club is made of solidified lava, which is hard, but brittle. 
+However the club has a special substance in them that neutralizes the
+weakness of the club.  
+~
+#4430
+pair tiny flaming earring earrings~
+a pair of Tiny Flaming Earrings~
+A pair of tiny flaming earrings lie here~
+~
+9 1025 8 0 524289 45
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 25
+E
+pair tiny flaming earring~
+These beauties are stunning.  The intricate bends and curves in the shape
+of a double S is truly extraordinary.  It's also warm to the touch, an inner
+heat warms your hand.  It seems like it must have some magical properties.  
+~
+#4431
+tiny flaming ankle bracelet~
+a Tiny Flaming Ankle Bracelet~
+A tiny flaming ankle bracelet lies here~
+~
+9 1025 8 0 1048577 45
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 25
+E
+tiny flaming ankle bracelet~
+The anklet is small, but you can fit it on your ankle barely.  It's also
+hot to the touch, and sometimes actual flames leap off the anklet. 
+Strangely enough, when you wear it there is no pain and no discomfort.  
+~
+#4432
+tiny flaming dress~
+a Tiny Flaming Dress~
+A tiny flaming dress lies here~
+~
+9 1025 8 0 9 45
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -10
+A
+17 -30
+#4433
+tiny dagger flame flames~
+a Tiny Dagger of Flames~
+A Tiny Dagger of flames lie here~
+~
+5 1025 8 0 8193 45
+0~ 20~ 45~ 2~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 30
+E
+tiny dagger flame~
+This small but potent weapon for the lava sprite has it's own glow.  The
+hilt is small, but the blade is long and wickedly sharp.  You sense an inner
+heat from the weapon, but it doesn't burn you when you touch it.  
+~
+#4434
+filmy white dress~
+a Filmy White Dress~
+A filmy white dress lies here~
+~
+9 0 0 0 9 30
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 30
+E
+filmy white dress~
+This dress is definitely way too small for you.  Why you would want to
+wear it is another question altogether.  The dress is more greyish than
+white from all the ash around.  
+~
+#4435
+side pork meat~
+a Side of Pork~
+A side of pork lies here~
+~
+19 0 0 0 16385 1
+24~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4436
+small curly pink lucky pig pigs tail~
+a Lucky Pigs Tail~
+A small curly pink thing lies here~
+~
+8 64 0 0 16385 30
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -30
+#4437
+sword crimson fire~
+a Sword of Crimson Fire~
+A sword of crimson fire lies here~
+~
+5 1 0 0 8193 37
+0~ 28~ 45~ 3~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 13
+A
+18 13
+E
+sword crimson fire~
+The long, sharpened sword can cut through almost anything.  The flames
+rolling off the end of the sword are a reminder to anyone unlucky enough to
+feel your blade.  
+~
+#4438
+pelt skin pile flaming~
+a Pelt of Flaming Skin~
+A pile of skin lies here on fire~
+~
+9 1 0 0 9 46
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -6
+A
+17 -40
+E
+pelt skin flaming~
+The belt is flaming, but it doesn't burn your hands when you touch it. 
+It must be magical.  
+~
+#4439
+staff plain~
+a small plain staff~
+A plain looking staff lies here.~
+~
+5 0 0 0 8193 1
+0~ 2~ 5~ 8~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+plain staff~
+This ordinary staff is just a piece of wood.
+~
+#4440
+key nob~
+a key nob~
+A half of a key, the knob, lies here.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+4410 0 0
+E
+key nob~
+This is just one half of a key.
+The critical part is missing.
+Maybe you know where to get the other half?
+~
+#4441
+iron head~
+a small piece of iron~
+A small piece of iron has been left here.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+4410 0 0
+E
+iron head~
+This must be a part of a key, because you can tell where the knob goes
+and which is the right way to unlock a certain door.  
+~
+#4443
+lost city key~
+a key~
+A small key is here.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+50 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#4401
+Northwest Corner of Mount Cano~
+You are standing on the slope of a large mountain.  There is a fine white
+volcanic ash covering the ground.  This section of the mountain has been
+levelled out, and the Natives are using this plateau to hold their
+ceremonies.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4402
+D2
+~
+~
+0 0 4408
+S
+#4402
+North Meadow of the Cano Tribe~
+You are in the midst of a great celebration.  This is where the Cano
+Tribe come to worship their god, the Deity of Fire.  They dance about in
+religious rituals, and prepare the sacrifices that they dump in the volcano.
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4403
+D2
+~
+~
+0 0 4409
+D3
+~
+~
+0 0 4401
+S
+#4403
+The End of a Lava Stream~
+You are on a solidified pool of magma.  When the lava from the volcano
+flows down the mountainside, this is where it pools and turns back into
+rock.  The fumes are nearly unbearable.  
+~
+0 0 5
+Rd     0
+D2
+~
+~
+0 0 4410
+D3
+~
+~
+0 0 4402
+S
+#4404
+The Cano Chief's Personal Quarters~
+You are in a modestly furnished room.  Off to the side is another
+sleeping pallet.  In the center of the room is a large boulder that is
+littered with papers.  This is what the Cano Chief uses as a desk.  
+~
+0 8 0
+Rd     0
+E
+desk~
+A boulder with an almost flat surface lies here.  The chieftain must be
+using it for his desk.  
+~
+D1
+~
+~
+0 0 4405
+S
+#4405
+Before a Large Sketching~
+The northern wall has been beautifully designed into a large picture,
+etched into the wall is a large flickering fire.  The flames are so craftily
+designed that if it weren't for the pale grey colouring of the wall, you
+would mistake it for a real fire.  
+~
+0 1032 0
+Rd     0
+E
+picture fire~
+The back wall is decorated with a vivid picture that you can barely tell
+the difference between it and the real thing.  The fire even looks hot to
+the touch.  
+~
+D1
+~
+~
+0 0 4406
+D2
+~
+~
+0 0 4412
+D3
+~
+~
+0 0 4404
+S
+#4406
+In the Cano's Kitchens~
+You are in a large room full of various smells.  There are deep chasms
+cut into the rock that reach down to the heated lava below, and hooked onto
+these chasms are great pots.  Using the volcanos natural heat, the Cano's
+never have the need to collect firewood for heat or cooking.  
+~
+0 8 0
+Rd     0
+E
+pots~
+The pots are a greyish color, though you can't tell because behind the
+pots is the lava pools making it hard to tell colors apart.  It looks like
+the pots are cooking a rat of some kind, though the creature in the pot
+looks too big for it.  
+~
+D3
+~
+~
+0 0 4405
+S
+#4407
+In the Northern Sleeping Quarters~
+You are in a room full of sleeping pallets.  The pallets are merely
+smooth holes in the floor filled with Lava Bush leaves.  On the walls are
+many hooks and shelves.  The tribe is very close, and they feel that
+belongings are owned by the entire tribe, so little emphasis is placed on
+privacy.  
+~
+0 8 0
+Rd     0
+E
+hooks shelves~
+Many hooks and shelves hold the personal belongings of the Cano people. 
+Miscellaneous things litter the shelves.  There looks like nothing of real
+values in the shelves.  
+~
+D2
+~
+~
+0 0 4414
+S
+#4408
+Standing Before a Cano Bonfire~
+You are before a large bonfire.  The fire is a flickering mass
+of different coloured flames.  The natives are dancing around it, and
+shouting out to their god.  The heat of the fire, combined with that of the
+lava is making you sweat uncomfortably.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4401
+D1
+~
+~
+0 0 4409
+D2
+~
+~
+0 0 4415
+S
+#4409
+Before a Cano Cauldron~
+Sitting in a large bonfire is a huge metal cauldron.  Floating in this
+pot, is an assortment of spicy meats and vegetables.  One of the main
+ingredients is a finely ground mushroom.  All of the Cano's in the ceremony
+eat from this cauldron to help them become closer to their god.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4402
+D1
+~
+~
+0 0 4410
+D2
+~
+~
+0 0 4416
+D3
+~
+~
+0 0 4408
+S
+#4410
+Bend in the Magma Trail~
+The lava that is pouring out of the erupting volcano bubbles merrily down
+the mountainside to the south of you.  To the east you can see a small path
+that would allow you to climb the mountain alongside the lava trail.
+~
+0 4 5
+Rd     0
+D0
+~
+~
+0 0 4403
+D1
+~
+~
+0 0 4411
+D3
+~
+~
+0 0 4409
+S
+#4411
+Narrow Ravine Full of Lava~
+The narrow ravine in which you are in is full of lava.  You have to be
+careful to avoid falling into the mass of bubbling rock beside you.  Great
+clouds of toxic fumes billow down the mountainside overhead.  It is truly a
+terrifying sight to behold.  
+~
+0 0 5
+Rd     0
+D2
+~
+~
+0 0 4418
+D3
+~
+~
+0 0 4410
+S
+#4412
+In the Functional Half of the Cano's House~
+You notice a distinct change in this half of the house.  The cozy quality
+is still there, but it is evident from the features that this area is used
+in a more efficient way.  To the north is the Chief's Quarters and the
+Kitchens.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4405
+D1
+~
+~
+0 0 4413
+S
+#4413
+Main Corridor of the Cano's House~
+You are in a wide busy hallway.  You notice that in the midst of all the
+traffic, the Cano's have a carefully constructed set of rules.  The carts
+carrying supplies into the functional areas are on the north wall, and the
+carts going out are on the south wall, while all the people on foot are in
+the center.  
+~
+0 8 0
+Rd     0
+E
+carts supplies~
+Carts line the north and south walls.  The carts on the north have some
+type of food in them, while the carts on the south have nothing in them. 
+You don't want to be impolite, so you don't take any of the food from the
+northern carts.  
+~
+D1
+~
+~
+0 0 4414
+D3
+~
+~
+0 0 4412
+S
+#4414
+In the Hallway of the Cano's House~
+You are in a busy hallway.  The halls have a smooth rock finish to it,
+giving the entire place a cozy feeling.  To the north is another sleeping
+chamber, and to the west is a more functional area of the Tribe's house,
+including the kitchens and the Chief's Quarters.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4407
+D2
+~
+~
+0 0 4421
+D3
+~
+~
+0 0 4413
+S
+#4415
+The Center of a Large Clearing~
+You are in the center of the Cano's celebration.  All about you the
+natives scream and yell their devotions to their God.  The thin grass that
+grows on the side of the mountain has been long worn away from all the
+frolicking natives.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4408
+D1
+~
+~
+0 0 4416
+D2
+~
+~
+0 0 4422
+S
+#4416
+In the Midst of Many Symbols~
+The ground around you is very rocky, and upon the stone the Cano's have
+written many strange runes and symbols with charcoal.  You notice the
+depictions of a great fiery beast sitting in a large hole.  It makes you
+curious as to what might be found within the volcano.
+~
+0 0 2
+Rd     0
+E
+symbol symbols beast~
+As you ponder the meaning of the symbols in front of you, an idea comes
+to your mind.  Who better to know about these symbols than the Chieftain? 
+You feel certain to talk to him the next time you pass by his cozy home.  
+~
+D0
+~
+~
+0 0 4409
+D2
+~
+~
+0 0 4423
+D3
+~
+~
+0 0 4415
+S
+#4417
+Within the North West Sacrificial Hut~
+You are in a small hut that was built by the Cano Natives.  In the center
+of the hut is a plush silk bed with a frilly canopy.  The natives believe
+that the Fire God has a great hunger for untainted human flesh.  This is
+where they hold their young virgins until they offer them to the volcano.  
+~
+0 12 0
+Rd     0
+E
+bed silk canopy~
+This bed is almost as bad in shape as the hut is.  There's no sheets, but
+in this heat noone will ever be cold.  
+~
+E
+hut~
+This run down hut has obviously not been maintained at all.  You wonder
+whats keeping the roof from caving in, because all the walls are rotted and
+decayed.  Why the straw roof hasn't caught fire is also mysterious.  
+~
+D2
+~
+~
+3 0 4424
+S
+#4418
+Northern Lava River~
+You are to the side of a huge river of lava.  There are crude drawings of
+people and animals etched in the rock on the sides of the river.  To the
+east is a small hut, which is barely outside of the flow of magma.  
+~
+0 0 5
+Rd     0
+E
+people animals crude drawings~
+The drawings are indeed crude, probably written a long long time ago
+though you aren't sure.  You are struck by an idea, maybe the Cheiftain
+knows of the drawings and what they mean.  You make a mental note to talk to
+him about it the next time you drop in for a visit 
+~
+D0
+~
+~
+0 0 4411
+D1
+~
+~
+3 0 4419
+D2
+~
+~
+0 0 4425
+S
+#4419
+Within the North East Sacrificial Hut~
+You are in a small hut that was built by the Cano Natives.  This is where
+they hold their offerings.  You see fresh animal droppings and other signs
+showing that livestock is a major sacrifice.  
+~
+0 12 0
+Rd     0
+E
+animal droppings~
+You really don't want to look in the droppings do you?
+~
+D3
+~
+~
+3 0 4418
+S
+#4420
+Cano's Sleeping Chambers~
+You are in a large room full of pallets.  The pallets are merely holes in
+the ground filled with the soft leaves of the Lava Bushes which they grow. 
+The floor is warm to touch, from the lava continually flowing beneath it,
+you think this would be a wonderfully cozy place to live in the winter.  
+~
+0 8 0
+Rd     0
+E
+pallets~
+The pallets are simply lava bush leaves in cracks in the floor.
+~
+D1
+~
+~
+0 0 4421
+S
+#4421
+Within the House of the Cano Natives~
+You are within the front doorstep of a large cave.  The cave has a very
+lived in look to it.  Judging from the deep groves on the floor from the
+natives feet, you would guess that the tribe have been here a long time.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4414
+D2
+~
+~
+3 0 4428
+D3
+~
+~
+0 0 4420
+S
+#4422
+Edge of a Fiery Escarpment~
+You are on a rocky outcropping, and the lava from the volcano flows down
+and around you.  The fire and smoke flows up and around you, creating a haze
+which you can barely see through.  The heat singes your clothes and the
+smoke chokes the air out of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4415
+D1
+~
+~
+0 0 4423
+D2
+~
+~
+0 0 4429
+S
+#4423
+Beside the River of Lava~
+You are beside a river of lava.  The sides of the bank hardly seem to
+erode anymore, this is because the volcano has been erupting for so long all
+of the softer rocks and gravel have long since been melted away.  
+~
+0 4 5
+Rd     0
+D0
+~
+~
+0 0 4416
+D1
+~
+~
+0 0 4424
+D2
+~
+~
+0 0 4430
+D3
+~
+~
+0 0 4422
+S
+#4424
+In a Chasm of Lava~
+You are in a deep chasm, lava is pouring from the spouting volcano to the
+east.  Black stone stairs come out from the lava and up to a hut door to the
+north.  They must be magical, because they are unaffected by the heat of the
+lava pouring over them.  
+~
+0 0 5
+Rd     0
+E
+black stone stairs~
+These stairs look very old, very old indeed.  The villagers around here
+don't seem to have the power to make stairs like these, so you know its been
+here longer than they have.  
+~
+D0
+~
+~
+3 0 4417
+D1
+~
+~
+0 0 4425
+D3
+~
+~
+0 0 4423
+S
+#4425
+Top of the Erupting Mount Cano~
+You are at the top of an erupting volcano, the lava is flowing down in
+all four directions.  Looking deep into the center of the volcano you notice
+a passage through the lava.  It looks very dangerous, and lethally hot.  
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 4418
+D1
+~
+~
+0 0 4426
+D2
+~
+~
+0 0 4432
+D3
+~
+~
+0 0 4424
+D5
+~
+~
+0 0 4448
+S
+#4426
+In a Crevice of Lava~
+You are in a large crevice.  It is clear to see that one of the many
+explosions made this large crack in the mountain, now lava is flowing
+through it.  Black steps have been cut into the southern wall that lead up
+to a small hut.  
+~
+0 0 5
+Rd     0
+E
+black steps~
+The steps have lava flowing across it, yet the lava doesn't affect its
+appearance.  It must be magical, and your curious nature makes you want to
+find out who made the stairs.  The only person that comes to mind that may
+know of these steps is the Chieftain.  
+~
+D1
+~
+~
+0 0 4427
+D2
+~
+~
+3 0 4433
+D3
+~
+~
+0 0 4425
+S
+#4427
+Beside a River of Molten Lava~
+You are on the bank of a lava stream.  The lava runs from the top of the
+mountain in the west down into a puddle of magma in the east.  To the south
+you can see a great field of lava bushes swaying in the breeze.  
+~
+0 4 5
+Rd     0
+D1
+~
+~
+0 0 4428
+D2
+~
+~
+0 0 4434
+D3
+~
+~
+0 0 4426
+S
+#4428
+Before the Entrance to the Cano's Home~
+You are on the bank of a lava stream.  To the north is a large door which
+enters into the home of the natives.  There is a rope bridge which spans the
+lava from high above allowing the natives to travel all over their mountain
+home.  
+~
+0 4 5
+Rd     0
+E
+rope bridge~
+The rope bridge, although it sways in the breeze, looks sturdy enough to
+cross on.  
+~
+D0
+~
+~
+3 0 4421
+D2
+~
+~
+0 0 4435
+D3
+~
+~
+0 0 4427
+S
+#4429
+Before the Canyon Leading to the Sea~
+You are before a large canyon that leads down out of the mountains.  The
+smell of salt air whistles up from the crevice to the west.  The bubbling
+lava is cooling into a large slab of molten rock, and very little of it
+poors into the canyon itself.  
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 4422
+D1
+~
+~
+0 0 4430
+D2
+~
+~
+0 0 4436
+D3
+~
+~
+0 0 4795
+S
+#4430
+Beside a River of Lava~
+You are on the bank of a river of molten lava.  The heat makes everything
+seem wavery and unclear.  Bridges have been made over all of the lava rivers
+allowing the natives to scamper about all over the mountain.  
+~
+0 0 5
+Rd     0
+E
+rope bridges~
+These bridges sway in the breeze, though they look strong enough to hold
+you.  The bridges look relatively new, and the Cano people seem to cross
+them without any trouble, so you're sure you can cross.  
+~
+D0
+~
+~
+0 0 4423
+D2
+~
+~
+0 0 4437
+D3
+~
+~
+0 0 4429
+S
+#4431
+Within the South West Sacrificial Hut~
+You are in a small hut that was built by the Cano Natives.  This hut is
+full of bins.  The natives store all their excess food in here, and during
+certain rituals, they cast the food into the volcano to appease their god.  
+~
+0 12 0
+Rd     0
+E
+hut natives~
+The hut, though it looks in better shape than the other huts in the area,
+is still run down and in need of repair.  Why the straw roof doesn't catch
+fire in the heat is a mystery.  
+~
+E
+food rituals bins~
+The food in these bins is mostly fruit, but you can make out a couple
+fresh corpses in the heap.  You don't want to touch anything anyways, since
+your uneasy about angering the Fire God.  
+~
+D1
+~
+~
+3 0 4432
+S
+#4432
+In a Deep Valley of Lava~
+The mountain top to the north of you is erupting great amounts of corrosive
+smoke and bubbling lava.  The lava pours over steps that lead up to the west
+to a small hut that is owned by the natives.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 4425
+D2
+~
+~
+0 0 4439
+D3
+~
+~
+3 0 4431
+S
+#4433
+Within the South East Sacrificial Hut~
+You are in a small hut that was built by the Cano Natives.  Upon the
+walls of the hut are many racks and hooks.  This is where the Cano's store
+their extra ritual masks that haven't been handed out yet.  The room is
+empty due to the ceremonies in progress.  
+~
+0 8 0
+Rd     0
+E
+hut~
+This is one run down, ready to cave in at any moment, hut.  Why the straw
+roof hasn't burned away is a mystery to you.  
+~
+E
+racks hooks masks~
+Cano ceremonial masks litter the racks and hooks in the wall here and
+there.  Because the ceremonies are being held, there aren't that many masks
+left.  Some of the masks look different from the ones you've seen on the
+Cano people, so you decide not to take any possibly defective mask.  
+~
+D0
+~
+~
+3 0 4426
+S
+#4434
+In the North West Corner of a Lava Bush Field~
+You are in the midst of many swaying Lava Bushes.  The bushes have deep
+roots which barrow into the lava itself, when the root burns, the bush then
+uses the nutrients of its own ash to grow even more.  Because of this the
+bush needs only small amounts of fresh soil.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4427
+D1
+~
+~
+0 0 4435
+D2
+~
+~
+0 0 4441
+S
+#4435
+In the North East Corner of a Lava Bush Field~
+You are in a freshly tilled field of Lava Bush.  The field stretches out
+to the south, the bright berries seeming to float within the dull yellow
+bush.  To the north, a lava stream flows next to the field, preventing the
+bushes to grow outside of the field.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4428
+D1
+~
+~
+0 0 4483
+D2
+~
+~
+0 0 4442
+D3
+~
+~
+0 0 4434
+S
+#4436
+Singed Grassy Meadow~
+You are in the midst of a gently swaying meadow of fine light brown
+grass.  The edges of the meadow which run alongside the lave stream are
+black and smoking.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4429
+D1
+~
+~
+0 0 4437
+D2
+~
+~
+0 0 4443
+S
+#4437
+Before a Large Cano Cauldron~
+There is a large cauldron that is sitting upon a piece of black rock. 
+The rock is kept very hot from the lava flowing around it, and it in turn
+cooks what is in the pot.  The smell of spicy meats and vegetables comes
+from the cauldron.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4430
+D1
+~
+~
+0 0 4438
+D2
+~
+~
+0 0 4444
+D3
+~
+~
+0 0 4436
+S
+#4438
+On the Top of a Steep Cliff~
+You are in the clearing where the Cano's celebrate, looking to the east
+you see that the lava has cut a steep cliff into the rock.  Although the
+cliff looks steep, you are quite confident that you could climb it if you
+decided to go down.  
+~
+0 4 2
+Rd     0
+D1
+~
+~
+0 0 4439
+D2
+~
+~
+0 0 4445
+D3
+~
+~
+0 0 4437
+S
+#4439
+Swiftly Churning Ramp of Lava~
+The lava that is bubbling down from the north banks up on the side of the
+southern wall, then continues to the west.  Looking east, you can see a
+great field full of dull yellow bushes.  The path leading down into the
+field does not seem too steep or dangerous.  
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 4432
+D1
+~
+~
+0 0 4440
+D3
+~
+~
+0 0 4438
+S
+#4440
+West Side of the Lava Bush~
+You are on the edge of a large Lava Bush field.  This is the main harvest
+of the Cano's, they grow the bushes and collect the berries which grow in
+them.  The berries are used in paints, dyes and food.  
+~
+0 4 5
+Rd     0
+D1
+~
+~
+0 0 4441
+D3
+~
+~
+0 0 4439
+S
+#4441
+Center of a Lava Bush Field~
+You are in the center of a large field of Lava Bushes.  The bushes are a
+dull yellow, and sway in the gentle breeze.  Dotted amongst the bushes are
+fiery red Lava Berries.  The juice in a lava berry is so strong that it
+actually throws off a faint glow.  
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 4434
+D1
+~
+~
+0 0 4442
+D2
+~
+~
+0 0 4446
+D3
+~
+~
+0 0 4440
+S
+#4442
+East Side of a Lava Bush Field~
+You are on the side of a large lava bush.  You see great outcroppings of
+rock all the way around the field.  The bushes take a great amount of heat
+to grow properly, and need the fumes that we consider toxic to survive.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4435
+D2
+~
+~
+0 0 4447
+D3
+~
+~
+0 0 4441
+S
+#4443
+South West Corner of Mount Cano~
+You are on the side of a mountain.  This is where the native children
+come to play.  You see evidence of many child games about, making this area
+look almost like a park, if it weren't for the skulls carelessly strewn
+about, you'd almost be comfortable.  
+~
+0 0 2
+Rd     0
+E
+games child skulls~
+Many skulls lay around here for the children to play with.  One
+particular skull, which is grinning at you, is starting to make you
+uncomfortable.  You decide not to touch anything and give a width berth to
+that skull thats leering at you.  
+~
+D0
+~
+~
+0 0 4436
+D1
+~
+~
+0 0 4444
+S
+#4444
+Surrounded by Skulls~
+You are in the midst of the Cano celebration.  There are wooden stakes
+stuck into the ground with skulls jammed on top.  These ornaments are then
+covered in feathers, the natives believe that this prevents evil spirits
+from corrupting their home.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4437
+D1
+~
+~
+0 0 4445
+D3
+~
+~
+0 0 4443
+S
+#4445
+Softening Magma Pool~
+The lava that is flowing down the side of the mountain accumulates into
+these types of pools.  The stench of the toxic fumes is quite bad in these
+areas, but it doesn't appear to prevent the natives from celebrating.  
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 4438
+D3
+~
+~
+0 0 4444
+S
+#4446
+South West Corner of Lava Bush Field ~
+You are in a field of Lava Bushes.  The crop flows in the wind, making a
+light whispering sound in the fields.  This place is so peaceful it is easy
+to forget that it is growing out of the side of a live volcano.  
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 4441
+D1
+~
+~
+0 0 4447
+S
+#4447
+South East Corner of Lava Bush Field~
+You are in a field of Lava Bushes.  Looking at the dry soil that the bush
+grows from, you see evidence that someone has put alot of work into weeding
+this large field.  The dull yellow of the bush makes the fiery red berries
+appear to be floating off the ground.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4442
+D3
+~
+~
+0 0 4446
+S
+#4448
+Within the Erupting Volcano~
+You are on a small path which spirals deep into the bowels of the
+volcano.  You are amazed that the heat is not burning you alive, nor the
+toxic fumes smothering you.  Looking up you see the faces of the natives
+staring down at you in religious horror.  
+~
+0 8 0
+Rd     0
+D4
+~
+~
+0 0 4425
+D5
+~
+~
+0 0 4449
+S
+#4449
+Deep Within the Erupting Volcano~
+You are on a narrow path which spirals into the volcano.  You feel some
+sort of magical force holding off the deadly heat and fumes.  Looking down,
+you see that the passage opens into a larger area.  
+~
+0 12 0
+Rd     0
+D4
+~
+~
+0 0 4448
+D5
+~
+~
+0 0 4454
+S
+#4450
+Within the Fiery Shaft of a Volcano~
+You are on a spiralling path which circles a great gout of fiery lava. 
+There is no longer any doubt that some magical force is holding back the
+heat, now it leaves you to wonder who would go through so much effort to
+hold back the high temperature.  
+~
+0 12 0
+Rd     0
+D4
+~
+~
+0 0 4454
+D5
+~
+~
+0 0 4467
+S
+#4451
+In the Midst of Alot of Debris~
+You are in a dead end corridor.  On the ground is evidence of life, scattered
+about are melon rinds, apple cores and orange peels.  Also on the ground are
+bones from what you recognize to be from pigs.
+~
+0 8 0
+Rd     0
+E
+melon apple orange bones pigs~
+Looks like someone has been here recently.
+~
+D1
+~
+~
+0 0 4452
+S
+#4452
+A Bend in the Narrow Corridor~
+You are in a natural corridor within the mountain.  Looking in the dust
+you see human foot prints marking the path, it would seem that someone has
+taken up residence within these rock formations.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4453
+D3
+~
+~
+0 0 4451
+S
+#4453
+Within a Crack in the Wall~
+You are in a large crack in the side of the mountain wall.  This crack
+was obviously made by one of the many eruptions from the fuming lava to the
+east.  Looking at the huge crack makes you wonder, considering the terrible
+power that the mountain could unleash at any second.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 4454
+D2
+~
+~
+0 0 4452
+S
+#4454
+Within the Center of a Volcano  ~
+You are on a small path that spirals around a gouting mass of flames
+and lava.  The constant eruptions and explosions have cracked many tunnels
+into the mountainside around you.  Below you the path spirals on into the
+depths of the fiery mountain.
+ 
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4455
+D1
+~
+~
+0 0 4459
+D3
+~
+~
+0 0 4453
+D4
+~
+~
+0 0 4449
+D5
+~
+~
+0 0 4450
+S
+#4455
+Within a Crack in the Wall~
+You are in one of the cracks in the side of the mountain.  The crack has
+a warped look to it, since this hole wasn't actually made by an explosion,
+but instead by the melting of rock from the heated lava.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 4456
+D2
+~
+~
+0 0 4454
+S
+#4456
+Narrow Corridor under the Mountain~
+You are in a narrow corridor.  The walls glisten around you with a black
+glossy shine.  You marvel at the strange black colouring of the sides of
+this cavern, and wonder if it could be mined to make a unique black metal.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 4457
+D3
+~
+~
+0 0 4455
+S
+#4457
+Bend in the Narrow Corridor~
+You are in a bending corridor.  You can see by the walls that the flow of
+lava that carved this corridor must have been rapidly cooling by the time it
+reached here.  Looking north you can see a small alcove made from the lava
+as it finally solidified back into stone.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4458
+D3
+~
+~
+0 0 4456
+S
+#4458
+Small Alcove under the the Mountain~
+You are in a small alcove made from a stray blast of lava.  You are quite a
+distance from the main shaft, and you notice the air to be much cooler here.
+On the floor is a ragged blanket, it seems that the person who lives in these
+chambers retreats to this alcove to sleep in the cooler air.
+~
+0 8 0
+Rd     0
+E
+ragged blanket person sleep~
+Obviously somene has been making this room his residence for at least a
+short time.  There is no signs of it leaving so you assume it must be
+wandering around these parts still.  
+~
+D2
+~
+~
+0 0 4457
+S
+#4459
+Within a Crack in the Wall~
+You are within a great jagged crack in the wall.  Large boulders and
+stones are lying all about the hole.  The massive destructive power of this
+volcano is still leaving you awestruck, and a little nervous.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 4460
+D3
+~
+~
+0 0 4454
+S
+#4460
+Within a Small Tunnel ~
+You are in a rocky tunnel.  You see small claw marks on the ground, as
+though some small creatures feet have actually melted the stone floor on
+which you are.  The small tunnel is making you feel somewhat claustrophobic
+and restless.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4459
+D2
+~
+~
+0 0 4462
+S
+#4461
+In the Lava Rats Warren~
+You are in a unique rat warren.  The ground appears to have been melted
+into a large nest.  The lava rats have such a high body heat, that they can
+survive the vast temperatures in the volcano, and their claws focus much of
+their heat, giving them a deadly weapon.  
+~
+0 8 0
+Rd     0
+E
+nest rats~
+Looks like theres a hole in the ground that vaguely resembles a rat's
+nest.  With the deep claw marks in the ground, you don't want to run into
+one of these rats.  
+~
+D1
+~
+~
+0 0 4462
+S
+#4462
+Bend in a Small Tunnel ~
+The small rocky tunnel curves gently to the west, distinct evidence of
+some small creatures is here.  Upon the floor are glowing rat droppings and
+around the corner you hear a high pitched squealing sound.  
+~
+0 8 0
+Rd     0
+E
+droppings rat rats~
+You don't want to look in the rats droppings do you?
+~
+D0
+~
+~
+0 0 4460
+D3
+~
+~
+0 0 4461
+S
+#4463
+North West Corner of the Lava Pool~
+You are on the edge of a great pool of lava.  There are many outcroppings
+of stones that allow movement throughout the pool.  The lava is bubbling and
+churning around you.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 4464
+D2
+~
+~
+0 0 4466
+S
+#4464
+Northern Edge of the Lava Pool~
+You are on the edge of a great pool of lava.  There are many outcroppings
+of stones that allow movement throughout the pool.  The lava is bubbling and
+churning around you.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 4465
+D2
+~
+~
+0 0 4467
+D3
+~
+~
+0 0 4463
+S
+#4465
+North East Corner of the Lava Pool~
+You are on the edge of a great pool of lava.  There are many outcroppings
+of stones that allow movement throughout the pool.  The lava is bubbling and
+churning around you.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 4468
+D3
+~
+~
+0 0 4464
+S
+#4466
+West Edge of the Lava Pool~
+You are on the edge of a great pool of lava.  There are many outcroppings
+of stones that allow movement throughout the pool.  The lava is bubbling and
+churning around you.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4463
+D1
+~
+~
+0 0 4467
+D2
+~
+~
+0 0 4469
+S
+#4467
+In the Center of the Large Lava Pool~
+You are upon a rock in the center of a pool of lava.  There are many
+outcroppings of stones that allow movement throughout the pool.  The lava is
+bubbling and churning around you.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4464
+D1
+~
+~
+0 0 4468
+D2
+~
+~
+0 0 4470
+D3
+~
+~
+0 0 4466
+D4
+~
+~
+0 0 4450
+D5
+~
+~
+0 0 4472
+S
+#4468
+Before a Small Door in the Cavern Wall~
+You are in a huge cavern, at the side of a pool of lava.  To the east,
+the lava appears to be repelled from a small wooden door in the wall.  Upon
+the wall are inscribed softly glowing runes.  This is probably the source of
+the fire resistance spell that has been affecting you within the volcano.  
+~
+0 8 0
+Rd     0
+E
+runes inscribed resistance~
+These are strange runes which you can't even recognize which language
+it's originators spoke.  The runes emanate massive amounts of heat, like
+theyre reflecting the heat of the volcano 
+ 
+But nothing like the full amount of heat from the volcano.
+~
+D0
+~
+~
+0 0 4465
+D1
+~
+~
+295 4443 4473
+D2
+~
+~
+0 0 4471
+D3
+~
+~
+0 0 4467
+S
+#4469
+South West Corner of the Lava Pool~
+You are on the edge of a great pool of lava.  There are many outcroppings
+of stones that allow movement throughout the pool.  The lava is bubbling and
+churning around you.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4466
+D1
+~
+~
+0 0 4470
+S
+#4470
+South Edge of the Lava Pool~
+You are on the edge of a great pool of lava.  There are many outcroppings
+of stones that allow movement throughout the pool.  The lava is bubbling and
+churning around you.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4467
+D1
+~
+~
+0 0 4471
+D3
+~
+~
+0 0 4469
+S
+#4471
+North East Corner of the Lava Pool~
+You are on the edge of a great pool of lava.  There are many outcroppings
+of stones that allow movement throughout the pool.  The lava is bubbling and
+churning around you.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 4468
+D3
+~
+~
+0 0 4470
+S
+#4472
+Within the Bowels of the Volcano~
+You are on a winding path, the path spirals down into the very center of
+the volcano.  The lava is bubbling and churning with great heat, even the
+rocks you are stepping on are squishing like sponges.  
+~
+0 12 0
+Rd     0
+D4
+~
+~
+0 0 4467
+D5
+~
+~
+0 0 4482
+S
+#4473
+Entrance to an Ancient City~
+You are in the entrance to a long lost city.  The people who lived here
+were great scholars of the magic of fire, and accordingly, built their home
+here in the base of the volcano.  The streets are lined with black rock,
+with strange mystical runes inscribed upon them, the streets look deserted. 
+~
+0 393244 0
+Rd     0
+D1
+~
+~
+0 0 4475
+D3
+~
+~
+295 4443 4468
+S
+#4474
+Ancient Domecile~
+This room is modestly furnished with a bed and a desk.  The mystics who
+lived in this city found little need for pleasures of the flesh, instead
+concentrating entirely on their arts.  Although so much time has past, the
+magic is still keeping all traces of age off of the furniture.  
+~
+0 393240 0
+Rd     0
+E
+desk bed furniture~
+The furniture hasn't been used in a long time, though no dust has settled
+on them.  When you inspect the desk, you find remnants of paper long ago
+burned to a crisp.  
+~
+D2
+~
+~
+0 0 4475
+S
+#4475
+City Square of Ancient City~
+The mystics who once inhabited this city had little need of such mundane
+things as armour and weapon stores, even food was created through magical
+means.  You marvel at the intricately engraved buildings, and ponder the
+question of what sort of force could have destroyed such a powerful culture.
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 4474
+D1
+~
+~
+0 0 4477
+D2
+~
+~
+0 0 4476
+D3
+~
+~
+0 4443 4473
+S
+#4476
+Ancient Domecile~
+You are in a small room, in the room is a bed and a desk.  You marvel at
+the simple living style the mystics had adopted for their use.  It was said
+that they were originally mages, but after so much research into the spells
+of fire, that they had practically created their own class.  
+~
+0 393240 0
+Rd     0
+E
+bed desk furniture~
+The furniture is untouched by dust and dirt, probably from a spell cast a
+very long time ago.  You wonder at the power of these beings that their
+spells can last so long.  
+~
+D0
+~
+~
+0 0 4475
+S
+#4477
+Main Street of the Ancient City~
+You are on a serviceable black road.  The people who inhabited this city
+had little use for art and ornaments.  The walls have a nice warm feel from
+them instead of the dreadfully hot burn that the walls outside the city
+have.  Using the volcanos natural heat, the mages spells hold the
+temperature at a comfortable level.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 4479
+D3
+~
+~
+0 0 4475
+S
+#4478
+Northwing of the Great Library~
+You are in the midst of a great heap of burned shelves.  Looking at the
+walls you realize that the fire that burned all of the books in this library
+had been carefully controlled, because the walls are entirely free of any
+scorch marks.  
+~
+0 393240 0
+Rd     0
+D2
+~
+~
+0 0 4479
+S
+#4479
+Entrance to the Great Library~
+You are at the entrance of an enormous library.  It easily takes up half
+the size of the city.  The shelves look burned and destroyed, you marvel at
+all of the information that was lost.  
+~
+0 393240 0
+Rd     0
+E
+shelves burned destroyed~
+The shelves are totally charred.  No information on the inhabitants of
+the Lost City has been spared by the flames.  You wonder what power these
+beings had in their time of glory.  
+~
+D0
+~
+~
+0 0 4478
+D1
+~
+~
+0 0 4481
+D2
+~
+~
+0 0 4480
+D3
+~
+~
+0 0 4477
+S
+#4480
+Southwing of the Great Library~
+You are in the midst of a great heap of burned shelves.  With all of the
+magical protection of keeping the great heat of the volcano off of you, you
+wonder how it was possible that a fire could destroy all of the books within
+this huge library.  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 4479
+D4
+~
+~
+375 4443 4485
+S
+#4481
+Before the Great Book~
+You are in a large room, the floor is completely clear of any rubble, and
+in the very center of the room is a large book on a huge pedestal.  This is
+the only thing in the entire room besides the two huge candles placed on
+either side of it.  As you enter the room, the candles flare into life.  
+~
+0 393240 0
+Rd     0
+D3
+~
+~
+0 0 4479
+S
+#4482
+Bottom of the Volcano~
+You appear to be floating in a red haze.  The protective magic around you
+is preventing your destruction.  There is no longer any solid rock to stand
+upon, this is the very bottom of the volcano, and probably close to the
+center of the planet itself.  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 4472
+S
+#4483
+End of the Paved Road~
+You are at the end of the paved road.  To the west of you is the
+beginnings of a large field full of yellow swaying bushes.  High above you,
+you see the top of a huge mountain, this is the mighty volcano, Mount Cano. 
+~
+0 4 0
+Rd     0
+D1
+~
+~
+0 0 4484
+D3
+~
+~
+0 0 4435
+S
+#4484
+A Paved Road~
+You are on a paved road that is in great need of repair.  The cracks are
+full of weeds.  To the west a great mountain can be seen towering in the
+sky, at the top of the mountain is a large black cloud.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 913
+D3
+~
+~
+0 0 4483
+S
+#4485
+Talonfire's Lair~
+~
+0 4587536 0
+Rd     0
+D5
+~
+~
+375 4443 4480
+S
+#0
+
+
+
+#SPECIALS
+M 4400 spec_cast_mage
+M 4407 spec_cast_mage
+M 4412 spec_breath_fire
+M 4413 spec_cast_psionicist
+M 4417 spec_cast_mage
+S
+
+
+
+#RESETS
+O 0 4401 0 4403
+M 0 4406 1 4404
+E 0 4413 0 17
+E 0 4415 0 8
+E 0 4416 0 20
+O 0 4409 0 4404
+M 0 4400 1 4405
+O 0 4402 0 4408
+M 0 4407 1 4408
+E 0 4413 0 17
+E 0 4414 0 3
+E 0 4415 0 8
+E 0 4416 0 20
+E 0 4418 0 22
+O 0 4403 0 4409
+O 0 4401 0 4410
+O 0 4401 0 4411
+M 0 4403 5 4414
+E 0 4413 0 17
+E 0 4414 0 3
+M 0 4404 8 4415
+E 0 4413 0 17
+E 0 4415 0 8
+M 0 4404 1 4416
+E 0 4413 0 17
+E 0 4415 0 8
+M 0 4415 1 4417
+E 0 4434 0 5
+O 0 4401 0 4418
+M 0 4414 1 4419
+E 0 4425 0 22
+M 0 4401 2 4420
+E 0 4411 0 22
+E 0 4412 0 11
+O 0 4401 0 4423
+O 0 4401 0 4424
+O 0 4401 0 4425
+M 0 4413 1 4425
+E 0 4430 0 23
+E 0 4431 0 24
+E 0 4432 0 5
+E 0 4433 0 20
+O 0 4401 0 4426
+O 0 4401 0 4427
+O 0 4401 0 4428
+O 0 4401 0 4429
+O 0 4401 0 4430
+O 0 4424 0 4431
+O 0 4425 0 4431
+O 0 4426 0 4431
+O 0 4401 0 4432
+O 0 4404 0 4434
+P 0 4405 0 4404
+O 0 4404 0 4435
+P 0 4405 0 4404
+O 0 4403 0 4437
+O 0 4401 0 4438
+O 0 4401 0 4439
+O 0 4404 0 4440
+P 0 4405 0 4404
+O 0 4404 0 4441
+M 0 4405 1 4441
+E 0 4413 0 17
+G 0 4419 0
+E 0 4420 0 6
+O 0 4404 0 4442
+P 0 4405 0 4404
+M 0 4402 1 4443
+E 0 4439 0 20
+O 0 4401 0 4445
+O 0 4404 0 4446
+P 0 4405 0 4404
+O 0 4404 0 4447
+P 0 4405 0 4404
+O 0 4401 0 4448
+O 0 4401 0 4449
+O 0 4401 0 4450
+O 0 4401 0 4454
+M 0 4409 1 4458
+E 0 4422 0 5
+E 0 4423 0 12
+E 0 4424 0 22
+G 0 4425 0
+G 0 4426 0
+M 0 4408 1 4460
+E 0 4421 0 13
+M 0 4408 1 4461
+E 0 4421 0 13
+M 0 4408 1 4462
+E 0 4421 0 13
+O 0 4401 0 4463
+O 0 4401 0 4464
+O 0 4401 0 4465
+O 0 4401 0 4466
+O 0 4401 0 4467
+M 0 4411 1 4467
+E 0 4427 0 12
+E 0 4428 0 5
+E 0 4429 0 20
+M 0 4410 5 4467
+O 0 4401 0 4468
+O 0 4401 0 4469
+O 0 4401 0 4470
+O 0 4401 0 4471
+O 0 4401 0 4472
+M 0 4412 1 4473
+E 0 4438 0 5
+E 0 4437 0 20
+M 0 4416 1 4475
+M 0 4412 1 4482
+E 0 4438 0 5
+E 0 4437 0 20
+M 0 4417 1 4485
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

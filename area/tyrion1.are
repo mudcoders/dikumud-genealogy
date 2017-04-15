@@ -1,0 +1,5622 @@
+#AREADATA
+Name        {80-100} Bretonnia           Tyrion~
+Levels      80 100
+Builders    Tyrion~
+VNUMs       21401 21600
+Security    1
+Recall      25001
+Flags       0
+End
+
+
+
+#MOBILES
+#21401
+averon keeper boat boat-keeper~
+Averon~
+Averon, the eastern Boat-keeper is here.
+~
+Averon is a tall man, always standing patrol at his dock.  For the right
+price, he will sail you over to the western side of the continent.
+~
+67 201326636 0 0 S
+82 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings.  For 500 gold coins I will sail you to the western docks.
+~
+>bribe_prog 500~
+say Thank you.
+mpechoat $n &bYou step onto the boat.
+mpechoat $n &bAveron says something to himself, and the boat moves!
+mptrans $n 21542
+mpecho $n has gone to the other side of the island.
+mpat $n mpforce $n look
+~
+>speech_prog hi hello~
+say Greetings.  For 500 gold coins I will sail you to the western docks.
+~
+>speech_prog bye~
+say Fare thee well, traveller.
+~
+|
+#21402
+malayis boat keeper boat-keeper~
+Malayis~
+Malayis the Boat-Keeper is here.
+~
+Malayis is a rather tall individual.  He stands at this spot for all eternity,
+guarding the western docks and allowing passage.
+~
+67 201326636 0 0 S
+82 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings.  For 500 gold coins I will sail you to the eastern docks.
+~
+>bribe_prog 500~
+say Thank you.
+mpechoat $n &bYou step onto the boat.
+mpechoat $n &bAveron says something to himself, and the boat moves!
+mptrans $n 21473
+mpecho $n has gone to the other side of the island.
+mpat $n mpforce $n look
+~
+>speech_prog hi hello~
+say Greetings.  For 500 gold coins I will sail you to the eastern docks.
+~
+>speech_prog bye~
+say Fare thee well.
+~
+|
+#21403
+maquesta jeweler~
+Maquesta~
+Maquesta the jeweler is here.
+~
+Maquesta is the local jeweler.  She buys and sells quite the assortment of
+jewelery and other types of treasure.  Her appearance is not that of a goddess,
+but she is not ugly either, not by a longshot.
+~
+67 16552 0 200 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+say Welcome, I am Maquesta, the Jeweler.  May I help you?
+~
+>speech_prog hi hello~
+say Welcome, I am Maquesta, the Jeweler.  May I help you?
+~
+>speech_prog bye~
+say Fare thee well, traveller!
+~
+|
+#21404
+kahn master guildmaster~
+Guildmaster Kahn~
+Guildmaster Kahn sits at his desk.
+~
+He is a mammoth of a man.  You can see his muscles bulging from underneath
+his well worn clothes.  He stands about six feet tall, and you would guess
+weighs about two hundred fifty pounds.
+~
+67 201343144 0 200 S
+90 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings!  I am Kahn, head Guildmaster.
+~
+>speech_prog hi hello~
+say Greetings!  I am Kahn, head Guildmaster.
+~
+>speech_prog guildmaster guild master~
+nod
+say Yes, ever since the invasion of evil that has plagued
+say this world, I am forced to recruit.
+~
+>speech_prog evil invasion~
+emote looks suprised!
+say You haven't heard of Zhakarius and his Death Knights?
+~
+>speech_prog zhakarius no~
+say Aye, he lives in the Chrystal Tower.
+~
+>speech_prog death knights deathknights~
+say Aye, they are scattered about.  'Tis rumored they hold
+say the keys to Zhakarius's Tower.
+~
+>speech_prog tower~
+say The Chrystal Tower, of Course!
+~
+>speech_prog chrystal~
+shake
+say I don't know its location, sorry.
+~
+>speech_prog recruit~
+say You know, the usual warriors and the like.
+~
+>speech_prog bye~
+wave $n
+say Fare thee well!
+~
+|
+#21405
+pervihn armorer armourer~
+Pervihn~
+Pervihn the armourer is here
+~
+This smithy works continuously in the chaos and flames of the forge.  His skin
+is charred with black soot and coal.
+~
+67 301989932 0 200 S
+85 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+say Greetings!  Type 'list' to see my wares.
+~
+>speech_prog hi hello~
+say Greetings!  Type 'list' to see my wares.
+~
+>speech_prog bye~
+wave $n
+say Bye!
+~
+|
+#21406
+quathar marketeer~
+Quathar~
+Quathar the Chef is here to serve you.
+~
+Quathar is a rotund chef.  He wears the standard white hat and apron of any
+other chef.  It is rumoured that his wares are legendary.
+~
+67 168 0 200 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+burp
+say Hello!
+burp
+~
+>speech_prog hi hello~
+say Hello!
+~
+>speech_prog bye~
+say Bye!
+burp
+~
+|
+#21407
+rostand~
+Rostand~
+Rostand is here to sell you his wares.
+~
+Rostand is a tall, strong man who works the forge.  He makes weapons for you
+to buy.  If he does not have an abundance of some, then he may buy some used
+weapons from you as well.
+~
+67 301989928 0 200 S
+85 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+bow
+say Welcome to my weaponry.  Type 'list' to see my wares.
+~
+|
+#21408
+kolbjorn priest~
+Kolbjorn~
+Kolbjorn, a priest, stands here.
+~
+~
+1603 67125416 0 750 S
+85 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Hello.  I am Kolbjorn, a priest.
+~
+>speech_prog hi hello~
+say Hello.  I am Kolbjorn, a priest.
+~
+>speech_prog priest~
+nod
+say Indeed, tis true.  Someone must remain good with all the
+say evil lurking about.
+~
+>speech_prog good evil~
+sigh
+say What with the invasion and all...
+~
+>speech_prog invasion~
+shrug
+say All I have heard is that one of the Death Knights dwells
+say in a dungeon to the north!
+~
+>speech_prog death knights~
+spit
+'Tis the Knight of Greed.
+~
+>speech_prog dungeon north~
+nod
+say Yes, it is past the great peaks directly north of this town.
+~
+>speech_prog peaks great~
+say Alas, I do not know a way over them.
+~
+>act_prog ~
+~
+>speech_prog bye~
+say Remember, I can also train you and help you practice your
+say skills!
+~
+|
+#21409
+raymond barkeep~
+Raymond~
+Raymond the barkeep is here.
+~
+~
+67 40 0 0 S
+86 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Hello there!  My name is Raymond, I run this bar.
+~
+>speech_prog hi hello~
+say Hello there!  My name is Raymond, I run this bar.
+~
+>speech_prog bar~
+smile
+say Many a tale comes through here, and I listen to them all.
+~
+>speech_prog tale~
+emote whistles innocently with his palm outstretched.
+mpechoat $n &bPerhaps he wants you to give him something?
+~
+>bribe_prog 10000~
+eye
+nod $n
+say I heard that Zhakarius has four Death Knights under his
+say control.  They are the Knights of Hate, Greed, Falsehood,
+say and Cowardice.  I know nothing more.
+~
+>bribe_prog 1~
+say Sorry, I don't know anything that may be of use.
+emote whistles to himself.
+~
+|
+#21410
+rathar~
+Rathar~
+Rathar the barkeep is here
+~
+~
+67 40 0 0 S
+75 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings!  I am Rathar, and I own this establishment.
+~
+>speech_prog hi hello~
+smile
+say Greetings!  I am Rathar, and I own this establishment.
+~
+>speech_prog establishment bar~
+emote shows off his bar.
+say Oh yes, I take great pride in it.
+~
+>speech_prog pride~
+say I just hope those blasted Death Knights stay away from it.
+~
+>speech_prog deathknights death knights~
+emote whistles politely with an outstretched palm.
+mpechoat $n &bPerhaps he wants you to give him something?
+~
+>bribe_prog 10000~
+whistle
+nod $n
+say I have heard the Death Knight of Cowardice dwells in a
+say castle to the east of here.  It is in some swamp.  That
+say is all I know.
+~
+>bribe_prog 1~
+say Sorry, I don't know anything.
+~
+|
+#21411
+zhentar innkeeper keeper~
+Zhentar~
+Zhentar the Innkeeper is here
+~
+Zhentar is also the main chef of his wonderful restaurant.
+~
+67 40 0 200 S
+75 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>act_prog ~
+~
+>all_greet_prog 100~
+say Greetings!  I'm Zhentar, a Chef!
+~
+>speech_prog hi hello~
+smile
+say Greetings!  I'm Zhentar, a Chef!
+~
+>speech_prog chef~
+smile
+say That's right!  I also run this Inn.
+~
+>speech_prog inn~
+emote opens his arms, showing you his Inn.
+say Yes, I also sell things in my restaurant!
+~
+>speech_prog things restaurant~
+say Type 'list' to find out!
+~
+>speech_prog password~
+say Who sent thee?
+~
+>speech_prog hawkwing~
+emote looks around the room.
+tell $n Aye, the password for the Chrystal Tower is 'crematorium'.
+emote looks around the room again.
+~
+>speech_prog bye~
+wave $n
+say Fare thee well!
+~
+|
+#21412
+jacko~
+Jacko~
+Jacko, the Gambler is here.
+~
+Jacko is a seedy looking individual, with each motion making you sick to your
+stomach.
+~
+67 128 0 -100 S
+78 0 0 6200d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Hey, I'm Jacko, and I run this here casino.
+~
+>speech_prog hi hello~
+say Hey, I'm Jacko, and I run this here casino.
+~
+>speech_prog casino~
+say Yeah, just give me 1000 coins and you can try your luck
+say at the Cups.
+~
+>speech_prog cups~
+wink $n
+say Yeah, go ahead, you can win.
+~
+>bribe_prog 1000~
+emote shuffles around some some cups, and shows you a ball underneath.
+emote twirls and moves the cups around, making you a little dizzy.
+mpecho &PAfter a little thought, you choose one of the cups.
+if rand(15)
+ say Hmm.. You won.. Here's your money.
+ emote looks concerned.
+ give 5000 coins $n
+else
+ emote laughs and says, "You chose the wrong one!"
+ laugh
+endif
+ 
+~
+>speech_prog bye~
+emote nods in your general direction
+say See you later.
+~
+|
+#21413
+jarthus~
+Jarthus~
+Jarthus, the Arena Master is here
+~
+~
+67 335544488 0 200 S
+90 0 0 9500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+smile
+say Hello, I am Jarthus, head of this Arena.
+~
+>speech_prog hi hello~
+say Hello, I am Jarthus, head of this Arena.
+~
+>speech_prog arena~
+say Aye!  Just follow the directions on the sign
+say that doesn't exist yet, and you will have no
+say problems, at least when its open you won't!
+~
+|
+#21414
+venus gypsie~
+Venus~
+Venus is here, ready to tell your fortune.
+~
+Venus is the single most beautiful person you have ever gazed upon.  Her skin,
+the colour of mahogany, matches that of her eyes.  Her hair is black, but is
+also tinted with a mystical blue colour.
+~
+67 0 0 800 S
+75 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+smile
+say Hello, traveller.  I am Venus, a fortune-teller.
+~
+>speech_prog hi hello~
+say Hello, traveller.  I am Venus, a fortune-teller.
+~
+>speech_prog fortune-teller fortune teller~
+smile $n
+say Yes, for the right price, I will look into your future.
+~
+>bribe_prog 10000~
+emote gazes into her crystal ball.
+say I see you speaking with Hawkwing the seer, and asking him
+say of a password... I hope this helps.
+~
+>bribe_prog 7000~
+emote gazes into her crystal ball.
+say I see you speaking to hawkwing the seer...
+emote squints.
+say I see nothing more, sorry.
+~
+>bribe_prog 5000~
+emote gazes into her crystal ball.
+say I see you speaking with someone...
+emote squints her eyes
+say I see nothing more, sorry.
+~
+>bribe_prog 1~
+emote gazes into her crystal ball
+say Sorry, I see nothing but fog.
+~
+>speech_prog bye~
+wave $n
+say Fare the well, traveller!
+~
+|
+#21415
+farthor armorer armourer ghost~
+The Ghost of Farthor~
+&CThe Ghost of Farthor&P floats here.
+~
+He is totally transparent!
+~
+67 403177640 0 -200 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote howls in the wind as you enter the room
+~
+>rand_prog 25~
+emote floats around the room somewhat.
+~
+>death_prog 99~
+mpecho &CThe ghost disperses into the air...
+mptrans $i 1
+~
+|
+#21416
+pieathan~
+Pieathan~
+Pieathan is here to sell you water.
+~
+Pieathan is a short little man.  His unkept beard and hair shows that he has
+not had the luxury of a bath for quite some time.  He looks rather sick.
+~
+67 40 0 100 S
+75 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings, I sell water.
+~
+>speech_prog hi hello~
+say Greetings, I sell water.
+~
+>speech_prog water~
+say For you to drink in the desert.
+~
+>speech_prog desert~
+say The one you are in, silly.
+~
+|
+#21417
+balthus barkeep ghost~
+The ghost of Balthus~
+&CThe ghost of Balthus&P floats here
+~
+Balthus is a ghost, and is translucent!
+~
+8259 201851048 0 -200 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote howls in the wind as you enter the room
+~
+>rand_prog 25~
+emote floats around the room somewhat.
+~
+>death_prog 99~
+mpecho &CThe ghost disperses into the air...
+mptrans $i 1
+~
+|
+#21418
+terrus ghost~
+The ghost of Terrus~
+&CThe ghost of Terrus&P floats here
+~
+Terrus is a ghost, and is transparent.
+~
+67 134742184 0 -200 S
+80 0 0 6800d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote hows in the wind as you enter the room
+~
+>rand_prog 25~
+emote floats around the room somewhat.
+~
+>death_prog 99~
+mpecho &CThe ghost disperses into the air...
+mptrans $i 1
+~
+|
+#21419
+hawkwing seer~
+Hawkwing~
+Hawkwing the Seer sits at his desk.
+~
+Hawkwing is a very old, very wise seer.  His knowledge is legendary throughout
+the land, and his wisdom and insight are highly respected.
+~
+67 40 0 800 S
+90 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+smile
+say Greetings, traveller.  I am Hawkwing, the Seer.
+~
+>speech_prog hi hello~
+say Greetings, traveller.  I am Hawkwing, the Seer.
+~
+>speech_prog seer~
+smile
+say Yes, I know many things.  Just ask, and I will do
+say my best to answer them.
+~
+>speech_prog death knights knight~
+emote squints a little.
+say They are the four servants of Zhakarius, and are very
+say powerful.
+~
+>speech_prog zhakarius~
+say He has travelled here from the Underworld.
+~
+>speech_prog underworld~
+say It is a far off place, unreachable by mortals.
+~
+>speech_prog greed~
+emote thinks a moment
+say Kolbjorn knows of his location, seek his help.
+~
+>speech_prog cowardice~
+emote thinks for a moment
+say I believe Rathar knows where that vile being lives.
+~
+>speech_prog hate~
+emote realizes what you mean
+say I have heard Stephen knows of his dwelling.
+~
+>speech_prog falsehood~
+emote remembers suddenly
+say Yes, That one lives in a Fiery Lair, somewhere to the
+say north.  That is all I know about that.
+~
+>speech_prog password~
+emote wonders how you found out about that.
+say If you truly wish to gain access to the Chrystal Tower,
+say speak to Zhentar about a password.  He knows it.
+~
+>speech_prog chrystal tower~
+emote shrugs
+say Sorry, its location I know not.
+~
+>speech_prog bye~
+say Fare thee well!
+wave $n
+~
+|
+#21420
+stephen man~
+Stephen~
+Stephen, a blind and crippled old man, is here
+~
+~
+67 128 0 250 S
+100 0 0 5600d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 85~
+emote strokes his beard a little.
+~
+>speech_prog hi hello~
+gasp
+say Oh!  Hello there!  Sorry, but I am blind, and did not
+say see thee.
+~
+>speech_prog blind~
+emote tilts his head in your general direction.
+say Yes, 'tis true, I am blind.  This helm helps me to
+say see though.  I can eve see the invisible at times!
+~
+>speech_prog helm invisible~
+nod
+say Yes, my great grandfather gave it to me when I was a lad.
+~
+>speech_prog great grandfather~
+nod
+say Aye, he is long gone, and is now deceased.
+sniff
+~
+>speech_prog hate~
+eye
+say The Death Knight of Hate?  He lives deep underwater.
+say I know not how to get there.
+~
+>speech_prog bye~
+wave
+say Oh, have a nice day!
+~
+|
+#21421
+warlock magician ghost~
+The ghost of Warlock~
+&CThe ghost of Warlock&P floats here, with magics to sell
+~
+Warlock is a ghost, and is transparent.  He has also devised a way to
+interract physically with the non-ethereal, and has some things for you to
+purchase.
+~
+67 201851048 0 -200 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote looks directly at you as you enter the room
+~
+>speech_prog hi hello~
+say Greetings.  I have devised a way to communicate
+say with the mortal world, and have also discovered
+say how to interract.  Type 'list' to see what I
+say have for sale.
+~
+>speech_prog bye~
+say Fare the well.
+~
+>rand_prog 25~
+emote makes eery noises while floating in front of you
+~
+|
+#21422
+nightshade banker~
+Nightshade~
+Nightshade the banker is here
+~
+~
+67 16552 0 0 S
+80 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Welcome to the bank.
+~
+>speech_prog hi hello~
+say Welcome to the bank.
+~
+>speech_prog bye~
+say Good travels to you.
+~
+|
+#21423
+mandrake banker~
+Mandrake~
+Mandrake the banker is here
+~
+~
+67 16552 0 0 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Hello, and welcome to the bank!
+~
+>speech_prog hi hello~
+smile
+say Hello there, and welcome to the bank.
+~
+>speech_prog bye~
+wave $n
+say Have a safe journey, and please come again!
+~
+|
+#21424
+greetz blacksmith smith~
+Greetz~
+Greetz the Blacksmith is here to repair your armour and weapons
+~
+~
+67 33554600 0 200 S
+84 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings!  Allow me to repair your things!
+~
+>speech_prog hi hello~
+say Hello.  I can repair your things.
+~
+>speech_prog bye~
+say Good-bye.
+~
+|
+#21425
+harrold citizen~
+Harrold~
+One of the local citizens is here, wandering about.
+~
+~
+65 67108992 0 0 S
+75 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 25~
+smile $n
+~
+>speech_prog hi hello~
+say Hi!  I'm Harrold, an adventurer!
+~
+>speech_prog adventurer~
+nod
+say Yes, I used to slay trolls.
+smile
+~
+>speech_prog trolls~
+nod
+say There are all sorts of beings lurking as of late.
+~
+>speech_prog beings lurkings~
+say Ever since Zhakarius came... I have said too much.
+~
+>speech_prog zhakarius~
+say I said I have said too much.
+~
+>speech_prog bye~
+wave $n
+say Fare thee well, friend!
+~
+|
+#21426
+iggy citizen child~
+Iggy~
+One of the local children plays here
+~
+~
+65 16552 0 300 S
+75 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 80~
+emote jumps up and down
+~
+>speech_prog hi hello~
+say Hi!  I'm Iggy!
+~
+>speech_prog bye~
+say Bye!
+~
+|
+#21427
+khazban citizen~
+Khazban~
+One of the local citizens wanders about
+~
+~
+65 134217896 0 200 S
+75 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 40~
+smile
+~
+>speech_prog hi hello~
+say Hello, I am Khazban.  I used to battle in the Arena.
+~
+>speech_prog arena battle~
+say Oh yes, I have a flawless record.
+smile
+~
+>speech_prog record~
+say Yes, totally flawless.  Perhaps when the Arena is reopened,
+say you will be able to compete as well.
+~
+>speech_prog bye~
+wave $n
+say Fare the well, friend!
+~
+|
+#21428
+parthon citizen~
+Parthon~
+One of the local citizens wanders about
+~
+~
+65 134217896 0 200 S
+75 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 25~
+burp
+~
+>speech_prog hi hello~
+say Oh!  Hello there.  I'm Parthan, a follower.
+~
+>speech_prog follower~
+say Yes, a follower of Hawkwing.
+~
+>speech_prog hawkwing~
+nod
+say Indeed, he is a very wise man.
+~
+>speech_prog wise~
+shrug
+say I don't know much, ask him.
+~
+>speech_prog wise~
+wave $n
+~
+|
+#21429
+lazarus citizen ghost~
+The ghost of Lazarus~
+&CThe ghost of Lazarus&P floats here
+~
+He is completely transparent!
+~
+65 134742184 0 -100 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 85~
+emote hows about the room.
+~
+>rand_prog 25~
+emote floats around the room and makes some eery noises.
+~
+>death_prog 99~
+mpecho &CThe ghost disperses into the air...
+mptrans $i 1
+~
+|
+#21430
+zentch~
+Zentch~
+Zentch the Wise is here.
+~
+Zentch knows a lot of information.  Perhaps you could coax some of it from
+him...
+~
+67 168 0 800 S
+86 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings.  This area will be different in some ways
+say than other areas.  Interractivity between you and the
+say mobs.  Most mobs in this area will respond when you
+say say 'hello' or 'hi'.  After that, you will see his
+say response, and you can continue the conversation through
+say keyword conversation.  Lets try an example, say 'hi'
+say or 'hello'.
+~
+>speech_prog hi hello~
+say Hello there!  I am a helper!
+say In that sentence, the keyword would be 'helper', so
+say say that in response.
+~
+>speech_prog helper~
+say Very good!  Most of the mobs in this area work in
+say this way.  They will respond to 'hi' or 'hello', and
+say will also respond to 'bye'.  I hope this helps you!
+~
+>speech_prog bye~
+say That's right, you remembered.  Should you need help
+say again, then just re-enter this room to start the
+say help over.  Have a pleasant journey!
+smile
+~
+|
+#21433
+chalice boat keeper boat-keeper~
+Chalice~
+Chalice, the boat-keeper is here.
+~
+~
+67 201343144 0 0 S
+82 0 0 9800d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings.  For 500 gold I will sail you to the new continent.
+say Remember though, it is a one way trip.
+~
+>bribe_prog 500~
+say Thank you, and remember, it is a one-way trip.
+mpechoat $n You step onto the frigate.
+mpechoat $n Chalice says something to himself, and the boat moves!
+mptrans $n 21593
+mpecho $n has gone to the new continent.
+mpat $n mpforce $n look
+~
+>speech_prog hi hello~
+say Greetings.  For 500 gold coins I will sail you to the new continent.
+~
+>speech_prog bye~
+say Fare the well, traveller.
+~
+|
+#21450
+doppleganger dop triabella~
+The Doppleganger~
+The Doppleganger
+~
+~
+67 128 0 0 S
+108 0 0 1000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>speech_prog transform~
+if ispc($n)
+mset $i long a grizzly bear
+mset $i name doppleganger dop bear
+mset $i short bear
+endif
+~
+|
+#21596
+The Repair Smithy~
+(no short description)~
+(no long description)
+~
+You are in the repair shop.  A large forge can be seen in the northeast corner
+of the room, and a counter stretches along the entire east wall.  Greetz is
+usually here to repair your things.  An archway lies to the west, leading back
+to Forge Way.
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#0
+
+
+
+#OBJECTS
+#21401
+purple cloak~
+a purple silk cloak~
+A purple cloak lies on the ground here.~
+~
+9 65 0 0 5 80
+20~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+teleport~
+5 5
+0 0 0
+A
+18 8
+A
+19 8
+A
+12 50
+A
+13 50
+A
+2 1
+#21402
+staff~
+a walking staff~
+A walking staff sits on the ground.~
+~
+5 16449 2508 0 8193 80
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+summon~
+4 4
+0 0 0
+A
+19 20
+A
+18 18
+A
+26 20
+A
+3 2
+#21403
+boat~
+boat~
+A boat rests against the docks.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+boat~
+It is made of wood, and looks very sturdy.
+~
+#21404
+ocean~
+ocean~
+The ocean splashes up against the shores.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21405
+desk~
+desk~
+A sturdy, wooden desk is here~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+desk~
+It is a plain, sturdy, wooden desk, with no drawers.
+~
+#21406
+sword longsword~
+a razor sharp longsword~
+A longsword lies on the ground here.~
+~
+5 100663616 0 0 8193 90
+0~ 0~ 0~ 3~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 26
+A
+18 26
+A
+1 2
+A
+13 90
+#21407
+iron belt~
+an iron belt~
+A large iron belt sits heavily on the floor~
+~
+9 65 0 0 2049 75
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 7
+A
+19 7
+A
+13 75
+#21408
+cloak~
+a red cloak~
+A red cloak lies on the ground.~
+~
+9 66 0 0 5 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 2
+A
+18 9
+A
+19 6
+A
+13 90
+#21409
+anklet golden~
+a golden anklet~
+A golden anklet rests here.~
+~
+9 67 0 0 1048577 85
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 3
+A
+19 9
+A
+13 40
+#21410
+steak dinner~
+a steak dinner~
+A steak dinner lies in its packaging.~
+~
+19 0 0 0 1 0
+30~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21411
+platter fish chips~
+a platter of fish and chips~
+A fish and chips platter rests in its packaging.~
+~
+19 0 0 0 1 0
+28~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21412
+continental breakfast~
+a continental breakfast~
+A breakfast sits in its packaging.~
+~
+19 0 0 0 1 0
+25~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21413
+bastard sword~
+a bastard sword~
+A bastard sword sits on the ground.~
+~
+5 64 0 0 8193 75
+0~ 0~ 0~ 3~
+7 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 15
+A
+19 18
+A
+13 75
+#21414
+sword great~
+a great sword~
+A great sword sits on the ground~
+~
+5 66 0 0 8193 85
+0~ 0~ 0~ 0~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 18
+A
+19 20
+A
+13 80
+A
+12 20
+#21415
+fountain~
+fountain~
+A fountain rests in the middle of the road.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fountain~
+It is made of some kind of stone, there are no designs on it.
+~
+#21416
+box donation~
+donation box~
+A donation box is here, attached to the wall.~
+~
+15 65 0 0 0 0
+9999~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21417
+robe~
+a priests robe~
+A priests robe~
+~
+9 67 0 0 1025 85
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+complete healing~
+5 5
+0 0 0
+A
+19 8
+A
+12 65
+A
+13 65
+A
+18 9
+#21418
+staff~
+a priest's staff~
+A staff rests on the ground.~
+~
+5 67 2508 0 8193 85
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+portal~
+5 5
+0 0 0
+A
+3 2
+A
+12 65
+A
+13 65
+A
+19 8
+A
+18 9
+#21419
+local drink~
+a local drink~
+Some weird local drink sits here.~
+~
+17 2 0 0 1 0
+20~ 20~ 8~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21420
+bottle beer~
+a bottle of beer~
+A bottle of beer has been discarded.~
+~
+17 0 0 0 1 0
+18~ 18~ 1~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21421
+local drink bottle~
+a bottle of a local mixture~
+An odd looking bottle lies on the ground.~
+~
+17 1 0 0 1 0
+22~ 22~ 7~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21422
+bottle wine~
+a bottle of fine elven wine~
+A bottle of fine elven wine rests on the ground.~
+~
+17 0 0 0 1 0
+40~ 40~ 2~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21423
+mug ale~
+a mug of ale~
+A mug of ale is here~
+~
+17 0 0 0 1 0
+16~ 16~ 3~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21424
+bottle whisky~
+a bottle of whisky~
+A bottle of whisky lies on the ground~
+~
+17 0 0 0 1 0
+22~ 22~ 5~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21425
+hamburger~
+a hamburger~
+A hamburger is here, complete with wrap.~
+~
+19 0 0 0 1 0
+20~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21426
+hotdog~
+a hotdog~
+A hotdog is here, complete with wrap.~
+~
+19 0 0 0 1 0
+22~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21427
+bowl soup~
+a bowl of soup~
+A bowl of chicken-noodle soup is here.~
+~
+19 0 0 0 1 0
+20~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21428
+bracer power~
+a bracer of power~
+A silver bracer rests on the ground~
+~
+9 67 0 0 4097 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+heal~
+15 15
+0 0 0
+A
+13 50
+A
+19 8
+A
+18 8
+#21429
+warhammer~
+a warhammer~
+A large warhammer has been discarded here.~
+~
+5 65 0 0 8193 90
+0~ 0~ 0~ 8~
+8 0 0 0 0
+5 0
+share strength~
+5 5
+0 0 0
+A
+13 80
+A
+19 30
+A
+18 -5
+A
+1 2
+#21430
+crystal ball~
+crystal ball~
+A crystal ball rests on a clawlike hand~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hand~
+It is clawlike.
+~
+#21431
+drawer desk~
+a desk~
+A desk sits here.~
+~
+15 0 0 0 0 0
+50~ 5~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+desk~
+It has a drawer.
+~
+#21432
+helm forethought~
+a Helm of Forethought~
+A helm, pulsing with magical energies, is here.~
+~
+9 2113 64 4096 17 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+true sight~
+5 5
+0 0 0
+A
+3 -1
+A
+13 50
+A
+23 -20
+A
+24 -20
+A
+17 -40
+A
+18 10
+A
+19 10
+#21433
+potion peace~
+a potion of peace~
+A potion lies on the ground, humming.~
+~
+10 268435523 0 0 1 75
+50~ aura of peace~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21434
+potion healing extreme~
+a potion of extreme healing~
+A potion lies on the ground here, glowing.~
+~
+10 268435523 0 0 1 75
+50~ complete healing~ complete healing~ cure poison~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21435
+bottle water~
+a bottle of water~
+A bottle of water lies here.~
+~
+17 0 0 0 1 0
+20~ 20~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21436
+bag holding~
+a Greater Bag of Holding~
+A magical bag lies on the ground.~
+~
+15 536870981 0 0 1 75
+1001~ 1~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21437
+water skin~
+a skin of water~
+A skin of water rests here~
+~
+17 0 0 0 1 0
+40~ 40~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21438
+sword longsword~
+a longsword~
+A longsword is discarded here.~
+~
+5 0 0 0 8193 75
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 30
+A
+18 15
+#21439
+boots~
+a pair of workboots~
+A pair of rugged workboots is here.~
+~
+9 0 0 0 65 75
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21440
+gloves~
+a pair of dark gloves~
+A pair of gloves lies neatly on the floor~
+~
+9 70 0 0 129 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 -2
+A
+3 -2
+A
+103 -1
+A
+12 50
+A
+13 50
+A
+1 2
+A
+19 5
+A
+18 8
+#21441
+table oaken~
+oaken table~
+An oaken table is here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+table~
+It has been finely crafted by the best of carpenters.
+~
+#21442
+table~
+table~
+A table sits here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+table~
+It is just a plain table.
+~
+#21443
+table metal~
+metal table~
+A metal table sits on the floor.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+table~
+It has been forged very well.
+~
+#21444
+chair oak~
+oak chair~
+An oak chair rests here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+oak~
+It has been finely crafted by a master carpenter.
+~
+#21445
+chair~
+chair~
+A chair sits here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+chair~
+It is a plain, normal chair.
+~
+#21446
+chest drawers~
+a chest of drawers~
+A chest of drawers rests against the wall.~
+~
+15 0 0 0 0 0
+50~ 5~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+drawers~
+They are made of oak.
+~
+E
+chest~
+It is made of oak.
+~
+#21447
+chest drawers~
+chest of drawers~
+A chest of drawers lies against a wall.~
+~
+15 0 0 0 0 0
+50~ 5~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+drawers~
+There is nothing unusual about it.
+~
+E
+chest~
+There is nothing unusual about it.
+~
+#21448
+bed~
+a comfy bed~
+A bed rests against the north wall.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bed~
+It looks very comfortable.
+~
+#21449
+fountain~
+fountain~
+A fountain sits in the centre of the road~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fountain~
+The water flows into its basin.
+~
+#21450
+fountain~
+fountain~
+&BA fountain rests in the middle of the road.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fountain~
+This fountain is broken.
+~
+#21451
+lava flow~
+lava flow~
+&RLava creeps along the ground.~
+~
+13 33554432 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21452
+table~
+table~
+A gambling table is set up here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21454
+pool~
+pool~
+A large, calm pool is here.~
+~
+29 1 0 0 0 0
+9150~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pool~
+It is shimmering with magical energies.
+~
+#21455
+boat frigate~
+frigate~
+A magical frigate sits at the dock.~
+~
+13 1 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#21456
+armor~
+armor~
+Some armor~
+~
+9 4225 0 0 9 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#21401
+Mountain Clearing~
+You are walking along in a mountain clearing.  Rocks pile high here, as though
+this spot was the recipiant of a rather large landslide.  Perhaps you should
+leave this location.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21402
+D2
+~
+~
+0 0 21405
+S
+#21402
+Dungeon Entrance~
+You have arrived at the dungeon entrance, but is has been collapsed.  Perhaps
+you need something in order for this entrance to reveal itself, for you feel
+an evil and magical aura coming from it.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21403
+D2
+~
+~
+0 0 21406
+D3
+~
+~
+0 0 21401
+S
+#21403
+Mountain Clearing~
+You are walking along the side of a mountain.  A large hole in the side of it
+is directly to the west of you.  Looking around, you can see a small path 
+leading to the south, and to the west.  Perhaps this hole deserves some
+exploration.
+~
+0 0 5
+Rd     0
+D2
+~
+~
+0 0 21407
+D3
+~
+~
+0 0 21402
+S
+#21404
+Mountain Path~
+You are walking along a mountain path.  You can see a rather large clearing
+to the east, and what looks like a dungeon entrance in the north mountain face.
+Perhaps this should be investigated.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21405
+D2
+~
+~
+0 0 21421
+S
+#21405
+Mountain Clearing~
+You have entered a mountain clearing.  A path goes west into the mountains, and
+eventually leads back to the forest.  A dungeon entrance is imbedded into the
+mountains to the north.  You feel a sense of evil coming from it.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21401
+D1
+~
+~
+0 0 21406
+D3
+~
+~
+0 0 21404
+S
+#21406
+Mountain Clearing~
+You are in a mountain clearing.  Small pebbles are at your feet, and you can
+see a path a little ways to the west and a little ways to the east.  A dungeon
+entrance rests directly to the north.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21402
+D1
+~
+~
+0 0 21407
+D3
+~
+~
+0 0 21405
+S
+#21407
+Mountain Clearing~
+A path leading back into the mountains is to the south, and a clearing lies to
+the north and west.  A small hole in the side of the mountain to the north
+eminates an evil aura.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21403
+D2
+~
+~
+0 0 21408
+D3
+~
+~
+0 0 21406
+S
+#21408
+Mountain Path~
+You are walking along a Mountain Path.  The path seems to get thinner to the
+east, and opens up into a small clearing to the north.  Rocks sit in a random
+array, and the wind blows in your hair.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21407
+D1
+~
+~
+0 0 21409
+S
+#21409
+Mountain Path~
+You are walking along a mountain path.  The way travelling westward seems to
+be getting slightly wider, as though something important is over there.  You
+can see the path turning south a little ways to the east.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21410
+D3
+~
+~
+0 0 21408
+S
+#21410
+Mountain Path~
+You are walking along a mountain path.  You can see the path turns to the
+north a little ways to the west, and it turns south directly to the east.
+Some small insects crawl at your feet, then disappear into the ground.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21411
+D3
+~
+~
+0 0 21409
+S
+#21411
+Mountain Path~
+You are walking along a mountain path.  There is a mountain peak directly
+above you, covered in snow.  You begin to wonder how far up you are, walking
+along these paths that cut through the mountains.
+~
+0 0 5
+Rd     0
+D2
+~
+~
+0 0 21412
+D3
+~
+~
+0 0 21410
+S
+#21412
+Mountain Path~
+You are walking along a mountain path which travels north and south.  You
+begin to wonder how far this path goes, for it does not appear to have an end.
+Rocks still litter the ground, and some small insects crawl here and there.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21411
+D2
+~
+~
+0 0 21413
+S
+#21413
+Mountain Path~
+You are walking along a mountain path.  Huge peaks tower above you, and you
+can feel the cold coming down from them.  The path stretches far to the west,
+and also a small ways to the north.  Rocks litter the ground here.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21412
+D3
+~
+~
+0 0 21414
+S
+#21414
+Mountain Path~
+You are walking along a mountain path.  The rocks and boulders around here are
+very solid, and unmoveable.  You can barely see a twist in the path to the
+east, which heads north.  The path also travels to the west.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21413
+D3
+~
+~
+0 0 21415
+S
+#21415
+Mountain Path~
+A massive mountain peak can be seen directly up from where you are.  It is
+totally covered in snow, and looks dangerously high.  It's a good thing you
+are down here, and in no fear of falling off from up there.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21414
+D3
+~
+~
+0 0 21416
+S
+#21416
+Mountain Path~
+You are walking along a rugged mountain path.  It continues to the east and
+to the west, while great cliffsides surround you.  You are feeling a little
+claustrophobic.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21415
+D3
+~
+~
+0 0 21417
+S
+#21417
+Mountain Path~
+This path is very rugged and difficult to pass.  The path goes east and west,
+while the tops of trees can be seen to the south.  The ground is very rough,
+with rocks here and there, and no vegetation of any kind.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21416
+D2
+~
+~
+0 0 21422
+D3
+~
+~
+0 0 21418
+S
+#21418
+Mountain Path~
+You are walking along a mountain path.  The peaks tower above your head, while
+a T-Junction can easily be seen to the east.  The cold air from above is being
+pushed down into this path, and is quite cold on your skin.  You had better
+hurry along.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21417
+D3
+~
+~
+0 0 21419
+S
+#21419
+Mountain Path~
+You are walking along a long mountain path.  You can see the path getting
+progressively wider to the north.  A T-Junction can be seen a little ways to
+the east.  Some rocks and small insects are on the ground.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21420
+D1
+~
+~
+0 0 21418
+S
+#21420
+Mountain Path~
+You are walking along a rocky mountain path.  The path seems to be getting
+wider the further north your travel.  Small rocks sit on the ground, and some
+small insects scurry about your feet.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21421
+D2
+~
+~
+0 0 21419
+S
+#21421
+Mountain Path~
+You are walking along a mountain path.  To the north, you can see that the path
+bends to the east.  High peaks tower above you, they seem to be as high as the
+clouds.  Small rocks and pebbles clutter at your feet.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21404
+D2
+~
+~
+0 0 21420
+S
+#21422
+Mountain Path~
+You are walking along a mountain path.  The peaks are hundreds of feet above
+you, and a T-Junction can be seen to the north.  The path can be seen sloping
+a little ways to the south.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21417
+D2
+~
+~
+0 0 21423
+S
+#21423
+Mountain Path~
+You are walking along a mountain path.  To the south a forest can be seen,
+while to the north, the path levels off to a flat path.  Rocks line the path,
+making it seem somewhat like a crude road.  It is obviously artificial.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21422
+D2
+~
+~
+0 0 21424
+S
+#21424
+Forest Path~
+The path is drastically changing into a mountain path to the north.  The trees
+have all but stopped, and the rocks are larger here.  The path continues up
+to the north, and down into the forest to the south.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21423
+D2
+~
+~
+0 0 21425
+S
+#21425
+Forest Path~
+You are walking along a forest path, which has a steady slope leading up and
+down the side of a mountain.  The peaks can be seen easily to the north now,
+covered in snow.  You can see what looks like a town far below and to the
+southeast.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21424
+D2
+~
+~
+0 0 21426
+S
+#21426
+Forest Path~
+The path has become steeper now, the northern direction going up.  The trees
+grow outwards, and then bend up to the sky.  It looks rather strange, but
+you see nothing unusual about it.  A few rocks lie here and there.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21425
+D2
+~
+~
+0 0 21427
+S
+#21427
+Forest Path~
+You are walking along a forest path, with the northern direction sloping
+upwards into the mountains.  The rustling of leaves overhead is a common sound,
+and you are finally getting used to it.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21426
+D3
+~
+~
+0 0 21428
+S
+#21428
+Forest Path~
+You are walking along a forest path.  The path leaves to the east and to the
+west, the east direction sloping upward.  A large mountain range can be seen
+through the trees to the north.  It seems as though this path leads up into
+them.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21427
+D3
+~
+~
+0 0 21429
+S
+#21429
+Forest Path~
+You are walking along a forest path, which is cutting through a mountain.  The
+ground is sloping upward now, at a steady increase.  The trees here are not
+as tall as the ones to the south, perhaps they are not as old.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21428
+D2
+~
+~
+0 0 21430
+S
+#21430
+Forest Path~
+You are walking along a forest path.  You realize that this path is cutting
+through a mountain range, and travels to the north.  A small side path goes
+off to the west, along the base of the mountain range.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 21429
+D2
+~
+~
+0 0 21431
+D3
+~
+~
+0 0 21492
+S
+#21431
+Forest Path~
+You are walking along a forest path, and have come across a T-Junction.  The
+path heading east has a very evil aura surrounding it, as though the path
+itself may rise up and attack you.  Perhaps you had better not go that way,
+and just stick to the path travelling north and south.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21430
+D1
+~
+~
+0 0 21432
+D2
+~
+~
+0 0 21437
+S
+#21432
+Decaying Forest Path~
+The trees here are becomming thinner and thinner.  Some of them seem to have
+been uprooted, others are just plain gone.  The path seems to look better
+to the west, and worse to the east.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21433
+D3
+~
+~
+0 0 21431
+S
+#21433
+Decaying Forest Path~
+This path is really bad.  The ground is very uneven, the trees are thin and
+are not growing any longer, and the leaves are all dead.  A stench of evil
+fills your nostrils.
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 21434
+D3
+~
+~
+0 0 21432
+S
+#21434
+Decayed Forest Path~
+You are walking along what is left of a forest path.  There are a few trees
+here and there, but they are all either dead or dying.  This area has truly
+turned into a nightmare.  Perhaps you had better head back.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21433
+D2
+~
+~
+0 0 21435
+S
+#21435
+Decayed Forest Path~
+You come to an end of a forest path.  A brick road, very crudely made, leads
+off to the east.  Black clouds have blocked out any sign of the sun, and a
+huge tower can be seen to the east.
+~
+0 9 3
+Rd     0
+D0
+~
+~
+0 0 21434
+D1
+~
+~
+0 0 21436
+S
+#21436
+The Base of the Chrystal Tower~
+You have reached the base of the Chrystal Tower.  There is no door, and no way
+inside.  Evil radiates from this tower, almost making you choke.  Your gut
+feeling is to go back to the west and get out of here.
+~
+0 9 3
+Rd     0
+D3
+~
+~
+0 0 21435
+S
+#21437
+Forest Path~
+You are walking along a forest path.  The trees are very tall, but not as thick
+as you are used to seeing.  This forest must be very old, for you see no signs
+of saprolings.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21431
+D2
+~
+~
+0 0 21438
+S
+#21438
+Forest Path~
+You are walking along a north-south directed forest path.  The trees tower
+over your head, making you feel small and insignificant.  The twigs and leaves
+crunch and snap under your feet as you walk.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21437
+D2
+~
+~
+0 0 21439
+S
+#21439
+Forest Path~
+You are walking along a forest path.  The ground is very damp here.  To the
+south you can see what looks like a clearing, and to the north the trees seem
+to go on forever.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21438
+D2
+~
+~
+0 0 21440
+S
+#21440
+Forest Swamp Path~
+You have stumbled upon a small swamp.  It is rather large, and extends to the
+west and south.  The way westward is obviously not penetrable, so perhaps
+the path to the north will provide a way around it.  You can go to the east,
+back into the forest, or to the south, deeper into the swamp.
+~
+0 0 11
+Rd     0
+D0
+~
+~
+0 0 21439
+D1
+~
+~
+0 0 21441
+D2
+~
+~
+0 0 21558
+S
+#21441
+Forest Path~
+You are walking along a forest path.  To the west you can see a T-Junction,
+and the path seems to travel forever to the east.  The ground is very damp
+here.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21442
+D3
+~
+~
+0 0 21440
+S
+#21442
+Forest Path~
+This forest is very large.  The ground seems to be damp here for some reason.
+You take a moment to look up into the canopy, and realize just how tall these
+trees are.  They are very, very tall, what looks like a hundred feet or more.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21443
+D3
+~
+~
+0 0 21441
+S
+#21443
+Forest Path~
+You are walking along a forest path, which travels east and west.  The trees
+vary in kind, some are oak, some are spruce, some are birch.  The light breeze
+always rustles the leaves.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21444
+D3
+~
+~
+0 0 21442
+S
+#21444
+Forest Path~
+You are walking along the forest path.  With each step you can here the
+rustling of leaves and crunching of twigs.  It is a very quiet forest
+otherwise, the usual sounds of animals scurrying about are not present.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 21445
+D3
+~
+~
+0 0 21443
+S
+#21445
+Forest Path~
+You are at a T-Junction in the path.  You have the choice of going north, east
+and west.  You glance each direction, and really can't see that much of a
+difference between them.  The trees here are staggeringly tall.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21446
+D1
+~
+~
+0 0 21474
+D3
+~
+~
+0 0 21444
+S
+#21446
+Forest Path~
+You are walking along a forest path.  The trees stand tall around you, each
+one looking to be at least a thousand years old.  This area is quite large,
+and you feel a sense of evil the further from the town that you get.  A
+T-Junction can be seen to the south.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21447
+D2
+~
+~
+0 0 21445
+S
+#21447
+Forest Path~
+You are walking along a forest path.  The trees stand tall around you, as far
+as you can see.  To the north you can see what appears to be a street.  This
+must be the town that you have heard so much about.
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 21448
+D2
+~
+~
+0 0 21446
+S
+#21448
+Main Street~
+You are walking along main street.  A rather rowdy pub is to the east of here,
+while a forest is too the south.  The town opens up to the north.  A newly
+added bank is to the west.  It seems as though this place is not as untouched
+as you thought.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21451
+D1
+~
+~
+0 0 21449
+D2
+~
+~
+0 0 21447
+D3
+~
+~
+0 0 21551
+S
+#21449
+Local Pub~
+You are in a rather loud tavern.  A huge bar extends the entire east wall,
+while Raymond continuously cleans.  An archway exits the bar to the west,
+and the walls are covered in paintings.  You stop to take a glance, and
+realize they are paintings of this very bar.  It gives a rather odd look
+to the place.
+~
+0 132096 0
+Rd     0
+D3
+~
+~
+0 0 21448
+S
+#21450
+Storage Building~
+You have entered an aboned building.  The floor is covered in dust, and the
+walls are decaying somewhat.  The archway back to the east leads out to the
+main street.  There is nothing of note in here.
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+0 0 21451
+S
+#21451
+Main Street~
+You are walking along main street.  To the west you can see a rather large
+building, but it looks abandoned.  A fountain can be seen bubbling to the
+north, and a loud building is a little ways to the south.  The nature
+surrounding this town has been untouched, and gives a natural feel to the
+place.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21455
+D2
+~
+~
+0 0 21448
+D3
+~
+~
+0 0 21450
+S
+#21452
+Inside the Church~
+You are inside the church.  This room lacks any of the usual church furniture,
+however, a sign that it is poor.  The main archway lies to the south.  A
+priest is usually here to heal your wounds, and to help train your skills.
+The stained glass windows on the south wall are not striking in any way, and
+the hardwood floors are not polished.  This church has seen some rough times
+lately.
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 21456
+S
+#21453
+The Weaponry~
+You have entered the weaponry.  A large counter stretches the entire width of
+the room, alont the south wall.  A forge rests imbedded into the south wall,
+behind the forge.  A rather large archway exits the building to the north.
+~
+0 1024 0
+Rd     0
+D0
+~
+~
+0 0 21457
+S
+#21454
+A Restaurant~
+You have entered a restaurant.  A counter on the west wall shows the menu.
+An archway leaves the restaurant to the east.  You can smell the fires of the
+kitchen behind the counter, and it smells delicious.
+~
+0 1032 0
+Rd     0
+D1
+~
+~
+0 0 21455
+S
+#21455
+Corner of Main Street and Anvil Street~
+You are at the corner of Main and Anvil.  Anvil street goes off to the east,
+where you can hear the clanging of metal.  To the west you can see and
+smell a restaurant.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21459
+D1
+~
+~
+0 0 21456
+D2
+~
+~
+0 0 21451
+D3
+~
+~
+0 0 21454
+S
+#21456
+Anvil Street~
+You are walking along Anvil Street.  The clanging of metal can be heard more
+dominantly to the east.  A serene church is to the south, its main archway
+never sealed shut.  The corner of main and anvil is to the west.
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+0 0 21457
+D2
+~
+~
+0 0 21452
+D3
+~
+~
+0 0 21455
+S
+#21457
+Forge Way~
+You are standing at the end of Anvil Street, commonly known as Forge Way.  It
+is called this because of the armoury to the north, the weaponry to the south,
+and the reapair shop to the east.  The clanging of metal on metal is heard
+almost constantly.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21461
+D1
+~
+~
+0 0 21596
+D2
+~
+~
+0 0 21453
+D3
+~
+~
+0 0 21456
+S
+#21458
+Jeweler~
+You have entered the jeweler.  Here you may buy and sell any treasure that you
+have found.  A long counter stretches across the west wall, behind which
+Maquesta stands.  An archway leads out of the building to the east.
+~
+0 1024 0
+Rd     0
+D1
+~
+~
+0 0 21459
+S
+#21459
+Main Street~
+You are standing on main street.  A small building lies to the west, and a
+much larger building is to the east.  You can see a fountain to the south, and
+the information building is to the north.  The road is kept well, but it is not
+in the best of shape.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21462
+D1
+~
+~
+0 0 21460
+D2
+~
+~
+0 0 21455
+D3
+~
+~
+0 0 21458
+S
+#21460
+The Adventurer's Guild~
+You have entered the Adventurer's guild.  An archway leads to the west, back
+to main street.  The brickwork here is immaculate, and very well constructed.
+A small window is on the east wall.
+~
+0 131072 0
+Rd     0
+E
+window~
+You can see the forest behind the building.
+~
+D3
+~
+~
+0 0 21459
+S
+#21461
+The Armoury~
+You have entered the armoury.  A forge rests in the northeast corner of the
+room, while a thick counter stretches the entire west and north walls.  An
+archway exits this room to the south.  The counter is very marked up, it seems
+this store does a lot of business.
+~
+0 1024 0
+Rd     0
+D2
+~
+~
+0 0 21457
+S
+#21462
+Main Street~
+You are walking along main street.  To the east is an information building.  If
+this is your first time to this continent, it is quite advisable to go east
+into that building for help on how to use this area to the fullest.  Main
+Street continues south.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21464
+D1
+~
+~
+0 0 21463
+D2
+~
+~
+0 0 21459
+S
+#21463
+Information Building~
+You have entered the information building.  The walls are flawless in every
+detail, with no markings of any kind.  The east wall has a donation box
+attached to it.  You feel safe in this room.
+~
+0 1024 0
+Rd     0
+D3
+~
+~
+0 0 21462
+S
+#21464
+Forest Clearing~
+You are standing in a clearing.  To the south you can see a fairly large town,
+although not nearly as large as Methidoral.  You see a few people walking to
+and from buildings.
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 21465
+D2
+~
+~
+0 0 21462
+S
+#21465
+Forest Path~
+The trees in this area are not as dense as the ones to the north.  Light can
+actually breach the tree's ceiling, but it is still darker than normal.  You
+can see something to the south, it looks somewhat like a clearing.  The trees
+are not as dense in that direction.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21466
+D2
+~
+~
+0 0 21464
+S
+#21466
+Forest Path~
+You are walking deep within a large forest.  A small path travels to the south
+and to the east.  The trees towering above your head are so overpowering, you
+feel insignificant by comparison.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21467
+D2
+~
+~
+0 0 21465
+S
+#21467
+Forest Path~
+The trees to the north of the path are thinning slightly, and you can barely
+see a rather large mountain range to the north.  Perhaps if you look harder
+you may find a way over it.  To the east and west, the forest path continues.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21468
+D3
+~
+~
+0 0 21466
+S
+#21468
+Forest Path~
+You are walking along a forest path.  You can hear the sounds of the ocean a
+little ways to the east.  The sounds of a town can be heard to the west as
+well.  The smells of trees is quite strong, for they are everywhere.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21469
+D3
+~
+~
+0 0 21467
+S
+#21469
+Forest Path~
+The trees in this area are as thick as ever.  Light can be seen breaching the
+tree's canopy, but it is still darker than you are used to.  You can hear
+the ocean to the east.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21470
+D3
+~
+~
+0 0 21468
+S
+#21470
+Forest Path~
+You are walking along a forest path.  A little ways to the north and the east
+stretches the ocean.  This path seems to be well travelled, for the path has
+worn all the way to the dirt.  Small rocks lie scattered here and there.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21471
+D3
+~
+~
+0 0 21469
+S
+#21471
+Forest Path~
+You are walking along a forest path.  The sounds of birds chirp overhead, small
+animals scurry here and there, and bugs of all kinds fly around harmlessly.  A
+bunch of rocks are scattered on the ground.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21472
+D2
+~
+~
+0 0 21470
+S
+#21472
+Forest Path~
+You have arrived at the northernmost part of this path.  The ocean and docks
+are directly to the east.  A path leads south into the forest, which eventually
+leads to a rather large and bustling town.  The smells of nature and salt water
+fill your nostrils almost to the point of gagging.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21473
+D2
+~
+~
+0 0 21471
+S
+#21473
+The Docks~
+You are standing on the eastern docks.  The docks themselves look sturdy
+enough to hold your weight.  A small path leads westward into a forest, and
+it also turns south.  The sky here is very beautiful, and the smell of nature
+fills your nostrils.
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+0 0 21593
+D3
+~
+~
+0 0 21472
+S
+#21474
+Forest Path~
+You are walking along a forest path, which is definately thicker to the west.
+You can see what looks like a beach a little ways to the east, and a path
+that leads back into the forest.  You can feel the warmth of the beach brushing
+against your skin.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21475
+D3
+~
+~
+0 0 21445
+S
+#21475
+Forest Path~
+You are walking along a forest path, which leads back into the forest to the
+west and south.  There is an oceanfront a little ways to the east, and a
+well trodden path leads down to it.  The forest is very thick to the west,
+but not so thick to the south.  You hear the sounds of birds and squirrels as
+you walk along the path.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21476
+D2
+~
+~
+0 0 21488
+D3
+~
+~
+0 0 21474
+S
+#21476
+Path to the Beach~
+You are walking down a long dusty path to the beach.  A large forest can be
+easily seen to the west, and the ocean lies a little ways to the east.  You
+smell the salty air wafting in from the ocean, and hear the birds chirping
+overhead.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 21477
+D3
+~
+~
+0 0 21475
+S
+#21477
+Path to the Beach~
+You are walking down a path leading to the beach.  You can feel the warm sand
+beneath your feet, and you can't help but smile.  The sun too is warm, and
+the beach looks very inviting.  This path goes north a little ways, then turns
+east towards the beach.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21478
+D3
+~
+~
+0 0 21476
+S
+#21478
+Path to the Beach~
+You are walking on a path towards the beach.  You can see it quite clearly from
+here, the waves splashing up against the shores.  A small hill to the northeast
+prevents you from seeing around it until you go down there.  The gentle rocking
+motion of the waves is very relaxing.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21479
+D2
+~
+~
+0 0 21477
+S
+#21479
+Path to the Beach~
+You are walking along a path to the beach, which is directly to the east.  The
+cool salty breeze wafting from the ocean is a refreshing change from the pine-
+filled smell of the forest back to the west.  Your veins pump with anticipation
+for an up-close look at the ocean.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 21480
+D2
+~
+~
+0 0 21478
+S
+#21480
+Path to the Beach~
+You are at the beginning of a path leading from the beach back to the forest
+of the mainland.  A large hill lies to the northeast, and you can't see what
+is past it.  The beach seems to extend forever in the north-south directions,
+and the water is directly to the east.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 21481
+D3
+~
+~
+0 0 21479
+S
+#21481
+The Beach~
+You are standing on the beach.  A large hill is directly to the north, but a
+thin path leads around it.  The beach extends far to the south, where you can
+see what looks like a tent.  The ocean is truly magnificant, its blue-green
+colouring not like anything you have seen before.  The smell of salt-water
+is strong in your nostrils.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21486
+D2
+~
+~
+0 0 21482
+D3
+~
+~
+0 0 21480
+S
+#21482
+The Beach~
+You are walking along the beach, with warm sand at your feet.  A small path
+leading to the mainland forest is to the north, and a small building, looking
+like a tent is to the south.  You see a small hill to the north, and cannot
+see around it.  You hear the birds calling overhead, and the sound of the
+waves splashing against the shores.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21481
+D2
+~
+~
+0 0 21483
+S
+#21483
+The Beach~
+You are walking along a warm, sandy beach.  You take a moment to glance around,
+and realize just how peaceful and calm this place is.  You feel as though you
+could rest here forever.  A small tent can be seen to the south.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21482
+D2
+~
+~
+0 0 21484
+S
+#21484
+The Beach~
+You are walking along a sandy beach.  You can see what seems to be a large tent
+to the west, and a small tree stands beside it.  The ocean continues to splash
+calmly agaist the beach to the east, and you can see the other continent far
+off on the horizon.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21483
+D3
+~
+~
+0 0 21485
+S
+#21485
+An Oasis~
+You eyes have played tricks on you!  There is not tent here, but there is a
+rather large tree.  A huge pool of water is here, perhaps that is what you saw
+the reflection from.  The beach is back to the east.  This room gives you a
+very safe feeling.
+~
+0 1024 10
+Rd     0
+E
+tree~
+It is a palm tree, standing tall and alone, providing shade.
+~
+D1
+~
+~
+0 0 21484
+S
+#21486
+The Beach~
+You are walking along a thin path around a hill on a beach.  The ocean is a
+little more violent here, and gets even more violent to the north.  You feel
+something of great importance to the north.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 21487
+D2
+~
+~
+0 0 21481
+S
+#21487
+Ocean Shrine~
+You have reached the other side of the hill, and have arrived at an oceanside
+shrine.  A large Ankh stands in the sand, its hoop made entirely of crystal.
+The ocean is rather rough here, as though the land itself is warning of some
+great force.
+~
+0 0 10
+Rd     0
+D2
+~
+~
+0 0 21486
+S
+#21488
+Forest Path~
+You are walking along a forest path.  The beach can be seen off to the east,
+and a path leading down to it lies to the northeast.  You can see a cross-
+junction to the south.  The ground is very dry here, as leaves and twigs snap
+under the weight of your trodding feet.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21475
+D2
+~
+~
+0 0 21489
+S
+#21489
+Forest Path~
+You are walking along a forest path.  The trees to the west are taller and
+thicker than the ones in your immediate surroundings.  The path continues
+to the north and to the south.  The ground is very dry here.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21488
+D2
+~
+~
+0 0 21490
+S
+#21490
+Forest Path~
+You are walking along a forest path.  The tree canopy lets in the smallest
+amount of light, and the leaves can be heared swaying in the breeze.  Perhaps
+this is a sign of the turbulent things that lie in your future.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21489
+D2
+~
+~
+0 0 21491
+S
+#21491
+Forest Path~
+You are walking along a forest path.  The forest is very dense and tranquil
+here and to the west, while the path east rapidly turns into desert.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 21490
+D1
+~
+~
+0 0 2801
+D2
+~
+~
+0 0 21579
+D3
+~
+~
+0 0 21589
+S
+#21492
+Mountainside Path~
+You are walking along the foot of a large mountain range which extends
+northward.  The forest to the south is very dark and mysterious, you feel a
+sense of something evil in that direction.  The path continues east and west.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21430
+D3
+~
+~
+0 0 21493
+S
+#21493
+Mountainside Path~
+You are walking along the foot of a large mountain range which extends
+northward.  The forest to the south is very dark and mysterious, you feel a
+sense of something evil in that direction.  The path continues east and west
+from here.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21492
+D3
+~
+~
+0 0 21494
+S
+#21494
+Mountainside Path~
+You are walking along the foot of a large mountain range which extends to the
+north.  The forest in the southerly direction is very dark and mysterious,
+you feel a sense of evil coming from that direction.  The path continues to
+the east and west.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21493
+D3
+~
+~
+0 0 21495
+S
+#21495
+Mountainside Path~
+You are walking along the foot of a large mountain range which extends
+northward.  The forest to the southeast is very dark and mysterious, you feel
+something evil in that direction.  The path continues east and south, following
+the mountain base perfectly.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21494
+D2
+~
+~
+0 0 21496
+S
+#21496
+Mountainside Path~
+You are walking along the base of a large mountain range.  The forest to the
+east is very dark and mysterious, and impenetrable.  You feel a sense of
+something evil in that direction.  The path continues north and south.  A
+rocky path leads off to the west.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21495
+D2
+~
+~
+0 0 21497
+D3
+~
+~
+0 0 21501
+S
+#21497
+Swampy Path~
+You are walking along a path leading into a swamp.  You can see something very
+dark and gloomy to the south.  Perhaps you had better not go in that direction
+any longer.  The path travels north, to the base of an array of mountains, and
+south, deeper into the swamp.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21496
+D2
+~
+~
+0 0 21498
+S
+#21498
+Swampy Path~
+You are walking along a dark, dank swamp.  The further south you go, the darker
+it seems to get.  A large tree has been overturned here, and it is rotting
+quite seriously.  The path continues south and north.
+~
+0 1 11
+Rd     0
+D0
+~
+~
+0 0 21497
+D2
+~
+~
+0 0 21499
+S
+#21499
+Swampy Path~
+You are walking along a swampy path, the ground mushing at your feet.  You
+can feel something grave to the west.  The path also traverses to the north,
+leading out of the swamp.  You can hear the howls of the wind.
+~
+0 1 11
+Rd     0
+D0
+~
+~
+0 0 21498
+D3
+~
+~
+0 0 21500
+S
+#21500
+Wraith Castle Entrance~
+You have arrived at two large pillars, overlooking an entrance into some sort
+of crude camp.  You can't help but wonder what lies beyond, perhaps treasure
+beyond your wildest imagination!
+~
+0 0 11
+Rd     0
+D1
+~
+~
+0 0 21499
+D3
+~
+~
+0 0 2949
+S
+#21501
+Mountainside Path~
+You are walking along the foot of a large mountain range which extends
+northward.  The forest to the south is very dark and mysterious, you feel a
+sense of something evil in that direction.  The path continues east and west
+from here.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21496
+D3
+~
+~
+0 0 21502
+S
+#21502
+Mountainside Path~
+You are walking along the base of a large mountain range.  The forest to the
+south is very dark and mysterious, and you feel something evil in that
+direction.  The path continues to the east and to the west.
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 21501
+D3
+~
+~
+0 0 21503
+S
+#21503
+Mountainside Path~
+You are walking along a mountainside path.  A rocky path leads off to the
+north and to the south.  You can see what looks like smoke coming over the
+horizon to the north.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21504
+D1
+~
+~
+0 0 21502
+D2
+~
+~
+0 0 21521
+S
+#21504
+Mountain path~
+You are walking through a path cut into a mountain.  Upon closer examination,
+you realize that this path was cut my molten lava.  You begin to speculate
+that the smoke to the north is actually burning rock.  You hope that it is no
+longer flowing.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21505
+D2
+~
+~
+0 0 21503
+S
+#21505
+Mountain Path~
+You are walking along a mountain path.  The area to the north is very hot, and
+it is obvious why.  The lava flows freely in that direction.  This path leads
+a little ways around it to the east.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21507
+D1
+~
+~
+0 0 21506
+D2
+~
+~
+0 0 21504
+S
+#21506
+Mountain Path~
+You are walking along a path in the mountains.  Your nostrils are full with
+smoke and soot rising up from the lava which surrounds you.  The path leads
+to the north and to the west.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21508
+D3
+~
+~
+0 0 21505
+S
+#21507
+Lava Flow~
+You are hovering above hot lava.  The path lies to your immediate east.  You
+had better not stay here very long.  The walls are very well worn, through
+years of erosion.
+~
+0 268435456 9
+Rd     100
+D0
+~
+~
+0 0 21510
+D1
+~
+~
+0 0 21508
+D2
+~
+~
+0 0 21505
+S
+#21508
+Mountain Path~
+You are walking along a Mountain Path.  You now realize that you are on the
+inside of a volcano.  The walls are all around, stretching high to a small
+opening.  This path leads further northward, or back to the south.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21511
+D2
+~
+~
+0 0 21506
+D3
+~
+~
+0 0 21507
+S
+#21509
+Lava Flow~
+You are hovering above hot lava.  The path lies to the east a little ways.  You
+had better not stay here very long.  The walls are very well worn, through
+years of erosion.
+~
+0 268435456 9
+Rd     100
+D0
+~
+~
+0 0 21512
+D1
+~
+~
+0 0 21510
+S
+#21510
+Lava Flow~
+You are hovering above hot lava.  The path lies to your immediate east.  You
+had better not stay here very long.  The walls are very well worn, through
+years of erosion.
+~
+0 268435456 9
+Rd     100
+D0
+~
+~
+0 0 21513
+D1
+~
+~
+0 0 21511
+D2
+~
+~
+0 0 21507
+D3
+~
+~
+0 0 21509
+S
+#21511
+Mountain Path~
+You are walking through a volcano.  The molten lava to the west is very hot,
+and you wonder how anyone could walk on it.  You think you can see some sort
+of opening in the rockface a little ways to the west and to the east, but you
+cannot get a good look at it from here.  The path continues to the north and
+to the south.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21514
+D2
+~
+~
+0 0 21508
+D3
+~
+~
+0 0 21510
+S
+#21512
+Lava Pit~
+You are hovering above hot lava.  The path lies a little ways to the east.  You
+had better not stay here very long.  The walls are very well worn, through
+years of erosion.  You can see a hole bubbling here, perhaps there is some way
+down.
+~
+0 268435456 9
+Rd     100
+D0
+~
+~
+0 0 21516
+D1
+~
+~
+0 0 21513
+D2
+~
+~
+0 0 21509
+S
+#21513
+Lava Flow~
+You are hovering above hot lava.  The path lies to your immediate east.  You
+had better not stay here very long.  The walls are very well worn, through
+years of erosion.
+~
+0 268435456 9
+Rd     100
+D0
+~
+~
+0 0 21517
+D1
+~
+~
+0 0 21514
+D2
+~
+~
+0 0 21510
+D3
+~
+~
+0 0 21512
+S
+#21514
+Mountain Path~
+You have come to the end of a mountain path.  The only way to go is either to
+go headlong into the lava, or return the way you came.  The blistering heat
+is really making you sweat now, perhaps you should go back.
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 21518
+D1
+~
+~
+0 0 21515
+D2
+~
+~
+0 0 21511
+D3
+~
+~
+0 0 21513
+S
+#21515
+Lava Flow~
+You are hovering above hot lava.  The path lies to your immediate west.  You
+had better not stay here very long, for the flames lick the bottom of your
+feet.  The walls are very well worn, through years of erosion.
+~
+0 268435456 9
+Rd     100
+D0
+~
+~
+0 0 21519
+D3
+~
+~
+0 0 21514
+S
+#21516
+Lava Flow~
+You are hovering above hot lava.  The path lies to the southeast a little ways.
+You had better not stay here long, for the lava is starting to get to you.  The
+walls are very worn through years of erosion.
+~
+0 268435456 9
+Rd     100
+D1
+~
+~
+0 0 21517
+D2
+~
+~
+0 0 21512
+S
+#21517
+Lava Flow~
+You are hovering above hot lava.  The path lies to the southeast.  You had
+better not stay here very long.  The walls are very well worn, through years
+of erosion.
+~
+0 268435456 9
+Rd     100
+D0
+~
+~
+0 0 21591
+D1
+~
+~
+0 0 21518
+D2
+~
+~
+0 0 21513
+D3
+~
+~
+0 0 21516
+S
+#21518
+Lava Flow~
+You are hovering above hot lava.  The path lies to your immediate south.  You
+had better not stay here very long, for the heat is starting to bake you
+inside your armour.  The walls are very well worn, through years of erosion.
+~
+0 268435456 9
+Rd     100
+D0
+~
+~
+0 0 21520
+D1
+~
+~
+0 0 21519
+D2
+~
+~
+0 0 21514
+D3
+~
+~
+0 0 21517
+S
+#21519
+Lava Flow~
+You are hovering above hot lava.  The path lies a little ways to the south.
+You had better not stay here very long.  The walls are very well worn, through
+years of erosion.
+~
+0 268435456 5
+Rd     100
+D2
+~
+~
+0 0 21515
+D3
+~
+~
+0 0 21518
+S
+#21520
+Lava Flow~
+You are hovering above hot lava.  The path lies to your immediate east.  You
+had better not stay here very long.  The walls are very well worn, through
+years of erosion.  A small hole lies in the north wall, but it has been sealed
+with molten rock.
+~
+0 268435456 9
+Rd     100
+D2
+~
+~
+0 0 21518
+D3
+~
+~
+0 0 21591
+S
+#21521
+Hilly Path~
+You are walking through a bunnch of hills.  A mountain range can be seen easily
+to the north, while the hills continue for what seems like an eternity to the
+south.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 21503
+D2
+~
+~
+0 0 21522
+S
+#21522
+Hilly Path~
+You are walking along a hilly path.  It travels in a swooping motion over the
+rolling hills, in no set pattern.  The path takes a sharp turn a little ways
+to the west, or goes north from here into the mountains.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 21521
+D3
+~
+~
+0 0 21523
+S
+#21523
+Hilly Path~
+You are walking along a hilly path.  You can see what appears to be a small
+town a little ways to the south.  The path turns north to the east, and it
+leads up into a northern mountain range.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 21522
+D2
+~
+~
+0 0 21524
+S
+#21524
+Hilly Path~
+You are walking along a path through the hills.  You can see a small town a
+little ways to the south.  This path leads to the north and to the south,
+traversing along the tops of some gently rolling hills.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 21523
+D2
+~
+~
+0 0 21525
+S
+#21525
+Hilly Path~
+You are walking along the western hills.  A small town can be seen easily to
+the south, while the path continues to the north.  The breeze ruffles your
+hair playfully.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 21524
+D2
+~
+~
+0 0 21526
+S
+#21526
+Hilly Path~
+You are walking on a path just north of a small town.  This path leads into a
+hilly area, with your vision severely impared.  You can see a rather large
+building directly to the south.
+~
+0 4 4
+Rd     0
+D0
+~
+~
+0 0 21525
+D2
+~
+~
+0 0 21527
+S
+#21527
+Pinnacle Road~
+You are walking along Pinnacle Road.  A path leads off through the hills to
+the north and to the east, while a small down is to the west.  A rather large
+building is to the south.  You do not see a way in from here though.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21526
+D1
+~
+~
+0 0 21566
+D3
+~
+~
+0 0 21528
+S
+#21528
+Corner of Pinnacle Road and Peak Road~
+You are standing at the corner of Pinnacle and Peak road.  You can see all
+manor of shops in all directions, the buildings all different shapes and
+sizes.  They are all quite large, showing well the prosperity of this town.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21531
+D1
+~
+~
+0 0 21527
+D2
+~
+~
+0 0 21536
+D3
+~
+~
+0 0 21529
+S
+#21529
+Pinnacle Road~
+You are walking along Pinnacle Road, and have come to its end.  You can hear
+a rowdy bar to the north, and can see a hotel to the west.  A Casino lies
+to the south.  The town fountain lies to the east.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21530
+D1
+~
+~
+0 0 21528
+D2
+~
+~
+0 0 21533
+D3
+~
+~
+0 0 21532
+S
+#21530
+Local Pub~
+You have walked into the local pub.  A large bar extends the entire width of
+it, stretching along the north wall.  A large archway leads back out to
+Pinnacle Road to the south.
+~
+0 1024 0
+Rd     0
+D2
+~
+~
+0 0 21529
+S
+#21531
+Empty Building~
+You are in an empty warehouse.  The only exit is throught the archway to the
+south.
+~
+0 131072 0
+Rd     0
+D2
+~
+~
+0 0 21528
+S
+#21532
+Hotel~
+You have just entered an Inn.  A large kitchen can be smelt coming from behind
+a large counter.  The archway on the east wall leads back out to Pinnacle Road.
+The floor is well worn, for this establishment gets many customers.  A door is
+on the north wall, leading to a room for you to sleep in.
+~
+0 1028 0
+Rd     0
+D0
+~
+~
+3 0 21592
+D1
+~
+~
+0 0 21529
+S
+#21533
+Casino~
+You are in a local casino.  The walls are pretty bare, as though this building
+was just opened.  There is currently only one attraction, but a sign promises
+that there will be more in the future.  The archway out lies to the north.
+~
+0 2098176 0
+Rd     0
+D0
+~
+~
+0 0 21529
+S
+#21534
+Arena~
+You have entered into the royal Arena.  It has stood here for thousands of
+years, left alone until just recently.  The arena to the east is currently
+closed off, but it will be made public in the near future.
+~
+0 131072 0
+Rd     0
+D3
+~
+~
+0 0 21536
+S
+#21535
+Gypsie Hut~
+You have entered a small hut.  The walls are done up in a gothic fashion, small
+archaic decorations here and there.  The floor is not paved, but is instead
+just plain dirt.  A strong smell of perfume fills your nostrils, and you have
+to squint in the dark.  An opening in the east wall leads back to the street.
+This room is set up like a bedroom.
+~
+0 1029 0
+Rd     0
+D1
+~
+~
+0 0 21537
+S
+#21536
+Peak Road~
+You are walking along Peak Road.  A rather large building lies directly to the
+east of here, with the clanging of metal coming from the inside.  The road
+continues south, where you can see more shops.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21528
+D1
+~
+~
+0 0 21534
+D2
+~
+~
+0 0 21537
+S
+#21537
+Peak Road~
+You are walking along peak road.  You can see a bank to the east, and a small
+unmarked building to the west.  Peak road continues to the north, or travels
+south to the western docks.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 21536
+D1
+~
+~
+0 0 21595
+D2
+~
+~
+0 0 21538
+D3
+~
+~
+0 0 21535
+S
+#21538
+Light Forest Path~
+You are walking through a copse of trees.  They are not very close together,
+nor are they very old.  A town lies directly to the north, while a path travels
+to the south, where it ends at a T-Junction.
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 21537
+D2
+~
+~
+0 0 21539
+S
+#21539
+Light Forest Path~
+You are walking through a light forest.  The trees are not very close together,
+and their size shows that they are obviously not very old.  A town lies a
+little ways to the north, and a T-Junction can be seen immediately to the
+south.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21538
+D2
+~
+~
+0 0 21540
+S
+#21540
+Light Forest Path~
+You are walking through a light forest.  A town is easily in view to the north,
+while the coast and western docks like a little ways to the west.  The path
+continues on to the east for what seems like an eternity.
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 21539
+D1
+~
+~
+0 0 21543
+D3
+~
+~
+0 0 21541
+S
+#21541
+Light Forest Path~
+You are walking through a lightly forested area.  The trees are not growing
+very close together, and their lack of size shows how young everything is.  The
+western docks lie directly to the west, and the path can be seen making a
+fork to the east.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21540
+D3
+~
+~
+0 0 21542
+S
+#21542
+Western Docks~
+You are standing on the western docks.  The docks themselves look sturdy
+enough to hold your weight.  A small path leads eastward into a light forest,
+where it seems to go on forever.  The sky here is very peaceful, and the smell
+of untouched nature fills your nostrils.
+~
+0 131072 3
+Rd     0
+D1
+~
+~
+0 0 21541
+S
+#21543
+Light Forest Path~
+You are walking along a lightly forested path.  The path seems to travel on
+forever to the east, and travels west a little ways.  You can see a desert
+to the south.  Perhaps there will be a path leading into it so that you can
+explore it.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21544
+D3
+~
+~
+0 0 21540
+S
+#21544
+Light Forest Path~
+You are walking through a light forest.  The path is very smooth, and a little
+dust and sand blow at your feet.  The path travels to the east and to the west
+as far as the eye can see.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21545
+D3
+~
+~
+0 0 21543
+S
+#21545
+Light Forest Path~
+You are walking along a lightly forested path.  The ground is very dry here,
+probably due to the desert located somewhat to the south.  A large building
+can be seen to the north.  It looks like an arena of some kind, but you do not
+see any way to get into it from here.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21546
+D3
+~
+~
+0 0 21544
+S
+#21546
+Light Forest Path~
+You are walking along a light forest path.  A rather large desert stretches
+out to the south from here, while the path continues for a very long while to
+the east and to the west.  Some sand blows around at your feet.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21547
+D2
+~
+~
+0 0 2875
+D3
+~
+~
+0 0 21545
+S
+#21547
+Light Forest Path~
+You are walking along a path.  The trees here are scarce, but they become
+thicker and more often to the east.  A rather large hill is to the south, and
+it gets higher to the east.  It looks as though the path leads around it.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21548
+D3
+~
+~
+0 0 21546
+S
+#21548
+Light Forest Path~
+You are walking along a forested path.  You stop a moment to take in the
+breathtaking scenery.  The trees sway in time with each other in a hypnotic
+pattern, while the sand blows in little swirls at your feet.  Small rocks
+blow here and there, while others just sit motionless.  It is quite peaceful
+and beautiful.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21549
+D3
+~
+~
+0 0 21547
+S
+#21549
+Light Forest Path~
+You are walking along a light forest path.  The area to the south is a rather
+large hill, and this path conveniently travels around it.  Another path can
+be seen to the east that leads north, along the edge of a dense forest.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21550
+D3
+~
+~
+0 0 21548
+S
+#21550
+Light Forest Path~
+You are walking along the edge of a light forest.  To the south of here a
+large hill can be seen, while the path travels around it.  Another path
+can be seen to the east leading north along the edge of a much denser forest.
+Small bits of sand and pebbles blow at your feet.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21552
+D3
+~
+~
+0 0 21549
+S
+#21551
+Bank~
+You are in the bank.  A long counter lies on the west wall, and a woman is
+usually standing behind it.  The commands here are the same ones used in
+Methidoral.
+~
+0 16778244 3
+Rd     0
+D1
+~
+~
+0 0 21448
+S
+#21552
+Light Forest Path~
+You are walking along the northern edge of a rather large hill.  The trees are
+much denser to the east and north of here, and a path follows the edge of
+the forest in both directions.  The path also travels to the west.  Small bits
+of sand and pebbles blow around at your feet.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21553
+D1
+~
+~
+0 0 21571
+D3
+~
+~
+0 0 21550
+S
+#21553
+Forest Path~
+You are walking through a rather dense and tranquil forest.  The ground seems
+to be slightly damp here, and is more damp to the north.  The trees tower
+around you, making you feel small and insignificant.  A large hill can be
+seen a little ways to the south.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21554
+D2
+~
+~
+0 0 21552
+S
+#21554
+Forest Path~
+You are walking through a large, tranquil forest.  The ground is very damp
+here, seemingly becoming more soaked the further north you travel.  A large
+tree has been overturned here, and lies on the ground rotting.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 21555
+D2
+~
+~
+0 0 21553
+S
+#21555
+Forest Path~
+You are walking through a large, tranquil forest.  The ground is very damp
+here, and the swamp to the north tells you that is the reason why.  The path
+has almost turned into mud up to the north, and you fear it may not be
+passable.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 21556
+D2
+~
+~
+0 0 21554
+S
+#21556
+Forest Swamp~
+You have come across a swamp.  The ground seems to be holding for the time
+being, but it definately looks safer to the south.  A makeshift path stretches
+out to the west, the trees in that area decayed or decaying, while a much
+safter looking path goes north.  The stench here is quite strong.
+~
+0 0 11
+Rd     0
+D0
+~
+~
+0 0 21557
+D2
+~
+~
+0 0 21555
+D3
+~
+~
+0 0 21559
+S
+#21557
+Forest Swamp~
+You are trudging through a swamp in the forest.  What looks like a path goes
+to the north and to the south.  Trees lie toppled over, some decaying, some
+already rotten through.  The smell of this place is not for the weak stomached.
+You can see a second path leading west off to the south.
+~
+0 0 11
+Rd     0
+D0
+~
+~
+0 0 21558
+D2
+~
+~
+0 0 21556
+S
+#21558
+Forest Swamp~
+You are walking through a swamp in the forest.  The smelly path leads off to
+the south, or to the north where you can see stable ground.  The lack of
+animals gives a hint to the decay all around you.
+~
+0 0 11
+Rd     0
+D0
+~
+~
+0 0 21440
+D2
+~
+~
+0 0 21557
+S
+#21559
+Forest Swamp~
+You are sloshing through the watery floor of a swamp.  The stench of this place
+is starting to get to you, and your stomach is not liking it.  A T-Junction
+can be seen to the east, while this path treks further into the swamp at west.
+~
+0 0 11
+Rd     0
+D1
+~
+~
+0 0 21556
+D3
+~
+~
+0 0 21560
+S
+#21560
+Forest Swamp~
+You are sloshing through a swamp.  The sound of your boots squishing into the
+ground is one of the most disgusting noises you have ever heard.  The smell
+of this place is really starting to get to you.
+~
+0 0 11
+Rd     0
+D1
+~
+~
+0 0 21559
+D3
+~
+~
+0 0 21561
+S
+#21561
+Forest Swamp~
+You are walking along the basin of a swamp.  The stench of the dirty waters
+fills your lungs, almost making you gag.  The light reflects off the surface of
+the water, almost giving it a warm feeling, but then you look around, and the
+decay quickly removes that image from your mind.
+~
+0 0 11
+Rd     0
+D1
+~
+~
+0 0 21560
+D3
+~
+~
+0 0 21562
+S
+#21562
+Forest Swamp~
+You are walking through the muck of a swamp.  A fork in this makeshift path can
+be seen to the north, while the path stretches for a very long way to the east.
+You can't help but feel queasy while walking in this gunk.
+~
+0 0 11
+Rd     0
+D0
+~
+~
+0 0 21563
+D1
+~
+~
+0 0 21561
+S
+#21563
+Forest Swamp~
+You are drudging through the swamp, as slow as can be.  You can see dry land
+to the west of here, with a town a little ways in that direction as well.
+You can sense an evil presence to the north.
+~
+0 0 11
+Rd     0
+D0
+~
+~
+0 0 21567
+D2
+~
+~
+0 0 21562
+D3
+~
+~
+0 0 21564
+S
+#21564
+Light Forest Path~
+You have come across a small copse of trees, where the ground is very wet.  A
+large swamp can easily be seen to the east, while the town lies to the west.
+The ground is very damp here, as though the water is seeping away from
+something in the swamp.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 21563
+D3
+~
+~
+0 0 21565
+S
+#21565
+Hilly Path~
+You are at the base of some foothills.  A small copse of trees can be seen to
+the east, while a rather large town lies a little ways to the west.  The ground
+is a little damp here, moreso to the east.  Perhaps there is a lake or a swamp
+in that direction.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 21564
+D3
+~
+~
+0 0 21566
+S
+#21566
+Hilly Path~
+You are walking on a path through the hills.  They don't seem to continue
+very far from here, maybe only a few hundred feet or so to the east.  A town
+can easily be seen to the west.
+~
+0 4 4
+Rd     0
+D1
+~
+~
+0 0 21565
+D3
+~
+~
+0 0 21527
+S
+#21567
+Forest Swamp~
+You continue to drudge through the swamp.  The path takes a sharp turn to the
+east here.  Looking that way you can see dry land, and what looks like some
+kind of road.  The sense of evil comes from that direction.  The path also
+travels south.
+~
+0 0 11
+Rd     0
+D1
+~
+~
+0 0 21568
+D2
+~
+~
+0 0 21563
+S
+#21568
+Swamp Road~
+You have come to the beginning of a swamp road.  It is very dark here, so it
+is a good thing you have brought a light.  The path takes a turn to the north
+up ahead.  You can also go to the west, back into the swamp.  The ground is
+still a little damp here.
+~
+0 0 11
+Rd     0
+D1
+~
+~
+0 0 21569
+D3
+~
+~
+0 0 21567
+S
+#21569
+Swamp Road~
+You have come to the south end of a great castle, which lies to the north.  The
+sense of evil you have been getting all this time is definately coming from
+that direction.  You can either go up to the gates of the castle to the north
+for a closer look, or head back the way you came.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 21570
+D3
+~
+~
+0 0 21568
+S
+#21570
+Swamp Castle~
+The walls of this castle are immense.  You can't help but see the massive stone
+gargoyles overlooking the walls, the huge drawbridge lodged permanently into
+the ground.  The porticulis has been brought to the ground however, and the
+way in is blocked.
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 21569
+S
+#21571
+Forest Path~
+You are walking through a very dense forest.  The path seems to get somewhat
+clearer and easier to the west.  The trees tower over your head, making you
+feel small and insignificant in nature's eyes.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21572
+D3
+~
+~
+0 0 21552
+S
+#21572
+Forest Path~
+You are walking along a forest floor.  The sounds of birds chrip happily
+overhead.  A fork can be seen to the east.  You can feel twigs snapping
+beneath your feet as you walk, a welcome sound.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 21573
+D3
+~
+~
+0 0 21571
+S
+#21573
+Forest Path~
+You are walking along a forest path.  A smaller path leads off to the north.
+The trees there seem to be growing healthier than the rest of the forest,
+perhaps you had better investigate why.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 21580
+D1
+~
+~
+0 0 21574
+D3
+~
+~
+0 0 21572
+S
+#21574
+Forest Path~
+You are walking along a forest path.  You can see a fork a little ways to the
+west.  The leaves rustle overhead as the wind blows through them, and the smell
+of fresh air fills your nostrils.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 21575
+D3
+~
+~
+0 0 21573
+S
+#21575
+Forest Path~
+You are walking along a forest path.  The ground is wet with moisture, a sign
+of a healthy forest.  You hear the birds chirping playfully over your head,
+but you do not see them when you look up.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 21576
+D3
+~
+~
+0 0 21574
+S
+#21576
+Forest Path~
+You are walking along a forest path.  The trees tower over you, their strong
+trunks holding firm, supporting their massive weight.  You occasionally see
+a small animal scurry in front of you, but it quickly vanishes into the forest.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 21577
+D3
+~
+~
+0 0 21575
+S
+#21577
+Forest Path~
+You are walking along a heavily forested path.  The smell of trees and other
+things in nature overwhelms your senses for a moment, as you take a deep
+breath.  This scene is almost picturesque, everything is exactly how it
+should be.  It is almost eery in a calm sort of way.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21578
+D3
+~
+~
+0 0 21576
+S
+#21578
+Forest Path~
+You are walking along a path in a forest.  The trees tower over your head,
+making you dizzy at times.  A large rock lies off to the side of the path,
+but there is nothing spectacular or interesting about it.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21579
+D2
+~
+~
+0 0 21577
+S
+#21579
+Forest Path~
+You are walking along a forest path.  The trees all around you are taller and
+thicker than the ones to the north.  The path continues to the north and to the
+south.  A Cross Junction can easily be seen to the north.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21491
+D2
+~
+~
+0 0 21578
+S
+#21580
+Mystic Forest~
+You are walking through a dark, mysterious forest.  Your senses are somewhat
+disoriented, seeing strange visions wherever you look.  You wander aimlessly
+about, not knowing for sure which direction you walk.  The path seems to go
+north and south.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21581
+D2
+~
+~
+0 0 21573
+S
+#21581
+Mystic Forest~
+You are walking through a large, dark, mysterious forest.  The ground is not
+very well traversed, but has been definately cleared of rubble.  You can't help
+but feel slightly dizzy in here, for the magic is very strong.  The path
+continues to the west and south from here.
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 21580
+D3
+~
+~
+0 0 21582
+S
+#21582
+Mystic Forest~
+You are walking through the Mystic Forest.  It is a dark and mysterious place,
+filled to the brim with magical energy.  The trees seem to be getting taller as
+you admire your surroundings.  You can't really tell which direction is which
+in here, but you assume the path travels to the east and north from here.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21583
+D1
+~
+~
+0 0 21581
+S
+#21583
+Mystic Forest~
+You are walking through a strange forest.  You are a little dizzy from all
+the magic bombarding you, and you aren't sure which direction you are walking.
+The path seems to travel to the north and to the south.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21584
+D2
+~
+~
+0 0 21582
+S
+#21584
+Mystic Forest~
+You are walking through the Mystic Forest, a dark and mysterious place.  The
+trees sway back and forth in a hypnotic fashion, their obvious magic powers
+astounding you.  The path seems to go to the east and south.  You are having
+strange visions of all sorts of wierd things, all of them fuzzy and unclear.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21585
+D2
+~
+~
+0 0 21583
+S
+#21585
+Mystic Forest~
+You are walking through a dark, mysterious forest, teeming with magical
+energies.  You can feel the magic eminating from the trees, filling your body,
+making you quiver.  The path seems to go east and west from here, and the magic
+is incredibly strong to the north.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21590
+D1
+~
+~
+0 0 21586
+D3
+~
+~
+0 0 21584
+S
+#21586
+Mystic Forest~
+You are walking through the Mystic Forest, a dark and mysterious place filled
+to the brim with magical energies.  The trees themselves seem to be giving off
+magic, seeminly endless in power.  The path seems to go east and west from
+here.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21587
+D3
+~
+~
+0 0 21585
+S
+#21587
+Mystic Forest~
+You are walking through a dark, strange forest.  You can feel a sense of magic
+coming from the trees themselves.  The path seems to head off to the south and
+to the west.  Strange visions continue to fill your head.
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 21588
+D3
+~
+~
+0 0 21586
+S
+#21588
+Mystic Forest~
+You are walking through a dark, mysterious forest.  You cannot tell if you are
+walking in a straight line, or if the path curves.  The path appears to go to
+the north and to the east from here.  You still see visions of something in
+every direction, but you cannot make out what they are visions of.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 21587
+D1
+~
+~
+0 0 21589
+S
+#21589
+Mystic Forest~
+You are walking through a dark, mysterious forest.  Your senses are somewhat
+disoriented, seeing strange visions wherever you look.  You wander aimlessly
+through it, not knowing for sure which direction you walk.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 21491
+D3
+~
+~
+0 0 21588
+S
+#21590
+Forest Shrine~
+You have entered a forest shrine.  An incredibly large tree, wider than most
+houses, its directly in front of you.  There is a winding stairwell leading
+up the tree, or you can go to the south.  You can see a dense fog quite the
+ways above you.
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 21585
+D4
+~
+~
+0 0 9043
+S
+#21591
+Lava Flow~
+You are hovering above hot lava.  The path lies to your southeast.  You
+had better not stay here very long.  The walls are very well worn, through
+years of erosion.
+~
+0 268435456 9
+Rd     100
+D1
+~
+~
+0 0 21520
+D2
+~
+~
+0 0 21517
+S
+#21592
+Inn Room~
+You are inside the only room of this Inn.  A large door rests on the south
+wall, easily closeable for privacy.  You find it odd that there are no windows
+or any source of light here however, perhaps it is so the room remains totally
+dark.  This room is eerily quiet.
+~
+0 8537097 0
+Rd     0
+D2
+~
+~
+3 0 21532
+S
+#21593
+The Docks~
+You are standing on the docks of the new continent.  The docks continue to
+the mainland to the west, it is the only way to go.  You can see the main
+continent far to the east.  You take a moment to breathe the fresh air, the
+smell of nature filling your lungs.  You let out a sigh of relief.
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 21473
+S
+#21594
+The Docks~
+You are out further on the docks.  The mainland is back the way you came, to
+the west.  You have a sense that you have just stumbled onto something
+marvelous and huge.  Perhaps this new area deserves some exploration.
+~
+0 4 0
+Rd     0
+D4
+~
+~
+0 0 4704
+S
+#21595
+Bank~
+You have entered the bank.  A large counter extends along the east wall, and
+an archway leads back out to the street to the west.  The floor and walls are
+impecably clean here.
+~
+0 16778240 0
+Rd     0
+D3
+~
+~
+0 0 21537
+S
+#21596
+The Repair Smithy~
+You are in the repair shop.  A large forge can be seen in the northeast
+corner of the room, and a counter stretches along the entire east wall. 
+Greetz is usually here to repair your things.  An archway lies to the west,
+leading back to Forge Way.  
+~
+0 67109896 0
+Rd     0
+D3
+~
+~
+0 0 21457
+S
+#21597
+null~
+~
+0 12 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 21408 spec_healer
+M 21415 spec_cast_undead
+M 21417 spec_cast_undead
+M 21418 spec_cast_undead
+M 21420 spec_cast_psionicist
+M 21421 spec_cast_undead
+M 21429 spec_cast_ghost
+S
+
+
+
+#RESETS
+M 0 21409 1 21449
+G 0 21419 0
+G 0 21420 0
+O 0 21441 0 21449
+O 0 21444 0 21449
+M 0 21408 1 21452
+E 0 21417 0 16
+E 0 21418 0 20
+E 0 21418 0 21
+M 0 21407 1 21453
+G 0 21413 0
+G 0 21414 0
+M 0 21406 1 21454
+G 0 21410 0
+G 0 21411 0
+G 0 21412 0
+O 0 21442 0 21454
+O 0 21415 0 21455
+M 0 21425 1 21455
+E 0 21438 0 20
+E 0 21439 0 12
+E 0 21440 0 13
+M 0 21426 1 21455
+E 0 21439 0 12
+M 0 21403 1 21458
+M 0 21404 1 21460
+E 0 21406 0 20
+E 0 21408 0 3
+O 0 21405 0 21460
+M 0 21405 1 21461
+G 0 21407 0
+G 0 21409 0
+M 0 21430 1 21463
+O 0 21416 0 21463
+O 0 21403 0 21473
+O 0 21404 0 21473
+M 0 21401 1 21473
+E 0 21401 0 3
+E 0 21402 0 20
+O 0 21404 0 21481
+O 0 21404 0 21482
+O 0 21404 0 21483
+O 0 21404 0 21484
+O 0 21454 0 21485
+O 0 21404 0 21486
+O 0 21451 0 21507
+O 0 21451 0 21509
+O 0 21451 0 21510
+O 0 21451 0 21512
+O 0 21451 0 21513
+O 0 21451 0 21515
+O 0 21451 0 21516
+O 0 21451 0 21517
+O 0 21451 0 21518
+O 0 21451 0 21519
+O 0 21451 0 21520
+M 0 21427 1 21528
+E 0 21438 0 20
+E 0 21439 0 12
+E 0 21440 0 13
+M 0 21428 1 21528
+E 0 21438 0 20
+E 0 21439 0 12
+E 0 21440 0 13
+O 0 21449 0 21528
+M 0 21410 1 21530
+G 0 21421 0
+G 0 21422 0
+G 0 21424 0
+O 0 21443 0 21530
+O 0 21445 0 21530
+M 0 21411 1 21532
+G 0 21423 0
+G 0 21425 0
+G 0 21426 0
+G 0 21427 0
+O 0 21443 0 21532
+M 0 21412 1 21533
+O 0 21452 0 21533
+M 0 21413 1 21534
+E 0 21428 0 18
+E 0 21428 0 19
+E 0 21429 0 20
+E 0 21429 0 21
+G 0 21435 0
+M 0 21414 1 21535
+O 0 21430 0 21535
+O 0 21448 0 21535
+O 0 21447 0 21535
+O 0 21445 0 21535
+M 0 21402 1 21542
+E 0 21402 0 20
+E 0 21401 0 3
+O 0 21403 0 21542
+O 0 21404 0 21542
+M 0 21422 1 21551
+O 0 21451 0 21591
+O 0 21446 0 21592
+O 0 21444 0 21592
+O 0 21441 0 21592
+O 0 21448 0 21592
+O 0 21404 0 21593
+M 0 21433 1 21594
+E 0 21401 0 3
+E 0 21402 0 20
+O 0 21455 0 21594
+O 0 21404 0 21594
+M 0 21423 1 21595
+M 0 21424 1 21596
+S
+
+
+
+#SHOPS
+21403 8 30 13 0 0 110 90 0 24
+21405 9 0 0 0 0 110 90 0 24
+21406 19 26 31 17 0 110 90 0 24
+21407 0 5 0 0 0 110 90 0 24
+21409 17 0 0 0 0 110 90 0 24
+21410 17 0 0 0 0 110 90 0 24
+21411 17 26 31 19 0 110 90 0 24
+21416 17 0 0 0 0 110 90 0 24
+21421 0 0 0 0 0 130 80 0 24
+0
+
+
+
+#$

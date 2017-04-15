@@ -1,0 +1,2120 @@
+#AREADATA
+Name        {80-100} Stone Caverns       Argonath~
+Levels      80 100
+Builders    None~
+VNUMs       30500 30599
+Security    99
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#30500
+guard stone~
+A Stone Guard~
+A tall solidly build stone guard, stands here guarding the peace.
+~
+A huge guard that stands at about 20 feet tall.
+He is here to guard his master Aslond and
+all the citizens within these great stone caverns.
+He looks like someone that could dispence justice easily.
+Someone that you would not like to be on the wrong
+side with.
+~
+65 67109064 0 1000 S
+95 0 0 17875d0+0 0d0+0
+600 0 0 0
+0 0 1
+65699 0 0
+>fight_prog 35~
+stun
+~
+>greet_prog 100~
+if isimmort($n) == 1
+   bow $n
+else
+if ispc($n) ==1 
+    flex
+else
+endif
+endif
+~
+|
+#30501
+soldier~
+A Stone Soldier~
+A Stone Soldier patrols here....
+~
+The soldier doesn't look as tough as the guards...
+He is used for campaigns... so he has a fair bit of combat experience.
+~
+65 100663296 0 1000 S
+94 0 0 17550d0+0 0d0+0
+550 0 0 0
+0 0 0
+0 0 0
+#30502
+no name~
+(no short description)~
+(no long description)
+~
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#30507
+Lord Aslond~
+Lord Aslond~
+Lord Aslond stares at you in deep thought.
+~
+Lord Aslond king of the stone people sits here proudly on his throne. 
+You can see the scars of many wars and battles on his armour, you sense he
+is a man of infinate wisdom.  He stands at about 8 feet tall and is just
+about as wide a very lard warrior and one you hope you will never have to
+fight.  He carries the sword of the ancients, a very old sword from people
+that no longer bless this world..  
+~
+67 234897576 0 1000 S
+109 0 0 20650d0+0 0d0+0
+2330 0 0 0
+0 0 1
+67747 0 0
+>greet_prog 100~
+if ispc($n) == 1
+  glare $n
+   'Be Careful in my kingdom $n
+endif
+~
+>death_prog 100~
+yell I have fallen!, $n has taken my life
+emote summons the last of his energy
+cast 'gas breath'
+~
+>rand_prog 7~
+emote looks down at the floor in thought, then revives himself.
+cast 'complete heal'
+~
+>fight_prog 20~
+say You shall pay for this attack with your life!
+cast 'dispel magic' $n
+mpoload 30510
+mpoload 30510
+quaff potion
+quaff potion
+~
+>fight_prog 25~
+say Now you will suffer young fool!!
+stun
+~
+>fight_prog 23~
+~
+>fight_prog 16~
+mpoload 30510
+quaff potion
+mpoload 30510
+quaff potion
+'Ahhhhhh
+~
+>fight_prog 15~
+emote raises his hands and draws on ancient energy
+mpoload 30511
+quaff potion
+~
+>rand_prog 5~
+emote eyes glow as he draws on ancient energy
+mpoload 30511
+quaff potion
+~
+>fight_prog 1~
+cast 'entangle' $n
+~
+>rand_prog 4~
+Say $r, have you found my lost visor? or the gem that joins with my visor?
+~
+>speech_prog p visor~
+say Yes, long ago attempting to trap Lyron into the dungeon I had a visor.  This visor helped me win many battles by greatly enhancing my defensive abilities.
+say One day in one of my great battles against the mighty dragon, Lyron took my visor, broke the visor in two using his magic and spread it across my kingdom.  
+say and I've been looking for it ever since.
+sigh
+~
+|
+#30509
+captain guard maleechan~
+Captain of the Guards~
+Maleechan the Captain of the guards patrols here.
+~
+He is huge......
+He is one battle hardened warrior and knows how to command his guards.
+~
+67 33636544 0 1000 S
+104 0 0 25000d0+0 0d0+0
+1730 0 0 0
+0 0 1
+2467 0 0
+>fight_prog 35~
+stun
+~
+>greet_prog 100~
+if isimmort($n) == 1
+bow $n
+else
+if ispc($n) == 1
+glare $n
+else
+endif
+endif
+~
+|
+#30510
+citizen stone~
+a Stone citizen~
+A stone citizen walks along happily.
+~
+One of the many citizens of the stone caverns.
+Standing at about 11 feet it is pretty tall.
+~
+65 16512 0 1000 S
+92 0 0 16900d0+0 0d0+0
+450 0 0 0
+0 0 0
+35 0 0
+>greet_prog 100~
+if isimmort($n) == 1
+bow $n
+else
+if ispc($n) == 1
+shake $n
+else
+endif
+endif
+~
+|
+#30511
+Gry Weaponsmith~
+A Retired Weaponsmith.~
+Gry the retired weaponsmith stands here.
+~
+Gry is covered in scars from his duties as blacksmith here.  He is one of
+the few humans you have seen in this area and you wonder why he is here. 
+Although he is getting on in age he looks a formidable opponent.  
+~
+67 12 0 1000 S
+93 0 0 26500d0+0 0d0+0
+500 0 0 0
+0 0 1
+0 0 0
+>fight_prog 35~
+emote Cries out in an ancient warcry.
+stun $n
+kick $n
+~
+>greet_prog 100~
+if isimmort($n) == 1
+bow $n
+else
+if ispc($n) == 1
+sigh
+else
+endif
+endif
+~
+|
+#30515
+child stone~
+A Stone child~
+A Stone child looks at you.
+~
+The stone child is not that small at all...
+Still standing at about 7 feet tall...
+~
+65 16384 0 1000 S
+93 0 0 21200d0+0 0d0+0
+500 0 0 0
+0 0 0
+35 0 0
+>rand_prog 4~
+look $n
+emote runs over and kicks you
+giggle
+~
+>greet_prog 100~
+if isimmort($n) == 1
+bow $n
+else
+if ispc($n) == 1
+look $n
+else
+endif
+endif
+~
+|
+#30516
+elysac wine~
+Elysac the wine maker~
+Elysac the wine maker stands here tet some wine.
+~
+~
+16451 0 0 0 S
+102 0 0 38000d0+0 0d0+0
+1490 0 0 0
+0 0 0
+3 0 0
+>greet_prog 100~
+if isimmort($n) == 1
+bow $n
+else
+if ispc($n) == 1
+emote hides his wine and tries to ignore you.
+else
+endif
+endif
+~
+|
+#30519
+Raxnon advisor~
+a military advisor~
+Raxnon the military advisor is here considering strategies
+~
+A very tall stone figure.  You can see that he has been thru many
+battles.  He looks very strong and although probably not as fast as he might
+have been, he would still make a formidable foe. 
+~
+67 16600 0 700 S
+99 0 0 15500d0+0 0d0+0
+1000 0 0 0
+0 0 1
+419 0 0
+>fight_prog 30~
+~
+>greet_prog 100~
+glare $n
+~
+|
+#30541
+kython warrior~
+Kython~
+Kython the traitorous stone warrior stands here.
+~
+He is nearly as big as Maleechan.
+He looks very angry and is set upon revenge.
+He is out to destroy everything.
+~
+97 136 0 -1000 S
+100 0 0 25600d0+0 0d0+0
+1250 0 0 0
+0 0 1
+65571 0 0
+>greet_prog 100~
+else
+if isimmort($n) == 1
+   bow $n
+else
+if ispc($n) ==1 
+     say &RAHHHHHHHHHHH!!!! FRESH MEAT!!!
+else
+endif
+endif
+~
+|
+#30544
+Orc~
+A huge orc~
+A huge ugly orc snarls at you and charges.
+~
+This orc is huge and is very ugly as well..
+~
+97 67109000 0 -700 S
+98 0 0 19500d0+0 0d0+0
+900 0 0 0
+0 0 0
+0 0 0
+>fight_prog 15~
+cast 'blindness' $n
+~
+>greet_prog 100~
+if isimmort($n) == 1
+bow $n
+else
+if ispc($n) == 1
+cheer $n
+say &R COMEON!!!  Just try and beat me.
+else
+endif
+endif
+~
+|
+#30554
+dog guard~
+A huge guard dog~
+A huge guard dog of lyron foams at the mouth.
+~
+Wow this dog is down right vicious...
+Here to protect its master lyron the mighty dragon.
+~
+97 33661576 0 -1000 S
+98 0 0 19500d0+0 0d0+0
+900 0 0 0
+0 0 0
+0 0 0
+>greet_prog 100~
+if isimmort($n) == 1
+bow $n
+else
+if ispc($n) == 1
+bark
+else
+endif
+endif
+~
+|
+#30565
+lyron dragon~
+Lyron the mighty dragon~
+Lyron the mighty dragon looks at you.
+~
+This dragon is huge.....
+It looks down at you from its 50 foot advantage.
+~
+67 101187752 0 -1000 S
+104 0 0 22000d0+0 0d0+0
+1730 0 0 0
+0 0 0
+387 0 0
+>greet_prog 100~
+if isimmort($n) == 1
+bow $n
+else
+if ispc($n) == 1
+say Welcome to my lair $n.
+else
+endif
+endif
+~
+|
+#30599
+Ferry man~
+A ferry man~
+A Ferry man stands here..
+~
+A man dressed in tattered clothes....
+Although he may not be as poor as he likes people to believe...
+~
+67 552 0 1000 S
+109 0 0 59000d0+0 0d0+0
+2330 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+look $n
+say Ahhhhh a traveller....Welcome
+say I will take you across the river for a small fee of....
+say 200,000 gold.. As far as I know I am the only way...
+~
+>bribe_prog 200000~
+say Ahhh I can afford to buy some new clothes for my family..
+say You will need this as I only make one way trips...
+mpoload 30599
+give scroll $n
+emote paddles out into the low lying mist in the river..
+say Take care.. you are here....
+mptransfer $n 30598
+yell ahhhh I just ripped $n off muhahaha
+~
+|
+#0
+
+
+
+#OBJECTS
+#30500
+stone Armour~
+stone Armour~
+An incredible suit of stone armour lies here.~
+~
+9 268437506 6183 51582 9 95
+-95~ 0~ 0~ 0~
+20 600 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 95
+A
+2 -2
+A
+17 -95
+A
+24 -5
+A
+23 -5
+E
+armor~
+The armor is made of a mirror-like rock.  You wonder how one can move is such an armor.
+~
+E
+armour~
+&. The armor is made of a mirror-like rock.  You wonder how one can move is such an armor.
+~
+E
+stone~
+&. The armor is made of a mirror-like rock.  You wonder how one can move is such an armor.
+~
+>buy_prog 100~
+0
+say &. Your great deed  will not go to waste.  I shall protect you to the best of my abilities.
+~
+>drop_prog 100~
+0
+sniff
+~
+>get_prog 100~
+0
+woo
+~
+>give_prog 100~
+0
+grimace $n
+~
+|
+#30501
+amulet stone~
+a stone amulet~
+A very small stone amulet lies here in the dust.~
+~
+9 2050 0 0 4097 90
+-89~ 0~ 0~ 0~
+10 350 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 2
+A
+12 40
+A
+25 40
+A
+17 -5
+A
+24 -5
+>get_prog 100~
+0
+cheer $n
+~
+>drop_prog 100~
+0
+cry
+~
+|
+#30502
+Central Fountain~
+a fountain~
+You see a large fountain here.~
+~
+25 0 0 0 0 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#30503
+Visor~
+aslond's Ancient Visor~
+An Ancient visor sits in a corner under a broken panel in the wall.~
+~
+8 1 0 0 1 100
+0~ 0~ 0~ 0~
+20 3 0 0 0
+0 0
+reserved~
+0 0
+30513 0 0
+E
+visor~
+It seems that Aslond lost a visor many years ago and this would be that very visor.  There is room for a stone in the middle.  You wonder as to what kind of power this visor hold if it is joined with it's special stone.
+~
+#30504
+stone sword~
+a Stone Sword~
+A stone sword lies here~
+~
+5 2050 6197 0 8193 90
+0~ 0~ 0~ 3~
+10 350 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 30
+A
+12 30
+A
+18 144
+>get_prog 100~
+0
+woo $n
+~
+>drop_prog 100~
+0
+slap $n
+~
+|
+#30505
+royal vest~
+a royal vest~
+A royal stone vest lies here.~
+~
+9 2050 5169 51582 9 100
+0~ 0~ 0~ 0~
+10 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 20
+A
+24 -5
+A
+23 -5
+A
+17 -100
+>get_prog 100~
+0
+ooo
+~
+>drop_prog 100~
+0
+sigh
+~
+|
+#30506
+stone ring~
+a stone ring~
+A small ring made out of stone lies here.~
+~
+9 1058 0 0 3 99
+0~ 0~ 0~ 0~
+10 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+A
+12 99
+A
+13 99
+A
+2 1
+E
+ring~
+&. The ring looks as though it was carved from a simple rock and has a strange symbol that seems to be drawing energy towards it.
+~
+>get_prog 100~
+0
+clap
+~
+>drop_prog 100~
+0
+ack
+~
+|
+#30507
+sword aslond~
+lord Aslond's Sword~
+A shining stone sword lies here of incredible quality.~
+~
+5 536888643 5175 0 8193 100
+0~ 26~ 0~ 3~
+10 0 0 0 0
+5 0
+dispel magic~
+5 5
+0 0 0
+A
+12 50
+A
+18 170
+A
+19 200
+A
+17 -5
+A
+26 10
+>get_prog 100~
+0
+strut
+~
+>drop_prog 100~
+0
+gasp
+~
+|
+#30508
+stone Anklets~
+stone Anklets~
+Some skillfully crafted anklets lie here on the ground~
+~
+9 2 0 0 1048577 100
+0~ 0~ 0~ 0~
+15 800 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 35
+A
+25 40
+A
+12 40
+A
+17 -20
+E
+anklets~
+&. Some old and skillfully crafted anklets seem to be drawing energy from all around you.
+~
+>get_prog 100~
+0
+cackle
+~
+>drop_prog ~
+0
+twiddle
+~
+|
+#30509
+crown white stone~
+a white coloured stone crown~
+A very dull white stone crown sits here~
+~
+9 1024 0 4992 17 100
+0~ 0~ 0~ 0~
+15 500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 75
+A
+23 -5
+A
+24 -5
+A
+17 -20
+E
+crown~
+&. This strange crown has a faint white glow.
+~
+>get_prog 100~
+0
+flex
+~
+>drop_prog 100~
+0
+scream
+~
+|
+#30510
+heal potion~
+a potion of healing~
+A wicked looking potion lies here~
+~
+10 268435456 0 0 1 100
+100~ complete healing~ complete healing~ complete healing~
+10 1200 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#30511
+Stone potion~
+a stone potion~
+A stone potion lies here~
+~
+10 268435456 0 0 1 100
+0~ sanctuary~ fireshield~ reserved~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#30512
+Stone~
+&CLord Aslond's lost &RGem&C.~
+&.A stone lies here on the ground collecting dust.~
+~
+8 1 0 0 1 100
+0~ 0~ 0~ 0~
+20 5 0 0 0
+0 0
+reserved~
+0 0
+30513 0 0
+#30513
+Stone Visor~
+the Ancient Stone Visor~
+&.A strange visor lies on the ground here.~
+~
+27 1 0 0 131073 100
+100~ -1~ 0~ identify~
+20 2 0 0 0
+0 0
+reserved~
+0 0
+0 30512 30503
+A
+17 -100
+A
+24 -5
+A
+23 -5
+A
+13 100
+A
+12 100
+E
+visor~
+Joining the two objects formed an ancient visor used by Lord Aslond to fight the evil forces whom dared enter his realm.
+~
+#30514
+no name~
+(no short description)~
+(no description)~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#30515
+sabre sturm~
+a Sturm sabre~
+A Sturm sabre has been dug into the ground~
+~
+5 2049 4151 0 8193 100
+0~ 0~ 0~ 3~
+15 800 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 10
+A
+18 100
+A
+19 100
+A
+24 -5
+A
+23 -5
+>get_prog 100~
+0
+eh
+~
+>drop_prog 100~
+0
+bonk $n
+~
+|
+#30516
+bottle wine~
+a bottle of wine~
+A bottle of Old wine sits here~
+~
+17 0 0 0 1 1
+4~ 4~ 2~ 1~
+2 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bottle~
+Upon looking at this bottle you don't think it's wise to drink what is inside.  It seems to have been sitting there for awhile.
+~
+#30519
+helmet~
+a dark helmet~
+A strange dark helmet hovers above the ground.~
+~
+9 2 0 7040 17 95
+40~ 0~ 0~ 0~
+15 500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -40
+A
+24 -5
+A
+23 -5
+A
+13 20
+>get_prog 100~
+0
+dive
+~
+>drop_prog 100~
+0
+wave $n
+~
+|
+#30541
+stone leggings~
+stone leggings~
+A pair of black stone leggings seems to float here.~
+~
+9 3138 0 0 33 90
+-80~ 0~ 0~ 0~
+0 350 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 50
+A
+110 -1
+A
+17 -90
+>get_prog 100~
+0
+bleah
+~
+>drop_prog 100~
+0
+blah
+~
+|
+#30564
+tiny sphere~
+a tiny sphere~
+A tiny sphere floats above the ground~
+~
+9 2 0 0 32769 100
+0~ 0~ 0~ 0~
+0 1000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 50
+A
+17 -40
+A
+13 80
+>get_prog 100~
+0
+ponder
+~
+>drop_prog 100~
+0
+mock $n
+~
+|
+#30565
+gauntlets~
+the Ancient gauntlets~
+An ancient pair of gauntlets is lying here~
+~
+9 603983872 0 0 129 95
+-80~ 0~ 0~ 0~
+5 600 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 95
+A
+17 -95
+A
+19 5
+A
+23 -5
+A
+24 -5
+E
+ancient~
+You see Lyron's Ancient Gauntlets, some say it's been responsible for the death of 100 warriors who tried to claim it.
+~
+>get_prog 100~
+0
+woo
+~
+>drop_prog 100~
+0
+say May a thousand flees infest your undergarments.
+~
+|
+#30599
+scroll recall~
+a scroll of recall~
+A scroll of recall lies here.~
+~
+2 2 0 0 16385 80
+80~ word of recall~ reserved~ reserved~
+1 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#30500
+Cavern Entrance~
+&w&C&cYou are at the entrance of a huge hall, the ceiling must be at least
+seventy feet high.  The stone work of the walls is of incredible quality and
+looks like it has been here since the beginning of time.  Although the hall
+is lit by a few lanterns on the walls, it is still rather dim.  The great
+hall continues to the North 
+~
+0 131084 0
+Rd     0
+D0
+~
+~
+0 0 30501
+D2
+~
+~
+0 0 30598
+S
+#30501
+Grand Hall~
+&w&cLike the entrance you feel overwhelmed by the sheer height and vastness
+of this undergound hall.  You notice it is getting lighter and you think you
+can hear the faint sound of a fountain to the North.  You can see the
+entrance to the South.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30502
+D2
+~
+~
+0 0 30500
+S
+#30502
+Fountain Room~
+&w&cThis room is dominated by a fountain in the center.  A huge stone statue
+marks the middle of the fountain.  You can make out a room to the West, and
+the hall continues to the North.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30504
+D2
+~
+~
+0 0 30501
+D3
+~
+~
+0 0 30503
+S
+#30503
+Old Guard Room~
+&OYou can tell by the old armour lying around that this room was
+obviously at one stage a guard room.  The armour looks of fine quality but
+sadly it is now to old and broken to be of any use to you.  You see a
+trapdoor leading down.  
+~
+0 131080 0
+Rd     0
+D1
+~
+~
+0 0 30502
+D5
+~
+trap trapdoor~
+3 0 30523
+S
+#30504
+Gate Room~
+&w&c &cYou stand before a huge stone door which reaches to the full height of
+the cavern.  The door looks like it has been the target of a few military
+assaults, but has obviously withstood easily against these assaults. &cYou
+&csee a &Osign&c has been etched into the door.
+~
+0 131080 0
+Rd     0
+E
+sign~
+We welcome all those that come in peace.  Those that seek trouble will be
+dealt with severely and quickly.  Maleechan - Captain of the Guards,
+Protector of the mighty stone lord Aslond.  
+~
+D0
+~
+door~
+3 0 30505
+D2
+~
+~
+0 0 30502
+S
+#30505
+Junction Hall~
+&w&cYou stand in the middle of some sort of intersection.  To the North you
+see lights shining strong.  To the South you see the entrance gate, while
+long halls leads East and West of here.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30506
+D1
+~
+~
+0 0 30520
+D2
+~
+door~
+3 0 30504
+D3
+~
+~
+0 0 30508
+S
+#30506
+Aslonds Waiting Room~
+&w&cYou stand outside the throne room of Aslond.  There is a beautiful red
+carpet under your feet that leads into the next room.  The room is is lit by
+skillfully crafted lanterns The walls have been painted with many battle
+scenes in which Aslond is seen as a great hero.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30507
+D2
+~
+~
+0 0 30505
+S
+#30507
+Throne Room~
+&z You are in the throne room of Lord Aslond.  You see that the room is
+not like other throne rooms you have visited in that it seems rather dull. 
+The only sign that this is the throne room is the red carpet leading to the
+large stone chair which obviously Aslond sits on when he is here.  The room
+is not even that well lit.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30566
+D2
+~
+~
+0 0 30506
+S
+#30508
+Main Hall~
+&CYou are standing in the main hall.  It stretches as far as the eye can
+see to the west and east.  It is well lit by large lanterns hanging from the
+walls it is easy to see the skillful work of the artists who have decorated
+the walls..  
+~
+0 131080 0
+Rd     0
+D1
+~
+~
+0 0 30505
+D3
+~
+~
+0 0 30509
+S
+#30509
+Main Hall~
+&CYou are standing in the main hall.  It stretches as far as the eye can
+see to the west and east.  It is well lit by large lanterns hanging from the
+walls it is easy to see the skillful work of the artists who have decorated
+the walls..  
+~
+0 131080 0
+Rd     0
+D1
+~
+~
+0 0 30508
+D3
+~
+~
+0 0 30510
+S
+#30510
+Main Hall~
+&CYou are standing in the main hall.  It stretches as far as the eye can
+see to the west and east.  It is well lit by large lanterns hanging from the
+walls it is easy to see the skillful work of the artists who have decorated
+the walls..  
+You see what looks like to be a weapon shop to the north
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30511
+D1
+~
+~
+0 0 30509
+D2
+~
+~
+0 0 30512
+D3
+~
+~
+0 0 30513
+S
+#30511
+Old Weapon Shop~
+&wYou stand in the old weapon shop.  You see all sorts of old weapons lying
+around but they are covered in rust and are of no use to anyone now. 
+Weapons have obviously not been made here in a long time.  
+~
+0 131080 0
+Rd     0
+D2
+~
+~
+0 0 30510
+S
+#30512
+Quarters~
+&wYou are in what seems to be some sleeping quarters.  Some dirty shirts
+and pants are scattered about the floor.  Tossed in a corner you see a pair
+of worn out boots, the bunks have seen better days.  A smell of sleep hangs
+in the air.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30510
+S
+#30513
+Western Hall~
+&CYou are standing in the western part of the main hall.  It stretches as
+far as the eye can see to the west and east.  It is well lit by large
+lanterns hanging from the walls it is easy to see the skillful work of the
+artists who have decorated the walls..  
+~
+0 131080 0
+Rd     0
+D1
+~
+~
+0 0 30510
+D3
+~
+~
+0 0 30514
+S
+#30514
+Western Hall~
+&CYou are standing in the western part of the main hall.  It stretches as
+far as the eye can see to the west and east.  It is well lit by large
+lanterns hanging from the walls it is easy to see the skillful work of the
+artists who have decorated the walls..  
+You can see a small corridor off to the south.
+~
+0 131080 0
+Rd     0
+D1
+~
+~
+0 0 30513
+D2
+~
+~
+0 0 30517
+D3
+~
+~
+0 0 30515
+S
+#30515
+Western Hall~
+&CYou are standing in the far western part of the main hall.  It stretches
+as far as the eye can see to the east.  It is well lit by large lanterns
+hanging from the walls it is easy to see the skillful work of the artists
+who have decorated the walls..  
+To the west you see what looks like a wine makers shop.
+~
+0 131080 0
+Rd     0
+D1
+~
+~
+0 0 30514
+D3
+~
+~
+0 0 30516
+S
+#30516
+Wine Makers Shop~
+&rYou stand inside a wine makers shop.  You can see various sorts of
+equipment lying around and a long table from which the shopkeeper obviously
+sells his wines.  There looks to be a few bottles of wine lying around.  
+~
+0 71467016 0
+Rd     0
+D1
+~
+~
+0 0 30515
+S
+#30517
+Southern Hallway~
+&OYou stand in the Southern hall.  You notice that this hall has no
+lights at all.  You hear a voice booming orders to someone to the South.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30514
+D2
+~
+~
+0 0 30518
+S
+#30518
+Southern Hallway~
+&OThis corridor is dark, no torches or lanterns on the wall.  The floor
+looks somewhat worn out, and sometimes you hear the roaring voice of an
+officer to the South.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30517
+D2
+~
+~
+0 0 30519
+S
+#30519
+Strategy Room~
+&w&OYou see a large old wooden table in the middle of the room.  The table
+has a lot of maps on it and lists of armies.  Obviously this is where the
+generals meet to decide on strategies for offensives.  There are some
+paintings around the room of what looks like some warriors.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30518
+S
+#30520
+Eastern Hallway~
+&w&R&zYou are in the eastern part of the great hall.  To the West you can see
+the main junction.  The hall continues to the East.  
+~
+0 131080 0
+Rd     0
+D1
+~
+~
+0 0 30521
+D3
+~
+~
+0 0 30505
+S
+#30521
+Eastern Hallway~
+&w&zYou are in the eastern part of the great hall, and to the West you can
+see the main hall stretching out as far as the eye can see.  The hall looks
+to be running into a dead end to the East.  
+~
+0 131080 0
+Rd     0
+D1
+~
+~
+0 0 30522
+D3
+~
+~
+0 0 30520
+S
+#30522
+Eastern Hallway~
+&w&zThis is the end of the eastern hallway.  A pile of bones is laying in
+the corner, some of them still have chains on them.  In the dim light you
+can see an exit to the North.  
+~
+0 131080 0
+Rd     0
+D0
+~
+~
+0 0 30533
+D3
+~
+~
+0 0 30521
+S
+#30523
+Wine Cellar~
+&OThis is a wine cellar.  Racks of ancient wine bottles are stacked up
+against the wall, but all the bottles are empty.  Some bottles are scattered
+about the floor, and you see a pile of vine labes in a corner.  The dust
+tickles your nose, along with the smell of old vinegar.  
+~
+0 9 0
+Rd     0
+D4
+~
+trap trapdoor~
+3 0 30503
+S
+#30533
+Stairs to Dungeon~
+&w&zYou are standing at the top of some stairs.  Looking down you can see the
+stairs descending down into what looks like a dark dark dungeon.  You can
+see a sign hanging on the wall.  
+~
+0 131080 0
+Rd     0
+E
+sign~
+Dungeons are off limits to all citizens.
+Guards must only enter in groups of no less than four.
+This is due to prisoners having escaped from their cells.
+Aggressive prisoners are at loose.
+ 
+Maleechan - Captain of the Guards.
+~
+D2
+~
+~
+0 0 30522
+D5
+~
+~
+0 0 30534
+S
+#30534
+Bottom of dungeon stairs~
+You stand at the bottom of the dungeon stairs.
+It is very dark down here, as there are no lanterns or light sources around.
+You can smell the dampness of the dungeon.
+To the east a small passage wanders off to somewhere.
+~
+0 131085 0
+Rd     0
+D1
+~
+~
+0 0 30535
+D4
+~
+~
+0 0 30533
+S
+#30535
+A Small Passage~
+Your body brushes against the walls, this passage is narrow.  You hear
+strange noises from the East, and a cold draft blows through the passage. 
+To the West you can make out some stairs.  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 30536
+D3
+~
+~
+0 0 30534
+S
+#30536
+A Small Passage~
+The small passage continues and grows colder and more mysterious.
+You can see some sort of intersection to the east.
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 30537
+D3
+~
+~
+0 0 30535
+S
+#30537
+Dungeon Intersection~
+You are in at some sort of t-intersection.  The small passage continues
+to the West and East.  There is what looks like a main passage to the South
+and you think you can make out cells in the distance....  
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 30551
+D2
+~
+~
+0 0 30538
+D3
+~
+~
+0 0 30536
+S
+#30538
+Main Passage~
+You are at the northern end of the main passage of the dungeons.
+It is very wet down here, you can see rats running around your feet.
+The main passage runs further south and you can see cell doors further south.
+To the north you can see the dungeon intersection.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30537
+D2
+~
+~
+0 0 30539
+S
+#30539
+Main Passage~
+You are at the northern end of the main passage of the dungeons.
+It is very wet down here, you can see rats running around your feet.
+The main passage runs further south and you can see cell doors further south.
+To the north you can see the dungeon intersection.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30538
+D2
+~
+~
+0 0 30540
+S
+#30540
+Main Passage~
+You are in the middle of the main passage.
+The dungeon has a strange feeling to it....
+You can see cell doors to the west and east.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30539
+D1
+~
+cell~
+3 0 30542
+D2
+~
+~
+0 0 30543
+D3
+~
+cell~
+3 0 30541
+S
+#30541
+A Cell~
+&rYou are in a dark damp smelly cell.  It's not that big at all...  There is
+a wooden plank that runs along the wall that is meant to be a bed..  Even
+with your light you have to struggle to see anything.  
+~
+0 131081 0
+Rd     0
+D1
+~
+cell~
+3 0 30540
+S
+#30542
+A Cell~
+&rYou are in a dark damp smelly cell.  It's not that big at all...  There is
+a wooden plank that runs along the wall that is meant to be a bed..  Even
+with your light you have to struggle to see anything.  
+~
+0 9 0
+Rd     0
+D3
+~
+cell~
+3 0 30540
+S
+#30543
+Main Passage~
+You are in the middle of the main passage.
+The dungeon has a strange feeling to it....
+You can see cell doors to the west and east.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30540
+D1
+~
+cell~
+3 0 30545
+D2
+~
+~
+0 0 30546
+D3
+~
+cell~
+3 0 30544
+S
+#30544
+A Cell~
+&rYou are in a dark damp smelly cell.  It's not that big at all...  There is
+a wooden plank that runs along the wall that is meant to be a bed..  Even
+with your light you have to struggle to see anything.  
+~
+0 9 0
+Rd     0
+D1
+~
+cell~
+3 0 30543
+S
+#30545
+A Cell~
+&rYou are in a dark damp smelly cell.  It's not that big at all...  There is
+a wooden plank that runs along the wall that is meant to be a bed..  Even
+with your light you have to struggle to see anything.  
+~
+0 9 0
+Rd     0
+D3
+~
+cell~
+3 0 30543
+S
+#30546
+Main Passage~
+Your in the main passage, a smell of wet stone lingers in the air. East and West you have cell doors.
+Your light flickers softly as a cold breeze runs from the North.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30543
+D1
+~
+cell~
+3 0 30548
+D2
+~
+~
+0 0 30549
+D3
+~
+cell~
+3 0 30547
+S
+#30547
+A Cell~
+&rYou are in a dark damp smelly cell.  It's not that big at all...  There is
+a wooden plank that runs along the wall that is meant to be a bed..  Even
+with your light you have to struggle to see anything.  
+~
+0 9 0
+Rd     0
+D1
+~
+cell~
+3 0 30546
+S
+#30548
+A Cell~
+&rYou are in a dark damp smelly cell.  It's not that big at all...  There is
+a wooden plank that runs along the wall that is meant to be a bed..  Even
+with your light you have to struggle to see anything.  
+
+~
+0 9 0
+Rd     0
+D3
+~
+cell~
+3 0 30546
+S
+#30549
+Southern Main Passage~
+You are near the southern end of the main passage.  Rubble lies
+everywhere, looks like the dungeon creation was interupted by something and
+has never been completed.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30546
+D2
+~
+~
+0 0 30550
+S
+#30550
+Southern end of Main Passage~
+You are at the southern end of the main passage.
+You can see stairs leading down that have been started but they have never been completed.
+To the north you can see the main passage and the cells.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30549
+S
+#30551
+Path to Lyron~
+You notice the dungeon is getting less damp. A little warmer as well.
+Moist run down from the narrow walls, creating dirty puddles on the floor.
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 30552
+D3
+~
+~
+0 0 30537
+S
+#30552
+Path to Lyron~
+You notice the dungeon is getting less damp. A little warmer as well.
+Moist run down from the narrow walls, creating dirty puddles on the floor.
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 30553
+D3
+~
+~
+0 0 30551
+S
+#30553
+Path to Lyron~
+You notice the dungeon is getting less damp. A little warmer as well.
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 30554
+D3
+~
+~
+0 0 30552
+S
+#30554
+Start of Lyron's Hall~
+This hall is beautiful, maybe even more so than the entrance and main
+hall to the stone caverns far above..  This is probably due to this part of
+the dungeon being under the control of Lyron the mighty dragon 
+To the south you can see the lair of the dragon himself.
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 30555
+D3
+~
+~
+0 0 30553
+S
+#30555
+Lyron's Hall~
+This hall is beautiful...  Maybe even more so than the entrance and main
+hall to the stone caverns far above.  This is probably due to this part of
+the dungeon being under the control of Lyron the mighty dragon To the south
+you can see the lair of the dragon himself.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30554
+D2
+~
+~
+0 0 30556
+S
+#30556
+Lyron's Hall~
+This hall is beautiful, maybe even more so than the entrance and main
+hall to the stone caverns far above..  This is probably due to this part of
+the dungeon being under the control of Lyron the mighty dragon 
+To the south you can see the lair of the dragon himself.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30555
+D2
+~
+~
+0 0 30557
+S
+#30557
+Lyron's Hall~
+This hall is beautiful, maybe even more so than the entrance and main
+hall to the stone caverns far above..  This is probably due to this part of
+the dungeon being under the control of Lyron the mighty dragon To the south
+you can see the lair of the dragon himself.  
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30556
+D2
+~
+~
+0 0 30558
+S
+#30558
+Lyron's Hall~
+This hall is beautiful, maybe even more so than the entrance and main
+hall to the stone caverns far above..  This is probably due to this part of
+the dungeon being under the control of lrong the mighty dragon 
+To the south you can see the lair of the dragon himself.
+To the east a passage wanders off to another part of the dungeon.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30557
+D1
+~
+~
+0 0 30559
+D2
+~
+~
+0 0 30564
+S
+#30559
+Hot Passage~
+&RThis passage seems rather hot for some reason....  Otherwise its prettu
+much just like the rest of the dungeon.  
+To the west you can see lyrons hall.
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 30560
+D3
+~
+~
+0 0 30558
+S
+#30560
+Hot Passage~
+&RThis passage seems rather hot for some reason....  Otherwise its prettu
+much just like the rest of the dungeon.  
+To the west you can see lyrons hall.
+~
+0 131081 0
+Rd     0
+D1
+~
+~
+0 0 30561
+D3
+~
+~
+0 0 30559
+S
+#30561
+End of passage~
+&RLooks like you have come to the end of the passage....
+Looks like it ends to the north and south.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30562
+D2
+~
+~
+0 0 30563
+D3
+~
+~
+0 0 30560
+S
+#30562
+A Dark Room~
+&RThe room is so dark that you cannot see a thing..
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 30561
+S
+#30563
+A Dark Room~
+&RThe room is so dark that you cannot see a thing..
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30561
+S
+#30564
+Lyron's Hall~
+This hall is beautiful, maybe even more so than the entrance and main
+hall to the stone caverns far above..  This is probably due to this part of
+the dungeon being under the control of lrong the mighty dragon 
+You can see the lair immediately to the south.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+0 0 30558
+D2
+~
+~
+0 0 30565
+S
+#30565
+Lyrons Lair~
+You stand in the lair of Lyron.  A massive room but then again it would
+have to be, to fit the mighty dragon Lyron.  You wonder how even the mighty
+stone people of Lord Aslond managed to capture such a powerfull dragon as
+Lyron.  
+~
+0 393225 0
+Rd     0
+D0
+~
+~
+0 0 30564
+S
+#30566
+Aslonds chambers~
+You are standing in Aslonds chambers...
+To the south you can see the huge throne upon where he rules his
+mighty kingdom..
+You feel you should leave, least he become angry at your intrusion.
+~
+0 131080 0
+Rd     0
+D2
+~
+~
+0 0 30507
+S
+#30570
+Argonaths Study~
+~
+0 4 0
+Rd     0
+S
+#30598
+The northern river bank~
+You find youself standing upon the northern river bank.  To the north of
+you, you see a large cavern cut into the base of an immense mountain.  As
+there is no other place to go, you may as well see what's inside.  
+~
+0 131072 4
+Rd     0
+D0
+~
+~
+0 0 30500
+S
+#30599
+Edge of Rylacs river~
+You are standing at the very edge of a huge and perilous looking river. 
+Looking across, you can't quite see what's on the other side, perhaps the
+ferryman would be able to enlighten you about what's across the way, and how
+to get there.  
+~
+0 6423556 4
+Rd     0
+D1
+~
+~
+0 0 562
+S
+#0
+
+
+
+#SPECIALS
+M 30500 spec_guard
+M 30501 spec_guard
+M 30507 spec_guard
+M 30509 spec_guard
+M 30510 spec_thief
+M 30554 spec_breath_frost
+M 30565 spec_breath_any
+S
+
+
+
+#RESETS
+M 0 30500 8 30500
+E 0 30500 0 5
+E 0 30504 0 20
+M 0 30501 6 30501
+E 0 30501 0 19
+O 0 30502 0 30502
+M 0 30501 6 30505
+E 0 30501 0 19
+M 0 30500 8 30506
+E 0 30500 0 5
+E 0 30504 0 20
+M 0 30507 1 30507
+E 0 30507 0 20
+E 0 30506 0 1
+E 0 30505 0 5
+E 0 30509 0 6
+M 0 30509 1 30509
+E 0 30508 0 25
+E 0 30515 0 20
+E 0 30515 0 21
+M 0 30500 8 30510
+E 0 30500 0 5
+E 0 30504 0 20
+M 0 30511 1 30511
+M 0 30510 6 30513
+M 0 30515 6 30513
+M 0 30516 1 30516
+O 0 30516 0 30516
+G 0 30516 0
+M 0 30510 6 30518
+M 0 30515 6 30518
+M 0 30519 1 30519
+E 0 30519 0 6
+E 0 30515 0 20
+M 0 30500 8 30520
+E 0 30500 0 5
+E 0 30504 0 20
+M 0 30501 6 30521
+E 0 30501 0 19
+O 0 30503 0 30523
+M 0 30554 1 30538
+M 0 30554 2 30539
+M 0 30554 4 30540
+M 0 30541 1 30541
+E 0 30541 0 11
+M 0 30554 2 30543
+M 0 30544 1 30544
+M 0 30554 2 30546
+O 0 30512 0 30548
+M 0 30554 1 30550
+M 0 30554 2 30554
+M 0 30565 1 30565
+G 0 30565 0
+E 0 30564 0 9
+M 0 30500 1 30566
+E 0 30500 0 5
+E 0 30504 0 20
+M 0 30599 1 30599
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

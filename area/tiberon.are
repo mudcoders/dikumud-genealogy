@@ -1,0 +1,1576 @@
+#AREADATA
+Name        { 10-20} Bethaven Badlands   Tiberon~
+Levels      10 20
+Builders    Tiberon Reklar~
+VNUMs       11101 11200
+Security    100
+Recall      25001
+Flags       0
+End
+
+
+
+#MOBILES
+#11101
+kid conan human~
+Conan the Kid~
+Conan the kid stands here.
+~
+A short stocky little human stands here waiting for something special. 
+You ask him what his name is and he said it was Conan.  He seems very
+familiar, especially with the bracer that he is wearing.  
+~
+7 0 0 100 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote looks at $n mysteriously.
+endif
+~
+|
+#11102
+Slave human ~
+A dirty Slave~
+A dirty slave toils in agony.
+~
+You notice this human being chained on a large wheel.  He is very dirty
+and seems very old.  He seems worthless to someone like you.  
+~
+67 0 0 10 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote works the wheel of despair.
+endif
+~
+|
+#11104
+skeliton soldier undead monster bony~
+An Undead Soldier~
+An undead soldier.
+~
+A bony creature stands in front of you, blocking your way.
+~
+8259 0 0 -100 S
+13 0 0 320d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11109
+scorpion insect small~
+A Scorpion~
+A small scorpion bears it's sting.
+~
+You see here a small scorpion of the Bethaven desert.  Its color is
+reddish and dark black eyes.  It is bigger than most scorpions youve ever
+seen.  
+~
+97 2 0 -10 S
+11 0 0 240d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11113
+a fearsome headhunter~
+A HeadHunter~
+A headhunter scans for new meat.
+~
+~
+197 0 0 -20 S
+15 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11122
+healer woman girl human~
+A Woman~
+A tall voluptious woman is caring for you.
+~
+A woman with an innocent looking face seemed to have cared for you for a
+while.  She wears a nice looking dress with exotic patterns, never before
+seen in this medeival area.  She seems friendly enough to be anyone's true
+companion.  
+~
+3 128 0 100 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>act_prog "wakes and stands up."~
+mpat 11128 mppurge
+~
+|
+#11125
+nishta female ~
+Nishta the Mongol~
+Nishta the Mongol stands ready for a fight.
+~
+Nishta is a prized martial artist from the far east.  She bears the mark
+of an odd sign by the ancient mongolians.  Her features are lanky compared
+to yours.  She is known to be an outcast of the Bethevanian warrior class. 
+She wears a medal which she bears as a tough fighter of the lightweight
+class.  Do you think you can beat her?  
+~
+71 0 0 100 S
+19 0 0 560d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote wipes herself with a towel.
+emote looks back at $n and winks mischeviously.
+emote cackles with insane glee.
+endif
+~
+|
+#11126
+jahun man fighter orc~
+11125~
+Jahun the Champion is ready to fight.
+~
+He is the leading champion of the Bethaven 21'st phallanx division and
+master champion of the Bethaven fighting grounds for over 31 years.  He
+bears the mark of the dragon on his bald scalp.  On his neck, he has the
+letters "FTW" in old english letters.  He holds a heavyweight belt, which a
+competitor must attain to leave the grounds alive.  
+~
+71 0 0 -1000 S
+20 0 0 600d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote points at you.
+emote grins at $n.
+tell $n are you ready to die?
+endif
+ 
+~
+|
+#11127
+tentacle short monster~
+A Short Tentacle~
+A short tentacle on your ankles.
+~
+A slimy long and sharp tentacle has wrung around your feet.
+~
+67 0 0 -100 S
+16 0 0 440d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>act_prog "Skeltor dies."~
+mpat 11128 mpforce $r sleep
+~
+|
+#11128
+worm skeltor monster tentacle pit bethaven~
+Skeltor the monster of Bethaven~
+Bethaven pit monster reveals its fangs.
+~
+This is skeltor, the infamous monster of Bethaven Badlands.
+~
+71 0 0 -100 S
+18 0 0 530d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote is starting to slither around $n legs.
+emote screams a horrible scream.
+endif
+~
+>death_prog 100~
+emote shrieks loudly and swings a tentacle towards you as a last act...
+mpecho &PSomething hard slams into the back of your head knocking the wind
+mpecho &Pfrom your lungs as you crash to the ground with a thud...
+mpecho &OSand fills your mouth as you hit the ground and darkness cloaks your vision...
+mptransfer $n 11122
+~
+|
+#11130
+man horseman soldier~
+A Horseman Of Bethaven~
+A horseman of Bethaven watches alertly for trouble.
+~
+This is one of Bethaven's finest warriors.  The armor she wears is a
+tight fitting metalic bra with matching underwear.  Her favorite weapon is a
+bethaven long sword.  
+~
+67 0 0 100 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#11131
+Master man teacher human~
+The Master of Perfection~
+A master of perfection is ready to teach.
+~
+This is Master of Practice.  Simply type PRACTICE to see a list.  
+~
+1095 67108992 0 100 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if name($n) == Tiberon
+say Hail Tiberon!
+emote salutes to Tiberon.
+else
+if ispc($n)
+emote turns to $n.
+say Come here measly mortal!!!
+tell $n I will train you till you are drained!
+emote cackles insanely.
+endif
+~
+>act_prog p looks at you.~
+if ispc($n)
+emote looks back at you.
+say Hey fool, you doggin me?
+emote slaps your monkey.
+endif
+~
+|
+#11132
+master trainer human ~
+The Master Of Training~
+A  master of training is ready to teach.
+~
+This is Master of Training.  Simply type TRAIN and see a list.  
+~
+579 67108992 0 100 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if name($n) == Tiberon
+say Hail Tiberon!!!
+emote salutes to Tiberon.
+else
+say Come over here $n.
+tell $n I will train you till you are drained!!!
+emote cackles insanely.
+endif
+~
+|
+#11134
+small spider~
+A small Spider~
+A small spider crawls across the room.
+~
+This is a tiny spider which makes it's home here inside the base of an old tower.
+~
+67 0 0 0 S
+12 0 0 280d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11135
+stone white marble~
+A White Marble Stone~
+A white marble stone sits here.
+~
+The stone seems to be innocent looking.  There is something weird,
+because the stone seems to be like a small creature of unknown origin.  
+~
+65 0 0 -100 S
+13 0 0 320d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11136
+venus flytrap~
+A Venus Flytrap~
+A venus flytrap sits here ready to devour you...
+~
+~
+71 0 0 10 S
+15 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11200
+Nar dog~
+Nar the lightning Hound~
+Nar sleeps peacefully with his mouth open, drooling.
+~
+~
+1 0 0 1000 S
+1 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>act_prog p pats you.~
+if name($n) Echoe
+emote looks at echoe lovingly.
+emote licks her face.
+emote rolls over.
+emote hangs his tounge like a good puppy.
+mpecho how sweet!!!
+endif
+~
+>all_greet_prog ~
+~
+|
+#0
+
+
+
+#OBJECTS
+#11101
+bracer gold power conan~
+&Wconan's &Ypower bracer~
+Conan's power bracer lies here.~
+~
+9 0 0 0 4097 12
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+E
+power bracer~
+This is Conan's power bracer. It is solid gold with jewels encrusted into it.
+~
+#11102
+shackles dark~
+pair of shackles~
+A pair of shackles lie here.~
+~
+9 640 0 0 1048577 10
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+E
+shackles~
+These cold cast iron shackles look hard to break.
+~
+#11103
+conan sword splinter star~
+&Wstar splinter&w~
+A star splinter lies here..~
+~
+5 1024 516 0 8193 12
+0~ 0~ 0~ 3~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 24
+E
+star splinter~
+This Greatsword has the ability to slash stars into ribbons.
+~
+#11104
+towel~
+a towel~
+A towel has been laid here..~
+~
+13 0 0 0 16385 20
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 20
+E
+towel~
+A simple cotton towel. It is somewhat wet.
+~
+#11105
+golden earring~
+a &Ygolden earring&w~
+A golden earring shimmers here radiantly..~
+~
+9 0 0 0 524289 20
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -20
+E
+golden earring~
+A pair of elegant golden earrings. They shimmer with buety.
+~
+#11106
+gripe~
+a shimmering gripe~
+A shimmering gripe has been left here..~
+~
+5 7168 513 0 8193 20
+0~ 0~ 0~ 8~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+E
+gripe~
+This Huge club is called a Gripe. It can do Menacing damage.
+~
+#11107
+silver chainlink vest~
+a silvery chainlink vest~
+A silvery chainlink vest has been left here...~
+~
+9 0 2048 0 9 20
+0~ 0~ 0~ 0~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -20
+E
+silver chainlink vest~
+This Vest is made out of small links of silver chained together.
+~
+#11109
+scorpion sting~
+a scorpion's sting~
+A scorpion's sting lies here....~
+~
+9 0 0 0 16385 11
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 11
+#11111
+scalp~
+someone's scalp~
+Someone's scalp has been left here astray...~
+~
+28 0 0 0 16385 15
+10~ 10~ 0~ 0~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 5
+E
+scalp~
+This bloody mess has been left here.
+~
+#11113
+bloody warpaint~
+a bloody warpaint~
+A bloody warpaint lies streaked on the ground..~
+~
+13 0 0 0 65537 15
+0~ 0~ 0~ 0~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+E
+bloody warpaint~
+Berrys and colors have been mixed to make this warpaint. But puddles of blood have also been used. Wonder whose?
+~
+#11123
+hagashi black hakama~
+hagashi's hakama~
+A black hakama has been left here neatly..~
+~
+9 0 0 0 33 20
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 20
+E
+hagashi black hakama~
+This black suit of leg armor looks failry protective.
+~
+#11124
+white sash~
+a white sash~
+Nishta's white sash lies here..~
+~
+13 3072 2941 0 2049 20
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 20
+E
+white sash~
+This pure white sash looks like its made of silk.
+~
+#11125
+madallion~
+lightweight Medallion~
+Lightweight Medallion of Jahun Warrior rests here~
+~
+18 1 0 0 5 10
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+medallion~
+This medallion is made of alluminum. It is very lightweight. Yet shockingly strong.
+~
+#11126
+heavyweight belt~
+&wA heavyweight belt~
+&wA heavyweight belt rests here.~
+~
+18 0 0 0 2049 20
+0~ 0~ 0~ 0~
+30 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -35
+E
+heavyweight belt~
+This belt is used to signify a champions status. It is heavy but protective.
+~
+#11127
+suction cup cups~
+a suction cup~
+A slimy suction cup lies here..~
+~
+17 1 0 0 16385 16
+50~ 50~ 9~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11128
+skeltor tooth necklace~
+skeltor tooth necklace~
+Skeltor's tooth is laid across the ground here..~
+~
+13 2 0 0 5 18
+0~ 0~ 0~ 0~
+18 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+skeltor tooth necklace~
+Someone has played dentist and removed this monster teath and made them into a necklace.
+~
+#11130
+deity~
+&Wconan's deity~
+Conan's deity rests here.~
+~
+13 1024 512 0 32769 10
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -15
+E
+deity~
+This is conans Orbiting God figure. Its a small Glowing ball of energy that whizzes around in circles.
+~
+#11131
+chains damnation~
+&Wc&zhains &Wo&zf &Wd&zamnation&w.~
+Chains of damnation lies here.~
+~
+9 18432 0 0 1025 12
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 12
+E
+chains damnation~
+These are the chains used to hold the damned to the earth.
+~
+#11132
+rusty bronze sword~
+&Orusty bronze sword&w~
+A rusty bronze sword lies here, rusting.~
+~
+5 0 0 0 8193 10
+0~ 0~ 0~ 3~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 20
+E
+rusty Broze sword~
+This is a Huge sword. If it werent so rusted it would look very menacing.
+~
+#11134
+pile web~
+a pile of web~
+A pile of web has been strung around here.~
+~
+9 0 0 0 16385 10
+0~ 0~ 0~ 0~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+E
+pile web~
+This is a sticky pile of spiders web. Is in the shape of a ball/pile.
+~
+#11136
+venus flytrap~
+a venus flytrap~
+A venus flytrap looks very suspicous..~
+~
+15 268435458 0 0 16385 0
+500~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+venus flytrap~
+The inside is sticky. But it will still hold stuff.
+~
+#11200
+Bean Bag~
+a cuddly bean bag.~
+A cuddly bean bag sits here ready for you.~
+~
+13 291 0 0 0 100
+0~ 0~ 0~ 0~
+300000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bag~
+This is echoe's and tiberons.... DO NOT TOUCH IT!!!
+~
+#0
+
+
+
+#ROOMDATA
+#11101
+Bethaven Badlands Welcome Gate~
+One of the Bethaven horsemen throw you unto the ground face first.  You
+manage to lift up your head as you see the soldiers head off.  In front of
+you is a land far and wide known to harbor many adventurers.  Many among
+them are being tested by fate, showing their great abilities and quick wit. 
+Good experience is abundant here as the land is big.  An old battered wooden
+gate stands here, and a sign hung named "BETHAVEN BADLANDS".  As a new
+adventurer you fear the adventure that lie before you.  Left of where you
+stand is an old wooden "SIGNPOST".  You might also remember Conan from
+another village, he stand a few feet from you.  
+~
+0 8192 0
+Rd     0
+E
+gate~
+The sign is marked in old english letters.  The gate itself is old and is
+ready to topple at any time.  
+~
+E
+signpost~
+This area is strictly for "NEWBIES" only.  New adventurers will find this
+area challenging.  If you cannot handle this area, then this is not the mud
+for you.  All newbies should consult the help files by simply typing "help
+newbie".  
+***************************
+* Area brought to you by: *
+*   Tiberon Fubackster    *
+*          and            *
+*        "STORM"          *
+*     Creation Team       *
+* (Thank them for the mud)*
+***************************
+~
+D1
+~
+gate~
+3 0 25048
+D3
+~
+~
+0 0 11102
+S
+#11102
+Beyond the Gate~
+Upon entering the Badlands, the feeling of death suddenly runs up your
+spine.  Massive heat and a feeling of exhaustion strikes your body.  On the
+northern horizon, you notice skeletal remains hung on wooden poles.  The
+road splits into two paths, leading to two different destinies.  Your choice
+would be crucial indeed.  
+~
+0 5 2
+Rd     0
+D0
+~
+~
+0 0 11103
+D1
+~
+~
+0 0 11101
+D3
+~
+~
+0 0 11109
+S
+#11103
+Desert Path~
+The desert path leads to the horizon.  On each side of the path, the
+skeletal remains of the soldier seem to be strug on the wooden pole.  The
+bones seem old and start to reek from the sun's exposure, at the same time
+you skin starts to burn from the massive heat the desert produces.  You make
+sure you have some water left in your waterskin in case you run into
+trouble.  
+~
+0 1 2
+Rd     0
+D0
+~
+~
+0 0 11104
+D2
+~
+~
+0 0 11102
+S
+#11104
+Desert Path~
+The desert path leads to the horizon.  On each side of the path, the
+skeletal remains of a soldier seems to be strung on a wooden pole.  The
+bones seem old and start to reek from the sun's exposure, at the same time
+your skin starts to burn from the massive heat the desert produces.  You
+make sure you have some water left in your waterskin in case you run into
+trouble.  
+~
+0 5 2
+Rd     0
+D0
+~
+~
+0 0 11105
+D2
+~
+~
+0 0 11103
+S
+#11105
+Turnabout~
+The scorching heat makes decision making difficult.  Sand dunes rise up
+around you blocking your view in any given directions.  From here there are
+three paths leading away from the intersection.  One path runs west, and the
+other runs to the north and south.  Your choice will be crucial indeed...  
+~
+0 5 2
+Rd     0
+D0
+~
+~
+0 0 11107
+D2
+~
+~
+0 0 11104
+D3
+~
+~
+0 0 11106
+S
+#11106
+Sand Pit~
+You suddenly step in the softest sand imaginable ever.  The sand starts
+to trickle up to your ankles, slowly but surely.  You notice that you are
+being sucked slowly down the sandpipe and realize nothing will get you out. 
+There is something moving at the center of the pit.  
+~
+0 1 2
+Rd     0
+D5
+~
+~
+0 0 11127
+S
+#11107
+Desert path~
+The desert leads to the horizon.  On each side ot the path, the skeletal
+remains of a soldier seems to be strung on a wooden pole.  The bones seem
+old and start to reek from the sun's exposure, at the same time your skin
+starts to burn from the massive heat the desert produces.  You make sure you
+have some water left in your waterskin in case you run into trouble.  
+~
+0 1 2
+Rd     0
+D0
+~
+~
+0 0 11108
+D2
+~
+~
+0 0 11105
+S
+#11108
+Before the Lookout Tower~
+As you stand at the center of many dunes, you notice a lookout tower
+standing isolated in the great desert.  You ponder as the situation strikes
+you odd.  The only way to satisfy your curiousity is to turn your fate to
+the towers direction.  
+~
+0 1 2
+Rd     0
+D0
+~
+~
+0 0 11134
+D2
+~
+~
+0 0 11107
+S
+#11109
+Dunes~
+The dunes don't seem to end, as the horizon piles up with neverending
+desert.  Scorching rays of the sun touch your face as it burns your eyes. 
+For miles and miles there is no water to be found.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 11110
+D1
+~
+~
+0 0 11102
+S
+#11110
+Dunes~
+The dunes don't seem to end, as the horizon piles up with neverending
+desert.  Scorching rays of the sun touch your face as it burns your eyes. 
+For miles and miles there is no water to be found.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 11111
+D2
+~
+~
+0 0 11109
+S
+#11111
+Upon a Dune Hill~
+You come atop a hill, scanning your area before you.  Several insects
+move around you, especially those annoying scorpions.  You realize your
+consequences as you ponder the fact that there might be headhunters around
+looking for your scalp.  You duck hard and fast, placing your nose on a well
+rounded position in the sand.  
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 11110
+D3
+~
+~
+0 0 11113
+S
+#11112
+Horizon~
+As you sit on a dune hill, you see the nice sun setting on the horizon. 
+Your adventure will be long and hard, but soon you will be a formidable
+enemy.  You rest here now pondering about the future and the treasures it
+holds before you.  This may be the only time you will ever again get a nice
+long sleep.  
+~
+0 1029 0
+Rd     0
+D2
+~
+~
+0 0 11113
+S
+#11113
+More Dunes~
+You come down from the hill, managing to camoflouge yourself unnoticed. 
+It was a quick getaway and a sure gamble for being safe.  On the western
+horizon, you see the sky fogging up slightly.  To the east is a dune hill
+tall enough for a great lookout.  Everywhere around you, dunes, dunes and
+more dunes.  And on the southern horizon, as you guessed more dunes.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 11112
+D1
+~
+~
+0 0 11111
+D2
+~
+~
+0 0 11114
+S
+#11114
+Dunes~
+The dunes don't seem to end, as the horizon piles up with neverending
+desert.  Scorching rays of the sun touch your face as it burns your eyes. 
+For miles and miles there is no water to be found.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 11113
+D3
+~
+~
+0 0 11115
+S
+#11115
+Dunes~
+The dunes don't seem to end, as the horizon piles up with neverending
+desert.  Scorching rays of the sun touch your face as it burns your eyes. 
+For miles and miles there is no water to be found.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 11114
+D3
+~
+~
+0 0 11116
+S
+#11116
+Desert Path~
+The desert path leads to the horizon.  On each side of the path, the
+skeletal remains of a soldier seem to be strung on a pole.  The bones seem
+old and start to reek from the sun's exposure, at the same time your skin
+starts to burn from the massive heat the desert produces.  You make sure you
+have enough water left in your waterskin in case you run into trouble.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 11115
+D3
+~
+~
+0 0 11117
+S
+#11117
+A Clearing~
+As you come down from the path, you notice a clearing suddenly appear
+before your eyes.  An oasis is not far off to the distance.  A small tent
+has been pitched north of here, by an arab merchant.  You feel lucky for
+once as you think of the plentiful days you have water in your mouth.  
+~
+0 4 2
+Rd     0
+D1
+~
+~
+0 0 11116
+D3
+~
+~
+0 0 11118
+S
+#11118
+Oasis~
+It is an unbelievable sight, you stand at the entrance of your salvation.
+From the nights and days you have ventured through the desert, you finally
+see this oasis.  Palm trees grow wildly around here.  The edge of the desert
+can be seen only a few feet from where you stand.  While you conquer one
+situation, another is at hand.  
+~
+0 5 3
+Rd     0
+D0
+~
+~
+0 0 11135
+D1
+~
+~
+0 0 11117
+D3
+~
+~
+0 0 11136
+S
+#11119
+Southern Gangplank~
+You stand on the southern edge of the seiged tower, positioning yourself
+for a great lookout.  An eerie silence falls on this tower, which leaves you
+fearful of your life.  You suddenly notice, from the corner of your eye a
+living entity.  An animated skeletal creature has been disturbed and has
+been awaken from the dead.  Are you ready to do battle with this monster?  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 11120
+S
+#11120
+Tower Lookout~
+You manage to climb out of the wooden stairs.  Do not forget that the
+crusted wood might buckle under your feet.  From here you see a flagpole
+that holds the Bethaven sign.  There are gangplanks to this lookout tower.  
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 11121
+D2
+~
+~
+0 0 11119
+D3
+~
+~
+0 0 11129
+D5
+~
+~
+0 0 11134
+S
+#11121
+Eastern Gangplank~
+You stand on the eastern edge of the seiged tower, positioning yourself
+for a great lookout.  An eerie silence falls on this tower, which leaves you
+fearful for your life.  Suddenly you notice a living entity from the corners
+of your eye.  An animated skeletal creature has been disturbed and awaken
+from the dead.  Are you ready to do battle with this monster?  
+~
+0 9 0
+Rd     0
+D3
+~
+~
+0 0 11120
+S
+#11122
+Village Hut~
+As you wake up to the yelling of a Bethaven warrior, "Wake up!  Wake up!"
+you notice your surroundings quite different.  A voluptiously endeavored
+woman stands near a table were a bowl of water and several rags are set up. 
+As she walks up to you she tells you that soldiers have found you strung
+out on the desert.  While she explained the situation, you realize you have
+to continue your journey.  You quickly head out of the nearest exit dizzy.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11120
+S
+#11123
+Jahun Falls~
+You have come out of the oasis onto this clearing.  Water is abundant as
+the Jahun waterfalls stand a few yards from you.  The fresh wind blows upon
+your hair, as you notice your unfamiliar surroundings.  A deep seated
+feeling comes upon you because behind the falls, shadowy forms form behind
+the water.  
+~
+0 1 3
+Rd     0
+D0
+~
+~
+0 0 11139
+D1
+~
+~
+0 0 11137
+S
+#11124
+Jahun Fighting Grounds~
+Men, women and children have come to this arena to cheer you on.  You
+seemed to have been picked for battle.  You see in front of you a narrow
+line between many spectators who have come to see you fight.  The fight will
+be to the death and undoubtedly nice gifts will come for you.  Many cheer
+you on as men lead you to the center of a circular pit.  
+~
+0 134217737 0
+Rd     0
+D1
+~
+~
+0 0 11140
+D3
+~
+~
+0 0 11125
+S
+#11125
+Nishta: Lightweight Title Holder~
+Your first opponent is named Nishta.  Youve heard that she is good,
+really good.  Moments pass by as you hear the loud cheers of several
+spectators that have come to watch.  This will be a battle indeed.  
+~
+0 134348813 0
+Rd     0
+D1
+~
+~
+0 0 11124
+D3
+~
+~
+7 11125 11126
+S
+#11126
+Jahun: Champion of Bethaven~
+Now you face the ultimate fighting machine of Bethaven.  An elflike
+announcer introduces forth a great warrior named Jahun.  As Jahun's favorite
+motto goes "You are next!"  .  It seems like you have been marked for death.
+Only way out now is the first chance to kill him.  
+~
+0 134217741 0
+Rd     0
+D1
+~
+~
+7 11125 11125
+S
+#11127
+Further Down in the Pit~
+As you are being sucked slowly but surely down the sand pit, you notice a
+feeling of something gripping your ankles.  It is unimaginable to know but
+what if this is the end of your adventures?  Act fast.  
+~
+0 1 2
+Rd     0
+D4
+~
+~
+0 0 11106
+D5
+~
+~
+0 0 11128
+S
+#11128
+Skeltor: Desert Monster of Bethaven~
+There is a reddish hue of some form sticking out of the sand.  By now,
+the grip has started to close tighter on your legs.  Suddenly, a huge
+monstrosity gapes his wide mouth open.  It is Skeltor, the Desert Worm of
+the Dunes.  A circular array of tooth splits open revealing a variety of
+teeth: long, short, sharp, edged, and hungry.  It is hard to imagine, but
+will you survive for another day?  
+~
+0 1 2
+Rd     0
+D4
+~
+~
+0 0 11127
+S
+>sleep_prog 100~
+0
+mpecho The sounds close over you and darkness cloaks your vision...
+mptransfer $n 11122
+~
+|
+#11129
+Western Gangplank~
+You stand on the southern edge of the seiged tower, positioning yourself
+for a great lookout.  An eerie silence falls on this tower, which leaves you
+fearful of your life.  You suddenly notice a living entity from the corners
+of your eye.  An animated skeletal creature has been disturbed and awaken
+from the dead.  Are you ready to do battle with this monster?  
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 11120
+S
+#11130
+The Wheel of Despair~
+In front of you works a big grinding wheel, where soulless adventurers are
+shackled.  You notice that men and women of all races are braced unto this
+large round contraption.  A slave monger whips a weakling a few feet from
+you.  Suddenly a person behind you shoves your face in front of this slave
+driving wheel locking your fate.  
+~
+0 8192 0
+Rd     0
+D0
+~
+~
+0 0 11101
+D1
+~
+~
+0 0 11131
+D3
+~
+~
+0 0 11132
+S
+#11131
+Labors of Perfection~
+While you are shackled with the wheel, you feel the whip hitting you as
+your masters drive you to perfection.  There are others who show interest in
+magical fields, perfecting their spells and beliefs.  This is the labor of
+perfection to advance you to your proper destiny.  
+~
+0 132100 0
+Rd     0
+D3
+~
+~
+0 0 11130
+S
+#11132
+Labors of Training~
+As you push the Wheel of Despair, you feel your muscles bulge gaining
+strength.  Walking hundreds of times around this machine raises your
+dexterity and constitution.  There are those exceptional who show interest
+on the fields of intelligence and wisdom, picked out from the lot and sent
+to worldly masters.  This is the labor of training to advance you to your
+proper destiny.  
+~
+0 132100 0
+Rd     0
+D1
+~
+~
+0 0 11130
+S
+#11133
+~
+~
+0 4 0
+Rd     0
+S
+#11134
+Base of Old Sieged Tower~
+Upon entering this tower, you notice that a battle has been fought.  Old
+dead skeletal corpses hang from a tight rope above.  A wooden stairwell
+leads to the lookout tower above.  Cobwebs and sand litter the floor.  A pit
+is located at the center of the room.  You also notice that there is no
+water to be found anywhere here, thus you realize it is time to conserve
+what little you have left.  
+~
+0 4194313 0
+Rd     0
+D2
+~
+~
+0 0 11108
+D4
+~
+~
+0 0 11120
+S
+#11135
+Deep in the Oasis~
+"They are only stick and stones!"  Well not here, the oasis is filled
+with life.  Ferns and Palm trees grow wildly here in this desert paradise. 
+The sun barely shines on your face but the warmth gives you deep security. 
+While slashing your way through the underbush, scratches have started to
+cover your whole body.  The terrain is often mistaken but thus it is still
+hard to get around.  
+~
+0 134217729 3
+Rd     0
+D0
+~
+~
+0 0 11137
+D2
+~
+~
+0 0 11118
+S
+#11136
+Edge of the Oasis~
+You stand on the soft sand of the deserts of Bethaven, a few feet from
+where you stand is the edge of the oasis.  There are massive ferns growing
+wildly boundering the edge of this desert paradise.  To the west you see a
+small pathed entrance surrounded by palm trees.  
+~
+0 5 2
+Rd     0
+D1
+~
+~
+0 0 11118
+D3
+~
+~
+0 0 14573
+S
+#11137
+Lost in the Oasis~
+Are you lost? Well, if you think really really hard, maybe you might 
+be able to get out finally. But since you're a first time adventurer, 
+this forest won't be so tough after all.
+~
+0 134217733 3
+Rd     0
+D0
+~
+~
+0 0 11135
+D1
+~
+~
+0 0 11135
+D2
+~
+~
+0 0 11135
+D3
+~
+~
+0 0 11123
+S
+#11138
+Inside the Jahun Cave~
+You are a wet fish indeed, coming out through that waterfall.  On your
+left side glitters an etched sign of an unknown language, you better see it.
+Undoubtedly there is something different here because a chill has rung
+through your whole body.  Shadows eminating from below has cast you
+bewildered.  The is a glowish hue coming from below, a wet ladder seems to
+lead you to go down.  There is a strangely carved entranceway leading off to
+the north from here.  
+~
+0 13 0
+Rd     0
+D0
+~
+~
+0 0 201
+D2
+~
+~
+0 0 11139
+D5
+~
+~
+0 0 11140
+S
+#11139
+Standing Under the Falls~
+The water comes down upon your head with a thundering crash.  A score of
+fishes swim aggressively down from the falls.  But don't be fooled because
+some fishes are dangerous.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 11138
+D2
+~
+~
+0 0 11123
+S
+#11140
+Jahun Fighting Grounds~
+You enter a cavern, where many men and women of all races come to test
+their skill.  They come here not because of will alone but they are forced
+into a bloody sport.  On your left side is a marking of some unknown sort,
+revealing a primal dragon.  Ahead of you stands a contender attending the
+"Jahun Fighting Grounds".  
+~
+0 9 0
+Rd     0
+D3
+~
+~
+0 0 11124
+D4
+~
+~
+0 0 11138
+S
+#11190
+Tiberon Testing Grounds~
+~
+0 4 0
+Rd     0
+S
+#11200
+Tiberon's Sky Dome~
+As you pass through sacred walls of Tiberon's Sky Dome, you notice
+mirrors strung all around the walls.  There are many windows, but you cannot
+tell because of the mirrors.  Directly in front, you notice a silver throne
+shimmering a blinding light.  In the middle of the room sits a table, where
+four circling skulls protect a rather odd shear.  Sitting right of the
+entrance is a bean bag where Nar the Lightning Hound sleeps peacefully.  So
+this is Tiberon's Abode.  
+~
+0 134251012 0
+Rd     0
+D0
+~
+~
+0 0 11190
+S
+#0
+
+
+
+#SPECIALS
+M 11122 spec_healer
+S
+
+
+
+#RESETS
+M 0 11101 1 11101
+E 0 11101 0 18
+E 0 11130 0 9
+E 0 11103 0 20
+M 0 11130 1 11101
+E 0 11132 0 20
+M 0 11104 5 11102
+E 0 11132 0 20
+M 0 11104 4 11104
+M 0 11104 4 11105
+M 0 11104 4 11107
+E 0 11132 0 20
+M 0 11109 1 11109
+M 0 11113 3 11111
+M 0 11113 3 11113
+E 0 11113 0 8
+M 0 11109 3 11114
+E 0 11109 0 22
+M 0 11113 3 11115
+M 0 11109 2 11115
+E 0 11111 0 22
+M 0 11104 6 11119
+M 0 11104 5 11121
+M 0 11122 1 11122
+M 0 11130 1 11122
+M 0 11125 1 11125
+E 0 11124 0 17
+E 0 11104 0 22
+G 0 11125 0
+M 0 11126 1 11126
+E 0 11105 0 23
+E 0 11106 0 20
+E 0 11123 0 11
+G 0 11126 0
+M 0 11127 3 11127
+M 0 11127 2 11127
+M 0 11127 1 11127
+E 0 11127 0 22
+M 0 11128 1 11128
+E 0 11128 0 22
+M 0 11104 6 11129
+M 0 11130 2 11130
+M 0 11102 2 11130
+M 0 11102 2 11130
+E 0 11102 0 24
+E 0 11131 0 16
+M 0 11131 1 11131
+M 0 11132 1 11132
+M 0 11134 1 11134
+E 0 11134 0 22
+M 0 11135 1 11135
+M 0 11135 2 11137
+M 0 11200 1 11200
+O 0 11200 0 11200
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

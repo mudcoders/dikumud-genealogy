@@ -1,0 +1,881 @@
+#AREADATA
+Name        {  All } The Eastern Path    Kadyr~
+Levels      0 105
+Builders    None~
+VNUMs       900 940
+Security    100
+Recall      25001
+Flags       0
+Color       6
+End
+
+
+
+#MOBILES
+#0
+
+
+
+#OBJECTS
+#0
+
+
+
+#ROOMDATA
+#900
+A Paved Road~
+You are just outside of the great gates of Bethaven.  A wide road paved
+with stone leads up to the gate to the west continues to the east.  Small
+weeds and patches of grass grow between the cracks in the pavement, and a
+small &rsign&c sits next to the road.  
+~
+0 0 2
+Rd     0
+E
+road~
+This is an old road that has surely seen better days.  
+ 
+~
+E
+path~
+This is an old path that has surely seen better days.  
+ 
+~
+E
+sign~
+The sign reads:
+ 
+'I buried my pet turtle here please walk softly.'
+ 
+~
+E
+grass~
+Some grass has grown here in the cracks of the pavement.
+~
+E
+weeds~
+These weeds seem to thrive here maybe it is due to all the blood that has
+been spilled here.  
+ 
+~
+E
+stones~
+A few pebbles, stones and rocks lie strewn about the path here.
+~
+D1
+~
+~
+0 0 901
+D3
+You can see the town of Bethaven through these gates.
+~
+gate~
+3 0 25026
+S
+#901
+A Paved Road~
+Trees grow thickly on the sides of the paved road, and the vegetation is
+beginning to poke through the spaces between stones.  From the west, you
+still hear the hustle and bustle of a large city.  You can follow the path 
+to the east and west.  
+~
+0 0 2
+Rd     0
+E
+vegetation~
+Various weeds, grass and clover have grown here in the cracks of the
+pavement.
+~
+E
+road~
+It's an old cracked road that has surely seen better days.  
+~
+E
+path~
+This is an old path that has surely seen better days.  
+ 
+~
+E
+stones~
+There are many sizes and shapes of stones along the pathway here.
+~
+E
+trees~
+These trees look many years old and could probably tell you some
+interesting tales if they could talk.  Even as old as they are, there are
+some new markings upon them.  
+~
+E
+markings~
+The markings are not much to look at and you are almost sure they come
+from a sword battle that occured here not long ago.  
+~
+E
+clover~
+No four leaf clovers around. How unlucky you are.
+~
+D1
+~
+~
+0 0 902
+D3
+~
+~
+0 0 900
+S
+#902
+A Paved Road~
+Trees grow thickly on the sides of the paved road, and the vegetation is
+beginning to poke through the spaces between stones.  From the west, you
+barely make out the bustle of a large city.  You can follow the path to the
+east and west.  
+~
+0 0 2
+Rd     0
+E
+trees~
+These dark trees seem to have been here for many many years.  They have
+grown so close together it is impossible to even think of getting through
+them.  
+~
+E
+stones~
+Various shapes and sizes of stones litter the pathway.
+~
+E
+vegetation~
+Various types of weeds have grown here in the cracks of the pavement.
+~
+E
+path~
+This path has surely seen better days.  
+~
+E
+road~
+This old road has surely seen better days.  
+~
+D0
+~
+~
+0 0 1511
+D1
+~
+~
+0 0 903
+D3
+~
+~
+0 0 901
+S
+#903
+A Paved Road~
+The road ends here at a small but deep stream.  The dark trees to your
+north and south grow right up to the stream bank and block any attempt at
+exploration in those directions.  A small bridge has been built to allow
+travelers easy passage accross the stream to the east.  You can head west on
+the paved road towards a city.  
+~
+0 0 2
+Rd     0
+E
+stream~
+The stream seems very calm and would probably be simple to cross without
+the aid of the bridge if it weren't so deep. If you lean over to peer into
+the stream you will notice that you can't see the bottom.
+~
+E
+trees~
+The tall, dark trees block all passage to the north and south following
+the stream.
+~
+E
+road~
+This old road has surely seen better days.  
+~
+D1
+~
+~
+0 0 8000
+D3
+~
+~
+0 0 902
+S
+#904
+A Paved Road~
+You stand just outside of the great gates of Bethaven.  A wide road paved
+with stone leads up to the gate and continues to the west. Small weeds and
+patches of grass grow between the cracks in the pavement, and a small &rsign&c 
+sits next to the road. 
+~
+0 0 2
+Rd     0
+E
+road~
+This old road has surely seen better days.  
+~
+E
+grass~
+Various types of grass and other pesky weeds have grown here in the cracks
+of the pavement.
+~
+E
+weeds~
+These weeds seem to thrive here maybe it is due to all the blood that has
+been spilled here.  
+~
+E
+sign~
+The sign reads:
+ 
+Be thee careful fellow adventurer.
+~
+D1
+The gate to the east leads into the city of Bethaven.
+~
+gate~
+3 0 25015
+D3
+~
+~
+0 0 906
+S
+#905
+An Intersection in the Paved Road~
+The road you travel on is paved with smooth stones and surrounded by
+large trees and grass.  Vegetation has begun to poke through the spaces
+between the stones in the road.  To the east you hear the sounds of a
+bustling city and to the north a small path winds out of sight.  
+
+&RThis room not being used. Used to go oneway north to 2100? <boggle> Sherf.
+~
+0 4 2
+Rd     0
+S
+#906
+A bend in the road~
+Trees grow thickly on the sides of the paved road, and the vegetation is
+beginning to poke through the spaces between stones.  From the east, you
+barely make out the bustle of a large city.  You can follow the path to the
+east or north.  In addition, You catch the sounds of some strange chanting. 
+~
+0 0 3
+Rd     0
+E
+trees~
+These dark trees seem to have been here for many many years.  They have
+grown so close together it is impossible to even think of getting through
+them.  
+~
+E
+road~
+This old road has surely seen better days.  
+~
+E
+stones~
+Various sized stones have been used to make this cobblestone walkway.
+~
+E
+vegetation~
+Various weeds, grass and other lichen-type plant life has begun to grow
+here in the cracks of the cobblestone road.
+~
+D0
+~
+~
+0 0 914
+D1
+~
+~
+0 0 904
+S
+#907
+A paved road~
+You stand just outside of the town of Neuburg.  A wide road paved with
+stone leads to the town and continues to the west.  Small weeds and patches
+of grass grow between the cracks in the pavement, and a small sign sits next
+to the road.  
+ 
+&RThis room not being used. Neuberg was disconnected. Sherf.
+~
+0 4 3
+Rd     0
+S
+#908
+Old Dirt Road~
+You stand upon a some what ancient and unkept path in the middle of the
+forest.  From somewhere nearby you catch the sound of native chants and
+drums echoing through the trees.  You may travel to the east and west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 561
+D3
+~
+~
+0 0 909
+S
+#909
+Old Dirt Road~
+You are travelling along the remnants of a once mighty road. The occasional
+lonely cobblestone is the only sign that this was once a major throughfare.
+The path to the east continues towards Bethaven and the west ventures off
+into a wild and dark forest.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 908
+D2
+~
+~
+0 0 910
+S
+#910
+Old Dirt Road~
+You are travelling along the remnants of a once mighty road. The occasional
+lonely cobblestone is the only sign that this was once a major throughfare.
+Trees of all shapes and sizes tower on either side of the road... Mother
+Natures indication that she intends to reclaim the land.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 909
+D2
+~
+~
+0 0 911
+S
+#911
+Old Dirt Road~
+You are travelling along the remnants of a once mighty road. The occasional
+lonely ancient cobblestone is the only sign that this was once a major
+throughfare. Somewhere off in the forest that surrounds the road, you can
+hear the call of a bird looking for its mate.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 910
+D2
+~
+~
+0 0 912
+S
+#912
+Old Dirt Road~
+You are travelling along the remnants of a once mighty road.  The
+occasional lonely cobblestone is the only sign that this was once a major
+throughfare.  Weeds now grow up through the hard packed dirt in obvious
+disregard for the once popular road.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 911
+D2
+~
+~
+0 0 913
+S
+#913
+Old Dirt Road~
+You are travelling along the remnants of a once mighty road.  The
+occasional lonely ancient cobblestone is the only signs that this was once
+a major throughfare.  A bird sits in a tree far above your head and sings
+its sweet song for you.  A paved road leads off to the south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 912
+D2
+~
+~
+0 0 4484
+S
+#914
+An Old Roadway~
+You are travelling along an old unkempt roadway.  The flagstones are in
+general disrepair, with many of them broken or missing.  Weeds poke their
+persistent heads up through the cracks and tiny rocks and stones litter the
+way.  On either side of the roadway a forest rises up to block much of the
+light from the area, blanketing the road in a eerie gloom.  
+~
+0 0 2
+Rd     0
+E
+pebbles~
+Some tiny pebbles have littered this roadway, as well as the larger
+rocks around them. Perhaps over time, those will turn into pebbles as well.
+~
+E
+rocks~
+Some larger rocks can also be seen on either side of your path here, as
+well as the litter of pebbles and stones.
+~
+E
+stones~
+Various shapes and sizes of stones litter your path.
+~
+E
+weeds~
+These weeds seem to thrive here maybe it is due to all the blood that has
+been spilled here.  
+~
+E
+forest~
+These dark trees seem to have been here for many many years.  They have
+grown so close together it is impossible to even think of getting through
+them.  
+ 
+~
+D0
+~
+~
+0 0 915
+D2
+~
+~
+0 0 906
+S
+#915
+An Old Roadway~
+You are travelling along an old unkempt roadway.  The flagstones are in
+general disrepair, with many of them broken or missing.  Weeds poke thier
+persistent heads up through the cracks and tiny rocks and stones little the
+way.  On either side of the roadway a forest rises up to block much of the
+light from the area, blanketing the road in a eerie gloom.  Somewhere off in
+the distance you can hear the howl of a lone wolf that sends shivers down
+your spine.  
+~
+0 0 0
+Rd     0
+E
+flagstones~
+These are just pieces of a long dead proud roadway.  Most are just blank
+but every mile or so you spot one with writing on it.  The language seems
+weirrd and the measurement doesn't look like any distance you remember from
+your childhood.  Maybe these were some kind of mile stones.  
+~
+E
+weeds~
+These weeds seem to thrive here maybe it is do to all the blood that has
+been spilled here.  
+~
+D2
+~
+~
+0 0 914
+D3
+~
+~
+0 0 916
+S
+#916
+An Old Roadway~
+The roadway here is in a state of general disrepair.  The flagstones are
+cracked and missing and tiny pebbles are scattered over the road.  Tall
+trees on either side of the road cover the place in a eerie gloom and the
+tails of robbers and bandits makes you want to hurry upon your way.  
+~
+0 0 0
+Rd     0
+E
+trees~
+These trees seem to bow to each other from each side of the street
+forming a dark roof over your head.  
+~
+E
+pebbles~
+Pebbles pebbles more pebbles.  Maybe you can pick up enough to drown your
+self while swimming.  
+~
+E
+flagstones~
+Although you can tell these used to be part of a large road it amazes you
+as you try to make a mental picture since there is no way you can even begin
+to imagine these little rocks and pebbles being a road.  
+~
+D1
+~
+~
+0 0 915
+D3
+~
+~
+0 0 917
+S
+#917
+An Old Roadway~
+You are travelling along the great western roadway, once a mighty highway
+between towns, now not much more then a forgotten old path.  There are
+broken and missing flagstones with weeds growing up between the cracks.  It
+looks like this road is rarely travelled any more except maybe but the
+highway robbers that are prelevent in the area.  As you look around you
+notice a small obscure path leading off to the west.  
+~
+0 0 0
+Rd     0
+E
+weeds~
+These weeds seem to thrive here maybe it is due to all the blood that has
+been spilled here.  
+~
+E
+flagstones~
+These stones don't look much like the proud roadway that once stood here
+it looks as if someone just dumped scraps of an old road here.  
+~
+D0
+~
+~
+0 0 918
+D1
+~
+~
+0 0 916
+D3
+~
+~
+0 0 922
+S
+#918
+An Old Roadway~
+The roadway is difficult to walk along, the cracked and broken flagstones
+seems to jump up in an attempt to trip you as you walk.  Weeds grow
+abundantly along the edge of the road, often so high you can't see over them.
+You hear a rustling in the forest to your right and hope it's not a robber
+coming to make your purse a bit less of a burden.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 917
+D3
+~
+~
+0 0 919
+S
+#919
+An Old Roadway~
+To the north, a wall of trees rises up before you to block your way.  You
+find you have to carefully pick your way over the broken and cracked
+flagstones to ensure you don't trip.  You can continue to the west or east.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 918
+D3
+~
+~
+0 0 920
+S
+#920
+An Old Roadway~
+You are trabelling along an old, neglected roadway, with broken flagstones
+and weeds growing through the cracks.  In the distance to the north you see
+a strange temple rise up over the trees.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 921
+D1
+~
+~
+0 0 919
+S
+#921
+An Old Roadway~
+You are travelling along a seldom used roadway, which surprises you since
+it is so close to a city.  Looking north you see the trees have begun to
+thicken.  The forest around you seems gloomy and forbidding, ensuring that
+you stay on the roadway.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 16063
+D2
+~
+~
+0 0 920
+S
+#922
+Forest Path~
+The path is barely passable, trees rising up all around you and providing
+you with little room to move.  The forest is obviously very old judging by
+the size and thickness of the trees.  You think you see a roadway of some
+sort to the east or you can follow the path to the west.  
+~
+0 1 3
+Rd     0
+E
+trees~
+The trees here are growing very close together and you can't even see
+the sky due to the canopy they form.  
+~
+D1
+~
+~
+0 0 917
+D3
+~
+~
+0 0 923
+S
+#923
+Forest Path~
+The path is difficult to walk on, it is obviously made by animals as they
+move through the forest.  The trees tower over your head blocking out any
+light you would normally get from the sky.  A rustling sound to the north
+catches your attention and makes you want to contiue upon your way quickly. 
+The path runs east and west from here.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 922
+D3
+~
+~
+0 0 924
+S
+#924
+Forest Path~
+The path is very narrow with roots and other natural debris making it
+difficult to walk.  Huge trees grow around forcing you to dodge them if you
+walk.  A tiny bird sits just out of reach and sings to you its mournful
+song.  
+~
+0 1 3
+Rd     0
+E
+debris~
+Tree roots and fallen branches litter the path all around you.
+~
+D1
+~
+~
+0 0 923
+D3
+~
+~
+0 0 925
+S
+#925
+Forest Path~
+You pick your way through the trees, careful not to trip on the huge
+roots that stick up out of the ground.  The leaves from the huge trees of
+the forest spread out to provide a leafy roof over your head, blocking out
+much of the natural light.  A rustling in a bush not far off tells you that
+you are not the only living creature in this area.  
+~
+0 9 3
+Rd     0
+D0
+~
+~
+0 0 926
+D1
+~
+~
+0 0 924
+S
+#926
+Forest Path~
+Huge trees rise up around you, their branches forming a leafy roof far
+above your head.  A very large tree not far away is home to alot of the area
+wild life.  A small squirrel shoots up the tree and disappears into a hole. 
+You notice that however faint, the trail can still be seen leading off to
+the south and west.  
+~
+0 1 3
+Rd     0
+D2
+~
+~
+0 0 925
+D3
+~
+~
+0 0 927
+S
+#927
+Forest Path~
+The path is barely visible from here, brush and grass growing over it to
+obscure much of the trail.  Large trees grow throughout the area, their
+roots poking out of the ground to make walking more than difficult.  You can
+follow the disappearing trail to the east or west from here.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 926
+D3
+~
+~
+0 0 928
+S
+#928
+Forest Path~
+Huge trees rise up far over your head to block out most of the natural
+light and shed a gloomy darkness over the forest.  The path you have been
+following can barely be picked up through the underbrush and twigs that
+cover the forest floor.  As you look closely at the ground you can barely
+pick it out leading east or west from here.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 927
+D3
+~
+~
+0 0 929
+S
+#929
+Forest Path~
+You are following a slight trail through the forests.  Animals all around
+you hide from sight as you move through the area.  Often you can only catch a
+glimpse of them as they dart off into the trees, quickly hiding from view. 
+The trees here are huge with massive trunks and spectacular branches.  You
+can follow the path to the east and south.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 928
+D2
+~
+~
+0 0 930
+S
+#930
+Forest Path~
+You are on a slight trail that leads through the forest.  As you move
+small animals scurry out of your way off into the underbrush.  The massive
+trees that grow around you block much of the natural light from the area
+casting the forest into blackness.  You can hear some rustling in the
+underbrush not far off.  
+~
+0 9 3
+Rd     0
+D0
+~
+~
+0 0 929
+D2
+~
+~
+0 0 931
+S
+#931
+Forest Path~
+You are following a slight animal trial that leads through the forest it
+is mostly covered in underbrush and grass but it is still visible.  Massive
+trees grow around you, their huge roots sticking up out of the ground and
+making it difficult to walk.  You can follow the path to the north or west
+from here.  
+~
+0 1 3
+Rd     0
+D0
+~
+~
+0 0 930
+D3
+~
+~
+0 0 932
+S
+#932
+Forest Path~
+The animal trail you are following is covered in underbrush and fallen
+branches making it difficult to walk.  The branches from nearby trees
+grabbing at you and scratch as you move past.  A deer spots you and shoots
+off down the trail, further into the forst.  You can follow the trail to the
+east or west from here.  Large trees block movement in any other direction. 
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 931
+D3
+~
+~
+0 0 933
+S
+#933
+Forest Path~
+You are on a small animal path that leads off through the forest. 
+Through the massive trees to the south you can hear and smell the sea.  The
+trees block out any chance of getting there from here, however.  The forest
+is pitch black here, the only light being that which you carry with you. 
+You can follow the path to the south or east from here.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 932
+D3
+~
+~
+0 0 500
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

@@ -1,0 +1,208 @@
+#AREADATA
+Name        {??-???} PROTO AREA          Angi~
+Levels      0 0
+Builders    Angi~
+VNUMs       8300 8349
+Security    1
+Recall      25001
+Flags       16
+Color       6
+Sounds      Hmmm...~
+End
+
+
+
+#MOBILES
+#8300
+fire god loki~
+Loki the Fire-God~
+Loki the Fire-God stands guard here
+~
+~
+1572929 0 0 0 S
+60 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#0
+
+
+
+#OBJECTS
+#8300
+pompom~
+a set of pompoms~
+A bright set of red fluffy pompoms lie here~
+~
+8 0 0 0 16385 30
+0~ 0~ 0~ 0~
+0 1000 50 100 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+poem~
+&YBest Points
+
+&WLook out for the best points in others.
+Look out for the finest things first...
+Be sure that you've found all the good traits
+Before recognizing the worst.
+Too often, put out by some quarrel
+Past kindness we're apt to forget
+The ties of affection are severed
+By words that we live to regret.
+And many a friendship is broken,
+Because when it comes to the test
+We only see what are the worst points
+And fail to remember the best.
+~
+>get_prog 100~
+0
+say Get prog..
+say THIS should be working...
+~
+|
+#8301
+test item~
+weapon thing~
+Weapon thing~
+~
+5 0 0 0 8193 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#8300
+&YZenza's Foxy Imports~
+&PA sensual aroma fills the air, overpowering your mind and emotions. 
+You might begin to reconsider whether this shop will serve your purposes or
+not.  There is a sign hanging on the far wall in bright red lettering.  
+~
+0 4 0
+Rd     0
+E
+sign ~
+&Y==============================
+==    &R21 YEARS OR OLDER!!   &Y==
+==============================
+~
+D2
+~
+~
+0 0 8301
+D5
+~
+~
+0 0 3
+S
+#8301
+&RBehind the Shop~
+&WStrange trinkets line the red velvet walls, causing you to look more
+closely.  The sensual atmosphere that drew you to this room is strong,
+sending a tingling sensation throughout your body.  One must wonder what
+those shackles resting against the tall steel &wcolumn &Wcould possibly be
+used for.  Against the east wall lies a larg king size &wbed&W.  
+~
+0 4 0
+Rd     0
+E
+tall steel column~
+&YA tall, steel column rises over you, with shackles attached to the
+sides, dangling loosely.  The shackles are made of iron as well, with a fur
+outline to protect victims' wrists.  They are attached to silver chains
+embedded into the column, just long enough to provide the most minimum
+movement.  
+~
+E
+bed~
+Covered with white satin sheets, this huge bed invites you to bask in
+it's warmth and pleasures it may offer.  
+~
+D0
+~
+~
+0 0 8300
+S
+#8302
+~
+~
+0 4 0
+Rd     0
+S
+#8315
+Score Example for NON-Immortal~
+&YName&B:&W Angi the &RPixie Vampire
+&YLevel&B:&W 112           &YAge&B:&W 225 yrs&B|&W833 hrs
+&YHp&B:&W 30000/30000      &YBp&B:&W 30000/30000      &YMv&B:&W 30000/30000
+&YCarrying&B:&W 15/100000 items        &YWeight&B:&W 645/100000000 kg
+&YStr&B:&W 18&B(&W16&B)          &YInt&B:&W 18&B(&W16&B)          &YWis&B:&W 18&B(&W16&B)
+&YDex&B:&W 18&B(&W16&B)          &YCon&B:&W 18&B(&W16&B)          &YCha&B:&W 18&B(&W16&B)
+&YHitroll&B: &W400         &YDamroll&B: &W400         &YSaving Throw&B: &W-400
+&YGold&B: &W100000000      &YSilver&B: &W100000000    &YCopper&B: &W100000000
+&YExperience&B: &W10000000000   &YWimpy&B: &W1000000  &YPractices&B:&W 21
+&YAC&B:&W-500 &RYou are well armored.     &YAlignment&B:&W-1000 &RYou are satanic.
+&YPage Pausing&B: &W20 lines of text    &YPosition&B:&W You are standing.
+&YAutoexit&B: &RYes  &YAutoloot&B: &rNo  &YAutosac&B: &RYes  &YAutocoins&B: &RYes  &YAutosplit: &rNo
+&YClan&B: &RHead Honchos
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 8316
+S
+#8316
+Score Example for Immortal~
+&CName: &WAngi the &YPixie Vampire
+&CClan: &RHead Honchos
+&CLevel: &W112  &CAge: &W225 yrs&Y|&W833 hrs  &CTrust: &W100000
+&CHp: &W30000/30000  &CMana: &W30000/30000  &CMv: &W30000/30000
+&CCarrying: 15/100000 items       &CWeight: &W645/1000000 kg
+&YStr: &W18&C(&W16&C)     &YInt: &W18&C(&W16&C)     &YWis: &W18&C(&W16&C)
+&YDex: &W18&C(&W16&C)     &YCon: &W18&C(&W16&C)     &YCha: &W18&C(&W16&C)
+&YHitroll: &W400    &YDamroll: &W400    &YSaving Throw: &W-400
+&CGold: &W100000000   &CSilver: &W100000000   &CCopper: &W100000000
+&CExperience: &W10000000   &CWimpy: &W100000  &CPractices: &W25
+&YAC: &W-500 &RYou are well armored.     &YAlignment: &W-1000 &RYou are satanic.
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 8315
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+M 0 8300 2 8300
+E 0 8300 0 22
+M 0 8300 2 8301
+S
+
+
+
+#SHOPS
+8300 0 10 0 0 0 50 50 8 8
+0
+
+
+
+#$

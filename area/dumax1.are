@@ -1,0 +1,4664 @@
+#AREADATA
+Name        { 65-96} Temple of Chaos     Dumax~
+Levels      65 96
+Builders    Dumax~
+VNUMs       16000 16099
+Security    0
+Recall      25001
+Flags       0
+End
+
+
+
+#MOBILES
+#16000
+alex alexander temple guard~
+Alexander~
+The Temple Guard eyes you with an air of confidence.
+~
+Before you, towers an unshaven beast of a man. Alexander looks you over
+carefully, and then after deciding you are harmless he welcomes you to the
+great Temple of Meliki. He begins to speak of the wonders you will behold
+inside...
+~
+67 268451840 0 0 S
+65 0 0 8125d0+0 0d0+0
+30 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n) == 1
+say Hello wanderer! Welcome to the Great Temple of Meliki.
+say You must be warned that within the confines of the Temple... chaos reigns.
+say There are those inside who would kill you because they simply love killing.
+say Such is the way of Ultimate Chaos.
+emote steps out of your path to let you enter the temple.
+endif
+~
+|
+#16001
+thera cleric~
+A cleric of Meliki~
+Thera walks about the Temple nodding to everyone as she passes.
+~
+Thera is a tall woman with just a few faint speckles of gray in her hair. She
+wears a light blue cloak thrown carelessly over her left shoulder and a
+brilliant white robe. She greets you with a smile and asks you if she can be
+of assistance.
+~
+67 268435584 0 -100 S
+68 0 0 9100d0+0 0d0+0
+50 0 0 0
+0 0 2
+0 0 0
+>fight_prog 8~
+emote spits in your face
+cast 'dispel magic' $n
+~
+>fight_prog 5~
+say DIE enemy of Chaos!
+cast 'blind' $n
+~
+>rand_prog 4~
+emote kneels and begins to pray
+say Oh Great Meliki, surround us all with the wonders of chaos.
+~
+>greet_prog 65~
+if isimmort($n) == 1
+say Hello $n I see the great Meliki still suffers your existance.
+say One day he will smite you down and gloat over your ashes.
+break
+endif
+ 
+if ispc($n) == 1
+say Welcome $n, may chaos fill your life with joy and purpose!
+smile $n
+endif
+~
+|
+#16002
+avatar meliki chaos creature~
+The Avatar of Meliki~
+A roughly humanoid creature is surrounded by bursts of energy.
+~
+This creature is surrounded by multicoloured burst of chaotic energy. It seems
+to fade in and out and even disappears from one part of the room to another.
+The closer you get, you feel a pull of sorts... almost as if the Avatar was a
+magnet and you were a piece of steel--powerless against its force.
+ 
+A voice booms in your head, "Come mortal! Bask in my Chaos!" and leaves a
+ringing in your ears. Did the Avatar speak to you, or was it an illusion?
+~
+67 402669736 0 -1000 S
+85 0 0 10125d0+0 0d0+0
+240 0 0 0
+0 0 0
+25600 0 0
+>greet_prog 65~
+if isimmort($n) == 1
+say Welcome $n, be you friend or foe of Meliki?
+break
+endif
+if ispc($n) == 1
+say Welcome $n, bathe in the brilliance and wonder of my Chaos!
+endif
+~
+>death_prog 45~
+say It seems you win this battle, now begone!
+mpecho You see a blinding flash, and suddenly appear at the Oracle!
+mptrans $n 25000
+mpat $n say You won this battle $n, but be warned, Chaos is Forever!
+~
+|
+#16003
+hand chaos man shadow~
+The Hand of Chaos~
+&bA slim man moves about like a shadow...
+~
+&bAlways standing in the shadows, this slim man seems to move with both
+grace and power. His voice seems to eminate from everywhere at once but is
+strangely very soft.
+ 
+As he notices you watching him, he chuckles to himself and then in that
+quiet almost dreamy voice he murmers, "Chaos is all around you, and in the
+end it will consume your very soul."
+~
+69 268550314 16 -400 S
+78 0 0 9500d0+0 0d0+0
+150 0 0 0
+0 0 1
+4160 0 0
+>hitprcnt_prog 20~
+if rand(8) 
+say Goodbye $n, perhaps we will meet again.
+mpecho The Hand of Chaos disappears in a flash of light!
+mpteleport
+endif
+~
+|
+#16004
+librarian head woman~
+The Head Librarian~
+A middle-aged woman in a flowing white gown is leafing through a book.
+~
+&PThe Head Librarian sits behind a large disorderly desk ruffling through a
+large &rred-bound book&P with a look of irritation on her face. She is middle-aged,
+but despite that she is rather pretty. Her &Wwhite gown&P is a bit rumpled, almost
+as if she has been sitting in that ame place for quite a while. As you enter,
+she gives you a brief nod and then continues to flip through the pages of her
+book... her frown deepening.
+~
+67 335552552 0 0 S
+75 0 0 11375d0+0 0d0+0
+120 0 0 0
+0 0 2
+2 0 0
+>all_greet_prog 100~
+if ispc($n) == 1
+say Welcome to the Library.
+say There are several texts that you may be interested in.
+say I am busy, but perhaps my Assistant could help you.
+say Find him and say "help me". He is also quite busy.
+emote begins to read her book again.
+emote looks up from her book.
+say So don't bother him for nonsense.
+emote goes back to her studies.
+endif
+~
+|
+#16005
+doli mage apprentice~
+Doli~
+A young apprentice-mage wanders about, muttering an unfamiliar language.
+~
+Doli walks about, seemingly oblivious to everything, talking to himself in some
+strange sluring language you have never heard.  He is of medium height, with 
+close cropped dark brown hair.  Just as you think he will sweep by you without
+acknowleging your presence he startles you by intently peering into your eyes,
+then as if not finding what he sought he mutters just a bit louder and stalks
+away.
+~
+3 335577088 16 400 S
+70 0 0 9750d0+0 0d0+0
+70 0 0 0
+0 0 0
+32768 0 0
+>rand_prog 4~
+emote scurries about the room as if looking for something...
+say Where is it... Damn. Vladimer will have my head if he finds out.
+emote lets out a gasp as he realizes you overheard him.
+~
+|
+#16006
+vladimer sorcerer chaos man~
+Vladimer, Sorcerer of Chaos~
+A short balding man smiles at you and asks what you need.
+~
+Vladimer is a short balding man with a kindly smile. As you approach, his eyes
+narrow and he asks you what you need.
+He goes on to say, "I don't get many visitors here, while guarding the door."
+He lets out quite a sigh as he looks behind him at the door.
+But I suppose we cannot let just anyone enter the rift, can we?
+~
+67 402669568 0 500 S
+75 0 0 8750d0+0 0d0+0
+120 0 0 0
+0 0 1
+32768 0 0
+>fight_prog 5~
+say All enemies of Meliki must die!
+cast 'dispel magic' $n
+~
+>fight_prog 10~
+emote makes a strange gesture.
+cast 'gas breath'
+~
+>greet_prog 70~
+if isimmort($n) == 1
+say You are welcome here Master $n, rest a bit before returning to your duties
+break
+endif
+ 
+if ispc($n) == 1
+say Ahh, a visitor, come $n, tell me of your journies.
+smile $n
+endif
+~
+|
+#16007
+pseudo dragon white familiar~
+The Pseudo-Dragon~
+&WA huge white pseudo-dragon rears up and attacks!
+~
+&WVladimer's familiar wears a mask of fury as you enter the room. It attacks
+without pause.
+"So you bested Vladimer, did you?" it crows.
+"I believe you will find me a tougher nut to crack, mortal!"
+He sighs. "This will be my last act for my master! To avenge his death!"
+~
+99 402776746 0 500 S
+80 0 0 9000d0+0 0d0+0
+170 0 0 0
+0 0 0
+2306 0 0
+>death_prog 85~
+mpecho With your last blow the familiar falls too, the ground in the throes of agony!
+say It seems that I to fall to the hand of my masters' murderer!
+~
+|
+#16008
+dragon chromatic~
+The Chromatic Dragon~
+A Chromatic Dragon is resting here.
+~
+&.Standing directly in front of you, the Dragon notices you have entered and
+suddenly you have fourteen eyes aime at you! As all seven heads swivel in
+your direction, all you can feel is fear.
+~
+71 234881152 0 -1000 S
+85 0 0 10125d0+0 0d0+0
+240 0 0 0
+0 0 2
+33666 0 0
+>greet_prog 100~
+if ispc($n)
+ if isimmort($n) == 1
+ say I suppose I must suffer your being here, as I am unable to kill you.
+ break
+else
+ if level($n) > 79
+  say I hope your life has been to your liking, now it ends!
+  mpkill $n
+  break
+ endif
+ say Come back when you are worthy, then you will die like a dog.
+ laugh $n
+endif
+endif
+~
+>fight_prog 5~
+say Fire to burn your puny body!
+cast 'fire breath' $n
+~
+>fight_prog 5~
+say Ice to freeze your bones!
+cast 'frost breath' $n
+~
+>fight_prog 5~
+say Lightning to smite you!
+cast 'lightning breath' $n
+~
+>fight_prog 5~
+say Gas to fill your lungs!
+cast 'gas breath' $n
+~
+>fight_prog 5~
+say See my magic reduce your defenses to nothing mortal! 
+cast 'dispel magic' $n
+~
+|
+#16009
+bugbear~
+The Bugbear~
+&OA seven foot tall creature ambles about scratching its head in confusion.
+~
+&OThe bugbear is a seven foot tall creature with yellow-brown skin and bright
+&Rred&O hair. You notice its &Glight green&O eyes that have &rdark red&O pupils as it
+stares in your direction. Smelly and unkept, it still looms over you, and
+you begin to wonder if you could take out a monster like this.
+~
+97 268435456 0 -1000 S
+58 0 0 7360d0+0 0d0+0
+0 61 0 0
+0 0 1
+0 0 0
+#16010
+gnoll~
+The Gnoll~
+&GA tall &ggreenish&G-&wgrey &Gskinned creature growls at you.
+~
+&gThe gnoll has greenish-grey coloured skin which gets just a bit darker
+near its muzzle. Its mane is a &r&rreddish&g-&wgrey&g, and dull black eyes
+dart to and fro in a mad frenzy. The look of shabbiness hangs about it in
+every way. It looks as if it hasn't had a bath in several months and all
+its clothes could use a good washing (or a good burning). In spite of all
+that it looks like he put put up a tough fight.  
+~
+97 268435456 0 -900 S
+62 0 0 8800d0+0 0d0+0
+0 1 7 0
+0 0 1
+0 0 0
+#16011
+pegasus steed lightfoot~
+Lightfoot~
+A beautiful alabaster white steed stretches its large wings...
+~
+Lightfoot is Dalmar's Steed. His alabaster white coat seems to glow and sparkle
+in the light. Head held high and prancing around the courtyard, he seems
+suffused with both raw energy and a white light. As he senses your gaze on him,
+he stops his prancing a bit to study you. Then after what seems like quite a while under the power of his eyes, he
+snorts and prances away.
+~
+65 403185664 16 1000 S
+68 0 0 9100d0+0 0d0+0
+0 0 0 0
+0 0 1
+1 0 0
+#16012
+dalmar chaos knight leader~
+Dalmar~
+The leader of the Chaos Knights is focused on something else at the moment.
+~
+Dalmar usually walks about with a friendly smile on his lips and a kind word
+or two. At the moment he seems quite pre-occupied with something else on his
+mind. Perhaps it has something to do with the future of the Chaos Knights
+and the Death Knights.
+~
+67 301998216 16 600 S
+71 0 0 7750d0+0 0d0+0
+80 0 0 0
+0 0 1
+128 0 0
+>greet_prog 75~
+if isimmort($n) == 1
+say Begone from the sanctuary of Meliki $n, it is no place for you!
+break
+endif
+ 
+if ispc($n) == 1
+say $n, Help me to smite this infedel!
+endif
+~
+|
+#16013
+baldor death knight leader~
+Baldor~
+The leader of the Death Knights readies his weapons.
+~
+Baldor radiates evil and darknes just as he sun radiates heat and light. He
+and Dalmar (leader of the Chaos Knights) face off to fight for the future of
+their clans. He raises his hand in a strange type of salute and then laughs
+and whispers under his breath. The whole time he does this, hi grin gets bigger
+and the aura of darkness about him seems to grow in strength.
+~
+71 201326728 16 -1000 S
+71 0 0 7750d0+0 0d0+0
+80 0 0 0
+0 0 1
+4352 0 0
+>speech_prog p Help me to smite this infedel!~
+say You all will now feel my wrath!
+laugh $n
+cast 'earthquake'
+~
+|
+#16014
+steed nightmare darkbreeze~
+Darkbreeze~
+A coal-black steed paws at the ground.
+~
+Darkbreeze is Baldor's nightmare steed. Very few mortals ever put bridle on a
+nightmare. Perhaps this says something about Baldor's power. As it senses you
+approaching, it snorts fire and it's eyes glow red. It's coat is coal-black and
+its eyes burn with a fierce unearthly fire as its flaming hooves leave scorch
+marks on the ground. Then just as you begin to think you mayget away, it raises
+its hooves above it's head and charges you.
+~
+101 34078848 16 -1000 S
+68 0 0 9100d0+0 0d0+0
+0 0 0 0
+0 0 0
+8320 0 0
+#16015
+dark creeper humanoid~
+The Dark Creeper~
+A short and thin humanoid stands before you dressed in black.
+~
+The creature is about the same height as an average dwarf, but is built more
+on the slender side. As you approach it, and your light throws illumination
+upon it, it screams in both pain and anger.
+"Put that out! Now!" it yells at you as it attacks.
+~
+99 268509736 0 0 S
+65 0 0 10000d0+0 0d0+0
+30 0 0 0
+0 0 0
+0 0 0
+#16016
+dark creeper humanoid~
+The Dark Creeper~
+A short and thin humanoid stands before you, dressed in black.
+~
+The creature is about the same height as the average dwarf, but is built more
+on the slender side, as opposed to husky.
+As you approach, it laughs and screams, "Death to all enemies of my master!"
+~
+99 268509704 0 0 S
+65 0 0 10000d0+0 0d0+0
+30 0 0 0
+0 0 0
+0 0 0
+#16017
+dark stalker humanoid~
+The Dark Stalker~
+A tall and thin humanoid blends in with the shadows...
+~
+The figure watches you as you as you enter, a condescending smile on his
+face.  He motions for his underling to attack you with one hand and the
+other absently caresses his sword-hilt as if youa ssure himself it is still
+there.  As your light crosses the room he shies away from it and backs into
+the shadowy depths of the room, snarling with anger.  
+~
+3 268509352 0 0 S
+69 0 0 9425d0+0 0d0+0
+60 0 0 0
+0 0 1
+2 0 0
+#16018
+shadow demon~
+The Shadow Demon~
+A shadow in the corner, catches your eye.
+~
+A faint shadow in the corner flickers and moves. You realize that it is a
+creature you don't want to mess with. Just as you come to know this, it leaps
+into the air, landing a mere foot away and attacks!
+~
+8291 268501546 0 -1000 S
+74 0 0 13600d0+0 0d0+0
+110 0 0 0
+0 0 0
+5024 0 0
+#16019
+black pudding form~
+The Black Pudding~
+A black form rises above you menacingly and attacks!
+~
+The black pudding looks just like the name implies. It is a black blob of
+stuff that is probably resistant to any normal attacks made upon it. It seems
+that most attacks will simply be absorbed by this thing. This might just take
+some thinking on your part.
+~
+99 8462888 0 0 S
+73 0 0 16500d0+0 0d0+0
+110 0 0 0
+0 0 0
+232 0 0
+>fight_prog 25~
+circle
+~
+|
+#16020
+vampire woman dianyasis~
+Dianyasis~
+A breath-takingly beautiful woman lounges in an ornate throne-like chair.
+~
+From the moment you enter the room, her eyes pierce you and seem as if to look
+into your very soul... as if passing judgement on you in some way. As you begin
+to regain some small semblance of composure, you notice a few other things about
+the room you are in and the woman who occupies it. The pools of blood on the
+loor and the pale skin leads you to believe that this woman is a vampire.
+Then as if she reads your mind she speaks to you, "So, you realize what I am,
+do you? You believe you can kill me?"
+Then she laughs at you and looks away, as if in contempt of you and your
+powers.
+~
+8259 302006400 0 -1000 S
+85 0 0 10125d0+0 0d0+0
+240 0 0 0
+0 0 2
+98562 0 0
+#16021
+vampire protector Derion~
+Derion~
+The protector of Dianyasis stands at attention, eyeing you up and down.
+~
+Derion stares at you with hatred... barely kept in check. He stands about six
+feet two inches tall, and has a rather slim build.
+What do you wish with the Mistress? he asks in a firm voice.
+She has little time for peasants like you.
+Saying that, and wearing a very smug look indeed, he resumes staring beyond you,
+looking for other intruders.
+~
+8195 302006272 0 -500 S
+76 0 0 9000d0+0 0d0+0
+130 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if class($n) == 9
+say Hello fellow stalker of the night!
+shake $n
+break
+endif
+ 
+if ispc($n) == 1
+say Your kind is not welcome here!
+growl $n
+endif
+~
+>fight_prog 25~
+drain
+~
+|
+#16022
+vampire bat~
+The Vampire Bat~
+&rA large bat with huge fangs hovers here.
+~
+The bat has come at your summons to kill whatever you heart desires. It seems
+to grin at you when it thinks you are not looking, so you havd better keep a
+close eye on it.
+~
+8257 268714112 0 -500 S
+65 0 0 6250d0+0 0d0+0
+30 0 0 0
+0 0 0
+0 0 0
+>fight_prog 25~
+drain
+~
+|
+#16023
+torin man~
+Torin~
+A slim young-looking man stands before you in a crimson cloak.
+~
+Torin is the greedy type who wants all of what others have... be it power,
+riches or what have you. His goal now is to take the place of Derion as the
+protector. After that, he is unsure, but it is always more power and money he
+looks for. As you enter he judges if you will brink either. After deciding you
+could, in fact, provide some prestiege (if he killed you, of course) he makes
+his attack.
+~
+8293 302088232 0 -600 S
+72 0 0 10400d0+0 0d0+0
+90 0 0 0
+0 0 1
+65538 0 0
+#16024
+healer Sylvia~
+Sylvia~
+A haggard, but regal-looking woman rests here oblivious to her surroundings.
+~
+Sylvia is taking her ease while surrounded by chaos. She seems to radiate a
+kind of peace and tranquility that is very reassuring.
+ 
+"Hello wanderer," she says in a weary voice. "I continue my battle with the
+chaos that infests this place day and night. It pains me to see you hurt, as
+I am from the surrounding evil. I am beginnging to feel weary to my very
+bones from holding back the evil... but as long as I am here, you need fear
+nothing. Come rest a bit and be refreshed before you continue your journeys."
+~
+67 470409902 16 1000 S
+95 0 0 12375d0+0 0d0+0
+600 0 0 0
+0 0 2
+100 0 0
+#16025
+banshee mist elf form~
+The Banshee~
+&wA faint mist settles into the form of a female elf.
+~
+&wThe Banshee eyes you with a hunger suffused with an anger and hatred for all
+things that live. As you move closer she begins to wail a high-pitched scream
+that makes your head ache immensely. You can almost feel a pressure in your head
+as if it were going to explode. Then silence.
+~
+8259 302056106 0 -1000 S
+75 0 0 8750d0+0 0d0+0
+120 0 0 0
+0 0 2
+770 0 0
+>fight_prog 2~
+rake
+~
+>fight_prog 1~
+shriek
+~
+|
+#16026
+water weird serpent~
+The Water Weird~
+&BA watery serpent peers its head out of the basin in the centre of the room.
+~
+&BThe water weird is somehow formed from living water. It pokes its head out
+of a very large basin that is positioned in the exact centre of the room.
+The basin is very orante and holds about one hundred fifty gallons of water.
+Although the room is huge, the water weird can apparently reach all the way
+across the room. You notice this because as you are studying it, it is closing
+in on you. Almost too late, you realize that there are several broken weapons
+and rusty pieces of armour scattered around the room. It seems that the water
+weird has disposed of several other adventurers like yourself.
+~
+99 134217896 0 -800 S
+81 0 0 13325d0+0 0d0+0
+180 0 0 0
+0 0 0
+227 0 0
+#16027
+ghost spirit~
+The Ghost~
+&wA spirit wanders about in agony and pain, hating all beings that live...
+~
+&wThe ghost groans in pain and anger as though its very existance was filled
+with immense agony. As you approach, its eyes light up as it senses your strong
+life force.
+"You will join in my torment!" it cries as it launches itself at you and
+attacks!
+~
+8289 302104746 0 -1000 S
+84 0 0 9900d0+0 0d0+0
+220 0 0 0
+0 0 0
+199682 0 0
+#16028
+drider spider~
+The Drider~
+A large spider with the upper torso of a humanoid launches at you!
+~
+Driders are the evil work of Lloth, the Spider Queen of the Underdark. When
+a drow reaches a certain level, Lloth puts them through a test of some kind.
+Those who fail the test become these hideous monsters.
+The drider is a large  bloated spider from the waist down, and its upper
+torso and head is that of a dark elf who failed the test of Lloth. They
+remember their previous existance and live in constant torment and anger. As
+the drider sees you approach, it attacks with a vengeance.
+~
+7 268436104 0 -1000 S
+69 0 0 9425d0+0 0d0+0
+60 0 0 0
+0 0 2
+2048 0 0
+#16029
+quickling creature~
+The Quickling~
+A small creature darts about the place in a blur you can barely follow.
+~
+The quickling moves almost too fast for you to see! He is about two feet tall
+and of very slender build. Long white hair streams behind him and his ears
+are very large and pointed. He notices you immediately and (after running
+about ten circles around you) attacks.
+~
+97 268533930 0 -800 S
+72 0 0 10400d0+0 0d0+0
+90 0 0 0
+0 0 1
+49152 0 0
+#16030
+spriggan creature~
+The Spriggan~
+A small creature that looks roughly human wanders here.
+~
+The spriggan is about three feet tall and easily the ugliest thing you have
+ever laid eyes on. It wields a rather nasty looking dagger and wears a pair of
+sturdy-looking knee high boots. All it's clothes look shabby and are patched
+in several places. As it notices you it screams and attacks.
+~
+97 302039080 0 -700 S
+73 0 0 8250d0+0 0d0+0
+100 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 75~
+if isimmort($n) == 1
+say Hello Lord $n, I am in your service
+bow $n
+break
+endif
+ 
+if ispc($n) == 1
+say Chaos will rule, you made your last mistake opposing it
+backstab $n
+endif
+~
+|
+#16031
+assistant seth~
+Seth~
+The librarian's assistant is working on organizing the library's books.
+~
+&BSeth is calmly working on the rather enormous task of cataloging the contents
+of the entire library. He is about 25 years of age, and is just short of 6 feet
+tall. His &Olight brown hair&B is rumpled, and he looks rather tired. He mustn't
+be getting very much sleep lately.
+~
+67 268443784 16 400 S
+63 0 0 7475d0+0 0d0+0
+20 0 0 0
+0 0 1
+0 0 0
+>speech_prog p help me~
+if ispc($n) == 1
+say Yes, I suppose I could help you a bit.
+say There are several books that may be of interest to you.
+say "Look bookcase" to see the titles, you may then "look <title>".
+smile $n
+say Now if you'll excuse me, I must get back to work, friend.
+endif
+~
+|
+#16032
+bodak creature~
+The Bodak~
+A tall grey-skinned, hairless creature stands wreathed in flames.
+~
+The Bodak is very muscular and has a long head with milky-white pupils. You
+cannot tell the sex of the bodak because from the waist down all you see is a
+wall of flames. It's face is twisted into a grimace of hatred.
+~
+97 301990056 0 -950 S
+77 0 0 9250d0+0 0d0+0
+140 0 0 0
+0 0 0
+2 0 0
+#16033
+ghoul corpse~
+The Ghoul~
+A rotting corpse stumbles around the room looking toward you with hunger...
+~
+The ghoul is a former human who (after death) was changed through the use of
+powerful and evil magicks, into an undead creature. As it senses your approach
+it begins to move toward you with hunger plain on its rotting face.
+~
+8261 402653184 0 -900 S
+63 0 0 7475d0+0 0d0+0
+20 0 0 0
+0 0 0
+2 0 0
+#16034
+ghast corpse~
+The Ghast~
+A rotting corpse stumbles about, exuding a terrible stench.
+~
+The ghast looks exactly like a ghoul, and the only real difference is the
+stench exuding from it. It is absolutely the worst thing you have ever smelled.
+It moves for you as you enter, looking at you as if you were a tasty morsel.
+~
+8257 402653320 0 -950 S
+67 0 0 6750d0+0 0d0+0
+40 0 0 0
+0 0 0
+0 0 0
+#16035
+gargoyle statue stone~
+The Gargoyle~
+A small stone statue moves to block your way as you enter the room.
+~
+The gargoyle looks exactly like a simple stone statue, until it moves. It
+stands about three feet tall and looks rather formidable. Just as you begin to
+think you imagined that it moved, it speaks... informing you that you cannot
+pass and will die for trying.
+~
+67 268444200 0 0 S
+70 0 0 12000d0+0 0d0+0
+70 0 0 0
+0 0 0
+231426 0 0
+#16036
+storm giant~
+The Storm Giant~
+&pA giant with violet skin and &wsilver eyes&p towers over you.
+~
+&pThe giant studies you as you enter. It's &wsilver eyes &pseem to read your soul
+like a small book as if he knows all there is to know at a glance. Just as
+you begin to feel overwhelmed, he smiles and welcomes you into his home.
+~
+67 336076968 0 700 S
+84 0 0 11000d0+0 0d0+0
+220 0 0 0
+0 0 0
+2563 0 0
+#16037
+titan giant man~
+the Titan~
+A giant of a man smiles at you as you enter the room.
+~
+The titan is much more imposing than the stories you have heard, although he
+smiles quite a bit. You quickly realize that he would be a bad one to cross. He
+is very handsome and muscular, and stands at about 20 feet tall. All he wears is
+a loincloth and sandals, but as you look upon him all you really notice is the
+tyes that bore into you, pinning you to the ground.
+~
+67 402653864 16 900 S
+85 0 0 11250d0+0 0d0+0
+240 0 0 0
+0 0 1
+75779 0 0
+#16038
+roc bird~
+The Roc~
+A huge bird resembling an eagle nests here.
+~
+The Roc is absolutely the largest bird you have ever laid eyes on. It closely
+resembles an eagle in colouration, but is at least 10 times bigger than the
+biggest eagle you have ever seen. It peers at you and gives you a strange look.
+Could it be intelligent?
+~
+67 268959744 0 0 S
+78 0 0 15200d0+0 0d0+0
+150 0 0 0
+0 0 0
+0 0 0
+#16039
+djinni being~
+The Djinni~
+A tall being that is surrounded by a whirlwind is calmly meditating...
+~
+&PThe djinni is 10 feet tall and from the waist up he appears human. His
+bald head emphasizes hisneatly trimmed beard and brows. From the waist down
+he is just simply a whirlwind of colours which appear like smoke. Whether
+this is the lower part of his body or that the smoke covers the lower part is
+hard to tell. He takes no notice of your entrance.
+~
+67 268976170 0 650 S
+0 0 0 9100d0+0 0d0+0
+50 0 0 0
+0 0 0
+0 0 0
+#16040
+ettin monster humanoid~
+The Ettin~
+A large two-headed humanoid monster screams in rage and attacks!
+~
+The ettin stalks around the room as a whole, while it's two heads are arguing
+back and forth in a strange language that sounds like orcish. As you enter, the
+left head turns toward you and screams. The right head then turns on you, and
+the ettin as a whole attacks.
+~
+99 301990016 0 -1000 S
+82 0 0 13650d0+0 0d0+0
+190 0 0 0
+0 0 1
+0 0 0
+#16041
+centaur creature~
+The Centaur~
+A creature that is half-human and half-horse prances about the room.
+~
+The centaur has the upper torso and head of a human female, but from the waist
+down she has a horses body. She is bare-breasted and quite beautiful. It seems
+she has no modesty about you looking at her. Head held high, she puts some
+more spring into her step as she notices you watching her.
+~
+7 268435592 0 150 S
+64 0 0 7800d0+0 0d0+0
+25 0 0 0
+0 0 2
+0 0 0
+#16042
+minotaur beast~
+the Minotaur~
+&OA large beast with the head of a bull roars and then charges at you!
+~
+&OThe minotaur is an eight foot tall brute that makes you quake in your boots.
+As soon as you see him, he roars and charges at you. As you contemplate your
+last few seconds of life, the only coherent thought you have is how did someone
+actually manage to capture this beast? Its hands and ankles are covered with
+shackles, bringing you to assume it is a prisoner.
+~
+97 301989928 0 -1000 S
+75 0 0 11375d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#16061
+None~
+None~
+None.
+~
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#16067
+None~
+None~
+None
+~
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#0
+
+
+
+#OBJECTS
+#16000
+sword broadsword broad~
+a Huge broadsword~
+The Broadsword has some fine writing on the blade that is too worn to make out.  The blade gives off a faint bluish glow when your hand touches the hilt.~
+~
+5 257 50 0 8193 65
+0~ 1~ 3~ 3~
+9 0 0 0 0
+5 0
+energy drain~
+8 8
+0 0 0
+A
+19 20
+A
+18 20
+A
+26 5
+A
+13 35
+#16001
+white robe pile cloth~
+a brilliant white robe~
+&WA pile of strange white cloth lies here.~
+~
+9 1 0 29340 9 68
+3~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 3
+A
+17 -60
+A
+13 68
+A
+12 68
+E
+pile~
+&WA white silk-like cloth that looks to be very durable.
+~
+E
+cloth~
+&WThe cloth feels like silk, but seems quite a bit more durable.
+~
+E
+white~
+&WA brilliant white robe feels quite durable, although it seems to be made
+of a silky material. It is human-sized, and quite long in length. Two thin
+lines of ice-blue thread have been stitched from shoulder to hem.
+~
+E
+robe~
+&WThe robe is made of a strange silk-like material. Strangely though, it
+seems alot more durable than one made of ordinary silk.
+~
+#16002
+blue silken cloak~
+an ice-blue cloak~
+&CAn ice-blue silken cloak lies here.~
+~
+9 64 0 29340 1025 68
+3~ 0~ 0~ 0~
+4 30 0 0 0
+5 0
+mana~
+3 3
+0 0 0
+A
+3 1
+A
+4 3
+A
+13 20
+A
+12 50
+E
+cloak~
+&CThe cloak is approximately human-sized, although it is even quite long in
+length for an average-sized human. Perhaps if you wrap it around just right, it
+may fit perfectly.
+~
+E
+silken~
+&CA lovely blue silken cloak is pretty to look at as well as feeling it's
+silky texture. It's tightly woven threads make it one of the softest silks
+you've touched.
+~
+E
+blue~
+&CThe cloak is an ice-blue in colour, and the threads are tightly woven.
+~
+#16003
+nimbus chaos energy~
+the Nimbus of Chaos~
+&YA Nimbus of chaotic energy swirls about...~
+~
+9 67108964 0 64186 32769 85
+3~ 0~ 0~ 0~
+2 70 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 3
+A
+12 85
+A
+108 -1
+E
+nimbus~
+&w&YA luminous vapor of radiant light swirls chaotically.
+~
+E
+chaos~
+&YA luminous vapor of radiant light swirls chaotically.
+~
+E
+energy~
+&YA luminous vapor of radiant light swirls chaotically.
+~
+#16004
+eyes chaos lenses~
+the Eyes of Chaos~
+A pair of dark lenses that sparkle with chaotic energy.~
+~
+27 67108935 0 65180 131073 85
+85~ 4~ 4~ heighten senses~
+1 130 0 0 0
+0 0
+locate object~
+0 0
+0 0 0
+A
+102 -1
+A
+13 80
+A
+1 2
+E
+eyes~
+&YThe eyes of chaos look to be just that. Just by looking at them you
+can feel a power of evil. They are indeed, dark, but if you hold them
+just right they appear to be amber in colour. You can't be sure, but it
+seems that these items were either magically made or that they are, in
+fact, a shaving off of some vile creature's orbs.
+~
+E
+chaos~
+&YThe eyes of chaos look to be just that. Just by looking at them you
+can feel a power of evil. They are indeed, dark, but if you hold them
+just right they appear to be amber in colour. You can't be sure, but it
+seems that these items were either magically made of that they are, in
+fact, a shaving off of some vile creature's orbs.
+~
+E
+lenses~
+&YYou feel an overpowering sense of evil as you look upon chaos.
+~
+#16005
+orb chaos~
+the Orb of Chaos~
+&YAn orb that is surrounded by eddies of pure energy hovers here.~
+~
+1 67108869 0 0 16385 78
+0~ 0~ -1~ 0~
+4 80 0 0 0
+5 0
+displacement~
+4 4
+0 0 0
+A
+13 60
+A
+5 3
+A
+17 -60
+E
+orb~
+&YThe orb is a abstract ball of pure energy.
+~
+E
+chaos~
+&YThe orb eminates evil and an undescribable power.
+~
+#16006
+grey mask~
+a grey mask~
+&wA grey mask shimmers with unseen bursts of energy.~
+~
+9 1 32 49089 65537 78
+1~ 0~ 0~ 0~
+3 50 0 0 0
+5 0
+teleport~
+4 4
+0 0 0
+A
+17 -75
+A
+2 2
+E
+grey~
+&wA grey mask shimmers with unseen bursts of energy.
+~
+E
+mask~
+&wA mask is grey in colour, and smooth in texture. It is rather small in
+size, and conforms to fit almost any small face.
+~
+#16007
+staff light~
+staff of Light~
+&OA stout wooden staff gives off a &Bbluish &Oglow.~
+~
+1 2 2764 16412 16385 70
+0~ 0~ -1~ 0~
+5 40 0 0 0
+5 0
+chaos field~
+3 3
+0 0 0
+A
+13 60
+A
+12 70
+A
+4 2
+E
+light~
+&WA stout-looking wooden staff emits a &b&Bbright bluish glow&W&W.
+~
+E
+staff~
+&OA stout-looking wooden staff that emits a &b&Bbright bluish glow&O&O and also a
+faint humming noise when held.
+~
+#16008
+boots flight crimson~
+the boots of flight~
+A pair of bright crimson boots, that seem to weigh less than nothing.~
+~
+9 4192 0 64156 65 70
+3~ 0~ 0~ 0~
+2 30 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -35
+A
+2 1
+A
+110 -1
+E
+crimson~
+&RThe boots are crimson in colour and very well crafted.
+~
+E
+flight~
+The boots are human-sized and very well crafted.
+~
+E
+boots~
+The boots are human-sized and very well crafted.
+~
+#16009
+white gossamer gown~
+a white gossamer gown~
+An extremely thin white gown, cut in the latest fasion.~
+~
+9 64 448 0 9 70
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+intellect fortress~
+3 3
+0 0 0
+A
+13 25
+A
+4 2
+#16010
+red bound book ~
+a Big Red Bound Book~
+&GA rather large &rred bound &Gbook.~
+~
+15 536870912 0 0 16385 70
+210~ 5~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -35
+A
+13 30
+A
+11 80
+E
+book~
+&rAs you take a closer look at the book you notice that there is a small pocket
+hiddenin the cover. When you open it you are amazed to see a pocket of extra-
+dimensional space to store things.
+~
+E
+red~
+&rThe book is bound in a red cover, with a pocket on the front.
+~
+E
+pocket~
+&rLooking inside the pocket, you can see a large space (larger than you would
+think just by looking at it).
+~
+E
+bound~
+&rThe book is bound with a red cover that has a small pocket on the front.
+~
+#16011
+green emerald ring~
+a Green Ring~
+An emerald ring with several inlaid diamond chips.~
+~
+9 2339 512 0 3 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+sleep~
+4 4
+0 0 0
+A
+12 75
+A
+13 25
+A
+11 35
+E
+green~
+&GThe ring has a green tinge to it, almost like it is green-coloured
+gold. It's centrepiece is a small emerald, inlaid with diamond chips.
+~
+E
+ring~
+The ring has a green tinge to it, almost like it is a green-coloured
+gold. It's centrepiece is a small emerald, inlaid with diamond chips.
+~
+E
+emerald~
+The ring has a green tinge to it, almost like it is a green-coloured
+gold. It's centrepiece is a small emerald, inlaid with diamond chips.
+~
+E
+diamond~
+&WSeveral tiny diamond chips surround a large &ggreen emerald&W in the
+centre of the ring.
+~
+E
+chips~
+&WSeveral tiny diamond chips surround a large &ggreen emerald&W in the
+centre of the ring.
+~
+#16012
+silvery key~
+vladimer's key~
+A silvery key lies here.~
+~
+18 32 0 0 16385 75
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+&wA fat key made of a slick-feeling silvery metal.
+~
+E
+silvery~
+&wA fat key made of a slick-feeling silvery metal.
+~
+#16013
+green bracelet jade~
+a thick green bracelet~
+A jade bracelet has been left here.~
+~
+9 1088 0 0 4097 75
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+portal~
+0 0
+0 0 0
+A
+12 50
+A
+13 25
+A
+23 -5
+A
+24 -4
+E
+jade~
+The bracelet is jade, with three small emeralds on it. It is strongly warm
+to the touch.
+~
+E
+bracelet~
+The bracelet is jade, with three small emeralds on it. It is strongly warm
+to the touch.
+~
+E
+green~
+The bracelet is jade, with three small emeralds on it. It is strongly warm
+to the touch.
+~
+#16014
+sparkling emerald~
+an emerald~
+&gA fist-sized emerald is yours for the taking...~
+~
+8 1 0 0 16385 80
+0~ 0~ 0~ 0~
+2 30 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+emerald~
+&gThis beautiful emerald is cut with fine craftsmanship.
+~
+E
+sparkling~
+&gA beautiful human-fist-sized emerald &Gsparkles&g like green fire.
+~
+#16015
+mask fury~
+mask of Fury~
+A mask that eminates anger and overwhelms you with fury.~
+~
+9 352 4256 36220 65537 80
+3~ 0~ 0~ 0~
+5 70 0 0 0
+5 0
+complete healing~
+1 1
+0 0 0
+A
+13 80
+A
+23 -5
+A
+11 90
+A
+17 -35
+E
+fury~
+&REven by simply look at this mask you feel an overwhelming amount of violent
+anger. You have to struggle so as not to give into the rage, yet even as you
+struggle... a fierceness hits you.
+~
+E
+mask~
+&WThe mask of fury is large in size, made for a creature with a snout-shaped
+face.
+~
+>wear_prog 100~
+0
+say &RVehemence is power!&C
+emote cackles manically, echoing through your head.
+~
+|
+#16016
+white scales sleeves~
+some white dragon-scaled sleeves~
+A pair of sleeves made from the scales of a white pseudo-dragon~
+~
+9 2080 64 52351 257 80
+13~ 0~ 0~ 0~
+10 70 0 0 0
+5 0
+flesh armor~
+4 4
+0 0 0
+A
+17 -80
+A
+13 75
+A
+5 1
+A
+2 -1
+E
+sleeves~
+&WThe sleeves are fairly large in size, and if you know what you're looking
+for you can tell they are dragon-scaled.
+~
+E
+scales~
+&WAlmost a metallic white in colour, the dragon-scaled sleeves are fairly
+large in size and look very protective.
+~
+E
+white~
+&WThe dragon-scaled sleeves are large in size and white in colour.
+~
+#16017
+white encrusted key~
+a white encrusted key~
+&A white key with beautifully encrusted gems lies here.~
+~
+18 34 0 0 16385 80
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+E
+key~
+&WA white key is encrusted with gems and beautifully made.
+~
+E
+encrusted~
+&WThe white key is encrusted with 4 beautifully cut &rrubies&W.
+~
+E
+white~
+&WThe key is white in colour, and fairly large in size. You're not sure of
+it's material, but it could be a bleached bone.
+~
+#16018
+golden encrusted chest~
+a small golden chest~
+&GA small &Ygolden chest&G encrusted with &gemeralds&G rests here.~
+~
+15 32 0 0 0 40
+200~ 5~ 0~ 0~
+50 1100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+golden~
+&YThe chest seems to be made of gold, including golden hinges and a latch.
+~
+E
+encrusted~
+&gThe chest is encrusted with many small emeralds.
+~
+E
+emeralds~
+&gThere are too many to count.
+~
+E
+chest~
+&YA golden chest appears to be made of gold, including hinges and a latch.
+There are too many &gsmall emeralds&Y to count. But you would guess this
+chest is worth a pretty penny.
+~
+#16019
+key grey~
+a grey key~
+&wA long and slender grey key has been forgotten here.~
+~
+18 34 0 0 16385 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+&wThe grey key is long and slender. It it quite small in size.
+~
+E
+grey~
+&wThe key is grey in colour, and is quite small.
+~
+#16020
+fear blade~
+the Blade of Fear~
+A large blade etched with runes has been carelessly left here.~
+~
+5 18982 5155 52607 8193 85
+0~ 0~ 0~ 3~
+15 210 0 0 0
+5 0
+enchant weapon~
+1 1
+0 0 0
+A
+19 150
+A
+18 75
+A
+26 8
+A
+17 -60
+A
+13 75
+E
+fear~
+A long bastard sword with a slightly curved blade. Runes are inscribed on the
+blade.
+~
+E
+runes~
+&bThe runes mark death and pain.
+~
+E
+blade~
+A long bastard sword with a slightly curved blade. Runes are inscribed on the
+blade.
+~
+#16021
+red ioun stone~
+a red ioun stone~
+&RA stone the size of a hens egg has been left here.~
+~
+9 2561 0 0 32769 85
+3~ 0~ 0~ 0~
+3 50 0 0 0
+5 0
+charm person~
+3 3
+0 0 0
+A
+17 -15
+A
+4 1
+A
+12 85
+E
+stone~
+&RA glimmering Ioun stone (the size of a hens egg) has a red-coloured glow
+about it.
+~
+E
+ioun~
+&RA glimmering Ioun stone (the size of a hens egg) has a red-coloured glow
+about it.
+~
+E
+red~
+&RAn ioun stone is red in colour, due to the glow about it. It is about the
+size of a hens egg.
+~
+#16022
+figurine green woman~
+a small green figurine~
+&GA small green figurine has been left here.~
+~
+18 32 0 0 16385 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 85
+A
+24 -4
+A
+23 -4
+E
+figurine~
+&GA small green figurine is that of a smoothe faced woman wear a shawl
+about her shoulders.
+~
+E
+green~
+&GThe figurine is green in colour. A woman wearing a shawl about her shoulders
+is the subject.
+~
+E
+woman~
+&GA beautiful smooth-faced woman wears a shawl about her shoulders, as if
+covering herself from a sort of coldness.
+The figurine is about 7 inches in height. (just under 20cm)
+~
+#16023
+rusty spear~
+a long rusty spear~
+A rusty spear has been left here.~
+~
+5 16 5171 51262 8193 58
+0~ 0~ 0~ 2~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 80
+A
+19 60
+E
+spear~
+&OA long spear with a wicked-looking, but rusted, barb at the end.
+~
+E
+rusty~
+&OA long spear with a very rusty barbed end.
+~
+#16024
+leather leggings worn~
+some worn leather leggings~
+A pair or worn leather leggings that have seen better days.~
+~
+9 16 0 0 33 62
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+A
+17 -25
+E
+leather~
+&OThe leggings are worn here and there, especially around the knees.
+~
+E
+leggings~
+&OThe leggings are worn here and there, especially around the knees.
+~
+E
+worn~
+&OThe leggings are worn here and there, expecially around the knees.
+~
+#16025
+wings pegasus~
+wings of the Pegasus~
+A large pair of white wings that radiate both power and goodness.~
+~
+9 1281 0 52270 1025 68
+3~ 0~ 0~ 0~
+12 50 0 0 0
+5 0
+fly~
+3 3
+0 0 0
+A
+23 -5
+A
+24 -5
+E
+wings~
+A large pair of white wings that radiate both power and goodness.
+~
+E
+pegasus~
+A large pair of white wings that radiate both power and goodness.
+~
+#16026
+ring chaos~
+the ring of Chaos~
+&YA sparkling golden ring that radiates chaotic energy is here.~
+~
+9 67110145 0 29340 3 71
+3~ 0~ 0~ 0~
+1 40 0 0 0
+5 0
+stone skin~
+3 3
+0 0 0
+A
+13 45
+A
+17 -20
+E
+ring~
+&YA sparkling golden ring radiates chaotic energy.
+~
+E
+chaos~
+&YA sparkling golden ring radiates chaotic energy.
+~
+#16027
+Bracers chaos~
+the bracers of Chaos~
+A pair of dark coloured bracers hum on the ground here.~
+~
+9 67110179 1536 29324 257 71
+13~ 0~ 0~ 0~
+3 40 0 0 0
+5 0
+mass invis~
+3 3
+0 0 0
+A
+9 5
+A
+13 75
+E
+bracers~
+Dark amber coloured bracers hum with barely contained energies.
+~
+E
+chaos~
+Dark amber coloured bracers hum with barely contained energies.
+~
+#16028
+ring darkness~
+the ring of Darkness~
+A coal-black ring sucks up all light that touches it.~
+~
+9 16916 4128 29324 3 71
+3~ 0~ 0~ 0~
+1 40 0 0 0
+5 0
+animate dead~
+3 3
+0 0 0
+A
+17 -25
+A
+9 15
+E
+ring~
+A coal-black ring seems to suck up all the light that touches it.
+~
+E
+darkness~
+A coal-black ring seems to suck up all the light that touches it.
+~
+#16029
+gauntlets despair~
+the gauntlets of Despair~
+A deep feeling of despair emanates from these gauntlets...~
+~
+9 16916 0 0 129 71
+13~ 0~ 0~ 0~
+4 40 0 0 0
+5 0
+curse~
+3 3
+0 0 0
+E
+gauntlets~
+A deep feeling of agony and despair overwhelms you, as you look upon these,
+the Gauntlets of Despair.
+~
+E
+despair~
+A deep feeling of agony and despair overwhelms you, as you look upon these,
+the Gauntlets of Despair.
+~
+#16030
+hooves fire~
+the hooves of Fire~
+&RA pair of red-hot hooves lay here, surrounded by a ring of fire.~
+~
+9 33559156 0 0 65 68
+0~ 0~ 0~ 0~
+10 50 0 0 0
+5 0
+fireball~
+3 3
+0 0 0
+A
+1 2
+A
+11 50
+A
+5 -2
+A
+17 -45
+E
+hooves~
+The hooves are quite large and surrounded by an unfelt ring of fire.
+~
+E
+fire~
+The hooves are quite large and surrounded by an unfelt ring of fire.
+~
+#16031
+cloak shadows~
+the cloak of shadows~
+A jet-black cloak can be barely be seen lying here.~
+~
+9 68 0 0 1025 65
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+chameleon power~
+3 3
+0 0 0
+A
+5 -1
+A
+9 5
+A
+17 -40
+E
+cloak~
+&zEven as you look upon the cloak you can barely see that it is there. Only
+by touch, do you know for certain.
+~
+E
+shadows~
+&zEven as you look upon the cloak you can barely see that it is there. Only
+by touch, do you know for certain.
+~
+#16032
+gem clear energies~
+the gem of magical energies~
+A small clear gem hums with contained energy.~
+~
+9 268435522 0 0 32769 65
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+mana~
+1 5
+0 0 0
+A
+11 95
+A
+13 65
+A
+18 5
+A
+19 4
+A
+12 65
+E
+gem~
+&wThe gem is clear, almost like a prism, though it is cut like a large
+diamond would be.
+~
+E
+clear~
+&wThe gem is clear, almost like a prism, though it is cut like a large
+diamond would be.
+~
+E
+energies~
+&wThe gem is clear, almost like a prism, though it is cut like a large
+diamond would be.
+~
+#16033
+silver short sword~
+a silver short sword~
+A short sword has been left here.~
+~
+5 4 2048 0 8193 69
+0~ 0~ 0~ 2~
+8 0 0 0 0
+5 0
+adrenaline control~
+3 3
+0 0 0
+A
+2 1
+A
+18 90
+A
+19 90
+E
+silver~
+The short sword is very slender and made of a very flexible, yet unbreakable
+silvery metal that looks unfamiliar.
+~
+E
+short~
+The short sword is very slender and made of a very flexible, yet unbreakable
+silvery metal that looks unfamiliar.
+~
+E
+sword~
+The short sword is very slender and made of a very flexible, yet unbreakable
+silvery metal that looks unfamiliar.
+~
+#16034
+red contacts discs~
+some glowing red contacts~
+A pair of tiny red discs glow bright red here.~
+~
+27 516 162 0 131073 74
+74~ 4~ 4~ enhance armor~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 65
+A
+3 1
+E
+red~
+&rThe contacts glow red with a bright light.
+~
+E
+contacts~
+&rThe contacts glow red with a bright light.
+~
+E
+discs~
+&rThe contacts glow red with a bright light.
+~
+#16035
+goblet blood~
+a blood goblet~
+An ornate goblet rests here.~
+~
+17 0 0 0 16385 80
+40~ 40~ 13~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+goblet~
+The goblet is stained red on the inside from top to bottom.
+~
+E
+blood~
+The inside of the goblet is stained red with blood.
+~
+#16037
+blood puddle~
+a blood puddle~
+Blood covers the ground here.~
+~
+28 0 0 0 0 0
+10~ 10~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#16038
+earrings pentagram~
+a pair of small pentagram earrings~
+Two small pentagrams lie here on the ground.~
+~
+9 301990416 160 0 524289 80
+24~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+sleep~
+4 4
+0 0 0
+A
+5 1
+A
+4 -1
+A
+13 55
+E
+earrings~
+The earrings seem to let off a great amount of heat, but as you touch them
+they are barely warm.
+~
+E
+pentagram~
+The earrings seem to let off a great amount of heat, but as you touch them
+they are barely warm.
+~
+#16039
+red torch~
+a torch~
+A small red torch lies here.~
+~
+1 67113476 128 0 16385 80
+0~ 0~ 0~ 0~
+8 0 0 0 0
+1 16040
+reserved~
+3 3
+0 0 0
+A
+13 50
+A
+17 -35
+A
+11 90
+E
+torch~
+A small red torch.
+~
+E
+red~
+A small red torch.
+~
+#16040
+pool blood~
+large pool of blood~
+A large pool of blood is here.~
+~
+28 0 0 0 0 0
+35~ 35~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#16041
+grey potion~
+a grey potion~
+A small grey potion.~
+~
+10 268435460 0 0 16385 74
+74~ heal~ cure critical~ cure critical~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -35
+#16042
+mask deception~
+the mask of deception~
+An everchanging mask lies here, never showing the same face.~
+~
+13 516 128 0 65537 74
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+mass invis~
+5 5
+0 0 0
+A
+109 -1
+A
+6 -1
+E
+mask~
+The mask seems to look different every time you look at it. It never changes
+while you watch it, but as soon as you turn away and back, it just isn't
+the same somehow.
+~
+E
+deception~
+The mask seems too look different every time you look at it. It never changes
+while you watch it, but as soon as you turn away and back, it just isn't
+the same somehow.
+~
+#16043
+gauntlets creation~
+the gauntlets of Creation~
+A pair of heavy steel gauntlets is here.~
+~
+9 67108864 0 0 129 74
+0~ 0~ 0~ 0~
+2 0 0 0 0
+2 16022
+reserved~
+4 4
+0 0 0
+A
+18 4
+A
+19 6
+A
+9 10
+A
+13 35
+E
+gauntlets~
+Heavy steel gauntlets that are alive with chaotic bursts of energy.
+~
+E
+creation~
+Heavy steel gauntlets that are alive with chaotic bursts of energy.
+~
+#16044
+red key~
+a large red key~
+&GA large &rred key&G.~
+~
+18 12416 0 0 16385 72
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#16045
+staff damnation~
+the Staff of Damnation~
+A staff that is etched with faint runes lies here.~
+~
+4 33554948 7116 0 16385 72
+70~ 1~ 1~ death field~
+5 45 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 25
+A
+12 10
+A
+13 35
+A
+18 5
+E
+staff~
+A dark, almost fragile looking staff that has faint runes etched on its
+surface and burns with an inner fire.
+~
+E
+damnation~
+A dark, almost fragile looking staff that has faint runes etched on its
+surface and burns with an inner fire.
+~
+#16046
+eyes desire~
+the Eyes of Ultimate Desire~
+A set of eyes burn with a hunger here.~
+~
+27 33554980 0 0 131073 72
+65~ -1~ 0~ faerie fire~
+1 45 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+17 -25
+A
+9 -15
+A
+25 24
+E
+eyes~
+Torin's eyes burn with desire and hunger for power, wealth and many more
+unimaginable things.
+~
+E
+desire~
+Torin's eyes burn with desire and hunger for power, wealth and many more
+unimaginable things.
+~
+#16047
+anklet endurance chain~
+the anklet of endurance~
+&YA thin golden chain has been forgotten here.~
+~
+9 257 0 0 1048577 90
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+enhanced strength~
+2 2
+0 0 0
+A
+5 2
+E
+anklet~
+&YA thin golden chain that has a tiny star-shaped charm attached to it.
+~
+E
+endurance~
+&YA thin golden chain that has a tiny star-shaped charm attached to it.
+~
+E
+chain~
+&YA thin golden chain that has a tiny star-shaped charm attached to it.
+~
+#16048
+violet potion~
+violet Potion~
+A small violet colored potion~
+~
+10 268435456 0 0 1 70
+70~ sanctuary~ energy containment~ combat mind~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#16049
+potion revelation~
+a Potion of Revelation~
+A small colorless potion~
+~
+10 268443649 0 0 1 70
+70~ detect invis~ scry~ detect hidden~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#16050
+brooch torment~
+the Brooch of Everlasting Torment~
+A burning brooch that is alive with chaotic bursts of energy lies here.~
+~
+9 637538960 0 0 5 75
+3~ 0~ 0~ 0~
+2 60 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+11 50
+A
+17 -70
+A
+13 75
+A
+9 25
+E
+torment~
+&YThe brooch &Rburns&Y with chaotic energy.
+~
+E
+brooch~
+&YThe brooch &Rburns&Y with chaotic energy.
+~
+#16051
+shroud burning agony flame~
+the Shroud of Burning Agony~
+&RA shroud of living flame burns here.~
+~
+9 33558736 0 0 1025 75
+3~ 0~ 0~ 0~
+8 60 0 0 0
+5 0
+fireshield~
+1 1
+0 0 0
+A
+11 -50
+A
+12 75
+A
+9 15
+A
+13 45
+E
+flame~
+&RThe shroud appears to be a living flame, made to serve its wearer.
+~
+E
+agony~
+&RThe shroud appears to be a living flame, made to serve its wearer.
+~
+E
+burning~
+&RThe shroud appears to be a living flame, made to serve its wearer.
+~
+E
+shroud~
+&RThe shroud appears to be a living flame, made to serve its wearer.
+~
+#16052
+basin~
+a large basin of water~
+A large basin of water stands here~
+~
+15 536870912 0 0 0 0
+500~ 0~ 0~ 0~
+5000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#16053
+crystal key~
+a shining crystal key~
+A slim, very delicate looking crystal key~
+~
+18 8193 0 0 16385 78
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+complete healing~
+0 0
+0 0 0
+#16054
+chains mystical~
+mystical chains~
+The chains are draped around the ghosts' neck and seem to have immense weight~
+~
+9 4225 0 0 5 84
+0~ 0~ 0~ 0~
+15 0 0 0 0
+5 0
+awe~
+10 10
+0 0 0
+A
+111 -1
+A
+11 120
+A
+19 8
+A
+18 8
+#16056
+axe~
+a Broad Venomous Axe~
+The axe is razor sharp and drips with a toxic venom~
+~
+5 16404 0 0 8193 69
+0~ 0~ 0~ 1~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -35
+A
+19 25
+A
+18 19
+A
+26 25
+#16057
+dagger speed~
+the dagger of quickness~
+A very small dagger with a ruby set in the hilt~
+~
+5 0 0 0 8193 72
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+A
+18 35
+A
+19 10
+A
+5 -1
+#16058
+stud diamond earring~
+a large diamond stud~
+The earring is large and sparkles brightly~
+~
+9 17 0 0 524289 72
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+detonate~
+5 5
+0 0 0
+A
+18 7
+A
+19 5
+A
+2 1
+A
+17 -45
+#16059
+boots~
+a pair of sturdy knee high boots~
+Knee high boots made from what looks like the skin of a rather unlucky human~
+~
+9 20 1 0 65 73
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+awe~
+2 2
+0 0 0
+A
+13 30
+A
+18 5
+A
+19 8
+A
+4 -1
+#16060
+mace steel~
+a short steel mace~
+A short steel mace that writhes with chaotic energy~
+~
+5 67109392 0 0 8193 73
+0~ 0~ 0~ 8~
+5 0 0 0 0
+4 16061
+reserved~
+-1 -1
+0 0 0
+A
+18 28
+A
+19 17
+A
+4 -1
+A
+1 1
+#16061
+dagger steel~
+a sharp wavy-bladed steel dagger~
+A sharp wavy-bladed steel dagger~
+~
+5 33554448 0 0 8193 73
+0~ 0~ 0~ 11~
+2 0 0 0 0
+4 16060
+reserved~
+-1 -1
+0 0 0
+A
+19 30
+A
+18 15
+A
+2 1
+A
+12 -50
+#16062
+aura evil~
+aura of Undying Evil~
+Evil eminates from the aura, that burns with a fiery heat~
+~
+9 33554976 0 0 32769 77
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -40
+A
+18 7
+A
+19 8
+A
+12 -50
+#16063
+rotting vest~
+a rotting vest~
+A once fine fur vest is now simply rotting away~
+~
+9 532 0 0 9 63
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 -5
+A
+4 -1
+A
+18 6
+A
+19 6
+A
+12 -50
+#16064
+rusty leggings~
+a pair of rusted leggings~
+The leggings were once in good condition but years of neglect now renders them almost useless~
+~
+9 532 0 0 33 67
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -15
+A
+13 -50
+A
+5 -1
+A
+18 6
+A
+19 7
+#16065
+horn~
+the Horn of the Gargoyle~
+A long spiral horn made from dark-gray stone~
+~
+9 1537 0 4096 17 70
+0~ 0~ 0~ 0~
+5 0 0 0 0
+5 0
+stone skin~
+8 8
+0 0 0
+A
+11 25
+A
+5 1
+A
+13 25
+A
+19 7
+A
+18 6
+#16066
+sceptre storm~
+sceptre of the storm~
+A small silver sceptre with a 3 inch crystal ball at the tip~
+~
+1 536870913 6212 52607 16385 84
+0~ 0~ -1~ 0~
+8 110 0 0 0
+5 0
+call lightning~
+4 4
+0 0 0
+A
+12 85
+E
+storm~
+&wA large silver sceptre with a 6 inch (15cm) diameter crystal ball at the
+tip.
+~
+E
+sceptre~
+&wA large silver sceptre with a 6 inch (15cm) diameter crystal ball at the
+tip.
+~
+#16067
+lightning bolt~
+a huge bolt of pure lightning~
+A huge bolt of pure lightning that is somehow contained~
+~
+5 335544576 1589 52607 8193 84
+0~ 0~ 0~ 6~
+12 0 0 0 0
+5 0
+control weather~
+4 4
+0 0 0
+A
+12 80
+A
+19 75
+A
+18 120
+A
+17 -45
+A
+13 65
+E
+bolt~
+A huge bolt of pure lightning is somehow contained for mortal usage. It is
+HUGE in size and sparkles with immense electricity.
+~
+E
+lightning~
+A huge bolt of pure lightning is somehow contained for mortal usage. It is
+HUGE in size and sparkles with immense electricity.
+~
+#16068
+pair slippers~
+a pair of slippers~
+A large pair of soft, fur-line slippers are here.~
+~
+9 1 0 52591 65 85
+0~ 0~ 0~ 0~
+3 50 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+slippers~
+A large pair of slippers are lined with rabbit fur.
+They are extra large in size.
+~
+E
+pair~
+A large pair of slippers are lined with rabbit fur.
+They are extra large in size.
+~
+#16069
+fur loincloth~
+a loincloth~
+A rather large fur loincloth is here.~
+~
+9 256 0 52607 2049 85
+0~ 0~ 0~ 0~
+2 190 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+A
+2 -1
+E
+loincloth~
+A loincloth is made of fur. You can't quite tell what type, as it is very worn
+out. It is quite large in size.
+~
+E
+fur~
+A loincloth is made of fur. You can't quite tell what type, as it is very worn
+out. It is quite large in size.
+~
+#16070
+beak roc~
+the beak of a roc~
+A huge beak that is slightly hooked has been left here.~
+~
+9 0 5683 52351 65537 78
+12~ 0~ 0~ 0~
+6 65 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 3
+E
+roc~
+The beak is very large in size. It must have come from a rather large bird.
+~
+E
+beak~
+The beak is very large in size. It must have come from a rather large bird.
+~
+#16071
+feathers roc feather~
+some large feathers~
+Some very large feathers lay here.~
+~
+9 64 0 52335 9 78
+3~ 0~ 0~ 0~
+3 85 0 0 0
+5 0
+fly~
+4 4
+0 0 0
+A
+17 -65
+A
+24 -4
+E
+roc~
+&OThe feathers are very large in size. They look like the feathers you
+might see from an eagle. You recognize them as Roc feathers.
+~
+E
+feather~
+&ONot unlike the feather of an eagle... but much larger in size.
+~
+E
+feathers~
+&OThe feathers are very large in size. They look like the feathers you
+might see from an eagle.
+~
+#16072
+earring star~
+a star-shaped earring~
+&PA large star with a silver chain has been left here.~
+~
+9 1 0 52607 524289 68
+3~ 0~ 0~ 0~
+3 35 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 2
+E
+earring~
+&PThe earring is a large 5-pointed star which is made to hang from a &wsilver
+chain&P and a ball that fits through an ear-pierced ear.
+~
+E
+star~
+&PA large 5-pointed star dangles from a &wsilver chain&P and a ball.
+~
+#16073
+steel leggings~
+a pair of steel leggings~
+A pair of stout steel leggings.~
+~
+9 20 0 0 33 82
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 8
+A
+13 70
+A
+17 -55
+A
+19 8
+#16074
+gauntlets~
+steel gauntlets~
+A pair of steel gauntlets~
+~
+9 20 0 0 129 82
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 8
+A
+19 9
+A
+13 75
+A
+17 -50
+#16075
+longbow composite~
+a composite longbow~
+A large composite longbow rests here.~
+~
+5 1 5175 26204 8193 64
+0~ 0~ 0~ 6~
+2 25 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 -1
+A
+13 60
+A
+18 75
+A
+19 65
+E
+longbow~
+&OA large composite longbow, very well crafted.
+~
+E
+composite~
+&OA large composite longbow, very well crafted.
+~
+E
+long~
+&OA large composite longbow, very well crafted.
+~
+E
+bow~
+&OA large composite longbow, very well crafted.
+~
+#16076
+staff mystery~
+a staff of mystery~
+There is a staff here lying on the ground covered in dust.~
+~
+1 2 6348 0 16385 95
+0~ 0~ -1~ 0~
+3 120 0 0 0
+5 0
+spell bind~
+1 1
+0 0 0
+A
+12 50
+A
+23 -5
+A
+24 -5
+A
+17 -90
+E
+staff~
+A powerful staff of unknown origin hums mysteriously. It is medium-sized and
+very light in weight.
+~
+E
+mystery~
+A powerful staff of unknown origin hums mysteriously. It is medium-sized and
+very light in weight.
+~
+#0
+
+
+
+#ROOMDATA
+#16000
+Entrance to the Temple of Chaos~
+You now stand before a great shining temple that seems to radiate with a faint
+bluish light. There are three towers at the corners of the huge structure that
+are twisted at a strange angle. The twenty foot doors that lead into the great
+temple are thrown wide open welcoming all who wish to enter and bask in the
+wonder of pure chaos.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16001
+D2
+~
+~
+0 0 16061
+S
+#16001
+Foyer of the Temple~
+You are in the main foyer of the temple, from here intricately designed
+archways lead off in all the cardinal directions. The foyer is very large
+but basically unremarkable. It is obvious by its very plainess that those
+who built this temple placed the room here merely as a convence, a way to
+link the connecting hallways. From here you can follow a long hall to the
+west or north, enter the library to the east or enter the temple to the
+south.  
+~
+0 12 0
+Rd     0
+E
+archways~
+All the archways are intricately carved with dragons and demons.
+ 
+~
+D0
+~
+~
+0 0 16004
+D1
+~
+~
+0 0 16003
+D2
+~
+~
+0 0 16000
+D3
+~
+~
+0 0 16002
+S
+#16002
+Southern Hall~
+You are walking along the southern hallway. The main foyer can be seen directly
+to the east, and the hallway continues to the west. A small statuette leans
+against the north wall here.
+~
+0 8 0
+Rd     0
+E
+statuette~
+&wIt is an abstract of a circle metamorphosising into a square. Whomever made
+this is very well-off in the arts. Too bad you can't take it, it would make a
+nice mantle piece.
+~
+D1
+~
+~
+0 0 16001
+D3
+~
+~
+0 0 16007
+S
+#16003
+Entrance to the Temple's Library~
+You are in the entrance to the library. Archways are built in the north and
+east walls leading to the different sections of the library. The northern way
+has a carpeted floor, indicating some kind of importance in the area. The main
+foyer lies to the west.
+~
+0 12 0
+Rd     0
+E
+archway~
+They are quite large, easily fitting your frame.
+~
+E
+bookcase~
+Most of the books on this shelf look boring, but just as you begin to turn away
+one catches your eye, "The Catacombs".
+~
+E
+catacombs~
+Many generations ago Meliki built the Temple of Chaos on the ruins of an old 
+city whose name is unknown. It is believed that one can get to the old ruins 
+from the temple somehow, but the way has eluded me for quite a time, and once
+there who knows what will be found. Monsters of every kind would be my guess.
+~
+D0
+~
+~
+0 0 16005
+D1
+~
+~
+0 0 16006
+D3
+~
+~
+0 0 16001
+S
+#16004
+Southern Main Hall~
+You move down a long dark east-west hallway. The walls are an unremarkable
+black onyx with little to distinguish them from the other walls in the
+temple. Something to the north emits a sense of pure evil that sends a chill
+down your spine.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16014
+D2
+~
+~
+0 0 16001
+S
+#16005
+Library~
+You are in the northern section of the library. There are several bookcases
+full of books that reach from floor to ceiling. A large stool leans against
+one of the bookcases... obviously placed there to help the patrons of the
+library to reach the top shelves. The carpeting in the library is old and
+worn, it has obviously seen better days.
+~
+0 8 0
+Rd     0
+E
+carpet~
+&RThe carpet is red and finely crafted. It has been worn throughout the
+years and is thus, faded.
+~
+E
+bookcase~
+&OThe bookcase has several books such as, "Chaos, the Definition", "Rifts",
+and "The Gathering".
+~
+E
+chaos~
+&YThe basic definition of chaos is the total absence of order. Chaos is
+simply a state that is the embodiment of a total lack of order. Many see
+chaos as an evil thing, but this is not true. There are many agents of chaos
+who hold too many of the "traditionally" good views, but they simply choose
+not to follow the path of order in achieving their goals in life.
+~
+E
+rifts~
+Rifts are a fairly new thing to us now. Meliki is just beginning to allow
+our priests to explore with them. The basic idea is to rip a small hole in
+the very fabric of the existance and then with the help of the great Meliki,
+to cast many spells on it to stabalize it. After this is done we can move
+through it at will. At the time of this writing Vladimer and all the priests
+of the Order of Meliki are workingon the greatest test of our knowledge of
+portals. They are attempting to make a portal to another planet! That test
+will answer many of our questions regarding the portals.
+~
+E
+gathering~
+It has been long known that the Great Meliki has sought to reduce the whole
+of the world to total Chaos. The building of the Temple of Chaos has given
+him much more power as it will serve to be the focus of his powers. He has
+been gathering all those who follow the ways of Chaos for many generations
+now, and it is generally believed that he will soon send his followers out
+oon the final rampage to desecrate all the world.
+~
+E
+stool~
+&OIt is a small stool, used for reaching the top shelves.
+~
+D2
+~
+~
+0 0 16003
+S
+#16006
+Library~
+You are now in the eastern section of the temple library. Hundreds of books
+line the shelves, and a stool rests against the east wall. The only exit is
+back the way you came, to the west.
+~
+0 8 0
+Rd     0
+E
+stool~
+The stool is made of oak, and is pretty beat up.
+~
+E
+books~
+Multiple titles, none of them catch your eye.
+~
+E
+shelves~
+Six shelves high, each of them packed with books.
+~
+D3
+~
+~
+0 0 16003
+S
+#16007
+Southern Hall~
+You are in the southern hallway. To the north is a small waiting room. The
+main foyer is a little ways to the east, and the hallway continues west. Some
+scratches mark the south wall here.
+~
+0 8 0
+Rd     0
+E
+scratches~
+There are four of them, each evenly spaced.  They are quite large, and look
+lizardine.
+~
+D0
+~
+~
+0 0 16009
+D1
+~
+~
+0 0 16002
+D3
+~
+~
+0 0 16008
+S
+#16008
+Southern Hall~
+You are walking along the southern hallway, which traverses east and west. To
+the west you can see a stairwell leading up into a tower. A small statuette
+lies against the northern wall.
+~
+0 0 0
+Rd     0
+E
+statuette~
+It is a depiction of a two-headed creature, wielding a very large club.
+~
+D1
+~
+~
+0 0 16007
+D3
+~
+~
+0 0 16010
+S
+#16009
+Waiting Room~
+You are in a waiting room, the only exit leads south. A bench lies against
+the north, east and west walls while the ceiling is covered in lights. Large
+paintings are also hanging on the walls, each depicting a scene of battle.
+~
+0 12 0
+Rd     0
+E
+bench~
+They are made of finely crafted oak, with silk pads for sitting.
+~
+D2
+~
+~
+0 0 16007
+S
+#16010
+Under the Western Tower~
+You are standing at the base of one of the towers of this temple. An ornate
+spiral staircase winds up the centre of the room, wrapped around a large
+central column. A hallway stretches to the north and to the east.
+~
+0 8 0
+Rd     0
+E
+staircase~
+It is mad entirely of rock, and there are no railings.
+~
+E
+column~
+It is made entirely of rock, and a staircase is wrapped around it.
+~
+D0
+~
+~
+0 0 16011
+D1
+~
+~
+0 0 16008
+D4
+~
+~
+0 0 16012
+S
+#16011
+Western Hall~
+You are walking along the western hallway. There is an archway to the south,
+leading into one of the towers. The hallway continues north where a turn
+can be seen. A torch is affixed to the east wall here, providing light. Odd,
+the other rooms have been lit, yet there were no sources of light.
+~
+0 8 0
+Rd     0
+E
+archway~
+It leads to one of the towers.
+~
+E
+torch~
+It flickers as you look at it.
+~
+D0
+~
+~
+0 0 16032
+D2
+~
+~
+0 0 16010
+S
+#16012
+Western Tower~
+You are in one of the towers of this fine Temple. A large column of stone
+stretches from floor to ceiling, and a spiral staircase wraps around it,
+leading up or down. You find it strange that there are no windows in this
+tower.
+~
+0 8 0
+Rd     0
+E
+staircase~
+It is made of solid stone, and does not have any railings.  It wraps around a
+large central column.
+~
+E
+column~
+It has been carved out of one giant piece of granite.
+~
+D4
+~
+~
+0 0 16013
+D5
+~
+~
+0 0 16010
+S
+#16013
+Western Tower~
+You enter the top level of the tower. It is considerably smaller than the rest
+of the floors, and you can see why. The room has been cut in half, separated
+by an immense door. There is a small carpet in front of the door.
+~
+0 8 0
+Rd     0
+E
+carpet~
+It has been charred almost into non-existance.
+~
+E
+door~
+The door is very large, and made of solid oak. The edges and trimmings are
+made of solid gold.
+~
+D0
+The door is very large, and made of solid oak.  The handles and trimmings are
+made of solid gold.
+~
+door~
+119 16019 16019
+D5
+~
+~
+0 0 16012
+S
+#16014
+Southern Main Hall~
+You are at a cross-junction in the main hallway. The sense of evil is strong
+to the north, and a very dark hallway travels off to the east. A small room
+is to the west, and the hallway also goes towards the south. There is nothing
+of note here.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16016
+D1
+~
+~
+0 0 16058
+D2
+~
+~
+0 0 16004
+D3
+~
+door~
+129 0 16015
+S
+#16015
+Doli's room~
+You are in Doli's room. There is a bed here, a table and all the usual bedroom
+furniture. The only exit is to the east. Everything here is in disarray, as
+though someone was just recently looking for something.
+~
+0 12 0
+Rd     0
+E
+table~
+It is made of wood, and has a few scratches here and there.
+~
+E
+bed~
+It looks confortable.
+~
+D1
+~
+Door~
+129 0 16014
+S
+#16016
+Before the Altar Room~
+To the north of you is an altar to the God Meliki. That is the source of the
+evil you are feeling. A small room lies to the east of here. This room is
+relatively empty, not having any decoration of any kind.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16018
+D1
+~
+~
+0 0 16017
+D2
+~
+~
+0 0 16014
+S
+#16017
+A Small Alcove~
+This small room is definately a hovel. There is some straw on the floor that
+someone most likely uses to sleep on. Scratch marks cover the walls. Something
+definately visits this spot often.
+~
+0 8 0
+Rd     0
+E
+straw~
+The straw makes an oval measuring about three feet by two feet, and has been
+slept in recently.
+~
+E
+scratch~
+They were caused by some inhuman form with a very large claw.
+~
+D3
+~
+~
+0 0 16016
+S
+#16018
+The Altar of Chaos~
+You enter the altar room of Meliki. This room is incredibly evil... you feel
+as though you may be overcome. The altar itself is that of a head of a demon
+with eyes red as rubies. There is a door on the north wall which does not
+appear to be locked. Something tells you that you are being watched.
+~
+0 8 0
+Rd     0
+D0
+~
+door~
+3 0 16020
+D2
+~
+~
+0 0 16016
+S
+#16019
+The Chromatic Dragon's Lair~
+You are standing in the great Chromatic Dragon's lair. It is the most
+powerful chromatic dragon to have ever existed. This lair shows just how
+powerful she is... the bones and remains of past victims litter the floor,
+some of which are no longer recognizable.
+~
+0 4595713 0
+Rd     0
+D2
+~
+Door~
+119 16019 16013
+S
+#16020
+Northern Main Hall~
+You are walking along the main hallway. To the south is a door eminating
+evil. To the north is a cross-junction which leads to the courtyard. Perhaps
+you had better not go south, it may be too dangerous.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16021
+D2
+~
+door~
+3 0 16018
+S
+#16021
+Gate to the Courtyard~
+You are at a cross-junction. To the north is the courtyard of the temple,
+while to the east and west is the northern hallway. You can't quite make out
+what is to the south.
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 16046
+D1
+~
+~
+0 0 16022
+D2
+~
+~
+0 0 16020
+D3
+~
+~
+0 0 16025
+S
+#16022
+Northern Hallway~
+You are walking along the northern hallway. To the east is one of the towers
+of the temple, while to the west is a cross-junction. The hallway can also be
+seen taking a southern turn to the west. There is nothing of note here.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 16023
+D3
+~
+~
+0 0 16021
+S
+#16023
+Under the Eastern Tower~
+You are under one of the towers of the temple. The hallways continues south
+or west. There is a spiral staircase leading up into the tower, and it is
+wrapped around a large central column.
+~
+0 8 0
+Rd     0
+E
+staircase~
+It is made of solid granite, and has no hand railings.
+~
+E
+column~
+It is made of solid granite.
+~
+D2
+~
+~
+0 0 16024
+D3
+~
+~
+0 0 16022
+D4
+~
+~
+0 0 16038
+S
+#16024
+Eastern Hallway~
+You are moving along the eastern hallway which travels north and south. To
+the north you can see a staircase leading up into one of the towers of the
+temple. To the south the hallway stretches on for quite a ways. There is a
+door on the east wall here.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16023
+D1
+~
+~
+119 16012 16033
+D2
+~
+~
+0 0 16055
+S
+#16025
+Northern Hallway~
+You are moving along the northern hallway. To the east you can see a cross-
+junction, and the west stretches out to a corner. The shape of the walls near
+the west end of this hallway is not in the greatest condition.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 16021
+D3
+~
+~
+0 0 16026
+S
+#16026
+Northern Hallway~
+You are moving along the northern hallway. To the west you can see that the
+hallway turns south, and to the east the hallway continues. The walls here
+are very crude, as if they were abandoned quite quickly by its constructors.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 16025
+D3
+~
+~
+0 0 16027
+S
+#16027
+Under the Northern Tower~
+You are moving along the western hallway. A crude staircase that is almost
+invisible leads up into the smallest of the towers. The hallway continues
+east and west.
+~
+0 8 0
+Rd     0
+E
+staircase~
+It is embedded into one of the walls, obviously not very well constructed.
+~
+D1
+~
+~
+0 0 16026
+D2
+~
+~
+0 0 16028
+D4
+~
+~
+0 0 16035
+S
+#16028
+Western Hallway~
+You are moving along the western hallway, which leads north and south. To 
+the north you can see that the hallway bends to the east. Far to the south
+you can see a T-junction.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16027
+D2
+~
+~
+0 0 16029
+S
+#16029
+Western Hallway~
+You are moving along the western hallway, leading north and south. It seems
+that the constructors of this temple left this hallway alone, as though they
+left in a hurry. This hallway is definately not complete.
+~
+0 8 0
+Rd     0
+E
+walls~
+The walls have not been finished.
+~
+D0
+~
+~
+0 0 16028
+D2
+~
+~
+0 0 16030
+S
+#16030
+Western Hallway~
+You are moving along the western hallway. To the south, you can see a
+t-junction whilte the hallway continues to the north. The silence in 
+this room is scary... you do not even hear yourself moving about.
+~
+0 8388616 0
+Rd     0
+D0
+~
+~
+0 0 16029
+D2
+~
+~
+0 0 16031
+S
+#16031
+Western Hall~
+You are moving along the western hallway. There is an archway leading off to
+the east into a small room. The hallway continues northbound. The ground is
+very well trodden here.
+~
+0 8 0
+Rd     0
+E
+archway~
+The word "PUNISHMENT" is easily seen written along the top.
+~
+D0
+~
+~
+0 0 16030
+D1
+~
+~
+0 0 16044
+D3
+~
+~
+0 0 16032
+S
+#16032
+Western Hall~
+You are moving along the western hallway. It continues east and west. You
+take a moment to reflect on the brickwork, and notice that it is quite fine
+craftsmanship. It has been defaced by a very large scratch however, such a
+waste.
+~
+0 8 0
+Rd     0
+E
+scratch~
+It is definately man made, a blade of some sort carved it.
+~
+D1
+~
+~
+0 0 16031
+D2
+~
+~
+0 0 16011
+S
+#16033
+Vladimer's Entrance Chamber~
+You have entered Vladimer's personal chambers. The exit door lies to the west,
+which leads back to the eastern hallway. Another door leads to the south. This
+room has several large scratch marks all over the walls and floor. One particular
+gouge in the east wall stands out. There is no furniture of any kind here.
+~
+0 393225 0
+Rd     0
+E
+scratch~
+Whatever made these marks should not be trifled with.
+~
+E
+marks~
+Whatever made these marks should not be trifled with.
+~
+E
+walls~
+Whatever made these marks should not be trifled with.
+~
+E
+gouge~
+A gouge on the east wall is much deeper and larger than the rest in this room.
+Examining it more closely, you can see a room on the other side of the wall.
+~
+D2
+~
+door~
+119 16017 16034
+D3
+~
+Door~
+119 16012 16024
+S
+#16034
+Vladimer's Inner Chamber~
+This room is apparently a giant void. The only thing that is visible here is
+a small light in the centre of the room. It is illuminating a spot where
+something important should rest.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+119 16017 16033
+S
+#16035
+Northern Tower~
+You are in the smallest of the temple's towers. To the north, is some kind
+of weird room. A trapdoor is above you, leading to the upper level of the
+tower.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16036
+D4
+~
+trapdoor~
+3 0 16037
+D5
+~
+~
+0 0 16027
+S
+#16036
+Small Circular Room~
+You have entered a small circular room. The only exit is the way you came
+in... to the south. There are hoofprints embedded into the floor, as if they
+were burned into the rock by a branding iron.
+~
+0 12 0
+Rd     0
+E
+hoofprints~
+~
+E
+floor~
+There are rather large hoofprints embedded into the floor. They are quite
+large in size... you would guess they are bigger than your average horses'
+hooves.
+~
+D2
+~
+~
+0 0 16035
+S
+#16037
+Northern Tower~
+You have entered the lair of the ettin. Bones of past victims litter the floor,
+while giant footprints are all around. Fist marks in the walls show just
+how large an ettin is. A trapdoor leads down out of the tower.
+~
+0 8 0
+Rd     0
+E
+footprints~
+They are quite deep and large, although human in shape.
+~
+E
+walls~
+They are about three times the size of a human fist.
+~
+E
+marks~
+They are about three times that of a human fist.
+~
+E
+fist~
+They are about three times that of a human fist.
+~
+D5
+~
+~
+3 0 16035
+S
+#16038
+Eastern Tower~
+You are on the lowest level of this, the largest of towers of the temple. The
+staircase continues up and down the tower, and a small room can be seen to
+the north. There is a small table against the wall.
+~
+0 8 0
+Rd     0
+E
+staircase~
+It climbs up to the next level of the tower, and down to the main floor.
+~
+E
+table~
+It is permanently attached to the floor, and has many unique carvings on it.
+~
+E
+carvings~
+They are of some kind of symbols that you do not recognize.
+~
+D0
+~
+~
+0 0 16039
+D4
+~
+~
+0 0 16041
+D5
+~
+~
+0 0 16023
+S
+#16039
+Summoning Chamber~
+You have entered the priests summoning chamber. There are symbols painted
+over most of the walls and floor, while the ceiling is painted jet black. This
+area emits a magical aura that is so strong you can feel it. The only exit is
+to the south.
+~
+0 8 0
+Rd     0
+E
+symbols~
+You do not recognize any of them.
+~
+E
+walls~
+You do not recognize any of the symbols.
+~
+E
+floor~
+You do not recognize any of the symbols.
+~
+E
+ceiling~
+It is painted jet black.
+~
+D2
+~
+~
+0 0 16038
+S
+#16040
+In the Clouds~
+&WYou are in the clouds. It is very peaceful up here, although quite high up.
+The cloud you are flying above extends to the north and to the west a little
+ways.
+~
+0 33554432 9
+Rd     0
+D0
+~
+~
+0 0 16042
+D3
+~
+~
+0 0 16043
+D5
+~
+~
+0 0 16060
+S
+#16041
+Eastern Tower~
+You are in the uppermost level of this tower. The staircase continues up to
+the roof, and goes down to the lower floors. This room is impecably clean.
+There is not a speck of dust anywhere and the stone walls are polished to
+perfection.
+~
+0 12 0
+Rd     0
+E
+walls~
+They are polished to perfection.
+~
+D4
+~
+~
+0 0 16060
+D5
+~
+~
+0 0 16038
+S
+#16042
+Small Cloudbank~
+You are flying amongst the clouds.  The only other way to go is back the way
+you came, south.  You have never felt so peaceful in your life as you do right
+now.
+&WYou are flying up amongst the clouds. The only other way to go is back the
+way you came... south. You have never felt so peaceful in your life as you
+do right now.
+~
+0 33554432 9
+Rd     0
+D2
+~
+~
+0 0 16040
+S
+#16043
+Cloud Bank~
+&WYou have stumbled across a magical nest that is quite large. The only way to
+go is back the way you came, to the east. Flying up here is very peaceful,
+and you might consider staying here one afternoon, just to take in the view.
+~
+0 33554432 9
+Rd     0
+D1
+~
+~
+0 0 16040
+S
+#16044
+Guard Room~
+This room once housed a guard post for the cell to the north. Unfortunately,
+whomever or whatever used to guard here no longer exists. The cell door is on
+the north wall, and the western hallway leads off.
+~
+0 8 0
+Rd     0
+D0
+~
+celldoor~
+119 16017 16045
+D3
+~
+~
+0 0 16031
+S
+#16045
+Cell~
+You are inside the holding cell of the temple. There is no bed, no water
+hole, nowhere to go to relieve yourself and no basin to wash in. Bare walls
+are all that you see standing inside the cell. Whomever built this cell did
+not want their prisoners living very long.
+~
+0 0 0
+Rd     0
+D2
+~
+celldoor~
+119 16017 16044
+S
+#16046
+Entrance to the Northern Courtyard~
+You are at the entrance to the courtyard. To return to the temple, simply go
+south of here. A small dirt path leads off to the north, east and west. The
+plant life here is surprisingly vibrant and alive.
+~
+0 0 2
+Rd     0
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+E
+plant~
+There are a varied assortment of plants, most of which are domestic.
+~
+D0
+~
+~
+0 0 16047
+D1
+~
+~
+0 0 16048
+D2
+~
+~
+0 0 16021
+D3
+~
+~
+0 0 16050
+S
+#16047
+Center of the Courtyard~
+You are standing at the centre of the courtyard. There are two benches here,
+as well as the dirt path. The path leads off in all directions. You can see an
+exit a little ways to the south.
+~
+0 0 2
+Rd     0
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+E
+bench~
+They are made of solid oak, and seem to be growing out of the ground.
+~
+D0
+~
+~
+0 0 16053
+D1
+~
+~
+0 0 16049
+D2
+~
+~
+0 0 16046
+D3
+~
+~
+0 0 16051
+S
+#16048
+Courtyard~
+You arein the southeastern corner of the courtyard. The dirt path goes to the
+north and to the west. You can hear some sort of animal scurrying about, but
+see nothing as you look around for it.
+~
+0 0 2
+Rd     0
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+D0
+~
+~
+0 0 16049
+D3
+~
+~
+0 0 16046
+S
+#16049
+Courtyard~
+You are moving along the courtyard path along the eastern side. The path goes
+off to the north, south and west. You hear the sounds of birds chirping and
+crickets clicking. You can't help but smile.
+~
+0 0 2
+Rd     0
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+D0
+~
+~
+0 0 16054
+D2
+~
+~
+0 0 16048
+D3
+~
+~
+0 0 16047
+S
+#16050
+Courtyard~
+You are in the southwest corner of the courtyard. The dirt path travels off to
+the north and to the east. The grass is very green, and everything seems to be
+very peaceful here... a definate change from the temple.
+~
+0 0 2
+Rd     0
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+E
+flowers~
+They smell nice.
+~
+E
+grass~
+It is very green.
+~
+D0
+~
+~
+0 0 16051
+D1
+~
+~
+0 0 16046
+S
+#16051
+Courtyard~
+You are on the eastern side of the courtyard. The path travels to the north,
+south and east. Small flowers are growing here, and all seems peaceful. You
+swear you just heard a bird singing.
+~
+0 0 2
+Rd     0
+E
+flowers~
+Normal red flowers, you are uncertain of the kind.
+~
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+D0
+~
+~
+0 0 16052
+D1
+~
+~
+0 0 16047
+D2
+~
+~
+0 0 16050
+S
+#16052
+Courtyard~
+You are in the northwestern most part of the courtyard. The dirt path goes off
+to the east and south. Grass grows here, and it has been recently trimmed. Odd,
+you have not seen any kind of gardener...
+~
+0 0 2
+Rd     0
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+E
+grass~
+It has been recently trimmed.
+~
+D1
+~
+~
+0 0 16053
+D2
+~
+~
+0 0 16051
+S
+#16053
+Courtyard~
+You are moving along the courtyard path on the northern side. The path trods
+off to the east, south and west. Thick trees and bushes lie to the north. There
+is a small puddle of water on the ground.
+~
+0 0 2
+Rd     0
+E
+puddle~
+Upon further examination, you realize that this puddle is for animals to drink
+from, and it does not appear to have a bottom.
+~
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+E
+trees~
+A random mixture, deciduous and evergreen alike.
+~
+E
+bushes~
+They are bushes alright.
+~
+D1
+~
+~
+0 0 16054
+D2
+~
+~
+0 0 16047
+D3
+~
+~
+0 0 16052
+S
+#16054
+Courtyard~
+You are in the northeastern corner of the courtyard. The path travels to the
+south and west. You take moment to look at the clouds, taking in your serene
+surroundings.
+~
+0 0 2
+Rd     0
+E
+path~
+It is dirt, and wide enough for you to walk on.
+~
+E
+clouds~
+They are white and puffy.
+~
+D2
+~
+~
+0 0 16049
+D3
+~
+~
+0 0 16053
+S
+#16055
+Eastern Hallway~
+You are moving along the eastern north-west hallway. A painting on the east
+wall catches your eye and beckons you to examine it closer. On the west wall
+you notice a small statuette carved into the brickwork.
+~
+0 8 0
+Rd     0
+E
+painting~
+It is a painting of Meliki.
+~
+E
+statuette~
+It is a statuette of Meliki.
+~
+D0
+~
+~
+0 0 16024
+D2
+~
+~
+0 0 16056
+S
+#16056
+Eastern Hallway~
+You are moving along the western hallway. To the south you can see that the
+hallway takes a turn to the west. Far to the north, you can see that same type
+of turn, only with a door set into the eastern wall just before the turn.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16055
+D2
+~
+~
+0 0 16057
+S
+#16057
+Eastern Hallway~
+You are moving along the eastern hallway, which extends to the north. To your
+immediate west you can see a dark hallway. Your vision does not penetrate its
+darkness, however.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 16056
+D3
+~
+~
+0 0 16058
+S
+#16058
+Small Unlit Passage~
+You are in a small unlit passage. To the east is the eastern hallway, and to
+the west is a cross-junction. This hallway is smaller than the other hallways
+throughout the temple... about half the size, in fact.
+~
+0 13 0
+Rd     0
+D1
+~
+~
+0 0 16057
+D3
+~
+~
+0 0 16014
+S
+#16059
+A large Domed Chamber~
+~
+0 134610972 0
+Rd     0
+S
+#16060
+On the Top of the Tower~
+You are on the top of the tower overlooking the temple. You realize that you
+are in the northeastern most part of the temple. There is a path of gold dust
+leading up to the clouds here.
+~
+0 0 5
+Rd     0
+E
+gold dust~
+It is in the outline of a flight of stairs, how interesting.
+~
+D4
+~
+~
+0 0 16040
+D5
+~
+~
+0 0 16041
+S
+#16061
+Forest Path~
+You are moving along a path in a forest. To the north you can see he Temple
+of Chaos. A temple built to honour the God Meliki. You feel a sense of evil
+emitting from the temple core. Perhaps this place deserves some investigation.
+~
+0 4 3
+Rd     0
+E
+path~
+It is very worn.
+~
+D0
+~
+~
+0 0 16000
+D2
+~
+~
+0 0 16062
+S
+#16062
+Forest Path~
+You are a corner on a path in the forest. A little ways to the north you can see
+some sort of building, although you cannot tell what it is. The path continues
+east and north.
+~
+0 0 3
+Rd     0
+E
+path~
+It is very worn.
+~
+D0
+~
+~
+0 0 16061
+D1
+~
+~
+0 0 16063
+S
+#16063
+Forest Path~
+You are moving alng a path in the forest. There are trees towering above you
+all around. Towards the west you can see that the path takes a sharp bend to
+the north.
+~
+0 4 3
+Rd     0
+E
+trees~
+They tower above you.
+~
+E
+path~
+It is very worn.
+~
+D2
+~
+~
+0 0 921
+D3
+~
+~
+0 0 16062
+S
+#16064
+None~
+~
+0 5 0
+Rd     0
+S
+#16065
+None~
+~
+0 5 0
+Rd     0
+S
+#16066
+~
+~
+0 5 0
+Rd     0
+S
+#16067
+~
+~
+0 131077 0
+Rd     0
+S
+#16068
+~
+~
+0 5 0
+Rd     0
+S
+#16069
+~
+~
+0 131077 0
+Rd     0
+S
+#16070
+~
+~
+0 5 0
+Rd     0
+S
+#16071
+~
+~
+0 5 0
+Rd     0
+S
+#16072
+~
+~
+0 5 0
+Rd     0
+S
+#16073
+~
+~
+0 5 0
+Rd     0
+S
+#16074
+~
+~
+0 5 0
+Rd     0
+S
+#16075
+~
+~
+0 5 0
+Rd     0
+S
+#16076
+~
+~
+0 5 0
+Rd     0
+S
+#16077
+~
+~
+0 5 0
+Rd     0
+S
+#16078
+~
+~
+0 5 0
+Rd     0
+S
+#16079
+~
+~
+0 5 0
+Rd     0
+S
+#16080
+~
+~
+0 5 0
+Rd     0
+S
+#16081
+~
+~
+0 5 0
+Rd     0
+S
+#16082
+~
+~
+0 5 0
+Rd     0
+S
+#16083
+~
+~
+0 5 0
+Rd     0
+S
+#16084
+~
+~
+0 5 0
+Rd     0
+S
+#16085
+~
+~
+0 5 0
+Rd     0
+S
+#16086
+~
+~
+0 393237 0
+Rd     0
+S
+#16087
+~
+~
+0 5 0
+Rd     0
+S
+#16088
+~
+~
+0 5 0
+Rd     0
+S
+#16089
+~
+~
+0 5 0
+Rd     0
+S
+#16090
+~
+~
+0 1 0
+Rd     0
+D3
+~
+door~
+119 16053 16091
+S
+#16091
+~
+~
+0 1 0
+Rd     0
+D1
+~
+~
+119 0 16090
+S
+#16092
+~
+~
+0 5 0
+Rd     0
+S
+#16093
+~
+~
+0 5 0
+Rd     0
+S
+#16094
+~
+~
+0 5 0
+Rd     0
+S
+#16095
+~
+~
+0 4587525 0
+Rd     0
+S
+#16096
+~
+~
+0 393220 0
+Rd     0
+S
+#16097
+.~
+~
+0 4 0
+Rd     0
+E
+golddust~
+It is in the outline of a flight of stairs, how interesting.
+~
+S
+#0
+
+
+
+#SPECIALS
+M 16000 spec_guard
+M 16001 spec_cast_cleric
+M 16002 spec_cast_psionicist
+M 16003 spec_cast_adept
+M 16005 spec_cast_mage
+M 16006 spec_cast_psionicist
+M 16007 spec_breath_frost
+M 16008 spec_breath_any
+M 16010 spec_thief
+M 16013 spec_poison
+M 16015 spec_thief
+M 16016 spec_thief
+M 16018 spec_poison
+M 16019 spec_poison
+M 16022 spec_poison
+M 16024 spec_healer
+M 16025 spec_cast_undead
+M 16027 spec_cast_ghost
+M 16028 spec_cast_cleric
+M 16029 spec_thief
+M 16030 spec_thief
+M 16035 spec_cast_adept
+M 16036 spec_breath_lightning
+M 16037 spec_cast_adept
+M 16038 spec_cast_adept
+S
+
+
+
+#RESETS
+M 0 16000 1 16000
+M 0 16010 1 16004
+M 0 16031 1 16005
+M 0 16004 1 16006
+M 0 16001 1 16009
+E 0 16001 0 5
+E 0 16002 0 16
+M 0 16006 1 16013
+E 0 16012 0 22
+M 0 16005 1 16015
+E 0 16008 0 12
+E 0 16007 0 0
+E 0 16044 0 22
+M 0 16003 1 16017
+E 0 16005 0 0
+E 0 16006 0 8
+M 0 16002 1 16018
+E 0 16003 0 9
+E 0 16004 0 7
+M 0 16008 1 16019
+E 0 16020 0 20
+E 0 16021 0 9
+E 0 16022 0 22
+M 0 16009 2 16028
+E 0 16023 0 20
+M 0 16007 1 16033
+E 0 16015 0 8
+E 0 16016 0 14
+E 0 16017 0 22
+G 0 16014 0
+O 0 16018 0 16034
+P 0 16019 0 16018
+P 0 16014 0 16018
+M 0 16041 1 16036
+E 0 16075 0 20
+M 0 16040 1 16037
+E 0 16073 0 11
+E 0 16074 0 14
+E 0 16053 0 22
+M 0 16039 1 16039
+E 0 16072 0 23
+M 0 16036 1 16040
+E 0 16066 0 0
+E 0 16067 0 20
+M 0 16038 1 16043
+E 0 16070 0 8
+E 0 16071 0 5
+M 0 16042 1 16045
+E 0 16076 0 22
+M 0 16012 1 16047
+E 0 16026 0 2
+E 0 16027 0 14
+M 0 16013 1 16047
+E 0 16028 0 1
+E 0 16029 0 13
+M 0 16014 1 16051
+E 0 16030 0 12
+M 0 16011 1 16053
+E 0 16025 0 16
+M 0 16037 1 16060
+E 0 16068 0 12
+E 0 16069 0 17
+M 0 16025 1 16062
+E 0 16050 0 3
+E 0 16051 0 16
+S
+
+
+
+#SHOPS
+16024 10 0 0 0 0 110 60 0 24
+0
+
+
+
+#$

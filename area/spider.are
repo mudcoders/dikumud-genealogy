@@ -1,0 +1,257 @@
+#AREADATA
+Name        {??-???} Spider's Realm      Draco~
+Levels      1 10
+Builders    Draco~
+VNUMs       21949 21999
+Security    1
+Recall      25000
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#0
+
+
+
+#OBJECTS
+#0
+
+
+
+#ROOMDATA
+#21949
+Dead Center of the Web~
+This is the absolute center of the spider's web. Somewhere around you,
+the giant arachnid is waiting to capture her next victim. With every step
+you take, you risk giving yourself away.
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 21950
+D1
+~
+~
+0 0 21951
+D2
+~
+~
+0 0 21953
+D3
+~
+~
+0 0 21952
+S
+#21950
+Center of the Web~
+This is the center of the spider's web. You are surrounded by hexagon
+shaped, silk strings. With each movement off in the distance, you can feel
+vibrations under you feet.
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 21954
+D2
+~
+~
+0 0 21949
+S
+#21951
+Center of the Web~
+This is the center of the spider's web. You are surrounded by hexagon
+shaped, silk strings. With each movement off in the distance, you can feel
+vibrations under your feet.
+~
+0 12 0
+Rd     0
+D1
+~
+~
+0 0 21960
+D3
+~
+~
+0 0 21949
+S
+#21952
+Center of the Web~
+This is the center of the spider's web. You are surrounded by hexagon 
+shaped, silk strings. With every movement off in the distance, you can feel
+vibrations under your feet.
+~
+0 12 0
+Rd     0
+D1
+~
+~
+0 0 21949
+D3
+~
+~
+0 0 21958
+S
+#21953
+Center of the Web~
+This is the center of the spider's web. You are surrounded by hexagon 
+shaped, silk strings. With every movement off in the distance, you can feel
+vibrations under your feet.
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 21949
+D2
+~
+~
+0 0 21956
+S
+#21954
+Long strand of silk~
+You are moving along a long strand of woven silk thread.  It is somewhat
+difficult if you walk, as your feet tend to stick to it.  You must be
+careful not to loose your balance and fall into the oblivion below.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 21955
+D2
+~
+~
+0 0 21950
+S
+#21955
+Long strand of silk~
+You are moving along a long strand of woven silk thread.  It is somewhat
+difficult if you walk, as your feet tend to stick to it.  You must be
+careful not to loose your balance and fall into the oblivion below.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 21954
+S
+#21956
+Long strand of silk~
+You are moving along a long strand of woven silk thread.  It is somewhat
+difficult if you walk, as your feet tend to stick to it.  You must be
+careful not to lose your balance and fall into the oblivion below.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 21953
+D2
+~
+~
+0 0 21957
+S
+#21957
+Long strand of silk~
+You are moving along a long strand of woven silk thread.  It is somewhat
+difficult if you walk, as your feet tend to stick to it.  You must be
+careful not to lose your balance and fall into the oblivion below.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 21956
+S
+#21958
+Long strand of silk~
+You are moving along a long strand of woven silk thread.  It is somewhat
+difficult if you walk, as your feet tend to stick to it.  You must be
+careful not to lose your balance and fall into the oblivion below.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 21952
+D3
+~
+~
+0 0 21959
+S
+#21959
+Long strand of silk~
+You are moving along a long strand of woven silk thread.  It is somewhat
+difficult if you walk, as your feet tend to stick to it.  You must be
+careful not to lose your balance and fall into the oblivion below.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 21958
+S
+#21960
+Long strand of silk~
+You are moving along a long strand of woven silk thread.  It is somewhat
+difficult if you walk, as your feet tend to stick to it.  You must be
+careful not to lose your balance and fall into the oblivion below.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 21961
+D3
+~
+~
+0 0 21951
+S
+#21961
+Long strand of silk~
+You are moving along a long strand of woven silk thread.  It is somewhat
+difficult if you walk, as your feet tend to stick to it.  You must be
+careful not to lose your balance and fall into the oblivion below.  
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 21960
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

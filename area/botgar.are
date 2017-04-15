@@ -1,0 +1,2029 @@
+#AREADATA
+Name        { 10-45} Botanical Garden    Kalourin~
+Levels      10 45
+Builders    None~
+VNUMs       14000 14099
+Security    100
+Recall      25001
+Flags       0
+Color       6
+Sounds      The scent of several types of flowers is carried along the air~
+End
+
+
+
+#MOBILES
+#14000
+spider~
+A huge tunnel spider~
+A huge spider rushes at you from the darkness!
+~
+The spider is roughly ten feet long and is rushing at you with hunger in its
+eyes!
+~
+99 160 0 -1000 S
+45 0 0 3396d0+0 0d0+0
+0 45 0 0
+0 0 0
+67110915 0 0
+>greet_prog 100~
+if ispc($n)
+if level($n) >46
+   emo lets out an ear piercing shriek and attacks!
+mpkill $n
+else
+emo stops a few feet before you, eyeing you warily.
+endif
+endif
+~
+>fight_prog 20~
+cast web $n
+~
+|
+#14001
+grasshopper giant~
+A giant grasshopper~
+A giant grasshopper is here, munching on some grass.
+~
+A grasshopper, at least 50 times bigger than an average grasshopper is
+here, feeding on grass and other forms of plant life.  
+~
+65 16384 0 0 S
+25 0 0 840d0+0 0d0+0
+0 0 0 0
+0 0 0
+67108864 0 0
+#14002
+dragonfly electric~
+An electric dragonfly~
+An electric dragonfly peacefully flies in circles.
+~
+Currents of electricity flows within a dragonfly here.  This dragonfly is
+about the size of a pixie, and slower than a normal dragonfly.  Are all
+dragonflies supposed to be electrical?  This one is sure acting strange.  
+~
+65 67633152 0 0 S
+35 0 0 1600d0+0 0d0+0
+0 10 0 0
+0 0 0
+67109376 0 0
+#14003
+maggot~
+A slimy white maggot~
+A maggot squirms through some decayed flesh...
+~
+A large, five foot long grotesque looking maggot.
+~
+3 0 0 0 S
+22 0 0 550d0+0 0d0+0
+0 0 80 0
+0 0 0
+0 0 0
+#14004
+piranha plant~
+A piranha plant~
+A large piranha plant is here in a cage, taking a snooze.
+~
+A large piranha plant is here on display for the garden visitors.  It is
+red with white spots covering it's head with a green stem and a mouth with
+long, sharp, pointed teeth.  It is also rumored that this plant can breathe
+fire, yet it has not been proven since no one has attempted to get close to it
+or wake it up.  Fortunately, it has never woke up ever since it started
+growing in this garden.  
+~
+3 131072 0 -300 S
+30 0 0 1400d0+0 0d0+0
+0 3 0 0
+0 0 0
+67110912 0 0
+>fight_prog 15~
+bite $n
+~
+|
+#14005
+drone worker bee~
+a drone worker~
+A giant bee is busily tending to the hive.
+~
+This bee stands roughly 4 feet at the shoulder, and 6 feet long.  It has
+no wings, and the fur that once covered its body is now replaced with armor
+plating and spikes.  
+~
+129 40 0 0 S
+30 0 0 1500d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#14006
+guard bee~
+A guardian bee~
+An armored bee warrior guards the gate.
+~
+The guard is similiar in frame to the drones, with a few exceptions.  He
+most certainly has wings, and his forearms have been modified to carry
+weapons and shields.  
+~
+67 128 0 -250 S
+33 0 0 1350d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#14007
+wasp elite soldier~
+The elite soldier~
+The Queens' elite soldier guards the hive treasury
+~
+What a strange sight, wasps playing servant to a queen bee.  Nonetheless,
+the huge 14 foot wingspan of the pitch black wasp is the least of your
+worries.  You are quite aware that they can sting multiple times.  
+~
+3 128 0 1000 S
+37 0 0 1675d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#14008
+queenbee queen bee~
+The Queen of the Bees~
+A giant queen bee glares at you from across the cavern.
+~
+By the gods!  The queen bee is roughly 25 feet tall at the shoulder, and
+about 40 feet long.  Her eyes are the size of tower shields, and her wings
+can span almost 100 ogres shoulder to shoulder.  She gazes at you
+impassively, until your eyes spot the treasure, you then feel a powerful
+urge to run.  
+~
+3 8320 0 250 S
+45 0 0 3400d0+0 0d0+0
+0 0 0 0
+0 0 0
+2048 0 0
+>fight_prog 20~
+mpecho A guardian bee has arrived to defend its queen!
+mpmload 14006
+mpforce guard mpkill $n
+~
+>death_prog 100~
+emo lets out an ear shattering screech as shes dies
+ 
+mpecho The queens' body slams into the ground, sending tremors throughout the hive
+cast 'earthquake'
+~
+>all_greet_prog 100~
+mpmload 14007
+mpecho &PThe Queen Bee calls forth her personal guard.
+mpecho A large elite soldier wasp appears!
+~
+|
+#14009
+caretaker garden~
+A garden caretaker~
+A caretaker of the garden is making sure the plants are growing nicely.
+~
+Covered in dirt and twigs, this poor woman is desperately seeking an
+exit, away from the insects.  
+~
+65 0 0 700 S
+26 0 0 1140d0+0 0d0+0
+0 16 0 0
+0 0 2
+0 0 0
+#14010
+Garret~
+Garret~
+Garret is here, guarding the gate from any illegal entry.
+~
+Garret is a rather well built human male.  He stands roughly six feet in
+height, and about 240 pounds.  Despite his bulky appearance, he appears to
+be quite friendly.  
+~
+3 128 0 1000 S
+48 0 0 5000d0+0 0d0+0
+0 51 0 0
+0 0 1
+1 0 0
+>greet_prog 100~
+if ispc($n) == 1
+   say Welcome to the Bethaven Botanical Garden, $n.
+    say if you would like to view the beautiful collection of plant life we have,
+    say please leave a donation to the garden.
+emo points to a nearby sign.
+smile $n
+endif
+~
+>bribe_prog 1~
+emote reaches for a key around his neck 
+    mpoload 14004
+    unlock n
+    open n
+say Thank you and enjoy your visit.
+smile
+mpjunk key
+if ispc($n) == 1
+if level($n) > 20
+say Oh! By the way, a criminal who robbed the bank is refuged here.
+say You look strong enough to charm him.
+say The Guard Councillor of Bethaven has been looking for him.
+say He would surely reward you for turning that criminal in.
+smile
+else
+say If you find him, you can bring him to the Guard Councillor of Bethaven.
+say This will not be easy, but you may be rewarded if you do it.
+endif
+endif
+~
+>speech_prog criminal robber~
+say Hmmm... he's about yay-big.
+emote motions his hand at about his chin level.
+say ...dirty blond hair... not hard to miss, really.
+say IF you can find him, that is.
+shrug
+~
+>speech_prog councillor~
+say The Guard Councillor can be found in the Western Tower.
+emote points towards the city of Bethaven.
+say It's on Tower Street. Go past Market Square and west on Tower.
+say You'll find it.
+smile
+~
+>speech_prog guard~
+say You want to know the whereabouts of the Guard Councillor?
+emote smiles
+say Well, that's easy...
+emote points out toward the town of Bethaven.
+say Go down south past Market Square... he'll be in the Western Tower.
+~
+|
+#14011
+citizen man~
+A citizen of Bethaven~
+A young man is here, standing in line.
+~
+This young citizen of Bethaven has been waiting for a very long time.  It
+is easily noticeable that he is very impatient.  
+~
+67 0 0 250 S
+18 0 0 520d0+0 0d0+0
+0 0 90 0
+0 0 1
+0 0 0
+#14012
+citizen woman~
+A citizen of Bethaven~
+A woman patiently waits to enter the garden.
+~
+The woman is not very pretty. She is at her mid-life and is human. She
+wears plainclothes and wanders with a half-smile upon her face.
+~
+65 0 0 1000 S
+15 0 0 350d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#14013
+robber man~
+A young man~
+A suspicious-looking young man wanders cautiously here.
+~
+Here is an unfortunate soul.  This young man was caught robbing from the
+Bethaven bank, and is now on the run from the High Guard of Bethaven. 
+Fearful from all this running away, he looks like an easy kill.  
+~
+65 65536 0 0 S
+10 0 0 200d0+0 0d0+0
+0 0 50 0
+0 0 1
+32768 0 0
+>speech_prog "Here he is!"~
+yell You can't prove anything!
+emote kicks you in the shins.
+~
+>speech_prog Mabrook says 'Greetings.'~
+emote shudders at the sight of Mabrook.
+~
+>speech_prog "punish you?"~
+say I swear I'll never do it again, oh kind and forgiving Lord!
+grovel councillor
+~
+|
+#14014
+orc~
+A trapped orc~
+An orc has been trapped in the webbing.
+~
+He seems to ignore youat first, concentrating more on getting out of the
+webs that restrain him. He stops suddenly, shouting "Run! It's coming!"
+~
+3 2101248 0 -100 S
+41 0 0 2850d0+0 0d0+0
+0 20 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n) == 1
+if level($n) < 40
+  say My friend, I don't think it would be wise of you to try and kill that foul beast.
+  look $n
+ say that is if course, unless you feel extremely lucky. Why not help me out of here instead.
+else
+say Ahhh, you look like a capable fighter. Hurry! Dispatch that foul beast quickly!
+endif
+~
+|
+#14015
+insectus mage~
+Insectus~
+An insane mage is here, conducting experiments.
+~
+This particular mage is covered from head to toe in various giant sized
+insect parts.  It seems he was conducting experiments with insects and plant
+growth formulae.  He spins as you enter, revealing the face of a fly instead
+of a man.  Fear is the only thing that fills you now.  
+~
+67 168 0 -1000 S
+35 0 0 1600d0+0 0d0+0
+0 25 0 0
+0 0 0
+67110915 0 0
+>death_prog 100~
+emo beguns to shudder violently as his body is consumed in flames
+ scream
+  c 'meteor swarm' $n
+~
+|
+#0
+
+
+
+#OBJECTS
+#14000
+chunk honeycomb half~
+chunk of honeycomb~
+A broken piece of honeycomb.~
+~
+19 1 0 0 1 0
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+14002 14000 14001
+E
+honeycomb~
+It looks like it can be joined to another similar piece of honeycomb.
+~
+#14001
+chunk honeycomb half~
+chunk of honeycomb~
+A broken piece of honeycomb~
+~
+19 1 0 0 1 1
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+14002 14001 14000
+E
+honeycomb~
+It looks like it could be stuck to another piece
+~
+#14002
+honeycomb key~
+a honeycomb key~
+A honeycomb shaped key.~
+~
+18 3 0 0 1 0
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 14001 14000
+E
+key~
+This is a golden coloured key that is shaped similar to a honeycomb.
+~
+#14003
+corpse~
+a crushed corpse~
+A mangled corpse lies smashed below the rocks.~
+~
+15 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+corpse~
+This poor soul was not able to escape the falling rocks of the cave in. 
+The gloom and mud now serve as his final resting place 
+~
+#14004
+garden key~
+the key to the garden~
+The key to the garden.~
+~
+18 0 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+This is a small silver key.
+~
+#14005
+sign~
+a small brass-framed sign~
+A small sign framed in brass hangs from the wall.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sign~
+---------------------------------------
+|        In order to maintain         |
+|     our operation of the garden     |
+|  we humbly request that you make a  |
+|    small donation for our work      |
+|                                     |
+|             Thank You               |
+|                                     |
+|    suggested donation : 100 Gold    |
+---------------------------------------
+~
+#14006
+helm silver garret~
+garret's silver helm~
+A helm engraved with the name "Garret" lies here.~
+~
+9 1025 2054 28800 17 45
+0~ 0~ 0~ 0~
+3 0 25 0 0
+5 0
+thought shield~
+2 2
+0 0 0
+A
+4 2
+A
+17 -45
+A
+24 -3
+E
+helm~
+A writing on the helm says: Garret Gagnon.
+The helm is also engraved with the symbols of the garden.
+~
+E
+garret~
+A writing on the helm says:  Garret Gagnon
+~
+E
+silver~
+A writing on the helm reads: Garret Gagnon
+~
+#14007
+uniform staff garden bethaven~
+a uniform of the Bethaven Garden Staff~
+A uniform of the Bethaven Garden is piled on the floor.~
+~
+9 0 0 0 9 25
+0~ 0~ 0~ 0~
+10 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+A
+17 -25
+E
+uniform bethaven garden staff~
+This is the uniform worn by the Bethaven Garden Staff. It displays the colours
+and symbols of the Garden.
+~
+#14011
+scimitar crystal garret~
+garret's crystal scimitar~
+A beautifully carved crystal scimitar belonging to Garret shines in the light.~
+~
+5 536870977 7735 16416 8193 45
+0~ 0~ 0~ 1~
+10 0 30 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+A
+19 90
+A
+18 70
+E
+garret crystal scimitar~
+This is a scimitar that has been carefully crafted, possible by the elves. It is made of a shining cyrstal.
+~
+#14012
+thorax web spider~
+thorax web~
+A sticky web of spider skin lies in a heap here.~
+~
+9 20608 0 0 5 45
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+web~
+4 4
+0 0 0
+A
+4 -2
+A
+4 -1
+A
+14 -25
+A
+25 15
+A
+13 45
+E
+thorax web~
+This is a chain necklace with a small spider web items attached onto it.
+~
+#14013
+grasshopper wing giant~
+a giant grasshopper wing~
+A large wing belonging to a giant grasshopper lies on the ground.~
+~
+9 4 4 12928 257 25
+0~ 0~ 0~ 0~
+2 0 0 25 0
+5 0
+fly~
+2 2
+0 0 0
+A
+13 25
+A
+5 2
+E
+grasshopper wing giant~
+These are giant wings for a grasshopper. They look very delicate and are transparent.
+~
+#14014
+staff branch~
+a thorny branch~
+A broken branch of thorns lies here.~
+~
+4 1 6860 0 16385 25
+40~ 3~ 3~ poison~
+5 0 0 25 0
+5 0
+entangle~
+1 1
+0 0 0
+E
+staff branch~
+This is a fairly plain looking branch, save the large thorns sprouting from it's stem.
+It is almost six feet long and would make a good staff.
+~
+#14015
+current electricity~
+a current of electricity~
+A current of electrical energy is here, awaiting someone to pick it up.~
+~
+9 67108931 4612 32 32769 35
+0~ 0~ 0~ 0~
+1 0 10 0 0
+5 1
+shocking grasp~
+2 2
+0 0 0
+E
+current electricity~
+This is an odd item indeed. It is the shape of a lightning bolt but is very small, it pulses with electrical energy.
+~
+#14016
+sting electric dragonfly~
+an electric sting~
+A sting belonging to an electric dragonfly lies forgotten.~
+~
+5 67108931 4614 32 8193 35
+0~ 0~ 0~ 2~
+3 0 8 0 0
+5 0
+lightning breath~
+1 1
+0 0 0
+A
+18 52
+A
+19 50
+E
+electric sting~
+This is long, thin and pointy. It looks like a bee's stinger but it has electricity flowing through it.
+~
+#14017
+exoskeleton dragonfly electric~
+an dragonfly exoskeleton~
+An exoskeletion belonging to a dragonfly emits electrical energy.~
+~
+9 67108931 4612 12928 9 35
+0~ 0~ 0~ 0~
+15 0 7 0 0
+5 0
+shockshield~
+1 1
+0 0 0
+E
+exoskeleton electric dragonfly~
+This skeleton is what is left of a large dragonfly, electrical energy flows through it.
+~
+#14018
+healing kit box poultices~
+a healing kit~
+A small box containing various herbs and poultices lies here.~
+~
+8 64 0 0 1 25
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+cure light~
+10 10
+0 0 0
+E
+kit box healing~
+This is a small bag, when you open it you find an assortment of healing herbs and poultices, this could be very useful.
+~
+#14019
+rosewood staff~
+a rosewood staff~
+An ornately carved staff made of heavy rosewood is here.~
+~
+4 1 6348 0 16385 35
+50~ 1~ 1~ sanctuary~
+3 0 15 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+rosewood staff~
+This is a staff made out of ornately carved rosewood. It glows with magical energy.
+~
+#14020
+blood stained cloak heap~
+a bloodstained cloak~
+A tattered, blood-stained heap of cloth lies here.~
+~
+9 16916 0 12928 1025 35
+0~ 0~ 0~ 0~
+3 0 0 11 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+A
+13 35
+E
+bloodstained cloak~
+This is a fairly plain brown woolen cloak, although it is in tatters and covered in blood.
+~
+#14021
+amulet insect insectus~
+the amulet of Insectus~
+A silver amulet engraved with a mantis' head lies on the ground.~
+~
+9 85 0 0 5 35
+0~ 0~ 0~ 0~
+1 0 10 0 0
+5 0
+summon swarm~
+2 2
+0 0 0
+A
+24 -2
+A
+12 35
+E
+amulet insectus~
+This silver amulet has the head of an insect carved into it, it is a mantis. You sense a magical force flowing through it.
+~
+#14022
+wings wasp abdomen~
+wings of the Wasp~
+The crushed abdomen of a huge insect lies here with the wings still attached.~
+~
+9 0 0 12928 1025 35
+0~ 0~ 0~ 0~
+2 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+110 -1
+A
+2 2
+E
+wings wasp~
+This is a pair of large wasp wings, they seem normal except for a faint aura of magic.
+~
+#14023
+wasp sting stinger~
+a stinger~
+The severed stinger of a huge wasp lies on the ground~
+~
+5 16384 0 0 8193 37
+0~ 0~ 0~ 2~
+3 0 0 37 0
+5 0
+energy drain~
+5 5
+0 0 0
+A
+13 20
+A
+4 -1
+E
+stinger~
+This is a large stinger of a wasp, with the poison dripping from the end it could make a deadly weapon.
+~
+#14024
+giant treasure coins~
+a large pile of coins~
+A very large pile of coins lies here.~
+~
+20 0 0 0 1 1
+300~ 0~ 0~ 0~
+0 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+coins treasure~
+Wow! A pile of gold coins.
+~
+#14025
+honey comb shield~
+a honeycomb shaped shield~
+A large shield lies here, sparkling brightly.~
+~
+9 1 0 0 513 30
+0~ 0~ 0~ 0~
+5 1 15 0 0
+1 14026
+reserved~
+-1 -1
+0 0 0
+A
+17 -15
+E
+shield~
+A large shield, carved from what looks like a huge chunk of honeycomb.
+~
+E
+shield honeycomb~
+This is a large honeycomb, it is very strong and could be used as a shield. It also seems to have non-stop honey coming out of it
+~
+#14026
+honey~
+magic honey~
+A lumb of fresh honey.~
+~
+19 1 0 0 1 1
+10~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+honey~
+A large lump of fresh honey smells sooo sweet.
+~
+#14027
+beeskin bee skin belt~
+a beeskin belt~
+A belt made of bee-skin lies here, glistening.~
+~
+9 128 0 12928 2049 30
+0~ 0~ 0~ 0~
+2 0 7 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 20
+A
+14 -15
+A
+5 1
+E
+beeskin belt~
+This is a belt made of odd material, beeskin. You can tell much time has been spent making this.
+~
+#14028
+stone blade~
+a stone blade~
+A primitive-looking stone blade has been left here.~
+~
+5 536870980 0 0 8193 30
+0~ 0~ 0~ 0~
+15 0 7 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 -5
+A
+2 -2
+A
+19 15
+E
+stone blade~
+This is a very primitive weapon. It is a sword made entirely out of stone. It is heavy, but is well balanced.
+~
+#14095
+spiral staircase stairs~
+a spiral staircase~
+&wA polished spiral staircase runs through the center of the foyer~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#14096
+sheath ankle~
+an ankle sheath~
+A dark, blade sheath lies here.~
+~
+15 0 0 0 1048577 107
+5000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+ankle sheath~
+A boot sheath for holding a concealed knife.
+~
+#14097
+boot holster~
+a leather ankle holster~
+A brown leather boot holster lies here~
+~
+15 536870912 0 0 1048577 107
+5000~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#14099
+black bag orb~
+the Bag of Unspeakable Things~
+An orb of pure death is hovering here~
+~
+15 536870983 0 0 16385 101
+100000~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#14000
+Reception Area~
+Wandering in from the temple, you find yourself in the reception area of
+the Bethaven Botanical Garden.  The reception area is empty at the moment,
+the sounds of the city outside supplying the only real interest.  Glancing
+around, you notice numerous brochures scattered around the room.  Perhaps
+looking at one may provide some knowledge of the garden.  There is a door
+set into the southern wall here.  
+~
+0 12 0
+Rd     0
+D1
+~
+~
+0 0 14001
+D2
+A non-descript door stands here in the south wall.
+~
+door~
+3 0 25000
+S
+#14001
+Hallway~
+Coming into the hallway, you find that you may very well be the only
+person in here.  The hallway echoes with the sound of your footsteps, yet
+they garner no attention.  For a brief moment, you consider the possibility
+of the garden being closed to the public.  However, you do notice some
+footprints on the floor, signifying some sort of activity.  
+~
+0 0 0
+Rd     0
+E
+footprints~
+From what you can tell, the footprints are recent and are of various shapes
+and sizes.
+~
+D1
+~
+~
+0 0 14002
+D3
+~
+~
+0 0 14000
+S
+#14002
+Bend in Hallway~
+You follow the footprints as best as you can, yet are distracted by a
+sight not far up ahead.  Bright rays of sunlight filter in from the north,
+as does the sweet smell of roses.  You also hear voices as well, and the
+sounds of coins jingling.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14003
+D3
+~
+~
+0 0 14001
+S
+#14003
+Glassy Entrance~
+A wave of intense awe overcomes you as you gaze through the gate of an
+enormous glass structure.  Beyond the crystal clear walls lie hundreds of
+different varieties of plant life.  Roses, ferns and tall exotic looking
+trees fill your field of vision.  After a few seconds, you then notice the
+ticket taker, and a few citizens of Bethaven, awaiting entry into the
+garden.  
+~
+0 4 0
+Rd     0
+E
+gate~
+A golden gate makes for the barrier from which the garden stands beyond.
+~
+D0
+A golden gate makes for the barrier from which the garden stands beyond.
+~
+gate~
+7 14004 14004
+D2
+~
+~
+0 0 14002
+S
+#14004
+Inside the Entrance~
+Coming in through the gateway, your nose is assaulted by the overwhelming
+fragrance of the garden.  Bright rays of light shine down from the sky,
+heating the interior of the structure.  A warm mist swirls up from the
+ground as tiny beads of sweat form on your skin.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14005
+D1
+~
+~
+0 0 14013
+D2
+~
+gate~
+7 0 14003
+D3
+~
+~
+0 0 14014
+S
+#14005
+Garden Proper~
+Coming into the garden proper, you find yourself immersed in a wave of
+color and perfume.  A sight such as this would take the mind of the most
+hardened warrior, and put it at ease.  As you look around, you begin to
+notice something rather odd.  Towards the north, the garden seems to have
+been turned into a cave of sorts.  Suddenly, you begin to wonder whether or
+not the ticket taker offers refunds.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14006
+D2
+~
+~
+0 0 14004
+S
+#14006
+The Grotto~
+You are in the mouth of what looks like a huge fern grotto.  Odd sounds
+echo from within the cave-like opening.  A high pitched buzz erupts from
+behind you, causing you to instinctively duck for cover.  Spinning around
+to find the source of the noise, you lash out blindly, only to hit a tree.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14007
+D2
+~
+~
+0 0 14005
+D4
+~
+~
+0 0 14047
+S
+#14007
+Overgrown Walkway~
+As you travel deeper into the overgrown garden, something causes you to
+stop dead in your tracks.  Staring down in horror, you see the body of a
+young man, being devoured by huge insects.  Something brushes past your left
+leg then scurries into the underbrush.  A giant grasshopper, scuffles
+through your legs sending a shiver up your spine.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14046
+D1
+~
+~
+0 0 14008
+D2
+~
+~
+0 0 14006
+D3
+~
+~
+0 0 14019
+S
+#14008
+Rose Covered Path~
+Overwhelmed with terror you flee in a blind panic, only to find yourself
+entangled in a massive rose bush.  The thorns rip through your clothing and
+leave stabs and blood trails as they tear into your skin.  Getting out is
+going to be tricky, but staying in here will only mean more pain.  
+~
+0 268435456 0
+Rd     2
+D1
+~
+~
+0 0 14009
+D3
+~
+~
+0 0 14007
+S
+#14009
+Bloody Carnage~
+The mist fades away into nothing, giving way to a gut wrenching sight. 
+Your stomach knots, in an effort to keep your food down.  Strewn around in
+the mud, are the shredded, torn remains of the previous visitors to the
+garden.  Thick rivulets of blood flow through the mud, and the thick stench
+of decayed flesh overrides any chance to avoid vomiting.  Trying not to
+look, you spot an arm sinking...  No..  Being pulled down under the mud. 
+~
+0 0 0
+Rd     0
+E
+plank~
+There is a plank here buried underneath the mud and carnage.
+~
+E
+down~
+There is a plank here buried underneath the mud and carnage.
+~
+D2
+~
+~
+0 0 14010
+D3
+~
+~
+0 0 14008
+D5
+There is a plank here buried underneath the mud and carnage.
+~
+plank~
+3 0 14032
+S
+#14010
+Muddy Walkway~
+You trudge onward through the mud, growing weaker by the minute.  Between
+the mud, mist and the intense heat, you feel as if you are no longer in a
+garden, but rather, a jungle.  Your grip on your weapon becomes slippery,
+and your body spasms with the sensation of hundreds of insects, but as you
+look in horror, it is!  Not to mention the fact that the crunching, slurping
+sounds seem to be a few feet away, through the mist.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14009
+D2
+~
+~
+0 0 14011
+S
+#14011
+Muddy Walkway~
+You continue through the mist, only to find yourself suddenly falling
+forward.  You frantically flail about, hoping to grab onto something, yet
+you fail.  You fall for what seems like, two feet, and end up face down in
+thick, gooey mud.  You would normally laugh at this situation, its just that
+the crunching sound to the north continues.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14010
+D2
+~
+~
+0 0 14012
+S
+#14012
+Misty Walkway~
+The mist begins to thin a bit, just enough for you to find the solid
+sanctuary of the walkway.  Something is definately out of place here,
+although you can't figure out what it could possibly be.  As you let your
+mind wander, the grim wake of reality re-enters your mind as an odd sound
+slowly emanates from the north.  It sounds like....something being eaten. 
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14011
+D3
+~
+~
+0 0 14013
+S
+#14013
+Misty Walkway~
+The mist has suddenly grown to fog-like proportions in this section of
+the garden.  The shapes of the plants begin to take on a more hideously evil
+look, as a cold chill runs down your spine.  A low buzzing drones on in your
+ear, accented by loud clicking noises.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 14012
+D3
+~
+~
+0 0 14004
+S
+#14014
+Misty Walkway~
+Thick waves of mist flow through the plants, surrounding your body, and
+blanketing the ground.  A warm breeze blows gently, causing nearby branches
+and leaves to brush against you, which does nothing to quell the feeling of
+paranoia slowly building in your mind.  You desperately try to get your
+bearings, yet inevitably, you fail.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 14004
+D3
+~
+~
+0 0 14015
+S
+#14015
+Bend in Walkway~
+Stumbling blindly in the mist, you slam against the glass wall of the
+building with a loud, painful THUNK!  You begin to feel around, despite the
+blood coming from your nose, and find that this particular path bends to the
+north.  The mist unfortunately obscures anything else in the area, leaving
+you no choice but to move on.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14016
+D1
+~
+~
+0 0 14014
+S
+#14016
+Cluttered Walkway~
+As you move through the mist, you find yourself on rough terrain. 
+Straining your eyes downward, you see the shattered remains of many clay
+pots on the ground.  Dead plants lie strewn between the pots, leading you to
+believe that this may have been part of the nursery.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 14017
+D2
+~
+~
+0 0 14015
+S
+#14017
+Cluttered Walkway~
+More and more dead plants and broken pots can be seen.  It would seem
+that something barreled its way through here at a high rate of speed. 
+Nearby tables have been totally demolished, and as you casually glance
+around, you notice a huge crack in the glass wall to the west.  
+~
+0 0 0
+Rd     0
+E
+crack~
+The crack in the wall is huge.
+~
+D0
+~
+~
+0 0 14018
+D2
+~
+~
+0 0 14016
+S
+#14018
+Bend in Walkway~
+The path takes a sharp bend to the east here, and oddly enough, so do the
+broken pots.  Now you notice the fact they are lined strategically, showing
+the path as it heads towards the east.  You hear a strange sound, almost
+like the sound of fruit being mashed.  As you try to pinpoint the sound, a
+loud creak echoes from a loose plank in the floor..  
+~
+0 0 0
+Rd     0
+E
+plank~
+There is a loose plank in the floor here.
+~
+D1
+~
+~
+0 0 14019
+D2
+~
+~
+0 0 14017
+D5
+There is a loose plank in the floor here.
+~
+plank~
+3 0 14033
+S
+#14019
+Overgrown Walkway~
+The terrain takes a turn for the worse here, as the plants suddenly rise
+up a good 10 feet above your head.  They fall towards each other,
+threatening to collapse upon you, but then they stop.  About ten feet up,
+the plants have created a huge canopy, cloaking the surrounding area in
+darkness.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 14007
+D3
+~
+~
+0 0 14018
+S
+#14020
+Moss Filled Pit~
+WHUMP!!!  You end up in a huge moss filled pit.  Luckily for you it
+absorbed most of the impact.  You quickly analyze the current situation. 
+The floor above is a good 20 feet up.  The heavily mossed walls prevent any
+attempt to climb, leaving flight as the only other options.  There doesn't
+seem to be any visable exits, yet you sense a cool chill from the north.  
+~
+0 9 0
+Rd     0
+D0
+There is a wall of moss to the north.
+~
+"wall of moss"~
+3 0 14021
+D4
+~
+~
+0 0 14046
+S
+#14021
+Muddy Tunnel~
+You push the moss aside, revealing a mud filled tunnel which extends
+towards the east and west.  The mud is very thick, and about boot high. 
+This could make travel somewhat difficult.  
+~
+0 9 0
+Rd     0
+E
+moss~
+The wall of moss covers the south wall here.
+~
+D1
+~
+~
+0 0 14026
+D2
+There is a wall of moss to the south.
+~
+"wall of moss"~
+3 0 14020
+D3
+~
+~
+0 0 14022
+S
+#14022
+Muddy Intersection~
+You come to an intersection in the tunnel. Exits branch off in all cardinal
+directions at this point. The mud is a tad bit deeper than before, except for
+the north. A rocky outcropping juts out of the mud. Perhaps it's a way out
+of here.
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 14023
+D1
+~
+~
+0 0 14021
+D2
+~
+~
+0 0 14024
+D3
+~
+~
+0 0 14025
+S
+#14023
+Rocky Passage~
+You pull yourself up from the mud, and onto a large ledge.  Crushed rocks
+lie scattered, as if something stood here at one point.  Examining the rocks
+more closely, you find some bits of metal as well.  Perhaps this was a wall
+of some sort, maybe a lower level foundation.  The tunnel extends towards
+the north.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 14035
+D2
+~
+~
+0 0 14022
+S
+#14024
+Cave-In~
+CRASH!!!  The upper portion of the tunnel has just caved in, preventing
+any further travel.  It unfortunately claimed the life of a young man, whom
+you did not see until just now.  Looks as if he never saw it coming.  Just
+think, it could have been you. 
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 14022
+S
+#14025
+Dead End~
+The tunnel ends abruptly in the form of, not plants or dirt, but solid
+masonry.  Judging by the make of the material, you assume it to be one of
+the sewer pipes running below Bethaven.  It is indeed cool to the touch,
+must be one of the more widely used pipeways.  
+~
+0 1033 0
+Rd     0
+D1
+~
+~
+0 0 14022
+S
+#14026
+Muddy Tunnel~
+The mud grows thicker here, almost up to your thighs.  The dampness in
+the air makes everything seem thick and stuffy, making breathing rather
+difficult.  
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 14027
+D3
+~
+~
+0 0 14021
+S
+#14027
+Muddy Tunnel~
+You continue on through the thick mud.  The tunnel is silent, save for
+your sloshing foot steps, and the occasional water drops.  Other than that,
+there is nothing of any real interest.  
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 14028
+D3
+~
+~
+0 0 14026
+S
+#14028
+Bend in Tunnel~
+The tunnel takes a sharp turn to the south here, sloping upwards as it
+goes.  Before you stands another tunnel, considerably older than the rest,
+shrouded in cobwebs.  Huge shapes can be seen in the webbing, and you
+suddenly find yourself wonderig about your safety.  
+~
+0 9 0
+Rd     0
+D2
+~
+~
+0 0 14029
+D3
+~
+~
+0 0 14027
+S
+#14029
+Webbed Passage~
+Pushing and slashing your way through the webs, the remains of numerous
+other people fall to your feet.  Whichever ones that are still intact, seem
+to have been drained of everything, leaving nothing but a withered shell. 
+Suddenly the webs shudder violently, as if something large struck or shook
+it.  
+~
+0 9 0
+Rd     0
+E
+remains~
+Yummy!  These corpse shells remind you of fried potato skins.  You know
+they might have been a potato but they sure look hollow now!  
+~
+D0
+~
+~
+0 0 14028
+D3
+~
+~
+0 0 14030
+S
+#14030
+Before the Pit~
+You follow the vibrations to the source.  Roughly five feet above and
+in front of you, a huge orc has been captured and webbed up.  Below him
+towards the western edge of the tunnel is a huge pit.  Even from here you
+can see the glistening of huge eyes glaring hungrily at its prey.  
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 14029
+D5
+~
+~
+0 0 14031
+S
+#14031
+Spider's Lair~
+You take a few steps into the tunnel, only to find yourself trapped in
+the sticky webbing.  You pull and tug frantically, as a huge shape begins to
+dart excitedly down the tunnel towards you.  You have no choice but to fight
+now, you are trapped in the spiders lair!  
+~
+0 13 0
+Rd     0
+D4
+~
+~
+0 0 14030
+S
+#14032
+A Nest~
+After digging through the mud, and prying up some loose boards, an
+ungodly stench invades your nasal passages.  A huge nest has been created
+below the boards, and it would seem that its inhabitants are awaiting their
+next meal...quite possibly...YOU! 
+~
+0 9 0
+Rd     0
+D4
+A ceiling board is loose here above you.
+~
+"ceiling board"~
+3 0 14009
+S
+#14033
+Larvae Pit~
+More maggots!  You thought you saw the last of them when you left the
+Academy.  The soft ground of this pit is lined with rusted equipment,
+bleached bones, and other various remains.  The maggots themselves are too
+busy with one of their previous victims to bother with you, but that could
+change very soon. 
+~
+0 1 0
+Rd     0
+D4
+There is a loose ceiling board above you.
+~
+"ceiling board"~
+3 0 14018
+S
+#14035
+Rocky Passage~
+Rocks and pebbles skitter left and right, a direct result of your feet
+hitting them.  Some of the larger stones have an odd, sticky looking residue
+on them.  It looks and smells almost like, honey?!  As if the flies werent
+bad enough, visions of six foot bees flood your mind.  It's only a matter of
+time before panic ensues.  
+~
+0 9 0
+Rd     0
+E
+rocks~
+They are definately honey covered rocks.
+~
+E
+pebbles~
+They are definately honey covered pebbles.
+~
+D0
+~
+~
+0 0 14036
+D2
+~
+~
+0 0 14023
+S
+#14036
+Honeycomb Passage~
+The rocky path slowly makes way to an odd feeling substance.  As soon as
+your eyes adjust to the light, you instantly recognize the honycomb pattern.
+The thick scent of honey, along with an unknown one, wafts through the air. 
+Towards the east and west are what appear to be holding cells of some
+nature.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 14037
+D1
+~
+~
+0 0 14041
+D2
+~
+~
+0 0 14035
+D3
+~
+~
+0 0 14042
+S
+#14037
+Further Down the Passage~
+Travelling further down the honeycomb path, you are overwhelmed with the
+sudden outburst of noise.  The inhabitants of the hive swarm around you, but
+they seem more intent on their tasks.  A pair of workers stare coldly at
+you, as if to try and figure out what you are.  The loud buzzing causes your
+body to vibrate, and you eventually grow nauseous.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 14038
+D1
+~
+~
+0 0 14040
+D2
+~
+~
+0 0 14036
+D3
+~
+~
+0 0 14043
+S
+#14038
+End of Passage~
+Cutting a swath through the swarm, you push your way north.  The bees
+swarm madly around you in an angry frenzy.  Their huge barbed stingers stab
+from all angles as you crush the bees left and right.  The end of the
+corridor has a passage to the east, and you spot a bright shimmering to the
+west. 
+~
+0 268435465 0
+Rd     10
+D1
+~
+~
+0 0 14039
+D2
+~
+~
+0 0 14037
+D3
+~
+~
+0 0 14044
+S
+#14039
+A Dead End~
+Oh no!  A dead end!  Using this as some sort of tactical advantage, the
+intensity of the swarm increases, in an attempt to wipe out the intruder,
+namely YOU!.  As you fight blindly, you stumble over the corpses of the
+other victims.  The only exit out is back to the west 
+~
+0 268435465 0
+Rd     10
+E
+corpses~
+All kinds of corpses litter the ground here.  You think you even see
+humanoid bones.  
+~
+D3
+~
+~
+0 0 14038
+S
+#14040
+Another Cell~
+Dashing into a side room, before any of the bees can attack, you find
+yourself inside another storage room, much like the others.  A pair of
+workers are here, apparently checking on the contents of the walls.  You try
+to peer into an open hole, when the buzz of the workers grows to an almost
+aggressive state.  It may be best to back off at this point.  
+~
+0 9 0
+Rd     0
+D3
+~
+~
+0 0 14037
+S
+#14041
+A Honeycomb Cell~
+You enter a small room about the size of a jail cell.  The individual
+combs and pockets have been sealed shut.  There is nothing else of interest
+here.  
+~
+0 9 0
+Rd     0
+D3
+~
+~
+0 0 14036
+S
+#14042
+A Honeycomb Cell~
+The small room has a been molded into a makeshift cell of some kind.  A
+few open honeycomb pockets dot the walls, leading you to believe this is a
+storage room.  Cracking open a closed one, you rear back as the stench of
+death hits you like an ogres' warclub.  Inside the pocket, is the decayed
+corpse of some creature.  
+~
+0 9 0
+Rd     0
+E
+corpse~
+This might have been a humanoid body but you can't be sure.  
+~
+D1
+~
+~
+0 0 14036
+S
+#14043
+Another Cell~
+Alas, another storage room section.  This one however, is completely
+empty.  The bees don't seem to be coming in here, so it may be a good chance
+you can rest safely.  As you settle down to rest, you spy a quick glint of
+light from inside one of the honeycomb pockets.  
+~
+0 1037 0
+Rd     0
+E
+light~
+As you study the light you realize it is probably one of the glowing bee
+larvas.  The thought of what the larva might be eating makes your stomach
+turn.  Even with that sick feeling this room still makes you feel better.  
+~
+D1
+~
+~
+0 0 14037
+S
+#14044
+HoneyComb Gate~
+You dash down the western hall, bleeding and burning with pain.  A huge
+golden gate stands before you, guarded by two guards.  As you ready yourself
+for another fight, you realize the swarm has not followed you down this
+tunnel.  The guards eye you curiously, but as soon as you approach, they get
+ready to attack.  In the center of the gate is huge honeycomb shaped
+carving.  It looks as if that is the keyhole to the gate.  
+~
+0 13 0
+Rd     0
+E
+gate~
+&YA golden gate stands before you in the west wall.
+~
+D1
+~
+~
+0 0 14038
+D3
+&YA golden gate stands before you in the west wall.
+~
+gate~
+7 14002 14045
+S
+#14045
+Queen's Lair~
+Stepping through the gates, The Queen of all Bees looks down at you from
+high atop a large pile of gold.  She glares at you with royal arrogance, and
+you feel that this may be the end of your life.  It could very well be just
+that, as a pair of nasty looking elite warriors appear from behind her.  
+You are now faced with a decision...the swarm out there, or here.
+~
+0 8 0
+Rd     0
+E
+gate~
+&YA golden gate is set into the east wall here.
+~
+D1
+&YA golden gate is set into the east wall here.
+~
+gate~
+7 14002 14044
+S
+#14046
+Beneath the Canopy~
+Wandering in the darkness, you find yourself faced with the problem of a
+dead end.  A loud creak shatters the silence as the ground below you caves
+in!  You reach out in hope to grab a plank as you fall, but that too breaks.
+The only sound now is the echo of your scream as you plummet into more
+darkness.  
+~
+0 33554436 0
+Rd     0
+D2
+~
+~
+0 0 14007
+D5
+~
+~
+0 0 14020
+S
+#14047
+Among The Trees~
+As you climb into the trees, another huge fly shoots past your head. 
+Not far above, you see the reason.  Out of the corner of your eye, a sharp
+jagged limb slowly draws back into the foliage.  You can continue further,
+or retreat back down.  
+~
+0 33554436 0
+Rd     0
+D4
+~
+~
+0 0 14048
+D5
+~
+~
+0 0 14006
+S
+#14048
+Above The Trees~
+As you climb higher into the trees, the air around you suddenly grows
+very warm.  It's almost as if the temperature were rising.  A loud hum
+emanates from somewhere above, and you get the weird feeling that you are
+being watched.  
+~
+0 33554432 3
+Rd     0
+D4
+~
+~
+0 0 14049
+D5
+~
+~
+0 0 14047
+S
+#14049
+Top of the Trees~
+As you break through the top of the trees branches, it is then that you
+realize just how high you have climbed.  The garden below is nothing more
+than a lush jungle, and you can just barely see the Oracle on the other side
+of the city.  Bright beams of light shine from above, masking the gardens'
+hidden horrors.  A huge platform is levitating above you.  It seems to be
+the source of all the noise.  A closed trap door is right above you.  
+~
+0 0 0
+Rd     0
+D4
+~
+"trap door"~
+3 0 14050
+D5
+~
+~
+0 0 14048
+S
+#14050
+The Floating Platform~
+You poke your head through the hatch just to get an idea of what this
+thing is.  It looks to be a huge, magically powered disc, covered with
+plants and grasses.  All around you the loud buzz of insects can be heard,
+and to the northern edge of this disc, a small hut can be seen. 
+~
+0 0 0
+Rd     0
+D0
+Some sort of door stands here to the north. It looks like the entrance to a
+lair of some sort.
+~
+"lair door"~
+3 0 14051
+D5
+A trap door is here in the floor.
+~
+"trap door"~
+3 0 14049
+S
+#14051
+Lair of Insectus~
+This hut is cluttered with various flasks, scrolls and spell formulae. 
+It looks comparatively normal, except for the many horrible looking specimen
+jars!  Inside some jars, are what appear to be human/insect cross breeds,
+animal/insect crosses, and many others.  The hairs on your neck rise up
+suddenly, as you realize you are being watched!  
+~
+0 0 0
+Rd     0
+E
+door~
+The lair door stands in the south wall.
+~
+D2
+The lair door seems to be the only exit from here. It stands in the south wall.
+~
+"lair door"~
+3 0 14050
+S
+#0
+
+
+
+#SPECIALS
+M 14000 spec_poison
+M 14004 spec_breath_fire
+M 14005 spec_poison
+M 14007 spec_guard
+M 14008 spec_poison
+M 14010 spec_janitor
+M 14015 spec_cast_mage
+S
+
+
+
+#RESETS
+M 0 14011 1 14002
+M 0 14012 1 14002
+M 0 14010 1 14003
+E 0 14011 0 20
+E 0 14007 0 5
+E 0 14006 0 6
+O 0 14005 0 14003
+M 0 14009 3 14004
+E 0 14007 0 5
+M 0 14001 5 14007
+E 0 14013 0 14
+M 0 14004 1 14009
+G 0 14014 0
+M 0 14013 1 14015
+M 0 14005 5 14022
+O 0 14003 0 14024
+P 0 14001 0 14003
+M 0 14014 1 14030
+M 0 14000 1 14031
+E 0 14012 0 3
+M 0 14003 2 14032
+M 0 14003 2 14033
+M 0 14005 5 14036
+M 0 14006 2 14044
+E 0 14025 0 15
+E 0 14027 0 17
+E 0 14028 0 20
+G 0 14002 0
+M 0 14008 1 14045
+O 0 14024 0 14045
+M 0 14002 3 14048
+E 0 14017 0 5
+E 0 14016 0 20
+E 0 14015 0 9
+M 0 14015 1 14051
+E 0 14021 0 3
+E 0 14020 0 16
+E 0 14019 0 22
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

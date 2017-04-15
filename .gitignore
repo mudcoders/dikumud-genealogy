@@ -1,6 +1,9 @@
 src/envy
 *.exe
 *.o
+*.~c
+*.~h
+*.~
 *.log
 area/bugs.txt
 area/ideas.txt
@@ -8,3 +11,4 @@ area/typos.txt
 area/notes.txt
 area/shutdown.txt
 area/time.txt
+area/comlog*

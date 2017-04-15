@@ -1,0 +1,41 @@
+rm -f *.o
+rm -f envy
+make
+make[1]: Entering directory `/home/storm/EOS/src/tmp'
+gcc -c -c -O -Wall -g3  act_comm.c
+gcc -c -c -O -Wall -g3  act_info.c
+gcc -c -c -O -Wall -g3  act_move.c
+gcc -c -c -O -Wall -g3  act_obj.c
+gcc -c -c -O -Wall -g3  act_wiz.c
+gcc -c -c -O -Wall -g3  comm.c
+gcc -c -c -O -Wall -g3  const.c
+gcc -c -c -O -Wall -g3  db.c
+gcc -c -c -O -Wall -g3  fight.c
+gcc -c -c -O -Wall -g3  handler.c
+gcc -c -c -O -Wall -g3  magic.c
+gcc -c -c -O -Wall -g3  save.c
+gcc -c -c -O -Wall -g3  special.c
+gcc -c -c -O -Wall -g3  update.c
+gcc -c -c -O -Wall -g3  bit.c
+gcc -c -c -O -Wall -g3  mem.c
+gcc -c -c -O -Wall -g3  olc.c
+gcc -c -c -O -Wall -g3  olc_act.c
+gcc -c -c -O -Wall -g3  olc_save.c
+gcc -c -c -O -Wall -g3  string.c
+gcc -c -c -O -Wall -g3  mob_commands.c
+gcc -c -c -O -Wall -g3  mob_prog.c
+gcc -c -c -O -Wall -g3  gr_magic.c
+gcc -c -c -O -Wall -g3  id.c
+gcc -c -c -O -Wall -g3  chat_new.c
+gcc -c -c -O -Wall -g3  interp.c
+gcc -c -c -O -Wall -g3  chat_act.c
+gcc -c -c -O -Wall -g3  ore_prog.c
+gcc -c -c -O -Wall -g3  quest.c
+gcc -c -c -O -Wall -g3  raceskill.c
+gcc -c -c -O -Wall -g3  act_room.c
+gcc -c -c -O -Wall -g3  track.c
+[1;35mBuilding Eye of the [1;31mStorm [1;32mII[0;37m
+rm -f envy
+gcc -static -g -o envy act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o db.o fight.o handler.o magic.o save.o special.o update.o bit.o mem.o olc.o olc_act.o olc_save.o string.o mob_commands.o mob_prog.o gr_magic.o id.o chat_new.o interp.o chat_act.o ore_prog.o quest.o raceskill.o act_room.o track.o 
+Done.
+make[1]: Leaving directory `/home/storm/EOS/src/tmp'

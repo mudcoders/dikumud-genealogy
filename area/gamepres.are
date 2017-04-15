@@ -1,0 +1,4715 @@
+#AREADATA
+Name        { 5-20 } The Game Preserves  Grunt~
+Levels      5 20
+Builders    Grunt Aegis Reklar~
+VNUMs       10601 10750
+Security    100
+Recall      25001
+Flags       0
+Color       6
+Sounds      A warm breeze blows by, stirring the trees and grass.~
+End
+
+
+
+#MOBILES
+#10601
+gopher~
+A gopher~
+A gopher is digging holes here.
+~
+The gopher is a small round pudgy ball of fur with legs.  It walks about
+sniffing the ground looking for something to snack on.  
+~
+65 0 0 0 S
+4 0 0 50d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10602
+sheep~
+A sheep~
+A white wooly sheep grazes contentedly.
+~
+The sheep is covered in a thick coat of wool which when sheared would
+make a pretty decent blanket.  It munches on something, enjoying a lazy day.
+~
+65 0 0 0 S
+5 0 0 90d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10603
+fox~
+A Fox~
+A small red fox is hunting for its supper.
+~
+Long reddish hair and a standard bushy tail make this fellow seem like an
+amiable sort, almost a pet; but he is a hunter nonetheless.  
+~
+69 0 0 0 S
+7 0 0 130d0+0 0d0+0
+0 0 0 0
+0 0 1
+259 0 0
+#10604
+goat billy~
+A goat~
+An ornery billy goat is wandering about.
+~
+The goat looks a bit weatherbeaten, and bears the scars of a few
+territorial battles with the other animals.  
+~
+65 0 0 0 S
+8 0 0 150d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10605
+armadillo~
+An Armadillo~
+An armadillo waddles around here.
+~
+A reddish brown, typical armadillo.  A hard shell, long tail, waddling
+critter which goes about its business harming little and basking in the sun.
+~
+65 0 0 0 S
+9 0 0 170d0+0 0d0+0
+0 0 0 0
+0 0 1
+99 0 0
+#10606
+dog wild~
+A wild dog~
+A wild dog growls at you.
+~
+A mangy mutt with teeth bared and fur like a scouring pad.
+~
+69 0 0 0 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10607
+anteater giant~
+A giant anteater~
+A giant anteater sticks its tongue out at you.
+~
+The anteater plods along occasionally sticking it's snout into the ground
+to suck up an ant or two. 
+~
+65 0 0 0 S
+11 0 0 225d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10608
+tortoise~
+A tortoise~
+A large tortoise plods along aimlessly.
+~
+The tortoise is a slow moving target, and it's age cannot be easily seen,
+for tortoises live to great ages.  
+~
+65 0 0 0 S
+12 0 0 275d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10609
+coyote~
+a coyote~
+A mangy coyote eyes you warily.
+~
+The coyote bares it's teeth at you and you can see the fur bristle along
+it's back and tail.  
+~
+193 0 0 0 S
+13 0 0 310d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10610
+eagle~
+An eagle~
+A majestic eagle swoops down nearby.
+~
+~
+1 524800 0 0 S
+14 0 0 350d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10611
+ostrich~
+An ostrich~
+An ostrich notices you and backs away.
+~
+~
+193 0 0 0 S
+15 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#10612
+badger~
+A Badger~
+An extremely tenatious badger charges at you!
+~
+&wYou see nothing special about the rodent.
+~
+65 544 0 0 S
+16 0 0 425d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10613
+boar wild~
+A wild boar~
+A wild boar grunts and paws at the ground.
+~
+~
+65 40 0 0 S
+17 0 0 480d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10614
+lynx~
+A lynx~
+Despite the pretty fur coat, this lynx looks vicious.
+~
+The lynx is very large in size and has a long-haired, spotted coat.
+~
+65 33320 0 0 S
+18 0 0 520d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10615
+deer~
+A deer~
+&OA &Wwhite-tailed&O deer retreats from your presence.
+~
+~
+193 40 0 0 S
+19 0 0 560d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#10616
+jackal~
+A jackal~
+Bared teeth shine from this jackal as he glares at you.
+~
+Looking somewhat like a dog, this jackal has a bit of a mane coming from the
+back of its neck.
+~
+65 33320 0 0 S
+20 0 0 600d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10617
+giraffe~
+A giraffe~
+A giraffe is munching on the leaves of a nearby tree.
+~
+The giraffe is a very tall creature indeed.  Long stalky legs support its
+small body, and very long neck.  It's hide is yellowish with brown spots and
+a mane of fur sticks out of the back of its neck.  
+~
+65 32 0 0 S
+21 0 0 690d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10618
+antelope~
+An antelope~
+You see an antelope grazing here.
+~
+Just to look at her makes you feel all warm and fuzzy inside. She moves with
+such grace.
+~
+65 0 0 0 S
+22 0 0 775d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#10619
+hyena~
+A hyena~
+A hyena stalks around here.
+~
+A wild-dog-looking creature is almost as funny to look at as the sound it
+makes.  It almost laughs when it howls.  
+~
+69 32800 0 0 S
+23 0 0 870d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#10620
+wolf~
+A wolf~
+A long-haired grey wolf stands ready to pounce.
+~
+~
+69 32808 0 0 S
+24 0 0 960d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10621
+veterenarian vet~
+A Veterenarian~
+A skill Veterenarian tends for the animals here.
+~
+A very good-looking gentleman about the age of 30 is here tending to
+animals in need of medical assistance.  
+~
+1 132 0 0 S
+15 0 0 350d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#10622
+deputy warden~
+A Deputy Warden~
+A Deputy Warden patrols here.
+~
+A neat, crisp uniform, combed hair, and ready stance all belie this
+fellows sense of duty.  
+~
+65 8356 0 0 S
+20 0 0 480d0+0 0d0+0
+0 5 36 0
+0 0 1
+2051 0 0
+#10623
+warden game~
+A Game Warden~
+The Warden is looking out for game of ALL kinds.
+~
+The game warden hunts through the preserves searching for any kind of trouble.
+Be it with the animals, or the hunters themselves. He takes care of it.
+~
+65 134226092 0 0 S
+20 0 0 600d0+0 0d0+0
+0 7 27 0
+0 0 1
+131715 0 0
+#10624
+immortal guardian ghost~
+An Immortal Guardian Ghost~
+This shimmering form looks vaguely familiar somehow
+~
+~
+67 470303352 0 1000 S
+106 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+138687 0 0
+>give_prog final note~
+say Now that the spell upon me hath been purged, thou must do one last thing to obtain thy prize.
+say Give to me that which thou hast worked so hard to obtain and it shall be thine.
+~
+>give_prog full statuette~
+say Thou hast proven thyself worthy.
+say Take this token of Gods long past and wear it in their memory.
+mpoload 10657
+give ring $n
+bow $n
+mpecho There is a brief blinding flash of light and the ghost is gone!
+mptransfer $i 1
+~
+|
+#10625
+gatekeeper nephew~
+The Gatekeeper~
+The Gatekeeper stands guard on the lookout for poachers.
+~
+A pimple-faced youth with scraggly hair and buck teeth. Not much of a sight but he IS the mayor's nephew.
+~
+131 0 0 0 S
+10 0 0 180d0+0 0d0+0
+0 4 5 0
+0 0 1
+3 0 0
+#10626
+head warden~
+The Head Warden~
+The Head Warden looks as if he will brook no nonsense
+~
+A very tall, dark-haired gentleman with a stern look in his eye for all that provoke those under his care.
+~
+65 700 0 0 S
+25 0 0 1000d0+0 0d0+0
+1 3 16 0
+0 0 1
+261903 0 0
+>act_prog p is dead!!~
+mpgoto 1
+~
+|
+#10729
+cub grizzly bear~
+A bear cub~
+A grizzly cub begs his mother for food.
+~
+The Grizzly cub is the kind of animal you would love to take home with
+you, until it gets big enough to eat your dog that is.  The cute cub has
+soft brown fur, large curious eyes, and a tiny mouth that is begging for
+food.  
+~
+195 0 0 0 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 1
+1 0 0
+#10730
+bear grizzly~
+A grizzly bear~
+A Grizzly Bear roars and charges you!
+~
+You look upon the grizzly bear with fear.  Saliva dribbles from it's four
+inch fangs as it sees that a meal you will make.  A long jagged scar runs
+across it's ugly face.  Battle scar from a former warrior perhaps?  
+~
+99 8196 0 0 S
+20 0 0 600d0+0 0d0+0
+0 0 0 0
+0 0 0
+198913 0 0
+#10731
+bear grizzly~
+A female Grizzly Bear~
+The female Grizzly Bear protects her young.
+~
+The female grizzly bear roars when you enter and begins to stand up on
+two of it's four legs.  The female grizzly bear moves protectively before
+her young and moves to attack you.  
+~
+99 8236 0 0 S
+17 0 0 480d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#10746
+hermit~
+An old hermit~
+An old hermit sits here.
+~
+The old hermit looks at you and smiles.  He motions for you to sit with
+him and enjoy a cup of some strange hot liquid.  You look at the hermit and
+see that he is older than dirt, and from the looks of it so are his clothes.
+~
+65 128 0 1000 S
+20 0 0 600d0+0 0d0+0
+1 0 0 0
+0 0 1
+2048 0 0
+#0
+
+
+
+#OBJECTS
+#10601
+hole watering hole~
+watering hole~
+A somewhat fresh-looking watering hole is set into the ground here.~
+~
+25 0 0 0 0 1
+0~ 0~ 0~ 0~
+600 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10602
+gloves hide~
+some gloves~
+A pair of hide gloves have been left here.~
+~
+9 0 0 0 129 5
+0~ 0~ 0~ 0~
+2 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+hide~
+An excellent pair of hide gloves are made of deer-hide.
+~
+E
+gloves~
+These are a very well-made pair of hide gloves. They're kind of scratchy
+though, as they are not worn in yet.
+~
+#10603
+vambraces coyote hide~
+some coyote hide~
+Some vambraces made of a tough hide lie here.~
+~
+9 0 0 0 257 13
+0~ 0~ 0~ 0~
+4 0 1 1 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+E
+coyote hide vambraces~
+These vambraces seem to be made from the hide of a coyote.
+~
+#10604
+tail fox~
+a fox tail~
+An elegant looking foxtail lies in a heap here.~
+~
+9 0 0 0 5 7
+0~ 0~ 0~ 0~
+2 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+E
+fox tail~
+A lovely bushy fox tail. It has a few pale black stripes in it as well.
+~
+#10605
+talon~
+a talon~
+A talon lies here, emitting magic.~
+~
+3 257 6348 0 16385 14
+15~ 1~ 1~ bless~
+2 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+talon~
+This seems to the be the talon of an eagle.
+~
+#10606
+claw lynx~
+the claw of a lynx~
+The severed claw of a lynx lies here on the ground.~
+~
+5 0 0 0 8193 18
+0~ 0~ 0~ 3~
+2 0 1 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+lynx claw~
+The lynx claw is quite large and looks like it could be quite lethal, even
+detached from it's owner.
+~
+#10607
+tooth badger~
+a badger tooth~
+A tooth has been dropped here.~
+~
+5 0 0 0 8193 16
+0~ 0~ 0~ 2~
+1 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 14
+E
+badger tooth~
+The tooth of a badger, one of the larger teeth.
+~
+#10608
+feather eagle~
+an eagle feather~
+An eagle feather has come to rest on the ground here.~
+~
+8 64 0 0 1 14
+0~ 0~ 0~ 0~
+1 0 1 3 0
+5 0
+fly~
+1 1
+0 0 0
+E
+eagle feather~
+A brown feather with a white tip. Seems to be from the wing of an eagle.
+~
+#10609
+snout anteater~
+an anteater snout~
+The long snout of an anteater gets kicked around in the dust.~
+~
+9 0 0 0 65537 11
+0~ 0~ 0~ 0~
+5 0 1 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+E
+anteater snout~
+&OA long brown snout with a tiny black nose on the end.
+~
+#10610
+antlers antelope pair~
+some antlers~
+A pair of antlers have been left here.~
+~
+9 64 0 0 17 22
+0~ 0~ 0~ 0~
+5 0 0 9 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+A
+1 1
+E
+antelope antlers pair~
+A large pair of antlers from the head of an antelope.
+~
+#10611
+feather ostrich~
+an ostrich feather~
+The tail feather of an ostrich settles to the ground.~
+~
+9 64 0 0 32769 15
+0~ 0~ 0~ 0~
+1 0 1 9 0
+5 0
+invis~
+1 1
+0 0 0
+#10612
+earring teeth~
+short an earring made of teeth~
+Some rather large teeth have been left here.~
+~
+9 64 0 0 524289 18
+0~ 0~ 0~ 0~
+2 0 2 0 0
+0 0
+locate object~
+0 0
+0 0 0
+A
+5 1
+E
+lynx teeth earrings~
+Some large carnivorous teeth have been fashioned into an earring.
+~
+#10613
+pendant claw necklace~
+a lynx claw pendant~
+A large claw has been fashioned into a pendant.~
+~
+9 64 0 0 5 18
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 10601
+portal~
+0 0
+0 0 0
+A
+13 14
+E
+claw pendant~
+The claw of a rather large carnivore has been made into a pendant for a
+trophy-like necklace.
+~
+E
+necklace~
+A simple strip of leather makes for the necklace from which to hang this pendant.
+~
+#10614
+eyes eagle~
+some eagle eyes~
+These eyes of the eagle seem almost alive!~
+~
+27 1 0 2048 131073 14
+20~ 2~ 2~ detect hidden~
+1 0 2 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+eagle eyes~
+An eagles eyes are well-known to those of far-sight.c
+An eagles eyes are well-known to have great sight.
+~
+#10615
+leggings shell~
+some shell leggings~
+Leggings made from a hard shell have been left here.~
+~
+9 0 0 0 33 9
+0~ 0~ 0~ 0~
+8 0 2 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -5
+E
+shell leggings~
+Some leggings made from the shell of an armadillo.  The shell has been
+cut into two halves...  one for each leg.  
+~
+#10616
+hooves hoof goat~
+some goat hooves~
+Some hooves of some type have been discarded here.~
+~
+9 0 0 0 65 8
+0~ 0~ 0~ 0~
+4 0 1 3 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+hooves goat hoof~
+Even if you are rather unfamiliar with animals, you can tell that these
+are the hooves of a goat.
+~
+#10617
+ring~
+a ring~
+A simple ring lies on the ground.~
+~
+8 0 0 0 3 15
+0~ 0~ 0~ 0~
+1 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+ring~
+A simple ring made of carved pewter.
+~
+#10618
+ring~
+a ring~
+A plain-looking ring lies on the ground here.~
+~
+8 0 0 0 3 15
+0~ 0~ 0~ 0~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+ring~
+A simple band made of brass.
+~
+#10619
+shell tortoise~
+a tortoise shell~
+Some armor made from a toroise shell collects dust here.~
+~
+9 0 0 0 9 12
+0~ 0~ 0~ 0~
+10 0 3 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 10
+E
+tortoise shell~
+A rather large shell from a tortoise. This fella musta been quite old.
+~
+#10620
+cloak jackal hide heap~
+a hide cloak~
+A cloak made from some kind of hide lies in a heap here.~
+~
+9 0 0 0 1025 20
+0~ 0~ 0~ 0~
+7 0 3 5 0
+0 0
+awe~
+0 0
+0 0 0
+A
+13 20
+E
+cloak jackal hide~
+The cloak is made from the tough hide of a jackal.
+~
+E
+heap~
+The hide seems to be made from that of a jackal. It looks pretty sturdy.
+~
+#10621
+necklace tooth teeth~
+a tooth necklace~
+A rather attractive set of carnivorous teeth lie here.~
+~
+8 64 0 0 5 18
+0~ 0~ 0~ 0~
+1 0 3 5 0
+5 0
+remove curse~
+1 1
+0 0 0
+E
+tooth teeth necklace~
+A necklace made of leather dangles almost a full set of teeth from a
+large carnivore.
+~
+E
+carnivore~
+Taking a good look at the teeth...  You would guess...  A bobcat, or
+another of the large cats..  
+~
+#10622
+belt neck~
+a neck belt~
+An odd-looking belt made from the neck of an ostrich was left here.~
+~
+15 0 0 0 2049 15
+17~ 1~ 0~ 0~
+2 0 0 9 0
+0 0
+reserved~
+0 0
+0 0 0
+#10623
+anklet tooth teeth~
+a tooth anklet~
+An anklet made from wild animal teeth has been left here.~
+~
+9 0 0 0 1048577 24
+0~ 0~ 0~ 0~
+2 0 3 0 0
+0 0
+summon pack~
+0 0
+0 0 0
+A
+12 15
+A
+13 20
+E
+tooth teeth anklet~
+Various animal teeth have been strung together to make this anklet.
+~
+#10624
+beak bracelet~
+a beak~
+A strange bracelet has been discarded here.~
+~
+9 0 0 0 4097 10
+0~ 0~ 0~ 0~
+1 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+beak bracelet~
+This bracelet would seem to be made of the beak of an eagle.
+~
+#10625
+blueberries blue berries~
+&Ba bunch of blueberries&X~
+&BA bunch of blueberries have been left here.~
+~
+19 0 0 0 1 1
+4~ 0~ 0~ 0~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+blueberries blue berries~
+&BThe blueberries smell wonderful and sweet. They seem to be freshly picked.
+~
+#10626
+well water~
+water well~
+A water well is here surrounded by the forest.~
+~
+25 0 0 0 0 1
+0~ 0~ 0~ 0~
+50 10 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10657
+immortal ring life~
+a Glowing Ring~
+The fabled Ring of Life~
+~
+9 1 0 0 3 10
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 5
+#10658
+guts gopher pile~
+some guts~
+A pile of gopher guts lie here in a stinking mess.~
+~
+19 0 0 0 1 1
+24~ 0~ 0~ 0~
+1 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pile~
+A pile of greasy grimy gopher guts. Ick.
+~
+E
+guts gopher~
+Ew. The innards of a gopher. Although they might be tasty if you fry 'em up.
+~
+#10659
+boots wolf fur~
+boots of wolf fur~
+Some boots made from the fur of a wolf are here.~
+~
+9 0 0 0 65 24
+0~ 0~ 0~ 0~
+6 0 2 3 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+E
+boots wolf fur~
+A great pair of boots. They are made well and look like they might be great
+in the colder of climates.
+~
+#10660
+stole fox fur~
+a natural fur stole~
+A fox stole has been carelessly left here.~
+~
+8 0 0 0 1025 7
+0~ 0~ 0~ 0~
+5 1 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+stole fox fur~
+A beautiful stole made of fox fur. Just dashing.
+~
+#10661
+uniform~
+a Uniform~
+The gatekeepers Uniform has been discarded here~
+~
+9 0 0 0 9 10
+0~ 0~ 0~ 0~
+5 0 1 7 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+E
+uniform~
+The uniform of a Game Preserve Gatekeeper, complete with badge.
+~
+E
+badge~
+The badge consists of all the colours and patterns you might find in the
+animals hides within the Gates of the Game Preserves. Needless to say, it
+is quite a large badge.
+~
+#10662
+cudgel~
+a Cudgel~
+A long black cudgel has been left here.~
+~
+5 0 0 0 8193 10
+0~ 0~ 0~ 7~
+3 0 3 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 12
+E
+cudgel black~
+A small black club, something like a billy-stick or night-stick.
+~
+#10663
+fur dog~
+a dog's fur~
+Some badly damaged dog fir lies in a pile here.~
+~
+9 0 0 0 1025 10
+0~ 0~ 0~ 0~
+3 0 0 7 0
+0 0
+reserved~
+0 0
+0 0 0
+#10664
+prod rod~
+a prod~
+Some type of rod or prod is collecting dust here.~
+~
+5 64 0 0 8193 25
+0~ 0~ 0~ 0~
+5 0 5 0 0
+5 0
+harm~
+2 2
+0 0 0
+A
+19 40
+A
+18 30
+E
+prod rod~
+A long "stick" or "staff" used by the Wardens of the Game Preserve to herd
+the animals when needed.
+~
+#10665
+gloves runed runes~
+some runed gloves~
+A pair of gloves with intricate designs lay here.~
+~
+9 536874048 4 0 129 20
+0~ 0~ 0~ 0~
+2 0 4 5 0
+0 0
+shocking grasp~
+0 0
+0 0 0
+A
+26 2
+E
+embroidered runes~
+|||         |||        ///
+|||         |||       ///
+|||         |||     ///
+|||         |||    ///
+===============   ///
+======================\\\=====@@
+|||           |||        \\\
+|||           |||          \\\
+|||           |||           \\\
+                    @
+                    @@@
+                       @
+~
+E
+gloves runed runes~
+A pair of simple gloves embroidered with some very strange runes.
+~
+#10666
+hide shimmering~
+a shimmering hide~
+Some strangely glowing, shimmering hide.~
+~
+9 536873985 0 0 9 20
+0~ 0~ 0~ 0~
+9 0 2 0 0
+0 0
+aura of peace~
+0 0
+0 0 0
+A
+17 -16
+E
+shimmering hide~
+Some gorgeous spotted hide glows with a strange light.
+~
+#10667
+cane deer antler~
+an antler cane~
+A cane made from the antlers of a deer rest here.~
+~
+4 0 6348 0 16385 19
+25~ 1~ 1~ giant strength~
+5 0 5 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+deer antler cane~
+A very nicely made cane from the antlers of a deer.
+~
+#10668
+final note~
+a Note~
+There is a note left here for someone to read.~
+~
+13 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+note~
+When that which is not
+                              Hath broke its chains
+                              Put me in his slot
+                              And reward thy pains
+~
+#10670
+scroll old tattered~
+an Old Scroll~
+A tattered old scroll with an inscription upon it has been left here.~
+~
+8 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+inscription~
+The inscription refers to the Ancient Immortals of The Storm. It writes about
+buried treasures throughout the land and the legacy of life as we now know it.
+It is signed, Stormbringer, Last of the Ancient Immortals.
+~
+E
+enscription~
+The Ancient Immortals Greetings.  I am the last of my kind.  The rest of
+my brethren have all departed this universe and I shall soon follow.  We
+were the creators of the Storm.  Our legacy is that which you see before you
+as you walk these lands.  However, there is one last portion to this legacy
+which is why I am the last to leave.  Within the lands you walk I have
+buried artifacts created and used by myself and my brethren.  They hold
+powers above and beyond those which you will find through normal means.  I
+remained behind to bury these treasures, for only that which is hard won
+holds great value.  If you seek power then JOIN in my quest and be forever
+METAMORPHIZED.  Stormbringer, Last of the Ancient Immortals 
+~
+#10722
+Spring Well~
+a spring well~
+A spring water well bubbles here peacefully.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+1000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10729
+hide bear~
+a bear hide~
+The hide of a Grizzly Bear has been fashioned into armor.~
+~
+9 0 0 0 9 20
+0~ 0~ 0~ 0~
+10 1 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 20
+#10730
+claw bear~
+a grizzly claw~
+The large claw of a grizzly bear.~
+~
+5 0 6146 0 8193 20
+0~ 0~ 0~ 5~
+4 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 15
+#10738
+bucket~
+a rope-handled bucket~
+A large bucket with rope handles.~
+~
+17 0 0 0 16385 10
+20~ 15~ 0~ 0~
+3 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+#10746
+dagger fang~
+the fang dagger~
+A large fang shaped dagger lies here.~
+~
+5 16384 0 0 8193 20
+0~ 0~ 0~ 11~
+2 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+#0
+
+
+
+#ROOMDATA
+#10601
+Game Preserve Gates~
+Before you lies the formidable entrance to the Game Preserve.  It is
+comprised of two massive oak doors that are firmly bolted to a fence which
+runs as far as the eye can see.  The fence itself is constructed of long oak
+logs that have been crudely lashed together.  On top of these crudely joined
+poles are carved four foot long spikes apparently intended to keep the
+animals from escaping.  There is a sign attatched to the gate here.  
+~
+0 4 2
+Rd     0
+E
+sign~
+----------------------------------
+-  Welcome to the Game Preserve  -
+-                                -
+- WARNING! Animals of many kinds -
+- roam freely within these gates -
+-    ENTER AT YOUR OWN RISK!     -
+-                                -
+- Rules:                         -
+-    Do not feed the animals     -
+-    No swimming, No fires       -
+-    No camping, No littering    -
+-    AND NO POACHING!            -
+-    Keep the gate closed!       -
+- My wardens enforce these rules -
+- Please enjoy your stay. :)     -
+-                                -
+-                      The Mayor -
+----------------------------------
+~
+D1
+A huge gate entering the Game Preserve stands here to the east.
+~
+gate~
+3 0 10604
+D3
+~
+~
+0 0 5306
+S
+#10602
+Grass Field~
+You are in an open grass field.  The grass here isn't tall enough to
+inhibit your view of the surround area.  Occasionally an animal will
+approach you, their intent is unclear though.  A breeze causes the grass to
+sway to and fro.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10609
+D1
+~
+~
+0 0 10603
+S
+#10603
+Grass Field~
+At the southern edge of the Game Preserve, the fence sprawls out behind
+you for a considerable distance.  Grass grows in all other directions. 
+Small flowers of various types litter the landscape about you and fill the
+air with a sickeningly sweet scent.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10610
+D3
+~
+~
+0 0 10602
+S
+#10604
+Just inside the Gates~
+You leave the gate of the Game Preserve and wander cautiously into the
+open field.  You are upon a circular patch of ground that has been worn bare
+due to the high traffic rate of preserve Wardens.  All around you there is a
+grass field that looks like a vast green ocean.  The breeze causes the
+field's surface to sway to and fro, as if they were waves upon an ocean's
+surface.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 10637
+D3
+The exit gate of the Game Preserve stands to the west.
+~
+gate~
+3 0 10601
+S
+#10605
+Grass Field~
+While lingering upon the open field you notice that the grass here isn't
+as high as the wall of grass to the north.  As if in answer to your musing
+you notice animals grazing on the grass all about you.  The fence lies to
+the south from here, it stretches as far as the eye can see.  To the west
+you can spot the gate to the Game Preserve.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10612
+D1
+~
+~
+0 0 10606
+S
+#10606
+Grass Field~
+You wander through the vast sea of grass.  Fortunately the terrain is
+wide and open so that you fear not the surprise attack of animal predators. 
+Tiny flowers litter the landscape about you and fill the air with a sweet
+fragrance.  The formidable fence provides an impassable barrier to the south
+and along the east.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10613
+D3
+~
+~
+0 0 10605
+S
+#10607
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Patches of
+vegetation here have been trampled flat by the passage of animals.  Some of
+these animals can be seen roaming through the area currently.  Small insects
+hover in the air about you further impairing your vision.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10616
+D1
+~
+~
+0 0 10608
+S
+#10608
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Patches of
+vegetation here have been trampled flat by the passage of animals.  Some of
+these animals can be seen roaming through the area currently.  Small insects
+hover in the air about you further impairing your vision.  The fence blocks
+passage directly south of here.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10617
+D1
+~
+~
+0 0 10609
+D3
+~
+~
+0 0 10607
+S
+#10609
+Grass Field~
+You ascend a small hill in the grass field.  There are the remnants of a
+small campfire to your right.  A large assortment of animals graze upon the
+field beneath you.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10618
+D1
+~
+~
+0 0 10610
+D2
+~
+~
+0 0 10602
+D3
+~
+~
+0 0 10608
+S
+#10610
+Grass Field~
+A chill creeps across the area and you realize just how open this area
+is.  Birds circle above you in the sky and small flowers dot the landscape
+about you.  You are almost certain that their fragrances can be smelled for
+miles.  Bees fly noisily through the air collecting pollen to carry back to
+their nests.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10619
+D1
+~
+~
+0 0 10611
+D2
+~
+~
+0 0 10603
+D3
+~
+~
+0 0 10609
+S
+#10611
+Grass Field~
+While moving through the grass fields, you suddenly come to a halt after
+hearing a peculiar sound.  You let out a breath when you realize it was
+simply a small animal scurrying through the brush near you.  Facing north
+you spy an enormous wall of grass before you.  You also realize that far
+behind you lies the gate to the Preserve.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10620
+D1
+~
+~
+0 0 10612
+D3
+~
+~
+0 0 10610
+S
+#10612
+Grass Field~
+All around you lies the pleasant grass field.  Before you to the north
+you can see the formidable grass wall, swaying and rolling like a ship on a
+gentle cruise.  Small animals roam through the shorter grass about you, and
+large birds can be seen flying far above you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10621
+D1
+~
+~
+0 0 10613
+D2
+~
+~
+0 0 10605
+D3
+~
+~
+0 0 10611
+S
+#10613
+Grass Field~
+On one side of you, to the east, the wall of grass looms in an almost
+intimidating manner.  It is so thick it could almost be called a hedge.  All
+around you lies the open grass field.  Animals roam and graze freely on the
+open field and large birds circle above you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10622
+D1
+~
+~
+0 0 10614
+D2
+~
+~
+0 0 10606
+D3
+~
+~
+0 0 10612
+S
+#10614
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  A cool breeze
+causes the tall grass to sway to and fro.  Animals can be heard rustling
+through the undergrowth.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10623
+D1
+~
+~
+0 0 10615
+D3
+~
+~
+0 0 10613
+S
+#10615
+Heavy Brush~
+Small trees and thick grass make this terrain difficult to navigate
+through.  Wild animals can be heard roaming through the nearby vegetation. 
+Smaller creatures can be heard rustling through the undergrowth.  Swarms of
+tiny insects cloud around you and impede your vision further.  The fence can
+be seen to the south and to the west.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10624
+D3
+~
+~
+0 0 10614
+S
+#10616
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  A cool breeze
+blows through the area and rustles the tall grass about you.  Unfortunately
+you figure the breeze also carries away your scent to possible predators in
+the area.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10625
+D1
+~
+~
+0 0 10617
+D2
+~
+~
+0 0 10607
+S
+#10617
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10626
+D1
+~
+~
+0 0 10618
+D2
+~
+~
+0 0 10608
+D3
+~
+~
+0 0 10616
+S
+#10618
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10627
+D1
+~
+~
+0 0 10619
+D2
+~
+~
+0 0 10609
+D3
+~
+~
+0 0 10617
+S
+#10619
+Grass Field~
+While facing north you can see that before you, and to your left, an
+enormous mass of vegetation looms intimidatingly.  The tall thick grass is
+almost too dense to see through.  The wall of grass looks nearly impassable.
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10628
+D1
+~
+~
+0 0 10620
+D2
+~
+~
+0 0 10610
+D3
+~
+~
+0 0 10618
+S
+#10620
+Grass Field~
+While facing north you can see that before you and to your left an
+enormous mass of vegetation looms intimidatingly.  The tall thick grass is
+almost too dense to see through.  The wall of grass looks nearly impassable.
+All around you there are animals of the Game Preserve roaming and grazing. 
+The grass beneath your feet is thick and lush, and the landscape is dotted
+with tiny flowers.  Bees fly through the air taking pollen from these
+various flowers.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10629
+D1
+~
+~
+0 0 10621
+D2
+~
+~
+0 0 10611
+D3
+~
+~
+0 0 10619
+S
+#10621
+Grass Field~
+The tall heavy grass to the north looks very imposing.  Occasionally
+animals poke their noses out of this mass of green, some are not very
+friendly seeming.  Behind you to the south and to the east is the open field
+of rolling grass.  Small animals scurry about your legs and the grass sways
+to and fro about you.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10630
+D1
+~
+~
+0 0 10622
+D2
+~
+~
+0 0 10612
+D3
+~
+~
+0 0 10620
+S
+#10622
+Grass Field~
+Looming up from both the east and the north, the tall heavy grass almost
+forms a barrier to your movement.  Rustling within the grass is common and
+somewhat unsettling.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10631
+D1
+~
+~
+0 0 10623
+D2
+~
+~
+0 0 10613
+D3
+~
+~
+0 0 10621
+S
+#10623
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  A cool breeze
+causes the tall grass to sway to and fro.  Animals can be heard rustling
+through the undergrowth.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10632
+D1
+~
+~
+0 0 10624
+D2
+~
+~
+0 0 10614
+D3
+~
+~
+0 0 10622
+S
+#10624
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10633
+D2
+~
+~
+0 0 10615
+D3
+~
+~
+0 0 10623
+S
+#10625
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 10626
+D2
+~
+~
+0 0 10616
+S
+#10626
+Heavy Brush~
+Any notion that passage would be easier in this direction has been shot
+down.  Small trees and thick grass make this terrain nearly impassable.  A
+cool breeze flows through the area giving you temporary relief from the
+insect cloud around you.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10637
+D1
+~
+~
+0 0 10627
+D2
+~
+~
+0 0 10617
+D3
+~
+~
+0 0 10625
+S
+#10627
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10638
+D1
+~
+~
+0 0 10628
+D2
+~
+~
+0 0 10618
+D3
+~
+~
+0 0 10626
+S
+#10628
+Tall Thick Grass~
+Tall grass sways to and fro about you.  The grass is too thick to see
+much of anything.  Small creatures rustle through the underbrush, or perhaps
+that is just the wind.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10639
+D1
+~
+~
+0 0 10629
+D2
+~
+~
+0 0 10619
+D3
+~
+~
+0 0 10627
+S
+#10629
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  A cool breeze
+causes the tall grass to sway to and fro.  Animals can be heard rustling
+through the undergrowth.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10640
+D1
+~
+~
+0 0 10630
+D3
+~
+~
+0 0 10628
+S
+#10630
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10641
+D1
+~
+~
+0 0 10631
+D2
+~
+~
+0 0 10621
+D3
+~
+~
+0 0 10629
+S
+#10631
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10642
+D1
+~
+~
+0 0 10632
+D2
+~
+~
+0 0 10622
+D3
+~
+~
+0 0 10630
+S
+#10632
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10643
+D1
+~
+~
+0 0 10633
+D2
+~
+~
+0 0 10623
+D3
+~
+~
+0 0 10631
+S
+#10633
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Various sounds
+of the reserve animals comes to you from across the way.  A gentle breeze
+rustles through the tall grass about you.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10644
+D2
+~
+~
+0 0 10624
+D3
+~
+~
+0 0 10632
+S
+#10634
+Tall Thick Grass~
+A cool breeze rustles through the tall grass about you.  The grass is too
+thick to see much of your surroundings.  Patches of the grass around your
+have been trampled flat as if by large roaming animals.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10645
+D1
+~
+~
+0 0 10635
+D3
+~
+~
+0 0 10633
+S
+#10635
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10646
+D1
+~
+~
+0 0 10636
+D3
+~
+~
+0 0 10634
+S
+#10636
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 4 2
+Rd     0
+D3
+~
+~
+0 0 10635
+S
+#10637
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the area around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10650
+D1
+~
+~
+0 0 10638
+D2
+~
+~
+0 0 10626
+D3
+~
+~
+0 0 10604
+S
+#10638
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10651
+D1
+~
+~
+0 0 10639
+D2
+~
+~
+0 0 10627
+D3
+~
+~
+0 0 10637
+S
+#10639
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10640
+D2
+~
+~
+0 0 10628
+D3
+~
+~
+0 0 10638
+S
+#10640
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 10641
+D2
+~
+~
+0 0 10629
+S
+#10641
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 10642
+D2
+~
+~
+0 0 10630
+D3
+~
+~
+0 0 10640
+S
+#10642
+Watering hole~
+Though still within the tall grass, this area offers a break in the
+monotony of the surrounding areas.  The watering hole is usually surrounded
+by animals of all types.  It is difficult to get by them to drink from the
+watering hole, perhaps one of them will shove over so that you may get a
+drink too.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 10643
+D3
+~
+~
+0 0 10641
+S
+#10643
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10656
+D1
+~
+~
+0 0 10644
+D2
+~
+~
+0 0 10632
+D3
+~
+~
+0 0 10642
+S
+#10644
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  A cool breeze
+causes the tall grass to sway to and fro.  Animals can be heard rustling
+through the undergrowth.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10657
+D1
+~
+~
+0 0 10645
+D2
+~
+~
+0 0 10633
+D3
+~
+~
+0 0 10643
+S
+#10645
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10658
+D1
+~
+~
+0 0 10646
+D2
+~
+~
+0 0 10634
+D3
+~
+~
+0 0 10644
+S
+#10646
+Tall Thick Grass~
+The grass is so tall and thick in this area you literally wade through
+it.  Animals wander through the brush around you and smaller creatures can
+be heard rustling through the nearby undergrowth.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 10647
+D2
+~
+~
+0 0 10635
+D3
+~
+~
+0 0 10645
+S
+#10647
+Heavy Brush~
+The brush and small trees block your view and make traveling pretty much
+guesswork.  Small insects cloud around you decreasing the quality of your
+vision.  Your only respite is a cool breeze that begins to dry some of the
+sweat that coats your body.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10660
+D1
+~
+~
+0 0 10648
+D2
+~
+~
+0 0 10636
+D3
+~
+~
+0 0 10646
+S
+#10648
+Scrub Forest~
+You wander through the depths of the scrub forest.  The trees are
+stunted here and small shrubbery also litters the landscape.  Nettle and
+thorn bushes are also present here, pity the poor fool who wanders into
+them!  Some exits are blocked due to the formidable Preserve fence.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10661
+D3
+~
+~
+0 0 10647
+S
+#10649
+Scrub Forest~
+You can make out the familiar fence to the west and south here.  The
+trees about you are of a small variety, mostly birch, small poplars and
+young elms.  The underbrush is much thinner and animal paths can be seen
+leading into the trees.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10663
+D1
+~
+~
+0 0 10650
+S
+#10650
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10664
+D1
+~
+~
+0 0 10651
+D2
+~
+~
+0 0 10637
+D3
+~
+~
+0 0 10649
+S
+#10651
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10665
+D1
+~
+~
+0 0 10652
+D2
+~
+~
+0 0 10638
+D3
+~
+~
+0 0 10650
+S
+#10652
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10666
+D1
+~
+~
+0 0 10653
+D2
+~
+~
+0 0 10639
+D3
+~
+~
+0 0 10651
+S
+#10653
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10667
+D1
+~
+~
+0 0 10654
+D2
+~
+~
+0 0 10640
+D3
+~
+~
+0 0 10652
+S
+#10654
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10668
+D1
+~
+~
+0 0 10655
+D2
+~
+~
+0 0 10641
+D3
+~
+~
+0 0 10653
+S
+#10655
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  A cool breeze
+causes the tall grass to sway to and fro.  Animals can be heard rustling
+through the undergrowth.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10669
+D1
+~
+~
+0 0 10656
+D2
+~
+~
+0 0 10642
+D3
+~
+~
+0 0 10654
+S
+#10656
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  Animals roam
+freely through the area.  Patches of vegetation have been trampled flat by
+the passage of animals.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 10670
+D1
+~
+~
+0 0 10657
+D2
+~
+~
+0 0 10643
+D3
+~
+~
+0 0 10655
+S
+#10657
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  A cool breeze
+causes the tall grass to sway to and fro.  Animals can be heard rustling
+through the undergrowth.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10671
+D1
+~
+~
+0 0 10658
+D2
+~
+~
+0 0 10644
+D3
+~
+~
+0 0 10656
+S
+#10658
+Tall Thick Grass~
+The grass is too tall and thick to see much of anything.  A cool breeze
+causes the tall grass to sway to and fro.  Animals can be heard rustling
+through the undergrowth.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 10672
+D1
+~
+~
+0 0 10659
+D2
+~
+~
+0 0 10645
+D3
+~
+~
+0 0 10657
+S
+#10659
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the area around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 4 3
+Rd     0
+D1
+~
+~
+0 0 10660
+D2
+~
+~
+0 0 10646
+D3
+~
+~
+0 0 10658
+S
+#10660
+Heavy Brush~
+In the thick of brush, assorted shrubbery, and thick grass travel is
+extremely difficult.  To the east the vegetation does not seem to be as
+dense.  You barely hear the noises of animals off in the distance.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10674
+D1
+~
+~
+0 0 10661
+D2
+~
+~
+0 0 10647
+D3
+~
+~
+0 0 10659
+S
+#10661
+Scrub Forest~
+Small trees and scattered patches of grass surround you here.  Animal
+trails wander off in several directions.  There is heavy brush to the west
+but other paths offer more ease of travel.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10675
+D1
+~
+~
+0 0 10662
+D2
+~
+~
+0 0 10648
+D3
+A heavy brush makes passage a little difficult to the west.
+~
+~
+0 0 10660
+S
+#10662
+Scrub Forest~
+While following the terrain you come to the top of a small hill.  Through
+the copse of trees you can barely make out the fence to the east and south
+of here.  Passage seems fairly well trodden to the north and to the west.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10676
+D3
+~
+~
+0 0 10661
+S
+#10663
+Scrub Forest~
+You wander through the scrubland of stunted trees and small bushes.  The
+familiar fence stares down at you from the west and north.  To the east and
+south it looks to be clear traveling from here on.  Shadows flicker and
+settle about you in patterns that lend no comfort.  
+~
+0 0 3
+Rd     0
+D0
+The Game Preserve fence blocks passage in this direction.
+~
+~
+0 0 0
+D1
+~
+~
+0 0 10664
+D2
+~
+~
+0 0 10649
+S
+#10664
+Scrub Forest~
+Squirrels run about from tree to tree chittering at you.  Although the
+trees are small the squirrels seem to have no trouble making their leaps and
+keeping their footing in the swaying branches.  There is heavy brush to the
+east while the other directions seem fairly passable.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10677
+D1
+~
+~
+0 0 10665
+D2
+~
+~
+0 0 10650
+D3
+~
+~
+0 0 10663
+S
+#10665
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10678
+D1
+~
+~
+0 0 10666
+D2
+~
+~
+0 0 10651
+D3
+~
+~
+0 0 10664
+S
+#10666
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10679
+D1
+~
+~
+0 0 10667
+D2
+~
+~
+0 0 10652
+D3
+~
+~
+0 0 10665
+S
+#10667
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10680
+D1
+~
+~
+0 0 10668
+D2
+~
+~
+0 0 10653
+D3
+~
+~
+0 0 10666
+S
+#10668
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10681
+D2
+~
+~
+0 0 10654
+D3
+~
+~
+0 0 10667
+S
+#10669
+Heavy Brush~
+Small trees and thick undergrowth make this area nearly impassable.  You
+glance about cautiously almost expecting an animal to come charging through
+the brush at you.  The smell of vegetation and animals is thick in the air. 
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10682
+D1
+~
+~
+0 0 10670
+D2
+~
+~
+0 0 10655
+S
+#10670
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10683
+D1
+~
+~
+0 0 10671
+D2
+~
+~
+0 0 10656
+D3
+~
+~
+0 0 10669
+S
+#10671
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10684
+D1
+~
+~
+0 0 10672
+D2
+~
+~
+0 0 10657
+D3
+~
+~
+0 0 10670
+S
+#10672
+Heavy Brush~
+You wade through thick brush and move around groupings of small trees. 
+Animals can be heard near and far from all around you.  Insects gather about
+in great clouds that impair visibility.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10685
+D1
+~
+~
+0 0 10673
+D2
+~
+~
+0 0 10658
+D3
+~
+~
+0 0 10671
+S
+#10673
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10674
+D2
+~
+~
+0 0 10659
+D3
+~
+~
+0 0 10672
+S
+#10674
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10687
+D1
+~
+~
+0 0 10675
+D2
+~
+~
+0 0 10660
+D3
+~
+~
+0 0 10673
+S
+#10675
+Scrub Forest~
+Wild animals run though this area frequently as evidenced by the number
+of tracks here.  One track in particular seems overly large.  To the west
+heavy brush impedes your movement while other directions seem relatively
+easy to traverse.  
+~
+0 0 3
+Rd     0
+E
+track~
+The track would seem to be from a wolf, but it is rather large, even for
+that.  
+~
+D0
+~
+~
+0 0 10688
+D1
+~
+~
+0 0 10676
+D2
+~
+~
+0 0 10661
+D3
+~
+~
+0 0 10674
+S
+#10676
+Scrub Forest~
+Once again you encounter the fence running along side you to the east. 
+There is a strong odor in the air, it is rather strong and musky.  Large
+animal tracks on the ground run in several directions.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10689
+D2
+~
+~
+0 0 10662
+D3
+~
+~
+0 0 10675
+S
+#10677
+Scrub Forest~
+Many kinds of critter roam through the scrub.  Some are predators, some
+are prey.  Nettle and thorn bushes litter the terrain about you, their
+poisonous barbs glisten with a green-black ichor.  The fence runs along side
+you to the west.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10690
+D1
+~
+~
+0 0 10678
+D2
+~
+~
+0 0 10664
+S
+#10678
+Scrub Forest~
+Before you to the north, the fence stands to guard the people outside,
+from the animals within.  Or is it the other way around?  Behind you there
+is only brush while to your left and right more scrub forest lies.  Small
+animals scurry through the brush all around you and birds circle overhead.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10679
+D2
+~
+~
+0 0 10665
+D3
+~
+~
+0 0 10677
+S
+#10679
+Scrub Forest~
+If not for the many wild animals about this would be a fairly serene
+place.  The trees while small offer a wide variety of color and shape, the
+underbrush is sparse, crowded out by the many trees.  There is heavy brush
+to the south but otherwise travelling is easy in all other directions.  The
+area is almost completely covered with berry bushes.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10691
+D1
+~
+~
+0 0 10680
+D2
+~
+~
+0 0 10666
+D3
+~
+~
+0 0 10678
+S
+#10680
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10692
+D1
+~
+~
+0 0 10681
+D2
+~
+~
+0 0 10667
+D3
+~
+~
+0 0 10679
+S
+#10681
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10693
+D1
+~
+~
+0 0 10682
+D2
+~
+~
+0 0 10668
+D3
+~
+~
+0 0 10680
+S
+#10682
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  A cool
+breeze rustles the trees around you.  Smaller animals can be heard scuttling
+through the undergrowth here.  
+~
+0 1073741824 3
+Rd     0
+D0
+~
+~
+0 0 10694
+D1
+~
+~
+0 0 10683
+D2
+~
+~
+0 0 10669
+D3
+~
+~
+0 0 10681
+S
+#10683
+Scrub Forest~
+Wolf tracks can be seen all about here.  LARGE wolf tracks.  There is
+heavy brush to the west and south.  The east and north lead into the scrub
+forest.  Shadows flicker and settle about you in patterns that lend no
+comfort.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10695
+D1
+~
+~
+0 0 10684
+D2
+~
+~
+0 0 10670
+D3
+~
+~
+0 0 10682
+S
+#10684
+Scrub Forest~
+You move among stunted trees and small shubbery.  The landscape about you
+gradually changes into heavy brush in the distance.  A half eaten carcass
+lies in the light brush, maggots feeding on the remaining flesh.  
+~
+0 0 3
+Rd     0
+E
+carcass~
+It looks like the carcass used to be a boar.
+~
+D0
+~
+~
+0 0 10696
+D1
+~
+~
+0 0 10685
+D2
+~
+~
+0 0 10671
+D3
+~
+~
+0 0 10683
+S
+#10685
+Heavy Brush~
+Small trees and thick brush make this terrain nearly impassable.  Wild
+animals can only be heard roaming through the are around you.  Nettle and
+thorn bushes are scattered through the thick brush.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10697
+D1
+~
+~
+0 0 10686
+D2
+~
+~
+0 0 10672
+D3
+~
+~
+0 0 10684
+S
+#10686
+Scrub Forest~
+Small cedar trees, birch, elm and an assortment of many others form
+small, but not impassable trails leading south into brush, east and north
+into more forest and west into more heavy brush.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10698
+D1
+~
+~
+0 0 10687
+D2
+~
+~
+0 0 10673
+D3
+~
+~
+0 0 10685
+S
+#10687
+Scrub Forest~
+The fence once again comes into view to the north, though at this end of
+the Reserve it doesn't seem to be tended quite as well.  Trails lead off
+east and west into forest and south into heavy brush.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10688
+D2
+~
+~
+0 0 10674
+D3
+~
+~
+0 0 10686
+S
+#10688
+Scrub Forest~
+With the fence running along side you, you feel a brief fleeting moment
+of security in the fact that no animals can charge you from that direction. 
+Stunted trees crowd around you, they loom over you, and shadows flicker
+about you promoting a forboding of evil.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10689
+D2
+~
+~
+0 0 10675
+D3
+~
+~
+0 0 10687
+S
+#10689
+Scrub Forest~
+You feel your way through this dense scrubland of stunted trees and
+bushes.  Animals can be heard calling to one another in the distance.  Other
+creatures roam freely about you, their intent is unclear.  The fence turns a
+corner here, blocking your path to both the north and the east.  The south
+and west lead into more scrub forest.  
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 10676
+D3
+~
+~
+0 0 10688
+S
+#10690
+Scrub Forest~
+The forest comes abruptly to an end here.  Many wild beasts of nature can
+be heard behind you in the forest, making you similar to a cornered animal. 
+The fence blocks all northward movement.  You may only travel back into the
+forest.  
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 10677
+S
+#10691
+Scrub Forest~
+You pick your way through the dense thicket of pine and cedar.  Animals
+can be heard roaming through the forest in all directions.  Bird calls can
+be heard above you and in the distance.  The fence runs north to south here
+on the west side.  All trails lead into more forest.  An occasional Warden
+wanders through the area on a routine security check.  The area is
+practically covered with berry bushes.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10699
+D1
+~
+~
+0 0 10692
+D2
+~
+~
+0 0 10679
+S
+#10692
+Scrub Forest~
+The fence is to the north running east and west now.  Going in those
+directions brings you into more of the typical scrub forest you've been
+travelling in.  To the south is heavy brush.  The area is practically covered
+with berry bushes.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10693
+D2
+~
+~
+0 0 10680
+D3
+~
+~
+0 0 10691
+S
+#10693
+Scrub Forest~
+The fence is still to your north and still running east and west.  Birds
+sing within the small trees and fly off at most any sound.  South leads you
+right back into heavy brush.  
+~
+0 1073741824 3
+Rd     0
+D1
+~
+~
+0 0 10694
+D2
+~
+~
+0 0 10681
+D3
+~
+~
+0 0 10692
+S
+#10694
+Scrub Forest~
+A chill wind swings down from the north and sways the small trees easily.
+Animals graze on the undergrowth while others pick leaves off the lower
+branches.  East and west lead into more forest while south leads into heavy
+brush.  The ever-familiar fence is to the north.  
+~
+0 1073741824 3
+Rd     0
+D1
+~
+~
+0 0 10695
+D2
+~
+~
+0 0 10682
+D3
+~
+~
+0 0 10693
+S
+#10695
+Scrub Forest~
+Charred wood that is partially covered with leaves lies about the area
+around you.  It is too disorganized to have been part of a campfire, perhaps
+a forest fire?  Animals roam around you, some feeding on the vegetation in
+the area.  
+~
+0 1073741824 3
+Rd     0
+D1
+~
+~
+0 0 10696
+D2
+~
+~
+0 0 10683
+D3
+~
+~
+0 0 10694
+S
+#10696
+Scrub Forest~
+All directions lead into more of the small quaint forest area.  Most of
+the trees bear leaves except where animals have chewed the lower ones off. 
+Occasionally you can see where a tree has been barked by antlers exposing
+the sapline below.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10700
+D1
+~
+~
+0 0 10697
+D2
+~
+~
+0 0 10684
+D3
+~
+~
+0 0 10695
+S
+#10697
+Scrub Forest~
+The fence that lies before you is clawed as if by a large animal.  All
+around you leads into the scrub forest.  A cool breeze blows through this
+area and causes the trees to sway to and fro around you.  Shadows flicker
+wildly about you.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10698
+D2
+~
+~
+0 0 10685
+D3
+~
+~
+0 0 10696
+S
+#10698
+Scrub Forest~
+From the corner in the fence this would seem to be the northeast corner
+of the Preserve.  Trails to the south and west lead into more forest.  The
+trees are a bit thinner here but still fairly closely packed as they fight
+for the sunlight above.  
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 10686
+D3
+~
+~
+0 0 10697
+S
+#10699
+Thicket~
+The thicket is almost completely full of berry bushes.  It is almost
+impossible to push through but of course you do.  You notice that the
+thicket and fence surrounds almost completely.  There is a strange  
+presence  ...  Something about this area that is a bit out of place. 
+You realize that you can't actually see the fence to the north of you.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10701
+D2
+~
+~
+0 0 10691
+S
+#10700
+Scrub Forest~
+It is a bit colder here and the scarring and scratch marks in the fence
+are much more pronounced.  There are even a few tiny holes in the fence. 
+This is quite remarkable given the newness of the Reserve.  The only obvious
+way to go is south.  
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 10696
+S
+#10701
+Dense Thicket~
+You squeeze your way through the thicket carefully.  You can see little
+to nothing through the thick vegetation.  Feeling your way along you notice
+that the path goes either north or south from here on.  Oddly enough you can
+no longer hear the calls of birds or animals.  Berry bushes line your path. 
+~
+0 8388612 3
+Rd     0
+E
+berry~
+The berry bushes are covered with plump, juicy berries.  Berries of all
+sorts can be seen from here.  
+~
+D0
+~
+~
+0 0 10702
+D2
+~
+~
+0 0 10699
+S
+#10702
+Dense Thicket~
+You slowly pick your way through the complicated web of bushes and small
+trees.  You might have chopped them down earlier, but it is almost
+impossible to swing a sword through the area.  Oddly enough you can no
+longer hear the calls of the birds or other animals.  Berry bushes line your
+path.  
+~
+0 8388612 3
+Rd     0
+E
+berry~
+The berry bushes are covered with plump, jucy berries of all types.  From
+here you can see strawberries and blueberries, more types are visible
+farther out.  
+~
+D0
+~
+~
+0 0 10703
+D2
+~
+~
+0 0 10701
+S
+#10703
+Thicket~
+You can see a little better now as the thicket becomes less dense.  You
+notice the fence is running along side you to the east.  You are surrounded
+in thicket but you can hear the calls of animals in the distance, and
+smaller animals rustle through the undergrowth here.  
+~
+0 4 3
+Rd     0
+E
+smaller~
+You try and see what one of these elusive smaller animals look like, but
+you fail miserably.  Perhaps you will never see one of these much talked
+about creatures.  
+~
+D0
+~
+~
+0 0 10704
+D1
+~
+~
+0 0 10750
+D2
+~
+~
+0 0 10702
+D3
+~
+~
+0 0 10705
+S
+#10704
+Forest Path~
+The thicket ends abruptly and before you is a forest unlike any you have
+seen in the Preserve.  The trees tower all around you at least twice the
+size of a small cottage.  Birds can be seen nesting high in these trees and
+other animals roam freely through the area.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10708
+D1
+~
+~
+0 0 10720
+D2
+~
+~
+0 0 10703
+D3
+~
+~
+0 0 10706
+S
+#10705
+A Small Clearing~
+The Clearing is free of any animals or insects which roam freely
+throughout the area, allowing for an adventurer such as yourself to sit and
+rest a while in the tranquility of the natural wonder which surrounds you.  
+~
+0 1028 0
+Rd     0
+D1
+~
+~
+0 0 10703
+S
+#10706
+Forest Path~
+The forest path is thin and covered in a thin layer of dead leaves and
+weeds, yet looks to be used quite frequently by those who wander here. 
+Sounds of animals scurrying about fill the air, yet you cannot see them from
+this vantage point.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 10707
+D1
+~
+~
+0 0 10704
+S
+#10707
+Forest Path~
+The forest path is thin and covered in a thin layer of dead leaves and
+weeds, yet looks to be used quite frequently by those who wander here. 
+Sounds of animals scurrying about fill the air, yet you cannot see them from
+this vantage point.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 10706
+D3
+~
+~
+0 0 10743
+S
+#10708
+Forest Path~
+You wander through the forest of large pine, cedar, and oak.  Birds fly
+through the leaves high above you.  Berry patches line the path here and
+there.  You are surrounded on sides by forest.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10709
+D2
+~
+~
+0 0 10704
+S
+#10709
+Forest Path~
+You pick your way through a forest that is mostly comprised of oak.  The
+trail you follow seems to be that of an animal.  Small birds fly above you
+just as small animals scurry through the undergrowth.  You are surrounded by
+forest on all sides.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10721
+D1
+~
+~
+0 0 10710
+D2
+~
+~
+0 0 10708
+S
+#10710
+Forest Trail~
+You slowly follow the winding trail through the forest.  The path does
+not look man-made, it is most likely a game trail of some sort.  The birds
+pause in the melodies momentarily while you walk by.  An ancient sign stands
+here partially covered by the trees.  
+~
+0 0 3
+Rd     0
+E
+sign~
+You push aside the leaves that cover the sign.  The sign seems to read,
+"Warning: enter at your own risk..."  The last sentence of the sign is
+unreadable.  
+~
+D1
+~
+~
+0 0 10712
+D3
+~
+~
+0 0 10709
+S
+#10711
+Forest Trail~
+The trail winds gently through the forest around you, it heads to either
+the north or the west from here.  Squirrels chitter at you happily from the
+trees.  A cool breeze suddenly blows through the are and chills you to the
+bone.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10712
+S
+#10712
+Forest Trail~
+The forest trail winds on aimlessly in three different directions.  The
+wind picks up a bit and rustles some of the foliage around you.  Trees sway
+back and forth in the wind and creak noisily.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10714
+D1
+~
+~
+0 0 10713
+D2
+~
+~
+0 0 10711
+D3
+~
+~
+0 0 10710
+S
+#10713
+Forest trail~
+You follow the long and winding forest trail.  Small trees and foliage
+have been trampled as if by a large animal.  Berry bushes litter the terrain
+around you.  
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 10715
+D3
+~
+~
+0 0 10712
+S
+#10714
+Forest Trail~
+You follow the winding forest trail.  Every now and then a forest
+creature will approach you curiously.  They never do come within arms length
+though.  The foliage in this area is fairly thick.  Columns of light pierce
+the shroud of vegetation here and there providing sunlight for what ground
+vegetation there is.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 10723
+D2
+~
+~
+0 0 10712
+S
+#10715
+Forest Trail~
+You follow the forest trail as it winds through the trees.  A cool breeze
+flows about you rustling the nearby foliage.  You are surrounded on all
+sides by the forest.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10713
+D1
+~
+~
+0 0 10716
+S
+#10716
+Forest Trail~
+You pick your way along the forest trail carefully.  Squirrels chitter at
+you from high above you in the trees.  Small birds fly from tree to tree
+collecting twigs to build a nest.  You are surrounded on all sides by the
+forest.  To the east, you see a small muddy path through the trees.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 7782
+D2
+~
+~
+0 0 10717
+D3
+~
+~
+0 0 10715
+S
+#10717
+Forest Trail~
+You pick your way along the forest trail carefully.  You are surrounded
+on all sides by trees and berry bushes.  A cool breeze blows through the
+area and causes the foliage and berry bushes to sway to and fro.  
+~
+0 0 3
+Rd     0
+E
+berry~
+The berry bushes huddle around you on all sides.  Juicy berries glisten
+at you from their resting place among the bushes.  
+~
+D0
+~
+~
+0 0 10716
+D3
+~
+~
+0 0 10718
+S
+#10718
+Forest Trail~
+You pick your way along the forest trail carefully.  Squirrels chitter at
+you from their high vantage point in the trees.  The forest, and berry
+bushes surround you on all sides.  
+~
+0 0 3
+Rd     0
+E
+berry~
+The berry bushes are covered with plump and juicy berries.  Blueberries
+and strawberries can be seen from your point of view.  Other types of
+berries are visible further out.  
+~
+E
+berry~
+~
+D1
+~
+~
+0 0 10717
+D3
+~
+~
+0 0 10719
+S
+#10719
+Forest Trail~
+You pick your way along the forest trail carefully.  A strong wind blows
+through the area and causes the berry bushes to sway back and forth.  Trees
+also sway to and fro creaking all the while.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10718
+D3
+~
+~
+0 0 10720
+S
+#10720
+Forest Trail~
+You pick your way along the forest trail carefully.  Small animals scurry
+through the underbrush and birds fly above head from tree to tree.  You are
+surrounded on all sides by the thick forest.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10719
+D3
+~
+~
+0 0 10704
+S
+#10721
+Forest Path~
+A long dirt path about four feet wide meanders through the forest here. 
+The path is alike a small country road in that trees hang over the path but
+do not impede travel.  Birds can be heard singing from high above.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10732
+D2
+~
+~
+0 0 10709
+S
+#10722
+Watering Hole~
+You enter the area around the water well and a hush seems to descend over
+the forest.  You can no longer hear the singing of birds from above, nor the
+animals in the distance.  The trees and foliage around the watering hole are
+so thick, nothing can be seen beyond them.  With the well surrounded on
+three sides by thick forest this place lends a feeling of safety to you.  
+~
+0 1036 3
+Rd     0
+D2
+~
+~
+0 0 10749
+S
+#10723
+Forest Trail~
+The shadows lengthen in proportion to the size of the trees here.  The
+forest has become almost completely dark.  Shafts of light blaze through to
+the ground here and there, the ground vegetation is sparse here.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10724
+D2
+~
+~
+0 0 10714
+S
+#10724
+Forest Trail~
+The trees in this area are a lot closer to the trail than they have been
+before.  It is fairly difficult to find a decent path through them, and you
+do not.  Travel hurts as you are slapped by branch after branch of pine.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10725
+D3
+~
+~
+0 0 10723
+S
+#10725
+Forest Trail~
+Passage through this suddenly thickly settled forest is increasingly
+difficult.  You feel a tinge of jealousy as you notice that animals big and
+small travel with ease through this forest grove.  Squirrels taunt you from
+their homes in the trees.  
+~
+0 0 3
+Rd     0
+E
+squirrels~
+You would love to kill them, except that you just can't reach them from
+here.  They continue to chitter at you in a fluid stream of noise.  Perhaps
+they are not taunting you after all you ponder.  Suddenly an acorn lands on
+the top of your head and you realize that they are taunting you.  
+~
+D1
+~
+~
+0 0 10726
+D2
+~
+~
+0 0 10724
+S
+#10726
+Forest Trail~
+The few shafts of light that are lucky enough to penetrate this area are
+dwindling.  Whats left of the trail winds to the north, and to the west. 
+Travel is very difficult through the tightly packed field of pine and oak
+trees.  You notice three very deep gouges scar an oak tree near you.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10727
+D3
+~
+~
+0 0 10725
+S
+#10727
+Forest Trail~
+The few shafts of light that had penetrated the forest are now gone. 
+Your small light illuminates an almost insignifigant portion of the forest
+around you.  It does however make travel possible when your path is lighted.
+You can no longer see the squirrels that are tormenting your tired nerves
+from above.  
+~
+0 1 3
+Rd     0
+E
+squirrels~
+Hundreds of beedy little eyes glare evilly down upon you.  You catch
+glints of their flesh eating teeth--Wait.  They are just squirrels.  You
+ignore them and walk on.  
+~
+D0
+~
+~
+0 0 10728
+D2
+~
+~
+0 0 10726
+S
+#10728
+Entrance to Cave~
+The entrance to the cave opens before you like the hungry, yawning maw of
+some huge creature.  The trees spread out here around the cave opening.  It
+is almost as if the trees themselves don't want anything to do with the
+cave.  
+~
+0 1 3
+Rd     0
+D0
+~
+~
+0 0 10729
+D2
+~
+~
+0 0 10727
+S
+#10729
+Dark Cave~
+The dark cave is fairly small but almost cozy in a way.  The way the
+entrance is naturally formed the wind does not enter here at all.  A heavy
+musk makes it tough to breathe in this confined area.  The cave continues to
+the north, and it opens to the forest to the south.  
+~
+0 9 0
+Rd     0
+D0
+~
+~
+0 0 10730
+D2
+~
+~
+0 0 10728
+S
+#10730
+Dark Cave~
+The smell of musk is almost unbearable in this room.  Apparently you've
+stumbled into the den of a wild animal.  The carcass of a former meal lies
+here on the ground.  Dried blood is visible on the floor only because there
+is a lot of it.  You notice the helmet of a former warrior lying in the
+corner.  
+~
+0 9 0
+Rd     0
+E
+helmet~
+The helmet is rusted and dented.  Blood covers it but has long since
+dried.  You wonder how long ago the helmet was a treat for the residents
+here.  
+~
+E
+carcass~
+The carcass is almost full of maggots.  Flies buzz noisily around in the
+air about the carcass.  You feel filthy just from looking at it.  
+~
+D2
+~
+~
+0 0 10729
+D3
+~
+~
+0 0 10731
+S
+#10731
+Dark Cave~
+The smell of animal musk is also fairly heavy in this offshoot of the
+cave.  Hair and dried blood practically cover the ground around you.  Small
+bits of decaying flesh, now covered with hair, litter the ground around you.
+~
+0 9 0
+Rd     0
+D1
+~
+~
+0 0 10730
+S
+#10732
+Forest Path~
+You wander along the winding dirt path at a regular pace.  The forest
+lies to your left and right here and is comprised mostly of pine, oak, and
+some birch.  You can hear animals rustling through the undergrowth around
+you.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10733
+D2
+~
+~
+0 0 10721
+S
+#10733
+Forest Path~
+The path comes to a gentle turn here to the west or the south.  The trees
+huddle fairly closely together in this area.  You glance to the north and
+notice the fence is running along to the east and west far before you.  
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 10732
+D3
+~
+~
+0 0 10734
+S
+#10734
+Forest Path~
+You wander down the dirt path at a regular pace.  The fence is fairly
+close to the path here, you notice some strange makes across it's surface. 
+Birds can be heard from high above you.  
+~
+0 1024 3
+Rd     0
+E
+fence~
+You look at the fence a little more closely.  Brushing aside foliage you
+examine the surface marks carefully.  They appear to be some type of rune
+carved into the fence with an animal claw or crude dagger.  What could it
+mean?  
+~
+D1
+~
+~
+0 0 10733
+D3
+~
+~
+0 0 10735
+S
+#10735
+Forest Path~
+You move along the forest path, the fence is close to the north and
+follows along the path.  Squirrels chitter at you from high in the trees. 
+You notice there is a nettle bush nearby.  
+~
+0 0 3
+Rd     0
+E
+nettle~
+The nettle bush is the apparently the only of it's kind in this forest. 
+Green ichor drips off of it's long barbs.  Pity the fool that wanders into
+that!  
+~
+D1
+~
+~
+0 0 10734
+D3
+~
+~
+0 0 10736
+S
+#10736
+Forest Path~
+While moving along the four foot wide forest path, you can see the fence
+is visible beside you to the north.  Animals, or perhaps the wind, rustles
+the undergrowth in the area around you.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 10735
+D2
+~
+~
+0 0 10737
+S
+#10737
+Well Worn Path~
+Suddenly the path widens out to about six feet.  The path itself is a
+fine dirt as opposed to the soil of the previous path.  Absolutely no
+vegetation grows on the worn path.  Trees overhang you providing a cool
+shade from the sun during the day.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 10736
+D1
+~
+~
+0 0 10738
+D2
+~
+~
+0 0 10739
+S
+#10738
+Well Worn Path~
+The worn path gradually curves its way to either the south or the west. 
+You move upon fine sand and tiny dust devils arise due to your passage.  You
+notice there are some more strange markings on a tree nearby.  
+~
+0 0 0
+Rd     0
+E
+markings~
+You push aside some foliage and carefully uncover the whole of the odd
+markings they are apparently carved with an animal claw or crude weapon. 
+Unfortunately you can not read the writing or rune work.  A chill creeps
+over you when you finish examining the rune-work.  
+~
+E
+dust~
+Little tiny men with tan khaki pants run out from the side of the path
+with brooms that are twice the size of them.  They quickly push sand up into
+tiny clouds as you pass by.  Why they do this, or even if that is what dust
+devils are, you're just not sure.  
+~
+D2
+~
+~
+0 0 10744
+D3
+~
+~
+0 0 10737
+S
+#10739
+Well Worn Path~
+The forest path is thin and covered in a thin layer of dead leaves and
+weeds, yet looks to be used quite frequently by those who wander here. 
+Sounds of animals scurrying about fill the air, yet you cannot see them from
+this vantage point.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 10737
+D2
+~
+~
+0 0 10740
+S
+#10740
+Well Worn Path~
+The forest path is thin and covered in a thin layer of dead leaves and
+weeds, yet looks to be used quite frequently by those who wander here. 
+Sounds of animals scurrying about fill the air, yet you cannot see them from
+this vantage point.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 10739
+D1
+~
+~
+0 0 10742
+D3
+~
+~
+0 0 10741
+S
+#10741
+Well Worn Path~
+The forest path is thin and covered in a thin layer of dead leaves and
+weeds, yet looks to be used quite frequently by those who wander here. 
+Sounds of animals scurrying about fill the air, yet you cannot see them from
+this vantage point.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 10749
+D1
+~
+~
+0 0 10740
+S
+#10742
+Forest Path~
+The forest path is thin and covered in a thin layer of dead leaves and
+weeds, yet looks to be used quite frequently by those who wander here. 
+Sounds of animals scurrying about fill the air, yet you cannot see them from
+this vantage point.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 10743
+D3
+~
+~
+0 0 10740
+S
+#10743
+Forest path~
+The forest path is thin and covered in a thin layer of dead leaves and
+weeds, yet looks to be used quite frequently by those who wander here. 
+Sounds of animals scurrying about fill the air, yet you cannot see them from
+this vantage point.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 10742
+D1
+~
+~
+0 0 10707
+S
+#10744
+Yard of Hermit~
+You wander into the yard of a small home.  Junk of all types litters the
+ground here.  The house is kept up well and is most likely occupied.  You
+dodge left and right to avoid one of hundreds, possibly thousands of ropes
+hanging from the trees here.  A large oak door lies to your east.  
+~
+0 0 3
+Rd     0
+E
+junk~
+Looking around at all of the junk, your mind nearly spins with the amount
+of unidentifiable items lying about.  Odd constructs of metal, a large
+wooden wheel with large flaps, bigs of this glossy black rope, and tons
+more.  
+~
+D0
+~
+~
+0 0 10738
+D1
+The door stands at roughly six feet in height.  The door itself is
+covered in what appears to be thousands of claw marks and runes.  The door
+sits at an angle in it's frame due to previous attempts to destroy it from
+the outside.  
+~
+"oaken door" "door"~
+19 0 10745
+S
+#10745
+House of Hermit~
+Judging by the size of the house itself and the size of this room, you
+imagine that this is the main room of what is likely to be a two room shack.
+The room is dark due to the windows of the home being boarded over and
+covered with cloth.  Small animals now dead are hanging from a low overhang
+in the ceiling here.  
+~
+0 13 0
+Rd     0
+E
+windows~
+Not a single solitary shaft of light penetrates the room through these
+windows.  
+~
+E
+small~
+The small animals seem to have undergone a form of salting.  What is
+unusual is the fact that the animals are still currently whole.  Most often
+salted meat is cut up first.  
+~
+D0
+~
+~
+0 0 10747
+D2
+~
+~
+0 0 10746
+D3
+A large oaken door stands here in the west wall.
+~
+"large oak door" "door"~
+19 0 10744
+S
+#10746
+Bedroom of Hermit~
+The room smells slightly of decay and dead grass.  The reason for this
+seems to be the bed of grass that has been piled into the corner of this
+room to serve as a bed.  The room is very spartan overall with the bed being
+the most interesting object in the room.  An immense tome lies in the corner
+of this room.  
+~
+0 0 0
+Rd     0
+E
+tome~
+The tome is tightly bound in some sort of exotic animal skin.  There is a
+small metal clasp that locks the book securely closed, you are unable to
+open it and see what is written within.  Along the sides and spine of the
+tome there are small blood stains.  
+~
+D0
+~
+~
+0 0 10745
+S
+#10747
+Outhouse~
+You leave the house momentarily through a side exit and come to this
+little outhouse.  You are certain that this outhouse should have been re-dug
+ages ago.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 10745
+D5
+If you were to push and pull enough, the outhouse seat might come loose
+and provide you with a portal downwards.  Who would want to go down there
+with the muck and excrement though?  
+~
+"outhouse seat" "seat"~
+3 0 10748
+S
+#10748
+Dung Pit~
+The Smell here is overwhelmingly disgusting, reeking of waste and
+festering urine.  The only exit is back the way you came.  
+~
+0 268435457 0
+Rd     0
+D4
+The ceiling board above you seems to lead somewhere.
+~
+"curious ceiling board" "board"~
+3 0 10747
+S
+#10749
+Well Worn Path~
+The forest path is thin and covered in a thin layer of dead leaves and
+weeds, yet looks to be used quite frequently by those who wander here. 
+Sounds of animals scurrying about fill the air, yet you cannot see them from
+this vantage point.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 10722
+D2
+~
+~
+0 0 10741
+S
+#10750
+In a Small Thicket~
+The thicket has a slight buzzing emitting from within, most likely a
+colony of insects hard at work.  The soft grass which has been flattened by
+the animals feels cool beneath your feet.  You may exit the thicket to the
+west.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 10703
+S
+#0
+
+
+
+#SPECIALS
+M 10606 spec_fido
+M 10619 spec_fido
+M 10621 spec_healer
+M 10622 spec_guard
+M 10623 spec_guard
+M 10624 spec_executioner
+M 10626 spec_guard
+S
+
+
+
+#RESETS
+M 0 10625 1 10601
+E 0 10661 0 5
+E 0 10662 0 20
+M 0 10606 3 10602
+E 0 10663 0 16
+M 0 10601 3 10603
+G 0 10602 0
+G 0 10658 0
+M 0 10622 3 10606
+E 0 10664 0 20
+M 0 10605 3 10607
+E 0 10615 0 11
+M 0 10603 3 10609
+E 0 10604 0 18
+G 0 10660 0
+M 0 10623 2 10610
+E 0 10665 0 13
+E 0 10666 0 5
+M 0 10602 4 10611
+M 0 10621 2 10612
+E 0 10617 0 1
+E 0 10618 0 2
+M 0 10604 2 10614
+E 0 10616 0 12
+G 0 10670 0
+M 0 10622 2 10615
+M 0 10602 2 10616
+M 0 10604 3 10619
+E 0 10616 0 12
+M 0 10608 2 10620
+E 0 10619 0 5
+O 0 10601 0 10620
+M 0 10607 3 10621
+E 0 10609 0 8
+M 0 10607 3 10622
+E 0 10609 0 8
+M 0 10623 1 10623
+M 0 10603 2 10624
+G 0 10660 0
+G 0 10604 0
+M 0 10601 2 10625
+G 0 10602 0
+G 0 10658 0
+M 0 10607 3 10626
+E 0 10609 0 8
+M 0 10612 2 10628
+E 0 10607 0 20
+M 0 10612 3 10630
+M 0 10609 3 10631
+M 0 10611 3 10632
+E 0 10611 0 9
+G 0 10622 0
+M 0 10622 2 10635
+M 0 10614 3 10637
+E 0 10606 0 20
+E 0 10612 0 23
+E 0 10613 0 3
+E 0 10621 0 4
+M 0 10613 3 10639
+M 0 10611 3 10640
+E 0 10611 0 9
+G 0 10622 0
+M 0 10610 3 10641
+E 0 10605 0 22
+E 0 10608 0 9
+E 0 10614 0 7
+E 0 10624 0 18
+M 0 10609 3 10642
+E 0 10603 0 14
+O 0 10601 0 10642
+M 0 10614 3 10644
+E 0 10606 0 20
+E 0 10612 0 23
+E 0 10613 0 3
+E 0 10621 0 4
+M 0 10615 3 10646
+G 0 10667 0
+M 0 10613 3 10648
+M 0 10610 2 10649
+E 0 10605 0 22
+E 0 10608 0 9
+E 0 10614 0 7
+E 0 10624 0 18
+M 0 10618 2 10650
+E 0 10610 0 6
+M 0 10609 3 10651
+E 0 10603 0 14
+M 0 10616 3 10653
+E 0 10620 0 16
+M 0 10623 2 10655
+M 0 10612 3 10657
+E 0 10607 0 20
+M 0 10607 3 10660
+M 0 10606 3 10662
+M 0 10619 3 10663
+M 0 10622 3 10665
+M 0 10614 3 10668
+E 0 10606 0 20
+E 0 10612 0 23
+E 0 10613 0 3
+E 0 10621 0 4
+M 0 10614 2 10673
+E 0 10606 0 20
+E 0 10612 0 23
+E 0 10613 0 3
+E 0 10621 0 4
+M 0 10616 3 10674
+E 0 10620 0 16
+M 0 10620 2 10676
+G 0 10659 0
+G 0 10623 0
+M 0 10615 3 10677
+G 0 10667 0
+M 0 10617 3 10680
+M 0 10613 3 10682
+M 0 10621 1 10683
+M 0 10619 3 10685
+M 0 10617 3 10687
+M 0 10623 2 10688
+M 0 10620 1 10692
+G 0 10659 0
+G 0 10623 0
+M 0 10616 3 10695
+E 0 10620 0 16
+M 0 10618 3 10698
+E 0 10610 0 6
+O 0 10625 0 10708
+O 0 10625 0 10708
+O 0 10625 0 10708
+O 0 10625 0 10708
+O 0 10625 0 10713
+O 0 10625 0 10713
+O 0 10625 0 10717
+O 0 10625 0 10717
+O 0 10625 0 10718
+O 0 10625 0 10719
+O 0 10626 0 10722
+M 0 10730 1 10730
+E 0 10730 0 20
+E 0 10729 0 5
+E 0 10730 0 21
+G 0 10625 0
+O 0 10625 0 10730
+O 0 10625 0 10730
+M 0 10731 1 10731
+M 0 10729 3 10731
+O 0 10738 0 10744
+M 0 10746 1 10745
+E 0 10746 0 20
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

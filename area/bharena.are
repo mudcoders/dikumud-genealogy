@@ -1,0 +1,564 @@
+#AREADATA
+Name        { ALL }  The Grand Arena     Keirkan~
+Levels      1 105
+Builders    None~
+VNUMs       7350 7399
+Security    100
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#7364
+ishtar healer~
+Ishtar~
+Ishtar, the Arena Healer is here.
+~
+Ishtar watches over you with a thoughtful gaze and considers whether you
+represent a threat or not.  It is said that he hates all violence and if you
+show the proper respect he will help you.  If you violate his peace he will
+attack you!
+~
+3 134242432 0 1000 S
+100 0 0 250000d0+0 0d0+0
+0 0 0 0
+0 0 1
+7 0 0
+>speech_prog p Ack! I am blind!~
+is ispc($n)
+  say Fear not friend...I shall assist!
+  c 'cure blindness' $n
+endif
+~
+>speech_prog p Ouch! That hurts!!!~
+is ispc($n)
+  say Let me sooth your wounds!
+  c 'healing hands' $n
+endif
+~
+>act_prog UNSPEAKABLE~
+if ispc($n)
+  say YOU HAVE VIOLATED MY SANCTUARY!
+  say You must learn a lesson!
+  mpkill $n
+endif
+~
+>act_prog p *** ANNIHILATES ***~
+if ispc($n)
+  growl $n
+  say I do not LIKE fighting in my domain!
+  mpkill $n
+endif
+~
+>act_prog p *** DEMOLISHES ***~
+if ispc($n)
+  scream $n
+  say May the heavens above rain curses on you!
+  mpkill $n
+endif
+~
+|
+#7366
+sataer arena champion~
+Sataer~
+Sataer, the Arena Champion is here.
+~
+Sataer is the reigning champion of this grand arena and has decided to
+make his home below it.  His lair is full of loot and plunder from his
+conquests and you marvel at the beauty of it.  Sataer however does not seem
+to appreciate your arrival here...  
+~
+35 234889408 0 0 S
+110 0 0 31000d0+0 0d0+0
+2450 0 0 0
+0 0 1
+123 0 0
+#0
+
+
+
+#OBJECTS
+#0
+
+
+
+#ROOMDATA
+#7350
+A Sanctuary~
+The terrain at this part of the arena has become treacherously difficult
+to pass.  You are certain that it would be impossible to engage any enemy
+here, the terrain just would not allow it.  You can't help but feel the
+strain that this room puts on your constitution...  It would probably be
+best if you left as quickly as possible.  
+~
+0 268837888 0
+Rd     400
+D2
+~
+~
+0 0 7352
+S
+#7351
+Against the Wall~
+You find yourself backed up against a gigantic wall.  You look around the room
+and notice that from a tactical point of view, if any fighting was instigated
+here neither you nor your opponent would be able to flee.  This fight would
+be carried out to the death, one person would be named the victor and the
+other would be picking items out of their corpse.
+~
+0 541466624 0
+Rd     0
+D1
+~
+~
+0 0 7352
+D2
+~
+~
+0 0 7355
+S
+#7352
+In the Arena~
+You wander around the arena in search of your opponent.  The center of the
+arena is somewhere nearby as you notice the number of bloodstains on the
+ground has increased.  You can't help but wonder if your opponent has
+noticed the same thing...
+~
+0 537272320 0
+Rd     0
+D0
+~
+~
+0 0 7350
+D1
+~
+~
+0 0 7353
+D2
+~
+~
+0 0 7356
+D3
+~
+~
+0 0 7351
+S
+#7353
+Against the Wall~
+You find yourself backed up against a gigantic wall.  You look around the room
+and notice that from a tactical point of view, if any fighting was instigated
+here neither you nor your opponent would be able to flee.  This fight would
+be carried out to the death, one person would be named the victor and the
+other would be picking items out of their corpse.
+~
+0 541466624 0
+Rd     0
+D2
+~
+~
+0 0 7357
+D3
+~
+~
+0 0 7352
+S
+#7354
+Against the Wall~
+You find yourself backed up against a gigantic wall.  You look around the room
+and notice that from a tactical point of view, if any fighting was instigated
+here neither you nor your opponent would be able to flee.  This fight would
+be carried out to the death, one person would be named the victor and the
+other would be picking items out of their corpse.
+~
+0 541466624 0
+Rd     0
+D1
+~
+~
+0 0 7355
+S
+#7355
+In the Arena~
+You wander around the arena in search of your opponent.  The center of the
+arena is somewhere nearby as you notice the number of bloodstains on the
+ground has increased.  You can't help but wonder if your opponent has
+noticed the same thing...
+~
+0 537272320 0
+Rd     0
+D0
+~
+~
+0 0 7351
+D1
+~
+~
+0 0 7356
+D2
+~
+~
+0 0 7359
+D3
+~
+~
+0 0 7354
+S
+#7356
+The Center of the Arena~
+You have entered into the very center of the arena.  The cries of the crowd
+roar above you as you hear the chants for more blood!  The stench of decay
+almost overwhelms you as you look around for a sign of your opponent.  It is
+in this room that perhaps your death may be met and it is also perhaps in this
+room that you shall become gloriously victorious!
+~
+0 537272320 0
+Rd     0
+D0
+~
+~
+0 0 7352
+D1
+~
+~
+0 0 7357
+D2
+~
+~
+0 0 7360
+D3
+~
+~
+0 0 7355
+D5
+~
+~
+0 0 7365
+S
+#7357
+In the Arena~
+You wander around the arena in search of your opponent.  The center of the
+arena is somewhere nearby as you notice the number of bloodstains on the
+ground has increased.  You can't help but wonder if your opponent has
+noticed the same thing...
+~
+0 537272320 0
+Rd     0
+D0
+~
+~
+0 0 7353
+D1
+~
+~
+0 0 7358
+D2
+~
+~
+0 0 7361
+D3
+~
+~
+0 0 7356
+S
+#7358
+Against the Wall~
+You find yourself backed up against a gigantic wall.  You look around the room
+and notice that from a tactical point of view, if any fighting was instigated
+here neither you nor your opponent would be able to flee.  This fight would
+be carried out to the death, one person would be named the victor and the
+other would be picking items out of their corpse.
+~
+0 541466624 0
+Rd     0
+D3
+~
+~
+0 0 7357
+S
+#7359
+Against the Wall~
+You find yourself backed up against a gigantic wall.  You look around the room
+and notice that from a tactical point of view, if any fighting was instigated
+here neither you nor your opponent would be able to flee.  This fight would
+be carried out to the death, one person would be named the victor and the
+other would be picking items out of their corpse.
+~
+0 541466624 0
+Rd     0
+D0
+~
+~
+0 0 7355
+D1
+~
+~
+0 0 7360
+S
+#7360
+In the Arena~
+You wander around the arena in search of your opponent.  The center of the
+arena is somewhere nearby as you notice the number of bloodstains on the
+ground has increased.  You can't help but wonder if your opponent has
+noticed the same thing...
+~
+0 537272320 0
+Rd     0
+D0
+~
+~
+0 0 7356
+D1
+~
+~
+0 0 7361
+D2
+~
+~
+0 0 7362
+D3
+~
+~
+0 0 7359
+S
+#7361
+Against the Wall~
+You find yourself backed up against a gigantic wall.  You look around the room
+and notice that from a tactical point of view, if any fighting was instigated
+here neither you nor your opponent would be able to flee.  This fight would
+be carried out to the death, one person would be named the victor and the
+other would be picking items out of their corpse.
+~
+0 541466624 0
+Rd     0
+D0
+~
+~
+0 0 7357
+D3
+~
+~
+0 0 7360
+S
+#7362
+Against the Wall~
+You find yourself backed up against a gigantic wall.  You look around the room
+and notice that from a tactical point of view, if any fighting was instigated
+here neither you nor your opponent would be able to flee.  This fight would
+be carried out to the death, one person would be named the victor and the
+oter would be picking items out of their corpse.
+~
+0 541466624 0
+Rd     0
+D0
+~
+~
+0 0 7360
+S
+#7363
+The Catacombs of the Arena~
+You have entered into the gravesite for all those who perish while competing
+here at the Grand Arena.  The stench of decay is the first thing that you
+notice as well as the rotting corpses thrown into the corner.  Shivers run
+up your spine as you realize that perhaps your own corpse may join the
+disgusting pile of rotting bones.
+~
+0 537272320 0
+Rd     0
+D2
+~
+~
+0 0 7365
+S
+#7364
+The Healer of the Arena~
+The lair of Ishtar has been a safe haven for many warriors in the past and
+although this is not a forced safe haven, it would definitely be a good idea if
+no fighting was started here!  It is said that Ishtar strongly disapproves of
+any violence in his presence and it is best not to fall into disfavour with
+the healer of the arena.  Rest here and receive the blessings of Ishtar!
+~
+0 537272320 0
+Rd     0
+D1
+~
+~
+0 0 7365
+S
+#7365
+Below the Center of the Arena~
+Directly below the center of the arena, you have entered into the lower
+level of the arena.  It's strange, as soon as you entered this room it felt
+as though a part of you has been shielded away from something?!?  It is
+difficult to put a finger on what exactly has been withheld from you so you
+decide not to worry about it and to put your full concentration on hunting
+your opponent.  You're sure that whatever it is that is bothering you will
+work itself out later..  
+~
+0 537305088 0
+Rd     0
+D0
+~
+~
+0 0 7363
+D1
+~
+~
+0 0 7366
+D2
+~
+~
+0 0 7367
+D3
+~
+~
+0 0 7364
+D4
+~
+~
+0 0 7356
+S
+#7366
+The Champion's Lair~
+The domain of Sataer lies littered with jewelled daggers, ruby studded armor,
+and various other treasures and riches.  It is not hard to figure out that
+the life of a gladiator has treated Sataer very well!  As you gaze upon the
+magnificant knight you wonder if perhaps you could ever stand up to such a
+warrior.  Perhaps you will find the answer to that question sooner then you'd
+like!
+~
+0 537272320 0
+Rd     0
+D3
+~
+~
+0 0 7365
+S
+#7367
+A Sanctuary~
+The terrain at this part of the arena has become trecherously difficult to
+pass.  You are certain that it would be impossible to engage any enemy here,
+the terrain just would not allow it.  You can't help but feel the strain that
+this room puts on your constitution...it would probably be best if you left
+as quickly as possible.
+~
+0 268837888 0
+Rd     400
+D0
+~
+~
+0 0 7365
+S
+#7368
+Entrance to the Grand Arena~
+You have been transferred to the entrance to the Grand Arena.  Here you shall
+seek out your opponent and compete in a battle to the utter death!  There
+shall be no gain for your success or no consequence for your failure...this
+fight is for the sport of pkill and the sport alone.  Learn your terrain well
+for failure to know the battleground will surely result in a quick death!
+Fare thee well brave warrior!
+~
+0 402432 0
+Rd     0
+D0
+~
+~
+0 0 7350
+D1
+~
+~
+0 0 7354
+D2
+~
+~
+0 0 7367
+D3
+~
+~
+0 0 7358
+D4
+~
+~
+0 0 7365
+D5
+~
+~
+0 0 7364
+S
+#7369
+Entrance to the Grand Arena~
+You have been transferred to the entrance to the Grand Arena.  Here you shall
+seek out your opponent and compete in a battle to the utter death!  There
+shall be no gain for your success or no consequence for your failure...this
+fight is for the sport of pkill and the sport alone.  Learn your terrain well
+for failure to know the battleground wil surely result in a quick death!
+Fare thee well brave warrior!
+~
+0 402432 0
+Rd     0
+D0
+~
+~
+0 0 7350
+D1
+~
+~
+0 0 7354
+D2
+~
+~
+0 0 7367
+D3
+~
+~
+0 0 7358
+D4
+~
+~
+0 0 7365
+D5
+~
+~
+0 0 7364
+S
+#7370
+The Hall of Shame~
+You have been transported to the hall of shame, a place for the losers to
+re-evaluate what went wrong and to re-equip.  Take a second and think back
+over the last few minutes, what moves did your opponent do that so obviously
+baffled you?  Hopefully you have learned a valuable lesson and will not be so
+foolish as to let it happen again.  Regroup, restock and try try again!
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 25000
+S
+#0
+
+
+
+#SPECIALS
+M 7364 spec_healer
+M 7366 spec_guard
+S
+
+
+
+#RESETS
+M 0 7364 1 7364
+M 0 7366 1 7366
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

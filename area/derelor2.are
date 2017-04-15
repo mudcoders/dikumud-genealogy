@@ -1,0 +1,1683 @@
+#AREADATA
+Name        {??-???} PROTO AREA          Derelor~
+Levels      0 0
+Builders    Derelor Hannibal~
+VNUMs       1900 1999
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#1900
+Goblin Guard~
+Goblin Guard~
+A Goblin Guard Is Here Picking His Nose.
+~
+~
+3 64 262144 -100 S
+55 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#1901
+Goblin Breeder~
+Goblin Breeder~
+A Female Breeder Has Noticed Your Presence.
+~
+~
+3 104 262144 -100 S
+52 0 0 4000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#1902
+Goblin Breeder~
+Goblin Breeder~
+A Female Goblin Has Noticed Your Presence.
+~
+~
+3 64 262144 -100 S
+52 0 0 4000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#1903
+Goblin Breeder~
+Goblin Breeder~
+A Female Goblin Has Noticed Your Presence.
+~
+~
+3 64 262144 -100 S
+53 0 0 4000d0+0 0d0+0
+0 0 0 0
+0 0 0
+128 0 0
+#1904
+Goblin Breeder~
+Goblin Breeder~
+A Female Goblin Has Noticed Your Presence.
+~
+~
+3 64 262144 -100 S
+35 0 0 2250d0+0 0d0+0
+0 0 0 0
+0 0 2
+128 0 0
+#1905
+Goblin Guard~
+Golbin Guard~
+An Ugly Guard Seems To Be Training Here.
+~
+~
+1 64 262144 -100 S
+55 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#1906
+Goblin Guard~
+Goblin Guard~
+A Goblin Guard Seems To Be Trainig Here.
+~
+~
+1 64 262144 -100 S
+55 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#1907
+goblin child~
+Goblin Child~
+A Goblin Child Runs About.
+~
+~
+1 98370 0 -100 S
+50 0 0 3750d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#1908
+Goblin Child~
+Goblin Child~
+A Goblin Child Runs About.
+~
+~
+1 98370 262144 -100 S
+50 0 0 3500d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#1909
+Goblin Lieutenant~
+Goblin Lieutenant~
+A Lieutenant Looks Over His Training Soldiers.
+~
+~
+3 64 262144 -100 S
+60 0 0 5500d0+0 0d0+0
+0 0 0 0
+0 0 1
+132 0 0
+#1910
+Goblin lieutenant~
+Goblin Lieutenant~
+A Lieutenant Looks Over His Training Soldiers.
+~
+~
+3 64 262144 -100 S
+60 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#1911
+Captain Goblin~
+Goblin Captain~
+The Captain Of The Guard Stand Here Proudly.
+~
+~
+3 232 262144 -100 S
+65 0 0 6500d0+0 0d0+0
+0 0 0 0
+0 0 1
+136 0 0
+>fight_prog 40~
+emote stares at you in hatred!
+stun
+stun
+~
+|
+#1912
+Goblin Archer~
+Goblin Archer~
+A Goblin Archer Is On The Lookout.
+~
+~
+35 192 262144 -100 S
+58 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 0
+128 0 0
+#1913
+goblin Archer~
+Goblin Archer~
+A Goblin Archer Is On The Lookout.
+~
+~
+3 192 262144 -100 S
+58 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 0
+128 0 0
+#1914
+goblin Archer~
+Goblin Archer~
+A Goblin Archer Is On The Lookout.
+~
+~
+3 192 262144 -100 S
+58 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#1915
+Goblin Fanatic~
+Goblin Fanatic~
+A Goblin Fanatic Is Here To Protect The King.
+~
+RUN!!!!!!!!!!!!!!!!!!!!!
+~
+35 134217792 262144 -100 S
+70 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+140 0 0
+#1916
+Goblin King~
+Goblin King~
+The King Of This Glorious Civilisation Looks Upon His People.
+~
+As Rules of this advanced goblin civilisation, this king looks at his
+people with remendous pride and joy.  To bring a band of goblin to such an
+organised facility is quite an achievement.  You look at him with a new
+found respect.  
+~
+3 268452032 262144 -100 S
+70 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 0
+128 0 0
+>fight_prog 50~
+yell Guard! My Personal Guards!
+mpat 1960 mptrans 'goblin defender qwerty' 1955
+say You Will Die Now!
+~
+|
+#1917
+goblin archer~
+Goblin Archer~
+A Goblin Archer Is On The Lookout.
+~
+~
+3 192 262144 -100 S
+58 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#1918
+Elf Prisonner qwerty~
+Elf Prisonner~
+A Prisonner Seems Quite Happy Of Your Presence.
+~
+A Prisoner From The Last Raid, This Elf Seems In Need Of Your Help.
+~
+3 704 262144 -100 S
+58 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+>all_greet_prog 100~
+(
+say Hello Traveller!  I am in great need of your help!
+say If you could but aid me in guiding me to the front
+say gate unharmed, I would find myself in your debt and
+say would therefore be forced to grant you a token of my
+say appreciation.  Please let me follow you kind explorer!
+)
+~
+>speech_prog follow~
+follow $n
+say Thank Thee For You Help Brave Soul!
+~
+>rand_prog 95~
+if inroom($i) == 1900
+Say Thank you oh fearless one, to show my appreciation,
+say here is a small gift!
+mpoload 1913
+drop key $n
+emote waves farewell to you.
+mppurge $i
+break
+else
+break
+~
+|
+#1919
+Goblin Alchemist~
+Goblin Alchemist~
+The Master Of Creation.
+~
+~
+35 335544512 0 -100 S
+75 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+12428 0 0
+>fight_prog 35~
+c 'blindness' 
+c 'dispel magic'
+c fireball
+~
+>fight_prog 25~
+Say You Should Not Have Come Here!
+c gas
+~
+|
+#1920
+Roamer Goblin~
+A Goblin Roamer~
+A Goblin Roamer Sword To Defend This Outpost Attacks!
+~
+~
+97 65730 262144 -100 S
+65 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+12416 0 0
+#1921
+Roamer Goblin~
+A Goblin Roamer~
+A Goblin Roamer Sworn To Defend The Outpost Attacks!
+~
+~
+97 65730 262144 -100 S
+65 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+12416 0 0
+#1922
+defender goblin qwerty~
+Goblin Defender~
+The King's Personal Guards.
+~
+I WILL DIE TO PROTECT MY KING!!!
+~
+33 8384 262160 -100 S
+65 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#0
+
+
+
+#OBJECTS
+#1900
+Goblin Crown~
+crown Of The Goblins~
+An Abandonned Crown lies here~
+~
+9 279 0 4096 17 70
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 2
+A
+19 12
+A
+18 12
+#1901
+goblin Anklets~
+goblin Anklets~
+A String Made of Elf Skin That Reeks of Goblins~
+~
+9 279 0 0 1048577 50
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 2
+A
+19 2
+A
+3 1
+#1902
+Gobli Helm~
+a Goblin Helm~
+A Helm with an apparent Goblin Symbol on it~
+~
+9 279 0 4096 17 58
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 5
+A
+19 5
+A
+24 25
+A
+3 1
+#1903
+goblin Amulet~
+goblin Amulet~
+Amulet Of The Goblins~
+~
+9 279 0 0 5 70
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 15
+A
+18 -40
+A
+24 -10
+#1904
+Goblin belt~
+belt Of The Goblins~
+A Belt with a Goblin Symbol~
+~
+15 279 0 0 2049 60
+30~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 3
+A
+18 4
+A
+3 2
+A
+17 -15
+#1905
+Goblin Sword~
+a Goblin Sword~
+A Goblin Marker Sword Lies here~
+~
+5 279 0 0 8193 58
+0~ 20~ 45~ 3~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 30
+A
+19 25
+A
+3 1
+#1906
+ball chain~
+a Ball And Chain~
+A Huge Chain with a Ball lying on the end~
+~
+5 23 0 0 8193 70
+0~ 25~ 55~ 8~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 40
+A
+18 -20
+#1907
+breeding belt~
+belt Of Breeding~
+A Belt Of Goblin Reproduction lies here~
+~
+9 279 0 0 2049 65
+0~ 0~ 0~ 0~
+2 0 0 0 0
+2 1907
+reserved~
+5 5
+0 0 0
+#1908
+Spear Goblin~
+spear Of The Goblins~
+Spear Of a Goblin Nature~
+~
+5 279 0 0 8193 65
+0~ 15~ 50~ 2~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+3 2
+A
+19 20
+A
+18 15
+#1909
+captain vest~
+goblin Captain's Vest~
+A Vest With a Captain's rank lies here~
+~
+9 279 0 0 1025 68
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 2
+A
+19 25
+A
+18 25
+#1910
+Archer's Scope~
+an Archer's Scope~
+A Scope For Long Range Purposes~
+~
+9 279 0 0 131073 65
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+A
+18 15
+#1911
+Alchemist Staff~
+alchemist's Staff~
+An Old Forgotten Staff~
+~
+9 279 6860 0 16385 75
+0~ 0~ 0~ 0~
+5 0 0 0 0
+5 0
+enhanced strength~
+5 5
+0 0 0
+A
+12 75
+A
+19 5
+#1912
+Huge Crossbow~
+a Huge Crossbow~
+A Crossbow lies here for your taking.~
+~
+5 791 0 0 8193 65
+0~ 28~ 37~ 6~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 20
+A
+18 10
+#1913
+Key~
+chest Key~
+A Chest Key.~
+~
+18 7 0 0 16385 50
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1914
+huge chest~
+a Huge Chest~
+A Huge Chest!~
+~
+15 23 0 0 0 20
+999~ 13~ 1913~ 0~
+2000000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1915
+goblin Potion~
+goblin Potion~
+Potion Of The Goblins~
+~
+10 268435988 0 0 1 50
+100~ pass door~  ~ inertial barrier~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1918
+Potion Destruction~
+Potion Of Destruction~
+Potion Of Destruction~
+~
+10 268435456 0 0 16385 55
+100~ heal~ heal~ heal~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1919
+Potion Creation~
+potion Of Creation~
+A Potion Of Creation.~
+~
+10 268435459 0 0 16385 55
+100~ blade barrier~ biofeedback~ chaos field~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#1900
+Entrance to Goblin Outpost~
+You arrive at the gate of a goblin outpost.  From what you can see from
+the outside, this outpost seems pretty big.  As you approach the gate, you
+notice what you thought was a wooden fence is actually a row of pikes with
+skulls on them.  A closer look at the skulls tells you they are elven in
+origin.  These goblins must be pretty organized for having built such an
+outpost.  Maybe you should leave before they find you here?  
+~
+0 401412 0
+Rd     0
+D0
+~
+gate~
+3 0 1901
+S
+#1901
+Main Walkway~
+You are walking down the main path in the outpost, you can continue
+onward to the north or exit this foul place through the gate to the south.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1902
+D2
+~
+gate~
+3 0 1900
+S
+#1902
+Four Way Intersection~
+After walking a while, you come up to an intersection.  To the east and
+west, you can see smoke rising from small huts.  The walkway continues
+northward while you can escape by heading for the southern gate.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1911
+D1
+~
+~
+0 0 1907
+D2
+~
+~
+0 0 1901
+D3
+~
+~
+0 0 1903
+S
+#1903
+Path to Huts~
+You are walking down a small dirt path leading to a tiny grouping of
+huts.  The huts are farther to the west.  You can reach the main walkway by
+going east.  
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1902
+D3
+~
+~
+0 0 1904
+S
+#1904
+Before The Huts~
+The wall of the outpost prevents you from going further west.  The small
+huts you saw earlier are to the north and south.  You can go back to the
+main walkway by heading due east.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1905
+D1
+~
+~
+0 0 1903
+D2
+~
+~
+0 0 1906
+S
+#1905
+Goblin Hut~
+The stench that assaults your nostrils as you enter the hut nearly
+overwhelms you.  Although these goblins may be better organized, they sure
+aren't any cleaner than any other goblin tribe you've met before.  There is
+a small bed in a corner and a bunch of scattered garbage everywhere else. 
+Fresh air is to the north.  
+~
+0 401416 0
+Rd     0
+D2
+~
+~
+0 0 1904
+S
+#1906
+Goblin Hut~
+The stench that assaults your nostrils as you enter the hut nearly
+overwhelms you.  Although these goblins may be better organized, they sure
+aren't any cleaner than any other goblin tribe you've met before.  There is
+a small bed in a corner and a bunch of scattered garbage everywhere else.
+Fresh air is to the south.
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 1904
+S
+#1907
+Path To Huts~
+You are walking down a small dirt path leading to a tiny grouping of
+huts.  The huts are farther to the east.  You can reach the main walkway by
+going west.
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1908
+D3
+~
+~
+0 0 1902
+S
+#1908
+Before The Huts~
+The wall of the outpost prevents you from going further east.  The small
+huts you saw earlier are to the north and south.  You can go back to the
+main walkway by heading due west.
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1909
+D2
+~
+~
+0 0 1910
+D3
+~
+~
+0 0 1907
+S
+#1909
+Goblin Hut~
+The stench that assaults your nostrils as you enter the hut nearly
+overwhelms you.  Although these goblins may be better organized, they sure
+aren't any cleaner than any other goblin tribe you've met before.  There is
+a small bed in a corner and a bunch of scattered garbage everywhere else. 
+Fresh air is to the south.  
+~
+0 401416 0
+Rd     0
+D2
+~
+~
+0 0 1908
+S
+#1910
+Goblin Hut~
+The stench that assaults your nostrils as you enter the hut nearly
+overwhelms you.  Although these goblins may be better organized, they sure
+aren't any cleaner than any other goblin tribe you've met before.  There is
+a small bed in a corner and a bunch of scattered garbage everywhere else. 
+Fresh air is to the north.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 1908
+S
+#1911
+Main Walkway~
+As you walk down the walkway, you begin to hear faint sounds of metal
+clanging and screams.  There is an intersection to the south while the
+walkway continues north.  
+~
+0 401412 0
+Rd     0
+D0
+~
+~
+0 0 1912
+D2
+~
+~
+0 0 1902
+S
+#1912
+Main Walkway~
+The farther north you go, the more apparent it is that the sounds you
+were hearing are those of fighting.  They seem to come from the north.
+Far off to the south is the only way out of here.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1913
+D2
+~
+~
+0 0 1911
+S
+#1913
+A Four Way Intersection~
+At last, you can see what all the commotion is about, to the east and
+west, you can see goblins training in small fields.  You can also see a
+structure to the north.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1914
+D1
+~
+~
+0 0 1922
+D2
+~
+~
+0 0 1912
+D3
+~
+~
+0 0 1915
+S
+#1914
+Main Walkway~
+Continuing down the walkway, you see a large tower before you.  It's
+already pretty high and you're not that close to it yet.  You can reach the
+tower by continuing you journey to the north or turn back to the south.  
+~
+0 401412 0
+Rd     0
+D0
+~
+~
+0 0 1929
+D2
+~
+~
+0 0 1913
+S
+#1915
+Road of Training~
+The road is littered with broken armor and weapons, you can see small
+puddles of blood drying in a few spots.  Decidedly, these goblins don't take
+too many precautions when training.  You can reach the western training
+grounds by continuing west or go back to the main walkway be heading east.  
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1913
+D3
+~
+~
+0 0 1916
+S
+#1916
+Road Of Training~
+There is more blood, armor and weapons everywhere.  The entrance to the
+training grounds is close by to the west.  A short walk to the east will get
+you back to the walkway.  
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1915
+D3
+~
+~
+0 0 1917
+S
+#1917
+Before the Training Grounds~
+You arrive at the entrance to the training grounds.  You can enter them
+by going north or leave east.  The outpost wall prevent continuing to the
+west.  
+~
+0 401412 0
+Rd     0
+D0
+~
+~
+0 0 1918
+D1
+~
+~
+0 0 1916
+S
+#1918
+Training Ground~
+Whoa!  There is blood everywhere!  How can there still be goblins
+standing?  Broken armor and weapons lie in heaps everywhere.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1919
+D2
+~
+~
+0 0 1917
+D3
+~
+~
+0 0 1920
+S
+#1919
+Training Ground~
+Whoa!  There is blood everywhere!  How can there still be goblins
+standing?  Broken armor and weapons lie in heaps everywhere.
+~
+0 401408 0
+Rd     0
+D2
+~
+~
+0 0 1918
+D3
+~
+~
+0 0 1921
+S
+#1920
+Training Ground~
+Whoa!  There is blood everywhere!  How can there still be goblins
+standing?  Broken armor and weapons lie in heaps everywhere.
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1921
+D1
+~
+~
+0 0 1918
+S
+#1921
+Training Ground~
+Whoa!  There is blood everywhere!  How can there still be goblins
+standing?  Broken armor and weapons lie in heaps everywhere.
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1919
+D2
+~
+~
+0 0 1920
+S
+#1922
+Road of Training~
+The road is littered with broken armor and weapons, you can see small
+puddles of blood drying in a few spots.  Decidedly, these goblins don't take
+too many precautions when training.  You can reach the eastern training
+grounds by continuing east or go back to the main walkway be heading west.  
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1923
+D3
+~
+~
+0 0 1913
+S
+#1923
+Road of Training~
+There is more blood, armor and weapons everywhere.  The entrance to the
+training grounds is close by to the east.  A short walk to the west will get
+you back to the walkway.  
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1924
+D3
+~
+~
+0 0 1922
+S
+#1924
+Before the Training Guards~
+You arrive at the entrance to the training grounds.  You can enter them
+by going north or leave west.  The outpost wall prevent continuing to the
+east.  
+~
+0 401412 0
+Rd     0
+D0
+~
+~
+0 0 1925
+D3
+~
+~
+0 0 1923
+S
+#1925
+Training Ground~
+Whoa!  There is blood everywhere!  How can there still be goblins
+standing?  Broken armor and weapons lie in heaps everywhere.  
+~
+0 401420 0
+Rd     0
+D0
+~
+~
+0 0 1926
+D2
+~
+~
+0 0 1924
+D3
+~
+~
+0 0 1927
+S
+#1926
+Training Ground~
+Whoa!  There is blood everywhere!  How can there still be goblins
+standing?  Broken armor and weapons lie in heaps everywhere.
+~
+0 401408 0
+Rd     0
+D2
+~
+~
+0 0 1925
+D3
+~
+~
+0 0 1928
+S
+#1927
+Training Ground~
+Whoa!  There is blood everywhere!  How can there still be goblins
+standing?  Broken armor and weapons lie in heaps everywhere.
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1928
+D1
+~
+~
+0 0 1925
+S
+#1928
+Training Ground~
+Whoa!  There is blood everywhere!  How can there still be goblins
+standing?  Broken armor and weapons lie in heaps everywhere.
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1926
+D2
+~
+~
+0 0 1927
+S
+#1929
+Captain's Quarters~
+After stopping to admire the tower before you, you hear faint voices
+comming from below you.  You look down and notice you are standing on a
+gratting.  It's pretty obvious that this is some kind of cell to keep
+prisoners.  A little off north is the entrance to the tower, while you can
+just barely see the southern gate from here.  
+~
+0 401408 0
+Rd     0
+D0
+~
+door~
+3 0 1930
+D2
+~
+~
+0 0 1914
+D5
+~
+gratting~
+3 0 1956
+S
+#1930
+Base of the Tower~
+The many windows in this room make it so you can see pretty well even
+without a light.  There is a small trail in the dirt floor which leads to
+the rooms only object.  A ladder in the back of the room leads to the upper
+level of the tower.  You can exit the tower out the southern door.  
+~
+0 401420 0
+Rd     0
+D2
+~
+~
+3 0 1929
+D4
+~
+~
+0 0 1931
+S
+#1931
+Up the Ladder~
+You are on the ladder, climb on up or go back down.  The is nothing else
+to do in this shaft.  
+~
+0 401416 0
+Rd     0
+D4
+~
+~
+0 0 1932
+D5
+~
+~
+0 0 1930
+S
+#1932
+Up the Ladder~
+Again you are in a small ordinary shaft.  Looking up, you notice that the
+end of the ladder is close.  
+~
+0 401416 0
+Rd     0
+D4
+~
+~
+0 0 1933
+D5
+~
+~
+0 0 1931
+S
+#1933
+Entrance to the Tower~
+You pull yourself up the last of the ladder and find yourself at the
+entrance to the tower.  Other than a desk on the left side of the room,
+there is nothing else here.  You can enter the tower by going south or leave
+back down the ladder.  
+~
+0 401416 0
+Rd     0
+D2
+~
+door~
+0 0 1934
+D5
+~
+~
+0 0 1932
+S
+#1934
+Four Way Intersection~
+As soon as you enter the tower, you are faced with choosing a direction
+as the hallway splits in all directions.  From what you can see by looking
+east and west, there must be some kind of watchpoint in those directions. 
+To the south the walkway continues on.  The exit to the tower is directly to
+the north.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 1933
+D1
+~
+~
+0 0 1938
+D2
+~
+~
+0 0 1941
+D3
+~
+~
+0 0 1935
+S
+#1935
+Path to Archer Tower~
+You are on the way to what appears to be an archer's tower.  Will you
+continue on your way or go back?  
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1934
+D3
+~
+~
+0 0 1936
+S
+#1936
+Path To Archer Tower~
+You can clearly see the tower from here, and what appears to be movement.
+The path leads both east and north.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1937
+D1
+~
+~
+0 0 1935
+S
+#1937
+Archer Tower~
+You have a clear view of the back of the outpost.  You think to yourself
+what kind of army would be needed to surmount such a wall.  
+~
+0 401408 0
+Rd     0
+D2
+~
+~
+0 0 1936
+S
+#1938
+Path To Archer Tower~
+The path leads on to the tower or back to the intersection.
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1939
+D3
+~
+~
+0 0 1934
+S
+#1939
+Path To Archer Tower~
+You can clearly see the tower from here, and what seems to be movement,
+be on your guard.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1940
+D3
+~
+~
+0 0 1938
+S
+#1940
+Archer Tower~
+You have a view of the rear of the outpost.  You think to yourself that
+an army of 500 soldier would have difficulty in climbing succesfully raiding
+this place.  
+~
+0 401408 0
+Rd     0
+D2
+~
+~
+0 0 1939
+S
+#1941
+Tower Walkway~
+A walkway in the tower, everything seems normal except the light comming
+from the ceiling, maybe you should invertigate?  The walkway continues North
+and South of here.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 1934
+D2
+~
+~
+0 0 1942
+D4
+~
+~
+3 0 1952
+S
+#1942
+Tower Walkway~
+It Appears to be a normal walkway, it continues on northwards and
+southwards.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 1941
+D2
+~
+~
+0 0 1943
+S
+#1943
+Four Way Intersection~
+You can see a huge vault door south of here, alot of energy seems to seep
+from the cracks.  East and west exits seem to lead to a tower window, the
+walkway lies south of here, maybe you should head back there right now?  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 1942
+D1
+~
+~
+0 0 1947
+D2
+~
+vault~
+3 0 1950
+D3
+~
+~
+0 0 1944
+S
+#1944
+Path To Archer Tower~
+An Archer Tower lies west of here, you can almost see it from here.
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1943
+D3
+~
+~
+0 0 1945
+S
+#1945
+Path To Archer Tower~
+You have a clear view of the tower, there seems to be movement however.
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1944
+D2
+~
+~
+0 0 1946
+S
+#1946
+Archer Tower~
+You have an undisturbed view of nearly the whole outpost.  It seems well
+organised, every goblin seems to have his place in the structure and the
+order of this advanced goblin civilisation.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1945
+S
+#1947
+Path To Archer Tower~
+An Archer tower lies east of here, be on your guard.
+~
+0 401408 0
+Rd     0
+D1
+~
+~
+0 0 1948
+D3
+~
+~
+0 0 1943
+S
+#1948
+Path To Archer Tower~
+You're getting closer to it, you can see what appears to be an opening.  
+~
+0 401408 0
+Rd     0
+D2
+~
+~
+0 0 1949
+D3
+~
+~
+0 0 1947
+S
+#1949
+Archer Tower~
+You can see all of the Goblin outpost from here.  It appears to be well
+protected against invasion as well as well organised, every goblin seems to
+know where he should be and what he should be doing.  The only exit lies
+north.  
+~
+0 401408 0
+Rd     0
+D0
+~
+~
+0 0 1948
+S
+#1950
+Goblin Treasury~
+Here lies the chest of the acumulated riches of this civilisation.  It
+also serves as the alchemists quarters, he better not find you in here.  The
+only exit lies north.  
+~
+0 393244 0
+Rd     0
+D0
+~
+vault~
+3 0 1943
+S
+#1952
+Top of the Tower~
+This place seems to be dangerous, be on your guard.  The exits lie down
+and south.  
+~
+0 401416 0
+Rd     0
+D2
+~
+~
+0 0 1953
+D5
+~
+~
+3 0 1941
+S
+#1953
+Top of the Tower~
+This seem to be a great place for an ambush.  You move around cautiously.
+The path goes onwards towards the south and north.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 1952
+D2
+~
+~
+0 0 1954
+S
+#1954
+Before the Chamber~
+You can see the royal chamber from here.  You feel as though you don't
+belong here.  You might end up dead.  The numerous skulls on the door would
+indicate as much.  
+~
+0 401416 0
+Rd     0
+D0
+~
+~
+0 0 1953
+D2
+~
+~
+3 0 1955
+S
+#1955
+Royal Chamber~
+The king of the goblins has a real taste for exquisite material.  The
+Room is ornamented with all kinds of satin and silk tapestries.  There is
+also a great deal of object encrusted with gold.  You might want to leave
+everything as it is and go back to where you belong.  
+~
+0 401424 0
+Rd     0
+D0
+~
+~
+3 0 1954
+S
+#1956
+Outpost Dungeon~
+A prison for the goblins most hated ennemy is here.  It usually serves
+for elves, as you can see by the skulls and the material on the floor,
+generally of elf kind.  
+~
+0 401416 0
+Rd     0
+D4
+~
+gratting~
+3 0 1929
+S
+#1960
+Defender's Room~
+where my defenders load in
+~
+0 401428 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 1900 spec_thief
+M 1905 spec_thief
+M 1906 spec_thief
+M 1907 spec_thief
+M 1908 spec_thief
+M 1909 spec_thief
+M 1910 spec_thief
+M 1911 spec_thief
+M 1915 spec_thief
+M 1916 spec_thief
+M 1919 spec_cast_mage
+M 1920 spec_thief
+M 1921 spec_thief
+M 1922 spec_thief
+S
+
+
+
+#RESETS
+M 0 1900 1 1900
+E 0 1908 0 20
+M 0 1907 2 1904
+E 0 1901 0 24
+M 0 1902 1 1905
+M 0 1901 1 1906
+M 0 1908 2 1908
+E 0 1901 0 24
+M 0 1903 1 1909
+E 0 1904 0 17
+M 0 1904 1 1910
+E 0 1907 0 17
+M 0 1921 1 1916
+E 0 1908 0 20
+E 0 1908 0 21
+M 0 1910 1 1918
+E 0 1905 0 20
+E 0 1905 0 21
+E 0 1902 0 6
+M 0 1905 3 1919
+E 0 1908 0 20
+E 0 1908 0 21
+M 0 1920 1 1923
+E 0 1908 0 20
+E 0 1908 0 21
+M 0 1906 3 1925
+E 0 1908 0 20
+E 0 1908 0 21
+M 0 1909 1 1925
+E 0 1905 0 20
+E 0 1905 0 21
+E 0 1902 0 6
+M 0 1911 1 1929
+E 0 1905 0 20
+E 0 1905 0 21
+E 0 1904 0 17
+E 0 1909 0 16
+M 0 1912 1 1937
+E 0 1910 0 7
+E 0 1912 0 20
+E 0 1912 0 21
+M 0 1913 1 1940
+E 0 1910 0 7
+E 0 1912 0 20
+E 0 1912 0 21
+M 0 1914 1 1946
+E 0 1910 0 7
+E 0 1912 0 20
+E 0 1912 0 21
+M 0 1917 1 1949
+E 0 1910 0 7
+E 0 1912 0 20
+E 0 1912 0 21
+M 0 1919 1 1950
+E 0 1911 0 22
+O 0 1914 0 1950
+P 0 1915 0 1914
+P 0 1915 0 1914
+M 0 1915 2 1953
+E 0 1906 0 20
+E 0 1906 0 21
+E 0 1903 0 3
+M 0 1916 1 1955
+E 0 1900 0 6
+E 0 1904 0 17
+E 0 1906 0 20
+E 0 1906 0 21
+M 0 1918 1 1956
+M 0 1922 4 1960
+E 0 1905 0 20
+E 0 1905 0 21
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

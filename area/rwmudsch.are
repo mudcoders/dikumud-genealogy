@@ -1,0 +1,1603 @@
+#AREADATA
+Name        {  1-5 } Ravenwood Academy   Grunt~
+Levels      1 5
+Builders    Grunt~
+VNUMs       1251 1299
+Security    98
+Recall      25001
+Flags       0
+Color       6
+Sounds      &pYou hear something moving nearby.~
+End
+
+
+
+#MOBILES
+#1251
+master grand~
+The Grand Master~
+The Grand Master of Education stands here deep in thought.
+~
+The Grand Master has been training young adventurers since long before
+you were born.  His job is to guide students in his own subtle way, and make
+sure that their studies are not interfered with.  
+~
+1966147 234897536 16 -1000 S
+120 0 0 99999d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>all_greet_prog 100~
+If level ($n) > 5
+tell $n You have progressed beyond the need for this school.
+tell $n Go out and seek your fame elsewhere!
+mpechoat $n You find yourself back in the temple!
+mptransfer $n 1300
+else
+smile
+tell $n Keep up the studies! One day you shall be great!
+open door
+endif
+~
+>fight_prog 100~
+stun
+~
+|
+#1252
+rat muskrat~
+A muskrat~
+A large muskrat furrows through some musty straw here.
+~
+This rat looks to weigh about 40 pounds, and is a true king of rats. 
+It's eyes are bleak and covered with a film brought on by the disease
+infested filth in which it resides.  It appears frightened by your presence,
+and waits to see your next move.  
+~
+3 0 0 250 S
+2 0 0 12d0+0 0d0+0
+0 0 3 0
+0 0 0
+0 0 0
+#1253
+roach giant cockroach~
+A giant cockroach~
+A large cockroach skitters back and forth eyeing you hungrily.
+~
+Disgusting.  Totally disgusting.  This insect of filth and disease is in
+dire need of being destroyed, and you are the one to do it.  The cockroach
+is 2 -1/2 feet long and moves like lightning, yet doesn't look like it could
+put up TOO much of a fight.  
+~
+3 0 0 250 S
+2 0 0 10d0+0 0d0+0
+0 0 5 0
+0 0 0
+0 0 0
+#1254
+adept ravenwood~
+A Ravenwood Adept~
+An adept of Ravenwood stands here casting spells for the young adventurers.
+~
+He is a pious man, silent except for his incantations, healing and
+soothing those who rest before him.  Unpaid for his work, his satisfaction
+of seeing the students achieve their fame is his just reward.  
+~
+1966083 16777216 16 -1000 S
+120 0 0 250000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#1255
+madman man wacko~
+A madman~
+A madman sits on the floor raving about his lost quizzleflump.
+~
+You look at this man, and can sense that there's something not quite
+correct about him.  He's having a debate with himself, and losing quite
+horribly.  He smells of stale urine, and looks as though he hasn't washed in
+weeks.  
+~
+3 0 0 250 S
+2 0 0 10d0+0 0d0+0
+0 0 7 0
+0 0 1
+0 0 0
+#1256
+man prisoner thin~
+A prisoner~
+A thin man sits chained to the floor awaiting sentencing.
+~
+He looks as though he hasn't eaten in days, and as his eyes meet yours,
+you can see the rage burning within them.  It may be best to leave him be,
+as he doesn't seem to be in the mood for much else.  
+~
+3 0 0 250 S
+2 0 0 12d0+0 0d0+0
+0 0 1 0
+0 0 0
+0 0 0
+#1257
+kobold vicious smelly~
+A smelly kobold~
+A vicious looking kobold catches sight of you and attacks!
+~
+This is one ugly creature, looking at you with beady little eyes set deep
+into an overlapping forehead that turns up in a piglike snout.  It's crooked
+teeth glisten at you as it grins and attacks you mercilessly.  
+~
+35 0 0 250 S
+2 0 0 13d0+0 0d0+0
+0 0 10 0
+0 0 0
+0 0 0
+#1258
+slug~
+A slug~
+A slug slithers towards you menacingly.
+~
+The slug is almost 4 feet long, and covered in a wicked looking slime. 
+Though it cannot see you very well, it can definately sense your presence as
+it moves towards you to attack.  
+~
+35 0 0 250 S
+2 0 0 13d0+0 0d0+0
+0 0 4 0
+0 0 0
+0 0 0
+#1259
+spider ~
+A large spider~
+A huge spider drops from the ceiling to attack you!
+~
+This spider is large enough to easily take down a small dog, and its body
+spans about the size of your entire chest.  The eyes on this creature focus
+in on you as it moves to make you the meal of the day.  
+~
+35 0 0 250 S
+2 0 0 14d0+0 0d0+0
+0 0 10 0
+0 0 0
+0 0 0
+#1260
+child mummy mummified~
+A mummified child~
+A small mummified child sees you enter the room and attacks!
+~
+The child is carefully wrapped in cloth which has been covered in some
+sort of mystic runes.  It does not appear pleased that you have entered it's
+sanctuary, and seeks to end your life as quickly as possible.  
+~
+35 0 0 250 S
+3 0 0 25d0+0 0d0+0
+0 0 13 0
+0 0 0
+0 0 0
+#1261
+teacher jalis examiner~
+Jalis~
+Jalis the examiner awaits your challenge with a sneer.
+~
+Jalis is looking you over with a slight air of superiority, as he doesn't
+seem to believe that you could ever have amassed the skills to defeat him in
+such a short time.  Perhaps it is time to teach HIM a lesson or two.  
+~
+3 0 0 250 S
+3 0 0 30d0+0 0d0+0
+0 0 15 0
+0 0 1
+3 0 0
+#1262
+shopkeeper Fizwak~
+Fizwak~
+Fizwak the enchanter is here selling his wares to all.
+~
+Fizwak is an old and somewhat insane looking mage who mutters to himself
+as he sits mixing a potion.  The job he does is quite demanding upon him,
+yet he still does it to the best of his ability, and always has something
+for the needy adventurer.  For a price that is.  
+~
+393219 16777344 0 -1000 S
+120 0 0 99999d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#1263
+shopkeeper Triaa~
+Triaa~
+Triaa stands ready to sell whatever you may need.
+~
+Triaa is a very ugly old woman who reeks of smoke and alcohol.  Yet she
+seems to know her business as she sizes you up, deciding for herself what
+you may need to get you through your next adventure.  
+~
+393219 16777344 0 -1000 S
+120 0 0 99999d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#1264
+healer guardian arena~
+The Arena Guardian~
+The guardian of the arena is here to help heal your wounds
+~
+The arena guardian is an old being, so old that you cannot tell if it is
+male or female anymore.  Perhaps it is both, or neither.  It welcomes you to
+stay and rest, and will heal your wounds as needed.  
+~
+393219 16777344 0 -1000 S
+120 0 0 99999d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#1265
+orc child~
+An orc child~
+A young orc is wandering through the arena with a dazed look.
+~
+This young orc has the typical orcish features, yet portrays an air of
+impish innocence as it ponders whether or not it can take you down.  
+~
+65 0 0 250 S
+3 0 0 25d0+0 0d0+0
+0 0 13 0
+0 0 0
+0 0 0
+#1266
+lizard deformed~
+A deformed lizard~
+&gAn ugly-looking lizard slithers along here.
+~
+The lizard looks to be the failed attempt of some type of breeding
+experiment, having a strange hue to it's skin, and a largely deformed jaw. 
+It slithers back and forth looking for the right opening to break your
+defenses and attack.  
+~
+65 0 0 250 S
+4 0 0 50d0+0 0d0+0
+0 0 17 0
+0 0 0
+0 0 0
+#1267
+wererat rat~
+A wererat~
+A wererat eyes you suspiciously from the shadows.
+~
+The wererat is a horrid abomination, crouching on it's hind legs snarling
+and fixing it's red eyes directly upon you.  
+~
+65 0 0 250 S
+5 0 0 96d0+0 0d0+0
+0 0 22 0
+0 0 0
+0 0 0
+#1268
+firlbog~
+A firlbog~
+A tall firlbog stomps towards you..
+~
+Somewhat taller than ogres, yet twice as stupid, an angry firlbog is not
+something you want to be on the opposing side of.  The smell from the
+creature is intensely putrid and he bares yellowed teeth at you in a
+lopsided grin.  
+~
+65 0 0 250 S
+6 0 0 109d0+0 0d0+0
+0 0 30 0
+0 0 0
+0 0 0
+#1269
+ambassador~
+The Storm Ambassador~
+The Storm Ambassador is here to help you on your way.
+~
+The ambassador is an ageless being, sent forth to aid and advise the
+young adventurers who are new to the realm.  
+~
+393219 33554560 0 -1000 S
+1 0 0 99999d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+>act_prog p arrives from the north.~
+say Welcome to the Storm, $n
+say you may learn much by using the help files found within, or
+say asking someone in COUNCIL a question.
+mpoload 1270
+mpoload 1264
+mpoload 1340
+mpoload 1340
+mpoload 1263
+mpoload 1259
+mpoload 1258
+put all bag
+give bag $n
+say A gift to help you on your journey.
+bow
+say ENTER the VORTEX to start your training.
+~
+|
+#1270
+skeleton~
+A skeleton~
+A skeleton stands rather awkwardly here.
+~
+A pile of bones that stands, walks and seemingly thinks all on it's own. 
+It is unclear whether the skeleton has been given life by magic, or by the
+restless soul which once inhabited the body that it used to be.  
+~
+65 0 0 300 S
+4 0 0 60d0+0 0d0+0
+0 0 20 0
+0 0 0
+0 0 0
+#0
+
+
+
+#OBJECTS
+#1251
+vortex swirling~
+&BSw&cir&Cli&Wng &CVo&crt&Bex~
+A vortex swirls just below you here.~
+~
+29 1 0 0 0 0
+1252~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+vortex~
+The vortex is a swirling mass of gases and energy, drawing you closer,
+and beckoning you to ENTER it. 
+~
+#1252
+ring red ravenwood~
+a red academy ring~
+A red stone ring has been dropped here.~
+~
+9 0 0 0 3 1
+0~ 0~ 0~ 0~
+2 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+ring red ravenwood~
+A red ring made of stone.
+~
+#1253
+red talisman ravenwood~
+a red talisman~
+A talisman with a red stone set upon it lies here, abandoned.~
+~
+9 0 0 0 5 1
+0~ 0~ 0~ 0~
+1 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 1
+A
+17 -1
+E
+red talisman ravenwood~
+The symbol of ravenwood is set with a red stone upon it.
+~
+#1254
+helm red ravenwood~
+a blood red helmet~
+A helmet painted in a lovely shade of crimson has been discarded here.~
+~
+9 0 0 4096 17 1
+0~ 0~ 0~ 0~
+2 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 2
+E
+helm red ravenwood~
+&rThe helmet is unmistakingly from the Town of Ravenwood.
+~
+#1255
+leggings red ravenwood~
+a pair of bloodstained leggings~
+Some leggings stained in dried blood have been dropped here.~
+~
+9 0 0 0 33 1
+0~ 0~ 0~ 0~
+2 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+leggings red ravenwood~
+A pair of leggings are dyed red with blood.
+~
+#1256
+belt red leather ravenwood~
+a red belt~
+A red leather belt has been dropped here.~
+~
+9 0 0 0 2049 1
+0~ 0~ 0~ 0~
+1 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 5
+A
+17 -1
+E
+belt red ravenwood~
+&rA leather belt has been dyed red, and has a &wsilver buckle&r.
+~
+#1257
+boots pair red leather ravenwood~
+&rsome red leather boots&X~
+A pair of red leather boots have been dropped here.~
+~
+9 0 0 0 65 1
+0~ 0~ 0~ 0~
+2 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 10
+E
+boots pair red leather ravenwood~
+&rA pair of red leather boots have been scratched up a bit, but they're
+wearable.
+~
+#1258
+light glow evil~
+an evil glow~
+A glowing ball of pure evil has been dropped here~
+~
+1 0 0 0 1 1
+0~ 0~ -1~ 0~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+light glow evil~
+An evil glow seems to hover on it's own.
+~
+#1259
+cuirass armor bloodstained ravenwood~
+a bloodstained cuirass~
+A cuirass covered with specks of blood has been carelessly left here.~
+~
+9 0 0 0 9 1
+0~ 0~ 0~ 0~
+10 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -5
+E
+cuirass armor bloodstained ravenwood~
+A cuirass is stained with blood.
+~
+#1260
+sleeves ravenwood red~
+&rsome red leather sleeves&X~
+A pair of red sleeves have been left here.~
+~
+9 0 0 0 257 1
+0~ 0~ 0~ 0~
+1 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -1
+E
+pair sleeves red leather ravenwood~
+&rThe sleeves have intricate designs painted in red upon them.
+~
+E
+designs~
+&RThe designs are very abstract, but lovely in a sort of twisted way.
+~
+#1261
+sceptre blessing divine intervention~
+a sceptre of divine intervention~
+A sceptre of unknown origin has been left here.~
+~
+4 1 6284 0 16385 2
+7~ 1~ 1~ bless~
+2 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sceptre divine intervention blessing~
+The sceptre has many runes carved upon it.
+~
+E
+runes~
+The runes explain that a power of the divine is within.
+INVOKE SCEPTRE to feel the power.
+~
+#1262
+sword ravenwood scrap iron~
+a scrap iron sword~
+A sword made of somewhat questionable means has been dropped here.~
+~
+5 0 4098 0 8193 1
+0~ 0~ 0~ 2~
+2 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 1
+E
+sword scrap iron ravenwood~
+&wThe sword looks like a piece of junk, but it might just be useful.
+~
+#1263
+dagger obsidian ravenwood~
+an obsidian dagger~
+A dagger made of obsidian has been discarded here.~
+~
+5 0 4098 0 8193 1
+0~ 0~ 0~ 11~
+2 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 1
+E
+dagger obsidian ravenwood~
+A black dagger made of a strong material.
+~
+#1264
+club ravenwood~
+a redwood club~
+A small redwood club has been dropped here.~
+~
+5 0 4608 0 8193 1
+0~ 0~ 0~ 7~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+club redwood ravenwood~
+A club made of wood from the redwood tree.
+~
+#1265
+diploma ravenwood~
+a Ravenwood diploma~
+A diploma bearing the great seal of Ravenwood has been discarded here.~
+~
+9 0 0 0 16385 2
+0~ 0~ 0~ 0~
+1 0 0 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+E
+diploma ravenwood~
+The diploma certifies that you have officially defeated your teacher at
+the Ravenwood Academy.
+~
+#1266
+scroll recall~
+a recall scroll~
+A scroll of recall has been left here accidentally.~
+~
+2 0 0 0 1 2
+100~ word of recall~ reserved~ reserved~
+1 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+recall scroll~
+If you RECITE SCROLL it will bring you to your home temple.
+~
+#1267
+potion black~
+a black potion~
+A potion of healing sits here awaiting usage.~
+~
+10 268435457 0 0 1 2
+7~ cure light~ reserved~ reserved~
+1 6 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+black potion~
+&BA dark potion swirls in it's flask.
+~
+#1268
+waterskin belly goat~
+a goat belly waterskin~
+A canteen made from a goat stomach has been left here.~
+~
+17 0 0 0 1 1
+12~ 12~ 0~ 0~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+waterskin belly goat~
+A waterskin made of a goat's belly.
+~
+#1269
+beef rations food strips~
+some beef rations~
+Some small strips of dried meat have been left here.~
+~
+19 0 0 0 1 1
+6~ 0~ 0~ 0~
+1 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+beef rations food~
+&OSome small strips of dried meat.
+~
+E
+strips~
+Some small strips of dried meat and spices.
+~
+#1270
+bag burlap~
+a burlap bag~
+A bag made of burlap is here in front of you.~
+~
+15 0 0 0 16385 1
+22~ 0~ 0~ 0~
+2 0 0 6 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bag burlap~
+&OA small burlap bag.
+~
+#1271
+portal safety~
+a portal of safety~
+A portal of safety stands ready for you to enter it.~
+~
+29 1 0 0 0 1
+1300~ 0~ 0~ 0~
+30000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1272
+bracer crimson ravenwood~
+a crimson bracer~
+A small red bracer lies here.~
+~
+9 0 0 0 4097 2
+0~ 0~ 0~ 0~
+1 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 3
+E
+bracer crimson ravenwood~
+&rA red bracer with the mark of Ravenwood upon it.
+~
+#1273
+gloves bloody ravenwood~
+bloody gloves~
+A pair of blood drenched gloves lie here.~
+~
+9 0 0 0 129 2
+0~ 0~ 0~ 0~
+2 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+bloody gloves ravenwood~
+&rA pair of gloves are drenched in blood.
+~
+#1274
+shroud ravenwood crimson~
+a crimson shroud~
+A shroud made of red cloth has been left here~
+~
+9 0 0 0 1025 2
+0~ 0~ 0~ 0~
+2 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+shroud crimson ravenwood~
+&rA crimson colored shroud is made of a broadcloth.
+~
+#1275
+shield ravenwood redwood~
+a redwood shield~
+A shield made from part of a redwood tree has been placed here.~
+~
+9 0 0 0 513 3
+0~ 0~ 0~ 0~
+3 0 1 3 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -3
+E
+redwood shield ravenwood~
+&rA shield is made of wood from a redwood tree.
+~
+#0
+
+
+
+#ROOMDATA
+#1251
+The Mist Above the Storm~
+You are floating in perfect safety above The Storm which rages on below. 
+From here, you must make your plunge, to join in the battle against the
+forces of good.  To join the world below you, you must first enter the
+vortex which swirls just below your toes.  
+~
+0 394252 0
+Rd     0
+S
+#1252
+At the Entrance to Ravenwood Training School~
+You are within an ancient hallway that reeks of sweat and blood.  Many
+have passed through these halls, learning the lessons taught within,
+becoming better adventurers with each step.  To the north, the school awaits
+you, while below lies the training area where you can train your stats or
+practice your skills (after level 3).  At any point, should you see a sign,
+it would probably be best to LOOK at it, as it may contain vital information
+for you.  You can get a better idea of where you stand with the SCORE,
+INVENTORY, and EQUIPMENT commands.  Try them now.  When you are ready to
+continue, choose your path and go.  
+~
+0 1036 0
+Rd     0
+D0
+~
+door~
+3 0 1253
+S
+#1253
+Within the Training Halls~
+Looking about you, you can see to the east and west of you are two small
+rooms, each sending forth a different smell, neither scent being of the
+pleasant variety.  You may enter either of these rooms to try your hand at
+combat (type KILL and the monster name), or continue in the hallway to the
+north and south. There is a &rsign&c posted here.
+~
+0 1036 0
+Rd     0
+E
+sign~
+&rThere may be doors located in some places. They are not always easy to
+find as they are sometimes not mentioned in the description of the room.
+In this particular room there is a door to the south. To find a door, you
+can simply walk in that direction and bump into it (if it is secret). You
+can also LOOK <direction> which will tell you if there is a door there and
+whether it is open, closed or locked. You can also try LOOK DOOR, but this
+will not always work... if the door is hidden then you have to discover it
+on your own.
+~
+E
+door~
+A door stands here in the south wall. LOOK <direction> to see if it is open
+or closed. Some doors need keys for you to UNLOCK them. It is up to you to
+find those keys. This door though, is not a locked one.
+~
+D0
+~
+~
+0 0 1254
+D1
+~
+~
+0 0 1286
+D2
+A door is here in the south wall.
+~
+door~
+3 0 1252
+D3
+~
+~
+0 0 1285
+S
+#1254
+Within the Academy~
+Here, you are at a four way intersection, leaving you quite a few choices
+of which way to go.  To your east and west are small rooms, while to the
+north and south the school hallways continue.  Or perhaps, if you've already
+done some fighting, you'd like to REST or SLEEP and regain some of the
+hitpoints, mana, or movement points you may have lost in the struggle.  
+~
+0 1036 0
+Rd     0
+D0
+~
+~
+0 0 1257
+D1
+~
+~
+0 0 1256
+D2
+~
+~
+0 0 1253
+D3
+~
+~
+0 0 1255
+S
+#1255
+Within a Padded Cell~
+The padding covering the walls, ceiling, and floor here makes for ease in
+moving silently.  Judging by the restraints set into the walls, someone has
+been held here, most likely for being a menace to the townsfolk.  You may
+exit the room to the east.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 1254
+S
+#1256
+Within a Cramped Prison Cell~
+This room is tiny, and unkept by those in charge of this academy. 
+Shackles are set into the wall, and a slab of wood mounted on a stone slab
+serves as some sort of crude bed.  You may exit the cell to the west.  
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 1254
+S
+#1257
+Within a Hallway~
+The hallway continues on to the north and south from here, each direction
+bringing you it's own challenges.  If you should find yourself in trouble,
+FLEE to save your life.  To find out how well you would fare against a
+prospective opponent, CONSIDER them to see how they stack up.  Hopefully you
+have learned to GET ALL from the corpse of anything you have slain, and
+SACRIFICED the corpse after doing so.  Type CONFIG now to see how to set it
+so you will automatically do certain things and see other things of
+interest.  One of the first you should do is AUTOEXIT.  This will
+automatically show you the obvious exits from where you are.  Others are
+AUTOLOOT (gets all from corpse) AUTOSAC (automatically sacrifices the corpse
+to your deities) and AUTOGOLD (automatically gets the coins from the
+corpse).  
+~
+0 1036 0
+Rd     0
+D0
+~
+~
+0 0 1258
+D2
+~
+~
+0 0 1254
+S
+#1258
+Before a Stairwell~
+In this dead-end room in the halls of the school there is a staircase
+leading downwards.  The room looks as though it has been inhabited by
+someone for quite some time, and though it reeks of a stale stench, it is
+still somewhat cleaner than most of the other rooms you have seen.  You may
+travel down the stairs or leave the room to the south.  
+~
+0 12 0
+Rd     0
+D2
+~
+~
+0 0 1257
+D5
+~
+~
+0 0 1259
+S
+#1259
+On a Landing in the Stairwell~
+From this vantage point, you may travel in any of the six directions
+(north south east west up down).  Thin candles are set into the walls here
+giving off a dim glow, and filling the room with a sweet smelling smoke. 
+The next move is yours.  If you have advanced to the next level, you should
+SAVE now.  To find out how many more experience points you will need until
+the next advancement, type WORTH, which will show your current experience as
+well as your needed experience for the next level, and gold coins in hand.  
+~
+0 2098188 0
+Rd     0
+D0
+~
+~
+0 0 1260
+D1
+~
+~
+0 0 1263
+D2
+~
+~
+0 0 1262
+D3
+~
+~
+0 0 1261
+D4
+~
+~
+0 0 1258
+D5
+~
+~
+0 0 1264
+S
+#1260
+Within a Small Cell~
+The cell is somewhat damp, and offers very little in the way of light or
+fresh air.  A pile of matted straw covers the floor, and you can definately
+hear something crawling around underneath it.  You may exit the cell to the
+south.  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 1259
+S
+#1261
+Within a Dark Alcove~
+The room is covered in dust from ceiling to floor, with many cobwebs
+hanging in huge matted clump in the corners.  If you look closely, you can
+see some sort of entangled creature, long since dead, yet large enough to be
+the size of a large cat.  You may exit the room to the east.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 1259
+S
+#1262
+Within an Elegantly Furnished Office~
+The office is complete with a desk and chair, as well as trophies
+collected from various hunting expeditions.  This is obviously the workplace
+of one of the examiners of the school, who will test you on your finely
+honed skills.  Rumor has it, the only way to graduate is to successfully
+kill your teacher.  You may exit the office to the north.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1259
+S
+#1263
+A Small Antechamber~
+The antechamber has been kept somewhat clean, save for the occasional
+bloodstain upon the wall or floor.  A small sarcophagus lies at the far
+wall, yet it does not appear to be sealed.  You may exit the room to the
+west.  
+ 
+~
+0 8 0
+Rd     0
+E
+sarcophagus~
+The sarcophagus is empty. Better keep your eyes open!
+~
+D3
+~
+~
+0 0 1259
+S
+#1264
+At an Intersection of Hallways~
+At this point there are four small hallways running to the north, south,
+east, and west, as well as stairs leading upwards, and a small ladder
+leading down into a pit just below you.  A slight stench of something
+brewing is coming from the west, while to the east you can smell some
+freshly cooked food.  
+~
+0 1032 0
+Rd     0
+E
+ladder~
+&OA ladder leads down into a dark pit here.
+~
+E
+stairs~
+A stairway leads up from here.
+~
+D0
+~
+~
+0 0 1269
+D1
+~
+~
+0 0 1267
+D2
+~
+~
+0 0 1265
+D3
+~
+~
+0 0 1268
+D4
+~
+~
+0 0 1259
+D5
+~
+~
+0 0 1287
+S
+#1265
+Within a School Hallway~
+This hallway runs to the north and south with the northbound exit leading
+further into the school, while the southern exit leads off to the Temple of
+Ravenwood, where adventurers gather to rest and discuss the issues of the
+day.  
+ 
+~
+0 0 0
+Rd     0
+E
+doorway door~
+A door leads to the south here.
+~
+D0
+~
+~
+0 0 1264
+D2
+~
+~
+0 0 1266
+S
+#1266
+Entrance to the Training Grounds~
+The hallway is quiet and dimly lit by torches set about six feet high on
+the walls.  An red arrow is painted on the floor pointing northward, guiding
+you on to the practice arena.  There is a door on the northern wall, which
+reads '&pSTUDENTS ONLY&c'
+~
+0 394244 0
+Rd     0
+E
+doorway door~
+A doorway is set into the north wall here.
+~
+D0
+~
+~
+0 0 1265
+S
+#1267
+Ravenwood Academy General Store~
+This small and tidy little shop has been well stocked with the most basic
+adventuring supplies someone such as yourself would find useful.  You may
+buy an item, or see what is for sale by typing LIST.  The only exit from the
+shop is to the west.  
+~
+0 1032 0
+Rd     0
+D3
+~
+~
+0 0 1264
+S
+#1268
+Ravenwood Academy Magic Shop~
+Within this fine shop you can buy some items which may give you that
+extra edge during a battle, or maybe just save your life.  The shop is
+filled with broken glass and has smoke clinging to the walls and ceiling so
+somebody has been busy keeping the supplies in full stock.  You may exit the
+shop to the east.  
+~
+0 1036 0
+Rd     0
+D1
+~
+~
+0 0 1264
+S
+#1269
+Before the Training Arena~
+To the north of you stands a large door, which can be OPENed quite
+easily, as it appears to be unlocked.  Beyond this door is the training
+arena, where you can fight anything that gets in your way, and better hone
+your combat skills.  There is a healer in this arena, so find him if you get
+into trouble.  If you are in severe trouble and need to leave the arena
+immediately simply ENTER one of the portals.  The portals are in every room
+and are a safe gateway back to the upper floor of the academy.  
+~
+0 0 0
+Rd     0
+E
+door~
+A large door stands here in the northern wall.
+~
+D2
+~
+~
+0 0 1264
+S
+#1270
+Entrance to Lord Drauzen's Arena~
+Drauzen's Arena stretches before you as a small maze, with exits leading
+off to the east, west, and north.  You may continue down any one of these
+exits to explore the Arena.  When in search of safety, simply enter the
+portal of safety before you.  
+~
+0 0 0
+Rd     0
+E
+door~
+A large door stands here in the southern wall.
+~
+D0
+~
+~
+0 0 1284
+D1
+~
+~
+0 0 1271
+D3
+~
+~
+0 0 1283
+S
+#1271
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 1272
+D3
+~
+~
+0 0 1270
+S
+#1272
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 1273
+D3
+~
+~
+0 0 1271
+S
+#1273
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 1274
+D2
+~
+~
+0 0 1272
+D3
+~
+~
+0 0 1275
+S
+#1274
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 1273
+S
+#1275
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 1276
+D1
+~
+~
+0 0 1273
+S
+#1276
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 1275
+D3
+~
+~
+0 0 1277
+S
+#1277
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 1276
+D2
+~
+~
+0 0 1284
+D3
+~
+~
+0 0 1278
+S
+#1278
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 1277
+D2
+~
+~
+0 0 1279
+S
+#1279
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 1278
+D3
+~
+~
+0 0 1280
+S
+#1280
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 1281
+D1
+~
+~
+0 0 1279
+D2
+~
+~
+0 0 1282
+S
+#1281
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 1280
+S
+#1282
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 1280
+D1
+~
+~
+0 0 1283
+S
+#1283
+In the Academy Arena~
+The arena is filled with the sounds of various creatures who roam freely
+here.  This is by far your greatest test since coming to school here. 
+Remember if you get in trouble, enter the portal!  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 1270
+D3
+~
+~
+0 0 1282
+S
+#1284
+Safe Zone~
+At this area here, there is a magic aura which prevents any opponents
+from entering the room or attacking you.  The healer will assist you in your
+regeneration process as best he can, and when you are ready, you may
+continue to fight.  
+~
+0 2098188 0
+Rd     0
+D0
+~
+~
+0 0 1277
+D2
+~
+~
+0 0 1270
+S
+#1285
+Within a Small Chamber~
+The smell in here is intense, with small flies buzzing about the waste
+which the creature inhabiting this room has seen fit to spread from one end
+of the floor to the other.  You may endure the stench, or leave the room to
+the east.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 1253
+S
+#1286
+Inside a Damp Cell~
+The mildew clinging to the walls is as thick as the slime upon the floor
+here, making breathing difficult, and causing you to slip here and there. 
+The lack of lighting in the room adds to the overall dreariness, as there
+are no windows to help clear the air.  Whoever or whatever lives here is
+truly a disgusting creature.  You may leave the room to the west.  
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 1253
+S
+#1287
+The Donations Pit~
+This is one of the areas you may see in your travels where one adventurer
+has been kind enough to share his wealth of items with those less fortunate.
+Take only what you feel you need, as there are most likely others just as
+needy as yourself, if not more.  
+~
+0 1032 0
+Rd     0
+D4
+~
+~
+0 0 1264
+S
+#0
+
+
+
+#SPECIALS
+M 1254 spec_healer
+M 1264 spec_healer
+S
+
+
+
+#RESETS
+M 0 1269 1 1251
+O 0 1251 0 1251
+M 0 1251 2 1252
+M 0 1254 2 1254
+M 0 1255 1 1255
+G 0 1254 0
+M 0 1256 1 1256
+G 0 1255 0
+M 0 1257 1 1258
+G 0 1256 0
+M 0 1254 2 1259
+M 0 1258 1 1260
+G 0 1257 0
+M 0 1259 1 1261
+G 0 1260 0
+M 0 1261 1 1262
+G 0 1265 0
+M 0 1260 1 1263
+G 0 1261 0
+M 0 1251 2 1266
+M 0 1263 1 1267
+G 0 1268 0
+G 0 1269 0
+G 0 1270 0
+M 0 1262 1 1268
+G 0 1267 0
+G 0 1266 0
+M 0 1270 10 1270
+O 0 1271 0 1270
+M 0 1266 1 1271
+G 0 1273 0
+O 0 1271 0 1271
+M 0 1265 1 1272
+G 0 1272 0
+O 0 1271 0 1272
+M 0 1266 1 1273
+G 0 1273 0
+O 0 1271 0 1273
+M 0 1265 1 1274
+G 0 1272 0
+O 0 1271 0 1274
+M 0 1267 1 1275
+G 0 1274 0
+O 0 1271 0 1275
+M 0 1268 5 1276
+G 0 1275 0
+O 0 1271 0 1276
+M 0 1268 5 1277
+G 0 1275 0
+O 0 1271 0 1277
+M 0 1268 5 1278
+G 0 1275 0
+O 0 1271 0 1278
+M 0 1267 1 1279
+G 0 1274 0
+O 0 1271 0 1279
+M 0 1266 1 1280
+G 0 1273 0
+O 0 1271 0 1280
+M 0 1265 1 1281
+G 0 1272 0
+O 0 1271 0 1281
+M 0 1265 1 1282
+G 0 1272 0
+O 0 1271 0 1282
+M 0 1266 1 1283
+G 0 1273 0
+O 0 1271 0 1283
+M 0 1264 1 1284
+O 0 1271 0 1284
+M 0 1252 1 1285
+G 0 1252 0
+G 0 1252 0
+M 0 1253 1 1286
+G 0 1253 0
+G 0 1253 0
+O 0 1262 0 1287
+O 0 1264 0 1287
+O 0 1258 0 1287
+S
+
+
+
+#SHOPS
+1262 10 2 0 0 0 100 60 0 23
+1263 19 15 17 0 0 100 60 0 23
+0
+
+
+
+#$

@@ -1,0 +1,2658 @@
+#AREADATA
+Name        { 20-40} Myrkwood Swamp      Midnight~
+Levels      20 40
+Builders    Isabo~
+VNUMs       7700 7799
+Security    1
+Recall      25001
+Flags       0
+Sounds      &gThe reeds around you rustle as an unseen creature passes by.~
+End
+
+
+
+#MOBILES
+#7700
+lizardman lizard man humanoid~
+a lizardman~
+A large humanoid lizard grins over at you before attacking!
+~
+A large lizardman with motley colored green and black scales and glowing
+red eyes hisses softly to himself.  His long forked tongue flicks from his
+mouth as he grins in anticipation of the kill....  You!  
+~
+97 512 0 10 S
+30 0 0 1500d0+0 0d0+0
+0 20 0 0
+0 0 1
+131072 0 0
+#7701
+kracken tentacle squid~
+the kracken~
+A long tentacle snakes up from the water to strangle you!
+~
+Kracken are legendary sea and swamp monsters.  They attack with their
+large tentacles and pull ships and other victims down to their watery
+deaths.  Those that have seen an entire kracken and lived have reported that
+they are giant squids.  You hope to escape from this one before it makes you
+into supper.  
+~
+97 512 0 10 S
+35 0 0 2000d0+0 0d0+0
+0 25 0 0
+0 0 0
+131072 0 0
+#7702
+rat swamp swamprat~
+a swamp rat~
+A large, hungry-looking rat snaps its sharp teeth at you.
+~
+This dog-sized creature looks literally like a drowned rat.  Dull, wet
+black hair bristles and its whiskers twitch as it looks at you and tries to
+take a bite out of your leg!  Its beady little eyes glitter as it tries to
+take you on.  
+~
+97 512 0 -100 S
+25 0 0 1050d0+0 0d0+0
+0 0 70 0
+0 0 0
+131072 0 0
+>death_prog 100~
+mpoload 7713
+~
+|
+#7703
+alligator jaws~
+an alligator~
+A large set of jaws lunges at you and tries to take off your head!
+~
+An armor plated reptile with a broad snout and large, razor sharp teeth
+poking out from its closed mouth, you wonder if the stories you heard of
+this creature are true.  Whether or not it's a distant relative to the
+dragons, those powerful jaws could snap you in half if you're not careful!  
+~
+97 512 0 0 S
+30 0 0 1500d0+0 0d0+0
+0 20 0 0
+0 0 0
+131072 0 0
+#7704
+leech giant worm~
+a giant leech~
+A giant leech is here trying to suck the life from you.
+~
+All the leeches you have ever seen before are the small ones that doctors
+use to suck out the bad blood from their patients.  This one, however, is
+almost half again your size and is trying to attach itself to your body and
+feast upon your blood.  
+~
+97 512 0 -100 S
+25 0 0 1050d0+0 0d0+0
+0 0 150 0
+0 0 0
+131072 0 0
+>greet_prog 100~
+emote makes strange sucking noises as it slithers towards $n.
+~
+|
+#7705
+eel~
+an eel~
+An eel snakes between your legs and attempts to bite you!
+~
+Long, slim and snakelike, this fish is a dangerous one, indeed!  It has
+two rows of tiny, sharp teeth that it uses to take a bite into your leg. 
+You once heard that these creatures are venomous, and you don't think you
+want to test that theory now.  
+~
+97 512 0 0 S
+20 0 0 600d0+0 0d0+0
+0 0 100 0
+0 0 0
+131072 0 0
+#7706
+ooze swamp swamp-ooze~
+the swamp ooze~
+An oozy swamp thing tries to smother you with its slimy body!
+~
+You stare hard at this creature trying to make out exactly what it is,
+but all you can see is that it's somehow a huge ball of intelligent slime
+that looks like it wants to get a bit too friendly with you.  
+~
+229 512 0 -200 S
+40 0 0 2500d0+0 0d0+0
+0 35 0 0
+0 0 0
+131072 0 0
+>fight_prog 20~
+,spits out a blast of slime.
+mpechoat $n The slime is headed for your eyes!
+c 'blindness' $n
+~
+|
+#7707
+toad giant~
+a giant toad~
+A giant toad leaps from the waters and attacks you!
+~
+This warty amphibian leaps from the water with its powerful hind legs in
+your direction, its large mouth open and its sticky tongue ready to entangle
+you.  You wonder what in the swamps could have cause the creatures in here
+to have grown so much!  
+~
+97 512 0 0 S
+25 0 0 1050d0+0 0d0+0
+0 0 150 0
+0 0 0
+131072 0 0
+#7708
+will-o-wisp wisp lights tiny~
+will-o-wisp~
+Tiny lights seem to be dancing at the edge of your vision.
+~
+You have a hard time looking at the wisp, but what glimpses you do catch
+are of a tiny blue sphere that wanders about endlessly.  Legends say that
+these tiny creatures lead lost adventurers about to their deaths.  
+~
+65 524800 0 100 S
+20 0 0 600d0+0 0d0+0
+0 0 100 0
+0 0 0
+0 0 0
+#7709
+dragon black baby miniature~
+the baby &zblack dragon~
+A miniature &zblack dragon&P looks angrily at you for intruding and attacks!
+~
+Originally from dragon valley, this baby dragon wandered off one day and
+got lost in these swamps.  She found herself a small hole and has made her
+home in it.  The swamps don't seem to have harmed her smooth, ebony black
+skin or amethyst eyes in any way.  As a matter of fact, her teeth and claws
+seem to be extra sharp too!  
+~
+1572963 640 0 -100 S
+40 0 0 2000d0+0 0d0+0
+0 35 0 0
+0 0 2
+1 0 0
+#7710
+vapor eldritch~
+an eldritch vapor~
+An eldritch vapor slinks up from the swamp to attack you!
+~
+Eldritch vapors dwell in cemetaries, bogs and swamps where fog can hide
+their evershifting forms.  Gleeful and mischievous, they enjoy snatching
+away the posessions of those foolish enough to wander into their realm. 
+Perhaps you should kill it now before it decides to snatch away your entire
+person to the netherworld!  
+~
+101 1573376 0 -200 S
+35 0 0 2000d0+0 0d0+0
+0 25 0 0
+0 0 0
+131072 0 0
+#7711
+slimy worm~
+&wA worm~
+&zA black slimy worm slithers around here.
+~
+A freak of nature is before you.  Blackened slimy skin on a ten foot
+body...  The sight is quite sickening.  
+~
+195 0 16 0 S
+25 0 0 1050d0+0 0d0+0
+0 0 150 0
+0 0 0
+0 0 0
+>hitprcnt_prog 40~
+say No no! I can't die!!
+mptrans $n 7700
+~
+|
+#7712
+mud piranha~
+A mud piranha~
+&wA vicious looking piranha swims towards you.
+~
+&wIt's silver skin and sharp teeth they can kill and eat the flesh of a
+cow in seconds.  Especially this one which is over ten feet long.  It's eyes
+glow of some strange magic.  The thing about this piranha is that it is
+pretty flat and can live in shallow waters.  It can even slither around like
+a snake.  But cannot live outside of the water for TOO long.  
+~
+97 66 65552 -200 S
+40 0 0 2500d0+0 0d0+0
+0 35 0 0
+0 0 0
+2 0 0
+>death_prog 100~
+,flaps its tail one last time.
+mpoload 7715
+~
+>fight_prog 30~
+mpecho The piranha scares you by growling like a wolf!
+bite $n
+cackle
+~
+|
+#7713
+troll servant~
+&OThe troll servant&w~
+&wA troll servant wanders the forest as lost as you.
+~
+The poor troll walking around, is quite a harmless troll.  Always beaten
+around by other trolls it has run away only to get lost in the swamp.  It
+has been walking around for days and is quite exhasted.  
+~
+193 134217920 16 200 S
+40 0 0 2000d0+0 0d0+0
+0 35 0 0
+0 0 0
+2 0 0
+>fight_prog 30~
+say I don't need this nonsense! Leave me BE!
+bite $n
+~
+|
+#0
+
+
+
+#OBJECTS
+#7700
+cuirass leather~
+a leather cuirass~
+A leather cuirass lies here on the ground.~
+~
+9 0 0 0 9 30
+0~ 0~ 0~ 0~
+5 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+A
+5 1
+#7701
+boots alligator skin hide~
+alligator skin boots~
+A pair of boots made from alligator hide have been left here.~
+~
+9 0 0 0 65 30
+0~ 0~ 0~ 0~
+4 0 15 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 20
+A
+110 -1
+#7702
+sphere glowing blue~
+a glowing &Bblue sphere~
+A small, glowing blue sphere is floating here.~
+~
+1 513 0 0 1 20
+0~ 0~ -1~ 0~
+1 0 0 100 0
+5 0
+fly~
+25 25
+0 0 0
+A
+13 20
+A
+4 1
+#7703
+axe hand hand-axe~
+a hand axe~
+A large hand axe is lying here among the weeds.~
+~
+5 640 0 0 8193 30
+0~ 5~ 30~ 13~
+5 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 25
+A
+19 25
+#7704
+anklets amber~
+&Oamber anklets~
+A small amber ankle bracelet is lying here forgotten.~
+~
+9 536870912 0 0 1048577 35
+0~ 0~ 0~ 0~
+4 0 10 0 0
+5 0
+shield~
+5 5
+0 0 0
+A
+2 1
+A
+17 -35
+#7705
+talon black~
+a &zblack talon~
+A wicked looking talon is lying on the ground here.~
+~
+5 67109636 0 0 8193 40
+0~ 10~ 40~ 11~
+4 0 15 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 15
+A
+26 10
+A
+18 65
+#7706
+shield amber~
+an &Oamber shield~
+A shield made of purest amber is lying here on the ground.~
+~
+9 0 460 0 513 30
+0~ 0~ 0~ 0~
+5 0 15 0 0
+5 0
+fireshield~
+3 3
+0 0 0
+A
+5 2
+A
+13 30
+E
+shield~
+This shield has been beautifully crafted from the purest amber by
+unearthly hands.  Sometime during the ages this treasure was lost and you
+rejoice at your luck in finding it.  An elegant phoenix has been carved into
+the amber as a tribute to the bird that never truely dies in hopes that it
+will gift the wearer of this incredible ability.  
+~
+#7707
+crayfish crawdad~
+a crayfish~
+A tasty looking crayfish is darting about in the water.~
+~
+19 0 0 0 1 1
+25~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+crayfish~
+You bet you could catch this thing before it gets away and eat it for
+your supper.  It would probably taste better cooked, but if you're into
+sushi, go ahead and eat it as is.  
+~
+#7708
+grass swamp~
+swamp grass~
+Some swamp grass is growing here in the waters.~
+~
+19 0 0 0 1 1
+12~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7709
+toadstool mushroom~
+a toadstool~
+A red and white speckled mushroom is growing here.~
+~
+26 0 0 0 1 35
+50~ sanctuary~  ~  ~
+1 0 20 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+toadstool~
+These poisonous mushrooms are rare in most areas of the world, but they
+seem to have found a way to grow and get into your posession.  Potion shops
+would probably pay handsomely for this specimen.  
+~
+E
+mushroom~
+These poisonous mushrooms are rare in most areas of the world, but they
+seem to have found a way to grow and get into your posession.  Potion shops
+would probably pay handsomely for this specimen.
+~
+#7710
+skeleton skeletal remains~
+the skeletal remains~
+The front half of a large skeleton is partially buried in the muck.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+skeleton~
+You look closely at the skeletal remains but can't quite make out what it
+once was.  Perhaps it was a dragon at one point in time, but you don't think
+you're going to have any luck identifying it.  
+~
+E
+skeletal~
+You look closely at the skeletal remains but can't quite make out what it
+once was.  Perhaps it was a dragon at one point in time, but you don't think
+you're going to have any luck identifying it.
+~
+E
+remains~
+You look closely at the skeletal remains but can't quite make out what it
+once was.  Perhaps it was a dragon at one point in time, but you don't think
+you're going to have any luck identifying it.
+~
+#7711
+skeleton skeletal remains~
+the skeletal remains~
+The back half of a huge skeleton lies partially buried in the waters.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+skeleton~
+You find yourself studying the back end of a huge skeleton.  It may have
+been a dragon at one point in time, but it's not like any dragon you've seen
+before.  Time probably would have worn it away by now but the swamps seem to
+have preserved it with only the moss and muck disguising its form.  
+~
+E
+skeletal~
+You find yourself studying the back end of a huge skeleton.  It may have
+been a dragon at one point in time, but it's not like any dragon you've seen
+before.  Time probably would have worn it away by now but the swamps seem to
+have preserved it with only the moss and muck disguising its form.
+~
+E
+remains~
+You find yourself studying the back end of a huge skeleton.  It may have
+been a dragon at one point in time, but it's not like any dragon you've seen
+before.  Time probably would have worn it away by now but the swamps seem to
+have preserved it with only the moss and muck disguising its form.
+~
+#7712
+horse carcass remains corpse~
+a carcass~
+The decaying remains of a horse stinks up the area.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+carcass~
+Your breath catches in your throat and you try to keep from gagging as
+the stench from the corpse pervades the area.  Scavengers have long since
+taken what they wanted and now only the maggots crawling all about in the
+corpse have claim to this once proud beast.  
+~
+E
+horse~
+Your breath catches in your throat and you try to keep from gagging as
+the stench from the corpse pervades the area.  Scavengers have long since
+taken what they wanted and now only the maggots crawling all about in the
+corpse have claim to this once proud beast.
+~
+E
+remains~
+Your breath catches in your throat and you try to keep from gagging as
+the stench from the corpse pervades the area.  Scavengers have long since
+taken what they wanted and now only the maggots crawling all about in the
+corpse have claim to this once proud beast.
+~
+E
+corpse~
+Your breath catches in your throat and you try to keep from gagging as
+the stench from the corpse pervades the area.  Scavengers have long since
+taken what they wanted and now only the maggots crawling all about in the
+corpse have claim to this once proud beast.
+~
+#7713
+rat tail~
+&PA pink rat tail~
+&PA rat tail large as a sausage link lies here.~
+~
+9 4608 0 0 4097 20
+0~ 0~ 0~ 0~
+1 0 0 50 0
+5 0
+faerie fire~
+2 2
+0 0 0
+A
+13 20
+#7714
+staff leaves~
+&gA staff of leaves&X~
+A staff wrought with leaves lies here.~
+~
+9 2 512 0 16385 20
+0~ 0~ 0~ 0~
+2 0 0 100 0
+5 0
+shocking grasp~
+5 5
+0 0 0
+A
+13 20
+#7715
+piranha~
+&wThe eyes of a piranha&X~
+&wEyes that &Wglow &win the dark lies here.~
+~
+27 0 0 2048 131073 40
+45~ 20~ 20~ identify~
+2 0 35 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -40
+A
+102 -1
+#7716
+bronze necklace~
+&OA bronze necklace~
+A bronze pendant hung from a leather string lies here.~
+~
+9 0 0 40 5 35
+0~ 0~ 0~ 0~
+2 0 30 0 0
+5 0
+fireball~
+10 10
+0 0 0
+A
+17 -35
+A
+13 35
+#0
+
+
+
+#ROOMDATA
+#7700
+The Swamp Road~
+You stand upon a damp and winding road that leads deep within the swamps.
+A sign here bears the legend 'Welcome to Myrkwood Swamps.  Enter at your own
+risk.' You wonder if doing so would be a good idea. You hear strange sounds
+coming from all around you the source hidden. The road continues south and
+to the west.
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 7701
+D3
+~
+~
+0 0 7702
+S
+#7701
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You think you can make out a road to the north of you, or
+you can trude in more swamp to the west.  
+~
+0 0 11
+Rd     0
+D0
+~
+~
+0 0 7700
+D3
+~
+~
+0 0 7703
+S
+#7702
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road
+continues east and west or you can slog through the swamps to the south of
+you.  
+~
+0 0 11
+Rd     0
+D1
+~
+~
+0 0 7700
+D2
+~
+~
+0 0 7703
+D3
+~
+~
+0 0 7707
+S
+#7703
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You might be able to reach the road to the north or west
+of you or you can follow the swamp east and south.  
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 7702
+D1
+~
+~
+0 0 7701
+D2
+~
+~
+0 0 7704
+D3
+~
+~
+0 0 7708
+S
+#7704
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamps extend north and south of you, but there looks
+to be solid land to the west.  
+~
+0 0 11
+Rd     0
+D0
+~
+~
+0 0 7703
+D2
+~
+~
+0 0 7705
+D3
+~
+~
+0 0 7709
+S
+#7705
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can make your way back to the road west of you or
+muck around in the swamps to the north.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7704
+D3
+~
+~
+0 0 7710
+S
+#7706
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamp lies west of you and a road is to the south.  
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 7707
+D3
+~
+~
+0 0 7712
+S
+#7707
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  The road
+here winds east and south, or you can trudge into the swamps north and west
+of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7706
+D1
+~
+~
+0 0 7702
+D2
+~
+~
+0 0 7708
+D3
+~
+~
+0 0 7713
+S
+#7708
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road
+continues north and south or you can venture out into the swamps on the east
+and west sides of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7707
+D1
+~
+~
+0 0 7703
+D2
+~
+~
+0 0 7709
+D3
+~
+~
+0 0 7714
+S
+#7709
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  You can follow
+the road north or south or you can explore the swamps to the east and west. 
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7708
+D1
+~
+~
+0 0 7704
+D2
+~
+~
+0 0 7710
+D3
+~
+~
+0 0 7715
+S
+#7710
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  The road
+curves along to the north and to the west.  Exits are also east and south of
+you into the swamps.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7709
+D1
+~
+~
+0 0 7705
+D2
+~
+~
+0 0 7711
+D3
+~
+~
+0 0 7716
+S
+#7711
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamp lies to the east and west of you and dangling
+tree branches block your view to the north.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7710
+D1
+~
+~
+0 0 7711
+D3
+~
+~
+0 0 7717
+S
+#7712
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  All you can see is swamp all around you.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7706
+D2
+~
+~
+0 0 7713
+S
+#7713
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You see swamp in every direction you look.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7712
+D1
+~
+~
+0 0 7707
+D2
+~
+~
+0 0 7714
+D3
+~
+~
+0 0 7719
+S
+#7714
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  Swamp extends in all directions but west where you think
+you can make out solid land.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7713
+D1
+~
+~
+0 0 7708
+D2
+~
+~
+0 0 7715
+D3
+~
+~
+0 0 7720
+S
+#7715
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can get on drier land on all sides of you but north
+where the swamp seems to extend endlessly.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7714
+D1
+~
+~
+0 0 7709
+D2
+~
+~
+0 0 7716
+D3
+~
+~
+0 0 7721
+S
+#7716
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road bends
+to the east and continues along to the west.  You can also explore the
+swamps north and south of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7715
+D1
+~
+~
+0 0 7710
+D2
+~
+~
+0 0 7717
+D3
+~
+~
+0 0 7722
+S
+#7717
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You see higher land to the north of you or you can wade
+through the murky waters in all other directions.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7716
+D1
+~
+~
+0 0 7711
+D2
+~
+~
+0 0 7718
+D3
+~
+~
+0 0 7723
+S
+#7718
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamp continues north and west of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7717
+D3
+~
+~
+0 0 7724
+S
+#7719
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You start to wonder if you've become hopelessly lost as
+you see nothing but swamps stretching out in every direction.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7719
+D1
+~
+~
+0 0 7713
+D2
+~
+~
+0 0 7720
+D3
+~
+~
+0 0 7719
+S
+#7720
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  Swamps stretch out all around you except for to the south
+where it looks like there may be higher ground.  
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 7719
+D1
+~
+~
+0 0 7714
+D2
+~
+~
+0 0 7721
+D3
+~
+~
+0 0 7725
+S
+#7721
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  The road
+winds around to the west and to the south.  You can also enter into the
+swamps north and east of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7720
+D1
+~
+~
+0 0 7715
+D2
+~
+~
+0 0 7722
+D3
+~
+~
+0 0 7726
+S
+#7722
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  You can
+walk along the curve of the road to the north or to the east or you can
+enter into the swamps south of here.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7721
+D1
+~
+~
+0 0 7716
+D2
+~
+~
+0 0 7723
+D3
+~
+~
+0 0 7727
+S
+#7723
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The sound of a hooting owl startles you for a moment and
+then you calm down as you realise what it is.  You might be able to reach
+the road north or west of you or you can slog through the swamps east and
+south.  
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 7722
+D1
+~
+~
+0 0 7717
+D2
+~
+~
+0 0 7724
+D3
+~
+~
+0 0 7728
+S
+#7724
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You grumble to yourself as a quick scan around shows that
+the swamp seems to stretch endlessly in all directions.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7723
+D1
+~
+~
+0 0 7718
+D2
+~
+~
+0 0 7724
+D3
+~
+~
+0 0 7729
+S
+#7725
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  Higher ground supporting a road is to the south and the
+swamp continues off to the east.  
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 7720
+D2
+~
+~
+0 0 7726
+S
+#7726
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  You can
+follow the road east or south or you can brave the swamps to the north.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7725
+D1
+~
+~
+0 0 7721
+D2
+~
+~
+0 0 7727
+S
+#7727
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  You see the road
+continues to the north and south or you can trudge along in the swamps to
+the west and hope you don't get eaten by some passing swamp creature.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7726
+D1
+~
+~
+0 0 7722
+D2
+~
+~
+0 0 7728
+D3
+~
+~
+0 0 7732
+S
+#7728
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  The road
+turns to the north and west or you may venture out into the swamps to the
+east and south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7727
+D1
+~
+~
+0 0 7723
+D2
+~
+~
+0 0 7729
+D3
+~
+~
+0 0 7733
+S
+#7729
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You peer around you and spot a road north of you and the
+creepy sounds of the swamp surrounds you from all other sides.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7728
+D1
+~
+~
+0 0 7724
+D2
+~
+~
+0 0 7730
+D3
+~
+~
+0 0 7734
+S
+#7730
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You believe yourself hoplessly lost as you wander around
+for hours in all directions and find nothing but swamps around you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7729
+D1
+~
+~
+0 0 7730
+D3
+~
+~
+0 0 7730
+S
+#7731
+Lost in the Swamps~
+You begin to wonder if you'll ever see dry land again as you wander about
+endlessly in the swamps.  Cattails and reeds wave in an unseen breeze and
+the water ripples slightly as an unseen creature swims quickly beneath the
+surface.  The swamps extend in all directions around you.  You should
+probably recall now before you become even more lost.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7731
+D2
+~
+~
+0 0 7732
+D3
+~
+~
+0 0 7736
+S
+#7732
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can see the swamp stretching out to the north and
+west of you and you think you can get to higher ground east or south.  
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 7731
+D1
+~
+~
+0 0 7727
+D2
+~
+~
+0 0 7733
+D3
+~
+~
+0 0 7737
+S
+#7733
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  You can walk
+along the road east and west or you can go into the swamps to either the
+north or south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7732
+D1
+~
+~
+0 0 7728
+D2
+~
+~
+0 0 7734
+D3
+~
+~
+0 0 7738
+S
+#7734
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can make your way to the road north of you or trudge
+through the swamps to your east.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7733
+D1
+~
+~
+0 0 7729
+S
+#7735
+Lost in the Swamps~
+You begin to wonder if you'll ever see dry land again as you wander about
+endlessly in the swamps.  Cattails and reeds wave in an unseen breeze and
+the water ripples slightly as an unseen creature swims quickly beneath the
+surface.  A large tree seems to have managed to take root here and you think
+you might be able to find shelter beneath the roots.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7735
+D1
+~
+~
+0 0 7735
+D2
+~
+~
+0 0 7736
+D3
+~
+~
+0 0 7735
+D5
+~
+roots~
+3 0 7741
+S
+#7736
+Lost in the Swamps~
+You begin to wonder if you'll ever see dry land again as you wander about
+endlessly in the swamps.  Cattails and reeds wave in an unseen breeze and
+the water ripples slightly as an unseen creature swims quickly beneath the
+surface.  The swamps extend in all directions around you.  You should
+probably recall now before you become even more lost.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7735
+D1
+~
+~
+0 0 7731
+D2
+~
+~
+0 0 7737
+D3
+~
+~
+0 0 7736
+S
+#7737
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can get hopelessly lost in the swamps all around your
+or you can attempt to get to the road to the south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7736
+D1
+~
+~
+0 0 7732
+D2
+~
+~
+0 0 7738
+D3
+~
+~
+0 0 7742
+S
+#7738
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road leads
+east and west or you can venture out into the swamp to the north.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7737
+D1
+~
+~
+0 0 7733
+D3
+~
+~
+0 0 7743
+S
+#7739
+A Sunken Skeleton~
+You trudge through the swamps, hopelessly lost when you almost find
+yourself tripping over a partially buried bone.  It looks as if you've
+stumbled across the skeletal remains of some large creature.  It's no
+creature you've ever seen before so you don't think you can identify what it
+once was.  You can get lost in the swamps to the west or you can see the
+front half of the skeleton south of you.  
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 7740
+D3
+~
+~
+0 0 7744
+S
+#7740
+Skeletal Remains~
+You find yourself looking at the front end of an extremely large skeleton
+that looks to have been here for quite some time.  Moss hangs all over it,
+preventing you from getting a clear look at it.  You don't think it was any
+kind of creature you've seen before.  You can get lost in the swamps to the
+west of you or you can look at the back half of the skeleton to north north.
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7739
+D3
+~
+~
+0 0 7745
+S
+#7741
+A Murky Hole~
+You find yourself in a damp and murky hole.  It would probably make a
+good hiding place from the elements and swamp residents outside, except it
+looks like someone or something else has already taken up residence in here.
+Small bones with tooth marks on them are strewn about the bottom of the
+hole.  You look up to escape from this place and you notice claw marks on
+the roots above you.  There seems to be no other obvious exit out.  
+~
+0 131097 0
+Rd     0
+D4
+~
+roots~
+3 0 7735
+S
+#7742
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You think you can make out a road to the south of you or
+you can explore the swamps in the other directions.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7742
+D1
+~
+~
+0 0 7737
+D2
+~
+~
+0 0 7743
+D3
+~
+~
+0 0 7749
+S
+#7743
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road leads
+west and east or you can wade out into the swamp north of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7742
+D1
+~
+~
+0 0 7738
+D3
+~
+~
+0 0 7750
+S
+#7744
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You spot a road to the west of you and branches block
+your view to the east.  The swamp continues south of you.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7739
+D2
+~
+~
+0 0 7745
+D3
+~
+~
+0 0 7751
+S
+#7745
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You think you can make out a road on higher ground west
+of you or you can explore the swamps north, east and south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7744
+D1
+~
+~
+0 0 7740
+D2
+~
+~
+0 0 7746
+D3
+~
+~
+0 0 7752
+S
+#7746
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You find yourself hopelessly lost as you notice the swamp
+continues in all directions around you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7745
+D2
+~
+~
+0 0 7747
+D3
+~
+~
+0 0 7753
+S
+#7747
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  A foul odor comes from the west of you and the swamp
+continues on to the north.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7746
+D3
+~
+~
+0 0 7754
+S
+#7748
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamp seems to extend to the west and south.  
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 7749
+D3
+~
+~
+0 0 7755
+S
+#7749
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can continue to trudge through the swamps north, east
+and west of you or you can try to get to higher ground to the south of you. 
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7748
+D1
+~
+~
+0 0 7742
+D2
+~
+~
+0 0 7750
+D3
+~
+~
+0 0 7756
+S
+#7750
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road curves
+to the west and continues to the east.  Or you can explore the swamp north
+of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7749
+D1
+~
+~
+0 0 7743
+D3
+~
+~
+0 0 7757
+S
+#7751
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  You can
+follow the road to the west and south or enter the swamps to the east.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7744
+D2
+~
+~
+0 0 7752
+D3
+~
+~
+0 0 7758
+S
+#7752
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  The road
+turns to the north and west and swamps extend to the east and south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7751
+D1
+~
+~
+0 0 7745
+D2
+~
+~
+0 0 7753
+D3
+~
+~
+0 0 7759
+S
+#7753
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can get to the road north of you or you can muck
+about in the swamps all around you.  A horrible smell comes to you from the
+south.  
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 7752
+D1
+~
+~
+0 0 7746
+D2
+~
+~
+0 0 7754
+D3
+~
+~
+0 0 7760
+S
+#7754
+A Gaseous Bog~
+You start to choke and cough when you enter this small bog.  A greenish
+gas rises from the water and muck and you find that you can't breathe!  You
+stumble blindly about as your eyes water.  Grass roots trip you and you have
+difficulty finding the exit out.  You'd better hurry before the gas kills
+you!  
+~
+0 268435461 2
+Rd     15
+D0
+~
+~
+0 0 7753
+D1
+~
+~
+0 0 7747
+S
+#7755
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamp continues to the east, south and west of you.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7748
+D2
+~
+~
+0 0 7756
+D3
+~
+~
+0 0 7761
+S
+#7756
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can trudge through the swamps north and east of you
+or try to get to the road south of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7755
+D1
+~
+~
+0 0 7749
+D2
+~
+~
+0 0 7757
+S
+#7757
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  You can
+follow the road south or east, or you can enter the swamps to the north.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7756
+D1
+~
+~
+0 0 7750
+D2
+~
+~
+0 0 7758
+S
+#7758
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  The road
+curves of north and east and the swamp extends west.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7757
+D1
+~
+~
+0 0 7751
+D3
+~
+~
+0 0 7764
+S
+#7759
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road turns
+into a curve east of you and continues to the west.  You can also wade out
+into the swamps to the south.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7752
+D2
+~
+~
+0 0 7760
+D3
+~
+~
+0 0 7765
+S
+#7760
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamps stretch out endlessly in all directions but
+north where you think the ground gets a bit more solid.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7759
+D1
+~
+~
+0 0 7753
+D2
+~
+~
+0 0 7760
+D3
+~
+~
+0 0 7766
+S
+#7761
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamp stretches out to the east, south and west of
+you.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7755
+D2
+~
+~
+0 0 7762
+D3
+~
+~
+0 0 7761
+S
+#7762
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  A large weeping willow is growing to the south of you or
+you can continue in the swamps north and east of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7761
+D2
+~
+~
+0 0 7763
+D3
+~
+~
+0 0 7769
+S
+#7763
+A Weeping Willow~
+You stand beneath the branches of an ancient weeping willow tree.  The
+long wispy branches droop low to the ground in a large curtain all around
+you, and you feel safe in here.  This is probably an ideal place to rest
+without having to worry about being attacked by nasty creatures or other
+travellers such as yourself.  The only obvious exit is to the north of you. 
+~
+0 2098180 2
+Rd     0
+D0
+~
+~
+0 0 7762
+S
+#7764
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can reach the road and higher ground to the east,
+south and west of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7764
+D1
+~
+~
+0 0 7758
+D2
+~
+~
+0 0 7765
+D3
+~
+~
+0 0 7771
+S
+#7765
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road turns
+from a curve west of you and continues on to the east.  The swamps spread
+out to the north and south of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7764
+D1
+~
+~
+0 0 7759
+D2
+~
+~
+0 0 7766
+D3
+~
+~
+0 0 7772
+S
+#7766
+Myrkwood Swamp~
+A horrible stench reaches your nose as you stumble across the recent,
+decaying remains of some animal.  It looks like it was a horse of some sort
+when it was still alice.  You hope whatever killed it is long gone and won't
+trouble you.  You wisely decide to leave the area as the maggots fight over
+what's left over.  You can escape into the swamps east, south and west of
+you, or you can get to higher ground to the north of you.  
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 7765
+D1
+~
+~
+0 0 7760
+D2
+~
+~
+0 0 7767
+D3
+~
+~
+0 0 7773
+S
+#7767
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamp continues to the north and west.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7766
+D3
+~
+~
+0 0 7774
+S
+#7768
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can continue through the swamp west of you or make
+your way to the road south of you.  
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 7769
+D3
+~
+~
+0 0 7775
+S
+#7769
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  You can
+follow the road west or south.  The swamps also extend north and east of
+you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7768
+D1
+~
+~
+0 0 7762
+D2
+~
+~
+0 0 7770
+D3
+~
+~
+0 0 7776
+S
+#7770
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  The road extends
+north and south or you can explore the swamps west of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7769
+D2
+~
+~
+0 0 7771
+D3
+~
+~
+0 0 7777
+S
+#7771
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  You can follow
+the road north or south, or you can explore the swamp east of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7770
+D1
+~
+~
+0 0 7764
+D2
+~
+~
+0 0 7772
+S
+#7772
+A Turn in the Swamp Road~
+You have reached a turn upon the swampy road.  You discover some water
+and muck collecting in your footprints as you walk along the road.  You hear
+something moving out in the swamps around you and you decide you'll stick to
+the road and leave the swamps for someone braver or more stupid.  You can
+follow the road north and east or you can venture out into the swamps to the
+south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7771
+D1
+~
+~
+0 0 7765
+D2
+~
+~
+0 0 7773
+S
+#7773
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  Drier looking ground is to the north of you and the
+swamps continue in all other directions.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7772
+D1
+~
+~
+0 0 7766
+D2
+~
+~
+0 0 7774
+D3
+~
+~
+0 0 7773
+S
+#7774
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The swamps extend endlessly to the north, east and south.
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7773
+D1
+~
+~
+0 0 7767
+D2
+~
+~
+0 0 7774
+S
+#7775
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can wade through the swampy waters west, north and
+east or you can make your way to drier ground to the south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7775
+D1
+~
+~
+0 0 7768
+D2
+~
+~
+0 0 7776
+D3
+~
+~
+0 0 7778
+S
+#7776
+The Swamp Road~
+You walk carefully on a road that winds in between large tree roots,
+cattails, and murky water.  Strange tentacles wave at you from the sides of
+the road, but can't quite seem to reach you.  You pray that whatever is on
+the other end of those stay in the water and leave you be.  You can continue
+along the swampy road east and west or you can explore the swamps to the
+north and south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7775
+D1
+~
+~
+0 0 7769
+D2
+~
+~
+0 0 7777
+D3
+~
+~
+0 0 7779
+S
+#7777
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  You can make out a road to the north and east of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 7776
+D1
+~
+~
+0 0 7770
+S
+#7778
+Myrkwood Swamp~
+You trudge through the murky waters of the swamp, trying hard not to trip
+on objects you can't see beneath the surface.  You grip your weapon tightly
+as you hear the sounds of strange, unseen creatures slithering about in the
+water around you.  The sounds of toads and insects almost deafens you as you
+sludge around.  The swamp extends to the east of you or you can get to the
+road south of you.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7775
+D2
+~
+~
+0 0 7779
+S
+#7779
+The Swamp Road~
+You walk along a damp road that heads off into the Myrkwood Swamps.  A
+sign here bears the legend 'This way to Myrkwood.  Enter at your own risk'
+and it points off to the east.  You can also explore the swamps north of
+you.  
+~
+0 4 2
+Rd     0
+D0
+~
+~
+0 0 7778
+D1
+~
+~
+0 0 7776
+D3
+~
+~
+0 0 7780
+S
+#7780
+On a Muddy Path~
+As you walk long this pathway, your feet make a continuous, annoying
+squishing sound as you sink ankle deep into the muck.  The smell of
+something stagnant looms in the air, and you can hear mosquitos buzzing by
+your ears.  The path continues to the east and west.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7779
+D3
+~
+~
+0 0 7781
+S
+#7781
+On a Muddy Path~
+As you walk long this pathway, your feet make a continuous, annoying
+squishing sound as you sink ankle deep into the muck.  The smell of
+something stagnant looms in the air, and you can hear mosquitoes buzzing by
+your ears.  The path continues to the east and west.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7780
+D3
+~
+~
+0 0 7782
+S
+#7782
+On a Muddy Path~
+As you walk long this pathway, your feet make a continuous, annoying
+squishing sound as you sink ankle deep into the muck.  The smell of
+something stagnant looms in the air, and you can hear mosquitos buzzing by
+your ears.  The path continues to the east and west.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 7781
+D3
+~
+~
+0 0 10716
+S
+#0
+
+
+
+#SPECIALS
+M 7709 spec_breath_acid
+M 7710 spec_thief
+M 7712 spec_cast_mage
+S
+
+
+
+#RESETS
+M 0 7704 3 7703
+M 0 7702 3 7704
+M 0 7711 1 7710
+E 0 7714 0 22
+M 0 7703 3 7711
+E 0 7701 0 12
+M 0 7700 5 7712
+E 0 7700 0 5
+E 0 7703 0 20
+M 0 7708 2 7713
+E 0 7702 0 0
+M 0 7705 3 7714
+M 0 7712 2 7719
+M 0 7707 2 7723
+M 0 7712 2 7723
+M 0 7703 3 7725
+E 0 7701 0 12
+M 0 7708 1 7729
+E 0 7702 0 0
+M 0 7700 5 7730
+E 0 7700 0 5
+E 0 7703 0 20
+M 0 7702 3 7732
+M 0 7705 3 7734
+M 0 7701 2 7736
+O 0 7711 0 7739
+O 0 7710 0 7740
+M 0 7709 1 7741
+E 0 7704 0 24
+E 0 7705 0 20
+E 0 7706 0 15
+M 0 7700 5 7744
+E 0 7700 0 5
+E 0 7703 0 20
+M 0 7701 2 7747
+M 0 7707 2 7748
+M 0 7703 3 7749
+E 0 7701 0 12
+M 0 7710 1 7753
+O 0 7709 0 7754
+M 0 7704 3 7756
+M 0 7706 2 7760
+M 0 7708 2 7762
+E 0 7702 0 0
+O 0 7712 0 7766
+M 0 7700 5 7768
+E 0 7700 0 5
+E 0 7703 0 20
+M 0 7700 5 7774
+E 0 7700 0 5
+E 0 7703 0 20
+M 0 7713 2 7776
+E 0 7716 0 3
+M 0 7702 3 7777
+M 0 7705 3 7778
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

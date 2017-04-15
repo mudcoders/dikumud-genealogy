@@ -1,0 +1,2552 @@
+#AREADATA
+Name        {70-100} Arctic Wasteland    Nosferatu~
+Levels      70 100
+Builders    None~
+VNUMs       20000 20199
+Security    100
+Recall      10210
+Flags       16
+Color       6
+Sounds      &WThe arctic winds howl all around you.~
+End
+
+
+
+#MOBILES
+#20010
+Ice Devil~
+An Ice Devil~
+An ice devil flies above you mocking your bad fortune.
+~
+The Ice Devil is Satan's cold variety of the common demon. The Lord of  
+Darkness has created this species to extend his rule into the arctic areas
+of Storm where other demons way perish due to the lack of fire.
+The Ice Devil is not really aggressive, but his constant mocking is really
+getting to you...
+~
+67 403185728 65552 -333 S
+80 0 0 15000d0+0 0d0+0
+170 0 0 0
+0 0 0
+258 0 0
+>fight_prog 40~
+kick $n
+~
+>fight_prog 30~
+emote sinks its teeth in to your frozen flesh.
+bite $n
+~
+|
+#20011
+Polar Fox~
+A Polar Fox~
+A Polar Fox striving through the snow for food...
+~
+A small white fox with a beautiful bushy tail is running just past you.
+It has probably been near you for a while, expecting you to die very soon.
+~
+1573061 134226472 0 0 S
+50 0 0 4800d0+0 0d0+0
+0 55 0 0
+0 0 0
+259 0 0
+>fight_prog 30~
+bite $n
+~
+|
+#20012
+Snowflake~
+A Snowflake~
+A living Snowflake floats through the cold air...
+~
+Its just a snowflake, no? Hmm..on second thought, this flake seems to be 
+alive, or is it?
+~
+193 565928 0 200 S
+20 0 0 500d0+0 0d0+0
+0 0 100 0
+0 0 0
+257 0 0
+>rand_prog 10~
+mpecho $I flies off into the skies...
+mpteleport
+mpecho $I appears out of the skies....
+~
+|
+#20013
+Polar Bear~
+A Polar Bear~
+A huge Polar Bear attacks you!!
+~
+This big white bear is either upset that you have intruded in his territory
+or he is very hungry...or both. In any case, as soon as he notices you,
+he attacks viciously!
+~
+97 134226472 65536 0 S
+70 0 0 12000d0+0 0d0+0
+70 0 0 0
+0 0 0
+259 0 0
+>fight_prog 35~
+bite $n
+~
+|
+#20014
+Ice Faerie~
+An Ice Faerie~
+An Ice Faerie tries to hide from you...
+~
+You see a small humanoid woman who reminds you of the pixies you have seen
+in other parts of the realm. However, this ice faerie is very shy and tries
+to hide from you.
+~
+67 134815874 16 500 S
+50 0 0 3000d0+0 0d0+0
+0 55 0 0
+0 0 2
+258 0 0
+>fight_prog 35~
+cast 'frost breath' $n
+~
+>fight_prog 30~
+bite $n
+~
+|
+#20015
+Schnee~
+Schnee~
+Schnee guards Lord Winter's Castle!
+~
+Schnee is about six meters tall.  He has four arms and two legs.  His
+entire body seems to be craved out of a single giant block of ice.  He does
+not appear to have any internal organs, you can practically see right
+through him.  However, seeing through him and getting past him are two
+differnent things!  
+~
+99 201335528 0 -333 S
+95 0 0 20000d0+0 0d0+0
+600 0 0 0
+0 0 1
+259 0 0
+>fight_prog 40~
+cast 'frost breath' $n
+cast 'acid breath' $n
+~
+|
+#20016
+Yeti~
+The Yeti~
+The Yeti eyes you curiously...
+~
+You have found the legendary Yeti! He is big, humanoid and has white, shaggy
+fur all over his body. He moves slowly, almost timedly, towards you. 
+Although he looks like a formidable opponent, he does not seem to be hostile
+at all...just curious.
+~
+1572931 134243048 16 500 S
+72 0 0 5250d0+0 0d0+0
+90 0 0 0
+0 0 1
+259 0 0
+>fight_prog 40~
+rake $n
+~
+>fight_prog 25~
+spin
+~
+>death_prog 100~
+mpoload 20030
+~
+|
+#20017
+Ice Drake~
+The Ice Drake~
+The Ice Drake bares his horrible fangs!
+~
+The Ice Drake is almost a mature dragon. He looks much like his mother, the
+White Dragon Lord, but is still a little smaller. To grow to her size, he
+must eat plenty...and you look just about right for a snack!
+~
+99 134750888 0 -333 S
+75 0 0 6000d0+0 0d0+0
+120 0 0 0
+0 0 1
+258 0 0
+#20018
+North Star~
+The North Star~
+The North Star shines brightly...
+~
+&R&WYour eyes cannot bear the intense light of the being in front of you!
+~
+67 470294720 16 500 S
+105 0 0 34179d0+0 0d0+0
+1850 0 0 0
+0 0 0
+2307 0 0
+>fight_prog 40~
+cast 'frost breath' $n
+~
+>fight_prog 15~
+cast 'shatter' $n
+~
+|
+#20019
+Light Piece~
+A Piece of Light~
+A Piece of Light strikes at you!
+~
+&RFlashes of light are burning the retina of your eyes!!
+  
+~
+35 134218280 0 0 S
+50 0 0 750d0+0 0d0+0
+0 0 0 0
+0 0 0
+258 0 0
+#20020
+Frost Giant~
+The Frost Giant~
+The Frost Giant likes to crush mortals!
+~
+The Frost Giant is ancient, huge and mean! He does not care for visitors,
+especially not for mortal ones like you!
+~
+99 201335488 16 -333 S
+90 0 0 12000d0+0 0d0+0
+320 0 0 0
+0 0 1
+258 0 0
+>fight_prog 30~
+~
+>fight_prog 25~
+kick $n
+~
+|
+#20021
+Storm Giant~
+The Storm Giant~
+The Storm Giant is in a rage!
+~
+The Storm Giant is a tremendous-sized woman with a really bad temper! She
+is enraged to see you here and immediately attacks!
+~
+99 201335464 0 -333 S
+90 0 0 12000d0+0 0d0+0
+450 0 0 0
+0 0 2
+258 0 0
+#20022
+Lord Winter~
+Lord Winter~
+Lord Winter is resting here until his time comes...
+~
+Lord Winter is as old as this world! He has seen countless mortals being
+born, growing up, aging and dying. He was here when the "Great Wipe" almost
+eradicated the world....and he will be here long after your bones have
+turned to dust.
+~
+71 469770984 16 -200 S
+105 0 0 33753d0+0 0d0+0
+1370 0 0 0
+0 0 1
+2306 0 0
+>fight_prog 40~
+~
+>fight_prog 30~
+mpechoat $n You feel your defenses weaken.
+cast 'dispel magic' $n
+~
+|
+#20196
+Seal~
+a seal~
+A white seal scuttles along on its belly.
+~
+Small white with wide black innocent eyes, it helplessly moves around on
+its tummy.  It has a few grey spots on its back.  
+~
+65 134217728 131088 400 S
+80 0 0 18000d0+0 0d0+0
+170 0 0 0
+0 0 0
+3 0 0
+>fight_prog 40~
+~
+>fight_prog 30~
+~
+>death_prog 100~
+Mpoload 20003 
+~
+>act_prog 40~
+~
+|
+#20198
+Vlad Impaler~
+Vlad, the Impaler~
+Vlad stands here, eager for your blood!
+~
+~
+99 336142530 16 -600 S
+110 0 0 39918d0+0 0d0+0
+2000 0 0 0
+0 0 1
+3 0 0
+>fight_prog 40~
+cast 'fireball' $n
+~
+>fight_prog 30~
+cast 'fire breath' $n
+~
+|
+#0
+
+
+
+#OBJECTS
+#20000
+handbook book deity~
+the Deity HQ Guideline Book~
+A leather bound book lies here with it's pages flapping in the wind.~
+~
+8 805306368 0 0 1 105
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hq1~
+&BDeity Guidelines:
+&z--------------------------------------------------------------------------------
+&z1..&W>&c Deities are NOT to enter the HQ of another clan w/o the express permission
+     of that clan's deity or one of it's officers.  There have been several
+     fights over people doing this.  Consider it common courtesy.  You don't
+     want people invading your home, don't invade theirs.
+&z2..&W>&c If you find one of your members breaking a rule, don't cover for him, turn
+     him in otherwise you'll find yourself paying for the same problem if you
+     knew.  Some "favoritism" is allowed, being their mortals in your cult who
+     "worship" you, but only within the boundries of what's legal.
+&z3..&W>&c Problems between deities are to be settled amoung the ranks of imms.  If
+     you have a serious problem with another Deity you feel you cannot solve
+     then speak with me.  I'm not going to put up with "catfights" over public
+     channels or even semi-public channels.  To roleplay that two PK deities
+     hate one another is all well and good, but remember, this IS a game and you
+     should be making an effort to work together when out of character.  When
+     immortals start carrying their fights over to public channels you make us
+     all look bad and for usually very little reason.  Once again..if you have a
+     problem you need solved, bring it up with me.
+&c
+These are all I'm asking for now and I feel every one of them is justified and
+is listed because there have been numerous problems in those fields.  I hope you
+remember that regardless of my "personal view/feelings" towards you it has no
+weight in how I view your performance as a Deity.  Some of you should know this
+quite well.  So please don't keep a problem to yourself because you feel I don't
+like you.  Truth is, you can hate me all you want, just as long as you do your
+job and keep it between us so as not to cause public problems.  Make sense?
+&b
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/10/96
+~
+E
+book~
+Yellow pages covered with dark black ink flap wildly in your grasp with a slight
+scratching sound from the age of the pages.  (Keywords aren't case sensitive.)
+&C(&B"&wlook HQ<number>&B"..ie.."&wlook HQ1&B"&C)
+&b
+&z1..&W> &BDeity Guidelines
+&z------- &WItems &z-------
+&z2..&W> &BGeneral Clan EQ Guidelines
+&z3..&W> &BClan level 30/50 & 65/75 Equipment
+&z4..&W> &BClan &C"&BChampion&C"&B level 100 Equipment
+&z5..&W> &BClan Potions&c\&BPills&c\&BScrolls
+&z------- &WRooms &z-------
+&z6..&W> &BHQ Room Guidelines
+&z7..&W> &BClan HQ Exits
+&z------- &WMobs &z--------
+&z8..&W> &BClan Guardian Guidelines
+&z9..&W> &BTrade-in Mobs
+&z10.&W> &BClan Spell Mob Bribe Amounts
+&z11.&W> &BClan Non-Guardian Mobs (ie shopkeepers, healer, etc..)
+&z------- &WMisc &z--------
+&z12.&W> &BClan Raids
+&z13.&W> &BClan Skills\Spells
+~
+E
+hq2~
+&BGeneral Guidelines on Clan EQ:  (not potions, pills & scrolls)
+&z--------------------------------------------------------------------------------
+&z1..&W>&c Clan EQ can't be a weapon or body armor.
+&z2..&W>&c Clan EQ can't be an item that can be worn twice upon a character. (ie neck,
+     finger, wrist, orbit & ankle)
+&z3..&W>&c Clan EQ should be cost: 0...it's not supposed to be sold.
+&z4..&W>&c If you're an evil clan, it's in your own best interests to make clan eq
+     anti-good..and vice versa for a good clan.  Incase you're plooted.
+&z5..&W>&c Clan EQ should be 'nodamage'.
+&z6..&W>&c Clan EQ should have a keyword of the clan in it's name.  (ie Elysium..etc.)
+&z7..&W>&c Clan EQ shouldn't have these flags: nodrop & noremove.  This only harms
+     your own members since it's them that use those items the most.
+&z8..&W>&c On addaffects for clan EQ:
+  &ra.&W)&c Hitroll & Damroll will be considered as one addaffect together.
+  &rb.&W)&c Mana & Blood will be considered as one addaffect together and I'd like to
+      see those two on every piece, except a clan that doesn't induct
+      spellcasters.
+  &rc.&W)&c You can bunch addaffects like saving-spell and saving-breath to get -30
+      saving-spell OR saving-breath if you wish, but together they still count
+      as 2 addaffects since you get the advantage of both.  I'd like to keep
+      this bunching down to 2 types at a time and none bunching with damroll.
+&c
+HQ rules aren't set in stone, so please if you wish to do something different
+speak to me.  I'll very likely let you do what you wish as long as it's
+reasonable.  And if I won't allow a particular change it's with good reason.
+These guidelines to follow were set simply to give some base guidelines to start
+from.  They don't tell you how to "dress the stage", but merely how I wish the
+"nails to be hammered in".  Anyone who has questions about any of the guidelines
+please don't hesitate to speak to me.
+&c
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/9/96
+~
+E
+hq3~
+&BClan Equiptment Outline - Levels (30 - 65) / ( 50 - 75 )
+&z--------------------------------------------------------------------------------
+&PClan Equiptment &C(Peaceful 30) &R-<Deadly 50>-
+&PChoose &W>&z4&W<&P of the available options below:
+&r1&z)&c  HIT POINTS  &r+50
+&r2&z)&c  MANA &r+30     &cBLOOD &r+10
+&r3&z)&c  ARMOR CLASS &r-50
+&r4&z)&c  STAT BOOSTS &r+2 &c(ie/ STR +2, or WIS +1 and DEX +1)
+&r5&z)&c  ANTI-DISARM &r+30
+&r6&z)&c  SAVING-SPELL &r-10
+&r7&z)&c  SAVING-BREATH &r-10
+&r8&z)&c  HIT ROLL & DAMAGE ROLL &r+7 &c/ &r+7
+&b
+&PClan Equiptment &C(Peaceful 65) &R-<Deadly 75>-
+&PChoose &W>&z5&W<&P of the available options below:
+&r1&z)&c  HIT POINTS &r+75
+&r2&z)&c  MANA &r+65     &cBLOOD &r+21
+&r3&z)&c  ARMOR CLASS &r-75
+&r4&z)&c  STAT BOOSTS &r+2 &c(3 total: +2 STR & +1 WIS or a combo)
+&r5&z)&c  ANTI-DISARM &r+65
+&r6&z)&c  SAVING-SPELL &r-15
+&r7&z)&c  SAVING-BREATH &r-15
+&r8&z)&c  HIT ROLL & DAMAGE ROLL &r+11 &c/ &r+11
+&c
+You may add an invoke to your lv65/75 item from the following spells or any
+similar that -I- okay.  Since you get a 2nd invoke here I want it to be a small
+spell, not something as good as the champ item.  &z(&cSpells: &renhanced strength,
+giant strength, heal, web, pass door, haste, detect hidden, detect invis, invis,
+mass invis, astral walk, fly, locate object & refresh&z)
+&cAlso it is 15/15 invokes as the limit.
+&b
+&P*** NO MORE BUNCHING POINTS ONTO DAMAGE ROLL... MUST SPLIT!
+&b
+&RIMPORTANT &W- &cPlease ADD as an available Addaffect that counts as 1 point,
+            a permanent spell like fly, heighten senses, combat mind,
+            invis, scry.  NO SHIELDS.  (If you want...)
+&c
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/10/96
+~
+E
+hq4~
+&BChampion (lv100) Clan Equipment
+&z--------------------------------------------------------------------------------
+&r15dr / 15hr  &cMaximum points can be used for Damage Roll and/or Hit Roll.
+&r100 &cMaximum points can be used for Hitpoints.
+&r100 &cMaximum points can be used for Mana.
+ &r33 &cMaximum points can be used for Blood.
+&r100 &cMaximum points can be used for Armor Class.
+&r100 &cMaximum points can be used for Movements.
+&r-20 &cMaximum points can be used for Saving-Spell.
+&r-20 &cMaximum points can be used for Saving-Breath.
+&r100 &cMaximum points can be used for Anti-Disarm.
+  &r4 &cMaximum points can be used for 2 Stat Raises. (no more than +2/stat)
+  &r1 &cMaximum Permanent Spell such as "fly -1" is allowed
+&c
+You may add any of the &w>&z6&w<&c of the listed addaffects to your Champion Equipment.
+Hitroll & Damroll are considered a combined addaffect, therefore having both on
+an item is only considered to be 1 addaffect.
+&z*&cPermanent Lights are allowed and does not count as an addaffect.
+&c
+Champ EQ now has a max of 25 invoke charges.
+These spells may &R*&zNOT&R*&c be any of the following:
+&RSanctuary  &r-  &RShields (ANY)  &r-  &RBiofeedback  &r-  Or &RANY OFFENSIVE SPELL.
+&cOffensive is &RANY&c spell that is used against a MOB or PLAYER.
+ie/ Fireball, enchanted song, hex, curse, blind, holy fires, meteor swarm etc.
+&z
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/10/96
+~
+E
+hq5~
+&BClan Potions\Pills\Scrolls: (The types listed can be either)
+&z--------------------------------------------------------------------------------
+&cThe type of HP or Mana potion you use is up to you, but you must supply at least
+one type of Mana, HP & Vitality potion.
+&cPotion Guidelines:
+    &Wa&z) &cWeight &w= &r1
+    &Wb&z) &cPlvl   &w= &cLevel of the Potion.  (&rPeaceful = 30 & PK = 50&c) 
+    &Wc&z) &cSlvl   &w= &rLevel of the Potion's spells.
+    &Wd&z) &cFlags  &w= &rno_damage, glow & nolocate
+&z ____________________________________________________________________________
+ &z|&WPotion Type &z|&WPlvl&z|&WSlvl&z|&WSpell 1       &z|&WSpell 2       &z|&WSpell 3       &z|&WCost  &z|
+ &z|------------|----|----|--------------|--------------|--------------|------|
+ &z|&WHP Potion   &z|  &R??&z| &r100&z|&BCure Critical &z|&BCure Critical &z|&BCure Critical &z| &r18000&z|
+ &z|&WMana Potion &z|  &R??&z| &r100&z|&BMana          &z|&BMana          &z|&BMana          &z| &r15000&z|
+ &z|&WVitality P. &z|  &R??&z| &r100&z|&BRefresh       &z|&BCure Poison   &z|&BCure Blindness&z| &r15000&z|
+ &z|&WHP Potion   &z|  &R??&z| &r100&z|&BHeal          &z|&BHeal          &z|&BRefresh       &z| &r10000&z|
+ &z|&WMana Potion &z|  &R??&z| &r100&z|&BMana          &z|&BMana          &z|&BRefresh       &z| &r10000&z|
+ &z----------------------------------------------------------------------------
+&b
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq6~
+&BRoom Guidelines:
+ &z_______________________________________________________________________________
+ &z|&BType of Room      &z|&RFlags that I -want- in                                    &z|
+ &z|------------------|----------------------------------------------------------&z|
+ &z|&cMortal Offices    &z|&rno_in, no_out, pkill, no_shadow, private, noscry          &z|
+ &z|------------------|----------------------------------------------------------&z|
+ &z|&cDeity's Office    &z|&rThis is up to you completely                              &z|
+ &z|------------------|----------------------------------------------------------&z|
+ &z|&cGuardian Rooms    &z|&rno_in, no_out, pkill, no_shadow, noscry, no_flee          &z|
+ &z|------------------|----------------------------------------------------------&z|
+ &z|&cStores            &z|&rno_in, no_out, pkill, no_shadow, indoors, noscry, no-magic&z|
+ &z|                  |&rbank & smithy as needed                                   &z|
+ &z|------------------|----------------------------------------------------------|
+ &z|&cSafe Room         &z|&rno_in, no_out, no_shadow, noscry, safe  (Peaceful clans)  &z|
+&z |------------------|----------------------------------------------------------|
+ &z|&cUnspecified Rooms &z|&rno_in, no_out, pkill, no_shadow, noscry                   &z|
+&z &z|__________________|__________________________________________________________|
+&c
+These are the flags I do NOT want in Clan Headquarters:
+&c
+&RSAFE  CONE_OF_SILENCE  NO_MOB  NO_FLEE  SILENT  SOLITARY  PRIVATE
+(&rNo HELL's in HQ&R)
+&c
+&cThese flags I don't want to see except where specified above.  I would suggest
+you make either your recall room or your healer's room the room that is SAFE.
+Other flags may be used as the Deity sees fit.
+&b
+&zArch
+&z-<&CClan Administartor&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+handbook~
+Yellow pages covered with dark black ink flap wildly in your grasp with a slight
+scratching sound from the age of the pages.  (Keywords aren't case sensitive.)
+&C(&B"&wlook HQ<number>&B"..ie.."&wlook HQ1&B"&C)
+&b
+&z1..&W> &BDeity Guidelines
+&z------- &WItems &z-------
+&z2..&W> &BGeneral Clan EQ Guidelines
+&z3..&W> &BClan level 30/50 & 65/75 Equipment
+&z4..&W> &BClan &C"&BChampion&C"&B level 100 Equipment
+&z5..&W> &BClan Potions&c\&BPills&c\&BScrolls
+&z------- &WRooms &z-------
+&z6..&W> &BHQ Room Guidelines
+&z7..&W> &BClan HQ Exits
+&z------- &WMobs &z--------
+&z8..&W> &BClan Guardian Guidelines
+&z9..&W> &BTrade-in Mobs
+&z10.&W> &BClan Spell Mob Bribe Amounts
+&z11.&W> &BClan Non-Guardian Mobs (ie shopkeepers, healer, etc..)
+&z------- &WMisc &z--------
+&z12.&W> &BClan Raids
+&z13.&W> &BClan Skills\Spells
+~
+E
+hq7~
+&BClan HQ Exits:
+&z--------------------------------------------------------------------------------
+&cFrom now on I want 3 exits in every clan HQ.  What exits depends on what
+alignment you claim your clan is.  Neutral aligned clans shall consider
+themselves as good aligned clans in this list.
+&z _______________________________________________________________
+&z |&BTown\Place             &z|&RVnum    &z|&CAlignment  &z|&BReferrence Point&z|
+&z |-----------------------|--------|-----------|----------------|
+&z |&CBethaven               &z|  &r25001 &z|&cAll aligns &z|&cJezabel         &z|
+&z |&CRavenwood              &z|   &r1301 &z|&cEvil clans &z|&cLiakhara        &z|
+&z |&CRavenwood - outside    &z|   &r5300 &z|&cGood clans &z|&cnone            &z|
+&z |&CHammerheim             &z|  &r10211 &z|&cAll aligns &z|&cRodgaar         &z|
+&z |_______________________|________|___________|________________|
+&b
+&cI want evil clans exiting to Bethaven as well simply because of the numerous
+things built around that town.  Bethaven is the mud's heart in truth for now so
+it shouldn't be cut off from those of evil alignment.  Your clan members should
+be allowed easy access to the donation rooms, class noteboard, etc...  That and
+Bethaven itself isn't really a "good" aligned city, with thugs and vagabonds
+roaming it's streets freely.
+&b
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/8/96
+~
+E
+hq8~
+&BClan Guardian Mob Guidelines:
+&z--------------------------------------------------------------------------------
+&zGATEGUARDS:
+&C-----------
+&cInstead of 3 gatekeepers, we've decided to leave it at 1 gatekeeper.  Basically
+I'm looking for a cross between the Dragon King w/dispel magic and a champion on
+a major PCP high.  He can't use 'shatter' or 'molecular unbinding' though, nor 
+is he allowed to load himself as a death_prog.  Here's what I'd like to see:
+&clevel   &w=&r 106 (This'll keep death field off your guard)
+&cHP      &w=&r 30,000hp
+&cShields &w=&r As many as you can pile on w/o using progs to add 'blade barrier' or
+          'field of decay'.
+&cOther than that, have a blast..you're limited to 1 and I want him hard as can
+be, but still passable for a couple champs.  With 3 before we'd likely have
+almost no one raiding..it just wouldn't be worth it.
+&c
+&BEquipment for GATEKEEPER guardians:
+&cGuardians may wear any of your clan equipment and in addition may dual wield a 
+lv100 -piercing- weapon that you create.  The flags for the weapon are set as 
+this:
+&clevel       &w=&r 100
+&cExtra       &w=&r no_damage, nolocate, inventory, poisoned, chaotic & flame.
+&ctake        &w=&r take & wield
+&caddaffects  &w=&r hitroll +20 & damroll +20
+&cattack type &w=&r piercing
+&b
+&zWANDERING CLAN GUARDIANS:
+&C-------------------------
+&cWandering clan guardians are built in the exact same way, except for the
+following changes:
+&cYou may have 1 wandering guardian per 10 rooms in your HQ that are USED.  Not
+empty.  1 per 10 rooms rounded up.
+&clevel &w=&C (Peaceful 104)&R -<PK 100>-
+&cact &w=&r stay_area
+&c
+Any questions regarding something I've left out here feel free to leave me a
+note on or ask me if I'm around.
+&b
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/12/96
+~
+E
+hq9~
+&BTrade-in Mob setup:
+&z--------------------------------------------------------------------------------
+&cFor the sake of example I'll use the following assumptions on the item...
+&cname (keywords)  &w= &rsilver dragon helm elysium
+&citem vnum        &w= &r2159
+&cclan's ID #      &w= &r2
+&cmobprog type     &w= &rgive_prog
+&cmobprog argument &w= &rsilver dragon helm elysium
+&cmobprog commands &w=
+&C--------------------------------------------------------------------------------
+&remote studies the object a moment.
+if isclan($n) == 2
+  say Let me see what I can do.
+  emote fiddles with the item for a bit.
+  mpjunk helm
+  mpoload 2159
+  give helm $n
+  say That should fix it.
+else
+  say Why thank you for returning this object that is obviously not yours.
+  mpjunk helm
+  say Now, do yourself a favor and get the hell out of this clan's home.
+endif
+&C--------------------------------------------------------------------------------
+&cFeel free to add in\change emotes and says as you wish, those in are purely for
+example.  With this form of program the only times a member will need to be
+given a new "champ" item will be when they're first inducted, die and lose their
+corpse or are PK'd and plooted.  But this is only for the "champion lv100" item
+and the "lv65/75" item.
+&z
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq10~
+&BClan Spell Mob Bribe Amounts
+&z--------------------------------------------------------------------------------
+&cSpell Mob will be level 100.
+Tyrion Xavier has offered Tuknir Deathlock (Vnum 9116 port 2222) as reference
+for creating a spell mob.
+&b
+&w(&r50,000 &ccoins&w)  &zHealing Hands &C(Mob must be neutral+ align)
+&w(&r50,000 &ccoins&w)  &zHaste
+&w(&r80,000 &ccoins&w)  &zMental Block
+&w(&r10,000 &ccoins&w)  &zInvisibility
+&w(&r10,000 &ccoins&w)  &zFly / Levitate
+&w(&r125000 &ccoins&w)  &zSanctuary
+&w(&r25,000 &ccoins&w)  &zGiant Strength
+&w(&r25,000 &ccoins&w)  &zCure Blindness
+&w(&r50,000 &ccoins&w)  &zCombat Mind
+&c
+Mobprograms to purge the room, and to have the Mob cast 'true sight' on himself
+can be triggered with no charge.
+&b
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq11~
+&BGuidelines for Non-Guardian Clan Mobs:
+&z--------------------------------------------------------------------------------
+&BTypes of Mobs: &cHealer, Blacksmith, Banker, Vampire Feed Mob, Baker, Secretaries,
+               EQ dispensers, Potion Sellers, Trade-In Mob, General Store &
+               other misc. mobs.
+Many of the types listed above can be joined btw.  You don't have to have a
+seperate store for clan potions and containers or a seperate mob for doing the
+trade-in process or the EQ dispensing process.  Those are listed just incase you
+wish to spread them out.  Guidelines for most mobs should be the same.
+  Level &w=&r 100
+  &cHP & Shields &w=&r Set by Grunt's Mob Creation Book
+&cThe only exception to this is the Vampire Feed Mobs.  I'd like those to have an
+HP amount of 300,000 and be level 1.  Also add a mobprog to them like this:
+&cMobprog Type  &w=&r speech_prog
+&cProg Argument &w=&r "quit" (Whatever you wish really, but have it in the room desc.)
+&cProg Commands &w=&r
+&z--------------------------------------------------------------------------------
+&rif isclan($n) == <&GYour clan number, check 'clans'&r>
+  emote shoves you away roughly screaming to be left alone.
+  mptransfer $n <A room bordering the mob>
+endif
+&z--------------------------------------------------------------------------------
+&cAlso please add this prog to Vampire Feed mobs as well:
+&cMobprog type  &w=&r rand_prog
+&cProg Argument &w=&r 50
+&cProg Commands &w=&r c 'complete heal' self
+&c
+These are for your member's convience.  The rest I leave to you.
+&c
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq12~
+&BClan Raids:
+&z--------------------------------------------------------------------------------
+&BRules regarding Deities defending their HQ:
+  &z1.&W>&c Deities may ONLY attack those mortals within their HQ, not those just
+      outside.
+  &z2.&W>&c Deities cannot do anything a mortal cannot.  This means that the use of
+      immortal commands (force, goto..etc..) is ILLEGAL.
+  &z3.&W>&c You're free to use only spells or equipment accessible to mortals.  Please
+      do NOT use items from a proto area that isn't still stuck on 2222.  Also
+      use only your own clan skill incase any of you Deities get 'mset'.
+  &z4.&W>&c The use of area attack spells such as 'psychic quake', 'gas breath' or
+      'ultrablast' are probited due to their damage being based in hp and your
+      ability to have 30k hp.  You'd simply kill them in one shot w/multiburst.
+&c
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq13~
+&BClan Skill\Spell Guidelines:
+&z--------------------------------------------------------------------------------
+&cThis I pretty much leave to you, hoping you'll find something creative that
+supports your clan theme, but I feel there need be a couple pointers on what
+type of skill\spell not to choose:
+&c
+&z1..&w>&c I'd like not to see skills that are built off of a spell\skill that is the
+     basis for damage of a particular class.  Skills like backstab for thieves
+     or multiburst\spellcraft for mages.  To give these to all your clan members
+     hurts the class the ability comes from in fights.  Makes them less useful
+     in groups as well.  Think of it this way..don't use the best to skills of
+     any one class.  Like a mage's spellcraft & multiburst, or a cleric's
+     dispel magic & dancing lights, a warrior's enhanced damage two and berserk.
+&z2..&w>&c I'd also like not to see skills that help only one or two classes UNLESS
+     your clan is based around that one or two classes.  Like a skill that in
+     truth only helped thieves, I'd rather not see unless your clan is one of
+     purely thieves.
+&c
+These are all I'm going to limit on them and that only so we don't get skills
+that either take away power from a particular class or only help one class of
+your clan.  Aside from those..think up original stuff and check with me, Lacey,
+and Thalador.
+&c
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+#20001
+TWO~
+sign Two~
+Sign Two...type read/look Two to read.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+two~
+Okay, more rules on clans:
+  
+1) No unclanned mortal character may posses any clan equipment whatsoever.
+2) Trading of clan equipment is not allowed until we decide otherwise.
+3) All clan equipment has to have the name of the clan set with name.
+   That way, we can easily ofind and owhere all clan equipment.
+   This does not apply to clan containers or potions.
+4) Clan HQs can have more then one exit. However, all exits must lead to
+   either Bethaven or Hammerheim.
+5) No portals leading out of the HQs are allowed.
+6) No blood, hp or mana fountains are allowed in HQs.
+7) No Clan equipment under level 30 is allowed.
+8) No Clan can give out more then 3 clan items per mortal.
+9) Shops, Smithy, Bank, Bloodmob, Water fountains, Healers, Trainers,
+   Libraries, Offices for the leaders, Donation boxes, etc are all allowed
+   in the HQs.
+10) Leveling Mobs or armor/weapon items that can only be obtained in the
+    HQs are STRICTLY prohibited!
+~
+#20002
+Polar boots~
+&CA pair of &BPolar boots ~
+&CA pair of &BPolar boots&C are lying on the ground here.~
+~
+9 2197 0 0 65 50
+10~ 0~ 0~ 0~
+3 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -50
+A
+13 50
+A
+24 -10
+A
+23 -10
+A
+25 10
+#20003
+seal eye~
+a seal eye~
+A seal eye lies torn here from its owner.~
+~
+26 2050 0 0 1 82
+85~ heal~ heal~ heal~
+2 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20010
+Icy Gem~
+an Icy Gem~
+A sparkling stone as white as snow and clear as ice lies here.~
+~
+8 1 0 0 1 20
+0~ 0~ 0~ 0~
+1 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20011
+Polar Pelt~
+a Polar Bear's Pelt~
+A white pelt made from the hide of a polar bear...~
+~
+9 268435458 0 0 1025 70
+20~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+12 20
+A
+25 10
+A
+19 7
+A
+18 7
+#20012
+scale~
+a scale~
+A huge polished scale stands here...~
+~
+29 3 0 0 0 200
+10193~ 0~ 0~ 0~
+10000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20013
+Polar Light~
+the Polar Light~
+&WThe &pP&Bo&Gl&Ra&Yr &WLight~
+~
+29 33554529 0 0 0 200
+10210~ 0~ 0~ 0~
+10000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20014
+Icy Drink~
+the Icy Drink~
+A flask, filled with an ice cold magical fluid...~
+~
+10 268435681 0 0 1 90
+95~ sanctuary~ heal~ refresh~
+2 0 50 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20015
+Icicle~
+an Icicle~
+A giant, glowing icicle...~
+~
+9 268435521 0 0 16385 95
+15~ 0~ 0~ 0~
+2 70 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 -50
+A
+23 -10
+A
+13 95
+A
+17 -90
+A
+12 30
+#20016
+Ice Key~
+the Ice Key~
+A cold, icy key...~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20017
+Yeti Fur~
+a Piece of Yeti Fur~
+A small piece of white, shaggy fur...~
+~
+9 1090 0 0 1048577 70
+20~ 0~ 0~ 0~
+2 30 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+A
+24 -10
+A
+17 -60
+A
+13 50
+#20018
+Ice Tube~
+the Ice Tube~
+A cylindrical container crafted from magical ice...~
+~
+15 872415300 0 0 1 80
+152~ 5~ 0~ 0~
+2 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20019
+Ice gloves~
+the Ice Gloves~
+Icy gloves radiating with raw chaos...~
+~
+9 67110912 0 0 129 75
+20~ 0~ 0~ 0~
+2 50 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 40
+A
+13 50
+A
+23 -10
+A
+17 -40
+>wear_prog 100~
+0
+if ispc($n) == 1
+     mpechoat $n Your hands grow cold and numb from the icy despair.
+endif
+~
+|
+#20020
+Ice Rear Claws~
+the Icy Rear Claws~
+Boots, made from the rear claws of the Ice Drake...~
+~
+9 67110912 0 0 65 75
+20~ 0~ 0~ 0~
+5 70 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 40
+A
+19 7
+A
+18 7
+A
+2 -1
+#20021
+earring frost~
+the Frost Earring~
+&CA earring made of frost is here.~
+~
+9 2049 16 0 524289 90
+20~ 0~ 0~ 0~
+1 150 0 0 0
+5 0
+frost breath~
+12 12
+0 0 0
+A
+25 10
+A
+12 80
+A
+13 80
+A
+17 -50
+A
+24 -5
+#20022
+Storm Earring~
+the Storm Earring~
+A powerful looking earring...~
+~
+9 2049 524 0 524289 90
+20~ 0~ 0~ 0~
+1 150 0 0 0
+5 0
+icestorm~
+12 12
+0 0 0
+A
+12 90
+A
+24 -15
+A
+13 25
+A
+17 -45
+#20023
+Sword North Star~
+the North Star Sword~
+An incredibily powerful sword in the right hands...~
+~
+5 100664640 0 0 8193 100
+0~ 27~ 85~ 1~
+10 400 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 100
+A
+17 -100
+A
+12 75
+A
+24 -25
+A
+19 180
+A
+18 150
+A
+13 100
+#20024
+Bracers Knowledge~
+the Bracers of Knowledge~
+Ancient bracers that radiate with the essence of wisdom...~
+~
+9 33557568 512 0 4097 100
+25~ 0~ 0~ 0~
+3 350 0 0 0
+5 0
+know alignment~
+-1 -1
+0 0 0
+A
+24 -10
+A
+13 70
+A
+12 50
+A
+17 -50
+A
+25 10
+#20025
+Ring Light~
+the Ring of Light~
+A ring of great power radiates here...~
+~
+9 33555712 512 0 3 100
+25~ 0~ 0~ 0~
+1 300 0 0 0
+5 0
+continual light~
+25 25
+0 0 0
+A
+13 75
+A
+17 -25
+A
+12 80
+A
+25 20
+A
+23 -10
+A
+24 -10
+#20026
+Key Light~
+the Key of Light~
+A strange, flaming key...yet it feels soo cold!?~
+~
+18 301990016 0 0 1 1
+0~ 0~ 0~ 0~
+1 1 0 100 0
+0 0
+reserved~
+0 0
+0 0 0
+#20027
+Chunk Ice~
+&WA Huge Chunk of Ice~
+A trememdous chunk of ice...~
+~
+5 65 0 0 8193 90
+0~ 50~ 80~ 8~
+100 120 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 20
+A
+24 -20
+A
+18 70
+A
+19 70
+A
+13 85
+#20028
+Sphere Light~
+&WThe Light of the North~
+A glowing sphere of icy, white light...~
+~
+1 536873025 0 0 1 100
+0~ 0~ -1~ 0~
+2 400 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 2
+A
+25 20
+A
+23 -10
+A
+24 -10
+A
+17 -80
+A
+13 80
+#20029
+Amulet Winter~
+the Amulet of Winter~
+An icy amulet that once belonged to Lord Winter...~
+~
+9 6145 0 0 5 95
+25~ 0~ 0~ 0~
+1 200 0 0 0
+5 0
+detect hidden~
+50 50
+0 0 0
+A
+24 -15
+A
+23 -15
+A
+13 50
+A
+17 -80
+A
+13 80
+A
+12 25
+#20030
+crystal key~
+crystal key~
+A sparkling key made of crystal lies here.~
+~
+18 129 0 0 1 1
+0~ 0~ 0~ 0~
+1 10 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20031
+impaling ice spear~
+an impaling ice spear~
+An impaling ice spear~
+~
+5 100663296 0 0 8193 102
+0~ 0~ 0~ 11~
+3 500 0 0 0
+5 0
+frost breath~
+10 10
+0 0 0
+A
+19 90
+A
+18 75
+A
+13 100
+A
+17 -100
+A
+26 60
+A
+12 50
+#20032
+snow cone~
+&Wa snow &Cc&wo&zn&We&X~
+A frosty serving of snow cone lies here.~
+~
+19 0 0 0 16385 1
+12~ 0~ 0~ 0~
+1 5 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#20033
+crude bone head piece~
+&WA crude bone head piece&P~
+A head piece fashioned from human bones lies here.~
+~
+9 2 0 12928 17 70
+0~ 0~ 0~ 0~
+3 30 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 70
+A
+3 2
+A
+17 -70
+A
+102 -1
+>rand_prog 5~
+0
+emote sings a sad tune of its owner's demise.
+emote sighs sadly.
+~
+|
+#20188
+Ankle Guard Quest~
+an Ankle Guard~
+A piece of armor designed to protect the ankles...~
+~
+9 805310465 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+3 1
+A
+4 1
+A
+2 1
+A
+5 1
+A
+18 5
+A
+19 4
+#0
+
+
+
+#ROOMDATA
+#20010
+A Frozen Trail~
+&WYou are travelling further north following a thin, snow covered trail.
+The temperature is now well below zero, and the chilling wind is tearing
+mercilessly on your clothes and armor.  To the south, you can make out the
+icy portal.  
+~
+0 401420 2
+Rd     0
+D0
+~
+~
+0 0 20011
+D2
+~
+~
+0 0 10224
+S
+>enter_prog 100~
+0
+if ispc($n) 
+     mpechoat $n &WYou are blinded by the sudden cold and whiteness of what lays before you.
+endif
+~
+|
+#20011
+A Frozen Trail~
+&WThe cold is really starting to get to you.  Your fingers, ears and nose
+are red and half-frozen.  The trail is getting so vaguely outlined that it
+becomes very difficult to follow.  Only because of your keen, well-trained
+senses, you are able to follow the trail eastward.  You can also goto the
+south to escape from the chill of the Arctic Freezer.  
+~
+0 401432 2
+Rd     0
+D1
+~
+~
+0 0 20012
+D2
+~
+~
+0 0 20010
+S
+#20012
+Losing the Trail~
+&WThe trail, or what was left of it, has ended.  No matter how hard you
+search it just has disappeared under all the snow and ice.  East of you, you
+can see an endless frozen wasteland that does not look very inviting.... 
+And on top of all, it still seems to get colder!  
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20013
+D3
+~
+~
+0 0 20011
+S
+#20013
+Arctic Wasteland~
+&WYou are blinded by the snow and ice around you! You are slipping
+and stumbling over the frozen land. All your senses are useless
+due to the raging blizzard. With every step your body loses a
+little more warmth and energy to the merciless elements.
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20014
+D3
+~
+~
+0 0 20012
+S
+#20014
+Arctic Wasteland~
+&WContuing snow is all around.  All over the place the only visible thing
+is snow and ice and white.  The skies seem grey and white.  There are snow
+peaked mountains up ahead.  It seems to get colder by the second but it
+doesn't matter cause you've long since lost sensation in your extremities.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20024
+D1
+~
+~
+0 0 20015
+D2
+~
+~
+0 0 20057
+D3
+~
+~
+0 0 20013
+S
+#20015
+Arctic Wasteland~
+&WWhite fields of ice and cold for miles up ahead.  The temperature seems
+colder as you travel further into the wasteland.  The Sun when it shines
+doesn't seem to penetrate the cold atmosphere that hovers above.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20023
+D1
+~
+~
+0 0 20016
+D2
+~
+~
+0 0 20056
+D3
+~
+~
+0 0 20014
+S
+#20016
+Arctic Wasteland~
+&WWhite fields of ice and cold for miles up ahead.  The temperature seems
+colder as you travel further into the wasteland.  The Sun when it shines
+doesn't seem to penetrate the cold atmosphere that hovers above.  There are
+exits seemingly all around you.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20022
+D1
+~
+~
+0 0 20017
+D2
+~
+~
+0 0 20055
+D3
+~
+~
+0 0 20015
+S
+#20017
+Arctic Wasteland~
+&WFrozen fields for miles on end.  No one can survive in this weather. 
+You wonder how you made it this far.  The barren trees seem to howl along
+with the merciless cold wind.  The bleak trail continues east and west.  Or
+so it seems.  
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20018
+D3
+~
+~
+0 0 20016
+S
+#20018
+A Lost Trail~
+&WIn the midst of all the snow and ice here, you make out a very faint
+trail leading to the east.  West of here, the trail is completely burried
+under several meters of snow and ice.  The cold bites into your bones and
+freezes all your limbs but continuing seems to be the only way out of this
+hell.  
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20019
+D3
+~
+~
+0 0 20017
+S
+#20019
+A Lost Trail~
+&WThis trail is very faint!  It takes all your concentration to follow
+it.  The chilling winds and the extremely cold temperature make this all the
+more difficult.  The trail appears to lead to the west from here.  
+~
+0 268836888 2
+Rd     5
+D3
+~
+~
+0 0 20018
+S
+#20020
+Impaler's Dungeon~
+&wYou have come to another floor in the icy cave and thoughts of not
+making it out of here alive assail you all at once.  The dank and musty
+dungeon billows with the breath from your face fighting against the icy
+chill.  The only way is an icy pane of glass up.  
+~
+0 273031193 0
+Rd     5
+D4
+~
+icepane~
+119 0 20026
+S
+#20021
+Arctic Wasteland~
+&WThe fields of cold bleak icy banality lies ahead for many many miles. 
+The cold bites deep into your body and seeps into your soul bringing on
+despair.  The trail leads east and west.  The icy winds grip the land
+tightly in its unrelentless grip.  
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20021
+D3
+~
+~
+0 0 20022
+S
+#20022
+Arctic Wasteland~
+&WSearing cold air all around and white fields of ice and desolate trees
+are all that you see for miles.  All around there are exits, you seem to see
+the same sights all around.  The wind picks up speeed every now and then
+blasting down at you.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20031
+D1
+~
+~
+0 0 20021
+D2
+~
+~
+0 0 20016
+D3
+~
+~
+0 0 20023
+S
+#20023
+Arctic Wasteland~
+&WWhite fields of ice and cold for miles up ahead.  The temperature seems
+colder as you travel further into the wasteland.  The Sun when it shines
+doesn't seem to penetrate the cold atmosphere that hovers above.
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20030
+D1
+~
+~
+0 0 20022
+D2
+~
+~
+0 0 20015
+D3
+~
+~
+0 0 20024
+S
+#20024
+Arctic Wasteland~
+&WBlinding snow all around for as far as your eyes will take you.  You
+wonder if you will ever make you way out of here alive.  Being frozen to
+death isn't an option you'd like to consider and you see that the field
+continues in all directions of bleak.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20029
+D1
+~
+~
+0 0 20023
+D2
+~
+~
+0 0 20014
+D3
+~
+~
+0 0 20025
+S
+#20025
+Arctic Wasteland~
+&WThe path you are on is frozen and bleakness surrounds your every view. 
+The freezing wind bites into your bones making movement difficult.  There
+seems to be no end to this frozen hell.  The path seems to continues east
+and west only in this frozen land nothing is as it seems.  
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20024
+D3
+~
+~
+0 0 20025
+S
+#20026
+The Yeti's Hideout~
+&W&CYou were wandering the arctic wasteland for so long before you found
+this cave!  Your eyes are still somewhat snow blind and you have no feeling
+in most of your body parts.  Inside this cavern, the temperature seems to be
+significantly higher than out in the open tundra...  A good place to rest! 
+But then you hear some grunting from the far corner of the shelter.  You
+wonder what it may be.  Maybe nothing..  You hope.  
+~
+0 4595725 0
+Rd     0
+D1
+~
+Cave~
+3 0 20027
+D5
+~
+icepane~
+119 20030 20020
+S
+#20027
+Arctic Wasteland~
+&WYou stand before a cave of ice which emanates waves of chill reaching
+into your consciousness threatening to wipe it out.  From inside you hear a
+deadly quiet.  It is such a contrast to the howling winds and the blizzard
+that rages outside the cave.  You can see a glimmer coming from the crack at
+the bottom of the cave entrance.  There seems to be exits north and east and
+south.  The cave exit is to the west.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20027
+D1
+~
+~
+0 0 20028
+D2
+~
+~
+0 0 20027
+D3
+~
+Cave~
+3 0 20026
+S
+#20028
+Arctic Wasteland~
+&WFrozen fields for miles on end.  No one can survive in this weather.
+You wonder how you made it this far.  The barren trees seem to howl along
+with the merciless cold wind.  The bleak trail continues east and west.  Or
+so it seems.
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20029
+D3
+~
+~
+0 0 20027
+S
+#20029
+Arctic Wasteland~
+&WBlinding snow all around for as far as your eyes will take you.  You
+wonder if you will ever make you way out of here alive.  Being frozen to
+death isn't an option you'd like to consider.  The field spreads out in all
+directions of bleak.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20036
+D1
+~
+~
+0 0 20030
+D2
+~
+~
+0 0 20024
+D3
+~
+~
+0 0 20028
+S
+#20030
+Arctic Wasteland~
+&WSearing cold air all around and white fields of ice and desolate trees
+are all that you see for miles.  All around there are exits, you seem to see
+the same sights all around.  The wind picks up speeed every now and then
+blasting down at you.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20035
+D1
+~
+~
+0 0 20031
+D2
+~
+~
+0 0 20023
+D3
+~
+~
+0 0 20029
+S
+#20031
+Arctic Wasteland~
+&WSearing cold air all around and white fields of ice and desolate trees
+are all that you see for miles.  All around there are exits, you seem to see
+the same sights all around.  The wind picks up speeed every now and then
+blasting down at you. Exits lead in all directions or so it seems.
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20034
+D1
+~
+~
+0 0 20032
+D2
+~
+~
+0 0 20022
+D3
+~
+~
+0 0 20030
+S
+#20032
+Arctic Wasteland~
+&WYou stand before a castle of ice which emanates waves of chill reaching
+into your consciousness threatening to wipe it out.  From inside you hear a
+deadly quiet.  It is such a contrast to the howling winds and the blizzard
+that rages outside the castle.  You can see a glimmer coming from the crack
+at the bottom of the castle entrance.  The road leads back westward.  
+~
+0 268836888 2
+Rd     5
+D1
+~
+Frostgate~
+3 0 20050
+D3
+~
+~
+0 0 20031
+S
+#20033
+Arctic Wasteland~
+&WFrozen fields for miles on end.  No one can survive in this weather.
+You wonder how you made it this far.  The barren trees seem to howl along
+with the merciless cold wind.  The bleak trail continues east and west.  Or
+so it seems.
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20033
+D3
+~
+~
+0 0 20034
+S
+#20034
+Arctic Wasteland~
+&WSearing cold air all around and white fields of ice and desolate trees
+are all that you see for miles.  All around there are exits, you seem to see
+the same sights all around.  The wind picks up speeed every now and then
+blasting down at you. Exits lead in all directions or so it seems.
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20041
+D1
+~
+~
+0 0 20033
+D2
+~
+~
+0 0 20031
+D3
+~
+~
+0 0 20035
+S
+#20035
+Arctic Wasteland~
+&WSearing cold air all around and white fields of ice and desolate trees
+are all that you see for miles.  All around there are exits, you seem to see
+the same sights all around.  The wind picks up speeed every now and then 
+blasting down at you.
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20040
+D1
+~
+~
+0 0 20034
+D2
+~
+~
+0 0 20030
+D3
+~
+~
+0 0 20036
+S
+#20036
+Arctic Wasteland~
+&WBlinding snow all around for as far as your eyes will take you.  You
+wonder if you will ever make you way out of here alive.  Being frozen to
+death isn't an option you'd like to consider.  The field spreads out in all
+directions of bleak.
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20039
+D1
+~
+~
+0 0 20035
+D2
+~
+~
+0 0 20029
+D3
+~
+~
+0 0 20037
+S
+#20037
+Arctic Wasteland~
+&WThe path you are on is frozen and bleakness surrounds your every view.
+The freezing wind bites into your bones making movement difficult.  There
+seems to be no end to this frozen hell.  The path seems to continues east
+and west only in this frozen land nothing is as it seems.
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20036
+D3
+~
+~
+0 0 20037
+S
+#20038
+Arctic Wasteland~
+&WFrozen fields for miles on end.  No one can survive in this weather.
+You wonder how you made it this far.  The barren trees seem to howl along
+with the merciless cold wind.  The bleak trail continues east and west.  Or
+so it seems.
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20039
+D3
+~
+~
+0 0 20061
+S
+#20039
+Arctic Wasteland~
+&WBlinding snow all around for as far as your eyes will take you.  You
+wonder if you will ever make you way out of here alive.  Being frozen to
+death isn't an option you'd like to consider.  The field spreads out in all
+directions of bleak.  
+~
+0 1342578712 2
+Rd     5
+D0
+~
+~
+0 0 20048
+D1
+~
+~
+0 0 20040
+D2
+~
+~
+0 0 20036
+D3
+~
+~
+0 0 20038
+S
+#20040
+Arctic Wasteland~
+&WSearing cold air all around and white fields of ice and desolate trees
+are all that you see for miles.  All around there are exits, you seem to see
+the same sights all around.  The wind picks up speeed every now and then
+blasting down at you.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20045
+D1
+~
+~
+0 0 20041
+D2
+~
+~
+0 0 20035
+D3
+~
+~
+0 0 20039
+S
+#20041
+Arctic Wasteland~
+&WSearing cold air all around and white fields of ice and desolate trees
+are all that you see for miles.  All around there are exits, you seem to see
+the same sights all around.  The wind picks up speeed every now and then
+blasting down at you. Exits lead in all directions or so it seems.
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20043
+D1
+~
+~
+0 0 20042
+D2
+~
+~
+0 0 20034
+D3
+~
+~
+0 0 20040
+S
+#20042
+Arctic Wasteland~
+&WFrozen fields for miles on end.  No one can survive in this weather.
+You wonder how you made it this far.  The barren trees seem to howl along
+with the merciless cold wind.  The bleak trail continues east and west.  Or
+so it seems.
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20060
+D3
+~
+~
+0 0 20041
+S
+#20043
+Arctic Wasteland~
+&WYou are on a white trail of never ending snow.  Up ahead you see a
+cavern of mountainous ice.  It looms up ahead blocking out whatever light
+there was before.  It makes the temperature colder in the place you stand
+at.  You can go north to explore the cavern or back south to the bleak
+desolation.
+~
+0 268836888 2
+Rd     5
+D0
+~
+Cavern~
+3 0 20044
+D2
+~
+~
+0 0 20041
+S
+#20044
+Storm Giant's Cave~
+&CYou have found a huge cave carved into the ice that must be eons old. The
+cavern is so big, that you cannot make out the surrounding walls clearly.
+Strangely enough, the blizzard seems to be even worse in here than it has
+been out in the open wasteland...
+~
+0 268836877 0
+Rd     5
+D2
+~
+Cavern~
+3 0 20043
+S
+#20045
+Arctic Wasteland~
+&WYou are on a white trail of never ending snow.  Up ahead you see a
+cavern of mountainous ice.  It looms up ahead blocking out whatever light
+there was before.  It makes the temperature colder in the place you stand
+at.  You can go north to explore the cavern or back south to the bleak
+desolation.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20046
+D2
+~
+~
+0 0 20040
+S
+#20046
+Arctic Wasteland~
+&WYou stand before a cavern of ice which emanates waves of chill reaching
+into your consciousness threatening to wipe it out.  From inside you hear a
+deadly quiet.  It is such a contrast to the howling winds and the blizzard
+that rages outside the cavern.  You can see a glimmer coming from the crack
+at the bottom of the cavern entrance.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+Cavern~
+119 20026 20047
+D2
+~
+~
+0 0 20045
+S
+#20047
+North Star~
+&W&CYou must have reached the north pole of the Storm world! Much in contrast
+to the frozen inferno that rages outside, this cavern is of eerie silence.
+It seems to be less cold in here as well. Near the north wall shines an 
+extremely bright light, pulsating quietly....is this light alive?
+~
+0 4595725 0
+Rd     0
+D2
+~
+Cavern~
+119 20026 20046
+S
+#20048
+Arctic Wasteland~
+&WYou stand before a chilling iceburg.  You see that it is dug out into a
+cave only the entrance seems to be closed and hidden.  The iceburg is the
+only thing that you see of variation from the white fields and dead trees. 
+You can go back towards the bleak fields to the south.  
+~
+0 1342578712 2
+Rd     5
+D0
+~
+Cavern~
+3 0 20049
+D2
+~
+~
+0 0 20039
+S
+#20049
+Frost Giant's Cave~
+&W&CYou have found a huge cave carved into the ice that must be eons old. The
+cavern is so big, that you cannot make out the surrounding walls clearly.
+The storm has been calmed down to a slight breeze, but the temperature has
+dropped even further. It seems, much of the floor is covered with dry ice,
+steaming, whenever you step on it...
+~
+0 1346773005 0
+Rd     5
+D2
+~
+Cavern~
+3 0 20048
+S
+#20050
+Entrance to a Frozen Castle~
+&WThrough the Frostgate, you have entered a frozen, translucent castle. The
+winds have calmed down and the cold is a little less biting. However, now
+you have come face to face with Schnee, the guardian of this strange place!
+~
+0 273031177 0
+Rd     5
+D1
+~
+Icedoor~
+119 20016 20051
+D3
+~
+Frostgate~
+3 0 20032
+S
+#20051
+An Icy Hallway~
+&WYou are in a glistening hallway.  All the icy walls around you sparkle
+in the light of your torch.  To the west lies the castle entrance, south and
+east of you are icy catacombs.  To the north, you see a large hall with a
+huge throne in its center...  
+~
+0 268869645 0
+Rd     5
+D0
+~
+~
+0 0 20052
+D1
+~
+~
+0 0 20054
+D2
+~
+~
+0 0 20053
+D3
+~
+Icedoor~
+119 20016 20050
+S
+#20052
+Winter's Throne Room~
+&CYou have entered a long hall with a wide ceiling.  In the center of the
+hall stands a throne made entirely from ice.  The throne is carved with many
+familiar pictures of Winter not that you need to be reminded of what Winter
+looks like in this God forsaken place.  The whole area emanates chills worse
+than the cold you have felt in this whole frozen land.  The only exit is
+south.  
+~
+0 273031177 0
+Rd     10
+D2
+~
+~
+0 0 20051
+S
+#20053
+A Cold Cavern~
+&WYou have entered a very cold cavern. It is very silent in here, and you
+feel somewhat like being in a cathedral. The room is otherwise completely
+empty...or is it?
+~
+0 268836877 0
+Rd     5
+D0
+~
+~
+0 0 20051
+S
+#20054
+A Cold Cavern~
+&WYou have entered a very cold cavern.  It is very silent in here, and
+you feel somewhat like being in a cathedral.  The room is otherwise
+completely empty...  Or is it?  The only way out seems to be west.  
+~
+0 268574748 0
+Rd     1
+D3
+~
+~
+0 0 20051
+S
+#20055
+Arctic Wasteland~
+&WSearing cold air all around and white fields of ice and desolate trees
+are all that you see for miles.  All around there are exits, you seem to see
+the same sights all around.  The wind picks up speeed every now and then
+blasting down at you.  There are exits seemingly all around.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20016
+D1
+~
+~
+0 0 20055
+D2
+~
+~
+0 0 20055
+D3
+~
+~
+0 0 20056
+S
+#20056
+Arctic Wasteland~
+&WContuing snow is all around.  All over the place the only visible thing
+is snow and ice and white.  The skies seem grey and white.  There are snow
+peaked mountains up ahead.  The field branches out in all directions or so
+it seems.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20015
+D1
+~
+~
+0 0 20055
+D2
+~
+~
+0 0 20058
+D3
+~
+~
+0 0 20057
+S
+#20057
+Arctic Wasteland~
+&WWhite fields of ice and cold for miles up ahead.  The temperature seems
+colder as you travel further into the wasteland.  The Sun when it shines
+doesn't seem to penetrate the cold atmosphere that hovers above.
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20014
+D1
+~
+~
+0 0 20056
+D2
+~
+~
+0 0 20057
+D3
+~
+~
+0 0 20057
+S
+#20058
+Arctic Wasteland~
+&WYou stand before a chilling iceburg to the south.  You see that it is
+dug out into a cave only the entrance seems to be closed and hidden.  The
+iceburg is the only thing that you see of variation from the white fields
+and dead trees.  You can go back towards the bleak fields to the north.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20056
+D2
+~
+Lair~
+3 0 20059
+S
+#20059
+Ice Drake's Lair~
+&W&CIn your search for shelter from the cold, you have stumbled into a
+large icy cave.  The chilling winds have ceased and you are just going to
+make yourself comfortable here when you notice something big, white and
+nasty moving but then again it could be your imagination.  Or is it?  
+~
+0 268836877 0
+Rd     10
+D0
+~
+Lair~
+3 0 20058
+S
+#20060
+Arctic Wasteland~
+&WFrozen fields for miles on end.  No one can survive in this weather.
+You wonder how you made it this far.  The barren trees seem to howl along
+with the merciless cold wind.  The bleak trail continues east and west.  Or
+so it seems.
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20025
+D3
+~
+~
+0 0 20042
+S
+#20061
+Arctic Wasteland~
+&WFrozen fields for miles on end.  No one can survive in this weather.
+You wonder how you made it this far.  The barren trees seem to howl along
+with the merciless cold wind.  The bleak trail continues east and west.  Or
+so it seems.
+~
+0 268836888 2
+Rd     5
+D1
+~
+~
+0 0 20038
+D3
+~
+~
+0 0 20062
+S
+#20062
+Arctic Wasteland~
+&WYou are walking on what seems to be a frozen lake.  The blinding cold
+wind hasn't let up and doesnt seem to want to let up any time soon.  All
+around the blizzard does the dance of winter reveling in its cold embrace. 
+The lake continues in all directions.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20062
+D1
+~
+~
+0 0 20061
+D2
+~
+~
+0 0 20063
+D3
+~
+~
+0 0 20062
+D5
+~
+~
+0 0 20064
+S
+#20063
+Arctic Wasteland~
+&WYou are walking on what seems to be a frozen lake.  The blinding cold
+wind hasn't let up and doesnt seem to want to let up any time soon.  All
+around the blizzard does the dance of winter reveling in its cold embrace. 
+There is a huge iceburg up ahead blocking passage any further in any
+direction but north.  
+~
+0 268836888 2
+Rd     5
+D0
+~
+~
+0 0 20062
+S
+#20064
+Breaking Ice!!~
+&CYou are wandering around aimlessly when suddenly the ice gives it!!!
+   
+   
+  
+                       AAAAHHHHHHHRRRRRRGGG!!
+  
+  
+ 
+&BYou fall a few meters, then you hit water....SPLASH!!
+  
+The icy water trenches you completely. There is no way to climb onto the 
+solid ice again...you better use magic to get out here...fast!!
+~
+0 277217293 8
+Rd     150
+S
+#0
+
+
+
+#SPECIALS
+M 20010 spec_breath_frost
+M 20011 spec_fido
+M 20012 spec_healer
+M 20015 spec_cast_judge
+M 20016 spec_thief
+M 20017 spec_breath_frost
+M 20018 spec_summon_light
+M 20019 spec_breath_lightning
+M 20020 spec_breath_frost
+M 20021 spec_breath_lightning
+M 20022 spec_breath_frost
+M 20196 spec_thief
+M 20198 spec_cast_undead
+S
+
+
+
+#RESETS
+M 0 20196 5 20011
+M 0 20012 3 20015
+G 0 20010 0
+M 0 20198 1 20020
+E 0 20031 0 20
+E 0 20031 0 21
+M 0 20011 1 20021
+E 0 20002 0 12
+M 0 20011 5 20023
+M 0 20016 1 20026
+E 0 20017 0 25
+E 0 20017 0 24
+E 0 20033 0 6
+M 0 20013 3 20035
+E 0 20011 0 16
+M 0 20021 1 20044
+E 0 20022 0 23
+G 0 20026 0
+E 0 20027 0 20
+M 0 20018 1 20047
+E 0 20023 0 20
+E 0 20024 0 18
+E 0 20024 0 19
+E 0 20025 0 2
+G 0 20026 0
+M 0 20020 1 20049
+E 0 20021 0 23
+G 0 20026 0
+E 0 20027 0 20
+M 0 20015 1 20050
+E 0 20015 0 22
+G 0 20016 0
+E 0 20027 0 20
+M 0 20022 1 20052
+E 0 20028 0 0
+E 0 20029 0 3
+E 0 20029 0 4
+E 0 20027 0 20
+M 0 20014 1 20053
+G 0 20014 0
+O 0 20013 0 20054
+O 0 20012 0 20059
+M 0 20017 1 20059
+E 0 20019 0 13
+E 0 20020 0 12
+M 0 20010 1 20064
+G 0 20018 0
+E 0 20032 0 22
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

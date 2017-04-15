@@ -1,0 +1,977 @@
+#AREADATA
+Name        {??-???} QuestMaster Items   Lacey~
+Levels      0 0
+Builders    Grimfang Lacey Angi~
+VNUMs       2426 2499
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#2499
+zenza woman~
+&WZenza&P~
+&WZenza the &Rwild one&W purrs seductively at you...
+~
+&W Your eyes gaze upon a &psensuous, voluptuous&W creature...  Her
+&wsilvery&W eyes glitter with evil intent, making you cringe with fear as
+you wonder what is in store for your future.  Zenza is a &Rwild one&W, here
+to please your every command.  
+~
+2129985 100679680 0 1000 S
+113 0 0 30000d0+0 0d0+0
+100 400 2000 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if name ($n) == xavier
+    wink $n
+    say Welcome to my chamber, Lord of the &wDar&WkBl&wade&W famiy.
+    say Wait until you see what I have in store for you...
+    grin $n
+else
+    if isclan($n) == 5
+        hug $n
+        say &WWelcome to my chamber, Lady of the &wDar&WkBl&wade&W family.
+        break
+    else
+        if lname($n) == &wDar&WkBl&wade
+            hug $l
+            say &W&WWelcome back, dear &wDar&WkBl&wade&W warrior. Please, stay and chat.
+            smile $l
+        else
+            if ispc($n)
+                say &WGreetings, fellow traveller. I'm sorry I don't have much time...
+                say &WThe Lord and Lady have been keeping me quite busy. I must get back to work.
+                bow $n
+            endif
+        endif
+    endif
+endif
+ 
+ 
+~
+>act_prog p bows before you.~
+if name ($n) == xavier
+    smile $n
+    say &W$n, my Master, your wish is my command.
+    say &WExplore, and you shall discover the secrets I hold for thee.
+    wink $n
+else
+    if name ($n) == Angi
+        hug $n
+        say &WLady &wDar&WkBl&W&wade&W&W, &Wyou shall have many adventurous travels
+        say &Wwith your Lord at your side.  Aid him in his travels and
+        say &Wdiscover the magic to be found.
+    else
+        if ispc($n)
+            bow $n
+        endif
+    endif
+endif
+~
+>speech_prog gift~
+if name ($n) == xavier
+    emote gasps in astonishment!
+    say &WPlease forgive me my Lord, I almost forgot Lady &wDar&WkBl&wade&W gave me this gift for you.
+    mpoload 2497
+    give love $n
+    say &WHandle it with care is all she told me...
+    smile $n
+else
+    if name ($n) == angi
+        smile $n
+        say &WHere's the gift you asked me to hold for you, Lady &wDar&WkBl&wade&W.
+        mpoload 2497
+        give love $n
+        emote whispers something into Angi's ear.
+    else
+        if ispc($n)
+            say &WGift? What do you think I am, Santa Clause? Silly...
+            tickle $n
+        endif
+    endif
+endif
+~
+>speech_prog hint~
+if name ($n) == xavier
+    say &WI will give you a hint, my dear Lord &wDar&WkBl&wade&W.
+    say &W&WHere is yet another riddle in answer to your riddle...
+    say &RYou can't live without it or your heart will suffer
+    say &Rand you cannot enjoy it without another.
+    say &RYou possess it right now, as we speak..
+    say &RTo unleash its powers, a special soul you must seek.&W
+    say &W&W&WThat is all I can tell you, dear $n.
+    say &W&WWisdom and compassion will help you in your travels..
+    hug $n
+else
+    if name ($n) == angi
+        say &WMy apologies, Lady &wDar&WkBl&wade&W, for I have no hints for thee.
+        say &WWhere is your Lord, m'dear? I must speak with him soon.
+        smile $n
+    else
+        if ispc($n)
+            say &WHint? What do you mean?
+            emote tickles $n.
+        endif
+    endif
+endif
+~
+>speech_prog love~
+if name ($n) == xavier
+    emote smiles peacefully.
+    say &YNow my Lord, you have almost completed your quest. With the
+    say &Ylocket you now behold, bind your love and watch it unfold.
+    mpoload 2496
+    give locket $n
+endif
+~
+>speech_prog help~
+if name ($n) == xavier
+    say &WThe answer, my Lord, lies within your soul.
+    say &WOnce spoken, a tiny locket you shall hold, and you must bind 
+    say &W&Wit with the symbol to make it whole.  This, Lord &wDar&WkBl&wade&W,
+    say &Wyou must give to the one you love, for only then will your true
+    say &Wquest be fulfilled...
+endif
+~
+>death_prog 100~
+mptransfer room 8300
+mpgoto 8300
+~
+|
+#0
+
+
+
+#OBJECTS
+#2426
+&ca &OB&Ya&Om&Yb&Oo&Yo&c training sword Quest~
+&ca &OB&Ya&Om&Yb&Oo&Yo&c training sword ~
+&ca &OB&Ya&Om&Yb&Oo&Yo&c training sword is here.~
+~
+5 67108992 0 0 8193 1
+0~ 0~ 0~ 3~
+1 0 0 0 0
+5 0
+adrenaline rush~
+10 10
+0 0 0
+A
+19 7
+A
+18 8
+A
+17 -20
+A
+5 2
+A
+4 2
+#2427
+&ctassled&z l&We&za&Wt&zh&We&zr&c leggings Quest~
+&ctassled&z l&We&za&Wt&zh&We&zr&c leggings ~
+&ca pair of tassled&z l&We&za&Wt&zh&We&zr&c leggings lie here. ~
+~
+9 129 0 0 33 5
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+fly~
+10 10
+0 0 0
+A
+18 5
+A
+19 5
+A
+1 1
+A
+4 2
+A
+5 2
+A
+17 -5
+#2428
+quest ivory carved anklets~
+&csmall &Wivory&w-&Wcarved &canklets&w~
+&BAn unbroken ring of polished &Wivory&B lies here.~
+~
+9 805306497 0 0 1048577 10
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -25
+A
+19 3
+A
+18 2
+A
+1 2
+A
+2 1
+#2429
+glowing bauble trinket quest~
+&ca &Wglow&wing &Cbauble&w~
+&BA small trinket lies here on the ground.~
+~
+9 805306497 0 0 32769 11
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -26
+A
+24 -10
+A
+13 25
+A
+18 2
+A
+19 3
+A
+4 2
+#2430
+shield blazing flameshield quest~
+&ra &Rbl&raz&Oin&Yg &Rfla&rmes&Ohie&Yld&w~
+&BA shield cloaked within multiple roaring pillars of flame lies here.~
+~
+9 838860928 0 0 513 15
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+fireshield~
+5 5
+0 0 0
+A
+13 30
+A
+12 25
+A
+17 -35
+A
+18 3
+A
+19 3
+#2431
+ice-covered scaly vambraces quest~
+&ca pair of &Bic&be-&Cco&cve&wre&Wd &Cscaly &cvambraces&w~
+&BOverlapping scales covered in pure ice form a pair of vambraces here.~
+~
+9 805306496 0 0 513 20
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 2
+A
+24 -17
+A
+17 -35
+A
+12 35
+A
+18 3
+A
+19 4
+#2432
+black steel visor quest~
+&ca &zblack steel &cvisor&w~
+&BA large visor made of dark black metal lie shere.~
+~
+9 805306496 0 0 65537 21
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+flesh armor~
+15 15
+0 0 0
+A
+12 25
+A
+13 40
+A
+17 -36
+A
+18 3
+A
+19 4
+#2433
+taloned gauntlets quest~
+&ca pair of long-taloned gauntlets&w~
+&BA pair of gauntlets ending long, sharp talons lie here.~
+~
+9 805306496 0 0 129 25
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -13
+A
+25 14
+A
+13 40
+A
+17 -40
+A
+18 4
+A
+19 4
+#2434
+long brass scope quest~
+&ca long &Obrass &cscope&w~
+&BA long eyescope made of brass lies here.~
+~
+27 805306368 0 0 131073 30
+45~ -1~ 0~ scry~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -14
+A
+13 45
+A
+17 -45
+A
+18 4
+A
+19 5
+A
+117 -1
+#2435
+clasp ear silver quest~
+&ca small &wsilver &cear clasp&w~
+&BSomeone seems to have carelessly left their ear clasp here.~
+~
+9 805306496 2048 0 524289 31
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -25
+A
+13 50
+A
+12 50
+A
+18 4
+A
+19 5
+#2436
+heavy leather boots~
+&ca pair of &Oheavy leather &cboots&w~
+&BLarge soled boots made of thick leather lie here.~
+~
+9 805306496 0 0 65 35
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 35
+A
+17 -50
+A
+18 5
+A
+19 5
+A
+108 -1
+#2437
+wreath illusions quest~
+&ca &Gw&gr&Ge&ga&Gt&gh &cof &Cillusions&w~
+&BA small wreath of leaves, glowing slightly lie here.~
+~
+9 805306497 0 4096 17 40
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+phase shift~
+5 5
+0 0 0
+A
+13 55
+A
+24 -30
+A
+18 5
+A
+19 6
+#2438
+long hafted spear quest~
+&Oa long hafted &zspear&w~
+&BA long hafted spear with a foot long bladed on it's end rests here.~
+~
+5 805306496 0 0 8193 41
+0~ 15~ 47~ 11~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -45
+A
+13 55
+A
+26 -56
+A
+123 -1
+A
+18 16
+A
+19 22
+#2439
+arch sorcerer robe quest~
+&can &zArch Sorcerer's &crobes&w~
+&BThe long flowing black robes of an arch sorcerer lie here.~
+~
+9 805306496 0 0 1025 45
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+mana~
+50 50
+0 0 0
+A
+23 -35
+A
+12 60
+A
+24 -40
+A
+18 6
+A
+19 6
+#2440
+engraved golden breastplate armor~
+&can engraved &Ygolden &cbreastplate&w~
+&BA large breastplate made of engraved gold lies here.~
+~
+9 805306496 0 0 9 50
+0~ 0~ 0~ 0~
+7 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 65
+A
+13 65
+A
+23 -25
+A
+17 -65
+A
+18 22
+A
+19 22
+#2441
+ankle sheathed dagger quest~
+&can ankle-sheathed dagger&w~
+&BA dagger sheathed in an ankle-sheath lies here.~
+~
+9 805306496 0 0 1048577 51
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+2 2
+A
+17 -25
+A
+18 6
+A
+19 7
+#2442
+band winds quest~
+&cthe &Oband &cof &Cwinds&w~
+&BA small band of metal lies here surrouned by swirling winds.~
+~
+9 805306496 0 0 3 55
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+control weather~
+0 -1
+0 0 0
+A
+24 -23
+A
+12 70
+A
+3 2
+A
+18 7
+A
+19 7
+#2443
+dark stormcloud quest~
+&ca &zdark stormcloud&w~
+&BA &zdark stormcloud &Bhovers above the ground here.~
+~
+9 805306368 0 0 32769 60
+0~ 0~ 0~ 0~
+-50 0 0 0 0
+5 0
+chain lightning~
+0 -1
+0 0 0
+A
+17 -30
+A
+12 75
+A
+13 75
+A
+110 -1
+A
+18 7
+A
+19 8
+#2444
+heavy winter fur cloak quest~
+&ca heavy &Wwinter fur &ccloak&w~
+&BA heavy fur cloak made for winter temperatures lies here.~
+~
+9 805306496 0 0 5 61
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 8
+A
+18 7
+A
+17 -76
+A
+13 75
+A
+24 -35
+A
+23 -30
+#2445
+grey traveller cloak quest~
+&ca &Cgrey &ctraveller's cloak&w~
+&BA heavy travelling cloak of grey material lies here.~
+~
+9 805306496 0 0 1025 65
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 8
+A
+18 8
+A
+14 100
+A
+13 80
+A
+12 80
+A
+17 -55
+#2446
+demon fiery glare quest~
+&ca &zdemon's &Rfi&re&Or&Yy &rglare&w~
+&BA pair of eyeballs burning where they lie rest here.~
+~
+27 805306496 0 0 131073 70
+40~ -1~ 0~ fireball~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+A
+18 8
+A
+124 -1
+A
+24 -25
+A
+23 -20
+A
+13 85
+#2447
+band crackling energy quest~
+&ca &Ygolden &cband of &Pc&Cr&Pa&Cc&Pk&Cl&Pi&Cn&Pg &Ce&Pn&Ce&Pr&Cg&Py&w~
+&BA golden band lies here with a blueish light crackling about it.~
+~
+9 805306496 0 0 3 71
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+A
+18 8
+A
+24 -27
+A
+12 100
+A
+17 -55
+#2448
+no name~
+&ca &Rdragon&r-&Rcarved &Ygolden &cbelt buckle&w~
+&BA large golden belt buckle carved in the shape of a dragon lies here.~
+~
+9 805306496 0 0 2049 75
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+A
+18 9
+A
+25 25
+A
+12 90
+A
+13 90
+A
+23 -25
+#2449
+elbow-bladed chainmail sleeves quest~
+&celbow-bladed &Cchainmail &csleeves&w~
+&BA pair of chainmail sleeves with blades at the elbow-pieces lie here.~
+~
+9 805306496 0 0 257 80
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 9
+A
+17 -95
+A
+13 95
+A
+25 27
+A
+23 -20
+#2450
+heavy dwarven chainmail quest~
+&ca set of heavy dwarven chainmail&w~
+&BHeavy chainmail made in the dwarven fashion lies here.~
+~
+9 805306496 0 0 9 81
+0~ 0~ 0~ 0~
+9 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 34
+A
+18 22
+A
+17 -96
+A
+23 -25
+A
+13 96
+A
+5 3
+#2451
+shield solidified ash quest~
+&ca &Cshield &cof solidifed &zash&w~
+&BA large chunk of ash magically solidified forms a shield here.~
+~
+9 805306496 0 0 513 85
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 80
+A
+24 -35
+A
+19 10
+A
+18 10
+A
+17 -125
+A
+12 130
+#2452
+platinum platemail leggings quest~
+&ca pair of &Yplatinum platemail &cleggings&w~
+&BLarge metal leggings forged of platinum lie here.~
+~
+9 805306496 0 0 33 90
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -18
+A
+13 105
+A
+17 -105
+A
+18 10
+A
+19 11
+#2453
+arcane arts book quest~
+&ca &Obook &cof the &BArcane &RArts&w~
+&BA leather bound book with an aura of pure magic about it rests here.~
+~
+8 805306496 0 0 16385 91
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 106
+A
+19 11
+A
+18 10
+A
+12 175
+A
+24 -40
+#2454
+hovering sphere light quest~
+&ca hovering &Csphere &cof &Wlight&w~
+&BA bright sphere of light stands here hovering.~
+~
+1 805306497 0 0 1 95
+0~ 0~ -1~ 0~
+-20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 11
+A
+18 11
+A
+12 110
+A
+13 100
+A
+17 -65
+#2455
+earguard helm quest~
+&ca Helm's &BE&wa&Br&wg&Bu&wa&Br&wd&X~
+&ca Helm's &BE&wa&Br&wg&Bu&wa&Br&wd&c is here.~
+~
+9 805306496 0 0 524289 100
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 100
+A
+17 -115
+A
+24 -33
+A
+1 1
+A
+13 110
+A
+18 11
+A
+19 12
+A
+25 40
+#2456
+ivory carved mask quest~
+&can &Wivory&w-&Wcarved &cmask&w~
+&BA small mask made of bright ivory carved in the shape of a skull lies here.~
+~
+9 805306496 0 0 65537 101
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 13
+A
+18 12
+A
+17 -115
+A
+13 125
+A
+12 95
+A
+25 15
+A
+23 -20
+#2495
+xavier locket symbol love true~
+&RXavier's&W symbol of &Rlove&P~
+&RXavier's &Glocket symbolizing &Wlove&G and &Wdedication&P~
+~
+8 0 0 0 5 112
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 2497 2496
+#2496
+locket necklace~
+&Wa tiny &Clocket&P~
+&WA tiny &Clocket&W with a glowing aura lies here..~
+~
+8 0 0 0 1 112
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+2495 0 0
+#2497
+love~
+&PAngi's&W symbol of &Plove~
+&PAngi's&W symbol of &Plove&W and&P dedication&W with a riddle inscribed on it lies here..~
+~
+8 0 0 0 1 100
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+2495 0 0
+E
+riddle~
+&W    
+&W    This symbol of &Rlove&W that I give to thee
+&W    Is filled with &wmagic&W, as you shall see.
+&W    Its' overwhelming power and ability to heal
+&W    Can affect your very soul and the feelings you feel.
+&W    For it is you, the beholder, who controls such things
+&W    You must find the answer and your &Rheart&W shall sing.
+                                         &WLuv always,
+                                         &W      Angi
+~
+#2498
+wedding ring band golden~
+&Wa &Ygolden&W wedding band~
+&Wa&Y golden &Wwedding band with a glowing aura lies here.~
+~
+8 0 0 0 3 100
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+band~
+&WTo my love, Xavier, these few words my heart speaks to thee...
+ 
+&R        Infinite are the flakes of &Wsnow&R
+&R        That lie upon the ground..
+&R        Infinite are the many children
+&R        Suffering all around..
+&R        Infinity is such a word
+&R        That justifies no end
+&R        Exactly like the way I &Wfeel&R
+&R        For you, my &Ylove&R, my &Yfriend.
+&W                       Love Forever,
+                               &RAngi
+~
+#0
+
+
+
+#ROOMDATA
+#2426
+~
+~
+0 4 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

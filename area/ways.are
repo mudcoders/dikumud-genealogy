@@ -1,0 +1,3064 @@
+#AREADATA
+Name        { 50-85} The Ways            Ichiban~
+Levels      50 85
+Builders    None~
+VNUMs       15100 15165
+Security    100
+Recall      25001
+Flags       0
+Color       6
+Sounds      &WRaw energy pulses through the halls.~
+End
+
+
+
+#MOBILES
+#15100
+way guardian demon~
+The guardian demon~
+A huge guardian demon stands here watching the entrance to The Ways.
+~
+The demon stands about fourteen feet tall, his body is silver and
+radiates a dull luminance.  His eyes are dark, yet sharp with intelligence
+and cunning.  Muscles ripple on a well toned body that seems as hard as
+steel, yet as soft as silk.  The guardian does not look like an easy mark.  
+~
+67 136 0 0 S
+55 0 0 10000d0+0 0d0+0
+30 0 0 0
+0 0 0
+128 0 0
+>act_prog p looks at you.~
+emote snarls in anger.
+say You think you can defeat me?
+emote laughs at you mercilessly.
+~
+>fight_prog 20~
+cast icestorm $n
+say Freeze!
+emote cackles maniacally.
+~
+>greet_prog 100~
+if ispc($n) == 1
+  smile $n
+  say Welcome to The Ways $n.
+endif
+if level($n) < 50
+   say You are a bit young to be here art thou not?
+   laugh $n
+endif
+~
+>give_prog ~
+~
+|
+#15101
+hound hell hellhound~
+A hound of hell~
+A massive flaming hound is here guarding the prism.
+~
+The hound stands about nine feet tall at the shoulder.  His eyes glow
+with a dark inner light which seem to darken the surrounding area.  He
+growls low in his throat at your approach.  
+~
+67 33554600 0 -1000 S
+50 0 0 3900d0+0 0d0+0
+0 55 0 0
+0 0 1
+128 0 0
+#15102
+way walker man~
+A way walker~
+A man dressed in robes wanders The Ways in search of the answer.
+~
+The way walker hovers about an inch off the ground.  He looks young
+compared to the halls, and you gather that he is probably the apprentice of
+one more skilled in way walking.  
+~
+65 532608 0 500 S
+45 0 0 2600d0+0 0d0+0
+0 45 0 0
+0 0 1
+0 0 0
+#15104
+beast disfigured horid~
+A disfigured beast~
+A hideously disfigured beast cries eternally in torment here.
+~
+The beast is truly repulsive.  Her hair hangs in knotted clumps that stick
+to the side of her disfigured face.  Her body is lumpy and misformed, she
+looks to be in tremendous pain and her eyes are filled with madness.  
+~
+67 100663434 0 -100 S
+66 0 0 6500d0+0 0d0+0
+35 0 0 0
+0 0 2
+322 0 0
+>rand_prog 5~
+grunt
+~
+>rand_prog 5~
+growl
+~
+|
+#15105
+way demon red~
+A way demon~
+A massive red demon wanders the halls here.
+~
+The way demon stands a full eight feet tall, and is built like a tank. 
+His eyes are deep set and black as coal.  His breath is like steam and his
+drool hisses and spits when it hits the ground.  
+~
+65 33562666 0 -1000 S
+60 0 0 8000d0+0 0d0+0
+0 75 0 0
+0 0 1
+162 0 0
+>fight_prog 25~
+say DIE MORTAL!
+emote pulls in a huge breath.
+cast 'fire breath'
+~
+|
+#15106
+dragon way~
+The way dragon~
+A massive way dragon roams the halls in search of her home.
+~
+The way dragon is huge!  She stands about thirty feet at the shoulder and
+she looks as though she might weigh a few hundred tons.  Her eyes are sad as
+she wanders the great hallways in search of the gate that will take her
+home.  Her colouring is quite beautiful, varying from a pale orange at her
+head to a sky blue at her tail.  You feel remorse for her, and you hope she
+will find a way home.  
+~
+65 33570952 16 1000 S
+70 0 0 7500d0+0 0d0+0
+70 0 0 0
+0 0 2
+290 0 0
+>speech_prog p Can you offer any help?~
+if level($n) < 55
+cast sanctuary $n
+endif
+~
+|
+#15107
+Griffin beast~
+The griffin~
+A huge griffin pounces at you with hatred in it's eyes.
+~
+The griffin is a cross between a lion and an eagle, he is resplendant in
+his flowing mane.  His talons are a full seven inches long and sharp as a
+dagger.  You can see claw marks in the floor where he paces.  
+~
+99 16520 16 -500 S
+72 0 0 11050d0+0 0d0+0
+90 0 0 0
+0 0 1
+0 0 0
+>fight_prog 20~
+growl
+cast heal
+cast 'psionic blast'
+~
+>all_greet_prog 100~
+mpecho &p
+mpecho The griffin leaps into the air, unfurling its massive wings and
+mpecho swoops towards you, it's intent evident in it eyes.  You can see
+mpecho that it is out for blood.
+~
+|
+#15108
+hydra dragon~
+The Hydra~
+All eight heads of the hydra turn to watch you.
+~
+The hydra is a truly impressive beast!  She sports eight heads of varying
+color and shape.  Her body is huge and mottled with scars from previous
+battles.  She carries on her, the diamond goblet that she was placed here to
+protect.  
+~
+67 134217856 16 -400 S
+60 0 0 6500d0+0 0d0+0
+0 75 0 0
+0 0 2
+128 0 0
+>rand_prog 5~
+emote swings it's eight heads around in rage!
+emote lets out an ear splitting roar.
+~
+>fight_prog 10~
+emote growls with absolute rage!
+cast 'frost breath'
+~
+>fight_prog 23~
+cast 'gas breath'
+~
+|
+#15109
+damned creature~
+A damned creature~
+A creature has been damned to spend eternity here.
+~
+The creature is truly pitiful, his eyes are sunken and dark, his hair is
+clotted and sweaty.  You are not sure of what is happening, but he looks to
+be in tremendous pain.  
+~
+67 8320 0 1000 S
+55 0 0 6400d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>rand_prog 2~
+groan
+say The pain!! It's unbearable!
+~
+>rand_prog 5~
+say No! Get away from me!
+scream
+~
+|
+#15110
+mist red~
+A red mist~
+&rA cloud of red mist hovers just above the ground.
+~
+&rAll you can see of this being is a lingering red mist. It looms around you
+like a shroud, almost drowning you in its hate.
+~
+99 202965122 16 0 S
+85 0 0 11250d0+0 0d0+0
+240 0 0 0
+0 0 0
+418 0 0
+>all_greet_prog 100~
+mpecho &rA strange mist rolls lazily toward you.
+~
+>fight_prog 30~
+mpecho &rThe strange mist engulfs your body, and you feel it seep into your pores.
+cast 'energy drain' $n
+emote withdraws from your body.
+~
+>rand_prog 10~
+emote slowly solidifies, then disperses leaving only a faint after-image.
+~
+|
+#15111
+behemoth~
+The behemoth~
+A behemoth snorts at your arrival.
+~
+The behomoth is a huge boar like beast with highly intelligent eyes.  He
+rolls them towards you as you enter.  He stands about seventeen feet at the
+shoulder and his skin looks rough and hard to penetrate.  
+~
+67 16904 0 -350 S
+50 0 0 4800d0+0 0d0+0
+0 55 0 0
+0 0 1
+0 0 0
+#15112
+high magus magi old~
+The High Magus~
+A wizened old Magi of the High Order strolls proudly through the halls.
+~
+The wizard watches you through eyes that have seen many a fabulous thing.
+His presence shrieks of power and control.  
+~
+65 469778432 16 500 S
+76 0 0 8100d0+0 0d0+0
+130 0 0 0
+0 0 1
+34 0 0
+>rand_prog 2~
+yell Finally! I have the secret!
+emote struts around and looks all self important.
+~
+>fight_prog 10~
+cast 'dispel magic' $n
+say You shall not take the secret from me alive!
+cast icestorm
+~
+>death_prog 100~
+say You wish to have my secret do you? Is that what you want of me?!
+emote cackles maniacally!
+say So be it then!
+say You will surely die!!
+laugh $n
+say You will never find the way to the ancient level, without me to guide you!
+mpecho The High Magus dissipates into a cloud of smoke...
+~
+>fight_prog 25~
+cast confusion $n
+say TRY to find your way NOW, I say!
+~
+|
+#15113
+worm way gray~
+A way worm~
+A huge gray worm crawls through the halls here.
+~
+The worm is a full twelve feet long and about three feet thick.  It has
+no eyes or describable facial attributes.  The only noticable thing is a set
+of circualar teeth that resembles a mouth on either end.  It seems to sense
+your presence.  
+~
+97 136 16 -100 S
+78 0 0 15200d0+0 0d0+0
+150 0 0 0
+0 0 0
+514 0 0
+#15114
+flayer mind mindflayer~
+A mind-flayer~
+A seven foot mind flayer glares icily at you.
+~
+The mind flayer stands a good seven feet in height and has strange black
+tentacles hanging from a vaguely humanoid face.  The tentacles seem to
+twitch every time you concentrate, as if reacting to your brain wave.  
+~
+67 134242472 16 -300 S
+90 0 0 12500d0+0 0d0+0
+350 0 0 0
+0 0 1
+2 0 0
+>fight_prog 20~
+smirk
+cast 'molecular unbinding'
+~
+>act_prog p looks at you.~
+mpecho The mind flayer lifts his eyes to meet yours.
+cast 'detonate' $n
+~
+>fight_prog 25~
+emote's fight weakens as its concentration is elsewhere.
+mpmload 15116
+mpecho &OA large brain-looking beast appears in the room.
+mpecho &YYou feel a strange sensation as your mind is probed...
+mpecho &YThe mind-flayer laughs at you, without making a sound!
+mpforce memory mpkill $n
+~
+|
+#15115
+dragon wyrm~
+The wyrm~
+A huge dragon stalks the halls of the ancient ways.
+~
+This dragon is nothing like the friendly way dragon from the newer
+section of The Ways.  The rift Wyrm stands about fourty feet at the shoulder
+and is approximately ninety feet long.  The top of his head is decorated in
+multi-faceted horns that sparkle in the dim light of the halls.  
+~
+69 302096512 16 -100 S
+90 0 0 12500d0+0 0d0+0
+350 0 0 0
+0 0 1
+259 0 0
+>act_prog p looks at you.~
+emote snarls lightly.
+say Take a good look mortal, for such majestry does not come easily.
+~
+>rand_prog 10~
+emote slashes his tail from side to side uneasily.
+emote bellows a low growl.
+~
+>fight_prog 20~
+laugh
+c 'frost breath'
+~
+>hitprcnt_prog 50~
+shriek
+cast 'complete heal' 
+~
+>fight_prog 35~
+cast 'dispel magic' $n
+~
+|
+#15116
+Memory Eater~
+A memory eater~
+A strange beast comprised of brain tissue wanders blindly here.
+~
+The memory eater is an extremely ugly creature that seems to be able to
+see with out the use of eyes or anything similar.  It is quite small, only
+about two feet long, and looks kinda like a brain with legs.  
+~
+97 8320 16 0 S
+80 0 0 16000d0+0 0d0+0
+170 0 0 0
+0 0 1
+32768 0 0
+>fight_prog 25~
+emote touches your mind, and you can feel it lock in.
+cast 'detonate'
+~
+|
+#15158
+zombie corpse~
+A zombie~
+A stinking rotting corpse shuffles in your direction.
+~
+This thing looks like it's been dead for at least 50 years. Bits of its body
+flake off as it shambles towards you. And the smell is awful.
+~
+8259 1 0 -200 S
+50 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 0
+67840 0 0
+#15159
+warrior undead~
+An undead warrior~
+An undead warrior sees you and attacks.
+~
+This used to be a formidable living warrior at one time. Now he consists of
+just bones and armor. Formidable might still be the word for him, though.
+~
+8291 0 0 0 S
+58 0 0 9200d0+0 0d0+0
+0 0 0 0
+0 0 0
+96 0 0
+#15162
+mimic floor~
+A mimic~
+The floor rises up and slams you into the wall.
+~
+You thought you were walking on the floor.  Now it appears, the floor is walking on you.
+~
+99 98346 16 0 S
+70 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 0
+68704 0 0
+#15164
+new ghoul~
+A ghoul~
+A newly created ghoul rises up.
+~
+This poor soul looks like he's had a hard life.  Too bad Death couldn't provide an escape for him.  The necromancer had to find his body and bring him back.  You wonder if you should put him out of his misery.
+~
+8257 0 0 -500 S
+55 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#15165
+necro necromancer ~
+A necromancer~
+A necromancer is sitting here, animating corpses.
+~
+A strikingly beautiful woman in black robes is here drawing strange unidentifiable symbols onto the skin of a dead man.
+~
+67 8384 16 -750 S
+60 0 0 8000d0+0 0d0+0
+0 75 0 0
+0 0 2
+69635 0 0
+#0
+
+
+
+#OBJECTS
+#15100
+gate way waygate~
+the waygate~
+&BA massive &Ywaygate&B erupts &Ychaotically &Bfrom the ground here.~
+~
+29 0 0 0 0 0
+20250~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#15101
+crystal armour armor~
+a suit of crystal armour~
+A suit of crystal armour has been left here.~
+~
+9 256 7703 50543 9 45
+23~ 0~ 0~ 0~
+14 10 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 65
+A
+24 -2
+E
+armour~
+&WA full suit of crystal is very heavy and seems to have been made for quite
+a large creature. Better wear some other clothing under this thing, you can
+see right through it!
+~
+E
+crystal~
+&WA full suit of crystal is very heavy and seems to have been made for quite
+a large creature. Better wear some other clothing under this thing, you can
+see right through it! Crystal clear.
+~
+E
+armor~
+&WA full suit of crystal if very heavy and seems to have been made for quite
+a large creature. Better wear some other clothing under this thing, you can
+see right through it! Crystal clear.
+~
+#15102
+bracelet crystal~
+a crystal bracelet~
+A slender crystaline bracelet shimmers here.~
+~
+9 64 0 16412 4097 46
+3~ 0~ 0~ 0~
+2 3 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -2
+A
+12 40
+E
+crystal~
+&WA beautifully crafted crystal bracelet is fairly large in size. It is
+crystal clear, and has not a nick to speak of.
+~
+E
+bracelet~
+&WA beautifully crafted crystal bracelet is fairly large in size. It is
+crystal clear, and has not a nick to speak of.
+~
+#15103
+scythe crystal~
+a crystaline scythe~
+A scythe composed entirely of crystal has been forgotten here.~
+~
+5 2 4102 8 8193 49
+0~ 0~ 0~ 1~
+5 8 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 50
+A
+18 60
+A
+19 75
+E
+crystal~
+&WThe scythe is made purely of crystal, hilt and all.
+~
+E
+scythe~
+&WThe scythe is made purely of crystal, hilt and all.
+~
+#15104
+leash coldfire flaming~
+coldfire leash~
+A leash lies writhing on the ground here.~
+~
+9 4096 0 0 5 40
+0~ 0~ 0~ 0~
+6 0 25 0 0
+5 0
+fireball~
+2 2
+0 0 0
+A
+1 2
+A
+13 40
+E
+flaming~
+&TThe &Ccold&Rfire leash looks to be a regular leash at first glance. But
+looking upon it for a longer period of time, you see that an unfelt flame
+burns red, and blue in all different hues.
+~
+E
+coldfire~
+&RThe &Ccold&Rfire leash looks to be a regular leash at first glance. But
+looking upon it for a longer period of time, you see that an unfelt flame
+burns red, and blue in all different hues.
+~
+E
+leash~
+&RThe &Ccold&Rfire leash looks to be a regular leash at first glance. But
+looking upon it for a longer period of time, you see that an unfelt flame
+burns red, and blue in all different hues.
+~
+#15105
+prism crystal~
+a crystal prism~
+A small crystal prism floats slightly off the ground here.~
+~
+8 66 0 0 32769 40
+0~ 0~ 0~ 0~
+1 0 30 0 0
+5 0
+sanctuary~
+2 2
+0 0 0
+A
+12 40
+A
+13 25
+E
+crystal~
+&WA beautifully clear prism in the shape of a glass shard.
+~
+E
+prism~
+&WA beautifully clear prism in the shape of a glass shard.
+~
+#15106
+grey cloth robes~
+some grey robes~
+A pile of grey cloth has been forgotten here.~
+~
+9 64 0 0 1025 36
+0~ 0~ 0~ 0~
+3 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 40
+A
+12 40
+E
+grey~
+&wThe robes are grey in colour and made from a simple broadcloth. They
+are light in weight, and human sized.
+~
+E
+robes~
+&wThe robes are grey in colour and made from a simple broadcloth. They
+are light in weight, and human sized.
+~
+E
+cloth~
+&wThe robes are made of a simple grey broadcloth. They are light in weight
+and human sized.
+~
+#15107
+mask disfigured~
+a hideously disfigured mask~
+&OA hideous mask lies here on he ground.~
+~
+9 518 0 29340 65537 59
+0~ 0~ 0~ 0~
+3 20 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 60
+A
+24 -5
+A
+3 -1
+A
+4 -1
+E
+disfigured~
+&OThe mask.. at least you think it's supposed to be a mask... is horribly
+disfigured. You can't even tell which way is up, so you may be wearing it
+upside down when you put it on for all you know.
+~
+E
+mask~
+&OThe mask.. at least you think it's supposed to be a mask... is horribly
+disfigured. You can't even tell which way is up, so you may be wearing it
+upside down when you put it on for all you know.
+~
+#15108
+glyph corrupt~
+the glyph of corruption~
+A corrupt glyph vibrates slowly on the floor.~
+~
+2 64 0 0 16385 58
+80~ reserved~ earthquake~ earthquake~
+3 15 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 50
+A
+24 -1
+E
+corrupt~
+&gA strange glyph (you cannot decipher it's meaning, for it is very ancient)
+feels as though it is made of a clay-like substance. Although, this does not
+feel like any clay you've had your hands on.
+~
+E
+corruption~
+&gA strange glyph (you cannot decipher it's meaning, for it is very ancient) is
+made of a clay-liek material. Although, to your knowledge, this does not feel
+like any clay you've ever felt.
+~
+E
+glyph~
+&gA strange glyph (you cannot decipher it's meaning, for it is very ancient) is
+made of a clay-type of material. Although, to your knowledge, this is not
+like any clay you have felt.
+~
+#15109
+medallion flaming~
+a flaming medallion~
+A flaming neclace burns coldly on the ground here.~
+~
+9 4225 0 0 5 50
+0~ 0~ 0~ 0~
+2 0 30 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+25 17
+E
+flaming~
+&rA medallion necklace burns coldly with an unfelt flame.
+~
+E
+medallion~
+&rA medallion necklace burns coldly with an unfelt flame.
+~
+#15110
+collar silk~
+a silk collar~
+A beautiful silk collar has been forgotten here.~
+~
+9 64 0 0 5 60
+0~ 0~ 0~ 0~
+2 10 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 2
+A
+1 2
+A
+13 60
+E
+collar~
+&pA soft silken collar is purple in colour. It is also quite long in length...
+you may have to wrap it a number of times to make it fit.
+~
+E
+silk~
+&pA soft silken collar is purple in colour. It is also quite long in length...
+you may have to wrap it a number of times to make it fit.
+~
+#15111
+ring way golden~
+a way ring~
+A small golden ring lies here in the dirt.~
+~
+8 67 0 0 3 40
+0~ 0~ 0~ 0~
+1 30 0 0 0
+0 0
+astral walk~
+2 2
+0 0 0
+A
+12 40
+A
+24 -3
+E
+way~
+&YA plain golden band... with a line engraved through it. It is about 10mm
+(1/4 of an inch) thick.
+~
+E
+ring~
+&YA plain golden band... with a line engraved through it. It is about 10mm
+(1/4 of an inch) thick.
+~
+E
+golden~
+&YA plain golden band... with a line engraved through it. It is about 10mm
+(1/4 of an inch) thick.
+ 
+~
+E
+line~
+The line in the way ring is directly in the centre of the length of the ring.
+There is nothing special about it... just a simple design.
+~
+#15112
+Tablet stone granite~
+a tablet of granite~
+A huge granite tablet encrusted with runes lies here.~
+~
+2 64 0 0 16385 65
+50~ sanctuary~ heal~ inertial barrier~
+6 11 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+granite~
+A very large tablet encrusted with runes.
+~
+E
+tablet~
+A very large tablet encrusted with runes.
+~
+E
+stone~
+A very large tablet encrusted with runes.
+~
+#15113
+talon griffin~
+a griffin's talon~
+A seven-inch long talon has been left here.~
+~
+5 852 4098 0 8193 64
+0~ 0~ 0~ 11~
+3 6 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+26 6
+A
+18 80
+A
+19 69
+E
+talon~
+&bA large seven-inch long talon.
+~
+E
+griffin~
+&bA large seven-inch long talon.
+~
+#15114
+wings griffin~
+wing's of a griffin~
+A huge pair of griffen wings has been left here.~
+~
+9 64 0 0 1025 65
+0~ 0~ 0~ 0~
+7 40 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+110 -1
+A
+17 -30
+A
+13 65
+E
+wings~
+&wA very large set of griffin's wings. They are quite heavy.
+~
+E
+griffin~
+&wA very large set of griffin's wings. They are quite heavy.
+~
+#15115
+goblet diamond~
+a diamond goblet~
+&WA diamond goblet shines blindingly here.~
+~
+1 1 0 0 16385 60
+0~ 0~ -1~ 0~
+2 15 0 0 0
+5 0
+blindness~
+2 2
+0 0 0
+A
+13 60
+A
+12 60
+E
+goblet~
+&WA magnificent diamond goblet is large in size.
+~
+E
+diamond~
+&WA magnificent diamond goblet is large in size, and sparkles beautifully.
+~
+#15116
+armor hydra scale~
+hydra scale armor~
+A suit of armor fashioned from a hydra's scales has been forgotten here.~
+~
+9 64 7735 52607 9 60
+0~ 0~ 0~ 0~
+10 0 75 0 0
+5 0
+stone skin~
+-1 -1
+0 0 0
+A
+1 2
+A
+24 -2
+A
+23 -3
+A
+17 -60
+E
+armor~
+A beautifully crafted suit of hydra scale armor. Many colours shimmer
+from its scales.
+~
+E
+hydra~
+A beautifully crafted suit of hydra scale armor. Many colours shimmer from
+its scales.
+~
+E
+scale~
+A beautifully crafted suit of hydra scale armor. Many colours shimmer from
+its scales.
+~
+#15117
+pendant damned~
+pendant of the damned~
+A small pendant glows silently in the dust here.~
+~
+8 4289 34 0 5 40
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+119 -1
+A
+19 -9
+A
+13 40
+A
+25 13
+E
+pendant~
+&PA plain and useless pendant glows silently.
+~
+E
+damned~
+&PA plain and useless pendant glows silently.
+~
+#15118
+disc ebony~
+an ebony disc~
+A small ebony disc floats slightly above the ground here.~
+~
+9 64 12 0 32769 70
+0~ 0~ 0~ 0~
+0 20 0 0 0
+4 15119
+reserved~
+-1 -1
+0 0 0
+A
+102 -1
+A
+13 70
+E
+ebony~
+&bA small ebony disc is approximately one foot in diameter.
+~
+E
+disc~
+&bA small ebony disc is approximately one foot in diameter.
+~
+#15119
+ebony sword blade~
+an ebony sword~
+An ebony blade has been left here.~
+~
+5 64 0 0 8193 70
+0~ 0~ 0~ 3~
+5 100 0 0 0
+4 15118
+reserved~
+-1 -1
+0 0 0
+A
+12 50
+A
+18 80
+A
+19 70
+A
+13 70
+E
+ebony~
+&bAn ebony shortsword with no distinct markings.
+~
+E
+blade~
+&bAn ebony shortsword with no distinct markings.
+~
+E
+sword~
+&bAn ebony shortsword with no distinct markings.
+~
+#15120
+hide behemoth~
+a behemoth's hide~
+&OA huge rough-looking hide has been tossed aside here.~
+~
+9 64 0 52607 9 49
+0~ 0~ 0~ 0~
+8 0 35 0 0
+5 0
+armor~
+20 20
+0 0 0
+A
+1 2
+A
+2 -1
+A
+18 -3
+A
+17 -75
+E
+hide~
+&OThe hide is that of a behemoth. A rather large creature with a tough skin,
+and thin layer of course fur. It's scratchy to the touch, and very large.
+~
+E
+behemoth~
+&OThe behemoth hide is very rough and course. It has a course fur on it, 
+although you wouldn't consider it a fur because it is just a thin layer.
+~
+#15121
+shifting cloak cloth~
+&pa &gc&Bo&Yn&Ws&Ct&Ra&Pn&Gt&cl&Oy &Ys&Wh&wi&gf&Gt&pi&Cn&Rg &Pc&Yl&co&Ra&Bk&w~
+&.A pile of cloth slowly cycles through the spectrum here.~
+~
+9 320 202 0 1025 75
+0~ 0~ 0~ 0~
+2 75 0 0 0
+5 0
+mana~
+3 3
+0 0 0
+A
+3 2
+A
+4 2
+A
+24 -4
+A
+12 75
+E
+shifting~
+&.The shifting cloak is never the same colour for very long.
+~
+E
+cloak~
+&.The shifting cloak is never the same colour for very long.
+~
+E
+cloth~
+&.This cloth is strange indeed, never the same colour for very long.
+~
+#15122
+staff magi~
+staff of the Magi~
+A powerful looking staff has been thrust into the ground here.~
+~
+5 320 6860 0 8193 70
+0~ 0~ 0~ 8~
+3 50 0 0 0
+5 0
+icestorm~
+3 3
+0 0 0
+A
+18 55
+A
+19 70
+A
+12 70
+A
+13 70
+E
+staff~
+&wA silver staff is beautiful to look upon. It is a full length staff, for
+those of humanoid build... approximately six feet in length. It's width is
+around three inches(8cm) in diameter. It bares no outstanding markings.
+~
+E
+magi~
+&wA silver staff is beautiful to look upon. It is a full length staff, for
+those of humanoid build... approximately six feet in length. It's width is
+around three inches(8cm) in diameter. It bares no outstanding markings.
+~
+#15123
+magick cap wizard~
+a magick cap~
+A bent and crumpled wizards cap lies on the ground here.~
+~
+9 256 712 4096 17 69
+0~ 0~ 0~ 0~
+1 5 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 2
+A
+12 15
+E
+magick~
+&BThe cap appears to be a plain old bent and crumpled cone-shaped cap.
+~
+E
+cap~
+&BThe cap appears to be a plain old bent and crumpled cone-shaped cap.
+~
+#15124
+belt chain fiery~
+a fiery chain belt~
+A length of fiery chain lies here on the ground.~
+~
+9 596 130 0 2049 62
+0~ 0~ 0~ 0~
+6 0 5 0 0
+5 0
+fireshield~
+3 3
+0 0 0
+E
+fiery~
+&RThe fiery length of chain looks as though it could melt straight away. The
+flame that embodies it seems so real.
+~
+E
+chain~
+&RThe fiery length of chain looks as though it could melt straight away. The
+flame that embodies it seems so real.
+~
+E
+belt~
+&RA simple chain belt.. yet the fiery length of chain looks as though it
+could melt straight away. The flame that embodies it seems so real.
+~
+#15125
+throne~
+a &Rg&We&gm &Be&On&rc&Gr&Wu&Rs&gt&Be&Od &Xthrone~
+A huge throne encrusted with gems, and covered in elaborate scrollwork rests here.~
+~
+8 0 0 0 0 50
+0~ 0~ 0~ 0~
+600 2000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#15126
+plant green speckled~
+&ga green &Gs&Op&ge&Gc&Ok&gl&Ge&Od &gplant&W~
+&gA leafy green plant with several &Os&gp&Ge&gc&Ok&Gl&ge&Os&g on it's stems is here.~
+~
+26 64 0 0 1 50
+50~  ~ cure poison~ cure light~
+3 1 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+plant~
+&gA green-coloured &Os&gp&Ge&Oc&Gk&gl&Oe&Gd &gplant is leafy like that of
+lettuce.
+~
+E
+green~
+&gA green &Os&Gp&ge&Oc&Gk&Ol&ge&Od&g plant is leafy like lettuce.
+~
+E
+speckled~
+&gS&Op&Ge&Oc&GK&Ol&ge&Gd &gon some of the leaves, this plant is leafy like lettuce.
+~
+#15127
+spiney black plant~
+a black spine covered plant~
+A spiney black plant is here.~
+~
+26 192 0 0 1 50
+50~ armor~ stone skin~ reserved~
+5 0 12 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+spiney~
+The plant is covered in black spines, although it is green in colour.
+~
+E
+black~
+The plant is covered in black spines, although it is green in colour.
+~
+E
+plant~
+The plant is covered in black spines, although it is green in colour.
+~
+#15128
+black rock frozen teardrop~
+a black frozen teardrop~
+&bA strange black rock has been left here.~
+~
+9 596 131 0 32769 75
+0~ 0~ 0~ 0~
+1 20 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 75
+A
+100 -1
+A
+25 25
+E
+black~
+&bA small oval rock is not a rock at all, it would seem. It is a teardrop...
+frozen in time.
+~
+E
+rock~
+&bA small oval rock is not a rock at all, it would seem. It is a teardrop...
+frozen in time.
+~
+E
+frozen~
+&bA small oval rock is not a rock at all, it would seem. It is a teardrop...
+frozen in time. You wonder how or what could possibly make something so
+Immortally beautiful, but sad at the same time.
+~
+E
+teardrop~
+&bA small oval rock is not a rock at all, it would seem. It is a teardrop...
+frozen in time. You wonder how or what could possibly make something so
+Immortally beautiful, but sad at the same time.
+~
+#15129
+whip cat tails~
+the cat of nine tails~
+A nine-headed whip writhes silently with a life of it's own.~
+~
+5 838879829 4612 0 8193 90
+0~ 0~ 0~ 4~
+6 250 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 90
+A
+19 50
+A
+18 180
+A
+26 9
+A
+122 -1
+#15130
+shroud psychic~
+psychic shroud~
+A strange dark shroud lies crumpled on the ground here.~
+~
+9 805309012 0 12928 1025 90
+0~ 0~ 0~ 0~
+9 100 0 0 0
+0 0
+phase shift~
+0 0
+0 0 0
+A
+13 90
+A
+12 90
+A
+23 -5
+A
+111 -1
+#15131
+striding boots astral~
+boots of far striding~
+A strange pair of boots phases in and out of reality here.~
+~
+9 268438036 0 0 65 89
+0~ 0~ 0~ 0~
+4 50 0 0 0
+5 0
+astral walk~
+5 5
+0 0 0
+A
+14 80
+A
+2 5
+E
+astral~
+These strange boots fade in and out of reality.
+~
+E
+striding~
+These strange boots fade in and out of reality.
+~
+E
+boots~
+These strange boots fade in and out of reality.
+~
+#15132
+crystal shield disc~
+crystaline shield~
+A large disc of crystal lies on the floor here.~
+~
+9 536871008 0 0 513 45
+0~ 0~ 0~ 0~
+6 5 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+107 -1
+A
+13 45
+E
+shield~
+&WA large crystaline shield is perfectly clear, and beautifully crafted.
+~
+E
+crystal~
+&WA large crystaline shield is perfectly clear, and beautifully crafted.
+~
+E
+disc~
+&WA large crystaline shield is perfectly clear, and beautifully crafted.
+~
+#15133
+earring crystal~
+crystaline earring~
+A small crystal earring lies on the ground here.~
+~
+9 0 0 0 524289 45
+0~ 0~ 0~ 0~
+1 0 18 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -2
+E
+crystal~
+&WA beautiful crystal earring in the shape of a diamond.
+~
+E
+earring~
+&WA beautiful crystal earring in the shape of a diamond.
+~
+#15134
+wire silver hoop~
+a tiny silver wire~
+A small hoop of silver wire lies barely visible on the ground.~
+~
+8 96 2048 0 1048577 45
+0~ 0~ 0~ 0~
+1 10 0 0 0
+5 0
+haste~
+2 2
+0 0 0
+A
+14 50
+E
+wire~
+&wA tiny silver wire can barely be seen, even as you look closely upon it.
+~
+E
+silver~
+&wA tiny silver wire can barely be seen, even as you look closely upon it.
+~
+E
+hoop~
+&wA tiny silver wire can barely be seen, even as you look closely upon it.
+~
+#15136
+behemoth skin boots~
+behemoth skin boots~
+A pair of boots made from the hide of a behemoth have been left here.~
+~
+9 596 0 50559 65 49
+0~ 0~ 0~ 0~
+10 0 20 0 0
+5 0
+earthquake~
+50 50
+0 0 0
+A
+14 100
+E
+skin~
+&OMade from the skin of a behemoth, these boots are pretty tough and durable.
+~
+E
+boots~
+&OMade of a very tough hide, these boots are pretty durable. You could probably
+walk quite a ways in these.
+~
+E
+behemoth~
+&OMade of a very tough hide, these boots are pretty durable. You could probably
+walk quite a ways in these.
+~
+#15137
+staff discipline~
+the Staff of Discipline~
+A small engraved staff has been thrusted into the ground here.~
+~
+4 1088 6348 0 16385 40
+30~ 5~ 5~ heal~
+3 0 25 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 2
+A
+5 2
+A
+12 50
+E
+staff~
+A plain wooden staff with some engravings upon it.
+~
+E
+discipline~
+A plain wooden staff with some engravings upon it.
+~
+E
+engravings~
+&OThe engravings are in an ancient language... but not so ancient that you
+cannot catch the general message it has to say. "The Staff of Discipline"
+it is called. It also says something about harnessing a power of some sort.
+You can't quite make it out.
+~
+#15138
+crown horns rainbow multi-coloured~
+the multi-coloured crown of horns~
+A beautiful crown of rainbow horns has been deserted here.~
+~
+9 67109440 4226 56447 17 87
+0~ 0~ 0~ 0~
+25 150 0 0 0
+5 0
+shatter~
+1 1
+0 0 0
+A
+2 -2
+A
+13 90
+A
+23 -4
+A
+24 -4
+E
+crown~
+The crown is very large in size. Big enough to sit atop a large Dragons'
+head. It shimmers with many colours of the spectrum.
+~
+E
+rainbow~
+The crown is very large in size. Big enough to sit atop a large Dragons'
+head. It shimmers with many colours of the spectrum.
+~
+E
+multi-coloured~
+The crown is very large in size. Big enough to sit atop a large Dragons'
+head. It shimmers with many colours of the spectrum.
+~
+E
+horns~
+The crown is very large in size, and has many horns. It is big enough to sit
+atop a large Dragons' head. It shimmers with many colours of the spectrum.
+~
+#15139
+set claws razor~
+some razor sharp claws~
+A set of vicious razor sharp claws have been left here.~
+~
+5 603982420 7347 49535 8193 90
+0~ 0~ 0~ 5~
+12 100 0 0 0
+5 0
+meteor swarm~
+1 1
+0 0 0
+A
+112 -1
+A
+18 72
+A
+19 95
+A
+26 9
+E
+set~
+&bA set of claws is razor sharp, and quite large and heavy. They seem to have
+come from a dragon (which must have been an adult from the size).
+~
+E
+claws~
+&bA set of claws is razor sharp, and quite large and heavy. They seem to have
+come from a dragon (which must have been an adult from the size).
+~
+E
+razor~
+&bA set of claws is razor sharp, and quite large and heavy. They seem to have
+come from a dragon (which must have been an adult from the size).
+~
+#15140
+mental shield~
+mental shield~
+A strange rune engraved shield has been deserted here.~
+~
+9 64 1851 0 513 90
+12~ 0~ 0~ 0~
+6 200 0 0 0
+5 0
+mental block~
+5 5
+0 0 0
+A
+1 1
+A
+13 90
+A
+12 90
+A
+19 6
+A
+18 7
+E
+mental~
+A mental shield is medium in size and is adequately crafted. The runes
+are undecipherable to you.
+~
+E
+shield~
+A strange rune engraved shield. It is medium-sized with adequate craftsman-
+ship. The runes are undecipherable.
+~
+#15141
+key silver engraved~
+a silver key~
+A small engraved key has been left here.~
+~
+18 1 0 0 16385 75
+0~ 0~ 0~ 0~
+1 0 0 14 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+engraved~
+&wA small silver key is engraved with an infinity sign.
+~
+E
+silver~
+&wA silver key is engraved with the infinity sign.
+~
+E
+key~
+&wA silver key is engraved with the infinity sign.
+~
+#15142
+gold key~
+golden key~
+A small golden key engraved with the sybol for a vortex lies here.~
+~
+18 1 0 0 1 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#15159
+rusty armor~
+a suit of rusty armor~
+A suit of rusty armor lies here.~
+~
+9 1536 5687 64190 8 50
+0~ 0~ 0~ 0~
+60 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 -3
+E
+rusty~
+&OYup, it's rusty.
+~
+E
+armor~
+&OYup, it's armor, and it's rusty.
+~
+#15165
+black robe robes~
+the necromancer's robes~
+A black robe is here.  It radiates a strong aura of evil.~
+~
+9 2577 0 0 1033 65
+20~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 20
+A
+3 1
+#0
+
+
+
+#ROOMDATA
+#15100
+Waygate~
+The walls of this chamber seem alive with colour and lights.  Images are
+called to your memory by the patterns created as they swirl and glitter. 
+You find yourself thinking of things long forgotten, and times before the
+storm.  You start to see images of people long dead, and of battles fought
+thousands of years before your time.  You realize that these chambers are
+ancient, perhaps older than The Storm itself.  There is a small golden sign
+on the wall here.  
+~
+0 1074143256 0
+Rd     0
+E
+sign~
+-----------------------------------------
+|                                       |
+|    To use the waygates simply         |
+|     -look in gate(shows destination)  |
+|     -enter gate(enters the waygate)   |
+|                                       |
+-----------------------------------------
+~
+D0
+~
+~
+0 0 15101
+S
+#15101
+Flame Hallway~
+As you glance around the hallway you notice that although the light is
+adequate, you can only see about ten feet around you.  There doesn't seem to
+be a fading of light, but rather an absence of it.  You note this as merely
+an annoyance until you realize that ten feet is an awfully short distance
+for a creature to close in at.  You realize that you'll have no quick notice
+as to what is about to attack you.  The place fairly reeks of fear.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15102
+D2
+~
+~
+0 0 15100
+D3
+~
+~
+0 0 15107
+S
+#15102
+Flame Hallway~
+The hallway takes an abrupt turn to the east here.  The walls are lined
+with portraits and tapestries of varying size and colour.  You can smell the
+rancid scent of death hanging cloyantly in the air and your stomach rushes
+to rebel.  
+~
+0 1074143256 0
+Rd     0
+E
+portraits~
+The portraits are not of anyone you recognize, but they do look very important.
+~
+E
+tapestries~
+The tapestries are somewhat abstract, making you have to turn your head this
+way and that... and even then, you can't decipher what is depicted there.
+~
+D0
+~
+~
+0 0 15121
+D1
+~
+~
+0 0 15103
+D2
+~
+~
+0 0 15101
+S
+#15103
+Hallway of the Beast~
+The angles of this hallway seem all wrong, twisted and distorted.  The
+pictures show hideous creatures devouring mortal creatures of all types,
+many humanoid.  The floor seems to be slanting slowly downwards and travel
+to the east is almost easy, as if the place wanted you to go this way.  
+~
+0 1074143256 0
+Rd     0
+E
+pictures~
+You are almost horrified as you look upon these pictures. All races of
+humanoids and non-humanoids being devoured by a hideous monster, too
+awful to describe. In the background, you can even see one of your kin.
+~
+E
+floor~
+The floor slants slightly downward to the east.
+~
+D1
+~
+~
+0 0 15104
+D3
+~
+~
+0 0 15102
+S
+#15104
+Hallway of the Beast~
+As you approach the end of the hallway... the walls begin to fuzz and blur
+as if you were weary. You mentally check yourself over and find that you are
+not tired in any way. If you were to approach one of the walls and touch it,
+you would find that it feels fuzzy and the shape is all wrong. After a while
+your stomach starts to protest your scrutiny of the walls, so you are forced
+to avert your eyes.
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15105
+D3
+~
+~
+0 0 15103
+S
+#15105
+Hallway of the Beast~
+The hallway shifts to the north here.  The walls are distorted and
+horribly disfigured.  They bend and twist at angles that would quickly cause
+any normal structure to collapse.  You try not to think about what might
+happen if there was a cave in.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15106
+D3
+~
+~
+0 0 15104
+S
+#15106
+Chamber of Disfigurement~
+The angles in this room seem distorted and unstable.  It almost seems as
+if the walls curve in and out as they join the slightly larger roof to the
+small and oddly shaped floor.  The walls are lined with hideous portraits of
+creatures that defy nature, arms sprouting from cracked and bleeding heads,
+legs protruding from a pustule and infected back.  This place is a true
+horror unto itself.  You shiver unconsciously.  
+~
+0 1074143256 0
+Rd     0
+D2
+~
+~
+0 0 15105
+S
+#15107
+Hallway of the Dragon~
+This hall looks much more civil than some of the others in The Ways.  It
+is well maintained and is not in flux.  There are several portraits on the
+wall, including some of dragons and other great beasts.  This almost reminds
+you of a hallway in any castle within The Storm.  
+~
+0 1074143256 0
+Rd     0
+E
+portraits~
+There are portraits of all the great dragons of evil and good. &RRed&W,&Bblue&W,
+&Ggreen&W,&zblack&W,&Ygold&W,&Obronze&W,&wsilver &Wand &rcopper&w. &WAll present.
+~
+D1
+~
+~
+0 0 15101
+D3
+~
+~
+0 0 15108
+S
+#15108
+Hallway of the Dragon~
+The hallway continues to the west and the northern wall harbors an
+entrance way.  You can smell a foul stench radiating from the north.  The
+area around the door seems to slowly fade from stone to a sort of milky
+white substance as it curves into the large oval room.  You can sense the
+presence of some huge beast through that passageway.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15109
+D1
+~
+~
+0 0 15107
+D3
+~
+~
+0 0 15110
+S
+#15109
+An oval chamber~
+The chamber is oval in shape, and it is most awkward to stand on the
+floor.  The walls are fashioned of some strange milky white substance and
+colours seem to play across its surface.  You mentally liken it to watching
+a rainbow through milky lenses.  The overall affect is quite stunning.  
+~
+0 1074143256 0
+Rd     0
+D2
+~
+~
+0 0 15108
+S
+#15110
+Hallway of the Dragon~
+You note that there is no actual corner to this bend in the hallway, it's
+just that, a bend.  The hallway seems to have been drawn to the south slowly
+and the hall curves and contorts to compensate.  The portraits hanging along
+the curved wall are also curved, as are the torches and the flames they
+produce.  The overall affect is quite disconcerting, especially when you
+notice that you begin to curve as well.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15108
+D2
+~
+~
+0 0 15111
+S
+#15111
+Hallway of the Dragon~
+The hallway broadens here until you could fit five or six stalwart
+dwarves shoulder to shoulder across it.  You can sense tiny vibrations
+through the floor as if some massive machine is operating off in the
+distance.  You note that the walls here seem to glow with a light of their
+own, and even give off a small amount of heat.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15110
+D2
+~
+~
+0 0 15112
+S
+#15112
+Hallway of the Dragon~
+The walls of the hallway seem to pulse slowly, as if breathing.  You
+slowly run your hands across its surface before realizing that they are not
+pulsing with life, but with some kind of vibration.  You can feel the
+presence of some powerful entity lurking just beyond your sight.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15111
+D2
+~
+~
+0 0 15113
+S
+#15113
+Hallway of the Dragon~
+Once again the hallway bends slowly to the west.  The curvature is
+amazingly accurate and you note that all the portraits and tapestries are
+curved to fit their position on the wall.  As you navigate the curve you
+feel your stomach wrench in contept as your body itself starts to conform to
+the hall's curvature.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15112
+D3
+~
+~
+0 0 15114
+S
+#15114
+Hallway of the Dragon~
+The vibrations here seem more intense and you can hear a faint hum
+emanating from somewhere close by.  You can smell sulfur and brimstone not
+far to the south, and it is from that direction that the vibrations seem to
+be strongest.  Over the low hum you can make out the sound of claws grating
+on brick, and the low rumble of some huge beasts growl.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15113
+D2
+~
+~
+0 0 15115
+D3
+~
+~
+0 0 15116
+S
+#15115
+Chamber of the Prism~
+This chamber seems to have been carved from a huge multi-faceted crystal.
+Lights refract across its surface creating a highly hypnotic pattern.  You
+watch blithly until you can feel your mind slowly slipping away.  You shake
+yourself back into realization with a new respect for this place.  Surely it
+is the purpose of this chamber to distract the undisciplined adventurer. 
+The whole chamber seems to be vibrating in resonance to some sound you
+cannot hear.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15114
+S
+#15116
+Hallway of the Dragon~
+The hall bends slowly to the north.  You are becoming more accustomed to
+this strange phenomenon.  You feel what hairs you have begin to rise, and
+mistake the affect for fear and caution, before you realize that the walls
+are fairly humming with some form of magical energy.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15117
+D1
+~
+~
+0 0 15114
+S
+#15117
+Hallway of the Dragon~
+The smell of fresh air fills your lungs as a small breeze gusts past you
+from the north.  You feel a longing to be outside and in the open, where you
+can see for miles and miles.  For the first time you feel the rubber hands
+of claustrophobia stroking your body.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15118
+D2
+~
+~
+0 0 15116
+S
+#15118
+Hallway of the Dragon~
+To the north you can see a bend and light.  You can also make out the
+clear smell of fresh air.  Your lungs pull it in hungrily, like a man denied
+food for several days.  Glancing around you notice that the portraits here
+are in much better repair than those you've seen previously.  It is obvious
+that someone maintains these halls.  
+~
+0 1074143256 0
+Rd     0
+E
+portraits~
+Hmpf. Not a speck of dust. Someone HAS cleaned in here recently...
+~
+D0
+~
+~
+0 0 15119
+D2
+~
+~
+0 0 15117
+S
+#15119
+Hallway of the Dragon~
+The hallway turns abruptly to the west here, unlike the other corners
+which just seemed to bend naturally.  This particular corner almost seems
+unnatural, as if carved by sentient hands.  Your heart begins to leap with
+harnessed anticipation.  
+~
+0 1074143256 0
+Rd     0
+D2
+~
+~
+0 0 15118
+D3
+~
+~
+0 0 15120
+S
+#15120
+End of the Hallway~
+This room is set apart from the rest in The Ways.. in the fact that it
+seems normal.  You would almost think this to be a simple chamber in any
+castle within The Storm.  The walls are made of good hard granite and
+torches light the chamber with a flickering glow.  The rug is plush and well
+woven and there are several portraits of warriors and magi on the walls. 
+You are about to leave when you notice a faint glow coming from the east
+wall...  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15119
+D3
+~
+~
+0 0 15158
+S
+#15121
+Flame Hallway~
+Far in the distance you can hear strange throbbing noises, as if
+somewhere within these chambers a huge heart is beating.  You can almost
+make out the sounds of voices with each throb.  They call to you
+tantalizing, seducing....  You slowly snap back to reality and shake off the
+web that had been slowly falling over your mind.  You realize that you will
+have to keep a strong mental hold on yourself.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15122
+D2
+~
+~
+0 0 15102
+S
+#15122
+Flame Hallway~
+The hallway abruptly comes to an end, but two sister hallways branch to
+the east and west.  You can make out the faint scratching of claw to stone
+not far to the east, while the west seems oddly quiet.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15123
+D2
+~
+~
+0 0 15121
+D3
+~
+~
+0 0 15137
+S
+#15123
+Hallway of the Magi~
+This room seems strangely familiar to you, as if you had briefly passed
+it by at some point or another.  There are no overly distinguishing
+qualities to it, the walls are all fine granite stone, and the floor is very
+nearly buried in plush rugs and furs.  The portraits on the walls show
+strange beings walking amongst groups of mortals which seem to be totally
+ignorant of their existance.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15124
+D3
+~
+~
+0 0 15122
+S
+#15124
+Hallway of the Magi~
+This hallway seems to stretch towards infinity.  You cannot make out the
+end which must lie somewhere far to the north.  The walls here seem much
+older than any you've seen before in The Ways.  You wonder at how ancient
+this must be to show the ravages of time within these magical halls.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15125
+D2
+~
+~
+0 0 15123
+S
+#15125
+Hallway of the Magi~
+You slowly run your finger along an age worn brick.  Small pieces crumble
+and fall sparkling to the ground where they fade into the carpet.  You
+shudder to think what might happen if a hole were to break in one of the
+walls.  Not for the first time you wonder where this place might be located.
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15126
+D2
+~
+~
+0 0 15124
+S
+#15126
+Hallway of the Magi~
+In this part of the halls the ceiling looks to be sagging and fine
+hairline cracks cover it in a spiderweb pattern.  A small trickle of dust
+sifts slowly down from above to rest on your shoulder, where it begins to
+tingle.  You quickly brush it off and watch it vanish into the floor.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15127
+D2
+~
+~
+0 0 15125
+S
+#15127
+Hallway of the Magi~
+The walls here have a look as though they are thin as paper.  They seem
+to ripple in your vision as if on the verge of collapsing.  Warily you
+extend a finger to poke at them, luckily they still feel solid enough.  You
+wonder how old these particular halls must be.  
+~
+0 1074143260 0
+Rd     0
+D0
+~
+~
+0 0 15128
+D2
+~
+~
+0 0 15126
+S
+#15128
+Hallway of the Magi~
+This room seems quite solid, almost in contradiction of the halls
+adjoining it.  There are small chairs against the walls, as if someone was
+planning on giving some sort of lecture here.  The tapestries show scenes of
+some great mage opening portals from which strange creatures come forth to
+bow at his feet.  
+~
+0 1074143256 0
+Rd     0
+E
+chairs~
+&OThe chairs are quite plain in design, except that they look quite comfortable
+due to the &ppurple velvet covered cushions&O.
+~
+D0
+~
+~
+0 0 15129
+D2
+~
+~
+0 0 15127
+S
+#15129
+Hallway of the Magi~
+This segment of the hall, like the one to the south, is in fairly good
+repair.  The carpet is fresh and all the stones seem good and solid.  There
+are various objects scattered on some tables about the room.  You take a
+quick check and find all of them useless.  
+~
+0 1074143256 0
+Rd     0
+E
+tables~
+A few things lie scattered about a few tables in the room. Mostly vials stained
+with long gone ink, and a few worn out quills and parchments.
+~
+D0
+~
+~
+0 0 15130
+D2
+~
+~
+0 0 15128
+S
+#15130
+Hallway of the Magi~
+To the north lies a huge chamber, it seems to be in excellent condition
+and is lavishly furnished, as if it is lived in.  You peek around the
+corners but cannot make out anything in the room itself.  You can hear the
+faint crackle of some powerful magics being used.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15131
+D2
+~
+~
+0 0 15129
+S
+#15131
+Chamber of the Ancients~
+This chamber is huge!  Some one hundred by seventy by fourty feet.  You
+marvel at the architecture.  Hanging from the ceiling are any number of
+chandeliers and magical lanterns.  You watch the patterns of light that
+reflect from the chandeliers dance across the walls.  The floors are covered
+in a plush red carpet that feels soft enough to sleep on.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15135
+D1
+~
+~
+0 0 15132
+D2
+~
+~
+0 0 15130
+D3
+~
+~
+0 0 15133
+S
+#15132
+Chamber of the Ancients~
+This section of the chamber is covered in strange glyphs and wards. They
+flare up upon your entrance to the room. A pedestal sits in the corner that
+pulses with an inner radiance.
+~
+0 1342177308 0
+Rd     100
+D0
+~
+~
+0 0 15136
+D3
+~
+~
+0 0 15131
+S
+#15133
+Chamber of the Ancients~
+The southwest corner of the room holds little of interest. You note that
+several varieties of plants have been set here though. Looking through them,
+you see several that may be of interest.
+~
+0 1073741852 0
+Rd     0
+E
+plants~
+&GSeveral plants of different varieties look familiar to you. You may or may not
+know their names.
+~
+D0
+~
+~
+0 0 15134
+D1
+~
+~
+0 0 15131
+S
+#15134
+Chamber of the Ancients~
+There is a pedestal in the corner that gives off faint pulses of light and
+heat. The carpeting here is far more worn than it is in the rest of the chamber.
+The portraits here depict strange beast that seem to defy nature itself. Horses
+with the head of chickens and alligators with the arms of humans. Under the
+pictures there is a phrase written neatly... "Genetic Misfits."
+~
+0 1073741848 0
+Rd     0
+D1
+~
+~
+0 0 15135
+D2
+~
+~
+0 0 15133
+S
+#15135
+Chamber of the Ancients~
+Against the north wall is a throne inlaid with priceless gemstones and
+encrusted with gold.  The scrollwork going up the back is quite elegant. 
+Directly above this throne hangs a portrait of a great mage holding sway
+over a huge black wyrm. The picture is lighted by another of those strange
+magical lanterns and it throws shadows and sparkles across the scene.  
+~
+0 1082130456 0
+Rd     0
+D1
+~
+~
+0 0 15136
+D2
+~
+~
+0 0 15131
+D3
+~
+~
+0 0 15134
+S
+#15136
+Chamber of the Ancients~
+This section of the chamber is fairly nondescript. You only notice one
+thing of interest. A small scroll tells of how one might create a portal
+to the Ancient Levels of The Ways. It is fairly illegible, but from what
+you can make out, it is obvious there are great treasures and hideous
+creatures abound on the Ancient Level of this strange place.
+~
+0 1073872920 0
+Rd     0
+D2
+~
+~
+0 0 15132
+D3
+~
+~
+0 0 15135
+S
+#15137
+Twisted Hallway~
+The silence enfolds you like a shroud. Your ears strain to pick up even
+the faintest of sounds, but nothing can be made out. Bereft of your hearing,
+you can feel your other senses begin to heighten. Your eyes bulge forward,
+and skitter back and forth at alert... straining to pick up everything. You
+get a sensation like your skin was crawling and your hairs bristling up in
+eager anticipation. You can sense the presence of something unnatural further
+along this corridor.
+~
+0 1082531864 0
+Rd     0
+D0
+~
+~
+0 0 15138
+D1
+~
+~
+0 0 15122
+S
+#15138
+Twisted Hallway~
+The strange tingle runs slowly up your spine.  You can almost feel some
+creature's breath pushing warmly at the back of your neck.  You spin to
+engage this beast in combat, but it is not there, instead the feeling comes
+from another direction.  Quickly you realize that the halls are tormenting
+you, making you immune to this feeling of weariness, so that when it becomes
+real you won't be ready.  
+~
+0 1082531864 0
+Rd     0
+D0
+~
+~
+0 0 15139
+D2
+~
+~
+0 0 15137
+S
+#15139
+Twisted Hallway~
+The hallway takes a sharp bend to the west here.  Not far in the distance
+you can feel some unseen force, and it seems to be approaching... 
+Watching...  Waiting for you to let your guard down.  Sweat slowly rolls
+down your face from the sheer force of will it takes you not to turn and
+run.  
+~
+0 1074143256 0
+Rd     0
+D2
+~
+~
+0 0 15138
+D3
+~
+~
+0 0 15140
+S
+#15140
+Twisted Hallway~
+The temperature here seems to have dropped about twenty degrees.  Small
+crystals of ice form before your eyes on the elaborate paneling here.  You
+watch as small patterns form and just as suddenly melt, as if blown on by a
+warm breeze.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15139
+D3
+~
+~
+0 0 15141
+S
+#15141
+Corridor of Gates~
+The hallway splits to the north and south here.  You notice that every
+few minutes the perspective in the room seems to sway, as if you are moving
+closer, then further.  It seems that this occurs at around the same time
+that some strange electrical force lifts the hairs on your head.  Not for
+the first time you wonder what powers this strange place.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15150
+D1
+~
+~
+0 0 15140
+D2
+~
+~
+0 0 15142
+S
+#15142
+Corridor of Gates~
+A small stain of blood covers the carpet of this section of the hallway. 
+It appears to be quite fresh.  Upon closer examination you can see that the
+blood trails to the wall and then proceeds up the side to the ceiling.  From
+the ceiling it drips back to the floor and slowly moves toward the wall, in
+an endless cycle.  You deftly step around the drip, wary of what it might do
+if you interrupt it's pattern.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15141
+D3
+~
+~
+0 0 15143
+S
+#15143
+Corridor of Gates~
+The air in this room seems thin and hardly breathable.  You stumble
+towards the wall to steady yourself as a wave of dizziness overcomes you. 
+Quickly you regain your composure and move on, your lungs straining for air
+where none can be found.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15142
+D3
+~
+~
+0 0 15144
+S
+#15144
+Corridor of Gates~
+The air here seems better, yet it has a strange scent to it.  Inhaling
+deeply you begin to feel happier...  Things begin to seem funny.  Glancing
+at the wall you see portraits of strange aquatic creatures engaging in
+fornication.  You bellow in laughter although you find no humour in it.  You
+realize that the cause must be the strange air...  You can try to hold your
+breath and focus on the hallway before you.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15143
+D3
+~
+~
+0 0 15145
+S
+#15145
+Corridor of Gates~
+The hallway turns sharply to the north here.  The carpeting in the
+northern hallway seems damp and the walls have small droplets of water on
+them.  Tasting the drops you find the water salty, as if it came from the
+sea.  The air has a faint smell of salt to it as well.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15146
+D1
+~
+~
+0 0 15144
+S
+#15146
+Corridor of Gates~
+You can definitely feel the moisture in the air now.  Not far to the
+north you can hear the sounds of the surf crashing into the land.  You can
+even make out the faint cry of gulls and other sea birds.  The carpets here
+are soaked with salty water.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15147
+D2
+~
+~
+0 0 15145
+S
+#15147
+Corridor of Gates~
+There is about an inch of sea water on the carpeting here, and small
+pieces of sea vegetation float around your feet.  To the east rises a solid
+wall of water.  There is an iron clad gate to the west, and from below it
+seeps an ominous red mist.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+~
+0 0 15149
+D2
+~
+~
+0 0 15146
+D3
+~
+gate~
+3 0 15148
+S
+#15148
+Chamber of the Disc~
+As you enter the chamber, a feeling of uneasiness comes over you.  You
+instinctively reach for your weapon as the hairs on the nape of your neck
+begin to rise.  This room seems to be filled to the brim of bursting hatred
+and malign intent.  The floor is shrouded in a series of strange mists.  The
+swirl begins to draw you attention...  Just as it was designed to do.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+gate~
+3 0 15147
+S
+#15149
+Chamber of Atlantis~
+This chamber is brilliantly designed.  Its walls are inlaid with mother
+of pearl and there are several tapestries depicting any number of seascapes.
+You feel at peace here.  
+~
+0 1074143256 8
+Rd     0
+E
+tapestries~
+&BThe tapestries are breath-taking... to say the least. They depict life
+under the sea. A large cavern is shown with a school of strange fish leaving
+it's darkness behind. The fish glow with an inner light, as if they are
+happy in their lives under the deep.
+~
+D3
+~
+~
+0 0 15147
+S
+#15150
+Corridor of Gates~
+Soft breezes tickle your face, seeming to come from everywhere and
+nowhere.  Glancing around, you see the walls retreat, then approach as if
+locked in some magical dance.  Slowly you feel your consciousness begin to
+fade, you quickly slap yourself to gain back your control.  Once more you
+remind yourself of the dangers of letting your mind wander.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15151
+D2
+~
+~
+0 0 15141
+S
+#15151
+Corridor of Gates~
+Strange voices fill the air, whispering, singing.  You can make out
+voices that sound familiar, like an old friend, begging you to come to
+their aid.  Songs dance through your head, switching volume and tempo until
+the beat becomes maddening.  Locking out the voices you brace yourself to
+carry on.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15152
+D2
+~
+~
+0 0 15150
+S
+#15152
+Corridor of Gates~
+There is a small wooden door on the east wall. A sign above it is clearly
+marked. From behind the doorway, you can hear the faint groan of some creature
+as though it was in torment.
+~
+0 1074143256 0
+Rd     0
+E
+sign~
+&rBETRAYERS&G
+~
+E
+door~
+A clearly marked sign above the east door reads; BETRAYERS.
+~
+D0
+~
+~
+0 0 15154
+D1
+A clearly marked sign above the east door reads; BETRAYERS.
+~
+door~
+3 0 15153
+D2
+~
+~
+0 0 15151
+S
+#15153
+Chamber of the Damned~
+This room is almost normal in comparison with the majority you've seen all
+around this place. The walls are smooth and black, as if charred and then
+polished to a shine. You deftly run your hand along one of the walls and you
+pull it back, bleeding. Looking upon the wall, you notice a spike slowly
+returning to its hiding place. There is a set of gallows here, and it drips
+with fresh blood. Upon closer examination though, it is gone. An illusion,
+perhaps? The room seems to be emulating with the fears of it's occupants.
+Very odd, indeed.
+~
+0 1074143256 0
+Rd     0
+D3
+~
+door~
+3 0 15152
+S
+#15154
+Corridor of Gates~
+There is an iron bound door to the west.  You can hear eight distinct
+growls coming from behind the door, yet you hear only one creature moving
+about.  You wonder briefly as to what make of creature this must be. 
+Whatever it is, you doubt it will be friendly.  
+~
+0 1074143256 0
+Rd     0
+D0
+~
+~
+0 0 15156
+D2
+~
+~
+0 0 15152
+D3
+~
+door~
+3 0 15155
+S
+#15155
+Chamber of the Goblet~
+This room is enormous, its ceiling being well over thirty feet above. 
+The floor is damp and the air smells stale and fetid.  You look down and see
+the bones of past travelers littering the room.  Most are cracked or
+entirely destroyed.  Under the decay you can make out a faint hint of sulfur
+and the rank smell of feces. 
+~
+0 1074143256 0
+Rd     0
+D1
+~
+door~
+3 0 15154
+S
+#15156
+Corridor of Gates~
+You come abruptly to the end of the passageway.  There is a large black
+door directly to the east, and you can hear the sounds of flapping coming
+from within.  Taking a quick look around you notice that the pictures in
+this portion of the halls are hung upside down.  
+~
+0 1074143256 0
+Rd     0
+D1
+~
+door~
+3 0 15157
+D2
+~
+~
+0 0 15154
+S
+#15157
+Chamber of the Tablet~
+Upon entering this chamber your nostrils are assailed with the rank smell
+of feces and other bodily excretions.  You feel your stomach begin to turn
+and consciously fend off an urge to relinquish your last reprise.  The room
+itself seems to be in good shape, other than the inch deep scratches in the
+floor.  
+~
+0 1074143256 0
+Rd     0
+D3
+~
+door~
+3 0 15156
+S
+#15158
+A crumbling waygate~
+The waygate is crumbling and in bad repair.  Mortar falls from the walls
+and ceiling making it difficult to walk.  You wonder how the place is still
+even standing, it is such a mess.  
+~
+0 401432 0
+Rd     0
+D1
+~
+~
+0 0 15120
+D2
+~
+~
+0 0 15159
+S
+#15159
+Decaying Hallway~
+You are walking down a decaying hallway.  The walls are in poor repair
+with mortar and stones falling from them and leaving piles of rubble on the
+ground.  The ceiling is pocked and crumbling about you.  You get the feeling
+that this is not the safest place in the world to be.  
+ 
+~
+0 401432 0
+Rd     0
+D0
+~
+~
+0 0 15158
+D1
+~
+~
+0 0 15160
+S
+#15160
+Decaying Hallway~
+You are in a decaying hallway.  It looks like this place has never been
+cared for.  Holes in the walls and ceiling are abundant and the floor is
+covered with mortar and splintered wood.  Looking around you, you can never
+be fully sure the hall will not collapse about you.  
+~
+0 401432 0
+Rd     0
+D1
+~
+~
+119 15142 15161
+D2
+~
+~
+0 0 15162
+D3
+~
+~
+0 0 15159
+S
+#15161
+Shattered Vortex~
+~
+0 401432 0
+Rd     0
+D3
+~
+~
+119 15142 15160
+S
+#15162
+Decaying Hallway~
+Mortar and stone crumble to the ground.  The walls are crumbling and not
+very safe looking.  Overhead the ceiling is pock marked and stained.  You
+get the feeling no one has been down this hall in a very long time.  
+~
+0 401432 0
+Rd     0
+D0
+~
+~
+0 0 15160
+D2
+~
+~
+0 0 15163
+S
+#15163
+Decaying Hallway~
+You are moving down a decaying hallway.  The walls are in poor repair
+with mortar and stones falling from them and leaving piles of rubble on the
+ground.  The ceiling is pocked and crumbling about you.  You get the feeling
+that this is not the safest place in the world to be.  
+~
+0 401432 0
+Rd     0
+D0
+~
+~
+0 0 15162
+D2
+~
+~
+0 0 15164
+S
+#15164
+Decaying Hallway~
+You are forced to carefully pick your way through the rubble on the
+ground that at one time was the walls and ceiling of the hall.  A shiver
+goes up your spine as yet another piece of the ceiling falls not 3 inches
+from your head.  
+~
+0 401432 0
+Rd     0
+D0
+~
+~
+0 0 15163
+D1
+~
+~
+3 15141 15165
+S
+#15165
+Chamber of Decay~
+As you enter the chamber you are overwhelmed with the general disrepair of
+the whole place.  Every available surface is cracked and filled with holes. 
+Piles of mortar cover the floor and pieces of the ceiling continue to fall
+around you.  The floor is made from black flagstones but not one flagstone
+is whole.  Looking around you, a shiver runs up your spine as you wonder
+whether it is safe to be here.  
+~
+0 401432 0
+Rd     0
+D3
+~
+~
+3 15141 15164
+S
+#0
+
+
+
+#SPECIALS
+M 15105 spec_cast_mage
+M 15106 spec_breath_frost
+M 15110 spec_cast_mage
+M 15112 spec_cast_mage
+M 15114 spec_cast_psionicist
+M 15115 spec_breath_frost
+M 15165 spec_cast_mage
+S
+
+
+
+#RESETS
+M 0 15100 1 15100
+E 0 15101 0 5
+E 0 15102 0 18
+E 0 15102 0 19
+E 0 15103 0 20
+E 0 15132 0 15
+E 0 15133 0 23
+O 0 15100 0 15100
+M 0 15106 1 15102
+E 0 15110 0 3
+E 0 15110 0 4
+G 0 15111 0
+E 0 15134 0 25
+E 0 15134 0 24
+M 0 15104 1 15106
+E 0 15107 0 8
+E 0 15108 0 22
+M 0 15111 1 15109
+E 0 15120 0 5
+E 0 15136 0 12
+M 0 15101 1 15115
+E 0 15104 0 3
+E 0 15105 0 9
+M 0 15102 3 15121
+E 0 15106 0 16
+E 0 15137 0 22
+M 0 15105 2 15129
+E 0 15109 0 3
+E 0 15124 0 17
+O 0 15128 0 15132
+O 0 15126 0 15133
+O 0 15126 0 15133
+O 0 15127 0 15133
+M 0 15112 1 15134
+E 0 15121 0 16
+E 0 15122 0 20
+E 0 15123 0 6
+O 0 15111 0 15134
+O 0 15125 0 15135
+M 0 15110 1 15148
+E 0 15118 0 9
+E 0 15118 0 10
+M 0 15109 2 15153
+E 0 15117 0 3
+E 0 15117 0 4
+M 0 15108 1 15155
+E 0 15116 0 5
+E 0 15115 0 22
+M 0 15107 1 15157
+G 0 15112 0
+E 0 15113 0 20
+E 0 15114 0 16
+M 0 15158 2 15158
+M 0 15159 1 15159
+E 0 15159 0 5
+M 0 15115 1 15161
+E 0 15138 0 6
+E 0 15139 0 20
+E 0 15139 0 21
+M 0 15162 1 15162
+M 0 15164 1 15165
+M 0 15165 1 15165
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

@@ -1,0 +1,182 @@
+Astat will show all the stuff aedit does, and you can see what aedit shows
+by looking in olc_act.c, search for aedit_show. The print statements there
+we can just cut and paste. Before astat can print though, you have to make
+a few checks. In act_wiz.c, search for astat, delete the /* and */ around
+that line and put the following:
+
+void do_astat( CHAR_DATA *ch, char *argument )
+{
+    ROOM_INDEX_DATA *location;
+    AREA_DATA       *pArea;
+    char arg	    [ MAX_INPUT_LENGTH ];
+    char buf	    [ MAX_STRING_LENGTH ];
+
+This is "declaring" your variables you will use in your function, do_astat.
+ROOM_INDEX_DATA *location is declaring a ROOM_INDEX_DATA type, and we're
+naming it location. ROOM_INDEX_DATA is a structure, and in merc.h you can
+see what is in that structure.. a structure is like describing something.
+In ROOM_INDEX_DATA, you have variables <like fields in a table> that
+describe what ROOM_INDEX_DATA is, like the name of the room for example.
+How you access the name would be location->name, since location is a
+ROOM_INDEX_DATA type. Hope that helps some and not too confusing. Same
+logic goes for AREA_DATA. Ha.. see chapter 10, lesson on structures :>
+I won't get into explaining every line, since this file would be huge the
+way i talk :> But i'll make a file explaining variables.. that is
+something you learn right away in programming, in the early stages.
+
+The next line you put:
+
+one_argument( argument, arg );
+
+If I typed "astat lacey", argument is "lacey". If I typed "astat lacey
+kisha", by doing one_argument( argument, arg ), it picks off one argument,
+making arg equal to lacey, and ignores kisha. So it would be as  if i just
+typed 'astat lacey'. So we use "arg" throughout the rest of the function,
+arg being equal to what we want to astat.
+
+Next put:
+
+pArea = ch->in_room->area;
+
+Here, ch is the person typing the command. In the very first line, void
+( CHAR_DATA *ch, char *argument ), CHAR_DATA is another structure named
+ch. In this structure, there is another structure ROOM_INDEX_DATA, called
+in_room, and in ROOM_INDEX_DATA, there is a variable called area which is
+the area vnum of a given area. You are accessing a field within a field,
+like "area" is in in_room structure, which is in ch structure. Hope that
+isn't too confusing. Now pArea is equal to the area vnum of the area that
+I'm in, if I had typed astat.
+
+Next we want to check and see if I typed astat <number> or astat <name>,
+since you can astat a number, like aedit 0 for Limbo area, or astat lacey,
+the area where you are standing. By just typing astat by itself, you can
+astat the area you are in. Here is the next chunk of code to add, be
+careful to get all the { brackets in right spots :>
+
+if ( arg[0] != '\0' )
+{
+   if ( is_number( arg ) )
+   {
+      if ( !( pArea = get_area_data( atoi( arg ) ) ) )
+      {
+         send_to_char( AT_WHITE, "No such area exists.\n\r", ch );
+         return;
+      }
+   }
+   else
+   {
+      location = find_location( ch, arg );
+      if ( !location )
+      {
+         send_to_char( AT_RED, "No such location.\n\r", ch );
+         return;
+      }
+      pArea = location->area;
+   }
+}
+
+Now I'm gonna explain every line so if you want to skip this part go for
+it. :>  The first line, if ( arg[0] != '\0' ) is saying do what is
+surrounded by the curly bracket right beneath it, to the last curly
+bracket you just typed, as long as arg is NOT equal to nothing. If you
+just typed astat, without an argument, then we know that pArea is equal to the
+vnum of the area you are in, and don't need to check the argument you
+typed since there isn't any, all we need to do is print the area stuff of
+the vnum you are in.  So, you typed an argument, let's say you typed astat
+0. Now we check if the argument you typed is a number, hence the line
+if (is_number( arg )) Is_number is a function that returns TRUE if arg is
+a number, or FALSE if it isn't a number. Then the next if statement only
+gets executed if is_number( arg ) returns a TRUE. If it returns a FALSE,
+it does the "else" section. So, you typed a number, the next line it
+executes is another if statement:
+
+if ( !( pArea = get_area_data( atoi (arg ) ) ) )
+
+This does a couple things. Get_area_data is a function that loops through
+all the area vnums and if it finds an area which it's vnum equals arg, it
+makes pArea equal to that vnum. The ( !( part of the line means that if
+pArea doesn't equal a vnum, meaning it didn't find an area matching the
+vnum you typed, then execute this if statement. The ( atoi(arg) part of
+the line takes the argument you typed and makes it a number. Even though
+you typed a number, it is still a string <like text> according to the
+code. The function atoi() takes a string and makes it a number.
+So to sum that all up, it simply checks to see if the area vnum you want
+to astat exists, and if it doesn't, it tells you No such area exists and
+returns, ending the function.
+
+If the argument you typed was anything other than a number, like astat
+kisha, the "else" section gets executed. The first line here is 
+
+location = find_location( ch, arg );
+
+Remember, location is a type ROOM_INDEX_DATA. K.. find_location is a
+function that searches for arg in the game. If kisha isn't logged on, it
+won't find her location, if she is, it returns the vnum of the -room- she
+is in, making location equal to the room vnum she is in. So, the next line
+
+if( !location )
+
+is saying if it didn't find a location, execute this if statement. It is
+read like: If not location. Then it just says "No such location" and
+returns you, ending the function. If it did find a location, let's say
+Kisha was in room 2214, it would make location->vnum equal to 2214, since
+the variable vnum is part of the ROOM_INDEX_DATA structure. But we want
+the AREA_DATA information, the area in which that room belongs. There is
+another structure inside the ROOM_INDEX_DATA structure, called AREA_DATA
+*area. So we make pArea equal to location->area. hmm hope that isn't
+making things more confusing :(..
+
+Ok, so now we are done all the checking! Now all that is left is to print
+the area information :> This is the easy part :>
+K, in olc_act.c, search for aedit_show. All the print statements are
+already there, you just have to copy and paste 'em :>
+Starting at this line in aedit_show:
+sprintf( buf, "&WName:     &z[&W%5d&z] &w%s\n\r",pArea->vnum,pArea->name)
+
+Copy from there to the end, but not the line "return FALSE". And paste
+that as the next chunk of code in do_astat :> After the last line, should
+be send_to_char line, put the following:
+
+return;
+}
+
+Need the closing } bracket, to end the function. You can change how astat
+prints information, play around with the print statements if you want, or
+i can help you when it's in if you want to change it. 
+
+K, we are done the function now, but we have to add more stuff.
+In interp.c, search for do_astrip and put this line right above it:
+
+{ "astat",  do_astat,  POS_DEAD, L_JUN,  LOG_NORMAL },
+
+Don't forget the comma at the end.. This line is explained some in
+transport.txt..
+
+Next, in merc.h, search for do_astrip again, and put this line right above:
+
+DECLARE_DO_FUN( do_astat );
+
+And that's it! You did it! :> Uh.. well compile now, "make clean" :>
+One more thing, if something goes wrong, don't delete all the work you
+just did. If you can't fix it, just rem out your stuff like this:
+
+In act_wiz.c, in front of void do_astat( CHAR_DATA *ch, char *argument )
+put /*
+
+/* void do_astat( CHAR_DATA *ch, char *argument )
+
+and at the end of the function, after the } closing curly bracket right
+above void do_ostat, put */ to close the remark. Then, in interp.c, put /*
+at the beginning of the line you added, and */ at the end of it. Same with
+merc.h. This way you don't lose all the work you did :>
+
+Hope this file helped explain things, you shouldn't have a problem cuz i
+coded it all to test, and then took it out :> If you do run into a
+problem, it will probably be a tiny l'il error, like a bracket or semi
+colon :> Good luck Lacers! *hugs*
+
+P.S.
+Don't forget to add it to changes.txt and note us :>
+Also don't forget to put mist form in changes.txt <grin>
+
+Angi

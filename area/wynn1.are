@@ -1,0 +1,1337 @@
+#AREADATA
+Name        {??-???} PROTO AREA          Wynn~
+Levels      0 0
+Builders    Wynn~
+VNUMs       26201 26300
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#26201
+guard monk~
+The Monk Guard~
+A heavly muscled monk is guarding the gate.
+~
+Black marble eyes pierce your glaze, almost chilling you to the
+bone.  The loose robes this man wears are unable to hide the
+protruding muscles that proclaim his ability in battle.  It
+takes all of your will power to remain standing.  You notice
+that this man doesn't carry a weapon, then you realise that he
+does not need one.
+~
+3 168312960 262160 1000 S
+95 0 0 14000d0+0 0d0+0
+0 0 0 0
+0 0 1
+270336 0 0
+>speech_prog sensei~
+if isimmort($n)
+ bow $n
+ say Yes, the Sensei will see you anytime!
+ mpoload 26201
+ give key $n
+ break
+ if ispc($n)
+  if isgood($n)
+   say Yes, the Sensei wishes to speak with you.
+   mpoload 26201
+   give key $n
+   bow $n
+  else
+   growl $n
+   say The Sensei does not speak to people of such evil!
+   say Leave this place at once, or you shall die by my hand!
+  endif
+ endif
+endif
+~
+|
+#26202
+sensei~
+The Sensei~
+A man floats in the air in a deep trance.
+~
+Waves of power radiate off this man.  You could swear that this man
+could destroy you with just the flip of his wrist, but you don't
+want to find out.  He wears simple robes that make him appear
+to be nothing more than a common man... but it is plainly clear
+that that is not true.
+~
+3 101204096 262196 1000 S
+111 0 0 17500d0+0 0d0+0
+0 0 0 0
+0 0 1
+270336 0 0
+>fight_prog 15~
+if ispc($n)
+ if isgood($n)
+  say You shall not defeat me!
+  emote crosses his hands across his body.
+  emote utters the words, 'mirror attack'
+  mpmload 26203
+  mpforce mirror mpkill $n
+ else
+  say Evil has currupted you!  You and it shall die!
+  emote crosses his hands across his body.
+  emote utters the words, 'mirror attack'
+  mpmload 26203
+  mpforce mirror mpkill $n
+  cast 'dispel evil' $n
+ endif
+else
+ say I do not play games.
+ mppurge $n
+endif
+~
+>death_prog 100~
+mpecho A &Yshockwave&G of psychic energy is released from the Sensei's mind!
+mpecho The &Yshockwave&X destroys everything in the room!
+mpecho The &Wreflections&X shimmer and &zdisappear!
+~
+>fight_prog 30~
+blade
+~
+>fight_prog 45~
+if isgood($n)
+ say The evil forces have currupted you!
+ say now i must destroy them... along with you!
+ flying
+else
+ say Evil cannot withstand me!!
+ c 'dispel evil'
+endif
+~
+>speech_prog test~
+if isaffected($n) = 27
+say sanct
+break
+endif
+~
+|
+#26203
+mirror reflection sensei~
+a reflection~
+A reflection of The Sensei stands before you.
+~
+If you didn't know better you could swear that this reflection 
+is the real thing.  Every detail is exactly the same.
+~
+67 34078848 16 1000 S
+100 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+2144 0 0
+#26204
+student~
+a student~
+A student stands here practicing a throw.
+~
+The student is rather small, but you know that his size has no bases on
+his fighting ability.  All he wears are some white robes.  
+~
+16449 134242336 16 750 S
+95 0 0 17600d0+0 0d0+0
+0 0 0 0
+0 0 0
+73731 0 0
+#26205
+trainer teacher~
+a trainer~
+A trainer is here showing a student a throw.
+~
+As you look at this man you can tell he is very well suited for his job. 
+He's stout and well set, he needs no weapons, for his hands are deadlier
+than any weapon.  
+~
+65 33579176 16 1000 S
+98 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 1
+270339 0 0
+>fight_prog 5~
+say Now I will teach you something!
+disarm
+~
+>fight_prog 35~
+flying
+~
+|
+#26206
+mouse~
+a mouse~
+A small mouse skitters around the room at the sight of you.
+~
+~
+69 98304 0 1000 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#26207
+color phreak~
+&.C&.o&.l&.o&.r &.P&.h&.r&.e&.a&.k~
+&.a &.colorful &.person &.stands &.here
+~
+~
+3 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>rand_prog 35~
+say &.C&.o&.l&.o&.r&.s &.R&.u&.l&.e
+~
+|
+#0
+
+
+
+#OBJECTS
+#26201
+wood wooden key old~
+a wooden key~
+A old piece of wood lays here collecting dust.~
+~
+18 1 0 0 16385 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26202
+amulet power energy~
+amulet of &YPower~
+A small amulet lays here radiating with energy~
+~
+9 1057 3421 1536 5 95
+20~ 0~ 0~ 0~
+5 0 0 0 0
+5 0
+chi shield~
+5 5
+0 0 0
+A
+17 -50
+A
+12 100
+A
+18 9
+A
+19 10
+E
+amulet~
+The amulet consists of a hand trying to clutch something, but it
+seems the item is missing.
+~
+E
+colors~
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+~
+#26203
+robes simple white~
+&Wsome simple white robes~
+&Wa pile of white cloth lays here.~
+~
+9 321 4047 1536 9 90
+30~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -50
+A
+19 30
+A
+18 20
+#26204
+silver chamber key sensei~
+the key to The Sensei's Chambers~
+A small silver key lays here~
+~
+18 1 0 0 16385 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26205
+portal~
+a glowing portal~
+An enormous portal hovers in the air here.~
+~
+29 65 0 0 0 1
+26257~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26206
+chest wooden~
+a wooden chest~
+A large wooden chest is in the corner.~
+~
+15 268435777 0 0 0 100
+5000000~ 7~ 0~ 0~
+2000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26207
+gold~
+a pile of gold~
+A pile of gold~
+~
+20 1 0 0 8193 1
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#26201
+Entrance to the Monastery~
+You stand before a large gate.  All arround you there are various
+rare plants from the far reaches of the land.  A dark path leads
+into the darkened woods to the south.  A large shadow passes
+over you for a split second and is gone.  As you look upwards
+you can't help but notice the dark towers on each side of the gate
+~
+0 0 1
+Rd     0
+D0
+~
+~
+23 26201 26202
+S
+#26202
+The Training Yard~
+You stand in a giant training yard.  All arround you there are teachers
+showing various strikes to the less experianced students.  Off to the east
+and west you can see towers, to the north is the main entrance to the
+complex, and to the south is the gate.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26209
+D1
+~
+~
+0 0 26203
+D2
+~
+~
+23 26201 26201
+D3
+~
+~
+0 0 26222
+S
+#26203
+The Training Yard~
+You stand in a giant training yard.  All arround you there are teachers
+showing various strikes to the less experianced students.  Off to the east
+and west you can see towers, and to the north is the main building.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26208
+D1
+~
+~
+0 0 26204
+D3
+~
+~
+0 0 26202
+S
+#26204
+The Training Yard~
+You stand in a giant training yard.  All arround you there are teachers
+showing various strikes to the less experianced students.  Off to the east
+and west you can see towers, and to the north is the main building.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26207
+D1
+~
+~
+3 0 26205
+D3
+~
+~
+0 0 26203
+S
+#26205
+Base of the Eastern Tower~
+You stand in the base of a rather large tower.  A small, rickety
+staircase winds up the wall into the inpenatratable darkness above.  Through
+a door to the west you can see a training yard, filled with combatants.
+~
+0 0 0
+Rd     0
+D3
+~
+~
+3 0 26204
+D4
+~
+~
+0 0 26241
+S
+#26206
+Along the West Wall~
+You stand in a giant training yard.  All arround you there r grunts
+of pain, and every once in awhile the snapping of a bone.  You
+can see many students training vigoursly to achieve the next level
+of mastery.  To the south is a large tower, and to the north the
+main building is visable
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26219
+D3
+~
+~
+0 0 26207
+S
+#26207
+The Training Yard~
+You stand in a giant training yard.  All arround you there are
+teachers showing various strikes to the less experianced students.
+Off to the east and west you can see towers, and to the north is
+the main building.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26218
+D1
+~
+~
+0 0 26206
+D2
+~
+~
+0 0 26204
+D3
+~
+~
+0 0 26208
+S
+#26208
+The Training Yard~
+You stand in a giant training yard.  All arround you there are
+teachers showing various strikes to the less experianced students.
+Off to the east and west you can see towers, and to the north is
+the main building.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26217
+D1
+~
+~
+0 0 26207
+D2
+~
+~
+0 0 26203
+D3
+~
+~
+0 0 26209
+S
+#26209
+The Training Yard~
+You stand in a giant training yard.  All arround you there are
+teachers showing various strikes to the less experianced students.
+Off to the east and west you can see towers, and to the north is
+the main building.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26216
+D1
+~
+~
+0 0 26208
+D2
+~
+~
+0 0 26202
+D3
+~
+~
+0 0 26210
+S
+#26210
+The Training Yard~
+You stand in a giant training yard.  All arround you there are
+teachers showing various strikes to the less experianced students.
+Off to the east and west you can see towers, and to the north is
+the main building.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26215
+D1
+~
+~
+0 0 26209
+D2
+~
+~
+0 0 26222
+D3
+~
+~
+0 0 26211
+S
+#26211
+The Training Yard~
+You stand in a giant training yard.  All arround you there are
+teachers showing various strikes to the less experianced students.
+Off to the east and west you can see towers, and to the north is
+the main entrance to the main building.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26214
+D1
+~
+~
+0 0 26210
+D2
+~
+~
+0 0 26221
+D3
+~
+~
+0 0 26212
+S
+#26212
+Along the East Wall~
+You stand in a giant training yard.  All arround you there r grunts
+of pain, and every once in awhile the snapping of a bone.  You
+can see many students training vigoursly to achieve the next level
+of mastery.  To the south is a large tower, and to the north the
+main building is visable.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26213
+D1
+~
+~
+0 0 26211
+S
+#26213
+Along the Main Building~
+You are in the Northeast corner of the training yard.  To the south
+you can see a tower.  To the east and north you are blocked by walls.
+Sounds of students training come from various points all arround
+you.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26214
+D2
+~
+~
+0 0 26212
+S
+#26214
+The Training Yard~
+You are standing along the north wall of the training yard.  Your
+path to the north is blocked by a tall building.  To the east and
+west you can see towers looming over the entire yard.  To the south
+you can see the training yard, filled with pupils and instructors.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26215
+D2
+~
+~
+0 0 26211
+D3
+~
+~
+0 0 26213
+S
+#26215
+The Training Yard~
+You are standing along the north wall of the training yard.  Your
+path to the north is blocked by a tall building.  To the east and
+west you can see towers looming over the entire yard.  To the south
+you can see the training yard, filled with pupils and instructors.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26216
+D2
+~
+~
+0 0 26210
+D3
+~
+~
+0 0 26214
+S
+#26216
+The Entrance into the Complex~
+You stand before the door to the complex where the monks live.  All
+arround you the sounds of battle come to your ears.  Not far off
+to the south you can see the entrance to the monastery.  Two twin
+towers pierce the skyline to the east and west.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 26223
+D1
+~
+~
+0 0 26217
+D2
+~
+~
+0 0 26209
+D3
+~
+~
+0 0 26215
+S
+#26217
+The Training Yard~
+You are standing along the north wall of the training yard.  Your
+path to the north is blocked by a tall building.  To the east and
+west you can see towers looming over the entire yard.  To the south
+you can see the training yard, filled with pupils and instructors.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26218
+D2
+~
+~
+0 0 26208
+D3
+~
+~
+0 0 26216
+S
+#26218
+The Training Yard~
+You are standing along the north wall of the training yard.  Your
+path to the north is blocked by a tall building.  To the east and
+west you can see towers looming over the entire yard.  To the south
+you can see the training yard, filled with pupils and instructors.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26219
+D2
+~
+~
+0 0 26207
+D3
+~
+~
+0 0 26217
+S
+#26219
+The Training Yard~
+You are in the Northeast corner of the training yard.  To the south
+you can see a tower.  To the east and north you are blocked by walls.
+Sounds of students training come from various points all arround
+you.
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 26206
+D3
+~
+~
+0 0 26218
+S
+#26220
+The Base of the Western Tower~
+You stand inside the base of a guard tower.  A set of stairs spirals
+upwards into the unknown.  You can hear yells comming from the east where
+thhe training yard lays.  Small squeeking sounds echo down the tower to
+register in your ears.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+3 0 26221
+D4
+~
+~
+0 0 26240
+S
+#26221
+The Training Yard~
+You stand in a giant training yard.  All arround you there are teachers
+showing various strikes to the less experianced students.  Off to the east
+and west you can see towers, and to the north is the main entrance to the
+main building.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26211
+D1
+~
+~
+0 0 26222
+D3
+~
+~
+3 0 26220
+S
+#26222
+The Training Yard~
+You stand in a giant training yard.  All arround you there are teachers
+showing various strikes to the less experianced students.  Off to the east
+and west you can see towers, and to the north is the main building.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26210
+D1
+~
+~
+0 0 26202
+D3
+~
+~
+0 0 26221
+S
+#26223
+The Main Hallway~
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 26224
+D2
+~
+~
+3 0 26216
+S
+#26224
+Intersection in the Main Hallway~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26225
+D1
+~
+~
+0 0 26232
+D2
+~
+~
+0 0 26223
+D3
+~
+~
+0 0 26233
+S
+#26225
+The Main Hallway~
+You are standing before the Sensei's meditation chamber.  Small beams of
+light burst from around the seams of the door.  The walls radiate with
+mystical energys, giving the room a magical glow.  The hall continues to the
+south, where you can see an intersection.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+115 0 26226
+D2
+~
+~
+0 0 26224
+S
+#26226
+The Sensei's Meditation Chamber~
+You are standing in a brightly lit room.  All arround you there are
+candles burning, letting off a peaceful scent.  The walls are completely
+bare.  In the center of the room floats a man who appears to be deep in
+meditation.  To the south you can see a small door to exit the chamber by. 
+There also is a trapdoor inbedded in the ceiling.  
+~
+0 134619152 0
+Rd     0
+D2
+~
+~
+115 0 26225
+D4
+~
+~
+119 26204 26256
+S
+#26227
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+2 0 26234
+S
+#26228
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+2 0 26233
+S
+#26229
+A Small Hallway~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26232
+D1
+~
+~
+0 0 26230
+S
+#26230
+The Alter Room~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 26229
+S
+#26231
+The Bottom of the Stairs~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 26232
+D4
+~
+~
+0 0 26251
+S
+#26232
+An Intersection In the Hall~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26238
+D1
+~
+~
+0 0 26231
+D2
+~
+~
+0 0 26229
+D3
+~
+~
+0 0 26224
+S
+#26233
+The Hall~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+2 0 26237
+D1
+~
+~
+0 0 26224
+D2
+~
+~
+2 0 26228
+D3
+~
+~
+0 0 26234
+S
+#26234
+The Hall~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+2 0 26236
+D1
+~
+~
+0 0 26233
+D2
+~
+~
+2 0 26227
+D3
+~
+~
+0 0 26235
+S
+#26235
+The Bottom of the Stairs~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26234
+D4
+~
+~
+0 0 26246
+S
+#26236
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+2 0 26234
+S
+#26237
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+2 0 26233
+S
+#26238
+A Small Hallway~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26239
+D2
+~
+~
+0 0 26232
+S
+#26239
+The Dining Room~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 26238
+S
+#26240
+Top of the Western Tower~
+As you reach the top of the stairs you are almost stunned by the
+surrounding country side.  All arround you there are trees and plant life
+that you never have seen before.  Off to the west the sun is slowly sinking
+behind a bank of clouds, causing the sky to be lit up in a spectacular array
+of &Rreds &Ppurples &Yand &Bblues.  
+~
+0 0 0
+Rd     0
+D5
+~
+~
+0 0 26220
+S
+#26241
+The Eastern Tower~
+As you reach the top of the stairs you are almost stunned by the
+surrounding country side.  All arround you there are trees and plant life
+that you never have seen before.  Off to the west the sun is slowly sinking
+behind a bank of clouds, causing the sky to be lit up in a spectacular array
+of &Rreds &Ppurples &Yand &Bblues.  
+~
+0 0 0
+Rd     0
+D5
+~
+~
+0 0 26205
+S
+#26242
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 26250
+S
+#26243
+A Storage Closet~
+You are standing in a small dark room.  There are shelves lining all the
+walls.  Ther only exit is through the oak door to the north.  
+~
+0 2049 0
+Rd     0
+D0
+~
+oak door north n~
+3 0 26249
+S
+#26244
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 26248
+S
+#26245
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 26247
+S
+#26246
+The Top of the Stairs~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26247
+D5
+~
+~
+0 0 26235
+S
+#26247
+Upstairs Hallway~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 26255
+D1
+~
+~
+0 0 26248
+D2
+~
+~
+3 0 26245
+D3
+~
+~
+0 0 26246
+S
+#26248
+Upstairs Hallway~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 26254
+D1
+~
+~
+0 0 26249
+D2
+~
+~
+3 0 26244
+D3
+~
+~
+0 0 26247
+S
+#26249
+Upstairs Hallway~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 26253
+D1
+~
+~
+0 0 26250
+D2
+~
+~
+3 0 26243
+D3
+~
+~
+0 0 26248
+S
+#26250
+Upstairs Hallway~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 26252
+D1
+~
+~
+0 0 26251
+D2
+~
+~
+3 0 26242
+D3
+~
+~
+0 0 26249
+S
+#26251
+The Top of the Stairs~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 26250
+D5
+~
+~
+0 0 26231
+S
+#26252
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+3 0 26250
+S
+#26253
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+3 0 26249
+S
+#26254
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+3 0 26248
+S
+#26255
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+3 0 26247
+S
+#26256
+The Sensei's Chambers~
+You have entered the Sensei's private chambers.  As you look arround
+you see vary few pieces of furniture.  Along the north wall there
+is a bed, and against the east there is an oak dresser.  The whole
+room is white, without the slightest smudge on it.  There are
+no pictures and the only exit is below you.
+~
+0 134610960 0
+Rd     0
+D5
+~
+~
+119 26204 26226
+S
+#26257
+The Path of Advancement~
+~
+0 4 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+M 0 26201 1 26201
+E 0 26203 0 5
+E 0 26201 0 22
+M 0 26205 6 26208
+E 0 26203 0 5
+M 0 26204 12 26209
+E 0 26203 0 5
+M 0 26205 6 26211
+E 0 26203 0 5
+M 0 26204 12 26213
+E 0 26203 0 5
+M 0 26204 12 26219
+E 0 26203 0 5
+M 0 26202 1 26226
+E 0 26202 0 3
+E 0 26203 0 5
+O 0 26205 0 26226
+O 0 26206 0 26256
+P 0 26207 0 26206
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

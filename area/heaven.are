@@ -1,0 +1,3489 @@
+#AREADATA
+Name        {95-103} Heaven              Keirkan~
+Levels      95 103
+Builders    Reklar~
+VNUMs       8200 8299
+Security    100
+Recall      25001
+Flags       16
+Color       6
+Sounds      &CThe sins of your past flash through your eyes with each step.~
+End
+
+
+
+#MOBILES
+#8200
+Fate Niobe~
+Niobe~
+The Incarnation of Fate awaits your arrival
+~
+Fate's gaze falls upon you as if she is trying to decide what string of yours
+she should pull next. It irks you to know that she has complete control over
+your destiny and could send you digging graveyards for the rest of your life.
+Perhaps its time you did something about that!
+~
+67 134758632 65552 0 S
+98 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 2
+303111 0 0
+>greet_prog 100~
+if ispc($n) 
+say Welcome to the after life $n.
+say The living have no place here so please make your visit brief.
+bow $n
+endif
+~
+|
+#8201
+soul~
+A soul~
+A soul wanders around Purgatory awaiting judgement
+~
+This poor soul has been deemed neither excessively evil nor excessively good.
+The souls like these must await for some mortal to pray to God to forgive
+their sins for they are incapable of praying for their own forgiveness.
+~
+8385 67150056 0 0 S
+106 0 0 19800d0+0 0d0+0
+0 0 0 0
+0 0 0
+8577 0 0
+>act_prog p ground, unconscious.~
+if ispc($n)
+  say Oh bless you $n. Your prayers for me shall help my cause
+  say to leave the realms of Purgatory and enter into through the
+  say gates to heaven!
+mpoload 8244
+give new $n
+endif
+~
+|
+#8211
+Incarnation Time Chrono~
+Chrono~
+The Incarnation of Time, Chrono, awaits you.
+~
+Chrono, the Incarnation of Time, looks at you with his hourglass eyes and
+appears to look into your soul. He knows just as well as you would as to
+what you will do next so if you plan on attacking him you can forget the
+element of surprise.
+~
+3 67133672 0 200 S
+102 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+311299 0 0
+>greet_prog 100~
+if ispc($n)
+  say Greetings $n, you have come to the beginning of the Stairway
+  say to Heaven! I am the first of its defenders and there are
+  say three more awaiting you upon the stairway, The Incarnations of
+  say War, Evil and Nature. If you wish to proceed further you
+  say must first defeat me!
+endif
+~
+>death_prog 100~
+if ispc($n)
+  say You have done well...good luck with the upcoming trials!
+  mptrans $n 8270
+endif
+~
+|
+#8216
+War Horseman~
+War~
+The Horseman of War draws his double-edged axe
+~
+A massive man on an ever bigger horse gallops towards you with the biggest
+axe you've ever seen in your life pointed in your direction! It may be a good
+idea to prepare yourself for battle!
+~
+99 33555184 196608 -50 S
+110 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 1
+899 0 0
+>greet_prog 100~
+if ispc($n)
+  say You have entered into the Death Trials! You shall not escape alive!!!
+  emote throws his head back in insane glee!
+  c 'blade barrier'
+  mpkill $n
+endif
+~
+|
+#8217
+Famine Horseman~
+Famine~
+The Horseman of Famine looks upon you hungrily
+~
+This disgusting creature is as frail as any person you have come across,
+however upon closer inspection you realize that that frail body is as durable
+as they come!
+~
+67 268460160 196608 -100 S
+110 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 0
+98435 0 0
+>greet_prog 100~
+if ispc($n)
+  say Greetings! It has been long since I've had a meal!
+  drool $n
+  mpkill $n
+endif
+~
+>fight_prog 40~
+if ispc($n)
+  say It was not smart for you to come here...
+  c 'meteor swarm' $n
+endif
+~
+>fight_prog 30~
+is ispc($n)
+  say Fire to cook my meal!
+  mpemote points his bony finger at you.
+  c 'fireball' $n
+endif
+~
+>fight_prog 40~
+if ispc($n)
+  say ACID to burn your flesh!
+  cackle
+  c 'acid blast' $n
+endif
+~
+|
+#8218
+Pestilence Horseman~
+Pestilence~
+The Horseman of Pestilence showers his curses on you!
+~
+A corpse of rotting flesh this horseman is one terrible to look upon! The
+disease and curses he is capable of throwing upon you would make you lose
+last weeks supper!
+~
+67 268435688 196608 -150 S
+110 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+85007 0 0
+>greet_prog 100~
+if ispc($n)
+  scream $n
+  say You shall advance NO FURTHER!
+  c 'field of decay'
+  mpkill $n
+endif
+~
+>fight_prog 35~
+if ispc($n)
+  say A shower of curses upon you!
+  c curse $n
+  c hex $n
+endif
+~
+>fight_prog 25~
+if ispc($n)
+  say Feel my infectious wrath!
+  scream $n
+  c 'gas breath' $n
+endif
+~
+>fight_prog 40~
+if ispc($n)
+  say Embrace death fools!
+  emote bursts into insane laughter!
+  c 'stench of decay' $n
+endif
+~
+|
+#8219
+Horseman Death~
+The Horseman of Death~
+The Horseman of Death sits here patiently.
+~
+The Horseman of Death has foreseen your coming and awaits for your arrival.
+The right hand of the Incarnation of Death, this will be your biggest
+challenge of the trials. Good luck brave warrior!
+~
+1 134759144 196608 -375 S
+112 0 0 27500d0+0 0d0+0
+0 0 0 0
+0 0 0
+12675 0 0
+>greet_prog 100~
+if ispc($n)
+  say Greetings warrior, I have awaited your arrival from the beginning and have been very impressed with your progress.
+  snicker
+  say Unfortunately it must end here!
+  emote stands up and slowly unslings his weapon.
+  say Good-bye mortal.
+  mpkill $n
+endif
+~
+>fight_prog 45~
+if ispc($n)
+  say You have done well so far $n! Now face instant Death!
+  c 'fireball' $n
+endif
+ 
+~
+>fight_prog 30~
+if ispc($n)
+  say I must see you better...
+  c 'faerie fire' $n
+endif
+~
+>fight_prog 35~
+if ispc($n)
+  say I can feel your powers wanning $n! Prepare thyself!
+  c 'dispel magic' $n
+endif
+~
+|
+#8220
+Incarnation Death Thanatos~
+Thanatos~
+The Incarnation of Death awaits you!
+~
+Thanatos, the Incarnation of Death is a foe of unmatched strength and skill
+in the realms of death. His very gaze can rip your soul to shreds and cease
+your existance now and until the end of time. Fear the Incarnation of Death,
+for his death is foreverlasting!!!
+~
+1 369115352 65536 0 S
+125 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+15 0 0
+>greet_prog 100~
+if ispc($n)
+  say You have gained entrance to my domain by defeating the dreaded
+  say four horseman. I congradulate you on a job well done, you have
+  say provided me some excellent entertainment. However you pose a
+  say threat to me by remaining here. I shall give you a choice. Do
+  say you wish to face me, **THE** Incarnation of Death in a battle
+  say to the death, or wouldst you have me give you temporary
+  say sanction and allow you to leave with your souls intact?
+  chuckle
+  say Do you really wish to fight with me?
+endif
+~
+>speech_prog no~
+if ispc($n)
+  say An excellent idea $n. I shall spare your soul today!
+endif
+~
+>speech_prog yes~
+if ispc($n)
+  say So be it then $n. You are indeed very brave and I commend
+  say you for your courage. Prepare thyself for the battle of your
+  say life ... and perhaps your very soul as well!
+  snicker $n
+  mppurge portal
+endif
+~
+>fight_prog 30~
+if ispc($n)
+  say I shall steal your very soul $n...
+  growl $n
+  c 'dispel magic' $n
+  stun $n
+endif
+~
+>fight_prog 40~
+if ispc($n)
+  emote delivers a CRUSHING blow to your skull!
+  stun $n
+  gouge $n
+endif
+ 
+~
+>death_prog 100~
+if ispc($n)
+  say You have defeated me $n, it seems I have misjudged you!
+  say Burn in hell!!!
+  emote lets out an insane howl of frustration!
+  c 'fireball' $n
+endif
+~
+|
+#8221
+Incarnation War Mars~
+Mars~
+The Incarnation of War blocks your path.
+~
+The Incarnation of War, Mars, is a majestic figure indeed. He regally sits
+upon his warhorse with his flaming red sword slung upon his hip. The mighty
+two-handed blade seems to burn in anticipation for blood!
+~
+3 201335016 196608 100 S
+115 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+270347 0 0
+>greet_prog 100~
+if ispc($n)
+  say Greetings mortal, you have reached the forefront of the Stairway
+  say to Heaven. I shall warn you however that if you seek admittance
+  say to God you shall not find him here nor in Heaven itself. In fact
+  say none of the Incarnations have seen Him in many, many years! It
+  say seems that He has abandoned us to fend for ourselves and the
+  say Incarnation of Good has been running things.
+  sigh
+  say Even so, you have decided to enter the tests...now you must face me!
+  c 'blade barrier'
+endif
+~
+>fight_prog 50~
+if ispc($n)
+  say My Holy Fires shall burn you to cinders!
+  emote raises his arms way above his head and brings them crashing down onto your shoulders!
+  c 'holy fire' $n
+endif
+~
+>fight_prog 20~
+if ispc($n)
+  say So many shields $n! Let me rid you of some of those!
+  emote mutters some arcane words to himself.
+  snarl $n
+  c 'dispel magic' $n
+endif
+~
+|
+#8223
+Incarnation Evil Lucifer~
+Lucifer~
+The Incarnation of Evil prepares for you.
+~
+Lucifer, the Incarnation of Evil, has always been mistaken for being an evil
+man. Sure he is the Prince of Lies, Master of Deceit, Lord of all Evil, and
+it is true that it is his job to turn as many people to evil as he can,
+however he takes his job as defender of the stairway very seriously...something
+that should make you very wary!
+~
+3 369107136 131072 -500 S
+115 0 0 31000d0+0 0d0+0
+0 0 0 0
+0 0 1
+40967 0 0
+>greet_prog 100~
+if ispc($n)
+  say Welcome $n, I have awaited your coming. Before we begin our
+  say inevitable battle let me tell you something about our creator.
+  say He is not the same person that he used to be anymore, at one
+  say time he was pure and good...now he has turned malignant and
+  say rotten. Your time would be well spent giving up this ridiculous
+  say quest. God is not god anymore, He has turned his back on the
+  say world and spent all His time alone refusing to listen to the
+  say prayers of the people! Turn back, your efforts are futile!
+  wink $n
+  say But then again, I'm the Father of Lies...what would I know?
+  chuckle $n
+endif
+~
+>fight_prog 40~
+if ispc($n)
+  say You cannot beat me! Turn back now before you utterly perish!
+  emote points a longer finger in $n's direction.
+  c 'dancing lights' $n
+endif
+~
+>fight_prog 30~
+if ispc($n)
+  say Your shields are puny against my magicks!
+  emote raises his hands straight above his head and summons an orb of power!
+  c 'dispel magic' $n
+endif
+~
+>fight_prog 30~
+if ispc($n)
+  say I can inflict pain such that you have NEVER imagined $n!
+  emote begins to make rapid motions with his hands!
+  c 'ultrablast' $n
+endif
+~
+|
+#8225
+incarnation nature Gaea~
+Gaea~
+The Incarnation of Nature meditates silently.
+~
+The Incarnation of Nature, Gaea, would much rather spend her time looking
+after the worlds needs, however it is her obligation to provide guardianship
+for the last doorway of the Stairway to Heaven. She concentrates on focusing
+her thoughts before she engages you in immortal combat!
+~
+3 167796928 131088 100 S
+117 0 0 35000d0+0 0d0+0
+0 0 0 0
+0 0 2
+131975 0 0
+>greet_prog 100~
+if ispc($n)
+  say Hello mortals, you have done very well to reach this far.
+  say However I implore you to please turn back, my skills lie in
+  say making things live, not making things die. Yet if you so choose
+  say to engage battle with me I shall do all that is necessary to
+  say protect Heaven. The Gateway to Heaven lies just one north of
+  say here. Choose now mortal, death or life!
+  emote cocks her head waiting for a response.
+endif
+~
+>speech_prog life~
+if ispc($n)
+  say Excellent choice $n. I shall aid you in leaving this place now.
+  emote wave's goodbye to $n.
+  mptrans $n 25000
+endif
+~
+>speech_prog death~
+if ispc($n)
+  emote sighs in a frustrated manner.
+  say I have tried to warn you $n, unfortunately you have failed to listen to reason...I have done all that I can for you now.
+  mpkill $n
+endif
+~
+>fight_prog 25~
+if ispc($n)
+  say The wrath of nature shall be casted upon you!
+  emote claps her hands together and lightning crashes down!
+  c 'curse of nature' $n
+endif
+~
+>fight_prog 35~
+if ispc($n)
+  say May nature take your sight!
+  c 'blindness' $n
+endif
+~
+>fight_prog 45~
+if ispc($n)
+  say May nature take you health!
+  c 'acid blast' $n
+endif
+~
+>fight_prog 35~
+if ispc($n)
+  say May nature take your escape!
+  emote begins to form a web in her hands.
+  c 'web' $n
+endif
+~
+>fight_prog 35~
+if ispc($n)
+  say May nature take your soul!
+  c 'dispel magic' $n
+endif
+~
+|
+#8226
+Saint Peter~
+Saint Peter~
+Saint Peter guards the gateway from intruders.
+~
+Saint Peter, otherwise know as the Rock of the Church, stands vigilence to
+the gateway to heaven. His aura of goodness and content smile makes you feel
+at home here.
+~
+3 168321216 196608 333 S
+119 0 0 33000d0+0 0d0+0
+0 0 0 0
+0 0 1
+391 0 0
+>greet_prog 100~
+if ispc($n)
+  say Hello young fellow, welcome to the gateway to Heaven!
+  say Only the best of hearts may enter past these gates with my
+  say sanction. Do you wish to pass the gates?
+  emote cocks his head waiting for a response.
+endif
+~
+>speech_prog yes~
+if isgood ($n)
+ say Excellent $n! I shall be happy to let you into heaven    
+  say for your soul is pure as snow!
+  emote waves good-bye to you!
+  mptrans $n 8228
+else
+  say Your soul is tainted! Entrance shall not be admitted!
+endif
+~
+>fight_prog 25~
+if ispc($n)
+  say May the wrath of goodness be upon you!
+  c 'dispel magic' $n
+endif
+~
+|
+#8227
+Content Soul~
+A content soul~
+A content soul wanders around his paradise.
+~
+The content soul wanders around his paradise. The life of luxury has seemed
+to spoil these souls however as he does not seem to happy to see you invading
+his privacy!
+~
+33 67109056 0 100 S
+90 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 1
+395 0 0
+#8237
+Saint~
+A saint~
+A saint walks here muttering prayers to his god.
+~
+The life of a saint can be termed as a rather 'dull' existance. Everyday
+they recite they're morning, noon and nightly prayers to God for whatever it
+is that they pray for. This saint seems to be no different.
+~
+1 16512 0 0 S
+95 0 0 21750d0+0 0d0+0
+0 0 0 0
+0 0 1
+15 0 0
+#8242
+angel~
+An Angel~
+An angel spies your presence here.
+~
+The right hand of God, an angel spreads her great wings in your direction.
+These very magical creatures are the last line of defence among your search
+for God.
+~
+33 268452032 196624 150 S
+110 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 2
+7 0 0
+#8249
+arch arch-angel gabriel~
+Gabriel~
+The Arch-Angel Gabriel beckons you forward.
+~
+The duties of the arch-angel Gabriel has always been to carry out God's very
+important tasks. For example, during the exodus God needed an angel of death
+so He asked Gabriel to kill every man's first born son. In fact, Gabriel has
+performed so many such tasks that he has earned the name of 'The executioner'.
+~
+3 167780544 196608 0 S
+120 0 0 27000d0+0 0d0+0
+0 0 0 0
+0 0 0
+395 0 0
+>greet_prog 100~
+if ispc($n)
+  say Leave mortal for I have little patience...
+  c 'blade barrier'
+endif
+~
+>fight_prog 30~
+if ispc($n)
+  say The breath of death!
+  c 'acid breath' $n
+endif
+~
+>fight_prog 30~
+if ispc($n)
+  say Breath to freeze your bones!
+  c 'frost breath' $n
+endif
+~
+|
+#8250
+incarnation good~
+The Incarnation of Good~
+&z
+~
+~
+3 0 0 0 S
+100 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+if isgood($n)
+else
+c 'web' $n
+endif
+endif
+~
+>fight_prog 35~
+c 'gas breath' $n
+~
+|
+#8251
+good~
+(no short description)~
+(no long description)
+~
+~
+1 0 0 -10000 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8252
+evil~
+(no short description)~
+(no long description)
+~
+~
+1 0 0 10000 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8261
+Angel Arch-Angel Michael~
+Michael~
+The Arch-Angel Michael beckons you forward.
+~
+The arch-angel Michael is one of the two residing arch-angels in heaven.
+He watches over the lesser angels, gives them assignments to do, and tries to
+spread the glory of God throughout the world.
+~
+3 67125440 196608 0 S
+120 0 0 27000d0+0 0d0+0
+0 0 0 0
+0 0 0
+319495 0 0
+>greet_prog 100~
+if ispc($n)
+  say I am very busy mortal...
+  c 'blade barrier'
+endif
+~
+>fight_prog 30~
+stun
+~
+>fight_prog 30~
+c 'holy flames' $n
+~
+>fight_prog 30~
+c 'ultrablast' $n
+~
+|
+#8263
+Holy Spirit~
+The Holy Spirit~
+The Holy Spirit sends a breath of fire your way!
+~
+The Holy Spirit, the right hand of God, has not totally abandoned the mortals.
+Its breath enlightens people to the faith of God, unfortunately for you its
+form of recruitment was not what you expected!
+~
+35 234881216 0 0 S
+110 0 0 28000d0+0 0d0+0
+0 0 0 0
+0 0 0
+12 0 0
+>fight_prog 40~
+c 'gas breath'
+~
+>fight_prog 40~
+c 'stench of decay' 
+~
+|
+#8264
+Incarnation Good Belle~
+Belle~
+The Incarnation of Good waves you forward.
+~
+The Incarnation of Good, Belle, has been busy taking care of the worlds needs.
+Answering the prayers to God that have been left unanswered for years is
+a twenty-four hour a day job!
+~
+3 470311080 196624 750 S
+120 0 0 38000d0+0 0d0+0
+0 0 0 0
+0 0 2
+303488 0 0
+>greet_prog 100~
+if ispc($n)
+if isgood($n)
+say Greetings $n! A place in heaven has been reserved for your taking!
+say Continue to serve me among the mortal plane and the rewards you
+say reap in heaven shall assuredly be great!
+say Receive my blessing $n, you deserve it!
+c 'healing hands' $n
+else
+say You walk upon the paths of the treacherous $n.
+say Choose now! Fight me here or be banished to the planes of hell!
+say Shall it be hell or death $n?
+emote nocks her head in $n's direction.
+endif
+endif
+mppurge  
+~
+>speech_prog death~
+if isgood($n)
+say You are good and kind of heart. I would not hurt you $n!
+embrace $n
+else
+say You have chosen to die young $n. You should have chosen hell
+say because one way or another you shall end there!
+c 'hex' $n
+endif
+~
+>speech_prog hell~
+if isgood($n)
+say I shall certainly not send YOU to hell $n!
+emote pats $n affectionately on the head.
+else
+say You have chosen well $n. Off to where you belong!
+mptrans $n 650
+endif
+~
+>fight_prog 50~
+stun $n
+~
+>fight_prog 30~
+c 'dispel magic' $n
+~
+>fight_prog 40~
+c 'gas breath' $n
+~
+|
+#8265
+Cleatus~
+Cleatus~
+Cleatus, the shopkeeper of Purgatory awaits your order.
+~
+Cleatus awaits his accension into heaven or his decent into hell with a
+patient smile. In the meantime he tries to scrounge up all the money he can
+earn, perhaps if he gets the boot into hell he can buy a stairway to heaven!
+~
+67 0 0 0 S
+1 0 0 100d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8266
+Cleatus~
+Cleatus~
+Cleatus anxiously is looking around the room and waves you forward.
+~
+Cleatus seems a bit anxious as you enter into his cellar. The shop he has set
+up here is quite a bit different then the on upstairs...it seems Cleatus
+really DOES want to buy his way to heaven!
+~
+1 0 0 0 S
+1 0 0 1d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#8269
+damned Judas fallen~
+Judas~
+The fallen apostle, Judas, pays his penance here.
+~
+Judas, the traitor of the son of God, looks like a complete wreck. Forced to
+spend eternity on his knees praying for forgiveness Judas is not a very happy
+man. In fact he seems a bit aggrevated that you have disturbed his misery.
+~
+3 100671616 0 -500 S
+99 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 1
+57347 0 0
+>greet_prog 100~
+if ispc($n)
+  say Why do you disturb me so...leave me to my suffering!
+  c 'field of decay'
+endif
+~
+|
+#8270
+God~
+&WGOD~
+The Creator contemplates whether your continued existance is needed.
+~
+You try to look and understand the being that created you but it is far beyond
+your comprehension...
+~
+3 503341288 196640 0 S
+125 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+389631 0 0
+>fight_prog 40~
+stun
+~
+>fight_prog 55~
+c 'dispel magic' $n
+~
+>fight_prog 60~
+c 'icestorm' $n
+~
+>act_prog ~
+~
+>fight_prog 15~
+mpoload 8251
+recite shields self
+~
+>fight_prog 5~
+mpoload 8250
+recite healing self
+~
+>fight_prog 10~
+mpoload 8246
+recite power self
+~
+>death_prog 100~
+mpoload 8252
+drop portal
+~
+>greet_prog 100~
+&Wif ispc($n)
+mpechoat $n HELLO $N!!! YOU HAVE PASSED MANY TRIALS TO REACH THIS FAR IN YOUR
+mpechoat $n JOURNEYS! NOW YOU STAND BEFORE *ME*, THE CREATOR OF THE WORLD. 
+mpechoat $n WHAT SHALL YOU DO NOW THAT YOU ARE HERE? SHALL YOU LEARN THE SECRETS
+mpechoat $n OF THE WORLD? LEARN THE MEANING OF LIFE? SUCH IGNORANCE TO SUCH
+mpechoat $n JUVENILLE QUESTIONS I FIND QUITE AMUSING. OR PERHAPS YOUR VISIT HERE
+mpechoat $n WAS OF A TOTALLY DIFFERENT NATURE, PERHAPS YOU WISH TO POSSESS THE
+mpechoat $n GREATEST PIECE OF EQUIPMENT THAT YOU SHALL EVER KNOW! SPEAK $N!
+endif&w
+~
+>speech_prog death~
+if ispc($n)
+mpechoat $n AHH YOU WISH TO KNOW THE PURPOSE OF DEATH! SUCH A SIMPLE QUESTION.
+mpechoat $n DEATH IS SIMPLE THE TIME I DECIDE THAT YOUR PRESENCE IN THE MORTAL
+mpechoat $n IS NO LONGER NECESSARY. YOU SEE IF EVERYONE LIVED FOREVER, THE
+mpechoat $n AMOUNT OF STAGNATION AND BOREDOM WOULD BE TOO MUCH TO BEAR.  MY 
+mpechoat $n GIFT OF DEATH GIVES YOU MORTALS A LARGER CAPACTIY TO ENJOY LIFE,
+mpechoat $n TO EXPERIENCE WILD THRILLS AND ALL AND ALL MAKE MORE OF YOUR LIFE
+mpechoat $n THEN YOU OTHERWISE WOULD.
+endif
+~
+>speech_prog life~
+if ispc($n)
+mpechoat $n THE MEANING OF LIFE YOU WISH TO KNOW DO YOU. LIFE IS AS YOU SEE IT
+mpechoat $n IS SOMETHING LIKE A DREAM WHERE THE BOUNDARIES OF THE DREAM
+mpechoat $n ARE SET BY THE DREAMER. LIFE IS REALLY A FIGURATIVE TERM SINCE 
+mpechoat $n REALLY YOUR REAL ESSENCE HAS AND SHALL CONTINUE TO EXIST EVEN
+mpechoat $n BEYOND WHAT IT IS YOU CALL 'LIFE'.
+ruffle $n
+endif
+~
+>speech_prog power~
+if ispc($n)
+mpechoat $n SO YOU WISH TO KNOW WHAT TRUE POWER IS? LET IT BE KNOWN THAT THE 
+mpechoat $n ONLY *TRUE* POWER LIES IN THE ABILITY TO MAKE SOMETHING REAL OUT
+mpechoat $n OF SOMETHING THAT PREVIOUSLY WAS NOT. THE POWER OF CREATION, TO 
+mpechoat $n MOLD SOMETHING TO YOUR VERY WILL AND FOR IT TO BECOME A PART OF YOU
+mpechoat $n IS AN EXAMPLE OF REAL POWER $n
+chuckle
+~
+>rand_prog 50~
+c 'complete heal' self
+~
+|
+#0
+
+
+
+#OBJECTS
+#8200
+key~
+war's Passkey~
+A long slender key lies in your hand~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8201
+Flag Shield War~
+a Flag of War~
+War's insignia lies upon the tremendous flag.~
+~
+9 838861120 260 0 513 95
+24~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -125
+A
+12 50
+A
+13 75
+A
+18 7
+A
+19 12
+#8202
+Bracer Plunder~
+&zA Bracer of Plunder&w~
+A bracer signifying the power of plunder lies here.~
+~
+9 872415232 561 0 4097 95
+30~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+8270 0 0
+A
+17 -100
+A
+13 95
+A
+19 10
+A
+23 -20
+A
+18 9
+#8203
+Sunken Eyes~
+a pair of deep-set, sunken eyes~
+A pair of deep-set, sunken eyes lie here.~
+~
+8 838860800 0 0 131073 98
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+acid blast~
+0 0
+0 0 0
+#8204
+key~
+Famine's Passkey~
+Famine's Passkey~
+~
+18 67108992 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8205
+key~
+Pestilence's Passkey~
+Pestilence's Passkey~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8206
+shroud rotting flesh~
+&zA Shroud of Rotting Flesh&w~
+A piece of the corpse of Pestilence lies here.~
+~
+9 536887574 0 0 9 99
+1~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 50
+A
+13 100
+A
+17 -100
+A
+23 -40
+A
+19 5
+A
+18 5
+#8207
+key~
+Death's Passkey~
+Death's Passkey~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8208
+Earring Death~
+&cThe Earring of Death&w~
+An earring of a flaming skull lies here.~
+~
+9 838861062 0 0 524289 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+field of decay~
+2 2
+0 0 0
+A
+23 -25
+A
+12 50
+A
+25 30
+A
+13 75
+A
+18 7
+A
+19 7
+#8209
+Key Death~
+&zThe Key of Death&w~
+&zThe Key of Death lies here&w~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8210
+arm plates death~
+&zThe Plates of Death&w~
+The massive armor of Thanatos lies here.~
+~
+9 838861126 0 4096 273 101
+1~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -120
+A
+12 120
+A
+13 120
+A
+18 10
+A
+23 -50
+A
+25 25
+A
+19 15
+#8211
+Scythe Death~
+a Darkened Scythe~
+A crooked scythe shivers with incredible power.~
+~
+5 805306694 546 0 8193 103
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 100
+A
+23 -75
+A
+17 -150
+A
+18 50
+A
+19 50
+#8212
+Sands Time~
+&OThe Sands of Time&w~
+Chrono's Hourglass sits here.~
+~
+9 0 0 0 16385 100
+1~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+astral walk~
+20 20
+0 0 0
+A
+13 80
+A
+19 8
+A
+18 12
+#8213
+Bracer Pillage~
+&zA Bracer of Pillage&w~
+A bracer which symbolizes the power of pillaging sits here.~
+~
+9 570425604 327 0 4097 100
+1~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+1 0 0
+A
+2 2
+A
+12 110
+A
+13 90
+A
+17 -50
+A
+19 10
+A
+18 10
+#8214
+key~
+Mars' Passkey~
+Mars' Passkey~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8215
+Evil Grin~
+&RAn Evil Grin&w~
+The grin of Lucifer lies here.~
+~
+9 838861312 176 0 65537 100
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+dark ritual~
+2 2
+0 0 0
+A
+25 20
+A
+13 80
+A
+19 7
+A
+18 13
+#8216
+Key~
+Lucifer's Passkey~
+Lucifer's Passkey~
+~
+18 33554432 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8217
+Gaea's Passkey~
+Gaea's Passkey~
+Gaea's Passkey~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8218
+staff nature~
+&OThe Staff of Nature~
+A wooden staff bearing the emblem of a gigantic tree lies here.~
+~
+4 1282 6348 5152 16385 102
+100~ 5~ 5~  ~
+3 0 0 0 0
+5 0
+curse~
+20 20
+0 0 0
+A
+12 75
+A
+13 120
+A
+18 7
+A
+19 9
+#8219
+key small~
+a small key~
+A key that fits in the palm of your hand sits here.~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+8223 0 0
+#8220
+key large~
+a Large Key~
+A large key as big as your hand lies here.~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+8223 0 0
+#8221
+key~
+Saint Peter's Passkey~
+Saint Peter's Passkey~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8222
+rock~
+saint Peter's Rock~
+A rock of magnificant power lies here.~
+~
+26 67108864 0 0 1 90
+100~ complete healing~ complete healing~ complete healing~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8223
+Cell Key~
+Cell Key~
+Cell Key~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 8219 8220
+#8230
+sash divinity~
+&WThe Sash of Divinity&w~
+A belt of divine power lies here~
+~
+9 536871938 0 0 1025 100
+5~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+aura of peace~
+8 8
+0 0 0
+A
+19 15
+A
+18 8
+A
+13 125
+A
+12 100
+A
+24 -50
+A
+23 -25
+#8231
+Brilliant Light Good~
+&WA Br&Yilliant Li&Wght&w~
+A blinding light guides your way.~
+~
+1 603981824 9 0 1 101
+0~ 0~ -1~ 0~
+1 0 0 0 0
+5 0
+dispel magic~
+5 5
+0 0 0
+A
+19 8
+A
+12 50
+A
+12 125
+A
+18 7
+#8232
+thunder lightning~
+&zThunder &wand &YLightning&w~
+A bolt of pure power lies here.~
+~
+5 905987074 5122 282 8193 101
+0~ 0~ 0~ 11~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 55
+A
+19 55
+A
+24 -25
+A
+17 -120
+A
+12 120
+A
+13 120
+>wear_prog 100~
+0
+if ispc($n)
+tell $n &WGreetings!  Together we shall rid the realms of ALL evil!
+     mpecho &YThunder and lightning echo through the realms!
+endif
+~
+>rand_prog 15~
+0
+if ispc($n)
+     tell $n &WI thirst for more &rblood &Wmaster.&w
+endif
+~
+>give_prog 100~
+0
+if ispc($n)
+     tell $n &WBETRAYAL!  Fear me $n for soon you shall feel my blade on your own skin!
+     giggle $n
+     tell $i &WGreetings Master!  You were wise to have chosen me.
+endif
+~
+|
+#8233
+angelic conscience~
+&WAn Angelic Conscience&w~
+A conscience as pure as snow lies here.~
+~
+9 838861824 0 0 32769 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 15
+A
+18 10
+A
+13 100
+A
+24 -20
+#8234
+pillar fire~
+&RA Pillar of Fire&w~
+A burning fire lies here~
+~
+9 838863360 0 0 32769 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 15
+A
+18 10
+A
+13 100
+A
+12 50
+A
+25 30
+#8236
+book old testament~
+&OThe Old Testament&w~
+An ancient copy of the old testament lies here.~
+~
+8 1 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+8245 0 0
+#8237
+Ethereal Shroud~
+an Ethereal Shroud~
+A shimmering shroud lies in wait~
+~
+9 570425344 137 0 2049 101
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+phase shift~
+15 15
+0 0 0
+A
+13 75
+A
+19 8
+A
+18 10
+A
+24 -20
+#8238
+Shimmering Key~
+A Shimmering Key~
+A Shimmering Key~
+~
+18 131 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+8243 0 0
+#8239
+Blessing Stone~
+a Blessing Stone~
+A stone of extra enchantment~
+~
+3 603979776 227 0 16385 100
+150~ 2~ 2~ healing hands~
+1 0 0 0 0
+0 0
+healing hands~
+2 2
+0 0 0
+A
+19 7
+A
+18 10
+A
+13 50
+A
+12 75
+A
+17 -100
+#8240
+Stone Destruction~
+a Stone of Destruction~
+A powerful stone of mass destruction lies here~
+~
+3 603979776 60 0 16385 95
+90~ 2~ 2~ shatter~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 7
+A
+13 75
+A
+12 50
+A
+17 -100
+#8241
+Scroll Remove Curse RemoveCurse~
+A Scroll of Remove Curse~
+A Scroll of Remove Curse~
+~
+2 805306690 0 0 1 50
+100~ remove curse~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8242
+Glowing Key~
+A Glowing Key~
+A Glowing Key~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+8243 0 0
+#8243
+Heavens Gate key~
+&YHeaven's Gate&w~
+Heaven's Gate~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 8242 8238
+#8244
+new testament~
+&OThe New Testament&w~
+The New Testament~
+~
+8 536870912 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+8245 0 0
+#8245
+Bible~
+&BThe Bible&w~
+The Bible~
+~
+8 536871040 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+3 8274
+reserved~
+1 0
+0 8236 8244
+#8246
+scroll power~
+A Scroll of Power~
+A Scroll of Power~
+~
+2 536871040 0 0 1 100
+100~ holy strength~ combat mind~ dark blessing~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8247
+scroll dispel~
+A Scroll of Dispel~
+A Scroll of Dispel~
+~
+2 536871040 0 0 1 100
+150~ dispel magic~ dispel magic~ dispel magic~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8248
+Hands God~
+&WThe &YHands of &WGod&w~
+The powerful hands of God lie at your fingers.~
+~
+9 905969985 0 0 129 104
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+summon angel~
+-1 -1
+0 0 0
+A
+19 25
+A
+18 25
+A
+13 150
+A
+12 150
+A
+25 50
+A
+24 -100
+A
+17 -150
+A
+26 100
+#8249
+Scroll Death~
+A Scroll of Death~
+A Scroll of Death~
+~
+2 536871040 0 0 1 100
+125~ ultrablast~ fireball~ holy fires~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8250
+Scroll Healing~
+A Scroll of Healing~
+A Scroll of Healing~
+~
+2 536871040 0 0 1 100
+150~ complete healing~ complete healing~ complete healing~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8251
+Scroll Shields~
+A Scroll of Shields~
+A Scroll of Shields~
+~
+2 536871040 0 0 1 100
+150~ blade barrier~ field of decay~ biofeedback~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8252
+portal bethaven~
+Portal to Bethaven~
+Portal to Bethaven~
+~
+29 0 0 0 0 0
+25000~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8253
+portal hammerheim~
+Portal to Hammerheim~
+Portal to Hammerheim~
+~
+29 0 0 0 0 0
+10211~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8254
+portal hell~
+Portal to Hell~
+Portal to Hell~
+~
+29 0 0 0 0 0
+600~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8255
+portal stone caverns~
+Portal to Stone Caverns~
+Portal to Stone Caverns~
+~
+29 0 0 0 0 0
+30598~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8256
+.~
+(no short description)~
+(no description)~
+~
+29 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8260
+fish~
+a Fish~
+A freshly caught fish~
+~
+19 0 0 0 1 1
+25~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8261
+flask holy water~
+A flask of water~
+A flask of water~
+~
+17 0 0 0 1 1
+10~ 10~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8262
+bread loaf~
+A loaf of bread~
+A loaf of bread~
+~
+19 0 0 0 1 1
+25~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8263
+Rusty Bronzed Key~
+A rusted bronze key~
+A rusted bronze key~
+~
+18 128 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8264
+potion shimmering vial~
+a shimmering vial~
+A vial of great healing lies here~
+~
+10 838860804 0 0 1 90
+100~ cure critical~ cure critical~ cure critical~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8265
+vial divinity potion~
+a vial of divinity~
+A potion that litterally hums with magick power~
+~
+10 838860804 0 0 1 90
+100~ mana~ mana~ cure poison~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8266
+bag travelling~
+a bag of travelling~
+The tremendous bag infront of you obviously has divine features~
+~
+15 872415296 0 0 1 90
+300~ 1~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8267
+Grip Death~
+&zThe Grip of Death&w~
+The Grip of death lies at your wait~
+~
+9 838860802 384 2112 129 101
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+phase shift~
+5 5
+0 0 0
+A
+23 -20
+A
+17 -120
+A
+24 -20
+A
+13 120
+A
+18 10
+A
+19 15
+#8268
+Holy Rosary~
+&WA &CHoly &WRosary&w~
+A rosary lies at your wait~
+~
+9 872415232 2572 3200 5 101
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+aura of peace~
+5 5
+0 0 0
+A
+23 -20
+A
+24 -15
+A
+18 10
+A
+19 13
+A
+13 120
+#8269
+Bag Silver Pennies~
+a Bag of Silver Pennies~
+A cursed bag lies here.~
+~
+15 838860870 2048 0 1 95
+150~ 1~ 0~ 0~
+2 0 0 0 0
+5 0
+curse~
+25 25
+0 0 0
+#8270
+Holy Rune~
+&wA &WHoly &wRune~
+A bracer of amazing strength is at your disposal~
+~
+9 838860800 2049 1024 4097 101
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 3 1
+A
+17 -75
+A
+12 50
+A
+24 -25
+A
+13 125
+A
+18 14
+A
+19 15
+#8271
+portal exit~
+an exit.~
+An exit to the beginning of the death tests lies here.~
+~
+29 0 0 0 0 0
+8215~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8272
+heaven key~
+heaven's Key~
+Heaven's key~
+~
+18 0 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#8275
+Charm Decay~
+&wThe Charm of Decay&w~
+A rotting piece of a corpse lies at your grasp.~
+~
+9 0 0 0 1048577 101
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+dark ritual~
+25 25
+0 0 0
+A
+25 25
+A
+24 -25
+A
+13 75
+A
+19 10
+A
+18 20
+#0
+
+
+
+#ROOMDATA
+#8200
+Entrance to Purgatory~
+You have entered into what seems to be the beginning of the afterlife.
+Although it is possible for mortals to enter into this realm, it is hardly a
+place for them to be. The way of the ethereal is treacherous indeed and can
+be hazardous for any mortals life, for the dead look upon your life with
+contempt as they realize what they have lost.
+~
+0 262168 9
+Rd     0
+D0
+~
+~
+0 0 8201
+S
+#8201
+A Hallway in Purgatory~
+Purgatory, the realm of waiting for judgement is not a pretty place. Tormented
+souls wait to be either admitted into heaven or passed down into hell. Being
+that such a decision last an eternity it is obvious why the people here seem
+so agitated. All around you people wander mindless around talking to nobody
+in particular and everybody at the same time.
+~
+0 393240 9
+Rd     0
+D0
+~
+~
+0 0 8203
+D2
+~
+~
+0 0 8200
+S
+#8202
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its as though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and yet still a faint flicker
+of hope remains in their eyes.
+~
+0 393240 9
+Rd     0
+D0
+~
+~
+0 0 8205
+D1
+~
+~
+0 0 8203
+S
+#8203
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its as though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and yet still a faint flicker
+of hope remains in their eyes.
+~
+0 393240 9
+Rd     0
+D0
+~
+~
+0 0 8206
+D1
+~
+~
+0 0 8204
+D2
+~
+~
+0 0 8201
+D3
+~
+~
+0 0 8202
+S
+#8204
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its as though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and yet still a faint flicker
+of hope remains in their eyes.
+~
+0 393240 9
+Rd     0
+D0
+~
+~
+0 0 8207
+D3
+~
+~
+0 0 8203
+S
+#8205
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its as though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and yet still a faint flicker
+of hope remains in their eyes.
+~
+0 393240 9
+Rd     0
+D0
+~
+~
+0 0 8208
+D1
+~
+~
+0 0 8206
+D2
+~
+~
+0 0 8202
+D3
+~
+cave~
+3 0 8212
+D4
+~
+~
+119 8223 8271
+S
+#8206
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its as though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and yet still a faint flicker
+of hope remains in their eyes.
+~
+0 393240 9
+Rd     0
+D0
+~
+~
+0 0 8209
+D1
+~
+~
+0 0 8207
+D2
+~
+~
+0 0 8203
+D3
+~
+~
+0 0 8205
+S
+#8207
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its as though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and yet still a faint flicker
+of hope remains in their eyes.
+~
+0 401432 9
+Rd     0
+D0
+~
+~
+0 0 8210
+D1
+~
+door~
+3 0 8265
+D2
+~
+~
+0 0 8204
+D3
+~
+~
+0 0 8206
+S
+#8208
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its as though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and yet still a faint flicker
+of hope remains in their eyes.
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8209
+D2
+~
+~
+0 0 8205
+S
+#8209
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its a though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and ye still a faint flicker
+of hope remains in their eyes.
+~
+0 393240 9
+Rd     0
+D0
+~
+~
+0 0 8211
+D1
+~
+~
+0 0 8210
+D2
+~
+~
+0 0 8206
+D3
+~
+~
+0 0 8208
+S
+#8210
+Wandering Purgatory~
+You continue to explore Purgatory to get a general feel of the place.
+Although it is not really a 'bad' place, something here just does not
+feel right...its as though something is missing. Around you the
+resident souls wander lostly, for they shall be stuck in this place
+for eternity or until some poor mortal prays for their sins. Indeed
+it is not very hopeful for these people and yet still a faint flicker
+of hope remains in their eyes.
+~
+0 393240 9
+Rd     0
+D2
+~
+~
+0 0 8207
+D3
+~
+~
+0 0 8209
+S
+#8211
+A Hallyway In Purgatory~
+Before you stands the master of time himself, Chrono, the Incarnation of Time.
+He watches you thoughtfully waiting for you to do something as if he already
+knows what you are about to do. Well, being the Incarnation of Time you are
+fairly sure that if you choose to attack him and gain admittance to the
+Stairway to Heaven, the element of surprise will not be on your side...
+~
+0 393240 9
+Rd     0
+D2
+~
+~
+0 0 8209
+S
+#8212
+The Corridor of Death~
+You have ventured upon a strange path on the edges of Purgatory. All life
+seems to have withered away and you feel something strange tugging on your
+soul leading in that direction. Perhaps it would be safer just to forget this
+trail and head back, although it would be interesting to see what lies ahead!
+~
+0 393240 9
+Rd     0
+D1
+~
+cave~
+3 0 8205
+D3
+~
+~
+0 0 8213
+S
+#8213
+The Corridor of Death~
+Further down the hallway you go and it seems even deader then the previous
+room. You stop and think to yourself whether continuing down this path would
+be beneficial to YOUR health. It certainly seems like nothing else has been
+able to survive it...
+~
+0 393240 9
+Rd     0
+D1
+~
+~
+0 0 8212
+D3
+~
+~
+0 0 8214
+S
+#8214
+The Corridor of Death~
+You continue down The Corridor of Death with all your senses on full alert.
+It is obvious that something terrible is around here, it is up to you not to
+let it hit you by surprise. You unstrap your sheath, draw your great blade and
+stand ready to attack anything that moves....fortunately it seems that
+everything is dead already, however its always better to be safe then sorry.
+~
+0 393240 9
+Rd     0
+D1
+~
+~
+0 0 8213
+D3
+~
+~
+0 0 8215
+S
+#8215
+Entrance to the Death Trials~
+You have found your way to the Death Trials, a fearsome set of monsters that
+defend the Incarnation of Death, Thanatos. If you think yourself worthy to
+face Death himself continue onwards for surely this is the right direction,
+however if you feel yourself to be no match for the very person who could rip
+your soul from your body with no thought at all, perhaps it would be best
+to head back.
+~
+0 33947672 9
+Rd     0
+D1
+~
+~
+0 0 8214
+D5
+~
+~
+0 0 8216
+S
+#8216
+The First Horseman~
+The first of the four horsemen who defend Thanatos resides here. The Horseman
+of War is an undead warrior who thrives on war, butchery, pillage and plunder!
+Specializing on the brute force of his axe, his opponents fear and un-nerving
+tactics, War is a very intimidating foe!
+~
+0 4595737 9
+Rd     0
+D5
+~
+pit~
+119 8200 8217
+S
+#8217
+The Second Horseman~
+The second defender, the Horseman of Famine, is a disgusting site indeed. As
+thin a stick and as frail as a elderly woman you are sure that this should be
+no problem at all. However, you cannot help but feel like wretching at the
+very site of this opponent and you have this strange feeling that perhaps this
+will not be as easy as it looks.
+~
+0 4595728 9
+Rd     0
+D4
+~
+~
+119 0 8216
+D5
+~
+pit~
+119 8204 8218
+S
+#8218
+The Third Horseman~
+The third defender, the Horseman of Pestilence, thrives on weakness and
+disease. Decaying and rotting flesh peal of his disgusting body as swarms of
+flies, bugs and maggots crawl around his appendages eating their way to his
+very bones. A toothless grin, Pestilence advances towards you piece by piece...
+~
+0 4595728 9
+Rd     0
+D5
+~
+pit~
+119 8205 8219
+S
+#8219
+The Fourth Horseman~
+The final defender of Thanatos and and the Incarnations right hand man, the
+Horseman of Death calmly awaits your approach. You feel fear wrap tightly
+around your heart and begin to squeeze the life out of you. It seems that you
+had better finish off this opponent fast or being in its mere presence may
+kill you alone!
+~
+0 273031184 0
+Rd     250
+D5
+~
+pit~
+119 8207 8220
+S
+#8220
+The Incarnation of Death~
+The Incarnation of Death, Thanatos, at last!  Unfortunately for you, if
+you thought the horseman were hard, it would not comfort you to hear how
+Thanatos gained their loyalty.  A black scythe in hand a hood as dark as
+night, Thanatos advances towards you to claim your soul...  
+~
+0 4595728 9
+Rd     0
+D0
+~
+~
+55 0 8200
+S
+#8221
+The Stairway to Heaven~
+You have reached the foot of the Stairway to Heaven, a trial of divine nature.
+Before you stands Mars, the Incarnation of War, the first of your three trials
+on your quest to meet God. The stairway seems made of slick white marble with
+golden rails, its beauty and majesty is almost enough to make you weep.
+Slowly, you begin to make your way forward to meet your first challenge.
+~
+0 4464656 9
+Rd     0
+D4
+~
+sky~
+119 8214 8222
+S
+#8222
+The Stairway to Heaven~
+You continue your climb towards the top of the stairway. You have defeated one
+of the three Incarnations protecting the stairway and only Evil and Nature
+remain. Surely they can be no harder then the Incarnation of War himself! Then
+again...we shall surely see soon enough!
+~
+0 4595728 9
+Rd     0
+D0
+~
+~
+3 0 8267
+D4
+~
+~
+0 0 8223
+D5
+~
+~
+119 0 8221
+S
+#8223
+The Stairway to Heaven~
+You have come across the Incarnation known as Lucifer, the Incarnation of Evil!
+When you look at his small stature, you almost believe that this fight will
+be a cake-walk. However the look in Lucifer's eyes tell you a different story!
+In fact, if you could, it would probably be in your best interest just to
+sell your soul to the devil for assuredly it is as good as his if you sit
+here and fight him!
+~
+0 4595728 9
+Rd     0
+D4
+~
+sky~
+7 8216 8224
+D5
+~
+~
+0 0 8222
+S
+#8224
+The Stairway to Heaven~
+Once again you have defeated one of the Incarnations which brings you to this
+room. One last test of your will and stamina remains, one last chance to defend
+your life and to continue on your quest to meet your maker! Prepare thyself
+warrior...the quest continues!
+~
+0 4595728 9
+Rd     0
+D3
+~
+~
+3 0 8268
+D4
+~
+~
+0 0 8225
+D5
+~
+~
+7 0 8223
+S
+#8225
+The Stairway to Heaven~
+You have reached the final set of stairs and the final defender of the
+stairway to heaven.  Gaea looks at you cooly and calmly as if she is sizing
+up how formidable a warrior you could be.  You look upon her lightly green
+skin and her wise face and wonder if you could ever harm such a magnificant
+creature!  She could be no more harmful then a bug under your boot by the
+looks of it, however you are much more clever then that to underestimate an
+Incarnation!  
+~
+0 4595728 9
+Rd     0
+D0
+~
+gate~
+119 8217 8226
+D5
+~
+~
+0 0 8224
+S
+#8226
+The Gateway to Heaven~
+The gigantic, ethereal gateway to heaven lies right before your eyes.
+Its magnificant design would bring tears to any warriors eyes and the
+bright light beyond beckons you to come forward. Before the gate stands the
+gatekeeper, Saint Peter. He shall decide whether you are allowed to enter
+into Heaven so be nice!
+~
+0 393232 9
+Rd     0
+D0
+~
+gate~
+119 8221 8228
+D2
+~
+gate~
+119 8217 8225
+S
+#8227
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8231
+D1
+~
+~
+0 0 8228
+S
+#8228
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8232
+D1
+~
+~
+0 0 8229
+D2
+~
+~
+119 0 8226
+D3
+~
+~
+0 0 8227
+S
+#8229
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8233
+D3
+~
+~
+0 0 8228
+S
+#8230
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8231
+S
+#8231
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8232
+D2
+~
+~
+0 0 8227
+D3
+~
+~
+0 0 8230
+S
+#8232
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8235
+D1
+~
+~
+0 0 8233
+D2
+~
+~
+0 0 8228
+D3
+~
+~
+0 0 8231
+S
+#8233
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8234
+D2
+~
+~
+0 0 8229
+D3
+~
+~
+0 0 8232
+S
+#8234
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D3
+~
+~
+0 0 8233
+S
+#8235
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8236
+D2
+~
+~
+0 0 8232
+S
+#8236
+The Lower Level of Heaven~
+You continue to explore the great white vastness that is lower heaven. This
+realm of heaven is reserved for the normal, everyday, good christian souls.
+Although there is nothing spectacular about this place, the place exudes a
+sense of contentment, happiness and fulfillment.
+~
+0 401424 9
+Rd     0
+D2
+~
+~
+0 0 8235
+D4
+~
+~
+0 0 8237
+S
+#8237
+The Hallway of Saints~
+The hallway of saints is a sanctuary for those mortals of earth whose faith
+in God was so strong that they became saintly. Their paradise consists
+mostly of praying to God and thanking Him for what He has given them.
+Lost unto their own little world, many of the saints have forgotten about
+the world that is and have abandoned the mortals unto their own doings.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8238
+D3
+~
+~
+0 0 8244
+D5
+~
+~
+0 0 8236
+S
+#8238
+The Hallway of Saints~
+The hallway of saints is a sanctuary for those mortals of earth whose faith
+in God was so strong that they became saintly. Their paradise consists
+mostly of praying to God and thanking Him for what He has given them.
+Lost unto their own little world, many of the saints have forgotten about
+the world that is and have abandoned the mortals unto their own doings.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8239
+D2
+~
+~
+0 0 8237
+D3
+~
+~
+0 0 8243
+S
+#8239
+The Hallway of Saints~
+The hallway of saints is a sanctuary for those mortals of earth whose faith
+in God was so strong that they became saintly. Their paradise consists
+mostly of praying to God and thanking Him for what He has given them.
+Lost unto their own little world, many of the saints have forgotten about
+the world that is and have abandoned the mortals unto their own doings.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8240
+D2
+~
+~
+0 0 8238
+D3
+~
+~
+0 0 8242
+S
+#8240
+The Hallway of Saints~
+The hallway of saints is a sanctuary for those mortals of earth whose faith
+in God was so strong that they became saintly. Their paradise consists
+mostly of praying to God and thanking Him for what He has given them.
+Lost unto their own little world, many of the saints have forgotten about
+the world that is and have abandoned the mortals unto their own doings.
+~
+0 401424 9
+Rd     0
+D2
+~
+~
+0 0 8239
+D3
+~
+~
+0 0 8241
+S
+#8241
+The Hallway of Saints~
+The hallway of saints is a sanctuary for those mortals of earth whose faith
+in God was so strong that they became saintly. Their paradise consists
+mostly of praying to God and thanking Him for what He has given them.
+Lost unto their own little world, many of the saints have forgotten about
+the world that is and have abandoned the mortals unto their own doings.
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8240
+D2
+~
+~
+0 0 8242
+D4
+~
+~
+0 0 8245
+S
+#8242
+The Hallway of Saints~
+The hallway of saints is a sanctuary for those mortals of earth whose faith
+in God was so strong that they became saintly. Their paradise consists
+mostly of praying to God and thanking Him for what He has given them.
+Lost unto their own little world, many of the saints have forgotten about
+the world that is and have abandoned the mortals unto their own doings.
+~
+0 401424 0
+Rd     0
+D0
+~
+~
+0 0 8241
+D1
+~
+cell~
+0 0 8239
+D2
+~
+~
+0 0 8243
+S
+#8243
+The Hallway of Saints~
+The hallway of saints is a sanctuary for those mortals of earth whose faith
+in God was so strong that they became saintly. Their paradise consists
+mostly of praying to God and thanking Him for what He has given them.
+Lost unto their own little world, many of the saints have forgotten about
+the world that is and have abandoned the mortals unto their own doings.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8242
+D1
+~
+~
+0 0 8238
+D2
+~
+~
+0 0 8244
+D3
+~
+cell~
+119 8223 8269
+S
+#8244
+The Hallway of Saints~
+The hallway of saints is a sanctuary for those mortals of earth whose faith
+in God was so strong that they became saintly. Their paradise consists
+mostly of praying to God and thanking Him for what He has given them.
+Lost unto their own little world, many of the saints have forgotten about
+the world that is and have abandoned the mortals unto their own doings.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8243
+D1
+~
+~
+0 0 8237
+S
+#8245
+The Realm of the Angels~
+As you wander the realm of angels you hear the glorious sings and hymn
+chanting from the flocks of angels that are around every corner. Feelings
+of warmth and comfort exude from this place, as if total serenity has
+been reached here. You can feel that your quest for God is drawing
+nearer to an end.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8247
+D5
+~
+~
+0 0 8241
+S
+#8246
+The Realm of the Angels~
+As you wander the realm of angels you hear the glorious sings and hymn
+chanting from the flocks of angels that are around every corner. Feelings
+of warmth and comfort exude from this place, as if total serenity has
+been reached here. You can fee that your quest for God is drawing
+nearer to an end.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8254
+D1
+~
+~
+0 0 8247
+S
+#8247
+The Realm of the Angels~
+As you wander the realm of angels you hear the glorious sings and hymn
+chanting from the flocks of angels that are around every corner. Feelings
+of warmth and comfort exude from this place, as if total serenity has
+been reached here. You can feel that your quest for God is drawing
+nearer to an end.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8255
+D1
+~
+~
+0 0 8248
+D2
+~
+~
+0 0 8245
+D3
+~
+~
+0 0 8246
+S
+#8248
+The Realm of the Angels~
+As you wander the realm of angels you hear the glorious sings and hymn
+chanting from the flocks of angels that are around every corner. Feelings
+of warmth and comfort exude from this place, as if total serenity has
+been reached here. You can feel that your quest for God is drawing
+nearer to an end.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8256
+D3
+~
+~
+0 0 8247
+S
+#8249
+Arch-Angel Gabriel's Home~
+The home of Gabriel is very neat and particular as everything has its
+proper place.  The label 'the executioner' has been put on this angel for
+the very fact that he is God's own angel of death!  Tread carefully mortals
+for the very breath from Gabriel's mouth means death!  
+~
+0 4595728 9
+Rd     0
+D0
+~
+~
+0 0 8251
+S
+#8250
+delete~
+~
+0 20 9
+Rd     0
+S
+#8251
+The Realm of the Angels~
+You have entered a side hallway in the realm of angels. A feeling a great
+power vibrates along the walls beckoning you forward. The corridor itself
+is extremely bright, moreso then any other area of heaven that you have
+seen so far!
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8252
+D2
+~
+~
+3 0 8249
+S
+#8252
+The Realm of the Angels~
+You have entered a side hallway in the realm of angels. A feeling a great
+power vibrates along the walls beckoning you forward. The corridor itself
+is extremely bright, moreso then any other area of heaven that you have
+seen so far!
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8253
+D3
+~
+~
+0 0 8251
+S
+#8253
+The Realm of the Angels~
+You have entered a side hallway in the realm of angels. A feeling a great
+power vibrates along the walls beckoning you forward. The corridor itself
+is extremely bright, moreso then any other area of heaven that you have
+seen so far!
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8254
+D3
+~
+~
+0 0 8252
+S
+#8254
+The Realm of the Angels~
+As you wander the realm of angels you hear the glorious sings and hymn
+chanting from the flocks of angels that are around every corner. Feelings
+of warmth and comfort exude from this place, as if total serenity has
+been reached here. You can feel that your quest for God is drawing
+nearer to an end.
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8255
+D2
+~
+~
+0 0 8246
+D3
+~
+~
+0 0 8253
+S
+#8255
+The Realm of the Angels~
+As you wander the realm of angels you hear the glorious sings and hymn
+chanting from the flocks of angels that are around every corner. Feelings
+of warmth and comfort exude from this place, as if total serenity has
+been reached here. You can feel that your quest for God is drawing
+nearer to an end.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8262
+D1
+~
+~
+0 0 8256
+D2
+~
+~
+0 0 8247
+D3
+~
+~
+0 0 8254
+S
+#8256
+The Realm of the Angels~
+As you wander the realm of angels you hear the glorious sings and hymn
+chanting from the flocks of angels that are around every corner. Feelings
+of warmth and comfort exude from this place, as if total serenity has
+been reached here. You can feel that your quest for God is drawing
+nearer to an end.
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8257
+D2
+~
+~
+0 0 8248
+D3
+~
+~
+0 0 8255
+S
+#8257
+The Realm of the Angels~
+You have entered a side hallway in the realm of angels. A feeling a great
+power vibrates along the walls beckoning you forward. The corridor itself
+is extremely bright, moreso then any other area of heaven that you have
+seen so far!
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8258
+D3
+~
+~
+0 0 8256
+S
+#8258
+The Realm of the Angels~
+You have entered a side hallway in the realm of angels. A feeling a great
+power vibrates along the walls beckoning you forward. The corridor itself
+is extremely bright, moreso then any other area of heaven that you have
+seen so far!
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8259
+D3
+~
+~
+0 0 8257
+S
+#8259
+The Realm of the Angels~
+You have entered a side hallway in the realm of angels. A feeling a great
+power vibrates along the walls beckoning you forward. The corridor itself
+is extremely bright, moreso then any other area of heaven that you have
+seen so far!
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+0 0 8260
+D2
+~
+~
+0 0 8258
+S
+#8260
+The Realm of the Angels~
+You have entered a side hallway in the realm of angels. A feeling a great
+power vibrates along the walls beckoning you forward. The corridor itself
+is extremely bright, moreso then any other area of heaven that you have
+seen so far!
+~
+0 401424 9
+Rd     0
+D1
+~
+door~
+3 0 8261
+D3
+~
+~
+0 0 8259
+S
+#8261
+The Abode of the Arch-Angel Michael~
+The home of Michael is cluttered with papers and other administration utensils.
+Michael's job is a very tedious one as he must oversee all the lesser angels
+activities, where they shall preach The Word, what miracles to perform and
+where, ecetera. You are very lucky that Michael doesn't just ignore you
+completely!
+~
+0 4595728 9
+Rd     0
+D3
+~
+~
+3 0 8260
+S
+#8262
+The Realm of the Angels~
+As you wander the realm of angels you hear the glorious sings and hymn
+chanting from the flocks of angels that are around every corner. Feelings
+of warmth and comfe from this place, as if total serenity has
+been reached here. You can feel that your quest for God is drawing
+nearer to an end.
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+3 0 8263
+D2
+~
+~
+0 0 8255
+D4
+~
+~
+0 0 8264
+S
+#8263
+A Strange Room~
+~
+0 401424 9
+Rd     0
+D3
+~
+~
+3 0 8262
+S
+#8264
+The Office of Good~
+The belt of divinity is the insignia of power here in heaven.  Whomever
+wears the belt controls the fate of the world!  
+~
+0 4595732 9
+Rd     0
+D0
+~
+~
+117 8272 25000
+D5
+~
+~
+0 0 8262
+S
+#8265
+A Small Store~
+A small store lies off to the side of Purgatory. It seems even the souls here
+must eat something to sustain themselves, although the shop really doesn't
+look that busy. Hmm...perhaps its just because all they sell is bread and
+water. Who would wanna eat that for eternity...?
+~
+0 2499612 9
+Rd     0
+D3
+~
+door~
+3 0 8207
+D5
+~
+cellar~
+7 8263 8266
+S
+#8266
+The Cellar of the Store~
+You have entered into the underground cellar of Cleatus' shop. It seems that
+Cleatus has set up some kind of illegal trades in this room and it surely
+would not go well with the boys upstairs if they ever heard about this!
+Quivering, Cleatus offers his wares to you pleading for your mercy. Surely
+this is an advantage that does not come along very often!
+~
+0 2098192 9
+Rd     0
+D4
+~
+cellar~
+7 0 8265
+S
+#8267
+A Side Room~
+You have stepped inside a resting room for the travellers of the stairway.
+Heal here and prepare yourself for the rest of your journey for indeed the
+trials have just begun...
+~
+0 401424 9
+Rd     0
+D2
+~
+~
+3 0 8222
+S
+#8268
+A Side Room~
+You have entered into a side room of the stairway, a place where you can rest
+and heal before you face your final opponent, the Incarnation of Nature.
+Prepare yourself well brave warrior for Gaea is far from gentle when it comes
+to defending the stairway!
+~
+0 401424 9
+Rd     0
+D1
+~
+~
+3 0 8224
+S
+#8269
+The Room of Confession~
+The confession room has been the home for the fallen apostle since the very
+moment he betrayed Jesus. Never has Judas actually been dead, but he has
+instead been granted immortality since it will take him to the end of time
+to pay for the sins he has committed. Pity this poor man for his suffering
+has been more then any man could possibly spare.
+~
+0 528 9
+Rd     0
+D1
+~
+cell~
+119 8223 8243
+D5
+~
+~
+119 8263 8271
+S
+#8270
+Base of the Stairway to Heaven~
+The base of the grand stairway to heaven lies in front of you. The stairway
+itself is a spectacle that few could match, the glistening white marble, the
+solid gold railings and the majestic climb into the heavens! It shall be a
+pity when the blood from your veins spills all over the nice white steps!
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8221
+S
+#8271
+The Portal Room of Heaven~
+This room allows access to all the major power areas in the world at present
+for gods Angels.  You have gained access to this hidden room and have thus
+inherited the power that goes along with it!  Congratulations!
+~
+0 393216 9
+Rd     0
+D4
+~
+~
+119 8223 8269
+D5
+~
+~
+119 8263 8205
+S
+#8274
+The Hall Before God~
+You have been transported to the hallway before God! Wondering where the
+rest of your companions could be you prepare yourself to meet your maker. You 
+wonder what sort of fate lies beyond the next room as it quivers with some kind
+of divinely power. Nonetheless your fate lies in that direction and you have no choice except to take it.
+~
+0 401424 9
+Rd     0
+D0
+~
+~
+0 0 8275
+S
+#8275
+&WTHE DWELLING OF GOD&w~
+&WThe dwelling place of God brings tears to your eyes.  The brillance and
+magnificance of being face to face with the being that created you and every
+other thing you have every known is too much to bear.  Your very gaze upon
+this man crys havoc in your brain, He is too much to understand, to great for
+your comprehension!  The only answer shall lie in the death of your creator,
+the death of your God!  It is the only answer...
+~
+0 4333588 9
+Rd     0
+D2
+~
+~
+0 0 8274
+S
+#0
+
+
+
+#SPECIALS
+M 8211 spec_cast_psionicist
+M 8220 spec_poison
+M 8226 spec_breath_lightning
+M 8237 spec_cast_cleric
+M 8242 spec_cast_cleric
+M 8263 spec_breath_fire
+M 8264 spec_cast_cleric
+M 8269 spec_cast_mage
+M 8270 spec_breath_lightning
+S
+
+
+
+#RESETS
+M 0 8200 1 8200
+M 0 8201 3 8205
+M 0 8201 4 8206
+M 0 8201 2 8206
+M 0 8201 2 8209
+M 0 8201 3 8210
+M 0 8211 1 8211
+E 0 8212 0 22
+M 0 8216 1 8216
+G 0 8200 0
+E 0 8201 0 15
+M 0 8217 1 8217
+E 0 8203 0 7
+G 0 8204 0
+M 0 8218 1 8218
+G 0 8205 0
+E 0 8206 0 5
+E 0 8275 0 24
+M 0 8219 1 8219
+E 0 8208 0 23
+G 0 8207 0
+M 0 8220 1 8220
+G 0 8209 0
+E 0 8211 0 20
+E 0 8211 0 21
+E 0 8210 0 14
+E 0 8267 0 13
+O 0 8271 0 8220
+M 0 8221 1 8221
+E 0 8202 0 18
+E 0 8213 0 19
+G 0 8214 0
+M 0 8223 1 8223
+E 0 8215 0 8
+G 0 8216 0
+M 0 8225 1 8225
+G 0 8217 0
+E 0 8218 0 22
+M 0 8226 1 8226
+G 0 8221 0
+G 0 8222 0
+E 0 8268 0 3
+M 0 8237 5 8227
+M 0 8227 4 8228
+M 0 8237 4 8239
+M 0 8242 1 8247
+M 0 8249 1 8249
+G 0 8242 0
+E 0 8240 0 22
+M 0 8242 1 8253
+M 0 8242 1 8257
+M 0 8261 1 8261
+G 0 8238 0
+E 0 8239 0 22
+M 0 8242 1 8262
+M 0 8263 1 8263
+E 0 8233 0 9
+E 0 8234 0 10
+E 0 8237 0 17
+M 0 8264 1 8264
+E 0 8230 0 16
+E 0 8231 0 0
+E 0 8232 0 20
+G 0 8236 0
+M 0 8250 1 8264
+G 0 8272 0
+M 0 8265 1 8265
+G 0 8260 0
+G 0 8261 0
+G 0 8262 0
+G 0 8263 0
+M 0 8266 1 8266
+G 0 8264 0
+G 0 8265 0
+G 0 8266 0
+O 0 8219 0 8267
+O 0 8220 0 8268
+M 0 8269 1 8269
+G 0 8269 0
+P 0 8252 0 1
+P 0 8253 0 1
+P 0 8254 0 1
+P 0 8255 0 1
+O 0 8252 0 8271
+O 0 8253 0 8271
+O 0 8254 0 8271
+O 0 8255 0 8271
+M 0 8270 1 8275
+E 0 8248 0 13
+G 0 8247 0
+G 0 8246 0
+G 0 8249 0
+G 0 8250 0
+G 0 8251 0
+E 0 8270 0 18
+E 0 8270 0 19
+S
+
+
+
+#SHOPS
+8265 19 17 18 19 0 100 100 0 23
+8266 10 10 15 0 0 100 100 0 23
+0
+
+
+
+#$

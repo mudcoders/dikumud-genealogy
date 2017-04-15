@@ -1,0 +1,1870 @@
+#AREADATA
+Name        {??-???} Part of Quest       Decklarean~
+Levels      0 0
+Builders    Decklarean~
+VNUMs       1500 1599
+Security    100
+Recall      25001
+Flags       16
+Color       11
+End
+
+
+
+#MOBILES
+#1500
+Megnamisan~
+The Crazed Mage Megnamisan the Magnificant~
+The Crazed Mage Megnamisan the Magnificant is here.
+~
+The Crazed Mage Megnamisan the Magnificant stands here in all his glory. 
+His glowing purple robes shine with an inner light.  His eyes also glow with
+insanity.  He stands a proud four and a half feet tall.  His bald head has a
+red dragon tattoed onto it.  The red dragon appears to be holding a key.  
+~
+395267 168 0 0 S
+150 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>death_prog 50~
+mpecho Megnamisan stagers backwords then screams in pain as flames consume him.
+mpecho A fall of ash and a black circle is all that remains of him.
+mpgoto 1599
+~
+>rand_prog 95~
+emote mumbles to himself.
+~
+>all_greet_prog 100~
+if isimmort($n)
+say yes
+endif
+~
+>act_prog give~
+say $t
+~
+|
+#1501
+Demon Tegnarean~
+The Demon Tegnarean~
+The Demon Tegnarean stands here defiantly.
+~
+The Demon Tengnarean looms above you, his eyes aglow with hell fire.  The
+stench of death raidates around him.  His bat like wings tower behind him. 
+A horrible unholly gleam surronds him.  
+~
+16387 503865596 229556 -1000 S
+107 0 0 300000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#1502
+demon~
+A Demon~
+A Demon is here.
+~
+A hell spawned demon with glowing, blood red eyes.  Fangs dripping poison
+and wings as black as night.  A stench of death permeants everything around
+it.  
+~
+35 33620010 0 -1000 S
+30 0 0 2000d0+0 0d0+0
+0 0 0 0
+0 0 0
+4 0 0
+>death_prog 100~
+mpoload 1503
+mpecho The demon shutters and turns to stone as it dies.
+mpgoto 1599
+~
+|
+#1504
+dartboard~
+dartboard~
+A dartboard with Hannibal's picture centered on it is here.
+~
+~
+3 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#1505
+Prophet Senaren~
+Prophet Senaren~
+The Prophet Senaren is here.
+~
+Senaren is aglow with an inner fire.  Golden hair, deep blue eyes, she is
+what some would call perfect.  But her faith has changed her and she looks
+not towards this world but to the world beyond.  
+~
+3 0 0 0 S
+50 0 0 300000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#1506
+kabear~
+a kabear~
+A kabear is here.
+~
+The blood shot eyes of the Kabear glares at you.  Covered in a brown
+blackish fur, the Kabear reeks of garbage.  It stands as tall as an ogre,
+with claws as long as daggers, a primel killing machine that fears nothing. 
+~
+1 0 0 -125 S
+50 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>death_prog 100~
+mpoload 1551
+~
+>rand_prog 95~
+if ispc($r)
+ if level($r) > 50
+  yell Die $r!!!
+  mpkill $r
+ endif
+else
+ if name($r) == kabear
+  yell Death to all!!!
+ else
+  Yell Die $r!!!
+ mpkill $r
+ endif
+endif
+~
+|
+#1507
+kabear~
+a kabear~
+A kabear is here.
+~
+The blood shot eyes of the Kabear glares at you.  Covered in a brown
+blackish fur, the Kabear reeks of garbage.  It stands as tall as an ogre,
+with claws as long as daggers, a primel killing machine that fears nothing. 
+~
+1 0 0 -125 S
+75 0 0 17500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>rand_prog 95~
+if ispc($r)
+ if level($r) > 75
+  yell Die $r!!!
+  mpkill $r
+ endif
+else
+ if name($r) == kabear
+  yell Death to all!!! 
+ else
+  Yell Die $r!!!
+  mpkill $r
+ endif
+endif
+~
+>death_prog 100~
+mpoload 1551
+~
+|
+#1508
+kabear~
+a kabear~
+A kabear is here.
+~
+The blood shot eyes of the Kabear glares at you.  Covered in a brown
+blackish fur, the Kabear reeks of garbage.  It stands as tall as an ogre,
+with claws as long as daggers, a primel killing machine that fears nothing.
+~
+1 0 0 -125 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>rand_prog 95~
+if ispc($r)
+ if level($r) > 98
+  yell Die $r!!!
+  mpkill $r
+ endif
+else
+ if name($r) == kabear
+  yell Death to all!!! 
+ else
+  Yell Die $r!!!
+  mpkill $r
+ endif
+endif
+~
+>death_prog 100~
+mpoload 1551
+~
+|
+#1509
+kabear~
+a kabear~
+A kabear is here.
+~
+The blood shot eyes of the Kabear glares at you.  Covered in a brown
+blackish fur, the Kabear reeks of garbage.  It stands as tall as an ogre,
+with claws as long as daggers, a primel killing machine that fears nothing.
+~
+1 0 0 -125 S
+5 0 0 100d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>rand_prog 95~
+if ispc($r)
+ if level($r) > 5
+  yell Die $r!!!
+  mpkill $r
+ endif
+else
+ if name($r) == kabear
+  yell Death to all!!! 
+ else
+  Yell Die $r!!!
+  mpkill $r
+ endif
+endif
+~
+>death_prog 100~
+mpoload 1551
+~
+|
+#1510
+Gem Warrior~
+the Gem Warrior~
+A Gem Warrior is here.
+~
+The Gem Warrior glitters in it's many facets.
+~
+33 589954 0 0 S
+50 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#1511
+snitch~
+(no short description)~
+(no long description)
+~
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>speech_prog 100~
+~
+|
+#1512
+tmp1~
+tmp1 is here~
+Tmp1 is here
+~
+~
+3 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>speech_prog hi~
+say hi
+mpjunk loin
+~
+|
+#1513
+tmp2~
+tmp2~
+Tmp2 is here
+~
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#1550
+small mouse~
+a small mouse~
+A small mouse is here.
+~
+It looks like a small gray mouse.  But it has a wierd red tinge to it's
+fur.  
+~
+129 32768 16 0 S
+10 0 0 1000d0+0 0d0+0
+0 0 0 0
+0 0 1
+524231 0 0
+#1551
+faerie~
+faerie~
+Faerie is here
+~
+~
+3 0 0 0 S
+2 0 0 1000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>act_prog p DEAD!!~
+say OOOOhhhh!!  Look at all the blood!!!!
+cackle
+get corpse
+mpgoto 1599
+drop corpse
+~
+>act_prog p The sun slowly disappears in the west.~
+say the sun is setting
+~
+>act_prog p The sun rises in the east.~
+say the sun is rising
+~
+|
+#0
+
+
+
+#OBJECTS
+#1500
+purple Robe~
+purple Robe~
+A Purple Robe lies here in a pile~
+~
+9 0 958 0 25608 50
+1~ 0~ 0~ 0~
+20 0 0 0 0
+5 0
+invis~
+5 5
+0 0 0
+A
+105 -1
+>get_prog 100~
+0
+mpoload 1500
+mpmload 1500
+~
+|
+#1501
+pentagram~
+a glowing pentagram~
+A Large Glowing Pentagram dominates the floor.~
+~
+29 0 0 0 0 0
+1503~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1502
+staff~
+magical staff~
+A glowing magical staff leans against the wall~
+~
+4 0 6860 7181 16384 101
+0~ -1~ 0~ teleport~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1503
+statue stone remains demon~
+the remains of a demon~
+The stone remains of a demon stand here like a statue.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+demon~
+The remains of a demon stands here frozen forever in it's final moments
+of life on this plain.  
+~
+E
+remains~
+The remains of a demon stands here frozen forever in it's final moments
+of life on this plain.  
+~
+E
+stone~
+The remains of a demon stands here frozen forever in it's final moments
+of life on this plain.  
+~
+E
+statue~
+The remains of a demon stands here frozen forever in it's final moments
+of life on this plain.  
+~
+#1504
+dartboard~
+a dartboard~
+A dartboard with Hannibal's picture centered on it is here.~
+~
+8 0 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+dartboard~
+The dartboard looks like it has seen alot of use.  
+~
+#1505
+shackles magic anti-magic~
+anti-magic shackles~
+A pair of anti-magic shakels~
+~
+13 4224 0 0 257 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1506
+crazy rift~
+a crazy rift~
+A crazy rift is here spewing out energy and maintaining the pentagram.~
+~
+29 0 0 0 0 0
+25000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1507
+magic hell rift~
+the rift~
+A rift in the fabric of space is here~
+~
+29 0 0 0 0 0
+651~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1508
+hell rift magic~
+the rift~
+A rift in the fabric of space is here~
+~
+29 0 0 0 0 0
+20014~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1509
+cloak darkness~
+cloak of darkness~
+A shimmering cloak of darkness is here.~
+~
+9 0 0 0 1025 112
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+103 -1
+A
+107 -1
+A
+102 -1
+A
+106 -1
+A
+111 -1
+A
+110 -1
+#1510
+dartboard~
+(no short description)~
+(no description)~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1511
+bloody dagger~
+dagger with Decklarean's blood~
+A bloody dagger with Decklarean's blood on its blade.~
+~
+5 0 0 0 8193 112
+0~ 0~ 0~ 11~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1512
+tmp1~
+tmp1~
+Tmp1 is here~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+>rand_prog 100~
+0
+say tmp1 1
+say tmp1 2
+say tmp1 3
+say tmp1 4
+say ----------------
+~
+|
+#1513
+tmp2~
+tmp2~
+Tmp2 is here~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+>rand_prog 100~
+0
+say tmp2 1
+say tmp2 2
+say tmp2 3
+say tmp2 4
+say tmp2 5
+say ----------------
+~
+|
+#1514
+tmp3~
+tmp3~
+Tmp3 is here~
+~
+13 0 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+>drop_prog 100~
+0
+say hay you droped me
+~
+>get_prog 100~
+0
+say thanks for picking me up
+~
+>drop_prog 100~
+0
+say second drop me thing
+~
+|
+#1515
+brain~
+brain~
+A brain is here.~
+~
+13 0 0 0 32769 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+>wear_prog 100~
+0
+scream
+mpecho The brain shakes in agony trying to escape.
+~
+>rand_prog 2~
+0
+mpecho The brain whimpers under the strain.
+~
+|
+#1516
+light~
+a light in the window~
+A light has been placed in the window.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1550
+small hole quest~
+a small hole in the wall~
+A small hole in the wall~
+~
+15 805306400 0 0 0 0
+0~ 1~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hole~
+As you look at the small hole you relise that something has eaten it's
+way out of the wall creating the hole.  
+~
+E
+small~
+As you look at the small hole you relise that something has eaten it's
+way out of the wall creating the hole.  
+~
+#1551
+Quest Token~
+the &RQuest Token&G~
+A &RQuest Token &Gis here.~
+~
+13 0 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#1552
+Medallion~
+a Medallion with Decklarean's signet on it~
+A Medallion with Decklarean's signet on it is here.~
+~
+9 0 0 0 5 2
+0~ 0~ 0~ 0~
+0 0 0 0 0
+3 1587
+reserved~
+3 3
+0 0 0
+E
+medallion~
+On one side is the signet of Decklarean.  A sword pointed to the sky half
+in and half out of shadow.  It is aglow with magical power.  On the flip
+side is the simple rune of the quest.  
+~
+#1553
+Glowing Rock Gem~
+a gem~
+&YA solid gem, flashing with power, is here resting in a crater.~
+~
+13 268439107 0 0 0 0
+0~ 0~ 0~ 0~
+20000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+gem~
+~
+#0
+
+
+
+#ROOMDATA
+#1500
+The Lab~
+This lab has been completely destroyed.  Lab equipment smashed against
+walls.  Tables and chairs shattered into peaces.  Scorched objects that
+could only have been books are scattered everywhere.  The only things that
+have servived are the door leading out of the lab and the giant pentagram
+drawn onto the floor in the center of the room.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+3 0 1501
+S
+#1501
+Dangers Stairs~
+These stairs are showing obvius signs of neglect and damage from the
+weather.  How they stay connected to the outside of the tower is almost
+magical.  The few supports that haven't rotted away could not be holding the
+stairs up.  The wooden door at the top of the stairs is only in slightly
+better condition.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 1500
+D5
+~
+~
+0 0 1502
+S
+#1502
+Stairs outside the Tower~
+Standing next to the old tower, obvious sings of age, weather, and
+neglect are apparent.  How it remains standing is a testimony to the
+carefull craftsmanship of long dead masons.  The stairs wraping around the
+outside of the tower are in far worse condition. 
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1509
+D4
+~
+~
+0 0 1501
+S
+#1503
+Inside the pentagram~
+~
+0 4 0
+Rd     0
+S
+#1504
+~
+~
+0 4 0
+Rd     0
+S
+#1505
+Bottom level of the Pit of Death~
+&RYou are in the bottom level of the Pit of Death.  The inferno around you
+scortches you with every passing second.  You are experencing true hell fire
+as it sweaps over you without mercy.  In its cackling noise you can hear the
+screams of tormented souls.  Forever crying for mercy.  
+~
+0 277102592 0
+Rd     3000
+D0
+~
+~
+0 0 1506
+S
+#1506
+&rBottom level of the Pit of Death~
+~
+0 277102592 0
+Rd     0
+D2
+~
+~
+0 0 1505
+S
+#1507
+~
+~
+0 4 3
+Rd     0
+S
+#1508
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+129 0 1599
+S
+#1509
+Near the Tower~
+The tower before you appears to be old by anybody standerds.  Made of
+gray stone it rises only two stories from the moss coverd forest floor.  The
+stairs which wraps around the tower starts off to the west.  The whole
+structure looks ready to collapse.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 1510
+D3
+~
+~
+0 0 1502
+S
+#1510
+Narrow Path~
+The heavy woods and foilage around confine you to the narrow path.  To
+the south can be heard the familer noises of the vale.  To the north an old
+crumbling tower stands in a small moss covered clearing.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1509
+D2
+~
+~
+0 0 1511
+S
+#1511
+Narrow Path~
+The heavy woods and foilage around confine you to the narrow path.  To
+the south can be seen the vale path, to the north can be seen the barest
+hint of some kind of building.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1510
+D2
+~
+~
+0 0 902
+S
+#1512
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+129 0 1599
+S
+#1513
+~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 1599
+S
+#1514
+Jungle~
+Extremely dense foliage overhead, blocking all access to the sky.  The
+undergrowth is dense and full of thorny plants.  A shallow pool of murky
+water covers the ground.  There is a strange screeching coming from
+somewhere above you.  There is deep earthy smell around here.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 1599
+S
+#1515
+~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 1599
+S
+#1516
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1599
+S
+#1517
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1599
+S
+#1525
+Before the Quest Hall~
+Around you stretches an endless blackness, devoid of motion and color. 
+An endless emptyness that strips away sight and your every noise disapears
+as if never being.  The platform you stand on is almost indistinct, it's
+edge lost to the blackness no light source can remove or reveal.  To your
+north a door stands on the edge of the platform or in the middle it is hard
+to determine but it stands to the north.  The door is framed in a gold arch
+contrasting with the plain polished wood of the door.  Carved into the door
+is the signent of Decklarean, a sword reaching for the stars ablaze with
+power, half in darkness, half in light.  
+~
+0 0 0
+Rd     0
+E
+south~
+The void stretches forever, devoid of motion and sound, an endless blackness.
+~
+E
+west~
+The void stretches forever, devoid of motion and sound, an endless blackness.
+~
+E
+east~
+The void stretches forever, devoid of motion and sound, an endless blackness.
+~
+E
+down~
+The platform is a grey compared to the emptiness around you, it is solid and fluid without motion.
+~
+E
+platform~
+The platform is a grey compared to the emptiness around you, it is solid and fluid without motion.
+~
+E
+arch~
+The arch appears to be made of gold and fine carvings in a flowing script
+are etched into it's surface.  Warnings in the languages of all time. 
+Warning to those of the faint heart not to enter.  
+~
+E
+door~
+The door is made of some plain wood, polished to a shine.  The signent of
+Decklarean is carved into it's surface with the skill of the master
+artistant.  The appearance is of a sword reaching for the stars ablaze with
+power, half in darkness, half in light.  All done with the simple elegence
+of the carving.  
+~
+D0
+~
+~
+3 0 1526
+S
+#1526
+Quest Hall~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1527
+D1
+~
+~
+0 0 1532
+D2
+~
+~
+3 0 1525
+D3
+~
+~
+0 0 1529
+S
+#1527
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1528
+D1
+~
+~
+0 0 1533
+D2
+~
+~
+0 0 1526
+D3
+~
+~
+0 0 1530
+S
+#1528
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1537
+D1
+~
+~
+0 0 1534
+D2
+~
+~
+0 0 1527
+D3
+~
+~
+0 0 1531
+S
+#1529
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1530
+D1
+~
+~
+0 0 1526
+S
+#1530
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1531
+D1
+~
+~
+0 0 1527
+D2
+~
+~
+0 0 1529
+D3
+~
+~
+0 0 1536
+S
+#1531
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1528
+D2
+~
+~
+0 0 1530
+S
+#1532
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1533
+D3
+~
+~
+0 0 1526
+S
+#1533
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1534
+D1
+~
+~
+0 0 1535
+D2
+~
+~
+0 0 1532
+D3
+~
+~
+0 0 1527
+S
+#1534
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 1533
+D3
+~
+~
+0 0 1528
+S
+#1535
+An alcove~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 1533
+S
+#1536
+A quite alcove~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1530
+S
+#1537
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 1528
+S
+#1538
+In the forest~
+blahblahlbha
+~
+0 0 0
+Rd     0
+D2
+~
+~
+129 0 1599
+S
+#1550
+A field~
+You are in a field of flowing red grass.  A wall of glowing grey fog
+blocks your passage to the north and west.  It is a physical barrier, when
+you touch it is like touching a solid wall.  There is some distance above to
+the grey fog blocking the way up.  There is a strange gate to the southeast
+appearing to hang on nothing.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1551
+D2
+~
+~
+0 0 1553
+D4
+~
+~
+0 0 1559
+S
+>death_prog 100~
+0
+~
+|
+#1551
+A field~
+You are standing in a field of red grass.  A wall of fog blocks your
+passage to the north.  When you touch it is solid and does not yield.  High
+above you the grey fog blocks exit to the sky.  The light is an strange grey
+with the source coming from the fog itself.  There is a strange gate to the
+south.  It appears to sticking out of nowhere.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1552
+D2
+~
+~
+0 0 1554
+D3
+~
+~
+0 0 1550
+D4
+~
+~
+0 0 1560
+S
+#1552
+A field~
+You are standing in a field of red grass.  The way north and east is
+blocked by some strangely glowing grey fog.  When you touch the fog it is
+like touching a solid object.  Above you the fog covers the sky letting only
+it's own strange grey light to illuminate the area.  There is a strange gate
+to the southwest, hanging in the air.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 1555
+D3
+~
+~
+0 0 1551
+D4
+~
+~
+0 0 1561
+S
+#1553
+A field~
+You are in a field of red grass.  A wall of fog blocks you from going
+west.  The fog is solid to the touch and unyielding.  High above you the
+wall of fog blocks out the sky.  A strange gate can be seen to the east.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1550
+D1
+~
+~
+0 0 1554
+D2
+~
+~
+0 0 1556
+D4
+~
+~
+0 0 1562
+S
+#1554
+A field~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1551
+D1
+~
+~
+0 0 1555
+D2
+~
+~
+0 0 1557
+D3
+~
+~
+0 0 1553
+D4
+~
+~
+0 0 1563
+S
+#1555
+A field~
+You are in a field of red grass.  A wall of glowing grey fog blocks your
+exit to the east.  When you touch the fog it is like touching a wall of
+solid stone.  Like a fluid stone that flows and ebbs like fog.  You can see
+a strange glowing gate to your west.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1552
+D2
+~
+~
+0 0 1558
+D3
+~
+~
+0 0 1554
+D4
+~
+~
+0 0 1564
+S
+#1556
+A field~
+You are in a field of red grass.  There is a wall of glowing grey fog to
+you south and west.  The fog is solid to the touch, but continues to move as
+if a slight breeze was shifting it.  It still maintans a solid surface to
+you.  To the north east a gate appears to come out of nothings.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1553
+D1
+~
+~
+0 0 1557
+D4
+~
+~
+0 0 1565
+S
+#1557
+A field~
+You are standing in a field of red grass.  A wall of strange glowing grey
+fog blocks you to the south.  It is solid to the touch and damp.  It flows
+and ebbs like fog but maintains the wall.  To the north there is a strange
+gate.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1554
+D1
+~
+~
+0 0 1558
+D3
+~
+~
+0 0 1556
+D4
+~
+~
+0 0 1566
+S
+#1558
+A field~
+You are standing in a field of red grass.  A glowing wall of grey fog
+block you to the east and south.  When you touch the wall it is like
+touching a hard surface that constanty shifts and flows.  High above you the
+fog blocks out the sky.  To the north west a glowing gate appears to be
+coming out of no where.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1555
+D3
+~
+~
+0 0 1557
+D4
+~
+~
+0 0 1567
+S
+#1559
+Above a field~
+The grey fog surronds you, preventing you from leaving.  Below you is a
+field of red grass.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1560
+D2
+~
+~
+0 0 1562
+D5
+~
+~
+0 0 1550
+S
+#1560
+Above a field~
+A wall of glowing grey fog prevents you from flying out of here.  Below
+you can see a field of red grass slowly swaying to an unfelt wind.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1561
+D2
+~
+~
+0 0 1563
+D3
+~
+~
+0 0 1559
+D5
+~
+~
+0 0 1551
+S
+#1561
+Above a field~
+The wall of grey fog prevents you from flying out of here.  Below you a
+red grass field slowly sways to some unfelt breeze.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 1564
+D3
+~
+~
+0 0 1560
+D5
+~
+~
+0 0 1552
+S
+#1562
+Above a field~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1559
+D1
+~
+~
+0 0 1563
+D2
+~
+~
+0 0 1565
+D5
+~
+~
+0 0 1553
+S
+#1563
+Above a field~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1560
+D1
+~
+~
+0 0 1564
+D2
+~
+~
+0 0 1566
+D3
+~
+~
+0 0 1562
+D5
+~
+~
+0 0 1554
+S
+#1564
+Above a field~
+The wall of glowing grey fog surronds you and prevents you from leaving. 
+Below you the field of red grass sways in some unfelt wind.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1561
+D2
+~
+~
+0 0 1567
+D3
+~
+~
+0 0 1563
+D5
+~
+~
+0 0 1555
+S
+#1565
+Above a field~
+The wall of glowing grey fog surronds you preveting you from flying out
+of here.  Below you the field of red grass stands strangly still, as if
+frozen in a moment of time.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1562
+D1
+~
+~
+0 0 1566
+D5
+~
+~
+0 0 1556
+S
+#1566
+Above a field~
+The wall of grey fog prevents you from leaving.  Below you the field of
+red grass moves in a checker pattern as it sways in an unfelt wind.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1563
+D1
+~
+~
+0 0 1567
+D3
+~
+~
+0 0 1565
+D5
+~
+~
+0 0 1557
+S
+#1567
+Above a field~
+The wall of glowing grey fog swirles around you preventing you from
+leaving.  Below you the field of red grass appears to move in starnge
+gemetric shapes as it sways in an unfelt wind.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1564
+D3
+~
+~
+0 0 1566
+D5
+~
+~
+0 0 1558
+S
+#1586
+Great Hall~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 1597
+S
+#1587
+Great Hall~
+Two small signs are here.   One intitled "Quests" the other "Items"
+~
+0 0 0
+Rd     0
+E
+quests~
+Quest Creation:
+ 
+1.)  Get aprovel for a Quest from the Head of the Quest Council.
+ 
+2.)  Have a story for the quest.  Write it out.
+ 
+3.)  If there will be hints during the quest decie on them before the quest
+     starts.  Write them out.
+ 
+4.)  Have a deffinent conclusion to the quest that is attainable by the levels
+     perticipating.  Write them out.
+ 
+5.)  If you need any special rooms, mobs, or items created for the quest infrom
+     the Head of the Quest Council so vnums can be assigned from the Quest
+     Area.  Write them out.
+ 
+6.)  If an item or mob needs to be added to an already existing area inform
+     the Head of Quest Council.  Write them out.
+ 
+7.)  Put this all in a note and send it to Decklarean.
+~
+E
+items~
+Quest Items:
+ 
+1.)  Quest items must all have QUEST in there name.  This goes for Items
+     renamed as rewards for Quests.
+ 
+2.)  They may be 5 levels more powerfull than a comparable item made with the
+     building rules.  Get permission from the Head of the Quest Council if an
+     item is beyond this.
+ 
+3.)  A reqular game item can be lowered 5 levels as a reward in a quest but it
+     may not be any immortal only item.
+~
+D3
+~
+~
+0 0 1597
+S
+#1592
+Great Hall~
+Here stands the alter of champions.
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 1593
+S
+#1593
+Great Hall~
+Magius
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1592
+D2
+~
+~
+0 0 1594
+S
+#1594
+Great Hall~
+Sturm
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1593
+D2
+~
+~
+0 0 1595
+S
+#1595
+Great Hall~
+High above in this part of the Great Hall of Champion a scene of Yenlar
+hunched over a map in a dark forest.  Monster of all discriptions are hinted
+at in the shadows of the woods, but Yenlar is stairing down unaware at his
+map.  The flame of his torch doesn't appear to the be the factor in holding
+back the monster.  The rembered bight of the gleeming sword being used
+casualy to hold his map flat appears to be the more potent deterent.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1594
+D2
+~
+~
+0 0 1596
+S
+#1596
+Great Hall~
+This part of the hall seems darker than that to the north and south.  A
+shadow lies here that darkens your soul Above you the image is swirling
+darkness and shadows.  It all centering around Nemesis, his eyes gates into
+hell, no mercy ever existing in him.  Cloaked in darkness wouth a soul of
+evil, a pure hatred radiates from him.  His mouth a vishes smile as he walks
+across the shattered remains of the innocent.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1595
+D2
+~
+~
+0 0 1597
+S
+#1597
+Greet Hall~
+High above you, a mural, at the top of the arch shows Keirkan bathed in blood as he barries his sword into the guto of another pkill victom
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1596
+D1
+~
+~
+0 0 1587
+D2
+~
+~
+0 0 1598
+D3
+~
+~
+0 0 1586
+S
+#1598
+Greet Hall~
+The Great Hall of Champions stretches before you to the north.  Massive
+vaults reach to the sky above you, painted in scenes of battle of legendary
+champions of the mud.  Above you Galad is depicted triump over the Dragon
+Prince.  Aglow with magic shields and power enhanced swords burning with
+chaos.  He is an avenging angel sent from the gods.  Yet concern and
+resignation battle with each other in the fire of his eyes, a fire that
+radiates from his soul.  His right hand is clenched around the hilt of a
+shattered sword raised in triump.  Blood smeared face and shattered armor
+covered in gore, all attest to his bravery.  Yet all is drawn back to his
+pearcing blue eyes, demanding respect, and peering into your very being.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 1597
+S
+#1599
+Pavilion in the woods~
+&YYou are in a small pavilion, made of unfished wood.  Apparently cut
+from the surronding forest.  It looks like it was tossed together in a rush.
+The ground is covered in a soft turf and a large stump to big to be removed
+with shovel and axe dominates the northeast corner.  A much used fire pit is
+just out from under the cover of the pavilion east side within easy reach of
+someone sitting on the stump.  Signs of a bit of fire damage can be seen in
+the ceiling near the fire pit.  The sounds and smells of the deep forest
+surrond the place.  Giving you a deep sense of peace.  
+~
+0 4 3
+Rd     0
+E
+tree stump~
+A worn tree stump
+~
+E
+fire pit~
+A fire pit
+~
+D0
+~
+~
+0 0 1514
+D1
+~
+~
+0 0 1515
+D2
+~
+~
+0 0 1516
+D3
+~
+~
+0 0 1517
+S
+#0
+
+
+
+#SPECIALS
+M 1500 spec_wanderer
+S
+
+
+
+#RESETS
+O 0 1501 0 1500
+O 0 1503 0 1500
+O 0 1503 0 1500
+O 0 1503 0 1500
+O 0 1503 0 1500
+O 0 1503 0 1500
+O 0 1503 0 1500
+O 0 1503 0 1501
+O 0 1503 0 1501
+O 0 1503 0 1501
+O 0 1503 0 1501
+O 0 1503 0 1501
+O 0 1503 0 1502
+O 0 1503 0 1502
+O 0 1503 0 1502
+O 0 1503 0 1502
+O 0 1506 0 1503
+O 0 1503 0 1509
+O 0 1503 0 1509
+O 0 1503 0 1509
+O 0 1503 0 1510
+O 0 1503 0 1510
+O 0 1503 0 1510
+O 0 1503 0 1511
+O 0 1503 0 1511
+O 0 1503 0 1511
+R 0 1599 3
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

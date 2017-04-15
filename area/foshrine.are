@@ -1,0 +1,2754 @@
+#AREADATA
+Name        {90-110} The Forest Shrine   Tyrion~
+Levels      90 110
+Builders    None~
+VNUMs       9001 9060
+Security    100
+Recall      25001
+Flags       16
+Color       6
+Sounds      none~
+End
+
+
+
+#MOBILES
+#9001
+high cleric~
+The High Cleric~
+The High Cleric stands, a peaceful look in his eyes.
+~
+Standing before you is the wise and ageless High Cleric.  His knowledge
+of the realm and of the arts of magic have helped him keep a hold onto the
+world.  He stands close to six feet in height, with long, blue, flowing
+robes about him.  
+~
+67 201343164 0 800 S
+105 0 0 21150d0+0 0d0+0
+1800 490 100 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say I see you have finally reached the Time Nexus.  Your
+say quest to destroy the Zhakarius begins at this time,
+say but you must first destroy his four Death Knights.
+say I know the names of each of them, just ask which
+say one, and I shall tell you the name.  You must speak
+say the name of each Death Knight to enter their place of
+say hiding.
+~
+>speech_prog hate~
+say The Death Knight of Hate's name is Zargon.
+~
+>speech_prog greed~
+say The Death Knight of Greed's name is Calumnus.
+~
+>speech_prog cowardice~
+say The Death Knight of Cowardice's name is Khaquon.
+~
+>speech_prog falsehood~
+say The Death Knight of Falsehood's name is Lycanthus.
+~
+>fight_prog 15~
+cast 'dispel magic' $n
+~
+>fight_prog 30~
+~
+>fight_prog 75~
+cast 'heal' self
+~
+>speech_prog calumnus~
+say I shall send you to the hiding place of Calumnus, Death knight of Greed..
+emote waves his hands in the air..
+mptrans $n 9045
+~
+>speech_prog khaquon~
+say I shall send you to Khaquon's hideout. Fare thee well.
+emote waves his hands in the air..
+mptrans $n 9047
+~
+|
+#9002
+druid priest~
+The Druidic Priest~
+A Druidic Priest walks around quietly.
+~
+This priest dwells in the forest shrine, a caretaker amongst the branches. He is
+armored, and moves with a fighter's air.
+~
+65 201326756 0 500 S
+90 0 0 12500d0+0 0d0+0
+350 0 0 0
+0 0 1
+0 0 0
+>fight_prog 75~
+cast 'heal' self
+~
+|
+#9003
+druid warrior priest~
+The Warrior Priest~
+A Warrior Priest walks around peacefully.
+~
+A warrior priest of the Forest Shrine stands before you.  He is tall, and
+wear combat gear.  By the way he moves, you get the impression that he knows
+how to use them.  
+~
+65 100663424 0 500 S
+93 0 0 13250d0+0 0d0+0
+498 9 10 0
+0 0 1
+0 0 0
+>fight_prog 10~
+~
+>fight_prog 40~
+cast 'heal' self
+~
+|
+#9004
+sprite~
+The Tree Sprite~
+A Tree Sprite flies around, annoying people.
+~
+A small tree sprite fluttes about the branches of the the Forest Shrine. 
+As it flies, glittering sparkles trail it.  It smiles happily as it flies
+by.  
+~
+65 34095296 0 100 S
+85 0 0 11250d0+0 0d0+0
+230 99 10 0
+0 0 0
+0 0 0
+>fight_prog 20~
+soulstrike
+~
+>fight_prog 30~
+stun
+~
+|
+#9005
+treant~
+The Treant~
+A Treant is rooted to the ground here.
+~
+This treant has peeling bark, broken branches, and brown leaves. It looks sad, but
+you can't tell for sure; it's features are hard to read.
+~
+67 469762048 0 -200 S
+90 0 0 12500d0+0 0d0+0
+348 18 20 0
+0 0 0
+0 0 0
+>fight_prog 80~
+cast 'earthquake'
+~
+|
+#9006
+paladin highlord~
+The Paladin Highlord~
+A Paladin Highlord is here.
+~
+You stand before the Paladin Highlord.  A man who has devoted his life to
+fighting evil, he is battle hardened, alert, cautious, yet kind and
+thoughtful.  
+~
+67 234881152 0 800 S
+98 0 0 13500d0+0 0d0+0
+888 119 10 0
+0 0 1
+0 0 0
+>fight_prog 10~
+cast 'dispel magic' $n
+~
+>fight_prog 30~
+stun
+~
+>fight_prog 50~
+cast 'holy fires' $n
+~
+>fight_prog 75~
+cast 'heal' self
+~
+>all_greet_prog 100~
+if ispc($n)
+ say Greetings.  Rest, and I will heal you.  Speak of
+ say the tests if you wish to try them.
+endif
+~
+>speech_prog tests~
+say Yes, the four tests will grant you the ability to
+say speak with the High Cleric, should you succeed.
+say Enter the portal should you wish to try them.
+~
+>speech_prog bye~
+say Fare thee well, $n.
+~
+|
+#9007
+high paladin~
+The High Paladin~
+The High Paladin guards the altar.
+~
+The High Paladin is the Paladin Highlord's right hand man.  He stands
+before with a strange vigor.  He stands tall, and wears battle armor which
+is both functional as it is formal.  
+~
+67 234881152 0 500 S
+95 0 0 12375d0+0 0d0+0
+592 80 0 0
+0 0 1
+0 0 0
+>fight_prog 10~
+stun
+~
+>all_greet_prog 100~
+if ispc($n)
+  say You should speak to the Paladin Highlord.
+endif
+~
+>speech_prog bye~
+say Fare thee well!
+~
+>fight_prog 50~
+casy 'heal' self
+~
+|
+#9008
+paladin~
+The Paladin~
+A Paladin walks around, minding his own business.
+~
+The paladin walks amongst the branches of the Forest Shrine.  He has come
+to make peace with nature, as well as himself.  
+~
+65 201343104 0 500 S
+90 0 0 11250d0+0 0d0+0
+350 0 0 0
+0 0 1
+0 0 0
+>fight_prog 5~
+stun
+~
+>fight_prog 40~
+cast heal self
+~
+|
+#9009
+air elemental~
+The Air Elemental~
+An Air Elemental is here.
+~
+~
+99 33571456 0 0 S
+90 0 0 12500d0+0 0d0+0
+350 0 0 0
+0 0 0
+0 0 0
+>fight_prog 10~
+cast 'icestorm' $n
+~
+>fight_prog 20~
+cast 'dispel magic' $n
+~
+>fight_prog 40~
+cast 'weaken' $n
+~
+|
+#9010
+daemon~
+The Daemon of Air~
+A Daemon of Air is not happy to see you.
+~
+~
+99 167772864 0 -500 S
+92 0 0 13000d0+0 0d0+0
+450 0 0 0
+0 0 0
+0 0 0
+>fight_prog 5~
+cast 'dispel magic' $n
+~
+>fight_prog 20~
+cast 'lightning bolt' $n
+~
+>fight_prog 40~
+cast 'chain lightning' $n
+~
+|
+#9011
+paladin anti-paladin~
+The Anti-Paladin~
+The Anti-Paladin attacks when you enter.
+~
+~
+99 335560896 0 -800 S
+94 0 0 12150d0+0 0d0+0
+450 0 0 0
+0 0 1
+0 0 0
+>fight_prog 10~
+cast 'gate'
+~
+>fight_prog 20~
+cast 'drain life' $n
+~
+>fight_prog 40~
+~
+|
+#9012
+balron~
+The Balron~
+A Winged Balron is here, and it attacks!
+~
+~
+67 335560896 0 -800 S
+96 0 0 12712d0+0 0d0+0
+700 0 0 0
+0 0 0
+0 0 0
+>fight_prog 20~
+cast 'gate'
+~
+>all_greet_prog 100~
+if ispc($n)
+   if isimmort($n)
+   bow $n
+else
+   mkill $n
+endif
+~
+|
+#9013
+khaquon death knight cowardice~
+Khaquon~
+Khaquon, Death Knight of Cowardice is here, trembling nervously.
+~
+Khaquon is the Death Knight of Cowardice.  He wears heavy black armor. 
+He looks around nervously, as if loking out for something.  A yellow glow
+emanates from his closed visor.  
+~
+193 128 32 -1000 S
+105 0 0 30550d0+0 0d0+0
+1625 1711 548 0
+0 0 1
+2 0 0
+>all_greet_prog 100~
+if ispc($n)
+   if isimmort($n)
+      bow $n
+   else
+      say Auggh!
+      emote jumps in surprise
+      mpkill $n
+   endif
+endif
+~
+>fight_prog 80~
+cast heal self
+~
+>fight_prog 60~
+say Yikes!
+stun
+~
+>fight_prog 30~
+emote begins to chant...
+cast 'dispel magic' $n
+cast cancellation
+cast sanctuary
+cast 'blade barrier'
+~
+>rand_prog 4~
+flee
+~
+|
+#9014
+death knight calumnus greed~
+Calumnus~
+Calumnus, Death Knight of Greed is here, counting his gold.
+~
+Calumnus is the Death Knight of Greed.  He wears highly decorated black
+armor.  A green glow emanates from his closed visor..  
+~
+67 128 32 -1000 S
+105 0 0 30550d0+0 0d0+0
+1850 0 0 0
+0 0 1
+2 0 0
+>all_greet_prog 100~
+if ispc($n)
+   if isimmort($n)
+      bow $n
+   else
+      say Keep away from my money!
+      mpkill $n
+   endif
+endif
+~
+>fight_prog 80~
+cast 'heal' self
+~
+>fight_prog 60~
+say Ha!
+stun
+~
+>fight_prog 30~
+emote begins to chant...
+cast 'dispel magic' $n
+cast cancellation
+cast sanctuary
+cast 'blade barrier'
+~
+|
+#9015
+lycanthus death knight falsehood~
+Lycanthus~
+Lycanthus, Death Knight of Falsehood stands here, looking for people to con.
+~
+Lycanthus is the Death Knight of Falsehood.  He stands 6 inches past six
+feet and is encased in heavy black armor.  A large broadsword is in his
+right hand.  A large shield in his left.  A blue glow emanates from his
+closed visor.  
+~
+67 128 32 -1000 S
+105 0 0 30550d0+0 0d0+0
+1629 1712 638 0
+0 0 1
+2 0 0
+>all_greet_prog 100~
+if ispc($n)
+   if isimmort($n)
+      bow $n
+   else
+      say Wanna see a trick?
+      mpkill $n
+   endif
+endif
+~
+>fight_prog 80~
+cast heal self
+~
+>fight_prog 60~
+say Haha!
+stun
+~
+>fight_prog 30~
+emote begins to chant...
+cast 'dispel magic' $n
+cast cancellation
+cast sanctuary
+cast 'blade barrier'
+~
+>death_prog 100~
+mptransfer all 9058
+~
+|
+#9016
+zargon death knight hate~
+Zargon~
+Zargon, Death Knight of Hate looms over you mercilessly...
+~
+Zargon is the Death knight of Hate.  He wears heavy black armor and
+stands nearly 7 feet in height.  A red glow emanates from his closed visor. 
+~
+67 128 32 -1000 S
+105 0 0 30550d0+0 0d0+0
+1850 0 0 0
+0 0 1
+258 0 0
+>all_greet_prog 100~
+if ispc($n)
+   if isimmort($n)
+      bow $n
+break
+   elseif class($n) == 7
+      say Welcome to the dark side!
+      mpkill $n
+   elseif class(1)
+      say Pray to your god for protection!
+      mpkill $n
+   endif
+endif
+~
+>fight_prog 80~
+cast heal self
+~
+>fight_prog 60~
+say You are weak!
+stun
+~
+>fight_prog 30~
+emote begins chanting...
+cast 'dispel magic' $n
+cast cancellation
+cast sanctuary
+cast 'blade barrier'
+~
+|
+#9017
+zhakarius warlock wizard~
+Zhakarius~
+Zhakarius the Warlock is here chanting.
+~
+Zhakarius is much older than he looks.  His face is that of a 30 year
+old, with a full black beard and youthful brown eyes.  He wears heavy black
+robes, and is disturbed by your presence.  
+~
+67 67125376 32768 -1000 S
+110 0 0 21150d0+0 0d0+0
+2450 0 0 0
+0 0 1
+67143682 0 0
+>all_greet_prog 100~
+if ispc($n)
+   if isimmort($n)
+      bow $n
+   else
+      say Thou hast disturbed me. Begone!
+      mpkill $n
+   endif
+endif
+~
+>fight_prog 99~
+cast fireball $n
+~
+>fight_prog 99~
+cast stench $n
+~
+>fight_prog 70~
+cast heal self
+~
+>fight_prog 30~
+stun
+~
+|
+#0
+
+
+
+#OBJECTS
+#9001
+holy mace~
+a Holy Mace~
+A mace sits on the ground, glowing.~
+~
+5 1025 6148 29340 8193 99
+0~ 0~ 0~ 8~
+5 98 153 570 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 -10
+A
+13 80
+A
+12 75
+A
+19 125
+A
+18 100
+E
+mace~
+This mace glows with the divine power it is infused with.  Sturdy and
+well crafted, it's a weapon one can count on to preform in a fight.  
+~
+E
+mace~
+This mace glows with the divine power it is infused with.  Sturdy and
+well crafted, it's a weapon one can count on eto preform in a fight.  
+~
+E
+holy~
+This mace glows with the divine power it is infused with.  Sturdy and
+well crafted, it's a weapon one can count on to preform in a fight.  
+~
+#9002
+cloak righteousness~
+a Cloak of Righteousness~
+A cloak sits neatly on the ground.~
+~
+9 1025 0 29340 1025 85
+0~ 0~ 0~ 0~
+2 125 0 0 0
+0 0
+bio-acceleration~
+0 0
+0 0 0
+A
+12 85
+A
+13 85
+A
+24 -15
+E
+cloak~
+This silver coloured cloak is free from dirt, rips, and flaws.  It is
+amazingly well tailored and the craftsmanship is fit for a king.  
+~
+E
+righteousness~
+This silver coloured cloak is free from dirt, rips, and flaws.  It is
+amazingly well tailored and the craftsmanship is fit for a king.  
+~
+#9003
+platinum field breastplate~
+a platinum field breastplate~
+A platinum field breastplate lies on the ground.~
+~
+9 1 0 29340 9 90
+0~ 0~ 0~ 0~
+5 135 320 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 90
+A
+17 -90
+A
+1 1
+E
+field~
+~
+E
+breastplate~
+This breastplate is fashioned out of the finest platinum.  It is crafted
+with obvious skill and the quality is high.  
+~
+E
+platinum~
+This breastplate is fashioned out of the finest platinum.  It is crafted
+with obvious skill and the quality is high.  
+~
+E
+breast~
+This breastplate is fashioned out of the finest platinum.  It is crafted
+with obvious skill and the quality is high.  
+~
+E
+plate~
+This breastplate is fashioned out of the finest platinum.  It is crafted
+with obvious skill and the quality is high.  
+~
+#9004
+platinum field helm~
+a platinum field helm~
+A platinum field helm sits on the ground.~
+~
+9 1 3617 29340 8209 70
+0~ 0~ 0~ 0~
+5 97 13 100 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 70
+A
+24 -3
+A
+17 -70
+E
+platinum~
+This finely crafted helmet is highly polished and well kept.  It is free
+from dents, marks, and chips.  
+~
+E
+field~
+This finely crafted helmet is highly polished and well kept.  It is free
+from dents, marks, and chips.  
+~
+E
+helm~
+This finely crafted helmet is highly polished and well kept.  It is free
+from dents, marks, and chips.  
+~
+#9005
+platinum field fieldplate face guard~
+a platinum fieldplate face guard~
+A platinum fieldplate face guard sits here.~
+~
+9 1 7479 29340 65537 70
+0~ 0~ 0~ 0~
+5 89 100 100 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 70
+A
+12 70
+A
+3 1
+E
+platinum~
+This platinum faceplate is sturdy and well made.
+~
+E
+fieldplate~
+This platinum faceplate is sturdy and well made.
+~
+E
+field~
+This platinum faceplate is sturdy and well made.
+~
+E
+plate~
+This platinum faceplate is sturdy and well made.
+~
+E
+face~
+This platinum faceplate is sturdy and well made.
+~
+E
+guard~
+This platinum faceplate is sturdy and well made.
+~
+#9006
+platinum field fieldplate leggings~
+a pair of platinum fieldplate leggings~
+A pair of platinum leggings sits here.~
+~
+9 1 7479 29340 33 70
+0~ 0~ 0~ 0~
+5 120 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -70
+A
+2 2
+A
+13 70
+E
+platinum~
+This set of platinum fieldplate leggings is amazingly lightweight, in
+addition to it's obviously superior craftsmanship.  
+~
+E
+fieldplate~
+This set of platinum fieldplate leggings is amazingly lightweight, in
+addition to it's obviously superior craftsmanship.  
+~
+E
+leggings~
+This set of platinum fieldplate leggings is amazingly lightweight, in
+addition to it's obviously superior craftsmanship.  
+~
+E
+field~
+This set of platinum fieldplate leggings is amazingly lightweight, in
+addition to it's obviously superior craftsmanship.  
+~
+#9007
+platinum field fieldplate boots~
+a pair of platinum fieldplate boots~
+A pair of platinum boots sits here.~
+~
+9 1 7479 29340 65 70
+0~ 0~ 0~ 0~
+5 89 100 100 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 5
+A
+18 5
+#9008
+platinum field fieldplate gauntlets~
+a pair of platinum fieldplate gauntlets~
+A pair of platinum gauntlets sits here.~
+~
+9 1 7217 29340 129 70
+0~ 0~ 0~ 0~
+5 92 15 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -70
+A
+1 1
+A
+26 -7
+E
+platinum~
+These platinum gauntlets are sturdy, lightweight, and well crafted.
+~
+E
+field~
+These platinum gauntlets are sturdy, lightweight, and well crafted.
+~
+E
+fieldplate~
+These platinum gauntlets are sturdy, lightweight, and well crafted.
+~
+E
+gauntlets~
+These platinum gauntlets are sturdy, lightweight, and well crafted.
+~
+#9009
+platinum field fieldplate armguards~
+a pair of platinum fieldplate armguards~
+A pair of platinum armguards sits here.~
+~
+9 1 0 29340 257 71
+0~ 0~ 0~ 0~
+5 99 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -70
+A
+24 -4
+E
+platinum~
+These platinum armguards are fashioned with incredible craftmanship.
+~
+E
+field~
+These platinum armguards are fashioned with incredible craftmanship.
+~
+E
+fieldplate~
+These platinum armguards are fashioned with incredible craftmanship.
+~
+E
+armguards~
+These platinum armguards are fashioned with incredible craftmanship.
+~
+E
+arm~
+These platinum armguards are fashioned with incredible craftmanship.
+~
+#9010
+platinum shield~
+a platinum shield~
+A platinum shield sits on the ground before you.~
+~
+9 1 1029 29340 513 75
+0~ 0~ 0~ 0~
+5 108 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 75
+A
+23 -4
+A
+17 -75
+E
+shield~
+A fine piece of craftsmanship, the platinum shield is reliable in a fight.
+~
+E
+platinum~
+A fine piece of craftsmanship, the platinum shield is reliable in a fight.
+~
+#9011
+platinum sword longsword~
+a platinum longsword~
+A platinum longsword sits here.~
+~
+5 1 5175 29340 8193 70
+0~ 0~ 0~ 3~
+8 175 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 112
+A
+19 140
+E
+sword~
+This longsword has a platinum blade, gold hilt, and leather wrapped handle.
+~
+E
+longsword~
+This longsword has a platinum blade, gold hilt, and leather wrapped handle.
+~
+E
+platinum~
+This longsword has a platinum blade, gold hilt, and leather wrapped handle.
+~
+#9012
+platinum bastard sword~
+a platinum bastard sword~
+A bastard sword made of platinum sits here.~
+~
+5 1 5175 12928 8193 80
+0~ 0~ 0~ 3~
+10 183 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 80
+A
+18 128
+A
+19 160
+E
+bastard~
+This well crafted sword has a platinum blade, silver hilt, and leather wrapped handle.
+~
+E
+sword~
+This well crafted sword has a platinum blade, silver hilt, and leather wrapped handle.
+~
+E
+platinum~
+This well crafted sword has a platinum blade, silver hilt, and leather wrapped handle.
+~
+#9013
+holysword sword~
+the Holysword of the High Order~
+A sword pulses with power.~
+~
+5 33557505 8055 29340 8193 100
+0~ 0~ 0~ 3~
+8 500 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+1 2
+A
+18 170
+A
+19 200
+A
+26 -10
+E
+holy~
+This great sword pulses with immense power.  A plain steel blade with a
+polished ivory hilt glows softly among your belongings.  
+~
+E
+sword~
+A plain looking steel blade with a polished ivory hilt glows softly,
+repelling the darkness.  
+~
+E
+holysword~
+A plain looking steel blade with a polished ivory hilt glows softly,
+repelling the darkness.  
+~
+#9014
+staff~
+a druidic priests staff~
+A staff sits here, pulsing.~
+~
+4 1 7116 29340 8193 70
+70~ 7~ 7~ heal~
+5 78 0 0 0
+0 0
+heal~
+5 5
+0 0 0
+A
+18 98
+A
+19 126
+A
+13 70
+A
+4 1
+A
+2 1
+E
+staff~
+This sturdy oak staff radiates a pleasant energy..
+~
+#9015
+key first~
+the first key~
+A key sits here.~
+~
+18 2 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+first~
+A simple brass key.
+~
+E
+key~
+A simple brass key.
+~
+#9016
+key second~
+the second key~
+A key sits here.~
+~
+18 2 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+second~
+A simple brass key.
+~
+E
+key~
+A simple brass key.
+~
+#9017
+key third~
+the third key~
+A key sits here.~
+~
+18 2 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+third~
+A simple brass key.
+~
+E
+key~
+A simple brass key.
+~
+#9018
+key fourth~
+the fourth key~
+A key sits here.~
+~
+18 2 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fourth~
+A simple brass key.
+~
+E
+key~
+A simple brass key.
+~
+#9019
+priest sword~
+a priests sword~
+A priests sword sits on the ground in front of you.~
+~
+5 1 5175 29340 8193 75
+0~ 0~ 0~ 3~
+10 100 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 120
+A
+19 150
+A
+13 70
+A
+1 2
+E
+sword~
+This blade has intricate engravings on the blade.  The steel hilt is
+covered with holy symbols and small gems.  The handle is comfortable, being
+wrapped in fine leather.  
+~
+E
+priest~
+This blade has intricate engravings on the blade.  The steel hilt is
+covered with holy symbols and small gems.  The handle is comfortable, being
+wrapped in fine leather.  
+~
+#9020
+sprites ring~
+a sprites ring~
+A sprites ring is laying on the ground here.~
+~
+9 65 0 0 3 1
+0~ 0~ 0~ 0~
+1 2 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+E
+ring~
+This magical ring has one tiny gem on it.  The stone glows softly with a
+pale red light.  
+~
+E
+sprites~
+This magical ring has one tiny gem on it.  The stone glows softly with a
+pale red light.  
+~
+#9021
+aquablade aqua blade~
+the Aquablade~
+A glowing blade lies on the ground.~
+~
+5 536870913 5159 0 8193 92
+0~ 0~ 0~ 3~
+5 145 50 0 0
+0 0
+iceshield~
+0 0
+0 0 0
+A
+12 92
+A
+13 92
+A
+18 153
+A
+19 180
+A
+17 -90
+E
+aqua~
+This sturdy blade has a bluish hue to it.
+~
+E
+blade~
+This sturdy blade has a bluish hue to it.
+~
+E
+aquablade~
+This sturdy blade has a bluish hue to it.
+~
+#9022
+sword elemental air~
+the Elemental Sword of Air~
+An elemental sword lies here.~
+~
+5 2049 5175 0 8193 90
+0~ 0~ 0~ 3~
+2 145 50 0 0
+0 0
+death field~
+0 0
+0 0 0
+A
+25 30
+A
+18 153
+A
+19 180
+A
+12 90
+A
+13 90
+E
+air~
+This sword is amazingly lightweight, in addition to its mysterious forging.
+~
+E
+elemental~
+This sword is amazingly lightweight, in addition to its mysterious forging.
+~
+E
+sword~
+This sword is amazingly lightweight, in addition to its mysterious forging.
+~
+#9023
+altar~
+an altar~
+An altar sits here, permanently attached to the ground.~
+~
+8 1 0 0 0 1
+0~ 0~ 0~ 0~
+10000 10000 10000 10000 0
+0 0
+bless~
+-1 -1
+0 0 0
+E
+altar~
+A large altar covered with a white cloth.
+~
+#9024
+deathsword sword~
+the Deathsword~
+A deep purple sword seems to suck up the light.~
+~
+5 22 5175 0 8193 94
+0~ 0~ 0~ 13~
+4 158 110 100 0
+0 0
+blindness~
+5 0
+0 0 0
+A
+25 30
+A
+13 50
+A
+18 150
+A
+19 180
+E
+deathsword~
+This sword radiates evil. All light around it is dim and gloomy.
+~
+E
+sword~
+This sword radiates evil. All light around it is dim and gloomy.
+~
+E
+death~
+This sword radiates evil. All light around it is dim and gloomy.
+~
+#9025
+portal~
+a portal~
+A huge shimmering portal is here.~
+~
+29 1 0 0 0 1
+9034~ 0~ 0~ 0~
+10000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+portal~
+This portal pulses many colours, and leads elsewhere.
+~
+#9026
+portal~
+a portal~
+A huge shimmering portal is here.~
+~
+29 1 0 0 0 1
+9033~ 0~ 0~ 0~
+10000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+portal~
+This portal pulses many colours, and leads elsewhere.
+~
+#9027
+ring time~
+the Ring of Time~
+A Ring appears and reappears with the Time here.~
+~
+9 33556545 0 0 3 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+word of recall~
+5 5
+0 0 0
+A
+12 100
+A
+13 100
+A
+24 -5
+E
+time~
+This ring is made out of gold, and has one opal gem inset in it.
+~
+E
+ring~
+This ring is made out of gold, and has one opal gem inset in it.
+~
+#9028
+unholy sword~
+the Unholy Sword~
+A sword of untold evil hovers at your knees.~
+~
+5 533 5301 0 8193 96
+0~ 0~ 0~ 13~
+4 155 400 100 0
+5 0
+blindness~
+5 5
+0 0 0
+A
+25 25
+A
+12 -100
+A
+26 -10
+A
+19 192
+A
+18 163
+A
+25 20
+E
+sword~
+Evil emanates form the blade of this sword. The light around the sword is distorted.
+~
+E
+unholy~
+Evil emanates form the blade of this sword. The light around the sword is distorted.
+~
+#9029
+wing balron~
+a wing of a balron~
+A wing of some great demon sits here.~
+~
+9 33556481 0 0 5 90
+0~ 0~ 0~ 0~
+8 50 0 0 0
+0 0
+reserved~
+0 0
+9030 0 0
+A
+12 50
+A
+13 50
+A
+17 -50
+E
+balron~
+A large, feathered wing.
+~
+#9030
+wings~
+the wings of a balron~
+The wings of a great demon are here.~
+~
+9 100663297 0 0 5 90
+0~ 0~ 0~ 0~
+6 150 0 0 0
+5 0
+fly~
+25 25
+0 0 0
+A
+110 -1
+A
+17 -100
+A
+13 100
+A
+12 100
+E
+wings balron~
+A pair of large, feathered wings.
+~
+#9031
+balron wing~
+a wing of a balron~
+A wing of some great demon sits here.~
+~
+9 33556481 0 0 5 90
+0~ 0~ 0~ 0~
+8 50 0 0 0
+0 0
+reserved~
+0 0
+9030 0 0
+A
+17 -50
+A
+13 50
+A
+12 50
+E
+balron~
+A large, feathered wing.
+~
+E
+wing~
+A large, feathered wing.
+~
+#9032
+ring life~
+a Ring of Life~
+&BA ring of life has been discarded here.~
+~
+9 4097 2048 12928 3 72
+0~ 0~ 0~ 0~
+4 75 100 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 2
+A
+17 -10
+A
+13 25
+#9033
+paladin helm power~
+&CHelm of Power~
+&CA Helm of Power lies on the ground here.~
+~
+9 268438659 8063 4096 17 100
+0~ 0~ 0~ 0~
+3 175 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+17 -100
+A
+12 100
+A
+13 100
+A
+2 2
+A
+1 2
+E
+helm~
+A helm is humming in a strange manner here.
+~
+#9034
+death knight blade~
+death Knight's Blade~
+A gloomy looking blade hovers above the ground.~
+~
+5 33554448 7351 0 8193 105
+0~ 0~ 0~ 3~
+9 198 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 105
+A
+17 -105
+A
+19 210
+A
+18 168
+A
+12 100
+A
+25 30
+E
+death knight blade~
+This sword is given to the Death knights of Zhakarius.  It is the
+ultimate evil weapon.  
+~
+#9035
+death knight shield~
+death Knight's Shield~
+A dark coloured shield hovers above the ground here.~
+~
+9 16 0 0 513 105
+0~ 0~ 0~ 0~
+10 250 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 32
+A
+12 105
+A
+24 -5
+A
+23 -5
+A
+13 105
+A
+17 -105
+E
+death knight shield~
+This heavy shield is black and gloomy looking, but very strong.
+~
+#9036
+death knight armor~
+death Knight's Armor~
+A suit of armor hovers above the ground mysteriously..~
+~
+9 16 7991 0 9 105
+0~ 0~ 0~ 0~
+0 250 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 32
+A
+24 -5
+A
+23 -5
+A
+17 0
+A
+12 105
+A
+13 105
+E
+death knight armor~
+Made from an unknown material, it radiates pure evil.
+~
+#9037
+death knight helmet~
+death Knight's Helm~
+A mysterious helmet hovers slightly above the ground.~
+~
+9 16 7479 29340 17 105
+0~ 0~ 0~ 0~
+0 250 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 32
+A
+12 105
+A
+13 105
+A
+4 2
+A
+3 1
+A
+17 -105
+E
+death knight helmet~
+This helmet is incredibly sturdy, resistant to dents and scratches.
+~
+#9038
+black shroud~
+black Shroud~
+A black shroud lies on the ground.~
+~
+9 16 0 0 1025 105
+0~ 0~ 0~ 0~
+8 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 105
+A
+13 105
+A
+25 32
+A
+17 -105
+A
+23 -5
+A
+24 -5
+#9039
+shadow dagger~
+shadow Dagger~
+A shadowy dagger lies on the ground.~
+~
+5 16 4098 12928 8193 105
+0~ 0~ 0~ 11~
+0 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 105
+A
+18 158
+E
+shadow dagger~
+This dagger has an intricate handle and slender black blade.
+~
+#9040
+black signet ring~
+black Signet Ring~
+A black signet ring lies on the ground.~
+~
+9 17 0 0 3 100
+0~ 0~ 0~ 0~
+1 300 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+25 30
+A
+17 -100
+A
+12 100
+A
+13 100
+E
+black signet ring~
+This black ring emits an evil emanation and glows softly.
+~
+#0
+
+
+
+#ROOMDATA
+#9001
+Atop the Trees~
+You have arrived at the top of the trees, and have discovered wooden bridges
+leading to the north, where incredibly large trees are.  You take a look
+around you, never being this high in your life, and realize that you seem to
+have gone into another dimension, for the sky is no longer the blue you are
+used to.  It has changed to purple!  The only exits are north, or back down
+this immense tree, into the foggy haze.
+~
+0 33693700 0
+Rd     0
+D0
+~
+~
+0 0 9002
+D5
+~
+~
+0 0 9042
+S
+#9002
+Intersection of Branches~
+You are at an intersection of branches.  A rope bridge stretches to the south,
+where you can easily climb down from this tree.  A very long branch leads off
+to the north, east and west from here.  You can't help but notice the purple
+sky, it is very strange.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9003
+D1
+~
+~
+0 0 9019
+D2
+~
+~
+0 0 9001
+D3
+~
+~
+0 0 9009
+S
+#9003
+Northern Branch~
+You are moving along the northern branch.  The leaves surrounding you on
+either side sway gently in the breeze, making rustling noises.  The branch
+itself is about fifteen feet wide, and looks as though it could support an
+army.  It continues to the north and the south.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9004
+D2
+~
+~
+0 0 9002
+S
+#9004
+Northern Branch~
+You are moving along a large branch.  The surface of the branch has been
+carved into what looks like a road, flattened for easy travel.  It is very
+peaceful and tranquil here.  You may continue north or south.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9005
+D2
+~
+~
+0 0 9003
+S
+#9005
+Northern Branch~
+You are walking along the northern branch of a giant, mystical tree.  It does
+not appear to get any thinner or weaker the further north you travel.  You can
+go to the north or the south from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9006
+D2
+~
+~
+0 0 9004
+S
+#9006
+Northern Branch~
+You are walking along a northern branch.  You can feel a source of holy
+magic to the north, getting stronger the further you travel.  You can go in
+that direction, or to the south.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9007
+D2
+~
+~
+0 0 9005
+S
+#9007
+Northern Branch~
+You are walking along a northern branch, and have stepped into a holy circle.
+The sheer power of holy magic is overwhelming, almost making you faint.  You
+may travel to the north or to the south from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9008
+D2
+~
+~
+0 0 9006
+S
+#9008
+Northern Branch~
+You have arrived at the altar.  The branch obviously continues to the north,
+but it is totally covered in bushes and leaves, and is thus unpassable.
+Several pillows are set up around the altar, used for kneeling and praying.
+The only exit back the way you came, to the south.
+~
+0 139268 0
+Rd     0
+D2
+~
+~
+0 0 9007
+S
+#9009
+Western Branch~
+You are walking along the western branch.  It is about fifteen feet wide, and
+seems strong enough to support several buildings.  This path seems to grow a
+little darker to the west however, the peaceful surroundings being interrupted
+and decayed.
+~
+0 139268 0
+Rd     0
+D1
+~
+~
+0 0 9002
+D3
+~
+~
+0 0 9010
+S
+#9010
+Western Branch~
+The branch continues in a northwestern direction from here, twisting and
+turning as it goes.  The leaves around you don't seem to be as healthy as
+to the east, as though something in the opposite direction is erroding the
+trees themselves.  You may travel to the north or the east from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9011
+D1
+~
+~
+0 0 9009
+S
+#9011
+Western Branch~
+You are walking along the western branch, which twists and turns as you go.
+A little ways ahead you can see that this branch stops very abruptly at a
+cliffside, seeming to grow into the rock.  You can either go in that direction,
+or to the south.
+~
+0 139264 0
+Rd     0
+D2
+~
+~
+0 0 9010
+D3
+~
+~
+0 0 9012
+S
+#9012
+Western Branch~
+You are walking along the top of a very large branch.  The wood of the
+branch is very strong still, not seeming to be touched by the darkness that
+lies to the north.  The leaves surrounding you however, are either dying
+or very sickly looking.  You may also travel to the east from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9013
+D1
+~
+~
+0 0 9011
+S
+#9013
+Western Branch~
+You have reached a place where the branch and cliffside meet.  A fairly small
+plateau lies to the north, its ground made of gravel and soil.  The western
+branch lies to the south.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9014
+D2
+~
+~
+0 0 9012
+S
+#9014
+Western Plateau~
+You are walking along the top of a very high cliff.  You do not remember
+seeing this from the base of the tree however, and conclude that you are in
+fact in another dimension.  The ground has some rather large circular prints
+in it, measuring about one foot in diameter.  You can travel to the north and
+west, to explore this small plateau, or to the south, onto a large branch.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9017
+D2
+~
+~
+0 0 9013
+D3
+~
+~
+0 0 9015
+S
+#9015
+Western Plateau~
+You are walking along a plateau high in a mountain.  The walls of the cliffs
+prevent you from going any further up, and they seem to stretch forever in
+that direction.  You can go to the east or north from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9016
+D1
+~
+~
+0 0 9014
+S
+#9016
+Western Plateau~
+You are walking through a rather small plateau.  A small niche can be seen
+a little ways to the east.  You can go in that direction or to the south from
+here.
+~
+0 139264 0
+Rd     0
+D1
+~
+~
+0 0 9017
+D2
+~
+~
+0 0 9015
+S
+#9017
+Western Plateau~
+You are walking along the top of a rather large plateau.  The great walls of
+the mountain give way to the east, revealing a small niche.  You can go into
+it from here, or to the south and west.
+~
+0 139264 0
+Rd     0
+D1
+~
+~
+0 0 9018
+D2
+~
+~
+0 0 9014
+D3
+~
+~
+0 0 9016
+S
+#9018
+Western Plateau~
+You have entered a small niche that has been carved into the mountain.  A
+very small bed sits against the east wall.  There is nothing else of note here.
+The only exit is back to the west, the way you came.
+~
+0 139264 0
+Rd     0
+D3
+~
+~
+0 0 9017
+S
+#9019
+Eastern Branch~
+You are walking along the eastern branch.  It is around fifteen feet wide, and
+totally solid.  The main cross junction of the branches is to the west of here,
+you can also go to the east.
+~
+0 139264 0
+Rd     0
+D1
+~
+~
+0 0 9020
+D3
+~
+~
+0 0 9002
+S
+#9020
+Eastern Branch~
+You are walking along a very wide twisted path.  The branches on either side
+of you sway in the breeze, their leaves rustling gently.  The path goes to the
+north and west of here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9021
+D3
+~
+~
+0 0 9019
+S
+#9021
+Eastern Branch~
+You are walking on top of a long, twisting branch.  You can see the branch stop
+suddenly to the northeast, seeming to travel into the side of a cliff.  The
+plateau on top of it is easily accessable.  Perhaps it was actually designed to
+be this way.  You can go east and south from here.
+~
+0 139264 0
+Rd     0
+D1
+~
+~
+0 0 9022
+D2
+~
+~
+0 0 9020
+S
+#9022
+Eastern Branch~
+You walking along the top of a twisting, winding branch.  You can see a plateau
+a little ways to the north.  The only exits from here are in that direction
+or to the west.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9024
+D3
+~
+~
+0 0 9021
+S
+#9023
+Eastern Branch~
+You have arrived where the branch meets the cliffside.  You decide to take a
+look over the side of the branch, down to where the ground should be.  To
+your suprise, the only thing you can see is a massive, swirling purple
+vortex, with a very dark, almost black, centre.  You can go to the north from
+here, to explore the plateau, or to the south.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9025
+D2
+~
+~
+0 0 9024
+S
+#9024
+Eastern Branch~
+You are walking along a very thick branch.  You can see a large plateau to
+the north, and the branch winds to the southeast.  Those are the only
+directions you can go from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9023
+D2
+~
+~
+0 0 9022
+S
+#9025
+Eastern Plateau~
+You are at the entry point to the eastern plateau.  There is an immense source
+of power to the north, but you cannot tell what is in that direction.  You
+can travel in all four cardinal directions from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9033
+D1
+~
+~
+0 0 9026
+D2
+~
+~
+0 0 9023
+D3
+~
+~
+0 0 9032
+S
+#9026
+Eastern Plateau~
+You are walking along the eastern plateau.  There is an immense source of
+power to the northwest, but you cannot tell what is in that direction.  You can
+travel to the north or to the west from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9027
+D3
+~
+~
+0 0 9025
+S
+#9027
+Eastern Plateau~
+You are walking along the eastern plateau.  There is an immense source of power
+to the west, but you cannot tell what is in that direction.  You can travel
+to the north, south or west from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9028
+D2
+~
+~
+0 0 9026
+D3
+~
+~
+0 0 9033
+S
+#9028
+Eastern Plateau~
+You are walking along the eastern plateau.  There is an immense source of
+power to the southwest, but you cannot tell what is in that direction.  You can
+travel to the west and south from here.
+~
+0 139264 0
+Rd     0
+D2
+~
+~
+0 0 9027
+D3
+~
+~
+0 0 9029
+S
+#9029
+Eastern Plateau~
+You are walking along the eastern plateau.  There is an immense source of power
+to the south, but you cannot tell what is in that direction.  You can travel to
+the south, east and west from here.
+~
+0 139264 0
+Rd     0
+D1
+~
+~
+0 0 9028
+D2
+~
+~
+0 0 9033
+D3
+~
+~
+0 0 9030
+S
+#9030
+Eastern Plateau~
+You are walking along the eastern plateau.  There is an immense source of power
+to the southeast, but you cannot tell what is in that direction.  You can
+travel to the east or south from here.
+~
+0 139264 0
+Rd     0
+D1
+~
+~
+0 0 9029
+D2
+~
+~
+0 0 9031
+S
+#9031
+Eastern Plateau~
+You are walking along the eastern plateau.  There is an immense source of power
+to the east, but you cannot tell what is in that direction.  You can travel to
+the north, east and south from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9030
+D1
+~
+~
+0 0 9033
+D2
+~
+~
+0 0 9032
+S
+#9032
+Eastern Plateau~
+You are walking along the eastern plateau.  There is an immense source of power
+to the northeast, but you cannot tell what is in that direction. You can travel
+to the north and east from here.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9031
+D1
+~
+~
+0 0 9025
+S
+#9033
+The Third Circle~
+You have come across a great circle carved into the ground.  A magical glow
+eminates from this circle, the pentacle drawn within spinning slowly.  This
+must be the source of power you felt.  You can exit in all the cardinal
+directions.
+~
+0 139264 0
+Rd     0
+D0
+~
+~
+0 0 9029
+D1
+~
+~
+0 0 9027
+D2
+~
+~
+0 0 9025
+D3
+~
+~
+0 0 9031
+S
+#9034
+Before the First Test~
+You find yourself in a long, dark hallway.  You cannot help but wonder what
+these tests are going to be about, for they cannot be anything easy.  The
+hallway continues to the south, where the first test lies.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 9035
+S
+#9035
+The First Test~
+You are at the first test.  There is a door on the south wall, and a passage
+leading to the north.  Other than that, the walls, floor and ceiling are
+completely unmarked.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 9034
+D2
+~
+~
+103 9015 9036
+S
+#9036
+Before the Second Test~
+You have made it by the first test.  This room is set up as a resting place
+for the second test, which lies to the south.  A door lies on the north wall
+as well.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+103 9015 9035
+D2
+~
+~
+0 0 9037
+S
+#9037
+The Second Test~
+You are at the second test.  There is a door on the south wall, and a passage
+leading to the north.  Other than that, the walls, floor and ceiling are
+completely unmarked.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 9036
+D2
+~
+~
+119 9016 9038
+S
+#9038
+Before the Third Test~
+You have made it by the second test.  This room is set up as a resting place
+for the third test, which lies to the south.  A door lies on the north wall
+as well.  You feel a source of power getting stronger to the south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+119 9016 9037
+D2
+~
+~
+0 0 9039
+S
+#9039
+The Third Test~
+You are at the third test.  There is a door on the south wall, and a passage
+leading to the north.  Other than that, the walls, floor and ceiling are
+completely unmarked.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 9038
+D2
+~
+~
+119 9017 9040
+S
+#9040
+Before the Fourth Test~
+You have made it by the third test.  This room is set up as a resting place
+for the fourth and final test, which lies to the south.  A door lies on the
+north wall as well.  The feeling you have been getting is even stronger to
+the south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+119 9017 9039
+D2
+~
+~
+0 0 9041
+S
+#9041
+The Fourth Test~
+You are at the fourth test.  There is a door on the south wall, and a passage
+leading to the north.  Other than that, the walls, floor and ceiling are
+completely unmarked.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 9040
+D2
+~
+~
+119 9018 9044
+S
+#9042
+Climbing the Tree~
+You are about two thirds the way up a tree, and have entered a very dense fog.
+It is so thick you are almost choking on it, your vision is totally blurred.
+You can either go up the tree, or down it.
+~
+0 33693696 0
+Rd     0
+D4
+~
+~
+0 0 9001
+D5
+~
+~
+0 0 9043
+S
+#9043
+Climbing the Tree~
+You are about one third up the tree.  Your vision is becoming blurred the
+higher you go, as if reality is changing somehow.  You can see a very dense fog
+above you.
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 9042
+D5
+~
+~
+0 0 21590
+S
+#9044
+In a Time Nexus~
+You have entered some strange room.  There is a floor, but it does not appear
+to be there.  The sky is rapidly changing colours, the clouds zooming by at
+unbelievable speeds.  Your surroundings are ever changing, strange plantlife
+popping up all over the place, and immediately polymorphing into something
+new.
+~
+0 -2143158264 0
+Rd     0
+D0
+~
+~
+118 9018 9041
+S
+#9045
+Entrance to Calumnus' Hideout~
+You stand at the top of a castle garrison.  From here, you can see
+endless expanses of forests and fields.  Looking to the east, you notice the
+castle tower and an open arch.  
+~
+0 401428 1
+Rd     0
+D1
+~
+~
+0 0 9046
+S
+#9046
+Lair of Calumnus, Death Knight of Greed~
+You stand inside a tower room.  The stone walls are bare, and the only
+things in the room is a small table and chair in one corner, and a cot up
+against one wall.  The room is cold, and a draught come throught the open
+windows.  
+~
+0 131088 0
+Rd     0
+D3
+~
+~
+0 0 9045
+S
+#9047
+Entrance to Khaquon's Hideout~
+You find yourself standing at a dead end of a cave.  The air is cold and
+you can hear a light dripping noise in the distance.  A faint flicker of
+light can be seen in the distance.  
+~
+0 401428 0
+Rd     0
+D1
+~
+~
+0 0 9048
+S
+#9048
+Khaquon's Hideout~
+Khaquon's hideout is nothing more than a damp cave with a small table,
+chair, and cot thrown into the corner.  A dripping noise can be heard off in
+the distance, and a low rumbling noise rings through the cave every few
+minutes.  
+~
+0 134348816 0
+Rd     0
+D2
+~
+~
+0 0 9049
+D3
+~
+~
+0 0 9047
+S
+#9049
+A Dead End~
+You follow the cave down a few yards, but come to another dead end.  A
+few logs of wood lie against the cave wall.  The rumbling noise is louder
+here, but you can't be sure which direction it's coming from.  
+~
+0 134348816 0
+Rd     0
+D0
+~
+~
+0 0 9048
+S
+#9050
+Lair of Lycanthus, Death Knight of Falsehood~
+You find yourself standing before large double doors.  The room you are
+standing in is well lit with numerous torches.  On the walls hang many
+tapestries and frecoes.  Surprisingly, there is no door behind you.  The
+only exit is the double doors ahead.  
+~
+0 393232 0
+Rd     0
+D0
+~
+~
+3 0 9051
+S
+>enter_prog ~
+0
+~
+|
+#9051
+Lycanthus' Throne Room~
+You are standing in a large throne room.  The walls and columns are made
+out of marble and have been polished to shine.  Many torches line the walls,
+making the marble reflect brilliantly.  At your feet is a long red carpet
+that leads to a giant throne.  The only exit is the doors to the south.  
+~
+0 134348816 0
+Rd     0
+D2
+~
+~
+3 0 9050
+S
+#9052
+Hall of Hatred~
+You stand in the entrance of the dreaded caves known as the Halls of
+Hatred.  Named so by the man who dwells in the caves, the very walls emanate
+hatred.  The emotions are so strong that even the strongest men will fall if
+they dwell in the caves for too long.  The cave walls glow a dull red, and
+the only sound you can hear is the sound of someone grunting..  
+~
+0 131088 0
+Rd     75
+D3
+~
+~
+0 0 9053
+S
+#9053
+Hall of Hatred~
+You continue down the Hall of Hatred.  Strength slowly drains from you as
+you linger within the cave.  The walls remain unchanged, and the grunting
+sound is getting louder.  
+~
+0 402784272 0
+Rd     75
+D1
+~
+~
+0 0 9052
+D3
+~
+~
+0 0 9054
+S
+#9054
+Zargon's Lair~
+~
+0 402784272 0
+Rd     75
+D1
+~
+~
+0 0 9053
+S
+#9055
+Tower of Zhakarius~
+You stand at the top of a tower.  There are no stairs, ladders, or other
+means to get down.  A cold chilling air blows so violently that it injures. 
+A door to the north leads indoors.  
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+3 0 9056
+S
+#9056
+Zhakarius' Study~
+You are surrounded by shelves filled with books, maps, and scrolls.  A
+large globe stands in the center of the room, on top of a shag carpet.  Over
+to one side is a desk cluttered with quills, bottles of ink, and parchment. 
+A single opening allows light to enter.  
+~
+0 134348816 0
+Rd     0
+D2
+~
+~
+3 0 9055
+S
+#9057
+Castle Ruins~
+Two large double doors barely hang on their hinges here.  Numerous burned
+out torches and empty torch rings line the walls, as do torn tapestries and
+faded frescoes.  The place projects an image of emptiness, enhanced by a
+cold wind.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 9058
+S
+#9058
+Faded Illusion~
+You stand in the ruins of an old, broken down castle.  With the Death
+Knight Lycanthus dead, the magical illusion surrounding the area has faded,
+revealing the truth.  The only exit from the throne room is to the south.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 9057
+S
+#0
+
+
+
+#SPECIALS
+M 9001 spec_cast_psionicist
+M 9002 spec_cast_mage
+M 9006 spec_healer
+M 9007 spec_cast_mage
+M 9008 spec_cast_mage
+S
+
+
+
+#RESETS
+M 0 9003 2 9005
+E 0 9003 0 5
+E 0 9006 0 11
+E 0 9007 0 12
+E 0 9008 0 13
+E 0 9009 0 14
+E 0 9010 0 15
+E 0 9019 0 20
+O 0 9023 0 9008
+M 0 9007 1 9008
+E 0 9003 0 5
+E 0 9005 0 8
+E 0 9006 0 11
+E 0 9007 0 12
+E 0 9008 0 13
+E 0 9009 0 14
+E 0 9012 0 20
+E 0 9010 0 15
+E 0 9002 0 16
+E 0 9033 0 6
+M 0 9005 2 9015
+M 0 9005 1 9017
+M 0 9004 2 9018
+O 0 9020 0 9018
+E 0 9032 0 1
+M 0 9002 2 9019
+E 0 9003 0 5
+E 0 9006 0 11
+E 0 9009 0 14
+E 0 9014 0 20
+M 0 9008 2 9023
+E 0 9003 0 5
+E 0 9005 0 8
+E 0 9004 0 6
+E 0 9006 0 11
+E 0 9007 0 12
+E 0 9008 0 13
+E 0 9009 0 14
+E 0 9010 0 15
+E 0 9011 0 20
+O 0 9025 0 9033
+M 0 9006 1 9033
+E 0 9003 0 5
+E 0 9004 0 6
+E 0 9005 0 8
+E 0 9006 0 11
+E 0 9007 0 12
+E 0 9008 0 13
+E 0 9009 0 14
+E 0 9010 0 15
+E 0 9013 0 20
+E 0 9002 0 16
+O 0 9026 0 9034
+M 0 9009 1 9035
+E 0 9022 0 20
+E 0 9022 0 21
+G 0 9015 0
+M 0 9010 1 9037
+E 0 9021 0 20
+E 0 9021 0 21
+G 0 9016 0
+M 0 9011 1 9039
+E 0 9003 0 5
+E 0 9024 0 20
+E 0 9024 0 21
+G 0 9017 0
+M 0 9012 1 9041
+E 0 9028 0 20
+E 0 9028 0 21
+E 0 9029 0 3
+E 0 9031 0 4
+G 0 9018 0
+M 0 9001 1 9044
+E 0 9001 0 20
+E 0 9001 0 21
+E 0 9002 0 16
+E 0 9003 0 5
+E 0 9027 0 1
+E 0 9027 0 2
+E 0 9006 0 11
+E 0 9007 0 12
+E 0 9008 0 13
+E 0 9009 0 14
+M 0 9014 1 9046
+E 0 9034 0 20
+E 0 9035 0 15
+E 0 9036 0 5
+E 0 9037 0 6
+M 0 9013 1 9048
+E 0 9035 0 15
+E 0 9034 0 20
+E 0 9036 0 5
+E 0 9037 0 6
+M 0 9015 1 9051
+E 0 9034 0 20
+E 0 9035 0 15
+E 0 9036 0 5
+E 0 9037 0 6
+M 0 9016 1 9054
+E 0 9037 0 6
+E 0 9036 0 5
+E 0 9035 0 15
+E 0 9034 0 20
+M 0 9017 1 9056
+E 0 9039 0 20
+E 0 9040 0 2
+E 0 9038 0 16
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

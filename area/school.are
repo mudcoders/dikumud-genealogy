@@ -1,2022 +1,3708 @@
-#AREA	{ 1  5} Hatchet Mud School~
+#AREADATA
+Name        {  1-5 } New Mud School      Angi~
+Levels      1 5
+Builders    Thalador Angi~
+VNUMs       800 899
+Security    98
+Recall      25000
+Flags       144
+Color       6
+Sounds      &WLaughter and voices from afar fill your ears.~
+End
 
 
 
 #MOBILES
-#3700
-acolyte cleric~
-the acolyte of Frag~
-An acolyte of Overlord Frag is here, grinning at you.
+#800
+warrior krenan storm protector~
+Warrior Krenan~
+Warrior Krenan, Protector of the Storm.
 ~
-He is big and bad.  Don't mess with him.
+&W&YThis tall, massive warrior resembles more a godly type creature, an
+odd glow forming about his body.  His kind eyes reveal his soul to you, as
+he smiles lightly in your direction.  You start to realize that your long,
+dreary journey to the Storm was well worth the effort.  
 ~
-2|64 8|128 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 -99000
-8 human~ 1
-#3701
-blob~
-the blob~
-The blob is here, waiting to eat you up.
+1966147 16777344 0 0 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>greet_prog 100~
+bow $n
+    say Welcome to our home, $n.  You have almost reached the Storm.
+say Please have this tome, and read it carefully.
+say It may just save your life someday.
+mpoload 817
+give tome $n
+    say You must be tired after your long journey.
+    say Would you like some food?
 ~
-He is big, he is bad.  You don't want to fight him when he isn't chained up.
-Perhaps now would be a good time to flee from him!!!  If you don't flee, you
-would really suffer the consequences.
+>speech_prog p yes~
+mpoload 800
+give apple $n
+say You have almost reached Mudschool. Keep travelling south.
+say Good luck $n!
 ~
-2|64 8 0 S
-5 20 -99 1d1+50 1d1+0
-0 -9999
-8 object~ 0
-#3702
-monster~
-the monster~
-There is a monster leashed here.
+|
+#801
+helper newbie elven maiden savienna~
+Savienna~
+Savienna the Elven Maiden is here to help you.
 ~
-He looks mean, but you feel comfortable that you can kill him, especially since
-he is leashed up, and you are not.
+&WThis beautiful maiden has appeared to help you through Mudschool.  She
+will follow you during your travels until you reach level 3, helping however
+she is able.  To get started, type &Rsay help&W and she shall inform you.  
 ~
-2 0 0 S
-1 20 10 1d1+10 1d3+0
-100 50
-8 animal~ 0
-#3703
-monster wimpy~
-the wimpy monster~
-There is a wimpy monster leashed here.
+2097155 16777216 0 0 S
+2 0 0 100d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>speech_prog help~
+smile
 ~
-He looks wimpy.  You feel comfortable that you can kill him, especially since
-he is leashed up, and you are not.
+|
+#802
+ember newbie helper~
+Ember~
+Ember the Dwarven Mistress is here to help you.
 ~
-2|128 0 0 S
-1 20 10 1d1+10 1d3+0
-100 50
-8 animal~ 0
-#3704
-monster aggressive~
-the aggressive monster~
-There is an aggressive monster leashed here.
+&WEmber, a young Dwarf, has appeared to help you through Mudschool.  She
+will follow you during your travels until you reach level 3, helping however
+she is able.  To get started, type &Rsay help&W and she shall inform you.  
 ~
-He looks mean, but you feel comfortable that you can kill him, especially since
-he is leashed up, and you are not.
+2097219 16777216 0 0 S
+2 0 0 100d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#803
+shara newbie helper~
+Shara~
+Shara the Pixie is here to help you.
 ~
-2|32 0 0 S
-1 20 10 1d1+10 1d3+0
-100 50
-8 bear~ 0
-#3705
-monster wimpy aggressive~
-the wimpy aggressive monster~
-There is a wimpy aggressive monster leashed here.
+&WShara the Pixie has appeared to help you through Mudschool.  She will
+follow you during your travels until you reach level 3, helping however she
+is able.  To get started, type &Rsay help&W and she shall inform you.  
 ~
-He looks mean, but you feel comfortable that you can kill him, especially since
-he is leashed up, and you are not.
+2097219 16777216 0 0 S
+2 0 0 100d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#816
+riddlemaster master riddle~
+the RiddleMaster~
+&YA mischievious fellow snickers in the corner.
 ~
-2|32|128 0 0 S
-1 20 10 1d1+10 1d3+0
-100 50
-8 bear~ 0
-#3706
-big creature~
-the big creature~
-There is a big creature hulking over your form.
+&YThe RiddleMaster taps his foot to a beat only heard by himself.  His
+bright eyes glitter with a glimpse of evil, his grin fit for only a fool
+such as he.  If you watch him long enough, you will notice how he fades in
+and out of view!  
 ~
-He looks mean, and you just might have a small problem killing him, but he
-looks like a great prize!!!
+1966147 0 0 0 S
+113 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+if ispc($n)
+   emote giggles like a child.
+   say Hi, I'm the RiddleMaster!
+   if level($n) == 3
+      say Want a present $n?!
+   endif
+endif
 ~
-2 512 0 S
-1 19 9 2d2+20 1d4+1
-200 50
-8 animal~ 0
-#3707
-adept cleric~
-the adept of Kahn~
-An adept of Overlord Kahn is here, contemplating your progress.
+>speech_prog p yes~
+if ispc($n)
+   if level($n) == 3
+      emote laughs.
+      if rand(100)
+         say First you must answer a riddle!
+         if class($n) == 0
+            say Here is your riddle $n..
+            say It can be said:
+            say To be gold is to be good;
+            say To be stone is to be nothing;
+            say To be glass is to be fragile;
+            say To be cold is to be cruel;
+            say Unmetaphored, what am I?
+         endif
+         if class($n) == 1
+            say Here is your riddle $n..
+            say A leathery snake
+            say With a stinging bite,
+            say I'll stay coiled up
+            say Unless I must fight.
+            say What am I?
+         endif
+         if class($n) == 2
+            say Here is your riddle, you thief...
+            say Voiceless it cries,
+            say Wingless it flutters,
+            say Toothless bites,
+            say Mouthless mutters.
+            say What am I?
+         endif
+         if class($n) == 3
+            say Here is your riddle $n...
+            say It cannot be seen, cannot be felt,
+           say Cannot be heard, cannot be smelt.
+           say It lies behind stars and under hills,
+           say And empty holes it fills.
+           say It comes first and follows after,
+           say Ends life, kills laughter.
+           say What am I?
+         endif
+         if class($n) == 4
+            say Here is your riddle $n...
+            say You must keep it after giving it...
+            say What is it?
+         endif
+         if class($n) == 5
+            say Here is your riddle $n...
+            say As light as a feather, but you can't hold it for ten minutes.
+            say What is it?
+         endif
+         if class($n) == 6
+            say Here is your riddle $n...
+            say Has a mouth but does not speak, has a bed but never sleeps.
+            say What is it?
+         endif
+         if class($n) == 7
+            say Here is your riddle $n...
+            say You break it even if you name it!
+            say What is it?
+         endif
+         if class($n) == 8
+            say Here is your riddle $n...
+            say You feed it, it lives, you give it something to drink, it dies.
+            say What is it?
+         endif
+         if class($n) == 9
+            say Here is your riddle $n...
+            say I go around in circles,
+            say But always straight ahead
+            say Never complain,
+            say No matter where I am led.
+            say What am I?
+         endif
+         if class($n) == 10
+            say Here is your riddle $n...
+            say If a man carried my burden,
+            say He would break his back.
+            say I am not rich,
+            say But leave silver in my track.
+            say What am I?
+         endif
+         if class($n) == 11
+            say Here is your riddle $n...
+            say My life can be measured in hours,
+            say I serve by being devoured.
+            say Thin, I am quick
+            say Fat, I am slow
+            say Wind is my foe.
+            say What am I?
+         endif
+         if class($n) == 12
+            say Here is your riddle $n...
+            say Glittering points
+            say That downward thrust,
+            say Sparkling spears
+            say That never rust.
+            say What am I?
+         endif
+      endif
+   endif
+endif
 ~
-He is big and bad.  Don't mess with him.
+>speech_prog heart~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 0
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 808
+         give wand $n
+      endif
+   endif
+endif
 ~
-2|64 8|128 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 -99000
-8 human~ 1
-#3709
-rabbit~
-the rabbit~
-A rabbit is bouncing around here.
+>speech_prog whip~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 1
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 804
+         give heart $n
+      endif
+   endif
+endif
 ~
-The rabbit smiles at you, completely harmless!
+>speech_prog wind~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 2
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 809
+         give sword $n
+      endif
+   endif
+endif
 ~
-64|128 0 100 S
-1 20 10 1d1+10 1d3+0
-10 25
-8 animal~ 0
-#3710
-lizard~
-the lizard~
-A lizard slithers up to you.
+>speech_prog darkness~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 3
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 802
+         give runes $n
+      endif
+   endif
+endif
 ~
-It smiles at you, and tries to eat your leg.
+>speech_prog p your word~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 4
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 810
+         give talisman $n
+      endif
+   endif
+endif
 ~
-64 0 -100 S
-2 19 9 2d2+20 1d4+1
-10 100
-8 snake~ 0
-#3711
-boar~
-the boar~
-A boar tries to run you over.
+>speech_prog breath~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 5
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+mpoload 805
+give fire $n
+mpoload 806
+give water $n
+      endif
+   endif
+endif
 ~
-It grunts at you.
+>speech_prog river~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 6
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 801
+         give cloth $n
+      endif
+   endif
+endif
 ~
-64 0 0 S
-3 18 8 3d3+30 1d6+1
-10 200
-8 animal~ 0
-#3712
-fox~
-the fox~
-A fox is here staring at you.
+>speech_prog silence~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 7
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 811
+         give signet $n
+      endif
+   endif
+endif
 ~
-His fur might be worth money.
+>speech_prog p fire~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 8
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 813
+         give flute $n
+      endif
+   endif
+endif
 ~
-64|128 0 100 S
-1 20 10 1d1+10 1d3+0
-10 25
-8 animal~ 0
-#3713
-snail~
-the snail~
-A snail is trying to get out of your way.
+>speech_prog wheel~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 9
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 814
+         give belt $n
+      endif
+   endif
+endif
 ~
-You don't see much but slime about it.
+>speech_prog snail~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 10
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 815
+         give eyes $n
+      endif
+   endif
+endif
 ~
-64 0 0 S
-0 21 10 1d1+0 1d1+0
-2 10
-8 worm~ 0
-#3714
-beast~
-the beast~
-A beast tries to feed off of you.
+>speech_prog candle~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 11
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 812
+         give claws $n
+      endif
+   endif
+endif
 ~
-It looks mean.  You'd better run.
+>speech_prog icicle~
+if ispc($n)
+   if level($n) == 3
+      if class($n) == 12
+         emote gasps in astonishment!
+         say That is correct $n!
+         say For your ingenuity, a gift I give thee.
+         mpoload 816
+         give aura $n
+      endif
+   endif
+endif
 ~
-32|64 0 0 S
-5 16 6 5d5+55 1d6+3
-50 500
-8 bear~ 0
-#3715
-bear~
-the bear~
-A bear is here growling at you.
+|
+#817
+protector zantir~
+Zantir~
+The Protector of Mudschool stands guard here.
 ~
-The bear must be bigger than you!  It wants to rip your head off.
+&YTowering magnificently above you is a large man, Zantir.  He has been
+chosen as the sole Protector of the entire Mudschool Grounds.  His job is to
+keep the Mudschool Fighting Grounds safe from more experienced folks.  If
+you think you can enter the Fighting Grounds after you have surpassed the
+need to be here, think again.  
 ~
-64 0 0 S
-4 17 7 4d4+44 1d6+2
-40 300
-8 bear~ 0
-#3716
-wolf~
-the wolf~
-A wolf is here snarling at you.
+1966147 436207616 0 0 S
+113 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+   if isimmort($n)
+      say Welcome to our Mudschool Fighting Grounds, $n.
+      hug $n
+      break
+   endif
+   if level($n) > 5
+      say You fool, you are much to experienced to fight the small
+      say creatures in our Fighting Grounds! Leave at once or you shall
+      say be transported elsewhere.
+      emote snarls in your direction.
+      mptransfer $n 25001
+      break
+   endif
+   if level($n) < 6
+      say Welcome to the Fighting Grounds $n! Tread VERY carefully here,
+      say for you never know when an angry creature could pounce!
+      emote gestures below, beneath the Fighting Grounds.
+   endif
+endif
 ~
-The wolf doesn't want to be bothered.
+|
+#818
+storm angel torinne~
+Torinne~
+The Storm Angel floats above a circle of mist before you.
 ~
-64 0 0 S
-4 17 7 4d4+44 1d6+2
-40 300
-8 animal~ 0
-#3717
-adept cleric~
-the adept of Frag~
-An adept of Frag is here, grinning and selling you things.
+&WTorinne, a beautiful creature encompassed in white flowing robes,
+smiles delicately towards you.  Her wings are covered by layers of silken
+silver feathers, and her long slender legs gather around the white material
+swirling in the mist.  Torinne is the bearer of all that is Good, the
+protector to every land, town and folk in the Storm.  
 ~
-He is big and bad.  Don't mess with him.
+1966147 17318056 208 1000 S
+113 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+    if level ($n) < 3
+        emote smiles sweetly towards you.
+        say I regret to disappoint you, my young one...
+        say You are far too inexperienced to be travelling afar
+        say on your own. Please return to the Fighting Grounds and
+        say do come back when you have grown some.
+        mptrans $n 816
+        mpat $n mpechoat $n &WTorinne whispers from afar, 'Luck be with you my child.'
+        break
+    endif
+    if level ($n) > 2
+        emote embraces you lovingly.
+        say You do indeed wish to follow the path of &WGoodness&C and &WPeace&C?
+        say &REnter&C this glowing circle of light to begin your travels.
+        say You will then magically appear in my Arena, where you  
+        say can further improve your fighting abilities and skills.
+        mpechoat $n &WTorinne tells you 'Take caution my dear $n, be sure to read the writing on the &Rwall&W outside this room before deciding which path to follow.'
+        emote motions towards the bright circle.
+        break
+    endif
+endif
 ~
-2|64 8|128 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 -99000
-8 human~ 1
-#3718
-adept cleric~
-the adept of Furey~
-An adept of Furey is here, training young students.
+|
+#819
+lord chaos darkness drauzen~
+Lord Drauzen~
+Lord of Chaos and Darkness stands ominously before you.
 ~
-He is big and bad.  Don't mess with him.
+&wEncircled by hundreds of spinning blades and a burning ring of chaotic
+fire, this eight foot creature does not look extremely friendly.  His sunken
+eyes are like bottomless black pits, his skin resembling roughened bark. 
+This is Lord Drauzen, the most EVIL creature from anywhere within the Storm.
+Drauzen wears a long midnight black cape which hides his deformed horrid
+body beneath.  
 ~
-2|64|512 8|128 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 -99000
-8 human~ 1
-#3719
-priest cleric~
-the priest of Hatchet~
-The priest of Hatchet is ready to help you practice.
+1966147 268435500 48 -1000 S
+113 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+   if level($n) < 3
+       emote glares about angrily.
+       say You are merely a babe in the woods!
+       say Go back to the Fighting Grounds and gain some more experience
+       say if you want to survive in MY Arena.
+       emote smirks.
+       mptransfer $n 816
+&G       break
+    endif
+&G    if level($n) > 2
+       emote looks at you with a stern glare.
+       say You wish to follow the path of &WEVIL&C?
+       say If you choose to &Renter&C this black hole, you will be    
+       say taken to my evil Arena in a town called Ravenwood.
+&W       mpechoat $n &WDrauzen tells you 'Take caution and read the &Rwall&W outside this room before making your decision.'
+       break
+    endif
+endif
 ~
-He is big and bad.  Don't mess with him.
+>act_prog p steps into the black hole and is gone.~
+mpat $n emote cackles evilly!
 ~
-2|64|1024 8|128 1000 S
-30 -10 -20 1d1+29999 2d4+30
-0 -99000
-8 human~ 1
-#3720
-beast~
-the diploma beast~
-The hideous diploma beast is here, holding your graduation present!
+|
+#820
+master jyle trainer~
+Master Jyle~
+Master Jyle awaits your arrival.
 ~
-This horrible creature is your final test for mud school.  Kill him, and the
-diploma is yours.
+&YJyle, a Paladin Elder, has retired his days of battle to teach young
+ones the ways of the Storm.  He's fairly old, having spent years training
+and fighting with the now deceased Mikan Warrior.  His wisdom comes from
+experience and culture, and the people of Bethaven put their faith in him to
+guide you.  Jyle directs his deep gaze towards you, offering a welcoming
+smile.  
 ~
-2 512 0 S
-1 18 8 2d4+30 1d6+1
-300 100
-8 bear~ 0
+1966659 0 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+104 0 0
+>all_greet_prog 100~
+if level($n) == 1
+    say Welcome to the Storm, $n. Please be sure to read the sign posted here.
+break
+endif
+if level($n) < 5
+    if class($n) == 0
+        say Great work $n! You will become a fine Mage indeed.
+    endif
+    if class($n) == 1
+        say Great work $n! You have the makings of a wise Cleric.
+    endif
+    if class($n) == 2
+        say My my $n, I can see you chose a suitable profession as a Thief.
+    endif
+    if class($n) == 3
+        say Strong and steadfast, you will make an honourable Warrior.
+    endif
+endif
+~
+|
+#821
+Master Staer~
+Master Staer~
+Master Staer awaits your arrival.
+~
+&YRed hair flows wildly over Staer's medium built body.  Her face
+reflects a mixture of age old wiseness and young striking beauty.  Staer
+might appear to be of a weaker kind, but don't fool yourself.  This fiesty
+Necromancer has abilities you only pray to never discover.  
+~
+1967171 16384 0 450 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#822
+kalin mudschool shopkeeper~
+Kalin~
+Kalin stands patiently behind his counter.
+~
+&W&YKalin is a slim built Elven Ranger.  He wears a piece of cloth about
+his well defined chest, adorned with various symbols.  Kalin was once
+awarded by the town of Bethaven for his amazing battle skills and speed. 
+Aged some by the trials of his past life, his silken blonde hair turns
+slightly white near the edges, and the fine lines of wisdom settle in on his
+rugged skin.  
+~
+1966147 0 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 349 0
+0 0 1
+0 0 0
+#823
+jakkor healer~
+Jakkor~
+Jakkor the Healer stands here peacefully.
+~
+&YJakkor is known as one of the wisest Clerics of the lands.  He spent
+many years servicing the citizens of Bethaven with his magical healing
+powers.  Now he donates his time here at Mudschool, enjoying the peaceful
+atmosphere and helping young ones.  
+~
+1966147 67108904 0 1000 S
+100 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#824
+markos banker~
+Markos~
+Markos the Banker sits behind his desk.
+~
+&YMarkos rests comfortably behind a large desk, concentrating on accounts
+and figures.  His golden locks curl about his bushy eyebrows, shadowing his
+deep green eyes.  He motions towards an informative sign he has posted.  
+~
+1966147 0 0 243 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#825
+snake~
+a snake~
+A slimy slithery snake squirms in front of you.
+~
+&YCovered with a slimy substance, the snake is an annoying creature to
+catch.  It &Rflees&Y away so easily while fighting, since it is so difficult
+to keep a hold of it.  
+~
+1573057 0 0 0 S
+1 0 0 10d0+0 0d0+0
+0 0 3 0
+0 0 0
+0 0 0
+>death_prog 70~
+if rand(10)
+    mpoload 849
+    drop skull
+    mpecho &PHisssssss!
+endif
+~
+|
+#826
+frog~
+a frog~
+A large frog hops about here.
+~
+&YThis frog looks as if it's had plenty to feast on by the size of it. 
+It's slimy leathery skin is dark green with shades of brown.  &YHis beady
+little eyes stare way up at you, wondering what's in store for him now.  
+~
+1572931 0 0 0 S
+1 0 0 8d0+0 0d0+0
+0 0 4 0
+0 0 1
+0 0 0
+>death_prog 100~
+if rand(8)
+    mpoload 836
+    drop stiletto
+    mpecho &PThe frog croaks with pain!
+endif
+~
+|
+#827
+spider~
+a spider~
+A creepy hairy spider stands here suspiciously.
+~
+&YThis strange spider is almost as big as you are!  He is what we call a
+&PMOB&Y.  Whenever you encounter an unknown creature, you should ALWAYS type
+&Pcon <mob name>&Y to see if you are capable of killing it.  CON is short
+for consider, which you can find more about by typing &Phelp con&Y.  If you
+are sure you can conquer it, type &Pkill spider&Y.  
+~
+1572931 0 0 0 S
+1 0 0 8d0+0 0d0+0
+0 0 5 0
+0 0 0
+0 0 0
+#828
+salamander lizard~
+a salamander~
+A salamander slithers silently.
+~
+&YA baby salamander stares up at you with bright yellow eyes.  It's a bit
+difficult to see him clearly, as he blends into the clay walls so well. 
+Maybe you should &Pconsider&Y a bit before attempting to kill this lizard. 
+In the event that he does die, you could have the fortune of owning a pair
+of lizard gloves.  
+~
+1572931 0 0 0 S
+2 0 0 15d0+0 0d0+0
+0 0 3 0
+0 0 1
+0 0 0
+#829
+gopher~
+a gopher~
+A gopher skitters along the tunnel walls.
+~
+&YThis nasty looking gopher is a tough one to conquer!  He might even be
+too difficult for you at this stage.  If your hit points get too low during
+a fight, you can type &Pflee&Y to flee to another room.  If you want to flee
+automatically when your hit points get to a certain amount, type &Pwimpy
+<amount of hit points>&Y.  Typing &Pwimpy&Y by itself will set it to your
+maximum hit points divided by five.  Then when your hit points reach your
+wimpy amount, you will automatically flee.     
+~
+1572931 0 0 0 S
+2 0 0 25d0+0 0d0+0
+0 0 10 0
+0 0 0
+0 0 0
+#830
+ogre monster~
+an ogre~
+An ugly deformed ogre grunts loudly.
+~
+&YThis massive creature can smell you from a mile away.  His bloodthirsty
+instincts make him a wild savage beast, ready to kill anyone who enters his
+abode.  To kill him is a great accomplishment for a young adventurer like
+yourself.  
+~
+1572963 0 0 0 S
+2 0 0 15d0+0 0d0+0
+0 0 8 0
+0 0 1
+0 0 0
+>death_prog 25~
+mpoload 838
+drop backpack
+~
+|
+#831
+sparrow bird~
+a sparrow~
+A beautiful sparrow flies above you.
+~
+&YSoaring high in the air, the sparrow seems as if it's in a world of
+it's own.  Perfect time to catch it off guard, it could make a great dinner.
+Also, you can eat parts of the creature if they fall off when it dies, such
+as arms and legs.  
+~
+1572931 524288 0 0 S
+2 0 0 19d0+0 0d0+0
+0 0 10 0
+0 0 2
+0 0 0
+#832
+bee killer~
+a killer bee~
+A killer bee worker is looking for his queen.
+~
+&YYow!  This is a huge bee!  As it buzzes around you, you notice it's
+large stinger pointed outwards ready to attack.  
+~
+1572963 524288 0 0 S
+2 0 0 14d0+0 0d0+0
+0 0 6 0
+0 0 1
+0 0 0
+#833
+crow bird~
+a crow~
+An evil looking crow circles overhead.
+~
+&YAs the crow circles overhead, it prepares for it's descent upon you. 
+Huge deformed claws stretch down, aiming directly for you!  
+~
+1572899 524288 0 0 S
+2 0 0 20d0+0 0d0+0
+0 0 1 0
+0 0 1
+0 0 0
+#834
+mentor shyan~
+Shyan~
+&YA brilliant young Mentor stands here to advise you.
+~
+&YShyan's elegant chestnut locks fall loosely about her miniature face. 
+She has a compassionate smile and deep hazel eyes.  You can often find her
+here in the forest, for she gains much joy from spreading her knowledge to
+those not yet familiar with the Storm's way of life.  Feel free to come to
+her when in need of some advice.  
+~
+4063299 16777384 16 0 S
+113 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>greet_prog 100~
+if ispc($n)
+  if level($n) < 5
+    say Welcome young one, please stay and chat awhile.
+    say If you have any questions $n, please ask me by typing &Rsay <keyword>&G.
+    say I can respond to many keywords if you need advice about something.
+    smile $n
+    emote motions gently towards the bench, wishing you would stay a few.
+  endif
+&G  if isimmortal($n)
+&G    smile $n
+&G    emote curtsies in your presence.
+&G    break
+  endif
+&G  if level($n) > 5
+&G    say Oh my $n. You are much too experienced for my services.
+&G    frown $n.
+&G    mptrans $n 25000
+&G  endif
+endif
+if isnpc($n)
+  emote shoos away a $n.
+&G   mpforce $n south
+endif
+~
+|
+#835
+girl lost little~
+A young girl~
+A lost little girl cringes in terror.
+~
+&YThis poor young girl seems to of lost her way.  She and her father were
+taking a stroll in Mudschool in seek of fresh berries.  He must of turned
+his back for one minute, and the two were separated.  
+~
+1966147 0 0 0 S
+3 0 0 0d0+0 0d0+0
+0 0 15 0
+0 0 2
+0 0 0
+#836
+giant badger~
+a giant badger~
+&RA nasty giant Badger glares angrily at you.
+~
+&RIt's fur is matted and dark brown, it's eyes glow in the darkness. 
+Razor sharp fangs show themselves as the badger growls angrily in your
+direction.  It is apparent he won't wait long before making his attack.  
+~
+1966179 0 0 0 S
+3 0 0 25d0+0 0d0+0
+0 0 15 0
+0 0 1
+0 0 0
+#837
+killer vine vines~
+Some Vines~
+Vines entwine themselves about the old trees.
+~
+Thick green vines slither their way around the trees, covering the bark
+from the ground up.  These aren't just any ordinary kind of vines, they are
+a malformed bunch who hunt meat to survive!  An ear-piercing hissing sound
+fills your ears.  
+~
+1966179 0 0 0 S
+3 0 0 25d0+0 0d0+0
+0 0 5 0
+0 0 0
+0 0 0
+#838
+chipmunk~
+a chipmunk~
+&PA furry chipmunk stares up at you curiously.
+~
+&PA small furry chipmunk with dark brown eyes scurries on the ground
+before you.  Not an extremely smart animal, or it would of figured out its
+destiny by now.  
+~
+1573057 0 0 0 S
+1 0 0 8d0+0 0d0+0
+0 0 2 0
+0 0 0
+0 0 0
 #0
 
 
 
 #OBJECTS
-#3700
-sub mace~
-a sub issue mace~
-You see a sub issue mace here.~
+#800
+apple food~
+&Wan &Rapple~
+&WA plump, juicy red &Rapple&W sits here.~
 ~
-5 64 1|8192
-0~ 2~ 3~ 7~
-5 0 5
+19 0 0 0 1 1
+10~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 E
-sub mace~
-You see a mace of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
+apple plump juicy red~
+&RAmazingly enough, this apple found lying on the ground has not one single
+bruise.  In fact, it is oddly bright and shiny for an ordinary apple.  
 ~
-A
-18 1
-A
-19 1
-#3701
-sub dagger~
-a sub issue dagger~
-You see a sub issue dagger here.~
+#801
+cloth piece decorated~
+piece of cloth~
+&PA decorated piece of cloth lies here.~
 ~
-5 64 1|8192
-0~ 2~ 3~ 11~
-5 0 5
-E
-sub dagger~
-You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-A
-18 1
-A
-19 1
-#3702
-sub sword~
-a sub issue sword~
-You see a sub issue sword here.~
-~
-5 64 1|8192
-0~ 2~ 3~ 3~
-5 0 5
-E
-sub sword~
-You see a sword of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-A
-18 1
-A
-19 1
-#3703
-sub vest~
-a sub issue vest~
-You see a sub issue vest here.~
-~
-9 0 1|8
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub vest~
-You see a vest of great but cheap craftsmanship.  Stamped on the side is:
-Merc Industries
-~
-#3704
-sub shield~
-a sub issue shield~
-You see a sub issue shield here.~
-~
-9 0 1|512
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub shield~
-You see a shield of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3705
-sub cloak~
-a sub issue cloak~
-You see a sub issue cloak here.~
-~
-9 0 1|4
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub cloak~
-You see a cloak of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3706
-sub helmet~
-a sub issue helmet~
-You see a sub issue helmet here.~
-~
-9 0 1|16
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub helmet~
-You see a helmet of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3707
-sub leggings~
-a pair of sub issue leggings~
-You see a pair of sub issue leggings here.~
-~
-9 0 1|32
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub leggings~
-You see leggings of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3708
-sub boots~
-a pair of sub issue boots~
-You see a pair of sub issue boots here.~
-~
-9 0 1|64
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub boots~
-You see boots of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3709
-sub gloves~
-a pair of sub issue gloves~
-You see a pair of sub issue gloves here.~
-~
-9 0 1|128
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub gloves~
-You see gloves of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3710
-sub sleeves~
-a pair of sub issue sleeves~
-You see a pair of sub issue sleeves here.~
-~
-9 0 1|256
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub sleeves~
-You see sleeves of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3711
-sub cape~
-a sub issue cape~
-You see a sub issue cape here.~
-~
-9 0 1|1024
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub cape~
-You see a cape of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3712
-sub belt~
-a sub issue belt~
-You see a sub issue belt here.~
-~
-9 0 1|2048
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub belt~
-You see a belt of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3713
-sub bracer~
-a sub issue bracer~
-You see a sub issue bracer here.~
-~
-9 0 1|4096
-2~ 0~ 0~ 0~
-5 0 5
-E
-sub bracer~
-You see a bracer of great but cheap craftsmanship.  Imprinted on the side is:
-Merc Industries
-~
-#3714
-key~
-a key~
-You see a very important key here!~
-~
-18 0 1
+9 1 8127 0 1025 3
 0~ 0~ 0~ 0~
-1 0 0
-#3715
-diploma~
-a mud school diploma~
-You see a mud school diploma here.~
-~
-8 64 1|16384
-0~ 0~ 0~ 0~
-1 0 5
-E
-diploma~
-This document shows that you have graduated from Mud School.
-It also has magical effects on your abilities if you hold it!
-
-Hatchet the Silver Knight
-Merc Industries
-~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 A
-5 1
+17 3
+E
+piece cloth award~
+Attached to this cloth made of animal skin are several designs made of
+metal.  Pictures of assorted animals are etched into small round metal
+discs.  They are fastened to the cloth by tough silken ribbons the color of
+sunset.  There radiates a magical aura about this cloth.  It has been worn
+with honour by many Rangers for many generations.  
+~
+>look_prog 100~
+0
+if rand(30)
+   mpechoat $n &YSymbols dangling on a piece of cloth begin humming loudly.
+   mpechoaround $n &YSymbols dangling on $n's cloth begin humming loudly.
+endif
+~
+>give_prog 100~
+0
+mpechoat $n &YYou dare give away this award of honour?
+mpechoat $n &rDarkness shall follow your every move!
+mpechoaround $n &rEvil and misfortune infest in those who betray this award of honour!
+~
+|
+#802
+rune runes power warrior necklace leather crafted~
+the Runes of Power~
+A leather crafted necklace lies here.~
+~
+9 0 8183 0 5 3
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+rune runes power leather crafted necklace~
+&WThis ancient symbol stirs the fires of action.  Years ago, when a
+Warrior faced great trials or challenges, he sought the help of the Gods and
+Godesses.  This rune was given as a talisman to inspire powerful actions. 
+The crescent arms move outward, influencing all things around the wearer of
+this ancient Rune.  &WIt is the symbol of Strength and Courage.  
+~
+#803
+candle friendship light cleric~
+friendship Candle~
+A colourful candle lies here.~
+~
+1 1 8189 0 1 3
+0~ 0~ 100~ 0~
+1 0 0 0 0
+4 804
+reserved~
+0 -1
+0 0 0
+E
+friendship candle colourful~
+&WThis candle symbolizing friendship contains a hidden treasure.  The
+treasure is a symbol of the qualities we all admire and aspire to.  May the
+treasures of friendship always colour your life with warmth, success and
+happiness.  
+~
+#804
+crystal heart pendant cleric~
+a crystal heart~
+A crystal heart is floating here.~
+~
+8 0 8189 0 5 3
+0~ 0~ 0~ 0~
+1 0 0 0 0
+4 803
+reserved~
+0 -1
+0 0 0
+E
+heart crystal pendant~
+&WThis crystal heart has many facets which reflect a rainbow of colours
+when held up to the light.  May it remind you that friendship can transform
+a dull existence into a beautiful rainbow of life experiences - full of joy,
+enthusiasm, confidence and love.  The heart has a little hole in it so that
+it can be worn as a necklace.  
+~
+#805
+fire earth symbol druid~
+the Symbol of Fire and Earth~
+An oddly shaped symbol lies here.~
+~
+8 0 8159 0 1 3
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+807 0 0
+E
+symbol oddly shaped fire earth~
+&WA magical symbol representing Fire and Earth glows bright red.  Written
+on the symbol is the following: 
+ 
+&R     I am Fire and I am Earth.
+&R     I represent the inner flame
+&R     and am forever married to the ocean.
+ 
+&R     Alone, I am nothing.
+&R     The elements must join forces
+&R     to regain their powers once again.
+~
+#806
+water air symbol druid~
+the Symbol of Water and Air~
+An oddly shaped symbol lies here.~
+~
+8 0 8159 0 1 3
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+807 0 0
+E
+symbol oddly shaped air water~
+&WA magical symbol representing Water and Air glows bright orange. 
+Written on the symbol is the following:&Y 
+ 
+&R     &YI am Water and I am Air.
+&R     &YI represent silence and mystery,
+&R     &Ychange and versatility.
+ 
+&R     &YAlone, I am nothing.
+&R     &YThe elements must join forces
+&R     &Yto regain their powers once again.
+~
+#807
+druid sword element~
+the Sword of Elements~
+A sword lies here, glowing vividly.~
+~
+5 33554433 8159 0 8193 3
+0~ 0~ 0~ 3~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 805 806
+A
+18 5
+A
+19 6
+E
+sword glowing element elements~
+&WAn inscription carved into the sword reads:
+ 
+&R     Fire and Earth&P,&Y Air and Water&P.
+&P     United, we represent all Elements.
+&P     Joined together we create a great force,
+&P     For which only the beholder shall ever be aware.
+~
+#808
+wand flaming mage~
+a wand~
+&RA flaming wand glows vividly here.~
+~
+3 0 8190 0 16385 3
+8~ 1~ 1~ fireshield~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+wand glows flaming~
+&RIt looks as though you'd burn yourself trying to hold this flaming
+wand!  Don't be too easily fooled though, it holds strong magical
+capabilities within.  Trust your inner instincts and discover what the wand
+might offer.  
+~
+#809
+sword trickery thief~
+the Sword of Trickery~
+The Sword of Trickery hums loudly.~
+~
+5 67108866 8187 0 8193 3
+0~ 0~ 0~ 11~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 6
+A
+18 4
+E
+sword trickery~
+&CThis magnificent sword has been passed down from many generations of
+Thieves throughout Eye of the Storm II.  If you are so fortunate to possess
+one, power and victory can be yours.  Sneak thy way to an innocent
+adventurer, and let the Sword do it's work!  
+~
+#810
+talisman inner harmony psionicist~
+the Talisman of Inner Harmony~
+The Talisman of Inner Harmony radiates before you.~
+~
+9 0 8175 0 5 3
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 A
 4 1
-#3716
-banner~
-a war banner~
-A war banner is on the floor here.~
-~
-1 1|64 1
-0~ 0~ -1~ 0~
-1 0 5
 E
-banner~
-This is the official Merc war banner to see you through the darkest realm!
+talisman inner harmony necklace~
+&YThis talisman is a symbol of what every Psionicist is.  It's very touch
+will send energy throughout your body.  Take great care while in possession
+of this crafted jewel, for it can be very powerful if fallen into the wrong
+hands.  
 ~
+#811
+signet truth justice paladin~
+&Ythe Signet of Truth of Justice~
+&YHere lies the Signet of Truth and Justice.~
+~
+9 4161 8063 0 3 3
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+bless~
+3 3
+0 0 0
+E
+signet truth justice ring~
+&WThe Signet of Truth and Justice symbolizes a Paladin's true nature and
+being.  It has been blessed by the wisest Paladins that walk the Storm, and
+given only to those whose achievments have surpassed the expected.  Use
+sparingly, for its magic is rare.  
+~
+#812
+claws raking glove werewolf~
+the Claws of Raking~
+A glove with long sharp claws extending from it lies here.~
+~
+5 0 6143 0 8193 3
+0~ 0~ 0~ 5~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 A
-24 -1
+18 3
 A
-17 -1
+19 4
+E
+claws raking pair gloves sharp~
+&YBehold, the Claws of Raking.  Crafted for exceptional Werewolves of the
+Storm, this glove emits a magical aura about it.  Creatures, animals and
+people everywhere cringe at the sound of the Claws of Raking.  
+~
+#813
+bard magical flute~
+a flute~
+&YA magical flute glows vibrantly in the darkest of shadows.~
+~
+8 1 7935 0 16385 3
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+A
+12 3
+E
+magical flute glows~
+&YLulling music plays softly from this magical flute.  Only a Bard can
+truly master the likes of this flute.  A companion to any serious Bard, it
+should be treated carefully and kept from other no-gooders.  
+~
+>wear_prog 100~
+0
+mpecho A magical flute begins playing a familiar melody...
+~
+|
+#814
+blood belt bloodbelt vampire~
+&Ra Vampire's bloodbelt~
+&r(glowing)&R A Vampire's Belt of Blood glows deep red.~
+~
+28 0 7679 0 2049 3
+10~ 10~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+vampire belt blood red bloodbelt~
+&RA mystical Belt of Blood is filled with a deep red substance.  It is
+Holy Blood created by a very wise and ancient Vampire.  Drink with care, for
+when the last drop has vanished, the belt disintegrates into thin air.  
+~
+#815
+eyes undead necromancer~
+&PEyes of the Undead~
+&pA Necromancer's &PEyes of the Undead&p have been left here.~
+~
+27 0 7167 0 131073 3
+3~ 3~ 3~ armor~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+eyes undead necromancer~
+&pYou are looking at the Eyes of the Undead.  Eyes as dark as the
+blackest pit.  These can be worn only by the most exceptional Necromancers
+within the Storm.  They have the ability of offering additional protection
+during a battle.  
+~
+#816
+aura mind power mindpower monk~
+&Ban Aura of MindPower~
+&BAn Aura of MindPower vibrates rapidly here.~
+~
+9 256 4095 0 32769 3
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+E
+aura mind power mindpower~
+&BOnly a Monk harnesses the power to control the Aura of MindPower you
+behold.  A Monk who chooses to wear this aura shall unleash wisdom within
+themself they never knew they had.  
+~
+#817
+tome guide eosii book newbie~
+&zThe &CNewbie Guide&z to EOSII&w~
+&BA book of newbie hints for EOSII lies here on the ground.~
+~
+8 805306432 0 0 16385 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 2
+reserved~
+0 -1
+0 0 0
+E
+book~
+&z--------------------------------------------------------------------------------
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Training
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
+&z--------------------------------------------------------------------------------
+~
+E
+newbie~
+&z--------------------------------------------------------------------------------
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Traniing
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
+&z10&w..&BOK, but where do I go now? & I'm lost, how do I get back?
+&z--------------------------------------------------------------------------------
+~
+E
+guide~
+&z--------------------------------------------------------------------------------
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Traniing
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
+&z--------------------------------------------------------------------------------
+~
+E
+1~
+&z--------------------------------------------------------------------------------
+&BPRACTICING & TRAINING:
+&cOn this mud, unlike some other forms of MUDs, you must train your primary
+statistics (Str, Int, Wis, Dex & Con), plus you may also train your HP, mana &
+move.  To do training you use "practices" that you receive each level based on
+your Wisdom.  The higher your Wisdom the more practices you're able to get per
+level.  To train a stat, like Str, it costs 5 practices per train, but to train
+HP, mana or movement it costs only 1 practice.  Note: You can't train a statisti
+c like Str past 18 regardless of class.  To train a stat you simply type: 
+&wtrain <item> &R#  &C(&R#&C is for how many practices to use.  Ie: train hp 50)
+&cPracticing is a bit more indepth where training deals with statistics,
+practicing is how you aquire new skills and spells.  It only takes one
+practice to improve a skill or spell, but how much it is improved depends upon
+your Int statistic.  Plus different classes can practice to different amounts
+such as a Mage's 95% and a Thief's 85%.  To practice a skill\spell you type:
+&wpractice <skill name>  &C(don't put ""s around the name if it's 2+ words)
+&z--------------------------------------------------------------------------------
+~
+E
+2~
+&z--------------------------------------------------------------------------------
+&BSTATISTICS:
+&cThe statistics I'm referring to here are &CStr&c (Strength), &CInt&c (Intelligence),
+&CWis&c (Wisdom), &CDex&c (Dexterity) & &CCon&c (Consitution).  What they do is:
+&BSTR&w:&c Increases the amount of weight your character is able to carry, allows you
+     to wield heavier weapons & increases your damage in battle.
+&BINT&w:&c Allows you to practice skills\spells faster.  25 Int that only Mages and
+     Necromancers are able to acheive allows you to become "adept" in a skill or
+     spell in one practice.
+&BWIS&w:&c Determines the amount of practices you receive per level.  Normally you
+     can't pass 22 WIS unless you're a cleric, druid or psionisist which can
+     reach 25 WIS.  22 WIS = 7 Practices per level.  25 WIS = 8 practices.
+&BDEX&w:&c Dexterity determines how well you dodge out of the way or how quickly you
+     are able to parry an attack so it doesn't reach you.  Most classes can only
+     reach 22 DEX, except thieves, bards & vampires, which are able to reach
+     25 DEX.
+&BCON&w:&c The "life" statistic.  Constitution adjusts how much HP per level you gain.
+     The higher your CON stat is the more you receive each level depending on
+     your class.  Each class earns a different range of HP per level.  Only
+     rangers and monks can pass the 22 CON limit with their 25 CON.
+&BI very strongly encourage you to train your stats in this order&w:
+&CWIS&c,&C CON&c,&C INT&c,&C STR&c,&C DEX  (Dex & Str can be switched though)
+&cThis way you max your practices gained per level quicker so you can train other
+things faster and after that you get your con up so you gain as much hp per
+level as possible.
+Generally you can't get a statistic past 22, except the one statistic that is
+your class' "main" statistic.  These main statistics are as follows:
+&z                _______________&z______________________________&z_
+&z                | Statistic    &z| Classes that have it        &z|
+&z                |--------------&z|-----------------------------&z|
+&z                | &BStrength     &z|&C Warrior, Paladin & Werewolf &z|
+&z                | &BIntelligence &z|&C Mage & Necromancer          &z|
+&z                | &BWisdom       &z|&C Cleric, Druid & Psionisist  &z|
+&z                | &BDexterity    &z|&C Thief, Vampire & Bard       &z|
+&z                | &BConstitution &z|&C Ranger & Monk               &z|
+&z                |______________&z|_____________________________&z|
+&z--------------------------------------------------------------------------------
+~
+E
+3~
+&z--------------------------------------------------------------------------------
+&BHP, BLOOD, MANA & MOVEMENT:
+&cAside from Str and it's like-statistics there is &CHP &c(Hit points), &CBlood &c(A
+vampire's form of mana), &CMana &c(Amount of magical energy available) & &CMovement
+&c(one's exhaution rating.).  These are fairly simple really:
+&BHP&w:&c       It's in your prompt like 20/20hp.  This is lowered with each hit you
+          take from a player or monster.  If it reaches below 1hp you die and
+          you must get your stuff back from your corpse.
+&BBlood&w:&c    If you're not a vampire don't worry about this.  Vampires use "blood"
+          instead of "mana" that they can't regain via potions, but "feed" off
+          victims to replenish it.
+&BMana&w:&c     The amount of magical energy available to you.  So when a spell costs
+          say..50ma (ma = mana) then if you have 1500/1500ma you go to
+          1450/1500ma.  Potions will revitalize this somewhat though.
+&BMovement&w:&c This of course is the MV stat and lowers as you move between rooms,
+          but it's rare that you ever run out of movement.  Usually people just
+          ignore it completely.
+&cI'd suggest you &w-&Calways&w-&c train HP.  You'll have enough mana with potions,
+movement wears down slowly and blood can't be trained.
+&z--------------------------------------------------------------------------------
+~
+E
+4~
+&z--------------------------------------------------------------------------------
+&BHELPFUL STARTING HINTS:
+&cHere's a couple setting hints to get you started.  If you type "config" and
+press enter you will see a list of "toggle" settings for your character.  A few
+of these are as follows and as to how you might want them:
+&w+&Rautoloot&w:&c Automatically take all equipment within a monster\player you have
+           killed.  Handy at starting levels, but I'd suggest removing it after
+           about level 10.
+&w+&Rautoexit&w:&c Automatically lists available exits from rooms, except "door" exits.
+&w+&Rautogold&w:&c Automatically take the money a creature had from it's corpse.
+&w-&Ransi&w:&c     IF you don't have the ability to see color you want this off,
+           otherwise leave it on and enjoy.
+&w-&Rcombat&w:&c   This will take away seeing "you dodge.." "<mob> dodges...".  Reduces
+           the spam a great deal.
+&w+&Rkeep&w:&c     This keeps the MUD from autoputting in a new title for you each level
+           so you can keep your own customized one.
+&w-&Rfullname&w:&c This enables 'name completion' which allows you to be lazy and type
+           only partial words.  To look at a salamander you might 'look sal' and
+           it will take the first item\mob\player that begins with those letters
+           it can find.
+These are just to help you get started, but you're welcome to set them up as you
+choose.  To set a "setting" like this you type: "config <+/-><setting>" so to
+say set autoloot ON..you'd type "config +autoloot".
+Another helpful feature of the mud is the PROMPT command.  Using it you can
+customize your info prompt in color or appearance.  "help prompt" will show all
+of the settings you can use, but here's a sample one that you can copy\paste in
+the game for show:
+&Cprompt [&&z%h&&c/&&z%H&&Bhp &&z%m&&c/&&z%M&&Bm &&w[%a][&&C%x&&wxp]:&&z
+&cAssuming your a new character at level 1 this would look like:
+&w[&z20&c/&z20&Bhp &z100&c/&z100&Bm &w[0][&C1000&wxp]:&z <whatever you type in game>
+&C(The [0] is your alignment, which generally starts out at 0.)
+&z--------------------------------------------------------------------------------
+~
+E
+5~
+&z--------------------------------------------------------------------------------
+&BCOMMON ABBREIVATIONS:
+&cThis is just for those who are truely new to mudding since there are certain
+terms mudders use all the time.
+&BAFK    &w:&c Away From the Keyboard (Could also just be not paying attention)
+&BPK     &w:&c Player Killing
+&BMob    &w:&c Short for Mobile..meaning "creatures" in the MUD.
+&BNewbie &w:&c You :)
+&BRP     &w:&c Roleplay or Roleplaying
+&BCR     &w:&c Corpse retrieval (Asking someone to help you get your corpse back)
+&B
+&BDESCRIPTION OF COMMUNICATION CHANNELS:
+&cMany new players aren't sure how to communicate with others so I hope this helps
+&POOC&w:&c      The general discussion channel..everyone sees it. Shortcut = ]
+&RVent&w:&c     A form of OOC channel that isn't language censored.   All see it.
+&CChat&w:&c     Role-playing channel..everyone sees it.  Shortcut = .
+&RClantalk&w:&c ONLY those in your clan can see it.  Shortcut = cl
+&CShout&w:&c    Everyone sees it, but it's an emergency channel, not a discussion one.
+&CYell&w:&c     Everyone within the same AREA as you sees it.
+&CSay&w:&c      Everyone in the same ROOM as you sees it.  Shortcut = '
+&PEmote&w:&c    Everyone in the same ROOM sees it.  It's for actions not speaking.
+&WTell&w:&c     ONLY the person you send it to sees it.  Tell <player> <message>
+&cClass&w:&c    ONLY those of the same class as you see it.  Ie all thieves etc..
+&GAuction&w:&c  Everyone sees it.  This is to sell items, not talk.
+&GHero&w:&c     ONLY level 100+ characters see this, Champs & Imms.  Shortcut = -
+&cMusic&w:&c    Everyone sees this.  It's for..whatever :)
+&GQuestion&w:&c Everyone sees this.  Ask questions here or on OOC.
+Btw..OOC stands for "out of character" and with emotes it is only for actions.
+If you type "emote grins sheepishly" and your name is Arch others in the room
+will see, "Arch grins sheepishly".
+&z--------------------------------------------------------------------------------
+~
+E
+6~
+&z--------------------------------------------------------------------------------
+&BFIGHTING PLAYERS VS MOBS:
+&c  For attacking normal mobs simply type &w'&Rkill <mob name>&w'&c to start a fight with
+them or if you are a thief type 'bs <mob name>' once you have the backstab
+skill.  If you want to attack an animated corpse (you'll know when you come
+across one) or a player (when you &R_BOTH_ &care in PK clans) you type &w'&Rmurder
+<player>&w'&c to attack.
+  If a fight isn't going well for you and you're likely to die if you don't find
+a quick escape you simply need to type &B'&wflee&B'&c until you escape.  You will lose
+a little bit of experience in the process, but it's better to lose 10xp than
+lose half of what xp you've gained towards leveling.  Btw..it's 1000xp per
+level.  In some areas flee doesn't work though, such as Dragon Valley though.
+  Also, there are numerous "aggressive" mobs in the game that will automatically
+attack you the moment you enter the room regardless of wether you wished to
+fight or not.  So be wary of exploring high level areas or new areas without
+shielding yourself against possible attack.
+&B
+ALIASES - Use and Creation&w:
+&WSyntax&w:&r alias [shortcut] [task]  &C(Creates or modifies an alias)
+&WSyntax&w:&r alias [shortcut]         &C(Deletes that alias)
+&c  Aliases are common to many muds, but aren't found in all.  Basically these
+are exactly what they sound like.  They're shortcut commands to preform larger
+tasks.  &C(&BEx&w:&c having a shortcut command of 'fire' for performing the task, "cast
+'fireball'"&C)&c.  This mainly just saves you on time and typing.  How it works:
+&CExample&w:&c
+<prompt> alias clb cast 'lightning breath'
+Alias 'clb' added.
+<prompt> clb
+Cast spell on whom?
+<prompt> clb dragon
+Your blast of lightning MUTILATES the dragon.
+&z--------------------------------------------------------------------------------
+~
+E
+7~
+&z--------------------------------------------------------------------------------
+&BLIST OF EQUIPMENT SLOTS:
+&B
+&CLight                           &CShield &w(&z*&w)
+&CFinger &w(&B2&w)                      &COrbit &w(&B2&w)
+&CNeck &w(&B2&w)                        &CWaist
+&CHead                            &CAbout Body
+&CFace                            &CWrists &w(&B2&w)
+&CEyes                            &CEarring
+&CBody                            &CAnkles &w(&B2&w)
+&CArms                            &CWield
+&CHands                           &CDual Wield &w(&z**&w)
+&CLegs                            &CHeld &w(&z*&w)
+&CFeet
+&z*  &w-&c Only usable if you're not dual wielding.  &C(Mainly for spellcasters)
+&z** &w-&c Only usable if you have the "dual" skill.  &C(Fighter classes)
+&B
+INVOKES ON ITEMS:
+&cYou won't find many low level items with invokable spells on them, but just so
+you're aware of their existance there are many items in the game that can be
+"invoked" to produce a certain effect or spell.  An item may contain the spell
+'fireshield' and if you invoke the item it casts that spell upon you or the
+target you select.  These are primarily handy to the non-magical fighting
+classes.
+&z--------------------------------------------------------------------------------
+~
+E
+8~
+&z--------------------------------------------------------------------------------
+&BTHE MUD'S RULES:
+&cThese are the rules of EOS.  For other matters, use commom sense.
+&B
+&z*&w foul and/or abusive language will not be tolerated on EoS, from anyone
+  (including gods). Punishments range from deletion to NOCHANNELing.
+&B
+&z*&w sexual harassment of any form will not be tolerated, punishable by deletion
+&B
+&z*&w your presence here is a privilige not a right
+&B
+&z*&w no multiple logins, multiple playing, or helping your own characters with
+  other characters you own -- by any arrangment.
+&B
+&z*&w no kill stealing.  This means you cannot attack a mob someone else is
+  fighting, unless they ask you to. Also avoid attacking fleeing mobs.
+&B
+&z*&w cheating will not be tolerated.  This includes accepting favors from gods
+  and exploiting bugs. If you find a bug, report it, then do not use it.
+&B
+&z*&w Absolutely NO summonsing any mobs to Bethaven, Ravenwood or Alor Raharo.  
+  I do NOT wish newbies jeopardized.  There's plenty of room outside those 
+  towns, use them.
+&z--------------------------------------------------------------------------------
+~
+E
+9~
+&z--------------------------------------------------------------------------------
+&BWIZLIST & GETTING HELP:
+&cTyping &z'&wwizlist&z'&c will show you a "reasonably current" list of the MUD's
+immortal staff.  Generally when you wish to seek help on something you should
+begin at the bottom of that list and work upward, since those at the top
+positions are often busy with things and will generally take the longest to
+answer your question.  Also know that most immortals are busy doing something
+even if it may not be immediately appearant so if they don't answer right away
+give them time.  And if you ask for their attention and get it, don't tell them
+"just a sec" if it's something you could have taken care of before calling their
+attention.  These are just general notes of "etiquette" in dealing with 
+immortals.  They're happy to help you out if you give them the chance and don't 
+disrespect them.
+&z--------------------------------------------------------------------------------
+~
+#825
+well~
+a well~
+A well made out of stone is here, filled with fresh stream water.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+well~
+&YA deep well made out of small stones and bricks raises above the
+ground.  It's filled with refreshing cold stream water.  
+~
+#826
+tree tree2 fallen~
+a fallen tree~
+&OA large tree has fallen here, blocking your way.~
+~
+29 0 0 0 0 0
+823~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tree fallen~
+&YSince the tree is too huge to climb over, and there is no way to walk
+around it, you might just have to climb through it.  &REnter&Y the tree to
+get to the other side.  
+~
+#827
+stream streamlet~
+streamlet~
+&CA narrow streamlet flows behind the wooden bench.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#828
+tree portal~
+a fallen tree~
+&OA large tree has fallen here, blocking your way.~
+~
+29 0 0 0 0 0
+824~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tree large~
+&YSince the tree is too huge to climb over, and there is no way to walk
+around it, you might just have to climb through it.  &REnter&Y the tree to
+get to the other side.  
+~
+#829
+message~
+a message~
+&YIf you are new here, you should travel down first.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#830
+sack leather~
+a leather sack~
+A black leather sack rests here.~
+~
+15 0 0 0 16385 1
+45~ 0~ 0~ 0~
+1 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sack black leather~
+&WUse this sack to store potions, food and equipment.  Soon you might
+notice that your hands can get rather full carrying around a whole bunch of
+items, so a bag can be handy.  
+~
+#831
+canteen rawhide~
+a canteen~
+You see a canteen made of rawhide here.~
+~
+17 0 0 0 1 1
+12~ 12~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+canteen rawhide~
+&WDuring tough battles and long journeys, a basic need is water.  Use
+this canteen to &Rfill&W it with water at a fountain by typing &Rfill
+canteen&W.  
+~
+#832
+fountain brook tiny~
+brook~
+A tiny brook crosses through the clearing.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tiny brook~
+&YClear blue water trickles down the brook, offering a cool refreshment
+to all.  Type &Rdrink brook&Y to quench your thirst.  
+~
+#833
+lizard glove gloves~
+lizard gloves~
+A pair of lizard gloves glow lightly.~
+~
+9 1 0 0 129 1
+0~ 0~ 0~ 0~
+1 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+E
+glove gloves~
+&YThese gloves were created from the scaly skin of a salamander.  They
+are not just ordinary gloves though.  Once worn, these gloves can be very
+difficult to remove.  The lizard skin seems to meld to your own.  It might
+be worth the risk though, if they improve your fighting abilities.  
+~
+#834
+buckler shield~
+a buckler~
+A wooden buckler lies here.~
+~
+9 2 0 0 513 1
+0~ 0~ 0~ 0~
+3 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+shield buckler wooden~
+&YThis buckler is a rather small round shield.  It is adorned with a
+tough leather strap which fits onto your arm.  
+~
+#835
+scourge whip leather~
+a scourge~
+A wicked looking barbed whip~
+~
+5 64 0 0 8193 1
+0~ 0~ 0~ 4~
+3 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 2
+E
+scourge whip leather~
+&YThis short whip has several leather tails along it.  Each tail has
+metal barbs attached along its length.  This scourge can indeed inflict
+great pain on it's victims.  
+~
+#836
+stiletto dagger~
+a stiletto~
+A sharp bladed dagger lies here~
+~
+5 0 0 0 8193 1
+0~ 0~ 0~ 0~
+4 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 2
+A
+19 1
+E
+stiletto dagger~
+&YA stiletto is a short dagger with a strong, triangular blade that
+tapers to a sharp point at the tip.  
+~
+#837
+lantern hooded~
+a hooded lantern~
+A hooded lantern lies here.~
+~
+1 128 0 0 16385 1
+0~ 0~ 12~ 0~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hooded lantern~
+&YA hooded lantern projects light in 360 degrees and is capped overhead
+to limit the radiation of heat.  This allows it to be carried with a handle
+located at the top of the lantern.  
+~
+#838
+backpack~
+a backpack~
+A large canvas backpack has been left here.~
+~
+15 64 0 0 9 1
+40~ 1~ 0~ 0~
+1 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+backpack pack back canvas~
+&YThis backpack isn't any ordinary kind of bag.  You can stuff it full of
+food and items, and then wear it while you fight for extra armor.  Type
+&Popen backpack&Y or &Pclose backpack&Y to open and close it.  By typing
+&Pget <item> backpack&Y and &Pput <item> backpack&Y, you can store and
+retrieve items.  &PWear backpack&Y to wear it.  
+~
+#839
+ogre boots~
+a pair of Ogre's boots~
+A large pair of Ogre's boots lay crumpled here.~
+~
+9 0 0 0 65 1
+0~ 0~ 0~ 0~
+2 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+boots boot ogre~
+&YThese boots might seem large and bulky, but they are made of a rare
+lightweight material.  You will find yourself much more dextrous with the
+aid of these marvelous boots!  
+~
+#840
+webbed cloak~
+a webbed cloak~
+A pile of webbing lies crumpled in the corner.~
+~
+9 256 0 0 9 1
+0~ 0~ 0~ 0~
+4 0 0 3 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+webbed web cloak~
+&YThis cloak is made of a special kind of spider's web.  It is very tough
+and difficult to penetrate, making it an excellent addition to any
+adventurer's armor.  
+~
+#841
+bush~
+a bush~
+&wLarge bushes gather on either side of you.~
+~
+15 268435456 0 0 0 0
+50~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bush bushes large~
+&PAs you examine this bush closely, a glimmer of light blue inside
+catches your eye.  Maybe there is something inside.  
+~
+#842
+blueberry blueberries~
+a blueberry~
+A delicious magical &Bblueberry&O hides here.~
+~
+26 64 0 0 1 2
+2~ bless~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#843
+berry blueberry~
+a blueberry~
+A delicious &Bblueberry&O hides here.~
+~
+19 0 0 0 1 1
+5~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#844
+tree~
+a tree~
+&OAn aging spruce tree towers above.~
+~
+15 0 0 0 0 0
+100~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tree aging spruce~
+&YCarefully examining the tree for any signs of life, you notice a small
+hole near the bottom.  Perhaps you should look inside.  
+~
+#845
+scroll giant strength~
+a magical scroll~
+A scroll of great powers has been hidden here.~
+~
+2 1 0 0 1 2
+2~ giant strength~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+scroll great powers magical~
+&YThis magical scroll must have been hidden here by a careless Cleric! 
+To find out what kind of power it offers, you must type &Rrecite scroll&Y
+and hope for the best.  
+~
+#846
+potion crystal flask healing~
+a potion of healing~
+A crystal flask overflowing with a bubbly substance.~
+~
+10 268435456 0 0 1 2
+2~ cure light~ reserved~ reserved~
+0 0 0 25 0
+0 0
+reserved~
+0 0
+0 0 0
+#847
+bench~
+a bench~
+&OAn old wooden bench is here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#848
+necklace gem jewel~
+a gem~
+A sparkling gem has been tossed here.~
+~
+9 258 0 0 5 2
+0~ 0~ 0~ 0~
+2 0 0 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+E
+gem sparkling necklace jewel~
+&YThe gem glitters of all the different colors in the rainbow, even
+without any sunshine.  A melodious humming sound emits from within it.  This
+necklace could make quite a conversation piece.  
+~
+#849
+earring skull~
+a skull~
+&WA miniature skull made of ivory vibrates.~
+~
+9 0 0 0 524289 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+miniature skull ivory earring~
+~
+#850
+portal circle white light~
+bright circle~
+&YA large circle of bright &Wwhite&Y light opens up before you.~
+~
+29 0 0 0 0 0
+136~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+circle bright white light large~
+&YA blinding light flashes before you!  This large opening of bright
+light is the beginning of your path to Peace and Goodwill.  &REnter&Y this
+light, and you shall be brought to &WTorinne's&Y Arena.  
+~
+#851
+portal black hole~
+black hole~
+&RA large black hole opens up before you.~
+~
+29 0 0 0 0 0
+1270~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+large black hole portal~
+&RGrey mist rises from the deep black hole.  This begins the path of all
+that is &YEVIL&R.  &WEnter&R this hole and you will be brought to &WLord
+Drauzen's&R Arena.  
+~
+#852
+band metal~
+a metal band~
+&WA &wsilver&W band of metal shines here.~
+~
+9 64 0 0 3 2
+0~ 0~ 0~ 0~
+3 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 2
+E
+silver band metal ring~
+&PShiny metal catches your eye.  It's solid and smooth, with a short
+inscription written on the inside: 
+ 
+&p          The password is &YCOMBAT&p.
+~
+#853
+belt degree~
+a degree belt~
+&OA long strap of woven material lies crumpled on the ground.~
+~
+9 64 0 0 2049 2
+0~ 0~ 0~ 0~
+3 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+strap woven material belt degree~
+&OThis appears to be some type of belt, approximately six feet long. 
+When worn in the proper manner, wrapped twice around the waist and tied with
+a square knot, it enhances a person's strength to fight!  A magical aura
+lights the ground beneath it.  
+~
+#854
+anklet coral~
+&ca &Ocoral&c anklet~
+&OA coral anklet shimmers lightly.~
+~
+9 0 0 0 1048577 1
+0~ 0~ 0~ 0~
+2 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+coral anklet~
+&OMade of coral found only in the deepest of the seas, this anklet has
+miniature symbols engraved on it.  For centuries, noone has ever been able
+to figure out what they mean.  They look like some type of language made
+from lines and dots.  
+~
+#855
+brass earring~
+&Wa &Ybrass &Wearring&w~
+&WA &Ybrass&W earring has been left here.~
+~
+9 0 0 0 524289 1
+0~ 0~ 0~ 0~
+1 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+brass earring~
+&YShining all over, this brass earring is beautiful.  The very touch of
+it sends warmth through your body.  It attaches in the back with a tiny
+golden clasp.  
+~
+#856
+twine bracelet~
+&Ca &Ytwine&C bracelet~
+&CLying on the ground is a tiny &Ytwine&C bracelet.~
+~
+9 256 0 0 4097 1
+0~ 0~ 0~ 0~
+2 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tiny twine bracelet~
+&CThis bracelet was created from tough twine and decorated with beads. 
+It is lined with hardened leather underneath, to add protection from the
+rough twine.  
+~
+#857
+fur furlined scarf~
+a furlined scarf~
+A delicate furlined scarf lies crumpled here.~
+~
+9 0 0 0 5 1
+0~ 0~ 0~ 0~
+2 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+delicate furlined fur lined scarf~
+&PSofter than a baby's skin, this beautiful scarf would be a definite
+asset to anyone's wardrobe.  It is lined with light orange fox fur to add
+warmth on those cold evenings.  
+~
+#858
+rustic bracers~
+a pair of rustic bracers~
+Worn, rustic bracers lie here.~
+~
+9 0 0 0 257 1
+0~ 0~ 0~ 0~
+3 0 0 5 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+rustic worn bracer~
+These bracers look as if they've been worn many years.  Made of a mixture
+of metals, their surface is slowly being worn down.  Although not brand new,
+they offer plenty of protection and are a great piece of armor.  
+~
+#859
+quilted vest~
+a quilted vest~
+A colorful quilted vest has been left here.~
+~
+9 0 0 0 1025 1
+0~ 0~ 0~ 0~
+2 0 0 4 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+quilted colorful vest~
+Made of beautiful colored silk materials, this vest brighten's any young
+girl's wardrobe.  It offers warmth during the chilly evenings.  
+~
+#860
+red jumper~
+a red jumper~
+A pile of red cloth lies in a heap.~
+~
+9 0 0 0 9 1
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pil red cloth heap jumper~
+You see a bright red jumper made of pure cotton.  It is adorned with two
+large pockets in the front, great for storing berries during a walk through
+the bush.  
+~
 #0
 
 
 
-#ROOMS
-#3700
-Entrance to Mud School~
-  This is the entrance to the Merc Mud School.  Go north to go through mud
-school.  If you have been here before and want to go directly to the arena,
-go south.
+#ROOMDATA
+#800
+The End of a Long Journey~
+The mist is thick all about you, making it difficult to see very far.  It
+appears as though a storm is coming this way just off in the distance.  As
+you inhale the fresh cool air, you feel a great sense of accomplishment to
+have finally reached this odd but fascinating world.  This world that many
+call home, &WEye of the Storm II.  
 ~
-2 4|8 0
-D5
-You see the Temple of Midgaard.
-~
-~
-0 0 3001
-D0
-You see the doorway into the Mud School Building.
-~
-~
-0 0 3757
+0 394268 0
+Rd     0
 D2
-You see the one way door into the Arena of Mud School.
 ~
-door~
-1 -1 3744
+~
+0 0 801
 S
-#3701
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  The exits are west and south.  A small plaque is on the
-wall.
+#801
+Path of the Brave~
+Off in the distance, you can hear the voices of people throughout the
+Storm.  This path leads &Wsouth&c towards Bethaven, the central town. 
+During your journey into Bethaven, you shall come across &WMudschool&c,
+where you can learn all about mudding and beginning your life here at Eye of
+the Storm II.  
 ~
-2 4|8 0
+0 394264 0
+Rd     0
 D2
-You see a path into another room.
 ~
 ~
-0 -1 3757
+0 0 802
+S
+#802
+Path of the Brave~
+You are obviously on the right track!  Keep heading &Wsouth&c and watch
+out for any &Rsigns&c along the way.  Whenever there is a sign in Mudschool,
+it will be in &Rred&c.  You should always read these descriptions and signs,
+for they will help you discover more information.  Type &Rlook sign&c now as
+an example.  
+~
+0 394268 0
+Rd     0
+E
+sign~
+&P*** Example Sign ***
+&W
+&WThis is just an example, for those of you
+who are very new here.
+ 
+&PWishing you great adventures,
+Kalin
+~
+D2
+~
+~
+0 0 803
+S
+#803
+Path of the Brave~
+You are getting very close now.  The sounds of people hurrying about seem
+clearer.  Soon you will be nearing &WMudschool&c, a place the folks of
+Bethaven created to teach newcomers their ways.  Remember to keep an eye out
+for helpful signs.  
+~
+0 394264 0
+Rd     0
+D2
+~
+~
+0 0 804
+S
+#804
+Path of the Brave~
+You have finally arrived at the entrance to Mudschool!  To your south
+lies the Main Grounds to Mudschool, where you will spend your first few
+levels learning how to survive here.  Mudschool is surrounded by large brick
+walls to protect you and keep the forest animals from roaming about the
+towns.  
+~
+0 394268 0
+Rd     0
+D2
+~
+~
+0 0 805
+S
+#805
+Entrance to the Main Mudschool Grounds~
+A pebbled walkway leads west, where you can &Wtrain&c and &Wpractice&c
+your skills and attributes.  You will learn more about these as you explore
+and gain levels.  When you are finished exploring Mudschool, travel east to
+decide your fate.  The path to Bethaven leads &Wdown&c, but it is
+&Rstrongly&c advised to travel &Yeast&c when you are finished here, to be
+brought to an Arena for more practice.  
+~
+0 393244 0
+Rd     0
+D1
+~
+~
+0 0 853
+D2
+~
+~
+0 0 811
 D3
-You see a path into another room.
 ~
 ~
-0 -1 3702
-E
-plaque~
-This zone (Mud School) is created by Hatchet for any Merc Mud.
-Copyright 1992, 1993.
-~
-E
-sign~
-Equipment check time!  Type 'EQUIPMENT' to see your current equipment.  Right
-now, you have just a vest, a shield, and a weapon.  As you go through Mud
-School you will acquire a complete set of equipment.
-
-To pick up items on the ground as you see them, type 'GET item'.
-To wear a piece of armor, type 'WEAR item'.
-To hold a light source, type 'HOLD item'.
-To wield a weapon, type 'WIELD weapon'.
-To wear, hold, and wield everything you have, type 'WEAR ALL'.
-To stop using a piece of equipment, type 'REMOVE item'.
-Finally, to see the items in your inventory, type 'INVENTORY'.
-
-When you are ready to continue, go west.
-~
-S
-#3702
-The Center Room~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  Exits lead in ALL directions.
-~
-2 4|8 0
-D0
-You see the room north that will lead you to the next section.
-~
-~
-0 0 3703
-D1
-You see a room.
-~
-~
-0 0 3701
-D2
-You see a room.
-~
-~
-0 0 3705
-D3
-You see a room.
-~
-~
-0 0 3704
+0 0 806
 D5
-You see a room.
 ~
 ~
-0 0 3707
-D4
-You see a room.
-~
-~
-0 0 3708
-E
-sign~
-This is the direction practicing room.  The directions you can go in any
-room are: north, south, east, west, up, or down.  Of course, not all rooms
-have all exits available.
-
-To see the obvious exits in a room, type 'EXITS'.
-
-Sometimes doors are closed, or locked, or secret.  Then you have to notice
-clues in the room description, or try going into that direction and seeing
-if you bump into a door.
-
-Try going into each direction from here.  When you are done, go NORTH.
-~
+0 0 25001
 S
-#3703
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  Exits lead north and south.
+#806
+Pebbled Walkway~
+To your west lies the &WTraining Grounds&c, where you practice skills and
+spells and train your attributes.  Often times newcomers will see
+experienced fighters in the Training Grounds as they reach higher levels and
+gain even more knowledge.  
 ~
-2 4|8 0
-D0
-You see the next station ahead.
-~
-~
-0 -1 3709
-D2
-You see the central room.
-~
-~
-0 0 3702
-E
-sign~
-Since you are here, let us have another lesson.  You can see the statistics on
-yourself by typing 'SCORE'.  Do that right now.  At higher levels, 'SCORE'
-gives you more information.
-~
-S
-#3704
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  The only exit is east.
-~
-2 4|8 0
+0 393244 0
+Rd     0
 D1
-You see the central room.
 ~
 ~
-0 0 3702
-E
-sign~
-Just go east to the central room.
-~
-S
-#3705
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  The only exit is north.
-~
-2 4|8 0
-D0
-You see the central room.
-~
-~
-0 0 3702
-E
-sign~
-Just go north to the central room.
-~
-S
-#3707
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  The only exit is up.
-~
-2 4|8 0
-D4
-You see the central room.
-~
-~
-0 0 3702
-E
-sign~
-Just go up to the central room.
-~
-S
-#3708
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  The only exit is down.
-~
-2 4|8 0
-D5
-You see the central room.
-~
-~
-0 0 3702
-E
-sign~
-Just go down to the central room.
-~
-S
-#3709
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  Exits reach west and down.
-~
-2 4|8 0
-D5
-You see a cage.
-~
-~
-0 0 3710
+0 0 805
 D3
-You see the next station of Mud School.
 ~
 ~
-0 -1 3711
-E
-sign~
-Welcome to combat training.
-
-The first lesson is knowing whom to fight.  Use the command 'CONSIDER' to
-consider killing a monster.  Avoid fighting monsters that will kill you
-easily.
-
-The second lesson is running away.  There is a monster in the room down.
-He is too strong for you to kill, but he won't kill you.  So go 'DOWN' from
-here, then 'CONSIDER' him, then 'KILL' him.  After a while, type 'FLEE' to
-escape from him.
-
-You can also set your character to flee automatically with the 'WIMPY' command.
-Type 'HELP WIMPY' to find out more about 'WIMPY'.
-
-After you flee, you will be back in this room.  When you are ready to go on
-to the next station, go 'WEST'.
-~
+0 0 807
 S
-#3710
-The Blob Cage~
-You are in a smelly cage.  Strangely, the walls are still clean!
-You see a sign here.  The only exit is up.
+#807
+Pebbled Walkway~
+A message board has been posted here for newcomers.  Citizens of Bethaven
+often post messages here that might be of interest to someone new at the
+Storm, or just to help in general.  Type &Rlook board&c to view what is on
+it.  
 ~
-2 8 0
-D4
-You see a safe room up.
-~
-~
-0 0 3709
+0 393244 0
+Rd     0
 E
-sign~
-Remember, don't fight the blob to the finish!  Just type 'KILL BLOB', then
-when you are fighting, type 'FLEE', until you flee and are out of here.
+board~
+&Y---------------==========&P Messages&Y ==========---------------
+ 
+&PJezabel: &WWelcome to Eye of the Storm II! I, Jezabel, am here
+to protect every citizen of Bethaven from evil. Please feel welcome!
+&PDesiray:&W Come and visit me at my Armory! I will set you up with an
+entire outfit for cheap!
+&PZak:&W They're all crazy! I can't make enough magic to keep you all happy!
+&PMerc:&W Fairwell, friends of Bethaven. I must travel far away to help save
+my loved ones' cherished city of Lassarin. Wish me luck!  
+&PDukkoti: &WWelcome one and all. I can be found in Bethaven in my shoppe
+where I take in and sell groceries and imports of the finest quality.
+
+&Y---------------==================================---------------
 ~
-S
-#3711
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.
-~
-2 4|8 0
 D1
-You see the next station of Mud School.
 ~
 ~
-0 0 3709
-D5
-You see the combat hall.
-~
-~
-0 0 3712
-E
-sign~
-Welcome to the next station.  Here, you will actually fight real monsters,
-without fleeing!  Kill every mob, since they hold some equipment you need.
-To start, go down.
-~
-S
-#3712
-The Cage Room~
-You are in the cage room.  All around are 4 cages.  Light fluoresces off the
-ceiling in soft white tones.  Of course, there is a big sign on the wall.
-Exits lead into the cardinal directions plus down.
-~
-2 4|8 0
-D0
-You see the aggressive monster inside!
-~
-~
-0 -1 3713
-D1
-You see the unmodified monster inside!
-~
-~
-0 -1 3716
-D2
-You see the wimpy monster inside!
-~
-~
-0 -1 3715
+0 0 806
 D3
-You see the aggressive wimpy monster inside!
 ~
 ~
-0 -1 3714
-D5
-You see the next station below.
+0 0 808
+S
+#808
+Training Grounds of Mudschool~
+Surrounded by tall brick walls, the area here is well protected from
+stormy weather and rabid animals roaming about.  Directly north is where you
+must &Wtrain&c with Master Jyle.  To the south is where you &Wpractice&c at
+level three.  Another &Rsign&c is wedged here between two large rocks.  
 ~
-~
-0 -1 3717
+0 393244 0
+Rd     0
 E
 sign~
-Welcome to the cage room.  The adepts of mud school have captured some
-monsters for you to kill.  In the four cages are four monsters of various
-types.  Kill them all!
-
-After you kill each monster, get all of the equipment from their corpses
-with the command 'GET ALL CORPSE'.  You can then use the command 'WEAR ALL'
-to wear your newly won equipment.
-
-When you are done with the corpse, 'SACRIFICE CORPSE' to give it to your God.
-God will reward you for this.
-
-Between combat, you may need to rest or sleep to regenerate hit points.
-You can 'REST' to regenerate hit points, or you can 'SLEEP'.  'SLEEP' will
-refresh you faster than 'REST', but you will be less aware of your
-surroundings.
+&WYou must travel &Ynorth&W at levels 1 and 2 to TRAIN.  Make certain to
+read the signs posted.  You should train first before you venture further
+into Mudschool.  Once you've reached level 3, you can travel &Ysouth&W to
+PRACTICE with your Master.  Don't forget to read the signs first!  
 ~
-S
-#3713
-A Cage~
-You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
-in the upkeep here!  There is a sign on the wall.  The only exit is south.
-~
-2 8 0
-D2
-You see the Cage Room.
-~
-~
-0 -1 3712
-E
-sign~
-There is an aggressive monster in this room.  Kill him and get out of here
-fast!  Remember to loot and sacrifice the corpse.
-~
-S
-#3714
-A Cage~
-You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
-in the upkeep here!  There is a sign on the wall.  The only exit is east.
-~
-2 8 0
-D1
-You see the Cage Room.
-~
-~
-0 -1 3712
-E
-sign~
-There is a wimpy, aggressive monster in this room.  Kill him and get out of
-here fast!  Remember to loot and sacrifice the corpse.
-~
-S
-#3715
-A Cage~
-You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
-in the upkeep here!  There is a sign on the wall.  The only exit is north.
-~
-2 8 0
 D0
-You see the Cage Room.
 ~
 ~
-0 -1 3712
+0 0 809
+D1
+~
+~
+0 0 807
+D2
+~
+~
+0 0 810
+S
+#809
+Master Jyle's Training Area~
+The atmosphere here is calm and soothing.  This is where venturers of the
+Storm come to train their attributes.  Master Jyle will guide you as you
+level, and help train you to survive in the most trying of times.  He has
+taken the time to prepare an informative &Rsign&c for newcomers.  
+~
+0 394268 0
+Rd     0
 E
 sign~
-There is a wimpy monster in this room.  Kill him and get out of here fast!
-Remember to loot and sacrifice the corpse.
+&YIMPORTANT INFORMATION FOR NEWBIES
+ 
+&WEvery character has certain attributes that define how
+strong and intelligent you are, as well as other things.
+In order to increase your attributes, you must TRAIN them.
+By typing &Rtrain&W while at a trainer, you can see what
+attributes you can still improve. When you created your
+character, you were given several practice sessions. 
+ 
+Practice sessions are used for both training and practicing.
+To view how many practice sessions you have, type &Rscore&W. By
+typing &Rtrain <attribute>&W you can train each attribute. To get
+more information about training, type &Rhelp train&W.
 ~
+D2
+~
+~
+0 0 808
 S
-#3716
-A Cage~
-You are in a cage.  Blood and gore are everywhere.  The keepers must be lax
-in the upkeep here!  There is a sign on the wall.  The only exit is west.
+#810
+Master Staer's Practice Area~
+The room is filled with many kinds of equipment to aid fellow fighters
+and spellcasters.  This is where you will spend much time practicing skills
+and spells you acquire.  Master Staer is very wise, and will be your mentor
+throughout Mudschool.  She has posted a large &Rsign&c on the far wall.  
 ~
-2 8 0
+0 394268 0
+Rd     0
+E
+sign~
+&YIMPORTANT INFORMATION FOR NEWBIES
+ 
+&WWhen you created your character, you chose what
+class and race you wished to be. Along with this class
+and race you get certain skills and spells. In order to
+use these skills, you must PRACTICE them. To see a list
+of skills and spells your character will get, type &Rslist&W.
+ 
+You can only practice the skills and spells you receive at
+each level. Do this by typing &Rpractice <skill or spell name>&W.
+Once you have practiced it enough to use in the real world,
+you will have to use the skill or spell in order to become 
+better at it.
+ 
+&WIf you wish to see the skills and spells available to you at
+your current level, simply type &Rpractice&W. The percentage
+shown is how well you've become at each skill or spell. Remember,
+&Wyou can only start practicing at level 3. For more detailed
+information about practicing, type &Rhelp practice&W.
+~
+D0
+~
+~
+0 0 808
+S
+#811
+Main Grounds of Mudschool~
+The path leads south&c from here, deeper into Mudschool.  Pebbles and
+dried leaves cover the worn path, but it is still easy to follow.  Tall red
+brick walls line either side of you, offering protection from the evil that
+you will soon discover.  
+~
+0 393244 0
+Rd     0
+D0
+~
+~
+0 0 805
+D2
+~
+~
+0 0 812
+S
+>enter_prog 100~
+0
+if level($n) == 1
+    if rand(35)
+        mpoload 800
+        mpat 812 drop apple
+    endif
+endif
+~
+|
+#812
+Main Grounds of Mudschool~
+A large &capple&R tree&c towers over part of the trail, dangling apples
+almost ready to fall off.  Perhaps you are lucky enough to find one lying on
+the ground.  The path continues south&c from here, leading you to a special
+place in Mudschool where you can learn how to fight mobs.  
+~
+0 393244 0
+Rd     0
+E
+tree~
+&R          @ @
+&G          v v
+&R       @ @   @ @
+&G       v v   v v
+&R    @ @   @ @   @ @
+&G    vvv   vvv   vvv
+&O          |-/|
+&O          |-/|
+&O         /|-/|\
+~
+D0
+~
+~
+0 0 811
+D2
+~
+~
+0 0 814
+S
+>enter_prog 100~
+0
+if ispc($n)
+   if level($n) < 5
+      mpoload 800
+      mpat 814 drop apple
+   endif
+endif
+~
+|
+#813
+Mudschool Shop~
+The &Rshelves&c are filled with trinkets, food, and basic survival items.
+The citizens of Bethaven donate food and items to the shop, always making
+sure there is plenty to go around.  A crooked, wooden &Rsign&c hangs loosely
+against the wall.  
+~
+0 394268 0
+Rd     0
+E
+sign~
+&WIf you want to see what items I sell, type &Ylist&W and it will show
+you items and cost.  To buy an item here, type &Ybuy <item>&W and if you
+have enough money, I will gladly sell it to you.  For more detailed help
+about shops, type &Yhelp buy&W.  &WThank you, &WKalin.  
+~
+E
+shelf shelve shelves~
+&WThe large wooden shelves are crammed with food and bags!  You see all
+kinds of dried fruits and breads, making your mouth water with anticipation.
+~
+D1
+~
+~
+0 0 814
+S
+#814
+Main Grounds of Mudschool~
+You have almost arrived at the &WFighting Grounds&c.  Exits branch off on
+the west and east sides, leading to a small shop and the Mudschool Bank. 
+Once you've been through the Fighting Grounds, you might have enough coins
+to purchase some necessities, such as a bag and light.  Once you start
+accumulating more money, you can deposit it east.  
+~
+0 393244 0
+Rd     0
+D0
+~
+~
+0 0 812
+D1
+~
+~
+0 0 833
+D2
+~
+~
+0 0 815
 D3
-You see the Cage Room.
 ~
 ~
-0 -1 3712
+0 0 813
+S
+#815
+Main Grounds of Mudschool~
+&WSouth&c of here begins the Mudschool's Fighting Grounds.  That area is
+well fenced in to keep the creatures out of the main grounds.  A helpful
+&Rsign&c has been stuck on the brick wall, explaining some useful commands
+and strategies for newcomers.  
+~
+0 393244 0
+Rd     0
 E
 sign~
-There is a monster in this room.  Kill him and get out of here fast!
-Remember to loot and sacrifice the corpse.
+&YINFORMATION FOR NEWCOMERS
+ 
+&Y**&W  Type &Rhelp&W and press enter to view help topics.
+&W    Type &Rhelp <topic>&W to get help on a certain word.
+
+&Y**&W  Type &Rconfig&W to view automatic settings you can
+&W    adjust. Type &Rhelp config&W for more information.
+ 
+&Y**&W  Type &Rchannels&W to view the different channels
+&W    available to you at your level. You can also type
+&W    &Rhelp channels&W for details about the command.
+ 
+&Y**&W  Always remember to &Rlook <item>&W or &Rlook <mob name>&W
+&W    as it can often give you more information.
 ~
-S
-#3717
-A Room in Mud School~
-You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  Find your own exit here.
+E
+gate~
+&PA large gate blocks your way to the Fighting Grounds.  You must type
+&Ropen south&P or &Ropen gate&P to open the gate south of you.  
 ~
-2 4|8 0
-D4
-You see the Cage room.
+D0
 ~
 ~
-0 -1 3712
+0 0 814
 D2
-You see the Shop.
-~
-~
-0 0 3718
-D1
-You see the next station of Mud School.
-~
-door~
-1 -1 3719
-E
-sign~
-By now, you must be hungry and thirsty.  Time to buy groceries!
-To the south is a store.  Inside the store, you can use these commands:
-
-    BUY    Buy an item
-    LIST   List what is for sale
-
-After buying some food and drink, you can 'EAT' and 'DRINK' it.
-
-After that, find the next exit yourself.
-~
-S
-#3718
-The Store in Mud School~
-You are in a cramped room.  Stacked neatly on shelves everywhere are items
-and packages.  Light fluoresces off the ceiling in soft white tones.  Of
-course, there is a sign on the wall.  The only exit is north.
-~
-2 8 0
-D0
-You see the only exit out of here.
-~
-~
-0 0 3717
-E
-sign~
-The sign reads:
-
-   Buy   - Buy something from the storekeeper.
-   List  - The storekeeper will tell you what's for sale.
-   Value - The storekeeper will tell you how much he will give to you for
-           that item.
-   Sell  - Sell that item to the storekeeper.
-~
-S
-#3719
-A Room in Mud School~
-  You are in a square white room.  The walls are all blank, with no windows.
-Light fluoresces off the ceiling in soft white tones.  Of course, there is a
-sign on the wall.  The exits are north and west, with a door to the east.
-~
-2 4|8 0
-D3
-You see the room you just came from.
-~
-door~
-1 -1 3717
-D0
-You see a darkened room inside.
-~
-~
-0 0 3720
-D1
-You see the next station of Mud School.
-~
-door~
-2 3714 3721
-E
-sign~
-North of you is a dark room.  I hope you still have the lantern!  If not,
-you have to back to the store and buy one.
-
-In the room is a monster with a key that you need.  After killing the
-monster and getting the key, come back here, UNLOCK EAST, OPEN EAST,
-and continue east.
-~
-S
-#3720
-The Darkened Room~
-  This room was purposefully darkened so that you would need to hold on to a
-light source to go through.  The walls are, of course, blank, and white.
-The only exit is south.
-~
-2 1|8 0
-D2
-You see the room that you have come from.
-~
-~
-0 0 3719
-S
-#3721
-The End of Mud School!~
-  This is a very bright room, with a marble pedestal in the center.  Behind
-the pedestal stands a person cloaked in Silver.  Tapestries flow from every
-wall, and you feel very happy to be here right now.  There is a big sign here.
-The only exit is on the other side of the gate north of you.
-~
-2 8 0
-D0
-You see the Arena ahead.
+&PDirectly south is an amazing view of a large fenced-in forest, home to
+many animals and creatures.  
 ~
 gate~
-1 -1 3722
+3 0 816
+S
+>enter_prog 100~
+0
+if ispc($n)
+   mpat 816 close gate
+endif
+~
+|
+#816
+Fighting Grounds of Mudschool~
+You have finally reached the &WFighting Grounds&c of Mudschool.  Beware,
+before you venture forth, it would be very wise to read every sign carefully
+for hints and instructions.  A large &Rsign&c is bolted into the soft soil
+by the edge of the trail.  
+~
+0 394268 0
+Rd     0
 E
 sign~
-You have graduated from Mud School!  Get your diploma.  Go 'NORTH' from here
-to visit our arena.  There are plenty of low-level monsters, but DON'T attack
-other players.
+&WThroughout your journey in the Fighting Grounds, you will encounter
+many creatures and animals to kill. These are called &Rmobs&W.
+ 
+&R1.&W  The most &Rimportant&W command to remember before you attempt
+&W    to kill a mob is to type &Rcon <mob name>&W.
 
-If you want to go directly back to the temple at any time, type 'RECALL'.
+&Y**&W  The &Rcon&W command is short form for &Rconsider&W, which informs
+&W    you how well you will do against the mob, if you can kill it.
+ 
+&R2.&W  Secondly, always keep an eye on your &Yhitpoints&W. These are
+&W    shown in your prompt and should look similar to &w20/20&C hp&W.
 
-After you raise to level two, you can 'SAVE' your character.  Your character
-will be automatically SAVE'd every few minutes.
+&Y**&W  Your prompt is the text shown to the left of whatever you type.
+&Y**&W  If your hitpoints are getting very low while fighting a mob,
+&W    you can type &Rflee&W to attempt to flee away from the creature.
+ 
+&R3.&W  There are Healers situated throughout the Fighting Grounds.
+&W    When you are hurt and wish to be healed, these Healers can help you.
+&W    You can also type &Rrest&W or &Rsleep&W to heal faster.
 
-If you need more help during the game, type 'HELP'.  If you see something
-wrong or have comments, use 'BUG', 'IDEA', or 'TYPO' to report them.
-
-May your visit here be ... mercenary.
+&Y**&W  If you choose to sleep, let it be known that you are less
+&W    conscious of your surroundings.
 ~
-S
-#3722
-South Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
+E
+gate~
+&PIf the gate is closed, just type &Ropen gate&P &Por &Ropen north&P to
+be able to travel north.  
 ~
-2 8 0
-D3
-~
-~
-0 0 3723
 D0
+&PBeyond this gate lies the Main Grounds of Mudschool, where you must
+travel to practice, train, and visit the shops.  
 ~
-~
-0 0 3729
+gate~
+3 0 815
 D1
 ~
 ~
-0 0 3725
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3723
-South Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D3
-~
-~
-0 0 3724
-D0
-~
-~
-0 0 3728
-D1
-~
-~
-0 0 3722
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3724
-South West Corner of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3727
-D1
-~
-~
-0 0 3723
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3725
-South Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D3
-~
-~
-0 0 3722
-D0
-~
-~
-0 0 3730
-D1
-~
-~
-0 0 3726
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3726
-South East Corner of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3731
-D3
-~
-~
-0 0 3725
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3727
-West Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3732
-D1
-~
-~
-0 0 3728
+0 0 817
 D2
 ~
 ~
-0 0 3724
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3728
-Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3733
-D1
-~
-~
-0 0 3729
-D2
-~
-~
-0 0 3723
+0 0 829
 D3
 ~
 ~
-0 0 3727
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3729
-Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3734
-D1
-~
-~
-0 0 3730
-D2
-~
-~
-0 0 3722
-D3
-~
-~
-0 0 3728
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3730
-Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3735
-D1
-~
-~
-0 0 3731
-D2
-~
-~
-0 0 3725
-D3
-~
-~
-0 0 3729
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3731
-East Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3736
-D2
-~
-~
-0 0 3726
-D3
-~
-~
-0 0 3730
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3732
-West Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3737
-D1
-~
-~
-0 0 3733
-D2
-~
-~
-0 0 3727
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3733
-Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3738
-D1
-~
-~
-0 0 3734
-D2
-~
-~
-0 0 3728
-D3
-~
-~
-0 0 3732
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3734
-Center of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.  There is a BIG SIGN here.
-~
-2 8 0
-D0
-~
-~
-0 0 3739
-D1
-~
-~
-0 0 3735
-D2
-~
-~
-0 0 3729
-D3
-~
-~
-0 0 3733
-D4
-You see the EXIT.
-~
-~
-0 0 3760
+0 0 839
 D5
-You see a dark murky dungeon below.
 ~
-grate~
-1 -1 3748
-E
-sign big~
-Those with high bravery or low senses of cautiousness might wish to go below
-to the Dungeon.  However, know that there are aggressive monsters down there,
-and there is no quick escape back out of here when you are in the dungeon.
 ~
+0 0 834
 S
-#3735
-Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3740
-D1
-~
-~
-0 0 3736
-D2
-~
-~
-0 0 3730
-D3
-~
-~
-0 0 3734
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3736
-East Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3741
-D2
-~
-~
-0 0 3731
-D3
-~
-~
-0 0 3735
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3737
-West Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3742
-D1
-~
-~
-0 0 3738
-D2
-~
-~
-0 0 3732
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3738
-Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3743
-D1
-~
-~
-0 0 3739
-D2
-~
-~
-0 0 3733
-D3
-~
-~
-0 0 3737
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3739
-Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3744
-D1
-~
-~
-0 0 3740
-D2
-~
-~
-0 0 3734
-D3
-~
-~
-0 0 3738
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3740
-Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3745
-D1
-~
-~
-0 0 3741
-D2
-~
-~
-0 0 3735
-D3
-~
-~
-0 0 3739
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3741
-East Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D0
-~
-~
-0 0 3746
-D2
-~
-~
-0 0 3736
-D3
-~
-~
-0 0 3740
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3742
-North West Corner of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D1
-~
-~
-0 0 3743
-D2
-~
-~
-0 0 3737
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3743
-North Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  You can barely see the ceiling.  You feel as if you are being watched
-by some divine being.
-~
-2 8 0
-D1
-~
-~
-0 0 3744
-D2
-~
-~
-0 0 3738
-D3
-~
-~
-0 0 3742
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3744
-North Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D1
-~
-~
-0 0 3745
-D2
-~
-~
-0 0 3739
-D3
-~
-~
-0 0 3743
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3745
-North Wall of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D1
-~
-~
-0 0 3746
-D2
-~
-~
-0 0 3740
-D3
-~
-~
-0 0 3744
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3746
-North East Corner of Arena~
-You are in the Arena.  Remember, if you wish to get out of this Arena, just
-go up.  Ceilings can barely be seen in this huge Arena.  You feel as if you are
-being watched by some divine being.
-~
-2 8 0
-D2
-~
-~
-0 0 3741
-D3
-~
-~
-0 0 3745
-D4
-You see the EXIT.
-~
-~
-0 0 3760
-S
-#3748
-The Center of the Dungeon~
-You are in the center of a large room.  A faint light from above shows that
-the floors are all covered with slime.  A feeling of dread comes over you as
-you notice that this is NOT a great place to go.  Exits go in all directions.
-Of special note is the one that brings you back up!!!
-~
-2 8 0
-D4
-You see safety!
-~
-grate~
-1 -1 3734
-D0
-You see the north wall.
-~
-~
-0 0 3750
-D1
-You see the east wall.
-~
-~
-0 0 3753
-D2
-You see the south wall.
-~
-~
-0 0 3755
-D3
-You see the west wall.
-~
-~
-0 0 3752
-S
-#3749
-The North West Corner of the Dungeon~
-You are against a wall in the dungeon.  It is quite dark here.  The lack of
-any windows in the area explains the smell around you.
-~
-2 9 0
-D1
-You see the north wall.
-~
-~
-0 0 3750
-D2
-You see the south wall.
-~
-~
-0 0 3752
-S
-#3750
-The North Wall of the Dungeon~
-You are against a wall in the dungeon.  It is quite dark here.  The lack of
-any windows in the area explains the smell around you.
-~
-2 9 0
-D1
-You see the north east corner.
-~
-~
-0 0 3751
-D2
-You see the center of the dungeon.
-~
-~
-0 0 3748
-D3
-You see the north west corner.
-~
-~
-0 0 3749
-S
-#3751
-The North East Corner of the Dungeon~
-You are against a wall in the dungeon.  It is quite dark here.  The lack of
-any windows in the area explains the smell around you.
-~
-2 1|8 0
-D2
-You see the east wall.
-~
-~
-0 0 3753
-D3
-You see the north wall.
-~
-~
-0 0 3750
-S
-#3752
-The West Wall of the Dungeon~
-You are against a wall in the dungeon.  It is quite dark here.  The lack of
-any windows in the area explains the smell around you.
-~
-2 1|8 0
-D0
-You see the north west corner.
-~
-~
-0 0 3749
-D1
-You see the center of the dungeon.
-~
-~
-0 0 3748
-D2
-You see the south west corner.
-~
-~
-0 0 3754
-S
-#3753
-The East Wall of the Dungeon~
-You are against a wall in the dungeon.  It is quite dark here.  The lack of
-any windows in the area explains the smell around you.
-~
-2 1|8 0
-D0
-You see the north east corner.
-~
-~
-0 0 3751
-D2
-You see the south east corner.
-~
-~
-0 0 3756
-D3
-You see the center of the dungeon.
-~
-~
-0 0 3748
-S
-#3754
-The South West Corner of the Dungeon~
-You are against a wall in the dungeon.  It is quite dark here.  The lack of
-any windows in the area explains the smell around you.
-~
-2 1|8 0
-D0
-You see the north wall.
-~
-~
-0 0 3752
-D1
-You see the south wall.
-~
-~
-0 0 3755
-S
-#3755
-The South Wall of the Dungeon~
-You are against a wall in the dungeon.  It is quite dark here.  The lack of
-any windows in the area explains the smell around you.
-~
-2 1|8 0
-D0
-You see the center of the dungeon.
-~
-~
-0 0 3748
-D1
-You see the south east corner.
-~
-~
-0 0 3756
-D3
-You see the south west corner.
-~
-~
-0 0 3754
-S
-#3756
-The South East Corner of the Dungeon~
-You are against a wall in the dungeon.  It is quite dark here.  The lack of
-any windows in the area explains the smell around you.
-~
-2 1|8 0
-D0
-You see the east wall.
-~
-~
-0 0 3753
-D3
-You see the south wall.
-~
-~
-0 0 3755
-S
-#3757
-A Room in Mud School~
-You are in a room in Mud School.  Pastels cover these walls, due to Hatchet's
-mood for the day.  To the west is Furey's Training Room, and to the east is
-Hatchet's Guild Room.  North of you is the next Station of Mud School.
-There is a sign on the wall (type 'LOOK SIGN' to read it).
-~
-2 0 1
-D0
-You see the next station of Mud School.
-~
-~
-0 0 3701
-D1
-You see Hatchet's Guild Room.  Go there to practice your skills.
-~
-~
-0 0 3759
-D2
-You see the entrance to Mud School.
-~
-~
-0 0 3700
-D3
-You see Furey's Training Room.  Go there to train your attributes.
-~
-~
-0 0 3758
+>enter_prog 100~
+0
+mpat 815 close gate
+~
+|
+#817
+Eastern Grounds of Mudschool~
+Large trees and bushes surround the Fighting Grounds, shading out the
+burning sun.  This area is well taken care of, full of lively creatures
+roaming about for you to challenge.  Remember to &Rlook&c at the mobs and
+items for helpful information.  
+~
+0 393240 0
+Rd     0
 E
 sign~
-To find out your attributes, type 'score'.  You can improve your attributes
-in Furey's Training Room to the west.  You can practice your skills and spells
-in Hatchet's Guild Room to the east.  You can continue through mud school by
-going north.
-
-If you are a new character, you should go 'WEST' from here, train your
-abilities, and then come back here and go 'NORTH'.
 ~
-S
-#3758
-Furey's Training Room~
-You are in Furey's Training Room.  Around you are all sorts of physical
-and mental training tools.  The whole room is filled with magic, holiness, 
-and sweat.  There is a sign on the wall.
-~
-2 0 1
 D1
-You see the room you came from, and the room you should go to.
 ~
 ~
-0 0 3757
-E
-sign~
-Welcome to Furey's Training Room.  Here you can train your attributes.  To 
-train an attribute, you need enough practices.  To find out how many practice
-sessions you have, type 'train' while you are in this room.  To train for a 
-specific attribute, type 'train <attr>' where attr is the first 3 letters of
-the attribute you want increased.  Type 'help train' for more information.
-~
-S
-#3759
-Hatchet's Guild Room~
-You are in a room filled with weapons, books, and many combat dummies, some
-cut and stabbed many times, others burnt to a crisp.  The room is filled with
-sweat and an aura of magic.  There is a sign on the wall.
-~
-2 0 1
+0 0 818
 D3
-You see the room you came from and the room you should go to.
 ~
 ~
-0 0 3757
+0 0 816
+S
+#818
+Eastern Grounds of Mudschool~
+Soon you might discover that grouping with another player would help both
+of you achieve levels quicker.  To learn more about grouping, type &Whelp
+group&c.  Although some are simply brave enough to face the wilderness
+alone, having someone by your side usually has its advantages.  Beware of
+&Wagressive&c creatures throughout the Fighting Grounds.  These animals will
+attack you as soon as you enter the room.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 819
+D3
+~
+~
+0 0 817
+S
+#819
+Eastern Grounds of Mudschool~
+Eventually, you might find equipment from animals and creatures that you
+already have.  Instead of just leaving it on the ground if you don't want
+it, you can either &Wdonate&c it, or &Wsacrifice&c it.  By typing &Whelp
+donate&c or &Whelp sacrifice&c, you can get a more detailed explanation.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 820
+D3
+~
+~
+0 0 818
+S
+#820
+Eastern Grounds of Mudschool~
+South of here you will find Jakkor, a Healer.  If you listen closely, you
+might be able to hear him whistling a magical tune with the birds, or
+perhaps he's busy healing another player.  By typing &Wwhere&c, you can see
+who else is exploring the same area you are in, and what room they are in.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 832
+D2
+~
+~
+0 0 821
+D3
+~
+~
+0 0 819
+S
+#821
+Sanctuary of Peace~
+You have arrived at a small central clearing, where Jakkor the Healer
+awaits your arrival.  Tiny feathered creatures surround him, singing their
+praise.  Tree stumps sit on either side of the healer, where you can rest
+your weary bones.  Tall trees line the clearing, making it an ideal shelter
+from the animals roaming about.  
+~
+0 394268 0
+Rd     0
+D0
+~
+~
+0 0 820
+D2
+~
+~
+0 0 822
+S
+#822
+Southeastern Grounds of Mudschool~
+The scent of pine needles and branches fill the air.  The path you travel
+on is well taken care of, with plenty of room on either side.  This seems
+like the perfect place to take a nap, especially if you've been fighting all
+day.  Remember you can &Wrest&c or &Wsleep&c to gain back your hit points.  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 821
+D1
+~
+~
+0 0 825
+D3
+~
+~
+0 0 823
+S
+>sleep_prog 100~
+0
+mpechoat $n You slowly drift to sleep, extremely tired from your battles.
+if rand(100)
+   mpechoat $n Tossing and turning, you suddenly stand up in your sleep and begin sleepwalking!
+   mptrans $n 816
+   mpat $n mpechoat $n &YYou should be careful about walking with your eyes closed!
+endif
+~
+|
+#823
+A Fallen Tree~
+A huge tree is blocking your way west.  There is only one solution to
+bypass it.  You can probably figure out how if you &Rlook&c around.  It is
+way too enormous to crawl over, and the forest around you is too dense to
+walk around the tree.  A caretaker should of removed this old tree by now,
+if they all weren't so busy keeping Bethaven safe.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 822
+S
+>rest_prog 70~
+0
+if level($n) < 4
+mpechoat $n You can do many things while resting, unlike sleeping.
+mpechoat $n You will gain your hitpoints faster while sleeping, but will be less aware.
+endif
+~
+|
+#824
+A Fallen Tree~
+A huge tree is blocking your way east.  You will have to figure out how
+to get to the other side.  Maybe you should examine the tree more closely. 
+Mudschool caretakers should be around eventually to clean up this mess,
+although they have been extremely busy as of late.  It seems as though some
+dirt near the opening in the tree has been disturbed.  
+~
+0 393240 0
+Rd     0
+D3
+~
+~
+0 0 827
+S
+#825
+Southeastern Grounds of Mudschool~
+An unusually large spruce &Rtree&c stands out from all the others
+surrounding you.  It's probably the home of a tiny burrowing animal.  It has
+been said throughout the Storm that Mudschool has a magical aura throughout
+it.  Once you leave here and continue levelling, you will learn about
+&Widentifying&c objects to reveal important information about them.  Maybe
+there is something magical about this tree, it certainly is strange looking.
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 826
+D3
+~
+~
+0 0 822
+S
+>enter_prog 100~
+0
+if ispc($n)
+   if rand(75)
+      mpecho &wA chipmunk scurries up the tree and climbs inside.
+   endif
+endif
+~
+|
+#826
+Southeastern Grounds of Mudschool~
+A small trail eastwards will lead you back towards the Eastern Grounds of
+Mudschool.  If you travel westwards, you will be sure to find more mobs
+scattered throughout.  Once you have killed enough creatures, you should
+have enough coins to &cbuy&c an item from Kalin at the Mudschool Shop, such
+as a canteen to store fresh water.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 830
+D3
+~
+~
+0 0 825
+S
+#827
+A Narrow Footpath~
+Edging alongside the Southeastern Grounds is a tiny footpath.  Flowers of
+all kinds have been carefully planted and tended to here.  This area of
+Mudschool attracts many folks from the nearby towns because of its mystical
+aura and simplicity.  Soothing feminine whispers float by you, being carried
+away by the light breeze.  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 828
+D1
+~
+~
+0 0 824
+S
+#828
+A Narrow Footpath~
+A narrow footpath leads north to a comfortable resting place.  Animals
+and creatures travel freely all throughout the Fighting Grounds, oblivious
+to the many adventurers preying upon them.  A kind-hearted soul seems to of
+planted some &Rlilies&c bordering the path.  
+~
+0 393240 0
+Rd     0
+E
+lily lilie lilies~
+&pDark violet lilies line the edges of this beautiful path.  They emit an
+aroma so strong and heady one would think it magical.  
+~
+D0
+~
+~
+0 0 829
+D2
+~
+~
+0 0 827
+S
+#829
+A Small Resting Site~
+An old wooden bench occupies this clearing.  You can often find Shyan
+relaxing here writing about her brave adventures.  A tiny streamlet runs
+alongside, just enough to quench your thirst between battles.  Shyan is one
+of the wisest Mentors at &WEye of the Storm II&c.  Ask her what it is you
+seek, and she will do her best to inform you well.  
+~
+0 394264 0
+Rd     0
+D0
+~
+~
+0 0 816
+D2
+~
+~
+0 0 828
+S
+#830
+Trampled Leaves and Branches~
+Many bushes line the edge of the path you are travelling.  Sometimes you
+can hear little animals scurrying within them, attempting to hide from those
+of your kind.  Maybe you should take a look &Rinside&c the bush, you might
+find something worth your interest.  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 831
+D3
+~
+~
+0 0 826
+S
+#831
+Trampled Leaves and Branches~
+At &YEye of the Storm II&c, we like to promote &Wroleplaying&c with our
+characters.  We have a channel called &Ychat&c, which is used for
+roleplaying.  Type &Wchat <text>&c to talk on it.  If you want to learn more
+about your class or race, type &Whelp <class or race>&c.  Be creative and
+get involved!  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 832
+D2
+~
+~
+0 0 830
+S
+#832
+Trampled Leaves and Branches~
+As you travel south you will encounter more interesting creatures.  As
+you conquer more and more mobs, you will soon advance to your next level. 
+It is a good idea to head back to the training and practice rooms each time
+you level.  Although you cannot practice any skills or spells until level
+three, you can increase statistics such as wisdom and constitution.  
+~
+0 393240 0
+Rd     0
+D2
+~
+~
+0 0 831
+D3
+~
+~
+0 0 820
+S
+#833
+Mudschool Bank~
+This is a rather small building branching off the main grounds.  This
+isn't a typical bank with many tellers lined up to serve you, as it is
+simply run by a local citizen donating his time to the Mudschool.  Any money
+you deposit here can still be accessed from any bank in many of the towns. 
+Markos has posted a large &Rsign&c explaining his services.  
+~
+0 17171468 0
+Rd     0
 E
 sign~
-Welcome to Hatchet's Guild Room.  Here you will learn your skills and spells.
-To find out what skills and spells you can practice and how many practice
-sessions you have, type 'practice'.  To practice the specific skill, type
-'practice <skill>', where 'skill' is the skill or spell you wish to practice.
-Practicing increases the amount you know of that skill or spell, up to a
-certain maximum.  When you have practiced all you wish to practice, go west.
+&WThe following commands can be used at ANY bank:
+ 
+&YDeposit:&W    To deposit coins, type &Rdeposit <gold/silver/copper> <amount>&W.
+&W            Example: deposit gold 100
+&YWithdraw:&W   To withdraw money, type &Rwithdraw <gold/silver/copper> <amount>&W.
+&W            Example: withdraw silver 50
+&YAccount:&W    To view how much money you have in your account, type &Raccount&W.
+&YStore:&W      You can store items at a bank for safe keeping. This costs XX
+&W            amount of TYPE coins. To view what items you have in storage,
+&W            type &Rstore&W. To store an item, type &Rstore <item>&W. Then, to
+&W            retrieve an item from your storage box, type &Rretrieve <item>&W.
+ 
+&WTo find out how much money you are carrying, you can either type &Rscore&W or
+&Rworth&W which both show you the amount of coins you have.
 ~
+D3
+~
+~
+0 0 814
 S
-#3760
-A Safe Room~
-You are in a safe room, away from all the mean rabbits and snails of the Arena.
-You can rest here, and go up to go back to the Temple of Midgaard.
+#834
+Beneath the Fighting Grounds~
+This addition to the Fighting Grounds was created to help guide newcomers
+in their quest of survival.  Underground, you will learn how to fight a mob,
+make some money, find some equipment for yourself, and gain experience
+points.  A huge &Rboard&c with detailed instructions has been staked into
+the soil.  When you feel confident enough to fight in the main Fighting
+Grounds, simply go &Wup&c from here and start exploring.  
 ~
-2 4|8 0
+0 393240 0
+Rd     0
+E
+board~
+&PATTENTION NEWCOMERS
+&WYou must travel west until you can no more, then return here
+when you have killed all the mobs. You should be very careful  
+and remember to always &Ylook&W at mobs and items for more information.
+Once you have learned all you can underground, travel upwards to  
+the main Fighting Grounds.
+~
+D3
+~
+~
+0 0 835
 D4
-You see the Temple of Midgaard.
 ~
 ~
-0 0 3001
+0 0 816
+S
+#835
+Beneath the Fighting Grounds~
+The clay walls on either side of you are damp and cold.  Torches attached
+at various intervals throughout this tunnel provide sufficient light for
+your purposes.  Your goal here is to kill this spider to gain &Wexperience
+points.  &cType &Whelp exp&c for details on gaining experience.  Type &Rlook
+spider&c if you are unsure of your next move.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 834
+D3
+~
+~
+0 0 836
+S
+#836
+Deeper into the Tunnel~
+Type &Wgroup&c or &Wscore&c to see how many experience points and hit
+points you have.  Experience points help you reach your next level, by
+killing mobs.  Hit points are like your lifeline, with zero hit points
+&W(hp)&c you would die.  Each time a mob hits you, your hit points lower. 
+By resting or sleeping you can regain lost hit points.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 835
+D3
+~
+~
+0 0 837
+S
+#837
+Near the End of the Tunnel~
+The tunnel is quite a bit narrower near the end.  The ground is damp and
+cold.  Perhaps something to keep your feet warm would help.  Don't forget to
+&Rcon&c any mob before attempting to kill it, &Rlook&c at items and mobs for
+extra information, and &Rexamine&c a corpse after you've killed it for
+equipment and coins.  There is a &Rsign&c posted on the door to the west.  
+~
+0 393240 0
+Rd     0
+E
+sign~
+&RBEWARE!  &WTo your west resides an awful cruel ogre!  Note that you are
+here forewarned of this evil animal.  Before venturing westwards, be sure
+your hit points are full.  Type &Pgroup&W to see if you are at full hit
+points.  If you aren't, you can either &Psleep&W or &Prest&W to regain them.
+There is a door to your west that you may have to &Popen&W to get to the
+creature.  Good luck adventurer!  
+~
+D1
+~
+~
+0 0 836
+D3
+~
+~
+83 0 838
+S
+#838
+The End of the Tunnel~
+You have finally reached the end of the tunnel.  This is the home of a
+savage deformed ogre.  He is usually waiting here for his next victim,
+gnawing away at the wooden door.  Once you conquer this creature, head back
+east to find your way to the main Fighting Grounds above.  Be careful, he is
+usually very hungry!  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+83 0 837
+S
+#839
+Edge of a River Bank~
+An odd mixture of trees and plants breathe life into the Fighting
+Grounds.  In the lands of the Storm, there is always an abundance of
+wildlife and plant life.  If you strain your eyes towards the west, you
+might be able to make out some sort of structure up in a tree.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 816
+D2
+~
+~
+0 0 852
+D3
+~
+~
+0 0 840
+S
+#840
+A Rope Bridge~
+Water gushes ominously beneath you, splashing wildly against the soft
+river bank.  The bridge is quite unsteady, swaying back and forth teasingly.
+Perhaps you should quickly move onwards, before you fall in head first!  If
+you stand here too long, a gale of wind might make you lose your balance.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 839
+D3
+~
+~
+0 0 841
+S
+>enter_prog 100~
+0
+if rand(10)
+   if ispc($n)
+      mpecho &YA sudden gust of wind causes the bridge to sway wildly!
+      mpecho &YBetter hurry and run to the other side!
+      mpasound &RA huge gust of wind almost blows $n into the river!
+      endif
+endif
+~
+|
+#841
+Edge of a River Bank~
+Sounds of water splashing against the river bank fill your ears.  During
+a sunny afternoon, you can sit at the edge of the river and watch the fish
+jumping.  If you happend across some old fishing line and a stick, you could
+even catch yourself a fine meal.  Bethaven folks strongly encourage you not
+to participate in such a sport though, as they are always trying to preserve
+the forest creatures and plant life.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 840
+D3
+~
+~
+0 0 842
+S
+#842
+An Old Oak Tree~
+&RInitials&c carved onto the old oak tree are barely visible these days. 
+A young couple must of engraved them here a long time ago.  If you look up,
+you will notice a large treehouse made out of logs.  Tiny foot holes are
+carved into the side of the tree to use as a &Rladder&c.  A frayed rope
+hangs from an opening in the treehouse floor above.  
+~
+0 393240 0
+Rd     0
+E
+ladder~
+&OHoles are dug out for a pair of tiny feet, apparently once used as a
+ladder.  
+~
+E
+initials~
+&R
+&R   @@@      @@@
+&R @     @  @     @
+&R @      @@      @
+&R  @    K. M.   @
+&R   @    +     @
+&R    @  S. S. @
+&R     @  xx  @
+&R      @ oo @
+&R       @  @
+&R        @@
+~
+D1
+~
+~
+0 0 841
+D3
+~
+~
+0 0 845
+D4
+~
+~
+0 0 843
+S
+#843
+Inside a Treehouse~
+A pile of leaves and brush are arranged on the left side of the
+treehouse, perhaps used as a couch or place to rest.  The walls are covered
+with cob webs and the floors creak as you walk about them.  It looks as if
+there hasn't been anyone up here in ages.  Off in the right corner lies a
+worn fragile &Rbook&c of some type.  
+~
+0 393240 0
+Rd     0
+E
+book~
+&CYou dust off the book, and see the title reads &RJournal of Kalin
+Mikeira&C.  As you open it, you notice a small inscription written on the
+inside cover.  
+~
+D4
+~
+~
+0 0 844
+D5
+~
+~
+0 0 842
+S
+#844
+On Top of a Treehouse~
+From this high up, you can see all of Mudschool surrounding you.  The
+view is breathtaking.  The river rumbles below, otters and beavers swimming
+about.  The landing you are standing on is not very strong, you should be
+very careful you don't fall off.  
+~
+0 393240 0
+Rd     0
+D5
+~
+~
+0 0 843
+S
+#845
+Behind an Old Oak Tree~
+Flowers embrace the large oak tree, complementing its aging bark skin. 
+There is a large boulder to the left of the tree, offering a comfortable
+place to rest.  It looks as if a huge &Rhole&c has been dug leading under
+the rock.  
+~
+0 393240 0
+Rd     0
+E
+hole~
+&YYou look into a hole seemingly large enough for someone to crawl into. 
+Listening closely, you can hear muffled growls from below!  
+~
+D1
+~
+~
+0 0 842
+D2
+~
+~
+0 0 847
+D5
+~
+~
+0 0 846
+S
+#846
+Beneath a Large Boulder~
+This obviously isn't a most desirable place to be.  Bright &Yyellow&c
+eyes glare at you hungrily.  This is the home of a giant wild badger!  He
+rarely leaves his cold and damp abode, and is extremely agressive to
+intruders.  If you aren't prepared for a nasty fight, you better scurry out
+of here quick!  
+~
+0 393240 0
+Rd     0
+D4
+~
+~
+0 0 845
+S
+#847
+Southwestern Grounds of Mudschool~
+Many trees tower over the trodden path, offering shade and protection
+from the burning sun.  Berries and flowers grow wildly all over the Fighting
+Grounds, which are tended by citizens of Bethaven.  They take great care in
+preserving the natural life they cherish so much.  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 845
+D2
+~
+~
+0 0 848
+S
+#848
+Southwestern Grounds of Mudschool~
+Folks from nearby towns often visit the Fighting Grounds in search of
+berries and wild flowers.  Although most are friendly, they aren't inclined
+to sit and chat for long.  Daily chores and responsibilities are always
+popping up, leaving little time for leisure.  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 847
+D1
+~
+~
+0 0 849
+S
+#849
+Deep Within the Fighting Grounds~
+You've travelled quite deep into the Fighting Grounds.  Here it is much
+more quiet and dark, for many folks don't normally travel this far into the
+forest.  The atmosphere is eerie and extremely silent.  Occassionaly one can
+hear the wolves howling further into the Fighting Grounds.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 850
+D3
+~
+~
+0 0 848
+S
+#850
+Southern Trail~
+The southern trail leads you back into the main Fighting Grounds, where
+it is much more lively and not nearly as dark and dreary.  Vines line the
+old trees like snakes wrapping themselves about them.  Ruffling sounds get
+louder to your left, as you turn around you notice the vines are moving!  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 851
+D3
+~
+~
+0 0 849
+S
+#851
+Southern Trail~
+Large rocks line the sides of the trail, colorful flowers planted
+randomly about them.  You might want to take a &Wrest&c soon, the humid air
+and burning sun can wear you out pretty fast.  Remember to keep a sharp eye
+out for aggressive creatures roaming within the grounds.  You always want to
+be prepared for a battle.  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 852
+D2
+~
+~
+0 0 850
+S
+#852
+Southern Trail~
+Once you have completed Mudschool, and the creatures and animals here no
+longer offer you a challenge, your next stop will be the Arena.  The Arena
+was created also by the citizens of Bethaven.  Unlike Mudschool, it's
+purpose isn't to teach and guide, but to simply provide younger folks a
+place to practice their skills and gain a few more levels before venturing
+out on their own.  
+~
+0 393240 0
+Rd     0
+D0
+~
+~
+0 0 839
+D2
+~
+~
+0 0 851
+S
+#853
+A Dim Walkway~
+The walkway is covered with long silken grass.  From up ahead a soft
+glowing light emits from beneath an entryway.  What is this odd addition to
+the Mudschool?  If you dare to discover, continue your venture eastwards. 
+Be prepared, and examine the rooms carefully.  
+~
+0 393240 0
+Rd     0
+D1
+~
+~
+0 0 854
+D3
+~
+~
+0 0 805
+S
+#854
+A Dim Walkway~
+Directly &Rnorth&c from here a black mist seeps from beneath a large iron
+door.  The stench from it is almost unbearable.  The door to the &Rsouth&c
+is veiled in a bright white light.  Vibrations cause it to create a serene
+humming sound.  Something quite detailed has been etched into the &Rwall&c
+in front of you.  
+~
+0 393240 0
+Rd     0
+E
+wall~
+&CBeyond this room begins new worlds filled with new people.
+You must make a choice once you have learned all you can in
+Mudschool. Once you have reached level &Rfour&C, you will have learned
+everything you need here. It is then that you arrive here to be taken
+to an &RArena&C to fight tougher creatures and mobs. You will be given the
+choice to follow the path of &WGood&C or &wEvil&C. The choice you make will
+affect your &Ralignment&C. Typing &Whelp alignment&C will tell you more.
+~
+D0
+&RBlood drips through the edges of this large door.  Black mist
+encompasses it entirely.  Beyond this door lies an EVIL man.  There are
+those within the Storm that choose to follow his ways.  If you are one of
+them, you will find your destiny beyond here.  
+~
+~
+3 0 855
+D2
+&PAncient myths reveal that a goddess Storm Angel is always near those
+that are GOOD.  It is said that her spirit spreads across the many lands. 
+South of you she rests, awaiting the next follower of GOOD and PEACE.  If
+you wish to remain good, go to her and seek your destiny.  
+~
+~
+3 0 856
+D3
+~
+~
+0 0 853
+D4
+~
+~
+0 0 857
+S
+#855
+&wA Gloomy Black Room~
+You enter a pitch &zblack&c room, more resembling a dreary pit.  Lord
+Drauzen stands eerily in the corner, eyeing your every move.  Dark mist
+envelops you, blurring your vision and making it very difficult to breathe. 
+One might reconsider sticking around here for long, it is not at all
+comforting.  
+~
+0 394264 0
+Rd     0
+E
+sign~
+&RExtremely Important Information!
+ 
+&YIf you choose to enter this black hole you will be transferred 
+&Yto Drauzen's Arena in Ravenwood. Your &Ralignment&Y right now is neutral.
+&YOnce you begin fighting in Ravenwood, your alignment will become EVIL. If
+you happen to be in Ravenwood with a GOOD alignment, the guards can throw
+~
+D2
+~
+~
+3 0 854
+S
+#856
+&YA Brightly Lit Room~
+&WYou have stepped into a heavenly room filled with flowers, tiny birds
+and many rainbows.  Colorful lights splash against the white marble floor,
+dancing playfully.  Torinne floats above you, her long blonde hair cascading
+behind her.  
+~
+0 394264 0
+Rd     0
+D0
+~
+~
+3 0 854
+S
+#857
+The RiddleMaster's Lair~
+Trinkets and collectibles dangle from the ceiling high above.  The walls
+are covered from top to bottom with deformed looking mirrors.  This room
+somewhat resembles a circus.  Huge stuffed animals are lined up starting at
+each corner of the wall.  Books and loose papers are scattered all about.  A
+circular bed is sunken into the floor, lined with purple and green dotted
+sheets.  
+~
+0 394776 0
+Rd     0
+D5
+~
+~
+0 0 854
 S
 #0
+
+
+
+#SPECIALS
+M 823 spec_healer
+S
 
 
 
 #RESETS
-M 0 3700 1 3701           (acolyte of FRAG)
-D 0 3700 2 1
-M 0 3701 1 3710           blob
-M 0 3702 1 3716           regular monster in cage
-E 1 3705 99 3            give him cloak
-E 1 3705 99 4            give him cloak
-M 0 3703 1 3715           wimpy monster in cage
-E 1 3706 99 6            give him helmet
-E 1 3711 99 12           give him cape
-M 0 3704 1 3713           aggr monster in cage
-E 1 3707 99 7            give him leggings
-E 1 3712 99 13           give him belt
-M 0 3705 1 3714           aggr/wimpy monster in cage
-E 1 3708 99 8            give him boots
-E 1 3713 99 14           give him bracer
-D 0 3717 1 1
-D 0 3719 3 1
-D 0 3719 1 2
-M 0 3717 1 3718           storekeeper
-G 1 3138 999
-G 1 3031 999
-M 0 3706 1 3720           monster in dark room.
-E 1 3709 99 9            give him gloves
-E 1 3710 99 10           give him sleeves
-E 1 3714 99 17           give him the key
-E 1 3713 99 14           give him bracer
-D 0 3721 0 1
-D 0 3734 5 1
-D 0 3748 4 1
-M 0 3709 4 3734           rabbit
-M 0 3710 3 3742           lizard
-M 0 3711 3 3746           boar
-M 0 3712 3 3726           fox
-M 0 3713 5 3724           snail
-M 0 3714 1 3749           beast
-M 0 3715 2 3751           bear
-M 0 3716 2 3754           wolf
-M 0 3707 1 3712           adept
-M 0 3720 1 3721		  diploma beast (thanks, Alander!)
-E 1 3715 99 17
-M 0 3718 1 3758		adept for training
-M 0 3719 1 3759		adept for practicing
+M 0 800 1 800
+M 0 820 1 809
+M 0 821 1 810
+M 0 822 1 813
+E 0 801 0 16
+G 0 830 0
+G 0 831 0
+G 0 846 0
+O 0 829 0 816
+M 0 817 1 816
+M 0 838 5 817
+E 0 856 0 18
+E 0 856 0 19
+M 0 826 5 818
+E 0 849 0 24
+E 0 849 0 23
+M 0 825 4 819
+M 0 826 5 819
+E 0 854 0 25
+E 0 854 0 26
+M 0 823 1 821
+O 0 832 0 821
+M 0 825 4 822
+M 0 826 5 823
+O 0 828 0 823
+M 0 833 2 824
+O 0 826 0 824
+O 0 844 0 825
+P 0 845 0 844
+M 0 825 4 827
+M 0 826 5 828
+M 0 825 4 828
+M 0 834 1 829
+O 0 847 0 829
+O 0 827 0 829
+M 0 826 5 830
+O 0 841 0 830
+P 0 842 0 841
+P 0 843 0 841
+M 0 832 3 832
+M 0 824 1 833
+M 0 827 1 835
+E 0 840 0 5
+M 0 828 1 836
+E 0 833 0 13
+M 0 829 1 837
+G 0 835 0
+M 0 830 1 838
+E 0 839 0 12
+M 0 838 5 839
+E 0 857 0 3
+M 0 832 3 840
+M 0 831 3 841
+M 0 838 5 842
+M 0 831 3 843
+M 0 838 5 844
+M 0 838 5 845
+M 0 836 1 846
+M 0 832 3 847
+O 0 825 0 847
+E 0 858 0 14
+M 0 835 1 848
+O 0 848 0 848
+E 0 860 0 5
+E 0 859 0 16
+M 0 831 3 849
+E 0 855 0 24
+E 0 855 0 23
+M 0 837 1 850
+G 0 852 0
+M 0 833 2 851
+E 0 853 0 17
+M 0 819 1 855
+O 0 851 0 855
+M 0 818 1 856
+O 0 850 0 856
+M 0 816 1 857
 S
 
 
 
 #SHOPS
- 3717	 1 15 17 19  0	 100  100	 0 23	; Adept of Frag
+822 19 17 10 15 0 100 100 0 23
 0
-
-
-
-#SPECIALS
-M  3707 spec_cast_adept
-M  3714 spec_fido
-S
 
 
 

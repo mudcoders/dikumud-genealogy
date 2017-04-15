@@ -1,0 +1,5768 @@
+#AREADATA
+Name        {80-100} Tower of Sorcery    Grunt~
+Levels      0 0
+Builders    Grunt~
+VNUMs       300 499
+Security    1
+Recall      25001
+Flags       16
+Color       6
+Sounds      &z The shadows before you shift then fade away.~
+End
+
+
+
+#MOBILES
+#300
+page wand wands~
+Page of Wands~
+The Page of Wands is here serving the family of Wands.
+~
+A marvelous lad, faithful to the family of wands.
+~
+3 73898 0 0 S
+80 0 0 17500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#301
+knight wands wand~
+knight of wands~
+The knight of wands is here, mounted on his lovely horse.
+~
+~
+3 268435616 0 0 S
+85 0 0 14400d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#302
+horse~
+horse~
+A beautiful brown horse is mounted by the knight of wands.
+~
+Brown, and lean the knight's horse is a beautiful spectical.
+~
+35 8200 0 0 S
+60 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 0
+4 0 0
+#303
+king wand wands~
+King of Wands~
+The King of Wands watches over all that is magical.
+~
+He is of the highest nobelity, crowned for all eternity.
+~
+3 301998248 0 0 S
+95 0 0 14080d0+0 0d0+0
+0 0 0 0
+0 0 1
+2306 0 0
+#304
+lizard yellow~
+yellow lizard~
+A yellow lizard slithers towards you.
+~
+Obviously conjured by the King's magic, the yellow lizards rome freely
+around the chamber.
+~
+3 614528 0 0 S
+60 0 0 6400d0+0 0d0+0
+0 0 0 0
+0 0 0
+2048 0 0
+#305
+queen wand wands~
+Queen of Wands~
+The Queen of Wands sits upon her throne.
+~
+She is the mother of all the magic that wands possess.  She's a beautiful
+spectical, yet feared by all who disobey her.
+~
+3 100671656 0 0 S
+90 0 0 12800d0+0 0d0+0
+0 0 0 0
+0 0 2
+2304 0 0
+#306
+cat black~
+The black cat~
+A black cat stands beside her majesty stalking your every move.
+~
+The cat's eyes glow a brilliant red, and it's coat is darker then the
+stormiest night.
+~
+3 24616 0 0 S
+60 0 0 6666d0+0 0d0+0
+0 0 0 0
+0 0 0
+1408 0 0
+#307
+page cups cup~
+The Page of Cups~
+The page of Cups stands erect to the command of the family Cups.
+~
+A wise and noble page, brought forth from the sea to greet all whom enter
+the sea of cups.
+~
+3 8872 0 0 S
+80 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 1
+133152 0 0
+#308
+knight cup cups~
+knight of cups~
+The Knight of Cups is here, struting around gracefully.
+~
+A graceful man totally without violence.  An aura of peace is about
+his winged decor.
+~
+3 67633320 0 0 S
+85 0 0 14400d0+0 0d0+0
+0 0 0 0
+0 0 1
+133632 0 0
+#309
+horse cups~
+horse of cups~
+The horse of cups is here.
+~
+A well built horse, faithful to the knight.
+~
+3 532488 0 0 S
+60 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 0
+133120 0 0
+#310
+king cup cups~
+The King of Cups~
+The King of Cups is perched on his throne surrounded by the Sea of Cups.
+~
+A man of great divinity and solitude.  He rules with a graceful
+disposition, and is protect from all magical harm brought to him.
+~
+3 201326760 0 0 S
+95 0 0 14080d0+0 0d0+0
+0 0 0 0
+0 0 1
+133380 0 0
+#311
+dolphin~
+dolphin~
+A dolphin splashes around in the Sea of Cups.
+~
+~
+3 8320 0 0 S
+60 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 0
+131328 0 0
+#312
+queen cups~
+Queen of Cups~
+The Queen of Cups sits upon her throne staring deep into her magical cup.
+~
+A beautiful a caring woman whom sheds light on all that surrounds her.
+~
+3 201334952 0 0 S
+90 0 0 12800d0+0 0d0+0
+0 0 0 0
+0 0 2
+2304 0 0
+#313
+page pent pentacles~
+Page of Pentacles~
+The Page of Pentacles doesn't like vistitors in the hall!
+~
+Like all the pages, this one is younge and loyal to his suit.  However,
+the family of pentacles is a little more reluctant of vistitors.  
+~
+35 8360 0 0 S
+80 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 1
+2048 0 0
+#314
+king pentacles pent~
+The King of Pentacles~
+A King hides here, darkened by the shadows that surround.
+~
+A rather large man sits here guiding magic with the way of the pentacle. 
+A rather ritualistic man, he seems to mutter words of dire forbodence.  
+~
+3 33579688 0 0 S
+95 0 0 14080d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#315
+queen pent pentacles~
+The Queen of Pentacles~
+The Queen gazes deeply into her pentacle, seemingly lost in time.
+~
+You can't help but notice the intensity of which she places upon her
+pentacle.  She's a rather sturn lady with little desire to aid those outside
+her obvious solitary realm.  
+~
+3 268460712 0 0 S
+95 0 0 14080d0+0 0d0+0
+0 0 0 0
+0 0 2
+2304 0 0
+#316
+knight pentacles~
+Knight of Pentacles~
+The Knight of Pentacles sits upon his black horse.
+~
+A rather stubborn brunt of a man, whose pale horse seems to suit only he.
+Dressed in the Pentacle war gear, he is surely prepared to fight.  
+~
+3 33570984 0 0 S
+95 0 0 14080d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#317
+page swords~
+The Page of Swords~
+The Page of Swords dances around the hall in a state of divine bliss.
+~
+A rather lively creature, the page handles all the necessary arrangements
+for the King and Queen of Swords.  He is armed however, and with the slight
+hint of provocation, he will surely do all in his power to uphold
+peace within the hall.
+~
+3 8360 0 0 S
+82 0 0 16800d0+0 0d0+0
+0 0 0 0
+0 0 1
+64 0 0
+#318
+horse pentacles black~
+the horse~
+A bulky black horse stands ground here.
+~
+A massive and froathing beast.  Probally conjured by Pentacles through
+magical means.  
+~
+3 8232 0 0 S
+65 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#319
+knight swords~
+The Knight of Swords~
+The Knight of Swords flies past you like the wind!
+~
+Riding through the courtyard, the knight seems to have little time for
+you.  He rides from one end to the other screaming battle cries totally
+unawarest of your presence.
+~
+35 100671656 0 0 S
+85 0 0 11520d0+0 0d0+0
+0 0 0 0
+0 0 1
+64 0 0
+#320
+white horse~
+the white horse~
+A quick and lofty white horse rides past you like the wind!
+~
+Pure white in colour, less the trickles of blood from battle, the
+Knight's horse seems to be very face paced.  It's hoofs look as though they
+could cut through your armor in an instance.  
+~
+35 8232 0 0 S
+65 0 0 12000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#321
+queen swords~
+The Queen of Swords~
+The Queen sits here in a rather pleasant state.
+~
+Unlike the other swords, the queen seems to be uninterested in war.  Her
+sword represents more then that of combat.  
+~
+3 201334912 0 0 S
+90 0 0 12800d0+0 0d0+0
+0 0 0 0
+0 0 2
+2112 0 0
+#322
+king swords~
+The King of Swords~
+The King of Swords sits upon his throne looking out into the blue sky.
+~
+A brave and wonderous creature who abides the power of the sword.  Passive
+at first, and without care, however given the opportunity he will with
+all his might plunge his blade into your side.
+~
+7 67125416 0 0 S
+95 0 0 14080d0+0 0d0+0
+0 0 0 0
+0 0 1
+2112 0 0
+#323
+tower sorcery~
+The Tower~
+The Tower of Sorcery comes to life and attacks YOU!
+~
+You can hardly look at it, for it's magic is way beyond that of your
+knowledge.  The Tower is really built like a TANK!!  
+~
+35 33570856 0 0 S
+100 0 0 17500d0+0 0d0+0
+0 0 0 0
+0 0 0
+4 0 0
+#324
+fool~
+The Fool~
+A fool trips over his own shoes here.
+~
+The Fool is a simple and childlike figure.  He hasn't a worry for the fate
+of himself or other around him.  To follow the fool is DEATH!
+~
+3 268435624 0 0 S
+93 0 0 19923d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>entry_prog ~
+say "Hello there"
+~
+>greet_prog ~
+>greet_prog 100
+If ispc ($n) == 1
+say hey ED
+Break
+Endif
+~
+>act_prog ~
+~
+|
+#325
+hermit zohar~
+The Hermit~
+The Hermit turns to greet you with great forbodence.
+~
+Tis truly a very wise man.  He studies here, deep with in the tower of
+sorcery, giving help to those whom pass him by.  He finds it hard to
+believe that you've even made it this far!  He has many gifts for you,
+for he finds you *may* be worthy to complete your journey.
+~
+7 67125416 0 0 S
+99 0 0 15104d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#326
+hound howling~
+the hound~
+A hound howls at the moon
+~
+The hounds call out to the moon for it is their guiding light.
+~
+3 268435968 0 0 S
+84 0 0 17600d0+0 0d0+0
+0 0 0 0
+0 0 0
+2048 0 0
+#327
+star guardian~
+The Star Guardian~
+The Guardian of the Stars observes your every move.
+~
+Your eyes are nearly blinded by the light the surrounds you.  You are
+faced with another of the tower's major magical forces.
+~
+3 100672128 0 0 S
+95 0 0 14080d0+0 0d0+0
+0 0 0 0
+0 0 2
+262144 0 0
+#328
+world earth guardian~
+The World Guardian~
+The Guardian of the World hovers above you.
+~
+She's a marvel and majestic sight.  Her all encompassing magic renders your
+weapons useless.
+~
+2055 8360 0 0 S
+100 0 0 24000d0+0 0d0+0
+0 0 0 0
+0 0 2
+8 0 0
+#329
+bull~
+A bull~
+A bull stands here protecting the world.
+~
+~
+3 8744 0 0 S
+50 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#330
+lion~
+The lion~
+A lion roars in protection of the world.
+~
+~
+3 552 0 0 S
+50 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#331
+eagle~
+The eagle~
+An eagle soars about, protecting the world.
+~
+~
+3 0 0 0 S
+10 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#332
+man~
+A man~
+A man stands to the protection of the world.
+~
+~
+3 8744 0 0 S
+50 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#333
+soul lost~
+The Lost Soul~
+A Lost soul roams madly about the maze in search of final rest.
+~
+They are just as lost as you are, and soon, VERY soon you shall be exactly
+like them!!  Muhaha!!
+~
+16485 268436136 0 0 S
+85 0 0 14400d0+0 0d0+0
+0 0 0 0
+0 0 0
+2048 0 0
+#334
+death~
+Death~
+Death gazes about waiting for his next soul to take.
+~
+A skeleton enclosed in heavy black armour, riding aimlessly about searching
+incessantly for lost souls.
+~
+39 100688552 0 0 S
+101 0 0 13325d0+0 0d0+0
+0 0 0 0
+0 0 1
+75782 0 0
+>death_prog 100~
+if ispc($n)
+join corpse soul
+drop life
+mpechoat $n You hath defeated me, BEGONE mortal!
+endif
+~
+>fight_prog 20~
+say You are already DEAD mortal!  Do not fight me!
+c 'dispel magic' $n
+stun
+~
+|
+#335
+pale horse~
+The Pale Horse~
+A Pale horse for our pale rider.
+~
+As it's hooves trot onto the ground with a cold thud, everything about begins
+to wither.  Loyal to death, and death alone.
+~
+35 33562664 0 0 S
+75 0 0 14000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#336
+judge judgement~
+Judgement~
+It is time for you to be Judged!
+~
+A heavenly figure, soars down to your level.  Holding a huge trumpet,
+Judgement summons angels to it's aid with one note.
+~
+3 101195944 0 0 S
+100 0 0 15360d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#337
+str strength~
+Strength~
+Strength softly carresses her lion as you gaze across the plains.
+~
+She is a pleasant figure, the opposite to what a villian would see strength
+as.  Do not under-estimate her power, for she holds the upmost of inner
+strength.
+~
+3 335552680 0 0 S
+100 0 0 15360d0+0 0d0+0
+0 0 0 0
+0 0 2
+4 0 0
+#338
+lion strength~
+the Lion~
+The Lion of Strength roars at your entrance.
+~
+~
+3 8320 0 0 S
+80 0 0 8540d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#339
+adam~
+Adam~
+Adam stands amidst the lush garden.
+~
+Representing the society of Mankind, Adam is the prime example of the
+rash and bold decisions we all make when faced with a choice.  
+~
+3 8192 0 0 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+say The Lord forbids us to eat the fruit of this tree
+say I suggest that you leave it be while visiting our garden
+~
+|
+#340
+eve~
+Eve~
+Eve stares about the garden, naive to herself.
+~
+Eve portays the softer, and somewhat innocent side of being human, and
+the unknowing foolishness which sometimes accomanies it.  
+~
+3 8193 0 0 S
+95 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#341
+temp temperance~
+Temperance~
+Temperance dips her foot into the pond.
+~
+She takes all in moderation, never too eager to obtain vast quantities of
+anything.
+~
+3 100728962 0 0 S
+100 0 0 15360d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#342
+wisdom~
+Wisdom~
+Wisdom rides towards thee in his chariot
+~
+A brilliant man, protected by his twin sphinx.  He is truly a wise man,
+and funnels all his energy through that domain.
+~
+3 469770408 0 0 S
+100 0 0 12300d0+0 0d0+0
+0 0 0 0
+0 0 1
+2 0 0
+#343
+white sphinx~
+White Sphinx~
+The White Sphinx purrs contently as you enter the room.
+~
+~
+3 8360 0 0 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#344
+black sphinx~
+The Black Sphinx~
+The Black Sphinx purrs contently as you enter the room
+~
+~
+3 24616 0 0 S
+80 0 0 7001d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#345
+fortune~
+Fortune~
+Fortune spins past you, revealing your fate.
+~
+~
+2051 100688552 0 0 S
+100 0 0 15360d0+0 0d0+0
+0 0 0 0
+0 0 0
+2 0 0
+>greet_prog 100~
+mpecho The Wheel of Fortune Spins past you, choosing your fate
+~
+>greet_prog 50~
+mpecho Your fate is DEATH!!!!
+c earthquake $n
+c earthquake $n
+c shatter $n
+stun $n
+~
+>fight_prog 5~
+stun
+~
+|
+#346
+justice~
+Justice~
+Justice sits between a set of pillars, securing balance amongst the accused.
+~
+A rather youthful figure, with a tint of both sweet and sour.  His weapon
+is a long blade which could pose a threat if thou wishes to attack.
+~
+3 469762216 0 0 S
+100 0 0 12300d0+0 0d0+0
+0 0 0 0
+0 0 1
+2 0 0
+>fight_prog 50~
+say $n is guilty!
+muha
+c icestorm $n
+c earthquake
+c earthquake $n
+~
+|
+#347
+devil demon lord~
+The Demon Lord~
+The Lord of Evil is here emitting pure hate
+~
+He is not a friendly beast, he is not a fair or just best, he is pure evil.
+~
+35 369123560 0 -1000 S
+105 0 0 13940d0+0 0d0+0
+0 0 0 0
+0 0 1
+2182 0 0
+>fight_prog 20~
+stun
+~
+>greet_prog 100~
+say Thou shall not leave alive mortal!!!
+muha
+c 'fire breath' $n
+~
+>death_prog 100~
+shout $n hath defeated me!!  Perish all you cross $n!!
+c fly $n
+~
+|
+#348
+hanged man martyr~
+The hanged man~
+The great Martyr is here pondering his sacrifice
+~
+A marvelous lad, the epitomy of all the reaches into the heavens.  He is
+the Son of Suns, and sits at the right hand of the holy one.  He brings
+miracle and sanctuary to the wicked world.  He has been hung for the sins of
+man, the sins of all that walk!  
+~
+3 470294656 0 1000 S
+100 0 0 12300d0+0 0d0+0
+0 0 0 0
+0 0 1
+4 0 0
+>greet_prog 100~
+say Could you be so kind as to give me some wine?
+~
+>give_prog white wine glass~
+drink wine
+say Thank-You mortal!  I shall reward you in the kingdom of god!
+~
+>death_prog 100~
+shout My God! My God! Why hast Thou forsaken me??
+~
+|
+#349
+hiero hierophant phant~
+The Hierophant~
+The Hierophant blesses you as you pass through his domain.
+~
+He is the ruling power of external relgion, also he is the keeper of the
+keys.  
+~
+3 369107176 0 0 S
+103 0 0 15375d0+0 0d0+0
+0 0 0 0
+0 0 1
+2 0 0
+#350
+magic magician~
+The Magician~
+The Magician stands before thee, show respect or die!
+~
+A youthful figure in the robe of a magician, having contenance of divine
+Apollo, with a smile of confidence and shining eyes.
+~
+3 503407338 0 0 S
+105 0 0 35000d0+0 0d0+0
+0 0 0 0
+0 0 1
+2054 0 0
+>fight_prog 50~
+c icestorm $n
+~
+>greet_prog bow~
+say You have master the tower mortal!  I am very please with you!
+bow $n
+~
+>fight_prog 50~
+c earthquake
+~
+>fight_prog 30~
+c 'dispel magic' $n
+~
+>death_prog 10~
+say You Hath defeated me $n, and now you shall wield the power of MAGIC!!!
+bow
+mpoload 424
+~
+>fight_prog 33~
+c blind $n
+~
+|
+#367
+demon~
+The Demon~
+A demon hath come to your aid!
+~
+~
+3 33816704 0 -1000 S
+85 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#368
+moon goddess~
+The Moon Goddess~
+The goddess of the moon hovers above you, glowing incessantly
+~
+~
+3 67117184 0 0 S
+100 0 0 19200d0+0 0d0+0
+0 0 0 0
+0 0 0
+2052 0 0
+#369
+sun god ra~
+Ra~
+Ra the Guardian of the sun look upon you with contempt
+~
+You are nearly blinded by the sight before you.  The heat seems to melt
+away your skin, as you stare into the sun's hypnotic glow.
+~
+3 369098920 0 0 S
+99 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+262272 0 0
+>greet_prog 100~
+cackle
+~
+>fight_prog 20~
+c 'holy fire' $n
+~
+|
+#370
+emp empress~
+the Empress~
+The Empress sits on her throne gazing across the land.
+~
+She is the epitemy of grace, and all that is divine.  She splits planets
+with a wave of her wand, and controls the stars the sing high above.  
+~
+16387 469786792 0 0 S
+104 0 0 16400d0+0 0d0+0
+0 0 0 0
+0 0 2
+4 0 0
+>greet_prog 100~
+say Welcome $n, come join me in my garden
+bow $n
+~
+>fight_prog 20~
+say It brings me sorrow to see you so keen to kill
+sigh
+say DIE MORTAL!!!
+c shatter $n
+c 'dancing light' $n
+c haste
+~
+>death_prog 100~
+say Begone mortal! Your bloodlust doust not belong here!!
+mptransfer jez
+~
+|
+#371
+emperor~
+the Emperor~
+The Emperor sits on his throne casting a deadly glare down on you.
+~
+He is a very bold man, strong with many convictions.  Do not test his grace,
+for he shall undoubtably crush you!
+~
+16391 369156328 0 0 S
+103 0 0 12300d0+0 0d0+0
+0 0 0 0
+0 0 1
+264192 0 0
+>fight_prog 30~
+c 'dispel magic' $n
+~
+>fight_prog 30~
+stun $n
+mpecho &RThe Emperor smashes into you!!
+~
+>hitprcnt_prog 50~
+c blind $n
+say You shall not leave here alive $n!!
+~
+>hitprcnt_prog 99~
+shout Help!  I am being attacked by $n!
+~
+|
+#372
+high priest priestess~
+The High Priestess~
+The High Priestess sits upon her throne here, comtemplating life and magic.
+~
+She is the epitomy of high virtue and beauty.  With the wave of her wand she
+can summon the most fearful magic in the world.
+~
+16387 369123560 0 0 S
+108 0 0 35000d0+0 0d0+0
+0 0 0 0
+0 0 2
+6 0 0
+>fight_prog 40~
+say Thou doust offend me greatly $n!!
+c earthquake
+~
+>fight_prog 34~
+~
+>fight_prog 2~
+say Die NOW MORTAL!!!!
+c shatter $n
+~
+>fight_prog 30~
+c 'dispel magic' $n
+~
+|
+#0
+
+
+
+#OBJECTS
+#300
+page wand~
+pages wand~
+The wand of the page lies here, carved from the magic oak of Lanzi~
+~
+3 64 7116 0 16385 60
+60~ 20~ 20~ cure poison~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#301
+shroud yellow wands~
+shroud of wands~
+A long yellow shroud has been bundled up here.~
+~
+9 64 0 0 1025 62
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 4
+A
+3 2
+A
+12 50
+#302
+boots yellow~
+yellow boots~
+A pair of yellow boots lie here.~
+~
+9 0 972 0 65 68
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 4
+A
+19 2
+A
+110 -1
+A
+12 65
+#303
+feather feathered derby~
+feathered derby~
+A white derby marked with a bright red feather is here.~
+~
+9 0 0 4096 17 74
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 2
+A
+4 2
+A
+13 70
+A
+12 60
+#304
+tight tights red~
+red tights~
+A pair of red tights are here.~
+~
+9 64 0 0 33 60
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 20
+A
+18 12
+A
+14 50
+A
+12 50
+#305
+helm red feather feathered~
+feathered helm of wands~
+A helm decorated with a big red feather is here.~
+~
+9 96 0 4096 17 78
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+19 7
+A
+12 30
+A
+13 35
+A
+18 2
+#306
+red gloves~
+red gloves~
+A pair of red gloves are here.~
+~
+9 66 0 0 129 69
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 4
+A
+1 2
+A
+2 2
+A
+13 65
+#307
+wands knight wand~
+knight's wand~
+A long wooden wand that looks to be a weapon of sorts is here.~
+~
+5 33554432 0 0 8193 83
+0~ 0~ 0~ 7~
+7 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 20
+A
+19 31
+A
+13 75
+#308
+legging leggings wand~
+wand leggings~
+A pair of bright leggings lie here.~
+~
+9 96 0 0 33 71
+0~ 0~ 0~ 0~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 30
+A
+12 70
+A
+2 2
+#309
+crown wands wand~
+crown of Wands~
+The Crown of Wands lies here.~
+~
+9 805306370 584 4096 17 90
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+A
+1 1
+A
+18 2
+A
+24 -10
+A
+12 90
+#310
+chain wands wand~
+chain of wands~
+The chain of wands is here.~
+~
+9 1120 716 0 5 97
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+mana~
+10 10
+0 0 0
+A
+24 -4
+A
+18 10
+A
+19 5
+A
+12 95
+#311
+green slippers~
+green slippers~
+A pair of green slippers lie here.~
+~
+9 96 0 0 65 99
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 2
+A
+12 30
+A
+14 100
+A
+18 11
+#312
+wand curse~
+wand of cursing~
+A magical wand has been tossed away here.~
+~
+3 96 0 0 16385 97
+100~ 20~ 20~ curse~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#313
+card wands~
+card of wands~
+The card of wands lies here.~
+~
+18 0 0 0 1 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+361 0 0
+#314
+sun flower sunflower~
+sunflower~
+A sunflower glows brilliantly here.~
+~
+1 805309440 0 0 16385 95
+0~ 0~ -1~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -8
+A
+102 -1
+A
+12 95
+#315
+red spiked collar~
+a spiked red collar~
+A spiked red collar glows here.~
+~
+9 97 844 0 5 45
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 45
+A
+5 2
+A
+1 2
+A
+19 9
+#316
+eyes portal magical sight~
+eyes of magical sight~
+A pair of lenses lie here, glowing red and sparking with chaos.~
+~
+27 603979776 0 0 131073 60
+70~ 3~ 3~ mind probe~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+106 -1
+A
+18 10
+A
+12 60
+#317
+cup page~
+pages cup~
+A rather large cup stands here, filled with water.~
+~
+17 1344 0 0 16385 82
+-1~ -1~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 3
+A
+19 8
+A
+12 80
+A
+4 2
+#318
+helm winged~
+winged helm~
+A silver helm with a large wing attached is here.~
+~
+9 3136 972 4096 17 93
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+A
+17 -40
+A
+18 8
+A
+4 2
+A
+13 90
+#319
+boots slivery winged wing~
+silver winged boots~
+A pair of silvery boots lies here~
+~
+9 1024 0 0 65 80
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+combat mind~
+10 10
+0 0 0
+A
+110 -1
+A
+2 2
+A
+108 -1
+#320
+berry wisdom~
+berry of wisdom~
+A ripe looking berry lies here.~
+~
+26 64 0 0 1 50
+55~  ~ stone skin~ combat mind~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#321
+cup knights~
+knight's cup~
+You see a magical cup here.~
+~
+17 64 0 0 16385 80
+-1~ -1~ 1~ 0~
+3 0 0 0 0
+1 320
+bless~
+10 10
+0 0 0
+#322
+sceptre cups~
+sceptre of cups~
+A magically sceptre lies here.~
+~
+5 1091 0 0 8193 90
+0~ 53~ 65~ 7~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 35
+A
+19 21
+A
+13 90
+A
+26 90
+A
+12 80
+#323
+cups shroud~
+shroud of cups~
+You see a watery shroud here.~
+~
+9 1120 0 0 1025 98
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 8
+A
+24 -20
+A
+12 95
+A
+13 90
+#324
+king cups cup~
+king's cup~
+A mwonderfully crafted cup stands here.~
+~
+17 320 0 0 16385 90
+-1~ -1~ 0~ 0~
+2 0 0 0 0
+5 0
+iceshield~
+2 2
+0 0 0
+#325
+card cups~
+card of cups~
+A card lies here.~
+~
+18 0 0 0 1 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+361 0 0
+#326
+belt black buckled~
+a black belt~
+A black belt lies here.~
+~
+9 3072 0 0 2049 84
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 3
+A
+12 80
+#327
+silver leg leggings legging~
+silver guilded leggings~
+A pair of wonderfully crafted silver leggings lie here.~
+~
+9 64 2048 0 33 65
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+A
+14 10
+A
+18 13
+#328
+crown cups~
+crown of cups~
+His Majesty of Cups' crown lies here.~
+~
+9 536871008 0 4096 17 97
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 2
+A
+24 -10
+A
+12 100
+A
+18 4
+A
+19 5
+#329
+chain cups~
+chain of cups~
+A long golden chain lies here.~
+~
+9 1025 0 0 5 88
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 15
+A
+12 75
+#330
+cib ciborium cup cups~
+ciborium of cups~
+A magical ciborium made from pure gold refects your very shadow here.~
+~
+15 536870913 0 0 16385 98
+200~ 4~ 0~ 0~
+1 0 0 0 0
+0 0
+portal~
+0 0
+0 0 0
+#331
+bracer pentacles~
+bracer of pentacles~
+A magical dark bracer lies here.~
+~
+9 512 0 0 4097 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -13
+A
+1 2
+A
+13 40
+A
+19 4
+#332
+sash yellow~
+a yellow sash~
+A yellow sash has been tossed away here.~
+~
+9 67108928 0 0 2049 89
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 30
+A
+18 8
+A
+19 10
+#333
+pentacle page~
+page's pentacle~
+The page's pentacle sparks with energy here.~
+~
+9 65 0 0 16385 89
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+350 0 0
+#334
+pentacle knight~
+knight's pentacle~
+The Knight's pentacle sparks with energy here.~
+~
+9 65 0 0 16385 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+350 0 0
+A
+13 75
+A
+12 90
+A
+19 2
+A
+18 8
+#335
+queen pentacle~
+queen's pentacle~
+A magical pentacle lies here, sparking with energy.~
+~
+9 65 0 0 16385 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+349 0 0
+A
+18 19
+A
+13 80
+A
+12 90
+#336
+king pentacle~
+king's pentacle~
+The King's pentacle lies here, sparking with energy.~
+~
+9 65 0 0 16385 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+349 0 0
+A
+13 75
+A
+12 95
+A
+26 95
+#337
+sceptre pentacles~
+sceptre of Pentacles~
+The sceptre of pentacles glows and cackles with chaos~
+~
+1 67108928 0 0 1 60
+0~ 0~ -1~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 13
+#339
+card pent pentacles~
+card of pentacles~
+The card of the family Pentacles lies here.~
+~
+18 32 0 0 1 8
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+362 0 0
+#340
+neckguard flaming pentacle~
+red neckguard~
+A red neckguard of pentacles lies here.~
+~
+9 301989888 0 0 5 33
+50~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 2
+A
+5 2
+#341
+boots darkness~
+boots of darkness~
+A pair of darkened boots lie here.~
+~
+9 54 0 0 65 99
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+109 -1
+A
+100 -1
+#342
+queen pent pentacle~
+queen's Pentacle~
+A magical pentacle lies here, acting as a doorway to far off places.~
+~
+9 67108864 0 0 16385 96
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+portal~
+2 2
+0 0 0
+#343
+crown pentacles~
+crown of pentacles~
+A majestic crown, fit only for the most royal of magically users lies here.~
+~
+9 2592 972 4096 17 95
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 80
+A
+19 8
+A
+18 5
+A
+24 -14
+#344
+veil darkness~
+veil of darkness~
+A long green veil has been crumpled into a ball here.~
+~
+9 33554944 0 0 1025 99
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 13
+#345
+darkened dark leggings~
+darkened leggings~
+A pair of darkened leggings lie here.~
+~
+9 516 35 0 33 94
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 90
+A
+19 13
+A
+13 30
+#346
+darkened body armour dakr~
+darkened body armour~
+A heavy set of dark armour lies here.~
+~
+9 33557056 51 0 9 96
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+18 32
+A
+19 25
+A
+5 2
+A
+24 -10
+#347
+pentacle knight disk~
+knight's pentacle~
+A circular disk emmits a yellow beam of light straight into the air~
+~
+9 67109024 0 0 16385 91
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#348
+sword pages page~
+page's sword~
+A very long sword gleams in the sunlight here.~
+~
+5 97 0 0 8193 80
+0~ 0~ 0~ 3~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 25
+A
+18 25
+A
+13 80
+#349
+bloody shroud~
+&Rbloody shroud~
+A bloodied shroud lies here, soiled with the drought of war.~
+~
+9 570427457 754 0 1025 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+351 0 0
+A
+110 -1
+A
+19 11
+#350
+knights sword~
+knight's sword~
+Half of a portal glimmers here.  It's impossible to enter it.~
+~
+5 67108929 51 0 8193 100
+0~ 0~ 0~ 3~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+351 0 0
+A
+12 100
+A
+19 18
+A
+18 22
+A
+13 30
+A
+26 50
+#351
+sword queen~
+queen's sword~
+A sword sparkles with magic here~
+~
+5 96 0 0 8193 99
+0~ 0~ 0~ 3~
+5 0 0 0 0
+4 352
+reserved~
+1 1
+0 0 0
+A
+12 99
+A
+13 99
+A
+19 20
+A
+18 40
+#352
+sword magic~
+sword of Singing~
+A sword seems to sing to you as you pass by.~
+~
+5 637534272 0 0 8193 100
+0~ 0~ 0~ 3~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -100
+A
+12 75
+A
+19 35
+A
+18 25
+A
+13 100
+A
+26 40
+#353
+crown swords~
+crown of swords~
+The crown of swords lies here.~
+~
+9 2112 0 4096 17 99
+0~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+12 20
+A
+18 20
+#354
+shroud swords~
+shroud of swords~
+The Shroud of Swords lies here, crumbled from lack of use.~
+~
+9 65 0 0 1025 95
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 1
+A
+19 10
+A
+110 -1
+#355
+bloodied gauntlets~
+&Rbloodied gauntlets~
+A pair of gauntlets leak blood onto the ground here.~
+~
+9 570425345 0 0 129 97
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+357 0 0
+A
+12 90
+A
+13 90
+A
+19 8
+A
+18 11
+#356
+sword hand knights knight~
+hand of the Knight of Swords~
+A hand lies here, twitching with life.~
+~
+26 268435456 0 0 1 99
+100~ mana~ heal~ sanctuary~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+357 0 0
+#357
+Gauntlets blood soaked~
+blood Soaked Gauntlets~
+Blood flows into a pair of red gauntlets here.~
+~
+9 838860801 51 0 129 100
+100~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 20
+A
+18 10
+A
+19 10
+A
+26 100
+#358
+ring swords~
+ring of swords~
+A magical ring illuminates the sky with vibrant color~
+~
+9 65 0 0 3 97
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+adrenaline control~
+10 10
+0 0 0
+A
+13 95
+A
+12 95
+A
+1 2
+A
+18 9
+A
+19 8
+#359
+card swords~
+card of swords~
+The card of the family swords lies here.~
+~
+18 32 0 0 16385 60
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+362 0 0
+#360
+throne stone~
+throne~
+A massive stone throne sits here holding it's diety.~
+~
+12 0 0 0 1 0
+0~ 0~ 0~ 0~
+350 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#361
+half tarot~
+half a deck of Tarot Cards~
+Half a deck of Tarot Cards lies here.~
+~
+13 0 0 0 16385 75
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+363 0 0
+#362
+half deck tarot~
+half a deck of Tarot Cards~
+Half a deck of Tarot Cards lies here.~
+~
+13 0 0 0 16385 75
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+363 0 0
+#363
+deck tarot cards~
+a deck of Tarot Cards~
+A full deck of Tarot Cards sparkle with energy here.~
+~
+18 64 0 0 16385 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#364
+brick~
+a flaming brick~
+A flaming brick lies here.~
+~
+13 33554432 0 0 16385 8
+0~ 0~ 0~ 0~
+1 0 0 0 0
+3 300
+reserved~
+2 2
+0 0 0
+#365
+scroll chaos field~
+scroll of chaos field~
+A totally useless scroll lies here.~
+~
+2 67108864 0 0 16385 100
+100~ poison~ curse~ disintegrate~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#366
+cloak seclusion~
+cloak of seclusion~
+A darkened cloak lies here, creating a puddle of void.~
+~
+9 268435456 0 0 1025 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+19 6
+A
+18 6
+A
+100 -1
+#367
+lantern orgin recall orgins~
+lantern of orgins~
+A beam bolts from a lantern here, jutting straight into the sky.~
+~
+1 536870912 588 0 16385 80
+0~ 0~ -1~ 0~
+1 0 0 0 0
+3 331
+reserved~
+2 2
+0 0 0
+A
+4 1
+A
+12 80
+A
+13 80
+#368
+staff demon~
+demon staff~
+A long staff that provides protection from demons lies here.~
+~
+5 637534272 0 0 8193 86
+0~ 0~ 0~ 0~
+4 0 0 0 0
+2 367
+reserved~
+2 2
+0 0 0
+A
+26 40
+A
+4 2
+A
+18 20
+A
+19 20
+#369
+key planets~
+key of planets~
+A glowing skeleton key with symbols of planets lies here.~
+~
+18 64 0 0 16385 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#370
+moon belt moonlight~
+moonlight~
+A ray from the moon lies here~
+~
+9 65 0 0 2049 94
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+13 50
+A
+12 50
+A
+19 9
+A
+4 2
+#371
+cheese~
+a block of cheese~
+You see a block of magical cheese here.~
+~
+26 64 0 0 16385 80
+0~ heal~ mana~ refresh~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#372
+cup nuith~
+cup of nuith~
+The magic of Nuith resides in a small cup here.~
+~
+17 536870976 0 0 16385 4
+-1~ -1~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+A
+4 1
+A
+19 1
+A
+18 1
+#373
+dust twinkle~
+twinkle~
+Some magical stardust twinkles here.~
+~
+9 3137 0 0 524289 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+A
+19 11
+A
+12 95
+A
+18 8
+A
+13 50
+#374
+blaze sun~
+blaze of the sun~
+A flame from the sun brightens the area.~
+~
+9 33554464 0 0 131073 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 11
+A
+13 100
+A
+19 9
+A
+102 -1
+#375
+sunlight sun light~
+sunlight~
+A ray of very intense light is here.~
+~
+5 570425409 0 0 8193 100
+0~ 0~ 0~ 1~
+5 0 0 0 0
+5 0
+continual light~
+50 50
+0 0 0
+A
+19 35
+A
+26 20
+A
+13 30
+A
+12 100
+A
+18 25
+#376
+purple sash~
+&Pa purple sash&w of life~
+A purple sash lies here, tumbling in the wind.~
+~
+9 65 927 0 5 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+earthquake~
+20 20
+0 0 0
+A
+19 10
+A
+12 100
+A
+13 100
+A
+18 10
+A
+24 -20
+#377
+flowers world~
+flowers of the world~
+A circle of flowers fades in and out of reality before you.~
+~
+9 536870977 0 4096 17 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+24 -15
+A
+12 100
+A
+18 9
+A
+19 9
+#378
+key judgement~
+key to Judgement~
+A Key which seemingly matches a vortex in the tower of sorcery is here.~
+~
+18 0 0 0 16385 70
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#379
+scroll chaos~
+scroll of Chaos~
+A chaotic scroll twitches with energy here.~
+~
+2 603980416 0 0 16385 100
+50~ chaos field~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#380
+tomb~
+your tomb~
+A tomb awaits your eternal rest!~
+~
+29 0 0 0 0 80
+428~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#381
+deathplates death plate plates~
+deathplates~
+A pair of darkened deathplates lie here, distored by a lifeless void.~
+~
+9 838863361 0 0 33 100
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -100
+A
+18 7
+A
+19 13
+A
+13 100
+A
+26 10
+A
+24 -15
+#382
+Shroud Death~
+shroud of death~
+A black shroud turns all life to dust here.~
+~
+9 570428064 0 0 1025 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+19 13
+A
+109 -1
+A
+24 -12
+A
+18 7
+A
+12 100
+#383
+scythe death~
+death's Scythe~
+An evil looking scythe lies here.~
+~
+5 637536768 5119 0 8193 100
+0~ 0~ 0~ 3~
+5 0 0 0 0
+5 0
+animate dead~
+50 50
+0 0 0
+A
+26 100
+A
+19 50
+A
+18 10
+A
+17 -100
+A
+13 100
+#384
+your soul~
+your soul~
+Your soul seems to be outside of your body.~
+~
+1 268435521 0 0 1 90
+0~ 0~ -1~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+386 0 0
+#385
+corpse maggot food~
+your corpse~
+You corpse lies hurt as food for maggots.~
+~
+19 268435521 0 0 16385 80
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+386 0 0
+#386
+death life portal gateway~
+a new life~
+You hath defeated your death, begone mortal!~
+~
+29 0 0 0 0 0
+337~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#387
+trumpet judgement~
+trumpet of Judgement~
+A golden trumpet is here waiting to be played by it's master.~
+~
+4 0 767 0 16385 95
+100~ 5~ 5~ summon angel~
+2 0 0 0 0
+5 0
+enchanted song~
+45 45
+0 0 0
+A
+13 90
+A
+12 90
+#388
+wings angel wing~
+angel wing's~
+A massive set of angel wings fluttered without master here.~
+~
+13 3137 0 0 1025 50
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+110 -1
+A
+18 8
+#389
+key tower sorcery~
+key to the tower of sorcery~
+A magically key sparks with energy here.~
+~
+18 67108864 0 0 16385 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+3 352
+reserved~
+1 1
+0 0 0
+#390
+infinity strength~
+infinity of Strength~
+An infinity symbol lies here.~
+~
+9 536870977 50 0 32769 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+giant strength~
+-1 -1
+0 0 0
+A
+19 8
+A
+18 8
+A
+13 50
+A
+1 2
+#391
+lion claw strength~
+claw of Strength~
+A long claw build for mauling offenders is here.~
+~
+5 301989888 0 0 8193 80
+0~ 0~ 0~ 5~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 10
+A
+19 40
+#392
+strength bracer str~
+bracer of strength~
+A harded gem bracer lies here.~
+~
+9 0 0 0 4097 60
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+18 1
+A
+19 6
+A
+1 2
+#393
+key str strength~
+key to Strength~
+The key of strength lies here.~
+~
+18 64 0 0 16385 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+3 400
+reserved~
+1 1
+406 0 0
+#394
+key love temp temperance~
+key to love and temparance~
+The key to love and temperance lies here~
+~
+18 64 0 0 16385 75
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+389 0 0
+#395
+apple knowledge~
+apple of knowledge~
+An nice juicy apple lies here.~
+~
+26 0 0 0 16385 90
+50~ curse~ dancing lights~ poison~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#396
+tree knowledge~
+tree of knowledge~
+The tree of knowledge stands here, holding many a fruit.~
+~
+15 0 0 0 0 100
+10~ 5~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#397
+key love~
+key to love~
+The key to love emits warm fuzzy sensations about you.~
+~
+18 0 0 0 16385 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+394 0 0
+#398
+grail moderation~
+grail of moderation~
+A magical grail lies here, sparkying with energy~
+~
+17 67108865 0 0 16385 66
+-1~ -1~ 0~ 0~
+1 0 0 0 0
+5 0
+adrenaline control~
+5 5
+0 0 0
+#399
+key temperance~
+key to temperance~
+The key to temparance lies here.~
+~
+18 1 0 0 16385 75
+0~ 0~ 0~ 0~
+0 0 0 0 0
+3 400
+reserved~
+1 1
+394 0 0
+#400
+urim thummim~
+urim and thummim~
+Urim and Thummin, the symbols of wisdom lie here.~
+~
+9 805306432 0 0 257 100
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 30
+A
+13 25
+A
+19 8
+A
+18 10
+A
+17 -50
+A
+4 2
+#401
+crown aquarius~
+crown of aquarius~
+The golden crown marked with a brilliant star lies here.~
+~
+9 268436480 0 4096 17 79
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 75
+A
+13 75
+A
+4 2
+A
+18 10
+#402
+wand wisdom~
+wand of wisdom~
+The wand of he who is master to the chariots lies here.~
+~
+5 67108929 0 0 8193 90
+0~ 0~ 0~ 6~
+4 0 0 0 0
+5 0
+meteor swarm~
+18 18
+0 0 0
+A
+26 20
+A
+19 35
+A
+4 2
+A
+13 90
+#403
+belt golden wisdom~
+golden belt of wisdom~
+A golden belt lies here, sparking with energy.~
+~
+9 1 0 0 2049 99
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+sanctuary~
+5 5
+0 0 0
+A
+19 5
+A
+13 95
+A
+12 99
+A
+4 2
+A
+18 15
+#404
+eye eyes ancient~
+eyes of the ancients~
+A pair of ancient eyes glow from the shadows~
+~
+27 2145 0 0 131073 71
+50~ -1~ 0~  ~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 7
+A
+19 7
+A
+4 1
+A
+3 1
+#405
+key wisdom~
+key to wisdom~
+The key to wisdom lies here~
+~
+18 0 0 0 16385 75
+0~ 0~ 0~ 0~
+0 0 0 0 0
+3 400
+reserved~
+1 1
+406 0 0
+#406
+key wisdom strength~
+the Key to Wisdom and Strength~
+Long You see the key to wisdom and stregth collecting dust here.~
+~
+18 0 0 0 16385 75
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+389 0 0
+#407
+sword equil equilibrium~
+sword of equilibrium~
+A sword has been lodged into the ground here.~
+~
+5 1 0 0 8193 95
+0~ 0~ 0~ 1~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 35
+A
+26 30
+A
+13 30
+A
+12 95
+A
+18 23
+#408
+alpha~
+alpha~
+Half a scale called alpha lies here.~
+~
+9 805306403 0 0 5 76
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+410 0 0
+A
+12 40
+A
+19 7
+A
+24 -30
+A
+18 8
+#409
+omega~
+omega~
+A scale lies cut from it's brother.~
+~
+9 35 0 0 5 76
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+410 0 0
+A
+13 30
+A
+18 8
+A
+19 7
+A
+12 40
+#410
+scale scales alpha omega~
+scales of Alpha and Omega~
+A set of weighing scales lie here.~
+~
+9 805308416 460 0 513 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 9
+A
+12 100
+A
+13 20
+A
+24 -19
+#411
+flaming club~
+flaming club~
+A flaming club sputters ash all over you here.~
+~
+5 838879808 0 0 8193 100
+0~ 0~ 0~ 7~
+5 0 0 0 0
+5 0
+fireball~
+6 6
+0 0 0
+A
+24 -10
+A
+12 100
+A
+13 100
+A
+18 30
+A
+19 25
+#412
+ring sin sinners~
+ring of Sinners~
+A flaming ring illuminates the area with magical fiery.~
+~
+9 838863360 0 0 3 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+faerie fog~
+25 25
+0 0 0
+A
+24 -25
+A
+13 100
+A
+17 -100
+A
+12 50
+A
+19 11
+A
+18 5
+#413
+wing's wings wing demonlord~
+wing's of the Demon-Lord~
+A pair of massive wings lie here, flaming with screams of violence.~
+~
+9 33556992 0 0 1025 97
+0~ 0~ 0~ 0~
+6 0 0 0 0
+5 0
+summon demon~
+10 10
+0 0 0
+A
+19 7
+A
+18 7
+A
+110 -1
+A
+24 -6
+A
+25 24
+#414
+beast tattoo~
+sign of the Beast~
+A tattoo lies here blazing in pure unholiness~
+~
+9 33561216 0 0 129 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+incinerate~
+50 50
+0 0 0
+A
+19 10
+A
+18 10
+A
+13 100
+A
+24 -20
+A
+25 30
+#415
+aura good goodness~
+aura of goodness~
+A bright aura fills the room with life and energy~
+~
+9 805307392 0 0 32769 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+protection evil~
+42 42
+0 0 0
+A
+19 10
+A
+18 10
+A
+24 -40
+A
+17 -100
+A
+12 100
+#416
+triple crown~
+triple crown~
+A golden triple crown lies here, forgot by it's misfortune.~
+~
+9 3393 0 4096 17 77
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 8
+A
+18 8
+A
+12 77
+#417
+cross triple sceptre~
+triple crossed sceptre~
+A long sceptre lies here.~
+~
+5 536871424 12 0 8193 95
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 35
+A
+18 23
+A
+12 90
+#418
+stole holy~
+stole of the holy~
+A priest's stole lies here, encrusted with gems and crosses.~
+~
+9 805306625 0 0 5 51
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 8
+A
+13 50
+#419
+key golden tora~
+key to tora~
+A golden key lies here crossed with it's mate.~
+~
+18 0 0 0 16385 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#420
+key lunar silver~
+key to lunar~
+A silver key lies here crossed with it's mate.~
+~
+18 0 0 0 16385 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#421
+sign holy spirit infinity~
+infinity~
+You vaguely see a symbol of sorts.~
+~
+9 805306467 0 0 32769 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -20
+A
+13 50
+A
+18 12
+A
+12 100
+A
+19 8
+#422
+serpent cincture serpent-cincture serp~
+serpent-cincture~
+A serpent coils around, eventually swallowing itself.~
+~
+9 99 0 0 2049 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+24 -15
+A
+13 75
+A
+19 10
+A
+12 100
+#423
+robe magic magician~
+robe of a magician~
+A long red robe hath been forgotten here.~
+~
+9 99 732 0 1025 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 10
+A
+13 10
+A
+24 -20
+A
+12 100
+#424
+essence mag magik magic~
+magic~
+The essence of magic lies here, vibrating with all it's might.~
+~
+5 905973856 0 0 8193 100
+0~ 0~ 0~ 6~
+13 0 0 0 0
+5 0
+sanctuary~
+10 10
+0 0 0
+A
+13 100
+A
+26 100
+A
+24 -40
+A
+19 50
+A
+12 100
+A
+18 10
+#425
+shield venus~
+shield of venus~
+The shield of venus lies here, protecting the innocent.~
+~
+9 805306368 0 0 513 100
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -20
+A
+19 8
+A
+18 10
+A
+12 100
+A
+17 -100
+#426
+earring crystal~
+&Ca crystal earring&X~
+&CA crystal earring lies here, sparkling.~
+~
+9 268435552 8 0 524289 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+dancing lights~
+12 12
+0 0 0
+A
+19 6
+A
+18 5
+A
+24 -10
+A
+12 80
+#427
+crown mars~
+crown of mars~
+A magnificant crown lies here, sparkling in the sunlight.~
+~
+9 536872448 0 4096 17 100
+0~ 0~ 0~ 0~
+7 0 0 0 0
+5 0
+chaos field~
+10 10
+0 0 0
+A
+19 1
+A
+18 10
+A
+24 -5
+A
+12 100
+A
+3 2
+#428
+sceptre planets~
+sceptre of planets~
+A jeweled sceptre lies here.~
+~
+3 65 0 0 16385 100
+100~ 20~ 20~ dispel magic~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#429
+orb death~
+orb of death~
+A violent looking orb lies here pulsing death rays about you.~
+~
+9 65 0 0 16385 100
+0~ 0~ 0~ 0~
+14 0 0 0 0
+5 0
+disintegrate~
+20 20
+0 0 0
+A
+17 -100
+#430
+leggings black glass~
+a pair of black-glass leggings~
+A shiny pair of black leggings lie here.~
+~
+9 536872448 0 0 33 100
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+astral walk~
+10 10
+0 0 0
+A
+19 10
+A
+12 100
+A
+18 7
+A
+17 -40
+#431
+jewel jeweled sceptre~
+jeweled sceptre~
+A jeweled sceptre quakes light through out the room here.~
+~
+5 872415460 0 0 8193 100
+0~ 0~ 0~ 7~
+8 0 0 0 0
+5 0
+chaos field~
+2 2
+0 0 0
+A
+26 40
+A
+13 25
+A
+24 -10
+A
+18 10
+A
+12 100
+A
+19 50
+#432
+ruby cloak~
+ruby cloak~
+A long ruby cloak lies here in a puddled.~
+~
+9 805306400 460 0 1025 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+fireshield~
+30 30
+0 0 0
+A
+24 -10
+A
+12 150
+A
+18 7
+A
+19 7
+#433
+white wine glass~
+a glass of white wine~
+A glass of white wine lies here.~
+~
+17 0 0 0 16385 70
+3~ 3~ 2~ 0~
+1 0 0 0 0
+0 0
+cure poison~
+0 0
+0 0 0
+#434
+double edged wand~
+double edged wand~
+A white wand lies here.~
+~
+5 67108961 894 0 8193 100
+0~ 0~ 0~ 2~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 50
+A
+24 -10
+A
+13 50
+A
+19 38
+A
+18 22
+A
+12 100
+#435
+power wands~
+power of wands~
+The power of wands lies here, sparking with energy~
+~
+9 268435584 0 0 16385 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+shockshield~
+10 10
+0 0 0
+#436
+power cups~
+power of cups~
+The power of cups, sparks with energy here.~
+~
+9 268435584 0 0 16385 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+chaos field~
+10 10
+0 0 0
+#437
+power swords~
+power of swords~
+The power of swords sparks with energy here.~
+~
+9 268435584 0 0 16385 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+vibrate~
+10 10
+0 0 0
+#438
+power pentacles~
+power of pentacles~
+The power of pentacles lies here sparking with energy.~
+~
+9 268435584 0 0 16385 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+fireshield~
+10 10
+0 0 0
+#440
+scroll luna~
+scroll of luna~
+A tattered scroll lies here blazing with magic.~
+~
+2 65 0 0 16385 100
+100~ heal~ sanctuary~ vibrate~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#441
+scroll tora~
+scroll of tora~
+A scroll of tora blazes with energy here.~
+~
+2 65 0 0 16385 100
+75~ shockshield~ fireshield~ invis~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#442
+cross magic~
+cross of magic~
+The cross of magic lies here, twitching with energy~
+~
+9 536870976 332 0 5 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+mana~
+20 20
+0 0 0
+A
+18 10
+A
+19 10
+A
+12 100
+#443
+gateway portal~
+portal~
+A massive gateway errupts before you, leading to the bottom of the tower.~
+~
+29 0 0 0 0 0
+300~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#444
+black glass boots~
+glossy black boots~
+A pair of black-glass boots lie here.~
+~
+9 805308928 1011 0 65 100
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+word of recall~
+0 0
+0 0 0
+A
+13 20
+A
+110 -1
+A
+18 9
+A
+19 9
+A
+100 -1
+#0
+
+
+
+#ROOMDATA
+#300
+Tower of Sorcery~
+&cAmidst a cold and dark corridor, where light illuminates from tiny
+wafers of air, you find yourself immersed in a shower of hyper-awareness. 
+Particles of energy form at the base of your spine then travel slowly upward
+creating a most unimaginable feeling.  Something with in the air, or perhaps
+the air itself, is forming your thoughts and deeds.  This is not the place
+for mere mortals to adventure freely, for the fibres of all that is magical
+in the land connect infallibly at the core of all that is around you.  To
+the north lies a massive wooden door, with carved faces for a frame. 
+Whatever the secret be that lies beyond the door will be surely kept upon
+your imminent death.  
+~
+0 -2142896128 0
+Rd     0
+D0
+~
+door~
+39 0 301
+S
+#301
+The Tower of Sorcery~
+&cImmediately upon your untimely entrance the door crashes shut behind you
+with an echo that sends tremors down the magical hall that lies before you. 
+Several groans reveal themselves from the mist that clutters your vision. 
+You have the feeling that your vision isn't going to help you for what you
+see dimly though the mist, is not part of your present reality.  It seems
+things are about to change forever.  A scream shrieks in the distance and
+the floor that was to the north shatters and caves into nothing.  Tilting
+your head up in utter despair an emerald vortex errupts, swirling near the
+speed of light, slowly hypnotizing you.  
+~
+0 -2143018999 0
+Rd     0
+D2
+~
+~
+39 0 300
+D4
+~
+~
+0 0 302
+S
+>enter_prog 100~
+0
+if ispc ($n)
+mpat 300 close north
+endif
+~
+|
+#302
+Shifting Stones of Zohar~
+Like the time before only more drastic, the emerald vortex caves leaving
+you to observe your new surroundings.  You stand on a one foot cubed square
+which is marked with a strange and mystically symbol.  Identical stones head
+off into the distance only to cave into nothingness in a ten foot radius
+about you.  None of the four cardinal directions visually exist, however
+your soul reveals that all are possible.  
+~
+0 -2143027191 0
+Rd     0
+E
+symbol~
+________      @
+      <    `__|__'
+     <        |
+    <         |
+   <        |
+  <         |___/
+--------
+_____________________
+~
+D0
+~
+~
+0 0 303
+D1
+~
+~
+0 0 306
+D2
+~
+~
+0 0 304
+D3
+~
+~
+48 0 305
+D4
+~
+vortex~
+119 363 327
+S
+#303
+Void of Zohar~
+You are covered in a substance that is not.  It is not black, nor is it white.
+It is here and there, it is not here nor there.  Your body is trapped within
+Zohar's void.
+~
+0 -2008670203 0
+Rd     0
+D4
+~
+void~
+3 0 307
+S
+#304
+Void of Zohar~
+You are covered in a substance that is not.  It is not black, nor is it white.
+It is here and there, it is not here nor there.  Your body is trapped within
+Zohar's void.
+~
+0 -2008670203 0
+Rd     0
+D4
+~
+~
+3 0 312
+S
+#305
+Void of Zohar~
+You are covered in a substance that is not.  It is not black, nor is it
+white.  It is here and there, it is not here nor there.  Your body is
+trapped within Zohar's void.  
+~
+0 -2008670203 0
+Rd     0
+D4
+~
+door~
+3 0 322
+S
+#306
+Void of Zohar~
+You are covered in a substance that is not.  It is not black, nor is it white.
+It is here and there, it is not here nor there.  Your body is trapped within
+Zohar's void.
+~
+0 -2008670203 0
+Rd     0
+D4
+~
+~
+3 0 317
+S
+#307
+Hall of Wands~
+Suddenly you find yourself in a great hall.  The ceiling rushes up nearly
+twenty feet into the thin air about you.  The carpet is red, and the walls
+are decorated with paper marked with a yellow print of lizards and lions. 
+You feel calm and safe, however a little confused as to how you actually got
+here.  Magic fills the halls, as you look off into the north.  
+~
+0 -2142887931 0
+Rd     0
+D0
+~
+~
+0 0 308
+D2
+~
+~
+119 313 302
+S
+#308
+Hall of Wands~
+An outlandish place, filled with decadence and frivolous decor.  This is
+a place fit for only the finest of royalty.  Above, a bright sun shines
+creating a marvelous spectrum of light that dances down onto the page, who
+awaits his and her majesty of wands' orders.  Taking a deep breath your body
+is filled with a magical sensation.  To the north, east and west huge doors
+protect the royal souls.  All may seem safe, however surely by now you
+should have realized that what you see and feel, isn't always the truth.  
+~
+0 -2142887927 0
+Rd     0
+D0
+~
+~
+0 0 309
+D1
+~
+~
+0 0 310
+D2
+~
+~
+0 0 307
+D3
+~
+~
+0 0 311
+S
+#309
+Courtyard of Wands~
+You are experiencing quite a visual spectacle.  From the magical air of
+the hall before, you now are surrounded in desert.  This is where the knight
+of wands practices battle with his brown horse.  Perhaps he may confuse you
+for an outlaw, spilling your blood about the the sandy ground.  
+~
+0 -2142887927 10
+Rd     0
+D2
+~
+~
+0 0 308
+S
+#310
+Her Majesty's Domain~
+Two large pillars mark the entrance.  You cross over to the queen
+where you immediately jump back in fear of the strangest looking cat.
+Your body is filled with an unheaval of disturbance.  Perhaps it's
+best if you leave her majesty alone.
+~
+0 -2143150071 0
+Rd     0
+D3
+~
+~
+0 0 308
+S
+#311
+Chamber of Wands~
+A vast room filled with many marvelous things.  The hard wood floor
+creates a hollow echo through out the room, letting all know of your
+entrance.  You feel erie as you cross to greet the king.  You here
+slithering sounds all about you.
+~
+0 -2142887928 0
+Rd     0
+D1
+~
+~
+0 0 308
+S
+#312
+Hall of Cups~
+You stand on the edge of a vast sea.  A cool wind blows through you as
+you ponder whether or not to set sail in the waters before you.  It seems
+rather unlikely that something of any greatness could exist on water,
+however stranger things have already occurred during your imprisonment
+with in the Tower of Sorcery.
+~
+0 -2147082239 7
+Rd     0
+D0
+~
+~
+119 325 302
+D2
+~
+~
+0 0 313
+S
+#313
+Sea of Cups~
+Amidst the Sea of Cups, you have come across a rather odd and younge
+dreamer, no doubt a voyager like yourself.  The waves roll in against
+your boat, then ebb away to bring room for more.  Above the sun shines
+brightly, creating a sensation that nothing could go wrong here.
+~
+0 -2142887936 7
+Rd     0
+D0
+~
+~
+0 0 312
+D1
+~
+~
+0 0 315
+D2
+~
+~
+0 0 314
+D3
+~
+~
+0 0 316
+S
+#314
+Sea of Cups~
+The waters of the sea seem to emit a magical sensation all about you.
+Your find it difficult to fathom how such a vast sea became part of
+a single tower, then realize that it is another piece of a strange and
+weird magic.
+~
+0 -2142887936 7
+Rd     0
+D0
+~
+~
+0 0 313
+S
+#315
+Her Majesty's Domain~
+You have floated upon the majesty herself.  She seems fixated on the
+large cup that she holds.  It all reminds you of gypsy fortune telling,
+however this seems to be a little more serious.  The waves curve around her
+throne as though nothing should disturb her gazing.  
+~
+0 -2147082240 7
+Rd     0
+D3
+~
+~
+0 0 313
+S
+#316
+Sea of Cups~
+The King's throne seems to float with great ease on the water.  Waves
+seem to curl around it as though afraid of clashing with the obviously
+powerful force.  Far off in the distance a large ship can been seen, however
+you would easily be destroyed venturing after it.  A friendly dolphin swims
+along side the King watching you carefully.  
+~
+0 -2142887936 7
+Rd     0
+D1
+~
+~
+0 0 313
+S
+#317
+Hall of Pentacles~
+You have entered into a dark cavern of sorts, where light and life seem
+to be all part of that which is evil.  The walls are lined with a sticky
+black mesh-like material.  The ground is damp and sounds of a dripping
+spring echoe off the walls about you.  Again you find it hard to believe
+your eyes.  To your west a giant rock with a pentacle carved in with blood
+blocks your exit.  
+~
+0 -2143018999 0
+Rd     0
+D1
+~
+~
+0 0 318
+D3
+~
+rock~
+71 339 302
+S
+#318
+Hall of Pentacles~
+You have entered into the heart of a black damp cavern, which seems to be
+home to the family Pentacles.  Your heart pounds as you gaze upward into a
+black void where you thought the roof would be.  It's hard to believe from
+this point of view that you are actually within a tower of sorts.  The page
+seems to be unaware of your entrance as he attends to his own matters.  
+~
+0 -2143018999 0
+Rd     0
+D0
+~
+~
+0 0 320
+D1
+~
+~
+0 0 319
+D2
+~
+~
+0 0 321
+D3
+~
+~
+0 0 317
+S
+#319
+Courtyard of Pentacles~
+You have entered what seems to be a dungeon of sorts.  A savage man rides
+about ranting and raving about how he's about to crush you.  Perhaps it is
+time to leave?  Leaving would be a good idea, however you seem to be very
+stuck in a black web that erupts from the ground.  
+~
+0 -2142887928 0
+Rd     0
+D3
+~
+~
+0 0 318
+S
+#320
+The King's Domain~
+You've enter a small garden filled with lush flowers and vines.  A
+trinkle of water flows past you as you gaze up at the omnious throne sitting
+before you.  The vines cross in and out of the grailling of the throne,
+while the King sits patiently.  
+~
+0 -2143281151 0
+Rd     0
+D2
+~
+~
+0 0 318
+S
+#321
+Queen's Domain~
+The room smells of sweet perfumes and magical essence.  Your head brushes
+a low tree that waves in the gentle breeze seemly created from something
+other then the wind.  You can't help but notice the immaculate glare and
+intensity in which the queen places upon the focus of her pentacle.  A wave
+of dispair falls upon you, as your spine cracks with sensations.  
+~
+0 -2142887935 0
+Rd     0
+D0
+~
+~
+0 0 318
+S
+#322
+The Hall of Swords~
+You stand on a royal red carpet the lines the floor to this most amazing
+hall.  Swords of all type are hung on the wall to signify your unfortunate
+landing.  You hear the voice of a page off to the west, while a huge wooden
+door blocks your exit east.  Only the magic that is held with in this
+hall can unleash the powers behind the secured door.
+~
+0 -2147483648 0
+Rd     0
+D1
+~
+~
+119 359 302
+D3
+~
+~
+0 0 323
+S
+#323
+Hall of Swords~
+As you approach the inner bowels of the hall, your eyes sparkle with joy
+over the spectacle that envelopes your sight.  The room seems to melt away
+as you find yourself outdoors, amidst a scenic country-side atmosphere.
+To the north, her majesty resides and in adjacence her majesty.  To the west
+the knight seems eager to engage in battle.
+~
+0 -2147082240 0
+Rd     0
+D0
+~
+~
+0 0 325
+D1
+~
+~
+0 0 322
+D2
+~
+~
+0 0 326
+D3
+~
+~
+0 0 324
+S
+#324
+Courtyard of Swords~
+This is where the knight of swords practices.  Currently he rides around
+screaming his war cry into the gailing wind.  His voice is deep and
+commanding, his horse strong and loyal.  Do not test his blade mortal.
+~
+0 -2147483648 0
+Rd     0
+D1
+~
+~
+0 0 323
+S
+#325
+King's Domain~
+~
+0 -2147483639 0
+Rd     0
+D2
+~
+~
+0 0 323
+S
+#326
+King's Domain~
+You have entered a massive garden.  A huge throne has been placed in the
+middle surrounded with wild flowers.  You body vibrates with passion as you
+enter into the garden of the king whose blade is sheathed.  
+~
+0 -2142887928 0
+Rd     0
+D0
+~
+~
+0 0 323
+S
+#327
+The Tower of Sorcery~
+Both the ceiling and floor seem to be encrusted with a swirling vortex. 
+You can feel a cold draft coming from the east, and a red light seems to
+flicker deep within a cave to the west.  You are continually amazed at how
+surreal this tower is.  In fact it's very difficult to believe you are in a
+tower at all.  
+~
+0 -2147483648 0
+Rd     0
+D1
+~
+~
+0 0 328
+D3
+~
+~
+0 0 331
+D4
+~
+vortex~
+119 369 332
+D5
+~
+vortex~
+119 363 302
+S
+#328
+Edge of the Tower~
+You see a cliff to the east, however the fool seems to be quite unaware
+of this.  It seems that if one were to venture of to the east and follow the
+fool, it would most likely result in your death.  The fool is selling stuff
+that is fit for a fool, however one can never be to sure about price or
+value when dealing with a fool.  Perhaps the Fool only needs a friend to
+straighten him out.  There is a sign here.  A VERY BIG SIGN.  
+~
+0 -2147081216 0
+Rd     0
+E
+sign~
+A sign is here with words of wisdom:
+ 
+&RIF YOU GO EAST YOU WILL DIE!!!!!!!!!
+~
+D1
+~
+~
+0 0 329
+D3
+~
+~
+0 0 327
+S
+#329
+Falling off a Cliff!!!~
+You float off the edge of a cliff, until you look down and see your
+inevibable doom!  A huge gust of wind pulls you down deep into the bowls of
+the tower!  
+~
+0 -1979310079 0
+Rd     0
+D5
+~
+~
+0 0 330
+S
+#330
+The Bowels of the Tower~
+You are struggling with all your might to be freed from this pit of doom.
+A brick falls onto you, knocking you silly.  As you awake you realize you
+are at war with the tower itself!  Can you destory such a powerful building?
+I suggest ye invoke the brick before it crushes you senseless!  
+~
+0 -1878646780 0
+Rd     300
+S
+#331
+Zohar's Cave of Seclusion~
+You have entered a dark cave lit by a single reddish candle.  The candle
+flickers slightly as a man enters through the shadow before you.  He is
+a sage, and master to all that lingers deep within this omnious tower.
+He has lived here since the banishment of the major arcanes before the
+storm, or the great wipe.  Incense burns filling the air with a marvelous
+odour quaking your body with a frenzy of warm fuzzies.  The Hermit knows
+all about the tower, and is more than willing to help you on your quest
+up ward.
+~
+0 -2142887935 0
+Rd     0
+D0
+~
+~
+3 0 363
+D1
+~
+~
+0 0 327
+S
+>exit_prog ~
+0
+~
+|
+#332
+Hall of Planets~
+You find yourself tossed between unearthly satellites.  Stuck in a
+massive cycle of life and retrospection, you can only sit back and gaze
+deeply into the new found realty that exists.  At first it seems like
+perhaps this planetary experience is not very new at all, however this time
+you are immersed with in that which you've seen only from a million miles
+away.  
+~
+0 -2147090423 0
+Rd     0
+D0
+~
+~
+0 0 333
+D1
+~
+~
+0 0 335
+D2
+~
+~
+0 0 334
+D3
+~
+~
+0 0 336
+D4
+~
+vortex~
+71 378 337
+D5
+~
+~
+119 369 327
+S
+#333
+The Moon~
+In complete silence, you begin to orbit around a massive rock.  To your
+eye it may seem that you are actually on the moon, however such is not the
+case.  You are witnessing the essence of the moon, the power that such a
+massive thing has.  It's a new way to look at things, a perception you shall
+never forget.  
+~
+0 -2147082231 9
+Rd     0
+D2
+~
+~
+0 0 332
+S
+#334
+The Star~
+The heat produce from the star is almost unbearable.  Your skin seems to
+shrivel and distort as the cancer-rays enter your body.  The star's magic is
+immense for it can filter through the air and enter at all angles.  A beam
+of light zooms past nearly dislodging your head.  
+~
+0 -2012864503 7
+Rd     0
+D0
+~
+~
+0 0 332
+S
+#335
+The World~
+It's everything you could imagine all in one focus.  At the edge of the world
+is where you now stand, away from all the evils.  You stand at the purest
+and most divine of all - mother earth.  Surrounding her are four
+~
+0 -2012864503 0
+Rd     0
+D3
+~
+~
+0 0 332
+S
+#336
+The Sun~
+You skin blisters under the immense heat of the sun.  Your eyes nearly pop
+from the rays that beam about.  You can't take much more of this.  It would
+be very wise to leave this place at once.
+~
+0 -1878646775 0
+Rd     100
+D1
+~
+~
+0 0 332
+S
+#337
+Hall of Judgement~
+It is time for you to be judged!  Art thou worthy to continue further up the
+tower?  If so you shall have no problem finding the key that fits the
+vortex directly above.  Judgement doesn't have patience for those whom
+fail.  A small sign is here.
+~
+0 -2147082231 0
+Rd     0
+E
+sign~
++-------------------------+
+| To pass thee invoke the |
+| proper key; that which  |
+| is the key to all and   |
+| not just one.           |
++-------------------------+
+~
+D0
+~
+~
+0 0 338
+D1
+~
+~
+0 0 339
+D2
+~
+~
+0 0 341
+D3
+~
+~
+0 0 340
+D5
+~
+~
+71 378 332
+S
+#338
+The Pond of Temperance~
+You have come to a small and clear pond.  You feel that this is where men
+come to recieve immortallity.  Temperance wades delicately amongst the clear
+waters of the marvelous pond.  
+~
+0 -2012864503 0
+Rd     0
+D2
+~
+~
+0 0 337
+S
+#339
+The Chariot~
+A golden chariot rides past you, narrowly missing your feet.  The driver
+seems to be overwelmed with speed and the magnificance of his sphinx team.
+Here stands Wisdom, and what all the wisest man strive for.  He rides
+~
+0 -2147082231 0
+Rd     0
+D3
+~
+~
+0 0 337
+S
+#340
+Plains of Strength~
+You have come across a vast plain, where dried grasses seem nearly burnt.
+The wind blows lightly across the land creating tumble weed and warmth with
+in.  Harmony amongst all living things is most evident here.  
+~
+0 134619145 0
+Rd     0
+D1
+~
+~
+0 0 337
+S
+#341
+Garden of Eden~
+You are inside the a vast a lush garden filled with many fruits and
+wildlife.  A giant tree juts out of the ground here, emitting a glow of
+peace and warmth.  It would be a bad idea to eat the fruit of this tree for
+the Lord Himself hath commanded it.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 337
+S
+#342
+Wheel of Fortune~
+Are you feeling lucky today mortal?  A massive wheel spins incessantly
+about you predicting your fate.  You look deep into the spiral seeing all at
+once.  Your childhood flashes before you, your death and life there after. 
+A gust of wind knocks you to your feet, as the wheel spins for your present
+fate.  
+~
+0 401421 0
+Rd     0
+D2
+~
+~
+3 0 347
+S
+#343
+Halls of Justice~
+You have entered the court of Justice!  Here is where you shall be dealt
+with accordingly.  If thou does not permit this to occur then suffer the
+wrath of the court.  Two massive columns ivory columns separate the bench. 
+A chair has been set off to the side for the accuse, who right now seems to
+be you.  
+~
+0 134619149 0
+Rd     0
+D0
+~
+~
+3 0 347
+S
+#344
+Lair of the Devil~
+The floor burns with unfelt heat, as you seeming have come prepared for
+this ultimate battle.  You hath entered the lair of the Devil.  Devil
+lingers in your near future, there is no escape from the Demon Lord Himself.
+~
+0 401420 0
+Rd     0
+D4
+~
+~
+0 0 362
+S
+#345
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 346
+S
+#346
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 345
+S
+#347
+The Void~
+You find yourself spinning out of control in complete darkness.  Several
+doors spin along with you, but it's hard to tell exactly which direction
+they lie in.  You spin, and spin until finally landing face first on another
+platform, disorientated and totally lost.  Where are you now?  
+~
+0 401417 0
+Rd     0
+D0
+~
+door~
+3 0 342
+D1
+~
+~
+0 0 351
+D2
+~
+door~
+3 0 343
+S
+#348
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 349
+S
+#349
+~
+~
+0 -2147483648 0
+Rd     0
+D2
+~
+~
+0 0 350
+D3
+~
+~
+0 0 348
+S
+#350
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 349
+S
+#351
+Tossed in Darkness~
+You slide off into a void-like darkness, encompassed by 'nothingness'. 
+Your body squirms and twitches to the new sensations, and all at once is
+thrown into convulsions from the mass hallucinations the darkness creates. 
+A beast roars, a flower blossoms, then an angel heals your soul.  Tis all a
+part of this magically tower no doubt.  
+~
+0 -2147483648 0
+Rd     0
+D1
+~
+~
+0 0 352
+D3
+~
+~
+0 0 347
+S
+#352
+Tower of Sorcery~
+Again you hath gained another level in the tower of sorcery and again you
+find yourself amidst a void of darkness.  You see trails of colour but can
+not make out any dominate shapes.  A vortex blasts into exist directly above
+you, then is gone as if it was never there.  Your eyes find it difficult to
+adjust to the constant flux of your surroundings, and finally you collapse
+in a fit of anxiety.  
+~
+0 -2147082231 0
+Rd     0
+D3
+~
+~
+0 0 351
+D4
+~
+vortex~
+3 0 354
+S
+#353
+~
+~
+0 -2147483644 0
+Rd     0
+S
+#354
+Tower of Sorcery~
+You stand on a platform made from black glass.  Looking down you see no
+end to a black void that could easily envelope your soul in seconds.  To the
+west a blood red cloud circles creating havoc on the environment; nearly
+blowing you off down into the void.  Braches jump in and out of your
+preception seemingly presenting another hallucination.  Your mind wanders
+with violent rage, attracked to all edges of this black and desolate
+platform.  You feel as though you are on show, like a china doll in a glass
+cage.  For a breif second another swirling vortex directly above fades into
+existance, then is gone like ghosts of the past.  
+~
+0 -2147082231 0
+Rd     0
+D1
+~
+~
+3 0 363
+D3
+~
+~
+0 0 355
+D4
+~
+vortex~
+3 0 364
+D5
+~
+~
+3 0 352
+S
+#355
+Foothills of Mount Golgatha~
+You have come to the foothills of the great Mount Golgatha.  High up
+above you can see three wooden crosses emplanted into the ground.  The
+heavens seem to be in a sort of cosmic uproar, as you hear thunder
+incessantly.  Below a grate can be seen.  
+~
+0 -2147082231 0
+Rd     0
+D1
+~
+~
+0 0 354
+D4
+~
+~
+0 0 356
+D5
+~
+grate~
+3 0 360
+S
+#356
+Path up Golgatha~
+You are travelling a dirty path up the side of Golgatha where it's
+obvious from here that someone is being killed.  Thunder blazes through your
+skin, as dark red clouds hover high above.  Seems today is a rather dark day
+to be visiting the top of this bloody mountain.  
+~
+0 -2147082231 9
+Rd     0
+D4
+~
+~
+0 0 359
+D5
+~
+~
+0 0 355
+S
+#357
+~
+~
+0 -2147483648 9
+Rd     0
+D4
+~
+~
+0 0 358
+S
+#358
+~
+~
+0 0 9
+Rd     0
+D5
+~
+~
+0 0 357
+S
+#359
+Golgatha~
+You stand on a mound of death and decay.  Skulls from past victims
+scatter the ground, and presently yet another execution is occurring. 
+People come around the three men who are up high nailed to their crosses
+awaiting death.  Screams of pity from the pious who watch on with glazed
+eyes penetrate your heart.  Why?  Why are they killing these men in such a
+brutal fashion?  
+~
+0 -2147082231 9
+Rd     0
+D5
+~
+~
+0 0 356
+S
+#360
+Just below Golgatha~
+You have broken through a layer of crust and now decend into a furnace of heat
+directly below.  Perhaps it would be wise to climb up to the surface before
+it's too late.  Screams of the damned echo off the walls of the tunnel.
+~
+0 -2147082231 0
+Rd     0
+D4
+~
+~
+3 0 355
+D5
+~
+~
+0 0 361
+S
+#361
+Below Golgatha~
+You continue to decend further into a the dirt below Mount Golgatha.  A
+voice taunts your journey downward, and the path seems to be unbarable.  The
+heat from below is so intence that you see red embers emitting an evil glow
+upward.  
+~
+0 -2147082231 0
+Rd     0
+D4
+~
+~
+0 0 360
+D5
+~
+~
+0 0 362
+S
+#362
+Below Golgatha~
+You have dug along ways beneath the ancient city, and now a thin crust
+lies between you and your damned fate.  A red glow billows out from below
+you, not much is standing between you and the evil that lurks below.  
+~
+0 -2113527799 0
+Rd     0
+D4
+~
+~
+0 0 361
+D5
+~
+~
+0 0 344
+S
+#363
+The Keeper of Keys~
+You part through branches and enter into a large garden.  A pale man sits
+on a throne deep within a gazebo that's surrounded with vines and berries. 
+You body is filled with awe, as you realize this is a religious ground.  
+~
+0 -2008670207 0
+Rd     0
+D2
+~
+~
+3 0 331
+D3
+~
+~
+3 0 354
+S
+#364
+Tower of Sorcery~
+Several groans reveal themselves from the mist that clutters your vision.
+You have the feeling that your vision isn't going to help you for what you
+see dimly though the mist, is not part of your present reality.  It seems
+things are about to change forever.  A scream shrieks in the distance and
+the floor that was to the north shatters and caves into nothing.  Tilting
+your head up in utter despair an emerald vortex errupts, swirling near the
+speed of light, slowly hypnotizing you.  Directly above another vortex fades
+in and out of existance.  
+~
+0 -2147483648 0
+Rd     0
+D3
+~
+~
+0 0 365
+D4
+~
+~
+0 0 368
+D5
+~
+~
+3 0 354
+S
+#365
+Valley of Mist~
+Mist rolls about your feet with great frenzy.  You've entered a dark
+valley seemingly secluded from the rest of the tower.  A voice passes
+through the mist echoing vibes of love and magic.  To the north a colourful
+garden breathes a motif of seduction, while the south a marble court lazily
+rests.  A massive bird swoops through the mist narrowly missing your brow.  
+~
+0 -2147082231 0
+Rd     0
+D0
+~
+~
+0 0 366
+D1
+~
+~
+0 0 364
+D2
+~
+~
+0 0 367
+S
+#366
+Garden of the Empress~
+You've entered into a rather viney garden.  Berries grow in all different
+varieties, and their lush smell easily penatrates into your nostrils.  A
+lady lies elegantly on the cool grass awaiting your arival.  She's the
+empress of all that lives and moves, and this garden is as lovely an
+attraction as she is.  
+~
+0 -2012864503 0
+Rd     0
+D2
+~
+~
+0 0 365
+S
+#367
+Court of the Emperor~
+Here stands the emperor himself, veiled in magic from all reaches of the
+land.  His court is decorated to match that of any great royal figure.  Two
+giant columns mark the entrance to where his massive stone throne sits
+incessantly.  Invarible whisps of wind gail through the court brushing the
+embers of all life forms.  
+~
+0 -2147082231 0
+Rd     0
+D0
+~
+~
+0 0 365
+S
+#368
+~
+~
+0 -2147483648 0
+Rd     0
+D4
+~
+~
+0 0 370
+D5
+~
+~
+0 0 364
+S
+#369
+~
+~
+0 -2147483648 0
+Rd     0
+D5
+~
+~
+0 0 368
+S
+#370
+Top of the Tower~
+You have reached the top of the tower.  Two great hallways lead of to
+the north and south, both equally majestic and intruiging.  Torches line the
+walls casting shadows down into the light fog that dances about.  A tiny
+ringing is occuring with in your ears: do not enter if ye are not prepared
+to visit the essence of all magic.  
+~
+0 -2147483648 0
+Rd     0
+D0
+~
+~
+0 0 371
+D2
+~
+~
+0 0 374
+D4
+~
+~
+0 0 377
+D5
+~
+~
+0 0 368
+S
+#371
+Hall of Magic~
+You walk slowly and unsure down a vast and omnious hall.  A layer of
+greenish fog rolls along the ground, dancing over your feet.  The tall
+ceiling gives a feeling of infinity and strength of all that exists.  Your
+spine tingles with an immense flux of energy as you casually strut down the
+hall filled with the awakenings of a magical essence.  
+~
+0 -2147082231 0
+Rd     0
+D0
+~
+~
+0 0 372
+D2
+~
+~
+0 0 370
+S
+#372
+Hall of Magic~
+To the north a massive door blocks your passage.  It's obvious that that
+which stands behind this very important looking door is something far beyond
+your comprehension.  A thin layer of mist rolls out from underneath the door
+to cast a haze over your feet.  A torch emits an eternal light through out
+the hall where you stand in preparation of the ultimate encounter.  
+~
+0 -2147081719 0
+Rd     0
+D0
+~
+~
+87 419 373
+D2
+~
+~
+0 0 371
+S
+>enter_prog 100~
+0
+rpecho You faint from the intence magic that orbits about you!
+stun $n
+~
+|
+#373
+Temple of the Magician~
+All at once, you bend down in awe, choking with obediance.  You have
+entered the chamber of the magician, and perhaps shall not ever leave, for
+that which is here is unimaginable, and unforgettable.  You face a large
+altar which is headed by the magician himself.  This youthful figure holds
+the power of all four suits; wands, cups, pentacles, and swords, thus making
+his magic omnipotient.  You gaze deep into the room, entranced by the
+hypnotic mist that trails about.  
+~
+0 -2008670207 0
+Rd     0
+D2
+~
+~
+87 0 372
+S
+#374
+Hall of Magic~
+Through the fog that rolls along the ground you catch a glimpse of a
+crimson carpet that has been laid out with the upmost fashion and royalty. 
+It's obvious that once you reach the end of this gothic hallway you'll
+witness that which is ruler of all, the essence of magic.  Gazing deep into
+the fog ahead you sence a ghost, perhaps that of those who cannot with stand
+the magic the exists.  
+~
+0 -2147483648 0
+Rd     0
+D0
+~
+~
+0 0 370
+D2
+~
+~
+0 0 375
+S
+#375
+Pillars of Tora and Luna~
+To massive ivory collumns stand here stretching into the heavens (as if
+this isn't already heaven).  To the left the pillar has a "T" for Tora
+written in black ink and the right a "L" for Luna can be seen.  Together the
+pillars mark the entrance to the High Priestess' chambers.  There are no
+tales or even myths of what happens to one who stands face to face with her,
+for no one has ever returned.  
+~
+0 -2147483648 0
+Rd     0
+D0
+~
+~
+0 0 374
+D2
+~
+~
+0 0 376
+S
+#376
+Chamber of the High Priestess~
+Stepping between the pillars, your back arches and your knees collapse. 
+You are with magic.  You are truly alive here today, standing at the mercy
+of the High Priestess.  She seems like a pleasant lady, rather plain
+considering she is who she is, however her aura emmits a thick layer of
+energy casting all about the room.  You best not offend her, if you wish to
+leave; if you could ever leave this magnificient sight!  
+~
+0 -2142887927 0
+Rd     0
+D0
+~
+~
+0 0 375
+S
+#377
+Top of the Tower~
+You have finally made it.  You are truly worthy of all the magic in this
+tower.  It was not an easy climb, not easy at all, but know that it's all
+over you can return to the storm more enlightened than ever before.
+A small sign stands here.
+~
+0 -2147351552 0
+Rd     0
+E
+sign~
+Put &Y[TOWER] &Gin your title to show that you've made it through safely.
+~
+D5
+~
+~
+0 0 370
+S
+#400
+Welcome to the Anti-Nexus~
+Welcome to the Anti-Nexus, you have been sentenced to DEATH!  Next time
+do not be such a fool.  The key you used is only one part of this tower, and
+to learn only that sect of such a powerful magic is to be a fool.  You shall
+now wander endlessly through pityful death!  
+~
+0 -2012995583 0
+Rd     0
+D4
+~
+~
+0 0 401
+S
+#401
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147212283 0
+Rd     0
+D0
+~
+~
+0 0 426
+D1
+~
+~
+0 0 401
+D2
+~
+~
+0 0 402
+D3
+~
+~
+0 0 401
+D4
+~
+~
+0 0 401
+D5
+~
+~
+0 0 400
+S
+#402
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 401
+D1
+~
+~
+0 0 403
+D2
+~
+~
+0 0 408
+D3
+~
+~
+0 0 404
+D4
+~
+~
+0 0 402
+D5
+~
+~
+0 0 402
+S
+#403
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2143019007 0
+Rd     0
+D0
+~
+~
+0 0 410
+D1
+~
+~
+0 0 404
+D2
+~
+~
+0 0 414
+D3
+~
+~
+0 0 402
+S
+#404
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 411
+D1
+~
+~
+0 0 406
+D2
+~
+~
+0 0 405
+D3
+~
+~
+0 0 403
+S
+#405
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 404
+D1
+~
+~
+0 0 413
+D2
+~
+~
+0 0 421
+D3
+~
+~
+0 0 406
+D4
+~
+~
+0 0 405
+D5
+~
+~
+0 0 405
+S
+#406
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147344383 0
+Rd     0
+D0
+~
+~
+0 0 412
+D1
+~
+~
+0 0 405
+D2
+~
+~
+0 0 407
+D3
+~
+~
+0 0 420
+S
+#407
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 406
+D1
+~
+~
+0 0 404
+D2
+~
+~
+0 0 415
+D3
+~
+~
+0 0 408
+S
+#408
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147344383 0
+Rd     0
+D0
+~
+~
+0 0 402
+D1
+~
+~
+0 0 407
+D2
+~
+~
+0 0 409
+D3
+~
+~
+0 0 418
+S
+#409
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147344383 0
+Rd     0
+D0
+~
+~
+0 0 408
+D1
+~
+~
+0 0 410
+D2
+~
+~
+0 0 403
+D3
+~
+~
+0 0 407
+S
+#410
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147344383 0
+Rd     0
+D1
+~
+~
+0 0 411
+D2
+~
+~
+0 0 403
+D3
+~
+~
+0 0 409
+D4
+~
+~
+0 0 410
+D5
+~
+~
+0 0 410
+S
+#411
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213312 0
+Rd     0
+D0
+~
+~
+0 0 407
+D1
+~
+~
+0 0 412
+D2
+~
+~
+0 0 406
+D3
+~
+~
+0 0 410
+S
+#412
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 413
+D1
+~
+~
+0 0 417
+D2
+~
+~
+0 0 406
+D3
+~
+~
+0 0 407
+S
+#413
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 414
+D1
+~
+~
+0 0 416
+D2
+~
+~
+0 0 412
+D3
+~
+~
+0 0 413
+D4
+~
+~
+0 0 413
+D5
+~
+~
+0 0 413
+S
+#414
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 403
+D1
+~
+~
+0 0 415
+D2
+~
+~
+0 0 413
+D3
+~
+~
+0 0 407
+D4
+~
+~
+0 0 414
+D5
+~
+~
+0 0 414
+S
+#415
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 417
+D1
+~
+~
+0 0 416
+D2
+~
+~
+0 0 404
+D3
+~
+~
+0 0 414
+S
+#416
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 417
+D1
+~
+~
+0 0 408
+D2
+~
+~
+0 0 417
+D3
+~
+~
+0 0 413
+S
+#417
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213312 0
+Rd     0
+D0
+~
+~
+0 0 416
+D1
+~
+~
+0 0 418
+D2
+~
+~
+0 0 415
+D3
+~
+~
+0 0 412
+S
+#418
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 419
+D1
+~
+~
+0 0 408
+D2
+~
+~
+0 0 404
+D3
+~
+~
+0 0 417
+S
+#419
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 420
+D1
+~
+~
+0 0 412
+D2
+~
+~
+0 0 418
+D3
+~
+~
+0 0 420
+S
+#420
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 405
+D1
+~
+~
+0 0 406
+D2
+~
+~
+0 0 419
+D3
+~
+~
+0 0 421
+S
+#421
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 405
+D1
+~
+~
+0 0 420
+D2
+~
+~
+0 0 406
+D3
+~
+~
+0 0 422
+S
+#422
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 423
+D1
+~
+~
+0 0 421
+D2
+~
+~
+0 0 416
+D3
+~
+~
+0 0 405
+S
+#423
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 424
+D1
+~
+~
+0 0 418
+D2
+~
+~
+0 0 422
+D3
+~
+~
+0 0 414
+S
+#424
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213311 0
+Rd     0
+D0
+~
+~
+0 0 411
+D1
+~
+~
+0 0 425
+D2
+~
+~
+0 0 423
+D3
+~
+~
+0 0 407
+D4
+~
+~
+0 0 424
+D5
+~
+~
+0 0 424
+S
+#425
+Tombstone~
+You are DEAD!  You have wondered aimlessly through out the Anti-Nexus
+without hope of success, and now you shall rest eternally.  The gods have
+placed a tomb prepared for especially for such an occasion.  Rest in peace,
+mortal fool!  
+~
+0 -2147081203 0
+Rd     0
+S
+#426
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213312 0
+Rd     0
+D0
+~
+~
+0 0 410
+D1
+~
+~
+0 0 427
+D2
+~
+~
+0 0 404
+D3
+~
+~
+0 0 401
+S
+#427
+The Anti-Nexus~
+You hath entered the Anti-Nexus, there is no escape!  Wandering aimlessly
+will result in your death!  You are hopelessly lost.
+~
+0 -2147213312 0
+Rd     0
+D0
+~
+~
+0 0 427
+D1
+~
+~
+0 0 427
+D2
+~
+~
+0 0 427
+D3
+~
+~
+0 0 426
+D4
+~
+~
+0 0 427
+D5
+~
+~
+0 0 427
+S
+#428
+Meeting Death~
+Upon eternal rest, you hath met your death!  All around corpses mark
+those who hath offended the master, and now ye shall become dust like so
+many before you.  This be thine judgement!  Pray that Death takes pity on
+your soul!  Pray that your soul and corpse may be joined to live another
+day!  
+~
+0 -2008670195 2
+Rd     0
+S
+#429
+~
+~
+0 -2147483644 0
+Rd     0
+S
+#430
+~
+~
+0 4 0
+Rd     0
+S
+#444
+Asylum~
+~
+0 -2147082227 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 300 spec_cast_mage
+M 301 spec_guard
+M 302 spec_guard
+M 303 spec_guard
+M 304 spec_guard
+M 305 spec_guard
+M 306 spec_guard
+M 308 spec_guard
+M 309 spec_guard
+M 310 spec_guard
+M 311 spec_guard
+M 315 spec_cast_mage
+M 316 spec_guard
+M 318 spec_guard
+M 319 spec_guard
+M 320 spec_guard
+M 326 spec_guard
+M 327 spec_cast_mage
+M 328 spec_healer
+M 329 spec_guard
+M 330 spec_guard
+M 331 spec_guard
+M 332 spec_guard
+M 333 spec_fido
+M 334 spec_breath_lightning
+M 336 spec_cast_cleric
+M 337 spec_guard
+M 338 spec_guard
+M 339 spec_guard
+M 342 spec_guard
+M 343 spec_guard
+M 345 spec_breath_lightning
+M 346 spec_cast_mage
+M 347 spec_summon_demon
+M 348 spec_cast_adept
+M 349 spec_healer
+M 350 spec_cast_mage
+M 369 spec_breath_fire
+S
+
+
+
+#RESETS
+M 0 300 1 308
+E 0 300 0 22
+E 0 301 0 16
+E 0 302 0 12
+E 0 304 0 11
+M 0 301 1 309
+E 0 306 0 13
+E 0 307 0 20
+E 0 305 0 6
+E 0 308 0 11
+M 0 302 1 309
+M 0 305 1 310
+E 0 314 0 0
+E 0 309 0 6
+E 0 301 0 16
+E 0 312 0 22
+M 0 306 1 310
+E 0 315 0 3
+E 0 316 0 7
+M 0 304 3 311
+M 0 303 1 311
+E 0 309 0 6
+E 0 310 0 3
+E 0 311 0 12
+E 0 301 0 16
+E 0 312 0 22
+G 0 313 0
+M 0 307 1 313
+E 0 304 0 11
+E 0 302 0 12
+E 0 317 0 22
+E 0 326 0 17
+M 0 309 1 314
+M 0 308 1 314
+E 0 318 0 6
+E 0 319 0 12
+E 0 321 0 22
+E 0 327 0 11
+M 0 312 1 315
+E 0 330 0 22
+E 0 328 0 6
+E 0 323 0 16
+M 0 311 1 316
+M 0 310 1 316
+E 0 322 0 20
+E 0 323 0 16
+E 0 324 0 22
+G 0 325 0
+E 0 328 0 6
+E 0 329 0 3
+E 0 311 0 12
+M 0 313 1 318
+E 0 331 0 18
+E 0 331 0 19
+E 0 332 0 17
+E 0 333 0 22
+M 0 318 1 319
+M 0 316 1 319
+E 0 306 0 13
+E 0 345 0 11
+E 0 346 0 5
+E 0 347 0 22
+M 0 314 1 320
+E 0 336 0 22
+E 0 337 0 0
+E 0 340 0 3
+E 0 341 0 12
+E 0 343 0 6
+G 0 339 0
+M 0 315 1 321
+E 0 342 0 22
+E 0 343 0 6
+E 0 344 0 16
+M 0 317 1 323
+E 0 348 0 20
+M 0 320 1 324
+M 0 319 1 324
+E 0 349 0 16
+E 0 350 0 20
+E 0 355 0 13
+P 0 356 0 355
+G 0 356 0
+M 0 321 1 325
+E 0 351 0 20
+E 0 353 0 6
+E 0 354 0 16
+M 0 322 1 326
+E 0 353 0 6
+E 0 354 0 16
+E 0 358 0 1
+G 0 359 0
+O 0 360 0 326
+M 0 324 1 328
+G 0 365 0
+M 0 323 1 330
+G 0 364 0
+M 0 325 1 331
+E 0 366 0 16
+E 0 367 0 0
+E 0 368 0 20
+G 0 369 0
+E 0 433 0 22
+M 0 326 2 333
+M 0 368 1 333
+E 0 370 0 17
+G 0 371 0
+M 0 327 1 334
+E 0 372 0 22
+E 0 373 0 23
+M 0 328 1 335
+E 0 376 0 3
+E 0 377 0 6
+M 0 329 1 335
+M 0 332 1 335
+M 0 330 1 335
+M 0 331 1 335
+G 0 378 0
+M 0 369 1 336
+E 0 374 0 7
+E 0 375 0 20
+E 0 375 0 21
+M 0 336 1 337
+E 0 387 0 22
+E 0 388 0 16
+M 0 341 1 338
+E 0 388 0 16
+E 0 398 0 22
+G 0 399 0
+M 0 342 1 339
+E 0 400 0 14
+E 0 401 0 6
+E 0 402 0 20
+E 0 403 0 17
+M 0 343 1 339
+E 0 404 0 7
+M 0 344 1 339
+E 0 404 0 7
+G 0 405 0
+M 0 337 1 340
+E 0 390 0 9
+E 0 392 0 18
+E 0 392 0 19
+M 0 338 1 340
+E 0 391 0 20
+G 0 393 0
+M 0 339 1 341
+O 0 396 0 341
+P 0 395 0 396
+M 0 340 1 341
+G 0 397 0
+M 0 345 1 342
+M 0 346 1 343
+E 0 407 0 20
+E 0 408 0 4
+E 0 409 0 3
+M 0 347 1 344
+E 0 411 0 20
+E 0 412 0 2
+E 0 413 0 16
+E 0 414 0 13
+M 0 348 1 359
+E 0 415 0 9
+E 0 304 0 11
+M 0 349 1 363
+E 0 416 0 6
+E 0 417 0 20
+E 0 418 0 3
+O 0 419 0 363
+O 0 420 0 363
+M 0 370 1 366
+E 0 425 0 15
+E 0 426 0 23
+E 0 427 0 6
+E 0 428 0 22
+M 0 371 1 367
+E 0 429 0 22
+E 0 430 0 11
+E 0 431 0 20
+E 0 432 0 16
+E 0 444 0 12
+M 0 350 1 373
+E 0 421 0 9
+E 0 422 0 17
+E 0 423 0 16
+E 0 434 0 20
+G 0 435 0
+G 0 436 0
+G 0 437 0
+G 0 438 0
+M 0 372 1 376
+G 0 440 0
+G 0 441 0
+E 0 442 0 3
+O 0 443 0 377
+M 0 333 1 401
+G 0 379 0
+M 0 333 20 404
+E 0 379 0 22
+M 0 333 20 407
+E 0 379 0 22
+M 0 333 20 408
+G 0 379 0
+M 0 333 20 409
+G 0 379 0
+M 0 333 20 411
+E 0 379 0 22
+M 0 333 20 414
+E 0 379 0 22
+M 0 333 20 417
+G 0 379 0
+M 0 333 20 418
+G 0 379 0
+M 0 333 20 420
+E 0 379 0 22
+O 0 380 0 425
+M 0 334 1 428
+E 0 381 0 11
+E 0 346 0 5
+E 0 382 0 16
+E 0 383 0 20
+G 0 384 0
+G 0 385 0
+M 0 335 1 428
+S
+
+
+
+#SHOPS
+324 2 10 13 0 0 100 100 0 23
+0
+
+
+
+#$

@@ -1,0 +1,1776 @@
+#AREADATA
+Name        {??-???} Pits of Hell        Sherf~
+Levels      0 0
+Builders    Sherf~
+VNUMs       600 666
+Security    100
+Recall      25001
+Flags       16
+Color       6
+Sounds      &RA whip of flame lashes out at you from below!~
+End
+
+
+
+#MOBILES
+#600
+three fates women~
+The Three Fates~
+Three beautiful women are floating here in pouring white gowns...
+~
+&YThe Three women are equally endowed in physical beauty.
+ 
+&rOn your left, floats a woman with eyes of the darkest chocolate and hair
+of the blackest raven. Her oval face smiles at you, as her lips part into
+a grin and her eyes turn up into a sneer.
+ 
+&Y&OStraight ahead, a woman floats carelessly as her copper-tone hair flows
+wickedly about her. Eyes of emerald green shine back at you, reflecting
+the image of yourself in a frame of perfect lashes.
+ 
+&wAt your right hand, there floats a woman bestowing locks of the purest 
+silver and eyes of the bluest lagoon. A suffusion of rose appears slightly
+on her lovely cheeks as you gaze upon her.
+ 
+&GThe choice is yours to make. Choose it wisely, for it IS your Fate.
+~
+67 8216 524304 0 S
+110 0 0 90000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+>act_prog p appears~
+if ispc($n)
+mpecho &YA golden sinew not unlike that of candy-floss sways about the room...
+tell $n Greetings, $n.
+mpechoat $n &PClotho (the spinner) steps forward.
+mpechoat $n &WClotho (the spinner) tells you 'I am Clotho, youngest of The Three Fates...'
+mpechoat $n &PLachesis (the disposer of lots) steps forth.
+mpechoat $n &WLachesis (the disposer of lots) tells you 'I am Lachesis, elder sister of Clotho and younger sister to Atropos...'
+mpechoat $n &PAtropos (the cutter) steps toward you.
+mpechoat $n &WAtropos (the cutter) tells you 'I am Atropos, eldest sister of The Three Fates...'
+tell $n State your choice $n. But choose wisely, for this is your Fate.
+endif
+~
+>all_greet_prog 100~
+if ispc($n)
+tell $n Greetings, $n.
+mpechoat $n &PClotho (the spinner) steps forward.
+mpechoat $n &WClotho (the spinner) tells you 'I am Clotho, youngest of The Three Fates...
+mpechoat $n &PLachesis (the disposer of lots) steps forth.
+mpechoat $n &WLachesis (the disposer of lots) tells you 'I am Lachesis, elder sister to Clotho and younger sister to Atropos...
+mpechoat $n &PAtropos (the cutter) steps toward you.
+mpechoat $n &WAtropos (the cutter) tells you 'I am Atropos, eldest sister of The Fates.
+tell $n What is your choice $n? Choose wisely, for this is your Destiny.
+endif
+~
+>speech_prog p clotho~
+if ispc($n)
+tell $n So be it...
+mpechoat $n &YA sharp flash of golden light appears and you find yourself elsewhere!
+mptransfer $n 601
+mpecho Someone appears in a flash of blinding light.
+endif
+~
+>speech_prog p lachesis~
+if ispc($n)
+tell $n A wise choice, $n.
+mpechoat $n &YA sharp flash of golden light appears and you find yourself elsewhere!
+mptransfer $n 25001
+mpecho &BSomeone appears in a flash of blinding light.
+endif
+~
+>speech_prog p atropos~
+if ispc($n)
+tell $n So be it.
+mpechoat $n &YA sharp flash of golden light appears and you find yourself elsewhere!
+mptransfer $n 8200
+mpecho &WSomeone appears in a flash of blinding light.
+endif
+~
+|
+#601
+gerrn secretary 666~
+Gerrn~
+A man stands here chiseling files onto some tablets of stone.
+~
+&wAlthough very pale, and obviously very undernourished, this human man is
+quite attractive (even to those not of his race). He wears a typical yuppie
+suit of the time and wears spectacles on top of his head.
+~
+393283 33554472 16 -500 S
+106 0 0 49600d0+0 0d0+0
+1370 0 0 0
+0 0 1
+4227 0 0
+>rand_prog 2~
+grumble
+mpecho &CThe secretary mumbles 'Even now, I'm doomed to serve the public...'
+shake
+~
+>all_greet_prog 100~
+if ispc($n)
+ if sex($n) == 1
+ say Ah, yes sir. I've been expecting you.
+ say Come, come over here.
+ say I'll just get you down in my books...
+ say ... and you can go through the north door there.
+ emote smiles wickedly.
+  break
+  else
+ emote looks up from his chiseling and non-chalantly checks you out.
+ say Ah, yes ma'am! I've been expecting you!
+ say Come, come to Gerrn.
+ emote motions for you.
+ say I'll make a little note here...
+ say ... and you can go through that big door there.
+  endif
+endif
+~
+>act_prog "Gopher raises an eyebrow."~
+if isnpc($n)
+say You fool! Get outta here!
+mpecho Gerrn mutters to himself 'I'm not THAT dead, ya know.'
+emote pushes Gopher aside.
+emote smiles wickedly.
+endif
+~
+>fight_prog 15~
+punch
+stun
+~
+>fight_prog 30~
+cast fireball $n
+~
+>fight_prog 40~
+rake $n
+~
+|
+#602
+gopher assistant 666~
+Gopher~
+Gerrn's assistant shuffles about the place nervously...
+~
+&gGopher is a short, ugly little thing dressed in raggedy clothes and hair
+(what hair it has) that stands straight up on end in knots. Its large nose
+points down almost to its stubby little chin and its chubby little hands
+fidget nervously as it watches you.
+~
+195 16424 0 -500 S
+80 0 0 16000d0+0 0d0+0
+170 0 0 0
+0 0 0
+3 0 0
+>all_greet_prog 75~
+if isimmort($n)
+ if sex($n) == 2
+ scream
+ eyebrow
+ emote tugs on Gerrn's jacket, and grunts somewhat like a pig.
+  else
+ emote tugs on Gerrn's jacket.
+  endif
+endif
+~
+>act_prog "Gerrn smiles wickedly."~
+if isnpc($n)
+open north
+emote smiles its semi-toothless smile.
+endif
+~
+>fight_prog 10~
+kick
+~
+>fight_prog 25~
+trip
+~
+|
+#603
+soul wandering 666~
+A wandering soul~
+&wA soul wanders here aimlessly...
+~
+&wAt first glance you see nothing as it floats gently by you, like a small
+current of wind... looking carefully though, you see a faint outline of a
+ghostly figure (with no feet) floating above the ground. It moans slightly,
+sending a chill up your spine.
+ 
+~
+67 1654840 32788 0 S
+100 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3184 0 0
+>all_greet_prog 32~
+if ispc($n)
+mpechoat $n &wThe temperature changes drastically as a piercing chill floods the room...
+endif
+~
+>rand_prog 30~
+cast 'chi shield' 
+~
+>fight_prog 10~
+mpecho &BYou feel a piercing chill briefly.
+circle
+~
+>fight_prog 20~
+cast agitation $n
+cast agitation $n
+~
+>fight_prog 35~
+cast 'faerie fire' $n
+~
+|
+#604
+cursed spirit 666~
+A cursed spirit~
+&cA cursed spirit sobs here longingly...
+~
+&c&BA lovely little thing that you wouldn't expect down here at all. She is the
+face of beauty itself. Her orbs of electric blue pierce yours as you look at
+her, and she cries eternally for all the damned souls.
+~
+65 68157496 16 -275 S
+80 0 0 16000d0+0 0d0+0
+0 0 0 0
+0 0 2
+66560 0 0
+>fight_prog 30~
+cast 'psionic blast' $n
+cast 'inflict pain' $n
+~
+>fight_prog 2~
+&CA cursed spirit shrieks 'I do not want to be Immortal!'
+A cursed spirit shrieks 'I did not choose this fate!'
+~
+>fight_prog 50~
+cast 'psychic drain' $n
+cast 'mind probe' $n
+~
+|
+#605
+minotaur guard 666~
+A Minotaur Guard~
+&OA large minotaur guard stands his post here.
+~
+&OA very large humanoid creature hulks over you. Standing at 7.5 ft, this
+beast has the head of a bull, and the body of a human male (except that it
+is covered in a coarse fur). Blunt yellow teeth poke out from its maw,
+saving its two I-teeth which are sharp and protrude an inch outward and
+down from its upper jaw.
+~
+67 33554488 131072 -999 S
+100 0 0 20800d0+0 0d0+0
+1250 0 0 0
+0 0 1
+19 0 0
+>rand_prog 2~
+emote casually flicks away any jewels he may have found in picking his nose.
+~
+>fight_prog 20~
+stun
+disarm
+~
+>fight_prog 21~
+trip
+punch
+~
+>act_prog p opens~
+if ispc($n)
+look $n
+emote grunts loudly.
+endif
+~
+|
+#606
+bullywug guardian frog 666~
+The Bullywug~
+&gA large frog-like humanoid hops out seemingly from nowhere!
+~
+&g
+A forked tongue droops casually out of a frog-like mouth. Her huge bulbous
+eyes are also like that of a frog, and are on each side of her amphibian
+head. Two tiny little holes in the middle of her face make a nose.
+ 
+Huge feet and hands branch off of a human-looking body (except for the fact
+that her skin is a greenish yellow in colour) that is very moist and almost
+looks slippery to the touch.
+~
+99 66144 0 -800 S
+75 0 0 14000d0+0 0d0+0
+120 0 0 0
+0 0 2
+131072 0 0
+#607
+tiamat dragon beast~
+Tiamat~
+A large dragon with five heads towers over you.
+~
+&Y
+Tiamat is perhaps one of the largest dragons you have ever seen. Her wings
+and tail are just barely comfortable in the dimensions of this room. Her
+body, tail and wings are a sort of brownish-orange in hues. Her five heads
+are each their own colour, however... &Rred&Y, &Bblue&Y, &Wwhite&Y, &zblack&Y, and &ggreen&Y.
+~
+67 234881592 32784 -1000 S
+102 0 0 17100d0+0 0d0+0
+1490 0 0 0
+0 0 2
+7811 0 0
+#608
+death knight 666~
+The Death Knight~
+&wA blackened paladin approaches you slowly in a challenge to fight...
+~
+&wThe death knight resembles a hulking knight, standing at just over 6 feet
+tall and weighing a good 300 pounds. A blackened skull covered with shards of 
+shriveled, rotting flesh stares back at you from within its horned helmet.
+Two tiny orange-red pinpoints for eyes glow brightly from its eye sockets
+piercing you with fear.
+~
+67 568 16 -800 S
+90 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+67344391 0 0
+>fight_prog 10~
+~
+>fight_prog 25~
+cast 'dispel evil' $n
+~
+>hitprcnt_prog 15~
+emote tosses the Sword of Dancing up over his head!
+mpecho &PThe Sword of Dancing takes on a life of it's own!
+mpmload 609
+mpforce dancing mpkill $n
+mpecho &wThe knight watches on as his sword cuts you down.
+mpmload 610
+mpgoto 1
+~
+|
+#609
+sword dancing 666~
+The Sword of Dancing~
+&wA large silver sword floats here, strangely enough.
+~
+&wA spectacular silver sword dances here.
+~
+67 8912952 16 -800 S
+90 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 0
+67344395 0 0
+>death_prog 100~
+mpecho &wThe Sword of Dancing explodes into a million tiny bits!
+mpmload 610
+~
+|
+#610
+death knight paladin 666~
+The Death Knight~
+&wA blackened paladin approaches you slowly in a challenge to fight...
+~
+&wThe death knight resembles a hulking knight, standing at just over 6 feet
+tall and weighing a good 300 pounds. A blackend skull covered with shards of
+shriveled, rotting flesh stares back at you from within its horned helmet.
+Two tiny orange-red pinpoints for eyes glow brightly from its eye sockets
+piercing you with fear.
+~
+67 568 144 -800 S
+90 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+67344391 0 0
+>fight_prog 25~
+cast 'dispel evil' $n
+~
+>fight_prog 20~
+howl
+~
+>fight_prog 45~
+stun
+disarm
+stun
+~
+|
+#611
+minotaur guard north 666~
+A Minotaur~
+&OA large minotaur stands guard here.
+~
+&O
+A very large humanoid creature hulks over you. Standing at 7 feet tall, this
+beast has the head of a bull, and the body of a human male (except that it
+is covered in a coarse fur). Blunt yellow teeth poke out from its maw,
+saving its two I-teeth which are sharp and protrude an inch outward and
+down from its jaw.
+~
+67 33554488 131072 -999 S
+100 0 0 24000d0+0 0d0+0
+0 0 0 0
+0 0 1
+19 0 0
+>act_prog "appears in a flash of blinding light."~
+emote grunts loudly.
+open north
+~
+|
+#612
+kobold crookshank 666~
+Crookshank~
+&pA purple-skinned kobold sneaks about here.
+~
+&p
+A tall and slender creature stalks about the place. &CIcy blue &peyes bulge
+out from it's small and gnarly face. &wChalk white &pteeth spike out of it's
+abnormally large mouth. It's forehead wrinkles down into a curled up nose,
+and gnarly pointed ears peak up from each side of it's head.
+~
+69 98336 16 -1000 S
+80 0 0 20000d0+0 0d0+0
+150 8 3 0
+0 0 0
+0 0 0
+#666
+satan lucifer 666~
+&RSatan&C~
+There is no mistaking that Satan himself stands before you.
+~
+&RGod of the Underworld, God of Evil, God of Sin, God of Darkness... by any
+name you could give to him from any religion or belief... this is Satan.
+ 
+You look upon the foulest creature in all The Realms. Foul, as in horrid by
+appearance... foul, as in the most evil aura you could ever have faced in a
+thousand lifetimes. A feeling of fear comes over you that you have never
+felt before.
+ 
+Skin that burns the hottest jalepeno-red sets the make-up of this foul beast.
+Three-foot long horns, as thick as the average humans' leg coil outward from
+his massive head. Goat-like hooves as black as the darkest night support him
+as he towers over you. A human torso sprouts leathery bat-like wings that
+look to span out at seven feet.
+ 
+~
+67 369115704 20 -1000 S
+105 0 0 35000d0+0 0d0+0
+0 0 0 0
+0 0 0
+121083 0 0
+>all_greet_prog 100~
+if isimmort($n)
+say &R&COh, $n... your time will come.
+emote &Rgrins wickedly at you.
+say But for the time being.. get the &RHELL&C out of my territory!
+break
+else
+emote &Rlooks up at you.
+say Ahhh... $n, I have been expecting you.
+emote &Rstretches his wings out to a full span of seven feet...
+say Now $n, are you here to accept your fate, or to challenge it?
+say Not many mortals would dare challenge me.
+emote &Rfolds his wings back behind him and waits for you response.
+endif
+endif
+~
+|
+#0
+
+
+
+#OBJECTS
+#600
+lump coal 666~
+a lump of coal~
+A smouldering lump is here.~
+~
+13 33554448 4226 74 1 75
+0~ 0~ 0~ 0~
+1 0 0 9 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+coal~
+A lump of coal burns eternally.
+~
+E
+lump~
+A smouldering lump of charred coal.
+~
+#601
+slab stone desk 666~
+the stone desk~
+A large slab of stone has been formed as a desk here.~
+~
+12 33554592 0 0 0 106
+0~ 0~ 0~ 0~
+666 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+stone~
+A huge part of this stone cavern is being used as a makeshift desk.
+~
+E
+slab~
+Upon the slab are many tablets piled up very high. You can't read them.
+~
+E
+desk~
+The desk is a huge part of the cavern made into a sort of makeshift table, or
+filing cabinet for the secretary.
+~
+#602
+eternal tear 666~
+&BAn eternal tear~
+&BA droplet of water lies here.~
+~
+9 288 0 0 131072 80
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 2
+A
+13 80
+A
+18 10
+E
+tear~
+&BAn eternal tear for the damned spirit in all of us.
+~
+E
+eternal~
+&BAn eternal tear for the damned spirit in all of us.
+~
+#603
+chalice blood 666~
+&wa large chalice~
+&wA large chalice has been left here.~
+~
+28 32 6655 94 16385 90
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+chalice~
+&wA beautiful silver chalice is heavy in weight, with no design on it to
+speak of.
+~
+E
+blood~
+&RThe silver chalice is stained on the inside with the colour of crimson.
+~
+#604
+wooden club 666~
+a huge wooden club~
+&OA HUGE wooden club has been left here.~
+~
+5 0 5925 52350 8193 81
+0~ 0~ 0~ 8~
+6 25 8 5 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 140
+A
+13 75
+A
+5 1
+A
+18 100
+A
+1 2
+A
+2 -1
+E
+wooden~
+&OA HUGE wooden club is made of a large branch of a tree, that has been
+chipped away into a club. It is about 2 feet in length, and the diameter
+of the round tip is approximately 8 inches.
+~
+E
+club~
+&O
+The HUGE club is made from a branch or a small fallen tree. It has been
+chipped away at to be made into a club. It is a little rough around the
+edges and has little peaks here and there that look like they may help
+to cause damage.
+~
+#605
+horned blackened death helm 666~
+a blackened horned helm~
+&wA blackened helm lies here.~
+~
+9 532 55 6232 17 90
+1~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+666~
+&wHuh?
+~
+E
+helm~
+&wA blackened horned helm of good quality. One which seems to have been used
+by a powerful knight by the insignia on the front of the helm.
+~
+E
+death~
+&wThe helm of a Death Knight.
+~
+E
+blackened~
+&wThe horned helm is black as night. As if it had been charred to get this way. It
+is a very good quality helm, despite this.
+~
+E
+horned~
+&wA rounded black helm is tipped with a small horn in the middle-top of
+it, and a horn on each side of the helm as well. 
+~
+#606
+sword dancing 666~
+sword of dancing~
+A spectacular sword lies here.~
+~
+5 67117056 0 0 8193 90
+0~ 20~ 20~ 3~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+666~
+&wHuh?
+~
+E
+dancing~
+&wA sword with runes etched into the cross-hilt.
+~
+E
+sword~
+&wA sword with runes etched into the cross-hilt.
+~
+#607
+pile rocks 666~
+a large pile of various sized rocks~
+A large pile of rocks.~
+~
+13 33554432 0 0 0 106
+0~ 0~ 0~ 0~
+1000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pile~
+&bThe rock-pile reaches as high as the ceiling. You could try to climb up
+there but you'll only slip back down again.
+~
+E
+rocks~
+&bVarious sized rocks are piled up here, from the rock-slide that took you
+down to this level. You figure that you may be able to use the bigger
+boulders to support you on the climb back up, but when you try, you slip
+back down again.
+~
+#608
+pebbles few 666~
+a few pebbles~
+&wA few pebbles lay scattered here.~
+~
+13 128 0 0 16385 75
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pebbles~
+&bA few useless little pebbles have a faint warmth emanating from them.
+~
+E
+few~
+&bThree useless pebbles feel warm to the touch.
+~
+#609
+stairway rugged spiral 666~
+the spiral stairway~
+&OA rugged spiral stairway leads down...~
+~
+12 0 0 0 0 106
+0~ 0~ 0~ 0~
+2000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+stairway~
+&OThe rugged stairway leads you further down into the depths.
+~
+E
+rugged~
+&OThe stairway is rugged, in that it is almost not a stairway at all... but
+a few different levels of the rock formation leading you downward.
+~
+E
+spiral~
+&OThe stairway spirals down in the westerly direction and curves back
+to the east further toward the bottom.
+~
+#610
+scream eternal 666~
+an eternal scream~
+The source of an eternal scream lies here.~
+~
+9 536875616 0 64 32769 100
+3~ 0~ 0~ 0~
+10 1200 0 0 0
+5 0
+ectoplasmic form~
+1 1
+0 0 0
+A
+18 10
+A
+19 10
+A
+5 -2
+A
+4 2
+A
+17 -75
+E
+eternal~
+&BEven without the aid of spells to help you, you can see that
+this object doesn't have any physical shape to it. In fact, it
+isn't an object at all... more like a curse. What you CAN
+see is the magical glow radiating from this thing in a constant
+shift and myriad of abstract shapes.
+What you hear is an eternal scream of damnation, but it's not
+even a 'physical' scream... it invades your inner mind unlike
+anything you have ever come to know.
+~
+E
+scream~
+&BThe sound you hear from this...  Thing...  Is quite possibly the most
+horrid and most terrifying sound you have ever heard.  It's as if all the
+lost souls from everywhere -and nowhere- are invading your mind, calling out
+to you in pain.  Although it has no physical "body", you know it's there by
+the magical emanation that glows from it (which is a constantly shifting
+abstract shape) even without the aid of spells.  
+~
+#611
+steel plate bracer 666~
+a large bracer plate~
+&wA steel plate bracer lies here.~
+~
+9 0 5683 52346 4097 85
+2~ 0~ 0~ 0~
+2 25 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+17 25
+A
+13 10
+A
+23 -5
+A
+14 -40
+E
+666~
+&wHuh?
+~
+E
+steel~
+&wA black steel bracer plate is large in size. It is semi-tapered at one
+end seemingly made to wear on the forearm.
+~
+E
+plate~
+&wA large plate bracer is made of raw black steel. A larger plate made to go
+around the arm is adjustable by means of two leather straps at each end of
+the plate. Another ovular shaped plate has been welded atop this to provide
+more protection along with some design. The ovular plate is framed with a 
+corregated edge.
+~
+E
+bracer~
+&wThe steel bracer is black with an ovular plate atop it for added protection
+and design. Two sturdy leather straps allow for some adjustment.
+~
+#612
+copper necklace 666~
+a copper necklace with pendant~
+&OA thick copper necklace with pendant lies here.~
+~
+8 0 0 0 5 75
+0~ 0~ 0~ 0~
+2 3 4 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -4
+A
+24 -4
+E
+666~
+&wHuh?
+~
+E
+copper~
+&OA finely crafted copper necklace is about a quarter inch in diameter. Thin
+strands of copper have been braided tightly to make a delicate charm. The
+necklace is about 4 feet in length if you were to unloop it. You may have to
+string it around your neck a couple times for a proper fit.
+~
+E
+necklace~
+&OA finely crafted copper necklace is about a quarter inch in diameter. Thin
+strands of copper have been braided tightly to make a delicate charm. The
+necklace is about 4 feet in length if you were to unloop it. You may have to
+string it around your neck a couple of times for a proper fit.
+~
+E
+pendant~
+&YThe pendant is large and triangular in shape. You can see that it use to
+be white, but has yellowed with age. Looking carefully, you notice that it
+is a large tooth... probably someone's trophy.
+~
+#0
+
+
+
+#ROOMDATA
+#600
+The Three Fates~
+&YYou appear in what seems to be a nothingness, yet it is everything at the
+same time. The atmosphere around you is constantly shifting in nodes. Air
+to earth, water to fire... though you feel no breeze, no solidness, no heat
+and no cold. A uncomfortable comfort looms over you, and you know there is
+a choice to be made.
+~
+0 2368532 0
+Rd     0
+S
+#601
+&rUnderWorldly Gate&W~
+&rYou now appear in what is most likely the hottest climate you have ever
+known (and most likely the last). You begin to perspire slightly as you
+stand here looking over your surroundings.
+ 
+A rugged wall of rock makes for a barrier all around you, save to the north
+which is barracaded with two very large doors that make a gate larger than
+you have ever seen.
+ 
+Other molten materials are all around you and under your feet. Some of it
+seems to be leftovers of weapons and armour that have long since their
+usage become part of the foundation itself.
+ 
+&wA light mist looms in from beneath the gate to the north.
+~
+0 134619160 0
+Rd     0
+E
+down~
+&wThe ground seems to be pretty solid, but you can feel a slight tremor
+every now and then.
+~
+E
+gates~
+&wTwo very large and heavy gates make a door here. You try to peer through
+them but you cannot see anything beyond.
+ 
+Examining the gates carefully, you know that you have never seen a material
+such as this before. Just by looking at it you can see that it is quite
+indestructable. A hot breeze rises up from the small crack beneath them
+making you uncomfortably warm.
+~
+E
+south~
+&wA jagged wall of rock blocks your passage here.
+~
+E
+west~
+&wA wall of jagged rock stretches up as far as the eye can see.
+~
+E
+east~
+&wA wall of jagged rock stretches up as far as the eye can see. A glint
+in the wall leads you to examine it and you find a small piece of a blade
+embedded there.
+~
+E
+up~
+&zBlack as pitch.
+~
+E
+gate~
+Two very large and heavy doors make a gate here. You try to peer through
+them but you cannot see anything beyond.
+ 
+Examining the gate carefully, you know that you have never seen a material
+such as this before. Just by lookig at it you can see that it is quite
+indestructable. A hot breeze rises up from the small crack beneath them
+making you uncomfortably warm.
+~
+D0
+&wTwo very large and heavy doors make a gate here. You try to peer through
+them but you cannot see anything beyond. A mysterious mist looms up from
+underneath them making you uncomfortably warm.
+~
+gate~
+83 0 602
+S
+#602
+&rWithin The Gates&W~
+&rAlthough the gates have been closed behind you, you know that they are still
+to the south as you can feel the cooler air coming in from that direction. To
+no avail you attempt to pry open these gates and give up trying after what
+seems an eternity of time. Gathering yourself back up from exhaustion, you
+know that there is only one thing you can do. You must go on and find an
+exit somewhere else in this God Forsaken place.
+~
+0 134619160 0
+Rd     0
+E
+north~
+&wYour path continues to the north here taking you out onto a stone bridge
+of some sort.
+~
+E
+down~
+&wThe ground here seems sturdy enough except for the occasional tremor.
+~
+E
+up~
+&zBlack as pitch.
+~
+E
+east~
+&wEast takes you on a path where you can look down into the Heart of Hell.
+~
+E
+west~
+&wWest takes you on a path where you can look down into the Heart of Hell.
+~
+E
+gates~
+&wYou look to the south, to see that the gates have all but disappeared. You
+can feel a slight breeze come in from that direction and you know that that
+is where you entered from. 
+ 
+You can attempt to pry open the gates, but to no avail.
+~
+E
+south~
+&wYou look to see where the gates once were is now just a rugged wall of
+rock. Examining it closer, you can feel a cooler breeze at your feet.
+~
+D0
+~
+~
+0 0 605
+D1
+~
+~
+0 0 604
+D3
+~
+~
+0 0 603
+S
+#603
+&rA Cliff?&W~
+&r'How can there be a cliff here... could it possibly go even further down?'
+ 
+As you think to yourself, you stare down into a pit of molten rock as it
+bubbles and gurgles up at you threatening to burn you from existence.
+ 
+'What could possibly live down here... how will I ever make it through?'
+ 
+Snapping back to reality as a sploosh of hot lava tweaks your hand, you know
+that you must continue on.
+~
+0 134619160 0
+Rd     0
+E
+down~
+&wThe ground here seems to be sturdy enough, save the tremor that you can
+feel now and then.
+~
+E
+up~
+&zBlack as pitch.
+~
+E
+east~
+&wEast is the only path you can take from here without falling to your
+doom.
+~
+E
+south~
+&wTo the south is a jagged rock which reaches up as far as the eye can see.
+There is no imaginable escape from the planes known as Hell.
+~
+E
+west~
+To your west and far beyond your capabilities is a pit of molten lava which
+burns like the Heart of Hell.
+~
+E
+north~
+&wTo your north and far down beyond your capabilities is a pit of molten
+lava which burns like the Heart of Hell.
+~
+D1
+~
+~
+0 0 602
+S
+#604
+&r A Cliff?&W~
+&r'Will this madness ever end... how much farther down could it possibly go?'
+ 
+You stare down into a pit of molten rock as it bubbles and gurgles up at you
+threatening to burn your frail humanoid body. You begin to day dream...
+ 
+&CYou say 'I will mommy! Don't worry!'
+&PMommy pecks you lightly on the cheek and gently cups a coin into your hands.
+&CMommy says 'Now hurry back, dear. Back in time for dinner.'
+&PYour cheeks are burning.
+&CYou say 'Awwww, mom!'
+&PYou sigh.
+ 
+&rYou are suddenly awoken as a large boulder falls from above you and into
+the molten lava below. You blink rapidly as you watch it quickly disintegrate  
+before your eyes.
+~
+0 134619160 0
+Rd     0
+E
+west~
+&wYour only choice in path is to the west, which takes you towards the
+centre of it all.
+~
+E
+south~
+&wA jagged wall stretches up for as far as the eye can see. Even the most
+skilled or magical creature could not dream to venture there.
+~
+E
+up~
+&zBlack as pitch.
+~
+E
+east~
+&wTo the east, and down beyond the reaches of any mortal being is a pit of
+molten lava so hot that it scorches you from where you stand now.
+~
+E
+north~
+&wDown and to the north lies a pit of molten lava. So far down is it, but
+its heat still rises here to bite at you.
+~
+D3
+~
+~
+0 0 602
+S
+#605
+&rA Rising Mist&W~
+&rA thick mist of steam rises up every few seconds from below. You perspire
+heavily, making any sort of armor or even regular attire unbearable to wear.
+Come to think of it, you've never been this uncomfortable in your life. But
+then again, this could very well be the end of it.
+ 
+'Perhaps I'm already dead. Perhaps this is where we go when we die...'
+ 
+You trudge on for some glimpse of hope... somewhere.
+~
+0 134619160 0
+Rd     0
+E
+south~
+&wGoing south will have you heading back to the gates from which you came.
+~
+E
+west~
+&wWest and down you can see the faraway lava bubbling and gurgling like
+the Heart of Hell.
+~
+E
+east~
+&wDown and east from here is the Heart of Hell. Molten lava spurts up every
+so often... even from far, far below.
+~
+E
+down~
+&wThe ground seems pretty sturdy here except for the occasional tremor. All
+around you now, looms the heat from the lava pit below. Even if you were
+to fly about this place, you would die of exhaustion trying.
+~
+E
+up~
+&zBlack as pitch.
+~
+D0
+~
+~
+0 0 606
+D2
+~
+~
+0 0 602
+S
+#606
+&rDeep within the Rising Mist&W~
+&rThe mist seems to get thicker here, and you feel as though that is what you
+are walking on or wading through. You wonder if you would be falling, if it
+were not for the mist.
+ 
+Over towards the northerly direction (at least you hope that's still north),
+you catch a glimpse of a dark figure moving about. You hear a faint clicking
+sound and what sounds like voices up that way as well. If you keep going, 
+maybe you'll bump into something... or someone that can help you find your way.
+~
+0 134619160 0
+Rd     0
+E
+north~
+&wTo the north, you can hear what seems like voices... although it could
+be your own mind playing tricks on you.
+~
+E
+south~
+&wSouth will take you back towards the gates from which you came to know
+this place.
+~
+E
+east west~
+&wOut and down from the mist, you can vaguely see the glow of the molten
+lava below. Far out from the reaches of mankind.
+~
+E
+down~
+&wThe ground here is almost like a bridge somehow, but somehow you know it
+is not. Who would cross a bridge of this kind? Surely not anyone of sane
+mentality.
+~
+E
+up~
+&zBlack as pitch.
+~
+D0
+~
+~
+0 0 607
+D2
+~
+~
+0 0 605
+S
+#607
+&rThe Checkpoint&W~
+&rThe mist continues to linger here as you move ahead... however, you come
+to a point where the mist is barely there at all. In fact, you can see things
+quite clearly at this point. What appears to be a Checkpoint.
+ 
+There is a large slab of stone with many very small tablets atop it. The
+ground, you notice (because you can actually see it clearly now) isn't solid
+stone or rock, but sort of a dirt pathway that heads back to the south... and
+from what you can see ahead, to the north a little ways.
+~
+0 134619164 0
+Rd     0
+E
+east west~
+&wOut and down from here glow the lava pits, and the Heart of Hell.
+~
+E
+south~
+&wThe south will take you back to the gates from where you entered this
+plane.
+~
+E
+down~
+The floor here is almost non-existant, it would seem, as the mist from the
+south continues to linger here.
+~
+E
+up~
+&zBlack as pitch.
+~
+D0
+A large door of stone stands here to the north.
+~
+~
+3 0 608
+D2
+~
+~
+0 0 606
+S
+#608
+&rA Down-Slope&W~
+&rThis a very small and very cramped slope. If you are claustrophobic, you
+won't want to stay here for very long. The walls here are crumbling, and there
+are a few pieces of paper that are somehow pinned, or burnt onto the walls.
+All throughout the area you can hear the nipping flames of an eternal fire.
+~
+0 168173592 0
+Rd     0
+E
+south~
+&wThe checkpoint that you left behind has disappeared. A wall of rock is in
+it's place now. You perceive no way of getting out in that direction.
+~
+E
+north west east~
+&wYou are completely closed in here. The walls all around you are of solid
+rock.
+~
+E
+up~
+&zBlack as pitch.
+~
+E
+papers~
+A few burned up parchments line the walls here. They are completely illegible.
+~
+D5
+~
+~
+0 0 609
+S
+#609
+&rThe Second Floor&W~
+&rThe walls are crumbling here and even now, a few bits of rock tumble down at
+your feet. You look up in hopes that an opening of some sort may come out of
+all the wreckage above you... but no, no hint of the ceiling giving way.
+ 
+Looking around you, you can see that there is a path leading to the south.
+Taking a step that way, you glance back at the ceiling behind you as a
+bigger piece of it tumbles down. No such luck though, the way up above you
+is still fully intact.
+ 
+~
+0 134619160 0
+Rd     0
+D2
+~
+~
+0 0 610
+S
+#610
+&rA Risen Pathway&W~
+&rThe path to the south, is not unlike that of the path you saw on the upper
+floor of this horrid place. A sort of dirt covers the ground here, and if you
+are walking, your feet make a scratching sound with each step you take. A
+smell wafts through the air that perks up your nose-hairs and makes you
+breath as if getting ready for a sneeze. You can attempt to go back to the
+north, but you will find that it is to no avail.
+ 
+~
+0 134619160 0
+Rd     0
+E
+dirt~
+&BThe dirt is definately a coarse substance. It seems that it is not in its
+original form, but came to be this way from the burning and melting by the
+flames that whip by you.
+~
+D0
+~
+~
+0 0 609
+D2
+~
+~
+0 0 611
+S
+#611
+&rA Risen Pathway&W~
+&rThe pathway goes in all cardinal directions from here. The ground is of a
+dirt that you cannot place at the moment. Flames lash up from deep below
+you, though you don't dare to look over the edge from fear of losing your
+balance and falling to your doom. You can see that every so often the flames
+whip up past the level that you are on, presumably to the level that you had
+already visited. You continue to wonder how much further down this place
+could possibly go.
+ 
+~
+0 134619160 0
+Rd     0
+E
+dirt~
+&BThe same dirt that can be seen throughout the area. A course substance
+that came to be this way from the seering heat of the flames below.
+~
+D0
+~
+~
+0 0 610
+D1
+~
+~
+0 0 613
+D2
+~
+~
+0 0 614
+D3
+~
+~
+0 0 612
+S
+#612
+&rA Cliff?&W~
+&rHere from the cliff, you attempt to peek over the edge almost falling over
+into the flames below. You catch your balance luckily, learning that looking
+down is not a very good idea. Your safest option is to go back east of here.
+ 
+&RA whip of flame lashes out at you nearly singeing your armour!
+ 
+~
+0 134619160 0
+Rd     0
+D1
+~
+~
+0 0 611
+S
+#613
+&rA Cliff?&W~
+&rThe ground here consists of the same scratchy substance you have seen
+throughout the area. Flames burst out from beneath you to the level above.
+Peering over the edge you see a quick flash of light, and then you feel a
+burning sensation momentarily afterward.
+ 
+&PYou look down.
+&RYour armour is on fire!
+&PYou stop, drop and roll.
+&P&wYou get up to find yourself giving off smoke.
+&PYou sigh with relief.
+ 
+~
+0 134619160 0
+Rd     0
+D3
+~
+~
+0 0 611
+S
+#614
+&rA Slope&W~
+&rAs soon as you enter this small cavern, you can feel yourself slowly slipping
+downward. You look up to see the exit behind you disappear. Your only exit
+from here... is down.
+ 
+~
+0 168173592 0
+Rd     0
+D5
+~
+~
+0 0 615
+S
+#615
+&rThe Third Floor&W~
+&rYou look up with desperation, and see no exit. Somehow the exits are being
+closed off from behind you, with no option for you to go back. Your only way
+out from here is to the north, that you can see.
+ 
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 616
+S
+#616
+&rA Rock Formation&W~
+&rA formation of molten rock begins here. Whether it has been man-made and
+purposely put here, you are unable to tell. It seems to be the beginning of a
+new pathway, but you cannot be sure.
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 617
+D2
+~
+~
+0 0 615
+S
+#617
+&rRock-pile&W~
+&rA large pile of molten rock forms a semi-cave to the north. There are
+bits and pieces of loose rock here and there, but the majority of the
+pile is made from rock that has been melted into place. You might just
+make it through the opening to see what's inside.
+ 
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 618
+D2
+~
+~
+0 0 616
+S
+#618
+&rA Small Rock-Slide&W~
+&r
+Entering what you thought to be the mouth of a little cave, you begin to
+feel yourself sliding downward. You try to clutch onto the bigger rocks
+that form this little hole, but to no avail. You're slipping and you can't
+stop until you hit bottom.
+~
+0 168173592 0
+Rd     0
+D5
+~
+~
+0 0 619
+S
+#619
+&rThe Fourth Floor&W~
+&r
+Rocks are piled up at your feet from the rock-slide that sent you down
+to this floor. You step carefully so as not to slip because who knows
+where another fall could take you. A small boulder falls from behind you
+and rolls its way ahead of you to the south. You can't go back up, so
+it seems that south is the only way to go.
+~
+0 134619164 0
+Rd     0
+D2
+~
+~
+0 0 620
+S
+#620
+&rA Rocky Path&W~
+&r
+Rocks line each side of your path as you move to the south. The rocks
+get bigger going to the north and smaller going to the south. It seems
+to be a little trail left from others who have fallen down that same
+rock-slide. Some of the smaller pebbles of loose rock go flying over the
+edge of the pathway and down into the pits of lava below.
+ 
+&RYou can hear a faint hissing sound briefly.
+ 
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 619
+D2
+~
+~
+0 0 621
+S
+#621
+&rA Clearing&W~
+&r
+Your path seems to clear up a little bit here, with only a few little
+pebbles scattered about. The walkway continues on to the south, or goes
+back to the north where you left the rock-slide.
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 620
+D2
+~
+~
+0 0 622
+S
+#622
+&rA Clearing&W~
+&r
+The path is almost completely clear of rocks and pebbles here, although
+that doesn't seem very comforting. You can see the path from the rock-slide
+back to the north... or you can go on to the south.
+~
+0 134619160 0
+Rd     0
+E
+south~
+~
+D0
+~
+~
+0 0 621
+D2
+~
+~
+0 0 624
+D3
+~
+~
+0 0 623
+S
+#623
+&rA Ledge&W~
+&rHere you are, once again looking over the edge of yet another cliff. You look
+down to see that the pit of lava below continues beyond your vision. Once
+every so often a bubble of hot air bursts a few feet in front of you and
+you can feel the heat come off. A ragged rocky wall can be seen far off to
+the north, but you know there is no way to get there over the molten pit
+below.
+ 
+&RYou feel a searing heat on your face as you peer over the edge...
+ 
+~
+0 134619160 0
+Rd     0
+D1
+~
+~
+0 0 622
+S
+#624
+&rA Rugged Stairway&W~
+&rHere you come to spiral stairway leading down. You look to the north from
+where you came only to see that you cannot go back that way. It appears
+you now have a decision to make... wait here for whatever it is you are
+supposed to face, or go down to meet your destiny.
+~
+0 134619160 0
+Rd     0
+D5
+~
+~
+0 0 625
+S
+#625
+&rThe Fifth Floor&W~
+&r
+After reaching the bottom of the stairway that led you down here, you
+look back to see that it is gone. Perhaps you expected this to happen,
+perhaps not. None-the-less, it has disappeared with no hopes of ever
+ascending them back up to where you came from.
+ 
+The beginning of this floor is not unlike that of any of the others you
+have seen. The pathway here is somewhat larger, and you have more space
+to walk on without worry of falling over the edge. You can feel the heat
+of the lava pits below, and it only gets hotter from herein.
+ 
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 626
+S
+#626
+&rA Crowded Cavern&W~
+&r
+The faint smell of brimstone wafts through the air here. You look up to see
+stalagtites piercing down upon you and all around you stalagmites poke up
+from every direction. You almost have to squeeze your way through them to
+get anywhere. You can see a dim light not far off from the north.
+ 
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 627
+D2
+~
+~
+0 0 625
+S
+#627
+&rA Crowded Cavern&W~
+&r
+This cavern is filled with stalagmites and stalagtites as well, although
+you can maneuver around them a little easier here. The scent of brimstone
+continues to assault you as you move closer to the north. A bright light
+shines in from the north making everything you look at seem orange as
+though you are looking through tinted glass.
+ 
+~
+0 134619160 0
+Rd     0
+E
+north~
+&RLooking toward the north, all you can see is a bright orange light.
+~
+E
+light~
+&RIn the north direction, a bright orange light sends its echo throughout
+this cavern.
+~
+D0
+~
+~
+0 0 628
+D2
+~
+~
+0 0 626
+S
+#628
+&rA Large Fire-Pit&W~
+&r
+This cavern, although tinted with the colour orange from the fire in the
+centre of the place, also contains many stalagmites and stalagtites. You find
+it hard to move around here, and are very cautious so as not to fall into
+the fire-pit. You look around some more for another way out, but it seems
+that down into the fiery light is your only exit.
+ 
+~
+0 168173592 0
+Rd     0
+D5
+~
+~
+0 0 629
+S
+>enter_prog 100~
+0
+if ispc($n)
+rpecho &zA dark figure jumps into the pit.
+endif
+~
+|
+#629
+&rThe Sixth Floor&W~
+~
+0 134619160 0
+Rd     0
+D2
+~
+~
+0 0 630
+S
+#630
+~
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 629
+D1
+~
+~
+0 0 632
+D3
+~
+~
+0 0 631
+S
+#631
+~
+~
+0 168173592 0
+Rd     0
+D1
+~
+~
+0 0 630
+D5
+~
+~
+0 0 633
+S
+#632
+~
+~
+0 168173592 0
+Rd     0
+D3
+~
+~
+0 0 630
+D5
+~
+~
+0 0 633
+S
+#633
+&rThe Seventh Floor&W~
+~
+0 134619164 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 603 spec_wanderer
+M 607 spec_breath_any
+S
+
+
+
+#RESETS
+M 0 600 1 600
+M 0 605 1 601
+E 0 604 0 20
+O 0 600 0 601
+M 0 601 1 607
+M 0 602 1 607
+O 0 601 0 607
+M 0 603 1 608
+E 0 610 0 9
+M 0 603 1 609
+M 0 604 1 617
+O 0 607 0 619
+O 0 608 0 621
+O 0 609 0 624
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

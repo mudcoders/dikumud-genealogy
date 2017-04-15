@@ -1,0 +1,1745 @@
+#AREADATA
+Name        {??-???} Proto Area          Aegis~
+Levels      0 0
+Builders    Aegis~
+VNUMs       26001 26100
+Security    1
+Recall      25001
+Flags       16
+End
+
+
+
+#MOBILES
+#26002
+Kyrax temple guard towering~
+Kyrax~
+Kyrax, Guardian of the Demon Temple, looks down on you with a sneer.
+~
+Kyrax stands seven feet tall, looking down on intruders with an air of
+supreme confidence.  He appears to be a normal, although huge, human being. 
+But as you take a closer look at him, you see that his eyes glimmer with an
+unhealthy shade of red.  Lurking behind those eyes seems to be an evil
+intelligence that you have never encountered before.  
+~
+67 33554432 0 -100 S
+50 0 0 4800d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#26006
+dark acolyte~
+A dark acolyte~
+A dark acolyte shuffles by you, mumbling under his breath.
+~
+You see before you an acolyte of the Demon Temple.  He is hooded in a
+long black robe, keeping his face hidden from view.  You can barely pick out
+some of his insane ramblings: "Asmodeus...  Fire...  Blood...  Death..."  
+~
+65 0 0 -50 S
+55 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#26007
+black monstrous demon guard~
+A monstrous Demon Guard~
+A monstrous Demon Guard stands here, towering over you.
+~
+An ugly guard stands here guarding the doorway.  At first glance he
+appears to be nothing but an abnormally huge human.  But as you look closer
+at him, you see fangs poking out from his lips, and no human you ever met
+had dark, glowing red skin.  Are those jets of steam coming out of his
+nostrils?  
+~
+71 134217728 0 -400 S
+55 0 0 6400d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#26008
+red monstrous demon guard~
+A monstrous Demon Guard~
+A monstrous Demon Guard stands here, towering over you.
+~
+An ugly guard stands here guarding the doorway.  At first glance he
+appears to be nothing but an abnormally huge human.  But as you look closer
+at him, you see fangs poking out from his lips, and no human you ever met
+had dark, glowing red skin.  Are those jets of steam coming out of his
+nostrils?  
+~
+71 33554432 0 -400 S
+55 0 0 6400d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#26013
+red priest~
+A red priest~
+A red priest stands here, bathing in blood.
+~
+You see before you a priest glorifying in the evil blood that abounds on
+this step.  He is completely covered in blood, and completely mad.  
+~
+67 0 0 -500 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#26015
+black priest~
+A black priest~
+A black priest stands here, staring at you with eyes darker than night.
+~
+You feel a chill steal over your skin as you gaze at this dark creature. 
+He is clad in a pitch black robe that looks as wispy as silk yet hard as
+stone.  His eyes are the purest black, and you can see no white in those
+dark orbs.  The faintest gleam of dark red emanates from the very center of
+each eye.  
+~
+67 0 0 -500 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+256 0 0
+#26017
+ice priest~
+An ice priest~
+A priest stands here, worshipping the ice and revelling in the cold.
+~
+You see before you a being that worships cold and ice.  He is no doubt
+skilled in the magical arts, and will defend himself with the powers of cold
+and ice at his command.  You start to shiver if you look into his dark blue
+eyes for too long.  
+~
+67 134217728 0 -500 S
+60 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+256 0 0
+#26019
+fire priest~
+A fire priest~
+A priest clothed in living flame stands here, glaring at you with fiery hatred.
+~
+You see before you a being that worships fire and heat.  He is no doubt
+skilled in the magical arts, and will defend himself with the powers of fire
+and heat at his command.  He is clad in armor apparently made of burning
+embers, but appears to suffer no ill effects.  
+~
+67 33554432 0 -600 S
+60 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+128 0 0
+#26021
+gigantic demon guard~
+A gigantic demon guard~
+A gigantic demon guard stands here, guarding the shrine from intruders.
+~
+You see before you an absolutely humongous guard.  His face appears to be
+more demon than human, with large fangs and a distinct reddish hue to his
+skin.  He grips his weapon with a huge, clawlike hand, and you wouldn't be
+surprised to see wings growing out of his back.  
+~
+99 167772328 0 -700 S
+60 0 0 5120d0+0 0d0+0
+0 0 0 0
+0 0 1
+384 0 0
+#26024
+high priest demon temple~
+The High Priest~
+A High Priest of the Demon Temple stands here, torturing a lost soul.
+~
+You see before you a being who worships demons with all his soul, and
+will do anything for his unholy masters.  You can see that he is completely
+mad, as his mind has been ripped apart by forces far beyond his powers.  
+~
+67 33554560 0 -1000 S
+65 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+387 0 0
+#26025
+demonic priestess~
+A demonic priestess~
+A demonic priestess wanders about, searching for fresh blood.
+~
+You see before you a priestess entirely devoted to the worship of demons,
+and to their future ascendance to power.  Unlike other inhabitants of this
+temple, she seems quite sane, and goes about her duties, like searching for
+innocent victims, in a calm and rational manner.  
+~
+65 0 0 -700 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 2
+128 0 0
+#26027
+tortured soul~
+A tortured soul~
+A tortured soul lies upon the table, screaming in mortal agony.
+~
+You see before you a being that you can barely recognize as human.  He
+has been tortured beyond the bounds of pain, and continually shrieks with
+mindless agony.  You can only hope he will be put out of his misery soon.  
+~
+67 4096 0 300 S
+50 0 0 6000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#26032
+minor demon~
+A minor demon~
+A minor demon skulks about, watching out for his master.
+~
+You see before you a gigantic red-skinned demon.  He stands about 12 feet
+high, and is as broad as a door.  You have no doubt that this is an
+extremely powerful creature, yet he ranks low among the demons of the abyss.
+~
+67 0 0 -700 S
+65 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+384 0 0
+#0
+
+
+
+#OBJECTS
+#26001
+potion black ice~
+&WA potion of &bblack ice~
+A potion made of black ice lies here.~
+~
+10 268435457 0 0 16385 60
+50~ iceshield~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26002
+red gleaming sword~
+&Ra gleaming red sword~
+A sword the color of glistening blood lies here.~
+~
+5 33554433 1043 0 8193 50
+0~ 0~ 0~ 3~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 30
+A
+18 5
+A
+17 -40
+#26003
+suit scaly red armor~
+&Ya suit of &Rscaly red &Yarmor~
+A suit of armor made of blood-red scales lies here.~
+~
+9 33554433 0 0 9 50
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -40
+A
+18 5
+A
+19 30
+#26004
+ring demonic devotion~
+&CThe Ring of &rDemonic &CDevotion~
+A ring designed for devotees of demons lies here.~
+~
+9 1 0 0 3 60
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+stench of decay~
+10 10
+0 0 0
+A
+19 8
+A
+18 4
+A
+3 2
+A
+24 -20
+#26005
+potion burning embers~
+&WA potion of &Rburning &rembers~
+A potion made of burning embers lies here.~
+~
+10 301989889 0 0 16385 60
+60~ fireshield~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26006
+black hooded cloak~
+&PA &zblack &Phooded cloak~
+A long black cloak with a hood lies here.~
+~
+9 0 6344 0 1025 50
+0~ 0~ 0~ 0~
+5 0 0 0 0
+5 0
+displacement~
+20 20
+0 0 0
+A
+17 -50
+A
+24 -30
+A
+19 8
+#26007
+black obsidian axe battleaxe~
+&Can &zObsidian &CBattleaxe~
+A pitch black obsidian battleaxe lies here.~
+~
+5 67108881 1043 0 8193 55
+0~ 0~ 0~ 13~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 55
+A
+19 27
+A
+18 10
+#26008
+axe living blood~
+&zAn Axe of &RLiving Blood~
+An axe made of living blood lies here.~
+~
+5 33554450 1043 0 8193 55
+0~ 0~ 0~ 13~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 27
+A
+13 55
+#26009
+key bloody~
+&za &rBloody &zKey~
+A key made of living blood lies here.~
+~
+18 0 0 0 16385 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26010
+bloody knife~
+&RA bloody knife~
+A knife covered in blood lies here.~
+~
+5 1 0 0 8193 50
+0~ 0~ 0~ 11~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+A
+19 10
+A
+18 10
+#26011
+key obsidian~
+&Can &zObsidian &CKey~
+A pitch black key made of obsidian lies here.~
+~
+18 0 0 0 16385 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26012
+mace demonic devotion~
+&CThe Mace of &rDemonic &CDevotion~
+A mace designed for the devotees of demons lies here.~
+~
+5 1 0 0 8193 60
+0~ 0~ 0~ 7~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 15
+A
+18 15
+A
+4 2
+A
+23 -20
+#26013
+red bloodstained knife~
+&rA &Rbloodstained &rgutting knife~
+A knife made for gutting animals lies here in a pool of blood.~
+~
+5 1 0 0 8193 60
+0~ 0~ 0~ 2~
+2 0 0 0 0
+5 0
+bloodbath~
+10 10
+0 0 0
+A
+4 1
+A
+18 20
+A
+19 20
+A
+17 -10
+#26015
+cloak filamentous obsidian~
+&CA cloak of &Wfilamentous &zobsidian~
+A cloak apparently made of silky threads of obsidian lies here.~
+~
+9 0 0 0 1025 60
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+flesh armor~
+20 20
+0 0 0
+A
+14 40
+A
+18 12
+A
+2 2
+A
+17 -60
+#26016
+shield black ice~
+&WA shield of &bblack ice~
+A shield made of translucent black ice lies here.~
+~
+9 1 6348 0 513 60
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+icestorm~
+5 5
+0 0 0
+A
+17 -40
+A
+18 3
+A
+19 7
+A
+24 -20
+#26017
+staff shattered ice~
+&WA staff of &Bshattered ice~
+A long staff made of shards of shattered ice lies here.~
+~
+5 1 2508 0 8193 60
+0~ 0~ 0~ 7~
+3 0 0 0 0
+5 0
+frost breath~
+5 5
+0 0 0
+A
+19 12
+A
+18 10
+A
+24 -20
+#26018
+staff burning embers~
+&WA staff of &Rburning &rembers~
+A stout staff lies here, glowing with fiery heat.~
+~
+5 33554433 6604 0 8193 60
+0~ 0~ 0~ 7~
+3 0 0 0 0
+5 0
+fire breath~
+5 5
+0 0 0
+A
+19 12
+A
+18 10
+A
+17 -30
+#26019
+helm burning embers~
+&WA helm of &Rburning &rembers~
+A helm lies here, glowing with fiery heat.~
+~
+9 33554433 0 4096 17 60
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+fireball~
+5 5
+0 0 0
+A
+17 -30
+A
+19 9
+A
+18 2
+A
+24 -15
+#26021
+huge double bladed axe demons~
+&WA Huge &BD&Co&Wub&Cl&Be&W-&BB&Cl&Wad&Ce&Bd &PAxe &Wof the &rD&Re&Ymo&Rn&rs~
+A huge axe made for a demon lies here.~
+~
+5 33554433 0 0 8193 60
+0~ 0~ 0~ 13~
+10 0 0 0 0
+5 0
+giant strength~
+10 10
+0 0 0
+A
+19 35
+A
+18 5
+A
+1 2
+A
+13 60
+#26022
+blunt instrument torture~
+&wA &Yblunt &winstrument of &Rtorture~
+A blunt object used for torturing prisoners lies here.~
+~
+5 16386 0 0 8193 65
+0~ 0~ 0~ 7~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 20
+A
+24 20
+A
+18 10
+A
+19 20
+#26023
+dagger sacrifice~
+&WThe &rDagger &Wof &RSacrifice~
+(no description)~
+~
+5 16387 0 0 8193 65
+0~ 0~ 0~ 2~
+2 0 0 0 0
+5 0
+energy drain~
+15 15
+0 0 0
+A
+13 40
+A
+17 -40
+A
+18 12
+A
+19 30
+#26024
+nebulous cloak blue mist~
+&CA nebulous cloak of &Bblue mist~
+A tangible blob of blue mist lies here.~
+~
+9 1 0 0 1025 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26025
+key demons~
+&RThe Key of Demons~
+A key made for a demon lies here.~
+~
+18 16387 0 0 16385 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26026
+robe high priest~
+&CThe Robe of the High Priest~
+A robe made for an evil priest lies here.~
+~
+9 0 0 0 9 65
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 50
+A
+17 -65
+A
+18 20
+A
+19 15
+#26027
+huge bloody sacrificial table~
+&gA huge &Rbloody &zsacrificial &gtable stands here, awaiting your demise.~
+&gA huge &Rbloody &zsacrificial &gtable stands here, awaiting your demise.~
+~
+12 0 0 0 0 1
+0~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#26032
+talon-tipped wings demon~
+&Rtalon-tipped wings of a demon~
+A pair of wings made for a demon lies here.~
+~
+9 2 0 0 1025 65
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+fly~
+10 10
+0 0 0
+A
+17 -50
+A
+1 2
+A
+23 -25
+A
+19 8
+#26033
+horns demon~
+&Rhorns of a demon~
+The huge horns of demon lie here.~
+~
+9 2 0 4096 17 65
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 12
+A
+17 -20
+A
+3 1
+A
+4 1
+#26034
+tail demon~
+&Rthe tail of a demon~
+The chopped-off tail of a demon lies here.~
+~
+9 2 0 0 2049 65
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 5
+A
+18 5
+A
+2 2
+A
+13 50
+#26035
+hooves demon~
+&Rthe hooves of a demon~
+The hooves of a demon lie here.~
+~
+9 2 0 0 65 65
+0~ 0~ 0~ 0~
+4 0 0 0 0
+5 0
+earthquake~
+10 10
+0 0 0
+A
+19 9
+A
+18 4
+A
+2 2
+A
+17 -30
+#26036
+demon claw~
+&RA Demon's Claw~
+The claw of a demon lies here.~
+~
+5 16386 0 0 8193 65
+0~ 0~ 0~ 5~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 25
+A
+18 15
+A
+13 65
+A
+1 2
+#26037
+skin demon~
+&Rthe skin of a demon~
+The red skin of a demon lies here.~
+~
+9 2 0 0 9 65
+0~ 0~ 0~ 0~
+5 0 0 0 0
+5 0
+flesh armor~
+20 20
+0 0 0
+A
+13 65
+A
+19 35
+A
+18 8
+A
+23 -60
+#26038
+chain allegiance~
+&CA chain of allegiance~
+A chain that marks the allegiance of a demon lies here.~
+~
+9 1 0 0 5 65
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+domination~
+10 10
+0 0 0
+A
+23 -65
+A
+24 -65
+A
+4 2
+A
+3 2
+#26039
+flaming human head~
+&RA flaming human head~
+A human head burns with a dark red light.~
+~
+1 33554432 0 0 16385 65
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 3
+A
+18 10
+A
+13 50
+A
+17 -30
+#26040
+chain subservience~
+&GA chain of subservience~
+A chain marking the subservience of a demon lies here.~
+~
+9 1 0 0 5 65
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+charm person~
+10 10
+0 0 0
+A
+1 2
+A
+5 2
+A
+13 65
+A
+17 -65
+#26041
+demon armguards~
+&RDemon Armguards~
+A pair of armguards made for a demon lies here.~
+~
+9 2 0 0 257 65
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -50
+A
+13 50
+A
+18 5
+A
+19 7
+#0
+
+
+
+#ROOMDATA
+#26001
+Path to The Temple~
+You see before you a massive temple that looks ancient beyond belief.  It
+is shaped like a pyramid, yet its color is like nothing you have ever seen. 
+The sides seem to be drenched in dark, glistening blood that pulses with
+power and overwhelming evil.  As you take a closer look at the huge
+structure in front of you, you notice that the temple is not made of stones,
+but rather seem to consist of overlapping scales, perhaps of some extinct
+species of dragon.  The light of the sun seems to dim noticeably around the
+temple, and you feel a chill as you step into the darkened clearing.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26002
+S
+#26002
+Entrance to The Temple~
+You stand before the entrance to the temple.  A stout iron door, also
+blood-red and made of the massive scales of a dragon, blocks your way into
+the temple.  You can now faintly hear screams of fear and pain even through
+that thick door, although it is not clear if those awful sounds are made by
+humans or animals.  Also barring your way into the temple is a towering
+guard clad in blood-red, scaly armor.  
+~
+0 4 0
+Rd     0
+D0
+~
+~
+3 26001 26003
+D2
+~
+~
+0 0 26001
+S
+#26003
+Temple Foyer~
+Your senses are assaulted as you step into the darkened temple. 
+Guttering torches set in the walls cast flickering lights across the foyer,
+yet the corners remain dark and hidden.  You smell the combined stench of
+rotting and burning flesh, and the agonized cries of unfortunate souls ring
+in your ears.  The ceiling seems to be literally dripping with blood, and as
+you watch a drop of dark blood falls onto you, burning a small hole into
+your armor.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26006
+D1
+~
+~
+0 0 26004
+D2
+~
+~
+3 26001 26002
+D3
+~
+~
+0 0 26005
+S
+#26004
+Temple Foyer~
+You stand at the southeast corner of the temple foyer.  Somehow it seems
+much darker here, and some strange sounds seem to be coming from the
+blackness of the deepest corner.  A distinct chill steals over your skin as
+you enter this area, and deepens as you approach the north.  To the west you
+can see the entrance to the temple, and to the north lies a black door.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26007
+D3
+~
+~
+0 0 26003
+S
+#26005
+Temple Foyer~
+You stand in the southwest corner of the temple foyer.  A sickly red
+flame burns atop a blackened torch in this corner, casting a red glare
+across the surroundings.  As you come closer to the torch, you start to hear
+insane giggling and howls of mad laughter.  It might be a good idea to stay
+away from that torch...  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26008
+D1
+~
+~
+0 0 26003
+S
+#26006
+Temple Foyer~
+You stand in the middle of the temple foyer.  The light seems a bit
+brighter here, but you feel a malevolently evil force to the north.  The
+agonized shriek of a dying soul pierces your ears before being suddenly cut
+off.  To the east you can see a black door, and a chilly draft wafts across
+your skin as you peer over there.  To the west lies a red door, and the
+blood dripping from the ceiling seems to emanate from that direction.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26007
+D2
+~
+~
+0 0 26003
+D3
+~
+~
+0 0 26008
+S
+#26007
+Temple Foyer~
+You stand at the northeast corner of the temple foyer, before a huge door
+apparently made of obsidian.  The door seems to suck up the weak light that
+the torches emit, and the pitch black surface of the door gives off no
+reflection whatsoever.  As you come closer to the door, the temperature of
+the room seems to drop below freezing, as the pulsing blackness of the door
+seems to absorb any heat around it.  Standing before the door is a monstrous
+guard who looks less than human, and bars your passage with a huge black
+battle-axe.  
+~
+0 12 0
+Rd     0
+D0
+~
+~
+23 26011 26011
+D2
+~
+~
+0 0 26004
+D3
+~
+~
+0 0 26006
+S
+#26008
+Temple Foyer~
+You stand at the northwest corner of the temple foyer, before a door that
+seems to be made of blood.  The dark red liquid flows up from the ground and
+spreads out over the ceiling.  A dark black keyhole seems to float in the
+moving river of blood that makes up this unholy door, and you feel the
+presence of dark magics at work.  Standing before the door is a monstrous
+guard who looks more than human, and bars your passage with an axe made of
+living blood.  
+~
+0 12 0
+Rd     0
+D0
+~
+~
+23 26009 26009
+D1
+~
+~
+0 0 26006
+D2
+~
+~
+0 0 26005
+S
+#26009
+West Entrance to the Staircase~
+You stand in the bend of a dark hallway.  There are fewer torches along
+the wall here, and they barely throw enough light for you to see the
+blood-red walls.  To the east you can barely make out what looks like a huge
+staircase.  The inhuman screams that you hear now make an unceasing chorus
+that drives into your brain like an icy spike.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26010
+D2
+~
+~
+0 26009 26008
+S
+#26010
+Bottom of the Staircase~
+You stand at the bottom of a gigantic staircase, obviously made for
+beings far larger than you.  You cannot see the top of the stairs in the
+shrouded darkness, although the screams of agonizing terror seem to be
+coming from that direction.  The step in front of you is made of a rough
+stone, and is covered in glistening, warm blood.  You might be able to pull
+yourself up onto the first step if you can find a grip on the slick stone.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26011
+D3
+~
+~
+0 0 26009
+D4
+~
+~
+0 0 26012
+S
+#26011
+East Entrance to the Staircase~
+You stand in the bend of a dark hallway.  There are fewer torches along
+the wall here, and they barely throw enough light for you to see the
+blood-red walls.  To the west you can barely make out what looks like a huge
+staircase.  The inhuman screams that you hear now make an unceasing chorus
+that drives into your brain like an icy spike.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+23 26011 26007
+D3
+~
+~
+0 0 26010
+S
+#26012
+The Step of &RBlood~
+You stand on a step that glistens with dark blood.  The liquid seems to
+be actually seeping out from the dark stone underneath, and your feet begin
+to feel uncomfortably warm.  It might be a good idea to get off this step
+before the blood finds its way to your skin.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26013
+D5
+~
+~
+0 0 26010
+S
+#26013
+The Step of &RBlood~
+The blood on the ground now seems to be bubbling and gurgling along the
+step.  It splashes against your legs and feet and small tendrils of smoke
+arise from where droplets spatter against your armor.  You can almost hear
+demonic whispers and the insane babbling of lost souls above the sounds of
+the sloshing blood, but it is probably better that you cannot hear those
+voices clearly.  Ahead of you stands a sleek black step made of pure
+obsidian.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 26012
+D4
+~
+~
+0 0 26014
+S
+#26014
+The Step of &zObsidian~
+As you haul yourself up onto this step, you can feel the eerie coldness
+that seems to emanate from this pitch black stone.  The floor and walls seem
+to suck all the heat from your body, and it seems darker on this step, even
+though the torches seem just as plentiful up here.  The screaming from up
+above seems to be getting even louder.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26015
+D5
+~
+~
+0 0 26013
+S
+#26015
+The Step of &zObsidian~
+As you walk across the huge, seamless block of obsidian that makes up
+this step, you can see two priests cloaked in black standing before you. 
+The temperature seems to be steadily dropping as you make your way across
+the surface of the step.  You cannot tell if the deep chill emanates from
+these two stolid figures, or from the massive block of black ice that makes
+up the next step.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 26014
+D4
+~
+~
+0 0 26016
+S
+#26016
+The Step of &bBlack Ice~
+The chill you felt on the step below has deepened to a mindnumbing
+temperature.  The step you stand upon is made of slick ice, clear and with
+no apparent flaws.  You are about halfway up this huge staircase, and now
+you can see neither the top nor the bottom in the darkness of the temple.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26017
+D5
+~
+~
+0 0 26015
+S
+#26017
+The Step of &bBlack Ice~
+It might be a good idea to watch your step as you move across the slick
+surface of the step.  You can feel the cold beginning to work its way
+through your boots and into your toes.  Before you stands a step apparently
+made of burning embers, yet you feel no heat from that direction.  Before
+you also stands two priests, giving you a chilly stare of their own.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 26016
+D4
+~
+~
+0 0 26018
+S
+#26018
+The Step of &RBurning &rEmbers~
+The cold burns away from your feet as you climb up to this step.  The
+surface of this step appears to be a solid, packed mass of fiery hot coals. 
+Somehow you don't burn yourself when you touch the floor, but the
+temperature in here is uncomfortably warm.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26019
+D5
+~
+~
+0 0 26017
+S
+#26019
+The Step of &RBurning &rEmbers~
+The temperature grows from warm to hot as you move across the step. 
+Before you stand two priests clad in the same strange substance that the
+step is made of.  The screams you hear have grown ear-piercingly loud, and
+you can finally see the top of the staircase.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 26018
+D4
+~
+~
+0 0 26029
+S
+#26020
+The Corner of &RBlood~
+There is a constant river of blood flowing from the temple altar into
+this corner of the shrine.  It collects into a pool of dark, viscous red
+fluid, and an unpleasant warmth seems to emanate from this source.  The
+blood ripples and seethes in the corner, seeming to take on a life of its
+own.  The blood also flows up the walls from this corner in defiance of
+gravity, spreading out over the ceiling and the rest of the temple.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26023
+D1
+~
+~
+0 0 26021
+S
+#26021
+Entrance to the Shrine~
+You stand on the top floor of the temple, before a huge bloody altar that
+stands in the center of this room.  The ceiling rises toward the sky in the
+shape of a thin knife, far beyond the reach of the torches' illumination. 
+Although you can see no windows, small wisps of wind caress your skin,
+seeming to whisper of madness and lost souls.  Ahead you can finally see the
+source of the screams, as a dark figure prepares to sacrifice his next
+victim.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26024
+D1
+~
+~
+0 0 26022
+D2
+~
+~
+0 0 26029
+D3
+~
+~
+0 0 26020
+S
+#26022
+The &zObsidian &WCorner~
+This corner of the demonic shrine is strewn with black obsidian rubble. 
+If you do not watch your step you are likely to twist an ankle or scrape a
+leg on the sharp, irregularly shaped rocks.  As you take a closer look into
+the corner, you can see what looks to be a huge outgrowth of pure obsidian. 
+It appears that the stone is slowly emerging from the walls, and has
+gradually taken over this corner of the shrine over many long years.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26025
+D3
+~
+~
+0 0 26021
+S
+#26023
+Temple Shrine~
+You stand in a hideous shrine raised to worship the demons of this world
+and beyond.  Painted on the walls are murals painted in dark red relief,
+glistening with the color of fresh blood.  Even in the uneven, flickering
+light of the torches, you can make out depictions of the unspeakable actions
+of the demons.  Here you can see hordes of people enslaved by demon masters,
+demons mutilating and torturing humans while wearing inhuman grins of
+gleeful madness, and other visions that make you turn your eyes away.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26026
+D1
+~
+~
+0 0 26024
+D2
+~
+~
+0 0 26020
+S
+#26024
+&RTemple Altar~
+You stand in the middle of this demonic shrine, before a huge ornate
+altar that is dripping with blood.  Dominating this room is a sacrificial
+table that looks like it has seen ages of use and thousands of victims. 
+Blood drips from a hole in the table down into a wide gulley, where the red
+liquid flows into the southwest corner of the shrine.  Beside the table
+stands the High Priest of this Temple, preparing to sacrifice his next
+screaming victim.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26027
+D1
+~
+~
+0 0 26025
+D2
+~
+~
+0 0 26021
+D3
+~
+~
+0 0 26023
+D5
+~
+~
+119 26025 26030
+S
+#26025
+Temple Shrine~
+You stand in a hideous shrine raised to worship the demons of this world
+and beyond.  Painted on the walls are murals painted in dark red relief,
+glistening with the color of fresh blood.  Even in the uneven, flickering
+light of the torches, you can make out depictions of the unspeakable actions
+of the demons.  Here you can see hordes of people enslaved by demon masters,
+demons mutilating and torturing humans while wearing inhuman grins of
+gleeful madness, and other visions that make you turn your eyes away.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26028
+D2
+~
+~
+0 0 26022
+D3
+~
+~
+0 0 26024
+S
+#26026
+The &bBlack Ice &WCorner~
+As you walk into this corner of the shrine, a deep chill settles into
+your bones are the temperature seems to drop to arctic-like coldness.  This
+entire corner seems to be made of a single block of black ice, as if some
+huge sculptor carved it out of a mountain made of flawless ice.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26027
+D2
+~
+~
+0 0 26023
+S
+#26027
+Temple Shrine~
+You stand in a hideous shrine raised to worship the demons of this world
+and beyond.  Painted on the walls are murals painted in dark red relief,
+glistening with the color of fresh blood.  Even in the uneven, flickering
+light of the torches, you can make out depictions of the unspeakable actions
+of the demons.  Here you can see hordes of people enslaved by demon masters,
+demons mutilating and torturing humans while wearing inhuman grins of
+gleeful madness, and other visions that make you turn your eyes away.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26028
+D2
+~
+~
+0 0 26024
+D3
+~
+~
+0 0 26026
+S
+#26028
+The Corner of &RBurning &rEmbers~
+The heat emanates from this corner like a shockwave.  Every tile and
+every stone in this part of the shrine seems to be a piece of living fire,
+shaped into squares and blocks and octagons.  Pure red flames seems to be
+dancing in the very corner as you step across the burning embers, and you
+are sure you can hear maniacal laughter coming from those very flames.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 26025
+D3
+~
+~
+0 0 26027
+S
+#26029
+The Top of the Staircase~
+You stand at the top of this gigantic, demon-sized staircase.  The bottom
+of the staircase is now completely lost in shrouded blackness, and it seems
+to be many thousands of feet below.  Before you lies the shrine of this
+demonic temple, and the dark evil emanating from the altar is almost
+palpable.  The shrieks of agony you heard on the staircase now seems to be
+coming from directly ahead, but your vision is fogged by a misty darkness
+and a strange red glare.  
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 26021
+D5
+~
+~
+0 0 26019
+S
+#26030
+The &zAbyss~
+You are floating above black nothingness.  Above you can see the faint,
+flickering light of torches, but below is nothing but impenetrable
+blackness.  You can hear faint groanings and growlings below you, and soft
+scratches and scribbling of movement.  Whatever is moving below you is
+definitely not human.  
+~
+0 33554440 0
+Rd     0
+D4
+~
+~
+119 26025 26024
+D5
+~
+~
+0 0 26031
+S
+#26031
+The &zAbyss~
+You are floating in absolute pitch black nothingness.  Your light
+illuminates a sphere of perhaps five feet in every direction, but you can
+see nothing around you.  The sounds below have gotten louder, and you sense
+that the floor on which those creatures reside is not far below.  
+~
+0 33554440 0
+Rd     0
+D4
+~
+~
+0 0 26030
+D5
+~
+~
+0 0 26032
+S
+#26032
+The First Level of the &zAbyss~
+You land on a black-green surface that feels cold and gooey.  Your feet
+stick in the goop, and it is hard to walk around.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 26039
+D1
+~
+~
+0 0 26037
+D2
+~
+~
+0 0 26034
+D3
+~
+~
+0 0 26036
+D4
+~
+~
+0 0 26031
+S
+#26033
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26036
+D1
+~
+~
+0 0 26034
+S
+#26034
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26032
+D1
+~
+~
+0 0 26035
+D3
+~
+~
+0 0 26033
+S
+#26035
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26037
+D3
+~
+~
+0 0 26034
+S
+#26036
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26038
+D1
+~
+~
+0 0 26032
+D2
+~
+~
+0 0 26033
+S
+#26037
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 26040
+D2
+~
+~
+0 0 26035
+D3
+~
+~
+0 0 26032
+S
+#26038
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26039
+D2
+~
+~
+0 0 26036
+S
+#26039
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 26040
+D2
+~
+~
+0 0 26032
+D3
+~
+~
+0 0 26038
+S
+#26040
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 26037
+D3
+~
+~
+0 0 26039
+S
+#0
+
+
+
+#SPECIALS
+M 26024 spec_cast_cleric
+S
+
+
+
+#RESETS
+M 0 26002 1 26002
+E 0 26002 0 20
+E 0 26003 0 5
+M 0 26006 8 26006
+E 0 26006 0 16
+E 0 26010 0 20
+M 0 26007 1 26007
+E 0 26007 0 20
+G 0 26011 0
+E 0 26007 0 21
+M 0 26008 1 26008
+G 0 26009 0
+E 0 26008 0 20
+E 0 26008 0 21
+M 0 26006 8 26010
+E 0 26010 0 20
+E 0 26006 0 16
+M 0 26013 2 26013
+E 0 26013 0 20
+M 0 26015 2 26015
+E 0 26015 0 16
+M 0 26017 2 26017
+E 0 26017 0 20
+E 0 26016 0 15
+G 0 26001 0
+M 0 26019 2 26019
+E 0 26019 0 6
+E 0 26018 0 20
+G 0 26005 0
+M 0 26021 1 26021
+E 0 26021 0 20
+E 0 26019 0 6
+E 0 26016 0 15
+E 0 26015 0 16
+M 0 26024 1 26024
+E 0 26022 0 21
+E 0 26023 0 20
+G 0 26025 0
+E 0 26026 0 5
+O 0 26027 0 26024
+M 0 26027 1 26024
+M 0 26025 6 26025
+E 0 26004 0 2
+E 0 26012 0 20
+M 0 26006 8 26027
+E 0 26006 0 16
+E 0 26010 0 20
+M 0 26032 6 26032
+E 0 26032 0 16
+E 0 26033 0 6
+E 0 26034 0 17
+E 0 26035 0 12
+E 0 26036 0 20
+E 0 26036 0 21
+E 0 26037 0 5
+E 0 26038 0 3
+E 0 26039 0 0
+E 0 26040 0 4
+E 0 26041 0 14
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

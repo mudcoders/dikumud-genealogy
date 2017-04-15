@@ -1,0 +1,7809 @@
+#AREADATA
+Name        { 25-40} Fortuna's Carnival  Sherf~
+Levels      25 40
+Builders    Sherf~
+VNUMs       6600 6849
+Security    1
+Recall      25001
+Flags       0
+End
+
+
+
+#MOBILES
+#6601
+bats~
+Some bats~
+Some bats swoop down from the above and attack!
+~
+The bats are quite large, but other than their size... they look like normal
+everyday bats.
+~
+97 524328 0 -400 S
+58 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 0
+262144 0 0
+#6602
+squirrel baby~
+A cute baby squirrel~
+A little squirrel has nestled into a blanket here.
+~
+The cutest little thing you ever did see. Awwwww!
+~
+7 8708 0 1000 S
+30 0 0 1500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#6603
+krotz smithy~
+The Smithy~
+The Smithy stands here.
+~
+Krotz is a burly dwarven man. His beard reaches to his mid-belly and his
+eyes reflect the fires of the forge. Beneath his eyes are dark rings which
+you assume are either from the soot on his hands, or from lack of sleep due
+to his long hours at the anvil.  
+~
+3 0 0 800 S
+54 0 0 7500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote scratches his beard and stares blankly ahead.
+emote snaps out of it, and notices you've entered.
+smile
+say I was wonderin' if'n I'd be see'n some vizters soon. It's been an elven lifetime since I have ya know!
+chuckle
+say Me name's Krotz, and yers'd be?
+emote nods at you.
+endif
+~
+>speech_prog name~
+if ispc($n)
+say Well met $n! Now ye'll be tellin me what brings ye to the mansion...and down to the servants quarters n'less!?
+endif
+~
+>speech_prog demons~
+think
+say Ye don't say?! Those monster here in the mansion!? We'll bloody see about  that!
+emote raises his axe above his head.
+west
+mpecho Krotz disappears.
+mpgoto 8101
+mppurge self
+~
+|
+#6604
+zal'oubri zal mage magi sorceress~
+Zal'oubri~
+The Sorceress Magi stands here expecting you.
+~
+Standing at about 5'7" tall, Zal'oubri's scarlet ringlets spiral down to her
+thin waist. Her eyes as deep as the deepest, darkest earth; framed with long and thick lashes. She is built thin but not brittle, and voluptuous where it counts.
+Heart-shaped lips part slightly with a grin, making her more deceiving than 
+you'd hope to think.
+~
+3 167772312 0 -1000 S
+60 0 0 6500d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+>all_greet_prog 100~
+if isgood($n)
+look beast
+say It seems we have an uninvited guest, Xenon.
+grin beast
+else
+look $n
+say Greetings, $n. Am I to assume you are here to destroy me?
+emote laughs at you mercilessly!
+say Many have tried, but as you can see...
+emote raises her hands above her waist and places them on her hips.
+say ... quite flawless.
+endif
+~
+>act_prog p lets out a low growl.~
+emote strokes The displacer beast's head.
+say There, there kitty...
+grin
+~
+>act_prog p stops using~
+cackle
+'...such trinkets!
+rofl
+~
+>rand_prog 3~
+say Alas, what brings you here... to this mansion? Why have you come?
+emote smiles wickedly.
+~
+>speech_prog p demons~
+if isgood($n)
+emote blushes slightly.
+say Ahhh... yes. The demons. A pity that heroism got you this far, only to come
+say to such a dreadful ending.
+grin
+mpforce xenon mpkill $n
+  else
+emote looks at you intensely.
+say The demons... of course. You have to come to destroy them, and to harness
+say what little power they possess...
+emote chuckles to herself.
+say Unfortunately for you, power comes with intelligence and wisdom...
+emote pats The Displacer Beast on its head.
+sigh
+say Kill them.
+mpforce xenon mpkill $n
+endif
+~
+|
+#6605
+displacer beast xenon puma~
+The Displacer Beast~
+A large puma-looking beast watches your every breath.
+~
+This very puma-like creature is bluish black in color, and wields itself with
+two large tentacles (one on each shoulder-blade), enormous claws and a bite.
+The many suctions on each tentacle are a brownish yellow, and its eyes glow a 
+hellish green.
+~
+3 0 0 -930 S
+49 0 0 5665d0+0 0d0+0
+0 0 0 0
+0 0 1
+2051 0 0
+>act_prog p looks at you.~
+emote lets out a low growl.
+emote glares hungrily at you with its hellish green eyes.
+~
+>speech_prog Zal'oubri says 'There, there kitty...'~
+if ispc($n)
+emote purrs contentedly.
+endif
+~
+>greet_prog 100~
+if ispc($n)
+c displacement
+c 'mind probe' $n
+endif
+~
+>rand_prog 5~
+emote crouches low with its tentacles writhing...
+~
+>act_prog p wields~
+if ispc($n)
+emote emits a menacing growl, and pounces at you!
+mpkill $n
+endif
+~
+|
+#6606
+corpse servant~
+The Corpse of a Servant~
+The Corpse of a Servant wanders mindlessly...
+~
+The embroidered symbol of the Daern Mansion is still decipherable on the
+left breast pocket of the corpses uniform... however, the whole torso of
+the thing looks to have been hit with some sort of blast.
+~
+65 0 0 -899 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+#6607
+corpse guard~
+The Corpse of a Loyal Guard~
+The Corpse of a Loyal Guard.
+~
+What used to be a noble looking guard is now a mobile slab of rotting flesh.
+~
+65 0 0 -700 S
+46 0 0 3500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#6608
+lesser demon~
+A lesser demon~
+A Large Demon stands guard here.
+~
+This bluish-green creature is of immense size. Its hind legs are that of a
+goat, and vast bat-like wings sprout from its back. The arms are human, and
+the face likewise... but it is not anything far from a monster.
+~
+3 33554432 0 -1000 S
+56 0 0 6800d0+0 0d0+0
+0 0 0 0
+0 0 0
+2 0 0
+#6609
+Gatha large woman~
+Gatha~
+A large woman stands here quietly singing a simple tune.
+~
+This woman is definately not starving here, trapped in this maze of a garden!
+She is a very portly woman, with a couple of chins and a cheerful smile. Her
+voice is friendly and strong as she sings. Her long hair is tied up into a 
+loose knot at the top of her head and small strands hang down in front of her
+eyes causing her to squint when she looks at you.
+~
+67 4 0 1000 S
+65 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 2
+4096 0 0
+>fight_prog 30~
+say I was having a fine time living here, until YOU arrived!
+stun
+~
+>rand_prog 6~
+emote looks at you.
+emote smiles.
+emote blows a few strands of hair from her face.
+say I never did learn to do my hair!
+chuckle
+~
+>rand_prog 2~
+emote begins to tidy up the bowls and utensils...
+say It's such a mess in here, I know. I've been working in the garden.
+~
+>act_prog p smiles at you.~
+say Oh! Good day!
+emote tries to fix her hair, but a few more strands fall into her eyes.
+say You're new here aren't you! Well, you'll get used to it. I did.
+smile
+~
+>speech_prog lost. lost~
+if ispc($n)
+chuckle
+say Yes... well, I was lost when I first came here as a young girl. Let me tell you.
+think
+say ... but as the years passed, I learned to find my own place here. This IS quite a place when you get used to it. Look at me, I'm as happy as a bug in a rug!
+look self
+say Of course... I WAS thinner then. I was just a tiny little thing...
+beam $n
+endif
+~
+>speech_prog p maze~
+if ispc($n)
+chuckle
+say Oh, yes... it IS a maze, isn't it? Why I remember trying to find MY way through.
+comfort $n
+say You poor thing. Perhaps the Gods will help you find your niche here too. You'll see.
+endif
+~
+>all_greet_prog 50~
+if ispc($n)
+   emote nods at you as if she gets drop-in company all the time.
+endif
+~
+|
+#6610
+giant ladybug lady bug~
+A giant ladybug~
+A giant ladybug is sleeping here.
+~
+A giant ladybug is a rusty red with black spots on each wing. She seems
+harmless enough, but do you think you should disturb her slumber?
+~
+195 655432 0 500 S
+62 0 0 11000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>fight_prog 50~
+emote dives at you!
+emote emits a loud screeching sound as it attacks.
+stun
+~
+|
+#6611
+nartika pixie~
+Nartika~
+A pixie sits at the counter playing tiddly-winks with a few polished stones, and an empty snail shell.
+~
+Nartika is a small woman, hence her pixie heritage... she has long blonde
+hair (which is tucked neatly behind her pointed ears), and slanty blue eyes
+with possibly the longest eyelashes you have ever seen. She is a thin girl,
+perhaps too thin, as her collar bone protrudes from her chest noticeably. But
+this aside she is an attractive young girl, seemingly about early twenties in
+age. Sheer wings peer out from behind her when she turns her back to you, and
+they sparkle with silver lining as the light reflects from them.
+~
+3 8956 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+7 0 0
+>all_greet_prog 100~
+if sex($n) == 1
+say Greetins M'lord! And welcome to my humble shop!
+emote smiles with a wink.
+say And what is it I might do for you t'day?
+else
+say Greetins M'lady! And welcome to my humble shop!
+smile
+say And what is it I can do for you t'day?
+beam
+endif
+~
+>rand_prog 4~
+emote looks up from her tiddly-winks, and smiles.
+~
+>rand_prog 3~
+emote tilts her head up to you, and continues with her game.
+mpecho &p TINK!
+~
+>act_prog p buys two fresh-baked rolls.~
+if ispc($n)
+squeal
+say Gatha baked those first thing this morning.
+smile
+say She lives just south of here, and she loves company!
+giggle
+endif
+~
+>act_prog p buys a lightning bug staff.~
+if ispc($n)
+look $n
+say Now, remember... the bug has a life-span of about two days.
+say So you might want to buy a couple.
+blush
+endif
+~
+|
+#6612
+baby bear cub~
+A baby bear~
+A brown baby bear nibbles on some raspberries.
+~
+The bear is small (for a bear), and looks like he could be quite cuddly if you
+don't bother him while he's eating. He's out of place here, but he looks like
+he could care less...
+~
+65 0 0 0 S
+66 0 0 12600d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>fight_prog 40~
+emote yells out for his mother with a crying growl.
+stun
+~
+|
+#6613
+centaur statue otaq~
+Otaq~
+A Centaur Statue leaps across The Fountain Home.
+~
+The statue is that of a centaur, the upper half being human with the body of a
+horse. His body built well and strong as he leaps over the fountain. A horn
+to his mouth with his right hand (which is bent up high in the air), and his
+back arched so that his broad shoulders all but touch the rump of his stallion
+counterpart.
+~
+3 201343612 0 1000 S
+100 0 0 35000d0+0 0d0+0
+0 0 0 0
+0 0 1
+198959 0 0
+>all_greet_prog 100~
+if ispc($n)
+emote winks at you.
+mpecho Did that statue just wink at you?
+emote stretches out, removing the horn from his mouth.
+emote stands at ease on the middle base in the fountain.
+say My, what a crick in the neck I have!
+emote rubs his neck a little.
+eyebrow
+emote smiles.
+say But enough of that! I see you have found the end of your path in this maze.
+say Please give me a report, $n.
+endif
+~
+>act_prog p reports:~
+if ispc($n)
+c 'healing hands' $n
+emote nods at you.
+say Can I aid you with any of my curing spells? 
+endif
+~
+>speech_prog p poisoned~
+if ispc($n)
+say Ahhh... poisons are used throughout this part of the continent. I have something for that!
+c 'cure poison' $n
+say You should be alright now. Anything else I can do?
+smile
+endif
+~
+>speech_prog p blinded~
+if ispc($n)
+chuckle
+say Those brownies... at it again, eh? Well, we can't have you walking around in the dark now, can we?
+c 'cure blindness' $n
+endif
+~
+>speech_prog p cursed~
+if ispc($n)
+say Let's see what I can do to remedy that...
+c 'remove curse' $n
+nod $n
+endif
+~
+>rand_prog 5~
+say Now are you ready to get out of the garden, and head back home?
+emote waits for you to reply.
+~
+>speech_prog p I'm ready to go home.~
+if ispc($n)
+nod $n
+emote winks at you.
+emote stretches out his right arm, and puts the horn to his mouth...
+emote begins to blow the horn loudly.
+mpoload 6649
+mpecho &C A BURST of water rises up from the fountain!&G
+say Enter the burst... and fine travels ahead of you!
+bow $n
+endif
+~
+>act_prog p steps into the a burst of water and is gone.~
+mppurge burst
+~
+|
+#6614
+children group~
+A Group of Children~
+A group of children run around playing tag and making alot of noise here.
+~
+&wYou see nothing special about them.
+~
+3 4 0 0 S
+62 0 0 12600d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>fight_prog 25~
+if ispc($n)
+yell Help us, mommy! We're being attacked!
+mptransfer dearest
+mpechoat $n Mommy appears in a fit of rage!
+mpforce mommy cast 'fireball' $n
+endif
+~
+>all_greet_prog 100~
+if ispc($n)
+mpecho One of the smaller children hides behind a bigger sibling.
+look $n
+emote continues playing...
+endif
+~
+>rand_prog 4~
+mpecho &CA small child says 'It's mine! I had it first!'&w
+mpecho &PA small child jumps up and down in a tantrum.&w
+mpecho &CA small child says 'Mommy!'
+~
+>rand_prog 3~
+if ispc($n)
+mpecho &wlooks over at you.
+emote whisper among themselves.
+giggle
+endif
+~
+|
+#6615
+mommy dearest~
+Mommy~
+A woman stands here looking for something or someone.
+~
+Mommy is a beautiful woman... despite the fact that her eyes tell you she has
+seen many years. She looks experienced, but not aged... and she has been able 
+to maintain her figure and her body is well toned.
+~
+3 1049212 0 700 S
+65 0 0 12000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 5~
+if ispc($n)
+shout Now look what you've done, $n! You've made me cross!
+gouge
+endif
+~
+|
+#6616
+child~
+A Small Child~
+A small child sits here singing to herself.
+~
+~
+3 0 0 1000 S
+62 0 0 11000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+look $n
+emote gets up.
+emote gasps.
+south
+mpecho A small child joins the group of children.
+mppurge $i
+endif
+~
+|
+#6617
+wildflowers flowers~
+A Bed of Wildflowers~
+A beautiful flat of wildflowers is bedded here.
+~
+The wildflowers are of all varieties, and of all colours. The brightest, and
+possibly the most cheeriest-looking flowers you have seen in a long while.
+~
+3 128 0 500 S
+65 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+270339 0 0
+>rand_prog 10~
+if ispc($n)
+emote sways in the light breeze.
+smile $n
+endif
+~
+>act_prog p smiles happily.~
+if ispc($n)
+giggle
+emote sways through the breeze.
+smile
+endif
+~
+>act_prog p smiles at you.~
+if ispc($n)
+smile
+say A smile is a gift.
+giggle
+emote sways in the breeze.
+music The Fountain Home... The Fountain Home...
+music Will take you home... take you home...
+giggle emote sways in the breeze.
+smile $n
+endif
+~
+|
+#6618
+pixie Glydo~
+Glydo~
+A pixie watches you from the bushes.
+~
+This little guy is very slender and sports a perma-grin. He has very short cut
+brown hair, and his face is a pale pink (covered in dirt). He moves about
+constantly, and is very fidgety. Glydo's eyes dart from one side to the other,
+as he pretends he is not looking directly at you... but in fact, he knows just
+about every detail and every item you have on you in one quick glance.
+~
+65 1147434 0 750 S
+67 0 0 13900d0+0 0d0+0
+0 0 0 0
+0 0 1
+4099 0 0
+>speech_prog p name~
+if ispc($n)
+beam
+say Say, well that's a nice name!
+emote winks at you.
+steal potion $n
+endif
+~
+>all_greet_prog 100~
+if level($n) > 80
+t $n You're not helping the little mortals out of the garden, are you?
+grumble
+t $n How is one like myself s'posed to make a living...
+t $n ... if you guys get involved all the time?
+sigh
+  else
+mpecho You hear giggling from the bushes.
+endif
+~
+>entry_prog 100~
+mpecho You hear a noticeably louder rustling sound from the bushes.
+~
+>rand_prog 25~
+if ispc($n)
+mpecho &CSomeone whispers 'Take The Fountain Home, $n.'&w
+mpgoto 6730
+endif
+~
+|
+#6619
+coffer chest mimic~
+The Chest~
+A large, heavy coffer sits at the foot of the bed.
+~
+The chest is made of a heavy, dark wood and is trimmed with a wrought iron
+frame. The ankh latch (also wrought iron) is not locked, but simply rests over
+the catch under the center of the dome-shaped lid.
+~
+3 16440 0 -1000 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+231699 0 0
+>all_greet_prog 100~
+if isgood($n)
+emote begins to shake.
+mpecho Wicked eyes and a gnarly mouth form on the chest's body!
+mpecho Arms sprout from the sides of the chest with piercing claws!
+emote stretches its mouth open in a silent growl and attacks!
+mpkill $n
+else
+mpecho &PThe Chest begins to shake... then stops suddenly.
+endif
+~
+|
+#6620
+willoo brownie fairy~
+Willoo~
+A little fairy fluts her wings about your head.
+~
+She is about 6 inches in height and has the cutest little face with blonde hair
+cut as short as short can be. She is also wearing her birthday suit! 
+~
+65 1572906 0 600 S
+70 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+>act_prog p looks at you.~
+if ispc($n)
+mpforce $n blush
+endif
+~
+>rand_prog 2~
+if ispc($n)
+mpforce $n wink willoo
+giggle
+endif
+~
+>rand_prog 25~
+if ispc($n)
+mpforce $n drop pants
+mpforce $n blush
+endif
+~
+>act_prog 1~
+if ispc($n)
+mpforce $n spin
+endif
+~
+>fight_prog 10~
+emote screams out in a little voice...
+say Hiiii-yaaa!
+stun
+~
+|
+#6621
+butler corpse~
+Corpse of the Butler~
+A corpse buttles around the room...
+~
+The corpse looks like that of a butler, as he wears your typical butler garb. A
+jacket with tails, pin-striped pants and what used to be white gloves. He is
+filthy with dried blood, and soot from the wood stove to which he tends in his
+eternal hell of being undead.
+~
+3 0 0 -500 S
+32 0 0 1700d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>rand_prog 1~
+emote tends to the stove, adding more wood to the fire.
+~
+|
+#6622
+swarm bees~
+A swarm of bees~
+A swarm of bees erupt from the hive and attack.
+~
+&wYou see nothing special about them.
+~
+35 0 0 -200 S
+54 0 0 7500d0+0 0d0+0
+0 0 0 0
+0 0 0
+75778 0 0
+#6623
+opossum rodent creature~
+A large opossum~
+A large rodent-looking creature skitters along here.
+~
+A large, almost rat-like creature of the marsupial family.
+~
+65 0 0 0 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>fight_prog 50~
+bite $n
+~
+>fight_prog 20~
+rake $n
+~
+>fight_prog 35~
+disarm $n
+~
+|
+#6633
+cockroach~
+A huge cockroach~
+A huge cockroach watches you.
+~
+An icky cockroach...ew.
+~
+7 0 0 0 S
+55 0 0 7500d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#6652
+mice~
+Some mice~
+Some mice quickly finish up a small bit of cheese and skitter away from you.
+~
+&wYou see nothing special about them.
+~
+7 0 0 500 S
+30 0 0 1500d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#6655
+guardian garon~
+Garon~
+The Guardian stands here, camouflaged against the green of the garden.
+~
+The Guardian is a short, slender humanoid with a fine layer of olive coloured
+fur covering his body. You have to look carefully to see him, as his coat of
+fur gives him a natural camouflage.
+~
+3 67207404 0 800 S
+61 0 0 7100d0+0 0d0+0
+0 0 0 0
+0 0 1
+294919 0 0
+>all_greet_prog 100~
+if ispc($n)
+mpecho You sense that you are being watched.
+endif
+~
+|
+#6656
+weasel furball~
+A weasel~
+A large furball is curled up here shaking with fear.
+~
+A slender-bodied mammal (for its large size) is covered in a soft silky
+fur which is now matted with thorns, burrs and other related components. 
+She looks as though she may have taken a wrong turn to get in here, and is
+now like yourself, perhaps lost.  
+~
+65 1081344 0 0 S
+60 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>death_prog 100~
+mpoload 6615
+~
+|
+#6657
+giant horsefly~
+a giant horsefly~
+A giant horsefly buzzes loudly around your head and attacks!
+~
+The giant horsefly is HUGE! Its many little eyes are creepy, and boy is it
+UGly! It's wings make an awful buzzing sound that hurts your ears.
+~
+35 0 0 -100 S
+62 0 0 11000d0+0 0d0+0
+0 0 0 0
+0 0 0
+32768 0 0
+#6793
+cricket~
+A cricket~
+A cricket chirps its annoying song.
+~
+An ugly black bug with long antennae, and grasshopper-like legs which it rubs
+together to make its chirping noise.
+~
+3 98848 0 0 S
+20 0 0 600d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>rand_prog 12~
+mpecho A cricket chirps its screechy song.
+~
+|
+#6794
+rabbit hare~
+A hare~
+A hare quickly darts into the brush at your arrival.
+~
+A hare is brown in colour and is about as large as a small dog.
+~
+65 100 0 800 S
+25 0 0 750d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#6795
+homonculous creature homie~
+the Homonculous~
+A strange looking creature hovers here.
+~
+It is about 18 inches tall and has greenish reptilian skin. It's leathery wings
+are about half the size of its body and sprout out from its back. Its bat-like
+mouth has pointed teeth that are half an inch apart from one another.
+~
+7 524800 0 -1000 S
+31 0 0 1600d0+0 0d0+0
+0 0 0 0
+0 0 0
+6145 0 0
+>speech_prog p yes~
+if ispc($n)
+if sex($n) == 1
+t $n We are brothers, you and I...
+follow $n
+grin
+break
+else
+t $n We are sisters, you and I...
+follow $n
+grin
+endif
+endif
+~
+>act_prog p steps out of the Homonculous' Cage before you.~
+if ispc($n)
+if isgood($n)
+emote screeches and attacks!
+mpkill $n
+break
+else
+t $n Set me free! We are of the same kind, you and I...
+t $n If you let me follow you out of here, I will be loyal only to you...
+t $n Will you do this?
+endif
+endif
+~
+>speech_prog "You are free to go."~
+if ispc($n)
+say Yes, $n.
+mpechoat $n The Homonculous flies off, never to be seen again.
+mppurge $i
+endif
+~
+|
+#6796
+doppleganger dopple man~
+The Doppleganger~
+A very tall, grey man stands here.
+~
+This man is sort of grey in colour when you first look at him, but with a
+second glance...  You are shocked to see that you are looking at an exact
+duplicate of yourself!  Clothes and all.  
+~
+67 98304 0 0 S
+34 0 0 2000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+>act_prog p looks at you.~
+if ispc($n)
+look $n
+say I'm quite good-looking... don't you think?
+emote laughs at you mercilessly.
+endif
+~
+>fight_prog 25~
+c 'energy drain' $n
+~
+>fight_prog 40~
+c 'psionic blast' $n
+~
+>fight_prog 30~
+c ultrablast $n
+~
+|
+#6797
+schmendrick wizard young man~
+Schmendrick~
+A young man notices that you have entered.
+~
+Schmendrick is a young man who looks to be in his late 20's. He is very tall,
+standing at almost 6 feet in height but has no braun to speak of... you would
+guess that he weighs in around 150 pounds at the most. He is quite handsome
+though and you can sense a friendly aura about him.
+~
+1091 1048636 0 980 S
+35 0 0 2000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>act_prog p steps out of the a tent before you.~
+if ispc($n)
+  if isgood($n)
+emote smiles and nods in your direction.
+say Good day! I assume you have come to see the Carnival!
+break
+  else
+look $n
+say I know you... begone!
+mpechoat $n Schmendrick utters the words 'higutus pigotus'
+grumble
+mpechoat $n Schmendrick utters the words 'higutus pigotus'
+sigh
+mpechoat $n Schmendrick pushes you out of the tent...
+mptrans $n 6806
+endif
+  endif
+~
+>rand_prog 1~
+if isgood($r)
+say You know, I see those Carnival tricks out there for what they really are...
+say ... and I'm sure that one of your stature does as well.
+sigh
+say Mommy Fortuna is just an old lady out to make a buck.
+t $r That Chimera is just an illusion, he is but a shabby-toothed lion...
+t $r ... and that beholder! A simple spell! Illusions... deceptions!
+shake
+t $r But the rest... they are real, real like you and I. They are not meant
+t $r to be caged...
+break
+else
+t $r I'm sure you see these Carnival tricks for what they really are!
+t $r And you probably feel the same way about it as SHE does.
+say Begone from here!
+c teleport $r
+endif
+~
+>hitprcnt_prog 20~
+if ispc($n)
+say I really need to get a better job.
+say This is not worth the trouble!
+yell I will be a great Magician!
+mpechoat $n Schmendrick disappears in a puff of smoke.
+mpgoto fortuna
+mpechoat fortuna A large smoke arises, and dissipates to produce Schmendrick!
+endif
+~
+>rand_prog 5~
+emote tries a little cantrip.
+~
+>speech_prog Mommy Fortuna says 'Some wizard!'~
+blush
+mpecho Schmendrick disappears in a puff of smoke!
+mpgoto 6819
+mpecho Schmendrick arrives from a puff of smoke.
+~
+|
+#6798
+beholder eye~
+The Beholder~
+A sphere-shaped thing floats here... like a huge levitating eye.
+~
+The globular body of this monster is supported by levitation, and it floats
+slowly about as it wills. Atop the sphere there are several eyestalks, while
+in its central area is a great eye and a large mouth filled with pointed teeth.
+~
+35 67633208 0 -1000 S
+35 0 0 1600d0+0 0d0+0
+0 0 0 0
+0 0 0
+4099 0 0
+>rand_prog 40~
+if ispc($n)
+mpecho A large hissing sound can be heard within the cage...
+endif
+~
+>fight_prog 10~
+mpecho One of the Beholder's eyestalks goes flying as your weapon hits true!
+mpecho &PThe Beholder emits a loud ear-piercing hissing sound as it wails in pain.
+~
+>fight_prog 30~
+c 'psionic blast' $n
+~
+>fight_prog 5~
+c weaken $n
+~
+>fight_prog 40~
+c 'cause serious' $n
+~
+|
+#6799
+chimera creature~
+The Chimera~
+A gimonstrous creature watches your every move...
+~
+The Chimera combines features of three creatures in a monstrous manner. Its
+hind quarters are those of a huge goat, its foreparts are those of a lion, its
+body sports dragon wings, and it has three large heads. It can claw with its
+fore legs, its goat head is armed with two long horns, its lion head has power-
+ful jaws and sharp teeth, and its dragon head is likewise equipped.
+~
+67 0 0 -1000 S
+35 0 0 2000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+>fight_prog 25~
+bite
+~
+>fight_prog 20~
+disarm
+~
+|
+#6800
+harpy selena~
+The Harpy Selena~
+The Harpy sits atop a large branch in her cell staring down at you.
+~
+This large winged being has the body of a vulture but the upper torso of a
+woman. She is a voracious carnivore and a foul creature.
+~
+7 0 0 -1000 S
+37 0 0 2200d0+0 0d0+0
+0 0 0 0
+0 0 2
+2051 0 0
+>all_greet_prog 100~
+if isgood($n)
+mpkill $n
+break
+else
+t $n You invade my home, and now my prison!
+mpkill $n
+endif
+~
+>fight_prog 15~
+claw
+~
+>fight_prog 10~
+c curse $n
+~
+>fight_prog 45~
+disarm $n
+~
+>fight_prog 20~
+c 'energy drain' $n
+~
+>fight_prog 9~
+emote screeches a piercing caw as she attacks.
+~
+>death_prog 100~
+mpoload 6813
+~
+|
+#6801
+fortuna woman mommy~
+Mommy Fortuna~
+A decrepit old woman looks at you.
+~
+Mommy is a short old woman, standing at just over 4 feet tall. Her back is
+slightly hunched over, and because of this she must walk with a cane. She is
+not a thin woman, although would not be considered fat either. Let's just say
+that the law of gravity has distributed her weight in all the wrong places. A
+round face framed with straw-like white hair would be friendly to look at if it
+weren't for her lazy left eye and the many wrinkles that show her age of many
+many years.
+~
+65 56 0 650 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+>fight_prog 10~
+cackle
+yell I can destroy YOU $n!
+~
+>fight_prog 2~
+c fireball $n
+~
+>fight_prog 25~
+c 'dispel evil' $n
+~
+>fight_prog 20~
+c blindness $n
+~
+>act_prog "Schmendrick tries a little cantrip."~
+cackle
+say Some wizard!
+laugh $n
+say SOME wizzarrd!
+~
+>entry_prog 70~
+if inroom($i) == 6806
+  emote enters the tent.
+  mpgoto 6819
+  say Bah, still trying your pathetic illusions, Schmendrick?
+  break
+else
+  emote walks in slowly leaning on her cane.
+  break
+endif
+~
+>rand_prog 95~
+if inroom($i) == 6819
+  say I'll leave you to your...
+  emote snickers softly.
+  mpecho &CMommy Fortuna continues '..dabbling in the arts of magic.'
+  emote exits the tent.
+  mpgoto 6806
+endif
+~
+|
+#6802
+unicorn~
+&WThe Unicorn~
+A beautiful Unicorn, white as the purest snow.
+~
+A Unicorn is the most breathtaking creature in all the land... and the most
+good. Although the rare beast may look like a well-bred mare, it is not in
+the least comparable. A white body, white as the purest snow and a cornsilk 
+mane and tail... split hooves on all four, and a cornsilk beard at its chin...
+The Unicorn's horn spirals up to the heavens from its forehead with a blue 
+glow, and its innocence beguiles even the vilest of evil.
+~
+67 150995132 0 1000 S
+40 0 0 1600d0+0 0d0+0
+0 0 0 0
+0 0 2
+339975 0 0
+>death_prog 100~
+mpecho &YA&Cn &PA&Br&gr&ca&Ry &Wo&Cf &PB&Ye&Ba&pu&Wt&Pi&gf&Gu&Cl &YC&Po&Bl&Go&pu&Wr&Ys &RB&gu&Gr&Ws&Ct&Bs &Yo&Ou&pt &Pb&ce&Yf&Go&Br&ge &WY&Oo&pu&Pr &Re&Gy&Ye&gs&W!
+mptrans $i 1
+~
+>all_greet_prog 100~
+if isgood($n)
+emote nods at you.
+say I thank you for my freedom.
+mpechoat $n The Unicorn steps out of the cage, and is gone.
+mppurge $i
+break
+  else
+look $n
+mpechoat $n The Unicorn steps out of the cage, and is gone.
+mppurge $i
+endif
+~
+|
+#6803
+rook hunchback man~
+Rook~
+A hunchbacked man stands here with a blank look upon his face.
+~
+Rook is about 4 feet tall due to the fact that his posture isn't that great. In
+fact he is quite hunchbacked. He has little hair to speak of, but what he does
+have straggles out under the little cap on his head. A round face and large
+eyes make him look quite ugly, and his arms have more hair than his whole head.
+~
+67 0 0 -900 S
+32 0 0 1700d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>rand_prog 13~
+emote glances at you with a glare.
+say Leave me alone!
+emote continues with his mumbling...
+emote mumbles something about a raven and a writing desk.
+~
+>fight_prog 5~
+stun
+~
+>fight_prog 25~
+kick
+~
+>act_prog 40~
+gouge
+~
+|
+#0
+
+
+
+#OBJECTS
+#6600
+weapon halberd polearm~
+a halberd~
+A long-handled weapon lays here.~
+~
+5 2 821 0 8193 53
+0~ 16~ 43~ 13~
+12 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 20
+A
+18 16
+A
+1 2
+A
+26 -25
+E
+polearm~
+A beautifully forged axe-like blade at the top of a 4.5 foot staff that ends    with an abstract-shaped spear head.
+~
+E
+halberd~
+A beautifully forged axe-like blade at the top of a 4.5 foot staff that ends    with an abstract-shaped spear head.
+~
+#6601
+bowl nuts~
+some nuts~
+A bowl of mixed nuts.~
+~
+19 0 0 0 1 1
+1~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6602
+bar soap~
+a bar of soap~
+A gleaming white bar of soap.~
+~
+8 1 0 0 16385 49
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+remove curse~
+5 5
+0 0 0
+A
+5 1
+E
+bar~
+When you look closer at a gleaming white bar of soap... You can see your face in it!
+~
+E
+soap~
+When you look closer at a gleaming white bar of soap... You can see your face in it!
+~
+#6603
+chess board~
+a chess board~
+A lovely chess board is here.~
+~
+15 0 0 0 0 101
+50~ 5~ 0~ 0~
+12 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+chess~
+The chess board is made of wood, and the squares are each made of a
+hand-cut piece of ceramic. On the board there are some checkers pieces
+seemingly in the middle of a game. Perhaps the Chess pieces are inside.  
+~
+E
+board~
+The chess board is one of the nicest you have ever seen... Made of wood,
+and ceramic tiles for each of the squares. Someone seems to be in the
+middle of a checkers game as the pieces are laid out in various squares on
+the board. Perhaps the Chess pieces are inside.  
+~
+#6604
+rook~
+a rook~
+A chess piece... the Rook.~
+~
+8 2 0 0 16385 49
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+intellect fortress~
+5 5
+0 0 0
+#6605
+sickle~
+a sickle~
+A newly forged sickle lies here.~
+~
+5 2 194 0 8193 53
+0~ 0~ 0~ 3~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 20
+A
+18 16
+A
+2 1
+A
+1 1
+E
+sickle~
+An agricultural implement consisting of a curved metal blade with a handle fitted on a tang.
+~
+#6606
+axe battleaxe~
+a sturdy battleaxe~
+A battleaxe with glyphs upon it.~
+~
+5 0 293 1 8193 52
+0~ 0~ 0~ 13~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 12
+A
+18 12
+A
+13 50
+E
+glyphs~
+The carvings are worn, but still readable...IF you know how to read dwarven,    that is.
+~
+E
+runes~
+These particular runes are so ancient that only a dwarf of the appropriate
+descent might be able to decipher them.
+~
+E
+battleaxe~
+A mithril axe with glyptic runes carved upon the blade.
+~
+E
+axe~
+A mithril axe with glyptic runes carved upon the blade.
+~
+#6607
+hide apron~
+a hide apron~
+A tough hide apron.~
+~
+9 0 0 0 1025 53
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 11
+A
+13 30
+A
+17 -25
+E
+pocket~
+A small pocket contains a powder of some sort... seemingly from the
+chalk a Smithy might use to make notes and mark things with.  
+~
+E
+apron~
+The apron is made of a rough leather hide, and is perfect for using when
+working the forge. A strap at the neck buckles up to adjust size at will
+(although the apron is quite short and wide to begin with). A small pocket
+in front looks useless.  
+~
+E
+hide~
+The apron is made of a rough leather hide, and is perfect for using when
+working the forge. A strap at the neck buckles up to adjust size at will
+(although the apron is quite short and wide to begin with). A small pocket
+in front looks useless.  
+~
+#6608
+steel steel-toed boots~
+a pair of steel-toed boots~
+A worn pair of steel-toed boots.~
+~
+9 0 0 0 65 53
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -35
+A
+14 -20
+A
+19 8
+E
+boots~
+On the right boot, the toe is worn showing a bit of the steel peering
+through the leather which binds it.
+~
+E
+steel-toed~
+On the right boot, the toe is worn showing a bit of the steel peering
+through the leather which binds it.
+~
+E
+steel~
+On the right boot, the toe is worn showing a bit of the steel peering
+through the leather which binds it. 
+~
+#6609
+hide gloves~
+hide gloves~
+A pair of hide gloves.~
+~
+9 0 0 0 129 52
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -26
+A
+18 10
+E
+gloves~
+A very well crafted pair of hide gloves are worn a little in the finger tips.
+~
+E
+hide~
+A very well crafted pair of hide gloves are worn a little in the finger tips.
+~
+#6610
+trousers pants~
+some trousers~
+A pair of begrimed trousers.~
+~
+9 0 0 0 33 53
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 50
+A
+17 -15
+#6611
+shirt~
+a shirt~
+A begrimed shirt.~
+~
+9 0 0 0 9 53
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 20
+A
+17 -15
+#6612
+sock stocking~
+a sock~
+A stinky sock.~
+~
+9 0 0 0 1048577 53
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 -1
+#6613
+floorboards~
+some floorboards~
+Some loose floorboards lie out of place here.~
+~
+12 0 0 0 0 101
+0~ 0~ 0~ 0~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+floorboards~
+A few small floorboards, each about three feet long.
+~
+#6614
+cobwebs cob webs pill~
+a few cobwebs~
+A few cobwebs.~
+~
+26 0 0 0 16385 53
+26~ dark blessing~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+cobwebs~
+The cobwebs stick to your fingers.
+~
+E
+cob~
+The cobwebs stick to your fingers.
+~
+E
+webs~
+The cobwebs stick to your fingers.
+~
+#6615
+weasel pelt~
+a weasel pelt~
+A slender pelt of fur lies here matted with dried blood, large thorns, and burrs.~
+~
+9 0 0 0 1025 60
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -60
+E
+weasel~
+A pelt is matted with dried blood, thorns and burrs. If not for these things it might be a nice fur.
+~
+E
+pelt~
+A pelt is matted with dried blood, thorns and burrs. If not for these things it
+might be a nice fur.
+~
+#6616
+floor~
+an area on the floor~
+An odd-shaped area of the floor is perfectly clean.~
+~
+12 0 0 0 0 101
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6617
+lady bug wings ladybug~
+ladybug wings~
+A large pair of ladybug wings rest here.~
+~
+9 2050 512 0 257 62
+3~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+fly~
+1 1
+0 0 0
+A
+1 -1
+A
+2 2
+A
+17 -60
+A
+12 30
+E
+ladybug~
+A lovely pair of giant ladybug wings. They are rusty red in colour, each with
+several black spots on them. They seem to be very light in weight, and look
+as though they might be comfortable to wear.
+~
+E
+lady~
+A lovely pair of giant ladybug wings. They are rusty red in colour, each with
+several black spots on them. They seem to be very light in weight, and look
+as though they might be comfortable to wear.
+~
+E
+bug~
+A lovely pair of giant ladybug wings. They are rusty red in colour, each with
+several black spots on them. They seem to be very light in weight, and look
+as though they might be comfortable to wear.
+~
+E
+wings~
+A lovely pair of giant ladybug wings. They are rusty red in colour, each with
+several black spots on them. They seem to be very light in weight, and look
+as though they might be comfortable to wear.
+~
+#6618
+loom~
+a loom~
+A loom sits here, covered in cobwebs and dust.~
+~
+12 0 0 0 0 101
+0~ 0~ 0~ 0~
+65 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6619
+komodo dragon stuffed~
+a stuffed dragon~
+A Komodo dragon stares back at you.~
+~
+8 0 0 0 16385 60
+0~ 0~ 0~ 0~
+50 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 2
+A
+2 -2
+E
+komodo~
+Although the Komodo is stuffed, he still looks quite threatening. You can see
+why someone might have a creature of this type stuffed, as these dragons are
+very rare.
+~
+E
+dragon~
+Although the Komodo is stuffed, he still looks quite threatening. You can see
+why someone might have a creature of this type stuffed, as these dragons are
+very rare.
+~
+E
+stuffed~
+Although the Komodo is stuffed, he still looks quite threatening. You can see
+why someone might have a creature of this type stuffed, as these dragons are
+very rare.
+~
+#6620
+spade tool~
+a spade~
+A large gardening tool lies here.~
+~
+5 0 789 0 8193 57
+0~ 0~ 0~ 0~
+9 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+19 11
+A
+18 11
+E
+spade~
+A digging implement heavier than a shovel and adapted for being pushed
+into the ground with the foot. A spade shaped gardening instrument.  
+~
+E
+tool~
+A digging implement heavier than a shovel and adapted for being pushed into
+the ground with the foot. A spade shaped gardening instrument.
+~
+#6621
+handful flower petals pill~
+a handful of &ppetals&c~
+A variety of flower &Rp&Oe&Yt&Ga&Pl&Cs&w lie here.~
+~
+26 3 0 0 16385 61
+17~ cure poison~ cure critical~ bless~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+flower~
+Scarlet, yellow and orange rose petals (which make this handful smell so sweet)
+are the majority of the petals... you also see that there are some small mint
+leaves, blue buds, purple snapdragons and forget-me-nots.
+~
+E
+petals~
+Scarlet, yellow and orange rose petals (which make this handful smell so sweet)
+are the majority of the petals... you also see that there are some small mint
+leaves, blue buds, purple snapdragons and forget-me-nots.
+~
+E
+handful~
+Scarlet, yellow and orange rose petals (which make this handful smell so sweet)
+are the majority of the petals... you also see that there are some small mint
+leaves, blue buds, purple snapdragons and forget-me-nots.
+~
+#6622
+queen bee queenbee~
+the &YQueenbee&w~
+A Queenbee sits here, buzzing.~
+~
+9 0 0 0 32769 56
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+summon swarm~
+1 1
+0 0 0
+A
+19 4
+A
+18 5
+A
+3 2
+A
+4 2
+E
+queenbee~
+The Queenbee is much larger than a regular bee. Let's hope that none of her
+hive is around or you just might feel the sting!
+~
+E
+bee~
+She is much larger than a regular bee. Let's hope none of her hive are around
+or you just might feel the sting!
+~
+E
+queen~
+She is much larger than a regular bee. Let's hope none of her hive are around
+or you just might feel the sting!
+~
+#6623
+hive beehive~
+a beehive~
+A beehive that is sticky with honey residue.~
+~
+13 0 0 0 16385 30
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6624
+window stained glass~
+a &pst&Gai&Rne&Cd-&Ygl&Pas&cs&B window&w~
+A small stained-glass window sits collecting dust here.~
+~
+8 805306371 0 0 16385 56
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+window~
+A beautifully crafted stained-glass window depicts a sunset over a body
+of water... Someone went through alot of effort and expense to make this. 
+It must be an heirloom.  
+~
+E
+stained~
+A beautifully crafted stained-glass window depicts a sunset over a body
+of water... Someone went through alot of effort and expense to make this.
+It must be an heirloom.
+~
+E
+glass~
+A beautifully crafted stained-glass window depicts a sunset over a body
+of water...Someone went through alot of effort and expense to make this.
+It must be an heirloom.
+~
+#6625
+water basin china~
+a water basin~
+A water basin sits here covered in dust.~
+~
+8 0 0 0 16385 55
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+water~
+A lovely china water basin with little paisley designs hand-painted around the
+trim of the bowl.
+~
+E
+basin~
+A lovely china water basin with little paisley designs hand-painted around the
+trim of the bowl.
+~
+E
+china~
+A lovely china water basin with little paisley designs hand-painted around tehe
+trim of the bowl.
+~
+#6626
+black bat eyelids radar~
+((((( radar )))))~
+The strangest thing... a set of black eyelids.~
+~
+27 536872999 0 0 131073 58
+17~ -1~ 0~ identify~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 -50
+A
+19 12
+A
+18 9
+A
+13 20
+E
+black~
+A set of black eyelids... lashes and all!
+~
+E
+eyelids~
+A set of black eyelids... lashes and all!
+~
+E
+bat~
+A set of black eyelids... lashes and all!
+~
+E
+radar~
+A set of black eyelids... lashes and all!
+~
+#6627
+darkness~
+&zdarkness...~
+A mysterious darkness looms overhead...~
+~
+29 268435540 0 0 0 60
+6787~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+darkness~
+The darkness is strange tonight, the stars seem to waver from time to time 
+leaving tracers behind them, like tails on a comet. Perhaps this night is
+different from all that you have ever seen. What is the hour?
+~
+E
+up~
+The darkness is strange tonight, the stars seem to waver from time to time
+leaving tracers behind them, like tails on a comet. Perhaps this night is
+different from all that you have ever seen. What is the hour?
+~
+#6628
+mesh wraparound wrap~
+a mesh wraparound~
+A pile of dark meshy material lies here.~
+~
+9 536870996 206 0 9 60
+3~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+charm person~
+1 1
+0 0 0
+A
+13 60
+A
+17 -60
+A
+12 60
+A
+3 2
+A
+4 2
+#6629
+thigh high boots~
+thigh-highs~
+Thigh-high leather boots with a steel plate along each shin.~
+~
+9 67110912 38 0 65 60
+3~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -25
+A
+24 -30
+A
+17 -60
+A
+13 60
+E
+boots~
+A pair of black thigh-high leather boots... each with a steel plate on the shin.
+~
+E
+high~
+A pair of black thigh-high leather boots... each with a steel plate on the shin.
+~
+E
+thigh~
+A pair of black thigh-high leather boots... each with a steel plate on the shin.
+~
+#6630
+undies undergarment~
+undies~
+A very small undergarment lies here in a ball.~
+~
+9 33554432 0 0 2049 60
+3~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+change sex~
+1 1
+0 0 0
+E
+undergarment~
+A very tiny pair of black underpants.
+~
+E
+undies~
+A very tiny pair of black underpants.
+~
+#6631
+onyx bracelet~
+a shiny black bracelet~
+A bracelet made of onyx lies here.~
+~
+9 4 420 0 4097 60
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 60
+A
+25 15
+E
+onyx~
+A shiny black bracelet made of onyx stone.
+~
+E
+bracelet~
+A shiny black bracelet made of onyx stone.
+~
+#6632
+earrings hoops onyx~
+onyx hoop earrings~
+Some tiny little hoops made of black onyx lay here.~
+~
+9 4 36 0 524289 60
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -20
+A
+25 5
+A
+17 -40
+E
+onyx~
+Some tiny hoop earrings made of shiny onyx stone.
+~
+E
+hoops~
+Some tiny hoop earrings made of shiny onyx stone.
+~
+E
+earrings~
+Some tiny hoop earrings made of shiny onyx stone.
+~
+#6633
+tentacles beast displacer~
+tentacles~
+Bluish-black haired tentacles with brownish-yellow spikey suction cups.~
+~
+5 0 0 0 8193 49
+0~ 0~ 0~ 12~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 13
+A
+18 13
+A
+17 -50
+A
+1 1
+#6634
+black alaskan diamond ring~
+a black-alaskan diamond ring~
+A ring with a black, diamond-shaped gem.~
+~
+8 0 0 0 3 60
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6635
+water hole~
+water hole~
+A water hole has been dug out here.~
+~
+25 0 0 0 0 65
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6636
+bonnet grass~
+a bonnet~
+A grass bonnet lies here.~
+~
+9 64 0 0 5 65
+3~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -30
+A
+4 2
+E
+grass~
+A lovely bonnet made from dried grass.
+~
+E
+bonnet~
+A lovely bonnet made from dried grass.
+~
+#6637
+grass slippers~
+grass slippers~
+A pair of grass woven slippers.~
+~
+9 64 0 0 65 65
+3~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 7
+A
+17 -50
+A
+2 1
+#6638
+large smock~
+a smock~
+A large smock lies here on the ground.~
+~
+9 64 0 0 9 65
+3~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+A
+19 5
+A
+5 2
+A
+18 10
+E
+smock~
+A large piece of material with a hole cut out to allow for the head to go
+through.
+~
+E
+large~
+A large piece of material with a hole cut out to allow for the head to go       through.
+~
+#6639
+piece rope thick~
+a piece of rope~
+A piece of thick rope.~
+~
+9 0 0 0 2049 65
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 40
+A
+1 1
+#6640
+fork ceramic utensil~
+a ceramic fork~
+A ceramic fork lays here.~
+~
+5 0 0 0 8193 65
+0~ 0~ 0~ 2~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 6
+A
+18 7
+E
+utensil~
+A fork made of ceramic has 4 thick tines.
+~
+E
+ceramic~
+A fork made of ceramic has 4 thick tines.
+~
+E
+fork~
+A fork made of ceramic has 4 thick tines.
+~
+#6641
+pollen pill~
+some pollen~
+Some large particles of pollen drift around here.~
+~
+26 1 0 0 16385 62
+24~ heal~ cure critical~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pollen~
+This stuff looks like your typical pollen... a sticky powder-like substance
+that is yellow in colour, only these particular pollen particles are quite 
+large in size.
+~
+E
+pill~
+This stuff looks like your typical pollen... a stickey powder-like substance
+that is yellow in colour, only these particular pollen particles are quite
+large in size.
+~
+#6642
+narghile apparatus~
+a narghile~
+A rather large apparatus sits smoking on the counter here...~
+~
+12 65 0 0 0 100
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+narghile~
+This strange looking contraption consists of a closed cylindrical "bowl" as
+the base. The bowl is a translucent orange coloured glass. From the top of
+the bowl a few reeds stick straight out vertically, and are tied together by
+some small vines of some sort. At the top of the tallest reed, there is 
+another "bowl" which is much smaller in size than its counterpart. The 
+smaller bowl is transparent, and inside it you can see there are a few small
+sticks of cinnamon. Ah ha!
+~
+E
+apparatus~
+This strange looking contraption consists of a closed cylindrical "bowl" as
+the base. The bowl is a translucent orange coloured glass. From the top of
+the bowl a few reeds stick straight out vertically, and are tied together by
+some small vines of some sort. At the top of the tallest reed, there is 
+another "bowl" which is much smaller in size than its counterpart. The
+smaller bowl is transparent, and inside it you can see there are a few small
+sticks of cinnamon. Ah ha!
+~
+#6643
+sign~
+the garden sign~
+A sign is here for all to read.~
+~
+12 0 0 0 0 100
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sign~
+&gWhat you need,
+ you may take.
+What you seed,
+ you must rake.
+&pHave a nice day!
+~
+#6644
+potato~
+a potato~
+A potato is growing eyes here.~
+~
+19 0 0 0 16385 60
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6645
+peas pea pods~
+pea pods~
+Some peas grow here all in a row.~
+~
+19 0 0 0 16385 60
+1~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+peas~
+Some nicely sized pea pods. MmmMm MmmM.
+~
+E
+pea~
+Some nicely sized pea pods. MmmMm MmmM.
+~
+E
+pods~
+Some nicely sized pea pods. MmmMm MmmM.
+~
+#6646
+onion~
+an onion~
+An onion peeks out of the ground here.~
+~
+19 0 0 0 16385 60
+2~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+onion~
+What can I say? It's a white onion.
+~
+#6647
+raspberries handful rasp~
+a handful of &rraspberries&w~
+Some &rraspberries &Omust have fallen on the ground.&z~
+~
+19 0 0 0 16385 60
+1~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+raspberries~
+Juicy, blood-red raspberries... YUM.
+~
+E
+handful~
+Juicy, blood-red raspberries... YUM.
+~
+E
+rasp~
+Juicy, blood-red raspberries... YUM.
+~
+#6648
+fountain home~
+the fountain home~
+A large stone fountain spurts out water in a fancy display.~
+~
+25 536870977 0 0 0 60
+0~ 0~ 0~ 0~
+400 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fountain~
+The large fountain is made of stone, and the base of it is covered in all sorts
+of vegetation. Vines climb up from the ground into the base and other tall
+flowers grow up from it as well. You have to move them aside when you lean
+down to take a drink. At the top of the fountain there is a centaur statue
+blowing a horn, and in mid-leap.
+~
+#6649
+burst water~
+a burst of water~
+&CA BURST of water rises up from the fountain!&b~
+~
+29 0 0 0 0 60
+6654~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6650
+sugarcane sugar cane stick~
+a stick of &gsugarcane&c~
+&OA stick of sugarcane.~
+~
+19 0 0 0 16385 60
+3~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sugarcane~
+The sugarcane is still green, and therefore fresh. It is approximately 1 inch
+in diameter, and about a half a foot long. Sugarcane is pretty rare, so this is a treat.
+~
+E
+sugar~
+The sugarcane is still green, and therefore fresh. It is approximately 1 inch
+in diameter, and about a half a foot long. Sugarcane is pretty rare, so this is a treat.
+~
+E
+cane~
+The sugarcane is still green, and therefore fresh. It is approximately 1 inch
+in diameter, and about a half a foot long. Sugarcane is pretty rare, so this is a treat.
+~
+E
+stick~
+The sugarcane is still green, and therefor fresh. It is approximately 1 inch
+in diameter, and about a half of a foot long. Sugarcane is pretty rare, so this
+is a treat.
+~
+#6651
+staff lightning bug~
+a lightning bug staff&c~
+A stick is lying on the ground, the tip of it glowing.~
+~
+1 0 6348 0 1 65
+0~ 0~ 48~ 0~
+9 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+A
+18 6
+A
+19 6
+A
+17 -25
+A
+13 65
+A
+12 60
+E
+staff~
+The staff is about three and a half feet long, with a glass ball attached to thetip... and inside there is a tiny little bug emitting a powerful light. If you
+put your ear up to the glass, you can hear it buzzing as its wings flap rapidly.
+~
+E
+lightning~
+The staff is about three and a half feet long, with a glass ball attached to the
+tip... and inside there is a tiny little bug emitting a powerful light. If you
+put your ear up to the glass, you can hear it buzzing as its wings flap rapidly.
+~
+E
+bug~
+The staff is about three and a half feet long, with a glass ball attached to the
+tip... and inside there is a tiny little bug emitting a powerful light. If you
+put your ear up to the glass, you can hear it buzzing as its wings flap rapidly.
+~
+#6652
+pebbles bunch handful~
+a small handful of pebbles~
+A bunch of pebbles... all different shapes.~
+~
+13 0 0 0 16385 62
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6653
+twigs bunch pussy willow~
+a little bunch of twigs~
+A little bunch of budding twigs.~
+~
+13 0 0 0 16385 62
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+twigs~
+Some budding pussy willow twigs are soft to the touch.
+~
+E
+bunch~
+Some budding pussy willow twigs are soft to the touch.
+~
+E
+pussy~
+Some budding pussy willow twigs are soft to the touch.
+~
+E
+willow~
+Some budding pussy willow twigs are soft to the touch.
+~
+#6654
+butterfly jar~
+a butterfly in a jar~
+A butterfly in a jar has been left here.~
+~
+8 0 0 0 16385 62
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 2
+A
+4 2
+E
+butterfly~
+The jar is about as big as a middle-aged human man's hand. Inside it are some
+pussy willow twigs, some grass, a few flower petals... and on one of the twigs
+rests a lovely butterfly, who flutters its wings from time to time. There are
+holes poked out in the top of the jar.
+~
+E
+jar~
+The jar is about as big as a middle-aged human man's hand. Inside it are some
+pussy willow twigs, some grass, a few flower petals... and on one of the twigs
+rests a lovely butterfly, who flutters its wings from time to time. There are
+holes poked out in the top of the jar.
+~
+#6655
+leafy frock coat~
+a frock coat~
+You see a leafy pile lying here on the ground.~
+~
+9 1282 528 0 9 61
+3~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 9
+A
+4 2
+A
+17 -10
+E
+leafy~
+The frock coat is made of various types of leaves "sewn" together making a      double-breasted skirt reaching about to the knees.
+~
+E
+frock~
+The frock coat is made of various types of leaves "sewn" together making a
+double-breasted skirt reaching about to the knees.
+~
+E
+coat~
+The frock coat is made of various types of leaves "sewn" together making a
+double-breasted skirt reaching about to the knees.
+~
+#6656
+branch spear~
+a spear~
+A thin branch that has been made into a spear.~
+~
+5 98 0 0 8193 61
+0~ 0~ 0~ 11~
+3 0 0 0 0
+5 0
+entangle~
+3 3
+0 0 0
+A
+12 60
+A
+18 10
+A
+19 9
+A
+13 50
+#6657
+bark shin guards leggings~
+bark shin guards~
+Leggings made from the branches of a tree rest on the ground.~
+~
+9 5186 789 0 33 61
+2~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 6
+A
+19 6
+A
+13 50
+A
+2 -2
+A
+1 1
+E
+leggings~
+Some large branches have been hollowed out to be used as leggings.
+~
+E
+bark~
+Some large branches have been hollowed out so the bark could be used for shin   guards.
+~
+E
+shin~
+Some large branches have been hollwed out so the bark could be used for shin
+guards.
+~
+E
+guards~
+Some large branches have been hollowed out so the bark could be used for shin
+guards.
+~
+#6658
+pear~
+a pear~
+A pear lies here on the ground.~
+~
+19 0 0 0 16385 60
+1~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pear~
+A pear seems fresh, and is a ripe yellow in colour. MmmmMm.
+~
+#6659
+watering can~
+a watering can~
+A wooden watering can has been set on the ground here.~
+~
+17 0 0 0 16385 62
+50~ 35~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+can~
+A watering can is made of wood, and you can still see some of the carbing marks.
+There is a small spout for the water to pour out of, and a curvy handle to hold on to.
+~
+E
+watering~
+A watering can is made of wood, and you can still see some of the carving marks.
+There is a small spout for the water to pour out of, and a curvy handle to hold on to.
+~
+#6660
+dress mommy~
+mommy's dress~
+A little dress has been dropped here.~
+~
+9 0 0 0 9 65
+3~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+mommy~
+A simple dress, short in length (to mid-calf). It is made of a blue broadcloth
+and the colour has faded somewhat, so it is mostly light blue.
+~
+E
+dress~
+A simple dress, short in length (to mid-calf). It is made of a blue broadcloth
+and the colour has faded somewhat, so it is mostly light blue.
+~
+#6661
+handkerchief hand~
+a handkerchief~
+A handkerchief with the corners tied into a knot.~
+~
+9 0 0 4096 17 65
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6662
+gold band ring~
+a gold band~
+A gold band shimmers here.~
+~
+8 0 0 0 3 65
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6663
+vegetables~
+a variety of vegetables~
+A few vegetables have been left here.~
+~
+19 0 0 0 16385 60
+6~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+vegetables~
+A variety of vegetables consists of a tomato, a corn cob, some pea pods and a
+few large leaves of lettuce. They're fresh and crispy.
+~
+#6664
+two rolls gatha~
+two fresh-baked rolls~
+A couple of yummy rolls have been left here.~
+~
+19 0 0 0 16385 60
+6~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+rolls~
+Two soft rolls with some sunflower seeds sprinkled on top.
+~
+E
+gatha~
+Two soft rolls with some sunflower seeds sprinkled on top.
+~
+E
+two~
+Two soft rolls with some sunflower seeds sprinkled on top.
+~
+#6665
+seeds sunflower~
+some sunflower seeds~
+Some sunflower seeds lie here on the ground.~
+~
+19 0 0 0 16385 60
+1~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sunflower~
+Some sunflower seeds... still in the shell.
+~
+E
+seeds~
+Some sunflower seeds... still in the shell.
+~
+#6666
+horn otaq~
+a concrete horn~
+A concrete horn lies here.~
+~
+13 1 0 0 16385 100
+0~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+horn~
+A horn made of concrete. It probably doesn't even work.
+~
+E
+otaq~
+A horn made of concrete. It probably doesn't even work.
+~
+E
+concrete~
+A horn made of concrete. It probably doesn't work.
+~
+#6667
+earthworms dried pill~
+some dried-up earthworms~
+Some dried-up earthworms lay here shrivelled.~
+~
+26 65 0 0 16385 67
+35~ stone skin~ reserved~ reserved~
+1 0 0 0 0
+0 0
+stone skin~
+0 0
+0 0 0
+E
+earthworms~
+Some shrivelled up earthworms. Icky.
+~
+E
+pill~
+Some shrivelled up earthworms. Icky.
+~
+E
+dried~
+Some shrivelled up earthworms. Icky.
+~
+#6668
+dagger wooden~
+a wooden dagger~
+A wooden dagger with a dragonfly hilt.~
+~
+5 1024 16 0 8193 67
+0~ 0~ 0~ 2~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 7
+A
+19 10
+A
+25 17
+A
+2 2
+A
+24 -15
+#6669
+cornstalk stalk corn~
+a thick cornstalk~
+A thick cornstalk with a dried corn-cob cork.~
+~
+17 0 0 0 16385 60
+20~ 20~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6670
+thorn~
+a thorn~
+A large thorn from a rose bush.~
+~
+5 536879104 0 0 8193 70
+0~ 0~ 0~ 11~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 8
+A
+19 7
+A
+24 -70
+A
+25 25
+#6671
+brownie fairy wings willoo~
+some tiny silver-lined wings~
+A tiny set of wings are here.~
+~
+9 1121 540 0 1025 70
+3~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 7
+A
+18 7
+A
+24 -20
+A
+17 -50
+A
+2 1
+E
+wings~
+A tiny set of silver-lined wings... no longer than your biggest finger.
+~
+E
+willoo~
+A tiny set of silver-lined wings... no longer than your biggest finger.
+~
+E
+fairy~
+A tiny set of silver-lined wings... no longer than your biggest finger.
+~
+E
+brownie~
+A tiny set of silver-lined wings... no longer than your biggest finger.
+~
+#6672
+spell components junk~
+some spell components~
+Some junk lies here on the ground.~
+~
+13 596 510 0 16385 60
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 15
+A
+12 60
+A
+5 2
+A
+17 -60
+E
+spell~
+The junk consists of bat wings, frogs legs, dead spiders, live spiders, bits of
+web, dust, ashes of something or someone, and a couple of dried up eyeballs.
+~
+E
+junk~
+The junk consists of bat wings, frogs legs, dead spiders, live spiders, bits of
+web, dust, ashes of something or someone, and a couple of dried up eyeballs.
+~
+E
+components~
+The junk consists of bat wings, frogs legs, dead spiders, live spiders, bits of
+web, dust, ashes of something or someone, and a couple of dried up eyeballs.
+~
+#6673
+ball hair blonde wig~
+a blonde wig~
+A ball of hair has been left here.~
+~
+9 4096 250 4096 17 60
+3~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 2
+A
+4 2
+E
+wig~
+A beautiful long blonde, straight-haired wig.
+~
+E
+hair~
+A beautiful long blonde, straight-haired wig.
+~
+E
+blonde~
+A beautiful long blonde, straight-haired wig.
+~
+E
+ball~
+A beautiful long blonde, straight-haired wig.
+~
+#6674
+iron rod poker~
+a poker~
+A thin rod of iron lays here.~
+~
+5 33554432 0 0 8193 32
+0~ 0~ 0~ 2~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 6
+A
+19 6
+E
+iron~
+A metal rod used for stirring a fire.
+~
+E
+rod~
+A metal rod used for stirring a fire.
+~
+E
+poker~
+A metal rod used for stirring a fire.
+~
+#6793
+toad stool toadstool~
+a large toadstool~
+A large toadstool grows from the ground here.~
+~
+19 0 0 0 16385 25
+4~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+toad~
+A large mushroom-looking fungus with greyish spots on the head.
+~
+E
+stool~
+A large mushroom-looking fungus with greyish spots on the head.
+~
+E
+toadstool~
+A large mushroom-looking fungus with greyish spots on the head.
+~
+#6794
+branch fallen dead~
+a dead branch~
+A branch has fallen dead from a tree.~
+~
+13 0 0 0 16385 25
+0~ 0~ 0~ 0~
+7 0 0 0 0
+0 0
+summon swarm~
+0 0
+0 0 0
+E
+branch~
+A gnarly old black tree branch.
+~
+E
+dead~
+A gnarly old black tree branch.
+~
+E
+fallen~
+A gnarly old black tree branch.
+~
+#6795
+tent flap~
+a small tent~
+The flap is open on a small tent.~
+~
+29 0 0 0 0 25
+6818~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tent~
+The tent is made of canvas and is held up by a few wooden poles dug into the
+ground. Inside it are things such as a bedroll, a lantern (which is currently
+lit) and a few articles of clothing.
+~
+#6796
+exit tent~
+the exit~
+The exit from the tent is open...~
+~
+29 0 0 0 0 25
+6807~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6797
+tent~
+a tent~
+A tent has been pitched here.~
+~
+29 0 0 0 0 25
+6819~ 0~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+tent~
+A light can be seen within the tent that has been pitched here.
+~
+#6798
+exit~
+the exit~
+The exit from Schmendrick's tent...~
+~
+29 0 0 0 0 25
+6806~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6799
+book tome understanding~
+a book~
+&BA book catches your eye.&w~
+~
+8 0 0 0 16385 25
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 2
+E
+book~
+Once you start reading this book, you can't put it down until you're finished
+reading it from cover to cover. It clears your mind, and you feel all the more
+wiser for reading it.
+~
+#6800
+cage door~
+homonculous' Cage~
+The door to the cage doesn't seem to have a lock on it...~
+~
+29 1 0 0 0 31
+6820~ 0~ 0~ 0~
+300 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6801
+exit~
+the cage exit~
+The exit from the cage...~
+~
+29 1 0 0 0 31
+6809~ 0~ 0~ 0~
+50 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6802
+campfire fire~
+a campfire~
+A small fire burns here, lighting up the camp.~
+~
+1 1 0 0 0 101
+0~ 0~ -1~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fire~
+A small fire burns brightly over a hearth of large rocks.
+~
+#6803
+cage doppleganger entrance~
+the doppleganger's cage~
+The entrance to the cage...~
+~
+29 0 0 0 0 25
+6821~ 0~ 0~ 0~
+300 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+cage~
+Inside the cage you can see a very tall, grey man-like creature staring back at
+you.
+~
+E
+entrance~
+Inside the entrance you can see a very tall, grey man-like creature looking back
+at you.
+~
+#6804
+exit~
+the exit~
+The exit out of the cage...~
+~
+29 0 0 0 0 25
+6810~ 0~ 0~ 0~
+300 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6805
+sand~
+some sand~
+Some dry sand is here.~
+~
+13 0 0 0 16385 34
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 34
+E
+sand~
+A small handful of dry white sand. Quite useless, actually.
+~
+#6806
+cage beholder entrance~
+the cage~
+The entrance to the cage...~
+~
+29 0 0 0 0 25
+6822~ 0~ 0~ 0~
+300 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6807
+cage exit~
+the cage exit~
+The cage door exit...~
+~
+29 0 0 0 0 25
+6812~ 0~ 0~ 0~
+300 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6808
+paw claw chimera~
+a large paw~
+A gimonstrous paw has been left here.~
+~
+5 0 0 0 8193 35
+0~ 0~ 0~ 5~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -35
+A
+18 10
+A
+19 14
+E
+claw~
+The paw is tawny yellow in colour, and has 5 long and sharp claws.
+~
+E
+paw~
+The paw is tawny yellow in colour, and has 5 long and sharp claws.
+~
+#6809
+cage exit~
+the cage~
+The cage exit...~
+~
+29 0 0 0 0 25
+6813~ 0~ 0~ 0~
+400 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6810
+cage door entrance~
+the cage door~
+The cage entrance is here...~
+~
+29 0 0 0 0 25
+6823~ 0~ 0~ 0~
+400 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6811
+hat pointy schmendrick~
+a pointy hat~
+A pointy hat has been left here.~
+~
+9 0 0 4096 17 35
+3~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hat~
+A pointy blue hat that looks somewhat like a dunce cap.
+~
+E
+pointy~
+A pointy blue hat that looks somewhat lik a dunce cap.
+~
+#6812
+shoes schmendrick~
+a pair of shoes~
+A plain pair of brown shoes.~
+~
+9 0 0 0 65 35
+4~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6813
+harpy feather~
+a &Oharpy feat&wher~
+You see rather large feather on the ground.~
+~
+9 0 0 0 524289 37
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 37
+A
+25 9
+E
+feather~
+Your typical feather, although quite large... brown with a greyish tip.
+~
+E
+harpy~
+Your typical feather, although quite large... brown with a greyish tip.
+~
+#6814
+mommy key harpy~
+a key~
+A key made of wood.~
+~
+18 0 0 0 16385 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6815
+key wrought iron~
+a wrought iron key~
+A wrought iron key.~
+~
+18 96 0 0 16385 25
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6816
+robes cloth blue schmendrick~
+some wizardly robes~
+A pile of blue cloth lies here on the ground.~
+~
+9 64 894 0 9 35
+3~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 35
+A
+13 35
+E
+robes~
+The robes are blue, and the colour changes slightly with the reflection of
+light.
+~
+E
+cloth~
+The robes are blue, and the colour changes slightly with the reflection of
+light.
+~
+E
+blue~
+The robes are blue, and the colour changes slightly with the reflection of
+light.
+~
+E
+schmendrick~
+The robes are blue, and the colour changes slightly with the reflection of
+light.
+~
+#6817
+pouch schmendrick~
+a small pouch~
+A pouch lies here crumpled on the ground.~
+~
+15 0 0 0 16385 35
+45~ 5~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+pouch~
+A small brown pouch with a drawstring opening.
+~
+#6818
+glittery dust schmendrick~
+some glittery dust~
+Something glittery catches your eye.~
+~
+13 0 0 0 1 25
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+glittery~
+Some shiny dust particles of some sort, no doubt for a cheap magic trick.
+~
+E
+dust~
+Some shiny dust particles of some sort, no doubt for a cheap magic trick.
+~
+#6819
+cane gnarly wooden~
+a gnarly wooden cane~
+A gnarly wooden cane has been left here.~
+~
+5 0 0 0 8193 40
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+astral walk~
+1 1
+0 0 0
+A
+12 40
+A
+19 15
+A
+18 15
+E
+cane~
+The can is about 4 feet in length, and it is made of an old tree branch. It is
+a strong cane, and is a dark cherry red in colour.
+~
+E
+wooden~
+The cane is about 4 feet in length, and it is made of an old tree branch. It
+is a strong cane, and is a dark cherry red in colour.
+~
+E
+gnarly~
+The cane is about 4 feet in length, and it is made of an old tree branch. It is
+a strong cane, and is a dark cherry red in colour.
+~
+#6820
+root hat~
+a hollow root~
+A hollow root from a tree has been left here.~
+~
+9 0 0 4096 17 40
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -25
+A
+17 -40
+E
+hat~
+A root from a large tree has been hollowed out to make a gnarly old hat. The
+thicker part of the root is made to rest around the head, and the end of it
+spirals up and around to make a somewhat pointed hat.
+~
+E
+root~
+A root from a large tree has been hollowed out to make a gnarly old hat. The
+thicker part of the root is meant to rest around the head, and the end of it
+spirals up and around to make a somewhat pointed hat.
+~
+#0
+
+
+
+#ROOMDATA
+#6600
+The Forge~
+The forge is surrounded with a few different hammers, and various other
+forging tools... it is scarcely lit here because of it's non-usage of
+late.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+3 0 8199
+D2
+~
+~
+0 0 6601
+S
+#6601
+A Room for the Smithy~
+A few lounging chairs and a coffee table are all that are in this room. 
+There is a bowl of nuts on the table, and two empty goblets that are
+half full. At this, you assume the Smithy gets company from time to time.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6600
+D1
+~
+~
+0 0 6602
+D3
+~
+~
+0 0 6603
+S
+#6602
+A tiny lavatory~
+A dirty water basin and a small wooden table (with dirty towels upon it) are allthat are kept in this teeny tiny room.
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 6601
+S
+#6603
+The Smithy's Quarters~
+A small comfortable bed (that has not been made) is here. There is a
+table in the centre of the room, with a chair on either side. A chess board
+sits on the table, and it seems that someone was in the middle of a game... 
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 6601
+D3
+~
+~
+1 0 6604
+S
+#6604
+Servant's Passage to the Smithy's Quarters~
+The passage is simple, but enough for servants to get through from room to room without having been seen.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6605
+D1
+~
+~
+128 0 6603
+S
+#6605
+Servant's Passage in the Basement~
+A simple, yet purposeful way for the servants to get where they're going withouthaving to be seen.
+~
+0 12 0
+Rd     0
+D0
+~
+~
+0 0 6606
+D2
+~
+~
+0 0 6604
+S
+#6606
+Servant's Passage in the Basement~
+This passage is used for the servants to get around the house without having to be seen.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6608
+D1
+~
+~
+0 0 6607
+D2
+~
+~
+0 0 6605
+S
+#6607
+Servant's Passage in the Basement~
+A small, but convenient passage for the servants to get through the house 
+without having to be seen.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 8199
+D3
+~
+~
+0 0 6606
+S
+#6608
+Servant's Passage in the Basement~
+A passage used by the servants to get through the house without having been
+seen.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6609
+D2
+~
+~
+0 0 6606
+S
+#6609
+Servant's Passage in the Basement~
+A passage used by the servants to get through the house without having been
+seen.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 8197
+D2
+~
+~
+0 0 6608
+S
+#6610
+A Wood Stove~
+A large cast iron wood stove dominates the room here. There are several
+pokers about, and a pile of wood along the south wall.  
+~
+0 12 0
+Rd     0
+E
+pile~
+What was once neatly stacked, is now a disorganized mess. Some of the wood has  been singed from the heat of the stove.
+~
+E
+wood~
+What was once neatly stacked is now a disorganized mess, and some of the wood   has been singed from the heat of the stove.
+~
+D0
+~
+~
+0 0 6611
+D1
+~
+~
+0 0 6613
+D3
+~
+~
+0 0 8197
+S
+#6611
+Servant's Passage in the Basement~
+This is a very narrow hallway, seeming almost as if it were put in after the
+house was already finished. The reality, however, is that it is for the servantswho were supposed to be neither seen, nor heard.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 6612
+D2
+~
+~
+0 0 6610
+S
+#6612
+Back Room in the Basement~
+Used simply as a storage room...the place has but a few baskets and boxes.
+~
+0 8 0
+Rd     0
+E
+uniform~
+The uniform has the initials DD interlocked on the left breast pocket.
+~
+E
+uniforms~
+Each uniform is nicely embroidered with the initials DD interlocked on the left breast pocket.
+~
+E
+baskets~
+A nicely woven basket contains uniforms of all shapes and sizes...having
+the embroidered initials DD interlocked on the left breast.
+~
+E
+box~
+~
+E
+boxes~
+The boxes contain cleaning materials, such as: feather dusters, rags and soap.
+~
+E
+basket~
+A nicely woven basket contains some brand new servant uniforms.
+~
+D2
+~
+~
+0 0 6613
+D3
+~
+~
+0 0 6611
+D4
+~
+~
+3 0 8172
+S
+#6613
+A large room in the basement~
+This large room contains a few serving carts, and serving trays. Piled
+up on a shelf on the east wall there are towels, table cloths, and napkins. 
+This seems to be the room where the servants might prepare to bring dinner
+to the main floor.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6612
+D2
+~
+~
+0 0 6614
+D3
+~
+~
+0 0 6610
+S
+#6614
+Between two rooms in the basement~
+This little room has shelves on each wall holding pitchers, flagons, serving
+trays, utensils, soup bowls and the like. 
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6613
+D1
+~
+~
+0 0 8165
+D2
+~
+~
+0 0 6617
+D3
+~
+~
+0 0 8166
+S
+#6615
+Storage Cubby #20~
+This cubby is empty save the layer of dust and cobwebs.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 8184
+D2
+~
+~
+0 0 6616
+D3
+~
+~
+0 0 6636
+S
+#6616
+Storage Cubby #19~
+This room is empty, save the layer of dust... Curiously though, a
+large odd-shaped part of the floor hasn't a speck of dust on it at all. 
+Someone must have taken something from here recently.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6615
+D2
+~
+~
+0 0 6618
+D3
+~
+~
+0 0 6637
+S
+#6617
+A small sitting room in the basement~
+Lounging chairs and couches clutter the room here. This seems to be the
+place that meetings might be held for the servants and the Lord and Lady of
+the House.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6614
+D2
+~
+~
+0 0 8199
+S
+#6618
+Storage Cubby #18~
+A loom sits in the corner of the room... apparently unused for some time now,
+as it is covered in dust and cobwebs. Wool, and other weaving materials are
+also stored here.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6616
+D2
+~
+~
+0 0 6619
+D3
+~
+~
+0 0 6638
+S
+#6619
+Storage Cubby #17~
+Walking into the room, you find dozens upon dozens of little, and big eyes 
+peering back at you. The room is filled with all sorts of stuffed animals.
+No doubt, Bahl or Fazoul's prized hunting trophies.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6618
+D2
+~
+~
+0 0 6620
+D3
+~
+~
+0 0 6639
+S
+#6620
+Storage Cubby #16~
+Ceramic pots, and gardening tools clutter this small room.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6619
+D2
+~
+~
+0 0 6621
+S
+#6621
+Storage Cubby #15~
+The floor here is piled up with books, and there are some pages that have 
+fallen out and gotten scattered around the room. You can feel a slight draft
+standing here... coming from the west.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6620
+D2
+~
+~
+0 0 6622
+D3
+~
+~
+3 0 6650
+S
+#6622
+Storage Cubby #14~
+This place is empty except for the layer of dust collecting and the cobwebs
+in every corner. You can hear a faint buzzing sound.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6621
+D3
+~
+~
+0 0 6623
+S
+#6623
+Storage Cubby #13~
+This room is stored to the hilt with a bunch of various items. You catch a   
+glimpse of something in the corner that might be of interest.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 6622
+D3
+~
+~
+0 0 6624
+S
+#6624
+Storage Cubby #12~
+Two desks, and a bunch of chairs are stored in this room collecting dust.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 6623
+D3
+~
+~
+0 0 6625
+S
+#6625
+Storage Cubby #11~
+Building supplies pile up in this room. Boards, bricks, cinder blocks, nails,
+hammers, and a small forge sits collecting dust in the corner.
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 6624
+D3
+~
+~
+0 0 6626
+S
+#6626
+Storage Cubby #10~
+This cubby is empty... except for the dust and cobwebs.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6627
+D1
+~
+~
+0 0 6625
+S
+#6627
+Storage Cubby #9~
+Shelves line every wall here. Each shelf has a different set of bottles, and   
+jars on it. There is also a large pot here.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6628
+D2
+~
+~
+0 0 6626
+S
+#6628
+Storage Cubby #8~
+Some saddles, reins, and horse shoes are contained in this cubby. There is 
+also one wagon wheel set along the north wall.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6629
+D2
+~
+~
+0 0 6627
+S
+#6629
+Storage Cubby #7~
+Various articles of clothing hang here, along with other such personal items
+on shelves, and a few boxes sit in the corner.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6630
+D1
+~
+~
+0 0 6641
+D2
+~
+~
+0 0 6628
+S
+#6630
+Storage Cubby #6~
+This cubby doesn't really have any particular type of item... it seems that it
+might have been a storage space for one of the Daern's employees. There are
+various items here such as; winter coats, blankets, boxes, even some snow-shoes.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6631
+D1
+~
+~
+0 0 6644
+D2
+~
+~
+0 0 6629
+S
+#6631
+Storage Cubby # 5~
+Clothes hang from every wall here off of hangers. Along the floor underneath
+them a line of old boots, shoes, moccasins and slippers wait to come back
+in style once again.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6632
+D1
+~
+~
+0 0 6645
+D2
+~
+~
+0 0 6630
+S
+#6632
+Storage Cubby #4~
+Office supplies fill the shelves here... ink, blank parchments (and lots OF 
+them), quill pens, chalk and even a few small filing cabinets.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6633
+D1
+~
+~
+0 0 6646
+D2
+~
+~
+0 0 6631
+S
+#6633
+Storage Cubby #3~
+This little room is full of odd shaped items, covered in white blankets. If 
+you look around for a minute you might see that one of them has been lifted
+just so you can see the back of a wooden rocking chair. This is the old
+furniture storage!
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 6634
+D2
+~
+~
+0 0 6632
+S
+#6634
+Storage Cubby #2~
+This storage space contains lavatory supplies. The shelves are lined
+with linen, pillows, a few water basins, and a large block of soap.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 6635
+D2
+~
+~
+0 0 6646
+D3
+~
+~
+0 0 6633
+S
+#6635
+Storage Cubby #1~
+A storage area used most likely by one of the many members of the Daern
+Household. Boxes, baskets, burlap bags, and other storage containers line
+the walls. A thin layer of dust covers everything you see.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 8104
+D2
+~
+~
+0 0 6647
+D3
+~
+~
+0 0 6634
+S
+#6636
+Storage Space~
+This room is not in use at this time, so the only thing you'll find here is
+the dust and its accompanying cobwebs.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 8104
+D1
+~
+~
+0 0 6615
+D2
+~
+~
+0 0 6637
+D3
+~
+~
+0 0 6647
+S
+#6637
+More Storage Space~
+The attic is surrounded in wooden beams, and floorboards. You notice
+that most rooms are unfinished, as this floor is used only for storage.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6636
+D1
+~
+~
+0 0 6616
+D2
+~
+~
+0 0 6638
+D3
+~
+~
+0 0 6649
+S
+#6638
+The Attic~
+The only thing noticeable here are the wooden beams and the creaky floorboards. Dust and cobwebs cover every inch of the place.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6637
+D1
+~
+~
+0 0 6618
+D2
+~
+~
+0 0 6639
+D3
+~
+~
+0 0 6648
+S
+#6639
+The Attic~
+A film of dust covers everything here, and cobwebs hang from each corner. The 
+only sounds you hear are the creaking of the floorboards.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6638
+D1
+~
+~
+0 0 6619
+D3
+~
+~
+0 0 6640
+S
+#6640
+The Attic~
+A film of dust covers everything here, and cobwebs hang drom each corner. The 
+only sounds you hear are the creaking of the floorboards.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6648
+D1
+~
+~
+0 0 6639
+D3
+~
+~
+0 0 6641
+S
+#6641
+The Attic~
+The only thing noticeable here are the wooden beams and the creaky floorboards.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6644
+D1
+~
+~
+0 0 6640
+D3
+~
+~
+0 0 6629
+S
+#6642
+A Breezy Corner in the Attic~
+This room seems pretty sturdy... no loose floorboards, or ceiling beams. But
+it is quite drafty in here...you might even call it a breeze.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 6643
+D2
+~
+~
+0 0 6653
+S
+#6643
+A Hole in the Roof~
+This room is the filthiest of the area. A few boxes are piled up in the middle
+of the room. Looking up you see complete darkness... and stars?
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 6651
+D2
+~
+~
+0 0 6652
+D3
+~
+~
+0 0 6642
+S
+#6644
+The Attic~
+The only thing noticeable here are the wooden beams and the creaky floorboards.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6645
+D1
+~
+~
+0 0 6648
+D2
+~
+~
+0 0 6641
+D3
+~
+~
+0 0 6630
+S
+#6645
+The Attic~
+You hear the creaking of the floorboards all around you, and some cobwebs 
+brush onto your clothing as you go past.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6646
+D1
+~
+~
+0 0 6649
+D2
+~
+~
+0 0 6644
+D3
+~
+~
+0 0 6631
+S
+#6646
+More Storage Space~
+Cobwebs and dust cover every inch of this small area, as nothing has been
+stored here for quite some time.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6634
+D1
+~
+~
+0 0 6647
+D2
+~
+~
+0 0 6645
+D3
+~
+~
+0 0 6632
+S
+#6647
+More Storage Space~
+Cobwebs and dust cover every inch of this small area, as nothing has been
+stored here for quite some time.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6635
+D1
+~
+~
+0 0 6636
+D2
+~
+~
+0 0 6649
+D3
+~
+~
+0 0 6646
+S
+#6648
+The Centre of the Attic~
+This room is quite noticeably larger than the rest on this floor. Wooden
+beams stick out from the ceiling and the familiar creaking of the
+floorboards lingers on. Looking up, you see a covered lantern hanging from
+the ceiling... You can try to light it but to no avail.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6649
+D1
+~
+~
+0 0 6638
+D2
+~
+~
+0 0 6640
+D3
+~
+~
+0 0 6644
+S
+#6649
+The Attic~
+You hear the creaking of the floorboards all around you, and there are cobwebs
+in every possible place. 
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6647
+D1
+~
+~
+0 0 6637
+D2
+~
+~
+0 0 6648
+D3
+~
+~
+0 0 6645
+S
+#6650
+A Squeaky Floorboard~
+This room is slightly cleaner than the rest up here in the attic. You assume
+the reasoning behind that is from the drafts that carry away the cobwebs and
+dust.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6651
+D1
+~
+~
+3 0 6621
+D3
+~
+~
+0 0 6652
+S
+#6651
+A Big Hole in the Floor~
+Whoa! Almost fell in! This room is pretty clean as well, except for the large
+hole in the floor... you can see the ceiling beams from downstairs.
+~
+0 8396809 0
+Rd     0
+D2
+~
+~
+0 0 6650
+D3
+~
+~
+0 0 6643
+S
+#6652
+A Broken Floorboard~
+You are cautious as you go by here, as one of the floorboards is obviously
+broken. The area is generally tidy, and somewhat clean.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 6643
+D1
+~
+~
+0 0 6650
+D3
+~
+~
+0 0 6653
+S
+#6653
+A HUGE Mousetrap~
+OH NO! NOT NOW! YOU'VE BEEN TRAPPED.
+The Daerns must get some pretty large rats up here, because all this
+room contains is one giant mousetrap. The place smells of old cheese, but 
+there is none... apparently, those rats are a teensy bit smarter than you!
+~
+0 2098188 0
+Rd     0
+S
+#6654
+Entryway to the Garden~
+Such a beautiful sight! The colours are fantastic here, and to the north you 
+can see different types of vegetation growing in every which way. The sweet
+scent of honeysuckle comes over you, and is so alluring...
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6655
+D2
+~
+~
+0 0 8127
+S
+#6655
+A Path of Rose Bushes~
+Thick rose bushes on either side of the path lead to the north. The mixture of  aromas takes your breath away. You notice that to the south, there is no longer an exit.
+~
+0 134651924 0
+Rd     0
+D0
+~
+~
+0 0 6656
+S
+#6656
+A T-intersection~
+You have reached a T-intersection in the garden, wild flowers have begun to
+grow here as well as the path of rose bushes beginning in the east and west.
+When there is a breeze, you can hear the rustling of the leaves and you see
+movement in your peripheral vision. When you turn to look, you see only the
+leaves rustling... or are they?
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6661
+D2
+~
+~
+0 0 6655
+D3
+~
+~
+0 0 6657
+S
+#6657
+Along a Path of Rose Bushes~
+You come into an area where the ground is covered in dead vegetation... it
+looks like someone might have tried to slice or bash their way through. The
+dense rose bushes which line your path on either side seem unharmed and grow
+rapidly even as you stand there looking at their dead counterparts. Large
+spikey thorns poke out menacingly as you consider cutting them down.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6656
+D3
+~
+~
+0 0 6658
+S
+#6658
+Along a Path of Rose Bushes~
+You can hear the rustling of the leaves and flowers in the wind, and as they
+grow with fantastic speed. Exits take you to the east and west.
+~
+0 134619136 0
+Rd     0
+D1
+~
+~
+0 0 6657
+D3
+~
+~
+0 0 6659
+S
+#6659
+Along a Path of Rose Bushes~
+You can hear the rustling of the leaves and flowers in the wind, and as they
+grow with fantastic speed. Exits lead you to the north and east.
+~
+0 134619136 0
+Rd     0
+D0
+~
+~
+0 0 6660
+D1
+~
+~
+0 0 6658
+S
+#6660
+A Path of Rose Bushes~
+The rose bushes are thick here and the path is well trodden. You can hear the
+rustling of the leaves as the bushes grow before your eyes. Although the roses
+themselves are very beautiful, the thorns that grow with them threaten you to
+think twice before plucking from the brush.
+~
+0 134619156 0
+Rd     0
+D0
+~
+~
+0 0 6707
+D2
+~
+~
+0 0 6659
+D3
+~
+~
+0 0 6691
+S
+#6661
+Along a Path of Rose Bushes~
+You can hear the rustling of the leaves and flowers in the wind, and as they
+grow with fantastic speed. Exits lead you east and west of here.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6662
+D3
+~
+~
+0 0 6656
+S
+#6662
+Along a Path of Rose Bushes~
+The rustling of the leaves and flowers can be heard through the wind, and as   
+they grow rapidly with you looking on. Thorns gleam menacingly as you 
+consider cutting them down. Exits take you east and west from here.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6663
+D3
+~
+~
+0 0 6661
+S
+#6663
+Along a Path of Rose Bushes~
+You can hear the rustling of the leaves and flowers in the wind, and as they
+grow with fantastic speed. The sweet aroma that fills the air is deceiving
+though, as the thorns poke out from the bushes menacingly.
+~
+0 134619156 0
+Rd     0
+D0
+~
+~
+0 0 6664
+D1
+~
+~
+0 0 6665
+D3
+~
+~
+0 0 6662
+S
+#6664
+Along a Path of Rose Bushes~
+The familiar path of rose bushes lead your way through this obvious maze. You
+look around to see that other flowers are growing here as well... sunflowers
+tower brightly over you, and the path is lined in wildflowers from A-Z. Your
+exits take you north and south of here.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6735
+D2
+~
+~
+0 0 6663
+S
+#6665
+Along a Path of Rose Bushes~
+You can hear the rustling of the leaves and flowers in the breeze, and as they
+grow with fantastic speed. Exits lead you to the east and to the west.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6666
+D3
+~
+~
+0 0 6663
+S
+#6666
+Along a Path of Rose Bushes~
+The sweet smell of flowers all around you continues to drift through the air.
+Rustling of the leaves lingers on, either soothing you or just plain getting
+on your nerves.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6667
+D3
+~
+~
+0 0 6665
+S
+#6667
+Along a Path of Rose Bushes~
+The rustling of the leaves continues, and glancing at the bushes you see
+them moving slightly as they grow. Exits take you north and to the west.  
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6668
+D3
+~
+~
+0 0 6666
+S
+#6668
+Hedges and Roses~
+A hedge path is here on either side of the 'road' and the rose bushes
+continue to grow over them. The roses are not as dense here, but still pose
+as a threat to your escape. Thorns pierce out from beneath the hedges branches
+forcing you to look again, for some other route.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6669
+D2
+~
+~
+0 0 6667
+S
+#6669
+Hedges and Roses~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what    comes in and what goes out. Thorns pierce out from the hedges threatening you tostay back.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6675
+D1
+~
+~
+0 0 6670
+D2
+~
+~
+0 0 6668
+S
+#6670
+Hedges and Roses~
+A hedge path is here on either side of you and the rose bushes continue to 
+grow over them at a rapid pace. Although they are not dense here, they still
+pose as a threat to your escape. Thorns pierce out from between branches
+menacingly. Your exits are to the east and west.
+~
+0 134619156 0
+Rd     0
+D1
+~
+~
+0 0 6671
+D3
+~
+~
+0 0 6669
+S
+#6671
+Hedges and Roses~
+The hedges have begun to thin out a little here, and the rose bushes have 
+almost completely taken over this area. Branches stick out in hopes to get the
+sunlight they need to strengthen them again.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6672
+D3
+~
+~
+0 0 6670
+S
+#6672
+Roses and Hedges~
+The hedges have thinned out quite a bit here, and the roses have all but
+completely taken over. Brittle branches reach out for the sun in their last
+attempt at strength, and life.  
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6674
+D2
+~
+~
+0 0 6671
+D3
+~
+~
+0 0 6673
+S
+#6673
+Roses and Hedges~
+The hedges have thinned out quite a bit here, and the roses have all but
+completely taken over. Brittle branches reach out for the sun in their last
+attempt at strength, and life.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6672
+S
+#6674
+Roses and Hedges~
+The hedges have thinned out quite a bit here, and the roses have almost 
+completely taken over. Branches reach out in hopes to get the little bit of
+sunlight they need to strengthen them just enough to stay alive.
+~
+0 134619152 0
+Rd     0
+D3
+~
+~
+0 0 6672
+S
+#6675
+Hedges and Roses~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what
+comes in and what goes out. Familiar thorns pierce out from the hedges 
+threatening you to stay back. Exits lead north and to the south.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6676
+D2
+~
+~
+0 0 6669
+S
+#6676
+Hedges and Roses~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what
+comes in and what goes out. Familiar thorns pierce out from the hedges
+threatening you to stay back. Exits take you north and south.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6677
+D2
+~
+~
+0 0 6675
+S
+#6677
+Hedges and Roses~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what
+comes in and what goes out. Familiar thorns pierce out from the hedges 
+threatening you to stay back a fair distance. Exits lead north and south.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6678
+D2
+~
+~
+0 0 6676
+S
+#6678
+Hedges and Roses~
+The hedges have begun to thin out a little here, and the rose bushes have
+started to take over the area. Although the branches are still green with 
+life, the hedges will soon be no more.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6679
+D2
+~
+~
+0 0 6677
+S
+#6679
+Hedges and Roses~
+The hedges have begun to thin out a little here, and the rose bushes have
+almost completely taken over the area. Green branches stick out trying to get
+the sunlight they need to go on.
+~
+0 134619156 0
+Rd     0
+D1
+~
+~
+0 0 6680
+D3
+~
+~
+0 0 6678
+S
+#6680
+Hedges and Roses~
+The hedges have begun to thin out a little here, and the rose bushes have
+almost completely taken over this area. Branches stick out in hopes to get the
+sunlight they need to strengthen them again. Exits will take you north, east
+and to the west.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6681
+D1
+~
+~
+0 0 6682
+D3
+~
+~
+0 0 6679
+S
+#6681
+Roses and Hedges~
+The hedges have thinned out quite a bit here, and the roses have almost 
+completely taken over. Branches reach out in hopes to get the little bit of
+sunlight they need to strengthen them just enough to stay alive. You can go
+north and south of here.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6688
+D2
+~
+~
+0 0 6680
+S
+#6682
+Hedges and Roses~
+The hedges have thinned out quite a bit here, and the roses have all but
+completely taken over. Brittle branches reach out for the sun in their last
+attempt at strength, and life. Exits lead south and west.
+~
+0 134619152 0
+Rd     0
+D2
+~
+~
+0 0 6683
+D3
+~
+~
+0 0 6680
+S
+#6683
+Roses and Hedges~
+The hedges have thinned out quite a bit here, and the roses have all but
+completely taken over. Brittle branches reach out for the sun in their last
+attempt at strength, and life. Exits lead north and south.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6682
+D2
+~
+~
+0 0 6684
+S
+#6684
+Roses and Hedges~
+The hedges have thinned out quite a bit here, and the roses have almost
+completely taken over. Branches reach tou in hopes to get hte little bit of
+sunlight they need to strengthen them just enough to stay alive. You can go     north and west of here.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6683
+D3
+~
+~
+0 0 6685
+S
+#6685
+Roses and Hedges~
+Rose bushes covere the hedges on either side of your path here. Although
+the bushes are not very dense they seem to have no problem keeping guard of
+what comes in and what goes out. Annoying thorns poke out at you, catching
+onto your armor as you go past.  
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6687
+D1
+~
+~
+0 0 6684
+D3
+~
+~
+0 0 6686
+S
+#6686
+Roses and Hedges~
+Rose bushes cover the hedges on either side of your path here. Although
+the bushes are not very dense they seem to have no problem keeping guard of
+what comes in and what goes out. Familiar thorns pierce out from the hedges
+threatening you to stay back a fair distance. The only exit is east.  
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6685
+S
+#6687
+A Dead End~
+A dead end! All of that to end up here. Again, this area is covered
+with rose bushes and you can see the occasional branch of a hedge peeking
+through, most likely brittle and dry. The only exit is south.  
+~
+0 134619152 0
+Rd     0
+D2
+~
+~
+0 0 6685
+S
+#6688
+Roses and Hedges~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what
+comes in and what goes out. Familiar thorns pierce out from the hedges
+threatening you to stay back. 
+~
+0 134619152 0
+Rd     0
+D2
+~
+~
+0 0 6681
+D3
+~
+~
+0 0 6689
+S
+#6689
+Roses and Hedges~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what
+comes in and what goes out. Familiar thorns pierce out from the hedges
+threatening you to stay back a fair distance.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6688
+D3
+~
+~
+0 0 6690
+S
+#6690
+A Dead End~
+Rose bushes almost fully engulf the area once again, leaving only the 
+occasional branch of the hedges visible. Thorns gleam menacingly forcing you
+to stay a fair distance back. The only exit from here is east.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6689
+S
+#6691
+A Path of Rose Bushes~
+The rose bushes are thick here and the path is well trodden. You can hear the
+rustling of the leaves as the bushes grow before your eyes. Although the roses
+themselves are very beautiful, the thorns that grow with them threaten you to
+think twice before plucking from the brush.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6660
+D2
+~
+~
+0 0 6692
+D3
+~
+~
+0 0 6693
+S
+#6692
+A Crevasse~
+A small niche opens up here in the path... to your demise, it is a dead end.
+The rose bushes continue to grow before your eyes, making a rustling sound
+with their leaves and thorns poke out menacingly. The only exit is to the 
+north.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6691
+S
+#6693
+A Path of Rose Bushes~
+The path continues here with the rustling of the leaves ringing in your ears.
+A few wildflowers have begun to grow on each side of your path, and they seem
+to be smiling up at you from the foliage.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6691
+D3
+~
+~
+0 0 6694
+S
+#6694
+A Path of Wildflowers~
+The rose bushes are dense here but a path of wildflowers has been allowed to
+grow on either side of the road. They sway in the breeze, and their bright
+colours of all varieties make a rainbow in the path.
+~
+0 134619156 0
+Rd     0
+D0
+~
+~
+0 0 6695
+D1
+~
+~
+0 0 6693
+S
+#6695
+A Path of Wildflowers~
+The rose bushes are dense here but a path of wildflowers has been allowed to 
+grow on either side of the road. They sway in the breeze, and their bright
+colours of all varieties make a rainbow in the path.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6696
+D2
+~
+~
+0 0 6694
+S
+#6696
+A Path of Wildflowers~
+The rose bushes are dense here but a path of wildflowers has been allowed to
+grow on either side of the road. They sway in the breeze, and their bright
+colours of all varieties make a rainbow in the path.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6697
+D2
+~
+~
+0 0 6695
+S
+#6697
+A Bend in the Path~
+Though the rose bushes are dense here, a path of wildflowers has been allowed
+to grow on either side of the road. They sway through the breeze as if in a 
+dance, and their bright colours make a rainbow in the path. Exits take you to
+the east and to the south.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6698
+D2
+~
+~
+0 0 6696
+S
+#6698
+A Path of Wildflowers~
+The wildflowers make your path to the east and to the west. They seem to be
+smiling back up at you as they sway through the breeze in a dance.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6699
+D3
+~
+~
+0 0 6697
+S
+#6699
+A Fork in the Rainbow~
+A fork in the rainbow path leads off into the north, south and west. You can
+see a bend in the road to the north, and to the south you hear what sounds
+like children at play.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6700
+D2
+~
+~
+0 0 6703
+D3
+~
+~
+0 0 6698
+S
+#6700
+A Bend in the Path~
+Though the rose bushes are dense here, a path of wildflowers has been allowed
+to grow on either side of the road. They sway through the breeze as if in a 
+dance, and their bright colours make a rainbow in the path. Exits take you to
+the east and to the south.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6701
+D2
+~
+~
+0 0 6699
+S
+#6701
+A Path of Wildflowers~
+The rose bushes are dense here but a path of wildflowers has been allowed to
+grow on either side of the road. They sway in the breeze, and their bright
+colours of all variieties make a rainbow in the path.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6702
+D3
+~
+~
+0 0 6700
+S
+#6702
+A Flower Bed~
+The path ends here in a large bed of the wildflowers you have seen growing all
+around you. Their familiar smile beams back up at you, and they sway through
+the breeze in a dance. The soil is particularily fresh here, and the air smells
+as clear as you have ever experienced.
+~
+0 134619152 0
+Rd     0
+D3
+~
+~
+0 0 6701
+S
+#6703
+A Path of Wildflowers~
+The wildflowers frame the walkway here, which forks off to the north, south and west. They seem to be smiling back up at you as they sway through the breeze in a dance.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6699
+D2
+~
+~
+0 0 6705
+D3
+~
+~
+0 0 6704
+S
+#6704
+A Tiny Shack~
+This tiny little shack is made of sticks, and contains mostly gardening tools
+and food items. On the east side of the shack grows several little rows of 
+vegetables, and on the west side a pear tree is filled to the brim with fresh
+ripe pears.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6703
+S
+#6705
+A Path of Wildflowers~
+The wildflowers frame the walkway here, which forks off to the north, south and west. They seem to be smiling back up at you as they sway through the breeze in a dance.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6703
+D3
+~
+~
+0 0 6706
+S
+#6706
+A Little Hut~
+The little house is small in size, but is abundant with household items. As you
+look around, you see many dishes, utensils, linen, and even some parchments lie
+about. Drawn on each parchment is a coloured picture of many stick people, and
+the bright yellow sun shines down on all their smiling faces.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6705
+S
+#6707
+A Path of Rose Bushes~
+The rose bushes are thick here and the path is well trodden. You can hear the
+rustling of the leaves as the bushes grow before your eyes. Although the roses
+themselves are very beautiful, the thorns that grow with them threaten you to
+think twice before plucking from the brush.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6713
+D1
+~
+~
+0 0 6708
+D2
+~
+~
+0 0 6660
+S
+#6708
+A Path of Rose Bushes~
+You can hear the rustling of the leaves as the bushes grow before your eyes and
+although the roses themselves are very beautiful... the thorns that grow with
+them threaten you to think twice before you pluck one from the brush.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6709
+D3
+~
+~
+0 0 6707
+S
+#6709
+A Path of Rose Bushes~
+You can hear the rustling of the leaves as the bushes grow before your eyes and
+although the roses themselves are very beautiful... the thorns that grow with
+them threaten you to think twice before you pluck one from the brush.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6710
+D2
+~
+~
+0 0 6712
+D3
+~
+~
+0 0 6708
+S
+#6710
+A Path of Rose Bushes~
+You can hear the rustling of the leaves as the bushes grow before your eyes and
+although the roses themselves are very beautiful... the thorns that grow with
+them threaten you to think twice before you pluck one from the brush.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6711
+D3
+~
+~
+0 0 6709
+S
+#6711
+A Dead End~
+This place is pretty tough, and there are most likely many dead ends in the
+garden because it certainly is a maze! Your only exit is west.
+~
+0 134619152 0
+Rd     0
+D3
+~
+~
+0 0 6710
+S
+#6712
+A Dead End~
+This place might be a little bit tougher than you thought it would be. You have
+reached a dead end, and the rose bushes continue to make the rustling sound
+as they grow before your very eyes. The only exit is north.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6709
+S
+#6713
+A Path of Rose Bushes~
+The rusling of the leaves can be heard through the wind, and as they grow
+rapidly before your eyes. Thorns glisten menacingly as you consider cutting
+them down. Exits take you to the north and south.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6714
+D2
+~
+~
+0 0 6707
+S
+#6714
+A Bend in the Path~
+You can hear the rustling of the leaves as they grow with fantastic speed 
+before your very eyes. The sweet aroma that fill the air is deceiving though,
+as the thorns poke out from the bushes menacingly.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6715
+D2
+~
+~
+0 0 6713
+S
+#6715
+A Path of Rose Bushes~
+The rustling of the roses has calmed down a little here, and the way is a bit
+more shaded than what you have seen so far. Looking to the east you can see that
+some fruit trees are growing in your path.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6716
+D3
+~
+~
+0 0 6714
+S
+#6716
+A Path of Fruit Trees~
+The path is lined with fruit trees, and in behind them you can see the thorns
+of the rose bushes poking out at you. The ground seems to be a little bit
+softer here, and the way is shady... sometimes making it seem a bit eery.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6717
+D3
+~
+~
+0 0 6715
+S
+#6717
+A Path of Fruit Trees~
+The path is lined with fruit trees, and in behind them you can see the thorns
+of the rose bushes poking out at you. The ground seems to be a little bit
+softer here, and the way is shady... sometimes making it seem a bit eery.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6718
+D2
+~
+~
+0 0 6716
+S
+#6718
+A Path of Fruit Trees~
+The path is lined with fruit trees, and in behind them you can see the thorns
+of the rose bushes poking out at you. The ground seems to be a little bit
+softer here, and the way is shady... sometimes making it seem a bit eery. Your
+path leads you to the south, or to the west.
+~
+0 134619152 0
+Rd     0
+D2
+~
+~
+0 0 6717
+D3
+~
+~
+0 0 6719
+S
+#6719
+A Path of Fruit Trees~
+The path is lined with fruit trees, and in behind them you can see the thorns
+of the rose bushes poking out at you. The ground seems to be a little bit
+softer here, and the way is shady... sometimes making it seem a bit eery.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6718
+D3
+~
+~
+0 0 6720
+S
+#6720
+A Path of Fruit Trees~
+The path is lined with fruit trees, and in behind them you can see the thorns
+of the rose bushes poking out at you. The ground seems to be a little bit
+softer here, and the way is shady... sometimes making it seem a bit eery.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6719
+D3
+~
+~
+0 0 6721
+S
+#6721
+A Path of Fruit Trees~
+The path is lined with fruit trees, and in behind them you can see the thorns
+of the rose bushes poking out at you. The ground seems to be a little bit
+softer here, and the way is shady... sometimes making it seem a bit eery.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6720
+D3
+~
+~
+0 0 6722
+S
+#6722
+A Path of Fruit Trees~
+The path is lined with fruit trees, and you can see a bend to your west. Thorns
+poke out at you menacingly as the bushes are dominant in this part of the path. You can go east and west of here.
+~
+0 134619156 0
+Rd     0
+D1
+~
+~
+0 0 6721
+D3
+~
+~
+0 0 6723
+S
+#6723
+A Fork in the Path~
+The rose bushes are dominant here, although a few branches hang into the area
+from the west. You can see a few pears growing on the branches, but they are
+not ripened as of yet. Going south of here will take you around a bend, and
+in the north the path is straight.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6726
+D1
+~
+~
+0 0 6722
+D2
+~
+~
+0 0 6724
+S
+#6724
+A Bend~
+You come into an area where the ground is covered in dead vegetation... it
+looks like someone might have tried to slice or bash their way through. The
+dense rose bushes which line your path on either side seem unharmed and grow
+rapidly even as you stand there looking at them. Large spikey thorns poke out
+menacingly as you consider cutting them down.
+~
+0 134619156 0
+Rd     0
+D0
+~
+~
+0 0 6723
+D1
+~
+~
+0 0 6725
+S
+#6725
+A Dead End!~
+A dead end! All of that to end up here. Again, this area is covered with rose
+bushes and you can see the occasional wildflower peeking through. The only
+exit is west.
+~
+0 134619152 0
+Rd     0
+D3
+~
+~
+0 0 6724
+S
+#6726
+Hedges and Roses~
+A hedge path is here on either side of the road and the rose bushes continue
+to grow over them. The roses are not as dense here, but still pose as a threat
+to your escape. Thorns peirce out from beneath the hedges branches forcing you
+to keep clear.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6727
+D2
+~
+~
+0 0 6723
+S
+#6727
+Hedges and Roses~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what
+comes in and what goes out. Thorns pierce out from the hedges threatening you 
+to stay back.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6728
+D2
+~
+~
+0 0 6726
+S
+#6728
+Hedges and Roses~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what
+comes in and what goes out... namely nothing. Thorns pierce out from the hedges
+threatening you to stay back.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6729
+D3
+~
+~
+0 0 6727
+S
+#6729
+Hedges and Roses~
+Rose bushes cover the hedges on either side of your path here. Although the
+bushes are not very dense they seem to have no problem keeping guard of what
+comes in and what goes out... namely nothing. Thorns pierce out from the hedges
+threatening you to stay back.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6730
+D3
+~
+~
+0 0 6728
+S
+#6730
+Hedges and Roses~
+A hedge path is here on either side of you and the rose bushes continue to grow
+over them at a rapid pace. Although they are not dense here, they still pose as
+a threat to your escape. Thorns pierce out from between branches menacingly. You
+can go north and west of here.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6731
+D3
+~
+~
+0 0 6729
+S
+#6731
+Roses and Hedges~
+The hedges have begun to thin out a little here, and the rose bushes have
+almost completely taken over this area. Branches stick out in hopes to get the
+sunlight they need to strengthen them again.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6733
+D2
+~
+~
+0 0 6730
+D3
+~
+~
+0 0 6732
+S
+#6732
+A Dead End~
+The hedges have almost completely diminished here, and the roses have all but
+taken over. Branches reach out for the sun in their last attempt at strength,
+and life. Annoying thorns poke out at you, catching onto your armor as you go   past. The only exit is east.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6731
+S
+#6733
+Roses and Hedges~
+The hedges have thinned out quite a bit here, and the roses have all but 
+completely taken over. Brittle branches reach out from the sun in their last
+attempt at strength, and life.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6734
+D3
+~
+~
+0 0 6731
+S
+#6734
+A Dead End~
+The hedges have thinned out considerably, and the roses have almost completely
+taken over. Branches reach out in hopes to get the little bit of sunlight they
+need to strengthen them just enough to stay alive. Your only exit is west.
+~
+0 134619152 0
+Rd     0
+D3
+~
+~
+0 0 6733
+S
+#6735
+A Path of Rose Bushes~
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6736
+D2
+~
+~
+0 0 6664
+S
+#6736
+A Path of Rose Bushes~
+The familiar path of rose bushes make your path going north and south of here.
+A large bed of wildflowers to the east of you billows in the breeze. Looking
+at them for a moment, it seems that they are smiling back at you. They're
+array of colours brightens the area and almost makes you smile.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6737
+D2
+~
+~
+0 0 6735
+S
+#6737
+A Path of Rose Bushes~
+The path of rose bushes takes you to the east and to the south, and you can
+still hear the rustling of the leaves as they grow rapidly before your eyes.
+Wildflowers have been allowed to grow here on the west and north end of the
+path. And despite the rose bushes that keep them within the grounds of the
+garden, they seem to be smiling back at you.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6738
+D2
+~
+~
+0 0 6736
+S
+#6738
+Sunflower Way~
+Rose bushes line the path that leads to the north, west and south directions.
+Happy wildflowers line the path at your feet, and they seem to be smiling back
+at you despite the roses that hold them within the grounds of the garden. Tall
+sunflowers look down on you from above and they stand guard from here in all    directions for as far as you can see to the north and south.
+~
+0 134619156 0
+Rd     0
+D0
+~
+~
+0 0 6739
+D2
+~
+~
+0 0 6740
+D3
+~
+~
+0 0 6737
+S
+#6739
+Sunflower Way~
+Rose bushes line the path that leads to the north, west and south directions.
+Happy wildflowers line the path at your feet, and they seem to be smiling back
+at you despite the roses that hold them within the grounds of the garden. Tall
+sunflowers look down on you from above and they stand guard for as far as you
+can see to the north and south.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6752
+D2
+~
+~
+0 0 6738
+D3
+~
+~
+0 0 6750
+S
+#6740
+Sunflower Way~
+Sunflowers line each side of the path here, towering over the rose bushes
+but not taking over. You can hear the rustling of the leaves as the roses
+continue to grow rapidly with you looking on. The sunflowers seem to watch
+you as they sway in the breeze.  
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6738
+D1
+~
+~
+0 0 6741
+D2
+~
+~
+0 0 6742
+S
+#6741
+Weeping Fig Lane~
+This pathway is again surrounded in the familiar rose bushes that grow to
+make your path, and to keep you inside the grounds of the garden. However,
+little trees also line your path here, they're trunks rise up to about five
+feet and weeping branches droop out from the tops. Each trunk of each weeping
+fig has been braided at youth, and thus they all have a different trunk 
+pattern. The path takes you to the north and to the south.
+~
+0 134619152 0
+Rd     0
+E
+trunk~
+Wow. That's neat!
+~
+D0
+~
+~
+0 0 6745
+D3
+~
+~
+0 0 6740
+S
+#6742
+Sunflower Way~
+A sunflower path leads the way north and south here. The ground looks as 
+though it may be used from time to time, as there are little scuff marks in
+parts of the dirt path. Wildflower beds grow on each the east and west side
+of the road here, and they seem to be smiling back up at you.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6740
+D2
+~
+~
+0 0 6743
+S
+#6743
+A Bend in Sunflower Way~
+The familiar rose bushes and towering sunflowers begins to bend to the
+east here. In this grassy area, there are wildflowers on the west side of
+the path, and to the south grows a small vegetable garden... Above it hangs
+someone's laundry off of a string tied to different ends of the roses. You
+are at someone's front door! You can hear a faint tune being sung.  
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6742
+D1
+~
+~
+0 0 6744
+S
+#6744
+A Sunflower Hut~
+This little hut is made from the stems of the sunflowers all about the area.
+A little bed made of a sunflower stem frame, and filled with sunflower petals
+has been placed in the north east corner of the room. A few ceramic bowls and
+untensils lie about the place, some in neat piles and some scattered about
+the place in a mess. A small water hole has been dug out in the south east
+corner of the hut, and the place smells of a sweetness you cannot place.
+~
+0 134619160 0
+Rd     0
+D3
+~
+~
+0 0 6743
+S
+#6745
+Weeping Fig Lane~
+The path of rose bushes doesn't end here... you can still hear the rustling
+of the leaves as the roses grow before your very eyes. The weeping trees
+along the path brighten up the place a little though, as their leaves are a
+much brighter green than those of the rose bushes. Wildflowers grow here and    there on the east and west side of the path as well.
+~
+0 134619152 0
+Rd     0
+E
+wildflowers~
+Looking at the wildflowers, you notice that they seem to be smiling back at
+you.
+~
+D0
+~
+~
+0 0 6746
+D2
+~
+~
+0 0 6741
+S
+#6746
+Weeping Fig Lane~
+Looking down to the ground here, you notice that the path is much more 
+trodden than anywhere else in this area. Perhaps there is someone ahead of
+you and you can still catch up to them... maybe they know of a way out! But
+they could also be an enemy waiting for you to follow them to your doom. The
+only thing to do is continue in the direction you are headed to find out. The
+rose bushes grow rapidly here, the weeping figs sway in the breeze, and the
+wildflowers smile back at you as you go by.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6747
+D2
+~
+~
+0 0 6745
+S
+#6747
+Weeping Fig Lane~
+The weeping figs sway above, and you can hear the rustling of the leaves
+as the rose bushes continue to grow. The path here is trodden with recent
+footsteps of all sorts of sizes and shapes. You can smell a familiar scent
+coming from the north, is that cinnamon?  
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6748
+D2
+~
+~
+0 0 6746
+S
+#6748
+Weeping Fig Lane~
+The weeping fig trees are more dense here, however the rose bushes still
+control the area. You can hear the rustling of the leaves as the roses grow
+and as the fig trees sway through the breeze. You hear some sounds coming 
+from the north, and the familiar smell of cinnamon comes over you.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6749
+D2
+~
+~
+0 0 6747
+S
+#6749
+Nartika's Necessaries~
+This little closet of a shop is made from a large toadstool, and every
+piece of furniture inside is part of the toadstool that hasn't been carved
+away. There is a little counter at the north end of the place, and a few
+little shelves on each of the east and west walls. The smell of cinnamon
+lingers on here very strongly, perhaps too strongly for your liking. If you
+are larger than four and a half feet you have to crouch or squeeze your
+front end in through the door to catch a peek. A little window carved out
+in the south east wall allows the natural light to shine in.  
+~
+0 134620184 0
+Rd     0
+E
+window~
+You can see the path of Weeping Fig Lane out of the south window. You've 
+been there before.
+~
+D2
+~
+~
+0 0 6748
+S
+#6750
+A Large Vegetable Garden~
+This area is rich in soil, and all types of vegetables. The garden continues to
+the west in rows of carrots, lettuce, potatoes, all sorts of beans, pea pods,
+and corn stalks. Along the northern part of garden there is planted a row of
+all types of herbs. The roses surround the area in their protective guard, and
+the occasional sunflower peeks in with a breeze from the east.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6739
+D3
+~
+~
+0 0 6751
+S
+#6751
+A Large Vegetable Garden~
+Rows upon rows of vegetables planted in rich soil covers the majority of the
+area here. A line of herbs and spices line the northern end of the garden...
+marjoram, oregano, mint, mustard, cloves, cinnamon, and thyme. You can smell
+the cinnamon from where you are through the overall scent of the garden.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6750
+S
+#6752
+Sunflower Way~
+Rose bushes line the path that leads to the north and south directions. Happy
+wildflowers line the path at your feet, and they seem to be smiling back at 
+you despite the roses that hold them within the grounds of the garden. Tall
+sunflowers look down on you from above and they stand guard for as far as you
+can see to the south. You can see a bend in the way to the north.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6753
+D2
+~
+~
+0 0 6739
+S
+#6753
+A Bend in Sunflower Way~
+The path bends here going in the south and west directions. Rustling can be
+heard by the leaves on the rose bushes as they continue to grow before you.
+To the west you can see that the rose bushes have taken over the area again,
+but the path of sunflowers here continues to sway in the south.
+~
+0 134619152 0
+Rd     0
+D2
+~
+~
+0 0 6752
+D3
+~
+~
+0 0 6754
+S
+#6754
+A Path of Rose Bushes~
+The rose bushes are thicker here, much like the entrance which brought you 
+into the garden. You can hear the familiar rustling of the leaves as they grow
+before your eyes, and the thorns poke out menacingly at you with a gleam. The
+occasional wildflower can be seen along the path, and the sunflowers sway in
+from the west on a soft breeze.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6755
+D1
+~
+~
+0 0 6753
+D3
+~
+~
+0 0 6760
+S
+#6755
+Raspberry Corner~
+The rose bushes are thicker here, yet they have allowed a bit of a raspberry
+bush to grow in around them. You can hear the rustling of the leaves as the
+roses go on growing, and the buzzing of insects flying around the fruit 
+bushes. Thorns peek out from behind the raspberries to scare off any pickers.
+~
+0 134619156 0
+Rd     0
+D0
+~
+~
+0 0 6756
+D2
+~
+~
+0 0 6754
+S
+#6756
+Raspberry Corner~
+The rose bushes are thick here, yet they have allowed a bit of a raspberry 
+bush to grow in around them. You can hear the rustling of the leaves as the
+roses go on growing, and the buzzing of the insects flying around the fruit
+bushes. Thorns peek out from behind the raspberries to scare off any pickers.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6757
+D2
+~
+~
+0 0 6755
+S
+#6757
+Raspberry Corner~
+The rose bushes are thick here, yet they have allowed a bit of a raspberry
+bush to grow in around them. You can hear the rustling of the leaves as the
+roses go on growing, and the buzzing of the insects flying around the fruit
+bushes. Thorns peek out from behind the raspberries to scare off any pickers.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6758
+D3
+~
+~
+0 0 6756
+S
+#6758
+A Path of Rose Bushes~
+The rose bushes are all that you can see here, aside from the little bits of
+raspberry bushes peeking in from the west. You can still hear the slight 
+buzzing of insects as they buzz around the berries. The thorns pierce out from
+the bushes warning you to keep clear.
+~
+0 134619156 0
+Rd     0
+D1
+~
+~
+0 0 6759
+D3
+~
+~
+0 0 6757
+S
+#6759
+A Dead End~
+Your path comes to an end here. The rose bushes surround the area keeping guard 
+of what comes in and what goes out. Thorns poke out from every angle in the 
+bushes threatening you to stay back... and the familiar rustling of the leaves
+lingers on.
+~
+0 134619152 0
+Rd     0
+D3
+~
+~
+0 0 6758
+S
+#6760
+A Bend in Fern Square~
+The rose bushes line the outside of the path here, a row of ferns growing from
+their roots. The occasional bunch of wildflowers can be seen within the ferns,
+and they seem to be smiling back up at you. A fern branch stretches out onto
+the path here and there, and you step cautiously around them as you go past 
+being careful not to crush them.
+~
+0 134619156 0
+Rd     0
+D0
+~
+~
+0 0 6761
+D1
+~
+~
+0 0 6754
+D3
+~
+~
+0 0 6772
+S
+#6761
+Fern Square~
+The rose bushes line the outside of the path here, a row of ferns growing from
+their roots. The occasional bunch of wildflowers can be seen within the ferns,
+and they seem to be smiling back up at you. A fern branch stretches out onto
+the path here and there, and you step cautiously around them as you go past
+being careful not to crush them.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6762
+D2
+~
+~
+0 0 6760
+S
+#6762
+A Bend in Fern Square~
+The rose bushes line the outside of the path here, a row of ferns growing from
+their roots. The occasional bunch of wildflowers can be seen within the ferns,
+and they seem to be smiling back up at you. A fern branch stretches out onto
+the path here and there, and you step cautiously over them as you go around
+the bend being careful not to crush them. Your path leads you south and west.
+~
+0 134619152 0
+Rd     0
+D2
+~
+~
+0 0 6761
+D3
+~
+~
+0 0 6763
+S
+#6763
+Fern Square~
+The rose bushes line the outside of the path here, a row of ferns growing from
+their roots. The occasional bunch of wildflowers can be seen within the ferns,
+and they seem to be smiling back up at you. A fern branch stretches out onto
+the path here and there, and you step cautiously around them as you go past
+being careful not to crush them.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6762
+D3
+~
+~
+0 0 6764
+S
+#6764
+A Bend in Fern Square~
+The rose bushes line hte outside of the path here, a row of ferns growing from
+their roots. The occasional bunch of wildflowers can be seen within the ferns,
+and the seem to be smiling back up at you. A fern branch stretches out onto
+the path here and there, and you step cautiously over them as you go around
+the bend being careful not to crush them. Your path leads you to the east and   south.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6763
+D2
+~
+~
+0 0 6765
+S
+#6765
+Fern Square~
+The rose bushes line the outside of the path here, a row of ferns growing from
+their roots. The occasional bunch of wildflowers can be seen within the ferns,
+and they seem to be smiling back up at you. A fern branch stretches out onto
+the path here and there, and you step cautiously around them as you go past
+being careful not to crush them.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6764
+D2
+~
+~
+0 0 6766
+S
+#6766
+Fern Square~
+The rose bushes line the outside of the path here, a row of ferns growing from
+their roots. The occasional bunch of wildflowers can be seen within the ferns,
+and they seem to be smiling back up at you. A fern branch stretches out onto
+the path here and there, and you step cautiously around them as you go past
+being careful not to crush them. Curiously, this corner of the square doesn't
+continue to the east to finish the outline of the "square".
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6765
+D2
+~
+~
+0 0 6767
+D3
+~
+~
+0 0 6769
+S
+#6767
+A Path of Rose Bushes~
+The rose bushes are thicker here, much like the entrance which brought you
+into the garden. You can hear the familiar rustling of the leaves as they grow
+before your eyes, and the thorns poke out menacingly at you with a gleam. The
+occasional wildflower can be seen along the path, and the ferns stretch out
+onto the path from the north.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6766
+D2
+~
+~
+0 0 6768
+S
+#6768
+A Dead End~
+Your path comes to an end here. The rose bushes surround the area keeping guard
+of what comes in and what goes out. Thorns poke out from every angle in the
+bushes threatening you to stay back... and the familiar rustling of the leaves
+lingers on.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6767
+S
+#6769
+A Path of Rose Bushes~
+The rose bushes are thick here, much like the entrance which brought you 
+into the garden. You can hear the familiar rustling of the leaves as they grow
+before your eyes, and the thorns pierce out menacingly at you with a gleam. 
+The occasional wildflower can be seen along the path, and they seem to be
+smiling back up at you.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6766
+D3
+~
+~
+0 0 6770
+S
+#6770
+A Path of Rose Bushes~
+The rustling of the leaves continues, and glancing at the bushes you see them
+moving slightly as they grow. Your exits take you east and west.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6769
+D3
+~
+~
+0 0 6771
+S
+#6771
+A Dead End~
+Your path comes to an end here. The rose bushes surround the area keeping guard
+of what comes in and what goes out. Thorns poke out from every angle in the
+bushes threatening you to stay back... and the familiar rustling of the leaves
+lingers on. Your only exit is to the east.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6770
+S
+#6772
+Fern Square~
+The rose bushes line the outside of the path here, a row of ferns growing from
+their roots. The occasional bunch of wildflowers can be seen within the ferns,
+ans they seem to be smiling back up at you. A fern branch stretches out onto
+the path here and there, and you step cautiously around them as you go past
+being careful not to crush them.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6760
+D2
+~
+~
+0 0 6773
+S
+#6773
+A Fern Path~
+The rose bushes outline the pathway here, and along the base of all the bushes
+grow patches of thick ferns. Some of the fern branches reach out onto the path
+at your feet, and you step cautiously around them so as not to crush them.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6772
+D1
+~
+~
+0 0 6774
+D2
+~
+~
+0 0 6776
+S
+#6774
+A Path of Rose Bushes~
+The rustling of the leaves continues, and glancing at the bushes you see them
+moving slightly as they grow. A few fern branches peeking from the west, and
+you can see a wildflower poking its smiling face out at you here and there.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6775
+D3
+~
+~
+0 0 6773
+S
+#6775
+A Dead End~
+Rose bushes almost fully engulf the area once again, leaving only the thorns
+to poke out at you from within them. The only exit is to the west.
+~
+0 134619152 0
+Rd     0
+D3
+~
+~
+0 0 6774
+S
+#6776
+A Fern Path~
+The rose bushes outline the pathway here, and along the base of all the bushes
+grow patches of thick ferns. Some of the fern branches reach out onto the path
+at your feet, and you step cautiously around them so as not to crush them.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6773
+D2
+~
+~
+0 0 6777
+S
+#6777
+A Fern Path~
+The rose bushes outline the pathway here, and along the base of all the bushes
+grow patches of thick ferns. Some of the fern branches reach out onto the path
+at your feet, and you step cautiously around them so as not to crush them.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6776
+D1
+~
+~
+0 0 6778
+S
+#6778
+A Path of Rose Bushes~
+Rose bushes cover the area here on either side of your path. A few fern branches
+reach out onto the path from the west, and wildflowers peek out from among the
+bushes. Your exits take you south and west.
+~
+0 134619152 0
+Rd     0
+D2
+~
+~
+0 0 6779
+D3
+~
+~
+0 0 6777
+S
+#6779
+A Path of Rose Bushes~
+The rose bushes are thick here, much like the entrance which brought you into
+the garden. You can hear the familiar rustling of the leaves as they grow before
+your eyes, and the thorns pierce out menacinly at you with a gleam. The 
+occasional wildflower can be seen along the path, and they seem to be smiling
+back up at you.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6778
+D2
+~
+~
+0 0 6780
+D3
+~
+~
+0 0 6782
+S
+#6780
+A Path of Rose Bushes~
+The rose bushes here are very thick and full of thorns. You have to be careful
+in order not to be pierced by them as you go by. Rustling continues to linger
+in the background sounds through the breeze and as the bushes continually grow
+before your eyes.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6779
+D2
+~
+~
+0 0 6781
+S
+#6781
+A Dead End~
+Your path comes to an end here. The rose bushes surround the area keeping guard
+of what comes in and what goes out. Thorns poke out from every angle in the
+bushes threatening you to stay back... and the familiar rustling of the leaves
+lingers on. Your only exit is to the north.
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 6780
+S
+#6782
+A Path of Rose Bushes~
+The familiar path of rose bushes leads you to the east and west of here. A few
+wildflowers peek out from the bushes, smiling back up at you.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6779
+D3
+~
+~
+0 0 6783
+S
+#6783
+A Path of Rose Bushes~
+From here you can hear the sound of running water off to the north, and the
+rustling of the leaves almost drowns it out completely. To the east and west
+you see nothing but the rose bushes you have see throughout the garden. Could
+there be a body of water here? Or is it just your ears playing tricks on you
+because you so desperately want to make it home?
+~
+0 401428 0
+Rd     0
+D0
+~
+~
+0 0 6786
+D1
+~
+~
+0 0 6782
+D3
+~
+~
+0 0 6784
+S
+#6784
+A Path of Rose Bushes~
+The familiar path of rose bushes leads you to the east and west of here. A few
+wildflowers peek out from the bushes, smiling back up at you.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6783
+D3
+~
+~
+0 0 6785
+S
+#6785
+A Dead End~
+Your path comes to an end here. The rose bushes surround the area keeping guard
+of what comes in and what goes out. Thorns poke out from every angle in the
+bushes threatening you to stay back... and the familiar rustling of the leaves
+lingers on. Your only exit is east.
+~
+0 134619152 0
+Rd     0
+D1
+~
+~
+0 0 6784
+S
+#6786
+The Fountain Home~
+~
+0 134219268 0
+Rd     0
+S
+#6787
+Floating...~
+You float upward, not knowing where you are going or what will be at the
+end of your journey... if there is an end. However, regardless of your
+situation, you feel safe somehow. The darkness lingers on around you, but
+the stars are no longer there... an illusion perhaps?  Could this be a
+dream?  
+~
+0 134620165 0
+Rd     0
+D4
+~
+~
+0 0 6788
+S
+#6788
+Floating...~
+You float upward wondering what will be at the end of this path. Ahhh... the
+path. Not only a road that will take you from an adventure to your home, but
+oh so much more. Your path is what takes you to your destiny, to the person
+you are to become...
+~
+0 134620165 0
+Rd     0
+D4
+~
+~
+0 0 6789
+S
+#6789
+Floating...~
+You float upwards still, and wonder when it will come to an end... whatever
+it might be. You may begin to think of adventures once sought, loved ones and
+friends from the past... treasures gained, treasures lost, humiliation and 
+victory. At this, you feel yourself being pulled to your destiny...
+~
+0 134620165 0
+Rd     0
+D4
+~
+~
+0 0 6790
+S
+#6790
+Room of Warding~
+This large room is bare, save the spiral staircase going up in the north
+east wall. Different symbols have been drawn on all four walls, perhaps
+runes of warding to discourage trespassers. Maybe there is a way out of
+here. After all, why have runes of warding if there is no where to run?  
+~
+0 134217728 0
+Rd     0
+D4
+~
+~
+0 0 6791
+S
+#6791
+The Mage's Study~
+A small staircase leads up to another level in the tower. The ceiling is
+low here and the place is scattered with parchments written in a language
+you cannot begin to decipher. Everywhere you turn you can see all different
+sizes of glass bottles and flasks filled with odd-coloured liquids. A large
+black couldron sits over a hearth along the east wall, and from the ceiling
+above there are different animal carcasses hanging from a thin piece of
+rope. It is quite dismal in here, because the only lighting is severeal
+large candles floating about the room.  
+~
+0 134356992 0
+Rd     0
+D4
+~
+~
+0 0 6792
+D5
+~
+~
+0 0 6790
+S
+#6792
+Living Quarters~
+A large soft bed is set in the north end of the room, underneath a keyhole
+window cut out in the stone wall. Beside it lay several blankets, assumingly forthe beast you encountered in the The Mage's Study. Several dressers and a couple
+nightables line the east and south wall. Various items rest on each table, 
+such as make-up, a hairbrush, mirrors of all sizes and odd things like dried
+bats wings, incense, different herbs and other such oddities. A bit of light
+shines in from the little window casting shadows here and there.
+~
+0 131072 0
+Rd     0
+E
+window~
+Looking out the window you can see a very large garden, which looks like a
+maze from this angle. It might be worth checking out once you get out of this   place.
+~
+D5
+~
+~
+0 0 6791
+S
+#6793
+A Dark Path~
+The path is dark here, and your light source (if you have one) does little to
+brighten up the dreariness of your surroundings. The trees around you are gnarly
+and twisted, not a sign of green vegetation about. What you are able to see
+in the shadows of the available light are trees with menacing faces, and they
+seem to glare down at you as you pass through.
+~
+0 134217733 3
+Rd     0
+S
+#6794
+A Dark Path~
+The path is dark here, and your light source (if you have one) does little to
+brighten up the dreariness of your surroundings. The trees around you are gnarly
+and twisted, not a sign of green vegetation about. What you are able to see
+in the shadows of the available light are trees with menacing faces, and they 
+seem to glare down at you as you pass through.
+~
+0 134217729 3
+Rd     0
+D0
+~
+~
+0 0 6795
+D2
+~
+~
+0 0 9517
+S
+#6795
+An Intersection in the Dark Path~
+The intersection is dark here, and with the very little available light there
+is... the trees seem to have faces which glare down at you as you pass through.
+Leaves rustle in the breeze adding to the spookiness of the place, and a chill
+runs down your spine.
+~
+0 134217729 3
+Rd     0
+D0
+~
+~
+0 0 6796
+D1
+~
+~
+0 0 6798
+D2
+~
+~
+0 0 6794
+D3
+~
+~
+0 0 6801
+S
+#6796
+An unused part of the path~
+The path seems to end here because of the overgrown trees... although looking
+carefully to the north you can see that it did continue that way at one point
+in time. The ground here is dry and the leftovers of various paw prints have 
+been marked in the dirt by the passage of rabbits, deer and some undecipherable
+others. This leaves you only to assume that there is a way through. The only
+Obvious exit is south.
+~
+0 134217732 3
+Rd     0
+D0
+~
+trees~
+3 0 6797
+D2
+~
+~
+0 0 6795
+S
+#6797
+A Junction in the Path~
+Giant trees hang over head, leafless and dark. The light that shines in from the
+holes in the canopy above you is dim, and the shadows play tricks on you. Faces
+in the trees seem to be glaring back at you menacingly, and branches reach
+out with their gnarly claws and catch onto your clothing and armour as you pass
+by. The path leads off to the north, east, and west of here.
+~
+0 134217728 3
+Rd     0
+D0
+~
+~
+0 0 6804
+D1
+~
+~
+0 0 6800
+D2
+~
+trees~
+3 0 6796
+D3
+~
+~
+0 0 6803
+S
+#6798
+A Dimly Lit Path~
+The path is not well lit here, however a tinge of light from the sun or moon
+shines in through the canopy of trees above. The gnarly things glare down at
+you as you pass through, and a path of the giants lead you to the north and to 
+the west.
+~
+0 134217728 3
+Rd     0
+D0
+~
+~
+0 0 6799
+D3
+~
+~
+0 0 6795
+S
+#6799
+A Dimly Lit Path~
+The path is not well lit here, however a tinge of light from the sun or moon
+shines in through the canopy of trees above. The gnarly things glare down at
+you as you pass through, and a path of the giants lead you to the north and to
+the south.
+~
+0 134217728 3
+Rd     0
+D0
+~
+~
+0 0 6800
+D2
+~
+~
+0 0 6798
+S
+#6800
+A Curve in the Path~
+Trees surround the area as the path curves off in the south and west directions,
+with a small amount of light illuminating from the sky through the giant canopy.
+To the west you can see that you have several directions to choose from, and
+your path is a bit brighter there as well.
+~
+0 134217728 3
+Rd     0
+D2
+~
+~
+0 0 6799
+D3
+~
+~
+0 0 6797
+S
+#6801
+A Dimly Lit Path~
+The path is not well lit here, however a tinge of light from the sun or moon
+shines in through the canopy of trees above. The gnarly things glare down at
+you as you pass through, and a path of the giants lead you to the north and to
+the east.
+~
+0 134217728 3
+Rd     0
+D0
+~
+~
+0 0 6802
+D1
+~
+~
+0 0 6795
+S
+#6802
+A Dimly Lit Path~
+The path is not well lit here, however a tinge of light from the sun or moon
+shines in through the canopy of trees above. The gnarly things glare down at
+you as you pass through, and a path of the giants lead you to the north and to
+the south.
+~
+0 134217728 3
+Rd     0
+D0
+~
+~
+0 0 6803
+D2
+~
+~
+0 0 6801
+S
+#6803
+A Curve in the Path~
+Trees surround the area as the path curves off in the south and east directions,
+with a small amount of light illuminating from the sky through the giant canopy.
+To the east you can see that you have several directions to choose from, and
+your path is a bit brighter there as well.
+~
+0 134217728 3
+Rd     0
+D1
+~
+~
+0 0 6797
+D2
+~
+~
+0 0 6802
+S
+#6804
+The Opening of a small Clearing~
+A clearing opens up here, and the area brightens up quite a bit. The canopy
+above you has diminished almost completely allowing the natural light to shine
+in and show the fresh green-coloured moss on the ground beneath your feet.
+~
+0 134217732 3
+Rd     0
+D0
+~
+~
+0 0 6805
+D2
+~
+~
+0 0 6797
+S
+#6805
+A Camp~
+This clearing consists of dry ground, and is enclosed by trees that have no
+fruit or leaves of any kind. The canopy above covers up most of the natural
+light that shines in, but you can see well enough. The campfire burns and the
+shadows dance on the trunks of each tree reminding you of the danger that may
+lurk in the darkness beyond.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 6808
+D1
+~
+~
+0 0 6807
+D2
+~
+~
+0 0 6804
+D3
+~
+~
+0 0 6806
+S
+#6806
+West Side of the Camp~
+The area is dim here due to the thick canopy overhead and you can hear the
+constant chirping of crickets all around you. A small light can be seen within
+the tent that has been pitched here, and it seems as though someone might be
+using a candle inside.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 6809
+D1
+~
+~
+0 0 6805
+S
+#6807
+East Side of the Camp~
+The area is dim here due to the thick canopy overhead and you can hear the
+constant chirping of crickets all around you. A small tent has been pitched
+here, and the flap has been left open so that you can peer inside.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 6810
+D3
+~
+~
+0 0 6805
+S
+#6808
+South End of the Clearing~
+It is brighter here as the torch light shines in from the east and west cages.
+You can hear the occasional scream from either your left or right, a grunt
+now and then, and what might be a slight hissing sound.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 6811
+D1
+~
+~
+0 0 6810
+D2
+~
+~
+0 0 6805
+D3
+~
+~
+0 0 6809
+S
+#6809
+Southwest Corner of the Clearing~
+The clearing is well lit now, by torches that hang off of each end of the cage
+that is here. This particular cage is about 8 feet wide by 7 feet high, and
+inside it you can see a little man-like creature that is about 18 inches tall.
+~
+0 0 3
+Rd     0
+E
+creature~
+It is about 18 inches tall and has greenish reptilian skin. Its leathery wings
+are about half the size of its body and are folded at its back. Its bat-like
+mouth has pointed teeth that are half an inch apart from one another.
+~
+D0
+~
+~
+0 0 6812
+D1
+~
+~
+0 0 6808
+D2
+~
+~
+0 0 6806
+S
+#6810
+Southeast Corner of the Clearing~
+The clearing is well lit now, by torches that hang off of each end of the cage
+that is here. This particular cage is about 8 feet wide by 7 feet high, and
+inside it you can see a man-like creature about 6 feet tall with greyish skin.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 6813
+D2
+~
+~
+0 0 6807
+D3
+~
+~
+0 0 6808
+S
+#6811
+A Large Clearing~
+It is brighter here as the torch light shines in from the east and west cages.
+You can hear the occasional scream from either your left or right, a grunt
+now and then, and what might be a slight hissing sound.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 6814
+D1
+~
+~
+0 0 6813
+D2
+~
+~
+0 0 6808
+D3
+~
+~
+0 0 6812
+S
+#6812
+West Side of the Clearing~
+The forest is dark here, except for the torch light coming in brightly from the
+sides of the cage in front of you. A tinge of light also shines here from the
+east as well. A hissing sound can be heard from in the cage here.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 6815
+D1
+~
+~
+0 0 6811
+D2
+~
+~
+0 0 6809
+S
+#6813
+East Side of the Clearing~
+The light of the cage brightens the area up some, but it still appears quite
+dark. A cage of 10 feet in width, and 8 feet in height is here, and you can
+hear a faint growling, or purring coming from inside. This area is also a
+bit too hot for you to be comfortable.
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 6816
+D2
+~
+~
+0 0 6810
+D3
+~
+~
+0 0 6811
+S
+#6814
+North End of the Clearing~
+It is brighter here as the torch light shines in from the north, east and west
+cages. You can hear the occasional scream from either your left or right, a 
+grunt now and then, and what might be a slight hissing sound. Despite all of 
+this... there is a sense of comfort as you stand here.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 6816
+D2
+~
+~
+0 0 6811
+D3
+~
+~
+0 0 6815
+S
+#6815
+Northwest Side of the Clearing~
+You can hear the screeching very clearly from here, as it is coming from the
+cage in front of you to the west. The cage is approximately 10 feet high, and
+just under 5 feet wide. Periodically, you can also hear the sound of twigs
+being broken or squeezed under the claws of some magnificent creature. The
+torches on either side of the cage burn brightly, however, they do little to
+light what you might see inside the cage.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 6814
+D2
+~
+~
+0 0 6812
+D3
+~
+cage~
+7 6814 6824
+S
+#6816
+Northeast Side of the Clearing~
+This area is dark, as the cage here is empty save the entrails of something
+undiscernable. No torches are lit here, and all you hear are the sounds of 
+people gawking at the beasts that Mommy Fortuna has managed to capture and
+imprison.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+343 0 6817
+D2
+~
+~
+0 0 6813
+D3
+~
+~
+0 0 6814
+S
+#6817
+The Unicorn~
+The torch light outside the cage does little to illuminate this area, as it is
+brightly lit by a source you cannot see. The cage is empty and black except
+for any occupants inside.
+~
+0 0 3
+Rd     0
+D3
+~
+~
+343 0 6816
+S
+#6818
+Inside a tent~
+The tent is made of canvas and you can see the wooden poles in each of its
+corners holding it upright. There is a bedroll on the floor, and a lantern
+(which is currently lit) on a makeshift table in one of the corners. A few
+articles of clothing are scattered about the place.
+~
+0 131084 0
+Rd     0
+E
+table~
+A few large books have been stacked here to make a table.
+~
+E
+makeshift~
+A few large books have been stacked here to make a table.
+~
+E
+clothing~
+Soiled shirts, pants and socks have been scattered about the room. They are 
+all small in size, and probably belong to a man.
+~
+S
+#6819
+Schmendrick's Tent~
+This tent is kept very neat and tidy. Everything about it is organized. There
+is a bedroll, neatly made over along the west side... and a small table and
+chair is located in the northeast corner of the tent. Books are lined along
+the rest of the tent walls in numerical order.
+~
+0 131084 0
+Rd     0
+E
+table~
+On the table is a lit candle, a vial of ink, and a quill pen. A book is opened
+to a blank page in the centre of the table.
+~
+E
+books~
+A row of books lines the floor here along the walls of the tent. Skimming
+through the bindings of each book you read titles such as; Book 1, Book 2,
+Book 3 etc... perhaps it is an Encyclopedia of books.
+~
+E
+book~
+A book is opened to a blank page here.
+~
+E
+chair~
+A plain wooden chair with a high cushioned back, and a cushioned seat.
+~
+E
+bedroll~
+A bedroll has been neatly made.
+~
+S
+#6820
+Inside the Homonculous' Cage~
+The cage is grim and dark. The only light coming in is that of the torches that
+burn outside on each end of the cage.
+~
+0 401412 0
+Rd     0
+S
+#6821
+The Doppleganger's Cage~
+This cage is not unlike any other cage you may have seen here at the Carnival
+or anywhere else. It is dark and bare, with nothing but a few blankets inside.
+However, you might find a shock here as well.
+~
+0 131077 0
+Rd     0
+S
+#6822
+The Beholder's Cage~
+The cage is dark and you can barely see your hand in front of your face, despite
+the bright torch light outside. The hissing sound is loud here and it's source 
+changes positions as you stand inside.
+~
+0 131077 0
+Rd     0
+S
+#6823
+The Chimera's Cage~
+The cage is dark despite the bright torch light coming from the outside. The 
+place smells of feces, and you might guess that a cage this big would contain a
+very large creature. You can hear a rather loud purr, or soft growl.
+~
+0 131077 0
+Rd     0
+S
+#6824
+The Harpy's Cage~
+The dark cage is more closed in than any of the others you may have seen here
+at The Carnival, but what it lacks in an arm's length, it makes up for in
+height. If you have made it into the cage, consider yourself lucky... as Selena
+doesn't take well to guests in her prison cell or otherwise.
+~
+0 131073 0
+Rd     0
+D1
+~
+~
+7 6814 6815
+S
+#0
+
+
+
+#SPECIALS
+M 6601 spec_poison
+M 6604 spec_cast_mage
+M 6605 spec_cast_psionicist
+M 6608 spec_breath_gas
+M 6613 spec_healer
+M 6618 spec_thief
+M 6620 spec_cast_cleric
+M 6655 spec_cast_cleric
+M 6656 spec_poison
+M 6796 spec_cast_psionicist
+M 6797 spec_cast_mage
+M 6799 spec_breath_fire
+M 6801 spec_cast_cleric
+S
+
+
+
+#RESETS
+O 0 6600 0 6600
+O 0 6605 0 6600
+O 0 6601 0 6601
+O 0 6602 0 6602
+M 0 6603 1 6603
+E 0 6606 0 20
+E 0 6607 0 16
+E 0 6608 0 12
+E 0 6609 0 13
+E 0 6610 0 11
+E 0 6611 0 5
+E 0 6612 0 25
+E 0 6612 0 24
+O 0 6603 0 6603
+P 0 6604 0 6603
+M 0 6606 1 6606
+M 0 6621 1 6610
+E 0 6674 0 20
+M 0 6608 1 6611
+M 0 6607 1 6612
+M 0 6606 1 6613
+O 0 6616 0 6616
+O 0 6618 0 6618
+O 0 6619 0 6619
+O 0 6620 0 6620
+M 0 6622 1 6622
+E 0 6622 0 9
+O 0 6623 0 6622
+O 0 6624 0 6623
+M 0 6602 1 6630
+M 0 6601 1 6633
+E 0 6626 0 7
+O 0 6625 0 6634
+O 0 6613 0 6637
+O 0 6627 0 6643
+O 0 6614 0 6645
+M 0 6608 1 6648
+M 0 6633 1 6649
+M 0 6652 1 6652
+M 0 6655 1 6656
+E 0 6655 0 5
+E 0 6656 0 20
+E 0 6657 0 11
+G 0 6621 0
+M 0 6656 1 6667
+M 0 6657 1 6672
+M 0 6610 1 6688
+E 0 6617 0 14
+M 0 6617 1 6702
+G 0 6621 0
+M 0 6616 1 6703
+O 0 6659 0 6704
+O 0 6658 0 6704
+M 0 6614 1 6705
+G 0 6652 0
+E 0 6654 0 22
+G 0 6653 0
+M 0 6615 1 6706
+E 0 6660 0 5
+E 0 6661 0 6
+E 0 6662 0 1
+M 0 6623 1 6712
+M 0 6618 1 6730
+E 0 6668 0 20
+G 0 6667 0
+G 0 6621 0
+M 0 6609 1 6744
+E 0 6636 0 3
+E 0 6637 0 12
+E 0 6638 0 5
+E 0 6639 0 17
+E 0 6640 0 20
+O 0 6635 0 6744
+M 0 6611 1 6749
+O 0 6642 0 6749
+G 0 6650 0
+G 0 6669 0
+G 0 6651 0
+G 0 6665 0
+G 0 6663 0
+G 0 6621 0
+O 0 6646 0 6750
+O 0 6644 0 6750
+O 0 6643 0 6750
+O 0 6645 0 6751
+M 0 6612 1 6756
+G 0 6647 0
+E 0 6647 0 22
+O 0 6647 0 6757
+M 0 6620 1 6766
+E 0 6670 0 20
+E 0 6671 0 16
+M 0 6613 1 6786
+E 0 6666 0 22
+O 0 6648 0 6786
+M 0 6604 1 6791
+E 0 6628 0 5
+E 0 6629 0 12
+E 0 6630 0 17
+E 0 6631 0 18
+E 0 6632 0 23
+E 0 6634 0 2
+M 0 6605 1 6791
+E 0 6633 0 20
+M 0 6619 1 6792
+G 0 6672 0
+G 0 6673 0
+M 0 6793 1 6796
+M 0 6794 1 6798
+O 0 6794 0 6800
+O 0 6793 0 6802
+O 0 6802 0 6805
+O 0 6797 0 6806
+O 0 6795 0 6807
+M 0 6801 1 6808
+G 0 6814 0
+G 0 6815 0
+E 0 6819 0 20
+E 0 6820 0 6
+O 0 6800 0 6809
+O 0 6803 0 6810
+O 0 6806 0 6812
+O 0 6810 0 6813
+M 0 6802 1 6817
+M 0 6803 1 6818
+O 0 6796 0 6818
+M 0 6797 1 6819
+E 0 6811 0 6
+E 0 6812 0 12
+E 0 6816 0 5
+G 0 6817 0
+G 0 6818 0
+O 0 6798 0 6819
+O 0 6799 0 6819
+M 0 6795 1 6820
+O 0 6801 0 6820
+M 0 6796 1 6821
+E 0 6805 0 22
+O 0 6804 0 6821
+M 0 6798 1 6822
+O 0 6807 0 6822
+M 0 6799 1 6823
+E 0 6808 0 20
+O 0 6809 0 6823
+M 0 6800 1 6824
+S
+
+
+
+#SHOPS
+6611 0 8 15 5 9 110 75 0 24
+0
+
+
+
+#$

@@ -1,0 +1,3581 @@
+#AREADATA
+Name        {??-???} Halls of the Damned Reklar~
+Levels      100 110
+Builders    Reklar~
+VNUMs       10802 10880
+Security    1
+Recall      25000
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#10802
+shade~
+Reklars Shade~
+A Shade of The Lord Reklar Stands Here, Warning You.
+~
+This is the shade of the God Reklar.  This shade acts as Reklars beacon
+of warning.  He keeps the weak and the foolish out of Reklars Hall.  He
+flickers slightly in the light.  But You know attacking him Would be
+foolish.  
+~
+67 520643240 32 0 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+>all_greet_prog 100~
+tell $n &B Greetings and welcome to my hall.
+tell $n &B To survive be the best of all.
+tell $n &B For in this place you will find,
+tell $n &B Enemies of your very same kind.
+tell $n &B If You die forever be in strife.
+tell $n &B For in these Halls '&RVICTORY IS LIFE'
+tell $n &B Good Luck!
+break
+mpechoat $n This Area is Designed For _GROUPS_ Of Levels 100+.
+mpechoat $n Any Other arrangement Will most likely Result In &RDEATH.
+mpechoat $n &Y-YOU HAVE BEEN WARNED.
+mpechoat $n &Y             -The Management
+~
+|
+#10803
+palladia mors~
+Palladia Mors~
+&YPalladia Mors The Head Paladin of The First &WOrder&Y Stands Here.
+~
+Palladia Mors.  He is the storngest and the most powerfull of the First
+Order Of Paladins.  He Is of an oder of paladins Call the first order.  He
+has honor And Faith at his Command.  
+~
+3 503341184 0 1000 S
+135 0 0 41100d0+0 0d0+0
+3500 0 0 0
+0 0 1
+0 0 0
+>hitprcnt_prog 90~
+soulstrike $n
+c 'holy fire' $n
+bash $n
+say Die Coward!
+~
+>all_greet_prog 100~
+say Foul Coward. Begone. Or I shall Kill ye.
+~
+|
+#10804
+gazi~
+Gazi~
+Gazi The Warrior of Honor Stands Here.
+~
+Gazi Is The Warrior of high honor. He is strong and big.
+~
+3 503341184 0 500 S
+135 0 0 14500d0+0 0d0+0
+3500 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Battle Ho! Fight Coward! Battle Ho!
+~
+>hitprcnt_prog 90~
+disarm
+beserk
+punch $n
+gouge $n
+kick
+~
+|
+#10805
+Nilor~
+Nilor~
+Nilor, The Second Paladin Of The First Order Stands Here.
+~
+Nilor Is the second paladin of the Glorious First order.  
+~
+3 503341184 0 700 S
+125 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say What Begotten Freak is this That Darest Defy God With his presence? 
+say Bogone, $n, You Coward.
+~
+>hitprcnt_prog 90~
+multi 'holy fires' 'holy fires'
+say Burn!
+~
+>death_prog 100~
+say Burn In Hell $n!
+~
+|
+#10806
+susann~
+Susann~
+Susann, The Third Paladin Of The First Order Stands Here.
+~
+This Lovely Young lady is as Deadly as she is pretty.
+~
+3 503341184 0 500 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+say Who are you? What do you want? Why you come here? Do you wish to Fight?
+~
+>hitprcnt_prog 90~
+soulstrike $n
+say Weakling. If you cant even beat me, How do you intend to stand against Palladia Mors?
+~
+|
+#10807
+kitik~
+Kitik~
+Kitik The Female Warrior Of High Honor Stands Here.
+~
+~
+3 503341184 0 700 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+say Enemy! Villian! Battle Ho! Battle Ho!
+~
+|
+#10808
+holipoe~
+Holipoe~
+Holipoe The Warrior Of Strength Stands Here.
+~
+~
+3 503341184 0 700 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#10809
+na'jak najak~
+Na'Jak~
+Na'Jak The Werewolf Leader Of The Ahroun Pack Stalks Here.
+~
+~
+3 503341184 0 -500 S
+135 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10810
+ke'ra kera~
+Ke'Ra~
+Ke'Ra Of the Werewolf Pack Ahroun Stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10811
+jer'ta jerta~
+Jer'Ta~
+Jer'Ta of The Ahroun Pack stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10812
+simon~
+Simon~
+Simon The simple Monk Stands Here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10813
+peter~
+Peter~
+Peter The Humble Monk stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10814
+neero ne'ero~
+Ne'ero~
+Ne'ero The Vampire Of The Shava-Eriol Clan Stands Here
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10815
+taj~
+Taj~
+Taj Of The Shava-Eriol Vampire Clan stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10816
+imithious~
+Imithious~
+Imithious The Scholar Mage stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10817
+tangro~
+Tangro~
+Tangro Scholar and Summoner Mage stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10818
+theera~
+Theera~
+Theera The Summoner Of The elements stands Here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10819
+kilija~
+Kilija~
+Kilija The Lightning Controller stands here.
+~
+~
+3 503341184 0 200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10820
+ungra~
+Ungra~
+Ungra The Cleric Of High Healing Stands Here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10821
+humbious~
+Humbious~
+Humbious High Healer Of The Clerics stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10822
+blackblade~
+Blackblade~
+Blackblade The Thief sneaks Here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10823
+heartstabber~
+Heartstabber~
+Heartstabber The Thief Of the Blade stands Here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10824
+rivon~
+Rivon~
+Rivon The Soul Eating Necromancer Stands Here. 
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10825
+pith~
+Pith~
+Pith The Necromatic Queen stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10826
+sabrina~
+Sabrina~
+Sabrina The Dancing Bard stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10827
+jacob~
+Jacob~
+Jacob The Singing Bard stands here, singing.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10828
+sithia~
+Sithia~
+Sithia The Psionic Master of the Mind stands Here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#10829
+nom~
+Nom~
+Nom The Master of The Psionic Mind stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10830
+trimon~
+Trimon~
+Trimon the Ranger of the Land stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10831
+hirtt~
+Hirtt~
+Hirtt The Ranger of the Wood stands here.
+~
+~
+3 503341184 0 -200 S
+125 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10832
+alexander~
+Alexander~
+Alexander The Monk Of High Power stands here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 22500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10833
+terok~
+Terok~
+Terok The Lord Of The Shava-Eriol Vampire Clan stands here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10834
+jih~
+Jih~
+Jih The Lead Mage stands Here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10835
+sav rain~
+Sav Rain~
+Sav Rain The Controller Of All Elements stands here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10836
+unipo~
+Unipo~
+Unipo The Healer of All Stands here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 14500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10837
+darkheart~
+Darkheart~
+Darkheart the Thief Of Extreme Power stands Here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10838
+dodiv~
+Dodiv~
+Dodiv The Eater Of Souls stands here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10839
+daniel~
+Daniel~
+Daniel The Bard of all Talents stands here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10840
+poiuy~
+Poiuy~
+Poiuy The Master of The Mind stands here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 41100d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#10841
+dasit~
+Dasit~
+Dasit The Ranger Of The World stands here.
+~
+~
+3 503341184 0 -200 S
+135 0 0 14500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#0
+
+
+
+#OBJECTS
+#10802
+rift~
+the Rift Of The Damned.~
+A Rift leading out of The Halls Sits here.~
+~
+29 0 0 0 0 100
+25000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#10803
+sphere faith~
+&YA &WP&Ya&Wl&Ya&Wd&Yi&Wn&Y'&Ws &YFa&Wi&Yt&Wh~
+&WA &YS&Ww&Yi&Wr&Yl&Wi&Yn&Wg &YS&Wp&Yh&We&Yr&We &YO&Wf &YF&Wa&Yi&Wt&Yh &WF&Yl&Wo&Ya&Wt&Ys &WH&Ye&Wr&Ye&W.~
+~
+5 637534529 8063 0 8193 100
+0~ 0~ 0~ 6~
+10 0 0 0 0
+5 0
+holy strength~
+-1 -1
+0 0 0
+A
+24 -5
+A
+14 100
+A
+12 100
+A
+13 100
+A
+18 175
+A
+19 200
+E
+sphere faith~
+This Swirling sphere of energy is a physical Representaion of a Paladin's
+Faith.  In the Hands of A Paladin their Faith is there best weapon.  
+~
+#10804
+plate servitude~
+the Plate Of Servitude~
+A Plate of Undying Servitude lies here, looking Servicing.~
+~
+9 259 8062 0 9 100
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+2 3
+A
+1 3
+A
+13 110
+A
+12 110
+A
+17 -110
+E
+plate sevitude~
+This swirling mist is the physical representation of a Paladin's service toward mankind.
+~
+#10805
+helm truth~
+the Helm Of Truth~
+The Helm Of Truth lies here.~
+~
+9 259 8062 0 17 100
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 3
+A
+3 3
+A
+14 100
+A
+12 100
+A
+13 100
+A
+17 -110
+E
+helm truth~
+This is the representation of a paladins Truth. Bear it only in that.
+~
+#10806
+honor aura~
+the Aura Of Honor~
+The Aura Of Honor Floats Here mysticaly.~
+~
+9 259 8062 0 1025 100
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -100
+A
+13 100
+A
+12 100
+A
+14 100
+A
+1 3
+A
+4 3
+E
+honor aura~
+This mystical flowing swirling shape is the Honor of a paladin. Use It In Honor Only.
+~
+#10807
+image deity~
+the Image Of A Deity~
+A Fuzzy, phasing image of a diety floats here.~
+~
+9 259 8062 0 32769 100
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -100
+A
+12 100
+A
+13 10
+A
+14 100
+A
+3 3
+A
+2 3
+E
+image diety~
+This small spectral image looks exactly like the Dietys clerics worship.
+~
+#10808
+black obsidean helm~
+a Black Obsidean Helm~
+A Helm Made of Pure Black Obsidean rests here.~
+~
+9 259 8183 0 17 100
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -110
+A
+13 110
+A
+14 110
+A
+1 3
+A
+5 3
+A
+24 -5
+E
+black obsidean helm~
+This helmet is absoloutly seamless. It is made of Black Obsidean. It is Very Hard To damage.
+~
+#10809
+black obsidean platemail~
+black Obsidean Platemail~
+A Suit of Black Obsidean Platemail Lies here in a Heap.~
+~
+9 259 8183 0 9 0
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -110
+A
+13 110
+A
+14 110
+A
+1 3
+A
+5 3
+A
+24 -5
+E
+black obsidean platemail~
+This suit of platemail is made of gleaming seamless Black Obsidean.
+~
+#10810
+black obsidean armguards~
+black Obsidean Armguards~
+A Set of Black Obsidean Armguards lie here.~
+~
+9 259 8183 0 257 0
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -110
+A
+23 -5
+A
+2 3
+A
+1 3
+A
+14 110
+A
+13 110
+E
+black obsidean armguards~
+These Armguards are made of black obsidean and cover the entire arm. They are designed to interlink with other Black Obsidean Armor To Form a great Suit of armor.
+~
+#10811
+warriors honor~
+&YA Warriors &RHonor~
+&YThe Swirling mist of a Warriors &RHonor &Yfloats Here.~
+~
+5 100663555 8183 0 8193 100
+0~ 0~ 0~ 6~
+10 0 0 0 0
+5 0
+giant strength~
+-1 -1
+0 0 0
+A
+23 -5
+A
+13 100
+A
+14 100
+A
+24 -5
+A
+19 200
+A
+18 175
+E
+warriors honor~
+Courage. Strength. Stamina. Honor above all else. Death Before Dishonor. These are weapons of a Warrior.
+~
+#10812
+black obsidean cape~
+a Black Cape With Attached Obsidean Plates ~
+A Black Cape With Attached Obsidean Plates lies here in a heap.~
+~
+9 259 8183 0 1025 100
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 3
+A
+24 -5
+A
+1 3
+A
+14 110
+A
+17 -110
+A
+13 110
+E
+black obsidean cape~
+This is a black cape with large haevy Black Obsidean Plates on it.
+~
+#10813
+shield raven~
+a Shield With A Raven Engraved Upon it~
+A Shield With A Raven Engraved Upon it lies Here.~
+~
+9 259 8183 0 513 100
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+1 3
+A
+23 -5
+A
+5 3
+E
+shield raven~
+This Black obsidean Shield has the image of a raven intricly engraved in it.
+~
+#10814
+grey body plating ~
+grey Colored Werewolf Body Plating ~
+A suit of Grey Colored Werewolf Body Plating lies here.~
+~
+9 259 6143 0 9 100
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+2 3
+A
+1 3
+A
+17 -110
+A
+13 110
+A
+14 110
+E
+grey body plating~
+This Plating Is made of an unknown material. It is flexible yet protective.
+~
+#10815
+grey leg plating ~
+grey Werewolf Leg Plating~
+A Set of Grey Werewolf Leg Plating lies here.~
+~
+9 259 6143 0 33 100
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+2 3
+A
+1 3
+A
+17 -110
+A
+13 110
+A
+14 110
+E
+grey leg plating~
+This Plating Is made of an unknown material. It is flexible yet protective.
+~
+#10816
+grey arm plating~
+grey Werewolf Arm Plating~
+A Set of Grey Werewolf Arm Plating lies here.~
+~
+9 259 6143 0 257 0
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+1 3
+A
+2 3
+A
+24 -5
+E
+grey arm plating~
+This Plating Is made of an unknown material. It is flexible yet protective.
+~
+#10817
+grey shoulder plating~
+grey Werewolf Shoulder Plating~
+A Set of Grey Werewolf Shoulder Plating lies here.~
+~
+9 259 6143 0 1025 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+2 3
+A
+1 3
+A
+17 -110
+A
+13 110
+A
+14 110
+E
+grey shoulder plating~
+This Plating Is made of an unknown material. It is flexible yet protective.
+~
+#10818
+grey foot plating~
+grey Werewolf Foot Plating~
+A pair of Grey Werewolf Foot Plating lies here.~
+~
+9 259 6143 0 65 100
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+1 3
+A
+2 3
+A
+24 -5
+E
+grey foot plating~
+This Plating Is made of an unknown material. It is flexible yet protective.
+~
+#10819
+screams enemy~
+the Screams Of A Werewolves Enemys~
+The Screams Of A Werewolves Enemys waver in the air around this area.~
+~
+9 259 6143 0 524289 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -5
+A
+5 3
+A
+3 3
+A
+17 -110
+A
+13 110
+A
+14 110
+E
+screams enemy~
+You can't seem to see anything here. It sounds however like the dying screams of prey.
+~
+#10820
+holy monk robes ~
+a Monks Holy Robes~
+The holy Brown Cloth Robes of a Monk lie here.~
+~
+9 259 4095 0 9 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -110
+A
+14 110
+A
+13 110
+A
+4 3
+A
+3 3
+A
+12 110
+E
+holy monk robes~
+These Robes are made of simple brown robes but being that of a monk they are holy.
+~
+#10821
+monks hood~
+a Monks Hood~
+A Monks Hood lies here.~
+~
+9 259 4095 0 17 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+monks hood~
+This simple hood is made of brown cloth. But has holy protection.
+~
+#10822
+sandals~
+a Pair of Sandals~
+A Pair of Monks Sandals lie here.~
+~
+9 259 4095 0 65 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+sandals~
+These Sandals seem to offer no protection. But they are holy.
+~
+#10823
+wrapping chords~
+wrapping Chords~
+Two Long Simple Brown Chords Lie here.~
+~
+9 259 4095 0 33 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+wrapping chords~
+These simple long think brown chords are designed to be wrapped around ones legs.
+~
+#10824
+rope~
+a Piece of Rope~
+A Piece of Rope lies here.~
+~
+9 259 4095 0 2049 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+rope~
+This Thick brown rope is used by monks as a belt.
+~
+#10825
+charm~
+a Charm~
+A Religous Charm on A String lies here.~
+~
+9 259 4095 0 5 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+charm~
+This charm is a simple religous symbol on a stirng.
+~
+#10826
+vampire claws~
+vampire Claws~
+A Pair Of Vampire Claws Lie Here.~
+~
+5 100663555 7679 0 8193 100
+0~ 0~ 0~ 3~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+25 35
+E
+vampire claws~
+These Are The Claws of Vampires. Eight and a half inch razor blade retractable claws.
+~
+#10827
+vampire fangs~
+Vampire Fangs~
+Vampire Fangs~
+~
+5 100663555 7679 0 8193 100
+0~ 0~ 0~ 10~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+25 35
+E
+Vampire fangs~
+These three inch long Fangs are A Very powerfull weapon when used by Vampires.
+~
+#10828
+nosferatu armor~
+nosferatu Armor~
+The Armor Of A Nosferatu Lord Lies Here.~
+~
+9 259 7679 0 9 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 37
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+1 3
+E
+Nosferatu Armor~
+This Armor has been damned and hated. Its Perfect For a Vampire.
+~
+#10829
+nosferatu armguards~
+nosferatu Armguards~
+Armguards Of A Nosferatu Lord Lie here.~
+~
+9 259 7679 0 257 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 37
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+2 3
+A
+1 3
+E
+Nosferatu Armguards~
+Forged In The Pits of Hell. These Will protect all Vampires.
+~
+#10830
+nosferatu leg plating~
+nosferatu Leg Plating~
+Nosferatu Leg Plating lie here.~
+~
+9 259 7679 0 1 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 37
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+1 3
+E
+Nosferatu Leg Plating~
+Forged In The Pits of Hell. These Will protect all Vampires.
+~
+#10831
+nosferatu helm~
+a Nosferatu Helm~
+A Nosferatu Helm lies here.~
+~
+9 259 7679 0 1 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 37
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+2 3
+A
+1 3
+E
+nosferatu helm~
+Forged In The Pits of Hell. These Will protect all Vampires.
+~
+#10832
+blade nightbringer~
+a Thieves Blade Named Nightbringer~
+A Wicked looking blade lies here.~
+~
+5 100663555 8187 0 8193 100
+0~ 0~ 0~ 11~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+14 100
+A
+13 100
+A
+23 -5
+E
+blade nightbringer~
+This Blade is wicked and Vicous. It Is jagged and ugly. Perfect For a thief.
+~
+#10833
+gloves thievery~
+gloves Of Thievery~
+Gloves Of Thievery Lie here.~
+~
+9 259 8187 0 129 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+2 3
+A
+5 3
+E
+gloves thievery~
+These Gloves Will help any thief Steal.
+~
+#10834
+stolen armor~
+stolen Armor~
+A Suit of Stolen armor Lies here.~
+~
+9 259 8187 0 9 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -5
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+1 3
+A
+2 3
+E
+stolen armor~
+This thief armor is obviously stolen. Great for thieves.
+~
+#10835
+leggings swiftness~
+leggings Of Swiftness~
+Leggings Of Swiftness lie here.~
+~
+9 259 8187 0 33 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+2 3
+A
+5 3
+E
+leggings swiftness~
+These Leggings seem to help anyone move easier.
+~
+#10836
+cape deception~
+cape Of Deception~
+The Cape Of Deception lies here.~
+~
+13 0 8187 0 1024 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -5
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+1 3
+A
+2 3
+E
+cape deception~
+This Cape will keep anyone from noticing you. Especialy if you steal from them.
+~
+#10837
+boots stalking~
+boots Of Stalking~
+Boots Of Stalking lie here quietly.~
+~
+9 259 8187 0 65 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -5
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+2 3
+A
+5 3
+E
+boots stalking~
+These leather boots look normal enough. However they apear to, when worn, cause a person to move quietly.
+~
+#10838
+mages energy~
+a Mages Energy ~
+The Magical Energy Of A Mage floats here~
+~
+5 100663555 8190 0 8193 100
+0~ 0~ 0~ 6~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+12 100
+E
+mages energy~
+This Swirling mass of energy has power beyond belief when wielded by a mage.
+~
+#10839
+body shielding~
+magical Body Shielding~
+A Swirling Magical Body Shielding lie here.~
+~
+9 259 8190 0 9 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+body shielding~
+This swirling magical shield is designed to protect a Mage.
+~
+#10840
+arm shielding~
+magical Arm Shielding~
+Magical Arm Shielding floats here.~
+~
+9 259 8190 0 257 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+arm shielding~
+This swirling magical shield is designed to protect a Mage's arm.
+~
+#10841
+leg shielding~
+magical Leg Shielding~
+Magical Leg Shielding Floats Here.~
+~
+9 259 8190 0 33 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+leg shielding~
+This swirling magical shield is designed to protect a Mage's legs.
+~
+#10842
+head shielding~
+magical Head Shielding~
+Magical Head Shielding Floats around Here.~
+~
+9 259 8190 0 17 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+head shielding~
+This magical shield is designed to cover a mages face and protect it.
+~
+#10843
+cloak power~
+cloak Of Power~
+The Cloak Of Power Lies here.~
+~
+9 259 8190 0 1025 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+cloak power~
+This Long Purple cloak Radiates with massive power.
+~
+#10844
+psionisists mind~
+a Psionisists Mind~
+(no description)~
+~
+5 100663555 8175 0 8193 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+12 100
+#10845
+thought protection body~
+thought Of Body Protection~
+The Thought Of Body Protection shimmers here.~
+~
+9 259 8175 0 9 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+thought protection body~
+Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
+~
+#10846
+thought protection arm~
+thought Of Arm Protection~
+The Thought Of Arm Protection shimmers here.~
+~
+9 259 8175 0 257 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+thought protection arm~
+Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
+~
+#10847
+thought protection head~
+thought Of Head Protection~
+The Thought Of Head Protection shimmers here.~
+~
+9 259 8175 0 17 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+thought protection head~
+Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
+~
+#10848
+thought protection leg~
+thought Of Leg Protection~
+The Thought Of Leg Protection shimmers here.~
+~
+9 259 8175 0 33 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+thought protection leg~
+Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
+~
+#10849
+thought protection foot~
+thought Of Foot Protection~
+The Thought Of Foot Protection shimmers here.~
+~
+9 259 8175 0 65 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+thought protection foot~
+Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
+~
+#10850
+clerics healing power~
+clerics Power Of Healing~
+A Clerics Power Of Healing Floats Here.~
+~
+5 100663555 8189 0 8193 100
+0~ 0~ 0~ 6~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+12 100
+E
+clerics power healing~
+The Clerics Power is able to Heal. But sometimes, There is too much of a Good Thing. And Healing can cause damage.
+~
+#10851
+divine platemail~
+divine Platemail~
+A Suit of Divine Platemail lies here.~
+~
+9 259 8189 0 9 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+divine platemail~
+Forged fromthe Blessed metal of the Gods. This Platemail Offers Divine protection.
+~
+#10852
+divine armguards~
+divine Armguards~
+A Pair of Divine Armguards lie here.~
+~
+9 259 8189 0 257 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+divine armguards~
+Forged from the Blessed metal of the Gods. This Armguards Offers Divine protection.
+~
+#10853
+divine laggings~
+divine Leggings~
+A Pair of Divine Leggings lie here.~
+~
+9 259 8189 0 33 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+divine leggings~
+Forged from the Blessed metal of the Gods. This Leggings Offers Divine protection.
+~
+#10854
+divine helm~
+divine Helm~
+A Divine Helm Lies here.~
+~
+9 259 8189 0 17 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+divine helm~
+Forged from the Blessed metal of the Gods. This Helm Offers Divine protection.
+~
+#10855
+chain divinity~
+&YC&Rh&ra&Yi&Rn&r O&Yf&R D&ri&Yv&Ri&rn&Yi&Rt&ry&Y.~
+&BThe &YC&Rh&ra&Yi&Rn&r O&Yf&R D&ri&Yv&Ri&rn&Yi&Rt&ry&B Lies Here.~
+~
+9 259 8189 0 2049 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+divinity chain~
+Forged from the Blessed metal of the Gods. This Chain Offers Divine protection.
+~
+#10856
+druids weather control~
+a Druids Weather Control~
+A Druids Control over Weather Lies here.~
+~
+5 100663555 8159 0 8193 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+12 100
+E
+druids weather control~
+This is A Druids most capable weapon. The elements can be terrible when used correctly.
+~
+#10857
+lightning platemail~
+&YLigh&Rt&Yning &YPlat&Re&Ymail~
+&BA Suit of &YLigh&Rt&Yning &YPlat&Re&Ymail &B lies here.~
+~
+9 259 8159 0 9 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+lightning platemail~
+This Platemail is Forged out of Lightning. And is Very protective.
+~
+#10858
+leggings rain~
+&YLeggings of The &BR&Wa&Bi&Wn~
+&YLeggings of The &BR&Wa&Bi&Wn &Ylie here.~
+~
+9 259 8159 0 33 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+leggings rain~
+These Leggings are Forged out of Rain. And is Very protective.
+~
+#10859
+ice helm~
+&BHelm Of &WI&Bc&We~
+&BA Frozen Helm Of &WI&Bc&We &Blies here.~
+~
+9 259 8159 0 17 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+E
+helm ice~
+This is Forged out of Ice. And is Very protective.
+~
+#10860
+no name~
+(no short description)~
+(no description)~
+~
+13 0 8159 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10861
+no name~
+(no short description)~
+(no description)~
+~
+13 0 8159 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10862
+rangers power earth~
+a Rangers Power over The Earth~
+(no description)~
+~
+5 100663555 8127 0 8193 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+12 100
+#10863
+no name~
+(no short description)~
+(no description)~
+~
+13 0 8127 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10864
+no name~
+(no short description)~
+(no description)~
+~
+13 0 8127 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10865
+no name~
+(no short description)~
+(no description)~
+~
+13 0 8127 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10866
+no name~
+(no short description)~
+(no description)~
+~
+13 0 8127 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10867
+no name~
+(no short description)~
+(no description)~
+~
+13 0 8127 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10868
+bards music~
+a Bards Music~
+(no description)~
+~
+5 100663555 7871 0 8193 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+12 100
+#10869
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7871 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10870
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7871 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10871
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7871 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10872
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7871 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10873
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7871 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10874
+necromancers orb~
+a Necromancers Orb of Soul Drinking~
+(no description)~
+~
+5 100663555 7103 0 8193 100
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 175
+A
+19 200
+A
+24 -5
+A
+13 100
+A
+14 100
+A
+12 100
+#10875
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7103 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10876
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7103 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10877
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7103 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10878
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7103 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#10879
+no name~
+(no short description)~
+(no description)~
+~
+13 0 7103 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 110
+A
+14 110
+A
+13 110
+A
+17 -110
+A
+3 3
+A
+4 3
+#0
+
+
+
+#ROOMDATA
+#10802
+At The Gate To The Hall~
+You stand before a huge gate.  The gate has been locked into an open
+position and cannot be closed.  Above this area is a huge stone arch which
+serves as an entrance to the northern building.  The Building to the north
+appears to be a great hall.  Magiks swirl and collide about the entrance. 
+Perhaps this hall is more than it appears.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10803
+S
+#10803
+Inside The Gate~
+You are passing under a great arch.  A light peers in here but from an
+unknown source.  It looks as if the Gleaming silver walls themselves are
+glowing.  The Walls floor and Arch all appear to be made of the same
+material.  It looks like a silver metal.  It glows with a life of its own. 
+The End of the arch is visible to both directions.  To the North it enters A
+chamber.  To the south it exits the hall.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10804
+D2
+~
+~
+0 0 10802
+S
+#10804
+The Halls Of The Damned~
+This is the main chamber of the Halls of the Damned.  Here are placed
+some of the finest of the professions in order to test prospective
+Champions.  All who wish to be famous and reign in glory of battle will at
+one point pass through these Halls.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10805
+D2
+~
+~
+0 0 10803
+S
+#10805
+Halls Of The Damned Main Corrodor~
+This is A Chamber in The Halls of the Damned.  2 Wings sprout out in the
+east and west Directions.  The Paladins wing is to the east.  To the West is
+the Warriors Wing.  The Walls of this place are the same gleaming silver as
+the other rooms.  The Walls Glow with a life of their own.  The Walls are
+seemingly Untouched.  There isnt a single scratch or mark upon them.  A
+Single lonely plaque clings to the walls here.  
+~
+0 8 0
+Rd     0
+E
+plaque~
+!!WELCOME!!
+This Area Was Created For EOS2 By Reklar The Ice Lord.
+Please send Any Questions Comments To Steller@pitnet.net Or Note them to Reklar.
+~
+D0
+~
+~
+0 0 10806
+D1
+~
+~
+0 0 10851
+D2
+~
+~
+0 0 10804
+D3
+~
+~
+0 0 10854
+S
+#10806
+Halls Of The Damned Main Corrodor~
+This is another Chamber in the Halls Of The Damned.  Its Gleaming Silver
+walls sparkle in the light glowing off of them.  Moans of adventurers Echo
+in this area.  To the north and south sprout out wings of certain classes.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10807
+D2
+~
+~
+0 0 10805
+S
+#10807
+Halls Of The Damned Main Corrodor~
+A Thousand notes of music pour into this area of the Halls of the Damned.
+Moans Of the dying come in from both directions.  But The ever constant
+gleam of the silver walls remains the same.  Light Pours into this area like
+all other areas in these cursed halls.  The Light seems to eminate from the
+walls themselves.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10808
+D1
+~
+~
+0 0 10845
+D2
+~
+~
+0 0 10806
+D3
+~
+~
+0 0 10848
+S
+#10808
+Halls Of The Damned Main Corrodor~
+This is another Chamber in the Halls Of The Damned.  Its Gleaming Silver
+walls sparkle in the light glowing off of them.  Moans of adventurers Echo
+in this area.  To the north and south sprout out wings of certain classes. 
+The Walls Appear to have no damage done to them.  The Arched Cielings and
+solid metal floors appear to be in the same condition.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10809
+D2
+~
+~
+0 0 10807
+S
+#10809
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10810
+D1
+~
+~
+0 0 10839
+D2
+~
+~
+0 0 10808
+D3
+~
+~
+0 0 10842
+S
+#10810
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10811
+D2
+~
+~
+0 0 10809
+S
+#10811
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10812
+D1
+~
+~
+0 0 10833
+D2
+~
+~
+0 0 10810
+D3
+~
+~
+0 0 10836
+S
+#10812
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10813
+D2
+~
+~
+0 0 10811
+S
+#10813
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10814
+D1
+~
+~
+0 0 10827
+D2
+~
+~
+0 0 10812
+D3
+~
+~
+0 0 10830
+S
+#10814
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10815
+D2
+~
+~
+0 0 10813
+S
+#10815
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10816
+D1
+~
+~
+0 0 10821
+D2
+~
+~
+0 0 10814
+D3
+~
+~
+0 0 10824
+S
+#10816
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10817
+D2
+~
+~
+0 0 10815
+S
+#10817
+Halls Of The Damned Main Corrodor~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10818
+D2
+~
+~
+0 0 10816
+D3
+~
+~
+0 0 10857
+S
+#10818
+The Eviormental Druid Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10819
+D3
+~
+~
+0 0 10817
+S
+#10819
+The Eviormental Druid Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10820
+D3
+~
+~
+0 0 10818
+S
+#10820
+The Lead Eviormental Druid Wing~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 10819
+S
+#10821
+The Den Of The Wolf~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10822
+D3
+~
+~
+0 0 10815
+S
+#10822
+The Den Of The Wolf~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10823
+D3
+~
+~
+0 0 10821
+S
+#10823
+The Den Of The Moon Howling Lord~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 10822
+S
+#10824
+Temple Of The Monk~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10815
+D3
+~
+~
+0 0 10825
+S
+#10825
+Temple Of The Monk~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10824
+D3
+~
+~
+0 0 10826
+S
+#10826
+Temple of The High Monk Lord~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10825
+S
+#10827
+Wing Of The Nostferatu~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10828
+D3
+~
+~
+0 0 10813
+S
+#10828
+Wing Of The Nostferatu~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10829
+D3
+~
+~
+0 0 10827
+S
+#10829
+Wing Of The Lord Nostferatu~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 10828
+S
+#10830
+The Wing Of The Necromancer~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10813
+D3
+~
+~
+0 0 10831
+S
+#10831
+The Wing Of The Necromancer~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10830
+D3
+~
+~
+0 0 10832
+S
+#10832
+The Wing Of The Necromancer Lord~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10831
+S
+#10833
+The Thieves Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10834
+D3
+~
+~
+0 0 10811
+S
+#10834
+The Thieves Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10835
+D3
+~
+~
+0 0 10833
+S
+#10835
+The Wing Of The BlackGuard Thief~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 10834
+S
+#10836
+The Wing Of the Mind~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10811
+D3
+~
+~
+0 0 10837
+S
+#10837
+The Wing Of the Mind~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10836
+D3
+~
+~
+0 0 10838
+S
+#10838
+The Wing Of the All-Power Mind~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10837
+S
+#10839
+The Rangers Wood~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10840
+D3
+~
+~
+0 0 10809
+S
+#10840
+The Rangers Wood~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10841
+D3
+~
+~
+0 0 10839
+S
+#10841
+The Ranger Lords Wood~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 10840
+S
+#10842
+The Magi Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10809
+D3
+~
+~
+0 0 10843
+S
+#10843
+The Magi Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10842
+D3
+~
+~
+0 0 10844
+S
+#10844
+The Wing of The Main Mage~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10843
+S
+#10845
+The Musicians Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10846
+D3
+~
+~
+0 0 10807
+S
+#10846
+The Musicians Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10847
+D3
+~
+~
+0 0 10845
+S
+#10847
+The Realm Of The Musical Bard~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 10846
+S
+#10848
+The Healing Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10807
+D3
+~
+~
+0 0 10849
+S
+#10849
+The Healing Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10848
+D3
+~
+~
+0 0 10850
+S
+#10850
+The Healer Of Healers Wing~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10849
+S
+#10851
+The Realm Of The Paladin~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10852
+D3
+~
+~
+0 0 10805
+S
+#10852
+The Realm Of The Paladin~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10853
+D3
+~
+~
+0 0 10851
+S
+#10853
+The Realm Of The Lead Paladin~
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 10852
+S
+#10854
+The Wing Of Warriors~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10805
+D3
+~
+~
+0 0 10855
+S
+#10855
+The Wing Of Warriors~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10854
+D3
+~
+~
+0 0 10856
+S
+#10856
+The Wing Of The Honor Warrior~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10855
+S
+#10857
+The Halls Of The Damned~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10817
+D3
+~
+~
+0 0 10858
+S
+#10858
+The Halls Of The Damned~
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 10857
+D3
+~
+~
+0 0 10859
+S
+#10859
+The Halls Of The Damned~
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 10860
+D1
+~
+~
+0 0 10858
+S
+#10860
+The Exit Of The Hall Of The Damned~
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 10859
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+M 0 10802 1 10804
+M 0 10819 1 10818
+M 0 10818 1 10819
+M 0 10835 1 10820
+M 0 10811 1 10821
+M 0 10810 1 10822
+M 0 10809 1 10823
+E 0 10814 0 5
+E 0 10815 0 11
+E 0 10816 0 14
+E 0 10817 0 16
+E 0 10818 0 12
+E 0 10819 0 23
+M 0 10813 1 10824
+M 0 10812 1 10825
+M 0 10832 1 10826
+M 0 10814 1 10827
+M 0 10815 1 10828
+M 0 10833 1 10829
+M 0 10825 1 10830
+M 0 10824 1 10831
+M 0 10838 1 10832
+M 0 10822 1 10833
+M 0 10823 1 10834
+M 0 10837 1 10835
+M 0 10828 1 10836
+M 0 10829 1 10837
+M 0 10840 1 10838
+M 0 10830 1 10839
+M 0 10831 1 10840
+M 0 10841 1 10841
+M 0 10817 1 10842
+M 0 10816 1 10843
+M 0 10834 1 10844
+M 0 10826 1 10845
+M 0 10827 1 10846
+M 0 10839 1 10847
+M 0 10821 1 10848
+M 0 10820 1 10849
+M 0 10836 1 10850
+M 0 10806 1 10851
+E 0 10803 0 20
+E 0 10804 0 5
+E 0 10805 0 6
+E 0 10806 0 16
+E 0 10807 0 9
+E 0 10807 0 10
+M 0 10805 1 10852
+E 0 10803 0 20
+E 0 10804 0 5
+E 0 10805 0 6
+E 0 10806 0 16
+E 0 10807 0 9
+E 0 10807 0 10
+M 0 10803 1 10853
+E 0 10803 0 20
+E 0 10804 0 5
+E 0 10805 0 6
+E 0 10806 0 16
+E 0 10807 0 9
+E 0 10807 0 10
+E 0 10803 0 21
+M 0 10808 1 10854
+E 0 10808 0 6
+E 0 10809 0 5
+E 0 10810 0 14
+E 0 10811 0 20
+E 0 10812 0 16
+E 0 10813 0 15
+M 0 10807 1 10855
+E 0 10808 0 6
+E 0 10809 0 5
+E 0 10810 0 14
+E 0 10811 0 20
+E 0 10812 0 16
+E 0 10813 0 15
+M 0 10804 1 10856
+E 0 10808 0 6
+E 0 10809 0 5
+E 0 10810 0 14
+E 0 10811 0 20
+E 0 10812 0 16
+E 0 10813 0 15
+O 0 10802 0 10860
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

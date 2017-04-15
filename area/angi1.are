@@ -1,0 +1,204 @@
+#AREADATA
+Name        {??-???} Quest VNUMs         Angi~
+Levels      0 0
+Builders    Angi~
+VNUMs       2400 2425
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#2423
+questmaster master man~
+&WA &cQuest Master&W~
+&WOne of Bethaven's wise old &cQuest Masters&W stands here.
+~
+&W An aging old man stands before you, wise beyond his years.  His
+&Cpeaceful&W &W blue eyes lower to meet your gaze, and you sense a feeling
+&Wof warmth and kindness all over.  &W He stands before you quietly, waiting
+for the next &cquestor&W to arrive.  
+~
+32833 0 0 1000 S
+111 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#0
+
+
+
+#OBJECTS
+#2400
+picture~
+&Wan ancient picture &R[QUEST]&W~
+&WAn ancient picture of the &CRoyal Family&W lies here.. &R[QUEST]&W~
+~
+13 268435457 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2401
+sword~
+&Wa sacred &Ysword&R [QUEST]&W~
+&WA hereditary &Ysword&W belonging to the &CRoyal Family&W lies here.. &R[QUEST]&W~
+~
+13 268435457 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2402
+gem~
+&Wa magical &pgem&R [QUEST]&W~
+&WA mysterious &pgem&W glittering faintly lies here.. &R[QUEST]&W~
+~
+13 268435520 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2403
+locket~
+&Wa &Rheart-shaped&W locket&R [QUEST]&W~
+&WJekka's tiny &Rheart-shaped&W locket lies here.. &R[QUEST]&W~
+~
+13 268435712 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2404
+harp~
+&ca &Wmagical&c harp &R[QUEST]&W~
+&cA &Wmagical &charp playing a soft melody sits here. &R[QUEST]&W~
+~
+13 268435457 0 0 16385 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2405
+crest royal~
+&Wthe &PRoyal Crest&R [QUEST]&W~
+&WThe &PRoyal Crest&W of &wHis Majesty&W lies here.. &R[QUEST]&W~
+~
+13 268435457 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2422
+hottub tub~
+(no short description)~
+(no description)~
+~
+29 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2424
+doll~
+&Wan old ragged doll~
+&W An old ragged &RDammit Doll&W lies here..~
+~
+30 268435456 0 0 17 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+doll~
+&W      The &RDammit&W Doll
+&R      ---------------
+&W
+&W When you're about to climb the walls,
+&W And need to &Rscream&W and &Rshout,
+&W Here's a little &RDammit Doll
+&W You cannot do without.
+&W 
+&W Just grab it firmly by the legs
+&W And find a place to &Rslam&W it,
+&W And as you work the stuffing out,
+&W yell, &R"DAMMIT DAMMIT DAMMIT!".
+~
+#2425
+present box~
+&Wa tiny little &Cbox&W~
+&WA tiny little &Cbox&W with a pretty &Rred&W ribbon sits here..~
+~
+15 268435456 0 0 16385 1
+0~ 12~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+box~
+&p      A &PSpecial&p Gift
+&W      ***************
+&W
+&P This is a very &Wspecial&P gift
+&P That you can never see
+&P The reason it's so special is
+&P It's just for you from me.
+&P
+&P Whenever you are lonely
+&P Or even feeling &Bblue
+&P You only have to hold this gift
+&P And know I think of you.
+&P
+&P You &Wnever&P can unwrap it,
+&P Please leave the &Rribbon&P tied
+&P Just hold it close to your &Rheart
+&P It's filled with &Clove&P inside.
+&P                         Luv,
+&P                         Angi
+~
+#0
+
+
+
+#ROOMDATA
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

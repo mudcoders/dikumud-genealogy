@@ -1,0 +1,636 @@
+#AREADATA
+Name        { 20-40} Dwarven Mountain    Fui~
+Levels      20 40
+Builders    None~
+VNUMs       2100 2149
+Security    100
+Recall      25001
+Flags       0
+End
+
+
+
+#MOBILES
+#2130
+carrier falcon~
+A carrier falcon~
+A hungry carrier falcon is perched here.
+~
+The carrier falcon is preening its feathers with a gigantic, sharp beak
+and eyeing you VERY watchfully.  He looks a little bored because there
+aren't any messages to carry up the mountain, and wonders if you might be an
+entertaining diversion.  
+~
+35 128 0 0 S
+15 0 0 320d0+0 0d0+0
+0 0 75 0
+0 0 1
+0 0 0
+#2131
+dwarven sentry~
+A dwarven sentry~
+A hidden sentry is watching for intruders.
+~
+You see one of the elite dwarven home guards.  She is short, sleek and
+VERY fast.  Her cold, steel, grey eyes reflect many years in isolated posts
+protecting the empire ...  Certainly no lady to antagonize!  
+~
+3 65666 0 0 S
+20 0 0 480d0+0 0d0+0
+0 0 100 0
+0 0 2
+0 0 0
+#2132
+mama falcon~
+the mama falcon~
+The mama falcon is here clucking contentedly.
+~
+The mother-to-be looks a little tired and haggard.  Her normally slim
+functional physique is now plump and too slow to carry on the normal duties
+of the carrier falcon.  She is more protective than usual however.  
+~
+35 16552 0 0 S
+25 0 0 450d0+0 0d0+0
+0 5 100 0
+0 0 2
+0 0 0
+#2133
+carrier falcon~
+A carrier falcon~
+A hungry carrier falcon is perched here.
+~
+The carrier falcon is preening his feathers with a gigantic, razor sharp
+beak and drooling uncontrollably in your direction.  He looks hungry.  
+~
+35 128 0 0 S
+15 0 0 320d0+0 0d0+0
+0 0 67 0
+0 0 1
+0 0 0
+#2134
+dwarven sentry~
+A dwarven sentry~
+A hidden sentry is looking for intruders.
+~
+Here stands a sturdy looking dwarven sentry.  You can see the fatigue on
+his face, but he stands strong at his post.  He glares at you as you enter
+and he asks you what your doing there.  Better tell him quick!  
+~
+3 65666 0 0 S
+20 0 0 480d0+0 0d0+0
+0 0 100 0
+0 0 1
+0 0 0
+#2136
+rattlesnake snake~
+A rattlesnake~
+A big gooshy snake is coiled here about to strike.
+~
+You've never seen a snake this long or huge before.  It's fangs are like
+needles dripping with venom, and it's scaly head is cocked at a sharp angle
+ready for the ultimate strike!  
+~
+35 73858 0 0 S
+35 0 0 1600d0+0 0d0+0
+0 15 75 0
+0 0 0
+0 0 0
+#0
+
+
+
+#OBJECTS
+#2140
+feather charm~
+a feather charm~
+A feather charm rests here.~
+~
+9 64 0 12928 5 35
+0~ 0~ 0~ 0~
+2 0 22 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 30
+A
+1 2
+E
+feather~
+A big white feather that looks like it would make a good charm.  
+~
+E
+charm~
+A big feather that looks like it would make a good charm.  
+~
+#2141
+snake fangs~
+the snake fangs~
+Some very sharp snake fangs rest on the ground here.~
+~
+5 16912 4226 0 8193 20
+0~ 6~ 20~ 11~
+3 0 0 0 0
+5 0
+poison~
+1 1
+0 0 0
+A
+18 1
+A
+3 -1
+E
+snake~
+A VERY long set of fangs that look very dangerous.  
+~
+E
+fangs~
+A VERY long set of fangs that look very dangerous.  
+~
+#2142
+riding chaps~
+the riding chaps~
+Some riding chaps are on the ground here.~
+~
+9 0 0 14273 33 20
+0~ 0~ 0~ 0~
+4 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 -1
+A
+13 20
+E
+chaps~
+A pair of small leather chaps that look very worn.  
+~
+E
+riding~
+A pair of small leather chaps that look very worn.  
+~
+#0
+
+
+
+#ROOMDATA
+#2100
+Forest Path~
+Tall pine grow on both sides of this dim path.  As you crane your neck
+and look up you notice the branches above you swaying in a restless, very
+spooky manner.  Strange bird calls, almost like warnings, sound from the
+thick branches.  You begin to be a little worried when you realize this dark
+trail might be the perfect place for an ambush.  The trail thins out to the
+east.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 2101
+D3
+~
+~
+0 0 8028
+S
+#2101
+Twist in the Forest Path~
+As you come to this point, you can see some boulders partially blocking
+your passage to the north, but leaving just enough space for you to get
+through if you squeeze a bit.  The main path ends abruptly here, however,
+you can spy some sort of thin animal-made path running to the east, as
+though made by horses.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 2102
+D1
+~
+~
+0 0 2121
+D3
+~
+~
+0 0 2100
+S
+#2102
+Base of Mountain~
+The brush and shrubs here rip and tear annoyingly at your armor.  Bugs
+are dancing little sadistic bug dances in your face.  As you move thousands
+of bugs stir, and begin to blur your vision.  You almost don't see the
+obvious man made constructions to the east and west.  A rocky path also
+continues to the north.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 2105
+D1
+~
+~
+0 0 2103
+D2
+~
+~
+0 0 2101
+D3
+~
+~
+0 0 2104
+S
+#2103
+Outpost~
+This is a very stout and very formidable advance fighting enclosure. 
+There's hardly enough room to turn around and the peep hole slots are set
+very low on the wall.  In your infinite wisdom you deduce short people,
+specifically ONE short person is all that could fit in here.  The only
+obvious exit is back to the west.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 2102
+S
+#2104
+Outpost~
+You've escaped the bugs and brush by diving carelessly to your west.  As
+you land spread-eagled on your face, you can't help but notice the solidly
+hewn pine walls and little slots for spying or defensive fighting.  This
+looks like a forward-observer position.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2102
+S
+#2105
+Rocky Path~
+Rock fragments cover the path as you begin climbing a tall mountain path.
+Some of the rocks are blood stained, and there is some very old looking
+armor lying scattered about.  There appears to be a "safe" way up to the
+west.  The path also continues to the south.  
+~
+0 0 5
+Rd     0
+D2
+~
+~
+0 0 2102
+D3
+~
+~
+0 0 2106
+S
+#2106
+Small Cliff~
+The path ends here before a short cliff with convenient toe-holds in it
+so you can climb up.  It looks easy.  Maybe too easy ...  
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 2105
+D4
+~
+~
+0 0 2107
+S
+#2107
+Treacherous Path~
+The oxygen is getting a little thin but, thankfully, so are the bugs.  As
+you look down you notice only one false separates you from a rather lengthy
+swan dive to the bottom.  There is a path that heads east, but it doesn't
+look any safer than where you are standing now.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2108
+D5
+~
+~
+0 0 2106
+S
+#2108
+Mountain Path~
+You continue huffing and puffing up the mountain.  The trees are thinning
+out and you see a wide panoramic view of the forest in the distance below. 
+This wouldn't be a pleasant place for an attack because the only spot to
+hide is in the recent avalanche of rocks and boulders to the east.  
+~
+0 4 5
+Rd     0
+D1
+~
+~
+0 0 2109
+D3
+~
+~
+0 0 2107
+S
+#2109
+Below a Ledge~
+You grasp desperately for handholds among the few shrubs clinging to the
+steep mountainside and keep a weary eye out for snakes and other alpine
+predators.  Your precarious toe hold slips, and loose gravel clatters away.
+Fortunately, a shrub stops your descent.  Unfortunately, it appears to have
+stopped a very large snakes descent also.  
+~
+0 0 5
+Rd     0
+D3
+~
+~
+0 0 2108
+D4
+~
+~
+0 0 2110
+S
+#2110
+Falcon Nest~
+This ledge is large enough for one falcon.  You notice she's made a comfy
+nest here of twigs and branches and bones, but you don't see any eggs.  You
+realize that the nest isn't quite finished yet.  Might want to leave before
+she comes back to finish it.  
+~
+0 0 5
+Rd     0
+D3
+~
+~
+0 0 2111
+D5
+~
+~
+0 0 2109
+S
+#2111
+Sheer Drop~
+You catch the faint whiff of wild flowers here.  Looking down you can see
+a straight drop to the base of the mountain, and looking up you see a lot of
+sky...  But can't quite see what lurks at the top of this steep incline.  If
+you climb up, you'll probably find out though.  
+~
+0 33554432 5
+Rd     0
+D1
+~
+~
+0 0 2110
+D4
+~
+~
+0 0 700
+D5
+~
+~
+0 0 2103
+S
+#2121
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  The path continues to the east and west from here.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2122
+D3
+~
+~
+0 0 2101
+S
+#2122
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2123
+D3
+~
+~
+0 0 2121
+S
+#2123
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2124
+D3
+~
+~
+0 0 2122
+S
+#2124
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2125
+D3
+~
+~
+0 0 2123
+S
+#2125
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2126
+D3
+~
+~
+0 0 2124
+S
+#2126
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2127
+D3
+~
+~
+0 0 2125
+S
+#2127
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2128
+D3
+~
+~
+0 0 2126
+S
+#2128
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2129
+D3
+~
+~
+0 0 2127
+S
+#2129
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2130
+D3
+~
+~
+0 0 2128
+S
+#2130
+On a Thin Forest Trail~
+As you move along the trail, you notice that heading eastward, the trees
+are much thinner than those to the west, and the ground is much more level. 
+Off in the distance you can glimpse what appears to be wide open plains, yet
+you cannot be sure.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2131
+D3
+~
+~
+0 0 2129
+S
+#2131
+On a Path Through the Plains~
+The ground has pretty much leveled out here, and the trees have given
+way to grass and small bushes.  The path which you are following is widening
+slightly, and many sets of hoofprints are evident here.  The path continues
+to the north and west.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 5100
+D3
+~
+~
+0 0 2130
+S
+#0
+
+
+
+#SPECIALS
+M 2136 spec_poison
+S
+
+
+
+#RESETS
+M 0 2130 1 2103
+M 0 2131 1 2103
+E 0 2142 0 11
+M 0 2133 1 2104
+M 0 2134 1 2104
+E 0 2142 0 11
+M 0 2136 1 2109
+E 0 2141 0 20
+M 0 2132 1 2110
+E 0 2140 0 3
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

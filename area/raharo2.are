@@ -1,0 +1,3436 @@
+#AREADATA
+Name        { GOOD } Alor Raharo         Aegean~
+Levels      1 105
+Builders    Dolguard Flint~
+VNUMs       7400 7599
+Security    100
+Recall      7445
+Flags       16
+Color       6
+Sounds      &YSunlight &cglistens off of the towering &Wwhite walls &cof Alor Raharo.~
+End
+
+
+
+#MOBILES
+#7400
+weiyrna innkeeper raharo searnia~
+Weiyrna~
+Weiyrna, the local innkeeper, stands here cleaning a mug out.
+~
+Beaming back at you with a cheerful face, this aging lady walks in your
+direction, absent-mindedly dry-washing her hands with her apron.  Taking a
+second to blow a whisp of greying hair from her face, Weiyrna curties
+formally for you, asking you how may she be of service.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#7401
+assair sorcerer raharo searnia~
+Assair~
+Assair, sorcerer of the arcane arts, stands here.
+~
+Rich purple robes cloak this man flowing all about him to surround his
+feet in a pool of fabric on the ground.  Crystal blue eyes regard you
+curiously from beneath a shaggy wealth of grey hair.  Turning away from you
+for a moment, he whispers a few words with his hand hovering over a small
+object that looks like some form of pill as a blue aura surrounds the
+object.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7402
+blais armourer raharo searnia~
+Blais~
+Blais, the local armourer, stands here polishing a breastplate.
+~
+Setting down his latest piece of work, he reaches out to shake your hand
+in greeting and you notice just how much work in this forge has increased
+his strength as his arm retracts.  Cloaked in a simple leather vest, pair of
+pants and wrapped about in a hole-filled apron, he can even now give an air
+of knowing how to defend himself.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7403
+eldvain baker raharo searnia~
+Eldvain~
+Eldvain stands here rolling out a pile of dough.
+~
+As you glance at the local baker, he looks up from his work to raise an
+eyebrow slightly in question.  Even as his eyes lock on your's, his hands
+keep working at the dough before him professionally, without needing to even
+watch his creation.  A large white apron is tied about his heavy bulk,
+covering the local garb common to most citizens in dried up dough and caked
+on flour.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7404
+brear shopkeeper raharo searnia~
+Brear~
+Rechecking his supplies, Brear, head of the general store stands here.
+~
+Absently brushing aside the greying handles of his mustache, Brear turns
+his face towards you with mild curiousity.  Grey hair cloaks the top of his
+head, highlighting his crystal blue eyes, the common trait of those in this
+realm.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7405
+gladeral shopkeeper raharo searnia~
+Gladeral~
+Gladeral, master in the crafting of blades, stands here.
+~
+Hard blue eyes stare back into your's searching your soul with their
+penatrating gaze as he takes in your appearance, mentally accessing your
+skill in using your weapons.  A slight nod from his head seems the only
+indication of his acknowledgement of your experience or in the promise you
+hold.  Long black hair extends backwards behind his head into a tight tail
+at the nape of his neck that trails down the middle of his back.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7406
+aleis jeweller raharo searnia~
+Aleis~
+The local jewelry appraiser, Aleis, stands here.
+~
+Seems not to have even truely noticed your existance yet as she studies a
+small sapphire gem in her hand through a glass eye-piece.  Raven black hair
+spills down across her shoulders, giving her a matching look to the majority
+of the rest of the Alor Raharo citizens you've seen so far.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#7407
+emas banker raharo searnia~
+Emas~
+Guardian of money of Raharo's citizens, Emas, stands here.
+~
+Whispy white hair hangs loose around the sides of this balding man.  His
+blue eyes sparkle with interest at a new customer as you enter as he
+carefully marks a place in a black ledger of accounts before looking up to
+greet you.  Judging by the ink stains on the sleeves of his clothing and at
+the tip of his nose you wonder begin to wonder just how much time this man
+spends around his records.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7408
+nemari petkeeper raharo searnia~
+Nemari~
+Nemari, feeding one of the store's puppies, tends shop here.
+~
+Craddling a puppy in the nook of one arm, while another gently feeds it,
+Nemari seems almost totally lost in her work, barely glancing up at your
+enterance as you peruse the various cages within the shop.  The small puppy
+stubbornly fights her attention, trying to bury it's nose beneath her long
+glistening black hair, whimpering softly to itself.  
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#7409
+yhas merckeeper raharo searnia~
+Yhas~
+Yhas, master of the adventurer's guild, stands here.
+~
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7410
+cavon blacksmith raharo searnia~
+Cavon~
+Deftly swinging a giant hammer, Cavon, stands here shaping a breastplate.
+~
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7411
+dagra alchemist raharo searnia~
+Dagra~
+Dagra, Searnia's leading alchemist, stands here.
+~
+~
+67 16777216 16 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7412
+daran healer raharo searnia~
+&WDaran&c~
+&WDaran&c,&W the immortal healer of Alor Raharo&c,&W floats here.&w
+~
+~
+67 17301696 131120 1000 S
+115 0 0 300000d0+0 0d0+0
+0 0 0 0
+0 0 1
+524287 0 0
+#7413
+gomar gatekeeper raharo searnia~
+Gomar~
+Gomar, Alor Raharo's western gatekeeper, stands here.
+~
+~
+67 503333056 163888 1000 S
+110 0 0 45000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7414
+lsior gatekeeper raharo searnia~
+Lsior~
+Lsior, Alor Raharo's northern gatekeeper, stands here.
+~
+~
+67 503333056 163888 1000 S
+110 0 0 45000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7415
+jidhra gatekeeper raharo searnia~
+Jidhra~
+Jidhra, Alor Raharo's eastern gatekeeper, stands here.
+~
+~
+67 503333056 163888 1000 S
+110 0 0 45000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7416
+alendar gatekeeper raharo searnia~
+Alendar~
+Alendar, Alor Raharo's southern gatekeeper, stands here.
+~
+~
+67 503333056 163888 1000 S
+110 0 0 45000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7417
+reanir tyaren captain guard raharo searnia~
+Reanir Tyaren~
+Reanir Tyaren, captain of the garrison, surveys the town here.
+~
+~
+65 33571008 131120 1000 S
+110 0 0 22528d0+0 0d0+0
+0 0 0 0
+0 0 1
+19 0 0
+#7418
+adain practicer trainer raharo searnia~
+Adain~
+Adain, master of sorcery and weaponery, floats here.
+~
+~
+1603 17317888 48 1000 S
+110 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7419
+wolf vicious raharo searnia~
+A vicious wolf~
+A vicious wolf prowls around here, snarling.
+~
+~
+257 64 196608 1000 S
+4 0 0 140d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#7420
+falcon raharo searnia~
+A trained attack falcon~
+A trained attack falcon swoops back and forth here searching for prey.
+~
+~
+257 524352 131072 0 S
+1 0 0 30d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#7421
+warhorse horse raharo searnia~
+A trained warhorse~
+A large black warhorse trained in combat stands patiently here.
+~
+~
+257 64 131072 0 S
+9 0 0 220d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#7422
+sorcerer mage raharo searnia~
+A sorcerer~
+A tall lanky man in flowing robes stands here peering at you intently.
+~
+~
+257 0 0 1000 S
+25 0 0 350d0+0 0d0+0
+0 0 0 0
+0 0 1
+4 0 0
+#7423
+priestess raharo searnia~
+Priestess~
+A holy looking woman robed in bright white stands here healing others.
+~
+~
+257 128 16 1000 S
+20 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 2
+8192 0 0
+#7424
+blademaster raharo searnia~
+A battle-hardened blademaster~
+Cloaked in bright steel armor, a master of blades stands here awaiting combat.
+~
+~
+257 64 131104 1000 S
+35 0 0 1400d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#7425
+citizen man raharo searnia~
+A local citizen~
+A man local to the town of Alor Raharo stands here.
+~
+~
+65 0 0 -349 S
+12 0 0 240d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#7426
+citizen woman raharo searnia~
+A local citizen~
+A female citizen strolls here perusing the town's stores.
+~
+~
+65 64 131072 -349 S
+12 0 0 190d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#7427
+citizen girl raharo searnia~
+A young girl~
+A little girl strolls down the street here chatting idly with others.
+~
+~
+65 64 0 -349 S
+7 0 0 90d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#7428
+citizen boy raharo searnia~
+A small boy~
+A little boy bounces about impatiently on his toes.
+~
+~
+65 0 0 -349 S
+7 0 0 140d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#7429
+wandering guard raharo searnia~
+A village guardsman~
+One of the village guard walks here watching your every move.
+~
+~
+65 0 131088 -349 S
+20 0 0 600d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7430
+village elder raharo searnia~
+The Village Elder~
+The Village Elder passes by here on his daily rounds about the town.
+~
+~
+65 33554560 16 1000 S
+110 0 0 47000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7431
+town crier raharo searnia~
+The Town Crier~
+Standing high, hollering at his loudest, the Town Crier, speaks here.
+~
+~
+67 17301632 16 1000 S
+101 0 0 100000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7432
+hawker raharo searnia~
+A local hawker~
+A local hawker crying out his wares stands here.
+~
+~
+65 8320 144 1000 S
+101 0 0 40000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7433
+merchant raharo searnia~
+A local merchant~
+A local merchant wanders the streets here.
+~
+~
+65 0 0 -349 S
+20 0 0 600d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#7434
+traveller raharo searnia~
+A distant traveller~
+A distant traveller from the lands of the south explores around here.
+~
+~
+65 64 0 0 S
+25 0 0 1050d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#7435
+talthir gleeman raharo searnia~
+Talthir~
+Talthir, a travelling gleeman, stands here juggling several coloured balls.
+~
+~
+65 16576 131088 1000 S
+75 0 0 11200d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#7436
+stray kitten raharo searnia~
+A stray kitten~
+A stray kitten prowls about here looking for scraps of food.
+~
+~
+65 0 0 -349 S
+6 0 0 110d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#7437
+janitor raharo searnia~
+A janitor~
+A janitor walks by you picking up stray bits of trash.
+~
+~
+65 0 16 -349 S
+15 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#0
+
+
+
+#OBJECTS
+#7400
+tome guide eosii book newbie~
+&zThe &CNewbie Guide&z to EOSII&w~
+&BA book of newbie hints for EOSII lies here on the ground.~
+~
+8 805306432 0 0 16385 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 2
+reserved~
+0 -1
+0 0 0
+E
+9~
+&z--------------------------------------------------------------------------------
+&BWIZLIST & GETTING HELP:
+&cTyping &z'&wwizlist&z'&c will show you a "reasonably current" list of the MUD's
+immortal staff.  Generally when you wish to seek help on something you should
+begin at the bottom of that list and work upward, since those at the top
+positions are often busy with things and will generally take the longest to
+answer your question.  Also know that most immortals are busy doing something
+even if it may not be immediately appearant so if they don't answer right away
+give them time.  And if you ask for their attention and get it, don't tell them
+"just a sec" if it's something you could have taken care of before calling their
+attention.  These are just general notes of "etiquette" in dealing with 
+immortals.  They're happy to help you out if you give them the chance and don't 
+disrespect them.
+&z--------------------------------------------------------------------------------
+~
+E
+8~
+&z--------------------------------------------------------------------------------
+&BTHE MUD'S RULES:
+&cThese are the rules of EOS.  For other matters, use commom sense.
+&B
+&z*&w foul and/or abusive language will not be tolerated on EoS, from anyone
+  (including gods). Punishments range from deletion to NOCHANNELing.
+&B
+&z*&w sexual harassment of any form will not be tolerated, punishable by deletion
+&B
+&z*&w your presence here is a privilige not a right
+&B
+&z*&w no multiple logins, multiple playing, or helping your own characters with
+  other characters you own -- by any arrangment.
+&B
+&z*&w no kill stealing.  This means you cannot attack a mob someone else is
+  fighting, unless they ask you to. Also avoid attacking fleeing mobs.
+&B
+&z*&w cheating will not be tolerated.  This includes accepting favors from gods
+  and exploiting bugs. If you find a bug, report it, then do not use it.
+&B
+&z*&w Absolutely NO summonsing any mobs to Bethaven, Ravenwood or Alor Raharo.  
+  I do NOT wish newbies jeopardized.  There's plenty of room outside those 
+  towns, use them.
+&z--------------------------------------------------------------------------------
+~
+E
+7~
+&z--------------------------------------------------------------------------------
+&BLIST OF EQUIPMENT SLOTS:
+&B
+&CLight                           &CShield &w(&z*&w)
+&CFinger &w(&B2&w)                      &COrbit &w(&B2&w)
+&CNeck &w(&B2&w)                        &CWaist
+&CHead                            &CAbout Body
+&CFace                            &CWrists &w(&B2&w)
+&CEyes                            &CEarring
+&CBody                            &CAnkles &w(&B2&w)
+&CArms                            &CWield
+&CHands                           &CDual Wield &w(&z**&w)
+&CLegs                            &CHeld &w(&z*&w)
+&CFeet
+&z*  &w-&c Only usable if you're not dual wielding.  &C(Mainly for spellcasters)
+&z** &w-&c Only usable if you have the "dual" skill.  &C(Fighter classes)
+&B
+INVOKES ON ITEMS:
+&cYou won't find many low level items with invokable spells on them, but just so
+you're aware of their existance there are many items in the game that can be
+"invoked" to produce a certain effect or spell.  An item may contain the spell
+'fireshield' and if you invoke the item it casts that spell upon you or the
+target you select.  These are primarily handy to the non-magical fighting
+classes.
+&z--------------------------------------------------------------------------------
+~
+E
+6~
+&z--------------------------------------------------------------------------------
+&BFIGHTING PLAYERS VS MOBS:
+&c  For attacking normal mobs simply type &w'&Rkill <mob name>&w'&c to start a fight with
+them or if you are a thief type 'bs <mob name>' once you have the backstab
+skill.  If you want to attack an animated corpse (you'll know when you come
+across one) or a player (when you &R_BOTH_ &care in PK clans) you type &w'&Rmurder
+<player>&w'&c to attack.
+  If a fight isn't going well for you and you're likely to die if you don't find
+a quick escape you simply need to type &B'&wflee&B'&c until you escape.  You will lose
+a little bit of experience in the process, but it's better to lose 10xp than
+lose half of what xp you've gained towards leveling.  Btw..it's 1000xp per
+level.  In some areas flee doesn't work though, such as Dragon Valley though.
+  Also, there are numerous "aggressive" mobs in the game that will automatically
+attack you the moment you enter the room regardless of wether you wished to
+fight or not.  So be wary of exploring high level areas or new areas without
+shielding yourself against possible attack.
+&B
+ALIASES - Use and Creation&w:
+&WSyntax&w:&r alias [shortcut] [task]  &C(Creates or modifies an alias)
+&WSyntax&w:&r alias [shortcut]         &C(Deletes that alias)
+&c  Aliases are common to many muds, but aren't found in all.  Basically these
+are exactly what they sound like.  They're shortcut commands to preform larger
+tasks.  &C(&BEx&w:&c having a shortcut command of 'fire' for performing the task, "cast
+'fireball'"&C)&c.  This mainly just saves you on time and typing.  How it works:
+&CExample&w:&c
+<prompt> alias clb cast 'lightning breath'
+Alias 'clb' added.
+<prompt> clb
+Cast spell on whom?
+<prompt> clb dragon
+Your blast of lightning MUTILATES the dragon.
+&z--------------------------------------------------------------------------------
+~
+E
+5~
+&z--------------------------------------------------------------------------------
+&BCOMMON ABBREIVATIONS:
+&cThis is just for those who are truely new to mudding since there are certain
+terms mudders use all the time.
+&BAFK    &w:&c Away From the Keyboard (Could also just be not paying attention)
+&BPK     &w:&c Player Killing
+&BMob    &w:&c Short for Mobile..meaning "creatures" in the MUD.
+&BNewbie &w:&c You :)
+&BRP     &w:&c Roleplay or Roleplaying
+&BCR     &w:&c Corpse retrieval (Asking someone to help you get your corpse back)
+&B
+&BDESCRIPTION OF COMMUNICATION CHANNELS:
+&cMany new players aren't sure how to communicate with others so I hope this helps
+&POOC&w:&c      The general discussion channel..everyone sees it. Shortcut = ]
+&RVent&w:&c     A form of OOC channel that isn't language censored.   All see it.
+&CChat&w:&c     Role-playing channel..everyone sees it.  Shortcut = .
+&RClantalk&w:&c ONLY those in your clan can see it.  Shortcut = cl
+&CShout&w:&c    Everyone sees it, but it's an emergency channel, not a discussion one.
+&CYell&w:&c     Everyone within the same AREA as you sees it.
+&CSay&w:&c      Everyone in the same ROOM as you sees it.  Shortcut = '
+&PEmote&w:&c    Everyone in the same ROOM sees it.  It's for actions not speaking.
+&WTell&w:&c     ONLY the person you send it to sees it.  Tell <player> <message>
+&cClass&w:&c    ONLY those of the same class as you see it.  Ie all thieves etc..
+&GAuction&w:&c  Everyone sees it.  This is to sell items, not talk.
+&GHero&w:&c     ONLY level 100+ characters see this, Champs & Imms.  Shortcut = -
+&cMusic&w:&c    Everyone sees this.  It's for..whatever :)
+&GQuestion&w:&c Everyone sees this.  Ask questions here or on OOC.
+Btw..OOC stands for "out of character" and with emotes it is only for actions.
+If you type "emote grins sheepishly" and your name is Arch others in the room
+will see, "Arch grins sheepishly".
+&z--------------------------------------------------------------------------------
+~
+E
+4~
+&z--------------------------------------------------------------------------------
+&BHELPFUL STARTING HINTS:
+&cHere's a couple setting hints to get you started.  If you type "config" and
+press enter you will see a list of "toggle" settings for your character.  A few
+of these are as follows and as to how you might want them:
+&w+&Rautoloot&w:&c Automatically take all equipment within a monster\player you have
+           killed.  Handy at starting levels, but I'd suggest removing it after
+           about level 10.
+&w+&Rautoexit&w:&c Automatically lists available exits from rooms, except "door" exits.
+&w+&Rautogold&w:&c Automatically take the money a creature had from it's corpse.
+&w-&Ransi&w:&c     IF you don't have the ability to see color you want this off,
+           otherwise leave it on and enjoy.
+&w-&Rcombat&w:&c   This will take away seeing "you dodge.." "<mob> dodges...".  Reduces
+           the spam a great deal.
+&w+&Rkeep&w:&c     This keeps the MUD from autoputting in a new title for you each level
+           so you can keep your own customized one.
+&w-&Rfullname&w:&c This enables 'name completion' which allows you to be lazy and type
+           only partial words.  To look at a salamander you might 'look sal' and
+           it will take the first item\mob\player that begins with those letters
+           it can find.
+These are just to help you get started, but you're welcome to set them up as you
+choose.  To set a "setting" like this you type: "config <+/-><setting>" so to
+say set autoloot ON..you'd type "config +autoloot".
+Another helpful feature of the mud is the PROMPT command.  Using it you can
+customize your info prompt in color or appearance.  "help prompt" will show all
+of the settings you can use, but here's a sample one that you can copy\paste in
+the game for show:
+&Cprompt [&&z%h&&c/&&z%H&&Bhp &&z%m&&c/&&z%M&&Bm &&w[%a][&&C%x&&wxp]:&&z
+&cAssuming your a new character at level 1 this would look like:
+&w[&z20&c/&z20&Bhp &z100&c/&z100&Bm &w[0][&C1000&wxp]:&z <whatever you type in game>
+&C(The [0] is your alignment, which generally starts out at 0.)
+&z--------------------------------------------------------------------------------
+~
+E
+3~
+&z--------------------------------------------------------------------------------
+&BHP, BLOOD, MANA & MOVEMENT:
+&cAside from Str and it's like-statistics there is &CHP &c(Hit points), &CBlood &c(A
+vampire's form of mana), &CMana &c(Amount of magical energy available) & &CMovement
+&c(one's exhaution rating.).  These are fairly simple really:
+&BHP&w:&c       It's in your prompt like 20/20hp.  This is lowered with each hit you
+          take from a player or monster.  If it reaches below 1hp you die and
+          you must get your stuff back from your corpse.
+&BBlood&w:&c    If you're not a vampire don't worry about this.  Vampires use "blood"
+          instead of "mana" that they can't regain via potions, but "feed" off
+          victims to replenish it.
+&BMana&w:&c     The amount of magical energy available to you.  So when a spell costs
+          say..50ma (ma = mana) then if you have 1500/1500ma you go to
+          1450/1500ma.  Potions will revitalize this somewhat though.
+&BMovement&w:&c This of course is the MV stat and lowers as you move between rooms,
+          but it's rare that you ever run out of movement.  Usually people just
+          ignore it completely.
+&cI'd suggest you &w-&Calways&w-&c train HP.  You'll have enough mana with potions,
+movement wears down slowly and blood can't be trained.
+&z--------------------------------------------------------------------------------
+~
+E
+2~
+&z--------------------------------------------------------------------------------
+&BSTATISTICS:
+&cThe statistics I'm referring to here are &CStr&c (Strength), &CInt&c (Intelligence),
+&CWis&c (Wisdom), &CDex&c (Dexterity) & &CCon&c (Consitution).  What they do is:
+&BSTR&w:&c Increases the amount of weight your character is able to carry, allows you
+     to wield heavier weapons & increases your damage in battle.
+&BINT&w:&c Allows you to practice skills\spells faster.  25 Int that only Mages and
+     Necromancers are able to acheive allows you to become "adept" in a skill or
+     spell in one practice.
+&BWIS&w:&c Determines the amount of practices you receive per level.  Normally you
+     can't pass 22 WIS unless you're a cleric, druid or psionisist which can
+     reach 25 WIS.  22 WIS = 7 Practices per level.  25 WIS = 8 practices.
+&BDEX&w:&c Dexterity determines how well you dodge out of the way or how quickly you
+     are able to parry an attack so it doesn't reach you.  Most classes can only
+     reach 22 DEX, except thieves, bards & vampires, which are able to reach
+     25 DEX.
+&BCON&w:&c The "life" statistic.  Constitution adjusts how much HP per level you gain.
+     The higher your CON stat is the more you receive each level depending on
+     your class.  Each class earns a different range of HP per level.  Only
+     rangers and monks can pass the 22 CON limit with their 25 CON.
+&BI very strongly encourage you to train your stats in this order&w:
+&CWIS&c,&C CON&c,&C INT&c,&C STR&c,&C DEX  (Dex & Str can be switched though)
+&cThis way you max your practices gained per level quicker so you can train other
+things faster and after that you get your con up so you gain as much hp per
+level as possible.
+Generally you can't get a statistic past 22, except the one statistic that is
+your class' "main" statistic.  These main statistics are as follows:
+&z                _______________&z______________________________&z_
+&z                | Statistic    &z| Classes that have it        &z|
+&z                |--------------&z|-----------------------------&z|
+&z                | &BStrength     &z|&C Warrior, Paladin & Werewolf &z|
+&z                | &BIntelligence &z|&C Mage & Necromancer          &z|
+&z                | &BWisdom       &z|&C Cleric, Druid & Psionisist  &z|
+&z                | &BDexterity    &z|&C Thief, Vampire & Bard       &z|
+&z                | &BConstitution &z|&C Ranger & Monk               &z|
+&z                |______________&z|_____________________________&z|
+&z--------------------------------------------------------------------------------
+~
+E
+1~
+&z--------------------------------------------------------------------------------
+&BPRACTICING & TRAINING:
+&cOn this mud, unlike some other forms of MUDs, you must train your primary
+statistics (Str, Int, Wis, Dex & Con), plus you may also train your HP, mana &
+move.  To do training you use "practices" that you receive each level based on
+your Wisdom.  The higher your Wisdom the more practices you're able to get per
+level.  To train a stat, like Str, it costs 5 practices per train, but to train
+HP, mana or movement it costs only 1 practice.  Note: You can't train a statisti
+c like Str past 18 regardless of class.  To train a stat you simply type: 
+&wtrain <item> &R#  &C(&R#&C is for how many practices to use.  Ie: train hp 50)
+&cPracticing is a bit more indepth where training deals with statistics,
+practicing is how you aquire new skills and spells.  It only takes one
+practice to improve a skill or spell, but how much it is improved depends upon
+your Int statistic.  Plus different classes can practice to different amounts
+such as a Mage's 95% and a Thief's 85%.  To practice a skill\spell you type:
+&wpractice <skill name>  &C(don't put ""s around the name if it's 2+ words)
+&z--------------------------------------------------------------------------------
+~
+E
+guide~
+&z--------------------------------------------------------------------------------
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Traniing
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
+&z--------------------------------------------------------------------------------
+~
+E
+newbie~
+&z--------------------------------------------------------------------------------
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Traniing
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
+&z10&w..&BOK, but where do I go now? & I'm lost, how do I get back?
+&z--------------------------------------------------------------------------------
+~
+E
+book~
+&z--------------------------------------------------------------------------------
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Traniing
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
+&z--------------------------------------------------------------------------------
+~
+>invoke_prog 100~
+0
+if level($n) > 15
+  mpforce $n drop newbie
+  mpforce $n sac newbie
+endif
+~
+>get_from_prog 100~
+0
+if level($n) > 15
+  mpforce $n drop guide
+  mpforce $n sac guide
+endif
+~
+|
+#7401
+bright white apron raharo searnia~
+&ca &Wbright white &capron&w~
+&BA service person's white apron lies discarded here.~
+~
+9 0 0 0 1025 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7402
+mug dark ale raharo searnia~
+&ca &Cmug&c of &zdark &Cale&w~
+&BA large mug of dark coloured ale rests here.~
+~
+17 0 0 0 16385 21
+30~ 30~ 4~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7403
+serving dress raharo searnia~
+&ca &Wwhite serving &cdress&w~
+&BA white serving dress lies here in a heap.~
+~
+9 0 0 0 1025 40
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7404
+white elixir mana-potion raharo searnia~
+&ca &Wwhite &celixir&w~
+&BA large potion with white liquid in it lies here.~
+~
+10 268435521 0 0 1 8
+100~ mana~ mana~ refresh~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7405
+blue elixir health-potion raharo searnia~
+&ca &Bblue &celixir&w~
+&BA large potion of blue coloured liquid lies here.~
+~
+10 268435521 0 0 1 8
+100~ heal~ heal~ refresh~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7406
+scroll recall raharo searnia~
+&ca scroll of recall&w~
+&BA long weather-torn scroll lies here.~
+~
+2 805306369 0 0 1 1
+0~ cure light~ word of recall~ reserved~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7407
+vigor potion raharo searnia~
+&ca &Cpotion &cof &Gvigor&w~
+&BA potion of frothy green liquid lies here.~
+~
+10 268435457 0 0 1 1
+100~ cure poison~ cure light~ refresh~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7408
+light blue potion raharo searnia~
+&ca &Clight blue &cpotion&w~
+&BA small potion of light blue liquid lies here.~
+~
+10 268435457 0 0 1 1
+40~ cure light~ cure light~ bless~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7409
+grey potion raharo searnia~
+&ca small &zgrey &cpotion&w~
+&BA small potion of grey liquid lies here.~
+~
+10 268435521 0 0 1 1
+100~ mana~ reserved~ reserved~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7410
+ash coloured traveller cloak raharo searnia~
+&can &zash&c-&Ccoloured &ctraveller's cloak&w~
+&BA traveller's cloak made of ash coloured material lies here in a heap.~
+~
+9 3392 0 1056 1025 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+A
+2 1
+A
+19 1
+#7411
+leather gloves raharo searnia~
+&ca pair of soft leather gloves&w~
+&BA pair of soft leather gloves lie here.~
+~
+9 3328 0 17952 129 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+A
+17 -5
+A
+13 5
+#7412
+leather boots raharo searnia~
+&ca pair of soft leather boots&w~
+&BA pair of soft leather boots lie here.~
+~
+9 3072 0 17952 65 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -5
+A
+1 1
+A
+19 1
+A
+18 1
+#7413
+wide-brimmed leather hat raharo searnia~
+&ca wide-brimmed leather hat&w~
+&BA leather hat with a wide-brim around it lies here.~
+~
+9 3072 0 22048 17 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+A
+17 -8
+A
+5 1
+#7414
+loaf bread raharo searnia~
+&ca loaf of bread&X~
+&BA large loaf of bread lies here growing moldy.~
+~
+19 0 0 0 1 1
+24~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7415
+wedge cheese raharo searnia~
+&ca &Cwedge &cof &Ycheese&X~
+&BA large wedge of cheese lies here.~
+~
+19 0 0 0 1 1
+24~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7416
+dried meat raharo searnia~
+&csome dried meat&X~
+&BSome dried meat lies here getting old.~
+~
+19 0 0 0 1 1
+36~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7417
+saddlebags bag raharo searnia~
+&ca pair of leather saddlebags&w~
+&BA pair of leather saddlebags lie here.~
+~
+15 268435712 0 0 1025 1
+300~ 1~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7418
+leather canteen raharo searnia~
+&ca hard leather canteen&w~
+&BA hard leather canteen lies here.~
+~
+17 0 0 0 1 1
+100~ 100~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7419
+blazing torch raharo searnia~
+&ca &Rbl&raz&Oin&Yg &Rto&rr&Oc&Yh&w~
+&BA torch lies here with a small flame burning on it.~
+~
+1 33557504 0 0 1 1
+0~ 0~ -1~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 1
+A
+1 1
+#7420
+map scroll raharo searnia~
+&ca map of searnia&w~
+&BA map of searnia lies here.~
+~
+13 536870912 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7421
+thin bamboo quarterstaff raharo searnia~
+&ca thin &Yb&Oa&Ym&Ob&Yo&Oo &cquarterstaff&w~
+&BA thin bamboo quarterstaff lies here.~
+~
+5 3136 0 17952 8193 1
+0~ 5~ 5~ 7~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 3
+A
+2 1
+#7422
+sling raharo searnia~
+&ca sling&w~
+&BA small leather sling lies here.~
+~
+5 3328 2048 17952 8193 1
+0~ 3~ 10~ 6~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 -5
+A
+19 2
+#7423
+walking staff raharo searnia~
+&ca walking staff&w~
+&BA long walking staff rests at your feet here.~
+~
+5 3328 6348 17952 8193 1
+0~ 0~ 0~ 7~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 1
+#7424
+throwing dagger raharo searnia~
+&ca small throwing dagger&w~
+&BA small dagger perfect for throwing lies here.~
+~
+5 19456 34 17952 8193 9
+0~ 0~ 0~ 11~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+18 3
+A
+19 5
+#7425
+half-moon axe raharo searnia~
+&ca long &Chalf&c-&Cmoon &caxe&w~
+&BA heavy half-moon axes lies here.~
+~
+5 3072 34 17952 8193 25
+0~ 0~ 0~ 1~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+A
+1 2
+A
+18 8
+#7426
+glass eye-piece raharo searnia~
+&ca small glass eye-piece&w~
+&BA glass eye-piece lies here.~
+~
+27 3072 0 17952 131073 100
+105~ -1~ 0~ identify~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7427
+ledger accounts book raharo searnia~
+&ca &zledger &cof &Oaccounts&w~
+&BA large black bound ledger of accounts lie here.~
+~
+13 3072 0 17952 16385 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7428
+forge fire~
+&ca &Rforge &Rf&ri&Or&Ye&w~
+&BA large &Rforge &Rf&ri&Or&Ye &Bstands here.~
+~
+12 33554432 0 0 0 106
+0~ 0~ 0~ 0~
+1000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7429
+blacksmith smithy hammer raharo searnia~
+&ca &zblacksmith's &chammer&w~
+&BA blacksmith's heavy hammer lies here.~
+~
+8 536873984 0 17952 16385 101
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7430
+blacksmith leather vest raharo searnia~
+&ca &zblacksmith's &Oleather &cvest&w~
+&BA blacksmith's leather vest lies here in a heap.~
+~
+9 536873984 0 17952 9 101
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -70
+A
+17 -30
+#7437
+gleeman flute raharo searnia~
+&ca gleeman's &wsilver &cflute&X~
+&BA gleeman's silver flute lies here.~
+~
+8 3072 7935 17952 129 101
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+A
+12 100
+A
+17 -130
+A
+13 125
+A
+24 -23
+A
+18 12
+A
+19 13
+#7438
+marble fountain spring raharo searnia~
+&ca large &zma&Wr&zbl&We &cfountain&w~
+&BA large &zma&Wr&zbl&We&B fountain gushes water here.~
+~
+25 805306368 0 0 0 0
+0~ 0~ 0~ 0~
+1500 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7439
+white cloak raharo searnia~
+&ca &Wwhite cloak &cwith &Rbu&rrn&Oin&Yg &Otorch &cinsignia&w~
+&BA large white cloak lies here in a heap.~
+~
+9 805309697 512 17952 1025 101
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+17 -100
+A
+18 11
+A
+19 11
+A
+23 -25
+A
+24 -40
+#7440
+long-hafted halberd raharo searnia~
+&ca long-hafted halberd&w~
+&BA long-hafted halberd rests at your feet here.~
+~
+9 3072 34 17960 8193 20
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 12
+A
+19 3
+#7441
+shining chainmail shirt raharo searnia~
+&ca &Cshining &cchainmail shirt&w~
+&BA chainmail shirt lies here in a heap.~
+~
+9 3072 2048 17920 9 20
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -15
+A
+18 12
+A
+19 8
+#7442
+sturdy steel helm raharo searnia~
+&ca sturdy steel helm&w~
+&BA sturdy steel helm lies here.~
+~
+9 3072 2048 17952 17 20
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+18 2
+A
+17 -10
+A
+19 2
+#7443
+leather whip raharo searnia~
+&ca deadly 18-foot leather whip&w~
+&BA very long whip made of the finest leather lies here.~
+~
+5 805309440 2048 17952 8193 101
+0~ 0~ 0~ 4~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+A
+13 110
+A
+17 -100
+A
+2 3
+A
+18 35
+A
+19 40
+#7444
+quarterstaff staff raharo searnia~
+&ca masterly crafted quarterstaff&w~
+&BA quarterstaff created by the skill of a master lies here.~
+~
+5 872418304 6348 17952 8193 102
+0~ 0~ 0~ 7~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+123 -1
+A
+2 2
+A
+13 125
+A
+17 -120
+A
+18 40
+A
+19 46
+#7445
+broadsword sword raharo searnia~
+&ca massive broadsword&w~
+&BA massive broadsword belonging to a guard lies here.~
+~
+5 805309696 34 17952 8193 101
+0~ 0~ 0~ 3~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 45
+A
+18 35
+A
+17 -110
+A
+1 3
+A
+2 -1
+A
+13 140
+A
+12 50
+#7446
+giant double-edged axe raharo searnia~
+&ca giant &Cdouble&c-&Cedged &caxe&w~
+&BA guard's giant double-edged axe lies here.~
+~
+5 805309440 0 17952 8193 101
+0~ 0~ 0~ 13~
+9 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 52
+A
+18 20
+A
+13 115
+A
+17 -75
+A
+2 -1
+A
+1 2
+A
+24 -10
+#7447
+badge captain raharo searnia~
+&cthe &WAlor Raharo &cGuard Captain Badge&w~
+&BThe torn off badge of a captain of the alor raharo guards lies here.~
+~
+9 805309440 0 17952 257 101
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 11
+A
+18 10
+A
+17 -105
+A
+13 100
+A
+24 -17
+A
+23 -17
+#7448
+bamboo practice sword~
+&ca practice sword made of bundled &Yb&Oa&Ym&Ob&Yo&Oo&w~
+&BA practice sword of bundled bamboo lies here.~
+~
+5 3072 0 17952 8193 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7449
+gateway bethaven portal raharo searnia~
+&ca &wsilvery &cgateway&w~
+&BA &wsilvery gateway &Bleading to the town of Bethaven lies here.~
+~
+29 536870976 0 0 0 0
+25000~ 0~ 0~ 0~
+2000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7450
+needle raharo searnia~
+&ca small &wneedle&c~
+&BA small needle lies here at your feet.~
+~
+5 0 34 17952 8193 1
+0~ 0~ 0~ 11~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 3
+#7451
+spool thread raharo searnia~
+&ca spool of thread&w~
+&BA spool of thread lies here.~
+~
+13 0 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7452
+gleeman colourful cloak raharo searnia~
+&ca gleeman's &bc&ro&pl&go&wu&Or&cf&bu&rl &ccloak of patches&w~
+&BThe multi-coloured cloak of patches of a gleeman lies here.~
+~
+9 3072 6860 17952 1025 75
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 8
+A
+18 7
+A
+17 -20
+A
+13 75
+A
+2 2
+A
+24 -40
+#7453
+gleeman juggling balls raharo searnia~
+&ca gleeman's &Rc&Yo&Pl&Wo&Gu&zr&Cf&Bu&Rl &cjuggling balls&w~
+&BA gleeman's set of colourful juggling balls lies here.~
+~
+8 3072 0 17952 16385 75
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+detect evil~
+25 25
+0 0 0
+A
+17 -50
+A
+24 -15
+A
+13 75
+A
+18 7
+A
+19 8
+#7454
+gleeman flute case raharo searnia~
+&ca shoulder-slung gleeman's flute case&w~
+&BA gleeman's flute case lies here.~
+~
+8 3072 0 17952 257 75
+0~ 0~ 0~ 0~
+3 0 0 0 0
+1 7437
+reserved~
+1 1
+0 0 0
+#7455
+gleeman harp raharo searnia~
+&ca gleeman's &Ygolden &charp&w~
+&BA gleeman's gold plated harp lies here.~
+~
+8 3072 7935 17952 129 75
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+24 -17
+A
+1 2
+A
+13 75
+A
+17 -45
+A
+18 7
+A
+19 8
+#7456
+light blue tunic raharo searnia~
+&ca &Blight blue &ctunic&w~
+&BA light blue tunic lies here in a heap.~
+~
+9 3072 0 17952 9 7
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -5
+A
+5 1
+A
+2 1
+#7457
+white blouse raharo searnia~
+&ca &Wwhite &cblouse&w~
+&BA citizen's white blouse lies here.~
+~
+9 3072 0 17952 9 7
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -5
+A
+13 10
+A
+4 1
+#7458
+dark blue skirt raharo searnia~
+&ca &bdark blue &cskirt&w~
+&BA dark blue skirt lies here.~
+~
+9 3072 0 17952 33 7
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 1
+A
+13 5
+A
+17 -12
+#7459
+leather breeches raharo searnia~
+&ca pair of &Oleather &cbreeches&w~
+&BA pair of leather breeches lie here.~
+~
+9 3072 0 17952 33 7
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+A
+19 1
+#7460
+donation box~
+&ca donation box&X~
+&BA donation box lies here.&X~
+~
+15 536870912 0 0 0 0
+9999~ 0~ 0~ 0~
+500 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#7461
+map alor-raharo raharo searnia~
+&ca map of alor raharo&w~
+&BA map of alor raharo lies here.~
+~
+8 536870912 0 0 1 1
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+cty~
+&O ______________________________________________________________________________&O
+&O/                                                                           //\&O\
+&O|                            &zMap of Alor Raharo&O                             |||&O|
+&O\___________________________________________________________________________\__&O/
+&O  |&G                                                                            &O|
+&O  |&R I  &w-&B Inn\Tavern       &R Bl &w-&B Blacksmithy       &R H &w-&B Private residence       &O|
+&O  |&R M  &w-&B Magic Store      &R SP &w-&B Spell Eq Shop                                  &O|
+&O  |&R A  &w-&B Armor Shop       &R O  &w-&B Healer "Oracle"                                &O|
+&O  |&R B  &w-&B Bakery           &R F  &w-&B Village Green                                  &O|
+&O  |&R Gs &w-&B General Store    &R G  &w-&B Town Garrison                                  &O|
+&O  |&R W  &w-&B Weapon Shop      &R Ng &w-&B North Gate                                     &O|
+&O  |&R J  &w-&B Jewellery Shop   &R Wg &w-&B West Gate                                      &O|
+&O  |&R Bk &w-&B Bank             &R Sg &w-&B South Gate                                     &O|
+&O  |&R P  &w-&B Pet Store        &R Eg &w-&B East Gate                                      &O|
+&O  |&R Mg &w-&B Mercenary Guild  &R T  &w-&B Practice\Trainer                               &O|
+&O _|____________________________________________________________________________&O|
+&O/                                                                           / \&O\
+&O|                     &zLook at &B"&wMAP&B"&z to see Alor Raharo.&O                     |\|&O|
+&O\___________________________________________________________________________\__&O/
+~
+E
+map~
+&O ______________________________________________________________________________&O
+&O/                                                                           //\&O\
+&O|                            &zMap of Alor Raharo&O                             |||&O|
+&O\___________________________________________________________________________\__&O/
+&O  |&G               Averil Forest &b(%%)=(%%)&B Sarvis&R              Arackier         &O|
+&O  |&C                         ||   &b||   || &B Lake&R                  Peaks          &O|
+&O  |&C                        &w(&zNg&w)&b (%%)=(%%)                                      &O|
+&O  |&C                         ||        &b||                                       &O|
+&O  |&w         (&zG &w)      (&zO &w)&C=(  )=&w(&zI &w)&b &b(%%)=(%%)=(%%) &C(  )=(H )                  &O|
+&O  |&C          ||             ||                  &b\/&C   ||                        &O|
+&O  |&C   =&w(&zWg&w)&C=(  )=(  )=(  )=&w(&zF &w)&C=(  )=(  )=(  )=(  )=(  ) (H )                  &O|
+&O  |&C               ||   ||   ||        ||        &b/\&C   ||   ||                   &O|
+&O  |&w         (&zMg&w)&C=(  ) &w(&zB &w) &C(  ) &w(&zP &w) &C(  )=&w(&zT &w) &b(%%)&C (  )=(  )=(H )             &O|
+&O  |&C               ||        ||   ||   ||        &b||&C        ||                   &O|
+&O  |&C              (  )=(  )=(  )=(  )=(  )      &b(%%)&w (&zGa&w)&C=(  ) (H )             &O|
+&O  |&C                         ||        ||        &b||&C        ||   ||              &O|
+&O  |&w                   (&zW &w)&C=(  )=(  ) (  )=&w(&zBk&w) &b(%%)&w (&zM &w)&C=(  )=(  )             &O|
+&O  |&C                         ||        ||        &b||&C             ||              &O|
+&O  |&w                   (&zBl&w)&C=(  ) &w(&zJ &w)&C=(  )      &b(%%)&C           (  )=(H )        &O|
+&O  |&C                                   ||        &b||&C             ||              &O|
+&O  |&w                        (&zSP&w)&C=(  )=(  )      &b(%%)&C      (  ) &w(&zSg&w)             &O|
+&O  |&R    Averillen                 &C||             &b\/&C        ||   ||              &O|
+&O  |&R        Mountains            &C(  )=(H ) &w(&zEg&w)&C=(  )=(  )=(  )=(  )=(  )        &O|
+&O  |&C                              &C||        ||   &b/\&C             ||              &O|
+&O  |&C                             (  )=(  )=(  ) &b(%%)=(%%)=(%%)>&C(??)&b<(%%)=(%%)   &O|
+&O  |&C                                   ||                       ||              &O|
+&O  |&C                                  (H )               &WArctic Wastelands      &O|
+&O _|____________________________________________________________________________&O|
+&O/                                                                           / \&O\
+&O|                   &zLook at &B"&wCTY&B"&z to see letter meanings.&O                   |\|&O|
+&O\___________________________________________________________________________\__&O/
+~
+#0
+
+
+
+#ROOMDATA
+#7400
+&OAt the &BValari river's &Obank&W~
+&OThe &BI&bc&Cy &Bwaters&O of the Valari river rush by dragging sand from
+along the shores of it's banks by the fierce currents in the rapids.  Not
+far south the ground turns into a &Wdeep ice&O leading out into the &CArctic
+Wastelands&O.  Why the &Wice&O has receded here is mystery though.  Off a
+ways to the northwest lies a medium-sized city's outer walls.  
+~
+0 393233 4
+Rd     0
+D2
+~
+~
+0 0 7401
+S
+#7401
+&OA bend in the &Briver&O bank&W~
+&OJust to the south the ground &Cfreezes&O to begin the region known as
+the &WArctic Wastelands&O, although not a single trace of that area's
+&Bi&bc&Cy chill&O seems to effect this strip of &Briver &Obank.  A lond
+distance to the west the Averillen Mountains rise up into the &Wclouds&O and
+at their feet give birth to the swift &CValari river&O.  To the east the
+shoreline continues.  
+~
+0 393233 4
+Rd     0
+D0
+~
+~
+0 0 7400
+D1
+~
+~
+0 0 7402
+S
+#7402
+&OAlong the &BValari river's &Osouth bank&W~
+&OTo the north a bit the &BValari river&O bends sharply southward heading
+in your direction until it bends back eastward to pass beneath a long wooden
+bridge a little to the east.  Not far south the ground lies in a permanent
+state of &Cfrost&O with little or no ground showing beneath the deep mounds
+of &Wsnow&O.  
+~
+0 393233 4
+Rd     0
+D1
+~
+~
+0 0 7403
+D3
+~
+~
+0 0 7401
+S
+#7403
+An abrupt end in the ice pathway~
+&OYou stare out at the landscape before you as the first tinges of shock
+pass at the lush valley before you.  Just to the south the passageway
+continues back through the &Cfrozen &WArctic Wastelands&O, yet none of that
+area's deep &Cchill&O seems to reach into this valley enterance.  A long
+wooden bridge, showing signs of heavy rot, runs off to the north traversing
+over the top of a rapid torn &Briver&O that banks sharply off to the north
+after passing beneath the bridge.  The shoreline of the &Briver&O continues
+to the east and west.  
+~
+0 393233 4
+Rd     0
+D0
+~
+~
+0 0 7405
+D1
+~
+~
+0 0 7404
+D3
+~
+~
+0 0 7402
+S
+#7404
+&OAlong a &Briver &Obank&W~
+&OThe Arackier Peaks tower up abruptly just to the east blocking view of
+the &BValari river's &Oeastward trek from here.  Far off to the north you're
+able to see the opposite bank of the &Briver&O as well as a long wooden
+bridge standing over the &Bwater's&O surface just to the northwest.  
+~
+0 393233 4
+Rd     0
+D3
+~
+~
+0 0 7403
+S
+#7405
+&OA rotting wooden bridge&W~
+&OThe fast rapids of the &BValari river&O rush by beneath the long wooden
+floorboards at your feet.  At sections of the bridge &Wwhite froth&O laps up
+between the wooden planks.  Upon closer examination of the wood's condition
+you notice several of the planks heavily warped and nearly all of them
+thoroughly rotted through.  Perhaps continuing on as soon as possible would
+be a good idea.  The idea of crashing through to the swift rapids just below
+doesn't seem quite as appealing as the sandy shore a ways off to the north. 
+~
+0 393233 4
+Rd     0
+D0
+~
+~
+0 0 7406
+D2
+~
+~
+0 0 7403
+S
+#7406
+&OA rotting wooden bridge&W~
+&OThe fast rapids of the &BValari river&O rush by beneath the long wooden
+floorboards at your feet.  At sections of the bridge &Wwhite froth&O laps up
+between the wooden planks.  Upon closer examination of the wood's condition
+you notice several of the planks heavily warped and nearly all of them
+thoroughly rotted through.  Perhaps continuing on as soon as possible would
+be a good idea.  The idea of crashing through to the swift rapids below
+doesn't seem quite as appealing as the sandy shore just off to the north.  
+~
+0 393233 4
+Rd     0
+D0
+~
+~
+0 0 7408
+D2
+~
+~
+0 0 7405
+S
+#7407
+&OAlong the north bank&W~
+&OThick mud wraps up around the soles of your boots as you traverse the
+length of this muddy beach.  The &Briver&O seems to be receeding at the
+moment leaving the section of ground you stand upon a strip of foot-deep
+dark mud.  Passage to the east is immediately blocked by the towering
+mountains of the Arackier Peaks.  
+~
+0 393233 4
+Rd     0
+D3
+~
+~
+0 0 7408
+S
+#7408
+&OAlong the north bank&W~
+&OYour shoes make a slow suctioning sound as you pull your legs free from
+the foot-deep mud and press on along the shoreline.  Directly to the north
+the tall walls of a medium-sized city open up at a large steel gate,
+currently lying open.  Running off southward is a long wooden bridge showing
+considerable signs of rot in it's long floorboards.  
+~
+0 393233 4
+Rd     0
+D0
+~
+~
+0 0 7473
+D1
+~
+~
+0 0 7407
+D2
+~
+~
+0 0 7406
+D3
+~
+~
+0 0 7409
+S
+#7409
+&OAlong the north bank&W~
+&OThe sticky mud seems a bit more pacted down here going by the quieter
+sound of your boots being pulled free and the easier chore of pulling them
+free.  Running off westward is a long stone bridge with wooden floorboards
+covering it's floor above the stone.  To the north lies a small patch of
+&Gleaf crowned trees&O.  The swift &BValari river&O rages between it's
+shorelines to the south banking southward for a bit before disappearing
+beneath another bridge off to the east.  
+~
+0 393233 4
+Rd     0
+D0
+~
+~
+0 0 7410
+D1
+~
+~
+0 0 7408
+D3
+~
+~
+0 0 7411
+S
+#7410
+&GA small patch of trees&W~
+&gTowering trees &Ghang above &gyou reaching ne&Garly to the to&gp of the cit&Gy's outer
+&gwalls before e&Gnding in a &gthick crown of &Gcolorful leave&gs.  To the s&Gouth the tr&gees
+&gend abruptly &Ginto a shor&geline of deep l&Gooking mud.  S&gouthwest run&Gs a long wo&goden
+&gbridge suppo&Grted by fan&gciful stonework&G.
+~
+0 393233 3
+Rd     0
+D2
+~
+~
+0 0 7409
+S
+#7411
+&OA section of the South Bridge&W~
+&wFairly well-kept &Owooden floorboards&w cover over this bridge's
+&Wbright stone &wlying beneath.  From one bridge rail to the other it's
+easily wide enough to support a large wagon or at least five men horseback
+abreast to cross.  A faint creaking sound follows your movement along the
+&Owooden boards&w as you head along your way.  The bridge continues to the
+west or exits to the east.  
+~
+0 393233 4
+Rd     0
+D1
+~
+~
+0 0 7409
+D3
+~
+~
+0 0 7412
+S
+#7412
+&OA section of the South Bridge&W~
+&wWell-kept &Owooden floorboards&w cover this section of the bridge's
+&Wbright white stone&w that lies underneath.  Somehow the bridge's
+&Wstonework&w underneath seems to have eluded even dust, but then again the
+&BValari river's &wswift currents bring the &Bwater&w to lap up lazily
+against the side of the bridge.  The bridge continues to the east or exits
+to the west.  
+~
+0 393233 4
+Rd     0
+D1
+~
+~
+0 0 7411
+D3
+~
+~
+0 0 7413
+S
+#7413
+&CAlor Raharo's East Gate&W~
+&wAlor Raharo's impressively towering, outer walls arch upward a bit here
+to form a &Ygolden &wpainted steel gate.  The &Osand-covered wooden
+floorboards&w of the &Wwhite stone&w bridge to the east turns into a pathway
+of finely crushed gravel making travel a bit more pleasant if louder.  A
+street leads off from the south on into the west.  
+~
+0 131092 1
+Rd     0
+D1
+~
+~
+0 0 7412
+D2
+~
+~
+0 0 7414
+S
+#7414
+&CEsiser Avenue&W~
+&wThe crushed gravel of the street beneath you crunches lightly as you
+make your way along Esiser Avenue.  The street heads off westward for some
+distance or bends north becoming the mouth of Alor Raharo's eastern city
+gate.  
+ 
+&BNorth &w- &CEast Gate of Alor Raharo
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7413
+D3
+~
+~
+0 0 7415
+S
+#7415
+&CEsiser Avenue&W~
+&wGlancing around gives you little clue to your surroundings with a
+simple-designed &Wwhite&w wall of a private home to the north and the closed
+&Ooak&w door of another private residence to the south.  The avenue itself
+continues on to the east and the west.  
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7414
+D2
+~
+~
+0 0 7416
+D3
+~
+~
+0 0 7417
+S
+#7416
+&CA private residence&W~
+&wThe enveloping sounds of the city's residents lessens greatly as you
+enter one of the many private homes spread about the city.  A plain &Owooden
+table&w lies in the center of the room with a collection of small chairs
+spread around it.  Over to one corner lies a couple sets of cots laided out
+in a row for the family's beds.  
+~
+0 262156 0
+Rd     0
+D0
+~
+~
+0 0 7415
+S
+#7417
+&CIntersection of Aim'is Avenue & Esiser Avenue&W~
+&wThe crushed gravel of Esiser Avenue ends abruptly as it intersections
+with one of Alor Raharo's largest streets, Aim'is Avenue.  People bustle
+past you on this busy road, leaving you to dodge the various farmer's carts
+and merchant's wagons passing through.  Attempting to block out the sounds
+of a city bursting at the seems you climb up on a parked cart's side to look
+down the street.  To the north, Aim'is leads on a ways before bending east
+out of sight.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7418
+D1
+~
+~
+0 0 7415
+S
+#7418
+&CAim'is Avenue&W~
+&wNoisy carts swing by past you on the uneven cobblestone of this avenue.
+Biting off a few muttered curses you dodge stealthily around those carts
+that don't care whether you move out of the way or not.  Several groups of
+people mill about standing along the sides speaking in quiet voices or even
+laughing aloud, while others move briskly through the crowd about their
+daily chores.  Aim'is Avenue contines to the north and south.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7421
+D1
+~
+~
+0 0 7419
+D2
+~
+~
+0 0 7417
+S
+#7419
+&CA private residence~
+&wThe enveloping sounds of the city's residents lessens greatly as you
+enter one of the many private homes spread about the city.  A plain &Owooden
+table&w lies in the center of the room with a collection of small chairs
+spread around it.  Over to one corner lies a couple sets of cots laided out
+in a row for the family's beds.  
+~
+0 131084 0
+Rd     0
+D3
+~
+~
+0 0 7418
+S
+#7420
+&CDagra's Magical Supply Store&W~
+&wHeavy &Ooak shelves&w line the stark &Wwhite&w walls of this store,
+except to the back where several large &ziron cauldrons&w lie stacked up on
+top of each other behind the shopkeeper's counter.  Empty flasks lay neatly
+laid out in rows along the shelves to your right while thick stacks of
+parchment paper lies on the shelf to your left.  A standup rack lies on the
+counter holding numerous bottles of ink with a cup full of feathered quills
+sticking point down into it.  
+~
+0 394252 0
+Rd     0
+D1
+~
+~
+0 0 7421
+S
+#7421
+&CAim'is Avenue&W~
+&wHere Aim'is Avenue bends east if you're heading northward or bends west
+if you're traveling south along it's length.  The side of one of Alor
+Raharo's numerous shops looms above your head directly to the north and a
+large &Owooden &wdoor lies to the west.  
+&B
+&BWest &W- &CDagra's Magical Supply Store
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7422
+D2
+~
+~
+0 0 7418
+D3
+~
+~
+0 0 7420
+S
+#7422
+&CAim'is Avenue&W~
+&wWagon wheels creak as they make their way around this bend in Aim'is
+Avenue on their way either to the west or north.  The side of some building
+lies directly to the east and another building side to the south.  Shuffling
+through the milling masses of people you step on a small ledge to get a
+better look down the street in the direction you're heading.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7423
+D3
+~
+~
+0 0 7421
+S
+#7423
+&CAim'is Avenue&W~
+&wYou dodge to one side as a wagon suddenly lurches into movement from
+its stationary position in front of a store directly to the west.  Aim'is
+Avenue itself continues to the north for as far as your eye is able to make
+out and to the south before bending westward.  The side of a building lies
+to the east while to the west lies the &Owooden&w sign of a jeweller's shop
+hanging above its door.  
+&C
+&BWest &w- &CAleis' Rare Gems
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7425
+D2
+~
+~
+0 0 7422
+D3
+~
+~
+0 0 7424
+S
+#7424
+&CAleis' Rare Gems&W~
+&wBrightly polished shelves of &Owood&w line the walls holding up
+fanciful &Pvelvet cushions&w which have small gems of all types lying upon
+them.  &bDark blue sapphires&w, &Obronzish topaz gems&w, &Gbright emeralds&w
+& &Rbright rubies &wline the various cushions sending off colored streams of
+light as they reflect what little sunlight that seeps inside.  
+~
+0 394252 0
+Rd     0
+D1
+~
+~
+0 0 7423
+S
+#7425
+&CAim'is Avenue&W~
+&wPeople bustle about you, clearing just enough room around you for you
+to get by.  An air of distance lies between the people of this valley and
+those outsiders like yourself, not quite dislike, but a feeling of nearly
+tangable caution and curiosity.  The back side of what appears to be the
+village's armor shop lies to your west, while to the east lies the front of
+Alor Raharo's bank.  Aim'is Avenue continues to the north and the south.  
+&B
+&BEast &w- &CAlor Raharo City Vault
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7427
+D1
+~
+~
+0 0 7426
+D2
+~
+~
+0 0 7423
+S
+#7426
+&CAlor Raharo City Vault&W~
+&wLamps are light all around you in this somewhat large room known as the
+City Vault.  A long counter runs across one end of the building, marking the
+teller's workstation.  Beyond the counter to the right of the room lies a
+thick steel door with a large spoked wheel balanced in it's center.  Somehow
+you get the feeling little short of the most powerful of magics could break
+through such a device.  
+~
+0 17171468 0
+Rd     0
+D3
+~
+~
+0 0 7425
+S
+#7427
+&CIntersection of Aim'is Avenue & Fevnn Street&W~
+&wCarts and travellers on horse back shuffle themselves around each other
+as these two streets cross one another's paths.  Far to the north you're
+able to see the very southern end of the Searnian Valley's Sarvis Lake with
+it's crystal clear waters glistening in the sunlight while to the west where
+Fevnn street leads off you're able to make out the eastern end of the
+Averillen Mountains.  Aim'is Avenue continues to the north and the south.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7449
+D2
+~
+~
+0 0 7425
+D3
+~
+~
+0 0 7428
+S
+#7428
+&CFevnn Street&W~
+&wYou stand in the middle of a small side street in Alor Raharo just to
+the west of the grand Aim'is Avenue, Raharo's main road.  North of you lies
+the town petstore while to the south lies the side of what you believe is
+the town's armor shop.  Fevnn Street continues to the west and east.  
+&B
+&BNorth &W- &CNemari's Pet Store
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7451
+D1
+~
+~
+0 0 7427
+D3
+~
+~
+0 0 7429
+S
+#7429
+&CIntersection of Calane Road & Fevnn Street&W~
+&wThe small backroad of Fevnn Street intermeshes into Alor Raharo's main
+northern road, Calane Road.  Leading southward from you lies a section of
+several stores, while to the north you can just make out the deep green
+grasses of the town's Village Green and the northern gate beyond that. 
+Fevnn Street continues to the west and east, Calane Road continues to the
+north and south.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7446
+D1
+~
+~
+0 0 7428
+D2
+~
+~
+0 0 7430
+D3
+~
+~
+0 0 7435
+S
+#7430
+&CCalane Road&W~
+&wYou stand in the northern half of a small grouping of this town's
+stores, with the local weaponsmithy to the west and village armoury to the
+east.  Leading off north runs Calane Road heading up through the center of
+town.  Calane Road continues to the north and south.  
+&B
+&BWest &W- &CGladeral's Weaponsmithy
+&BEast &W- &CBlais' Armoury
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7429
+D1
+~
+~
+0 0 7432
+D2
+~
+~
+0 0 7433
+D3
+~
+~
+0 0 7431
+S
+#7431
+&CGladeral's Weaponsmithy&W~
+&wOld wooden barrels lie along the store's inner walls containing odd
+assortments of sword, broadswords, halberds, spears, quarterstaffs or axes
+of varying size.  A forge's heat comes from behind a closed door to the
+back, along with the sounds of hammering.  Walking in a bit further you come
+to a counter containing various daggers and throwing knives set on their
+sides with the tip facing outward.  
+~
+0 394252 0
+Rd     0
+D1
+~
+~
+0 0 7430
+S
+#7432
+&CBlais' Armoury&W~
+&wWell oiled and polished pieces of armor suits hang upon pegs or rest
+against the wall along each side of this store.  A smell of faint rust and
+metal clings heavily to the air as you use the edge of your cloak to filter
+it out some.  To the back lies a long counter holding assortments of various
+sized helms, visors, and face guards.  
+~
+0 394248 0
+Rd     0
+D3
+~
+~
+0 0 7430
+S
+#7433
+&CCalane Road&W~
+&wHere one of Alor Raharo's main streets mets it's end up against the
+side of a village store's wall.  Walls surround you to the south and east,
+while a closed door to a shop lies to the west.  A bright reddish light
+eminates from beneath the door along with an intense amount of heat.  Calane
+Road continues to the north.  
+&B
+&BWest &W- &CCavon's Blacksmithy
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7430
+D3
+~
+~
+0 0 7434
+S
+#7434
+&CCavon's Blacksmithy&W~
+&wIntense heat envelopes you as you enter the room, drawing beads of
+sweat upon your forehead.  A few men work at a large set of pillows keeping
+the forge's fire hot, while another man works steadily bringing down a heavy
+blacksmith's hammer upon a piece of metal resting on a black anvil.  Bits
+and pieces of armor hang up along the walls all across the store, except for
+a section to the back that holds tools ranging from tongs to chippers of all
+sorts.  
+~
+0 67503116 0
+Rd     0
+D1
+~
+~
+0 0 7433
+S
+#7435
+&CFevnn Street&W~
+&wPeople bustle about around you, spreading to either side as you make
+your way down the street.  To the east a bit lies the intersection between
+this street and Calane Road, one of Alor Raharo's main streets.  North and
+south of you lies the back or side of one of the town's various shops, while
+to the west continues this street.  
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7429
+D3
+~
+~
+0 0 7436
+S
+#7436
+&CIntersection of Ixzan Road & Fevnn Street&W~
+&wHere Fevnn Street bends northward turning into the smaller Ixzan Road
+of west Alor Raharo.  The glistening white walls of Raharo tower in all
+their glory directly to the west as well as a ways off to the north at the
+end of Ixzan Road.  Ixzan road continues to the north.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7437
+D1
+~
+~
+0 0 7435
+S
+#7437
+&CIxzan Road&W~
+&wThe majestic, towering, white walls of Alor Raharo loom a ways to the
+north as well as to the west behind a small shop.  The people in this
+section of the city seem to be drunk as an average and nearly every one of
+them armed with some form of weapon as well as carrying themselves as
+soldiers well aware of how to use those weapons.  Ixzan Road continues to
+the north and south.  
+&B
+&BWest &w- &CThe Local Adventurer's Guild
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7443
+D2
+~
+~
+0 0 7436
+D3
+~
+~
+0 0 7439
+S
+#7438
+&CEldvain's Bakery&W~
+&wLanterns hanging from the ceiling offer only a small amount of light as
+you step further in.  No windows are present to add in nature's light, which
+strikes you as a little odd, although that could be so more space could be
+made for shelves and cupboards like the ones that cover the walls in all
+directions.  A cauldron sits over a small fire surrounded by cobblestones to
+make a firepit.  Beneath the cupboards runs a long counter running the
+length of the west wall and bending down the south one some.  
+~
+0 394252 0
+Rd     0
+D0
+~
+~
+0 0 7444
+S
+#7439
+&CThe Local Adventurer's Guild&W~
+&wThe honorable Adventurer's Guild of Alor Raharo has able men and women
+of all classes and races to rent as companions on dangerous adventures.  The
+cost is not cheap, but the service is well worth any cost.  These
+mercenaries are willing to lay down their lives for the person who rents
+their services.  They have little choice, for failing a client means a
+lifetime of indentured servitude for the Adventurer's Guild.  
+~
+0 398348 0
+Rd     0
+D1
+~
+~
+0 0 7437
+S
+#7440
+&CWhere the Mercenaries are stored~
+~
+0 655380 0
+Rd     0
+S
+#7441
+&CMarsim Way&W~
+&wAll around you the majestic walls of Alor Raharo come to a meet at the
+massive golden doors of Raharo's Western Gate directly to the west.  The
+average number of village guards seems to be higher here, leading you to
+wonder until you notice the small wooden sign hanging above the door to the
+north, labeled as the town garrison.  Marsim Way continues to the west and
+east.  
+&B
+&BNorth &w- &CCity Garrison
+&BWest  &w- &CWest Gate of Alor Raharo
+~
+0 131072 1
+Rd     0
+D0
+&wA massive door made of the finest solid oak stands before you,
+glistening in the light as the sun's rays shine off it's polished surface. 
+A small wooden sign hangs from it's top reading, &C"&OGarrison of Alor
+Raharo, Office of Lord Captain Reanir Tyaren.  &C" 
+~
+door~
+3 0 7442
+D1
+~
+~
+0 0 7443
+D3
+~
+~
+0 0 7475
+S
+#7442
+&CCity Garrison&W~
+&wBarrels containing old, rusty swords lie stacked along the walls of
+this fair sized room.  Along one wall lies a rack of short hafted spears
+with blades nearly a foot long mounting their tops.  A staircase in the back
+leads upward, but ends at a trapdoor locked with a large padlock.  An
+assortment of chairs lie in a circle formation in front of a large oak desk
+covered with papers.  A large broadsword lies tip-down in the ground resting
+with it's hilt up against the side of the desk.  Written in small black
+lettering is a small wooden sign bearing the words, &C"&zReanir, Captain of
+the Alor Raharo Garrison, Defender of the Eastern Valley, High Lord of House
+Tyaren.&C"&w.  
+~
+0 393224 0
+Rd     0
+D2
+&wThe inner side of a massive oaken door, finely polished to the point of
+having a glass-smooth surface stands here closing off Lord Captain Reanir
+Tyaren's office.  
+~
+door~
+3 0 7441
+S
+#7443
+&CIntersection of Ixzan Road & Marsim Way&W~
+&wCarts roll past you to either side as you enter this busy intersection
+of the village.  A little ways to the west lies the massive golden gates of
+Alor Raharo's west gate, flanked to the sides by the majestic, white walls
+of the town.  Ixzan Road branches off to the south from Marsim Way, Alor
+Raharo's main cross street.  
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7444
+D2
+~
+~
+0 0 7437
+D3
+~
+~
+0 0 7441
+S
+#7444
+&CMarsim Way&W~
+&wPeople walk packed about across the width of this busy street, only
+breaking in openings for the numerous carts and wagons making their way
+along the road.  A small section of the towering northern walls of Alor
+Raharo branches off in front of you to the north blocking off the town
+Oracle's room.  The only wagon not moving lies in front of a store to the
+south.  
+&B
+&CSouth &w- &BEldvain's Bakery
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7445
+D2
+~
+~
+0 0 7438
+D3
+~
+~
+0 0 7443
+S
+#7445
+&GVillage Green&W~
+&gA large fountain springs out of the middle of this grassy town square. 
+Calane Road and Marsim Way both meet here bending into a paved circle around
+the Green's fountain with branches for each end of the road in the four
+compass directions with Marsim Way heading from the west to the east and
+Calane Road from the north to the south.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7455
+D1
+~
+~
+0 0 7447
+D2
+~
+~
+0 0 7446
+D3
+~
+~
+0 0 7444
+S
+#7446
+&CCalane Road~
+&wA wagon lurches to a halt not far off to your right stopping beside one
+of the town's various shops to unload it's cargo.  The sides of two stores
+craddle this section of Calane Road between them connecting the larger
+intersection of Calane Road and Marsim Way to the north with the smaller
+intersection of Calane Road and Fevnn Street to the south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 7445
+D2
+~
+~
+0 0 7429
+S
+#7447
+&CMarsim Way&W~
+&wLocal citizens of Alor Raharo move about around you, watching your
+actions casually to avoid offense, but watching you the same.  There doesn't
+seem to be a feeling of dislike, but rather sharp curiousity and
+apprehension at one of the recent travellers who's found the small break
+through the ice of the Wastelands to the south.  Marsim Way continues to the
+west and east.  
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7448
+D3
+~
+~
+0 0 7445
+S
+#7448
+&CIntersection of Aim'is Avenue & Marsim Way&W~
+&wVarious carts and wagons struggle to make it by one another at this
+overly crowded intersection where two of Alor Raharo's largest streets
+converge upon one another.  The southside of Alor Raharo's majestic northern
+wall glistens brightly in the sunlight behind the massing mob of citizens
+passing along on their individual tasks of the day.  Aim'is Avenue branches
+off to the south while Marsim Way continues east over the Valari River via
+the North Bridge and west on through western Alor Raharo.  
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7474
+D2
+~
+~
+0 0 7449
+D3
+~
+~
+0 0 7447
+S
+#7449
+&CAim'is Avenue&W~
+&wThe number of wagons seems to have multiplied here as you come closer
+to the intersection of Aim'is Avenue and Marsim Way, Alor Raharo's busiest
+section of roadway.  A set of heavy oak doors lie to the east marking the
+training building of Lord Adain's school on the arts of combat.  Aim'is
+Avenue continues to the north and south.  
+&B
+&BEast &w- &CLord Adain's School in the Arts of War
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7448
+D1
+~
+~
+0 0 7450
+D2
+~
+~
+0 0 7427
+S
+#7450
+&CLord Adain's School in the Arts of War&W~
+&wBook shelves line two of the walls immediately to the north and back
+towards the eastern wall of this room.  All across the south and a good
+portion of the west walls hang weapons of various types and sizes giving
+this room the feel of a cross between a library and training dojo as you
+enter it.  
+~
+0 4 0
+Rd     0
+D3
+~
+~
+0 0 7449
+S
+#7451
+&CNemari's Pet Store&W~
+&wA small puppy leaps forward in it's cage as you enter, barking
+playfully at your presense.  Cages line all of the walls, except for the
+back one from the door, stacked upon one another and nearly every one of
+them housing a rodent or animal of some sort.  From exotic looking birds to
+vicious looking wolves, dozens of pairs of eyes watch your every move
+intently with a hope they might be set free of their encagement.  
+~
+0 398348 0
+Rd     0
+D2
+~
+~
+0 0 7428
+S
+#7452
+&CWhere the pets are stored~
+~
+0 655380 0
+Rd     0
+S
+#7453
+&CThe North Bridge&W~
+&wHeavy-set stone blocks of gleaming white stand beneath your boots
+forming the famous North Bridge of Alor Raharo.  It's said there was as much
+magic put into the making of this bridge as there was physical labor, giving
+it it's shine and ability to completely resist the elements.  Examining the
+stonework a bit closer you can't even find one nick in the stone or even a
+scratch to mar it's surface.  The water from the rushing Valari river
+beneath sprays against it's outer sides, sliding rapidly back down into the
+river across the smooth bridge's texture.  
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7460
+D3
+~
+~
+0 0 7474
+S
+#7454
+&CTemple of Alor Raharo&W~
+&wImpenatrable as stone, older than the younger immortals and carrying
+the wisdom of countless centuries stands, Daran, the devoted oracle of Alor
+Raharo.  Light shines brightly around the rims of his eyes as he turns your
+direction searching your soul for the pureness in your heart.  Your mind
+immediately strays a bit searching for any moment of your past in which you
+fell from the grace of good nervously before his face softens a bit and his
+arms spread in welcome.  Within his sanctuary you may find the answers your
+troubled heart seeks.  
+~
+0 394244 1
+Rd     0
+D1
+~
+~
+0 0 7455
+S
+#7455
+&CCalane Road&W~
+&wJust off to the north lies the inner side of Alor Raharo's massive
+northern golden gates joining the majestic white walls of the village to
+form a barrier of protection for the citizens of the town.  West lies the
+famous Oracle of Alor Raharo, Daran, one of the eldest of the elder
+creatures in the realm.  The enterance to the Icy Rapids Inn lies to the
+east and to the south continues Calane Road.  
+&B
+&BWest &w- &CTemple of Alor Raharo
+&BEast &w- &CThe Common Room of the &B"I&bc&Cy &BRa&bp&ci&Cds&B" &CTavern&W
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7457
+D1
+~
+~
+0 0 7456
+D2
+~
+~
+0 0 7445
+D3
+~
+~
+0 0 7454
+S
+#7456
+&CThe Common Room of the &B"I&bc&Cy &BRa&bp&ci&Cds&B" &CTavern&W~
+&wStraw covers the hard-pacted dirt ground semi-neatly as you step in
+through the door with it's painted sign hanging above.  Darkness seems to
+have swallowed half of the common room except in small sections bathed
+slightly in the light of a few lanterns hanging from the ceiling.  Men and a
+few women sit in chairs around various tables either talking with companions
+or simply content to peer into the depths of their mugs.  Serving girls rush
+about with trays of mugs held balanced upon an arm with an air of experience
+as they meander between tables collecting money from patrons or setting a
+mug before one of them.  
+~
+0 394252 0
+Rd     0
+D3
+~
+~
+0 0 7455
+S
+#7457
+&CAlor Raharo's North Gate&W~
+&wAlor Raharo's impressively towering, outer walls arch upward a bit here
+to form a golden painted steel gate.  The branch-covered forest floor of the
+north turns into a pathway of finely crushed gravel making travel a bit more
+pleasant if louder.  A street leads off towards the south.  
+~
+0 131092 1
+Rd     0
+D2
+~
+~
+0 0 7455
+S
+#7458
+&CA private residence&W~
+&wThe enveloping sounds of the city's residents lessens greatly as you
+enter one of the many private homes spread about the city.  A plain wooden
+table lies in the center of the room with a collection of small chairs
+spread around it.  Over to one corner lies a couple sets of cots laided out
+in a row for the family's beds.  
+~
+0 131084 0
+Rd     0
+D3
+~
+~
+0 0 7459
+S
+#7459
+&CGeisa Street&W~
+&wThe gleaming white walls of Alor Raharo stand all around you as you
+walk through this bend of Geisa Street.  To the east lies the private
+resident of a Alor Raharo citizen, while to the street continues on to the
+south to the distance before turning east.  
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7458
+D2
+~
+~
+0 0 7460
+S
+#7460
+&CIntersection of Geisa Street & Marsim Way&W~
+&wWagons lurch by as they come off of the crowded Marsim Way into this
+length of road known as Geisa Street.  Here the crowds seem to have lessened
+a great deal making travel quite a bit easier.  Geisa Street continues to
+the north and south.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7459
+D2
+~
+~
+0 0 7461
+D3
+~
+~
+0 0 7453
+S
+#7461
+&CA bend in Geisa Street&W~
+&wThe loud squeeling of wagon wheels cry out aloud as each cart makes the
+sharp turn along Geisa Street here to continue on south towards the south
+gate of the town.  A set of citizen's homes lie off to the east just after
+where the road bends southward.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7460
+D1
+~
+~
+0 0 7462
+S
+#7462
+&CIntersection of Ramlyr Avenue & Geisa Street&W~
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7463
+D1
+~
+~
+0 0 7464
+D2
+~
+~
+0 0 7465
+D3
+~
+~
+0 0 7461
+S
+#7463
+&CA private residence&W~
+&wThe enveloping sounds of the city's residents lessens greatly as you
+enter one of the many private homes spread about the city.  A plain wooden
+table lies in the center of the room with a collection of small chairs
+spread around it.  Over to one corner lies a couple sets of cots laided out
+in a row for the family's beds.  
+~
+0 131076 0
+Rd     0
+D2
+~
+~
+0 0 7462
+S
+#7464
+&CA private residence&W~
+&wThe enveloping sounds of the city's residents lessens greatly as you
+enter one of the many private homes spread about the city.  A plain wooden
+table lies in the center of the room with a collection of small chairs
+spread around it.  Over to one corner lies a couple sets of cots laided out
+in a row for the family's beds.  
+~
+0 131080 0
+Rd     0
+D3
+~
+~
+0 0 7462
+S
+#7465
+&CRamlyr Avenue&W~
+&wStrolling down this road, making your way around the standing groups of
+citizens talking about trivial matters such as the weather and even more
+common the recent arrival of these "outlanders" from the southern realms of
+the world.  A few in one particular group turn and look in your direction,
+absent mindedly chatting over their shoulder to their group.  Ramlyr Avenue
+continues to the north and south.  
+&B
+&BWest &w- &CBrear's Supply Store
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7462
+D2
+~
+~
+0 0 7467
+D3
+~
+~
+0 0 7466
+S
+#7466
+&CBrear's Supply Store&W~
+&wShelves line each wall of the small store's interior with jars and odd
+assortments of containers covering them from their fronts to the wall backs.
+A large counter built with large glass planes connected at the edges by
+glossily waxed oak wood comprises the main piece of furniture in the entire
+store.  
+~
+0 394252 0
+Rd     0
+D1
+~
+~
+0 0 7465
+S
+#7467
+&CA bend in Ramlyr Avenue&W~
+&wHere the avenue bends from it's north and south direction on into the
+east before bending back south again.  A side of a large watchtower lies
+directly to the south blocking passage in that direction.  The oaken door of
+a local shop stands to the west.  
+&B
+&BWest &w- &CAssair's Magical Supplies
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7465
+D1
+~
+~
+0 0 7469
+D3
+~
+~
+0 0 7468
+S
+#7468
+&CAssair's Magical Supplies&W~
+&wPotions of colors varying from a deep red to a swirling violet line the
+shelves in this medium sized room.  A rack of tubes fastened together hang
+braced against a wall with dozens of yellow pieces of parchment containing
+spells of all sorts rolled up and placed within them.  A simple oak counter
+lies in the back of the store with trays of vials and pills with a blend of
+near rainbow scattered color.  
+~
+0 394252 0
+Rd     0
+D1
+~
+~
+0 0 7467
+S
+#7469
+&CA bend in Ramlyr Avenue&W~
+&wThe road sharply bends southward again here, completeling the S-bend
+started to the west, leading on south towards the massive golden doors of
+Alor Raharo's south gate.  A private residence lies directly to the north.  
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7470
+D2
+~
+~
+0 0 7471
+D3
+~
+~
+0 0 7467
+S
+#7470
+&CA private residence&W~
+&wThe enveloping sounds of the city's residents lessens greatly as you
+enter one of the many private homes spread about the city.  A plain wooden
+table lies in the center of the room with a collection of small chairs
+spread around it.  Over to one corner lies a couple sets of cots laided out
+in a row for the family's beds.  
+~
+0 131084 0
+Rd     0
+D2
+~
+~
+0 0 7469
+S
+#7471
+&CRamlyr Avenue&W~
+&wJust south of here lies the massive golden southern gates of Alor
+Raharo, shining majesticly in the sunlight, a symbol of the sanctuary this
+town offers to those in need.  The closed door to a private residence lies
+directly to the east, just before the south gate.  
+&B
+&BSouth &w- &CAlor Raharo's South Gate
+~
+0 131072 1
+Rd     0
+D0
+~
+~
+0 0 7469
+D1
+~
+~
+0 0 7472
+D2
+~
+~
+0 0 7473
+S
+#7472
+&CA private residence&W~
+&wThe enveloping sounds of the city's residents lessens greatly as you
+enter one of the many private homes spread about the city.  A plain wooden
+table lies in the center of the room with a collection of small chairs
+spread around it.  Over to one corner lies a couple sets of cots laided out
+in a row for the family's beds.  
+~
+0 131084 0
+Rd     0
+D3
+~
+~
+0 0 7471
+S
+#7473
+&CAlor Raharo's South Gate&W~
+&wAlor Raharo's impressively towering, outer walls arch upward a bit here
+to form a golden painted steel gate.  The sandy orange coloured beach of the
+south turns into a pathway of finely crushed gravel making travel a bit more
+pleasant if louder.  A street leads off towards the north.  
+~
+0 393236 1
+Rd     0
+D0
+~
+~
+0 0 7471
+D2
+~
+~
+0 0 7408
+S
+#7474
+&CMarsim Way&W~
+&wContinuing your journey across the northern section of Alor Raharo, you
+pause for a moment to stare in awe at the massive white bridge to the east. 
+The famous North Bridge of Alor Raharo has often been remarked as one of the
+world's greatest wonders, having been created with as much magic as physical
+labor.  It's said not even the elements can ruin it's smooth surface.  
+~
+0 131072 1
+Rd     0
+D1
+~
+~
+0 0 7453
+D3
+~
+~
+0 0 7448
+S
+#7475
+&CAlor Raharo's West Gate&W~
+&wAlor Raharo's impressively towering, outer walls arch upward a bit here
+to form a golden painted steel gate.  The branch-covered forest floor of the
+west turns into a pathway of finely crushed gravel making travel a bit more
+pleasant if louder.  A street leads off towards the east.  
+~
+0 131092 1
+Rd     0
+D1
+~
+~
+0 0 7441
+S
+#0
+
+
+
+#SPECIALS
+M 7412 spec_healer
+M 7413 spec_executioner
+M 7414 spec_executioner
+M 7415 spec_executioner
+M 7416 spec_executioner
+M 7417 spec_executioner
+M 7422 spec_cast_mage
+M 7423 spec_healer
+M 7429 spec_executioner
+M 7437 spec_janitor
+S
+
+
+
+#RESETS
+M 0 7415 1 7413
+E 0 7443 0 20
+E 0 7443 0 21
+E 0 7439 0 16
+E 0 7441 0 5
+E 0 7442 0 6
+M 0 7411 1 7420
+M 0 7429 2 7422
+E 0 7440 0 20
+E 0 7441 0 5
+E 0 7442 0 6
+M 0 7437 2 7423
+M 0 7406 1 7424
+E 0 7426 0 7
+M 0 7407 1 7426
+E 0 7427 0 22
+M 0 7405 1 7431
+G 0 7421 0
+G 0 7422 0
+G 0 7423 0
+G 0 7424 0
+M 0 7402 1 7432
+G 0 7410 0
+G 0 7411 0
+G 0 7412 0
+G 0 7413 0
+M 0 7410 1 7434
+E 0 7429 0 22
+E 0 7430 0 5
+O 0 7428 0 7434
+M 0 7429 2 7435
+E 0 7440 0 20
+E 0 7441 0 5
+E 0 7442 0 6
+M 0 7436 2 7436
+M 0 7403 1 7438
+E 0 7401 0 16
+G 0 7414 0
+G 0 7415 0
+G 0 7416 0
+M 0 7409 1 7439
+M 0 7422 1 7440
+M 0 7423 1 7440
+M 0 7424 1 7440
+M 0 7417 1 7442
+E 0 7439 0 16
+E 0 7441 0 5
+E 0 7442 0 6
+E 0 7447 0 14
+E 0 7445 0 20
+E 0 7444 0 21
+M 0 7437 2 7443
+M 0 7430 1 7445
+M 0 7431 1 7445
+M 0 7435 1 7445
+E 0 7452 0 16
+E 0 7453 0 22
+E 0 7454 0 14
+E 0 7455 0 13
+M 0 7436 2 7448
+M 0 7418 1 7450
+E 0 7448 0 20
+M 0 7408 1 7451
+M 0 7419 1 7452
+M 0 7420 1 7452
+M 0 7421 1 7452
+M 0 7400 1 7456
+E 0 7401 0 16
+G 0 7402 0
+M 0 7414 1 7457
+E 0 7446 0 20
+E 0 7446 0 21
+E 0 7439 0 16
+E 0 7441 0 5
+E 0 7442 0 6
+M 0 7429 1 7460
+E 0 7440 0 20
+E 0 7441 0 5
+E 0 7442 0 6
+M 0 7432 2 7461
+G 0 7450 0
+G 0 7451 0
+M 0 7404 1 7466
+G 0 7417 0
+G 0 7418 0
+G 0 7419 0
+M 0 7401 1 7468
+G 0 7404 0
+G 0 7405 0
+G 0 7406 0
+G 0 7407 0
+G 0 7408 0
+G 0 7409 0
+M 0 7429 1 7469
+E 0 7440 0 20
+E 0 7441 0 5
+E 0 7442 0 6
+M 0 7436 2 7469
+M 0 7416 1 7473
+E 0 7444 0 20
+E 0 7444 0 21
+E 0 7439 0 16
+E 0 7441 0 5
+E 0 7442 0 6
+M 0 7413 1 7475
+E 0 7445 0 20
+E 0 7445 0 21
+E 0 7439 0 16
+E 0 7441 0 5
+E 0 7442 0 6
+S
+
+
+
+#SHOPS
+7400 19 17 0 0 0 110 90 0 24
+7401 10 26 2 0 0 110 90 0 24
+7402 9 0 0 0 0 110 90 0 24
+7403 19 0 0 0 0 110 90 0 24
+7404 1 15 17 19 0 110 90 0 24
+7405 5 0 0 0 0 110 90 0 24
+7406 8 0 0 0 0 110 90 0 24
+7411 0 0 0 0 0 110 90 0 24
+7432 13 9 5 8 2 120 0 0 24
+0
+
+
+
+#$

@@ -1,0 +1,2315 @@
+#AREADATA
+Name        { 10-30} Forest Vale         Dwergen~
+Levels      10 30
+Builders    Reklar~
+VNUMs       8000 8099
+Security    100
+Recall      25001
+Flags       0
+Color       6
+End
+
+
+
+#MOBILES
+#8000
+mequi king~
+The Mequi King~
+The Mequi King stares at you.
+~
+The Mequi King looks like a very experienced fighter.  He has scars all
+over his body from previous encounters.  He looks ready for a good fight.
+~
+35 0 0 -1000 S
+30 0 0 1500d0+0 0d0+0
+0 20 0 0
+0 0 1
+0 0 0
+>fight_prog 10~
+bite $n
+~
+>fight_prog 25~
+mpechoat $n The Mequi King rakes at your eyes!
+rake $n
+~
+|
+#8001
+mequi guard~
+The Mequi Guard~
+The Mequi Guard stands here sternly.
+~
+The Mequi guard stands here blocking your way.  By the looks of his body,
+he has fought off many creatures in his time.  He is covered with mud,
+making him harder to see.  Strange tribal tattoos mark his angry face.  
+~
+35 0 0 -1000 S
+28 0 0 1320d0+0 0d0+0
+0 18 0 0
+0 0 1
+0 0 0
+#8002
+mequi~
+The Mequi~
+The Mequi licks his lips with hunger.
+~
+The mequi looks like a vicious creature.  They are tall and brauny.  They
+resemble ogres, except much hairier.  Their facial features are hard, made
+of a thick bone structure.  Their arms look as if they can break thick
+branches with ease.  
+~
+3 0 0 -1000 S
+25 0 0 1050d0+0 0d0+0
+0 0 50 0
+0 0 1
+0 0 0
+#8003
+baker valewoman~
+The Valewoman~
+The valewoman is hard at work making bread.
+~
+The valewoman is hard at work making bread and other treats.  She looks
+like she has tasted many of her fine pastries many times over.  
+~
+393219 0 0 1000 S
+30 0 0 1500d0+0 0d0+0
+0 30 0 0
+0 0 2
+0 0 0
+#8004
+valeman storekeeper~
+The Valeman~
+The valeman is looking over his supplies.
+~
+The robusk valeman is constantly looking over his supplies.  He always
+wants the best for his faithful customers.  
+~
+3 0 0 200 S
+30 0 0 1500d0+0 0d0+0
+0 20 0 0
+0 0 1
+0 0 0
+#8005
+valeman leader~
+The Vale Leader~
+The valeman leader is not happy with your presence
+~
+As you take a look at this man you realize that the title of leader of
+this outcasted clan is earned by the means of a fight.  His scars tell
+everything.  
+~
+67 0 0 -300 S
+20 0 0 600d0+0 0d0+0
+0 10 0 0
+0 0 1
+0 0 0
+#8006
+valechild child~
+A valechild~
+A valechild plays here.
+~
+The sounds of laughter fill the air as the valechild frolicks around.  
+~
+65 0 0 1000 S
+13 0 0 320d0+0 0d0+0
+0 0 8 0
+0 0 1
+0 0 0
+#8007
+valeman man~
+A valeman~
+A valeman walks around pondering life.
+~
+The valeman seems to be walking around aimlessly.  He must be thinking
+about how he is going to keep his families alive and together.  
+~
+65 0 0 300 S
+15 0 0 400d0+0 0d0+0
+0 0 25 0
+0 0 1
+0 0 0
+#8008
+valewoman woman~
+A valewoman~
+A valewoman keeps a close eye on the children.
+~
+All of the valewoman's attention is on her children.  Always making sure
+they are safe.  
+~
+65 0 0 800 S
+15 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#8009
+rabbit~
+The rabbit~
+A rabbit bounces happily.
+~
+The rabbit looks pretty harmless.
+~
+65 0 0 0 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8010
+skunk~
+A skunk~
+A smelly skunk strolls by.
+~
+A rather large skunk scurries about for food.  It keeps a wary eye out
+for predators.  Getting too close would cause him to release a vile smelling
+spray.  
+~
+65 0 0 0 S
+11 0 0 240d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8011
+raccoon~
+A raccoon~
+A masked raccoon glances at you with curious eyes.
+~
+The raccoon looks like a shady animal.  It wears a mask and picks up
+anything it finds to closely examine it.  It scurries about, careful not to
+get too close.  
+~
+65 0 0 0 S
+13 0 0 320d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8012
+squirrel~
+A squirrel~
+A squirrel is eating a nut.
+~
+The squirrel is harmless.
+~
+65 0 0 500 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8013
+wolf~
+A wolf~
+A wolf howls into the sky above.
+~
+The wolf is harmless, but watch its bite.
+~
+65 0 0 -1000 S
+11 0 0 240d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8014
+owl~
+An owl~
+An owl swoops down to get its prey.
+~
+The owl is harmless.
+~
+65 0 0 -300 S
+10 0 0 200d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>rand_prog 1~
+mpecho You can hear the quiet hoot of an owl.
+~
+|
+#8015
+bear~
+A bear~
+A bear is in search of food.
+~
+The bear looks hungry.
+~
+65 0 0 -600 S
+15 0 0 400d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8016
+harpy~
+A Harpy~
+A Harpy is guarding her young.
+~
+The Harpy is a large bird-looking creature. It's large claws could easily
+grasp your head and lift you up. Her wings look like they could span out at
+around six to eight feet in length, and her beak is nothing to trifle with.
+~
+67 0 16 -600 S
+25 0 0 1050d0+0 0d0+0
+1 5 0 0
+0 0 2
+0 0 0
+#8017
+hatchling harpy young~
+The young harpy~
+The harpy hatchling awaits its next meal.
+~
+The young hatchling yelps for food, making a terrible sound. Snapping at
+anything that moves, it almost nips your armor off your back.
+~
+67 0 0 1000 S
+22 0 0 780d0+0 0d0+0
+1 1 2 0
+0 0 0
+0 0 0
+#8018
+griffin~
+A griffin~
+A Griffin is perched here looking for food.
+~
+The Griffin is a very large creature indeed.  Its coarse golden fur lines
+its feline body of a lion while it's huge wings span out at more than eight
+feet wide.  A lion's tail brings up the rear, and it's head and front legs
+are those of an eagle.  
+~
+67 512 16 -600 S
+26 0 0 1140d0+0 0d0+0
+0 16 0 0
+0 0 1
+0 0 0
+#8019
+goat mountain~
+A mountain goat~
+A mountain goat is here munching.
+~
+The mountain goat looks harmless.
+~
+67 0 0 300 S
+24 0 0 960d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#8020
+herak~
+A Herak~
+A Herak stands here eyeing you.
+~
+The Herak is very fierce looking.  It can eat anything.
+~
+3 0 0 -1000 S
+27 0 0 1230d0+0 0d0+0
+0 17 0 0
+0 0 0
+0 0 0
+#8021
+wolf rabid~
+The rabid wolf~
+A crazed wolf drools yellow foam from her mouth.
+~
+A large she-wolf growls and stares vacantly with hungry eyes.
+Her stained teeth and wretched breath adds to her ferociousness.
+~
+35 0 0 -500 S
+25 0 0 1100d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#0
+
+
+
+#OBJECTS
+#8000
+camp fire~
+a camp fire~
+A camp fire brightens the area.~
+~
+1 0 0 0 0 0
+0~ 0~ -1~ 0~
+9999 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+>look_prog 100~
+0
+mpechoat $n &RThe campfire flares brightly!
+~
+|
+#8001
+claw bone mequi king~
+the Mequi King's Claw~
+A large bone claw, reinforced with petrified twine.~
+~
+5 0 4147 0 8193 29
+0~ 0~ 0~ 5~
+3 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 34
+A
+18 23
+E
+claw~
+This is a claw from an odd animal. To keep decomposition from damaging it it is reinforced with twine.
+~
+E
+mequi king bone~
+This claw is made from the bone of some strange creature. You can't imagine
+what might have a bone structure like this.
+~
+#8002
+helmet leather mequi king~
+the Mequi King's Helmet~
+A large thick leather helmet is here.~
+~
+9 0 0 55358 17 29
+0~ 0~ 0~ 0~
+3 0 10 200 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 2
+A
+17 -25
+E
+helmet~
+This leather masterpeice has smooth stone encrusted onto it to make it strong.
+~
+E
+mequi king helmet leather~
+A large thick-leather helmet adorned with smooth stones.
+~
+#8003
+club mequi guard~
+the Mequi Guard's Club~
+A club lies on the ground.~
+~
+5 0 0 0 8193 28
+0~ 0~ 0~ 7~
+2 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 50
+A
+18 39
+E
+club~
+This Huge chunk of wood would make good for smashing.
+~
+E
+mequi guard~
+This huge chunk of wood would make good for smashing.
+~
+#8004
+bread~
+some fresh bread~
+Some bread lies on the ground.~
+~
+19 0 0 0 1 1
+10~ 0~ 0~ 0~
+1 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bread~
+This is some freshly baked bread. But who made it?
+~
+#8005
+meat stick~
+meat on a stick~
+Meat on a stick lies on the ground.~
+~
+19 0 0 0 1 1
+10~ 0~ 0~ 0~
+1 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+stick~
+This is meat cooked and kabobbed onto a stick.
+~
+E
+meat~
+This is meat cooked and kabobbed onto a stick.
+~
+#8006
+backpack~
+a vale backpack~
+A backpack is slumped over here.~
+~
+15 0 0 0 1 10
+76~ 5~ 0~ 0~
+2 0 2 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+backpack~
+This is a backpack of The Vale. It could hold a lot.
+~
+#8007
+silver flask~
+a silver flask~
+A flask lies on the ground.~
+~
+17 0 2048 0 1 10
+100~ 100~ 0~ 0~
+2 0 12 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+silver flask~
+This is a water flask. It is made of solid silver and shines beautifully.
+~
+#8008
+vale lantern~
+a Vale lantern~
+A lantern lies on the ground.~
+~
+1 0 0 0 16385 10
+0~ 0~ 500~ 0~
+2 0 0 7 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+E
+vale lantern~
+This is the lantern of the vale. It is very well crafted.
+~
+#8009
+sword vale leader~
+the Vale Leader's sword~
+A sword lies here.~
+~
+5 0 0 0 8193 20
+0~ 0~ 0~ 3~
+4 0 5 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 40
+A
+18 34
+E
+vale leader sword~
+This is the sword of the Vale Leader. It is plain but sturdy.
+~
+#8010
+armor vale leader~
+the Vale Leader's armor~
+Some armor lies here on the ground.~
+~
+9 0 0 0 9 20
+4~ 0~ 0~ 0~
+3 0 10 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+E
+vale leader armor~
+This is some very well-made studded leather armor.
+~
+#8011
+boots vale~
+some vale boots~
+Some boots lie on the ground before you.~
+~
+9 0 0 0 65 20
+4~ 0~ 0~ 0~
+1 0 2 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 20
+E
+vale boots~
+Some simple leather boots although they are well-crafted.
+~
+#8012
+axe~
+a valechild's axe~
+An axe is discarded here.~
+~
+5 0 51 12928 8193 13
+0~ 0~ 0~ 13~
+2 0 0 11 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+E
+axe ~
+This is the simple Rock axe of the vale.
+~
+#8013
+stones~
+some stones~
+Some stones lie in a pile here.~
+~
+13 0 0 0 16385 10
+0~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+E
+stones~
+These stones are in an odd formation. They Glow slightly.
+~
+#8014
+whip~
+a vale whip~
+A primitive looking whip made of leather and twine.~
+~
+5 0 5175 0 8193 15
+0~ 0~ 0~ 4~
+4 0 4 8 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+E
+whip~
+This whip is made of leather wrapped in twine. It will leave a nice sting
+upon impact.
+~
+#8015
+vale ring~
+a vale ring~
+A ring lies in the dirt.~
+~
+9 0 0 0 3 15
+4~ 0~ 0~ 0~
+1 0 2 1 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+E
+vale ring~
+This is a simple iron ring. It carries the simple symbol of the vale.
+~
+#8016
+shroud~
+a valewoman's shroud~
+A shroud lies here.~
+~
+9 0 0 0 5 15
+4~ 0~ 0~ 0~
+3 0 7 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+E
+shroud~
+This shroud is a purple color.  It will cover you.  But doesn't look like
+it will protect you.  Or will it.  
+~
+#8017
+club~
+a club~
+A club lies on the ground.~
+~
+5 0 0 0 8193 30
+0~ 0~ 0~ 7~
+2 0 4 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 54
+A
+18 42
+E
+club~
+This is a HUGE chunk of wood. It doesn't really have a shape, but it looks
+like it could hit hard.
+~
+#8018
+chestnut~
+a chestnut~
+A chestnut lies here.~
+~
+19 0 0 0 1 1
+15~ 0~ 0~ 0~
+1 0 0 1 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+chestnut~
+This is a chestnut. From a chestnut tree. It looks small. Yet yummy.
+~
+#8019
+honey~
+some honey~
+Some honey is stuck to the ground.~
+~
+19 0 0 0 1 1
+15~ 0~ 0~ 0~
+1 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+honey~
+Simple bee honey. It tastes sweet.
+~
+#8020
+talon helm harpy~
+a hollow talon~
+A small hollow talon of a harpy.~
+~
+9 0 0 49123 17 25
+4~ 0~ 0~ 0~
+1 1 2 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 25
+A
+1 2
+E
+talon helm~
+This helm is made from a Harpy's talon. It is quite small for a helmet, but
+a small humanoid could probably get away with wearing it.
+~
+E
+harpy~
+The talon of a harpy is hollowed out to form a makeshift helmet. It's size
+is large for a bird-like creature, but small in size to fit on one's head.
+~
+#8021
+egg harpy~
+a harpy egg~
+A rather large egg lies here.~
+~
+19 0 0 0 1 1
+36~ 0~ 0~ 0~
+1 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+harpy egg~
+The eggs of harpies are known for their nutrional value. However, we all
+know that things that are good for you, don't necessarily taste the best.
+~
+#8022
+blue runestone~
+&ca &Bblue &crunestone~
+A shiny blue stone with rune etchings.~
+~
+9 0 0 0 32769 26
+4~ 0~ 0~ 0~
+1 0 12 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -30
+A
+13 30
+E
+blue runestone~
+A simple blue stone is what it looks like. But if you look carefully, you
+can see that there are runes carved upon it.
+~
+E
+runes~
+The runes are of a language that you cannot understand. But they are
+lovely in their scripture.
+~
+#8023
+runestone red~
+&Oa&R red&O runestone&W~
+A shiny red stone lies here.~
+~
+9 0 0 0 32769 26
+4~ 0~ 0~ 0~
+1 0 15 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 30
+A
+17 -30
+E
+red runestone~
+A simple red stone... or is it. Are those runes you see?
+~
+E
+runes~
+The runes are in a language you cannot read or understand.
+~
+#0
+
+
+
+#ROOMDATA
+#8000
+The East Bridge~
+The east bridge stretches over an unnaturally icy stream.  The bridge is
+made of huge blocks of stone and is wrapped with ivy leaves.  The leaves
+string towards the west, growing from the forest on the east.  City walls
+lie towards the west, along with a large gate.  Towards the east, tall trees
+stretch towards the sky.  A steep trail leads down under the bridge.
+~
+0 4 2
+Rd     0
+D1
+~
+~
+0 0 8001
+D3
+~
+~
+0 0 903
+D5
+~
+~
+0 0 10295
+S
+#8001
+The path to the Forest Vale~
+Tall trees surround this well travelled path.  Thick shrubbery and growth
+around the path blocks any travelling towards the north and south.  The only
+directions passable are towards the east and west.  A stone bridge can be
+seen just slightly west of here.  The path travels deeper into the forest
+towards the east.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8002
+D3
+~
+~
+0 0 8000
+S
+#8002
+The Forest Vale~
+As you enter the forest you can hear the sounds of creatures scurrying
+about looking for food.  The sounds of nearby twigs breaking from their
+movements makes the hair on the back of your neck stand on end.  You begin
+to look around and you can swear you can see movement out of the corner of
+your eye.  But as you focus in that direction, you see nothing!  
+To the south, a very thin path leads into a glade.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8003
+D2
+~
+~
+0 0 10901
+D3
+~
+~
+0 0 8001
+S
+#8003
+The Forest Vale~
+All around you are tall trees and thick vegetation.  The air around you
+smells sweet and pure.  The scent of flowers and other plant life grows
+thicker.  The only trail leads east and west.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8004
+D3
+~
+~
+0 0 8002
+S
+#8004
+The Forest Vale~
+The sound of nature rings loudly.  Something scutters in nearby bushes
+and birds chirp high atop trees.  A small trail branches off from the
+east-west route.  It heads north, through a strange arch made from the trunk
+of an old oak tree.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8005
+D1
+~
+~
+0 0 8007
+D3
+~
+~
+0 0 8003
+S
+#8005
+The Forest Vale~
+This path is barely noticeable.  It is overgrown with vegetation and only
+slight marks of travel reveals its existence.  The path seems to be
+concealed to make it less conspicuous.  Beautiful flowers grow on little
+mounds rising from the ground.  The path stretches north and south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 8006
+D2
+~
+~
+0 0 8004
+S
+#8006
+The Forest Vale~
+The path is beginning to become overwhelmed by the growth of the grass. 
+It feels like you are one of the few that have chosen this path in the past
+few months.  But, some of the grass seems to be parted, as if it may have
+been secretly travelled, maybe under the cover of darkness.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8051
+D2
+~
+~
+0 0 8005
+S
+#8007
+The Forest Vale~
+The little dusty path here is well-trodden.  The only grass growing here
+is well to the side of it, mingling with little bluebells and an occasional
+dandelion.  By the looks of the tracks here, this path looks well-travelled.
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8008
+D3
+~
+~
+0 0 8004
+S
+#8008
+The Forest Vale~
+The forest is getting more prolific, the canopy of the towering trees
+block out almost all the light here, and, as a consequence, nothing lives
+here or grows here.  At least...  nothing...  warm-blooded.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 8009
+D3
+~
+~
+0 0 8007
+S
+#8009
+The Forest Vale~
+The forest grows denser towards the east.  The branches seem to reach out
+and the trees extend higher and higher.  The thick roots begin to head
+towards the trail, threatening its existence.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 8014
+D3
+~
+~
+0 0 8008
+S
+#8014
+The Forest Vale~
+The surrounding darkness is unsettling, the shadows hiding their secrets
+from all.  You hear something stirring behind you, but as you turn about it
+is gone, just slipping from view from the corner of your eye.  A ray of
+sunshine would be welcomed right now, though in all probability, it will
+never happen.  Not here.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 8015
+D3
+~
+~
+0 0 8009
+S
+#8015
+The Forest Vale~
+Pressing on through the Vale, the glint of eerie greenish light that
+reflects from the eyes of predators flashes off to either side of you.  But,
+when you turn your head to peer through the darkness there by the side of
+the path in the thick copse of trees, it is gone, as if it never happened.  
+~
+0 1 3
+Rd     0
+D1
+~
+~
+0 0 8016
+D3
+~
+~
+0 0 8014
+S
+#8016
+The Forest Vale~
+Sparce glimmers of light manage to reach through the forest canopy and
+speckle the ground about you just enough to reveal a fork in the path.  To
+go north or continue to the east - both options seem equally viable, if not
+a little bit disquieting.  You glance about for clues...  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8017
+D1
+~
+~
+0 0 8025
+D3
+~
+~
+0 0 8015
+S
+#8017
+Path to the Rock~
+This stoney path leads to what looks like a large obsidian rock.  Smoke
+can be seen emanating from around it.  Scavenger birds circle the skies
+above, obviously waiting for small dead animals.  Heat also can be felt
+further north.  South of this path leads back into a forest.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8018
+D2
+~
+~
+0 0 8016
+S
+#8018
+Path to the Rock~
+You look before you and you see a mountain of rock.  You examine it
+closer and you notice an opening to the north.  There are tracks of dried
+blood leading into the caves.  Whatever inhabits this cave must like to eat
+--- a lot.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8019
+D2
+~
+~
+0 0 8017
+S
+#8019
+The Mequi's Cave~
+As you step into the cave you are overcome by the stench of rotting
+corpses.  You examine the room closer and you notice dried blood on the
+walls.  Once again you have that eerie feeling that you are being watched. 
+As your eyes adjust to the darkness you can see little blue flaming eyes
+penetrating right through you.  You look around and notice these little eyes
+in every direction but the one you came through.  
+~
+0 5 0
+Rd     0
+D0
+~
+~
+0 0 8023
+D1
+~
+~
+0 0 8021
+D2
+~
+~
+0 0 8018
+D3
+~
+~
+0 0 8020
+S
+#8020
+The Mequi's Cave~
+By the appearance of the corpses that clutter the cave, it looks like
+these things have no problems killing their prey.  But it does look like the
+victims did put up a good fight.  
+~
+0 1 0
+Rd     0
+D0
+~
+~
+0 0 8022
+D1
+~
+~
+0 0 8019
+S
+#8021
+The Mequi's Cave~
+Once again there is blood and pieces of discarded bone lying around the
+cave.  The stench itself almost wants to make you vomit.  What could bare to
+live in such a place like this.  
+~
+0 1 0
+Rd     0
+D0
+~
+~
+0 0 8024
+D3
+~
+~
+0 0 8019
+S
+#8022
+The Mequi's Cave~
+You must watch where you are walking here due to the fact that the floor
+is so cluttered with the remnants of so many creatures.  You see pieces of
+clothing scattered about that look awfully familiar.  You then realize where
+you have seen them.  On other adventurers like yourself.  
+~
+0 1 0
+Rd     0
+D1
+~
+~
+0 0 8023
+D2
+~
+~
+0 0 8020
+S
+#8023
+The Mequi's Cave~
+You notice that there is a path leading to the north from here.  There is
+a very powerful stench coming from in there.  Strong enough that it
+overpowers the present stench of the rotting of bodies.  
+~
+0 1 0
+Rd     0
+D0
+~
+~
+0 0 8085
+D1
+~
+~
+0 0 8024
+D2
+~
+~
+0 0 8019
+D3
+~
+~
+0 0 8022
+S
+#8024
+The Mequi's Cave~
+There seems to be some etchings on the cave wall.  You walk closer to
+get a better look.  It's hard to make out what it says, but you are able to
+make out just enough to get the hint.  It say's "Get out while you can."  
+~
+0 1 0
+Rd     0
+D2
+~
+~
+0 0 8021
+D3
+~
+~
+0 0 8023
+S
+#8025
+The Forest Vale~
+As you continue to the east, the forest ahead opens up to a wider path
+and the trees over head thin out somewhat and let in a little more light. 
+With the increasing light comes safety, for where there is light the
+creatures of the dark cannot hide and watch you.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8026
+D3
+~
+~
+0 0 8016
+S
+#8026
+The Forest Vale~
+As you travel the path you have a chance to study it more closely.  It
+appears that a cart has come through here not long ago, for the ruts left by
+crude wooden wheels look fresh.  You have to watch your step so as not to
+turn your ankle as you continue on your way.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8027
+D3
+~
+~
+0 0 8025
+S
+#8027
+The Forest Vale~
+Now you examine the trees which line the path here.  The branches have
+been snapped off close to the pathway, as if a passing cart or possibly a
+wagon could have done.  And, by the looks of the ruts in the road here, it
+had to have been of massive proportions.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8028
+D3
+~
+~
+0 0 8026
+S
+#8028
+The Forest Vale~
+The path here takes a sharp turn to the south where the trees have been
+manually removed to accomodate the passage of the huge cart or wagon that
+has obviously passed this way.  The birds chirp high in the canopy above and
+tell of no dangers.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8084
+D1
+~
+~
+0 0 2100
+D2
+~
+~
+0 0 8029
+D3
+~
+~
+0 0 8027
+S
+#8029
+The Forest Vale~
+The path snakes sharply again to the east.  The surrounding area is
+taking on a more hostile flair with the vegetation choking the path and the
+darkness taking over the light.  You have to peer into the forest now to
+see.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8028
+D1
+~
+~
+0 0 8030
+S
+#8030
+The Forest Vale~
+The forest that surrounds you seems to have been here for centuries.  The
+trees have gone through quite a bit as you look around.  There are a few with
+cracks down the center from lightning striking.  And even more from the
+ravages of the storms that have passed over.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8031
+D3
+~
+~
+0 0 8029
+S
+#8031
+The Forest Vale~
+&Y&cThe path now continues on to the east as well to the south. The path to
+the south looks like it has been used frequently. It shows signs of great
+workmanship from the way that it has handled all of the traffic it has seen.
+There is a &Csign&Y &cbefore you. The sign is pointing to the south.
+~
+0 0 3
+Rd     0
+E
+sign~
+SOUTH --- The Vale Village
+Visitors Welcome.
+~
+D1
+~
+~
+0 0 8036
+D2
+~
+~
+0 0 8032
+D3
+~
+~
+0 0 8030
+S
+#8032
+The Path to the Village~
+As you walk to the south, you notice that the forest starts to thin out
+even more than before.  The path looks well tended to with barely any grass
+growing on it.  It seems that the people of the Vale Village really care
+about the appearance of their village to outside visitors.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8031
+D2
+~
+~
+0 0 8033
+S
+#8033
+The Path to the Village~
+As you look into the sky, you can see small streams of grey smoke rising
+into the heavens.  The clatter of the village can be heard in the near
+distance.  You can hear the odd voice as the villagers walk near the walls
+that surround this village.  As you examine the walls, you notice the
+craftmanship that has gone into the work and design.  The wall looks like it
+can withhold a lot of pressure from any outside source.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8032
+D1
+~
+~
+0 0 5037
+S
+#8036
+The Forest Vale~
+As you walk to the east, the forest is starting to thin out completely. 
+The feelings of being watched slowly fade as the trees do.  The sounds of
+creatures scurrying about has all but vanished.  With the new found silence
+you feel more at ease.  
+~
+0 0 3
+Rd     0
+D3
+~
+~
+0 0 8031
+S
+#8037
+The Forest Vale~
+The forest is almost completely vanished from sight.  The path now takes
+a sharp turn to the north.  As you look in the north, you can see the
+horizon of the Storm in the distance.  But before that you can see a great
+cliff rising above you.  What a vantage point this would be.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8038
+S
+#8038
+Vantage Point~
+As you climb further north, you can see more of this vast planet.  You
+marvell to yourself the amount of area that must be traveled to explore this
+whole world.  You are eager with the anticipation that maybe one day you can
+explore all of this great world.  
+~
+0 4 5
+Rd     0
+D0
+~
+~
+0 0 8039
+D2
+~
+~
+0 0 8037
+S
+#8039
+Vantage Point~
+Still you continue further north hoping that you will come to the top
+soon.  The air around you seems to be getting thinner.  You are finding
+yourself getting light headed and tired with all of the exertion it is
+taking to climb to the top.  But you feel the anticipation growing inside
+you as you see the point in the near distance.  
+~
+0 0 5
+Rd     0
+D0
+~
+~
+0 0 8041
+D2
+~
+~
+0 0 8038
+S
+#8041
+Vantage Point~
+As you reach the top you peer over the edge.  Being careful not to fall
+off.  It is a far way to the bottom.  As you examine the horizon, you
+realize the shear greatness of the Storm.  You strain your eyes as you look
+down and you can swear that you can see other adventurers like yourself
+locked in battle or just exploring the land.  The path continues on to the
+west.  
+~
+0 0 5
+Rd     0
+D2
+~
+~
+0 0 8039
+D3
+~
+~
+0 0 8045
+S
+#8045
+Vantage Point~
+As you look to the west, you can see inside the town of Bethaven.  There
+is movement in all parts of town.  You can also see the entire Vale Forest
+below you.  You notice that there is a path in front of you that it hidden
+from plain view due to a bush.  You push the bush aside and see that is
+extends down the entire side of this enormous cliff.  
+~
+0 4 5
+Rd     0
+D1
+~
+~
+0 0 8041
+D5
+~
+~
+0 0 8066
+S
+#8051
+The Forest Vale~
+As you journey northward, a scent - familiar, yet obscure - catches your
+attention.  It is making you hungry, however, and your stomach growls at the
+tempting aroma.  You continue to follow your nose...  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8052
+D2
+~
+~
+0 0 8006
+S
+#8052
+The Forest Vale~
+The path now takes a sharp turn to the east.  The wonderful aroma seems
+to be wafting stronger here, as if it could be very close to you now. 
+However, you still have not a clue to its origins.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8053
+D2
+~
+~
+0 0 8051
+S
+#8053
+The Forest Vale~
+The path widens here and seems well-travelled as well.  The aroma is very
+strong now and you could be very close to the nature of its origin!  There
+are signs of others having travelled here and not too long ago.  The scent
+seems to attract many to this area.  Your stomach growls louder.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8054
+D3
+~
+~
+0 0 8052
+S
+#8054
+The Forest Vale~
+From down the path and to the north a haze of sweet smelling smoke curls
+in the air and tempts you with its wonderful and nostalgic aroma!  There
+must be something yummy up there to make you feel so hungry!  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8055
+D3
+~
+~
+0 0 8053
+S
+#8055
+The Forest Vale~
+As you near the origin of the sweet-smelling smoke, the unmistakable din
+of idle conversation hums in your ears.  Though you try, you cannot make out
+anything coherant from any of the conversations.  
+~
+0 4 3
+Rd     0
+D0
+~
+~
+0 0 8056
+D2
+~
+~
+0 0 8054
+S
+#8056
+The Vale Camp~
+Through the thin young trees you quietly stumble into a primative camp
+ground.  To the east is a large tent with trees for tent poles and grass
+growing thick around the edges.  Sweet smoke is wafting from the flap in the
+front where, just inside, you catch the glimpse of a valewoman busily going
+about the task of baking.  To the north the encampment continues, the
+community busy at work while the children run about in play.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8058
+D1
+~
+~
+0 0 8057
+D2
+~
+~
+0 0 8055
+S
+#8057
+The Bakers Hut~
+The smell of sweet vale bread saturates your senses, the valewoman smiles
+and waves as she beckons you to enter and partake in her tasty wares!  A
+small smudge of flour accents the tip of her nose as she kneads the dough
+and sets it aside to rise.  Unable to resist the temptation, the change in
+your pocket seems to almost beg for you to spend it on the golden brown
+pastry being offerd to you now...  
+~
+0 8 0
+Rd     0
+D3
+~
+~
+0 0 8056
+S
+#8058
+The Vale Camp~
+Standing smack in the middle of the Vale encampment, the sound of idle
+conversation fills the air.  Just to the west you notice a rather large
+tent, and through the door flap you catch the glimpse of various equipment
+and supplies scattered about the edge there.  A Valeman of a rather robust
+stature is standing there, assessing his wares.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8060
+D2
+~
+~
+0 0 8056
+D3
+~
+~
+0 0 8059
+S
+#8059
+The Vale Store~
+Huge and rectangular in shape, this humble store seems to be the hub of
+activity among the vale people.  This small isolated community has found an
+icon in the store owner and find enjoyment in gathering here to chat and
+gossip quietly while they inspect the goods and trade for the peddler's
+wares.  The items here seem to be of qualtiy workmanship and appear to be
+quite a bargain, at that.  
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 8058
+S
+#8060
+The Vale Camp~
+Here it is quieter, with the excepsion of an occational murmer that
+chances to stray in your direction.  Here, behind the tents, there is a
+little more privacy.  The path continues with a sharp turn to the east...  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8061
+D2
+~
+~
+0 0 8058
+S
+#8061
+The Vale Camp~
+Rounding the corner you chance upon more tents set up in a semi-circular
+fashion.  This may very well be the sleeping quarters of these very odd
+people.  They don't seem to be of any particular type of people that you
+have ever encountered before, as they don't seem quite civilized, yet show
+no hostilities either.  Their calm demeanor smacks of secrecy, as if they
+were wary...  Or maybe...  Hiding.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8062
+D3
+~
+~
+0 0 8060
+S
+#8062
+The Vale Camp~
+Before you blazes a bright and cheery campfire.  There are the remains of
+a past meal scattered here and about close to the flames.  A few platters
+have food remaining on them.  Tents surround you and the fire pit on all
+sides.  This must be the sleeping area, for you can hear the snoring of the
+stuffed and sleepy valeperson as they nap after their meal.  
+~
+0 0 3
+Rd     0
+D0
+To the north, there stands a tent much larger than the rest.
+~
+"tent door"~
+3 0 8064
+D1
+~
+~
+0 0 8063
+D2
+~
+~
+0 0 8061
+D3
+~
+~
+0 0 8065
+S
+#8063
+Sleeping Tent~
+Crude yet comfy cots fashioned from wood and animal hides lend to a cozy
+and rustic atmosphere here in this little sleeping tent.  The walls made of
+the natural tanned hide of large animals shields you from the elements,
+keeping you warm and safe.  There are primative drawings on the walls,
+lending a surreal atmosphere to this humble dwelling.  
+~
+0 0 0
+Rd     0
+E
+drawings~
+The drawings are mostly of stick people.
+It shows a woman and a man standing over a roaring fire.
+Another shows some children playing with some stones.
+~
+D3
+~
+~
+0 0 8062
+S
+#8064
+Sleeping Tent~
+You enter into the grandest tent of them all!  Tall and spacious with
+lavishly made cots and sleeping places all about, you notice that one among
+them is larger and more grandoise than all the rest.  Treasures are heaped
+and piled in the corners, and a huge platter food rests temptingly near. 
+This may be the leader's abode.  His manner of living seems to be more
+extravagant than the rest of his meager subjects.  
+~
+0 0 0
+Rd     0
+D2
+The tent door is in the south wall of the tent.
+~
+"tent door"~
+3 0 8062
+S
+#8065
+Sleeping Tent~
+This sleeping tent is charming and cozy, with primitive yet sturdy cots
+for resting and walls of soft tanned hide for protection from the outside
+elements.  Furs and throws are scattered about.  The drawings upon the sides
+of the tent seem to dance in the light of the campfire that glows from the
+outside.  A soft rabbit skin pillow looks perfect for napping...  
+~
+0 8 0
+Rd     0
+E
+drawings~
+The drawings upon the canvas of the tent show stick people dancing, eating
+and sitting about a warm fire.
+~
+D1
+~
+~
+0 0 8062
+S
+#8066
+Cliff Edge~
+As you carefully place your feet on secure footing you begin to notice
+the actual size of this cliff.  There is barely enough room for you to place
+your feet.  The only thing for you to do now is to continue on to the east. 
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 8067
+D4
+~
+~
+0 0 8045
+S
+#8067
+Cliff Edge~
+You notice a large nest before you with eggs that are newly hatched.  You
+wonder to yourself what kind of animal could live at such a location.  You
+also notice the carcass of other animals that have been considered lunch for
+this animal.  
+~
+0 0 5
+Rd     0
+D3
+~
+~
+0 0 8066
+D5
+~
+~
+0 0 8069
+S
+#8069
+Cliff Edge~
+As you examine the area that you are using to climb down the cliif, you
+realize the shear danger of this descent.  The rocks in the wall are no
+longer secure due to the amount of traffic this path has endured over the
+years.  You must be extremely careful of your footing to survive such a
+climb.  
+~
+0 0 5
+Rd     0
+D4
+~
+~
+0 0 8067
+D5
+~
+~
+0 0 8070
+S
+#8070
+Cliff Edge~
+As you continue your climb down the mountain, you begin to lose your
+footing under your right foot.  Luckily you had enough strength to hold on. 
+You look to the right and notice the rock that you had dislodged falling at
+a high rate of speed.  It is not until you count to fifteen (if you can)
+that you hear the rock hit the ground below.  At this point you tighten your
+hand grip to the rocks of the mountain.  
+~
+0 0 5
+Rd     0
+D4
+~
+~
+0 0 8069
+D5
+~
+~
+0 0 8072
+S
+#8071
+Cliff Edge~
+You examine the walls of the mountain and see many gashes taken out of
+the stone by powerful blows from past adventurers like yourself.  You also
+see the remains of many of the same adventurers lying on the ground before
+you.  
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 8072
+S
+#8072
+Cliff Edge~
+You find yourself on another ledge.  You examine this ledge and notice
+that it has been used very frequently.  Both by man and animal.  There are
+marks covered all over the sides of the ledge.  It looks like there has been
+a number of battles here over the years.  
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 8073
+D3
+~
+~
+0 0 8071
+D4
+~
+~
+0 0 8070
+S
+#8073
+Cliff Edge~
+As you gaze over the edge of the cliff, you notice that you are getting
+closer to the ground below.  With this in mind, you nerves let up a bit. 
+Before you is a path that continues down to the ground below.  Once again,
+it does not look like the safest path you have seen.  
+~
+0 0 5
+Rd     0
+D3
+~
+~
+0 0 8072
+D5
+~
+~
+0 0 8074
+S
+#8074
+Cliff Edge~
+The path that continues on down is still not as secure as most would like
+it to be.  You must be very careful about where you place yourself because
+the wrong move can be disasterous.  The rocks around you fall with the
+slightest touch.  You must find one that is secure enough to withstand your
+weight.  
+~
+0 0 5
+Rd     0
+D4
+~
+~
+0 0 8073
+D5
+~
+~
+0 0 8075
+S
+#8075
+Cliff Edge~
+The climb down the mountain is becoming much safer now.  The rocks here
+seem to be holding together much more concrete now.  It is much easier to
+find suitable foot holds now and this causes you to become more at ease.  
+~
+0 0 5
+Rd     0
+D4
+~
+~
+0 0 8074
+D5
+~
+~
+0 0 8077
+S
+#8077
+Cliff Edge~
+You find yourself on the final cliff of this mountain.  You realize that
+this has been a very difficult climb.  Once again there are signs that there
+have been many battles taken place here.  There are blood stains coating the
+rocks.  It almost looks like someone or something had bled to death here
+and stained the area for eternity.  
+~
+0 0 5
+Rd     0
+D1
+~
+~
+0 0 8078
+D4
+~
+~
+0 0 8075
+S
+#8078
+Cliff Edge~
+The signs of the battle that took place continue to mark this area. 
+There are fragments of fractured bones scattered about haphazardly.  Once
+again there are blood stains splashed against almost every rock in sight. 
+This must have been a very entertaining fight to see.  As you look over the
+edge of the cliff you realize that you have almost reached the base of the
+mountain.  
+~
+0 0 5
+Rd     0
+D3
+~
+~
+0 0 8077
+D5
+~
+~
+0 0 8079
+S
+#8079
+Cliff Edge~
+The climb here seems very simple.  The rock is holding very well.  With
+this in mind you are able to climb very readily.  Looking down you realize
+that you have almost reached the base of the mountain.  
+~
+0 0 5
+Rd     0
+D4
+~
+~
+0 0 8078
+D5
+~
+~
+0 0 8080
+S
+#8080
+The Forest Vale~
+You find yourself back in the forest vale.  The sounds of animals
+searching for prey returns to the still air.  The eeriness of the forest
+almost makes you want to climb back up this great mountain and face the
+dangers there.  
+~
+0 4 3
+Rd     0
+D3
+~
+~
+0 0 8081
+D4
+~
+~
+0 0 8079
+S
+#8081
+The Forest Vale~
+The path continues along the side of the great mountain that you have
+just climbed down.  The physical and mental exertion from the climb is
+starting to take it's toll on you.  You feel that you are being watched by
+something in the near distance.  
+~
+0 0 3
+Rd     0
+D1
+~
+~
+0 0 8080
+D3
+~
+~
+0 0 8082
+S
+#8082
+The Forest Vale~
+The path now takes a sharp turn to the south along the edge of the
+mountain.  Once again you feel that there is something lurking in the
+darkness of the forest ahead of you.  But being a great adventurer like
+yourself, you continue on.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 8081
+S
+#8083
+The Forest Vale~
+This dead-end in the forest is ominous.  The trees around you bear
+various deep claw marks.  Barkskin ripped out in large chunks litter the
+ground.  The only exit is back south.  All other directions are impassable. 
+A rather unpleasant place to be caught and cornered in.  
+~
+0 0 3
+Rd     0
+D2
+~
+~
+0 0 8084
+S
+#8084
+The Forest Vale~
+The forest that surrounds you is like none that you have seen before.  In
+a way it looks altered from it's original state.  The trees do not grow
+straight but are twisted and angulated in strange patterns.  The grass has
+slowly turned a putrid yellow with no hopes of return to its original
+beauty.  It is most likely caused from the volatile creature that inhabits
+this area.  
+~
+0 0 3
+Rd     0
+D0
+~
+~
+0 0 8083
+D2
+~
+~
+0 0 8028
+S
+#8085
+The Mequi's Cave~
+As you begin to enter the back of the cave, you are overcome by a slight
+warm breeze that makes it difficult to breathe.  It feels very humid here.  
+~
+0 5 0
+Rd     0
+D1
+~
+~
+0 0 8086
+D2
+~
+~
+0 0 8023
+S
+#8086
+The Mequi's Cave~
+You notice that the temperature is starting to rise as you come closer to
+the east wall. A strange wooden pannelling can be found here. You can see
+many gouges and scratch marks upon it. Perhaps the gouges are big enough
+for you to take a peek.
+~
+0 5 0
+Rd     0
+E
+gouges~
+You can see another room through the gouges in the wall panel. It is quite
+dimly lit in there, so no details can be seen.
+~
+E
+marks~
+Through the scratch marks on the eastern pannelling you can see another
+room.
+~
+D1
+A panel is here blocking your passage to another part of the cave.
+~
+panel~
+3 0 8087
+D3
+~
+~
+0 0 8085
+S
+#8087
+The Mequi Guard Post~
+The room is filled with old weapons and armor... most of which are
+of no use any longer. This brings you to the conclusion that this is a
+guard post of some sort. There must be something important lurking about.
+~
+0 1 0
+Rd     0
+D0
+~
+~
+0 0 8088
+D3
+There is a wooden panel here in the west wall.
+~
+panel~
+3 0 8086
+S
+#8088
+The Mequi's Cave~
+The temperature in this dank cave rises dramatically here.  It is almost
+unbearable combined with the humidity and stench of this wretched place.  A
+dim light is provided by a strange moss covering the walls.  It emits an
+eerie feeling all around.  Steps are crudely carved leading upwards into
+darkness.  
+~
+0 5 0
+Rd     0
+D2
+~
+~
+0 0 8087
+D4
+~
+~
+0 0 8089
+S
+#8089
+The Mequi's Cave~
+As you venture to the east you notice that the temperature is not as bad
+as you thought before.  You realize that it must have been a safe guard
+against unwanted intruders.  This part of the cavern is larger than the
+rest.  The walls are smoother and cleaner.  The temperature here drops to a
+comfortable level.  A low gutteral sound and scratching can be heard, then
+the clinking of chains ring from the east.  
+~
+0 1 0
+Rd     0
+D1
+~
+~
+0 0 8090
+D5
+~
+~
+0 0 8088
+S
+#8090
+The Mequi's Cave~
+Upon examing the walls you notice a great deal of scratch marks.  There
+are even pieces of finger nails embedded in the wall with it's skin still
+dangling from it.  It appears that whatever is brought up here, does not
+enjoy the experience a great deal.  
+~
+0 1 0
+Rd     0
+D1
+~
+~
+0 0 8091
+D3
+~
+~
+0 0 8089
+S
+#8091
+The Mequi's Cave~
+There is blood leaking from above you like a small waterfall.  The stench
+of aging blood and unwanted corpses fills the still air.  You notice that
+the blood is originating from a small opening above you.  
+~
+0 5 0
+Rd     0
+E
+opening~
+The opening almost pours down with blood.
+~
+D3
+~
+~
+0 0 8090
+D4
+~
+~
+0 0 8092
+S
+#8092
+King Mequi's Quarters~
+By the looks of this room there have been many battles here, as the walls
+are so covered blood that they are stained to a black in color. A few corpses
+of unidentifiable humanoids lie about the place, one of them still fresh and
+a small trail of blood flows still from its now lifeless body. The floor is
+a puddle of blood.
+~
+0 0 0
+Rd     0
+E
+corpse corpses~
+The corpses look like they have been carved like a turkey. Cannibals!
+~
+D5
+~
+~
+0 0 8091
+S
+#0
+
+
+
+#SPECIALS
+M 8021 spec_poison
+S
+
+
+
+#RESETS
+M 0 8009 3 8004
+M 0 8010 2 8008
+M 0 8011 1 8014
+M 0 8002 1 8020
+M 0 8002 1 8021
+M 0 8002 1 8022
+M 0 8002 1 8023
+M 0 8002 1 8024
+M 0 8012 3 8028
+G 0 8018 0
+M 0 8013 1 8031
+M 0 8014 2 8037
+M 0 8015 2 8039
+G 0 8019 0
+M 0 8003 1 8057
+G 0 8004 0
+G 0 8005 0
+E 0 8017 0 20
+M 0 8004 1 8059
+E 0 8017 0 20
+G 0 8006 0
+G 0 8007 0
+G 0 8008 0
+M 0 8008 2 8060
+E 0 8016 0 3
+M 0 8006 3 8062
+E 0 8012 0 20
+E 0 8013 0 22
+O 0 8000 0 8062
+M 0 8005 1 8064
+E 0 8009 0 20
+E 0 8010 0 5
+E 0 8011 0 12
+M 0 8007 3 8065
+E 0 8014 0 20
+E 0 8015 0 1
+M 0 8016 1 8067
+G 0 8020 0
+M 0 8017 3 8067
+G 0 8021 0
+M 0 8018 1 8071
+E 0 8022 0 9
+M 0 8019 1 8077
+M 0 8019 1 8078
+M 0 8015 2 8081
+M 0 8020 1 8084
+E 0 8023 0 10
+M 0 8001 1 8087
+E 0 8003 0 20
+M 0 8021 1 8090
+M 0 8000 1 8092
+E 0 8001 0 20
+E 0 8002 0 6
+S
+
+
+
+#SHOPS
+8003 19 0 0 0 0 100 60 0 24
+8004 17 15 1 0 0 100 65 0 24
+0
+
+
+
+#$

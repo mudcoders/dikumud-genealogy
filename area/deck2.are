@@ -1,0 +1,246 @@
+#AREADATA
+Name        {??-???} Ranger Sanctuary    Decklarean~
+Levels      0 0
+Builders    Decklarean~
+VNUMs       190 200
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#0
+
+
+
+#OBJECTS
+#0
+
+
+
+#ROOMDATA
+#190
+Hall of Rangers~
+You are in the Hall of Rangers deap within the Ranger Sanctuary.  The
+only difference from the suronding woods is a sense of power and a complete
+peace that washes away all trouble.  Giant oaks define the perimeter of the
+hall, magestic giants of the forest.  No matter what season the turf is
+green, the air cool and freash.  A circle of stone chairs stands in the
+middle of the hall each facing one of the cardinal directions.  In the
+middle of them a strange black stone, it is the only thing out of place.  
+~
+0 -2004459520 3
+Rd     0
+D0
+~
+~
+0 0 191
+D1
+~
+~
+0 0 193
+D2
+~
+~
+0 0 195
+D3
+~
+~
+0 0 196
+S
+#191
+A fountain in the woods~
+You are under the canapie of the forest, oaks stand on all sides of you. 
+A strange and beutifull crystal fountain is here.  It shines from some inner
+light, showering the surronding woods with a beutifull splash of magical
+colors ripleing across the spectrum in an unending dance.  
+~
+0 -2012872704 3
+Rd     0
+D0
+~
+~
+0 0 199
+D1
+~
+~
+0 0 192
+D2
+~
+~
+0 0 190
+D3
+~
+~
+0 0 197
+S
+#192
+A quite corner of the woods~
+A single oak dominates here, with a shining stone embeaded into its
+trunk.  A complete lack of sounds from the surronding world indicates the
+power of the stone.  
+~
+0 -2004467712 3
+Rd     0
+D2
+~
+~
+0 0 193
+D3
+~
+~
+0 0 191
+S
+#193
+In the forest~
+The sights, the sounds, and the smell of the forest surrond you.  The
+magestic oaks ripple off unendingly to your sight in all directions.  The
+over grown remains of a foundation are here.  In the center of it a stone
+arch stands undamaged and unweathered.  Aparently impervious to the ravages
+of time.  
+~
+0 -2012872704 3
+Rd     0
+D0
+~
+~
+0 0 192
+D2
+~
+~
+0 0 194
+D3
+~
+~
+0 0 190
+S
+#194
+In the forest~
+You are in a small clearing, where an oak had fallen and broke the canape
+letting in some light.  In the middle of the clearing a wood alter has been
+carved into the fallen tree.  Set into the top of the alter is a small white
+saphire.  It's strange cut defies the eyes, as if there is an infant number
+of facades.  
+~
+0 -2012872704 0
+Rd     0
+D0
+~
+~
+0 0 193
+D3
+~
+~
+0 0 195
+S
+#195
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 190
+D1
+~
+~
+0 0 194
+D3
+~
+~
+0 0 198
+S
+#196
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 197
+D1
+~
+~
+0 0 190
+D2
+~
+~
+0 0 198
+S
+#197
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 191
+D2
+~
+~
+0 0 196
+S
+#198
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 196
+D1
+~
+~
+0 0 195
+S
+#199
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 200
+D2
+~
+~
+0 0 191
+S
+#200
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 199
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

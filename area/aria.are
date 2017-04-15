@@ -1,0 +1,2421 @@
+#AREADATA
+Name        {??-???} PROTO AREA          Aria~
+Levels      0 0
+Builders    Aria~
+VNUMs       6500 6599
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#6500
+Love~
+the Energy of Love~
+Love, in it's purest form, &rS&bW&pI&YR&WL&CS &Pall around you here.
+~
+You never thought a sight as beautiful as this would be possible. 
+Streams of colors float through the air, and surround you with a million
+tiny rainbows.  The colors seem to make a soft, pleasing noise as they pass
+you, almost as if they were singing to you.  
+~
+3 524416 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 0 0
+0 0 1
+12 0 0
+#6519
+Pixie angel fairy faerie~
+a tiny faerie~
+&cA tiny &Cfaerie&c hovers around a rose petal here.
+~
+Dressed in a pretty ruffled dress of pink, the faerie smiles down at you.
+Her long blonde hair is soaking wet from the mist and water.  She looks to
+you with bright, innocent green eyes as her tiny wings flutter behind her. 
+~
+71 128 0 1000 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 2
+1 0 0
+>act_prog $n drinks from the &RFountain of the &rRose.~
+if ispc($n)
+c 'refresh' $n
+endif
+~
+|
+#6530
+faerie fairy ~
+a tiny faerie~
+&cA tiny &Cfaerie&c rests here on the vampire's shoulder.
+~
+Dressed in a pretty ruffled dress of black, the faerie smiles down at
+you.  Her long black hair blows softly in the gentle breeze.  She looks down
+to you with innocent red eyes as her tiny wings flutter behind her.  
+~
+71 128 0 1000 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 2
+1 0 0
+>act_prog $n drinks from the &wFountain of the &zVampire&w Lord.~
+if ispc($n)
+c 'cure poison' $n
+endif
+~
+|
+#6562
+faerie fairy tiny~
+a tiny faerie~
+&cA tiny &Cfaerie&c drinks with the sparrows here.
+~
+Dressed in a pretty ruffled dress of orange, the faerie smiles down at
+you.  Her long brown hair frames her face.  She looks to you with bright,
+innocent brown eyes as her tiny wings flutter behind her.  
+~
+71 128 0 1000 S
+90 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 2
+1 0 0
+>act_prog $n drnks from the &OFountain of the Sparrow~
+if ispc($n)
+cast 'armor' $n
+endif
+ 
+~
+|
+#0
+
+
+
+#OBJECTS
+#6500
+pentagram~
+&wa small silver pentagram pendant~
+A small, shiny, silver pentagram dangles on a silver chain as a sign of trust.~
+~
+9 268439747 0 0 5 3
+10~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6501
+fountain~
+large crystal fountain~
+A large crystal fountain sprays pure spring water high into the air.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+3000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+plaque~
+Tammy and Daniel..  May 11th, 1996...  
+~
+#6519
+fountain rose water~
+&RFountain of the &rRose~
+&RThe Fountain of the &rRose&R sprays a refreshing mist into the air here.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+100000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+plaque~
+This rose stands here as a sign of Aria's contribution to the storm.  It
+signifies her love for the mud and her devotion to it.  She hopes You enjoy
+this area she has built for you and she also hopes to build many more.  
+~
+#6530
+fountain water vampire~
+&wFountain of the &zVampire&w Lord~
+&wThe Fountain of the &zVampire &wLord stands eerily before you.~
+~
+25 0 0 0 0 100
+0~ 0~ 0~ 0~
+10000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+plaque~
+Although there isn't actually blood in this fountain, it is here to
+commemerate one of my favorite characters in movies and novels alike.  It
+was modeled after the character Dracula, ofcourse..but after the original
+Dracula.  
+~
+#6561
+fountain water~
+&OFountain of the Sparrow~
+&OA magnificent fountain sprays water mist through the air here.~
+~
+25 0 0 0 0 100
+0~ 0~ 0~ 0~
+10000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+plaque~
+It has been said that when a person dies, their soul gets carried to
+heaven by a sparrow.  This fountain is to commemorate the bird that carries
+our souls to their resting places.  
+~
+#0
+
+
+
+#ROOMDATA
+#6500
+Cascades and Water Mist~
+~
+0 138806789 0
+Rd     0
+D1
+~
+~
+0 0 6587
+D3
+~
+rock~
+3 0 6515
+S
+#6501
+The Entrance to The Garden of Whispers~
+As you step through the small opening you found hidden within the lush
+hedge, leaving it behind you, you find yourself standing before a garden
+paradise.  Everywhere you look, your line of vision is filled with tall
+trees and hedges, the most vibrantly colored exotic flowers and small
+animals scurrying across the path.  As you look towards the sky, you can
+barely see the tops of what appear to be tall stone statues.  A soft breeze
+seems to whisper "Intruder" as it gently passes your ear and you turn to
+leave.  In horror, you find that the opening in which you entered this place
+has sealed itself, leaving you with no way out.  The cobblestone path leads
+east and south.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6502
+D2
+~
+~
+0 0 6514
+S
+#6502
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6503
+D3
+~
+~
+0 0 6501
+S
+#6503
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues east, south and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6504
+D2
+~
+~
+0 0 6516
+D3
+~
+~
+0 0 6502
+S
+#6504
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6505
+D3
+~
+~
+0 0 6503
+S
+#6505
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both south and west.  
+~
+0 401408 2
+Rd     0
+D2
+~
+~
+0 0 6517
+D3
+~
+~
+0 0 6504
+S
+#6506
+A Rickety Old Tool Shed~
+As you enter this small shed, your eyes are instantly assaulted by a
+thick cloud of dust.  Boxes filled with rows of beautiful flowers lay
+scattered on the floor all around you.  Stacked against the wall to your
+left are giant bags of dirt and fertilizer.  Above the stacks, covering the
+entire width of the wall, is a rack full of various gardening tools.  In the
+far right corner you see a large rusty wheelbarrow.  The gardener must be
+extremely strong to be able to push it all around the garden.  To the south
+you can see a large fountain.  The path extends south.  
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 6519
+S
+#6507
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and south.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6508
+D2
+~
+~
+0 0 6521
+S
+#6508
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6509
+D3
+~
+~
+0 0 6507
+S
+#6509
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues east, south and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6510
+D2
+~
+~
+0 0 6522
+D3
+~
+~
+0 0 6508
+S
+#6510
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6511
+D3
+~
+~
+0 0 6509
+S
+#6511
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6512
+D3
+~
+~
+0 0 6510
+S
+#6512
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6513
+D3
+~
+~
+0 0 6511
+S
+#6513
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both south and west.  
+~
+0 401408 2
+Rd     0
+D2
+~
+~
+0 0 6523
+D3
+~
+~
+0 0 6512
+S
+#6514
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6501
+D2
+~
+~
+0 0 6524
+S
+#6515
+Behind a Waterfall~
+~
+0 0 0
+Rd     0
+D1
+~
+rock~
+3 0 6500
+S
+#6516
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6503
+D2
+~
+~
+0 0 6525
+S
+#6517
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues north, east and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6505
+D1
+~
+~
+0 0 6518
+D2
+~
+~
+0 0 6526
+S
+#6518
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the east you can see a large fountain.  The path
+continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6519
+D3
+~
+~
+0 0 6517
+S
+#6519
+The Fountain of the Rose~
+The shadow of this enormous statue shades you from the heat here.  This
+rendition of a single red rose is quite possibly the most beautiful in
+existence.  A thin mist sprays upwards, covering the leaves and petals in a
+million tiny drops from a pool of water below.  The detail that was taken in
+creating this wonder is magnificent.  Each petal is perfectly formed,
+painted in a bright shade of red.  Each leaf also pefrect, right down to the
+detail in it's veins.  A small brass plaque has been fastened to the base of
+the fountain.  To the north you can see a small shed.  The path continues in
+all directions.  
+~
+0 394240 2
+Rd     0
+D0
+~
+~
+0 0 6506
+D1
+~
+~
+0 0 6520
+D2
+~
+~
+0 0 6527
+D3
+~
+~
+0 0 6518
+S
+#6520
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the west you can see a large fountain.  The path
+continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6521
+D3
+~
+~
+0 0 6519
+S
+#6521
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues north, south and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6507
+D2
+~
+~
+0 0 6528
+D3
+~
+~
+0 0 6520
+S
+#6522
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the south you can see a large fountain.  The path
+continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6509
+D2
+~
+~
+0 0 6530
+S
+#6523
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6513
+D2
+~
+~
+0 0 6534
+S
+#6524
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6514
+D2
+~
+~
+0 0 6535
+S
+#6525
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6516
+D2
+~
+~
+0 0 6537
+S
+#6526
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6517
+D2
+~
+~
+0 0 6538
+S
+#6527
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in thesoft breeze.  To the north you can see a large fountain.  The
+brook flows both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6519
+D2
+~
+~
+0 0 6548
+S
+#6528
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and east.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6521
+D1
+~
+~
+0 0 6529
+S
+#6529
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the east you can see a large fountain.  The path
+continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6530
+D3
+~
+~
+0 0 6528
+S
+#6530
+The Fountain of the Vampire Lord.~
+Standing before you is the statue of an eerie looking man.  His pitch
+black hair is short and brushed back off his face.  His eyes appear to be
+hazel, almost yellow.  His bright ruby lips form a frightening smile.  His
+tall lean body is clothed in all black with the exception of the red lining
+on his cape.  Falling from the two fangs which can be seen in the corner of
+his mouth are tiny red droplets which form a pool below.  A brass plaque is
+fastened to the base of the fountain.  To the south you can see a small
+shed.  The path continues in all directions.  
+~
+0 394240 2
+Rd     0
+D0
+~
+~
+0 0 6522
+D1
+~
+~
+0 0 6531
+D2
+~
+~
+0 0 6540
+D3
+~
+~
+0 0 6529
+S
+#6531
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the west you can see a large fountain.  The path
+continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6532
+D3
+~
+~
+0 0 6530
+S
+#6532
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues east, south and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6533
+D2
+~
+~
+0 0 6541
+D3
+~
+~
+0 0 6531
+S
+#6533
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6534
+D3
+~
+~
+0 0 6532
+S
+#6534
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues north, south and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6523
+D2
+~
+~
+0 0 6542
+D3
+~
+~
+0 0 6533
+S
+#6535
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  To the south you can see a small shed.  The
+brook flows north, east and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6524
+D1
+~
+~
+0 0 6536
+D2
+~
+~
+0 0 6543
+S
+#6536
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6537
+D3
+~
+~
+0 0 6535
+S
+#6537
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows north, south and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6525
+D2
+~
+~
+0 0 6544
+D3
+~
+~
+0 0 6536
+S
+#6538
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6526
+D2
+~
+~
+0 0 6546
+S
+#6539
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows north.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6527
+S
+#6540
+A Rickety Old Tool Shed~
+As you enter this small shed, your eyes are instantly assaulted by a
+thick cloud of dust.  Boxes filled with rows of beautiful flowers lay
+scattered on the floor all around you.  Stacked against the wall to your
+left are giant bags of dirt and fertilizer.  Above the stacks, covering the
+entire width of the wall, is a rack full of various gardening tools.  In the
+far right corner you see a large rusty wheelbarrow.  The gardener must be
+extremely strong to be able to push it all around the garden.  To the north
+you see a large fountain.  The path extends north.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 6530
+S
+#6541
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6532
+D2
+~
+~
+0 0 6552
+S
+#6542
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6534
+D2
+~
+~
+0 0 6554
+S
+#6543
+A Rickety Old Tool Shed~
+As you enter this small shed, your eyes are instantly assaulted by a
+thick cloud of dust.  Boxes filled with rows of beautiful flowers lay
+scattered on the floor all around you.  Stacked against the wall to your
+left are giant bags of dirt and fertilizer.  Above the stacks, covering the
+entire width of the wall, is a rack full of various gardening tools.  In the
+far right corner you see a large rusty wheelbarrow.  The gardener must be
+extremely strong to be able to push it all around the garden.  The path
+extends north.  
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 6535
+S
+#6544
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both north and east.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6537
+D1
+~
+~
+0 0 6545
+S
+#6545
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows east, south and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6546
+D2
+~
+~
+0 0 6555
+D3
+~
+~
+0 0 6544
+S
+#6546
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows north, east and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6538
+D1
+~
+~
+0 0 6547
+D3
+~
+~
+0 0 6545
+S
+#6547
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows east, south and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6548
+D2
+~
+~
+0 0 6556
+D3
+~
+~
+0 0 6546
+S
+#6548
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows north, east and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6527
+D1
+~
+~
+0 0 6549
+D3
+~
+~
+0 0 6547
+S
+#6549
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6550
+D3
+~
+~
+0 0 6548
+S
+#6550
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows east, south and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6551
+D2
+~
+~
+0 0 6557
+D3
+~
+~
+0 0 6549
+S
+#6551
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows west.  
+~
+0 401408 2
+Rd     0
+D3
+~
+~
+0 0 6550
+S
+#6552
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues north, east and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6541
+D1
+~
+~
+0 0 6553
+D2
+~
+~
+0 0 6559
+S
+#6553
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6554
+D3
+~
+~
+0 0 6552
+S
+#6554
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6542
+D3
+~
+~
+0 0 6553
+S
+#6555
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the south you can see a large fountain.  The path
+continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6545
+D2
+~
+~
+0 0 6562
+S
+#6556
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both north and south.  
+~
+0 401412 2
+Rd     0
+D0
+~
+~
+0 0 6547
+D2
+~
+~
+0 0 6564
+S
+#6557
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both north and south.  
+~
+0 401412 2
+Rd     0
+D0
+~
+~
+0 0 6550
+D2
+~
+~
+0 0 6566
+S
+#6558
+A Rickety Old Tool Shed~
+As you enter this small shed, your eyes are instantly assaulted by a
+thick cloud of dust.  Boxes filled with rows of beautiful flowers lay
+scattered on the floor all around you.  Stacked against the wall to your
+left are giant bags of dirt and fertilizer.  Above the stacks, covering the
+entire width of the wall, is a rack full of various gardening tools.  In the
+far right corner you see a large rusty wheelbarrow.  The gardener must be
+extremely strong to be able to push it all around the garden.  The path
+extends south.  
+~
+0 401421 0
+Rd     0
+D2
+~
+~
+0 0 6567
+S
+#6559
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the south you can see a large fountain.  The path
+continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6552
+D2
+~
+~
+0 0 6569
+S
+#6560
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and south.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6561
+D2
+~
+~
+0 0 6572
+S
+#6561
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the east you can see a large fountain.  The path
+continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6562
+D3
+~
+~
+0 0 6560
+S
+#6562
+The Fountain of the Sparrow.~
+This large statue appears almost life-like, with the exception of the
+absence of movement.  Carved in white marbel are a dozen tiny sparrows, each
+bending down for a drink.  Their small brown bodies and grey tinted wings
+seem to shine here.  The pool, filled with the clear sparkling water, is
+also contained in a marble casing.  A gentle breeze blows past you, making
+tiny ripples in the water.  A brass plaque is attached to the base of this
+fountain.  The path continues in all directions.  
+~
+0 394240 2
+Rd     0
+D0
+~
+~
+0 0 6555
+D1
+~
+~
+0 0 6563
+D2
+~
+~
+0 0 6573
+D3
+~
+~
+0 0 6561
+S
+#6563
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the west you can see a large fountain.  The path
+continues both north and south.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6564
+D3
+~
+~
+0 0 6562
+S
+#6564
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows in all directions.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6556
+D1
+~
+~
+0 0 6565
+D2
+~
+~
+0 0 6574
+D3
+~
+~
+0 0 6563
+S
+#6565
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  To the south you can see a large fountain.  The
+brook flows both south and west.  
+~
+0 401408 2
+Rd     0
+D2
+~
+~
+0 0 6575
+D3
+~
+~
+0 0 6564
+S
+#6566
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both north and south.  
+~
+0 401412 2
+Rd     0
+D0
+~
+~
+0 0 6557
+D2
+~
+~
+0 0 6577
+S
+#6567
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the north you can see a small shed.  The path continues
+north, east and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6558
+D1
+~
+~
+0 0 6568
+D2
+~
+~
+0 0 6579
+S
+#6568
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the east you can see a large fountain.  The path
+continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6569
+D3
+~
+~
+0 0 6567
+S
+#6569
+Fountain~
+~
+0 394240 2
+Rd     0
+D0
+~
+~
+0 0 6559
+D1
+~
+~
+0 0 6570
+D2
+~
+~
+0 0 6580
+D3
+~
+~
+0 0 6568
+S
+#6570
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  To the west you can see a large fountain and to
+the east you can see a small shed.  The brook flows both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6571
+D3
+~
+~
+0 0 6569
+S
+#6571
+A Rickety Old Tool Shed~
+As you enter this small shed, your eyes are instantly assaulted by a
+thick cloud of dust.  Boxes filled with rows of beautiful flowers lay
+scattered on the floor all around you.  Stacked against the wall to your
+left are giant bags of dirt and fertilizer.  Above the stacks, covering the
+entire width of the wall, is a rack full of various gardening tools.  In the
+far right corner you see a large rusty wheelbarrow.  The gardener must be
+extremely strong to be able to push it all around the garden.  The path
+extends west.  
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+0 0 6570
+S
+#6572
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401412 2
+Rd     0
+D0
+~
+~
+0 0 6560
+D2
+~
+~
+0 0 6581
+S
+#6573
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the north you can see a large fountain.  The path
+continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6562
+D2
+~
+~
+0 0 6582
+S
+#6574
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the east you can see a large fountain.  The path
+continues both north and east.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6564
+D1
+~
+~
+0 0 6575
+S
+#6575
+Fountain~
+~
+0 394240 2
+Rd     0
+D0
+~
+~
+0 0 6565
+D1
+~
+~
+0 0 6576
+D2
+~
+~
+0 0 6583
+D3
+~
+~
+0 0 6574
+S
+#6576
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  To the west you can see a large fountain.  The
+brook flows both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6577
+D3
+~
+~
+0 0 6575
+S
+#6577
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows north, east and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6566
+D1
+~
+~
+0 0 6578
+D3
+~
+~
+0 0 6576
+S
+#6578
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6579
+D3
+~
+~
+0 0 6577
+S
+#6579
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows north, south and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6567
+D2
+~
+~
+0 0 6584
+D3
+~
+~
+0 0 6578
+S
+#6580
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  To the north you can see a large fountain.  The
+brook flows north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6569
+D2
+~
+~
+0 0 6585
+S
+#6581
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401412 2
+Rd     0
+D0
+~
+~
+0 0 6572
+D2
+~
+~
+0 0 6588
+S
+#6582
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6573
+D2
+~
+~
+0 0 6590
+S
+#6583
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the north you can see a large fountain.  The path
+continues both north and south.  
+~
+0 401412 2
+Rd     0
+D0
+~
+~
+0 0 6575
+D2
+~
+~
+0 0 6592
+S
+#6584
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both norht and south.  
+~
+0 401412 2
+Rd     0
+D0
+~
+~
+0 0 6579
+D2
+~
+~
+0 0 6596
+S
+#6585
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both north and south.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6580
+D2
+~
+~
+0 0 6597
+S
+#6586
+A Rickety Old Tool Shed~
+As you enter this small shed, your eyes are instantly assaulted by a
+thick cloud of dust.  Boxes filled with rows of beautiful flowers lay
+scattered on the floor all around you.  Stacked against the wall to your
+left are giant bags of dirt and fertilizer.  Above the stacks, covering the
+entire width of the wall, is a rack full of various gardening tools.  In the
+far right corner you see a large rusty wheelbarrow.  The gardener must be
+extremely strong to be able to push it all around the garden.  The path
+extends south.  
+~
+0 401421 0
+Rd     0
+D2
+~
+~
+0 0 6599
+S
+#6587
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  To the west you can hear the loud rumbling of falling water.
+The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6588
+D3
+~
+~
+0 0 6500
+S
+#6588
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues north, east and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6581
+D1
+~
+~
+0 0 6589
+D3
+~
+~
+0 0 6587
+S
+#6589
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6590
+D3
+~
+~
+0 0 6588
+S
+#6590
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both north and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6582
+D3
+~
+~
+0 0 6589
+S
+#6591
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues east.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6592
+S
+#6592
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues north, east and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6583
+D1
+~
+~
+0 0 6593
+D3
+~
+~
+0 0 6591
+S
+#6593
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6594
+D3
+~
+~
+0 0 6592
+S
+#6594
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6595
+D3
+~
+~
+0 0 6593
+S
+#6595
+The Garden of Whispers~
+As you walk slowly along this cobblestone pathway, the tall trees and
+hedges that surround the pathway on both sides seem to be closing in on you
+as they block your vision from the rest of the garden.  Footsteps need to be
+chosen carefully to ensure the safety of the delicate flowers that also line
+the path.  The angelic scents of the roses, daisies, carnations and many
+other types of flowers seem to be soothing to this place.  In the distance
+you hear a sparrow chirping, it's music is carried to your ears by a cool,
+gentle breeze.  The path continues both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6596
+D3
+~
+~
+0 0 6594
+S
+#6596
+The Exit of The Garden of Whispers.~
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6584
+D3
+~
+~
+0 0 6595
+S
+#6597
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both north and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6585
+D1
+~
+~
+0 0 6598
+S
+#6598
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  The brook flows both east and west.  
+~
+0 401408 2
+Rd     0
+D1
+~
+~
+0 0 6599
+D3
+~
+~
+0 0 6597
+S
+#6599
+Beside a Small Brook~
+The air around this small brook is cool, fresh and sweetly scented.  Pure
+spring water flows gently through the bed of the brook.  The sound of the
+water flowing past the sparkling rocks which lay in the brook bed seems to
+be calming to the plants around it.  The vibrantly colored flowers are
+thankful to have the water so near.  The trees seem to sing as they sway
+gently in the soft breeze.  To the north you can see a lagre fountain.  The
+brook flows both north and west.  
+~
+0 401408 2
+Rd     0
+D0
+~
+~
+0 0 6586
+D3
+~
+~
+0 0 6598
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+O 0 6519 0 6519
+M 0 6519 1 6519
+O 0 6530 0 6530
+M 0 6530 1 6530
+O 0 6561 0 6562
+M 0 6562 1 6562
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

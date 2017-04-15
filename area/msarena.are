@@ -1,0 +1,1807 @@
+#AREADATA
+Name        {  4-6 } Mud School Arena    Thalador~
+Levels      4 6
+Builders    None~
+VNUMs       100 174
+Security    100
+Recall      25001
+Flags       128
+Color       6
+Sounds      Battle cries sound from all over.~
+End
+
+
+
+#MOBILES
+#121
+maggot mag~
+the maggot~
+A maggot chews on rotting flesh here.
+~
+The maggot seems to enjoy chewing on rotting flesh.  Hopefully it's not your
+rotting flesh it chooses to chew on next.
+~
+193 0 0 -250 S
+4 0 0 50d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#122
+trash heap~
+trash heap~
+The all-knowing trash heap is here.
+~
+Made from limbs of the dead, and bodily fluids from the living the trash
+squirms about with the upmost divinity.  Truely a work of art!
+~
+3 0 0 -250 S
+5 0 0 99d0+0 0d0+0
+0 0 23 0
+0 0 0
+0 0 0
+>death_prog 10~
+~
+|
+#123
+leech~
+the leech~
+A leech is here sucking blood.
+~
+About six inches long, the leech isn't a real threat to anyone.  In the
+strictest sense of the word, the leech sucks.
+~
+65 0 0 -250 S
+4 0 0 49d0+0 0d0+0
+0 0 3 0
+0 0 0
+0 0 0
+#124
+big gross bug~
+the big gross bug~
+A big gross bug crawls in a disgusting fashion around you!
+~
+It's big, it's gross, it's a BUG!
+~
+65 0 0 -250 S
+4 0 0 51d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>death_prog 5~
+mpoload 104 
+say Oh im gonna get Moksha after you for this....
+~
+|
+#125
+chicken~
+the chicken~
+A chicken darts back and forth in a crazed fashion.
+~
+Yuppers, definately a chicken.  *PECK* *PECK*
+~
+65 0 0 -250 S
+5 0 0 85d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#126
+healer~
+A Healer~
+This Healer is here to treat your wounds and render aide.
+~
+~
+3 134234792 0 1000 S
+125 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#127
+bethaven guard~
+A Bethaven Guard~
+One of the numerous guards of Bethaven prowls about here.
+~
+~
+3 236053182 0 1000 S
+100 0 0 32000d0+0 0d0+0
+0 0 0 0
+0 0 1
+523999 0 0
+>fight_prog 25~
+say Your death shall come soon, $n... be peaceful in that fact.
+c 'fireball' $n
+c 'fireball' $n
+~
+>fight_prog 5~
+c 'weaken' $n
+c 'faerie fire' $n
+~
+|
+#151
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem looks forlornly at you.
+~
+~
+5 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 26 0
+0 0 0
+0 0 0
+>act_prog 50~
+emote sighs wistfully.
+say I remeber a time when peace prevailed.
+say Now through mutation Ebony Golems reside here.
+say They are very evil and must be stopped.
+say There is one in particular that must be killed.
+say He runs a workshop down here, and mutates mobs.
+say Please help us!  Kill this madman!
+~
+|
+#152
+ebony golem~
+an &zEbony&P Golem~
+An &zEbony&P Golem charges towards you.
+~
+~
+5 0 0 -1000 S
+5 0 0 100d0+0 0d0+0
+0 0 18 0
+0 0 0
+0 0 0
+>act_prog 50~
+emotes cackles with glee.
+say That Ivory Golem does't know what he's talking about.
+say Evil shall prevail, come join our ranks.
+say Don't harm our master, he created us.
+say He will kill you if you try.
+emote throws back his head and cackles.
+say He will never be stopped!
+~
+|
+#153
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem smiles at you.
+~
+~
+1 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 21 0
+0 0 0
+0 0 0
+#154
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem smiles at you.
+~
+~
+1 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 8 0
+0 0 0
+0 0 0
+#155
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem smiles at you.
+~
+~
+1 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 17 0
+0 0 0
+0 0 0
+#156
+ebony golem~
+an &zEbony&P Golem~
+An &zEbony&P Golem is here sizing you up.
+~
+Before you stands a massive creature with a maniacal gleam in it's eyes.
+It looks you over as if you were just another piece of meat.  His hands,
+arms, and apron are all spattered with blood and other solid matter.
+ 
+~
+3 0 0 0 S
+5 0 0 100d0+0 0d0+0
+0 0 1 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+say Hello there $n! You're just in time!
+say I'm fresh out of spare parts and you look so healthy.
+say Come closer, come see what wonders I've performed!
+emote reaches under the table and grabs a BIG meat cleaver!
+say Come closer $n...closer..I cannot see you.
+emote cackles maniacally.
+endif
+~
+>death_prog 5~
+say Alas, I shall torture you no more.
+mpoload 153
+~
+>death_prog 5~
+say My boss will not be happy about this.
+mpoload 149
+~
+>death_prog 5~
+emote explodes into a ball of flame.
+mpoload 152
+~
+|
+#157
+ebony golem~
+an &zEbony&P Golem~
+An &zEbony&P Golem glares at you in disgust.
+~
+Standing before you is the meanest looking creature you've ever run
+across.  With shoulders that seem to fill the entire room, it glares at you
+with a look of total distain.  It licks it's lips and gets ready to spring
+upon you.  
+~
+3 0 0 -1000 S
+5 0 0 100d0+0 0d0+0
+0 0 9 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+emote is hard at work stuffing entrails back into a splattered bug.
+emote glares at you and spits in disgust.
+say What right do you have to intrude upon me?
+say Begone or I shall kill you now you puny mortal!
+emote pulls out a HUGE meat cleaver and charges towards you.
+~
+>death_prog 5~
+say Alas you have put an end to my evil ways!
+mpoload 154
+~
+>death_prog 5~
+emote vanishes in a puff of smoke.
+mpoload 164
+~
+>death_prog 5~
+emote vanishes, taking it's corpse with it.
+mpoload 165
+~
+|
+#158
+ebony golem~
+an &zEbony&P Golem~
+An &zEbony&P Golem lunges at you.
+~
+~
+1 0 0 -1000 S
+5 0 0 100d0+0 0d0+0
+0 0 24 0
+0 0 0
+0 0 0
+#159
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem smiles at you.
+~
+~
+1 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 21 0
+0 0 0
+0 0 0
+#160
+ebony golem~
+an &zEbony&P Golem~
+An &zEbony&P Golem sneers at you.
+~
+This creature is of enormous proportions.  His arms look as if they could
+easily snap you in two.  He seems to be frothing at the mouth.  He looks
+down upon you as if you were an insect.  
+~
+3 0 0 -1000 S
+5 0 0 100d0+0 0d0+0
+0 0 3 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+emote seems to be concentrating intently upon his work.
+emote is trying to attach arms to these cadavers.
+emote looks up at you with a look of disgust.
+if ispc($n)
+say And just what are YOU doing here $n?
+say Ahhh, I know, you came to donate some arms!
+say Too bad you only have two.
+say Come here then and let's get this over with, I'm a very busy Golem.
+emote moves around the table towards you waving a cleaver your way.
+endif
+~
+>death_prog 5~
+say My reign of terror is no more.
+mpoload 166
+~
+>death_prog 5~
+emote vaporizes right before your very eyes.
+mpoload 167
+~
+>death_prog 5~
+say Grimfang will not be pleased with your actions.
+mpoload 168
+~
+|
+#161
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem smiles at you.
+~
+~
+1 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 12 0
+0 0 0
+0 0 0
+#162
+ebony golem~
+an &zEbony&P Golem~
+An &zEbony&P Golem snarls at you.
+~
+~
+1 0 0 -1000 S
+5 0 0 100d0+0 0d0+0
+0 0 25 0
+0 0 0
+0 0 0
+#163
+ebony golem~
+an &zEbony&P Golem~
+An &zEbony&P Golem snarls at you.
+~
+~
+1 0 0 -1000 S
+5 0 0 100d0+0 0d0+0
+0 0 25 0
+0 0 0
+0 0 0
+#164
+ebony golem~
+an &zEbony&P Golem~
+An &zEbony&P Golem snarls at you.
+~
+~
+1 0 0 -1000 S
+5 0 0 100d0+0 0d0+0
+0 0 20 0
+0 0 0
+0 0 0
+#165
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem is here smiling.
+~
+In spite of the gargantuan size of this creature, it looks very friendly.
+It even seems to be happy to see you.  With a wink of it's eye, and a slight
+smile, it returns to it's work.  
+~
+3 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 11 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+emote looks up at you with a tired smile on it's face.
+if ispc($n)
+say Well hello there $n.
+say Welcome to my humble shop. Don't get too many visitors down here.
+say What brings you to such a dreary place $n?
+say Forgive me for rambling on so.
+say Been awhile since I've seen anything alive cross my threshold.
+say Come see what I do here $n.
+say Don't be afraid $n, I won't hurt you.
+emote winks at you.
+endif
+~
+>death_prog 5~
+say Now that you have killed me I cannot save the innocents here!
+mpoload 160
+~
+>death_prog 5~
+emote gives a final death cry, and colapses.
+mpoload 161
+~
+>death_prog 5~
+emote sobs, 'Why have you killed me?'
+mpoload 162
+~
+|
+#166
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem is here hard at work.
+~
+A pleasant-looking creature is here smiling at you.  He seems to be
+enjoying his work.  He seems to be trying to help these poor creatures to
+become normal once again by gluing their eyes back in to their sockets.  
+~
+3 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 30 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+emote looks up at you and smiles.
+if ispc($n)
+say Hello there $n!  So happy to see you!
+say Care to see what I'm doing here?
+say Come closer $n, do not be afraid, I won't hurt you.
+say Tell me $n, what brings you to this evil place?
+say Alas I am stuck here by fate but you chose to come here?
+say I am amazed anyone would come here of their own free will.
+emote smiles.
+endif
+~
+>death_prog 5~
+say You shouldn't have killed me, I am good.
+mpoload 157
+~
+>death_prog 5~
+say I shall return and save these innocent mobs.
+mpoload 158
+~
+>death_prog 5~
+say Alas, you have forsaken me.
+mpoload 159
+~
+|
+#170
+ivory golem~
+an &wIvory&P Golem~
+An &wIvory&P Golem is here working diligently.
+~
+Another happy-looking creature, this golem looks at you with a slight
+smile on his face.  Is spite of his massive size, he seems friendly
+enough.  It winks at you and beckons you to come closer.
+~
+3 0 0 1000 S
+5 0 0 100d0+0 0d0+0
+0 0 22 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+if ispc($n)
+say Welcome $n, don't see many live ones around here.
+say This is the final stop for the mobs before I give them life.
+say I place hearts in them and send them on their way.
+say Lately though the Ebony Golems have been shoddy with their work.
+say I've had to reject more corpses than I can count.
+say Come closer $n and I'll show you just how I do this.
+say You have nothing to fear from me, I won't harm you $n.
+emote smiles sadly.
+say Our reputations has suffered greatly as of late.
+say Ever since the arrival of the Ebony Golems.
+emote sighs.
+endif
+~
+>death_prog 5~
+say May God have mercy on your soul for what you have done to me.
+mpoload 163
+~
+>death_prog 5~
+emote cries out as death overtakes it.
+mpoload 147
+~
+>death_prog 5~
+emote falls over in a twisted heap, and dies.
+mpoload 148
+~
+|
+#172
+marble golem~
+a &zM&wa&zr&wb&zl&we&P Golem~
+A &zM&wa&zr&wb&zl&we&P Golem sits here before you.
+~
+This weary-looking creature seems to be concentrating heavily on a ledger
+of some sort before him.  He is larger than all of the rest of the golems
+you have encountered thus far.  His massive shoulders appear even larger due
+to the fact he's hunched over, and his arms are as wide as tree trunks.  He
+pauses from time to time to push a pair of gold rimmed glasses back up on
+his nose.  
+~
+3 0 0 0 S
+6 0 0 115d0+0 0d0+0
+0 0 30 0
+0 0 0
+0 0 0
+>all_greet_prog 100~
+emote sadly sighs.
+emote lifts his glasses and rubs his eyes.
+if ispc($n)
+say Hello $n, what brings you here?
+say Are you from the throne and have come to audit my books?
+emote sighs.
+say Well $n, as you can see they're in a sorry state.
+say Mob deaths are down because all are too afraid to come here.
+say Do you think you're brave enough to battle these foes $n?
+say I hope so because our business is down.
+emote sighs.
+say Well $n, you don't look like the brave type.
+say I doubt you're the one to boost our production here.
+endif
+~
+>death_prog 5~
+say Now who shall run things here upon my death?
+mpoload 169
+~
+>death_prog 5~
+emote sighs, and falls over....dead.
+mpoload 170
+~
+>death_prog 5~
+emote give one final cry...and is dead.
+mpoload 171
+~
+|
+#0
+
+
+
+#OBJECTS
+#147
+ivory Belt~
+an &wIvory&G Belt&w~
+An &wIvory&G Belt is here.~
+~
+9 64 0 0 2049 4
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+#148
+Ivory Necklace~
+an &wIvory&G Necklace~
+An &wIvory&G Necklace is lying here.~
+~
+9 64 0 0 5 6
+0~ 0~ 0~ 0~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+#149
+ebony Boots~
+a pair of &zEbony&G Boots&w~
+A pair of &zEbony &GBoots are here.~
+~
+9 64 0 0 65 5
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 5
+#150
+grate~
+a glowing grate~
+A glowing grate tinged with rust lies here.~
+~
+29 1 0 0 0 0
+150~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#151
+grate~
+a glowing grate~
+&B A glowing grate lies here.~
+~
+29 0 0 0 0 0
+143~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#152
+ebony Helm~
+an &zEbony&G Helm~
+An &zEbony&G Helm is lying here.~
+~
+9 64 0 0 17 6
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -3
+#153
+ebony Vambraces~
+&zEbony&G Vambraces~
+A pair of &zEbony&G Vambraces are here.~
+~
+9 64 0 0 257 6
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+#154
+Ebony Bracers~
+&zEbony&G Bracers~
+Some &zEbony&G bracers are here.~
+~
+9 64 0 0 4097 6
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 6
+#155
+meat cleaver~
+&za &BHUGE&z meat cleaver~
+&za &BHUGE&z meat cleaver is lying here.~
+~
+5 0 0 0 8193 3
+0~ 0~ 0~ 1~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 6
+#156
+apron~
+&C a &RBloody&C apron~
+&Ca &RBloody&C Apron lies here.~
+~
+9 0 0 0 2049 3
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -3
+#157
+Ivory Gauntlets~
+&wIvory&G Gauntlets~
+Some &wIvory&G Gauntlets are lying here.~
+~
+9 64 0 0 129 6
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 6
+#158
+Ivory Mask~
+&wIvory&G Mask~
+An &wIvory&G Mask lies here.~
+~
+9 64 0 0 65537 6
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 6
+#159
+Ivory Greaves~
+&wIvory&G Greaves~
+Some &wIvory&G Greaves lie here on the ground.~
+~
+9 0 0 0 33 6
+0~ 0~ 0~ 0~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+#160
+ivory anklet~
+&wIvory&G Anklets~
+An &wIvory&G Anklet lies here.~
+~
+9 64 0 0 1048577 6
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 6
+#161
+earring ivory~
+&Wan &wivory&G earring&X~
+&WAn&w ivory &Gearring lies here.~
+~
+9 64 0 0 524289 6
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 6
+#162
+Ivory Club~
+&wIvory&G Club~
+An &wIvory &G Club lies here.~
+~
+5 64 0 0 8193 5
+0~ 0~ 0~ 7~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 9
+#163
+Ivory stone~
+an &wIvory&G Stone~
+An &wIvory&G Stome lies here.~
+~
+9 1088 0 0 32769 4
+0~ 0~ 0~ 0~
+8 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+#164
+ebony glasses~
+&zEbony&G Glasses~
+A pair of &zEbony&G Glasses lie here.~
+~
+9 64 0 0 131073 6
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#165
+Ebony Knife~
+&zEbony&G Knife~
+An &zEbony&G Knife is here.~
+~
+5 64 0 0 8193 6
+0~ 0~ 0~ 11~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 6
+#166
+Ebony Stone~
+&zEbony&G Stone~
+An &zEbony&G Stone is here.~
+~
+9 512 0 0 32769 6
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -2
+#167
+Ebony Cape~
+an &zEbony&G Cape~
+An &zEbony&G Cape is lying here.~
+~
+9 0 0 0 1025 6
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+#168
+Ebony Necklace~
+an &zEbony&G Necklace~
+An &zEbony&G Necklace lies here.~
+~
+9 0 0 0 5 8
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 6
+#169
+Marble Platemail~
+&zM&wa&zr&wb&zl&we&G Platemail~
+Some &zM&wa&zr&wb&zl&we&G Platemail is lying here.~
+~
+9 0 0 0 9 4
+0~ 0~ 0~ 0~
+15 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 4
+#170
+Marble Shield~
+a &zM&wa&zr&wb&zl&we&G Shield~
+A &zM&wa&zr&wb&zl&we&G Shield is lying here.~
+~
+9 64 0 0 513 6
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -20
+#171
+marble ring~
+a &zM&wa&zr&wb&zl&we&G Ring~
+A &zM&wa&zr&wb&zl&we&G Ring is lying here.~
+~
+9 64 0 0 3 5
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 5
+#172
+desk~
+an old oak desk~
+An old oaken desk is here.~
+~
+15 0 0 0 0 0
+0~ 13~ 173~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#173
+rusty key~
+a rusty key~
+A rusty key lies here.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#136
+Entrance to the Arena~
+High fence surrounds the entire Arena, for your protection as well as the
+animals'.  As you gaze across the large pit, you should be able to see
+various animals to battle with.  You can travel east, west or south to
+explore the Arena.  To reach a &Wsafe&c haven, go up.  
+~
+0 393224 0
+Rd     0
+D1
+~
+~
+0 0 137
+D2
+~
+~
+0 0 149
+D3
+~
+~
+0 0 151
+D4
+~
+~
+0 0 152
+S
+#137
+North East Corner~
+You're in the North East corner of the Pit of Decay.  You notice that there is
+a small neat little pile of bones that have been left here.  Then you notice
+that something about it still seems to be moving.  You realize that it's snakes
+crawling through the bones.  Ick!  The stench here seems to be unconquerable
+as you go through this pit, trying to find somewhere that you can enjoy your
+lunch!
+~
+0 8 0
+Rd     0
+D2
+~
+~
+0 0 144
+D3
+~
+~
+0 0 136
+D4
+~
+~
+0 0 152
+S
+#138
+Maggot Room~
+You enter a room that seems to be filled with maggots.  The floor is
+absolutely covered with them!  You notice that there's a small pile off to
+one side that the maggots seem to be crawling all over.  You don't want to
+know what poor unfortunate soul that was.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 146
+D1
+~
+~
+0 0 140
+D2
+~
+~
+0 0 139
+D3
+~
+~
+0 0 141
+D4
+~
+~
+0 0 152
+S
+#139
+Along the South Wall~
+Along this wall, you notice there's a huge heap of trash that's collected
+here.  Maybe that's a good thing.  It shows that perhaps someone's cleaning
+up here after all.  Then you realize, the trash heap is moving.  Maybe it's
+not such a good thing after all....  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 138
+D1
+~
+~
+0 0 142
+D3
+~
+~
+0 0 143
+D4
+~
+~
+0 0 152
+S
+#140
+Along the East Wall~
+The ground is covered in what appears to be some undesirable mix of
+garbage and left over segments of various other...  Things...  Maybe this is
+where that stench is coming from.  Looking for a quick exit, you spot a
+rolling mass of something or other off to the west.  Maybe that's people in
+danger, or maybe they're just more of those wonderfully disgusting features
+of this pit.  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 145
+D2
+~
+~
+0 0 142
+D3
+~
+~
+0 0 138
+D4
+~
+~
+0 0 152
+S
+#141
+Along the West Wall~
+The heat of this place is unbearable!  Why is this such a hot house?  Then you
+see another bug crawl by.  Oh, the bugs, that's right.  You almost forgot
+about them, didn't you?  Well, they haven't forgotten you!  Nor have those
+other wonderful leeches, maggots, chickens, oh what a wonderful scene.  Then
+you glance down and realize, woops, you're treading on someone's toes,
+literally.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 147
+D1
+~
+~
+0 0 138
+D2
+~
+~
+0 0 143
+D4
+~
+~
+0 0 152
+S
+#142
+South East Corner~
+In this corner of the pit, you notice that written in blood is an odd
+message.  "Omni was here" has been scrawled by some delinquent!  Oh no! 
+However, before you can report this, you find your footing slipping,
+carrying you away to another room.  Maybe you should watch your footing?  
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 140
+D3
+~
+~
+0 0 139
+D4
+~
+~
+0 0 152
+S
+#143
+South West Corner~
+Crawling into this corner, you find a teensy tiny little draft that must
+be seeping through the cracks in the wall.  You wonder, where did all this
+ooze come from?!  Who created all this?!  Is there no end to it all?  With
+weary resignation, you continue to plod on in this pit.  Oh wait, you can
+just go up to escape all this.  
+There is also a rusty &Ggrate &Yhere.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 141
+D1
+~
+~
+0 0 139
+D4
+~
+~
+0 0 152
+S
+#144
+Along the East Wall~
+You find yourself needing rest.  But looking down, you can't bring yourself
+to set yourself down in all the ooze around you.  You begin to feel faint, then
+realize, it's not you.  It's all the bugs crawling around here, they're moving
+you!
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 137
+D2
+~
+~
+0 0 145
+D3
+~
+~
+0 0 149
+D4
+~
+~
+0 0 152
+S
+#145
+Along the East Wall~
+You look around and glance at the near-by wall.  Someone has scrawled there in
+some unidentifiable substance the words, "This place is the pits!"  You also
+notice that there are some minute looking bugs, eating away at whatever the
+message was written in.  Perhaps it's not so good to anger these bugs.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 144
+D2
+~
+~
+0 0 140
+D3
+~
+~
+0 0 146
+D4
+~
+~
+0 0 152
+S
+#146
+Safe Haven of the Pit~
+Looking down in surprise, you realize, you're standing on moderately clean
+ground!  The only ooze on this floor is that from the previous pairs of feet
+that have tracked it through.  Then, another surprise comes, there's no bugs
+here to pester you.  A general aura of peace extends from the healer.  Maybe
+you've finally found that nice spot to have your lunch.  Still hungry?
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 149
+D1
+~
+~
+0 0 145
+D2
+~
+~
+0 0 138
+D3
+~
+~
+0 0 147
+D4
+~
+~
+0 0 152
+S
+#147
+Along the West Wall~
+Crawling through all this ooze has really helped you work up an appetite.
+Too bad there only seems to be ooze, ooze, and more ooze.  Oh wait, what's that
+to the east?  Maybe there's hope of some sanctuary after all!  Not to mention
+a place to eat your lunch!
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 148
+D1
+~
+~
+0 0 146
+D2
+~
+~
+0 0 141
+D4
+~
+~
+0 0 152
+S
+#148
+Along the West Wall~
+Lying under a pile of the strange ooze of the pit, lies what looks like some
+type of mound.  At a closer glance however, you realize that the ooze is
+actually covering the remains of some poor adventurer.  But, the ooze is
+beginning to eat away at the remains!  Ick, maybe it does serve a purpose
+after all.  You wonder if it waits for you to die, first.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 151
+D1
+~
+~
+0 0 149
+D2
+~
+~
+0 0 147
+D4
+~
+~
+0 0 152
+S
+#149
+The Pit of Decay~
+You find yourself in the actual pit, itself.  The ground is covered with a
+thick ooze that looks slimy.  You hope you don't fall into it!  Around you a
+horrid stench rises and makes you reel.  Altogether, you're looking forward to
+getting out of this place sometime soon!  Oh look, there's a finger lying in
+the ooze.
+~
+0 8 0
+Rd     0
+D0
+~
+~
+0 0 136
+D1
+~
+~
+0 0 144
+D2
+~
+~
+0 0 146
+D3
+~
+~
+0 0 148
+D4
+~
+~
+0 0 152
+S
+#150
+Within a tunnel~
+This dimly lit passageway is damp and musty smelling, and far off in the
+distance water can be heard dripping.  The scurrying of some kind of
+creature echoes off the moss-encrusted walls, and various other strange
+sounds resound.  In the dim light an exit north can be seen, and the grate
+leading back to where you came from is here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 153
+D1
+~
+~
+0 0 173
+S
+#151
+North West Corner~
+This corner is surrounded by a strange ooze that is unlike other places.
+Then you realize why, it's pulsating a faint orange!  Ugh, and now it's
+moving!  Oh no!  Oh wait, now it's not, and it's not glowing either.  It's just
+a rotting orange and banana peel being carried off by a chicken.  You realize
+that you're now beginning to sweat, too bad there's no wind in here.  It just
+might have improved the smell!
+~
+0 8 0
+Rd     0
+D1
+~
+~
+0 0 136
+D2
+~
+~
+0 0 148
+D4
+~
+~
+0 0 152
+S
+#152
+Safe Room~
+Here you find yourself in a small, quiet room which is separate from the
+pit below.  You have a strange feeling of peace and safety here which wasn't 
+apparent to you in the area below.
+~
+0 1028 0
+Rd     0
+D4
+~
+~
+0 0 25001
+S
+#153
+Deeper into the tunnel~
+This room reeks of decay and mold, and the air is heavy to breathe.  In
+the faint glow of light the moss seems to throb.  The only exits here are to
+the north and south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 155
+D2
+~
+~
+0 0 150
+S
+#154
+The Tunnel~
+The footing here is trecherous, as slime covers the ground.  The lighting
+is faint, and the air heavy with mildew.  Exits lie to the north and south.
+Neither look promising.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 157
+D2
+~
+~
+0 0 155
+S
+#155
+A Four-Way Intersection~
+There are exits in all of the four cardinal directions.  None of them
+look promising.  All are too dark to see beyond the doorways so you are
+afforded no clues as to which route is the safest to take.  The scratching
+of some type of animals can be heard echoing throughout the area, and the
+air is damp and musty.  The faint sounds of maniacal laughter can also be
+heard.  This doesn't look good.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 154
+D1
+~
+~
+0 0 158
+D2
+~
+~
+0 0 153
+D3
+~
+~
+0 0 156
+S
+#156
+The Crazed Workshop~
+The first thing that catches your eye in this room is the amount of blood
+covering the floor, walls, and most surfaces here.  Various other bodily
+fluids and matter join in to make this room look like total carnage.  Dim
+lighting makes it difficult to see distinctly, so all that can be discerned
+are a large table against the west wall, what appear to be piles of body
+parts, a few piles of what appear to be organs, and heading the mayhem, a
+large shape bent over the table, whistling while he works.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 155
+S
+#157
+Golem Workshop~
+This room seems to be another mob repair shop.  Blood and gore are
+splashed all over, and the smell of rotting flesh inspires nausea.  Various
+limbs and organs are piled up haphazardly all over and bodies in various
+stages of decomposition are stacked up awaiting their turn under the knife. 
+The only exit here is back to the west.  
+~
+0 131072 0
+Rd     0
+D3
+~
+~
+0 0 154
+S
+#158
+The Tunnel~
+As you move further into the heart of this horrid place, the air seems
+heavier, the noises more distinct, and the sounds of vermin closer.  Mold
+hangs in fuzzy sheets in some places, making the footing trecherous.  Move
+slowly and cautiously.  There are exits to the east and west here.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 159
+D3
+~
+~
+0 0 155
+S
+#159
+The Tunnel~
+The sounds of pain-filled cries can be faintly heard here, along with the
+scratching of some type of animal.  Dampness fills the air, making breathing
+a chore.  Water on the floor makes for hazardous walking conditions, and the
+dimness of the lighting isn't helping.  There are exits to the north, west,
+and east here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 160
+D1
+~
+~
+0 0 161
+D3
+~
+~
+0 0 158
+S
+#160
+Cadaver Room~
+All around are piles of cadavers and arms.  Blood and tissue are
+splattered all over the walls, floor, and the golem.  The metallic smell of
+blood fills the air, mixed with the smell of decaying tissue.  There is a
+huge table next to the north wall and a massive creature is bent over it. 
+The only exit is to the south.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 159
+S
+#161
+The Tunnel~
+There's about an inch of water on the floor here, and it has a sour,
+stagnant odor to it.  Mold lines the walls here, and the air is heavy with
+dampness, the kind that chills a person to the bone.  The only exits are
+south and west.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 162
+D3
+~
+~
+0 0 159
+S
+#162
+Deep into the Tunnel~
+Stagnant water flows through here, making it smell rather foul. 
+Something brushes across your ankles, but it's shape cannot be distinguished
+due to the poor lighting.  The air is just as bad here, with no signs of it
+getting any better.  The lack of circulation is a major contributing factor
+in this.  The only exits are north and east.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 161
+D1
+~
+~
+0 0 163
+S
+#163
+The Tunnel~
+The sounds of screaming seems to be louder here, yet you cannot see what
+is causing it.  Water drips down from the ceiling, making one feel damp and
+chilled.  The air is stale and damp still.  Small creatures scurry past you,
+as if they were trying to escape this place.  The only exits are to the west
+and south.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 164
+D3
+~
+~
+0 0 162
+S
+#164
+Another Four-Way Intersection~
+You can exit in any direction here, yet none look any more promising than
+what you've encountered since you started this journey.  The lack of light
+makes it impossible to see down any of the exits, so they'll just have to be
+explored.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 163
+D1
+~
+~
+0 0 166
+D2
+~
+~
+0 0 167
+D3
+~
+~
+0 0 165
+S
+#165
+Ivory Golem's Mob Factory~
+A semi-cheery room in such a dismal place, this room seems as if it
+belongs somewhere else.  There are bodies neatly stacked, awaiting their
+turn under the careful ministratings of this seemingly harmless creature. 
+The creature seems to be treating them with loving care as he pieces them
+back together.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 164
+S
+#166
+Ivory Golem's Workshop~
+This room seems a bit more pleasant than all the rest.  Things are as
+clean as they can possibly be considering the circumstances.  The corpses
+are neatly piled and in as good a shape as a dead mob can be.  Shelves line
+the walls and upon them are jars filled with a murky liquid and what seems
+to be eyeballs.  Against the east wall is a table and behind it is a
+creature hard at work.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 164
+S
+#167
+The Tunnel~
+Dismal conditions abound here.  The walls and floor are decayed and the
+smell of rot fills the air.  Dampness chills one to the bone.  Not a very
+cheery place to be at all.  The only exits are to the north and west.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 164
+D3
+~
+~
+0 0 168
+S
+#168
+The Tunnel~
+This tunnel should be condemned it's in such deplorable condition.  The
+walls are crumbling all around you.  This tunnel looks as if it could
+collapse at any moment.  The only exits are to the east and west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 167
+D3
+~
+~
+0 0 169
+S
+#169
+The Tunnel~
+This area is the worst yet.  The whole room is shaking and bits of stone
+are crumbling from the walls at every tremor.  The water level on the floor
+is higher here than anywhere else, and the air is so heavy it makes it
+almost impossible to breathe.  The only exits are to the north, west, and
+east.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 171
+D1
+~
+~
+0 0 168
+D3
+~
+~
+0 0 170
+S
+#170
+Ivory Golem's Laboratory~
+Yet another nicer place in this tomb of horror, this room is as clean as
+the other two Ivory Golem's workplaces, or as clean as they can get a room
+in this dank, damp area.  The corpses of undistinguishable mobs are neatly
+piled, awaiting their rebirth.  It seems this is the final checkpoint before
+they get hearts put in and sent on their way to once again die by brave
+adventurers' hands.  The supply of corpses seems endless.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 169
+S
+#171
+The Tunnel~
+This three-way intersection is much the same as all the others.  The air
+is heavier here as you are in the bowels of this tunnel system.  Mold covers
+just about every surface visible, and the squeaking' of some sort of vermin
+can be heard close by.  There's an exit to the south, one to the west, and a
+door to the north.  It may be beneficial to look at each exit.  
+~
+0 0 0
+Rd     0
+D0
+Office of the Overseer
+     Please Enter
+~
+~
+3 0 172
+D2
+Darkness looms before you.
+~
+~
+0 0 169
+D3
+Darkness looms before you.
+~
+~
+0 0 173
+S
+#172
+Marble Golem's Office~
+This is the office of the head golem, the Marble Golem.  He oversees all
+the work done on the mobs by the golem workers.  For one with such a high
+position, this office is sparcely furnished.  A simple oak desk, a plain
+chair behind it, and a few cheap-looking pictures adorning the walls are all
+you can see.  The pictures appear to be water-damaged and have a fine
+dusting of mold on them.  The desk and chair have been warped by years of
+exposure to the damp conditions here.  The only exit here is to the south.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+3 0 171
+S
+#173
+The Tunnel~
+Strange smells fill the air here, as if someone was burning flesh.  The
+air is so heavy with it that it makes one want to wretch and gag.  The
+lighting is dim and it makes it hard to discern shapes.  Water swirls around
+your ankles, and the smell of stagnation is overpowering.  The only exits
+are to the east and west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 171
+D3
+~
+~
+0 0 150
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+M 0 121 5 138
+M 0 122 1 139
+O 0 150 0 143
+M 0 125 5 145
+M 0 126 1 146
+M 0 124 5 147
+M 0 123 6 148
+M 0 151 1 150
+M 0 152 1 150
+G 0 173 0
+O 0 151 0 150
+M 0 151 1 153
+M 0 153 1 154
+M 0 164 1 155
+M 0 156 1 156
+E 0 156 0 17
+E 0 155 0 20
+M 0 157 1 157
+E 0 155 0 20
+E 0 156 0 17
+M 0 158 1 158
+M 0 155 1 158
+M 0 159 1 159
+M 0 160 1 160
+E 0 155 0 20
+E 0 156 0 17
+M 0 161 1 161
+M 0 154 1 164
+M 0 165 1 165
+E 0 155 0 20
+E 0 156 0 17
+M 0 166 1 166
+E 0 155 0 20
+E 0 156 0 17
+M 0 162 1 167
+M 0 163 1 169
+M 0 170 1 170
+E 0 155 0 20
+E 0 156 0 17
+O 0 172 0 172
+M 0 172 1 172
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

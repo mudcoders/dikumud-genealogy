@@ -1,0 +1,131 @@
+#AREADATA
+Name        {??-???} PROTO AREA          Phalse~
+Levels      0 0
+Builders    Phalse~
+VNUMs       21799 21948
+Security    1
+Recall      25000
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#21799
+Lord Kringle~
+(no short description)~
+(no long description)
+~
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#21802
+Bear~
+A Mad Polar Bear~
+A Mad Polar Bear
+~
+~
+99 134217856 196608 0 S
+70 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#0
+
+
+
+#OBJECTS
+#0
+
+
+
+#ROOMDATA
+#21799
+Before a Snowy Valley~
+You have been trudging through the Wasteland of the Artic for hours, or
+has it been days - "?"  - you don't know.  Your eyes are perpetually
+freezing open and/or shut.  Why did you decide to come here?  Adventure! 
+Not likely.  You are walking through a pass, between hills.  As you come to
+the other side, you think you see a &gValley?  &cThe weather certainly can't
+get worse.  So you may as well continue.  
+~
+0 8196 4
+Rd     0
+D0
+~
+~
+0 0 21800
+S
+#21800
+&YBefore a &WWinter &BWonderland~
+&WUtterly Amazing!  &cYou are standing at the top of a Wonderous Valley. 
+The snow has lightened to a gentle fall.  Below you is a large village.  You
+can see forms moving about.  The village is at the very bottom of the
+valley, luckily the way is not treacherous.  
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 21799
+D5
+~
+~
+0 0 21801
+S
+#21801
+Down You Go.~
+A bit slippery, but not bad.  As you descend into the valley, the
+&Wsnow's &cdepth is lessening.  All around you are &Wsnow &cdusted
+Evergreens.  You can see more of the village now.  In the center of the
+village is a great House.  All about are smaller houses.  It is quite a
+lovely scene.  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 21800
+D5
+~
+~
+0 0 21802
+S
+#21802
+Down You Go.~
+You are half-way down the mountain.  Moments before the attacke you here
+a growling from behind you!  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 21801
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#RESETS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

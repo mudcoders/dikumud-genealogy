@@ -1,0 +1,5198 @@
+#AREADATA
+Name        {80-100} Bretonnia           Tyrion~
+Levels      80 100
+Builders    Tyrion~
+VNUMs       2800 2999
+Security    1
+Recall      25001
+Flags       0
+End
+
+
+
+#MOBILES
+#2801
+farthor armorer armourer ghost~
+The Ghost of Farthor~
+&CThe Ghost of Farthor&P floats here.
+~
+He is totally transparent!
+~
+8259 403177640 0 -200 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote howls in the wind as you enter the room
+~
+>rand_prog 25~
+emote floats around the room somewhat.
+~
+>death_prog 99~
+mpecho &CThe ghost disperses into the air...
+mptrans $i 1
+~
+|
+#2802
+piethan~
+Piethan~
+Piethan is here to sell you water.
+~
+Pieathan is a short little man.  His unkept beard and hair shows that he has
+not had the luxury of a bath for quite some time.  He looks rather sickly.
+~
+67 40 0 100 S
+75 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Greetings, I sell water.
+~
+>speech_prog hi hello~
+say Greetings, I sell water.
+~
+>speech_prog water~
+say For you to drink in the desert.
+~
+>speech_prog desert~
+say The one you are in, silly.
+~
+|
+#2803
+balthus barkeep ghost~
+The ghost of Balthus~
+&CThe ghost of Balthus&P floats here.
+~
+Balthus is a ghost, and is translucent!
+~
+8259 201851048 0 -200 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote hows in the wind as you enter the room
+~
+>rand_prog 25~
+emote floats around the room somewhat.
+~
+>death_prog 99~
+mpecho &CThe ghost disperses into the air...
+mptrans $i 1
+~
+|
+#2804
+terrus ghost~
+The ghost of Terrus~
+&CThe ghost of Terrus&P floats here.
+~
+Terrus is a ghost, and is transparent.
+~
+8259 134742184 0 -200 S
+80 0 0 6800d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote howls in the wind as you enter the room
+~
+>rand_prog 25~
+emote floats around the room somewhat.
+~
+>death_prog 99~
+mpecho &CThe ghost disperses into the air...
+mptrans $i 1
+~
+|
+#2805
+hawkwing seer~
+Hawkwing~
+Hawkwing the Seer sits at his desk.
+~
+Hawkwing is a very old, very wise seer.  His knowledge is legendary throughout
+the land, and his wisdom and insight is highly respected.
+~
+67 40 0 800 S
+90 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+smile
+say Greetings, traveller.  I am Hawkwing, the Seer.
+~
+>speech_prog hi hello~
+say Greetings, traveller.  I am Hawkwing, the Seer.
+~
+>speech_prog seer~
+smile
+say Yes, I now many things.  Just ask, and I will do
+say my best to answer them.
+~
+>speech_prog death knights knight~
+emote squints a little.
+say They are the four servants of Zhakarius, and are very
+say powerful.
+~
+>speech_prog zhakarius~
+say He has travelled here from the Underworld.
+~
+>speech_prog underworld~
+say It is a far off place, unreachable by mortals.
+~
+>speech_prog greed~
+emote thinks a moment.
+say Kolbjorn knows of his location, seek his help.
+~
+>speech_prog cowardice~
+emote thinks for a moment.
+say I believe Rathar knows where that vile being lives.
+~
+>speech_prog hate~
+emote realizes what you mean
+say I have heard Stephen knows of his dwelling.
+~
+>speech_prog falsehood~
+emote remembers suddenly
+say Yes, That one lives in a Fiery Lair, somewhere to the
+say north.  That is all I know about that.
+~
+>speech_prog password~
+emote wonders how you found out about that.
+say If you truly wish to gain access to the Chrystal Tower,
+say speak to Zhentar about a password.  He knows it.
+~
+>speech_prog chrystal tower~
+emote shrugs
+say Sorry, its location I know not.
+~
+>speech_prog bye~
+say Fare thee well!
+wave $n
+~
+|
+#2806
+stephen man~
+Stephen~
+Stephen, a blind and crippled old man, sits in his chair.
+~
+~
+67 67125377 0 250 S
+100 0 0 12000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 85~
+emote strokes his beard a little.
+~
+>speech_prog hi hello~
+gasp
+say Oh!  Hello there!  Sorry, but I am blind, and did not
+say see thee.
+~
+>speech_prog blind~
+emote tilts his head in your general direction.
+say Yes, 'tis true, I am blind.  This helm helps me to
+say see though.  I can even see the invisible at times!
+~
+>speech_prog helm invisible~
+nod
+say Yes, my great grandfather gave it to me when I was a lad.
+~
+>speech_prog great grandfather~
+nod
+say Aye, he is long gone, and is now deceased.
+sniff
+~
+>speech_prog hate~
+eye
+say The Death Knight of Hate?  He lives deep underwater.
+say I now not how to get there.
+~
+>speech_prog bye~
+wave
+say Oh, have a nice day!
+~
+>fight_prog 4~
+say I call upon the forces of my ancestors to smite you!
+cast 'shatter' $n
+~
+>fight_prog 5~
+say I am all powerful!
+cast 'disintegrate' $n
+~
+>fight_prog 8~
+say Feel the wrath of my flames!
+cast 'fireball' $n
+~
+>fight_prog 9~
+say Nothing can harm me!
+cast 'dispel magic' $n
+~
+>fight_prog 50~
+'You cannot beat me!
+cast 'heal' self
+~
+>death_prog 70~
+mpjunk helm
+~
+|
+#2807
+warlock magician ghost~
+The ghost of Warlock~
+&CThe ghost of Warlock&P floats here, with magics to sell.
+~
+Warlock is a ghost, and is transparent.  He has also devised a way to
+interract physically with the non-ethereal, and has some things for you to
+purchase.
+~
+8259 201326760 0 -200 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+emote looks directly at you as you enter the room.
+~
+>speech_prog hi hello~
+say Greetings.  I have devised a way to communicate
+say with the mortal world, and have also discovered
+say how to interract.  Type 'list' to see what I
+say have for sale.
+~
+>speech_prog bye~
+say Fare thee well.
+~
+>rand_prog 25~
+emote makes eery noises while floating in front of you.
+~
+|
+#2808
+nightshade banker~
+Nightshade~
+Nightshade the banker is here.
+~
+~
+67 16552 0 0 S
+80 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Welcome to the bank.
+~
+>speech_prog hi hello~
+say Welcome to the bank.
+~
+>speech_prog bye~
+say Good travels to you.
+~
+|
+#2809
+mandrake banker~
+Mandrake~
+Mandrake the banker is here.
+~
+~
+67 16552 0 0 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+say Hello, and welcome to the bank!
+~
+>speech_prog hi hello~
+smile
+say Hello there, and welcome to the bank.
+~
+>speech_prog bye~
+wave $n
+say Have a safe journey, and please come again!
+~
+|
+#2810
+greetz blacksmith smith~
+Greetz~
+Greetz the Blacksmith is here to repair your armour and weapons.
+~
+~
+67 33554600 0 200 S
+84 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>speech_prog hi hello~
+say Hello.  I can repair your things.
+~
+>all_greet_prog 100~
+say Greetings!  Allow me to repair your things!
+~
+>speech_prog bye~
+say Good-bye.
+~
+|
+#2811
+lazarus citizen ghost~
+The ghost of Lazarus~
+&CThe ghost of Lazarus&P floats here.
+~
+He is completely transparent!
+~
+65 134742184 0 -100 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 85~
+emote howls about the room.
+~
+>rand_prog 25~
+emote floats around the room and makes some eery noises.
+~
+>death_prog 99~
+mpecho &CThe ghost disperses into the air...
+mptrans $i 1
+~
+|
+#2901
+nightmare~
+The Nightmare~
+A Nightmare is here, stomping in the ground.
+~
+~
+67 503316608 0 -500 S
+95 0 0 11000d0+0 0d0+0
+0 0 0 0
+0 0 0
+65539 0 0
+>fight_prog 20~
+cast 'meteor swarm'
+~
+>fight_prog 40~
+cast fireball $n
+~
+|
+#2902
+giant spider~
+The Giant Spider~
+A Giant spider is here, clinging to its web.
+~
+~
+71 335659010 0 0 S
+88 0 0 9500d0+0 0d0+0
+0 0 0 0
+0 0 0
+65538 0 0
+>fight_prog 20~
+cast 'acid breath' $n
+~
+|
+#2903
+earth elemental~
+The Earth Elemental~
+An Earth Elemental is here, sitting in a massive throne.
+~
+~
+67 167788672 0 0 S
+90 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+66050 0 0
+>fight_prog 10~
+cast 'curse of nature' $n
+~
+>fight_prog 20~
+cast 'icestorm' $n
+~
+>fight_prog 40~
+cast 'weaken' $n
+~
+|
+#2904
+giant snake~
+The Giant Snake~
+A Giant Snake is here, and it does not like to be disturbed.
+~
+~
+97 33570816 0 0 S
+86 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 0
+65536 0 0
+>fight_prog 25~
+cast 'poison' $n
+~
+>fight_prog 50~
+cast 'meteor swarm' $n
+~
+|
+#2905
+swarm killer bees bee~
+The Swarm of Bees~
+A Swarm of Killer Bee's buzzes over your head!
+~
+~
+67 335560832 0 0 S
+85 0 0 13000d0+0 0d0+0
+0 0 0 0
+0 0 0
+2050 0 0
+>fight_prog 40~
+cast 'poison' $n
+~
+>rand_prog 20~
+mpecho The Swarm of Killer Bees buzz over your head.
+~
+|
+#2906
+daemon earth~
+The Daemon of Earth~
+A Daemon of Earth is not happy to see you.
+~
+~
+65 167772288 0 -500 S
+92 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 1
+2 0 0
+>fight_prog 10~
+cast 'dispel magic' $n
+~
+>fight_prog 20~
+cast 'earthquake' $n
+~
+>fight_prog 40~
+cast 'heal' self
+~
+|
+#2907
+wolverine~
+A Vicious Wolverine~
+A Vicious Wolverine looks for something to attack.
+~
+~
+101 67125376 0 -500 S
+85 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#2918
+unused~
+(no short description)~
+(no long description)
+~
+~
+1 0 0 0 S
+0 0 0 0d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#2949
+necromancer~
+The Necromancer~
+A Necromancer is here!
+~
+~
+99 503316672 0 -1000 S
+97 0 0 11500d0+0 0d0+0
+0 0 0 0
+0 0 0
+8192 0 0
+>all_greet_prog 100~
+say Die, imputant fool!
+mpkill $n
+~
+>fight_prog 10~
+cast 'gate'
+~
+>fight_prog 50~
+cast 'fireball' $n
+~
+>fight_prog 80~
+cast 'heal' self
+~
+|
+#2950
+wraith guard~
+The Wraith Guard~
+A Wraith Guard stands here, keeping an eye out for intruders.
+~
+~
+99 469827714 0 -1000 S
+80 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 1
+8192 0 0
+#2951
+wraith~
+The Wraith~
+A Wraith wanders, looking for anything alive.
+~
+~
+97 469827714 0 -100 S
+83 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 1
+8192 0 0
+#2952
+wraith champion~
+The Wraith Champion~
+The Wraith Champion challenges all opponents!
+~
+~
+99 469844162 0 -1000 S
+88 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+8192 0 0
+#2953
+efreet familiar~
+The Efreet~
+The Necromancer's Familiar wanders the halls.
+~
+~
+69 337133800 0 0 S
+90 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 0
+4 0 0
+>fight_prog 50~
+cast 'meteor swarm' $n
+~
+>fight_prog 70~
+cast 'fireball' $n
+~
+|
+#2954
+prisoner~
+A prisoner~
+A prisoner is here, deathly sick.
+~
+~
+67 0 0 200 S
+50 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+blink
+say Keep away!  Leave me alone!
+emote tries to hide.
+~
+|
+#2955
+zombie prisoner~
+The Prisoner~
+A zombified prisoner is here.
+~
+~
+99 268435456 0 -1000 S
+50 0 0 5000d0+0 0d0+0
+0 0 0 0
+0 0 1
+2052 0 0
+#2956
+dragon undead~
+The Undead Dragon~
+An Undead Dragon roars!
+~
+~
+8227 469778624 0 -1000 S
+90 0 0 12000d0+0 0d0+0
+0 0 0 0
+0 0 0
+8192 0 0
+>all_greet_prog 100~
+mpkill $n
+~
+>fight_prog 25~
+cast 'frost breath' $n
+~
+>fight_prog 50~
+cast 'icestorm' $n
+~
+|
+#0
+
+
+
+#OBJECTS
+#2801
+scroll peace~
+a scroll of peace~
+A scroll lies on the ground, humming.~
+~
+2 268435523 0 0 1 75
+50~ aura of peace~ reserved~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2802
+bottle water~
+a bottle of water~
+A bottle of water lies here.~
+~
+17 0 0 0 1 0
+20~ 20~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2803
+potion healing extreme~
+a potion of extreme healing~
+A potion lies on the ground here, glowing.~
+~
+10 268435523 0 0 1 75
+50~ complete healing~ cure poison~ complete healing~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2804
+bag holding~
+a Greater Bag of Holding~
+A magical bag lies on the ground.~
+~
+15 536870981 0 0 1 75
+400~ 1~ 0~ 0~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2805
+water skin~
+a skin of water~
+A skin of water rests here.~
+~
+17 0 0 0 1 0
+40~ 40~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2806
+helm forethought~
+a Helm of Forethought~
+A helm, pulsing with magical energies, is here.~
+~
+9 2113 64 4096 17 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+true sight~
+5 5
+0 0 0
+A
+18 10
+A
+19 10
+A
+17 -40
+A
+24 -20
+A
+23 -20
+A
+13 50
+A
+3 -1
+#2807
+fountain~
+fountain~
+&BA fountain rests in the middle of the road.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+fountain~
+It is full of sand and is not drinkable.
+~
+#2808
+desk~
+a desk~
+A strong, sturdy desk sits on the floor.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2809
+well~
+well~
+A well sits on the ground here.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2810
+chair~
+chair~
+A relaxing armchair rests here.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2811
+couch~
+couch~
+A comfortable couch rests against the south wall.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2812
+table~
+table~
+A table sits in the middle of the room.~
+~
+12 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2901
+head~
+a snake's head~
+The decomposing head of a snake lies on the ground.~
+~
+9 20496 0 4096 17 86
+0~ 0~ 0~ 0~
+2 0 0 0 0
+1 2921
+reserved~
+2 2
+0 0 0
+A
+25 22
+A
+24 -10
+A
+19 7
+A
+18 7
+A
+13 55
+#2902
+claws~
+wolverine's claws~
+A pair of claws lies off to the side.~
+~
+9 0 0 0 129 85
+0~ 0~ 0~ 0~
+9 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 -2
+A
+18 -2
+A
+13 80
+A
+19 9
+#2903
+spider fangs~
+spiders fangs~
+A pair of spiders fangs lies on the ground.~
+~
+9 3 0 0 524289 88
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+A
+25 25
+A
+13 30
+A
+18 4
+A
+19 4
+#2904
+hooves nightmare~
+the hooves of a nightmare~
+A pair of horses hooves lie here.~
+~
+9 1 0 0 65 95
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 9
+A
+19 9
+A
+13 60
+#2905
+wings nightmare~
+the wings of a Nightmare~
+A pair of wings lie on the ground.~
+~
+9 1 0 0 1025 95
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 9
+A
+110 -1
+A
+2 1
+A
+1 -1
+A
+13 50
+#2906
+stinger~
+a bee's stinger~
+The stinger of a bee lies on the ground.~
+~
+9 16385 0 0 16385 85
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 40
+A
+12 20
+A
+19 8
+A
+18 5
+A
+24 -15
+A
+23 5
+A
+14 -100
+#2907
+flameblade blade~
+the Flameblade~
+A burning blade lies on the ground.~
+~
+5 570425344 0 0 8193 92
+0~ 0~ 0~ 3~
+5 0 0 0 0
+5 0
+fireshield~
+12 12
+0 0 0
+A
+17 -92
+A
+19 33
+A
+12 90
+A
+13 90
+A
+18 23
+#2908
+sword elemental earth~
+the Elemental Sword of Earth~
+An elemental sword lies here.~
+~
+5 2049 0 0 8193 90
+0~ 0~ 0~ 3~
+20 0 0 0 0
+5 0
+reserved~
+0 0
+0 0 0
+A
+19 30
+A
+12 100
+A
+25 50
+A
+18 15
+A
+13 100
+#2909
+stalactite~
+stalactite~
+A stalactite is hanging from the ceiling.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2910
+stalactites group~
+stalactites group~
+A group of stalactites hangs from the ceiling.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2911
+stalagmite~
+stalagmite~
+A stalagmite is here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2912
+group stalagmites~
+group stalagmites~
+A group of stalagmites are here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2913
+pool water~
+pool water~
+A pool of water sits very calmly here.~
+~
+25 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2914
+hive~
+hive~
+A bee hive is stuck to the wall.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+hive~
+It has many holes in it, but seems to be void of life.
+~
+#2915
+skin shedded~
+skin shedded~
+The shedded skin of a rather large snake sits here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2916
+web~
+web~
+A spider's web clings to the ceiling.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+web~
+The silk webbing is quite thick, you hate to see the size of the spider.
+~
+#2917
+key~
+a key with a horses head~
+A key sits on the floor.~
+~
+18 0 0 0 16385 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2918
+spider charm~
+a spider charm~
+A charm with eight legs sits in the corner.~
+~
+9 536870979 0 0 16385 88
+0~ 0~ 0~ 0~
+0 0 0 0 0
+5 0
+web~
+25 25
+0 0 0
+A
+13 50
+A
+18 5
+A
+19 6
+A
+26 40
+#2919
+bits honeycomb~
+bits of honeycomb~
+Some bits of honeycomb lie on the ground.~
+~
+19 0 0 0 1 0
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2920
+granite necklace~
+a granite necklace~
+A necklace made of granite lies on the ground.~
+~
+9 2 0 0 5 92
+0~ 0~ 0~ 0~
+20 0 0 0 0
+5 0
+earthquake~
+-1 -1
+0 0 0
+A
+18 -5
+A
+1 2
+A
+14 -50
+A
+19 5
+A
+13 75
+#2921
+eye~
+a snake's eye~
+The eye of a snake lies on the ground.~
+~
+9 65 0 0 32769 86
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+detect invis~
+15 15
+2923 0 0
+A
+19 8
+A
+18 9
+A
+13 75
+#2922
+stick~
+a stick~
+A stick lies on the ground.~
+~
+8 64 0 0 16385 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+2923 0 0
+A
+13 5
+#2923
+wand blink blinking~
+a blinking wand~
+A wand that blinks in and out of existance lies on the ground.~
+~
+3 536870979 0 0 16385 86
+100~ 50~ 50~ teleport~
+2 0 0 0 0
+5 0
+astral walk~
+50 50
+0 0 0
+#2924
+corpse~
+corpse bee~
+The corpse of a Killer Bee is lying here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2949
+staff undead control~
+a Staff of Undead Control~
+A dark, glowing staff hovers at your waistline.~
+~
+5 33554965 0 0 8193 90
+0~ 0~ 0~ 7~
+10 0 0 0 0
+5 0
+animate dead~
+4 4
+0 0 0
+A
+18 9
+A
+19 9
+A
+12 90
+#2950
+shield pain~
+a shield of pain~
+A dark, glowing shield hovers at your waistline.~
+~
+9 570427413 0 0 513 90
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 75
+A
+19 9
+A
+2 -1
+A
+17 -100
+A
+18 8
+#2951
+sword~
+a cursed sword~
+A sword lies on the ground, radiating evil.~
+~
+5 67113620 0 0 8193 80
+0~ 0~ 0~ 3~
+10 0 0 0 0
+5 0
+curse~
+8 8
+0 0 0
+A
+19 25
+A
+18 15
+A
+13 60
+A
+25 20
+A
+4 -2
+#2952
+sword~
+a black sword~
+A midnight black sword seems to consume the light.~
+~
+5 67109396 0 0 8193 83
+0~ 0~ 0~ 3~
+9 0 0 0 0
+5 0
+curse~
+10 10
+0 0 0
+A
+25 20
+A
+13 65
+A
+18 17
+A
+19 26
+#2953
+jail jailers key~
+a jailers key~
+A key sits on the ground.~
+~
+18 0 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2954
+key ice~
+a key as cold as ice~
+A key sits on the ground.~
+~
+18 4 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2955
+key unholy~
+a key of unholy power~
+A key sits on the ground.~
+~
+18 20 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2956
+book necromancy~
+a book of necromancy~
+An evil book hovers in front of you.~
+~
+9 570425876 988 0 16385 90
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+summon demon~
+45 45
+0 2963 2963
+A
+13 40
+A
+12 40
+A
+19 9
+A
+18 5
+A
+24 -10
+E
+book~
+Escribed onto this book are many runes.  You peer at them, for they are words
+of caution, warning that the power is too great for the minds of many to use.
+The book seems to have a mind of its own, and will sometimes refuse to work.
+~
+#2957
+plaguesword plague sword~
+the Plaguesword~
+A mighty black blade hums on the ground.~
+~
+5 67125780 0 0 8193 88
+0~ 0~ 0~ 3~
+5 0 0 0 0
+5 0
+death field~
+15 15
+0 0 0
+A
+25 25
+A
+13 70
+A
+19 28
+A
+18 20
+#2958
+soul~
+a screaming soul~
+&z~
+~
+9 67109396 0 0 32769 88
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 5
+A
+13 75
+A
+12 50
+A
+2 2
+#2959
+leash~
+a leash~
+A leash lies at your feet.~
+~
+9 4244 0 0 5 50
+0~ 0~ 0~ 0~
+25 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 -500
+A
+19 -10
+A
+18 -10
+A
+1 -2
+#2960
+belt fury~
+the belt of fury~
+A belt twists around on the ground here.~
+~
+9 4629 0 0 2049 90
+0~ 0~ 0~ 0~
+4 0 0 0 0
+5 0
+chaos blade~
+1 1
+0 0 0
+A
+23 -10
+A
+24 -10
+A
+13 75
+A
+19 11
+A
+18 4
+#2961
+food packet~
+a packet of food~
+A packet of food sits on the ground.~
+~
+19 0 0 0 1 0
+1~ 0~ 0~ 1~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#2962
+shadow~
+a dark shadow~
+&z~
+~
+9 68 0 0 32769 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 2
+#2963
+book necromancy half~
+a half of a book of necromancy~
+A half of a book lies here.~
+~
+13 0 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#2800
+none~
+~
+0 393220 0
+Rd     0
+S
+#2801
+Desert Path~
+You are walking along a path that is rapidly turning to desert in the east.  A
+forest can be seen to the west, beginning at a cross-junction.  The sand and
+heat are starting to get to you, making you sweat uncomfortably.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2802
+D3
+~
+~
+0 0 21491
+S
+#2802
+Desert Path~
+You are walking along a desert path.  Trees can be seen a little ways to the
+west, however nothing but sand and heat surround you.  Small particles of sand
+blow around at your feet.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2803
+D3
+~
+~
+0 0 2801
+S
+#2803
+Desert Path~
+You are walking along a desert path.  The ocean can be seen a little ways to
+the north, but it is not possible to walk there from here.  The path travels
+to the south a little ways, curving around a large hill.
+~
+0 0 10
+Rd     0
+D2
+~
+~
+0 0 2804
+D3
+~
+~
+0 0 2802
+S
+#2804
+Desert Path~
+You are walking along a desert path.  The hot sand continues to blow at your
+feet, swirling all around.  The path stretches to the north and to the south,
+while a large hill is to the west.  You see no way of going over it, perhaps
+you should just go around.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2803
+D2
+~
+~
+0 0 2805
+S
+#2805
+Desert Path~
+You are walking along a desert path.  The area to the west is a large hill, but
+it is not passable.  The sands blow in small swirls at your feet, and the path
+travels to the north and south.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2804
+D2
+~
+~
+0 0 2806
+S
+#2806
+Desert Path~
+You are walking along a desert path around a hill.  You have almost reached the
+western end of the hill, and the sand continues to blow at your feet.  The
+path travels to the south and to the north.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2805
+D3
+~
+~
+0 0 2807
+S
+#2807
+Desert Path~
+You are walking along a desert path.  A large hill can be seen to the north
+of here, and a path travels around it to the east.  The path also goes to the
+south quite a ways.  Sand blows lightly at your feet.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2806
+D2
+~
+~
+0 0 2808
+S
+#2808
+Desert Path~
+You are walking along a desert path.  The heat of this place is starting to
+get to you, as you slowly begin to bake in your armour.  The sand blows in
+small circles at your feet, occasionally blowing up to your waist.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2807
+D2
+~
+~
+0 0 2809
+S
+#2809
+Desert Path~
+You are walking along a path through the desert.  You can see what looks like
+a small town far to the southwest, as the sand blows at your feet.  You take
+another look in that direction, but no longer see it.  Perhaps your eyes were
+playing tricks on you.
+~
+0 4 10
+Rd     0
+D0
+~
+~
+0 0 2808
+D2
+~
+~
+0 0 2810
+S
+#2810
+Desert Path~
+You are walking along a desert path.  The dry sand swirls in small circles at
+your feet, occasionally brushing up against your armor.  The path goes off to
+the north and to the west.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2809
+D3
+~
+~
+0 0 2811
+S
+#2811
+Desert Path~
+You are walking along a path through a desert.  The hot sands at your feet
+blow around in small circles, some of the time kicking up as far as your
+face.  The path goes to the east and the west.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2810
+D3
+~
+~
+0 0 2812
+S
+#2812
+Desert Path~
+You are walking along a path through the desert.  The dry sands swirl up at
+your feet as you walk, occasionally brushing up against your armor.  The path
+goes off to the east and the west.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2811
+D3
+~
+~
+0 0 2813
+S
+#2813
+Desert Path~
+You are walking along a path through the desert, and have come to another large
+hill.  A path leads around it to the north and to the south.  Some sand swirls
+up around your feet as you walk.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 2834
+D1
+~
+~
+0 0 2812
+D2
+~
+~
+0 0 2814
+S
+#2814
+Desert Path~
+You are walking through a path in the desert.  A rather large hill occupies
+the area immediately to the west of you, while the path continues to the north
+and west around it.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2813
+D3
+~
+~
+0 0 2815
+S
+#2815
+Desert Path~
+You are walking along a desert path.  You take a look to the south and see a
+town in the distance.  As you focus on it, it vanishes.  Perhaps your eyes were
+playing tricks on you.  The path continues to the east and south.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2814
+D2
+~
+~
+0 0 2816
+S
+#2816
+Desert Path~
+You are walking along a path through a desert.  The sands blow around at your
+feet, making small little circles, kind of like mini tornadoes.  The heat of
+this area is starting to get to you, and you fear you may pass out from heat
+exhaustion.  The path continues to the north and south.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2815
+D2
+~
+~
+0 0 2817
+S
+#2817
+Desert Path~
+You are walking through a path in the desert.  A rather small city can be seen
+to the south.  The hot sands swirl around at your feet as you move,
+occasionally kicking up as high as your face.  The path continues north and
+south.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2816
+D2
+~
+~
+0 0 2818
+S
+#2818
+Desert Path~
+You are walking along a path through a desert.  The hot sands at your feet, and
+no sign of water anywhere near you.  A small town can easily be seen to the
+south, and the path goes to the west and north.  The way west turns to the
+south immediately.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2817
+D3
+~
+~
+0 0 2819
+S
+#2819
+Desert Path~
+You are walking through a desert path.  A large town can easily be seen to the
+south, with a small road leading up to it.  The path goes back to the east, or
+south to the road.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2818
+D2
+~
+~
+0 0 2820
+S
+#2820
+Desert Road~
+You are walking along a road leading up to a small town.  The sandy path leads
+off to the north, while the town lies south.  Small buildings litter the
+surface of the town, but you don't see many people anywhere in it.
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 2819
+D2
+~
+~
+0 0 2821
+S
+#2821
+Desert Road~
+You have entered a small town.  A small building lies to the west and east, but
+you don't see a way into them from here.  The road continues to the south where
+you can see a small fountain.  The town is unusually quiet.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2820
+D2
+~
+~
+0 0 2822
+S
+#2822
+Desert Town Road~
+You are walking along a road in a deserted town.  There is a building to the
+east of here, but there is no door.  The road continues to the south and to the
+west.  A fountain can be seen to the south.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2821
+D2
+~
+~
+0 0 2825
+D3
+~
+~
+0 0 2823
+S
+#2823
+Desert Town Road~
+You are walking along a deserted road in a town.  There is a building to the
+north and to the west, while the road goes off to the east and the south.
+Small particles of sand swirl in circles at your feet as you walk.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2828
+D1
+~
+~
+0 0 2822
+D2
+~
+~
+0 0 2824
+D3
+~
+~
+0 0 2829
+S
+#2824
+Desert Town Road~
+You are walking along a deserted road in a town.  There are buildings all
+around you here, one to the south, west and southeast.  There are a few more
+to the north.  The road leads off to the north and east.  Small bits of sand
+swirl around your feet as you walk.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2823
+D1
+~
+~
+0 0 2825
+D2
+~
+~
+0 0 2832
+D3
+~
+~
+0 0 2831
+S
+#2825
+Desert Town Road~
+You are at what appears to be the main area of this town.  Sand blows around
+over the pavement on the ground.  An enclosed building lies to the south, its
+door located to the east.  The road goes off to the north, east and west.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2822
+D1
+~
+~
+0 0 2826
+D3
+~
+~
+0 0 2824
+S
+#2826
+Desert Town Road~
+You are walking along a road.  There is a building to the north of here, and
+you can see a closed door to the south.  The sand blows easily over the ground,
+brushing up against your armor, making you feel nervous.  This town is very
+quiet, almost too quiet.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2830
+D2
+~
+~
+0 0 2827
+D3
+~
+~
+0 0 2825
+S
+#2827
+Desert Town Road~
+You have reached the southernmost point of this town.  A door lies in the side
+of a building to the west.  You can feel some sort of magic eminating from its
+inside.  The road strethes out to the north, while sand forever blows across it
+in a random fashion.
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 2826
+D3
+~
+~
+3 0 2833
+S
+#2828
+Armoury~
+You are standing in an old, delapitated store.  The counter is against the
+north wall.  The only exit is through an archway to the south, which leads to
+the main city road.
+~
+0 131072 0
+Rd     0
+D2
+~
+~
+0 0 2823
+S
+#2829
+Delapitated Building~
+You find yourself standing in an old, delapitated building.  There isn't much
+here, just some old furniture, toppled over and rotting.  An archway is set in
+the east wall, and it is the only way out.
+~
+0 1032 0
+Rd     0
+D1
+~
+~
+0 0 2823
+S
+#2830
+Local Pub~
+You are standing in what is left of a pub.  Overturned chairs and tables litter
+the floor, while sand and other pieces of garbage blow across it.  You can
+smell old and decayed food around here, but do not see where it is coming from.
+The only exit is through the archway to the south.
+~
+0 131072 0
+Rd     0
+D2
+~
+~
+0 0 2826
+S
+#2831
+Weapons~
+You are in an old weapons shop, but it hasn't been used in quite some time.
+An old counter lies on the west wall, crumbling to the ground in a state of
+disrepair.  An archway is the only way out of this room, it is in the east
+wall.  Bits of sand blow at your feet as you walk.
+~
+0 131072 0
+Rd     0
+D1
+~
+~
+0 0 2824
+S
+#2832
+Unknown Building~
+You have stumbled into an old abandoned store.  The counter has collapsed
+many years ago, but the walls are still holding.  An archway in the north wall
+is the only way out.  You can't help but feel something magical in this room,
+but you can't pinpoint where it is coming from.
+~
+0 1024 0
+Rd     0
+D0
+~
+~
+0 0 2824
+S
+#2833
+Seer~
+You have entered a small building.  Carpets line the floor, and the inside
+is kept impecibly clean.  A small window shows the outside, while a large door
+is on the east wall.  It is the only exit to the road.
+~
+0 1024 0
+Rd     0
+E
+window~
+You can see outside through it.
+~
+D1
+~
+~
+3 0 2827
+S
+#2834
+Desert Path~
+You are walking along a desert path.  You can see that the path goes up a
+fairly large hill to the west, and forks to the south.  Small swirls of sand
+blow playfully at your feet, sometimes reaching up your leg.
+~
+0 0 10
+Rd     0
+D2
+~
+~
+0 0 2813
+D3
+~
+~
+0 0 2835
+S
+#2835
+Desert Path~
+You are walking along a desert path.  The heat and dryness of this desert is
+starting to get to you, you can feel yourself baking inside your armour.  The
+warm sands at your feet blow in the wind.  The path continues to the east or
+to the west.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2834
+D3
+~
+~
+0 0 2836
+S
+#2836
+Desert Path~
+You are at the base of a rather large hill.  The path to the west traverses up
+it, while to the east is flat and sandy.  The warm winds blow the sand around
+at your feet as you walk.  You are starting to feel constantly thirsty.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2835
+D3
+~
+~
+0 0 2837
+S
+#2837
+Desert Hills~
+You are walking along a sloping hill.  A path leads off to the south, its edges
+bare of life.  Somethiny gloomy lies in that direction.  The base of the hill
+is directly to the east, while the hill continues to climb to the west.  The
+heat of this area is making you sweat at least twenty pounds off.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 2836
+D2
+~
+~
+0 0 2838
+D3
+~
+~
+0 0 2842
+S
+#2838
+Desert Hills~
+You are walking along an area in the hills that is totally baren of life.  You
+can see hoofprints all around you here, perhaps horses have walked this path
+before you.  The main path over the hills lies to the north, while this small
+side path traverses to the south.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2837
+D2
+~
+~
+0 0 2839
+S
+#2839
+Desert Hills~
+You are walking along the hills in the desert.  This area is totally void of
+any sign of life, and it is starting to give you an eery feeling, like
+something is watching you.  The path continues to the north and to the south.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2838
+D2
+~
+~
+0 0 2840
+S
+#2840
+Desert Hills~
+You are walking along a path through the hills in the desert.  A small alcove
+lies to the west, its walls black as soot.  You can see small amounts of smoke
+pouring out of its mouth.  The path travels to the north, or into the alcove to
+the west.
+~
+0 1 10
+Rd     0
+D0
+~
+~
+0 0 2839
+D3
+~
+~
+0 0 2841
+S
+#2841
+Nightmare's Lair~
+You have stumbled into an entrance to the Nightmare's lair.  This small alcove
+does not appear to be a home however, and the nightmare is nowhere to be seen.
+The only exit is back the way you came, to the east.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2840
+D5
+~
+~
+0 0 2901
+S
+#2842
+Desert Hills~
+You are walking along the hills of the desert.  You have almost reached its
+peak now, and it lies just to the west of here.  The path east leads down
+the hillside, back to the sands below.  You can feel the heat baking you
+inside of your armour.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 2837
+D3
+~
+~
+0 0 2843
+S
+#2843
+Desert Hills~
+You have reached the summit of the hills.  A long, twisty path leads down the
+west side, while a more straight and direct path leads down the east side.
+You can see an open desert far below to the west.  This path leads to the east
+and south.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 2842
+D2
+~
+~
+0 0 2844
+S
+#2844
+Desert Hills~
+You are walking along the west side of a large hill.  This path twists and
+turns along, one way leading to a large open desert, the other way leading up
+to the peak of the hill.  You can go north and west from here.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 2843
+D3
+~
+~
+0 0 2845
+S
+#2845
+Desert Hills~
+You are walking along the hills of a desert.  This path twists and turns in
+both directions, one way leading up to the peak of the hill, the other leading
+down to an open desert.  A little bit of sand blows around your feet, while
+small tufts of grass attempt to grow unsuccessfully.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 2844
+D2
+~
+~
+0 0 2846
+S
+#2846
+Desert Hills~
+You are walking along a twisted path on a hillside.  The desert lies a little
+ways below you.  You can see small plants attempting to grow here, not being
+very successful at it.  Small swirls of sand blow at your feet as you walk
+along the path.  It leads to the north and the west.
+~
+0 0 4
+Rd     0
+D0
+~
+~
+0 0 2845
+D3
+~
+~
+0 0 2847
+S
+#2847
+Desert Hills~
+You are walking along a windy, twisty path along the side of a hill.  The path
+winds up the hill to the east, or down the hill to the south.  The heat of
+the deserts surrounding you have moved in around you.  You are sweating beneath
+your clothes.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 2846
+D2
+~
+~
+0 0 2848
+S
+#2848
+Desert Path~
+You are at the base of a large hill.  A desert lies a little ways to the west,
+but you can also see a path leading around the hill to the east in that
+direction.  You can either go west to the desert or the other path, or you can
+go north and travel up the hill.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2847
+D3
+~
+~
+0 0 2849
+S
+#2849
+Desert Path~
+You are at a fork in the desert path.  You can go to a large hill to the east,
+or take a southern path around the hill.  A large desert lies to the west.
+Small bits of sand blow around your feet in small circles, occasionally
+brushing up against your armour.
+~
+0 0 4
+Rd     0
+D1
+~
+~
+0 0 2848
+D2
+~
+~
+0 0 2850
+D3
+~
+~
+0 0 2857
+S
+#2850
+Desert Path~
+You are walking on a path through the desert.  The way south leads around a
+large hill, while a T-Junction lies directly to the north of here.  Small bits
+of grass attempt to grow here, but are not very successful.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2849
+D2
+~
+~
+0 0 2851
+S
+#2851
+Desert Path~
+You are walking around a rather large hill.  This path leads to the south and
+to the north.  Small particles of sand blow around at your feet, making you
+feel rather dry and thirsty.  You are really sweating under your armour.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 2850
+D2
+~
+~
+0 0 2852
+S
+#2852
+Desert Path~
+You are walking around a rather large hill in the desert.  You can see some
+sort of building to the east, and a T-Junction a little ways to the north.  You
+can't help but feel thirsty in this dry climate.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2851
+D1
+~
+~
+0 0 2853
+S
+#2853
+Desert Path~
+You are walking along a desert path around a large hill.  You can see a small
+building to the east of here, perhaps someone lives there.  The path continues
+to the east and west.  You can feel the sand blowing softly at your feet as you
+walk along.
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2854
+D3
+~
+~
+0 0 2852
+S
+#2854
+Desert Path~
+You are walking through a path in the desert.  You can see a small building a
+little ways to the east.  The sands blow softly at your feet, making little
+circles as you walk.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2855
+D3
+~
+~
+0 0 2853
+S
+#2855
+Desert Path~
+You have come to the end of a desert path.  A door lies to the north, in the
+side of a small house.  Small bits of grass surround the base of the house,
+perhaps this desert is not totally void of life after all.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+3 0 2856
+D3
+~
+~
+0 0 2854
+S
+#2856
+Main Foyer~
+You have entered the main foyer of this house.  A small kitchen lies to the
+north, while what looks like a living room is to the east.  The door leaving
+the building is on the south wall.
+~
+0 13 0
+Rd     0
+D0
+~
+~
+0 0 2879
+D1
+~
+~
+0 0 2880
+D2
+~
+~
+3 0 2855
+S
+#2857
+AErathi Desert~
+You have entered the AErathi Desert.  Many dunes stretch out as far as the
+horizon to the west.  A small pathway leads to the east, to the base of a
+rather large hill.  The heat has increased by what seems at least ten degrees
+to the west.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2849
+D3
+~
+~
+0 0 2858
+S
+#2858
+AErathi Desert~
+You are walking on what seems the endless sand of the AErathi Desert.  The heat
+of the ground starts to seem through your boots, and is making your feet burn.
+You can see no point to going south, for you see nothing but sand as far as the
+horizon.  What seems like a small footpath leads off to the north, west and
+east of here.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2862
+D1
+~
+~
+0 0 2857
+D3
+~
+~
+0 0 2866
+S
+#2859
+AErathi Desert~
+You are walking through a hot desert.  You can see some small buildings to the
+south, but they look more like caves.  A makeshift path leads off to the south
+and east, drudging through the dunes of sand.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2860
+D2
+~
+~
+0 0 2864
+S
+#2860
+AErathi Desert~
+You are walking through the endless sands of the AErathi Desert.  The heat is
+really starting to get to you here, making you sweat and almost pass out from
+heat exhaustion.  You can almost make out what looks like a path leading off to
+the east, south and west.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2861
+D2
+~
+~
+0 0 2865
+D3
+~
+~
+0 0 2859
+S
+#2861
+AErathi Desert~
+You are walking along the AErathi Desert sands.  A small path leads off to the
+north, appearing to end at a rather lush forest.  The desert stretches out
+in all other directions, for what seems like an eternity.  Perhaps your eyes
+are just playing tricks on you.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2873
+D1
+~
+~
+0 0 2862
+D2
+~
+~
+0 0 2866
+D3
+~
+~
+0 0 2860
+S
+#2862
+AErathi Desert~
+You are walking along the hot sands of the AErathi Desert.  A large hill can
+be seen a little ways to the east, but you see no way of getting to it from
+here.  A makeshift path leads off to the south and to the west from here.  The
+hot sands are starting to burn you through your armour, perhaps they are
+getting inside of it somehow.
+~
+0 0 10
+Rd     0
+D2
+~
+~
+0 0 2858
+D3
+~
+~
+0 0 2861
+S
+#2863
+AErathi Desert~
+You are walking along the sands of a large desert.  There is a cavelike
+structure to the south, in plain sight from here.  The hot sands stretch out
+for what seems an eternity to the east, west and north.  You see no point to
+going north or west however.
+~
+0 0 10
+Rd     0
+D1
+~
+~
+0 0 2864
+D2
+~
+~
+0 0 2867
+S
+#2864
+AErathi Desert~
+You are walking through a large desert.  The sand stretches for what seems like
+an eternity in all the cardinal directions, except for north.  You can see a
+forest on the horizon in that direction.  The hot sands are starting to seep
+through your armour, and slightly burn your skin.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2859
+D1
+~
+~
+0 0 2865
+D2
+~
+~
+0 0 2868
+D3
+~
+~
+0 0 2863
+S
+#2865
+AErathi Desert~
+You are walking through the AErathi Desert, its heat surrounding you, the
+sands going on for what seems like forever.  You hope you are not getting
+lost by wandering around forever.  A large forest can be seen on the horizon
+to the north.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2860
+D1
+~
+~
+0 0 2866
+D2
+~
+~
+0 0 2869
+D3
+~
+~
+0 0 2864
+S
+#2866
+AErathi Desert~
+You are walking along a rather large desert, very thirsty.  The sands seem
+endless, and they lead off in all the cardinal directions.  You fear you may
+become hopelessly lost.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2861
+D1
+~
+~
+0 0 2858
+D2
+~
+~
+0 0 2870
+D3
+~
+~
+0 0 2865
+S
+#2867
+AErathi Desert Cave~
+You have entered a small cave in the AErathi Desert.  The only exits from this
+cave are to the east and north.  The walls and floor are slightly scratched,
+as if something once lived in here.  Whatever it was, it is gone now.
+~
+0 1 10
+Rd     0
+D0
+~
+~
+0 0 2863
+D1
+~
+~
+0 0 2868
+D5
+~
+~
+0 0 2946
+S
+#2868
+AErathi Desert~
+You are walking along the endless sands of the AErathi Desert.  You can see
+a small cave to the west, and sand in every other direction.  You see no point
+of travelling to the south.  Sands blow calmly at your feet.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2864
+D1
+~
+~
+0 0 2869
+D3
+~
+~
+0 0 2867
+S
+#2869
+AErathi Desert~
+You are walking on the hot sands of the AErathi Desert.  A small structure,
+which looks like a cave of some kind, lies to the immediate south.  The sands
+stretch out in all other directions.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2865
+D1
+~
+~
+0 0 2870
+D2
+~
+~
+0 0 2871
+D3
+~
+~
+0 0 2868
+S
+#2870
+AErathi Desert~
+You are walking on the endless sands of the AErathi Desert.  You can see some
+sort of outpost to the southeast of here.  Perhaps this place isn't as endless
+as yo once thought.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2866
+D2
+~
+~
+0 0 2872
+D3
+~
+~
+0 0 2869
+S
+#2871
+AErathi Desert Cave~
+You have come across a large cave.  The desert lies to the east and to the
+north, and that is the only direction out of the cave.  The cave walls are very
+scratched up, as if something was once here.  There is nothing else of note
+here.
+~
+0 1 4
+Rd     0
+D0
+~
+~
+0 0 2869
+D1
+~
+~
+0 0 2872
+D5
+~
+~
+0 0 2948
+S
+#2872
+AErathi Desert~
+You are walking along the southern end of the AErathi desert.  You can see some
+kind of structure to the west.  You take a look to the south, and see nothing
+but sand as far as the horizon, so you see no point of going in that direction.
+The only exits are west and north.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2870
+D3
+~
+~
+0 0 2871
+S
+#2873
+Desert Path~
+You are walking along a desert path.  A large desert lies directly to the south
+of here, while a forest can be seen a little ways to the north.  The sands
+blow in small circles at your feet, occasionally blowing up as far as your
+waist.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 2874
+D2
+~
+~
+0 0 2861
+S
+#2874
+Desert Path~
+You are walking along a desert path.  It is much hotter to the south than it
+is to the north.  Small bits of sand are starting to seep through the cracks
+in your armour, while some other particles get up into your face.  You find
+it rather annoying.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 2875
+D2
+~
+~
+0 0 2873
+S
+#2875
+Desert Path~
+You are walking along a desert path.  A large forest can be seen a little ways
+to the north, beyond a T-Junction, while a large desert can be seen to the
+south.  The vegetation in this area is dying rapidly, due to the heat coming
+from the desert.  You can't help but feel a little sorry for the plants, for
+weather does not care what it affects.
+~
+0 0 10
+Rd     0
+D0
+~
+~
+0 0 21546
+D2
+~
+~
+0 0 2874
+S
+#2876
+Bank~
+You are in the bank.  A long counter lies on the west wall, and a man is
+usually stands behind it.  The commands here are the same ones used in
+Methidoral.
+~
+0 16778244 0
+Rd     0
+S
+#2877
+Bank~
+You have entered the bank.  A large counter extends along the east wall, and
+an archway leads back out to the street to the west.  The floor and walls are
+impecably clean here.
+~
+0 16778244 0
+Rd     0
+S
+#2878
+The Repair Smithy~
+You are in the repair shop.  A large forge can be seen in the northeast corner
+of the room, and a counter stretches along the entire east wall.  Greetz is
+usually here to repair your things.  An archway lies to the west, leading back
+to Forge Way.
+~
+0 67109892 0
+Rd     0
+S
+#2879
+Kitchen~
+You have entered a makeshift kitchen.  Cupboards line all the walls, their
+glass doors easily showing the clean dishes inside.  An archway leads back
+to the main foyer to the south.  You have noticed that this building does not
+have any lights or windows, and is therefore very dark.
+~
+0 131081 0
+Rd     0
+D2
+~
+~
+0 0 2856
+S
+#2880
+Living Room~
+You are in the main living area of the house.  A fireplace rests on the east
+wall, but it doesn't look like it has been lit for years.  A small door lies
+on the north wall, leading outside.  An archway lies on the west wall leading
+back to the main living quarters.
+~
+0 131081 0
+Rd     0
+D0
+~
+~
+3 0 2881
+D3
+~
+~
+0 0 2856
+S
+#2881
+Behind the House~
+You have gone outside the house.  This area has a small garden where food is
+growing, and the sky is far over your head.  Footprints lead up to a well,
+which is obviously used often.  A door leads back into the house to the south.
+There is no other exit.
+~
+0 131072 0
+Rd     0
+D2
+~
+~
+3 0 2880
+S
+#2882
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 2884
+S
+#2883
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 2888
+S
+#2884
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 2882
+D1
+~
+~
+0 0 2885
+D3
+~
+~
+0 0 2871
+S
+#2885
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2886
+D3
+~
+~
+0 0 2884
+S
+#2886
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 2887
+D3
+~
+~
+0 0 2885
+S
+#2887
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 2886
+S
+#2888
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 2883
+D3
+~
+~
+0 0 2889
+S
+#2889
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 2888
+D3
+~
+~
+0 0 2890
+S
+#2890
+Arena~
+~
+0 805707785 0
+Rd     0
+D1
+~
+~
+0 0 2891
+D2
+~
+~
+0 0 2893
+D4
+~
+~
+0 0 2982
+S
+#2891
+Arena~
+~
+0 541466633 0
+Rd     0
+D1
+~
+~
+0 0 2892
+D2
+~
+~
+0 0 2894
+D3
+~
+~
+0 0 2890
+D4
+~
+~
+0 0 2983
+S
+#2892
+Arena~
+~
+0 805707785 0
+Rd     0
+D2
+~
+~
+0 0 2895
+D3
+~
+~
+0 0 2891
+D4
+~
+~
+0 0 2984
+S
+#2893
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2890
+D1
+~
+~
+0 0 2894
+D2
+~
+~
+0 0 2896
+D4
+~
+~
+0 0 2985
+S
+#2894
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2891
+D1
+~
+~
+0 0 2895
+D2
+~
+~
+0 0 2897
+D3
+~
+~
+0 0 2893
+D4
+~
+~
+0 0 2986
+S
+#2895
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2892
+D2
+~
+~
+0 0 2898
+D3
+~
+~
+0 0 2894
+D4
+~
+~
+0 0 2987
+S
+#2896
+Arena~
+~
+0 805707785 0
+Rd     0
+D0
+~
+~
+0 0 2893
+D1
+~
+~
+0 0 2897
+D4
+~
+~
+0 0 2988
+S
+#2897
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2894
+D1
+~
+~
+0 0 2898
+D3
+~
+~
+0 0 2896
+D4
+~
+~
+0 0 2989
+S
+#2898
+Arena~
+~
+0 805707785 0
+Rd     0
+D0
+~
+~
+0 0 2895
+D3
+~
+~
+0 0 2897
+D4
+~
+~
+0 0 2990
+S
+#2899
+.~
+~
+0 4 0
+Rd     0
+S
+#2900
+~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 2891
+S
+#2901
+Desert Cave~
+You have reacehed an entrance to a dark, dismal cave under the AErathi Desert.
+As you look around, you realize that the walls are definately not natural,
+someone or something has definately made this area.  The walls are very rough,
+but form a definate coridor leading south.  It is suprisingly damp in this
+cave.  The hole in the ceiling leads up to the desert.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 2902
+D4
+~
+~
+0 0 2841
+S
+#2902
+Desert Cave~
+You are walking inside a dark, damp cave under the AErathi Desert.  The walls
+here are very rough and crude, but definately not natural.  The cave continues
+to the south, where a bend east can be seen, or to the north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2901
+D2
+~
+~
+0 0 2903
+S
+#2903
+Desert Cave~
+You are walking through a cave beneath the AErathi Desert.  The dark, damp
+walls and ceiling make for a very uncomfortable stay.  The main corridor
+goes to the east, while another cave stretches further to the south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2902
+D1
+~
+~
+0 0 2904
+D2
+~
+~
+0 0 2907
+S
+#2904
+Desert Cave~
+You are walking inside a deep, dark cave.  The walls here are deteriorating
+rapidly, perhaps this path has been forgotten.  It continues to the east and
+to the west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2905
+D3
+~
+~
+0 0 2903
+S
+#2905
+Desert Cave~
+You are walking under the AErathi Desert in a damp cave.  You can hear some
+dripping water to the south.  The cave travels south, or to the west.  The
+darkness of this cave is starting to bother you, for you are used to being
+outside.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 2906
+D3
+~
+~
+0 0 2904
+S
+#2906
+Desert Cave~
+You have arrived at a large pool of water.  The cave stops abruptly here, as
+though whoever made it decided not to go any further.  Perhaps the water was
+an unforseen obstacle.  The only way to go is to the north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2905
+S
+#2907
+Desert Cave~
+You are walking in an underground cave.  The walls here are very rough and
+crude, as if they were built very quickly.  Small rocks clutter the ground
+here and there.  The cave goes to the north, and to the south, where it can
+be seen turning east.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2903
+D2
+~
+~
+0 0 2908
+S
+#2908
+Desert Cave~
+You are walking through what appears to be a fairly large network of caves
+under the AErathi Desert.  The walls here are very rough, as though they were
+constructed in a hurry.  You could have swore you saw something moving, but
+it must have been your eyes playing tricks on you.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2907
+D2
+~
+~
+0 0 2909
+S
+#2909
+Desert Cave~
+You are walking along in a dark, damp cave under the AErathi desert.  The cave
+takes a sharp bend here.  To the east you can see a couple branches from this
+cave hallway, or you can go north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2908
+D1
+~
+~
+0 0 2910
+S
+#2910
+Desert Cave~
+You are walking through a desert cave.  The way south is definately an easier
+path to travel, the walls there are much smoother and well formed.  You can
+smell what you think is honey to the east.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2911
+D2
+~
+~
+0 0 2914
+D3
+~
+~
+0 0 2909
+S
+#2911
+Desert Cave~
+You are walking in a dark, damp underground cave.  The walls here are very
+rough, as is the floor.  Small rocks, and even some large ones, litter the
+floor.  You can smell what seems like honey to the east.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2912
+D3
+~
+~
+0 0 2910
+S
+#2912
+Desert Cave~
+You are walking along a desert cave, and it is obvious now why you could smell
+honey, a massive bee hive can easily be seen to the south.  You can hear the
+buzzing of bees from that direction.
+~
+0 139273 0
+Rd     0
+D2
+~
+~
+0 0 2913
+D3
+~
+~
+0 0 2911
+S
+#2913
+Desert Cave~
+You are standing before a giant hive.  The walls here are covered with wax and
+honey, while small bees seem to be everywhere.  They are far to small and
+numerous to kill however.  The only exit from this room is back the way you
+came, to the north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2912
+S
+#2914
+Desert Cave~
+You are walking through an underground cave, located under the AErathi Desert.
+The walls here are much smoother than directly to the north, but they are
+still a little rough by your standards.  The cave can be seen making an
+immediate turn west to the south.
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 2910
+D2
+~
+~
+0 0 2915
+S
+#2915
+Desert Cave~
+You are walking in a dark, dismal cave.  The cave walls here are a little
+rough, but they are much better than to the north.  You can see what looks
+like a bricked in hallway to the west.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2914
+D3
+~
+~
+0 0 2916
+S
+#2916
+Desert Cave~
+You are walking in an underground cave.  The dark and gloom of this place is
+starting to get on your nerves.  The cave continues to the east and to the
+west from here.  Small rocks litter the ground at your feet.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2915
+D3
+~
+~
+0 0 2917
+S
+#2917
+Desert Cave Hallway~
+You seem to have stumbled upon a hallway.  Some fine brickwork leads to the
+north and to the south, while the normal cave leads to the east and west.
+This is definately an unexpected turn of events.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2918
+D1
+~
+~
+0 0 2916
+D2
+~
+~
+0 0 2924
+D3
+~
+~
+0 0 2921
+S
+#2918
+Desert Cave Hallway~
+You are walking along a finely polished hallway which leads to the south and
+west.  The brickwork is like nothing you have seen before, marvelous in its
+construction.  There is no rubble of any kind on the floor, and not even a
+scratch on a wall.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 2917
+D3
+~
+~
+0 0 2919
+S
+#2919
+Desert Cave Hallway~
+You are walking along a finely polished hallway.  A large open room can be
+seen to the north.  The hallway travels to the east from here.  There are no
+scratch marks of any kind on the walls.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2920
+D1
+~
+~
+0 0 2918
+S
+#2920
+A Great Pentagram~
+You have entered a large, circular room with a pentagram carved into the
+floor and ceiling.  Cauldrons of fire are at each of the five points, each
+of them burning with a purple glow.  The only exit is the way you came, back to
+the south.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 2919
+S
+#2921
+Desert Cave~
+You are walking through a desert cave under the AErathi desert.  You can see
+a bricked hallway to the east, and you wonder to yourself, how strange.  The
+hallway also continues to the west, where it turns north.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2917
+D3
+~
+~
+0 0 2922
+S
+#2922
+Desert Cave~
+You are walking through a cave beneath the AErathi Desert.  A short path leads
+to the north, where a door can be seen on the west wall.  The cave also leads
+to the east from here.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2923
+D1
+~
+~
+0 0 2921
+S
+#2923
+Desert Cave~
+You are in a large, underground cave.  The walls here are much cruder than the
+ones to the south, they almost look natural.  A door lies in the west wall,
+with the word Cowardice written on it.  The cave travels off to the south.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 2922
+D3
+~
+~
+3 0 2926
+S
+#2924
+Desert Cave Hallway~
+You are standing before a great door to the south.  A cross junction can easily
+be seen to the north.  The door is covered in runes of warning, evil and
+betrayal.  It pulses with an evil energy almost as great as Satan himself.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 2917
+D2
+~
+~
+119 2917 2925
+S
+#2925
+Lair of the Nightmare~
+You are standing in a large room covered in soot.  Paintings of a great
+flaming steed, breathing bolts of electricity cover the walls.  The bones
+of something litter the ground.  The only exit is the door to the north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+119 2917 2924
+S
+#2926
+Desert Cave~
+You are standing in a cave under the AErathi Desert.  The cave continues
+to the north, where it is much more natural looking than here, or to the east
+where you can see a door.  The word Cowardice is carved into the door.
+~
+0 401421 0
+Rd     0
+D0
+~
+~
+0 0 2927
+D1
+~
+~
+3 0 2923
+S
+#2927
+Desert Cave~
+You are walking through a large underground cave.  The walls to the south do
+not look natural, but look as though they have been carved.  You can barely
+make out a door in that direction.  The cave continues to the north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2928
+D2
+~
+~
+0 0 2926
+S
+#2928
+Desert Cave~
+You are walking along a cave.  The walls are very crude, and look natural.  The
+cave continues to the north and to the south.  You can hear some heavy
+breathing here.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2929
+D2
+~
+~
+0 0 2927
+S
+#2929
+Desert Cave~
+You are walking along in a cave under the AErathi Desert.  There are small
+rocks and pebbles lying on the floor, and a cogenstion of spider webs is on
+the ceiling.  The webs seem to be more concentrated to the east.  Another
+cave leads off to the south, while the one you are in goes east and west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2930
+D2
+~
+~
+0 0 2928
+D3
+~
+~
+0 0 2931
+S
+#2930
+Desert Cave~
+You have entered what looks like a small room.  There are thick cobwebs
+totally covering the walls, their silky threads making vision very difficult.
+The only exit is back the way you came, to the west.
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+0 0 2929
+S
+#2931
+Desert Cave~
+You are walking along a cave under the AErathi Desert.  The floor and walls
+here are dotted with some sort of plantlife, but you can't quite make out
+what kind.  The cave continues to the east and west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2929
+D3
+~
+~
+0 0 2932
+S
+#2932
+Desert Cave~
+You are walking through a large underground cave.  You can travel to the east
+or the south from here.  Some pebbles litter the ground here, and you could
+have sworn you saw something moving around.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2931
+D2
+~
+~
+0 0 2933
+S
+#2933
+Desert Cave~
+You are walking along in a cave beneath the AErathi Desert.  There is a hole
+on the ground here, and the dead carcasses of some kind of animal surround you.
+The cave continues to the north and the south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2932
+D2
+~
+~
+0 0 2934
+S
+#2934
+Desert Cave~
+You are travelling through a large underground cave underneath the AErathi
+Desert.  The walls and ground are somewhat damp, which is unusual given the
+location of this cave.  It continues to the north and the south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2933
+D2
+~
+~
+0 0 2935
+S
+#2935
+Desert Cave~
+You are walking in an underground cave.  It is very dark and gloomy here, with
+the only exits to the north and west.  Small pebbles litter the ground and make
+crackling noises as you walk.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2934
+D3
+~
+~
+0 0 2936
+S
+#2936
+Desert Cave~
+You are walking in an underground cave, the walls seeming to be old and
+decayed.  You think you can hear breathing coming from all around you, but are
+unsure of your own senses.  The cave continues to the east and west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2935
+D3
+~
+~
+0 0 2937
+S
+#2937
+Desert Cave~
+You are walking in an underground cave.  A smaller cave leads off to the south
+of this larger cave, which travels east and west.  Small pebbles clutter at
+your feet as you walk.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2936
+D2
+~
+~
+0 0 2938
+D3
+~
+~
+0 0 2940
+S
+#2938
+Desert Cave~
+You are walking through a much smaller cave, it looks as though this one has
+been carved into the wall by a clawed hand.  Grey hairs are all over the floor,
+and some dried blood can be seen surrounding the corpse of some kind of
+creature.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2937
+D2
+~
+~
+0 0 2939
+S
+#2939
+Desert Cave~
+You have come to the end of this small cave.  A pile of straw sits on the
+southermost wall, while dried blood covers most of the floor.  The rotting
+carcasses of animals sit against the east wall.  The walls themselves are
+covered in scratch marks.  The only exit is back the way you came, to the
+north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2938
+S
+#2940
+Desert Cave~
+You are walking along a fairly wide cave.  The walls look very old, as though
+they have been here for quite some time.  The cave contines to the east or to
+the north.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2941
+D1
+~
+~
+0 0 2937
+S
+#2941
+Desert Cave~
+You are walking along a desert cave beneath the AErathi Desert.  This long
+hallway leads off to the north, or a short ways to the south.  Pebbles and
+small stones litter the ground where you walk.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2942
+D2
+~
+~
+0 0 2940
+S
+#2942
+Desert Cave~
+You are walking through a large cave beneath the AErathi Desert.  You can
+vaguely make out what seems to be a fork in the cave to the north.  The
+absolute darkness of this cave is starting to get on your nerves.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2943
+D2
+~
+~
+0 0 2941
+S
+#2943
+Desert Cave~
+You are walking along a cave beneath the desert.  two larger caves lead off
+to the east and the west, while a somewhat smaller cave leads off to the south.
+The southern cave is still quite large however.
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+0 0 2947
+D2
+~
+~
+0 0 2942
+D3
+~
+~
+0 0 2944
+S
+#2944
+Desert Cave~
+You are walking through a large, dark cave beneath the AErathi Desert.  You
+can see a somewhat smaller cave leading south to the east, while this cave
+also leads to the north.  Small pebbles clutter at your feet as you walk,
+making some noises.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2945
+D1
+~
+~
+0 0 2943
+S
+#2945
+Desert Cave~
+You are walking along through a large cave beneath the AErathi Desert.  You
+can see a light in the ceiling to the north, perhaps a way out of this cave.
+You may travel to the north or the south from here.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2946
+D2
+~
+~
+0 0 2944
+S
+#2946
+Desert Cave~
+You have reached an entrance to a dark, dismal cave under the AErathi Desert.
+As you look around, you see very rough walls, and an exit leads to the south.
+It is suprisingly damp in this cave.  The hole in the ceiling leads up to
+the desert.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 2945
+D4
+~
+~
+0 0 2867
+S
+#2947
+Desert Cave~
+You are walking along through a large underground cave.  You can see a light
+in the ceiling to the north, perhaps a way out of this cave.  You may travel
+to the north or west from here.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2948
+D3
+~
+~
+0 0 2943
+S
+#2948
+Desert Cave~
+You have reached an entrance to a dark, gloomy cave beneath the AErathi
+Desert.  As you look around and your eyes get adjusted to the dark, you can
+see very rough and crude walls.  An exit leads to the south, and the hole
+in the ceiling leads to the desert.  You notice how damp this cave is.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 2947
+D4
+~
+~
+0 0 2871
+S
+#2949
+Entrance to the Castle~
+You are standing before an old, abandon castle.  The swamp lies back to the
+east.  As you take a better look at the castle, you realize just how old and
+decayed it is.  Its walls look as though they may collapse at any time, and
+you could have swore that you just saw something move inside.  A large tower
+is on the other side of the castle, but you see no way of reaching it from
+here.
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+0 0 21500
+D3
+~
+~
+0 0 2950
+S
+#2950
+Castle Hallway~
+You have reached the main foyer of the castle.  Its hallways go off to the
+north and to the south, while the exit lies to the east.  A door is in the
+west wall.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2951
+D1
+~
+~
+0 0 2949
+D2
+~
+~
+0 0 2965
+D3
+~
+~
+67 0 2966
+S
+#2951
+Castle Hallway~
+You are walking along the eastern hallway in the castle.  The walls are very
+old, crumbling in places.  You cannot see any footprints in the dust.  The only
+exits are to the north and south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2952
+D2
+~
+~
+0 0 2950
+S
+#2952
+Castle Hallway~
+You are walking through the castle along its hallways, and have reached the
+northeast corner.  The crumbling walls are very old, and are very cold to the
+touch.  The hallways continue to the south and west.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+0 0 2951
+D3
+~
+~
+0 0 2953
+S
+#2953
+Castle Hallway~
+You are travelling along the northern hallway in a castle.  You can hear the
+sounds of creaking doors, rattling chains, and other noises you can't seem to
+identify.  This place is very dark and gloomy, perhaps you had better leave.
+The hallway stretches to the east and to the west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2952
+D3
+~
+~
+0 0 2954
+S
+#2954
+Castle Hallway~
+You are walking along the northern hallway in a castle.  The decayed walls
+look as though they may fall in on you at any moment.  A large door is situated
+in the south wall.  The hallway continues to the east and west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2953
+D2
+~
+~
+67 0 2968
+D3
+~
+~
+0 0 2955
+S
+#2955
+Castle Hallway~
+You are walking along the northern hallway in an old, abandoned castle.  The
+dark, gloomy walls seem to be closing in on you, but you realize it is just
+the lack of light playing tricks on your eyes.  You take notice that there are
+no windows in any of the walls.  The hallway goes to the east and west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2954
+D3
+~
+~
+0 0 2956
+S
+#2956
+Castle Hallway~
+You are walking through the castle along its hallways, and have reached the
+northwest corner.  The crumbling walls are very old, and are very cold to the
+touch. The hallways continue to the east and the south.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2955
+D2
+~
+~
+0 0 2957
+S
+#2957
+Castle Hallway~
+You are walking along the darkest hallway you have ever seen.  A cell door
+lies on the east wall, showing a cell behind.  It is far too dark to see if
+anything is there however.  The hallway continues to the north or the south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2956
+D1
+~
+~
+119 2953 2979
+D2
+~
+~
+0 0 2958
+S
+#2958
+Castle Hallway~
+You are walking along the darkest hallway you have ever seen.  A cell door
+lies on the east wall, but it is too dark to see if anything is there.  A
+second door, made of wood, is on the west wall.  The hallway continues to the
+north and the south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2957
+D1
+~
+~
+119 2953 2980
+D2
+~
+~
+0 0 2959
+D3
+~
+~
+3 0 2972
+S
+#2959
+Castle Hallway~
+You are walking along the western hallway, what seems to be the darkest
+hallway you have ever seen.  A cell door lies on the east wall, but it is far
+to dark to see what lies behind it.  The hallway continues to the north
+or the south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2958
+D1
+~
+~
+119 2953 2981
+D2
+~
+~
+0 0 2960
+S
+#2960
+Castle Hallway~
+You are walking through the castle along its hallways, and have reached the
+southeast corner.  The crumbling walls are very old, and are very cold to the
+touch.  The hallways continue to the north and the east.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2959
+D1
+~
+~
+0 0 2961
+S
+#2961
+Castle Hallway~
+You are walking along the southern hallway inside of a delapitated castle.
+You stop a moment, and look around.  Something is telling you that you are
+being watched.  The hallway continues to the east and west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2962
+D3
+~
+~
+0 0 2960
+S
+#2962
+Castle Hallway~
+You are walking along the southern hallway.  Little bits of rock and dust fall
+from the walls as you move, your mere draft causing it to happen.  The hallway
+continues to the east and west.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+3 0 2970
+D1
+~
+~
+0 0 2963
+D3
+~
+~
+0 0 2961
+S
+#2963
+Castle Hallway~
+You are walking along the southern hallway.  You stop dead in your tracks as
+a howl sends a chill down your spine.  You have never heard such a blood-
+curdling, painfull sound in your life.  The hallway leads to the east or west.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2964
+D3
+~
+~
+0 0 2962
+S
+#2964
+Castle Hallway~
+You are walking through the cstle along its hallways, and have reached the
+northeast corner.  The crumbling walls are very old, and are very cold to the
+touch.  The hallways continue to the south and west.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2965
+D3
+~
+~
+0 0 2963
+S
+#2965
+Castle Hallway~
+You are walking along the eastern hallway in a large castle.  The crumbling
+walls on either side of you do not stretch much taller than ten feet, for the
+roof has started to collapse here.  The hallway goes to the north and south.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+0 0 2950
+D2
+~
+~
+0 0 2964
+S
+#2966
+Champions Hallway~
+You are walking along a long dark, hallway.  A door in the east wall leads
+back to the main hallway of the castle, while this hallway leads to the west.
+You can feel something of great evil in that direction.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+67 0 2950
+D3
+~
+~
+0 0 2967
+S
+#2967
+Champions Hallway~
+You have come to the end of an old hallway.  Two large cauldrons, one at each
+of the western corners, provides some light in this room, but not nearly
+enough.  A small pentacle has been engraved into the centre of this room.  The
+only exit is back the way you came, to the east.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2966
+S
+#2968
+Castle Hallway~
+You have entered what appears to be an abandoned hallway.  The walls are just
+as decayed as to the north, and so is the floor and ceiling.  This hallway also
+leads off to the east.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+67 0 2954
+D1
+~
+~
+0 0 2969
+S
+#2969
+Castle Hallway~
+You have entered a small room, where a fountain once was.  It's base is all
+that remains now, the waters no longer flowing.  The only exit is back the way
+you came, to the west.
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+0 0 2968
+S
+#2970
+Dining Room~
+You have entered what seems to be an old dining room.  All the normal furniture
+has been totally destroyed, and is unrecoverable.  A door leads to the south,
+or you can go to the east, which is probably the kitchen.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+0 0 2971
+D2
+~
+~
+3 0 2962
+S
+#2971
+Kitchen~
+You have entered an old abandoned kitchen, its cupboards ripped from the walls
+and smashed.  The walls are as decayed here as everywhere else, and will
+probably crumble at any given moment.  The only exit is to the west.
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+0 0 2970
+S
+#2972
+Castle Hallway~
+You are walking through a hallway behind the castle.  The walls to the west
+seem to be built stronger than the castle.  The west and through the door
+east are the only ways you can go.
+~
+0 401417 0
+Rd     0
+D1
+~
+~
+3 0 2958
+D3
+~
+~
+0 0 2973
+S
+#2973
+Tower Base~
+You have entered the base of a tower.  A stairway leads up and down from here,
+both directions being incredibly dark and gloomy.  The only other exit is to
+the east.
+~
+0 401421 0
+Rd     0
+D1
+~
+~
+0 0 2972
+D4
+~
+~
+0 0 2976
+D5
+~
+~
+0 0 2974
+S
+#2974
+Lower Tower~
+You are on the lower level of the tower.  A large stairwell leads up to the
+main floor.  A rather large door on the south wall leads to a very foul
+smelling room.  Evil runes are enscribed on that door.
+~
+0 401417 0
+Rd     0
+D2
+~
+~
+119 2954 2975
+D4
+~
+~
+0 0 2973
+S
+#2975
+Lower Tower~
+You are at the lowest level of the tower, and you find yourself in a foul
+smelling sacrificial pit.  The stench is coming from a large pool of water
+along the south wall, while the bones of something littering the floor isn't
+helping much.  The only exit is through the north door.
+~
+0 401417 0
+Rd     0
+D0
+~
+~
+119 2954 2974
+S
+#2976
+Upper Tower~
+You are walking along the long, winding staircase around the inside of the
+tower.  The stairs crumble slightly as you step on them. The only exits are
+up and down the stairs.
+~
+0 401417 0
+Rd     0
+D4
+~
+~
+0 0 2977
+D5
+~
+~
+0 0 2973
+S
+#2977
+Upper Tower~
+You are walking along a flight of stairs in a tower.   You seem to have reached
+the top of this tower, but there is a trapdoor in the ceiling.  If only you
+could fly up into it, you think you yourself.  The only other exit is down.
+~
+0 401417 0
+Rd     0
+D4
+~
+~
+119 2955 2978
+D5
+~
+~
+0 0 2976
+S
+#2978
+Floating above the Tower~
+You are floating above the tower, but there are still walls, how strange.
+Large paintings of Zhakarius hang on all the walls, and a large cauldron
+floats in the middle of the room.  It sparks as you enter.  The only exit
+is back down to solid ground.
+~
+0 33955849 0
+Rd     0
+D5
+~
+~
+119 2955 2977
+S
+#2979
+Inside a Cell~
+You are inside on of the jail cells.  The walls are totally bare of anything,
+the floor being the same.  The only exit is the cell door on the west wall, the
+way you came.
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+119 2953 2957
+S
+#2980
+Inside a Cell~
+You are inside one of the jail cells.  The walls are totally bare of anything,
+the floor being the same.  The only exit is the cell door on the west wall, the
+way you came.
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+119 2953 2958
+S
+#2981
+Inside a Cell~
+You are inside one of the jail cells.  The walls are totally bare of anything,
+the floor being the same.  The only exit is the cell door on the west wall, the
+way you came.
+~
+0 401417 0
+Rd     0
+D3
+~
+~
+119 2953 2959
+S
+#2982
+Arena~
+~
+0 541466633 0
+Rd     0
+D1
+~
+~
+0 0 2983
+D2
+~
+~
+0 0 2985
+D4
+~
+~
+0 0 2991
+D5
+~
+~
+0 0 2890
+S
+#2983
+Arena~
+~
+0 541466633 0
+Rd     0
+D1
+~
+~
+0 0 2984
+D2
+~
+~
+0 0 2986
+D3
+~
+~
+0 0 2982
+D4
+~
+~
+0 0 2992
+D5
+~
+~
+0 0 2891
+S
+#2984
+Arena~
+~
+0 541466633 0
+Rd     0
+D2
+~
+~
+0 0 2987
+D3
+~
+~
+0 0 2983
+D4
+~
+~
+0 0 2993
+D5
+~
+~
+0 0 2892
+S
+#2985
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2982
+D1
+~
+~
+0 0 2986
+D2
+~
+~
+0 0 2988
+D4
+~
+~
+0 0 2994
+D5
+~
+~
+0 0 2893
+S
+#2986
+Arena~
+~
+0 809903113 0
+Rd     0
+D0
+~
+~
+0 0 2983
+D1
+~
+~
+0 0 2987
+D2
+~
+~
+0 0 2989
+D3
+~
+~
+0 0 2985
+D4
+~
+~
+0 0 2995
+D5
+~
+~
+0 0 2894
+S
+#2987
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2984
+D2
+~
+~
+0 0 2990
+D3
+~
+~
+0 0 2986
+D4
+~
+~
+0 0 2996
+D5
+~
+~
+0 0 2895
+S
+#2988
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2985
+D1
+~
+~
+0 0 2989
+D4
+~
+~
+0 0 2997
+D5
+~
+~
+0 0 2896
+S
+#2989
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2986
+D1
+~
+~
+0 0 2990
+D3
+~
+~
+0 0 2988
+D4
+~
+~
+0 0 2998
+D5
+~
+~
+0 0 2897
+S
+#2990
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2987
+D3
+~
+~
+0 0 2989
+D4
+~
+~
+0 0 2999
+D5
+~
+~
+0 0 2898
+S
+#2991
+Arena~
+~
+0 805707785 0
+Rd     0
+D1
+~
+~
+0 0 2992
+D2
+~
+~
+0 0 2994
+D5
+~
+~
+0 0 2982
+S
+#2992
+Arena~
+~
+0 541466633 0
+Rd     0
+D1
+~
+~
+0 0 2993
+D2
+~
+~
+0 0 2995
+D3
+~
+~
+0 0 2991
+D5
+~
+~
+0 0 2983
+S
+#2993
+Arena~
+~
+0 805707785 0
+Rd     0
+D2
+~
+~
+0 0 2996
+D3
+~
+~
+0 0 2992
+D5
+~
+~
+0 0 2984
+S
+#2994
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2991
+D1
+~
+~
+0 0 2995
+D2
+~
+~
+0 0 2997
+D5
+~
+~
+0 0 2985
+S
+#2995
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2992
+D1
+~
+~
+0 0 2996
+D2
+~
+~
+0 0 2998
+D3
+~
+~
+0 0 2994
+D5
+~
+~
+0 0 2986
+S
+#2996
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2993
+D2
+~
+~
+0 0 2999
+D3
+~
+~
+0 0 2995
+D5
+~
+~
+0 0 2987
+S
+#2997
+Arena~
+~
+0 805707785 0
+Rd     0
+D0
+~
+~
+0 0 2994
+D1
+~
+~
+0 0 2998
+D5
+~
+~
+0 0 2988
+S
+#2998
+Arena~
+~
+0 541466633 0
+Rd     0
+D0
+~
+~
+0 0 2995
+D1
+~
+~
+0 0 2999
+D3
+~
+~
+0 0 2997
+D5
+~
+~
+0 0 2989
+S
+#2999
+Arena~
+~
+0 805707785 0
+Rd     0
+D0
+~
+~
+0 0 2996
+D3
+~
+~
+0 0 2998
+D5
+~
+~
+0 0 2990
+S
+#0
+
+
+
+#SPECIALS
+M 2801 spec_cast_undead
+M 2803 spec_cast_undead
+M 2806 spec_cast_psionicist
+M 2807 spec_cast_undead
+M 2811 spec_cast_undead
+M 2901 spec_breath_fire
+M 2902 spec_poison
+M 2904 spec_poison
+M 2905 spec_poison
+M 2949 spec_cast_mage
+M 2950 spec_cast_mage
+M 2951 spec_cast_mage
+M 2952 spec_cast_psionicist
+M 2953 spec_cast_cleric
+M 2955 spec_cast_mage
+M 2956 spec_breath_frost
+S
+
+
+
+#RESETS
+O 0 2807 0 2825
+M 0 2811 1 2825
+M 0 2801 1 2828
+M 0 2802 1 2829
+G 0 2802 0
+G 0 2805 0
+M 0 2803 1 2830
+M 0 2804 1 2831
+M 0 2807 1 2832
+G 0 2801 0
+G 0 2803 0
+G 0 2804 0
+M 0 2805 1 2833
+O 0 2808 0 2833
+M 0 2806 1 2880
+O 0 2810 0 2880
+E 0 2806 0 6
+O 0 2811 0 2880
+O 0 2812 0 2880
+O 0 2809 0 2881
+O 0 2909 0 2905
+O 0 2913 0 2906
+O 0 2912 0 2906
+O 0 2909 0 2911
+O 0 2914 0 2912
+M 0 2905 1 2913
+E 0 2906 0 22
+G 0 2919 0
+G 0 2919 0
+G 0 2919 0
+M 0 2903 1 2920
+E 0 2908 0 20
+E 0 2908 0 21
+G 0 2922 0
+M 0 2901 1 2925
+E 0 2904 0 12
+E 0 2905 0 16
+O 0 2909 0 2928
+M 0 2902 1 2930
+E 0 2903 0 23
+O 0 2916 0 2930
+E 0 2918 0 22
+M 0 2904 1 2933
+E 0 2901 0 6
+M 0 2906 1 2936
+E 0 2907 0 20
+E 0 2907 0 21
+G 0 2917 0
+E 0 2920 0 3
+M 0 2907 2 2939
+E 0 2902 0 13
+O 0 2915 0 2940
+O 0 2909 0 2942
+O 0 2910 0 2944
+M 0 2950 1 2956
+E 0 2951 0 20
+M 0 2950 1 2958
+E 0 2951 0 20
+E 0 2951 0 21
+G 0 2953 0
+M 0 2950 1 2960
+E 0 2951 0 20
+M 0 2951 4 2964
+E 0 2952 0 20
+M 0 2952 1 2967
+E 0 2957 0 20
+E 0 2957 0 21
+E 0 2958 0 9
+E 0 2958 0 10
+M 0 2951 1 2969
+E 0 2952 0 20
+E 0 2952 0 21
+M 0 2951 1 2971
+E 0 2952 0 20
+E 0 2952 0 21
+M 0 2953 1 2972
+E 0 2960 0 17
+G 0 2954 0
+E 0 2957 0 20
+M 0 2956 1 2975
+G 0 2955 0
+G 0 2962 0
+G 0 2962 0
+M 0 2949 1 2978
+E 0 2949 0 20
+E 0 2949 0 21
+E 0 2950 0 15
+E 0 2956 0 22
+M 0 2954 1 2979
+E 0 2959 0 3
+G 0 2961 0
+G 0 2961 0
+M 0 2955 1 2981
+E 0 2959 0 3
+S
+
+
+
+#SHOPS
+2802 17 0 0 0 0 110 90 0 24
+2807 2 3 15 10 0 100 80 0 24
+0
+
+
+
+#$

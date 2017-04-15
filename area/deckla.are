@@ -1,0 +1,2604 @@
+#AREADATA
+Name        { ALL }  Gegasean Camp       Decklarean~
+Levels      0 0
+Builders    Decklarean~
+VNUMs       6350 6499
+Security    1
+Recall      25001
+Flags       16
+Color       6
+End
+
+
+
+#MOBILES
+#6350
+Gegasean Guard Dog~
+the Gegasean Guard Dog~
+A Gegasean Guard Dog is here.
+~
+The Gegasean Guard Dog glares at you with blood shot eyes.  Poisoned
+silavia drips from it's fangs.  It's fur is a sleek coat of dark blood red. 
+It is a massive beast standing shoulder high to a humen, with dimond sharp
+claws.  
+~
+16481 505012970 0 0 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>fight_prog 25~
+mpecho Another Gegasean Guard Dog bounds into the room and attacks.
+mpmload 6350
+mpforce dog mpkill $n
+~
+|
+#6351
+Gegasean South Path Guard~
+the South Path Gegasean Guard~
+The South Path Gegasean Guard is here.
+~
+The Gegasean Guard is a stocky male elf covered in scars and missing his
+right ear.  His hair is pitch black and pulled back into a ponytail.  His
+dark green eyes have a sour expression.  
+~
+67 40 0 1000 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+say All are welcome here, but do not attack any of the Gegasean or we will sick the dogs on you.
+glare $n
+say Also you may not stay here, leave the camp when you are done, or die.
+~
+>fight_prog 100~
+emote touches the pendant around his neck.
+mpechoat $n The Gegasean Guard tells you 'I do not have time for fighting bug.'
+mptransfer $n 25001
+~
+|
+#6352
+Simara~
+Simara~
+Simara is here.
+~
+Simara is a beutifull human women.  Her long red hair cascades down her
+back.  A little short of average hight she makes up for it a persence of
+personality.  There is a slight mischivous glint to here eyes and the faint
+smell of rose perfume wafting through the air.  
+~
+67 0 0 125 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#6353
+Guard Gegasean East Path~
+the East Path Gegasean Guard~
+The East Path Gegasean Guard is here.
+~
+The Gegasean Guard is a human women with short cropped black hair.  She
+has a scar running from here left jaw bone, up here cheek to here nose.  Her
+face is all hard and indeferent.  
+~
+67 0 0 500 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+>greet_prog 100~
+say All are welcome here, but do not attack any of the Gegasean or we will sick the dogs on you.
+glare $n
+say Also you may not stay here, leave the camp when you are done, or die.
+~
+>fight_prog 100~
+emote touches the pendant around her neck.
+mpechoat $n The Gegasean Guard tells you 'I do not have time for fighting bug.'
+mptransfer $n 25001
+~
+|
+#6354
+Guard Gegasean North Path~
+the North Path Gegasean Guard~
+The North Path Gegasean Guard is here.
+~
+The Gegasean Guard is a tall lizard, its scales a fog grey.  Its tail
+constanly in motion refelct its mood.  A slight bone ridge runs from the top
+of its head down its back.  
+~
+67 0 0 150 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+>greet_prog 100~
+say All are welcome here, but do not attack any of the Gegasean or we will sick our dogs on you.
+glare $n
+say Also you may not stay here, leave the camp when you are done, or die.
+~
+>fight_prog 100~
+emote touches the pendant around its neck.
+mpechoat $n The Gegasean Guard tells you 'I do not have time for fighting bug.'
+mptransfer $n 25001
+~
+|
+#6355
+Guard Gegasean West Path~
+the West Path Gegarean Guard~
+The West Path Gegarean Guard is here.
+~
+The Gegarean Guard is a sour faced humen male.  He is completly bald and
+buldging with muscles.  
+~
+67 0 0 0 S
+100 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>greet_prog 100~
+say All are welcome here, but do not attack any of the Gegasean or we will sick our dogs on you.
+glare $n
+say Also you may not stay here, leave the camp when you are done, or die.
+~
+>fight_prog 100~
+emote touches the pendant around his neck.
+mpechoat $n The Gegasean Guard tells you 'I do not have time for fighting bugs.'
+transfer $n 25001
+~
+|
+#0
+
+
+
+#OBJECTS
+#6350
+Gegasean Scroll Protection~
+a Gegasean Scroll of Protection~
+A magical scroll is here.~
+~
+2 1 0 0 1 32
+50~  ~ energy drain~ intellect fortress~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+scroll~
+The magical scroll of protection has the mark of the Gegasean on it.
+~
+E
+protection~
+The magical scroll of protection has the mark of the Gegasean on it.
+~
+E
+gegasean~
+The magical scroll of protection has the mark of the Gegasean on it.
+~
+#6351
+gegasean copper vial potion~
+a Gegasean Copper Vial~
+A vial crafted from red shiny copper is here.~
+~
+10 268435521 0 0 1 45
+60~ flesh armor~ thought shield~ stone skin~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+copper~
+The copper vial has the mark of the Gegasean etched into the side of it. 
+There appears to be a slugish black fluid inside it.  
+~
+E
+vial~
+The copper vial has the mark of the Gegasean etched into the side of it. 
+There appears to be a slugish black fluid inside it.  
+~
+E
+gegasean~
+The copper vial has the mark of the Gegasean etched into the side of it. 
+There appears to be a slugish black fluid inside it.  
+~
+#6352
+gegasean giant vial potion~
+a Gegasean Giant's Vial~
+A Gegasean Giant's Vial is here.~
+~
+10 268435521 0 0 1 30
+20~ enhanced strength~ giant strength~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+giant~
+The Giant's Vial has the Gegasean mark etched into the side of it.
+~
+E
+vial~
+The Giant's Vial has the Gegasean mark etched into the side of it.
+~
+E
+gegasean~
+The Giant's Vial has the Gegasean mark etched into the side of it.
+~
+#6353
+gegasean vial defense potion~
+a Gegasean Vial of Defense~
+A Gegasean Vial of Defense is here.~
+~
+10 268435521 0 0 1 100
+75~ sanctuary~  ~ inertial barrier~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+vial~
+The vial has the Gegasean mark on it.
+~
+E
+defense~
+The vial has the Gegasean mark on it.
+~
+E
+gegasean~
+The vial has the Gegasean mark on it.
+~
+#6354
+Gegasean Humming Potion~
+a Gegasean Humming Potion~
+A Gegasean Humming Potion is here.~
+~
+10 268435490 0 0 1 85
+49~ vibrate~ poison~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+gegasean~
+The vial of potion has the gegasean mark on it.  In side it there is a
+slightly green humming potion.  
+~
+E
+humming~
+The vial of potion has the Gegasean mark on it.  In side it there is a
+slightly green humming potion.  
+~
+E
+potion~
+The vial of potion has the Gegasean mark on it.  In side it there is a
+slightly green humming potion.  
+~
+#6355
+alter~
+alter to Kristiana~
+The alter to Kristiana, Lady of Mortal Affairs is here.~
+~
+12 65 0 0 0 107
+0~ 0~ 0~ 0~
+300 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+alter~
+The alter to Kristiana, Lady of Mortal Affairs, is made out of solid
+gold.  It glows with power, refelecting the raidating light from the pure
+soul of the Immortal it is dedicated to.  
+~
+>rand_prog 5~
+0
+~
+|
+#6356
+sword justice~
+a Sword of Justice~
+A sword of Justice is here.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6357
+Arch~
+put the arch back~
+A grey arch of fog.~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#6358
+alter~
+the alter to Sherf~
+An alter to Sherf is here.~
+~
+12 67 0 0 0 0
+0~ 0~ 0~ 0~
+100000 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+alter~
+This alter to sherf is aglow with power fuall magic.  A giant golden alter.
+~
+>rand_prog 5~
+0
+mpecho A silent hum radiates from the alter.
+cast 'cure critical' $r
+~
+|
+#0
+
+
+
+#ROOMDATA
+#6350
+South Path~
+&zTo the south the sounds of the world drift towards you on a faint wind. 
+To the north the distent murmor of a different world calls.  The gravel path
+beneath you and the strange almost comftroble weather engulfing you.  You
+are surronded on all sides by a strangly glowing grey fog.  
+~
+0 434180 0
+Rd     0
+D0
+~
+~
+0 0 6351
+S
+#6351
+South Path~
+&G&zAround the gravel path benieth you, the glowing grey fog pulses with a
+life of it's own.  To the south the sounds of the world drifts to you on a
+faint breeze carresing you with a reminder of what you have left behind.  To
+the north the sounds of another world drifts through the grey.  Off the side
+of the gravel path you can see the fountain of Bethaven as almost a faint
+illusion beneith you when the fog thins for a moment.  
+~
+0 176611853 0
+Rd     0
+D0
+~
+~
+0 0 6352
+D2
+~
+~
+0 0 6350
+D5
+~
+~
+0 0 25002
+S
+#6352
+South Path~
+&zBeyond the gravel path the grey fog that permeates the area swirels and
+twists in strange patterns.  Looking down on the side of the gravel path you
+see the path again stretching through the fog directly under you.  The
+sounds of the world to the south is faint to your ears.  The sounds of a
+strange world drift to you on a breeze of mist, flowing from the north.  
+~
+0 176603661 0
+Rd     0
+D0
+~
+~
+0 0 6353
+D2
+~
+~
+0 0 6351
+D5
+~
+~
+0 0 6351
+S
+#6353
+South Path~
+&zThe grey fog surronding you glows brighter here.  The murmer of the world
+seems faint and indestinct from the south.  From the north the sounds of a
+different world grows louder and more consuming.  Off the side of the gravel
+path you walk on, you can see below you the path again.  In some strange way
+you are walking above the place you have just been without going up.  
+~
+0 176603661 0
+Rd     0
+D0
+~
+~
+0 0 6354
+D2
+~
+~
+0 0 6352
+D5
+~
+~
+0 0 6352
+S
+#6354
+South Path~
+&zIn the ever flowing fog around you the feel of the world you belong to
+comes from the south.  To the north a strange world burst apon your senses
+as noise, smells, and feelings wash across you.  The sudden drop off at the
+edges of the gravel path leads down to the path again with a fall through
+the grey fog.  
+~
+0 176603661 0
+Rd     0
+D0
+~
+~
+0 0 6355
+D2
+~
+~
+0 0 6353
+D5
+~
+~
+0 0 6353
+S
+#6355
+South Path~
+&zThe fog is thinner and thicker, with a glow both sinister and happy doing
+battle within it.  From the north you can see the bright lights of fires and
+faint music and the murmer of people.  To the south the feel of the world
+you belong to tugs faintly at you.  The gravel path beneith you is a
+constant, strecthing north and south and appearing to some how be below you
+and behind you at the same time.  
+~
+0 176603661 0
+Rd     0
+D0
+~
+~
+0 0 6356
+D2
+~
+~
+0 0 6354
+D5
+~
+~
+0 0 6354
+S
+#6356
+South Path~
+&zThe gravel path leads through an arched opening in the grey fog to the
+north.  The warm glow of campfires, the smell of cooking, and the familier
+murmer of people raidates from the other side of the arch.  To the south you
+can faintly feel the world you are from but it is like a fading memory on
+the edge of thought.  The glowing fog is almost a physical wall around you. 
+Off the side of the path you see the gravel path again below you.  
+~
+0 176611853 0
+Rd     0
+D0
+~
+~
+0 0 6405
+D2
+~
+~
+0 0 6355
+D5
+~
+~
+0 0 6355
+S
+#6357
+East Path~
+~
+0 434180 0
+Rd     0
+D3
+~
+~
+0 0 6358
+S
+#6358
+East Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6357
+D3
+~
+~
+0 0 6359
+D5
+~
+~
+0 0 25002
+S
+#6359
+East Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6358
+D3
+~
+~
+0 0 6360
+D5
+~
+~
+0 0 6358
+S
+#6360
+East Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6359
+D3
+~
+~
+0 0 6361
+D5
+~
+~
+0 0 6359
+S
+#6361
+East Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6360
+D3
+~
+~
+0 0 6362
+D5
+~
+~
+0 0 6360
+S
+#6362
+East Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6361
+D3
+~
+~
+0 0 6363
+D5
+~
+~
+0 0 6361
+S
+#6363
+East Path~
+~
+0 176611853 0
+Rd     0
+D1
+~
+~
+0 0 6362
+D3
+~
+~
+0 0 6449
+D5
+~
+~
+0 0 6362
+S
+#6364
+North Path~
+~
+0 434180 0
+Rd     0
+D2
+~
+~
+0 0 6365
+S
+#6365
+North Path~
+~
+0 176611853 0
+Rd     0
+D0
+~
+~
+0 0 6364
+D2
+~
+~
+0 0 6366
+D5
+~
+~
+0 0 25002
+S
+#6366
+North path~
+~
+0 176611853 0
+Rd     0
+D0
+~
+~
+0 0 6365
+D2
+~
+~
+0 0 6367
+D5
+~
+~
+0 0 6365
+S
+#6367
+North Path~
+~
+0 176611853 0
+Rd     0
+D0
+~
+~
+0 0 6366
+D2
+~
+~
+0 0 6368
+D5
+~
+~
+0 0 6366
+S
+#6368
+North Room~
+~
+0 176611853 0
+Rd     0
+D0
+~
+~
+0 0 6367
+D2
+~
+~
+0 0 6369
+D5
+~
+~
+0 0 6367
+S
+#6369
+North Room~
+~
+0 176611853 0
+Rd     0
+D0
+~
+~
+0 0 6368
+D2
+~
+~
+0 0 6370
+D5
+~
+~
+0 0 6368
+S
+#6370
+North Room~
+~
+0 176611853 0
+Rd     0
+D0
+~
+~
+0 0 6369
+D2
+~
+~
+0 0 6485
+D5
+~
+~
+0 0 6369
+S
+#6371
+West Path~
+~
+0 434180 0
+Rd     0
+D1
+~
+~
+0 0 6372
+S
+#6372
+West Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6373
+D3
+~
+~
+0 0 6371
+D5
+~
+~
+0 0 25002
+S
+#6373
+West Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6374
+D3
+~
+~
+0 0 6372
+D5
+~
+~
+0 0 6372
+S
+#6374
+West Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6375
+D3
+~
+~
+0 0 6373
+D5
+~
+~
+0 0 6373
+S
+#6375
+West Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6376
+D3
+~
+~
+0 0 6374
+D5
+~
+~
+0 0 6374
+S
+#6376
+West Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6377
+D3
+~
+~
+0 0 6375
+D5
+~
+~
+0 0 6375
+S
+#6377
+West Path~
+~
+0 176570893 0
+Rd     0
+D1
+~
+~
+0 0 6441
+D3
+~
+~
+0 0 6376
+D5
+~
+~
+0 0 6367
+S
+#6400
+Gegasean Wagon~
+~
+0 143000068 0
+Rd     0
+S
+#6401
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+bars~
+375 0 6411
+D1
+~
+bars~
+375 0 6402
+S
+#6402
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+E
+bars~
+The bars are of a heavy magical material.  Through them you can see the
+Gegasean Guard Dogs flicker in and out of existence as they move about. 
+They are vishes animals that growl and snap at the bars when ever you move
+close.  
+~
+D0
+~
+~
+0 0 6412
+D1
+~
+~
+0 0 6403
+D3
+The bars are of a heavy magical material.  Through them you can see the
+Gegasean Guard Dogs flicker in and out of existence as they move about. 
+They are vishes animals that growl and snap at the bars when ever you move
+close.  
+~
+bars~
+375 0 6401
+S
+#6403
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6413
+D1
+~
+~
+0 0 6404
+D3
+~
+~
+0 0 6402
+S
+#6404
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6414
+D1
+~
+~
+0 0 6405
+D3
+~
+~
+0 0 6403
+S
+#6405
+Gegasean Traveler's Camp~
+The arch way of fog to the south leads into a dark corridor of fog.
+The gravel path, beneith you, leads south through the arch and north between two brightly painted wagons.
+&YAbove you a dome of grey fog climes above you from its base just to the south.
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6415
+D1
+~
+~
+0 0 6406
+D2
+~
+~
+0 0 6356
+D3
+~
+~
+0 0 6404
+S
+#6406
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6416
+D1
+~
+~
+0 0 6407
+D3
+~
+~
+0 0 6405
+S
+#6407
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6417
+D1
+~
+~
+0 0 6408
+D3
+~
+~
+0 0 6406
+S
+#6408
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6418
+D1
+~
+~
+0 0 6409
+D3
+~
+~
+0 0 6407
+S
+#6409
+Gegasean Traveler's Camp~
+~
+0 8790016 0
+Rd     0
+D0
+~
+~
+0 0 6419
+D3
+~
+~
+0 0 6408
+S
+#6410
+Gegasean Wagon~
+~
+0 8782340 0
+Rd     0
+S
+#6411
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+E
+bars~
+The bars are of a heavy magical material.  Through them you can see the
+Gegasean Guard Dogs flicker in and out of existence as they move about. 
+They are vishes animals that growl and snap at the bars when ever you move
+close.  
+~
+D0
+~
+~
+0 0 6421
+D1
+~
+~
+0 0 6412
+D2
+The bars are of a heavy magical material.  Through them you can see the
+Gegasean Guard Dogs flicker in and out of existence as they move about. 
+They are vishes animals that growl and snap at the bars when ever you move
+close.  
+~
+bars~
+375 0 6401
+S
+#6412
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6422
+D1
+~
+~
+0 0 6413
+D2
+~
+~
+0 0 6402
+D3
+~
+~
+0 0 6411
+S
+#6413
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6423
+D1
+~
+~
+0 0 6414
+D2
+~
+~
+0 0 6403
+D3
+~
+~
+0 0 6412
+S
+#6414
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6424
+D1
+~
+~
+0 0 6415
+D2
+~
+~
+0 0 6404
+D3
+~
+~
+0 0 6413
+S
+#6415
+Gegasean Traveler's Camp~
+A brightly painted wagon to the east and west.
+To your east is a brightly colored wagon.  The huge rear wheel is as tall as you.
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6425
+D1
+~
+~
+0 0 6416
+D2
+~
+~
+0 0 6405
+D3
+~
+~
+0 0 6414
+S
+#6416
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6426
+D1
+~
+~
+0 0 6417
+D2
+~
+~
+0 0 6406
+D3
+~
+~
+0 0 6415
+S
+#6417
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6427
+D1
+~
+~
+0 0 6418
+D2
+~
+~
+0 0 6407
+D3
+~
+~
+0 0 6416
+S
+#6418
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6428
+D1
+~
+~
+0 0 6419
+D2
+~
+~
+0 0 6408
+D3
+~
+~
+0 0 6417
+S
+#6419
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6429
+D2
+~
+~
+0 0 6409
+D3
+~
+~
+0 0 6418
+S
+#6420
+Gegasean Wagon~
+~
+0 8782340 0
+Rd     0
+S
+#6421
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6431
+D1
+~
+~
+0 0 6422
+D2
+~
+~
+0 0 6411
+S
+#6422
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6432
+D2
+~
+~
+0 0 6412
+D3
+~
+~
+0 0 6421
+S
+#6423
+Simara's Booth~
+~
+0 8790024 0
+Rd     0
+D2
+~
+~
+0 0 6413
+S
+#6424
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6434
+D1
+~
+~
+0 0 6425
+D2
+~
+~
+0 0 6414
+S
+#6425
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6435
+D1
+~
+~
+0 0 6426
+D2
+~
+~
+0 0 6415
+D3
+~
+~
+0 0 6424
+S
+#6426
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6436
+D1
+~
+~
+0 0 6427
+D2
+~
+~
+0 0 6416
+D3
+~
+~
+0 0 6425
+S
+#6427
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6437
+D1
+~
+~
+0 0 6428
+D2
+~
+~
+0 0 6417
+D3
+~
+~
+0 0 6426
+S
+#6428
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6438
+D1
+~
+~
+0 0 6429
+D2
+~
+~
+0 0 6418
+D3
+~
+~
+0 0 6427
+S
+#6429
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6439
+D2
+~
+~
+0 0 6419
+D3
+~
+~
+0 0 6428
+S
+#6430
+Gegasean Wagon~
+~
+0 8782340 0
+Rd     0
+S
+#6431
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6441
+D1
+~
+~
+0 0 6432
+D2
+~
+~
+0 0 6421
+S
+#6432
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6442
+D1
+~
+~
+0 0 6433
+D2
+~
+~
+0 0 6422
+D3
+~
+~
+0 0 6431
+S
+#6433
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6443
+D1
+~
+~
+0 0 6434
+D3
+~
+~
+0 0 6432
+S
+#6434
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6444
+D1
+~
+~
+0 0 6435
+D2
+~
+~
+0 0 6424
+D3
+~
+~
+0 0 6433
+S
+#6435
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6445
+D1
+~
+~
+0 0 6436
+D2
+~
+~
+0 0 6425
+D3
+~
+~
+0 0 6434
+S
+#6436
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6446
+D1
+~
+~
+0 0 6437
+D2
+~
+~
+0 0 6426
+D3
+~
+~
+0 0 6435
+S
+#6437
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6447
+D1
+~
+~
+0 0 6438
+D2
+~
+~
+0 0 6427
+D3
+~
+~
+0 0 6436
+S
+#6438
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6448
+D1
+~
+~
+0 0 6439
+D2
+~
+~
+0 0 6428
+D3
+~
+~
+0 0 6437
+S
+#6439
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6449
+D2
+~
+~
+0 0 6429
+D3
+~
+~
+0 0 6438
+S
+#6440
+Gegasean Wagon~
+~
+0 8782340 0
+Rd     0
+S
+#6441
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6451
+D1
+~
+~
+0 0 6442
+D2
+~
+~
+0 0 6431
+D3
+~
+~
+0 0 6377
+S
+#6442
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6452
+D1
+~
+~
+0 0 6443
+D2
+~
+~
+0 0 6432
+D3
+~
+~
+0 0 6441
+S
+#6443
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6453
+D1
+~
+~
+0 0 6444
+D2
+~
+~
+0 0 6433
+D3
+~
+~
+0 0 6442
+S
+#6444
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6454
+D1
+~
+~
+0 0 6445
+D2
+~
+~
+0 0 6434
+D3
+~
+~
+0 0 6443
+S
+#6445
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6455
+D1
+~
+~
+0 0 6446
+D2
+~
+~
+0 0 6435
+D3
+~
+~
+0 0 6444
+S
+#6446
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6456
+D1
+~
+~
+0 0 6447
+D2
+~
+~
+0 0 6436
+D3
+~
+~
+0 0 6445
+S
+#6447
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6457
+D1
+~
+~
+0 0 6448
+D2
+~
+~
+0 0 6437
+D3
+~
+~
+0 0 6446
+S
+#6448
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6458
+D1
+~
+~
+0 0 6449
+D2
+~
+~
+0 0 6438
+D3
+~
+~
+0 0 6447
+S
+#6449
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6459
+D1
+~
+~
+0 0 6363
+D2
+~
+~
+0 0 6439
+D3
+~
+~
+0 0 6448
+S
+#6450
+Gegasean Wagon~
+~
+0 8782340 0
+Rd     0
+S
+#6451
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6461
+D1
+~
+~
+0 0 6452
+D2
+~
+~
+0 0 6441
+S
+#6452
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6462
+D1
+~
+~
+0 0 6453
+D2
+~
+~
+0 0 6442
+D3
+~
+~
+0 0 6451
+S
+#6453
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6463
+D1
+~
+~
+0 0 6454
+D2
+~
+~
+0 0 6443
+D3
+~
+~
+0 0 6452
+S
+#6454
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6464
+D1
+~
+~
+0 0 6455
+D2
+~
+~
+0 0 6444
+D3
+~
+~
+0 0 6453
+S
+#6455
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6465
+D1
+~
+~
+0 0 6456
+D2
+~
+~
+0 0 6445
+D3
+~
+~
+0 0 6454
+S
+#6456
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6466
+D1
+~
+~
+0 0 6457
+D2
+~
+~
+0 0 6446
+D3
+~
+~
+0 0 6455
+S
+#6457
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6467
+D1
+~
+~
+0 0 6458
+D2
+~
+~
+0 0 6447
+D3
+~
+~
+0 0 6456
+S
+#6458
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6468
+D1
+~
+~
+0 0 6459
+D2
+~
+~
+0 0 6448
+D3
+~
+~
+0 0 6457
+S
+#6459
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6469
+D2
+~
+~
+0 0 6449
+D3
+~
+~
+0 0 6458
+S
+#6460
+Gegasean Wagon~
+~
+0 8782340 0
+Rd     0
+S
+#6461
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6471
+D1
+~
+~
+0 0 6462
+D2
+~
+~
+0 0 6451
+S
+#6462
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6472
+D1
+~
+~
+0 0 6463
+D2
+~
+~
+0 0 6452
+D3
+~
+~
+0 0 6461
+S
+#6463
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6473
+D1
+~
+~
+0 0 6464
+D2
+~
+~
+0 0 6453
+D3
+~
+~
+0 0 6462
+S
+#6464
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6474
+D1
+~
+~
+0 0 6465
+D2
+~
+~
+0 0 6454
+D3
+~
+~
+0 0 6463
+S
+#6465
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6475
+D1
+~
+~
+0 0 6466
+D2
+~
+~
+0 0 6455
+D3
+~
+~
+0 0 6464
+S
+#6466
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6476
+D1
+~
+~
+0 0 6467
+D2
+~
+~
+0 0 6456
+D3
+~
+~
+0 0 6465
+S
+#6467
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6477
+D1
+~
+~
+0 0 6468
+D2
+~
+~
+0 0 6457
+D3
+~
+~
+0 0 6466
+S
+#6468
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6478
+D1
+~
+~
+0 0 6469
+D2
+~
+~
+0 0 6458
+D3
+~
+~
+0 0 6467
+S
+#6469
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6479
+D2
+~
+~
+0 0 6459
+D3
+~
+~
+0 0 6468
+S
+#6470
+Gegasean Wagon~
+~
+0 8782340 0
+Rd     0
+S
+#6471
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6481
+D1
+~
+~
+0 0 6472
+D2
+~
+~
+0 0 6461
+S
+#6472
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6482
+D1
+~
+~
+0 0 6473
+D2
+~
+~
+0 0 6462
+D3
+~
+~
+0 0 6471
+S
+#6473
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6483
+D1
+~
+~
+0 0 6474
+D2
+~
+~
+0 0 6463
+D3
+~
+~
+0 0 6472
+S
+#6474
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6484
+D1
+~
+~
+0 0 6475
+D2
+~
+~
+0 0 6464
+D3
+~
+~
+0 0 6473
+S
+#6475
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6485
+D1
+~
+~
+0 0 6476
+D2
+~
+~
+0 0 6465
+D3
+~
+~
+0 0 6474
+S
+#6476
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6486
+D1
+~
+~
+0 0 6477
+D2
+~
+~
+0 0 6466
+D3
+~
+~
+0 0 6475
+S
+#6477
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6487
+D1
+~
+~
+0 0 6478
+D2
+~
+~
+0 0 6467
+D3
+~
+~
+0 0 6476
+S
+#6478
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6488
+D1
+~
+~
+0 0 6479
+D2
+~
+~
+0 0 6468
+D3
+~
+~
+0 0 6477
+S
+#6479
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6489
+D2
+~
+~
+0 0 6469
+D3
+~
+~
+0 0 6478
+S
+#6480
+Gegasean Wagon~
+~
+0 8782340 0
+Rd     0
+S
+#6481
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D1
+~
+~
+0 0 6482
+D2
+~
+~
+0 0 6471
+S
+#6482
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D1
+~
+~
+0 0 6483
+D2
+~
+~
+0 0 6472
+D3
+~
+~
+0 0 6481
+S
+#6483
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D1
+~
+~
+0 0 6484
+D2
+~
+~
+0 0 6473
+D3
+~
+~
+0 0 6482
+S
+#6484
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D1
+~
+~
+0 0 6485
+D2
+~
+~
+0 0 6474
+D3
+~
+~
+0 0 6483
+S
+#6485
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 6370
+D1
+~
+~
+0 0 6486
+D2
+~
+~
+0 0 6475
+D3
+~
+~
+0 0 6484
+S
+#6486
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D0
+~
+~
+0 0 1598
+D1
+~
+~
+0 0 6487
+D2
+~
+~
+0 0 6476
+D3
+~
+~
+0 0 6485
+S
+#6487
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D1
+~
+~
+0 0 6488
+D2
+~
+~
+0 0 6477
+D3
+~
+~
+0 0 6486
+S
+#6488
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D1
+~
+~
+0 0 6489
+D2
+~
+~
+0 0 6478
+D3
+~
+~
+0 0 6487
+S
+#6489
+Gegasean Traveler's Camp~
+~
+0 8790016 2
+Rd     0
+D2
+~
+~
+0 0 6479
+D3
+~
+~
+0 0 6488
+S
+#0
+
+
+
+#SPECIALS
+M 6350 spec_poison
+S
+
+
+
+#RESETS
+M 0 6351 1 6356
+M 0 6353 1 6363
+M 0 6354 1 6370
+M 0 6350 6 6401
+M 0 6352 1 6423
+S
+
+
+
+#SHOPS
+6352 0 0 0 0 0 100 100 9 17
+0
+
+
+
+#$

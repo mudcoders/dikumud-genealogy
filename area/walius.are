@@ -1,0 +1,2052 @@
+#AREADATA
+Name        {40-110} Dragon Mountain     Jaragh~
+Levels      40 110
+Builders    Xordian~
+VNUMs       11201 11300
+Security    1
+Recall      25001
+Flags       1
+Sounds      A rush of warm air blasts you.~
+End
+
+
+
+#MOBILES
+#11201
+lepherus serpent leph serp~
+Lepherus~
+Lepherus, one mean serpent is here.
+~
+A huge black serpent, slimy and black. Lepherus's body is coiled and constantly 
+moving. A truly vile being, with ice grey eyes and black scales.
+~
+99 134218280 0 -1000 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11202
+giant rat~
+A giant rat~
+A giant rat is here
+~
+A rat as large as a medium size dog skulks in the corner here.  It's eyes
+glow red in the dim light and it's teeth don't look very friendly.  
+~
+101 66048 0 -500 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11203
+Rattlesnake snake ratt snak~
+rattlesnake ~
+A rattlesnake is here
+~
+~
+97 8 0 -500 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11204
+mountain goat~
+A mountain goat~
+A mountain goat charges from behind his cover and tries to butt you off the mountain.
+~
+You were enjoying a peaceful trek through the mountains, when this rude
+goat decided to play.  Unfortunately, he plays rough.  
+~
+99 65600 0 300 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11205
+owl~
+a giant great horned owl~
+A great horned owl is here
+~
+The owl stares at you with huge eyes.
+~
+65 0 0 1000 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#11206
+golem~
+a stone golem~
+A large stone golem is here.
+~
+A very large living statue carved from marble.
+~
+67 0 0 1000 S
+50 0 0 6100d0+0 0d0+0
+0 0 0 0
+0 0 0
+32 0 0
+#11207
+bear~
+a bear~
+A bear is here
+~
+A big brown bear sits here, looking for something to eat.
+~
+67 0 0 0 S
+65 0 0 12500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11208
+brownie~
+a brownie~
+A brownie darts out into the open for a moment, laughs at you and then darts back under her cover.
+~
+A cute little brownie appeared for just a moment and touched you. 
+Perhaps you should check your valuables. 
+~
+67 98410 0 0 S
+53 0 0 7000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#11209
+eagle~
+a eagle~
+A giant eagle is here, guarding its nest
+~
+You've seen eagles before.  You've seen giant eagles before.  This one
+dwarfs them all.  She has a wingspan of about 50' and her claws and beak
+look like they could eviscerate you with a mere flinch.  
+ 
+~
+67 0 0 1000 S
+70 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#11210
+giant dragonfly~
+A giant dragonfly~
+A giant dragonfly is flying around here
+~
+~
+67 0 0 100 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11211
+Badger~
+A badger~
+A badger is here
+~
+A large, friendly looking badger is here, foraging for food.
+~
+65 0 0 300 S
+44 0 0 4500d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11212
+Wolf~
+a wolf~
+A wolf is here, bearing its teeth.
+~
+A large black wolf is circling you.  He looks ravenous.  Apparently he's
+trying to decide whether or not you are food.  
+~
+65 0 0 -200 S
+60 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11213
+leucrotta~
+a leucrotta~
+A leucrotta is here.
+~
+~
+65 0 0 100 S
+75 0 0 18000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11214
+margoyle~
+a margoyle~
+A margoyle is here.
+~
+A large, grey, winged humanoid creature hovers in midair.  It looks mean.  
+~
+67 524288 0 -1000 S
+80 0 0 20000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11215
+cave fisher~
+a cave fisher~
+A cave fisher is scuttling around.
+~
+The cave fisher has a hard shell with over lapping plates, 8 legs and a
+pair of nasty looking pinchers.  
+~
+65 616 0 400 S
+57 0 0 9000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11216
+mite~
+a mite~
+A mite scurries in, and looks about.
+~
+A little tiny mite.
+~
+65 98304 0 -500 S
+40 0 0 2500d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11217
+mountain lion~
+A mountain lion~
+A mountain lion looks at you hungrily.
+~
+A hungry looking mountain lion bars your path.  She's still deciding
+whether or not you are prey.  Perhaps you should leave before she makes her
+decision 
+~
+67 0 0 0 S
+70 0 0 15000d0+0 0d0+0
+0 0 0 0
+0 0 2
+8196 0 0
+#11218
+bandit~
+A bandit~
+A bandit ambushes you from behind the rocks.
+~
+He's greedy, dirty, and mean.  Everything you'd expect from a bandit. 
+He's also trying to kill you.  
+~
+99 98304 0 -800 S
+59 0 0 10000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11219
+primate ape priest~
+a primate priest~
+A primate Priest is standing here chanting.
+~
+The primate is adorned in fine robes that are blood splattered.  He looks
+like he enjoys his live sacrifices very much.  
+~
+67 0 0 -999 S
+90 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#11220
+ape primate~
+a large ape~
+A large ape is here.
+~
+The ape is a big hairy creature with yellow teeth.
+~
+65 0 0 -500 S
+55 0 0 8000d0+0 0d0+0
+0 0 0 0
+0 0 0
+0 0 0
+#11221
+white dragon~
+a huge white dragon~
+A huge white dragon is prowling here.
+~
+The dragon has pure white scales that have a glowing sheen to the.  
+~
+99 134217768 0 -1000 S
+115 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+259 0 0
+#11222
+red dragon~
+a huge red dragon~
+A huge red dragon is lurking here.
+~
+The red dragon has deep red scales.
+~
+99 33554472 0 -1000 S
+113 0 0 30500d0+0 0d0+0
+0 0 0 0
+0 0 2
+131 0 0
+#11223
+black dragon~
+a huge black dragon~
+A huge black dragon is lurking here
+~
+The black dragon has shiny black scales.
+
+~
+99 67109416 0 -1000 S
+111 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+1027 0 0
+#11224
+shadow dragon~
+a huge shadow dragon~
+A huge shadow dragon is lurking here.
+~
+The shadow dragons body is translucent so that when seen at a distance it
+looks like a mass of shadows.  
+~
+99 33554984 0 -1000 S
+110 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 1
+515 0 0
+#11225
+amethyst dragon draggy~
+an amethyst dragon~
+An amethyst dragon is lurking here.
+~
+The dragon has an air of regality about it.  With lavender scales it
+exhibits a degree of wisdom.  
+~
+99 134217768 0 -1000 S
+110 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+0 0 0
+#11226
+spirit benevolent~
+a spirit~
+A benevolent spirit stands here
+~
+~
+3 234881152 0 1000 S
+103 0 0 99999d0+0 0d0+0
+0 0 0 0
+0 0 0
+15 0 0
+>all_greet_prog 100~
+if ispc($n)
+look $n
+else 
+break
+endif
+if level($n) >39
+bow $n
+say Be cautious, $n
+say Dragon mountain holds great dangers!
+else
+say I'm osrry $n
+say Come back when you are mighty enough to face the challenge.
+emote calls upon a mighty wind!
+mptransfer $n 11212
+endif
+~
+|
+#0
+
+
+
+#OBJECTS
+#11201
+egg~
+a large egg~
+A large egg is here~
+~
+19 0 0 0 16385 2
+10~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11202
+chain lepherus~
+chain of Lepherus~
+A black steel chain~
+~
+5 0 0 0 8193 50
+0~ 0~ 0~ 3~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11203
+eagle claw~
+a giant eagle claw~
+The claw of a huge eagle is here.~
+~
+5 3 0 0 8193 50
+0~ 0~ 0~ 5~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 20
+A
+19 15
+A
+1 2
+A
+5 -1
+#11205
+Dragons Tail~
+a dragons tail~
+A piece of a dragons tail is laying here.~
+~
+5 16642 0 0 8193 99
+0~ 8~ 10~ 8~
+20 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 100
+A
+26 100
+A
+18 20
+A
+19 40
+A
+17 -50
+A
+3 -2
+#11209
+eagle wings~
+wings of a giant eagle~
+A pair of long feathered wings are here.~
+~
+9 0 0 0 257 70
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+110 -1
+A
+5 -3
+A
+18 -5
+A
+19 -2
+#11270
+cauldron~
+a cauldron~
+A cauldron of boiling liquid sits here, waiting to be used.~
+~
+17 33554503 0 0 0 1
+1000~ 1000~ 12~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11271
+brownie hat~
+brownie's hat~
+A small, pointed hat lies here.~
+~
+9 1024 0 4096 17 20
+-20~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#11272
+shadow ring~
+a shadow ring~
+A shadow is laying here.~
+~
+9 86 0 0 3 90
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+109 10
+A
+18 10
+A
+19 10
+A
+13 100
+A
+2 -1
+A
+1 -1
+#11273
+dragon scale shield~
+a Dragon scale ~
+A Dragon scale is laying here.~
+~
+9 66 0 0 513 99
+0~ 0~ 0~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 10
+A
+17 -75
+A
+5 -1
+A
+4 -1
+#11274
+white Dragons Tooth dagger fang~
+a white dragons fang~
+A white dragons fang is laying here dripping blood~
+~
+5 67111425 192 0 8193 99
+0~ 8~ 10~ 11~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 -3
+A
+26 100
+A
+12 100
+A
+25 10
+A
+1 1
+A
+18 10
+A
+19 10
+#11275
+dragon eyes~
+some dragon eyes~
+Some dragon eyes are laying here.~
+~
+9 0 0 0 132097 99
+0~ 0~ 0~ 0~
+3 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+A
+1 -1
+A
+4 1
+A
+106 10
+A
+102 1
+A
+101 1
+A
+17 -2
+#11300
+sacrificial dagger~
+a sacrificial dagger~
+A long, evil looking dagger is here.~
+~
+5 67113475 0 0 8193 40
+0~ 13~ 25~ 11~
+6 0 0 0 0
+5 0
+harm~
+6 13
+0 0 0
+#0
+
+
+
+#ROOMDATA
+#11201
+Forest path~
+You are on a path that leads to the forest.  The air is much cooler here
+and apart from the pine needles crunching under your feet, the only sounds
+you hear are the songbirds somewhere overhead.  Light from the sky above you
+splashes through the canopy of massive pine trees illuminating the path. 
+The path leads back to the east and west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11202
+D3
+~
+~
+0 0 10134
+S
+#11202
+Forest path~
+You are on a path in a dense forest.  Light from somewhere above you
+occasionally spills onto the path, shaded mostly by the thick canopy of the
+majestic pines.  Overhead, the songbirds continue sweetly singing, oblivious
+to your presence.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11203
+D3
+~
+~
+0 0 11201
+S
+#11203
+Forest path~
+You are on a path in the forest.  The trees thin out here a bit but not
+enough for you to catch a glimpse of the sky above.  The path continues east
+and west.  You notice the birds have stopped singing for some reason.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11204
+D3
+~
+~
+0 0 11202
+S
+#11204
+Mountain trail~
+As you climb this trail leading up the mountain side, loose rocks and
+gravel tumble down the mountain side.  You slide precariously, grabbing at
+the scrub brush.  Somehow, you manage to retain your grasp on the minimal
+handholds.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11205
+D3
+~
+~
+0 0 11203
+S
+#11205
+Ledge path~
+You find yourself on a rocky ledge on the side of a massive mountain.  As
+you look out from this vantage point, you see a vast forest as far as the
+eye can see.  You notice a path leading north around to the side of the
+mountain.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11206
+D3
+~
+~
+0 0 11204
+S
+#11206
+Ledge path~
+You are on the side of a sheer wall of rock.  A small ledge prevents you
+from falling to your death.  As you look out from the chasm, you see a
+rickety rope bridge which sags in the center and sways in the wind.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11207
+D2
+~
+~
+0 0 11205
+D4
+~
+~
+0 0 11258
+S
+#11207
+Rope bridge~
+As you cross the rickety old rope bridge, you sway back and forth.  You
+lean out and catch a glimpse of a chasm and river below.  The river appears
+to wind its way east and west.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11208
+D2
+~
+~
+0 0 11206
+S
+#11208
+Rocky ledge~
+You are on a rocky ledge on the northern side of a rickety old rope
+bridge, the bridge sways in the wind, leading you to wonder if its safe to
+cross.  Looking around you notice another small ledge leading west from here
+and a steep trail leading down the side of the mountain.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11207
+D3
+~
+~
+0 0 11210
+D5
+~
+~
+0 0 11209
+S
+#11209
+Steep trail~
+The trail is very steep here; as the trail switches and turns frequently
+you find that it takes some time to make your way.  Looking down you see a
+swollen river surging through the mountains.  Off in the distance you can
+hear a constant roar.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11211
+D4
+~
+~
+0 0 11208
+S
+#11210
+By the falls~
+You stand at the top of a monstrous waterfall.  The sound issuing from
+the water crashing down below assaults your ears making it difficult to hear
+yourself think.  Small fish jump out of the water occasionally but
+otherwise, the only motion is provided by the water itself.  The path leads
+north and east.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11235
+D1
+~
+~
+0 0 11208
+S
+#11211
+Base of the falls~
+You are at the base of the falls; the sound of the crashing water is so
+intense it hurts.  Looking at the falls you can hardly see though the mist
+created by the forces at work here.  After a careful search of the area, you
+notice that there is a small shelf behind the falls that perhaps you could
+walk behind the wall of water.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11212
+D3
+~
+~
+0 0 11209
+S
+#11212
+Behind the falls~
+Light from the sun passes though a massive wall of moving water, creating
+a shimmering cascade of light to all within this room.  After a careful
+search you find a boulder to the west that looks as if it has been moved
+before.  You also notice that everything is covered in a thick green moss.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11211
+D3
+~
+boulder~
+19 0 11213
+S
+#11213
+Cave ~
+You are at the entrance to a large cave.  A steep slop leads downwards
+into a cavern of sorts below you and a large boulder to the east leads you
+out into the world above ground.  You dont notice anything out of the
+ordinary in this place but the hair on the back of your neck stands up in
+silent warning of danger.  
+~
+0 0 0
+Rd     0
+D1
+~
+boulder~
+19 0 11212
+D5
+~
+~
+0 0 11216
+S
+#11214
+Stone Passage~
+You are in a cramped tunnel, sloping downwards at a slow pitch.  The
+floor of the tunnel is very slick with a black slime, making it very hard to
+maintain your footing.  The walls off the passage are chard black as if
+burnt by a very hot fire.  The passage continues to the south and north from
+here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11265
+D2
+~
+~
+0 0 11215
+S
+#11215
+Stone Passage~
+You are in a cramped tunnel, sloping downwards at a slow pitch.  The
+floor of the tunnel is very slick with a black slime, making it very hard to
+maintain your footing.  The walls off the passage are chard black as if
+burnt by a very hot fire.  The passage continues to the south and north from
+here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11214
+D2
+~
+~
+0 0 11216
+S
+#11216
+Cavern Of Arches~
+You are at the junction of four passages, each one leading off under
+through a large stone arch.  Ornate marble columns stand on each side of the
+arches, each intricatly carved with symbols and odd syliabics, on the
+keystone of each arch is a carved stone heads, you are sure if must have
+some meaning but it is not imediatly clear to you.  A flight of stone stairs
+lead up to the entrance of the caves.  
+~
+0 0 0
+Rd     0
+E
+arches~
+The head of a white dragon is over the arch to the west.
+The head of a black dragon is over the arch to the east.
+The head of a red dragon is over the arch to the north.
+The head of a shadow dragon is over the arch to the south.
+~
+E
+arch~
+You see the head of a huge white dragon over the arches to the west.
+The head of a black dragon is over the arch to the east.
+The head of a red dragon is over the arch to the north.
+The head of a shadow dragon is over the arch to the south.
+~
+D0
+~
+~
+0 0 11215
+D1
+~
+~
+0 0 11217
+D2
+~
+~
+0 0 11269
+D3
+You see the head of a huge white dragon over the arches to the west.  
+~
+~
+0 0 11220
+D4
+~
+~
+0 0 11213
+S
+#11217
+Stone Passage~
+Cut stone blocks make up this passage.  Although they look like they have
+been set long ago, they are still perfectly aligned - the mark of a
+professional stone cutter.  Looking to the west, you see a large arched
+entrance.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11218
+D3
+~
+~
+0 0 11216
+S
+#11218
+Stone Passage~
+Cut stone blocks make up this passage.  Although they look like they have
+been set long, long ago, they are still perfectly aligned.  Large, dimly lit
+lanterns hang from large ornate bronze hangers on each side of the arch.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11219
+D3
+~
+~
+0 0 11217
+S
+#11219
+Top of stairs~
+Stone stairs have been hewn from the stone and lead downwards from here. 
+The walls are solid stone panels, each depicting a different battle.  One
+that stands out among the others is that of a stout fighter standing beside
+a majestic black dragon, slaying a three-headed beast.  A pixie floats above
+the battle, casting spells to aid the fearless pair.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 11218
+D5
+~
+~
+0 0 11226
+S
+#11220
+Stone Passage~
+Cut stone blocks make up this passage.  Although they look like they have
+been set long, long ago, they are still perfectly aligned - the mark of a
+professional stone cutter.  Looking to the east, you see a large arched
+entrance.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11216
+D3
+~
+~
+0 0 11221
+S
+#11221
+Stone Passage~
+Cut stone blocks make up this passage.  Although they look like they have
+been set long, long ago, they are still perfectly aligned.  Large, dimly lit
+lanterns hang from from hangers affixed to each side of the arch.  Looking
+to the west, you see a large arched entrance.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11220
+D3
+~
+~
+0 0 11222
+S
+#11222
+Stone Stairs~
+The walls here are solid stone panels, each depicting different battles. 
+One that stands out among others shows a mounted knight, swinging a mighty
+sword at a dragon in mid flight.  The dragons breathes a blast of ice
+towards the knight, which meets his sword with a brilliant flash of light. 
+There are stairs hewn from the stone of the cavern leading downwards and a
+passage to the east.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11221
+D5
+~
+~
+0 0 11223
+S
+#11223
+Stone Passage~
+This corridor seems to continue forever, ice and frost cover the walls
+and give the stale air a decided chill.  Light from very ornate lanterns
+held by carved stone gargoyles illuminates your way.  Along each wall, stand
+white marble benches.  You hear nothing out of the ordinary here, but the
+hair on your neck stands on end.  The passage continues to the north or you
+can go up.  
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 11264
+D4
+~
+~
+0 0 11222
+S
+#11224
+White Dragons Lair~
+You have reached a dead end in the passage.  The walls are hewn stown
+and are covered in a thick layer of frost and ice.  There are huge claw
+marks on the wall as if some large beast has been fighting here.  You can
+leav back the way you came to the south.  
+~
+0 1073741824 0
+Rd     0
+D2
+~
+~
+0 0 11264
+S
+#11225
+Stone Passage~
+The walls of the passage way are are pock marked and eatten way by some
+sort of an acid substance.  Torches affixed to the walls barely illuminate
+the area, and the air here is decided cooler than normal.  A hallway leads
+off to the north and east from here.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11227
+D2
+~
+~
+0 0 11226
+S
+#11226
+Stone Passage~
+You are standing at the bottom of a flight of stone stairs that lead
+upwards.  The walls are are pock marked and eatten way by some sort of an
+acid substance.  Torches affixed to the walls barely illuminate the area,
+and the air here is decided cooler than normal.  A hallway leads off to the
+north.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11225
+D4
+~
+~
+0 0 11219
+S
+#11227
+Dead End~
+You have reached a dead end in the passage.  The walls are hewn stown and
+are covered in a pock marks as if eaten by acid.  There are huge claw marks
+on the wall as if some large beast has been fighting here.  You can leave
+back the way you came to the west.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 11225
+S
+#11228
+Huge cavern~
+In the center of this huge natural cavern is a giant pool.  As you look
+into the water, you see that it is bubbling and churning with great force. 
+The walls of this cavern have massive stone columns supporting a huge free
+standing dome.  The ceiling of the dome is made from what looks like
+translucent marble.  Light shines through the ceiling, casting a shimering
+yellow and orange glow to all that is in this room.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11275
+D5
+~
+~
+0 0 11229
+S
+#11229
+Underwater in the pool~
+You are in a pool of water under a circular stone cavern.  The water is
+moving and bubbling from below.  It is difficult to see much around you as
+you bob up and down in the water.  You can leave up or down from here.  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 11228
+D5
+~
+~
+0 0 11231
+S
+#11230
+Jaragh's office~
+This is a very large octagonally shaped room.  Soft light illuminates the
+area from an unknown source.  You see a large, oaken desk with papers and
+other unidentifiable things strewn across it in haphazard manner.  There is
+a namplate on the desk which reads "Jaragh, Maker of Things Deadly".  Also
+on the desk is a wire basket seperated into two sections: One with the
+legend "In" and another which reads "Out".  There appears to be some type of
+cauldon with boiling brownish liquid bubbling in it.  There is no way out of
+here.  
+~
+0 4 0
+Rd     0
+E
+out~
+You see a piece of paper with a list of things on it.  The list reads:
+ 
+Ways - 15158-15165
+~
+E
+in~
+You see a piece of paper with the following words on it: Walius-
+11201-300 Tree of Life - 25201-25401 
+~
+S
+#11231
+Underwater stream~
+You are in a small underwater stream.  It is difficult to see anything
+in the water because of the utter blackness of the area.  Looking closely
+you can just barely make out the directions that you can travel in.  The
+current pulls you to the north but you notice that you can go west or swim
+upwards into a passage through the stone.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11242
+D3
+~
+~
+0 0 11232
+D4
+~
+~
+0 0 11229
+S
+#11232
+Hole~
+You notice a hole in the rock here.  The current here is so strong that
+you have to fight with every ounce of your strength to keep from being swept
+up into it.  You can get out of the hole, by going up, or you can go back
+downstream.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11231
+D4
+~
+~
+0 0 11233
+S
+#11233
+Underground beach~
+You are standing on an underground beach.  The area is littered with
+bones and rotting flesh, making you wonder just how safe this place it.  The
+smell is enough to turn your stomach.  You can either run retching into the
+water to below you or brave the smell and see what is to the north.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11234
+D5
+~
+~
+0 0 11232
+S
+#11234
+Serpents Lair~
+You have entered a huge stone lair.  The walls are splattered with dried
+blood and the ground is covered in rotting flesh and decomposing bones.  The
+smell is enough to turn the stomach of the most hardy warrior.  A rat runs
+buy with a human eyeball in its mouth and disapears into a crack in the
+stone wall.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11233
+S
+#11235
+Lake path~
+You are on a path on the side of a lake that the waterfall plummets into.
+Looking out over the lake, you see a low fog hanging over the cold dark
+water.  Although the dense underbrush obstructs your view of the forest
+here, you manage to find a path leading north-south from here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11236
+D2
+~
+~
+0 0 11210
+D3
+~
+~
+0 0 11243
+S
+#11236
+Lake path~
+You are on a path on the side of a lake that the waterfall plummets into.
+Looking out over the lake, you see a low fog hanging over the water like a
+death shroud.  Although the dense underbrush obstructs your view of the
+forest here, you manage to find a path leading east and south.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11239
+D2
+~
+~
+0 0 11235
+S
+#11239
+Valley~
+You stand in a great valley.  Looking off, you see jutting peaks piercing
+the clouds in the distance.  You notice a pair of large birds circling the
+peaks - very, large birds.  You can follow the path north, east or west
+here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11240
+D1
+~
+~
+0 0 11241
+D3
+~
+~
+0 0 11236
+S
+#11240
+Huge trees~
+You are at the base of a stairway that is built onto the side of a
+massive tree, the stiars spiral up and around the trunk of the tree.  The
+stiars look very secure and looking up into the tree you notice what could
+be small living areas built into the branches above your head.  You can
+climb the stairs of continue off into the woods to the east.  A valley lays
+just south of you.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11246
+D2
+~
+~
+0 0 11239
+D4
+~
+~
+0 0 11247
+S
+#11241
+River bank~
+You stand on the bank of a peaceful, lazy river.  You hear the songs of
+loons in the distance and see small swarms of insects playing in the tall
+weeds.  The only exit is to the west.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 11239
+S
+#11242
+Stream end~
+Mist, created by the cold mountain water hitting the warm air of this
+valley makes navagation very tedious.  The mist is thick enough to obscure
+your vision.  In fact you have difficulty seeing your hands in front of your
+face.  There is lake to the north and west from there and a small stream is
+barely visible to the south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11243
+D2
+~
+~
+0 0 11231
+D3
+~
+~
+0 0 11245
+S
+#11243
+At the Edge of a Small Lake~
+Your eyes witness an idyllic scene indeed.  The water here is peaceful,
+and clear.  Fish leap from the water, occasionally disturbing the stillness,
+and you hear the buzz of happy insects playing in the reeds.  You can leave
+this peace and quiet to the south, east, or west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11235
+D2
+~
+~
+0 0 11242
+D3
+~
+~
+0 0 11244
+S
+#11244
+Lake~
+You are on a peaceful lake, the water is fairly warm to the touch and
+below the surface you can see a wide variety of fish swimming by.  Not far
+off a frog croaks out its melody to the tune a wip-o-wills mornfull cry. 
+You get a feeling of peace and contentment here.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11243
+D2
+~
+~
+0 0 11245
+S
+#11245
+Lake~
+You are on the lake.  The water here is fairly cool, and as you look
+down, you can see fish moving about beneath the water.  Off in the distance,
+you hear the song of a single loon.  The lake continues north and east.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11244
+D1
+~
+~
+0 0 11242
+S
+#11246
+Dense forest~
+You are on the outskirts of a very dense forest.  The trees are so
+overgrown as to obscure your view and prevent movement in any direction
+except west.  You notice that the forest is strangely devoid of the typical
+noises you would expect and you give a small prayer of gratitude that you
+cant go any further into the eerie woods.  
+
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 11240
+S
+#11247
+Porch~
+The stairs end at the door of a small, well-built tree house.  On the
+porch where you are standing, you see a small chair, a hammock and a table. 
+You notice that the house is suspended in the brances of the tree.  Huge
+beams, pinned at the joints, allow the house to sway with the movement of
+the tree, yet stay level.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11248
+D1
+~
+~
+0 0 11249
+D5
+~
+~
+0 0 11240
+S
+#11248
+Treehouse~
+Wide boards make up the floor of this tree house.  A small fireplace is
+set into the north wall, a crackling fire burning within.  A small table
+with assorted fruits and nuts laying atop it stands in the center of the
+room.  Small chairs are set around the table.  You can leave the room to the
+south.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11247
+S
+#11249
+Vines~
+You find yourself swinging east to west on a long sagging vine.  Looking
+to the east you see a platform you could easily jump onto.  To the west, you
+see the porch of a treehouse, within reach.  Down, is the forest floor,
+where large covered roots obstruct the view of the paths that weave there
+way around the massive trunks.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11250
+D3
+~
+~
+0 0 11247
+S
+#11250
+Platform in the trees~
+You are standing on a platform high in the trees of the forest.  Numerous
+thick vines hang from the trees, gently swaying in the breeze.  You think
+you may be able to swing from them in all of the cardinal directions.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11252
+D1
+~
+~
+0 0 11251
+D2
+~
+~
+0 0 11253
+D3
+~
+~
+0 0 11249
+S
+#11251
+On a vine~
+You are swinging on a thick vine hanging from a very large, obviously old
+tree.  The forest floor is far below you.  So far in fact that you don't
+want to think about what would happen if you let go.  You can swing east or
+west.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11255
+D3
+~
+~
+0 0 11250
+S
+#11252
+On a vine~
+You find yourself swinging south to north on a long, sagging vine.  To
+the south, you see a platform easily within reach.  North is a doorway to
+what looks like a temple.  You look down and see the forest floor, obscured
+by a mass of gnarled moss covered roots.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11254
+D2
+~
+~
+0 0 11250
+S
+#11253
+A tree~
+Perhaps you got a little carried away with this swinging thing.  You've
+slammed head-first into a very large tree.  Somehow you manage to retain
+your grip on the vine, however.  Once you've recovered your bearings you can
+swing back to the north. 
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11250
+S
+#11254
+Temple in the trees~
+You find yourself in the upper branches of the tallest tree in the
+forest.  Looking out over the forest, flocks of giant birds pass by you. 
+The trunk of this tree has a large door cut into it, just to the north of
+you.  A giant burl has stairs carved into it.  Above the door are strange
+runes carved into the wood of the tree.  
+~
+0 0 0
+Rd     0
+E
+runes~
+You look at the strange runes, but are not sure of their meaning.  They
+look neat though.  
+~
+D0
+~
+~
+0 0 11256
+D2
+~
+~
+0 0 11252
+S
+#11255
+A tree~
+Perhaps you've gotten a little too carried away with this swinging on
+vines bit.  You've slammed right into a very large, very solid tree. 
+Somehow you manage to keep your grip on the vine, however.  This fact puts
+you at ease as you look down and notice how long you'd have to fall to hit
+the forest floor below.  Once you've recovered from your disorientation, you
+can go west.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 11251
+S
+#11256
+Temple hallway~
+You enter a great hallway, whos walls are covered with intricate
+carvings.  The ceiling is arched and adorned with carved figures, some
+godlike in proportion.  Each figure holds a lantern in its hand, as if to
+guide you along.  To the north you notice what looks like an altar.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11257
+D2
+~
+~
+0 0 11254
+S
+#11257
+Altar~
+You've entered a small altar room.  The room is bare with the exception
+of a large idol at the far end of the room.  The faint scent of incense
+enters your nostrils, but you notice no source.  The only exit is south 
+ 
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11256
+S
+#11258
+Tree line~
+Gnarled scrub brush and jutting rocks make up the unfriendly terrain
+here.  You notice that the scrub brush starts to thin out and give way to
+the harsher climate above tree line.  To the east you look out over a large
+glacier set between two mountains.  The wind howls and wails as you ponder
+your next move.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 11259
+D5
+~
+~
+0 0 11206
+S
+#11259
+Above The Tree Line~
+You are standing just above the tree line on the side of a huge
+mountain.  From here you can just see over the tree tops to vies the most
+spectacular waterfall you have ever seen.  Looking downwards you can see all
+sorts of wildlife scurrying through the forest below.  
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 11258
+D4
+~
+~
+0 0 11260
+S
+#11260
+Peak climb~
+You are standing on a mountain peak.  From here it seem as if you can see
+forever, and the view is spectacular.  Blow you you can see a dense forest
+leading up to another mountain not far away with a huge waterfall splashing
+down its side.  You may climb up the mountain to the summit of down to its
+base from here.  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 11261
+D5
+~
+~
+0 0 11259
+S
+#11261
+Peak~
+You stand upon the summit of mt Orolonde, first in the chain of the
+Kinsel range.  There is a huge dead tree here, with only a few branches left
+intact.  In the top branches is a huge nest built of large logs and brush. 
+Looking out over the west face of mt Orolonde you see the faint signs of a
+city, Bethaven, you think to yourself.  You may climb the huge tree infront
+of you or you may climb down the mountain.  
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 11262
+D5
+~
+~
+0 0 11260
+S
+#11262
+Climbing a tree~
+Your climbing a huge hollowed out tree.  The tree appears to be ancient
+and you can spot evidence of previous inhabitants.  You can climb the tree
+up or go down to the mountain peak 
+~
+0 0 0
+Rd     0
+D4
+~
+~
+0 0 11263
+D5
+~
+~
+0 0 11261
+S
+#11263
+Eagles nest~
+You finish the climb, and find yourself on a really big nest.  Big enough
+that you could actually stretch out here and take a nap if you wanted to. 
+But I wouldn't do that if I were you, you never know when the nest's owner
+will return and find you here.  
+~
+0 0 0
+Rd     0
+D5
+~
+~
+0 0 11262
+S
+#11264
+Stone Passage~
+This corridor seems to continue forever, ice and frost cover the walls
+and give the stale air a decided chill.  Light from very ornate lanterns
+held by carved stone gargoyles illuminates your way.  Along each wall, stand
+white marble benches.  You hear nothing out of the ordinary here, but the
+hair on your neck stands on end.  The passage continues to the north and
+south from here.  
+~
+0 1073741824 0
+Rd     0
+D0
+~
+~
+0 0 11224
+D2
+~
+~
+0 0 11223
+S
+#11265
+Stone passage~
+You are in a cramped tunnel, sloping downwards at a slow pitch.  The
+floor of the tunnel is very slick with a black slime, making it very hard to
+maintain your footing.  The walls off the passage are chard black as if
+burnt by a very hot fire.  To the north you see what seems to be a set of
+stairs carved into the rock.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11266
+D2
+~
+~
+0 0 11214
+S
+#11266
+Stone Stairs~
+The walls here are solid stone panels, each depicting different battles. 
+One that stands out among others shows a mounted knight, swinging a mighty
+sword at a dragon in mid flight.  The dragons breathes a blast of fire
+towards the knight, which meets his sword with a brilliant flash of light. 
+There are stairs hewn from the stone of the cavern leading downwards and a
+passage to the south.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11265
+D5
+~
+~
+0 0 11267
+S
+#11267
+Stone Passage~
+You are in a rough passage at the bottom of a flight of stone stairs. 
+The ground is slick with black slime and the walls are blackened and marked
+with deep claw marks.  The hall leads off to the north and a flight of
+stairs lead upwards.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11268
+D4
+~
+~
+0 0 11266
+S
+#11268
+Dead End~
+You have reached a dead end in the passage.  The walls are hewn stown and
+are covered in a thick layer shoot.  There are huge claw marks on the wall
+as if some large beast has been fighting here.  You can leave back the way
+you came to the south.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11267
+S
+#11269
+Stone Passage~
+Shadows play on the walls of the passage way, thrown you believe by the
+ornate lanterns held in place by carved stone gargoyles.  The air has a
+decided chill to it and the hair on the back of you neck stands on end as if
+to warn you of impending danger.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11216
+D2
+~
+~
+0 0 11270
+S
+#11270
+Stone Passage~
+Shadows play on the walls of the passage way, thrown you believe by the
+ornate lanterns held in place by carved stone gargoyles.  The air has a
+decided chill to it and the hair on the back of you neck stands on end as if
+to warn you of impending danger.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11269
+D2
+~
+~
+0 0 11271
+S
+#11271
+Stone Stairs~
+Stone stairs have been hewn from the stone and lead downwards from here.
+The walls are solid stone panels, each depicting a different battle.  One
+that stands out among the others is that of a stout fighter standing over a
+majestic shadow dragon with his mighty bastard sword raised and ready to be
+thrust through the heart of the dragon.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11270
+D5
+~
+~
+0 0 11272
+S
+#11272
+Stone Passage~
+You are standing at the bottom of a flight of stone stairs that lead
+upwards.  Torches affixed to the walls barely illuminate the area and cast
+eerie shadows about the area.  A shadowy hallway leads off to the south.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11273
+D4
+~
+~
+0 0 11271
+S
+#11273
+Stone Passage~
+This corridor seems to continue forever due to the shadows that lurk
+about you.  Light from very ornate lanterns held by carved stone gargoyles
+barely illuminates your way.  Along each wall, stand grey marble benches. 
+For some reason the hair on the back of your neck is standing on end.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11272
+D2
+~
+~
+0 0 11274
+S
+#11274
+Dead End~
+You have reached a dead end in the passage.  The whole area is covered
+in shadows making it difficult to see.  There are huge claw marks on the
+wall as if some large beast has been fighting here.  You can leave back the
+way you came to the north.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 11273
+S
+#11275
+Misty Lair~
+You have reached a dead end in the passage.  The whole area is covered in
+a mist making it difficult to see.  The floor is covered with the remains of
+fish and the odd lake bird.  Most have been stripped clean.  Huge claw marks
+mark the walls as if some large beast has been fighting here.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 11228
+S
+#11276
+~
+~
+0 4 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 11201 spec_cast_adept
+M 11203 spec_poison
+M 11206 spec_janitor
+M 11208 spec_thief
+M 11212 spec_fido
+M 11221 spec_breath_frost
+M 11222 spec_breath_fire
+M 11223 spec_breath_acid
+M 11224 spec_breath_gas
+M 11225 spec_breath_gas
+S
+
+
+
+#RESETS
+M 0 11207 1 11202
+M 0 11208 1 11202
+E 0 11271 0 6
+M 0 11208 1 11203
+M 0 11205 2 11203
+M 0 11204 3 11204
+M 0 11204 3 11205
+M 0 11217 1 11206
+M 0 11204 1 11208
+M 0 11214 5 11208
+M 0 11218 2 11209
+M 0 11212 5 11210
+M 0 11210 3 11211
+M 0 11226 1 11213
+M 0 11202 6 11214
+M 0 11202 6 11215
+M 0 11206 3 11216
+M 0 11202 4 11217
+M 0 11202 4 11219
+M 0 11206 1 11219
+M 0 11221 1 11224
+E 0 11274 0 20
+M 0 11202 5 11225
+M 0 11206 1 11225
+M 0 11206 1 11226
+M 0 11223 1 11227
+E 0 11273 0 15
+O 0 11270 0 11230
+M 0 11201 1 11234
+E 0 11202 0 20
+M 0 11211 2 11236
+M 0 11208 1 11239
+M 0 11210 1 11241
+M 0 11211 1 11242
+M 0 11211 1 11243
+M 0 11211 1 11245
+M 0 11220 2 11250
+M 0 11220 2 11254
+M 0 11220 2 11255
+M 0 11219 1 11257
+E 0 11300 0 20
+M 0 11209 1 11263
+O 0 11201 0 11263
+E 0 11209 0 14
+E 0 11203 0 20
+M 0 11222 1 11268
+E 0 11205 0 20
+M 0 11215 3 11269
+M 0 11215 1 11271
+M 0 11215 1 11273
+M 0 11224 1 11274
+E 0 11272 0 1
+M 0 11225 1 11275
+E 0 11275 0 7
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

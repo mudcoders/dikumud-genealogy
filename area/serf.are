@@ -1,0 +1,2962 @@
+#AREADATA
+Name        { 5-15 } Villein Village     Palio~
+Levels      5 15
+Builders    None~
+VNUMs       4600 4699
+Security    98
+Recall      25001
+Flags       0
+Color       6
+Sounds      &zThe smells of poverty reach up to make you gag.~
+End
+
+
+
+#MOBILES
+#4600
+serf~
+The serf~
+A serf wanders aimlessly about, searching for food and begging for alms.
+~
+Nothing but bones really, this man walks in a half dazed state about the
+village.  Dressed in rags, he is nothing more than a poor beggar.  
+~
+65 512 0 100 S
+7 0 0 130d0+0 0d0+0
+0 0 35 0
+0 0 1
+0 0 0
+>rand_prog 3~
+,looks listlessly at you with watery bloodshot eyes.
+mpecho &wYou see him tightening his belt which cannot be tightened anymore.
+~
+|
+#4601
+serf woman~
+The serf woman~
+A serf woman walks around too weak to beg.
+~
+She seems to be missing more than food and happiness.  Her body is bone
+thin and her withered spirit is evident in her posture and her eyes.  
+She sits down every so often as she has no energy to even stand.
+~
+69 512 0 100 S
+6 0 0 115d0+0 0d0+0
+0 0 30 0
+0 0 2
+0 0 0
+>rand_prog 10~
+,slumps down and looks as if she is about to faint.
+~
+|
+#4602
+bugs swarm flies~
+The swarm of flies~
+A swarm of flies hovers about a pile of waste here.
+~
+BUZZ BUZZZ BUZZZZZ.  The flies seem to be feeding off the wastes that have
+accumulated here over the years.  
+~
+67 512 0 0 S
+5 0 0 80d0+0 0d0+0
+0 0 25 0
+0 0 0
+0 0 0
+#4603
+mother serf~
+A mother~
+A mother cries as she realizes that she cannot feed her children.
+~
+Dressed in rags, this poor mother has not got enough food to feed her
+children, not to mention the fact that her house is falling to pieces.  
+~
+67 512 0 200 S
+8 0 0 150d0+0 0d0+0
+0 0 40 0
+0 0 2
+0 0 0
+>greet_prog 100~
+,dabs a dirty cloth to her eyes.
+say It kills a mother to watch her children starving.
+,turns away with a sob.
+~
+>fight_prog 30~
+'so you think cause I am poor and undernourished that I can't fight eh?
+,sneers distastefully showing her rotting teeth.
+punch $n
+~
+|
+#4604
+child serf~
+The child~
+A serf child wanders about begging for coins.
+~
+He is like other children that play in the streets, however when night
+time comes, he will be left in the cold streets.  The serf child doesn't
+have a home like the other boys and girls.  
+~
+193 512 0 200 S
+5 0 0 50d0+0 0d0+0
+0 0 20 0
+0 0 1
+0 0 0
+>greet_prog 100~
+if isnpc($n)
+break
+endif
+if isimmort($n)
+say I know you can help me! You can do anything my liege!
+beg $n
+break
+endif
+ if sex($n) == 1
+  say Please sir, will you spare me some alms?
+  tell $n If I don't bring any back, my father will be most upset.
+  emote shivers uncontrollably.
+else
+if sex($n) == 2
+  say M'am... sorry to be a bother but if you could spare me some alms...
+  tell $n I should at least live to see another day.
+  mpechoat $n The child looks up at $n imploringly.
+else
+say Get away! Go find your own food!
+frown $n
+endif
+endif
+~
+>rand_prog 8~
+,puts his hands in his pockets and comes up empty.
+mpjunk all
+~
+|
+#4605
+father serf~
+The father~
+A father tries to mend his house here.
+~
+He seems like a kind and gentle man, torn by the poverty of this land. 
+He is a hard worker, and never passes up opportunities to work for money.  
+~
+67 512 0 0 S
+7 0 0 130d0+0 0d0+0
+0 0 30 0
+0 0 1
+0 0 0
+>greet_prog 100~
+emote looks up at you and his face begs silently for something, anything.
+mpecho You hear a rumbling noise and realize after a short while that it is coming from the serf's belly.
+~
+|
+#4606
+patient dying~
+The patient~
+A dying serf passes by, screaming in agony.
+~
+His Body seems mangled from sickness.  He drags his left foot along the
+ground sreaming with incessant pain.  
+~
+195 0 0 0 S
+8 0 0 145d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+>greet_prog 75~
+say I do not feel so good!
+puke
+~
+>hitprcnt_prog 10~
+say Please $n put me out of my misery!  Let me die on your blade!
+~
+|
+#4607
+grimes store clerk~
+Mrs. Grimes~
+A frail and thin female clerk stands behind the counter selling her wares.
+~
+Although quite pretty, and very clean compared to anyone else in the Serf
+Village, you can tell this woman is undernourished. Grey circles under her
+eyes tell you that she suffers from lack of sleep.
+~
+67 32 0 0 S
+9 0 0 175d0+0 0d0+0
+0 0 45 0
+0 0 2
+0 0 0
+#4608
+renz dog guard~
+Renz~
+Renz the junk-yard dog watches over the dump with a keen eye and hungry look.
+~
+A big ole hound dog stands before you.  His slobber isn't very appealing, not
+to mention the fact that his teeth are bared.  Perhaps he feels threatened
+by you.
+~
+3 512 0 0 S
+10 0 0 200d0+0 0d0+0
+0 0 50 0
+0 0 1
+0 0 0
+>act_prog p pats you on your head.~
+,growls viciously and lunges towards your hands!
+bite $n
+~
+|
+#4609
+guard dump~
+The guard~
+A dump guard wanders about seeking for evil scavengers.
+~
+A rather weak man stands before you.  Could be that this guard wasn't fit
+enough to make the guard force for Bethaven and has to settle for dump duties.
+~
+65 512 0 100 S
+12 0 0 280d0+0 0d0+0
+0 0 60 0
+0 0 1
+0 0 0
+>entry_prog 100~
+say Eh? Whass that yeh goh in yer hands thar mate?
+~
+|
+#4610
+scav scavenger~
+The scavenger~
+A scavenger wanders around the dump sifting through the trash.
+~
+A hunched man stands before you, sifting through the mud in hopes of finding
+a broken axe-handle for his burlap sack.  He has a keen eye for trash.
+~
+69 33280 0 -100 S
+12 0 0 250d0+0 0d0+0
+0 0 60 0
+0 0 1
+0 0 0
+>greet_prog 30~
+emote sifts through the garbage with his bare hands.
+say Well, I guess today just isn't my lucky day.
+sigh
+~
+|
+#4611
+slagmuler dump master slag~
+Slagmuler~
+Slagmuler stands here trying to look busy.
+~
+He is a rather fat man standing nearly 8 feet tall.  In fact he nearly
+fills the small hut he calls home.  
+~
+3 512 0 0 S
+14 0 0 320d0+0 0d0+0
+0 0 70 0
+0 0 1
+0 0 0
+>greet_prog 50~
+,starts to blubber and look agitated.
+say Don't look at me and what are you doing here? GET OUT!
+,pushes you out the door.
+mptrans $n 4647
+close door
+~
+|
+#4612
+stump~
+Stump~
+Stump stands here, awaiting to serve you.
+~
+~
+3 552 0 0 S
+15 0 0 360d0+0 0d0+0
+0 0 0 0
+0 0 1
+0 0 0
+#4613
+egre~
+Egre~
+Egre is a massive beast who is here watching you incessantly.
+~
+~
+67 512 0 0 S
+15 0 0 400d0+0 0d0+0
+0 0 70 0
+0 0 1
+0 0 0
+>greet_prog 90~
+,looks up and drools.
+~
+|
+#4614
+kilroy serf doctor~
+The doctor~
+Kilroy awaits to purge you of foul blood.
+~
+This man is always tired from doing the rounds in the village where
+famine and plague are plentiful.  Most of the time instead of being the
+doctor, he ends up being a priest to give the last rights to.  He knows one
+day he will succumb to the death that always hovers nearby.  
+~
+67 512 0 200 S
+10 0 0 200d0+0 0d0+0
+0 0 50 0
+0 0 1
+0 0 0
+>all_greet_prog 100~
+look $n
+say You don't look well at all! Tell me where it hurts.
+~
+>death_prog 100~
+,spits out blood from his mouth as he tries to speak.
+say Who will care for the villagers now? You mer...ciless beast!!
+~
+|
+#4615
+serf girl~
+A scrawny girl~
+The serf girl stands awkwardly here waiting for her mother.
+~
+A young girl in pigtails and a dirty shift stands here.  You see in her
+eyes innocence and hope that conditions will get better.  You want to help
+her and at the same time put her out of her misery because you know that
+there is no help for these poor souls.  
+~
+67 512 0 100 S
+10 0 0 200d0+0 0d0+0
+0 0 45 0
+0 0 2
+0 0 0
+#4616
+rat~
+&zA plump black rat~
+&zA black rat scuttles around.
+~
+The rat you see scuttling around is surprisingly plump for something in
+the serf village.  It stares at you with beady eyes and then scuttles away. 
+~
+99 512 0 -100 S
+7 0 0 130d0+0 0d0+0
+0 0 35 0
+0 0 0
+0 0 0
+>act_prog p looks at you.~
+,squeals and runs to the other corner of the room.
+~
+>death_prog 100~
+,screeches like a dying cat.
+mpoload 4640
+~
+|
+#4621
+pigeon scavenger bird~
+&wA mangled looking pigeon~
+An aging pigeon wanders the village in search for food.
+~
+Beady little eyes stare upon you, as if begging for a morsel of food. 
+It's pointy head bobs up and down as it searches for a nibble.  This bird
+looks rather angry, it probably hasn't eaten in a few days.  
+~
+69 524800 0 0 S
+5 0 0 75d0+0 0d0+0
+0 0 10 0
+0 0 0
+0 0 0
+#4635
+ghost serf~
+&wThe ghost&w~
+&w The Ghost of an impoverished Serf wanders around in search for peace.
+~
+&wThe Ghost of an impoverished Serf wanders around in search for peace.
+~
+193 1572904 16 100 S
+15 0 0 400d0+0 0d0+0
+0 0 75 0
+0 0 0
+0 0 0
+>greet_prog 100~
+emote looks upon $n with eyes that glow.
+tell $n Can you tell me how to get out of this purgatory?
+emote starts to make sounds that resemble sorrowful crying.
+~
+>rand_prog 8~
+mpecho &wYou hear rattling of chains and the sound echoes throughout the cemetary.
+~
+|
+#0
+
+
+
+#OBJECTS
+#4600
+pants ragged~
+ragged pants~
+A pair of torn and dirty pants lie here.~
+~
+9 1073741824 0 0 33 6
+0~ 0~ 0~ 0~
+1 0 0 10 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -6
+E
+pants~
+The pants you see before you are dirty and torn.  They have so many holes
+in them you wonder how it can keep anyone covered or warm for that matter.  
+~
+E
+ragged~
+The pants you see before you are dirty and torn. They have so many holes
+in them you wonder how it can keep anyone covered, or warm for that matter.
+~
+#4601
+rubber boots~
+rubber boots~
+A pair of rubber boots, covered in mud lie here.~
+~
+9 0 0 0 65 6
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 10
+E
+boots~
+The boots are made of rubber and covered with all kinds of dirt and mud. 
+They are black and you can see a few patched areas in them in an attempt to
+hide the holes.  
+~
+E
+rubber~
+The boots are made of rubber and covered with all kinds of dirt and mud.
+They are black and you can see a few patched areas in them in an attempt to
+hide the holes.
+~
+#4602
+cap red~
+a red cap~
+A bright red cap lies here covered in mud.~
+~
+9 0 0 4096 17 5
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+E
+red cap~
+The only thing colourful in these parts. You wonder if the serfs stole it
+since it seems out of place here, all richly veloured.
+~
+#4603
+torn cape~
+torn cape~
+A grey cape lies torn to shreds here.~
+~
+9 0 0 0 1025 5
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 5
+E
+torn cape~
+It is grey and hooded... dirty and torn.
+~
+#4604
+fake diamond ring~
+a fake diamond ring~
+A ring with a large stone too large to be real lies here.~
+~
+9 0 0 0 3 5
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 5
+E
+fake diamond ring~
+A large stone is glittering set on a cheap looking golden band.  The
+stone is so large as to be comical.  You know it must have been either found
+lying in some ditch, given by some rich merchant travelling through or
+stolen.  The latter seems more plausible.  
+~
+#4605
+cloth mittens~
+a pair of mittens~
+A pair of cloth mittens lie here all patched up.~
+~
+9 64 0 0 129 5
+0~ 0~ 0~ 0~
+2 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+E
+cloth mittens~
+The mittens are hardly a means of keeping the hands warm seeing how the
+ends are cut off.  Although they allow for some movement of the fingers,
+they don't provide much warmth.  
+~
+#4606
+ripped dress~
+a ripped dress~
+Some flowery material lies here, in the form of a ripped dress.~
+~
+9 0 0 0 9 6
+0~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -6
+E
+ripped dress~
+You see a brown chintz dress that is ripped at the hems.  You can see
+stitchings of some other cloth to disguise the holes.  
+~
+#4607
+hole grate sewer~
+sewer~
+A grate leads deep into the ground providing passage for the sewage.~
+~
+29 0 0 0 0 0
+4646~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4608
+sewer grate~
+sewer~
+A grate leads deep into the ground, providing passage for raw sewage.~
+~
+29 0 0 0 0 0
+4607~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4609
+flies swarm~
+a swarm of flies~
+A Swarm of flies hovers about here.~
+~
+9 4 0 0 32769 4
+0~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 1
+#4610
+water tear drop~
+a tear-drop~
+A tiny drop of water lies here.~
+~
+27 0 0 0 131073 7
+50~ 4~ 4~ detect invis~
+1 0 0 50 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+E
+tear drop~
+A tear drop from a mother glistens in the light. It obviously holds some
+magic, as the tears of all mothers do.
+~
+E
+water~
+A tear drop from a mother glistens in the light. It obviously holds some
+magic, as the tears of all mothers do.
+~
+#4611
+toy axe~
+a toy axe~
+A miniature wooden axe lies here.~
+~
+5 0 0 0 8193 4
+0~ 2~ 10~ 13~
+2 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 4
+E
+toy axe~
+A toy axe that was mistreated by its owner lies here chipped in the
+middle of the handle.  
+~
+#4612
+string boot lace~
+a boot lace~
+A small string that could easily be used for a boot lace lies here.~
+~
+9 0 0 0 2049 4
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -4
+E
+boot lace~
+A boot lace made of brown leather is about eight inches in length and is
+very worn.
+~
+E
+string~
+A boot lace made of brown leather is about eight inches in length and
+is very worn.
+~
+#4613
+pair torn sleeves cloth~
+a pair of torn sleeves~
+A pile of cloth lies here, torn and muddy.~
+~
+9 0 0 0 257 5
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+E
+torn sleeves~
+A pair of black sleeves, torn and dirty... smells kind of foul.
+~
+E
+pair~
+A pair of black sleeves, torn and dirty... smells kind of foul.
+~
+E
+cloth~
+A pair of black sleeves, torn and dirty... smell kind of foul.
+~
+#4614
+dusty pair overalls~
+a pair of overalls~
+A dusty pair of overalls lies here.~
+~
+9 0 0 0 9 6
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 6
+E
+overalls~
+A dark brown stained pair of overalls are filthy. Washing them might be a
+good idea.
+~
+E
+pair~
+A dark brown stained pair of overalls are filthy. Washing them might be a
+good idea.
+~
+E
+dusty~
+A dark brown stained pair of overalls are filthy. Washing them might be a
+good idea.
+~
+#4615
+bracer rusty~
+a rusty bracer~
+A very rusty bracer lies here forgotten for life.~
+~
+9 0 0 0 4097 7
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+rusty bracer~
+A bracer that hasn't been taken care of very well. The hinges look as if
+they could come apart any second.
+~
+#4616
+hammer wooden~
+&OA wooden hammer&W~
+A long wooden hammer lies here awaiting usage.~
+~
+5 256 0 0 8193 7
+0~ 2~ 15~ 7~
+2 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 12
+E
+wooden hammer~
+You see a wooden hammer with a short handle at the end of it.  There are
+some stains on it that could very well be blood.  
+~
+#4617
+white patient gown~
+a white patient gown~
+A long white gown has collapsed here, in a pile of sweat and disease.~
+~
+9 16384 0 0 9 7
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 -5
+A
+18 -2
+#4618
+pill yellow~
+a yellow pill~
+A tiny yellow pill lies here, collecting dust.~
+~
+26 0 0 0 16385 5
+50~ cure light~ cure poison~ reserved~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#4619
+flowery necklace~
+a flowery necklace~
+A trail of flowers wrapped into a necklace lie here.~
+~
+9 0 0 0 5 8
+0~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 8
+E
+flowery necklace~
+A necklace wrought with wildflowers... poverty doesn't mean the absence of
+beauty... only the means to make it come to fruition.
+~
+#4620
+tag dog~
+a dog tag~
+A dog tag with "RENZ" scratched into it lies here.~
+~
+9 0 0 0 524289 7
+0~ 0~ 0~ 0~
+1 0 0 25 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+5 1
+E
+dog tag~
+The dog tag has the name "Renz" scratched into it.
+~
+#4621
+collar red~
+a red collar~
+A red collar lies here covered in slobber.~
+~
+9 0 0 0 5 5
+0~ 0~ 0~ 0~
+1 0 0 25 0
+5 0
+stone skin~
+2 2
+0 0 0
+A
+4 1
+E
+red collar~
+You see a red collar dirty beyond description and smelly to boot.  
+~
+#4622
+dump guard bodyarmor~
+dump guard bodyarmor~
+A set of bodyarmor lies here, smelling of rotten food.~
+~
+9 0 0 0 9 10
+0~ 0~ 0~ 0~
+2 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+E
+dump guard bodyarmor~
+The armor bears the marks of the trade. The stench of the many days in the
+dump yard emanates from the suit. The armor itself is badly in need of repair.
+~
+#4623
+leggings dump guard~
+dump guard leggings~
+A pair of smelly leggings lies here.~
+~
+9 0 0 0 33 10
+0~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -10
+E
+dump guard leggins~
+A pair of rusted leggings lie here.  It's many screws have fallen prey to
+the elements and makes it hard for movement while wearing them.  To add to
+the sad sight, they smell pretty foul.  
+~
+#4624
+sub billy club dump~
+a sub-issue billy club~
+A billy club lies here, for use by those who cannot handle a real weapon.~
+~
+5 0 0 0 8193 10
+0~ 2~ 20~ 7~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 18
+A
+18 14
+A
+1 1
+E
+sub billy club dump~
+A billy club is about a foot and a half in length, and about 2 inches thick.
+~
+#4625
+burlap sack~
+a burlap sack~
+A burlap sack covered in mud and dump materials lies here.~
+~
+15 0 0 0 1025 9
+34~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -9
+E
+burlap sack~
+The sack is covered in dirt and smells terrible. It doesn't look like it
+could hold much of anything... especially heavy items.
+~
+#4626
+beard hair~
+a beard~
+Some hair piles up here, resembling a beard.~
+~
+9 0 0 0 65537 10
+0~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+E
+beard hair~
+Some dark brown hair is covered in spittle and dirt could be worn as a
+beard.  
+~
+#4627
+garbage can lid~
+a garbage can lid~
+A garbage can lid lies here.~
+~
+9 0 0 0 513 10
+0~ 0~ 0~ 0~
+2 0 0 40 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+garbage can lid~
+A large garbage can lid is made of a cheap steel.
+~
+#4628
+rusty switch switchblade~
+a rusty switchblade~
+A rusty blade lies here folded up, concealing it's power.~
+~
+5 0 0 0 8193 11
+0~ 3~ 20~ 11~
+0 0 0 50 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 14
+A
+19 8
+E
+rusty switch switchblade~
+A rusty switchblade is folded up.
+~
+#4629
+shovel~
+a shovel~
+A long handled shovel has been stuck in the ground here.~
+~
+5 0 0 0 8193 13
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 8
+E
+shovel~
+A long handled shovel for digging.
+~
+#4630
+pair overalls~
+a pair of overalls~
+A dusty pair of overalls lies here.~
+~
+9 0 0 0 9 13
+0~ 0~ 0~ 0~
+2 0 0 25 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -13
+E
+pair overalls~
+A dirty pair of oversized overalls.
+~
+#4631
+broken window~
+a broken window~
+&WA pane of glass all broken and shattered lies broken at your feet.~
+~
+12 0 0 0 1 5
+0~ 0~ 0~ 0~
+2 0 0 30 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+broken window~
+A shattered pane of glass is more like just a cheap-looking frame.
+~
+#4632
+iron plate~
+&wAn iron plate~
+&cA circular piece of iron is sitting here.~
+~
+9 1 0 0 513 5
+0~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -5
+E
+iron plate~
+A circular iron plate is just big enough for you to use as a shield.
+~
+#4633
+wooden bat~
+a wooden bat~
+A wooden bat which is covered in blood lies here.~
+~
+5 0 0 0 8193 15
+0~ 0~ 0~ 7~
+1 0 0 25 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 25
+A
+18 21
+E
+wooden bat~
+A simple wooden bat.
+~
+#4634
+paper ball~
+a paper ball~
+A ball of paper rolls through the mud.~
+~
+9 0 0 0 16385 8
+0~ 0~ 0~ 0~
+1 0 0 40 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+3 1
+E
+paper ball~
+A crumpled up piece of paper has some strange markings written on it.
+~
+E
+markings~
+The markings are indecipherable, but they look kind of spidery the way they
+are written.
+~
+#4635
+chintz vest~
+a chintz vest~
+A dark red colored Chintz vest lies here.~
+~
+9 0 0 0 1033 7
+0~ 0~ 0~ 0~
+1 0 0 15 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 7
+E
+chintz vest~
+A small glazed vest looks like it had some sort of design painted on it
+at one point in time.
+~
+E
+design~
+The design is very colourful, but the paint has worn off from use and you
+can't tell what is used to have glazed upon it.
+~
+#4636
+corpse body~
+a small corpse~
+The lifeless body of a child lies here.~
+~
+13 0 0 0 1 1
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+corpse body~
+The small lifeless body of a serf child lies here.  No doubt a child who
+has lost his little life because of poverty.  
+~
+#4637
+brown leaf~
+&Oa brown leaf&W~
+&OA withered brown leaf lies here.~
+~
+26 0 0 0 1 5
+10~ cure light~ reserved~ reserved~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+brown leaf~
+A tiny brown leaf almost crumples to dust, it seems so delicate.
+~
+#4638
+shift cloth~
+&wA shapeless shift&W~
+&wA crumpled heap of dirty cloth is discarded here.~
+~
+9 0 0 0 9 9
+3~ 0~ 0~ 0~
+2 0 0 40 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 9
+E
+shapeless shift~
+A piece of material that can be wrapped around the body to cover up. Just
+barely...
+~
+E
+heap cloth~
+A heap of cloth is a cheap material, maybe big enough to wrap yourself in.
+~
+#4639
+beans bag~
+&rA bag of red beans&w~
+A bag of beans lies discarded on the floor.~
+~
+19 0 0 0 1 1
+4~ 0~ 0~ 0~
+0 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bag beans~
+A tiny bag of beans, a handful at most.
+~
+#4640
+rat tooth~
+&WA rat tooth&W~
+A small tooth of a rat is here.~
+~
+9 0 0 0 16385 10
+0~ 0~ 0~ 0~
+1 0 0 20 0
+5 0
+invis~
+3 3
+0 0 0
+A
+1 1
+E
+rat tooth~
+A tiny little tooth has yellowed in colour.
+~
+#4641
+cloth belt~
+a dirty cloth belt~
+A strip of cloth lies here.~
+~
+9 0 0 0 2049 5
+0~ 0~ 0~ 0~
+2 0 0 30 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 1
+E
+cloth belt~
+A long strip of material could be worn as a belt.
+~
+#4642
+wild flowers~
+a bunch of &pwild &Pf&pl&Oo&gw&pe&Or&Ps&W~
+&wA bunch of &pwild&P f&pl&Oo&gw&pe&Or&Ps&w grow here.~
+~
+8 2 0 0 1 1
+0~ 0~ 0~ 0~
+2 0 0 50 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+wild flowers~
+A lovely bunch of wild flowers, of all kinds.
+~
+#4643
+cone hat~
+&CA faded blue satin cone hat&G~
+&wA cone hat with chiffon attached to the tip stands here.~
+~
+9 64 0 0 17 10
+3~ 0~ 0~ 0~
+2 0 0 40 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 10
+E
+cone hat~
+A small cone hat, made of satin.
+~
+E
+chiffon~
+A lovely piece of chiffon is fastened to the end of the hat. It looks quite
+regal.
+~
+#4644
+bran flakes~
+some dried bran flakes~
+&OSome dried flakes lie scattered about here.~
+~
+19 0 0 0 1 1
+4~ 0~ 0~ 0~
+0 0 0 2 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bran flakes~
+&OA large handful of dried bran flakes.
+~
+#4645
+brown dress~
+&Oa simple brown dress&w~
+&OA simple brown dress has been left here.~
+~
+9 0 0 0 9 9
+0~ 0~ 0~ 0~
+1 0 0 8 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+brown dress~
+&OThe dress is very simply made, so as to save thread. Most of the stitching
+used is basting. It is quite small in size.
+~
+#4646
+moccasins pair~
+&Osome moccasins&w~
+A beaded pair of moccasins have been left here.~
+~
+9 0 0 0 65 9
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+14 10
+E
+pair moccasins~
+&OA soft-leather heelless shoe having its sole and sides made of one piece,
+whose edges are joined with a puckered seam to a U-shaped piece lying on 
+top of the foot.
+~
+E
+beaded~
+A lovely beaded pattern was once sewn into the top of these very comfortable-
+looking shoes. Unfortunately, you can't really tell what type of pattern it
+once was, as most of the beads have fallen off.
+~
+#4647
+stomach lining juice~
+a small stomach lining~
+A small stomach lining lies here.~
+~
+17 0 0 0 16385 1
+5~ 5~ 9~ 0~
+1 0 1 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+stomach lining~
+&wThe stomach lining looks quite gross. It is very small in size, and fits
+nicely into the palm of your hand. It is sealed with a drawstring made of
+some type of sinew.
+The lining is slimey and has a bit of &ggreen liquid&w in it.
+~
+E
+juice~
+&gA green juicy substance slimes the outside of this small stomach lining.
+~
+#4651
+feather pigeon~
+a pigeon's feather~
+A grey speckled pigeon's feather~
+~
+9 0 0 0 16385 5
+0~ 0~ 0~ 0~
+1 0 0 20 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 1
+E
+feather grey speckled~
+This feather used to belong to a starving poor scavenger, who once roamed
+the streets of the Serf Village.  Maybe you can make some use of this, since
+its owner is unable to now.  
+~
+#4688
+shovel~
+a shovel~
+A rusty shovel is placed in the dirt.~
+~
+5 256 0 0 8193 10
+0~ 0~ 0~ 7~
+2 0 0 30 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 10
+A
+19 17
+E
+shovel~
+A shovel to dig in the dirt, and perhaps cause a little damage.
+~
+#4690
+chains~
+&wChains~
+&wChains that glow with magic float here.~
+~
+9 1057 0 0 5 10
+0~ 0~ 0~ 0~
+2 0 0 50 0
+5 0
+bless~
+3 3
+0 0 0
+A
+4 1
+E
+chains~
+&wSome mysterious looking chains almost seem ethereal.
+~
+#4698
+epitaph~
+an Epitaph~
+A note seeming to be an epitaph is posted to the cross.~
+~
+13 0 0 0 0 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+epitaph~
+Timothy was a good boy.  He never did nothing to no one.  
+He lies in Heaven now. 
+R.I.P.
+~
+#0
+
+
+
+#ROOMDATA
+#4600
+Path To Villein Ville~
+You are walking down a dusty trail, beaten flat by many years of bare
+feet trodding over it.  There are fields all around you that are being
+worked on by undernourished serfs.
+~
+0 0 2
+Rd     0
+D0
+~
+gate~
+0 0 25014
+D2
+~
+~
+0 0 4601
+S
+#4601
+Path Through Villein Ville~
+The road you are on is made from dirt packed down over the years by the
+feet of villagers as they travel from home to fields and back again.  There
+are ruts throughout it and large pot holes that could be a danger if you are
+not careful.  To the east you notice the main part of the village.  The road
+continues north and south from here.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4600
+D1
+~
+~
+0 0 4641
+D2
+~
+~
+0 0 4602
+S
+#4602
+Path To Villein Ville~
+You are walking down a dusty trail, beaten flat by many years of bare
+feet trodding over it.  The fields to the north and south produce a pitiful
+looking crop, probably from over use.  The trail continues to the north and
+south.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4601
+D2
+~
+~
+0 0 4603
+S
+#4603
+Village Entrance~
+You are standing at the entrance to a very poor looking village.  As you
+look around you see lethargic children trying to hide from you and stay out
+of sight.  They are undernourished and dressed in rags.  Somewhere in the
+distance you can hear the painful scream of hunger from a small infant.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4602
+D2
+~
+~
+0 0 4604
+S
+#4604
+Path Through Villein Ville~
+The road you are on is packed dirt, pot holed and in general disrepair. 
+There are a few dead trees in the area, dried beyond hope of rejuvenation. 
+There seems to be some dirt huts to the west and the road continues north to
+south.  You are walking through what is obviously a serf village.  It seems
+the lord of these people shows very little concern for thier welfare as long
+as they make thier monthly tithe of crops.  The villagers tend to back
+hansen.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4603
+D2
+~
+~
+0 0 4620
+D3
+~
+~
+0 0 4605
+S
+#4605
+A Dusty Road~
+The road is dusty and filled with holes.  You see the carcass of a dead
+dog lying along one side of the road in the gutter.  At least you assume it
+was a dog. It is bone thin and maggots have started to consume what little
+flesh was on the carcass.  There are some old dirt huts to the west.  
+~
+0 0 2
+Rd     0
+E
+carcass~
+The fly blown maggot eaten carcass lies here stinking with festered flesh.
+~
+D1
+~
+~
+0 0 4604
+D3
+~
+~
+0 0 4606
+S
+#4606
+A Dusty Road~
+You are walking down a dusty, dirty pothole filled road.  Nothing grows
+in this barren area.  Gutters run down each side of the road and the smell
+being emitted from them is enough to turn the stomach of the strongest
+warrior, however it is nowhere near as bad as the smell coming from the
+south.  You can follow the road to the east or west or you can follow the
+awful stench to the south.  
+~
+0 0 2
+Rd     0
+E
+gutters~
+The gutters are filled with a green slime.
+~
+D1
+~
+~
+0 0 4605
+D2
+~
+~
+0 0 4607
+D3
+~
+~
+0 0 4608
+S
+#4607
+A Stinking Out-house~
+You are standing in a dirty smelly out-house.  There seems to be more
+flies in here than in all the outdoors.  A dirty wooden bench with about six
+holes in it provides a place for the villagers to relieve their weary legs
+and relieve themselves as well.  Judging by the stains on the floor,
+some don't really care where they go.  As you glance at the bench, a big
+black bug crawls up out of the hole and starts towards you.  
+~
+0 13 0
+Rd     0
+E
+benches~
+Wooden benches with holes that lead to a pit in the ground, provide the
+villagers or anyone who will subject themselves to sitting in filth.  The
+latrine is filthy and smells nauseating.  
+~
+D0
+~
+~
+0 0 4606
+S
+#4608
+A Dusty Road~
+You are standing before some huts made from packed and dried dirt with
+holes cut in for windows and thatch roofs made from reeds.  A small hole in
+the very center of the roof provides a way for smoke to escape the hut.  The
+huts do not seem to be much of a cozy home fit for anyone.  There is a torch
+burning at the door.  The road continues to the east and west from here.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4610
+D1
+~
+~
+0 0 4606
+D2
+~
+~
+0 0 4609
+D3
+~
+~
+0 0 4611
+S
+#4609
+A Dirt Hut~
+This hut is in worse condition that any of the others in the area.  The
+dirt walls are crumbling and the reed roof is almost non-existant.  A single
+bed has been dug out of the dirt floor and the dirty straw that fills it
+emits a very strong odor.  Whoever lives or use to live in this place does
+not seem to be able to look after themselves.  
+~
+0 13 0
+Rd     0
+E
+walls~
+The walls are crumbling down around you.
+~
+E
+roof~
+The reeds on the roof are almost non-existant.
+~
+E
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a bed.
+~
+D0
+~
+~
+0 0 4608
+S
+#4610
+A Dirt Hut~
+You are standing in the middle of a very poor looking hut.  The walls are
+constructed from pressed dirt and the roof provides little protection as the
+reeds barely cover the surface.  A spot has been left open to let smoke
+escape but you get the feeling firewood is as scarce as food around here. 
+The door is to the south.  
+~
+0 13 0
+Rd     0
+E
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a
+bed.  
+~
+E
+wall~
+The walls are made from dried mud.
+~
+D2
+~
+~
+0 0 4608
+S
+#4611
+A Dusty Road~
+You are standing before some huts made from packed and dried dirt with
+holes cut in for windows and thatch roofs made from reeds.  A small hole in
+the very center of the roof provides a way for smoke to escape the hut.  The
+huts do not look very comfortable at all, the road continues to the east and
+west from here.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4613
+D1
+~
+~
+0 0 4608
+D2
+~
+~
+0 0 4612
+D3
+~
+~
+0 0 4614
+S
+#4612
+A Dirt Hut~
+You are standing in the middle of a very poor looking hut.  The walls are
+constructed from pressed dirt and the roof provides little protection as the
+reeds barely cover the surface.  A spot has been left open to let smoke
+escape but you get the feeling firewood is as scarce as food around here. 
+There are three body sized holes dug into the floor and filled with dirty
+straw.  
+~
+0 13 0
+Rd     0
+E
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a
+bed.  
+~
+E
+hole~
+A hole in the roof provides an exit for the smoke from any fires that
+might be lit.  
+~
+E
+wall~
+The walls are made from dried mud.
+~
+D0
+~
+~
+0 0 4611
+S
+#4613
+A Dirt Hut~
+You are standing in the middle of a very poor looking hut.  The walls are
+constructed from pressed dirt and the roof provides little protection as the
+reeds barely cover the surface.  A spot has been left open to let smoke
+escape but you get the feeling firewood is as scarce as food around here. 
+There are three body size holes dug into the floor and filled with dirty
+straw.  Under the straw in one of the beds you see a tiny hand sticking out.
+Reaching down to feel it, you notice it is stone cold rigid.  
+~
+0 12 0
+Rd     0
+E
+wall~
+The walls are made from dried mud.
+~
+E
+hole~
+There are large holes in the roof which may be alright for letting the smoke
+out, but not for keeping out the cold or the rain and other elements.
+~
+E
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a
+bed.  
+~
+E
+hand~
+Judging from the color of the body you can see that it has been dead for
+several days now.  
+~
+D2
+~
+~
+0 0 4611
+S
+#4614
+A Dusty Road~
+You are standing before some huts made from packed and dried dirt with
+holes cut in for windows and thatched roofs made from reeds.  A small hole
+in the very center of the roof provides a way for smoke to escape the hut. 
+From behind one of the huts you see two big blue eyes watching you with
+curiosity, but they disappear as soon as they realize that they have been
+spotted.  The road continues to the east and west from here.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4616
+D1
+~
+~
+0 0 4611
+D2
+~
+~
+0 0 4615
+D3
+~
+~
+0 0 4617
+S
+#4615
+A Dirt Hut~
+You are standing in the middle of a very poor looking hut.  The walls are
+constructed from pressed dirt and the roof provides little protection as the
+reeds barely cover the surface.  A spot has been left open to let smoke
+escape but you get the feeling firewood is as scarce as food around here. 
+There are 3 body size holes dug into the floor and filled with dirty straw. 
+Upon closer inspection you realize that these are beds.  A broken wooden
+crate serves as a table and there are no chairs at all in the place.  
+~
+0 9 0
+Rd     0
+E
+hole~
+A hole in the ceiling of the hut allows fire-smoke to escape.
+~
+E
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a
+bed.  
+~
+E
+wall~
+The walls are made from dried mud.
+~
+E
+crate~
+An old wobby stack of crates is here.
+~
+D0
+~
+~
+0 0 4614
+S
+#4616
+A Dirt Hut~
+You are standing in the middle of a very poor looking hut.  The walls are
+constructed from pressed dirt and the roof provides little protection as the
+reeds barely cover the surface.  A spot has been left open to let smoke
+escape but you get the feeling firewood is as scarce as food around here. 
+There are three body sized holes dug into the floor and filled with dirty
+straw.  Upon closer inspection you realize that these are beds.  A broken
+wooden crate serves as a table and there are no chairs at all in the place. 
+On the floor in the middle of the room lies a tattered old doll that some
+poor child lost.  
+~
+0 9 0
+Rd     0
+E
+crate~
+The crate is old and wobbly.
+~
+E
+wall~
+The walls are made from dried mud.
+~
+E
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a
+bed.  
+~
+E
+walls~
+The walls are made from dried mud.
+~
+E
+doll~
+An old tattered doll lays in a heap on the floor.
+~
+D2
+~
+~
+0 0 4614
+S
+#4617
+A Dusty Road~
+You are standing before some huts made from packed and dried dirt with
+holes cut in for windows and thatch roofs made from reeds.  A small hole in
+the very center of the roof provides a way for smoke to escape the hut.  You
+have gone about as far as you can on the road.  A small river of muck and
+goo flows by and the stench of it is so bad, it almost makes you gag.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4619
+D1
+~
+~
+0 0 4614
+D2
+~
+~
+0 0 4618
+S
+#4618
+A Dirt Hut~
+You are standing in the middle of a very poor looking hut.  The walls are
+constructed from pressed dirt and the roof provides little protection as the
+reeds barely cover the surface.  A spot has been left open to let smoke
+escape but you get the feeling firewood is as scarce as food around here. 
+There are three body sized holes dug into the floor and filled with dirty
+straw.  Upon closer inspection you realize that these are beds.  A broken
+wooden crate serves as a table and there are no chairs at all in the place. 
+Oddly enough through the poverty and sadness of the area someone has found
+time to plant and nurture a single daisy in a old dented pot which sits in
+the hole in the wall they call a window.  You can see from the instruments
+that lie around, that this is the home of a medicine man.  
+~
+0 13 0
+Rd     0
+E
+daisy~
+A single daisy grows in an old dented pot.  It sits in the window and is
+lovingly cared for.  In all this poverty and sadness it adds a slight touch
+of cheer.  
+~
+E
+walls~
+The walls are made from dried mud.
+~
+E
+reeds~
+The roof is thatched with reeds.
+~
+E
+crate~
+The crate is old and wobbly.
+~
+E
+roof~
+The roof is thatched with reeds.
+~
+D0
+~
+~
+0 0 4617
+S
+#4619
+A Dirt Hut~
+You are standing in the middle of a very poor looking hut.  The walls are
+constructed from pressed dirt and the roof provides little protection as the
+reeds barely cover the surface.  A spot has been left open to let smoke
+escape but you get the feeling firewood is as scarce as food around here. 
+There are three body size holes dug into the floor and filled with dirty
+straw.  Upon closer inspection you realize that these are beds.  A broken
+wooden crate serves as a table and there are no chairs at all in the place. 
+The only light comes into the room through the hole cut into the wall.  
+~
+0 9 0
+Rd     0
+E
+crate~
+The crate is old and wobbly.
+~
+E
+wall~
+The walls are made from dried mud.
+~
+E
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a bed.
+~
+E
+roof~
+The thatched roof is made from reeds.  
+~
+D2
+~
+~
+0 0 4617
+S
+#4620
+Path Through Villein Ville~
+The road you are on is packed dirt, pot holed and in general disrepair. 
+There are a few dead trees in the area, dried beyond hope of rejuvenation. 
+You are walking through what is obviously a serf village.  It seems the lord
+of this area does not take his duty to protect his serfs very seriously. 
+The road continues north and south from here.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4604
+D2
+~
+~
+0 0 4621
+S
+#4621
+Villein Ville Town Square~
+You are in the Villein Ville town square.  Although a fair size, the
+square is run down and dirty.  It seems that no one in the village has the
+will or the desire to look after the place.  The flag stones under your
+feet, once laid with loving hands, have been worn smooth over the years.  In
+spots they are stained with a deep redish brown and you wonder if
+maybe an execution or two has not taken place here.  You can follow the
+square to the east and south or there is a road leading north. A sign is  
+posted here.
+~
+0 4 2
+Rd     0
+E
+sign~
++--------------------------------------------------------------+
+| Enter at your own risk!  This area has been quarteened by    |
+| the council of Bethaven.  Those with in these confines are   |
+| sick, and transmute deadly disease.  There is NO cure for    |
+| these victims, so let them die in peace.                     |
+|                                                              |
+|                                 Gumba, Minister of Health    |
++--------------------------------------------------------------+
+ 
+~
+E
+flagstones~
+The flagstones are worn and smooth.
+~
+D0
+~
+~
+0 0 4620
+D1
+~
+~
+0 0 4622
+D2
+~
+~
+0 0 4624
+S
+#4622
+Villein Ville Town Square~
+You are in the Villein Village square. Although a fair size, the square is
+run down and dirty.  It seems that no one in the village has the will or the
+desire to look after the place.  The flag stones under your feet, once laid
+with loving hands, have been worn smooth over the years.  In spots they are
+stained with a deep reddish brown and you wonder if maybe an execution or two
+has not taken place here.  In the center of the square is a small well with
+a wooden scoop attached to a bucket on a pulley.
+~
+0 0 2
+Rd     0
+E
+stain~
+The stains are redish brown....blood maybe?
+~
+E
+flagstones~
+The flagstones are worn and smooth.
+~
+D2
+~
+~
+0 0 4623
+D3
+~
+~
+0 0 4621
+S
+#4623
+Villein Ville Town Square~
+You are in the Villein Village, Although a fair size the square is run
+down and dirty.  It seems that no one in the village has the will or the
+desire to look after the place.  The flag stones under your feet, once laid
+with loving hands, have been worn smooth over the years.  Some spots are
+stained with a deep reddish brown and you wonder if maybe an execution or
+two has not taken place here.  Small children with big eyes and bloated
+stomaches run past you, fear evident in their eyes.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4622
+D1
+~
+~
+0 0 4626
+D2
+~
+~
+0 0 4627
+D3
+~
+~
+0 0 4624
+S
+#4624
+Villein Ville Town Square~
+You are in the Villein Village square, Although a fair size the square is
+run down and dirty.  It seems that no one in the village has the will or the
+desire to look after the place.  The flag stones under your feet, once laid
+with loving hands, have been worn smooth over the years.  In spots they are
+stained with a deep reddish brown and you wonder if maybe an execution or
+two has not taken place here.  Looking around you see some mangy dogs run
+across the square.  You notice an old dirt road leading west away from the
+square.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4621
+D1
+~
+~
+0 0 4623
+D2
+~
+~
+0 0 4665
+D3
+~
+~
+0 0 4625
+S
+#4625
+On An Old Dirt Road~
+You are on an old dusty dirt road.  The dust that rises from the arid
+soil rises up to choke you as you walk.  There is little vegetation around
+the road except for a few bramble bushes.  You can continues east or west
+from here.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4624
+D3
+~
+~
+0 0 4628
+S
+#4626
+Grimes Foods~
+You are in the village general store, it is a small shack made from wood
+and dried mud.  There is little to buy and what there is in the store, most
+can't afford.  There are shelves that reach from floor to ceiling but almost
+all of them are bare and dusty.  The store is in sorry shape due to the fact
+that anything over and above their daily needs must be given to the Lord of
+the area.  
+~
+0 12 0
+Rd     0
+E
+shelves~
+The shelves are bare.
+~
+D3
+~
+~
+0 0 4623
+S
+#4627
+Abandoned Store~
+This used to be a store at one time, when the land was ruled by a more
+fair lord. Now it is not much more than an empty shell, full of cobwebs
+and spiders. Numerous shelves sit empty all over the room, the dust on
+them so thick you can draw in it. The floor is nothing more then packed
+dirt and the walls of the store are made from dried mud.
+~
+0 13 0
+Rd     0
+D0
+~
+~
+0 0 4623
+S
+#4628
+On An Old Dirt Road~
+You are travelling down a dusty old dirt road.  Some prickle bushes line
+the road and offer little in the way of color to the drab area.  The dust
+that rises from the dirt invades your lungs as you walk making it difficult
+to breathe.  A ways off to the west you notice what seems to be a graveyard. 
+~
+0 4 2
+Rd     0
+D1
+~
+~
+0 0 4625
+D3
+~
+gate~
+3 0 4629
+S
+#4629
+A Graveyard~
+There are many weeds growing around and on top of the graves which make
+it hard to see where one begins and one ends.  Plus the wooden crosses don't
+help matters at all.  In this town so many people drop dead like flies that
+it is getting quite crowded in here.  
+~
+0 0 2
+Rd     0
+D1
+~
+gate~
+3 0 4628
+D3
+~
+~
+0 0 4633
+S
+#4630
+Serf Graveyard~
+The trees grow in a disarray here.  You can see from this fact that this
+graveyard wasn't too well planned out nor was there much capital to make it
+a nice tended eternal rest area.  There are many crows flying around in the
+trees and the trees themselves are threadbare and devoid of leaves.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4633
+D2
+~
+~
+0 0 4635
+D3
+~
+~
+0 0 4631
+S
+#4631
+Serf Graveyard~
+The graves around you here seem to be fresh ones as it is just newly
+packed dirt.  The death rate in this town is very high.  The young ones
+aren't expected to live long as the want for food increases.  There is a
+fresh bouquet of wild flowers placed at the head of the grave.  There is a
+note placed on the cross.  It seems to be an epitaph.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4632
+D1
+~
+~
+0 0 4630
+D2
+~
+~
+0 0 4634
+S
+#4632
+The serf Graveyard~
+The grounds you have entered stink of poverty and death as the whole of
+the serf village does and from the crosses crudely fashioned from pieces of
+wood you can see that it is a cemetary.  There are trees that hang darkly
+all around the graves.  Weeds grow rampantly and shamelessly.  The cemetary
+has a kind of road in between the graves and you see that it continues south
+and east.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4633
+D2
+~
+~
+0 0 4631
+S
+#4633
+Serf Graveyard~
+You try not to breathe in the putrifaction that seems to waft out from
+the graves.  You can judge from the smells that coffins weren't used to seal
+the bodies.  The dark dirt of the graves stink with decay.  The weeds seem
+to thrive on the death.  The path continues to the south and west, the
+graves scattered all around.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4629
+D2
+~
+~
+0 0 4630
+D3
+~
+~
+0 0 4632
+S
+#4634
+Serf Graveyard~
+This section of the grave has many graves dug for the certain bodies that
+are to arrive.  This place seems more isolated than the rest of the cemetary
+if that's possible.  The wind seems to pick up speed in this corner.  The
+unruly graves continue all around and the so-called trail leads north and
+east.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4631
+D1
+~
+~
+0 0 4635
+S
+#4635
+Serf Graveyard~
+The serfs are very poor and they can't afford to have a proper burial
+with proper tombstones.  The serfs buried here have crosses made of wood
+placed at the head.  Wildflowers grow here and there and there are weeds
+rampant all around the tombstones.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4630
+D3
+~
+~
+0 0 4634
+S
+#4641
+Entrance to the Dump~
+You sense your nostrils are about to take a cruise aboard a ship called
+putrid.  You have come to the entrance to the dump, where all that once was
+comes to die and naturally decompose.  Of course, a little raw sewage never
+hurt anyone, now has it?  There is a &Gsign&c here welcoming all those who enter
+the dump.  
+~
+0 4 2
+Rd     0
+E
+sign~
++-----------------------------+
+| Welcome to the DUMP         |
+|                             |
+| Scavengers will be          |
+| prosecuted on sight, by     |
+| order of the mayor!         |
++-----------------------------+
+ 
+~
+D1
+~
+~
+0 0 4643
+D3
+~
+~
+0 0 4601
+S
+#4642
+The Dog-house~
+You have entered the home of the junk-yard dog.  There is a small wooden
+house made for it to sleep in and a small eartherware bowl filled with
+remnants of last nights unsightly meal.  You see many dogs all around you
+but they don't seem to be the one you should fear.  You see paw prints of a
+bigger dog.  
+~
+0 0 2
+Rd     0
+D2
+~
+~
+0 0 4643
+S
+#4643
+The Dump Road~
+Papers blow past you like tumbleweed, the sight and smell of this place is
+quite horrid.  It's not a very pleasant view, to say the least.  Further
+off to the east, a massive pile of trash rises into the crimson sky.  You
+can hear yelling and bickering over who found what first, and hope you do
+not encounter such haggling.  You can travel south through a large mass of
+debris, if you so desire; it is not, however, advised.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4642
+D1
+~
+~
+0 0 4644
+D2
+~
+~
+0 0 4658
+D3
+~
+~
+0 0 4641
+S
+#4644
+The Dump Road~
+You now follow a trail of what looks like a cross between sludge and
+urine, with a touch of coagulating blood; not a pleasant sight.  As though
+the sight of it all wasn't enough, you have to deal with the smell.  A trail
+has been cleared to the south which encircles a massive trash heap.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4645
+D2
+~
+~
+0 0 4661
+D3
+~
+~
+0 0 4643
+S
+#4645
+The Dump Road~
+You continue along this unsightly dump, continually amazed at how
+everyone seems to enjoy it here.  Scavengers rush about searching
+desperately for items that can be sold to others.  It seems like such a
+waste of time, and a disgusting activity, that you have no desire to rummage
+through the waste.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4646
+D3
+~
+~
+0 0 4644
+S
+#4646
+Intersection on the Dump Road~
+Looking down you notice a massive sewage grate that probably is the
+source of all the sludge that flows along with muddy rain water.  Taking a
+deep breath you nearly collapse from the smell of methane that penetrates
+into your system.  The trail through the dump continues east and west and
+you can see two lesser paths to the north and south.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 4647
+D1
+~
+~
+0 0 4651
+D2
+~
+~
+0 0 4655
+D3
+~
+~
+0 0 4645
+S
+#4647
+Path of Debris~
+It is obvious to you, by your marvelous gift of perception, that this is
+a dump.  You can tell this by the multitude of various objects thrown about
+in a disorderly fashion and the terrible stench that is emitted from the
+ground and general vicinity.  This however is only known by the wisest
+adventurers.  To the west is a battered old shack, and a sign stands
+directly in front of you.  
+~
+0 0 2
+Rd     0
+E
+sign~
+The sign reads:
+Dumpmaster's Office
+&R<------------------
+~
+D0
+~
+~
+0 0 4648
+D2
+~
+~
+0 0 4646
+D3
+~
+door~
+3 0 4650
+S
+#4648
+Path of Debris~
+The small path turns off to the west, directly into more of this hideous
+wasteland.  Garbage is piled nearly a mile high all about you, and you begin
+to worry about it's stability.  At the top you see a rather large tin-can
+that is precariously placed to say the least.  Better move quick before that
+can comes toppling down on your crown.  
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 4647
+D3
+~
+~
+0 0 4649
+S
+#4649
+Dead End~
+This "Dead End" brings new meaning to the words "Dead End", for you find
+the dump to be more like a mortuary than a dump.  The smell of decaying
+bodies filters through-out the air stunning you briefly.  A voice echoes off
+into the distant but is muffled in your dizzy state.  You can go no further,
+for you'd surely be knocked out from all the noxious gases forming about.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4648
+S
+#4650
+Slagmuler's Sludgehouse~
+You have entered the home of the dump-master.  He seems to be your
+typical man on the job.  Boxes pile up in the one corner, while milk goes
+bad on the wooden table.  A piece of meat grows all sorts of wonderful
+fungus and apple cores and peach pits seems to stimulate the rat population.
+A corner where feces-stained clothing lies, produce the most fetid aroma.  
+~
+0 9 0
+Rd     0
+D1
+~
+door~
+3 0 4647
+S
+#4651
+The Dump Road~
+To the north and south vast quantities of garbage pile up to no end,
+making passage impossible.  A wild selection has been dumped here,
+everything from silver-plate armor with broken hinges to old boot-laces to
+rotting food and waste disposal.  It's a terrible sight.  It's a terrible
+smell.  You are having a bad day.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4652
+D3
+~
+~
+0 0 4646
+S
+#4652
+Intersection on Dump Road~
+This is definately not a *ahem* "fine establishment".  To the east, you
+see what looks to be a trading post, owned and operated by a rather large
+ogre.  As your gaze turns to the south you can see the competition; a
+brutally ugly female, at least you think she's female.  You will surely find
+the best junk in the whole world in either of the two stores.  
+~
+0 0 2
+Rd     0
+D1
+~
+~
+0 0 4653
+D2
+~
+~
+0 0 4654
+D3
+~
+~
+0 0 4651
+S
+#4653
+Egre's Imper Eum~
+Etched in the stone wall with a blade you see the name of this store. 
+It's obvious that the owner is very proud of himself for spelling it out,
+and for even thinking of putting it there with his massive blade in the
+first place.  Drool piles up in on the counter and vermits infest the
+ground.  Egre's "Imper Eum" is open for business!  
+~
+0 2098185 0
+Rd     0
+D3
+~
+~
+0 0 4652
+S
+#4654
+Stump's Trading Post~
+Perhaps it's the fact that you find stores within a dump, or maybe that
+the store owners continuously seem to have a brain the size of a pea,
+whatever it is you will never allow yourself to get used to the the filthy
+stench everywhere!  Stump's store seems a little more organized at any rate. 
+This store is rat free.  
+~
+0 1033 0
+Rd     0
+D0
+~
+~
+0 0 4652
+S
+#4655
+Trail of Trash~
+You continue to trudge throughout the dump gasping for breath and
+commenting to yourself about how much you would rather be elsewhere.  To
+the north you spy the main intersection, further south the stink gets worse.
+The ground here is soft and mushy due to the juicy run-off produced from a
+massive pile of trash just west of you.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4646
+D2
+~
+~
+0 0 4656
+S
+#4656
+Trail of Trash~
+Your feet become packed with mud making your travels more difficult to
+say the least.  A small alcove can been seen to the east, and the path
+continues further to the south.  Large piles of rotting wastes arise west of
+you.  You can make your way to and out of here by just smelling the air.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4655
+D1
+~
+~
+0 0 4657
+D2
+~
+~
+0 0 4664
+S
+#4657
+Alcove of Trash~
+You find yourself pitted within a large amount of trash.  You notice
+rodents move slowly throughout the lost papers and tin-cans, then suddenly
+a massive roar comes from underneath the pile.  Perhaps you should run away
+now!  
+~
+0 0 2
+Rd     0
+D3
+~
+~
+0 0 4656
+S
+#4658
+Amongst the Trash~
+You are now trudging through about two feet of garbage.  Wading about
+like a madman, your mouth is filled with a terrible taste.  This is
+certainly not a walk in the park.  You feel small animals race past your feet
+sending shivers throughout your body.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4643
+D2
+~
+~
+0 0 4659
+S
+#4659
+Amongst the Trash~
+The trash lightens a little to the east, in fact, a trail of sorts seems
+to be eminent.  You are continually creeped out by the scampering of small
+furry creatures that move about, nibbling on the trash, and your lower body
+parts.  The dump seems to be completely void of visible life, as well as
+magic.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4658
+D1
+~
+~
+0 0 4660
+S
+#4660
+Trail of Trash~
+Looking high up you can barely see the top of the massive trash heap to
+the east.  It looks as though children from the village dare to climb all
+the way to the top, then tumble down with great speed.  The thought of even
+setting foot in that disaster area quakes your weak body.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4661
+D2
+~
+~
+0 0 4662
+D3
+~
+~
+0 0 4659
+S
+#4661
+Trail of Trash~
+A large mound of decaying waste rises to the east.  Rats scurry madly
+about while you fear for the worst.  Everything looks the same around here,
+perhaps you are lost.  For a brief moment you contemplate talking to one of
+the many scavengers searching about, then you quickly gain your senses.  The
+main path is directly to the north.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4644
+D2
+~
+~
+0 0 4660
+S
+#4662
+Trail of Trash~
+The trail takes a small bend here, leaving the heap to stagnant off to
+your north-east.  You watch closely as creatures sort through the trash
+looking for anything that may be valuable.  You find it hard to fathom how
+anyone could find anything of use here.  
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 4660
+D1
+~
+~
+0 0 4663
+S
+#4663
+Trail of Trash~
+You will never get used to that awful smell that leaks into through your
+armor.  It's become an obsession to find a safe route out of this madman's
+land.  Your collar chokes with displeasure as you wonder aimlessly about.  
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 4664
+D3
+~
+~
+0 0 4662
+S
+#4664
+Trail of Trash~
+A crudge smell of rotting produce enters your nose turning your stomach. 
+It's obvious that you are not the first to lose their lunch here, for
+serveral piles of substance lie all about.  Everyone seems to be rather
+immune to this, however you cannot fathom how one could ever become used to
+something so foul.  
+~
+0 0 2
+Rd     0
+D0
+~
+~
+0 0 4656
+D3
+~
+~
+0 0 4663
+S
+#4665
+Path out of Serf Village~
+You have entered into some rather dense forest.  The trail still exists,
+however it's usage has obviously declined greatly.  Sounds of many
+forms of creatures echo throughout the land, and you stride onward
+delving deeper into the forest.
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 4624
+D2
+~
+~
+0 0 9594
+S
+#4699
+Outside The Lords Estate~
+The grounds here consist of well a kept large lawn, trimmed to
+perfection.  Perfectly pruned flowers line each side of the walk that leads
+to the estates main building.  Looking around you can catch glimpses of
+servants descretely going about their daily chores just outside of your
+view.  The building itself is at least three stories high with large bay
+windows on the main floor and balconies outside the upper story windows. 
+Flowering vines grow up the building adding a splash of color to the pure
+white building.  
+~
+0 4 0
+Rd     0
+S
+#0
+
+
+
+#SPECIALS
+M 4600 spec_guard
+M 4604 spec_janitor
+M 4609 spec_guard
+M 4610 spec_thief
+M 4616 spec_poison
+M 4621 spec_fido
+S
+
+
+
+#RESETS
+M 0 4600 10 4600
+E 0 4600 0 11
+E 0 4601 0 12
+M 0 4600 10 4602
+E 0 4601 0 12
+E 0 4602 0 6
+M 0 4600 10 4604
+E 0 4602 0 6
+E 0 4603 0 16
+M 0 4600 10 4606
+E 0 4603 0 16
+E 0 4604 0 1
+M 0 4602 1 4607
+E 0 4609 0 9
+M 0 4601 5 4607
+O 0 4607 0 4607
+M 0 4600 10 4608
+E 0 4604 0 1
+E 0 4605 0 13
+M 0 4605 2 4609
+E 0 4614 0 5
+E 0 4615 0 18
+M 0 4600 10 4610
+E 0 4605 0 13
+E 0 4613 0 14
+M 0 4603 2 4610
+E 0 4610 0 7
+M 0 4601 5 4611
+E 0 4635 0 5
+M 0 4601 5 4612
+E 0 4635 0 5
+M 0 4603 2 4612
+E 0 4610 0 7
+M 0 4605 2 4613
+E 0 4615 0 18
+E 0 4616 0 20
+O 0 4636 0 4613
+M 0 4600 10 4614
+E 0 4613 0 14
+E 0 4612 0 17
+M 0 4604 7 4617
+E 0 4611 0 20
+E 0 4612 0 17
+M 0 4614 1 4618
+G 0 4637 0
+M 0 4606 1 4618
+M 0 4615 1 4619
+E 0 4638 0 5
+M 0 4600 10 4620
+E 0 4612 0 17
+E 0 4605 0 13
+M 0 4621 5 4621
+G 0 4651 0
+M 0 4601 5 4621
+E 0 4606 0 5
+M 0 4621 5 4622
+G 0 4651 0
+M 0 4621 5 4623
+G 0 4651 0
+M 0 4621 5 4624
+G 0 4651 0
+M 0 4621 5 4625
+G 0 4651 0
+M 0 4601 5 4625
+E 0 4619 0 3
+E 0 4616 0 20
+M 0 4607 1 4626
+E 0 4645 0 5
+E 0 4646 0 12
+G 0 4639 0
+G 0 4644 0
+G 0 4647 0
+M 0 4616 2 4627
+M 0 4600 10 4628
+E 0 4641 0 17
+M 0 4600 10 4630
+E 0 4688 0 20
+O 0 4698 0 4631
+M 0 4635 2 4633
+M 0 4635 2 4635
+E 0 4690 0 4
+O 0 4642 0 4635
+M 0 4608 1 4642
+E 0 4620 0 23
+E 0 4621 0 3
+M 0 4609 3 4646
+E 0 4622 0 5
+E 0 4623 0 11
+E 0 4624 0 20
+O 0 4608 0 4646
+O 0 4634 0 4648
+M 0 4611 1 4650
+E 0 4601 0 12
+E 0 4629 0 20
+E 0 4630 0 5
+M 0 4613 1 4653
+G 0 4631 0
+G 0 4633 0
+G 0 4630 0
+M 0 4612 1 4654
+G 0 4631 0
+G 0 4632 0
+G 0 4634 0
+E 0 4630 0 5
+M 0 4610 8 4657
+E 0 4625 0 16
+E 0 4626 0 8
+E 0 4628 0 20
+O 0 4627 0 4657
+O 0 4643 0 4660
+O 0 4632 0 4663
+S
+
+
+
+#SHOPS
+4607 19 17 0 0 0 120 50 0 23
+4612 0 9 0 0 0 100 60 0 24
+4613 0 9 0 0 0 80 60 0 22
+0
+
+
+
+#$

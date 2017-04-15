@@ -1,0 +1,31 @@
+#define ITEM_GLOW		      1		/*	1	*/
+#define ITEM_HUM		      2
+#define ITEM_DARK		      4
+#define ITEM_LOCK		      8
+#define ITEM_EVIL		     16
+#define ITEM_INVIS		     32
+#define ITEM_MAGIC		     64
+#define ITEM_NODROP		    128
+#define ITEM_BLESS		    256
+#define ITEM_ANTI_GOOD		    512		/*	10	*/
+#define ITEM_ANTI_EVIL		   1024
+#define ITEM_ANTI_NEUTRAL	   2048
+#define ITEM_NOREMOVE		   4096
+#define ITEM_INVENTORY		   8192
+#define ITEM_POISONED             16384
+#define ITEM_DWARVEN              32768
+#define ITEM_FREE_FLAG_2          65536
+#define ITEM_FREE_FLAG_3          131072
+#define ITEM_FREE_FLAG_4        262144
+#define ITEM_FREE_FLAG_5           524288		/*	20	*/
+#define ITEM_FREE_FLAG_6         1048576
+#define ITEM_FREE_FLAG_7        2097152
+#define ITEM_FREE_FLAG_8       4194304
+#define ITEM_FREE_FLAG_9          8388608
+#define ITEM_FREE_FLAG_10         16777216
+#define ITEM_FLAME             33554432
+#define ITEM_CHAOS             67108864
+#define ITEM_NO_LOCATE		(cc)
+#define ITEM_NO_DAMAGE          (dd)
+#define ITEM_PATCHED            (ee)
+#define ITEM_ICY                (bb)

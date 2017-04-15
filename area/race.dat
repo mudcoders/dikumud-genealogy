@@ -1,0 +1,107 @@
+VNum       0
+Race_Full  Human~
+Race_Name  Hum~
+END
+VNum       1
+Race_Full  Elf~
+Race_Name  Elf~
+MInt       1
+MCon       -1
+END
+VNum       2
+Race_Full  Dwarf~
+Race_Name  Dwa~
+MInt       -2
+MCon       2
+END
+VNum       3
+Race_Full  Pixie~
+Race_Name  Pix~
+MStr       -2
+MDex       2
+END
+VNum       4
+Race_Full  Halfling~
+Race_Name  Hlf~
+MWis       -2
+MDex       2
+END
+VNum       5
+Race_Full  Drow~
+Race_Name  Drw~
+MStr       -1
+MDex       1
+END
+VNum       6
+Race_Full  Elder~
+Race_Name  Eld~
+MStr       -3
+MWis       3
+END
+VNum       7
+Race_Full  Ogre~
+Race_Name  Ogr~
+MStr       3
+MInt       -3
+END
+VNum       8
+Race_Full  Lizardman~
+Race_Name  Liz~
+MDex       -2
+MCon       2
+END
+VNum       9
+Race_Full  Demon~
+Race_Name  Dem~
+MWis       -4
+MCon       4
+END
+VNum       10
+Race_Full  Ghoul~
+Race_Name  Ghl~
+MStr       2
+MInt       -1
+MWis       -1
+MDex       -1
+MCon       1
+END
+VNum       11
+Race_Full  Illithid~
+Race_Name  Ill~
+MStr       -3
+MInt       3
+MWis       2
+MCon       -2
+END
+VNum       12
+Race_Full  Minotaur~
+Race_Name  Min~
+MStr       1
+MWis       2
+MDex       -4
+MCon       1
+END
+VNum       13
+Race_Full  Troll~
+Race_Name  Tro~
+MInt       -1
+MWis       -1
+MDex       -2
+MCon       4
+END
+VNum       14
+Race_Full  Shadow~
+Race_Name  Shd~
+MInt       -2
+MDex       2
+END
+VNum       15
+Race_Full  Tabaxi~
+Race_Name  Tbx~
+MStr       1
+MInt       -2
+MWis       -2
+MDex       2
+MCon       1
+END
+#END

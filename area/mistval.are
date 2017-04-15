@@ -1,0 +1,6274 @@
+#AREADATA
+Name        {??-???} Lairich~
+Levels      0 0
+Builders    Isabo Dolguard~
+VNUMs       22101 22325
+Security    98
+Recall      25001
+Flags       16
+Color       6
+Sounds      &zThe dark mists seep &Rbloodlessly &zinto your soul....~
+End
+
+
+
+#MOBILES
+#22101
+Alreha~
+&WAlreha~
+&W Alreha &zis here watching you closely.
+~
+You see a beautiful woman who has chosen the path of a warrior.  She is
+holding a sword with fresh blood dripping from it, obviously from a foe who
+challenged her earlier 
+~
+67 134234240 16 200 S
+100 0 0 19600d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+>greet_prog 100~
+If isimmort($n)
+   say &R Welcome to the Lairich Entrance Immortal,  
+   say &R You are &Galways&R welcomed here.
+   break
+endif
+if isgood($n)
+   say &W Welcome &G$n&W to the Misty Valley of the Lairich
+   say &W My name is &GAlreha&W, I am the &Rguardian&W of this area.
+   say &W If you have &Rany questions&W regarding this area 
+   say &W please feel free to ask me.
+   break
+else
+   if sex($n) == 2
+      bow $n
+      say &R Welcome lady $n, to the Misty Valley of the Lairich
+      say &R Thou hath chosen the path of Evil.  Change thy path 
+      say &R and join me in the battle against evil.
+   else
+      Yell &G Forces of Evil begone , Goodness shall prevail.
+      say &R DIE!!  There is no place here for those who follow the
+      say &R path of evil.  Now you shall DIE by my hands.
+      mpkill $n
+   endif
+endif
+~
+>speech_prog p criminal~
+say &R Oh yes, there were nobody to enforce the laws and as long as you had
+say &R money you could pass the blame on someone else.
+~
+>speech_prog p guilty~
+say &B Guilty or not they were sent here, alot of these wommen were not
+say &B guilty but because rich men needed to get rid of them they were
+say &B sent here for something they didn't commit.
+~
+>speech_prog advanced~
+say &G Oh yeah, the civilizations started to beleive that stricter 
+say &G rules needed to be made to prevent overcrowding in prisons.
+~
+>speech_prog laws~
+say &Y Yes new laws was passed on, one of these laws was to kill the
+say &Y person in the act.  Meaning that if he was caught stealing he
+say &Y would be killed on the spot and would not be given a chance for
+say &Y trial.
+~
+>speech_prog p mist~
+say  Yeah, I still can't explain how a mist can stay in one area for so
+say  long.  There could be an evil force at work here, I would go in to
+say investigate, but my &Rduty&W is at the entrance.
+~
+>speech_prog p duty~
+strut
+say &w Yep your talking to a lady who's been serving here for 100 years.
+say &w I fought 699 monsters and vanquished all of them.
+~
+>fight_prog 70~
+kick
+punch
+disarm
+get all
+~
+|
+#22102
+Enchanted Guard~
+&wAn Enchanted guard&R~
+&BAn Enchanted guard walks around in a hypnotic state.&X
+~
+You see before you what seems to be a soldier from the looks of his
+attire.  He is wearing a &bnavy blue uniform &Gwith gold lapels in the
+front.  From the look in his eyes you know he is not himself.  He carries
+with him a sharp wooden spear and he charges at you but in his eyes and his
+face there is no perception.  
+~
+97 8424 327696 100 S
+95 0 0 30000d0+0 0d0+0
+500 0 0 0
+0 0 1
+3 0 0
+>fight_prog 60~
+say &R Weapon BEGONE.
+disarm
+~
+>death_prog 100~
+say &R Next time you shall not be so lucky.
+~
+|
+#22103
+Misty Witch ~
+A Misty Queen of the Lairich.~
+The Misty Queen of the Lairich is ready to have you for dinner.
+~
+~
+67 67190954 0 500 S
+105 0 0 26500d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#22105
+Mad Woman~
+A Mad Woman~
+A Mad Woman screams hysterically.
+~
+~
+99 134217920 196624 0 S
+95 0 0 32001d0+0 0d0+0
+0 0 0 0
+0 0 2
+2051 0 0
+>fight_prog 20~
+emote grabs a hold of your head and yanks HARD bringing tears to your eyes.
+stun $n
+~
+>all_greet_prog 80~
+if ispc($n) == 1
+     emote looks up with mad eyes.
+     drool self
+     cackle
+endif
+~
+|
+#22110
+deer~
+&OThe deer&w~
+&OA sleek deer with shiny fur jumps around here.
+~
+~
+193 192 327696 300 S
+60 0 0 8000d0+0 0d0+0
+0 0 1000 0
+0 0 0
+2 0 0
+>fight_prog 30~
+emote looks into your eyes fearfully wails.
+punch $n
+~
+>all_greet_prog 100~
+emote looks up at $n startled.
+~
+|
+#22125
+tree~
+&zA tall bent tree&w~
+&zA tall tree with gnarled branches laughs mercilessly at you.
+~
+~
+199 104 16 -50 S
+90 0 0 25000d0+0 0d0+0
+0 0 1000 0
+0 0 0
+3 0 0
+#22132
+evil step sister~
+The Evil Step Sister~
+&WThe Evil Step sister leers haughtily at you.
+~
+&wHere sits the evil step sister, the true scion of the evil step mother.
+She knows nothing of the harshness of the world due to such blatant spoiling
+and succoring of their mother.  The only thing she does know is herself. 
+She glares at you and throws a tantrum when she sees you.  
+~
+2275 34603072 163840 -100 S
+95 0 0 25000d0+0 0d0+0
+30000 0 0 0
+0 0 2
+10369 0 0
+#22134
+evil step mother~
+The Evil Stepmother~
+The Evil Stepmother taps her foot impatiently at what you haven't done yet.
+~
+&wYou see before you the epitome of the evil step mother.  She is haughty
+and evil all at once and you know if she were to be your step mother, you'd
+rather not have one.  She is wearing the finest clothes and she nags at you
+and threatens you with a beating unless you do what she asks of you.  And
+from the looks of her you know it will not be a simple task she sets before
+you.  She sits at her bed lazily and is filing her nails with a crude nail
+file with a golden handle.  
+~
+67 67109096 65584 -100 S
+98 0 0 30000d0+0 0d0+0
+30000 1000 0 0
+0 0 2
+18435 0 0
+#22140
+Mist creature~
+&zThe Mist Creature~
+&wThe Mist solidifies to smother you in its embrace of death..
+~
+&zAs you push your way further into the mist, it solidifies into a huge
+solid mass and it becomes the strangest looking phenomenon cause it is hard
+to describe and believe that such a thing can occur.  It is translucent and
+you can see right through it.  You know it is leering at you as it attacks
+you.  Although it has no face and body and is just a shapeless mass, you
+know it is very real and very harsh with one intent, to smother you to death
+in its embrace...  
+~
+2147 268961000 65552 -100 S
+110 0 0 44000d0+0 0d0+0
+0 0 0 0
+0 0 0
+67111811 0 0
+>death_prog 100~
+mpoload 22141
+~
+|
+#22148
+Frieda mist witch~
+Frieda the Mist Witch~
+Frieda, the Mist Witch pivots around and gives you the evil eye.
+~
+~
+67 134217920 32784 -200 S
+105 0 0 30000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+>fight_prog 20~
+if sex($n) == 1
+    say &RALL MEN SHALL DIE!!!!
+    kick
+else
+    if sex($n) ==2
+        say &RWe are of the same gender, why do you fight me bitch!!!
+        stun
+else
+    say &R AHAHAHAHAHAHH!!!  Your a IT, you have been neutered.
+    rofl
+    say &R Let me help you, with that burden.
+    c 'change sex' 
+endif
+endif
+~
+>fight_prog 19~
+if sex($n) == 1
+    say &RD&BI&RE&B!&R!&B!  Infidel.
+   emote slams her foot on the ground.
+    c 'earthquake'
+ else
+    if sex($n) == 2
+        say &RHow could you betray your own Gender?
+        c 'faerie'
+else
+    c 'energy drain'
+endif
+endif
+~
+>fight_prog 17~
+say &ROuuuueeee, nice weapon.  GIVE IT TO ME!
+disarm 
+get all
+say &RNow DIE! With thy own blade.
+wear all
+~
+|
+#22157
+mad soldier~
+&wA Mad soldier~
+&wA Mad soldier opens his eyes WIDE at the sight of you.
+~
+&BYou see before you a soldier who has gone mad from being in this area
+too long and seeing too many unspeakable occurences.  He is very skinny and
+emaciated but don't be fooled by the exterior.  Insane people have been
+known to possess incredible powers.  All of his body is coated with grime
+and dirt and his face is almost grey from filth.  
+~
+99 134217728 0 0 S
+110 0 0 30001d0+0 0d0+0
+0 0 0 0
+0 0 0
+67 0 0
+#22160
+zulu tropical beast~
+Zulu the Tropical beast~
+Zulu, the Tropical Beast breathes its warm breath on you.
+~
+You see before you Zulu, the name that strikes fear into the hearts of
+those from these parts.  Although you have never seen this beast before you
+can understand from mere glance why they hold fear for this creature in
+their hearts.  It has &gdark green &Gskin with many scars on them and
+transparent yellow eyes which are bloodshot.  The eyes show that it has seen
+many deaths of its former foes.  It licks its lips in anticipation of
+tasting your flesh.  It is wearing a colorful mask worshipping its maker. 
+And it holds a spear with the head of its previous victim spiked onto its
+end.  
+~
+67 169943208 65584 -200 S
+115 0 0 45000d0+0 0d0+0
+0 0 0 0
+0 0 0
+67480595 0 0
+>all_greet_prog 100~
+emote looks upon with blood shot eyes through a hooded mask.
+mpecho &rThe look Zulu gives $n curdles blood....
+emote approaches $n menacingly.
+cast 'fireball' $n
+~
+>fight_prog 20~
+emote roars furiosly in an unintelligible language.
+stun $n
+~
+|
+#22169
+mascot ice~
+The Ice Mascot~
+The Ice Mascot growls at you as it guards the Entrance to the Queen's room.
+~
+~
+99 16616 196640 200 S
+115 0 0 47250d0+0 0d0+0
+0 0 0 0
+0 0 1
+3 0 0
+#22170
+Ashlinne ~
+Ashlinne~
+Ashlinne is here ready to sell you some Misty brews.
+~
+~
+67 402653184 16 200 S
+120 0 0 24000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#22172
+Lamia~
+A Lamia ~
+A Lamia stares at you through hooded red eyes.
+~
+~
+193 67109096 0 -200 S
+102 0 0 26000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+#22190
+Thorn Demon~
+The Thorn Demon~
+The Thorn Demon waits to tear you apart obstructing your passage.
+~
+~
+99 436756712 0 -100 S
+110 0 0 28000d0+0 0d0+0
+0 0 0 0
+0 0 0
+57387 0 0
+#22192
+incubus nathaniel~
+&zIncubus&W~
+&rNathaniel lurks here waiting to prey on you to satisfy his lusts.
+~
+~
+71 369107112 32 -300 S
+115 0 0 41000d0+0 0d0+0
+70000 0 200000 0
+0 0 1
+67151875 0 0
+>fight_prog 17~
+say You think you with your fancy weapons and armor can resist me?
+emote laughs uproariously.
+cast 'shatter
+~
+>all_greet_prog 100~
+if ispc($n)  
+   if isimmort($n)
+      bow
+      say Ahhh, an immortal to enlighten my doomed existence.
+      emote winks lasciviously and licks its fangs.
+   else
+      if sex($n) == 2
+         say I have been waiting for you my precious.
+         mpechoaround $n Incubus grabs $n and pulls $n close with harmful intentions.
+         mpechoat Incubus grabs you and pulls you close with harmful intentions.
+         cast 'gas breath' $n
+      else
+         say You cannot stop me from what I plan to do... but it's not with you!
+         cackle
+         cast 'frost breath' $n
+      endif 
+   endif
+endif
+~
+|
+#22198
+Celeste~
+The misty healer~
+Celeste is here floating above the mat humming soothing words of peace to you...
+~
+~
+524355 151011456 16 1000 S
+110 0 0 22000d0+0 0d0+0
+0 0 0 0
+0 0 2
+3 0 0
+>all_greet_prog 100~
+say Hello $n. Your soul is as weary as is your body.
+say You have come to the right place.
+bow $n
+,smiles placidly.
+~
+>speech_prog sanctuary~
+say You shall receive the protection you need by the powers in me.
+cast 'sanctuary' $n
+~
+|
+#22203
+andre~
+&RAndre&R~
+&RAndre stands here ready to kick your butt.
+~
+~
+67 67108992 32 100 S
+110 0 0 40000d0+0 0d0+0
+200000 0 0 0
+0 0 0
+3 0 0
+#22207
+wanda succulent succubus~
+Succulent Succubus~
+Wanda, Succulent Succubus looks at you seductively through hooded eyes.
+~
+~
+67 234881256 65536 -200 S
+117 0 0 50750d0+0 0d0+0
+0 0 0 0
+0 0 2
+2151 0 0
+#22214
+ice maiden~
+A Lovely Ice Maiden~
+A Lovely but Cold Ice Maiden looks upon you frostily.
+~
+~
+65 471934184 65536 100 S
+111 0 0 33000d0+0 0d0+0
+0 0 0 0
+0 0 2
+1 0 0
+#22223
+An Undead skeleton~
+A skeleton~
+&WA skeleton awakens and grins at you.
+~
+~
+99 268443880 131072 0 S
+100 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+7 0 0
+>fight_prog 10~
+emote removes its thigh bone.
+emote smacks you with it. You think you see stars.
+stun $n
+~
+|
+#22234
+lady wise kaliah~
+&WKaliah~
+&wAn old lady with the knowledge of the mist sits before you.
+~
+~
+67 302514408 262144 200 S
+110 0 0 38500d0+0 0d0+0
+0 0 0 0
+0 0 2
+33539 0 0
+>all_greet_prog 100~
+mpechoaround $n $i gives $n a wizened knowing smile.
+mpechoat $n $i gives you a wizened knowing smile.
+tell $n You seek the knowledge that I have?
+tell $n In the Forbidden cave lies a dreadful secret....I will spare you.
+tell $n Don't go in there. You will not survive.
+~
+|
+#22236
+sarineus beholder~
+&BSarineus~
+&WThe beholder's fury is felt in your gut.
+~
+&BThe woman that stands in front of you is a force to be reckoned with. 
+Just in her stance you tremble with fear and know that she senses your fear
+and it gives her power.  She wears the fiercest look on her face you have
+ever seen and in her eyes when you dare to meet them is an almost berserk
+look of power, power of the knowledge that she knows exactly what her power
+is.  
+~
+99 201326760 196656 -200 S
+118 0 0 45000d0+0 0d0+0
+0 600000 0 0
+0 0 2
+300035 0 0
+#22239
+serpent~
+&Ga serpent with a forked tongue~
+&GA serpent slinks right at you.
+~
+~
+97 33620074 196608 -50 S
+100 0 0 28000d0+0 0d0+0
+0 60000 0 0
+0 0 0
+3 0 0
+#22248
+Zazu cobra king~
+&RZazu~
+&RZazu, king of all &zc&Ro&zb&Rr&za&R's, sways here back and forth doing the dance of death.
+~
+&RYou see before you the largest snake you have EVER dreamed of existing.
+Its skin is striped red and &zblack &Rand its eyes are a &Osick yellow &Rwith
+&zblack &Rslits. Its fangs drip &Ggreen venom &Rand its whole body vibrates
+to the beat of your heart beating with fear. It is 20 feet long and you
+know it could fit many of you inside of its jaws alone.
+~
+2147 167837928 294992 -200 S
+111 0 0 34500d0+0 0d0+0
+0 0 0 0
+0 0 0
+67137539 0 0
+#22256
+Medusa~
+Medusa with her snapping snakes~
+&GMedusa grins hideously at you, the snakes snapping and hissing.
+~
+You see before you an evil force.  Her evil is so great you can feel your
+heart go leaden with fear.  Her eyes glow with &Wwhite heat.  &GHer skin is
+a sickly green pallor and she is wearing a bloody shroud.  But the most
+noticeable feature about her is the snakes which grow out from her hair.  
+~
+67 469762240 196640 -300 S
+122 0 0 42500d0+0 0d0+0
+0 0 0 0
+0 0 2
+2129 0 0
+>fight_prog 50~
+if ispc($n)
+   if sex($n) == 1
+      say Hey BOY, I'm gonna kick you HARD in the nuts!
+      emote HOOFS you in your sacred spot!
+      stun $n
+   endif
+   if sex($n) == 2
+      say Hey bitch, this is my territory! TAKE OFF!
+      slap $n
+      stun $n
+   endif
+endif
+~
+|
+#22259
+Dingbat~
+Dingbat~
+&zA beast which has the body of a snake and the wings of a bat flies here...
+~
+~
+67 33554664 196640 100 S
+115 0 0 48000d0+0 0d0+0
+0 200000 0 0
+0 0 0
+67193859 0 0
+#22260
+jamiah safari queen~
+&WJamiah~
+&g A safari queen sits on her haunches looking surprised at your entrance.
+~
+~
+18497 134234304 196640 200 S
+115 0 0 35000d0+0 0d0+0
+50000 0 0 0
+0 0 2
+16931 0 0
+#22265
+chameleon~
+&.c&.h&.a&.m&.e&.l&.e&.o&.n&W~
+&wA nimble little &.c&.h&.a&.m&.e&.l&.e&.o&.n &whops around at your feet.
+~
+~
+193 134316226 131124 -100 S
+80 0 0 18001d0+0 0d0+0
+0 0 0 0
+0 0 0
+67111683 0 0
+>speech_prog p How do I get out?~
+say Oh you have to kill many foul creatures and die many foul deaths 
+say before you can leave this area.
+~
+|
+#22290
+acolyte monk~
+&wThe monk~
+&wAn Acolyte watches you calmly.
+~
+~
+67 524420 131088 100 S
+101 0 0 28000d0+0 0d0+0
+1200 0 0 0
+0 0 1
+2435 0 0
+>death_prog 100~
+mpoload 22290
+~
+|
+#22296
+shark~
+&zA Black Shark~
+&wA Black Shark opens its jaws to chomp your head off.
+~
+&wA Black shark swims around charging at you as it notices your presence.
+It is so black it stands out in the dark seas.  It opens its jaws wide and
+shows its &Wsnow white, razor sharp &wteeth 
+~
+99 402653376 0 -100 S
+110 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+2051 0 0
+>fight_prog 30~
+emote slams you diving for the ground.
+stun $r
+~
+>fight_prog 25~
+c weaken $r
+~
+>fight_prog 26~
+c 'poison' $r
+~
+|
+#22298
+Star Fish~
+&WThe Brilliant Star Fish~
+&RA Brilliant Star Fish crawls at your feet.
+~
+~
+199 32936 16 200 S
+80 0 0 20000d0+0 0d0+0
+100 0 0 0
+0 0 0
+3 0 0
+#22300
+Outcasted Mermaid~
+The outcasted Mermaid~
+An outcasted mermaid weeps here silently.
+~
+&cYou see before you a beautiful mermaid with hair that has been shorn
+off.  You wonder at the fates that bemoan her. She sits here silently and
+weeps, her tears invisible in the water.  Her blue eyes implore silently.
+Her mermaid's tail is beautiful to behold.  All in shades of &Cpale blue 
+&cand &gdark green.
+~
+67 167772328 32 200 S
+123 0 0 52500d0+0 0d0+0
+0 0 0 0
+0 0 2
+133123 0 0
+>fight_prog 70~
+mpecho &zThe mermaid calls upon the darkest powers of the sea.
+cast 'stench 
+~
+>fight_prog 60~
+emote flings back her tail and it gathers momentum towards $n
+kick
+~
+>fight_prog 30~
+say Tsk, tsk...all your shields will not help you.
+,shakes her head pityingly at you.
+cast 'dispel magic
+~
+|
+#22301
+mare~
+&WA Snow white mare~
+&WA Snow White Mare is nibbling the grass at your feet.
+~
+&WA snow white mare stands here before you.  It is a loyal servant of the
+Virgin ghost.  It has served her selflessly whilst she lived and it
+continues to stay with her in her after life.  It is wearing a
+&Cf&Gl&Co&Gr&Ca&Gl &Wcharm about its neck.  It moves around nibbling at the
+grass at its feet.  
+~
+69 98496 32 100 S
+100 0 0 25000d0+0 0d0+0
+0 0 0 0
+0 0 0
+49163 0 0
+>entry_prog 100~
+hide
+~
+>fight_prog 35~
+emote gets on its front hooves and pulls back its hind legs and....
+mpecho All of a sudden its hooves seem REAL close to your face!
+kick
+~
+|
+#22303
+Juniper Tree~
+The Juniper Tree~
+A Lush Juniper Tree is here bearing plump berries.
+~
+~
+67 268452008 16 100 S
+120 0 0 50000d0+0 0d0+0
+1500 0 0 0
+0 0 0
+3 0 0
+>rand_prog 4~
+emote shakes and shivers making all the branches rustle as it snickers with mirth.
+~
+>give_prog lace rose~
+say Oh if that isn't the prettiest thing!
+emote throws its branches around $n holding $n in a big hug.
+mpoload 22302
+give berry $n
+mpjunk all
+~
+>greet_prog 100~
+emote smiles at $n
+wink
+tell $n Bet you never heard of a tree that could talk!
+tell $n Give me the rose that you got in the court yard!
+snicker $n
+~
+|
+#22304
+tree gold silver~
+&wThe tree&P~
+&wA &Wsp&zar&Wkl&win&wg tree bearing &Ygold &wand &Wsilver &wapples stands here.
+~
+~
+67 301990080 48 100 S
+120 0 0 50000d0+0 0d0+0
+0 0 0 0
+0 0 0
+3 0 0
+>all_greet_prog 100~
+emote brightens at the sight of you and dances for joy.
+say Ah a visitor..a rare thing..rare indeed!
+say It gets quite lonely in these parts...
+sigh
+say ....quite...
+sniff
+~
+>give_prog key thorns~
+mpecho &YRustling sounds can be heard from above.&X
+say Oh you have killed that DREADFUL monster!
+say This apple is your reward from me!
+emote claps merrily and sings joyfully.
+mpoload 22304
+give apple $n
+mpjunk all
+~
+|
+#22306
+virgin ghost~
+The ghost~
+&WA Virgin ghost floats in the air sighing wistfully.
+~
+~
+195 404226240 131072 200 S
+111 0 0 40000d0+0 0d0+0
+0 0 0 0
+0 0 2
+67150595 0 0
+>fight_prog 30~
+emote quietly lifts up her arms.
+cast 'fireball
+~
+>fight_prog 15~
+cast 'hex
+~
+>greet_prog 100~
+say &wI have dreams that were unfulfilled in my life...
+,looks upon you with eyes that glow with energy of the after world and glitters with the tears of this one.
+~
+|
+#22313
+siren miranda~
+&RMiranda&P~
+&w The Siren sings insidiously rendering you helpless.
+~
+~
+67 67108992 32768 -300 S
+120 0 0 56000d0+0 0d0+0
+50000 0 0 0
+0 0 2
+0 0 0
+>all_greet_prog 100~
+emote smiles seductively at you.
+say I shall sing you the sweetest lullabye....
+emote sings a few notes.
+say You shall sleep so soundly as if death has claimed you.
+say All of your troubles shall be over.....forever...
+cackle
+~
+>fight_prog 30~
+say Listen to this song...it shall make you want death to claim you. It is a song of death.
+shriek
+~
+>fight_prog 25~
+emote screams in pain at your attack on her.
+disarm
+get all
+wear all
+iron
+~
+>fight_prog 15~
+cast 'dispel magic
+~
+|
+#22315
+brenna~
+Brenna~
+The muse of your lost dreams smiles at you.
+~
+~
+67 268435648 48 400 S
+115 0 0 47250d0+0 0d0+0
+30000 0 0 0
+0 0 2
+297091 0 0
+#22317
+monk ishizu~
+&wThe monk&P~
+&wIshizu sits here meditating with the gods.
+~
+&wYou see before you a man of small stature who is at obvious peace with
+himself and his karma.  He sits cross legged but as you approach he gets up
+and speaks to you in a serene manner.  He is wearing a beaded wooden
+necklace and is tonsured and shaved clean.  His shaved head gleams
+mysteriously.  You wonder how such a small man could defend himself
+especially in these dangerous parts.  But then you remember that these monks
+can conquer others through sheer will and mind over matter.  He shows no
+fear of you and is almost oblivious to anything but the harmony of himself
+and his environment.  
+~
+71 100663528 262288 300 S
+120 0 0 56000d0+0 0d0+0
+200000 20000 1000 0
+0 0 1
+67120131 0 0
+>all_greet_prog 100~
+emote looks up after a long while and looks upon you with much wisdom.
+say Greetings my child.  If you have come to seek peace and find Nirvana...
+say ...then speak of the demons you wish to conquer ...
+say ...that interfere with your harmony....
+say ...they are your inner demons.
+,smiles knowingly.
+~
+>fight_prog 30~
+emote calmly reaches for your weak spot.
+nerve
+~
+>fight_prog 20~
+emote lashes out at $n with his hand.
+blade
+~
+|
+#22318
+demon adoration~
+demon of adoration~
+The demon of adoration smothers you with love.
+~
+~
+2147 101187808 196624 -50 S
+125 0 0 64750d0+0 0d0+0
+500000 0 0 0
+0 0 0
+366627 0 0
+#22320
+Corinth Frost Queen~
+Corinth the Frost queen~
+Corinth the Frost queen glares icily at you.
+~
+~
+2147 167788776 196656 200 S
+120 0 0 40000d0+0 0d0+0
+0 0 0 0
+0 0 2
+60035 0 0
+>fight_prog 20~
+c 'blindness' $n
+cackle
+~
+>fight_prog 50~
+c 'gas breath'
+~
+>fight_prog 75~
+c 'energy drain' $n
+~
+|
+#0
+
+
+
+#OBJECTS
+#22101
+a Sign~
+a sign~
+A sign sits here warranting your attention~
+~
+13 0 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+sign~
+This is Lairich Valley of the mist.  It has been cursed with everlasting
+mist.  Relying on your vision is futile in these parts.  Few have made it
+out alive and fewer corpses have been retrieved in this area.  Tread
+lightly.  
+ 
+&BLevel 90-105
+~
+#22102
+stocking fishnet~
+&zblack fishnet stockings~
+&zA black pair of fishnet stockings lie here thrown over a chair.~
+~
+9 129 4133 8704 33 101
+0~ 0~ 0~ 0~
+1 20000 10 50 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 100
+A
+13 100
+A
+17 -80
+A
+23 -10
+A
+24 -10
+E
+stocking~
+&zA pair of sexy stockings made of black mesh of the finest silken
+threads lie at your feet.  You know any woman who wears them can scintillate
+with sex appeal.
+~
+E
+fish~
+&zA pair of sexy stockings made of black mesh of the finest silken
+threads lie at your feet.  You know any woman who wears them can scintillate
+with sex appeal.
+~
+#22103
+bottle potion mystery~
+&wBottled potion of Mystery~
+&wA &WMisty &wpotion of healing is lying on the ground here.~
+~
+10 805306368 0 0 1 100
+105~ heal~ heal~ heal~
+3 25000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+bottle~
+&wA clear bottle of glass filled with mist is here.  The mist seems to be
+about to evaporate in a minute but it keeps swirling around in the bottle
+looking for a way out.  It seems to glitter as you eye it.
+~
+E
+mist~
+&wA clear bottle of glass filled with mist is here.  The mist seems to be
+about to evaporate in a minute but it keeps swirling around in the bottle
+looking for a way out.  It seems to glitter as you eye it.  
+~
+#22104
+dark key~
+&zdark key~
+&z dark key lies discarded here.~
+~
+18 1 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+key~
+&zA dark key that blends in with the mist is here.  It seems to give off
+some energy that it cannot contain in its small size.  
+~
+#22105
+spear wooden~
+&OA sharp wooden spear~
+&OA sharp wooden spear lies here.~
+~
+5 6 81 19200 8193 95
+0~ 24~ 78~ 11~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 -30
+A
+13 100
+A
+17 -30
+A
+24 -10
+E
+wooden~
+&OThe wooden spear you see before you is quite sharp and honed finely and
+all by hand which is all the more impressive.
+~
+E
+spear~
+&OThe wooden spear you see before you is quite sharp and honed finely and
+all by hand which is all the more impressive.  
+~
+#22106
+flower purple~
+&pA purple flower~
+&pA purple flower with &Ppink &pborders is sitting prettily here.~
+~
+26 0 0 0 1 90
+105~ cure critical~ cure critical~ phase shift~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+E
+flower~
+&pThe purple flower before is so exotic and rare.  You have never seen
+any flower or orchid which possessed so much mystery as the flower that lies
+here.  The edges of its petals are lined &Pfuschia.
+~
+E
+purple~
+&pThe purple flower before is so exotic and rare.  You have never seen
+any flower or orchid which possessed so much mystery as the flower that lies
+here.  The edges of its petals are lined &Pfuschia.  
+~
+#22107
+tassled banner~
+&Wa tassled banner~
+&WA glowing banner with tassles at both ends glow here.~
+~
+1 1 385 2130 16385 95
+0~ 0~ -1~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+13 50
+A
+25 10
+A
+24 -10
+#22108
+boots misty~
+&zA pair of &Wm&wi&Ws&wt&Wy &zboots~
+&zA pair of &Wm&wi&Ws&wt&Wy &zboots seems to be here.~
+~
+9 67108960 1038 4129 65 101
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+26 20
+A
+19 10
+A
+18 10
+A
+13 60
+#22109
+flower pink~
+&Pan exotic pink flower~
+&PAn exotic pink flower glows here among the many.~
+~
+26 64 0 0 1 95
+100~  ~  ~ cure blindness~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22110
+Greenish Slosh~
+&Ggreenish slosh&W~
+&GA cylindrical bottle filled with green liquid glows in the shadows.&X~
+~
+10 268435457 0 0 1 100
+105~ cure poison~ reserved~ reserved~
+1 20000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22111
+meditation bead necklace~
+&OWooden beaded necklace of meditation&R~
+&OA wooden beaded necklace is placed before you.~
+~
+9 838860801 1412 272 5 102
+0~ 0~ 0~ 0~
+5 50000 30 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+23 -20
+A
+17 -100
+A
+13 80
+A
+12 40
+A
+19 10
+A
+18 10
+#22113
+jungle eyes~
+&Gwild jungle eyes~
+&GWild eyes of the jungle lies here.~
+~
+27 872415296 514 6176 131073 102
+105~ -1~ 0~ identify~
+3 35000 998 50 0
+0 0
+identify~
+0 0
+0 0 0
+A
+124 -1
+A
+19 15
+A
+18 15
+A
+117 -1
+A
+13 130
+A
+17 -100
+#22114
+diamond pendant~
+&Wdiamond pendant~
+&WA huge tear-drop shaped diamond pendant catches the light and sparkles.~
+~
+8 1 0 0 1 0
+0~ 0~ 0~ 0~
+2 150000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22121
+mirror~
+&YA gold &Cmirror~
+&YA gold mirror lies here to satisfy your vanity.~
+~
+9 268435601 6216 3072 16385 95
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+charm person~
+3 3
+0 0 0
+A
+13 50
+A
+12 50
+A
+19 5
+A
+18 5
+#22134
+nail file~
+a nail file~
+A sharp nail file gleams wickedly here.~
+~
+5 528 1029 1 8193 95
+0~ 20~ 70~ 2~
+3 0 0 0 0
+5 0
+astral walk~
+3 3
+0 0 0
+A
+18 5
+A
+19 5
+A
+13 50
+#22135
+ball jeweled~
+&BA bright jeweled ball~
+A bright jeweled ball floats around.~
+~
+9 529 4420 12436 32769 96
+3~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+heal~
+5 5
+0 0 0
+A
+18 -5
+A
+13 20
+A
+24 -10
+A
+19 -10
+#22137
+book dark sea~
+&BBook of the dark seas~
+A book filled with the secrets of the dark seas lies closed here.~
+~
+9 570426373 132 17408 16385 101
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+12 30
+A
+19 9
+A
+18 5
+A
+24 -10
+#22140
+wing mist~
+&wWings of Mist~
+&wThe Wings Of Mist floats about...~
+~
+9 301991937 338 19520 1025 100
+3~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+portal~
+2 2
+0 0 0
+A
+25 10
+A
+23 -10
+A
+24 -10
+A
+13 100
+A
+110 -1
+#22141
+key mist~
+&wA Key of Mist~
+A Key of mist seems to be here.~
+~
+18 0 0 0 1 90
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22142
+gloves madness~
+&wgloves of Madness~
+&wA pair of gloves without any fingertips are here.~
+~
+9 2049 60 1432 129 97
+0~ 0~ 0~ 0~
+3 0 0 0 0
+5 0
+frost blade~
+1 1
+0 0 0
+A
+13 50
+A
+19 10
+A
+17 -30
+A
+1 1
+#22148
+shroud dark midnight~
+a shroud as dark as midnight~
+A shroud as dark as midnight lies here~
+~
+9 53 21 3073 9 99
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 -1
+A
+19 5
+A
+18 5
+A
+12 50
+A
+13 100
+A
+17 -100
+A
+23 -40
+#22152
+dirt fist~
+&OA fistful of dirt~
+&OA fistful of dirt lies here.~
+~
+19 0 0 0 1 70
+24~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22157
+potion dark~
+&WD&Ca&Br&bk &Bpotion~
+&wA cylindrical tube filled with &bd&Bark blue liquid &wlies here.~
+~
+10 805306433 0 0 1 96
+105~ mana~ mana~ mana~
+1 25000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22158
+straw skirt~
+&Oa straw skirt~
+&O A skirt woven from coarse straw is discarded here.~
+~
+9 33554561 728 2056 33 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 50
+A
+100 -1
+A
+19 10
+A
+18 10
+#22159
+tropical spear~
+&wa &Gtropical &wspear~
+A spear with a polished &Wwhite skull at the end lies here.~
+~
+5 67110913 7176 118 8193 102
+0~ 35~ 90~ 11~
+5 0 0 0 0
+5 0
+meteor swarm~
+2 2
+0 0 0
+A
+12 100
+A
+13 120
+A
+19 20
+A
+18 30
+A
+111 -1
+A
+24 -20
+#22160
+mask tribal~
+a &RT&zr&Yi&Wb&za&Rl &wmask~
+&wA &RT&zr&Yi&Wb&za&Rl &wmask bearing the Evil face of Zulu,s god lies here.~
+~
+9 838860929 307 4481 65537 103
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+bloodbath~
+3 3
+0 0 0
+A
+25 20
+A
+13 110
+A
+19 20
+A
+18 20
+A
+24 -20
+A
+3 -1
+#22162
+icicle~
+&WAn icicle~
+&WA crystal clear icicle lies here.~
+~
+18 0 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22168
+tiara frost~
+&Ca frosty tiara~
+&CA frosty tiara lies discarded here.~
+~
+9 1025 601 2113 16385 102
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+frost breath~
+5 5
+0 0 0
+A
+18 -15
+A
+23 -10
+A
+18 15
+A
+19 15
+#22169
+key~
+an icy key~
+An icy key is here~
+~
+18 1 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22180
+earring drooping silver~
+a silver earring~
+A drooping silver earring gleams here at your feet.~
+~
+9 872415233 6720 6912 524289 102
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+stench of decay~
+4 4
+0 0 0
+A
+13 100
+A
+12 100
+A
+2 2
+A
+18 10
+A
+19 10
+#22189
+crown metal thorn~
+&wa silver crown of &cmetal thorns~
+A nasty looking crown made of metal thorns lies here.~
+~
+9 268452497 1472 4096 17 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+shockshield~
+5 5
+0 0 0
+A
+17 -100
+A
+19 10
+A
+18 10
+A
+24 -25
+A
+23 -10
+A
+13 100
+#22190
+key thorns~
+a key of thorns~
+A key of thorns waits to unlock the mysteries of the thorn wall.~
+~
+18 1 0 0 1 1
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22191
+fountain grey~
+&wA grey fountain~
+&wA grey fountain in the shape of an Angel is situated here.~
+~
+25 65 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22192
+mask harlequin~
+&zH&Wa&zr&Wl&ze&Wq&zu&Wi&zn &wmask~
+A &zH&Wa&zr&Wl&zq&Wu&zi&Wn &wmask has been tossed here.~
+~
+9 33554945 19 9220 65537 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+death field~
+5 5
+0 0 0
+A
+13 50
+A
+12 50
+A
+17 -60
+A
+17 -80
+A
+23 -20
+#22193
+cloak black~
+&zA black satin cloak~
+&zA black satin cloak of the finest material lies here.~
+~
+9 33554949 6674 61506 1025 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+dark ritual~
+3 3
+0 0 0
+A
+26 40
+A
+18 15
+A
+19 15
+A
+13 100
+A
+17 -100
+#22194
+doormat metal~
+a metal doormat&G~
+&zA metal doormat lies on the floor at your feet.~
+~
+18 4 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22198
+cloak dark misty~
+&za dark misty cloak~
+&zA dark misty cloak shimmers here.~
+~
+9 1 3345 27649 1025 110
+0~ 0~ 0~ 0~
+5 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -200
+A
+23 -30
+A
+12 200
+A
+13 200
+#22200
+Sword Might~
+&RSword Of Might~
+A Migty Sword catches your attention.~
+~
+5 16384 2179 0 8193 100
+0~ 26~ 80~ 3~
+4 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+2 2
+A
+18 30
+A
+19 30
+>look_prog 100~
+0
+emote &. starts to vibrate uncontrollably.
+say Whomever I struck shall die by your blow or by my deadly poison.
+~
+|
+#22201
+Helm Judgement~
+helm of Judgment~
+A helmet is glowing here.~
+~
+9 1025 2082 4096 17 100
+3~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+intellect fortress~
+0 -1
+0 0 0
+A
+18 20
+A
+19 20
+#22202
+Loin cloth~
+loin Cloth~
+Some kind of weird coth is sitting on the ground here.~
+~
+9 128 2056 0 1025 95
+0~ 0~ 0~ 0~
+6 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 5
+A
+17 -15
+#22203
+Vacan Stare~
+&BV&Ra&Gc&Ba&Rn&Gt &BS&Rt&Ga&Rr&Ge~
+&p A pare glowing lenses.~
+~
+27 1024 2056 0 131073 95
+100~ -1~ 0~ identify~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+4 -2
+A
+2 -2
+#22204
+portal~
+portal~
+A Portal stands here lighting the darkness.~
+~
+29 1 0 0 0 0
+25000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22205
+lace rose~
+&P@>&G-`--~
+&wA &Prose &wmade from lace lies on the ground in front of the door.~
+~
+18 64 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22207
+crimson merry widow~
+&Rcrimson merry widow&X~
+&RA corset with garter belts attached to it is here.~
+~
+9 570425856 2124 12928 9 102
+0~ 0~ 0~ 0~
+2 40000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+12 100
+A
+2 1
+A
+13 100
+A
+24 -10
+#22214
+arm plate frozen~
+&CFrozen Arm Plates~
+&C A pair of frozen arm plates lie emanating chill.~
+~
+9 805306369 2060 16420 257 101
+0~ 0~ 0~ 0~
+0 0 0 0 0
+5 0
+blade barrier~
+3 3
+0 0 0
+A
+17 -60
+A
+13 60
+A
+1 1
+#22215
+bed~
+&BA Bed of Ice~
+&BA freezing bed of ice is sitting in the center of the room.~
+~
+12 1 0 0 0 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22216
+anklet icy~
+&Cicy anklet~
+&CAn icy anklet with icicle charms hanging off of them sits here.~
+~
+9 805307394 6400 17424 1048577 101
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+25 10
+A
+19 15
+A
+23 -20
+A
+12 40
+A
+13 40
+#22222
+portal tropical mist~
+&GA Portal Of Tropical Mist ~
+&GA Portal Of Tropical Mist stands here.~
+~
+29 2 0 0 0 0
+22273~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+>look_in_prog 100~
+0
+mpechoat $n &GA sultry mist reaches out towards you.
+~
+|
+#22236
+shield reckon~
+&Bshield of reckoning~
+&BA shield so powerful it emanates force that is tangible is here.~
+~
+9 872415873 352 560 513 102
+0~ 0~ 0~ 0~
+0 0 0 0 0
+5 0
+high explosive~
+10 10
+0 0 0
+A
+109 -1
+A
+23 -20
+A
+17 -120
+A
+13 110
+A
+19 10
+A
+18 10
+#22237
+hole dark~
+&zA dark misty hole~
+&zA dark hole in the ground exudes mist.~
+~
+29 0 0 0 0 0
+22243~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22238
+necklace ruby~
+&Ra Ruby Necklace~
+&RA Ruby necklace of great value sparkles in this cave.~
+~
+8 268435456 0 0 1 80
+0~ 0~ 0~ 0~
+2 150000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22239
+fang zazu~
+&wZazu's fang~
+&RZazu's fang lies here torn from its mouth.~
+~
+18 268435456 0 0 1 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+3 22238
+reserved~
+1 1
+0 0 0
+#22240
+Key forbidden~
+&wA key to the Forbidden cave~
+&wA Key that unlocks The forbidden cave lies here.~
+~
+18 1 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22241
+shift~
+&wA shapeless shift~
+&wA shapeless shift lies here in a crumpled heap.~
+~
+9 536872962 4096 1 1025 101
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+bio-acceleration~
+5 5
+0 0 0
+A
+12 100
+A
+13 100
+A
+23 -20
+A
+24 -20
+A
+1 1
+#22243
+dark hole~
+&zA dark hole~
+&zThere is a dark hole in the ground.~
+~
+29 0 0 0 0 0
+22236~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22244
+tusk elephant~
+&WAn Ivory elephant tusk~
+&WAn Ivory elephant tusk glows here.~
+~
+18 64 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22249
+bone~
+&Wa smooth white bone~
+&WA bone, polished and smooth lies here.~
+~
+18 0 0 0 1 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22250
+gold coins~
+&Ya huge pile of gold coins~
+&YA huge pile of gold coins lie here waiting to be taken.~
+~
+20 0 0 0 1 0
+5000000~ 0~ 0~ 0~
+0 5000000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22256
+Head snakes~
+&GA Poisonous head of snakes~
+&gA poisonous head of snakes slithers in all directions.~
+~
+9 536887297 2052 28672 17 101
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -100
+A
+24 -15
+A
+23 -25
+A
+19 15
+A
+18 15
+A
+13 100
+#22257
+dark shroud bloody~
+&rA Bloody shroud~
+&rA Blood stained shroud lies here.~
+~
+9 570425345 1297 4 9 102
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+holy strength~
+2 2
+0 0 0
+A
+12 25
+A
+13 100
+A
+17 -100
+A
+24 -20
+A
+23 -20
+A
+19 -25
+#22259
+plate winged arm~
+&zWinged arm plates~
+&zA pair of arm winged arm plates are tossed here.~
+~
+9 805308417 2568 20512 257 102
+3~ 0~ 0~ 0~
+5 150000 20000 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 70
+A
+24 -20
+A
+23 -20
+A
+19 20
+A
+18 20
+A
+17 -30
+#22260
+chest blue~
+&BA shiny blue chest~
+&BA shiny blue chest is sitting here.~
+~
+15 1 0 0 0 0
+10~ 15~ 22249~ 0~
+10 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22270
+cloud misty~
+&CA misty cloud~
+&BA misty cloud hovers here...~
+~
+29 1 0 0 0 0
+22325~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22289
+opal key~
+&CAn Opal Key~
+&CAn Opal key is lying here.~
+~
+18 268435457 0 0 1 0
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22290
+key nirvana~
+&WKey to Nirvana~
+&wThe Key that will bring you everlasting peace lies here.~
+~
+18 2 0 0 1 0
+0~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22292
+mirror frosty~
+&CA tall frosty mirror~
+&CA tall frosted mirror stands here letting off waves of chill.~
+~
+29 268435457 0 0 0 0
+25000~ 0~ 0~ 0~
+100 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22293
+sculpture ice corinth~
+&CAn Ice Sculpture of Corinth~
+&BAn Icy Sculpture of Corinth stands here majestically.~
+~
+8 268435458 0 0 1 0
+0~ 0~ 0~ 0~
+2 10000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22296
+scepter pearl~
+&wA &Wp&we&Wa&wr&Wl&wy &wscepter of the seas~
+A &Wp&we&ca&zr&Wl&wy &wscepter of the seas glows at your feet.~
+~
+1 805308417 0 0 16385 100
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+13 60
+A
+18 10
+A
+24 -10
+A
+23 -10
+A
+19 10
+#22298
+ring sea underwater~
+&BUnderwater Ring~
+&BThe Ring Of the Deep Seas lies here.~
+~
+9 268436577 4416 4608 3 100
+3~ 0~ 0~ 0~
+1 40000 0 0 0
+5 0
+mental block~
+3 3
+0 0 0
+A
+19 20
+A
+12 50
+A
+13 110
+A
+24 -20
+#22300
+tail mermaid sparkling~
+a &WS&wp&za&Wr&wk&zl&Wi&wn&zg &wMermaid's tail~
+A sparkling tail of a mermaid glitters here.~
+~
+9 872415361 204 16384 33 104
+0~ 0~ 0~ 0~
+2 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+1 -1
+A
+17 -100
+A
+24 -20
+A
+12 100
+A
+23 -20
+A
+13 100
+#22301
+flower wreath~
+&wA wreath of &Cf&pl&Go&Cw&Pe&Gr&ps~
+&wA beautiful wreath of &Pf&Rl&po&Cw&Ge&Pr&Cs &wlies here wafting a gorgeous scent.~
+~
+9 805306368 528 4096 17 101
+3~ 0~ 0~ 0~
+2 50000 0 0 0
+5 0
+sanctuary~
+5 5
+0 0 0
+A
+13 50
+A
+12 50
+A
+24 -15
+A
+23 -15
+A
+1 -1
+A
+19 10
+#22302
+berry juniper~
+&WA plump Juniper &Pb&re&Pr&rr&Py~
+&wA plump Juniper &Pb&re&Pr&rr&Py &wlies here almost bursting with magical juices.~
+~
+26 805306370 0 0 1 100
+105~ complete healing~ complete healing~ complete healing~
+1 500000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22303
+bond love~
+&RBond of Love &R~
+&RBonds of Love wait to capture you in all its wonders and depair.~
+~
+9 805308417 2096 2049 4097 103
+0~ 0~ 0~ 0~
+1 60000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+19 10
+A
+18 10
+A
+12 100
+A
+13 60
+A
+23 -20
+A
+17 -100
+#22304
+apple golden~
+&wThe &Ygolden &wapple~
+&wA apple of &Ygold &wlies here glowing.~
+~
+26 2 0 0 1 100
+105~ combat mind~ dark blessing~ reserved~
+2 50000 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+#22305
+floral charm~
+&Wa &Cf&Gl&Co&Gr&Ca&Gl &Wcharm~
+&WA lovely &Cf&Gl&Co&Gr&Ca&Gl &Wcharm has been placed here.~
+~
+9 268437635 3605 20609 5 100
+0~ 0~ 0~ 0~
+1 0 0 0 0
+5 0
+heal~
+10 10
+0 0 0
+A
+17 -30
+A
+19 5
+A
+18 5
+A
+12 50
+A
+13 50
+#22306
+robe snow white~
+&WA snow white robe~
+&WA snow white robe almost blinds you as it lies here.~
+~
+9 1025 422 17200 1025 100
+3~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+complete healing~
+3 3
+0 0 0
+A
+5 -1
+A
+12 50
+A
+25 10
+A
+19 10
+A
+13 100
+#22307
+star fish bracer~
+&RStar fish bracer~
+&RA Star fish bracer lies slowly moving on the ground.~
+~
+9 838860945 1187 5121 4097 101
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+17 -100
+A
+19 15
+A
+18 10
+A
+24 -10
+A
+13 40
+#22320
+icy dress~
+an &Cicy dress~
+A beautiful dress crafted from &Cice &Glies here~
+~
+9 67108865 4898 2080 9 102
+0~ 0~ 0~ 0~
+2 0 0 0 0
+5 0
+iceshield~
+10 10
+0 0 0
+A
+13 150
+A
+24 -15
+A
+13 102
+A
+12 90
+A
+17 -102
+#0
+
+
+
+#ROOMDATA
+#22101
+Entrance to Lairich Valley of Mist~
+&r============================================================================
+&wYou have reached an impasse in the road where a thick &zmist &wlike a wall
+&wpermeates the view ahead of you preventing you from seeing any further.
+Your heartbeat quickens but is it with excitment or &Rfear&w? You feel
+an almost tangible pull as the silence seems to almost sing you towards it
+and beguile your senses and paralyze your will. There is a sign rooted in
+front of you barely noticeable through the thick blanket of uncertainty.
+&r============================================================================
+~
+0 134610969 3
+Rd     0
+D0
+~
+~
+0 0 22102
+S
+#22102
+Ten Steps into the Mist~
+&wYou have decided to test your mettle and brave the unknown. You feel the
+&Bchill &wseep into your bones grasping your very soul with its icy touch.
+You have only walked ten paces but you feel a weariness like a heavy weight
+as though you have been travelling for days. You shiver involuntarily.
+You can see that the path continues further north.
+~
+0 134610972 3
+Rd     0
+D0
+~
+~
+0 0 22104
+S
+#22103
+Stumbling into the east Mist~
+&wAs you travel into the east, you can hear the singing almost vibrating through
+the mist. You can catch the sound of laughter echoing in a chilling manner.
+The laughter sounds very deranged. You know going east will bring you closer 
+to the source. The road has foot prints embedded in them.
+~
+0 134610968 3
+Rd     0
+D0
+~
+~
+0 0 22114
+D1
+~
+~
+0 0 22105
+D3
+~
+~
+0 0 22104
+S
+#22104
+Ten steps further~
+&wAs you trudge heavily through the dense unknown, you can feel the silence
+but it seems to exude a presence that makes you fear for your unprotected
+back and as time loses all meaning in this valley, you lose touch with
+reality.  You walk on as though in a trance.  You can make out a small path
+to the east. 
+~
+0 134610968 3
+Rd     0
+D0
+~
+~
+0 0 22106
+D1
+~
+~
+0 0 22103
+S
+#22105
+Deeper East~
+&wThe mist continues to block your vision and you know you have to rely
+heavily on your sense of survival and your intuition.  Your antennae goes off
+crazily as you progress further into the mist.  The sounds of laughter are
+all around.  It echoes eerily hurting your ears.
+~
+0 134610968 3
+Rd     0
+D0
+~
+~
+0 0 22115
+D3
+~
+~
+0 0 22103
+S
+#22106
+Thick Mist~
+&p^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&zThe mist has gotten thicker to a point where your body struggles against
+it like it was weight. You can see many trees around you but they look
+menacing and dead at the same time. You see the trail break into east and
+west and to the north it continues still. But as yet you can see not where it
+heads.
+&p^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+0 0 22109
+D1
+~
+~
+0 0 22114
+D2
+~
+~
+0 0 22104
+D3
+~
+~
+119 22104 22107
+S
+#22107
+A Passage~
+~
+0 134610961 3
+Rd     0
+D1
+~
+~
+119 0 22106
+D3
+~
+~
+0 0 22108
+S
+#22108
+In the Misty forest~
+~
+0 134610961 3
+Rd     0
+D1
+~
+~
+0 0 22107
+S
+#22109
+Surrounded By Flowers~
+&p***************************************************************************
+&wYou now get used to the fact that the mist won't be clearing any time soon.
+You notice all around you there are gorgeous flowers in hues of &Ppink
+&wand &ppurple. &w Your senses seem to be assailed all at once with the exotic
+perfume of these beauties. To the east you can see the road branching off.
+&p***************************************************************************
+~
+0 134619160 3
+Rd     0
+D1
+~
+~
+0 0 22116
+D2
+~
+~
+0 0 22106
+S
+#22110
+In the Choking Swirl Of the Mist~
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe wet suffocation continues and weakens your defenses.  You fail to see
+anything still.  The mist consumes the environment like a dark blanket. 
+There are strange looking trees with snapping branches reaching out for you.
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+~
+0 403054616 3
+Rd     100
+D0
+~
+~
+0 0 22125
+S
+#22111
+~
+~
+0 134610960 3
+Rd     0
+D0
+~
+~
+0 0 22122
+D1
+~
+~
+0 0 22123
+S
+#22112
+~
+~
+0 4 0
+Rd     0
+S
+#22113
+In the Choking Swirl Of the Mist~
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe mist seems to have gotten thicker, VERY tangible like hovering wetness
+and you feel as if you are pushing your way through &zgrey sludge.  &wThe
+cold dampness sapping you of your energy, licks at your face with its wet
+tongue.  You make a hasty retreat ahead of you.  
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 403054620 3
+Rd     100
+D0
+~
+~
+0 0 22110
+S
+#22114
+In The Mist~
+&r^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe mist is so opaque that it blocks out light where only a hazy
+whiteness pervades.  This is a freak of nature and you wonder at the fates
+that have caused such a phenomenon to occur.
+&r^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134610968 3
+Rd     0
+D0
+~
+~
+0 0 22116
+D1
+~
+~
+0 0 22115
+D2
+~
+~
+0 0 22103
+D3
+~
+~
+0 0 22106
+S
+#22115
+Before a Large Pit~
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou almost fall down in to a huge gaping hole before you that you didn't see
+until you were directly upon it. You look in and you see many skeletal remains
+of what appear to be humans and other poor adventurers. There are flowers 
+of the brightest hues strewn all around in contrast to the morbid site as if
+someone had recently paid it a visit. There seems to be a path to the north.
+Only you can't be too sure of anything in this mist.
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134610968 3
+Rd     0
+D0
+~
+~
+7 0 22113
+D2
+~
+~
+0 0 22105
+D3
+~
+~
+0 0 22114
+D5
+~
+~
+0 0 22244
+S
+#22116
+Before a Hill~
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou stand before the base of a hill.  You look up but see mist surrounding
+your vision and thus cannot see where the hill leads or when it ends.  There
+is a barren road that leads up and disappears into the mist.  
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134619160 3
+Rd     0
+D2
+~
+~
+0 0 22114
+D3
+~
+~
+0 0 22109
+D4
+~
+~
+0 0 22117
+S
+#22117
+Between Two Tall Trees~
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou carefully tread up through the mist and you have ended up here.  You
+find yorself standing between two trees of enormous circumference making an
+arch around you although you can't discern how tall they really are you can
+see from their roots that they are pretty tall.  
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134610968 3
+Rd     0
+D4
+~
+~
+0 0 22118
+D5
+~
+~
+0 0 22116
+S
+#22118
+On the Hill~
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe hill is gently sloped and has a lot of lush &ggrass &wand many trees
+that you can barely make out in the mist.  The trail continues north and
+then to the south.  You can hear water trickling distantly but can't tell
+its source.  
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134610968 3
+Rd     0
+D4
+~
+~
+0 0 22119
+D5
+~
+~
+0 0 22117
+S
+#22119
+Before a Dark and Dimly lit House~
+&z======================================================================
+&wYou stand before a dark and &zdimly &wlit house with &rdark red &wtiles
+for the roof and all around are prickly rose bushes with no roses in bloom. 
+The house seems unoccupied although there are many windows with lights
+coming feebly from them.  
+&z======================================================================
+~
+0 134610968 3
+Rd     0
+D0
+~
+~
+3 0 22120
+D5
+~
+~
+0 0 22118
+S
+#22120
+In the Foyer of the Dark House~
+&z=========================================================================-
+ &wYou stand in the foyer of the dark house with feeble lights coming from
+the windows when you saw it from the outside.  The walls are bare except for
+candles hanging from black candle holders fastened to the walls every 2
+feet.  The wooden floor makes your footsteps sound amplified to you.  The
+hall continues to the north.  &z
+&z=========================================================================-
+~
+0 134610972 0
+Rd     0
+D0
+~
+~
+0 0 22133
+D2
+~
+~
+3 0 22119
+D3
+~
+~
+0 0 22121
+S
+#22121
+In the Hall~
+&z=======================================================================
+&wYou have come west from the main door to the house. The walls are bare and 
+dark candles burn dimly in rows hanging from black candle holders. The hall
+continues to the north towards some unseen destination. But the mist as 
+always, obscures your sight past that few feet.
+&z=======================================================================
+~
+0 393244 0
+Rd     0
+D0
+~
+~
+0 0 22131
+D1
+~
+~
+0 0 22120
+S
+#22122
+~
+~
+0 134610972 3
+Rd     0
+D0
+~
+~
+0 0 22126
+D2
+~
+~
+0 0 22111
+S
+#22123
+~
+~
+0 134610960 3
+Rd     0
+D0
+~
+~
+0 0 22124
+D3
+~
+~
+0 0 22111
+S
+#22124
+~
+~
+0 134610960 3
+Rd     0
+D0
+~
+~
+0 0 22127
+D2
+~
+~
+0 0 22123
+S
+#22125
+In the Choking Swirl Of the Mist~
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe trees emit a maniacal laugh as you pass by trying to find a way, any
+way out of this unknown haze.  You feel the heavy mist choking you and
+weakening your every move.
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 403054620 3
+Rd     120
+D0
+~
+~
+0 0 22128
+S
+#22126
+~
+~
+0 134610968 3
+Rd     0
+D0
+~
+~
+0 0 22129
+D1
+~
+~
+0 0 22127
+D2
+~
+~
+0 0 22122
+S
+#22127
+~
+~
+0 134610972 3
+Rd     0
+D0
+~
+~
+0 0 22130
+D2
+~
+~
+0 0 22124
+D3
+~
+~
+0 0 22126
+S
+#22128
+In the Choking Swirl Of the Mist~
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe trees emit a maniacal laugh as you pass by trying to find a way, any
+way out of this unknown haze.  You feel the heavy mist choking you and
+weakening your every move.
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 403046424 3
+Rd     140
+D0
+~
+~
+0 0 22135
+S
+#22129
+~
+~
+0 134610960 3
+Rd     0
+D0
+~
+~
+0 0 22136
+D1
+~
+~
+0 0 22130
+D2
+~
+~
+0 0 22126
+S
+#22130
+~
+~
+0 134610968 3
+Rd     0
+D0
+~
+~
+0 0 22138
+D2
+~
+~
+0 0 22127
+D3
+~
+~
+0 0 22129
+S
+#22131
+Before a Wooden door~
+&O======================================================================
+&wYou walk through the hall as the floor boards creak beneath you.  The
+walls are white and hanging from them are &zblack &wcandles lighting your
+passage.  To the north of you, you can see a door with lights flooding from
+the crack beneath it.
+&O======================================================================
+~
+0 393232 0
+Rd     0
+D0
+~
+~
+3 0 22132
+D2
+~
+~
+0 0 22121
+S
+#22132
+The Evil Step Sisters Room~
+&O***********************************************************************
+&wYou have entered the room of the Evil Step sisters.  There is furniture
+scattered here and there in an artful manner all made of the costliest
+&Ygold &wand a mirro that hangs on the wall is decorated with the &Rroses
+&wthat used to grow in the garden.  A huge black cat sits on a &pvelvet
+&wcushion and hisses at you as you enter. 
+&O********************************************************************** 
+~
+0 135135256 0
+Rd     0
+D2
+~
+~
+3 0 22131
+S
+#22133
+In Front of A Black Door~
+&z=======================================================================
+&wYou have come before a dark oak door. You push it and try to open it but it
+seems to not want to budge. You can hear something from the other side but
+since you have entered Lairich, you know by now that sounds can be deceiving
+and here especially they usually are.
+&z=======================================================================
+~
+0 134610972 0
+Rd     0
+D0
+~
+~
+7 0 22134
+D2
+~
+~
+0 0 22120
+S
+#22134
+Evil Stepmother's Room~
+&r=======================================================================
+&wThis is the Step Mother's room. The walls are covered with rich velour
+textured flowers and the floor are marble with a sheep skin rug covering it.
+There is a large bed with satin sheets on it. A grande piano sits in the
+center of the room. There are pictures on the wall of people with a cold
+countenance about them.
+&r=======================================================================
+~
+0 138805272 0
+Rd     0
+D2
+~
+~
+7 0 22133
+S
+#22135
+In the Choking Swirl Of the Mist~
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou can smell a rotten smell coming from somewhere in this hell you are
+lost in.  But you can not discern the source.  You can hear the mad
+screeching from all around but you may wonder if its just in you head.  
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 403054620 3
+Rd     160
+D0
+~
+~
+0 0 22139
+S
+#22136
+~
+~
+0 134610960 3
+Rd     0
+D0
+~
+~
+0 0 22145
+D2
+~
+~
+0 0 22129
+S
+#22137
+Caught in the Spiraling Current~
+~
+0 268828688 8
+Rd     150
+D4
+~
+~
+0 0 22307
+D5
+~
+~
+0 0 22307
+S
+#22138
+~
+~
+0 134610972 3
+Rd     0
+D1
+~
+~
+0 0 22157
+D2
+~
+~
+0 0 22130
+S
+#22139
+In the Choking Swirl Of the Mist~
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou keep going north knowing that the mist closed behind you like an
+impenetrable wall.  There seems to be no end to this choking morass that
+sucks away at your life.  
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 403054620 3
+Rd     200
+D0
+~
+~
+0 0 22140
+S
+#22140
+In the Choking Swirl Of the Mist~
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe darkness continues to envelop your surroundings and your being.  The
+screeching and singing gets louder and seemingly closer as you progress
+north.  You wonder if its even human voices that create such hideous sounds.
+&R^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+~
+0 403054616 3
+Rd     250
+D0
+~
+mist~
+119 22141 22141
+S
+#22141
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22143
+D3
+~
+~
+0 0 22142
+S
+#22142
+In the Circle of Trees~
+&g=========================================================================
+&wYou have come to a heath in the forest where the ground is bare and the dirt
+is dark brown and seemingly cold and the earth tender as it leaves your foot
+prints in its bosom. There is a group of trees growing in a circle. The trees
+are barren and the trees themselves appearing lifeless.
+&g=========================================================================
+~
+0 134610968 3
+Rd     0
+D1
+~
+~
+0 0 22141
+S
+#22143
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22144
+D3
+~
+~
+0 0 22141
+S
+#22144
+Before a Cottage~
+~
+0 134610965 3
+Rd     0
+D0
+~
+~
+3 0 22148
+D1
+~
+~
+0 0 22152
+D3
+~
+~
+0 0 22143
+S
+#22145
+~
+~
+0 134610964 3
+Rd     0
+D0
+~
+~
+0 0 22146
+D1
+~
+~
+0 0 22149
+D2
+~
+~
+0 0 22136
+S
+#22146
+A Bend In the Forest~
+~
+0 134610968 3
+Rd     0
+D1
+~
+~
+0 0 22147
+D2
+~
+~
+0 0 22145
+S
+#22147
+~
+~
+0 134610972 0
+Rd     0
+D1
+~
+~
+0 0 22151
+D2
+~
+~
+0 0 22149
+D3
+~
+~
+0 0 22146
+S
+#22148
+Mist Witch's Cottage~
+&gXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+&wYou have entered the cottage of the Mist Witch.  There is an acrid
+smell in the air and dead animals hang all around.  The smell of decay
+is overpowering.  The large cauldron in the center emits a &Ggreen &wsmoke
+which makes you choke and gasp.  You can hear cries of who knows WHAT coming
+from the cauldron. The dead bats that hang from the ceiling are plentiful.
+&gXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+~
+0 138813465 0
+Rd     0
+D2
+~
+~
+3 0 22144
+S
+#22149
+~
+~
+0 134610972 3
+Rd     0
+D0
+~
+~
+0 0 22147
+D1
+~
+~
+0 0 22150
+D3
+~
+~
+0 0 22145
+S
+#22150
+~
+~
+0 138805264 0
+Rd     0
+D1
+~
+~
+0 0 22156
+D3
+~
+~
+0 0 22149
+S
+#22151
+~
+~
+0 138805265 3
+Rd     0
+D0
+~
+~
+0 0 22152
+D1
+~
+~
+0 0 22155
+D3
+~
+~
+0 0 22147
+S
+#22152
+~
+~
+0 138805273 3
+Rd     0
+D1
+~
+~
+0 0 22154
+D2
+~
+~
+0 0 22151
+D3
+~
+~
+0 0 22144
+S
+#22153
+Edge of a Cliff~
+&O-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--
+ &wYou have come to the edge of a cliff.  Because of the mist you have
+almost missed seeing it.  You feel luckly you caught yourself before it was
+too late.  You cannot see down from the point you are standing at.  The mist
+swirls below you seeming to change colors.  Staring at it too long seems to
+be a bad idea.  There seems to be soft whisperings here and there.  
+&O-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--
+~
+0 134619160 3
+Rd     0
+D5
+~
+~
+0 0 22154
+S
+#22154
+In the Forest~
+~
+0 134610968 3
+Rd     0
+D1
+~
+~
+0 0 22171
+D4
+~
+~
+0 0 22153
+S
+#22155
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22172
+S
+#22156
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22173
+D2
+~
+~
+0 0 22182
+S
+#22157
+~
+~
+0 138805272 3
+Rd     0
+D1
+~
+~
+0 0 22182
+D3
+~
+~
+0 0 22138
+S
+#22158
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22185
+D2
+~
+~
+0 0 22159
+S
+#22159
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22158
+D1
+~
+~
+0 0 22186
+D2
+~
+~
+0 0 22160
+S
+#22160
+Zulu's Hut~
+&O##
+                         &O########
+                      &O###############
+                    &O####################
+                  &O#########################
+                  &wYou have entered the hideout
+                of Zulu, the tropical beast.
+                It is a hut made of mud and the
+                skin of all of its victims who
+                have dared to cross its path...
+~
+0 138813464 0
+Rd     0
+D0
+~
+~
+0 0 22159
+S
+#22161
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22165
+D2
+~
+~
+0 0 22162
+S
+#22162
+~
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 22161
+D1
+~
+~
+0 0 22293
+D2
+~
+~
+119 22162 22214
+S
+#22163
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22278
+S
+#22164
+~
+~
+0 401424 0
+Rd     0
+D0
+~
+~
+0 0 22275
+S
+#22165
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22166
+D3
+~
+~
+0 0 22161
+S
+#22166
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22168
+D1
+~
+~
+0 0 22167
+D2
+~
+~
+0 0 22165
+S
+#22167
+~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 22166
+S
+#22168
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22319
+D1
+~
+~
+0 0 22169
+D2
+~
+~
+0 0 22166
+S
+#22169
+Before An Icy Door~
+~
+0 520 0
+Rd     0
+D0
+~
+~
+119 22169 22320
+D3
+~
+~
+0 0 22168
+S
+#22170
+The Shop of Bottled Mystery~
+&O=========================================================================-
+&wWhen you enter the cottage you see that it is as neat as it looked from
+the outside.  There are many bowls filled with &Rred &wand &Bblue &w flowers
+that were in the garden.  In the center of the room is Ashlinne. She is
+sitting on a large, cushiony chair. Next to her is a huge cabinet with many
+fascinating looking bottles filled with elements of magic that &Ysparkles.
+&O=========================================================================-
+~
+0 151389209 0
+Rd     0
+D2
+~
+~
+7 0 22171
+S
+#22171
+In a Quint little Garden~
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou have entered an area of a well tended garden. You have to wonder how it
+could have survived under such conditions. It is perfect and the bushes that
+surround them are manicured and trimmed in shapes of stars and fish. To the
+North of you, you can make out a quaint cottage.
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 0 0
+Rd     0
+D0
+~
+~
+7 0 22170
+D1
+~
+~
+0 0 22175
+D2
+~
+~
+0 0 22172
+D3
+~
+~
+0 0 22154
+S
+#22172
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22171
+D1
+~
+~
+0 0 22176
+D2
+~
+~
+0 0 22173
+D3
+~
+~
+0 0 22155
+S
+#22173
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22172
+D1
+~
+~
+0 0 22177
+D3
+~
+~
+0 0 22156
+S
+#22174
+~
+~
+0 134610944 3
+Rd     0
+D1
+~
+~
+0 0 22178
+D2
+~
+~
+0 0 22175
+S
+#22175
+~
+~
+0 134610944 0
+Rd     0
+D0
+~
+~
+0 0 22174
+D1
+~
+~
+0 0 22179
+D2
+~
+~
+0 0 22176
+D3
+~
+~
+0 0 22171
+S
+#22176
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22175
+D2
+~
+~
+0 0 22177
+D3
+~
+~
+0 0 22172
+S
+#22177
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22176
+D3
+~
+~
+0 0 22173
+S
+#22178
+~
+~
+0 134619157 3
+Rd     0
+D1
+~
+~
+0 0 22180
+D2
+~
+~
+0 0 22179
+D3
+~
+~
+0 0 22174
+S
+#22179
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22178
+D1
+~
+~
+0 0 22181
+D3
+~
+~
+0 0 22175
+S
+#22180
+Deep in the Misty Forest~
+~
+0 134619160 3
+Rd     0
+D2
+~
+~
+0 0 22181
+D3
+~
+~
+0 0 22178
+S
+#22181
+Under An Arch Of Rose Bushes~
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+&wYou have come to a huge arch about ten feet above you made entirely of the
+largest and the most gorgeous &Rroses &wyou have ever seen. It is held in tow
+by the fiercest and the longest metal thorns you have EVER imagined existing.
+Upon close examination you see that the thorns have clutching in their deadly
+embrace, pieces of rotted flesh and bits of clothing and hair. The mist hangs
+in deceiving mellowness. You can see that the neat cobble stone road continues
+south along with the splendor of the rose bushes and the virulence of the 
+thorns.
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+~
+0 134619164 3
+Rd     0
+D0
+~
+~
+0 0 22180
+D2
+~
+~
+0 0 22189
+D3
+~
+~
+0 0 22179
+S
+#22182
+~
+~
+0 134619137 3
+Rd     0
+D0
+~
+~
+0 0 22156
+D1
+~
+~
+0 0 22183
+S
+#22183
+~
+~
+0 134619137 3
+Rd     0
+D1
+~
+~
+0 0 22184
+D3
+~
+~
+0 0 22182
+S
+#22184
+~
+~
+0 0 0
+Rd     0
+D3
+~
+~
+0 0 22183
+S
+#22185
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 22186
+D3
+~
+~
+0 0 22158
+S
+#22186
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22185
+D2
+~
+~
+0 0 22187
+D3
+~
+~
+0 0 22159
+S
+#22187
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22186
+D2
+~
+~
+0 0 22188
+S
+#22188
+On A Hidden Jungle Path~
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+0 0 22187
+D2
+~
+~
+0 0 22241
+S
+#22189
+The Thorn Obstruction~
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+&wYou have reached an impasse in the road where all around are the most
+beautiful &Pr&Ro&rs&Re&Ps &wwith the headiest scents imaginable.  But it is all entangled
+in nasty looking metal thorns and it prevents you from seeing any further.
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+~
+0 138813456 3
+Rd     0
+D0
+~
+~
+0 0 22181
+D2
+~
+~
+119 22190 22190
+S
+#22190
+In a Maze Of Thorn Bushes~
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+&wYou are surrounded by metal thorn rose bushes. You are careful not to get
+too close because the thorns do not look very kind. The path you are on is
+made up of tiny cobble stones hewn into a neat carpet that stretches out 
+before you. The road continues south and branches off to the east as do the
+rose bushes.
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+119 22190 22189
+D1
+~
+~
+0 0 22195
+D2
+~
+~
+0 0 22191
+S
+#22191
+In the Rose Bush Maze~
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`# 
+&wYou are surrounded by metal thorn rose bushes.  You are careful as always
+not to get too close to the ever present thorns.  The urge to pick some of
+the beautiful &Rr&Po&rs&Pe&Rs &wis strong but the thorns seem to get angrier as
+if sensing your intentions.
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+0 0 22190
+D2
+~
+~
+0 0 22201
+D3
+~
+~
+0 0 22194
+S
+#22192
+Incubus' Hideout~
+&z========================================================================
+&wThis is the room where lurks an evil force that the devil himself has sent
+to this world as a manifestation of his evil wishes. The room is dark with
+hardly any light of any remote source present. There is a metal fireplace
+that is closed in the center with the smell of something burning coming out
+in unpleasant waves of smoke. The bed in the room is blood stained and a 
+bloody basin sits beneath the bed. There is a jewelry box filled with many
+gems and trinkets that were taken as souvenirs from whoever dwells in this
+unholy house.
+&z========================================================================
+~
+0 134619160 0
+Rd     0
+D2
+~
+~
+119 22194 22193
+S
+#22193
+Standing on A Metal Doormat~
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+119 22194 22192
+D2
+~
+~
+0 0 22194
+S
+#22194
+~
+~
+0 134619153 3
+Rd     0
+D0
+~
+~
+0 0 22193
+D1
+~
+~
+0 0 22191
+S
+#22195
+In the Rose Bush Maze~
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+&wYou stand at one of the gates of the rose bush maze. The glowing radiance
+of the bushes give way to the dismal forest once more where the mist shrouds
+all existence. The path continues west and east. To the east it seems that
+some light filters towards you through the mist hazily.
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+~
+0 134610972 3
+Rd     0
+D0
+~
+~
+0 0 22301
+D1
+~
+~
+0 0 22196
+D3
+~
+~
+0 0 22190
+S
+#22196
+The entrance to the Church~
+&g*******************************************************************************
+&wYou have come to a seemingly abandoned Church. There are many stairs leading up
+to the &rs&pt&Ba&Pi&Rn&Ye&Gd &wglass window that seems to be the entrance. From the window at
+at the top you can see a faint light flooding out cutting into the mist. You
+can almost hear a lilting voice but you couldn't be sure. At this point it
+could be your imagination.
+&g*******************************************************************************
+~
+0 134619153 3
+Rd     0
+D2
+~
+~
+0 0 22199
+D3
+~
+~
+0 0 22195
+D4
+~
+~
+0 0 22197
+S
+#22197
+On the Stairs to the Healer's~
+&c*******************************************************************************
+&wThe stairs that you are using are cold and steep. It is dark but from above
+you can hear humming drifting down and almost feel its vibrations.
+Lining the walls are dark &pg&ce&pm&cs &wof unknown origin. The light coming down
+from above seems to float down like mist.
+&c*******************************************************************************
+~
+0 134619160 0
+Rd     0
+D4
+~
+~
+0 0 22198
+D5
+~
+~
+0 0 22196
+S
+#22198
+The Misty Healer Marta's~
+&C*******************************************************************************
+&zYou have entered the Top of the Tower. The room is dark yet glowing. There
+&zis a mat on the floor that &Yglows &zwith a power that ripples out in slow waves.
+&wThe whole room is dark but you see clearly for the first time since you have
+&Wentered Lairich. The calm that settles your soul emanates from Marta
+&wwho is sitting in the center of the mat. She is floating a few feet above
+&zentranced with her eyes closed. There are all kinds of &RG&BE&GM&PS &zthat glitter
+all around her. And the room is silent except for her humming.
+&C*******************************************************************************
+~
+0 2499612 0
+Rd     0
+D5
+~
+~
+0 0 22197
+S
+#22199
+~
+~
+0 134619153 0
+Rd     0
+D0
+~
+~
+0 0 22196
+D1
+~
+~
+0 0 22230
+D2
+~
+~
+0 0 22200
+S
+#22200
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22199
+D1
+~
+~
+0 0 22232
+D2
+~
+~
+0 0 22208
+S
+#22201
+In the Rose Bush Maze~
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+&wThe rose bushes are ever present and they just seem to add to the bleakness
+of this forgotten land.  You see that the &.roses &wseem to change hues in
+this darkness which is called day in this land. You see the maze branch off 
+to the west and continue north.
+&c`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#`#^#'#,#^#'#,#`#
+~
+0 134619164 3
+Rd     0
+D0
+~
+~
+0 0 22191
+D3
+~
+~
+0 0 22202
+S
+#22202
+In Front of a Pink roofed house.~
+&P-------------------------------------------------------------------------
+&WThe road you are on continues east and west. The rose bushes split apart to
+let this house with the &Ppink roof &Wsit here in seductive allure. In the mist
+it glows with some kind of unseen light. All around the house there are rose
+bushes but without the unkind metal thorns.
+&P-------------------------------------------------------------------------
+~
+0 134619160 3
+Rd     0
+D1
+~
+~
+0 0 22201
+D2
+~
+~
+119 22205 22207
+D3
+~
+~
+0 0 22203
+S
+#22203
+Andre's Playroom~
+~
+0 134619153 3
+Rd     0
+D1
+~
+~
+0 0 22202
+D2
+~
+~
+0 0 22206
+D3
+~
+~
+0 0 22204
+S
+#22204
+A Dead End~
+&O=========================================================================
+&wYou have come to a dead end where petrified trees block your progress.
+The skies are hardly discernable through all the trees and it is dark 
+without the little light that you had before. There is a portal here and it
+is a source of light.
+&O=========================================================================
+~
+0 134619153 3
+Rd     0
+D1
+~
+~
+0 0 22203
+S
+#22205
+In The Forest~
+~
+0 134619160 3
+Rd     0
+D1
+~
+~
+0 0 22206
+D2
+~
+~
+0 0 22209
+S
+#22206
+~
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+0 0 22203
+D3
+~
+~
+0 0 22205
+S
+#22207
+Succubus' Parlor~
+&P^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou have entered Succubus' parlor of lust.  There is a canopied bed with
+lace frills all around.  On the nightstands next to the bed burns brightly
+many scented candles.  The walls have many sexy pictures on them and a
+gleaming tub sits in the corner filled with warm water. 
+&P^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+119 22205 22202
+S
+#22208
+~
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+0 0 22200
+D2
+~
+~
+0 0 22213
+D3
+~
+~
+0 0 22228
+S
+#22209
+In The Forest~
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+0 0 22205
+D1
+~
+~
+0 0 22210
+D2
+~
+~
+0 0 22235
+S
+#22210
+In The Forest~
+~
+0 134619164 3
+Rd     0
+D1
+~
+~
+0 0 22211
+D3
+~
+~
+0 0 22209
+S
+#22211
+In The Forest~
+~
+0 134619153 3
+Rd     0
+D1
+~
+~
+0 0 22290
+D3
+~
+~
+0 0 22210
+D5
+~
+~
+3 0 22237
+S
+#22212
+~
+~
+0 134619153 3
+Rd     0
+D2
+~
+~
+0 0 22215
+D3
+~
+~
+0 0 22290
+S
+#22213
+~
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+0 0 22208
+D2
+~
+~
+0 0 22216
+S
+#22214
+Freezing Bedroom~
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+119 22162 22162
+D2
+~
+~
+3 0 22217
+S
+#22215
+~
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 22212
+D2
+~
+~
+0 0 22218
+S
+#22216
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22213
+D2
+~
+~
+0 0 22219
+S
+#22217
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+3 0 22214
+D5
+~
+~
+0 0 22220
+S
+#22218
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22215
+D2
+~
+~
+0 0 22221
+D3
+~
+~
+0 0 22246
+S
+#22219
+Entrance to the Ice Castle~
+&C^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou have reached the huge arching entrance to a castle made of ice. Your breath
+comes out in &Wwhite puffs &wand you start to shiver at the sudden change in the
+temperature. The castle is spectacular to view. There are many beautiful
+carvings in the walls of the castle. As you look into the entrance you see many
+sculptures of people and when you get a closer look you see that they are not
+sculptures but people that are frozen.
+&C^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134619161 3
+Rd     0
+D0
+~
+~
+0 0 22216
+D1
+~
+~
+0 0 22220
+D2
+~
+~
+0 0 22222
+S
+#22220
+In the Icy Foyer~
+&C^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou have entered a foyer with high ceilings and many beatu
+~
+0 134619164 0
+Rd     0
+D3
+~
+~
+0 0 22219
+D4
+~
+~
+0 0 22217
+D5
+~
+~
+0 0 22275
+S
+#22221
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22218
+D3
+~
+~
+0 0 22254
+S
+#22222
+Before A Tropical portal~
+~
+0 401436 3
+Rd     0
+D0
+~
+~
+0 0 22219
+S
+#22223
+In the Pit~
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou fall into the pit crashing into the bones.  Dust flies everywhere and
+your nostrils are assailed with the smell of putrifaction and doom.  Some of
+the skeletons are dismembered and some still wear their earthly possesions
+on their bodies.  The lovely smell of the flowers mixed in with the smell of
+decay reeks of sweet rot.  You imagine the pits of hell smelling like this.
+&O^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 138805272 0
+Rd     0
+D4
+~
+~
+0 0 22244
+S
+#22224
+~
+~
+0 401429 0
+Rd     0
+D0
+~
+~
+0 0 22295
+D2
+~
+~
+0 0 22225
+D3
+~
+~
+0 0 22275
+S
+#22225
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22224
+S
+#22226
+~
+~
+0 134619153 3
+Rd     0
+D2
+~
+~
+0 0 22227
+S
+#22227
+~
+~
+0 134619153 3
+Rd     0
+D0
+~
+~
+0 0 22226
+D2
+~
+~
+0 0 22228
+S
+#22228
+~
+~
+0 134619153 3
+Rd     0
+D0
+~
+~
+0 0 22227
+D1
+~
+~
+0 0 22208
+D3
+~
+~
+0 0 22229
+S
+#22229
+~
+~
+0 134610969 3
+Rd     0
+D1
+~
+~
+0 0 22228
+S
+#22230
+~
+~
+0 134619153 3
+Rd     0
+D1
+~
+~
+0 0 22231
+D3
+~
+~
+0 0 22199
+S
+#22231
+~
+~
+0 134619153 0
+Rd     0
+D3
+~
+~
+0 0 22230
+S
+#22232
+~
+~
+0 134619153 3
+Rd     0
+D1
+~
+~
+0 0 22233
+D3
+~
+~
+0 0 22200
+S
+#22233
+~
+~
+0 134619153 3
+Rd     0
+D3
+~
+~
+0 0 22232
+S
+#22234
+A Small Hut~
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou have entered a small cozy hut with a dirt floor.  There are many books
+that seem to be hand made of straws and leaves that someone had put together
+with resources available in this area.  There is a straw mat in the corner
+and in the middle of the room a small pit is dug into the ground and a
+&Rf&Yi&Or&Re &wburns with a small cauldron sitting atop it.  The mist
+mingles pleasantly with the steam coming from the cauldron. 
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+~
+0 138813464 0
+Rd     0
+D2
+~
+~
+3 0 22240
+S
+#22235
+At A Dead End~
+~
+0 134619153 3
+Rd     0
+D0
+~
+~
+0 0 22209
+S
+#22236
+An Alcove Hidden by trees~
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe dark trees and mist come together to form an alcove. The trees gather
+around together as if sharing a secret as they shake with mirth and 
+conspiracy. The mist is dark and damp in this hidden room. There are pine
+needles and pine cones littered all around. 
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134610973 3
+Rd     0
+S
+#22237
+Lost and Found~
+~
+0 134619160 3
+Rd     0
+D4
+~
+~
+3 0 22211
+S
+#22238
+Inside a Cave~
+&z-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+&wThe cave you have entered is dark, cold and clammy. Water drips down in
+seemingly endless drops. It echoes frighteningly amplified in this tunnel.
+You can hear strange cries coming from the cave only it is hard to see from
+where since the mist hasn't let up a bit. Only when you look up do you see
+that they are coming from strange looking mutated bats with snake heads.
+&z-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+~
+0 134619160 0
+Rd     0
+D2
+~
+~
+0 0 22247
+S
+#22239
+Entrance To the Forbidden Cave~
+&r-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+&wYou have entered a cave that you know now has been hidden for a reason.
+Although you can't see too much of your surroundings due to the ever present
+mist, you do know what whatever is in here, it has been waiting for someone
+to find it and surprise them. But the one who is surprised might be you.
+&r-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+~
+0 134619160 0
+Rd     0
+D2
+~
+~
+0 0 22248
+S
+#22240
+Before the Forbidden Cave~
+&R======================================================================
+&wYou have come to a huge cave entrance that is blocked off by a boulder
+which you find is too heavy to budge. The road ends abruptly there and to 
+the north you see a small hut with beads hanging at the entrance and herbs 
+hanging at the posts drying.
+&R======================================================================
+~
+0 134619157 3
+Rd     0
+D0
+~
+entrance~
+3 0 22234
+D1
+~
+~
+0 0 22241
+D2
+~
+~
+0 0 22249
+D3
+~
+cave~
+119 22240 22239
+S
+#22241
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22188
+D1
+~
+~
+0 0 22242
+D3
+~
+~
+0 0 22240
+S
+#22242
+~
+~
+0 134619160 3
+Rd     0
+D1
+~
+~
+0 0 22243
+D3
+~
+~
+0 0 22241
+S
+#22243
+On a Path in the Jungle~
+~
+0 134619161 3
+Rd     0
+D1
+~
+~
+0 0 22245
+D2
+~
+~
+0 0 22252
+D3
+~
+~
+0 0 22242
+S
+#22244
+Falling into the Pit~
+&O|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+&wYou are falling down a pit where you saw the skeletons earlier.  You did
+not realize that the pit was so deep.  When you saw it from above it seemed
+to be a shallow pit.  You steel yourself for a nasty fall. 
+&O||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| 
+~
+0 168165404 9
+Rd     0
+D4
+~
+~
+0 0 22115
+D5
+~
+~
+0 0 22223
+S
+#22245
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22246
+D2
+~
+~
+0 0 22253
+D3
+~
+~
+0 0 22243
+S
+#22246
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22218
+D2
+~
+~
+0 0 22254
+D3
+~
+~
+0 0 22245
+S
+#22247
+Inside a Dark Cave~
+&z-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+&wYou continue down the tunnel. The mutated snake-bats start fluttering all
+around angrily at your entrance. They drop caustic venom on you and screech 
+in their shrill high pitched voice making you wince. You see that the tunnel
+extends further south and north.
+&z-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+~
+0 134488085 0
+Rd     0
+D0
+~
+~
+0 0 22238
+D2
+~
+~
+0 0 22256
+D3
+~
+~
+0 0 22105
+S
+#22248
+Zazu's Pit~
+&r=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+&RThe area you have entered in the cave is a pit littered with remains of
+many poor souls. It glows with an intense red light that emanates from some
+unknown source. Not only is it an intense red that bathes your body in a 
+bloody light, it is scorching hot as it burns into your skin.
+&r=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+~
+0 138813464 0
+Rd     0
+D0
+~
+~
+0 0 22239
+D2
+~
+~
+0 0 22258
+S
+#22249
+Before a Large Hollow Tree~
+&g=========================================================================-
+ = &wThe tree you stand before is immense as to boggle you.  Not so much in
+height but in circumference.  It must have been a beautiful tree tree full
+of life and a home for many animals of the jungle.  Now it is just a tree a
+mere skeleton of what it used to be.  There seems to be an arch leading into
+the tree.  You can't be sure but there seems to be a room inside the tree.  
+&g=========================================================================-
+~
+0 134619160 3
+Rd     0
+D0
+~
+~
+0 0 22240
+D2
+~
+~
+0 0 22260
+S
+#22250
+Hidden Treasure Cave~
+&O========================================================================
+The cave you have entered smells of the fresh mud and clay. It is damp and 
+misty in here. But what dazzles you and catches your eyes is the fact that 
+you have tumbled upon a veritable treasure room. &YGold and &wsilver &Yc&wo&Yi&wn&Ys &Olie all
+around for the taking. And &pjewels &Oof all sizes and shapes and descriptions
+gleam amidst all the coins.
+========================================================================
+~
+0 134619160 0
+Rd     0
+D4
+~
+~
+71 22244 22260
+S
+#22251
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22252
+D2
+~
+~
+0 0 22263
+S
+#22252
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22243
+D1
+~
+~
+0 0 22253
+D2
+~
+~
+0 0 22265
+D3
+~
+~
+0 0 22251
+S
+#22253
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22245
+D1
+~
+~
+0 0 22254
+D2
+~
+~
+0 0 22267
+D3
+~
+~
+0 0 22252
+S
+#22254
+~
+~
+0 134619153 3
+Rd     0
+D0
+~
+~
+0 0 22246
+D1
+~
+~
+0 0 22221
+D2
+~
+~
+0 0 22269
+D3
+~
+~
+0 0 22253
+S
+#22255
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 22276
+D3
+~
+~
+0 0 22324
+S
+#22256
+A Shadowy Cave~
+&G-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+&wThe cave you have entered is enclosed in &zshadows &was dark as death.
+There is a smell of evil permeating all around.  The mist swirls around the
+center of the room in a menacing way.  It moves around at the whim of the
+presence before you, The Evil &GMedusa.
+&G-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+~
+0 138813464 0
+Rd     0
+E
+shadows~
+&zThe shadows are long and dark.  So dark things can live in them without
+seeing light forever.  
+~
+D0
+~
+~
+0 0 22247
+D2
+~
+~
+0 0 22257
+S
+#22257
+The Exit From Lairich~
+&C======================================================================
+&YYou rejoice in the fact that you have made it out and can see the sun once
+more.  Magically the mist evaporates as you look around.  It forms this one
+huge cloud that rests at your feet.  There are many &Pf&Gl&Co&pw&ge&Rr&Cs
+&Yall around and birds singing perched upon lush &gt&Or&ge&Oe&gs. 
+&C====================================================================== 
+~
+0 394260 3
+Rd     0
+S
+#22258
+Inside the Forbidden Cave~
+&R-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--
+ &wYou are still inside the cave but before yet another door.  A cave within
+a cave.  The door you stand in front of is sleek with some foul smelling
+black substance.  You fear to explore it lest you find out what it is and
+what caused it to get there.  
+&R-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 22248
+D2
+~
+boulder~
+3 0 22259
+S
+#22259
+Dark Corner~
+&z-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--
+&wInside the cave is worse than you imagined.  You almost wished you hadn't
+had the enterpise to do such exploring.  
+The walls are flithy @
+~
+0 138813464 0
+Rd     0
+D0
+~
+~
+3 0 22258
+S
+#22260
+Inside a Hollow Tree~
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wThe room which you have entered is that of a veteran in these parts. There
+are many trophies of wild animal heads hung proudly on the wall and many
+weapons handcrafted by someone with vast knowledge of weapon making hangs on
+the opposite wall. A crude oil lamp burns here seemingly out of place but
+you are nevertheless grateful for even some warmth and light in this forsaken
+place. There appears to be a trap door hidden by the dirt on the ground.
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 22249
+D5
+~
+~
+71 22244 22250
+S
+#22261
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22262
+S
+#22262
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22264
+D3
+~
+~
+0 0 22261
+S
+#22263
+~
+~
+0 134610965 0
+Rd     0
+D0
+~
+~
+0 0 22251
+D1
+~
+~
+0 0 22265
+D2
+~
+~
+0 0 22264
+S
+#22264
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22263
+D3
+~
+~
+0 0 22262
+S
+#22265
+~
+~
+0 401425 0
+Rd     0
+D0
+~
+~
+0 0 22252
+D3
+~
+~
+0 0 22263
+S
+#22266
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22268
+S
+#22267
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22253
+D2
+~
+~
+0 0 22268
+S
+#22268
+~
+~
+0 131072 0
+Rd     0
+D0
+~
+~
+0 0 22267
+D1
+~
+~
+0 0 22270
+D3
+~
+~
+0 0 22266
+S
+#22269
+~
+~
+0 134619153 3
+Rd     0
+D0
+~
+~
+0 0 22254
+D1
+~
+~
+0 0 22271
+S
+#22270
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22272
+D3
+~
+~
+0 0 22268
+S
+#22271
+~
+~
+0 134610961 3
+Rd     0
+D3
+~
+~
+0 0 22269
+S
+#22272
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22274
+D3
+~
+~
+0 0 22270
+S
+#22273
+Entrance to the Jungle~
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&GTrees that you know exists in Jungles are growing heavily here. The sounds
+that you hear coming from all around you are the busy sounds of an active
+jungle. The air has become sultry hot all of a sudden. You know that you have
+entered the Tropical Mist Zone. The mist has not gone away. No, by all means
+not. It has only gotten humid and uncomfortable.
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134619160 3
+Rd     0
+D2
+~
+~
+0 0 22274
+S
+#22274
+In the Jungle~
+~
+0 134619160 0
+Rd     0
+D0
+~
+~
+0 0 22273
+D3
+~
+~
+0 0 22272
+S
+#22275
+~
+~
+0 134619153 0
+Rd     0
+D1
+~
+~
+0 0 22224
+D2
+~
+~
+0 0 22164
+D4
+~
+~
+0 0 22220
+S
+#22276
+In the Depth~
+~
+0 134627336 8
+Rd     0
+D0
+~
+~
+0 0 22255
+D3
+~
+~
+0 0 22322
+S
+#22277
+~
+~
+0 401428 0
+Rd     0
+D0
+~
+~
+0 0 22293
+D1
+~
+~
+0 0 22279
+D2
+~
+~
+0 0 22294
+S
+#22278
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22279
+D2
+~
+~
+0 0 22163
+S
+#22279
+~
+~
+0 4 0
+Rd     0
+D0
+~
+~
+0 0 22281
+D2
+~
+~
+0 0 22278
+D3
+~
+~
+0 0 22277
+D5
+~
+~
+0 0 22280
+S
+#22280
+~
+~
+0 134619164 0
+Rd     0
+D0
+~
+~
+0 0 22282
+D4
+~
+~
+0 0 22279
+S
+#22281
+~
+~
+0 134619152 0
+Rd     0
+D0
+~
+~
+0 0 22283
+D2
+~
+~
+0 0 22279
+S
+#22282
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22284
+D2
+~
+~
+0 0 22280
+S
+#22283
+~
+~
+0 134610960 0
+Rd     0
+D2
+~
+~
+0 0 22281
+S
+#22284
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22285
+D2
+~
+~
+0 0 22282
+S
+#22285
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22286
+D2
+~
+~
+0 0 22284
+S
+#22286
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22289
+D2
+~
+~
+0 0 22285
+D3
+~
+~
+0 0 22287
+S
+#22287
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22286
+D3
+~
+~
+0 0 22288
+S
+#22288
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22287
+S
+#22289
+At the End of The Hall~
+&B=====================================================================
+&CThis is the end of the seemingly endless hallway. You see the the high
+ceilings are abound with murals of the frost kingdom. The mist hangs like
+frost crystals in the air looking much like floating snowflakes.
+&B=====================================================================
+~
+0 138813464 0
+Rd     0
+D2
+~
+~
+0 0 22286
+D3
+~
+~
+119 22289 22291
+S
+#22290
+In the Clutch Of The Mist~
+&z========================================================================
+&wYou have come into the clutch of the mist where it has trapped you and you
+can see no way out from this room. The mist seems to close in on you like a
+wall. Taking a deep breath and thinking your options seem to be a good idea.
+&z========================================================================
+~
+0 134348813 3
+Rd     0
+D0
+~
+branch~
+119 22290 22308
+S
+#22291
+In A Room full of Mirrors.~
+&B=======================================================================
+&W=======================================================================
+&CThe room you have entered is made up of mirrors.  As you look closer you
+see that they aren't made of glass but ice. You know that superb crafting went
+into creating such a masterpiece and the whole room at that.  Only in such a
+castle can such artistry come to life.
+&W=======================================================================
+&B=======================================================================
+~
+0 134619160 0
+Rd     0
+D1
+~
+~
+119 22289 22289
+D3
+~
+~
+0 0 22292
+S
+#22292
+Before A Frosty Mirror~
+&W=======================================================================
+&CYou stand before a huge mirror about 20 feet in length that reaches the 
+ceiling. There is an ice sculpture of Corinth in the center of the room. 
+Before the sculpture lies a lot of flowers chisled from ice. 
+&W=======================================================================
+~
+0 134610968 0
+Rd     0
+D1
+~
+~
+0 0 22291
+S
+#22293
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 22277
+D3
+~
+~
+0 0 22162
+S
+#22294
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22277
+S
+#22295
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 22224
+S
+#22296
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22298
+S
+#22297
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22298
+S
+#22298
+Riding The Currents~
+~
+0 134619160 8
+Rd     0
+D0
+~
+~
+0 0 22321
+D1
+~
+~
+0 0 22299
+D2
+~
+~
+0 0 22297
+D3
+~
+~
+0 0 22296
+S
+#22299
+Caught in an Undertow~
+&B-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-
+&C-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-
+&w-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-
+&z-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-._-
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22311
+D3
+~
+~
+0 0 22298
+D5
+~
+~
+0 0 22137
+S
+#22300
+The Mermaid's Solitary Waters~
+&B^`.'^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^
+&cThis is a quiet spot in the sea where &gseaweed &cand little &zblack fish
+&c^`-,.-^`-,.-^^`-,.-^`-,.-^`-,.-^`-,.-^^`-,.-^`-,.-^^`-,.-^`-,.-^^`-,.-^`-,.-^`
+&Bswim around lazily. The water is murky and the silence that fills it is
+&c^`-,.-^`-,.-^^`-,.-^`-,.-^`-,.-^`-,.-^^`-,.-^`-,.-^^`-,.-^`-,.-^^`-,.-^`-,.-^`
+&csomewhat disquieting.
+&B^`.'^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^
+~
+0 138813464 8
+Rd     0
+D0
+~
+~
+0 0 22311
+S
+#22301
+Under A Willow Tree~
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&wYou stand below a tall weeping willow tree with arms that drag down to
+your head.  The tree sways gently in the breeze that blows occasionally. 
+The mist hangs around in steamy curtains weaving its way through the
+branches.  
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 134619153 3
+Rd     0
+D1
+~
+~
+0 0 22306
+D2
+~
+~
+0 0 22195
+S
+#22302
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22303
+D1
+~
+~
+0 0 22305
+S
+#22303
+The Juniper Tree Court Yard~
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+&YYou have come to a hallowed ground. Peace emanates from the tree that stands
+tall. It bears plump berries that beg to be picked. There are many stones 
+piled up neatly forming a low wall around the tree.
+&g^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~
+0 136717336 3
+Rd     0
+D1
+~
+~
+0 0 22304
+D2
+~
+~
+0 0 22302
+S
+#22304
+Before A Gold And Silver Tree~
+&W-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+&wThis area is all calm and serenity.  But there is a glow coming from the
+center which as you walk closer you see is a tree made of gold and silver
+bearing gorgeous &Yg&Oo&Yl&Od &wand &Ws&wi&Wl&wv&We&wr apples. The mist feels cool against
+your skin as it calms your overwrought nerves where as before only
+it seemed to be your enemy and suffocated your will along with your power.
+There is a large boulder next to the tree and it seems beckon your to rest 
+your tired spirit.
+&W-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+~
+0 2499596 3
+Rd     0
+D2
+~
+~
+0 0 22305
+D3
+~
+~
+0 0 22303
+S
+#22305
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22304
+D2
+~
+~
+0 0 22306
+D3
+~
+~
+0 0 22302
+S
+#22306
+By A Small Pond~
+&g=================================&P*&Y*&C*&g=================================
+&WYou have come upon a picture perfect scene.  There is a small pond at your
+feet.  In it you can see many little &Rred &Wfish swimming around.  There
+are lush weeping willows with their long arms dragging in the pond. The birds
+sing their lonely song. The mist is a snowy white cloud resting all around.
+&g=================================&P*&Y*&C*&g=================================
+~
+0 134619164 3
+Rd     0
+D0
+~
+~
+0 0 22305
+D3
+~
+~
+0 0 22301
+S
+#22307
+~
+~
+0 268828688 8
+Rd     150
+D4
+~
+~
+0 0 22137
+D5
+~
+~
+0 0 22137
+S
+#22308
+Before A Moutain~
+~
+0 134610968 5
+Rd     0
+D2
+~
+~
+119 22290 22290
+D4
+~
+~
+0 0 22309
+S
+#22309
+On a Mountain Trail~
+~
+0 134619160 5
+Rd     0
+D4
+~
+~
+0 0 22310
+D5
+~
+~
+0 0 22308
+S
+#22310
+On the Mountain Trail~
+~
+0 134619160 5
+Rd     0
+D4
+~
+~
+0 0 22312
+D5
+~
+~
+0 0 22309
+S
+#22311
+Before a Swirling Vortex~
+&B^`.'^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^.,^`.,^`.,&CYou have reached an area where the water is&B`.,^`.,^`.,^`., ^.,-
+,^`.,^`.,&Cturbulent in its rush to join the swirling&B,^`.,^`.,^`.,^`.,^`., ^`.,^
+&B,^`.,^`.,^`,.&Chole in front that sucks in relentlessly.&B,^`.,^`.,^`.,^`.,^`., ^`.
+^`.'^`.,^`.,&CAll the waters rush around in a violent&B.,^`.,^`.,^`.,^`.,^`., ^`.
+'^`.,^`.,^`.,^`.,^`&Cmelee...into the abyss...&B`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^
+^`.'^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^`.,^`.,^`.,^`.,^`.,^`.,^`., ^`.,^
+~
+0 134619161 8
+Rd     0
+D2
+~
+~
+0 0 22300
+D3
+~
+~
+0 0 22299
+S
+#22312
+On the Mountain Trail~
+~
+0 134619160 5
+Rd     0
+D3
+~
+~
+0 0 22313
+D5
+~
+~
+0 0 22310
+S
+#22313
+On the Mountain Trail~
+~
+0 134619160 5
+Rd     0
+D1
+~
+~
+0 0 22312
+D4
+~
+~
+0 0 22314
+S
+#22314
+On the Mountain Trail~
+~
+0 134619160 5
+Rd     0
+D1
+~
+~
+0 0 22315
+D3
+~
+~
+0 0 22316
+D5
+~
+~
+0 0 22313
+S
+#22315
+On A Clearing~
+~
+0 134619160 5
+Rd     0
+D3
+~
+~
+0 0 22314
+S
+#22316
+Before a Temple~
+~
+0 134619160 5
+Rd     0
+D1
+~
+~
+0 0 22314
+D4
+~
+~
+0 0 22317
+S
+#22317
+The Temple ~
+&G &Y==&G=================================================================&Y==
+&BThe path has led you to a mountain top where the air is crisp and the
+serenity prevelant. You are in a temple of Buddha. The temple is supported
+by columns that are carved and painted in bright splashes of &Ggreen &Rred &Bblue
+and &Yyellow. &BIn the front of the hallway sits a &Ygolden &Btwenty foot
+statue of Buddha. All around the smell of sweet smelling aromatic woods
+burning on a small brazier fills the air. The sounds of bells and chanting 
+are all around. You feel peace here.
+&G &R==&Y=================================================================&R==
+~
+0 401432 5
+Rd     0
+D4
+~
+~
+0 0 22318
+D5
+~
+~
+0 0 22316
+S
+#22318
+Ante Chamber of Adoration~
+&R==========================================================================
+&WLove fills the air. It smothers you in its intense embrace. All those insane
+acts you have done in the name of love come to mind. You want to fight the
+inner demons that drive you to commit crimes of passion. In this room is where
+you may come to terms with that raging hell called adoration, love.
+&R==========================================================================
+~
+0 4595736 0
+Rd     0
+D5
+~
+~
+0 0 22317
+S
+#22319
+~
+~
+0 0 0
+Rd     0
+D2
+~
+~
+0 0 22168
+S
+#22320
+The Frost Queen's Throne Room~
+&C==========================&Y000000000000000000000&C==========================
+&wWhen you enter this room, you have to shade your eyes due to the intense
+brightness that emanates from it.  It glows intently with all the powers
+and wonders of the Frost Kingdom.  There is a white carpet leading up to
+a magnificent throne made of diamonds and the rarest gems.  Seated
+majestically upon her throne is the Frost Queen.
+&C=======================================================================
+~
+0 4595736 0
+Rd     0
+D2
+~
+~
+119 22169 22169
+S
+#22321
+~
+~
+0 0 0
+Rd     0
+D0
+~
+~
+0 0 22323
+D1
+~
+~
+0 0 22322
+D2
+~
+~
+0 0 22298
+S
+#22322
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22276
+D3
+~
+~
+0 0 22321
+S
+#22323
+~
+~
+0 0 0
+Rd     0
+D1
+~
+~
+0 0 22324
+D2
+~
+~
+0 0 22321
+S
+#22324
+In the Depth~
+~
+0 417816 8
+Rd     0
+D0
+~
+~
+0 0 22325
+D1
+~
+~
+0 0 22255
+D3
+~
+~
+0 0 22323
+S
+#22325
+The Entrance to the Sea of Despair~
+&B`^,.-,-`^.,-^-.,`^,.-,-`^.,-^-.,`^,.-,-`^.,-^-.,`^,.-,-`^.,-^-.,`^,.-,-`^.,-^-.
+,.-,-`^.,-^-.,`^,.-,-`^.,-^                 ,-`^.,-^-.,`^,.-,-`^.,-^-.,`^,.-,-`
+,.-,-`^.,-^-.,`^,.-,-                         -^-.,`^,.-,-`^.,-^-.,`^,.-,-` .,-
+`^,.-,-`^.,-^-.,`^,.-,-`^.,-              ,-`^.,-^-.,`^,.-,-`^.,-^-.,`^,.-,-`
+`^,.-,-`^.,-^-.,`^,.-,-`^.,-^-.,`^,.-,-`^.,-^-.,`^,.-,-`^.,-^-.,`^,.-,-`^.,-^-.
+~
+0 417817 8
+Rd     0
+D2
+~
+~
+0 0 22324
+S
+#0
+
+
+
+#SPECIALS
+M 22102 spec_guard
+M 22134 spec_breath_gas
+M 22140 spec_breath_any
+M 22157 spec_executioner
+M 22160 spec_summon_demon
+M 22169 spec_breath_any
+M 22190 spec_thief
+M 22198 spec_healer
+M 22207 spec_cast_mage
+M 22214 spec_cast_psionicist
+M 22223 spec_cast_undead
+M 22234 spec_cast_psionicist
+M 22236 spec_breath_any
+M 22248 spec_poison
+M 22256 spec_thief
+M 22260 spec_cast_mage
+M 22298 spec_janitor
+M 22301 spec_breath_frost
+M 22304 spec_janitor
+M 22306 spec_cast_undead
+M 22317 spec_healer
+M 22318 spec_breath_any
+M 22320 spec_cast_psionicist
+S
+
+
+
+#RESETS
+M 0 22101 1 22101
+E 0 22200 0 20
+E 0 22201 0 6
+O 0 22101 0 22101
+M 0 22102 10 22104
+G 0 22104 0
+E 0 22105 0 20
+M 0 22110 10 22104
+M 0 22105 5 22105
+M 0 22105 5 22108
+O 0 22109 0 22109
+O 0 22106 0 22109
+M 0 22102 10 22109
+E 0 22105 0 20
+M 0 22102 10 22115
+E 0 22105 0 20
+M 0 22110 10 22115
+M 0 22102 10 22118
+E 0 22105 0 20
+M 0 22110 10 22118
+M 0 22105 5 22123
+M 0 22102 10 22124
+E 0 22105 0 20
+M 0 22102 10 22125
+E 0 22105 0 20
+M 0 22125 2 22125
+M 0 22102 10 22126
+E 0 22105 0 20
+M 0 22110 10 22127
+M 0 22105 5 22129
+M 0 22102 10 22130
+E 0 22105 0 20
+M 0 22132 2 22132
+E 0 22121 0 22
+M 0 22134 1 22134
+E 0 22134 0 20
+E 0 22135 0 9
+M 0 22102 10 22136
+E 0 22105 0 20
+M 0 22140 1 22140
+E 0 22140 0 16
+M 0 22102 10 22141
+E 0 22105 0 20
+M 0 22105 5 22142
+E 0 22142 0 13
+M 0 22110 10 22142
+M 0 22125 2 22146
+M 0 22148 1 22148
+E 0 22148 0 5
+M 0 22157 8 22150
+G 0 22152 0
+G 0 22157 0
+G 0 22157 0
+M 0 22157 8 22151
+G 0 22157 0
+G 0 22157 0
+G 0 22152 0
+M 0 22157 8 22152
+G 0 22157 0
+G 0 22157 0
+G 0 22152 0
+M 0 22172 4 22153
+E 0 22180 0 23
+M 0 22157 8 22157
+G 0 22157 0
+G 0 22157 0
+G 0 22152 0
+M 0 22160 1 22160
+E 0 22159 0 20
+E 0 22158 0 11
+E 0 22160 0 8
+M 0 22214 8 22161
+M 0 22214 8 22167
+E 0 22214 0 14
+M 0 22169 1 22169
+G 0 22169 0
+M 0 22170 1 22170
+G 0 22103 0
+G 0 22157 0
+G 0 22110 0
+M 0 22172 4 22172
+M 0 22110 10 22172
+M 0 22172 4 22177
+M 0 22172 4 22180
+E 0 22180 0 23
+M 0 22190 1 22189
+E 0 22189 0 6
+G 0 22190 0
+E 0 22108 0 12
+M 0 22110 10 22190
+O 0 22191 0 22191
+M 0 22192 1 22192
+E 0 22192 0 8
+E 0 22193 0 16
+G 0 22114 0
+O 0 22194 0 22193
+M 0 22198 1 22198
+E 0 22198 0 16
+O 0 22205 0 22202
+M 0 22110 10 22203
+O 0 22204 0 22204
+M 0 22207 1 22207
+E 0 22207 0 5
+E 0 22102 0 11
+M 0 22214 8 22214
+E 0 22214 0 14
+O 0 22215 0 22214
+G 0 22162 0
+E 0 22216 0 24
+O 0 22222 0 22222
+M 0 22223 2 22223
+E 0 22107 0 0
+M 0 22110 10 22229
+M 0 22234 1 22234
+G 0 22240 0
+E 0 22241 0 16
+M 0 22236 1 22236
+E 0 22236 0 15
+O 0 22237 0 22236
+M 0 22315 1 22237
+M 0 22239 4 22238
+O 0 22238 0 22238
+M 0 22239 4 22239
+M 0 22265 5 22243
+O 0 22243 0 22243
+M 0 22248 1 22248
+G 0 22239 0
+O 0 22260 0 22250
+P 0 22250 0 22260
+O 0 22249 0 22250
+M 0 22265 5 22253
+M 0 22256 1 22256
+E 0 22256 0 6
+E 0 22257 0 5
+O 0 22270 0 22257
+M 0 22239 4 22259
+M 0 22259 1 22259
+E 0 22259 0 14
+M 0 22260 1 22260
+E 0 22113 0 7
+G 0 22244 0
+M 0 22239 4 22264
+M 0 22265 5 22264
+M 0 22265 5 22265
+M 0 22265 5 22268
+M 0 22214 8 22282
+M 0 22214 8 22283
+E 0 22214 0 14
+M 0 22214 8 22289
+E 0 22214 0 14
+E 0 22216 0 25
+G 0 22289 0
+M 0 22290 1 22290
+O 0 22292 0 22292
+O 0 22293 0 22292
+M 0 22214 8 22293
+M 0 22296 3 22296
+E 0 22307 0 18
+M 0 22298 2 22298
+M 0 22300 1 22300
+E 0 22300 0 11
+E 0 22137 0 22
+E 0 22296 0 0
+M 0 22303 1 22303
+M 0 22110 10 22303
+M 0 22304 1 22304
+M 0 22306 1 22306
+E 0 22306 0 16
+E 0 22301 0 6
+M 0 22301 1 22306
+E 0 22305 0 3
+M 0 22296 3 22311
+E 0 22307 0 18
+M 0 22313 1 22315
+M 0 22317 1 22317
+E 0 22111 0 3
+M 0 22318 1 22318
+E 0 22303 0 18
+M 0 22214 8 22319
+M 0 22320 1 22320
+E 0 22320 0 5
+E 0 22168 0 22
+M 0 22296 3 22322
+E 0 22307 0 18
+M 0 22298 2 22324
+E 0 22298 0 1
+S
+
+
+
+#SHOPS
+22170 0 0 0 0 0 100 60 0 23
+0
+
+
+
+#$
