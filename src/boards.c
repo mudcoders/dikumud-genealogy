@@ -25,7 +25,7 @@ TO ADD A NEW BOARD, simply follow our easy 4-step program:
 
 1 - Create a new board object in the object files
 
-2 - Increase the NUM_OF_BOARDS constant in board.h
+2 - Increase the NUM_OF_BOARDS constant in boards.h
 
 3 - Add a new line to the board_info array below.  The fields, in order, are:
 
@@ -61,17 +61,16 @@ TO ADD A NEW BOARD, simply follow our easy 4-step program:
 
 extern struct room_data *world;
 extern struct descriptor_data *descriptor_list;
-extern int top_of_world;
 
 /*
 format:	vnum, read lvl, write lvl, remove lvl, filename, 0 at end
 Be sure to also change NUM_OF_BOARDS in board.h
 */
 struct board_info_type board_info[NUM_OF_BOARDS] = {
-  {3099, 0, 0, LVL_GOD, LIB_ETC"board.mort", 0},
-  {3098, LVL_IMMORT, LVL_IMMORT, LVL_GRGOD, LIB_ETC"board.immort", 0},
-  {3097, LVL_IMMORT, LVL_FREEZE, LVL_IMPL, LIB_ETC"board.freeze", 0},
-  {3096, 0, 0, LVL_IMMORT, LIB_ETC"board.social", 0},
+  {3099, 0, 0, LVL_GOD, LIB_ETC "board.mort", 0},
+  {3098, LVL_IMMORT, LVL_IMMORT, LVL_GRGOD, LIB_ETC "board.immort", 0},
+  {3097, LVL_IMMORT, LVL_FREEZE, LVL_IMPL, LIB_ETC "board.freeze", 0},
+  {3096, 0, 0, LVL_IMMORT, LIB_ETC "board.social", 0},
 };
 
 /* local functions */
@@ -94,9 +93,9 @@ int find_slot(void)
   for (i = 0; i < INDEX_SIZE; i++)
     if (!msg_storage_taken[i]) {
       msg_storage_taken[i] = 1;
-      return i;
+      return (i);
     }
-  return -1;
+  return (-1);
 }
 
 
@@ -109,9 +108,9 @@ int find_board(struct char_data * ch)
   for (obj = world[ch->in_room].contents; obj; obj = obj->next_content)
     for (i = 0; i < NUM_OF_BOARDS; i++)
       if (BOARD_RNUM(i) == GET_OBJ_RNUM(obj))
-	return i;
+	return (i);
 
-  return -1;
+  return (-1);
 }
 
 
@@ -160,15 +159,15 @@ SPECIAL(gen_board)
     loaded = 1;
   }
   if (!ch->desc)
-    return 0;
+    return (0);
 
   if (cmd != ACMD_WRITE && cmd != ACMD_LOOK && cmd != ACMD_EXAMINE &&
       cmd != ACMD_READ && cmd != ACMD_REMOVE)
-    return 0;
+    return (0);
 
   if ((board_type = find_board(ch)) == -1) {
     log("SYSERR:  degenerate board!  (what the hell...)");
-    return 0;
+    return (0);
   }
   if (cmd == ACMD_WRITE)
     return (Board_write_message(board_type, ch, argument, board));
@@ -179,7 +178,7 @@ SPECIAL(gen_board)
   else if (cmd == ACMD_REMOVE)
     return (Board_remove_msg(board_type, ch, argument, board));
   else
-    return 0;
+    return (0);
 }
 
 
@@ -191,16 +190,16 @@ int Board_write_message(int board_type, struct char_data * ch, char *arg, struct
 
   if (GET_LEVEL(ch) < WRITE_LVL(board_type)) {
     send_to_char("You are not holy enough to write on this board.\r\n", ch);
-    return 1;
+    return (1);
   }
   if (num_of_msgs[board_type] >= MAX_BOARD_MESSAGES) {
     send_to_char("The board is full.\r\n", ch);
-    return 1;
+    return (1);
   }
   if ((NEW_MSG_INDEX(board_type).slot_num = find_slot()) == -1) {
     send_to_char("The board is malfunctioning - sorry.\r\n", ch);
     log("SYSERR: Board: failed to find empty slot on write.");
-    return 1;
+    return (1);
   }
   /* skip blanks */
   skip_spaces(&arg);
@@ -211,7 +210,7 @@ int Board_write_message(int board_type, struct char_data * ch, char *arg, struct
 
   if (!*arg) {
     send_to_char("We must have a headline!\r\n", ch);
-    return 1;
+    return (1);
   }
   ct = time(0);
   tmstr = (char *) asctime(localtime(&ct));
@@ -225,15 +224,11 @@ int Board_write_message(int board_type, struct char_data * ch, char *arg, struct
   send_to_char("Write your message.  Terminate with a @ on a new line.\r\n\r\n", ch);
   act("$n starts to write a message.", TRUE, ch, 0, 0, TO_ROOM);
 
-  if (!IS_NPC(ch))
-    SET_BIT(PLR_FLAGS(ch), PLR_WRITING);
-
-  ch->desc->str = &(msg_storage[NEW_MSG_INDEX(board_type).slot_num]);
-  ch->desc->max_str = MAX_MESSAGE_LENGTH;
-  ch->desc->mail_to = board_type + BOARD_MAGIC;
+  string_write(ch->desc, &(msg_storage[NEW_MSG_INDEX(board_type).slot_num]),
+		MAX_MESSAGE_LENGTH, board_type + BOARD_MAGIC, NULL);
 
   num_of_msgs[board_type]++;
-  return 1;
+  return (1);
 }
 
 
@@ -243,16 +238,16 @@ int Board_show_board(int board_type, struct char_data * ch, char *arg, struct ob
   char tmp[MAX_STRING_LENGTH], buf[MAX_STRING_LENGTH];
 
   if (!ch->desc)
-    return 0;
+    return (0);
 
   one_argument(arg, tmp);
 
   if (!*tmp || !isname(tmp, board->name))
-    return 0;
+    return (0);
 
   if (GET_LEVEL(ch) < READ_LVL(board_type)) {
     send_to_char("You try but fail to understand the holy words.\r\n", ch);
-    return 1;
+    return (1);
   }
   act("$n studies the board.", TRUE, ch, 0, 0, TO_ROOM);
 
@@ -280,13 +275,13 @@ int Board_show_board(int board_type, struct char_data * ch, char *arg, struct ob
       else {
 	log("SYSERR: The board is fubar'd.");
 	send_to_char("Sorry, the board isn't working.\r\n", ch);
-	return 1;
+	return (1);
       }
     }
   }
   page_string(ch->desc, buf, 1);
 
-  return 1;
+  return (1);
 }
 
 
@@ -297,17 +292,17 @@ int Board_display_msg(int board_type, struct char_data * ch, char *arg, struct o
 
   one_argument(arg, number);
   if (!*number)
-    return 0;
+    return (0);
   if (isname(number, board->name))	/* so "read board" works */
     return (Board_show_board(board_type, ch, arg, board));
   if (strchr(number, '.'))	/* read 2.mail, look 2.sword */
-    return 0;
+    return (0);
   if (!isdigit(*number) || (!(msg = atoi(number))))
-    return 0;
+    return (0);
 
   if (GET_LEVEL(ch) < READ_LVL(board_type)) {
     send_to_char("You try but fail to understand the holy words.\r\n", ch);
-    return 1;
+    return (1);
   }
   if (!num_of_msgs[board_type]) {
     send_to_char("The board is empty!\r\n", ch);
@@ -327,15 +322,15 @@ int Board_display_msg(int board_type, struct char_data * ch, char *arg, struct o
       MSG_SLOTNUM(board_type, ind) >= INDEX_SIZE) {
     send_to_char("Sorry, the board is not working.\r\n", ch);
     log("SYSERR: Board is screwed up. (Room #%d)", GET_ROOM_VNUM(IN_ROOM(ch)));
-    return 1;
+    return (1);
   }
   if (!(MSG_HEADING(board_type, ind))) {
     send_to_char("That message appears to be screwed up.\r\n", ch);
-    return 1;
+    return (1);
   }
   if (!(msg_storage[MSG_SLOTNUM(board_type, ind)])) {
     send_to_char("That message seems to be empty.\r\n", ch);
-    return 1;
+    return (1);
   }
   sprintf(buffer, "Message %d : %s\r\n\r\n%s\r\n", msg,
 	  MSG_HEADING(board_type, ind),
@@ -343,7 +338,7 @@ int Board_display_msg(int board_type, struct char_data * ch, char *arg, struct o
 
   page_string(ch->desc, buffer, 1);
 
-  return 1;
+  return (1);
 }
 
 
@@ -356,17 +351,17 @@ int Board_remove_msg(int board_type, struct char_data * ch, char *arg, struct ob
   one_argument(arg, number);
 
   if (!*number || !isdigit(*number))
-    return 0;
+    return (0);
   if (!(msg = atoi(number)))
     return (0);
 
   if (!num_of_msgs[board_type]) {
     send_to_char("The board is empty!\r\n", ch);
-    return 1;
+    return (1);
   }
   if (msg < 1 || msg > num_of_msgs[board_type]) {
     send_to_char("That message exists only in your imagination.\r\n", ch);
-    return 1;
+    return (1);
   }
 #if NEWEST_AT_TOP
   ind = num_of_msgs[board_type] - msg;
@@ -375,28 +370,28 @@ int Board_remove_msg(int board_type, struct char_data * ch, char *arg, struct ob
 #endif
   if (!MSG_HEADING(board_type, ind)) {
     send_to_char("That message appears to be screwed up.\r\n", ch);
-    return 1;
+    return (1);
   }
   sprintf(buf, "(%s)", GET_NAME(ch));
   if (GET_LEVEL(ch) < REMOVE_LVL(board_type) &&
       !(strstr(MSG_HEADING(board_type, ind), buf))) {
     send_to_char("You are not holy enough to remove other people's messages.\r\n", ch);
-    return 1;
+    return (1);
   }
   if (GET_LEVEL(ch) < MSG_LEVEL(board_type, ind)) {
     send_to_char("You can't remove a message holier than yourself.\r\n", ch);
-    return 1;
+    return (1);
   }
   slot_num = MSG_SLOTNUM(board_type, ind);
   if (slot_num < 0 || slot_num >= INDEX_SIZE) {
     send_to_char("That message is majorly screwed up.\r\n", ch);
     log("SYSERR: The board is seriously screwed up. (Room #%d)", GET_ROOM_VNUM(IN_ROOM(ch)));
-    return 1;
+    return (1);
   }
   for (d = descriptor_list; d; d = d->next)
     if (STATE(d) == CON_PLAYING && d->str == &(msg_storage[slot_num])) {
       send_to_char("At least wait until the author is finished before removing it!\r\n", ch);
-      return 1;
+      return (1);
     }
   if (msg_storage[slot_num])
     free(msg_storage[slot_num]);
@@ -416,7 +411,7 @@ int Board_remove_msg(int board_type, struct char_data * ch, char *arg, struct ob
   act(buf, FALSE, ch, 0, 0, TO_ROOM);
   Board_save_board(board_type);
 
-  return 1;
+  return (1);
 }
 
 
@@ -424,20 +419,20 @@ void Board_save_board(int board_type)
 {
   FILE *fl;
   int i;
-  char *tmp1 = 0, *tmp2 = 0;
+  char *tmp1, *tmp2 = NULL;
 
   if (!num_of_msgs[board_type]) {
     remove(FILENAME(board_type));
     return;
   }
   if (!(fl = fopen(FILENAME(board_type), "wb"))) {
-    perror("Error writing board");
+    perror("SYSERR: Error writing board");
     return;
   }
   fwrite(&(num_of_msgs[board_type]), sizeof(int), 1, fl);
 
   for (i = 0; i < num_of_msgs[board_type]; i++) {
-    if ((tmp1 = MSG_HEADING(board_type, i)))
+    if ((tmp1 = MSG_HEADING(board_type, i)) != NULL)
       msg_index[board_type][i].heading_len = strlen(tmp1) + 1;
     else
       msg_index[board_type][i].heading_len = 0;
@@ -463,13 +458,12 @@ void Board_save_board(int board_type)
 void Board_load_board(int board_type)
 {
   FILE *fl;
-  int i, len1 = 0, len2 = 0;
-  char *tmp1 = NULL, *tmp2 = NULL;
-
+  int i, len1, len2;
+  char *tmp1, *tmp2;
 
   if (!(fl = fopen(FILENAME(board_type), "rb"))) {
     if (errno != ENOENT)
-      perror("Error reading board");
+      perror("SYSERR: Error reading board");
     return;
   }
   fread(&(num_of_msgs[board_type]), sizeof(int), 1, fl);
@@ -480,7 +474,7 @@ void Board_load_board(int board_type)
   }
   for (i = 0; i < num_of_msgs[board_type]; i++) {
     fread(&(msg_index[board_type][i]), sizeof(struct board_msginfo), 1, fl);
-    if (!(len1 = msg_index[board_type][i].heading_len)) {
+    if ((len1 = msg_index[board_type][i].heading_len) <= 0) {
       log("SYSERR: Board file %d corrupt!  Resetting.", board_type);
       Board_reset_board(board_type);
       return;
@@ -494,7 +488,7 @@ void Board_load_board(int board_type)
       Board_reset_board(board_type);
       return;
     }
-    if ((len2 = msg_index[board_type][i].message_len)) {
+    if ((len2 = msg_index[board_type][i].message_len) > 0) {
       CREATE(tmp2, char, len2);
       fread(tmp2, sizeof(char), len2, fl);
       msg_storage[MSG_SLOTNUM(board_type, i)] = tmp2;

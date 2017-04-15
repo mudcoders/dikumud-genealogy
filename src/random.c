@@ -87,5 +87,5 @@ unsigned long circle_random(void)
     else
 	seed = test+ m;
 
-    return seed;
+    return (seed);
 }

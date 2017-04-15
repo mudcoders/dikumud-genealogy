@@ -153,17 +153,17 @@
 #define SAVING_SPELL  4
 
 
-#define TAR_IGNORE        1
-#define TAR_CHAR_ROOM     2
-#define TAR_CHAR_WORLD    4
-#define TAR_FIGHT_SELF    8
-#define TAR_FIGHT_VICT   16
-#define TAR_SELF_ONLY    32 /* Only a check, use with i.e. TAR_CHAR_ROOM */
-#define TAR_NOT_SELF     64 /* Only a check, use with i.e. TAR_CHAR_ROOM */
-#define TAR_OBJ_INV     128
-#define TAR_OBJ_ROOM    256
-#define TAR_OBJ_WORLD   512
-#define TAR_OBJ_EQUIP  1024
+#define TAR_IGNORE      (1 << 0)
+#define TAR_CHAR_ROOM   (1 << 1)
+#define TAR_CHAR_WORLD  (1 << 2)
+#define TAR_FIGHT_SELF  (1 << 3)
+#define TAR_FIGHT_VICT  (1 << 4)
+#define TAR_SELF_ONLY   (1 << 5) /* Only a check, use with i.e. TAR_CHAR_ROOM */
+#define TAR_NOT_SELF   	(1 << 6) /* Only a check, use with i.e. TAR_CHAR_ROOM */
+#define TAR_OBJ_INV     (1 << 7)
+#define TAR_OBJ_ROOM    (1 << 8)
+#define TAR_OBJ_WORLD   (1 << 9)
+#define TAR_OBJ_EQUIP	(1 << 10)
 
 struct spell_info_type {
    byte min_position;	/* Position for caster	 */
@@ -175,6 +175,7 @@ struct spell_info_type {
    int routines;
    byte violent;
    int targets;         /* See below for use with TAR_XXX  */
+   const char *name;
 };
 
 /* Possible Targets:

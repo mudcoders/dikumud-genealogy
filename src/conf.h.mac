@@ -65,7 +65,7 @@
 #define HAVE_NETINET_IN_H 1
 
 /* Define if you have the <signal.h> header file.  */
-#undef HAVE_SIGNAL_H
+#define HAVE_SIGNAL_H 1
 
 /* Define if you have the <string.h> header file.  */
 #define HAVE_STRING_H 1
@@ -231,3 +231,22 @@
 
 /* Define if your compiler does not prototype write().  */
 #undef NEED_WRITE_PROTO
+
+/* Define is your compiler does not prototype fdopen(). */
+#define NEED_FDOPEN_PROTO 1
+
+/* Define is your compiler does not prototype inet_ntoa(). */
+#define NEED_INET_NTOA_PROTO 1
+
+/* Define if your compiler does not prototype remove().  */
+/* #undef NEED_REMOVE_PROTO */
+
+/* Define if your compiler does not prototype strerror().  */
+/* #undef NEED_STRERROR_PROTO */
+
+/* Define if you have 'struct in_addr' */
+#define HAVE_STRUCT_IN_ADDR 1
+
+/* Define if your crypt isn't safe with only 10 characters. */
+#undef HAVE_UNSAFE_CRYPT
+

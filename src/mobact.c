@@ -126,15 +126,18 @@ void mobile_activity(void)
     }
 
     /* Helper Mobs */
-    if (MOB_FLAGGED(ch, MOB_HELPER)) {
+    if (MOB_FLAGGED(ch, MOB_HELPER) && !AFF_FLAGGED(ch, AFF_BLIND | AFF_CHARM)) {
       found = FALSE;
-      for (vict = world[ch->in_room].people; vict && !found; vict = vict->next_in_room)
-	if (ch != vict && IS_NPC(vict) && FIGHTING(vict) &&
-            !IS_NPC(FIGHTING(vict)) && ch != FIGHTING(vict)) {
-	  act("$n jumps to the aid of $N!", FALSE, ch, 0, vict, TO_ROOM);
-	  hit(ch, FIGHTING(vict), TYPE_UNDEFINED);
-	  found = TRUE;
-	}
+      for (vict = world[ch->in_room].people; vict && !found; vict = vict->next_in_room) {
+	if (ch == vict || !IS_NPC(vict) || !FIGHTING(vict))
+	  continue;
+	if (IS_NPC(FIGHTING(vict)) || ch == FIGHTING(vict))
+	  continue;
+
+	act("$n jumps to the aid of $N!", FALSE, ch, 0, vict, TO_ROOM);
+	hit(ch, FIGHTING(vict), TYPE_UNDEFINED);
+	found = TRUE;
+      }
     }
     /* Add new mobile actions here */
 

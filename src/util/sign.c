@@ -75,7 +75,7 @@ int init_socket(int port)
     exit(1);
   }
   listen(s, 5);
-  return s;
+  return (s);
 }
 
 
@@ -107,7 +107,7 @@ char *get_text(char *fname)
     }
   }
 
-  return t;
+  return (t);
 }
 
 

@@ -159,6 +159,11 @@ int prac_params[4][NUM_CLASSES] = {
  * which types of people the various guildguards let through.  i.e., the
  * first line shows that from room 3017, only MAGIC_USERS are allowed
  * to go south.
+ *
+ * Don't forget to visit spec_assign.c if you create any new mobiles that
+ * should be a guild master or guard so they can act appropriately. If you
+ * "recycle" the existing mobs that are used in other guilds for your new
+ * guild, then you don't have to change that file, only here.
  */
 int guild_info[][3] = {
 
@@ -172,7 +177,8 @@ int guild_info[][3] = {
   {-999 /* all */ ,	5065,	SCMD_WEST},
 
 /* this must go last -- add new guards above! */
-{-1, -1, -1}};
+  {-1, -1, -1}
+};
 
 
 
@@ -187,7 +193,6 @@ int guild_info[][3] = {
 
 byte saving_throws(int class_num, int type, int level)
 {
-
   switch (class_num) {
   case CLASS_MAGIC_USER:
     switch (type) {
@@ -236,6 +241,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for mage paralyzation saving throw.");
+	break;
       }
     case SAVING_ROD:	/* Rods */
       switch (level) {
@@ -282,6 +288,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for mage rod saving throw.");
+	break;
       }
     case SAVING_PETRI:	/* Petrification */
       switch (level) {
@@ -328,6 +335,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for mage petrification saving throw.");
+	break;
       }
     case SAVING_BREATH:	/* Breath weapons */
       switch (level) {
@@ -374,6 +382,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for mage breath saving throw.");
+	break;
       }
     case SAVING_SPELL:	/* Generic spells */
       switch (level) {
@@ -420,9 +429,11 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for mage spell saving throw.");
+	break;
       }
     default:
       log("SYSERR: Invalid saving throw type.");
+      break;
     }
     break;
   case CLASS_CLERIC:
@@ -472,6 +483,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for cleric paralyzation saving throw.");
+	break;
       }
     case SAVING_ROD:	/* Rods */
       switch (level) {
@@ -518,6 +530,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for cleric rod saving throw.");
+	break;
       }
     case SAVING_PETRI:	/* Petrification */
       switch (level) {
@@ -564,6 +577,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for cleric petrification saving throw.");
+	break;
       }
     case SAVING_BREATH:	/* Breath weapons */
       switch (level) {
@@ -610,6 +624,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for cleric breath saving throw.");
+	break;
       }
     case SAVING_SPELL:	/* Generic spells */
       switch (level) {
@@ -656,9 +671,11 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for cleric spell saving throw.");
+	break;
       }
     default:
       log("SYSERR: Invalid saving throw type.");
+      break;
     }
     break;
   case CLASS_THIEF:
@@ -708,6 +725,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for thief paralyzation saving throw.");
+	break;
       }
     case SAVING_ROD:	/* Rods */
       switch (level) {
@@ -754,6 +772,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for thief rod saving throw.");
+	break;
       }
     case SAVING_PETRI:	/* Petrification */
       switch (level) {
@@ -800,6 +819,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for thief petrification saving throw.");
+	break;
       }
     case SAVING_BREATH:	/* Breath weapons */
       switch (level) {
@@ -846,6 +866,7 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for thief breath saving throw.");
+	break;
       }
     case SAVING_SPELL:	/* Generic spells */
       switch (level) {
@@ -892,9 +913,11 @@ byte saving_throws(int class_num, int type, int level)
       case 40: return  0;
       default:
 	log("SYSERR: Missing level for thief spell saving throw.");
+	break;
       }
     default:
       log("SYSERR: Invalid saving throw type.");
+      break;
     }
     break;
   case CLASS_WARRIOR:
@@ -942,8 +965,19 @@ byte saving_throws(int class_num, int type, int level)
       case 38: return  4;
       case 39: return  3;
       case 40: return  2;
+      case 41: return  1;	/* Some mobiles. */
+      case 42: return  0;
+      case 43: return  0;
+      case 44: return  0;
+      case 45: return  0;
+      case 46: return  0;
+      case 47: return  0;
+      case 48: return  0;
+      case 49: return  0;
+      case 50: return  0;
       default:
 	log("SYSERR: Missing level for warrior paralyzation saving throw.");
+	break;	
       }
     case SAVING_ROD:	/* Rods */
       switch (level) {
@@ -988,8 +1022,19 @@ byte saving_throws(int class_num, int type, int level)
       case 38: return  6;
       case 39: return  5;
       case 40: return  4;
+      case 41: return  3;
+      case 42: return  2;
+      case 43: return  1;
+      case 44: return  0;
+      case 45: return  0;
+      case 46: return  0;
+      case 47: return  0;
+      case 48: return  0;
+      case 49: return  0;
+      case 50: return  0;
       default:
 	log("SYSERR: Missing level for warrior rod saving throw.");
+	break;
       }
     case SAVING_PETRI:	/* Petrification */
       switch (level) {
@@ -1034,8 +1079,19 @@ byte saving_throws(int class_num, int type, int level)
       case 38: return  9;
       case 39: return  8;
       case 40: return  7;
+      case 41: return  6;
+      case 42: return  5;
+      case 43: return  4;
+      case 44: return  3;
+      case 45: return  2;
+      case 46: return  1;
+      case 47: return  0;
+      case 48: return  0;
+      case 49: return  0;
+      case 50: return  0;
       default:
 	log("SYSERR: Missing level for warrior petrification saving throw.");
+	break;
       }
     case SAVING_BREATH:	/* Breath weapons */
       switch (level) {
@@ -1080,8 +1136,19 @@ byte saving_throws(int class_num, int type, int level)
       case 38: return  9;
       case 39: return  8;
       case 40: return  7;
+      case 41: return  6;
+      case 42: return  5;
+      case 43: return  4;
+      case 44: return  3;
+      case 45: return  2;
+      case 46: return  1;
+      case 47: return  0;
+      case 48: return  0;
+      case 49: return  0;
+      case 50: return  0;
       default:
 	log("SYSERR: Missing level for warrior breath saving throw.");
+	break;
       }
     case SAVING_SPELL:	/* Generic spells */
       switch (level) {
@@ -1126,14 +1193,27 @@ byte saving_throws(int class_num, int type, int level)
       case 38: return 11;
       case 39: return  9;
       case 40: return  7;
+      case 41: return  6;
+      case 42: return  5;
+      case 43: return  4;
+      case 44: return  3;
+      case 45: return  2;
+      case 46: return  1;
+      case 47: return  0;
+      case 48: return  0;
+      case 49: return  0;
+      case 50: return  0;
       default:
 	log("SYSERR: Missing level for warrior spell saving throw.");
+	break;
       }
     default:
       log("SYSERR: Invalid saving throw type.");
+      break;
     }
   default:
     log("SYSERR: Invalid class saving throw.");
+    break;
   }
 
   /* Should not get here unless something is wrong. */
@@ -1417,6 +1497,8 @@ void do_start(struct char_data * ch)
   }
 
   advance_level(ch);
+  sprintf(buf, "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
+  mudlog(buf, BRF, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
 
   GET_HIT(ch) = GET_MAX_HIT(ch);
   GET_MANA(ch) = GET_MAX_MANA(ch);
@@ -1441,7 +1523,7 @@ void do_start(struct char_data * ch)
  */
 void advance_level(struct char_data * ch)
 {
-  int add_hp = 0, add_mana = 0, add_move = 0, i;
+  int add_hp, add_mana = 0, add_move = 0, i;
 
   add_hp = con_app[GET_CON(ch)].hitp;
 
@@ -1492,9 +1574,6 @@ void advance_level(struct char_data * ch)
   }
 
   save_char(ch, NOWHERE);
-
-  sprintf(buf, "%s advanced to level %d", GET_NAME(ch), GET_LEVEL(ch));
-  mudlog(buf, BRF, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
 }
 
 
@@ -1630,7 +1709,7 @@ void init_spell_levels(void)
 int level_exp(int chclass, int level)
 {
   if (level > LVL_IMPL || level < 0) {
-    log("SYSERR: Requesting exp for invalid level!");
+    log("SYSERR: Requesting exp for invalid level %d!", level);
     return 0;
   }
 

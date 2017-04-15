@@ -24,11 +24,12 @@
 
 void show_string(struct descriptor_data *d, char *input);
 
-extern char *spells[];
-extern char *MENU;
+extern struct spell_info_type spell_info[];
+extern const char *MENU;
+extern const char *unused_spellname;	/* spell_parser.c */
 
 /* local functions */
-void string_add(struct descriptor_data *d, char *str);
+void smash_tilde(char *str);
 ACMD(do_skillset);
 char *next_page(char *str);
 int count_pages(char *str);
@@ -61,10 +62,51 @@ int length[] =
 *  modification of malloc'ed strings                                      *
 ************************************************************************ */
 
+/*
+ * Put '#if 1' here to erase ~, or roll your own method.  A common idea
+ * is smash/show tilde to convert the tilde to another innocuous character
+ * to save and then back to display it. Whatever you do, at least keep the
+ * function around because other MUD packages use it, like mudFTP.
+ *   -gg 9/9/98
+ */
+void smash_tilde(char *str)
+{
+#if 0
+  /*
+   * Erase any ~'s inserted by people in the editor.  This prevents anyone
+   * using online creation from causing parse errors in the world files.
+   * Derived from an idea by Sammy <samedi@dhc.net> (who happens to like
+   * his tildes thank you very much.), -gg 2/20/98
+   */
+    while ((str = strchr(str, '~')) != NULL)
+      *str = ' ';
+#endif
+}
+
+/*
+ * Basic API function to start writing somewhere.
+ *
+ * 'data' isn't used in stock CircleMUD but you can use it to pass whatever
+ * else you may want through it.  The improved editor patch when updated
+ * could use it to pass the old text buffer, for instance.
+ */
+void string_write(struct descriptor_data *d, char **writeto, size_t len, long mailto, void *data)
+{
+  if (d->character && !IS_NPC(d->character))
+    SET_BIT(PLR_FLAGS(d->character), PLR_WRITING);
+
+  if (data)
+    mudlog("SYSERR: string_write: I don't understand special data.", BRF, LVL_IMMORT, TRUE);
+
+  d->str = writeto;
+  d->max_str = len;
+  d->mail_to = mailto;
+}
+
 /* Add user input to the 'current' string (as defined by d->str) */
 void string_add(struct descriptor_data *d, char *str)
 {
-  int terminator = 0;
+  int terminator;
 
   /* determine if this is the terminal string, and truncate if so */
   /* changed to only accept '@' at the beginning of line - J. Elson 1/17/94 */
@@ -74,19 +116,7 @@ void string_add(struct descriptor_data *d, char *str)
   if ((terminator = (*str == '@')))
     *str = '\0';
 
-#if 0
-  /*
-   * Erase any ~'s inserted by people in the editor.  This prevents anyone
-   * using online creation from causing parse errors in the world files.
-   * Derived from an idea by Sammy <samedi@dhc.net> (who happens to like
-   * his tildes thank you very much.), -gg 2/20/98
-   */
-  {
-    char *tilde = str;
-    while ((tilde = strchr(tilde, '~')))
-      *tilde = ' ';
-  }
-#endif
+  smash_tilde(str);
 
   if (!(*d->str)) {
     if (strlen(str) > d->max_str) {
@@ -155,11 +185,11 @@ ACMD(do_skillset)
   if (!*name) {			/* no arguments. print an informative text */
     send_to_char("Syntax: skillset <name> '<skill>' <value>\r\n", ch);
     strcpy(help, "Skill being one of the following:\r\n");
-    for (i = 0; *spells[i] != '\n'; i++) {
-      if (*spells[i] == '!')
+    for (qend = 0, i = 0; i <= TOP_SPELL_DEFINE; i++) {
+      if (spell_info[i].name == unused_spellname)	/* This is valid. */
 	continue;
-      sprintf(help + strlen(help), "%18s", spells[i]);
-      if (i % 4 == 3) {
+      sprintf(help + strlen(help), "%18s", spell_info[i].name);
+      if (qend++ % 4 == 3) {
 	strcat(help, "\r\n");
 	send_to_char(help, ch);
 	*help = '\0';
@@ -170,7 +200,8 @@ ACMD(do_skillset)
     send_to_char("\r\n", ch);
     return;
   }
-  if (!(vict = get_char_vis(ch, name))) {
+
+  if (!(vict = get_char_vis(ch, name, FIND_CHAR_WORLD))) {
     send_to_char(NOPERSON, ch);
     return;
   }
@@ -185,12 +216,12 @@ ACMD(do_skillset)
     send_to_char("Skill must be enclosed in: ''\r\n", ch);
     return;
   }
-  /* Locate the last quote && lowercase the magic words (if any) */
+  /* Locate the last quote and lowercase the magic words (if any) */
 
-  for (qend = 1; *(argument + qend) && (*(argument + qend) != '\''); qend++)
-    *(argument + qend) = LOWER(*(argument + qend));
+  for (qend = 1; argument[qend] && argument[qend] != '\''; qend++)
+    argument[qend] = LOWER(argument[qend]);
 
-  if (*(argument + qend) != '\'') {
+  if (argument[qend] != '\'') {
     send_to_char("Skill must be enclosed in: ''\r\n", ch);
     return;
   }
@@ -220,14 +251,19 @@ ACMD(do_skillset)
     send_to_char("You can't set NPC skills.\r\n", ch);
     return;
   }
+
+  /*
+   * find_skill_num() guarantees a valid spell_info[] index, or -1, and we
+   * checked for the -1 above so we are safe here.
+   */
   sprintf(buf2, "%s changed %s's %s to %d.", GET_NAME(ch), GET_NAME(vict),
-	  spells[skill], value);
+	  spell_info[skill].name, value);
   mudlog(buf2, BRF, -1, TRUE);
 
   SET_SKILL(vict, skill, value);
 
   sprintf(buf2, "You change %s's %s to %d.\r\n", GET_NAME(vict),
-	  spells[skill], value);
+	  spell_info[skill].name, value);
   send_to_char(buf2, ch);
 }
 
@@ -253,11 +289,11 @@ char *next_page(char *str)
   for (;; str++) {
     /* If end of string, return NULL. */
     if (*str == '\0')
-      return NULL;
+      return (NULL);
 
     /* If we're at the start of the next page, return this fact. */
     else if (line > PAGE_LENGTH)
-      return str;
+      return (str);
 
     /* Check for the begining of an ANSI color code block. */
     else if (*str == '\x1B' && !spec_code)
@@ -294,7 +330,7 @@ int count_pages(char *str)
   int pages;
 
   for (pages = 1; (str = next_page(str)); pages++);
-  return pages;
+  return (pages);
 }
 
 
@@ -326,7 +362,8 @@ void page_string(struct descriptor_data *d, char *str, int keep_internal)
     send_to_char("", d->character);
     return;
   }
-  CREATE(d->showstr_vector, char *, d->showstr_count = count_pages(str));
+  d->showstr_count = count_pages(str);
+  CREATE(d->showstr_vector, char *, d->showstr_count);
 
   if (keep_internal) {
     d->showstr_head = str_dup(str);
@@ -394,8 +431,7 @@ void show_string(struct descriptor_data *d, char *input)
   }
   /* Or if we have more to show.... */
   else {
-    diff = (int) d->showstr_vector[d->showstr_page + 1];
-    diff -= (int) d->showstr_vector[d->showstr_page];
+    diff = d->showstr_vector[d->showstr_page + 1] - d->showstr_vector[d->showstr_page];
     if (diff >= MAX_STRING_LENGTH)
       diff = MAX_STRING_LENGTH - 1;
     strncpy(buffer, d->showstr_vector[d->showstr_page], diff);

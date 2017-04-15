@@ -12,11 +12,10 @@
 #include "sysdep.h"
 
 #include "structs.h"
+#include "interpreter.h"	/* alias_data */
 
-cpp_extern const char circlemud_version[] = {
-	"CircleMUD, version 3.00 beta patchlevel 14"
-};
-
+cpp_extern const char *circlemud_version =
+	"CircleMUD, version 3.00 beta patchlevel 15";
 
 /* strings corresponding to ordinals/bitvectors in structs.h ***********/
 
@@ -91,9 +90,10 @@ const char *sector_types[] = {
  */
 const char *genders[] =
 {
-  "Neutral",
-  "Male",
-  "Female"
+  "neutral",
+  "male",
+  "female",
+  "\n"
 };
 
 
@@ -492,7 +492,7 @@ const char *color_liquid[] =
   "black",
   "red",
   "clear",
-  "crystal clear"
+  "crystal clear",
   "\n"
 };
 

@@ -19,18 +19,18 @@
 #include "screen.h"
 #include "spells.h"
 #include "handler.h"
+#include "interpreter.h"
 
 extern struct descriptor_data *descriptor_list;
 extern struct time_data time_info;
 extern struct room_data *world;
-extern int top_of_world;
 
 /* local functions */
 struct time_info_data *real_time_passed(time_t t2, time_t t1);
 struct time_info_data *mud_time_passed(time_t t2, time_t t1);
 void die_follower(struct char_data * ch);
 void add_follower(struct char_data * ch, struct char_data * leader);
-
+void prune_crlf(char *txt);
 
 /* creates a random number in interval [from;to] */
 int number(int from, int to)
@@ -53,26 +53,32 @@ int dice(int number, int size)
   int sum = 0;
 
   if (size <= 0 || number <= 0)
-    return 0;
+    return (0);
 
   while (number-- > 0)
     sum += ((circle_random() % size) + 1);
 
-  return sum;
+  return (sum);
 }
 
 
 int MIN(int a, int b)
 {
-  return a < b ? a : b;
+  return (a < b ? a : b);
 }
 
 
 int MAX(int a, int b)
 {
-  return a > b ? a : b;
+  return (a > b ? a : b);
 }
 
+
+char *CAP(char *txt)
+{
+  *txt = UPPER(*txt);
+  return (txt);
+}
 
 
 /* Create a duplicate of a string */
@@ -85,47 +91,67 @@ char *str_dup(const char *source)
 }
 
 
+/*
+ * Strips \r\n from end of string.
+ */
+void prune_crlf(char *txt)
+{
+  int i = strlen(txt) - 1;
 
-/* str_cmp: a case-insensitive version of strcmp */
-/* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
-/* scan 'till found different or end of both                 */
+  while (txt[i] == '\n' || txt[i] == '\r')
+    txt[i--] = '\0';
+}
+
+
+/*
+ * str_cmp: a case-insensitive version of strcmp().
+ * Returns: 0 if equal, > 0 if arg1 > arg2, or < 0 if arg1 < arg2.
+ *
+ * Scan until strings are found different or we reach the end of both.
+ */
 int str_cmp(const char *arg1, const char *arg2)
 {
   int chk, i;
 
-  for (i = 0; *(arg1 + i) || *(arg2 + i); i++)
-    if ((chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i)))) {
-      if (chk < 0)
-	return (-1);
-      else
-	return (1);
-    }
+  if (arg1 == NULL || arg2 == NULL) {
+    log("SYSERR: str_cmp() passed a NULL pointer, %p or %p.", arg1, arg2);
+    return (0);
+  }
+
+  for (i = 0; arg1[i] || arg2[i]; i++)
+    if ((chk = LOWER(arg1[i]) - LOWER(arg2[i])) != 0)
+      return (chk);	/* not equal */
+
   return (0);
 }
 
 
-/* strn_cmp: a case-insensitive version of strncmp */
-/* returns: 0 if equal, 1 if arg1 > arg2, -1 if arg1 < arg2  */
-/* scan 'till found different, end of both, or n reached     */
+/*
+ * strn_cmp: a case-insensitive version of strncmp().
+ * Returns: 0 if equal, > 0 if arg1 > arg2, or < 0 if arg1 < arg2.
+ *
+ * Scan until strings are found different, the end of both, or n is reached.
+ */
 int strn_cmp(const char *arg1, const char *arg2, int n)
 {
   int chk, i;
 
-  for (i = 0; (*(arg1 + i) || *(arg2 + i)) && (n > 0); i++, n--)
-    if ((chk = LOWER(*(arg1 + i)) - LOWER(*(arg2 + i)))) {
-      if (chk < 0)
-	return (-1);
-      else
-	return (1);
-    }
+  if (arg1 == NULL || arg2 == NULL) {
+    log("SYSERR: strn_cmp() passed a NULL pointer, %p or %p.", arg1, arg2);
+    return (0);
+  }
+
+  for (i = 0; (arg1[i] || arg2[i]) && (n > 0); i++, n--)
+    if ((chk = LOWER(arg1[i]) - LOWER(arg2[i])) != 0)
+      return (chk);	/* not equal */
+
   return (0);
 }
-
 
 /* log a death trap hit */
 void log_death_trap(struct char_data * ch)
 {
-  char buf[150];
+  char buf[256];
 
   sprintf(buf, "%s hit death trap #%d (%s)", GET_NAME(ch),
 	  GET_ROOM_VNUM(IN_ROOM(ch)), world[ch->in_room].name);
@@ -142,6 +168,11 @@ void basic_mud_log(const char *format, ...)
   time_t ct = time(0);
   char *time_s = asctime(localtime(&ct));
 
+  if (logfile == NULL)
+    puts("SYSERR: Using log() before stream was initialized!");
+  if (format == NULL)
+    format = "SYSERR: log() received a NULL format.";
+
   time_s[strlen(time_s) - 1] = '\0';
 
   fprintf(logfile, "%-15.15s :: ", time_s + 4);
@@ -154,17 +185,18 @@ void basic_mud_log(const char *format, ...)
   fflush(logfile);
 }
 
+
 /* the "touch" command, essentially. */
 int touch(const char *path)
 {
   FILE *fl;
 
   if (!(fl = fopen(path, "a"))) {
-    perror(path);
-    return -1;
+    log("SYSERR: %s: %s", path, strerror(errno));
+    return (-1);
   } else {
     fclose(fl);
-    return 0;
+    return (0);
   }
 }
 
@@ -178,6 +210,8 @@ void mudlog(const char *str, int type, int level, int file)
   char buf[MAX_STRING_LENGTH], tp;
   struct descriptor_data *i;
 
+  if (str == NULL)
+    return;	/* eh, oh well. */
   if (file)
     log(str);
   if (level < 0)
@@ -200,16 +234,17 @@ void mudlog(const char *str, int type, int level, int file)
 
 
 
-void sprintbit(long bitvector, const char *names[], char *result)
+/*
+ * If you don't have a 'const' array, just cast it as such.  It's safer
+ * to cast a non-const array as const than to cast a const one as non-const.
+ * Doesn't really matter since this function doesn't change the array though.
+ */
+void sprintbit(bitvector_t bitvector, const char *names[], char *result)
 {
   long nr;
 
   *result = '\0';
 
-  if (bitvector < 0) {
-    strcpy(result, "<INVALID BITVECTOR>");
-    return;
-  }
   for (nr = 0; bitvector; bitvector >>= 1) {
     if (IS_SET(bitvector, 1)) {
       if (*names[nr] != '\n') {
@@ -256,12 +291,12 @@ struct time_info_data *real_time_passed(time_t t2, time_t t1)
   secs -= SECS_PER_REAL_HOUR * now.hours;
 
   now.day = (secs / SECS_PER_REAL_DAY);	/* 0..34 days  */
-  secs -= SECS_PER_REAL_DAY * now.day;
+  /* secs -= SECS_PER_REAL_DAY * now.day; - Not used. */
 
   now.month = -1;
   now.year = -1;
 
-  return &now;
+  return (&now);
 }
 
 
@@ -285,7 +320,7 @@ struct time_info_data *mud_time_passed(time_t t2, time_t t1)
 
   now.year = (secs / SECS_PER_MUD_YEAR);	/* 0..XX? years */
 
-  return &now;
+  return (&now);
 }
 
 
@@ -298,7 +333,7 @@ struct time_info_data *age(struct char_data * ch)
 
   player_age.year += 17;	/* All players start at 17 */
 
-  return &player_age;
+  return (&player_age);
 }
 
 
@@ -310,10 +345,10 @@ bool circle_follow(struct char_data * ch, struct char_data * victim)
 
   for (k = victim; k; k = k->master) {
     if (k == ch)
-      return TRUE;
+      return (TRUE);
   }
 
-  return FALSE;
+  return (FALSE);
 }
 
 
@@ -413,19 +448,15 @@ int get_line(FILE * fl, char *buf)
   int lines = 0;
 
   do {
-    lines++;
     fgets(temp, 256, fl);
-    if (*temp)
-      temp[strlen(temp) - 1] = '\0';
-  } while (!feof(fl) && (*temp == '*' || !*temp));
+    if (feof(fl))
+      return 0;
+    lines++;
+  } while (*temp == '*' || *temp == '\n');
 
-  if (feof(fl)) {
-    *buf = '\0';
-    return 0;
-  } else {
-    strcpy(buf, temp);
-    return lines;
-  }
+  temp[strlen(temp) - 1] = '\0';
+  strcpy(buf, temp);
+  return lines;
 }
 
 
@@ -434,21 +465,28 @@ int get_filename(char *orig_name, char *filename, int mode)
   const char *prefix, *middle, *suffix;
   char name[64], *ptr;
 
+  if (orig_name == NULL || *orig_name == '\0' || filename == NULL) {
+    log("SYSERR: NULL pointer or empty string passed to get_filename(), %p or %p.",
+		orig_name, filename);
+    return (0);
+  }
+
   switch (mode) {
   case CRASH_FILE:
     prefix = LIB_PLROBJS;
     suffix = SUF_OBJS;
+    break;
+  case ALIAS_FILE:
+    prefix = LIB_PLRALIAS;
+    suffix = SUF_ALIAS;
     break;
   case ETEXT_FILE:
     prefix = LIB_PLRTEXT;
     suffix = SUF_TEXT;
     break;
   default:
-    return 0;
+    return (0);
   }
-
-  if (!*orig_name)
-    return 0;
 
   strcpy(name, orig_name);
   for (ptr = name; *ptr; ptr++)
@@ -476,7 +514,7 @@ int get_filename(char *orig_name, char *filename, int mode)
   }
 
   sprintf(filename, "%s%s"SLASH"%s.%s", prefix, middle, name, suffix);
-  return 1;
+  return (1);
 }
 
 
@@ -489,7 +527,7 @@ int num_pc_in_room(struct room_data *room)
     if (!IS_NPC(ch))
       i++;
 
-  return i;
+  return (i);
 }
 
 /*
@@ -500,9 +538,12 @@ int num_pc_in_room(struct room_data *room)
  * core_dump_unix() but as simply 'core_dump()' so that it will be
  * excluded from systems not supporting them. (e.g. Windows '95).
  *
+ * You still want to call abort() or exit(1) for
+ * non-recoverable errors, of course...
+ *
  * XXX: Wonder if flushing streams includes sockets?
  */
-void core_dump_real(const char *who, ush_int line)
+void core_dump_real(const char *who, int line)
 {
   log("SYSERR: Assertion failed at %s:%d!", who, line);
 

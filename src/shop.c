@@ -35,7 +35,6 @@ extern struct time_info_data time_info;
 extern char *drinks[];
 extern char *item_types[];
 extern char *extra_bits[];
-extern int top_of_world;
 
 /* Forward/External function declarations */
 ACMD(do_tell);
@@ -204,7 +203,7 @@ int pop(struct stack_data * stack)
   if (S_LEN(stack) > 0)
     return (S_DATA(stack, --S_LEN(stack)));
   else {
-    log("Illegal expression %d in shop keyword list.", S_LEN(stack));
+    log("SYSERR: Illegal expression %d in shop keyword list.", S_LEN(stack));
     return (0);
   }
 }
@@ -216,10 +215,16 @@ void evaluate_operation(struct stack_data * ops, struct stack_data * vals)
 
   if ((oper = pop(ops)) == OPER_NOT)
     push(vals, !pop(vals));
-  else if (oper == OPER_AND)
-    push(vals, pop(vals) && pop(vals));
-  else if (oper == OPER_OR)
-    push(vals, pop(vals) || pop(vals));
+  else {
+    int val1 = pop(vals),
+	val2 = pop(vals);
+
+    /* Compiler would previously short-circuit these. */
+    if (oper == OPER_AND)
+      push(vals, val1 && val2);
+    else if (oper == OPER_OR)
+      push(vals, val1 || val2);
+  }
 }
 
 
@@ -240,11 +245,8 @@ int evaluate_expression(struct obj_data * obj, char *expr)
   char *ptr, *end, name[200];
   int temp, index;
 
-  if (!expr)
-    return TRUE;
-
-  if (!isalpha(*expr))
-	return TRUE;
+  if (!expr || !*expr)	/* Allows opening ( first. */
+    return (TRUE);
 
   ops.len = vals.len = 0;
   ptr = expr;
@@ -272,7 +274,7 @@ int evaluate_expression(struct obj_data * obj, char *expr)
 
 	if (temp == OPER_CLOSE_PAREN) {
 	  if ((temp = pop(&ops)) != OPER_OPEN_PAREN) {
-	    log("Illegal parenthesis in shop keyword expression.");
+	    log("SYSERR: Illegal parenthesis in shop keyword expression.");
 	    return (FALSE);
 	  }
 	} else
@@ -285,7 +287,7 @@ int evaluate_expression(struct obj_data * obj, char *expr)
     evaluate_operation(&ops, &vals);
   temp = pop(&vals);
   if (top(&vals) != NOTHING) {
-    log("Extra operands left on shop keyword expression stack.");
+    log("SYSERR: Extra operands left on shop keyword expression stack.");
     return (FALSE);
   }
   return (temp);
@@ -357,14 +359,19 @@ int shop_producing(struct obj_data * item, int shop_nr)
 int transaction_amt(char *arg)
 {
   int num;
+  char *buywhat;
 
-  one_argument(arg, buf);
-  if (*buf)
-    if ((is_number(buf))) {
-      num = atoi(buf);
-      strcpy(arg, arg + strlen(buf) + 1);
-      return (num);
-    }
+  /*
+   * If we have two arguments, it means 'buy 5 3', or buy 5 of #3.
+   * We don't do that if we only have one argument, like 'buy 5', buy #5.
+   * Code from Andrey Fidrya <andrey@ALEX-UA.COM>
+   */
+  buywhat = one_argument(arg, buf);
+  if (*buywhat && *buf && is_number(buf)) {
+    num = atoi(buf);
+    strcpy(arg, arg + strlen(buf) + 1);
+    return (num);
+  }
   return (1);
 }
 
@@ -421,7 +428,9 @@ struct obj_data *get_hash_obj_vis(struct char_data * ch, char *name,
   struct obj_data *loop, *last_obj = 0;
   int index;
 
-  if ((is_number(name + 1)))
+  if (is_number(name))
+    index = atoi(name);
+  else if (is_number(name + 1))
     index = atoi(name + 1);
   else
     return (0);
@@ -445,7 +454,7 @@ struct obj_data *get_purchase_obj(struct char_data * ch, char *arg,
 
   one_argument(arg, name);
   do {
-    if (*name == '#')
+    if (*name == '#' || is_number(name))
       obj = get_hash_obj_vis(ch, name, keeper->carrying);
     else
       obj = get_slide_obj_vis(ch, name, keeper->carrying);
@@ -696,7 +705,7 @@ void shopping_sell(char *arg, struct char_data * ch,
 		        struct char_data * keeper, int shop_nr)
 {
   char tempstr[200], buf[MAX_STRING_LENGTH], name[MAX_INPUT_LENGTH];
-  struct obj_data *obj, *tag = 0;
+  struct obj_data *obj;
   int sellnum, sold = 0, goldamt = 0;
 
   if (!(is_ok(keeper, ch, shop_nr)))
@@ -730,7 +739,7 @@ void shopping_sell(char *arg, struct char_data * ch,
     GET_GOLD(keeper) -= sell_price(ch, obj, shop_nr);
 	
     obj_from_char(obj);
-    tag = slide_obj(obj, keeper, shop_nr);
+    slide_obj(obj, keeper, shop_nr);	/* Seems we don't use return value. */
     obj = get_selling_obj(ch, name, keeper, shop_nr, FALSE);
   }
 
@@ -968,7 +977,7 @@ int add_to_list(struct shop_buy_data * list, int type, int *len, int *val)
 int end_read_list(struct shop_buy_data * list, int len, int error)
 {
   if (error)
-    log("Raise MAX_SHOP_OBJ constant in shop.h to %d", len + error);
+    log("SYSERR: Raise MAX_SHOP_OBJ constant in shop.h to %d", len + error);
   BUY_WORD(list[len]) = 0;
   BUY_TYPE(list[len++]) = NOTHING;
   return (len);
@@ -1063,7 +1072,7 @@ void boot_the_shops(FILE * shop_f, char *filename, int rec_count)
 
       SHOP_NUM(top_shop) = temp;
       temp = read_list(shop_f, list, new_format, MAX_PROD, LIST_PRODUCE);
-      CREATE(shop_index[top_shop].producing, int, temp);
+      CREATE(shop_index[top_shop].producing, obj_vnum, temp);
       for (count = 0; count < temp; count++)
 	SHOP_PRODUCT(top_shop, count) = BUY_TYPE(list[count]);
 
@@ -1086,13 +1095,13 @@ void boot_the_shops(FILE * shop_f, char *filename, int rec_count)
       shop_index[top_shop].message_sell = fread_string(shop_f, buf2);
       read_line(shop_f, "%d", &SHOP_BROKE_TEMPER(top_shop));
       read_line(shop_f, "%d", &SHOP_BITVECTOR(top_shop));
-      read_line(shop_f, "%d", &SHOP_KEEPER(top_shop));
+      read_line(shop_f, "%hd", &SHOP_KEEPER(top_shop));
 
       SHOP_KEEPER(top_shop) = real_mobile(SHOP_KEEPER(top_shop));
       read_line(shop_f, "%d", &SHOP_TRADE_WITH(top_shop));
 
       temp = read_list(shop_f, list, new_format, 1, LIST_ROOM);
-      CREATE(shop_index[top_shop].in_room, int, temp);
+      CREATE(shop_index[top_shop].in_room, room_rnum, temp);
       for (count = 0; count < temp; count++)
 	SHOP_ROOM(top_shop, count) = BUY_TYPE(list[count]);
 

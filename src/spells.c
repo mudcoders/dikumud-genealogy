@@ -19,10 +19,9 @@
 #include "handler.h"
 #include "db.h"
 #include "constants.h"
+#include "interpreter.h"
 
-extern sh_int r_mortal_start_room;
-extern int top_of_world;
-extern char *spells[];
+extern room_rnum r_mortal_start_room;
 extern struct room_data *world;
 extern struct obj_data *object_list;
 extern struct char_data *character_list;
@@ -33,16 +32,13 @@ extern struct zone_data *zone_table;
 extern int mini_mud;
 extern int pk_allowed;
 
-extern struct default_mobile_stats *mob_defaults;
-extern struct apply_mod_defaults *apmd;
-
 void clearMemory(struct char_data * ch);
 void weight_change_object(struct obj_data * obj, int weight);
 void add_follower(struct char_data * ch, struct char_data * leader);
-int mag_savingthrow(struct char_data * ch, int type);
+int mag_savingthrow(struct char_data * ch, int type, int modifier);
 void name_to_drinkcon(struct obj_data * obj, int type);
 void name_from_drinkcon(struct obj_data * obj);
-
+int compute_armor_class(struct char_data *ch);
 
 /*
  * Special spells appear below.
@@ -54,7 +50,7 @@ ASPELL(spell_create_water)
 
   if (ch == NULL || obj == NULL)
     return;
-  level = MAX(MIN(level, LVL_IMPL), 1);
+  /* level = MAX(MIN(level, LVL_IMPL), 1);	 - not used */
 
   if (GET_OBJ_TYPE(obj) == ITEM_DRINKCON) {
     if ((GET_OBJ_VAL(obj, 2) != LIQ_WATER) && (GET_OBJ_VAL(obj, 1) != 0)) {
@@ -92,7 +88,7 @@ ASPELL(spell_recall)
 
 ASPELL(spell_teleport)
 {
-  int to_room;
+  room_rnum to_room;
 
   if (victim == NULL || IS_NPC(victim))
     return;
@@ -150,7 +146,7 @@ ASPELL(spell_summon)
   }
 
   if (MOB_FLAGGED(victim, MOB_NOSUMMON) ||
-      (IS_NPC(victim) && mag_savingthrow(victim, SAVING_SPELL))) {
+      (IS_NPC(victim) && mag_savingthrow(victim, SAVING_SPELL, 0))) {
     send_to_char(SUMMON_FAIL, ch);
     return;
   }
@@ -237,7 +233,7 @@ ASPELL(spell_charm)
     send_to_char("You fail - shouldn't be doing it anyway.\r\n", ch);
   else if (circle_follow(victim, ch))
     send_to_char("Sorry, following in circles can not be allowed.\r\n", ch);
-  else if (mag_savingthrow(victim, SAVING_PARA))
+  else if (mag_savingthrow(victim, SAVING_PARA, 0))
     send_to_char("Your victim resists!\r\n", ch);
   else {
     if (victim->master)
@@ -301,18 +297,18 @@ ASPELL(spell_identify)
       sprintf(buf, "This %s casts: ", item_types[(int) GET_OBJ_TYPE(obj)]);
 
       if (GET_OBJ_VAL(obj, 1) >= 1)
-	sprintf(buf + strlen(buf), " %s", spells[GET_OBJ_VAL(obj, 1)]);
+	sprintf(buf + strlen(buf), " %s", skill_name(GET_OBJ_VAL(obj, 1)));
       if (GET_OBJ_VAL(obj, 2) >= 1)
-	sprintf(buf + strlen(buf), " %s", spells[GET_OBJ_VAL(obj, 2)]);
+	sprintf(buf + strlen(buf), " %s", skill_name(GET_OBJ_VAL(obj, 2)));
       if (GET_OBJ_VAL(obj, 3) >= 1)
-	sprintf(buf + strlen(buf), " %s", spells[GET_OBJ_VAL(obj, 3)]);
+	sprintf(buf + strlen(buf), " %s", skill_name(GET_OBJ_VAL(obj, 3)));
       strcat(buf, "\r\n");
       send_to_char(buf, ch);
       break;
     case ITEM_WAND:
     case ITEM_STAFF:
       sprintf(buf, "This %s casts: ", item_types[(int) GET_OBJ_TYPE(obj)]);
-      sprintf(buf + strlen(buf), " %s\r\n", spells[GET_OBJ_VAL(obj, 3)]);
+      sprintf(buf + strlen(buf), " %s\r\n", skill_name(GET_OBJ_VAL(obj, 3)));
       sprintf(buf + strlen(buf), "It has %d maximum charge%s and %d remaining.\r\n",
 	      GET_OBJ_VAL(obj, 1), GET_OBJ_VAL(obj, 1) == 1 ? "" : "s",
 	      GET_OBJ_VAL(obj, 2));
@@ -357,7 +353,7 @@ ASPELL(spell_identify)
     sprintf(buf + strlen(buf), "Level: %d, Hits: %d, Mana: %d\r\n",
 	    GET_LEVEL(victim), GET_HIT(victim), GET_MANA(victim));
     sprintf(buf + strlen(buf), "AC: %d, Hitroll: %d, Damroll: %d\r\n",
-	    GET_AC(victim), GET_HITROLL(victim), GET_DAMROLL(victim));
+	    compute_armor_class(victim), GET_HITROLL(victim), GET_DAMROLL(victim));
     sprintf(buf + strlen(buf), "Str: %d/%d, Int: %d, Wis: %d, Dex: %d, Con: %d, Cha: %d\r\n",
 	GET_STR(victim), GET_ADD(victim), GET_INT(victim),
 	GET_WIS(victim), GET_DEX(victim), GET_CON(victim), GET_CHA(victim));
@@ -368,6 +364,10 @@ ASPELL(spell_identify)
 
 
 
+/*
+ * Cannot use this spell on an equipped object or it will mess up the
+ * wielding character's hit/dam totals.
+ */
 ASPELL(spell_enchant_weapon)
 {
   int i;
@@ -375,31 +375,31 @@ ASPELL(spell_enchant_weapon)
   if (ch == NULL || obj == NULL)
     return;
 
-  if ((GET_OBJ_TYPE(obj) == ITEM_WEAPON) &&
-      !OBJ_FLAGGED(obj, ITEM_MAGIC)) {
+  /* Either already enchanted or not a weapon. */
+  if (GET_OBJ_TYPE(obj) != ITEM_WEAPON || OBJ_FLAGGED(obj, ITEM_MAGIC))
+    return;
 
-    for (i = 0; i < MAX_OBJ_AFFECT; i++)
-      if (obj->affected[i].location != APPLY_NONE)
-	return;
+  /* Make sure no other affections. */
+  for (i = 0; i < MAX_OBJ_AFFECT; i++)
+    if (obj->affected[i].location != APPLY_NONE)
+      return;
 
-    SET_BIT(GET_OBJ_EXTRA(obj), ITEM_MAGIC);
+  SET_BIT(GET_OBJ_EXTRA(obj), ITEM_MAGIC);
 
-    obj->affected[0].location = APPLY_HITROLL;
-    obj->affected[0].modifier = 1 + (level >= 18);
+  obj->affected[0].location = APPLY_HITROLL;
+  obj->affected[0].modifier = 1 + (level >= 18);
 
-    obj->affected[1].location = APPLY_DAMROLL;
-    obj->affected[1].modifier = 1 + (level >= 20);
+  obj->affected[1].location = APPLY_DAMROLL;
+  obj->affected[1].modifier = 1 + (level >= 20);
 
-    if (IS_GOOD(ch)) {
-      SET_BIT(GET_OBJ_EXTRA(obj), ITEM_ANTI_EVIL);
-      act("$p glows blue.", FALSE, ch, obj, 0, TO_CHAR);
-    } else if (IS_EVIL(ch)) {
-      SET_BIT(GET_OBJ_EXTRA(obj), ITEM_ANTI_GOOD);
-      act("$p glows red.", FALSE, ch, obj, 0, TO_CHAR);
-    } else {
-      act("$p glows yellow.", FALSE, ch, obj, 0, TO_CHAR);
-    }
-  }
+  if (IS_GOOD(ch)) {
+    SET_BIT(GET_OBJ_EXTRA(obj), ITEM_ANTI_EVIL);
+    act("$p glows blue.", FALSE, ch, obj, 0, TO_CHAR);
+  } else if (IS_EVIL(ch)) {
+    SET_BIT(GET_OBJ_EXTRA(obj), ITEM_ANTI_GOOD);
+    act("$p glows red.", FALSE, ch, obj, 0, TO_CHAR);
+  } else
+    act("$p glows yellow.", FALSE, ch, obj, 0, TO_CHAR);
 }
 
 

@@ -53,10 +53,9 @@ void load_banned(void)
 
   if (!(fl = fopen(BAN_FILE, "r"))) {
     if (errno != ENOENT) {
-      log("SYSERR: Unable to open banfile '%s'.", BAN_FILE);
-      perror(BAN_FILE);
+      log("SYSERR: Unable to open banfile '%s': %s", BAN_FILE, strerror(errno));
     } else
-      log("Ban file '%s' doesn't exist.", BAN_FILE);
+      log("   Ban file '%s' doesn't exist.", BAN_FILE);
     return;
   }
   while (fscanf(fl, " %s %s %d %s ", ban_type, site_name, &date, name) == 4) {
@@ -96,7 +95,7 @@ int isbanned(char *hostname)
     if (strstr(hostname, banned_node->site))	/* if hostname is a substring */
       i = MAX(i, banned_node->type);
 
-  return i;
+  return (i);
 }
 
 
@@ -116,7 +115,7 @@ void write_ban_list(void)
   FILE *fl;
 
   if (!(fl = fopen(BAN_FILE, "w"))) {
-    perror("SYSERR: write_ban_list");
+    perror("SYSERR: Unable to open '" BAN_FILE "' for writing");
     return;
   }
   _write_one_node(fl, ban_list);/* recursively write from end to start */
@@ -268,7 +267,7 @@ int Valid_Name(char *newname)
 
   /* return valid if list doesn't exist */
   if (!invalid_list || num_invalid < 1)
-    return 1;
+    return (1);
 
   /* change to lowercase */
   strcpy(tempname, newname);
@@ -278,9 +277,9 @@ int Valid_Name(char *newname)
   /* Does the desired name contain a string in the invalid list? */
   for (i = 0; i < num_invalid; i++)
     if (strstr(tempname, invalid_list[i]))
-      return 0;
+      return (0);
 
-  return 1;
+  return (1);
 }
 
 
@@ -290,7 +289,7 @@ void Read_Invalid_List(void)
   char temp[256];
 
   if (!(fp = fopen(XNAME_FILE, "r"))) {
-    perror("SYSERR: Unable to open invalid name file");
+    perror("SYSERR: Unable to open '" XNAME_FILE "' for reading");
     return;
   }
 

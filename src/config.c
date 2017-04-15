@@ -14,6 +14,7 @@
 #include "sysdep.h"
 
 #include "structs.h"
+#include "interpreter.h"	/* alias_data definition for structs.h */
 
 #define TRUE	1
 #define YES	1
@@ -94,6 +95,14 @@ const char *OK = "Okay.\r\n";
 const char *NOPERSON = "No-one by that name here.\r\n";
 const char *NOEFFECT = "Nothing seems to happen.\r\n";
 
+/*
+ * You can define or not define TRACK_THOUGH_DOORS, depending on whether
+ * or not you want track to find paths which lead through closed or
+ * hidden doors. A setting of 'NO' means to not go through the doors
+ * while 'YES' will pass through doors to find the target.
+ */
+int track_through_doors = YES;
+
 /****************************************************************************/
 /****************************************************************************/
 
@@ -142,22 +151,22 @@ int rent_file_timeout = 30;
 /* ROOM NUMBERS */
 
 /* virtual number of room that mortals should enter at */
-sh_int mortal_start_room = 3001;
+room_vnum mortal_start_room = 3001;
 
 /* virtual number of room that immorts should enter at by default */
-sh_int immort_start_room = 1204;
+room_vnum immort_start_room = 1204;
 
 /* virtual number of room that frozen players should enter at */
-sh_int frozen_start_room = 1202;
+room_vnum frozen_start_room = 1202;
 
 /*
  * virtual numbers of donation rooms.  note: you must change code in
  * do_drop of act.item.c if you change the number of non-NOWHERE
  * donation rooms.
  */
-sh_int donation_room_1 = 3063;
-sh_int donation_room_2 = NOWHERE;	/* unused - room for expansion */
-sh_int donation_room_3 = NOWHERE;	/* unused - room for expansion */
+room_vnum donation_room_1 = 3063;
+room_vnum donation_room_2 = NOWHERE;	/* unused - room for expansion */
+room_vnum donation_room_3 = NOWHERE;	/* unused - room for expansion */
 
 
 /****************************************************************************/
@@ -173,7 +182,7 @@ sh_int donation_room_3 = NOWHERE;	/* unused - room for expansion */
  * Change the PORT= line in autorun instead of (or in addition to)
  * changing this.
  */
-int DFLT_PORT = 4000;
+ush_int DFLT_PORT = 4000;
 
 /*
  * IP address to which the MUD should bind.  This is only useful if
@@ -253,22 +262,6 @@ const char *MENU =
 "\r\n"
 "   Make your choice: ";
 
-
-
-const char *GREETINGS =
-
-"\r\n\r\n"
-"                              Your MUD Name Here\r\n"
-"\r\n"
-"                            Based on CircleMUD 3.0,\r\n"
-"                            Created by Jeremy Elson\r\n"
-"\r\n"
-"                      A derivative of DikuMUD (GAMMA 0.0)\r\n"
-"                                  Created by\r\n"
-"                     Hans Henrik Staerfeldt, Katja Nyboe,\r\n"
-"               Tom Madsen, Michael Seifert, and Sebastian Hammer\r\n"
-"\r\n\r\n"
-"By what name do you wish to be known? ";
 
 
 const char *WELC_MESSG =

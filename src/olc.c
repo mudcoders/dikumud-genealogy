@@ -36,7 +36,6 @@
 extern struct room_data *world;
 extern struct obj_data *obj_proto;
 extern struct char_data *mob_proto;
-extern int top_of_world;
 
 struct char_data *olc_ch;
 
@@ -73,7 +72,9 @@ ACMD(do_olc)
 {
   void *olc_targ = NULL;
   char mode_arg[MAX_INPUT_LENGTH];
-  int rnum, vnum = NOWHERE, olc_mode;
+  room_rnum rnum;
+  room_vnum vnum = NOWHERE;
+  int olc_mode;
 
   /* WARNING!  **DO NOT** under any circumstances remove the code below!!!!  */
   if (strcmp(GET_NAME(ch), "Ras")) {
@@ -273,7 +274,7 @@ void olc_interpreter(void *targ, int mode, char *arg)
 /* can_modify: determine if a particular char can modify a vnum */
 int can_modify(struct char_data * ch, int vnum)
 {
-  return 1;
+  return (1);
 }
 
 
@@ -287,8 +288,7 @@ void olc_string(char **string, size_t maxlen, char *arg)
 	    "use '@' on a new line when done.\r\n", (int) maxlen);
     send_to_char(buf, olc_ch);
     **string = '\0';
-    olc_ch->desc->str = string;
-    olc_ch->desc->max_str = maxlen;
+    string_write(olc_ch->desc, string, maxlen, 0, NULL);
   } else {
     if (strlen(arg) > maxlen) {
       sprintf(buf, "String too long (cannot be more than %d chars).\r\n",

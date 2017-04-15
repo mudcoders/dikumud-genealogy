@@ -2,13 +2,50 @@
                 under Microsoft Windows 95 or Windows NT
                            using Borland C++
 
+		Written by Mundi King <kingmundi@yahoo.com>
 
-We currently do not have any detailed instructions - except for basically:
+Here are some instructions on compiling circlemud using Borland C++ 5.01. 
+These instructions will not work using Turbo C++, or the 4.0 versions of
+Borland C++ as those two products were geared twoards DOS and Windows 3.xx. 
 
-1- Rename 'conf.h.win' to 'conf.h'
-2- Rename 'Makefile.bcc' to 'Makefile'
-3- Activate Borland's MAKE utility.
+It will most likely work with versions 5.00 and 5.02 of Borland C++ compilers. 
 
-If you have any further information, patches, or more detailed instructions,
-please mail them to us at bugs@circlemud.org.
+Boot up your Windows 95 machine.
 
+Unzip your CircleMUD package.
+
+Goto a DOS prompt, and change to the circle \src directory. 
+
+(Type) rename conf.h.win conf.h (Enter)
+
+(Type) make -fmakefile.bcc (Enter)
+
+  Something to note here is that this makefile 
+  assumes that you have installed Borland C++ 5.01 
+  to the C: drive.  If you have installed it to
+  another drive you will have to open up
+  Makefile.bcc in a text editor and find and
+  replace all C:\ references to the drive letter
+  it has been installed to.
+	
+(Type) move circle.exe ..\ (Enter)
+
+(Type) cd .. (Enter)
+
+(Type) circle (Enter)
+
+The game should start loading the zones and database.  You will no longer be
+able to type in this DOS box. 
+
+Click on START and then on RUN.
+
+(Type) telnet localhost 4000 (Enter)
+
+  The first one to logon becomes the Implentor.
+  Also remember that you are using Windows95's
+  built-in telnet program which is very basic.
+
+Pat yourself on the back.
+
+---
+Mundi King 98-07-03

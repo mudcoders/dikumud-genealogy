@@ -25,12 +25,12 @@ struct board_msginfo {
 };
 
 struct board_info_type {
-   int	vnum;		/* vnum of this board */
+   obj_vnum vnum;	/* vnum of this board */
    int	read_lvl;	/* min level to read messages on this board */
    int	write_lvl;	/* min level to write messages on this board */
    int	remove_lvl;	/* min level to remove messages from this board */
    char	filename[50];	/* file to save this board to */
-   int	rnum;		/* rnum of this board */
+   obj_rnum rnum;	/* rnum of this board */
 };
 
 #define BOARD_VNUM(i) (board_info[i].vnum)

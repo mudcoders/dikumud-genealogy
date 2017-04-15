@@ -26,13 +26,10 @@ extern int top_of_helpt;
 extern struct help_index_element *help_table;
 extern char *help;
 extern struct time_info_data time_info;
-extern const char *weekdays[];
-extern const char *month_name[];
 extern struct room_data *world;
 extern struct descriptor_data *descriptor_list;
 extern struct char_data *character_list;
 extern struct obj_data *object_list;
-extern int top_of_world;
 
 extern char *credits;
 extern char *news;
@@ -43,7 +40,6 @@ extern char *wizlist;
 extern char *immlist;
 extern char *policies;
 extern char *handbook;
-extern char *spells[];
 extern char *class_abbrevs[];
 
 /* extern functions */
@@ -53,6 +49,7 @@ int level_exp(int chclass, int level);
 char *title_male(int chclass, int level);
 char *title_female(int chclass, int level);
 struct time_info_data *real_time_passed(time_t t2, time_t t1);
+int compute_armor_class(struct char_data *ch);
 
 /* local functions */
 void print_object_location(int num, struct obj_data * obj, struct char_data * ch, int recur);
@@ -98,8 +95,6 @@ void look_at_target(struct char_data * ch, char *arg);
 void show_obj_to_char(struct obj_data * object, struct char_data * ch,
 			int mode)
 {
-  bool found;
-
   *buf = '\0';
   if ((mode == 0) && object->description)
     strcpy(buf, object->description);
@@ -113,7 +108,7 @@ void show_obj_to_char(struct obj_data * object, struct char_data * ch,
 	strcat(buf, object->action_description);
 	page_string(ch->desc, buf, 1);
       } else
-	act("It's blank.", FALSE, ch, 0, 0, TO_CHAR);
+	send_to_char("It's blank.\r\n", ch);
       return;
     } else if (GET_OBJ_TYPE(object) != ITEM_DRINKCON) {
       strcpy(buf, "You see nothing special..");
@@ -121,27 +116,16 @@ void show_obj_to_char(struct obj_data * object, struct char_data * ch,
       strcpy(buf, "It looks like a drink container.");
   }
   if (mode != 3) {
-    found = FALSE;
-    if (IS_OBJ_STAT(object, ITEM_INVISIBLE)) {
+    if (IS_OBJ_STAT(object, ITEM_INVISIBLE))
       strcat(buf, " (invisible)");
-      found = TRUE;
-    }
-    if (IS_OBJ_STAT(object, ITEM_BLESS) && AFF_FLAGGED(ch, AFF_DETECT_ALIGN)) {
+    if (IS_OBJ_STAT(object, ITEM_BLESS) && AFF_FLAGGED(ch, AFF_DETECT_ALIGN))
       strcat(buf, " ..It glows blue!");
-      found = TRUE;
-    }
-    if (IS_OBJ_STAT(object, ITEM_MAGIC) && AFF_FLAGGED(ch, AFF_DETECT_MAGIC)) {
+    if (IS_OBJ_STAT(object, ITEM_MAGIC) && AFF_FLAGGED(ch, AFF_DETECT_MAGIC))
       strcat(buf, " ..It glows yellow!");
-      found = TRUE;
-    }
-    if (IS_OBJ_STAT(object, ITEM_GLOW)) {
+    if (IS_OBJ_STAT(object, ITEM_GLOW))
       strcat(buf, " ..It has a soft glowing aura!");
-      found = TRUE;
-    }
-    if (IS_OBJ_STAT(object, ITEM_HUM)) {
+    if (IS_OBJ_STAT(object, ITEM_HUM))
       strcat(buf, " ..It emits a faint humming sound!");
-      found = TRUE;
-    }
   }
   strcat(buf, "\r\n");
   page_string(ch->desc, buf, TRUE);
@@ -152,9 +136,8 @@ void list_obj_to_char(struct obj_data * list, struct char_data * ch, int mode,
 		           int show)
 {
   struct obj_data *i;
-  bool found;
+  bool found = FALSE;
 
-  found = FALSE;
   for (i = list; i; i = i->next_content) {
     if (CAN_SEE_OBJ(ch, i)) {
       show_obj_to_char(i, ch, mode);
@@ -291,7 +274,7 @@ void list_one_char(struct char_data * i, struct char_data * ch)
     strcat(buf, " (hidden)");
   if (!IS_NPC(i) && !i->desc)
     strcat(buf, " (linkless)");
-  if (PLR_FLAGGED(i, PLR_WRITING))
+  if (!IS_NPC(i) && PLR_FLAGGED(i, PLR_WRITING))
     strcat(buf, " (writing)");
 
   if (GET_POS(i) != POS_FIGHTING)
@@ -524,7 +507,7 @@ char *find_exdesc(char *word, struct extra_descr_data * list)
     if (isname(word, i->keyword))
       return (i->description);
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -532,18 +515,15 @@ char *find_exdesc(char *word, struct extra_descr_data * list)
  * Given the argument "look at <target>", figure out what object or char
  * matches the target.  First, see if there is another char in the room
  * with the name.  Then check local objs for exdescs.
- */
-
-/*
- * BUG BUG: If fed an argument like '2.bread', the extra description
- *          search will fail when it works on 'bread'!
- * -gg 6/24/98 (I'd do a fix, but it's late and non-critical.)
+ *
+ * Thanks to Angus Mezick <angus@EDGIL.CCMAIL.COMPUSERVE.COM> for the
+ * suggested fix to this problem.
  */
 void look_at_target(struct char_data * ch, char *arg)
 {
-  int bits, found = FALSE, j;
+  int bits, found = FALSE, j, fnum, i = 0;
   struct char_data *found_char = NULL;
-  struct obj_data *obj = NULL, *found_obj = NULL;
+  struct obj_data *obj, *found_obj = NULL;
   char *desc;
 
   if (!ch->desc)
@@ -553,6 +533,7 @@ void look_at_target(struct char_data * ch, char *arg)
     send_to_char("Look at what?\r\n", ch);
     return;
   }
+
   bits = generic_find(arg, FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_OBJ_EQUIP |
 		      FIND_CHAR_ROOM, ch, &found_char, &found_obj);
 
@@ -566,22 +547,31 @@ void look_at_target(struct char_data * ch, char *arg)
     }
     return;
   }
+
+  /* Strip off "number." from 2.foo and friends. */
+  if (!(fnum = get_number(&arg))) {
+    send_to_char("Look at what?\r\n", ch);
+    return;
+  }
+
   /* Does the argument match an extra desc in the room? */
-  if ((desc = find_exdesc(arg, world[ch->in_room].ex_description)) != NULL) {
+  if ((desc = find_exdesc(arg, world[ch->in_room].ex_description)) != NULL && ++i == fnum) {
     page_string(ch->desc, desc, FALSE);
     return;
   }
+
   /* Does the argument match an extra desc in the char's equipment? */
   for (j = 0; j < NUM_WEARS && !found; j++)
     if (GET_EQ(ch, j) && CAN_SEE_OBJ(ch, GET_EQ(ch, j)))
-      if ((desc = find_exdesc(arg, GET_EQ(ch, j)->ex_description)) != NULL) {
+      if ((desc = find_exdesc(arg, GET_EQ(ch, j)->ex_description)) != NULL && ++i == fnum) {
 	send_to_char(desc, ch);
 	found = TRUE;
       }
+
   /* Does the argument match an extra desc in the char's inventory? */
   for (obj = ch->carrying; obj && !found; obj = obj->next_content) {
     if (CAN_SEE_OBJ(ch, obj))
-      if ((desc = find_exdesc(arg, obj->ex_description)) != NULL) {
+      if ((desc = find_exdesc(arg, obj->ex_description)) != NULL && ++i == fnum) {
 	send_to_char(desc, ch);
 	found = TRUE;
       }
@@ -590,7 +580,7 @@ void look_at_target(struct char_data * ch, char *arg)
   /* Does the argument match an extra desc of an object in the room? */
   for (obj = world[ch->in_room].contents; obj && !found; obj = obj->next_content)
     if (CAN_SEE_OBJ(ch, obj))
-      if ((desc = find_exdesc(arg, obj->ex_description)) != NULL) {
+      if ((desc = find_exdesc(arg, obj->ex_description)) != NULL && ++i == fnum) {
 	send_to_char(desc, ch);
 	found = TRUE;
       }
@@ -649,7 +639,6 @@ ACMD(do_look)
 
 ACMD(do_examine)
 {
-  int bits;
   struct char_data *tmp_char;
   struct obj_data *tmp_object;
 
@@ -661,7 +650,7 @@ ACMD(do_examine)
   }
   look_at_target(ch, arg);
 
-  bits = generic_find(arg, FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_CHAR_ROOM |
+  generic_find(arg, FIND_OBJ_INV | FIND_OBJ_ROOM | FIND_CHAR_ROOM |
 		      FIND_OBJ_EQUIP, ch, &tmp_char, &tmp_object);
 
   if (tmp_object) {
@@ -709,24 +698,22 @@ ACMD(do_score)
 	  GET_MOVE(ch), GET_MAX_MOVE(ch));
 
   sprintf(buf + strlen(buf), "Your armor class is %d/10, and your alignment is %d.\r\n",
-	  GET_AC(ch), GET_ALIGNMENT(ch));
+	  compute_armor_class(ch), GET_ALIGNMENT(ch));
 
   sprintf(buf + strlen(buf), "You have scored %d exp, and have %d gold coins.\r\n",
 	  GET_EXP(ch), GET_GOLD(ch));
 
-  if (!IS_NPC(ch)) {
-    if (GET_LEVEL(ch) < LVL_IMMORT)
-      sprintf(buf + strlen(buf), "You need %d exp to reach your next level.\r\n",
+  if (GET_LEVEL(ch) < LVL_IMMORT)
+    sprintf(buf + strlen(buf), "You need %d exp to reach your next level.\r\n",
 	level_exp(GET_CLASS(ch), GET_LEVEL(ch) + 1) - GET_EXP(ch));
 
-    playing_time = *real_time_passed((time(0) - ch->player.time.logon) +
+  playing_time = *real_time_passed((time(0) - ch->player.time.logon) +
 				  ch->player.time.played, 0);
-    sprintf(buf + strlen(buf), "You have been playing for %d days and %d hours.\r\n",
+  sprintf(buf + strlen(buf), "You have been playing for %d days and %d hours.\r\n",
 	  playing_time.day, playing_time.hours);
 
-    sprintf(buf + strlen(buf), "This ranks you as %s %s (level %d).\r\n",
+  sprintf(buf + strlen(buf), "This ranks you as %s %s (level %d).\r\n",
 	  GET_NAME(ch), GET_TITLE(ch), GET_LEVEL(ch));
-  }
 
   switch (GET_POS(ch)) {
   case POS_DEAD:
@@ -765,16 +752,14 @@ ACMD(do_score)
     break;
   }
 
-  if (!IS_NPC(ch)) {
-    if (GET_COND(ch, DRUNK) > 10)
-      strcat(buf, "You are intoxicated.\r\n");
+  if (GET_COND(ch, DRUNK) > 10)
+    strcat(buf, "You are intoxicated.\r\n");
 
-    if (GET_COND(ch, FULL) == 0)
-      strcat(buf, "You are hungry.\r\n");
+  if (GET_COND(ch, FULL) == 0)
+    strcat(buf, "You are hungry.\r\n");
 
-    if (GET_COND(ch, THIRST) == 0)
-      strcat(buf, "You are thirsty.\r\n");
-  }
+  if (GET_COND(ch, THIRST) == 0)
+    strcat(buf, "You are thirsty.\r\n");
 
   if (AFF_FLAGGED(ch, AFF_BLIND))
     strcat(buf, "You have been blinded!\r\n");
@@ -856,15 +841,7 @@ ACMD(do_time)
 
   day = time_info.day + 1;	/* day in [1..35] */
 
-  if (day == 1)
-    suf = "st";
-  else if (day == 2)
-    suf = "nd";
-  else if (day == 3)
-    suf = "rd";
-  else if (day < 20)
-    suf = "th";
-  else if ((day % 10) == 1)
+  if ((day % 10) == 1)
     suf = "st";
   else if ((day % 10) == 2)
     suf = "nd";
@@ -1290,6 +1267,7 @@ ACMD(do_gen_ps)
     send_to_char(strcat(strcpy(buf, GET_NAME(ch)), "\r\n"), ch);
     break;
   default:
+    log("SYSERR: Unhandled case in do_gen_ps. (%d)", subcmd);
     return;
   }
 }
@@ -1461,7 +1439,7 @@ ACMD(do_consider)
 
   one_argument(argument, buf);
 
-  if (!(victim = get_char_room_vis(ch, buf))) {
+  if (!(victim = get_char_vis(ch, buf, FIND_CHAR_ROOM))) {
     send_to_char("Consider killing who?\r\n", ch);
     return;
   }
@@ -1509,10 +1487,9 @@ ACMD(do_diagnose)
   one_argument(argument, buf);
 
   if (*buf) {
-    if (!(vict = get_char_room_vis(ch, buf))) {
+    if (!(vict = get_char_vis(ch, buf, FIND_CHAR_ROOM)))
       send_to_char(NOPERSON, ch);
-      return;
-    } else
+    else
       diag_char_to_char(vict, ch);
   } else {
     if (FIGHTING(ch))
@@ -1562,6 +1539,18 @@ ACMD(do_toggle)
     strcpy(buf2, "OFF");
   else
     sprintf(buf2, "%-3d", GET_WIMP_LEV(ch));
+
+  if (GET_LEVEL(ch) >= LVL_IMMORT) {
+    sprintf(buf,
+	  "      No Hassle: %-3s    "
+	  "      Holylight: %-3s    "
+	  "     Room Flags: %-3s\r\n",
+	ONOFF(PRF_FLAGGED(ch, PRF_NOHASSLE)),
+	ONOFF(PRF_FLAGGED(ch, PRF_HOLYLIGHT)),
+	ONOFF(PRF_FLAGGED(ch, PRF_ROOMFLAGS))
+    );
+    send_to_char(buf, ch);
+  }
 
   sprintf(buf,
 	  "Hit Pnt Display: %-3s    "
@@ -1667,7 +1656,7 @@ ACMD(do_commands)
   one_argument(argument, arg);
 
   if (*arg) {
-    if (!(vict = get_char_vis(ch, arg)) || IS_NPC(vict)) {
+    if (!(vict = get_char_vis(ch, arg, FIND_CHAR_WORLD)) || IS_NPC(vict)) {
       send_to_char("Who is that?\r\n", ch);
       return;
     }

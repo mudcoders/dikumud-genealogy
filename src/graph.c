@@ -8,16 +8,6 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
 
-/*
- * You can define or not define TRACK_THOUGH_DOORS, depending on whether
- * or not you want track to find paths which lead through closed or
- * hidden doors. A setting of '#if 0' means to not go through the doors
- * while '#if 1' will pass through doors to find the target.
- */
-#if 1
-#define TRACK_THROUGH_DOORS	1
-#endif
-
 #include "conf.h"
 #include "sysdep.h"
 
@@ -34,20 +24,20 @@
 /* Externals */
 ACMD(do_say);
 extern struct char_data *character_list;
-extern int top_of_world;
 extern const char *dirs[];
 extern struct room_data *world;
+extern int track_through_doors;
 
 /* local functions */
-void bfs_enqueue(sh_int room, int dir);
+void bfs_enqueue(room_rnum room, int dir);
 void bfs_dequeue(void);
 void bfs_clear_queue(void);
-int find_first_step(sh_int src, sh_int target);
+int find_first_step(room_rnum src, room_rnum target);
 ACMD(do_track);
 void hunt_victim(struct char_data * ch);
 
 struct bfs_queue_struct {
-  sh_int room;
+  room_rnum room;
   char dir;
   struct bfs_queue_struct *next;
 };
@@ -55,26 +45,25 @@ struct bfs_queue_struct {
 static struct bfs_queue_struct *queue_head = 0, *queue_tail = 0;
 
 /* Utility macros */
-#define MARK(room) (SET_BIT(ROOM_FLAGS(room), ROOM_BFS_MARK))
-#define UNMARK(room) (REMOVE_BIT(ROOM_FLAGS(room), ROOM_BFS_MARK))
-#define IS_MARKED(room) (ROOM_FLAGGED(room, ROOM_BFS_MARK))
-#define TOROOM(x, y) (world[(x)].dir_option[(y)]->to_room)
-#define IS_CLOSED(x, y) (EXIT_FLAGGED(world[(x)].dir_option[(y)], EX_CLOSED))
+#define MARK(room)	(SET_BIT(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define UNMARK(room)	(REMOVE_BIT(ROOM_FLAGS(room), ROOM_BFS_MARK))
+#define IS_MARKED(room)	(ROOM_FLAGGED(room, ROOM_BFS_MARK))
+#define TOROOM(x, y)	(world[(x)].dir_option[(y)]->to_room)
+#define IS_CLOSED(x, y)	(EXIT_FLAGGED(world[(x)].dir_option[(y)], EX_CLOSED))
 
-#ifdef TRACK_THROUGH_DOORS
-#define VALID_EDGE(x, y) (world[(x)].dir_option[(y)] && \
-			  (TOROOM(x, y) != NOWHERE) &&	\
-			  (!ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK)) && \
-			  (!IS_MARKED(TOROOM(x, y))))
-#else
-#define VALID_EDGE(x, y) (world[(x)].dir_option[(y)] && \
-			  (TOROOM(x, y) != NOWHERE) &&	\
-			  (!IS_CLOSED(x, y)) &&		\
-			  (!ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK)) && \
-			  (!IS_MARKED(TOROOM(x, y))))
-#endif
+int VALID_EDGE(room_rnum x, int y)
+{
+  if (world[x].dir_option[y] == NULL || TOROOM(x, y) == NOWHERE)
+    return 0;
+  if (track_through_doors == FALSE && IS_CLOSED(x, y))
+    return 0;
+  if (ROOM_FLAGGED(TOROOM(x, y), ROOM_NOTRACK) || IS_MARKED(TOROOM(x, y)))
+    return 0;
 
-void bfs_enqueue(sh_int room, int dir)
+  return 1;
+}
+
+void bfs_enqueue(room_rnum room, int dir)
 {
   struct bfs_queue_struct *curr;
 
@@ -117,17 +106,17 @@ void bfs_clear_queue(void)
  * Intended usage: in mobile_activity, give a mob a dir to go if they're
  * tracking another mob or a PC.  Or, a 'track' skill for PCs.
  */
-int find_first_step(sh_int src, sh_int target)
+int find_first_step(room_rnum src, room_rnum target)
 {
   int curr_dir;
-  sh_int curr_room;
+  room_rnum curr_room;
 
   if (src < 0 || src > top_of_world || target < 0 || target > top_of_world) {
-    log("Illegal value %d or %d passed to find_first_step. (%s)", src, target, __FILE__);
-    return BFS_ERROR;
+    log("SYSERR: Illegal value %d or %d passed to find_first_step. (%s)", src, target, __FILE__);
+    return (BFS_ERROR);
   }
   if (src == target)
-    return BFS_ALREADY_THERE;
+    return (BFS_ALREADY_THERE);
 
   /* clear marks first, some OLC systems will save the mark. */
   for (curr_room = 0; curr_room <= top_of_world; curr_room++)
@@ -147,7 +136,7 @@ int find_first_step(sh_int src, sh_int target)
     if (queue_head->room == target) {
       curr_dir = queue_head->dir;
       bfs_clear_queue();
-      return curr_dir;
+      return (curr_dir);
     } else {
       for (curr_dir = 0; curr_dir < NUM_OF_DIRS; curr_dir++)
 	if (VALID_EDGE(queue_head->room, curr_dir)) {
@@ -158,7 +147,7 @@ int find_first_step(sh_int src, sh_int target)
     }
   }
 
-  return BFS_NO_PATH;
+  return (BFS_NO_PATH);
 }
 
 
@@ -182,7 +171,7 @@ ACMD(do_track)
     return;
   }
   /* The person can't see the victim. */
-  if (!(vict = get_char_vis(ch, arg))) {
+  if (!(vict = get_char_vis(ch, arg, FIND_CHAR_WORLD))) {
     send_to_char("No one is around by that name.\r\n", ch);
     return;
   }

@@ -35,12 +35,13 @@ extern int free_rent;
 extern int pt_allowed;
 extern int max_filesize;
 extern int nameserver_is_slow;
-extern int top_of_world;
 extern int auto_save;
+extern int track_through_doors;
 
 /* extern procedures */
 void list_skills(struct char_data * ch);
 void appear(struct char_data * ch);
+void write_aliases(struct char_data *ch);
 void perform_immort_vis(struct char_data *ch);
 SPECIAL(shop_keeper);
 ACMD(do_gen_comm);
@@ -72,7 +73,6 @@ ACMD(do_gen_tog);
 
 ACMD(do_quit)
 {
-  sh_int save_room;
   struct descriptor_data *d, *next_d;
 
   if (IS_NPC(ch) || !ch->desc)
@@ -104,14 +104,13 @@ ACMD(do_quit)
         STATE(d) = CON_DISCONNECT;
     }
 
-   save_room = ch->in_room;
    if (free_rent)
       Crash_rentsave(ch, 0);
     extract_char(ch);		/* Char is saved in extract char */
 
     /* If someone is quitting in their house, let them load back here */
-    if (ROOM_FLAGGED(save_room, ROOM_HOUSE))
-      save_char(ch, save_room);
+    if (ROOM_FLAGGED(ch->in_room, ROOM_HOUSE))
+      save_char(ch, ch->in_room);
   }
 }
 
@@ -127,16 +126,20 @@ ACMD(do_save)
     /*
      * This prevents item duplication by two PC's using coordinated saves
      * (or one PC with a house) and system crashes. Note that houses are
-     * still automatically saved without this enabled.
+     * still automatically saved without this enabled. This code assumes
+     * that guest immortals aren't trustworthy. If you've disabled guest
+     * immortal advances from mortality, you may want < instead of <=.
      */
-    if (auto_save) {
-      send_to_char("Manual saving is disabled.\r\n", ch);
+    if (auto_save && GET_LEVEL(ch) <= LVL_IMMORT) {
+      send_to_char("Saving aliases.\r\n", ch);
+      write_aliases(ch);
       return;
     }
-    sprintf(buf, "Saving %s.\r\n", GET_NAME(ch));
+    sprintf(buf, "Saving %s and aliases.\r\n", GET_NAME(ch));
     send_to_char(buf, ch);
   }
 
+  write_aliases(ch);
   save_char(ch, NOWHERE);
   Crash_crashsave(ch);
   if (ROOM_FLAGGED(ch->in_room, ROOM_HOUSE_CRASH))
@@ -158,6 +161,10 @@ ACMD(do_sneak)
   struct affected_type af;
   byte percent;
 
+  if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_SNEAK)) {
+    send_to_char("You have no idea how to do that.\r\n", ch);
+    return;
+  }
   send_to_char("Okay, you'll try to move silently for a while.\r\n", ch);
   if (AFF_FLAGGED(ch, AFF_SNEAK))
     affect_from_char(ch, SKILL_SNEAK);
@@ -180,6 +187,11 @@ ACMD(do_sneak)
 ACMD(do_hide)
 {
   byte percent;
+
+  if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_HIDE)) {
+    send_to_char("You have no idea how to do that.\r\n", ch);
+    return;
+  }
 
   send_to_char("You attempt to hide yourself.\r\n", ch);
 
@@ -204,15 +216,18 @@ ACMD(do_steal)
   char vict_name[MAX_INPUT_LENGTH], obj_name[MAX_INPUT_LENGTH];
   int percent, gold, eq_pos, pcsteal = 0, ohoh = 0;
 
+  if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_STEAL)) {
+    send_to_char("You have no idea how to do that.\r\n", ch);
+    return;
+  }
   if (ROOM_FLAGGED(IN_ROOM(ch), ROOM_PEACEFUL)) {
     send_to_char("This room just has such a peaceful, easy feeling...\r\n", ch);
     return;
   }
 
-  argument = one_argument(argument, obj_name);
-  one_argument(argument, vict_name);
+  two_arguments(argument, obj_name, vict_name);
 
-  if (!(vict = get_char_room_vis(ch, vict_name))) {
+  if (!(vict = get_char_vis(ch, vict_name, FIND_CHAR_ROOM))) {
     send_to_char("Steal what from who?\r\n", ch);
     return;
   } else if (vict == ch) {
@@ -224,10 +239,13 @@ ACMD(do_steal)
   percent = number(1, 101) - dex_app_skill[GET_DEX(ch)].p_pocket;
 
   if (GET_POS(vict) < POS_SLEEPING)
-    percent = -1;		/* ALWAYS SUCCESS */
+    percent = -1;		/* ALWAYS SUCCESS, unless heavy object. */
 
   if (!pt_allowed && !IS_NPC(vict))
     pcsteal = 1;
+
+  if (!AWAKE(vict))	/* Easier to steal from sleeping people. */
+    percent -= 50;
 
   /* NO NO With Imp's and Shopkeepers, and if player thieving is not allowed */
   if (GET_LEVEL(vict) >= LVL_IMMORT || pcsteal ||
@@ -236,7 +254,7 @@ ACMD(do_steal)
 
   if (str_cmp(obj_name, "coins") && str_cmp(obj_name, "gold")) {
 
-    if (!(obj = get_obj_in_list_vis(vict, obj_name, vict->carrying))) {
+    if (!(obj = get_obj_in_list_vis(ch, obj_name, vict->carrying))) {
 
       for (eq_pos = 0; eq_pos < NUM_WEARS; eq_pos++)
 	if (GET_EQ(vict, eq_pos) &&
@@ -262,14 +280,14 @@ ACMD(do_steal)
 
       percent += GET_OBJ_WEIGHT(obj);	/* Make heavy harder */
 
-      if (AWAKE(vict) && (percent > GET_SKILL(ch, SKILL_STEAL))) {
+      if (percent > GET_SKILL(ch, SKILL_STEAL)) {
 	ohoh = TRUE;
-	act("Oops..", FALSE, ch, 0, 0, TO_CHAR);
+	send_to_char("Oops..\r\n", ch);
 	act("$n tried to steal something from you!", FALSE, ch, 0, vict, TO_VICT);
 	act("$n tries to steal something from $N.", TRUE, ch, 0, vict, TO_NOTVICT);
       } else {			/* Steal the item */
-	if ((IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch))) {
-	  if ((IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj)) < CAN_CARRY_W(ch)) {
+	if (IS_CARRYING_N(ch) + 1 < CAN_CARRY_N(ch)) {
+	  if (IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj) < CAN_CARRY_W(ch)) {
 	    obj_from_char(obj);
 	    obj_to_char(obj, ch);
 	    send_to_char("Got it!\r\n", ch);
@@ -281,7 +299,7 @@ ACMD(do_steal)
   } else {			/* Steal some coins */
     if (AWAKE(vict) && (percent > GET_SKILL(ch, SKILL_STEAL))) {
       ohoh = TRUE;
-      act("Oops..", FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char("Oops..\r\n", ch);
       act("You discover that $n has $s hands in your wallet.", FALSE, ch, 0, vict, TO_VICT);
       act("$n tries to steal gold from $N.", TRUE, ch, 0, vict, TO_NOTVICT);
     } else {
@@ -363,14 +381,14 @@ ACMD(do_title)
 int perform_group(struct char_data *ch, struct char_data *vict)
 {
   if (AFF_FLAGGED(vict, AFF_GROUP) || !CAN_SEE(ch, vict))
-    return 0;
+    return (0);
 
   SET_BIT(AFF_FLAGS(vict), AFF_GROUP);
   if (ch != vict)
     act("$N is now a member of your group.", FALSE, ch, 0, vict, TO_CHAR);
   act("You are now a member of $n's group.", FALSE, ch, 0, vict, TO_VICT);
   act("$N is now a member of $n's group.", FALSE, ch, 0, vict, TO_NOTVICT);
-  return 1;
+  return (1);
 }
 
 
@@ -434,7 +452,7 @@ ACMD(do_group)
     return;
   }
 
-  if (!(vict = get_char_room_vis(ch, buf)))
+  if (!(vict = get_char_vis(ch, buf, FIND_CHAR_ROOM)))
     send_to_char(NOPERSON, ch);
   else if ((vict->master != ch) && (vict != ch))
     act("$N must follow you to enter your group.", FALSE, ch, 0, vict, TO_CHAR);
@@ -480,7 +498,7 @@ ACMD(do_ungroup)
     send_to_char("You disband the group.\r\n", ch);
     return;
   }
-  if (!(tch = get_char_room_vis(ch, buf))) {
+  if (!(tch = get_char_vis(ch, buf, FIND_CHAR_ROOM))) {
     send_to_char("There is no such person!\r\n", ch);
     return;
   }
@@ -537,7 +555,7 @@ ACMD(do_report)
 
 ACMD(do_split)
 {
-  int amount, num, share;
+  int amount, num, share, rest;
   struct char_data *k;
   struct follow_type *f;
 
@@ -569,20 +587,28 @@ ACMD(do_split)
 	  (f->follower->in_room == ch->in_room))
 	num++;
 
-    if (num && AFF_FLAGGED(ch, AFF_GROUP))
+    if (num && AFF_FLAGGED(ch, AFF_GROUP)) {
       share = amount / num;
-    else {
+      rest = amount % num;
+    } else {
       send_to_char("With whom do you wish to share your gold?\r\n", ch);
       return;
     }
 
     GET_GOLD(ch) -= share * (num - 1);
 
+    sprintf(buf, "%s splits %d coins; you receive %d.\r\n", GET_NAME(ch),
+            amount, share);
+    if (rest) {
+      sprintf(buf + strlen(buf), "%d coin%s %s not splitable, so %s "
+              "keeps the money.\r\n", rest,
+              (rest == 1) ? "" : "s",
+              (rest == 1) ? "was" : "were",
+              GET_NAME(ch));
+    }
     if (AFF_FLAGGED(k, AFF_GROUP) && (k->in_room == ch->in_room)
 	&& !(IS_NPC(k)) && k != ch) {
       GET_GOLD(k) += share;
-      sprintf(buf, "%s splits %d coins; you receive %d.\r\n", GET_NAME(ch),
-	      amount, share);
       send_to_char(buf, k);
     }
     for (f = k->followers; f; f = f->next) {
@@ -591,13 +617,18 @@ ACMD(do_split)
 	  (f->follower->in_room == ch->in_room) &&
 	  f->follower != ch) {
 	GET_GOLD(f->follower) += share;
-	sprintf(buf, "%s splits %d coins; you receive %d.\r\n", GET_NAME(ch),
-		amount, share);
 	send_to_char(buf, f->follower);
       }
     }
     sprintf(buf, "You split %d coins among %d members -- %d coins each.\r\n",
 	    amount, num, share);
+    if (rest) {
+      sprintf(buf + strlen(buf), "%d coin%s %s not splitable, so you keep "
+                                 "the money.\r\n", rest,
+                                 (rest == 1) ? "" : "s",
+                                 (rest == 1) ? "was" : "were");
+      GET_GOLD(ch) += rest;
+    }
     send_to_char(buf, ch);
   } else {
     send_to_char("How many coins do you wish to split with your group?\r\n", ch);
@@ -610,7 +641,6 @@ ACMD(do_split)
 ACMD(do_use)
 {
   struct obj_data *mag_item;
-  int equipped = 1;
 
   half_chop(argument, arg, buf);
   if (!*arg) {
@@ -624,7 +654,6 @@ ACMD(do_use)
     switch (subcmd) {
     case SCMD_RECITE:
     case SCMD_QUAFF:
-      equipped = 0;
       if (!(mag_item = get_obj_in_list_vis(ch, arg, ch->carrying))) {
 	sprintf(buf2, "You don't seem to have %s %s.\r\n", AN(arg), arg);
 	send_to_char(buf2, ch);
@@ -689,7 +718,7 @@ ACMD(do_wimpy)
     }
   }
   if (isdigit(*arg)) {
-    if ((wimp_lev = atoi(arg))) {
+    if ((wimp_lev = atoi(arg)) != 0) {
       if (wimp_lev < 0)
 	send_to_char("Heh, heh, heh.. we are jolly funny today, eh?\r\n", ch);
       else if (wimp_lev > GET_MAX_HIT(ch))
@@ -708,9 +737,6 @@ ACMD(do_wimpy)
     }
   } else
     send_to_char("Specify at how many hit points you want to wimp out at.  (0 to disable)\r\n", ch);
-
-  return;
-
 }
 
 
@@ -747,7 +773,6 @@ ACMD(do_display)
       default:
 	send_to_char("Usage: prompt { { H | M | V } | all | none }\r\n", ch);
 	return;
-	break;
       }
     }
   }
@@ -798,7 +823,7 @@ ACMD(do_gen_write)
   mudlog(buf, CMP, LVL_IMMORT, FALSE);
 
   if (stat(filename, &fbuf) < 0) {
-    perror("Error statting file");
+    perror("SYSERR: Can't stat() file");
     return;
   }
   if (fbuf.st_size >= max_filesize) {
@@ -806,7 +831,7 @@ ACMD(do_gen_write)
     return;
   }
   if (!(fl = fopen(filename, "a"))) {
-    perror("do_gen_write");
+    perror("SYSERR: do_gen_write");
     send_to_char("Could not open the file.  Sorry.\r\n", ch);
     return;
   }
@@ -859,7 +884,9 @@ ACMD(do_gen_tog)
     {"Nameserver_is_slow changed to NO; IP addresses will now be resolved.\r\n",
     "Nameserver_is_slow changed to YES; sitenames will no longer be resolved.\r\n"},
     {"Autoexits disabled.\r\n",
-    "Autoexits enabled.\r\n"}
+    "Autoexits enabled.\r\n"},
+    {"Will no longer track through doors.\r\n",
+    "Will now track through doors.\r\n"}
   };
 
 
@@ -914,6 +941,9 @@ ACMD(do_gen_tog)
     break;
   case SCMD_AUTOEXIT:
     result = PRF_TOG_CHK(ch, PRF_AUTOEXIT);
+    break;
+  case SCMD_TRACK:
+    result = (track_through_doors = !track_through_doors);
     break;
   default:
     log("SYSERR: Unknown subcmd %d in do_gen_toggle.", subcmd);

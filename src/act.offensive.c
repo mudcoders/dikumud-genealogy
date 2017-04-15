@@ -28,6 +28,7 @@ extern int pk_allowed;
 /* extern functions */
 void raw_kill(struct char_data * ch);
 void check_killer(struct char_data * ch, struct char_data * vict);
+int compute_armor_class(struct char_data *ch);
 
 /* local functions */
 ACMD(do_assist);
@@ -53,7 +54,7 @@ ACMD(do_assist)
 
   if (!*arg)
     send_to_char("Whom do you wish to assist?\r\n", ch);
-  else if (!(helpee = get_char_room_vis(ch, arg)))
+  else if (!(helpee = get_char_vis(ch, arg, FIND_CHAR_ROOM)))
     send_to_char(NOPERSON, ch);
   else if (helpee == ch)
     send_to_char("You can't help yourself any more than this!\r\n", ch);
@@ -94,7 +95,7 @@ ACMD(do_hit)
 
   if (!*arg)
     send_to_char("Hit who?\r\n", ch);
-  else if (!(vict = get_char_room_vis(ch, arg)))
+  else if (!(vict = get_char_vis(ch, arg, FIND_CHAR_ROOM)))
     send_to_char("They don't seem to be here.\r\n", ch);
   else if (vict == ch) {
     send_to_char("You hit yourself...OUCH!.\r\n", ch);
@@ -138,7 +139,7 @@ ACMD(do_kill)
   if (!*arg) {
     send_to_char("Kill who?\r\n", ch);
   } else {
-    if (!(vict = get_char_room_vis(ch, arg)))
+    if (!(vict = get_char_vis(ch, arg, FIND_CHAR_ROOM)))
       send_to_char("They aren't here.\r\n", ch);
     else if (ch == vict)
       send_to_char("Your mother would be so sad.. :(\r\n", ch);
@@ -158,9 +159,14 @@ ACMD(do_backstab)
   struct char_data *vict;
   int percent, prob;
 
+  if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_BACKSTAB)) {
+    send_to_char("You have no idea how to do that.\r\n", ch);
+    return;
+  }
+
   one_argument(argument, buf);
 
-  if (!(vict = get_char_room_vis(ch, buf))) {
+  if (!(vict = get_char_vis(ch, buf, FIND_CHAR_ROOM))) {
     send_to_char("Backstab who?\r\n", ch);
     return;
   }
@@ -181,7 +187,7 @@ ACMD(do_backstab)
     return;
   }
 
-  if (MOB_FLAGGED(vict, MOB_AWARE)) {
+  if (MOB_FLAGGED(vict, MOB_AWARE) && AWAKE(vict)) {
     act("You notice $N lunging at you!", FALSE, vict, 0, ch, TO_CHAR);
     act("$e notices you lunging at $m!", FALSE, vict, 0, ch, TO_VICT);
     act("$n notices $N lunging at $m!", FALSE, vict, 0, ch, TO_NOTVICT);
@@ -196,6 +202,8 @@ ACMD(do_backstab)
     damage(ch, vict, 0, SKILL_BACKSTAB);
   else
     hit(ch, vict, SKILL_BACKSTAB);
+
+  WAIT_STATE(ch, 2 * PULSE_VIOLENCE);
 }
 
 
@@ -204,7 +212,7 @@ ACMD(do_order)
 {
   char name[MAX_INPUT_LENGTH], message[MAX_INPUT_LENGTH];
   bool found = FALSE;
-  int org_room;
+  room_rnum org_room;
   struct char_data *vict;
   struct follow_type *k;
 
@@ -212,7 +220,7 @@ ACMD(do_order)
 
   if (!*name || !*message)
     send_to_char("Order who to do what?\r\n", ch);
-  else if (!(vict = get_char_room_vis(ch, name)) && !is_abbrev(name, "followers"))
+  else if (!(vict = get_char_vis(ch, name, FIND_CHAR_ROOM)) && !is_abbrev(name, "followers"))
     send_to_char("That person isn't here.\r\n", ch);
   else if (ch == vict)
     send_to_char("You obviously suffer from skitzofrenia.\r\n", ch);
@@ -296,7 +304,7 @@ ACMD(do_bash)
 
   one_argument(argument, arg);
 
-  if (!GET_SKILL(ch, SKILL_BASH)) {
+  if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_BASH)) {
     send_to_char("You have no idea how.\r\n", ch);
     return;
   }
@@ -308,7 +316,7 @@ ACMD(do_bash)
     send_to_char("You need to wield a weapon to make it a success.\r\n", ch);
     return;
   }
-  if (!(vict = get_char_room_vis(ch, arg))) {
+  if (!(vict = get_char_vis(ch, arg, FIND_CHAR_ROOM))) {
     if (FIGHTING(ch) && IN_ROOM(ch) == IN_ROOM(FIGHTING(ch))) {
       vict = FIGHTING(ch);
     } else {
@@ -330,9 +338,16 @@ ACMD(do_bash)
     damage(ch, vict, 0, SKILL_BASH);
     GET_POS(ch) = POS_SITTING;
   } else {
+    /*
+     * If we bash a player and they wimp out, they will move to the previous
+     * room before we set them sitting.  If we try to set the victim sitting
+     * first to make sure they don't flee, then we can't bash them!  So now
+     * we only set them sitting if they didn't flee. -gg 9/21/98
+     */
     if (damage(ch, vict, 1, SKILL_BASH) > 0) {	/* -1 = dead, 0 = miss */
-      GET_POS(vict) = POS_SITTING;
       WAIT_STATE(vict, PULSE_VIOLENCE);
+      if (IN_ROOM(ch) == IN_ROOM(vict))
+        GET_POS(vict) = POS_SITTING;
     }
   }
   WAIT_STATE(ch, PULSE_VIOLENCE * 2);
@@ -344,9 +359,14 @@ ACMD(do_rescue)
   struct char_data *vict, *tmp_ch;
   int percent, prob;
 
+  if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_RESCUE)) {
+    send_to_char("You have no idea how to do that.\r\n", ch);
+    return;
+  }
+
   one_argument(argument, arg);
 
-  if (!(vict = get_char_room_vis(ch, arg))) {
+  if (!(vict = get_char_vis(ch, arg, FIND_CHAR_ROOM))) {
     send_to_char("Whom do you want to rescue?\r\n", ch);
     return;
   }
@@ -365,33 +385,28 @@ ACMD(do_rescue)
     act("But nobody is fighting $M!", FALSE, ch, 0, vict, TO_CHAR);
     return;
   }
-  if (!GET_SKILL(ch, SKILL_RESCUE))
-    send_to_char("But you have no idea how!\r\n", ch);
-  else {
-    percent = number(1, 101);	/* 101% is a complete failure */
-    prob = GET_SKILL(ch, SKILL_RESCUE);
+  percent = number(1, 101);	/* 101% is a complete failure */
+  prob = GET_SKILL(ch, SKILL_RESCUE);
 
-    if (percent > prob) {
-      send_to_char("You fail the rescue!\r\n", ch);
-      return;
-    }
-    send_to_char("Banzai!  To the rescue...\r\n", ch);
-    act("You are rescued by $N, you are confused!", FALSE, vict, 0, ch, TO_CHAR);
-    act("$n heroically rescues $N!", FALSE, ch, 0, vict, TO_NOTVICT);
-
-    if (FIGHTING(vict) == tmp_ch)
-      stop_fighting(vict);
-    if (FIGHTING(tmp_ch))
-      stop_fighting(tmp_ch);
-    if (FIGHTING(ch))
-      stop_fighting(ch);
-
-    set_fighting(ch, tmp_ch);
-    set_fighting(tmp_ch, ch);
-
-    WAIT_STATE(vict, 2 * PULSE_VIOLENCE);
+  if (percent > prob) {
+    send_to_char("You fail the rescue!\r\n", ch);
+    return;
   }
+  send_to_char("Banzai!  To the rescue...\r\n", ch);
+  act("You are rescued by $N, you are confused!", FALSE, vict, 0, ch, TO_CHAR);
+  act("$n heroically rescues $N!", FALSE, ch, 0, vict, TO_NOTVICT);
 
+  if (FIGHTING(vict) == tmp_ch)
+    stop_fighting(vict);
+  if (FIGHTING(tmp_ch))
+    stop_fighting(tmp_ch);
+  if (FIGHTING(ch))
+    stop_fighting(ch);
+
+  set_fighting(ch, tmp_ch);
+  set_fighting(tmp_ch, ch);
+
+  WAIT_STATE(vict, 2 * PULSE_VIOLENCE);
 }
 
 
@@ -401,13 +416,13 @@ ACMD(do_kick)
   struct char_data *vict;
   int percent, prob;
 
-  if (!GET_SKILL(ch, SKILL_KICK)) {
+  if (IS_NPC(ch) || !GET_SKILL(ch, SKILL_KICK)) {
     send_to_char("You have no idea how.\r\n", ch);
     return;
   }
   one_argument(argument, arg);
 
-  if (!(vict = get_char_room_vis(ch, arg))) {
+  if (!(vict = get_char_vis(ch, arg, FIND_CHAR_ROOM))) {
     if (FIGHTING(ch) && IN_ROOM(ch) == IN_ROOM(FIGHTING(ch))) {
       vict = FIGHTING(ch);
     } else {
@@ -419,13 +434,14 @@ ACMD(do_kick)
     send_to_char("Aren't we funny today...\r\n", ch);
     return;
   }
-  percent = ((10 - (GET_AC(vict) / 10)) * 2) + number(1, 101);	/* 101% is a complete
-								 * failure */
+  /* 101% is a complete failure */
+  percent = ((10 - (compute_armor_class(vict) / 10)) * 2) + number(1, 101);
   prob = GET_SKILL(ch, SKILL_KICK);
 
   if (percent > prob) {
     damage(ch, vict, 0, SKILL_KICK);
   } else
     damage(ch, vict, GET_LEVEL(ch) / 2, SKILL_KICK);
+
   WAIT_STATE(ch, PULSE_VIOLENCE * 3);
 }

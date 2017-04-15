@@ -116,5 +116,5 @@ int main(int argc, char *argv[])
   else
     purge(argv[1]);
 
-  return 0;
+  return (0);
 }

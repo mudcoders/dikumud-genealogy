@@ -21,7 +21,6 @@
 #include "spells.h"
 
 /* external vars */
-extern int top_of_world;
 extern struct char_data *combat_list;
 extern struct room_data *world;
 extern struct obj_data *object_list;
@@ -29,7 +28,7 @@ extern struct char_data *character_list;
 extern struct index_data *mob_index;
 extern struct index_data *obj_index;
 extern struct descriptor_data *descriptor_list;
-extern char *MENU;
+extern const char *MENU;
 
 /* local functions */
 int apply_ac(struct char_data * ch, int eq_pos);
@@ -43,7 +42,7 @@ void clearMemory(struct char_data * ch);
 void die_follower(struct char_data * ch);
 ACMD(do_return);
 
-char *fname(char *namelist)
+char *fname(const char *namelist)
 {
   static char holder[30];
   register char *point;
@@ -88,20 +87,15 @@ int isname(const char *str, const char *namelist)
 
 
 
-void affect_modify(struct char_data * ch, byte loc, sbyte mod, long bitv,
-		        bool add)
+void affect_modify(struct char_data * ch, byte loc, sbyte mod, 
+                   bitvector_t bitv, bool add)
 {
-  int maxabil;
-
-  if (add) {
+  if (add)
     SET_BIT(AFF_FLAGS(ch), bitv);
-  } else {
+  else {
     REMOVE_BIT(AFF_FLAGS(ch), bitv);
     mod = -mod;
   }
-
-
-  maxabil = (IS_NPC(ch) ? 25 : 18);
 
   switch (loc) {
   case APPLY_NONE:
@@ -324,8 +318,8 @@ void affect_from_char(struct char_data * ch, int type)
 
 
 /*
- * Return if a char is affected by a spell (SPELL_XXX), NULL indicates
- * not affected
+ * Return TRUE if a char is affected by a spell (SPELL_XXX),
+ * FALSE indicates not affected.
  */
 bool affected_by_spell(struct char_data * ch, int type)
 {
@@ -333,9 +327,9 @@ bool affected_by_spell(struct char_data * ch, int type)
 
   for (hjp = ch->affected; hjp; hjp = hjp->next)
     if (hjp->type == type)
-      return TRUE;
+      return (TRUE);
 
-  return FALSE;
+  return (FALSE);
 }
 
 
@@ -467,11 +461,11 @@ int apply_ac(struct char_data * ch, int eq_pos)
 
   if (GET_EQ(ch, eq_pos) == NULL) {
     core_dump();
-    return 0;
+    return (0);
   }
 
   if (!(GET_OBJ_TYPE(GET_EQ(ch, eq_pos)) == ITEM_ARMOR))
-    return 0;
+    return (0);
 
   switch (eq_pos) {
 
@@ -492,7 +486,16 @@ int apply_ac(struct char_data * ch, int eq_pos)
   return (factor * GET_OBJ_VAL(GET_EQ(ch, eq_pos), 0));
 }
 
-
+int invalid_align(struct char_data *ch, struct obj_data *obj)
+{
+  if (IS_OBJ_STAT(obj, ITEM_ANTI_EVIL) && IS_EVIL(ch))
+    return TRUE;
+  if (IS_OBJ_STAT(obj, ITEM_ANTI_GOOD) && IS_GOOD(ch))
+    return TRUE;
+  if (IS_OBJ_STAT(obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL(ch))
+    return TRUE;
+  return FALSE;
+}
 
 void equip_char(struct char_data * ch, struct obj_data * obj, int pos)
 {
@@ -516,15 +519,12 @@ void equip_char(struct char_data * ch, struct obj_data * obj, int pos)
     log("SYSERR: EQUIP: Obj is in_room when equip.");
     return;
   }
-  if ((IS_OBJ_STAT(obj, ITEM_ANTI_EVIL) && IS_EVIL(ch)) ||
-      (IS_OBJ_STAT(obj, ITEM_ANTI_GOOD) && IS_GOOD(ch)) ||
-      (IS_OBJ_STAT(obj, ITEM_ANTI_NEUTRAL) && IS_NEUTRAL(ch)) ||
-      invalid_class(ch, obj)) {
-      act("You are zapped by $p and instantly let go of it.", FALSE, ch, obj, 0, TO_CHAR);
-      act("$n is zapped by $p and instantly lets go of it.", FALSE, ch, obj, 0, TO_ROOM);
-      obj_to_char(obj, ch);	/* changed to drop in inventory instead of
-				 * ground */
-      return;
+  if (invalid_align(ch, obj) || invalid_class(ch, obj)) {
+    act("You are zapped by $p and instantly let go of it.", FALSE, ch, obj, 0, TO_CHAR);
+    act("$n is zapped by $p and instantly lets go of it.", FALSE, ch, obj, 0, TO_ROOM);
+    /* Changed to drop in inventory instead of the ground. */
+    obj_to_char(obj, ch);
+    return;
   }
 
   GET_EQ(ch, pos) = obj;
@@ -558,7 +558,7 @@ struct obj_data *unequip_char(struct char_data * ch, int pos)
 
   if ((pos < 0 || pos >= NUM_WEARS) || GET_EQ(ch, pos) == NULL) {
     core_dump();
-    return NULL;
+    return (NULL);
   }
 
   obj = GET_EQ(ch, pos);
@@ -596,18 +596,18 @@ int get_number(char **name)
 
   *number = '\0';
 
-  if ((ppos = strchr(*name, '.'))) {
+  if ((ppos = strchr(*name, '.')) != NULL) {
     *ppos++ = '\0';
     strcpy(number, *name);
     strcpy(*name, ppos);
 
     for (i = 0; *(number + i); i++)
       if (!isdigit(*(number + i)))
-	return 0;
+	return (0);
 
     return (atoi(number));
   }
-  return 1;
+  return (1);
 }
 
 
@@ -619,9 +619,9 @@ struct obj_data *get_obj_in_list_num(int num, struct obj_data * list)
 
   for (i = list; i; i = i->next_content)
     if (GET_OBJ_RNUM(i) == num)
-      return i;
+      return (i);
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -633,9 +633,9 @@ struct obj_data *get_obj_num(obj_rnum nr)
 
   for (i = object_list; i; i = i->next)
     if (GET_OBJ_RNUM(i) == nr)
-      return i;
+      return (i);
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -650,14 +650,14 @@ struct char_data *get_char_room(char *name, room_rnum room)
 
   strcpy(tmp, name);
   if (!(number = get_number(&tmp)))
-    return NULL;
+    return (NULL);
 
   for (i = world[room].people; i && (j <= number); i = i->next_in_room)
     if (isname(tmp, i->player.name))
       if (++j == number)
-	return i;
+	return (i);
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -669,9 +669,9 @@ struct char_data *get_char_num(mob_rnum nr)
 
   for (i = character_list; i; i = i->next)
     if (GET_MOB_RNUM(i) == nr)
-      return i;
+      return (i);
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -823,10 +823,10 @@ void update_char_objects(struct char_data * ch)
       if (GET_OBJ_VAL(GET_EQ(ch, WEAR_LIGHT), 2) > 0) {
 	i = --GET_OBJ_VAL(GET_EQ(ch, WEAR_LIGHT), 2);
 	if (i == 1) {
-	  act("Your light begins to flicker and fade.", FALSE, ch, 0, 0, TO_CHAR);
+	  send_to_char("Your light begins to flicker and fade.\r\n", ch);
 	  act("$n's light begins to flicker and fade.", FALSE, ch, 0, 0, TO_ROOM);
 	} else if (i == 0) {
-	  act("Your light sputters out and dies.", FALSE, ch, 0, 0, TO_CHAR);
+	  send_to_char("Your light sputters out and dies.\r\n", ch);
 	  act("$n's light sputters out and dies.", FALSE, ch, 0, 0, TO_ROOM);
 	  world[ch->in_room].light--;
 	}
@@ -937,12 +937,19 @@ struct char_data *get_player_vis(struct char_data * ch, char *name, int inroom)
 {
   struct char_data *i;
 
-  for (i = character_list; i; i = i->next)
-    if (!IS_NPC(i) && (!inroom || i->in_room == ch->in_room) &&
-	!str_cmp(i->player.name, name) && CAN_SEE(ch, i))
-      return i;
+  for (i = character_list; i; i = i->next) {
+    if (IS_NPC(i))
+      continue;
+    if (inroom == FIND_CHAR_ROOM && i->in_room != ch->in_room)
+      continue;
+    if (str_cmp(i->player.name, name)) /* If not same, continue */
+      continue;
+    if (!CAN_SEE(ch, i))
+      continue;
+    return (i);
+  }
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -955,24 +962,24 @@ struct char_data *get_char_room_vis(struct char_data * ch, char *name)
 
   /* JE 7/18/94 :-) :-) */
   if (!str_cmp(name, "self") || !str_cmp(name, "me"))
-    return ch;
+    return (ch);
 
   /* 0.<name> means PC with name */
   strcpy(tmp, name);
   if (!(number = get_number(&tmp)))
-    return get_player_vis(ch, tmp, 1);
+    return (get_player_vis(ch, tmp, FIND_CHAR_ROOM));
 
   for (i = world[ch->in_room].people; i && j <= number; i = i->next_in_room)
     if (isname(tmp, i->player.name))
       if (CAN_SEE(ch, i))
 	if (++j == number)
-	  return i;
+	  return (i);
 
-  return NULL;
+  return (NULL);
 }
 
 
-struct char_data *get_char_vis(struct char_data * ch, char *name)
+struct char_data *get_char_vis(struct char_data * ch, char *name, int where)
 {
   struct char_data *i;
   int j = 0, number;
@@ -980,19 +987,23 @@ struct char_data *get_char_vis(struct char_data * ch, char *name)
   char *tmp = tmpname;
 
   /* check the room first */
-  if ((i = get_char_room_vis(ch, name)) != NULL)
-    return i;
+  if (where == FIND_CHAR_ROOM)
+    return get_char_room_vis(ch, name);
+  else if (where == FIND_CHAR_WORLD) {
+    if ((i = get_char_room_vis(ch, name)) != NULL)
+      return i;
 
-  strcpy(tmp, name);
-  if (!(number = get_number(&tmp)))
-    return get_player_vis(ch, tmp, 0);
+    strcpy(tmp, name);
+    if (!(number = get_number(&tmp)))
+      return get_player_vis(ch, tmp, 0);
 
-  for (i = character_list; i && (j <= number); i = i->next)
-    if (isname(tmp, i->player.name) && CAN_SEE(ch, i))
-      if (++j == number)
-	return i;
+    for (i = character_list; i && (j <= number); i = i->next)
+      if (isname(tmp, i->player.name) && CAN_SEE(ch, i))
+        if (++j == number)
+          return i;
+  }
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -1007,15 +1018,15 @@ struct obj_data *get_obj_in_list_vis(struct char_data * ch, char *name,
 
   strcpy(tmp, name);
   if (!(number = get_number(&tmp)))
-    return NULL;
+    return (NULL);
 
   for (i = list; i && (j <= number); i = i->next_content)
     if (isname(tmp, i->name))
       if (CAN_SEE_OBJ(ch, i))
 	if (++j == number)
-	  return i;
+	  return (i);
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -1030,25 +1041,25 @@ struct obj_data *get_obj_vis(struct char_data * ch, char *name)
   char *tmp = tmpname;
 
   /* scan items carried */
-  if ((i = get_obj_in_list_vis(ch, name, ch->carrying)))
-    return i;
+  if ((i = get_obj_in_list_vis(ch, name, ch->carrying)) != NULL)
+    return (i);
 
   /* scan room */
-  if ((i = get_obj_in_list_vis(ch, name, world[ch->in_room].contents)))
-    return i;
+  if ((i = get_obj_in_list_vis(ch, name, world[ch->in_room].contents)) != NULL)
+    return (i);
 
   strcpy(tmp, name);
-  if (!(number = get_number(&tmp)))
-    return NULL;
+  if ((number = get_number(&tmp)) == 0)
+    return (NULL);
 
   /* ok.. no luck yet. scan the entire obj list   */
   for (i = object_list; i && (j <= number); i = i->next)
     if (isname(tmp, i->name))
       if (CAN_SEE_OBJ(ch, i))
 	if (++j == number)
-	  return i;
+	  return (i);
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -1062,7 +1073,7 @@ struct obj_data *get_object_in_equip_vis(struct char_data * ch,
 	if (isname(arg, equipment[(*j)]->name))
 	  return (equipment[(*j)]);
 
-  return NULL;
+  return (NULL);
 }
 
 
@@ -1072,7 +1083,7 @@ char *money_desc(int amount)
 
   if (amount <= 0) {
     log("SYSERR: Try to create negative or 0 money (%d).", amount);
-    return NULL;
+    return (NULL);
   }
   if (amount == 1)
     strcpy(buf, "a gold coin");
@@ -1105,7 +1116,7 @@ char *money_desc(int amount)
   else
     strcpy(buf, "an absolutely colossal mountain of gold coins");
 
-  return buf;
+  return (buf);
 }
 
 
@@ -1117,7 +1128,7 @@ struct obj_data *create_money(int amount)
 
   if (amount <= 0) {
     log("SYSERR: Try to create negative or 0 money. (%d)", amount);
-    return NULL;
+    return (NULL);
   }
   obj = create_obj();
   CREATE(new_descr, struct extra_descr_data, 1);
@@ -1161,47 +1172,47 @@ struct obj_data *create_money(int amount)
   GET_OBJ_COST(obj) = amount;
   obj->item_number = NOTHING;
 
-  return obj;
+  return (obj);
 }
 
 
-/* Generic Find, designed to find any object/character                    */
-/* Calling :                                                              */
-/*  *arg     is the sting containing the string to be searched for.       */
-/*           This string doesn't have to be a single word, the routine    */
-/*           extracts the next word itself.                               */
-/*  bitv..   All those bits that you want to "search through".            */
-/*           Bit found will be result of the function                     */
-/*  *ch      This is the person that is trying to "find"                  */
-/*  **tar_ch Will be NULL if no character was found, otherwise points     */
-/* **tar_obj Will be NULL if no object was found, otherwise points        */
-/*                                                                        */
-/* The routine returns a pointer to the next word in *arg (just like the  */
-/* one_argument routine).                                                 */
-
-int generic_find(char *arg, int bitvector, struct char_data * ch,
+/* Generic Find, designed to find any object/character
+ *
+ * Calling:
+ *  *arg     is the pointer containing the string to be searched for.
+ *           This string doesn't have to be a single word, the routine
+ *           extracts the next word itself.
+ *  bitv..   All those bits that you want to "search through".
+ *           Bit found will be result of the function
+ *  *ch      This is the person that is trying to "find"
+ *  **tar_ch Will be NULL if no character was found, otherwise points
+ * **tar_obj Will be NULL if no object was found, otherwise points
+ *
+ * The routine used to return a pointer to the next word in *arg (just
+ * like the one_argument routine), but now it returns an integer that
+ * describes what it filled in.
+ */
+int generic_find(char *arg, bitvector_t bitvector, struct char_data * ch,
 		     struct char_data ** tar_ch, struct obj_data ** tar_obj)
 {
   int i, found;
   char name[256];
+
+  *tar_ch = NULL;
+  *tar_obj = NULL;
 
   one_argument(arg, name);
 
   if (!*name)
     return (0);
 
-  *tar_ch = NULL;
-  *tar_obj = NULL;
-
   if (IS_SET(bitvector, FIND_CHAR_ROOM)) {	/* Find person in room */
-    if ((*tar_ch = get_char_room_vis(ch, name))) {
+    if ((*tar_ch = get_char_vis(ch, name, FIND_CHAR_ROOM)) != NULL)
       return (FIND_CHAR_ROOM);
-    }
   }
   if (IS_SET(bitvector, FIND_CHAR_WORLD)) {
-    if ((*tar_ch = get_char_vis(ch, name))) {
+    if ((*tar_ch = get_char_vis(ch, name, FIND_CHAR_WORLD)) != NULL)
       return (FIND_CHAR_WORLD);
-    }
   }
   if (IS_SET(bitvector, FIND_OBJ_EQUIP)) {
     for (found = FALSE, i = 0; i < NUM_WEARS && !found; i++)
@@ -1209,24 +1220,20 @@ int generic_find(char *arg, int bitvector, struct char_data * ch,
 	*tar_obj = GET_EQ(ch, i);
 	found = TRUE;
       }
-    if (found) {
+    if (found)
       return (FIND_OBJ_EQUIP);
-    }
   }
   if (IS_SET(bitvector, FIND_OBJ_INV)) {
-    if ((*tar_obj = get_obj_in_list_vis(ch, name, ch->carrying))) {
+    if ((*tar_obj = get_obj_in_list_vis(ch, name, ch->carrying)) != NULL)
       return (FIND_OBJ_INV);
-    }
   }
   if (IS_SET(bitvector, FIND_OBJ_ROOM)) {
-    if ((*tar_obj = get_obj_in_list_vis(ch, name, world[ch->in_room].contents))) {
+    if ((*tar_obj = get_obj_in_list_vis(ch, name, world[ch->in_room].contents)) != NULL)
       return (FIND_OBJ_ROOM);
-    }
   }
   if (IS_SET(bitvector, FIND_OBJ_WORLD)) {
-    if ((*tar_obj = get_obj_vis(ch, name))) {
+    if ((*tar_obj = get_obj_vis(ch, name)))
       return (FIND_OBJ_WORLD);
-    }
   }
   return (0);
 }
@@ -1236,10 +1243,10 @@ int generic_find(char *arg, int bitvector, struct char_data * ch,
 int find_all_dots(char *arg)
 {
   if (!strcmp(arg, "all"))
-    return FIND_ALL;
+    return (FIND_ALL);
   else if (!strncmp(arg, "all.", 4)) {
     strcpy(arg, arg + 4);
-    return FIND_ALLDOT;
+    return (FIND_ALLDOT);
   } else
-    return FIND_INDIV;
+    return (FIND_INDIV);
 }

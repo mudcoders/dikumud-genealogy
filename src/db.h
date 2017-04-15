@@ -24,6 +24,7 @@
 #define LIB_ETC		":etc:"
 #define LIB_PLRTEXT	":plrtext:"
 #define LIB_PLROBJS	":plrobjs:"
+#define LIB_PLRALIAS	":plralias:"
 #define LIB_HOUSE	":house:"
 #define SLASH		":"
 #elif defined(CIRCLE_AMIGA) || defined(CIRCLE_UNIX) || defined(CIRCLE_WINDOWS) || defined(CIRCLE_ACORN)
@@ -33,14 +34,15 @@
 #define LIB_MISC	"misc/"
 #define LIB_ETC		"etc/"
 #define LIB_PLRTEXT	"plrtext/"
-#define LIB_OBJS	"objs/"
 #define LIB_PLROBJS	"plrobjs/"
+#define LIB_PLRALIAS	"plralias/"
 #define LIB_HOUSE	"house/"
 #define SLASH		"/"
 #endif
 
 #define SUF_OBJS	"objs"
 #define SUF_TEXT	"text"
+#define SUF_ALIAS	"alias"
 
 #if defined(CIRCLE_AMIGA)
 #define FASTBOOT_FILE   "/.fastboot"    /* autorun: boot without sleep  */
@@ -70,6 +72,7 @@
 #define NEWS_FILE	LIB_TEXT"news"	/* for the 'news' command	*/
 #define MOTD_FILE	LIB_TEXT"motd"	/* messages of the day / mortal	*/
 #define IMOTD_FILE	LIB_TEXT"imotd"	/* messages of the day / immort	*/
+#define GREETINGS_FILE	LIB_TEXT"greetings"	/* The opening screen.	*/
 #define HELP_PAGE_FILE	LIB_TEXT_HELP"screen" /* for HELP <CR>		*/
 #define INFO_FILE	LIB_TEXT"info"		/* for INFO		*/
 #define WIZLIST_FILE	LIB_TEXT"wizlist"	/* for WIZLIST		*/
@@ -94,7 +97,7 @@
 void	boot_db(void);
 int	create_entry(char *name);
 void	zone_update(void);
-int	real_room(int vnum);
+room_rnum real_room(room_vnum vnum);
 char	*fread_string(FILE *fl, char *error);
 long	get_id_by_name(char *name);
 char	*get_name_by_id(long id);
@@ -102,11 +105,11 @@ char	*get_name_by_id(long id);
 void	char_to_store(struct char_data *ch, struct char_file_u *st);
 void	store_to_char(struct char_file_u *st, struct char_data *ch);
 int	load_char(char *name, struct char_file_u *char_element);
-void	save_char(struct char_data *ch, sh_int load_room);
+void	save_char(struct char_data *ch, room_rnum load_room);
 void	init_char(struct char_data *ch);
 struct char_data* create_char(void);
-struct char_data *read_mobile(int nr, int type);
-int	real_mobile(int vnum);
+struct char_data *read_mobile(mob_vnum nr, int type);
+mob_rnum real_mobile(mob_vnum vnum);
 int	vnum_mobile(char *searchname, struct char_data *ch);
 void	clear_char(struct char_data *ch);
 void	reset_char(struct char_data *ch);
@@ -115,8 +118,8 @@ void	free_char(struct char_data *ch);
 struct obj_data *create_obj(void);
 void	clear_object(struct obj_data *obj);
 void	free_obj(struct obj_data *obj);
-int	real_object(int vnum);
-struct obj_data *read_object(int nr, int type);
+obj_rnum real_object(obj_vnum vnum);
+struct obj_data *read_object(obj_vnum nr, int type);
 int	vnum_object(char *searchname, struct char_data *ch);
 
 #define REAL 0
@@ -151,25 +154,25 @@ struct zone_data {
    char	*name;		    /* name of this zone                  */
    int	lifespan;           /* how long between resets (minutes)  */
    int	age;                /* current age of this zone (minutes) */
-   int	top;                /* upper limit for rooms in this zone */
+   room_vnum top;           /* upper limit for rooms in this zone */
 
    int	reset_mode;         /* conditions for reset (see below)   */
-   int	number;		    /* virtual number of this zone	  */
+   zone_vnum number;	    /* virtual number of this zone	  */
    struct reset_com *cmd;   /* command table for reset	          */
 
    /*
-	*  Reset mode:                              *
-	*  0: Don't reset, and don't update age.    *
-	*  1: Reset if no PC's are located in zone. *
-	*  2: Just reset.                           *
-   */
+    * Reset mode:
+    *   0: Don't reset, and don't update age.
+    *   1: Reset if no PC's are located in zone.
+    *   2: Just reset.
+    */
 };
 
 
 
 /* for queueing zones for update   */
 struct reset_q_element {
-   int	zone_to_reset;            /* ref to zone_data */
+   zone_rnum zone_to_reset;            /* ref to zone_data */
    struct reset_q_element *next;
 };
 
@@ -220,6 +223,7 @@ char	buf1[MAX_STRING_LENGTH];
 char	buf2[MAX_STRING_LENGTH];
 char	arg[MAX_STRING_LENGTH];
 #else
+extern room_rnum top_of_world;
 extern struct player_special_data dummy_mob;
 extern char	buf[MAX_STRING_LENGTH];
 extern char	buf1[MAX_STRING_LENGTH];

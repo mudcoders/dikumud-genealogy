@@ -21,12 +21,11 @@
 #include "constants.h"
 
 extern struct room_data *world;
-extern int top_of_world;
 extern struct index_data *obj_index;
 
 
-struct obj_data *Obj_from_store(struct obj_file_elem object);
-int Obj_to_store(struct obj_data * obj, FILE * fl);
+struct obj_data *Obj_from_store(struct obj_file_elem object, sh_int *location);
+int Obj_to_store(struct obj_data * obj, FILE * fl, int location);
 
 struct house_control_rec house_control[MAX_HOUSES];
 int num_of_houses = 0;
@@ -53,10 +52,10 @@ ACMD(do_house);
 int House_get_filename(int vnum, char *filename)
 {
   if (vnum < 0)
-    return 0;
+    return (0);
 
   sprintf(filename, LIB_HOUSE"%d.house", vnum);
-  return 1;
+  return (1);
 }
 
 
@@ -67,27 +66,28 @@ int House_load(room_vnum vnum)
   char fname[MAX_STRING_LENGTH];
   struct obj_file_elem object;
   room_rnum rnum;
+  sh_int i;
 
   if ((rnum = real_room(vnum)) == -1)
-    return 0;
+    return (0);
   if (!House_get_filename(vnum, fname))
-    return 0;
+    return (0);
   if (!(fl = fopen(fname, "r+b")))	/* no file found */
-    return 0;
+    return (0);
   while (!feof(fl)) {
     fread(&object, sizeof(struct obj_file_elem), 1, fl);
     if (ferror(fl)) {
-      perror("Reading house file: House_load.");
+      perror("SYSERR: Reading house file in House_load");
       fclose(fl);
-      return 0;
+      return (0);
     }
     if (!feof(fl))
-      obj_to_room(Obj_from_store(object), rnum);
+      obj_to_room(Obj_from_store(object, &i), rnum);
   }
 
   fclose(fl);
 
-  return 1;
+  return (1);
 }
 
 
@@ -101,14 +101,14 @@ int House_save(struct obj_data * obj, FILE * fp)
   if (obj) {
     House_save(obj->contains, fp);
     House_save(obj->next_content, fp);
-    result = Obj_to_store(obj, fp);
+    result = Obj_to_store(obj, fp, 0);
     if (!result)
-      return 0;
+      return (0);
 
     for (tmp = obj->in_obj; tmp; tmp = tmp->in_obj)
       GET_OBJ_WEIGHT(tmp) -= GET_OBJ_WEIGHT(obj);
   }
-  return 1;
+  return (1);
 }
 
 
@@ -152,23 +152,19 @@ void House_crashsave(room_vnum vnum)
 /* Delete a house save file */
 void House_delete_file(int vnum)
 {
-  char buf[MAX_INPUT_LENGTH], fname[MAX_INPUT_LENGTH];
+  char fname[MAX_INPUT_LENGTH];
   FILE *fl;
 
   if (!House_get_filename(vnum, fname))
     return;
   if (!(fl = fopen(fname, "rb"))) {
-    if (errno != ENOENT) {
-      sprintf(buf, "SYSERR: Error deleting house file #%d. (1)", vnum);
-      perror(buf);
-    }
+    if (errno != ENOENT)
+      log("SYSERR: Error deleting house file #%d. (1): %s", vnum, strerror(errno));
     return;
   }
   fclose(fl);
-  if (remove(fname) < 0) {
-    sprintf(buf, "SYSERR: Error deleting house file #%d. (2)", vnum);
-    perror(buf);
-  }
+  if (remove(fname) < 0)
+    log("SYSERR: Error deleting house file #%d. (2): %s", vnum, strerror(errno));
 }
 
 
@@ -180,7 +176,7 @@ void House_listrent(struct char_data * ch, room_vnum vnum)
   char buf[MAX_STRING_LENGTH];
   struct obj_file_elem object;
   struct obj_data *obj;
-
+  sh_int i;
 
   if (!House_get_filename(vnum, fname))
     return;
@@ -196,7 +192,7 @@ void House_listrent(struct char_data * ch, room_vnum vnum)
       fclose(fl);
       return;
     }
-    if (!feof(fl) && (obj = Obj_from_store(object)) != NULL) {
+    if (!feof(fl) && (obj = Obj_from_store(object, &i)) != NULL) {
       sprintf(buf + strlen(buf), " [%5d] (%5dau) %s\r\n",
 	      GET_OBJ_VNUM(obj), GET_OBJ_RENT(obj),
 	      obj->short_description);
@@ -221,9 +217,9 @@ int find_house(room_vnum vnum)
 
   for (i = 0; i < num_of_houses; i++)
     if (house_control[i].vnum == vnum)
-      return i;
+      return (i);
 
-  return -1;
+  return (-1);
 }
 
 
@@ -249,16 +245,16 @@ void House_save_control(void)
 void House_boot(void)
 {
   struct house_control_rec temp_house;
-  sh_int real_house, real_atrium;
+  room_rnum real_house, real_atrium;
   FILE *fl;
 
   memset((char *)house_control,0,sizeof(struct house_control_rec)*MAX_HOUSES);
 
   if (!(fl = fopen(HCONTROL_FILE, "rb"))) {
     if (errno == ENOENT)
-      log("House control file '%s' does not exist.", HCONTROL_FILE);
+      log("   House control file '%s' does not exist.", HCONTROL_FILE);
     else
-      perror(HCONTROL_FILE);
+      perror("SYSERR: " HCONTROL_FILE);
     return;
   }
   while (!feof(fl) && num_of_houses < MAX_HOUSES) {
@@ -357,7 +353,9 @@ void hcontrol_build_house(struct char_data * ch, char *arg)
 {
   char arg1[MAX_INPUT_LENGTH];
   struct house_control_rec temp_house;
-  sh_int virt_house, real_house, real_atrium, virt_atrium, exit_num;
+  room_vnum virt_house, virt_atrium;
+  room_rnum real_house, real_atrium;
+  sh_int exit_num;
   long owner;
 
   if (num_of_houses >= MAX_HOUSES) {
@@ -408,7 +406,7 @@ void hcontrol_build_house(struct char_data * ch, char *arg)
   }
 
   /* third arg: player's name */
-  arg = one_argument(arg, arg1);
+  one_argument(arg, arg1);
   if (!*arg1) {
     send_to_char(HCONTROL_FORMAT, ch);
     return;
@@ -443,7 +441,7 @@ void hcontrol_build_house(struct char_data * ch, char *arg)
 void hcontrol_destroy_house(struct char_data * ch, char *arg)
 {
   int i, j;
-  sh_int real_atrium, real_house;
+  room_rnum real_atrium, real_house;
 
   if (!*arg) {
     send_to_char(HCONTROL_FORMAT, ch);
@@ -574,7 +572,7 @@ ACMD(do_house)
 void House_save_all(void)
 {
   int i;
-  sh_int real_house;
+  room_rnum real_house;
 
   for (i = 0; i < num_of_houses; i++)
     if ((real_house = real_room(house_control[i].vnum)) != NOWHERE)
@@ -589,21 +587,21 @@ int House_can_enter(struct char_data * ch, room_vnum house)
   int i, j;
 
   if (GET_LEVEL(ch) >= LVL_GRGOD || (i = find_house(house)) < 0)
-    return 1;
+    return (1);
 
   switch (house_control[i].mode) {
   case HOUSE_PRIVATE:
     if (GET_IDNUM(ch) == house_control[i].owner)
-      return 1;
+      return (1);
     for (j = 0; j < house_control[i].num_of_guests; j++)
       if (GET_IDNUM(ch) == house_control[i].guests[j])
-	return 1;
+	return (1);
   }
 
-  return 0;
+  return (0);
 }
 
-void House_list_guests(struct char_data *ch, ush_int i, int quiet)
+void House_list_guests(struct char_data *ch, int i, int quiet)
 {
   int j;
   char *temp;

@@ -664,7 +664,7 @@ A wand of glinting yellow lies here.~
 1 666 15
 E
 wand yellow~
-You see a shape slowly fading into exsistance at the base of this wand.
+You see a shape slowly fading into existance at the base of this wand.
 ~
 #5481
 wand oak~
@@ -672,7 +672,7 @@ an oak wand~
 A wand of oak lies here.~
 ~
 3 g 16385
-5 1 1 61
+5 1 1 32
 1 500 15
 #5482
 wand pink~
@@ -680,7 +680,7 @@ a pink wand~
 A pink wand lies here~
 ~
 3 g 16385
-3 1 1 0
+3 1 1 38
 1 5000 15
 #5483
 shears sewing~

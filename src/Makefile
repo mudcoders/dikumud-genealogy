@@ -24,19 +24,19 @@ CFLAGS = -g -O2 $(MYFLAGS) $(PROFILE)
 
 LIBS =  -lcrypt 
 
-OBJFILES = comm.o act.comm.o act.informative.o act.movement.o act.item.o \
-	act.offensive.o act.other.o act.social.o act.wizard.o ban.o boards.o \
-	castle.o class.o config.o constants.o db.o fight.o graph.o handler.o \
-	house.o interpreter.o limits.o magic.o mail.o mobact.o modify.o \
-	objsave.o olc.o random.o shop.o spec_assign.o spec_procs.o \
-	spell_parser.o spells.o utils.o weather.o
+OBJFILES = act.comm.o act.informative.o act.item.o act.movement.o \
+	act.offensive.o act.other.o act.social.o act.wizard.o alias.o ban.o \
+	boards.o castle.o class.o comm.o config.o constants.o db.o fight.o \
+	graph.o handler.o house.o interpreter.o limits.o magic.o mail.o \
+	mobact.o modify.o objsave.o olc.o random.o shop.o spec_assign.o \
+	spec_procs.o spell_parser.o spells.o utils.o weather.o
 
 CXREF_FILES = act.comm.c act.informative.c act.item.c act.movement.c \
-	act.offensive.c act.other.c act.social.c act.wizard.c ban.c boards.c \
-	castle.c class.c comm.c config.c constants.c db.c fight.c graph.c \
-	handler.c house.c interpreter.c limits.c magic.c mail.c mobact.c \
-	modify.c objsave.c olc.c random.c shop.c spec_assign.c spec_procs.c \
-	spell_parser.c spells.c utils.c weather.c
+	act.offensive.c act.other.c act.social.c act.wizard.c alias.c ban.c \
+	boards.c castle.c class.c comm.c config.c constants.c db.c fight.c \
+	graph.c handler.c house.c interpreter.c limits.c magic.c mail.c \
+	mobact.c modify.c objsave.c olc.c random.c shop.c spec_assign.c\
+	spec_procs.c spell_parser.c spells.c utils.c weather.c
 
 default: all
 
@@ -119,6 +119,8 @@ act.social.o: act.social.c conf.h sysdep.h structs.h utils.h comm.h \
 act.wizard.o: act.wizard.c conf.h sysdep.h structs.h utils.h comm.h \
   interpreter.h handler.h db.h spells.h house.h screen.h constants.h
 	$(CC) -c $(CFLAGS) act.wizard.c
+alias.o: alias.c conf.h sysdep.h structs.h utils.h interpreter.h db.h
+	$(CC) -c $(CFLAGS) alias.c
 ban.o: ban.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h handler.h db.h
 	$(CC) -c $(CFLAGS) ban.c
 boards.o: boards.c conf.h sysdep.h structs.h utils.h comm.h db.h boards.h \
@@ -132,9 +134,9 @@ class.o: class.c conf.h sysdep.h structs.h db.h utils.h spells.h interpreter.h
 comm.o: comm.c conf.h sysdep.h structs.h utils.h comm.h interpreter.h handler.h \
   db.h house.h
 	$(CC) -c $(CFLAGS) comm.c
-config.o: config.c conf.h sysdep.h structs.h
+config.o: config.c conf.h sysdep.h structs.h interpreter.h
 	$(CC) -c $(CFLAGS) config.c
-constants.o: constants.c conf.h sysdep.h structs.h
+constants.o: constants.c conf.h sysdep.h structs.h interpreter.h
 	$(CC) -c $(CFLAGS) constants.c
 db.o: db.c conf.h sysdep.h structs.h utils.h db.h comm.h handler.h spells.h mail.h \
   interpreter.h house.h
@@ -189,10 +191,10 @@ spell_parser.o: spell_parser.c conf.h sysdep.h structs.h utils.h interpreter.h \
   spells.h handler.h comm.h db.h
 	$(CC) -c $(CFLAGS) spell_parser.c
 spells.o: spells.c conf.h sysdep.h structs.h utils.h comm.h spells.h handler.h \
-  db.h constants.h
+  db.h constants.h interpreter.h
 	$(CC) -c $(CFLAGS) spells.c
 utils.o: utils.c conf.h sysdep.h structs.h utils.h comm.h screen.h spells.h \
-  handler.h db.h
+  handler.h db.h interpreter.h
 	$(CC) -c $(CFLAGS) utils.c
 weather.o: weather.c conf.h sysdep.h structs.h utils.h comm.h handler.h \
   interpreter.h db.h

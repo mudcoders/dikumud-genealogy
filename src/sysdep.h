@@ -200,6 +200,12 @@ extern void abort (), exit ();
 
 #if defined(__COMM_C__) || defined(CIRCLE_UTIL)
 
+#ifndef HAVE_STRUCT_IN_ADDR
+struct in_addr {
+  unsigned long int s_addr;	/* for inet_addr, etc. */
+}
+#endif
+
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>
 #endif
@@ -271,26 +277,40 @@ extern void abort (), exit ();
 
 /* Define the type of a socket and other miscellany */
 #if defined(CIRCLE_WINDOWS)	/* Definitions for Win32 */
-# define FD_SETSIZE		1024
-# include <winsock.h>
-  typedef SOCKET socket_t;
-# define CLOSE_SOCKET(sock)	closesocket(sock)
-# if !defined(__BORLANDC__)
+
+# if !defined(__BORLANDC__) && !defined(LCC_WIN32)	/* MSVC */
 #  define chdir _chdir
+#  pragma warning(disable:4761)		/* Integral size mismatch. */
 # endif
 
-#elif defined(CIRCLE_UNIX)	/* Definitions for UNIX */
-  typedef int socket_t;
-# define CLOSE_SOCKET(sock)	close(sock)
+# if defined(__BORLANDC__)	/* Silence warnings we don't care about. */
+#  pragma warn -par	/* to turn off >parameter< 'ident' is never used. */
+#  pragma warn -pia	/* to turn off possibly incorrect assignment. 'if (!(x=a))' */
+#  pragma warn -sig	/* to turn off conversion may lose significant digits. */
+# endif
 
-#elif defined(CIRCLE_MACINTOSH)	/* Macintosh definitions. */
+# ifndef _WINSOCK2API_	/* Winsock1 and Winsock 2 conflict. */
+#  include <winsock.h>
+# endif
 
-#elif defined(CIRCLE_ACORN)	/* Definitions for Acorn. */
+# ifndef FD_SETSIZE	/* MSVC 6 is reported to have 64. */
+#  define FD_SETSIZE		1024
+# endif
+
+  typedef SOCKET socket_t;
+# define CLOSE_SOCKET(sock)	closesocket(sock)
+
+# if defined(__MWERKS__)
+#  define isascii(c)	(((c) & ~0x7f) == 0)	/* So easy to have, but ... */
+# endif
+
+/* Definitions for UNIX, Macintosh, or Acorn, until they differ... */
+#elif defined(CIRCLE_UNIX) || defined(CIRCLE_MACINTOSH) || defined(CIRCLE_ACORN)
   typedef int socket_t;
 # define CLOSE_SOCKET(sock)	close(sock)
 
 #else
-# error Who are we?
+# error You forgot to include conf.h or do not have a valid system define.
 #endif
 
 #if defined(__cplusplus)	/* C++ */
@@ -311,6 +331,11 @@ extern void abort (), exit ();
 /* Make sure we have STDERR_FILENO */
 #ifndef STDERR_FILENO
 #define STDERR_FILENO 2
+#endif
+
+/* Make sure we have STDOUT_FILENO too. */
+#ifndef STDOUT_FILENO
+#define STDOUT_FILENO 1
 #endif
 
 
@@ -385,6 +410,10 @@ extern void abort (), exit ();
    int fclose(FILE *stream);
 #endif
 
+#ifdef NEED_FDOPEN_PROTO
+   FILE *fdopen(int fd, const char *mode);
+#endif
+
 #ifdef NEED_FFLUSH_PROTO
    int fflush(FILE *stream);
 #endif
@@ -434,6 +463,10 @@ extern void abort (), exit ();
    int sscanf(const char *s, const char *format, ...);
 #endif
 
+#ifdef NEED_STRERROR_PROTO
+   char *strerror(int errnum);
+#endif
+
 #ifdef NEED_SYSTEM_PROTO
    int system(const char *string);
 #endif
@@ -446,6 +479,9 @@ extern void abort (), exit ();
    int unlink(const char *path);
 #endif
 
+#ifdef NEED_REMOVE_PROTO
+   int remove(const char *path);
+#endif
 
 /* Function prototypes that are only used in comm.c and some of the utils */
 

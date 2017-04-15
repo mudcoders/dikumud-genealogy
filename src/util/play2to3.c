@@ -375,5 +375,5 @@ int main(int argc, char *argv[])
   fclose(ptThreeHndl);
   fclose(ptTwoHndl);
 
-  return 0;
+  return (0);
 }

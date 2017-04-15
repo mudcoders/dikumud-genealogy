@@ -26,13 +26,13 @@ void	mudlog(const char *str, int type, int level, int file);
 void	log_death_trap(struct char_data *ch);
 int	number(int from, int to);
 int	dice(int number, int size);
-void	sprintbit(long vektor, const char *names[], char *result);
+void	sprintbit(bitvector_t vektor, const char *names[], char *result);
 void	sprinttype(int type, const char *names[], char *result);
 int	get_line(FILE *fl, char *buf);
 int	get_filename(char *orig_name, char *filename, int mode);
 struct time_info_data *age(struct char_data *ch);
 int	num_pc_in_room(struct room_data *room);
-void	core_dump_real(const char *, ush_int);
+void	core_dump_real(const char *, int);
 
 #define core_dump()		core_dump_real(__FILE__, __LINE__)
 
@@ -51,6 +51,7 @@ unsigned long circle_random(void);
 
 int MAX(int a, int b);
 int MIN(int a, int b);
+char *CAP(char *txt);
 
 /* in magic.c */
 bool	circle_follow(struct char_data *ch, struct char_data * victim);
@@ -63,9 +64,6 @@ int	do_simple_move(struct char_data *ch, int dir, int following);
 int	perform_move(struct char_data *ch, int dir, int following);
 
 /* in limits.c */
-int	mana_limit(struct char_data *ch);
-int	hit_limit(struct char_data *ch);
-int	move_limit(struct char_data *ch);
 int	mana_gain(struct char_data *ch);
 int	hit_gain(struct char_data *ch);
 int	move_gain(struct char_data *ch);
@@ -90,6 +88,7 @@ void	update_pos(struct char_data *victim);
 /* get_filename() */
 #define CRASH_FILE	0
 #define ETEXT_FILE	1
+#define ALIAS_FILE	2
 
 /* breadth-first searching */
 #define BFS_ERROR		-1
@@ -124,7 +123,6 @@ void	update_pos(struct char_data *victim);
 
 #define ISNEWL(ch) ((ch) == '\n' || (ch) == '\r') 
 #define IF_STR(st) ((st) ? (st) : "\0")
-#define CAP(st)  (*(st) = UPPER(*(st)), st)
 
 #define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
 
@@ -133,12 +131,14 @@ void	update_pos(struct char_data *victim);
 
 
 #define CREATE(result, type, number)  do {\
-	if (!((result) = (type *) calloc ((number), sizeof(type))))\
-		{ perror("malloc failure"); abort(); } } while(0)
+	if ((number) * sizeof(type) <= 0)	\
+		log("SYSERR: Zero bytes or less requested at %s:%d.", __FILE__, __LINE__);	\
+	if (!((result) = (type *) calloc ((number), sizeof(type))))	\
+		{ perror("SYSERR: malloc failure"); abort(); } } while(0)
 
 #define RECREATE(result,type,number) do {\
   if (!((result) = (type *) realloc ((result), sizeof(type) * (number))))\
-		{ perror("realloc failure"); abort(); } } while(0)
+		{ perror("SYSERR: realloc failure"); abort(); } } while(0)
 
 /*
  * the source previously used the same code in many places to remove an item
@@ -184,14 +184,16 @@ void	update_pos(struct char_data *victim);
 #define CHECK_PLAYER_SPECIAL(ch, var)	(var)
 #endif
 
-#define MOB_FLAGS(ch) ((ch)->char_specials.saved.act)
-#define PLR_FLAGS(ch) ((ch)->char_specials.saved.act)
+#define MOB_FLAGS(ch)	((ch)->char_specials.saved.act)
+#define PLR_FLAGS(ch)	((ch)->char_specials.saved.act)
 #define PRF_FLAGS(ch) CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->saved.pref))
-#define AFF_FLAGS(ch) ((ch)->char_specials.saved.affected_by)
-#define ROOM_FLAGS(loc) (world[(loc)].room_flags)
+#define AFF_FLAGS(ch)	((ch)->char_specials.saved.affected_by)
+#define ROOM_FLAGS(loc)	(world[(loc)].room_flags)
+#define SPELL_ROUTINES(spl)	(spell_info[spl].routines)
 
-#define IS_NPC(ch)  (IS_SET(MOB_FLAGS(ch), MOB_ISNPC))
-#define IS_MOB(ch)  (IS_NPC(ch) && ((ch)->nr >-1))
+/* See http://www.circlemud.org/~greerga/todo.009 to eliminate MOB_ISNPC. */
+#define IS_NPC(ch)	(IS_SET(MOB_FLAGS(ch), MOB_ISNPC))
+#define IS_MOB(ch)  (IS_NPC(ch) && GET_MOB_RNUM(ch) >= 0)
 
 #define MOB_FLAGGED(ch, flag) (IS_NPC(ch) && IS_SET(MOB_FLAGS(ch), (flag)))
 #define PLR_FLAGGED(ch, flag) (!IS_NPC(ch) && IS_SET(PLR_FLAGS(ch), (flag)))
@@ -202,6 +204,7 @@ void	update_pos(struct char_data *victim);
 #define OBJVAL_FLAGGED(obj, flag) (IS_SET(GET_OBJ_VAL((obj), 1), (flag)))
 #define OBJWEAR_FLAGGED(obj, flag) (IS_SET((obj)->obj_flags.wear_flags, (flag)))
 #define OBJ_FLAGGED(obj, flag) (IS_SET(GET_OBJ_EXTRA(obj), (flag)))
+#define HAS_SPELL_ROUTINE(spl, flag) (IS_SET(SPELL_ROUTINES(spl), (flag)))
 
 /* IS_AFFECTED for backwards compatibility */
 #define IS_AFFECTED(ch, skill) (AFF_FLAGGED((ch), (skill)))
@@ -224,8 +227,10 @@ void	update_pos(struct char_data *victim);
 
 #define IS_LIGHT(room)  (!IS_DARK(room))
 
-#define GET_ROOM_VNUM(rnum)	((rnum) >= 0 && (rnum) <= top_of_world ? world[(rnum)].number : NOWHERE)
-#define GET_ROOM_SPEC(room) ((room) >= 0 ? world[(room)].func : NULL)
+#define VALID_RNUM(rnum)	((rnum) >= 0 && (rnum) <= top_of_world)
+#define GET_ROOM_VNUM(rnum) \
+	((room_vnum)(VALID_RNUM(rnum) ? world[(rnum)].number : NOWHERE))
+#define GET_ROOM_SPEC(room) (VALID_RNUM(room) ? world[(room)].func : NULL)
 
 /* char utils ************************************************************/
 
@@ -234,8 +239,9 @@ void	update_pos(struct char_data *victim);
 #define GET_WAS_IN(ch)	((ch)->was_in_room)
 #define GET_AGE(ch)     (age(ch)->year)
 
+#define GET_PC_NAME(ch)	((ch)->player.name)
 #define GET_NAME(ch)    (IS_NPC(ch) ? \
-			 (ch)->player.short_descr : (ch)->player.name)
+			 (ch)->player.short_descr : GET_PC_NAME(ch))
 #define GET_TITLE(ch)   ((ch)->player.title)
 #define GET_LEVEL(ch)   ((ch)->player.level)
 #define GET_PASSWD(ch)	((ch)->player.passwd)
@@ -310,7 +316,6 @@ void	update_pos(struct char_data *victim);
 #define GET_MOB_VNUM(mob)	(IS_MOB(mob) ? \
 				 mob_index[GET_MOB_RNUM(mob)].vnum : -1)
 
-#define GET_MOB_WAIT(ch)	((ch)->mob_specials.wait_state)
 #define GET_DEFAULT_POS(ch)	((ch)->mob_specials.default_pos)
 #define MEMORY(ch)		((ch)->mob_specials.memory)
 
@@ -333,14 +338,17 @@ void	update_pos(struct char_data *victim);
 #define IS_NEUTRAL(ch) (!IS_GOOD(ch) && !IS_EVIL(ch))
 
 
+/* These three deprecated. */
+#define WAIT_STATE(ch, cycle) do { GET_WAIT_STATE(ch) = (cycle); } while(0)
+#define CHECK_WAIT(ch)                ((ch)->wait > 0)
+#define GET_MOB_WAIT(ch)      GET_WAIT_STATE(ch)
+/* New, preferred macro. */
+#define GET_WAIT_STATE(ch)    ((ch)->wait)
+
+
 /* descriptor-based utils ************************************************/
 
-
-#define WAIT_STATE(ch, cycle) { \
-	if ((ch)->desc) (ch)->desc->wait = (cycle); \
-	else if (IS_NPC(ch)) GET_MOB_WAIT(ch) = (cycle); }
-
-#define CHECK_WAIT(ch)	(((ch)->desc) ? ((ch)->desc->wait > 1) : 0)
+/* Hrm, not many.  We should make more. -gg 3/4/99 */
 #define STATE(d)	((d)->connected)
 
 

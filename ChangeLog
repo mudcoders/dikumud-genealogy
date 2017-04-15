@@ -1,7 +1,7 @@
 
 Release history:
 
-Version 3.00 beta pl13 release: July 3, 1998
+Version 3.00 beta pl14 release: July 3, 1998
 Version 3.00 beta pl13a release: June 4, 1998
 Version 3.00 beta pl13 release: June 1, 1998
 Version 3.00 beta pl12 release: October 29, 1997
@@ -99,7 +99,7 @@ AE = Alex Fletcher (furry@circlemud.org)
                 seemed to hate it the other way.
 
 8/31/94 JE      Added sanity checks to perform_move since king_welmar seems
-                to cause crashes when he's moving on occassion, and I'd rather
+                to cause crashes when he's moving on occasion, and I'd rather
                 remove that area than try to debug it.
 
 8/31/94 JE      Changed 'SEC' to 'RL_SEC' in structs.h to avoid conflicts
@@ -263,7 +263,7 @@ AE = Alex Fletcher (furry@circlemud.org)
 2/22/95 JE      Added break statement to mag_damage, energy drain       
                 Spotted by Jeff Fink
 
-2/22/95 JE      Added ascii flag system to db.c for world, obj, mob files
+2/22/95 JE      Added ASCII flag system to db.c for world, obj, mob files
 
 2/22/95 JE      Brought in the new 3.0 world files from Furry
 
@@ -275,7 +275,7 @@ AE = Alex Fletcher (furry@circlemud.org)
                 correctly, causing the MUD to hang in places such as the
                 Password: prompt.
 
-2/23/95 JE      Added a case for sgi (IRIX) in utils.h OS-specific header
+2/23/95 JE      Added a case for SGI (IRIX) in utils.h OS-specific header
                 section for cleaner compiles
 
 
@@ -439,7 +439,7 @@ AE = Alex Fletcher (furry@circlemud.org)
 5/10/95	JE	Implemented bless and curse spells for objects.
 		Code submitted by Jeff Fink.
 
-5/10/95	JE	Implemented poisioned objects and remove-poison for objs.
+5/10/95	JE	Implemented poisoned objects and remove-poison for objs.
 		Code submitted by Jeff Fink.
 
 5/10/95	JE	Implemented MOB_NOCHARM flag.
@@ -474,7 +474,7 @@ AE = Alex Fletcher (furry@circlemud.org)
 5/21/95	JE	Initialized GET_LAST_TELL to NOBODY.
 		Spotted by Eric Green and Stefan Wasilewski
 
-5/21/95	JE	Changed around wiz-inivisibility for better compatibility with
+5/21/95	JE	Changed around wiz-invisibility for better compatibility with
                 the 'visible' command, and to give better messages.
 		Suggested by Chris Epler.
 
@@ -581,7 +581,7 @@ AE = Alex Fletcher (furry@circlemud.org)
 		Fix sent in by BUG.
 
 5/22/95	JE	Added two prototypes to comm.h so that comm.c will compile
-		cleanly under ultrix.
+		cleanly under Ultrix.
 
 5/22/95	JE	spell_parser.c, cast_spell() - prevents ungrouped chars from
 		casting MAG_GROUPS classes of spells (returns error msg and
@@ -646,7 +646,7 @@ AE = Alex Fletcher (furry@circlemud.org)
 		fantastic ideas.
 
 5/23/95	JE	Deleted some extraneous lines from the Makefile (rules for
-		compiling utiltities that no longer exist).
+		compiling utilities that no longer exist).
 		Found by Jared McDonald
 
 5/23/95	JE	Released patchlevel 8.
@@ -803,7 +803,7 @@ AE = Alex Fletcher (furry@circlemud.org)
 ******** Patchlevel 11 ***************************************************
 
 
--- Patches to make Circle compile under MSCV++ 4.0 under Windows 95:
+-- Patches to make Circle compile under MSVC++ 4.0 under Windows 95:
 	Created a 'conf.h.win' to act as Windows' conf.h.  Created a new
         constant, CIRCLE_WINDOWS, to use for #ifdef's.  Changed OS2's constant
         from OS2 to CIRCLE_OS2 for consistency.
@@ -1142,7 +1142,7 @@ change.
     the sanct turns the damage from 1 to 0 and that tells skill_message to
     print the miss message."
 
--- autorun.pl: Made part of the standard distribution (perl version of
+-- autorun.pl: Made part of the standard distribution (Perl version of
    autorun), by D. Hall of Vi'Rage Studios
 
 -- Updated FAQ and PORTING documents
@@ -1153,7 +1153,7 @@ change.
    only prototypes those functions that aren't.  Also, it doesn't include
    the malloc, nsl, socket, and crypt libraries unless those functions
    are missing from libc.  This solves problems that autoconf was having
-   with IRIX, where it would use lsocket and lnsl, unneccesarily generating
+   with IRIX, where it would use lsocket and lnsl, unnecessarily generating
    linker warnings when those libraries would shadow libc functions.  On
    the other hand, this will cause a problem on OS's where a dummy
    crypt() is shadowed by a real crypt in libcrypt.  Future releases may
@@ -1306,7 +1306,7 @@ change.
 -- gg - Merged in preliminary Macintosh support by Dean Takemori
 	(dean@uhheph.phys.hawaii.edu)
 
--- gg - comm.c: A large number of the system dependant includes are
+-- gg - comm.c: A large number of the system dependent includes are
 	already accessible via HAVE_blah_blah defines in sysdep.h so
 	I have commented them out for possible removal later to make
 	things look much less complicated.  If things break due to
@@ -1336,7 +1336,7 @@ change.
 11/21/97
 
 -- gg - Changed all those d->connected to STATE(d).  Also removed the value
-	dependant hack of !d->connected in favor of STATE(d) == CON_PLAYING.
+	dependent hack of !d->connected in favor of STATE(d) == CON_PLAYING.
 
 12/18/97
 
@@ -1352,7 +1352,7 @@ change.
 12/27/97
 
 -- gg - Merged in Borland compiler changes.
-	spells.c: Removed non-existant cha_app_type extern.
+	spells.c: Removed non-existent cha_app_type extern.
 
 -- gg - sysdep.h: New #define SLASH for directory separator.  Will cause
 	awful looking paths ("lib"SLASH"etc"SLASH"players") but needed for
@@ -1447,7 +1447,7 @@ change.
 1/14/98
 
 -- gg - Fixed a bunch of warnings GCC 2.8.0 now emits with -Wall.  Those
-	include ambigous 'else' statements (ones that should have { or }
+	include ambiguous 'else' statements (ones that should have { or }
 	to distinguish) and when main() doesn't return 'int.'
 
 1/16/98
@@ -1672,7 +1672,7 @@ change.
 -- gg - act.movement.c/graph.c: Check for fighting before and in perform_move().
 	Suggested by Angus Mezick.
 
--- gg - Removed 'extern' statements for non-existant variables.  Pointed out
+-- gg - Removed 'extern' statements for non-existent variables.  Pointed out
 	by Chris Powell.
 
 -- gg - act.informative.c: do_toggle(): Added a \r\n to end of string as
@@ -1769,7 +1769,7 @@ change.
 -- gg - Eric Green <ejg3@cornell.edu> suggested some buffers needed to
 	be larger to handle the possible inputs.
 
--- gg - ban.c/house.c: Cleaned up non-existant file messages.
+-- gg - ban.c/house.c: Cleaned up non-existent file messages.
 
 6/15/98
 
@@ -1977,7 +1977,7 @@ change.
 	which is what it was put in to fix many years ago.
 
 -- JE - src/comm.c - Broke up write_to_descriptor() into two functions
-	so that platform-dependant pieces would be isolated.
+	so that platform-dependent pieces would be isolated.
 
 7/1/98
 
@@ -2004,6 +2004,13 @@ change.
 
 -- ae - lib/world/obj/15.obj: Corrected some flags and some edescs.
 
+-- gg - comm.c: main(): Now use fdopen() instead of explicit assignment
+	of 'stderr' to 'logfile'.  This should work fine elsewhere because:
+	"The fdopen function conforms to IEEE Std1003.1-1988 (``POSIX.1'')."
+
+-- gg - comm.c: getrusage(): Use RUSAGE_SELF instead of 0.  Suggested by
+	Christian Loth <sg618lo@unidui.uni-duisburg.de>
+
 3 July 1998
 
 -- JE - src/comm.c, src/sysdep.h: We only prototype the getrlimit()/
@@ -2016,3 +2023,722 @@ change.
 	is missing for some reason.
 
 -- JE - Released patchlevel 14.
+
+******** Patchlevel 15 ***************************************************
+
+7/3/98
+
+-- gg - constants.c: Incremented string version number.
+	structs.h: Incremented #define version number.
+
+-- gg - Patch for arbitrary bitvector size changes from Christian Loth
+	<sg618lo@unidui.uni-duisburg.de> included. (bitvector_t)
+
+-- gg - structs.h: Sector flying and underwater reversed to match constants.c
+
+7/5/98
+
+-- gg - comm.c: new_descriptor(): Yep, 'i' should be signed.
+
+7/29/98
+
+-- gg - Replaced 'return x;' with 'return (x);' to be consistent.
+	Patch by Trevor Man <tman@dial.pipex.com>.  Reverse of what
+	I had hoped, but ah well. :)
+
+8/6/98
+
+-- gg - act.item.c: search_block triggers on \n, use \r instead.
+
+8/24/98
+
+-- gg - sysdep.h/Makefile.lcc/conf.h.lcc: LCC compiler support added by
+	Eric Jones <fpicard@mindless.com>. I'll see if there is a
+	__BORLANDC__-like constant we can use to get rid of conf.h.lcc...
+
+-- gg - comm.c: "d. hall" <dhall@OOI.NET> sent a patch to change timeadd()
+	and timediff() to not use static variables like we wanted before.
+
+-- gg - util/shopconv.c: Given a dummy basic_mud_log() to take care of
+	undefined reference since some macros use it now.
+
+-- gg - act.other.c: do_steal(): Yaroslav Berezovsky aka Morgion//RMUD found
+	a bug where the victim had to be able to see an object for the thief
+	to steal it...
+
+8/25/98
+
+-- gg - AutoEQ from Burkhard Knopf <burkhard.knopf@informatik.tu-clausthal.de>
+	comm.c: init_game(): Save everyone before exiting.
+	handler.c: invalid_align(): New function.
+	handler.c: equip_char(): Use invalid_align().
+	handler.c: invalid_align(): prototype.
+	interpreter.c: nanny(): Place character in room before equipping.
+	objsave.c: Obj_to_store()/Obj_from_store()/Crash_save(): Modified
+		to include location arguments.
+	objsave.c: auto_equip(): New function, sanity checks eq positions.
+	objsave.c: Crash_listrent(): Also show rent locations.
+	objsave.c: Crash_load(): Huge block of code to handle equipping.
+	objsave.c: Crash_extract_norents_from_equipped(): New function.
+	structs.h: obj_file_elem: 'location' added. (Sort of, it's pending
+		approval.)
+
+-- gg - act.comm.c: do_gen_comm(): Use AWAKE() macro. From
+	Richard Glover <majik@pyramid.net>
+
+-- gg - act.item.c: Curse containers if you put a cursed object in them.
+
+-- gg - comm.c: main(): Added help text for '-h' option.
+
+-- gg - act.informative.c: do_time(): Simplified by suggestion from
+	Andrew Jones <andjones@mci2000.com>
+
+-- gg - constants.c/comm.c: Uh, 'version' used to crash. :)
+
+-- gg - act.comm.c: do_spec_comm(): Removed extra \r\n from act().
+
+-- gg - act.movement.c: has_boat(): Del <caminturn@EARTHLINK.NET> suggested
+	immortals should get to walk on water.  Now gods can walk on water
+	but guest immortals (LVL_IMMORT) still need boats.
+
+8/26/98
+
+-- gg - Changed 'struct alias' to 'struct alias_data' since a Windows 95
+	compiler gripes that it has a member of the same name.
+
+-- gg - autorun: Don't sleep if we're going to die anyway.
+
+-- gg - db.c: Disable zone commands which will endlessly error.
+
+8/28/98
+
+-- gg - Removed 'extern int top_of_world;' everywhere.
+	db.h: Included extern for top_of_world here instead.
+	(Should fix some of the Windows 'integral size mismatch' warnings.)
+
+-- gg - act.other.c: do_save(): Allow gods to save even if we're in
+	automatic saving. Immortals (31) still cannot by default.
+
+-- gg - comm.c: DFLT_IP/DFLT_DIR/LOGNAME/help: Some extern declarations
+	cleaned up to be what they should.
+
+-- gg - comm.c: main(): Reworked to avoid implicit 'stderr' usage and
+	allow an argument for log file to redirect to.
+
+-- gg - comm.c/comm.h: send_to_room(): Changed to room_rnum.
+
+-- gg - structs.h: obj_file_elem: Add a few spares since we're going to
+	change the structure anyway.
+
+-- gg - comm.c: process_input(): Output command we find from history.
+	From Akuma the Raging Coder.
+
+-- gg - interpreter.c/utils.h: IS_NPC changes from idea by
+	Andrey Fidrya <andrey@ALEX-UA.COM>.  To be completed later though.
+
+8/29/98
+
+-- gg - act.wizard.c: do_show(): 'show snoop'
+
+-- gg - shop.c: 'buy 3' now possible and doesn't break 'buy 5 3',
+	'buy 5 #3', or 'buy #3'.
+
+9/3/98
+
+-- gg - db.c: index_boot(): prefix set to NULL to prevent spurious warning
+	from egcs 1.1. (Headache prevention.)
+
+9/7/98
+
+-- gg - act.wizard.c: do_set(): age: ch<->vict.
+
+9/9/98
+
+-- gg - modify.c: string_write()/smash_tilde(): Got fed up with many
+	places in the code (and external packages) manually setting up
+	the writing code so I created string_write() to hide that.
+	smash_tilde() envelopes previous code in string_add() in a way
+	to be compatible with other codebases.
+
+-- gg - mail.c: postmaster_send_mail(): Converted the final malloc() in
+	the code to use CREATE(), and converted to string_write() also.
+
+-- gg - boards.c: Board_write_message(): Changed to string_write().
+
+-- gg - Makefile.lcc: Update from Eric Jones <fpicard@mindless.com>.
+
+-- gg - macrun.pl: New from Dean Takemori <dean@UHHEPH.PHYS.HAWAII.EDU>
+	in case you have a Macintosh with Perl.
+
+-- gg - act.informative.c: do_toggle(): Added holylight/nohassle/roomflags
+	for immortals, from Del Minturn <caminturn@EARTHLINK.NET>.
+
+9/12/98
+
+-- gg - act.comm.c: do_write(): Now uses string_write() interface.
+	olc.c: olc_string(): Ditto.
+
+-- gg - db.c: check_object()/check_object_spell_number()/
+	check_object_spell_level(): Beginnings of object verification.
+	This caught about 7 objects with bad spell numbers, names, or levels.
+
+-- gg - modify.c: string_write(): Modified to allow generic data to be
+	passed through later.  The improved editor could use this to send
+	the 'old' buffer for instance.
+
+-- gg - spell_parser.c: spello(): Report spells with invalid names.
+
+-- gg - spell_parser.c: skill_name(): Minor cosmetic touchup.
+
+-- gg - spell_parser.c: mag_objectmagic(): Wands with an area effect or
+	mass spell don't need to be pointed at anything.
+
+9/15/98
+
+-- gg - utils.c: get_line(): Faster, cleaner, and most importantly, easier
+	to read.
+
+9/20/98
+
+-- gg - utils.c: str_cmp()/strn_cmp(): Now gracefully handle a NULL pointer
+	and I also took the opportunity to make them look cleaner.
+	utils.c: basic_mud_log()/mudlog()/get_filename(): Should be able to
+	handle a NULL pointer now.
+
+-- gg - utils.h: IS_NPC(): MOB_ISNPC is back, for now.
+
+-- gg - Added the long-awaited alias saving to file support courtesy of
+	Jeremy Hess and Chad Thompson.  Directories added in lib/ also.
+
+-- gg - comm.c: main(): Think I heard of a report where fdopen() didn't
+	work under Windows so I added a little note there for people.
+
+9/21/98
+
+-- gg - magic.c: mag_unaffects(): Fixed cosmetic bug (of mine) whereby the
+	"your vision returns" message was shown when you weren't blind.
+
+-- gg - spell_parser.c: call_magic(): Fixed to return -1 when a target
+	dies, so that mag_objectmagic() can correctly exit instead of
+	casting another spell from a scroll at a stale target.
+
+-- gg - utils.h: WAIT_STATE(): Needed "do { xxx } while(0)".
+
+-- gg - act.offensive.c: do_bash(): Few fixes for NPC's and wimpy mode.
+
+-- gg - spells.c: spell_enchant_weapon(): It is a bad thing to enchant a
+	weapon that you are currently wielding. Since I think it makes
+	more sense to just not be able to do that than jump through hoops
+	with equipping, I've remove the TAR_OBJ_EQUIP flag from it.
+
+-- gg - comm.c: perform_act(), act.informative.c: list_one_char(),
+	interpreter.c: command_interpreter(): All changed with IS_NPC()
+	fixes from Andrey Fidrya <andrey@ALEX-UA.COM>
+
+-- gg - magic.c: mag_affects(): Don't allow strength if we already have
+	100% strength add.
+
+-- gg - act.other.c: do_steal(): Easy but not automatic stealing from
+	sleeping people.
+
+-- gg - comm.c: setup_log(): Handle all the log() nasties.
+
+-- gg - sysdep.h: Check for STDOUT_FILENO too.
+
+9/27/98
+
+-- gg - objsave.c/structs.h: Enable autoeq on USE_AUTOEQ definition.
+
+-- gg - act.item.c: Duplicated 'extern obj_proto;'
+
+10/1/98
+
+-- gg - utils.h: VALID_RNUM(): New macro made from common code in
+	GET_ROOM_VNUM() and GET_ROOM_SPEC().
+	utils.h: GET_ROOM_VNUM(): Needs (room_vnum) cast for MS VC++ 5.
+
+-- gg - comm.c: 'port' should be an unsigned short integer.
+	config.c: DFLT_PORT changed to ush_int too.
+
+-- gg - act.wizard.c: do_at(): location/original_loc should be room_rnum.
+	act.wizard.c: perform_set(): New room_rnum variable for case 35.
+
+-- gg - db.c: reset_zone(): Couple casts to hush up Microsoft Visual C++.
+	There isn't another way.
+
+-- gg - house.c: hcontrol_destroy_house(): real_atrium/real_house converted
+	to room_rnum variables.  The atoi() result casted to room_vnum.
+	house.c: hcontrol_pay_house(): atoi() result, ditto.
+
+-- gg - shop.h: 'keeper' variable changed to mob_rnum and comment fixed.
+	It is saved on disk as a vnum but changed in boot_the_shops() to
+	be a real number.
+
+-- gg - spec_procs.c: pet_shops(): 'pet_room' is a room_rnum now.
+	spells.c: spell_teleport(): 'to_room' is a room_rnum now.
+
+-- gg - Even more xxx_rnum/xxx_vnum changes, to the real_xxx() functions.
+
+-- gg - db.c: check_object_spell_level(): Note that it is a bad idea to
+	assign an area or mass spell to a staff.  It is not overridden,
+	just warned about.
+
+10/3/98
+
+-- gg - act.movement.c: do_stand(): Player may still be fighting at this
+	point so we should set them POS_FIGHTING if so.
+	Reported by Jon Barrett <mixtli@SINFO.NET>.
+
+-- gg - act.wizard.c: do_switch(): Don't permit people under Greater God
+	to switch into mobs in god rooms or houses.
+
+-- gg - Assorted skills now have new IS_NPC and GET_SKILL checks.
+
+10/5/98
+
+-- gg - spec_assign.c: Fixed up mob|room|obj_v|rnum problems in ASSIGNMOB,
+	ASSIGNROOM, ASSIGNOBJ.
+	castle.c: block_way(): Fixed up room_rnum problem.
+	olc.c: do_olc(): Ditto.
+
+-- gg - act.wizard.c: room_rnum things fixed and use skill_name() now in
+	do_stat_character().
+
+-- gg - db.c: check_object_spell_number(): Disabled the check for an area/mass
+	spell on a staff because the bug has been fixed.
+
+-- gg - spell_parser.c: mag_objectmagic(): Fixed the bug where a victim
+	dying in the middle of a staff spell caused a crash.
+
+-- gg - Merged new spell routine changes that get rid of spells[] in favor
+	of spell_info[].name.  Also removed dead code from db.c.
+
+10/7/98
+
+-- gg - db.c: check_object_spell(): Another magic niggle, the spells don't
+	have names in syntax check mode.
+
+-- gg - Merged a bunch of sh_int/int -> *_[rv]num changes from
+	Bryan Britt <beltane@beltane.com>
+
+-- gg - More little logging changes.  Sometimes I really hate portability. :P
+
+-- gg - house.c/db.c: g++ found some mismatched prototypes.
+
+10/8/98
+
+-- gg - graph.c: Assorted room_rnum fixes.
+
+10/10/98
+
+-- gg - cnf/configure.in: Added checks for "remove" and "strerror".
+	sysdep.h, conf.h.in: NEED_REMOVE_PROTO and NEED_STRERROR_PROTO added.
+
+-- gg - act.social.c act.other.c ban.c e boards.c comm.c db.c fight.c
+	graph.c house.c objsave.c shop.c: Updated to make sure all
+	perror() and log() calls have SYSERR where appropriate.
+
+10/12/98
+
+-- gg - comm.c: Updated some 'const' usage in act() and related functions.
+
+10/13/98
+
+-- gg - Massive minor changes to the code to eradicate some (quite accurate)
+	warning messages from Borland C++ sent by Mundi King <kingmundi@yahoo.com>
+
+-- gg - utils.h/utils.c: CAP() is now a function instead of macro to eliminate a
+	"statement with no effect" warning when not using the return value.
+
+-- gg - utils.c: int_to_short(): Sneak around the Microsoft Visual C++ warnings
+	if there is no other way to avoid it.
+
+-- gg - comm.c: Socket errors beyond our control are flagged as a WARNING in the
+	same manner as bugs in the code are flagged SYSERR.
+
+-- gg - shop.h/shop.c: Fixed the bug causing 'keeper' in the shop structure to
+	be an int.
+
+-- gg - db.c/db.h: More int/sh_int cleanups with int_to_short(). Including changes
+	to zone_data and top_of_zone_table.
+
+-- gg - Even more Microsoft Visual C++ warning fixes.  Warnings sent in by
+	OmnousMan@aol.com and Sean Daley <sdaley@bbnplanet.com>.
+
+-- gg - castle.c: Major cleanup of appearance.
+
+-- gg - cnf/configure.in, cnf/aclocal.m4, configure: New directives to check for
+	'struct in_addr' and an unsafe crypt() function with only 10 characters.
+
+-- gg - structs.h: Code to check for an unsafe password length of 10.
+	sysdep.h: Code to accommodate systems with no 'struct in_addr'
+
+10/16/98
+
+-- gg - comm.c: nonblock(): Use 'unsigned long' for Windows ioctlsocket().
+
+-- gg - comm.c: open_log(): Use "easy" method for GNU C and MetroWerks (no fdopen).
+
+-- gg - db.c: More int_to_short() for MSVC.
+	magic.c: Some variable fixups for warnings, mob_vnum and obj_vnum;
+
+-- gg - objsave.c: Crash_delete_file(): s/unlink/remove/
+
+-- gg - comm.c: Also check for WSAEINTR as Andrew Helm <ashe@iglou.com> suggests.
+
+-- gg - sysdep.h: Mundi King <kingmundi@yahoo.com> gave me some #pragma's to
+	disable warnings in Borland C++, how quaint.  Also had to give an isascii()
+	macro for MetroWerks since they couldn't add one line to their headers.
+	Also took the opportunity to clean up the "Who are we?" error message into
+	something a bit more descript.
+
+10/21/98
+
+-- gg - db.c, config.c: Load GREETINGS from a file instead of config.c.
+	See lib/text/greetings.
+
+-- gg - castle.c: Fixed a few short int warnings.
+
+-- gg - utils.c: prune_crlf(): Fixes up GREETINGS to look right.
+
+10/23/98
+
+-- gg - Thanks to Francis Hotchkiss <fhotch@buffnet.net> for testing the
+	FreeBSD configure changes.  (The test does work.)
+
+-- gg - lib/text/greetings: Saw "Hans Henrik Staerfeldt" with a hyphen between
+	the "Hans" and "Henrik" as set by his e-mail account so I've changed
+	the login accordingly.
+
+10/27/98
+
+-- gg - act.wizard.c, class.c, limits.c: Changed advance_level() to not
+	print the advancement message so the calling functions can do so
+	without spamming the system logs and online wizards.
+
+-- gg - act.informative.c: look_at_target(): "look 2.obj_with_extra_desc"
+	bug fixed.
+
+-- gg - comm.c: close_socket(): Andrey Fidrya <andrey@ALEX-UA.COM> pointed
+	out we could have a player special called on a mobile.
+
+-- gg - act.wizard.c: do_purge(): mudlog() required a GET_INVIS_LEV check.
+
+-- gg - act.comm.c: do_tell(): Only allow immortals to "tell" to a mobile
+	to prevent player abuses.
+
+-- gg - act.item.c: Multi-give/drop/donate/junk/put/get.
+
+10/28/98
+
+-- gg - alias.c, db.c: Fix a couple '%d' warnings, hopefully.
+
+-- gg - modify.c: show_string(): Fix a warning on 64-bit platforms with
+	casting a pointer to an integer.
+
+-- gg - utils.h: Better IS_NPC check added, though still commented out
+	in favor of the old, faithful one.
+
+-- gg - act.item.c: do_drop(): Fixed a bug WRT junking objects.  'amount'
+	was re-used inadvertently.
+
+-- gg - doc/README.BORLAND: It's actually helpful now.
+
+-- gg - db.c: create_entry(), init_char(): Need to check for replacing an
+	old character in the player table.
+
+11/2/98
+
+-- gg - comm.c: get_max_players(): "random guess" was missing a ;
+	From: Josh McBeth <tiberius@ac.net>
+
+-- gg - limits.c: Del <caminturn@EARTHLINK.NET> pointed out that I
+	forgot to make sure someone levelled before printing message. :)
+
+11/9/98
+
+-- gg - db.c: Duh, get_id_by_name() doesn't return player table array
+	index, so now get_ptable_by_name does.
+
+11/15/98
+
+-- gg - objsave.c: update_obj_file(): Don't update empty names.
+
+11/22/98
+
+-- gg - class.c: do_start(): Don't need to set_title() the person because
+	they have already had it done by init_char().  Found by
+	"Andrey Fidrya" <andrey@alex-ua.com>
+
+11/23/98 -- Hereby proclaimed Rick Glover <magik@thegrid.net> bug report day.
+         -- All of this day's bug fixes are from him.
+
+-- gg - spell_parser.c: mag_objectmagic(): Remove superfluous '!= NULL'
+	from action description check on suggestion.
+
+-- gg - act.informative.c: list_obj_to_char(): We don't initialize a variable
+	on the declaration line but do it on the next line down.  I'm glad
+	I'm not the only picky person around here. :)
+
+-- gg - act.informative.c: do_score(): Redundant IS_NPC() checks removed.
+
+-- gg - act.item.c: get_check_money(): We had bad grammar.
+
+-- gg - act.item.c: do_drop(): Mixed up 'amount' and 'multi' in a sprintf()
+	during the multiple object changes.
+
+-- gg - Massive act() -> send_to_char() search and replace.
+
+-- gg - act.offensive.c: do_backstab(): WAIT_STATE() added.
+
+-- gg - act.wizard.c: do_show(): 'player' updated to use "buf + strlen(buf)".
+
+-- gg - boards.c: He also pointed out a 'board.h' typo.
+
+-- gg - He also noticed 'r_*_start_room' used 'sh_int' which prompted me
+	to search and replace many other instances of 'sh_int' misuse too.
+
+-- gg - db.c: index_boot(): He found a redundant 'break' after 'exit()'.
+
+-- gg - magic.c: mag_areas(): Didn't pass 'level' variable handed to us
+	to mag_damage().
+
+-- gg - magic.c: mag_points(): Variables compressed to same line.
+
+-- gg - db.h: LIB_OBJS removed, it wasn't used.
+
+11/24/98
+
+-- gg - db.c, act.informative.c: Removed 'extern spells[]'. Thanks to RG.
+
+-- gg - modify.c: do_skillset(): Spacing fixed when skills are skipped. From RG.
+
+-- gg - mobact.c: mobile_activity(): Charmed/blinded mobs can't help. From RG.
+
+-- gg - act.offensive.c: do_backstab(): Aware mobs aren't when asleep. From RG.
+
+-- gg - shop.c: evaluate_expression(): Remove isalpha() to allow '(' first.
+	shop.c: evaluate_operation(): &&/|| fixed to always pop both values.
+	Thanks to Lubos Lunak <l.lunak@email.cz> for finding these.
+
+12/1/98
+
+-- gg - ChangeLog: Ran it through ispell while avoiding gratuitous changes.
+
+12/2/98
+
+-- gg - utils.h: RG noted we had prototypes for {mana,hit,move}_limit but
+	removed the functions.
+
+-- gg - class.c: do_start(): We really do need the set_title() or newbies
+	start out with the level 0 title.
+
+12/10/98
+
+-- gg - utils.c, utils.h: {mana,hit,move}_limit() don't exist and ush_int
+	to int conversion in core_dump_real().
+
+-- gg - act.comm.c: do_page(): Extra \r\n removed from sprintf(), by RG.
+
+-- gg - act.social.c: fread_action(): is really local, by RG.
+
+-- gg - boards.c: Typo fixes and some spacing additions, by RG.
+
+-- gg - castle.c: Some act() -> send_to_char() where appropriate, by RG.
+	spec_procs.c: Ditto.
+
+-- gg - config.c: Some variables changed sh_int -> room_Xnum.
+
+-- gg - db.h: save_char() prototype sh_int fixes and LIB_OBJS removed.
+
+-- gg - house.c: More room_Xnum fixes, by RG I believe.
+
+-- gg - interpreter.c: More room_Xnum fixes.
+
+-- gg - mobact.c: mobile_activity(): Blind and charmed mobs shouldn't
+	be helping in attacks. By Rick Glover.
+
+12/15/98 - It's not a Y2k problem, I'll just write out 2000 afterwards. :P
+
+-- gg - act.item.c: Merged more act() -> send_to_char() fixes.  Also fixed
+	the '\n' in the wear list.  Lastly, revamped get_check_money() to
+	be plurally correct.
+
+-- gg - act.movement.c: has_boat(): Fixed return parenthesis.
+	do_doorcmd(): Removed extra \r\n.
+	do_stand(): More act() -> send_to_char() changes merged in from RG.
+
+-- gg - act.offensive.c: do_backstab(): Sleeping mobs aren't "aware," and
+	added delay to prevent abuse.
+	do_kick(): Use new function compute_armor_class().
+
+-- gg - act.other.c: do_quit(): RG suggested removal of 'save_room.' More
+	act() -> send_to_char() fixes in the code.
+
+-- gg - act.wizard.c: do_stat_character(): RG noted that dexterity isn't
+	factored into armor class, fixed.
+	do_show(): He also noted we need "buf + strlen(buf)" here.
+
+-- gg - db.c: sh_int/*_?num fixes.
+
+-- gg - fight.c: compute_armor_class(), compute_thaco(): New functions.
+	death_cry(): Use send_to_room instead of act() hackery.
+	hit(): Don't use weapon damage values if it isn't a weapon, from RG.
+	Also more act() -> send_to_char() fixes.
+
+-- gg - handler.c: act() -> send_to_char() fixes.
+
+-- gg - magic.c: mag_savingthrow(): Took idea for modifier value to be
+	added, from Edward J Glamkowski <eglamkowski@angelfire.com>.
+	Callers changed throughout.
+
+-- gg - modify.c: do_skillset(): Screen spacing of skills fixed on
+	suggestion by Rick Glover <magik@thegrid.net>.
+
+-- gg - objsave.c: Crash_save(): Reversed order of item saving to fix
+	bug that made auto equipment not work.  Also minor touchups.
+	Rent problem reported by Rick Glover.
+
+-- gg - shop.c: evaluate_operation(): Lubos Lunak <l.lunak@email.cz>
+	found that the stack was messed up by compiler short-circuiting.
+	Also changed isalpha() check to allow a ( first.
+
+-- gg - spell_parser.c: More act() -> send_to_char() fixes.
+
+-- gg - act.informative.c: act() -> send_to_char() fixes and some old
+	now-gone externs removed.
+	do_score(): Cleaned up unneeded IS_NPC() checks, by RG.
+
+-- gg - comm.c: Cleaned up buffer checking code.
+	write_to_output(): Moved strlen() to avoid wasted time.
+
+12/16/98
+
+-- gg - act.informative.c: do_diagnose(): Superfluous 'return' removed
+	as suggested by Rick Glover.
+
+1/8/99
+
+-- gg - act.other.c, config.c, graph.c, interpreter.c, interpreter.h:
+	TRACK_THROUGH_DOORS the #define has become 'track_through_doors'
+	the runtime changeable integer in config.c.  VALID_EDGE() also
+	went over the brink of readability and became a function.
+
+1/12/99
+
+-- gg - fight.c: Fixed up compute_armor_class() to not divide since only
+	one place cares about the internal value.
+
+1/13/99 - Wednesday
+
+-- gg - sysdep.h: Great, now winsock1/winsock2 conflict in Borland.  What
+	a pain. Jodi Goddard <jodig@netcom.ca> was the first to mail me
+	the correct definitions to test for it.
+
+1/15/99
+
+-- gg - fight.c: compute_armor_class() should add dex_app * 10 since the
+	old code divided first, then added the modifier.
+
+1/24/99
+
+-- gg - util/listrent.c, util/split.c: Rick Glover pointed out a few \n\r's.
+
+-- gg - castle.c: King Welmar's movements needed ASCII adjustments.
+
+1/25/99
+
+-- gg - handler.c: generic_find() needs to NULL the arguments _first_ in case
+	our argument only has a fill word.  Fixes crash reported by Rick
+	Glover that I couldn't originally reproduce.
+	act.item.c: do_get(), do_put(): Use one_argument() instead of half_chop
+	to allow for fill words.
+
+1/29/99
+
+-- gg - act.comm.c: Some more act() -> send_to_char() from Rick Glover.
+
+2/2/99
+
+-- gg - Got rid of int_to_short() in favor of a #pragma to disable the warning.
+
+2/16/99
+
+-- gg - First batch of Rick Glover bug reports.
+	Makefile.in
+		OBJFILES and CXREF_FILES sorted, alias.o moved alphabetically.
+	act.informative.c
+		do_gen_ps(): Added log() for unhandled case.
+	act.item.c
+		do_pour(): Removed superfluous 'return;' at end.
+	act.movement.c
+		Bitvectorized NEED_xxx #define's to be more obvious.
+		do_leave(): Use OUTSIDE().
+		do_wake(): Use AWAKE().
+	act.other.c
+		do_steal(): Use two_arguments().
+		do_wimpy(): Removed superfluous 'return;'.
+	act.wizard.c
+		perform_set(): Prevent only freezing self, not thawing self.
+	class.c
+		level_exp(): Log the bad level in the report.
+	comm.c
+		'extern' variables extricated from the global variables.
+	shop.c, shop.h
+		'producing' is now an obj_vnum.
+	spells.h
+		TAR_xxx defines bitvectorized instead of numbers.
+
+3/4/99
+
+-- gg - comm.c, structs.h, utils.h: PjD noticed that repeatedly reconnecting
+	to a MUD would cause the wait state counter to be reset.  Thus it
+	has been merged with the mob counter.
+
+-- gg - act.other.c: do_split(): Fixes from Christian Loth to not lose
+	money and fix the accounting among a group.  Untested but looks ok.
+
+-- gg - spell_parser.c: say_spell(): King Mundi proposed fix so that the
+	MUD doesn't go into infinite spastic loop upon unknown substring.
+
+-- gg - objsave.c: Crash_load(): "Andrey Fidrya" <andrey@alex-ua.com> sent
+	in a fix for potentially empty rent files.
+
+-- gg - Usual batch of Rick Glover reports:
+	structs.h
+		room_data: 'zone' should be zone_rnum.
+		index_data 'vnum' should be a 'sh_int' type.
+	act.item.c
+		'the $o' changed to '$p' for better clarity.
+	act.wizard.c
+		do_force: Mobs are now immortal subordinate.
+		do_set: height/weight; "sex" set type is much less
+			complicated with search_block now.
+	constants.c
+		Lowercased genders[] for do_set to work ok.
+	comm.c
+		make_prompt: buffer length fixed to track
+			MAX_PROMPT_LENGTH changes.
+	db.c
+		read_mobile: Should have WARNING tag on log() message,
+			because while not a SYSERR, it is sort of bad.
+	handler.c
+		affected_by_spell: Fixed up comment.
+	objsave.c
+		gen_receptionist: HSHH() for "she"
+	interpreter.c
+		Remove AFF_GROUP flag in addition to PLR_WRITING, etc.
+
+-- gg - class.c: levels(): Sean Daley <sdaley@bbnplanet.com> noticed
+	I forgot _every_ 'break;' in the switch() block. :)
+
+3/5/99
+
+-- gg - Desmond Daignault <Desmond_Daignault@amrcorp.com> sent in a
+	fixing up get_char_room_vis and get_char_vis like I wanted,
+	to be consistent with get_player_vis. The old function still
+	exists, it's just not used except by get_char_vis.
+
+3/10/99
+
+-- gg - Rick Glover found some old CRIMEOK references in magic.c

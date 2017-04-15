@@ -70,21 +70,23 @@
 extern struct ban_list_element *ban_list;
 extern int num_invalid;
 extern char *GREETINGS;
-extern const char circlemud_version[];
+extern const char *circlemud_version;
 extern int circle_restrict;
 extern int mini_mud;
 extern int no_rent_check;
 extern FILE *player_fl;
-extern int DFLT_PORT;
-extern char *DFLT_DIR;
-extern char *DFLT_IP;
-extern char *LOGNAME;
+extern ush_int DFLT_PORT;
+extern const char *DFLT_DIR;
+extern const char *DFLT_IP;
+extern const char *LOGNAME;
 extern int MAX_PLAYERS;
+extern int nameserver_is_slow;	/* see config.c */
+extern int auto_save;		/* see config.c */
+extern int autosave_time;	/* see config.c */
 
 extern struct room_data *world;	/* In db.c */
-extern int top_of_world;	/* In db.c */
 extern struct time_info_data time_info;		/* In db.c */
-extern char help[];
+extern char *help;
 
 /* local globals */
 struct descriptor_data *descriptor_list = NULL;		/* master desc list */
@@ -98,9 +100,6 @@ int no_specials = 0;		/* Suppress ass. of special routines */
 int max_players = 0;		/* max descriptors available */
 int tics = 0;			/* for extern checkpointing */
 int scheck = 0;			/* for syntax checking mode */
-extern int nameserver_is_slow;	/* see config.c */
-extern int auto_save;		/* see config.c */
-extern int autosave_time;	/* see config.c */
 struct timeval null_time;	/* zero-valued time structure */
 FILE *logfile = NULL;		/* Where to send the log messages. */
 
@@ -116,16 +115,16 @@ void echo_off(struct descriptor_data *d);
 void echo_on(struct descriptor_data *d);
 void sanity_check(void);
 int get_from_q(struct txt_q *queue, char *dest, int *aliased);
-void init_game(int port);
+void init_game(ush_int port);
 void signal_setup(void);
 void game_loop(int mother_desc);
-int init_socket(int port);
+int init_socket(ush_int port);
 int new_descriptor(int s);
 int get_max_players(void);
 int process_output(struct descriptor_data *t);
 int process_input(struct descriptor_data *t);
-struct timeval *timediff(struct timeval a, struct timeval b);
-struct timeval *timeadd(struct timeval a, struct timeval b);
+void timediff(struct timeval *diff, struct timeval *a, struct timeval *b);
+void timeadd(struct timeval *sum, struct timeval *a, struct timeval *b);
 void flush_queues(struct descriptor_data *d);
 void nonblock(socket_t s);
 int perform_subst(struct descriptor_data *t, char *orig, char *subst);
@@ -137,6 +136,8 @@ void heartbeat(int pulse);
 struct in_addr *get_bind_addr(void);
 int parse_ip(const char *addr, struct in_addr *inaddr);
 int set_sendbuf(socket_t s);
+void setup_log(const char *filename, int fd);
+int open_logfile(const char *filename, FILE *stderr_fp);
 #if defined(POSIX)
 sigfunc *my_signal(int signo, sigfunc * func);
 #endif
@@ -146,7 +147,6 @@ void reboot_wizlists(void);
 void boot_world(void);
 void affect_update(void);	/* In spells.c */
 void mobile_activity(void);
-void string_add(struct descriptor_data *d, char *str);
 void perform_violence(void);
 void show_string(struct descriptor_data *d, char *input);
 int isbanned(char *hostname);
@@ -170,8 +170,11 @@ void weather_and_time(int mode);
 
 #if defined(CIRCLE_WINDOWS) || defined(CIRCLE_MACINTOSH)
 
-/* Windows doesn't have gettimeofday, so we'll simulate it. */
-/* The Mac doesn't have gettimeofday either. */
+/*
+ * Windows doesn't have gettimeofday, so we'll simulate it.
+ * The Mac doesn't have gettimeofday either.
+ * Borland C++ warns: "Undefined structure 'timezone'"
+ */
 void gettimeofday(struct timeval *t, struct timezone *dummy)
 {
 #if defined(CIRCLE_WINDOWS)
@@ -187,15 +190,20 @@ void gettimeofday(struct timeval *t, struct timezone *dummy)
 
 #endif	/* CIRCLE_WINDOWS || CIRCLE_MACINTOSH */
 
+#define plant_magic(x)	do { (x)[sizeof(x) - 1] = MAGIC_NUMBER; } while (0)
+#define test_magic(x)	((x)[sizeof(x) - 1])
+
 int main(int argc, char **argv)
 {
-  int port;
+  ush_int port;
   int pos = 1;
-  char *dir;
+  const char *dir;
 
   /* Initialize these to check for overruns later. */
-  buf[MAX_STRING_LENGTH - 1] = buf1[MAX_STRING_LENGTH - 1] = MAGIC_NUMBER;
-  buf2[MAX_STRING_LENGTH - 1] = arg[MAX_STRING_LENGTH - 1] = MAGIC_NUMBER;
+  plant_magic(buf);
+  plant_magic(buf1);
+  plant_magic(buf2);
+  plant_magic(arg);
 
 #ifdef CIRCLE_MACINTOSH
   /*
@@ -210,58 +218,65 @@ int main(int argc, char **argv)
   port = DFLT_PORT;
   dir = DFLT_DIR;
 
-  /*
-   * It would be nice to make this a command line option but the parser uses
-   * the log() function, maybe later. -gg
-   */
-  if (LOGNAME == NULL || *LOGNAME == '\0')
-    logfile = fdopen(STDERR_FILENO, "w");
-  else
-    logfile = freopen(LOGNAME, "w", stderr);
-
-  if (logfile == NULL) {
-      printf("error opening log file %s: %s\n",
-		LOGNAME ? LOGNAME : "stderr", strerror(errno));
-      exit(1);
-  }
-
-  log(circlemud_version);
-
   while ((pos < argc) && (*(argv[pos]) == '-')) {
     switch (*(argv[pos] + 1)) {
+    case 'o':
+      if (*(argv[pos] + 2))
+	LOGNAME = argv[pos] + 2;
+      else if (++pos < argc)
+	LOGNAME = argv[pos];
+      else {
+	puts("SYSERR: File name to log to expected after option -o.");
+	exit(1);
+      }
+      break;
     case 'd':
       if (*(argv[pos] + 2))
 	dir = argv[pos] + 2;
       else if (++pos < argc)
 	dir = argv[pos];
       else {
-	log("SYSERR: Directory arg expected after option -d.");
+	puts("SYSERR: Directory arg expected after option -d.");
 	exit(1);
       }
       break;
     case 'm':
       mini_mud = 1;
       no_rent_check = 1;
-      log("Running in minimized mode & with no rent check.");
+      puts("Running in minimized mode & with no rent check.");
       break;
     case 'c':
       scheck = 1;
-      log("Syntax check mode enabled.");
+      puts("Syntax check mode enabled.");
       break;
     case 'q':
       no_rent_check = 1;
-      log("Quick boot mode -- rent check supressed.");
+      puts("Quick boot mode -- rent check supressed.");
       break;
     case 'r':
       circle_restrict = 1;
-      log("Restricting game -- no new players allowed.");
+      puts("Restricting game -- no new players allowed.");
       break;
     case 's':
       no_specials = 1;
-      log("Suppressing assignment of special routines.");
+      puts("Suppressing assignment of special routines.");
       break;
+    case 'h':
+      /* From: Anil Mahajan <amahajan@proxicom.com> */
+      printf("Usage: %s [-c] [-m] [-q] [-r] [-s] [-d pathname] [port #]\n"
+              "  -c             Enable syntax check mode.\n"
+              "  -d <directory> Specify library directory (defaults to 'lib').\n"
+              "  -h             Print this command line argument help.\n"
+              "  -m             Start in mini-MUD mode.\n"
+	      "  -o <file>      Write log to <file> instead of stderr.\n"
+              "  -q             Quick boot (doesn't scan rent for object limits)\n"
+              "  -r             Restrict MUD -- no new players allowed.\n"
+              "  -s             Suppress special procedure assignments.\n",
+		 argv[0]
+      );
+      exit(0);
     default:
-      log("SYSERR: Unknown option -%c in argument string.", *(argv[pos] + 1));
+      printf("SYSERR: Unknown option -%c in argument string.\n", *(argv[pos] + 1));
       break;
     }
     pos++;
@@ -269,13 +284,22 @@ int main(int argc, char **argv)
 
   if (pos < argc) {
     if (!isdigit(*argv[pos])) {
-      log("Usage: %s [-c] [-m] [-q] [-r] [-s] [-d pathname] [port #]\n", argv[0]);
+      printf("Usage: %s [-c] [-m] [-q] [-r] [-s] [-d pathname] [port #]\n", argv[0]);
       exit(1);
     } else if ((port = atoi(argv[pos])) <= 1024) {
-      log("SYSERR: Illegal port number %d.", port);
+      printf("SYSERR: Illegal port number %d.\n", port);
       exit(1);
     }
   }
+
+  /* All arguments have been parsed, try to open log file. */
+  setup_log(LOGNAME, STDERR_FILENO);
+
+  /*
+   * Moved here to distinguish command line options and to show up
+   * in the log if stderr is redirected to a file.
+   */
+  log(circlemud_version);
 
   if (chdir(dir) < 0) {
     perror("SYSERR: Fatal error changing to data directory");
@@ -291,13 +315,13 @@ int main(int argc, char **argv)
     init_game(port);
   }
 
-  return 0;
+  return (0);
 }
 
 
 
 /* Init sockets, run game, and cleanup sockets */
-void init_game(int port)
+void init_game(ush_int port)
 {
   int mother_desc;
 
@@ -314,7 +338,7 @@ void init_game(int port)
 
   boot_db();
 
-#ifdef CIRCLE_UNIX
+#if defined(CIRCLE_UNIX) || defined(CIRCLE_MACINTOSH)
   log("Signal trapping.");
   signal_setup();
 #endif
@@ -325,6 +349,8 @@ void init_game(int port)
   log("Entering game loop.");
 
   game_loop(mother_desc);
+
+  Crash_save_all();
 
   log("Closing all sockets.");
   while (descriptor_list)
@@ -346,7 +372,7 @@ void init_game(int port)
  * init_socket sets up the mother descriptor - creates the socket, sets
  * its options up, binds it, and listens.
  */
-int init_socket(int port)
+int init_socket(ush_int port)
 {
   int s, opt;
   struct sockaddr_in sa;
@@ -401,16 +427,19 @@ int init_socket(int port)
 
   set_sendbuf(s);
 
-#if defined(SO_LINGER)
+/*
+ * The GUSI sockets library is derived from BSD, so it defines
+ * SO_LINGER, even though setsockopt() is unimplimented.
+ *	(from Dean Takemori <dean@UHHEPH.PHYS.HAWAII.EDU>)
+ */
+#if defined(SO_LINGER) && !defined(CIRCLE_MACINTOSH)
   {
     struct linger ld;
 
     ld.l_onoff = 0;
     ld.l_linger = 0;
-    if (setsockopt(s, SOL_SOCKET, SO_LINGER, (char *) &ld, sizeof(ld)) < 0) {
-      perror("SYSERR: setsockopt LINGER");
-      exit(1);
-    }
+    if (setsockopt(s, SOL_SOCKET, SO_LINGER, (char *) &ld, sizeof(ld)) < 0)
+      perror("SYSERR: setsockopt SO_LINGER");	/* Not fatal I suppose. */
   }
 #endif
 
@@ -428,14 +457,14 @@ int init_socket(int port)
   }
   nonblock(s);
   listen(s, 5);
-  return s;
+  return (s);
 }
 
 
 int get_max_players(void)
 {
 #ifndef CIRCLE_UNIX
-  return MAX_PLAYERS;
+  return (MAX_PLAYERS);
 #else
 
   int max_descs = 0;
@@ -497,7 +526,7 @@ int get_max_players(void)
   }
 #else
   /* if everything has failed, we'll just take a guess */
-  method = "random guess"
+  method = "random guess";
   max_descs = MAX_PLAYERS + NUM_RESERVED_DESCS;
 #endif
 
@@ -509,8 +538,8 @@ int get_max_players(void)
 	    max_descs, method);
     exit(1);
   }
-  log("Setting player limit to %d using %s.", max_descs, method);
-  return max_descs;
+  log("   Setting player limit to %d using %s.", max_descs, method);
+  return (max_descs);
 #endif /* CIRCLE_UNIX */
 }
 
@@ -526,7 +555,8 @@ int get_max_players(void)
 void game_loop(int mother_desc)
 {
   fd_set input_set, output_set, exc_set, null_set;
-  struct timeval last_time, before_sleep, opt_time, process_time, now, timeout;
+  struct timeval last_time, opt_time, process_time, temp_time;
+  struct timeval before_sleep, now, timeout;
   char comm[MAX_INPUT_LENGTH];
   struct descriptor_data *d, *next_d;
   int pulse = 0, missed_pulses, maxdesc, aliased;
@@ -552,7 +582,7 @@ void game_loop(int mother_desc)
 	if (errno == EINTR)
 	  log("Waking up to process signal.");
 	else
-	  perror("Select coma");
+	  perror("SYSERR: Select coma");
       } else
 	log("New connection.  Waking up.");
       gettimeofday(&last_time, (struct timezone *) 0);
@@ -582,7 +612,7 @@ void game_loop(int mother_desc)
      */
     
     gettimeofday(&before_sleep, (struct timezone *) 0); /* current time */
-    process_time = *timediff(before_sleep, last_time);
+    timediff(&process_time, &before_sleep, &last_time);
 
     /*
      * If we were asleep for more than one pass, count missed pulses and sleep
@@ -598,11 +628,12 @@ void game_loop(int mother_desc)
     }
 
     /* Calculate the time we should wake up */
-    last_time = *timeadd(before_sleep, *timediff(opt_time, process_time));
+    timediff(&temp_time, &opt_time, &process_time);
+    timeadd(&last_time, &before_sleep, &temp_time);
 
     /* Now keep sleeping until that time has come */
     gettimeofday(&now, (struct timezone *) 0);
-    timeout = *timediff(last_time, now);
+    timediff(&timeout, &last_time, &now);
 
     /* Go to sleep */
     do {
@@ -617,12 +648,12 @@ void game_loop(int mother_desc)
       }
 #endif /* CIRCLE_WINDOWS */
       gettimeofday(&now, (struct timezone *) 0);
-      timeout = *timediff(last_time, now);
+      timediff(&timeout, &last_time, &now);
     } while (timeout.tv_usec || timeout.tv_sec);
 
     /* Poll (without blocking) for new input, output, and exceptions */
     if (select(maxdesc + 1, &input_set, &output_set, &exc_set, &null_time) < 0) {
-      perror("Select poll");
+      perror("SYSERR: Select poll");
       return;
     }
     /* If there are new connections waiting, accept them. */
@@ -651,10 +682,18 @@ void game_loop(int mother_desc)
     for (d = descriptor_list; d; d = next_d) {
       next_d = d->next;
 
-      /* Not combined to retain --(d->wait) behavior. -gg 2/20/98 */
-      d->wait -= (d->wait > 0);
-      if (d->wait > 0)
-        continue;
+      /*
+       * Not combined to retain --(d->wait) behavior. -gg 2/20/98
+       * If no wait state, no subtraction.  If there is a wait
+       * state then 1 is subtracted. Therefore we don't go less
+       * than 0 ever and don't require an 'if' bracket. -gg 2/27/99
+       */
+      if (d->character) {
+        GET_WAIT_STATE(d->character) -= (GET_WAIT_STATE(d->character) > 0);
+
+        if (GET_WAIT_STATE(d->character))
+          continue;
+      }
 
       if (!get_from_q(&d->input, comm, &aliased))
         continue;
@@ -669,8 +708,8 @@ void game_loop(int mother_desc)
 	  GET_WAS_IN(d->character) = NOWHERE;
 	  act("$n has returned.", TRUE, d->character, 0, 0, TO_ROOM);
 	}
+        GET_WAIT_STATE(d->character) = 1;
       }
-      d->wait = 1;
       d->has_prompt = 0;
 
       if (d->str)		/* Writing boards, mail, etc. */
@@ -799,54 +838,42 @@ void heartbeat(int pulse)
 /*
  * code to return the time difference between a and b (a-b).
  * always returns a nonnegative value (floors at 0).
- *
- * Fixed the 'aggregate return' warning.  Now it's not thread-safe.
- *	-gg 6/18/98
  */
-struct timeval *timediff(struct timeval a, struct timeval b)
+void timediff(struct timeval *rslt, struct timeval *a, struct timeval *b)
 {
-  static struct timeval rslt;
-
-  if (a.tv_sec < b.tv_sec)
-    return &null_time;
-  else if (a.tv_sec == b.tv_sec) {
-    if (a.tv_usec < b.tv_usec)
-      return &null_time;
+  if (a->tv_sec < b->tv_sec)
+    *rslt = null_time;
+  else if (a->tv_sec == b->tv_sec) {
+    if (a->tv_usec < b->tv_usec)
+      *rslt = null_time;
     else {
-      rslt.tv_sec = 0;
-      rslt.tv_usec = a.tv_usec - b.tv_usec;
-      return &rslt;
+      rslt->tv_sec = 0;
+      rslt->tv_usec = a->tv_usec - b->tv_usec;
     }
   } else {			/* a->tv_sec > b->tv_sec */
-    rslt.tv_sec = a.tv_sec - b.tv_sec;
-    if (a.tv_usec < b.tv_usec) {
-      rslt.tv_usec = a.tv_usec + 1000000 - b.tv_usec;
-      rslt.tv_sec--;
+    rslt->tv_sec = a->tv_sec - b->tv_sec;
+    if (a->tv_usec < b->tv_usec) {
+      rslt->tv_usec = a->tv_usec + 1000000 - b->tv_usec;
+      rslt->tv_sec--;
     } else
-      rslt.tv_usec = a.tv_usec - b.tv_usec;
-    return &rslt;
+      rslt->tv_usec = a->tv_usec - b->tv_usec;
   }
 }
 
 /*
- * add 2 timevals
+ * Add 2 time values.
  *
- * Fixed the 'aggregate return' warning. Not thread-safe now.
- *	-gg 6/18/98
+ * Patch sent by "d. hall" <dhall@OOI.NET> to fix 'static' usage.
  */
-struct timeval *timeadd(struct timeval a, struct timeval b)
+void timeadd(struct timeval *rslt, struct timeval *a, struct timeval *b)
 {
-  static struct timeval rslt;
+  rslt->tv_sec = a->tv_sec + b->tv_sec;
+  rslt->tv_usec = a->tv_usec + b->tv_usec;
 
-  rslt.tv_sec = a.tv_sec + b.tv_sec;
-  rslt.tv_usec = a.tv_usec + b.tv_usec;
-
-  while (rslt.tv_usec >= 1000000) {
-    rslt.tv_usec -= 1000000;
-    rslt.tv_sec++;
+  while (rslt->tv_usec >= 1000000) {
+    rslt->tv_usec -= 1000000;
+    rslt->tv_sec++;
   }
-
-  return &rslt;
 }
 
 
@@ -864,7 +891,7 @@ void record_usage(void)
   log("nusage: %-3d sockets connected, %-3d sockets playing",
 	  sockets_connected, sockets_playing);
 
-#ifdef RUSAGE
+#ifdef RUSAGE	/* Not RUSAGE_SELF because it doesn't guarantee prototype. */
   {
     struct rusage ru;
 
@@ -916,7 +943,7 @@ void echo_on(struct descriptor_data *d)
 
 char *make_prompt(struct descriptor_data *d)
 {
-  static char prompt[256];
+  static char prompt[MAX_PROMPT_LENGTH + 1];
 
   /* Note, prompt is truncated at MAX_PROMPT_LENGTH chars (structs.h )*/
 
@@ -927,19 +954,20 @@ char *make_prompt(struct descriptor_data *d)
 	    "\r[ Return to continue, (q)uit, (r)efresh, (b)ack, or page number (%d/%d) ]",
 	    d->showstr_page, d->showstr_count);
   } else if (STATE(d) == CON_PLAYING && !IS_NPC(d->character)) {
+    int count = 0;
     *prompt = '\0';
 
     if (GET_INVIS_LEV(d->character))
-      sprintf(prompt, "i%d ", GET_INVIS_LEV(d->character));
+      count += sprintf(prompt + count, "i%d ", GET_INVIS_LEV(d->character));
 
     if (PRF_FLAGGED(d->character, PRF_DISPHP))
-      sprintf(prompt + strlen(prompt), "%dH ", GET_HIT(d->character));
+      count += sprintf(prompt + count, "%dH ", GET_HIT(d->character));
 
     if (PRF_FLAGGED(d->character, PRF_DISPMANA))
-      sprintf(prompt + strlen(prompt), "%dM ", GET_MANA(d->character));
+      count += sprintf(prompt + count, "%dM ", GET_MANA(d->character));
 
     if (PRF_FLAGGED(d->character, PRF_DISPMOVE))
-      sprintf(prompt + strlen(prompt), "%dV ", GET_MOVE(d->character));
+      count += sprintf(prompt + count, "%dV ", GET_MOVE(d->character));
 
     strcat(prompt, "> ");
   } else if (STATE(d) == CON_PLAYING && IS_NPC(d->character))
@@ -947,7 +975,7 @@ char *make_prompt(struct descriptor_data *d)
   else
     *prompt = '\0';
 
-  return prompt;
+  return (prompt);
 }
 
 
@@ -956,8 +984,7 @@ void write_to_q(const char *txt, struct txt_q *queue, int aliased)
   struct txt_block *newt;
 
   CREATE(newt, struct txt_block, 1);
-  CREATE(newt->text, char, strlen(txt) + 1);
-  strcpy(newt->text, txt);
+  newt->text = str_dup(txt);
   newt->aliased = aliased;
 
   /* queue empty? */
@@ -979,7 +1006,7 @@ int get_from_q(struct txt_q *queue, char *dest, int *aliased)
 
   /* queue empty? */
   if (!queue->head)
-    return 0;
+    return (0);
 
   tmp = queue->head;
   strcpy(dest, queue->head->text);
@@ -989,7 +1016,7 @@ int get_from_q(struct txt_q *queue, char *dest, int *aliased)
   free(tmp->text);
   free(tmp);
 
-  return 1;
+  return (1);
 }
 
 
@@ -1011,11 +1038,11 @@ void write_to_output(const char *txt, struct descriptor_data *t)
 {
   int size;
 
-  size = strlen(txt);
-
   /* if we're in the overflow state already, ignore this new output */
   if (t->bufptr < 0)
     return;
+
+  size = strlen(txt);
 
   /* if we have enough space, just write to buffer and that's it! */
   if (t->bufspace >= size) {
@@ -1095,7 +1122,7 @@ struct in_addr *get_bind_addr()
   else
     log("Binding only to IP address %s", inet_ntoa(bind_addr));
 
-  return &bind_addr;
+  return (&bind_addr);
 }
 
 #ifdef HAVE_INET_ATON
@@ -1106,7 +1133,7 @@ struct in_addr *get_bind_addr()
  */
 int parse_ip(const char *addr, struct in_addr *inaddr)
 {
-  return inet_aton(addr, inaddr);
+  return (inet_aton(addr, inaddr));
 }
 
 #elif HAVE_INET_ADDR
@@ -1117,10 +1144,10 @@ int parse_ip(const char *addr, struct in_addr *inaddr)
   long ip;
 
   if ((ip = inet_addr(addr)) == -1) {
-    return 0;
+    return (0);
   } else {
     inaddr->s_addr = (unsigned long) ip;
-    return 1;
+    return (1);
   }
 }
 
@@ -1131,7 +1158,7 @@ int parse_ip(const char *addr, struct in_addr *inaddr)
 {
   log("SYSERR: warning: you're trying to set DFLT_IP but your system has no\n"
       "functions to parse IP addresses (how bizarre!)");
-  return 0;
+  return (0);
 }
 
 #endif /* INET_ATON and INET_ADDR */
@@ -1146,26 +1173,25 @@ int set_sendbuf(socket_t s)
 
   if (setsockopt(s, SOL_SOCKET, SO_SNDBUF, (char *) &opt, sizeof(opt)) < 0) {
     perror("SYSERR: setsockopt SNDBUF");
-    return -1;
+    return (-1);
   }
 
 #if 0
   if (setsockopt(s, SOL_SOCKET, SO_RCVBUF, (char *) &opt, sizeof(opt)) < 0) {
     perror("SYSERR: setsockopt RCVBUF");
-    return -1;
+    return (-1);
   }
 #endif
 
 #endif
 
-  return 0;
+  return (0);
 }
 
 int new_descriptor(int s)
 {
   socket_t desc;
-  int sockets_connected = 0;
-  unsigned int i;
+  int sockets_connected = 0, i;
   static int last_desc = 0;	/* last descriptor number */
   struct descriptor_data *newd;
   struct sockaddr_in peer;
@@ -1174,8 +1200,8 @@ int new_descriptor(int s)
   /* accept the new connection */
   i = sizeof(peer);
   if ((desc = accept(s, (struct sockaddr *) &peer, &i)) == INVALID_SOCKET) {
-    perror("accept");
-    return -1;
+    perror("SYSERR: accept");
+    return (-1);
   }
   /* keep it from blocking */
   nonblock(desc);
@@ -1183,7 +1209,7 @@ int new_descriptor(int s)
   /* set the send buffer size */
   if (set_sendbuf(desc) < 0) {
     CLOSE_SOCKET(desc);
-    return 0;
+    return (0);
   }
 
   /* make sure we have room for it */
@@ -1193,7 +1219,7 @@ int new_descriptor(int s)
   if (sockets_connected >= max_players) {
     write_to_descriptor(desc, "Sorry, CircleMUD is full right now... please try again later!\r\n");
     CLOSE_SOCKET(desc);
-    return 0;
+    return (0);
   }
   /* create a new descriptor */
   CREATE(newd, struct descriptor_data, 1);
@@ -1205,7 +1231,7 @@ int new_descriptor(int s)
 
     /* resolution failed */
     if (!nameserver_is_slow)
-      perror("gethostbyaddr");
+      perror("SYSERR: gethostbyaddr");
 
     /* find the numeric site address */
     strncpy(newd->host, inet_ntoa(peer.sin_addr), HOST_LENGTH);
@@ -1221,10 +1247,14 @@ int new_descriptor(int s)
     sprintf(buf2, "Connection attempt denied from [%s]", newd->host);
     mudlog(buf2, CMP, LVL_GOD, TRUE);
     free(newd);
-    return 0;
+    return (0);
   }
 #if 0
-  /* Log new connections - probably unnecessary, but you may want it */
+  /*
+   * Log new connections - probably unnecessary, but you may want it.
+   * Note that your immortals may wonder if they see a connection from
+   * your site, but you are wizinvis upon login.
+   */
   sprintf(buf2, "New connection from [%s]", newd->host);
   mudlog(buf2, CMP, LVL_GOD, FALSE);
 #endif
@@ -1233,7 +1263,6 @@ int new_descriptor(int s)
   newd->descriptor = desc;
   newd->connected = CON_GET_NAME;
   newd->idle_tics = 0;
-  newd->wait = 1;
   newd->output = newd->small_outbuf;
   newd->bufspace = SMALL_BUFSIZE - 1;
   newd->login_time = time(0);
@@ -1258,7 +1287,7 @@ int new_descriptor(int s)
 
   SEND_TO_Q(GREETINGS, newd);
 
-  return 0;
+  return (0);
 }
 
 
@@ -1319,7 +1348,7 @@ int process_output(struct descriptor_data *t)
   t->bufptr = 0;
   *(t->output) = '\0';
 
-  return result;
+  return (result);
 }
 
 
@@ -1350,23 +1379,23 @@ ssize_t perform_socket_write(socket_t desc, const char *txt, size_t length)
 
   if (result > 0) {
     /* Write was sucessful */
-    return result;
+    return (result);
   }
 
   if (result == 0) {
     /* This should never happen! */
     log("SYSERR: Huh??  write() returned 0???  Please report this!");
-    return -1;
+    return (-1);
   }
 
   /* result < 0: An error was encountered. */
 
   /* Transient error? */
-  if (WSAGetLastError() == WSAEWOULDBLOCK)
-    return 0;
+  if (WSAGetLastError() == WSAEWOULDBLOCK || WSAGetLastError() == WSAEINTR)
+    return (0);
 
   /* Must be a fatal error. */
-  return -1;
+  return (-1);
 }
 
 #else
@@ -1384,13 +1413,13 @@ ssize_t perform_socket_write(socket_t desc, const char *txt, size_t length)
 
   if (result > 0) {
     /* Write was successful. */
-    return result;
+    return (result);
   }
 
   if (result == 0) {
     /* This should never happen! */
     log("SYSERR: Huh??  write() returned 0???  Please report this!");
-    return -1;
+    return (-1);
   }
 
   /*
@@ -1401,21 +1430,21 @@ ssize_t perform_socket_write(socket_t desc, const char *txt, size_t length)
 
 #ifdef EAGAIN		/* POSIX */
   if (errno == EAGAIN)
-    return 0;
+    return (0);
 #endif
 
 #ifdef EWOULDBLOCK	/* BSD */
   if (errno == EWOULDBLOCK)
-    return 0;
+    return (0);
 #endif
 
 #ifdef EDEADLK		/* Macintosh */
   if (errno == EDEADLK)
-    return 0;
+    return (0);
 #endif
 
   /* Looks like the error was fatal.  Too bad. */
-  return -1;
+  return (-1);
 }
 
 #endif /* CIRCLE_WINDOWS */
@@ -1443,23 +1472,23 @@ int write_to_descriptor(socket_t desc, const char *txt)
 
     if (bytes_written < 0) {
       /* Fatal error.  Disconnect the player. */
-      perror("Write to socket");
-      return -1;
+      perror("SYSERR: Write to socket");
+      return (-1);
     } else if (bytes_written == 0) {
       /*
        * Temporary failure -- socket buffer full.  For now we'll just
        * cut off the player, but eventually we'll stuff the unsent
        * text into a buffer and retry the write later.  JE 30 June 98.
        */
-      log("process_output: socket write would block, about to close");
-      return -1;
+      log("WARNING: write_to_descriptor: socket write would block, about to close");
+      return (-1);
     } else {
       txt += bytes_written;
       total -= bytes_written;
     }
   }
 
-  return 0;
+  return (0);
 }
 
 
@@ -1481,12 +1510,12 @@ ssize_t perform_socket_read(socket_t desc, char *read_point, size_t space_left)
 
   /* Read was successful. */
   if (ret > 0)
-    return ret;
+    return (ret);
 
   /* read() returned 0, meaning we got an EOF. */
   if (ret == 0) {
-    log("EOF on socket read (connection broken by peer)");
-    return -1;
+    log("WARNING: EOF on socket read (connection broken by peer)");
+    return (-1);
   }
 
   /*
@@ -1494,35 +1523,38 @@ ssize_t perform_socket_read(socket_t desc, char *read_point, size_t space_left)
    */
 
 #if defined(CIRCLE_WINDOWS)	/* Windows */
-  if (WSAGetLastError() == WSAEWOULDBLOCK)
-    return 0;
+  if (WSAGetLastError() == WSAEWOULDBLOCK || WSAGetLastError() == WSAEINTR)
+    return (0);
 #else
 
 #ifdef EINTR		/* Interrupted system call - various platforms */
   if (errno == EINTR)
-    return 0;
+    return (0);
 #endif
 
 #ifdef EAGAIN		/* POSIX */
   if (errno == EAGAIN)
-    return 0;
+    return (0);
 #endif
 
 #ifdef EWOULDBLOCK	/* BSD */
   if (errno == EWOULDBLOCK)
-    return 0;
+    return (0);
 #endif /* EWOULDBLOCK */
 
 #ifdef EDEADLK		/* Macintosh */
   if (errno == EDEADLK)
-    return 0;
+    return (0);
 #endif
 
 #endif /* CIRCLE_WINDOWS */
 
-  /* We don't know what happened, cut them off. */
-  perror("process_input: about to lose connection");
-  return -1;
+  /*
+   * We don't know what happened, cut them off. This qualifies for
+   * a SYSERR because we have no idea what happened at this point.
+   */
+  perror("SYSERR: perform_socket_read: about to lose connection");
+  return (-1);
 }
 
 /*
@@ -1544,16 +1576,16 @@ int process_input(struct descriptor_data *t)
 
   do {
     if (space_left <= 0) {
-      log("process_input: about to close connection: input overflow");
-      return -1;
+      log("WARNING: process_input: about to close connection: input overflow");
+      return (-1);
     }
 
     bytes_read = perform_socket_read(t->descriptor, read_point, space_left);
 
     if (bytes_read < 0)	/* Error, disconnect them. */
-      return -1;
+      return (-1);
     else if (bytes_read == 0)	/* Just blocking, no problems. */
-      return 0;
+      return (0);
 
     /* at this point, we know we got some data from the read */
 
@@ -1583,7 +1615,7 @@ int process_input(struct descriptor_data *t)
   } while (0);
 
   if (nl_pos == NULL)
-    return 0;
+    return (0);
 #endif /* POSIX_NONBLOCK_BROKEN */
 
   /*
@@ -1622,7 +1654,7 @@ int process_input(struct descriptor_data *t)
 
       sprintf(buffer, "Line too long.  Truncated to:\r\n%s\r\n", tmp);
       if (write_to_descriptor(t->descriptor, buffer) < 0)
-	return -1;
+	return (-1);
     }
     if (t->snoop_by) {
       SEND_TO_Q("% ", t->snoop_by);
@@ -1643,6 +1675,7 @@ int process_input(struct descriptor_data *t)
 	if (t->history[cnt] && is_abbrev(commandln, t->history[cnt])) {
 	  strcpy(tmp, t->history[cnt]);
 	  strcpy(t->last_input, tmp);
+          SEND_TO_Q(tmp, t); SEND_TO_Q("\r\n", t);
 	  break;
 	}
         if (cnt == 0)	/* At top, loop to bottom. */
@@ -1680,7 +1713,7 @@ int process_input(struct descriptor_data *t)
     *(write_point++) = *(read_point++);
   *write_point = '\0';
 
-  return 1;
+  return (1);
 }
 
 
@@ -1704,7 +1737,7 @@ int perform_subst(struct descriptor_data *t, char *orig, char *subst)
   /* now find the second '^' */
   if (!(second = strchr(first, '^'))) {
     SEND_TO_Q("Invalid substitution.\r\n", t);
-    return 1;
+    return (1);
   }
   /* terminate "first" at the position of the '^' and make 'second' point
    * to the beginning of the second string */
@@ -1713,7 +1746,7 @@ int perform_subst(struct descriptor_data *t, char *orig, char *subst)
   /* now, see if the contents of the first string appear in the original */
   if (!(strpos = strstr(orig, first))) {
     SEND_TO_Q("Invalid substitution.\r\n", t);
-    return 1;
+    return (1);
   }
   /* now, we construct the new string for output. */
 
@@ -1733,7 +1766,7 @@ int perform_subst(struct descriptor_data *t, char *orig, char *subst)
   newsub[MAX_INPUT_LENGTH - 1] = '\0';
   strcpy(subst, newsub);
 
-  return 0;
+  return (0);
 }
 
 
@@ -1766,10 +1799,12 @@ void close_socket(struct descriptor_data *d)
       free(d->str);
     }
     if (STATE(d) == CON_PLAYING || STATE(d) == CON_DISCONNECT) {
-      save_char(d->character, NOWHERE);
       act("$n has lost $s link.", TRUE, d->character, 0, 0, TO_ROOM);
-      sprintf(buf, "Closing link to: %s.", GET_NAME(d->character));
-      mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
+      if (!IS_NPC(d->character)) {
+	save_char(d->character, NOWHERE);
+	sprintf(buf, "Closing link to: %s.", GET_NAME(d->character));
+	mudlog(buf, NRM, MAX(LVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE);
+      }
       d->character->desc = NULL;
     } else {
       sprintf(buf, "Losing player: %s.",
@@ -1836,9 +1871,8 @@ void check_idle_passwords(void)
 
 void nonblock(socket_t s)
 {
-  long val;
+  unsigned long val = 1;
 
-  val = 1;
   ioctlsocket(s, FIONBIO, &val);
 }
 
@@ -1930,6 +1964,7 @@ RETSIGTYPE hupsig(int sig)
 				 * substituted */
 }
 
+#endif	/* CIRCLE_UNIX */
 
 /*
  * This is an implementation of signal() using sigaction() for portability.
@@ -1960,9 +1995,9 @@ sigfunc *my_signal(int signo, sigfunc * func)
 #endif
 
   if (sigaction(signo, &act, &oact) < 0)
-    return SIG_ERR;
+    return (SIG_ERR);
 
-  return oact.sa_handler;
+  return (oact.sa_handler);
 }
 #endif				/* POSIX */
 
@@ -2003,7 +2038,6 @@ void signal_setup(void)
   my_signal(SIGALRM, SIG_IGN);
 }
 
-#endif	/* CIRCLE_UNIX */
 #endif	/* CIRCLE_UNIX || CIRCLE_MACINTOSH */
 
 /* ****************************************************************
@@ -2048,7 +2082,7 @@ void send_to_outdoor(const char *messg)
 
 
 
-void send_to_room(const char *messg, int room)
+void send_to_room(const char *messg, room_rnum room)
 {
   struct char_data *i;
 
@@ -2070,7 +2104,7 @@ const char *ACTNULL = "<NULL>";
 
 /* higher-level communication: the act() function */
 void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj,
-		const void *vict_obj, struct char_data *to)
+		const void *vict_obj, const struct char_data *to)
 {
   const char *i = NULL;
   char lbuf[MAX_STRING_LENGTH], *buf;
@@ -2084,49 +2118,49 @@ void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj,
 	i = PERS(ch, to);
 	break;
       case 'N':
-	CHECK_NULL(vict_obj, PERS((struct char_data *) vict_obj, to));
+	CHECK_NULL(vict_obj, PERS((const struct char_data *) vict_obj, to));
 	break;
       case 'm':
 	i = HMHR(ch);
 	break;
       case 'M':
-	CHECK_NULL(vict_obj, HMHR((struct char_data *) vict_obj));
+	CHECK_NULL(vict_obj, HMHR((const struct char_data *) vict_obj));
 	break;
       case 's':
 	i = HSHR(ch);
 	break;
       case 'S':
-	CHECK_NULL(vict_obj, HSHR((struct char_data *) vict_obj));
+	CHECK_NULL(vict_obj, HSHR((const struct char_data *) vict_obj));
 	break;
       case 'e':
 	i = HSSH(ch);
 	break;
       case 'E':
-	CHECK_NULL(vict_obj, HSSH((struct char_data *) vict_obj));
+	CHECK_NULL(vict_obj, HSSH((const struct char_data *) vict_obj));
 	break;
       case 'o':
 	CHECK_NULL(obj, OBJN(obj, to));
 	break;
       case 'O':
-	CHECK_NULL(vict_obj, OBJN((struct obj_data *) vict_obj, to));
+	CHECK_NULL(vict_obj, OBJN((const struct obj_data *) vict_obj, to));
 	break;
       case 'p':
 	CHECK_NULL(obj, OBJS(obj, to));
 	break;
       case 'P':
-	CHECK_NULL(vict_obj, OBJS((struct obj_data *) vict_obj, to));
+	CHECK_NULL(vict_obj, OBJS((const struct obj_data *) vict_obj, to));
 	break;
       case 'a':
 	CHECK_NULL(obj, SANA(obj));
 	break;
       case 'A':
-	CHECK_NULL(vict_obj, SANA((struct obj_data *) vict_obj));
+	CHECK_NULL(vict_obj, SANA((const struct obj_data *) vict_obj));
 	break;
       case 'T':
-	CHECK_NULL(vict_obj, (char *) vict_obj);
+	CHECK_NULL(vict_obj, (const char *) vict_obj);
 	break;
       case 'F':
-	CHECK_NULL(vict_obj, fname((char *) vict_obj));
+	CHECK_NULL(vict_obj, fname((const char *) vict_obj));
 	break;
       case '$':
 	i = "$";
@@ -2152,12 +2186,12 @@ void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj,
 
 
 #define SENDOK(ch)	((ch)->desc && (to_sleeping || AWAKE(ch)) && \
-			!PLR_FLAGGED((ch), PLR_WRITING))
+			(IS_NPC(ch) || !PLR_FLAGGED((ch), PLR_WRITING)))
 
 void act(const char *str, int hide_invisible, struct char_data *ch,
 	 struct obj_data *obj, const void *vict_obj, int type)
 {
-  struct char_data *to = NULL;
+  const struct char_data *to;
   int to_sleeping;
 
   if (!str || !*str)
@@ -2185,7 +2219,7 @@ void act(const char *str, int hide_invisible, struct char_data *ch,
   }
 
   if (type == TO_VICT) {
-    if ((to = (struct char_data *) vict_obj) && SENDOK(to))
+    if ((to = (const struct char_data *) vict_obj) != NULL && SENDOK(to))
       perform_act(str, ch, obj, vict_obj, to);
     return;
   }
@@ -2220,7 +2254,6 @@ void act(const char *str, int hide_invisible, struct char_data *ch,
  * if someone uses the buffer as a non-terminated character array but that
  * is not likely. -gg
  */
-#define offset	(MAX_STRING_LENGTH - 1)
 void sanity_check(void)
 {
   int ok = TRUE;
@@ -2228,21 +2261,91 @@ void sanity_check(void)
   /*
    * If any line is false, 'ok' will become false also.
    */
-  ok &= (buf[offset] == MAGIC_NUMBER || buf[offset] == '\0');
-  ok &= (buf1[offset] == MAGIC_NUMBER || buf1[offset] == '\0');
-  ok &= (buf2[offset] == MAGIC_NUMBER || buf2[offset] == '\0');
-  ok &= (arg[offset] == MAGIC_NUMBER || arg[offset] == '\0');
+  ok &= (test_magic(buf)  == MAGIC_NUMBER || test_magic(buf)  == '\0');
+  ok &= (test_magic(buf1) == MAGIC_NUMBER || test_magic(buf1) == '\0');
+  ok &= (test_magic(buf2) == MAGIC_NUMBER || test_magic(buf2) == '\0');
+  ok &= (test_magic(arg)  == MAGIC_NUMBER || test_magic(arg)  == '\0');
 
   /*
    * This isn't exactly the safest thing to do (referencing known bad memory)
    * but we're doomed to crash eventually, might as well try to get something
    * useful before we go down. -gg
+   * However, lets fix the problem so we don't spam the logs. -gg 11/24/98
    */
-  if (!ok)
+  if (!ok) {
     log("SYSERR: *** Buffer overflow! ***\n"
 	"buf: %s\nbuf1: %s\nbuf2: %s\narg: %s", buf, buf1, buf2, arg);
+
+    plant_magic(buf);
+    plant_magic(buf1);
+    plant_magic(buf2);
+    plant_magic(arg);
+  }
+
 #if 0
   log("Statistics: buf=%d buf1=%d buf2=%d arg=%d",
 	strlen(buf), strlen(buf1), strlen(buf2), strlen(arg));
 #endif
+}
+
+/* Prefer the file over the descriptor. */
+void setup_log(const char *filename, int fd)
+{
+  FILE *s_fp;
+
+#if defined(__MWERKS__) || defined(__GNUC__)
+  s_fp = stderr;
+#else
+  if ((s_fp = fdopen(STDERR_FILENO, "w")) == NULL) {
+    puts("SYSERR: Error opening stderr, trying stdout.");
+
+    if ((s_fp = fdopen(STDOUT_FILENO, "w")) == NULL) {
+      puts("SYSERR: Error opening stdout, trying a file.");
+
+      /* If we don't have a file, try a default. */
+      if (filename == NULL || *filename == '\0')
+        filename = "log/syslog";
+    }
+  }
+#endif
+
+  if (filename == NULL || *filename == '\0') {
+    /* No filename, set us up with the descriptor we just opened. */
+    logfile = s_fp;
+    puts("Using file descriptor for logging.");
+    return;
+  }
+
+  /* We honor the default filename first. */
+  if (open_logfile(filename, s_fp))
+    return;
+
+  /* Well, that failed but we want it logged to a file so try a default. */
+  if (open_logfile("log/syslog", s_fp))
+    return;
+
+  /* Ok, one last shot at a file. */
+  if (open_logfile("syslog", s_fp))
+    return;
+
+  /* Erp, that didn't work either, just die. */
+  puts("SYSERR: Couldn't open anything to log to, giving up.");
+  exit(1);
+}
+
+int open_logfile(const char *filename, FILE *stderr_fp)
+{
+  if (stderr_fp)	/* freopen() the descriptor. */
+    logfile = freopen(filename, "w", stderr_fp);
+  else
+    logfile = fopen(filename, "w");
+
+  if (logfile) {
+    printf("Using log file '%s'%s.\n",
+		filename, stderr_fp ? " with redirection" : "");
+    return TRUE;
+  }
+
+  printf("SYSERR: Error opening file '%s': %s\n", filename, strerror(errno));
+  return FALSE;
 }

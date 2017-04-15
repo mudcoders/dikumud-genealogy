@@ -346,6 +346,7 @@ Valid files are:
 
   background (/mud_dir/lib/text/background)
   credits    (/mud_dir/lib/text/credits)
+  greetings  (/mud_dir/lib/text/greetings)
   handbook   (/mud_dir/lib/text/handbook)
   help       (/mud_dir/lib/text/help)
   immlist    (/mud_dir/lib/text/immlist)

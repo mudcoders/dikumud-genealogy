@@ -17,7 +17,17 @@
  * You are supposed to compare this with the macro CIRCLEMUD_VERSION()
  * in utils.h.  See there for usage.
  */
-#define _CIRCLEMUD	0x03000D /* Major/Minor/Patchlevel - MMmmPP */
+#define _CIRCLEMUD	0x03000F /* Major/Minor/Patchlevel - MMmmPP */
+
+/*
+ * If you want equipment to be automatically equipped to the same place
+ * it was when players rented, set the define below to 1.  Please note
+ * that this will require erasing or converting all of your rent files.
+ * And of course, you have to recompile everything.  We need this feature
+ * for CircleMUD 3.0 to be complete but we refuse to break binary file
+ * compatibility.
+ */
+#define USE_AUTOEQ	0	/* TRUE/FALSE aren't defined yet. */
 
 /* preamble *************************************************************/
 
@@ -77,8 +87,8 @@
 #define SECT_MOUNTAIN        5		   /* On a mountain		*/
 #define SECT_WATER_SWIM      6		   /* Swimmable water		*/
 #define SECT_WATER_NOSWIM    7		   /* Water - need a boat	*/
-#define SECT_UNDERWATER	     8		   /* Underwater		*/
-#define SECT_FLYING	     9		   /* Wheee!			*/
+#define SECT_FLYING	     8		   /* Wheee!			*/
+#define SECT_UNDERWATER	     9		   /* Underwater		*/
 
 
 /* char and mob-related defines *****************************************/
@@ -448,15 +458,6 @@
 /* Max amount of output that can be buffered */
 #define LARGE_BUFSIZE	   (MAX_SOCK_BUF - GARBAGE_SPACE - MAX_PROMPT_LENGTH)
 
-/*
- * --- WARNING ---
- * If you are using a BSD-derived UNIX with MD5 passwords, you _must_
- * make MAX_PWD_LENGTH larger.  A length of 20 should be good. If
- * you leave it at the default value of 10, then any character with
- * a name longer than about 5 characters will be able to log in with
- * _any_ password.  This has not (yet) been changed to ensure pfile
- * compatibility for those unaffected.
- */
 #define HISTORY_SIZE		5	/* Keep last 5 commands. */
 #define MAX_STRING_LENGTH	8192
 #define MAX_INPUT_LENGTH	256	/* Max length per *line* of input */
@@ -472,6 +473,19 @@
 #define MAX_AFFECT		32  /* Used in char_file_u *DO*NOT*CHANGE* */
 #define MAX_OBJ_AFFECT		6 /* Used in obj_file_elem *DO*NOT*CHANGE* */
 
+/*
+ * A MAX_PWD_LENGTH of 10 will cause BSD-derived systems with MD5 passwords
+ * and GNU libc 2 passwords to be truncated.  On BSD this will enable anyone
+ * with a name longer than 5 character to log in with any password.  If you
+ * have such a system, it is suggested you change the limit to 20.
+ *
+ * Please note that this will erase your player files.  If you are not
+ * prepared to do so, simply erase these lines but heed the above warning.
+ */
+#if defined(HAVE_UNSAFE_CRYPT) && MAX_PWD_LENGTH == 10
+#error You need to increase MAX_PWD_LENGTH to at least 20.
+#error See the comment near these errors for more explanation.
+#endif
 
 /**********************************************************************
 * Structures                                                          *
@@ -486,18 +500,29 @@ typedef unsigned short int	ush_int;
 typedef char			bool;
 #endif
 
-#ifndef CIRCLE_WINDOWS
+#if !defined(CIRCLE_WINDOWS) || defined(LCC_WIN32)	/* Hm, sysdep.h? */
 typedef char			byte;
 #endif
 
 typedef sh_int	room_vnum;	/* A room's vnum type */
 typedef sh_int	obj_vnum;	/* An object's vnum type */
 typedef sh_int	mob_vnum;	/* A mob's vnum type */
+typedef sh_int	zone_vnum;	/* A virtual zone number.	*/
 
 typedef sh_int	room_rnum;	/* A room's real (internal) number type */
 typedef sh_int	obj_rnum;	/* An object's real (internal) num type */
 typedef sh_int	mob_rnum;	/* A mobile's real (internal) num type */
+typedef sh_int	zone_rnum;	/* A zone's real (array index) number.	*/
 
+/*
+ * Bitvector type for 32 bit unsigned long bitvectors.
+ * 'unsigned long long' will give you at least 64 bits if you have GCC.
+ *
+ * Since we don't want to break the pfiles, you'll have to search throughout
+ * the code for "bitvector_t" and change them yourself if you'd like this
+ * extra flexibility.
+ */
+typedef unsigned long int	bitvector_t;
 
 /* Extra description: used in objects, mobiles, and rooms */
 struct extra_descr_data {
@@ -514,13 +539,13 @@ struct extra_descr_data {
 struct obj_flag_data {
    int	value[4];	/* Values of the item (see list)    */
    byte type_flag;	/* Type of item			    */
-   int	wear_flags;	/* Where you can wear it	    */
-   int	extra_flags;	/* If it hums, glows, etc.	    */
+   int /*bitvector_t*/	wear_flags;	/* Where you can wear it	    */
+   int /*bitvector_t*/	extra_flags;	/* If it hums, glows, etc.	    */
    int	weight;		/* Weigt what else                  */
    int	cost;		/* Value when sold (gp.)            */
    int	cost_per_day;	/* Cost to keep pr. real day        */
    int	timer;		/* Timer for object                 */
-   long	bitvector;	/* To set chars bits                */
+   long /*bitvector_t*/	bitvector;	/* To set chars bits                */
 };
 
 
@@ -562,11 +587,14 @@ struct obj_data {
 struct obj_file_elem {
    obj_vnum item_number;
 
+#if USE_AUTOEQ
+   sh_int location;
+#endif
    int	value[4];
-   int	extra_flags;
+   int /*bitvector_t*/	extra_flags;
    int	weight;
    int	timer;
-   long	bitvector;
+   long /*bitvector_t*/	bitvector;
    struct obj_affected_type affected[MAX_OBJ_AFFECT];
 };
 
@@ -599,7 +627,7 @@ struct room_direction_data {
 
    char	*keyword;		/* for open/close			*/
 
-   sh_int exit_info;		/* Exit info				*/
+   sh_int /*bitvector_t*/ exit_info;	/* Exit info			*/
    obj_vnum key;		/* Key's number (-1 for no key)		*/
    room_rnum to_room;		/* Where direction leads (NOWHERE)	*/
 };
@@ -608,13 +636,13 @@ struct room_direction_data {
 /* ================== Memory Structure for room ======================= */
 struct room_data {
    room_vnum number;		/* Rooms number	(vnum)		      */
-   sh_int zone;                 /* Room zone (for resetting)          */
+   zone_rnum zone;              /* Room zone (for resetting)          */
    int	sector_type;            /* sector type (move/hide)            */
    char	*name;                  /* Rooms name 'You are ...'           */
    char	*description;           /* Shown when entered                 */
    struct extra_descr_data *ex_description; /* for examine/look       */
    struct room_direction_data *dir_option[NUM_OF_DIRS]; /* Directions */
-   int room_flags;		/* DEATH,DARK ... etc                 */
+   int /*bitvector_t*/ room_flags;		/* DEATH,DARK ... etc */
 
    byte light;                  /* Number of lightsources in room     */
    SPECIAL(*func);
@@ -686,7 +714,7 @@ struct char_ability_data {
 /* Char's points.  Used in char_file_u *DO*NOT*CHANGE* */
 struct char_point_data {
    sh_int mana;
-   sh_int max_mana;     /* Max move for PC/NPC			   */
+   sh_int max_mana;     /* Max mana for PC/NPC			   */
    sh_int hit;
    sh_int max_hit;      /* Max hit for PC/NPC                      */
    sh_int move;
@@ -713,9 +741,10 @@ struct char_point_data {
 struct char_special_data_saved {
    int	alignment;		/* +-1000 for alignments                */
    long	idnum;			/* player's idnum; -1 for mobiles	*/
-   long	act;			/* act flag for NPC's; player flag for PC's */
+   long /*bitvector_t*/ act;	/* act flag for NPC's; player flag for PC's */
 
-   long	affected_by;		/* Bitvector for spells/skills affected by */
+   long /*bitvector_t*/	affected_by;
+				/* Bitvector for spells/skills affected by */
    sh_int apply_saving_throw[5]; /* Saving throw (Bonuses)		*/
 };
 
@@ -751,7 +780,7 @@ struct player_special_data_saved {
    byte freeze_level;		/* Level of god who froze char, if any	*/
    sh_int invis_level;		/* level of invisibility		*/
    room_vnum load_room;		/* Which room to place char in		*/
-   long	pref;			/* preference flags for PC's.		*/
+   long /*bitvector_t*/	pref;	/* preference flags for PC's.		*/
    ubyte bad_pws;		/* number of bad password attemps	*/
    sbyte conditions[3];         /* Drunk, full, thirsty			*/
 
@@ -794,7 +823,7 @@ struct player_special_data {
 
    char	*poofin;		/* Description on arrival of a god.     */
    char	*poofout;		/* Description upon a god's exit.       */
-   struct alias *aliases;	/* Character's aliases			*/
+   struct alias_data *aliases;	/* Character's aliases			*/
    long last_tell;		/* idnum of last tell from		*/
    void *last_olc_targ;		/* olc control				*/
    int last_olc_mode;		/* olc control				*/
@@ -809,7 +838,6 @@ struct mob_special_data {
    memory_rec *memory;	    /* List of attackers to remember	       */
    byte damnodice;          /* The number of damage dice's	       */
    byte damsizedice;        /* The size of the damage dice's           */
-   int wait_state;	    /* Wait state for bashed mobs	       */
 };
 
 
@@ -819,7 +847,7 @@ struct affected_type {
    sh_int duration;      /* For how long its effects will last      */
    sbyte modifier;       /* This is added to apropriate ability     */
    byte location;        /* Tells which ability to change(APPLY_XXX)*/
-   long	bitvector;       /* Tells which bits to set (AFF_XXX)       */
+   long /*bitvector_t*/	bitvector; /* Tells which bits to set (AFF_XXX) */
 
    struct affected_type *next;
 };
@@ -838,6 +866,7 @@ struct char_data {
    sh_int nr;                            /* Mob's rnum			  */
    room_rnum in_room;                    /* Location (real room number)	  */
    room_rnum was_in_room;		 /* location for linkdead people  */
+   int wait;				 /* wait for how many loops	  */
 
    struct char_player_data player;       /* Normal data                   */
    struct char_ability_data real_abils;	 /* Abilities without modifiers   */
@@ -915,7 +944,6 @@ struct descriptor_data {
    byte	bad_pws;		/* number of bad pw attemps this login	*/
    byte idle_tics;		/* tics idle at password prompt		*/
    int	connected;		/* mode of 'connectedness'		*/
-   int	wait;			/* wait for how many loops		*/
    int	desc_num;		/* unique num assigned to desc		*/
    time_t login_time;		/* when the person connected		*/
    char *showstr_head;		/* for keeping track of an internal str	*/
@@ -1027,7 +1055,7 @@ struct title_type {
 
 /* element in monster and object index-tables   */
 struct index_data {
-   int	vnum;		/* virtual number of this mob/obj		*/
+   sh_int	vnum;	/* virtual number of this mob/obj		*/
    int	number;		/* number of existing units of this mob/obj	*/
    SPECIAL(*func);
 };

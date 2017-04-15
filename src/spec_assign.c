@@ -16,7 +16,6 @@
 #include "interpreter.h"
 #include "utils.h"
 
-extern int top_of_world;
 extern int dts_are_dumps;
 extern int mini_mud;
 extern struct room_data *world;
@@ -46,15 +45,15 @@ void assign_kings_castle(void);
 void assign_mobiles(void);
 void assign_objects(void);
 void assign_rooms(void);
-void ASSIGNROOM(int room, SPECIAL(fname));
-void ASSIGNMOB(int mob, SPECIAL(fname));
-void ASSIGNOBJ(int obj, SPECIAL(fname));
+void ASSIGNROOM(room_vnum room, SPECIAL(fname));
+void ASSIGNMOB(mob_vnum mob, SPECIAL(fname));
+void ASSIGNOBJ(obj_vnum obj, SPECIAL(fname));
 
 /* functions to perform assignments */
 
-void ASSIGNMOB(int mob, SPECIAL(fname))
+void ASSIGNMOB(mob_vnum mob, SPECIAL(fname))
 {
-  int rnum;
+  mob_rnum rnum;
 
   if ((rnum = real_mobile(mob)) >= 0)
     mob_index[rnum].func = fname;
@@ -62,18 +61,22 @@ void ASSIGNMOB(int mob, SPECIAL(fname))
     log("SYSERR: Attempt to assign spec to non-existant mob #%d", mob);
 }
 
-void ASSIGNOBJ(int obj, SPECIAL(fname))
+void ASSIGNOBJ(obj_vnum obj, SPECIAL(fname))
 {
-  if (real_object(obj) >= 0)
-    obj_index[real_object(obj)].func = fname;
+  obj_rnum rnum;
+
+  if ((rnum = real_object(obj)) >= 0)
+    obj_index[rnum].func = fname;
   else if (!mini_mud)
     log("SYSERR: Attempt to assign spec to non-existant obj #%d", obj);
 }
 
-void ASSIGNROOM(int room, SPECIAL(fname))
+void ASSIGNROOM(room_vnum room, SPECIAL(fname))
 {
-  if (real_room(room) >= 0)
-    world[real_room(room)].func = fname;
+  room_rnum rnum;
+
+  if ((rnum = real_room(room)) >= 0)
+    world[rnum].func = fname;
   else if (!mini_mud)
     log("SYSERR: Attempt to assign spec to non-existant room #%d", room);
 }
@@ -292,7 +295,7 @@ void assign_objects(void)
 /* assign special procedures to rooms */
 void assign_rooms(void)
 {
-  int i;
+  room_rnum i;
 
   ASSIGNROOM(3030, dump);
   ASSIGNROOM(3031, pet_shops);

@@ -1,4 +1,4 @@
-Getting To Know Your lib Directory
+Getting To Know Your "lib" Directory
 ------------------------------------------------------------------------------
 
 etc/	Files maintained by the game which you should never touch while
@@ -8,6 +8,9 @@ house/	Crash-save files for player houses.
 
 misc/	Miscellaneous database files such as fight messages, invalid names,
 	and socials.
+
+plralias/ All of your player's aliases are stored here in the same
+	three letter encoding scheme as the plrobjs/ directory.
 
 plrobjs/  The hierarchy containing player object files (i.e. crash files,
 	rent files, cryo-rent files, etc.).

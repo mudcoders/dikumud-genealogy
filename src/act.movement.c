@@ -27,7 +27,6 @@ extern struct room_data *world;
 extern struct char_data *character_list;
 extern struct descriptor_data *descriptor_list;
 extern struct index_data *obj_index;
-extern int top_of_world;
 
 /* external functs */
 void add_follower(struct char_data *ch, struct char_data *leader);
@@ -38,8 +37,9 @@ int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg);
 /* local functions */
 int has_boat(struct char_data *ch);
 int find_door(struct char_data *ch, const char *type, char *dir, const char *cmdname);
-int has_key(struct char_data *ch, int key);
-void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd);int ok_pick(struct char_data *ch, int keynum, int pickproof, int scmd);
+int has_key(struct char_data *ch, obj_vnum key);
+void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd);
+int ok_pick(struct char_data *ch, obj_vnum keynum, int pickproof, int scmd);
 ACMD(do_gen_door);
 ACMD(do_enter);
 ACMD(do_leave);
@@ -58,22 +58,26 @@ int has_boat(struct char_data *ch)
   int i;
 /*
   if (ROOM_IDENTITY(ch->in_room) == DEAD_SEA)
-    return 1;
+    return (1);
 */
+
+  if (GET_LEVEL(ch) > LVL_IMMORT)
+    return (1);
+
   if (AFF_FLAGGED(ch, AFF_WATERWALK))
-    return 1;
+    return (1);
 
   /* non-wearable boats in inventory will do it */
   for (obj = ch->carrying; obj; obj = obj->next_content)
     if (GET_OBJ_TYPE(obj) == ITEM_BOAT && (find_eq_pos(ch, obj, NULL) < 0))
-      return 1;
+      return (1);
 
   /* and any boat you're wearing will do it too */
   for (i = 0; i < NUM_WEARS; i++)
     if (GET_EQ(ch, i) && GET_OBJ_TYPE(GET_EQ(ch, i)) == ITEM_BOAT)
-      return 1;
+      return (1);
 
-  return 0;
+  return (0);
 }
 
   
@@ -88,20 +92,21 @@ int has_boat(struct char_data *ch)
  */
 int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
 {
-  int was_in, need_movement;
+  room_rnum was_in;
+  int need_movement;
 
   /*
    * Check for special routines (North is 1 in command list, but 0 here) Note
    * -- only check if following; this avoids 'double spec-proc' bug
    */
   if (need_specials_check && special(ch, dir + 1, "")) /* XXX: Evaluate NULL */
-    return 0;
+    return (0);
 
   /* charmed? */
   if (AFF_FLAGGED(ch, AFF_CHARM) && ch->master && ch->in_room == ch->master->in_room) {
     send_to_char("The thought of leaving your master makes you weep.\r\n", ch);
     act("$n bursts into tears.", FALSE, ch, 0, 0, TO_ROOM);
-    return 0;
+    return (0);
   }
 
   /* if this room or the one we're going to needs a boat, check for one */
@@ -109,7 +114,7 @@ int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
       (SECT(EXIT(ch, dir)->to_room) == SECT_WATER_NOSWIM)) {
     if (!has_boat(ch)) {
       send_to_char("You need a boat to go there.\r\n", ch);
-      return 0;
+      return (0);
     }
   }
 
@@ -123,24 +128,24 @@ int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
     else
       send_to_char("You are too exhausted.\r\n", ch);
 
-    return 0;
+    return (0);
   }
   if (ROOM_FLAGGED(ch->in_room, ROOM_ATRIUM)) {
     if (!House_can_enter(ch, GET_ROOM_VNUM(EXIT(ch, dir)->to_room))) {
       send_to_char("That's private property -- no trespassing!\r\n", ch);
-      return 0;
+      return (0);
     }
   }
   if (ROOM_FLAGGED(EXIT(ch, dir)->to_room, ROOM_TUNNEL) &&
       num_pc_in_room(&(world[EXIT(ch, dir)->to_room])) > 1) {
     send_to_char("There isn't enough room there for more than one person!\r\n", ch);
-    return 0;
+    return (0);
   }
   /* Mortals and low level gods cannot enter greater god rooms. */
   if (ROOM_FLAGGED(EXIT(ch, dir)->to_room, ROOM_GODROOM) &&
 	GET_LEVEL(ch) < LVL_GRGOD) {
     send_to_char("You aren't godly enough to use that room!\r\n", ch);
-    return 0;
+    return (0);
   }
 
   /* Now we know we're allow to go into the room. */
@@ -165,19 +170,19 @@ int do_simple_move(struct char_data *ch, int dir, int need_specials_check)
     log_death_trap(ch);
     death_cry(ch);
     extract_char(ch);
-    return 0;
+    return (0);
   }
-  return 1;
+  return (1);
 }
 
 
 int perform_move(struct char_data *ch, int dir, int need_specials_check)
 {
-  int was_in;
+  room_rnum was_in;
   struct follow_type *k, *next;
 
   if (ch == NULL || dir < 0 || dir >= NUM_OF_DIRS || FIGHTING(ch))
-    return 0;
+    return (0);
   else if (!EXIT(ch, dir) || EXIT(ch, dir)->to_room == NOWHERE)
     send_to_char("Alas, you cannot go that way...\r\n", ch);
   else if (EXIT_FLAGGED(EXIT(ch, dir), EX_CLOSED)) {
@@ -192,7 +197,7 @@ int perform_move(struct char_data *ch, int dir, int need_specials_check)
 
     was_in = ch->in_room;
     if (!do_simple_move(ch, dir, need_specials_check))
-      return 0;
+      return (0);
 
     for (k = ch->followers; k; k = next) {
       next = k->next;
@@ -202,9 +207,9 @@ int perform_move(struct char_data *ch, int dir, int need_specials_check)
 	perform_move(k->follower, dir, 1);
       }
     }
-    return 1;
+    return (1);
   }
-  return 0;
+  return (0);
 }
 
 
@@ -226,64 +231,64 @@ int find_door(struct char_data *ch, const char *type, char *dir, const char *cmd
   if (*dir) {			/* a direction was specified */
     if ((door = search_block(dir, dirs, FALSE)) == -1) {	/* Partial Match */
       send_to_char("That's not a direction.\r\n", ch);
-      return -1;
+      return (-1);
     }
     if (EXIT(ch, door)) {	/* Braces added according to indent. -gg */
       if (EXIT(ch, door)->keyword) {
 	if (isname(type, EXIT(ch, door)->keyword))
-	  return door;
+	  return (door);
 	else {
 	  sprintf(buf2, "I see no %s there.\r\n", type);
 	  send_to_char(buf2, ch);
-	  return -1;
+	  return (-1);
         }
       } else
-	return door;
+	return (door);
     } else {
       sprintf(buf2, "I really don't see how you can %s anything there.\r\n", cmdname);
       send_to_char(buf2, ch);
-      return -1;
+      return (-1);
     }
   } else {			/* try to locate the keyword */
     if (!*type) {
       sprintf(buf2, "What is it you want to %s?\r\n", cmdname);
       send_to_char(buf2, ch);
-      return -1;
+      return (-1);
     }
     for (door = 0; door < NUM_OF_DIRS; door++)
       if (EXIT(ch, door))
 	if (EXIT(ch, door)->keyword)
 	  if (isname(type, EXIT(ch, door)->keyword))
-	    return door;
+	    return (door);
 
     sprintf(buf2, "There doesn't seem to be %s %s here.\r\n", AN(type), type);
     send_to_char(buf2, ch);
-    return -1;
+    return (-1);
   }
 }
 
 
-int has_key(struct char_data *ch, int key)
+int has_key(struct char_data *ch, obj_vnum key)
 {
   struct obj_data *o;
 
   for (o = ch->carrying; o; o = o->next_content)
     if (GET_OBJ_VNUM(o) == key)
-      return 1;
+      return (1);
 
   if (GET_EQ(ch, WEAR_HOLD))
     if (GET_OBJ_VNUM(GET_EQ(ch, WEAR_HOLD)) == key)
-      return 1;
+      return (1);
 
-  return 0;
+  return (0);
 }
 
 
 
-#define NEED_OPEN	1
-#define NEED_CLOSED	2
-#define NEED_UNLOCKED	4
-#define NEED_LOCKED	8
+#define NEED_OPEN	(1 << 0)
+#define NEED_CLOSED	(1 << 1)
+#define NEED_UNLOCKED	(1 << 2)
+#define NEED_LOCKED	(1 << 3)
 
 const char *cmd_door[] =
 {
@@ -319,7 +324,7 @@ void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd)
 
   sprintf(buf, "$n %ss ", cmd_door[scmd]);
   if (!obj && ((other_room = EXIT(ch, door)->to_room) != NOWHERE))
-    if ((back = world[other_room].dir_option[rev_dir[door]]))
+    if ((back = world[other_room].dir_option[rev_dir[door]]) != NULL)
       if (back->to_room != ch->in_room)
 	back = 0;
 
@@ -355,7 +360,7 @@ void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd)
 
   /* Notify the other room */
   if ((scmd == SCMD_OPEN || scmd == SCMD_CLOSE) && back) {
-    sprintf(buf, "The %s is %s%s from the other side.\r\n",
+    sprintf(buf, "The %s is %s%s from the other side.",
 	 (back->keyword ? fname(back->keyword) : "door"), cmd_door[scmd],
 	    (scmd == SCMD_CLOSE) ? "d" : "ed");
     if (world[EXIT(ch, door)->to_room].people) {
@@ -366,7 +371,7 @@ void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int scmd)
 }
 
 
-int ok_pick(struct char_data *ch, int keynum, int pickproof, int scmd)
+int ok_pick(struct char_data *ch, obj_vnum keynum, int pickproof, int scmd)
 {
   int percent;
 
@@ -410,7 +415,8 @@ int ok_pick(struct char_data *ch, int keynum, int pickproof, int scmd)
 
 ACMD(do_gen_door)
 {
-  int door = -1, keynum;
+  int door = -1;
+  obj_vnum keynum;
   char type[MAX_INPUT_LENGTH], dir[MAX_INPUT_LENGTH];
   struct obj_data *obj = NULL;
   struct char_data *victim = NULL;
@@ -490,7 +496,7 @@ ACMD(do_leave)
 {
   int door;
 
-  if (!ROOM_FLAGGED(ch->in_room, ROOM_INDOORS))
+  if (OUTSIDE(ch))
     send_to_char("You are outside.. where do you want to go?\r\n", ch);
   else {
     for (door = 0; door < NUM_OF_DIRS; door++)
@@ -510,27 +516,27 @@ ACMD(do_stand)
 {
   switch (GET_POS(ch)) {
   case POS_STANDING:
-    act("You are already standing.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You are already standing.\r\n", ch);
     break;
   case POS_SITTING:
-    act("You stand up.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You stand up.\r\n", ch);
     act("$n clambers to $s feet.", TRUE, ch, 0, 0, TO_ROOM);
-    GET_POS(ch) = POS_STANDING;
+    /* Will be sitting after a successful bash and may still be fighting. */
+    GET_POS(ch) = FIGHTING(ch) ? POS_FIGHTING : POS_STANDING;
     break;
   case POS_RESTING:
-    act("You stop resting, and stand up.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You stop resting, and stand up.\r\n", ch);
     act("$n stops resting, and clambers on $s feet.", TRUE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_STANDING;
     break;
   case POS_SLEEPING:
-    act("You have to wake up first!", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You have to wake up first!\r\n", ch);
     break;
   case POS_FIGHTING:
-    act("Do you not consider fighting as standing?", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("Do you not consider fighting as standing?\r\n", ch);
     break;
   default:
-    act("You stop floating around, and put your feet on the ground.",
-	FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You stop floating around, and put your feet on the ground.\r\n", ch);
     act("$n stops floating around, and puts $s feet on the ground.",
 	TRUE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_STANDING;
@@ -543,7 +549,7 @@ ACMD(do_sit)
 {
   switch (GET_POS(ch)) {
   case POS_STANDING:
-    act("You sit down.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You sit down.\r\n", ch);
     act("$n sits down.", FALSE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_SITTING;
     break;
@@ -551,18 +557,18 @@ ACMD(do_sit)
     send_to_char("You're sitting already.\r\n", ch);
     break;
   case POS_RESTING:
-    act("You stop resting, and sit up.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You stop resting, and sit up.\r\n", ch);
     act("$n stops resting.", TRUE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_SITTING;
     break;
   case POS_SLEEPING:
-    act("You have to wake up first.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You have to wake up first.\r\n", ch);
     break;
   case POS_FIGHTING:
-    act("Sit down while fighting? are you MAD?", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("Sit down while fighting? Are you MAD?\r\n", ch);
     break;
   default:
-    act("You stop floating around, and sit down.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You stop floating around, and sit down.\r\n", ch);
     act("$n stops floating around, and sits down.", TRUE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_SITTING;
     break;
@@ -574,27 +580,26 @@ ACMD(do_rest)
 {
   switch (GET_POS(ch)) {
   case POS_STANDING:
-    act("You sit down and rest your tired bones.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You sit down and rest your tired bones.\r\n", ch);
     act("$n sits down and rests.", TRUE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_RESTING;
     break;
   case POS_SITTING:
-    act("You rest your tired bones.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You rest your tired bones.\r\n", ch);
     act("$n rests.", TRUE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_RESTING;
     break;
   case POS_RESTING:
-    act("You are already resting.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You are already resting.\r\n", ch);
     break;
   case POS_SLEEPING:
-    act("You have to wake up first.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You have to wake up first.\r\n", ch);
     break;
   case POS_FIGHTING:
-    act("Rest while fighting?  Are you MAD?", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("Rest while fighting?  Are you MAD?\r\n", ch);
     break;
   default:
-    act("You stop floating around, and stop to rest your tired bones.",
-	FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You stop floating around, and stop to rest your tired bones.\r\n", ch);
     act("$n stops floating around, and rests.", FALSE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_SITTING;
     break;
@@ -619,8 +624,7 @@ ACMD(do_sleep)
     send_to_char("Sleep while fighting?  Are you MAD?\r\n", ch);
     break;
   default:
-    act("You stop floating around, and lie down to sleep.",
-	FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You stop floating around, and lie down to sleep.\r\n", ch);
     act("$n stops floating around, and lie down to sleep.",
 	TRUE, ch, 0, 0, TO_ROOM);
     GET_POS(ch) = POS_SLEEPING;
@@ -638,11 +642,11 @@ ACMD(do_wake)
   if (*arg) {
     if (GET_POS(ch) == POS_SLEEPING)
       send_to_char("Maybe you should wake yourself up first.\r\n", ch);
-    else if ((vict = get_char_room_vis(ch, arg)) == NULL)
+    else if ((vict = get_char_vis(ch, arg, FIND_CHAR_ROOM)) == NULL)
       send_to_char(NOPERSON, ch);
     else if (vict == ch)
       self = 1;
-    else if (GET_POS(vict) > POS_SLEEPING)
+    else if (AWAKE(vict))
       act("$E is already awake.", FALSE, ch, 0, vict, TO_CHAR);
     else if (AFF_FLAGGED(vict, AFF_SLEEP))
       act("You can't wake $M up!", FALSE, ch, 0, vict, TO_CHAR);
@@ -675,7 +679,7 @@ ACMD(do_follow)
   one_argument(argument, buf);
 
   if (*buf) {
-    if (!(leader = get_char_room_vis(ch, buf))) {
+    if (!(leader = get_char_vis(ch, buf, FIND_CHAR_ROOM))) {
       send_to_char(NOPERSON, ch);
       return;
     }
@@ -699,7 +703,7 @@ ACMD(do_follow)
       stop_follower(ch);
     } else {
       if (circle_follow(ch, leader)) {
-	act("Sorry, but following in loops is not allowed.", FALSE, ch, 0, 0, TO_CHAR);
+	send_to_char("Sorry, but following in loops is not allowed.\r\n", ch);
 	return;
       }
       if (ch->master)

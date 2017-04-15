@@ -8,6 +8,10 @@
 #include "utils.h"
 #include "shop.h"
 
+void basic_mud_log(const char *x, ...)
+{
+  puts(x);
+}
 
 char *fread_string(FILE * fl, char *error)
 {
@@ -183,6 +187,6 @@ int main(int argc, char *argv[])
       }
     }
   }
-  return 0;
-  return 0;
+
+  return (0);
 }

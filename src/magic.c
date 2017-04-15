@@ -18,6 +18,7 @@
 #include "spells.h"
 #include "handler.h"
 #include "db.h"
+#include "interpreter.h"
 
 extern struct room_data *world;
 extern struct obj_data *object_list;
@@ -30,8 +31,6 @@ extern struct zone_data *zone_table;
 extern int mini_mud;
 extern int pk_allowed;
 extern char *spell_wear_off_msg[];
-extern struct default_mobile_stats *mob_defaults;
-extern struct apply_mod_defaults *apmd;
 
 byte saving_throws(int class_num, int type, int level); /* class.c */
 void clearMemory(struct char_data * ch);
@@ -42,31 +41,40 @@ extern struct spell_info_type spell_info[];
 /* local functions */
 int mag_materials(struct char_data * ch, int item0, int item1, int item2, int extract, int verbose);
 void perform_mag_groups(int level, struct char_data * ch, struct char_data * tch, int spellnum, int savetype);
-int mag_savingthrow(struct char_data * ch, int type);
+int mag_savingthrow(struct char_data * ch, int type, int modifier);
 void affect_update(void);
 
 /*
- * Saving throws are now in class.c (bpl13)
+ * Saving throws are now in class.c as of bpl13.
  */
 
-int mag_savingthrow(struct char_data * ch, int type)
+
+/*
+ * Negative apply_saving_throw[] values make saving throws better!
+ * Then, so do negative modifiers.  Though people may be used to
+ * the reverse of that. It's due to the code modifying the target
+ * saving throw instead of the random number of the character as
+ * in some other systems.
+ */
+int mag_savingthrow(struct char_data * ch, int type, int modifier)
 {
+  /* NPCs use warrior tables according to some book */
+  int class_sav = CLASS_WARRIOR;
   int save;
 
-  /* negative apply_saving_throw values make saving throws better! */
+  if (!IS_NPC(ch))
+    class_sav = GET_CLASS(ch);
 
-  if (IS_NPC(ch)) /* NPCs use warrior tables according to some book */
-    save = saving_throws(CLASS_WARRIOR, type, (int) GET_LEVEL(ch));
-  else
-    save = saving_throws((int) GET_CLASS(ch), type, (int) GET_LEVEL(ch));
-
+  save = saving_throws(class_sav, type, GET_LEVEL(ch));
   save += GET_SAVE(ch, type);
+  save += modifier;
 
-  /* throwing a 0 is always a failure */
+  /* Throwing a 0 is always a failure. */
   if (MAX(1, save) < number(0, 99))
-    return TRUE;
-  else
-    return FALSE;
+    return (TRUE);
+
+  /* Oops, failed. Sorry. */
+  return (FALSE);
 }
 
 
@@ -176,7 +184,7 @@ int mag_damage(int level, struct char_data * ch, struct char_data * victim,
   int dam = 0;
 
   if (victim == NULL || ch == NULL)
-    return 0;
+    return (0);
 
   switch (spellnum) {
     /* Mostly mages */
@@ -226,8 +234,7 @@ int mag_damage(int level, struct char_data * ch, struct char_data * victim,
       dam = GET_HIT(ch) - 1;
     } else if (IS_GOOD(victim)) {
       act("The gods protect $N.", FALSE, ch, 0, victim, TO_CHAR);
-      dam = 0;
-      return 0;
+      return (0);
     }
     break;
   case SPELL_DISPEL_GOOD:
@@ -237,8 +244,7 @@ int mag_damage(int level, struct char_data * ch, struct char_data * victim,
       dam = GET_HIT(ch) - 1;
     } else if (IS_EVIL(victim)) {
       act("The gods protect $N.", FALSE, ch, 0, victim, TO_CHAR);
-      dam = 0;
-      return 0;
+      return (0);
     }
     break;
 
@@ -267,11 +273,11 @@ int mag_damage(int level, struct char_data * ch, struct char_data * victim,
 
 
   /* divide damage by two if victim makes his saving throw */
-  if (mag_savingthrow(victim, savetype))
+  if (mag_savingthrow(victim, savetype, 0))
     dam /= 2;
 
   /* and finally, inflict the damage */
-  return damage(ch, victim, dam, spellnum);
+  return (damage(ch, victim, dam, spellnum));
 }
 
 
@@ -308,7 +314,7 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
 
   case SPELL_CHILL_TOUCH:
     af[0].location = APPLY_STR;
-    if (mag_savingthrow(victim, savetype))
+    if (mag_savingthrow(victim, savetype, 0))
       af[0].duration = 1;
     else
       af[0].duration = 4;
@@ -339,7 +345,7 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
     break;
 
   case SPELL_BLINDNESS:
-    if (MOB_FLAGGED(victim,MOB_NOBLIND) || mag_savingthrow(victim, savetype)) {
+    if (MOB_FLAGGED(victim,MOB_NOBLIND) || mag_savingthrow(victim, savetype, 0)) {
       send_to_char("You fail.\r\n", ch);
       return;
     }
@@ -359,7 +365,7 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
     break;
 
   case SPELL_CURSE:
-    if (mag_savingthrow(victim, savetype)) {
+    if (mag_savingthrow(victim, savetype, 0)) {
       send_to_char(NOEFFECT, ch);
       return;
     }
@@ -423,7 +429,7 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
     break;
 
   case SPELL_POISON:
-    if (mag_savingthrow(victim, savetype)) {
+    if (mag_savingthrow(victim, savetype, 0)) {
       send_to_char(NOEFFECT, ch);
       return;
     }
@@ -457,20 +463,23 @@ void mag_affects(int level, struct char_data * ch, struct char_data * victim,
       return;
     if (MOB_FLAGGED(victim, MOB_NOSLEEP))
       return;
-    if (mag_savingthrow(victim, savetype))
+    if (mag_savingthrow(victim, savetype, 0))
       return;
 
     af[0].duration = 4 + (GET_LEVEL(ch) / 4);
     af[0].bitvector = AFF_SLEEP;
 
     if (GET_POS(victim) > POS_SLEEPING) {
-      act("You feel very sleepy...  Zzzz......", FALSE, victim, 0, 0, TO_CHAR);
+      send_to_char("You feel very sleepy...  Zzzz......\r\n", ch);
       act("$n goes to sleep.", TRUE, victim, 0, 0, TO_ROOM);
       GET_POS(victim) = POS_SLEEPING;
     }
     break;
 
   case SPELL_STRENGTH:
+    if (GET_ADD(victim) == 100)
+      return;
+
     af[0].location = APPLY_STR;
     af[0].duration = (GET_LEVEL(ch) / 2) + 4;
     af[0].modifier = 1 + (level > 18);
@@ -655,8 +664,6 @@ void mag_areas(int level, struct char_data * ch, int spellnum, int savetype)
      *            2: immortals
      *            3: if no pk on this mud, skips over all players
      *            4: pets (charmed NPCs)
-     * players can only hit players in CRIMEOK rooms 4) players can only hit
-     * charmed mobs in CRIMEOK rooms
      */
 
     if (tch == ch)
@@ -669,7 +676,7 @@ void mag_areas(int level, struct char_data * ch, int spellnum, int savetype)
       continue;
 
     /* Doesn't matter if they die here so we don't check. -gg 6/24/98 */
-    mag_damage(GET_LEVEL(ch), ch, tch, spellnum, 1);
+    mag_damage(level, ch, tch, spellnum, 1);
   }
 }
 
@@ -737,8 +744,8 @@ void mag_summons(int level, struct char_data * ch, struct obj_data * obj,
 {
   struct char_data *mob = NULL;
   struct obj_data *tobj, *next_obj;
-  int	pfail = 0, msg = 0, fmsg = 0, mob_num = 0,
-	num = 1, handle_corpse = FALSE, i;
+  int pfail = 0, msg = 0, fmsg = 0, num = 1, handle_corpse = FALSE, i;
+  mob_vnum mob_num;
 
   if (ch == NULL)
     return;
@@ -805,8 +812,7 @@ void mag_summons(int level, struct char_data * ch, struct obj_data * obj,
 void mag_points(int level, struct char_data * ch, struct char_data * victim,
 		     int spellnum, int savetype)
 {
-  int hit = 0;
-  int move = 0;
+  int hit = 0, move = 0;
 
   if (victim == NULL)
     return;
@@ -861,8 +867,9 @@ void mag_unaffects(int level, struct char_data * ch, struct char_data * victim,
     return;
   }
 
-  if (!affected_by_spell(victim, spell) && spellnum != SPELL_HEAL) {
-    send_to_char(NOEFFECT, ch);
+  if (!affected_by_spell(victim, spell)) {
+    if (spellnum != SPELL_HEAL)		/* 'cure blindness' message. */
+      send_to_char(NOEFFECT, ch);
     return;
   }
 
@@ -948,11 +955,11 @@ void mag_alter_objs(int level, struct char_data * ch, struct obj_data * obj,
 void mag_creations(int level, struct char_data * ch, int spellnum)
 {
   struct obj_data *tobj;
-  int z;
+  obj_vnum z;
 
   if (ch == NULL)
     return;
-  level = MAX(MIN(level, LVL_IMPL), 1);
+  /* level = MAX(MIN(level, LVL_IMPL), 1); - Hm, not used. */
 
   switch (spellnum) {
   case SPELL_CREATE_FOOD:

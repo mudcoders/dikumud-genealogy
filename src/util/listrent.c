@@ -20,7 +20,7 @@ int main(int argc, char **argv)
   for (x = 1; x < argc; x++)
     Crash_listrent(argv[x]);
 
-  return 0;
+  return (0);
 }
 
 
@@ -32,29 +32,29 @@ void Crash_listrent(char *fname)
   struct rent_info rent;
 
   if (!(fl = fopen(fname, "rb"))) {
-    sprintf(buf, "%s has no rent file.\n\r", fname);
+    sprintf(buf, "%s has no rent file.\r\n", fname);
     printf("%s", buf);
     return;
   }
-  sprintf(buf, "%s\n\r", fname);
+  sprintf(buf, "%s\r\n", fname);
   if (!feof(fl))
     fread(&rent, sizeof(struct rent_info), 1, fl);
   switch (rent.rentcode) {
   case RENT_RENTED:
-    strcat(buf, "Rent\n\r");
+    strcat(buf, "Rent\r\n");
     break;
   case RENT_CRASH:
-    strcat(buf, "Crash\n\r");
+    strcat(buf, "Crash\r\n");
     break;
   case RENT_CRYO:
-    strcat(buf, "Cryo\n\r");
+    strcat(buf, "Cryo\r\n");
     break;
   case RENT_TIMEDOUT:
   case RENT_FORCED:
-    strcat(buf, "TimedOut\n\r");
+    strcat(buf, "TimedOut\r\n");
     break;
   default:
-    strcat(buf, "Undef\n\r");
+    strcat(buf, "Undef\r\n");
     break;
   }
   while (!feof(fl)) {

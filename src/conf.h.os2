@@ -87,3 +87,15 @@
 /* Define if you have the socket library (-lsocket).  */
 #define HAVE_LIBSOCKET
 
+/* Define if your compiler does not prototype remove().  */
+/* #undef NEED_REMOVE_PROTO */
+
+/* Define if your compiler does not prototype strerror().  */
+/* #undef NEED_STRERROR_PROTO */
+
+/* Define if you have 'struct in_addr' */
+#define HAVE_STRUCT_IN_ADDR 1
+
+/* Define if your crypt isn't safe with only 10 characters. */
+#undef HAVE_UNSAFE_CRYPT
+

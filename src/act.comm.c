@@ -55,7 +55,7 @@ ACMD(do_say)
       send_to_char(OK, ch);
     else {
       sprintf(buf, "You say, '%s'", argument);
-      act(buf, FALSE, ch, 0, argument, TO_CHAR);
+      send_to_char(buf, ch);
     }
   }
 }
@@ -92,7 +92,7 @@ ACMD(do_gsay)
       send_to_char(OK, ch);
     else {
       sprintf(buf, "You tell the group, '%s'", argument);
-      act(buf, FALSE, ch, 0, 0, TO_CHAR | TO_SLEEP);
+      send_to_char(buf, ch);
     }
   }
 }
@@ -133,9 +133,9 @@ int is_tell_ok(struct char_data *ch, struct char_data *vict)
   else if ((!IS_NPC(vict) && PRF_FLAGGED(vict, PRF_NOTELL)) || ROOM_FLAGGED(vict->in_room, ROOM_SOUNDPROOF))
     act("$E can't hear you.", FALSE, ch, 0, vict, TO_CHAR | TO_SLEEP);
   else
-    return TRUE;
+    return (TRUE);
 
-  return FALSE;
+  return (FALSE);
 }
 
 /*
@@ -144,13 +144,15 @@ int is_tell_ok(struct char_data *ch, struct char_data *vict)
  */
 ACMD(do_tell)
 {
-  struct char_data *vict;
+  struct char_data *vict = NULL;
 
   half_chop(argument, buf, buf2);
 
   if (!*buf || !*buf2)
     send_to_char("Who do you wish to tell what??\r\n", ch);
-  else if (!(vict = get_char_vis(ch, buf)))
+  else if (GET_LEVEL(ch) < LVL_IMMORT && !(vict = get_player_vis(ch, buf, FIND_CHAR_WORLD)))
+    send_to_char(NOPERSON, ch);
+  else if (GET_LEVEL(ch) >= LVL_IMMORT && !(vict = get_char_vis(ch, buf, FIND_CHAR_WORLD)))
     send_to_char(NOPERSON, ch);
   else if (is_tell_ok(ch, vict))
     perform_tell(ch, vict, buf2);
@@ -214,7 +216,7 @@ ACMD(do_spec_comm)
   if (!*buf || !*buf2) {
     sprintf(buf, "Whom do you want to %s.. and what??\r\n", action_sing);
     send_to_char(buf, ch);
-  } else if (!(vict = get_char_room_vis(ch, buf)))
+  } else if (!(vict = get_char_vis(ch, buf, FIND_CHAR_ROOM)))
     send_to_char(NOPERSON, ch);
   else if (vict == ch)
     send_to_char("You can't get your mouth close enough to your ear...\r\n", ch);
@@ -225,7 +227,7 @@ ACMD(do_spec_comm)
       send_to_char(OK, ch);
     else {
       sprintf(buf, "You %s %s, '%s'\r\n", action_sing, GET_NAME(vict), buf2);
-      act(buf, FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char(buf, ch);
     }
     act(action_others, FALSE, ch, 0, vict, TO_NOTVICT);
   }
@@ -237,7 +239,7 @@ ACMD(do_spec_comm)
 
 ACMD(do_write)
 {
-  struct obj_data *paper = 0, *pen = 0;
+  struct obj_data *paper, *pen = NULL;
   char *papername, *penname;
 
   papername = buf1;
@@ -271,7 +273,7 @@ ACMD(do_write)
     }
     if (GET_OBJ_TYPE(paper) == ITEM_PEN) {	/* oops, a pen.. */
       pen = paper;
-      paper = 0;
+      paper = NULL;
     } else if (GET_OBJ_TYPE(paper) != ITEM_NOTE) {
       send_to_char("That thing has nothing to do with writing.\r\n", ch);
       return;
@@ -305,8 +307,7 @@ ACMD(do_write)
     /* we can write - hooray! */
     send_to_char("Write your note.  End with '@' on a new line.\r\n", ch);
     act("$n begins to jot down a note.", TRUE, ch, 0, 0, TO_ROOM);
-    ch->desc->str = &paper->action_description;
-    ch->desc->max_str = MAX_NOTE_LENGTH;
+    string_write(ch->desc, &paper->action_description, MAX_NOTE_LENGTH, 0, NULL);
   }
 }
 
@@ -324,7 +325,7 @@ ACMD(do_page)
   else if (!*arg)
     send_to_char("Whom do you wish to page?\r\n", ch);
   else {
-    sprintf(buf, "\007\007*%s* %s\r\n", GET_NAME(ch), buf2);
+    sprintf(buf, "\007\007*$n* %s", buf2);
     if (!str_cmp(arg, "all")) {
       if (GET_LEVEL(ch) > LVL_GOD) {
 	for (d = descriptor_list; d; d = d->next)
@@ -334,13 +335,12 @@ ACMD(do_page)
 	send_to_char("You will never be godly enough to do that!\r\n", ch);
       return;
     }
-    if ((vict = get_char_vis(ch, arg)) != NULL) {
+    if ((vict = get_char_vis(ch, arg, FIND_CHAR_WORLD)) != NULL) {
       act(buf, FALSE, ch, 0, vict, TO_VICT);
       if (PRF_FLAGGED(ch, PRF_NOREPEAT))
 	send_to_char(OK, ch);
       else
 	act(buf, FALSE, ch, 0, vict, TO_CHAR);
-      return;
     } else
       send_to_char("There is no such person in the game!\r\n", ch);
   }
@@ -466,7 +466,7 @@ ACMD(do_gen_comm)
 
       if (subcmd == SCMD_SHOUT &&
 	  ((world[ch->in_room].zone != world[i->character->in_room].zone) ||
-	   GET_POS(i->character) < POS_RESTING))
+	   !AWAKE(i->character)))
 	continue;
 
       if (COLOR_LEV(i->character) >= C_NRM)

@@ -36,7 +36,6 @@ extern int pk_allowed;		/* see config.c */
 extern int auto_save;		/* see config.c -- not used in this file */
 extern int max_exp_gain;	/* see config.c */
 extern int max_exp_loss;	/* see config.c */
-extern int top_of_world;
 extern int max_npc_corpse_time, max_pc_corpse_time;
 
 /* External procedures */
@@ -61,6 +60,8 @@ void group_gain(struct char_data * ch, struct char_data * victim);
 void solo_gain(struct char_data * ch, struct char_data * victim);
 char *replace_string(const char *str, const char *weapon_singular, const char *weapon_plural);
 void perform_violence(void);
+int compute_armor_class(struct char_data *ch);
+int compute_thaco(struct char_data *ch);
 
 /* Weapon attack texts */
 struct attack_hit_type attack_hit_text[] =
@@ -101,6 +102,16 @@ void appear(struct char_data * ch)
 }
 
 
+int compute_armor_class(struct char_data *ch)
+{
+  int armorclass = GET_AC(ch);
+
+  if (AWAKE(ch))
+    armorclass += dex_app[GET_DEX(ch)].defensive * 10;
+
+  return (MAX(-100, armorclass));      /* -100 is lowest */
+}
+
 
 void load_messages(void)
 {
@@ -110,8 +121,7 @@ void load_messages(void)
   char chk[128];
 
   if (!(fl = fopen(MESS_FILE, "r"))) {
-    sprintf(buf2, "SYSERR: Error reading combat message file %s", MESS_FILE);
-    perror(buf2);
+    log("SYSERR: Error reading combat message file %s: %s", MESS_FILE, strerror(errno));
     exit(1);
   }
   for (i = 0; i < MAX_MESSAGES; i++) {
@@ -180,17 +190,18 @@ void update_pos(struct char_data * victim)
 
 void check_killer(struct char_data * ch, struct char_data * vict)
 {
-  if (!PLR_FLAGGED(vict, PLR_KILLER) && !PLR_FLAGGED(vict, PLR_THIEF)
-      && !PLR_FLAGGED(ch, PLR_KILLER) && !IS_NPC(ch) && !IS_NPC(vict) &&
-      (ch != vict)) {
-    char buf[256];
+  char buf[256];
 
-    SET_BIT(PLR_FLAGS(ch), PLR_KILLER);
-    sprintf(buf, "PC Killer bit set on %s for initiating attack on %s at %s.",
+  if (PLR_FLAGGED(vict, PLR_KILLER) || PLR_FLAGGED(vict, PLR_THIEF))
+    return;
+  if (PLR_FLAGGED(ch, PLR_KILLER) || IS_NPC(ch) || IS_NPC(vict) || ch == vict)
+    return;
+
+  SET_BIT(PLR_FLAGS(ch), PLR_KILLER);
+  sprintf(buf, "PC Killer bit set on %s for initiating attack on %s at %s.",
 	    GET_NAME(ch), GET_NAME(vict), world[vict->in_room].name);
-    mudlog(buf, BRF, LVL_IMMORT, TRUE);
-    send_to_char("If you want to be a PLAYER KILLER, so be it...\r\n", ch);
-  }
+  mudlog(buf, BRF, LVL_IMMORT, TRUE);
+  send_to_char("If you want to be a PLAYER KILLER, so be it...\r\n", ch);
 }
 
 
@@ -309,18 +320,14 @@ void change_alignment(struct char_data * ch, struct char_data * victim)
 
 void death_cry(struct char_data * ch)
 {
-  int door, was_in;
+  int door;
 
   act("Your blood freezes as you hear $n's death cry.", FALSE, ch, 0, 0, TO_ROOM);
-  was_in = ch->in_room;
 
-  for (door = 0; door < NUM_OF_DIRS; door++) {
-    if (CAN_GO(ch, door)) {
-      ch->in_room = world[was_in].dir_option[door]->to_room;
-      act("Your blood freezes as you hear someone's death cry.", FALSE, ch, 0, 0, TO_ROOM);
-      ch->in_room = was_in;
-    }
-  }
+  for (door = 0; door < NUM_OF_DIRS; door++)
+    if (CAN_GO(ch, door))
+      send_to_room("Your blood freezes as you hear someone's death cry.\r\n",
+		world[ch->in_room].dir_option[door]->to_room);
 }
 
 
@@ -620,10 +627,10 @@ int skill_message(int dam, struct char_data * ch, struct char_data * vict,
 
 	act(msg->miss_msg.room_msg, FALSE, ch, weap, vict, TO_NOTVICT);
       }
-      return 1;
+      return (1);
     }
   }
-  return 0;
+  return (0);
 }
 
 /*
@@ -638,18 +645,18 @@ int damage(struct char_data * ch, struct char_data * victim, int dam, int attack
     log("SYSERR: Attempt to damage corpse '%s' in room #%d by '%s'.",
 		GET_NAME(victim), GET_ROOM_VNUM(IN_ROOM(victim)), GET_NAME(ch));
     die(victim);
-    return 0;			/* -je, 7/7/92 */
+    return (0);			/* -je, 7/7/92 */
   }
 
   /* peaceful rooms */
   if (ch != victim && ROOM_FLAGGED(ch->in_room, ROOM_PEACEFUL)) {
     send_to_char("This room just has such a peaceful, easy feeling...\r\n", ch);
-    return 0;
+    return (0);
   }
 
   /* shopkeeper protection */
   if (!ok_damage_shopkeeper(ch, victim))
-    return 0;
+    return (0);
 
   /* You can't damage an immortal! */
   if (!IS_NPC(victim) && (GET_LEVEL(victim) >= LVL_IMMORT))
@@ -740,7 +747,7 @@ int damage(struct char_data * ch, struct char_data * victim, int dam, int attack
 
   default:			/* >= POSITION SLEEPING */
     if (dam > (GET_MAX_HIT(victim) / 4))
-      act("That really did HURT!", FALSE, victim, 0, 0, TO_CHAR);
+      send_to_char("That really did HURT!\r\n", victim);
 
     if (GET_HIT(victim) < (GET_MAX_HIT(victim) / 4)) {
       sprintf(buf2, "%sYou wish that your wounds would stop BLEEDING so much!%s\r\n",
@@ -789,9 +796,9 @@ int damage(struct char_data * ch, struct char_data * victim, int dam, int attack
 	forget(ch, victim);
     }
     die(victim);
-    return -1;
+    return (-1);
   }
-  return dam;
+  return (dam);
 }
 
 
@@ -830,10 +837,7 @@ void hit(struct char_data * ch, struct char_data * victim, int type)
 
 
   /* Calculate the raw armor including magic armor.  Lower AC is better. */
-  victim_ac = GET_AC(victim) / 10;
-  if (AWAKE(victim))
-    victim_ac += dex_app[GET_DEX(victim)].defensive;
-  victim_ac = MAX(-10, victim_ac);	/* -10 is lowest */
+  victim_ac = compute_armor_class(victim) / 10;
 
   /* roll the die and take your chances... */
   diceroll = number(1, 20);
@@ -853,7 +857,8 @@ void hit(struct char_data * ch, struct char_data * victim, int type)
     dam = str_app[STRENGTH_APPLY_INDEX(ch)].todam;
     dam += GET_DAMROLL(ch);
 
-    if (wielded) {
+    /* Maybe holding arrow? */
+    if (wielded && GET_OBJ_TYPE(wielded) == ITEM_WEAPON) {
       /* Add weapon-based damage if a weapon is being wielded */
       dam += dice(GET_OBJ_VAL(wielded, 1), GET_OBJ_VAL(wielded, 2));
     } else {

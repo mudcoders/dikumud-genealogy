@@ -28,6 +28,7 @@ The lib/ directory contains the following subdirectories:
 etc		- Files which the MUD uses internally (playerfile, mail, etc.)
 misc		- Misc. database files meant to be changed (i.e. socials)
 plrobjs		- Player object hierarchy and utility scripts
+plralias	- Hierarchy for saved player aliases.
 text		- Text files such as MOTD, news, help, etc.
 world		- The world hierarchy
 
@@ -62,6 +63,15 @@ zzz/
 purgedir	- Script to purge an object dir (meant for use by purgeobjs)
 purgeobjs	- Script to purge player objects (see utils.doc)
 searchfor	- Script to search for objects in obj files (see utils.doc)
+
+The lib/plralias contains the following directories:
+
+a-e  \
+f-j   \
+k-o    \ Subdirectories where player alias files are stored.
+p-t    /
+u-z  /
+zzz/
 
 The lib/text directory contains the following files:
 

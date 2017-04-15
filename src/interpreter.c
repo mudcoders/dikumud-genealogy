@@ -24,9 +24,9 @@
 #include "screen.h"
 
 
-extern sh_int r_mortal_start_room;
-extern sh_int r_immort_start_room;
-extern sh_int r_frozen_start_room;
+extern room_rnum r_mortal_start_room;
+extern room_rnum r_immort_start_room;
+extern room_rnum r_frozen_start_room;
 extern const char *class_menu;
 extern char *motd;
 extern char *imotd;
@@ -53,12 +53,13 @@ int parse_class(char arg);
 int special(struct char_data *ch, int cmd, char *arg);
 int isbanned(char *hostname);
 int Valid_Name(char *newname);
+void read_aliases(struct char_data *ch);
 
 /* local functions */
 int perform_dupe_check(struct descriptor_data *d);
-struct alias *find_alias(struct alias *alias_list, char *str);
-void free_alias(struct alias *a);
-void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a);
+struct alias_data *find_alias(struct alias_data *alias_list, char *str);
+void free_alias(struct alias_data *a);
+void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias_data *a);
 int perform_alias(struct descriptor_data *d, char *orig);
 int reserved_word(char *argument);
 int find_name(char *name);
@@ -498,6 +499,7 @@ cpp_extern const struct command_info cmd_info[] = {
   { "time"     , POS_DEAD    , do_time     , 0, 0 },
   { "toggle"   , POS_DEAD    , do_toggle   , 0, 0 },
   { "track"    , POS_STANDING, do_track    , 0, 0 },
+  { "trackthru", POS_DEAD    , do_gen_tog  , LVL_IMPL, SCMD_TRACK },
   { "transfer" , POS_SLEEPING, do_trans    , LVL_GOD, 0 },
   { "twiddle"  , POS_RESTING , do_action   , 0, 0 },
   { "typo"     , POS_DEAD    , do_gen_write, 0, SCMD_TYPO },
@@ -609,7 +611,7 @@ void command_interpreter(struct char_data *ch, char *argument)
 
   if (*cmd_info[cmd].command == '\n')
     send_to_char("Huh?!?\r\n", ch);
-  else if (PLR_FLAGGED(ch, PLR_FROZEN) && GET_LEVEL(ch) < LVL_IMPL)
+  else if (!IS_NPC(ch) && PLR_FLAGGED(ch, PLR_FROZEN) && GET_LEVEL(ch) < LVL_IMPL)
     send_to_char("You try, but the mind-numbing cold prevents you...\r\n", ch);
   else if (cmd_info[cmd].command_pointer == NULL)
     send_to_char("Sorry, that command hasn't been implemented yet.\r\n", ch);
@@ -648,21 +650,21 @@ void command_interpreter(struct char_data *ch, char *argument)
   **************************************************************************/
 
 
-struct alias *find_alias(struct alias *alias_list, char *str)
+struct alias_data *find_alias(struct alias_data *alias_list, char *str)
 {
   while (alias_list != NULL) {
     if (*str == *alias_list->alias)	/* hey, every little bit counts :-) */
       if (!strcmp(str, alias_list->alias))
-	return alias_list;
+	return (alias_list);
 
     alias_list = alias_list->next;
   }
 
-  return NULL;
+  return (NULL);
 }
 
 
-void free_alias(struct alias *a)
+void free_alias(struct alias_data *a)
 {
   if (a->alias)
     free(a->alias);
@@ -676,7 +678,7 @@ void free_alias(struct alias *a)
 ACMD(do_alias)
 {
   char *repl;
-  struct alias *a, *temp;
+  struct alias_data *a, *temp;
 
   if (IS_NPC(ch))
     return;
@@ -711,7 +713,7 @@ ACMD(do_alias)
 	send_to_char("You can't alias 'alias'.\r\n", ch);
 	return;
       }
-      CREATE(a, struct alias, 1);
+      CREATE(a, struct alias_data, 1);
       a->alias = str_dup(arg);
       delete_doubledollar(repl);
       a->replacement = str_dup(repl);
@@ -734,7 +736,7 @@ ACMD(do_alias)
  */
 #define NUM_TOKENS       9
 
-void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a)
+void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias_data *a)
 {
   struct txt_q temp_queue;
   char *tokens[NUM_TOKENS], *temp, *write_point;
@@ -797,33 +799,33 @@ void perform_complex_alias(struct txt_q *input_q, char *orig, struct alias *a)
 int perform_alias(struct descriptor_data *d, char *orig)
 {
   char first_arg[MAX_INPUT_LENGTH], *ptr;
-  struct alias *a, *tmp;
+  struct alias_data *a, *tmp;
 
   /* Mobs don't have alaises. */
   if (IS_NPC(d->character))
-    return 0;
+    return (0);
 
   /* bail out immediately if the guy doesn't have any aliases */
   if ((tmp = GET_ALIASES(d->character)) == NULL)
-    return 0;
+    return (0);
 
   /* find the alias we're supposed to match */
   ptr = any_one_arg(orig, first_arg);
 
   /* bail out if it's null */
   if (!*first_arg)
-    return 0;
+    return (0);
 
   /* if the first arg is not an alias, return without doing anything */
   if ((a = find_alias(tmp, first_arg)) == NULL)
-    return 0;
+    return (0);
 
   if (a->type == ALIAS_SIMPLE) {
     strcpy(orig, a->replacement);
-    return 0;
+    return (0);
   } else {
     perform_complex_alias(&d->input, ptr, a);
-    return 1;
+    return (1);
   }
 }
 
@@ -860,7 +862,7 @@ int search_block(char *arg, const char **list, int exact)
 	return (i);
   }
 
-  return -1;
+  return (-1);
 }
 
 
@@ -868,9 +870,9 @@ int is_number(const char *str)
 {
   while (*str)
     if (!isdigit(*(str++)))
-      return 0;
+      return (0);
 
-  return 1;
+  return (1);
 }
 
 /*
@@ -899,7 +901,7 @@ char *delete_doubledollar(char *string)
 
   /* If the string has no dollar signs, return immediately */
   if ((write = strchr(string, '$')) == NULL)
-    return string;
+    return (string);
 
   /* Start from the location of the first dollar sign */
   read = write;
@@ -912,7 +914,7 @@ char *delete_doubledollar(char *string)
 
   *write = '\0';
 
-  return string;
+  return (string);
 }
 
 
@@ -939,7 +941,7 @@ char *one_argument(char *argument, char *first_arg)
   if (!argument) {
     log("SYSERR: one_argument received a NULL pointer!");
     *first_arg = '\0';
-    return NULL;
+    return (NULL);
   }
 
   do {
@@ -954,7 +956,7 @@ char *one_argument(char *argument, char *first_arg)
     *first_arg = '\0';
   } while (fill_word(begin));
 
-  return argument;
+  return (argument);
 }
 
 
@@ -988,7 +990,7 @@ char *one_word(char *argument, char *first_arg)
     *first_arg = '\0';
   } while (fill_word(begin));
 
-  return argument;
+  return (argument);
 }
 
 
@@ -1004,7 +1006,7 @@ char *any_one_arg(char *argument, char *first_arg)
 
   *first_arg = '\0';
 
-  return argument;
+  return (argument);
 }
 
 
@@ -1014,7 +1016,7 @@ char *any_one_arg(char *argument, char *first_arg)
  */
 char *two_arguments(char *argument, char *first_arg, char *second_arg)
 {
-  return one_argument(one_argument(argument, first_arg), second_arg); /* :-) */
+  return (one_argument(one_argument(argument, first_arg), second_arg)); /* :-) */
 }
 
 
@@ -1030,16 +1032,16 @@ char *two_arguments(char *argument, char *first_arg, char *second_arg)
 int is_abbrev(const char *arg1, const char *arg2)
 {
   if (!*arg1)
-    return 0;
+    return (0);
 
   for (; *arg1 && *arg2; arg1++, arg2++)
     if (LOWER(*arg1) != LOWER(*arg2))
-      return 0;
+      return (0);
 
   if (!*arg1)
-    return 1;
+    return (1);
   else
-    return 0;
+    return (0);
 }
 
 
@@ -1063,9 +1065,9 @@ int find_command(const char *command)
 
   for (cmd = 0; *cmd_info[cmd].command != '\n'; cmd++)
     if (!strcmp(cmd_info[cmd].command, command))
-      return cmd;
+      return (cmd);
 
-  return -1;
+  return (-1);
 }
 
 
@@ -1078,33 +1080,33 @@ int special(struct char_data *ch, int cmd, char *arg)
   /* special in room? */
   if (GET_ROOM_SPEC(ch->in_room) != NULL)
     if (GET_ROOM_SPEC(ch->in_room) (ch, world + ch->in_room, cmd, arg))
-      return 1;
+      return (1);
 
   /* special in equipment list? */
   for (j = 0; j < NUM_WEARS; j++)
     if (GET_EQ(ch, j) && GET_OBJ_SPEC(GET_EQ(ch, j)) != NULL)
       if (GET_OBJ_SPEC(GET_EQ(ch, j)) (ch, GET_EQ(ch, j), cmd, arg))
-	return 1;
+	return (1);
 
   /* special in inventory? */
   for (i = ch->carrying; i; i = i->next_content)
     if (GET_OBJ_SPEC(i) != NULL)
       if (GET_OBJ_SPEC(i) (ch, i, cmd, arg))
-	return 1;
+	return (1);
 
   /* special in mobile present? */
   for (k = world[ch->in_room].people; k; k = k->next_in_room)
     if (GET_MOB_SPEC(k) != NULL)
       if (GET_MOB_SPEC(k) (ch, k, cmd, arg))
-	return 1;
+	return (1);
 
   /* special in object present? */
   for (i = world[ch->in_room].contents; i; i = i->next_content)
     if (GET_OBJ_SPEC(i) != NULL)
       if (GET_OBJ_SPEC(i) (ch, i, cmd, arg))
-	return 1;
+	return (1);
 
-  return 0;
+  return (0);
 }
 
 
@@ -1121,10 +1123,10 @@ int find_name(char *name)
 
   for (i = 0; i <= top_of_p_table; i++) {
     if (!str_cmp((player_table + i)->name, name))
-      return i;
+      return (i);
   }
 
-  return -1;
+  return (-1);
 }
 
 
@@ -1137,12 +1139,12 @@ int _parse_name(char *arg, char *name)
 
   for (i = 0; (*name = *arg); arg++, i++, name++)
     if (!isalpha(*arg))
-      return 1;
+      return (1);
 
   if (!i)
-    return 1;
+    return (1);
 
-  return 0;
+  return (0);
 }
 
 
@@ -1239,7 +1241,7 @@ int perform_dupe_check(struct descriptor_data *d)
 
   /* no target for swicthing into was found - allow login to continue */
   if (!target)
-    return 0;
+    return (0);
 
   /* Okay, we've found a target.  Connect d to target. */
   free_char(d->character); /* get rid of the old char */
@@ -1248,6 +1250,7 @@ int perform_dupe_check(struct descriptor_data *d)
   d->original = NULL;
   d->character->char_specials.timer = 0;
   REMOVE_BIT(PLR_FLAGS(d->character), PLR_MAILING | PLR_WRITING);
+  REMOVE_BIT(AFF_FLAGS(d->character), AFF_GROUP);
   STATE(d) = CON_PLAYING;
 
   switch (mode) {
@@ -1273,7 +1276,7 @@ int perform_dupe_check(struct descriptor_data *d)
     break;
   }
 
-  return 1;
+  return (1);
 }
 
 
@@ -1285,7 +1288,7 @@ void nanny(struct descriptor_data *d, char *arg)
   int player_i, load_result;
   char tmp_name[MAX_INPUT_LENGTH];
   struct char_file_u tmp_store;
-  sh_int load_room;
+  room_vnum load_room;
 
   skip_spaces(&arg);
 
@@ -1334,7 +1337,7 @@ void nanny(struct descriptor_data *d, char *arg)
 	  /* undo it just in case they are set */
 	  REMOVE_BIT(PLR_FLAGS(d->character),
 		     PLR_WRITING | PLR_MAILING | PLR_CRYO);
-
+	  REMOVE_BIT(AFF_FLAGS(d->character), AFF_GROUP);
 	  SEND_TO_Q("Password: ", d);
 	  echo_off(d);
 	  d->idle_tics = 0;
@@ -1361,7 +1364,7 @@ void nanny(struct descriptor_data *d, char *arg)
     if (UPPER(*arg) == 'Y') {
       if (isbanned(d->host) >= BAN_NEW) {
 	sprintf(buf, "Request for new char %s denied from [%s] (siteban)",
-		GET_NAME(d->character), d->host);
+		GET_PC_NAME(d->character), d->host);
 	mudlog(buf, NRM, LVL_GOD, TRUE);
 	SEND_TO_Q("Sorry, new characters are not allowed from your site!\r\n", d);
 	STATE(d) = CON_CLOSE;
@@ -1370,13 +1373,13 @@ void nanny(struct descriptor_data *d, char *arg)
       if (circle_restrict) {
 	SEND_TO_Q("Sorry, new players can't be created at the moment.\r\n", d);
 	sprintf(buf, "Request for new char %s denied from [%s] (wizlock)",
-		GET_NAME(d->character), d->host);
+		GET_PC_NAME(d->character), d->host);
 	mudlog(buf, NRM, LVL_GOD, TRUE);
 	STATE(d) = CON_CLOSE;
 	return;
       }
       SEND_TO_Q("New character.\r\n", d);
-      sprintf(buf, "Give me a password for %s: ", GET_NAME(d->character));
+      sprintf(buf, "Give me a password for %s: ", GET_PC_NAME(d->character));
       SEND_TO_Q(buf, d);
       echo_off(d);
       STATE(d) = CON_NEWPASSWD;
@@ -1470,12 +1473,12 @@ void nanny(struct descriptor_data *d, char *arg)
   case CON_NEWPASSWD:
   case CON_CHPWD_GETNEW:
     if (!*arg || strlen(arg) > MAX_PWD_LENGTH || strlen(arg) < 3 ||
-	!str_cmp(arg, GET_NAME(d->character))) {
+	!str_cmp(arg, GET_PC_NAME(d->character))) {
       SEND_TO_Q("\r\nIllegal password.\r\n", d);
       SEND_TO_Q("Password: ", d);
       return;
     }
-    strncpy(GET_PASSWD(d->character), CRYPT(arg, GET_NAME(d->character)), MAX_PWD_LENGTH);
+    strncpy(GET_PASSWD(d->character), CRYPT(arg, GET_PC_NAME(d->character)), MAX_PWD_LENGTH);
     *(GET_PASSWD(d->character) + MAX_PWD_LENGTH) = '\0';
 
     SEND_TO_Q("\r\nPlease retype password: ", d);
@@ -1543,7 +1546,8 @@ void nanny(struct descriptor_data *d, char *arg)
       GET_CLASS(d->character) = load_result;
 
     if (GET_PFILEPOS(d->character) < 0)
-      GET_PFILEPOS(d->character) = create_entry(GET_NAME(d->character));
+      GET_PFILEPOS(d->character) = create_entry(GET_PC_NAME(d->character));
+    /* Now GET_NAME() will work properly. */
     init_char(d->character);
     save_char(d->character, NOWHERE);
     SEND_TO_Q(motd, d);
@@ -1568,35 +1572,40 @@ void nanny(struct descriptor_data *d, char *arg)
 
     case '1':
       reset_char(d->character);
+      read_aliases(d->character);
+
       if (PLR_FLAGGED(d->character, PLR_INVSTART))
 	GET_INVIS_LEV(d->character) = GET_LEVEL(d->character);
-      if ((load_result = Crash_load(d->character)))
-	d->character->in_room = NOWHERE;
-      save_char(d->character, NOWHERE);
-      send_to_char(WELC_MESSG, d->character);
-      d->character->next = character_list;
-      character_list = d->character;
 
+      /*
+       * We have to place the character in a room before equipping them
+       * or equip_char() will gripe about the person in NOWHERE.
+       */
       if ((load_room = GET_LOADROOM(d->character)) != NOWHERE)
 	load_room = real_room(load_room);
 
       /* If char was saved with NOWHERE, or real_room above failed... */
       if (load_room == NOWHERE) {
-	if (GET_LEVEL(d->character) >= LVL_IMMORT) {
+	if (GET_LEVEL(d->character) >= LVL_IMMORT)
 	  load_room = r_immort_start_room;
-	} else {
+	else
 	  load_room = r_mortal_start_room;
-	}
       }
 
       if (PLR_FLAGGED(d->character, PLR_FROZEN))
 	load_room = r_frozen_start_room;
 
+      send_to_char(WELC_MESSG, d->character);
+      d->character->next = character_list;
+      character_list = d->character;
       char_to_room(d->character, load_room);
+      load_result = Crash_load(d->character);
+      save_char(d->character, NOWHERE);
+
       act("$n has entered the game.", TRUE, d->character, 0, 0, TO_ROOM);
 
       STATE(d) = CON_PLAYING;
-      if (!GET_LEVEL(d->character)) {
+      if (GET_LEVEL(d->character) == 0) {
 	do_start(d->character);
 	send_to_char(START_MESSG, d->character);
       }

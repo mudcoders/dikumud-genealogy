@@ -155,12 +155,12 @@ void write_wizlist(FILE * out, int minlev, int maxlev)
   int i, j;
 
   fprintf(out,
-"****************************************************************************\n"
-"* The following people have reached immortality on CircleMUD.  They are to *\n"
-"* treated with respect and awe.  Occasional prayers to them are advisable. *\n"
-"* Annoying them is not recommended.  Stealing from them is punishable by   *\n"
-"* immediate death.                                                         *\n"
-"****************************************************************************\n\n");
+"*************************************************************************\n"
+"* The following people have reached immortality on CircleMUD.  They are *\n"
+"* to be treated with respect and awe.  Occasional prayers to them are   *\n"
+"* advisable.  Annoying them is not recommended.  Stealing from them is  *\n"
+"* punishable by immediate death.                                        *\n"
+"*************************************************************************\n\n");
 
   for (curr_level = levels; curr_level; curr_level = curr_level->next) {
     if (curr_level->params->level < minlev ||
@@ -243,5 +243,5 @@ int main(int argc, char **argv)
   fclose(fl);
   if (pid)
     kill(pid, SIGUSR1);
-  return 0;
+  return (0);
 }

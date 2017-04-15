@@ -87,7 +87,7 @@ long pop_free_list(void)
    * If we don't have any free blocks, we append to the file.
    */
   if ((old_pos = free_list) == NULL)
-    return file_end_pos;
+    return (file_end_pos);
 
   /* Save the offset of the free block. */
   return_value = free_list->position;
@@ -96,7 +96,7 @@ long pop_free_list(void)
   /* Get rid of the memory the node took. */
   free(old_pos);
   /* Give back the free offset. */
-  return return_value;
+  return (return_value);
 }
 
 
@@ -113,11 +113,11 @@ mail_index_type *find_char_in_index(long searchee)
 
   if (searchee < 0) {
     log("SYSERR: Mail system -- non fatal error #1 (searchee == %ld).", searchee);
-    return NULL;
+    return (NULL);
   }
   for (tmp = mail_index; (tmp && tmp->recipient != searchee); tmp = tmp->next);
 
-  return tmp;
+  return (tmp);
 }
 
 
@@ -225,9 +225,9 @@ int scan_file(void)
   int total_messages = 0, block_num = 0;
 
   if (!(mail_file = fopen(MAIL_FILE, "r"))) {
-    log("Mail file non-existant... creating new file.");
+    log("   Mail file non-existant... creating new file.");
     touch(MAIL_FILE);
-    return 1;
+    return (1);
   }
   while (fread(&next_block, sizeof(header_block_type), 1, mail_file)) {
     if (next_block.block_type == HEADER_BLOCK) {
@@ -244,10 +244,10 @@ int scan_file(void)
   if (file_end_pos % BLOCK_SIZE) {
     log("SYSERR: Error booting mail system -- Mail file corrupt!");
     log("SYSERR: Mail disabled!");
-    return 0;
+    return (0);
   }
   log("   Mail file read -- %d messages.", total_messages);
-  return 1;
+  return (1);
 }				/* end of scan_file */
 
 
@@ -280,8 +280,7 @@ void store_mail(long to, long from, char *message_pointer)
   data_block_type data;
   long last_address, target_address;
   char *msg_txt = message_pointer;
-  int bytes_written = 0;
-  int total_length = strlen(message_pointer);
+  int bytes_written, total_length = strlen(message_pointer);
 
   if ((sizeof(header_block_type) != sizeof(data_block_type)) ||
       (sizeof(header_block_type) != BLOCK_SIZE)) {
@@ -383,15 +382,15 @@ char *read_delete(long recipient)
 
   if (recipient < 0) {
     log("SYSERR: Mail system -- non-fatal error #6. (recipient: %ld)", recipient);
-    return NULL;
+    return (NULL);
   }
   if (!(mail_pointer = find_char_in_index(recipient))) {
     log("SYSERR: Mail system -- post office spec_proc error?  Error #7. (invalid character in index)");
-    return NULL;
+    return (NULL);
   }
   if (!(position_pointer = mail_pointer->list_start)) {
     log("SYSERR: Mail system -- non-fatal error #8. (invalid position pointer %p)", position_pointer);
-    return NULL;
+    return (NULL);
   }
   if (!(position_pointer->next)) {	/* just 1 entry in list. */
     mail_address = position_pointer->position;
@@ -425,7 +424,7 @@ char *read_delete(long recipient)
     log("SYSERR: Oh dear. (Header block %ld != %d)", header.block_type, HEADER_BLOCK);
     no_mail = TRUE;
     log("SYSERR: Mail system disabled!  -- Error #9. (Invalid header block.)");
-    return NULL;
+    return (NULL);
   }
   tmstr = asctime(localtime(&header.header_data.mail_time));
   *(tmstr + strlen(tmstr) - 1) = '\0';
@@ -465,7 +464,7 @@ char *read_delete(long recipient)
     push_free_list(mail_address);
   }
 
-  return message;
+  return (message);
 }
 
 
@@ -477,27 +476,27 @@ char *read_delete(long recipient)
 SPECIAL(postmaster)
 {
   if (!ch->desc || IS_NPC(ch))
-    return 0;			/* so mobs don't get caught here */
+    return (0);			/* so mobs don't get caught here */
 
   if (!(CMD_IS("mail") || CMD_IS("check") || CMD_IS("receive")))
-    return 0;
+    return (0);
 
   if (no_mail) {
     send_to_char("Sorry, the mail system is having technical difficulties.\r\n", ch);
-    return 0;
+    return (0);
   }
 
   if (CMD_IS("mail")) {
     postmaster_send_mail(ch, (struct char_data *)me, cmd, argument);
-    return 1;
+    return (1);
   } else if (CMD_IS("check")) {
     postmaster_check_mail(ch, (struct char_data *)me, cmd, argument);
-    return 1;
+    return (1);
   } else if (CMD_IS("receive")) {
     postmaster_receive_mail(ch, (struct char_data *)me, cmd, argument);
-    return 1;
+    return (1);
   } else
-    return 0;
+    return (0);
 }
 
 
@@ -505,7 +504,7 @@ void postmaster_send_mail(struct char_data * ch, struct char_data *mailman,
 			  int cmd, char *arg)
 {
   long recipient;
-  char buf[256];
+  char buf[256], **write;
 
   if (GET_LEVEL(ch) < MIN_MAIL_LEVEL) {
     sprintf(buf, "$n tells you, 'Sorry, you have to be level %d to send mail!'",
@@ -538,12 +537,11 @@ void postmaster_send_mail(struct char_data * ch, struct char_data *mailman,
 
   act(buf, FALSE, mailman, 0, ch, TO_VICT);
   GET_GOLD(ch) -= STAMP_PRICE;
-  SET_BIT(PLR_FLAGS(ch), PLR_MAILING | PLR_WRITING);
+  SET_BIT(PLR_FLAGS(ch), PLR_MAILING);	/* string_write() sets writing. */
 
-  ch->desc->mail_to = recipient;
-  ch->desc->str = (char **) malloc(sizeof(char *));
-  *(ch->desc->str) = NULL;
-  ch->desc->max_str = MAX_MAIL_SIZE;
+  /* Start writing! */
+  CREATE(write, char *, 1);
+  string_write(ch->desc, write, MAX_MAIL_SIZE, recipient, NULL);
 }
 
 

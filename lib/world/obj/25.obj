@@ -490,7 +490,7 @@ a scroll written on blue paper~
 A blue scroll has been left here.~
 ~
 2 g 16385
-54 24 -1 -1
+24 24 -1 -1
 5 20000 15000
 #2555
 pouch leather~
@@ -573,12 +573,12 @@ A golden flute has been left here.~
 A
 3 -6
 #2564
-figurine~
+figurine humanoid small~
 a small figurine~
 A small figurine in the shape of a humanoid is standing here.~
 ~
 4 g 16385
-21 15 15 61
+21 10 10 32
 4 6000 650
 #2565
 belt holster~
@@ -640,7 +640,7 @@ an ashen wand~
 An ashen wand is here~
 ~
 3 j 16385
-20 4 4 63
+20 4 4 5
 4 2000 600
 #2572
 club spiked~

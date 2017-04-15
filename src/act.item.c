@@ -21,12 +21,11 @@
 #include "spells.h"
 
 /* extern variables */
-extern sh_int donation_room_1;
+extern room_rnum donation_room_1;
 #if 0
-extern sh_int donation_room_2;  /* uncomment if needed! */
-extern sh_int donation_room_3;  /* uncomment if needed! */
+extern room_rnum donation_room_2;  /* uncomment if needed! */
+extern room_rnum donation_room_3;  /* uncomment if needed! */
 #endif
-extern struct obj_data *obj_proto;
 extern struct obj_data *obj_proto;
 extern char *drinknames[];
 extern struct str_app_type str_app[];
@@ -38,16 +37,16 @@ extern int drink_aff[][3];
 int can_take_obj(struct char_data * ch, struct obj_data * obj);
 void get_check_money(struct char_data * ch, struct obj_data * obj);
 int perform_get_from_room(struct char_data * ch, struct obj_data * obj);
-void get_from_room(struct char_data * ch, char *arg);
+void get_from_room(struct char_data * ch, char *arg, int amount);
 void perform_give_gold(struct char_data * ch, struct char_data * vict, int amount);
 void perform_give(struct char_data * ch, struct char_data * vict, struct obj_data * obj);
-int perform_drop(struct char_data * ch, struct obj_data * obj, byte mode, const char *sname, sh_int RDR);
-void perform_drop_gold(struct char_data * ch, int amount, byte mode, sh_int RDR);
+int perform_drop(struct char_data * ch, struct obj_data * obj, byte mode, const char *sname, room_rnum RDR);
+void perform_drop_gold(struct char_data * ch, int amount, byte mode, room_rnum RDR);
 struct char_data *give_find_vict(struct char_data * ch, char *arg);
 void weight_change_object(struct obj_data * obj, int weight);
 void perform_put(struct char_data * ch, struct obj_data * obj, struct obj_data * cont);
 void name_from_drinkcon(struct obj_data * obj);
-void get_from_container(struct char_data * ch, struct obj_data * cont, char *arg, int mode);
+void get_from_container(struct char_data * ch, struct obj_data * cont, char *arg, int mode, int amount);
 void name_to_drinkcon(struct obj_data * obj, int type);
 void wear_message(struct char_data * ch, struct obj_data * obj, int where);
 void perform_wear(struct char_data * ch, struct obj_data * obj, int where);
@@ -75,8 +74,16 @@ void perform_put(struct char_data * ch, struct obj_data * obj,
   else {
     obj_from_char(obj);
     obj_to_obj(obj, cont);
-    act("You put $p in $P.", FALSE, ch, obj, cont, TO_CHAR);
+
     act("$n puts $p in $P.", TRUE, ch, obj, cont, TO_ROOM);
+
+    /* Yes, I realize this is strange until we have auto-equip on rent. -gg */
+    if (IS_OBJ_STAT(obj, ITEM_NODROP) && !IS_OBJ_STAT(cont, ITEM_NODROP)) {
+      SET_BIT(GET_OBJ_EXTRA(cont), ITEM_NODROP);
+      act("You get a strange feeling as you put $p in $P.", FALSE,
+                ch, obj, cont, TO_CHAR);
+    } else
+      act("You put $p in $P.", FALSE, ch, obj, cont, TO_CHAR);
   }
 }
 
@@ -95,26 +102,38 @@ ACMD(do_put)
 {
   char arg1[MAX_INPUT_LENGTH];
   char arg2[MAX_INPUT_LENGTH];
+  char arg3[MAX_INPUT_LENGTH];
   struct obj_data *obj, *next_obj, *cont;
   struct char_data *tmp_char;
-  int obj_dotmode, cont_dotmode, found = 0;
+  int obj_dotmode, cont_dotmode, found = 0, howmany = 1;
+  char *theobj, *thecont;
 
-  two_arguments(argument, arg1, arg2);
-  obj_dotmode = find_all_dots(arg1);
-  cont_dotmode = find_all_dots(arg2);
+  argument = two_arguments(argument, arg1, arg2);
+  one_argument(argument, arg3);
 
-  if (!*arg1)
+  if (*arg3 && is_number(arg1)) {
+    howmany = atoi(arg1);
+    theobj = arg2;
+    thecont = arg3;
+  } else {
+    theobj = arg1;
+    thecont = arg2;
+  }
+  obj_dotmode = find_all_dots(theobj);
+  cont_dotmode = find_all_dots(thecont);
+
+  if (!*theobj)
     send_to_char("Put what in what?\r\n", ch);
   else if (cont_dotmode != FIND_INDIV)
     send_to_char("You can only put things into one container at a time.\r\n", ch);
-  else if (!*arg2) {
+  else if (!*thecont) {
     sprintf(buf, "What do you want to put %s in?\r\n",
 	    ((obj_dotmode == FIND_INDIV) ? "it" : "them"));
     send_to_char(buf, ch);
   } else {
-    generic_find(arg2, FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tmp_char, &cont);
+    generic_find(thecont, FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tmp_char, &cont);
     if (!cont) {
-      sprintf(buf, "You don't see %s %s here.\r\n", AN(arg2), arg2);
+      sprintf(buf, "You don't see %s %s here.\r\n", AN(thecont), thecont);
       send_to_char(buf, ch);
     } else if (GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
       act("$p is not a container.", FALSE, ch, cont, 0, TO_CHAR);
@@ -122,18 +141,24 @@ ACMD(do_put)
       send_to_char("You'd better open it first!\r\n", ch);
     else {
       if (obj_dotmode == FIND_INDIV) {	/* put <obj> <container> */
-	if (!(obj = get_obj_in_list_vis(ch, arg1, ch->carrying))) {
-	  sprintf(buf, "You aren't carrying %s %s.\r\n", AN(arg1), arg1);
+	if (!(obj = get_obj_in_list_vis(ch, theobj, ch->carrying))) {
+	  sprintf(buf, "You aren't carrying %s %s.\r\n", AN(theobj), theobj);
 	  send_to_char(buf, ch);
 	} else if (obj == cont)
 	  send_to_char("You attempt to fold it into itself, but fail.\r\n", ch);
-	else
-	  perform_put(ch, obj, cont);
+	else {
+	  struct obj_data *next_obj;
+	  while(obj && howmany--) {
+	    next_obj = obj->next_content;
+	    perform_put(ch, obj, cont);
+	    obj = get_obj_in_list_vis(ch, theobj, next_obj);
+	  }
+	}
       } else {
 	for (obj = ch->carrying; obj; obj = next_obj) {
 	  next_obj = obj->next_content;
 	  if (obj != cont && CAN_SEE_OBJ(ch, obj) &&
-	      (obj_dotmode == FIND_ALL || isname(arg1, obj->name))) {
+	      (obj_dotmode == FIND_ALL || isname(theobj, obj->name))) {
 	    found = 1;
 	    perform_put(ch, obj, cont);
 	  }
@@ -142,7 +167,7 @@ ACMD(do_put)
 	  if (obj_dotmode == FIND_ALL)
 	    send_to_char("You don't seem to have anything to put in it.\r\n", ch);
 	  else {
-	    sprintf(buf, "You don't seem to have any %ss.\r\n", arg1);
+	    sprintf(buf, "You don't seem to have any %ss.\r\n", theobj);
 	    send_to_char(buf, ch);
 	  }
 	}
@@ -157,28 +182,35 @@ int can_take_obj(struct char_data * ch, struct obj_data * obj)
 {
   if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch)) {
     act("$p: you can't carry that many items.", FALSE, ch, obj, 0, TO_CHAR);
-    return 0;
+    return (0);
   } else if ((IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj)) > CAN_CARRY_W(ch)) {
     act("$p: you can't carry that much weight.", FALSE, ch, obj, 0, TO_CHAR);
-    return 0;
+    return (0);
   } else if (!(CAN_WEAR(obj, ITEM_WEAR_TAKE))) {
     act("$p: you can't take that!", FALSE, ch, obj, 0, TO_CHAR);
-    return 0;
+    return (0);
   }
-  return 1;
+  return (1);
 }
 
 
 void get_check_money(struct char_data * ch, struct obj_data * obj)
 {
-  if ((GET_OBJ_TYPE(obj) == ITEM_MONEY) && (GET_OBJ_VAL(obj, 0) > 0)) {
-    obj_from_char(obj);
-    if (GET_OBJ_VAL(obj, 0) > 1) {
-      sprintf(buf, "There were %d coins.\r\n", GET_OBJ_VAL(obj, 0));
-      send_to_char(buf, ch);
-    }
-    GET_GOLD(ch) += GET_OBJ_VAL(obj, 0);
-    extract_obj(obj);
+  int value = GET_OBJ_VAL(obj, 0);
+
+  if (GET_OBJ_TYPE(obj) != ITEM_MONEY || value <= 0)
+    return;
+
+  obj_from_char(obj);
+  extract_obj(obj);
+
+  GET_GOLD(ch) += value;
+
+  if (value == 1)
+    send_to_char("There was 1 coin.\r\n", ch);
+  else {
+    sprintf(buf, "There were %d coins.\r\n", value);
+    send_to_char(buf, ch);
   }
 }
 
@@ -201,7 +233,7 @@ void perform_get_from_container(struct char_data * ch, struct obj_data * obj,
 
 
 void get_from_container(struct char_data * ch, struct obj_data * cont,
-			     char *arg, int mode)
+			     char *arg, int mode, int howmany)
 {
   struct obj_data *obj, *next_obj;
   int obj_dotmode, found = 0;
@@ -214,8 +246,14 @@ void get_from_container(struct char_data * ch, struct obj_data * cont,
     if (!(obj = get_obj_in_list_vis(ch, arg, cont->contains))) {
       sprintf(buf, "There doesn't seem to be %s %s in $p.", AN(arg), arg);
       act(buf, FALSE, ch, cont, 0, TO_CHAR);
-    } else
-      perform_get_from_container(ch, obj, cont, mode);
+    } else {
+      struct obj_data *obj_next;
+      while(obj && howmany--) {
+        obj_next = obj->next_content;
+        perform_get_from_container(ch, obj, cont, mode);
+        obj = get_obj_in_list_vis(ch, arg, obj_next);
+      }
+    }
   } else {
     if (obj_dotmode == FIND_ALLDOT && !*arg) {
       send_to_char("Get all of what?\r\n", ch);
@@ -249,13 +287,13 @@ int perform_get_from_room(struct char_data * ch, struct obj_data * obj)
     act("You get $p.", FALSE, ch, obj, 0, TO_CHAR);
     act("$n gets $p.", TRUE, ch, obj, 0, TO_ROOM);
     get_check_money(ch, obj);
-    return 1;
+    return (1);
   }
-  return 0;
+  return (0);
 }
 
 
-void get_from_room(struct char_data * ch, char *arg)
+void get_from_room(struct char_data * ch, char *arg, int howmany)
 {
   struct obj_data *obj, *next_obj;
   int dotmode, found = 0;
@@ -266,8 +304,14 @@ void get_from_room(struct char_data * ch, char *arg)
     if (!(obj = get_obj_in_list_vis(ch, arg, world[ch->in_room].contents))) {
       sprintf(buf, "You don't see %s %s here.\r\n", AN(arg), arg);
       send_to_char(buf, ch);
-    } else
-      perform_get_from_room(ch, obj);
+    } else {
+      struct obj_data *obj_next;
+      while(obj && howmany--) {
+	obj_next = obj->next_content;
+        perform_get_from_room(ch, obj);
+        obj = get_obj_in_list_vis(ch, arg, obj_next);
+      }
+    }
   } else {
     if (dotmode == FIND_ALLDOT && !*arg) {
       send_to_char("Get all of what?\r\n", ch);
@@ -298,20 +342,30 @@ ACMD(do_get)
 {
   char arg1[MAX_INPUT_LENGTH];
   char arg2[MAX_INPUT_LENGTH];
+  char arg3[MAX_INPUT_LENGTH];
 
   int cont_dotmode, found = 0, mode;
   struct obj_data *cont;
   struct char_data *tmp_char;
 
-  two_arguments(argument, arg1, arg2);
+  argument = two_arguments(argument, arg1, arg2);
+  one_argument(argument, arg3);
 
   if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
     send_to_char("Your arms are already full!\r\n", ch);
   else if (!*arg1)
     send_to_char("Get what?\r\n", ch);
   else if (!*arg2)
-    get_from_room(ch, arg1);
+    get_from_room(ch, arg1, 1);
+  else if (is_number(arg1) && !*arg3)
+    get_from_room(ch, arg2, atoi(arg1));
   else {
+    int amount = 1;
+    if (is_number(arg1)) {
+      amount = atoi(arg1);
+      strcpy(arg1, arg2);
+      strcpy(arg2, arg3);
+    }
     cont_dotmode = find_all_dots(arg2);
     if (cont_dotmode == FIND_INDIV) {
       mode = generic_find(arg2, FIND_OBJ_INV | FIND_OBJ_ROOM, ch, &tmp_char, &cont);
@@ -321,7 +375,7 @@ ACMD(do_get)
       } else if (GET_OBJ_TYPE(cont) != ITEM_CONTAINER)
 	act("$p is not a container.", FALSE, ch, cont, 0, TO_CHAR);
       else
-	get_from_container(ch, cont, arg1, mode);
+	get_from_container(ch, cont, arg1, mode, amount);
     } else {
       if (cont_dotmode == FIND_ALLDOT && !*arg2) {
 	send_to_char("Get from all of what?\r\n", ch);
@@ -332,7 +386,7 @@ ACMD(do_get)
 	    (cont_dotmode == FIND_ALL || isname(arg2, cont->name))) {
 	  if (GET_OBJ_TYPE(cont) == ITEM_CONTAINER) {
 	    found = 1;
-	    get_from_container(ch, cont, arg1, FIND_OBJ_INV);
+	    get_from_container(ch, cont, arg1, FIND_OBJ_INV, amount);
 	  } else if (cont_dotmode == FIND_ALLDOT) {
 	    found = 1;
 	    act("$p is not a container.", FALSE, ch, cont, 0, TO_CHAR);
@@ -342,7 +396,7 @@ ACMD(do_get)
 	if (CAN_SEE_OBJ(ch, cont) &&
 	    (cont_dotmode == FIND_ALL || isname(arg2, cont->name))) {
 	  if (GET_OBJ_TYPE(cont) == ITEM_CONTAINER) {
-	    get_from_container(ch, cont, arg1, FIND_OBJ_ROOM);
+	    get_from_container(ch, cont, arg1, FIND_OBJ_ROOM, amount);
 	    found = 1;
 	  } else if (cont_dotmode == FIND_ALLDOT) {
 	    act("$p is not a container.", FALSE, ch, cont, 0, TO_CHAR);
@@ -363,7 +417,7 @@ ACMD(do_get)
 
 
 void perform_drop_gold(struct char_data * ch, int amount,
-		            byte mode, sh_int RDR)
+		            byte mode, room_rnum RDR)
 {
   struct obj_data *obj;
 
@@ -402,14 +456,14 @@ void perform_drop_gold(struct char_data * ch, int amount,
 		      "  It vanishes in a puff of smoke!" : "")
 
 int perform_drop(struct char_data * ch, struct obj_data * obj,
-		     byte mode, const char *sname, sh_int RDR)
+		     byte mode, const char *sname, room_rnum RDR)
 {
   int value;
 
   if (IS_OBJ_STAT(obj, ITEM_NODROP)) {
     sprintf(buf, "You can't %s $p, it must be CURSED!", sname);
     act(buf, FALSE, ch, obj, 0, TO_CHAR);
-    return 0;
+    return (0);
   }
   sprintf(buf, "You %s $p.%s", sname, VANISH(mode));
   act(buf, FALSE, ch, obj, 0, TO_CHAR);
@@ -423,21 +477,21 @@ int perform_drop(struct char_data * ch, struct obj_data * obj,
   switch (mode) {
   case SCMD_DROP:
     obj_to_room(obj, ch->in_room);
-    return 0;
+    return (0);
   case SCMD_DONATE:
     obj_to_room(obj, RDR);
     act("$p suddenly appears in a puff a smoke!", FALSE, 0, obj, 0, TO_ROOM);
-    return 0;
+    return (0);
   case SCMD_JUNK:
     value = MAX(1, MIN(200, GET_OBJ_COST(obj) / 16));
     extract_obj(obj);
-    return value;
+    return (value);
   default:
     log("SYSERR: Incorrect argument %d passed to perform_drop.", mode);
     break;
   }
 
-  return 0;
+  return (0);
 }
 
 
@@ -445,9 +499,9 @@ int perform_drop(struct char_data * ch, struct obj_data * obj,
 ACMD(do_drop)
 {
   struct obj_data *obj, *next_obj;
-  sh_int RDR = 0;
+  room_rnum RDR = 0;
   byte mode = SCMD_DROP;
-  int dotmode, amount = 0;
+  int dotmode, amount = 0, multi;
   const char *sname;
 
   switch (subcmd) {
@@ -487,15 +541,26 @@ ACMD(do_drop)
     send_to_char(buf, ch);
     return;
   } else if (is_number(arg)) {
-    amount = atoi(arg);
-    argument = one_argument(argument, arg);
-    if (!str_cmp("coins", arg) || !str_cmp("coin", arg))
-      perform_drop_gold(ch, amount, mode, RDR);
-    else {
-      /* code to drop multiple items.  anyone want to write it? -je */
-      send_to_char("Sorry, you can't do that to more than one item at a time.\r\n", ch);
+    multi = atoi(arg);
+    one_argument(argument, arg);
+    if (!str_cmp("coins", arg) || !str_cmp("coin", arg)) {
+      perform_drop_gold(ch, multi, mode, RDR);
+      amount = multi;
+    } else if (multi <= 0)
+      send_to_char("Yeah, that makes sense.\r\n", ch);
+    else if (!*arg) {
+      sprintf(buf, "What do you want to %s %d of?\r\n", sname, multi);
+      send_to_char(buf, ch);
+    } else if (!(obj = get_obj_in_list_vis(ch, arg, ch->carrying))) {
+      sprintf(buf, "You don't seem to have any %ss.\r\n", arg);
+      send_to_char(buf, ch);
+    } else {
+      do {
+        next_obj = get_obj_in_list_vis(ch, arg, obj->next_content);
+        amount += perform_drop(ch, obj, mode, sname, RDR);
+        obj = next_obj;
+      } while (obj && --multi);
     }
-    return;
   } else {
     dotmode = find_all_dots(arg);
 
@@ -576,15 +641,15 @@ struct char_data *give_find_vict(struct char_data * ch, char *arg)
 
   if (!*arg) {
     send_to_char("To who?\r\n", ch);
-    return NULL;
-  } else if (!(vict = get_char_room_vis(ch, arg))) {
+    return (NULL);
+  } else if (!(vict = get_char_vis(ch, arg, FIND_CHAR_ROOM))) {
     send_to_char(NOPERSON, ch);
-    return NULL;
+    return (NULL);
   } else if (vict == ch) {
     send_to_char("What's the point of that?\r\n", ch);
-    return NULL;
+    return (NULL);
   } else
-    return vict;
+    return (vict);
 }
 
 
@@ -624,14 +689,24 @@ ACMD(do_give)
     amount = atoi(arg);
     argument = one_argument(argument, arg);
     if (!str_cmp("coins", arg) || !str_cmp("coin", arg)) {
-      argument = one_argument(argument, arg);
-      if ((vict = give_find_vict(ch, arg)))
+      one_argument(argument, arg);
+      if ((vict = give_find_vict(ch, arg)) != NULL)
 	perform_give_gold(ch, vict, amount);
       return;
-    } else {
-      /* code to give multiple items.  anyone want to write it? -je */
-      send_to_char("You can't give more than one item at a time.\r\n", ch);
+    } else if (!*arg) {	/* Give multiple code. */
+      sprintf(buf, "What do you want to give %d of?\r\n", amount);
+      send_to_char(buf, ch);
+    } else if (!(vict = give_find_vict(ch, argument))) {
       return;
+    } else if (!(obj = get_obj_in_list_vis(ch, arg, ch->carrying))) {
+      sprintf(buf, "You don't seem to have any %ss.\r\n", arg);
+      send_to_char(buf, ch);
+    } else {
+      while (obj && amount--) {
+	next_obj = get_obj_in_list_vis(ch, arg, obj->next_content);
+	perform_give(ch, vict, obj);
+	obj = next_obj;
+      }
     }
   } else {
     one_argument(argument, buf1);
@@ -734,7 +809,7 @@ ACMD(do_drink)
   }
   if (!(temp = get_obj_in_list_vis(ch, arg, ch->carrying))) {
     if (!(temp = get_obj_in_list_vis(ch, arg, world[ch->in_room].contents))) {
-      act("You can't find it!", FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char("You can't find it!\r\n", ch);
       return;
     } else
       on_ground = 1;
@@ -859,14 +934,14 @@ ACMD(do_eat)
     return;
   }
   if (GET_COND(ch, FULL) > 20) {/* Stomach full */
-    act("You are too full to eat more!", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You are too full to eat more!\r\n", ch);
     return;
   }
   if (subcmd == SCMD_EAT) {
-    act("You eat the $o.", FALSE, ch, food, 0, TO_CHAR);
+    act("You eat $p.", FALSE, ch, food, 0, TO_CHAR);
     act("$n eats $p.", TRUE, ch, food, 0, TO_ROOM);
   } else {
-    act("You nibble a little bit of the $o.", FALSE, ch, food, 0, TO_CHAR);
+    act("You nibble a little bit of $p.", FALSE, ch, food, 0, TO_CHAR);
     act("$n tastes a little bit of $p.", TRUE, ch, food, 0, TO_ROOM);
   }
 
@@ -875,7 +950,7 @@ ACMD(do_eat)
   gain_condition(ch, FULL, amount);
 
   if (GET_COND(ch, FULL) > 20)
-    act("You are full.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("You are full.\r\n", ch);
 
   if (GET_OBJ_VAL(food, 3) && (GET_LEVEL(ch) < LVL_IMMORT)) {
     /* The shit was poisoned ! */
@@ -911,15 +986,15 @@ ACMD(do_pour)
 
   if (subcmd == SCMD_POUR) {
     if (!*arg1) {		/* No arguments */
-      act("From what do you want to pour?", FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char("From what do you want to pour?\r\n", ch);
       return;
     }
     if (!(from_obj = get_obj_in_list_vis(ch, arg1, ch->carrying))) {
-      act("You can't find it!", FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char("You can't find it!\r\n", ch);
       return;
     }
     if (GET_OBJ_TYPE(from_obj) != ITEM_DRINKCON) {
-      act("You can't pour from that!", FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char("You can't pour from that!\r\n", ch);
       return;
     }
   }
@@ -956,7 +1031,7 @@ ACMD(do_pour)
   }
   if (subcmd == SCMD_POUR) {	/* pour */
     if (!*arg2) {
-      act("Where do you want it?  Out or in what?", FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char("Where do you want it?  Out or in what?\r\n", ch);
       return;
     }
     if (!str_cmp(arg2, "out")) {
@@ -973,26 +1048,26 @@ ACMD(do_pour)
       return;
     }
     if (!(to_obj = get_obj_in_list_vis(ch, arg2, ch->carrying))) {
-      act("You can't find it!", FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char("You can't find it!\r\n", ch);
       return;
     }
     if ((GET_OBJ_TYPE(to_obj) != ITEM_DRINKCON) &&
 	(GET_OBJ_TYPE(to_obj) != ITEM_FOUNTAIN)) {
-      act("You can't pour anything into that.", FALSE, ch, 0, 0, TO_CHAR);
+      send_to_char("You can't pour anything into that.\r\n", ch);
       return;
     }
   }
   if (to_obj == from_obj) {
-    act("A most unproductive effort.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("A most unproductive effort.\r\n", ch);
     return;
   }
   if ((GET_OBJ_VAL(to_obj, 1) != 0) &&
       (GET_OBJ_VAL(to_obj, 2) != GET_OBJ_VAL(from_obj, 2))) {
-    act("There is already another liquid in it!", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("There is already another liquid in it!\r\n", ch);
     return;
   }
   if (!(GET_OBJ_VAL(to_obj, 1) < GET_OBJ_VAL(to_obj, 0))) {
-    act("There is no room for more.", FALSE, ch, 0, 0, TO_CHAR);
+    send_to_char("There is no room for more.\r\n", ch);
     return;
   }
   if (subcmd == SCMD_POUR) {
@@ -1032,8 +1107,6 @@ ACMD(do_pour)
   /* And the weight boogie */
   weight_change_object(from_obj, -amount);
   weight_change_object(to_obj, amount);	/* Add weight */
-
-  return;
 }
 
 
@@ -1164,12 +1237,13 @@ int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg)
 {
   int where = -1;
 
-  const char *keywords[] = {	/* \n to prevent explicit wearing. */
-    "\n!RESERVED!",
+  /* \r to prevent explicit wearing. Don't use \n, it's end-of-array marker. */
+  const char *keywords[] = {
+    "\r!RESERVED!",
     "finger",
-    "\n!RESERVED!",
+    "\r!RESERVED!",
     "neck",
-    "\n!RESERVED!",
+    "\r!RESERVED!",
     "body",
     "head",
     "legs",
@@ -1180,9 +1254,9 @@ int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg)
     "about",
     "waist",
     "wrist",
-    "\n!RESERVED!",
-    "\n!RESERVED!",
-    "\n!RESERVED!",
+    "\r!RESERVED!",
+    "\r!RESERVED!",
+    "\r!RESERVED!",
     "\n"
   };
 
@@ -1206,7 +1280,7 @@ int find_eq_pos(struct char_data * ch, struct obj_data * obj, char *arg)
     }
   }
 
-  return where;
+  return (where);
 }
 
 
@@ -1216,7 +1290,7 @@ ACMD(do_wear)
   char arg1[MAX_INPUT_LENGTH];
   char arg2[MAX_INPUT_LENGTH];
   struct obj_data *obj, *next_obj;
-  int where = -1, dotmode, items_worn = 0;
+  int where, dotmode, items_worn = 0;
 
   two_arguments(argument, arg1, arg2);
 
@@ -1327,7 +1401,7 @@ void perform_remove(struct char_data * ch, int pos)
   struct obj_data *obj;
 
   if (!(obj = GET_EQ(ch, pos)))
-    log("Error in perform_remove: bad pos %d passed.", pos);
+    log("SYSERR: perform_remove: bad pos %d passed.", pos);
   else if (IS_OBJ_STAT(obj, ITEM_NODROP))
     act("You can't remove $p, it must be CURSED!", FALSE, ch, obj, 0, TO_CHAR);
   else if (IS_CARRYING_N(ch) >= CAN_CARRY_N(ch))
@@ -1343,7 +1417,6 @@ void perform_remove(struct char_data * ch, int pos)
 
 ACMD(do_remove)
 {
-  struct obj_data *obj;
   int i, dotmode, found;
 
   one_argument(argument, arg);
@@ -1380,7 +1453,8 @@ ACMD(do_remove)
       }
     }
   } else {
-    if (!(obj = get_object_in_equip_vis(ch, arg, ch->equipment, &i))) {
+    /* Returns object pointer but we don't need it, just true/false. */
+    if (!get_object_in_equip_vis(ch, arg, ch->equipment, &i)) {
       sprintf(buf, "You don't seem to be using %s %s.\r\n", AN(arg), arg);
       send_to_char(buf, ch);
     } else

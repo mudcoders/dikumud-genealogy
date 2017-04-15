@@ -17,7 +17,7 @@
 #include "comm.h"
 #include "db.h"
 #include "handler.h"
-
+#include "interpreter.h"
 
 extern struct char_data *character_list;
 extern struct obj_data *object_list;
@@ -197,7 +197,7 @@ int move_gain(struct char_data * ch)
   if (AFF_FLAGGED(ch, AFF_POISON))
     gain /= 4;
 
-  return gain;
+  return (gain);
 }
 
 
@@ -223,10 +223,8 @@ void set_title(struct char_data * ch, char *title)
 
 void check_autowiz(struct char_data * ch)
 {
-#ifndef CIRCLE_UNIX
-  return;
-#else
-  char buf[100];
+#ifdef CIRCLE_UNIX
+  char buf[128];
 
   if (use_autowiz && GET_LEVEL(ch) >= LVL_IMMORT) {
     sprintf(buf, "nice ../bin/autowiz %d %s %d %s %d &", min_wizlist_lev,
@@ -264,6 +262,10 @@ void gain_exp(struct char_data * ch, int gain)
     }
 
     if (is_altered) {
+      sprintf(buf, "%s advanced %d level%s to level %d.",
+		GET_NAME(ch), num_levels, num_levels == 1 ? "" : "s",
+		GET_LEVEL(ch));
+      mudlog(buf, BRF, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
       if (num_levels == 1)
         send_to_char("You rise a level!\r\n", ch);
       else {
@@ -301,6 +303,10 @@ void gain_exp_regardless(struct char_data * ch, int gain)
     }
 
     if (is_altered) {
+      sprintf(buf, "%s advanced %d level%s to level %d.",
+		GET_NAME(ch), num_levels, num_levels == 1 ? "" : "s",
+		GET_LEVEL(ch));
+      mudlog(buf, BRF, MAX(LVL_IMMORT, GET_INVIS_LEV(ch)), TRUE);
       if (num_levels == 1)
         send_to_char("You rise a level!\r\n", ch);
       else {

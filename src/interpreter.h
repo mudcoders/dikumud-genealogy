@@ -54,11 +54,16 @@ struct command_info {
 extern struct command_info cmd_info[];
 #endif
 
-struct alias {
+/*
+ * Alert! Changed from 'struct alias' to 'struct alias_data' in bpl15
+ * because a Windows 95 compiler gives a warning about it having similiar
+ * named member.
+ */
+struct alias_data {
   char *alias;
   char *replacement;
   int type;
-  struct alias *next;
+  struct alias_data *next;
 };
 
 #define ALIAS_SIMPLE	0
@@ -113,6 +118,7 @@ struct alias {
 #define SCMD_HOLYLIGHT	13
 #define SCMD_SLOWNS	14
 #define SCMD_AUTOEXIT	15
+#define SCMD_TRACK	16
 
 /* do_wizutil */
 #define SCMD_REROLL	0

@@ -71,18 +71,18 @@ while ( : ) do
   mv syslog       log/syslog.6
   touch syslog
 
-  if [ ! -r .fastboot ]; then
-    sleep 60
-  else
-    rm .fastboot
-    sleep 5
-  fi
-
   if [ -r .killscript ]; then
     DATE=`date`;
     echo "autoscript killed $DATE"  >> syslog
     rm .killscript
     exit
+  fi
+
+  if [ ! -r .fastboot ]; then
+    sleep 60
+  else
+    rm .fastboot
+    sleep 5
   fi
 
   while [ -r pause ]; do

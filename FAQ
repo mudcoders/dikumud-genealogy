@@ -1,7 +1,6 @@
-Frequently Asked Questions (FAQ) for Circle DikuMud with
-Answers
+Frequently Asked Questions (FAQ) for Circle DikuMud with Answers
 Alex Fletcher, furry@circlemud.org
-Revision 2.5, 9 December 1997
+Revision 2.6, 28 August 1998
 
 This file is intended to cover common questions related to the Cir-
 cleMUD distributon source by Jeremy Elson <http://www.cs.jhu.edu/~jel-
@@ -15,87 +14,86 @@ at the CircleMUD Home Page <http://www.circlemud.org/> or FTP site
 <ftp://ftp.circlemud.org/pub/CircleMUD/>.
 ______________________________________________________________________
 
-Table of Contents:
+Table of Contents
 
-1.      Introduction
-1.1.    I've never played a MUD before.  What should I do?
-1.2.    I'm new to C and/or coding. What do I do?
-1.3.    I want to build my own mud.  Where do I start?
-1.4.    What is CircleMUD?
-1.5.    What is the history of CircleMUD?
-1.6.    Where is the original CircleMUD so I can check it out?
-1.7.    What is UNIX?
+1. Introduction
 
-2.      Resources
-2.1.    Where do I find the source code for CircleMUD?
-2.2.    Where do I find areas, etc. for CircleMUD?
-2.3.    I have questions about CircleMUD.  Where should I go?
-2.4.    How do I subscribe/unsubscribe to the Mailing List?
-2.5.    To what platforms has CircleMUD been ported?
-2.6.    How can I submit code or areas for use with CircleMUD?
-2.7.    How do I use a patch file and how can I make one?
+   1.1 I've never played a MUD before.  What should I do?
+   1.2 I'm new to C and/or coding. What do I do?
+   1.3 I want to build my own mud.  Where do I start?
+   1.4 What is CircleMUD?
+   1.5 What is the history of CircleMUD?
+   1.6 Where is the original CircleMUD so I can check it out?
+   1.7 What is UNIX?
 
-3.      Compiling CircleMUD
-3.1.    Why do I get many syntax errors with Sun's ``cc'' compiler?
-3.2.    Why do I get all sorts of errors with ``crypt'' functions and
-3.3.    When I try to compile, why do I get a lot of undefined symbols
-3.4.    Every time I try to compile Circle (or any other piece of
-3.5.    I'm getting compilation errors from a header file, and I
-3.6.    I'm trying to compile the mud on Windows '95 and am having
-3.7.    How can I do a ``grep'' on Windows 95?
-3.8.    While compiling the mud, why do I get errors like
+2. Resources
 
-``foo.c:1231: Undefined symbol `_whereamI' referenced from text
+   2.1 Where do I find the source code for CircleMUD?
+   2.2 Where do I find areas, etc. for CircleMUD?
+   2.3 I have questions about CircleMUD.  Where should I go?
+   2.4 How do I subscribe/unsubscribe to the Mailing List?
+   2.5 To what platforms has CircleMUD been ported?
+   2.6 How can I submit code or areas for use with CircleMUD?
+   2.7 How do I use a patch file and how can I make one?
 
-3.9.    What is a parse error and how do I fix it?
-3.10.   I have this piece of code that calls bcopy(), bzero(), and
-3.11.   My compiler doesn't have ``strdup()'', what can I do?
-3.12.   I am having trouble with my ``makefile'', what could be the
-3.13.   How can I handle directories in C?
+3. Compiling CircleMUD
 
-4.      Running CircleMUD
-4.1.    I typed ``autorun'' but then my terminal just froze.
-4.2.    I typed ``bin/circle'' and got lots of boot messages, but then
-4.3.    Okay, I think the MUD is running but why don't I get a login
-4.4.    How come I get this error when running my mud: ``Error reading
-4.5.    I just got this SIGPIPE, what is it and what Can I Do About
-4.6.    When I run Circle under Linux, it tells me ``gethostbyaddr:
-4.7.    When I run Circle under Windows 95, it tells me ``Winsock
+   3.1 Why do I get many syntax errors with Sun's ``cc'' compiler?
+   3.2 Why do I get all sorts of errors with ``crypt'' functions and header files?
+   3.3 When I try to compile, why do I get a lot of undefined symbols referenced in comm.o for functions like socket, accept, and bind?
+   3.4 Every time I try to compile Circle (or any other piece of software) under Linux, it gives me errors and says it cannot find include header files in the
+   3.5 I'm getting compilation errors from a header file, and I didn't even change it?
+   3.6 I'm trying to compile the mud on Windows '95 and am having problems, what can I do?
+   3.7 How can I do a ``grep'' on Windows 95?
+   3.8 While compiling the mud, why do I get errors like ``foo.c:1231: Undefined symbol `_whereamI' referenced from text segment''
+   3.9 What is a parse error and how do I fix it?
+   3.10 I have this piece of code that calls bcopy(), bzero(), and bcmp() and it won't compile, so what can I do?
+   3.11 My compiler doesn't have ``strdup()'', what can I do?
+   3.12 I am having trouble with my ``makefile'', what could be the problem?
+   3.13 How can I handle directories in C?
 
-error #10047'' when the MUD boots, and then dies.  Why?
+4. Running CircleMUD
 
-4.8.    When I run Circle under Windows 95, players can't rent---their
-4.9.    When someone logs on to my Windows 95 MUD, the console screen
-4.10.   My Mud crashed and my connection got closed.  What can I do?
-4.11.   Ok, so how do I use ``gdb''?
-4.12.   How can I hunt bugs more effectively?
-4.13.   I just added n levels to my mud (from the stock 34).  How do I
-4.14.   I decided to wipe my pfile away anyway.  What steps should I
-4.15.   I want to expand the ability to pk in my MUD, allowing
-4.16.   Why does it say ``Connection closed by foreign host.'' and not
-4.17.   I run my mud on a unix system and the pfile/rent file works
-4.18.   How do I get the CircleMUD to autoload when the Linux server
-4.19.   My server shuts down my MUD everytime I logoff. How do I keep
+   4.1 I typed ``autorun'' but then my terminal just froze.
+   4.2 I typed ``bin/circle'' and got lots of boot messages, but then it said ``Entering game loop'' and froze.
+   4.3 Okay, I think the MUD is running but why don't I get a login prompt?
+   4.4 How come I get this error when running my mud: ``Error reading board: No such file or directory''
+   4.5 I just got this SIGPIPE, what is it and what Can I Do About It?
+   4.6 When I run Circle under Linux, it tells me ``gethostbyaddr: connection refused'' when the MUD boots, and then dies.  Why?
+   4.7 When I run Circle under Windows 95, it tells me ``Winsock error #10047'' when the MUD boots, and then dies.  Why?
+   4.8 When I run Circle under Windows 95, players can't rent---their equipment is just dropped on the ground, syslogs don't work, so what is the problem?
+   4.9 When someone logs on to my Windows 95 MUD, the console screen gives: ``gethostbyaddr: No such file or directory''
+   4.10 My Mud crashed and my connection got closed.  What can I do?
+   4.11 Ok, so how do I use ``gdb''?
+   4.12 How can I hunt bugs more effectively?
+   4.13 I just added n levels to my mud (from the stock 34).  How do I set my imps up to level n without a pfile wipe?
+   4.14 I decided to wipe my pfile away anyway.  What steps should I take to do this?
+   4.15 I want to expand the ability to pk in my MUD, allowing ASSASSINS that'll be able to PK without getting flagged.  How can I do this?
+   4.16 Why does it say ``Connection closed by foreign host.'' and not display the ``Byebye!'' message I'm trying to send before cutting someone off?
+   4.17 I run my mud on a unix system and the pfile/rent file works great, but on my home system it's all screwed up.  What gives?
+   4.18 How do I get the CircleMUD to autoload when the Linux server is restarted?
+   4.19 My server shuts down my MUD everytime I logoff. How do I keep the MUD running when I logoff?
 
-5.      Code Changes for CircleMUD 2.20
-5.1.    How do I fix the bug where people can junk more coins than
-5.2.    How do I fix the ``vstat'' bug that crashes the MUD?
-5.3.    How do I fix the ``wizlock'' bug that lets lower immortals
-5.4.    How do I fix the ``mudlog'' bug that lets people see me log
+5. Code Changes for CircleMUD 2.20
 
-6.      CircleMUD 3.0 Questions
-6.1.    Are there any bugs in patch level 12?
-6.2.    How do I access Online Creation?
-6.3.    How does the new bitvector system work?
-6.4.    When will the production release of Circle 3.0 be?
-6.5.    If someone logs in and just sits at the password prompt, the
-6.6.    Why does CircleMUD use BUF switches all through the code,
-6.7.    How do I add a new class?  How do I add more levels?
-6.8.    Is there a complete ``coding.doc''?
+   5.1 How do I fix the bug where people can junk more coins than available?
+   5.2 How do I fix the ``vstat'' bug that crashes the MUD?
+   5.3 How do I fix the ``wizlock'' bug that lets lower immortals lock out higher immortals?
+   5.4 How do I fix the ``mudlog'' bug that lets people see me log in, even if I'm wizinvis?
+
+6. CircleMUD 3.0 Questions
+   6.1 Are there any bugs in patch level 14?
+   6.2 How do I access Online Creation?
+   6.3 How does the new bitvector system work?
+   6.4 When will the production release of Circle 3.0 be?
+   6.5 If someone logs in and just sits at the password prompt, the MUD hangs (i.e., no one else can connect or do anything) until the person enters their password.
+   6.6 Why does CircleMUD use BUF switches all through the code, what's happening here?
+   6.7 How do I add a new class?  How do I add more levels?
+   6.8 Is there a complete ``coding.doc''?
+
 ______________________________________________________________________
 
 1.  Introduction
-
 
 
 1.1.  I've never played a MUD before.  What should I do?
@@ -148,7 +146,6 @@ ideas for my own.  I have played many MUDs for a LONG time, though.
 
 Read the FAQ.  Mud Experience doesn't help a huge amount.  Code
 experience does.
-
 I am interested in having a level system of 1-50 mortal and 51-60
 imms.  I am also interested in adding races and classes. How can I
 accomplish these things?
@@ -156,7 +153,7 @@ accomplish these things?
 By checking the FTP Site under contrib.  Learn a lot from there.
 Learn from the Snippets page, and *know* the FAQ.
 
- Also, is there anything that I should know about CircleMUD being a
+Also, is there anything that I should know about CircleMUD being a
 "newbie" to it?
 
 See the above comment.
@@ -188,27 +185,21 @@ Quoting from CircleMUD's release.doc:
 
 
 The latest full release of Circle is 2.20, released on November 17,
-1993.  Currently 3.0 is in beta, at patch level 12, released on
-October 29, 1997.
+1993.  Currently 3.0 is in beta, at patch level 14, released on July
+3, 1998.
 
 
 1.5.  What is the history of CircleMUD?
 
-
 o  Version 2.20: November 17, 1993
-
 o  Version 2.11: September 19, 1993
-
 o  Version 2.10: September 1, 1993
-
 o  Version 2.02: Early August
-
 o  Version 2.01: July 20, 1993
-
 o  Version 2.00: July 16, 1993
 
-Version 3.00 is currently in beta right now and is up to patch level
-12.  The final release is due out Real Soon Now(tm).  Don't bother
+Version 3.00 is currently in beta right now and is up to patchlevel
+14.  The final release is due out Real Soon Now(tm).  Don't bother
 posting requests for it.  It will be out when Jeremy gets it done, and
 it will be announced on the mailing list and the newsgroup
 rec.games.mud.diku.
@@ -240,8 +231,10 @@ actually, most aren't. The following are types of UNIX (but not all
 the existing flavours): Linux, FreeBSD, BSD, BSDi, Solaris. There are
 others. UNIX operating systems are command-based and Microsoft does
 not make a variant.
-2.  Resources
 
+
+
+2.  Resources
 
 2.1.  Where do I find the source code for CircleMUD?
 
@@ -253,25 +246,24 @@ CircleMUD information.
 
 2.2.  Where do I find areas, etc. for CircleMUD?
 
-
-A number of Circle-mud based Implementors have submitted areas to the
+A number of CircleMUD based Implementors have submitted areas to the
 public and they are archived
-<ftp://ftp.circlemud.org/pub/CircleMUD/contrib> at the same sites as
-the CircleMUD source.  You can also use the ftp2 mirror
-<ftp://ftp2.circlemud.org/pub/CircleMUD/contrib> or van mirror site.
+<ftp://ftp.circlemud.org/pub/CircleMUD/contrib/areas/> at the same
+sites as the CircleMUD source.  You can also use the ftp2 mirror
+<ftp://ftp2.circlemud.org/pub/CircleMUD/contrib/> or van mirror site.
 <ftp://ftp.van.ml.org/pub/CircleMUD/>.  If you cannot use FTP, you can
 contact one of the site maintainers and request a file.  The
-maintainers are Alex Fletcher <mailto:furry@circlemud.org> and Chris
-Epler <mailto:cepler@circlemud.org>.  If the FTP site is down, please
+maintainers are Alex Fletcher <mailto:furry@circlemud.org>, Chris
+Epler <mailto:cepler@circlemud.org>, and George Greer
+<mailto:greerga@circlemud.org>, If the FTP site is down, please
 contact Alex at his alternate address
 <mailto:fletcher@democracy.queensu.ca> since he will be able to find
 out the situation.  There is also a code snippets site
-<http://democracy.queensu.ca/~fletcher/Circle/Snippet/> where a number
-of code suggestions and hints are located.
+<http://mouse.van.ml.org/> where a number of code suggestions and
+hints are located.
 
 
 2.3.  I have questions about CircleMUD.  Where should I go?
-
 
 If you have general questions about the MUD such as how to get it
 running, how to add new spells, how to add new skills, etc., the first
@@ -291,12 +283,18 @@ resource as more documentation is added.
 If you still have questions after reading the doucmentation, you can
 try asking on the CircleMUD mailing list (see next section).
 
+If you have a question you think is too "newbie" for the mailing list,
+try the help database <mailto:help@circlemud.org>.  Previous questions
+are accessible though the bugs database <http://bugs.circlemud.org/>.
+That is also, incidently, where you should go to report bugs.
+
 You can also contact the author, Jeremy Elson
-<mailto:jelson@circlemud.org>.
+<mailto:jelson@circlemud.org>.  George Greer
+<mailto:greerga@circlemud.org> can also be contacted for most
+problems.
 
 
 2.4.  How do I subscribe/unsubscribe to the Mailing List?
-
 
 There is a CircleMUD mailing list for coders, builders, and
 administrators. To subscribe, send a message to the list server
@@ -313,7 +311,6 @@ information.
 
 2.5.  To what platforms has CircleMUD been ported?
 
-
 Version 3.0, although still officially in beta-testing, is very
 portable because it uses the GNU autoconf system, meaning you only
 need to type ``configure'' to have it automatically determine various
@@ -322,10 +319,10 @@ compiles without changes under most BSD and SVR4 systems, including
 SunOS, Solaris, Ultrix, IRIX, AIX, Linux, BSD/OS, HP/UX, and others.
 
 Version 3.0 is also being ported to various non-UNIX platforms.  As of
-patchlevel 12, you can compile Circle under OS/2 2.x and 3.x with the
-OS/2 port of gcc, and Windows 95/NT using Microsoft Visual C++ version
-4.0.  Ports for other non-UNIX platforms are in progress; patches for
-an Amiga version are also available.
+patchlevel 14, you can compile Circle under OS/2 2.x and 3.x with the
+OS/2 port of gcc, Windows 95/NT using Microsoft Visual C++ version 4.0
+or 5.0, Borland (now Inprise) C++ 4.5, Watcom v.11, Cygnus GNU-WIN32,
+LCC, Macintosh with CodeWarrior, Amiga, and Acorn RiscOS.
 
 The older version of the code, Version 2.20, compiles mainly on BSD
 UNIX systems but has trouble under SVR4-based systems such as Solaris.
@@ -336,17 +333,12 @@ compiles with relatively minor changes under NeXTStep 2.1 and 3.0, and
 HP/UX 9.0.
 
 Jean-Jack Riethoven <mailto:J.J.M.Riethoven@ab.agro.nl> ported
-CircleMUD version 2.20 to the Amiga and has made binaries (no source)
-available.  Note that the native version 3.0 source should compile
-under the Amiga in a future patchlevel.  The v2.20 binaries for the
-Amiga are  available at the FTP Site
-<ftp://ftp.circlemud.org/pub/CircleMUD/2.x/amiga/>.  Questions about
-the Amiga source should be directed to Jean-Jack Riethoven, not Jeremy
-Elson.
+CircleMUD version 2.20 to the Amiga and has contributed his code for
+version 3.0 of CircleMUD.  Questions about the Amiga source should be
+directed to Jean-Jack Riethoven, not Jeremy Elson or George Greer.
 
 
 2.6.  How can I submit code or areas for use with CircleMUD?
-
 
 There is a special uploads area
 <ftp://upload.circlemud.org/pub/CircleMUD/incoming> in the CircleMUD
@@ -362,9 +354,9 @@ with Jeremy for code items, or with Alex for area/lib files.
 
 Patch files are created and used using the ``diff'' and ``patch''
 utilities, respectively.  They can both be downloaded from the GNU FTP
-Site <ftp://ftp.gnu.ai.mit.edu/pub/gnu> under the name ``diffutils-
+Site <ftp://ftp.gnu.org/pub/gnu> under the name ``diffutils-
 xxx.tar.gz''.  If you happen to be using a DOS or Windows machine, you
-should get patch for dos <ftp://204.119.24.14/pub/patch/patch12.zip>.
+should get patch for DOS <ftp://204.119.24.14/pub/patch/patch12.zip>.
 This does not support long filenames (but can be used with short
 filenames).  There is also a set of Windows 95 Utilities now available
 from the Cygnus Gnu-Win32 Project <http://www.cygnus.com/misc/gnu-
@@ -372,10 +364,12 @@ win32/>.
 
 These are the various parameters to use with diff (all work in general
 on unix based systems, but check out the help entries to be certain.
-diff -uN original src directory altered src directory > Patch
+
+diff -uN [original_src_directory] [altered_src_directory] > Patch
 
 -u is the unified output. ie. it tells diff to output the text what is
-called ``patch'' style.  On some systems, you will have to use -c
+called ``patch'' style.  On some systems, you will have to use -c but
+it generates much larger and harder to follow patches.
 
 -N  Tells diff to treat files that are in one directory and not there
 in the other as being empty in the one they are not there.  It allows
@@ -383,6 +377,9 @@ entire files to be included into the patch.
 
 -r  recursive, add r to the uN above if you want it to recursively add
 in any subdirectories.  (be careful with this one)
+
+-p  Tells diff to indicate what function is being ``patched'' in each
+section. This may not be supported by all versions of ``diff.''
 
 If you download a patch file and would like to add it to your code,
 first make sure to read any instructions that the patch author might
@@ -393,12 +390,10 @@ unified diff, the command should be:
 
         patch -u < [patchfile]
 
-
 If the patch was created with a SYSV patcher (i.e. not a unified
 diff), the patch should be added with:
 
         patch -c < [patchfile]
-
 
 Of course, if the instructions state otherwise, ignore any instruc-
 tions given here and follow the instructions given with the patchfile
@@ -408,26 +403,22 @@ Finally, in modern patches, there are three characters of interest to
 note:
 
 o  ! :: The line changes between new and old.
-
 o  + :: This line is added to the old to make the new.
-
 o  - :: This line is removed from the old to make the new.
+o  The rest of the lines are just there to give you an idea of where
+   to change.
 
 
 3.  Compiling CircleMUD
 
-
-
 3.1.  Why do I get many syntax errors with Sun's ``cc'' compiler?
-
 
 Because Circle is written in ANSI C, and Sun's standard cc compiler
 isn't capable of compiling ANSI C code.  You can try acc, Sun's ANSI C
 compiler, but it costs extra money to get it from Sun so your sysadmin
 may not have installed it.  Most don't.  The best solution is to get
-the GCC compiler from the GNU FTP site
-<ftp://ftp.gnu.ai.mit.edu/pub/gnu> and install it, if you have enough
-time and space.
+the GCC compiler from the GNU FTP site <ftp://ftp.gnu.org/pub/gnu> and
+install it, if you have enough time and space.
 
 
 3.2.  Why do I get all sorts of errors with ``crypt'' functions and
@@ -443,7 +434,6 @@ you can manually disable password encryption by going into the
 sysdep.h source file and uncommenting the line that reads:
 
         #define NOCRYPT
-
 
 Be warned, however, that doing this causes the MUD to store players'
 passwords in plaintext rather than as encrypted strings.  Also, if you
@@ -464,11 +454,9 @@ together into the 'circle' binary.
 If you're using V2.20 and you have this error, the best thing to do is
 simply to use V3.0 instead.  If you insist on using 2.20, go into the
 Makefile and search for the comment next to ``SVR4''.
-
-
 3.4.  Every time I try to compile Circle (or any other piece of soft-
 ware) under Linux, it gives me errors and says it cannot find include
-header files in the linux/ and asm/ directories.  What can I do?
+header files in the linux/  and asm/  directories.  What can I do?
 
 Under Linux, you cannot compile any program unless you install the
 kernel source code because the kernel source includes the ANSI C
@@ -480,12 +468,12 @@ distribution is simply to install the 'K' series of disks which is the
 kernel source.
 
 Otherwise, you'll have to set up your include files manually. The
-easiest way to get these is to download kernel source from Sunsite
-<ftp://sunsite.unc.edu:/pub/Linux/kernel> or tsx-11
-<ftp://tsx-11.mit.edu:/pub/Linux/kernel>. Get the kernel source that
-matches the kernel you're running (type `uname -a' to find your kernel
-version).  Then unpack the kernel into the /usr/src directory.  It's 6
-megabytes compressed, 25 megabytes uncompressed.
+easiest way to get these is to download kernel source from
+ftp.kernel.org <ftp://ftp.kernel.org:/pub/linux/kernel>.  Get the
+kernel source that matches the kernel you're running (type `uname -a'
+to find your kernel version).  Then unpack the kernel into the
+/usr/src directory.  It's 6 megabytes compressed, 25 megabytes
+uncompressed.
 
 Read the README file that comes with the kernel, and make the symbolic
 links you need for /usr/include/asm and /usr/include/linux.
@@ -499,9 +487,6 @@ You can remove the whole kernel source tree except for include/ at
 this point and get most of your 25 megs back.
 
 (Thanks to Michael Chastain for providing this answer.)
-
-
-
 
 
 3.5.  I'm getting compilation errors from a header file, and I didn't
@@ -529,28 +514,22 @@ lems, what can I do?
 The first thing to do is to make sure you are compiling a recent
 version of the source code.  Patch Level 11 and onwards all support
 Windows '95 winsock sockets now.  Second, you should ensure that you
-have carefully read the README.WIN95 file for instructions on what to
+have carefully read the README.WIN file for instructions on what to
 include.  Next, ensure that you are using a C compiler that supports
 long filenames (for example, MSVC 4.0 does, MSVC 1.0 does not).  If
 you happen to be trying to patch something into your code, you should
-use patch for dos <ftp://204.119.24.14/pub/patch/patch12.zip>.  This
+use patch for DOS <ftp://204.119.24.14/pub/patch/patch12.zip>.  This
 does not support long filenames (but can be used with short
 filenames).
 
 
 3.7.  How can I do a ``grep'' on Windows 95?
 
-
 1. Select ``start menu''->``find''->``files or folders''
-
 2. Enter the files/dirs to search in.
-
 3. Select ``Advanced''
-
 4. In the ``Containing Text'' input box, type in the text you want.
-
 5. Double click on a match to bring up the file that matched.
-
    Even better is to use MSVC's find command (if you have it).
 
 
@@ -568,7 +547,6 @@ files and recompiling from scratch.
 
 A parsing error is often a missing or extra semicolon, parenthesis, or
 bracket ({).
-
 
 If the parse error is before a semicolon at the end of a line of code,
 it is something on that line.
@@ -598,8 +576,6 @@ be redefined.  For example, the equivalents for SYSV are:
 #define bcmp(a,b,len)           memcmp(a,b,len)
 
 
-
-
 3.11.  My compiler doesn't have ``strdup()'', what can I do?
 
 Use Circle's built-in str_dup() function instead.
@@ -616,14 +592,12 @@ foo.o: foo.c conf.h sysdep.h structs.h utils.h interpreter.h \
   handler.h db.h
 {TAB}$(CC) -c $(CFLAGS)
 
-
 To add these lines properly, you can use gcc to assist you with the
 following shell script (from Daniel Koepke):
 
 #!/bin/sh
 gcc -MM $1 >> Makefile
 echo "{TAB}\$(CC) -c \$(CFLAGS) $1" >> Makefile
-
 
 To use this script, replace {TAB} with a tab, and then run the script
 like: add_file foo.c
@@ -643,7 +617,6 @@ to the start with rewinddir() or close the directory with closedir().
 The following code (which has not been tested) should open a directory
 and go through it one by one and prints the filenames:
 
-
   struct dirent * ffile;
   DIR * my_dir;
 
@@ -658,7 +631,6 @@ and go through it one by one and prints the filenames:
 
   closedir(my_dir);
 
-
 The dirent structure contains only two useful elements, the file's
 name (d_name) and the files length (d_reclen).
 
@@ -667,10 +639,7 @@ Thanks to Daniel Koepke for the above.
 
 4.  Running CircleMUD
 
-
-
 4.1.  I typed ``autorun'' but then my terminal just froze.
-
 
 autorun is a script which automatically runs, logs, and reboots the
 game for long-term runs.  You should run autorun in the background by
@@ -687,7 +656,6 @@ when you leave the shell.
 4.2.  I typed ``bin/circle'' and got lots of boot messages, but then
 it said ``Entering game loop'' and froze.
 
-
 It is not frozen, it is just waiting for people to connect.  You have
 to run the MUD in the background by typing ``bin/circle &'' and then
 use telnet to connect to the game (see next section).
@@ -696,10 +664,8 @@ use telnet to connect to the game (see next section).
 4.3.  Okay, I think the MUD is running but why don't I get a login
 prompt?
 
-
 In order to play the MUD, you must connect to it using the telnet
 command, i.e. ``telnet localhost 4000''.
-
 
 
 4.4.  How come I get this error when running my mud: ``Error reading
@@ -772,7 +738,6 @@ directories which have no files in them.)  This is fixed in Circle 3.0
 patchlevel 12 and above.  Before patchlevel 12, you can fix it simply
 by manually creating the needed directories:
 
-
         CD \Circle30bpl11
         cd lib\plrobjs
         mkdir A-E
@@ -781,7 +746,6 @@ by manually creating the needed directories:
         mkdir P-T
         mkdir U-Z
         mkdir ZZZ
-
 
 Object saving should then work.  The syslogs are a different story; no
 data is written to the system logs because the code currently is con-
@@ -833,41 +797,38 @@ occurred.  If you get an actual line that failed, you've got it made.
 If not, the included message should help.  If you're working in real
 time, now's the time to crash the mud so you can see what gdb catches.
 
-
-When you've got the crash info, you can type where to see which
+When you've got the crash info, you can type ``where'' to see which
 function called the crash function, which function called that one,
-and so on all the way up to main().
+and so on all the way up to ``main()''.
 
-I should explain about context  You may type print ch which you would
-expect to show you the ch variable, but if you're in a function that
-doesn't get a ch passed to it (real_mobile, etc), you can't see ch
-because it's not in that context.  To change contexts (the function
-levels you saw with where) type up to go up.  You start at the bottom,
-but once you go up, and up, and up, you can always go back down.  You
-may be able to go up a couple functions to see a function with ch in
-it, if finding out who caused the crash is useful (it normally isn't).
+I should explain about ``context''  You may type ``print ch'' which
+you would expect to show you the ch variable, but if you're in a
+function that doesn't get a ch passed to it (real_mobile, etc), you
+can't see ch because it's not in that context.  To change contexts
+(the function levels you saw with where) type ``up'' to go up.  You
+start at the bottom, but once you go up, and up, and up, you can
+always go back ``down''.  You may be able to go up a couple functions
+to see a function with ch in it, if finding out who caused the crash
+is useful (it normally isn't).
 
-The print command is probably the single most useful command, and lets
-you print any variable, and arithmetic expressions (makes a nice
+The ``print'' command is probably the single most useful command, and
+lets you print any variable, and arithmetic expressions (makes a nice
 calculator if you know C math).  Any of the following are valid and
 sometimes useful:
-
 
 print ch (fast way to see if ch is a valid pointer, 0 if it's not)
 print *ch (prints the contents of ch, rather than the pointer address)
 print ch->player.name (same as GET_NAME(ch))
 print world[ch->in_room].number (vnum of the room the char is in)
 
-
 etc..
 
 Note that you can't use macros (all those handy psuedo functions like
 GET_NAME and GET_MAX_HIT), so you'll have to look up the full
 structure path of variables you need.
-
-Type list to see the source before and after the line you're currently
-looking at.  There are other list options but I'm unfamiliar with
-them.
+Type ``list'' to see the source before and after the line you're
+currently looking at.  There are other list options but I'm unfamiliar
+with them.
 
 (From Sammy <Samedi@cris.com>)
 
@@ -881,7 +842,6 @@ There are only a couple of commands to use in gdb, though with some
 patience they can be very powerful.  The only commands I've ever used
 are:
 
-
 run                     well, duh.
 print [variable]        also duh, though it does more than you might think
 list                    shows you the source code in context
@@ -890,15 +850,12 @@ clear [function]        remove a breakpoint
 step                    execute one line of code
 cont                    continue running after a break or ctrl-c
 
-
-
 I've run into nasty problems quite a few times.  The cause is often a
 memory problem, usually with pointers, pointers to nonexistent memory.
 If you free a structure, or a string or something, the pointer isn't
 always set to NULL, so you may have code that checks for a NULL
 pointer that thinks the pointer is ok since it's not NULL.  You should
 make sure you always set pointers to NULL after freeing them.
-
 
 Ok, now for the hard part.  If you know where the problem is, you
 should be able to duplicate it with a specific sequence of actions.
@@ -932,7 +889,6 @@ lines of code, you'll see one line at a time.  Note that the line you
 see hasn't been run yet.  It's actually the _next_ line to be
 executed.  So if the line is a = b + c;, printing a will show you what
 a was before this line, not the sum of b and c.
-
 If you have an idea of where the crash is occurring, you can keep
 stepping till you get to that part of the code (tip: pressing return
 will repeat the last GDB command, so you can type step once, then keep
@@ -945,10 +901,9 @@ should be obvious when that happens.
 Now that you've found the exact line where you get the crash, you
 should start the mud over and step more slowly this time. What I've
 found that works really well to save time is to create a dummy
-function.  THis one will work just fine:
+function.  This one will work just fine:
 
 void dummy(void){}
-
 
 Put that somewhere in the file you're working on.  Then, right before
 the crash, put a call to dummy in the code (ex: dummy();).  Then set
@@ -985,12 +940,10 @@ with them to see if you can find any new tools.
 4.13.  I just added n levels to my mud (from the stock 34).  How do I
 set my imps up to level n without a pfile wipe?
 
-
 You can write a quick and nasty function that will advance your imp
 (and imp only) to the max level (LVL_IMPL).  This can be done with a
 quick idnum check so that only the original player (the first imp, he
 with id 1) can use the command to get to maximum level.
-
 
 ACMD(do_upme)
 {
@@ -1003,17 +956,12 @@ ACMD(do_upme)
 }
 
 
-
-
 4.14.  I decided to wipe my pfile away anyway.  What steps should I
 take to do this?
 
 In order:
-
 1. Shutdown the mud with ``shutdown die'' so that it won't restart.
-
-2. Remove the player file, /lib/etc/players
-
+2. Remove the player file, lib/etc/players
 3. Restart the mud and login to recreate your imp character.
 
 You should probably also remove files in plrobjs, unless you want the
@@ -1025,12 +973,10 @@ when they were deleted.
 SINS that'll be able to PK without getting flagged.  How can I do
 this?
 
-
 The simple way to do this is to find all the ``pk_allowed'' checks and
 replace them with a can_murder(ch, vict) function call.  Prototype the
 function in utils.h.  Then, in utils.c, create a can_murder() function
 something like this:
-
 
 int can_murder(struct char_data *ch, struct char_data *victim) {
   if (pk_allowed == TRUE)
@@ -1043,8 +989,6 @@ int can_murder(struct char_data *ch, struct char_data *victim) {
 }
 
 
-
-
 4.16.  Why does it say ``Connection closed by foreign host.'' and not
 display the ``Byebye!'' message I'm trying to send before cutting
 someone off?
@@ -1053,8 +997,6 @@ This usually happens if you are doing something like this:
 
   send_to_char("Bye bye.  Come back soon, ya hear?", ch);
   close_socket(ch->desc);
-
-
 
 The close_socket immediately dispatches/closes the connection, while
 send_to_char puts the message on the output queue to be dispatched
@@ -1066,8 +1008,6 @@ like this:
 
   send_to_char("Bye bye.  Come back soon, ya hear?", ch);
   STATE(ch->desc) = CON_CLOSED;
-
-
 
 This will then cycle to the next game_loop, dispatch the output queues
 (therefore sending the byebye message) and then close the socket.
@@ -1087,15 +1027,10 @@ files from one of these systems to the other will result in corrupted
 files.  The solutions to this problem include:
 
 o  Don't bother trying to move those files.
-
 o  Edit your code to always write in one format.
-
 o  Develop a binary to ascii conversion tool (and ascii to binary) for
    all binary files.
-
 o  Develop an ascii read/write system to allow portability.
-
-
 
 
 4.18.  How do I get the CircleMUD to autoload when the Linux server is
@@ -1107,8 +1042,6 @@ are started.  Add something like:
 cd /home/mudlogin/circlebpl12/
 su mudlogin -c ./autorun&
 cd
-
-
 
 Of course, change the "mudlogin" to whatever the name of the account
 is that normally has control of the mud, and change the path in the
@@ -1129,18 +1062,14 @@ prompt on your server.
 
 5.  Code Changes for CircleMUD 2.20
 
-
-
 5.1.  How do I fix the bug where people can junk more coins than
 available?
-
 
 Apprently in Circle 2.2, you can drop any amount of coins, and then be
 rewarded with more coins than you had in the first place.  Here is the
 fix from Jeremy Elson:
 
 Around line 480 of act.obj1.c, you will find the code:
-
 
             if (!str_cmp("coins", arg) || !str_cmp("coin", arg))
               perform_drop_gold(ch, amount, mode, RDR);
@@ -1152,17 +1081,7 @@ Around line 480 of act.obj1.c, you will find the code:
           } else {
           ....
 
-
-
 It should be changed to:
-
-
-
-
-
-
-
-
 
             if (!str_cmp("coins", arg) || !str_cmp("coin", arg))
               perform_drop_gold(ch, amount, mode, RDR);
@@ -1175,25 +1094,18 @@ It should be changed to:
           ....
 
 
-
-
 5.2.  How do I fix the ``vstat'' bug that crashes the MUD?
-
 
 To the fix for the vstat bug, from Jeremy Elson:
 
 In the file act.wizard.c, in the function do_vstat, in the mobile
 section of the switch (around line 1150), you'll find the code:
 
-
         mob = read_mobile(r_num, REAL);
         do_stat_character(ch, mob);
         extract_char(mob);
 
-
-
 Add the line char_to_room(mob, 0) before extract_char(), like this:
-
 
         mob = read_mobile(r_num, REAL);
         do_stat_character(ch, mob);
@@ -1201,13 +1113,10 @@ Add the line char_to_room(mob, 0) before extract_char(), like this:
         extract_char(mob);
 
 
-
-
 5.3.  How do I fix the ``wizlock'' bug that lets lower immortals lock
 out higher immortals?
 
 Simple, insert this code into 'do_wizlock()' in 'act.wizard.c':
-
 
         if (value < 0 || value > LEVEL_IMPL) {
           send_to_char("Invalid wizlock value.\n\r", ch);
@@ -1224,21 +1133,17 @@ Simple, insert this code into 'do_wizlock()' in 'act.wizard.c':
         restrict = value;
 
 
-
-
 5.4.  How do I fix the ``mudlog'' bug that lets people see me log in,
 even if I'm wizinvis?
-
 
 For all the mudlog calls for entering the game, quitting, and so
 forth, you must change
 
         mudlog(MAX(LEVEL_IMMORT, ...
 
-
+to
 
         mudlog(MAX(GET_LEVEL(i), ...
-
 
 where ``i'' is either ``ch'' or ``d->character'' depending on the
 call.
@@ -1246,28 +1151,26 @@ call.
 
 6.  CircleMUD 3.0 Questions
 
-
-
-6.1.  Are there any bugs in patch level 12?
-
+6.1.  Are there any bugs in patch level 14?
 
 There are no bugs.  Only features.  Seriously though, if perchance you
-find a bug, please mail it (along with a possible fix) to Jeremy and
-the CircleMUD list.  If the bug is a world related bug, it is a good
-idea to mail it to me, Alex, as well.
+find a bug, please mail it (along with a possible fix) to the bugs
+database <mailto:bugs@circlemud.org> and the CircleMUD list.  Once in
+the bug database, it will be routed to the correct person.  Note that
+no confirmation is sent back automatically.  You can view the status
+of the bug at the bugs database <http://bugs.circlemud.org/>.
 
 
 6.2.  How do I access Online Creation?
 
-
 Online Creation is not yet part of the Circle beta release. When it
 does become part of the release, it'll be accessed through a command
 called olc. Update: OLC will probably be in release 3.10 now, instead
-of 3.0.
+of 3.0. In the mean time, check out the CircleMUD FTP Server
+<ftp://ftp.circlemud.org/pub/CircleMUD/contrib/olc/>
 
 
 6.3.  How does the new bitvector system work?
-
 
 The new bitvector system in CircleMUD 3.0 is an ascii based one. The
 old numeric values can still be used, but the new system should make
@@ -1281,21 +1184,26 @@ the CircleMUD Builder's Manual
 
 6.4.  When will the production release of Circle 3.0 be?
 
-I don't know.  Don't ask again.  Same for the next patch level.
+I don't know.  Don't ask again.  Same for the next patch level.  If
+you must have bleeding edge stuff, check out the CVS Snapshot
+<ftp://ftp.circlemud.org/pub/CircleMUD/cvs/> until we get an online
+anonymous CVS.  And don't ask when the next CVS snapshot will be,
+we'll do it when we have some changes worth it.
 
 
 6.5.  If someone logs in and just sits at the password prompt, the MUD
 hangs (i.e., no one else can connect or do anything) until the person
 enters their password.
 
-
 Your system's POSIX non-blocking I/O might be broken.  Look in the
 source file sysdep.h at the comment above the line that says ``#define
 POSIX_NONBLOCK_BROKEN" for a possible fix. Once this is done,
 recompile the mud and try again.  If you use the POSIX_NONBLOCK_BROKEN
-constant and it fixes your problem, please send mail to Jeremy
-<mailto:jelson@circlemud.org> and let him know exactly what kind of
-system you are using and what you had to do to fix it.
+constant and it fixes your problem, please send mail to the bugs
+database <mailto:bugs@circlemud.org> and let us know exactly what kind
+of system you are using and what you had to do to fix it.
+
+
 6.6.  Why does CircleMUD use BUF switches all through the code, what's
 happening here?
 
@@ -1322,12 +1230,12 @@ various players), the next step of the game_loop() is to send all the
 queued output out over the network.
 
 The new output system that Circle now uses allocates a small, fixed
-size buffer (512 bytes) for each descriptor in which output can be
+size buffer (1024 bytes) for each descriptor in which output can be
 queued.  When output is generated (via such functions as
 send_to_char(), act(), etc.), it is written to the fixed size buffer
 until the buffer fills.  When the buffer fills, we switch over to a
 larger (12K) buffer instead.  A ``buffer switch'', therefore, is when
-the 512-byte fixed buffer overflows.
+the 1024-byte fixed buffer overflows.
 
 When a large (12K) buffer is needed, it is taken from a pool of 12K
 buffers that already been created.  It is used for the duration of
@@ -1378,11 +1286,12 @@ such a special large-output command at the same instant.
 For example, imagine you have 10 players on your MUD.  They are all
 wandering around town, and every once in a while one of them types
 ``who'', or reads the board, meaning that they are seeing more than
-512 bytes of output at a time.  On such a MUD, I would hope that there
-would only be a single 12K buffer allocated which gets passed around
-among all the 10 players as needed.  Now, all players think they can
-queue up to 12K of output per command without getting truncated even
-though only one 12K buffer actually exists -- they are all sharing it.
+1024 bytes of output at a time.  On such a MUD, I would hope that
+there would only be a single 12K buffer allocated which gets passed
+around among all the 10 players as needed.  Now, all players think
+they can queue up to 12K of output per command without getting
+truncated even though only one 12K buffer actually exists -- they are
+all sharing it.
 
 But - there's a problem with this.  There are certain cases when many
 players have to see a lot of output at the same instant (i.e. on the
@@ -1391,7 +1300,7 @@ buffer at the same time and the pool will get very big.  For example,
 if an evil god types ``force all who''; or if the MUD lags for several
 seconds, then suddenly gets unlagged causing many commands to be
 processed at the same moment; or if 20 people are all trying to kill
-the same MOB and are all seeing 20 damage messages (more than 512
+the same MOB and are all seeing 20 damage messages (more than 1024
 bytes) on the same pass through the game_loop().
 
 Unfortunately, the current patchlevel of Circle has no way to destroy
@@ -1407,7 +1316,6 @@ Hopefully this clears up the way buffers work.
 
 6.7.  How do I add a new class?  How do I add more levels?
 
-
 Adding a new class is fairly easy in 3.0, in fact, someone has taken
 the time to put together a fairly complete document on adding a class,
 in this case a Knight class. The class.doc is available on the FTP
@@ -1421,76 +1329,8 @@ which can be found in the same place.
 
 6.8.  Is there a complete ``coding.doc''?
 
-
 No.  Look at the README.NOW in the docs directory.  It isn't complete,
-nor does anyone have the entire thing.  Jeremy is working on it.
+nor does anyone have the entire thing.  It is being worked upon.
 
 RTFM
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

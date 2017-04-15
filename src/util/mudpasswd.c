@@ -17,9 +17,9 @@ int str_eq(char *s, char *t)
 {
   for (;;) {
     if (*s == 0 && *t == 0)
-      return TRUE;
+      return (TRUE);
     if (LOWER(*s) != LOWER(*t))
-      return FALSE;
+      return (FALSE);
     s++;
     t++;
   }
@@ -80,5 +80,5 @@ int main(int argc, char **argv)
   else
     pword(argv[1], argv[2], argv[3]);
 
-  return 0;
+  return (0);
 }

@@ -19,8 +19,8 @@ struct shop_buy_data {
 
 
 struct shop_data {
-   int	 vnum;			/* Virtual number of this shop		*/
-   int	*producing;		/* Which item to produce (virtual)	*/
+   room_vnum vnum;		/* Virtual number of this shop		*/
+   obj_vnum *producing;		/* Which item to produce (virtual)	*/
    float profit_buy;		/* Factor to multiply cost with		*/
    float profit_sell;		/* Factor to multiply cost with		*/
    struct shop_buy_data *type;	/* Which items to trade			*/
@@ -32,10 +32,10 @@ struct shop_data {
    char	*message_buy;		/* Message when player buys item	*/
    char	*message_sell;		/* Message when player sells item	*/
    int	 temper1;		/* How does keeper react if no money	*/
-   int	 bitvector;		/* Can attack? Use bank? Cast here?	*/
-   int	 keeper;		/* The mobil who owns the shop (virtual)*/
+   bitvector_t	 bitvector;	/* Can attack? Use bank? Cast here?	*/
+   mob_rnum	 keeper;	/* The mobile who owns the shop (rnum)	*/
    int	 with_who;		/* Who does the shop trade with?	*/
-   int	*in_room;		/* Where is the shop?			*/
+   room_rnum *in_room;		/* Where is the shop?			*/
    int	 open1, open2;		/* When does the shop open?		*/
    int	 close1, close2;	/* When does the shop close?		*/
    int	 bankAccount;		/* Store all gold over 15000 (disabled)	*/
@@ -70,13 +70,13 @@ struct shop_data {
 
 
 /* Whom will we not trade with (bitvector for SHOP_TRADE_WITH()) */
-#define TRADE_NOGOOD		1
-#define TRADE_NOEVIL		2
-#define TRADE_NONEUTRAL		4
-#define TRADE_NOMAGIC_USER	8
-#define TRADE_NOCLERIC		16
-#define TRADE_NOTHIEF		32
-#define TRADE_NOWARRIOR		64
+#define TRADE_NOGOOD		(1 << 0)	
+#define TRADE_NOEVIL		(1 << 1)
+#define TRADE_NONEUTRAL		(1 << 2)
+#define TRADE_NOMAGIC_USER	(1 << 3)
+#define TRADE_NOCLERIC		(1 << 4)
+#define TRADE_NOTHIEF		(1 << 5)
+#define TRADE_NOWARRIOR		(1 << 6)
 
 
 struct stack_data {

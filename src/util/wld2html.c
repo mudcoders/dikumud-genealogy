@@ -173,7 +173,7 @@ int main(int argc, char **argv)
   write_output();
   log("Done.");
 
-  return 0;
+  return (0);
 }
 
 
@@ -226,7 +226,7 @@ int count_hash_records(FILE * fl)
     if (*buf == '#')
       count++;
 
-  return count;
+  return (count);
 }
 
 
@@ -297,7 +297,7 @@ long asciiflag_conv(char *flag)
   if (is_number)
     flags = atol(flag);
 
-  return flags;
+  return (flags);
 }
 
 /* load the rooms */
@@ -459,7 +459,7 @@ char *fread_string(FILE * fl, char *error)
   } else
     rslt = NULL;
 
-  return rslt;
+  return (rslt);
 }
 
 
@@ -505,9 +505,9 @@ int get_line(FILE * fl, char *buf)
   } while (!feof(fl) && (*temp == '*' || !*temp));
 
   if (feof(fl))
-    return 0;
+    return (0);
   else {
     strcpy(buf, temp);
-    return 1;
+    return (1);
   }
 }
