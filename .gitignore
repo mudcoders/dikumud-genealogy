@@ -1,4 +1,10 @@
-src/merc
+src/envy
 *.exe
 *.o
 *.log
+area/bugs.txt
+area/ideas.txt
+area/typos.txt
+area/notes.txt
+area/shutdown.txt
+area/time.txt

@@ -333,19 +333,17 @@ but do not mess with him or else he'll get upset.
 2000 80000
 8 8 1
 #3050
-dealer~
-Aod the Dealer~
-Aod the Dealer stands in the shadows here.
+dealer dave~
+Dave the Dealer~
+Dave the Dealer stands in the shadows here.
 ~
-Aod looks just like the dealer hoodlum you see on T.V.  He's wearing a
+Dave looks just like the dealer hoodlum you see on T.V.  He's wearing a
 concert shirt and Levi 501's.  His hair is pulled back into a pony tail.
-A beard and moustache complete the look.  Aod has brought some drugs
-with him from Generic Mud.
-<worn on penis>      A Trojan (TM) Condom.
+He's here to sell you trash.  Or is it?
 
-Since he practices safe sex, ~
+Because he is a Sensitive Ponytail Man, ~
 4|64 8|32|512 0 S
-15 15 -2 1d1+999 2d10+20
+45 15 -2 1d1+999 2d10+20
 500 19000
 8 8 1
 #3060
@@ -637,9 +635,58 @@ He is very good at his job - completely dissolved in tears.
 1 20 9 2d6+10 1d5+0
 34 100
 8 8 1
+#3150
+guildmaster master~
+the guildmaster~
+Your guildmaster is levitating here.
+~
+Even though your guildmaster looks old and tired, you are amazed by the
+vast power you can sense emanating from her.  She notices you as you
+enter, but you can tell that you take up only a small portion of her
+attention.
+~
+2|1024 0 1000 S
+23 0 0 6d10+440 3d8+24
+1333 100000
+8 8 2
+#3151
+gypsy~
+the gypsy~
+A gypsy is guarding the entrance.
+~
+She used to wander the Realm, practicing her psionic arts, but now she
+is acting as the guard to the Psionicist's Guild.  She may be small,
+but so was Yoda.  I wouldn't cross her.
+~
+2 2 500 S
+22 2 2 6d10+3900 1d8+22
+1333 80000
+8 8 2
+#3152
+waiter~
+the waiter~
+A waiter is here, waiting to serve you a drink.
+~
+A man who once bent spoons with the best of them, he is now content to
+mix drinks and make conversation.
+~
+2 0 600 S
+25 1 2 6d10+390 1d8+18
+1333 20000
+8 8 1
+#3153
+mapmaker map maker~
+the Map Maker~
+The Map Maker looks up from the map he is working on and offers you assistance.
+~
+A rather old man, wearing spectacles from his years spent staring at pieces
+of parchment under poor lighting.
+~
+2 0 900 S
+23 2 2 1d1+30000 1d8+20
+12000 80000
+8 8 1
 #0
-
-
 
 #OBJECTS
 #3000
@@ -648,7 +695,7 @@ a barrel of beer~
 A beer barrel has been left here.~
 ~
 17 0 1
-50 50 1 0
+50~ 50~ 1~ 0~
 65 300 100
 #3001
 bottle beer~
@@ -656,7 +703,7 @@ a bottle of beer~
 A beer bottle has been left here.~
 ~
 17 0 1
-8 8 1 0
+8~ 8~ 1~ 0~
 10 20 8
 #3002
 bottle ale~
@@ -664,7 +711,7 @@ a bottle of ale~
 A dark bottle of ale has been left here.~
 ~
 17 0 1
-8 8 3 0
+8~ 8~ 3~ 0~
 10 10 3
 #3003
 bottle firebreather~
@@ -672,7 +719,7 @@ a bottle of firebreather~
 A firebreather has been left here.~
 ~
 17 0 1
-8 8 7 0
+8~ 8~ 7~ 0~
 10 50 17
 #3004
 bottle local~
@@ -680,7 +727,7 @@ a bottle of local specialty~
 A dark bottle has been left here.~
 ~
 17 0 1
-8 8 8 0
+8~ 8~ 8~ 0~
 10 20 7
 #3005
 axe blade~
@@ -688,7 +735,7 @@ an executioner's axe~
 An executioner's axe is here waiting to possess its next user.~
 ~
 5 1024|2048 1|8192
-0 5 6 1
+0~ 5~ 6~ 1~
 60 30000 10000
 E
 axe blade~
@@ -702,7 +749,7 @@ a big pot pie~
 A big pot pie has been left here.~
 ~
 19 0 1
-40 0 0 0
+40~ 0~ 0~ 0~
 5 100 10
 #3010
 pit~
@@ -710,7 +757,7 @@ the donation pit~
 A pit for sacrifices is in front of the altar.~
 ~
 15 0 0
-10000 0 0 0
+10000~ 0~ 0~ 0~
 0 0 0
 E
 pit~
@@ -723,7 +770,7 @@ a dagger~
 A dagger with a long thin blade is here.~
 ~
 5 0 8193
-0 2 4 11
+0~ 2~ 4~ 11~
 1 10 3
 #3021
 sword small~
@@ -731,7 +778,7 @@ a small sword~
 A small sword lies here.~
 ~
 5 0 8193
-0 2 5 11
+0~ 2~ 5~ 11~
 3 60 20
 #3022
 sword long~
@@ -739,7 +786,7 @@ a long sword~
 A long sword has been left here.~
 ~
 5 0 8193
-0 2 6 3
+0~ 2~ 6~ 3~
 8 100 200
 #3030
 torch~
@@ -747,7 +794,7 @@ a torch~
 A large torch.~
 ~
 1 0 65537
-0 0 24 0
+0~ 0~ 24~ 0~
 1 10 3
 #3031
 lantern~
@@ -755,7 +802,7 @@ a hooded brass lantern~
 A hooded brass lantern has been left here.~
 ~
 1 0 16385
-0 0 100 0
+0~ 0~ 100~ 0~
 4 60 20
 E
 lantern~
@@ -773,7 +820,7 @@ a bag~
 A small bag.~
 ~
 15 0 1
-50 0 0 0
+50~ 0~ 0~ 0~
 2 20 7
 #3033
 box~
@@ -781,7 +828,7 @@ a box~
 A small box.~
 ~
 15 0 1
-10 0 0 0
+10~ 0~ 0~ 0~
 5 50 7
 #3040
 scroll identify~
@@ -789,7 +836,7 @@ a scroll of identify~
 A scroll has carelessly been left here.~
 ~
 2 64 1
-12 53 -1 -1
+12~ identify~ ~ ~
 1 2000 50
 E
 scroll identify~
@@ -807,7 +854,7 @@ a yellow potion of see invisible~
 A small yellow potion has carelessly been left here.~
 ~
 10 64 1
-12 19 -1 -1
+12~ detect invis~ ~ ~
 1 400 50
 E
 potion yellow~
@@ -819,11 +866,11 @@ a scroll of recall~
 A scroll has carelessly been left here.~
 ~
 2 64 1
-12 42 -1 -1
+12~ word of recall~ ~ ~
 4 2000 100
 E
 scroll~
-The scroll has written a formulae of 'Word of Recall' upon it.
+The scroll has a formula of 'Word of Recall' written upon it.
 ~
 #3045
 jacket scale mail~
@@ -831,7 +878,7 @@ a scale mail jacket~
 A scale mail jacket is lying on the ground.~
 ~
 9 0 9
-4 0 0 0
+4~ 0~ 0~ 0~
 40 1000 300
 #3046
 bronze breast plate~
@@ -839,7 +886,7 @@ a bronze breast plate~
 A bronze breast plate is lying on the ground.~
 ~
 9 0 9
-6 0 0 0
+6~ 0~ 0~ 0~
 80 7000 2250
 #3050
 raft~
@@ -847,7 +894,7 @@ a raft~
 A raft has been left here.~
 ~
 22 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 75 400 20000
 E
 raft~
@@ -859,7 +906,7 @@ a canoe~
 A canoe has been left here.~
 ~
 22 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 32 1000 10000
 E
 canoe~
@@ -871,7 +918,7 @@ a leather jerkin~
 A leather jerkin is lying on the ground.~
 ~
 9 0 9
-2 0 0 0
+2~ 0~ 0~ 0~
 5 100 20
 #3061
 cap~
@@ -879,7 +926,7 @@ a leather cap~
 A leather cap is lying on the ground.~
 ~
 9 0 17
-2 0 0 0
+2~ 0~ 0~ 0~
 1 50 10
 #3062
 pants~
@@ -887,7 +934,7 @@ a pair of leather pants~
 A pair of leather pants is lying on the ground.~
 ~
 9 0 33
-2 0 0 0
+2~ 0~ 0~ 0~
 5 50 10
 #3063
 boots~
@@ -895,7 +942,7 @@ a pair of leather boots~
 A pair of leather boots lies here.~
 ~
 9 0 65
-2 0 0 0
+2~ 0~ 0~ 0~
 3 50 10
 #3064
 gloves~
@@ -903,7 +950,7 @@ a pair of leather gloves~
 A pair of leather gloves is lying on the ground.~
 ~
 9 0 129
-2 0 0 0
+2~ 0~ 0~ 0~
 1 50 10
 #3065
 sleeves~
@@ -911,7 +958,7 @@ a pair of leather sleeves~
 A pair of leather sleeves is lying on the ground.~
 ~
 9 0 257
-2 0 0 0
+2~ 0~ 0~ 0~
 3 50 10
 #3066
 jerkin~
@@ -919,7 +966,7 @@ a studded leather jerkin~
 A studded leather jerkin is lying on the ground.~
 ~
 9 0 9
-3 0 0 0
+3~ 0~ 0~ 0~
 10 200 40
 #3067
 cap~
@@ -927,7 +974,7 @@ a hard leather cap~
 A hard leather cap is lying on the ground.~
 ~
 9 0 17
-3 0 0 0
+3~ 0~ 0~ 0~
 2 100 20
 #3068
 pants~
@@ -935,7 +982,7 @@ a pair of studded leather pants~
 A pair of studded leather pants is lying on the ground.~
 ~
 9 0 33
-3 0 0 0
+3~ 0~ 0~ 0~
 8 100 20
 #3069
 boots~
@@ -943,7 +990,7 @@ a pair of hard leather boots~
 A pair of hard leather boots lies here.~
 ~
 9 0 65
-3 0 0 0
+3~ 0~ 0~ 0~
 4 100 20
 #3070
 gloves~
@@ -951,7 +998,7 @@ a pair of hard leather gloves~
 A pair of hard leather gloves is lying on the ground.~
 ~
 9 0 129
-3 0 0 0
+3~ 0~ 0~ 0~
 1 100 20
 #3071
 sleeves~
@@ -959,7 +1006,7 @@ a pair of studded leather sleeves~
 A pair of studded leather sleeves is lying on the ground.~
 ~
 9 0 257
-3 0 0 0
+3~ 0~ 0~ 0~
 4 100 20
 #3072
 jerkin scale mail~
@@ -967,7 +1014,7 @@ a scale mail jerkin~
 A scale mail jerkin is lying on the ground.~
 ~
 9 0 9
-4 0 0 0
+4~ 0~ 0~ 0~
 20 500 100
 #3073
 coif scale mail~
@@ -975,7 +1022,7 @@ a scale mail coif~
 A scale mail coif is lying on the ground.~
 ~
 9 0 17
-4 0 0 0
+4~ 0~ 0~ 0~
 4 250 50
 #3074
 skirt scale mail~
@@ -983,7 +1030,7 @@ a long scale mail skirt~
 A long scale mail skirt is lying on the ground.~
 ~
 9 0 33
-4 0 0 0
+4~ 0~ 0~ 0~
 20 250 50
 #3075
 boots reinforced~
@@ -991,7 +1038,7 @@ a pair of reinforced boots~
 A pair of reinforced boots lies here.~
 ~
 9 0 65
-4 0 0 0
+4~ 0~ 0~ 0~
 6 250 50
 #3076
 gloves reinforced~
@@ -999,7 +1046,7 @@ a pair of reinforced gloves~
 A pair of reinforced gloves is lying on the ground.~
 ~
 9 0 129
-4 0 0 0
+4~ 0~ 0~ 0~
 2 250 50
 #3077
 sleeves scale mail~
@@ -1007,7 +1054,7 @@ a pair of scale mail sleeves~
 A pair of scale mail sleeves is lying on the ground.~
 ~
 9 0 257
-4 0 0 0
+4~ 0~ 0~ 0~
 8 250 50
 #3097
 shield small metal~
@@ -1015,7 +1062,7 @@ a small metal shield~
 A small metal shield is lying on the ground.~
 ~
 9 0 513
-4 0 0 0
+4~ 0~ 0~ 0~
 3 500 100
 #3100
 tea cup~
@@ -1023,7 +1070,7 @@ a cup of tea~
 A cup has been set here.~
 ~
 17 0 1
-2 2 11 0
+2~ 2~ 11~ 0~
 3 5 1
 E
 cup~
@@ -1035,7 +1082,7 @@ a cup of coffee~
 A cup has been set here.~
 ~
 17 0 1
-2 2 12 0
+2~ 2~ 12~ 0~
 3 7 1
 E
 cup~
@@ -1047,7 +1094,7 @@ a cup of water~
 A cup has been set here.~
 ~
 17 0 1
-2 2 0 0
+2~ 2~ 0~ 0~
 3 2 1
 E
 cup~
@@ -1059,7 +1106,7 @@ a bronze bracer~
 A bronze bracer is lying on the ground.~
 ~
 9 0 4097
-6 0 0 0
+6~ 0~ 0~ 0~
 8 2500 500
 #3106
 bracer iron~
@@ -1067,7 +1114,7 @@ an iron bracer~
 An iron bracer is lying on the ground.~
 ~
 9 0 4097
-7 0 0 0
+7~ 0~ 0~ 0~
 8 5000 1000
 #3120
 key iron~
@@ -1075,7 +1122,7 @@ a key~
 An iron key has been left here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 10
 E
 key iron~
@@ -1087,7 +1134,7 @@ a key~
 A rusty key has been left here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 10
 E
 key rusty~
@@ -1099,7 +1146,7 @@ a key~
 A wooden key has been left here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 10
 E
 key wooden~
@@ -1111,7 +1158,7 @@ a key~
 A brass key has been left here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 10
 E
 key brass~
@@ -1123,7 +1170,7 @@ a long sword~
 A long sword has been left here.~
 ~
 5 0 8193
-0 3 8 3
+0~ 3~ 8~ 3~
 8 600 200
 E
 sword long~
@@ -1135,7 +1182,7 @@ a pair of hand cuffs~
 A pair of hand cuffs has been left here.~
 ~
 13 0 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 4 200 40
 #3130
 desk drawer~
@@ -1144,7 +1191,7 @@ A desk is set against the western wall.~
 The desk looks very sparse, there is a drawer in the left side.
 ~
 15 0 0
-34 15 3122 0
+34~ 15~ 3122~ 0~
 100 0 100000
 E
 drawer~
@@ -1157,7 +1204,7 @@ A safe is placed in a dark corner of the room.~
 The safe has a keyhole.
 ~
 15 0 0
-34 15 3123 0
+34~ 15~ 3123~ 0~
 100 0 100000
 E
 safe~
@@ -1170,7 +1217,7 @@ A lot of gold is here.~
 Looks like at least 10,000 coins.
 ~
 20 0 1
-52385 0 0 0
+52385~ 0~ 0~ 0~
 0 52385 0
 #3133
 city key~
@@ -1181,7 +1228,7 @@ polished gold and has various patterns on it along with the Midgaard Coat of
 Arms.
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 10 10000 5000
 #3134
 bench~
@@ -1189,7 +1236,7 @@ the Bench~
 A white-painted wooden bench is standing here.~
 ~
 12 0 0
-0 0 0 0
+0~ 0~ 0~ 0~
 100 600 200
 E
 bench~
@@ -1203,7 +1250,7 @@ a fountain~
 A small white fountain gushes forth here.~
 ~
 25 0 0
-50 50 0 0
+50~ 50~ 0~ 0~
 500 3000 1000
 E
 fountain~
@@ -1215,7 +1262,7 @@ a small pile of gold coins~
 A small pile of gold coins lies here.~
 ~
 20 0 1
-20 0 0 0
+20~ 0~ 0~ 0~
 0 0 0
 #3137
 key steel~
@@ -1223,7 +1270,7 @@ a steel key~
 A large steel key has been left here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 10
 E
 key steel~
@@ -1235,7 +1282,7 @@ a buffalo water skin~
 A bloated dead buffalo is on the floor.~
 ~
 17 0 1
-100 100 0 0
+100~ 100~ 0~ 0~
 5 30 5
 #3139
 letter resignation~
@@ -1243,7 +1290,7 @@ the receptionist's letter of resignation~
 The receptionist's letter of resignation is taped to the wall.~
 ~
 12 0 0
-0 0 0 0
+0~ 0~ 0~ 0~
 999 0 0
 E
 letter resignation~
@@ -1264,7 +1311,7 @@ the bank's notice of liquidation~
 The bank's notice of liquidation is taped to the wall.~
 ~
 12 0 0
-0 0 0 0
+0~ 0~ 0~ 0~
 999 0 0
 E
 notice liquidation bank~
@@ -1280,15 +1327,15 @@ The letter is written in a reserved and dignified Spencer hand.
     Midgaard City Bank
 ~
 #3350
-sword~
+standard sword~
 a standard issue sword~
 You see a standard issue sword here.~
 ~
 5 64 8193
-0 3 4 3
+0~ 3~ 4~ 3~
 5 0 500
 E
-sword~
+standard sword~
 You see a sword of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
@@ -1297,15 +1344,15 @@ A
 A
 19 2
 #3351
-dagger~
+standard dagger~
 a standard issue dagger~
 You see a standard issue dagger here.~
 ~
 5 64 8193
-0 4 4 11
+0~ 4~ 4~ 11~
 5 0 500
 E
-dagger~
+standard dagger~
 You see a dagger of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
@@ -1314,15 +1361,15 @@ A
 A
 19 1
 #3352
-mace~
+standard mace~
 a standard issue mace~
 You see a standard issue mace here.~
 ~
 5 64 8193
-0 4 4 7
+0~ 4~ 4~ 7~
 5 0 500
 E
-mace~
+standard mace~
 You see a mace of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
@@ -1331,145 +1378,145 @@ A
 A
 19 2
 #3353
-vest~
+standard vest~
 a standard issue vest~
 You see a standard issue vest here.~
 ~
 9 0 9
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-vest~
+standard vest~
 You see a vest of great craftsmanship.  Stamped on the side is:
 Merc Industries
 ~
 #3354
-shield~
+standard shield~
 a standard issue shield~
 You see a standard issue shield here.~
 ~
 9 0 513
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-shield~
+standard shield~
 You see a shield of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3355
-cloak~
+standard cloak~
 a standard issue cloak~
 You see a standard issue cloak here.~
 ~
 9 0 5
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-cloak~
+standard cloak~
 You see a cloak of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3356
-helmet~
+standard helmet~
 a standard issue helmet~
 You see a standard issue helmet here.~
 ~
 9 0 17
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-helmet~
+standard helmet~
 You see a helmet of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3357
-leggings~
+standard leggings~
 a pair of standard issue leggings~
 You see a pair of standard issue leggings here.~
 ~
 9 0 33
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-leggings~
+standard leggings~
 You see leggings of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3358
-boots~
+standard boots~
 a pair of standard issue boots~
 You see a pair of standard issue boots here.~
 ~
 9 0 65
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-boots~
+standard boots~
 You see boots of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3359
-gloves~
+standard gloves~
 a pair of standard issue gloves~
 You see a pair of standard issue gloves here.~
 ~
 9 0 129
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-gloves~
+standard gloves~
 You see gloves of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3360
-sleeves~
+standard sleeves~
 a pair of standard issue sleeves~
 You see a pair of standard issue sleeves here.~
 ~
 9 0 257
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-sleeves~
+standard sleeves~
 You see sleeves of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3361
-cape~
+standard cape~
 a standard issue cape~
 You see a standard issue cape here.~
 ~
 9 0 1025
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-cape~
+standard cape~
 You see a cape of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3362
-belt~
+standard belt~
 a standard issue belt~
 You see a standard issue belt here.~
 ~
 9 0 2049
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-belt~
+standard belt~
 You see a belt of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3363
-bracer~
+standard bracer~
 a standard issue bracer~
 You see a standard issue bracer here.~
 ~
 9 0 4097
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
-bracer~
+standard bracer~
 You see a bracer of great craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
@@ -1479,7 +1526,7 @@ a city guard signet ring~
 You see a ring with a strange symbol on the floor.~
 ~
 9 64 3
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 10000
 A
 17 -6
@@ -1491,7 +1538,7 @@ a war banner~
 A war banner is on the floor here.~
 ~
 1 65 1
-0 0 -1 0
+0~ 0~ -1~ 0~
 1 0 500
 E
 banner~
@@ -1504,27 +1551,373 @@ A
 #3371
 ring diamond wedding~
 a diamond wedding ring.~
-Vanya's diamond wedding ring has been left here.~
+A diamond wedding ring has been left here.~
 ~
 9 256 1|2
-1 0 0 0
+1~ 0~ 0~ 0~
 1 0 0
 E
 ring diamond wedding~
 A slender gold band set with a marquise-cut four carat blue-white solitaire.
-Inscribed on the inside of the band is: 'Your loving husband, House'.
+Inscribed on the inside of the band is: 'I love you forever.'
 ~
 #3372
 band gold wedding~
 a gold wedding band.~
-House's gold wedding band has been left here.~
+A gold wedding band has been left here.~
 ~
 9 256 1|2
-1 0 0 0
+1~ 0~ 0~ 0~
 1 0 0
 E
 band gold wedding~
-A wide, plain circle of gold inscribed: 'Your loving wife, Vanya'.
+A wide, plain circle of gold inscribed: 'I love you forever.'
+~
+#3373
+map midgaard~
+a map of the city of midgaard~
+A rolled up map lies here.~
+~
+12 0 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+map~
+This map brought to you courtesy of the Midgaard City Council.
+			          Altar     Mud school (up from Temple)
+				    |       /	
+				    |      /
+			      Temple/Recall
+		   	            |
+	          Cleric Guild -- Temple --  Grunting        (* up from Temple
+	                          Square      Boar            square is "In the
+	      		            |                         Air area*)
+                   Magic            |     General  Weapon  Psionicist
+                   Shop   Bakery    |      Store    Shop    Guild  
+	             |       |      |        |       |       |  
+    To  -- West -- Main -- Main-- Market -- Main -- Main -- East -- To
+   Forest  Gate   Street  Street  Square   Street  Street   Gate    Crossroads
+	    |        |       |      |        |       |       |
+          Wall     Mage   Armoury   |     Jeweler   Warrior  Wall 
+          Road     Guild            |                Guild   Road
+ 	    |			    |                        |
+	    |			    |                        To Dangerous 
+	    |			    |                        Neighborhood(west)
+	    |	 Leather	    |      Map        Pet    and the Circus (s)
+            |     Shop              |     Store      Shop      
+            |      |                |       |         |        
+	  Wall -- End -- Poor -- Common -- Dark -- Alley --   End   --  Mob   
+	  Road   Alley	 Alley	 Square   Alley   At Levee  of Alley    Factory
+	    |              |        |       |         |        |      
+            |          Grubby Inn   |     Thief    Levee    Abandoned
+	  Wall			    |     Guild             Warehouse
+	  Road                      |                 |
+	    |                       |               River
+	    |			    |
+    To South Midgaard             Dump            
+
+(note:  Each line is not a single move, but shows links between rooms.)
+Scale:  Really Big.  This is a big city!
+North:  To top of map
+~
+#3374
+map drow~
+a map leading to the drow homeland~
+A rolled up map lies here.~
+~
+12 0 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+map~
+(An exerpt from a journal of an unknown adventurer)
+Date Unknown
+	... and after locating Horl the Knight and paying his bail, we finally 
+left Midgaard on the first day of the new moon, 3 days behind schedule.  Our
+guide says that he knows the quickest way to Thalos, and that we can expect to 
+reach the ruins there by late tomorrow.   We left the east gate of Midgaard,
+and travelled east for several hours until reaching a spot where several roads
+cross.  We traveled south for another hour or two, then decided to pitch camp
+for the night.  Once again, I, Gagglesneeze, the Greatest Mage to walk these
+lands, am stuck with the midnight watch.  How I long for a group that realizes
+the delicate rest required of a mage.
+
+	Today, we continued south, until the woods thickened and we were forced
+to turn east or west, or return north in failure.  Following our guide's 
+lead, we turned east and walked through the woods for several hours, turning
+south at noon, and then preceding east again when we had skirted the clump of
+thickets that had forced us out of our way.  We now stand at the top of a 
+valley, and are making camp here for the night.  Our guide assures us that 
+Thalos lies just over the far rim of the valley.  For once, I will get some 
+sleep, as I have convinced that fool priest Karl to take my watch for me.
+Hopefully tomorrow morning we may begin amassing treasure in Thalos.
+
+	Today did not bode well from the very beginning.  I awoke to a small
+amount of yelling going on in camp.  It appeared our guide had left in the 
+middle of the night, taking some of Ravin the Burglar's gold and equipment with
+him.  We decided to look for Thalos anyway.  It was nowhere to be found.  
+But the thief, Ravin, found a cave behind a fox hole down in the valley.  We
+preceded into the cave, and came to a spot where we could only go down or
+return the way we had came.  We rested before decending, and I had no more than
+fallen asleep for a quick nap, when a dark creature that looked vaguely elvish
+attacked me from out of nowhere.  The others quickly subdued him.  We then
+decended into the hole below us, prepared for anything but what awaited us.
+2 more of the creatures jumped out of hiding and attacked us.  Only Ravin's
+finding a secret door below allowed us to escape.  We then went west, the 
+only direction left to us, and were set upon by a fantastically quick creature
+wielding a glowing black longsword.  I was the only one able to flee the 
+fight alive.  Now I am hiding amongst some goblin slaves...all of my spells
+exhausted.  I can hear the foot troops looking for me outside.  I don't know
+how i will survive this...
+~
+#3375
+map shadow galaxy tower towers sorcery draconians~
+a map leading to Shadow Grove, Galaxy, and Towers of Sorcery and Draconians~
+A rolled up map lies here.~
+~
+12 0 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+map~
+An excerpt from a book recently acquired from the mages guild by the thief
+Picard (to whom our condolences go out).
+
+	The magical forest known as shadow grove has long been known as a place
+in which even those with the best direction sense may be confused.  However, 
+it is the gateway to such places as the Galaxy, the Tower of High Sorcery, 
+and the Tower of the Draconians.  The route to the Grove is a well established
+one.  Travel west from midgaard, until further travel west is no longer 
+possible.  Travel south until you can go west again, and then continue west.
+Continuing in this manner, zigzagging west and south, the traveler will
+eventually reach a dusty part of the forest.  From this point, travel north,
+and west and north again.  From here the Entrance to Shadow Grove can be seen
+to the north.  
+
+	Our experts recommend this method for traveling in the Grove itself. 
+In each new area, check all exits, and often you will be able to see if you 
+have reached the entrance to the spot you set out for.  Traveling in daylight
+will often aid this process.  Also, our experts have noted that oftentimes,
+traveling in the same direction twice will return you to the spot you left 
+from originally.  However, traveling north, then back south, for example, will
+take you to a different area.
+
+	The entrance to the Galaxy is said to be found by talking with a gypsy
+in a tavern.  The entrances to the Towers of Sorcery and of the Draconians are
+said to be gigantic Gates.  Also, if you see poor Edward, please be nice to 
+him, the poor fool can't seem to find his way out...
+~
+#3376
+map mahn-tor~
+a map leading to the land of Mahn-tor~
+A rolled up map lies here.~
+~
+12 0 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+map~
+Seeing as there is a lack of worthy opponents who come to my land, I present
+this map to the mapstore in Midgaard, with my instructions to reproduce it 
+for any who feel they are worthy.
+
+Travel east of midgaard to the crossroads.  Turn north, until you may travel
+east.  Go east until you may travel up a hill.  Continue up the hill to the 
+top, and continue east.  Then go down and enter the valley below you.
+Continue east and north to the waterfall.  Continue north, and then take the
+trail east as far as it goes.  Continue on the trail, going whichever way you
+can, until the trail splits.   Travel east, and then go south.  You will be
+in my realm, and may try to find your way to me.
+
+				Mahn-Tor,
+				Minotaur Grand Master
+~
+#3377
+map haven antarctic~ 
+a map leading to the antarctic land of haven~
+A rolled up map lies here.~
+~
+12 0 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+map~
+
+       We began our journey about mid-morning. We had hoped to get an early
+start, but were held up while we waited for the shops to open so that
+we could gather supplies for our expedition. The three of us were eager
+to leave town after having either stolen from or killed nearly every
+shopkeeper in Midgaard. The locals were not happy about our presence and
+as such, we feared the Executioner might decide to take some action 
+against us if we remained. It was Hogar who had caused most of our 
+problems, but he also was a necessary part of our team. No one could
+equal his skill with the sword, at least none we had previously encountered...
+Whirl often tries to get Hogar to see how unnecessary a lot of his fighting
+is, but he doesn't seem to listen to her divine guidance. I suppose that
+as a thief, I usually end up doing a lot of the more mundane, but necessary
+actions to get us where we need to go.  However, I enjoy the adventures I've
+shared with these two, especially Whirl.  Without her, where would we, in 
+fact, where would I be now? 
+
+	Well, we set off from Midgaard along the river heading west away 
+from town, and although in full view due to the daylight we wanted to avoid, 
+the locals seemed more glad we had left than angry enough to give chase. 
+We went under the bridge which crosses the river and continued west.  As we 
+continued west there wasn't too much to see, the forest seemed to
+grow darker as we moved, and long shadows seemed to be hiding some secret
+danger, however nothing became of it.  Gradually we came to a split in the 
+river where it appeared to go around an island, which was more shadowed than
+even the forest had been.  After some thought, we decide to brave it and
+found a small spot where we could land and walk on the island's south side.
+Following a farely difficult path, we found a small domocile.  Whirl seemed 
+to be upset about something here, and strangely so was Hogar, so we decided
+not to press further and quickly left the island to continue going west along
+the river. 
+
+	We noticed quickly that the river was getting much wider now, 
+and soon were at the mouth of the great river.  Not wanting to get too far
+from land just yet, we entered the ocean and went south along the shoreline.
+I must say at this point my arms were getting tired of paddling, so Whirl
+graciously cast a spell which cause my body to have a density less than that
+of air! Whirl did the same to Hogar, and this seemed to life our spirits a
+little, as the going was made easier.  I wonder why she didn't think of this
+sooner? Moving with the speed of the wind, we begin to find ourselves
+reaching colder waters.  Reaching a point where we could no longer go south,
+we continued to the west.  Wow!  It's a good thing Whirl cast that spell, the
+waters here are so rough, I wonder how we would have survived in those canoes.
+Another turn to the south leads us to much colder waters, we can see icebergs
+floating in the ocean below us.  I'm getting dreadfully cold now and wish
+we could turn back, but it seems we cannot and continue onward to the south.
+
+        This is going to be my last entry.  It has been two days since last 
+I wrote.  We encountered an enormous white bear which so surprised us, it 
+managed to mortally wound Hogar, and I suffered several cuts before the bear 
+finally succumbed to the combined efforts of Whirl and I.  She had tried 
+desparately to help Hogar during the battle and afterwards, but the cold, along
+with the seriousness of the wounds told us he wouldn't make it.  Hogar died 
+shortly there after. I'm afraid there may be more of those horrible beasts
+in this place, but we can no more go forward, than we can go back.  At least
+I am with Whirl.  The bear meat should be enough to keep us alive for a
+little while, time enough for us to finally be alone together.
+....
+
+	This journal entry is one of many found in a book which had floated
+in the ocean protected by some magical force from the water and salt.  The
+finder can only guess at what happened to the two who were left alive there
+in the cold alone, but hopes that the knowlege from the book will help 
+others avoid the same fate.
+~
+#3378
+map desert eastern~
+a map leading to the Eastern Desert, and adjacent lands~
+A rolled up map lies here.~
+~
+12 0 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+map~
+
+	Those seeking the Eastern Desert should first purchase a canoe or 
+raft from the retired Captain, who can be found down by the river in Midgaard.
+The following set of directions was obtained from the legendary mage 
+Shapeshifter, whom it is said spent so much time (lost?) in the desert, that 
+he finally killed off the nomad leader and made it his home.
+
+	Shapeshifter reports that there are several interesting places that
+may be visited from the eastern desert.  To get to the desert, the mage 
+recommends that one get upon the river and travel east.  The journey will
+take the adventurer through an underground channel, until finally an under-
+ground lake will be the last point at which boats will be used.  Continuing
+east up a passageway will bring one to the edge of the desert.
+
+	The desert is easy to lose one's way in, but such interesting areas 
+as MegaCity, the Pyramid of the Sphynx, the Nomad Camp, and the Lair of the 
+Brass dragon can be approached only from the desert.  Although even the great
+Shapeshifter is not able to give exact directions, he was able to provide this
+help.  The Brass Dragon's Lair is in a cave that one reaches from a ledge 
+that is plagued with strong gusts of wind.  MegaCity lies just over a small
+hill.  And the Pyramid may only be entered by those willing to climb to the
+top of the pyramid, although this is not as easy of a feat as one might think.
+~
+#3379
+map moria~
+a map leading to the Caves of Moria~
+A rolled up map lies here.~
+~
+12 0 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+map~
+
+	Many young adventures first make their fortunes in the Caves of Moria.
+This is often attributed to the quick reproduction rates of the denizens of 
+the caves.  Such creatures as the kobold, the hobgoblin, and the hideous troll
+can be found within the caves.  The caves are also reputed to be the base of
+operations for several dangerous rogue mages.
+	Those seeking the caves should first stock themselves with food and
+water, as there is little of nourishment within the caves.  A few brave souls
+who were lucky to make it out of the caves alive after running out of supplies,
+report that the mushrooms that grow in the caves are not fit for human con-
+sumption.  After acquiring supplies, travel out the east gate of Midgaard, 
+sticking to the roads as far as the Crossroads.  From there, a party must
+wander north through the plains, until a cave mouth is reached.  This is the 
+entrance to Moria.  
+	Some things to take heed of about Moria.  Many adventurers have exited
+the caves through a cavern to the north of the complex, and have then followed
+a trail up the mountain.  Those foolish enough to do so have had to return to
+town in failure, apparently too embarrassed to reveal what happened.  Also,
+several adventurers have reported tangling with centipedes, climbing down a 
+hole to the west of the centipedes home, and then running into a powerful mage.
+Many are the parties that have gone to attempt to recover corpses from this
+powerful wizard.
+
+
+						- Faithfully yours,
+						 
+						  Alexis, the Lady Cleric
+
+~
+#3380
+map goblin~
+a map leading to the King of the Goblins~
+A rolled up map lies here.~
+~
+12 0 1
+0~ 0~ 0~ 0~
+1 300 20
+E
+map~
+
+ 	It was during the invasion by Darkside the Beholder, that I first 
+journeyed to the Goblin Caverns.  Accompanied by Demonspawn the Warrior,
+and Partan, I left town through the east gate.  We turned south at the
+Crossroads, and pitched camp after traveling as far south as we were able.
+
+	The next day, we turned east, zigzaggin east and south, until we went 
+down into a valley.  At this point, we turned north, following a trail 
+through the woods.  
+
+	At this point, we became somewhat lost, and had to wander for a while
+before we found the entrance to the Goblin's mountain lair.  The assistance 
+of Odin didn't hurt of course.  Although I am not sure of the exact route,
+I believe that we turned west and then back north at least once, and possibly
+twice.  We found ourselves at the foot of the mountain, and were able to climb
+it and enter the Goblin Caves.
+
+	However, the most exciting part of our expedition occurred after we
+had defeated Darkside (at the cost of Demonspawn, Partan, and several 
+younger adventurers who happened to be in the area).  I discovered a secret 
+door in the mountain side that opens into a store room, that directly 
+adjoins to the Goblin King's throne room.  If only Odin hadn't summoned us 
+back to his altar in Midgaard to reward us, I might have been able to find 
+out exactly where the secret door is.  All that I can say, is that it is in 
+the forest, and guarded by a Goblin Sentinel.
+
+					Recorded from an interview with
+					with Tholeus, Hero of Midgaard.
+
 ~
 #0
 
@@ -2088,9 +2481,15 @@ S
 #3024
 Eastern End of Poor Alley~
    You are at the poor alley.  South of here is the Grubby Inn and to the
-east you see common square.  The alley continues further west.
+east you see common square.  To the north is the entrance to the Dragon
+Cult.  The alley continues further west.
 ~
 30 0 1
+D0
+You see the shadowy entrance to the Dragon Cult.
+~
+~
+0 -1 9850
 D1
 You see the common square.
 ~
@@ -2141,6 +2540,11 @@ The Dark Alley~
 Guild of Thieves.  The alley continues east.
 ~
 30 0 1
+D0
+You see the Map Store.
+~
+~
+0 -1 3065
 D1
 The alley continues east.
 ~
@@ -2156,6 +2560,11 @@ You see the common square.
 ~
 ~
 0 -1 3025
+D5
+Below you, you see a dark stairway.
+~
+grate~
+1 -1 3801
 E
 guild~
 It is the thieves guild, don't enter if you care about your health or money.
@@ -2432,9 +2841,14 @@ Inside the East Gate of Midgaard~
    You are by two small towers that have been built into the city wall and
 connected with a footbridge across the heavy wooden gate.  Main Street leads
 west from here.  South of here is the wall road, but it looks dirty and 
-not too safe.
+not too safe.  To the north you see the Psionicist's Guild.
 ~
 30 0 1
+D0
+You see the Psionicist's Guild.
+~
+~
+0 0 3152
 D1
 You see the city gate.
 ~
@@ -2791,13 +3205,18 @@ By the Temple Altar~
    You are by the temple altar in the northern end of the Temple of Midgaard.
 A huge altar made from white polished marble is standing in front of you and
 behind it is a ten foot tall sitting statue of Odin, the King of the Gods.
+Above you, you see rooms reserved for the workers of this mud.
 ~
-30 8|1024 0
+30 4|8|1024 0
 D2
 You see the southern end of the temple.
 ~
 ~
 0 -1 3001
+D4
+~
+~
+0 0 3060
 E
 altar~
 Even though the altar is more than ten feet long it appears to be made from a
@@ -2826,6 +3245,113 @@ Back down on the earth where you should be!
 ~
 ~
 0 0 3005
+S
+#3060
+Rooms Above the Altar~
+You are above the temple altar.  Here you see rooms meant for the working 
+immortals of this mud to sit down and discuss issues.  To the north, you see
+the general meeting room.  To the east, you see the Builders' room.  To the
+south, you see the Implementors' room.  To the west, you see the Coders' room.
+Below you, you see the temple altar.
+~
+30 4|8|1024 0
+D0
+You see the general meeting room.
+~
+~
+0 0 3061
+D1
+You see the Builders' room.
+~
+~
+0 0 3062
+D2
+You see the Implementors' room.
+~
+~
+0 0 3063
+D3
+You see the Coders' room.
+~
+~
+0 0 3064
+D5
+You see the Temple Altar below you.
+~
+~
+0 0 3054
+S
+#3061
+General Meeting Room~
+You are inside the general meeting room, where the issues of this mud are
+discussed.  You see a large table and chairs, along with three seats at the far
+end, meant for the three directors of this mud, Yaz, Kahn, and Hatchet.  The 
+exit is to the south.
+~
+30 4|8|1024 0
+D2
+~
+~
+0 0 3060
+S
+#3062
+Builders' Room~
+You are inside the Builders' room, where the issues regarding areas of this
+mud are discussed.  You see a large table and chairs, along with a large seat
+at the far end, meant for the director of areas, Hatchet.  The exit is to the
+west.
+~
+30 4|8|1024 0
+D3
+~
+~
+0 0 3060
+S
+#3063
+Implementors' Room~
+You are inside the Implementors' room, where the issues regarding this mud are
+discussed.  You see a large table and chairs, along with a large seat at the 
+far end, meant for the director of implementors, Kith.  The exit is to the 
+north.
+~
+30 4|8|1024 0
+D0
+~
+~
+0 0 3060
+S
+#3064
+Coders' Room~
+You are inside the Coders' room, where the issues regarding the code of this
+mud are discussed.  You see a large table and chairs, along with a large seat
+at the far end, meant for the director of coders, Kahn.  The exit is to the
+east.
+~
+30 4|8|1024 0
+D1
+~
+~
+0 0 3060
+S
+#3065
+The Cartography Store~
+   You are inside a small wooden building, in which maps are copied and sold.
+Rows of shelves and pigeon holes hold countless maps.  For the adventurer who
+wants to get into the seldom traveled areas, this is the place to be.
+~
+30 8 0
+D2
+You see the main street.
+~
+~
+0 -1 3026
+E
+note~
+The note reads:
+
+     List  - Show which various maps are in the store.
+     Buy   - Buy a map.
+~
 S
 #3100
 Northwest end of Concourse~
@@ -3649,6 +4175,170 @@ The walls are marked with lots of scratches.  Some of them spell sentences
 like "JAIL IS BETTER THAN SQL" and "INGRES STRIKES AGAIN".
 ~
 S
+#3150
+Psionicist's Meditation Chamber~
+   This is the place where all psionicists come to enhance their abilities.
+The room is dimly lit, so it is difficult to tell what the decorations
+might look like.  What you can see looks dull enough, so you're glad it
+isn't lit any better.
+~
+31 12 0
+D1
+You see your favorite place, the Spoonbender Lounge.
+~
+~
+0 -1 3151
+S
+#3151
+Spoonbender Lounge~
+   This lounge looks like a nice place to relax, have a drink, and try
+to impress your psionicist friends.  Behind the bar there are paintings
+of that master of spoonbending, Uri Geller, and of the famed Karnak the
+Magnificent.  You also see a small sign standing on the bar.
+~
+31 12 0
+D2
+You see the entrance.
+~
+~
+0 -1 3152
+D3
+You see the meditation chamber.
+~
+~
+0 -1 3150
+E
+sign~
+The sign reads:
+Free instructions provided by the waiter:
+
+   Buy  - Buy something (drinkable) from the waiter.
+   List - The waiter will show you all the different drinks and
+          specialties, and tell the price of each.
+~
+E
+painting paintings picture pictures uri geller karnak~
+You stare at the paintings.  They stare back at you.  I'd bet you're
+going to blink first.
+~
+S
+#3152
+Entrance to Psionicist's Guild~
+   You have entered a simple room, with a rather strange jumble of beads
+and silk in the corner.  All six of your senses tingle with the energy
+emanating from these rooms.  To the north you see the Spoonbender Lounge,
+and Main Street is to the south.
+~
+30 8 0
+D0
+You see the lounge, with plenty of comfortable chairs.
+~
+~
+0 -1 3151
+D2
+You see Main Street and the ever-watchful Members of the Watch.
+~
+~
+0 -1 3041
+S
+#3170
+Dry Land~
+   This room is on dry land.  To the south is a SECT_WATER_SWIM room,
+and to the east is a SECT_UNDERWATER room.
+~
+31 0 2
+D1
+~
+~
+1 -1 3175
+D2
+~
+~
+2 -1 3171
+S
+#3171
+North Swim Room~
+    This room is SECT_WATER_SWIM, as is the room to the south.  North
+is dry land, and east is a SECT_UNDERWATER room.
+~
+31 0 6
+D0
+~
+~
+3 -1 3170
+D1
+~
+~
+4 -1 3174
+D2
+~
+~
+5 -1 3172
+S
+#3172
+South Swim Room~
+    This room is SECT_WATER_SWIM, as is the room to the north.  To the
+east is a SECT_UNDERWATER room.
+~
+31 0 6
+D0
+~
+~
+6 -1 3171
+D1
+~
+~
+7 -1 3173
+S
+#3173
+South Underwater Room~
+    This room is SECT_UNDERWATER, as is the room to the north.  To the
+west is a SECT_WATER_SWIM room.
+~
+31 0 8
+D0
+~
+~
+8 -1 3174
+D3
+~
+~
+0 -1 3172
+S
+#3174
+Center Underwater Room~
+    This room is SECT_UNDERWATER, as are the rooms to north and south.
+To the west is a SECT_WATER_SWIM room.
+~
+31 0 8
+D0
+~
+~
+0 -1 3175
+D2
+~
+~
+0 -1 3173
+D3
+~
+~
+0 -1 3171
+S
+#3175
+North Underwater Room~
+    This room is SECT_UNDERWATER, as is the room to the south.  To the 
+west is dry land.
+~
+31 0 8
+D2
+~
+~
+0 -1 3174
+D3
+~
+~
+0 -1 3170
+S
 #3200
 Under the Bridge~
    The arch under the bridge is covered by seaweed for one foot above the
@@ -3663,7 +4353,7 @@ D1
 D3
 You see the river flowing west into the Forest of Haon-Dor.~
 ~
-0 -1 -1
+0 -1 201
 E
 wall~
 It is built from large grey rocks that have been fastened to each other with
@@ -3860,7 +4550,10 @@ E 1 3022 100 16            wields a longsword
 M 0 3027 1 3021       The Knight Guard
 E 1 3022 100 16            wields a longsword
 *
-M 0 3050 1 3025       Aod the Dealer
+M 0 3050 1 3025       Dave the Dealer
+G 1 3352 100            standard issue mace
+G 1 1113 100            bardiche from shire.are
+G 1 1521 100            large club from gnome.are
 *
 M 0 3060 12 3004      Cityguard 1
 E 1 3365 99 0		banner
@@ -3950,7 +4643,6 @@ M 0 3005 5 3027		thief at entrance to thief guild
 E 1 3020 99 16
 M 0 3005 5 3128		thief on concourse
 E 1 3020 99 16
-O 0 3135 10 1200	fountain at chat room
 O 0 3135 10 3005	fountain at temple
 O 0 3139 15 3008	letter at receptionist
 O 0 3140 15 3008	notice at receptionist
@@ -4047,15 +4739,32 @@ O 0 3135 1 3141       Fountain on Penny Lane
 O 0 3136 1 3141       20 coins on Penny Lane
 *
 M 0 3012 1 3054		Healer in temple altar
+*
+M 0 3150 1 3150       The Psionicist's Guildmaster
+*
+M 0 3151 1 3152       The Gypsy
+*
+M 0 3152 1 3151       The Psionicist's Waiter
+G 1 3002 100
+G 1 3003 100
+G 1 3004 100
+M 0 3153 1 3065   	The Map Maker
+G 1 3373 100
+G 1 3374 100
+G 1 3375 100
+G 1 3376 100
+G 1 3377 100
+G 1 3378 100
+G 1 3379 100
+G 1 3380 100
 S
-
 
 
 #SHOPS
  3000	 2  3  4 10  0	 105  15	 0 23	; The Wizard
  3001	 0  0  0  0  0	 110 100	 0 23	; The Baker
  3002	 1  8 13 15 19	 150  40	 0 23	; The Grocer
- 3003	 5  6  7  0  0	 130  40	 0 23	; The Weaponsmith
+ 3003	 5  0  0  0  0	 130  40	 0 23	; The Weaponsmith
  3004	 9  0  0  0  0	 100  50	 0 23	; The Armourer
  3006	22  0  0  0  0	 120  90	 6 22	; The Captain
  3008	 0  0  0  0  0	 100 100	 0 23	; The Pet Shop Boy
@@ -4067,12 +4776,15 @@ S
  3043	 0  0  0  0  0	 110 100	 0 23	; The Waiter (cleric)
  3044	 0  0  0  0  0	 170 100	 0 23	; The Waiter (thief)
  3045	 0  0  0  0  0	 150 100	 0 23	; The Waiter (fighter)
+ 3152    0  0  0  0  0   150 100         0 23   ; The Waiter (psionicist)
  3046	 0  0  0  0  0	 100  90	 0 23	; Filthy
- 3050	 0  0  0  0  0	 100  50	 0 23	; Aod the Dealer
+ 3050	 5 13  8  0  0	 120  50	 0 23	; Dave the Dealer
 
  3100	 0  0  0  0  0	 110  90	 6 23	; The Maid
-0
 
+ 3153    0  0  0  0  0   150 100         0 23   ; The Map Maker
+
+0
 
 
 #SPECIALS
@@ -4088,7 +4800,7 @@ M  3042 spec_cast_mage
 M  3043 spec_cast_cleric
 M  3044 spec_thief
 *
-M  3050 spec_cast_undead
+M  3050 spec_cast_psionicist
 M  3060 spec_guard
 M  3061 spec_janitor
 M  3062 spec_fido
@@ -4100,6 +4812,11 @@ M  3069 spec_guard
 M  3100 spec_cast_cleric
 M  3120 spec_cast_cleric
 M  3143 spec_mayor
+*
+M  3150 spec_cast_psionicist
+M  3151 spec_cast_psionicist
+M  3152 spec_cast_psionicist
+*
 S
 
 

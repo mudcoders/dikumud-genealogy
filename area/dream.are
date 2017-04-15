@@ -28,7 +28,7 @@ morris bells~
 A set of leggings with a dozen brass bells sewn on has been left here.~
 ~
 9 0 1|32
-3 0 0 0
+3~ 0~ 0~ 0~
 5 100 100
 E
 bells morris~
@@ -47,7 +47,7 @@ a morris handkerchief~
 A white handkerchief is here.~
 ~
 9 0 1|4096
-3 0 0 0
+3~ 0~ 0~ 0~
 5 100 100
 E
 handkerchief hankie kerchief~
@@ -60,7 +60,7 @@ a morris sash~
 A white sash is here.~
 ~
 9 0 1|2048
-3 0 0 0
+3~ 0~ 0~ 0~
 5 100 100
 E
 sash~
@@ -73,7 +73,7 @@ a morris staff~
 A short, stout staff made of polished wood is here.~
 ~
 4 0 1|16384
-10 4 4 34
+10~ 4~ 4~ protection~
 5 10000 10000
 E
 stick staff~

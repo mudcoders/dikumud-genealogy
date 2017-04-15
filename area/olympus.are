@@ -1,4 +1,4 @@
-#AREA	{ 5 30} Generic Olympus~
+#AREA	{15 50} Generic Olympus~
 
 
 
@@ -13,7 +13,7 @@ destroy you with a thought.  Every glance penetrates deep into your soul.
 You now know what true fear is.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-35 0 -10 35d35+1000 20d3+25
+52 0 -10 35d35+1000 20d3+25
 100000 2000000
 8 8 1
 #902
@@ -25,7 +25,7 @@ This mortal risked the wrath of Zeus to give the gift of fire to humans.  He
 looks up at you and smiles.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-31 0 -7 31d31+310 15d2+20
+41 0 -7 31d31+310 15d2+20
 40000 300000
 8 8 1
 #903
@@ -38,7 +38,7 @@ darts from place to place.  He looks very busy, and it seems as if he doesn't
 even notice your presence.
 ~
 4 2|8|32|128|8192|32768|524288 1000 S
-33 0 -7 33d33+330 20d2+20
+43 0 -7 33d33+330 20d2+20
 50000 400000
 8 8 1
 #904
@@ -51,7 +51,7 @@ visiting Mount Olympus.  He nods at you and motions for you to enter and
 have a seat.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-35 0 -10 35d35+1000 20d3+25
+48 0 -10 35d35+1000 20d3+25
 100000 2000000
 6 8 1
 #905
@@ -64,7 +64,7 @@ join him.  You notice a dangerous looking bow by his side, however, and think
 that he knows more than music.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-34 0 -8 34d34+340 15d3+25
+44 0 -8 34d34+340 15d3+25
 40000 550000
 8 8 1
 #906
@@ -76,7 +76,7 @@ The God of War is here, studying some maps.  He scowls at you as you enter
 and says 'I am very busy.  What do you want?'
 ~
 2|4|32 2|8|32|128|524288 -1000 S
-35 0 -10 35d35+1500 10d2+25
+45 0 -10 35d35+1500 10d2+25
 50000 2000000
 8 8 1
 #907
@@ -88,7 +88,7 @@ Zeus' favorite daughter is sitting on a couch eating grapes.  She smiles at
 you and invites you to join her.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-33 0 -7 33d33+330 15d2+10
+43 0 -7 33d33+330 15d2+10
 60000 300000
 8 8 2
 #908
@@ -101,7 +101,7 @@ ugly.  You get the impression that he is kind, however, and would go out of his
 way to help you.  He is attended by three golden maidens.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-33 0 -7 33d33+330 12d2+26
+38 0 -7 33d33+330 12d2+26
 60000 550000
 8 8 1
 #909
@@ -113,7 +113,7 @@ As you gaze upon this creation, you realize that she is made from solid
 gold.  She seems to be very lifelike as she assists the smith in his work.
 ~
 2|4 2|8|32|128|8192|524288 0 S
-15 0 0 2d8+250 2d8+2
+25 0 0 2d8+250 2d8+2
 1000 21000
 8 8 2
 #910
@@ -125,7 +125,7 @@ This man is waiting on Ares.  Although he does not look very strong, you
 realize that Ares would not have any weaklings working for him.
 ~
 2|4|32 2|8|32|128|524288 0 S
-20 0 0 2d8+250 3d6+12
+27 0 0 2d8+250 3d6+12
 5000 15000
 8 8 1
 #911
@@ -160,7 +160,7 @@ This great beast can barely be called a dog.  It has been bred to cause fear
 on the battle field, and you have no doubt that it does its job well.
 ~
 2|4|32 2|8|32|128|524288 -600 S
-20 0 0 1d8+450 2d12+10
+23 0 0 1d8+450 2d12+10
 0 45000
 8 8 0
 #914
@@ -173,7 +173,7 @@ over you, and is so intent on his activities that he barely recognizes your
 presence.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-35 0 -10 35d35+1000 10d2+25
+49 0 -10 35d35+1000 10d2+25
 100000 2000000
 8 8 1
 #915
@@ -187,7 +187,7 @@ not to underestimate him.  He smiles warmly at you and shows you his selection
 of delicious looking foods.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-30 0 -4 1d1+1999 3d10+10
+37 0 -4 1d1+1999 3d10+10
 10000 110000
 8 8 1
 #916
@@ -200,7 +200,7 @@ stands ready to supply the citizens here (but not you) with all manner of
 arcane supplies.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-34 0 -8 1d1+1999 25d2+50
+39 0 -8 1d1+1999 25d2+50
 10000 100000
 8 8 1
 #917
@@ -212,7 +212,7 @@ Clive looks VERY big and VERY tough.  All those years in the army must have
 paid off.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-30 0 -10 30d30+300 10d3+20
+40 0 -10 30d30+300 10d3+20
 40000 200000
 8 8 1
 #918
@@ -224,7 +224,7 @@ Samuel looks just like Clive the Weapons Master: VERY big and VERY tough.
 He doesn't like what you've been doing in his city.
 ~
 2|4|32 2|8|32|128|8192|524288 1000 S
-20 0 -3 1d8+400 10d3+20
+30 0 -3 1d8+400 10d3+20
 10000 60000
 8 8 1
 #919
@@ -237,7 +237,7 @@ about his appearance.  What you can tell, however, suggests that he is no one
 to be trifled with.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-35 0 -10 1d8+2500 25d2+25
+46 0 -10 1d8+2500 25d2+25
 100000 3000000
 8 8 1
 #920
@@ -261,7 +261,7 @@ Hera, the wife of Zeus is here.  She smiles at you as you enter and invites you
 to rest and sit for a while.
 ~
 2|4 2|8|32|128|8192|524288 1000 S
-35 0 -10 1d8+1500 15d3+15
+50 0 -10 1d8+1500 15d3+15
 100000 1500000
 8 8 2
 #922
@@ -283,7 +283,7 @@ A citizen of this town is strolling down the street here.
 ~
 He looks happy and carefree.  He smiles and tips his hat to you.
 ~
-4 2|8|32|128|8192|524288 1000 S
+4 2|8|32|64|128|8192|524288 1000 S
 4 16 6 1d8+60 2d4+1
 69 500
 8 8 1
@@ -333,49 +333,51 @@ The Aegis~
 A powerful breast plate has been left here.~
 ~
 9 32|64|1024 1|8
-10 0 0 0
+10~ 0~ 0~ 0~
 50 300000 50000
 A
-1 1
+1 3
 #901
 hammer thunder bolt thunderbolt~
 The Thunder Bolt~
 A huge hammer has been carelessly dropped here.~
 ~
 5 32|64|1024 1|8192
-0 6 5 8
+0~ 6~ 5~ 8~
 24 200000 150000
 A
 18 3
+A
+19 8
 #902
 helmet winged~
 A Winged Helmet~
 A helmet with small wings lies here.~
 ~
 9 32|64|1024 1|16
-10 0 0 0
+10~ 0~ 0~ 0~
 5 150000 5000
 A
-2 2
+2 3
 #903
 spear ares~
 the Spear of Ares~
 A wicked spear rests on the ground here.~
 ~
 9 32|64|512 1|8192
-0 5 5 2
+0~ 5~ 5~ 2~
 18 200000 10000
 A
 18 2
 A
-19 2
+19 6
 #904
 sandals winged~
 a pair of winged sandals~
 A pair of well made sandals lies here.~
 ~
 9 32|64|1024 1|64
-8 0 0 0
+8~ 0~ 0~ 0~
 5 100000 2500
 #905
 staff ivory~
@@ -383,47 +385,51 @@ an ivory staff~
 An ivory staff.~
 ~
 4 32|64|1024 1|16384
-30 3 3 36
+30~ 3~ 3~ sanctuary~
 8 70000 2500
+A
+17 -10
 #906
 trident poseidon~
 Poseidon's Trident~
 A huge three pronged spear lies here.~
 ~
 5 32|64|1024 1|8192
-0 3 8 2
+0~ 3~ 8~ 2~
 16 100000 35000
 A
 4 2
+A
+18 5
 #907
 bow silver~
 a silver bow~
 A silver bow.~
 ~
 5 32|64|1024 1|8192
-0 4 4 7
+0~ 4~ 4~ 7~
 15 40000 20000
 A
-18 1
+18 3
 A
-19 1
+19 3
 #908
 gauntlets flaming~
 flaming gauntlets~
 A pair of metal gauntlets flame here.~
 ~
 9 32|64|1024 1|128
-7 0 0 0
+7~ 0~ 0~ 0~
 6 60000 30000
 A
-13 25
+13 35
 #909
 vial potion ambrosia~
 ambrosia~
 A vial of ambrosia lies here.~
 ~
-10 32|64|1024 1
-30 22 28 28
+26 32|64|1024 1
+30~ dispel evil~ heal~ heal~
 1 20000 1000
 #910
 necklace glowing~
@@ -431,39 +437,39 @@ a glowing necklace~
 A necklace with an inner glow lies here.~
 ~
 9 32|64|1024 1|4
-4 0 0 0
+4~ 0~ 0~ 0~
 2 10000 4000
 A
-12 25
+12 35
 #911
 ring sapphire~
 a sapphire ring~
 A sapphire ring lies here.~
 ~
 9 32|64|1024 1|2
-5 0 0 0
+5~ 0~ 0~ 0~
 1 40000 5000
 A
 4 2
 A
-19 4
+19 5
 #912
 shield glowing~
 a brightly glowing shield~
 A shield lies here, filling the room with its aura.~
 ~
 9 32|64|1024 1|512
-9 0 0 0
+9~ 0~ 0~ 0~
 10 200000 50000
 A
-4 1
+4 3
 #913
 axe notched~
 a notched axe~
 A notched axe.~
 ~
 5 32|64|1024 1|8192
-0 4 4 1
+0~ 4~ 4~ 1~
 12 10000 5000
 #914
 grapes~
@@ -471,7 +477,7 @@ a bunch of grapes~
 A bunch of grapes.~
 ~
 19 0 1
-24 0 0 0
+24~ 0~ 0~ 0~
 1 50 25
 #915
 fan~
@@ -479,7 +485,7 @@ a fan made of peacock feathers~
 A fan made of peacock feathers.~
 ~
 13 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 1 1
 #916
 lute~
@@ -487,7 +493,7 @@ a lute~
 A lute.~
 ~
 13 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 1 1
 #917
 nugget gold~
@@ -495,7 +501,7 @@ a gold nugget~
 A gold nugget lies gleaming here.~
 ~
 8 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 5 10000 1
 #918
 apple~
@@ -503,7 +509,7 @@ an apple~
 An apple is here.~
 ~
 26 0 1
-24 0 0 16
+24~ cure light~ ~ ~
 1 1000 25
 #919
 pear~
@@ -511,7 +517,7 @@ a pear~
 A pear is here.~
 ~
 26 0 1
-24 0 0 43
+24~ cure poison~ ~ ~
 1 1000 25
 #920
 orange~
@@ -519,7 +525,7 @@ a orange~
 A orange is here.~
 ~
 26 0 1
-24 0 0 1
+24~ armor~ ~ ~
 1 1000 25
 #921
 kiwi~
@@ -527,7 +533,7 @@ a kiwi~
 A kiwi is here.~
 ~
 26 0 1
-24 0 0 43
+24~ cure poison~ ~ ~
 1 1000 25
 #922
 amulet~
@@ -535,7 +541,7 @@ the Amulet of Ra~
 A sun shaped medallion is lying here.~
 ~
 9 32|64|1024 1|4
-2 0 0 0
+2~ 0~ 0~ 0~
 1 10000 2000
 A
 12 50
@@ -545,35 +551,37 @@ the Sword of the Sun~
 A beautiful sword with the rising sun etched on the pommel is lying here.~
 ~
 5 32|64|1024 1|8192
-0 6 5 3
+0~ 6~ 5~ 3~
 20 1000000 150000
 A
-19 2
+19 9
 #924
 robe blue~
 a blue robe~
 A deep blue robe is on the ground here.~
 ~
 9 32|64|1024 1|1024
-6 0 0 0
+6~ 0~ 0~ 0~
 10 50000 15000
 A
 13 15
+A
+14 5
 #925
 hat~
 a wide brimmed hat~
 A hat is lying here.~
 ~
 9 32|64|1024 1|16
-4 0 0 0
+4~ 0~ 0~ 0~
 5 5000 2000
 #926
 nectar~
 nectar~
 A vial of nectar is lying here.~
 ~
-10 0 1
-12 36 39 1
+26 0 1
+12~ sanctuary~ giant strength~ armor~
 1 80000 500
 #927
 key cell~
@@ -581,7 +589,7 @@ A Cell key~
 A key has been left here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 100 1000
 #0
 
@@ -1511,7 +1519,6 @@ S
 #SPECIALS
 M   901 spec_cast_cleric
 M   902 spec_breath_fire
-M   903 spec_thief
 M   904 spec_cast_mage
 M   905 spec_cast_adept
 M   907 spec_cast_adept
@@ -1522,7 +1529,6 @@ M   919 spec_breath_any
 M   920 spec_breath_fire
 M   921 spec_cast_cleric
 M   922 spec_poison
-M   923 spec_thief
 M   926 spec_cast_mage
 S
 

@@ -114,7 +114,7 @@ a mithril vest~
 A vest made of mithril plates lies heaped on the floor.~
 ~
 9 64|1024 9
-8 0 0 0
+8~ 0~ 0~ 0~
 30 12000 3000
 A
 19 1
@@ -126,7 +126,7 @@ a mithril helm~
 Here lies a large mithril helm.~
 ~
 9 64|1024 17
-8 0 0 0
+8~ 0~ 0~ 0~
 10 5000 1800
 A
 18 2
@@ -136,7 +136,7 @@ a pair of mithril gauntlets~
 A pair of mithril gauntlets rests on the ground.~
 ~
 9 64|1024 129
-8 0 0 0
+8~ 0~ 0~ 0~
 10 2200 1900
 A
 18 1
@@ -148,7 +148,7 @@ some mithril sleeves~
 A set of mithril sleeves lies on the ground.~
 ~
 9 64|1024 257
-7 0 0 0
+7~ 0~ 0~ 0~
 10 12450 2200
 A
 18 1
@@ -160,7 +160,7 @@ a pair of mithril boots~
 A pair of mithril boots stands has been left here.~
 ~
 9 64|1024 65
-7 0 0 0
+7~ 0~ 0~ 0~
 6 1800 1200
 A
 18 1
@@ -172,7 +172,7 @@ a set of mithril leggings~
 A set of mithril leggings lie here unattended.~
 ~
 9 64|1024 33
-7 0 0 0
+7~ 0~ 0~ 0~
 10 5400 2100
 A
 18 1
@@ -184,7 +184,7 @@ a mithril girth~
 A large iron girth lies at your feet.~
 ~
 9 64|1024 2049
-7 0 0 0
+7~ 0~ 0~ 0~
 6 14200 1200
 A
 5 2
@@ -194,7 +194,7 @@ a battered iron breast plate~
 A battered iron breast plate lies here.~
 ~
 9 0 9
-5 0 0 0
+5~ 0~ 0~ 0~
 125 13000 1500
 A
 18 -6
@@ -204,7 +204,7 @@ a sturdy iron shield~
 A small, but sturdy, iron shield has been left here.~
 ~
 9 64|512 513
-7 0 0 0
+7~ 0~ 0~ 0~
 5 500 100
 A
 20 -2
@@ -216,7 +216,7 @@ a black potion~
 A jet black potion sits upright waiting to be taken.~
 ~
 10 96 1
-16 4 36 39
+16~ blindness~ giant strength~ ~
 5 6000 1400
 #5211
 potion orange~
@@ -224,7 +224,7 @@ an orange potion~
 A small orange potion lies here.~
 ~
 10 96 1
-20 44 -1 -1
+20~ detect hidden~ ~ ~
 10 7500 2000
 #5214
 ball quartz~
@@ -232,7 +232,7 @@ a smooth quartz ball~
 A smooth quartz ball lies here gleaming.~
 ~
 1 64 16385
-0 0 72 0
+0~ 0~ 72~ 0~
 30 3050 950
 #5215
 scroll tattered~
@@ -240,7 +240,7 @@ a tattered scroll~
 A worn and tattered scroll has been left here.~
 ~
 2 64 1
-24 24 -1 -1
+24~ enchant weapon~ ~ ~
 15 11000 3400
 #5216
 scroll bound~
@@ -248,7 +248,7 @@ a bound scroll~
 A bound scroll of detection lies at your feet.~
 ~
 2 64 1
-15 18 19 20
+15~ detect evil~ detect invis~ detect magic~
 15 4200 2100
 #5217
 flute silver~
@@ -256,7 +256,7 @@ a silver flute~
 A brilliant silver flute glimmers from beneath a rock.~
 ~
 4 65 16385
-17 1 1 7
+17~ 1~ 1~ charm person~
 6 10500 3500
 #5218
 talisman demon~
@@ -264,7 +264,7 @@ a demon-faced talisman~
 A demon-faced talisman glares at you angrily.~
 ~
 9 1|64 5
-5 0 0 0
+5~ 0~ 0~ 0~
 11 2500 150
 A
 1 -10
@@ -276,7 +276,7 @@ a chunk of venison~
 A large chunk of venison sits here ready to be eaten.~
 ~
 19 0 1
-24 0 0 0
+24~ 0~ 0~ 0~
 20 100 20
 #5220
 fountain water~
@@ -284,7 +284,7 @@ a large cracked fountain~
 Some stagnant water lies in the bottom of the fountain.~
 ~
 25 0 0
-10 10 0 1
+10~ 10~ 0~ 1~
 0 0 0
 #5221
 two-handed two sword~
@@ -292,7 +292,7 @@ a two-handed sword~
 A nice two-handed sword hangs on a hook in the wall.~
 ~
 5 64|1024 8193
-0 2 12 3
+0~ 2~ 12~ 3~
 24 55000 12000
 A
 18 2
@@ -304,7 +304,7 @@ a black silk robe~
 A black silk robe lies heaped in one corner.~
 ~
 9 0 1025
-1 0 0 0
+1~ 0~ 0~ 0~
 6 1300 500
 A
 12 10
@@ -314,7 +314,7 @@ a dark green cloak~
 A beautiful dark green cloak has been dropped by someone.~
 ~
 9 64|512 5
-8 0 0 0
+8~ 0~ 0~ 0~
 12 14500 2200
 A
 13 5
@@ -324,7 +324,7 @@ an engraved ebony seal~
 A small, engraved ebony seal is here.~
 ~
 18 0 1
-30 0 0 0
+30~ 0~ 0~ 0~
 2 500 20
 #5225
 desk curved~
@@ -332,7 +332,7 @@ the desk~
 A dirty, crumbling curved desk is here.~
 ~
 15 0 0
-100 13 5224 0
+100~ 13~ 5224~ 0~
 0 0 0
 #5226
 seal ivory~
@@ -340,7 +340,7 @@ an engraved ivory seal~
 A small, engraved ivory seal lies here.~
 ~
 18 0 1
-31 0 0 0
+31~ 0~ 0~ 0~
 2 500 20
 #5227
 cabinet glass~
@@ -348,7 +348,7 @@ the glass cabinet~
 A broken glass cabinet is here.~
 ~
 15 0 0
-500 13 5226 0
+500~ 13~ 5226~ 0~
 0 0 0
 #5228
 arm rotted~
@@ -356,7 +356,7 @@ a rotten arm~
 A rotted arm floats lazily by your feet.~
 ~
 19 0 1
-50 0 0 1
+50~ 0~ 0~ 1~
 20 0 0
 #5230
 stone pale blue~
@@ -364,7 +364,7 @@ a pale blue stone~
 A pale blue stone sits here.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 5500 2000
 A
 1 1
@@ -374,7 +374,7 @@ a scarlet and blue stone~
 A pretty scarlet and blue stone has been dropped here.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 5500 2000
 A
 3 1
@@ -384,7 +384,7 @@ an incandescent blue stone~
 A small incandescent blue stone lies here.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 5500 2000
 A
 4 1
@@ -394,7 +394,7 @@ a deep red stone~
 Someone has left a deep red stone here.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 5500 2000
 A
 2 1
@@ -404,7 +404,7 @@ a pink stone~
 A tiny pink stone lies at your feet.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 5500 2000
 A
 5 1
@@ -414,7 +414,7 @@ a pearly white stone~
 This pearly white stone would probably sell for a good price.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 8700 3500
 A
 13 1
@@ -424,7 +424,7 @@ a lavender and green stone~
 A stunning lavender and green stone rests on the ground.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 4700 1900
 A
 24 -4
@@ -434,7 +434,7 @@ a dull grey stone~
 You can barely make out a dull grey stone on the ground.~
 ~
 8 0 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 20 20
 #5241
 stone pink green~
@@ -442,7 +442,7 @@ a pink and green stone~
 A bright pink and green stone has been left here.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 6600 2500
 A
 18 -5
@@ -452,7 +452,7 @@ a clear stone~
 A odd clear stone lies at your feet.~
 ~
 8 64 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 10 8900 3900
 A
 17 3
@@ -462,7 +462,7 @@ a mandolin~
 A mandolin lies against the wall.~
 ~
 4 64 16385
-13 3 3 15
+13~ 3~ 3~ cure critical~
 20 3000 5000
 #5251
 harp golden~
@@ -470,7 +470,7 @@ a golden harp~
 A battered golden harp has been tipped over.~
 ~
 4 64 16385
-18 1 1 6
+18~ 1~ 1~ call lightning~
 100 2500 6700
 #5252
 long dagger slim~
@@ -478,7 +478,7 @@ a long slim dagger~
 A long slim dagger has been left here.~
 ~
 5 64 8193
-0 2 5 11
+0~ 2~ 5~ 11~
 4 1000 100
 A
 18 1
@@ -1986,7 +1986,8 @@ S
 #5277
 A trail in the dwarf forest~
      You are in a trail in the dwarf forest.  The trees are stunted and it
-looks dry around here.  The trail leads east and west.
+looks dry around here.  The trail leads east and west.  A dark mountain blocks 
+your progress north.
 ~
 52 0 3
 D1
@@ -2003,9 +2004,15 @@ S
 #5278
 A trail in the dwarf forest~
      You are in a trail in the dwarf forest.  The trees are stunted and it
-looks dry around here.  The trail leads east and west.
+looks dry around here.  The trail leads east and west.  A dark mountain is to
+the north, which you can climb.
 ~
 52 0 3
+D0
+You see the beginning to the Goblin Caves.
+~
+~
+0 0 20000
 D1
 The trail continues east.
 ~
@@ -2021,7 +2028,7 @@ S
 The bend in the trail in the dwarf forest~
      You are in a bend in the trail in the forest.  The trees are stunted, but
 not so dry around here.  The trail leads east, and to the south, you see a
-waterfall.
+waterfall.  A dark mountain blocks your progress north.
 ~
 52 0 3
 D1

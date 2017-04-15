@@ -1,0 +1,47 @@
+EnvyMud release 1.0
+Thursday, 30th June 1994
+
+Kahn		michael@uclink.berkeley.edu
+Thelonius	dave@mechatro2.berkeley.edu
+Kith		kith@marble.bu.edu
+Hatchet		hatchet@uclink.berkeley.edu
+
+
+
+This file gives instructions on how to create a time.txt file suitable to
+get the mud server to autoshutdown.
+
+
+
+=== Time.txt
+
+The time.txt file is simple to create.  With your favorite text editor,
+edit a file named time.txt.  In it, you declare the time you wish your
+two warnings to go off and when the mud is to shutdown.
+
+The format for the files is such:
+
+WARNINGA
+<time:string>~
+
+WARNINGB
+<time:string>~
+
+DOWNTIME
+<time:string>~
+
+
+WARNINGA is the time value of the first warning.  WARNINGB is the time value
+of the second warning.  DOWNTIME is the time at which the mud server is to
+shutdown.  You may or may not wish to include any or all three fields.
+
+The time values are in 24 hour time terminated with a '~'.
+
+The mud checks the time every game pulse and compares the string value of the
+current time and the warning/down times.  Should they match, the mud will
+issue the proper warning or shutdown command.
+
+There is an online command called SSTIME that sets the warnings and downtime
+from within the game.  The changes to these values internally will not save
+over game reboots.  For more permanent settings, editing the time.txt file is
+more desirable.

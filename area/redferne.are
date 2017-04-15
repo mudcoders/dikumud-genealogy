@@ -27,7 +27,7 @@ a huge treasure~
 a huge treasure is lying here, looking very valuable.~
 ~
 20 0 1
--100 0 0 0
+-100~ 0~ 0~ 0~
 0 0 0
 E
 treasure~
@@ -43,7 +43,7 @@ a wooden chest~
 A wooden chest stands in the corner.~
 ~
 15 0 1
-100 15 7911 0
+100~ 15~ 7911~ 0~
 400 100 30000
 E
 chest~
@@ -56,7 +56,7 @@ a small brass key~
 A small brass key lies here.~
 ~
 18 0 1
-7910 0 0 0
+7910~ 0~ 0~ 0~
 1 10 4
 E
 key~
@@ -369,7 +369,7 @@ D5
 S
 #7912
 The Balcony of Redferne's Residence~
-You see a splendid of the most of this world. The valleys stretch as far as
+You see a splendid view of the most of this world. The valleys stretch as far as
 the eye reaches to the south from here. Down below you can see the entrance
 of this magnificent building. To the north are the doors to Redferne's Bedroom.
 ~

@@ -308,7 +308,7 @@ a glinting ring of silver~
 A lovely silver ring has been left here.~
 ~
 9 64 3
-4 0 0 0
+4~ 0~ 0~ 0~
 1 2000 400
 A
 18 1
@@ -318,7 +318,7 @@ the devil rod~
 The mysterious devil rod lies on the floor.~
 ~
 5 64 8193
-0 3 5 5
+0~ 3~ 5~ 5~
 6 16000 6000
 E
 devil rod~
@@ -333,9 +333,9 @@ A
 mace large~
 the large mace~
 A large mace lies here.~
-crush~
+~
 5 64 8193
-0 2 6 8
+0~ 2~ 6~ 8~
 10 1000 200
 E
 large mace~
@@ -348,9 +348,9 @@ A
 mace small~
 the small mace~
 a small mace has been left here.~
-crush~
+~
 5 64 8193
-0 2 5 8
+0~ 2~ 5~ 8~
 6 600 100
 E
 small mace~
@@ -365,7 +365,7 @@ a purple cloak~
 A purple cloak lies on the floor.~
 ~
 9 64 5
-6 0 0 0
+6~ 0~ 0~ 0~
 20 5000 2500
 A
 24 -1
@@ -375,7 +375,7 @@ an neon blue potion~
 A neon blue potion stands on the floor.~
 ~
 10 64 1
-14 15 29 42
+14~ cure critical~ invis~ word of recall~
 4 100 200
 #7205
 key black~
@@ -383,7 +383,7 @@ a black key~
 A black key has been left on the floor.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 2 10 1000
 #7206
 skull white~
@@ -391,7 +391,7 @@ a strange white skull~
 A strange white skull lies on the floor looking at you.~
 ~
 9 192 17
-1 0 0 0
+1~ 0~ 0~ 0~
 30 0 2500
 E
 white skull~
@@ -410,7 +410,7 @@ a small stick~
 A small stick lies here.~
 ~
 1 0 16385
-0 0 120 0
+0~ 0~ 120~ 0~
 4 200 200
 E
 small stick~
@@ -427,7 +427,7 @@ a pair of muddy boots~
 A pair of muddy boots has been dropped here.~
 ~
 9 64 65
-3 0 0 0
+3~ 0~ 0~ 0~
 20 75 100
 E
 The boots are muddy and they look well worn, but also very comfortable.~
@@ -440,7 +440,7 @@ a huge treasure~
 There is a huge treasure here, looking very valuable.~
 ~
 20 0 1
-6000 0 0 0
+6000~ 0~ 0~ 0~
 0 0 0
 E
 treasure~
@@ -452,7 +452,7 @@ a short sword~
 There lies a short sword.~
 ~
 5 0 8193
-0 2 4 11
+0~ 2~ 4~ 11~
 4 60 20
 A
 18 1
@@ -462,7 +462,7 @@ a red dragon claw~
 On the floor rests an enormous red claw.~
 ~
 5 64|512 8193
-0 4 4 5
+0~ 4~ 4~ 5~
 19 1800 900
 E
 claw red redclaw~
@@ -478,7 +478,7 @@ a silvery breast plate~
 There is a silvery breast plate on the floor.~
 ~
 9 64|256|1024|2048 9
-8 0 0 0
+8~ 0~ 0~ 0~
 40 25000 6000
 A
 1 3
@@ -493,7 +493,7 @@ some silvery leg plates~
 On the floor you see some silvery leg plates.~
 ~
 9 64|256|1024|2048 33
-8 0 0 0 
+8~ 0~ 0~ 0~
 20 12500 5000
 A
 3 3
@@ -507,7 +507,7 @@ a pair of silvery gloves~
 You can see a pair of silvery gloves on the floor.~
 ~
 9 64|256|1024|2048 129
-8 0 0 0
+8~ 0~ 0~ 0~
 14 900 1000
 A
 18 3
@@ -523,7 +523,7 @@ a silvery helmet~
 The silvery helmet lies here.~
 ~
 9 64|256|1024|2048 17
-9 0 0 0
+9~ 0~ 0~ 0~
 35 9000 3000
 A
 4 3
@@ -538,7 +538,7 @@ the shield of the rose~
 The shield of the rose rests on the floor.~
 ~
 9 64|256|1024|2048 513
-10 0 0 0
+10~ 0~ 0~ 0~
 60 15000 1000
 A
 17 -10
@@ -553,7 +553,7 @@ a pair of silvery boots~
 A pair of silvery boots stand on the floor.~
 ~
 9 64|256|1024|2048 65
-8 0 0 0
+8~ 0~ 0~ 0~
 40 2000 1000
 A
 2 3
@@ -567,7 +567,7 @@ some silvery arm plates~
 On the floor you see some silvery arm plates.~
 ~
 9 64|256|1024|2048 257
-8 0 0 0
+8~ 0~ 0~ 0~
 40 12500 7000
 A
 5 3
@@ -581,7 +581,7 @@ a white cloak~
 A white cloak lies on the floor.~
 ~
 9 64|256|1024|2048 1025
-10 0 0 0
+10~ 0~ 0~ 0~
 20 10000 5000
 E
 cloak white~
@@ -596,7 +596,7 @@ a huge treasure~
 a huge treasure is lying here, looking very valuable.~
 ~
 20 0 1
-1000 0 0 0
+1000~ 0~ 0~ 0~
 0 0 0
 E
 treasure~
@@ -606,9 +606,9 @@ Looks like a LOT of coins.
 sword short~
 a short sword~
 There lies a short sword.~
-stab~
+~
 5 0 8193
-0 2 5 2
+0~ 2~ 5~ 2~
 4 60 20
 E
 small sword~
@@ -620,7 +620,7 @@ a backpack~
 A backpack stands upright here.~
 ~
 15 0 1025
-60 5 -1 0
+60~ 5~ -1~ 0~
 2 100 60
 #7301
 beltpouch pouch~
@@ -628,7 +628,7 @@ a large beltpouch~
 A large beltpouch lies here on the ground.~
 ~
 15 0 2049
-5 5 -1 0
+5~ 5~ -1~ 0~
 1 20 10
 #7303
 orb dragonorb~
@@ -636,7 +636,7 @@ the Red DragonOrb~
 A large reddish sphere is in the center of the room.~
 ~
 4 64|512 1|16384
-13 10 10 36
+13~ 10~ 10~ sanctuary~
 5 10000 1000
 A
 3 2
@@ -648,7 +648,7 @@ a red dragon torso~
 There is a pile of red dragonscale on the floor.~
 ~
 9 64|512 9
-9 0 0 0
+9~ 0~ 0~ 0~
 30 50000 12000
 A
 2 -1
@@ -660,7 +660,7 @@ red dragonscale leggings~
 On the floor you see two red dragonscale leggings.~
 ~
 9 64|512 33
-9 0 0 0 
+9~ 0~ 0~ 0~
 17 12500 5000
 A
 2 -1
@@ -672,17 +672,17 @@ a pair of red dragon claws~
 You can see a pair of large red dragon claws on the floor.~
 ~
 12 64|512 129
-9 0 0 0
+9~ 0~ 0~ 0~
 4 900 1000
 A
 19 2
 #7307
-skull dragonhelm red~
+skull dragonhelm red helm helmet~
 a red dragonhelm~
 A helmet fashioned into the likeness of a dragon skull is here.~
 ~
 9 64|512 17
-9 0 0 0
+9~ 0~ 0~ 0~
 15 9000 3000
 A
 2 -1
@@ -696,7 +696,7 @@ the red dragon shield~
 A large red dragon shield rests on the floor.~
 ~
 9 64|512 513
-10 0 0 0
+10~ 0~ 0~ 0~
 10 15000 1000
 A
 19 2
@@ -706,7 +706,7 @@ a pair of a red dragon's rear claws~
 A pair of a red dragon's rear claws is on the floor.~
 ~
 9 64|512 65
-9 0 0 0
+9~ 0~ 0~ 0~
 40 2000 1000
 A
 19 2
@@ -718,7 +718,7 @@ red dragon arm guards~
 On the ground you see two red arm guards.~
 ~
 9 64|512 257
-9 0 0 0
+9~ 0~ 0~ 0~
 40 12500 7000
 A
 19 2
@@ -4637,24 +4637,26 @@ D 1 7280 4 1
 *
 * -- Sewer Maze
 *
-* The lair
-D 0 7201 3 2     Lock stone door
-D 0 7201 2 1     Close wood door
-D 0 7202 0 1     Close wood door
-D 0 7208 0 1     Close door
+* The lair - Thanks Andersen of Marble Mud for bug fixing
+D 0 7200 1 2    Close door
+D 0 7201 3 2    Lock stone door
+D 0 7201 2 1    Close wood door
+D 0 7204 2 1	Close door
+D 0 7202 0 1    Close wood door
+D 0 7208 0 1    Close door
 *
-M 0 7200 1 7201  Load master mindflayer
-E 1 7200 4 16      Equip master with devil rod
-E 1 7203 4 3     Equip master with cloak 
-G 1 7205 7200    Give key to master
-O 0 7204 6 7200  Potion into treasury
-M 0 7201 1 7203  Load senior mindflayer
-E 1 7201 4 16 Equip with large mace
-M 0 7202 2 7205  Junior mindflayer
-E 1 7202 8 16 Equip with large mace
-M 0 7202 2 7207  Load junior mindflayer
-E 1 7202 8 16 Equip with small mace
-O 0 7206 4 7206  Load Skull
+M 0 7200 1 7201 Load master mindflayer
+E 1 7200 4 16	Equip master with devil rod
+E 1 7203 4 3    Equip master with cloak 
+G 1 7205 7200   Give key to master
+O 0 7204 6 7200 Potion into treasury
+M 0 7201 1 7203 Load senior mindflayer
+E 1 7201 4 16 	Equip with large mace
+M 0 7202 2 7205 Junior mindflayer
+E 1 7202 8 16 	Equip with large mace
+M 0 7202 2 7207 Load junior mindflayer
+E 1 7202 8 16 	Equip with small mace
+O 0 7206 4 7206 Load Skull
 * The sewermaze
 M 0 7203 10 7214 Load wererat
 E 1 7211 16 16 Equip with short sword

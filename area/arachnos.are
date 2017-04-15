@@ -1,4 +1,4 @@
-#AREA	{ 5 20} Anon    Arachnos~
+#AREA	{ 5 20} Mahatma Arachnos~
 
 
 
@@ -235,7 +235,7 @@ a pontiff's headress~
 A white cone-shaped head ornament with religious symbols lies here.~
 ~
 9 96 17
-6 0 0 0
+6~ 0~ 0~ 0~
 5 20000 5000
 A
 4 3
@@ -247,7 +247,7 @@ a black knight's visor~
 A black visor sits here.~
 ~
 9 96 17
-6 0 0 0
+6~ 0~ 0~ 0~
 5 20000 5000
 A
 1 1
@@ -259,7 +259,7 @@ a big pile of gold coins~
 A big pile of gold coins is lying here.~
 ~
 20 0 1
-10000 0 0 0
+10000~ 0~ 0~ 0~
 0 0 0
 #6309
 potion blue~
@@ -267,7 +267,7 @@ a blue potion~
 A blue potion has been left here.~
 ~
 10 64 1
-15 43 15 15
+15~ cure poison~ cure critical~ cure critical~
 2 1000 300
 E
 potion blue~
@@ -924,7 +924,7 @@ S
 A Link in the Ethereal Web~
      This is another link in the ethereal web.  Various creatures
 seem to get caught (or hypnotized) by its sticky strands.  To
-the north you sense the heavy breathing of a fiery animal.
+the west you sense the heavy breathing of a fiery animal.
 ~
 63 0 2
 D0
@@ -1187,6 +1187,8 @@ S
 
 
 #RESETS
+* Arachnos originally made by Mahatma (Mr. Melo)
+*
 M 0 6319 1 6134  		Queen Spider
 G 1 6308 10        		  10,000 gold
 M 0 6318 3 6134  		Poisonous spider

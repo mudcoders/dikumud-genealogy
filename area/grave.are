@@ -85,7 +85,7 @@ a candlestick~
 A pewter candlestick is standing here.~
 ~
 1 0 16385
-0 0 24 0
+0~ 0~ 24~ 0~
 5 150 50
 E
 candlestick~
@@ -98,7 +98,7 @@ a brandy bottle~
 A brandy bottle is lying here.~
 ~
 17 0 1
-10 10 5 0
+10~ 10~ 5~ 0~
 2 50 10
 E
 brandy bottle~
@@ -112,7 +112,7 @@ a brandy bottle~
 A brandy bottle is lying here.~
 ~
 17 0 1
-10 0 5 0
+10~ 0~ 5~ 0~
 2 50 10
 E
 brandy bottle~
@@ -126,7 +126,7 @@ a wheelbarrow~
 A green-painted wheelbarrow is standing here.~
 ~
 22 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 100 100 100
 E
 wheelbarrow~
@@ -139,7 +139,7 @@ a shovel~
 A shovel is lying here.~
 ~
 5 0 8193
-0 1 5 7
+0~ 1~ 5~ 7~
 8 30 10
 E
 shovel~
@@ -151,7 +151,7 @@ a rake~
 A rake is lying here.~
 ~
 5 0 8193
-0 1 4 5
+0~ 1~ 4~ 5~
 8 30 10
 E
 rake~
@@ -163,7 +163,7 @@ a dusty skeleton~
 A dusty skeleton lies here.~
 ~
 12 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 15 0 0
 E
 skeleton~
@@ -177,7 +177,7 @@ a amethyst~
 A large, beautifully polished amethyst has been left here.~
 ~
 8 0 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 1 3000 40
 E
 amethyst~
@@ -189,7 +189,7 @@ a silver pendant~
 A silver pendant has been left here.~
 ~
 9 0 1|4
-4 0 0 0
+4~ 0~ 0~ 0~
 1 400 80
 E
 pendant silver~
@@ -201,7 +201,7 @@ a silver dagger~
 A long silver dagger is lying here.~
 pierce~
 5 0 8193
-0 2 4 11
+0~ 2~ 4~ 11~
 1 100 20
 E
 dagger silver~

@@ -98,8 +98,9 @@ priest~
 the priest of Thalos~
 The priest of Thalos tells you of the glories of this city.
 ~
-He stands here gloriously telling of Thalos's history, how it is now referred by
-the world as 'The City of Peace'.  He is very happy to be the high priest here.
+He stands here gloriously telling of Thalos's history, how it is now referred
+by the world as 'The City of Peace'.  He is very happy to be the high priest
+here.
 ~
 2 128 1000 S
 20 5 -5 20d20+200 1d4+15
@@ -128,7 +129,7 @@ He looks very proud of his work.
 2 0 800 S
 20 5 -5 20d20+200 1d4+5
 1000 15000
-8 8 2
+8 8 1
 #5310
 dan barkeep~
 Dan the Barkeep~
@@ -174,7 +175,7 @@ metal into items of defense and destruction.
 2 0 550 S
 30 0 -10 30d30+300 1d6+20
 1000 100000
-8 8 2
+8 8 1
 #5314
 ben smith~
 Ben the Smith~
@@ -425,7 +426,7 @@ a lamia collar~
 A lamia collar is on the ground.~
 ~
 9 0 5
-3 0 0 0
+3~ 0~ 0~ 0~
 5 100 50
 #5301
 breast plate iron~
@@ -433,7 +434,7 @@ a beautiful iron breast plate~
 A beautiful iron breast plate lies here.~
 ~
 9 0 9
-7 0 0 0
+7~ 0~ 0~ 0~
 125 20000 1500
 A
 18 1
@@ -443,7 +444,7 @@ a green serpentine staff~
 A green serpentine staff has been left here.~
 ~
 4 96 16385
-20 2 2 23
+20~ 2~ 2~ earthquake~
 12 7600 1300
 #5304
 scroll magic~
@@ -451,7 +452,7 @@ a scroll of enchantment~
 A scroll of magical enchantment has been left here.~
 ~
 2 64 1
-30 24 -1 -1
+30~ enchant weapon~ ~ ~
 15 20000 3400
 #5305
 scroll bound~
@@ -459,7 +460,7 @@ a bound scroll~
 A bound scroll of detection lies at your feet.~
 ~
 2 64 1
-30 18 19 20
+30~ detect evil~ detect invis~ detect magic~
 15 5000 2100
 #5306
 fountain~
@@ -467,7 +468,7 @@ a large beautiful fountain~
 An elaborate white marble fountain is here.~
 ~
 25 0 0
-10 10 0 0
+10~ 10~ 0~ 0~
 0 0 0
 E
 fountain~
@@ -481,7 +482,7 @@ the curved desk~
 A beautiful desk made from a gigantic sea shell is here.~
 ~
 15 0 0
-100 13 5224 0
+100~ 13~ 5224~ 0~
 0 0 0
 E
 desk~
@@ -494,7 +495,7 @@ the glass cabinet~
 A sturdy glass cabinet is here.~
 ~
 15 0 0
-500 13 5226 0
+500~ 13~ 5226~ 0~
 0 0 0
 E
 cabinet~
@@ -508,7 +509,7 @@ a mandolin~
 A mandolin lies against the wall.~
 ~
 4 64 16385
-18 5 5 15
+18~ 5~ 5~ cure critical~
 20 6000 5000
 #5310
 harp golden~
@@ -516,7 +517,7 @@ a golden harp~
 A beautiful golden harp is waiting to be played.~
 ~
 4 64 16385
-30 1 1 6
+30~ 1~ 1~ call lightning~
 100 2500 6700
 #5311
 flute silver~
@@ -524,7 +525,7 @@ a silver flute~
 A brilliant silver flute glimmers from its holster.~
 ~
 4 65 16385
-30 1 1 7
+30~ 1~ 1~ charm person~
 6 10500 3500
 #5312
 potion green~
@@ -532,7 +533,7 @@ a green potion~
 You see a green potion on the floor.~
 ~
 10 0 1
-20 203 0 0
+20~ gas breath~ ~ ~
 5 100 100
 #5313
 herbs~
@@ -540,7 +541,7 @@ some bluish herbs~
 Some bluish herbs are scattered here.~
 ~
 26 0 1
-15 0 0 3
+15~ bless~ ~ ~
 1 1 1
 #5314
 herbs~
@@ -548,7 +549,7 @@ some purplish herbs~
 Some purplish herbs are scattered here.~
 ~
 26 0 1
-15 0 0 82
+15~ change sex~ ~ ~
 1 1 1
 #5315
 herbs~
@@ -556,7 +557,7 @@ some grayish herbs~
 Some grayish herbs are scattered here.~
 ~
 26 0 1
-5 0 39 33
+5~ giant strength~ poison~ ~
 1 1 1
 #5316
 herbs~
@@ -564,7 +565,7 @@ some orangish herbs~
 Some orangish herbs are scattered here.~
 ~
 26 0 1
-5 0 0 16
+5~ cure light~ ~ ~
 1 1 1
 #5317
 sword~
@@ -572,7 +573,7 @@ an imperial sword~
 You see an imperial sword here.~
 ~
 5 64 8193
-0 3 4 3
+0~ 3~ 4~ 3~
 5 0 500
 E
 sword~
@@ -589,7 +590,7 @@ an imperial mace~
 You see an imperial mace here.~
 ~
 5 64 8193
-0 4 4 7
+0~ 4~ 4~ 7~
 5 0 500
 E
 mace~
@@ -606,7 +607,7 @@ an imperial chest plate~
 You see an imperial chest plate here.~
 ~
 9 0 9
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 chest plate~
@@ -619,7 +620,7 @@ an imperial shield~
 You see an imperial shield here.~
 ~
 9 0 513
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 shield~
@@ -632,7 +633,7 @@ an imperial cloak~
 You see an imperial cloak here.~
 ~
 9 0 5
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 cloak~
@@ -645,7 +646,7 @@ an imperial helm~
 You see an imperial helm here.~
 ~
 9 0 17
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 helm~
@@ -658,7 +659,7 @@ a pair of imperial plate leggings~
 You see a pair of imperial plate leggings here.~
 ~
 9 0 33
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 plate leggings~
@@ -671,7 +672,7 @@ a pair of imperial plate boots~
 You see a pair of imperial plate boots here.~
 ~
 9 0 65
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 plate boots~
@@ -684,7 +685,7 @@ a pair of imperial plate gloves~
 You see a pair of imperial plate gloves here.~
 ~
 9 0 129
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 plate gloves~
@@ -697,7 +698,7 @@ a pair of imperial plate sleeves~
 You see a pair of imperial plate sleeves here.~
 ~
 9 0 257
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 plate sleeves~
@@ -710,7 +711,7 @@ an imperial cape~
 You see an imperial cape here.~
 ~
 9 0 1025
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 cape~
@@ -723,7 +724,7 @@ an imperial belt~
 You see an imperial belt here.~
 ~
 9 0 2049
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 belt~
@@ -736,7 +737,7 @@ an imperial metal bracer~
 You see an imperial metal bracer here.~
 ~
 9 0 4097
-5 0 0 0
+5~ 0~ 0~ 0~
 5 0 500
 E
 metal bracer~
@@ -749,7 +750,7 @@ an imperial city guard signet ring~
 You see a ring with a strange symbol on the floor.~
 ~
 9 64 3
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 10000
 A
 17 -6
@@ -761,7 +762,7 @@ an imperial war banner~
 An imperial war banner is on the floor here.~
 ~
 1 65 1
-0 0 -1 0
+0~ 0~ -1~ 0~
 1 0 500
 E
 banner~
@@ -1109,7 +1110,7 @@ S
 #5313
 A side street~
      This small side street is lined with great beautifully designed
-buildings. To the north is the magnificent temple while to the
+buildings.  To the north is the magnificent temple while to the
 south lies the entrance to a small friendly tavern. The street continues
 north and south.
 ~
@@ -1119,7 +1120,7 @@ D0
 ~
 0 0 5312
 D1
->From the looks of it, this is a very impressive two story abode.
+From the looks of it, this is a very impressive two story abode.
 The entire first floor is covered with a huge marble bar with merry men
 telling tall tales and drinking their fill.
 ~
@@ -1417,8 +1418,8 @@ S
 #5330
 The Tavern of the Sun~
      A glorious place, this tavern is second home for many citizens of
-Thalos.  Tables and chairs are set in rows, bottles and glasses filled, and
-a small performance stage teaming with dazzling entertainment. Musical
+Thalos.  Tables and chairs are set in rows, bottles and glasses are filled, 
+and a small performance stage is teaming with dazzling entertainment. Musical
 instruments and personal belongings lie in piles belonging to each member
 of this room.
 ~
@@ -2971,7 +2972,7 @@ M  5300 spec_cast_mage
 M  5303 spec_guard
 M  5305 spec_guard
 M  5306 spec_cast_cleric
-M  5307 spec_cast_cleric
+M  5307 spec_cast_adept
 M  5317 spec_cast_mage
 M  5320 spec_guard
 M  5321 spec_guard

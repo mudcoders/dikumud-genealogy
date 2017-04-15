@@ -1,4 +1,4 @@
-#AREA	{ 5 30} Wench   Dragon Tower~
+#AREA	{ 5 50} Wench   Dragon Tower~
 
 
 
@@ -36,7 +36,7 @@ The lord of this crypt is here.
 He doesn't look happy to see you.
 ~
 2|4|32 524288 -1000 S
-27 0 -2 27d27+270 3d6+8
+37 0 -2 27d27+270 3d6+8
 35000 60000
 8 8 1
 #2203
@@ -49,7 +49,7 @@ surprised at the fact that he is human, and realize that he must be very
 powerful to have been accepted by the creatures which live here.
 ~
 2 2|8|128 -900 S
-22 0 3 22d22+220 1d8+10
+32 0 3 22d22+220 1d8+10
 600 45000
 8 8 1
 #2204
@@ -61,7 +61,7 @@ A Draconian stands here, dressed in simple robes.  Around his neck you
 notice a golden medallion in the shape of a five headed dragon.  
 ~
 2|4|32 8|128 -900 S
-22 1 0 22d22+220 3d5+6
+32 1 0 22d22+220 3d5+6
 400 45000
 8 8 1        
 #2205
@@ -111,7 +111,7 @@ You see before you the master of this Tower, Tiamat.  She frowns at you as she
 prepares to make you pay for your insolence ... with your lives!
 ~
 2|4|32 8|32 -1000 S
-35 0 -10 35d35+1000 4d9+15
+47 0 -10 35d35+1000 4d9+15
 50000 3500000
 8 8 2
 #2221
@@ -123,7 +123,7 @@ This huge red dragon dominates the chamber.  As you turn to flee, he grins at
 you and invites you to stay ... forever! 
 ~
 2|4|32 8|32 -1000 S
-27 0 -5 27d27+270 2d8+10
+41 0 -5 27d27+270 2d8+10
 10000 300000
 8 8 1
 #2222
@@ -135,7 +135,7 @@ This huge black wyrm laughs at your puny weapons.  You realize that he is not
 going to roll over and die for you.
 ~
 2|4|32 8|32 -900 S
-26 1 -3 26d26+260 3d8+4
+36 1 -3 26d26+260 3d8+4
 20000 250000
 8 8 1
 #2223
@@ -148,7 +148,7 @@ dragons, you are not afraid.  She smiles at you and says 'I think you will find
 me a greater challenge than my offspring.'
 ~
 2|4|32 8|32 -1000 S
-27 0 -3 27d27+270 3d8+4
+39 0 -3 27d27+270 3d8+4
 35000 200000
 8 8 2
 #2225
@@ -161,7 +161,7 @@ She looks at you with sorrow in her eyes and says 'You have slaughtered my
 children.  Prepare to die.'
 ~
 2|4|32 8|32 -1000 S
-31 0 -4 31d31+310 3d8+15
+41 0 -4 31d31+310 3d8+15
 20000 500000
 8 8 2
 #2226
@@ -246,7 +246,7 @@ a jagged spear~
 A jagged spear has been left here.~
 ~
 5 0 8193
-0 2 5 11
+0~ 2~ 5~ 11~
 15 4000 1500
 #2201
 dagger silver~
@@ -254,7 +254,7 @@ a silver dagger~
 A silver dagger is lying here.~
 ~
 5 0 8193
-0 2 4 11
+0~ 2~ 4~ 11~
 10 1000 200
 #2202
 knife tooth dragon~
@@ -262,7 +262,7 @@ a dragon's tooth knife~
 A dangerous looking knife made from a dragon's tooth has been left here.~
 ~
 5 0 8193
-0 3 5 11
+0~ 3~ 5~ 11~
 8 100000 50000
 A
 2 1
@@ -274,7 +274,7 @@ a dragon skin bracelet~
 A scaly bracelet lies on the ground.~
 ~
 9 0 4097  
-6 0 0 0
+6~ 0~ 0~ 0~
 10 40000 10000
 #2204
 belt silk black~
@@ -282,7 +282,7 @@ a black silk belt~
 A black belt made of the finest silk is hanging here.~
 ~
 9 0 2049
-6 0 0 0
+6~ 0~ 0~ 0~
 25 10000 4000
 A
 5 2
@@ -292,7 +292,7 @@ a white silk belt.~
 A white belt made of the finest silk is hanging here.~
 ~
 15 0 2049
-6 0 0 0
+6~ 0~ 0~ 0~
 25 10000 4000
 A
 1 2
@@ -302,7 +302,7 @@ a platinum bracelet.~
 A tarnished platinum bracelet has been dropped here.~
 ~
 9 1 4097
-7 0 0 0
+7~ 0~ 0~ 0~
 5 50000 25000
 #2220
 symbol holy~
@@ -310,7 +310,7 @@ a holy symbol~
 A golden holy symbol is here.~
 ~
 9 1 16389
-4 0 0 0
+4~ 0~ 0~ 0~
 2 50000 5000
 A
 12 15
@@ -320,7 +320,7 @@ a plain black robe~
 A black robe is hanging on a hook on the wall.~
 ~
 9 0 1025
-5 0 0 0
+5~ 0~ 0~ 0~
 3 50000 5000
 A
 19 2
@@ -330,7 +330,7 @@ an emerald sword~
 An emerald long sword is leaning against the wall.~
 ~
 5 0 8193
-0 3 6 3
+0~ 3~ 6~ 3~
 24 200000 100000
 #2223
 club stone~
@@ -338,7 +338,7 @@ a stone club~
 A heavy looking stone club is here.~
 ~
 5 0 8193
-0 3 5 8
+0~ 3~ 5~ 8~
 18 7500 5000
 #2224
 ring diamond~
@@ -346,7 +346,7 @@ a diamond ring~
 A diamond ring lies gleaming on the ground.~
 ~
 9 0 3
-4 0 0 0
+4~ 0~ 0~ 0~
 6 50000 10000
 A
 18 3
@@ -358,7 +358,7 @@ a copper ring~
 A copper ring is here.~
 ~
 9 0 3
-1 0 0 0
+1~ 0~ 0~ 0~
 1 100000 25000
 A
 4 2
@@ -368,7 +368,7 @@ a steel key~
 A steel key.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 500 1000
 #2232
 key ruby~
@@ -376,7 +376,7 @@ A ruby key~
 A ruby key.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 500 1000
 #2233
 key white~
@@ -384,7 +384,7 @@ a white key~
 A white key.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 500 1000
 #2234
 key grey~
@@ -392,7 +392,7 @@ a grey key~
 A grey key is resting on the ground here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 500 1000
 #2237
 key stone~
@@ -400,7 +400,7 @@ a stone key~
 A stone key.~
 ~
 18 0 1
-0 0 0 0 
+0~ 0~ 0~ 0~ 
 1 500 1000
 #2240
 key black~
@@ -408,7 +408,7 @@ a black key~
 A black key.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 500 1000
 #2241
 key platinum~
@@ -416,7 +416,7 @@ a platinum key~
 A platinum key.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 500 1000
 #2242
 shield crested~
@@ -424,7 +424,7 @@ a crested shield~
 A large crested shield draws your attention.~
 ~
 9 0 513
-8 0 0 0
+8~ 0~ 0~ 0~
 20 200000 100000
 A
 5 1
@@ -434,7 +434,7 @@ a golden wand~
 A golden wand has been dropped here.~
 ~
 3 1 16385
-25 10 10 59
+25~ 10~ 10~ dispel magic~
 5 10000 5000
 #2244
 staff silver~
@@ -442,7 +442,7 @@ a silver staff~
 A silver staff.~
 ~
 4 65 16385
-25 20 20 73
+25~ 20~ 20~ faerie fog~
 5 10000 5000
 #2245
 staff dragon~
@@ -450,7 +450,7 @@ the staff of the dragon~
 A powerful oak staff has been left here.~
 ~
 4 65 16385
-25 10 10 6
+25~ 10~ 10~ call lightning~
 5 10000 3000
 #2246
 mail scale~
@@ -458,7 +458,7 @@ scale mail~
 A set of scale mail has been abandoned here.~
 ~
 9 1 9
-8 0 0 0
+8~ 0~ 0~ 0~
 20 100000 20000
 #2250
 staff black~
@@ -466,7 +466,7 @@ a black staff~
 You notice the faint outline of a staff.~
 ~
 4 1|512 16385 
-30 3 3 25 
+30~ 3~ 3~ energy drain~ 
 25 75000 5000 
 #2251 
 potion cyan~
@@ -474,7 +474,7 @@ a cyan potion~
 A small cyan potion has been left here.~
 ~
 10 0 1 
-30 4 27 0
+30~ blindness~ harm~ ~
 1 40000 1000 
 #2252 
 potion magenta~
@@ -482,7 +482,7 @@ a magenta potion~
 A magenta potion.~
 ~
 10 128 1 
-30 15 34 0
+30~ cure critical~ protection~ ~
 1 2000 100 
 #2254 
 gauntlets spiked~
@@ -490,7 +490,7 @@ a pair of spiked gauntlets~
 A pair of spiked gauntlets.~
 ~
 9 65 129 
-4 0 0 0 
+4~ 0~ 0~ 0~ 
 10 50000 5000
 A
 19 2
@@ -502,7 +502,7 @@ a golden scimitar~
 A golden scimitar.~
 ~
 5 1 8193 
-0 3 5 3 
+0~ 3~ 5~ 3~ 
 10 40000 7000 
 A
 3 1
@@ -514,7 +514,7 @@ a diamond brooch~
 A diamond brooch.~
 ~
 9 64 5 
-4 0 0 0 
+4~ 0~ 0~ 0~ 
 2 10000 4000
 A
 12 25 
@@ -524,7 +524,7 @@ a runed scroll~
 A runed scroll.~
 ~
 2 64 16385 
-30 1 34 67
+30~ armor~ protection~ shield~
 1 5000 500 
 #2271
 gloves dragon~
@@ -532,7 +532,7 @@ a pair of dragon skin gloves~
 A pair of dragon skin gloves are lying on the ground.~
 ~
 9 0 129
-6 0 0 0
+6~ 0~ 0~ 0~
 5 40000 15000
 A
 2 2
@@ -542,7 +542,7 @@ a helm of dragon kind~
 A helm made of a dragon's skull is lying on the ground.~
 ~
 9 0 17
-5 0 0 0 
+5~ 0~ 0~ 0~ 
 15 30000 6000
 A
 13 15
@@ -552,7 +552,7 @@ a fur cloak~
 A large mound of fur is lying here.~
 ~
 9 0 1025
-6 0 0 0 
+6~ 0~ 0~ 0~ 
 10 25000 10000
 A
 1 1
@@ -564,7 +564,7 @@ a pair of dragon scale leggings~
 A pair of dragon scale leggings is lying on the ground.~
 ~
 9 0 33
-7 0 0 0 
+7~ 0~ 0~ 0~ 
 15 35000 4000 
 #2281
 sleeves dragon scale~
@@ -572,7 +572,7 @@ a set of dragon scale sleeves~
 A set of dragon scale sleeves is lying on the ground.~
 ~
 9 0 257 
-7 0 0 0 
+7~ 0~ 0~ 0~ 
 12 30000 3000 
 #2285
 whip dragon tail~
@@ -580,7 +580,7 @@ a dragon tailed whip~
 A dragon tailed whip is lying on the ground.~
 ~
 5 2|512 8193 
-0 4 5 4
+0~ 4~ 5~ 4~
 14 40000 20500
 A
 18 2
@@ -592,15 +592,23 @@ a copper hammer~
 A copper hammer is lying on the ground.~
 ~
 5 0 8193 
-0 3 5 8 
+0~ 3~ 5~ 8~ 
 12 30000 15000 
+#2298
+orb chromatic dragon~
+the chromatic Dragon Orb~
+A colorful large orb floats in front of you.~
+~
+4 1|512 16385
+45~ 10~ 10~ ultrablast~
+15 5000 5000
 #2299
 key gold tarnished~
 a tarnished gold key~
 A tarnished gold key lies here.~
 ~
 18 0 1 
-0 0 0 0
+0~ 0~ 0~ 0~
 1 500 1000
 #0
 
@@ -1530,6 +1538,8 @@ M 0 2225 1 2230
 G 1 2241 2 
 G 1 2285 50 
 E 1 2261 50 3
+M 0 2220 1 2243			TIAMAT
+E 1 2298 50 17			his chromatic orb
 S
 
 

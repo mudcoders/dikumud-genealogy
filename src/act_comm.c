@@ -2,20 +2,23 @@
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
  *                                                                         *
- *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Merc Diku Mud improvements copyright (C) 1992, 1993 by Michael         *
  *  Chastain, Michael Quan, and Mitchell Tse.                              *
  *                                                                         *
- *  In order to use any part of this Merc Diku Mud, you must comply with   *
- *  both the original Diku license in 'license.doc' as well the Merc       *
- *  license in 'license.txt'.  In particular, you may not remove either of *
- *  these copyright notices.                                               *
+ *  Envy Diku Mud improvements copyright (C) 1994 by Michael Quan, David   *
+ *  Love, Guilherme 'Willie' Arnold, and Mitchell Tse.                     *
+ *                                                                         *
+ *  In order to use any part of this Envy Diku Mud, you must comply with   *
+ *  the original Diku license in 'license.doc', the Merc license in        *
+ *  'license.txt', as well as the Envy license in 'license.nvy'.           *
+ *  In particular, you may not remove either of these copyright notices.   *
  *                                                                         *
  *  Much time and thought has gone into this software and you are          *
  *  benefitting.  We hope that you share your changes too.  What goes      *
  *  around, comes around.                                                  *
  ***************************************************************************/
 
-#if defined(macintosh)
+#if defined( macintosh )
 #include <types.h>
 #else
 #include <sys/types.h>
@@ -39,7 +42,6 @@ void	talk_channel	args( ( CHAR_DATA *ch, char *argument,
 			    int channel, const char *verb ) );
 
 
-
 bool is_note_to( CHAR_DATA *ch, NOTE_DATA *pnote )
 {
     if ( !str_cmp( ch->name, pnote->sender ) )
@@ -48,7 +50,11 @@ bool is_note_to( CHAR_DATA *ch, NOTE_DATA *pnote )
     if ( is_name( "all", pnote->to_list ) )
 	return TRUE;
 
-    if ( IS_HERO(ch) && is_name( "immortal", pnote->to_list ) )
+    if ( IS_HERO( ch ) && (   is_name( "immortal",  pnote->to_list )
+			   || is_name( "immortals", pnote->to_list )
+			   || is_name( "imm",       pnote->to_list )
+			   || is_name( "immort",    pnote->to_list ) ) )
+	
 	return TRUE;
 
     if ( is_name( ch->name, pnote->to_list ) )
@@ -63,12 +69,12 @@ void note_attach( CHAR_DATA *ch )
 {
     NOTE_DATA *pnote;
 
-    if ( ch->pnote != NULL )
+    if ( ch->pnote )
 	return;
 
-    if ( note_free == NULL )
+    if ( !note_free )
     {
-	pnote	  = alloc_perm( sizeof(*ch->pnote) );
+	pnote	  = alloc_perm( sizeof( *ch->pnote ) );
     }
     else
     {
@@ -90,11 +96,11 @@ void note_attach( CHAR_DATA *ch )
 
 void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
 {
-    char to_new[MAX_INPUT_LENGTH];
-    char to_one[MAX_INPUT_LENGTH];
-    FILE *fp;
+    FILE      *fp;
     NOTE_DATA *prev;
-    char *to_list;
+    char      *to_list;
+    char       to_new [ MAX_INPUT_LENGTH ];
+    char       to_one [ MAX_INPUT_LENGTH ];
 
     /*
      * Build a new to_list.
@@ -107,7 +113,7 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
 	to_list	= one_argument( to_list, to_one );
 	if ( to_one[0] != '\0' && str_cmp( ch->name, to_one ) )
 	{
-	    strcat( to_new, " " );
+	    strcat( to_new, " "    );
 	    strcat( to_new, to_one );
 	}
     }
@@ -131,13 +137,13 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
     }
     else
     {
-	for ( prev = note_list; prev != NULL; prev = prev->next )
+	for ( prev = note_list; prev; prev = prev->next )
 	{
 	    if ( prev->next == pnote )
 		break;
 	}
 
-	if ( prev == NULL )
+	if ( !prev )
 	{
 	    bug( "Note_remove: pnote not found.", 0 );
 	    return;
@@ -158,21 +164,20 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
      * Rewrite entire list.
      */
     fclose( fpReserve );
-    if ( ( fp = fopen( NOTE_FILE, "w" ) ) == NULL )
+    if ( !( fp = fopen( NOTE_FILE, "w" ) ) )
     {
 	perror( NOTE_FILE );
     }
     else
     {
-	for ( pnote = note_list; pnote != NULL; pnote = pnote->next )
+	for ( pnote = note_list; pnote; pnote = pnote->next )
 	{
-	    fprintf( fp, "Sender  %s~\nDate    %s~\nTo      %s~\nSubject %s~\nText\n%s~\n\n",
-		pnote->sender,
-		pnote->date,
-		pnote->to_list,
-		pnote->subject,
-		pnote->text
-		);
+	    fprintf( fp, "Sender  %s~\n", pnote->sender     );
+	    fprintf( fp, "Date    %s~\n", pnote->date       );
+	    fprintf( fp, "Stamp   %ld\n", pnote->date_stamp );
+	    fprintf( fp, "To      %s~\n", pnote->to_list    );
+	    fprintf( fp, "Subject %s~\n", pnote->subject    );
+	    fprintf( fp, "Text\n%s~\n\n", pnote->text       );
 	}
 	fclose( fp );
     }
@@ -181,34 +186,46 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
 }
 
 
-
+/* Date stamp idea comes from Alander of ROM */
 void do_note( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
-    char arg[MAX_INPUT_LENGTH];
     NOTE_DATA *pnote;
-    int vnum;
-    int anum;
+    char       buf  [ MAX_STRING_LENGTH   ];
+    char       buf1 [ MAX_STRING_LENGTH*7 ];
+    char       arg  [ MAX_INPUT_LENGTH    ];
+    int        vnum;
+    int        anum;
 
-    if ( IS_NPC(ch) )
+    if ( IS_NPC( ch ) )
 	return;
 
     argument = one_argument( argument, arg );
     smash_tilde( argument );
 
+    if ( arg[0] == '\0' )
+    {
+	do_note( ch, "read" );
+	return;
+    }
+
     if ( !str_cmp( arg, "list" ) )
     {
-	vnum = 0;
-	for ( pnote = note_list; pnote != NULL; pnote = pnote->next )
+	vnum    = 0;
+	buf1[0] = '\0';
+	for ( pnote = note_list; pnote; pnote = pnote->next )
 	{
 	    if ( is_note_to( ch, pnote ) )
 	    {
-		sprintf( buf, "[%3d] %s: %s\n\r",
-		    vnum, pnote->sender, pnote->subject );
-		send_to_char( buf, ch );
+		sprintf( buf, "[%3d%s] %s: %s\n\r",
+			vnum,
+			( pnote->date_stamp > ch->last_note
+			 && str_cmp( pnote->sender, ch->name ) ) ? "N" : " ",
+			pnote->sender, pnote->subject );
+		strcat( buf1, buf );
 		vnum++;
 	    }
 	}
+	send_to_char( buf1, ch );
 	return;
     }
 
@@ -221,6 +238,35 @@ void do_note( CHAR_DATA *ch, char *argument )
 	    fAll = TRUE;
 	    anum = 0;
 	}
+	else if ( argument[0] == '\0' || !str_prefix( argument, "next" ) )
+	  /* read next unread note */
+	{
+	    vnum    = 0;
+	    buf1[0] = '\0';
+	    for ( pnote = note_list; pnote; pnote = pnote->next )
+	    {
+		if ( is_note_to( ch, pnote )
+		    && str_cmp( ch->name, pnote->sender )
+		    && ch->last_note < pnote->date_stamp )
+		{
+		    sprintf( buf, "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r",
+			    vnum,
+			    pnote->sender,
+			    pnote->subject,
+			    pnote->date,
+			    pnote->to_list );
+		    strcat( buf1, buf );
+		    strcat( buf1, pnote->text );
+		    ch->last_note = UMAX( ch->last_note, pnote->date_stamp );
+		    send_to_char( buf1, ch );
+		    return;
+		}
+		else
+		    vnum++;
+	    }
+	    send_to_char( "You have no unread notes.\n\r", ch );
+	    return;
+	}
 	else if ( is_number( argument ) )
 	{
 	    fAll = FALSE;
@@ -232,25 +278,34 @@ void do_note( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	vnum = 0;
-	for ( pnote = note_list; pnote != NULL; pnote = pnote->next )
+	vnum    = 0;
+	buf1[0] = '\0';
+	for ( pnote = note_list; pnote; pnote = pnote->next )
 	{
 	    if ( is_note_to( ch, pnote ) && ( vnum++ == anum || fAll ) )
 	    {
 		sprintf( buf, "[%3d] %s: %s\n\r%s\n\rTo: %s\n\r",
-		    vnum - 1,
-		    pnote->sender,
-		    pnote->subject,
-		    pnote->date,
-		    pnote->to_list
-		    );
-		send_to_char( buf, ch );
-		send_to_char( pnote->text, ch );
-		return;
+			vnum - 1,
+			pnote->sender,
+			pnote->subject,
+			pnote->date,
+			pnote->to_list );
+		strcat( buf1, buf );
+		strcat( buf1, pnote->text );
+		if ( !fAll )
+		    send_to_char( buf1, ch );
+		else
+		    strcat( buf1, "\n\r" );
+		ch->last_note = UMAX( ch->last_note, pnote->date_stamp );
+		if ( !fAll )
+		    return;
 	    }
 	}
 
-	send_to_char( "No such note.\n\r", ch );
+	if ( !fAll )
+	    send_to_char( "No such note.\n\r", ch );
+	else
+	    send_to_char( buf1, ch );
 	return;
     }
 
@@ -258,14 +313,14 @@ void do_note( CHAR_DATA *ch, char *argument )
     {
 	note_attach( ch );
 	strcpy( buf, ch->pnote->text );
-	if ( strlen(buf) + strlen(argument) >= MAX_STRING_LENGTH - 4 )
+	if ( strlen( buf ) + strlen( argument ) >= MAX_STRING_LENGTH - 200 )
 	{
 	    send_to_char( "Note too long.\n\r", ch );
 	    return;
 	}
 
 	strcat( buf, argument );
-	strcat( buf, "\n\r" );
+	strcat( buf, "\n\r"   );
 	free_string( ch->pnote->text );
 	ch->pnote->text = str_dup( buf );
 	send_to_char( "Ok.\n\r", ch );
@@ -292,13 +347,13 @@ void do_note( CHAR_DATA *ch, char *argument )
 
     if ( !str_cmp( arg, "clear" ) )
     {
-	if ( ch->pnote != NULL )
+	if ( ch->pnote )
 	{
-	    free_string( ch->pnote->text );
+	    free_string( ch->pnote->text    );
 	    free_string( ch->pnote->subject );
 	    free_string( ch->pnote->to_list );
-	    free_string( ch->pnote->date );
-	    free_string( ch->pnote->sender );
+	    free_string( ch->pnote->date    );
+	    free_string( ch->pnote->sender  );
 	    ch->pnote->next	= note_free;
 	    note_free		= ch->pnote;
 	    ch->pnote		= NULL;
@@ -310,65 +365,79 @@ void do_note( CHAR_DATA *ch, char *argument )
 
     if ( !str_cmp( arg, "show" ) )
     {
-	if ( ch->pnote == NULL )
+	if ( !ch->pnote )
 	{
 	    send_to_char( "You have no note in progress.\n\r", ch );
 	    return;
 	}
 
 	sprintf( buf, "%s: %s\n\rTo: %s\n\r",
-	    ch->pnote->sender,
-	    ch->pnote->subject,
-	    ch->pnote->to_list
-	    );
+		ch->pnote->sender,
+		ch->pnote->subject,
+		ch->pnote->to_list );
 	send_to_char( buf, ch );
 	send_to_char( ch->pnote->text, ch );
 	return;
     }
 
-    if ( !str_cmp( arg, "post" ) )
+    if ( !str_cmp( arg, "post" ) || !str_prefix( arg, "send" ) )
     {
 	FILE *fp;
 	char *strtime;
 
-	if ( ch->pnote == NULL )
+	if ( !ch->pnote )
 	{
 	    send_to_char( "You have no note in progress.\n\r", ch );
+	    return;
+	}
+
+	if ( !str_cmp( ch->pnote->to_list, "" ) )
+	{
+	    send_to_char(
+	      "You need to provide a recipient (name, all, or immortal).\n\r",
+			 ch );
+	    return;
+	}
+
+	if ( !str_cmp( ch->pnote->subject, "" ) )
+	{
+	    send_to_char( "You need to provide a subject.\n\r", ch );
 	    return;
 	}
 
 	ch->pnote->next			= NULL;
 	strtime				= ctime( &current_time );
 	strtime[strlen(strtime)-1]	= '\0';
+	free_string( ch->pnote->date );
 	ch->pnote->date			= str_dup( strtime );
+	ch->pnote->date_stamp           = current_time;
 
-	if ( note_list == NULL )
+	if ( !note_list )
 	{
 	    note_list	= ch->pnote;
 	}
 	else
 	{
-	    for ( pnote = note_list; pnote->next != NULL; pnote = pnote->next )
+	    for ( pnote = note_list; pnote->next; pnote = pnote->next )
 		;
 	    pnote->next	= ch->pnote;
 	}
 	pnote		= ch->pnote;
-	ch->pnote	= NULL;
+	ch->pnote       = NULL;
 
 	fclose( fpReserve );
-	if ( ( fp = fopen( NOTE_FILE, "a" ) ) == NULL )
+	if ( !( fp = fopen( NOTE_FILE, "a" ) ) )
 	{
 	    perror( NOTE_FILE );
 	}
 	else
 	{
-	    fprintf( fp, "Sender  %s~\nDate    %s~\nTo      %s~\nSubject %s~\nText\n%s~\n\n",
-		pnote->sender,
-		pnote->date,
-		pnote->to_list,
-		pnote->subject,
-		pnote->text
-		);
+	    fprintf( fp, "Sender  %s~\n", pnote->sender     );
+	    fprintf( fp, "Date    %s~\n", pnote->date       );
+	    fprintf( fp, "Stamp   %ld\n", pnote->date_stamp );
+	    fprintf( fp, "To      %s~\n", pnote->to_list    );
+	    fprintf( fp, "Subject %s~\n", pnote->subject    );
+	    fprintf( fp, "Text\n%s~\n\n", pnote->text       );
 	    fclose( fp );
 	}
 	fpReserve = fopen( NULL_FILE, "r" );
@@ -387,7 +456,7 @@ void do_note( CHAR_DATA *ch, char *argument )
 
 	anum = atoi( argument );
 	vnum = 0;
-	for ( pnote = note_list; pnote != NULL; pnote = pnote->next )
+	for ( pnote = note_list; pnote; pnote = pnote->next )
 	{
 	    if ( is_note_to( ch, pnote ) && vnum++ == anum )
 	    {
@@ -412,36 +481,36 @@ void do_note( CHAR_DATA *ch, char *argument )
  */
 void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb )
 {
-    char buf[MAX_STRING_LENGTH];
     DESCRIPTOR_DATA *d;
-    int position;
+    char             buf [ MAX_STRING_LENGTH ];
+    int              position;
 
     if ( argument[0] == '\0' )
     {
 	sprintf( buf, "%s what?\n\r", verb );
-	buf[0] = UPPER(buf[0]);
+	buf[0] = UPPER( buf[0] );
 	return;
     }
 
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_SILENCE) )
+    if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_SILENCE ) )
     {
 	sprintf( buf, "You can't %s.\n\r", verb );
 	send_to_char( buf, ch );
 	return;
     }
 
-    REMOVE_BIT(ch->deaf, channel);
+    REMOVE_BIT( ch->deaf, channel );
 
     switch ( channel )
     {
     default:
-	sprintf( buf, "You %s '%s'.\n\r", verb, argument );
+	sprintf( buf, "You %s '%s'\n\r", verb, argument );
 	send_to_char( buf, ch );
-	sprintf( buf, "$n %ss '$t'.",     verb );
+	sprintf( buf, "$n %ss '$t'",     verb );
 	break;
 
     case CHANNEL_IMMTALK:
-	sprintf( buf, "$n: $t." );
+	sprintf( buf, "$n: $t" );
 	position	= ch->position;
 	ch->position	= POS_STANDING;
 	act( buf, ch, argument, NULL, TO_CHAR );
@@ -449,7 +518,7 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 	break;
     }
 
-    for ( d = descriptor_list; d != NULL; d = d->next )
+    for ( d = descriptor_list; d; d = d->next )
     {
 	CHAR_DATA *och;
 	CHAR_DATA *vch;
@@ -458,14 +527,14 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel, const char *verb 
 	vch = d->character;
 
 	if ( d->connected == CON_PLAYING
-	&&   vch != ch
-	&&  !IS_SET(och->deaf, channel) )
+	    && vch != ch
+	    && !IS_SET( och->deaf, channel ) )
 	{
-	    if ( channel == CHANNEL_IMMTALK && !IS_HERO(och) )
+	    if ( channel == CHANNEL_IMMTALK && !IS_HERO( och ) )
 		continue;
 	    if ( channel == CHANNEL_YELL
-	    &&   vch->in_room->area != ch->in_room->area )
-		continue;
+		&& vch->in_room->area != ch->in_room->area )
+	        continue;
 
 	    position		= vch->position;
 	    if ( channel != CHANNEL_SHOUT && channel != CHANNEL_YELL )
@@ -542,6 +611,12 @@ void do_yell( CHAR_DATA *ch, char *argument )
 
 void do_immtalk( CHAR_DATA *ch, char *argument )
 {
+    if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_immtalk] < 100 )
+    {
+        send_to_char("You are not authorized to use this command.\n\r", ch );
+        return;
+    }
+
     talk_channel( ch, argument, CHANNEL_IMMTALK, "immtalk" );
     return;
 }
@@ -556,8 +631,8 @@ void do_say( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    act( "$n says '$T'.", ch, NULL, argument, TO_ROOM );
-    act( "You say '$T'.", ch, NULL, argument, TO_CHAR );
+    act( "$n says '$T'", ch, NULL, argument, TO_ROOM );
+    act( "You say '$T'", ch, NULL, argument, TO_CHAR );
     return;
 }
 
@@ -565,11 +640,12 @@ void do_say( CHAR_DATA *ch, char *argument )
 
 void do_tell( CHAR_DATA *ch, char *argument )
 {
-    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
-    int position;
+    char       arg [ MAX_INPUT_LENGTH ];
+    int        position;
 
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_SILENCE) )
+    if ( !IS_NPC( ch ) && (   IS_SET( ch->act, PLR_SILENCE )
+			   || IS_SET( ch->act, PLR_NO_TELL ) ) )
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
@@ -587,23 +663,23 @@ void do_tell( CHAR_DATA *ch, char *argument )
      * Can tell to PC's anywhere, but NPC's only in same room.
      * -- Furey
      */
-    if ( ( victim = get_char_world( ch, arg ) ) == NULL
-    || ( IS_NPC(victim) && victim->in_room != ch->in_room ) )
+    if ( !( victim = get_char_world( ch, arg ) )
+	|| ( IS_NPC( victim ) && victim->in_room != ch->in_room ) )
     {
 	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
-    if ( !IS_IMMORTAL(ch) && !IS_AWAKE(victim) )
+    if ( !IS_IMMORTAL( ch ) && !IS_AWAKE( victim ) )
     {
 	act( "$E can't hear you.", ch, 0, victim, TO_CHAR );
 	return;
     }
 
-    act( "You tell $N '$t'.", ch, argument, victim, TO_CHAR );
+    act( "You tell $N '$t'", ch, argument, victim, TO_CHAR );
     position		= victim->position;
     victim->position	= POS_STANDING;
-    act( "$n tells you '$t'.", ch, argument, victim, TO_VICT );
+    act( "$n tells you '$t'", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
 
@@ -615,30 +691,36 @@ void do_tell( CHAR_DATA *ch, char *argument )
 void do_reply( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *victim;
-    int position;
+    int        position;
 
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_SILENCE) )
+    if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_SILENCE ) )
     {
 	send_to_char( "Your message didn't get through.\n\r", ch );
 	return;
     }
 
-    if ( ( victim = ch->reply ) == NULL )
+    if ( !( victim = ch->reply ) )
     {
 	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
-    if ( !IS_IMMORTAL(ch) && !IS_AWAKE(victim) )
+    if ( argument[0] == '\0' )
+    {
+        send_to_char( "Reply what?\n\r", ch );
+        return;
+    }
+
+    if ( !IS_IMMORTAL( ch ) && !IS_AWAKE( victim ) )
     {
 	act( "$E can't hear you.", ch, 0, victim, TO_CHAR );
 	return;
     }
 
-    act( "You tell $N '$t'.", ch, argument, victim, TO_CHAR );
+    act( "You tell $N '$t'",  ch, argument, victim, TO_CHAR );
     position		= victim->position;
     victim->position	= POS_STANDING;
-    act( "$n tells you '$t'.", ch, argument, victim, TO_VICT );
+    act( "$n tells you '$t'", ch, argument, victim, TO_VICT );
     victim->position	= position;
     victim->reply	= ch;
 
@@ -649,10 +731,10 @@ void do_reply( CHAR_DATA *ch, char *argument )
 
 void do_emote( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
+    char  buf [ MAX_STRING_LENGTH ];
     char *plast;
 
-    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_NO_EMOTE) )
+    if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_NO_EMOTE ) )
     {
 	send_to_char( "You can't show your emotions.\n\r", ch );
 	return;
@@ -668,7 +750,7 @@ void do_emote( CHAR_DATA *ch, char *argument )
 	;
 
     strcpy( buf, argument );
-    if ( isalpha(plast[-1]) )
+    if ( isalpha( plast[-1] ) )
 	strcat( buf, "." );
 
     act( "$n $T", ch, NULL, buf, TO_ROOM );
@@ -683,7 +765,7 @@ void do_emote( CHAR_DATA *ch, char *argument )
  */
 struct	pose_table_type
 {
-    char *	message[2*MAX_CLASS];
+    char * message[ 2*MAX_CLASS ];
 };
 
 const	struct	pose_table_type	pose_table	[]	=
@@ -697,7 +779,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You perform a small card trick.",
 	    "$n performs a small card trick.",
 	    "You show your bulging muscles.",
-	    "$n shows $s bulging muscles."
+	    "$n shows $s bulging muscles.",
+            "Stop it with the Ouija board, will ya?",
+            "Great, $n is playing with $s Ouija board again."
 	}
     },
 
@@ -710,7 +794,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You wiggle your ears alternately.",
 	    "$n wiggles $s ears alternately.",
 	    "You crack nuts between your fingers.",
-	    "$n cracks nuts between $s fingers."
+	    "$n cracks nuts between $s fingers.",
+            "You read everyone's mind....and shudder with disgust.",
+            "$n reads your mind...eww, you pervert!"
 	}
     },
 
@@ -723,7 +809,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You nimbly tie yourself into a knot.",
 	    "$n nimbly ties $mself into a knot.",
 	    "You grizzle your teeth and look mean.",
-	    "$n grizzles $s teeth and looks mean."
+	    "$n grizzles $s teeth and looks mean.",
+            "You show everyone your awards for perfect school attendance",
+            "You aren't impressed by $n's school attendance awards.  Geek."
 	}
     },
 
@@ -736,7 +824,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You juggle with daggers, apples, and eyeballs.",
 	    "$n juggles with daggers, apples, and eyeballs.",
 	    "You hit your head, and your eyes roll.",
-	    "$n hits $s head, and $s eyes roll."
+	    "$n hits $s head, and $s eyes roll.",
+            "A will-o-the-wisp arrives with your slippers.",
+            "A will-o-the-wisp affives with $n's slippers."
 	}
     },
 
@@ -749,7 +839,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You steal the underwear off every person in the room.",
 	    "Your underwear is gone!  $n stole it!",
 	    "Crunch, crunch -- you munch a bottle.",
-	    "Crunch, crunch -- $n munches a bottle."
+	    "Crunch, crunch -- $n munches a bottle.",
+            "What's with the extra leg?",
+            "Why did $n sprout an extra leg just now?"
 	}
     },
 
@@ -762,7 +854,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "The dice roll ... and you win again.",
 	    "The dice roll ... and $n wins again.",
 	    "... 98, 99, 100 ... you do pushups.",
-	    "... 98, 99, 100 ... $n does pushups."
+	    "... 98, 99, 100 ... $n does pushups.",
+            "The spoons flee as you begin to concentrate.",
+            "The spoons flee as $n begins to concentrate."
 	}
     },
 
@@ -775,7 +869,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You count the money in everyone's pockets.",
 	    "Check your money, $n is counting it.",
 	    "Arnold Schwarzenegger admires your physique.",
-	    "Arnold Schwarzenegger admires $n's physique."
+	    "Arnold Schwarzenegger admires $n's physique.",
+            "Stop wiggling your brain at people.",
+            "Make $n stop wiggling $s brain at you!"
 	}
     },
 
@@ -783,12 +879,14 @@ const	struct	pose_table_type	pose_table	[]	=
 	{
 	    "Smoke and fumes leak from your nostrils.",
 	    "Smoke and fumes leak from $n's nostrils.",
-	    "A spot light hits you.",
-	    "A spot light hits $n.",
+	    "A spotlight hits you.",
+	    "A spotlight hits $n.",
 	    "You balance a pocket knife on your tongue.",
 	    "$n balances a pocket knife on your tongue.",
 	    "Watch your feet, you are juggling granite boulders.",
-	    "Watch your feet, $n is juggling granite boulders."
+	    "Watch your feet, $n is juggling granite boulders.",
+            "MENSA called...they want your opinion on something.",
+            "MENSA just called $n for consultation."
 	}
     },
 
@@ -801,7 +899,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You produce a coin from everyone's ear.",
 	    "$n produces a coin from your ear.",
 	    "Oomph!  You squeeze water out of a granite boulder.",
-	    "Oomph!  $n squeezes water out of a granite boulder."
+	    "Oomph!  $n squeezes water out of a granite boulder.",
+            "Chairs fly around the room at your slightest whim.",
+            "Chairs fly around the room at $n's slightest whim."
 	}
     },
 
@@ -814,7 +914,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You step behind your shadow.",
 	    "$n steps behind $s shadow.",
 	    "You pick your teeth with a spear.",
-	    "$n picks $s teeth with a spear."
+	    "$n picks $s teeth with a spear.",
+            "Oof...maybe you shouldn't summon any more hippopotamuses.",
+            "Oof!  Guess $n won't be summoning any more hippos for a while."
 	}
     },
 
@@ -827,7 +929,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "Your eyes dance with greed.",
 	    "$n's eyes dance with greed.",
 	    "Everyone is swept off their foot by your hug.",
-	    "You are swept off your feet by $n's hug."
+	    "You are swept off your feet by $n's hug.",
+            "Oops...your hair is sizzling from thinking too hard.",
+            "Oops...$n's hair is sizzling from thinking too hard."
 	}
     },
 
@@ -840,7 +944,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "You deftly steal everyone's weapon.",
 	    "$n deftly steals your weapon.",
 	    "Your karate chop splits a tree.",
-	    "$n's karate chop splits a tree."
+	    "$n's karate chop splits a tree.",
+            "What?  You were too busy concentrating.",
+            "What?  Oh, $n was lost in thought...again."
 	}
     },
 
@@ -853,7 +959,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "The Grey Mouser buys you a beer.",
 	    "The Grey Mouser buys $n a beer.",
 	    "A strap of your armor breaks over your mighty thews.",
-	    "A strap of $n's armor breaks over $s mighty thews."
+	    "A strap of $n's armor breaks over $s mighty thews.",
+            "Will you get down here before you get hurt?",
+            "Quick, get a stick, $n is doing $s pinata impression again."
 	}
     },
 
@@ -866,7 +974,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "Everyone's pocket explodes with your fireworks.",
 	    "Your pocket explodes with $n's fireworks.",
 	    "A boulder cracks at your frown.",
-	    "A boulder cracks at $n's frown."
+	    "A boulder cracks at $n's frown.",
+            "Careful...don't want to disintegrate anyone!",
+            "LOOK OUT!  $n is trying to disintegrate something!"
 	}
     },
 
@@ -879,7 +989,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "Everyone discovers your dagger a centimeter from their eye.",
 	    "You discover $n's dagger a centimeter from your eye.",
 	    "Mercenaries arrive to do your bidding.",
-	    "Mercenaries arrive to do $n's bidding."
+	    "Mercenaries arrive to do $n's bidding.",
+            "You run off at the mouth about 'mind over matter'.",
+            "Yeah, yeah, mind over matter.  Shut up, $n."
 	}
     },
 
@@ -892,7 +1004,9 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "Where did you go?",
 	    "Where did $n go?",
 	    "Four matched Percherons bring in your chariot.",
-	    "Four matched Percherons bring in $n's chariot."
+	    "Four matched Percherons bring in $n's chariot.",
+            "Thud.",
+            "Thud."
 	}
     },
 
@@ -905,23 +1019,24 @@ const	struct	pose_table_type	pose_table	[]	=
 	    "Click.",
 	    "Click.",
 	    "Atlas asks you to relieve him.",
-	    "Atlas asks $n to relieve him."
+	    "Atlas asks $n to relieve him.",
+            "You charm the pants off everyone...and refuse to give them back.",
+            "Your pants are charmed off by $n, and $e won't give them back."
 	}
     }
 };
-
-
 
 void do_pose( CHAR_DATA *ch, char *argument )
 {
     int level;
     int pose;
 
-    if ( IS_NPC(ch) )
+    if ( IS_NPC( ch ) )
 	return;
 
-    level = UMIN( ch->level, sizeof(pose_table) / sizeof(pose_table[0]) - 1 );
-    pose  = number_range(0, level);
+    level = UMIN( ch->level,
+		 sizeof( pose_table ) / sizeof( pose_table[0] ) - 1 );
+    pose  = number_range( 0, level );
 
     act( pose_table[pose].message[2*ch->class+0], ch, NULL, NULL, TO_CHAR );
     act( pose_table[pose].message[2*ch->class+1], ch, NULL, NULL, TO_ROOM );
@@ -933,7 +1048,7 @@ void do_pose( CHAR_DATA *ch, char *argument )
 
 void do_bug( CHAR_DATA *ch, char *argument )
 {
-    append_file( ch, BUG_FILE, argument );
+    append_file( ch, BUG_FILE,  argument );
     send_to_char( "Ok.  Thanks.\n\r", ch );
     return;
 }
@@ -978,7 +1093,7 @@ void do_quit( CHAR_DATA *ch, char *argument )
 {
     DESCRIPTOR_DATA *d;
 
-    if ( IS_NPC(ch) )
+    if ( IS_NPC( ch ) )
 	return;
 
     if ( ch->position == POS_FIGHTING )
@@ -993,9 +1108,10 @@ void do_quit( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    send_to_char( 
-	"Had I but time--as this fell sergeant, Death,\n\rIs strict in his arrest--O, I could tell you--\n\rBut let it be.\n\r",
-	ch );
+    send_to_char( "Adde parvum parvo magnus acervus erit.\n\r", ch );
+    send_to_char( "[Add little to little ",                     ch );
+    send_to_char( "and there will be a big pile]\n\r\n\r",      ch );
+
     act( "$n has left the game.", ch, NULL, NULL, TO_ROOM );
     sprintf( log_buf, "%s has quit.", ch->name );
     log_string( log_buf );
@@ -1006,7 +1122,7 @@ void do_quit( CHAR_DATA *ch, char *argument )
     save_char_obj( ch );
     d = ch->desc;
     extract_char( ch, TRUE );
-    if ( d != NULL )
+    if ( d )
 	close_socket( d );
 
     return;
@@ -1016,7 +1132,7 @@ void do_quit( CHAR_DATA *ch, char *argument )
 
 void do_save( CHAR_DATA *ch, char *argument )
 {
-    if ( IS_NPC(ch) )
+    if ( IS_NPC( ch ) )
 	return;
 
     if ( ch->level < 2 )
@@ -1034,8 +1150,8 @@ void do_save( CHAR_DATA *ch, char *argument )
 
 void do_follow( CHAR_DATA *ch, char *argument )
 {
-    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
+    char       arg [ MAX_INPUT_LENGTH ];
 
     one_argument( argument, arg );
 
@@ -1045,13 +1161,13 @@ void do_follow( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
+    if ( !( victim = get_char_room( ch, arg ) ) )
     {
 	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
-    if ( IS_AFFECTED(ch, AFF_CHARM) && ch->master != NULL )
+    if ( IS_AFFECTED( ch, AFF_CHARM ) && ch->master )
     {
 	act( "But you'd rather follow $N!", ch, NULL, ch->master, TO_CHAR );
 	return;
@@ -1059,7 +1175,7 @@ void do_follow( CHAR_DATA *ch, char *argument )
 
     if ( victim == ch )
     {
-	if ( ch->master == NULL )
+	if ( !ch->master )
 	{
 	    send_to_char( "You already follow yourself.\n\r", ch );
 	    return;
@@ -1067,15 +1183,16 @@ void do_follow( CHAR_DATA *ch, char *argument )
 	stop_follower( ch );
 	return;
     }
-    
-    if ( ( ch->level - victim->level < -5 || ch->level - victim->level >  5 )
-    &&   !IS_HERO(ch) )
+
+    if ( ( ch->level - victim->level < -5
+	  || ch->level - victim->level >  5 )
+	&& !IS_HERO( ch ) )
     {
 	send_to_char( "You are not of the right caliber to follow.\n\r", ch );
 	return;
     }
 
-    if ( ch->master != NULL )
+    if ( ch->master )
 	stop_follower( ch );
 
     add_follower( ch, victim );
@@ -1086,7 +1203,8 @@ void do_follow( CHAR_DATA *ch, char *argument )
 
 void add_follower( CHAR_DATA *ch, CHAR_DATA *master )
 {
-    if ( ch->master != NULL )
+  
+    if ( ch->master )
     {
 	bug( "Add_follower: non-null master.", 0 );
 	return;
@@ -1107,21 +1225,25 @@ void add_follower( CHAR_DATA *ch, CHAR_DATA *master )
 
 void stop_follower( CHAR_DATA *ch )
 {
-    if ( ch->master == NULL )
+
+    if ( !ch->master )
     {
 	bug( "Stop_follower: null master.", 0 );
 	return;
     }
 
-    if ( IS_AFFECTED(ch, AFF_CHARM) )
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
     {
 	REMOVE_BIT( ch->affected_by, AFF_CHARM );
 	affect_strip( ch, gsn_charm_person );
+	affect_strip( ch, gsn_domination   );
     }
 
     if ( can_see( ch->master, ch ) )
-	act( "$n stops following you.",     ch, NULL, ch->master, TO_VICT    );
-    act( "You stop following $N.",      ch, NULL, ch->master, TO_CHAR    );
+	act( "$n stops following you.",
+	    ch, NULL, ch->master, TO_VICT );
+    act( "You stop following $N.",
+	ch, NULL, ch->master, TO_CHAR );
 
     ch->master = NULL;
     ch->leader = NULL;
@@ -1130,21 +1252,23 @@ void stop_follower( CHAR_DATA *ch )
 
 
 
-void die_follower( CHAR_DATA *ch )
+void die_follower( CHAR_DATA *ch, char *name )
 {
     CHAR_DATA *fch;
 
-    if ( ch->master != NULL )
+    if ( ch->master )
 	stop_follower( ch );
 
     ch->leader = NULL;
 
-    for ( fch = char_list; fch != NULL; fch = fch->next )
+    for ( fch = char_list; fch; fch = fch->next )
     {
+        if ( fch->deleted )
+	    continue;
 	if ( fch->master == ch )
 	    stop_follower( fch );
 	if ( fch->leader == ch )
-	    fch->leader = fch;
+	    fch->leader = NULL;
     }
 
     return;
@@ -1154,12 +1278,12 @@ void die_follower( CHAR_DATA *ch )
 
 void do_order( CHAR_DATA *ch, char *argument )
 {
-    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
     CHAR_DATA *och;
     CHAR_DATA *och_next;
-    bool found;
-    bool fAll;
+    char       arg [ MAX_INPUT_LENGTH ];
+    bool       found;
+    bool       fAll;
 
     argument = one_argument( argument, arg );
 
@@ -1183,7 +1307,7 @@ void do_order( CHAR_DATA *ch, char *argument )
     else
     {
 	fAll   = FALSE;
-	if ( ( victim = get_char_room( ch, arg ) ) == NULL )
+	if ( !( victim = get_char_room( ch, arg ) ) )
 	{
 	    send_to_char( "They aren't here.\n\r", ch );
 	    return;
@@ -1195,7 +1319,7 @@ void do_order( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( !IS_AFFECTED(victim, AFF_CHARM) || victim->master != ch )
+	if ( !IS_AFFECTED( victim, AFF_CHARM ) || victim->master != ch )
 	{
 	    send_to_char( "Do it yourself!\n\r", ch );
 	    return;
@@ -1203,13 +1327,16 @@ void do_order( CHAR_DATA *ch, char *argument )
     }
 
     found = FALSE;
-    for ( och = ch->in_room->people; och != NULL; och = och_next )
+    for ( och = ch->in_room->people; och; och = och_next )
     {
-	och_next = och->next_in_room;
+        och_next = och->next_in_room;
 
-	if ( IS_AFFECTED(och, AFF_CHARM)
-	&&   och->master == ch
-	&& ( fAll || och == victim ) )
+        if ( och->deleted )
+	    continue;
+
+	if ( IS_AFFECTED( och, AFF_CHARM )
+	    && och->master == ch
+	    && ( fAll || och == victim ) )
 	{
 	    found = TRUE;
 	    act( "$n orders you to '$t'.", ch, argument, och, TO_VICT );
@@ -1228,9 +1355,9 @@ void do_order( CHAR_DATA *ch, char *argument )
 
 void do_group( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
-    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
+    char       buf [ MAX_STRING_LENGTH ];
+    char       arg [ MAX_INPUT_LENGTH  ];
 
     one_argument( argument, arg );
 
@@ -1239,36 +1366,39 @@ void do_group( CHAR_DATA *ch, char *argument )
 	CHAR_DATA *gch;
 	CHAR_DATA *leader;
 
-	leader = (ch->leader != NULL) ? ch->leader : ch;
-	sprintf( buf, "%s's group:\n\r", PERS(leader, ch) );
+	leader = ( ch->leader ) ? ch->leader : ch;
+	sprintf( buf, "%s's group:\n\r", PERS( leader, ch ) );
 	send_to_char( buf, ch );
 
-	for ( gch = char_list; gch != NULL; gch = gch->next )
+	for ( gch = char_list; gch; gch = gch->next )
 	{
+	    if ( gch->deleted )
+	        continue;
 	    if ( is_same_group( gch, ch ) )
 	    {
 		sprintf( buf,
 		"[%2d %s] %-16s %4d/%4d hp %4d/%4d mana %4d/%4d mv %5d xp\n\r",
-		    gch->level,
-		    IS_NPC(gch) ? "Mob" : class_table[gch->class].who_name,
-		    capitalize( PERS(gch, ch) ),
-		    gch->hit,   gch->max_hit,
-		    gch->mana,  gch->max_mana,
-		    gch->move,  gch->max_move,
-		    gch->exp    );
+			gch->level,
+			IS_NPC( gch ) ? "Mob"
+			              : class_table[gch->class].who_name,
+			capitalize( PERS( gch, ch ) ),
+			gch->hit,   gch->max_hit,
+			gch->mana,  gch->max_mana,
+			gch->move,  gch->max_move,
+			gch->exp );
 		send_to_char( buf, ch );
 	    }
 	}
 	return;
     }
 
-    if ( ( victim = get_char_room( ch, arg ) ) == NULL )
+    if ( !( victim = get_char_room( ch, arg ) ) )
     {
 	send_to_char( "They aren't here.\n\r", ch );
 	return;
     }
 
-    if ( ch->master != NULL || ( ch->leader != NULL && ch->leader != ch ) )
+    if ( ch->master || ( ch->leader && ch->leader != ch ) )
     {
 	send_to_char( "But you are following someone else!\n\r", ch );
 	return;
@@ -1283,25 +1413,25 @@ void do_group( CHAR_DATA *ch, char *argument )
     if ( is_same_group( victim, ch ) && ch != victim )
     {
 	victim->leader = NULL;
-	act( "$n removes $N from $s group.",   ch, NULL, victim, TO_NOTVICT );
-	act( "$n removes you from $s group.",  ch, NULL, victim, TO_VICT    );
 	act( "You remove $N from your group.", ch, NULL, victim, TO_CHAR    );
+	act( "$n removes you from $s group.",  ch, NULL, victim, TO_VICT    );
+	act( "$n removes $N from $s group.",   ch, NULL, victim, TO_NOTVICT );
 	return;
     }
 
-    if ( ch->level - victim->level < -5
-    ||   ch->level - victim->level >  5 )
+    if (   ch->level - victim->level < -5
+	|| ch->level - victim->level >  5 )
     {
-	act( "$N cannot join $n's group.",     ch, NULL, victim, TO_NOTVICT );
-	act( "You cannot join $n's group.",    ch, NULL, victim, TO_VICT    );
-	act( "$N cannot join your group.",     ch, NULL, victim, TO_CHAR    );
+	act( "$N cannot join your group.",  ch, NULL, victim, TO_CHAR       );
+	act( "You cannot join $n's group.", ch, NULL, victim, TO_VICT       );
+	act( "$N cannot join $n's group.",  ch, NULL, victim, TO_NOTVICT    );
 	return;
     }
 
     victim->leader = ch;
-    act( "$N joins $n's group.", ch, NULL, victim, TO_NOTVICT );
-    act( "You join $n's group.", ch, NULL, victim, TO_VICT    );
     act( "$N joins your group.", ch, NULL, victim, TO_CHAR    );
+    act( "You join $n's group.", ch, NULL, victim, TO_VICT    );
+    act( "$N joins $n's group.", ch, NULL, victim, TO_NOTVICT );
     return;
 }
 
@@ -1312,13 +1442,13 @@ void do_group( CHAR_DATA *ch, char *argument )
  */
 void do_split( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
-    char arg[MAX_INPUT_LENGTH];
     CHAR_DATA *gch;
-    int members;
-    int amount;
-    int share;
-    int extra;
+    char       buf [ MAX_STRING_LENGTH ];
+    char       arg [ MAX_INPUT_LENGTH  ];
+    int        members;
+    int        amount;
+    int        share;
+    int        extra;
 
     one_argument( argument, arg );
 
@@ -1349,8 +1479,10 @@ void do_split( CHAR_DATA *ch, char *argument )
     }
   
     members = 0;
-    for ( gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room )
+    for ( gch = ch->in_room->people; gch; gch = gch->next_in_room )
     {
+        if ( gch->deleted )
+	    continue;
 	if ( is_same_group( gch, ch ) )
 	    members++;
     }
@@ -1381,8 +1513,10 @@ void do_split( CHAR_DATA *ch, char *argument )
     sprintf( buf, "$n splits %d gold coins.  Your share is %d gold coins.",
 	amount, share );
 
-    for ( gch = ch->in_room->people; gch != NULL; gch = gch->next_in_room )
+    for ( gch = ch->in_room->people; gch; gch = gch->next_in_room )
     {
+        if ( gch->deleted )
+	    continue;
 	if ( gch != ch && is_same_group( gch, ch ) )
 	{
 	    act( buf, ch, NULL, gch, TO_VICT );
@@ -1397,8 +1531,8 @@ void do_split( CHAR_DATA *ch, char *argument )
 
 void do_gtell( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *gch;
+    char       buf [ MAX_STRING_LENGTH ];
 
     if ( argument[0] == '\0' )
     {
@@ -1416,8 +1550,10 @@ void do_gtell( CHAR_DATA *ch, char *argument )
      * Note use of send_to_char, so gtell works on sleepers.
      */
     sprintf( buf, "%s tells the group '%s'.\n\r", ch->name, argument );
-    for ( gch = char_list; gch != NULL; gch = gch->next )
+    for ( gch = char_list; gch; gch = gch->next )
     {
+        if ( gch->deleted )
+	    continue;
 	if ( is_same_group( gch, ch ) )
 	    send_to_char( buf, gch );
     }
@@ -1435,7 +1571,7 @@ void do_gtell( CHAR_DATA *ch, char *argument )
  */
 bool is_same_group( CHAR_DATA *ach, CHAR_DATA *bch )
 {
-    if ( ach->leader != NULL ) ach = ach->leader;
-    if ( bch->leader != NULL ) bch = bch->leader;
+    if ( ach->leader ) ach = ach->leader;
+    if ( bch->leader ) bch = bch->leader;
     return ach == bch;
 }

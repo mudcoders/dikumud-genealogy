@@ -206,7 +206,7 @@ a deep green key~
 A deep green key is on the floor.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 0
 #6504
 dwarven hammer~
@@ -214,7 +214,7 @@ a hammer~
 There is a dwarven hammer laying here.~
 ~
 5 0 8193
-0 3 6 8
+0~ 3~ 6~ 8~
 3 5500 175
 #6505
 dwarven plate~
@@ -222,7 +222,7 @@ dwarven plate mail~
 There is dwarven plate mail laying here.~
 ~
 9 0 9
-8 0 0 0
+8~ 0~ 0~ 0~
 4 4500 500
 #6506
 stick~
@@ -230,7 +230,7 @@ long, black stick~
 There is a long, black stick lying here.~
 ~
 4 0 16385
-4 10 10 15
+4~ 10~ 10~ cure critical~
 1 100 10
 #6507
 stick~
@@ -238,7 +238,7 @@ long, black stick~
 There is a long, black stick here.~
 ~
 1 0 16385
-0 0 50 0
+0~ 0~ 50~ 0~
 1 0 0
 #6508
 club~
@@ -246,7 +246,7 @@ dwarven club~
 There is a dwarven club laying here.~
 ~
 5 0 8193
-0 2 6 8
+0~ 2~ 6~ 8~
 1 3000 400
 #6509
 two-handed dwarven axe~
@@ -254,7 +254,7 @@ a two-handed dwarven axe~
 A two-handed Dwarven axe is here.~
 ~
 5 0 8193
-0 2 7 1
+0~ 2~ 7~ 1~
 5 5000 50
 A
 18 2
@@ -266,7 +266,7 @@ A dwarven helmet~
 A dwarven helmet is here.~
 ~
 9 0 17
-8 0 0 0
+8~ 0~ 0~ 0~
 4 2500 300
 #6511
 ring golden dwarven~
@@ -274,7 +274,7 @@ a dwarven golden ring~
 A pretty golden ring is here.~
 ~
 8 64 3
-0 0 0 0 
+0~ 0~ 0~ 0~ 
 1 15000 200
 A
 18 1
@@ -286,7 +286,7 @@ Dwarven gloves~
 Thick dwarven gloves lay here.~
 ~
 9 0 129
-4 0 0 0
+4~ 0~ 0~ 0~
 2 4000 800
 A
 1 1
@@ -298,7 +298,7 @@ a note~
 A crumpled note is here.~
 ~
 12 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 0 0 0
 E
 note letter letters~
@@ -311,7 +311,7 @@ a castle key~
 There is a key to Strangelove Castle here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 0 10 1000000
 #6516
 key mine~
@@ -319,7 +319,7 @@ a mine key~
 There is a key to the mines here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 0 10 1000000
 #6517
 coal~
@@ -327,7 +327,7 @@ a chunk of coal~
 There is a chunk of coal here.~
 ~
 13 0 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 100 0 0
 #6518
 pick~
@@ -335,7 +335,7 @@ a mining pick~
 There is a mining pick here.~
 ~
 5 256 8193
-0 2 3 11
+0~ 2~ 3~ 11~
 1 300 10
 #6519
 pills~
@@ -343,7 +343,7 @@ a box of birth control pills~
 There is a box of birth control pills here.~
 ~
 26 0 1
-20 0 0 82
+20~ change sex~ ~ ~
 1 300 15
 E
 birth control pills pill~

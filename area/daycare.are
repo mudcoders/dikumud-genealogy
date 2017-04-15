@@ -35,7 +35,7 @@ You see a small little cute rag doll.
 68 0 300 S
 2 18 9 2d5+19 1d5+1
 250 200
-6 8 1
+6 8 2
 #6603
 soldier toy~
 a toy soldier~
@@ -117,7 +117,7 @@ a toy axe~
 An axe made of plastic lies here.~
 ~
 5 0 8193
-0 1 6 3
+0~ 1~ 6~ 3~
 15 600 200
 #6601
 ring pink ice~
@@ -125,7 +125,7 @@ a pink ice ring~
 A pink ice ring draws your eye.~
 ~
 9 0 3
-1 0 0 0
+1~ 0~ 0~ 0~
 8 7000 2500
 A
 1  1
@@ -137,7 +137,7 @@ a linen robe~
 A linen robe is crumpled into a ball here.~
 ~
 9 0 1025
-1 0 0 0
+1~ 0~ 0~ 0~
 5 4000 2000
 A
 4 1
@@ -149,7 +149,7 @@ a juicy steak~
 A juicy steak sits on a plate here.~
 ~
 19 0 1
-15 0 0 0
+15~ 0~ 0~ 0~
 5 15 2
 #6645
 steak rotten~
@@ -157,7 +157,7 @@ a rotten steak~
 A dry steak lies on the floor.~
 ~
 19 0 1
-4 0 0 1
+4~ 0~ 0~ 1~
 5 14 1
 #6646
 potion amber~
@@ -165,7 +165,7 @@ an amber potion~
 An amber potion sits in a corner.~
 ~
 10 0 1
-30 16 1 0
+30~ cure light~ armor~ ~
 1 1500 500
 #6647
 gun toy~
@@ -173,7 +173,7 @@ a toy gun~
 A toy gun with a sharp bayonet lies here.~
 ~
 5 0 8193
-0 2 3 7
+0~ 2~ 3~ 7~
 5 1700 1000
 #0
 

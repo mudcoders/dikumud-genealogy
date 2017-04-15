@@ -391,21 +391,23 @@ a yellow and green ring~
 A ring, with yellow and green ornamentation. It looks very old.~
 ~
 9 0 16387
-0 0 0 0
+0~ 0~ 0~ 0~
 1 50 20
 E
 ring~
-It feels heavy.
+It feels VERY heavy.
 ~
 A
 1 -2
+A
+5 1
 #4001
 corpse~
 a corpse~
 A halfway decayed corpse of a goblin.~
 ~
 15 0 1
-1 0 -1 0
+1~ 0~ -1~ 0~
 10 0 500
 #4002
 coins~
@@ -413,7 +415,7 @@ some coins~
 A small pile of coins.~
 ~
 20 0 1
-500 0 0 0
+500~ 0~ 0~ 0~
 0 0 0
 #4050
 potion purple~
@@ -421,7 +423,7 @@ a purple potion~
 A purple potion is here.~
 ~
 10 0 16385
-17 14 36 -1
+17~ cure blindness~ sanctuary~ ~
 1 500 200
 E
 potion purple~
@@ -433,7 +435,7 @@ a metal helmet~
 A metal helmet is here.~
 ~
 9 0 16401
-3 0 0 0
+3~ 0~ 0~ 0~
 4 3000 1000
 A
 24 -2
@@ -445,7 +447,7 @@ a mushroom~
 A small mushroom is here.~
 ~
 19 0 16385
-2 0 0 1
+2~ 0~ 0~ 1~
 1 9 3
 E
 mushroom~
@@ -457,7 +459,7 @@ a thieves dirk~
 A beautifully crafted dirk is lying here.~
 ~
 5 0 8193
-0 2 6 11
+0~ 2~ 6~ 11~
 2 850 400
 E
 dirk~
@@ -475,7 +477,7 @@ a black demon blade~
 An evil black demon blade is here.~
 ~
 5 512|2048 8193 
-0 3 4 11
+0~ 3~ 4~ 11~
 8 10000 3500
 E
 blade~
@@ -487,7 +489,7 @@ swordsman's gloves~
 Some gloves are here.  They look like the right equipment for fighting.~
 ~
 9 512 129
-2 0 0 0
+2~ 0~ 0~ 0~
 1 1500 500
 A
 18 2
@@ -499,7 +501,7 @@ a scroll which reads "ysafg"~
 A scroll which reads "ysafg", it looks very fragile and quite old.~
 ~
 2 0 1
-1 53 0 0
+1~ identify~ ~ ~
 1 1500 500
 E
 scroll~
@@ -511,11 +513,11 @@ a green slime mold~
 A green slime mold is here. Stinks like sh**.~
 ~
 19 0 1
-24 0 0 0
+24~ 0~ 0~ 0~
 1 20 8
 E
 slime mold~
-It wasn't mend to be food, - Certainly not for humans.
+It wasn't meant to be food - certainly not for humans.
 ~
 #4104
 slime mold~
@@ -523,11 +525,11 @@ a green slime mold~
 A green slime mold is here. Stinks like sh**.~
 ~
 19 0 1
-24 0 0 1
+24~ 0~ 0~ 1~
 1 20 8
 E
 slime mold~
-It wasn't mend to be food, - Certainly not for humans.
+It wasn't meant to be food - certainly not for humans.
 ~
 #4150
 black potion~
@@ -535,7 +537,7 @@ a black potion~
 A thick black potion is here.~
 ~
 10 0 1
-15 15 -1 -1
+15~ cure critical~ ~ ~
 1 100 35
 E
 potion black~
@@ -547,7 +549,7 @@ a heavy oak staff~
 A ancient heavy oak staff is here.~
 ~
 4 512 16385
-15 4 2 27
+15~ 4~ 2~ harm~
 10 3000 1000
 E
 staff oak~
@@ -563,7 +565,7 @@ a light silver dagger~
 A light silver dagger is here.~
 ~
 5 1024 8193
-0 2 5 11
+0~ 2~ 5~ 11~
 4 6000 2000
 E
 dagger light silver~
@@ -1254,12 +1256,11 @@ D2
 S
 #4035
 The foothills end~
-  At this point you are leaving the foothills.  You see a plains area
-to the north of here.  You can spot a small city in the distance from
-here.
+  At this point you are leaving the foothills.  Below you, you see a
+very foggy valley.
 ~
 40 0 2
-D0
+D5
 ~
 ~
 0 0 4036
@@ -1269,14 +1270,18 @@ D2
 0 0 4034
 S
 #4036
-The plains~
-   The plains.  Exits are south.
+The path to the valley~
+   You are on the path toward the fog-shrouded valley.
 ~
 40 0 2
-D2
+D4
 ~
 ~
 0 0 4035
+D5
+~
+~
+0 0 11500
 S
 #4037
 The foothills path~

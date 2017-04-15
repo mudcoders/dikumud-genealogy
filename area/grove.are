@@ -142,7 +142,7 @@ a closet~
 There is a wooden closet tucked into a corner.~
 ~
 15 0 0
-100 1 -1 0
+100~ 1~ -1~ 0~
 500 0 0
 E
 closet~
@@ -154,7 +154,7 @@ a spice jar~
 A small unlabeled spice jar is standing here.~
 ~
 15 0 1
-5 5 -1 0
+5~ 5~ -1~ 0~
 1 10 10
 #8903
 powder black~
@@ -162,15 +162,12 @@ some black powder~
 Some strong-smelling black powder has been carelessly scattered here.~
 ~
 19 0 1
--2 0 0 0
+-2~ 0~ 0~ 0~
 1 300 10
 E
 powder~
-    *        *         *
-      *      *       *
-****   AAAHHHH-TSHOU!   ****
-      *      *       *
-    *        *         *
+Something tells you this powder is too dangerous to be left lying around
+a kitchen...
 ~
 #8904
 kernel kernels~
@@ -178,7 +175,7 @@ some small yellow kernels~
 Some small yellow kernels have been accidentally left here.~
 ~
 19 0 16385
-1 0 0 0
+1~ 0~ 0~ 0~
 1 10 10
 E
 kernel kernels~
@@ -190,7 +187,7 @@ a crumpled wad of paper~
 There is a crumpled wad of paper here, left behind by some messy bypasser.~
 ~
 13 0 16385
-0 0 0 0 
+0~ 0~ 0~ 0~ 
 1 0 0
 E
 paper wad~
@@ -232,7 +229,7 @@ a wooden staff~
 You see a wooden staff on the floor.~
 ~
 5 1024 1|8192
-0 3 3 7
+0~ 3~ 3~ 7~
 5 50 50
 E
 staff wooden~
@@ -244,7 +241,7 @@ a brown robe~
 Some brown cloth is on the floor.~
 ~
 9 1024 1|8
-6 0 0 0
+6~ 0~ 0~ 0~
 5 60 60
 E
 robe brown cloth~
@@ -258,7 +255,7 @@ some bluish herbs~
 Some bluish herbs are scattered here.~
 ~
 26 0 1
-15 0 0 3
+15~ bless~ ~ ~
 1 1 1
 #8914
 herbs~
@@ -266,7 +263,7 @@ some purplish herbs~
 Some purplish herbs are scattered here.~
 ~
 26 0 1
-15 0 0 82
+15~ change sex~ ~ ~
 1 1 1
 #8915
 herbs~
@@ -274,7 +271,7 @@ some blackish herbs~
 Some blackish herbs are scattered here.~
 ~
 26 0 1
-5 0 0 4
+5~ blindness~ ~ ~
 1 1 1
 #8916
 herbs~
@@ -282,7 +279,7 @@ some grayish herbs~
 Some grayish herbs are scattered here.~
 ~
 26 0 1
-5 0 39 33
+5~ giant strength~ poison~ ~
 1 1 1
 #8917
 herbs~
@@ -290,7 +287,7 @@ some reddish herbs~
 Some reddish herbs are scattered here.~
 ~
 26 0 1
-15 0 0 20
+15~ detect magic~ ~ ~
 1 1 1
 #8918
 herbs~
@@ -298,7 +295,7 @@ some orangish herbs~
 Some orangish herbs are scattered here.~
 ~
 26 0 1
-5 0 0 16
+5~ cure light~ ~ ~
 1 1 1
 #8919
 herbs~
@@ -306,7 +303,7 @@ some pinkish herbs~
 Some pinkish herbs are scattered here.~
 ~
 26 0 1
-5 0 43 33
+5~ cure poison~ poison~ ~
 1 1 1
 #0
 
@@ -809,21 +806,21 @@ S
 
 #RESETS
 M 0 8900 1 8905		the Hierophant
-E 1 8910 99 5		wields a staff
-E 1 8911 99 16		wears a robe
+E 1 8910 99 16		wields a staff
+E 1 8911 99 5		wears a robe
 G 1 8919 99		pink herbs
 G 1 8918 99		orange herbs
 M 0 8901 1 8901		the female Hierophant
-E 1 8910 99 5		wields a staff
-E 1 8911 99 16		wears a robe
+E 1 8910 99 16		wields a staff
+E 1 8911 99 5		wears a robe
 G 1 8913 99		blue herbs
 G 1 8915 99		black herbs
 M 0 8902 1 8902		the elder druid
-E 1 8910 99 5		wields a staff
+E 1 8910 99 16		wields a staff
 G 1 8914 99		purple herbs
 G 1 8916 99		grey herbs
 M 0 8903 1 8904		the elder druidess
-E 1 8910 99 5		wields a staff
+E 1 8910 99 16		wields a staff
 G 1 8919 99		pink herbs
 G 1 8917 99		red herbs
 M 0 8904 2 8905		doe

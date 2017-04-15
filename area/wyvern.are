@@ -323,7 +323,7 @@ a rusty cleaver~
 A rusty cleaver lies on a counter top.~
 ~
 5 0 8193
-0 1 6 3
+0~ 1~ 6~ 3~
 2 5 5
 #1602
 fine mace~
@@ -331,7 +331,7 @@ the fine mace~
 There is a large mace of fine quality here.~
 ~
 5 64 8193
-0 2 5 7
+0~ 2~ 5~ 7~
 11 900 200
 A
 18 1
@@ -341,7 +341,7 @@ a long elven dagger~
 A long elven dagger made of adamantite is here.~
 ~
 5 65 8193
-0 2 5 11
+0~ 2~ 5~ 11~
 2 1000 250
 A
 18 2
@@ -351,7 +351,7 @@ a steel broad sword~
 A fine steel broad sword is lying on the ground.~
 ~
 5 65 8193
-0 2 6 3
+0~ 2~ 6~ 3~
 12 1200 350
 A
 18 1
@@ -363,7 +363,7 @@ the rod of might~
 A Rod of Might is lying here.~
 ~
 5 66 8193
-0 2 7 6
+0~ 2~ 7~ 6~
 13 4000 550
 A
 18 2	
@@ -375,7 +375,7 @@ a black kite shield~
 There is a large black kite shield lying here.~
 ~
 9 65 513
-6 0 0 0
+6~ 0~ 0~ 0~
 6 1000 150
 A
 24 1
@@ -385,7 +385,7 @@ a commander's helm~
 A commander's helm rests on a table here.~
 ~
 9 65 17
-7 0 0 0
+7~ 0~ 0~ 0~
 4 2000 350
 E
 helm~
@@ -398,7 +398,7 @@ a mithril bracer~
 A magical bracer made from mithril lies on the ground!~
 ~
 9 66 257
-6 0 0 0
+6~ 0~ 0~ 0~
 2 6500 1000
 A
 1 1	
@@ -408,7 +408,7 @@ a dark blue cloak~
 A valuable cloak of dark blue cloth lies on the floor.~
 ~
 9 65 5
-1 0 0 0
+1~ 0~ 0~ 0~
 2 1600 1500
 A
 17 -6	
@@ -420,7 +420,7 @@ a dark red potion~
 A dark red potion rests on the ground.~
 ~
 10 65 16385
-9 14 15 -1
+9~ cure blindness~ cure critical~ ~
 1 450 150 
 #1651
 bronze chest~
@@ -428,7 +428,7 @@ a bronze chest~
 There is a sturdy bronze chest in the corner.~
 ~
 15 0 1
-30 5 -1 0
+30~ 5~ -1~ 0~
 10 500 200
 #1652
 ale barrel~
@@ -436,7 +436,7 @@ a barrel of ale~
 There is a small barrel in one corner.~
 ~
 17 0 1
-5 2 3 0
+5~ 2~ 3~ 0~
 8 10 10
 #1691
 key twin towers~
@@ -444,7 +444,7 @@ the twin towers key~
 There is a shiny skeleton key on the ground here.~
 ~
 18 0 1
-1 0 0 0
+1~ 0~ 0~ 0~
 1 400 1000
 #1692
 strange key~
@@ -452,7 +452,7 @@ a strange key~
 There is a very strange-looking key on the ground here.~
 ~
 18 65 16385
-2 0 0 0
+2~ 0~ 0~ 0~
 1 1200 2000
 E
 strange key~
@@ -466,7 +466,7 @@ a short bow~
 A short bow has been carelessly left here.~
 ~
 5 0 8193
-0 2 4 11
+0~ 2~ 4~ 11~
 5 150 20
 E
 short bow~
@@ -478,7 +478,7 @@ a long bow~
 A long bow has been foolishly abandoned here.~
 ~
 5 65 8193
-0 2 6 11
+0~ 2~ 6~ 11~
 8 500 100
 E
 long bow~
@@ -492,7 +492,7 @@ a gnarled staff~
 A gnarled looking staff lies on the ground.~
 ~
 5 65 8193
-0 2 6 7
+0~ 2~ 6~ 7~
 7 800 120
 A
 13 5
@@ -502,7 +502,7 @@ an ancient long sword~
 An ancient long sword has been left here.~
 ~
 5 66 8193
-0 2 8 3
+0~ 2~ 8~ 3~
 10 10000 4000
 A
 18 3 
@@ -514,7 +514,7 @@ a fur cap~
 A fur cap lies here on the ground.~
 ~
 9 0 17
-2 0 0 0
+2~ 0~ 0~ 0~
 1 50 10
 #1712
 travelling boots~
@@ -522,7 +522,7 @@ a pair of travelling boots~
 A sturdy pair of travelling boots lies here.~
 ~
 9 64 65
-5 0 0 0
+5~ 0~ 0~ 0~
 2 3500 700
 A
 14 10
@@ -532,7 +532,7 @@ a bronze ring~
 A ring of etched bronze gleams dimly on the ground.~
 ~
 9 64 3
-3 0 0 0
+3~ 0~ 0~ 0~
 1 2000 400
 A
 12 5
@@ -1253,7 +1253,7 @@ You are on the old Eastern Road.  The crossroads to the east joins ANOTHER
 northern route to this road, which continues east.  South of the crossroads is
 an old building.  The area around here is lightly timbered.
 ~
-17 4 3
+17 0 3
 D1
 You see a cross roads and an old building.
 ~

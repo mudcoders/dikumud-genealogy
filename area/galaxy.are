@@ -1,4 +1,4 @@
-#AREA	{20 30} Doctor  Galaxy~
+#AREA	{20 45} Doctor  Galaxy~
 
 
 
@@ -105,7 +105,7 @@ queen goddess, who disliked him.  But he finished them all and at the end was
 granted immortality. He is a very brave and strong fighter.
 ~
 66 128 1000 S
-19 0 -3 6d5+400 5d4+10
+39 0 -3 6d5+400 5d4+10
 7500 60000
 8 8 1
 #9310
@@ -130,7 +130,7 @@ appears on one side of the sky and the other the other side so they will
 never meet. 
 ~
 66 128 300 S
-19 0 0 6d3+400 4d4+2
+39 0 0 6d3+400 4d4+2
 7500 40000
 8 8 1
 #9312
@@ -142,7 +142,7 @@ These are the seven sisters of the Myths, and as for why they are here, no
 one knows; even the Gods themselves have forgotten.
 ~
 66 0 300 S
-11 5 3 3d4+120 2d7+0
+21 5 3 3d4+120 2d7+0
 3000 7000
 8 8 2
 #9313
@@ -155,7 +155,7 @@ before entering the inner galaxy.  His neck is flexing in a random fashion so
 hitting the head is certainly not easy.
 ~
 98 136 -1000 S
-25 0 -5 4d4+600 5d5+3
+35 0 -5 4d4+600 5d5+3
 15000 100000
 8 8 0
 #9314
@@ -180,7 +180,7 @@ You see a white goat here, the first guardian of the Zodiac,
 also the ruler of Spring. He looks as if he is expecting you.
 ~
 66 128 700 S
-22 0 -5 6d4+500 4d5+3
+33 0 -5 6d4+500 4d5+3
 10000 80000
 6 6 1
 #9316
@@ -192,7 +192,7 @@ You see a wild-looking bull with a bad temper.  He is well-built and looks like
 he can fight well ... indeed he has fought with Orion before and survived.
 ~
 98 136 -100 S
-22 0 0 5d3+500 4d6+1
+37 0 0 5d3+500 4d6+1
 10000 80000
 8 8 1
 #9317
@@ -204,7 +204,7 @@ As soon as you see him you know that he is the most perfect man you have seen.
 You can't find any imperfections on him.
 ~
 66 128 1000 S
-22 0 -5 7d3+400 5d4+2
+32 0 -5 7d3+400 5d4+2
 10000 80000
 8 8 1
 #9318
@@ -216,7 +216,7 @@ As soon as you see him you see the most imperfect man you have ever seen.
 How can there be such a contrast?  You wonder ...
 ~
 230 1048712 -1000 S
-15 5 5 3d4+200 3d4+2
+32 5 5 3d4+200 3d4+2
 5000 20000
 8 8 1
 #9319
@@ -229,7 +229,7 @@ Legend is that he was crushed by Hercules when he was sent by Hera to kill him.
 So Hera made Cancer a constellation for his work. 
 ~
 66 128 0 S
-22 0 -5 2d10+500 4d4+3
+31 0 -5 2d10+500 4d4+3
 12000 80000
 8 8 1
 #9320
@@ -242,7 +242,7 @@ during his first Labour.  His skin is so weapon-proof that Hercules had to use
 his bare hands to tear the lion into two from its mouth!
 ~
 98 136 -100 S
-22 0 -7 2d20+500 5d3+3
+30 0 -7 2d20+500 5d3+3
 10000 80000
 8 8 1
 #9321 
@@ -255,7 +255,7 @@ may not be the maid of chastity and purity at all!  But still she looks
 gorgeous and is waiting for your first move, whatever it is ...
 ~
 66 128 1000 S
-22 0 -5 3d8+450 4d5+1
+29 0 -5 3d8+450 4d5+1
 10000 80000
 6 6 2
 #9322
@@ -267,7 +267,7 @@ He is a wise old man and can see people's thoughts through their eyes....
 Now all he can see from you is greed and bloodshed.
 ~
 66 128 1000 S
-22 0 -5 4d5+500 5d4+2
+34 0 -5 4d5+500 5d4+2
 10000 80000
 8 8 1
 #9323
@@ -279,7 +279,7 @@ Ever since he killed Orion in the myths, he has been punished by having
 Sagittarius' arrow aimed at his heart forever.
 ~
 98 136 -200 S
-22 0 -5 4d3+470 3d7+1
+36 0 -5 4d3+470 3d7+1
 10000 80000
 8 8 1
 #9324
@@ -290,20 +290,20 @@ Sagittarius the centaur is waiting to let go of his well aimed arrow ...
 He is a centaur and a well trained archer. No one can escape his arrows.
 ~
 66 128 1000 S
-22 0 -5 5d6+500 3d9+2
+32 0 -5 5d6+500 3d9+2
 10000 80000
 8 8 1
 #9325
-capricon~
-Capricon~
-Capricon is here, feeling bored ... he wants a fight!
+capricorn~
+Capricorn~
+Capricorn is here, feeling bored ... he wants a fight!
 ~
 You see a mean-looking ram here.  He used to be a fierce fighter in the ancient
 war but now the gods have decided to put him here, to live out the rest of his 
 days in peace.
 ~
 66 128 700 S
-22 0 -5 4d7+520 3d10+0
+33 0 -5 4d7+520 3d10+0
 10000 80000
 8 8 1
 #9326
@@ -315,7 +315,7 @@ The pretty Water Bearer is smiling at you, you think you'd better give her a
 hand with holding the vessel. 
 ~
 66 128 1000 S
-22 0 -5 3d5+500 2d10+1
+32 0 -5 3d5+500 2d10+1
 10000 80000
 8 8 2
 #9327
@@ -327,7 +327,7 @@ She has been forced to serve her husband, who had been cursed to turn into a
 fish and she deserves your pity.
 ~
 66 128 1000 S
-22 0 -5 4d5+500 3d7+0
+28 0 -5 4d5+500 3d7+0
 10000 80000
 6 6 2
 #9328
@@ -339,7 +339,7 @@ He was once a very handsome man but now has turned into an ugly big fish.
 So he becomes jealous of any living thing which is more handsome than him.
 ~
 98 128 -1000 S
-22 4 0 3d3+400 3d6+2 
+32 4 0 3d3+400 3d6+2 
 10000 80000
 8 8 1
 #9329
@@ -351,7 +351,7 @@ The Huge Bear which resides in the northern skies is here.
 You think you'd better turn back.  At least you have got a chance of survival.
 ~
 98 136 0 S
-27 0 -7 2d4+800 5d5+3
+37 0 -7 2d4+800 5d5+3
 15000 120000
 8 8 0
 #9330
@@ -362,7 +362,7 @@ Cassiopeia, the queen of the Universe, is sitting on her throne.
 She is the Queen of Dignity; facing her you feel all your dignity has gone.
 ~
 66 128 700 S
-26 0 -6 10d3+700 4d7+2
+39 0 -6 10d3+700 4d7+2
 12000 110000
 6 6 2
 #9331
@@ -374,7 +374,7 @@ He is the King of Might as well as of the Universe. You suddenly feel very
 weak and useless in front of him.
 ~
 66 128 700 S
-26 0 -6 10d4+700 4d8+1
+41 0 -6 10d4+700 4d8+1
 12000 110000
 6 6 1
 #9332
@@ -388,7 +388,7 @@ actually a STAR, with dazzling bright light ... maybe you shouldn't have come
 here at all?
 ~
 66 138 1000 S
-30 0 -10 0d0+1500 6d6+3
+44 0 -10 0d0+1500 6d6+3
 20000 200000
 8 8 1
 #0
@@ -402,7 +402,7 @@ a comet's tail~
 A long, slender whip lies here.~ 
 ~
 5 3 1|8192
-0 2 6 4
+0~ 2~ 6~ 4~
 9 1000 1000
 #9302
 arm hercules~
@@ -410,7 +410,7 @@ the Titanic Arm plates of Hercules~
 Arm plates of the Zodiac lie here.~
 ~
 9 1089 1|256
-6 0 0 0
+6~ 0~ 0~ 0~
 10 10000 5000
 E
 arm~
@@ -426,7 +426,7 @@ the Titanic Belt of Orion~
 A belt of the Zodiac lies here.~
 ~
 9 1089 1|2048
-9 0 0 0
+9~ 0~ 0~ 0~
 7 10000 5000
 E
 belt~
@@ -441,7 +441,7 @@ An ugly skull of Draco~
 A massive skull of a dead Draco lies here.~
 ~
 4 194 1|16384
-15 5 5 6
+15~ 5~ 5~ call lightning~
 20 10000 3000
 #9306
 fleece aries~
@@ -449,21 +449,21 @@ the Titanic Fleece of Aries~
 A fleece of the Zodiac lies here.~  
 ~
 9 1089 1|4
-9 0 0 0
+9~ 0~ 0~ 0~
 9 10000 5000 
 E
 fleece~
 From a look it resembles the Golden Fleece that exists in the Greek myths.
 ~
 A
-17 -2
+17 -20
 #9307
 hoof taurus~
 the Titanic Hoof of Taurus~ 
 A hoof of the Zodiac lies here.~
 ~
 9 1089 1|64
-3 0 0 0
+3~ 0~ 0~ 0~
 10 10000 5000
 E
 hoof~
@@ -479,7 +479,7 @@ the Titanic Mask of Gemini~
 A mask of the Zodiac lies here.~
 ~
 9 1217 1|16
-2 0 0 0
+2~ 0~ 0~ 0~
 7 10000 5000
 E
 mask~
@@ -496,7 +496,7 @@ the Titanic Shell of Cancer~
 A shell of the Zodiac lies here.~ 
 ~
 9 1089 1|8
-10 0 0 0
+10~ 0~ 0~ 0~
 15 10000 5000
 E
 shell~
@@ -504,26 +504,28 @@ A shell which is dented in the middle, resulting from the Hercules' mighty
 pound when the Crab was still an enemy of Hercules in ancient times.
 ~ 
 A
-17 -2
+17 -20
 #9310
 skin leo~
 the Titanic Skin of Leo~
 A skin of the Zodiac lies here.~
 ~
 9 1089 1|1024
-11 0 0 0
+11~ 0~ 0~ 0~
 15 10000 5000
 E
 skin~
 A skin made of metal, which was worn by Hercules during his Ten Labours.
 ~
+A
+1 2
 #9311
 bracelet virgo~
 the Titanic Bracelet of Virgo~
 A bracelet of the Zodiac lies here.~
 ~
 9 1089 1|4096
-4 0 0 0
+4~ 0~ 0~ 0~
 4 10000 5000
 E
 bracelet~
@@ -537,7 +539,7 @@ the Titanic Scale of Libra~
 A shield of the Zodiac lies here.~
 ~
 9 1089 1|512
-8 0 0 0
+8~ 0~ 0~ 0~
 15 10000 5000 
 E
 scale~
@@ -546,14 +548,14 @@ It is a shield of justice, used in the ancient battle against injustice.
 A
 17 -3
 A
-13 5
+13 15
 #9313
 scale libra~
 the Titanic Scale of Libra~
 A shield of the Zodiac lies here.~
 ~
 9 194 1|512
-0 0 0 0
+0~ 0~ 0~ 0~
 15 10000 5000 
 E
 scale~
@@ -569,7 +571,7 @@ the Sting of Scorpio~
 Sting of the Zodiac lies here.~
 ~
 5 1089 1|8192
-0 4 4 11
+0~ 4~ 4~ 11~
 7 10000 5000
 E
 sting~
@@ -578,14 +580,14 @@ This dreadful weapon put a lot of mortals to death before Scorpio was banished.
 A
 18 3
 A
-19 1
+19 4
 #9315
 arrow sagittarius~
 the Arrow of Sagittarius~
 the Arrow of Sagittarius lies here.~
 ~
 3 1089 1|16384
-10 10 10 30
+10~ 10~ 10~ lightning bolt~
 7 5000 5000 
 E
 arrow~
@@ -597,23 +599,23 @@ the Titanic Bow of Sagittarius~
 the Titanic Bow of Sagittarius lies here.~
 ~
 5 1089 1|8192
-0 2 9 6
+0~ 2~ 9~ 6~
 20 10000 5000
 E
 bow~
 The gigantic bow used by the Archer; it is a very powerful weapon.
 ~
 A
-18 1
+18 4
 A
 19 3
 #9317
-horns capricon~
-the Titanic Horns of Capricon~
+horns capricorn~
+the Titanic Horns of Capricorn~
 a pair of horns of the Zodiac lies here.~
 ~
 9 1089 1|128 
-4 0 0 0
+4~ 0~ 0~ 0~
 6 10000 5000
 E
 horn~
@@ -630,7 +632,7 @@ the Ancient Vessel of Aquarius~
 A vessel of the Zodiac lies here.~
 ~
 4 1089 1|16384
-10 10 10 80
+10~ 10~ 10~ create spring~
 12 10000 5000
 E
 vessel~
@@ -643,7 +645,7 @@ the Titanic Tail of Pisces~
 A fish tail of the Zodiac lies here.~
 ~
 9 1089 1|32
-10 0 0 0
+10~ 0~ 0~ 0~
 10 10000 5000
 E
 tail~
@@ -653,14 +655,14 @@ work of the gods.
 A
 17 -2
 A
-2 -2
+2 2
 #9320
 ring dignity~
 the Ring of Dignity~
 A ring of specialty lies here.~
 ~
 9 1123 1|2
-0 0 0 0
+0~ 0~ 0~ 0~
 3 20000 10000
 E
 ring~
@@ -676,8 +678,8 @@ sceptre might~
 the Sceptre of Might~
 A sceptre of interest lies here.~
 ~
-1 1123 1|16348
-0 0 -1 0
+1 1091 1|16348
+0~ 0~ -1~ 0~
 4 20000 10000
 E
 sceptre~
@@ -693,14 +695,14 @@ the ring of the universe~
 Here lies a fortune ... a small ring of power.~
 ~
 9 355 1|2
-4 0 0 0
+4~ 0~ 0~ 0~
 3 40000 20000
 E
 ring~
 It conceals the power of the universe.
 ~
 A
-12 10
+12 15
 A
 13 30
 #9323
@@ -709,7 +711,7 @@ the Great Dipper of the Skies~
 A dazzling white object lies on the ground.~
 ~
 5 355 1|8192
-0 4 6 6
+0~ 4~ 6~ 6~
 20 30000 20000
 A
 18 2
@@ -721,7 +723,7 @@ a spring shoot~
 A shoot grows here, covered with dew.~
 ~
 18 3 1
-0 0 0 0
+0~ 0~ 0~ 0~
 2 0 100000
 #9325
 summer flower~
@@ -729,7 +731,7 @@ a summer flower~
 A flower grows here, waiting to be picked up.~
 ~
 18 3 1
-0 0 0 0
+0~ 0~ 0~ 0~
 2 0 100000
 #9326
 autumn leaf~
@@ -737,7 +739,7 @@ an autumn leaf~
 A leaf lies here, as if just fallen from a tree.~
 ~
 18 3 1
-0 0 0 0
+0~ 0~ 0~ 0~
 2 0 100000
 #9327
 winter branch~
@@ -745,7 +747,7 @@ a winter branch~
 A branch lies here, still covered with snow.~ 
 ~
 18 3 1
-0 0 0 0
+0~ 0~ 0~ 0~
 2 0 100000
 #9328
 chains andromeda~
@@ -753,7 +755,7 @@ chains of Andromeda~
 Some chains lie on the floor.~
 ~
 13 1|32 1
-0 0 0 0
+0~ 0~ 0~ 0~
 50 0 0
 E
 chains~

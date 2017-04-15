@@ -1,22 +1,23 @@
-Merc Release 2.1
-Sunday 01 August 1993
+EnvyMud release 1.0
+Thursday, 30th June 1994
 
-Furey	mec@shell.portal.com
-Hatchet	hatchet@uclink.berkeley.edu
-Kahn	michael@uclink.berkeley.edu
+Kahn		michael@uclink.berkeley.edu
+Thelonius	dave@mechatro2.berkeley.edu
+Kith		kith@marble.bu.edu
+Hatchet		hatchet@uclink.berkeley.edu
 
 
 
 === Player File Format
 
-Player files are ascii files.
+Player files are ASCII files.
 
 A player file contains a player section followed by one or more object
 sections.  Each section contains several lines.  Each line contains a
 keyword followed by a value.
 
 An old Internet dictum says 'be conservative in what you send and liberal
-in what you accept'.  Thus Merc writes player files in a fixed order, but
+in what you accept'.  Thus Envy writes player files in a fixed order, but
 accepts flexible ordering, partial files, et cetera.
 
 There are two section types: #PLAYER and #OBJECT.  The #PLAYER section
@@ -24,7 +25,7 @@ defines player values.  Each #OBJECT section defines one object.  A third
 section type, #MOB, is partially implemented and may be implemented in a
 future release.
 
-Merc writes one #PLAYER section per file, but will read multiple sections.
+Envy writes one #PLAYER section per file, but will read multiple sections.
 If the same value is specified twice the later value generally overrides
 earlier values; some lines, such as the 'Affect line', just append more
 affects.  If a value is not specified, some default value is used.
@@ -55,7 +56,7 @@ pretty, but it allows the use of standard 'obj_to_obj' and 'obj_to_char' calls
 to construct the object lists.
 
 You may add new fields to players and objects.  Because of the line-oriented
-ascii format, changing a structure size in 'merc.h' will never invalidate a
+ASCII format, changing a structure size in 'merc.h' will never invalidate a
 player file.   Naturally, you must ensure that when an old file which does
 not contain a line for a new field is read in, the new field is set to some
 reasonable default value.  E.g., if you add a 'home town' name for players,
@@ -99,3 +100,26 @@ continue loading.
 (4) Add lines to write out the field in 'fwrite_obj' in 'save.c'.
 
 (5) Add lines to read in the field in 'fread_obj' in 'save.c'.
+
+
+
+=== Immortal commands
+
+Immortal commands in Envy 1.0 are considered Skills.  Each command is
+stored as a player skill trained at 100%.  Each immortal must have the
+level and the skill at 100% in order to use that particular imm command.
+This allows for customized immortals with customized skills.
+
+To give an immortal a particular imm skill, edit the playerfile with your
+favorite text editor and add in the #PLAYER section:
+
+Skll	100 '<name:phrase>'
+
+As an example:
+#PLAYER
+Nm	Kahn~
+Skll	100 'advance'
+Skll	100 'reboot'
+End
+
+#END

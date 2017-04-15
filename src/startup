@@ -1,6 +1,7 @@
 #! /bin/csh -f
 # Written by Furey.
 # With additions from Tony.
+# With changes from Kahn.
 
 # Set the port number.
 set port = 4000
@@ -11,7 +12,7 @@ cd ../area
 
 # Set limits.
 nohup
-nice
+nice +6
 limit stack 1024k
 if ( -e shutdown.txt ) rm -f shutdown.txt
 
@@ -25,12 +26,11 @@ while ( 1 )
 	@ index++
     end
 
-    # Run merc.
-    ../src/merc $port >&! $logfile
+    # Run envy.
+    ../src/envy $port >&! $logfile
 
-    # Delete this out if no adb.
     if ( -e core ) then
-	    echo '$c' | adb ../src/merc
+	    mv core ../src/$index.core
     endif
 
     # Restart, giving old connections a chance to die.

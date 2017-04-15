@@ -168,7 +168,7 @@ horns~
 a set of horns lies here.~
 ~
 5 0 1|8192
-0 1 6 7
+0~ 1~ 6~ 7~
 2 10 3
 #2902
 bladder milk~
@@ -176,7 +176,7 @@ milk bladder~
 a milk bladder lies here.~
 ~
 17 0 1
-20 20 10 0
+20~ 20~ 10~ 0~
 1 2 2 
 #2903
 shovel~
@@ -184,7 +184,7 @@ shovel~
 a shovel lies here.~
 ~
 5 0 1|8192
-0 1 6 7
+0~ 1~ 6~ 7~
 2 10 3
 #2904
 short sword~
@@ -192,7 +192,7 @@ short sword~
 a short sword lies here.~
 ~
 5 0 1|8192
-0 1 6 11
+0~ 1~ 6~ 11~
 3 30 3
 #2905
 hand axe~
@@ -200,7 +200,7 @@ hand axe~
 a hand axe lies here.~
 ~
 5 0 1|8192
-0 1 6 3
+0~ 1~ 6~ 3~
 3 30 3
 #2906
 chainmail~
@@ -208,7 +208,7 @@ chainmail~
 a chainmail shirt lies here.~
 ~
 9 0 1|8 
-4 0 0 0 
+4~ 0~ 0~ 0~ 
 10 1000 10
 #2907
 pick~
@@ -216,7 +216,7 @@ pick~
 a pick lies here.~
 ~
 5 0 1|8192
-0 1 9 11
+0~ 1~ 9~ 11~
 2 1000 10
 #2911
 broad axe~
@@ -224,7 +224,7 @@ broad axe~
 a broad axe lies here.~
 ~
 5 64|512 1|8192
-0 2 8 3
+0~ 2~ 8~ 3~
 15 600 100
 A
 18 1
@@ -236,7 +236,7 @@ leather suit~
 a leather suit lies here.~
 ~
 9 1|64 1|8
-4 0 0 0 
+4~ 0~ 0~ 0~ 
 3 1000 100
 A
 2 1
@@ -246,7 +246,7 @@ mace~
 a mace lies here.~
 ~
 5 2|64 1|8192
-0 2 6 6
+0~ 2~ 6~ 6~
 10 300 20
 A
 18 2
@@ -258,7 +258,7 @@ orange potion~
 an orange potion lies here.~
 ~
 10 64 1
-10 22 17 28
+10~ dispel evil~ curse~ heal~
 1 100 10
 #2915
 egg newt~
@@ -266,7 +266,7 @@ a newt egg~
 a newt egg lies here.~
 ~
 19 0 1
-10 0 0 0
+10~ 0~ 0~ 0~
 1 1 1
 #0
 

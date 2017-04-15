@@ -1,9 +1,10 @@
-Merc Release 2.1
-Sunday 01 August 1993
+EnvyMud release 1.0
+Thursday, 30th June 1994
 
-Furey	mec@shell.portal.com
-Hatchet	hatchet@uclink.berkeley.edu
-Kahn	michael@uclink.berkeley.edu
+Kahn		michael@uclink.berkeley.edu
+Thelonius	dave@mechatro2.berkeley.edu
+Kith		kith@marble.bu.edu
+Hatchet		hatchet@uclink.berkeley.edu
 
 
 
@@ -25,16 +26,16 @@ The fields of cmd_table are:
 	character who is issuing the command and the rest of the argument
 	string after the command name.
 
-    sh_int	position;
+    int	position;
 
 	The minimum position for using this command.
 
-    sh_int	level;
+    int	level;
 
 	The minimum level for using this command.  This is usually used for
 	restricting certain commands to immortals.
 
-    sh_int	log;
+    int	log;
 
 	The type of logging to perform.  LOG_NORMAL commands are logged just
 	when the player is logged.  LOG_ALWAYS commands are always logged.

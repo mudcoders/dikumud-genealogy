@@ -1,9 +1,10 @@
-Merc Release 2.1
-Sunday 01 August 1993
+EnvyMud release 1.0
+Thursday, 30th June 1994
 
-Furey	mec@shell.portal.com
-Hatchet	hatchet@uclink.berkeley.edu
-Kahn	michael@uclink.berkeley.edu
+Kahn		michael@uclink.berkeley.edu
+Thelonius	dave@mechatro2.berkeley.edu
+Kith		kith@marble.bu.edu
+Hatchet		hatchet@uclink.berkeley.edu
 
 
 
@@ -32,8 +33,11 @@ should check your log files from time to time.
 The 'snoop' command can be used multiple times to snoop multiple characters at
 once.
 
-Immortals with 'invis' set can freely goto rooms, walk around, and follow
+Immortals with 'wizinvis' set can freely goto rooms, walk around, and follow
 characters without being noticed.
+
+Immortals with 'rset' may not rset a private or solitary room if anyone 
+in that room is of equal or higher level than them.
 
 The server is protected against input spamming.
 
@@ -45,9 +49,9 @@ There are level limits on grouping.
 
 Objects have level restrictions on their use.
 
-There are limits on saved items.  Keys and potions do not save.  Items which
-are higher level than the character are not saved.  This protects against
-storage characters.
+There are limits on saved items.  Keys do not save.  Items which are higher
+level than the character are not saved.  This protects against storage
+characters.
 
 If you do need to confiscate equipment, just fire up your favorite editor and
 edit the player files.
@@ -84,15 +88,15 @@ The 'R' reset command may be used to scramble room exits on area reset, so that
 players have to map a maze each time they enter.
 
 Players may loot only their own corpses or their own groups' corpses.  Other
-corpse looting is punished with a PLR_THIEF flag.
+corpse looting is not possible.
 
 
 
 === Integrity Features
 
-Merc compiles with no errors and no warnings, with 'gcc -Wall', on a large
+Envy compiles with no errors and no warnings, with 'gcc -Wall', on a large
 number of platforms.  If the server crashes, and you've changed the code at
-all, it's likely to be YOUR code that's the problem.
+all, it's likely to be a problem associated with the code additions.
 
 The server detects and reports most area-file errors that crash other muds,
 often including the area file name and line number.  The server refuses to run
@@ -100,7 +104,10 @@ with bad files.  Thus if you import areas, and they're dirty, you'll have to
 clean them before you can use them.
 
 If you are running on a computer that supports the 'malloc_debug' library
-function, such as a Sun 4, you can turn on malloc debugging in comm.c.  Merc
+function, such as a Sun 4, you can turn on malloc debugging in comm.c.  Envy
 is parsimonious of dynamically allocated memory, so that after area loading,
 very little memory allocation is done.  Thus you can 'malloc_debug' without
 noticeable effect on performance.
+
+To turn on malloc_debug, just modify the Makefile and put in -DMALLOC_DEBUG
+in the DEBUG section.  Remove all your *.o files and recompile.

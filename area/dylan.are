@@ -101,7 +101,7 @@ a pair of winged boots~
 a pair of winged boots flutters about~
 ~
 9 64 65
-3 0 0 0
+3~ 0~ 0~ 0~
 10 10 10
 A
 2 2
@@ -113,7 +113,7 @@ a pair of carved bronze bracers~
 a pair of carved bronze bracers~
 ~
 9 0 257
-4 0 0 0
+4~ 0~ 0~ 0~
 20 3000 1000
 #9103
 ornate brooch~
@@ -121,7 +121,7 @@ an ornate brooch~
 An ornate brooch was carelessly left here.~
 ~
 9 32 5
-0 0 0 0
+0~ 0~ 0~ 0~
 10 1000 500
 A
 3 1
@@ -133,7 +133,7 @@ magenta potion~
 bright magenta potion gathers dust.~
 ~
 10 512 16385
-10 1 16 33
+10~ armor~ cure light~ poison~
 2 300 50
 #9105
 ancient parchment~
@@ -141,7 +141,7 @@ an ancient illustrated parchment~
 an ancient illustrated parchment in the corner~
 ~
 2 129 16385
-5 4 17 33
+5~ blindness~ curse~ poison~
 5 100 50
 #0
 

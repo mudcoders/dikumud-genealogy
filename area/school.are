@@ -84,7 +84,7 @@ He looks mean, and you just might have a small problem killing him, but he
 looks like a great prize!!!
 ~
 2 512 0 S
-2 19 9 2d2+20 1d4+1
+1 19 9 2d2+20 1d4+1
 200 50
 8 8 0
 #3707
@@ -228,7 +228,7 @@ This horrible creature is your final test for mud school.  Kill him, and the
 diploma is yours.
 ~
 2 512 0 S
-3 18 8 2d4+30 1d6+1
+1 18 8 2d4+30 1d6+1
 300 100
 8 8 0
 #0
@@ -237,15 +237,15 @@ diploma is yours.
 
 #OBJECTS
 #3700
-mace~
+sub mace~
 a sub issue mace~
 You see a sub issue mace here.~
 ~
 5 64 1|8192
-0 2 3 7
+0~ 2~ 3~ 7~
 5 0 5
 E
-mace~
+sub mace~
 You see a mace of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
@@ -254,15 +254,15 @@ A
 A
 19 1
 #3701
-dagger~
+sub dagger~
 a sub issue dagger~
 You see a sub issue dagger here.~
 ~
 5 64 1|8192
-0 2 3 11
+0~ 2~ 3~ 11~
 5 0 5
 E
-dagger~
+sub dagger~
 You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
@@ -271,15 +271,15 @@ A
 A
 19 1
 #3702
-sword~
+sub sword~
 a sub issue sword~
 You see a sub issue sword here.~
 ~
 5 64 1|8192
-0 2 3 3
+0~ 2~ 3~ 3~
 5 0 5
 E
-sword~
+sub sword~
 You see a sword of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
@@ -288,145 +288,145 @@ A
 A
 19 1
 #3703
-vest~
+sub vest~
 a sub issue vest~
 You see a sub issue vest here.~
 ~
 9 0 1|8
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-vest~
+sub vest~
 You see a vest of great but cheap craftsmanship.  Stamped on the side is:
 Merc Industries
 ~
 #3704
-shield~
+sub shield~
 a sub issue shield~
 You see a sub issue shield here.~
 ~
 9 0 1|512
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-shield~
+sub shield~
 You see a shield of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3705
-cloak~
+sub cloak~
 a sub issue cloak~
 You see a sub issue cloak here.~
 ~
 9 0 1|4
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-cloak~
+sub cloak~
 You see a cloak of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3706
-helmet~
+sub helmet~
 a sub issue helmet~
 You see a sub issue helmet here.~
 ~
 9 0 1|16
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-helmet~
+sub helmet~
 You see a helmet of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3707
-leggings~
+sub leggings~
 a pair of sub issue leggings~
 You see a pair of sub issue leggings here.~
 ~
 9 0 1|32
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-leggings~
+sub leggings~
 You see leggings of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3708
-boots~
+sub boots~
 a pair of sub issue boots~
 You see a pair of sub issue boots here.~
 ~
 9 0 1|64
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-boots~
+sub boots~
 You see boots of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3709
-gloves~
+sub gloves~
 a pair of sub issue gloves~
 You see a pair of sub issue gloves here.~
 ~
 9 0 1|128
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-gloves~
+sub gloves~
 You see gloves of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3710
-sleeves~
+sub sleeves~
 a pair of sub issue sleeves~
 You see a pair of sub issue sleeves here.~
 ~
 9 0 1|256
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-sleeves~
+sub sleeves~
 You see sleeves of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3711
-cape~
+sub cape~
 a sub issue cape~
 You see a sub issue cape here.~
 ~
 9 0 1|1024
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-cape~
+sub cape~
 You see a cape of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3712
-belt~
+sub belt~
 a sub issue belt~
 You see a sub issue belt here.~
 ~
 9 0 1|2048
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-belt~
+sub belt~
 You see a belt of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
 #3713
-bracer~
+sub bracer~
 a sub issue bracer~
 You see a sub issue bracer here.~
 ~
 9 0 1|4096
-2 0 0 0
+2~ 0~ 0~ 0~
 5 0 5
 E
-bracer~
+sub bracer~
 You see a bracer of great but cheap craftsmanship.  Imprinted on the side is:
 Merc Industries
 ~
@@ -436,7 +436,7 @@ a key~
 You see a very important key here!~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 0
 #3715
 diploma~
@@ -444,7 +444,7 @@ a mud school diploma~
 You see a mud school diploma here.~
 ~
 8 64 1|16384
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 5
 E
 diploma~
@@ -464,7 +464,7 @@ a war banner~
 A war banner is on the floor here.~
 ~
 1 1|64 1
-0 0 -1 0
+0~ 0~ -1~ 0~
 1 0 5
 E
 banner~
@@ -1358,7 +1358,7 @@ You see a dark murky dungeon below.
 grate~
 1 -1 3748
 E
-sign~
+sign big~
 Those with high bravery or low senses of cautiousness might wish to go below
 to the Dungeon.  However, know that there are aggressive monsters down there,
 and there is no quick escape back out of here when you are in the dungeon.

@@ -248,7 +248,7 @@ a candlestick~
 A pewter candlestick is standing here.~
 ~
 1 0 16385
-0 0 24 0
+0~ 0~ 24~ 0~
 5 150 50
 E
 candlestick~
@@ -259,9 +259,9 @@ candles are a yellowish white colour.
 tickler~
 a nightgaunt's tickler~
 A nightgaunt's tickler has been left here.~
-tickle~
+~
 5 128 8193
-0 3 4 5
+0~ 3~ 4~ 5~
 8 5000 1000
 E
 tickler~
@@ -278,7 +278,7 @@ disgusting pinkish plasma webbing~
 A pile of pink material is lying here~
 ~
 9 512|2048 1|8
-7 0 0 0
+7~ 0~ 0~ 0~
 10 5000 5000
 E
 plasma webbing~
@@ -290,7 +290,7 @@ a queerly shaped rod~
 A queerly shaped rod is lying here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 5 0 20000
 E
 rod key~
@@ -303,7 +303,7 @@ a large black dirty key~
 a large black dirty key is lying here~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 3 0 20000
 E
 large black dirty key~
@@ -316,7 +316,7 @@ the mummified head of Jubal the Benevolent~
 The mummified head of Jubal the Benevolent is lolling back and forth.~
 ~
 15 1024 1
-3 5 -1 0
+3~ 5~ -1~ 0~
 20 0 50000
 E
 head jubal mummy~
@@ -329,7 +329,7 @@ a black marble ring~
 A black marble ring is lying here on the ground.~
 ~
 8 1088 3
-0 0 0 0
+0~ 0~ 0~ 0~
 2 4000 2750
 E
 black marble ring~
@@ -344,9 +344,9 @@ A
 rapier thin~
 a whisper thin rapier~
 A rapier is lying here.~
-pierce~
+~
 5 2 8193
-0 4 2 11
+0~ 4~ 2~ 11~
 4 1000 350
 E
 thin rapier~
@@ -362,7 +362,7 @@ a stone sarcophagus~
 A stone sarcophagus is sitting here.~
 ~
 15 0 0
-400 15 3416 0
+400~ 15~ 3416~ 0~
 2000 0 0
 E
 sarcophagus coffin~
@@ -375,7 +375,7 @@ a heavy iron key~
 A heavy iron key is lying here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 4 0 30000
 E
 key iron heavy~
@@ -387,7 +387,7 @@ a wineflask~
 A wineflask has been been left here.~
 ~
 17 0 16385
-4 4 2 0
+4~ 4~ 2~ 0~
 5 80 25
 E
 wineflask flask~
@@ -400,7 +400,7 @@ a mound of coins fit for a dead king~
 you see a mound of coins fit for a dead king here~
 ~
 20 0 1
-10000 0 0 0
+10000~ 0~ 0~ 0~
 50 0 0
 #3419
 key~
@@ -408,7 +408,7 @@ key to the coffin~
 The key to the coffin is lying here~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 3 0 50000
 E
 key~
@@ -421,7 +421,7 @@ a hidden compartment in the room~
 ~
 ~
 15 4 0
-10 5 -1 0
+10~ 5~ -1~ 0~
 1000 0 0
 E
 rathcor~
@@ -431,9 +431,9 @@ Ah HA!  A hidden compartment!
 rusty sword curved scimitar~
 a rusty curved scimitar~
 a sword has been left lying here~
-slash~
+~
 5 0 8193
-0 2 3 3
+0~ 2~ 3~ 3~
 6 500 154
 E
 rusty sword scimitar~
@@ -446,7 +446,7 @@ a piece of slime~
 You step on a piece of slime...your foot squishes a bit~
 ~
 19 0 1
-15 0 0 0
+15~ 0~ 0~ 0~
 1 15 5
 E
 slime piece~
@@ -459,7 +459,7 @@ an artist's smock~
 An artist's smock is lying here on the floor.~
 ~
 9 0 9
-0 0 0 0
+0~ 0~ 0~ 0~
 7 100 50
 E
 smock~
@@ -474,7 +474,7 @@ a tightly rolled scroll~
 a yellowing tightly rolled scroll is here~
 ~
 2 64 16385
-15 10 12 32
+15~ colour spray~ create food~ magic missile~
 5 5000 1429
 E
 scroll tightly rolled~
@@ -494,7 +494,7 @@ An auburn-colored orb~
 An orb is here~
 ~
 4 66 16385
-10 2 2 7
+10~ 2~ 2~ charm person~
 10 15000 4638
 E
 auburn orb~
@@ -507,7 +507,7 @@ A bar of gold~
 A bar of gold is lying here~
 ~
 8 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 30 5000 1250
 E
 bar gold~
@@ -520,7 +520,7 @@ a dark black cape~
 A dark black cape is lying here~
 ~
 9 64 1025
-5 0 0 0
+5~ 0~ 0~ 0~
 10 8000 2500
 E
 dark black cape~
@@ -537,7 +537,7 @@ a pitch-black longsword that flames brightly...~
 a sword lies here~
 ~
 5 64 8193
-0 3 6 3
+0~ 3~ 6~ 3~
 20 7000 2000
 E
 flaming sword long longsword~
@@ -553,7 +553,7 @@ a worn and dented breast plate~
 A piece of armour is here.~
 ~
 9 0 9
-6 0 0 0
+6~ 0~ 0~ 0~
 50 20000 8000
 E
 breast dented plate worn~
@@ -565,7 +565,7 @@ a silver key~
 You see a silver key here.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 0
 E
 key silver~

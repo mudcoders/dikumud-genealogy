@@ -212,7 +212,7 @@ a long spear~
 A strange spear lies here.~
 ~
 5 128|512 8193
-0 3 5 2
+0~ 3~ 5~ 2~
 10 20000 5000
 A
 19 3
@@ -224,7 +224,7 @@ a dark horned helmet~
 A wicked looking horned helmet lies here.~
 ~
 9 128|512 17
-6 0 0 0
+6~ 0~ 0~ 0~
 5 15000 10000
 E
 horns horn~
@@ -239,7 +239,7 @@ A suit of chainmail~
 An old suit of chainmail lies here, corroded by the marsh.~
 ~
 9 128|512 9
-7 0 0 0
+7~ 0~ 0~ 0~
 20 2000 2000
 #8306
 scythe~
@@ -247,7 +247,7 @@ A huge, wicked-looking scythe~
 An evil, wicked-looking scythe lies in the shadows.~
 ~
 5 128|512 8193
-0 4 4 1
+0~ 4~ 4~ 1~
 16 100000 20000
 A
 18 3
@@ -259,7 +259,7 @@ A murky green potion~
 A murky green potion lies here in the mud.~
 ~
 10 3 1
-43 15 0 0
+43~ cure critical~ ~ ~
 1 1000 1000
 E
 potion~

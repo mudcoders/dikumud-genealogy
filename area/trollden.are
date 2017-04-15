@@ -131,7 +131,7 @@ the cadaver-toy~
 A half eaten corpse is laying here~
 ~
 15 0 1
-30 0 0 0
+30~ 0~ 0~ 0~
 50 0 0
 #2801
 pile rotting heap bed~
@@ -139,7 +139,7 @@ the heap of carnage~
 There is a bed made of carnage here.~
 ~
 15 0 0
-30 0 0 0
+30~ 0~ 0~ 0~
 999 0 0
 #2802
 trollskin troll skin~
@@ -147,7 +147,7 @@ the troll skin~
 The filthy hide of a beast is laying here.~
 ~
 9 0 1|1024
-5 0 0 0
+5~ 0~ 0~ 0~
 50 50 50
 E
 troll skin~
@@ -162,7 +162,7 @@ an opal ring~
 A ring of black opal lies here gathering dust.~
 ~
 9 64 1|2
-3 0 0 0
+3~ 0~ 0~ 0~
 1 1000 100
 E
 ring opal~
@@ -176,7 +176,7 @@ a leather belt~
 An old leather belt is left on the floor.~
 ~
 9 64 1|2048
-6 0 0 0
+6~ 0~ 0~ 0~
 5 100 20
 E
 leather belt~
@@ -188,7 +188,7 @@ a cracked bone~
 A cracked piece of bone lies here.~
 ~
 5 0 1|8192
-0 3 3 7
+0~ 3~ 3~ 7~
 3 3 50
 E
 bone~

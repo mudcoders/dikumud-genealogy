@@ -306,7 +306,7 @@ a bloody key~
 A bloody key is stuck to the floor.~
 ~
 18 0 1
-2 0 0 0
+2~ 0~ 0~ 0~
 1 1000 400
 #1501
 key dirty~
@@ -314,7 +314,7 @@ a dirty key~
 A dirty key lies here.~
 ~
 18 0 1
-2 0 0 0
+2~ 0~ 0~ 0~
 1 1050 405
 #1502
 toy boomerang~
@@ -322,7 +322,7 @@ A toy boomerang~
 A toy boomerang wants to be picked up.~
 ~
 5 0 1|8192
-0 2 4 7
+0~ 2~ 4~ 7~
 5 5 2
 #1503
 staff gnarled~
@@ -330,7 +330,7 @@ A gnarled staff~
 A gnarled staff is here.~
 ~
 5 0 1|8192
-0 1 9 7
+0~ 1~ 9~ 7~
 15 600 250
 #1504
 sword gnome~
@@ -338,7 +338,7 @@ A gnome sword~
 A gnome sword catches your eye.~
 ~
 5 0 8193
-0 3 3 3
+0~ 3~ 3~ 3~
 15 4000 2000
 #1505
 shield studded~
@@ -346,7 +346,7 @@ a studded shield~
 A studded wooden shield lies here.~
 ~
 9 0 513
-4 0 0 0
+4~ 0~ 0~ 0~
 16 3000 1500
 #1506
 potion bloody~
@@ -354,7 +354,7 @@ a bloody potion~
 A bloody potion lies here.~
 ~
 10 0 1
-15 14 15 39
+5~ cure blindness~ cure critical~ giant strength~
 22 1500 800
 #1507
 cloak bloody~
@@ -362,7 +362,7 @@ a bloody cloak~
 A bloody cloak lies in a corner.~
 ~
 9 64 5
-4 0 0 0
+4~ 0~ 0~ 0~
 15 2000 1000
 #1508
 ring bat~
@@ -370,7 +370,7 @@ A bat ring~
 A ring in the shape of a bat lies here.~
 ~
 9 64 3
-3 0 0 0
+3~ 0~ 0~ 0~
 2 2500 1250
 A
 14 15
@@ -380,7 +380,7 @@ A bead necklace~
 A string of beads is here.~
 ~
 9 0 5
-3 0 0 0
+3~ 0~ 0~ 0~
 8 4000 2000
 A
 18 2
@@ -390,7 +390,7 @@ An electrum sword~
 An electrum sword lies here.~
 ~
 5 65 8193
-0 4 3 3
+0~ 4~ 3~ 3~
 20 100000 25000
 #1511
 basket wicker~
@@ -398,7 +398,7 @@ a wicker basket~
 A wicker basket sits here.~
 ~
 15 0 1
-90 0 -1 0
+90~ 0~ -1~ 0~
 5 45 15
 #1512
 peanuts~
@@ -406,7 +406,7 @@ some peanuts~
 Peanuts lie here.~
 ~
 19 0 1
-16 0 0 0
+16~ 0~ 0~ 0~
 9 25 5
 #1513
 grain~
@@ -414,7 +414,7 @@ some grain~
 There is some grain here.~
 ~
 19 0 1
-15 0 0 0
+15~ 0~ 0~ 0~
 8 22 4
 #1514
 skiff~
@@ -422,7 +422,7 @@ a skiff~
 A small skiff is here.~
 ~
 22 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 24 1500 500
 #1515
 boots gnome~
@@ -430,7 +430,7 @@ a pair of gnome boots~
 You notice a pair of Gnome Boots.~
 ~
 9 0 65
-4 0 0 0
+4~ 0~ 0~ 0~
 12 12000 5000
 A
 14 10
@@ -440,7 +440,7 @@ a pile of coins~
 A pile of coins.~
 ~
 20 0 1
-1000 0 0 0
+1000~ 0~ 0~ 0~
 1 1 1
 #1517
 coins~
@@ -448,7 +448,7 @@ a pile of coins~
 A pile of coins.~
 ~
 20 0 1
-5000 0 0 0
+5000~ 0~ 0~ 0~
 1 1 1
 #1518
 coins~
@@ -456,7 +456,7 @@ a pile of coins~
 A pile of coins.~
 ~
 20 0 1
-1000 0 0 0
+1000~ 0~ 0~ 0~
 1 1 1
 #1519
 shield stone~
@@ -464,7 +464,7 @@ a stone shield~
 A stone slab lies here.~
 ~
 9 0 513
-4 0 0 0
+4~ 0~ 0~ 0~
 35 9000 5000
 A
 1 2
@@ -474,7 +474,7 @@ heavy banded mail~
 A large suit of heavy banded mail is here~
 ~
 9 0 9
-6 0 0 0
+6~ 0~ 0~ 0~
 30 35000 10000
 #1521
 club large~
@@ -482,7 +482,7 @@ a large club~
 A large club sits here.~
 ~
 5 0 8193
-0 4 3 7
+0~ 4~ 3~ 7~
 22 20000 10000
 #1522
 banana~
@@ -490,7 +490,7 @@ a banana~
 There is a banana here.~
 ~
 19 0 1
-6 0 0 0
+6~ 0~ 0~ 0~
 5 9 3
 #1523
 life potion~
@@ -498,7 +498,7 @@ a potion of life healing~
 A potion of life healing has left here.~
 ~
 10 128 1
-32 43 3 0
+32~ cure poison~ bless~ ~
 1 1 1
 #0
 
@@ -2053,15 +2053,15 @@ M 0 1502  3 1506
 E 1 1503 20 16
 *
 M 0 1500  3 1509
-G 1 1502 20 
+E 1 1502 20 16
 M 0 1501  3 1509
 *
 M 0 1500  3 1510
-G 1 1502 20 
+E 1 1502 20 16
 M 0 1501  3 1510
 *
 M 0 1500  3 1511
-G 1 1502 20 
+E 1 1502 20 16
 M 0 1501  3 1511
 *
 M 0 1503  3 1513

@@ -426,7 +426,7 @@ the rainbow staff~
 The rainbow staff lies here.~
 ~
 1 64 65537
-0 0 -1 0
+0~ 0~ -1~ 0~
 8 5000 2667
 A
 4 1
@@ -436,7 +436,7 @@ Sting~
 Sting lies here.~
 ~
 5 1027 8193
-0 2 7 10
+0~ 2~ 7~ 11~
 1 10000 7500
 A
 2 2
@@ -446,7 +446,7 @@ a sign~
 A sign demands your attention.~
 ~
 12 0 0
-0 0 0 0
+0~ 0~ 0~ 0~
 0 0 0
 E
 sign~
@@ -467,15 +467,15 @@ a pipeweed bread~
 A loaf of pipeweed bread arouses your hunger.~
 ~
 19 0 1
-24 0 0 0
+24~ 0~ 0~ 0~
 1 13 2
 #1104
 silvery cloak~
 a silvery cloak~
 A silvery cloak lies here.~
 ~
-9 64|1024 1025
-7 0 0 0
+9 1|64 1025
+7~ 0~ 0~ 0~
 3 10000 4500
 A
 24 -2
@@ -485,7 +485,7 @@ the One Ring~
 The One Ring is here.~
 ~
 9 64 16387
-0 0 0 0
+0~ 0~ 0~ 0~
 3 2500 1900
 A
 17 10
@@ -497,7 +497,7 @@ an elven bow~
 An elven bow lies here.~
 ~
 5 1090 8193
-0 2 8 4
+0~ 2~ 8~ 4~
 10 2000 2000
 A
 18 2
@@ -506,8 +506,8 @@ mithril axe~
 a mithril axe~
 A mithril axe lies here.~
 ~
-5 28677 8193
-0 2 8 5
+5 2|64 8193
+0~ 2~ 8~ 5~
 12 4000 2000
 A
 19 2
@@ -516,8 +516,8 @@ thain girth~
 the thain girth~
 The girth of the thain lies here.~
 ~
-9 8192 2049
-5 3 0 0
+9 0 2049
+5~ 3~ 0~ 0~
 4 1000 200
 A
 4 2
@@ -527,7 +527,7 @@ a tiny dagger~
 A tiny dagger lies here.~
 ~
 5 0 8193
-0 1 6 11
+0~ 1~ 6~ 11~
 3 40 10
 #1110
 egg~
@@ -535,7 +535,7 @@ an egg~
 An egg lies here.~
 ~
 19 0 1
-12 0 0 0
+12~ 0~ 0~ 0~
 1 9 1
 #1111
 bag~
@@ -543,7 +543,7 @@ a bag~
 A bag is on the floor.~
 ~
 15 0 1
-50 0 0 0 
+50~ 0~ 0~ 0~ 
 5 50 10
 #1112
 lantern~
@@ -551,7 +551,7 @@ a lantern~
 A lantern is on the floor.~
 ~
 1 0 1
-0 0 20 0
+0~ 0~ 20~ 0~
 4 50 10
 #1113
 bardiche~
@@ -559,7 +559,7 @@ a bardiche~
 A long weapon with a sharp end is on the floor.~
 ~
 5 0 1|8192
-0 3 4 3
+0~ 3~ 4~ 3~
 10 1000 50
 A
 18 4
@@ -569,7 +569,7 @@ a flail~
 A flail is on the floor.~
 ~
 5 0 1|8192
-0 2 4 6
+0~ 2~ 4~ 6~
 8 300 50
 #0
 

@@ -1,0 +1,48 @@
+EnvyMud release 1.0
+Thursday, 30th June 1994
+
+Kahn		michael@uclink.berkeley.edu
+Thelonius	dave@mechatro2.berkeley.edu
+Kith		kith@marble.bu.edu
+Hatchet		hatchet@uclink.berkeley.edu
+
+
+
+=== What's next?
+
+We might finish and include these features in the next release of EnvyMud.
+These features are by NO MEANS guaranteed to be coded.
+
+	Our first attempt at on-line editing
+	Rewrite of MOBPrograms or similar feature
+	smarter mobs
+	hunt/track
+	missile weapons
+	ninja class
+	druid class
+	barbarian class
+	races and rules of interaction
+	ANSI color text
+	dual wielding
+	long distance socials
+	destructible walls
+	siege weapons
+	clans
+	builder settable attack types for weapons and mobs
+	magic item skill
+	berserk skill
+	recharge item spell
+	player houses
+	CHAR_DATA elements are not removed from the next_in_room list
+	 just marked for deletion
+	OBJ_DATA elements are not removed from the next_content list
+	 just marked for deletion
+	sockets are not removed instantaneously, just removed every pulse
+	underwater areas
+	snare skill
+	silencing spells
+	remove alignment spell
+	room affect items
+	special procedues for rooms and objects
+	circle skill for thieves in combat
+	anarchy flag  all mobs/pcs are aggr to one another

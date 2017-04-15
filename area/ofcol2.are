@@ -55,8 +55,8 @@ bringing her soldiers' morale up.
 Jacklyn is pale and wiry, but then, so are most other witches.  The fact that
 Jacklyn is a mage and a warrior makes her the perfect captain of the citadel
 guards.  Jacklyn is very beautiful, but whether it is due to her pale softness
-or her magic, no one has ever found out.  She isn't very strong physically, but
-she need not be.
+or her magic, no one has ever found out.  She isn't very strong physically, 
+but she need not be.
 ~
 2 8200 1000 S
 27 0 -8 27d27+180 1d4+17
@@ -209,7 +209,7 @@ A young horse is here, grazing.
 The horse whinnies at you, then runs around you a few times, then just goes
 back to grazing.
 ~
-160 0 0 S
+128 0 0 S
 6 15 4 6d6+60 1d8+4
 0 750
 8 8 0
@@ -296,7 +296,7 @@ Nyles is a hefty guy, who looks like he's waiting for the next bar fight to
 join in.  He keeps an eye on you and his glasses, making sure you don't steal
 any.
 ~
-2 0 1000 S
+2 8192 1000 S
 30 0 -15 30d30+3000 1d5+15
 1000 100000
 8 8 1
@@ -370,7 +370,7 @@ The Priestess of Ofcol is an old woman, perfectly at peace with herself and
 with the world.  She devotes all her time to help teach you the ways of her
 god, Bahamut.  The dragon symbol around her neck looks almost alive.
 ~
-2 2|128|8192 1000 S
+2 8|128|8192 1000 S
 30 -10 -20 30d30+300 1d4+20
 1000 120000
 8 8 2
@@ -384,7 +384,7 @@ He smiles at you, with the enthusiasm of a little kid.  "What're you doing just
 STANDING here, young man?  Go help that other squire there!", he yells.  He
 turns to you and with a consipatory tone, whispers, "Kids!"
 ~
-64 2|128|8192 1000 S
+64 8|128|8192 1000 S
 20 0 -10 20d20+200 1d4+15
 1000 50000
 8 8 1
@@ -397,7 +397,7 @@ This person looks almost like a dragon itself.  His golden scales gleam with
 power.  He smiles at you with a vicious grin.  You're happy that he doesn't
 look upset at your presence. 
 ~
-2 2|128|8192 1000 S
+2 8|128|8192 1000 S
 29 -9 -19 29d29+290 1d4+20
 1000 120000
 8 8 1
@@ -411,7 +411,7 @@ This dragon's head is taller than you.  He is annoyed at your disturbance, but
 realizing that you're no danger to him, he ignores you.  He waves to one of
 his attendants to escort you away.
 ~
-2|4 2|128|512|8192 1000 S
+2|4 8|128|512|8192 1000 S
 37 -15 -25 37d37+370 1d4+30
 100000 1000000
 8 8 1
@@ -423,7 +423,7 @@ A person robed in gold is attending to the Keeper of the Citadel.
 This elder servant to the Gold Dragon is very loyal to him, willing to risk
 his life for his liege.
 ~
-2 2|8192 1000 S
+2 8|8192 1000 S
 21 -1 -11 21d21+210 1d4+15
 5000 50000
 8 8 1
@@ -436,7 +436,7 @@ stands here, guarding the Golden Citadel.
 This person looks like a dragon itself.  His golden scales gleam with power.
 He smiles at you, showing very sharp teeth.
 ~
-64 2|8192 1000 S
+64 8|8192 1000 S
 21 -1 -11 21d21+210 1d4+15
 5000 50000
 8 8 1
@@ -464,7 +464,7 @@ a handaxe~
 A handaxe is on the floor here.~
 ~
 5 0 1|8192
-0 1 8 3
+0~ 1~ 8~ 3~
 10 100 20
 E
 handaxe hand axe~
@@ -477,7 +477,7 @@ a meat cleaver~
 A sharp meat cleaver is just lying on the floor here!~
 ~
 5 0 8193
-0 2 4 3
+0~ 2~ 4~ 3~
 5 150 20
 E
 meat cleaver~
@@ -489,7 +489,7 @@ a side of beef~
 A side of beef is here on the floor.~
 ~
 19 0 1
-24 0 0 0
+24~ 0~ 0~ 0~
 10 50 10
 #603
 side meat pork~
@@ -497,7 +497,7 @@ a side of pork~
 A side of pork is here on the floor.~
 ~
 19 0 1
-23 0 0 0
+23~ 0~ 0~ 0~
 10 45 10
 #604
 side meat horse~
@@ -505,7 +505,7 @@ a side of horse~
 A side of horse is here on the floor.~
 ~
 19 0 1
-30 0 0 0
+30~ 0~ 0~ 0~
 12 60 12
 #605
 meat chicken~
@@ -513,7 +513,7 @@ a defeathered chicken~
 A defeathered chicken is here on the floor.~
 ~
 19 0 1
-16 0 0 0
+16~ 0~ 0~ 0~
 5 30 6
 #606
 emerald ring~
@@ -521,7 +521,7 @@ an emerald ring~
 An emerald ring is on the floor, gathering dust.~
 ~
 8 64 3
-0 0 0 0
+0~ 0~ 0~ 0~
 1 10000 100
 #607
 glass trinket~
@@ -529,7 +529,7 @@ a glass trinket~
 A glass trinket is on the floor, gathering dust.~
 ~
 8 0 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 1 100 10
 A
 24 -1
@@ -539,7 +539,7 @@ a golden necklace~
 A golden necklace is on the floor, gathering dust.~
 ~
 8 0 5
-0 0 0 0
+0~ 0~ 0~ 0~
 2 10000 10
 A
 4 -1
@@ -551,7 +551,7 @@ a head of cabbage~
 Some fresh cabbage is here, get it while it lasts!~
 ~
 19 0 1
-12 0 0 0
+12~ 0~ 0~ 0~
 2 20 5
 #610
 lettuce~
@@ -559,7 +559,7 @@ a head of lettuce~
 Some fresh lettuce is here, get it while it lasts!~
 ~
 19 0 1
-12 0 0 0
+12~ 0~ 0~ 0~
 2 20 5
 #611
 milk bottle~
@@ -567,7 +567,7 @@ a bottle of milk~
 A glass bottle of milk is on a shelf here, fresh from the cow.~
 ~
 17 0 1
-20 20 10 0
+20~ 20~ 10~ 0~
 5 40 10
 #612
 apple~
@@ -575,7 +575,7 @@ an apple~
 An apple is on the ground.~
 ~
 19 0 1
-8 0 0 0
+8~ 0~ 0~ 0~
 1 5 1
 #613
 corn~
@@ -583,7 +583,7 @@ an ear of corn~
 An ear of corn is on the ground.~
 ~
 19 0 1
-8 0 0 0
+8~ 0~ 0~ 0~
 1 5 1
 #614
 hay pile~
@@ -591,7 +591,7 @@ a pile of hay~
 There is a big pile of hay here.~
 ~
 13 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 20 0 50
 #615
 pitchfork fork~
@@ -599,7 +599,7 @@ a pitchfork~
 A pitchfork is on the floor.~
 ~
 5 0 8193
-0 3 3 11
+0~ 3~ 3~ 11~
 10 50 10
 #616
 vest~
@@ -607,7 +607,7 @@ a leather vest~
 A leather vest is on the floor.~
 ~
 9 0 1|8
-2 0 0 0
+2~ 0~ 0~ 0~
 10 50 10
 #617
 sleeves~
@@ -615,7 +615,7 @@ some leather sleeves~
 Some leather sleeves are on the floor.~
 ~
 9 0 1|256
-2 0 0 0
+2~ 0~ 0~ 0~
 5 50 10
 #618
 leggings~
@@ -623,7 +623,7 @@ some leather leggings~
 Some leather leggings are on the floor.~
 ~
 9 0 1|32
-2 0 0 0
+2~ 0~ 0~ 0~
 5 50 10
 #619
 boots~
@@ -631,7 +631,7 @@ some leather boots~
 Some leather boots are on the floor.~
 ~
 9 0 1|64
-2 0 0 0
+2~ 0~ 0~ 0~
 5 50 10
 #620
 signet ring~
@@ -639,7 +639,7 @@ an Ofcol signet ring~
 A shiny ring of gold is in the dirt.~
 ~
 9 64 1|2
-6 0 0 0
+6~ 0~ 0~ 0~
 1 1000 100
 A
 24 -1
@@ -651,7 +651,7 @@ brass plate~
 A pile of brass plates is against the wall here.~
 ~
 9 64 1|8
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -2
@@ -663,7 +663,7 @@ a brass helm~
 A brass helm is against the wall here.~
 ~
 9 64 1|16
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -1
@@ -675,7 +675,7 @@ brass leggings~
 A pile of brass plates is against the wall here.~
 ~
 9 64 1|32
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -1
@@ -687,7 +687,7 @@ brass boots~
 Some brass boots are against the wall here.~
 ~
 9 64 1|64
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -1
@@ -699,7 +699,7 @@ brass gauntlets~
 Some brass gauntlets are against the wall here.~
 ~
 9 64 1|128
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -1
@@ -711,7 +711,7 @@ brass sleeves~
 A pile of brass plates is against the wall here.~
 ~
 9 64 1|256
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -1
@@ -723,7 +723,7 @@ a brass shield~
 A big plate of brass is against the wall here.~
 ~
 9 64 1|512
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -1
@@ -735,7 +735,7 @@ a brass girth~
 A brass girth is against the wall here.~
 ~
 9 64 1|2048
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -1
@@ -747,7 +747,7 @@ a brass bracer~
 A brass bracer is against the wall here.~
 ~
 9 64 1|4096
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 A
 24 -1
@@ -759,7 +759,7 @@ a claymore~
 A VERY big sword is against the wall here.~
 ~
 5 64 1|8192
-0 4 4 1
+0~ 4~ 4~ 1~
 16 1000 100
 A
 18 -2
@@ -771,7 +771,7 @@ silver plate~
 A pile of silver plating and chain is on the floor.~
 ~
 9 64|1024 1|8
-8 0 0 0
+8~ 0~ 0~ 0~
 20 2000 100
 A
 12 10
@@ -783,7 +783,7 @@ A silver helm~
 A shiny helm is on the floor.~
 ~
 9 64|1024 1|16
-8 0 0 0
+8~ 0~ 0~ 0~
 20 2000 100
 A
 12 5
@@ -795,7 +795,7 @@ silver leggings~
 Some shiny leggings are on the floor.~
 ~
 9 64|1024 1|32
-8 0 0 0
+8~ 0~ 0~ 0~
 20 2000 100
 A
 12 5
@@ -807,7 +807,7 @@ silver boots~
 Some shiny boots are on the floor.~
 ~
 9 64|1024 1|64
-8 0 0 0
+8~ 0~ 0~ 0~
 20 2000 100
 A
 12 5
@@ -819,7 +819,7 @@ silver gauntlets~
 Some shiny gauntlets are on the floor.~
 ~
 9 64|1024 1|128
-8 0 0 0
+8~ 0~ 0~ 0~
 20 2000 100
 A
 12 5
@@ -831,7 +831,7 @@ silver sleeves~
 Some shiny sleeves are on the floor.~
 ~
 9 64|1024 1|256
-8 0 0 0
+8~ 0~ 0~ 0~
 20 2000 100
 A
 12 5
@@ -843,7 +843,7 @@ the silver shield~
 A shiny shield is on the floor.~
 ~
 9 64|1024 1|512
-8 0 0 0
+8~ 0~ 0~ 0~
 20 2000 100
 A
 12 5
@@ -855,7 +855,7 @@ the silver girth~
 A shiny girth is on the floor.~
 ~
 9 64|1024 1|2048
-8 0 0 0
+8~ 0~ 0~ 0~
 20 2000 100
 A
 12 5
@@ -867,7 +867,7 @@ platinum plate~
 A pile of silvery metal is on the floor.~
 ~
 9 64|1024 1|8
-9 0 0 0
+9~ 0~ 0~ 0~
 50 10000 100
 A
 13 15
@@ -879,7 +879,7 @@ the platinum helmet~
 A silvery helmet is on the floor.~
 ~
 9 64|1024 1|16
-9 0 0 0
+9~ 0~ 0~ 0~
 30 10000 100
 A
 12 10
@@ -891,7 +891,7 @@ platinum leggings~
 Some silvery leggings are on the floor.~
 ~
 9 64|1024 1|32
-9 0 0 0
+9~ 0~ 0~ 0~
 40 10000 100
 A
 13 10
@@ -903,7 +903,7 @@ platinum boots~
 Some silvery boots are on the floor.~
 ~
 9 64|1024 1|64
-9 0 0 0
+9~ 0~ 0~ 0~
 40 10000 100
 A
 13 10
@@ -915,7 +915,7 @@ platinum gauntlets~
 A pair of silvery gauntlets are on the floor.~
 ~
 9 64|1024 1|128
-9 0 0 0
+9~ 0~ 0~ 0~
 40 10000 100
 A
 13 10
@@ -927,7 +927,7 @@ platinum sleeves~
 A pair of silvery sleeves are on the floor.~
 ~
 9 64|1024 1|256
-9 0 0 0
+9~ 0~ 0~ 0~
 40 10000 100
 A
 13 10
@@ -939,7 +939,7 @@ the platinum spiked shield~
 A jagged, silvery shield is on the floor.~
 ~
 9 64|1024 1|512
-9 0 0 0
+9~ 0~ 0~ 0~
 40 10000 100
 A
 13 10
@@ -951,7 +951,7 @@ the platinum girth~
 A silvery girth is on the floor.~
 ~
 9 64|1024 1|2048
-9 0 0 0
+9~ 0~ 0~ 0~
 40 10000 100
 A
 13 10
@@ -963,7 +963,7 @@ Holy Avenger~
 A glowing silvery sword is hovering here, ready to possess an owner.~
 ~
 5 64|1024 1|8192
-0 5 6 1
+0~ 5~ 6~ 1~
 25 10000 10000
 A
 18 1
@@ -975,7 +975,7 @@ a shot of whiskey~
 A shot of whiskey is on the table.~
 ~
 17 0 1
-5 5 5 0
+5~ 5~ 5~ 0~
 1 10 10
 #649
 ale quart~
@@ -983,7 +983,7 @@ a quart of ale~
 A quart of ale is on the table.~
 ~
 17 0 1
-50 50 3 0
+50~ 50~ 3~ 0~
 8 20 20
 #650
 port brew quart~
@@ -991,7 +991,7 @@ a quart of port brew~
 A quart of port brew is on the table.~
 ~
 17 0 1
-50 50 4 0
+50~ 50~ 4~ 0~
 8 20 20
 #651
 key citadel~
@@ -999,7 +999,7 @@ the citadel key~
 A key is on the floor.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 100
 #652
 symbol holy~
@@ -1007,7 +1007,7 @@ the Holy Symbol of Bahamut~
 A very shiny symbol is on the floor.~
 ~
 9 64|256|1024|2048 1|4
-8 0 0 0
+8~ 0~ 0~ 0~
 5 1000 1000
 A
 12 10
@@ -1019,7 +1019,7 @@ a ranseur~
 A heavy polearm is against the wall here, ready to inflict damage.~
 ~
 5 64|1024 1|8192
-0 5 6 2
+0~ 5~ 6~ 2~
 20 10000 10000
 A
 18 5
@@ -1031,7 +1031,7 @@ a golden dragonscale torso~
 A golden dragonscale torso is on the floor!~
 ~
 9 64|1024 1|8
-9 0 0 0
+9~ 0~ 0~ 0~
 25 5000 5000
 A
 17 -5
@@ -1043,7 +1043,7 @@ a golden dragonhelm~
 A golden dragonhelm is on the floor!~
 ~
 9 64|1024 1|16
-9 0 0 0
+9~ 0~ 0~ 0~
 10 5000 5000
 A
 17 -3
@@ -1055,7 +1055,7 @@ golden dragonscale leggings~
 Some golden dragonscale leggings are on the floor!~
 ~
 9 64|1024 1|32
-9 0 0 0
+9~ 0~ 0~ 0~
 10 5000 5000
 A
 17 -3
@@ -1067,7 +1067,7 @@ golden dragonscale boots~
 Some golden dragonscale boots are on the floor!~
 ~
 9 64|1024 1|64
-9 0 0 0
+9~ 0~ 0~ 0~
 10 5000 5000
 A
 17 -3
@@ -1079,7 +1079,7 @@ golden dragonscale gauntlets~
 Some golden dragonscale gauntlets are on the floor!~
 ~
 9 64|1024 1|128
-9 0 0 0
+9~ 0~ 0~ 0~
 10 5000 5000
 A
 17 -3
@@ -1091,7 +1091,7 @@ golden dragonscale sleeves~
 Some golden dragonscale sleeves are on the floor!~
 ~
 9 64|1024 1|256
-9 0 0 0
+9~ 0~ 0~ 0~
 10 5000 5000
 A
 17 -3
@@ -1103,7 +1103,7 @@ a golden dragonscale shield~
 A golden dragonscale shield is on the floor!~
 ~
 9 64|1024 1|512
-9 0 0 0
+9~ 0~ 0~ 0~
 10 5000 5000
 A
 17 -3
@@ -1115,7 +1115,7 @@ a golden dragonscale girth~
 A golden dragonscale girth is on the floor!~
 ~
 9 64|1024 1|2048
-9 0 0 0
+9~ 0~ 0~ 0~
 10 5000 5000
 A
 17 -3
@@ -1127,7 +1127,7 @@ the Golden Claw~
 A huge golden claw is on the floor~
 ~
 5 64|1024 1|8192
-0 5 5 5
+0~ 5~ 5~ 5~
 20 5000 5000
 A
 19 6
@@ -1137,7 +1137,7 @@ the Gold Dragon Orb~
 A very large pearl-like sphere is in the center of this room.~
 ~
 4 64|1024|2048 1|16384
-14 10 10 28
+14~ 10~ 10~ heal~
 30 100000 100000
 A
 3 3
@@ -1149,7 +1149,7 @@ a golden robe~
 A golden robe is on the floor.~
 ~
 9 64|1024 1|1024
-9 0 0 0
+9~ 0~ 0~ 0~
 10 5000 5000
 A
 3 3
@@ -1159,7 +1159,7 @@ a house key~
 A house key is on the floor.~
 ~
 18 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 0
 #666
 broom~
@@ -1167,7 +1167,7 @@ a broom~
 A broom is against the wall here.~
 ~
 5 0 1|8192
-0 2 3 7
+0~ 2~ 3~ 7~
 8 100 10
 A
 18 3
@@ -1179,7 +1179,7 @@ a chest~
 A chest is on the floor here.~
 ~
 15 0 1
-100 0 0 0
+100~ 0~ 0~ 0~
 10 100 100
 #0
 
@@ -2364,7 +2364,7 @@ Raff Way~
      You are on Raff Way.  To the west, you can see a big intersection.  To 
 the east, you see Raff Way continue toward the Golden Citadel.  There are 
 beautiful flowers growing along the rode here, making this more of a garden
-than a rode.
+than a road.
 ~
 6 0 1
 D1
@@ -2383,7 +2383,7 @@ Raff Way~
      You are on Raff Way.  Raff Way continues west to the city of Ofcol.  To 
 the east, you see Raff Way continue toward the Golden Citadel.  There are 
 beautiful flowers growing along the rode here, making this more of a garden
-than a rode.
+than a road.
 ~
 6 0 1
 D1
@@ -2946,10 +2946,10 @@ It is obvious that this room was not meant for you to intrude upon.  A stair-
 case leads back down, and a doorway leads north.
 ~
 6 8 0
-D1
+D0
 ~
 ~
-0 0 695
+0 0 693
 D5
 ~
 ~

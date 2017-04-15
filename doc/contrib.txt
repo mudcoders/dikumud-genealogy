@@ -1,9 +1,10 @@
-Merc Release 2.1
-Sunday 01 August 1993
+EnvyMud release 1.0
+Thursday 30th June 1994
 
-Furey	mec@shell.portal.com
-Hatchet	hatchet@uclink.berkeley.edu
-Kahn	michael@uclink.berkeley.edu
+Kahn		michael@uclink.berkeley.edu
+Thelonius	dave@mechatro2.berkeley.edu
+Kith		kith@marble.bu.edu
+Hatchet		hatchet@uclink.berkeley.edu
 
 
 
@@ -17,30 +18,20 @@ and we'll fix it in the next release.
 
 === Contribution Policy
 
-We welcome contributions to Merc.
+We welcome contributions to the Merc Mailing List at merc@kpc.com.
 
-You can send us areas, spells, skills, bug reports, bug fixes, code, ideas,
-comments on our documentation, interesting stories, or anything else, to any of
-our addresses above.
+You can send the mailing list areas, spells, skills, bug reports, bug fixes,
+code, ideas, comments on our documentation, interesting stories, or anything
+else.
 
-We particularly would like to get copies of 'bugs.txt', 'ideas.txt', and
-'typos.txt' from any site running a Merc mud.
-
-If we use your contribution, we will credit you for it in this file and in the
-source files.  The 'areas' command lists authors within the game, and 'help
-merc' credits major contributions as well.
-
-Merc is devoted to open release.  Once we accept a contribution, it will
+EnvyMud is devoted to open release.  Once we accept a contribution, it will
 become available to the entire mud community.  Also, once we accept a
-contribution and integrate it into Merc, we will not remove it later if you
+contribution and integrate it into EnvyMud, we will not remove it later if you
 change your mind.
 
-We usually rework code contributions into our own style, just as we've reworked
-100% of our released code into a consistent style.
-
-You are welcome to use any element of Merc in your own mud, as long as you
-follow the terms in 'license.doc' and 'license.txt'.  If you take things from
-Merc we'd appreciate e-mail from you.
+You are welcome to use any element of Envy in your own mud, as long as you
+follow the terms in 'license.doc', 'license.txt' and 'license.nvy'.  If you
+take things from EnvyMud we'd appreciate e-mail from you.
 
 
 
@@ -53,131 +44,40 @@ by sending e-mail to merc-request@kpc.com.
 
 === The First Contributions
 
-Merc Mud is based on Diku Mud, with Copper and Alfa enhancements.
+EnvyMud started solely on MERC 2.2 source.
 
-When we first started, Impy of Fajita Mud answered a lot of our newbie-coder
-questions.
+Thanks to Sludge (Tuan Doan) for pointing to the solution for the hpux
+echo_str bug.
 
-Frag, Tin, Razor, Jordan, Tre, and Matrix play-tested early Merc code.
+Thanks to Kaneda for the prompt fix.
 
-The Free Software Foundation and DJ Delorie wrote our development tools, and
-distribute them for free, with source.  You can ftp them from prep.ai.mit.edu
-and grape.ecs.clarkson.edu.
+Thanks to Alander for his socket memory fix.
 
+The EnvyMud Staff and University of California at Berkeley Central Computing
+Services and Information Systems and Technology staff contributed
+greatly during the development of EnvyMud release 1.0.
 
+Thanks to the coding staff who have written code for EnvyMud:
 
-=== New Area Contributions
+	Thelonius, Katrina, BoneCrusher, Binky, Globi, Tre, Morpheus, Karl,
+	and Morgan
 
-Vamplestat reworked and extended Miden'nir.
+Thanks to the implementor staff headed by Kith who kept EnvyMud an enjoyable
+place to play:
 
-Nirrad contributed the Fire Newt area.
+	Binky, Picard, Maverik, Icaza, Frag, Tricia, Unisex, Straykat, Katrina,
+	Katzenjammer, Boom, Benito, Demonspawn, Mithnite, Manx, Karl, Alexis,
+	Skie, Huka, Bonecrusher, and Anthea
 
-Tyrst contributed Wyvern Tower.
+Thanks to the builder staff headed by Hatchet who kept a steady supply of
+areas coming to the EnvyMud coffers:
 
-Doctor contributed Galaxy.
+	Binky, Karl, Maxx, Picard, Ash, Boom, Demonspawn, Dreads, Forstall,
+	Katrina, Katzenjammer, Mandur, Maverik, Morgan, Pudu, Shapeshifter,
+	Skie, Stooly, StrayKat, and Tholeus
 
-Raff contributed Dwarven Catacombs, Dangerous Neighborhood, and Elemental
-Canyon.
+Thanks to those who helped port EnvyMud to various sites:
 
-PinkF contributed the Mob Factory.
+	Jeremy Elson (of CircleMud), Binky, Thelonius, Celeste, George Marinos
+of Central Computing Services of University of California at Berkeley.
 
-Chris Boggs made the Keep of Mahn-Tor available for public distribution,
-and gave us permission to use it in Merc.
-
-Aod and Cauchy of Generic Mud gave us permission to use Smurf Village, Gnome
-Village, Dwarven Day Care Center, Old Marsh, Draconia, and Olympus.
-
-John Brothers of Silly Mud gave us permission to use Silly areas.  Although we
-haven't taken any yet, we appreciate having 2 megabytes of areas to draw on!
-
-Glop contributed Mega-City One (from the Judge Dredd comic books).
-
-
-
-=== Code and Idea Contributions
-
-Zrin contributed an 'auto-exit' function.
-
-Alander contributed the 'stats over 18 from magic items', as well as the
-new 'who', 'visible', 'commands' commands and some shop code.  We first
-saw a donation pit on Alander's 'Rivers of Mud'.
-
-Grodyn contributed the 'configure' command.
-
-Diavolo contributed the gruesome 'death_cry' function.
-
-Many other imps and players gave us hundreds of suggestions, some of which are
-now realized.  Thanks to you all!
-
-Aod and Cauchy of Generic gave us permission to use Generic code.
-
-John Brothers of Silly gave us permission to use Silly code.  Although we
-haven't used any Silly code yet, we appreciate having it available.
-
-Onethumb, Baka, and Penn of the Drool Co. sent us a long list of ideas,
-which we've included here as 'drool.txt'.
-
-
-
-=== Porting Contributions
-
-Hind and Quin (not the original Quinn of Diku, another Quin) helped on the
-Ultrix port.
-
-Vic contributed the Linux port and 386/BSD ports.
-
-Diavolo contributed the RS/6000 port, including helping to track down a code
-generation bug in the AIX compiler.
-
-Alander helped on the NeXT port.
-
-Shephane Haechler and Frederic Benedetto contributed the Hp/UX port, which is
-one of the more painful machines we've encounterd.
-
-Alan Drew contributed the Mips Risc/OS port.
-
-Trienne contributed the makefile changes for Solaris 2.1.
-
-Oleg contributed the Macintosh port.
-
-Jdpierce contributed the Interactive Systems changes.
-
-
-
-=== Bug Reports and Bug Fixes
-
-Mud Lite, Vego Mud, Final Mud, Rivers of Mud, Ruhr Mud, Chase Mud, and
-Mystic Realms sent us their 'bugs.txt', 'ideas.txt', and 'typos.txt' files.
-These were VERY helpful and we ask that all Merc-based muds e-mail us these
-files from time to time.
-
-While porting Merc to Linux, Vic isolated some mystifying memory management
-problems in the base code.
-
-Abaddon proofread our comm.c and reported several bugs and weak spots.
-Of course, any remaining problems are ours, not his.
-
-Kalgen reported bugs in the 2.0 Alpha release.
-
-Lincoln Myers found an array-read overrun in 'do_pose' in 2.0 Beta.
-
-Grodyn of Mystic Realms sent us several high-quality logs, core dump stack
-traces, and bug reports for 2.0 Beta.  Many other people, including Loki,
-also sent us good beta bug reports.
-
-Morgenes found and fixed the nasty 'aligned object drop corruption'
-in equip_char.
-
-Rivit play-tested the post-2.0-Beta version.
-
-Alander of Rivers of Mud has published *many* bug fixes and changes for
-2.0 on the Merc list, which we've picked up.
-
-Tony Chamberlain published a correct, recursive implementation of
-get_obj_number.
-
-Tuan Doan pointed out a bug in 'check_parry' and 'check_dodge',
-as well as some other rough edges.
-
-Alex found the right fix for the act() problems with channels,
-the 'rstat' problem with room exits, and some other bugs.

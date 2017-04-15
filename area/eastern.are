@@ -5,7 +5,7 @@
 #MOBILES
 #5000
 dervish raggity~
-The dervish~
+the dervish~
 The raggity dervish walks on aimlessly.
 ~
 Dressed in loose fitting rags, this man looks like he could use
@@ -17,7 +17,7 @@ some rest.
 8 8 1
 #5001
 dervish large~
-The dervish~
+the dervish~
 The large dervish watches for signs of trouble.
 ~
 Dressed in loose fitting rags, this man looks like he could use
@@ -29,7 +29,7 @@ LOTS of rest.
 8 8 1
 #5002
 snake coral~
-The coral snake~
+the coral snake~
 A brightly colored snake slithers along the sands.
 ~
 This relatively harmless snake has bright alternating bands of red, yellow
@@ -41,7 +41,7 @@ and black.
 8 8 0
 #5003
 scorpion small~
-The small scorpion~
+the small scorpion~
 A small, red scorpion scuttles away at your approach.
 ~
 The little tail is mighty dangerous for such a small creature.
@@ -52,7 +52,7 @@ The little tail is mighty dangerous for such a small creature.
 8 8 0
 #5004
 worm giant~
-The giant, purple sand worm~
+the giant, purple sand worm~
 A giant, purple sand worm thrusts up out of the sand and attacks!
 ~
 He's big, mean, and purple. Watch out!
@@ -74,7 +74,7 @@ Then adds to it, 'Prepare to die, have a nice day!'
 8 8 2
 #5006
 nomad leader~
-The nomad leader~
+the nomad leader~
 The nomad leader sits silently in prayer.
 ~
 He is clad in silk robes lined with gold thread. At his side
@@ -87,7 +87,7 @@ about him.
 6 6 1
 #5007
 nomad commander~
-The nomad commander~
+the nomad commander~
 The nomad commander stands here staring suspiciously at you.
 ~
 This is the nomad leader's second in command. His clothes are richly
@@ -99,7 +99,7 @@ woven of silk and gold thread. A nasty cutlass hangs at his side.
 8 8 1
 #5008
 nomad warrior~
-The nomad warrior~
+the nomad warrior~
 A proud nomad warrior stands here.
 ~
 ~
@@ -109,7 +109,7 @@ A proud nomad warrior stands here.
 8 8 1
 #5009
 slave young~
-The slave~
+the slave~
 A young slave sits here staring at you with pleading eyes.
 ~
 ~
@@ -119,7 +119,7 @@ A young slave sits here staring at you with pleading eyes.
 5 5 2
 #5010
 dracolich lich~
-The dracolich~
+the dracolich~
 A pile of bones rises up to form a skeletal dracolich.
 ~
 The dracolich is now only bone with pieces of flesh hanging from it.
@@ -131,7 +131,7 @@ Obviously it no longer fears death.
 8 8 0
 #5011
 drider drow~
-The drider~
+the drider~
 The drider looks at you viciously while it draws its sword.
 ~
 This half-spider, half-drow creature is a formidable opponent.
@@ -142,7 +142,7 @@ This half-spider, half-drow creature is a formidable opponent.
 8 8 2
 #5012
 duergar dwarf~
-The dark dwarf~
+the dark dwarf~
 A duergar is here mining precious stones with his pick.
 ~
 The duergar could crush your head as easily as it does those rocks.
@@ -165,7 +165,7 @@ has the same effect).
 8 8 1
 #5014
 myconoid shaman~
-The myconoid shaman~
+the myconoid shaman~
 A rather large myconoid stands here chanting in a strange tongue.
 ~
 The shaman shoots spores into the air.
@@ -176,8 +176,9 @@ The shaman shoots spores into the air.
 8 8 1
 #5015
 dustdigger~
-The dustdigger~
-A small oasis invites you to dive in.~
+the dustdigger~
+A small oasis invites you to dive in.
+~
 ~
 38 65536 -200 S
 7 10 1 7d7+70 3d4+0
@@ -185,7 +186,7 @@ A small oasis invites you to dive in.~
 8 8 0
 #5017
 camel~
-The rabid camel~
+the rabid camel~
 A very dangerous rabid camel snorts at you.
 ~
 Don't mess with this animal.
@@ -201,19 +202,19 @@ Don't mess with this animal.
 #OBJECTS
 #5000
 pick~
-A small mining pick~
+a small mining pick~
 A small mining pick made of what appears to be silver lies on the ground.~
 ~
 5 512 8193
-0 1 9 11
+0~ 1~ 9~ 11~
 3 600 200
 #5001
 banded mail~
-A glowing suit of banded mail~
+a glowing suit of banded mail~
 A glowing suit of banded mail lies on the ground.~
 ~
 9 65 9
-7 0 0 0
+7~ 0~ 0~ 0~
 0 75000 20000
 A
 2 2
@@ -225,7 +226,7 @@ the halberd~
 A mighty halberd lies against the wall.~
 ~
 5 320 8193
-0 3 7 2
+0~ 3~ 7~ 2~
 16 12000 4000
 A
 18 2
@@ -237,17 +238,17 @@ the amulet~
 A mushroom shaped amulet lies on the ground.~
 ~
 9 64 5
-0 0 0 0
+0~ 0~ 0~ 0~
 2 1500 500
 A
 5 2
 #5005
 bone~
-A large leg bone~
+a large leg bone~
 A large leg bone rests on the ground.~
 ~
 5 0 8193
-0 1 4 7
+0~ 1~ 4~ 7~
 5 300 60
 #5006
 cactus~
@@ -255,7 +256,7 @@ a small cactus cup~
 A small cactus cup lies on the ground.~
 ~
 17 0 1
-5 5 0 0
+5~ 5~ 0~ 0~
 6 30 5
 #5007
 basket~
@@ -263,7 +264,7 @@ a small wicker basket~
 A small wicker basket sits on the ground.~
 ~
 15 0 1
-100 5 -1 0
+100~ 5~ -1~ 0~
 50 5000 500
 #5008
 basket~
@@ -271,7 +272,7 @@ a small wicker basket~
 A small wicker basket sits on the ground.~
 ~
 15 0 1
-100 5 -1 0
+100~ 5~ -1~ 0~
 50 5000 500
 #5009
 basket~
@@ -279,7 +280,7 @@ a small wicker basket~
 A small wicker basket sits on the ground.~
 ~
 15 0 1
-100 5 -1 0
+100~ 5~ -1~ 0~
 50 5000 500
 #5010
 basket~
@@ -287,7 +288,7 @@ a small wicker basket~
 A small wicker basket sits on the ground.~
 ~
 15 0 0
-100 5 -1 0
+100~ 5~ -1~ 0~
 50 5000 500
 #5011
 rope~
@@ -295,7 +296,7 @@ a coil of rope~
 A long coil of rope lies on the ground.~
 ~
 12 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 12 450 45
 #5012
 stakes~
@@ -303,7 +304,7 @@ a bunch of stakes~
 A small bundle of stakes lies here.~
 ~
 12 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 6 250 30
 #5013
 map~
@@ -311,15 +312,15 @@ an old, tattered map~
 An old, tattered, and much faded map lies here.~
 ~
 12 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 1 300 20
 #5014
 turban~
 a thick padded turban~
 A thick padded turban lies here.~
 ~
-9 192 17
-0 0 0 0
+9 1 17
+0~ 0~ 0~ 0~
 15 4300 1200
 A
 17 1
@@ -329,7 +330,7 @@ a great pile of treasure~
 A great, gleaming pile of treasure lies at your feet.~
 ~
 20 0 1
-46270 0 0 0
+46270~ 0~ 0~ 0~
 0 0 0
 #5016
 sabre~
@@ -337,7 +338,7 @@ a long, curved sabre~
 A long, curved sabre stands upright in the ground.~
 ~
 5 2048 8193
-0 2 8 3
+0~ 2~ 8~ 3~
 7 1050 230
 A
 18 2
@@ -347,7 +348,7 @@ a curved scimitar~
 A curved scimitar lies at your feet.~
 ~
 5 2048 8193
-0 2 7 3
+0~ 2~ 7~ 3~
 6 600 150
 A
 18 1
@@ -357,7 +358,7 @@ a long, pointed cutlass~
 A long, pointed cutlass lies here.~
 ~
 5 2048 8193
-0 2 7 3
+0~ 2~ 7~ 3~
 5 550 120
 #5019
 potion pink~
@@ -365,7 +366,7 @@ a pink potion~
 A pink potion stands here.~
 ~
 10 0 1
-25 28 35 -1
+25~ heal~ remove curse~ ~
 6 600 110
 #5020
 wand platinum~
@@ -373,23 +374,25 @@ a platinum wand~
 A platinum wand lies here.~
 ~
 3 2 16385
-30 10 10 32
+30~ 10~ 10~ magic missile~
 8 1900 900
 #5021
 bow energy strange~
 a strange energy bow~
 A strange energy bow lies here.~
-blast~
+~
 5 1|2|64|256 8193
-0 4 5 6
+0~ 4~ 5~ 6~
 20 150000 10000
+A
+19 5
 #5022
 scroll encrypted~
-An encrypted scroll~
+an encrypted scroll~
 An encrypted scroll lies at your feet.~
 ~
 2 0 1
-22 14 35 43
+22~ cure blindness~ remove curse~ cure poison~
 7 1500 540
 #5023
 chest~
@@ -397,7 +400,7 @@ an iron bound chest~
 An iron bound chest with a shiny lock sits here.~
 ~
 15 0 0
-200 13 5024 0
+200~ 13~ 5024~ 0~
 200 1000 100
 #5024
 key golden~
@@ -405,7 +408,7 @@ a golden key~
 A shiny golden key lies here.~
 ~
 18 0 1
-10 0 0 0
+10~ 0~ 0~ 0~
 1 150 15
 #5025
 bracelet copper~
@@ -413,7 +416,7 @@ a copper bracelet~
 A tarnished copper bracelet lies at your feet.~
 ~
 9 192 4097
-5 0 0 0
+5~ 0~ 0~ 0~
 10 23000 2500
 A
 13 10
@@ -421,27 +424,27 @@ A
 19 2
 #5026
 gem ruby~
-A large ruby~
+a large ruby~
 A large ruby lies on the ground collecting dust.~
 ~
 8 64 1
-20 0 0 0
+20~ 0~ 0~ 0~
 9 4000 1500
 #5027
 gem diamond~
-A glittering diamond~
+a glittering diamond~
 A glittering diamond lies at your feet.~
 ~
 8 64 1
-21 0 0 0
+21~ 0~ 0~ 0~
 10 9500 3200
 #5028
 gem sapphire~
-A brilliant sapphire~
+a brilliant sapphire~
 A brilliant sapphire lies here twinkling.~
 ~
 8 64 1
-22 0 0 0
+22~ 0~ 0~ 0~
 7 3500 1100
 #5029
 gem lapis~
@@ -449,7 +452,7 @@ a deep blue lapis lazuli~
 A deep blue lapis lazuli gem lies here.~
 ~
 8 64 1
-24 0 0 0
+24~ 0~ 0~ 0~
 11 8500 2400
 #5030
 jewel tiger~
@@ -457,7 +460,7 @@ the tiger jewel~
 The Tiger Jewel lies here blazing.~
 ~
 8 256 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 23 3000 4500
 A
 2 1
@@ -467,7 +470,7 @@ the red-eyed jewel~
 The red-eyed jewel glares at you greedily.~
 ~
 8 0 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 30 5000 2600
 A
 3 2
@@ -477,7 +480,7 @@ a fiery green emerald~
 A fiery green emerald sits here.~
 ~
 8 64 1
-23 0 0 0
+23~ 0~ 0~ 0~
 7 5500 1550
 #0
 
@@ -983,7 +986,8 @@ S
 #5029
 The Great Eastern Desert~
 A vast desert stretches for miles, the sand constantly shifting around you.
-You feel lost.
+You feel lost.  To the east, you see a big mirage of a city!  You MUST be
+hallucinating!
 ~
 50 8192 10
 D0
@@ -992,7 +996,7 @@ Sand as far as the eye can see.
 ~
 0 0 5026
 D1
-The sand is *glowing* in this direction.
+Sand as far as the eye can see.
 ~
 ~
 0 0 5062
@@ -1078,7 +1082,7 @@ Sand as far as the eye can see.
 ~
 0 0 5030
 D2
-Sand as far as the eye can see.
+You see a tiny ledge.
 ~
 ~
 0 0 5026
@@ -1102,15 +1106,20 @@ You see ill-tempered camels.
 ~
 0 0 5058
 D1
-You see inside one of the tents a huddled mass of people, probably slaves.
+Sand as far as the eye can see... and a pyramid in the distance.
 ~
 ~
-0 0 5057
+0 0 2600
 D2
 Sand as far as the eye can see.
 ~
 ~
 0 0 5025
+D3
+You see inside one of the tents a huddled mass of people, probably slaves.
+~
+~
+0 0 5057
 S
 #5057
 Inside a small tent~
@@ -1119,9 +1128,8 @@ here and there are young-looking men and women, possibly slaves to the
 leader of this band.
 ~
 50 0 2
-D3
-You see the center of the nomad camp.
-~
+D1
+You see the center of the nomad camp.~
 ~
 0 0 5056
 S
@@ -1138,13 +1146,11 @@ mental note to visit it before you leave.~
 ~
 0 0 5060
 D1
-In this tent there are very large men, all carrying weapons.
-~
+In this tent there are very large men, all carrying weapons.~
 ~
 0 0 5059
 D2
-You see the center of the nomad camp.
-~
+You see the center of the nomad camp.~
 ~
 0 0 5056
 S
@@ -1155,8 +1161,7 @@ protectors. They all stare at you coldly as you enter.
 ~
 50 128 2
 D3
-Outside you see some peaceful camels.
-~
+Outside you see some peaceful camels.~
 ~
 0 0 5058
 S
@@ -1172,8 +1177,7 @@ D1
 ~
 0 0 5061
 D2
-You see some peaceful camels.
-~
+You see some peaceful camels.~
 ~
 0 0 5058
 S
@@ -1185,28 +1189,21 @@ paintings as well.
 ~
 50 128 2
 D3
-You see the entrance to this tent.
-~
+You see the entrance to this tent.~
 ~
 0 0 5060
 S
 #5062
-Strange Glowing Sand~
-A vast desert stretches for miles, the sand constantly shifting around you.
-But this patch of desert looks different ... the sand glows.  You see a
-futuristic city to the south.
+Upon a small hill.~
+You crest a small hill, and to the south, you see some glowing sands, and more
+of this mirage of a city!
 ~
-50 4|8 5
+50 4 5
 D2
-You see a futuristic city.
+You see some glowing sands to the south!
 ~
 ~
 0 0 8001
-D3
-Sand as far as the eye can see.
-~
-~
-0 0 5029
 S
 #5063
 The wind-swept ledge~
@@ -1221,7 +1218,6 @@ Sand as far as the eye can see.
 ~
 0 0 5031
 D3
-You see a dark cave.
 ~
 ~
 0 0 5064

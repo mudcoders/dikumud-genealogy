@@ -1,12 +1,24 @@
-Merc Release 2.0
-Sunday 04 July 1993
+EnvyMud release 1.0
+Thursday, 30th June 1994
 
-Furey	mec@shell.portal.com
-Hatchet	hatchet@uclink.berkeley.edu
-Kahn	michael@uclink.berkeley.edu
+Kahn		michael@uclink.berkeley.edu
+Thelonius	dave@mechatro2.berkeley.edu
+Kith		kith@marble.bu.edu
+Hatchet		hatchet@uclink.berkeley.edu
 
 
 
 === Log Directory
 
-This directory keeps all your game log files from running startup.
+This directory keeps all your game log files from running startup or startupSH.
+
+
+
+=== The logfiles
+
+Each logfile is numbered starting from 1000.log.  The startup script is smart
+enough to create the next appropriate logfile should you restart the mud or
+crash.
+
+It is advisable to not hold old logfiles for a long period of time to prevent
+cluttering your directory with outdated information on gaming sessions.

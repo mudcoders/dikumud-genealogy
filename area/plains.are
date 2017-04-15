@@ -126,7 +126,7 @@ a small dusk of timian herbs~
 Some herbs are lying here, small green leaves and tiny pink flowers.~
 ~
 19 0 1
-1 0 0 0
+1~ 0~ 0~ 0~
 1 5 1
 E
 herbs herb timian~
@@ -139,7 +139,7 @@ Some black gyvel is lying here, dark green with black leaves and tiny
 blood red flowers.~
 ~
 19 0 1
-1 0 0 0
+1~ 0~ 0~ 0~
 1 50 25
 E
 herbs herb gyvel~
@@ -151,7 +151,7 @@ a small dusk of poison ivy~
 Some poison ivy is growing here.~
 ~
 19 0 1
-1 0 0 1
+1~ 0~ 0~ 1~
 1 5 100
 E
 plant ivy~
@@ -163,7 +163,7 @@ a dark red jar~
 A small jar in a dark, red colour.~
 ~
 17 0 1
-2 2 13 0
+2~ 2~ 13~ 0~
 2 50 10
 E
 blood jar~
@@ -176,7 +176,7 @@ wild flowers~
 A bunch of pretty wild flowers is here.~
 ~
 13 1024 16401
-0 0 0 0
+0~ 0~ 0~ 0~
 1 10 50
 E
 wild flowers~
@@ -188,7 +188,7 @@ a strange amulet~
 A strange looking amulet is lying here, half covered with dust.~
 ~
 9 192 5
-2 0 0 0
+2~ 0~ 0~ 0~
 1 500 300
 E
 amulet~
@@ -204,7 +204,7 @@ a druish staff~
 A staff with druidic marks have been left here.~
 ~
 12 0 16385
-0 0 0 0
+0~ 0~ 0~ 0~
 4 15 5
 E
 staff stick~
@@ -217,7 +217,7 @@ a rabbit roast~
 You see a deliciously looking rabbit roast.~
 ~
 19 0 1
-24 0 0 0
+24~ 0~ 0~ 0~
 5 40 10
 E
 roast rabbit wabbit~
@@ -231,7 +231,7 @@ a strange template~
 A strange template made of an exotic green metal is placed here~
 ~
 2 64 16385
-15 38 4 26
+15~ sleep~ blindness~ fireball~
 1 15000 5000
 E
 template scroll metal~
@@ -247,7 +247,7 @@ a clear potion~
 A clear potion wrapped in leather is unnoticed placed here.~
 ~
 10 64 1
-20 18 19 20
+20~ detect evil~ detect invis~ detect magic~
 2 2500 500
 E
 potion clear~
@@ -265,7 +265,7 @@ a scroll titled 'jhyfrdow'~
 An odd looking scroll is here.~
 ~
 2 0 1
-0 0 0 0
+0~ ~ ~ ~
 1 500 200
 E
 scroll jhyfrdow~
@@ -645,6 +645,11 @@ The plains extend far to the west.
 ~
 ~
 0 -1 318
+D4
+You see a strange moongate here!
+~
+moongate~
+1 -1 2400
 E
 sign~
 The sign says:

@@ -20,9 +20,9 @@ dwarf~
 the small dwarf~
 A small dwarf is here, on the watch for Duergar.
 ~
-  The small dwarf is dressed in colorful clothing and has a full and long beard.
-His eyes are keen and sharp, well suited for sight in the dark tunnels of the
-mines.
+  The small dwarf is dressed in colorful clothing and has a full and long
+beard.  His eyes are keen and sharp, well suited for sight in the dark tunnels
+of the mines.
 ~
 4 0 500 S
 5 18 5 1d12+60 1d8+0
@@ -57,7 +57,7 @@ of failure at growing rocks.
 #4704
 juargan dwarf king~
 Juargan the Dwarven King~
-Juargan the Dwarven King sits here upon his throne, looking out over his gardens.
+Juargan the Dwarven King sits upon his throne, looking out over his gardens.
 ~
   The small king is bulging at the seems with muscle.  He is dressed in nothing
 but a noble robe made of a grey silk.  His face has a visage of stone like his
@@ -130,7 +130,7 @@ a small key~
 A small key of red rock lies here on the ground.~
 ~
 18 0 1
-2 0 0 0
+2~ 0~ 0~ 0~
 1 10 1
 #4701
 pick mining~
@@ -138,7 +138,7 @@ a mining pick~
 A small pick lies here on the ground.~
 ~
 5 0 8193
-0 1 6 11
+0~ 1~ 6~ 11~
 10 100 20
 #4702
 helm dwarven~
@@ -146,7 +146,7 @@ a dwarven helm~
 A large dwarven helm lies here on the ground.~
 ~
 9 0 17
-6 0 0 0
+6~ 0~ 0~ 0~
 10 1000 100
 #4703
 plate dwarven breast~
@@ -154,7 +154,7 @@ a dwarven breast plate~
 A dwarven breast plate lies here on the ground.~
 ~
 9 0 9
-10 0 0 0
+10~ 0~ 0~ 0~
 15 1500 150
 #4704
 shield large dwarven~
@@ -162,7 +162,7 @@ a large dwarven shield~
 A large dwarven shield lies here on the ground.~
 ~
 9 1 513
-4 0 0 0
+4~ 0~ 0~ 0~
 7 2000 200
 A
 17 -2
@@ -174,7 +174,7 @@ a large pile of coins~
 A large pile of coins are piled here.~
 ~
 20 0 1
-30000 0 0 0
+30000~ 0~ 0~ 0~
 0 0 0
 #4706
 dwarven battle axe~
@@ -182,7 +182,7 @@ a large dwarven battle axe~
 A large battle axe lies here on the ground.~
 ~
 5 320 8193
-0 2 12 1
+0~ 2~ 12~ 1~
 5 10000 100
 E
 dwarven battle axe~
@@ -197,7 +197,7 @@ a large stone sarcophagus~
 A large stone sarcophagus lies here, the lid fallen on the floor.~
 ~
 15 0 0
-1000 1 -1 0
+1000~ 1~ -1~ 0~
 1000 0 0
 #4708
 staff ruling large~
@@ -205,7 +205,7 @@ the staff of ruling~
 A large and intricate staff rests here.~
 ~
 4 2 16385
-25 5 5 7
+25~ 5~ 5~ charm person~
 10 10000 100
 #0
 

@@ -2,11 +2,6 @@
 
 
 
-#HELPS
-0 $~
-
-
-
 #MOBILES
 #8000
 juve~
@@ -179,7 +174,7 @@ a spit gun~
 There is a spit gun laying here.~
 ~
 3 0 1|16384
-37 10 10 501
+37~ 10~ 10~ general purpose~
 2 0 0
 E
 spit gun~
@@ -192,7 +187,7 @@ a set of knee pads~
 There are some knee pads laying here.~
 ~
 9 0 1|32
-0 0 0 0
+0~ 0~ 0~ 0~
 3 0 0
 E
 knee pads~
@@ -205,7 +200,7 @@ a stooky gland~
 There is a stooky gland laying here.~
 ~
 26 0 1
-20 0 43 28
+20~ cure poison~ heal~ ~
 1 0 0
 E
 stooky gland~
@@ -219,7 +214,7 @@ a lawgiver~
 There is a lawgiver laying here.~
 ~
 3 0 1|16384
-37 10 10 502
+37~ 10~ 10~ high explosive~
 2 0 0
 E
 lawgiver gun~
@@ -232,7 +227,7 @@ the magnetically shielded safe~
 A indestructible, immobile safe is here.~
 ~
 15 2 0
-1005 1|4|8 8005 0
+1005~ 13~ 8005~ 0~
 1000 0 0
 E
 safe~
@@ -245,7 +240,7 @@ a code box~
 A code box of indeterminate use is here.~
 ~
 18 2 1|16384
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 0
 E
 code box~
@@ -257,7 +252,7 @@ a bashball bat~
 A bashball bat is laying here.~
 ~
 5 0 1|8192
-0 0 0 7
+0~ 0~ 0~ 7~
 3 0 0
 E
 bashball bat~
@@ -270,7 +265,7 @@ the Vibroblade~
 The Vibroblade is here.~
 ~
 5 1|2|32 1|8192
-0 0 0 3
+0~ 0~ 0~ 3~
 2 0 0
 E
 vibroblade~
@@ -291,7 +286,7 @@ a Hoover vacuum cleaner~
 A Hoover vacuum cleaner is here idling.~
 ~
 5 2 1|8192
-0 0 0 12
+0~ 0~ 0~ 12~
 10 0 0
 E
 vacuum cleaner~
@@ -304,7 +299,7 @@ a knife~
 A knife is sitting here...contemplating life.~
 ~
 5 0 1|8192
-0 0 0 1
+0~ 0~ 0~ 1~
 3 0 0
 E
 knife~
@@ -316,7 +311,7 @@ a wet noodle~
 A wet noodle is laying here with clam sauce on it.~
 ~
 5 0 1|4|8192
-0 0 0 4
+0~ 0~ 0~ 4~
 1 0 0
 E
 noodle~
@@ -330,7 +325,7 @@ a Judge's club~
 A Judge's club is resting here.~
 ~
 5 0 1|8192
-0 0 0 7
+0~ 0~ 0~ 7~
 3 0 0
 E
 judge club~
@@ -345,7 +340,7 @@ a vault key~
 A vault key is here.~
 ~
 18 2 1|16384
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 0
 E
 vault key~
@@ -357,7 +352,7 @@ a key card~
 A key card is laying here.~
 ~
 18 0 1|16384
-0 0 0 0
+0~ 0~ 0~ 0~
 1 0 0
 E
 key card~

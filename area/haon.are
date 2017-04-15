@@ -158,9 +158,9 @@ he would be a tough foe.
 axe lumber~
 a lumber axe~
 A heavy lumber axe lies here.~
-chop~
+~
 5 0 8193
-0 2 6 1
+0~ 2~ 6~ 1~
 10 50 15
 E
 axe lumber~
@@ -172,7 +172,7 @@ a chequered shirt~
 A chequered shirt lies here.~
 ~
 9 0 9
-3 0 0 0
+3~ 0~ 0~ 0~
 2 20 8
 E
 shirt~
@@ -184,7 +184,7 @@ a pair of leather boots~
 A pair of leather boots lies here.~
 ~
 9 0 65
-3 0 0 0
+3~ 0~ 0~ 0~
 4 60 20
 E
 boots~
@@ -197,7 +197,7 @@ a fireplace~
 A fireplace made from stone is set against the east wall.~
 ~
 15 0 0
-200 0 0 0
+200~ 0~ 0~ 0~
 0 0 0
 E
 fireplace~
@@ -211,7 +211,7 @@ a wooden chest~
 A wooden chest stands in the corner.~
 ~
 15 0 1
-100 13 6006 0
+100~ 13~ 6006~ 0~
 40 100 30
 E
 chest~
@@ -224,7 +224,7 @@ a small brass key~
 A small brass key lies here.~
 ~
 18 0 1
-6005 0 0 0
+6005~ 0~ 0~ 0~
 1 10 4
 E
 key~
@@ -236,7 +236,7 @@ a heap of gold coins~
 Some gold coins lie piled up in a heap on the floor.~
 ~
 20 0 1
-100 0 0 0
+100~ 0~ 0~ 0~
 0 0 0
 E
 coins~
@@ -248,7 +248,7 @@ some blackberries~
 Some blackberries grow on a bush nearby.~
 ~
 19 0 1
-3 0 0 0
+3~ 0~ 0~ 0~
 1 10 10
 E
 blackberries~
@@ -260,7 +260,7 @@ a mushroom~
 A small mushroom grows nearby.~
 ~
 19 0 1
-6 0 0 0
+6~ 0~ 0~ 0~
 1 10 10
 E
 mushroom~
@@ -272,7 +272,7 @@ the barrel~
 A water barrel has been left here.~
 ~
 17 0 1
-50 50 0 0
+50~ 50~ 0~ 0~
 65 60 20
 #6102
 tree opening~
@@ -280,7 +280,7 @@ a colossal tree~
 A colossal tree blocks the way westwards.~
 ~
 15 0 0
-1000 0 0 0
+1000~ 0~ 0~ 0~
 0 0 0
 E
 tree~
@@ -299,15 +299,15 @@ a long, grey branch~
 A long, grey branch rests heavily on the ground.~
 ~
 1 0 16385
-0 0 25 0
+0~ 0~ 25~ 0~
 20 1 3
 #6104
 branch~
 a long, grey branch~
 A long, grey branch rests heavily on the ground.~
-pound~
+~
 5 0 8193
-0 2 5 7
+0~ 2~ 5~ 7~
 30 60 20
 A
 18 -2
@@ -317,7 +317,7 @@ a long, grey branch~
 A long, grey branch rests heavily on the ground.~
 ~
 13 0 1
-0 0 0 0
+0~ 0~ 0~ 0~
 40 0 0
 #6106
 toadstool~
@@ -325,7 +325,7 @@ a toadstool~
 A large toadstool grows nearby.~
 ~
 19 0 1
-12 0 0 0
+12~ 0~ 0~ 0~
 5 20 20
 E
 toadstool~
@@ -339,7 +339,7 @@ a toadstool~
 A large toadstool grows nearby.~
 ~
 19 0 1
-12 0 0 1
+12~ 0~ 0~ 1~
 5 20 20
 E
 toadstool~
@@ -353,7 +353,7 @@ a yellow potion~
 A yellow potion has been left here.~
 ~
 10 64 1
-15 39 -1 -1
+35~ giant strength~ ~ ~
 2 1000 300
 E
 potion yellow~
@@ -365,7 +365,7 @@ a large round shield~
 A large round shield has been left here.~
 ~
 9 0 513
-5 0 0 0
+5~ 0~ 0~ 0~
 15 300 100
 E
 shield large~
@@ -377,8 +377,10 @@ an iron crown~
 An iron crown rests on the ground.~
 ~
 9 64 17
-4 0 0 0
+4~ 0~ 0~ 0~
 10 5000 1500
+A
+4 3
 E
 crown iron~
 It is a heavy human-sized crown made from solid iron.
@@ -389,8 +391,10 @@ an iron ring~
 An iron ring has been left here.~
 ~
 9 64 3
-1 0 0 0
+1~ 0~ 0~ 0~
 1 5000 1500
+A
+2 1
 E
 ring iron~
 It is a quite heavy human-sized ring made from solid iron.  It lacks
@@ -402,8 +406,12 @@ the morning star~
 the morning star is here collecting dust while it lies on the ground.~
 ~
 5 64 8193
-0 2 8 8
+0~ 2~ 8~ 8~
 10 15000 2500
+A
+18 4
+A
+19 -1
 #0
 
 
@@ -413,7 +421,8 @@ the morning star is here collecting dust while it lies on the ground.~
 The edge of the forest~
 You are standing at the eastern edge of a big forest.  To the east is the West
 Gate of Midgaard and to the west is a narrow trail, leading in through the
-forest.  A dimly lit path leads north.
+forest.  A dimly lit path leads north, while a rock outcropping is to the 
+south.
 ~
 60 4 2
 D0
@@ -426,6 +435,11 @@ You see the West Gate of the City of Midgaard.
 ~
 ~
 0 -1 3052
+D2
+You see the rock outcropping.
+~
+~
+0 0 10001
 D3
 You see the narrow forest trail winding westwards in between the trees.
 ~

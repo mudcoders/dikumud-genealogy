@@ -206,7 +206,7 @@ elven chainmail~
 A shiny metallic shirt is on the floor.~
 ~
 9 0 1|8
-4 0 0 0
+4~ 0~ 0~ 0~
 3 50 50
 #7801
 boots~
@@ -214,7 +214,7 @@ elven boots~
 Some soft boots are on the floor.~
 ~
 9 0 1|64
-3 0 0 0
+3~ 0~ 0~ 0~
 3 10 10
 A
 14 50
@@ -224,7 +224,7 @@ an elven longsword~
 A shiny blade is on the floor.~
 ~
 5 64 1|8192
-0 3 3 3
+0~ 3~ 3~ 3~
 3 50 50
 A
 18 1
@@ -234,7 +234,7 @@ a brown cloak~
 A pile of brown cloth is on the floor.~
 ~
 9 64 1|4
-3 0 0 0
+3~ 0~ 0~ 0~
 3 50 50
 A
 2 1
@@ -244,7 +244,7 @@ a key~
 A shiny key is on the floor.~
 ~
 18 0 1
-7846 0 0 0
+7846~ 0~ 0~ 0~
 1 0 0
 #7805
 key~
@@ -252,7 +252,7 @@ a key~
 A shiny key is on the floor.~
 ~
 18 0 1
-7880 0 0 0
+7880~ 0~ 0~ 0~
 1 0 0
 #7806
 ring~
@@ -260,7 +260,7 @@ a gold ring~
 A shiny ring is on the floor.~
 ~
 9 64 1|2
-3 0 0 0
+3~ 0~ 0~ 0~
 1 1000 10
 A
 12 10
@@ -270,7 +270,7 @@ a quarterstaff~
 A quarterstaff is on the floor.~
 ~
 5 64 1|8192
-0 4 4 8
+0~ 4~ 4~ 8~
 5 1000 10
 A
 19 2
@@ -280,7 +280,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10 1 29 0
+10~ armor~ invis~ ~
 1 200 10
 #7809
 potion~
@@ -288,7 +288,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10 25 0 0
+10~ energy drain~ ~ ~
 1 200 10
 #7810
 potion~
@@ -296,7 +296,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10 44 20 0
+10~ detect hidden~ detect magic~ ~
 1 200 10
 #7811
 potion~
@@ -304,7 +304,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-50 59 59 59
+50~ dispel magic~ dispel magic~ dispel magic~
 1 200 10
 #7812
 potion~
@@ -312,7 +312,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10 81 34 0
+10~ refresh~ protection~ ~
 1 200 10
 #7813
 potion~
@@ -320,7 +320,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10 38 0 0
+10~ sleep~ ~ ~
 1 200 10
 #7814
 potion~
@@ -328,7 +328,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10 3 0 0
+10~ bless~ ~ ~
 1 200 10
 #7815
 potion~
@@ -336,7 +336,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10 15 0 0
+10~ cure critical~ ~ ~
 1 200 10
 #7816
 potion~
@@ -344,7 +344,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10 0 0 0
+10~ ~ ~ ~
 1 200 10
 #7817
 scroll~
@@ -352,7 +352,7 @@ a scroll~
 A scroll is on the floor.~
 ~
 2 64 1
-10 15 0 0
+10~ cure critical~ ~ ~
 1 200 10
 #7818
 scroll~
@@ -360,7 +360,7 @@ a scroll~
 A scroll is on the floor.~
 ~
 2 64 1
-10 0 0 0
+10~ ~ ~ ~
 1 200 10
 #7819
 scroll~
@@ -368,7 +368,7 @@ a scroll~
 A scroll is on the floor.~
 ~
 2 64 1
-10 18 0 0
+10~ detect evil~ ~ ~
 1 200 10
 #7820
 scroll~
@@ -376,7 +376,7 @@ a scroll~
 A scroll is on the floor.~
 ~
 2 64 1
-10 13 0 0
+10~ create water~ ~ ~
 1 200 10
 #7821
 scroll~
@@ -384,7 +384,7 @@ a scroll~
 A scroll is on the floor.~
 ~
 2 64 1
-10 32 0 0
+10~ magic missile~ ~ ~
 1 200 10
 #7822
 scroll~
@@ -392,7 +392,7 @@ a scroll~
 A scroll is on the floor.~
 ~
 2 64 1
-10 8 0 0
+10~ chill touch~ ~ ~
 1 200 10
 #7823
 scroll~
@@ -400,7 +400,7 @@ a scroll~
 A scroll is on the floor.~
 ~
 2 64 1
-10 28 0 0
+10~ heal~ ~ ~
 1 200 10
 #7824
 rod light~
@@ -408,7 +408,7 @@ the Rod of Neutrality~
 A dull iron shaft is on the floor.~
 ~
 1 64|512|1024 1
-0 0 -1 0
+0~ 0~ -1~ 0~
 1 1000 10
 A
 19 5

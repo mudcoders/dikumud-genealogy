@@ -429,7 +429,7 @@ the earth ring~
 A dark ring which seems to absorb all the light around it lies here.~
 ~
 12 256 3
-0 0 0 0
+0~ 0~ 0~ 0~
 5 100000 2000
 A
 3 1
@@ -441,7 +441,7 @@ a stoney breastplate~
 A breastplate made of the stone from deep within the earth lies here.~
 ~
 9 0 9
-10 0 0 0
+10~ 0~ 0~ 0~
 70 200000 4000
 A
 5 1
@@ -451,7 +451,7 @@ a fiery dagger~
 A dagger made of fire crackles mysteriously here.~
 ~
 5 1 8193
-0 4 4 11
+0~ 4~ 4~ 11~
 2 100000 2000
 A
 19 4
@@ -461,7 +461,7 @@ a flame red cape~
 A cape made of ethereal red fiber lies neatly folded on the ground here.~
 ~
 9 1 5
-11 0 0 0
+11~ 0~ 0~ 0~
 3 100000 2000
 A
 19 1
@@ -471,7 +471,7 @@ the wind boots~
 A pair of boots that look fast standing still are here.~
 ~
 9 64 65
-10 0 0 0
+10~ 0~ 0~ 0~
 1 100000 2000
 A
 2 2
@@ -481,7 +481,7 @@ a humming hurricane helmet~
 A helmet that looks like it has weathered many storms has been set here.~
 ~
 9 2 17
-9 0 0 0
+9~ 0~ 0~ 0~
 4 200000 4000
 A
 23 -4
@@ -491,10 +491,10 @@ a sparking lightning sword~
 A lightning bolt fashioned into a sword spits sparks here.~
 ~
 5 3 8193
-0 6 3 3
+0~ 6~ 3~ 3~
 10 100000 2000
 A
-18 -1
+18 3
 A
 19 2
 #9208
@@ -503,7 +503,7 @@ an electric shield~
 A shield made entirely of energy buzzes here.~
 ~
 9 2 513
-11 0 0 0
+11~ 0~ 0~ 0~
 8 1000000 2000
 A
 1 -1
@@ -515,7 +515,7 @@ an icy girth~
 A girth made of magical ice has been left here.~
 ~
 9 0 2049
-10 0 0 0
+10~ 0~ 0~ 0~
 10 100000 1000
 A
 5 -2
@@ -525,7 +525,7 @@ a waterfall cloak~
 A cloak fashioned from a small magical waterfall is here.~
 ~
 9 0 1025
-10 0 0 0
+10~ 0~ 0~ 0~
 6 100000 2000
 A
 12 25
@@ -537,7 +537,7 @@ an elemental amulet~
 An amulet depicting fire, water, lightning, earth, and air lies here.~
 ~
 9 1 5
-7 0 0 0
+7~ 0~ 0~ 0~
 1 100000 5000
 A
 23 -5
@@ -547,7 +547,7 @@ an elemental bracelet~
 A bracelet made of elemental magic lies here.~
 ~
 9 0 4097
-4 0 0 0
+4~ 0~ 0~ 0~
 4 100000 4000
 A
 13 25
@@ -557,31 +557,27 @@ some platinum arm bands~
 A pair of platinum arm bands, once worn by the Cyclops, lie here.~
 ~
 9 0 257
-9 0 0 0
+9~ 0~ 0~ 0~
 4 10000 1000
 A
 1 1
-A
-4 -2
 #9214
 legbands platinum bands~
 some platinum leg bands~
 A pair of platinum leg bands, once worn by the Cyclops, lie here.~
 ~
 9 0 33
-9 0 0 0
+9~ 0~ 0~ 0~
 4 10000 1000
 A
 2 1
-A
-3 -2
 #9215
 wand~
 elemental wand of fire~
 A fire wand lies forgotten on the ground.~
 ~
 3 1 16385
-15 3 3 26
+15~ 3~ 3~ fireball~
 7 1900 200
 #9216
 staff ice~
@@ -589,15 +585,15 @@ an ice staff~
 A ice staff lies forgotten on the ground.~
 ~
 4 1 16385
-21 3 3 202
+21~ 3~ 3~ frost breath~
 7 1900 200
 #9217
 staff earthquake~
 elemental staff of earthquake~
 A earthquake staff lies forgotten on the ground.~
 ~
-3 1 16385
-7 3 3 23
+4 1 16385
+7~ 3~ 3~ earthquake~
 7 1900 200
 #9218
 wand air wind~
@@ -605,7 +601,7 @@ elemental wand of wind and air~
 An air wand lies forgotten on the ground.~
 ~
 3 1 16385
-11 1 1 203
+11~ 1~ 1~ gas breath~
 7 1900 200
 #9219
 wand~
@@ -613,7 +609,7 @@ elemental wand of lightning~
 A lightning wand lies forgotten on the ground.~
 ~
 3 1 16385
-9 1 1 30
+9~ 1~ 1~ lightning bolt~
 7 1900 200
 #9220
 stone club~
@@ -621,15 +617,17 @@ a stone club~
 A large stone club lies on the ground.~
 ~
 5 0 8193
-0 1 12 7
+0~ 1~ 12~ 7~
 16 1000 10
+A
+19 3
 #9221
 lode load lodestone loadstone stone~
 a lodestone~
 A dull red rock lies here amid the weeds.~
 ~
 3 0 16385
-19 2 2 27
+19~ 2~ 2~ harm~
 2 5000 175
 #9222
 lava lamp~
@@ -637,7 +635,7 @@ a lava lamp~
 A lantern which glows with a red glowing light has been dumped.~
 ~
 1 1 1
-0 0 1000 0
+0~ 0~ 1000~ 0~
 4 500 1
 #9223
 energy scroll~
@@ -645,7 +643,7 @@ an energy scroll~
 A scroll of energy replacement lies here.~
 ~
 2 2 1
-19 15 81 -1
+19~ cure critical~ refresh~ ~
 1 2100 120
 #9224
 water jug~
@@ -653,7 +651,7 @@ a water jug~
 A large but surprisingly light jug of water stands here.~
 ~
 17 0 1
-150 150 0 0
+150~ 150~ 0~ 0~
 5 100 100
 #9225
 dust~
@@ -661,7 +659,7 @@ magic dust~
 A pile of dust of appearance has gathered here.~
 ~
 26 0 1
-20 19 -1 -1
+20~ detect invis~ ~ ~
 1 100 1
 #9226
 flame lance~
@@ -669,7 +667,7 @@ a flame lance~
 A lance of blue flame burns the ground around it.~
 ~
 5 1 8193
-0 2 15 3
+0~ 2~ 15~ 3~
 14 5000 500
 A
 13 -20
@@ -681,7 +679,7 @@ an icicle~
 A glowing icicle dagger lies here amid a patch of frost.~
 ~
 5 1 8193
-0 7 3 11
+0~ 7~ 3~ 11~
 1 19000 900
 A
 19 2
@@ -693,7 +691,7 @@ the Avalanche~
 An avalanche is about to crush you!~
 ~
 5 0 8193
-0 1 30 6
+0~ 1~ 30~ 6~
 16 20100 900
 A
 18 -1
@@ -703,7 +701,7 @@ the Morning Star~
 A chain with a star on the end lies here.~
 ~
 5 1 8193
-0 6 3 11
+0~ 6~ 3~ 11~
 11 8200 900
 A
 23 -5
@@ -712,10 +710,10 @@ A
 #9230
 shock whip~
 The Shock Whip~
-A whip hums innocently too itself.~
+A whip hums innocently to itself.~
 ~
 5 2 8193
-0 4 4 2
+0~ 4~ 4~ 2~
 10 10000 900
 A
 19 3
@@ -727,8 +725,18 @@ anti-cyclops elixir~
 An elixir to ward off cyclopi has been bought then left behind here.~
 ~
 10 0 16385
-15 29 -1 -1
+15~ invis~ ~ ~
 1 100 100000
+#9232
+lightning bolt~
+a bolt of lightning~
+A bolt of lightning whizzes about the room!~
+~
+5 64 1|8192
+0~ 5~ 5~ 6~
+8 100 100
+A
+18 5
 #0
 
 
@@ -1812,7 +1820,7 @@ G 1 9231 30
 M 0 9201 3 9203
 M 0 9238 1 9203
 G 1 9231 30
-M 0 9202 0 9204
+M 0 9202 1 9204
 E 1 9213 10 10
 E 1 9214 10 7
 M 0 9204 1 9209
@@ -1833,33 +1841,33 @@ E 1 9208 6 11
 M 0 9212 1 9236
 E 1 9209 6 13
 E 1 9210 6 12
-M 0 9203 15 9208
-M 0 9203 15 9210
-M 0 9203 15 9217
-M 0 9203 15 9219
+M 0 9203 8 9208
+M 0 9203 8 9210
+M 0 9203 8 9217
+M 0 9203 8 9219
 E 1 9225 10 17
-M 0 9203 15 9215
-M 0 9203 15 9215
-M 0 9203 15 9218
-M 0 9205 15 9218
-M 0 9205 12 9207
-M 0 9205 12 9250
-M 0 9205 12 9209
-M 0 9205 12 9234
-M 0 9205 12 9222
+M 0 9203 8 9215
+M 0 9203 8 9215
+M 0 9203 8 9218
+M 0 9205 8 9218
+M 0 9205 5 9207
+M 0 9205 5 9250
+M 0 9205 5 9209
+M 0 9205 5 9234
+M 0 9205 5 9222
 E 1 9224 10 17
-M 0 9206 9 9246
-M 0 9206 9 9212
+M 0 9206 4 9246
+M 0 9206 4 9212
 E 1 9221 10 17
-M 0 9206 9 9254
-M 0 9206 9 9225
+M 0 9206 4 9254
+M 0 9206 4 9225
 E 1 9219 7 17
-M 0 9207 6 9218
-M 0 9207 6 9260
+M 0 9207 5 9218
+M 0 9207 5 9260
 E 1 9220 16 16
-M 0 9207 6 9242
-M 0 9207 6 9209
-M 0 9207 6 9218
+M 0 9207 5 9242
+M 0 9207 5 9209
+M 0 9207 5 9218
 E 1 9223 10 17
 M 0 9226 1 9238
 E 1 9226 10 16
@@ -1875,12 +1883,13 @@ M 0 9231 5 9216
 E 1 9215 10 17
 M 0 9231 5 9211
 E 1 9215 10 17
-M 0 9232 8 9209
+M 0 9232 4 9209
 E 1 9220 16 16
-M 0 9232 8 9208
-M 0 9233 8 9253
-M 0 9233 7 9218
-M 0 9233 7 9255
+M 0 9232 4 9208
+E 1 9232 99 16
+M 0 9233 4 9253
+M 0 9233 4 9218
+M 0 9233 4 9255
 M 0 9234 6 9230
 E 1 9218 10 16
 M 0 9234 6 9238
@@ -1888,92 +1897,92 @@ E 1 9217 10 16
 M 0 9235 2 9249
 M 0 9235 2 9257
 E 1 9216 10 16
-M 0 9236 15 9202
-M 0 9236 15 9207
-M 0 9236 15 9237
-M 0 9236 15 9220
-M 0 9236 15 9228
-M 0 9236 15 9246
-M 0 9236 15 9255
-M 0 9214 15 9233
+M 0 9236 7 9202
+M 0 9236 7 9207
+M 0 9236 7 9237
+M 0 9236 7 9220
+M 0 9236 7 9228
+M 0 9236 7 9246
+M 0 9236 7 9255
+M 0 9214 8 9233
 E 1 9216 5 17
-M 0 9214 15 9234
-M 0 9214 15 9235
+M 0 9214 8 9234
+M 0 9214 8 9235
 E 1 9224 10 17
-M 0 9214 15 9230
-M 0 9214 15 9231
-M 0 9214 15 9232
-M 0 9214 15 9236
-M 0 9214 15 9236
-M 0 9215 15 9242
-M 0 9215 15 9245
+M 0 9214 8 9230
+M 0 9214 8 9231
+M 0 9214 8 9232
+M 0 9214 8 9236
+M 0 9214 8 9236
+M 0 9215 6 9242
+M 0 9215 6 9245
 E 1 9215 5 17
-M 0 9215 15 9242
+M 0 9215 6 9242
 E 1 9215 5 17
-M 0 9215 15 9242
-M 0 9215 15 9245
-M 0 9215 15 9245
-M 0 9217 15 9221
-M 0 9217 15 9222
-M 0 9217 15 9223
+M 0 9215 6 9242
+M 0 9215 6 9245
+M 0 9215 6 9245
+M 0 9217 8 9221
+M 0 9217 8 9222
+M 0 9217 8 9223
 E 1 9217 5 17
-M 0 9217 15 9224
-M 0 9217 15 9225
-M 0 9217 15 9227
+M 0 9217 8 9224
+M 0 9217 8 9225
+M 0 9217 8 9227
 E 1 9220 16 16
-M 0 9217 15 9227
-M 0 9217 15 9226
-M 0 9218 15 9247
-M 0 9218 15 9248
-M 0 9218 15 9249
-M 0 9218 15 9250
+M 0 9217 8 9227
+M 0 9217 8 9226
+M 0 9218 8 9247
+M 0 9218 8 9248
+M 0 9218 8 9249
+M 0 9218 8 9250
 E 1 9219 7 17
-M 0 9218 15 9251
-M 0 9218 15 9252
+M 0 9218 8 9251
+M 0 9218 8 9252
 E 1 9218 7 17
-M 0 9218 15 9252
-M 0 9218 15 9246
-M 0 9225 15 9255
+M 0 9218 8 9252
+M 0 9218 8 9246
+M 0 9225 8 9255
 E 1 9218 7 17
-M 0 9225 15 9256
-M 0 9225 15 9257
-M 0 9225 15 9258
-M 0 9225 15 9259
-M 0 9225 15 9260
-M 0 9225 15 9260
-M 0 9225 15 9255
+M 0 9225 8 9256
+M 0 9225 8 9257
+M 0 9225 8 9258
+M 0 9225 8 9259
+M 0 9225 8 9260
+M 0 9225 8 9260
+M 0 9225 8 9255
 E 1 9225 10 17
-M 0 9219 8 9228
-M 0 9219 8 9229
-M 0 9219 8 9238
-M 0 9219 8 9246
-M 0 9216 5 9232
-M 0 9216 5 9232
-M 0 9216 5 9212
-M 0 9216 5 9225
-M 0 9220 8 9238
-M 0 9220 8 9242
-M 0 9220 8 9220
+M 0 9219 4 9228
+M 0 9219 4 9229
+M 0 9219 4 9238
+M 0 9219 4 9246
+M 0 9216 4 9232
+M 0 9216 4 9232
+M 0 9216 4 9212
+M 0 9216 4 9225
+M 0 9220 4 9238
+M 0 9220 4 9242
+M 0 9220 4 9220
 E 1 9222 10 17
-M 0 9220 8 9221
-M 0 9221 8 9222
-M 0 9221 8 9222
-M 0 9221 8 9231
-M 0 9221 8 9231
-M 0 9222 8 9232
-M 0 9222 8 9213
-M 0 9222 8 9255
-M 0 9222 8 9254
-M 0 9223 8 9248
-M 0 9223 8 9253
-M 0 9223 8 9221
-M 0 9223 8 9210
+M 0 9220 4 9221
+M 0 9221 4 9222
+M 0 9221 4 9222
+M 0 9221 4 9231
+M 0 9221 4 9231
+M 0 9222 4 9232
+M 0 9222 4 9213
+M 0 9222 4 9255
+M 0 9222 4 9254
+M 0 9223 4 9248
+M 0 9223 4 9253
+M 0 9223 4 9221
+M 0 9223 4 9210
 E 1 9221 10 17
-M 0 9224 8 9227
-M 0 9224 8 9222
+M 0 9224 4 9227
+M 0 9224 4 9222
 E 1 9225 10 5
-M 0 9224 8 9259
-M 0 9224 8 9257
+M 0 9224 4 9259
+M 0 9224 4 9257
 S
 
 

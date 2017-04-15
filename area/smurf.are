@@ -98,7 +98,7 @@ Oh well, to each his own.
 30 300
 8 8 1
 #109
-smurfette~
+smurfette smurf~
 Smurfette~
 Smurfette is here, looking beautiful.
 ~
@@ -157,7 +157,7 @@ A bunch of smurfberries~
 A bunch of delicious looking smurfberries lie here.~
 ~
 26 0 1
-8 0 0 82
+8~ change sex~ ~ ~
 2 50 25
 #101
 glasses~
@@ -165,7 +165,7 @@ A pair of glasses~
 An odd pair of glasses has been left here.~
 ~
 9 1 17
-1 0 0 0
+1~ 0~ 0~ 0~
 2 500 250
 A
 4 1
@@ -175,7 +175,7 @@ a smurf hat~
 A smurf hat has been left here.~
 ~
 9 0 1|16
-3 0 0 0
+3~ 0~ 0~ 0~
 2 50 25
 #103
 axe small~
@@ -183,7 +183,7 @@ a small axe~
 A small axe has been dropped here.~
 ~
 5 0 8193
-0 2 5 3
+0~ 2~ 5~ 3~
 2 2000 1000
 #104
 necklace~
@@ -191,7 +191,7 @@ a small necklace~
 A small necklace is lying on the ground.~
 ~
 9 1 5
-1 0 0 0
+1~ 0~ 0~ 0~
 2 500 250
 A
 3 1
@@ -201,7 +201,7 @@ a pink potion~
 A pink potion is barely visible on the ground.~
 ~
 10 0 1
-6 1 14 -1
+6~ armor~ cure blindness~ ~
 2 500 250
 #106
 wand~
@@ -209,7 +209,7 @@ a small wand~
 A small wand lies on the ground.~
 ~
 3 0 16385
-5 1 1 5
+5~ 1~ 1~ burning hands~
 2 500 250
 #107
 key~
@@ -217,7 +217,7 @@ a tiny key~
 A tiny key is lying on the ground.~
 ~
 18 0 1
-2 0 0 0
+2~ 0~ 0~ 0~
 2 50 25
 #108
 well~
@@ -225,7 +225,7 @@ a smurf well~
 A small smurfy well is here.~
 ~
 25 0 0
-50 50 0 0
+50~ 50~ 0~ 0~
 500 3000 1000
 #109
 key~
@@ -233,7 +233,7 @@ a small key~
 A key to Gargamel's door lies here.~
 ~
 18 0 1
-2 0 0 0
+2~ 0~ 0~ 0~
 2 50 25
 #0
 
@@ -751,7 +751,7 @@ S
 #127
 Outside Gargamel's Castle~
 You are standing outside Gargamel's Castle.  You can hear him screaming at
-Azreal from inside.  You can also him cursing out those wretched smurfs.
+Azreal from inside.  You can also hear him cursing out those wretched smurfs.
 His Castle is to the north while Smurfy Road is to the south.
 ~
 1 0 1
@@ -829,12 +829,16 @@ M 0 108 1 124 Jokey Smurf
 M 0 109 1 129 Smurfette
 E 1 104 8 3
 G 1 107 8
-M 0 110 1 125 Papa Smurf
+M 0 110 1 113 Papa Smurf
 G 1 105 10
 G 1 109 8
 M 0 111 1 128 Gargamel
 E 1 106 8 17
 M 0 112 1 128 Azreal
+D 0 125 0 2   Papa Smurf's door locked
+D 0 113 2 2     other side
+D 0 127 0 2   Castle door locked
+D 0 128 2 2     other side
 S
 
 

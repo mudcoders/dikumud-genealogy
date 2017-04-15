@@ -7,6 +7,7 @@
 
 CC      = cc
 PROF    =
+DEBUG   = -g
 NOCRYPT =
 
 # unix & hpux should already be defined, but it was not the case on my system.
@@ -14,22 +15,22 @@ NOCRYPT =
 # distribution: C_FLAGS = -O -Aa -D_HPUX_SOURCE -Dunix -Dhpux
 # debug: C_FLAGS = -v -g -Aa -D_HPUX_SOURCE -Dunix -Dhpux $(PROF)
  
-C_FLAGS = -v -g -Aa -D_HPUX_SOURCE -Dunix -Dhpux $(PROF) $(NOCRYPT)
+C_FLAGS = $(DEBUG) -v -Aa -D_HPUX_SOURCE -Dunix -Dhpux $(PROF) $(NOCRYPT)
 
-L_FLAGS = -g $(PROF)
+L_FLAGS = $(DEBUG)                                     $(PROF)
 
 O_FILES = act_comm.o act_info.o act_move.o act_obj.o act_wiz.o comm.o const.o \
           db.o fight.o handler.o interp.o magic.o save.o special.o update.o
 
-merc: $(O_FILES)
-	rm -f merc
-	$(CC) $(L_FLAGS) -o merc $(O_FILES)
+envy: $(O_FILES)
+	rm -f envy
+	$(CC) $(L_FLAGS) -o envy $(O_FILES)
 
 .c.o: merc.h
 	$(CC) -c $(C_FLAGS) $<
 
 clean:
-	rm  -f *.o core merc
+	rm  -f *.o *.core envy
 
 #didn't check this one yet...
 tar:
