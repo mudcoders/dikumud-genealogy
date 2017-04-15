@@ -37,7 +37,7 @@ act(string, hide_invisible, ch, obj, vict_obj, type)
 
 char *string;                  /* the string to send                     */
 int hide_invisible,            /* hide the action if vict can't see us?  */
-    type;                      /* who gets the string                    */ 
+    type;                      /* who gets the string                    */
 struct char_data *ch;          /* the 'performing' character             */
 struct obj_data *obj;          /* an object                              */
 void *vict_obj;                /* an object OR a char OR an ascii string */

@@ -52,7 +52,7 @@ void char_to_room(struct char_data *ch, int room);
 /* find if character can see */
 struct char_data *get_char_room_vis(struct char_data *ch, char *name);
 struct char_data *get_char_vis(struct char_data *ch, char *name);
-struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name, 
+struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name,
 				struct obj_data *list);
 struct obj_data *get_obj_vis(struct char_data *ch, char *name);
 
@@ -70,4 +70,3 @@ int generic_find(char *arg, int bitvector, struct char_data *ch,
 #define FIND_OBJ_ROOM      8
 #define FIND_OBJ_WORLD    16
 #define FIND_OBJ_EQUIP    32
-

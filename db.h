@@ -79,13 +79,13 @@ struct char_data *read_mobile(int nr, int type);
 /* structure for the reset commands */
 struct reset_com
 {
-	char command;   /* current command                      */ 
+	char command;   /* current command                      */
 	bool if_flag;   /* if TRUE: exe only if preceding exe'd */
 	int arg1;       /*                                      */
 	int arg2;       /* Arguments to the command             */
 	int arg3;       /*                                      */
 
-	/* 
+	/*
 	*  Commands:              *
 	*  'M': Read a mobile     *
 	*  'O': Read an object    *
@@ -137,7 +137,7 @@ struct index_data
 struct reset_q_element
 {
 	int zone_to_reset;            /* ref to zone_data */
-	struct reset_q_element *next;	
+	struct reset_q_element *next;
 };
 
 

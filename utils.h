@@ -15,7 +15,7 @@
 /* #define MAX(a,b) (((a) > (b)) ? (a) : (b)) */
 /* #define MIN(a,b) (((a) < (b)) ? (a) : (b)) */
 
-#define ISNEWL(ch) ((ch) == '\n' || (ch) == '\r') 
+#define ISNEWL(ch) ((ch) == '\n' || (ch) == '\r')
 
 #define IF_STR(st) ((st) ? (st) : "\0")
 
@@ -62,7 +62,7 @@
 	(((ch)->player.sex == 1) ? "he" : "she") : "it")
 
 #define HMHR(ch) ((ch)->player.sex ? 					\
-	(((ch)->player.sex == 1) ? "him" : "her") : "it")	
+	(((ch)->player.sex == 1) ? "him" : "her") : "it")
 
 #define ANA(obj) (index("aeiouyAEIOUY", *(obj)->name) ? "An" : "A")
 

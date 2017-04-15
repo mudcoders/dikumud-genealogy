@@ -66,7 +66,7 @@ void del(char *filename, int name)
 		perror("truncate");
 }
 
-	
+
 main(int argc, char **argv)
 {
 	if (argc != 3)

@@ -73,7 +73,7 @@ void merge(FILE *fl1, FILE *fl2)
 				printf("%s", buf1);
 			return;
 		}
-			
+
 
 		/* Merge the rooms */
 

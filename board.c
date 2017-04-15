@@ -7,11 +7,11 @@
 #include "comm.h"
 
 
-#define MAX_MSGS 30	               /* Max number of messages.          */
+#define MAX_MSGS 50	               /* Max number of messages.          */
 #define SAVE_FILE "board.messages"	/* Name of file for saving messages */
 #define BOARD_OBJECT  xxx           /* what are we?                     */
 #define BOARD_ROOM    xxx           /* where are we?                    */
-#define MAX_MESSAGE_LENGTH 2048     /* that should be enough            */
+#define MAX_MESSAGE_LENGTH 4000     /* that should be enough            */
 
 char *msgs[MAX_MSGS];
 char *head[MAX_MSGS];
@@ -164,7 +164,7 @@ int board_remove_msg(struct char_data *ch, char *arg) {
 }
 
 void board_save_board() {
-	FILE *the_file;		
+	FILE *the_file;
 	int ind, len;
 	if (!msg_num) {
 		error_log("No messages to save.\n\r");
@@ -200,7 +200,7 @@ void board_load_board() {
 		return;
 	}
 	fread(&msg_num, sizeof(int), 1, the_file);
-	
+
 	if (msg_num < 1 || msg_num > MAX_MSGS || feof(the_file)) {
 		error_log("Board-message file corrupt or nonexistent.\n\r");
 		fclose(the_file);
@@ -280,7 +280,7 @@ int board_display_msg(struct char_data *ch, char *arg) {
 }
 
 
-		
+
 void board_fix_long_desc(int num, char *headers[MAX_MSGS]) {
 
 	struct obj_data *ob;
@@ -301,7 +301,7 @@ void board_fix_long_desc(int num, char *headers[MAX_MSGS]) {
 	4 	: Groo got hungry again - bug or sabotage?
 
 	Well...something like that..;) 			   ****/
-	
+
 	/**** It is always to contain the first line and   ****/
 	/**** the second line will vary in how many notes  ****/
 	/**** the board has. Then the headers and message  ****/

@@ -26,10 +26,12 @@ extern char *drinks[];
 extern int drink_aff[][3];
 
 /* extern functions */
+void log(char *str);
 
 struct obj_data *get_object_in_equip_vis(struct char_data *ch,
                          char *arg, struct obj_data **equipment, int *j);
-void log(char *str);
+char *strdup(char *source);
+
 
 
 
@@ -331,29 +333,30 @@ void do_pour(struct char_data *ch, char *argument, int cmd)
 	to_obj->obj_flags.value[2]=from_obj->obj_flags.value[2];
 
 	/* Then how much to pour */
-	from_obj->obj_flags.value[1]-= (amount=
-		(to_obj->obj_flags.value[0]-to_obj->obj_flags.value[1]));
+	/* if to_obj can contail it all give it all */
+	amount = to_obj->obj_flags.value[0]-to_obj->obj_flags.value[1];
+	if (amount > from_obj->obj_flags.value[1])
+		amount = from_obj->obj_flags.value[1];
 
-	to_obj->obj_flags.value[1]=to_obj->obj_flags.value[0];
+	/* take away from from_obj */
+	from_obj->obj_flags.value[1]-=amount;
+	weight_change_object(from_obj, -amount);
 
-	if(from_obj->obj_flags.value[1]<0)    /* There was to little */
-	{
-		to_obj->obj_flags.value[1]+=from_obj->obj_flags.value[1];
-		amount += from_obj->obj_flags.value[1];
-		from_obj->obj_flags.value[1]=0;
-		from_obj->obj_flags.value[2]=0;
-		from_obj->obj_flags.value[3]=0;
-		name_from_drinkcon(from_obj);
-	}
+	/* give it to to_obj */
+	to_obj->obj_flags.value[1]+=amount;
+	weight_change_object(to_obj, amount);
 
 	/* Then the poison boogie */
 	to_obj->obj_flags.value[3]=
 		(to_obj->obj_flags.value[3]||from_obj->obj_flags.value[3]);
 
-	/* And the weight boogie */
-
-	weight_change_object(from_obj, -amount);
-	weight_change_object(to_obj, amount);   /* Add weight */
+	if(from_obj->obj_flags.value[1]=0)    /* from_obj is empty */
+	{
+		from_obj->obj_flags.value[1]=0;
+		from_obj->obj_flags.value[2]=0;
+		from_obj->obj_flags.value[3]=0;
+		name_from_drinkcon(from_obj);
+	}
 
 	return;
 }

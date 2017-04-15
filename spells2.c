@@ -1060,7 +1060,7 @@ void cast_fire_breath( byte level, struct char_data *ch, char *arg, int type,
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_fire_breath(level, ch, tar_ch, 0);
-			break;   /* It's a spell.. But people can'c cast it! */
+			break;   /* It's a spell.. But people can't cast it! */
       default :
          log("Serious screw-up in firebreath!");
          break;
@@ -1073,7 +1073,7 @@ void cast_frost_breath( byte level, struct char_data *ch, char *arg, int type,
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_frost_breath(level, ch, tar_ch, 0);
-			break;   /* It's a spell.. But people can'c cast it! */
+			break;   /* It's a spell.. But people can't cast it! */
       default :
          log("Serious screw-up in frostbreath!");
          break;
@@ -1086,7 +1086,7 @@ void cast_acid_breath( byte level, struct char_data *ch, char *arg, int type,
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_acid_breath(level, ch, tar_ch, 0);
-			break;   /* It's a spell.. But people can'c cast it! */
+			break;   /* It's a spell.. But people can't cast it! */
       default :
          log("Serious screw-up in acidbreath!");
          break;
@@ -1116,7 +1116,7 @@ void cast_lightning_breath( byte level, struct char_data *ch, char *arg, int typ
   switch (type) {
     case SPELL_TYPE_SPELL:
 			spell_lightning_breath(level, ch, tar_ch, 0);
-			break;   /* It's a spell.. But people can'c cast it! */
+			break;   /* It's a spell.. But people can't cast it! */
       default :
          log("Serious screw-up in lightningbreath!");
          break;

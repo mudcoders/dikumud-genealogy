@@ -19,10 +19,10 @@
 
 extern struct room_data *world;
 extern struct char_data *character_list;
-extern struct descriptor_data *descriptor_list; 
+extern struct descriptor_data *descriptor_list;
 extern struct index_data *obj_index;
 extern int rev_dir[];
-extern char *dirs[]; 
+extern char *dirs[];
 extern int movement_loss[];
 
 /* external functs */
@@ -34,9 +34,9 @@ struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name,
 
 
 int do_simple_move(struct char_data *ch, int cmd, int following)
-/* Assumes, 
+/* Assumes,
 	1. That there is no master and no followers.
-	2. That the direction exists. 
+	2. That the direction exists.
 
    Returns :
    1 : If succes.
@@ -96,7 +96,7 @@ int do_simple_move(struct char_data *ch, int cmd, int following)
 	char_to_room(ch, world[was_in].dir_option[cmd]->to_room);
 
 	if (!IS_AFFECTED(ch, AFF_SNEAK))
-		act("$n has arrived.", TRUE, ch, 0,0, TO_ROOM);	
+		act("$n has arrived.", TRUE, ch, 0,0, TO_ROOM);
 
 	do_look(ch, "\0",15);
 
@@ -136,7 +136,7 @@ void do_move(struct char_data *ch, char *argument, int cmd)
 			do_simple_move(ch,cmd,FALSE);
 		else {
 
-			if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master) && 
+			if (IS_AFFECTED(ch, AFF_CHARM) && (ch->master) &&
 			   (ch->in_room == ch->master->in_room)) {
 				send_to_char("The thought of leaving your master makes you weep.\n\r", ch);
 				act("$n bursts into tears.", FALSE, ch, 0, 0, TO_ROOM);
@@ -170,7 +170,7 @@ int find_door(struct char_data *ch, char *type, char *dir)
 {
 	char buf[MAX_STRING_LENGTH];
 	int door;
-	char *dirs[] = 
+	char *dirs[] =
 	{
 		"north",
 		"east",
@@ -275,7 +275,7 @@ void do_open(struct char_data *ch, char *argument, int cmd)
 			send_to_char("Ok.\n\r", ch);
 			/* now for opening the OTHER side of the door! */
 			if ((other_room = EXIT(ch, door)->to_room) != NOWHERE)
-				if (back = world[other_room].dir_option[rev_dir[door]])	
+				if (back = world[other_room].dir_option[rev_dir[door]])
 					if (back->to_room == ch->in_room)
 					{
 						REMOVE_BIT(back->exit_info, EX_CLOSED);
@@ -290,7 +290,7 @@ void do_open(struct char_data *ch, char *argument, int cmd)
 							send_to_room(
 							"The door is opened from the other side.\n\r",
 							EXIT(ch, door)->to_room);
-					}						 
+					}
 		}
 }
 
@@ -358,7 +358,7 @@ void do_close(struct char_data *ch, char *argument, int cmd)
 							send_to_room(
 								"The door closes quietly.\n\r",
 								EXIT(ch, door)->to_room);
-					}						 
+					}
 		}
 }
 
@@ -404,7 +404,7 @@ void do_lock(struct char_data *ch, char *argument, int cmd)
 		else if (obj->obj_flags.value[2] < 0)
 			send_to_char("That thing can't be locked.\n\r", ch);
 		else if (!has_key(ch, obj->obj_flags.value[2]))
-			send_to_char("You don't seem to have the proper key.\n\r", ch);	
+			send_to_char("You don't seem to have the proper key.\n\r", ch);
 		else if (IS_SET(obj->obj_flags.value[1], CONT_LOCKED))
 			send_to_char("It is locked already.\n\r", ch);
 		else
@@ -470,7 +470,7 @@ void do_unlock(struct char_data *ch, char *argument, int cmd)
 		else if (obj->obj_flags.value[2] < 0)
 			send_to_char("Odd - you can't seem to find a keyhole.\n\r", ch);
 		else if (!has_key(ch, obj->obj_flags.value[2]))
-			send_to_char("You don't seem to have the proper key.\n\r", ch);	
+			send_to_char("You don't seem to have the proper key.\n\r", ch);
 		else if (!IS_SET(obj->obj_flags.value[1], CONT_LOCKED))
 			send_to_char("Oh.. it wasn't locked, after all.\n\r", ch);
 		else
@@ -656,26 +656,26 @@ void do_stand(struct char_data *ch, char *argument, int cmd)
 	char buffer[MAX_STRING_LENGTH];
 
 	switch(GET_POS(ch)) {
-		case POSITION_STANDING : { 
+		case POSITION_STANDING : {
 			act("You are already standing.",FALSE, ch,0,0,TO_CHAR);
 		} break;
-		case POSITION_SITTING	: { 
+		case POSITION_SITTING	: {
 			act("You stand up.", FALSE, ch,0,0,TO_CHAR);
 			act("$n clambers on $s feet.",TRUE, ch, 0, 0, TO_ROOM);
 			GET_POS(ch) = POSITION_STANDING;
 		} break;
-		case POSITION_RESTING	: { 
+		case POSITION_RESTING	: {
 			act("You stop resting, and stand up.", FALSE, ch,0,0,TO_CHAR);
 			act("$n stops resting, and clambers on $s feet.", TRUE, ch, 0, 0, TO_ROOM);
 			GET_POS(ch) = POSITION_STANDING;
 		} break;
-		case POSITION_SLEEPING : { 
+		case POSITION_SLEEPING : {
 			act("You have to wake up first!", FALSE, ch, 0,0,TO_CHAR);
 		} break;
-		case POSITION_FIGHTING : { 
+		case POSITION_FIGHTING : {
 			act("Do you not consider fighting as standing?",FALSE, ch, 0, 0, TO_CHAR);
 		} break;
-		default : { 
+		default : {
 			act("You stop floating around, and put your feet on the ground.",
 			  FALSE, ch, 0, 0, TO_CHAR);
 			act("$n stops floating around, and puts $s feet on the ground.",
@@ -716,7 +716,7 @@ void do_sit(struct char_data *ch, char *argument, int cmd)
 		} break;
 	}
 }
-			
+
 
 void do_rest(struct char_data *ch, char *argument, int cmd) {
 char buffer[MAX_STRING_LENGTH];
@@ -755,7 +755,7 @@ void do_sleep(struct char_data *ch, char *argument, int cmd) {
 char buffer[MAX_STRING_LENGTH];
 
 	switch(GET_POS(ch)) {
-		case POSITION_STANDING : 
+		case POSITION_STANDING :
 		case POSITION_SITTING  :
 		case POSITION_RESTING  : {
 			send_to_char("You go to sleep.\n\r", ch);

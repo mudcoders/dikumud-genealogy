@@ -49,7 +49,7 @@
 	When player is attempting a "kill shopkeeper"
   0 - Shopkeeper tells player "Don't ever try that again!" and gets the
       first hit!
-  1 - Shopkeeper tells player "I'm to powerfull for you - midget!" and 
+  1 - Shopkeeper tells player "I'm to powerfull for you - midget!" and
       killing is impossible.
   other - No action besides message above.
 
@@ -71,4 +71,3 @@
 <Time when open start 2>
 <Time when open end 2>
    The hours between which the shop is open.
-

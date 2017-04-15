@@ -38,7 +38,7 @@ void list(char *filename)
 	int num, days;
 	long played;
 
-	if (!(fl = fopen(filename, "r")))
+	if (!(fl = fopen(filename, "rb")))
 	{
 		perror(filename);
 		exit(1);
@@ -71,7 +71,7 @@ void list(char *filename)
 		for (point = buf.name; *point; ++point)
 			printf("'%c':%d ", *point, *point);
 		putchar('\n');
-*/			
+*/
 	}
 
 	fclose(fl);

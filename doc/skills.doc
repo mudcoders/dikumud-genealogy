@@ -3,27 +3,27 @@
 ************************************************************************* */
 
 Fighter:                 lv.1    lv.2    lv.3    lv.4    lv.5    lv.6    lv.7    lv.8    lv.9    lv.10
----------           
-Sneak                    
-Dodge                    
-Bargain                  
-Read magic               
-Arm wrestling            
-Uppercut                 
-Rescue                   
-Bash                     
-Kick                     
-                         
-SAVING THROW:            
-                         
+---------
+Sneak
+Dodge
+Bargain
+Read magic
+Arm wrestling
+Uppercut
+Rescue
+Bash
+Kick
+
+SAVING THROW:
+
 Thief:                   lv.1    lv.2    lv.3    lv.4    lv.5    lv.6    lv.7    lv.8    lv.9    lv.10
--------                  
-Sneak                    
-Dodge                    
-Bargain                   
-Read magic               
-Arm wrestling            
-Steal                    
+-------
+Sneak
+Dodge
+Bargain
+Read magic
+Arm wrestling
+Steal
 Value
 Pick
 Hide
@@ -115,4 +115,3 @@ Earthquake
 Holy word
 
 SAVING THROW:
-

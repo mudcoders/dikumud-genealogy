@@ -50,7 +50,7 @@ typedef char byte;
 #define ITEM_MISSILE    7
 #define ITEM_TREASURE   8
 #define ITEM_ARMOR      9
-#define ITEM_POTION    10 
+#define ITEM_POTION    10
 #define ITEM_WORN      11
 #define ITEM_OTHER     12
 #define ITEM_TRASH     13
@@ -66,17 +66,17 @@ typedef char byte;
 
 /* Bitvector For 'wear_flags' */
 
-#define ITEM_TAKE              1 
+#define ITEM_TAKE              1
 #define ITEM_WEAR_FINGER       2
 #define ITEM_WEAR_NECK         4
 #define ITEM_WEAR_BODY         8
 #define ITEM_WEAR_HEAD        16
 #define ITEM_WEAR_LEGS        32
 #define ITEM_WEAR_FEET        64
-#define ITEM_WEAR_HANDS      128 
+#define ITEM_WEAR_HANDS      128
 #define ITEM_WEAR_ARMS       256
 #define ITEM_WEAR_SHIELD     512
-#define ITEM_WEAR_ABOUT     1024 
+#define ITEM_WEAR_ABOUT     1024
 #define ITEM_WEAR_WAISTE    2048
 #define ITEM_WEAR_WRIST     4096
 #define ITEM_WIELD          8192
@@ -158,7 +158,7 @@ struct obj_affected_type {
 struct obj_data
 {
 	sh_int item_number;            /* Where in data-base               */
-	sh_int in_room;                /* In what room -1 when conta/carr  */ 
+	sh_int in_room;                /* In what room -1 when conta/carr  */
 	struct obj_flag_data obj_flags;/* Object information               */
 	struct obj_affected_type
 	    affected[MAX_OBJ_AFFECT];  /* Which abilities in PC to change  */
@@ -224,8 +224,8 @@ struct obj_data
 
 struct room_direction_data
 {
-	char *general_description;       /* When look DIR.                  */ 
-	char *keyword;                   /* for open/close                  */	
+	char *general_description;       /* When look DIR.                  */
+	char *keyword;                   /* for open/close                  */
 	sh_int exit_info;                /* Exit info                       */
 	sh_int key;		                   /* Key's number (-1 for no key)    */
 	sh_int to_room;                  /* Where direction leeds (NOWHERE) */
@@ -241,10 +241,10 @@ struct room_data
 	char *description;           /* Shown when entered                 */
 	struct extra_descr_data *ex_description; /* for examine/look       */
 	struct room_direction_data *dir_option[6]; /* Directions           */
-	sh_int room_flags;           /* DEATH,DARK ... etc                 */ 
+	sh_int room_flags;           /* DEATH,DARK ... etc                 */
 	byte light;                  /* Number of lightsources in room     */
 	int (*funct)();              /* special procedure                  */
-         
+
 	struct obj_data *contents;   /* List of items in room              */
 	struct char_data *people;    /* List of NPC / PC in room           */
 };
@@ -387,9 +387,11 @@ struct room_data
 #define PLR_BRIEF        1
 #define PLR_NOSHOUT      2
 #define PLR_COMPACT      4
-#define PLR_DONTSET      8   /* Dont EVER set */
-
-
+#define PLR_DONTSET      8 /* Dont EVER set */
+#define PLR_NOTELL      16
+#define PLR_NOEMOTE     32
+#define PLR_LOG         64 /* log activities of this player. */
+#define PLR_FREEZE     128 /* No commands available */
 
 /* This structure is purely intended to be an easy way to transfer */
 /* and return information about time (real or mudwise).            */
@@ -419,7 +421,8 @@ struct char_player_data
 	byte level;         /* PC / NPC s level                     */
 	int hometown;       /* PC s Hometown (zone)                 */
 	bool talks[MAX_TOUNGE]; /* PC s Tounges 0 for NPC           */
- 	struct time_data time; /* PC s AGE in days                 */
+ 	struct time_data time; /* PC s AGE in days                  */
+	struct time_data tmptime; /* PC s AGE in days, modified     */
 	ubyte weight;       /* PC / NPC s weight                    */
 	ubyte height;       /* PC / NPC s height                    */
 };
@@ -428,23 +431,23 @@ struct char_player_data
 /* Used in CHAR_FILE_U *DO*NOT*CHANGE* */
 struct char_ability_data
 {
-	sbyte str; 
+	sbyte str;
 	sbyte str_add;      /* 000 - 100 if strength 18             */
 	sbyte intel;
-	sbyte wis; 
-	sbyte dex; 
-	sbyte con; 
+	sbyte wis;
+	sbyte dex;
+	sbyte con;
 };
 
 
 /* Used in CHAR_FILE_U *DO*NOT*CHANGE* */
 struct char_point_data
 {
-	sh_int mana;         
+	sh_int mana;
 	sh_int max_mana;     /* Not useable may be erased upon player file renewal */
-	sh_int hit;   
+	sh_int hit;
 	sh_int max_hit;      /* Max hit for NPC                         */
-	sh_int move;  
+	sh_int move;
 	sh_int max_move;     /* Max move for NPC                        */
 
 	sh_int armor;        /* Internal -100..100, external -10..10 AC */
@@ -461,7 +464,7 @@ struct char_special_data
 	struct char_data *fighting; /* Opponent                             */
 	struct char_data *hunting;  /* Hunting person..                     */
 
-	long affected_by;        /* Bitvector for spells/skills affected by */ 
+	long affected_by;        /* Bitvector for spells/skills affected by */
 
 	byte position;           /* Standing or ...                         */
 	byte default_pos;        /* Default position for NPC                */
@@ -597,8 +600,8 @@ struct char_file_u
 
 	/* specials */
 
-	byte spells_to_learn;  
-	int alignment;     
+	byte spells_to_learn;
+	int alignment;
 
 	time_t last_logon;  /* Time (in secs) of last logon */
 	ubyte act;          /* ACT Flags                    */
@@ -619,7 +622,7 @@ struct char_file_u
 #define MAX_OBJ_SAVE 15 /* Used in OBJ_FILE_U *DO*NOT*CHANGE* */
 
 
-struct obj_file_elem 
+struct obj_file_elem
 {
 	sh_int item_number;
 
@@ -680,7 +683,7 @@ struct txt_q
 
 struct snoop_data
 {
-	struct char_data *snooping;	
+	struct char_data *snooping;
 		/* Who is this char snooping */
 	struct char_data *snoop_by;
 		/* And who is snooping on this char */
@@ -709,7 +712,7 @@ struct descriptor_data
 	struct descriptor_data *next; /* link to next descriptor    */
 };
 
-struct msg_type 
+struct msg_type
 {
 	char *attacker_msg;  /* message to attacker */
 	char *victim_msg;    /* message to victim   */

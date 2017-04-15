@@ -52,7 +52,7 @@ void another_hour(int mode)
 			{
 				weather_info.sunlight = SUN_LIGHT;
 				send_to_outdoor("The day has begun.\n\r");
-				break;	
+				break;
 			}
 			case 21 :
 			{
@@ -160,7 +160,7 @@ void weather_change(void)
 
 			break;
 		}
-		default : 
+		default :
 		{
 			change = 0;
 			weather_info.sky=SKY_CLOUDLESS;

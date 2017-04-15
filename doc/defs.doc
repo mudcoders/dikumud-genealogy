@@ -43,7 +43,7 @@ All PC's must select one of four classes :
 
   Magic User <MU>
   Cleric     <CL>
-  Thief      <TH>       
+  Thief      <TH>
   Warrior    <WA>
 
 
@@ -103,7 +103,7 @@ Advancing a level (<PC>'s only):
 
   <PR> may be in 18/00..100 for Warriors ONLY!
 
-      
+
 ============================= MONSTER LOOKUP ==============================
 
 This is general guidelines for creating monsters. This is when creating
@@ -346,16 +346,16 @@ No weapon may ever exceed 30 pounds in weight.
 No shop-produced weapon may exceed 2d8 in total damage or weigh more
    than 20 pounds.
 
-Read notes regarding Magic before making a monster-slayer +50 +70 
+Read notes regarding Magic before making a monster-slayer +50 +70
   with +800 to strength
 
 
 PRIMARY BUYABLE WEAPONS <PBW>:
 
-Name               Damage    Type    Cost    Weight   Cost_pr_day     
+Name               Damage    Type    Cost    Weight   Cost_pr_day
 ---------------    -----     ----    ----    ------   -----------
-Dagger              1d4       P        10       1       Cost/3 
-Small sword         1d6       P        60       3       Cost/3 
+Dagger              1d4       P        10       1       Cost/3
+Small sword         1d6       P        60       3       Cost/3
 Long sword          1d8       S       600       8       Cost/3
 Wooden Club         1d3       B        12       3       Cost/3
 War hammer          1d5       B        50       6       Cost/3

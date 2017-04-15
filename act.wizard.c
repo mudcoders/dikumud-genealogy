@@ -53,6 +53,12 @@ do_emote(struct char_data *ch, char *argument, int cmd)
 	if (IS_NPC(ch))
 		return;
 
+	if (IS_SET(ch->specials.act, PLR_NOEMOTE))
+	{
+		send_to_char("You can't show your emotions!!\n\r", ch);
+		return;
+	}
+
 	for (i = 0; *(argument + i) == ' '; i++);
 
 	if (!*(argument + i))
@@ -391,9 +397,9 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 						strcat(buf,"UNDEFINED\n\r");
 					send_to_char(buf, ch);
 					sprintbit(rm->dir_option[i]->exit_info,exit_bits,buf2);
-					sprintf(buf, "Exit flag: %s \n\rKey no: %d\n\rTo room (R-Number): %d\n\r",
+					sprintf(buf, "Exit flag: %s \n\rKey no: %d\n\rTo room (V-Number): %d\n\r",
 					        buf2, rm->dir_option[i]->key,
-					        rm->dir_option[i]->to_room);
+					        world[rm->dir_option[i]->to_room].number);
 					send_to_char(buf, ch);
 				}
 			}
@@ -824,7 +830,7 @@ void do_shutdow(struct char_data *ch, char *argument, int cmd)
 
 void do_shutdown(struct char_data *ch, char *argument, int cmd)
 {
-	extern int shutdown, reboot;
+	extern int diku_shutdown, reboot;
 	char buf[100], arg[MAX_INPUT_LENGTH];
 
 	if (IS_NPC(ch))
@@ -837,14 +843,14 @@ void do_shutdown(struct char_data *ch, char *argument, int cmd)
 		sprintf(buf, "Shutdown by %s.", GET_NAME(ch) );
 		send_to_all(buf);
 		log(buf);
-		shutdown = 1;
+		diku_shutdown = 1;
 	}
 	else if (!str_cmp(arg, "reboot"))
 	{
 		sprintf(buf, "Reboot by %s.", GET_NAME(ch));
 		send_to_all(buf);
 		log(buf);
-		shutdown = reboot = 1;
+		diku_shutdown = reboot = 1;
 	}
 	else
 		send_to_char("Go shut down someone your own size.\n\r", ch);
@@ -858,6 +864,12 @@ void do_snoop(struct char_data *ch, char *argument, int cmd)
 
 	if (!ch->desc)
 		return;
+
+	if (IS_NPC(ch))
+	{
+		send_to_char("Did you ever try this before?", ch);
+		return;
+	}
 
 	one_argument(argument, arg);
 
@@ -1012,7 +1024,7 @@ void do_force(struct char_data *ch, char *argument, int cmd)
 			send_to_char("No-one by that name here..\n\r", ch);
 		else
 		{
-			if (GET_LEVEL(ch) < GET_LEVEL(vict))
+			if ((GET_LEVEL(ch) < GET_LEVEL(vict)) && !IS_NPC(vict))
 				send_to_char("Oh no you don't!!\n\r", ch);
 			else {
 				sprintf(buf, "$n has forced you to '%s'.", to_force);
@@ -1079,6 +1091,10 @@ void do_load(struct char_data *ch, char *argument, int cmd)
 			0, 0, TO_ROOM);
 		act("$n has created $N!", FALSE, ch, 0, mob, TO_ROOM);
 		send_to_char("Done.\n\r", ch);
+		sprintf(buf,"%s loads %s at %s.",GET_NAME(ch),
+		        mob->player.short_descr,world[ch->in_room].name);
+		log(buf);
+
 	}
 	else if (is_abbrev(type, "obj"))
 	{
@@ -1092,6 +1108,10 @@ void do_load(struct char_data *ch, char *argument, int cmd)
 		act("$n makes a strange magical gesture.", TRUE, ch, 0, 0, TO_ROOM);
 		act("$n has created $p!", FALSE, ch, obj, 0, TO_ROOM);
 		send_to_char("Ok.\n\r", ch);
+		sprintf(buf,"%s loads %s at %s.",GET_NAME(ch),
+		        obj->short_description,world[ch->in_room].name);
+		log(buf);
+
 	}
 	else
 		send_to_char("That'll have to be either 'char' or 'obj'.\n\r", ch);
@@ -1116,9 +1136,11 @@ void do_purge(struct char_data *ch, char *argument, int cmd)
 
 	if (*name)  /* argument supplied. destroy single object or char */
 	{
-		if (vict = get_char_room_vis(ch, name))
+		if (!(vict = get_char_room_vis(ch, name)) && (GET_LEVEL(ch) >= 23))
+			vict = get_char(name);
+		if (vict)
 		{
-			if (!IS_NPC(vict) && (GET_LEVEL(ch)<24)) {
+			if (!IS_NPC(vict) && (GET_LEVEL(ch)<=GET_LEVEL(vict))) {
 				send_to_char("Fuuuuuuuuu!\n\r", ch);
 				return;
 			}
@@ -1130,6 +1152,9 @@ void do_purge(struct char_data *ch, char *argument, int cmd)
 			} else {
 				if (vict->desc)
 				{
+					sprintf(buf,"%s purges %s at %s.",GET_NAME(ch),GET_NAME(vict),
+					        world[ch->in_room].name);
+					log(buf);
 					close_socket(vict->desc);
 					vict->desc = 0;
 					extract_char(vict);
@@ -1368,14 +1393,16 @@ void do_advance(struct char_data *ch, char *argument, int cmd)
 	}
 
 	send_to_char("You feel generous.\n\r", ch);
-  act("$n makes some strange gestures.\n\rA strange feeling comes uppon you,"
-			"\n\rLike a giant hand, light comes down from\n\rabove, grabbing your "
-			"body, that begins\n\rto pulse with coloured lights from inside.\n\rYo"
-			"ur head seems to be filled with deamons\n\rfrom another plane as your"
-			" body dissolves\n\rto the elements of time and space itself.\n\rSudde"
-			"nly a silent explosion of light snaps\n\ryou back to reality. You fee"
-			"l slightly\n\rdifferent.",FALSE,ch,0,victim,TO_VICT);
+	act("$n makes some strange gestures.\n\rA strange feeling comes uppon you,"
+		 "\n\rLike a giant hand, light comes down from\n\rabove, grabbing your "
+		 "body, that begins\n\rto pulse with coloured lights from inside.\n\rYo"
+		 "ur head seems to be filled with deamons\n\rfrom another plane as your"
+		 " body dissolves\n\rto the elements of time and space itself.\n\rSudde"
+		 "nly a silent explosion of light snaps\n\ryou back to reality. You fee"
+		 "l slightly\n\rdifferent.",FALSE,ch,0,victim,TO_VICT);
 
+	sprintf(buf,"%s advances %s to level %d.",GET_NAME(ch),GET_NAME(victim),newlevel);
+	log(buf);
 
 	if (GET_LEVEL(victim) == 0) {
 		do_start(victim);
@@ -1411,6 +1438,8 @@ void do_reroll(struct char_data *ch, char *argument, int cmd)
 		else {
 			send_to_char("Rerolled...\n\r", ch);
 			roll_abilities(victim);
+			sprintf(buf,"%s rerolled %s.",GET_NAME(ch),GET_NAME(victim));
+			log(buf);
 		}
 }
 
@@ -1436,6 +1465,9 @@ void do_restore(struct char_data *ch, char *argument, int cmd)
 			GET_MANA(victim) = GET_MAX_MANA(victim);
 			GET_HIT(victim) = GET_MAX_HIT(victim);
 			GET_MOVE(victim) = GET_MAX_MOVE(victim);
+
+         sprintf(buf,"%s restored %s.",GET_NAME(ch),GET_NAME(victim));
+         log(buf);
 
 			if (GET_LEVEL(victim) >= 21) {
 				for (i = 0; i < MAX_SKILLS; i++) {

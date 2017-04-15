@@ -22,6 +22,7 @@ void log(char *str);
 
 void mobile_activity(void)
 {
+   char buf[256];
 	register struct char_data *ch;
 	struct char_data *tmp_ch;
 	struct obj_data *obj, *best_obj, *worst_obj;
@@ -38,7 +39,8 @@ void mobile_activity(void)
 			/* Examine call for special procedure */
 			if (IS_SET(ch->specials.act, ACT_SPEC) && !no_specials) {
 				if (!mob_index[ch->nr].func) {
-					log("Attempting to call a non-existing MOB func. (mobact.c)");
+					sprintf(buf, "Non-Existing MOB[%d] SPEC procedure (mobact.c)",mob_index[ch->nr].virtual);
+					log(buf);
 					REMOVE_BIT(ch->specials.act, ACT_SPEC);
 				} else {
 			   	if ((*mob_index[ch->nr].func)	(ch, 0, ""))

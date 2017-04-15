@@ -66,15 +66,15 @@ const char *spell_wear_off_msg[] = {
 };
 
 
-const int rev_dir[] = 
+const int rev_dir[] =
 {
 	2,
 	3,
 	0,
-	1,	
+	1,
 	5,
 	4
-}; 
+};
 
 const int movement_loss[]=
 {
@@ -88,7 +88,7 @@ const int movement_loss[]=
   1   /* Unswimable */
 };
 
-const char *dirs[] = 
+const char *dirs[] =
 {
 	"north",
 	"east",
@@ -99,7 +99,7 @@ const char *dirs[] =
 	"\n"
 };
 
-const char *weekdays[7] = { 
+const char *weekdays[7] = {
 	"the Day of the Moon",
 	"the Day of the Bull",
 	"the Day of the Deception",
@@ -160,8 +160,8 @@ const char *where[] = {
 	"<worn around wrist>  ",
 	"<worn around wrist>  ",
 	"<wielded>            ",
-	"<held>               " 
-}; 
+	"<held>               "
+};
 
 const char *drinks[]=
 {
@@ -474,8 +474,8 @@ const char *equipment_types[] = {
 	"Held",
 	"\n"
 };
-	
-const char *affected_bits[] = 
+
+const char *affected_bits[] =
 {	"BLIND",
 	"INVISIBLE",
 	"DETECT-EVIL",
@@ -566,6 +566,10 @@ const char *player_bits[] = {
 	"NOSHOUT",
 	"COMPACT",
 	"DONTSET",
+	"NOTELL",
+	"NOEMOTE",
+	"",
+	"FREEZE",
 	"\n"
 };
 

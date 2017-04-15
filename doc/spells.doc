@@ -49,7 +49,7 @@ Type == 0, Modifier is subtracted, and bits are removed.
 
 void affect_to_char( struct char_data *ch, struct affected_type *af )
 
-This procedure allocates new memory for an affected_type structure, and 
+This procedure allocates new memory for an affected_type structure, and
 inserts a copy of "*af" in the char_data->affected linked list. After
 insertion, the "affect_location_apply" is called, with type == 1.
 
@@ -82,4 +82,3 @@ bool affected_by_spell( struct char_data *ch, byte skill )
 
 This procedure will check if a character is affected by a spell (the
 SPELL_XXX constants are used). Returns FALSE if not, otherwise TRUE.
-

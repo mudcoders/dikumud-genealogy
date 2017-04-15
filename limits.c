@@ -12,9 +12,10 @@
 #include "spells.h"
 #include "comm.h"
 
-#define READ_TITLE(ch) (GET_SEX(ch) == SEX_MALE ?   \
-	titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].title_m :  \
-	titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].title_f)
+#define READ_TITLE(ch) \
+   ( GET_SEX(ch) == SEX_MALE ? \
+	  titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].title_m : \
+	  titles[GET_CLASS(ch)-1][GET_LEVEL(ch)].title_f )
 
 
 extern struct char_data *character_list;
@@ -42,7 +43,7 @@ int graf(int age, int p0, int p1, int p2, int p3, int p4, int p5, int p6)
 
 	if (age < 15)
 		return(p0);                               /* < 15   */
-	else if (age <= 29) 
+	else if (age <= 29)
 		return (int) (p1+(((age-15)*(p2-p1))/15));  /* 15..29 */
 	else if (age <= 44)
 		return (int) (p2+(((age-30)*(p3-p2))/15));  /* 30..44 */
@@ -63,7 +64,7 @@ int mana_limit(struct char_data *ch)
 
 	if (!IS_NPC(ch))
 		max = (100); /* + (graf(age(ch).year, 0,0,10,30,50,70,60)); */
-	else 
+	else
 		max = 100;
 
 	return(max);
@@ -77,14 +78,14 @@ int hit_limit(struct char_data *ch)
 	if (!IS_NPC(ch))
 		max = (ch->points.max_hit) +
 		      (graf(age(ch).year, 2,4,17,14,8,4,3));
-	else 
+	else
 		max = (ch->points.max_hit);
 
 
 /* Class/Level calculations */
 
 /* Skill/Spell calculations */
-	
+
   return (max);
 }
 
@@ -146,7 +147,7 @@ int mana_gain(struct char_data *ch)
 
 	if((GET_COND(ch,FULL)==0)||(GET_COND(ch,THIRST)==0))
 		gain >>= 2;
- 
+
   return (gain);
 }
 
@@ -205,7 +206,7 @@ int move_gain(struct char_data *ch)
 	int gain;
 
 	if(IS_NPC(ch)) {
-		return(GET_LEVEL(ch));	
+		return(GET_LEVEL(ch));
 		/* Neat and fast */
 	} else {
 		gain = graf(age(ch).year, 12,18,22,21,14,10,6);
@@ -248,7 +249,7 @@ void advance_level(struct char_data *ch)
 	extern struct wis_app_type wis_app[];
 	extern struct con_app_type con_app[];
 
-	
+
 	add_hp = con_app[GET_CON(ch)].hitp;
 
 	switch(GET_CLASS(ch)) {
@@ -280,7 +281,7 @@ void advance_level(struct char_data *ch)
 	if (GET_LEVEL(ch) > 20)
 		for (i = 0; i < 3; i++)
 			ch->specials.conditions[i] = -1;
-}	
+}
 
 
 void set_title(struct char_data *ch)
@@ -347,7 +348,7 @@ void gain_exp_regardless(struct char_data *ch, int gain)
 				}
 			}
 		}
-		if (gain < 0) 
+		if (gain < 0)
 			GET_EXP(ch) += gain;
 		if (GET_EXP(ch) < 0)
 			GET_EXP(ch) = 0;
@@ -433,7 +434,7 @@ void check_idling(struct char_data *ch)
 
 /* Update both PC's & NPC's and objects*/
 void point_update( void )
-{	
+{
 	void update_char_objects( struct char_data *ch ); /* handler.c */
   void extract_obj(struct obj_data *obj); /* handler.c */
 	struct char_data *i, *next_dude;

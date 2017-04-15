@@ -2,11 +2,11 @@
 *  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
 ************************************************************************* */
 
-void CREATE(result, type, number) 
+void CREATE(result, type, number)
 
 As in Pascal.. Halts on error..
 
-int IS_SET(flag,bit) 
+int IS_SET(flag,bit)
 
 TRUE if the bit is set in flag, else FALSE.
 
@@ -26,7 +26,7 @@ int IS_SKILL(ch,skilltype)
 
 Returns TRUE if player 'ch' endure skill 'skilltype', else FALSE.
 
-const char *HSHR(ch) 
+const char *HSHR(ch)
 
 Returns players "his/her/its"
 
@@ -64,7 +64,7 @@ Returns TRUE if item 'obj' has status 'stat'.
 
 char *CAP(char *str);
 
-Changes the first character in the string pointed to by str to uppercase. 
+Changes the first character in the string pointed to by str to uppercase.
 Returns str.
 
 int OUTSIDE(ch)

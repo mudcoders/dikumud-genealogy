@@ -170,7 +170,7 @@ Value[2]: The type of liquid in the drink-container, one of:
               LIQ_SALTWATER  14     0           1           -2
               LIQ_COKE       15     0           1           5
 
-          The above values for drunkness/fullness/thirst are used per 
+          The above values for drunkness/fullness/thirst are used per
           four "units" drunk. The values are expressed in HOURS!
           Example:
             Dragon empties a bottle (say 7 units) of saltwater.
@@ -188,7 +188,7 @@ Value[3]: if this value is non-zero, then the drink is poisoned.
 
 ITEM_KEY       (18)
 Value[0]: The key-type. This value must match the lock-type the door
-          that the key can open. 
+          that the key can open.
 Value[1]: -
 Value[2]: -
 Value[3]: -
@@ -212,10 +212,10 @@ Value[2]: -
 Value[3]: -
 
 ITEM_BOAT      (22)
-Value[0]: 
-Value[1]: 
-Value[2]: 
-Value[3]: 
+Value[0]:
+Value[1]:
+Value[2]:
+Value[3]:
 
 
 -------------------------------------------------------------------------

@@ -16,7 +16,7 @@
 
 #define SHOP_FILE "tinyworld.shp"
 #define MAX_TRADE 5
-#define MAX_PROD 5
+#define MAX_PROD 6
 
 extern struct str_app_type str_app[];
 extern struct index_data *mob_index;
@@ -116,7 +116,7 @@ void shopping_buy( char *arg, struct char_data *ch,
 
 	if(!(is_ok(keeper,ch,shop_nr)))
 		return;
-	
+
 
 	one_argument(arg, argm);
 	if(!(*argm))
@@ -127,7 +127,7 @@ void shopping_buy( char *arg, struct char_data *ch,
 		do_tell(keeper,buf,19);
 		return;
 	};
-	if(!( temp1 = 
+	if(!( temp1 =
 		get_obj_in_list_vis(ch,argm,keeper->carrying)))
 	{
 		sprintf(buf,
@@ -167,10 +167,10 @@ void shopping_buy( char *arg, struct char_data *ch,
 				return;
 		}
 	}
-	
+
 	if ((IS_CARRYING_N(ch) + 1 > CAN_CARRY_N(ch)))
 	{
-		sprintf(buf,"%s : You can't carry that many items.\n\r", 
+		sprintf(buf,"%s : You can't carry that many items.\n\r",
 			fname(temp1->name));
 		send_to_char(buf, ch);
 		return;
@@ -178,7 +178,7 @@ void shopping_buy( char *arg, struct char_data *ch,
 
 	if ((IS_CARRYING_W(ch) + temp1->obj_flags.weight) > CAN_CARRY_W(ch))
 	{
-		sprintf(buf,"%s : You can't carry that much weight.\n\r", 
+		sprintf(buf,"%s : You can't carry that much weight.\n\r",
 			fname(temp1->name));
 		send_to_char(buf, ch);
 		return;
@@ -211,7 +211,7 @@ void shopping_buy( char *arg, struct char_data *ch,
 
 	obj_to_char(temp1,ch);
 
-	return; 
+	return;
 }
 
 void shopping_sell( char *arg, struct char_data *ch,
@@ -275,7 +275,7 @@ void shopping_sell( char *arg, struct char_data *ch,
 	GET_GOLD(keeper) -= (int) (temp1->obj_flags.cost*
 		shop_index[shop_nr].profit_sell);
 
-	if((get_obj_in_list(argm,keeper->carrying)) || 
+	if((get_obj_in_list(argm,keeper->carrying)) ||
    (GET_ITEM_TYPE(temp1) == ITEM_TRASH))
 		extract_obj(temp1);
 	else
@@ -287,7 +287,7 @@ void shopping_sell( char *arg, struct char_data *ch,
 	return;
 }
 
-void shopping_value( char *arg, struct char_data *ch, 
+void shopping_value( char *arg, struct char_data *ch,
 	struct char_data *keeper, int shop_nr)
 {
 	char argm[100], buf[MAX_STRING_LENGTH];
@@ -346,12 +346,12 @@ void shopping_list( char *arg, struct char_data *ch,
 	found_obj = FALSE;
 		if(keeper->carrying)
 	for(temp1=keeper->carrying;
-		temp1; 
+		temp1;
 		temp1 = temp1->next_content)
 			if((CAN_SEE_OBJ(ch,temp1)) && (temp1->obj_flags.cost>0))
 		{
-			found_obj = TRUE; 
-			if(temp1->obj_flags.type_flag != ITEM_DRINKCON) 
+			found_obj = TRUE;
+			if(temp1->obj_flags.type_flag != ITEM_DRINKCON)
 				sprintf(buf2,"%s for %d gold coins.\n\r"
 				,(temp1->short_description)
 				,(int)(temp1->obj_flags.cost*
@@ -410,7 +410,7 @@ int shop_keeper(struct char_data *ch, int cmd, char *arg)
 
 	keeper = 0;
 
-	for (temp_char = world[ch->in_room].people; (!keeper) && (temp_char) ; 
+	for (temp_char = world[ch->in_room].people; (!keeper) && (temp_char) ;
 		temp_char = temp_char->next_in_room)
 	if (IS_MOB(temp_char))
 		if (mob_index[temp_char->nr].func == shop_keeper)
@@ -418,7 +418,7 @@ int shop_keeper(struct char_data *ch, int cmd, char *arg)
 
 	for(shop_nr=0 ; shop_index[shop_nr].keeper != keeper->nr; shop_nr++);
 
-	if((cmd == 56) && (ch->in_room == 
+	if((cmd == 56) && (ch->in_room ==
 	   real_room(shop_index[shop_nr].in_room)))
 	 /* Buy */
 	{
@@ -426,7 +426,7 @@ int shop_keeper(struct char_data *ch, int cmd, char *arg)
 		return(TRUE);
 	}
 
-	if((cmd ==57 ) && (ch->in_room == 
+	if((cmd ==57 ) && (ch->in_room ==
 	   real_room(shop_index[shop_nr].in_room)))
 	 /* Sell */
 	{
@@ -434,7 +434,7 @@ int shop_keeper(struct char_data *ch, int cmd, char *arg)
 		return(TRUE);
 	}
 
-	if((cmd == 58) && (ch->in_room == 
+	if((cmd == 58) && (ch->in_room ==
 	   real_room(shop_index[shop_nr].in_room)))
 	 /* value */
 	{
@@ -442,7 +442,7 @@ int shop_keeper(struct char_data *ch, int cmd, char *arg)
 		return(TRUE);
 	}
 
-	if((cmd == 59) && (ch->in_room == 
+	if((cmd == 59) && (ch->in_room ==
 	   real_room(shop_index[shop_nr].in_room)))
 	 /* List */
 	{
@@ -450,7 +450,8 @@ int shop_keeper(struct char_data *ch, int cmd, char *arg)
 		return(TRUE);
 	}
 
-	if ((cmd == 25) || (cmd==70))   /* Kill or Hit */
+/*
+	if ((cmd == 25) || (cmd==70))
 	{
 		one_argument(arg, argm);
 
@@ -459,10 +460,11 @@ int shop_keeper(struct char_data *ch, int cmd, char *arg)
 			shopping_kill(arg,ch,keeper,shop_nr);
 			return(TRUE);
 		}
-	} else if ((cmd==84) || (cmd==207) || (cmd==172)) {   /* Cast, recite, use */
+	} else if ((cmd==84) || (cmd==207) || (cmd==172)) {
 		act("$N tells you 'No magic here - kid!'.", FALSE, ch, 0, keeper, TO_CHAR);
     return TRUE;
 	}
+*/
 
 	return(FALSE);
 }
@@ -557,7 +559,7 @@ void boot_the_shops()
 
 			number_of_shops++;
 		}
-		else 
+		else
 			if(*buf == '$')	/* EOF */
 				break;
 	}

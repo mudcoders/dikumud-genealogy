@@ -71,9 +71,9 @@ this substitution cannot take place, a function 'real_room', with prototype
 
 			int real_room(int virtual_number)
 
-must be used. This functions performs a binary search on the array of rooms, 
+must be used. This functions performs a binary search on the array of rooms,
 looking for a room with a given virtual number. If found, the function
-returns the index to this room; if not, the game is halted. 
+returns the index to this room; if not, the game is halted.
 
 Note: Since a binary search is used, the rooms MUST be sorted (in the
 room-file) after their virtual number.
@@ -111,7 +111,7 @@ IF <Old/Simple flag> != 'S' {
 <strength> <intelligence> <wisdom> <dexterity> <constitution>
 <hit low> <hit high> <armour> <mana> <movement> <gold> <exp>
 <position> <default> <sex> <class> <level> <age> <weight> <height>
-<condition 0> <condition 1> <condition 2> 
+<condition 0> <condition 1> <condition 2>
 <savingthrow 0> <savingthrow 1> <savingthrow 2> <savingthrow 3> <savingthrow 4>
 
 } else { /* Simple monsters flag is 'S' */
@@ -191,7 +191,7 @@ top of zone 0.
 
 b) The LIFESPAN of the zone. When the age of the zone (measured in minutes
 after last reset) reaches this number, the zone is queued for reset. The
-zone is then reset as soon as possible (more or less), depending on the 
+zone is then reset as soon as possible (more or less), depending on the
 value of the RESET_MODE-variable.
 
 c) The RESET_MODE. This may take on of three values:
@@ -206,7 +206,7 @@ c) The RESET_MODE. This may take on of three values:
   2: Reset the zone no matter who or what is in it.
 
 d) The COMMAND TABLE. This is a series of commands to execute at reset. The
-   table is terminated by the pseudo-command 'S', and thus follows the 
+   table is terminated by the pseudo-command 'S', and thus follows the
    following format:
 
    <command>
@@ -227,7 +227,7 @@ d) The COMMAND TABLE. This is a series of commands to execute at reset. The
 
    The commands:
 
-	M (load a mobile): 
+	M (load a mobile):
            Format: 'M' <if-flag> <mobile nr> <max existing> <room nr>
 
 	   mobile nr and room nr should be self-explanatory. The 'max
@@ -350,7 +350,7 @@ IF <Old/Simple flag> != 'S' {
 <strength> <intelligence> <wisdom> <dexterity> <constitution>
 <hit low> <hit high> <armour> <mana> <movement> <gold> <exp>
 <position> <default> <sex> <class> <level> <age> <weight> <height>
-<condition 0> <condition 1> <condition 2> 
+<condition 0> <condition 1> <condition 2>
 <savingthrow 0> <savingthrow 1> <savingthrow 2> <savingthrow 3> <savingthrow 4>
 
 } else { /* Simple monsters flag should be 'D' */

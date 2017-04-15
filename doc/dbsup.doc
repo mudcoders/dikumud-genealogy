@@ -14,7 +14,7 @@ Main structure notes:
 
 #<virtual number> is:
   A number for the given room. No two rooms may have the same number.
-  The <virtual number> must always increase when browsing down the 
+  The <virtual number> must always increase when browsing down the
   world file (but increments can be larger than one).
 
 <name>~<NL>:
@@ -43,7 +43,7 @@ Main structure notes:
                       other members of the group considering following...
   NO_MOB         4  No monsters may walk around in here
   INDOORS        8  This is inside (a house,cave or dungeon for example)
-  LAWFULL       16  ??? 
+  LAWFULL       16  ???
   NEUTRAL       32  ???
   CHAOTIC       64  ???
   NO_MAGIC     128  Not implemented.
@@ -216,7 +216,7 @@ Monster fields description:
   ACT_ISNPC        8  RESERVED FOR INTERNAL USE
 
   ACT_NICE_THIEF  16  When this bit is set, a monster will not attack
-                      a thief which has been caught in the act of 
+                      a thief which has been caught in the act of
                       stealing from this monster.
 
   ACT_AGGRESSIVE  32  When this bit is set, the monster will attack and
@@ -267,7 +267,7 @@ Monster fields description:
                                   out/in to a room.
   AFF_HIDE              1048576   The monster will be hidden, and can only
                                   be detected by a "sense life" spell
-  AFF_FEAR              2097152   ??? DO NOT USE   
+  AFF_FEAR              2097152   ??? DO NOT USE
   AFF_CHARM             4194304   The monster will act as charmed when a
                                   "follow <player>" is entered. Note that
                                   players can't force monsters to follow
@@ -328,7 +328,7 @@ Monster fields description:
 
    This monster will damage between 11 and 14 hitpoints each round. If the
    monster picks up and wields a tiny stick which give 1d2 damage, then the
-   monster will now damage by : 1d2 + 10 points. 
+   monster will now damage by : 1d2 + 10 points.
 
 <Gold>
    The amout of gold carried by the monster.
