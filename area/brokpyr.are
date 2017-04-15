@@ -375,11 +375,7 @@ reserved~
 A
 2 1
 E
-silk~
-A neatly spun shawl of web.
-~
-E
-shawl~
+web~
 A neatly spun shawl of web.
 ~
 E
@@ -387,7 +383,11 @@ spider~
 A neatly spun shawl of web.
 ~
 E
-web~
+shawl~
+A neatly spun shawl of web.
+~
+E
+silk~
 A neatly spun shawl of web.
 ~
 #14502
@@ -403,16 +403,16 @@ fly~
 1 1
 0 0 0
 E
-black~
-A long black feather from a very large bird.  
+feather~
+A long black feather from a very large bird.     
 ~
 E
 vulture~
 A long black feather from a very large bird.     
 ~
 E
-feather~
-A long black feather from a very large bird.     
+black~
+A long black feather from a very large bird.  
 ~
 #14503
 shadow whip string~
@@ -427,11 +427,11 @@ reserved~
 0 0
 0 0 0
 A
-19 15
-A
 18 40
+A
+19 15
 E
-shadow~
+string~
 It appears to be nothing more than a shadow.
 ~
 E
@@ -439,7 +439,7 @@ whip~
 It appears to be nothing more than a shadow.
 ~
 E
-string~
+shadow~
 It appears to be nothing more than a shadow.
 ~
 #14504
@@ -455,11 +455,11 @@ reserved~
 0 0
 0 0 0
 E
-potion~
+shadowy~
 A corked bottle filled with the remains of a shadow.
 ~
 E
-shadowy~
+potion~
 A corked bottle filled with the remains of a shadow.
 ~
 #14505
@@ -475,11 +475,11 @@ reserved~
 0 0
 0 0 0
 A
-5 1
-A
 13 30
+A
+5 1
 E
-storing~
+amulet~
 A small amulet glows with a life all its own.
 ~
 E
@@ -487,7 +487,7 @@ life~
 A small amulet glows with a life all its own.
 ~
 E
-amulet~
+storing~
 A small amulet glows with a life all its own.
 ~
 #14506
@@ -503,11 +503,7 @@ reserved~
 0 0
 0 0 0
 E
-ancient~
-An old and decaying wand that smells of death.
-~
-E
-decay ~
+wand~
 An old and decaying wand that smells of death.
 ~
 E
@@ -515,7 +511,11 @@ decaying~
 An old and decaying wand that smells of death.
 ~
 E
-wand~
+decay ~
+An old and decaying wand that smells of death.
+~
+E
+ancient~
 An old and decaying wand that smells of death.
 ~
 #14507
@@ -531,13 +531,13 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
 4 2
+A
+13 50
 E
-egyptian~
-A beautifully carved ivory sceptre. It is covered with many different types
-of jewels.
+ancient~
+A beautifully carved ivory sceptre.  It is covered with different types of
+jewels.  
 ~
 E
 sceptre~
@@ -545,9 +545,9 @@ A beautifully carved ivory sceptre.  It is covered with different types of
 jewels.  
 ~
 E
-ancient~
-A beautifully carved ivory sceptre.  It is covered with different types of
-jewels.  
+egyptian~
+A beautifully carved ivory sceptre. It is covered with many different types
+of jewels.
 ~
 #14508
 crown ancient kings~
@@ -562,15 +562,15 @@ reserved~
 0 0
 0 0 0
 A
-17 -50
+4 3
 A
 12 50
 A
-4 3
+17 -50
 E
-kings~
+crown~
 An elegantly jewelled crown inlaid with gold and silver around the ivory
-base.
+base.  
 ~
 E
 ancient~
@@ -578,9 +578,9 @@ An elegantly jewelled crown inlaid with gold and silver around the ivory
 base.    
 ~
 E
-crown~
+kings~
 An elegantly jewelled crown inlaid with gold and silver around the ivory
-base.  
+base.
 ~
 #14509
 pyramid key~
@@ -611,7 +611,7 @@ reserved~
 0 0
 0 0 0
 E
-pile~
+rotting~
 A pile of maggot infested meat.
 ~
 E
@@ -619,12 +619,12 @@ meat~
 A pile of maggot infested meat.
 ~
 E
-rotting~
+pile~
 A pile of maggot infested meat.
 ~
 #14511
 green pair spikey pants~
-&ga pair of green spikey pants&X~
+&ga pair of green spikey pants&W~
 &gA pair of green spikey pants rest here.~
 ~
 9 4096 8079 16404 33 40
@@ -635,21 +635,17 @@ reserved~
 0 0
 0 0 0
 A
-5 1
-A
-1 2
-A
-2 -1
+17 -30
 A
 14 -30
 A
-17 -30
+2 -1
+A
+1 2
+A
+5 1
 E
-Green~
-Looks like part of a cactus plant.
-~
-E
-spikey~
+pair~
 Looks like part of a cactus plant.
 ~
 E
@@ -657,7 +653,11 @@ pants~
 Looks like part of a cactus plant.
 ~
 E
-pair~
+spikey~
+Looks like part of a cactus plant.
+~
+E
+Green~
 Looks like part of a cactus plant.
 ~
 #14512
@@ -685,11 +685,11 @@ reserved~
 0 0
 0 0 0
 A
-18 20
-A
 19 56
+A
+18 20
 E
-green~
+spike~
 A huge spike that looks like it came from a cactus.
 ~
 E
@@ -697,7 +697,7 @@ spikey~
 A huge spike that looks like it came from a cactus.
 ~
 E
-spike~
+green~
 A huge spike that looks like it came from a cactus.
 ~
 #14515
@@ -713,24 +713,24 @@ reserved~
 0 0
 0 0 0
 A
-3 -1
-A
-4 -1
-A
-5 -1
-A
-1 -1
+17 30
 A
 2 -1
 A
-17 30
+1 -1
+A
+5 -1
+A
+4 -1
+A
+3 -1
 E
-ragged~
+scarf~
 A long tattered piece of cloth that looks like it has been through many
 owners.  
 ~
 E
-scarf~
+ragged~
 A long tattered piece of cloth that looks like it has been through many
 owners.  
 ~
@@ -747,7 +747,7 @@ reserved~
 0 0
 0 0 0
 E
-goggles~
+dusty~
 A pair of goggles covered with a thick layer of dust.
 ~
 E
@@ -755,7 +755,7 @@ pair~
 A pair of goggles covered with a thick layer of dust.
 ~
 E
-dusty~
+goggles~
 A pair of goggles covered with a thick layer of dust.
 ~
 #14517
@@ -771,15 +771,15 @@ reserved~
 0 0
 0 0 0
 E
-corpse~
-A mangled corpse of a tomb looter looks like it has been chewed up.
+looter~
 ~
 E
 body~
 A mangled corpse of a tomb looter looks like it's been chewed up.
 ~
 E
-looter~
+corpse~
+A mangled corpse of a tomb looter looks like it has been chewed up.
 ~
 #14518
 furry green button Peyote~
@@ -794,20 +794,20 @@ reserved~
 0 0
 0 0 0
 E
-Peyote~
-A small button with something growing on it...something Green!
-~
-E
-button~
-A small button with something growing on it...something Green!
+green~
+A small button that looks like it is growing something...Green.
 ~
 E
 furry~
 A small button that looks like it is growing something....Green.
 ~
 E
-green~
-A small button that looks like it is growing something...Green.
+button~
+A small button with something growing on it...something Green!
+~
+E
+Peyote~
+A small button with something growing on it...something Green!
 ~
 #14519
 pile small gems~
@@ -822,7 +822,7 @@ reserved~
 0 0
 0 0 0
 E
-small~
+pile~
 A small pile of assorted colors and sizes of gems.
 ~
 E
@@ -830,7 +830,7 @@ gems~
 A small pile of assorted colors and sizes of gems.
 ~
 E
-pile~
+small~
 A small pile of assorted colors and sizes of gems.
 ~
 #14520
@@ -846,13 +846,13 @@ reserved~
 0 0
 0 0 0
 A
-19 95
+26 5
 A
 18 80
 A
-26 5
+19 95
 E
-vorpal~
+huge~
 A huge blade made of an unknown metal.  It is humming with power.
 ~
 E
@@ -860,7 +860,7 @@ blade~
 A huge blade made of an unknown metal.  It is humming with power.
 ~
 E
-huge~
+vorpal~
 A huge blade made of an unknown metal.  It is humming with power.
 ~
 #14521
@@ -876,13 +876,13 @@ reserved~
 0 -1
 0 0 0
 A
-3 3
+19 88
 A
 12 100
 A
-19 88
+3 3
 E
-ball~
+pure~
 A large ball of shimmering light; it glows chaotically giving off an aura
 of power.  
 ~
@@ -892,7 +892,7 @@ A large ball of shimmering light; it glows chaotically giving off an aura
 of power.  
 ~
 E
-pure~
+ball~
 A large ball of shimmering light; it glows chaotically giving off an aura
 of power.  
 ~
@@ -909,13 +909,13 @@ reserved~
 -1 -1
 0 0 0
 A
-12 100
+24 3
 A
 17 -55
 A
-24 3
+12 100
 E
-ball~
+pure~
 A large ball of shimmering light; it glows chaotically giving off an aura
 of power.  
 ~
@@ -925,7 +925,7 @@ A large ball of shimmering light; it glows chaotically giving off an aura
 of power. 
 ~
 E
-pure~
+ball~
 A large ball of shimmering light; it glows chaotically giving off an aura
 of power.  
 ~
@@ -942,7 +942,7 @@ reserved~
 1 1
 0 0 0
 E
-vortex~
+portal~
 A rip in the fabric of time and space.
 ~
 E
@@ -950,7 +950,7 @@ swirling~
 A rip in the fabric of time and space.
 ~
 E
-portal~
+vortex~
 A rip in the fabric of time and space.
 ~
 #14524
@@ -966,7 +966,7 @@ reserved~
 0 0
 0 0 0
 E
-skull~
+dragon~
 A skull with huge claw marks on the side.
 ~
 E
@@ -974,7 +974,7 @@ red~
 A skull with huge claw marks on the side.
 ~
 E
-dragon~
+skull~
 A skull with huge claw marks on the side.
 ~
 #14525
@@ -990,9 +990,9 @@ reserved~
 0 0
 0 0 0
 A
-26 50
-A
 17 -100
+A
+26 50
 #0
 
 
@@ -1098,14 +1098,14 @@ great dimensions, there is a normal sized keyhole within reach.
 0 4 10
 Rd     0
 E
-stone door~
-An enormous stone door makes and entrance for the large pyramid in front of
-you.
-~
-E
 keyhole~
 A small keyhole (in relation to the door itself) is at about your eye level.
 Curious that it is so low in the great barrier that stands before you.
+~
+E
+stone door~
+An enormous stone door makes and entrance for the large pyramid in front of
+you.
 ~
 D1
 ~
@@ -1999,11 +1999,11 @@ very intense here, although you don't see any burning.
 0 1 0
 Rd     0
 E
-signature~
+rune~
 You are unable to determine what language or type of magic the rune might be.
 ~
 E
-rune~
+signature~
 You are unable to determine what language or type of magic the rune might be.
 ~
 D1

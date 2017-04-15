@@ -5,7 +5,7 @@ Builders    Reklar~
 VNUMs       8200 8299
 Security    100
 Recall      25001
-Flags       16
+Flags       0
 Color       6
 Sounds      &CThe sins of your past flash through your eyes with each step.~
 End
@@ -915,15 +915,15 @@ reserved~
 0 0
 0 0 0
 A
-17 -125
-A
-12 50
-A
-13 75
+19 12
 A
 18 7
 A
-19 12
+13 75
+A
+12 50
+A
+17 -125
 #8202
 Bracer Plunder~
 &zA Bracer of Plunder&w~
@@ -937,15 +937,15 @@ reserved~
 0 0
 8270 0 0
 A
-17 -100
-A
-13 95
-A
-19 10
+18 9
 A
 23 -20
 A
-18 9
+19 10
+A
+13 95
+A
+17 -100
 #8203
 Sunken Eyes~
 a pair of deep-set, sunken eyes~
@@ -995,17 +995,17 @@ reserved~
 0 0
 0 0 0
 A
-12 50
-A
-13 100
-A
-17 -100
-A
-23 -40
+18 5
 A
 19 5
 A
-18 5
+23 -40
+A
+17 -100
+A
+13 100
+A
+12 50
 #8207
 key~
 Death's Passkey~
@@ -1031,17 +1031,17 @@ field of decay~
 2 2
 0 0 0
 A
-23 -25
-A
-12 50
-A
-25 30
-A
-13 75
+19 7
 A
 18 7
 A
-19 7
+13 75
+A
+25 30
+A
+12 50
+A
+23 -25
 #8209
 Key Death~
 &zThe Key of Death&w~
@@ -1067,19 +1067,19 @@ reserved~
 0 0
 0 0 0
 A
-17 -120
-A
-12 120
-A
-13 120
-A
-18 10
-A
-23 -50
+19 15
 A
 25 25
 A
-19 15
+23 -50
+A
+18 10
+A
+13 120
+A
+12 120
+A
+17 -120
 #8211
 Scythe Death~
 a Darkened Scythe~
@@ -1093,15 +1093,15 @@ reserved~
 0 0
 0 0 0
 A
-26 100
-A
-23 -75
-A
-17 -150
+19 50
 A
 18 50
 A
-19 50
+17 -150
+A
+23 -75
+A
+26 100
 #8212
 Sands Time~
 &OThe Sands of Time&w~
@@ -1115,11 +1115,11 @@ astral walk~
 20 20
 0 0 0
 A
-13 80
+18 12
 A
 19 8
 A
-18 12
+13 80
 #8213
 Bracer Pillage~
 &zA Bracer of Pillage&w~
@@ -1133,17 +1133,17 @@ reserved~
 0 0
 1 0 0
 A
-2 2
-A
-12 110
-A
-13 90
-A
-17 -50
+18 10
 A
 19 10
 A
-18 10
+17 -50
+A
+13 90
+A
+12 110
+A
+2 2
 #8214
 key~
 Mars' Passkey~
@@ -1169,13 +1169,13 @@ dark ritual~
 2 2
 0 0 0
 A
-25 20
-A
-13 80
+18 13
 A
 19 7
 A
-18 13
+13 80
+A
+25 20
 #8216
 Key~
 Lucifer's Passkey~
@@ -1213,13 +1213,13 @@ curse~
 20 20
 0 0 0
 A
-12 75
-A
-13 120
+19 9
 A
 18 7
 A
-19 9
+13 120
+A
+12 75
 #8219
 key small~
 a small key~
@@ -1293,17 +1293,17 @@ aura of peace~
 8 8
 0 0 0
 A
-19 15
-A
-18 8
-A
-13 125
-A
-12 100
+23 -25
 A
 24 -50
 A
-23 -25
+12 100
+A
+13 125
+A
+18 8
+A
+19 15
 #8231
 Brilliant Light Good~
 &WA Br&Yilliant Li&Wght&w~
@@ -1317,13 +1317,13 @@ dispel magic~
 5 5
 0 0 0
 A
-19 8
-A
-12 50
+18 7
 A
 12 125
 A
-18 7
+12 50
+A
+19 8
 #8232
 thunder lightning~
 &zThunder &wand &YLightning&w~
@@ -1337,17 +1337,17 @@ reserved~
 0 0
 0 0 0
 A
-18 55
-A
-19 55
-A
-24 -25
-A
-17 -120
+13 120
 A
 12 120
 A
-13 120
+17 -120
+A
+24 -25
+A
+19 55
+A
+18 55
 >wear_prog 100~
 0
 if ispc($n)
@@ -1383,13 +1383,13 @@ reserved~
 0 0
 0 0 0
 A
-19 15
-A
-18 10
+24 -20
 A
 13 100
 A
-24 -20
+18 10
+A
+19 15
 #8234
 pillar fire~
 &RA Pillar of Fire&w~
@@ -1403,15 +1403,15 @@ reserved~
 0 0
 0 0 0
 A
-19 15
-A
-18 10
-A
-13 100
+25 30
 A
 12 50
 A
-25 30
+13 100
+A
+18 10
+A
+19 15
 #8236
 book old testament~
 &OThe Old Testament&w~
@@ -1437,13 +1437,13 @@ phase shift~
 15 15
 0 0 0
 A
-13 75
-A
-19 8
+24 -20
 A
 18 10
 A
-24 -20
+19 8
+A
+13 75
 #8238
 Shimmering Key~
 A Shimmering Key~
@@ -1469,15 +1469,15 @@ healing hands~
 2 2
 0 0 0
 A
-19 7
-A
-18 10
-A
-13 50
+17 -100
 A
 12 75
 A
-17 -100
+13 50
+A
+18 10
+A
+19 7
 #8240
 Stone Destruction~
 a Stone of Destruction~
@@ -1491,15 +1491,15 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
-19 7
-A
-13 75
+17 -100
 A
 12 50
 A
-17 -100
+13 75
+A
+19 7
+A
+18 10
 #8241
 Scroll Remove Curse RemoveCurse~
 A Scroll of Remove Curse~
@@ -1589,7 +1589,7 @@ Hands God~
 &WThe &YHands of &WGod&w~
 The powerful hands of God lie at your fingers.~
 ~
-9 905969985 0 0 129 104
+9 905969985 0 0 129 100
 0~ 0~ 0~ 0~
 1 0 0 0 0
 5 0
@@ -1597,21 +1597,21 @@ summon angel~
 -1 -1
 0 0 0
 A
-19 25
-A
-18 25
-A
-13 150
-A
-12 150
-A
-25 50
-A
-24 -100
+26 100
 A
 17 -150
 A
-26 100
+24 -100
+A
+25 50
+A
+12 150
+A
+13 150
+A
+18 25
+A
+19 25
 #8249
 Scroll Death~
 A Scroll of Death~
@@ -1715,7 +1715,7 @@ A freshly caught fish~
 ~
 19 0 0 0 1 1
 25~ 0~ 0~ 0~
-1 0 0 0 0
+1 10 0 0 0
 0 0
 reserved~
 0 0
@@ -1727,7 +1727,7 @@ A flask of water~
 ~
 17 0 0 0 1 1
 10~ 10~ 0~ 0~
-1 0 0 0 0
+1 5 0 0 0
 0 0
 reserved~
 0 0
@@ -1739,7 +1739,7 @@ A loaf of bread~
 ~
 19 0 0 0 1 1
 25~ 0~ 0~ 0~
-1 0 0 0 0
+1 5 0 0 0
 0 0
 reserved~
 0 0
@@ -1751,7 +1751,7 @@ A rusted bronze key~
 ~
 18 128 0 0 1 1
 0~ 0~ 0~ 0~
-1 0 0 0 0
+1 400 0 0 0
 0 0
 reserved~
 0 0
@@ -1805,17 +1805,17 @@ phase shift~
 5 5
 0 0 0
 A
-23 -20
-A
-17 -120
-A
-24 -20
-A
-13 120
+19 15
 A
 18 10
 A
-19 15
+13 120
+A
+24 -20
+A
+17 -120
+A
+23 -20
 #8268
 Holy Rosary~
 &WA &CHoly &WRosary&w~
@@ -1829,15 +1829,15 @@ aura of peace~
 5 5
 0 0 0
 A
-23 -20
-A
-24 -15
-A
-18 10
+13 120
 A
 19 13
 A
-13 120
+18 10
+A
+24 -15
+A
+23 -20
 #8269
 Bag Silver Pennies~
 a Bag of Silver Pennies~
@@ -1863,17 +1863,17 @@ reserved~
 0 0
 0 3 1
 A
-17 -75
-A
-12 50
-A
-24 -25
-A
-13 125
+19 15
 A
 18 14
 A
-19 15
+13 125
+A
+24 -25
+A
+12 50
+A
+17 -75
 #8271
 portal exit~
 an exit.~
@@ -1903,7 +1903,7 @@ Charm Decay~
 &wThe Charm of Decay&w~
 A rotting piece of a corpse lies at your grasp.~
 ~
-9 0 0 0 1048577 101
+9 0 0 0 1048577 100
 0~ 0~ 0~ 0~
 1 0 0 0 0
 5 0
@@ -1911,15 +1911,15 @@ dark ritual~
 25 25
 0 0 0
 A
-25 25
-A
-24 -25
-A
-13 75
+18 20
 A
 19 10
 A
-18 20
+13 75
+A
+24 -25
+A
+25 25
 #0
 
 
@@ -1933,7 +1933,7 @@ place for them to be. The way of the ethereal is treacherous indeed and can
 be hazardous for any mortals life, for the dead look upon your life with
 contempt as they realize what they have lost.
 ~
-0 262168 9
+0 1073741832 9
 Rd     0
 D0
 ~
@@ -1948,7 +1948,7 @@ that such a decision last an eternity it is obvious why the people here seem
 so agitated. All around you people wander mindless around talking to nobody
 in particular and everybody at the same time.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D0
 ~
@@ -1969,7 +1969,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and yet still a faint flicker
 of hope remains in their eyes.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D0
 ~
@@ -1990,7 +1990,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and yet still a faint flicker
 of hope remains in their eyes.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D0
 ~
@@ -2019,7 +2019,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and yet still a faint flicker
 of hope remains in their eyes.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D0
 ~
@@ -2040,7 +2040,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and yet still a faint flicker
 of hope remains in their eyes.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D0
 ~
@@ -2073,7 +2073,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and yet still a faint flicker
 of hope remains in their eyes.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D0
 ~
@@ -2102,7 +2102,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and yet still a faint flicker
 of hope remains in their eyes.
 ~
-0 401432 9
+0 1074143256 9
 Rd     0
 D0
 ~
@@ -2131,7 +2131,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and yet still a faint flicker
 of hope remains in their eyes.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -2152,7 +2152,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and ye still a faint flicker
 of hope remains in their eyes.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D0
 ~
@@ -2181,7 +2181,7 @@ for eternity or until some poor mortal prays for their sins. Indeed
 it is not very hopeful for these people and yet still a faint flicker
 of hope remains in their eyes.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D2
 ~
@@ -2200,7 +2200,7 @@ knows what you are about to do. Well, being the Incarnation of Time you are
 fairly sure that if you choose to attack him and gain admittance to the
 Stairway to Heaven, the element of surprise will not be on your side...
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D2
 ~
@@ -2214,7 +2214,7 @@ seems to have withered away and you feel something strange tugging on your
 soul leading in that direction. Perhaps it would be safer just to forget this
 trail and head back, although it would be interesting to see what lies ahead!
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D1
 ~
@@ -2232,7 +2232,7 @@ room. You stop and think to yourself whether continuing down this path would
 be beneficial to YOUR health. It certainly seems like nothing else has been
 able to survive it...
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D1
 ~
@@ -2251,7 +2251,7 @@ let it hit you by surprise. You unstrap your sheath, draw your great blade and
 stand ready to attack anything that moves....fortunately it seems that
 everything is dead already, however its always better to be safe then sorry.
 ~
-0 393240 9
+0 1074135064 9
 Rd     0
 D1
 ~
@@ -2271,7 +2271,7 @@ however if you feel yourself to be no match for the very person who could rip
 your soul from your body with no thought at all, perhaps it would be best
 to head back.
 ~
-0 33947672 9
+0 1107689496 9
 Rd     0
 D1
 ~
@@ -2289,7 +2289,7 @@ of War is an undead warrior who thrives on war, butchery, pillage and plunder!
 Specializing on the brute force of his axe, his opponents fear and un-nerving
 tactics, War is a very intimidating foe!
 ~
-0 4595737 9
+0 1078337561 9
 Rd     0
 D5
 ~
@@ -2304,7 +2304,7 @@ no problem at all. However, you cannot help but feel like wretching at the
 very site of this opponent and you have this strange feeling that perhaps this
 will not be as easy as it looks.
 ~
-0 4595728 9
+0 1078337552 9
 Rd     0
 D4
 ~
@@ -2322,7 +2322,7 @@ disease. Decaying and rotting flesh peal of his disgusting body as swarms of
 flies, bugs and maggots crawl around his appendages eating their way to his
 very bones. A toothless grin, Pestilence advances towards you piece by piece...
 ~
-0 4595728 9
+0 1078337552 9
 Rd     0
 D5
 ~
@@ -2337,7 +2337,7 @@ around your heart and begin to squeeze the life out of you. It seems that you
 had better finish off this opponent fast or being in its mere presence may
 kill you alone!
 ~
-0 273031184 0
+0 1346773008 0
 Rd     250
 D5
 ~
@@ -2351,7 +2351,7 @@ you thought the horseman were hard, it would not comfort you to hear how
 Thanatos gained their loyalty.  A black scythe in hand a hood as dark as
 night, Thanatos advances towards you to claim your soul...  
 ~
-0 4595728 9
+0 1078337552 9
 Rd     0
 D0
 ~
@@ -2502,7 +2502,7 @@ realm of heaven is reserved for the normal, everyday, good christian souls.
 Although there is nothing spectacular about this place, the place exudes a
 sense of contentment, happiness and fulfillment.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2528,7 +2528,7 @@ realm of heaven is reserved for the normal, everyday, good christian souls.
 Although there is nothing spectacular about this place, the place exudes a
 sense of contentment, happiness and fulfillment.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2560,7 +2560,7 @@ realm of heaven is reserved for the normal, everyday, good christian souls.
 Although there is nothing spectacular about this place, the place exudes a
 sense of contentment, happiness and fulfillment.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -2582,7 +2582,7 @@ realm of heaven is reserved for the normal, everyday, good christian souls.
 Although there is nothing spectacular about this place, the place exudes a
 sense of contentment, happiness and fulfillment.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2608,7 +2608,7 @@ realm of heaven is reserved for the normal, everyday, good christian souls.
 Although there is nothing spectacular about this place, the place exudes a
 sense of contentment, happiness and fulfillment.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -2630,7 +2630,7 @@ realm of heaven is reserved for the normal, everyday, good christian souls.
 Although there is nothing spectacular about this place, the place exudes a
 sense of contentment, happiness and fulfillment.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D3
 ~
@@ -2644,7 +2644,7 @@ realm of heaven is reserved for the normal, everyday, good christian souls.
 Although there is nothing spectacular about this place, the place exudes a
 sense of contentment, happiness and fulfillment.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2662,7 +2662,7 @@ realm of heaven is reserved for the normal, everyday, good christian souls.
 Although there is nothing spectacular about this place, the place exudes a
 sense of contentment, happiness and fulfillment.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D2
 ~
@@ -2681,7 +2681,7 @@ mostly of praying to God and thanking Him for what He has given them.
 Lost unto their own little world, many of the saints have forgotten about
 the world that is and have abandoned the mortals unto their own doings.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2704,7 +2704,7 @@ mostly of praying to God and thanking Him for what He has given them.
 Lost unto their own little world, many of the saints have forgotten about
 the world that is and have abandoned the mortals unto their own doings.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2727,7 +2727,7 @@ mostly of praying to God and thanking Him for what He has given them.
 Lost unto their own little world, many of the saints have forgotten about
 the world that is and have abandoned the mortals unto their own doings.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2750,7 +2750,7 @@ mostly of praying to God and thanking Him for what He has given them.
 Lost unto their own little world, many of the saints have forgotten about
 the world that is and have abandoned the mortals unto their own doings.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D2
 ~
@@ -2769,7 +2769,7 @@ mostly of praying to God and thanking Him for what He has given them.
 Lost unto their own little world, many of the saints have forgotten about
 the world that is and have abandoned the mortals unto their own doings.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -2792,7 +2792,7 @@ mostly of praying to God and thanking Him for what He has given them.
 Lost unto their own little world, many of the saints have forgotten about
 the world that is and have abandoned the mortals unto their own doings.
 ~
-0 401424 0
+0 1074143248 0
 Rd     0
 D0
 ~
@@ -2815,7 +2815,7 @@ mostly of praying to God and thanking Him for what He has given them.
 Lost unto their own little world, many of the saints have forgotten about
 the world that is and have abandoned the mortals unto their own doings.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2842,7 +2842,7 @@ mostly of praying to God and thanking Him for what He has given them.
 Lost unto their own little world, many of the saints have forgotten about
 the world that is and have abandoned the mortals unto their own doings.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2861,7 +2861,7 @@ of warmth and comfort exude from this place, as if total serenity has
 been reached here. You can feel that your quest for God is drawing
 nearer to an end.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2880,7 +2880,7 @@ of warmth and comfort exude from this place, as if total serenity has
 been reached here. You can fee that your quest for God is drawing
 nearer to an end.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2899,7 +2899,7 @@ of warmth and comfort exude from this place, as if total serenity has
 been reached here. You can feel that your quest for God is drawing
 nearer to an end.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -2926,7 +2926,7 @@ of warmth and comfort exude from this place, as if total serenity has
 been reached here. You can feel that your quest for God is drawing
 nearer to an end.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -3000,7 +3000,7 @@ power vibrates along the walls beckoning you forward. The corridor itself
 is extremely bright, moreso then any other area of heaven that you have
 seen so far!
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -3019,7 +3019,7 @@ of warmth and comfort exude from this place, as if total serenity has
 been reached here. You can feel that your quest for God is drawing
 nearer to an end.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -3042,7 +3042,7 @@ of warmth and comfort exude from this place, as if total serenity has
 been reached here. You can feel that your quest for God is drawing
 nearer to an end.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D0
 ~
@@ -3069,7 +3069,7 @@ of warmth and comfort exude from this place, as if total serenity has
 been reached here. You can feel that your quest for God is drawing
 nearer to an end.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -3091,7 +3091,7 @@ power vibrates along the walls beckoning you forward. The corridor itself
 is extremely bright, moreso then any other area of heaven that you have
 seen so far!
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -3179,7 +3179,7 @@ of warmth and comfe from this place, as if total serenity has
 been reached here. You can feel that your quest for God is drawing
 nearer to an end.
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D1
 ~
@@ -3197,7 +3197,7 @@ S
 #8263
 A Strange Room~
 ~
-0 401424 9
+0 1074143248 9
 Rd     0
 D3
 ~
@@ -3209,7 +3209,7 @@ The Office of Good~
 The belt of divinity is the insignia of power here in heaven.  Whomever
 wears the belt controls the fate of the world!  
 ~
-0 4595732 9
+0 1078337556 9
 Rd     0
 D0
 ~
@@ -3227,7 +3227,7 @@ must eat something to sustain themselves, although the shop really doesn't
 look that busy. Hmm...perhaps its just because all they sell is bread and
 water. Who would wanna eat that for eternity...?
 ~
-0 2499612 9
+0 1076241436 9
 Rd     0
 D3
 ~
@@ -3246,7 +3246,7 @@ would not go well with the boys upstairs if they ever heard about this!
 Quivering, Cleatus offers his wares to you pleading for your mercy. Surely
 this is an advantage that does not come along very often!
 ~
-0 2098192 9
+0 1075840016 9
 Rd     0
 D4
 ~
@@ -3288,7 +3288,7 @@ instead been granted immortality since it will take him to the end of time
 to pay for the sins he has committed. Pity this poor man for his suffering
 has been more then any man could possibly spare.
 ~
-0 528 9
+0 1073742352 9
 Rd     0
 D1
 ~
@@ -3319,7 +3319,7 @@ This room allows access to all the major power areas in the world at present
 for gods Angels.  You have gained access to this hidden room and have thus
 inherited the power that goes along with it!  Congratulations!
 ~
-0 393216 9
+0 1074135040 9
 Rd     0
 D4
 ~

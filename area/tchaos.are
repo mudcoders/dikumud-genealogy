@@ -943,13 +943,13 @@ energy drain~
 8 8
 0 0 0
 A
-13 35
-A
-26 5
+19 20
 A
 18 20
 A
-19 20
+26 5
+A
+13 35
 #16001
 white robe pile cloth~
 a brilliant white robe~
@@ -963,17 +963,20 @@ reserved~
 0 0
 0 0 0
 A
-12 68
-A
-13 68
+3 3
 A
 17 -60
 A
-3 3
+13 68
+A
+12 68
 E
-robe~
-&WThe robe is made of a strange silk-like material. Strangely though, it
-seems alot more durable than one made of ordinary silk.
+pile~
+&WA white silk-like cloth that looks to be very durable.
+~
+E
+cloth~
+&WThe cloth feels like silk, but seems quite a bit more durable.
 ~
 E
 white~
@@ -982,12 +985,9 @@ of a silky material. It is human-sized, and quite long in length. Two thin
 lines of ice-blue thread have been stitched from shoulder to hem.
 ~
 E
-cloth~
-&WThe cloth feels like silk, but seems quite a bit more durable.
-~
-E
-pile~
-&WA white silk-like cloth that looks to be very durable.
+robe~
+&WThe robe is made of a strange silk-like material. Strangely though, it
+seems alot more durable than one made of ordinary silk.
 ~
 #16002
 blue silken cloak~
@@ -1002,16 +1002,18 @@ mana~
 3 3
 0 0 0
 A
-12 50
-A
-13 20
+3 1
 A
 4 3
 A
-3 1
+13 20
+A
+12 50
 E
-blue~
-&CThe cloak is an ice-blue in colour, and the threads are tightly woven.
+cloak~
+&CThe cloak is approximately human-sized, although it is even quite long in
+length for an average-sized human. Perhaps if you wrap it around just right, it
+may fit perfectly.
 ~
 E
 silken~
@@ -1020,10 +1022,8 @@ silky texture. It's tightly woven threads make it one of the softest silks
 you've touched.
 ~
 E
-cloak~
-&CThe cloak is approximately human-sized, although it is even quite long in
-length for an average-sized human. Perhaps if you wrap it around just right, it
-may fit perfectly.
+blue~
+&CThe cloak is an ice-blue in colour, and the threads are tightly woven.
 ~
 #16003
 nimbus chaos energy~
@@ -1038,22 +1038,22 @@ reserved~
 0 0
 0 0 0
 A
-108 -1
+2 3
 A
 12 85
 A
-2 3
+108 -1
 E
-energy~
-&YA luminous vapor of radiant light swirls chaotically.
+nimbus~
+&w&YA luminous vapor of radiant light swirls chaotically.
 ~
 E
 chaos~
 &YA luminous vapor of radiant light swirls chaotically.
 ~
 E
-nimbus~
-&w&YA luminous vapor of radiant light swirls chaotically.
+energy~
+&YA luminous vapor of radiant light swirls chaotically.
 ~
 #16004
 eyes chaos lenses~
@@ -1068,14 +1068,18 @@ locate object~
 0 0
 0 0 0
 A
-1 2
+102 -1
 A
 13 80
 A
-102 -1
+1 2
 E
-lenses~
-&YYou feel an overpowering sense of evil as you look upon chaos.
+eyes~
+&YThe eyes of chaos look to be just that. Just by looking at them you
+can feel a power of evil. They are indeed, dark, but if you hold them
+just right they appear to be amber in colour. You can't be sure, but it
+seems that these items were either magically made or that they are, in
+fact, a shaving off of some vile creature's orbs.
 ~
 E
 chaos~
@@ -1086,12 +1090,8 @@ seems that these items were either magically made of that they are, in
 fact, a shaving off of some vile creature's orbs.
 ~
 E
-eyes~
-&YThe eyes of chaos look to be just that. Just by looking at them you
-can feel a power of evil. They are indeed, dark, but if you hold them
-just right they appear to be amber in colour. You can't be sure, but it
-seems that these items were either magically made or that they are, in
-fact, a shaving off of some vile creature's orbs.
+lenses~
+&YYou feel an overpowering sense of evil as you look upon chaos.
 ~
 #16005
 orb chaos~
@@ -1106,18 +1106,18 @@ displacement~
 4 4
 0 0 0
 A
-17 -60
+13 60
 A
 5 3
 A
-13 60
-E
-chaos~
-&YThe orb eminates evil and an undescribable power.
-~
+17 -60
 E
 orb~
 &YThe orb is a abstract ball of pure energy.
+~
+E
+chaos~
+&YThe orb eminates evil and an undescribable power.
 ~
 #16006
 grey mask~
@@ -1132,17 +1132,17 @@ teleport~
 4 4
 0 0 0
 A
-2 2
-A
 17 -75
+A
+2 2
+E
+grey~
+&wA grey mask shimmers with unseen bursts of energy.
+~
 E
 mask~
 &wA mask is grey in colour, and smooth in texture. It is rather small in
 size, and conforms to fit almost any small face.
-~
-E
-grey~
-&wA grey mask shimmers with unseen bursts of energy.
 ~
 #16007
 staff light~
@@ -1157,19 +1157,19 @@ chaos field~
 3 3
 0 0 0
 A
-4 2
+13 60
 A
 12 70
 A
-13 60
+4 2
+E
+light~
+&WA stout-looking wooden staff emits a &b&Bbright bluish glow&W&W.
+~
 E
 staff~
 &OA stout-looking wooden staff that emits a &b&Bbright bluish glow&O&O and also a
 faint humming noise when held.
-~
-E
-light~
-&WA stout-looking wooden staff emits a &b&Bbright bluish glow&W&W.
 ~
 #16008
 boots flight crimson~
@@ -1184,22 +1184,22 @@ reserved~
 0 0
 0 0 0
 A
-110 -1
+17 -35
 A
 2 1
 A
-17 -35
+110 -1
 E
-boots~
-The boots are human-sized and very well crafted.
+crimson~
+&RThe boots are crimson in colour and very well crafted.
 ~
 E
 flight~
 The boots are human-sized and very well crafted.
 ~
 E
-crimson~
-&RThe boots are crimson in colour and very well crafted.
+boots~
+The boots are human-sized and very well crafted.
 ~
 #16009
 white gossamer gown~
@@ -1214,9 +1214,9 @@ intellect fortress~
 3 3
 0 0 0
 A
-4 2
-A
 13 25
+A
+4 2
 #16010
 red bound book ~
 a Big Red Bound Book~
@@ -1230,14 +1230,20 @@ reserved~
 0 0
 0 0 0
 A
-11 80
+17 -35
 A
 13 30
 A
-17 -35
+11 80
 E
-bound~
-&rThe book is bound with a red cover that has a small pocket on the front.
+book~
+&rAs you take a closer look at the book you notice that there is a small pocket
+hiddenin the cover. When you open it you are amazed to see a pocket of extra-
+dimensional space to store things.
+~
+E
+red~
+&rThe book is bound in a red cover, with a pocket on the front.
 ~
 E
 pocket~
@@ -1245,14 +1251,8 @@ pocket~
 think just by looking at it).
 ~
 E
-red~
-&rThe book is bound in a red cover, with a pocket on the front.
-~
-E
-book~
-&rAs you take a closer look at the book you notice that there is a small pocket
-hiddenin the cover. When you open it you are amazed to see a pocket of extra-
-dimensional space to store things.
+bound~
+&rThe book is bound with a red cover that has a small pocket on the front.
 ~
 #16011
 green emerald ring~
@@ -1267,24 +1267,14 @@ sleep~
 4 4
 0 0 0
 A
-11 35
+12 75
 A
 13 25
 A
-12 75
+11 35
 E
-chips~
-&WSeveral tiny diamond chips surround a large &ggreen emerald&W in the
-centre of the ring.
-~
-E
-diamond~
-&WSeveral tiny diamond chips surround a large &ggreen emerald&W in the
-centre of the ring.
-~
-E
-emerald~
-The ring has a green tinge to it, almost like it is a green-coloured
+green~
+&GThe ring has a green tinge to it, almost like it is green-coloured
 gold. It's centrepiece is a small emerald, inlaid with diamond chips.
 ~
 E
@@ -1293,9 +1283,19 @@ The ring has a green tinge to it, almost like it is a green-coloured
 gold. It's centrepiece is a small emerald, inlaid with diamond chips.
 ~
 E
-green~
-&GThe ring has a green tinge to it, almost like it is green-coloured
+emerald~
+The ring has a green tinge to it, almost like it is a green-coloured
 gold. It's centrepiece is a small emerald, inlaid with diamond chips.
+~
+E
+diamond~
+&WSeveral tiny diamond chips surround a large &ggreen emerald&W in the
+centre of the ring.
+~
+E
+chips~
+&WSeveral tiny diamond chips surround a large &ggreen emerald&W in the
+centre of the ring.
 ~
 #16012
 silvery key~
@@ -1310,11 +1310,11 @@ reserved~
 0 0
 0 0 0
 E
-silvery~
+key~
 &wA fat key made of a slick-feeling silvery metal.
 ~
 E
-key~
+silvery~
 &wA fat key made of a slick-feeling silvery metal.
 ~
 #16013
@@ -1330,15 +1330,15 @@ portal~
 0 0
 0 0 0
 A
-24 -4
-A
-23 -5
+12 50
 A
 13 25
 A
-12 50
+23 -5
+A
+24 -4
 E
-green~
+jade~
 The bracelet is jade, with three small emeralds on it. It is strongly warm
 to the touch.
 ~
@@ -1348,7 +1348,7 @@ The bracelet is jade, with three small emeralds on it. It is strongly warm
 to the touch.
 ~
 E
-jade~
+green~
 The bracelet is jade, with three small emeralds on it. It is strongly warm
 to the touch.
 ~
@@ -1365,12 +1365,12 @@ reserved~
 0 0
 0 0 0
 E
-sparkling~
-&gA beautiful human-fist-sized emerald &Gsparkles&g like green fire.
-~
-E
 emerald~
 &gThis beautiful emerald is cut with fine craftsmanship.
+~
+E
+sparkling~
+&gA beautiful human-fist-sized emerald &Gsparkles&g like green fire.
 ~
 #16015
 mask fury~
@@ -1385,23 +1385,23 @@ complete healing~
 1 1
 0 0 0
 A
-17 -35
-A
-11 90
+13 80
 A
 23 -5
 A
-13 80
-E
-mask~
-&WThe mask of fury is large in size, made for a creature with a snout-shaped
-face.
-~
+11 90
+A
+17 -35
 E
 fury~
 &REven by simply look at this mask you feel an overwhelming amount of violent
 anger. You have to struggle so as not to give into the rage, yet even as you
 struggle... a fierceness hits you.
+~
+E
+mask~
+&WThe mask of fury is large in size, made for a creature with a snout-shaped
+face.
 ~
 >wear_prog 100~
 0
@@ -1422,16 +1422,17 @@ flesh armor~
 4 4
 0 0 0
 A
-2 -1
-A
-5 1
+17 -80
 A
 13 75
 A
-17 -80
+5 1
+A
+2 -1
 E
-white~
-&WThe dragon-scaled sleeves are large in size and white in colour.
+sleeves~
+&WThe sleeves are fairly large in size, and if you know what you're looking
+for you can tell they are dragon-scaled.
 ~
 E
 scales~
@@ -1439,9 +1440,8 @@ scales~
 large in size and look very protective.
 ~
 E
-sleeves~
-&WThe sleeves are fairly large in size, and if you know what you're looking
-for you can tell they are dragon-scaled.
+white~
+&WThe dragon-scaled sleeves are large in size and white in colour.
 ~
 #16017
 white encrusted key~
@@ -1458,17 +1458,17 @@ reserved~
 A
 17 -10
 E
-white~
-&WThe key is white in colour, and fairly large in size. You're not sure of
-it's material, but it could be a bleached bone.
+key~
+&WA white key is encrusted with gems and beautifully made.
 ~
 E
 encrusted~
 &WThe white key is encrusted with 4 beautifully cut &rrubies&W.
 ~
 E
-key~
-&WA white key is encrusted with gems and beautifully made.
+white~
+&WThe key is white in colour, and fairly large in size. You're not sure of
+it's material, but it could be a bleached bone.
 ~
 #16018
 golden encrusted chest~
@@ -1483,22 +1483,22 @@ reserved~
 0 0
 0 0 0
 E
-chest~
-&YA golden chest appears to be made of gold, including hinges and a latch.
-There are too many &gsmall emeralds&Y to count. But you would guess this
-chest is worth a pretty penny.
-~
-E
-emeralds~
-&gThere are too many to count.
+golden~
+&YThe chest seems to be made of gold, including golden hinges and a latch.
 ~
 E
 encrusted~
 &gThe chest is encrusted with many small emeralds.
 ~
 E
-golden~
-&YThe chest seems to be made of gold, including golden hinges and a latch.
+emeralds~
+&gThere are too many to count.
+~
+E
+chest~
+&YA golden chest appears to be made of gold, including hinges and a latch.
+There are too many &gsmall emeralds&Y to count. But you would guess this
+chest is worth a pretty penny.
 ~
 #16019
 key grey~
@@ -1513,12 +1513,12 @@ reserved~
 0 0
 0 0 0
 E
-grey~
-&wThe key is grey in colour, and is quite small.
-~
-E
 key~
 &wThe grey key is long and slender. It it quite small in size.
+~
+E
+grey~
+&wThe key is grey in colour, and is quite small.
 ~
 #16020
 fear blade~
@@ -1533,17 +1533,17 @@ enchant weapon~
 1 1
 0 0 0
 A
-13 75
-A
-17 -60
-A
-26 8
+19 150
 A
 18 75
 A
-19 150
+26 8
+A
+17 -60
+A
+13 75
 E
-blade~
+fear~
 A long bastard sword with a slightly curved blade. Runes are inscribed on the
 blade.
 ~
@@ -1552,7 +1552,7 @@ runes~
 &bThe runes mark death and pain.
 ~
 E
-fear~
+blade~
 A long bastard sword with a slightly curved blade. Runes are inscribed on the
 blade.
 ~
@@ -1569,15 +1569,15 @@ charm person~
 3 3
 0 0 0
 A
-12 85
+17 -15
 A
 4 1
 A
-17 -15
+12 85
 E
-red~
-&RAn ioun stone is red in colour, due to the glow about it. It is about the
-size of a hens egg.
+stone~
+&RA glimmering Ioun stone (the size of a hens egg) has a red-coloured glow
+about it.
 ~
 E
 ioun~
@@ -1585,9 +1585,9 @@ ioun~
 about it.
 ~
 E
-stone~
-&RA glimmering Ioun stone (the size of a hens egg) has a red-coloured glow
-about it.
+red~
+&RAn ioun stone is red in colour, due to the glow about it. It is about the
+size of a hens egg.
 ~
 #16022
 figurine green woman~
@@ -1602,16 +1602,15 @@ reserved~
 0 0
 0 0 0
 A
-23 -4
+14 85
 A
 24 -4
 A
-14 85
+23 -4
 E
-woman~
-&GA beautiful smooth-faced woman wears a shawl about her shoulders, as if
-covering herself from a sort of coldness.
-The figurine is about 7 inches in height. (just under 20cm)
+figurine~
+&GA small green figurine is that of a smoothe faced woman wear a shawl
+about her shoulders.
 ~
 E
 green~
@@ -1619,9 +1618,10 @@ green~
 is the subject.
 ~
 E
-figurine~
-&GA small green figurine is that of a smoothe faced woman wear a shawl
-about her shoulders.
+woman~
+&GA beautiful smooth-faced woman wears a shawl about her shoulders, as if
+covering herself from a sort of coldness.
+The figurine is about 7 inches in height. (just under 20cm)
 ~
 #16023
 rusty spear~
@@ -1636,16 +1636,16 @@ reserved~
 0 0
 0 0 0
 A
-19 60
-A
 18 80
-E
-rusty~
-&OA long spear with a very rusty barbed end.
-~
+A
+19 60
 E
 spear~
 &OA long spear with a wicked-looking, but rusted, barb at the end.
+~
+E
+rusty~
+&OA long spear with a very rusty barbed end.
 ~
 #16024
 leather leggings worn~
@@ -1660,20 +1660,20 @@ reserved~
 0 0
 0 0 0
 A
-17 -25
-A
 5 1
+A
+17 -25
 E
-worn~
-&OThe leggings are worn here and there, expecially around the knees.
+leather~
+&OThe leggings are worn here and there, especially around the knees.
 ~
 E
 leggings~
 &OThe leggings are worn here and there, especially around the knees.
 ~
 E
-leather~
-&OThe leggings are worn here and there, especially around the knees.
+worn~
+&OThe leggings are worn here and there, expecially around the knees.
 ~
 #16025
 wings pegasus~
@@ -1688,15 +1688,15 @@ fly~
 3 3
 0 0 0
 A
-24 -5
-A
 23 -5
+A
+24 -5
 E
-pegasus~
+wings~
 A large pair of white wings that radiate both power and goodness.
 ~
 E
-wings~
+pegasus~
 A large pair of white wings that radiate both power and goodness.
 ~
 #16026
@@ -1712,15 +1712,15 @@ stone skin~
 3 3
 0 0 0
 A
-17 -20
-A
 13 45
+A
+17 -20
 E
-chaos~
+ring~
 &YA sparkling golden ring radiates chaotic energy.
 ~
 E
-ring~
+chaos~
 &YA sparkling golden ring radiates chaotic energy.
 ~
 #16027
@@ -1736,15 +1736,15 @@ mass invis~
 3 3
 0 0 0
 A
-13 75
-A
 9 5
+A
+13 75
 E
-chaos~
+bracers~
 Dark amber coloured bracers hum with barely contained energies.
 ~
 E
-bracers~
+chaos~
 Dark amber coloured bracers hum with barely contained energies.
 ~
 #16028
@@ -1760,15 +1760,15 @@ animate dead~
 3 3
 0 0 0
 A
-9 15
-A
 17 -25
+A
+9 15
 E
-darkness~
+ring~
 A coal-black ring seems to suck up all the light that touches it.
 ~
 E
-ring~
+darkness~
 A coal-black ring seems to suck up all the light that touches it.
 ~
 #16029
@@ -1784,12 +1784,12 @@ curse~
 3 3
 0 0 0
 E
-despair~
+gauntlets~
 A deep feeling of agony and despair overwhelms you, as you look upon these,
 the Gauntlets of Despair.
 ~
 E
-gauntlets~
+despair~
 A deep feeling of agony and despair overwhelms you, as you look upon these,
 the Gauntlets of Despair.
 ~
@@ -1806,19 +1806,19 @@ fireball~
 3 3
 0 0 0
 A
-17 -45
-A
-5 -2
+1 2
 A
 11 50
 A
-1 2
+5 -2
+A
+17 -45
 E
-fire~
+hooves~
 The hooves are quite large and surrounded by an unfelt ring of fire.
 ~
 E
-hooves~
+fire~
 The hooves are quite large and surrounded by an unfelt ring of fire.
 ~
 #16031
@@ -1834,18 +1834,18 @@ chameleon power~
 3 3
 0 0 0
 A
-17 -40
+5 -1
 A
 9 5
 A
-5 -1
+17 -40
 E
-shadows~
+cloak~
 &zEven as you look upon the cloak you can barely see that it is there. Only
 by touch, do you know for certain.
 ~
 E
-cloak~
+shadows~
 &zEven as you look upon the cloak you can barely see that it is there. Only
 by touch, do you know for certain.
 ~
@@ -1862,17 +1862,17 @@ mana~
 1 5
 0 0 0
 A
-12 65
-A
-19 4
-A
-18 5
+11 95
 A
 13 65
 A
-11 95
+18 5
+A
+19 4
+A
+12 65
 E
-energies~
+gem~
 &wThe gem is clear, almost like a prism, though it is cut like a large
 diamond would be.
 ~
@@ -1882,7 +1882,7 @@ clear~
 diamond would be.
 ~
 E
-gem~
+energies~
 &wThe gem is clear, almost like a prism, though it is cut like a large
 diamond would be.
 ~
@@ -1899,13 +1899,13 @@ adrenaline control~
 3 3
 0 0 0
 A
-19 90
+2 1
 A
 18 90
 A
-2 1
+19 90
 E
-sword~
+silver~
 The short sword is very slender and made of a very flexible, yet unbreakable
 silvery metal that looks unfamiliar.
 ~
@@ -1915,7 +1915,7 @@ The short sword is very slender and made of a very flexible, yet unbreakable
 silvery metal that looks unfamiliar.
 ~
 E
-silver~
+sword~
 The short sword is very slender and made of a very flexible, yet unbreakable
 silvery metal that looks unfamiliar.
 ~
@@ -1932,11 +1932,11 @@ reserved~
 0 0
 0 0 0
 A
-3 1
-A
 13 65
+A
+3 1
 E
-discs~
+red~
 &rThe contacts glow red with a bright light.
 ~
 E
@@ -1944,7 +1944,7 @@ contacts~
 &rThe contacts glow red with a bright light.
 ~
 E
-red~
+discs~
 &rThe contacts glow red with a bright light.
 ~
 #16035
@@ -1960,12 +1960,12 @@ reserved~
 0 0
 0 0 0
 E
-blood~
-The inside of the goblet is stained red with blood.
-~
-E
 goblet~
 The goblet is stained red on the inside from top to bottom.
+~
+E
+blood~
+The inside of the goblet is stained red with blood.
 ~
 #16037
 blood puddle~
@@ -1992,18 +1992,18 @@ sleep~
 4 4
 0 0 0
 A
-13 55
+5 1
 A
 4 -1
 A
-5 1
+13 55
 E
-pentagram~
+earring~
 The earring seems to let off a great amount of heat, but as you touch it,
 it is barely warm.
 ~
 E
-earring~
+pentagram~
 The earring seems to let off a great amount of heat, but as you touch it,
 it is barely warm.
 ~
@@ -2020,17 +2020,17 @@ reserved~
 3 3
 0 0 0
 A
-11 90
+13 50
 A
 17 -35
 A
-13 50
+11 90
 E
-red~
+torch~
 A small red torch.
 ~
 E
-torch~
+red~
 A small red torch.
 ~
 #16040
@@ -2072,18 +2072,18 @@ mass invis~
 5 5
 0 0 0
 A
-6 -1
-A
 109 -1
+A
+6 -1
 E
-deception~
-The mask seems too look different every time you look at it. It never changes
+mask~
+The mask seems to look different every time you look at it. It never changes
 while you watch it, but as soon as you turn away and back, it just isn't
 the same somehow.
 ~
 E
-mask~
-The mask seems to look different every time you look at it. It never changes
+deception~
+The mask seems too look different every time you look at it. It never changes
 while you watch it, but as soon as you turn away and back, it just isn't
 the same somehow.
 ~
@@ -2100,19 +2100,19 @@ reserved~
 4 4
 0 0 0
 A
-13 35
-A
-9 10
+18 4
 A
 19 6
 A
-18 4
+9 10
+A
+13 35
 E
-creation~
+gauntlets~
 Heavy steel gauntlets that are alive with chaotic bursts of energy.
 ~
 E
-gauntlets~
+creation~
 Heavy steel gauntlets that are alive with chaotic bursts of energy.
 ~
 #16044
@@ -2140,20 +2140,20 @@ reserved~
 0 0
 0 0 0
 A
-18 5
-A
-13 35
+25 25
 A
 12 10
 A
-25 25
+13 35
+A
+18 5
 E
-damnation~
+staff~
 A dark, almost fragile looking staff that has faint runes etched on its
 surface and burns with an inner fire.
 ~
 E
-staff~
+damnation~
 A dark, almost fragile looking staff that has faint runes etched on its
 surface and burns with an inner fire.
 ~
@@ -2170,20 +2170,20 @@ reserved~
 0 0
 0 0 0
 A
-25 24
-A
-9 -15
+13 50
 A
 17 -25
 A
-13 50
+9 -15
+A
+25 24
 E
-desire~
+eyes~
 Torin's eyes burn with desire and hunger for power, wealth and many more
 unimaginable things.
 ~
 E
-eyes~
+desire~
 Torin's eyes burn with desire and hunger for power, wealth and many more
 unimaginable things.
 ~
@@ -2202,7 +2202,7 @@ enhanced strength~
 A
 5 2
 E
-chain~
+anklet~
 &YA thin golden chain that has a tiny star-shaped charm attached to it.
 ~
 E
@@ -2210,7 +2210,7 @@ endurance~
 &YA thin golden chain that has a tiny star-shaped charm attached to it.
 ~
 E
-anklet~
+chain~
 &YA thin golden chain that has a tiny star-shaped charm attached to it.
 ~
 #16048
@@ -2250,19 +2250,19 @@ reserved~
 0 0
 0 0 0
 A
-9 25
-A
-13 75
+11 50
 A
 17 -70
 A
-11 50
+13 75
+A
+9 25
 E
-brooch~
+torment~
 &YThe brooch &Rburns&Y with chaotic energy.
 ~
 E
-torment~
+brooch~
 &YThe brooch &Rburns&Y with chaotic energy.
 ~
 #16051
@@ -2278,19 +2278,15 @@ fireshield~
 1 1
 0 0 0
 A
-13 45
-A
-9 15
+11 -50
 A
 12 75
 A
-11 -50
+9 15
+A
+13 45
 E
-shroud~
-&RThe shroud appears to be a living flame, made to serve its wearer.
-~
-E
-burning~
+flame~
 &RThe shroud appears to be a living flame, made to serve its wearer.
 ~
 E
@@ -2298,7 +2294,11 @@ agony~
 &RThe shroud appears to be a living flame, made to serve its wearer.
 ~
 E
-flame~
+burning~
+&RThe shroud appears to be a living flame, made to serve its wearer.
+~
+E
+shroud~
 &RThe shroud appears to be a living flame, made to serve its wearer.
 ~
 #16052
@@ -2338,13 +2338,13 @@ awe~
 10 10
 0 0 0
 A
-18 8
-A
-19 8
+111 -1
 A
 11 120
 A
-111 -1
+19 8
+A
+18 8
 #16056
 axe~
 a Broad Venomous Axe~
@@ -2358,13 +2358,13 @@ reserved~
 0 0
 0 0 0
 A
-26 25
-A
-18 19
+17 -35
 A
 19 25
 A
-17 -35
+18 19
+A
+26 25
 #16057
 dagger speed~
 the dagger of quickness~
@@ -2378,13 +2378,13 @@ reserved~
 0 0
 0 0 0
 A
-5 -1
-A
-19 10
+2 2
 A
 18 35
 A
-2 2
+19 10
+A
+5 -1
 #16058
 earring diamond stud~
 a large diamond stud~
@@ -2398,13 +2398,13 @@ detonate~
 5 5
 0 0 0
 A
-17 -45
-A
-2 1
+18 7
 A
 19 5
 A
-18 7
+2 1
+A
+17 -45
 #16059
 boots~
 a pair of sturdy knee high boots~
@@ -2418,13 +2418,13 @@ awe~
 2 2
 0 0 0
 A
-4 -1
-A
-19 8
+13 30
 A
 18 5
 A
-13 30
+19 8
+A
+4 -1
 #16060
 mace steel~
 a short steel mace~
@@ -2438,13 +2438,13 @@ reserved~
 -1 -1
 0 0 0
 A
-1 1
-A
-4 -1
+18 28
 A
 19 17
 A
-18 28
+4 -1
+A
+1 1
 #16061
 dagger steel~
 a sharp wavy-bladed steel dagger~
@@ -2458,13 +2458,13 @@ reserved~
 -1 -1
 0 0 0
 A
-12 -50
-A
-2 1
+19 30
 A
 18 15
 A
-19 30
+2 1
+A
+12 -50
 #16062
 aura evil~
 aura of Undying Evil~
@@ -2478,13 +2478,13 @@ reserved~
 0 0
 0 0 0
 A
-12 -50
-A
-19 8
+17 -40
 A
 18 7
 A
-17 -40
+19 8
+A
+12 -50
 #16063
 rotting vest~
 a rotting vest~
@@ -2498,15 +2498,15 @@ reserved~
 0 0
 0 0 0
 A
-12 -50
-A
-19 6
-A
-18 6
+3 -5
 A
 4 -1
 A
-3 -5
+18 6
+A
+19 6
+A
+12 -50
 #16064
 rusty leggings~
 a pair of rusted leggings~
@@ -2520,15 +2520,15 @@ reserved~
 0 0
 0 0 0
 A
-19 7
-A
-18 6
-A
-5 -1
+17 -15
 A
 13 -50
 A
-17 -15
+5 -1
+A
+18 6
+A
+19 7
 #16065
 horn~
 the Horn of the Gargoyle~
@@ -2542,15 +2542,15 @@ stone skin~
 8 8
 0 0 0
 A
-18 6
-A
-19 7
-A
-13 25
+11 25
 A
 5 1
 A
-11 25
+13 25
+A
+19 7
+A
+18 6
 #16066
 sceptre storm~
 sceptre of the storm~
@@ -2566,12 +2566,12 @@ call lightning~
 A
 12 85
 E
-sceptre~
+storm~
 &wA large silver sceptre with a 6 inch (15cm) diameter crystal ball at the
 tip.
 ~
 E
-storm~
+sceptre~
 &wA large silver sceptre with a 6 inch (15cm) diameter crystal ball at the
 tip.
 ~
@@ -2588,22 +2588,22 @@ control weather~
 4 4
 0 0 0
 A
-13 65
-A
-17 -45
-A
-18 120
+12 80
 A
 19 75
 A
-12 80
+18 120
+A
+17 -45
+A
+13 65
 E
-lightning~
+bolt~
 A huge bolt of pure lightning is somehow contained for mortal usage. It is
 HUGE in size and sparkles with immense electricity.
 ~
 E
-bolt~
+lightning~
 A huge bolt of pure lightning is somehow contained for mortal usage. It is
 HUGE in size and sparkles with immense electricity.
 ~
@@ -2620,12 +2620,12 @@ reserved~
 0 0
 0 0 0
 E
-pair~
+slippers~
 A large pair of slippers are lined with rabbit fur.
 They are extra large in size.
 ~
 E
-slippers~
+pair~
 A large pair of slippers are lined with rabbit fur.
 They are extra large in size.
 ~
@@ -2642,16 +2642,16 @@ reserved~
 0 0
 0 0 0
 A
-2 -1
-A
 5 1
+A
+2 -1
 E
-fur~
+loincloth~
 A loincloth is made of fur. You can't quite tell what type, as it is very worn
 out. It is quite large in size.
 ~
 E
-loincloth~
+fur~
 A loincloth is made of fur. You can't quite tell what type, as it is very worn
 out. It is quite large in size.
 ~
@@ -2670,11 +2670,11 @@ reserved~
 A
 3 3
 E
-beak~
+roc~
 The beak is very large in size. It must have come from a rather large bird.
 ~
 E
-roc~
+beak~
 The beak is very large in size. It must have come from a rather large bird.
 ~
 #16071
@@ -2690,22 +2690,22 @@ fly~
 4 4
 0 0 0
 A
-24 -4
-A
 17 -65
+A
+24 -4
 E
-feathers~
+roc~
 &OThe feathers are very large in size. They look like the feathers you
-might see from an eagle.
+might see from an eagle. You recognize them as Roc feathers.
 ~
 E
 feather~
 &ONot unlike the feather of an eagle... but much larger in size.
 ~
 E
-roc~
+feathers~
 &OThe feathers are very large in size. They look like the feathers you
-might see from an eagle. You recognize them as Roc feathers.
+might see from an eagle.
 ~
 #16072
 earring star~
@@ -2722,13 +2722,13 @@ reserved~
 A
 4 2
 E
-star~
-&PA large 5-pointed star dangles from a &wsilver chain&P and a ball.
-~
-E
 earring~
 &PThe earring is a large 5-pointed star which is made to hang from a &wsilver
 chain&P and a ball that fits through an ear-pierced ear.
+~
+E
+star~
+&PA large 5-pointed star dangles from a &wsilver chain&P and a ball.
 ~
 #16073
 steel leggings~
@@ -2743,13 +2743,13 @@ reserved~
 0 0
 0 0 0
 A
-19 8
-A
-17 -55
+18 8
 A
 13 70
 A
-18 8
+17 -55
+A
+19 8
 #16074
 gauntlets~
 steel gauntlets~
@@ -2763,13 +2763,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -50
-A
-13 75
+18 8
 A
 19 9
 A
-18 8
+13 75
+A
+17 -50
 #16075
 longbow composite~
 a composite longbow~
@@ -2783,19 +2783,15 @@ reserved~
 0 0
 0 0 0
 A
-19 65
-A
-18 75
+2 -1
 A
 13 60
 A
-2 -1
+18 75
+A
+19 65
 E
-bow~
-&OA large composite longbow, very well crafted.
-~
-E
-long~
+longbow~
 &OA large composite longbow, very well crafted.
 ~
 E
@@ -2803,7 +2799,11 @@ composite~
 &OA large composite longbow, very well crafted.
 ~
 E
-longbow~
+long~
+&OA large composite longbow, very well crafted.
+~
+E
+bow~
 &OA large composite longbow, very well crafted.
 ~
 #16076
@@ -2819,20 +2819,20 @@ spell bind~
 1 1
 0 0 0
 A
-17 -90
-A
-24 -5
+12 50
 A
 23 -5
 A
-12 50
+24 -5
+A
+17 -90
 E
-mystery~
+staff~
 A powerful staff of unknown origin hums mysteriously. It is medium-sized and
 very light in weight.
 ~
 E
-staff~
+mystery~
 A powerful staff of unknown origin hums mysteriously. It is medium-sized and
 very light in weight.
 ~
@@ -2927,11 +2927,8 @@ foyer lies to the west.
 0 12 0
 Rd     0
 E
-catacombs~
-Many generations ago Meliki built the Temple of Chaos on the ruins of an old 
-city whose name is unknown. It is believed that one can get to the old ruins 
-from the temple somehow, but the way has eluded me for quite a time, and once
-there who knows what will be found. Monsters of every kind would be my guess.
+archway~
+They are quite large, easily fitting your frame.
 ~
 E
 bookcase~
@@ -2939,8 +2936,11 @@ Most of the books on this shelf look boring, but just as you begin to turn away
 one catches your eye, "The Catacombs".
 ~
 E
-archway~
-They are quite large, easily fitting your frame.
+catacombs~
+Many generations ago Meliki built the Temple of Chaos on the ruins of an old 
+city whose name is unknown. It is believed that one can get to the old ruins 
+from the temple somehow, but the way has eluded me for quite a time, and once
+there who knows what will be found. Monsters of every kind would be my guess.
 ~
 D0
 ~
@@ -2984,17 +2984,22 @@ worn, it has obviously seen better days.
 0 8 0
 Rd     0
 E
-stool~
-&OIt is a small stool, used for reaching the top shelves.
+carpet~
+&RThe carpet is red and finely crafted. It has been worn throughout the
+years and is thus, faded.
 ~
 E
-gathering~
-It has been long known that the Great Meliki has sought to reduce the whole
-of the world to total Chaos. The building of the Temple of Chaos has given
-him much more power as it will serve to be the focus of his powers. He has
-been gathering all those who follow the ways of Chaos for many generations
-now, and it is generally believed that he will soon send his followers out
-oon the final rampage to desecrate all the world.
+bookcase~
+&OThe bookcase has several books such as, "Chaos, the Definition", "Rifts",
+and "The Gathering".
+~
+E
+chaos~
+&YThe basic definition of chaos is the total absence of order. Chaos is
+simply a state that is the embodiment of a total lack of order. Many see
+chaos as an evil thing, but this is not true. There are many agents of chaos
+who hold too many of the "traditionally" good views, but they simply choose
+not to follow the path of order in achieving their goals in life.
 ~
 E
 rifts~
@@ -3008,22 +3013,17 @@ portals. They are attempting to make a portal to another planet! That test
 will answer many of our questions regarding the portals.
 ~
 E
-chaos~
-&YThe basic definition of chaos is the total absence of order. Chaos is
-simply a state that is the embodiment of a total lack of order. Many see
-chaos as an evil thing, but this is not true. There are many agents of chaos
-who hold too many of the "traditionally" good views, but they simply choose
-not to follow the path of order in achieving their goals in life.
+gathering~
+It has been long known that the Great Meliki has sought to reduce the whole
+of the world to total Chaos. The building of the Temple of Chaos has given
+him much more power as it will serve to be the focus of his powers. He has
+been gathering all those who follow the ways of Chaos for many generations
+now, and it is generally believed that he will soon send his followers out
+oon the final rampage to desecrate all the world.
 ~
 E
-bookcase~
-&OThe bookcase has several books such as, "Chaos, the Definition", "Rifts",
-and "The Gathering".
-~
-E
-carpet~
-&RThe carpet is red and finely crafted. It has been worn throughout the
-years and is thus, faded.
+stool~
+&OIt is a small stool, used for reaching the top shelves.
 ~
 D2
 ~
@@ -3039,16 +3039,16 @@ back the way you came, to the west.
 0 8 0
 Rd     0
 E
-shelves~
-Six shelves high, each of them packed with books.
+stool~
+The stool is made of oak, and is pretty beat up.
 ~
 E
 books~
 Multiple titles, none of them catch your eye.
 ~
 E
-stool~
-The stool is made of oak, and is pretty beat up.
+shelves~
+Six shelves high, each of them packed with books.
 ~
 D3
 ~
@@ -3128,12 +3128,12 @@ central column. A hallway stretches to the north and to the east.
 0 8 0
 Rd     0
 E
-column~
-It is made entirely of rock, and a staircase is wrapped around it.
-~
-E
 staircase~
 It is mad entirely of rock, and there are no railings.
+~
+E
+column~
+It is made entirely of rock, and a staircase is wrapped around it.
 ~
 D0
 ~
@@ -3158,12 +3158,12 @@ the other rooms have been lit, yet there were no sources of light.
 0 8 0
 Rd     0
 E
-torch~
-It flickers as you look at it.
-~
-E
 archway~
 It leads to one of the towers.
+~
+E
+torch~
+It flickers as you look at it.
 ~
 D0
 ~
@@ -3184,13 +3184,13 @@ tower.
 0 8 0
 Rd     0
 E
-column~
-It has been carved out of one giant piece of granite.
-~
-E
 staircase~
 It is made of solid stone, and does not have any railings.  It wraps around a
 large central column.
+~
+E
+column~
+It has been carved out of one giant piece of granite.
 ~
 D4
 ~
@@ -3210,13 +3210,13 @@ by an immense door. There is a small carpet in front of the door.
 0 8 0
 Rd     0
 E
+carpet~
+It has been charred almost into non-existance.
+~
+E
 door~
 The door is very large, and made of solid oak. The edges and trimmings are
 made of solid gold.
-~
-E
-carpet~
-It has been charred almost into non-existance.
 ~
 D0
 The door is very large, and made of solid oak.  The handles and trimmings are
@@ -3264,12 +3264,12 @@ though someone was just recently looking for something.
 0 12 0
 Rd     0
 E
-bed~
-It looks confortable.
-~
-E
 table~
 It is made of wood, and has a few scratches here and there.
+~
+E
+bed~
+It looks confortable.
 ~
 D1
 ~
@@ -3306,13 +3306,13 @@ definately visits this spot often.
 0 8 0
 Rd     0
 E
-scratch~
-They were caused by some inhuman form with a very large claw.
-~
-E
 straw~
 The straw makes an oval measuring about three feet by two feet, and has been
 slept in recently.
+~
+E
+scratch~
+They were caused by some inhuman form with a very large claw.
 ~
 D3
 ~
@@ -3419,12 +3419,12 @@ wrapped around a large central column.
 0 8 0
 Rd     0
 E
-column~
-It is made of solid granite.
-~
-E
 staircase~
 It is made of solid granite, and has no hand railings.
+~
+E
+column~
+It is made of solid granite.
 ~
 D2
 ~
@@ -3632,12 +3632,7 @@ gouge in the east wall stands out. There is no furniture of any kind here.
 0 393225 0
 Rd     0
 E
-gouge~
-A gouge on the east wall is much deeper and larger than the rest in this room.
-Examining it more closely, you can see a room on the other side of the wall.
-~
-E
-walls~
+scratch~
 Whatever made these marks should not be trifled with.
 ~
 E
@@ -3645,8 +3640,13 @@ marks~
 Whatever made these marks should not be trifled with.
 ~
 E
-scratch~
+walls~
 Whatever made these marks should not be trifled with.
+~
+E
+gouge~
+A gouge on the east wall is much deeper and larger than the rest in this room.
+Examining it more closely, you can see a room on the other side of the wall.
 ~
 D2
 ~
@@ -3700,13 +3700,13 @@ were burned into the rock by a branding iron.
 0 12 0
 Rd     0
 E
+hoofprints~
+~
+E
 floor~
 There are rather large hoofprints embedded into the floor. They are quite
 large in size... you would guess they are bigger than your average horses'
 hooves.
-~
-E
-hoofprints~
 ~
 D2
 ~
@@ -3722,20 +3722,20 @@ how large an ettin is. A trapdoor leads down out of the tower.
 0 8 0
 Rd     0
 E
-fist~
-They are about three times that of a human fist.
-~
-E
-marks~
-They are about three times that of a human fist.
+footprints~
+They are quite deep and large, although human in shape.
 ~
 E
 walls~
 They are about three times the size of a human fist.
 ~
 E
-footprints~
-They are quite deep and large, although human in shape.
+marks~
+They are about three times that of a human fist.
+~
+E
+fist~
+They are about three times that of a human fist.
 ~
 D5
 ~
@@ -3751,16 +3751,16 @@ the north. There is a small table against the wall.
 0 8 0
 Rd     0
 E
-carvings~
-They are of some kind of symbols that you do not recognize.
+staircase~
+It climbs up to the next level of the tower, and down to the main floor.
 ~
 E
 table~
 It is permanently attached to the floor, and has many unique carvings on it.
 ~
 E
-staircase~
-It climbs up to the next level of the tower, and down to the main floor.
+carvings~
+They are of some kind of symbols that you do not recognize.
 ~
 D0
 ~
@@ -3785,20 +3785,20 @@ to the south.
 0 8 0
 Rd     0
 E
-ceiling~
-It is painted jet black.
-~
-E
-floor~
-You do not recognize any of the symbols.
+symbols~
+You do not recognize any of them.
 ~
 E
 walls~
 You do not recognize any of the symbols.
 ~
 E
-symbols~
-You do not recognize any of them.
+floor~
+You do not recognize any of the symbols.
+~
+E
+ceiling~
+It is painted jet black.
 ~
 D2
 ~
@@ -3917,12 +3917,12 @@ plant life here is surprisingly vibrant and alive.
 0 0 2
 Rd     0
 E
-plant~
-There are a varied assortment of plants, most of which are domestic.
-~
-E
 path~
 It is dirt, and wide enough for you to walk on.
+~
+E
+plant~
+There are a varied assortment of plants, most of which are domestic.
 ~
 D0
 ~
@@ -3950,12 +3950,12 @@ exit a little ways to the south.
 0 0 2
 Rd     0
 E
-bench~
-They are made of solid oak, and seem to be growing out of the ground.
-~
-E
 path~
 It is dirt, and wide enough for you to walk on.
+~
+E
+bench~
+They are made of solid oak, and seem to be growing out of the ground.
 ~
 D0
 ~
@@ -4029,16 +4029,16 @@ very peaceful here... a definate change from the temple.
 0 0 2
 Rd     0
 E
-grass~
-It is very green.
+path~
+It is dirt, and wide enough for you to walk on.
 ~
 E
 flowers~
 They smell nice.
 ~
 E
-path~
-It is dirt, and wide enough for you to walk on.
+grass~
+It is very green.
 ~
 D0
 ~
@@ -4058,12 +4058,12 @@ swear you just heard a bird singing.
 0 0 2
 Rd     0
 E
-path~
-It is dirt, and wide enough for you to walk on.
-~
-E
 flowers~
 Normal red flowers, you are uncertain of the kind.
+~
+E
+path~
+It is dirt, and wide enough for you to walk on.
 ~
 D0
 ~
@@ -4087,12 +4087,12 @@ you have not seen any kind of gardener...
 0 0 2
 Rd     0
 E
-grass~
-It has been recently trimmed.
-~
-E
 path~
 It is dirt, and wide enough for you to walk on.
+~
+E
+grass~
+It has been recently trimmed.
 ~
 D1
 ~
@@ -4112,21 +4112,21 @@ is a small puddle of water on the ground.
 0 0 2
 Rd     0
 E
-bushes~
-They are bushes alright.
-~
-E
-trees~
-A random mixture, deciduous and evergreen alike.
+puddle~
+Upon further examination, you realize that this puddle is for animals to drink
+from, and it does not appear to have a bottom.
 ~
 E
 path~
 It is dirt, and wide enough for you to walk on.
 ~
 E
-puddle~
-Upon further examination, you realize that this puddle is for animals to drink
-from, and it does not appear to have a bottom.
+trees~
+A random mixture, deciduous and evergreen alike.
+~
+E
+bushes~
+They are bushes alright.
 ~
 D1
 ~
@@ -4150,12 +4150,12 @@ surroundings.
 0 0 2
 Rd     0
 E
-clouds~
-They are white and puffy.
-~
-E
 path~
 It is dirt, and wide enough for you to walk on.
+~
+E
+clouds~
+They are white and puffy.
 ~
 D2
 ~
@@ -4175,12 +4175,12 @@ you notice a small statuette carved into the brickwork.
 0 8 0
 Rd     0
 E
-statuette~
-It is a statuette of Meliki.
-~
-E
 painting~
 It is a painting of Meliki.
+~
+E
+statuette~
+It is a statuette of Meliki.
 ~
 D0
 ~
@@ -4320,12 +4320,12 @@ the north.
 0 4 3
 Rd     0
 E
-path~
-It is very worn.
-~
-E
 trees~
 They tower above you.
+~
+E
+path~
+It is very worn.
 ~
 D2
 ~

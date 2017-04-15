@@ -552,17 +552,17 @@ holy strength~
 -1 -1
 0 0 0
 A
-24 -5
-A
-14 100
-A
-12 100
-A
-13 100
+19 200
 A
 18 175
 A
-19 200
+13 100
+A
+12 100
+A
+14 100
+A
+24 -5
 E
 sphere faith~
 This Swirling sphere of energy is a physical Representaion of a Paladin's
@@ -581,17 +581,17 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-2 3
-A
-1 3
-A
-13 110
+17 -110
 A
 12 110
 A
-17 -110
+13 110
+A
+1 3
+A
+2 3
+A
+24 -5
 E
 plate sevitude~
 This swirling mist is the physical representation of a Paladin's service toward mankind.
@@ -609,17 +609,17 @@ reserved~
 0 0
 0 0 0
 A
-4 3
-A
-3 3
-A
-14 100
-A
-12 100
+17 -110
 A
 13 100
 A
-17 -110
+12 100
+A
+14 100
+A
+3 3
+A
+4 3
 E
 helm truth~
 This is the representation of a paladins Truth. Bear it only in that.
@@ -637,17 +637,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -100
-A
-13 100
-A
-12 100
-A
-14 100
+4 3
 A
 1 3
 A
-4 3
+14 100
+A
+12 100
+A
+13 100
+A
+17 -100
 E
 honor aura~
 This mystical flowing swirling shape is the Honor of a paladin. Use It In Honor Only.
@@ -665,17 +665,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -100
-A
-12 100
-A
-13 10
-A
-14 100
+2 3
 A
 3 3
 A
-2 3
+14 100
+A
+13 10
+A
+12 100
+A
+17 -100
 E
 image diety~
 This small spectral image looks exactly like the Dietys clerics worship.
@@ -693,17 +693,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -110
-A
-13 110
-A
-14 110
-A
-1 3
+24 -5
 A
 5 3
 A
-24 -5
+1 3
+A
+14 110
+A
+13 110
+A
+17 -110
 E
 black obsidean helm~
 This helmet is absoloutly seamless. It is made of Black Obsidean. It is Very Hard To damage.
@@ -721,17 +721,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -110
-A
-13 110
-A
-14 110
-A
-1 3
+24 -5
 A
 5 3
 A
-24 -5
+1 3
+A
+14 110
+A
+13 110
+A
+17 -110
 E
 black obsidean platemail~
 This suit of platemail is made of gleaming seamless Black Obsidean.
@@ -749,17 +749,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -110
-A
-23 -5
-A
-2 3
-A
-1 3
+13 110
 A
 14 110
 A
-13 110
+1 3
+A
+2 3
+A
+23 -5
+A
+17 -110
 E
 black obsidean armguards~
 These Armguards are made of black obsidean and cover the entire arm. They are designed to interlink with other Black Obsidean Armor To Form a great Suit of armor.
@@ -777,17 +777,17 @@ giant strength~
 -1 -1
 0 0 0
 A
-23 -5
-A
-13 100
-A
-14 100
-A
-24 -5
+18 175
 A
 19 200
 A
-18 175
+24 -5
+A
+14 100
+A
+13 100
+A
+23 -5
 E
 warriors honor~
 Courage. Strength. Stamina. Honor above all else. Death Before Dishonor. These are weapons of a Warrior.
@@ -805,17 +805,17 @@ reserved~
 0 0
 0 0 0
 A
-5 3
-A
-24 -5
-A
-1 3
-A
-14 110
+13 110
 A
 17 -110
 A
-13 110
+14 110
+A
+1 3
+A
+24 -5
+A
+5 3
 E
 black obsidean cape~
 This is a black cape with large haevy Black Obsidean Plates on it.
@@ -833,17 +833,17 @@ reserved~
 0 0
 0 0 0
 A
-14 110
-A
-13 110
-A
-17 -110
-A
-1 3
+5 3
 A
 23 -5
 A
-5 3
+1 3
+A
+17 -110
+A
+13 110
+A
+14 110
 E
 shield raven~
 This Black obsidean Shield has the image of a raven intricly engraved in it.
@@ -861,17 +861,17 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-2 3
-A
-1 3
-A
-17 -110
+14 110
 A
 13 110
 A
-14 110
+17 -110
+A
+1 3
+A
+2 3
+A
+24 -5
 E
 grey body plating~
 This Plating Is made of an unknown material. It is flexible yet protective.
@@ -889,17 +889,17 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-2 3
-A
-1 3
-A
-17 -110
+14 110
 A
 13 110
 A
-14 110
+17 -110
+A
+1 3
+A
+2 3
+A
+24 -5
 E
 grey leg plating~
 This Plating Is made of an unknown material. It is flexible yet protective.
@@ -917,17 +917,17 @@ reserved~
 0 0
 0 0 0
 A
-14 110
-A
-13 110
-A
-17 -110
-A
-1 3
+24 -5
 A
 2 3
 A
-24 -5
+1 3
+A
+17 -110
+A
+13 110
+A
+14 110
 E
 grey arm plating~
 This Plating Is made of an unknown material. It is flexible yet protective.
@@ -945,17 +945,17 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-2 3
-A
-1 3
-A
-17 -110
+14 110
 A
 13 110
 A
-14 110
+17 -110
+A
+1 3
+A
+2 3
+A
+24 -5
 E
 grey shoulder plating~
 This Plating Is made of an unknown material. It is flexible yet protective.
@@ -973,17 +973,17 @@ reserved~
 0 0
 0 0 0
 A
-14 110
-A
-13 110
-A
-17 -110
-A
-1 3
+24 -5
 A
 2 3
 A
-24 -5
+1 3
+A
+17 -110
+A
+13 110
+A
+14 110
 E
 grey foot plating~
 This Plating Is made of an unknown material. It is flexible yet protective.
@@ -1001,17 +1001,17 @@ reserved~
 0 0
 0 0 0
 A
-23 -5
-A
-5 3
-A
-3 3
-A
-17 -110
+14 110
 A
 13 110
 A
-14 110
+17 -110
+A
+3 3
+A
+5 3
+A
+23 -5
 E
 screams enemy~
 You can't seem to see anything here. It sounds however like the dying screams of prey.
@@ -1029,17 +1029,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -110
-A
-14 110
-A
-13 110
-A
-4 3
+12 110
 A
 3 3
 A
-12 110
+4 3
+A
+13 110
+A
+14 110
+A
+17 -110
 E
 holy monk robes~
 These Robes are made of simple brown robes but being that of a monk they are holy.
@@ -1057,17 +1057,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 monks hood~
 This simple hood is made of brown cloth. But has holy protection.
@@ -1085,17 +1085,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 sandals~
 These Sandals seem to offer no protection. But they are holy.
@@ -1113,17 +1113,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 wrapping chords~
 These simple long think brown chords are designed to be wrapped around ones legs.
@@ -1141,17 +1141,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 rope~
 This Thick brown rope is used by monks as a belt.
@@ -1169,17 +1169,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 charm~
 This charm is a simple religous symbol on a stirng.
@@ -1197,17 +1197,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+25 35
 A
 14 100
 A
-25 35
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 E
 vampire claws~
 These Are The Claws of Vampires. Eight and a half inch razor blade retractable claws.
@@ -1225,17 +1225,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+25 35
 A
 14 100
 A
-25 35
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 E
 Vampire fangs~
 These three inch long Fangs are A Very powerfull weapon when used by Vampires.
@@ -1253,17 +1253,17 @@ reserved~
 0 0
 0 0 0
 A
-25 37
-A
-14 110
-A
-13 110
-A
-17 -110
+1 3
 A
 3 3
 A
-1 3
+17 -110
+A
+13 110
+A
+14 110
+A
+25 37
 E
 Nosferatu Armor~
 This Armor has been damned and hated. Its Perfect For a Vampire.
@@ -1281,17 +1281,17 @@ reserved~
 0 0
 0 0 0
 A
-25 37
-A
-14 110
-A
-13 110
-A
-17 -110
+1 3
 A
 2 3
 A
-1 3
+17 -110
+A
+13 110
+A
+14 110
+A
+25 37
 E
 Nosferatu Armguards~
 Forged In The Pits of Hell. These Will protect all Vampires.
@@ -1309,17 +1309,17 @@ reserved~
 0 0
 0 0 0
 A
-25 37
-A
-14 110
-A
-13 110
-A
-17 -110
+1 3
 A
 3 3
 A
-1 3
+17 -110
+A
+13 110
+A
+14 110
+A
+25 37
 E
 Nosferatu Leg Plating~
 Forged In The Pits of Hell. These Will protect all Vampires.
@@ -1337,17 +1337,17 @@ reserved~
 0 0
 0 0 0
 A
-25 37
-A
-14 110
-A
-13 110
-A
-17 -110
+1 3
 A
 2 3
 A
-1 3
+17 -110
+A
+13 110
+A
+14 110
+A
+25 37
 E
 nosferatu helm~
 Forged In The Pits of Hell. These Will protect all Vampires.
@@ -1365,17 +1365,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-14 100
+23 -5
 A
 13 100
 A
-23 -5
+14 100
+A
+24 -5
+A
+19 200
+A
+18 175
 E
 blade nightbringer~
 This Blade is wicked and Vicous. It Is jagged and ugly. Perfect For a thief.
@@ -1393,17 +1393,17 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-14 110
-A
-13 110
-A
-17 -110
+5 3
 A
 2 3
 A
-5 3
+17 -110
+A
+13 110
+A
+14 110
+A
+24 -5
 E
 gloves thievery~
 These Gloves Will help any thief Steal.
@@ -1421,17 +1421,17 @@ reserved~
 0 0
 0 0 0
 A
-23 -5
-A
-14 110
-A
-13 110
-A
-17 -110
+2 3
 A
 1 3
 A
-2 3
+17 -110
+A
+13 110
+A
+14 110
+A
+23 -5
 E
 stolen armor~
 This thief armor is obviously stolen. Great for thieves.
@@ -1449,17 +1449,17 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-14 110
-A
-13 110
-A
-17 -110
+5 3
 A
 2 3
 A
-5 3
+17 -110
+A
+13 110
+A
+14 110
+A
+24 -5
 E
 leggings swiftness~
 These Leggings seem to help anyone move easier.
@@ -1477,17 +1477,17 @@ reserved~
 0 0
 0 0 0
 A
-23 -5
-A
-14 110
-A
-13 110
-A
-17 -110
+2 3
 A
 1 3
 A
-2 3
+17 -110
+A
+13 110
+A
+14 110
+A
+23 -5
 E
 cape deception~
 This Cape will keep anyone from noticing you. Especialy if you steal from them.
@@ -1505,17 +1505,17 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-14 110
-A
-13 110
-A
-17 -110
+5 3
 A
 2 3
 A
-5 3
+17 -110
+A
+13 110
+A
+14 110
+A
+24 -5
 E
 boots stalking~
 These leather boots look normal enough. However they apear to, when worn, cause a person to move quietly.
@@ -1533,17 +1533,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+12 100
 A
 14 100
 A
-12 100
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 E
 mages energy~
 This Swirling mass of energy has power beyond belief when wielded by a mage.
@@ -1561,17 +1561,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 body shielding~
 This swirling magical shield is designed to protect a Mage.
@@ -1589,17 +1589,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 arm shielding~
 This swirling magical shield is designed to protect a Mage's arm.
@@ -1617,17 +1617,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 leg shielding~
 This swirling magical shield is designed to protect a Mage's legs.
@@ -1645,17 +1645,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 head shielding~
 This magical shield is designed to cover a mages face and protect it.
@@ -1673,17 +1673,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 cloak power~
 This Long Purple cloak Radiates with massive power.
@@ -1701,17 +1701,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+12 100
 A
 14 100
 A
-12 100
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 #10845
 thought protection body~
 thought Of Body Protection~
@@ -1725,17 +1725,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 thought protection body~
 Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
@@ -1753,17 +1753,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 thought protection arm~
 Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
@@ -1781,17 +1781,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 thought protection head~
 Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
@@ -1809,17 +1809,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 thought protection leg~
 Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
@@ -1837,17 +1837,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 thought protection foot~
 Few people are aware that the mind is capable of creating armor made of sheer thought. Psionisists know this. And are capable of it.
@@ -1865,17 +1865,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+12 100
 A
 14 100
 A
-12 100
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 E
 clerics power healing~
 The Clerics Power is able to Heal. But sometimes, There is too much of a Good Thing. And Healing can cause damage.
@@ -1893,17 +1893,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 divine platemail~
 Forged fromthe Blessed metal of the Gods. This Platemail Offers Divine protection.
@@ -1921,17 +1921,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 divine armguards~
 Forged from the Blessed metal of the Gods. This Armguards Offers Divine protection.
@@ -1949,17 +1949,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 divine leggings~
 Forged from the Blessed metal of the Gods. This Leggings Offers Divine protection.
@@ -1977,17 +1977,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 divine helm~
 Forged from the Blessed metal of the Gods. This Helm Offers Divine protection.
@@ -2005,17 +2005,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 divinity chain~
 Forged from the Blessed metal of the Gods. This Chain Offers Divine protection.
@@ -2033,17 +2033,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+12 100
 A
 14 100
 A
-12 100
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 E
 druids weather control~
 This is A Druids most capable weapon. The elements can be terrible when used correctly.
@@ -2061,17 +2061,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 lightning platemail~
 This Platemail is Forged out of Lightning. And is Very protective.
@@ -2089,17 +2089,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 leggings rain~
 These Leggings are Forged out of Rain. And is Very protective.
@@ -2117,17 +2117,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 E
 helm ice~
 This is Forged out of Ice. And is Very protective.
@@ -2145,17 +2145,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10861
 no name~
 (no short description)~
@@ -2169,17 +2169,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10862
 rangers power earth~
 a Rangers Power over The Earth~
@@ -2193,17 +2193,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+12 100
 A
 14 100
 A
-12 100
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 #10863
 no name~
 (no short description)~
@@ -2217,17 +2217,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10864
 no name~
 (no short description)~
@@ -2241,17 +2241,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10865
 no name~
 (no short description)~
@@ -2265,17 +2265,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10866
 no name~
 (no short description)~
@@ -2289,17 +2289,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10867
 no name~
 (no short description)~
@@ -2313,17 +2313,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10868
 bards music~
 a Bards Music~
@@ -2337,17 +2337,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+12 100
 A
 14 100
 A
-12 100
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 #10869
 no name~
 (no short description)~
@@ -2361,17 +2361,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10870
 no name~
 (no short description)~
@@ -2385,17 +2385,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10871
 no name~
 (no short description)~
@@ -2409,17 +2409,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10872
 no name~
 (no short description)~
@@ -2433,17 +2433,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10873
 no name~
 (no short description)~
@@ -2457,17 +2457,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10874
 necromancers orb~
 a Necromancers Orb of Soul Drinking~
@@ -2481,17 +2481,17 @@ reserved~
 0 0
 0 0 0
 A
-18 175
-A
-19 200
-A
-24 -5
-A
-13 100
+12 100
 A
 14 100
 A
-12 100
+13 100
+A
+24 -5
+A
+19 200
+A
+18 175
 #10875
 no name~
 (no short description)~
@@ -2505,17 +2505,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10876
 no name~
 (no short description)~
@@ -2529,17 +2529,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10877
 no name~
 (no short description)~
@@ -2553,17 +2553,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10878
 no name~
 (no short description)~
@@ -2577,17 +2577,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #10879
 no name~
 (no short description)~
@@ -2601,17 +2601,17 @@ reserved~
 0 0
 0 0 0
 A
-12 110
-A
-14 110
-A
-13 110
-A
-17 -110
+4 3
 A
 3 3
 A
-4 3
+17 -110
+A
+13 110
+A
+14 110
+A
+12 110
 #0
 
 
@@ -2631,6 +2631,10 @@ D0
 ~
 ~
 0 0 10803
+D2
+~
+~
+0 0 30562
 S
 #10803
 Inside The Gate~

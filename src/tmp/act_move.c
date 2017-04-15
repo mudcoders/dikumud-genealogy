@@ -1209,6 +1209,12 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     cost = 5;
 
+    if ( amt < 0 )
+    {
+    send_to_char(C_DEFAULT, "Try again, cheater.\n\r", ch );
+    return;
+    }
+
     if ( !str_cmp( arg, "str" ) )
     {
 	if ( class_table[prime_class( ch )].attr_prime == APPLY_STR )
@@ -1313,7 +1319,7 @@ void do_train( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( cost*amt ) > ch->practice )
+    if ( ( cost*amt ) > ch->practice || amt < 0 )
     {
 	send_to_char(AT_CYAN, "You don't have enough practices.\n\r", ch );
 	return;
@@ -1326,9 +1332,9 @@ void do_train( CHAR_DATA *ch, char *argument )
         if ( bone_flag == 0 )
             *pAbility		+= 1;
         else if ( bone_flag == 1 )
-            *pAbility               += dice( 1, 2 );
-        else
             *pAbility               += dice( 1, 5 );
+        else
+            *pAbility               += dice( 1, 10 );
     }
 
     if ( bone_flag == 0 && amt == 1 )
@@ -1343,6 +1349,165 @@ void do_train( CHAR_DATA *ch, char *argument )
 
     return;
 }
+
+void do_raise( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *mob;
+    char      arg[ MAX_INPUT_LENGTH ];
+    char      arg1[ MAX_STRING_LENGTH ];
+    int        amt = 1;
+    char      *pOutput;
+    char       buf [ MAX_STRING_LENGTH ];
+    int       *pAbility = NULL;
+    int        bone_flag = 0;
+
+    if ( IS_NPC( ch ) )
+        return;
+
+    argument = one_argument( argument, arg );
+    argument = one_argument( argument, arg1 );
+
+    for ( mob = ch->in_room->people; mob; mob = mob->next_in_room )
+    {
+        if ( IS_NPC( mob ) && IS_SET( mob->act, ACT_TRAIN ) )
+            break;
+    }
+
+    if ( !mob )
+    {
+        send_to_char(AT_WHITE, "You can't do that here.\n\r", ch );
+        return;
+    }
+
+    if ( arg[0] == '\0' )
+    {
+        sprintf( buf, "You have %d raise points.\n\r", ch->raisepts );
+        send_to_char(AT_CYAN, buf, ch );
+        argument = "foo";
+    }
+    if ( arg1[0] == '\0' )
+       amt = 1;
+    else
+       amt = atoi( arg1 );
+
+    if ( !str_cmp( arg, "str" ) )
+    {
+        pAbility    = &ch->pcdata->perm_str;
+        pOutput     = "strength";
+    }
+
+    else if ( !str_cmp( arg, "int" ) )
+    {
+        pAbility    = &ch->pcdata->perm_int;
+        pOutput     = "intelligence";
+    }
+
+    else if ( !str_cmp( arg, "wis" ) )
+    {
+        pAbility    = &ch->pcdata->perm_wis;
+        pOutput     = "wisdom";
+    }
+
+    else if ( !str_cmp( arg, "dex" ) )
+    {
+        pAbility    = &ch->pcdata->perm_dex;
+        pOutput     = "dexterity";
+    }
+
+    else if ( !str_cmp( arg, "con" ) )
+    {
+        pAbility    = &ch->pcdata->perm_con;
+        pOutput     = "constitution";
+    }
+
+
+    else if ( !str_cmp( arg, "hp" ) )
+    {
+        bone_flag   = 1;
+        pAbility    = &ch->perm_hit;
+        pOutput     = "hit points";
+    }
+
+    else if ( !is_class( ch, CLASS_VAMPIRE )
+         && !str_cmp( arg, "mana" ) )
+    {
+        bone_flag   = 1;
+        pAbility    = &ch->perm_mana;
+        pOutput     = "mana points";
+    }
+    else if ( is_class( ch, CLASS_VAMPIRE )
+         && !str_cmp( arg, "bp" ) )
+    {
+        bone_flag   = 1;
+        pAbility    = &ch->perm_bp;
+        pOutput     = "blood points";
+    }
+    else if ( !str_cmp( arg, "move" ) )
+    {
+        bone_flag   = 2;
+        pAbility    = &ch->perm_move;
+        pOutput     = "move points";
+    }
+
+
+
+    else
+    {
+        strcpy( buf, "You can raise:" );
+        if ( ch->pcdata->perm_str < 18 ) strcat( buf, " str" );
+        if ( ch->pcdata->perm_int < 18 ) strcat( buf, " int" );
+        if ( ch->pcdata->perm_wis < 18 ) strcat( buf, " wis" );
+        if ( ch->pcdata->perm_dex < 18 ) strcat( buf, " dex" );
+        if ( ch->pcdata->perm_con < 18 ) strcat( buf, " con" );
+
+        if ( !is_class( ch, CLASS_VAMPIRE ) )
+            strcat( buf, " hp mana move" );
+        else
+            strcat( buf, " hp bp move" );
+        if ( buf[strlen( buf )-1] != ':' )
+        {
+            strcat( buf, ".\n\r" );
+            send_to_char(AT_CYAN, buf, ch );
+        }
+
+        return;
+    }
+
+    if ( *pAbility >= 18 && bone_flag == 0 )
+    {
+        act(AT_CYAN, "Your $T is already at maximum.", ch, NULL, pOutput, TO_CHAR );
+        return;
+    }
+
+    if ( amt > ch->raisepts )
+    {
+        send_to_char(AT_CYAN, "You don't have enough raise points.\n\r", ch );
+        return;
+    }
+
+    ch->raisepts                -= amt;
+
+        if ( bone_flag == 0 )
+            *pAbility           += 1;
+        else if ( bone_flag == 1 )
+            *pAbility               += amt;
+        else
+            *pAbility               += amt;
+
+    if ( bone_flag == 0 && amt == 1 )
+    {
+       act(AT_CYAN, "Your $T increases!", ch, NULL, pOutput, TO_CHAR );
+        act(AT_CYAN, "$n's $T increases!", ch, NULL, pOutput, TO_ROOM );
+        return;
+    }
+
+   act(AT_CYAN, "Your $T increase!", ch, NULL, pOutput, TO_CHAR );
+    act(AT_CYAN, "$n's $T increase!", ch, NULL, pOutput, TO_ROOM );
+
+
+    return;
+}
+
 
 void do_chameleon ( CHAR_DATA *ch, char *argument )
 {

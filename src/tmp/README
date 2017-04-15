@@ -1,0 +1,17 @@
+EnvyMud Release 2.0
+Monday, 25th December 1995
+
+Kahn		michael@uclink.berkeley.edu
+Hatchet		hatchet@uclink.berkeley.edu
+
+
+
+=== The player directory
+
+This file gies a brief description of the contents in the player directory
+
+Player files are ASCII text files organized in separate directories.
+The average player file is 10K long.  You may compress the playerfiles
+using 'gzip -9 -r *' in the player directory periodically.  The server
+will uncompress as needed and leave them untouched afterwards until
+you compress them manually again.

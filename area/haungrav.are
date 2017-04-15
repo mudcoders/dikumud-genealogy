@@ -383,20 +383,20 @@ shocking grasp~
 4 4
 0 0 0
 A
-12 70
-A
-25 21
+18 70
 A
 19 21
 A
-18 70
-E
-spiritual~
-The chains might be used as a weapon.
-~
+25 21
+A
+12 70
 E
 chains~
 These Long iron chains look useful as a weapon.
+~
+E
+spiritual~
+The chains might be used as a weapon.
 ~
 #10310
 glass wine~
@@ -411,16 +411,16 @@ create food~
 0 0
 0 0 0
 A
-4 1
-A
 3 1
-E
-wine~
-Deep violet grape wine. It smells sweet. It ripples slightly in its glass.
-~
+A
+4 1
 E
 glass~
 A tall thin glass filled to the brim with wine.
+~
+E
+wine~
+Deep violet grape wine. It smells sweet. It ripples slightly in its glass.
 ~
 #10311
 black leather collar~
@@ -435,9 +435,9 @@ detect invis~
 0 0
 0 0 0
 A
-4 1
-A
 2 1
+A
+4 1
 E
 black leather collar~
 A small black leather cat collar has iron rivots evenly spaced around it
@@ -493,13 +493,13 @@ charm person~
 4 4
 0 0 0
 A
-14 20
-A
-13 80
+4 2
 A
 5 2
 A
-4 2
+13 80
+A
+14 20
 E
 tuxedo~
 A tattered long, black tuxedo with even longer tails that drag on the ground
@@ -518,24 +518,24 @@ reserved~
 0 0
 0 0 0
 A
-24 5
-A
-14 60
-A
-25 33
-A
-12 100
+13 70
 A
 17 -100
 A
-13 70
-E
-stare~
-Its the Stare of a madman. It cuts into your soul and sees beyond normal vision.
-~
+12 100
+A
+25 33
+A
+14 60
+A
+24 5
 E
 icy~
 This Stare looks so very cold.
+~
+E
+stare~
+Its the Stare of a madman. It cuts into your soul and sees beyond normal vision.
 ~
 #10351
 shades spectacles~
@@ -550,11 +550,11 @@ reserved~
 0 0
 0 0 0
 A
-13 36
+12 50
 A
 17 -12
 A
-12 50
+13 36
 E
 shades spectacles~
 These look like tainted glasses. They seem to reflect all light and echo with darkness.
@@ -572,19 +572,19 @@ reserved~
 0 0
 0 0 0
 A
-1 -1
+18 51
 A
 19 60
 A
-18 51
+1 -1
+E
+marble~
+Clean red solid marble. Quite beautiful.
+~
 E
 sword~
 A sword cut from pure red marble. Its blade is sharp yet oddly chipped. It
 looks as if it would cause great pain in the right hands.
-~
-E
-marble~
-Clean red solid marble. Quite beautiful.
 ~
 #10353
 whip~
@@ -599,11 +599,11 @@ warcry~
 4 4
 0 0 0
 A
-13 70
+18 70
 A
 19 21
 A
-18 70
+13 70
 E
 whip~
 A long black flaming whip of chaos. It seems to give off a slight amount
@@ -622,24 +622,24 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-23 5
-A
-25 30
-A
-12 20
+17 -90
 A
 13 90
 A
-17 -90
-E
-mail~
-The ice seems to be formed into a suit of Plate mail.
-~
+12 20
+A
+25 30
+A
+23 5
+A
+24 -5
 E
 ice~
 This armor is crafted from solid ice. But doesnt seem to melt.
+~
+E
+mail~
+The ice seems to be formed into a suit of Plate mail.
 ~
 #10355
 icy vambraces ice~
@@ -654,18 +654,18 @@ reserved~
 0 0
 0 0 0
 A
-4 1
-A
-12 50
-A
-13 90
+2 2
 A
 1 3
 A
-2 2
+13 90
+A
+12 50
+A
+4 1
 E
-icy~
-Solid, unwavering ice. It doesn't seem to be melting.
+ice~
+Solid, unwavering, ice. Doesnt seem to ever melt.
 ~
 E
 vambraces~
@@ -673,8 +673,8 @@ These are like no others. Made of solid ice, and quite protective of your
 skin, they don't even feel cold.
 ~
 E
-ice~
-Solid, unwavering, ice. Doesnt seem to ever melt.
+icy~
+Solid, unwavering ice. It doesn't seem to be melting.
 ~
 #10356
 icy blades evil~
@@ -689,23 +689,23 @@ reserved~
 0 0
 0 0 0
 A
-13 100
-A
-3 3
-A
-1 3
+18 80
 A
 19 120
 A
-18 80
+1 3
+A
+3 3
+A
+13 100
+E
+ice~
+These are Crafted from solid ice. It doesnt melt and doesnt feel cold.
+~
 E
 blades~
 These look as if they could be held and used as long 18 inch claws to hack
 someone or something to bits.
-~
-E
-ice~
-These are Crafted from solid ice. It doesnt melt and doesnt feel cold.
 ~
 #10357
 fingernail~
@@ -720,9 +720,9 @@ reserved~
 0 0
 0 0 0
 A
-19 40
-A
 1 -2
+A
+19 40
 E
 fingernail~
 An ugly, dirty, grimey and disgusting fingernail. It's probably the longest
@@ -742,18 +742,18 @@ reserved~
 0 0
 0 0 0
 A
-4 1
+13 60
 A
 1 2
 A
-13 60
-E
-ring~
-A Simple marble shape. Just big enough to fit on your finger.
-~
+4 1
 E
 marble~
 Solid red marble. Costructed into a simple ring.
+~
+E
+ring~
+A Simple marble shape. Just big enough to fit on your finger.
 ~
 #0
 
@@ -1338,13 +1338,13 @@ upon it.
 0 131097 0
 Rd     0
 E
+silver~
+A silver vanity set is displayed on the bureau.
+~
+E
 mirror~
 The mirror is huge... you can see the image of yourself reflecting back at
 you.
-~
-E
-silver~
-A silver vanity set is displayed on the bureau.
 ~
 D2
 ~
@@ -1604,16 +1604,16 @@ you.
 0 401433 0
 Rd     0
 E
-door~
-A door stands here in the west wall.
+up~
+A staircase leads up into darkness.
 ~
 E
 staircase~
 A staircase leads up into darkness.
 ~
 E
-up~
-A staircase leads up into darkness.
+door~
+A door stands here in the west wall.
 ~
 D2
 ~
@@ -1681,11 +1681,11 @@ placed a staircase in the parlor.
 0 29 0
 Rd     0
 E
-staircase~
+down~
 A staircase leads down into darkness.
 ~
 E
-down~
+staircase~
 A staircase leads down into darkness.
 ~
 D2
@@ -1711,13 +1711,13 @@ up, it must have been a nice place to sit.
 0 401433 0
 Rd     0
 E
+window~
+The glass that was once in the window lies all over the floor, shattered.
+~
+E
 settee~
 A very lovely chair, upholstered with a maroon velvety material. Too bad
 it's been ruined.
-~
-E
-window~
-The glass that was once in the window lies all over the floor, shattered.
 ~
 D0
 ~
@@ -1782,8 +1782,8 @@ door, which is in the western wall.
 0 401433 0
 Rd     0
 E
-remains~
-A small pile of dust rests underneath the vase.
+door~
+A plain wooden door stands in the west wall.
 ~
 E
 vase~
@@ -1791,8 +1791,8 @@ A lovely glazed vase is mauve in color, or at least it used to be. The
 fragrance of the color has faded through the years.
 ~
 E
-door~
-A plain wooden door stands in the west wall.
+remains~
+A small pile of dust rests underneath the vase.
 ~
 D1
 ~
@@ -1818,15 +1818,15 @@ very large bed can be seen.
 0 401433 0
 Rd     0
 E
-bed~
-A lovely canopy bed. Sheets used to hang around it, as you can see shredded
-remnants still hanging from the bedposts.
-~
-E
 nightstand~
 The nightstand is made of a mahogany wood. There are a few personal affects
 resting atop it. A hairbrush, who's bristles have turned to dust, and a hand
 mirror that has been broken.
+~
+E
+bed~
+A lovely canopy bed. Sheets used to hang around it, as you can see shredded
+remnants still hanging from the bedposts.
 ~
 D2
 ~
@@ -1967,16 +1967,16 @@ in.  A comb and a basin of water stand on a table here.
 0 401433 0
 Rd     0
 E
-comb~
-A wooden comb rests here. Not a speck of dust upon it.
+basin~
+A lovely basin made of pottery, with a single flower painted upon it.
 ~
 E
 water~
 The water is fresh from what you can tell.
 ~
 E
-basin~
-A lovely basin made of pottery, with a single flower painted upon it.
+comb~
+A wooden comb rests here. Not a speck of dust upon it.
 ~
 D1
 ~

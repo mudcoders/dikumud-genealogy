@@ -1486,17 +1486,17 @@ dark blessing~
 5 5
 0 0 0
 A
-13 100
-A
-4 -2
-A
-26 10
-A
-18 150
+1 3
 A
 19 180
 A
-1 3
+18 150
+A
+26 10
+A
+4 -2
+A
+13 100
 E
 sword underworld evil~
 A blackened sword emanating pure evil radiates a physical coldness.
@@ -1557,6 +1557,58 @@ reserved~
 0 0
 0 0 0
 E
+guide~
+The guide contains a table of contents, with the chapter title following.
+To read a chapter type look and the number (eg: look one to read chapter
+one) 
+ 
+&CChapter   &PTitle
+&COne       &PLiving in Ravenwood
+&CTwo       &PMap of Ravenwood
+&CThree     &PGuilds
+&CFour      &PEmergency Procedures
+&CFive      &PRegarding This Book
+ 
+~
+E
+one~
+&RThe town of Ravenwood was founded years ago in order to provide those
+of us who wish to live the so-called life of evil a place where we may be
+welcome by all.  Our purpose is to build our forces and eventually wipe out
+the desecrators who inhabit Bethaven.  You citizenship requires that you
+assist in defending the town at all costs.  The forces of good must be
+stopped before they control the entire world!  
+~
+E
+three~
+&CWithin Ravenwood we have provided a guild hall for each of the known
+classes.  Useful for gathering with your fellow warrior/mage/whatever for a
+drink and to discuss class business.  Other classes are prohibited from
+these areas, please respect the code of honor we have set forth.  
+~
+E
+four~
+&PIn the case of an attack on Ravenwood, we have set up an underground
+tunnel system, designed to allow lower levels a place to hide, or to allow
+travel from one point in the town to another without detection.  The
+manholes are set in the following locations: 
+ 
+&WBefore the Temple Stairs
+Ravenwood Center
+Gateway Plaza
+At the western and eastern ends of Hangmans Way
+All 4 corners of the city.
+ 
+&PThis gives a total of 9 manholes. Use them wisely.
+Also note, at the Southeast and Southwest corners of the city lies a secret passage through the walls to the outside of the town gates. Use this to help reinforce the gates in case of an attack.
+~
+E
+five~
+&YThis book was designed and written for the citizens of &zRaven&Owood
+&Yby the founder of the town, &CGrunt U.  Neanderthal&Y.  Do not allow it to
+fall into the wrong hands.  
+~
+E
 two~
 &B            A               &WA-&G Temple        &WV- &GPaladin Guild
 &z            |               &WB-&G Weapon Shop   &WW- &GRanger Guild
@@ -1582,58 +1634,6 @@ two~
             &O#
 &C-Map by &PGrunt
 ~
-E
-five~
-&YThis book was designed and written for the citizens of &zRaven&Owood
-&Yby the founder of the town, &CGrunt U.  Neanderthal&Y.  Do not allow it to
-fall into the wrong hands.  
-~
-E
-four~
-&PIn the case of an attack on Ravenwood, we have set up an underground
-tunnel system, designed to allow lower levels a place to hide, or to allow
-travel from one point in the town to another without detection.  The
-manholes are set in the following locations: 
- 
-&WBefore the Temple Stairs
-Ravenwood Center
-Gateway Plaza
-At the western and eastern ends of Hangmans Way
-All 4 corners of the city.
- 
-&PThis gives a total of 9 manholes. Use them wisely.
-Also note, at the Southeast and Southwest corners of the city lies a secret passage through the walls to the outside of the town gates. Use this to help reinforce the gates in case of an attack.
-~
-E
-three~
-&CWithin Ravenwood we have provided a guild hall for each of the known
-classes.  Useful for gathering with your fellow warrior/mage/whatever for a
-drink and to discuss class business.  Other classes are prohibited from
-these areas, please respect the code of honor we have set forth.  
-~
-E
-one~
-&RThe town of Ravenwood was founded years ago in order to provide those
-of us who wish to live the so-called life of evil a place where we may be
-welcome by all.  Our purpose is to build our forces and eventually wipe out
-the desecrators who inhabit Bethaven.  You citizenship requires that you
-assist in defending the town at all costs.  The forces of good must be
-stopped before they control the entire world!  
-~
-E
-guide~
-The guide contains a table of contents, with the chapter title following.
-To read a chapter type look and the number (eg: look one to read chapter
-one) 
- 
-&CChapter   &PTitle
-&COne       &PLiving in Ravenwood
-&CTwo       &PMap of Ravenwood
-&CThree     &PGuilds
-&CFour      &PEmergency Procedures
-&CFive      &PRegarding This Book
- 
-~
 #1306
 shield might~
 the Shield of Might~
@@ -1647,15 +1647,15 @@ holy strength~
 5 5
 0 0 0
 A
-108 -1
-A
-4 -3
-A
-5 3
+17 -100
 A
 14 75
 A
-17 -100
+5 3
+A
+4 -3
+A
+108 -1
 E
 shield might evil~
 A blackened shield emanates pure evil and radiates a physical coldness.
@@ -1990,7 +1990,7 @@ white potion beaker~
 ~
 #1328
 potion green~
-&Ga green potion&X~
+&Ga green potion&W~
 &GA green potion has been dropped here.~
 ~
 10 268435456 0 0 1 5
@@ -2045,14 +2045,14 @@ reserved~
 0 0
 0 0 0
 E
-knife~
-You cast your eyes upon a mistreated, but thick-bladed knife with an
-ivory handle.
-~
-E
 hunting~
 You cast your eyes upon a mistreated, but thick-bladed knife with an
 ivory handle.  
+~
+E
+knife~
+You cast your eyes upon a mistreated, but thick-bladed knife with an
+ivory handle.
 ~
 #1332
 warhammer war hammer~
@@ -2067,11 +2067,11 @@ reserved~
 0 0
 0 0 0
 E
-hammer~
+warhammer~
 You see a heavy hammer with a long handle.
 ~
 E
-warhammer~
+hammer~
 You see a heavy hammer with a long handle.
 ~
 #1333
@@ -2087,17 +2087,17 @@ reserved~
 0 0
 0 0 0
 E
-helmet~
-You see a helmet made of crude iron.
-You see a helmet crudely forged from iron.
+helmet iron~
+This helmet will do the job, but it is very crudely made.
 ~
 E
 iron~
 You see a helmet crudely forged from iron.
 ~
 E
-helmet iron~
-This helmet will do the job, but it is very crudely made.
+helmet~
+You see a helmet made of crude iron.
+You see a helmet crudely forged from iron.
 ~
 #1334
 breastplate iron breast plate~
@@ -2180,12 +2180,12 @@ reserved~
 0 0
 0 0 0
 E
-sword steel guard~
-A large steel sword with a bronze hilt.
-~
-E
 bronze hilt~
 The hilt has been intricately crafted with bronze.
+~
+E
+sword steel guard~
+A large steel sword with a bronze hilt.
 ~
 #1339
 ravenwood parchment scroll blank~
@@ -2218,11 +2218,11 @@ reserved~
 A
 13 10
 E
-ring~
+onyx~
 This dull onyx ring doesn't look like it's worth very much.
 ~
 E
-onyx~
+ring~
 This dull onyx ring doesn't look like it's worth very much.
 ~
 #1341
@@ -2317,6 +2317,18 @@ E
 ink bottle magic magical~
 A bottle of magical ink used for scribing.
 ~
+#1347
+blood vial~
+&Ba vial of &RBlood&w~
+A vial of blood has been left here.~
+~
+17 0 0 0 1 30
+20~ 0~ 13~ 0~
+2 10 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 #0
 
 
@@ -2660,15 +2672,15 @@ and west, allowing travel in either direction.
 0 0 0
 Rd     0
 E
+ants home anthill~
+Ants skitter in and out of the crack beneath your feet.  A few little
+sandhills have been built all along the crack.  
+~
+E
 crack pavement~
 There are no particular markings here in the pavement to tell you exactly
 what caused this crack and the only thing special about it is that an
 army of tiny little ants have made their home here.
-~
-E
-ants home anthill~
-Ants skitter in and out of the crack beneath your feet.  A few little
-sandhills have been built all along the crack.  
 ~
 D1
 ~

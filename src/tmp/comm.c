@@ -36,7 +36,6 @@
  * -- Furey  26 Jan 1993
  */
 
-#define crypt
 #define unix 1
 #if defined( macintosh )
 #include <types.h>
@@ -132,8 +131,10 @@ const	char 	go_ahead_str	[] = { IAC, GA, '\0' };
 /* int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
 int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
 */void	bzero		args( ( char *b, int length ) );
-int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
+/*int	getpeername	args( ( int s, struct sockaddr *name, int *namelen
+) );
 int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
+*/
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	setsockopt	args( ( int s, int level, int optname, void *optval,
@@ -159,8 +160,10 @@ void	bzero		args( ( char *b, int length ) );
 int	accept		args( ( int s, void *addr, int *addrlen ) );
 int	bind		args( ( int s, const void *addr, int addrlen ) );
 void	bzero		args( ( char *b, int length ) );
+/*
 int	getpeername	args( ( int s, void *addr, int *addrlen ) );
 int	getsockname	args( ( int s, void *name, int *addrlen ) );
+*/
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	setsockopt	args( ( int s, int level, int optname,
@@ -174,11 +177,13 @@ int	socket		args( ( int domain, int type, int protocol ) );
 #endif
 
 #if	defined( linux )
-int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
-int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
-int	close		args( ( int fd ) );
-int	getpeername	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
-int getsockname args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
+/*int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
+int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
+*/int	close		args( ( int fd ) );
+/*
+int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
+int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
+*/
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
@@ -237,8 +242,10 @@ int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
 int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
 int	close		args( ( int fd ) );
 int	fcntl		args( ( int fd, int cmd, int arg ) );
+/*
 int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
+*/
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 #if	!defined( htons )
 u_short	htons		args( ( u_short hostshort ) );
@@ -265,8 +272,10 @@ int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
 int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
 void	bzero		args( ( char *b, int length ) );
 int	close		args( ( int fd ) );
+/*
 int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
+*/
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
@@ -288,8 +297,10 @@ int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
 int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
 void	bzero		args( ( char *b, int length ) );
 int	close		args( ( int fd ) );
+/*
 int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
+*/
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
@@ -883,7 +894,7 @@ void game_loop_unix( int control )
 		{
 		    FD_CLR( d->descriptor, &out_set );
 		    if ( d->character )
-			save_char_obj( d->character, FALSE );
+/*			save_char_obj( d->character, FALSE ); */
 		    d->outtop	= 0;
 		    close_socket( d );
 		    continue;
@@ -1487,21 +1498,23 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
 	  else
 	    percent = -1;
 	  if (percent >= 100)
-	    sprintf(wound,"is in excellent condition.");
+	    sprintf(wound,"is in excellent condition. &B[&G%d&B]",
+percent);
 	  else if (percent >= 90)
-	    sprintf(wound,"has a few scratches.");
+	    sprintf(wound,"has a few scratches. &B[&G%d&B]", percent);
 	  else if (percent >= 75)
-	    sprintf(wound,"has some small wounds and bruises.");
+	    sprintf(wound,"has some small wounds and bruises. &B[&Y%d&B]",
+percent);
 	  else if (percent >= 50)
-	    sprintf(wound,"has quite a few wounds.");
+	    sprintf(wound,"has quite a few wounds. &B[&Y%d&B]", percent);
 	  else if (percent >= 30)
-	    sprintf(wound,"has some big nasty wounds and scratches.");
+	    sprintf(wound,"has some big nasty wounds and scratches. &B[&R%d&B]", percent);
 	  else if (percent >= 15)
-	    sprintf(wound,"looks pretty hurt.");
+	    sprintf(wound,"looks pretty hurt. &B[&R%d&B]", percent);
 	  else if (percent >= 0)
-	    sprintf(wound,"is in awful condition.");
+	    sprintf(wound,"is in awful condition. &B[&R%d&B]", percent);
 	  else
-	    sprintf(wound,"is bleeding to death.");
+	    sprintf(wound,"is bleeding to death. [%d]", percent);
 /*
   	  strcpy( buf2, "&z[" );
 	  if ( percent >= 66 )
@@ -2031,6 +2044,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 {
     CHAR_DATA *ch;
     NOTE_DATA *pnote;
+	RACE_DATA *pRace;
     char      *pwdnew;
     char      *p;
     char       buf [ MAX_STRING_LENGTH ];
@@ -2363,6 +2377,16 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     switch ( *argument )
     {
     case 'y': case 'Y':
+		/* booger */
+		if (IS_SET(ch->act2, PLR_REMORT ))
+		{
+    pRace = get_race_data(d->character->race);
+    ch->pcdata->mod_str = pRace->mstr;
+    ch->pcdata->mod_int = pRace->mint;
+    ch->pcdata->mod_wis = pRace->mwis;
+    ch->pcdata->mod_dex = pRace->mdex;
+    ch->pcdata->mod_con = pRace->mcon;
+		}
     buf2[0]='\0';
     strcpy( buf2,
 "\n\r                 &z-= &RSelect a class from the list below &z=-"
@@ -2455,6 +2479,18 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     switch ( *argument )
     {
     case 'y': case 'Y':
+		/* booger */
+	if (IS_SET( ch->act2, PLR_REMORT ))
+	{
+		switch ( class_table[prime_class(ch)].attr_prime )
+		{
+		  case APPLY_STR: ch->pcdata->perm_str = 16; break;
+		  case APPLY_INT: ch->pcdata->perm_int = 16; break;
+		  case APPLY_WIS: ch->pcdata->perm_wis = 16; break;
+		  case APPLY_DEX: ch->pcdata->perm_dex = 16; break;
+		  case APPLY_CON: ch->pcdata->perm_con = 16; break;
+		}
+	}
     argument[0] = '\0';
     do_help( ch, "MULTICLASS" );
     sprintf( buf, "&WDo you wish to be multi-classed&w? " );
@@ -2515,9 +2551,12 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    d->connected = CON_GET_2ND_CLASS;
 	    break;
 	  case 'n': case 'N':
+		  if (IS_SET(ch->act2, PLR_REMORT ))
+			  ch->exp = xp_tolvl(ch)/2;
             ch->class[1] = -1;
 	    write_to_buffer( d, "&cPress &W'y' &cto enter a description or &WEnter &cto continue&w ", 0 );
-   	    d->connected = CON_CHECK_AUTHORIZE;
+          do_help( ch, "motd" );
+   	    d->connected = CON_READ_MOTD;
 	    break;
 	  default:
             write_to_buffer( d, "&cPlease type &WYes &cor &WNo&w: ", 0 );
@@ -2578,17 +2617,18 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     switch ( *argument )
     {
     case 'y': case 'Y':
-      ch->class[2] = -1;
+/*      ch->class[2] = -1;
       write_to_buffer( d, "&cPress &W'y' &cto enter a description or &WEnter &cto continue&w: ", 0 );
-      d->connected = CON_CHECK_AUTHORIZE;
-
+      do_help( ch, "motd" );
+      d->connected = CON_READ_MOTD;
+*/
 /* For Third Class comment above and uncomment below */
-/*
+
     argument[0] = '\0';
     sprintf( buf, "&WDo you wish a 3rd class&w? " );
     write_to_buffer( d, buf, 0 );
     d->connected = CON_WANT_MULTI_2;
-*/
+
     break;
 
     case 'n': case 'N':
@@ -2649,9 +2689,12 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	    d->connected = CON_GET_3RD_CLASS;
 	    break;
 	  case 'n': case 'N':
+		  	if (IS_SET(ch->act2, PLR_REMORT ))
+			  ch->exp = xp_tolvl(ch)/2;
             ch->class[2] = -1;
             write_to_buffer( d, "&cPress &W'y' &cto enter a description or &WEnter &cto continue&w: ", 0 );
-      	    d->connected = CON_CHECK_AUTHORIZE;
+			do_help(ch, "motd");
+      	    d->connected = CON_READ_MOTD;
 	    break;
 	  default:
             write_to_buffer( d, "&cPlease type &WYes &cor &WNo&w: ", 0 );
@@ -2716,9 +2759,12 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
     switch ( *argument )
     {
     case 'y': case 'Y':
+		  if (IS_SET(ch->act2, PLR_REMORT ))
+			  ch->exp = xp_tolvl(ch)/2;
        ch->class[3] = -1;
        write_to_buffer( d, "&cPress &W'y' &cto enter a description or &WEnter &cto continue&w: ", 0 );
-       d->connected = CON_CHECK_AUTHORIZE;
+	   do_help( ch, "motd");
+       d->connected = CON_READ_MOTD;
     break;
 
     case 'n': case 'N':
@@ -2821,6 +2867,24 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
        }
     break;
 /* END */
+	case CON_BEGIN_REMORT:
+    buf2[0] = '\0';
+    strcpy( buf2,
+"\n\r                  &z-= &RSelect a race from the list below &z=-\n\r\n\r" );
+    for ( iClass = 0; iClass < MAX_RACE; iClass++ )
+      {
+      sprintf( buf, "&z[&W%-12s&z]%s",
+	       (get_race_data(iClass))->race_full,
+	      (( iClass+1) % 5) == 0 ? "\n\r" : "" );
+      strcat( buf2, buf );
+      }
+    if ( iClass % 5 != 0 )
+	strcat( buf2, "\n\r" );
+    strcat( buf2, "\n\r&RRACE &w-> " );
+    write_to_buffer( d, buf2, 0 );
+    wiznet("Remort reconnected!  $N sighted.",ch,NULL,WIZ_NEWBIE,0,0);
+    d->connected = CON_GET_NEW_RACE;
+    break;
     case CON_READ_MOTD:
     ch->next    = char_list;
     char_list   = ch;
@@ -2861,6 +2925,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	if ( ( ch->race == RACE_GHOUL ) ||
 	     ( ch->race == RACE_OGRE )  ||
 	     ( ch->race == RACE_DEMON ) ||
+		 ( ch->race == RACE_KREEN ) ||
 	     ( ch->race == RACE_TROLL ) )
 	  ch->charisma = number_range( 10, 14 );
 	if ( ( ch->race == RACE_SHADOW )    ||
@@ -2876,7 +2941,8 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	if ( ( ch->race == RACE_PIXIE )  ||
 	     ( ch->race == RACE_ELF )    ||
 	     ( ch->race == RACE_TABAXI ) ||
-	     ( ch->race == RACE_HALFLING ) )
+	     ( ch->race == RACE_HALFLING ) ||
+		 ( ch->race == RACE_ANGEL ) )
 	  ch->charisma = number_range( 25, 30 );
 
         sprintf( buf, "the %s %s",

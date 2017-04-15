@@ -953,23 +953,23 @@ reserved~
 0 0
 0 0 0
 A
-12 100
-A
-13 100
-A
-17 -80
+24 -10
 A
 23 -10
 A
-24 -10
+17 -80
+A
+13 100
+A
+12 100
 E
-stocking~
+fish~
 &zA pair of sexy stockings made of black mesh of the finest silken
 threads lie at your feet.  You know any woman who wears them can scintillate
 with sex appeal.
 ~
 E
-fish~
+stocking~
 &zA pair of sexy stockings made of black mesh of the finest silken
 threads lie at your feet.  You know any woman who wears them can scintillate
 with sex appeal.
@@ -987,16 +987,16 @@ reserved~
 0 0
 0 0 0
 E
-bottle~
-&wA clear bottle of glass filled with mist is here.  The mist seems to be
-about to evaporate in a minute but it keeps swirling around in the bottle
-looking for a way out.  It seems to glitter as you eye it.
-~
-E
 mist~
 &wA clear bottle of glass filled with mist is here.  The mist seems to be
 about to evaporate in a minute but it keeps swirling around in the bottle
 looking for a way out.  It seems to glitter as you eye it.  
+~
+E
+bottle~
+&wA clear bottle of glass filled with mist is here.  The mist seems to be
+about to evaporate in a minute but it keeps swirling around in the bottle
+looking for a way out.  It seems to glitter as you eye it.
 ~
 #22104
 dark key~
@@ -1028,22 +1028,22 @@ reserved~
 0 0
 0 0 0
 A
-12 -30
-A
-13 100
+24 -10
 A
 17 -30
 A
-24 -10
-E
-wooden~
-&OThe wooden spear you see before you is quite sharp and honed finely and
-all by hand which is all the more impressive.
-~
+13 100
+A
+12 -30
 E
 spear~
 &OThe wooden spear you see before you is quite sharp and honed finely and
 all by hand which is all the more impressive.  
+~
+E
+wooden~
+&OThe wooden spear you see before you is quite sharp and honed finely and
+all by hand which is all the more impressive.
 ~
 #22106
 flower purple~
@@ -1058,16 +1058,16 @@ reserved~
 0 0
 0 0 0
 E
-flower~
-&pThe purple flower before is so exotic and rare.  You have never seen
-any flower or orchid which possessed so much mystery as the flower that lies
-here.  The edges of its petals are lined &Pfuschia.
-~
-E
 purple~
 &pThe purple flower before is so exotic and rare.  You have never seen
 any flower or orchid which possessed so much mystery as the flower that lies
 here.  The edges of its petals are lined &Pfuschia.  
+~
+E
+flower~
+&pThe purple flower before is so exotic and rare.  You have never seen
+any flower or orchid which possessed so much mystery as the flower that lies
+here.  The edges of its petals are lined &Pfuschia.
 ~
 #22107
 tassled banner~
@@ -1082,13 +1082,13 @@ reserved~
 0 0
 0 0 0
 A
-19 10
-A
-13 50
+24 -10
 A
 25 10
 A
-24 -10
+13 50
+A
+19 10
 #22108
 boots misty~
 &zA pair of &Wm&wi&Ws&wt&Wy &zboots~
@@ -1102,13 +1102,13 @@ reserved~
 0 0
 0 0 0
 A
-26 20
-A
-19 10
+13 60
 A
 18 10
 A
-13 60
+19 10
+A
+26 20
 #22109
 flower pink~
 &Pan exotic pink flower~
@@ -1146,17 +1146,17 @@ reserved~
 0 0
 0 0 0
 A
-23 -20
-A
-17 -100
-A
-13 80
-A
-12 40
+18 10
 A
 19 10
 A
-18 10
+12 40
+A
+13 80
+A
+17 -100
+A
+23 -20
 #22113
 jungle eyes~
 &Gwild jungle eyes~
@@ -1170,17 +1170,17 @@ identify~
 0 0
 0 0 0
 A
-124 -1
-A
-19 15
-A
-18 15
-A
-117 -1
+17 -100
 A
 13 130
 A
-17 -100
+117 -1
+A
+18 15
+A
+19 15
+A
+124 -1
 #22114
 diamond pendant~
 &Wdiamond pendant~
@@ -1206,13 +1206,13 @@ charm person~
 3 3
 0 0 0
 A
-13 50
-A
-12 50
+18 5
 A
 19 5
 A
-18 5
+12 50
+A
+13 50
 #22134
 nail file~
 a nail file~
@@ -1226,11 +1226,11 @@ astral walk~
 3 3
 0 0 0
 A
-18 5
+13 50
 A
 19 5
 A
-13 50
+18 5
 #22135
 ball jeweled~
 &BA bright jeweled ball~
@@ -1244,13 +1244,13 @@ heal~
 5 5
 0 0 0
 A
-18 -5
-A
-13 20
+19 -10
 A
 24 -10
 A
-19 -10
+13 20
+A
+18 -5
 #22137
 book dark sea~
 &BBook of the dark seas~
@@ -1264,15 +1264,15 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-12 30
-A
-19 9
+24 -10
 A
 18 5
 A
-24 -10
+19 9
+A
+12 30
+A
+13 50
 #22140
 wing mist~
 &wWings of Mist~
@@ -1286,15 +1286,15 @@ portal~
 2 2
 0 0 0
 A
-25 10
-A
-23 -10
-A
-24 -10
+110 -1
 A
 13 100
 A
-110 -1
+24 -10
+A
+23 -10
+A
+25 10
 #22141
 key mist~
 &wA Key of Mist~
@@ -1320,13 +1320,13 @@ frost blade~
 1 1
 0 0 0
 A
-13 50
-A
-19 10
+1 1
 A
 17 -30
 A
-1 1
+19 10
+A
+13 50
 #22148
 shroud dark midnight~
 a shroud as dark as midnight~
@@ -1340,19 +1340,19 @@ reserved~
 0 0
 0 0 0
 A
-1 -1
-A
-19 5
-A
-18 5
-A
-12 50
-A
-13 100
+23 -40
 A
 17 -100
 A
-23 -40
+13 100
+A
+12 50
+A
+18 5
+A
+19 5
+A
+1 -1
 #22152
 dirt fist~
 &OA fistful of dirt~
@@ -1390,13 +1390,13 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-100 -1
+18 10
 A
 19 10
 A
-18 10
+100 -1
+A
+13 50
 #22159
 tropical spear~
 &wa &Gtropical &wspear~
@@ -1410,17 +1410,17 @@ meteor swarm~
 2 2
 0 0 0
 A
-12 100
-A
-13 120
-A
-19 20
-A
-18 30
+24 -20
 A
 111 -1
 A
-24 -20
+18 30
+A
+19 20
+A
+13 120
+A
+12 100
 #22160
 mask tribal~
 a &RT&zr&Yi&Wb&za&Rl &wmask~
@@ -1434,17 +1434,17 @@ bloodbath~
 3 3
 0 0 0
 A
-25 20
-A
-13 110
-A
-19 20
-A
-18 20
+3 -1
 A
 24 -20
 A
-3 -1
+18 20
+A
+19 20
+A
+13 110
+A
+25 20
 #22162
 icicle~
 &WAn icicle~
@@ -1470,13 +1470,13 @@ frost breath~
 5 5
 0 0 0
 A
-18 -15
-A
-23 -10
+19 15
 A
 18 15
 A
-19 15
+23 -10
+A
+18 -15
 #22169
 key~
 an icy key~
@@ -1502,15 +1502,15 @@ stench of decay~
 4 4
 0 0 0
 A
-13 100
-A
-12 100
-A
-2 2
+19 10
 A
 18 10
 A
-19 10
+2 2
+A
+12 100
+A
+13 100
 #22189
 crown metal thorn~
 &wa silver crown of &cmetal thorns~
@@ -1524,17 +1524,17 @@ shockshield~
 5 5
 0 0 0
 A
-17 -100
-A
-19 10
-A
-18 10
-A
-24 -25
+13 100
 A
 23 -10
 A
-13 100
+24 -25
+A
+18 10
+A
+19 10
+A
+17 -100
 #22190
 key thorns~
 a key of thorns~
@@ -1572,15 +1572,15 @@ death field~
 5 5
 0 0 0
 A
-13 50
-A
-12 50
-A
-17 -60
+23 -20
 A
 17 -80
 A
-23 -20
+17 -60
+A
+12 50
+A
+13 50
 #22193
 cloak black~
 &zA black satin cloak~
@@ -1594,15 +1594,15 @@ dark ritual~
 3 3
 0 0 0
 A
-26 40
-A
-18 15
-A
-19 15
+17 -100
 A
 13 100
 A
-17 -100
+19 15
+A
+18 15
+A
+26 40
 #22194
 doormat metal~
 a metal doormat&G~
@@ -1628,13 +1628,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -200
-A
-23 -30
+13 200
 A
 12 200
 A
-13 200
+23 -30
+A
+17 -200
 #22200
 Sword Might~
 &RSword Of Might~
@@ -1648,11 +1648,11 @@ reserved~
 0 0
 0 0 0
 A
-2 2
+19 30
 A
 18 30
 A
-19 30
+2 2
 >look_prog 100~
 0
 emote &. starts to vibrate uncontrollably.
@@ -1672,9 +1672,9 @@ intellect fortress~
 0 -1
 0 0 0
 A
-18 20
-A
 19 20
+A
+18 20
 #22202
 Loin cloth~
 loin Cloth~
@@ -1688,9 +1688,9 @@ reserved~
 0 0
 0 0 0
 A
-13 5
-A
 17 -15
+A
+13 5
 #22203
 Vacan Stare~
 &BV&Ra&Gc&Ba&Rn&Gt &BS&Rt&Ga&Rr&Ge~
@@ -1704,9 +1704,9 @@ reserved~
 0 0
 0 0 0
 A
-4 -2
-A
 2 -2
+A
+4 -2
 #22204
 portal~
 portal~
@@ -1744,13 +1744,13 @@ reserved~
 0 0
 0 0 0
 A
-12 100
-A
-2 1
+24 -10
 A
 13 100
 A
-24 -10
+2 1
+A
+12 100
 #22214
 arm plate frozen~
 &CFrozen Arm Plates~
@@ -1764,11 +1764,11 @@ blade barrier~
 3 3
 0 0 0
 A
-17 -60
+1 1
 A
 13 60
 A
-1 1
+17 -60
 #22215
 bed~
 &BA Bed of Ice~
@@ -1794,15 +1794,15 @@ reserved~
 0 0
 0 0 0
 A
-25 10
-A
-19 15
-A
-23 -20
+13 40
 A
 12 40
 A
-13 40
+23 -20
+A
+19 15
+A
+25 10
 #22222
 portal tropical mist~
 &GA Portal Of Tropical Mist ~
@@ -1833,17 +1833,17 @@ high explosive~
 10 10
 0 0 0
 A
-109 -1
-A
-23 -20
-A
-17 -120
-A
-13 110
+18 10
 A
 19 10
 A
-18 10
+13 110
+A
+17 -120
+A
+23 -20
+A
+109 -1
 #22237
 hole dark~
 &zA dark misty hole~
@@ -1905,15 +1905,15 @@ bio-acceleration~
 5 5
 0 0 0
 A
-12 100
-A
-13 100
-A
-23 -20
+1 1
 A
 24 -20
 A
-1 1
+23 -20
+A
+13 100
+A
+12 100
 #22243
 dark hole~
 &zA dark hole~
@@ -1975,17 +1975,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -100
-A
-24 -15
-A
-23 -25
-A
-19 15
+13 100
 A
 18 15
 A
-13 100
+19 15
+A
+23 -25
+A
+24 -15
+A
+17 -100
 #22257
 dark shroud bloody~
 &rA Bloody shroud~
@@ -1999,17 +1999,17 @@ holy strength~
 2 2
 0 0 0
 A
-12 25
-A
-13 100
-A
-17 -100
-A
-24 -20
+19 -25
 A
 23 -20
 A
-19 -25
+24 -20
+A
+17 -100
+A
+13 100
+A
+12 25
 #22259
 plate winged arm~
 &zWinged arm plates~
@@ -2023,17 +2023,17 @@ reserved~
 0 0
 0 0 0
 A
-13 70
-A
-24 -20
-A
-23 -20
-A
-19 20
+17 -30
 A
 18 20
 A
-17 -30
+19 20
+A
+23 -20
+A
+24 -20
+A
+13 70
 #22260
 chest blue~
 &BA shiny blue chest~
@@ -2119,15 +2119,15 @@ reserved~
 0 0
 0 0 0
 A
-13 60
-A
-18 10
-A
-24 -10
+19 10
 A
 23 -10
 A
-19 10
+24 -10
+A
+18 10
+A
+13 60
 #22298
 ring sea underwater~
 &BUnderwater Ring~
@@ -2141,13 +2141,13 @@ mental block~
 3 3
 0 0 0
 A
-19 20
-A
-12 50
+24 -20
 A
 13 110
 A
-24 -20
+12 50
+A
+19 20
 #22300
 tail mermaid sparkling~
 a &WS&wp&za&Wr&wk&zl&Wi&wn&zg &wMermaid's tail~
@@ -2161,17 +2161,17 @@ reserved~
 0 0
 0 0 0
 A
-1 -1
-A
-17 -100
-A
-24 -20
-A
-12 100
+13 100
 A
 23 -20
 A
-13 100
+12 100
+A
+24 -20
+A
+17 -100
+A
+1 -1
 #22301
 flower wreath~
 &wA wreath of &Cf&pl&Go&Cw&Pe&Gr&ps~
@@ -2185,17 +2185,17 @@ sanctuary~
 5 5
 0 0 0
 A
-13 50
-A
-12 50
-A
-24 -15
-A
-23 -15
+19 10
 A
 1 -1
 A
-19 10
+23 -15
+A
+24 -15
+A
+12 50
+A
+13 50
 #22302
 berry juniper~
 &WA plump Juniper &Pb&re&Pr&rr&Py~
@@ -2221,17 +2221,17 @@ reserved~
 0 0
 0 0 0
 A
-19 10
-A
-18 10
-A
-12 100
-A
-13 60
+17 -100
 A
 23 -20
 A
-17 -100
+13 60
+A
+12 100
+A
+18 10
+A
+19 10
 #22304
 apple golden~
 &wThe &Ygolden &wapple~
@@ -2257,15 +2257,15 @@ heal~
 10 10
 0 0 0
 A
-17 -30
-A
-19 5
-A
-18 5
+13 50
 A
 12 50
 A
-13 50
+18 5
+A
+19 5
+A
+17 -30
 #22306
 robe snow white~
 &WA snow white robe~
@@ -2279,15 +2279,15 @@ complete healing~
 3 3
 0 0 0
 A
-5 -1
-A
-12 50
-A
-25 10
+13 100
 A
 19 10
 A
-13 100
+25 10
+A
+12 50
+A
+5 -1
 #22307
 star fish bracer~
 &RStar fish bracer~
@@ -2301,15 +2301,15 @@ reserved~
 0 0
 0 0 0
 A
-17 -100
-A
-19 15
-A
-18 10
+13 40
 A
 24 -10
 A
-13 40
+18 10
+A
+19 15
+A
+17 -100
 #22320
 icy dress~
 an &Cicy dress~
@@ -2323,15 +2323,15 @@ iceshield~
 10 10
 0 0 0
 A
-13 150
-A
-24 -15
-A
-13 102
+17 -102
 A
 12 90
 A
-17 -102
+13 102
+A
+24 -15
+A
+13 150
 #0
 
 

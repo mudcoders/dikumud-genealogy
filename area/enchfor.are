@@ -431,7 +431,7 @@ say You bear the look of one who's been cheating in the game of life!
 |
 #10928
 termite~
-&wThe termite&X~
+&wThe termite&W~
 A termite slowly nibbles its way through the foundations of the tree.
 ~
 ~
@@ -460,7 +460,7 @@ invis~
 A
 17 -15
 E
-silver~
+anklet~
 &wSome dainty little anklets made of a fine silver chain.
 ~
 E
@@ -468,7 +468,7 @@ anklets~
 &wSome dainty little anklets made of a fine silver chain.
 ~
 E
-anklet~
+silver~
 &wSome dainty little anklets made of a fine silver chain.
 ~
 #10902
@@ -486,12 +486,12 @@ reserved~
 A
 3 1
 E
-crown~
-&gA crown made of a circle of ivy leaves.
-~
-E
 leaves~
 &gA circle of ivy leaves make up a crown.
+~
+E
+crown~
+&gA crown made of a circle of ivy leaves.
 ~
 #10903
 branch tree~
@@ -508,13 +508,13 @@ reserved~
 A
 18 20
 E
-branch~
-&OA small tree branch is pretty sturdy and solid.
-~
-E
 tree~
 &OA small tree branch seems to be pretty solid and sturdy. You could clunk
 a few heads with it.
+~
+E
+branch~
+&OA small tree branch is pretty sturdy and solid.
 ~
 #10904
 hooves satyr~
@@ -750,17 +750,17 @@ reserved~
 0 0
 0 0 0
 A
-13 25
-A
 23 -1
-E
-green silk cloak~
-&gThe cloak is made of a green silk, and is well-made.
-~
+A
+13 25
 E
 symbols~
 The symbols on the cloak seem to be in an ancient elven language, you would
 guess. You can't be sure and couldn't read them anyway.
+~
+E
+green silk cloak~
+&gThe cloak is made of a green silk, and is well-made.
 ~
 #10921
 wooden bow~
@@ -775,9 +775,9 @@ chill touch~
 -1 -1
 0 0 0
 A
-18 25
-A
 19 25
+A
+18 25
 E
 wooden bow~
 A finely crafted short bow.
@@ -795,9 +795,9 @@ chill touch~
 2 2
 0 0 0
 A
-18 40
-A
 19 45
+A
+18 40
 E
 arrow~
 A very light-weight sheath arrow.
@@ -815,11 +815,11 @@ energy drain~
 2 2
 0 0 0
 A
-26 4
+19 60
 A
 18 55
 A
-19 60
+26 4
 #10924
 sandals green~
 some green sandals~
@@ -851,9 +851,9 @@ earthquake~
 5 5
 0 0 0
 A
-18 16
-A
 19 15
+A
+18 16
 E
 staff council~
 A staff of the elven council looks to be a normal wooden staff. But you can
@@ -888,9 +888,9 @@ invis~
 3 3
 0 0 0
 A
-24 -1
-A
 13 20
+A
+24 -1
 E
 black feather~
 A black feather that looks to be too large for any normal bird.
@@ -924,9 +924,9 @@ reserved~
 0 0
 0 0 0
 A
-13 25
-A
 17 -25
+A
+13 25
 E
 spider exoskeleton~
 This could quite possibly be the grossest thing you have ever looked at.
@@ -945,9 +945,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
-A
 13 20
+A
+17 -20
 E
 acorn flying~
 The acorn is your regular non-descript acorn, except it floats slightly. Even
@@ -982,9 +982,9 @@ reserved~
 0 0
 0 0 0
 A
-13 30
-A
 17 -30
+A
+13 30
 E
 elven chainmail~
 A finely crafted cuirass made of chain mail. It has the look of elven
@@ -992,7 +992,7 @@ craftsmanship.
 ~
 #10933
 cane short~
-&OA short cane&X~
+&OA short cane&G~
 &OA bumpy looking wooden cane lies here.~
 ~
 5 16384 2048 12928 8193 25
@@ -1003,16 +1003,16 @@ reserved~
 0 0
 0 0 0
 A
-19 40
-A
 18 45
+A
+19 40
 E
 short cane~
 A short cane made of a solid and sturdy wood.
 ~
 #10934
 crystal marble~
-&Ca crystal marble&X~
+&Ca crystal marble&W~
 &wA shiny crystal marble rolls around here.~
 ~
 9 0 0 0 32769 15
@@ -1087,11 +1087,11 @@ reserved~
 0 0
 0 0 0
 A
-26 -25
+19 35
 A
 18 40
 A
-19 35
+26 -25
 #10995
 roast squirrel~
 a roasted squirrel~
@@ -1493,13 +1493,13 @@ enough to make you gag.
 0 9 0
 Rd     0
 E
-table~
-The table is rotting and about to fall apart in a second.
-~
-E
 remains~
 Yak!  Its nasty rotten moldy food!  As you take a closer look you cover
 your nose and see that it is probably an old roasted rabbit.  
+~
+E
+table~
+The table is rotting and about to fall apart in a second.
 ~
 D2
 ~
@@ -1516,14 +1516,14 @@ extremely repulsive yet intriguing.
 0 9 0
 Rd     0
 E
-apple~
-Yum!  Looks just like the ones mom used to make.  That is if you hid it
-in your room for a year!  
-~
-E
 hamhock~
 Yuck!  It's a freshly cooked hamhock and it looks like the cook added
 mold as the final disgusting touch.  
+~
+E
+apple~
+Yum!  Looks just like the ones mom used to make.  That is if you hid it
+in your room for a year!  
 ~
 D1
 ~
@@ -1616,13 +1616,13 @@ You get the sudden urge to bolt for the door to the north and run for air.
 0 4464649 0
 Rd     0
 E
+door~
+A plain wooden door stands in the north wall.
+~
+E
 desk~
 Scraping the mold aside you notice that your assumption was correct its a
 desk.  
-~
-E
-door~
-A plain wooden door stands in the north wall.
 ~
 D0
 A plain wooden door.
@@ -1642,12 +1642,12 @@ tree.
 0 401412 3
 Rd     0
 E
-bark~
-The bark of the tree looks very odd.. almost like there is a door hidden there.
-~
-E
 door~
 A door is hidden here in the bark of the tree.
+~
+E
+bark~
+The bark of the tree looks very odd.. almost like there is a door hidden there.
 ~
 D3
 The bark here in the tree looks a little out of place. Looking closely, you

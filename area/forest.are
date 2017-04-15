@@ -346,17 +346,17 @@ reserved~
 0 0
 0 0 0
 A
-19 34
-A
 18 23
-E
-claw~
-This is a claw from an odd animal. To keep decomposition from damaging it it is reinforced with twine.
-~
+A
+19 34
 E
 mequi king bone~
 This claw is made from the bone of some strange creature. You can't imagine
 what might have a bone structure like this.
+~
+E
+claw~
+This is a claw from an odd animal. To keep decomposition from damaging it it is reinforced with twine.
 ~
 #8002
 helmet leather mequi king~
@@ -371,16 +371,16 @@ reserved~
 0 0
 0 0 0
 A
-3 2
-A
 17 -25
-E
-helmet~
-This leather masterpeice has smooth stone encrusted onto it to make it strong.
-~
+A
+3 2
 E
 mequi king helmet leather~
 A large thick-leather helmet adorned with smooth stones.
+~
+E
+helmet~
+This leather masterpeice has smooth stone encrusted onto it to make it strong.
 ~
 #8003
 club mequi guard~
@@ -395,16 +395,16 @@ reserved~
 0 0
 0 0 0
 A
-19 50
-A
 18 39
-E
-club~
-This Huge chunk of wood would make good for smashing.
-~
+A
+19 50
 E
 mequi guard~
 This huge chunk of wood would make good for smashing.
+~
+E
+club~
+This Huge chunk of wood would make good for smashing.
 ~
 #8004
 bread~
@@ -435,11 +435,11 @@ reserved~
 0 0
 0 0 0
 E
-stick~
+meat~
 This is meat cooked and kabobbed onto a stick.
 ~
 E
-meat~
+stick~
 This is meat cooked and kabobbed onto a stick.
 ~
 #8006
@@ -447,7 +447,7 @@ backpack~
 a vale backpack~
 A backpack is slumped over here.~
 ~
-15 0 0 0 1 10
+15 0 0 0 1025 10
 76~ 5~ 0~ 0~
 2 0 2 8 0
 0 0
@@ -505,9 +505,9 @@ reserved~
 0 0
 0 0 0
 A
-19 40
-A
 18 34
+A
+19 40
 E
 vale leader sword~
 This is the sword of the Vale Leader. It is plain but sturdy.
@@ -653,9 +653,9 @@ reserved~
 0 0
 0 0 0
 A
-19 54
-A
 18 42
+A
+19 54
 E
 club~
 This is a HUGE chunk of wood. It doesn't really have a shape, but it looks
@@ -706,18 +706,18 @@ reserved~
 0 0
 0 0 0
 A
-13 25
-A
 1 2
-E
-talon helm~
-This helm is made from a Harpy's talon. It is quite small for a helmet, but
-a small humanoid could probably get away with wearing it.
-~
+A
+13 25
 E
 harpy~
 The talon of a harpy is hollowed out to form a makeshift helmet. It's size
 is large for a bird-like creature, but small in size to fit on one's head.
+~
+E
+talon helm~
+This helm is made from a Harpy's talon. It is quite small for a helmet, but
+a small humanoid could probably get away with wearing it.
 ~
 #8021
 egg harpy~
@@ -749,18 +749,18 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
 13 30
-E
-blue runestone~
-A simple blue stone is what it looks like. But if you look carefully, you
-can see that there are runes carved upon it.
-~
+A
+17 -30
 E
 runes~
 The runes are of a language that you cannot understand. But they are
 lovely in their scripture.
+~
+E
+blue runestone~
+A simple blue stone is what it looks like. But if you look carefully, you
+can see that there are runes carved upon it.
 ~
 #8023
 runestone red~
@@ -775,16 +775,16 @@ reserved~
 0 0
 0 0 0
 A
-13 30
-A
 17 -30
-E
-red runestone~
-A simple red stone... or is it. Are those runes you see?
-~
+A
+13 30
 E
 runes~
 The runes are in a language you cannot read or understand.
+~
+E
+red runestone~
+A simple red stone... or is it. Are those runes you see?
 ~
 #0
 
@@ -2103,14 +2103,14 @@ for you to take a peek.
 0 5 0
 Rd     0
 E
-gouges~
-You can see another room through the gouges in the wall panel. It is quite
-dimly lit in there, so no details can be seen.
-~
-E
 marks~
 Through the scratch marks on the eastern pannelling you can see another
 room.
+~
+E
+gouges~
+You can see another room through the gouges in the wall panel. It is quite
+dimly lit in there, so no details can be seen.
 ~
 D1
 A panel is here blocking your passage to another part of the cave.

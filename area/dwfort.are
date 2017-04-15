@@ -319,16 +319,16 @@ reserved~
 0 0
 0 0 0
 A
-14 -15
-A
 13 20
+A
+14 -15
 E
 pair dwarven boots~
 A strong and sturdy pair of hard-leather boots.
 ~
 #702
 sapphires handful~
-&ca small handful of tiny sapphires&X~
+&ca small handful of tiny sapphires&W~
 &cA small handful of tiny sapphires is here.~
 ~
 8 0 0 0 1 40
@@ -412,16 +412,16 @@ reserved~
 0 0
 0 0 0
 A
-18 64
-A
 2 -1
-E
-battleaxe~
-&wA very powerful looking battleaxe is made of a fine metal.
-~
+A
+18 64
 E
 battle axe~
 &wA battleaxe has been well crafted of the finest of metals.
+~
+E
+battleaxe~
+&wA very powerful looking battleaxe is made of a fine metal.
 ~
 #751
 warhammer royal barmog~
@@ -436,13 +436,13 @@ reserved~
 0 0
 0 0 0
 A
-18 40
-A
-19 70
+1 1
 A
 2 -1
 A
-1 1
+19 70
+A
+18 40
 E
 royal warhammer~
 A very prestigious hammer indeed. Encrusted with gems of all sorts, this
@@ -486,7 +486,7 @@ A pair of well-used protective goggles.
 ~
 #755
 key sky-blue~
-&Ca sky-blue key&X~
+&Ca sky-blue key&G~
 &CA sky-blue key rests here.~
 ~
 18 0 0 0 16385 40
@@ -513,9 +513,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
-A
 1 1
+A
+17 -20
 E
 obsidian helmet~
 A blackened helmet made of a very hard material, like rock.
@@ -545,9 +545,9 @@ reserved~
 0 0
 0 0 0
 A
-3 1
-A
 2 1
+A
+3 1
 E
 rock bracelet~
 A simple rock bracelet. It is rugged around the edges but the different
@@ -579,16 +579,16 @@ reserved~
 0 0
 0 0 0
 A
-18 40
-A
 19 50
+A
+18 40
 E
 pick miner~
 A simple mining tool to hack away at rock and stone.
 ~
 #778
 ring goold~
-&Ya gold ring&X~
+&Ya gold ring&W~
 &YA gold ring sparkles in the available light.~
 ~
 9 2 0 0 3 35
@@ -599,9 +599,9 @@ reserved~
 0 0
 0 0 0
 A
-1 1
-A
 5 1
+A
+1 1
 E
 gold ring~
 &YA simple gold band.
@@ -637,13 +637,13 @@ hole in the ground leads down and a dark trail splinters off to the north.
 0 4 4
 Rd     0
 E
+trail~
+Looks like some sort of dark tunnel.
+~
+E
 hole~
 Alot of foliage covers the majority of the hole and it wouldn't be safe to
 try to get a closer look. The only way to find out is to venture forth.
-~
-E
-trail~
-Looks like some sort of dark tunnel.
 ~
 D0
 Looks like some sort of dark tunnel.
@@ -737,12 +737,12 @@ underneath of the east doorway.
 0 8 0
 Rd     0
 E
-door~
-A door stands here in the east.
-~
-E
 doorway~
 A doorway stands here in the east.
+~
+E
+door~
+A door stands here in the east.
 ~
 D1
 You see a door.

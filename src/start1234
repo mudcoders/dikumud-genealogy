@@ -4,7 +4,7 @@
 # With changes from Kahn.
 
 # Set the port number.
-set port = 1234
+set port = 4000
 if ( "$1" != "" ) set port="$1"
 
 # Change to area directory.
@@ -29,7 +29,7 @@ while ( 1 )
 
     # Run envy.
     if ( -e shutdown.txt ) rm -f shutdown.txt
-    ../src/envy $port >&! $logfile
+    ../src/tmp/envy $port >&! $logfile
 
     if ( -e core ) then
 	    mv core ../src/$index.core

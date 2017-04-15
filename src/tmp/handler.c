@@ -41,7 +41,7 @@ void 	perm_spell	args( ( CHAR_DATA *victim, int sn ) );
 void    affect_modify   args( ( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd ) );
 void    affect_modify2  args( ( CHAR_DATA *ch, AFFECT_DATA *paf, bool fAdd ) );
 bool	is_colcode	args( ( char code ) );
-
+int	mmlvl_mana	args( ( CHAR_DATA *ch, int sn ) );
 
 /*
  * Retrieve a character's trusted level for permission checking.
@@ -1509,7 +1509,7 @@ void extract_char( CHAR_DATA *ch, bool fPull )
 	    sprintf( buf, "You awaken in the morgue%s",
 		     ch->level <= 20 ? ", your battered corpse next to you.\n\r"
 				     : ".\n\r" );
-	    send_to_char( AT_BLUE, buf, ch );
+	    send_to_char( AT_BLUE, "You awaken in the morgue.\n\r", ch );
 	    }
 	return;
     }
@@ -2286,6 +2286,9 @@ char *affect_bit_name2( int vector )
     if ( vector & AFF_RUSH	    ) strcat(buf, " adrenaline_rush");
     if ( vector & AFF_PHASED        ) strcat( buf, " phase_shift"   );
     if ( vector & AFF_GOLDEN	    ) strcat( buf, " golden_aura"   );
+	if ( vector & AFF_HALLUCINATING ) strcat( buf, " hallucinate"	);
+	if ( vector & AFF_PLAGUE	)     strcat( buf, " plague"		);
+	if ( vector & AFF_UNHOLYSTRENGTH) strcat( buf, " unholystrength" );
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
 
@@ -2669,26 +2672,94 @@ bool is_colcode( char code )
 }
 int xp_tolvl( CHAR_DATA *ch ) 
 {
-    int xp_tolvl, base_xp, mod;
+    int xp_tolvl, base_xp;
     int level = ch->level + 1;
     int classes = number_classes( ch );
-    if ( IS_NPC( ch ) || ch->level >= L_CHAMP3 )
-	return ch->exp;
-    xp_tolvl = classes == 1 ? level * 1000 : level * classes * 1500;  /* used to be 2000 - Angi */
+	int mod = ch->incarnations +1;
+
+/*   if ( IS_NPC( ch ) || ch->level >= L_CHAMP3 )
+	return ch->exp; */
+    if ( IS_NPC( ch ) || ch->level > (LEVEL_HERO -1) )
+	return ch->exp+1;
     if ( ch->level < LEVEL_HERO )
-       xp_tolvl = classes == 1 ? level * 1000 : level * classes * 1500;
-    else if ( ch->level < L_CHAMP3 )
-       {
-       mod = 4;
-       base_xp = classes == 1 ? 100000 : 200000;
-       xp_tolvl = base_xp * classes;
-       switch ( level )
-	{
-	case L_CHAMP1: mod = 4; break;
-	case L_CHAMP2: mod = 10; break;
-	case L_CHAMP3: mod = 20; break;
-	}
-       xp_tolvl *= mod;
-       }
+    xp_tolvl = classes == 1 ? level * 1000 : level * classes * 1500;  /* used to be 2000 - Angi */
+     if ( IS_SET( ch->act2, PLR_REMORT ))
+    xp_tolvl = classes == 1 ? level * mod * 1000 : level * classes * mod * 1500;
     return xp_tolvl;
 }
+
+int mmlvl_mana( CHAR_DATA *ch, int sn )
+{
+  int level = 1;
+  int iClass = 0;
+  if ( IS_NPC( ch ) )
+      return TRUE;
+  for ( iClass = 0; ch->class[iClass] != -1; iClass++ )
+    {
+    if ( ch->level >= skill_table[sn].skill_level[ch->class[iClass]] )
+      level = skill_table[sn].skill_level[ch->class[iClass]];
+      return level;
+    }
+  return 1;
+}
+
+CHAR_DATA *rand_figment( CHAR_DATA *ch )
+{
+         DESCRIPTOR_DATA *d;
+         CHAR_DATA	*figment;
+         bool		dfig = FALSE;
+
+  	  for ( d = descriptor_list; d; d = d->next )
+	  {
+	    if ( d->connected == CON_PLAYING
+		&& d->character != ch
+		&& d->character->in_room
+		&& can_see( ch, d->character ) )
+            {
+             dfig = TRUE;
+	     break;
+            }
+	  }
+
+         if ( !dfig )
+          figment = ch;
+         else
+          figment = d->character;
+
+ return figment;
+}
+
+MOB_INDEX_DATA *rand_figment_mob( CHAR_DATA *ch )
+{
+ MOB_INDEX_DATA *figmentmob;
+ int		figmentnum = 0;
+ int		lfig = 0;
+ int		ufig = 0;
+
+
+          lfig = ch->in_room->area->lvnum;
+          ufig = ch->in_room->area->uvnum;
+
+          while( !(figmentmob = get_mob_index( figmentnum ) ) )
+           figmentnum = number_range( lfig, ufig );
+
+ return figmentmob;
+}
+
+OBJ_INDEX_DATA *rand_figment_obj( CHAR_DATA *ch )
+{
+ OBJ_INDEX_DATA *figmentobj;
+ int		figmentnum = 0;
+ int		lfig = 0;
+ int		ufig = 0;
+
+
+          lfig = ch->in_room->area->lvnum;
+          ufig = ch->in_room->area->uvnum;
+
+          while( !(figmentobj = get_obj_index( figmentnum ) ) )
+           figmentnum = number_range( lfig, ufig );
+
+ return figmentobj;
+}
+

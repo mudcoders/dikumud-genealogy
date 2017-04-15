@@ -1198,4 +1198,12 @@ $n beats $N with a rubber chicken.~
 $n beats you with a rubber chicken.~
 You beat yourself up about the last loss. *sniff*~
 $n beats $mself about $s last loss.~
+#subzero~
+You say in a booming voice 'FINISH HIM!'~
+$n says in a booming voice 'FINISH HIM!'~
+You rip off $N's head and hold it in the air. FATALITY.~
+$n rips off $N's head and holds it in the air. FATALITY~
+$n rips your head off and holds it in the air. FATALITY.~
+You rip your head off and hold it in the air. FATALITY.~
+$n rips his head off and holds it in the air. FATALITY.~
 #END~

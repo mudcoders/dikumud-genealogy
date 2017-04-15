@@ -69,6 +69,9 @@ void    orprog_update   args( ( void ) );
 void    trap_update     args( ( void ) );
 void    rtime_update    args( ( void ) );   /* Timed room progs */
 void    quest_update    args( ( void ) );   /* quest.c */
+void    war_update	args( ( void ) );
+void    do_image		args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+
 /*
  * Advancement stuff.
  */
@@ -79,7 +82,9 @@ void advance_level( CHAR_DATA *ch )
     int  add_mana;
     int  add_move;
     int  add_prac;
+	int  raisepoints;
 
+    raisepoints = number_range( 2, 4 );
     add_hp      = con_app[get_curr_con( ch )].hitp + number_range(
 		    class_table[prime_class(ch)].hp_min,
 		    class_table[prime_class(ch)].hp_max );
@@ -93,6 +98,9 @@ void advance_level( CHAR_DATA *ch )
     add_hp               = UMAX(  1, add_hp   );
     add_mana             = UMAX(  0, add_mana );
     add_move             = UMAX( 10, add_move );
+
+    if (IS_SET(ch->act2, PLR_REMORT ))
+    ch->raisepts	+= raisepoints;
 
     ch->perm_hit 	+= add_hp;
     if ( !is_class( ch, CLASS_VAMPIRE ) )
@@ -114,7 +122,7 @@ void advance_level( CHAR_DATA *ch )
 	is_class( ch, CLASS_VAMPIRE ) ? "bp" : "m",
 	add_move,	MAX_MOVE( ch ),
 	add_prac,	ch->practice );
-/*
+	/*
     if ( !is_class( ch, CLASS_VAMPIRE ) )
        sprintf( buf,
 	    "Your gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
@@ -131,6 +139,9 @@ void advance_level( CHAR_DATA *ch )
 	    add_prac,	ch->practice );
 */
     send_to_char(AT_WHITE, buf, ch );
+    if (IS_SET(ch->act2, PLR_REMORT)) {
+    sprintf( buf, "You receive %d raise points.\n\r", raisepoints );
+    send_to_char( AT_BLUE, buf, ch ); }
     save_char_obj( ch, FALSE );
 
     return;
@@ -141,7 +152,7 @@ void advance_level( CHAR_DATA *ch )
 void gain_exp( CHAR_DATA *ch, int gain )
 {
     char buf [ MAX_STRING_LENGTH ];
-    if ( IS_NPC( ch ) || ch->level >= L_CHAMP3 )
+    if ( IS_NPC( ch ) || ch->level >= LEVEL_HERO )
 	return;
     ch->exp = UMAX( 1000, ch->exp + gain );
 /*
@@ -157,7 +168,12 @@ void gain_exp( CHAR_DATA *ch, int gain )
         wiznet(buf,ch,NULL,WIZ_LEVELS,0,0);
         info("%s advances to level %d!", (int)ch->name, ch->level);
 	advance_level( ch );
-    }
+      ch->hit  = MAX_HIT(ch);
+	  ch->mana = MAX_MANA(ch);
+	  ch->bp   = MAX_BP(ch);
+	  ch->move = MAX_MOVE(ch);
+    send_to_char(AT_BLUE, "You have been restored.\n\r", ch );
+	}
 
     return;
 }
@@ -171,6 +187,15 @@ int hit_gain( CHAR_DATA *ch )
 {
     int gain;
 
+	CHAR_DATA *mob;
+
+	for ( mob = ch->in_room->people; mob; mob = mob->next_in_room )
+	{
+	    if ( mob->deleted )
+	        continue;
+	    if ( IS_NPC( mob ) && IS_SET( mob->act, ACT_PRACTICE ) )
+	        break;
+	}
 
     if ( IS_NPC( ch ) )
     {
@@ -224,7 +249,8 @@ int hit_gain( CHAR_DATA *ch )
       }
     }
 */
-    if ( IS_AFFECTED( ch, AFF_POISON ) && gain > 0 )
+    if ( (IS_AFFECTED( ch, AFF_POISON ) || IS_AFFECTED2( ch, AFF_PLAGUE))
+		&& gain > 0 )
 	gain /= 10;
 
 /* Trolls gain twice as much hp per tick */
@@ -269,10 +295,10 @@ int mana_gain( CHAR_DATA *ch )
 	    gain *= 2;
     }
 
-    if ( IS_AFFECTED( ch, AFF_POISON ) )
+    if ( IS_AFFECTED( ch, AFF_POISON ) || IS_AFFECTED2( ch, AFF_PLAGUE) )
 	gain /= 10;
 
-    return UMIN( gain, MAX_MOVE(ch) - ch->mana );
+    return UMIN( gain, MAX_MANA(ch) - ch->mana );
 }
 
 
@@ -303,7 +329,7 @@ int move_gain( CHAR_DATA *ch )
 	    gain /= 2;
     }
 
-    if ( IS_AFFECTED( ch, AFF_POISON ) )
+    if ( IS_AFFECTED( ch, AFF_POISON ) || IS_AFFECTED( ch, AFF_PLAGUE ) )
 	gain /= 10;
 
     return UMIN( gain, MAX_MOVE(ch) - ch->move );
@@ -502,6 +528,7 @@ void weather_update( void )
 {
     DESCRIPTOR_DATA *d;
     char             buf [ MAX_STRING_LENGTH ];
+	char			 buf2 [MAX_STRING_LENGTH];
     int              diff;
     char *suf;
     int   day;
@@ -528,6 +555,11 @@ void weather_update( void )
     case 11:
 	weather_info.sunlight = SUN_NOON;
 	strcat( buf, "&YThe sun sits high in its heavenly cradle.&w\n\r" );
+	break;
+
+	case 12:
+	info( "Support EotS! Rate us at Kyndig.com, your vote is appreciated.", 0, 0 );
+	info("Just visit &Whttp://www.kyndig.com/rate.php?id=710", 0, 0 );
 	break;
 
     case 13:
@@ -680,7 +712,9 @@ void char_update( void )
     CHAR_DATA *ch_save;
     CHAR_DATA *ch_quit;
     CHAR_DATA *ch_next;	/* XOR */
+	CHAR_DATA *victim;
     time_t     save_time;
+	AFFECT_DATA af;
 
     ch_save	= NULL;
     ch_quit	= NULL;
@@ -852,11 +886,11 @@ void char_update( void )
 	  if ( MT( ch ) < pd->cost )
 	    raffect_remove( raf->room, ch, raf );
 	  else
-      if ( is_class( ch, CLASS_VAMPIRE ) ) {
-        ch->bp -= pd->cost;
-      } else {
-        ch->mana -= pd->cost;
-      }
+    if ( is_class( ch, CLASS_VAMPIRE ) ) {
+      ch->bp -= pd->cost;
+    } else {
+      ch->mana -= pd->cost;
+    }
 	  }
 	if ( ch->gspell && --ch->gspell->timer <= 0 )
 	{
@@ -868,6 +902,271 @@ void char_update( void )
 	  ch->ctimer--;
 
 	/*
+	 * Hallucination code.
+	 */
+
+        if ( IS_AFFECTED2( ch, AFF_HALLUCINATING ))
+        {
+         MOB_INDEX_DATA *figmentmob;
+         CHAR_DATA	*figment;
+         char		figbuf[MAX_STRING_LENGTH];
+         bool		fig = FALSE;
+
+         figment = rand_figment( ch );
+         figmentmob = rand_figment_mob( ch );
+
+         if ( number_percent( ) > 50 )
+          fig = TRUE;
+
+         if ( !fig )
+         {
+          switch( dice( 1, 6 ) )
+          {
+           case 1:
+            switch( dice( 1, 6 ) )
+            {
+             case 1: act( AT_LBLUE,
+              "$N says, 'Hey, what are you doing here?'",
+              ch, NULL, figment, TO_CHAR );           break;
+             case 2: act( AT_LBLUE,
+              "$N says, 'You stole my pink elephant!'",
+              ch, NULL, figment, TO_CHAR );           break;
+             case 3: act( AT_LBLUE,
+              "$N says, 'We could group and go kill that dragon!'",
+              ch, NULL, figment, TO_CHAR );           break;
+             case 4: act( AT_LBLUE,
+              "$N says, 'Communism was just a red herring.'",
+              ch, NULL, figment, TO_CHAR );            break;
+             case 5: act( AT_LBLUE,
+              "$N says, 'I'm late, I'm late, for a very important date!'",
+              ch, NULL, figment, TO_CHAR );            break;
+             case 6: act( AT_LBLUE,
+              "$N says, 'How about them dodgers eh?'",
+              ch, NULL, figment, TO_CHAR );            break;
+            } break;
+           case 2:
+            switch( dice( 1, 4 ) )
+            {
+             case 1: sprintf( figbuf, "%s gives you 50 gold coins.\n\r",
+	      figment->name );
+		break;
+             case 2: sprintf( figbuf, "%s gives you 500 gold coins.\n\r",
+	      figment->name );
+		break;
+             case 3: sprintf( figbuf, "%s gives you 5 gold coins.\n\r",
+	      figment->name );
+		break;
+             case 4: sprintf( figbuf, "%s gives you 1000 gold coins.\n\r",
+	      figment->name );
+		break;
+            }
+            send_to_char( AT_YELLOW, figbuf, ch ); break;
+           case 3:
+            switch( dice( 1, 6 ) )
+            {
+             case 1: sprintf( figbuf, "%s leaves east.\n\r",
+	      figment->name );
+		break;
+             case 2: sprintf( figbuf, "%s leaves west.\n\r",
+	      figment->name );
+		break;
+             case 3: sprintf( figbuf, "%s leaves south.\n\r",
+	      figment->name );
+		break;
+             case 4: sprintf( figbuf, "%s leaves north.\n\r",
+	      figment->name );
+		break;
+             case 5: sprintf( figbuf, "%s leaves up.\n\r",
+	      figment->name );
+		break;
+             case 6: sprintf( figbuf, "%s leaves down.\n\r",
+	      figment->name );
+		break;
+            }
+            send_to_char( AT_GREY, figbuf, ch ); break;
+           case 4:
+            switch( dice( 1, 6 ) )
+            {
+             case 1: sprintf( figbuf, "%s arrives from the east.\n\r",
+	      figment->name );
+		break;
+             case 2: sprintf( figbuf, "%s arrives from the west.\n\r",
+	      figment->name );
+		break;
+             case 3: sprintf( figbuf, "%s arrives from the south.\n\r",
+	      figment->name );
+		break;
+             case 4: sprintf( figbuf, "%s arrives from the north.\n\r",
+	      figment->name );
+		break;
+             case 5: sprintf( figbuf, "%s arrives from above.\n\r",
+	      figment->name );
+		break;
+             case 6: sprintf( figbuf, "%s arrives from below.\n\r",
+	      figment->name );
+		break;
+            }
+            send_to_char( AT_GREY, figbuf, ch ); break;
+           case 5:
+            switch( dice( 1, 3 ) )
+            {
+             case 1: sprintf( figbuf, "%s &Gmisses &Wyou! (0)\n\r",
+	      figment->name );
+		break;
+             case 2: sprintf( figbuf, "%s's smash &Rscratches &Wyou. (2)\n\r",
+	      figment->name );
+		break;
+             case 3: sprintf( figbuf, "&W%s's backstab does &RUNSPEAKABLE &Wthings to you. (367891)\n\r",
+	      figment->name );
+		break;
+
+            }
+            send_to_char( AT_GREY, figbuf, ch ); break;
+           case 6:
+            if ( number_percent() > 75 )
+             send_to_char( AT_GREEN, "From a great distance, ", ch );
+            switch( dice( 1, 4 ) )
+            {
+             case 1: sprintf( figbuf, "%s smiles at you.\n\r",
+	      figment->name );
+		break;
+             case 2: sprintf( figbuf, "%s hugs you.\n\r",
+	      figment->name );
+		break;
+             case 3: sprintf( figbuf, "%s kisses you.\n\r",
+	      figment->name );
+		break;
+             case 4: sprintf( figbuf, "%s farts in your direction. You gasp for air.\n\r",
+	      figment->name );
+		break;
+            }
+            send_to_char( AT_GREEN, figbuf, ch ); break;
+           }
+          }
+          else
+          {
+          switch( dice( 1, 6 ) )
+          {
+           case 1:
+            switch( dice( 1, 6 ) )
+            {
+             case 1: sprintf( figbuf,
+              "%s says, 'Hey, what are you doing here?'\n\r",
+              figmentmob->short_descr ); break;
+             case 2: sprintf( figbuf,
+              "%s says, 'You stole my pink elephant!'\n\r",
+              figmentmob->short_descr); break;
+             case 3: sprintf( figbuf,
+              "%s says, 'We could group and go kill that dragon!'\n\r",
+              figmentmob->short_descr ); break;
+             case 4: sprintf( figbuf,
+              "%s says, 'Communism was just a red herring.'\n\r",
+              figmentmob->short_descr ); break;
+             case 5: sprintf( figbuf,
+              "%s says, 'I'm late, I'm late for a very important date!'\n\r",
+              figmentmob->short_descr ); break;
+             case 6: sprintf( figbuf,
+              "%s says, 'How about them Dodgers eh?'\n\r",
+              figmentmob->short_descr ); break;
+            } send_to_char( AT_LBLUE, figbuf, ch ); break;
+           case 2:
+            switch( dice( 1, 4 ) )
+            {
+             case 1: sprintf( figbuf, "%s gives you 50 gold coins.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 2: sprintf( figbuf, "%s gives you 500 gold coins.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 3: sprintf( figbuf, "%s gives you 5 gold coins.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 4: sprintf( figbuf, "%s gives you 1000 gold coins.\n\r",
+	      figmentmob->short_descr );
+		break;
+            }
+            send_to_char( AT_YELLOW, figbuf, ch ); break;
+           case 3:
+            switch( dice( 1, 6 ) )
+            {
+             case 1: sprintf( figbuf, "%s leaves east.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 2: sprintf( figbuf, "%s leaves west.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 3: sprintf( figbuf, "%s leaves south.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 4: sprintf( figbuf, "%s leaves north.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 5: sprintf( figbuf, "%s leaves up.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 6: sprintf( figbuf, "%s leaves down.\n\r",
+	      figmentmob->short_descr );
+		break;
+            }
+            send_to_char( AT_GREY, figbuf, ch ); break;
+           case 4:
+            switch( dice( 1, 6 ) )
+            {
+             case 1: sprintf( figbuf, "%s arrives from the east.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 2: sprintf( figbuf, "%s arrives from the west.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 3: sprintf( figbuf, "%s arrives from the south.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 4: sprintf( figbuf, "%s arrives from the north.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 5: sprintf( figbuf, "%s arrives from above.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 6: sprintf( figbuf, "%s arrives from below.\n\r",
+	      figmentmob->short_descr );
+		break;
+            }
+            send_to_char( AT_GREY, figbuf, ch ); break;
+           case 5:
+            switch( dice( 1, 2 ) )
+            {
+             case 1: sprintf( figbuf, "%s &Gmisses &Wyou! (0)&X\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 2: sprintf( figbuf, "%s's smash &Rscratches &Wyou. (3)\n\r",
+	      figmentmob->short_descr );
+		break;
+            }
+            send_to_char( AT_GREY, figbuf, ch ); break;
+           case 6:
+            if ( number_percent() > 75 )
+             send_to_char( AT_GREEN, "From a great distance, ", ch );
+            switch( dice( 1, 4 ) )
+            {
+             case 1: sprintf( figbuf, "%s smiles at you.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 2: sprintf( figbuf, "%s hugs you.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 3: sprintf( figbuf, "%s kisses you.\n\r",
+	      figmentmob->short_descr );
+		break;
+             case 4: sprintf( figbuf, "%s farts in your direction. You gasp for air.\n\r",
+	      figmentmob->short_descr );
+		break;
+            }
+            send_to_char( AT_GREEN, figbuf, ch ); break;
+           }
+          }
+        }
+
+	/*
 	 * Careful with the damages here,
 	 *   MUST NOT refer to ch after damage taken,
 	 *   as it may be lethal damage (on NPC).
@@ -877,6 +1176,33 @@ void char_update( void )
 	    send_to_char(AT_GREEN, "You shiver and suffer.\n\r", ch );
 	    act(AT_GREEN, "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
 	    damage( ch, ch, 10, gsn_poison );
+	}
+	if ( IS_AFFECTED2( ch, AFF_PLAGUE ) )
+	{
+	    send_to_char(AT_GREEN, "You shiver and suffer.\n\r", ch );
+	    act(AT_GREEN, "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
+	    damage( ch, ch, ch->level*4, gsn_plague );
+	}
+	if ( IS_AFFECTED2( ch, AFF_PLAGUE ) || IS_AFFECTED2( ch, AFF_UNHOLYSTRENGTH ) )
+	{
+	 for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
+	   {
+		   if ( ch == victim )
+			   continue;
+		   if ( IS_AFFECTED2( victim, AFF_UNHOLYSTRENGTH ) ||
+			    IS_AFFECTED2( victim, AFF_PLAGUE ) ||
+				IS_AFFECTED2( victim, AFF_VACCINATE))
+			   continue;
+		      af.type = gsn_plague;
+			  af.level = ch->level;
+			  af.duration = ch->level/4;
+			  af.location = APPLY_STR;
+			  af.modifier = -4;
+			  af.bitvector = AFF_PLAGUE;
+			  affect_to_char2(victim, &af);
+			send_to_char(AT_GREEN, "You begin to cough.\n\r", ch );
+			act(AT_GREEN, "$n begins to cough.", ch, NULL, NULL, TO_ROOM );
+		}
 	}
 	if ( is_affected( ch, gsn_drowfire ) )
 	{
@@ -1144,7 +1470,9 @@ void aggr_update( void )
 
 	    if ( !victim )
 	        continue;
-
+		    if ( is_affected( victim, gsn_image ))
+	      do_image(victim, mch);
+	else
 	    multi_hit( mch, victim, TYPE_UNDEFINED );
 
 
@@ -1540,6 +1868,7 @@ void update_handler( void )
 /*	vamdam_update   ( );
 	wind_update     ( ); */
         quest_update    ( );
+			war_update	( );
 	char_update     ( );
 	obj_update      ( );
 	list_update     ( );

@@ -336,16 +336,16 @@ reserved~
 0 0
 0 0 0
 E
-crusty~
-A white crusty build up of lime. Ew.
+build-up~
+A white crusty build-up of lime. Ew.
 ~
 E
 lime~
 A white crusty build up of lime. Ew.
 ~
 E
-build-up~
-A white crusty build-up of lime. Ew.
+crusty~
+A white crusty build up of lime. Ew.
 ~
 #8108
 deed document paper~
@@ -360,7 +360,7 @@ reserved~
 0 0
 0 0 0
 E
-deed~
+paper~
 You see a piece of paper, which looks to be an important document.  The
 line at the top of the document reads, "DEED".  
 Perhaps this is worth something to Sherf or Bahl...
@@ -372,7 +372,7 @@ line at the top of the document reads, "DEED".
 Perhaps this is worth something to Sherf or Bahl...
 ~
 E
-paper~
+deed~
 You see a piece of paper, which looks to be an important document.  The
 line at the top of the document reads, "DEED".  
 Perhaps this is worth something to Sherf or Bahl...
@@ -390,12 +390,12 @@ reserved~
 0 0
 0 0 0
 E
-corpse~
+demon~
 This hideous waste of flesh has a humanoid appearance, but its hind legs
 are that of a goat, and vast bat-like wings sprout from its back.  
 ~
 E
-demon~
+corpse~
 This hideous waste of flesh has a humanoid appearance, but its hind legs
 are that of a goat, and vast bat-like wings sprout from its back.  
 ~
@@ -414,10 +414,10 @@ reserved~
 A
 4 1
 E
-case~
-A leather valise for clothes and toilet articles of a traveller. A nifty
-wooden handle allows one to carry it easily, and a leather strap with a buckle
-keeps it closed while travelling.  
+valise~
+A leather valise is a case for clothes and toilet articles of a
+traveller. A nifty wooden handle allows one to carry it easily, and a
+leather strap with a buckle keeps it closed while travelling.  
 ~
 E
 travel~
@@ -426,10 +426,10 @@ traveller. A nifty wooden handle allows one to carry it easily, and a
 leather strap with a buckle keeps it closed while travelling.  
 ~
 E
-valise~
-A leather valise is a case for clothes and toilet articles of a
-traveller. A nifty wooden handle allows one to carry it easily, and a
-leather strap with a buckle keeps it closed while travelling.  
+case~
+A leather valise for clothes and toilet articles of a traveller. A nifty
+wooden handle allows one to carry it easily, and a leather strap with a buckle
+keeps it closed while travelling.  
 ~
 #8111
 hairbrush~
@@ -462,22 +462,15 @@ reserved~
 0 0
 0 0 0
 A
-25 -50
-A
-4 2
+19 35
 A
 18 55
 A
-19 35
+4 2
+A
+25 -50
 E
-gold~
-This small golden knife has the head of a unicorn for a handle and it's
-flat, but sharp blade looks like it could do a nice bit of damage.  The
-knife is inscribed, "Seek the goodness of the unicorn, for it is deep in all
-our hearts."  
-~
-E
-knife~
+letter~
 This small golden knife has the head of a unicorn for a handle and it's
 flat, but sharp blade looks like it could do a nice bit of damage.  The
 knife is inscribed, "Seek the goodness of the unicorn, for it is deep in all
@@ -491,7 +484,14 @@ knife is inscribed, "Seek the goodness of the unicorn, for it is deep in all
 our hearts."  
 ~
 E
-letter~
+knife~
+This small golden knife has the head of a unicorn for a handle and it's
+flat, but sharp blade looks like it could do a nice bit of damage.  The
+knife is inscribed, "Seek the goodness of the unicorn, for it is deep in all
+our hearts."  
+~
+E
+gold~
 This small golden knife has the head of a unicorn for a handle and it's
 flat, but sharp blade looks like it could do a nice bit of damage.  The
 knife is inscribed, "Seek the goodness of the unicorn, for it is deep in all
@@ -510,13 +510,18 @@ reserved~
 0 0
 0 0 0
 A
-17 -40
+12 42
 A
 101 -1
 A
-12 42
+17 -40
 E
-robes~
+material~
+The material of this piece of clothing is fantastic electric-blue in colour.
+It is hemmed with a golden thread.
+~
+E
+goodly~
 An electric blue robe is made of a fine material, and is sewn with a golden
 thread. Each hem-line is embroidered with a fantastic gold design.
 ~
@@ -526,14 +531,9 @@ An electric blue robe is made of a fine material, and is sewn with a golden
 thread. Each hem-line is embroidered with a fantastic gold design.
 ~
 E
-goodly~
+robes~
 An electric blue robe is made of a fine material, and is sewn with a golden
 thread. Each hem-line is embroidered with a fantastic gold design.
-~
-E
-material~
-The material of this piece of clothing is fantastic electric-blue in colour.
-It is hemmed with a golden thread.
 ~
 #8114
 shoes black pair~
@@ -560,9 +560,9 @@ reserved~
 0 0
 0 0 0
 A
-25 10
-A
 19 25
+A
+25 10
 E
 machete~
 A large, heavy knife used for cutting and hacking down bushes etc.
@@ -580,19 +580,19 @@ reserved~
 0 0
 0 0 0
 A
-19 90
-A
-18 75
+1 2
 A
 2 -2
 A
-1 2
+18 75
+A
+19 90
 E
-sword~
+guisarme~
 An elaborately curved and heavy blade.
 ~
 E
-guisarme~
+sword~
 An elaborately curved and heavy blade.
 ~
 #8117
@@ -608,11 +608,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
+5 1
 A
 1 1
 A
-5 1
+17 -20
 #8118
 boots hard leather~
 hard leather boots~
@@ -626,9 +626,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -46
-A
 2 1
+A
+17 -46
 #8119
 pants riding~
 some riding pants~
@@ -642,9 +642,9 @@ reserved~
 0 0
 0 0 0
 A
-4 1
-A
 2 1
+A
+4 1
 #8120
 basinet helmet helm~
 a basinet~
@@ -658,11 +658,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -46
-A
 23 -2
+A
+17 -46
 E
-helm~
+basinet~
 A well-crafted metal helm.
 ~
 E
@@ -670,7 +670,7 @@ helmet~
 A well-crafted metal helm.
 ~
 E
-basinet~
+helm~
 A well-crafted metal helm.
 ~
 #8121
@@ -688,11 +688,11 @@ refresh~
 A
 5 1
 E
-shoes~
+comfy~
 These shoes look so comfortable, you could walk all day in them.
 ~
 E
-comfy~
+shoes~
 These shoes look so comfortable, you could walk all day in them.
 ~
 #8122
@@ -708,11 +708,11 @@ faerie fog~
 2 2
 0 0 0
 E
-dust~
+rag~
 A small rag is covered in filth.
 ~
 E
-rag~
+dust~
 A small rag is covered in filth.
 ~
 #8123
@@ -728,7 +728,7 @@ reserved~
 0 0
 0 0 0
 E
-servants'~
+uniform~
 A powder blue uniform with the initials DD embroidered on the left breast.
 ~
 E
@@ -736,7 +736,7 @@ servants~
 A powder blue uniform with the initials DD embroidered on the left breast.
 ~
 E
-uniform~
+servants'~
 A powder blue uniform with the initials DD embroidered on the left breast.
 ~
 #8124
@@ -752,14 +752,14 @@ reserved~
 0 0
 0 0 0
 A
-1 1
+18 14
 A
 19 16
 A
-18 14
+1 1
 E
-heavy~
-The frying pan is made from cast-iron making it quite heavy. It has been used,
+pan~
+The frying pan is made from cast-iron making it quite heavy. It has been used, 
 as there are scorch marks on the bottom of it.
 ~
 E
@@ -768,8 +768,8 @@ The frying pan is made from cast-iron making it quite heavy. It has been used,
 as there are scorch marks on the bottom of it.
 ~
 E
-pan~
-The frying pan is made from cast-iron making it quite heavy. It has been used, 
+heavy~
+The frying pan is made from cast-iron making it quite heavy. It has been used,
 as there are scorch marks on the bottom of it.
 ~
 #8125
@@ -785,11 +785,11 @@ reserved~
 0 0
 0 0 0
 A
-1 2
+17 -60
 A
 23 -3
 A
-17 -60
+1 2
 #8126
 ring red fire~
 a ring of fire resistance~
@@ -821,11 +821,11 @@ reserved~
 0 0
 0 0 0
 A
-19 6
+17 -60
 A
 2 -2
 A
-17 -60
+19 6
 #8128
 rattle turtle-shell~
 a rattle~
@@ -839,20 +839,20 @@ reserved~
 0 0
 0 0 0
 A
-5 2
-A
 18 15
-E
-turtle-shell~
-A baby turtle-shell on a stick that rattles when you shake it. The head end of
-the turtle-shell has been filled in, but there are a few colourful ribbons
-coming out of it.
-~
+A
+5 2
 E
 rattle~
 A baby turtle-shell on a stick that rattles when you shake it.  The head
 end of the turtle-shell has been filled in, but there are a few colourful
 ribbons coming out of it.  
+~
+E
+turtle-shell~
+A baby turtle-shell on a stick that rattles when you shake it. The head end of
+the turtle-shell has been filled in, but there are a few colourful ribbons
+coming out of it.
 ~
 #8141
 rose~
@@ -867,9 +867,9 @@ reserved~
 0 0
 0 0 0
 A
-5 1
-A
 13 20
+A
+5 1
 #8142
 shard glass~
 a shard of glass~
@@ -883,19 +883,19 @@ reserved~
 0 0
 0 0 0
 A
-2 -1
-A
-1 1
+18 5
 A
 19 50
 A
-18 5
+1 1
+A
+2 -1
 E
-glass~
+shard~
 A razor-edged shard of glass.
 ~
 E
-shard~
+glass~
 A razor-edged shard of glass.
 ~
 #8143
@@ -911,13 +911,13 @@ reserved~
 0 0
 0 0 0
 A
-14 -50
+17 -30
 A
 2 2
 A
-17 -30
+14 -50
 E
-sterling~
+serving~
 A sterling silver serving tray with intricately carved wooden handles.
 ~
 E
@@ -925,7 +925,7 @@ tray~
 A sterling silver serving tray with intricately carved wooden handles.
 ~
 E
-serving~
+sterling~
 A sterling silver serving tray with intricately carved wooden handles.
 ~
 #8146
@@ -941,12 +941,12 @@ reserved~
 0 0
 0 0 0
 E
-key~
+brass~
 You see a shiny brass key has little nicks in it...  Probably from all of
 the use it gets.  
 ~
 E
-brass~
+key~
 You see a shiny brass key has little nicks in it...  Probably from all of
 the use it gets.  
 ~
@@ -980,12 +980,12 @@ reserved~
 0 0
 0 0 0
 E
-key~
+iron~
 You see that an old iron key is worn from usage. And you think to yourself,
 'This is actually gonna open something?'
 ~
 E
-iron~
+key~
 You see that an old iron key is worn from usage. And you think to yourself,
 'This is actually gonna open something?'
 ~
@@ -1002,12 +1002,12 @@ reserved~
 0 0
 0 0 0
 E
-demon~
+entrails~
 You can't tell what body parts these entrails consist of...  But you
 assume that it was one of the Librarians' victims.  
 ~
 E
-entrails~
+demon~
 You can't tell what body parts these entrails consist of...  But you
 assume that it was one of the Librarians' victims.  
 ~
@@ -1024,17 +1024,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -32
-A
 24 -1
+A
+17 -32
+E
+old~
+This is what looks like an old coif, which has been torn apart.
+~
 E
 coif~
 This is what looks like an old coif, which has been torn apart.
 It is basically a mail scarf.
-~
-E
-old~
-This is what looks like an old coif, which has been torn apart.
 ~
 #8151
 nightcap cap~
@@ -1049,17 +1049,17 @@ reserved~
 0 0
 0 0 0
 A
-2 -2
+3 2
 A
 1 -1
 A
-3 2
+2 -2
 E
-cap~
+nightcap~
 A flannel nightcap with a nifty argyle pattern.
 ~
 E
-nightcap~
+cap~
 A flannel nightcap with a nifty argyle pattern.
 ~
 #8153
@@ -1091,12 +1091,12 @@ reserved~
 0 0
 0 0 0
 E
-chandelier~
+crystal~
 Long shards of crystal hang from above, in three tiers of different
 sizes.  A dim light emanates from the centre of this triangular splendor.  
 ~
 E
-crystal~
+chandelier~
 Long shards of crystal hang from above, in three tiers of different
 sizes.  A dim light emanates from the centre of this triangular splendor.  
 ~
@@ -1113,12 +1113,12 @@ reserved~
 0 0
 0 0 0
 E
-floating~
+lantern~
 A lantern is made of wrought iron and glass... within it is a light that
 seems never to fade. Your only guess is that sorcery keeps it aglow.  
 ~
 E
-lantern~
+floating~
 A lantern is made of wrought iron and glass... within it is a light that
 seems never to fade. Your only guess is that sorcery keeps it aglow.  
 ~
@@ -1135,13 +1135,13 @@ reserved~
 0 0
 0 0 0
 E
-carpet~
+heavy~
 A heavy red carpet is the most beautiful piece of upholstery you have
 ever seen. It's hue of red is divine, and it's texture makes you cringe
 with delight.  
 ~
 E
-heavy~
+carpet~
 A heavy red carpet is the most beautiful piece of upholstery you have
 ever seen. It's hue of red is divine, and it's texture makes you cringe
 with delight.  
@@ -1159,7 +1159,7 @@ reserved~
 0 0
 0 0 0
 E
-paper~
+diploma~
 Fazoul's MUD School Diploma...straight A's, of course!
 ~
 E
@@ -1167,7 +1167,7 @@ parchment~
 Fazoul's MUD School Diploma...straight A's, of course!
 ~
 E
-diploma~
+paper~
 Fazoul's MUD School Diploma...straight A's, of course!
 ~
 #8169
@@ -1199,11 +1199,11 @@ reserved~
 0 0
 0 0 0
 A
-25 15
-A
 19 30
+A
+25 15
 E
-knife~
+sterling~
 A sterling silver serving knife with an intricately carved wooden handle.
 ~
 E
@@ -1211,7 +1211,7 @@ serving~
 A sterling silver serving knife with an intricately carved wooden handle.
 ~
 E
-sterling~
+knife~
 A sterling silver serving knife with an intricately carved wooden handle.
 ~
 #8171
@@ -1243,13 +1243,13 @@ reserved~
 0 0
 0 0 0
 A
-3 2
+26 5
 A
 12 45
 A
-26 5
+3 2
 E
-ace~
+card~
 The ace of diamonds burns with an unfelt flame.
 ~
 E
@@ -1257,7 +1257,7 @@ diamonds~
 The ace of diamonds burns with an unfelt flame.
 ~
 E
-card~
+ace~
 The ace of diamonds burns with an unfelt flame.
 ~
 #8175
@@ -1287,14 +1287,14 @@ refresh~
 A
 5 1
 E
-towel~
-A plush white towel looks very comfortable, although it doesn't smell
-very nice.  
-~
-E
 plush white~
 A plush white towel looks very comfortable, although it doesn't smell
 very nice.
+~
+E
+towel~
+A plush white towel looks very comfortable, although it doesn't smell
+very nice.  
 ~
 #8178
 bedknob~
@@ -1325,13 +1325,13 @@ dark blessing~
 0 0
 0 0 0
 A
-12 -15
-A
-102 -1
+18 5
 A
 25 17
 A
-18 5
+102 -1
+A
+12 -15
 #8195
 claws shadowy~
 shadowy claws~
@@ -1345,17 +1345,17 @@ reserved~
 0 0
 0 0 0
 A
-18 32
+25 13
 A
 19 48
 A
-25 13
+18 32
 E
-claws~
+shadowy~
 Some dark and twisted claws.
 ~
 E
-shadowy~
+claws~
 Some dark and twisted claws.
 ~
 #8199
@@ -1449,12 +1449,12 @@ on to the east and west towering over you and protecting the Mansion within.
 0 0 0
 Rd     0
 E
-patches~
-A few patches of the wall peek out here and there from behind the vegetation.
-~
-E
 wall~
 A few patches of the wall still manage to peek through the thick vegetation.
+~
+E
+patches~
+A few patches of the wall peek out here and there from behind the vegetation.
 ~
 D1
 ~
@@ -1475,12 +1475,12 @@ and vines seem to get thicker covering almost the entirety of the barrier.
 0 4 0
 Rd     0
 E
-rose~
+bushes~
 Looking carefully, you see that the roses are coming not from the ground, but
 from over the wall.
 ~
 E
-bushes~
+rose~
 Looking carefully, you see that the roses are coming not from the ground, but
 from over the wall.
 ~
@@ -1613,16 +1613,16 @@ can see a window that hasn't quite been hidden.
 0 0 0
 Rd     0
 E
-up~
-The window is a ways up from ground level, perhaps on the second floor.
+wall~
+A hard stone wall peeks through from amongst the vegetation.
 ~
 E
 window~
 The window is a ways up from ground level, perhaps on the second floor.
 ~
 E
-wall~
-A hard stone wall peeks through from amongst the vegetation.
+up~
+The window is a ways up from ground level, perhaps on the second floor.
 ~
 D0
 ~
@@ -1644,13 +1644,13 @@ green grass.
 0 0 0
 Rd     0
 E
+wall~
+A hard stone wall peeks through from amongst the vegetation.
+~
+E
 grass~
 &GThe soft green grass looks very comfortable. Too bad this area is no longer
 safe to find a shady spot and sit down.
-~
-E
-wall~
-A hard stone wall peeks through from amongst the vegetation.
 ~
 D0
 ~
@@ -1693,13 +1693,13 @@ feet looks very comfortable.
 0 0 0
 Rd     0
 E
+wall~
+A hard stone wall peeks through from amongst the vegetation.
+~
+E
 grass~
 &GIf you weren't in an area where you knew there was trouble, you might
 stop and rest a while on the soft green grass.
-~
-E
-wall~
-A hard stone wall peeks through from amongst the vegetation.
 ~
 D0
 ~
@@ -2243,15 +2243,15 @@ world in this place because, well, it's a library.
 0 8388620 0
 Rd     0
 E
-maps~
-There is a map of Bethaven on this wall.  As well as a map of a village
-of some sort.  
-~
-E
 books~
 The books range in many topics of the realm. From mysticism to prowess,
 from fantasy to fictional... Bahl and Sherf are well-stocked in many
 varieties of information and leisure.
+~
+E
+maps~
+There is a map of Bethaven on this wall.  As well as a map of a village
+of some sort.  
 ~
 D0
 ~
@@ -2780,10 +2780,8 @@ of the house.
 0 8 0
 Rd     0
 E
-portrait~
-A portrait of Bahl and Sherf with their son, Fazoul. They look somewhat
-strange to you, however, as they are all out of their armour and wearing
-houseclothes.  
+down~
+A hardwood floor is beneath your feet.
 ~
 E
 window~
@@ -2792,8 +2790,10 @@ surrounded in vines and flowers to accentuate its passage into the garden
 beyond.  
 ~
 E
-down~
-A hardwood floor is beneath your feet.
+portrait~
+A portrait of Bahl and Sherf with their son, Fazoul. They look somewhat
+strange to you, however, as they are all out of their armour and wearing
+houseclothes.  
 ~
 D1
 ~
@@ -2957,14 +2957,14 @@ strategically placed about!
 0 8 0
 Rd     0
 E
+south~
+The south wall seems to waver somewhat.
+~
+E
 window~
 Through the vines overgrown on the window you can see the garden at the back
 of the house past the Gazebo. It is very beautiful and unlike anything you
 have ever seen.
-~
-E
-south~
-The south wall seems to waver somewhat.
 ~
 D1
 ~
@@ -3258,14 +3258,14 @@ some sort of pulley and goes down into the floor in the north.
 0 8 0
 Rd     0
 E
-rope~
-The rope, you can see is what the servants use to pull themselves up or down
-when going to or from this passage. 
-~
-E
 pulley~
 The pulley has a rope going over and around it, and down into the floor
 underneath you.
+~
+E
+rope~
+The rope, you can see is what the servants use to pull themselves up or down
+when going to or from this passage. 
 ~
 D3
 A small handle sticks out of the wall to the west.
@@ -3287,12 +3287,12 @@ the ceiling here.
 0 12 0
 Rd     0
 E
-ceiling~
-The ceiling has a panel with a small rope handle in it.
-~
-E
 stairs~
 The small set of stairs leads up to a panel in the ceiling.
+~
+E
+ceiling~
+The ceiling has a panel with a small rope handle in it.
 ~
 D1
 ~
@@ -3343,12 +3343,12 @@ stale wine.
 0 12 0
 Rd     0
 E
-floor~
-The floor is covered in shattered glass, and is sticky and stained red with     wine.
-~
-E
 cart~
 The cart is sticky and stained red with wine...it has been totally destroyed andwill not wheel around the house again.
+~
+E
+floor~
+The floor is covered in shattered glass, and is sticky and stained red with     wine.
 ~
 D0
 ~

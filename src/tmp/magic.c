@@ -397,6 +397,13 @@ void do_acspell ( CHAR_DATA *ch, OBJ_DATA *pObj, char *argument )
       send_to_char(AT_WHITE, "A wave of peace overcomes you.\n\r", ch);
       return;
     }
+
+    if ( IS_AFFECTED( ch, AFF_MUTE ))
+	{
+	send_to_char(AT_WHITE, "You have been silenced.\n\r", ch);
+	return;
+	}
+
     if ( IS_AFFECTED( ch, AFF_PEACE) )
     {
 	    affect_strip( ch, skill_lookup("aura of peace") );
@@ -546,6 +553,12 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_MUTE ))
+	{
+	send_to_char(AT_WHITE, "You have been silenced.\n\r", ch);
+	return;
+	}
+
     if ( IS_NPC( ch ) )
      if ( ( sn = skill_lookup( arg1 ) ) < 0 )
        return;
@@ -589,6 +602,12 @@ void do_cast( CHAR_DATA *ch, char *argument )
     }
     else
     mana = 0;
+	if ( skill_table[sn].spell_fun == spell_null )
+    {
+    send_to_char( AT_BLUE, "You can't do that.\n\r", ch );
+    return;
+	}
+
     /*
      * Locate targets.
      */
@@ -870,7 +889,8 @@ void obj_cast_spell( int sn, int level, CHAR_DATA *ch, CHAR_DATA *victim,
     }
     if ( ( ( ch->level - 9 > victim->level )
       || ( ch->level + 9 < victim->level ) )
-      && ( !IS_NPC(victim) ) )
+      && ( !IS_NPC(victim) )
+	  && ( !IS_SET( victim->act2, PLR_WAR)))
     {
 	send_to_char(AT_WHITE, "That is not in the pkill range... valid range is +/- 8 levels.\n\r", ch );
 	return;
@@ -1709,6 +1729,8 @@ void spell_cure_critical( int sn, int level, CHAR_DATA *ch, void *vo )
     int        heal;
 
     heal = dice( 3, 8 ) + level - 6;
+	if ( ch->race == RACE_ANGEL )
+		heal = heal * 2;
     victim->hit = UMIN( victim->hit + heal, MAX_HIT(victim)) ;
     update_pos( victim );
 
@@ -1726,6 +1748,8 @@ void spell_cure_light( int sn, int level, CHAR_DATA *ch, void *vo )
     int        heal;
 
     heal = dice( 1, 8 ) + level / 3;
+	if ( ch->race == RACE_ANGEL )
+		heal = heal * 2;
     victim->hit = UMIN( victim->hit + heal, MAX_HIT(victim));
     update_pos( victim );
 
@@ -1761,6 +1785,8 @@ void spell_cure_serious( int sn, int level, CHAR_DATA *ch, void *vo )
     int        heal;
 
     heal = dice( 2, 8 ) + level / 2 ;
+	if ( ch->race == RACE_ANGEL )
+		heal = heal * 2;
     victim->hit = UMIN( victim->hit + heal,  MAX_HIT(victim));
     update_pos( victim );
     send_to_char(AT_BLUE, "You feel better!\n\r", victim );
@@ -2981,8 +3007,14 @@ void spell_harm( int sn, int level, CHAR_DATA *ch, void *vo )
 void spell_heal( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     CHAR_DATA *victim = (CHAR_DATA *) vo;
+	int heal;
 
-    victim->hit = UMIN( (victim->hit + (ch->level*5)), MAX_HIT(victim) );
+	heal = UMIN( (victim->hit + (ch->level*5)), MAX_HIT(victim) );
+    if ( ch->race == RACE_ANGEL )
+		heal = heal * 2;
+	if ( heal > MAX_HIT(victim))
+		heal = MAX_HIT( victim );
+    victim->hit = heal;
     update_pos( victim );
 
     if ( ch != victim )
@@ -4076,7 +4108,7 @@ void spell_mind_probe( int sn, int level, CHAR_DATA *ch, void *vo )
     else if ( GET_AC( victim ) >=    0 ) send_to_char( AT_GREEN, "wearing clothes.\n\r" , ch );
     else if ( GET_AC( victim ) >= - 50 ) send_to_char( AT_GREEN, "slightly armored.\n\r", ch );
     else if ( GET_AC( victim ) >= -100 ) send_to_char( AT_GREEN, "somewhat armored.\n\r", ch );
-    else if ( GET_AC( victim ) >= -250 ) send_to_char( AT_GREEN, "armored.\n\r"         , ch );
+    else if ( GET_AC( victim ) >= -250 ) send_to_char( AT_GREEN,"armored.\n\r", ch );
     else if ( GET_AC( victim ) >= -500 ) send_to_char( AT_GREEN, "well armored.\n\r"    , ch );
     else if ( GET_AC( victim ) >= -750 ) send_to_char( AT_GREEN, "strongly armored.\n\r", ch );
     else if ( GET_AC( victim ) >= -1000 ) send_to_char( AT_GREEN, "heavily armored.\n\r" , ch );
@@ -5081,17 +5113,19 @@ void spell_combat_mind ( int sn, int level, CHAR_DATA *ch, void *vo )
 void spell_complete_healing ( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     CHAR_DATA *victim = (CHAR_DATA *) vo;
+	int heal;
 
-/*    victim->hit = MAX_HIT(victim);*/
-    victim->hit = UMIN( victim->hit + 600, MAX_HIT(victim) );
+	heal = UMIN( victim->hit + 600, MAX_HIT(victim) );
+    if ( ch->race == RACE_ANGEL )
+		heal = heal * 2;
+	if ( heal > MAX_HIT(victim))
+		heal = MAX_HIT( victim );
+    victim->hit = heal;
     update_pos( victim );
     if ( ch != victim )
         send_to_char(AT_BLUE, "Ok.\n\r", ch );
     send_to_char(AT_BLUE, "Ahhhhhh...You feel MUCH better!\n\r", victim );
     send_to_char(AT_BLUE, "Have a nice day.\n\r", victim);
-/*
-    send_to_char(AT_BLUE, "Ahhhhhh...You are completely healed!\n\r", victim );
-*/
     return;
 }
 
@@ -7537,9 +7571,9 @@ void spell_soul_bind( int sn, int level, CHAR_DATA *ch, void *vo )
    soulgem->timer = ch->level / 4;
 #ifdef NEW_MONEY
    soulgem->cost.silver = soulgem->cost.copper = 0;
-   soulgem->cost.gold = victim->level * 1000;
+   soulgem->cost.gold = victim->level * 10;
 #else
-   soulgem->cost  = victim->level * 1000;
+   soulgem->cost  = victim->level * 10;
 #endif
    soulgem->ac_charge[0] = soulgem->ac_charge[1] = 1;
    obj_to_char( soulgem , ch );
@@ -7614,7 +7648,10 @@ int sc_dam( CHAR_DATA *ch, int dam )
   else
 	mod = 38; 		/* x2.5  */
   if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_spellcraft] > 0 )
+  {
 	dam += dam * ch->pcdata->learned[gsn_spellcraft] / mod;
+	update_skpell( ch, gsn_spellcraft );
+  }
   return dam;
 }
 
@@ -7900,6 +7937,395 @@ void spell_firewall( int sn, int level, CHAR_DATA *ch, void *vo )
 	if ( vch != ch )
 	    damage( ch, vch, level + dice( level, 20 ), sn );
     }
+
+    return;
+}
+
+void spell_purify( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    OBJ_DATA  *obj;
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+    int        yesno  = FALSE;
+
+	    for ( obj = ch->carrying; obj; obj = obj->next_content )
+		{
+
+       if ( IS_ANTI_CLASS( obj, ITEM_ANTI_MAGE ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_MAGE );
+	    act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_CLERIC ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_CLERIC );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_THIEF ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_THIEF );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_WARRIOR ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_WARRIOR );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_PSI ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_PSI );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_DRUID ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_DRUID );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_RANGER ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_RANGER );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_PALADIN ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_PALADIN );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_BARD ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_BARD );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_VAMP ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_VAMP );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_NECRO ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_NECRO );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_WWF ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_WWF );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_CLASS( obj, ITEM_ANTI_MONK ) )
+        {
+            REMOVE_BIT( obj->anti_class_flags, ITEM_ANTI_MONK );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_HUMAN ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_HUMAN );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_ELF ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_ELF );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_DWARF ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_DWARF );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_PIXIE ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_PIXIE );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_HALFLING ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_HALFLING );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_DROW ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_DROW );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_ELDER ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_ELDER );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_OGRE ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_OGRE );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_LIZARDMAN ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_LIZARDMAN );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_DEMON ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_DEMON );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_GHOUL ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_GHOUL );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_ILLITHID ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_ILLITHID );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_MINOTAUR ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_MINOTAUR );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_TROLL ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_TROLL );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_SHADOW ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_SHADOW );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+        if ( IS_ANTI_RACE( obj, ITEM_ANTI_TABAXI ) )
+        {
+            REMOVE_BIT( obj->anti_race_flags, ITEM_ANTI_TABAXI );
+            act(AT_WHITE, "$p glows white.", victim, obj, NULL, TO_CHAR );
+            yesno = TRUE;
+        }
+      }
+
+    if ( ch != victim && yesno )
+        send_to_char(AT_BLUE, "Ok.\n\r", ch );
+    return;
+}
+
+  void spell_silence( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+    AFFECT_DATA af;
+    if ( IS_AFFECTED( victim, AFF_MUTE ) || saves_spell( level, victim ) )
+    {
+	send_to_char(AT_BLUE, "You have failed.\n\r", ch );
+	return;
+    }
+
+    af.type      = sn;
+  af.level	 = level;
+    af.duration  = 2;
+    af.location  = APPLY_NONE;
+    af.modifier  = 0;
+    af.bitvector = AFF_MUTE;
+    affect_to_char( victim, &af );
+
+    act(AT_WHITE, "$N is silenced!", ch, NULL, victim, TO_CHAR    );
+    send_to_char(AT_WHITE, "You are silenced!\n\r", victim );
+    act(AT_WHITE, "$N is silenced!", ch, NULL, victim, TO_NOTVICT );
+    return;
+}
+
+void spell_image( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+  AFFECT_DATA af;
+
+  if ( ch->combat_timer )
+  {
+    send_to_char(AT_BLUE, "You can't right now.\n\r",ch);
+    return;
+  }
+
+  if (is_affected(ch, gsn_image) )
+    return;
+
+  af.location = APPLY_NONE;
+  af.modifier = 0;
+  af.duration = ch->level;
+  af.bitvector = 0;
+  af.type = sn;
+  affect_to_char( ch, &af );
+  send_to_char(AT_CYAN, "You are surrounded by images of yourself.\n\r", ch);
+  act(AT_CYAN, "$n suddenly splits into many images.",ch,NULL,NULL,TO_ROOM);
+  return;
+}
+
+void spell_hallucinate( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+    CHAR_DATA  *victim = (CHAR_DATA *) vo;
+    AFFECT_DATA af;
+
+    if ( IS_AFFECTED2( victim, AFF_HALLUCINATING ) )
+	return;
+
+    if ( IS_AFFECTED( victim, AFF_BLIND ) || saves_spell( level, victim ))
+    {
+	send_to_char(AT_BLUE, "You have failed.\n\r", ch );
+	return;
+    }
+
+    af.type      = sn;
+    af.level	 = level;
+    af.duration  = number_fuzzy( level / 6 );
+    af.location  = APPLY_INT;
+    af.modifier  = -4;
+    af.bitvector = AFF_HALLUCINATING;
+    affect_to_char2( victim, &af );
+
+    act(AT_WHITE, "&.Thou&.sand&.s &.of &.danci&.ng &.ligh&.ts &.surr&.ound &.you&.!&w", victim, NULL, victim, TO_VICT );
+    act(AT_GREY, "&W$n's &.body &.is &.surr&.ounded &.by d&.anci&.ng l&.ights.", victim, NULL, NULL, TO_ROOM );
+    return;
+}
+
+void spell_unholystrength( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+  AFFECT_DATA af;
+
+  if ( ch->combat_timer )
+  {
+    send_to_char(AT_BLUE, "You can't right now.\n\r",ch);
+    return;
+  }
+
+  if ( ch->fighting || IS_AFFECTED2(ch, AFF_UNHOLYSTRENGTH ) )
+  {
+    send_to_char(C_DEFAULT, "You failed.\n\r",ch);
+    return;
+  }
+
+  af.type = sn;
+  af.level = ch->level;
+  af.duration = ch->level/4;
+  af.location = APPLY_STR;
+  af.modifier = 4;
+  af.bitvector = AFF_UNHOLYSTRENGTH;
+  affect_to_char2(ch, &af);
+/*  ch->ctimer = 17;*/
+
+  send_to_char(AT_DGREEN, "You feel the strength of the Unholy Plague run through you.\n\r",ch);
+  return;
+}
+
+void spell_manabomb( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+      CHAR_DATA *vch;
+	  EXIT_DATA *pexit;
+	  ROOM_INDEX_DATA *original;
+	  CHAR_DATA *vch_next;
+      ROOM_INDEX_DATA * room;
+	  int max_distance;
+	  int distance;
+	  int dir;
+
+
+    max_distance = UMAX( 2, ch->level/20 );
+	room = ch->in_room;
+	original = ch->in_room;
+	send_to_char( AT_WHITE,
+			"You explode in a massive ball of magical energy!\n\r", ch );
+    for (dir = 0; dir < 6; dir++) /* look in every direction */
+    {
+		char_from_room( ch );
+		char_to_room( ch, original );
+		room = ch->in_room;
+        for (distance = 0 ; distance < max_distance; distance++)
+        {
+            pexit = room->exit[dir]; /* find the door to the next room */
+            if ((pexit == NULL) || (pexit->to_room == NULL) ||
+                (IS_SET(pexit->exit_info, EX_CLOSED)))
+                break; /* exit not there OR points to nothing OR is closed */
+
+
+					  act( AT_WHITE, "$n explodes violently, sending magical flames in all directions!",
+						  ch, NULL, NULL, TO_ROOM );
+
+				  for( vch = ch->in_room->people; vch; vch = vch_next)
+				  {
+					   vch_next = vch->next_in_room;
+
+					   if ( vch == NULL )
+						continue;
+
+					   if(vch->deleted)
+						continue;
+
+					   if (vch == ch )
+						   continue;
+
+						if ( !IS_NPC( vch ) )
+						 damage( ch, vch,
+						 number_range ( ch->mana, ch->mana + ch->level ),
+						 sn );
+						else
+						 damage( ch, vch,
+						 number_range ( ch->mana, ch->mana + ch->level )*4,
+						 sn );
+
+				  }
+				room = pexit->to_room;
+				char_from_room( ch );
+				char_to_room( ch, room );
+
+        } /* for distance */
+    } /* for dir */
+	char_from_room( ch );
+	char_to_room( ch, original );
+	if ( ch->level < 110 )
+		raw_kill( ch, ch );
+  return;
+}
+
+void spell_vaccinate( int sn, int level, CHAR_DATA *ch, void *vo )
+{
+	AFFECT_DATA af;
+    CHAR_DATA *victim = (CHAR_DATA *) vo;
+
+    if ( is_affected( victim, gsn_plague ) )
+    affect_strip( victim, gsn_plague );
+
+	if ( IS_SET( victim->affected_by2, AFF_VACCINATE ))
+		return;
+
+    send_to_char(AT_GREEN, "Ok.\n\r",                                    ch     );
+    send_to_char(AT_GREEN, "A warm feeling runs through your body.\n\r", victim );
+    act(AT_GREEN, "$N looks better.", ch, NULL, victim, TO_NOTVICT );
+  af.type = sn;
+  af.level = ch->level;
+  af.duration = ch->level/3;
+  af.location = APPLY_NONE;
+  af.modifier = 0;
+  af.bitvector = AFF_VACCINATE;
+  affect_to_char2(victim, &af);
+
 
     return;
 }

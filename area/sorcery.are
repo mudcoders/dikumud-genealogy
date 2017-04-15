@@ -916,11 +916,11 @@ reserved~
 0 0
 0 0 0
 A
-18 4
+12 50
 A
 3 2
 A
-12 50
+18 4
 #302
 boots yellow~
 yellow boots~
@@ -934,13 +934,13 @@ reserved~
 0 0
 0 0 0
 A
-18 4
-A
-19 2
+12 65
 A
 110 -1
 A
-12 65
+19 2
+A
+18 4
 #303
 feather feathered derby~
 feathered derby~
@@ -954,13 +954,13 @@ reserved~
 0 0
 0 0 0
 A
-3 2
-A
-4 2
+12 60
 A
 13 70
 A
-12 60
+4 2
+A
+3 2
 #304
 tight tights red~
 red tights~
@@ -974,13 +974,13 @@ reserved~
 0 0
 0 0 0
 A
-13 20
-A
-18 12
+12 50
 A
 14 50
 A
-12 50
+18 12
+A
+13 20
 #305
 helm red feather feathered~
 feathered helm of wands~
@@ -994,15 +994,15 @@ reserved~
 0 0
 0 0 0
 A
-1 1
-A
-19 7
-A
-12 30
+18 2
 A
 13 35
 A
-18 2
+12 30
+A
+19 7
+A
+1 1
 #306
 red gloves~
 red gloves~
@@ -1016,13 +1016,13 @@ reserved~
 0 0
 0 0 0
 A
-19 4
-A
-1 2
+13 65
 A
 2 2
 A
-13 65
+1 2
+A
+19 4
 #307
 wands knight wand~
 knight's wand~
@@ -1036,11 +1036,11 @@ reserved~
 0 0
 0 0 0
 A
-18 20
+13 75
 A
 19 31
 A
-13 75
+18 20
 #308
 legging leggings wand~
 wand leggings~
@@ -1054,11 +1054,11 @@ reserved~
 0 0
 0 0 0
 A
-26 30
+2 2
 A
 12 70
 A
-2 2
+26 30
 #309
 crown wands wand~
 crown of Wands~
@@ -1072,15 +1072,15 @@ reserved~
 0 0
 0 0 0
 A
-19 9
-A
-1 1
-A
-18 2
+12 90
 A
 24 -10
 A
-12 90
+18 2
+A
+1 1
+A
+19 9
 #310
 chain wands wand~
 chain of wands~
@@ -1094,13 +1094,13 @@ mana~
 10 10
 0 0 0
 A
-24 -4
-A
-18 10
+12 95
 A
 19 5
 A
-12 95
+18 10
+A
+24 -4
 #311
 green slippers~
 green slippers~
@@ -1114,13 +1114,13 @@ reserved~
 0 0
 0 0 0
 A
-19 2
-A
-12 30
+18 11
 A
 14 100
 A
-18 11
+12 30
+A
+19 2
 #312
 wand curse~
 wand of cursing~
@@ -1158,11 +1158,11 @@ reserved~
 0 0
 0 0 0
 A
-24 -8
+12 95
 A
 102 -1
 A
-12 95
+24 -8
 #315
 red spiked collar~
 a spiked red collar~
@@ -1176,13 +1176,13 @@ reserved~
 0 0
 0 0 0
 A
-13 45
-A
-5 2
+19 9
 A
 1 2
 A
-19 9
+5 2
+A
+13 45
 #316
 eyes portal magical sight~
 eyes of magical sight~
@@ -1196,11 +1196,11 @@ reserved~
 0 0
 0 0 0
 A
-106 -1
+12 60
 A
 18 10
 A
-12 60
+106 -1
 #317
 cup page~
 pages cup~
@@ -1214,13 +1214,13 @@ reserved~
 0 0
 0 0 0
 A
-18 3
-A
-19 8
+4 2
 A
 12 80
 A
-4 2
+19 8
+A
+18 3
 #318
 helm winged~
 winged helm~
@@ -1234,15 +1234,15 @@ reserved~
 0 0
 0 0 0
 A
-19 9
-A
-17 -40
-A
-18 8
+13 90
 A
 4 2
 A
-13 90
+18 8
+A
+17 -40
+A
+19 9
 #319
 boots slivery winged wing~
 silver winged boots~
@@ -1256,11 +1256,11 @@ combat mind~
 10 10
 0 0 0
 A
-110 -1
+108 -1
 A
 2 2
 A
-108 -1
+110 -1
 #320
 berry wisdom~
 berry of wisdom~
@@ -1298,15 +1298,15 @@ reserved~
 0 0
 0 0 0
 A
-18 35
-A
-19 21
-A
-13 90
+12 80
 A
 26 90
 A
-12 80
+13 90
+A
+19 21
+A
+18 35
 #323
 cups shroud~
 shroud of cups~
@@ -1320,15 +1320,15 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
-19 8
-A
-24 -20
+13 90
 A
 12 95
 A
-13 90
+24 -20
+A
+19 8
+A
+18 10
 #324
 king cups cup~
 king's cup~
@@ -1366,9 +1366,9 @@ reserved~
 0 0
 0 0 0
 A
-18 3
-A
 12 80
+A
+18 3
 #327
 silver leg leggings legging~
 silver guilded leggings~
@@ -1382,11 +1382,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
+18 13
 A
 14 10
 A
-18 13
+17 -30
 #328
 crown cups~
 crown of cups~
@@ -1400,15 +1400,15 @@ reserved~
 0 0
 0 0 0
 A
-4 2
-A
-24 -10
-A
-12 100
+19 5
 A
 18 4
 A
-19 5
+12 100
+A
+24 -10
+A
+4 2
 #329
 chain cups~
 chain of cups~
@@ -1422,9 +1422,9 @@ reserved~
 0 0
 0 0 0
 A
-19 15
-A
 12 75
+A
+19 15
 #330
 cib ciborium cup cups~
 ciborium of cups~
@@ -1450,13 +1450,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -13
-A
-1 2
+19 4
 A
 13 40
 A
-19 4
+1 2
+A
+24 -13
 #332
 sash yellow~
 a yellow sash~
@@ -1470,11 +1470,11 @@ reserved~
 0 0
 0 0 0
 A
-13 30
+19 10
 A
 18 8
 A
-19 10
+13 30
 #333
 pentacle page~
 page's pentacle~
@@ -1500,13 +1500,13 @@ reserved~
 0 0
 350 0 0
 A
-13 75
-A
-12 90
+18 8
 A
 19 2
 A
-18 8
+12 90
+A
+13 75
 #335
 queen pentacle~
 queen's pentacle~
@@ -1520,11 +1520,11 @@ reserved~
 0 0
 349 0 0
 A
-18 19
+12 90
 A
 13 80
 A
-12 90
+18 19
 #336
 king pentacle~
 king's pentacle~
@@ -1538,11 +1538,11 @@ reserved~
 0 0
 349 0 0
 A
-13 75
+26 95
 A
 12 95
 A
-26 95
+13 75
 #337
 sceptre pentacles~
 sceptre of Pentacles~
@@ -1582,9 +1582,9 @@ reserved~
 0 0
 0 0 0
 A
-1 2
-A
 5 2
+A
+1 2
 #341
 boots darkness~
 boots of darkness~
@@ -1598,9 +1598,9 @@ reserved~
 0 0
 0 0 0
 A
-109 -1
-A
 100 -1
+A
+109 -1
 #342
 queen pent pentacle~
 queen's Pentacle~
@@ -1626,13 +1626,13 @@ reserved~
 0 0
 0 0 0
 A
-13 80
-A
-19 8
+24 -14
 A
 18 5
 A
-24 -14
+19 8
+A
+13 80
 #344
 veil darkness~
 veil of darkness~
@@ -1660,11 +1660,11 @@ reserved~
 0 0
 0 0 0
 A
-12 90
+13 30
 A
 19 13
 A
-13 30
+12 90
 #346
 darkened body armour dakr~
 darkened body armour~
@@ -1678,15 +1678,15 @@ reserved~
 0 0
 0 0 0
 A
-2 1
-A
-18 32
-A
-19 25
+24 -10
 A
 5 2
 A
-24 -10
+19 25
+A
+18 32
+A
+2 1
 #347
 pentacle knight disk~
 knight's pentacle~
@@ -1712,11 +1712,11 @@ reserved~
 0 0
 0 0 0
 A
-19 25
+13 80
 A
 18 25
 A
-13 80
+19 25
 #349
 bloody shroud~
 &Rbloody shroud~
@@ -1730,9 +1730,9 @@ reserved~
 0 0
 351 0 0
 A
-110 -1
-A
 19 11
+A
+110 -1
 #350
 knights sword~
 knight's sword~
@@ -1746,15 +1746,15 @@ reserved~
 0 0
 351 0 0
 A
-12 100
-A
-19 18
-A
-18 22
+26 50
 A
 13 30
 A
-26 50
+18 22
+A
+19 18
+A
+12 100
 #351
 sword queen~
 queen's sword~
@@ -1768,13 +1768,13 @@ reserved~
 1 1
 0 0 0
 A
-12 99
-A
-13 99
+18 40
 A
 19 20
 A
-18 40
+13 99
+A
+12 99
 #352
 sword magic~
 sword of Singing~
@@ -1788,17 +1788,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -100
-A
-12 75
-A
-19 35
-A
-18 25
+26 40
 A
 13 100
 A
-26 40
+18 25
+A
+19 35
+A
+12 75
+A
+17 -100
 #353
 crown swords~
 crown of swords~
@@ -1812,11 +1812,11 @@ reserved~
 0 0
 0 0 0
 A
-13 100
+18 20
 A
 12 20
 A
-18 20
+13 100
 #354
 shroud swords~
 shroud of swords~
@@ -1830,11 +1830,11 @@ reserved~
 0 0
 0 0 0
 A
-18 1
+110 -1
 A
 19 10
 A
-110 -1
+18 1
 #355
 bloodied gauntlets~
 &Rbloodied gauntlets~
@@ -1848,13 +1848,13 @@ reserved~
 0 0
 357 0 0
 A
-12 90
-A
-13 90
+18 11
 A
 19 8
 A
-18 11
+13 90
+A
+12 90
 #356
 sword hand knights knight~
 hand of the Knight of Swords~
@@ -1880,13 +1880,13 @@ reserved~
 0 0
 0 0 0
 A
-25 20
-A
-18 10
+26 100
 A
 19 10
 A
-26 100
+18 10
+A
+25 20
 #358
 ring swords~
 ring of swords~
@@ -1900,15 +1900,15 @@ adrenaline control~
 10 10
 0 0 0
 A
-13 95
-A
-12 95
-A
-1 2
+19 8
 A
 18 9
 A
-19 8
+1 2
+A
+12 95
+A
+13 95
 #359
 card swords~
 card of swords~
@@ -2006,13 +2006,13 @@ reserved~
 0 0
 0 0 0
 A
-2 1
-A
-19 6
+100 -1
 A
 18 6
 A
-100 -1
+19 6
+A
+2 1
 #367
 lantern orgin recall orgins~
 lantern of orgins~
@@ -2026,11 +2026,11 @@ reserved~
 2 2
 0 0 0
 A
-4 1
+13 80
 A
 12 80
 A
-13 80
+4 1
 #368
 staff demon~
 demon staff~
@@ -2044,13 +2044,13 @@ reserved~
 2 2
 0 0 0
 A
-26 40
-A
-4 2
+19 20
 A
 18 20
 A
-19 20
+4 2
+A
+26 40
 #369
 key planets~
 key of planets~
@@ -2076,15 +2076,15 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
-13 50
-A
-12 50
+4 2
 A
 19 9
 A
-4 2
+12 50
+A
+13 50
+A
+18 10
 #371
 cheese~
 a block of cheese~
@@ -2110,13 +2110,13 @@ reserved~
 0 0
 0 0 0
 A
-5 1
-A
-4 1
+18 1
 A
 19 1
 A
-18 1
+4 1
+A
+5 1
 #373
 dust twinkle~
 twinkle~
@@ -2130,15 +2130,15 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
-19 11
-A
-12 95
+13 50
 A
 18 8
 A
-13 50
+12 95
+A
+19 11
+A
+17 -30
 #374
 blaze sun~
 blaze of the sun~
@@ -2152,13 +2152,13 @@ reserved~
 0 0
 0 0 0
 A
-18 11
-A
-13 100
+102 -1
 A
 19 9
 A
-102 -1
+13 100
+A
+18 11
 #375
 sunlight sun light~
 sunlight~
@@ -2172,15 +2172,15 @@ continual light~
 50 50
 0 0 0
 A
-19 35
-A
-26 20
-A
-13 30
+18 25
 A
 12 100
 A
-18 25
+13 30
+A
+26 20
+A
+19 35
 #376
 purple sash~
 &Pa purple sash&w of life~
@@ -2194,15 +2194,15 @@ earthquake~
 20 20
 0 0 0
 A
-19 10
-A
-12 100
-A
-13 100
+24 -20
 A
 18 10
 A
-24 -20
+13 100
+A
+12 100
+A
+19 10
 #377
 flowers world~
 flowers of the world~
@@ -2216,15 +2216,15 @@ reserved~
 0 0
 0 0 0
 A
-13 100
-A
-24 -15
-A
-12 100
+19 9
 A
 18 9
 A
-19 9
+12 100
+A
+24 -15
+A
+13 100
 #378
 key judgement~
 key to Judgement~
@@ -2274,17 +2274,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -100
-A
-18 7
-A
-19 13
-A
-13 100
+24 -15
 A
 26 10
 A
-24 -15
+13 100
+A
+19 13
+A
+18 7
+A
+17 -100
 #382
 Shroud Death~
 shroud of death~
@@ -2298,17 +2298,17 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-19 13
-A
-109 -1
-A
-24 -12
+12 100
 A
 18 7
 A
-12 100
+24 -12
+A
+109 -1
+A
+19 13
+A
+13 50
 #383
 scythe death~
 death's Scythe~
@@ -2322,15 +2322,15 @@ animate dead~
 50 50
 0 0 0
 A
-26 100
-A
-19 50
-A
-18 10
+13 100
 A
 17 -100
 A
-13 100
+18 10
+A
+19 50
+A
+26 100
 #384
 your soul~
 your soul~
@@ -2380,9 +2380,9 @@ enchanted song~
 45 45
 0 0 0
 A
-13 90
-A
 12 90
+A
+13 90
 #388
 wings angel wing~
 angel wing's~
@@ -2396,9 +2396,9 @@ reserved~
 0 0
 0 0 0
 A
-110 -1
-A
 18 8
+A
+110 -1
 #389
 key tower sorcery~
 key to the tower of sorcery~
@@ -2424,13 +2424,13 @@ giant strength~
 -1 -1
 0 0 0
 A
-19 8
-A
-18 8
+1 2
 A
 13 50
 A
-1 2
+18 8
+A
+19 8
 #391
 lion claw strength~
 claw of Strength~
@@ -2444,9 +2444,9 @@ reserved~
 0 0
 0 0 0
 A
-1 10
-A
 19 40
+A
+1 10
 #392
 strength bracer str~
 bracer of strength~
@@ -2460,13 +2460,13 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-18 1
+1 2
 A
 19 6
 A
-1 2
+18 1
+A
+13 50
 #393
 key str strength~
 key to Strength~
@@ -2564,17 +2564,17 @@ reserved~
 0 0
 0 0 0
 A
-12 30
-A
-13 25
-A
-19 8
-A
-18 10
+4 2
 A
 17 -50
 A
-4 2
+18 10
+A
+19 8
+A
+13 25
+A
+12 30
 #401
 crown aquarius~
 crown of aquarius~
@@ -2588,13 +2588,13 @@ reserved~
 0 0
 0 0 0
 A
-12 75
-A
-13 75
+18 10
 A
 4 2
 A
-18 10
+13 75
+A
+12 75
 #402
 wand wisdom~
 wand of wisdom~
@@ -2608,13 +2608,13 @@ meteor swarm~
 18 18
 0 0 0
 A
-26 20
-A
-19 35
+13 90
 A
 4 2
 A
-13 90
+19 35
+A
+26 20
 #403
 belt golden wisdom~
 golden belt of wisdom~
@@ -2628,15 +2628,15 @@ sanctuary~
 5 5
 0 0 0
 A
-19 5
-A
-13 95
-A
-12 99
+18 15
 A
 4 2
 A
-18 15
+12 99
+A
+13 95
+A
+19 5
 #404
 eye eyes ancient~
 eyes of the ancients~
@@ -2650,13 +2650,13 @@ reserved~
 0 0
 0 0 0
 A
-18 7
-A
-19 7
+3 1
 A
 4 1
 A
-3 1
+19 7
+A
+18 7
 #405
 key wisdom~
 key to wisdom~
@@ -2694,15 +2694,15 @@ reserved~
 0 0
 0 0 0
 A
-19 35
-A
-26 30
-A
-13 30
+18 23
 A
 12 95
 A
-18 23
+13 30
+A
+26 30
+A
+19 35
 #408
 alpha~
 alpha~
@@ -2716,13 +2716,13 @@ reserved~
 0 0
 410 0 0
 A
-12 40
-A
-19 7
+18 8
 A
 24 -30
 A
-18 8
+19 7
+A
+12 40
 #409
 omega~
 omega~
@@ -2736,13 +2736,13 @@ reserved~
 0 0
 410 0 0
 A
-13 30
-A
-18 8
+12 40
 A
 19 7
 A
-12 40
+18 8
+A
+13 30
 #410
 scale scales alpha omega~
 scales of Alpha and Omega~
@@ -2756,15 +2756,15 @@ reserved~
 0 0
 0 0 0
 A
-19 10
-A
-18 9
-A
-12 100
+24 -19
 A
 13 20
 A
-24 -19
+12 100
+A
+18 9
+A
+19 10
 #411
 flaming club~
 flaming club~
@@ -2778,15 +2778,15 @@ fireball~
 6 6
 0 0 0
 A
-24 -10
-A
-12 100
-A
-13 100
+19 25
 A
 18 30
 A
-19 25
+13 100
+A
+12 100
+A
+24 -10
 #412
 ring sin sinners~
 ring of Sinners~
@@ -2800,17 +2800,17 @@ faerie fog~
 25 25
 0 0 0
 A
-24 -25
-A
-13 100
-A
-17 -100
-A
-12 50
+18 5
 A
 19 11
 A
-18 5
+12 50
+A
+17 -100
+A
+13 100
+A
+24 -25
 #413
 wing's wings wing demonlord~
 wing's of the Demon-Lord~
@@ -2824,15 +2824,15 @@ summon demon~
 10 10
 0 0 0
 A
-19 7
-A
-18 7
-A
-110 -1
+25 24
 A
 24 -6
 A
-25 24
+110 -1
+A
+18 7
+A
+19 7
 #414
 beast tattoo~
 sign of the Beast~
@@ -2846,15 +2846,15 @@ incinerate~
 50 50
 0 0 0
 A
-19 10
-A
-18 10
-A
-13 100
+25 30
 A
 24 -20
 A
-25 30
+13 100
+A
+18 10
+A
+19 10
 #415
 aura good goodness~
 aura of goodness~
@@ -2868,15 +2868,15 @@ protection evil~
 42 42
 0 0 0
 A
-19 10
-A
-18 10
-A
-24 -40
+12 100
 A
 17 -100
 A
-12 100
+24 -40
+A
+18 10
+A
+19 10
 #416
 triple crown~
 triple crown~
@@ -2890,11 +2890,11 @@ reserved~
 0 0
 0 0 0
 A
-19 8
+12 77
 A
 18 8
 A
-12 77
+19 8
 #417
 cross triple sceptre~
 triple crossed sceptre~
@@ -2908,11 +2908,11 @@ reserved~
 0 0
 0 0 0
 A
-19 35
+12 90
 A
 18 23
 A
-12 90
+19 35
 #418
 stole holy~
 stole of the holy~
@@ -2926,9 +2926,9 @@ reserved~
 0 0
 0 0 0
 A
-19 8
-A
 13 50
+A
+19 8
 #419
 key golden tora~
 key to tora~
@@ -2966,15 +2966,15 @@ reserved~
 0 0
 0 0 0
 A
-24 -20
-A
-13 50
-A
-18 12
+19 8
 A
 12 100
 A
-19 8
+18 12
+A
+13 50
+A
+24 -20
 #422
 serpent cincture serpent-cincture serp~
 serpent-cincture~
@@ -2988,15 +2988,15 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
-24 -15
-A
-13 75
+12 100
 A
 19 10
 A
-12 100
+13 75
+A
+24 -15
+A
+18 10
 #423
 robe magic magician~
 robe of a magician~
@@ -3010,15 +3010,15 @@ reserved~
 0 0
 0 0 0
 A
-19 10
-A
-18 10
-A
-13 10
+12 100
 A
 24 -20
 A
-12 100
+13 10
+A
+18 10
+A
+19 10
 #424
 essence mag magik magic~
 magic~
@@ -3032,17 +3032,17 @@ sanctuary~
 10 10
 0 0 0
 A
-13 100
-A
-26 100
-A
-24 -40
-A
-19 50
+18 10
 A
 12 100
 A
-18 10
+19 50
+A
+24 -40
+A
+26 100
+A
+13 100
 #425
 shield venus~
 shield of venus~
@@ -3056,18 +3056,18 @@ reserved~
 0 0
 0 0 0
 A
-24 -20
-A
-19 8
-A
-18 10
+17 -100
 A
 12 100
 A
-17 -100
+18 10
+A
+19 8
+A
+24 -20
 #426
 earring crystal~
-&Ca crystal earring&X~
+&Ca crystal earring&W~
 &CA crystal earring lies here, sparkling.~
 ~
 9 268435552 8 0 524289 100
@@ -3078,13 +3078,13 @@ dancing lights~
 12 12
 0 0 0
 A
-19 6
-A
-18 5
+12 80
 A
 24 -10
 A
-12 80
+18 5
+A
+19 6
 #427
 crown mars~
 crown of mars~
@@ -3098,15 +3098,15 @@ chaos field~
 10 10
 0 0 0
 A
-19 1
-A
-18 10
-A
-24 -5
+3 2
 A
 12 100
 A
-3 2
+24 -5
+A
+18 10
+A
+19 1
 #428
 sceptre planets~
 sceptre of planets~
@@ -3146,13 +3146,13 @@ astral walk~
 10 10
 0 0 0
 A
-19 10
-A
-12 100
+17 -40
 A
 18 7
 A
-17 -40
+12 100
+A
+19 10
 #431
 jewel jeweled sceptre~
 jeweled sceptre~
@@ -3166,17 +3166,17 @@ chaos field~
 2 2
 0 0 0
 A
-26 40
-A
-13 25
-A
-24 -10
-A
-18 10
+19 50
 A
 12 100
 A
-19 50
+18 10
+A
+24 -10
+A
+13 25
+A
+26 40
 #432
 ruby cloak~
 ruby cloak~
@@ -3190,13 +3190,13 @@ fireshield~
 30 30
 0 0 0
 A
-24 -10
-A
-12 150
+19 7
 A
 18 7
 A
-19 7
+12 150
+A
+24 -10
 #433
 white wine glass~
 a glass of white wine~
@@ -3222,17 +3222,17 @@ reserved~
 0 0
 0 0 0
 A
-26 50
-A
-24 -10
-A
-13 50
-A
-19 38
+12 100
 A
 18 22
 A
-12 100
+19 38
+A
+13 50
+A
+24 -10
+A
+26 50
 #435
 power wands~
 power of wands~
@@ -3318,11 +3318,11 @@ mana~
 20 20
 0 0 0
 A
-18 10
+12 100
 A
 19 10
 A
-12 100
+18 10
 #443
 gateway portal~
 portal~
@@ -3348,15 +3348,15 @@ word of recall~
 0 0
 0 0 0
 A
-13 20
-A
-110 -1
-A
-18 9
+100 -1
 A
 19 9
 A
-100 -1
+18 9
+A
+110 -1
+A
+13 20
 #0
 
 
@@ -3381,6 +3381,10 @@ D0
 ~
 door~
 39 0 301
+D1
+~
+~
+0 0 10184
 S
 #301
 The Tower of Sorcery~

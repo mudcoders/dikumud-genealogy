@@ -388,12 +388,7 @@ reserved~
 0 0
 0 0 0
 E
-demon~
-The remains of a demon stands here frozen forever in it's final moments
-of life on this plain.  
-~
-E
-remains~
+statue~
 The remains of a demon stands here frozen forever in it's final moments
 of life on this plain.  
 ~
@@ -403,7 +398,12 @@ The remains of a demon stands here frozen forever in it's final moments
 of life on this plain.  
 ~
 E
-statue~
+remains~
+The remains of a demon stands here frozen forever in it's final moments
+of life on this plain.  
+~
+E
+demon~
 The remains of a demon stands here frozen forever in it's final moments
 of life on this plain.  
 ~
@@ -484,17 +484,17 @@ reserved~
 0 0
 0 0 0
 A
-103 -1
-A
-107 -1
-A
-102 -1
-A
-106 -1
+110 -1
 A
 111 -1
 A
-110 -1
+106 -1
+A
+102 -1
+A
+107 -1
+A
+103 -1
 #1510
 dartboard~
 (no short description)~
@@ -634,12 +634,12 @@ reserved~
 0 0
 0 0 0
 E
-hole~
+small~
 As you look at the small hole you relise that something has eaten it's
 way out of the wall creating the hole.  
 ~
 E
-small~
+hole~
 As you look at the small hole you relise that something has eaten it's
 way out of the wall creating the hole.  
 ~
@@ -928,24 +928,12 @@ power, half in darkness, half in light.
 0 0 0
 Rd     0
 E
-south~
-The void stretches forever, devoid of motion and sound, an endless blackness.
-~
-E
-west~
-The void stretches forever, devoid of motion and sound, an endless blackness.
-~
-E
-east~
-The void stretches forever, devoid of motion and sound, an endless blackness.
-~
-E
-down~
-The platform is a grey compared to the emptiness around you, it is solid and fluid without motion.
-~
-E
-platform~
-The platform is a grey compared to the emptiness around you, it is solid and fluid without motion.
+door~
+The door is made of some plain wood, polished to a shine.  The signent of
+Decklarean is carved into it's surface with the skill of the master
+artistant.  The appearance is of a sword reaching for the stars ablaze with
+power, half in darkness, half in light.  All done with the simple elegence
+of the carving.  
 ~
 E
 arch~
@@ -954,12 +942,24 @@ are etched into it's surface.  Warnings in the languages of all time.
 Warning to those of the faint heart not to enter.  
 ~
 E
-door~
-The door is made of some plain wood, polished to a shine.  The signent of
-Decklarean is carved into it's surface with the skill of the master
-artistant.  The appearance is of a sword reaching for the stars ablaze with
-power, half in darkness, half in light.  All done with the simple elegence
-of the carving.  
+platform~
+The platform is a grey compared to the emptiness around you, it is solid and fluid without motion.
+~
+E
+down~
+The platform is a grey compared to the emptiness around you, it is solid and fluid without motion.
+~
+E
+east~
+The void stretches forever, devoid of motion and sound, an endless blackness.
+~
+E
+west~
+The void stretches forever, devoid of motion and sound, an endless blackness.
+~
+E
+south~
+The void stretches forever, devoid of motion and sound, an endless blackness.
 ~
 D0
 ~
@@ -1617,6 +1617,20 @@ Two small signs are here.   One intitled "Quests" the other "Items"
 0 0 0
 Rd     0
 E
+items~
+Quest Items:
+ 
+1.)  Quest items must all have QUEST in there name.  This goes for Items
+     renamed as rewards for Quests.
+ 
+2.)  They may be 5 levels more powerfull than a comparable item made with the
+     building rules.  Get permission from the Head of the Quest Council if an
+     item is beyond this.
+ 
+3.)  A reqular game item can be lowered 5 levels as a reward in a quest but it
+     may not be any immortal only item.
+~
+E
 quests~
 Quest Creation:
  
@@ -1638,20 +1652,6 @@ Quest Creation:
      the Head of Quest Council.  Write them out.
  
 7.)  Put this all in a note and send it to Decklarean.
-~
-E
-items~
-Quest Items:
- 
-1.)  Quest items must all have QUEST in there name.  This goes for Items
-     renamed as rewards for Quests.
- 
-2.)  They may be 5 levels more powerfull than a comparable item made with the
-     building rules.  Get permission from the Head of the Quest Council if an
-     item is beyond this.
- 
-3.)  A reqular game item can be lowered 5 levels as a reward in a quest but it
-     may not be any immortal only item.
 ~
 D3
 ~
@@ -1796,12 +1796,12 @@ surrond the place.  Giving you a deep sense of peace.
 0 4 3
 Rd     0
 E
-tree stump~
-A worn tree stump
-~
-E
 fire pit~
 A fire pit
+~
+E
+tree stump~
+A worn tree stump
 ~
 D0
 ~

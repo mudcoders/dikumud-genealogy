@@ -14,15 +14,15 @@ End
 
 #MOBILES
 #1
-Puff~
-Puff~
-Puff the Peyote Dragon is here, contemplating a higher reality.
+larry llama~
+Larry~
+Larry the EotS Llama is here, eating Puff.
 ~
 ~
-1 0 0 0 S
--96 0 0 300000d0+0 0d0+0
+1048579 0 0 0 S
+-10 0 0 300000d0+0 0d0+0
 0 0 0 0
-0 0 2
+0 0 1
 0 0 0
 #2
 darkside~
@@ -107,6 +107,19 @@ Sammael the evil wizard is here
 0 0 0 0
 0 0 1
 0 0 0
+#32
+supermob crotten rotch~
+Crotten Rotch~
+Crotten Rotch is here, waiting to destroy you.
+~
+&ROMG!&X You don't wanna look there. Besides, the smell
+is sickening.
+~
+1982529 503440126 295156 0 S
+800 0 0 8909500d0+0 0d0+0
+0 0 0 0
+0 0 2
+333747 0 0
 #62
 demon executive~
 the harried executive~
@@ -684,6 +697,30 @@ A Small ruby medallion glitters here~
 reserved~
 0 0
 0 0 0
+#40
+tree~
+a tree~
+The tree of DOOM!!~
+~
+15 0 0 0 0 0
+5000~ 0~ 0~ 0~
+0 0 0 0 0
+1 41
+reserved~
+-1 -1
+0 0 0
+#41
+orange~
+&Oan orange OF DOOM!!~
+An orange is here on the ground.. OF DOOM!~
+~
+19 0 0 0 1 0
+1000~ 0~ 0~ 0~
+0 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
 #45
 clue~
 &YA Clue~
@@ -766,6 +803,42 @@ portal darkened~
 reserved~
 0 0
 0 0 0
+#70
+straightjacket~
+a &B[&RStRaIgHt&BJaCkEt&R]~
+A tattered straightjacket lies on the ground here.~
+~
+9 536870912 0 0 1025 30
+0~ 0~ 0~ 0~
+0 0 0 0 0
+5 0
+chaos field~
+-1 -1
+0 0 0
+A
+17 -300
+A
+19 100
+A
+18 100
+A
+105 -1
+#71
+blade gauntlets kjodo~
+&WBlade-Gauntlets &Rof &BKjodo~
+&RThere is an ERROR in this room, you need Kjodo to fix it.~
+~
+9 570425346 0 0 129 80
+0~ 0~ 0~ 0~
+1 0 0 0 0
+0 0
+reserved~
+0 0
+0 0 0
+A
+18 300
+A
+19 400
 #0
 
 
@@ -826,6 +899,14 @@ done to end up here...  Perhaps you should rethink your actions of the past,
 you believe it is punishment.  &w 
 ~
 0 143056908 0
+Rd     0
+S
+#9
+War Waiting Room~
+You stand here awaiting the battle at hand. You may use this time
+to spell up and prepare. Good Luck.
+~
+0 402444 0
 Rd     0
 S
 #10
@@ -987,6 +1068,7 @@ S
 
 #SPECIALS
 M 31 spec_cast_mage
+M 32 spec_cast_cleric
 M 69 spec_breath_any
 S
 

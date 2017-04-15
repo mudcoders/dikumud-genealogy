@@ -394,9 +394,9 @@ reserved~
 0 0
 0 0 0
 A
-19 24
-A
 18 20
+A
+19 24
 E
 star splinter mace~
 &YA mace with it's head in the shape of a large star.
@@ -452,12 +452,12 @@ reserved~
 A
 5 1
 E
-gripe~
+club~
 This is a huge club that has been given the name GRIPE which is engraved
 in the handle.
 ~
 E
-club~
+gripe~
 This is a huge club that has been given the name GRIPE which is engraved
 in the handle.
 ~
@@ -584,12 +584,12 @@ reserved~
 0 0
 0 0 0
 E
-medallion~
+lightweight jahun~
 This simple metal medallion shows the status of the Lightweight Champion
 at the Jahun Falls.
 ~
 E
-lightweight jahun~
+medallion~
 This simple metal medallion shows the status of the Lightweight Champion
 at the Jahun Falls.
 ~
@@ -608,15 +608,15 @@ reserved~
 A
 17 -35
 E
-heavyweight belt~
-This belt is used to signify a champions status. Everyone knows that it has
-belonged to Jahun for the last few decades.
-~
-E
 jahun~
 The heavyweight belt is that of the legendary Jahun, Champion fighter at
 Jahun Falls for the last few decades.  For a simple orc, he is quite well
 known throughout the continent.  
+~
+E
+heavyweight belt~
+This belt is used to signify a champions status. Everyone knows that it has
+belonged to Jahun for the last few decades.
 ~
 #11127
 cup suction~
@@ -667,12 +667,12 @@ reserved~
 A
 17 -15
 E
-deity~
+conan~
 This is Conan's orbiting god figure. It's a small glowing ball of energy
 that whizzes around in circles.
 ~
 E
-conan~
+deity~
 This is Conan's orbiting god figure. It's a small glowing ball of energy
 that whizzes around in circles.
 ~
@@ -707,9 +707,9 @@ reserved~
 0 0
 0 0 0
 A
-19 20
-A
 18 9
+A
+19 20
 E
 rusty bronze sword~
 &OThis is a medium sized long sword made of bronze. It is quite nice despite
@@ -767,11 +767,6 @@ well.
 0 8192 0
 Rd     0
 E
-gate~
-The sign is marked in old english letters.  The gate itself is old and is
-ready to topple at any time.  
-~
-E
 signpost~
 This area is strictly for "NEWBIES" only.  New adventurers will find this
 area challenging.  If you cannot handle this area, then this is not the mud
@@ -785,6 +780,11 @@ newbie".
 *     Creation Team       *
 * (Thank them for the mud)*
 ***************************
+~
+E
+gate~
+The sign is marked in old english letters.  The gate itself is old and is
+ready to topple at any time.  
 ~
 D1
 The old and tattered gate is all but hanging there by a thread.
@@ -1146,11 +1146,11 @@ that holds the Bethaven sign.  There are gangplanks to this lookout tower.
 0 9 0
 Rd     0
 E
-flagpole~
+sign~
 The crest of Bethaven is shown here on the flag.
 ~
 E
-sign~
+flagpole~
 The crest of Bethaven is shown here on the flag.
 ~
 D1

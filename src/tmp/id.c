@@ -1,12 +1,3 @@
-/*****************************************
-
-  this file was submitted a very long time ago to me by Cid
-  i had completely forgotten that id.c had some bugs in it 
-  that had to be dealt with before the mud would correctly
-  compile.
-  well better late then never.
-  -Kjodo
-  *******************************************/
 #if defined( macintosh )
 #include <types.h>
 #else
@@ -136,7 +127,7 @@ bool start_auth( DESCRIPTOR_DATA *d )
   sock.sin_port = htons(113);
   sock.sin_family = AF_INET;
 
-
+/* cid's marker */
 /*
   if ( connect(desc, (struct sockaddr *)&sock, sizeof(sock)) == -1 &&
        errno != EINPROGRESS )
@@ -155,7 +146,7 @@ bool start_auth( DESCRIPTOR_DATA *d )
     return FALSE;
   }
 */
-
+/* cid's marker */
   for ( auth = first_auth; auth; auth = auth->next )
     if ( auth->d == d )
       break;
@@ -197,8 +188,8 @@ void send_auth( struct auth_data *auth )
   int ulen, tlen, z;
 
   tlen = ulen = sizeof(us);
-  if ( --auth->atimes == 0 )
-    END_AUTH(auth, "(auth failed)");
+/*  if ( --auth->atimes == 0 )
+    END_AUTH(auth, "(auth failed)"); */
   if ( getsockname(auth->d->descriptor, (struct sockaddr *)&us, &ulen) ||
        getpeername(auth->d->descriptor, (struct sockaddr *)&them, &tlen) )
   {

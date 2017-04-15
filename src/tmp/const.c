@@ -44,39 +44,39 @@ const	struct	guild_data	guild_table	[]		=
 const   struct  quest_data      quest_table     []              =
 {
 /*{     "name",                          vnum,         qp,     level  }*/
-  {     "practice",                      0,           10,      1      },
-  {     "bamboo training sword",         2426,        100,     1      },
-  {     "tassled leather leggings",      2427,        200,     5      },
-  {     "ivory-carved anklets",          2428,        300,     10     },
-  {     "glowing bauble",                2429,        100,     11     },
-  {     "blazing flameshield",           2430,        200,     15     },
-  {     "scaly vambraces",               2431,        300,     20     },
-  {     "steel visor",                   2432,        100,     21     },
-  {     "taloned gauntlets",             2433,        200,     25     },
-  {     "brass scope",                   2434,        300,     30     },
-  {     "silver ear clasp",              2435,        100,     31     },
-  {     "heavy leather boots",           2436,        200,     35     },
-  {     "wreath of illusions",           2437,        300,     40     },
-  {     "long hafted spear",             2438,        100,     41     },
-  {     "arch sorcerer's robe",          2439,        200,     45     },
-  {     "engraved golden breastplate",   2440,        300,     50     },
-  {     "ankle-sheathed dagger",         2441,        150,     51     },
-  {     "band of winds",                 2442,        250,     55     },
-  {     "dark stormcloud",               2443,        350,     60     },
-  {     "winter fur cloak",              2444,        150,     61     },
-  {     "traveller's cloak",             2445,        250,     65     },
-  {     "demon's fiery glare",           2446,        350,     70     },
-  {     "golden band of energy",         2447,        150,     71     },
-  {     "dragon-carved belt buckle",     2448,        250,     75     },
-  {     "elbow-bladed sleeves",          2449,        350,     80     },
-  {     "heavy dwarven chainmail",       2450,        150,     81     },
-  {     "shield of solidified ash",      2451,        250,     85     },
-  {     "platinum platemail leggings",   2452,        350,     90     },
-  {     "book of arcane arts",           2453,        150,     91     },
-  {     "hovering sphere of light",      2454,        250,     95     },
-  {     "helm's earguard",               2455,        350,     100    },
-  {     "ivory-carved mask",             2456,        150,     101    },
-  {     "",                              0,           0,       0      }
+  {     "practice",           "&PP&practic&Pe&X",                      0,           10,      1      },
+  {     "bamboo training sword",              "&YB&Oa&Ym&Ob&Yo&Oo &cTraining Sword&X",         2426,        100,     1      },
+  {     "tassled leather leggings",   "&cTassled &zL&We&za&Wt&zh&We&zr&c Leggings&X",      2427,        200,     5      },
+  {     "ivory-cerved anklets",       "&WIvory&w-&WCarved &cAnklets&X",          2428,        300,     10     },
+  {     "golwing bauble",               "&WGlow&wing &CBauble&X",                2429,        100,     11     },
+  {     "blazing flameshield",       "&RBl&raz&Oin&Yg &RFla&rmes&Ohie&Yld&X",           2430,        200,     15     },
+  {     "scaly vambraces",       "&CScaly &cVambraces&X",               2431,        300,     20     },
+  {     "steel visor",   "&zSteel &cVisor&X",                   2432,        100,     21     },
+  {     "taloned gauntlets",       "&cTaloned Gauntlets&X",             2433,        200,     25     },
+  {     "brass scope",   "&OBrass &cScope&X",                   2434,        300,     30     },
+  {     "silver ear clasp",    "&wSilver &cEar Clasp&X",              2435,        100,     31     },
+  {     "heavy leather boots",   "&OHeavy Leather &cBoots&X",           2436,        200,     35     },
+  {     "wreath of illusions",   "&GW&gr&Ge&ga&Gt&gh &cof &CIllusions&X",           2437,        300,     40     },
+  {     "long hafted spear",   "&OLong Hafted &zSpear&X",             2438,        100,     41     },
+  {     "arch sorcerers robe",  "&zArch Sorcerer's &cRobe&X",          2439,        200,     45     },
+  {     "engraved golden breastplate",  "&cEngraved &YGolden &cBreastplate&X",   2440,        300,     50     },
+  {     "ankle sheathed dagger",   "&cAnkle-Sheathed Dagger&X",         2441,        150,     51     },
+  {     "band of winds",   "&OBand &cof &CWinds&X",                 2442,        250,     55     },
+  {     "dark stormcloud",  "&zDark Stormcloud&X",               2443,        350,     60     },
+  {     "winter fur cloak",  "&WWinter Fur &cCloak&X",              2444,        150,     61     },
+  {     "travellers cloak",  "&cTraveller's Cloak&X",             2445,        250,     65     },
+  {     "demons fiery glare",  "&zDemon's &RFi&re&Or&Yy &rGlare&X",           2446,        350,     70     },
+  {     "golden band of energy",   "&YGolden &cBand of &PE&Cn&Pe&Cr&Pg&Cy&X",         2447,        150,     71     },
+  {     "dragon carved belt buckle",  "&RDragon-Carved &cBelt Buckle&X",     2448,        250,     75     },
+  {     "elbow bladed sleeves",  "&cElbow-Bladed Sleeves&X",          2449,        350,     80     },
+  {     "heavy dwarven chainmail",  "&cHeavy Dwarven Chainmail&X",       2450,        150,     81     },
+  {     "dagger of light",  "&BD&bagge&Br &Yof &CL&ci&Cg&ch&Ct&X",               2457,        1200,    205    },
+  {     "platinum platemail leggings",  "&YPlatinum Platemail &cLeggings&X",   2452,        350,     90     },
+  {     "book of arcane arts",  "&OBook &cof &BArcane &RArts&X",           2453,        150,     91     },
+  {     "hovering sphere of light",  "&cHovering &CSphere &cof &WLight&X",      2454,        250,     95     },
+  {     "helms earguard",  "&cHelm's &BE&wa&Br&wg&Bu&wa&Br&wd&X",               2455,        350,     100    },
+  {     "ivory carved mask",  "&WIvory&w-&WCarved &cMask&X",             2456,        150,     101    },
+  {     "",                     "",         0,           0,       0      }
 };
   
 
@@ -97,9 +97,11 @@ const   struct  race_type       race_table      [MAX_RACE]      =
     {  "Ghl", "Ghoul", 2, -1, -1, -1, 1 },
     {  "Ill", "Illithid", -3, 3, 2, 0, -2 },
     {  "Min", "Minotaur",  1, 0, 2, -4, 1 },
-    {  "Tro", "Troll", 0, -1, -1, -2, 4},
+    {  "Tro", "Troll", 0, -1, -1, -2, 4 },
     {  "Shd", "Shadow", 0, -2, 0, 2, 0 },
-    {  "Tbx", "Tabaxi", 1, -2, -2, 2, 1 }
+    {  "Tbx", "Tabaxi", 1, -2, -2, 2, 1 },
+	{  "Krn", "Kreen", -1, -1, 0, 2, 0 },
+	{  "Ang", "Angel", 0, 0, 4, 0, -4 }
 };
 #endif
 /* Karen
@@ -123,7 +125,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 /*  {   "Who", "Long", PRIME_STAT, START_WEAPON,
 	GUILD, PRAC_%, tach0_0, tach0_97, HP_MIN, HP_MAX, GETS_MANA,
       { HUM, ELF, DWA, PIX, HLF, DRW, ELD, OGR, LIZ, 
-	DEM, GHL, ILL, MIN, TRO, SHD, TBX },
+	DEM, GHL, ILL, MIN, TRO, SHD, TBX, KRN, ANG },
       { MAG, CLE, THI, WAR, PSI, DRU, RNG, PAL, BRD,
 	VAM, NEC, WWF, MNK }
       { hit, slice, stab, slash, whip, claw, blast, pound, crush,
@@ -133,7 +135,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Mag", "Mage",  APPLY_INT,  OBJ_VNUM_SCHOOL_DAGGER,
 	3018,  95,  18,  -6,   6,  8, TRUE,
       { TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE,
-	FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE },
+	FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE },
       { FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
 	TRUE, TRUE, TRUE, TRUE },
 /* Can class wield this type of weapon? */
@@ -145,7 +147,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Cle", "Cleric",  APPLY_WIS,  OBJ_VNUM_SCHOOL_MACE,
 	3003,  95,  18,  -10,  7,  10, TRUE,
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE,
-	FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE },
+	FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE },
       { TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
 	TRUE, FALSE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -156,7 +158,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Thi",  "Thief", APPLY_DEX,  OBJ_VNUM_SCHOOL_DAGGER,
 	3028,  85,  18,  -14,  8,  13, FALSE,
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE,
-	FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE },
+	FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE },
       { TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
 	TRUE, TRUE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -167,7 +169,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"War",  "Warrior", APPLY_STR,  OBJ_VNUM_SCHOOL_SWORD,
 	3022,  85,  18,  -30,  11, 20, FALSE,
       { TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE,
-	TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE },
+	TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE,
 	TRUE, TRUE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -178,7 +180,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
         "Psi",  "Psionisist", APPLY_WIS,  OBJ_VNUM_SCHOOL_DAGGER,
         3151,  95,  18,  -4,   6,  9, TRUE,
       { TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE,
-	TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE },
+	TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE },
       { TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE,
 	TRUE, TRUE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -189,7 +191,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Dru", "Druid",  APPLY_WIS,  OBJ_VNUM_SCHOOL_MACE,
 	3003,  90,  18,  -9,  7,  10, TRUE,
       { TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE,
-	FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE },
+	FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE,
 	TRUE, TRUE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -200,7 +202,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Rng",  "Ranger", APPLY_CON,  OBJ_VNUM_SCHOOL_SWORD,
 	3022,  90,  18,  -18,  14, 18, TRUE,
       { TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE,
-	FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE },
+	FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE,
 	TRUE, TRUE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -211,7 +213,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Pal",  "Paladin", APPLY_STR,  OBJ_VNUM_SCHOOL_SWORD,
 	3022,  90,  18,  -16,  10, 16, TRUE,
       { TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE,
-	FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE },
+	FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE,
 	TRUE, FALSE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -222,7 +224,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Brd",  "Bard", APPLY_DEX,  OBJ_VNUM_SCHOOL_DAGGER,
 	3028,  90,  18,  -14,  9,  13, TRUE,
       { TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
-	FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE },
+	FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE,
 	TRUE, TRUE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -233,7 +235,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Vam",  "Vampire", APPLY_DEX,  OBJ_VNUM_SCHOOL_DAGGER,
 	3028,  90,  20,  -14,  10,  15, TRUE,
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
-	TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE },
+	TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
 	FALSE, TRUE, FALSE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -244,7 +246,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
         "Nec", "Necromancer", APPLY_INT, OBJ_VNUM_SCHOOL_DAGGER,
 	3018,  90,  18,   -6,   8,  10, TRUE,
       { TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE,
-	TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE },
+	TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE },
       { TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE,
 	TRUE, FALSE, TRUE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -255,7 +257,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Wwf", "Werewolf", APPLY_STR, OBJ_VNUM_SCHOOL_CLUB,
 	3022,  85,  18,  -25,  15,  19, FALSE,
       { TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE,
-	TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE },
+	TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
 	FALSE, TRUE, FALSE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -266,7 +268,7 @@ const	struct	class_type	class_table	[MAX_CLASS]	=
 	"Mnk", "Monk", APPLY_CON, OBJ_VNUM_SCHOOL_CLUB,
 	3022,  90,  19, -22,  12,  16, TRUE,
       { TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,
-	FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE },
+	FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
 	TRUE, TRUE, TRUE, FALSE },
       { TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE,
@@ -4619,7 +4621,7 @@ SLOT(0)
 
   {
     "blade barrier",
-    { L_APP,  L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+    { L_APP,  100, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
       L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
     spell_bladebarrier,	TAR_CHAR_SELF,  	POS_STANDING,
     NULL,			150,	12,
@@ -5754,7 +5756,7 @@ FALSE, SLOT(0)
   },
   {
     "ward of safety", 
-    { L_APP, 101, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+    { L_APP, 100, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
       L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
     spell_null,       TAR_IGNORE,        POS_STANDING,
     &gsn_ward_safe,			100,	12,
@@ -5764,7 +5766,7 @@ FALSE, SLOT(0)
   },
   {
     "ward of healing", 
-    { L_APP, 101, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+    { L_APP, 100, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
       L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
     spell_null,       TAR_IGNORE,        POS_STANDING,
     &gsn_ward_heal,			200,	12,
@@ -5870,7 +5872,7 @@ FALSE, SLOT(0)
     spell_draw_strength,  TAR_CHAR_SELF,        POS_STANDING,
     NULL,			80,	40,
     "",		"Strength returns to your body.",     
-    "$n's doesn't look so week anymore.", FALSE, SLOT(202)
+    "$n's doesn't look so weak anymore.", FALSE, SLOT(202)
   },
 
 {
@@ -5895,6 +5897,91 @@ FALSE, SLOT(0)
     spell_null,           TAR_IGNORE,   POS_STANDING,
     &gsn_staves,    0, 0,
     "&Wfailure",    "!Staves!", "", FALSE, SLOT(0)
+  },
+
+	{
+    "purify",
+    { L_APP, 100, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+      L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
+	spell_purify, TAR_CHAR_DEFENSIVE, POS_STANDING,
+	NULL, 70, 12, "", "!purify!", FALSE,  SLOT(0)
+    },
+   {
+    "lure",
+    { L_APP, L_APP, 8, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+      L_APP,      L_APP,      L_APP, L_APP,      L_APP,      L_APP },
+     spell_null, TAR_CHAR_OFFENSIVE, POS_FIGHTING,
+     &gsn_lure, 0,   32, "", "!lure!", FALSE, SLOT(0)
+    },
+	{
+    "image",
+    { 100, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+      L_APP,      L_APP,      L_APP, L_APP,      L_APP,      L_APP },
+	spell_image, TAR_CHAR_DEFENSIVE, POS_STANDING,
+	&gsn_image, 50, 12, "",
+	"Your images fade.",
+	"$n's multiple images fade.", TRUE, SLOT(203)
+    },
+  {
+    "silence",
+    { 75, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, 
+      L_APP,      L_APP,      L_APP, L_APP,      L_APP,      L_APP },
+    spell_silence,	TAR_CHAR_OFFENSIVE, POS_STANDING,
+    NULL, 60,	12, "", "You may cast spells again.", 
+    "$n is somatic once again.", TRUE, SLOT(24)
+   },
+
+   {
+    "flip",
+    { L_APP, L_APP, 4, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+      L_APP,      L_APP,      L_APP, L_APP,      L_APP,      L_APP },
+      spell_null, TAR_CHAR_OFFENSIVE, POS_FIGHTING,
+      &gsn_flip, 0,  32, "flip", "!flip!", FALSE, SLOT(0)
+    },
+  {
+    "hallucinate",
+    { 19, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, 
+      L_APP,      L_APP,      L_APP, L_APP,      L_APP,      L_APP },
+    spell_hallucinate,	TAR_CHAR_OFFENSIVE, POS_STANDING,
+    NULL, 160,	12, "", "You regain your sanity.", 
+    "$n looks better.", TRUE, SLOT(205)
+   },
+	{
+    "unholystrength",
+    { L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+      80,      L_APP,      L_APP, L_APP,      L_APP,      L_APP },
+	spell_unholystrength, TAR_CHAR_DEFENSIVE, POS_STANDING,
+	&gsn_unholystrength, 50, 12, "",
+	"The unholy strength of the plague leaves you.",
+	"$n's aura of disease evaporates.", TRUE, SLOT(206)
+    },
+  {
+    "plague",
+    { L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+      L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
+    spell_null,		TAR_CHAR_OFFENSIVE,	POS_STANDING,
+    &gsn_plague,		10,	12,
+    "&zp&wl&za&wg&zu&we",
+    "You feel less sick.",
+    "$n looks better.", TRUE, SLOT(207)
+  },
+  {
+    "manabomb",
+    { 100, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP, L_APP,
+      L_APP, L_APP, L_APP, L_APP, L_APP, L_APP },
+    spell_manabomb,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
+    NULL,			500,	12,
+    "&RManaBomb&X",		"!ManaBomb!", "", FALSE, SLOT(0)
+  },
+
+  {
+    "vaccinate",
+    { L_APP, 18, L_APP, L_APP, L_APP, 20, L_APP, L_APP, L_APP, L_APP, 
+      37, L_APP, L_APP, L_APP, L_APP, L_APP },
+    spell_vaccinate,	TAR_CHAR_DEFENSIVE,	POS_STANDING,
+    NULL,			5,	12,
+    "",			"You are no longer vaccinated.",
+	"$n is no longer vaccinated.", FALSE, SLOT(208)
   },
 
 /*

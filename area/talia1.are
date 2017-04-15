@@ -264,13 +264,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -60
-A
-24 -10
+19 10
 A
 12 30
 A
-19 10
+24 -10
+A
+17 -60
 #7055
 necklace jade elegant~
 &wan &Celegant &Gjade &wnecklace&X~
@@ -284,13 +284,13 @@ reserved~
 0 0
 0 0 0
 A
-12 55
-A
-1 2
+13 30
 A
 19 10
 A
-13 30
+1 2
+A
+12 55
 #7056
 nightingale~
 &ca &znig&wht&Wi&wng&zale&X~
@@ -304,13 +304,13 @@ song of sight~
 5 5
 0 0 0
 A
-17 -35
-A
-12 50
+19 14
 A
 13 40
 A
-19 14
+12 50
+A
+17 -35
 #7072
 flame blue~
 &wa &Bb&Clu&Be &wflame&X~
@@ -324,13 +324,13 @@ fireshield~
 2 2
 0 0 0
 A
-19 20
-A
-12 30
+17 -40
 A
 13 -10
 A
-17 -40
+12 30
+A
+19 20
 #7086
 fan metal~
 &ca &zmetal &cfan&X~
@@ -344,9 +344,9 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
 19 15
+A
+18 10
 #7087
 shield lotus petal~
 &wa &Wlotus petal &wshield&X~
@@ -360,13 +360,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -60
-A
-13 50
+19 10
 A
 12 55
 A
-19 10
+13 50
+A
+17 -60
 #7088
 rose color color-changing -'-{@~
 &g-'-{&.@&w~
@@ -380,13 +380,13 @@ faerie fire~
 10 10
 0 0 0
 A
-17 -40
-A
-13 65
+2 2
 A
 12 65
 A
-2 2
+13 65
+A
+17 -40
 E
 rose~
 This rose must have been crafted by unearthly hands for you have never
@@ -408,13 +408,13 @@ chaos field~
 2 2
 0 0 0
 A
-13 50
-A
-18 30
+2 2
 A
 19 25
 A
-2 2
+18 30
+A
+13 50
 #7100
 towel bath~
 a bath towel~

@@ -123,17 +123,17 @@ reserved~
 0 0
 0 0 0
 E
-statue~
-This large stone statue of Cluff Arion depicts him wearing full armor,
-with a sword in each hand.  There is a plaque attached to the base of the
-monument.  
-~
-E
 plaque~
 The citizens of Mira have erected this statue to honor Cluff Arion, a
 True Paladin who defended our city against a red dragon's attack.  His valor
 and courage, as well as those of his lineage, will be remembered until the
 end of time..  
+~
+E
+statue~
+This large stone statue of Cluff Arion depicts him wearing full armor,
+with a sword in each hand.  There is a plaque attached to the base of the
+monument.  
 ~
 #0
 

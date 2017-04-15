@@ -52,6 +52,77 @@ reserved~
 0 0
 0 0 0
 E
+baked goods~
+&YBAKED GOODS FOOD HOURS REFERENCE GUIDE
+ 
+&pPASTRIES&Y,&pCAKES&Y and the like max 2-4 food hours.
+&pROLLS&Y,&pBAGELS&Y,&pPITAS&Y,&pMUFFINS&Y,&pTOAST&Y max out at 4-6 food hours.
+&pLOAVES&Y max at 6-10 food hours.
+&pPASTA&Y maxes out at 8-10 food hours.
+&pCEREALS&Y max out at 5 food hours.
+ 
+~
+E
+soups~
+&YSOUPS FOOD HOURS REFERENCE GUIDE
+ 
+&pVEGETABLE&Y soup maxes 5 food hours.
+&pMEAT&Y soup maxes 6 food hours.
+&pVEGETABLE/PASTA&Y maxes 6 food hours.
+&pMEAT/PASTA&Y maxes 7 food hours.
+&pMEAT/VEGETABLE/PASTA &Ymaxes out at 9 food hours.
+&pBROTHS&Y max at 3 food hours.
+~
+E
+vegetables fruits~
+&YVEGETABLES and FRUITS FOOD HOURS REFERENCE GUIDE
+ 
+&pFRESH FRUIT&Y maxes 2-4 food hours.
+&pFRESH VEGETABLES&Y max 4 food hours.
+&pCOOKED VEGETABLES&Y max 6 food hours.
+&pBEANS and LENTILS&Y max 5 food hours.
+&pSALADS&Y max 3 food hours.
+&pSALADS w/MEAT&Y max 6 food hours.
+&pPASTA SALADS &Ymax 5 food hours.
+~
+E
+meats~
+&YMEATS FOOD HOURS REFERENCE GUIDE
+ 
+&pDRIED &Ymax 4-6 food hours.
+&pSTEAKS &Ymax 8-10 food hours.
+&pPASTA w/MEAT dishes&Y max 12 food hours.
+&pCHICKEN WINGS &Ymax 5 food hours.
+&pROASTS&Y &Ymax 10-12 food hours.
+&pPOULTRY &Ymaxes 8-10 food hours.
+&pEGGS &Ymax 3 food hours.
+ 
+&p**&YI want to see almost ALL raw meats with a poison flag (v1)&p**
+~
+E
+food hours book contents~
+&YCONTENTS
+ 
+BAKED GOODS
+SOUPS
+VEGETABLES and FRUITS
+MEATS
+RATIONS
+VALUE and MISCELLANEOUS
+ 
+&WThis reference book created by Sherf Falconhand.
+~
+E
+rations~
+&YRATIONS FOOD HOURS REFERENCE GUIDE
+ 
+COPY Bethaven vnums &p25045&Y and/or &p25046&Y. These are described as various
+dried fruits, veggies, nuts, spices (survival food) and is the best
+deal, but not very RP to eat all the time. I don't want to see these
+everywhere so &pPLEASE USE ONLY IN LARGE TOWNS &Ythat will have a
+general, grocery or travel store.
+~
+E
 value miscellaneous~
 &YGENERAL COST VALUE FOR FOODS
  
@@ -69,77 +140,6 @@ things with too little or too many food hours.
 &WHappy building and stay creative!
  
                           Sherf Falconhand. &B[CREATION HEAD]&W July '97
-~
-E
-rations~
-&YRATIONS FOOD HOURS REFERENCE GUIDE
- 
-COPY Bethaven vnums &p25045&Y and/or &p25046&Y. These are described as various
-dried fruits, veggies, nuts, spices (survival food) and is the best
-deal, but not very RP to eat all the time. I don't want to see these
-everywhere so &pPLEASE USE ONLY IN LARGE TOWNS &Ythat will have a
-general, grocery or travel store.
-~
-E
-food hours book contents~
-&YCONTENTS
- 
-BAKED GOODS
-SOUPS
-VEGETABLES and FRUITS
-MEATS
-RATIONS
-VALUE and MISCELLANEOUS
- 
-&WThis reference book created by Sherf Falconhand.
-~
-E
-meats~
-&YMEATS FOOD HOURS REFERENCE GUIDE
- 
-&pDRIED &Ymax 4-6 food hours.
-&pSTEAKS &Ymax 8-10 food hours.
-&pPASTA w/MEAT dishes&Y max 12 food hours.
-&pCHICKEN WINGS &Ymax 5 food hours.
-&pROASTS&Y &Ymax 10-12 food hours.
-&pPOULTRY &Ymaxes 8-10 food hours.
-&pEGGS &Ymax 3 food hours.
- 
-&p**&YI want to see almost ALL raw meats with a poison flag (v1)&p**
-~
-E
-vegetables fruits~
-&YVEGETABLES and FRUITS FOOD HOURS REFERENCE GUIDE
- 
-&pFRESH FRUIT&Y maxes 2-4 food hours.
-&pFRESH VEGETABLES&Y max 4 food hours.
-&pCOOKED VEGETABLES&Y max 6 food hours.
-&pBEANS and LENTILS&Y max 5 food hours.
-&pSALADS&Y max 3 food hours.
-&pSALADS w/MEAT&Y max 6 food hours.
-&pPASTA SALADS &Ymax 5 food hours.
-~
-E
-soups~
-&YSOUPS FOOD HOURS REFERENCE GUIDE
- 
-&pVEGETABLE&Y soup maxes 5 food hours.
-&pMEAT&Y soup maxes 6 food hours.
-&pVEGETABLE/PASTA&Y maxes 6 food hours.
-&pMEAT/PASTA&Y maxes 7 food hours.
-&pMEAT/VEGETABLE/PASTA &Ymaxes out at 9 food hours.
-&pBROTHS&Y max at 3 food hours.
-~
-E
-baked goods~
-&YBAKED GOODS FOOD HOURS REFERENCE GUIDE
- 
-&pPASTRIES&Y,&pCAKES&Y and the like max 2-4 food hours.
-&pROLLS&Y,&pBAGELS&Y,&pPITAS&Y,&pMUFFINS&Y,&pTOAST&Y max out at 4-6 food hours.
-&pLOAVES&Y max at 6-10 food hours.
-&pPASTA&Y maxes out at 8-10 food hours.
-&pCEREALS&Y max out at 5 food hours.
- 
 ~
 #0
 

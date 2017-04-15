@@ -399,12 +399,12 @@ reserved~
 0 0
 0 0 0
 E
-chain~
-A length of chain made from a light weight metal.
-~
-E
 lepherus~
 This chain belongs the the creature caller Lepherus.
+~
+E
+chain~
+A length of chain made from a light weight metal.
 ~
 #11203
 eagle claw~
@@ -419,18 +419,18 @@ reserved~
 0 0
 0 0 0
 A
-18 20
+1 2
 A
 19 15
 A
-1 2
-E
-claw~
-This large eagle claw has really sharp talons.
-~
+18 20
 E
 eagle~
 A huge claw that was once the foot of a rather large eagle.
+~
+E
+claw~
+This large eagle claw has really sharp talons.
 ~
 #11205
 dragon tail~
@@ -445,22 +445,22 @@ reserved~
 0 0
 0 0 0
 A
-13 99
-A
-12 50
-A
-3 -1
+19 140
 A
 2 -3
 A
-19 140
-E
-tail~
-This really large dragon tail looks like it could make a good club.
-~
+3 -1
+A
+12 50
+A
+13 99
 E
 dragon~
 This is part of a dragon, it's tail part.
+~
+E
+tail~
+This really large dragon tail looks like it could make a good club.
 ~
 #11209
 eagle wings~
@@ -475,20 +475,20 @@ reserved~
 0 0
 0 0 0
 A
-110 -1
-A
-2 2
+17 -50
 A
 1 -2
 A
-17 -50
-E
-eagle~
-Once belonging to a giant eagle, these wings make a great trophy.
-~
+2 2
+A
+110 -1
 E
 wings~
 These are large wings with beautiful feathers.
+~
+E
+eagle~
+Once belonging to a giant eagle, these wings make a great trophy.
 ~
 #11270
 cauldron~
@@ -515,12 +515,12 @@ reserved~
 0 0
 0 0 0
 E
-hat~
-This is a little brown hat, worn with age but still looks good.
-~
-E
 brownie~
 This is a hat which used to beong to a brownie.
+~
+E
+hat~
+This is a little brown hat, worn with age but still looks good.
 ~
 #11272
 shadow ring~
@@ -535,24 +535,24 @@ reserved~
 0 0
 0 0 0
 A
-1 -1
-A
-109 -1
-A
-2 2
+13 50
 A
 12 90
 A
-13 50
-E
-ring~
-This shadow has what looks like a hole in the middle. Maybe it could fit
-on your finger.
-~
+2 2
+A
+109 -1
+A
+1 -1
 E
 shadow~
 As dark as night, it almost seems there is a lack of reality when looking
 at this ring.
+~
+E
+ring~
+This shadow has what looks like a hole in the middle. Maybe it could fit
+on your finger.
 ~
 #11273
 dragon scale shield~
@@ -567,25 +567,25 @@ reserved~
 0 0
 0 0 0
 A
-17 -75
-A
-2 -2
+13 70
 A
 14 -200
 A
-13 70
+2 -2
+A
+17 -75
 E
-shield~
-This shield is a large scale from a dragon.
+dragon~
+Taken from a rather large dragon this scale look like it can be used as a
+shield.
 ~
 E
 scale~
 Large and black this scale would provide great protection as a shield.
 ~
 E
-dragon~
-Taken from a rather large dragon this scale look like it can be used as a
-shield.
+shield~
+This shield is a large scale from a dragon.
 ~
 #11274
 dragon tooth dagger~
@@ -600,27 +600,27 @@ reserved~
 0 0
 0 0 0
 A
-5 -2
-A
-18 140
-A
-19 50
+26 -9
 A
 2 2
 A
-26 -9
+19 50
+A
+18 140
+A
+5 -2
 E
-dagger~
-A big white dagger made from bone.
+tooth~
+Taken from the mouth of a dragon this tooth looks like it could be used as
+a nice dagger.
 ~
 E
 dragon~
 This dagger is made from the tooth of a dragon.
 ~
 E
-tooth~
-Taken from the mouth of a dragon this tooth looks like it could be used as
-a nice dagger.
+dagger~
+A big white dagger made from bone.
 ~
 #11275
 dragon eyes~
@@ -635,18 +635,18 @@ reserved~
 0 0
 0 0 0
 A
-17 -50
+13 40
 A
 12 40
 A
-13 40
-E
-eyes~
-These are large globes which fit onto your eyes.
-~
+17 -50
 E
 dragon~
 These eyes came from a great dragon, you might be able to see through them.
+~
+E
+eyes~
+These are large globes which fit onto your eyes.
 ~
 #11300
 sacrificial dagger~
@@ -661,12 +661,12 @@ harm~
 2 2
 0 0 0
 E
-dagger~
-A long sharp looking dagger.
-~
-E
 sacrificial~
 This dagger was used in ritual sacrifices.
+~
+E
+dagger~
+A long sharp looking dagger.
 ~
 #0
 
@@ -978,15 +978,15 @@ lead up to the entrance of the caves.
 0 0 0
 Rd     0
 E
-arches~
-The head of a white dragon is over the arch to the west.
+arch~
+You see the head of a huge white dragon over the arches to the west.
 The head of a black dragon is over the arch to the east.
 The head of a red dragon is over the arch to the north.
 The head of a shadow dragon is over the arch to the south.
 ~
 E
-arch~
-You see the head of a huge white dragon over the arches to the west.
+arches~
+The head of a white dragon is over the arch to the west.
 The head of a black dragon is over the arch to the east.
 The head of a red dragon is over the arch to the north.
 The head of a shadow dragon is over the arch to the south.
@@ -1260,15 +1260,15 @@ here.
 0 4 0
 Rd     0
 E
+in~
+You see a piece of paper with the following words on it: Walius-
+11201-300 Tree of Life - 25201-25401 
+~
+E
 out~
 You see a piece of paper with a list of things on it.  The list reads:
  
 Ways - 15158-15165
-~
-E
-in~
-You see a piece of paper with the following words on it: Walius-
-11201-300 Tree of Life - 25201-25401 
 ~
 S
 #11231
@@ -1685,12 +1685,12 @@ runes carved into the wood of the tree.
 Rd     0
 E
 runes~
-You look at the strange runes, but are not sure of their meaning.  They
-look neat though.  
+Some wierd looking runes are ingraved here.
 ~
 E
 runes~
-Some wierd looking runes are ingraved here.
+You look at the strange runes, but are not sure of their meaning.  They
+look neat though.  
 ~
 D0
 A large door has been cut here.

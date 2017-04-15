@@ -442,13 +442,13 @@ reserved~
 A
 2 1
 E
-hide~
-An excellent pair of hide gloves are made of deer-hide.
-~
-E
 gloves~
 These are a very well-made pair of hide gloves. They're kind of scratchy
 though, as they are not worn in yet.
+~
+E
+hide~
+An excellent pair of hide gloves are made of deer-hide.
 ~
 #10603
 vambraces coyote hide~
@@ -586,9 +586,9 @@ reserved~
 0 0
 0 0 0
 A
-13 10
-A
 1 1
+A
+13 10
 E
 antelope antlers pair~
 A large pair of antlers from the head of an antelope.
@@ -638,13 +638,13 @@ portal~
 A
 13 14
 E
+necklace~
+A simple strip of leather makes for the necklace from which to hang this pendant.
+~
+E
 claw pendant~
 The claw of a rather large carnivore has been made into a pendant for a
 trophy-like necklace.
-~
-E
-necklace~
-A simple strip of leather makes for the necklace from which to hang this pendant.
 ~
 #10614
 eyes eagle~
@@ -766,12 +766,12 @@ awe~
 A
 13 20
 E
-cloak jackal hide~
-The cloak is made from the tough hide of a jackal.
-~
-E
 heap~
 The hide seems to be made from that of a jackal. It looks pretty sturdy.
+~
+E
+cloak jackal hide~
+The cloak is made from the tough hide of a jackal.
 ~
 #10621
 necklace tooth teeth~
@@ -786,14 +786,14 @@ remove curse~
 1 1
 0 0 0
 E
-tooth teeth necklace~
-A necklace made of leather dangles almost a full set of teeth from a
-large carnivore.
-~
-E
 carnivore~
 Taking a good look at the teeth...  You would guess...  A bobcat, or
 another of the large cats..  
+~
+E
+tooth teeth necklace~
+A necklace made of leather dangles almost a full set of teeth from a
+large carnivore.
 ~
 #10622
 belt neck~
@@ -820,9 +820,9 @@ summon pack~
 0 0
 0 0 0
 A
-12 15
-A
 13 20
+A
+12 15
 E
 tooth teeth anklet~
 Various animal teeth have been strung together to make this anklet.
@@ -845,7 +845,7 @@ This bracelet would seem to be made of the beak of an eagle.
 ~
 #10625
 blueberries blue berries~
-&Ba bunch of blueberries&X~
+&Ba bunch of blueberries&W~
 &BA bunch of blueberries have been left here.~
 ~
 19 0 0 0 1 1
@@ -898,12 +898,12 @@ reserved~
 0 0
 0 0 0
 E
-pile~
-A pile of greasy grimy gopher guts. Ick.
-~
-E
 guts gopher~
 Ew. The innards of a gopher. Although they might be tasty if you fry 'em up.
+~
+E
+pile~
+A pile of greasy grimy gopher guts. Ick.
 ~
 #10659
 boots wolf fur~
@@ -955,14 +955,14 @@ reserved~
 A
 13 10
 E
-uniform~
-The uniform of a Game Preserve Gatekeeper, complete with badge.
-~
-E
 badge~
 The badge consists of all the colours and patterns you might find in the
 animals hides within the Gates of the Game Preserves. Needless to say, it
 is quite a large badge.
+~
+E
+uniform~
+The uniform of a Game Preserve Gatekeeper, complete with badge.
 ~
 #10662
 cudgel~
@@ -1007,9 +1007,9 @@ harm~
 2 2
 0 0 0
 A
-19 40
-A
 18 30
+A
+19 40
 E
 prod rod~
 A long "stick" or "staff" used by the Wardens of the Game Preserve to herd
@@ -1030,6 +1030,10 @@ shocking grasp~
 A
 26 2
 E
+gloves runed runes~
+A pair of simple gloves embroidered with some very strange runes.
+~
+E
 embroidered runes~
 |||         |||        ///
 |||         |||       ///
@@ -1043,10 +1047,6 @@ embroidered runes~
                     @
                     @@@
                        @
-~
-E
-gloves runed runes~
-A pair of simple gloves embroidered with some very strange runes.
 ~
 #10666
 hide shimmering~
@@ -1114,12 +1114,6 @@ reserved~
 0 0
 0 0 0
 E
-inscription~
-The inscription refers to the Ancient Immortals of The Storm. It writes about
-buried treasures throughout the land and the legacy of life as we now know it.
-It is signed, Stormbringer, Last of the Ancient Immortals.
-~
-E
 enscription~
 The Ancient Immortals Greetings.  I am the last of my kind.  The rest of
 my brethren have all departed this universe and I shall soon follow.  We
@@ -1131,6 +1125,12 @@ powers above and beyond those which you will find through normal means.  I
 remained behind to bury these treasures, for only that which is hard won
 holds great value.  If you seek power then JOIN in my quest and be forever
 METAMORPHIZED.  Stormbringer, Last of the Ancient Immortals 
+~
+E
+inscription~
+The inscription refers to the Ancient Immortals of The Storm. It writes about
+buried treasures throughout the land and the legacy of life as we now know it.
+It is signed, Stormbringer, Last of the Ancient Immortals.
 ~
 #10722
 Spring Well~
@@ -3877,12 +3877,12 @@ bushes surround you on all sides.
 Rd     0
 E
 berry~
-The berry bushes are covered with plump and juicy berries.  Blueberries
-and strawberries can be seen from your point of view.  Other types of
-berries are visible further out.  
 ~
 E
 berry~
+The berry bushes are covered with plump and juicy berries.  Blueberries
+and strawberries can be seen from your point of view.  Other types of
+berries are visible further out.  
 ~
 D1
 ~
@@ -4108,15 +4108,15 @@ corner.
 0 9 0
 Rd     0
 E
+carcass~
+The carcass is almost full of maggots.  Flies buzz noisily around in the
+air about the carcass.  You feel filthy just from looking at it.  
+~
+E
 helmet~
 The helmet is rusted and dented.  Blood covers it but has long since
 dried.  You wonder how long ago the helmet was a treat for the residents
 here.  
-~
-E
-carcass~
-The carcass is almost full of maggots.  Flies buzz noisily around in the
-air about the carcass.  You feel filthy just from looking at it.  
 ~
 D2
 ~
@@ -4270,18 +4270,18 @@ notice there are some more strange markings on a tree nearby.
 0 0 0
 Rd     0
 E
-markings~
-You push aside some foliage and carefully uncover the whole of the odd
-markings they are apparently carved with an animal claw or crude weapon. 
-Unfortunately you can not read the writing or rune work.  A chill creeps
-over you when you finish examining the rune-work.  
-~
-E
 dust~
 Little tiny men with tan khaki pants run out from the side of the path
 with brooms that are twice the size of them.  They quickly push sand up into
 tiny clouds as you pass by.  Why they do this, or even if that is what dust
 devils are, you're just not sure.  
+~
+E
+markings~
+You push aside some foliage and carefully uncover the whole of the odd
+markings they are apparently carved with an animal claw or crude weapon. 
+Unfortunately you can not read the writing or rune work.  A chill creeps
+over you when you finish examining the rune-work.  
 ~
 D2
 ~
@@ -4426,15 +4426,15 @@ in the ceiling here.
 0 13 0
 Rd     0
 E
-windows~
-Not a single solitary shaft of light penetrates the room through these
-windows.  
-~
-E
 small~
 The small animals seem to have undergone a form of salting.  What is
 unusual is the fact that the animals are still currently whole.  Most often
 salted meat is cut up first.  
+~
+E
+windows~
+Not a single solitary shaft of light penetrates the room through these
+windows.  
 ~
 D0
 ~

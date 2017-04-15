@@ -468,16 +468,16 @@ reserved~
 0 0
 0 0 0
 E
-trollbooth~
-&YPleeze depozit 1 gold pece
- 
-               &r Da King
-~
-E
 box~
 A poorly constructed wooden box, positioned on a wooden pole about waist
 height.  The well worn exterior is potched with claw gouges.  However, the
 coin deposit slot doesn't look all that used.  
+~
+E
+trollbooth~
+&YPleeze depozit 1 gold pece
+ 
+               &r Da King
 ~
 #2001
 Cream filled bug~
@@ -492,17 +492,17 @@ reserved~
 0 0
 0 0 0
 E
-bug~
-The bug is a deep blue in color, speckled with little red dots.  It's
-numerous feet scurry in an attempt to escape your grasp.  
+cream~
+The inside of the insect is filled with a white, pus like substance.  
 ~
 E
 slimy~
 The bug is coated in some form of translucent mucus.  Yummy.
 ~
 E
-cream~
-The inside of the insect is filled with a white, pus like substance.  
+bug~
+The bug is a deep blue in color, speckled with little red dots.  It's
+numerous feet scurry in an attempt to escape your grasp.  
 ~
 #2002
 Bone Fountain~
@@ -517,16 +517,16 @@ reserved~
 0 0
 0 0 0
 E
+fountain~
+A large fountain, constructed of the remains of meals gone past.
+Crystal clear water spews forth from a spout in center.
+~
+E
 bone~
 The fountain's exterior is composed of a mixture of bleached white bones,
 held together with some sort of clay.  You note that the bones are well
 worn, appeaing to have been gnawed on by large teeth.  You spot what you
 believe to be a human skull near the base!  
-~
-E
-fountain~
-A large fountain, constructed of the remains of meals gone past.
-Crystal clear water spews forth from a spout in center.
 ~
 #2003
 troll mask healing~
@@ -541,20 +541,20 @@ heal~
 10 10
 0 0 0
 A
-4 1
-A
 17 -20
-E
-troll~
-The mask sports the wide, toothy grin of a troll.  It looks very much
-like a real troll, which prompts you to wonder how the creatures tell each
-other apart.  
-~
+A
+4 1
 E
 mask~
 A wooden mask, finely hand crafted with more skill than you would expect
 from a brutish troll.  The face sports a wide, toothy grin, and gems adorn
 the edges.  The mask seems to eminate a pale, comforting aura.  
+~
+E
+troll~
+The mask sports the wide, toothy grin of a troll.  It looks very much
+like a real troll, which prompts you to wonder how the creatures tell each
+other apart.  
 ~
 #2004
 bone sceptre~
@@ -569,21 +569,21 @@ reserved~
 0 0
 0 0 0
 A
-12 40
+18 30
 A
 19 15
 A
-18 30
-E
-bone~
-The sceptre's main body seems to be what was once the leg of a large land
-mammal.  
-~
+12 40
 E
 sceptre~
 What was once the leg of some poor creature is now an oversized sceptre. 
 It has been polished to an extent where you can barely see the teeth marks
 that cover it's surface.  
+~
+E
+bone~
+The sceptre's main body seems to be what was once the leg of a large land
+mammal.  
 ~
 #2005
 bone club~
@@ -598,20 +598,20 @@ reserved~
 0 0
 0 0 0
 A
-1 1
+19 50
 A
 18 45
 A
-19 50
-E
-bone~
-The bone appears to be a thighbone.  It's surface has been scarred by
-repeated use.  
-~
+1 1
 E
 club~
 The club is made of a large, white bone, whose surface is chipped and
 scarred.  No subtlety here.  
+~
+E
+bone~
+The bone appears to be a thighbone.  It's surface has been scarred by
+repeated use.  
 ~
 #2006
 bone necklace~
@@ -626,18 +626,18 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
-A
 1 1
-E
-bone~
-The bones are small, with jagged broken edges.  Most look like
-knucklebones.  
-~
+A
+17 -20
 E
 necklace~
 The necklace is made of a dozen or so knuckle and finger bones, strung
 together on a thin etal wire.  
+~
+E
+bone~
+The bones are small, with jagged broken edges.  Most look like
+knucklebones.  
 ~
 #2007
 Troll skin jerkin~
@@ -652,22 +652,22 @@ reserved~
 0 0
 0 0 0
 A
-17 -25
-A
 12 -10
+A
+17 -25
 E
-troll~
-The trollskin is thick, heavy and warm.  It stinks too.  
+jerkin~
+What was once the thick, smelly hide of a troll, is now the fashionably
+questionable jerkin before your eyes.  Although ugly, the trollskin looks
+tough and durable.  
 ~
 E
 skin~
 The trollskin is thick, heavy and warm.  It stinks too.
 ~
 E
-jerkin~
-What was once the thick, smelly hide of a troll, is now the fashionably
-questionable jerkin before your eyes.  Although ugly, the trollskin looks
-tough and durable.  
+troll~
+The trollskin is thick, heavy and warm.  It stinks too.  
 ~
 #2008
 bone platemail~
@@ -682,21 +682,21 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
+1 1
 A
 13 20
 A
-1 1
-E
-bone~
-White bones, scarred in battle while protecting their owner.
-~
+17 -30
 E
 platemail~
 A hefty suit of platemail armor, made from wiring together the shoulder
 blades, kneecaps and other assorted bones of some long dead creature.  The
 bones are heavy and thick, and don't break easily, judging by the number of
 chips in them.  
+~
+E
+bone~
+White bones, scarred in battle while protecting their owner.
 ~
 #2009
 Troll Stone~
@@ -713,13 +713,13 @@ reserved~
 A
 4 2
 E
-troll~
-The stone is dank and mossy.  It smells like a troll.  
-~
-E
 stone~
 A dark quartz stone, covered with a bit of mud and moss.  It is, however,
 unaturally light, and seems to glow with an inner power.  
+~
+E
+troll~
+The stone is dank and mossy.  It smells like a troll.  
 ~
 #2010
 troll skin boots~
@@ -734,13 +734,14 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
-A
 1 1
+A
+17 -20
 E
-troll~
-A pair of boots made from stiffened trollskin.  Worn and dirty, but warm
-and sturdy.  
+boots~
+This pair of boots was made from the hide of a troll that no longer
+needed it.  Despite the fact that they look awful, they are actually quite
+sturdy and practical.  
 ~
 E
 skin~
@@ -748,10 +749,9 @@ Trollskin is an amazing substance: No matter what it endures, it always
 remains strong, sturdy, and smelly.  
 ~
 E
-boots~
-This pair of boots was made from the hide of a troll that no longer
-needed it.  Despite the fact that they look awful, they are actually quite
-sturdy and practical.  
+troll~
+A pair of boots made from stiffened trollskin.  Worn and dirty, but warm
+and sturdy.  
 ~
 #2011
 skull cap~
@@ -766,9 +766,9 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
 3 2
+A
+24 -5
 #2012
 bone wand~
 a short bone wand~
@@ -794,11 +794,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
+1 1
 A
 4 -1
 A
-1 1
+17 -30
 #2014
 bone leggings~
 a pair of troll bone leggings~
@@ -812,9 +812,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -25
-A
 4 1
+A
+17 -25
 #2015
 eye fire eyes~
 a pair of burning eyes~
@@ -828,9 +828,9 @@ reserved~
 0 0
 0 0 0
 A
-3 2
-A
 12 -10
+A
+3 2
 #2016
 bracer fire~
 a bracer of fire~
@@ -844,19 +844,19 @@ fireshield~
 5 5
 0 0 0
 A
-17 -50
-A
 3 -1
-E
-fire~
-Like all the flames that encompass the realm of the fire trolls, the heat
-eminated by the bracer is warm, but not enough to burn you.  
-~
+A
+17 -50
 E
 bracer~
 A sturdy bracer made of the hide of a fire troll.  Like all the items
 that are forged under Troll Mountain, this bracer seems to eminate it's own
 heat and glow.  
+~
+E
+fire~
+Like all the flames that encompass the realm of the fire trolls, the heat
+eminated by the bracer is warm, but not enough to burn you.  
 ~
 #2017
 fire skin jerkin~
@@ -871,9 +871,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -25
-A
 13 10
+A
+17 -25
 #2018
 fire platemail~
 fire platemail~
@@ -887,19 +887,19 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
 13 25
+A
+17 -30
+E
+fire~
+A mystical flame of unknown source seems to coat the metal.  It provides
+no noticeable heat or light, though.  
+~
 E
 platemail~
 The platemail is warm to the touch, as if fresh from the forge of a
 volcano.  It's metal plates are coated in a bluish flame that glows with a
 pale aura.  
-~
-E
-fire~
-A mystical flame of unknown source seems to coat the metal.  It provides
-no noticeable heat or light, though.  
 ~
 #2019
 gloves warmth~
@@ -914,19 +914,19 @@ reserved~
 0 0
 0 0 0
 A
-2 2
-A
 17 -20
+A
+2 2
+E
+warmth~
+These gloves seem to produce a heat of their own, and they eminate a
+soft, orange hue from their trollskin hides.  
+~
 E
 gloves~
 These gloves are made of fire trollskin, and they glow with a crimson
 aura that accomidates the soft, comforting heat they seem to produce.  The
 gloves are quite large, but they are sturdy and flexable.  
-~
-E
-warmth~
-These gloves seem to produce a heat of their own, and they eminate a
-soft, orange hue from their trollskin hides.  
 ~
 #2020
 fire belt~
@@ -941,22 +941,22 @@ reserved~
 0 0
 0 0 0
 A
-1 2
+17 -40
 A
 2 -2
 A
-17 -40
+1 2
+E
+fire~
+The belt seems to be sheathed with a mystical flame that, although warm,
+does not burn.  
+~
 E
 belt~
 The fire belt is made of some type of material, most likely trollskin. 
 It is fitted with a large, mettlic clasp, indicating that it was meant for
 use by larger creatures.  It is encompassed by a mystical flame that burns,
 but does not harm.  
-~
-E
-fire~
-The belt seems to be sheathed with a mystical flame that, although warm,
-does not burn.  
 ~
 #2021
 fire scimitar~
@@ -971,21 +971,21 @@ reserved~
 0 0
 0 0 0
 A
-13 40
+18 60
 A
 19 70
 A
-18 60
-E
-fire~
-The blade of the fire scimitar is bathed in a bright, red flame.  Tounges
-of fire lash out in small arcs as you move it through the air.  
-~
+13 40
 E
 scimitar~
 A wickedly curved stone blade, made in the forges under Troll Mountain. 
 The lon, curved edge, though unwieldly, looks meanacing.  The scimitar is
 covered in a great, red flame.  
+~
+E
+fire~
+The blade of the fire scimitar is bathed in a bright, red flame.  Tounges
+of fire lash out in small arcs as you move it through the air.  
 ~
 #2022
 fire dagger~
@@ -1000,21 +1000,21 @@ reserved~
 0 0
 0 0 0
 A
-26 3
+19 30
 A
 18 50
 A
-19 30
+26 3
+E
+fire~
+The blade of the dagger is coated in a pale blue flame, which glows
+softly.  
+~
 E
 dagger~
 A dagger made from the molten rock of Troll mountain.  The blade still
 burns with the heat of the stone from which it was forged.  A pale blue
 flame encompasses the sharpeded blade.  
-~
-E
-fire~
-The blade of the dagger is coated in a pale blue flame, which glows
-softly.  
 ~
 #2023
 fire ball~
@@ -1029,19 +1029,19 @@ reserved~
 0 0
 0 0 0
 A
-4 2
-A
 17 -45
-E
-ball~
-A curious item,.  This hovering ball of flame.  It seems to follow you
-around as you move, hovering a foot above your head.  It sparks and sputters
-occasionally.  
-~
+A
+4 2
 E
 fire~
 A curious item, this floating ball of flame.  It seems to follow you
 around as you move, hovering a foot above your head.  It sparks and sputers
+occasionally.  
+~
+E
+ball~
+A curious item,.  This hovering ball of flame.  It seems to follow you
+around as you move, hovering a foot above your head.  It sparks and sputters
 occasionally.  
 ~
 #2024
@@ -1057,9 +1057,9 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
 1 2
+A
+24 -5
 #2025
 shield ice~
 a shield of ice~
@@ -1073,11 +1073,11 @@ reserved~
 0 0
 0 0 0
 A
-12 60
+17 -60
 A
 1 -2
 A
-17 -60
+12 60
 #2026
 armguards ice~
 a pair of ice armguards~
@@ -1091,9 +1091,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -58
-A
 2 -1
+A
+17 -58
 #2027
 leggings ice~
 a pair of ice leggings~
@@ -1107,11 +1107,11 @@ reserved~
 0 0
 0 0 0
 A
-12 -10
+4 2
 A
 13 55
 A
-4 2
+12 -10
 #2028
 ice platemail plate~
 ice platemail~
@@ -1125,9 +1125,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
 12 30
+A
+17 -30
 #2029
 fur cloak~
 a lion's fur coat~
@@ -1141,11 +1141,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -10
+23 -2
 A
 24 -2
 A
-23 -2
+17 -10
 #2030
 snowball~
 a snowball~
@@ -1159,9 +1159,9 @@ reserved~
 0 0
 0 0 0
 A
-23 -10
-A
 12 40
+A
+23 -10
 #2031
 ice helm~
 ice helm~
@@ -1175,9 +1175,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -15
-A
 13 55
+A
+17 -15
 #2032
 icicle~
 an Icicle~
@@ -1191,11 +1191,11 @@ reserved~
 0 0
 0 0 0
 A
-13 40
+18 14
 A
 19 18
 A
-18 14
+13 40
 #2033
 ice pick~
 an ice pick~
@@ -1209,13 +1209,13 @@ reserved~
 0 0
 0 0 0
 A
-12 50
-A
-2 -1
+19 15
 A
 18 15
 A
-19 15
+2 -1
+A
+12 50
 #2034
 ice claw~
 an ice claw~
@@ -1229,11 +1229,11 @@ fireball~
 0 0
 0 0 0
 A
-13 30
+18 15
 A
 19 25
 A
-18 15
+13 30
 #2035
 river~
 troll river~
@@ -1281,14 +1281,14 @@ reserved~
 0 0
 0 0 0
 E
-spring~
-This water comes from an underground resevoir, heated by the currents of
-molten rock around you.  
-~
-E
 hot~
 This water is warm to the touch.  You don't know if you should drink or
 bathe here.  
+~
+E
+spring~
+This water comes from an underground resevoir, heated by the currents of
+molten rock around you.  
 ~
 #2038
 ice pond~
@@ -1393,13 +1393,13 @@ reserved~
 0 0
 0 0 0
 E
-dagger~
+death~
 The dagger is made of a dark, quartz like substance that has been filed
 to a sharp point.  It's black surface gleams with an eerie glow, seeming to
 eminate from the single red jewel in the hilt.  
 ~
 E
-death~
+dagger~
 The dagger is made of a dark, quartz like substance that has been filed
 to a sharp point.  It's black surface gleams with an eerie glow, seeming to
 eminate from the single red jewel in the hilt.  
@@ -2279,7 +2279,7 @@ small holes in the ceiling that you can feel a soft breeze bring in fresh
 air to this otherwise hot stale place.  You may go north further into the
 tower or head back down.
 ~
-0 8 0
+0 1073741832 0
 Rd     0
 D0
 ~
@@ -2300,7 +2300,7 @@ up here, closer to the air vents.  The floor of this cavern is translucent
 because of the intense heat of the lava below.  There are two unmarked doors
 here: One to the east, the other to the west.  
 ~
-0 8 0
+0 1073741832 0
 Rd     0
 D1
 ~
@@ -2323,7 +2323,7 @@ tresspassing in his private room.  The room is actually quite comfortable,
 and the windows give an excellent view of the cavern, as well as a steady
 supply of fresh air.  The only exit is the door to the east.  
 ~
-0 8 0
+0 1073741832 0
 Rd     0
 D1
 ~
@@ -2340,7 +2340,7 @@ view of the cavern from here.  It is really amazing how the trolls used the
 natural stalactites and stalagmites to form the walls of the passageways.  
 The only exit is the door you entered to the west. 
 ~
-0 8 0
+0 1073741832 0
 Rd     0
 D3
 ~

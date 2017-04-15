@@ -763,16 +763,16 @@ reserved~
 0 0
 0 0 0
 E
-key~
-A twisted piece of wood, looks very much like a key
+wood~
+A twisted piece of wood, looks very much like a key.
 ~
 E
 twisted~
 A twisted piece of wood, looks very much like a key.
 ~
 E
-wood~
-A twisted piece of wood, looks very much like a key.
+key~
+A twisted piece of wood, looks very much like a key
 ~
 #9501
 spring~
@@ -823,11 +823,7 @@ reserved~
 A
 13 10
 E
-skin~
-A bearskin pelt looks as if it would offer some protection from the cold 
-~
-E
-bear~
+pelt~
 A bearskin pelt looks as if it would offer some protection from the cold 
 ~
 E
@@ -835,7 +831,11 @@ bearskin~
 A bearskin pelt looks as if it would offer some protection from the cold 
 ~
 E
-pelt~
+bear~
+A bearskin pelt looks as if it would offer some protection from the cold 
+~
+E
+skin~
 A bearskin pelt looks as if it would offer some protection from the cold 
 ~
 #9504
@@ -851,24 +851,24 @@ reserved~
 0 0
 0 0 0
 A
-19 54
-A
 18 43
+A
+19 54
 E
-elven~
-This is a finely made sword that is exceptionally sharp.  
+blade~
+This is a finely made sword that is exceptionally sharp.
 ~
 E
 sword~
 This is a finely made sword that is exceptionally sharp.
 ~
 E
-blade~
-This is a finely made sword that is exceptionally sharp.
+elven~
+This is a finely made sword that is exceptionally sharp.  
 ~
 #9505
 satchel bag~
-&Oa leather satchel&X~
+&Oa leather satchel&W~
 A leather satchel lies here.~
 ~
 15 268435520 0 0 1 10
@@ -879,12 +879,12 @@ reserved~
 0 0
 0 0 0
 E
-satchel ~
+bag~
 This is a handmade satchel crafted out of soft leather.  It seems able to
 carry a great deal of weight without tearing.  
 ~
 E
-bag~
+satchel ~
 This is a handmade satchel crafted out of soft leather.  It seems able to
 carry a great deal of weight without tearing.  
 ~
@@ -901,18 +901,18 @@ reserved~
 0 0
 0 0 0
 A
-17 -21
+19 21
 A
 18 30
 A
-19 21
+17 -21
 E
-gauche~
+dagger~
 This dagger is used as a parrying weapon, most often held in the left
 hand or your off-hand.  
 ~
 E
-dagger~
+gauche~
 This dagger is used as a parrying weapon, most often held in the left
 hand or your off-hand.  
 ~
@@ -929,16 +929,16 @@ reserved~
 0 0
 0 0 0
 A
-24 -1
-A
 17 -27
+A
+24 -1
 E
-mottled~
+tunic~
 This is a tunic of mottled greens and browns, providing good camouflage
 in the forests.  
 ~
 E
-tunic~
+mottled~
 This is a tunic of mottled greens and browns, providing good camouflage
 in the forests.  
 ~
@@ -971,11 +971,11 @@ reserved~
 0 0
 0 0 0
 E
-blue~
+vial~
 This vial contains some kind of liquid, held in by a small cork.
 ~
 E
-vial~
+blue~
 This vial contains some kind of liquid, held in by a small cork.
 ~
 #9510
@@ -991,11 +991,11 @@ reserved~
 0 0
 0 0 0
 E
-red~
+vial~
 This red vial is corked up to prevent the liquid from spilling.
 ~
 E
-vial~
+red~
 This red vial is corked up to prevent the liquid from spilling.
 ~
 #9511
@@ -1023,9 +1023,9 @@ reserved~
 0 0
 0 0 0
 A
-18 28
-A
 19 30
+A
+18 28
 E
 sword~
 This is a basic issue guard sword bearing the crest of the Fortress.
@@ -1067,11 +1067,11 @@ reserved~
 0 0
 0 0 0
 E
-loaf~
+bread~
 This loaf of bread will still your hunger for a while, and it smells wonderful!
 ~
 E
-bread~
+loaf~
 This loaf of bread will still your hunger for a while, and it smells wonderful!
 ~
 #9516
@@ -1087,11 +1087,11 @@ reserved~
 0 0
 0 0 0
 E
-lamb~
+leg~
 A tempting leg of smoked lamb smells wonderful.
 ~
 E
-leg~
+lamb~
 A tempting leg of smoked lamb smells wonderful.
 ~
 #9517
@@ -1107,11 +1107,11 @@ reserved~
 0 0
 0 0 0
 E
-wooden~
+shield~
 This wooden shield has markings of the Fortress carved in it.
 ~
 E
-shield~
+wooden~
 This wooden shield has markings of the Fortress carved in it.
 ~
 #9518
@@ -1127,15 +1127,15 @@ reserved~
 0 0
 0 0 0
 A
-26 4
-A
-17 -40
+19 43
 A
 18 50
 A
-19 43
+17 -40
+A
+26 4
 E
-blade~
+gauntlet~
 This gauntlet is made out of the finest metal, marked with the Fortress champion crest.
 ~
 E
@@ -1143,7 +1143,7 @@ bladed~
 This gauntlet is made out of the finest metal, marked with the Fortress champion crest.
 ~
 E
-gauntlet~
+blade~
 This gauntlet is made out of the finest metal, marked with the Fortress champion crest.
 ~
 #9519
@@ -1159,7 +1159,7 @@ reserved~
 0 0
 0 0 0
 E
-hauberk~
+chain~
 Thousands of small chain links produce this fine shirt, offering a fair
 amount of protection.  
 ~
@@ -1169,7 +1169,7 @@ Thousands of small chain links produce this fine shirt, offering a fair
 amount of protection.  
 ~
 E
-chain~
+hauberk~
 Thousands of small chain links produce this fine shirt, offering a fair
 amount of protection.  
 ~
@@ -1186,11 +1186,11 @@ fly~
 0 0
 0 0 0
 A
-110 -1
+13 -20
 A
 17 20
 A
-13 -20
+110 -1
 #9521
 pitchfork~
 a pitchfork~
@@ -1204,9 +1204,9 @@ reserved~
 0 0
 0 0 0
 A
-18 20
-A
 19 25
+A
+18 20
 E
 pitchfork~
 The wooden handle is worn from frequent use, the metal tines are sharp.
@@ -1226,7 +1226,7 @@ reserved~
 A
 2 1
 E
-splint~
+jacket~
 The splint mail doesn't restrict your movements, the way it's designed
 it's a good armor as well as comfortable to wear.  
 ~
@@ -1236,7 +1236,7 @@ The splint mail doesn't restrict your movements, the way it's designed
 it's a good armor as well as comfortable to wear.  
 ~
 E
-jacket~
+splint~
 The splint mail doesn't restrict your movements, the way it's designed
 it's a good armor as well as comfortable to wear.  
 ~
@@ -1255,12 +1255,12 @@ reserved~
 A
 17 -10
 E
-chain~
+coif~
 The coif is made with a fine mesh of chained links, providing protection
 to your head.  
 ~
 E
-coif~
+chain~
 The coif is made with a fine mesh of chained links, providing protection
 to your head.  
 ~
@@ -1277,17 +1277,17 @@ reserved~
 0 0
 0 0 0
 A
-18 17
+19 10
 A
 17 -5
 A
-19 10
+18 17
 E
-pick~
+military~
 A metal spearhead is attached to the end of this long wooden shaft.
 ~
 E
-military~
+pick~
 A metal spearhead is attached to the end of this long wooden shaft.
 ~
 #9525
@@ -1303,11 +1303,11 @@ reserved~
 0 0
 0 0 0
 A
-2 1
+19 25
 A
 18 30
 A
-19 25
+2 1
 E
 steel sabre~
 A dagger-sized weapon with a slight curve to the blade. It would be perfect
@@ -1328,13 +1328,13 @@ giant strength~
 A
 1 2
 E
+power~
+This broad leather belt has been enchanted, making it hum.
+~
+E
 belt~
 This broad leather belt has been enchanted, making it hum.
 Upon closer examination, you notice a tag that says; One size fits all.
-~
-E
-power~
-This broad leather belt has been enchanted, making it hum.
 ~
 #9527
 dagger silver~
@@ -1349,19 +1349,19 @@ reserved~
 0 0
 0 0 0
 A
-19 35
+24 1
 A
 18 35
 A
-24 1
+19 35
+E
+dagger~
+This dagger is made of 100% silver, it almost shines by itself. It's ornated with small red stones around the hilt.
+~
 E
 silver ~
 This dagger is made of 100% silver, it almost shines by itself.  It's
 ornated with small red stones around the hilt.  
-~
-E
-dagger~
-This dagger is made of 100% silver, it almost shines by itself. It's ornated with small red stones around the hilt.
 ~
 #9528
 rapier sword~
@@ -1376,17 +1376,17 @@ reserved~
 0 0
 0 0 0
 A
-18 43
+19 35
 A
 26 3
 A
-19 35
+18 43
 E
-sword~
+rapier~
 This is a finely made iron rapier, the handle carries the Fortress crest on it.
 ~
 E
-rapier~
+sword~
 This is a finely made iron rapier, the handle carries the Fortress crest on it.
 ~
 #9529
@@ -1402,12 +1402,12 @@ reserved~
 0 0
 0 0 0
 E
-statue~
+fountain~
 The fountain is dominated by a large bronze statue, displaying Lord Tyrus
 on his steed.  
 ~
 E
-fountain~
+statue~
 The fountain is dominated by a large bronze statue, displaying Lord Tyrus
 on his steed.  
 ~
@@ -1424,11 +1424,11 @@ reserved~
 0 0
 0 0 0
 E
-iron~
+key~
 This is a simple key, but made to last. 
 ~
 E
-key~
+iron~
 This is a simple key, but made to last. 
 ~
 #9531
@@ -1444,15 +1444,15 @@ reserved~
 0 0
 0 0 0
 A
-102 -1
-A
 5 2
+A
+102 -1
 E
-sash~
+silk~
 This fine sash is spun from a deep red silk, smooth to touch and nice to wear.
 ~
 E
-silk~
+sash~
 This fine sash is spun from a deep red silk, smooth to touch and nice to wear.
 ~
 #9532
@@ -1468,20 +1468,20 @@ reserved~
 0 0
 9538 0 0
 A
-19 56
+12 40
 A
 18 64
 A
-12 40
-E
-glove~
-The glove glowes softly, almost creating a light by itself.  Looking
-closer you see only half of the Fortress crest upon it.  
-~
+19 56
 E
 chaos~
 The glove glows softly, almost creating a light by itself. Looking
 closer, you see only half of the Fortress crest upon it.
+~
+E
+glove~
+The glove glowes softly, almost creating a light by itself.  Looking
+closer you see only half of the Fortress crest upon it.  
 ~
 #9533
 bracer rune black~
@@ -1496,11 +1496,11 @@ reserved~
 0 0
 0 0 0
 A
-12 40
-A
 17 -40
+A
+12 40
 E
-rune~
+black~
 The bracer is made of fine polished wood, runes cover most of it's
 surface.  
 ~
@@ -1510,7 +1510,7 @@ The bracer is made of fine polished wood, runes cover most of it's
 surface.  
 ~
 E
-black~
+rune~
 The bracer is made of fine polished wood, runes cover most of it's
 surface.  
 ~
@@ -1539,11 +1539,11 @@ reserved~
 0 0
 0 0 0
 E
-key~
+rune~
 The key is marked with strange runes. 
 ~
 E
-rune~
+key~
 The key is marked with strange runes. 
 ~
 #9536
@@ -1559,13 +1559,13 @@ reserved~
 0 0
 0 0 0
 E
-scrap~
+parchment~
 Taking a close look at the parchment you see all kinds of symbols and
 words.  Down near the bottom of the scrap there is a passage that has what
 looks to be a translation.  It says: Gain the wisdom of a warrior.  
 ~
 E
-parchment~
+scrap~
 Taking a close look at the parchment you see all kinds of symbols and
 words.  Down near the bottom of the scrap there is a passage that has what
 looks to be a translation.  It says: Gain the wisdom of a warrior.  
@@ -1583,18 +1583,18 @@ reserved~
 0 0
 9538 0 0
 A
-19 82
+26 4
 A
 18 66
 A
-26 4
+19 82
 E
-order~
+blade~
 The short blade has an oddly shaped handle, looking closer you see it
 carries only half of the Fortress crest.  
 ~
 E
-blade~
+order~
 The short blade has an oddly shaped handle, looking closer you see it
 carries only half of the Fortress crest.  
 ~
@@ -1611,15 +1611,15 @@ reserved~
 0 0
 0 9532 9537
 A
-26 4
-A
-17 -35
+19 72
 A
 18 65
 A
-19 72
+17 -35
+A
+26 4
 E
-harmony~
+blade~
 Having fitted the blade into the glove, has created a powerful weapon. 
 The Fortress crest is complete, inscribed with the words: "Togehter in
 harmony, order and chaos bring power."  
@@ -1631,7 +1631,7 @@ The Fortress crest is complete, inscribed with the words: "Togehter in
 harmony, order and chaos bring power."  
 ~
 E
-blade~
+harmony~
 Having fitted the blade into the glove, has created a powerful weapon. 
 The Fortress crest is complete, inscribed with the words: "Togehter in
 harmony, order and chaos bring power."  
@@ -1649,17 +1649,17 @@ reserved~
 0 0
 0 0 0
 A
-19 72
+121 -1
 A
 18 56
 A
-121 -1
+19 72
 E
-mace~
+holy~
 The mace is made out of fine silver, the handle is crested with holy symbols.
 ~
 E
-holy~
+mace~
 The mace is made out of fine silver, the handle is crested with holy symbols.
 ~
 #9540
@@ -1675,15 +1675,15 @@ bless~
 0 0
 0 0 0
 A
-12 40
-A
 17 -40
+A
+12 40
 E
-holy~
+belt~
 It's a simple rope, used as a belt. It glows from being blessed by a priest.
 ~
 E
-belt~
+holy~
 It's a simple rope, used as a belt. It glows from being blessed by a priest.
 ~
 #9541
@@ -1715,11 +1715,11 @@ pick lock~
 A
 124 -1
 E
-thieves~
+gloves ~
 These leather gloves are just about worn out from use. 
 ~
 E
-gloves ~
+thieves~
 These leather gloves are just about worn out from use. 
 ~
 #9543
@@ -1735,20 +1735,20 @@ reserved~
 0 0
 0 0 0
 A
-2 1
-A
-17 -34
+19 45
 A
 18 50
 A
-19 45
+17 -34
+A
+2 1
 E
-dagger~
+tri-bladed~
 This three bladed dagger is polished to a fine sheen.  It is extremely
 light and designed to catch the blow of thine enemies weapon. 
 ~
 E
-tri-bladed~
+dagger~
 This three bladed dagger is polished to a fine sheen.  It is extremely
 light and designed to catch the blow of thine enemies weapon. 
 ~
@@ -1765,16 +1765,16 @@ reserved~
 0 0
 0 0 0
 A
-2 1
-A
 17 -40
+A
+2 1
 E
-chainmail~
+drow~
 This chainmail is a work  of art, made of drows. Being able to use metal, they have created a mail shirt that provides good protection.
 Their work is almost identical to their elven cousins.
 ~
 E
-drow~
+chainmail~
 This chainmail is a work  of art, made of drows. Being able to use metal, they have created a mail shirt that provides good protection.
 Their work is almost identical to their elven cousins.
 ~
@@ -1791,11 +1791,11 @@ reserved~
 0 0
 0 0 0
 A
-13 40
-A
 2 2
+A
+13 40
 E
-shadowhelm~
+helm~
 You can't make out what material this helm is made of.  Being
 transparent, it swirls with shadows.  
 ~
@@ -1805,7 +1805,7 @@ You can't make out what material this helm is made of.  Being
 transparent, it swirls with shadows.  
 ~
 E
-helm~
+shadowhelm~
 You can't make out what material this helm is made of.  Being
 transparent, it swirls with shadows.  
 ~
@@ -1824,11 +1824,11 @@ turn undead~
 A
 12 20
 E
-symbol~
+holy~
 The holy symbol bares many signs, which only the maker can translate. 
 ~
 E
-holy~
+symbol~
 The holy symbol bares many signs, which only the maker can translate. 
 ~
 #9547
@@ -1844,15 +1844,11 @@ reserved~
 0 0
 0 0 0
 A
-24 2
-A
 17 -31
+A
+24 2
 E
-mail~
-The overlapping scales is made of metal, creating a good armor. 
-~
-E
-scalemail~
+scale~
 The overlapping scales is made of metal, creating a good armor. 
 ~
 E
@@ -1860,7 +1856,11 @@ shirt~
 The overlapping scales is made of metal, creating a good armor. 
 ~
 E
-scale~
+scalemail~
+The overlapping scales is made of metal, creating a good armor. 
+~
+E
+mail~
 The overlapping scales is made of metal, creating a good armor. 
 ~
 #9548
@@ -1876,13 +1876,13 @@ reserved~
 0 0
 0 0 0
 A
-26 3
+19 43
 A
 18 40
 A
-19 43
+26 3
 E
-plain~
+silver ~
 The silver sword has been polished to shine and have a few dents after use.
 Other then that, it is a pretty simple but effective sword.
 ~
@@ -1892,7 +1892,7 @@ The silver sword has been polished to shine and have a few dents after use.
 Other then that, it is a pretty simple but effective sword.
 ~
 E
-silver ~
+plain~
 The silver sword has been polished to shine and have a few dents after use.
 Other then that, it is a pretty simple but effective sword.
 ~
@@ -1909,7 +1909,7 @@ reserved~
 0 0
 0 0 0
 E
-tunic~
+livery~
 This is a woolen tunic, with the colorful crest of the Fortress.
 ~
 E
@@ -1917,7 +1917,7 @@ fortress~
 This is a woolen tunic, with the colorful crest of the Fortress.
 ~
 E
-livery~
+tunic~
 This is a woolen tunic, with the colorful crest of the Fortress.
 ~
 #9550
@@ -1951,17 +1951,17 @@ reserved~
 0 0
 0 0 0
 A
-19 51
-A
 18 48
+A
+19 51
 E
-sword~
+katana~
 This is a long thin-bladed sword, with a slight curve.  The hilt is
 tightly wrapped with leather cord.  It appears to be made of hardened steel
 and polished to a shine.  The edge is razor sharp.  
 ~
 E
-katana~
+sword~
 This is a long thin-bladed sword, with a slight curve.  The hilt is
 tightly wrapped with leather cord.  It appears to be made of hardened steel
 and polished to a shine.  The edge is razor sharp.  
@@ -1979,17 +1979,17 @@ reserved~
 0 0
 0 0 0
 A
-19 49
-A
 18 55
+A
+19 49
 E
-wakizashi~
+dagger~
 This is a long thin-bladed dagger, with a slight curve.  The hilt is
 tightly wrapped with leather cord.  It appears to be made of hardened steel
 and polished to a shine.  The edge is razor sharp.  
 ~
 E
-dagger~
+wakizashi~
 This is a long thin-bladed dagger, with a slight curve.  The hilt is
 tightly wrapped with leather cord.  It appears to be made of hardened steel
 and polished to a shine.  The edge is razor sharp.  
@@ -2007,15 +2007,15 @@ charm person~
 0 0
 0 0 0
 A
-13 25
-A
 12 25
+A
+13 25
 E
-ruby~
+ring~
 The ring is a simple band of silver encrusted with a large red ruby.
 ~
 E
-ring~
+ruby~
 The ring is a simple band of silver encrusted with a large red ruby.
 ~
 #9554
@@ -2031,13 +2031,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -2
+2 -1
 A
 14 30
 A
-2 -1
+24 -2
 E
-gown~
+velvet~
 An elegant gown made from a deep green velvet.  It is hemmed with golden
 lace.  
 ~
@@ -2047,7 +2047,7 @@ An elegant gown made from a deep green velvet.  It is hemmed with golden
 lace.  
 ~
 E
-velvet~
+gown~
 An elegant gown made from a deep green velvet.  It is hemmed with golden
 lace.  
 ~
@@ -2064,11 +2064,11 @@ reserved~
 0 0
 0 0 0
 E
-key~
+iron~
 This is a simple iron key used to unlock doors.
 ~
 E
-iron~
+key~
 This is a simple iron key used to unlock doors.
 ~
 #9556
@@ -2084,11 +2084,11 @@ reserved~
 0 0
 0 0 0
 E
-flask~
+tin~
 This flask is designed to hold liquids.
 ~
 E
-tin~
+flask~
 This flask is designed to hold liquids.
 ~
 #9557
@@ -2104,16 +2104,16 @@ reserved~
 0 0
 0 0 0
 E
-meat~
-This beef looks rancid and gives off a strong odor.
+side~
+This beef looks rancid and give off a strong odor.
 ~
 E
 beef~
 This beef looks rancid and give off a strong odor.
 ~
 E
-side~
-This beef looks rancid and give off a strong odor.
+meat~
+This beef looks rancid and gives off a strong odor.
 ~
 #9558
 bread loaf~
@@ -2128,11 +2128,11 @@ reserved~
 0 0
 0 0 0
 E
-bread~
+loaf~
 The bread smells fresh and looks tasty.
 ~
 E
-loaf~
+bread~
 The bread smells fresh and looks tasty.
 ~
 #9559
@@ -2148,9 +2148,9 @@ reserved~
 0 0
 0 0 0
 E
-knapsack knap~
-The knap has two shoulder straps designed to be worn on the back. It looks
-to be able to hold an average amount of supplies.
+leather~
+The knap has two shoulder straps designed to be worn on the back.  It
+looks to be able to hold an average amount of supplies. 
 ~
 E
 sack~
@@ -2158,9 +2158,9 @@ The knap has two shoulder straps designed to be worn on the back.  It
 looks to be able to hold an average amount of supplies. 
 ~
 E
-leather~
-The knap has two shoulder straps designed to be worn on the back.  It
-looks to be able to hold an average amount of supplies. 
+knapsack knap~
+The knap has two shoulder straps designed to be worn on the back. It looks
+to be able to hold an average amount of supplies.
 ~
 #9560
 horseshoe shoe~
@@ -2177,14 +2177,14 @@ sanctuary~
 A
 24 -2
 E
-horseshoe~
-Ohh, horseshoes are supposed to bring luck right? How lucky you are, you
-are the proud owner of a shiny silver horseshoe!
-~
-E
 shoe~
 Ohh, horseshoes are supposed to bring luck right?  How lucky you are,
 you are the proud owner of a shiny silver horseshoe!  
+~
+E
+horseshoe~
+Ohh, horseshoes are supposed to bring luck right? How lucky you are, you
+are the proud owner of a shiny silver horseshoe!
 ~
 #9561
 bucket~
@@ -2545,10 +2545,8 @@ You notice no distinct activity or movement.
 0 4 3
 Rd     0
 E
-tree~
-Upon closer examination of the tree you see a small &Ghole&W carved into
-the trunk, and looking up you see what appears to be a &Gtrapdoor&W through
-a huge branch.  
+hole~
+It's just a carved hole, might it have something to do with the trapdoor?  
 ~
 E
 trapdoor~
@@ -2556,8 +2554,10 @@ You see a trapdoor way up there, creating an opening through the huge
 branch.  Now how to get up there?  
 ~
 E
-hole~
-It's just a carved hole, might it have something to do with the trapdoor?  
+tree~
+Upon closer examination of the tree you see a small &Ghole&W carved into
+the trunk, and looking up you see what appears to be a &Gtrapdoor&W through
+a huge branch.  
 ~
 D0
 ~
@@ -2827,13 +2827,13 @@ the ground here.
 0 0 0
 Rd     0
 E
+trapdoor~
+It doesn't seem to be locked!  Wow, can you believe your luck here?  
+~
+E
 walkway~
 Looking closer here, you suddenly notice a faint outline of a
 &Ytrapdoor&W above your head!  Your curiosity finally pays off!  
-~
-E
-trapdoor~
-It doesn't seem to be locked!  Wow, can you believe your luck here?  
 ~
 D2
 ~
@@ -2856,18 +2856,8 @@ The window is closed, still you feel a cool draft coming from the Northern
 0 0 0
 Rd     0
 E
-trapdoor~
-A trapdoor leads down.  
-~
-E
-wall~
-As you slide your hands over the wall to see where the draft comes from,
-you notice a small &Phole&W!  
-~
-E
-hole~
-Peeking into the hole you see the contours of something, now how to get
-in there...  Must be a &Ydoor&W here somewhere?  
+secret~
+Try opening it! Duh....
 ~
 E
 door~
@@ -2875,8 +2865,18 @@ After intensely searching the wall, you find a &Psecret &Wdoor&W!  This
 just MUST be your lucky day!  
 ~
 E
-secret~
-Try opening it! Duh....
+hole~
+Peeking into the hole you see the contours of something, now how to get
+in there...  Must be a &Ydoor&W here somewhere?  
+~
+E
+wall~
+As you slide your hands over the wall to see where the draft comes from,
+you notice a small &Phole&W!  
+~
+E
+trapdoor~
+A trapdoor leads down.  
 ~
 D0
 A door is hidden here in the north wall.
@@ -2904,12 +2904,12 @@ North goes back to the what appears to be a living room.
 0 0 0
 Rd     0
 E
-chest~
-It's rotted and obviously empty.  
-~
-E
 mattress~
 Ewww!  Stains of...  Whatever, and it smells!  
+~
+E
+chest~
+It's rotted and obviously empty.  
 ~
 D0
 ~
@@ -2997,13 +2997,13 @@ cover the ground.
 0 12 0
 Rd     0
 E
-gate~
-The thick reinforced Gate leads out to the Pass between the Cliffs.  
-~
-E
 portcullis~
 This heavy portcullis is leading into the Fortress Courtyard.  Looking in
 you see the Courtyard bustling with activity.  
+~
+E
+gate~
+The thick reinforced Gate leads out to the Pass between the Cliffs.  
 ~
 D1
 A portcullis is here in the east.
@@ -3026,12 +3026,12 @@ is flourished with decorative plants and flowers.
 0 0 0
 Rd     0
 E
-portcullis~
-The Portcullis protects the Fortress from any attacks.  
-~
-E
 door~
 There is a sign on the door that reads: &RGUARD BARRACKS 
+~
+E
+portcullis~
+The Portcullis protects the Fortress from any attacks.  
 ~
 D1
 ~
@@ -3097,13 +3097,13 @@ plaque on it dominates the wall.
 0 8 0
 Rd     0
 E
-plaque~
-The plaque reads: "Captain Zand Weg, Fortress Champion"
-~
-E
 door~
 A Silver Plaque is attached to the door.  It reads: "Captain Zand Werg,
 Fortress Champion" 
+~
+E
+plaque~
+The plaque reads: "Captain Zand Weg, Fortress Champion"
 ~
 D0
 ~
@@ -3514,6 +3514,12 @@ East.  You hear a loud &GSqueak&g!
 0 1 0
 Rd     0
 E
+squeak~
+As you look for the source of the sound you see two rats fighting over a
+scrap of paper..  As you move closer they forget about the &Opaper&W and
+flee in fear.  
+~
+E
 paper~
 Things to do:
 get eggs from market
@@ -3522,12 +3528,6 @@ do the washing
 get horseshoe back from Asgorn
 get fresh fruit for Ambassador's visit
 clean the royal throne
-~
-E
-squeak~
-As you look for the source of the sound you see two rats fighting over a
-scrap of paper..  As you move closer they forget about the &Opaper&W and
-flee in fear.  
 ~
 D3
 ~
@@ -4046,12 +4046,12 @@ floor.
 0 8 0
 Rd     0
 E
-wall ~
+glyphs~
 You notice the runes become irregular at one point, and looking at the
 floor you see half-moon scrape marks.  
 ~
 E
-glyphs~
+wall ~
 You notice the runes become irregular at one point, and looking at the
 floor you see half-moon scrape marks.  
 ~

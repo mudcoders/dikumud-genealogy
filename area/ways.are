@@ -486,14 +486,14 @@ reserved~
 0 0
 0 0 0
 A
-13 65
-A
 24 -2
+A
+13 65
 E
-armour~
-&WA full suit of crystal is very heavy and seems to have been made for quite
+armor~
+&WA full suit of crystal if very heavy and seems to have been made for quite
 a large creature. Better wear some other clothing under this thing, you can
-see right through it!
+see right through it! Crystal clear.
 ~
 E
 crystal~
@@ -502,10 +502,10 @@ a large creature. Better wear some other clothing under this thing, you can
 see right through it! Crystal clear.
 ~
 E
-armor~
-&WA full suit of crystal if very heavy and seems to have been made for quite
+armour~
+&WA full suit of crystal is very heavy and seems to have been made for quite
 a large creature. Better wear some other clothing under this thing, you can
-see right through it! Crystal clear.
+see right through it!
 ~
 #15102
 bracelet crystal~
@@ -520,16 +520,16 @@ reserved~
 0 0
 0 0 0
 A
-23 -2
-A
 12 40
+A
+23 -2
 E
-crystal~
+bracelet~
 &WA beautifully crafted crystal bracelet is fairly large in size. It is
 crystal clear, and has not a nick to speak of.
 ~
 E
-bracelet~
+crystal~
 &WA beautifully crafted crystal bracelet is fairly large in size. It is
 crystal clear, and has not a nick to speak of.
 ~
@@ -546,17 +546,17 @@ reserved~
 0 0
 0 0 0
 A
-12 50
+19 75
 A
 18 60
 A
-19 75
+12 50
 E
-crystal~
+scythe~
 &WThe scythe is made purely of crystal, hilt and all.
 ~
 E
-scythe~
+crystal~
 &WThe scythe is made purely of crystal, hilt and all.
 ~
 #15104
@@ -572,12 +572,12 @@ fireball~
 2 2
 0 0 0
 A
-1 2
-A
 13 40
+A
+1 2
 E
-flaming~
-&TThe &Ccold&Rfire leash looks to be a regular leash at first glance. But
+leash~
+&RThe &Ccold&Rfire leash looks to be a regular leash at first glance. But
 looking upon it for a longer period of time, you see that an unfelt flame
 burns red, and blue in all different hues.
 ~
@@ -588,8 +588,8 @@ looking upon it for a longer period of time, you see that an unfelt flame
 burns red, and blue in all different hues.
 ~
 E
-leash~
-&RThe &Ccold&Rfire leash looks to be a regular leash at first glance. But
+flaming~
+&TThe &Ccold&Rfire leash looks to be a regular leash at first glance. But
 looking upon it for a longer period of time, you see that an unfelt flame
 burns red, and blue in all different hues.
 ~
@@ -606,15 +606,15 @@ sanctuary~
 2 2
 0 0 0
 A
-12 40
-A
 13 25
+A
+12 40
 E
-crystal~
+prism~
 &WA beautifully clear prism in the shape of a glass shard.
 ~
 E
-prism~
+crystal~
 &WA beautifully clear prism in the shape of a glass shard.
 ~
 #15106
@@ -630,13 +630,13 @@ reserved~
 0 0
 0 0 0
 A
-13 40
-A
 12 40
+A
+13 40
 E
-grey~
-&wThe robes are grey in colour and made from a simple broadcloth. They
-are light in weight, and human sized.
+cloth~
+&wThe robes are made of a simple grey broadcloth. They are light in weight
+and human sized.
 ~
 E
 robes~
@@ -644,9 +644,9 @@ robes~
 are light in weight, and human sized.
 ~
 E
-cloth~
-&wThe robes are made of a simple grey broadcloth. They are light in weight
-and human sized.
+grey~
+&wThe robes are grey in colour and made from a simple broadcloth. They
+are light in weight, and human sized.
 ~
 #15107
 mask disfigured~
@@ -661,21 +661,21 @@ reserved~
 0 0
 0 0 0
 A
-13 60
-A
-24 -5
+4 -1
 A
 3 -1
 A
-4 -1
+24 -5
+A
+13 60
 E
-disfigured~
+mask~
 &OThe mask.. at least you think it's supposed to be a mask... is horribly
 disfigured. You can't even tell which way is up, so you may be wearing it
 upside down when you put it on for all you know.
 ~
 E
-mask~
+disfigured~
 &OThe mask.. at least you think it's supposed to be a mask... is horribly
 disfigured. You can't even tell which way is up, so you may be wearing it
 upside down when you put it on for all you know.
@@ -693,14 +693,14 @@ reserved~
 0 0
 0 0 0
 A
-12 50
-A
 24 -1
+A
+12 50
 E
-corrupt~
-&gA strange glyph (you cannot decipher it's meaning, for it is very ancient)
-feels as though it is made of a clay-like substance. Although, this does not
-feel like any clay you've had your hands on.
+glyph~
+&gA strange glyph (you cannot decipher it's meaning, for it is very ancient) is
+made of a clay-type of material. Although, to your knowledge, this is not
+like any clay you have felt.
 ~
 E
 corruption~
@@ -709,10 +709,10 @@ made of a clay-liek material. Although, to your knowledge, this does not feel
 like any clay you've ever felt.
 ~
 E
-glyph~
-&gA strange glyph (you cannot decipher it's meaning, for it is very ancient) is
-made of a clay-type of material. Although, to your knowledge, this is not
-like any clay you have felt.
+corrupt~
+&gA strange glyph (you cannot decipher it's meaning, for it is very ancient)
+feels as though it is made of a clay-like substance. Although, this does not
+feel like any clay you've had your hands on.
 ~
 #15109
 medallion flaming~
@@ -727,15 +727,15 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
 25 17
+A
+13 50
 E
-flaming~
+medallion~
 &rA medallion necklace burns coldly with an unfelt flame.
 ~
 E
-medallion~
+flaming~
 &rA medallion necklace burns coldly with an unfelt flame.
 ~
 #15110
@@ -751,18 +751,18 @@ reserved~
 0 0
 0 0 0
 A
-5 2
+13 60
 A
 1 2
 A
-13 60
+5 2
 E
-collar~
+silk~
 &pA soft silken collar is purple in colour. It is also quite long in length...
 you may have to wrap it a number of times to make it fit.
 ~
 E
-silk~
+collar~
 &pA soft silken collar is purple in colour. It is also quite long in length...
 you may have to wrap it a number of times to make it fit.
 ~
@@ -779,18 +779,13 @@ astral walk~
 2 2
 0 0 0
 A
-12 40
-A
 24 -3
+A
+12 40
 E
-way~
-&YA plain golden band... with a line engraved through it. It is about 10mm
-(1/4 of an inch) thick.
-~
-E
-ring~
-&YA plain golden band... with a line engraved through it. It is about 10mm
-(1/4 of an inch) thick.
+line~
+The line in the way ring is directly in the centre of the length of the ring.
+There is nothing special about it... just a simple design.
 ~
 E
 golden~
@@ -799,9 +794,14 @@ golden~
  
 ~
 E
-line~
-The line in the way ring is directly in the centre of the length of the ring.
-There is nothing special about it... just a simple design.
+ring~
+&YA plain golden band... with a line engraved through it. It is about 10mm
+(1/4 of an inch) thick.
+~
+E
+way~
+&YA plain golden band... with a line engraved through it. It is about 10mm
+(1/4 of an inch) thick.
 ~
 #15112
 Tablet stone granite~
@@ -816,7 +816,7 @@ reserved~
 0 0
 0 0 0
 E
-granite~
+stone~
 A very large tablet encrusted with runes.
 ~
 E
@@ -824,7 +824,7 @@ tablet~
 A very large tablet encrusted with runes.
 ~
 E
-stone~
+granite~
 A very large tablet encrusted with runes.
 ~
 #15113
@@ -840,19 +840,19 @@ reserved~
 0 0
 0 0 0
 A
-2 1
-A
-26 6
+19 69
 A
 18 80
 A
-19 69
+26 6
+A
+2 1
 E
-talon~
+griffin~
 &bA large seven-inch long talon.
 ~
 E
-griffin~
+talon~
 &bA large seven-inch long talon.
 ~
 #15114
@@ -868,17 +868,17 @@ reserved~
 0 0
 0 0 0
 A
-110 -1
+13 65
 A
 17 -30
 A
-13 65
+110 -1
 E
-wings~
+griffin~
 &wA very large set of griffin's wings. They are quite heavy.
 ~
 E
-griffin~
+wings~
 &wA very large set of griffin's wings. They are quite heavy.
 ~
 #15115
@@ -894,16 +894,16 @@ blindness~
 2 2
 0 0 0
 A
-13 60
-A
 12 60
-E
-goblet~
-&WA magnificent diamond goblet is large in size.
-~
+A
+13 60
 E
 diamond~
 &WA magnificent diamond goblet is large in size, and sparkles beautifully.
+~
+E
+goblet~
+&WA magnificent diamond goblet is large in size.
 ~
 #15116
 armor hydra scale~
@@ -918,17 +918,17 @@ stone skin~
 -1 -1
 0 0 0
 A
-1 2
-A
-24 -2
+17 -60
 A
 23 -3
 A
-17 -60
+24 -2
+A
+1 2
 E
-armor~
-A beautifully crafted suit of hydra scale armor. Many colours shimmer
-from its scales.
+scale~
+A beautifully crafted suit of hydra scale armor. Many colours shimmer from
+its scales.
 ~
 E
 hydra~
@@ -936,9 +936,9 @@ A beautifully crafted suit of hydra scale armor. Many colours shimmer from
 its scales.
 ~
 E
-scale~
-A beautifully crafted suit of hydra scale armor. Many colours shimmer from
-its scales.
+armor~
+A beautifully crafted suit of hydra scale armor. Many colours shimmer
+from its scales.
 ~
 #15117
 pendant damned~
@@ -953,19 +953,19 @@ reserved~
 0 0
 0 0 0
 A
-119 -1
-A
-19 -9
+25 13
 A
 13 40
 A
-25 13
+19 -9
+A
+119 -1
 E
-pendant~
+damned~
 &PA plain and useless pendant glows silently.
 ~
 E
-damned~
+pendant~
 &PA plain and useless pendant glows silently.
 ~
 #15118
@@ -981,15 +981,15 @@ reserved~
 -1 -1
 0 0 0
 A
-102 -1
-A
 13 70
+A
+102 -1
 E
-ebony~
+disc~
 &bA small ebony disc is approximately one foot in diameter.
 ~
 E
-disc~
+ebony~
 &bA small ebony disc is approximately one foot in diameter.
 ~
 #15119
@@ -1005,15 +1005,15 @@ reserved~
 -1 -1
 0 0 0
 A
-12 50
-A
-18 80
+13 70
 A
 19 70
 A
-13 70
+18 80
+A
+12 50
 E
-ebony~
+sword~
 &bAn ebony shortsword with no distinct markings.
 ~
 E
@@ -1021,7 +1021,7 @@ blade~
 &bAn ebony shortsword with no distinct markings.
 ~
 E
-sword~
+ebony~
 &bAn ebony shortsword with no distinct markings.
 ~
 #15120
@@ -1037,22 +1037,22 @@ armor~
 20 20
 0 0 0
 A
-1 2
-A
-2 -1
+17 -75
 A
 18 -3
 A
-17 -75
-E
-hide~
-&OThe hide is that of a behemoth. A rather large creature with a tough skin,
-and thin layer of course fur. It's scratchy to the touch, and very large.
-~
+2 -1
+A
+1 2
 E
 behemoth~
 &OThe behemoth hide is very rough and course. It has a course fur on it, 
 although you wouldn't consider it a fur because it is just a thin layer.
+~
+E
+hide~
+&OThe hide is that of a behemoth. A rather large creature with a tough skin,
+and thin layer of course fur. It's scratchy to the touch, and very large.
 ~
 #15121
 shifting cloak cloth~
@@ -1067,24 +1067,24 @@ mana~
 3 3
 0 0 0
 A
-3 2
-A
-4 2
+12 75
 A
 24 -4
 A
-12 75
+4 2
+A
+3 2
 E
-shifting~
-&.The shifting cloak is never the same colour for very long.
+cloth~
+&.This cloth is strange indeed, never the same colour for very long.
 ~
 E
 cloak~
 &.The shifting cloak is never the same colour for very long.
 ~
 E
-cloth~
-&.This cloth is strange indeed, never the same colour for very long.
+shifting~
+&.The shifting cloak is never the same colour for very long.
 ~
 #15122
 staff magi~
@@ -1099,21 +1099,21 @@ icestorm~
 3 3
 0 0 0
 A
-18 55
-A
-19 70
+13 70
 A
 12 70
 A
-13 70
+19 70
+A
+18 55
 E
-staff~
+magi~
 &wA silver staff is beautiful to look upon. It is a full length staff, for
 those of humanoid build... approximately six feet in length. It's width is
 around three inches(8cm) in diameter. It bares no outstanding markings.
 ~
 E
-magi~
+staff~
 &wA silver staff is beautiful to look upon. It is a full length staff, for
 those of humanoid build... approximately six feet in length. It's width is
 around three inches(8cm) in diameter. It bares no outstanding markings.
@@ -1131,15 +1131,15 @@ reserved~
 0 0
 0 0 0
 A
-4 2
-A
 12 15
+A
+4 2
 E
-magick~
+cap~
 &BThe cap appears to be a plain old bent and crumpled cone-shaped cap.
 ~
 E
-cap~
+magick~
 &BThe cap appears to be a plain old bent and crumpled cone-shaped cap.
 ~
 #15124
@@ -1155,9 +1155,9 @@ fireshield~
 3 3
 0 0 0
 E
-fiery~
-&RThe fiery length of chain looks as though it could melt straight away. The
-flame that embodies it seems so real.
+belt~
+&RA simple chain belt.. yet the fiery length of chain looks as though it
+could melt straight away. The flame that embodies it seems so real.
 ~
 E
 chain~
@@ -1165,9 +1165,9 @@ chain~
 flame that embodies it seems so real.
 ~
 E
-belt~
-&RA simple chain belt.. yet the fiery length of chain looks as though it
-could melt straight away. The flame that embodies it seems so real.
+fiery~
+&RThe fiery length of chain looks as though it could melt straight away. The
+flame that embodies it seems so real.
 ~
 #15125
 throne~
@@ -1194,17 +1194,17 @@ reserved~
 0 0
 0 0 0
 E
-plant~
-&gA green-coloured &Os&gp&Ge&Oc&Gk&gl&Oe&Gd &gplant is leafy like that of
-lettuce.
+speckled~
+&gS&Op&Ge&Oc&GK&Ol&ge&Gd &gon some of the leaves, this plant is leafy like lettuce.
 ~
 E
 green~
 &gA green &Os&Gp&ge&Oc&Gk&Ol&ge&Od&g plant is leafy like lettuce.
 ~
 E
-speckled~
-&gS&Op&Ge&Oc&GK&Ol&ge&Gd &gon some of the leaves, this plant is leafy like lettuce.
+plant~
+&gA green-coloured &Os&gp&Ge&Oc&Gk&gl&Oe&Gd &gplant is leafy like that of
+lettuce.
 ~
 #15127
 spiney black plant~
@@ -1219,7 +1219,7 @@ reserved~
 0 0
 0 0 0
 E
-spiney~
+plant~
 The plant is covered in black spines, although it is green in colour.
 ~
 E
@@ -1227,7 +1227,7 @@ black~
 The plant is covered in black spines, although it is green in colour.
 ~
 E
-plant~
+spiney~
 The plant is covered in black spines, although it is green in colour.
 ~
 #15128
@@ -1243,20 +1243,16 @@ reserved~
 0 0
 0 0 0
 A
-13 75
+25 25
 A
 100 -1
 A
-25 25
+13 75
 E
-black~
+teardrop~
 &bA small oval rock is not a rock at all, it would seem. It is a teardrop...
-frozen in time.
-~
-E
-rock~
-&bA small oval rock is not a rock at all, it would seem. It is a teardrop...
-frozen in time.
+frozen in time. You wonder how or what could possibly make something so
+Immortally beautiful, but sad at the same time.
 ~
 E
 frozen~
@@ -1265,10 +1261,14 @@ frozen in time. You wonder how or what could possibly make something so
 Immortally beautiful, but sad at the same time.
 ~
 E
-teardrop~
+rock~
 &bA small oval rock is not a rock at all, it would seem. It is a teardrop...
-frozen in time. You wonder how or what could possibly make something so
-Immortally beautiful, but sad at the same time.
+frozen in time.
+~
+E
+black~
+&bA small oval rock is not a rock at all, it would seem. It is a teardrop...
+frozen in time.
 ~
 #15129
 whip cat tails~
@@ -1283,15 +1283,15 @@ reserved~
 0 0
 0 0 0
 A
-13 90
-A
-19 50
-A
-18 180
+122 -1
 A
 26 9
 A
-122 -1
+18 180
+A
+19 50
+A
+13 90
 #15130
 shroud psychic~
 psychic shroud~
@@ -1305,13 +1305,13 @@ phase shift~
 0 0
 0 0 0
 A
-13 90
-A
-12 90
+111 -1
 A
 23 -5
 A
-111 -1
+12 90
+A
+13 90
 #15131
 striding boots astral~
 boots of far striding~
@@ -1325,11 +1325,11 @@ astral walk~
 5 5
 0 0 0
 A
-14 80
-A
 2 5
+A
+14 80
 E
-astral~
+boots~
 These strange boots fade in and out of reality.
 ~
 E
@@ -1337,7 +1337,7 @@ striding~
 These strange boots fade in and out of reality.
 ~
 E
-boots~
+astral~
 These strange boots fade in and out of reality.
 ~
 #15132
@@ -1353,13 +1353,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
+13 45
 A
 107 -1
 A
-13 45
+24 -5
 E
-shield~
+disc~
 &WA large crystaline shield is perfectly clear, and beautifully crafted.
 ~
 E
@@ -1367,7 +1367,7 @@ crystal~
 &WA large crystaline shield is perfectly clear, and beautifully crafted.
 ~
 E
-disc~
+shield~
 &WA large crystaline shield is perfectly clear, and beautifully crafted.
 ~
 #15133
@@ -1385,11 +1385,11 @@ reserved~
 A
 24 -2
 E
-crystal~
+earring~
 &WA beautiful crystal earring in the shape of a diamond.
 ~
 E
-earring~
+crystal~
 &WA beautiful crystal earring in the shape of a diamond.
 ~
 #15134
@@ -1407,7 +1407,7 @@ haste~
 A
 14 50
 E
-wire~
+hoop~
 &wA tiny silver wire can barely be seen, even as you look closely upon it.
 ~
 E
@@ -1415,7 +1415,7 @@ silver~
 &wA tiny silver wire can barely be seen, even as you look closely upon it.
 ~
 E
-hoop~
+wire~
 &wA tiny silver wire can barely be seen, even as you look closely upon it.
 ~
 #15136
@@ -1433,8 +1433,9 @@ earthquake~
 A
 14 100
 E
-skin~
-&OMade from the skin of a behemoth, these boots are pretty tough and durable.
+behemoth~
+&OMade of a very tough hide, these boots are pretty durable. You could probably
+walk quite a ways in these.
 ~
 E
 boots~
@@ -1442,9 +1443,8 @@ boots~
 walk quite a ways in these.
 ~
 E
-behemoth~
-&OMade of a very tough hide, these boots are pretty durable. You could probably
-walk quite a ways in these.
+skin~
+&OMade from the skin of a behemoth, these boots are pretty tough and durable.
 ~
 #15137
 staff discipline~
@@ -1459,25 +1459,25 @@ reserved~
 0 0
 0 0 0
 A
-3 2
+12 50
 A
 5 2
 A
-12 50
-E
-staff~
-A plain wooden staff with some engravings upon it.
-~
-E
-discipline~
-A plain wooden staff with some engravings upon it.
-~
+3 2
 E
 engravings~
 &OThe engravings are in an ancient language... but not so ancient that you
 cannot catch the general message it has to say. "The Staff of Discipline"
 it is called. It also says something about harnessing a power of some sort.
 You can't quite make it out.
+~
+E
+discipline~
+A plain wooden staff with some engravings upon it.
+~
+E
+staff~
+A plain wooden staff with some engravings upon it.
 ~
 #15138
 crown horns rainbow multi-coloured~
@@ -1492,15 +1492,20 @@ shatter~
 1 1
 0 0 0
 A
-2 -2
-A
-13 90
+24 -4
 A
 23 -4
 A
-24 -4
+13 90
+A
+2 -2
 E
-crown~
+horns~
+The crown is very large in size, and has many horns. It is big enough to sit
+atop a large Dragons' head. It shimmers with many colours of the spectrum.
+~
+E
+multi-coloured~
 The crown is very large in size. Big enough to sit atop a large Dragons'
 head. It shimmers with many colours of the spectrum.
 ~
@@ -1510,14 +1515,9 @@ The crown is very large in size. Big enough to sit atop a large Dragons'
 head. It shimmers with many colours of the spectrum.
 ~
 E
-multi-coloured~
+crown~
 The crown is very large in size. Big enough to sit atop a large Dragons'
 head. It shimmers with many colours of the spectrum.
-~
-E
-horns~
-The crown is very large in size, and has many horns. It is big enough to sit
-atop a large Dragons' head. It shimmers with many colours of the spectrum.
 ~
 #15139
 set claws razor~
@@ -1532,15 +1532,15 @@ meteor swarm~
 1 1
 0 0 0
 A
-112 -1
-A
-18 72
+26 9
 A
 19 95
 A
-26 9
+18 72
+A
+112 -1
 E
-set~
+razor~
 &bA set of claws is razor sharp, and quite large and heavy. They seem to have
 come from a dragon (which must have been an adult from the size).
 ~
@@ -1550,7 +1550,7 @@ claws~
 come from a dragon (which must have been an adult from the size).
 ~
 E
-razor~
+set~
 &bA set of claws is razor sharp, and quite large and heavy. They seem to have
 come from a dragon (which must have been an adult from the size).
 ~
@@ -1567,24 +1567,24 @@ mental block~
 5 5
 0 0 0
 A
-1 1
-A
-13 90
-A
-12 90
+18 7
 A
 19 6
 A
-18 7
-E
-mental~
-A mental shield is medium in size and is adequately crafted. The runes
-are undecipherable to you.
-~
+12 90
+A
+13 90
+A
+1 1
 E
 shield~
 A strange rune engraved shield. It is medium-sized with adequate craftsman-
 ship. The runes are undecipherable.
+~
+E
+mental~
+A mental shield is medium in size and is adequately crafted. The runes
+are undecipherable to you.
 ~
 #15141
 key silver engraved~
@@ -1599,16 +1599,16 @@ reserved~
 0 0
 0 0 0
 E
-engraved~
-&wA small silver key is engraved with an infinity sign.
+key~
+&wA silver key is engraved with the infinity sign.
 ~
 E
 silver~
 &wA silver key is engraved with the infinity sign.
 ~
 E
-key~
-&wA silver key is engraved with the infinity sign.
+engraved~
+&wA small silver key is engraved with an infinity sign.
 ~
 #15142
 gold key~
@@ -1637,12 +1637,12 @@ reserved~
 A
 18 -3
 E
-rusty~
-&OYup, it's rusty.
-~
-E
 armor~
 &OYup, it's armor, and it's rusty.
+~
+E
+rusty~
+&OYup, it's rusty.
 ~
 #15165
 black robe robes~
@@ -1657,9 +1657,9 @@ reserved~
 0 0
 0 0 0
 A
-12 20
-A
 3 1
+A
+12 20
 #0
 
 
@@ -1726,13 +1726,13 @@ to rebel.
 0 1074143256 0
 Rd     0
 E
-portraits~
-The portraits are not of anyone you recognize, but they do look very important.
-~
-E
 tapestries~
 The tapestries are somewhat abstract, making you have to turn your head this
 way and that... and even then, you can't decipher what is depicted there.
+~
+E
+portraits~
+The portraits are not of anyone you recognize, but they do look very important.
 ~
 D0
 ~
@@ -1757,14 +1757,14 @@ to the east is almost easy, as if the place wanted you to go this way.
 0 1074143256 0
 Rd     0
 E
+floor~
+The floor slants slightly downward to the east.
+~
+E
 pictures~
 You are almost horrified as you look upon these pictures. All races of
 humanoids and non-humanoids being devoured by a hideous monster, too
 awful to describe. In the background, you can even see one of your kin.
-~
-E
-floor~
-The floor slants slightly downward to the east.
 ~
 D1
 ~
@@ -2727,12 +2727,12 @@ as though it was in torment.
 0 1074143256 0
 Rd     0
 E
-sign~
-&rBETRAYERS&G
-~
-E
 door~
 A clearly marked sign above the east door reads; BETRAYERS.
+~
+E
+sign~
+&rBETRAYERS&G
 ~
 D0
 ~

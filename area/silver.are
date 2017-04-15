@@ -723,13 +723,13 @@ true sight~
 0 0
 0 0 0
 A
-19 6
-A
-18 3
+24 -25
 A
 17 -10
 A
-24 -25
+18 3
+A
+19 6
 #20201
 pair silver platemail boots~
 &ca pair of &wsilver platemail&c boots&w~
@@ -743,11 +743,11 @@ reserved~
 0 0
 0 0 0
 A
-19 2
+17 -30
 A
 23 -10
 A
-17 -30
+19 2
 #20202
 pair silver platemail gauntlets~
 &ca pair of &wsilver platemail &cgauntlets~
@@ -761,11 +761,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -40
+1 2
 A
 19 6
 A
-1 2
+17 -40
 #20203
 pair silver platemail leggings~
 &ca pair of &wsilver platemail&c leggings&w~
@@ -779,11 +779,11 @@ reserved~
 0 0
 0 0 0
 A
-19 3
+18 2
 A
 17 -25
 A
-18 2
+19 3
 #20204
 pair silver platemail arm armguards guards~
 &ca pair of &wsilver platemail &carmguards&c~
@@ -797,13 +797,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -45
-A
-13 20
+18 3
 A
 19 3
 A
-18 3
+13 20
+A
+17 -45
 #20205
 silver helm helmet~
 &ca &wsilver &chelm&w~
@@ -817,11 +817,11 @@ reserved~
 0 0
 0 0 0
 A
-24 -10
+17 -20
 A
 19 4
 A
-17 -20
+24 -10
 #20206
 silver platemail breastplate breast plate~
 &ca &wsilver platemail&c breastplate&w~
@@ -835,13 +835,13 @@ reserved~
 0 0
 0 0 0
 A
-19 25
-A
-18 25
+13 50
 A
 17 -25
 A
-13 50
+18 25
+A
+19 25
 #20207
 silver face guard plate faceguard~
 &ca &wsilver platemail &cface guard&w~
@@ -855,11 +855,11 @@ reserved~
 0 0
 0 0 0
 A
-24 -28
+18 7
 A
 19 5
 A
-18 7
+24 -28
 #20208
 silver cloak silver-cloak~
 &ca &wsilver &ccloak&w~
@@ -885,11 +885,11 @@ reserved~
 0 0
 0 0 0
 A
-19 23
+1 1
 A
 18 17
 A
-1 1
+19 23
 #20210
 Broom~
 &Oa dusting &Ybroom&O~
@@ -903,9 +903,9 @@ reserved~
 0 0
 0 0 0
 A
-19 5
-A
 18 5
+A
+19 5
 #20211
 Scope~
 &ca long &Obrass&c eye scope&w~
@@ -961,11 +961,11 @@ reserved~
 0 0
 0 0 0
 A
-24 -15
+13 25
 A
 1 1
 A
-13 25
+24 -15
 #20215
 giant silver battle-axe axe~
 &ca giant &wsilver &cbattle-axe&w~
@@ -979,13 +979,13 @@ reserved~
 0 0
 0 0 0
 A
-19 30
-A
-1 2
+24 -20
 A
 18 20
 A
-24 -20
+1 2
+A
+19 30
 #20216
 rolling pin~
 &ca &Owooden rolling &cpin&w~
@@ -999,11 +999,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -10
+19 18
 A
 18 2
 A
-19 18
+17 -10
 #20217
 greasy apron~
 &ca &zgreasy &Wwhite apron&w~
@@ -1017,9 +1017,9 @@ reserved~
 0 0
 0 0 0
 A
-24 -15
-A
 17 -25
+A
+24 -15
 #20218
 holy symbol~
 &ca &Wholy symbol&c of Tith-Onanka&w~
@@ -1033,11 +1033,11 @@ reserved~
 0 0
 0 0 0
 A
-18 3
+12 100
 A
 19 3
 A
-12 100
+18 3
 #20219
 silver mace~
 a Silver Mace~
@@ -1051,11 +1051,11 @@ reserved~
 0 0
 0 0 0
 A
-12 50
+18 10
 A
 19 10
 A
-18 10
+12 50
 #20220
 crown silver king ~
 &cKing Elton's &wsilver &ccrown&w~
@@ -1069,13 +1069,13 @@ awe~
 3 3
 0 0 0
 A
-13 50
-A
-17 -55
+24 -10
 A
 19 12
 A
-24 -10
+17 -55
+A
+13 50
 #20221
 coat surcoat knight~
 &ca knight's &Bblue &c& &Wwhite &csurcoat&w~
@@ -1089,24 +1089,24 @@ reserved~
 0 0
 0 0 0
 A
-19 8
-A
-18 7
-A
-24 -25
+13 75
 A
 23 -15
 A
-13 75
-E
-sircoat~
-&CThe image of a &Rred-tailed &Cfox dances about over the background of a
-&Whalf-white &C& &Bhalf-blue &Cdisc surrounded by a lighter &Bblue&C color. 
-~
+24 -25
+A
+18 7
+A
+19 8
 E
 surcoat~
 &CThe image of a &Rred-tailed &Cfox dances about over the background of a
 &Whalf-white &C& &Bhalf-blue &Cdisc surrounded by a lighter &Bblue &Ccolor. 
+~
+E
+sircoat~
+&CThe image of a &Rred-tailed &Cfox dances about over the background of a
+&Whalf-white &C& &Bhalf-blue &Cdisc surrounded by a lighter &Bblue&C color. 
 ~
 #20222
 queen sarah silver crown~
@@ -1121,13 +1121,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -12
-A
-19 9
+17 -35
 A
 18 9
 A
-17 -35
+19 9
+A
+24 -12
 #20223
 beautiful silk gown~
 &ca beautiful &Bblue silk &cgown&w~
@@ -1141,9 +1141,9 @@ reserved~
 0 0
 0 0 0
 A
-24 -25
-A
 17 15
+A
+24 -25
 #20224
 stuffed teddy bear~
 &ca small stuffed &Oteddy bear&w~
@@ -1169,11 +1169,11 @@ reserved~
 0 0
 0 0 0
 A
-13 50
+19 16
 A
 17 -45
 A
-19 16
+13 50
 #20226
 pair fancy breeches~
 &ca pair of fancy &zblack &cbreeches&w~
@@ -1187,11 +1187,11 @@ reserved~
 0 0
 0 0 0
 A
-19 4
+17 -15
 A
 18 6
 A
-17 -15
+19 4
 #20227
 fancy ruff~
 &ca fancy ruff&w~
@@ -1205,11 +1205,11 @@ reserved~
 0 0
 0 0 0
 A
-18 4
+17 -5
 A
 19 6
 A
-17 -5
+18 4
 #20228
 archery glove three-fingered~
 &ca three-fingered archery glove&w~
@@ -1223,9 +1223,9 @@ haste~
 0 0
 0 0 0
 A
-2 1
-A
 18 9
+A
+2 1
 #20229
 pair melkor sandle sandles~
 &ca pair of Melkor's sandles&w~
@@ -1239,13 +1239,13 @@ mana~
 5 5
 0 0 0
 A
-14 50
-A
-19 7
+24 -25
 A
 18 7
 A
-24 -25
+19 7
+A
+14 50
 #20230
 pair melkor glasses~
 &ca pair of Melkor's &Ygold &crimmed glasses&w~
@@ -1259,13 +1259,13 @@ detect magic~
 6 6
 0 0 0
 A
-12 100
-A
-3 2
+19 7
 A
 24 -15
 A
-19 7
+3 2
+A
+12 100
 #20231
 archer leather wrist brace~
 &can archer's &Oleather wrist &cbrace&w~
@@ -1279,11 +1279,11 @@ reserved~
 0 0
 0 0 0
 A
-19 3
+17 -15
 A
 18 1
 A
-17 -15
+19 3
 #20232
 wand faerie fire~
 &ca wand of &Rfa&re&Or&Yie &Rf&ri&Or&Ye&w~
@@ -1309,13 +1309,13 @@ fireball~
 5 5
 0 0 0
 A
-18 30
-A
-19 15
+24 -35
 A
 23 -25
 A
-24 -35
+19 15
+A
+18 30
 #20234
 court bard plumed hat~
 &ca court bard's &Ppurple &c& &zblack&c plumed hat&w~
@@ -1329,11 +1329,11 @@ reserved~
 0 0
 0 0 0
 A
-2 2
+13 50
 A
 17 -45
 A
-13 50
+2 2
 #20235
 large gilded golden harp~
 &ca large gilded &Ygolden &charp&w~
@@ -1347,9 +1347,9 @@ reserved~
 0 0
 0 0 0
 A
-19 18
-A
 18 12
+A
+19 18
 #20236
 ring signet golden~
 &cKing Elton's &Ygolden &csignet ring&w~
@@ -1363,13 +1363,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -15
-A
-18 4
+19 7
 A
 3 2
 A
-19 7
+18 4
+A
+24 -15
 #20237
 catapult large~
 &ca large &Ocatapult&w~
@@ -1474,13 +1474,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -40
-A
-19 5
+5 2
 A
 13 50
 A
-5 2
+19 5
+A
+17 -40
 #20244
 coat surcoat knight~
 &ca knight's &zblack &c& &Bblue &csurcoat&w~
@@ -1494,24 +1494,24 @@ reserved~
 0 0
 0 0 0
 A
-19 6
-A
-18 6
-A
-24 -15
+13 45
 A
 23 -10
 A
-13 45
-E
-sircoat~
-&CThe image of a &zblack bull &Ccharging lies in the center of a circle
-comprised halfway of &zblack &Cand halfway of &Bblue&C on this garment.  
-~
+24 -15
+A
+18 6
+A
+19 6
 E
 surcoat~
 &CThe image of a &zblack bull&C charging lies in the center of a circle
 comprised halfway of &zblack&C and halfway of &Bblue&C on this garment.  
+~
+E
+sircoat~
+&CThe image of a &zblack bull &Ccharging lies in the center of a circle
+comprised halfway of &zblack &Cand halfway of &Bblue&C on this garment.  
 ~
 #20245
 coat surcoat knight~
@@ -1526,20 +1526,20 @@ reserved~
 0 0
 0 0 0
 A
-18 8
-A
-5 2
+19 4
 A
 13 30
 A
-19 4
+5 2
+A
+18 8
 E
-sircoat~
+surcoat~
 &CA large &zblack panther &Craces across a background of cyan &
 &Yyellow&C on this garment identifying Sir Jonathon's family house.  
 ~
 E
-surcoat~
+sircoat~
 &CA large &zblack panther &Craces across a background of cyan &
 &Yyellow&C on this garment identifying Sir Jonathon's family house.  
 ~
@@ -1556,23 +1556,23 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-17 -55
+19 7
 A
 18 5
 A
-19 7
-E
-sircoat~
-&CA large ram rests peaceful on a mountainous landscape in front of a
-circle of half &Ggreen &C& half &Bblue &Con this garment identifying Sir
-Dennis' family house.  
-~
+17 -55
+A
+13 50
 E
 surcoat~
 &CA large ram rests peacefully on a mountainous landscape in front of a
 circle of half &Ggreen&C & half &Bblue&C on this garment identifying Sir
+Dennis' family house.  
+~
+E
+sircoat~
+&CA large ram rests peaceful on a mountainous landscape in front of a
+circle of half &Ggreen &C& half &Bblue &Con this garment identifying Sir
 Dennis' family house.  
 ~
 #20247
@@ -1588,22 +1588,22 @@ reserved~
 0 0
 0 0 0
 A
-19 2
-A
-23 -35
+12 60
 A
 24 -40
 A
-12 60
+23 -35
+A
+19 2
 E
-sircoat~
-&CA shaggy grey wolfhead glares at you from the center of this sircoat
+surcoat~
+&CA shaggy grey wolfhead glards at you from the center of this surcoat
 inside a chest sized circle of half &Rred &C& cyan identifying Sir Leon's
 family house.  
 ~
 E
-surcoat~
-&CA shaggy grey wolfhead glards at you from the center of this surcoat
+sircoat~
+&CA shaggy grey wolfhead glares at you from the center of this sircoat
 inside a chest sized circle of half &Rred &C& cyan identifying Sir Leon's
 family house.  
 ~
@@ -1620,25 +1620,25 @@ reserved~
 0 0
 0 0 0
 A
-13 60
-A
-3 2
-A
-4 2
+19 6
 A
 18 6
 A
-19 6
-E
-sircoat~
-&CA &wgrey eagle &Csoars across the center of this garment inside a large
-circle half made of &zblack&C and the other half of &Wwhite&C &Cidentifying
-Sir James' family house.  
-~
+4 2
+A
+3 2
+A
+13 60
 E
 surcoat~
 &CA &wgrey eagle &Csoars across the center of this garment inside a large
 circle half made of &zblack &Cand the other half of &Wwhite &Cidentifying
+Sir James' family house.  
+~
+E
+sircoat~
+&CA &wgrey eagle &Csoars across the center of this garment inside a large
+circle half made of &zblack&C and the other half of &Wwhite&C &Cidentifying
 Sir James' family house.  
 ~
 #20249
@@ -1654,23 +1654,23 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
-A
-12 40
-A
-13 100
+19 5
 A
 18 7
 A
-19 5
+13 100
+A
+12 40
+A
+17 -20
 E
-sircoat~
+surcoat~
 &CResting perched upon a tree's limb, a &Bs&bn&co&Cw&wy &Cowl, watches
 you with it's shining &Yyellow eyes&C inside a circle of &Rred &C&
 &Ppurple&C identifying Sir Francis' house.  
 ~
 E
-surcoat~
+sircoat~
 &CResting perched upon a tree's limb, a &Bs&bn&co&Cw&wy &Cowl, watches
 you with it's shining &Yyellow eyes&C inside a circle of &Rred &C&
 &Ppurple&C identifying Sir Francis' house.  
@@ -1688,24 +1688,24 @@ reserved~
 0 0
 0 0 0
 A
-18 7
-A
-19 5
-A
-13 40
+2 2
 A
 17 -50
 A
-2 2
-E
-sircoat~
-&CSwooping down in the sky the image of a falcon strikes it's prey inside
-a circle of &Wwhite &C& &Ggreen&C identifying Sir Terrence's family house.  
-~
+13 40
+A
+19 5
+A
+18 7
 E
 surcoat~
 &CSwooping down in the sky the image of a falcon strikes it's prey inside
 a circle of &Wwhite &C& &Ggreen &Cidentifying Sir Terrence's family house.  
+~
+E
+sircoat~
+&CSwooping down in the sky the image of a falcon strikes it's prey inside
+a circle of &Wwhite &C& &Ggreen&C identifying Sir Terrence's family house.  
 ~
 #20251
 livery black green servant~
@@ -1720,13 +1720,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -40
-A
-13 40
+19 4
 A
 18 4
 A
-19 4
+13 40
+A
+17 -40
 #20252
 silver serving tray~
 &ca large &wsilver serving &ctray&w~
@@ -1752,13 +1752,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -55
-A
-13 50
+4 2
 A
 1 2
 A
-4 2
+13 50
+A
+17 -55
 #20254
 silver shield knight~
 &ca &wsilver &cshield&w~
@@ -1772,13 +1772,13 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-2 -1
+19 12
 A
 17 -60
 A
-19 12
+2 -1
+A
+13 50
 #20255
 Brand~
 a Burning Brand~

@@ -57,11 +57,18 @@ void	one_hit		     args( ( CHAR_DATA *ch, CHAR_DATA *victim,
 				    int dt ) );
 void	one_dual	     args( ( CHAR_DATA *ch, CHAR_DATA *victim,
 				    int dt ) );
+void	one_triple	     args( ( CHAR_DATA *ch, CHAR_DATA *victim,
+				    int dt ) );
+
 void	raw_kill	     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+void	war_kill	     args( ( CHAR_DATA *ch ) );
 void	set_fighting	     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 void	disarm		     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 void	trip		     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 void    item_damage             args( ( CHAR_DATA *ch, int dam ) );
+void    do_image		args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+void	do_flip			args( ( CHAR_DATA *ch, char *argument ) );
+OBJ_DATA  *random_object args(( int level ));
 
 
 /*
@@ -206,16 +213,20 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
     || ch->pcdata->learned[gsn_dual] > 0 ) )
        {
         one_dual( ch, victim, dt );
+		one_triple( ch, victim, dt );
 	if(IS_AFFECTED(ch, AFF_HASTE))
 	  one_dual( ch, victim, dt );
+	one_triple( ch, victim, dt );
 	if ( IS_AFFECTED2( ch, AFF_RUSH ) )
 	  one_dual( ch, victim, dt );
+	one_triple( ch, victim, dt );
         if ( ch->fighting != victim )
            return;
        }
     if ( ( IS_NPC( ch ) ) && ( ch->level > 15 ) )
        {
         one_dual( ch, victim, dt );
+		one_triple( ch, victim, dt );
         if ( ch->fighting != victim )
            return;
        }
@@ -239,6 +250,7 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
         if ( number_percent( ) < chance2 )
         {
          one_dual( ch, victim, dt );
+		 one_triple( ch, victim, dt );
          if ( ch->fighting != victim )
            return;
         }
@@ -264,6 +276,7 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
         if ( number_percent( ) < chance2 )
         {
          one_dual( ch, victim, dt );
+		 one_triple( ch, victim, dt );
          if ( ch->fighting != victim )
            return;
         }
@@ -299,6 +312,7 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
         if ( number_percent( ) < chance2 )
         {
          one_dual( ch, victim, dt );
+		 one_triple( ch, victim, dt );
          if ( ch->fighting != victim )
            return;
         }
@@ -334,6 +348,7 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
         if ( number_percent( ) < chance2 )
         {
          one_dual( ch, victim, dt );
+		 one_triple( ch, victim, dt );
          if ( ch->fighting != victim )
            return;
         }
@@ -347,6 +362,10 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
       one_dual( ch, victim, dt );
       if (ch->fighting != victim )
 	return;
+	  one_triple( ch, victim, dt );
+      if (ch->fighting != victim )
+	return;
+
     }
 
     chance = IS_NPC( ch ) ? ch->level / 4
@@ -357,6 +376,8 @@ void multi_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
 	one_hit( ch, victim, dt );
     if ( number_percent( ) < chance2 )
          one_dual( ch, victim, dt );
+	if ( number_percent( ) < chance2 )
+		one_triple( ch, victim, dt );
 
     return;
 }
@@ -794,7 +815,12 @@ void one_dual( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
        )
         dam += dam / 4;
     if ( is_class( ch, CLASS_WEREWOLF ) && !wield )
+	{
 	dam += dam / 4;
+	update_skpell( ch, gsn_dualclaw );
+	}
+    if ( is_class( ch, CLASS_MONK ) && !wield )
+	update_skpell( ch, gsn_blackbelt );
     if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_enhanced_damage] > 0 )
     {
 	dam += dam * ch->pcdata->learned[gsn_enhanced_damage] / 150;
@@ -829,12 +855,182 @@ void one_dual( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
     return;
 }
 
+void one_triple( CHAR_DATA *ch, CHAR_DATA *victim, int dt )
+{
+    OBJ_DATA *wield;
+    char      buf [ MAX_STRING_LENGTH ];
+    int       victim_ac;
+    int       thac0;
+    int       thac0_00;
+    int       thac0_97;
+    int       dam;
+    int       diceroll;
+
+    /*
+     * Can't beat a dead char!
+     * Guard against weird room-leavings.
+     */
+    if ( !(get_eq_char( ch, WEAR_WIELD_3 )))
+ 	return;
+    if (( get_eq_char( ch, WEAR_SHIELD )
+    || get_eq_char( ch, WEAR_HOLD ) ) )
+	return;
+    if ( ( get_eq_char( ch, WEAR_SHIELD )
+    || get_eq_char( ch, WEAR_HOLD ) ) )
+	return;
+
+    if ( victim->position == POS_DEAD || ch->in_room != victim->in_room )
+	return;
+
+    if ( IS_STUNNED( ch, STUN_NON_MAGIC ) ||
+	 IS_STUNNED( ch, STUN_TOTAL ) )
+      return;
+
+    /*
+     * Figure out the type of damage message.
+     */
+    wield = get_eq_char( ch, WEAR_WIELD_3 );
+    if ( dt == TYPE_UNDEFINED )
+    {
+	dt = TYPE_HIT;
+	if ( wield && wield->item_type == ITEM_WEAPON )
+	    dt += wield->value[3];
+    }
+
+    /*
+     * Calculate to-hit-armor-class-0 versus armor.
+     */
+    if ( IS_NPC( ch ) )
+    {
+	thac0_00 =  20;
+	thac0_97 = -20;
+    }
+    else
+    {
+	thac0_00 = class_table[prime_class(ch)].thac0_00;
+	thac0_97 = class_table[prime_class(ch)].thac0_97;
+    }
+    thac0     = interpolate( ch->level, thac0_00, thac0_97 )
+              - GET_HITROLL( ch );
+    victim_ac = UMAX( -15, GET_AC( victim ) / 10 );
+
+    if ( !can_see( ch, victim ) )
+	victim_ac -= 4;
+
+    /*
+     * The moment of excitement!
+     */
+    while ( ( diceroll = number_bits( 5 ) ) >= 20 )
+	;
+
+    if (     diceroll == 0
+	|| ( diceroll != 19 && diceroll < thac0 - victim_ac ) )
+    {
+	/* Miss. */
+	damage( ch, victim, 0, dt );
+	tail_chain( );
+	return;
+    }
+
+    /*
+     * Hit.
+     * Calc damage.
+     */
+/*	if ( IS_AFFECTED( victim, AFF_FIRESHIELD ) )
+           {
+             if ( number_percent( ) < 50 )
+                spell_fireball ( skill_lookup("fireball"), 5, victim, ch );
+           }
+	if ( IS_AFFECTED( victim, AFF_SHOCKSHIELD ) )
+           {
+             if ( number_percent( ) < 50 )
+                spell_lightning_bolt ( skill_lookup("lightning bolt"), 15, victim, ch );
+           }
+	if ( IS_AFFECTED( victim, AFF_CHAOS ) )
+           {
+	     if ( number_percent( ) < 50 )
+                spell_energy_drain ( skill_lookup("energy drain"), 25, victim, ch );
+           }
+	if ( IS_AFFECTED( victim, AFF_VIBRATING ) )
+           {
+             if ( number_percent( ) < 50 )
+                spell_psionic_blast ( skill_lookup("psionic blast"), 25, victim, ch );
+           }*/
+
+    if ( IS_NPC( ch ) )
+    {
+	dam = number_range( ch->level / 3, ch->level );
+	if ( wield )
+	    dam += dam / 4;
+    }
+    else
+    {
+	if ( wield )
+	    dam = number_range( wield->value[1], wield->value[2] );
+	else
+	    dam = number_range( 1, 4 );
+	if ( wield && dam > 5000 )
+	{
+	    sprintf( buf, "One_hit dam range > 1000 from %d to %d",
+		    wield->value[1], wield->value[2] );
+	    bug( buf, 0 );
+	}
+    }
+
+    /*
+     * Bonuses.
+     */
+    dam += GET_DAMROLL( ch );
+    if ( wield && IS_SET( wield->extra_flags, ITEM_POISONED ) )
+        dam += dam / 4;
+    if (
+	(wield && IS_SET( wield->extra_flags, ITEM_FLAME ) )
+    ||	(!wield && is_affected( ch, gsn_flamehand ) )
+       )
+        dam += dam / 8;
+    if (
+	(wield && IS_SET( wield->extra_flags, ITEM_CHAOS ) )
+    ||	(!wield && is_affected( ch, gsn_chaoshand ) )
+       )
+        dam += dam / 8;
+    if ( wield && IS_SET( wield->extra_flags, ITEM_ICY   ) )
+        dam += dam / 4;
+    if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_enhanced_damage] > 0 )
+    {
+	dam += dam * ch->pcdata->learned[gsn_enhanced_damage] / 150;
+	update_skpell( ch, gsn_enhanced_damage );
+    }
+    if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_enhanced_two] > 0 )
+    {
+        dam += dam * ch->pcdata->learned[gsn_enhanced_two] / 150;
+	update_skpell( ch, gsn_enhanced_two );
+    }
+    if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_enhanced_three] > 0 )
+    {
+        dam += dam * ch->pcdata->learned[gsn_enhanced_three] / 150;
+	update_skpell( ch, gsn_enhanced_three );
+    }
+    if ( !IS_AWAKE( victim ) )
+	dam *= 2;
+    if ( dt == gsn_backstab )
+	dam *= 2 + UMIN( ( ch->level / 8) , 4 );
+
+    if ( dam <= 0 )
+	dam = 1;
+
+    damage( ch, victim, dam, dt );
+    tail_chain( );
+    return;
+}
 
 /*
  * Inflict damage from a hit.
  */
 void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 {
+	    DESCRIPTOR_DATA *d;
+		bool warkilled = FALSE;
+
     if ( victim->position == POS_DEAD )
 	return;
 
@@ -1250,7 +1446,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
      */
     if ( victim->position == POS_DEAD )
     {
-        if ( !IS_ARENA(ch) )
+        if ( !IS_ARENA(ch) && !IS_SET( victim->act2, PLR_WAR ))
         {
 	  group_gain( ch, victim );
 
@@ -1291,13 +1487,18 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 
 	  if ( !IS_NPC( victim ) )
 	  {
+		  if (!IS_NPC(ch) && ch != victim)
+		  {
+	             ch->pkills++;
+		         victim->pkilled++;
+		  }
 	    /*
 	     * Dying penalty:
 	     * 1/2 way back to previous level.
 	     */
 	    if ( victim->level < LEVEL_HERO
 	    || ( victim->level >= LEVEL_HERO && IS_NPC( ch ) ) )
-		death_xp_loss( victim );
+/*		death_xp_loss( victim ); */
 	    sprintf( log_buf, "%s killed by %s at %d.", victim->name,
 	        ch->name, victim->in_room->vnum );
 	    log_string( log_buf, CHANNEL_LOG, -1 );
@@ -1315,23 +1516,139 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 	    && IS_SET( ch->act, PLR_THIEF )
 	    && victim->guild
 	    && !strcmp( victim->guild->name, "MERCENARY" ) )
+		{
 		info( "%s, the sly thief, has killed the &rMERCENARY&C %s.",
 		      (int)ch->name, (int)victim->name );
+				if ( ch != victim )
+				{
+	             ch->pkills++;
+		         victim->pkilled++;
+				}
+		}
 	    else
+		{
 	        info( "%s gets slaughtered by %s!", (int)victim->name,
                   (int)(IS_NPC(ch) ? ch->short_descr : ch->name) );
+		}
 	    save_clans();
 	  }
 	}
-	else
+	else if(war.iswar == TRUE && IS_SET(victim->act2, PLR_WAR))
 	{
-	  sprintf(log_buf, "&C%s &chas defeated &C%s &cin the arena!",
-	          ch->name, victim->name);
-	  wiznet(log_buf, NULL, NULL, WIZ_DEATHS, 0, 0);
-	  log_string(log_buf, CHANNEL_LOG, -1);
-	  challenge(log_buf, 0, 0);
-	}
+	   char  buf[MAX_STRING_LENGTH];
+	   warkilled = TRUE;
+	   sprintf(buf, "&C%s &chas become a casualty of war.", victim->name );
+	   info(buf, 0, 0 );
+	   ch->warpts = ch->warpts + 1;
+	   send_to_char(C_DEFAULT, "You have been awarded 1 war point for your kill.\n\r", ch);
+	   ch->warkills = ch->warkills + 1;
+	   victim->wardeaths = victim->wardeaths + 1;
+       if(IS_SET(victim->act2, TEAM_RED))
+		   war.team_red--;
+       if(IS_SET(victim->act2, TEAM_BLUE))
+		   war.team_blue--;
+	   war.inwar--;
+	   if (!IS_NPC( victim ))
+	   war_kill( victim );
+	    if (war.wartype == 1 && war.inwar == 1)
+		{
+	       sprintf( buf, "&C%s &Rhas survived iron man war!", ch->name );
+	       info( buf, 0, 0 );
+		   ch->warpts = ch->warpts + 100;
+		   send_to_char(C_DEFAULT, "You have been awarded 100 war points for your victory.\n\r", ch);
+	       war.wartype = 0;
+	       war.max_level = 0;
+	       war.max_level = 0;
+	       war.inwar = 0;
+	       war.count = 0;
+	       war.timeleft = 0;
+           war.iswar = FALSE;
+	       REMOVE_BIT(ch->act2, PLR_WAR);
+	       char_from_room(ch);
+	       char_to_room(ch, get_room_index(ROOM_VNUM_TEMPLE));
+		}
+		else if(war.team_red == 0 && war.wartype != 1)
+		{
+	       sprintf( buf, "&CThe &BBLUE TEAM &chas won the war!" );
+	       info( buf, 0, 0 );
+		   ch->warpts = ch->warpts + 20;
+		   send_to_char(C_DEFAULT, "You have been awarded 20 war points for the winning kill.\n\r", ch);
+	       war.wartype = 0;
+	       war.max_level = 0;
+	       war.max_level = 0;
+	       war.inwar = 0;
+	       war.count = 0;
+	       war.timeleft = 0;
+           war.iswar = FALSE;
+	       REMOVE_BIT(ch->act2, PLR_WAR);
+           REMOVE_BIT(ch->act2, TEAM_BLUE);
+	       char_from_room(ch);
+	       char_to_room(ch, get_room_index(ROOM_VNUM_TEMPLE));
 
+  for (d = descriptor_list; d != NULL; d = d->next)
+  {
+	if (!IS_NPC(d->character))
+    {
+      if (IS_SET(d->character->act2, PLR_WAR))
+        REMOVE_BIT(d->character->act2, PLR_WAR);
+          if(IS_SET(d->character->act2, TEAM_RED))
+           REMOVE_BIT(d->character->act2, TEAM_RED);
+           if(IS_SET(d->character->act2, TEAM_BLUE))
+		   {
+			ch->warpts = ch->warpts + 10;
+			send_to_char(C_DEFAULT, "You have been awarded 10 war points for your victory.\n\r", ch);
+           REMOVE_BIT(d->character->act2, TEAM_BLUE);
+		   }
+    }
+		}
+		}
+				else if(war.team_blue == 0 && war.wartype != 1 )
+		{
+	       sprintf( buf, "&CThe &RRED TEAM &chas won the war!" );
+	       info( buf, 0, 0 );
+		   ch->warpts = ch->warpts + 20;
+		   send_to_char(C_DEFAULT, "You have been awarded 20 war points for the winning kill.\n\r", ch);
+	       war.wartype = 0;
+	       war.max_level = 0;
+	       war.max_level = 0;
+	       war.inwar = 0;
+	       war.count = 0;
+	       war.timeleft = 0;
+           war.iswar = FALSE;
+	       REMOVE_BIT(ch->act2, PLR_WAR);
+           if(IS_SET(ch->act2, TEAM_RED))
+           REMOVE_BIT(ch->act2, TEAM_RED);
+	       char_from_room(ch);
+	       char_to_room(ch, get_room_index(ROOM_VNUM_TEMPLE));
+  for (d = descriptor_list; d != NULL; d = d->next)
+  {
+    if (!IS_NPC(d->character))
+    {
+      if (IS_SET(d->character->act2, PLR_WAR))
+        REMOVE_BIT(d->character->act2, PLR_WAR);
+          if(IS_SET(d->character->act2, TEAM_RED))
+		   {
+			ch->warpts = ch->warpts + 10;
+			send_to_char(C_DEFAULT, "You have been awarded 10 war points for your victory.\n\r", ch);
+           REMOVE_BIT(d->character->act2, TEAM_RED);
+		  }
+           if(IS_SET(d->character->act2, TEAM_BLUE))
+           REMOVE_BIT(d->character->act2, TEAM_BLUE);
+    }
+  }
+		}
+		}
+	    else if(!IS_SET(victim->act2, PLR_WAR))
+		{
+	    sprintf(log_buf, "&C%s &chas defeated &C%s &cin the arena!",
+	          ch->name, victim->name);
+	    wiznet(log_buf, NULL, NULL, WIZ_DEATHS, 0, 0);
+	    log_string(log_buf, CHANNEL_LOG, -1);
+	    challenge(log_buf, 0, 0);
+	    ch->arenawon++;
+	    victim->arenalost++;
+		}
+	if (warkilled == FALSE)
 	raw_kill( ch, victim );
 
 	/* Ok, now we want to remove the deleted flag from the
@@ -1537,7 +1854,8 @@ bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
   }
 */
 
-  if ( abs(ch->level - victim->level) > 5 && ( !IS_NPC(ch) ) )
+  if ( abs(ch->level - victim->level) > 5 && ( !IS_NPC(ch) )
+	  && (!IS_SET(victim->act2, PLR_WAR)))
   {
     send_to_char(AT_WHITE, "That is not in the pkill range... valid range is +/- 5 levels.\n\r", ch );
     return TRUE;
@@ -1572,7 +1890,8 @@ bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
 
   pClan = get_clan_index( ch->clan );
 
-  if ( ( ch->clan == 0 ) && ( !IS_SET(pClan->settings, CLAN_PKILL) ) )
+  if ( ( ch->clan == 0 ) && ( !IS_SET(pClan->settings, CLAN_PKILL) )
+	  && (!IS_SET(victim->act2, PLR_WAR)))
   {
     send_to_char(AT_WHITE, "You must be clanned to murder.\n\r", ch );
     return TRUE;
@@ -1580,7 +1899,8 @@ bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
 
   pClan = get_clan_index( victim->clan);
 
-  if ( ( victim->clan == 0 ) && ( !IS_SET(pClan->settings, CLAN_PKILL) ) )
+  if ( ( victim->clan == 0 ) && ( !IS_SET(pClan->settings, CLAN_PKILL) )
+	  && (!IS_SET(victim->act2, PLR_WAR)))
   {
     send_to_char(AT_WHITE, "You can only murder clanned players.\n\r",ch);
     return TRUE;
@@ -1595,20 +1915,23 @@ bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
   }
 
 /* can murder self for testing =) */
-  if ( ch->clan == victim->clan && ch != victim && ch->clan != 0 )
+  if ( ch->clan == victim->clan && ch != victim && ch->clan != 0
+	  && (!IS_SET(victim->act2, PLR_WAR)))
   {
     send_to_char(AT_WHITE, "You cannot murder your own clan member.\n\r",ch);
     return TRUE;
   }
 
-  if ( !IS_SET(pClan->settings, CLAN_PKILL) )
+  if ( !IS_SET(pClan->settings, CLAN_PKILL)
+	  && (!IS_SET(victim->act2, PLR_WAR)))
   {
     send_to_char(AT_WHITE, "Peaceful clan members cannot murder.\n\r",ch);
     return TRUE;
   }
 
   pClan = get_clan_index( victim->clan );
-  if ( !IS_SET(pClan->settings, CLAN_PKILL ))
+  if ( !IS_SET(pClan->settings, CLAN_PKILL )
+	  && (!IS_SET(victim->act2, PLR_WAR)))
   {
     send_to_char(AT_WHITE, "You may not murder peaceful clan members.\n\r",ch);
     return TRUE;
@@ -1787,6 +2110,7 @@ bool check_dodge( CHAR_DATA *ch, CHAR_DATA *victim )
         return FALSE;
 
     update_skpell( ch, gsn_dodge );
+    update_skpell( ch, gsn_dodge_two );
 
     if ( IS_SET( ch->act, PLR_COMBAT ) )
       act(AT_GREEN, "$N dodges your attack.", ch, NULL, victim, TO_CHAR    );
@@ -1931,6 +2255,8 @@ void make_corpse( CHAR_DATA *ch )
 /*    ROOM_INDEX_DATA *location;*/
     char            *name;
     char             buf [ MAX_STRING_LENGTH ];
+	OBJ_DATA		*random;
+	int			level = ch->level;
 
     /* No corpses in the arena. -- Altrag */
     if ( IS_ARENA(ch) )
@@ -2056,6 +2382,11 @@ void make_corpse( CHAR_DATA *ch )
 	else
 	    obj_to_obj( obj, corpse );
     }
+	if ( (number_percent() > 50) && IS_NPC(ch) )
+	{
+		random = random_object( level );
+		obj_to_obj( random, corpse );
+	}
 
 /*    sprintf( buf, "NPC killed: %s -> %d", ch->name, ch->in_room->vnum );
     log_string( buf, CHANNEL_NONE, -1 );
@@ -2068,7 +2399,6 @@ void make_corpse( CHAR_DATA *ch )
 
     return;
 }
-
 
 
 /*
@@ -2203,6 +2533,41 @@ void raw_kill( CHAR_DATA *ch, CHAR_DATA *victim )
     return;
 }
 
+void war_kill( CHAR_DATA *victim )
+{
+    AFFECT_DATA *paf;
+    AFFECT_DATA *paf_next;
+
+    stop_fighting( victim, TRUE );
+    rprog_death_trigger( victim->in_room, victim );
+      char_from_room(victim);
+      char_to_room(victim, get_room_index(ROOM_VNUM_MORGUE));
+
+    for ( paf = victim->affected; paf; paf = paf_next )
+        {
+     	 paf_next = paf->next;
+         affect_remove( victim, paf );
+        }
+    for ( paf = victim->affected2; paf; paf = paf_next )
+      {
+       paf_next = paf->next;
+       affect_remove2( victim, paf );
+      }
+	REMOVE_BIT( victim->act2, PLR_WAR );
+	if (IS_SET( victim->act2, TEAM_RED ))
+		REMOVE_BIT( victim->act2, TEAM_RED );
+	if (IS_SET( victim->act2, TEAM_BLUE ))
+		REMOVE_BIT( victim->act2, TEAM_BLUE );
+    victim->affected_by	= 0;
+    victim->affected_by2 = 0;
+    victim->position     = POS_RESTING;
+    victim->hit	         = UMAX( 1, victim->hit  );
+    victim->mana         = UMAX( 1, victim->mana );
+    victim->bp           = UMAX( 1, victim->bp   );
+    victim->move         = UMAX( 1, victim->move );
+    save_char_obj( victim, FALSE );
+    return;
+}
 
 
 void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
@@ -2311,7 +2676,7 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
 {
     int xp;
-    int xp_cap = 350;
+    int xp_cap = 750;
     int align;
 
     align = gch->alignment - victim->alignment;
@@ -2351,10 +2716,15 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
     xp = UMIN( xp_cap, xp );
     xp = UMAX( 0, xp );
 
-    /* champ bonus */
-    if ( gch->level >= LEVEL_HERO && victim->level > gch->level )
-	xp = xp + ( 10 * ( victim->level - gch->level ) );
-    return xp;
+	/* Xp Boost */
+	if ( doubleexp() == TRUE && gch->level <= 15)
+		xp = xp * 4;
+	else if ( doubleexp() == TRUE && gch->level <= 30 && gch->level > 15)
+		xp = xp * 3;
+	else if ( doubleexp() == TRUE && gch->level <= 50 && gch->level > 30)
+		xp = xp * 2;
+
+	return xp;
 
 /* OLD xp system
     int xp;
@@ -2459,11 +2829,11 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 
     if ( dt == TYPE_HIT )
     {
-	sprintf( buf1, "You &r%s&X $N%c",       vs, punct );
-	sprintf( buf2, "$n &G%s&X you%c",       vp, punct );
-	sprintf( buf3, "$n &z%s&X $N%c",        vp, punct );
-	sprintf( buf4, "You &G%s&X yourself%c", vs, punct );
-	sprintf( buf5, "$n &z%s&X $mself%c",    vp, punct );
+	sprintf( buf1, "You &r%s&X $N%c (%d)",       vs, punct, dam );
+	sprintf( buf2, "$n &G%s&X you%c (%d)",       vp, punct, dam );
+	sprintf( buf3, "$n &z%s&X $N%c (%d)",        vp, punct, dam );
+	sprintf( buf4, "You &G%s&X yourself%c (%d)", vs, punct, dam );
+	sprintf( buf5, "$n &z%s&X $mself%c (%d)",    vp, punct, dam );
     }
     else
     {
@@ -2484,19 +2854,19 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt )
 
 	if ( dt > TYPE_HIT && is_wielding_poisoned( ch ) )
 	{
-    sprintf( buf1, "Your &gpoisoned&X %s &r%s&X $N%c",  attack, vp, punct );
-    sprintf( buf2, "$n's &gpoisoned&X %s &G%s&X you%c", attack, vp, punct );
-    sprintf( buf3, "$n's &gpoisoned&X %s &z%s&X $N%c",  attack, vp, punct );
-    sprintf( buf4, "Your &gpoisoned&X %s &G%s&X you%c", attack, vp, punct );
-    sprintf( buf5, "$n's &gpoisoned&X %s &z%s&X $n%c",  attack, vp, punct );
+    sprintf( buf1, "Your &gpoisoned&X %s &r%s&X $N%c (%d)",  attack, vp,punct, dam );
+    sprintf( buf2, "$n's &gpoisoned&X %s &G%s&X you%c (%d)", attack, vp,punct, dam );
+    sprintf( buf3, "$n's &gpoisoned&X %s &z%s&X $N%c (%d)",  attack, vp,punct, dam );
+    sprintf( buf4, "Your &gpoisoned&X %s &G%s&X you%c (%d)", attack, vp,punct, dam );
+    sprintf( buf5, "$n's &gpoisoned&X %s &z%s&X $n%c (%d)",  attack, vp,punct, dam );
 	}
 	else
 	{
-	    sprintf( buf1, "Your %s &r%s&X $N%c",  attack, vp, punct );
-	    sprintf( buf2, "$n's %s &G%s&X you%c", attack, vp, punct );
-	    sprintf( buf3, "$n's %s &z%s&X $N%c",  attack, vp, punct );
-	    sprintf( buf4, "Your %s &G%s&X you%c", attack, vp, punct );
-	    sprintf( buf5, "$n's %s &z%s&X $n%c",  attack, vp, punct );
+	    sprintf( buf1, "Your %s &r%s&X $N%c (%d)",  attack, vp, punct,dam );
+	    sprintf( buf2, "$n's %s &G%s&X you%c (%d)", attack, vp, punct,dam );
+	    sprintf( buf3, "$n's %s &z%s&X $N%c (%d)",  attack, vp, punct,dam );
+	    sprintf( buf4, "Your %s &G%s&X you%c (%d)", attack, vp, punct,dam );
+	    sprintf( buf5, "$n's %s &z%s&X $n%c (%d)",  attack, vp, punct,dam );
 	}
     }
 
@@ -2532,10 +2902,12 @@ void disarm( CHAR_DATA *ch, CHAR_DATA *victim )
 
     if ( !( obj = get_eq_char( victim, WEAR_WIELD ) ) )
 	if ( !( obj = get_eq_char( victim, WEAR_WIELD_2 ) ) )
+	if ( !( obj = get_eq_char( victim, WEAR_WIELD_3 ) ) )
 	   return;
 
     if ( !get_eq_char( ch, WEAR_WIELD ) && number_bits( 1 ) == 0 )
 	if ( !get_eq_char( ch, WEAR_WIELD_2 ) && number_bits( 1 ) == 0 )
+	if ( !get_eq_char( ch, WEAR_WIELD_3 ) && number_bits( 1 ) == 0 )
 	   return;
 
     act(AT_YELLOW, "You disarm $N!",  ch, NULL, victim, TO_CHAR    );
@@ -2612,6 +2984,15 @@ void do_kill( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( is_affected( victim, gsn_image ))
+    {
+        do_image( victim, ch );
+        affect_strip( victim, skill_lookup("image"));
+        REMOVE_BIT( victim->affected_by, gsn_image );
+        return;
+    }
+
+
     if ( IS_AFFECTED(victim, AFF_PEACE ))
     {
       send_to_char(AT_WHITE, "A wave of peace overcomes you.\n\r", ch);
@@ -2625,7 +3006,8 @@ void do_kill( CHAR_DATA *ch, char *argument )
     if ( !IS_NPC( victim ) && !IS_ARENA(victim) )
     {
 	if (   !IS_SET( victim->act, PLR_KILLER )
-	    && !IS_SET( victim->act, PLR_THIEF  ) )
+	    && !IS_SET( victim->act, PLR_THIEF  )
+		&& !IS_SET( victim->act2, PLR_WAR   ))
 	{
 	    send_to_char(AT_WHITE, "You must MURDER a player.\n\r", ch );
 	    return;
@@ -2660,6 +3042,7 @@ void do_kill( CHAR_DATA *ch, char *argument )
     }
 
     WAIT_STATE( ch, PULSE_VIOLENCE );
+	if ( (!IS_SET( victim->act2, PLR_WAR ) ) )
     check_killer( ch, victim );
     multi_hit( ch, victim, TYPE_UNDEFINED );
     return;
@@ -2705,6 +3088,15 @@ void do_murder( CHAR_DATA *ch, char *argument )
 	    affect_strip( ch, skill_lookup("aura of peace") );
 	    REMOVE_BIT( ch->affected_by, AFF_PEACE );
     }
+
+    if ( is_affected( victim, gsn_image ))
+    {
+	do_image( victim, ch );
+	affect_strip( victim, skill_lookup("image"));
+	REMOVE_BIT( victim->affected_by, gsn_image );
+	return;
+    }
+
 
     if ( victim == ch )
     {
@@ -2794,13 +3186,22 @@ void do_backstab( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( is_affected( victim, gsn_image ))
+    {
+	do_image( victim, ch );
+	affect_strip( victim, skill_lookup("image"));
+	REMOVE_BIT( victim->affected_by, gsn_image );
+	return;
+    }
+
+
     if ( victim->fighting )
     {
 	send_to_char(C_DEFAULT, "You can't backstab a fighting person.\n\r", ch );
 	return;
     }
 
-    if ( victim->hit < MAX_HIT(victim) * 0.9 )
+    if ( victim->hit < MAX_HIT(victim) * 0.4 )
     {
 	act(C_DEFAULT, "$N is hurt and suspicious ... you can't sneak up.",
 	    ch, NULL, victim, TO_CHAR );
@@ -2821,6 +3222,8 @@ void do_backstab( CHAR_DATA *ch, char *argument )
 	    {
 	    multi_hit( ch, victim, gsn_backstab );
 	    update_skpell( ch, gsn_backstab_2 );
+		if ( get_eq_char( ch, WEAR_WIELD_3 ))
+			multi_hit( ch, victim, gsn_backstab );
 	    }
     }
     else
@@ -2900,7 +3303,7 @@ void do_flee( CHAR_DATA *ch, char *argument )
 
     if ( IS_AFFECTED( ch, AFF_ANTI_FLEE ) )
     {
-      send_to_char( AT_RED, "You cannot!", ch );
+      send_to_char( AT_RED, "You cannot!\n\r", ch );
       return;
     }
 
@@ -4716,6 +5119,11 @@ void do_multiburst( CHAR_DATA *ch, char *argument )
 	send_to_char( C_DEFAULT, "You aren't fighting.\n\r", ch );
 	return;
 	}
+    if ( IS_AFFECTED( ch, AFF_MUTE ))
+	{
+	send_to_char(AT_WHITE, "You have been silenced.\n\r", ch);
+	return;
+	}
 
   argument = one_argument( argument, arg1 );
   argument = one_argument( argument, arg2 );
@@ -4773,12 +5181,11 @@ void do_multiburst( CHAR_DATA *ch, char *argument )
 					URANGE( 1, ch->level, LEVEL_HERO ),
 					ch, victim );
   }
-  if ( ch->level < LEVEL_IMMORTAL ){
-    if ( is_class( ch, CLASS_VAMPIRE) ) {
-    	ch->bp -= mana;
-    } else {
-    	ch->mana -= mana;
-    }
+  if ( ch->level < LEVEL_IMMORTAL )
+  if ( is_class( ch, CLASS_VAMPIRE ) ) {
+    ch->bp -= mana;
+  } else {
+    ch->mana -= mana;
   }
   return;
 }
@@ -4891,13 +5298,13 @@ void do_challenge(CHAR_DATA *ch, char *argument)
   argument = one_argument(argument, arg1);
   argument = one_argument(argument, arg2);
 
-  if ( (is_number(arg1) && (award = atoi(arg1)) < 1000000 )
+  if ( (is_number(arg1) && (award = atoi(arg1)) < 1 )
   || ( !is_number(arg1) && !is_number(arg2) )
-  || ( is_number(arg2) && (award = atoi(arg2)) < 1000000 ) )
+  || ( is_number(arg2) && (award = atoi(arg2)) < 1 ) )
   {
     send_to_char( C_DEFAULT, "Syntax: challenge [player] <award>\n\r", ch );
     send_to_char( C_DEFAULT, " Player is the optional name of a specific person to challenge.\n\r", ch);
-    send_to_char( C_DEFAULT, " Award is at least 1000000 gold coins.\n\r", ch );
+    send_to_char( C_DEFAULT, " Award is at least 1 gold coins.\n\r", ch );
     return;
   }
   else if ( (award = atoi(arg2)) )
@@ -5464,6 +5871,7 @@ void do_nerve( CHAR_DATA *ch, char *argument )
   OBJ_DATA *wield;
   OBJ_DATA *dual;
   OBJ_DATA *hold;
+  OBJ_DATA *triple;
   if ( IS_NPC( ch ) )
 	return;
   if ( !can_use_skpell( ch, gsn_nerve ) )
@@ -5485,7 +5893,8 @@ void do_nerve( CHAR_DATA *ch, char *argument )
 	act( AT_YELLOW, "$n pinched $N's arm nerves.", ch, NULL, victim, TO_NOTVICT );
 	wield = get_eq_char( victim, WEAR_WIELD );
 	dual = get_eq_char( victim, WEAR_WIELD_2 );
-	if ( wield || dual )
+	triple = get_eq_char( victim, WEAR_WIELD_3 );
+	if ( wield || dual || triple )
 		{
                 if ( IS_SIMM( victim, IMM_NERVE ) )
 		  {
@@ -5512,6 +5921,11 @@ void do_nerve( CHAR_DATA *ch, char *argument )
 			{
 			obj_from_char( dual );
 			obj_to_room( dual, victim->in_room );
+			}
+		  if ( triple )
+			{
+			obj_from_char( triple );
+			obj_to_room( triple, victim->in_room );
 			}
 		  }
 		}
@@ -5670,6 +6084,249 @@ void death_xp_loss( CHAR_DATA *victim )
       xp_loss = UMAX( -10000 * classes, xp_loss );
       gain_exp( victim, xp_loss );
       }
+    }
+  return;
+}
+
+void do_lure( CHAR_DATA *ch, char *argument )
+{
+    char  dt;
+    CHAR_DATA *victim;
+    char       arg [ MAX_INPUT_LENGTH ];
+
+    if ( !IS_NPC( ch )
+        && !can_use_skpell( ch, gsn_lure ) )
+    {
+        send_to_char(C_DEFAULT,
+            "You cannot lure.\n\r", ch );
+        return;
+    }
+
+    if ( !ch->fighting )
+    {
+        send_to_char(C_DEFAULT, "You aren't fighting anyone.\n\r", ch );
+        return;
+    }
+
+/*    if ( !( obj = get_eq_char( ch, WEAR_WIELD ) )
+        || ( obj->value[3] != 11 && obj->value[3] != 2 ) )
+    {
+        send_to_char(C_DEFAULT, "You need to wield a piercing or stabbing
+weapon.\n\r", c$
+        return;
+    } */
+
+    if ( !IS_NPC( ch ) && ch->pcdata->learned[gsn_blindfight] > 0
+    && ch->pcdata->learned[gsn_blindfight] < number_percent( ) )
+    {
+    if ( !check_blind( ch ) )
+        return;
+    }
+
+    one_argument( argument, arg );
+    victim = ch->fighting;
+
+    if ( arg[0] != '\0' )
+        if ( !( victim = get_char_room( ch, arg ) ) )
+        {
+            send_to_char(C_DEFAULT, "They aren't here.\n\r", ch );
+            return;
+        }
+
+    dt = TYPE_UNDEFINED;
+
+    WAIT_STATE( ch, skill_table[gsn_lure].beats );
+    if ( IS_NPC( ch ) || number_percent( ) < ch->pcdata->learned[gsn_lure] )
+    {
+        act(AT_WHITE, "$n lures $N into a vulnerable position.", ch, NULL, victim, TO_ROOM );
+	send_to_char( AT_WHITE, "Your oppenet has lured you into a vulnerable position.\n\r", victim );
+	send_to_char( AT_WHITE, "You lure your opponent into a vulnerable position.\n\r", ch);
+      one_hit( ch, victim, dt );
+    if(IS_AFFECTED(ch, AFF_HASTE))
+      one_hit( ch, victim, dt );
+    if (IS_AFFECTED2( ch, AFF_RUSH ) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_second_attack) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_third_attack) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_fourth_attack) )
+      one_hit( ch, victim, dt );
+     if(can_use_skpell( ch, gsn_fifth_attack) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_sixth_attack) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_seventh_attack) )
+      one_hit( ch, victim, dt );
+/*    if(can_use_skpell( ch, gsn_eigth_attack) )
+      one_hit( ch, victim, dt ); */
+    if ( IS_AFFECTED2(ch, AFF_BERSERK) )
+       one_hit( ch, victim, dt );
+/* put more reasons to attack here */
+
+     one_dual( ch, victim, dt);
+     one_triple( ch, victim, dt);
+
+     }
+	update_skpell( ch, gsn_lure );
+    return;
+}
+
+void do_image( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    char  dt;
+    char buf[MAX_STRING_LENGTH];
+
+
+    dt = TYPE_UNDEFINED;
+
+        act(AT_WHITE, "$n attacks $N!", ch, NULL, victim, TO_ROOM );
+	act( AT_WHITE, "An image of $n shatters!", ch, NULL, NULL, TO_ROOM
+);
+	sprintf( buf, "An image of %s shatters!\n\r", ch->name );
+	send_to_char( AT_WHITE, buf, victim );
+	sprintf( buf, "%s attacks one of your images!", victim->name );
+	send_to_char( AT_WHITE, buf, ch);
+      one_hit( ch, victim, dt );
+    if(IS_AFFECTED(ch, AFF_HASTE))
+      one_hit( ch, victim, dt );
+    if (IS_AFFECTED2( ch, AFF_RUSH ) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_second_attack) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_third_attack) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_fourth_attack) )
+      one_hit( ch, victim, dt );
+     if(can_use_skpell( ch, gsn_fifth_attack) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_sixth_attack) )
+      one_hit( ch, victim, dt );
+    if(can_use_skpell( ch, gsn_seventh_attack) )
+      one_hit( ch, victim, dt );
+/*    if(can_use_skpell( ch, gsn_eigth_attack) )
+      one_hit( ch, victim, dt ); */
+    if ( IS_AFFECTED2(ch, AFF_BERSERK) )
+       one_hit( ch, victim, dt );
+/* put more reasons to attack here */
+
+     one_dual( ch, victim, dt);
+	 one_triple( ch, victim, dt);
+     multi_hit( ch, victim, dt );
+
+    return;
+}
+
+void do_flip(CHAR_DATA *ch, char *argument)
+{
+  char arg1[MAX_INPUT_LENGTH];
+  char arg2[MAX_INPUT_LENGTH];
+  EXIT_DATA *pexit;
+  CHAR_DATA *victim;
+  ROOM_INDEX_DATA *from_room;
+  int door;
+  char buf1[256], buf2[256], buf3[256];
+
+  argument = one_argument(argument, arg1);
+  one_argument(argument, arg2);
+
+  if(arg1[0] == '\0')
+  {
+    send_to_char(AT_BLUE, "Flip who what where?", ch);
+    return;
+  }
+
+  if((victim = get_char_room(ch, arg1)) == NULL)
+  {
+    send_to_char(AT_BLUE, "They aren't here.\n\r", ch);
+    return;
+  }
+
+  if(victim->position != POS_FIGHTING)
+  {
+    send_to_char(AT_BLUE, "You aren't fighting anybody.\n\r", ch);
+    return;
+  }
+  WAIT_STATE( ch, skill_table[gsn_flip].beats );
+  if ( IS_NPC( ch ) || number_percent( ) < ch->pcdata->learned[gsn_flip] )
+   {
+	damage( ch,  victim, number_range( 100, ch->level*6 ), gsn_flip );
+   }
+   else
+	damage( ch, victim, 0, gsn_flip );
+
+
+  if ( victim->position == POS_STUNNED || IS_STUNNED( ch, STUN_TO_STUN ) )
+	return;
+  if ( ( IS_NPC(ch) || number_percent() < ch->pcdata->learned[gsn_flip] ) &&
+      number_percent() < (ch->level * 100) / victim->level )
+  {
+    STUN_CHAR( ch, 10, STUN_TO_STUN );
+    STUN_CHAR( victim, 3, STUN_TOTAL );
+    victim->position = POS_STUNNED;
+    act( AT_WHITE, "You knock the wind out of $N!", ch, NULL, victim, TO_CHAR );
+    act( AT_WHITE, "$n knocks the wind out of $N!", ch, NULL, victim, TO_NOTVICT );
+    act( AT_WHITE, "$n knocks the wind out of you!", ch, NULL, victim, TO_VICT );
+    update_skpell(ch, gsn_flip);
+
+  }
+
+  if ( !str_cmp( arg2, "n" ) || !str_cmp( arg2, "north" ) ) door = 0;
+  else if ( !str_cmp( arg2, "e" ) || !str_cmp( arg2, "east"  ) ) door = 1;
+  else if ( !str_cmp( arg2, "s" ) || !str_cmp( arg2, "south" ) ) door = 2;
+  else if ( !str_cmp( arg2, "w" ) || !str_cmp( arg2, "west"  ) ) door = 3;
+  else if ( !str_cmp( arg2, "u" ) || !str_cmp( arg2, "up"    ) ) door = 4;
+  else if ( !str_cmp( arg2, "d" ) || !str_cmp( arg2, "down"  ) ) door = 5;
+  else door = dice(1,6) - 1;
+
+  if(ch == victim)
+  {
+    send_to_char(AT_BLUE, "You attempt to flip yourself, oook.\n\r", ch);
+    return;
+  }
+
+  pexit = ch->in_room->exit[door];
+  if(pexit == NULL || IS_SET(pexit->exit_info, EX_CLOSED))
+  {
+    act(AT_BLUE, "There is no exit, but you flip $M anyways.", ch, NULL,
+victim, TO_CHAR);
+    act(AT_BLUE, "$n flips $N.", ch, NULL, victim, TO_NOTVICT);
+    act(AT_BLUE, "$n flips you, ouch.", ch, NULL, victim, TO_VICT);
+    return;
+  }
+  if (!can_use_skpell( ch, gsn_flip ))
+	{
+	send_to_char(AT_WHITE, "HEEEYaaaaAA!", ch );
+	return;
+	}
+  if ( pexit->to_room->vnum == ROOM_VNUM_SMITHY )
+	{
+	act(AT_BLUE, "You flip $N, but a force field prevents $S entry.",
+ch, NULL, victim, TO_CHAR );
+	act(AT_BLUE, "$n flips $N, but a force field makes $M bounce back.", ch, NULL, victim, TO_NOTVICT );
+	act(AT_BLUE, "$n flips you, but you bounce off of a force field.",
+ch, NULL, victim, TO_VICT );
+	return;
+	}
+    if ( number_percent( ) < ch->pcdata->learned[gsn_flip] ){
+  sprintf(buf1, "You flip $N, sending $M %s.", dir_name[door]);
+  sprintf(buf2, "$n flips $N, sending $M %s.", dir_name[door]);
+  sprintf(buf3, "$n flips you, sending you %s.", dir_name[door]);
+  act(AT_BLUE, buf2, ch, NULL, victim, TO_NOTVICT );
+  act(AT_BLUE, buf1, ch, NULL, victim, TO_CHAR );
+  act(AT_BLUE, buf3, ch, NULL, victim, TO_VICT );
+  from_room = victim->in_room;
+  eprog_enter_trigger( pexit, victim->in_room, victim );
+  char_from_room(victim);
+  char_to_room(victim, pexit->to_room);
+
+  act(AT_BLUE, "$n comes flying into the room.", victim, NULL, NULL,
+TO_ROOM);
+  if ( (pexit = pexit->to_room->exit[rev_dir[door]]) &&
+       pexit->to_room == from_room )
+    eprog_exit_trigger( pexit, victim->in_room, victim );
+  else
+    rprog_enter_trigger( victim->in_room, victim );
     }
   return;
 }

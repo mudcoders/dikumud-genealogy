@@ -381,9 +381,9 @@ reserved~
 0 0
 0 0 0
 A
-13 1
-A
 17 -1
+A
+13 1
 E
 red talisman ravenwood~
 The symbol of ravenwood is set with a red stone upon it.
@@ -435,16 +435,16 @@ reserved~
 0 0
 0 0 0
 A
-13 5
-A
 17 -1
+A
+13 5
 E
 belt red ravenwood~
 &rA leather belt has been dyed red, and has a &wsilver buckle&r.
 ~
 #1257
 boots pair red leather ravenwood~
-&rsome red leather boots&X~
+&rsome red leather boots&W~
 A pair of red leather boots have been dropped here.~
 ~
 9 0 0 0 65 1
@@ -497,7 +497,7 @@ A cuirass is stained with blood.
 ~
 #1260
 sleeves ravenwood red~
-&rsome red leather sleeves&X~
+&rsome red leather sleeves&W~
 A pair of red sleeves have been left here.~
 ~
 9 0 0 0 257 1
@@ -510,12 +510,12 @@ reserved~
 A
 17 -1
 E
-pair sleeves red leather ravenwood~
-&rThe sleeves have intricate designs painted in red upon them.
-~
-E
 designs~
 &RThe designs are very abstract, but lovely in a sort of twisted way.
+~
+E
+pair sleeves red leather ravenwood~
+&rThe sleeves have intricate designs painted in red upon them.
 ~
 #1261
 sceptre blessing divine intervention~
@@ -530,13 +530,13 @@ reserved~
 0 0
 0 0 0
 E
-sceptre divine intervention blessing~
-The sceptre has many runes carved upon it.
-~
-E
 runes~
 The runes explain that a power of the divine is within.
 INVOKE SCEPTRE to feel the power.
+~
+E
+sceptre divine intervention blessing~
+The sceptre has many runes carved upon it.
 ~
 #1262
 sword ravenwood scrap iron~
@@ -670,12 +670,12 @@ reserved~
 0 0
 0 0 0
 E
-beef rations food~
-&OSome small strips of dried meat.
-~
-E
 strips~
 Some small strips of dried meat and spices.
+~
+E
+beef rations food~
+&OSome small strips of dried meat.
 ~
 #1270
 bag burlap~
@@ -820,6 +820,12 @@ north and south. There is a &rsign&c posted here.
 0 1036 0
 Rd     0
 E
+door~
+A door stands here in the south wall. LOOK <direction> to see if it is open
+or closed. Some doors need keys for you to UNLOCK them. It is up to you to
+find those keys. This door though, is not a locked one.
+~
+E
 sign~
 &rThere may be doors located in some places. They are not always easy to
 find as they are sometimes not mentioned in the description of the room.
@@ -829,12 +835,6 @@ can also LOOK <direction> which will tell you if there is a door there and
 whether it is open, closed or locked. You can also try LOOK DOOR, but this
 will not always work... if the door is hidden then you have to discover it
 on your own.
-~
-E
-door~
-A door stands here in the south wall. LOOK <direction> to see if it is open
-or closed. Some doors need keys for you to UNLOCK them. It is up to you to
-find those keys. This door though, is not a locked one.
 ~
 D0
 ~
@@ -1063,12 +1063,12 @@ freshly cooked food.
 0 1032 0
 Rd     0
 E
-ladder~
-&OA ladder leads down into a dark pit here.
-~
-E
 stairs~
 A stairway leads up from here.
+~
+E
+ladder~
+&OA ladder leads down into a dark pit here.
 ~
 D0
 ~

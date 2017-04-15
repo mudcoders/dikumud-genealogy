@@ -703,7 +703,7 @@ A potion lies on the ground here, glowing.~
 ~
 10 268435523 0 0 1 75
 50~ heal~ cure poison~ cure critical~
-1 0 5 20 0
+1 20 0 0 0
 0 0
 reserved~
 0 0
@@ -759,19 +759,19 @@ true sight~
 5 5
 0 0 0
 A
-17 -40
-A
-3 -1
-A
-23 -5
-A
-24 -5
-A
-13 100
+4 3
 A
 18 10
 A
-4 3
+13 100
+A
+24 -5
+A
+23 -5
+A
+3 -1
+A
+17 -40
 E
 helm forethought~
 This helm looks like almost any other helm, save that it pulses with a
@@ -886,11 +886,11 @@ reserved~
 0 0
 0 0 0
 A
-24 -4
+13 55
 A
 25 22
 A
-13 55
+24 -4
 E
 snake head~
 This is indeed, the head of a VERY large snake.
@@ -908,11 +908,11 @@ reserved~
 0 0
 0 0 0
 A
-2 -2
+19 9
 A
 18 -2
 A
-19 9
+2 -2
 E
 claws wolverine pair~
 A pair of very large claws.  They look like a wolf's claws, but are much
@@ -931,11 +931,11 @@ reserved~
 0 0
 0 0 0
 A
-25 27
+13 30
 A
 3 1
 A
-13 30
+25 27
 E
 spiders fangs~
 Someone has made an earring out of some spiders fangs. They look quite
@@ -954,11 +954,11 @@ reserved~
 0 0
 0 0 0
 A
-18 9
+13 60
 A
 19 9
 A
-13 60
+18 9
 E
 nightmare hooves horse~
 A dark pair of horse hooves are larger than those of a normal horse.
@@ -976,13 +976,13 @@ fly~
 4 4
 0 0 0
 A
-17 -50
-A
-19 9
+13 50
 A
 2 1
 A
-13 50
+19 9
+A
+17 -50
 E
 wings nightmare pair~
 A pair of dark wings are quite large in size, and very heavy.
@@ -1000,9 +1000,9 @@ reserved~
 0 0
 0 0 0
 A
-18 120
-A
 19 80
+A
+18 120
 E
 bee stinger~
 A simple stinger from a very large bee.
@@ -1020,15 +1020,15 @@ fireshield~
 6 6
 0 0 0
 A
-19 123
-A
-18 104
-A
-17 -92
+13 90
 A
 12 90
 A
-13 90
+17 -92
+A
+18 104
+A
+19 123
 E
 flameblade burning blade~
 &RThe flamblade burns with an unfelt heat.  It is very large in size and
@@ -1047,17 +1047,17 @@ reserved~
 0 0
 0 0 0
 A
-19 97
-A
-12 100
-A
-13 100
-A
-25 30
+19 160
 A
 18 150
 A
-19 160
+25 30
+A
+13 100
+A
+12 100
+A
+19 97
 E
 sword elemental earth~
 This is a Greatsword of the elementals. Made of the hardest stone.
@@ -1135,11 +1135,11 @@ reserved~
 0 0
 0 0 0
 E
-hive~
+bee~
 It has many holes in it, but seems to be void of life.
 ~
 E
-bee~
+hive~
 It has many holes in it, but seems to be void of life.
 ~
 #2915
@@ -1199,9 +1199,9 @@ web~
 5 5
 0 0 0
 A
-26 2
-A
 13 50
+A
+26 2
 E
 spider charm~
 A charm made of several metals has been formed into the shape of the arachnid.
@@ -1235,15 +1235,15 @@ earthquake~
 5 5
 0 0 0
 A
-18 -5
-A
-1 2
-A
-14 -50
+13 75
 A
 19 5
 A
-13 75
+14 -50
+A
+1 2
+A
+18 -5
 E
 necklace granite~
 A very heavy necklace made of granite. It is very large in size and you may
@@ -1307,11 +1307,11 @@ animate dead~
 4 4
 0 0 0
 A
-19 135
+12 90
 A
 18 100
 A
-12 90
+19 135
 #2950
 shield pain dark breton~
 a shield of pain~
@@ -1325,11 +1325,11 @@ reserved~
 0 0
 0 0 0
 A
-13 75
+17 -100
 A
 2 -1
 A
-17 -100
+13 75
 #2951
 sword cursed breton~
 a cursed sword~
@@ -1343,17 +1343,17 @@ curse~
 4 4
 0 0 0
 A
-14 -200
-A
-19 70
-A
-18 50
-A
-13 60
+4 -2
 A
 25 20
 A
-4 -2
+13 60
+A
+18 50
+A
+19 70
+A
+14 -200
 E
 sword cursed~
 A longsword made of a fine bronzed metal is very heavy and not well-balanced.
@@ -1371,13 +1371,13 @@ curse~
 10 10
 0 0 0
 A
-19 160
-A
-18 100
+13 65
 A
 25 20
 A
-13 65
+18 100
+A
+19 160
 E
 black sword midnight~
 This longsword has been covered with a black substance known as weapon black.
@@ -1444,15 +1444,15 @@ summon demon~
 6 6
 0 2963 2964
 A
-13 40
-A
-12 40
-A
-19 9
+24 -10
 A
 18 5
 A
-24 -10
+19 9
+A
+12 40
+A
+13 40
 E
 book~
 Escribed onto this book are many runes.  You peer at them, for they are words
@@ -1472,15 +1472,15 @@ death field~
 0 0
 0 0 0
 A
-26 9
-A
-19 175
-A
-18 145
+13 70
 A
 25 25
 A
-13 70
+18 145
+A
+19 175
+A
+26 9
 E
 plaguesword black blade~
 A HUGE sword that most would have to wield two-handedly. It is a might
@@ -1499,11 +1499,11 @@ reserved~
 0 0
 0 0 0
 A
-13 75
+2 2
 A
 12 50
 A
-2 2
+13 75
 E
 screaming soul~
 &wThis thing really has no physical traits, except that it will attach itself
@@ -1522,13 +1522,13 @@ reserved~
 0 0
 0 0 0
 A
-14 -500
-A
-19 -10
+1 -2
 A
 18 -10
 A
-1 -2
+19 -10
+A
+14 -500
 #2960
 belt fury breton~
 the belt of fury~
@@ -1542,11 +1542,11 @@ flesh armor~
 5 5
 0 0 0
 A
-23 -10
+19 11
 A
 24 -10
 A
-19 11
+23 -10
 E
 belt fury~
 A belt of pure fury twists and writhes constantly.

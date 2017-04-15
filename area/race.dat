@@ -104,4 +104,17 @@ MWis       -2
 MDex       2
 MCon       1
 END
+VNum       16
+Race_Full  Kreen~
+Race_Name  Krn~
+MStr       -1
+MInt       -1
+MDex       2
+END
+VNum       17
+Race_Full  Angel~
+Race_Name  Ang~
+MWis       4
+MCon       -4
+END
 #END

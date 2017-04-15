@@ -317,281 +317,149 @@ reserved~
 0 0
 0 0 0
 E
-hq1~
-&BDeity Guidelines:
+hq13~
+&BClan Skill\Spell Guidelines:
 &z--------------------------------------------------------------------------------
-&z1..&W>&c Deities are NOT to enter the HQ of another clan w/o the express permission
-     of that clan's deity or one of it's officers.  There have been several
-     fights over people doing this.  Consider it common courtesy.  You don't
-     want people invading your home, don't invade theirs.
-&z2..&W>&c If you find one of your members breaking a rule, don't cover for him, turn
-     him in otherwise you'll find yourself paying for the same problem if you
-     knew.  Some "favoritism" is allowed, being their mortals in your cult who
-     "worship" you, but only within the boundries of what's legal.
-&z3..&W>&c Problems between deities are to be settled amoung the ranks of imms.  If
-     you have a serious problem with another Deity you feel you cannot solve
-     then speak with me.  I'm not going to put up with "catfights" over public
-     channels or even semi-public channels.  To roleplay that two PK deities
-     hate one another is all well and good, but remember, this IS a game and you
-     should be making an effort to work together when out of character.  When
-     immortals start carrying their fights over to public channels you make us
-     all look bad and for usually very little reason.  Once again..if you have a
-     problem you need solved, bring it up with me.
+&cThis I pretty much leave to you, hoping you'll find something creative that
+supports your clan theme, but I feel there need be a couple pointers on what
+type of skill\spell not to choose:
 &c
-These are all I'm asking for now and I feel every one of them is justified and
-is listed because there have been numerous problems in those fields.  I hope you
-remember that regardless of my "personal view/feelings" towards you it has no
-weight in how I view your performance as a Deity.  Some of you should know this
-quite well.  So please don't keep a problem to yourself because you feel I don't
-like you.  Truth is, you can hate me all you want, just as long as you do your
-job and keep it between us so as not to cause public problems.  Make sense?
-&b
-&zArch
-&z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/10/96
-~
-E
-book~
-Yellow pages covered with dark black ink flap wildly in your grasp with a slight
-scratching sound from the age of the pages.  (Keywords aren't case sensitive.)
-&C(&B"&wlook HQ<number>&B"..ie.."&wlook HQ1&B"&C)
-&b
-&z1..&W> &BDeity Guidelines
-&z------- &WItems &z-------
-&z2..&W> &BGeneral Clan EQ Guidelines
-&z3..&W> &BClan level 30/50 & 65/75 Equipment
-&z4..&W> &BClan &C"&BChampion&C"&B level 100 Equipment
-&z5..&W> &BClan Potions&c\&BPills&c\&BScrolls
-&z------- &WRooms &z-------
-&z6..&W> &BHQ Room Guidelines
-&z7..&W> &BClan HQ Exits
-&z------- &WMobs &z--------
-&z8..&W> &BClan Guardian Guidelines
-&z9..&W> &BTrade-in Mobs
-&z10.&W> &BClan Spell Mob Bribe Amounts
-&z11.&W> &BClan Non-Guardian Mobs (ie shopkeepers, healer, etc..)
-&z------- &WMisc &z--------
-&z12.&W> &BClan Raids
-&z13.&W> &BClan Skills\Spells
-~
-E
-hq2~
-&BGeneral Guidelines on Clan EQ:  (not potions, pills & scrolls)
-&z--------------------------------------------------------------------------------
-&z1..&W>&c Clan EQ can't be a weapon or body armor.
-&z2..&W>&c Clan EQ can't be an item that can be worn twice upon a character. (ie neck,
-     finger, wrist, orbit & ankle)
-&z3..&W>&c Clan EQ should be cost: 0...it's not supposed to be sold.
-&z4..&W>&c If you're an evil clan, it's in your own best interests to make clan eq
-     anti-good..and vice versa for a good clan.  Incase you're plooted.
-&z5..&W>&c Clan EQ should be 'nodamage'.
-&z6..&W>&c Clan EQ should have a keyword of the clan in it's name.  (ie Elysium..etc.)
-&z7..&W>&c Clan EQ shouldn't have these flags: nodrop & noremove.  This only harms
-     your own members since it's them that use those items the most.
-&z8..&W>&c On addaffects for clan EQ:
-  &ra.&W)&c Hitroll & Damroll will be considered as one addaffect together.
-  &rb.&W)&c Mana & Blood will be considered as one addaffect together and I'd like to
-      see those two on every piece, except a clan that doesn't induct
-      spellcasters.
-  &rc.&W)&c You can bunch addaffects like saving-spell and saving-breath to get -30
-      saving-spell OR saving-breath if you wish, but together they still count
-      as 2 addaffects since you get the advantage of both.  I'd like to keep
-      this bunching down to 2 types at a time and none bunching with damroll.
+&z1..&w>&c I'd like not to see skills that are built off of a spell\skill that is the
+     basis for damage of a particular class.  Skills like backstab for thieves
+     or multiburst\spellcraft for mages.  To give these to all your clan members
+     hurts the class the ability comes from in fights.  Makes them less useful
+     in groups as well.  Think of it this way..don't use the best to skills of
+     any one class.  Like a mage's spellcraft & multiburst, or a cleric's
+     dispel magic & dancing lights, a warrior's enhanced damage two and berserk.
+&z2..&w>&c I'd also like not to see skills that help only one or two classes UNLESS
+     your clan is based around that one or two classes.  Like a skill that in
+     truth only helped thieves, I'd rather not see unless your clan is one of
+     purely thieves.
 &c
-HQ rules aren't set in stone, so please if you wish to do something different
-speak to me.  I'll very likely let you do what you wish as long as it's
-reasonable.  And if I won't allow a particular change it's with good reason.
-These guidelines to follow were set simply to give some base guidelines to start
-from.  They don't tell you how to "dress the stage", but merely how I wish the
-"nails to be hammered in".  Anyone who has questions about any of the guidelines
-please don't hesitate to speak to me.
+These are all I'm going to limit on them and that only so we don't get skills
+that either take away power from a particular class or only help one class of
+your clan.  Aside from those..think up original stuff and check with me, Lacey,
+and Thalador.
 &c
 &zArch
 &z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/9/96
+&BLast Changed &W- &R9/11/96
 ~
 E
-hq3~
-&BClan Equiptment Outline - Levels (30 - 65) / ( 50 - 75 )
+hq12~
+&BClan Raids:
 &z--------------------------------------------------------------------------------
-&PClan Equiptment &C(Peaceful 30) &R-<Deadly 50>-
-&PChoose &W>&z4&W<&P of the available options below:
-&r1&z)&c  HIT POINTS  &r+50
-&r2&z)&c  MANA &r+30     &cBLOOD &r+10
-&r3&z)&c  ARMOR CLASS &r-50
-&r4&z)&c  STAT BOOSTS &r+2 &c(ie/ STR +2, or WIS +1 and DEX +1)
-&r5&z)&c  ANTI-DISARM &r+30
-&r6&z)&c  SAVING-SPELL &r-10
-&r7&z)&c  SAVING-BREATH &r-10
-&r8&z)&c  HIT ROLL & DAMAGE ROLL &r+7 &c/ &r+7
-&b
-&PClan Equiptment &C(Peaceful 65) &R-<Deadly 75>-
-&PChoose &W>&z5&W<&P of the available options below:
-&r1&z)&c  HIT POINTS &r+75
-&r2&z)&c  MANA &r+65     &cBLOOD &r+21
-&r3&z)&c  ARMOR CLASS &r-75
-&r4&z)&c  STAT BOOSTS &r+2 &c(3 total: +2 STR & +1 WIS or a combo)
-&r5&z)&c  ANTI-DISARM &r+65
-&r6&z)&c  SAVING-SPELL &r-15
-&r7&z)&c  SAVING-BREATH &r-15
-&r8&z)&c  HIT ROLL & DAMAGE ROLL &r+11 &c/ &r+11
-&c
-You may add an invoke to your lv65/75 item from the following spells or any
-similar that -I- okay.  Since you get a 2nd invoke here I want it to be a small
-spell, not something as good as the champ item.  &z(&cSpells: &renhanced strength,
-giant strength, heal, web, pass door, haste, detect hidden, detect invis, invis,
-mass invis, astral walk, fly, locate object & refresh&z)
-&cAlso it is 15/15 invokes as the limit.
-&b
-&P*** NO MORE BUNCHING POINTS ONTO DAMAGE ROLL... MUST SPLIT!
-&b
-&RIMPORTANT &W- &cPlease ADD as an available Addaffect that counts as 1 point,
-            a permanent spell like fly, heighten senses, combat mind,
-            invis, scry.  NO SHIELDS.  (If you want...)
+&BRules regarding Deities defending their HQ:
+  &z1.&W>&c Deities may ONLY attack those mortals within their HQ, not those just
+      outside.
+  &z2.&W>&c Deities cannot do anything a mortal cannot.  This means that the use of
+      immortal commands (force, goto..etc..) is ILLEGAL.
+  &z3.&W>&c You're free to use only spells or equipment accessible to mortals.  Please
+      do NOT use items from a proto area that isn't still stuck on 2222.  Also
+      use only your own clan skill incase any of you Deities get 'mset'.
+  &z4.&W>&c The use of area attack spells such as 'psychic quake', 'gas breath' or
+      'ultrablast' are probited due to their damage being based in hp and your
+      ability to have 30k hp.  You'd simply kill them in one shot w/multiburst.
 &c
 &zArch
 &z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/10/96
+&BLast Changed &W- &R9/11/96
 ~
 E
-hq4~
-&BChampion (lv100) Clan Equipment
+hq11~
+&BGuidelines for Non-Guardian Clan Mobs:
 &z--------------------------------------------------------------------------------
-&r15dr / 15hr  &cMaximum points can be used for Damage Roll and/or Hit Roll.
-&r100 &cMaximum points can be used for Hitpoints.
-&r100 &cMaximum points can be used for Mana.
- &r33 &cMaximum points can be used for Blood.
-&r100 &cMaximum points can be used for Armor Class.
-&r100 &cMaximum points can be used for Movements.
-&r-20 &cMaximum points can be used for Saving-Spell.
-&r-20 &cMaximum points can be used for Saving-Breath.
-&r100 &cMaximum points can be used for Anti-Disarm.
-  &r4 &cMaximum points can be used for 2 Stat Raises. (no more than +2/stat)
-  &r1 &cMaximum Permanent Spell such as "fly -1" is allowed
+&BTypes of Mobs: &cHealer, Blacksmith, Banker, Vampire Feed Mob, Baker, Secretaries,
+               EQ dispensers, Potion Sellers, Trade-In Mob, General Store &
+               other misc. mobs.
+Many of the types listed above can be joined btw.  You don't have to have a
+seperate store for clan potions and containers or a seperate mob for doing the
+trade-in process or the EQ dispensing process.  Those are listed just incase you
+wish to spread them out.  Guidelines for most mobs should be the same.
+  Level &w=&r 100
+  &cHP & Shields &w=&r Set by Grunt's Mob Creation Book
+&cThe only exception to this is the Vampire Feed Mobs.  I'd like those to have an
+HP amount of 300,000 and be level 1.  Also add a mobprog to them like this:
+&cMobprog Type  &w=&r speech_prog
+&cProg Argument &w=&r "quit" (Whatever you wish really, but have it in the room desc.)
+&cProg Commands &w=&r
+&z--------------------------------------------------------------------------------
+&rif isclan($n) == <&GYour clan number, check 'clans'&r>
+  emote shoves you away roughly screaming to be left alone.
+  mptransfer $n <A room bordering the mob>
+endif
+&z--------------------------------------------------------------------------------
+&cAlso please add this prog to Vampire Feed mobs as well:
+&cMobprog type  &w=&r rand_prog
+&cProg Argument &w=&r 50
+&cProg Commands &w=&r c 'complete heal' self
 &c
-You may add any of the &w>&z6&w<&c of the listed addaffects to your Champion Equipment.
-Hitroll & Damroll are considered a combined addaffect, therefore having both on
-an item is only considered to be 1 addaffect.
-&z*&cPermanent Lights are allowed and does not count as an addaffect.
+These are for your member's convience.  The rest I leave to you.
 &c
-Champ EQ now has a max of 25 invoke charges.
-These spells may &R*&zNOT&R*&c be any of the following:
-&RSanctuary  &r-  &RShields (ANY)  &r-  &RBiofeedback  &r-  Or &RANY OFFENSIVE SPELL.
-&cOffensive is &RANY&c spell that is used against a MOB or PLAYER.
-ie/ Fireball, enchanted song, hex, curse, blind, holy fires, meteor swarm etc.
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq10~
+&BClan Spell Mob Bribe Amounts
+&z--------------------------------------------------------------------------------
+&cSpell Mob will be level 100.
+Tyrion Xavier has offered Tuknir Deathlock (Vnum 9116 port 2222) as reference
+for creating a spell mob.
+&b
+&w(&r50,000 &ccoins&w)  &zHealing Hands &C(Mob must be neutral+ align)
+&w(&r50,000 &ccoins&w)  &zHaste
+&w(&r80,000 &ccoins&w)  &zMental Block
+&w(&r10,000 &ccoins&w)  &zInvisibility
+&w(&r10,000 &ccoins&w)  &zFly / Levitate
+&w(&r125000 &ccoins&w)  &zSanctuary
+&w(&r25,000 &ccoins&w)  &zGiant Strength
+&w(&r25,000 &ccoins&w)  &zCure Blindness
+&w(&r50,000 &ccoins&w)  &zCombat Mind
+&c
+Mobprograms to purge the room, and to have the Mob cast 'true sight' on himself
+can be triggered with no charge.
+&b
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq9~
+&BTrade-in Mob setup:
+&z--------------------------------------------------------------------------------
+&cFor the sake of example I'll use the following assumptions on the item...
+&cname (keywords)  &w= &rsilver dragon helm elysium
+&citem vnum        &w= &r2159
+&cclan's ID #      &w= &r2
+&cmobprog type     &w= &rgive_prog
+&cmobprog argument &w= &rsilver dragon helm elysium
+&cmobprog commands &w=
+&C--------------------------------------------------------------------------------
+&remote studies the object a moment.
+if isclan($n) == 2
+  say Let me see what I can do.
+  emote fiddles with the item for a bit.
+  mpjunk helm
+  mpoload 2159
+  give helm $n
+  say That should fix it.
+else
+  say Why thank you for returning this object that is obviously not yours.
+  mpjunk helm
+  say Now, do yourself a favor and get the hell out of this clan's home.
+endif
+&C--------------------------------------------------------------------------------
+&cFeel free to add in\change emotes and says as you wish, those in are purely for
+example.  With this form of program the only times a member will need to be
+given a new "champ" item will be when they're first inducted, die and lose their
+corpse or are PK'd and plooted.  But this is only for the "champion lv100" item
+and the "lv65/75" item.
 &z
 &zArch
 &z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/10/96
-~
-E
-hq5~
-&BClan Potions\Pills\Scrolls: (The types listed can be either)
-&z--------------------------------------------------------------------------------
-&cThe type of HP or Mana potion you use is up to you, but you must supply at least
-one type of Mana, HP & Vitality potion.
-&cPotion Guidelines:
-    &Wa&z) &cWeight &w= &r1
-    &Wb&z) &cPlvl   &w= &cLevel of the Potion.  (&rPeaceful = 30 & PK = 50&c) 
-    &Wc&z) &cSlvl   &w= &rLevel of the Potion's spells.
-    &Wd&z) &cFlags  &w= &rno_damage, glow & nolocate
-&z ____________________________________________________________________________
- &z|&WPotion Type &z|&WPlvl&z|&WSlvl&z|&WSpell 1       &z|&WSpell 2       &z|&WSpell 3       &z|&WCost  &z|
- &z|------------|----|----|--------------|--------------|--------------|------|
- &z|&WHP Potion   &z|  &R??&z| &r100&z|&BCure Critical &z|&BCure Critical &z|&BCure Critical &z| &r18000&z|
- &z|&WMana Potion &z|  &R??&z| &r100&z|&BMana          &z|&BMana          &z|&BMana          &z| &r15000&z|
- &z|&WVitality P. &z|  &R??&z| &r100&z|&BRefresh       &z|&BCure Poison   &z|&BCure Blindness&z| &r15000&z|
- &z|&WHP Potion   &z|  &R??&z| &r100&z|&BHeal          &z|&BHeal          &z|&BRefresh       &z| &r10000&z|
- &z|&WMana Potion &z|  &R??&z| &r100&z|&BMana          &z|&BMana          &z|&BRefresh       &z| &r10000&z|
- &z----------------------------------------------------------------------------
-&b
-&zArch
-&z-<&CClan Administrator&z>-
 &BLast Changed &W- &R9/11/96
-~
-E
-hq6~
-&BRoom Guidelines:
- &z_______________________________________________________________________________
- &z|&BType of Room      &z|&RFlags that I -want- in                                    &z|
- &z|------------------|----------------------------------------------------------&z|
- &z|&cMortal Offices    &z|&rno_in, no_out, pkill, no_shadow, private, noscry          &z|
- &z|------------------|----------------------------------------------------------&z|
- &z|&cDeity's Office    &z|&rThis is up to you completely                              &z|
- &z|------------------|----------------------------------------------------------&z|
- &z|&cGuardian Rooms    &z|&rno_in, no_out, pkill, no_shadow, noscry, no_flee          &z|
- &z|------------------|----------------------------------------------------------&z|
- &z|&cStores            &z|&rno_in, no_out, pkill, no_shadow, indoors, noscry, no-magic&z|
- &z|                  |&rbank & smithy as needed                                   &z|
- &z|------------------|----------------------------------------------------------|
- &z|&cSafe Room         &z|&rno_in, no_out, no_shadow, noscry, safe  (Peaceful clans)  &z|
-&z |------------------|----------------------------------------------------------|
- &z|&cUnspecified Rooms &z|&rno_in, no_out, pkill, no_shadow, noscry                   &z|
-&z &z|__________________|__________________________________________________________|
-&c
-These are the flags I do NOT want in Clan Headquarters:
-&c
-&RSAFE  CONE_OF_SILENCE  NO_MOB  NO_FLEE  SILENT  SOLITARY  PRIVATE
-(&rNo HELL's in HQ&R)
-&c
-&cThese flags I don't want to see except where specified above.  I would suggest
-you make either your recall room or your healer's room the room that is SAFE.
-Other flags may be used as the Deity sees fit.
-&b
-&zArch
-&z-<&CClan Administartor&z>-
-&BLast Changed &W- &R9/11/96
-~
-E
-handbook~
-Yellow pages covered with dark black ink flap wildly in your grasp with a slight
-scratching sound from the age of the pages.  (Keywords aren't case sensitive.)
-&C(&B"&wlook HQ<number>&B"..ie.."&wlook HQ1&B"&C)
-&b
-&z1..&W> &BDeity Guidelines
-&z------- &WItems &z-------
-&z2..&W> &BGeneral Clan EQ Guidelines
-&z3..&W> &BClan level 30/50 & 65/75 Equipment
-&z4..&W> &BClan &C"&BChampion&C"&B level 100 Equipment
-&z5..&W> &BClan Potions&c\&BPills&c\&BScrolls
-&z------- &WRooms &z-------
-&z6..&W> &BHQ Room Guidelines
-&z7..&W> &BClan HQ Exits
-&z------- &WMobs &z--------
-&z8..&W> &BClan Guardian Guidelines
-&z9..&W> &BTrade-in Mobs
-&z10.&W> &BClan Spell Mob Bribe Amounts
-&z11.&W> &BClan Non-Guardian Mobs (ie shopkeepers, healer, etc..)
-&z------- &WMisc &z--------
-&z12.&W> &BClan Raids
-&z13.&W> &BClan Skills\Spells
-~
-E
-hq7~
-&BClan HQ Exits:
-&z--------------------------------------------------------------------------------
-&cFrom now on I want 3 exits in every clan HQ.  What exits depends on what
-alignment you claim your clan is.  Neutral aligned clans shall consider
-themselves as good aligned clans in this list.
-&z _______________________________________________________________
-&z |&BTown\Place             &z|&RVnum    &z|&CAlignment  &z|&BReferrence Point&z|
-&z |-----------------------|--------|-----------|----------------|
-&z |&CBethaven               &z|  &r25001 &z|&cAll aligns &z|&cJezabel         &z|
-&z |&CRavenwood              &z|   &r1301 &z|&cEvil clans &z|&cLiakhara        &z|
-&z |&CRavenwood - outside    &z|   &r5300 &z|&cGood clans &z|&cnone            &z|
-&z |&CHammerheim             &z|  &r10211 &z|&cAll aligns &z|&cRodgaar         &z|
-&z |_______________________|________|___________|________________|
-&b
-&cI want evil clans exiting to Bethaven as well simply because of the numerous
-things built around that town.  Bethaven is the mud's heart in truth for now so
-it shouldn't be cut off from those of evil alignment.  Your clan members should
-be allowed easy access to the donation rooms, class noteboard, etc...  That and
-Bethaven itself isn't really a "good" aligned city, with thugs and vagabonds
-roaming it's streets freely.
-&b
-&zArch
-&z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/8/96
 ~
 E
 hq8~
@@ -638,149 +506,281 @@ note on or ask me if I'm around.
 &BLast Changed &W- &R9/12/96
 ~
 E
-hq9~
-&BTrade-in Mob setup:
+hq7~
+&BClan HQ Exits:
 &z--------------------------------------------------------------------------------
-&cFor the sake of example I'll use the following assumptions on the item...
-&cname (keywords)  &w= &rsilver dragon helm elysium
-&citem vnum        &w= &r2159
-&cclan's ID #      &w= &r2
-&cmobprog type     &w= &rgive_prog
-&cmobprog argument &w= &rsilver dragon helm elysium
-&cmobprog commands &w=
-&C--------------------------------------------------------------------------------
-&remote studies the object a moment.
-if isclan($n) == 2
-  say Let me see what I can do.
-  emote fiddles with the item for a bit.
-  mpjunk helm
-  mpoload 2159
-  give helm $n
-  say That should fix it.
-else
-  say Why thank you for returning this object that is obviously not yours.
-  mpjunk helm
-  say Now, do yourself a favor and get the hell out of this clan's home.
-endif
-&C--------------------------------------------------------------------------------
-&cFeel free to add in\change emotes and says as you wish, those in are purely for
-example.  With this form of program the only times a member will need to be
-given a new "champ" item will be when they're first inducted, die and lose their
-corpse or are PK'd and plooted.  But this is only for the "champion lv100" item
-and the "lv65/75" item.
+&cFrom now on I want 3 exits in every clan HQ.  What exits depends on what
+alignment you claim your clan is.  Neutral aligned clans shall consider
+themselves as good aligned clans in this list.
+&z _______________________________________________________________
+&z |&BTown\Place             &z|&RVnum    &z|&CAlignment  &z|&BReferrence Point&z|
+&z |-----------------------|--------|-----------|----------------|
+&z |&CBethaven               &z|  &r25001 &z|&cAll aligns &z|&cJezabel         &z|
+&z |&CRavenwood              &z|   &r1301 &z|&cEvil clans &z|&cLiakhara        &z|
+&z |&CRavenwood - outside    &z|   &r5300 &z|&cGood clans &z|&cnone            &z|
+&z |&CHammerheim             &z|  &r10211 &z|&cAll aligns &z|&cRodgaar         &z|
+&z |_______________________|________|___________|________________|
+&b
+&cI want evil clans exiting to Bethaven as well simply because of the numerous
+things built around that town.  Bethaven is the mud's heart in truth for now so
+it shouldn't be cut off from those of evil alignment.  Your clan members should
+be allowed easy access to the donation rooms, class noteboard, etc...  That and
+Bethaven itself isn't really a "good" aligned city, with thugs and vagabonds
+roaming it's streets freely.
+&b
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/8/96
+~
+E
+handbook~
+Yellow pages covered with dark black ink flap wildly in your grasp with a slight
+scratching sound from the age of the pages.  (Keywords aren't case sensitive.)
+&C(&B"&wlook HQ<number>&B"..ie.."&wlook HQ1&B"&C)
+&b
+&z1..&W> &BDeity Guidelines
+&z------- &WItems &z-------
+&z2..&W> &BGeneral Clan EQ Guidelines
+&z3..&W> &BClan level 30/50 & 65/75 Equipment
+&z4..&W> &BClan &C"&BChampion&C"&B level 100 Equipment
+&z5..&W> &BClan Potions&c\&BPills&c\&BScrolls
+&z------- &WRooms &z-------
+&z6..&W> &BHQ Room Guidelines
+&z7..&W> &BClan HQ Exits
+&z------- &WMobs &z--------
+&z8..&W> &BClan Guardian Guidelines
+&z9..&W> &BTrade-in Mobs
+&z10.&W> &BClan Spell Mob Bribe Amounts
+&z11.&W> &BClan Non-Guardian Mobs (ie shopkeepers, healer, etc..)
+&z------- &WMisc &z--------
+&z12.&W> &BClan Raids
+&z13.&W> &BClan Skills\Spells
+~
+E
+hq6~
+&BRoom Guidelines:
+ &z_______________________________________________________________________________
+ &z|&BType of Room      &z|&RFlags that I -want- in                                    &z|
+ &z|------------------|----------------------------------------------------------&z|
+ &z|&cMortal Offices    &z|&rno_in, no_out, pkill, no_shadow, private, noscry          &z|
+ &z|------------------|----------------------------------------------------------&z|
+ &z|&cDeity's Office    &z|&rThis is up to you completely                              &z|
+ &z|------------------|----------------------------------------------------------&z|
+ &z|&cGuardian Rooms    &z|&rno_in, no_out, pkill, no_shadow, noscry, no_flee          &z|
+ &z|------------------|----------------------------------------------------------&z|
+ &z|&cStores            &z|&rno_in, no_out, pkill, no_shadow, indoors, noscry, no-magic&z|
+ &z|                  |&rbank & smithy as needed                                   &z|
+ &z|------------------|----------------------------------------------------------|
+ &z|&cSafe Room         &z|&rno_in, no_out, no_shadow, noscry, safe  (Peaceful clans)  &z|
+&z |------------------|----------------------------------------------------------|
+ &z|&cUnspecified Rooms &z|&rno_in, no_out, pkill, no_shadow, noscry                   &z|
+&z &z|__________________|__________________________________________________________|
+&c
+These are the flags I do NOT want in Clan Headquarters:
+&c
+&RSAFE  CONE_OF_SILENCE  NO_MOB  NO_FLEE  SILENT  SOLITARY  PRIVATE
+(&rNo HELL's in HQ&R)
+&c
+&cThese flags I don't want to see except where specified above.  I would suggest
+you make either your recall room or your healer's room the room that is SAFE.
+Other flags may be used as the Deity sees fit.
+&b
+&zArch
+&z-<&CClan Administartor&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq5~
+&BClan Potions\Pills\Scrolls: (The types listed can be either)
+&z--------------------------------------------------------------------------------
+&cThe type of HP or Mana potion you use is up to you, but you must supply at least
+one type of Mana, HP & Vitality potion.
+&cPotion Guidelines:
+    &Wa&z) &cWeight &w= &r1
+    &Wb&z) &cPlvl   &w= &cLevel of the Potion.  (&rPeaceful = 30 & PK = 50&c) 
+    &Wc&z) &cSlvl   &w= &rLevel of the Potion's spells.
+    &Wd&z) &cFlags  &w= &rno_damage, glow & nolocate
+&z ____________________________________________________________________________
+ &z|&WPotion Type &z|&WPlvl&z|&WSlvl&z|&WSpell 1       &z|&WSpell 2       &z|&WSpell 3       &z|&WCost  &z|
+ &z|------------|----|----|--------------|--------------|--------------|------|
+ &z|&WHP Potion   &z|  &R??&z| &r100&z|&BCure Critical &z|&BCure Critical &z|&BCure Critical &z| &r18000&z|
+ &z|&WMana Potion &z|  &R??&z| &r100&z|&BMana          &z|&BMana          &z|&BMana          &z| &r15000&z|
+ &z|&WVitality P. &z|  &R??&z| &r100&z|&BRefresh       &z|&BCure Poison   &z|&BCure Blindness&z| &r15000&z|
+ &z|&WHP Potion   &z|  &R??&z| &r100&z|&BHeal          &z|&BHeal          &z|&BRefresh       &z| &r10000&z|
+ &z|&WMana Potion &z|  &R??&z| &r100&z|&BMana          &z|&BMana          &z|&BRefresh       &z| &r10000&z|
+ &z----------------------------------------------------------------------------
+&b
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/11/96
+~
+E
+hq4~
+&BChampion (lv100) Clan Equipment
+&z--------------------------------------------------------------------------------
+&r15dr / 15hr  &cMaximum points can be used for Damage Roll and/or Hit Roll.
+&r100 &cMaximum points can be used for Hitpoints.
+&r100 &cMaximum points can be used for Mana.
+ &r33 &cMaximum points can be used for Blood.
+&r100 &cMaximum points can be used for Armor Class.
+&r100 &cMaximum points can be used for Movements.
+&r-20 &cMaximum points can be used for Saving-Spell.
+&r-20 &cMaximum points can be used for Saving-Breath.
+&r100 &cMaximum points can be used for Anti-Disarm.
+  &r4 &cMaximum points can be used for 2 Stat Raises. (no more than +2/stat)
+  &r1 &cMaximum Permanent Spell such as "fly -1" is allowed
+&c
+You may add any of the &w>&z6&w<&c of the listed addaffects to your Champion Equipment.
+Hitroll & Damroll are considered a combined addaffect, therefore having both on
+an item is only considered to be 1 addaffect.
+&z*&cPermanent Lights are allowed and does not count as an addaffect.
+&c
+Champ EQ now has a max of 25 invoke charges.
+These spells may &R*&zNOT&R*&c be any of the following:
+&RSanctuary  &r-  &RShields (ANY)  &r-  &RBiofeedback  &r-  Or &RANY OFFENSIVE SPELL.
+&cOffensive is &RANY&c spell that is used against a MOB or PLAYER.
+ie/ Fireball, enchanted song, hex, curse, blind, holy fires, meteor swarm etc.
 &z
 &zArch
 &z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/11/96
+&BLast Changed &W- &R9/10/96
 ~
 E
-hq10~
-&BClan Spell Mob Bribe Amounts
+hq3~
+&BClan Equiptment Outline - Levels (30 - 65) / ( 50 - 75 )
 &z--------------------------------------------------------------------------------
-&cSpell Mob will be level 100.
-Tyrion Xavier has offered Tuknir Deathlock (Vnum 9116 port 2222) as reference
-for creating a spell mob.
+&PClan Equiptment &C(Peaceful 30) &R-<Deadly 50>-
+&PChoose &W>&z4&W<&P of the available options below:
+&r1&z)&c  HIT POINTS  &r+50
+&r2&z)&c  MANA &r+30     &cBLOOD &r+10
+&r3&z)&c  ARMOR CLASS &r-50
+&r4&z)&c  STAT BOOSTS &r+2 &c(ie/ STR +2, or WIS +1 and DEX +1)
+&r5&z)&c  ANTI-DISARM &r+30
+&r6&z)&c  SAVING-SPELL &r-10
+&r7&z)&c  SAVING-BREATH &r-10
+&r8&z)&c  HIT ROLL & DAMAGE ROLL &r+7 &c/ &r+7
 &b
-&w(&r50,000 &ccoins&w)  &zHealing Hands &C(Mob must be neutral+ align)
-&w(&r50,000 &ccoins&w)  &zHaste
-&w(&r80,000 &ccoins&w)  &zMental Block
-&w(&r10,000 &ccoins&w)  &zInvisibility
-&w(&r10,000 &ccoins&w)  &zFly / Levitate
-&w(&r125000 &ccoins&w)  &zSanctuary
-&w(&r25,000 &ccoins&w)  &zGiant Strength
-&w(&r25,000 &ccoins&w)  &zCure Blindness
-&w(&r50,000 &ccoins&w)  &zCombat Mind
+&PClan Equiptment &C(Peaceful 65) &R-<Deadly 75>-
+&PChoose &W>&z5&W<&P of the available options below:
+&r1&z)&c  HIT POINTS &r+75
+&r2&z)&c  MANA &r+65     &cBLOOD &r+21
+&r3&z)&c  ARMOR CLASS &r-75
+&r4&z)&c  STAT BOOSTS &r+2 &c(3 total: +2 STR & +1 WIS or a combo)
+&r5&z)&c  ANTI-DISARM &r+65
+&r6&z)&c  SAVING-SPELL &r-15
+&r7&z)&c  SAVING-BREATH &r-15
+&r8&z)&c  HIT ROLL & DAMAGE ROLL &r+11 &c/ &r+11
 &c
-Mobprograms to purge the room, and to have the Mob cast 'true sight' on himself
-can be triggered with no charge.
+You may add an invoke to your lv65/75 item from the following spells or any
+similar that -I- okay.  Since you get a 2nd invoke here I want it to be a small
+spell, not something as good as the champ item.  &z(&cSpells: &renhanced strength,
+giant strength, heal, web, pass door, haste, detect hidden, detect invis, invis,
+mass invis, astral walk, fly, locate object & refresh&z)
+&cAlso it is 15/15 invokes as the limit.
+&b
+&P*** NO MORE BUNCHING POINTS ONTO DAMAGE ROLL... MUST SPLIT!
+&b
+&RIMPORTANT &W- &cPlease ADD as an available Addaffect that counts as 1 point,
+            a permanent spell like fly, heighten senses, combat mind,
+            invis, scry.  NO SHIELDS.  (If you want...)
+&c
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/10/96
+~
+E
+hq2~
+&BGeneral Guidelines on Clan EQ:  (not potions, pills & scrolls)
+&z--------------------------------------------------------------------------------
+&z1..&W>&c Clan EQ can't be a weapon or body armor.
+&z2..&W>&c Clan EQ can't be an item that can be worn twice upon a character. (ie neck,
+     finger, wrist, orbit & ankle)
+&z3..&W>&c Clan EQ should be cost: 0...it's not supposed to be sold.
+&z4..&W>&c If you're an evil clan, it's in your own best interests to make clan eq
+     anti-good..and vice versa for a good clan.  Incase you're plooted.
+&z5..&W>&c Clan EQ should be 'nodamage'.
+&z6..&W>&c Clan EQ should have a keyword of the clan in it's name.  (ie Elysium..etc.)
+&z7..&W>&c Clan EQ shouldn't have these flags: nodrop & noremove.  This only harms
+     your own members since it's them that use those items the most.
+&z8..&W>&c On addaffects for clan EQ:
+  &ra.&W)&c Hitroll & Damroll will be considered as one addaffect together.
+  &rb.&W)&c Mana & Blood will be considered as one addaffect together and I'd like to
+      see those two on every piece, except a clan that doesn't induct
+      spellcasters.
+  &rc.&W)&c You can bunch addaffects like saving-spell and saving-breath to get -30
+      saving-spell OR saving-breath if you wish, but together they still count
+      as 2 addaffects since you get the advantage of both.  I'd like to keep
+      this bunching down to 2 types at a time and none bunching with damroll.
+&c
+HQ rules aren't set in stone, so please if you wish to do something different
+speak to me.  I'll very likely let you do what you wish as long as it's
+reasonable.  And if I won't allow a particular change it's with good reason.
+These guidelines to follow were set simply to give some base guidelines to start
+from.  They don't tell you how to "dress the stage", but merely how I wish the
+"nails to be hammered in".  Anyone who has questions about any of the guidelines
+please don't hesitate to speak to me.
+&c
+&zArch
+&z-<&CClan Administrator&z>-
+&BLast Changed &W- &R9/9/96
+~
+E
+book~
+Yellow pages covered with dark black ink flap wildly in your grasp with a slight
+scratching sound from the age of the pages.  (Keywords aren't case sensitive.)
+&C(&B"&wlook HQ<number>&B"..ie.."&wlook HQ1&B"&C)
+&b
+&z1..&W> &BDeity Guidelines
+&z------- &WItems &z-------
+&z2..&W> &BGeneral Clan EQ Guidelines
+&z3..&W> &BClan level 30/50 & 65/75 Equipment
+&z4..&W> &BClan &C"&BChampion&C"&B level 100 Equipment
+&z5..&W> &BClan Potions&c\&BPills&c\&BScrolls
+&z------- &WRooms &z-------
+&z6..&W> &BHQ Room Guidelines
+&z7..&W> &BClan HQ Exits
+&z------- &WMobs &z--------
+&z8..&W> &BClan Guardian Guidelines
+&z9..&W> &BTrade-in Mobs
+&z10.&W> &BClan Spell Mob Bribe Amounts
+&z11.&W> &BClan Non-Guardian Mobs (ie shopkeepers, healer, etc..)
+&z------- &WMisc &z--------
+&z12.&W> &BClan Raids
+&z13.&W> &BClan Skills\Spells
+~
+E
+hq1~
+&BDeity Guidelines:
+&z--------------------------------------------------------------------------------
+&z1..&W>&c Deities are NOT to enter the HQ of another clan w/o the express permission
+     of that clan's deity or one of it's officers.  There have been several
+     fights over people doing this.  Consider it common courtesy.  You don't
+     want people invading your home, don't invade theirs.
+&z2..&W>&c If you find one of your members breaking a rule, don't cover for him, turn
+     him in otherwise you'll find yourself paying for the same problem if you
+     knew.  Some "favoritism" is allowed, being their mortals in your cult who
+     "worship" you, but only within the boundries of what's legal.
+&z3..&W>&c Problems between deities are to be settled amoung the ranks of imms.  If
+     you have a serious problem with another Deity you feel you cannot solve
+     then speak with me.  I'm not going to put up with "catfights" over public
+     channels or even semi-public channels.  To roleplay that two PK deities
+     hate one another is all well and good, but remember, this IS a game and you
+     should be making an effort to work together when out of character.  When
+     immortals start carrying their fights over to public channels you make us
+     all look bad and for usually very little reason.  Once again..if you have a
+     problem you need solved, bring it up with me.
+&c
+These are all I'm asking for now and I feel every one of them is justified and
+is listed because there have been numerous problems in those fields.  I hope you
+remember that regardless of my "personal view/feelings" towards you it has no
+weight in how I view your performance as a Deity.  Some of you should know this
+quite well.  So please don't keep a problem to yourself because you feel I don't
+like you.  Truth is, you can hate me all you want, just as long as you do your
+job and keep it between us so as not to cause public problems.  Make sense?
 &b
 &zArch
 &z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/11/96
-~
-E
-hq11~
-&BGuidelines for Non-Guardian Clan Mobs:
-&z--------------------------------------------------------------------------------
-&BTypes of Mobs: &cHealer, Blacksmith, Banker, Vampire Feed Mob, Baker, Secretaries,
-               EQ dispensers, Potion Sellers, Trade-In Mob, General Store &
-               other misc. mobs.
-Many of the types listed above can be joined btw.  You don't have to have a
-seperate store for clan potions and containers or a seperate mob for doing the
-trade-in process or the EQ dispensing process.  Those are listed just incase you
-wish to spread them out.  Guidelines for most mobs should be the same.
-  Level &w=&r 100
-  &cHP & Shields &w=&r Set by Grunt's Mob Creation Book
-&cThe only exception to this is the Vampire Feed Mobs.  I'd like those to have an
-HP amount of 300,000 and be level 1.  Also add a mobprog to them like this:
-&cMobprog Type  &w=&r speech_prog
-&cProg Argument &w=&r "quit" (Whatever you wish really, but have it in the room desc.)
-&cProg Commands &w=&r
-&z--------------------------------------------------------------------------------
-&rif isclan($n) == <&GYour clan number, check 'clans'&r>
-  emote shoves you away roughly screaming to be left alone.
-  mptransfer $n <A room bordering the mob>
-endif
-&z--------------------------------------------------------------------------------
-&cAlso please add this prog to Vampire Feed mobs as well:
-&cMobprog type  &w=&r rand_prog
-&cProg Argument &w=&r 50
-&cProg Commands &w=&r c 'complete heal' self
-&c
-These are for your member's convience.  The rest I leave to you.
-&c
-&zArch
-&z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/11/96
-~
-E
-hq12~
-&BClan Raids:
-&z--------------------------------------------------------------------------------
-&BRules regarding Deities defending their HQ:
-  &z1.&W>&c Deities may ONLY attack those mortals within their HQ, not those just
-      outside.
-  &z2.&W>&c Deities cannot do anything a mortal cannot.  This means that the use of
-      immortal commands (force, goto..etc..) is ILLEGAL.
-  &z3.&W>&c You're free to use only spells or equipment accessible to mortals.  Please
-      do NOT use items from a proto area that isn't still stuck on 2222.  Also
-      use only your own clan skill incase any of you Deities get 'mset'.
-  &z4.&W>&c The use of area attack spells such as 'psychic quake', 'gas breath' or
-      'ultrablast' are probited due to their damage being based in hp and your
-      ability to have 30k hp.  You'd simply kill them in one shot w/multiburst.
-&c
-&zArch
-&z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/11/96
-~
-E
-hq13~
-&BClan Skill\Spell Guidelines:
-&z--------------------------------------------------------------------------------
-&cThis I pretty much leave to you, hoping you'll find something creative that
-supports your clan theme, but I feel there need be a couple pointers on what
-type of skill\spell not to choose:
-&c
-&z1..&w>&c I'd like not to see skills that are built off of a spell\skill that is the
-     basis for damage of a particular class.  Skills like backstab for thieves
-     or multiburst\spellcraft for mages.  To give these to all your clan members
-     hurts the class the ability comes from in fights.  Makes them less useful
-     in groups as well.  Think of it this way..don't use the best to skills of
-     any one class.  Like a mage's spellcraft & multiburst, or a cleric's
-     dispel magic & dancing lights, a warrior's enhanced damage two and berserk.
-&z2..&w>&c I'd also like not to see skills that help only one or two classes UNLESS
-     your clan is based around that one or two classes.  Like a skill that in
-     truth only helped thieves, I'd rather not see unless your clan is one of
-     purely thieves.
-&c
-These are all I'm going to limit on them and that only so we don't get skills
-that either take away power from a particular class or only help one class of
-your clan.  Aside from those..think up original stuff and check with me, Lacey,
-and Thalador.
-&c
-&zArch
-&z-<&CClan Administrator&z>-
-&BLast Changed &W- &R9/11/96
+&BLast Changed &W- &R9/10/96
 ~
 #20001
 TWO~
@@ -828,15 +828,15 @@ reserved~
 0 0
 0 0 0
 A
-17 -50
-A
-13 50
-A
-24 -10
+25 10
 A
 23 -10
 A
-25 10
+24 -10
+A
+13 50
+A
+17 -50
 #20003
 seal eye~
 a seal eye~
@@ -874,15 +874,15 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-12 20
-A
-25 10
+18 7
 A
 19 7
 A
-18 7
+25 10
+A
+12 20
+A
+13 50
 #20012
 scale~
 a scale~
@@ -932,15 +932,15 @@ reserved~
 0 0
 0 0 0
 A
-14 -50
-A
-23 -10
-A
-13 95
+12 30
 A
 17 -90
 A
-12 30
+13 95
+A
+23 -10
+A
+14 -50
 #20016
 Ice Key~
 the Ice Key~
@@ -966,13 +966,13 @@ reserved~
 0 0
 0 0 0
 A
-3 1
-A
-24 -10
+13 50
 A
 17 -60
 A
-13 50
+24 -10
+A
+3 1
 #20018
 Ice Tube~
 the Ice Tube~
@@ -998,13 +998,13 @@ reserved~
 0 0
 0 0 0
 A
-26 40
-A
-13 50
+17 -40
 A
 23 -10
 A
-17 -40
+13 50
+A
+26 40
 >wear_prog 100~
 0
 if ispc($n) == 1
@@ -1025,13 +1025,13 @@ reserved~
 0 0
 0 0 0
 A
-13 40
-A
-19 7
+2 -1
 A
 18 7
 A
-2 -1
+19 7
+A
+13 40
 #20021
 earring frost~
 the Frost Earring~
@@ -1045,15 +1045,15 @@ frost breath~
 12 12
 0 0 0
 A
-25 10
-A
-12 80
-A
-13 80
+24 -5
 A
 17 -50
 A
-24 -5
+13 80
+A
+12 80
+A
+25 10
 #20022
 Storm Earring~
 the Storm Earring~
@@ -1067,13 +1067,13 @@ icestorm~
 12 12
 0 0 0
 A
-12 90
-A
-24 -15
+17 -45
 A
 13 25
 A
-17 -45
+24 -15
+A
+12 90
 #20023
 Sword North Star~
 the North Star Sword~
@@ -1087,19 +1087,19 @@ reserved~
 0 0
 0 0 0
 A
-26 100
-A
-17 -100
-A
-12 75
-A
-24 -25
-A
-19 180
+13 100
 A
 18 150
 A
-13 100
+19 180
+A
+24 -25
+A
+12 75
+A
+17 -100
+A
+26 100
 #20024
 Bracers Knowledge~
 the Bracers of Knowledge~
@@ -1113,15 +1113,15 @@ know alignment~
 -1 -1
 0 0 0
 A
-24 -10
-A
-13 70
-A
-12 50
+25 10
 A
 17 -50
 A
-25 10
+12 50
+A
+13 70
+A
+24 -10
 #20025
 Ring Light~
 the Ring of Light~
@@ -1135,17 +1135,17 @@ continual light~
 25 25
 0 0 0
 A
-13 75
-A
-17 -25
-A
-12 80
-A
-25 20
+24 -10
 A
 23 -10
 A
-24 -10
+25 20
+A
+12 80
+A
+17 -25
+A
+13 75
 #20026
 Key Light~
 the Key of Light~
@@ -1171,15 +1171,15 @@ reserved~
 0 0
 0 0 0
 A
-26 20
-A
-24 -20
-A
-18 70
+13 85
 A
 19 70
 A
-13 85
+18 70
+A
+24 -20
+A
+26 20
 #20028
 Sphere Light~
 &WThe Light of the North~
@@ -1193,17 +1193,17 @@ reserved~
 0 0
 0 0 0
 A
-3 2
-A
-25 20
-A
-23 -10
-A
-24 -10
+13 80
 A
 17 -80
 A
-13 80
+24 -10
+A
+23 -10
+A
+25 20
+A
+3 2
 #20029
 Amulet Winter~
 the Amulet of Winter~
@@ -1217,17 +1217,17 @@ detect hidden~
 50 50
 0 0 0
 A
-24 -15
-A
-23 -15
-A
-13 50
-A
-17 -80
+12 25
 A
 13 80
 A
-12 25
+17 -80
+A
+13 50
+A
+23 -15
+A
+24 -15
 #20030
 crystal key~
 crystal key~
@@ -1253,20 +1253,20 @@ frost breath~
 10 10
 0 0 0
 A
-19 90
-A
-18 75
-A
-13 100
-A
-17 -100
+12 50
 A
 26 60
 A
-12 50
+17 -100
+A
+13 100
+A
+18 75
+A
+19 90
 #20032
 snow cone~
-&Wa snow &Cc&wo&zn&We&X~
+&Wa snow &Cc&wo&zn&We&W~
 A frosty serving of snow cone lies here.~
 ~
 19 0 0 0 16385 1
@@ -1289,13 +1289,13 @@ reserved~
 0 0
 0 0 0
 A
-13 70
-A
-3 2
+102 -1
 A
 17 -70
 A
-102 -1
+3 2
+A
+13 70
 >rand_prog 5~
 0
 emote sings a sad tune of its owner's demise.
@@ -1315,19 +1315,19 @@ reserved~
 0 0
 0 0 0
 A
-1 1
-A
-3 1
-A
-4 1
-A
-2 1
-A
-5 1
+19 4
 A
 18 5
 A
-19 4
+5 1
+A
+2 1
+A
+4 1
+A
+3 1
+A
+1 1
 #0
 
 
@@ -1630,7 +1630,7 @@ wonder if you will ever make you way out of here alive.  Being frozen to
 death isn't an option you'd like to consider and you see that the field
 continues in all directions of bleak.  
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -1722,7 +1722,7 @@ You wonder how you made it this far.  The barren trees seem to howl along
 with the merciless cold wind.  The bleak trail continues east and west.  Or
 so it seems.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D1
 ~
@@ -1740,7 +1740,7 @@ wonder if you will ever make you way out of here alive.  Being frozen to
 death isn't an option you'd like to consider.  The field spreads out in all
 directions of bleak.  
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -1766,7 +1766,7 @@ are all that you see for miles.  All around there are exits, you seem to see
 the same sights all around.  The wind picks up speeed every now and then
 blasting down at you.  
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -1855,7 +1855,7 @@ are all that you see for miles.  All around there are exits, you seem to see
 the same sights all around.  The wind picks up speeed every now and then
 blasting down at you. Exits lead in all directions or so it seems.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -1881,7 +1881,7 @@ are all that you see for miles.  All around there are exits, you seem to see
 the same sights all around.  The wind picks up speeed every now and then 
 blasting down at you.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -1907,7 +1907,7 @@ wonder if you will ever make you way out of here alive.  Being frozen to
 death isn't an option you'd like to consider.  The field spreads out in all
 directions of bleak.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -1933,7 +1933,7 @@ The freezing wind bites into your bones making movement difficult.  There
 seems to be no end to this frozen hell.  The path seems to continues east
 and west only in this frozen land nothing is as it seems.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D1
 ~
@@ -1951,7 +1951,7 @@ You wonder how you made it this far.  The barren trees seem to howl along
 with the merciless cold wind.  The bleak trail continues east and west.  Or
 so it seems.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D1
 ~
@@ -1995,7 +1995,7 @@ are all that you see for miles.  All around there are exits, you seem to see
 the same sights all around.  The wind picks up speeed every now and then
 blasting down at you.  
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -2021,7 +2021,7 @@ are all that you see for miles.  All around there are exits, you seem to see
 the same sights all around.  The wind picks up speeed every now and then
 blasting down at you. Exits lead in all directions or so it seems.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -2047,7 +2047,7 @@ You wonder how you made it this far.  The barren trees seem to howl along
 with the merciless cold wind.  The bleak trail continues east and west.  Or
 so it seems.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D1
 ~
@@ -2066,7 +2066,7 @@ there was before.  It makes the temperature colder in the place you stand
 at.  You can go north to explore the cavern or back south to the bleak
 desolation.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -2099,7 +2099,7 @@ there was before.  It makes the temperature colder in the place you stand
 at.  You can go north to explore the cavern or back south to the bleak
 desolation.  
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -2118,7 +2118,7 @@ deadly quiet.  It is such a contrast to the howling winds and the blizzard
 that rages outside the cavern.  You can see a glimmer coming from the crack
 at the bottom of the cavern entrance.  
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D0
 ~
@@ -2395,7 +2395,7 @@ You wonder how you made it this far.  The barren trees seem to howl along
 with the merciless cold wind.  The bleak trail continues east and west.  Or
 so it seems.
 ~
-0 268836888 2
+0 1342578712 2
 Rd     5
 D1
 ~

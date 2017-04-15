@@ -55,18 +55,6 @@ no mean to be an easy kill.
 0 0 2
 33007 0 0
 >greet_prog 100~
-if isimmort($n) == 1
-   if sex($n) == 1
-        say Greeting Lord $n.
-      bow $n
-      break
-  else
-  if sex($n) == 2
-   say Greeting Lady $n.
-   curtsey $n
-   break
- endif
-endif
 if ispc($n) == 1
    if isgood($n) == 1
        smile $n
@@ -1088,18 +1076,6 @@ can you resist that smile?
 0 0 1
 0 0 0
 >all_greet_prog 100~
-if isimmort($n) == 1
-  if sex($n) == 1
-     say Greetings M'lord $n!
-     grovel $n
-     break
-   else
-  if sex($n) == 2
-     say Greetings M'lady $n!
-     grovel $n
-     break
-  endif
-endif
 if ispc($n) == 1
   if isgood($n) == 1
     say Welcome to my humble bank, $n!
@@ -1179,13 +1155,13 @@ reserved~
 0 0
 0 0 0
 A
-1 5
-A
-24 -20
+19 30
 A
 18 30
 A
-19 30
+24 -20
+A
+1 5
 E
 silver hammer bethaven~
 &WA warm glow surrounds this huge hammer.  It shines in the most darkest
@@ -1292,9 +1268,9 @@ reserved~
 0 0
 0 0 0
 A
-18 40
-A
 19 32
+A
+18 40
 E
 broadsword sword broad~
 This magnificent sword invites you to use it's power, and relish in it's
@@ -1348,9 +1324,9 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
 19 10
+A
+18 10
 E
 rusty blade longsword long sword~
 &OAlthough rusty with wear, this sword's sharp edge can slice through the
@@ -1529,14 +1505,14 @@ reserved~
 0 0
 0 0 0
 E
-blue potion~
-A magical blue substance bubbles before you.  Made by wizards throughout
-the Storm for your protection.  
-~
-E
 healing~
 A magical blue substance bubbles in the flask before you. Made by the
 wizards of the Storm for your protection.
+~
+E
+blue potion~
+A magical blue substance bubbles before you.  Made by wizards throughout
+the Storm for your protection.  
 ~
 #25020
 potion white mana bethaven~
@@ -1738,13 +1714,13 @@ reserved~
 0 0
 0 0 0
 E
+leather~
+Made of fine soft leather.
+~
+E
 belt pouch leather~
 This convenient belt pouch is made out of durable leather and can be worn
 around your waist.  
-~
-E
-leather~
-Made of fine soft leather.
 ~
 #25032
 skin water bloated bethaven~
@@ -1827,9 +1803,9 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
 19 8
+A
+18 10
 E
 dagger copper~
 Pierce through your enemies with a vengeance!  
@@ -1847,9 +1823,9 @@ reserved~
 0 0
 0 0 0
 A
-18 11
-A
 19 10
+A
+18 11
 E
 mace copper~
 This copper mace is perfect as a blunt weapon to ward off evil and good
@@ -1884,13 +1860,13 @@ reserved~
 0 0
 0 0 0
 E
+copper leggings~
+&OPlated copper has been made into a pair of protective leggings.
+~
+E
 copper leggings legging~
 Sturdy copper leggings will be sure to add to your set of armor, helping
 protect you.  
-~
-E
-copper leggings~
-&OPlated copper has been made into a pair of protective leggings.
 ~
 #25040
 vambraces copper bethaven~
@@ -2049,11 +2025,11 @@ mass invis~
 10 10
 0 0 0
 A
-108 -1
+19 3
 A
 100 -1
 A
-19 3
+108 -1
 E
 cloak invisibility invis~
 The cloak wavers in and out of visibility.
@@ -2209,9 +2185,9 @@ reserved~
 0 0
 0 0 0
 A
-1 1
-A
 2 1
+A
+1 1
 E
 rusty bracers~
 Some well-worn bracers look like they could protect you still.
@@ -2464,17 +2440,17 @@ reserved~
 0 0
 0 0 0
 A
-13 100
-A
-3 -1
-A
-4 -2
-A
-1 -1
+17 -70
 A
 2 -2
 A
-17 -70
+1 -1
+A
+4 -2
+A
+3 -1
+A
+13 100
 E
 gauntlets~
 The gauntlets are made very well, but are very heavy and may slow you down.
@@ -2492,11 +2468,11 @@ reserved~
 0 0
 0 0 0
 A
-25 -15
+23 20
 A
 17 -50
 A
-23 20
+25 -15
 E
 helmet enhanced iron~
 A helmet seems to be made from reinforced iron.
@@ -2514,13 +2490,13 @@ reserved~
 0 0
 0 0 0
 A
-5 -3
-A
-23 5
+17 -10
 A
 24 -5
 A
-17 -10
+23 5
+A
+5 -3
 E
 blanket magical leather~
 The blanket seems to be a normal leather blanket.. but you can feel that
@@ -2539,13 +2515,13 @@ reserved~
 0 0
 0 0 0
 A
-25 -50
-A
-17 -100
+23 5
 A
 12 -150
 A
-23 5
+17 -100
+A
+25 -50
 E
 shield bethaven~
 The crest of Bethaven, made up into a shield.
@@ -2790,123 +2766,12 @@ reserved~
 0 0
 0 0 0
 E
-monk~
+psionisist~
 &z_____________________________________________________________________
-|&BChampions of the &RMONK&B Class                                       &z |
-|-------------------------------------------------------------------|
-|&CSayn            Rajaan          Slith           Raekwon            &z|
-|&CSin                                                                &z|
-|___________________________________________________________________|
-~
-E
-necromancer~
-&z_____________________________________________________________________
-|&BChampions of the &RNECROMANCER &BClass&z                                 |
-|-------------------------------------------------------------------|
-|&CBelial          Tristan           Monique                          &z|
-|___________________________________________________________________|
-~
-E
-werewolf~
-&z____________________________________________________________________&z_
-&z|&BChampions of the &RWEREWOLF&B Class                                    &z|
-&z|-------------------------------------------------------------------&z|
-&z|&CGuadalupine     Joram           Mors            Vurt               &z|
-&z|&CLuposian        Rumor           Kaismir         Lucifer            &z|
-&z|&CShyrad          Oorg            Wendigo         Grendel            &z|
-&z|&CValdimar        Blacktooth      Hope            Myboe              &z|
-&z|&CQuinthalas      Wynn            Oboe                               &z|
-&z|___________________________________________________________________&z|
-~
-E
-ranger~
-&z_____________________________________________________________________
-|&BChampions of the &RRANGER &BClass&z                                      |
-|-------------------------------------------------------------------|
-|&CAdryl           Arkhane         Darter          Radian             &z|
-|&CTyre            Vermilion       Xanna           Yenlar             &z|
-|&CSisconda        Felecia         Jucandus        Arrowhawk          &z|
-|&CSamdar          Vanion          Radian          Maro               &z|
-|___________________________________________________________________|
-~
-E
-bard~
-&z_____________________________________________________________________
-&z|&BChampions of the &RBARD&B Class                                        &z|
+&z|&BChampions of the &RPSIONISIST&B Class                                  &z|
 &z|-------------------------------------------------------------------|
-&z|&CAoife                                                              &z|
+&z|&CAxelrod         Cataclyst                                          &z|
 &z|___________________________________________________________________|
-~
-E
-paladin~
-&z____________________________________________________________________&z_
-&z|&BChampions of the &RPALADIN&B Class                                     &z|
-&z|-------------------------------------------------------------------&z|
-&z|&CDragonbait      Galad           Sirac          Aria                &z|
-&z|&CIpicles         Dolguard        Leo            Quiver              &z|
-&z|___________________________________________________________________&z|
-~
-E
-druid~
-&z____________________________________________________________________&z_
-&z|&BChampions of the &RDRUID&B Class                                       &z|
-&z|-------------------------------------------------------------------&z|
-&z|&CCorinth         Karrak                                             &z|
-&z|___________________________________________________________________&z|
-~
-E
-vampire~
-&z____________________________________________________________________&z_
-&z|&BChampions of the &RVAMPIRE&B Class                                     &z|
-&z|-------------------------------------------------------------------&z|
-&z|&CBlackavar       Midnight        Wyseth          Dragoon            &z|
-&z|___________________________________________________________________&z|
-~
-E
-thief~
-&z_____________________________________________________________________
-&z|&BChampions of the &RTHIEF&B Class                                       &z|
-&z|-------------------------------------------------------------------|
-&z|&CSerendib        Rift            Teria           Leinsha            &z|
-&z|&CTalera          Staerel         Morelock        Dinin              &z|
-&z|&CMason           Caedes          Rydic           Silveress          &z|
-&z|&CRellik          Samson          Mordak          Danielle           &z|
-&z|___________________________________________________________________&z|
-~
-E
-warrior~
-&z_____________________________________________________________________
-|&BChampions of the &RWARRIOR&B Class                                     &z|
-|-------------------------------------------------------------------|
-|&CJacen           Kindo           Kisha           Kitiara            &z|
-|&CLogan           Rage            Tanis           Kragmoor           &z|
-|&CAgelmar         Strife          Xenon           Nexus              &z|
-|&CSelinar         Panacea                                            &z|
-|___________________________________________________________________|
-~
-E
-cleric~
-&z____________________________________________________________________&z_
-&z|&BChampions of the &RCLERIC&B Class                                      &z|
-&z|-------------------------------------------------------------------&z|
-&z|&CEylane          Whisper         Aegis           Rikus              &z|
-&z|&COwehn           Damien          Fazoul          Kristie            &z|
-&z|&CDeurmont                                                           &z|
-&z|___________________________________________________________________&z|
-~
-E
-mage~
-&z____________________________________________________________________&z_
-&z|&BChampions of the &RMAGE&B Class                                        &z|
-&z|-------------------------------------------------------------------&z|
-&z|&CAshin           Kitharan        Norcimo         Shadeling          &z|
-&z|&CTraveller       Thorn           Khorlon         Solathan           &z|
-&z|&CBalthazar       Glendar         Ariakas         Aegean             &z|
-&z|&CLeviathon       Malicia         Mazzy           Spokes             &z|
-&z|&CBalkaan         Penance         Aristotle       Madcat             &z|
-&z|&CKhelben         Kreldor         Kenafin         Liah               &z|
-&z|&CTaur            Alexandra                                          &z|
-&z|___________________________________________________________________&z|
 ~
 E
 plaque~
@@ -2924,13 +2789,136 @@ plaque~
 &z|_____________________________________________________________________________|
 ~
 E
-psionisist~
+mage~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RMAGE&B Class                                        &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CAshin           Kitharan        Norcimo         Shadeling          &z|
+&z|&CTraveller       Thorn           Khorlon         Solathan           &z|
+&z|&CBalthazar       Glendar         Ariakas         Aegean             &z|
+&z|&CLeviathon       Malicia         Mazzy           Spokes             &z|
+&z|&CBalkaan         Penance         Aristotle       Madcat             &z|
+&z|&CKhelben         Kreldor         Kenafin         Liah               &z|
+&z|&CTaur            Alexandra                                          &z|
+&z|___________________________________________________________________&z|
+~
+E
+cleric~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RCLERIC&B Class                                      &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CEylane          Whisper         Aegis           Rikus              &z|
+&z|&COwehn           Damien          Fazoul          Kristie            &z|
+&z|&CDeurmont                                                           &z|
+&z|___________________________________________________________________&z|
+~
+E
+warrior~
 &z_____________________________________________________________________
-&z|&BChampions of the &RPSIONISIST&B Class                                  &z|
+|&BChampions of the &RWARRIOR&B Class                                     &z|
+|-------------------------------------------------------------------|
+|&CJacen           Kindo           Kisha           Kitiara            &z|
+|&CLogan           Rage            Tanis           Kragmoor           &z|
+|&CAgelmar         Strife          Xenon           Nexus              &z|
+|&CSelinar         Panacea                                            &z|
+|___________________________________________________________________|
+~
+E
+thief~
+&z_____________________________________________________________________
+&z|&BChampions of the &RTHIEF&B Class                                       &z|
 &z|-------------------------------------------------------------------|
-&z|&CAxelrod         Cataclyst                                          &z|
+&z|&CSerendib        Rift            Teria           Leinsha            &z|
+&z|&CTalera          Staerel         Morelock        Dinin              &z|
+&z|&CMason           Caedes          Rydic           Silveress          &z|
+&z|&CRellik          Samson          Mordak          Danielle           &z|
+&z|___________________________________________________________________&z|
+~
+E
+vampire~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RVAMPIRE&B Class                                     &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CBlackavar       Midnight        Wyseth          Dragoon            &z|
+&z|___________________________________________________________________&z|
+~
+E
+druid~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RDRUID&B Class                                       &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CCorinth         Karrak                                             &z|
+&z|___________________________________________________________________&z|
+~
+E
+paladin~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RPALADIN&B Class                                     &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CDragonbait      Galad           Sirac          Aria                &z|
+&z|&CIpicles         Dolguard        Leo            Quiver              &z|
+&z|___________________________________________________________________&z|
+~
+E
+bard~
+&z_____________________________________________________________________
+&z|&BChampions of the &RBARD&B Class                                        &z|
+&z|-------------------------------------------------------------------|
+&z|&CAoife                                                              &z|
 &z|___________________________________________________________________|
 ~
+E
+ranger~
+&z_____________________________________________________________________
+|&BChampions of the &RRANGER &BClass&z                                      |
+|-------------------------------------------------------------------|
+|&CAdryl           Arkhane         Darter          Radian             &z|
+|&CTyre            Vermilion       Xanna           Yenlar             &z|
+|&CSisconda        Felecia         Jucandus        Arrowhawk          &z|
+|&CSamdar          Vanion          Radian          Maro               &z|
+|___________________________________________________________________|
+~
+E
+werewolf~
+&z____________________________________________________________________&z_
+&z|&BChampions of the &RWEREWOLF&B Class                                    &z|
+&z|-------------------------------------------------------------------&z|
+&z|&CGuadalupine     Joram           Mors            Vurt               &z|
+&z|&CLuposian        Rumor           Kaismir         Lucifer            &z|
+&z|&CShyrad          Oorg            Wendigo         Grendel            &z|
+&z|&CValdimar        Blacktooth      Hope            Myboe              &z|
+&z|&CQuinthalas      Wynn            Oboe                               &z|
+&z|___________________________________________________________________&z|
+~
+E
+necromancer~
+&z_____________________________________________________________________
+|&BChampions of the &RNECROMANCER &BClass&z                                 |
+|-------------------------------------------------------------------|
+|&CBelial          Tristan           Monique                          &z|
+|___________________________________________________________________|
+~
+E
+monk~
+&z_____________________________________________________________________
+|&BChampions of the &RMONK&B Class                                       &z |
+|-------------------------------------------------------------------|
+|&CSayn            Rajaan          Slith           Raekwon            &z|
+|&CSin                                                                &z|
+|___________________________________________________________________|
+~
+#25121
+potion vaccinate~
+a potion of Vaccinate~
+A strange bubbling potion is here~
+~
+10 268435456 0 0 1 8
+40~ vaccinate~ reserved~ reserved~
+0 0 0 50 0
+0 0
+reserved~
+0 0
+0 0 0
 #25198
 spells skills suggestion board~
 skills/spells suggestion board~
@@ -2982,7 +2970,7 @@ designs and symbols.  It is here that the citizens of Bethaven come to heal
 and rest, and to share in the glory of eternity.  There is a door set into
 the northern wall, with an inscription carved upon it.  
 ~
-0 2360328 0
+0 1076102152 0
 Rd     0
 E
 door~
@@ -3005,6 +2993,10 @@ D3
 ~
 ~
 0 0 25119
+D4
+~
+~
+0 0 25132
 S
 #25001
 Judgement Pass~
@@ -3015,7 +3007,7 @@ here that judgement is dealt, swift and without mercy.  There is a set of
 stairs leading upwards into the academy, where newcomers to the Storm can
 learn to survive in the harsh and rugged land.  
 ~
-0 12 0
+0 1073741836 0
 Rd     0
 D0
 ~
@@ -3489,7 +3481,7 @@ fights between clan members are usually to the death, and the open warfare
 between the clans is mostly ignored by the city, as long as none of its
 citizens get pulled into the frays.  
 ~
-0 1073741824 0
+0 0 0
 Rd     0
 D1
 ~
@@ -3509,7 +3501,7 @@ years ago, Bethaven was originally a small dwelling of peasants who gathered
 together for protection against raiding bands.  Since that time, it has
 grown into the incredible city that stands today.  
 ~
-0 1073741824 0
+0 0 0
 Rd     0
 D1
 ~
@@ -3528,7 +3520,7 @@ the west.  The incredible number of people which visit Bethaven each day is
 astounding.  It should not be too surprising, though, for Bethaven is the
 center for commerce in the entire realm.  
 ~
-0 1073741824 0
+0 0 0
 Rd     0
 D1
 ~
@@ -4876,15 +4868,9 @@ guess that this is where the hideous smell is coming from.
 0 1036 0
 Rd     0
 E
-counter~
-&GThe counter seems to be made of the finest marble.  It gleams as light
-from the window hits it.
-~
-E
-window~
-&GLooking outside you can see the filthy streets, most people would
-rather stay and put up with Zak's insane laughter than wander back
-onto the streets.
+black~
+&zA black liquid boils and gurgles to itself, how anything that makes
+that kind of smell could be healing you'll never know.
 ~
 E
 laboratory~
@@ -4893,9 +4879,15 @@ rubbernecking only brings looks of reproof from Zak himself, it seems
 that he would like to keep his well kept secrets that way.
 ~
 E
-black~
-&zA black liquid boils and gurgles to itself, how anything that makes
-that kind of smell could be healing you'll never know.
+window~
+&GLooking outside you can see the filthy streets, most people would
+rather stay and put up with Zak's insane laughter than wander back
+onto the streets.
+~
+E
+counter~
+&GThe counter seems to be made of the finest marble.  It gleams as light
+from the window hits it.
 ~
 D1
 ~
@@ -5041,14 +5033,9 @@ INBOX and OUTBOX.  An ink vial and quill also sit neatly upon the desk.
 0 2098188 0
 Rd     0
 E
-outbox~
-Among the papers in the OUTBOX container, you spot one that has the name of
-Merc's Tavern upon it. Also with this are several invoices of payment
-references to each Guard working in the city of Bethaven.
-~
-E
-inbox~
-Filed here in the INBOX are several applications of guards-to-be.
+map~
+&OThe map has been well taken care of. It is in very good condition despite
+it's age. It is a map of Bethaven.
 ~
 E
 apartment~
@@ -5059,9 +5046,14 @@ the desk... perhaps a gift from mother. A map also hangs beside the writing
 desk.
 ~
 E
-map~
-&OThe map has been well taken care of. It is in very good condition despite
-it's age. It is a map of Bethaven.
+inbox~
+Filed here in the INBOX are several applications of guards-to-be.
+~
+E
+outbox~
+Among the papers in the OUTBOX container, you spot one that has the name of
+Merc's Tavern upon it. Also with this are several invoices of payment
+references to each Guard working in the city of Bethaven.
 ~
 D5
 ~
@@ -5124,16 +5116,6 @@ to read.
 0 2098188 0
 Rd     0
 E
-bottles jars goods~
-Jars of pickled vegetables, jams, sauces... bottled dressings and oils of
-all types.
-~
-E
-potpourri cheesecloths pine~
-The scent of pine lightly wafts throughout the store by means of the
-cheesecloths (containing fresh pine needles) hanging in various places.
-~
-E
 sign~
 &pWelcome to my humble shoppe citizens and travellers.
  
@@ -5142,6 +5124,16 @@ to all. I have travelled through many continents and also have
 imports as per your inquiry.
  
 Dukkoti Graystar -- retired cleric.
+~
+E
+potpourri cheesecloths pine~
+The scent of pine lightly wafts throughout the store by means of the
+cheesecloths (containing fresh pine needles) hanging in various places.
+~
+E
+bottles jars goods~
+Jars of pickled vegetables, jams, sauces... bottled dressings and oils of
+all types.
 ~
 D0
 ~
@@ -5221,7 +5213,7 @@ directions.  Occasionaly you see a fellow adventurer leaving one of these
 other rooms with a smile on their faces, and a new item strapped to their
 backpack.  
 ~
-0 132100 0
+0 1073873924 0
 Rd     0
 D0
 ~
@@ -5256,7 +5248,7 @@ Report any bugged spells/skills (even if they benefit you)
  
 PLEASE keep the notes on topic!
 ~
-0 8569868 0
+0 1082311692 0
 Rd     0
 D3
 ~
@@ -5430,8 +5422,12 @@ brightly upon a small table.  The sweet smell of incense pleasantly fills
 the air, and the low strains of music seem to surround you.  Almost obscured
 by the shadows is a wizened old man.  He turns to look at you as you enter. 
 ~
-0 394268 0
+0 1074136092 0
 Rd     0
+D5
+~
+~
+0 0 25000
 S
 #25200
 Entrance to the Grand Arena~
@@ -5560,6 +5556,7 @@ G 0 25020 0
 G 0 25021 0
 G 0 25022 0
 G 0 25060 0
+G 0 25121 0
 M 0 25004 1 25088
 G 0 25003 0
 G 0 25038 0

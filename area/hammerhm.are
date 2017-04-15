@@ -790,17 +790,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -50
-A
-19 100
-A
-18 150
-A
-13 100
+14 100
 A
 12 100
 A
-14 100
+13 100
+A
+18 150
+A
+19 100
+A
+17 -50
 E
 waark~
 This is a Small dagger with three pointy blades protruding forth.
@@ -818,13 +818,13 @@ reserved~
 0 0
 0 0 0
 A
-1 2
-A
-17 -90
+13 90
 A
 14 90
 A
-13 90
+17 -90
+A
+1 2
 E
 guard~
 This is a small shield that is unseen to the normal eye.
@@ -842,13 +842,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -90
-A
-14 90
+13 90
 A
 12 90
 A
-13 90
+14 90
+A
+17 -90
 E
 helmet~
 This appears to be a normal helmet with a small crude crown upon it.
@@ -866,13 +866,13 @@ reserved~
 0 0
 0 0 0
 A
-14 -30
-A
-19 180
+19 47
 A
 18 160
 A
-19 47
+19 180
+A
+14 -30
 E
 bloody axe war~
 This huge barbarian axe of war is dripping with its deadly poison 
@@ -890,13 +890,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-14 -30
+17 -100
 A
 13 100
 A
-17 -100
+14 -30
+A
+24 -5
 E
 chain mail~
 This huge amount of chain mail is strong. It is mainly designed for Barbarians. And Other Brutes.
@@ -914,15 +914,15 @@ sleep~
 5 5
 0 0 0
 A
-17 -95
-A
-24 -5
-A
-1 -1
+14 95
 A
 13 -30
 A
-14 95
+1 -1
+A
+24 -5
+A
+17 -95
 E
 amulet~
 This amulet is the amulet of eternal sleep. It is capable of bringing sleep to its enemys.
@@ -940,15 +940,15 @@ reserved~
 0 0
 0 0 0
 A
-23 4
-A
-2 2
-A
-1 1
+14 95
 A
 12 -10
 A
-14 95
+1 1
+A
+2 2
+A
+23 4
 E
 boots~
 This are the same types of boots that are worn by pilgrims.
@@ -966,13 +966,13 @@ blindness~
 3 3
 0 0 0
 A
-23 -5
-A
-24 -5
+13 100
 A
 17 -100
 A
-13 100
+24 -5
+A
+23 -5
 E
 piece darkness~
 This small circle seems to be made of just darkness. You can seem to detect any metal on it. Just shadows and darkness.
@@ -990,13 +990,13 @@ curse~
 5 5
 0 0 0
 A
-23 -5
-A
-24 -5
+13 100
 A
 17 -100
 A
-13 100
+24 -5
+A
+23 -5
 E
 piece doom~
 This small circle seems to be made of just Doom. You can seem to detect any metal on it. Just doom and darkness.
@@ -1014,15 +1014,15 @@ reserved~
 0 0
 0 0 0
 A
-23 -5
-A
-24 -5
-A
-17 -100
+12 100
 A
 13 100
 A
-12 100
+17 -100
+A
+24 -5
+A
+23 -5
 E
 hood~
 This simple black hood is that of an executionor.
@@ -1040,9 +1040,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -50
-A
 17 -70
+A
+17 -50
 E
 leather spiked collar~
 This simple black collar has 2 inch metal spike protruding forth.
@@ -1060,13 +1060,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-17 -40
+13 72
 A
 12 10
 A
-13 72
+17 -40
+A
+24 -5
 E
 silver chain~
 This simple necklace glimmers with expensive silver upon it.
@@ -1084,9 +1084,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -60
-A
 13 60
+A
+17 -60
 E
 ring luck~
 This is the ring of Luck. As you hold it you Feel Incredibly Lucky.
@@ -1104,13 +1104,13 @@ bloodbath~
 0 0
 0 0 0
 A
-17 -100
-A
-23 -10
+13 -30
 A
 1 -1
 A
-13 -30
+23 -10
+A
+17 -100
 E
 obsidian bracer~
 This black bracer is made of the finest obsidean. Its quite heavy though.
@@ -1128,13 +1128,13 @@ reserved~
 0 0
 0 0 0
 A
-2 2
-A
-14 70
+17 -25
 A
 13 -25
 A
-17 -25
+14 70
+A
+2 2
 E
 hide~
 This slippery ofdd colored hide of an amphibian has been worked into a belt.
@@ -1177,10 +1177,10 @@ reserved~
 0 0 0
 E
 key~
-This is an old tarnished key. Its bent but may still work.
 ~
 E
 key~
+This is an old tarnished key. Its bent but may still work.
 ~
 #10221
 Gatekey~
@@ -1283,11 +1283,11 @@ reserved~
 0 0
 0 0 0
 A
-1 2
+13 100
 A
 17 -100
 A
-13 100
+1 2
 E
 executioner mask matte black~
 This Magical black matte mask is that of an Executioner. It covers the entire face but still allows sight for the wearer.
@@ -1305,13 +1305,13 @@ reserved~
 0 0
 0 0 0
 A
-14 -50
-A
-17 -50
+13 100
 A
 12 100
 A
-13 100
+17 -50
+A
+14 -50
 E
 black leather gloves~
 These gloves are made of black tight leather.
@@ -1329,11 +1329,11 @@ goodberry~
 0 0
 0 0 0
 A
-3 -2
+24 -5
 A
 23 -5
 A
-24 -5
+3 -2
 E
 crown leaves~
 This small round crown is actually a mock of that of a real crown. This one is made of leaves and twigs.
@@ -1351,13 +1351,13 @@ reserved~
 0 0
 0 0 0
 A
-12 85
-A
-14 60
+13 85
 A
 17 -85
 A
-13 85
+14 60
+A
+12 85
 E
 belt leaves~
 This small belt is actually a mock of that of a real belt. This one is made of leaves and twigs.
@@ -1391,11 +1391,11 @@ reserved~
 0 0
 0 0 0
 A
-13 60
+14 40
 A
 2 1
 A
-14 40
+13 60
 E
 fur tunic~
 This tunic is actually made of the fur of that of a large animal.
@@ -1413,13 +1413,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -60
-A
-18 84
+13 60
 A
 19 108
 A
-13 60
+18 84
+A
+17 -60
 E
 hammer~
 This HUGE hammer is made of marble stone. It is buetiful yet very heavy and vicious as a weapon.
@@ -1437,11 +1437,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -75
+1 1
 A
 13 75
 A
-1 1
+17 -75
 E
 armor bronze~
 This HUGE set of armor is made of bronze. It is buetiful yet very heavy and eficient armor
@@ -1459,13 +1459,13 @@ reserved~
 0 0
 0 0 0
 A
-13 75
-A
-17 -75
+14 -20
 A
 12 75
 A
-14 -20
+17 -75
+A
+13 75
 E
 bronze leggings~
 This set of leggings is made of bronze. It is buetiful yet very heavy and eficient armor
@@ -1483,13 +1483,13 @@ reserved~
 0 0
 0 0 0
 A
-18 112
-A
-19 126
+12 -20
 A
 13 70
 A
-12 -20
+19 126
+A
+18 112
 E
 bronze axe~
 This HUGE axe is made of bronze. It is buetiful yet very heavy and vicious as a weapon.
@@ -1587,13 +1587,13 @@ astral walk~
 5 5
 0 0 0
 A
-13 70
-A
-25 10
+17 -70
 A
 12 10
 A
-17 -70
+25 10
+A
+13 70
 #10244
 Steak~
 a Steak~
@@ -1655,13 +1655,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -10
-A
-19 15
+13 60
 A
 18 15
 A
-13 60
+19 15
+A
+17 -10
 E
 bronze sword~
 This HUGE sword is made of bronze. It is buetiful yet very heavy and vicious as a weapon.
@@ -1679,13 +1679,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -10
-A
-18 98
+12 70
 A
 13 70
 A
-12 70
+18 98
+A
+17 -10
 E
 stone club~
 This HUGE club is made of stone. It is buetiful yet very heavy and vicious as a weapon.
@@ -1703,13 +1703,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -60
-A
-12 60
+14 30
 A
 13 60
 A
-14 30
+12 60
+A
+17 -60
 E
 bronze wristband~
 This set of writbands are made of bronze. It is buetiful yet very heavy and eficient armor
@@ -1727,9 +1727,9 @@ reserved~
 0 0
 0 0 0
 A
-110 -1
-A
 12 80
+A
+110 -1
 E
 magical feather~
 This is the simple feather from a bird of some sort. It seems to lift you slightly off your feet.
@@ -1747,9 +1747,9 @@ reserved~
 0 0
 0 0 0
 A
-110 -1
-A
 25 27
+A
+110 -1
 E
 bloody feather~
 This is the simple feather from a bird of some sort. It is covered in blood! Yet, it seems to still lift you slightly off your feet.
@@ -1831,11 +1831,11 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
+13 25
 A
 17 -82
 A
-13 25
+24 -5
 E
 leafy anklet~
 This small round anklet is actually a mock of that of a real metal anklet. This one is made of leaves and twigs.

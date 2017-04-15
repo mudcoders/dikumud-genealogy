@@ -908,11 +908,11 @@ teleport~
 5 5
 0 0 0
 A
-2 1
+12 50
 A
 13 50
 A
-12 50
+2 1
 E
 purple cloak~
 &pA nice purple cloak. Mmmm... silky.
@@ -930,13 +930,13 @@ summon~
 0 0
 0 0 0
 A
-3 2
-A
-26 8
+19 8
 A
 18 8
 A
-19 8
+26 8
+A
+3 2
 E
 walking staff~
 An ordinary walking staff seems to be radiating some kind of magical energy.
@@ -998,22 +998,22 @@ reserved~
 0 0
 0 0 0
 A
-19 169
-A
-18 140
+1 2
 A
 13 90
 A
-1 2
-E
-longsword~
-The longsword is not made of any special materials, from what you can tell. It
-IS very sharp however. A very impressive sword, indeed.
-~
+18 140
+A
+19 169
 E
 razor sharp~
 The blade has been sharpened to a very fine edge. This could do some good
 damage indeed.
+~
+E
+longsword~
+The longsword is not made of any special materials, from what you can tell. It
+IS very sharp however. A very impressive sword, indeed.
 ~
 #21407
 belt iron~
@@ -1047,9 +1047,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -40
-A
 13 90
+A
+17 -40
 E
 cloak red~
 &rA red cloak is quite large in size and very long in length. It is also quite
@@ -1104,8 +1104,8 @@ reserved~
 0 0
 0 0 0
 E
-lemon~
-&YOne wedge of lemon. Just a squeeze, now!
+platter fish chips~
+&wA yummy platter of battered fish and chips with lemon and tartar.
 ~
 E
 tartar~
@@ -1113,8 +1113,8 @@ tartar~
 relish and mustard.
 ~
 E
-platter fish chips~
-&wA yummy platter of battered fish and chips with lemon and tartar.
+lemon~
+&YOne wedge of lemon. Just a squeeze, now!
 ~
 #21412
 breakfast continental~
@@ -1129,29 +1129,29 @@ reserved~
 0 0
 0 0 0
 E
-breakfast platter continental~
-&wA large platter filled with the yummy goodness of breakfast. Eggs, toast, sausages,
-orange wedges, and hash browns.
-~
-E
-eggs~
-&YSunny-side &Wup with a splash of salt and pepper.
-~
-E
-toast~
-&OFresh bread, browned to perfection and lightly spreaded butter.
-~
-E
-sausages~
-&OPerfectly spiced sausages browned just right.
+hash browns~
+&OA mound of perfect hash browns fried to a golden brown.
 ~
 E
 orange wedges~
 &OA few orange wedges for your morning Vitamin-C!
 ~
 E
-hash browns~
-&OA mound of perfect hash browns fried to a golden brown.
+sausages~
+&OPerfectly spiced sausages browned just right.
+~
+E
+toast~
+&OFresh bread, browned to perfection and lightly spreaded butter.
+~
+E
+eggs~
+&YSunny-side &Wup with a splash of salt and pepper.
+~
+E
+breakfast platter continental~
+&wA large platter filled with the yummy goodness of breakfast. Eggs, toast, sausages,
+orange wedges, and hash browns.
 ~
 #21413
 sword bastard~
@@ -1166,11 +1166,11 @@ reserved~
 0 0
 0 0 0
 A
-19 125
+13 75
 A
 18 120
 A
-13 75
+19 125
 E
 bastard sword~
 &wA HUGE sword that is very heavy. It is simple in design, but looks like
@@ -1189,13 +1189,13 @@ reserved~
 0 0
 0 0 0
 A
-19 169
-A
-18 135
+13 80
 A
 12 20
 A
-13 80
+18 135
+A
+19 169
 E
 great sword~
 &wThis is definately a two-handed type sword. A bigger person may be able to
@@ -1242,17 +1242,17 @@ complete healing~
 3 3
 0 0 0
 A
-12 85
-A
 13 65
-E
-heap~
-A heap of white cloth that is hemmed with a blue thread.
-~
+A
+12 85
 E
 priest robe~
 A long white robe that is pretty plain in make. It is hemmed with a blue
 thread and is large in size and length.
+~
+E
+heap~
+A heap of white cloth that is hemmed with a blue thread.
 ~
 #21418
 staff priest~
@@ -1267,22 +1267,22 @@ portal~
 5 5
 0 0 0
 A
-19 145
-A
-18 110
-A
-13 85
+12 65
 A
 3 3
 A
-12 65
-E
-runes~
-The runes are of a very ancient language known only to priests of old.
-~
+13 85
+A
+18 110
+A
+19 145
 E
 priest staff~
 A long white, wooden staff carved with runes of blue.
+~
+E
+runes~
+The runes are of a very ancient language known only to priests of old.
 ~
 #21419
 drink local~
@@ -1445,11 +1445,11 @@ heal~
 5 5
 0 0 0
 A
-18 8
+13 50
 A
 19 8
 A
-13 50
+18 8
 E
 silver bracer power~
 &wWhat seems like an everyday silver bracer, is more than that.  You can
@@ -1469,13 +1469,13 @@ share strength~
 5 5
 0 0 0
 A
-19 150
-A
-18 120
+13 80
 A
 1 2
 A
-13 80
+18 120
+A
+19 150
 E
 warhammer~
 This warhammer is very large. The hammer itself weighs almost 10 pounds
@@ -1495,12 +1495,12 @@ reserved~
 0 0
 0 0 0
 E
-claw-like hand claw~
-&YA brass dragon-claw holds the crystal ball.
-~
-E
 crystal ball~
 &CThe crystal ball swirls with magical energy.
+~
+E
+claw-like hand claw~
+&YA brass dragon-claw holds the crystal ball.
 ~
 #21433
 potion peace~
@@ -1547,9 +1547,9 @@ reserved~
 0 0
 0 0 0
 A
-19 135
-A
 18 115
+A
+19 135
 E
 longsword sword~
 A rather non-descript longsword, although it is very finely crafted.
@@ -1584,22 +1584,22 @@ reserved~
 0 0
 0 0 0
 A
-19 5
-A
-18 7
+103 -1
 A
 13 15
 A
-103 -1
-E
-dark~
-Something about these dark gloves tells you that they are not your everyday
-normal gloves. There is something magical about them.
-~
+18 7
+A
+19 5
 E
 gloves pair~
 The gloves are rather light in weight, and are human-sized. They are in very
 good condition. The leather and stitches are in very good repair.
+~
+E
+dark~
+Something about these dark gloves tells you that they are not your everyday
+normal gloves. There is something magical about them.
 ~
 #21441
 table oaken~
@@ -1662,12 +1662,12 @@ reserved~
 0 0
 0 0 0
 E
-chair~
-The chair has been finely crafted by a master carpenter.
-~
-E
 oak~
 It has been finely crafted by a master carpenter.
+~
+E
+chair~
+The chair has been finely crafted by a master carpenter.
 ~
 #21445
 chair~
@@ -1698,12 +1698,12 @@ reserved~
 0 0
 0 0 0
 E
-chest~
-It is made of oak.
-~
-E
 drawers~
 They are made of oak.
+~
+E
+chest~
+It is made of oak.
 ~
 #21447
 chest drawers~
@@ -1718,11 +1718,11 @@ reserved~
 0 0
 0 0 0
 E
-chest~
+drawers~
 There is nothing unusual about it.
 ~
 E
-drawers~
+chest~
 There is nothing unusual about it.
 ~
 #21448
@@ -2460,10 +2460,10 @@ D0
 ~
 ~
 0 0 21434
-D1
+D3
 ~
 ~
-0 0 21436
+0 0 5592
 S
 #21436
 The Base of the Chrystal Tower~
@@ -2471,12 +2471,8 @@ You have reached the base of the Chrystal Tower.  There is no door, and no way
 inside.  Evil radiates from this tower, almost making you choke.  Your gut
 feeling is to go back to the west and get out of here.
 ~
-0 9 3
+0 13 3
 Rd     0
-D3
-~
-~
-0 0 21435
 S
 #21437
 Forest Path~

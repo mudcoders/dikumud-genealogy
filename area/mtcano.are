@@ -754,9 +754,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
 14 30
+A
+17 -30
 E
 lava bush skirt~
 This skirt was made from the bushes that live in the Cano valley.  It's
@@ -795,9 +795,9 @@ reserved~
 0 0
 0 0 0
 A
-13 20
-A
 17 -10
+A
+13 20
 E
 cano ceremonial mask~
 This mask is big enough to cover your entire face.  It's been painted
@@ -817,9 +817,9 @@ reserved~
 0 0
 0 0 0
 A
-19 67
-A
 18 52
+A
+19 67
 E
 long stick skull staff~
 The skull of a fierce rat is stuck on the end of this stick.  The result
@@ -839,9 +839,9 @@ reserved~
 0 0
 0 0 0
 A
-18 36
-A
 19 54
+A
+18 36
 E
 sling shot bird skull~
 A small sling shot, that was used quite effectively by the Cano boy, is a
@@ -917,18 +917,18 @@ reserved~
 0 0
 0 0 0
 A
-19 48
-A
 18 32
-E
-pair rat claws~
-These claws are faintly glowing.  Because the claws are wickedly sharp
-and long, it would make an excellent weapon.  
-~
+A
+19 48
 E
 paws lava~
 The claws are faintly glowing.  Because the claws are wickedly sharp and
 long, it would make an excellent weapon.  
+~
+E
+pair rat claws~
+These claws are faintly glowing.  Because the claws are wickedly sharp
+and long, it would make an excellent weapon.  
 ~
 #4422
 tattered rag rags pile shirt~
@@ -1035,9 +1035,9 @@ reserved~
 0 0
 0 0 0
 A
-24 -2
-A
 17 -30
+A
+24 -2
 E
 pair lava boots~
 The lava boots have been made from solidified lava.  It's not very hard
@@ -1057,9 +1057,9 @@ reserved~
 0 0
 0 0 0
 A
-24 -2
-A
 17 -30
+A
+24 -2
 E
 lava breast plate~
 A breast plate red in color, is made of solidified lava.  Although not
@@ -1078,9 +1078,9 @@ reserved~
 0 0
 0 0 0
 A
-19 79
-A
 18 62
+A
+19 79
 E
 club lava large~
 A large club of lava would make an excellent weapon for short, stocky
@@ -1101,9 +1101,9 @@ reserved~
 0 0
 0 0 0
 A
-13 45
-A
 12 45
+A
+13 45
 E
 tiny flaming earring~
 This is stunning.  The intricate bends and curves in the shape of a
@@ -1123,9 +1123,9 @@ reserved~
 0 0
 0 0 0
 A
-12 45
-A
 13 45
+A
+12 45
 E
 tiny flaming ankle bracelet~
 The anklet is small, but you can fit it on your ankle barely.  It's also
@@ -1159,9 +1159,9 @@ reserved~
 0 0
 0 0 0
 A
-19 45
-A
 18 68
+A
+19 45
 E
 tiny dagger flame~
 This small but potent weapon for the lava sprite has it's own glow.  The
@@ -1181,9 +1181,9 @@ reserved~
 0 0
 0 0 0
 A
-14 30
-A
 17 -30
+A
+14 30
 E
 filmy white dress~
 This dress is definitely way too small for you.  Why you would want to
@@ -1233,9 +1233,9 @@ reserved~
 0 0
 0 0 0
 A
-18 74
-A
 18 59
+A
+18 74
 E
 sword crimson fire~
 The long, sharpened sword can cut through almost anything.  The flames
@@ -1255,9 +1255,9 @@ reserved~
 0 0
 0 0 0
 A
-24 -2
-A
 17 -40
+A
+24 -2
 E
 pelt skin flaming~
 The belt is flaming, but it doesn't burn your hands when you touch it. 
@@ -1692,15 +1692,15 @@ where they hold their young virgins until they offer them to the volcano.
 0 12 0
 Rd     0
 E
-bed silk canopy~
-This bed is almost as bad in shape as the hut is.  There's no sheets, but
-in this heat noone will ever be cold.  
-~
-E
 hut~
 This run down hut has obviously not been maintained at all.  You wonder
 whats keeping the roof from caving in, because all the walls are rotted and
 decayed.  Why the straw roof hasn't caught fire is also mysterious.  
+~
+E
+bed silk canopy~
+This bed is almost as bad in shape as the hut is.  There's no sheets, but
+in this heat noone will ever be cold.  
 ~
 D2
 ~
@@ -2034,16 +2034,16 @@ certain rituals, they cast the food into the volcano to appease their god.
 0 12 0
 Rd     0
 E
-hut natives~
-The hut, though it looks in better shape than the other huts in the area,
-is still run down and in need of repair.  Why the straw roof doesn't catch
-fire in the heat is a mystery.  
-~
-E
 food rituals bins~
 The food in these bins is mostly fruit, but you can make out a couple
 fresh corpses in the heap.  You don't want to touch anything anyways, since
 your uneasy about angering the Fire God.  
+~
+E
+hut natives~
+The hut, though it looks in better shape than the other huts in the area,
+is still run down and in need of repair.  Why the straw roof doesn't catch
+fire in the heat is a mystery.  
 ~
 D1
 ~
@@ -2081,16 +2081,16 @@ empty due to the ceremonies in progress.
 0 8 0
 Rd     0
 E
-hut~
-This is one run down, ready to cave in at any moment, hut.  Why the straw
-roof hasn't burned away is a mystery to you.  
-~
-E
 racks hooks masks~
 Cano ceremonial masks litter the racks and hooks in the wall here and
 there.  Because the ceremonies are being held, there aren't that many masks
 left.  Some of the masks look different from the ones you've seen on the
 Cano people, so you decide not to take any possibly defective mask.  
+~
+E
+hut~
+This is one run down, ready to cave in at any moment, hut.  Why the straw
+roof hasn't burned away is a mystery to you.  
 ~
 D0
 ~

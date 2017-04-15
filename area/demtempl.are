@@ -235,11 +235,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -40
+19 30
 A
 18 5
 A
-19 30
+17 -40
 #26003
 suit scaly red armor~
 &Ya suit of &Rscaly red &Yarmor~
@@ -253,11 +253,11 @@ reserved~
 0 0
 0 0 0
 A
-19 30
+17 -40
 A
 18 5
 A
-17 -40
+19 30
 #26004
 ring demonic devotion~
 &CThe Ring of &rDemonic &CDevotion~
@@ -271,13 +271,13 @@ stench of decay~
 10 10
 0 0 0
 A
-24 -20
-A
-3 2
+19 8
 A
 18 4
 A
-19 8
+3 2
+A
+24 -20
 #26005
 potion burning embers~
 &WA potion of &Rburning &rembers~
@@ -303,11 +303,11 @@ displacement~
 20 20
 0 0 0
 A
-19 8
+17 -50
 A
 24 -30
 A
-17 -50
+19 8
 #26007
 black obsidian axe battleaxe~
 &Can &zObsidian &CBattleaxe~
@@ -321,11 +321,11 @@ reserved~
 0 0
 0 0 0
 A
-18 10
+13 55
 A
 19 27
 A
-13 55
+18 10
 #26008
 axe living blood~
 &zAn Axe of &RLiving Blood~
@@ -339,11 +339,11 @@ reserved~
 0 0
 0 0 0
 A
-13 55
+18 10
 A
 19 27
 A
-18 10
+13 55
 #26009
 key bloody~
 &za &rBloody &zKey~
@@ -369,11 +369,11 @@ reserved~
 0 0
 0 0 0
 A
-18 10
+3 1
 A
 19 10
 A
-3 1
+18 10
 #26011
 key obsidian~
 &Can &zObsidian &CKey~
@@ -399,13 +399,13 @@ reserved~
 0 0
 0 0 0
 A
-23 -20
-A
-4 2
+19 15
 A
 18 15
 A
-19 15
+4 2
+A
+23 -20
 #26013
 red bloodstained knife~
 &rA &Rbloodstained &rgutting knife~
@@ -419,13 +419,13 @@ bloodbath~
 10 10
 0 0 0
 A
-17 -10
-A
-19 20
+4 1
 A
 18 20
 A
-4 1
+19 20
+A
+17 -10
 #26015
 cloak filamentous obsidian~
 &CA cloak of &Wfilamentous &zobsidian~
@@ -439,13 +439,13 @@ flesh armor~
 20 20
 0 0 0
 A
-17 -60
-A
-2 2
+14 40
 A
 18 12
 A
-14 40
+2 2
+A
+17 -60
 #26016
 shield black ice~
 &WA shield of &bblack ice~
@@ -459,13 +459,13 @@ icestorm~
 5 5
 0 0 0
 A
-24 -20
-A
-19 7
+17 -40
 A
 18 3
 A
-17 -40
+19 7
+A
+24 -20
 #26017
 staff shattered ice~
 &WA staff of &Bshattered ice~
@@ -479,11 +479,11 @@ frost breath~
 5 5
 0 0 0
 A
-24 -20
+19 12
 A
 18 10
 A
-19 12
+24 -20
 #26018
 staff burning embers~
 &WA staff of &Rburning &rembers~
@@ -497,11 +497,11 @@ fire breath~
 5 5
 0 0 0
 A
-17 -30
+19 12
 A
 18 10
 A
-19 12
+17 -30
 #26019
 helm burning embers~
 &WA helm of &Rburning &rembers~
@@ -515,13 +515,13 @@ fireball~
 5 5
 0 0 0
 A
-24 -15
-A
-18 2
+17 -30
 A
 19 9
 A
-17 -30
+18 2
+A
+24 -15
 #26021
 huge double bladed axe demons~
 &WA Huge &BD&Co&Wub&Cl&Be&W-&BB&Cl&Wad&Ce&Bd &PAxe &Wof the &rD&Re&Ymo&Rn&rs~
@@ -535,13 +535,13 @@ giant strength~
 10 10
 0 0 0
 A
-13 60
-A
-1 2
+19 35
 A
 18 5
 A
-19 35
+1 2
+A
+13 60
 #26022
 blunt instrument torture~
 &wA &Yblunt &winstrument of &Rtorture~
@@ -555,13 +555,13 @@ reserved~
 0 0
 0 0 0
 A
-19 20
-A
-18 10
+23 20
 A
 24 20
 A
-23 20
+18 10
+A
+19 20
 #26023
 dagger sacrifice~
 &WThe &rDagger &Wof &RSacrifice~
@@ -575,13 +575,13 @@ energy drain~
 15 15
 0 0 0
 A
-19 30
-A
-18 12
+13 40
 A
 17 -40
 A
-13 40
+18 12
+A
+19 30
 #26024
 nebulous cloak blue mist~
 &CA nebulous cloak of &Bblue mist~
@@ -619,13 +619,13 @@ reserved~
 0 0
 0 0 0
 A
-19 15
-A
-18 20
+12 50
 A
 17 -65
 A
-12 50
+18 20
+A
+19 15
 #26027
 huge bloody sacrificial table~
 &gA huge &Rbloody &zsacrificial &gtable stands here, awaiting your demise.~
@@ -651,13 +651,13 @@ fly~
 10 10
 0 0 0
 A
-19 8
-A
-23 -25
+17 -50
 A
 1 2
 A
-17 -50
+23 -25
+A
+19 8
 #26033
 horns demon~
 &Rhorns of a demon~
@@ -671,13 +671,13 @@ reserved~
 0 0
 0 0 0
 A
-4 1
-A
-3 1
+19 12
 A
 17 -20
 A
-19 12
+3 1
+A
+4 1
 #26034
 tail demon~
 &Rthe tail of a demon~
@@ -691,13 +691,13 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-2 2
+19 5
 A
 18 5
 A
-19 5
+2 2
+A
+13 50
 #26035
 hooves demon~
 &Rthe hooves of a demon~
@@ -711,13 +711,13 @@ earthquake~
 10 10
 0 0 0
 A
-17 -30
-A
-2 2
+19 9
 A
 18 4
 A
-19 9
+2 2
+A
+17 -30
 #26036
 demon claw~
 &RA Demon's Claw~
@@ -731,13 +731,13 @@ reserved~
 0 0
 0 0 0
 A
-1 2
-A
-13 65
+19 25
 A
 18 15
 A
-19 25
+13 65
+A
+1 2
 #26037
 skin demon~
 &Rthe skin of a demon~
@@ -751,13 +751,13 @@ flesh armor~
 20 20
 0 0 0
 A
-23 -60
-A
-18 8
+13 65
 A
 19 35
 A
-13 65
+18 8
+A
+23 -60
 #26038
 chain allegiance~
 &CA chain of allegiance~
@@ -771,13 +771,13 @@ domination~
 10 10
 0 0 0
 A
-3 2
-A
-4 2
+23 -65
 A
 24 -65
 A
-23 -65
+4 2
+A
+3 2
 #26039
 flaming human head~
 &RA flaming human head~
@@ -791,13 +791,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
-13 50
+19 3
 A
 18 10
 A
-19 3
+13 50
+A
+17 -30
 #26040
 chain subservience~
 &GA chain of subservience~
@@ -811,13 +811,13 @@ charm person~
 10 10
 0 0 0
 A
-17 -65
-A
-13 65
+1 2
 A
 5 2
 A
-1 2
+13 65
+A
+17 -65
 #26041
 demon armguards~
 &RDemon Armguards~
@@ -831,13 +831,13 @@ reserved~
 0 0
 0 0 0
 A
-19 7
-A
-18 5
+17 -50
 A
 13 50
 A
-17 -50
+18 5
+A
+19 7
 #0
 
 
@@ -860,6 +860,10 @@ D0
 ~
 ~
 0 0 26002
+D2
+~
+~
+0 0 2121
 S
 #26002
 Entrance to The Temple~

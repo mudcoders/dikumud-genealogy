@@ -475,23 +475,23 @@ thought shield~
 2 2
 0 0 0
 A
-4 2
+24 -3
 A
 17 -45
 A
-24 -3
+4 2
 E
-helm~
-A writing on the helm says: Garret Gagnon.
-The helm is also engraved with the symbols of the garden.
+silver~
+A writing on the helm reads: Garret Gagnon
 ~
 E
 garret~
 A writing on the helm says:  Garret Gagnon
 ~
 E
-silver~
-A writing on the helm reads: Garret Gagnon
+helm~
+A writing on the helm says: Garret Gagnon.
+The helm is also engraved with the symbols of the garden.
 ~
 #14007
 uniform staff garden bethaven~
@@ -506,9 +506,9 @@ reserved~
 0 0
 0 0 0
 A
-5 1
-A
 17 -25
+A
+5 1
 E
 uniform bethaven garden staff~
 This is the uniform worn by the Bethaven Garden Staff. It displays the colours
@@ -527,11 +527,11 @@ reserved~
 0 0
 0 0 0
 A
-2 2
+18 70
 A
 19 90
 A
-18 70
+2 2
 E
 garret crystal scimitar~
 This is a scimitar that has been carefully crafted, possible by the elves. It is made of a shining cyrstal.
@@ -549,15 +549,15 @@ web~
 4 4
 0 0 0
 A
-4 -2
-A
-4 -1
-A
-14 -25
+13 45
 A
 25 15
 A
-13 45
+14 -25
+A
+4 -1
+A
+4 -2
 E
 thorax web~
 This is a chain necklace with a small spider web items attached onto it.
@@ -575,9 +575,9 @@ fly~
 2 2
 0 0 0
 A
-13 25
-A
 5 2
+A
+13 25
 E
 grasshopper wing giant~
 These are giant wings for a grasshopper. They look very delicate and are transparent.
@@ -628,9 +628,9 @@ lightning breath~
 1 1
 0 0 0
 A
-18 52
-A
 19 50
+A
+18 52
 E
 electric sting~
 This is long, thin and pointy. It looks like a bee's stinger but it has electricity flowing through it.
@@ -696,9 +696,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -10
-A
 13 35
+A
+17 -10
 E
 bloodstained cloak~
 This is a fairly plain brown woolen cloak, although it is in tatters and covered in blood.
@@ -716,9 +716,9 @@ summon swarm~
 2 2
 0 0 0
 A
-24 -2
-A
 12 35
+A
+24 -2
 E
 amulet insectus~
 This silver amulet has the head of an insect carved into it, it is a mantis. You sense a magical force flowing through it.
@@ -736,9 +736,9 @@ reserved~
 0 0
 0 0 0
 A
-110 -1
-A
 2 2
+A
+110 -1
 E
 wings wasp~
 This is a pair of large wasp wings, they seem normal except for a faint aura of magic.
@@ -756,9 +756,9 @@ energy drain~
 5 5
 0 0 0
 A
-13 20
-A
 4 -1
+A
+13 20
 E
 stinger~
 This is a large stinger of a wasp, with the poison dripping from the end it could make a deadly weapon.
@@ -794,12 +794,12 @@ reserved~
 A
 17 -15
 E
-shield~
-A large shield, carved from what looks like a huge chunk of honeycomb.
-~
-E
 shield honeycomb~
 This is a large honeycomb, it is very strong and could be used as a shield. It also seems to have non-stop honey coming out of it
+~
+E
+shield~
+A large shield, carved from what looks like a huge chunk of honeycomb.
 ~
 #14026
 honey~
@@ -830,11 +830,11 @@ reserved~
 0 0
 0 0 0
 A
-13 20
+5 1
 A
 14 -15
 A
-5 1
+13 20
 E
 beeskin belt~
 This is a belt made of odd material, beeskin. You can tell much time has been spent making this.
@@ -852,11 +852,11 @@ reserved~
 0 0
 0 0 0
 A
-18 -5
+19 15
 A
 2 -2
 A
-19 15
+18 -5
 E
 stone blade~
 This is a very primitive weapon. It is a sword made entirely out of stone. It is heavy, but is well balanced.
@@ -1131,11 +1131,11 @@ look, you spot an arm sinking...  No..  Being pulled down under the mud.
 0 0 0
 Rd     0
 E
-plank~
+down~
 There is a plank here buried underneath the mud and carnage.
 ~
 E
-down~
+plank~
 There is a plank here buried underneath the mud and carnage.
 ~
 D2
@@ -1622,12 +1622,12 @@ time before panic ensues.
 0 9 0
 Rd     0
 E
-rocks~
-They are definately honey covered rocks.
-~
-E
 pebbles~
 They are definately honey covered pebbles.
+~
+E
+rocks~
+They are definately honey covered rocks.
 ~
 D0
 ~

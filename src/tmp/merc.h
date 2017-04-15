@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 /* To turn on and off certain features off the mud */
-#define NEW_MONEY
+#define NEW_MONEY   
 
 #include "colors.h"   /* Include the ansi color routines. */
 
@@ -105,9 +105,11 @@ typedef struct  trap_data               TRAP_DATA;      /* Altrag */
 typedef struct	playerlist_data		PLAYERLIST_DATA; /*Decklarean*/
 typedef struct skill_type		SKILL_TYPE;
 typedef struct newbie_data		NEWBIE_DATA; 	 /* Angi */
+typedef struct  war_data		WAR_DATA;
+
 
 #ifdef NEW_MONEY
-typedef struct money_data	 	MONEY_DATA;
+typedef struct money_data	 	MONEY_DATA; 
 
 #define S_PER_G				10
 #define C_PER_S				10
@@ -142,10 +144,10 @@ typedef void SPELL_FUN                  args( ( int sn, int level,
  * Increase the max'es if you add more of something.
  * Adjust the pulse numbers to suit yourself.
  */
-#define MAX_SKILL		   334
+#define MAX_SKILL		   344
 #define MAX_GSPELL                 2
 #define MAX_CLASS		   13
-#define MAX_RACE                   16
+#define MAX_RACE                   18
 #define MAX_CLAN                   21 /*max 20 clans + 1 for clan 0*/
 #define MAX_LEVEL		   113
 #define STUN_MAX                   5
@@ -162,10 +164,10 @@ typedef void SPELL_FUN                  args( ( int sn, int level,
 #define L_CHAMP3		  ( L_CHAMP4 - 1 )
 #define L_CHAMP2		  ( L_CHAMP3 - 1 )
 #define L_CHAMP1		  ( L_CHAMP2 - 1 )
-#define LEVEL_HERO		  1100
+#define LEVEL_HERO		  100
 
-#define LEVEL_IMMORTAL		  1106
-#define LEVEL_MORTAL 		  1105
+#define LEVEL_IMMORTAL		  106
+#define LEVEL_MORTAL 		  105
 
 #define PULSE_PER_SECOND	    6
 #define PULSE_VIOLENCE		  (  3 * PULSE_PER_SECOND )
@@ -204,14 +206,14 @@ struct  userl_data
 }; */
 
 
-#ifdef NEW_MONEY
+#ifdef NEW_MONEY 
 struct money_data
 {
   int           gold;
   int           silver;
   int           copper;
 };
-#endif
+#endif 
 
 struct arena_data
 {
@@ -224,6 +226,25 @@ struct arena_data
   int count;		/* Update ticker */
 };
 
+struct war_data
+{
+    AREA_DATA *area;    /* battlefield */
+    CHAR_DATA *fch;
+    CHAR_DATA *sch;
+    bool iswar;
+    int wartype;
+    int max_level;
+    int min_level;
+    int inwar;
+    int team_red;
+    int team_blue;
+	int clan_chlng;
+	int clan_accpt;
+    int timeleft;
+    int count;
+    int ticker;
+};
+
 
 struct wiznet_type
 {
@@ -231,7 +252,7 @@ struct wiznet_type
     long        flag;
     int         level;
 };
-
+            
 /*
  * Site ban structure.
  */
@@ -295,8 +316,8 @@ struct	weather_data
 };
 
 
-/*
- * WIZnet flags
+/* 
+ * WIZnet flags 
  */
 #define WIZ_ON			      1
 #define WIZ_TICKS		      2
@@ -305,11 +326,11 @@ struct	weather_data
 #define WIZ_LINKS		     16
 #define WIZ_DEATHS		     32
 #define WIZ_RESETS		     64
-#define WIZ_MOBDEATHS		    128
+#define WIZ_MOBDEATHS		    128 
 #define WIZ_FLAGS		    256
 #define WIZ_PENALTIES		    512
 #define WIZ_SACCING		   1024
-#define WIZ_LEVELS		   2048
+#define WIZ_LEVELS		   2048 
 #define WIZ_SECURE		   4096
 #define WIZ_SWITCHES		   8192
 #define WIZ_SNOOPS		  16384
@@ -344,6 +365,7 @@ struct	weather_data
 #define CON_GET_3RD_CLASS	       16
 #define CON_CONFIRM_3RD_CLASS	       17
 #define CON_WANT_MULTI_2	       18
+#define CON_BEGIN_REMORT			19
 
 #define CON_GET_ANSI			105
 #define CON_AUTHORIZE_NAME		100
@@ -381,7 +403,7 @@ struct	descriptor_data
     char **             pString;	/* OLC */
     int			editor;		/* OLC */
     int                 editin;         /* Altrag, again for nesting */
-    bool		ansi;
+    bool		ansi;  
 };
 
 
@@ -529,6 +551,8 @@ struct playerlist_data
 #define RACE_TROLL	    13
 #define RACE_SHADOW         14
 #define RACE_TABAXI	    15
+#define RACE_KREEN		16
+#define RACE_ANGEL		17
 /*
  * Per-class stuff.
  */
@@ -600,7 +624,7 @@ struct  nrace_type
     int         manalev;
     int         movelev;
 };
-*/
+*/    
 /*
  * Data structure for notes.
  */
@@ -712,7 +736,7 @@ struct	kill_data
 #define Z			33554432
 #define aa			67108864 	/* doubled due to conflicts */
 #define bb			134217728
-#define cc			268435456
+#define cc			268435456    
 #define dd			536870912
 #define ee			1073741824
 
@@ -794,10 +818,10 @@ struct	kill_data
  * Used in #MOBILES.
  */
 #define AFF_BLIND		BV00
-#define AFF_INVISIBLE		BV01
+#define AFF_INVISIBLE		BV01	      
 #define AFF_DETECT_EVIL		BV02
 #define AFF_DETECT_INVIS	BV03
-#define AFF_DETECT_MAGIC	BV04
+#define AFF_DETECT_MAGIC	BV04    
 #define AFF_DETECT_HIDDEN	BV05
 #define AFF_HASTE		BV06
 #define AFF_SANCTUARY		BV07
@@ -826,24 +850,35 @@ struct	kill_data
 #define AFF_ANTI_FLEE        	BV30
 #define AFF_DISJUNCTION      	BV31
 
-#define AFF_POLYMORPH		1
-#define CODER			2
+#define AFF_POLYMORPH			1 /* 1 */
+#define CODER					2
 #define AFF_NOASTRAL            4
 #define AFF_TRUESIGHT          16
-#define AFF_BLADE              32
+#define AFF_BLADE              32 /* 5 */
 #define AFF_DETECT_GOOD        64
 #define AFF_PROTECTION_GOOD    128
 #define AFF_BERSERK            256
 #define AFF_CONFUSED          1024
-#define AFF_FUMBLE            2048
+#define AFF_FUMBLE            2048 /* 10 */
 #define AFF_DANCING           4096
+#define AFF_HALLUCINATING	  8192
 #define AFF_PHASED           16384
-#define AFF_FIELD	     32768
-#define AFF_RAGE	     65536
-#define AFF_RUSH	    131072
+#define AFF_FIELD			  32768
+#define AFF_RAGE			  65536
+#define AFF_RUSH			 131072 /* 15 */
 #define AFF_INERTIAL	    262144
-#define AFF_GOLDEN	    524288
-#define AFF_PLOADED     1073741824
+#define AFF_GOLDEN			 524288
+#define AFF_UNHOLYSTRENGTH	1048576
+#define AFF_PLAGUE			2097152
+#define AFF_VACCINATE		4194304
+#define AFF_UNUSED4		8388608
+#define AFF_UNUSED5		16777216
+#define AFF_UNUSED6		33554432
+#define AFF_UNUSED7		67108864
+#define AFF_UNUSED8		134217728
+#define AFF_UNUSED9		268435456
+
+#define AFF_PLOADED		 1073741824 /* 18 */
 
 /* damage classes */
 #define DAM_NONE                0
@@ -898,7 +933,7 @@ struct	kill_data
 #define IMM_SILVER              (Y)
 #define IMM_IRON                (Z)
 #define IMM_NERVE		(aa)
-
+ 
 /* RES bits for mobs */
 #define RES_SUMMON		(A)
 #define RES_CHARM		(B)
@@ -923,7 +958,7 @@ struct	kill_data
 #define RES_WOOD                (X)
 #define RES_SILVER              (Y)
 #define RES_IRON                (Z)
-
+ 
 /* VULN bits for mobs */
 #define VULN_SUMMON		(A)
 #define VULN_CHARM		(B)
@@ -948,7 +983,7 @@ struct	kill_data
 #define VULN_WOOD               (X)
 #define VULN_SILVER             (Y)
 #define VULN_IRON		(Z)
-
+ 
 
 /* weapon class */
 #define WEAPON_EXOTIC		0
@@ -958,7 +993,7 @@ struct	kill_data
 #define WEAPON_MACE		4
 #define WEAPON_AXE		5
 #define WEAPON_FLAIL		6
-#define WEAPON_WHIP		7
+#define WEAPON_WHIP		7	
 #define WEAPON_POLEARM		8
 
 /* weapon types */
@@ -1167,10 +1202,10 @@ struct	kill_data
 #define ITEM_WEAR_HEAD		     16
 #define ITEM_WEAR_LEGS		     32
 #define ITEM_WEAR_FEET		     64
-#define ITEM_WEAR_HANDS		    128
+#define ITEM_WEAR_HANDS		    128 
 #define ITEM_WEAR_ARMS		    256
 #define ITEM_WEAR_SHIELD	    512
-#define ITEM_WEAR_ABOUT		   1024
+#define ITEM_WEAR_ABOUT		   1024 
 #define ITEM_WEAR_WAIST		   2048
 #define ITEM_WEAR_WRIST		   4096
 #define ITEM_WIELD		   8192
@@ -1308,7 +1343,7 @@ struct	kill_data
 #define ROOM_NO_ASTRAL_OUT       262144
 #define ROOM_TELEPORT_AREA       524288
 #define ROOM_TELEPORT_WORLD     1048576
-#define ROOM_NO_OFFENSIVE       2097152
+#define ROOM_NO_OFFENSIVE       2097152 
 #define ROOM_NO_FLEE            4194304
 #define ROOM_SILENT             8388608
 #define ROOM_BANK		16777216
@@ -1399,7 +1434,8 @@ struct	kill_data
 #define WEAR_EAR_L		     24
 #define WEAR_ANKLE_L                 25
 #define WEAR_ANKLE_R                 26
-#define MAX_WEAR		     27
+#define WEAR_WIELD_3			27
+#define MAX_WEAR		     28
 
 
 
@@ -1443,7 +1479,7 @@ struct	kill_data
  */
 #define PLR_IS_NPC		BV00		/* Don't EVER set.	*/
 #define PLR_BOUGHT_PET		BV01
-#define PLR_AFK			BV02
+#define PLR_AFK			BV02    
 #define PLR_AUTOEXIT		BV03
 #define PLR_AUTOLOOT		BV04
 #define PLR_AUTOSAC             BV05
@@ -1473,6 +1509,10 @@ struct	kill_data
 #define PLR_COMBAT              BV29
 #define PLR_OUTCAST             BV30
 #define PLR_PKILLER		BV31
+#define PLR_WAR			BV00
+#define TEAM_RED		BV01
+#define TEAM_BLUE		BV02
+#define PLR_REMORT		BV03
 
 /*
  * Obsolete bits.
@@ -1511,10 +1551,10 @@ struct	kill_data
  * Log Channels
  * Added by Altrag.
  */
-#define CHANNEL_LOG		   2048
-#define CHANNEL_BUILD		   4096
-#define CHANNEL_GOD                8192
-#define CHANNEL_GUARDIAN          16384
+#define CHANNEL_LOG		   2048 
+#define CHANNEL_BUILD		   4096 
+#define CHANNEL_GOD                8192 
+#define CHANNEL_GUARDIAN          16384  
 #define CHANNEL_GUILD		  32768
 #define CHANNEL_CODER             65536
 #define CHANNEL_INFO		 131072
@@ -1574,9 +1614,9 @@ struct	mob_index_data
     int 		damplus;		/* Unused */
 #ifdef NEW_MONEY
     MONEY_DATA		money;
-#else
+#else 
     int			gold;			/* Unused */
-#endif
+#endif 
 };
 
 /*
@@ -1649,7 +1689,7 @@ struct	char_data
     time_t              last_note;
     int 		timer;
     int 		wait;
-    int                 race_wait;
+    int                 race_wait; 
     int 		hit;
 /*    int 		max_hit; */
     int			perm_hit;
@@ -1666,7 +1706,7 @@ struct	char_data
 /*    int                 max_bp;*/
     int			perm_bp;
     int		 	mod_bp;
-    int			charisma;
+    int			charisma; 
 #ifdef NEW_MONEY
     MONEY_DATA		money;
 #else
@@ -1674,6 +1714,7 @@ struct	char_data
 #endif
     int			exp;
     int			act;
+	int			act2;
     long		affected_by;
     long		affected_by2;
     long		imm_flags;
@@ -1698,6 +1739,16 @@ struct	char_data
     GUILD_DATA *	guild;
     int                 stunned[STUN_MAX];
     int			wiznet;
+    int			warpts;
+	int			warkills;
+	int			wardeaths;
+    int			pkills;
+    int			pkilled;
+    int			arenawon;
+    int			arenalost;
+    int			incarnations;
+    int			raisepts;
+
 };
 
 
@@ -1712,6 +1763,7 @@ struct guild_data
 struct quest_data
 {
   char *        name;
+  char *        colorname;
   int           vnum;
   int           qp;
   int           level;
@@ -1742,7 +1794,7 @@ struct	pc_data
     PC_DATA *		next;
     ALIAS_DATA *        alias_list;
     char *		pwd;
-    char *              afkchar;
+    char *              afkchar; 
     char *		bamfin;
     char *		bamfout;
     char *		bamfusee;
@@ -1782,6 +1834,7 @@ struct	pc_data
     int                 corpses;
     char *		plan;
     char *		email;
+	bool	confirm_remort;
 };
 
 struct  alias_data
@@ -1898,7 +1951,7 @@ struct trap_data
     bool disarmed;
     int disarm_dur;
 };
-
+    
 
 /*
  * Liquids.
@@ -1948,7 +2001,7 @@ struct	obj_index_data
 /* FOR NEW FLAGS */
     int                 anti_race_flags;
     int                 anti_class_flags;
-
+ 
     int 		wear_flags;
     int 		count;
     int 		weight;
@@ -2035,7 +2088,7 @@ struct	exit_data
 /*
  * Reset commands:
  *   '*': comment
- *   'M': read a mobile
+ *   'M': read a mobile 
  *   'O': read an object
  *   'P': put object in object
  *   'G': give object to mobile
@@ -2110,9 +2163,9 @@ struct  new_clan_data
     int                 obj_vnum_2;
     int                 obj_vnum_3;
     int                 settings;
-};
-/*
- * ROOM AFFECT type
+}; 
+/* 
+ * ROOM AFFECT type 
  */
 struct	room_affect_data
 {
@@ -2248,7 +2301,7 @@ extern  int	gsn_steal;
 extern  int	gsn_disarm;
 extern  int     gsn_poison_weapon;
 
-extern  int     gsn_bash;
+extern  int     gsn_bash;  
 extern	int	gsn_enhanced_damage;
 extern  int     gsn_enhanced_two;
 extern  int     gsn_enhanced_hit;
@@ -2258,7 +2311,7 @@ extern  int	gsn_high_kick;
 extern  int	gsn_spin_kick;
 extern  int	gsn_jump_kick;
 extern  int     gsn_circle;
-extern  int     gsn_throw;
+extern  int     gsn_throw;  
 extern  int     gsn_feed;
 extern	int	gsn_parry;
 extern	int	gsn_rescue;
@@ -2324,67 +2377,7 @@ extern	int	gsn_ward_safe;
 extern	int	gsn_ward_heal;
 extern  int     gsn_incinerate;
 extern  int     gsn_grip;
-
-
-/*  do not need gsn for imm commands  -Deck
-extern  int     gsn_advance;
-extern  int     gsn_allow;
-extern  int     gsn_at;
-extern  int     gsn_bamfin;
-extern  int     gsn_bamfout;
-extern  int     gsn_ban;
-extern  int     gsn_cset;
-extern  int     gsn_deny;
-extern  int     gsn_disconnect;
-extern  int     gsn_echo;
-extern  int 	gsn_fighting;
-extern  int     gsn_force;
-extern  int     gsn_freeze;
-extern  int     gsn_goto;
-extern  int     gsn_holylight;
-extern  int     gsn_immtalk;
-extern  int     gsn_log;
-extern  int     gsn_memory;
-extern  int     gsn_mfind;
-extern  int     gsn_mload;
-extern  int     gsn_mset;
-extern  int     gsn_mstat;
-extern  int     gsn_mwhere;
-extern  int     gsn_newlock;
-extern  int     gsn_noemote;
-extern  int     gsn_notell;
-extern  int     gsn_numlock;
-extern  int     gsn_ofind;
-extern  int     gsn_oload;
-extern  int     gsn_oset;
-extern  int     gsn_ostat;
-extern  int     gsn_owhere;
-extern  int     gsn_pardon;
-extern  int     gsn_peace;
-extern  int     gsn_purge;
-extern  int     gsn_reboot;
-extern  int     gsn_recho;
-extern  int     gsn_restore;
-extern  int     gsn_return;
-extern  int     gsn_rset;
-extern  int     gsn_rstat;
-extern  int     gsn_shutdown;
-extern  int     gsn_silence;
-extern  int     gsn_slay;
-extern  int     gsn_slookup;
-extern  int     gsn_snoop;
-extern  int     gsn_sset;
-extern  int     gsn_sstime;
-extern  int     gsn_switch;
-extern  int     gsn_transfer;
-extern  int     gsn_trust;
-extern  int     gsn_users;
-extern  int     gsn_wizhelp;
-extern  int     gsn_wizify;
-extern  int     gsn_wizinvis;
-extern  int     gsn_wizlock;
-*/
-
+extern int		gsn_lure;
 extern  int     gsn_shadow_walk;
 /*
  * Psionicist gsn's.
@@ -2393,6 +2386,11 @@ extern  int     gsn_chameleon;
 extern  int     gsn_domination;
 extern  int     gsn_heighten;
 extern  int     gsn_shadow;
+extern int		gsn_image;
+extern int		gsn_flip;
+extern int		gsn_hallucinate;
+extern int		gsn_plague;
+extern int		gsn_unholystrength;
 
 /*
  * Utility macros.
@@ -2433,17 +2431,17 @@ extern  int     gsn_shadow;
 #define IS_NEUTRAL( ch )	( !IS_GOOD( ch ) && !IS_EVIL( ch ) )
 
 #define IS_AWAKE( ch )		( ch->position > POS_SLEEPING )
-#define GET_AC( ch )		( ( ch )->armor				     \
-				    + ( IS_AWAKE( ch )			     \
-				    ? dex_app[get_curr_dex( ch )].defensive  \
+#define GET_AC( ch )		( ( ch )->armor				                     \
+				    + ( IS_AWAKE( ch )			                             \
+				    ? dex_app[get_curr_dex( ch )].defensive                  \
 				    : 0 ) )
 #define GET_HITROLL( ch )      	( ( ch )->hitroll                            \
 				 + str_app[get_curr_str( ch )].tohit )
 #define GET_DAMROLL( ch )      	( ( ch )->damroll                            \
 				 + str_app[get_curr_str( ch )].todam )
 
-#define IS_OUTSIDE( ch )       	( !IS_SET(				     \
-				    ( ch )->in_room->room_flags,       	     \
+#define IS_OUTSIDE( ch )       	( !IS_SET(				                     \
+				    ( ch )->in_room->room_flags,       	                     \
 				    ROOM_INDOORS ) )
 
 #define WAIT_STATE( ch, pulse ) ( ( ch )->wait = UMAX( ( ch )->wait,         \
@@ -2451,22 +2449,22 @@ extern  int     gsn_shadow;
 
 
 #define STUN_CHAR( ch, pulse, type ) ( (ch)->stunned[(type)] =               \
-				       UMAX( (ch)->stunned[(type)],          \
+				       UMAX( (ch)->stunned[(type)],                          \
 					     (pulse) ) )
 
 #define IS_STUNNED( ch, type ) ( (ch)->stunned[(type)] > 0 )
+int	mmlvl_mana	args( ( CHAR_DATA *ch, int sn ) );
 #define MANA_COST( ch, sn )     ( IS_NPC( ch ) ? 0 : UMAX (                  \
-				skill_table[sn].min_mana,                    \
-				100 / ( 2 + ch->level -                      \
-			skill_table[sn].skill_level[prime_class(ch)] ) ) )
-#define SPELL_COST( ch, sn )	( is_class( ch, CLASS_VAMPIRE ) \
-				? MANA_COST( ch, sn ) / 4 		 \
+				skill_table[sn].min_mana,                                    \
+				100 / ( 2 + ch->level -                                      \
+			        mmlvl_mana( ch, sn ) ) ) )
+#define SPELL_COST( ch, sn )	( is_class( ch, CLASS_VAMPIRE )              \
+				? MANA_COST( ch, sn ) / 4 		                             \
 				: MANA_COST( ch, sn ) )
-
-#define MT( ch )		( is_class( ch, CLASS_VAMPIRE ) ? ch->bp \
+#define MT( ch )		( is_class( ch, CLASS_VAMPIRE ) ? ch->bp             \
 				  				: ch->mana )
-#define MT_MAX( ch )		( is_class( ch, CLASS_VAMPIRE ) \
-				? MAX_BP(ch)			\
+#define MT_MAX( ch )		( is_class( ch, CLASS_VAMPIRE )                  \
+				? MAX_BP(ch)                                                 \
 				: MAX_MANA(ch) )
 #define IS_SWITCHED( ch )       ( ch->pcdata->switched )
 
@@ -2492,8 +2490,8 @@ extern  int     gsn_shadow;
 /*
  * Description macros.
  */
-#define PERS( ch, looker )	( can_see( looker, ( ch ) ) ?		     \
-				( IS_NPC( ch ) ? ( ch )->short_descr	     \
+#define PERS( ch, looker )	( can_see( looker, ( ch ) ) ?		            \
+				( IS_NPC( ch ) ? ( ch )->short_descr	                    \
 				               : ( ch )->name ) : "someone" )
 
 
@@ -2501,8 +2499,8 @@ extern  int     gsn_shadow;
 /*
  * Arena macro.
  */
-#define IS_ARENA(ch)	(!IS_NPC((ch)) && (ch)->in_room && \
-			(ch)->in_room->area == arena.area && \
+#define IS_ARENA(ch)	(!IS_NPC((ch)) && (ch)->in_room &&                  \
+			(ch)->in_room->area == arena.area &&                            \
 			((ch) == arena.fch || (ch) == arena.sch))
 
 /*
@@ -2608,6 +2606,7 @@ extern		char			log_buf		[ ];
 extern		TIME_INFO_DATA		time_info;
 extern		WEATHER_DATA		weather_info;
 extern		ARENA_DATA		arena;
+extern		WAR_DATA		war;
 extern          char              *     down_time;
 extern          char              *     warning1;
 extern          char              *     warning2;
@@ -2622,6 +2621,8 @@ extern          int                     port;
  * Command functions.
  * Defined in act_*.c (mostly).
  */
+DECLARE_DO_FUN( do_doubleexp    );
+DECLARE_DO_FUN( do_shieldify );
 DECLARE_DO_FUN( do_clanquest    );
 DECLARE_DO_FUN( do_quest        );
 DECLARE_DO_FUN( do_qecho        );
@@ -2651,7 +2652,7 @@ DECLARE_DO_FUN(	do_advance	);
 DECLARE_DO_FUN( do_affectedby   );
 DECLARE_DO_FUN(	do_raffect	);
 DECLARE_DO_FUN( do_afk		);
-DECLARE_DO_FUN( do_afkmes       );
+DECLARE_DO_FUN( do_afkmes       ); 
 DECLARE_DO_FUN(	do_allow	);
 DECLARE_DO_FUN( do_ansi         );
 DECLARE_DO_FUN(	do_answer	);
@@ -2785,7 +2786,7 @@ DECLARE_DO_FUN(	do_list		);
 DECLARE_DO_FUN(	do_lock		);
 DECLARE_DO_FUN(	do_log		);
 DECLARE_DO_FUN(	do_look		);
-DECLARE_DO_FUN( do_lowrecall );
+DECLARE_DO_FUN( do_lowrecall ); 
 DECLARE_DO_FUN(	do_memory	);
 DECLARE_DO_FUN( do_mental_drain );
 DECLARE_DO_FUN(	do_mfind	);
@@ -2995,6 +2996,17 @@ DECLARE_DO_FUN(	do_permban	);
 DECLARE_DO_FUN(	do_tempban	);
 DECLARE_DO_FUN(	do_newban	);
 DECLARE_DO_FUN( do_banlist	);
+/* EotS function */
+DECLARE_DO_FUN( do_scan		);
+DECLARE_DO_FUN( do_war		);
+DECLARE_DO_FUN( do_declare  );
+DECLARE_DO_FUN( do_remor	);
+DECLARE_DO_FUN( do_remort	);
+DECLARE_DO_FUN( do_raise	);
+DECLARE_DO_FUN( do_lure		);
+DECLARE_DO_FUN( do_flip		);
+DECLARE_DO_FUN( do_triple	);
+
 /*
  * Spell functions.
  * Defined in magic.c.
@@ -3141,6 +3153,13 @@ DECLARE_SPELL_FUN(      spell_molecular_unbind  );     /* ELVIS */
 DECLARE_SPELL_FUN(      spell_phase_shift       );     /* ELVIS */
 DECLARE_SPELL_FUN(      spell_healing_hands     );     /* -- Altrag */
 DECLARE_SPELL_FUN(      spell_mist_form         );     /* Lacey */
+DECLARE_SPELL_FUN(		spell_purify			);     /* Kjodo */
+DECLARE_SPELL_FUN(		spell_image				);
+DECLARE_SPELL_FUN(		spell_silence			);
+DECLARE_SPELL_FUN(		spell_unholystrength	);
+DECLARE_SPELL_FUN(		spell_hallucinate		);
+DECLARE_SPELL_FUN(		spell_manabomb			);
+DECLARE_SPELL_FUN(		spell_vaccinate			);
 /*
  * Psi spell_functions, in magic.c.
  */
@@ -3216,7 +3235,7 @@ char *	crypt		args( ( const char *key, const char *salt ) );
 #endif
 
 #if	defined( linux )
-// char *	crypt		args( ( const char *key, const char *salt ) );
+char *	crypt		args( ( const char *key, const char *salt ) );
 #endif
 
 #if	defined( macintosh )
@@ -3528,6 +3547,7 @@ int	strlen_wo_col	args( ( char *argument ) );
 char *	strip_color	args( ( char *argument ) );
 /* Multiclass stuff -- Hann */
 bool	can_use_skpell	args( ( CHAR_DATA *ch, int sn ) );
+bool	can_practice_skpell	args( ( CHAR_DATA *ch, int sn ) );
 bool	is_class	args( ( CHAR_DATA *ch, int class ) );
 bool	has_spells	args( ( CHAR_DATA *ch ) );
 int	prime_class	args( ( CHAR_DATA *ch ) );
@@ -3572,7 +3592,7 @@ void    corpse_back     args( ( CHAR_DATA *ch, OBJ_DATA *corpse ) );
 void    read_finger	args( ( CHAR_DATA *ch, char *argument ) );
 void    save_finger     args( ( CHAR_DATA *ch ) );
 void    fwrite_finger   args( ( CHAR_DATA *ch, FILE *fp ) );
-void    fread_finger    args( ( CHAR_DATA *ch, FILE *fp ) );
+void    fread_finger    args( ( CHAR_DATA *ch, FILE *fp, char *name ) );
 void	save_banlist	args( ( BAN_DATA *ban_list ) );
 
 /* special.c */
@@ -3583,6 +3603,9 @@ void	advance_level	args( ( CHAR_DATA *ch ) );
 void	gain_exp	args( ( CHAR_DATA *ch, int gain ) );
 void	gain_condition	args( ( CHAR_DATA *ch, int iCond, int value ) );
 void	update_handler	args( ( void ) );
+CHAR_DATA *rand_figment args( ( CHAR_DATA *ch ) );
+MOB_INDEX_DATA *rand_figment_mob args( ( CHAR_DATA *ch ) );
+OBJ_INDEX_DATA *rand_figment_obj args( ( CHAR_DATA *ch ) );
 
 /* mob_prog.c */
 #ifdef DUNNO_STRSTR
@@ -3936,7 +3959,7 @@ extern const struct flag_type   eprog_types[];
 /* olc_act.c */
 extern int flag_value       args ( ( const struct flag_type *flag_table,
 				     char *argument ) );
-extern AFFECT_DATA  *new_affect   args ( ( void ) );
+extern AFFECT_DATA  *new_affect   args ( ( void ) );    
 extern OBJ_INDEX_DATA    *new_obj_index          args ( ( void ) );
 extern void free_affect		  args ( ( AFFECT_DATA *pAf ) );
 extern EXTRA_DESCR_DATA *new_extra_descr args( ( void ) );

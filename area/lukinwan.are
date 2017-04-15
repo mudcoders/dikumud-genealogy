@@ -314,15 +314,15 @@ reserved~
 0 0
 0 0 0
 A
-19 38
-A
 26 2
+A
+19 38
 E
-bisento~
+halberd~
 &BA huge oriental &rhalberd&B.
 ~
 E
-halberd~
+bisento~
 &BA huge oriental &rhalberd&B.
 ~
 #203
@@ -338,15 +338,15 @@ reserved~
 0 0
 0 0 0
 A
-18 43
-A
 19 54
+A
+18 43
 E
-katana~
+sword~
 &zAn elegant looking long sword.
 ~
 E
-sword~
+katana~
 &zAn elegant looking long sword.
 ~
 #204
@@ -362,9 +362,9 @@ reserved~
 0 0
 0 0 0
 A
-19 19
-A
 2 1
+A
+19 19
 E
 sai~
 &YA small &Wsilver&Y trident.
@@ -382,16 +382,17 @@ reserved~
 0 0
 0 0 0
 A
-19 112
-A
-18 128
+1 2
 A
 17 -80
 A
-1 2
+18 128
+A
+19 112
 E
-script~
-You couldn't possibly read it. It is in an ancient oriental language.
+wakizashi~
+A beautifully hand made short sword with ancient script written on the
+hilt.  
 ~
 E
 sword~
@@ -399,9 +400,8 @@ A beautifully hand made short sword with ancient script written on the
 hilt.
 ~
 E
-wakizashi~
-A beautifully hand made short sword with ancient script written on the
-hilt.  
+script~
+You couldn't possibly read it. It is in an ancient oriental language.
 ~
 #206
 bo-maku bo maku staff~
@@ -416,15 +416,11 @@ reserved~
 0 0
 0 0 0
 A
-19 45
-A
 18 30
+A
+19 45
 E
-staff~
-&gA staff of long hard &wwood&g.
-~
-E
-bo-maku~
+maku~
 &gA staff of long hard &wwood&g.
 ~
 E
@@ -432,7 +428,11 @@ bo~
 &gA staff of long hard &wwood&g.
 ~
 E
-maku~
+bo-maku~
+&gA staff of long hard &wwood&g.
+~
+E
+staff~
 &gA staff of long hard &wwood&g.
 ~
 #207
@@ -448,15 +448,15 @@ reserved~
 0 0
 0 0 0
 A
-14 15
-A
 17 -20
+A
+14 15
 E
-sash~
+golden~
 &gA &Ygolden&g sash
 ~
 E
-golden~
+sash~
 &gA &Ygolden&g sash
 ~
 #208
@@ -472,17 +472,13 @@ reserved~
 0 0
 0 0 0
 A
-17 -80
+1 2
 A
 2 2
 A
-1 2
+17 -80
 E
-pile~
-A pile of yellow silk lies here.
-~
-E
-yellow~
+robe~
 A long flowing silk robe dyed the brightest yellow.
 ~
 E
@@ -490,8 +486,12 @@ silk~
 A long flowing silk robe dyed the brightest yellow.
 ~
 E
-robe~
+yellow~
 A long flowing silk robe dyed the brightest yellow.
+~
+E
+pile~
+A pile of yellow silk lies here.
 ~
 #209
 do-maru dagger do maru~
@@ -506,15 +506,11 @@ reserved~
 0 0
 0 0 0
 A
-18 27
-A
 19 18
+A
+18 27
 E
-do-maru~
-&YA long stabbing dagger.
-~
-E
-dagger~
+do~
 &YA long stabbing dagger.
 ~
 E
@@ -522,7 +518,11 @@ maru~
 &YA long stabbing dagger.
 ~
 E
-do~
+dagger~
+&YA long stabbing dagger.
+~
+E
+do-maru~
 &YA long stabbing dagger.
 ~
 #210
@@ -538,14 +538,14 @@ reserved~
 0 0
 0 0 0
 A
-19 65
+5 -1
 A
 18 40
 A
-5 -1
+19 65
 E
-sword~
-A long curved sword that is over-run with rus from years of neglect.
+katana~
+A long curved sword that is over-run with rust from years of neglect.  
 ~
 E
 rusty~
@@ -553,8 +553,8 @@ A long curved sword that has been over-run with rust from countless years
 of neglect.  
 ~
 E
-katana~
-A long curved sword that is over-run with rust from years of neglect.  
+sword~
+A long curved sword that is over-run with rus from years of neglect.
 ~
 #211
 bisento warped halberd~
@@ -571,12 +571,12 @@ reserved~
 A
 19 8
 E
-warped~
-A large halberd that has been bent and warped to a very abnormal shape.  
-~
-E
 bisento~
 A large halberd that has been bent and warped to a very abnormal shape.
+~
+E
+warped~
+A large halberd that has been bent and warped to a very abnormal shape.  
 ~
 #212
 sai busted~
@@ -591,16 +591,16 @@ reserved~
 0 0
 0 0 0
 A
-19 17
-A
 18 20
-E
-sai~
-A small broken trident-looking weapon.
-~
+A
+19 17
 E
 busted~
 A small busted trident-looking weapon has seen better days.
+~
+E
+sai~
+A small broken trident-looking weapon.
 ~
 #213
 tabi moldy~
@@ -615,17 +615,17 @@ reserved~
 0 0
 0 0 0
 A
-14 45
+17 15
 A
 2 1
 A
-17 15
+14 45
 E
-moldy~
+tabi~
 A pair of molding footwear that are starting to look like vegetation.  
 ~
 E
-tabi~
+moldy~
 A pair of molding footwear that are starting to look like vegetation.  
 ~
 #214
@@ -641,17 +641,17 @@ combat mind~
 3 3
 0 0 0
 A
-17 -40
+24 -4
 A
 13 70
 A
-24 -4
+17 -40
 E
-prismatic~
+ring~
 A small jewelled ring flickering with refracted light.
 ~
 E
-ring~
+prismatic~
 A small jewelled ring flickering with refracted light.
 ~
 #215
@@ -667,15 +667,15 @@ reserved~
 0 0
 0 0 0
 A
-24 -4
-A
 23 -4
+A
+24 -4
 E
-mallimate~
+pendant~
 A pendant with a strange crest carved into it.
 ~
 E
-pendant~
+mallimate~
 A pendant with a strange crest carved into it.
 ~
 #216
@@ -693,11 +693,11 @@ reserved~
 A
 17 -25
 E
-mail~
+coif~
 &Y A helm made of &wchainmail.
 ~
 E
-coif~
+mail~
 &Y A helm made of &wchainmail.
 ~
 #217
@@ -715,11 +715,11 @@ reserved~
 A
 17 -10
 E
-sang~
+kawu~
 &gA set of &bdark&g clothes made of thick material.
 ~
 E
-kawu~
+sang~
 &gA set of &bdark&g clothes made of thick material.
 ~
 #218
@@ -737,11 +737,11 @@ reserved~
 A
 17 -25
 E
-battered~
+breastplate~
 &YA beated up old &wbreastplate&Y
 ~
 E
-breastplate~
+battered~
 &YA beated up old &wbreastplate&Y
 ~
 #219
@@ -757,22 +757,17 @@ reserved~
 0 0
 0 0 0
 A
-3 1
-A
-4 1
+100 -1
 A
 17 -70
 A
-100 -1
+4 1
+A
+3 1
 E
-silver cup~
-A large glowing silver chalice with carefully engraved writing on it. It
-looks to be filled with some green liquid.
-~
-E
-wutan~
-A large glowing silver chalice with carefully engraved writing on it.  It
-looks to be filled with some green liquid.  
+writing~
+The silver chalice reads: "He who drinks from this chalice before my eyes
+will be granted a great gift."  
 ~
 E
 chalice~
@@ -780,9 +775,14 @@ A large glowing silver chalice with carefully engraved writing on it.  It
 looks to be filled with some green liquid.  
 ~
 E
-writing~
-The silver chalice reads: "He who drinks from this chalice before my eyes
-will be granted a great gift."  
+wutan~
+A large glowing silver chalice with carefully engraved writing on it.  It
+looks to be filled with some green liquid.  
+~
+E
+silver cup~
+A large glowing silver chalice with carefully engraved writing on it. It
+looks to be filled with some green liquid.
 ~
 #220
 cloak mist~
@@ -797,15 +797,15 @@ reserved~
 0 0
 0 0 0
 A
-109 -1
-A
 17 -65
+A
+109 -1
+E
+mist~
+~
 E
 cloak~
 A large cloud of mist almost seems like it is contained somehow.
-~
-E
-mist~
 ~
 #221
 wakizashi rusty sword~
@@ -820,15 +820,15 @@ reserved~
 0 0
 0 0 0
 A
-19 75
+5 -1
 A
 18 60
 A
-5 -1
+19 75
 E
-sword~
+wakizashi~
 A small rusty sword that looks like it hasn't been used, more less
-cleaned in years.
+cleaned in years.  
 ~
 E
 rusty~
@@ -836,9 +836,9 @@ A small rusty sword that looks like it hasn't been used, more less
 cleaned in years.
 ~
 E
-wakizashi~
+sword~
 A small rusty sword that looks like it hasn't been used, more less
-cleaned in years.  
+cleaned in years.
 ~
 #222
 domaru broken~
@@ -855,14 +855,14 @@ reserved~
 A
 105 -1
 E
-broken~
-A long dagger that is craked right down the middle.  It still hums with 
-an ancient power, or curse.
-~
-E
 domaru~
 A long dagger that is craked right down the middle.  It still hums with
 an ancient power, or curse.  
+~
+E
+broken~
+A long dagger that is craked right down the middle.  It still hums with 
+an ancient power, or curse.
 ~
 #223
 do armor bamboo chest plate~
@@ -877,19 +877,19 @@ reserved~
 0 0
 0 0 0
 A
-24 -4
-A
-13 80
+2 2
 A
 17 -80
 A
-2 2
+13 80
+A
+24 -4
 E
-armor~
+do~
 A fine looking bamboo chest plate.
 ~
 E
-do~
+armor~
 A fine looking bamboo chest plate.
 ~
 #224
@@ -905,19 +905,19 @@ reserved~
 0 0
 0 0 0
 A
-13 80
-A
-26 -4
+18 160
 A
 19 30
 A
-18 160
+26 -4
+A
+13 80
 E
-chain dagger~
+kyoketsu~
 A long chain with a dagger fixed to one of it's ends.
 ~
 E
-kyoketsu~
+chain dagger~
 A long chain with a dagger fixed to one of it's ends.
 ~
 #225
@@ -933,11 +933,11 @@ reserved~
 0 0
 0 0 0
 A
-25 27
+19 70
 A
 18 95
 A
-19 70
+25 27
 E
 jewelled dagger do maru do-maru~
 A long thin dagger humming with an inner power.
@@ -955,16 +955,16 @@ reserved~
 0 0
 0 0 0
 A
-3 3
-A
 4 3
-E
-horned bamboo helmet~
-A horned bamboo helmet is quite small in size.
-~
+A
+3 3
 E
 kabuto~
 A horned bamboo helmet.
+~
+E
+horned bamboo helmet~
+A horned bamboo helmet is quite small in size.
 ~
 #227
 mempo mask~
@@ -981,11 +981,11 @@ reserved~
 A
 17 -25
 E
-mempo~
+mask~
 &YA &zblack&Y mask.
 ~
 E
-mask~
+mempo~
 &YA &zblack&Y mask.
 ~
 #228
@@ -1001,11 +1001,11 @@ reserved~
 0 0
 0 0 0
 A
-1 2
+2 -1
 A
 17 -50
 A
-2 -1
+1 2
 E
 sode~
 A strange looking shoulder pad made from layered bamboo.
@@ -1023,16 +1023,16 @@ reserved~
 0 0
 0 0 0
 A
-1 2
-A
 17 -50
-E
-bamboo arm pads~
-A set of bamboo arm pads. They look very durable.
-~
+A
+1 2
 E
 kote~
 A set of bamboo arm pads.  They look very durable.
+~
+E
+bamboo arm pads~
+A set of bamboo arm pads. They look very durable.
 ~
 #230
 suneate bamboo greaves~
@@ -1047,22 +1047,22 @@ reserved~
 0 0
 0 0 0
 A
-17 -80
-A
-2 -2
+13 80
 A
 24 -5
 A
-13 80
-E
-bamboo greaves~
-A pair of sturdy looking bamboo greaves ready to protect your valuable
-legs.
-~
+2 -2
+A
+17 -80
 E
 suneate~
 A pair of sturdy looking bamboo greaves ready to protect your valuable
 legs.  
+~
+E
+bamboo greaves~
+A pair of sturdy looking bamboo greaves ready to protect your valuable
+legs.
 ~
 #231
 tekko gloves~
@@ -1077,13 +1077,13 @@ reserved~
 0 0
 0 0 0
 A
-26 8
+24 -5
 A
 1 3
 A
-24 -5
+26 8
 E
-gloves~
+pair~
 A pair of black fighting gloves, worn with use.
 ~
 E
@@ -1091,7 +1091,7 @@ tekko~
 A pair of black fighting gloves, worn with use.
 ~
 E
-pair~
+gloves~
 A pair of black fighting gloves, worn with use.
 ~
 #232
@@ -1107,18 +1107,18 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
+24 -8
 A
 13 40
 A
-24 -8
-E
-belt~
-A belt made of woven leather and reeds, which make it incredibly strong.
-~
+17 -20
 E
 kusazuri~
 A belt made of woven leather and reeds, which make it incredibly strong.  
+~
+E
+belt~
+A belt made of woven leather and reeds, which make it incredibly strong.
 ~
 #240
 key bone~
@@ -1133,11 +1133,11 @@ reserved~
 0 0
 0 0 0
 E
-bone~
+key~
 A small key carved out of bone...looks like a rib.
 ~
 E
-key~
+bone~
 A small key carved out of bone...looks like a rib.
 ~
 #241
@@ -1153,7 +1153,7 @@ reserved~
 0 0
 0 0 0
 E
-rotten~
+chunk~
 A piece of human flesh seems to move on its own, but upon closer
 observation it is the movement of maggots that are eating it, a very stomach
 turning sight.  
@@ -1165,7 +1165,7 @@ observation it is the movement of maggots that are eating it, a very stomach
 turning sight.  
 ~
 E
-chunk~
+rotten~
 A piece of human flesh seems to move on its own, but upon closer
 observation it is the movement of maggots that are eating it, a very stomach
 turning sight.  
@@ -1183,16 +1183,16 @@ reserved~
 0 0
 0 0 0
 A
-19 75
-A
 18 50
-E
-dragon~
-A bloody forearm of what looks to have been a very big red dragon.  
-~
+A
+19 75
 E
 claw~
 A bloody forearm of what looks to have been a very big red dragon.
+~
+E
+dragon~
+A bloody forearm of what looks to have been a very big red dragon.  
 ~
 #243
 aura blood red glow~
@@ -1207,17 +1207,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -3
+112 -1
 A
 17 -55
 A
-112 -1
+24 -3
 E
-glow~
-An aura of pure evil.
-~
-E
-blood~
+aura~
 An aura of pure evil.
 ~
 E
@@ -1225,7 +1221,11 @@ red~
 An aura of pure evil.
 ~
 E
-aura~
+blood~
+An aura of pure evil.
+~
+E
+glow~
 An aura of pure evil.
 ~
 #244
@@ -1241,11 +1241,11 @@ reserved~
 0 0
 0 0 0
 A
-19 55
-A
 18 30
+A
+19 55
 E
-paw~
+claw~
 A severed tiger's paw that still looks dangerous.
 ~
 E
@@ -1253,7 +1253,7 @@ tiger~
 A severed tiger's paw that still looks dangerous.  
 ~
 E
-claw~
+paw~
 A severed tiger's paw that still looks dangerous.
 ~
 #0
@@ -1291,8 +1291,12 @@ chamber is covered with a thick layer of dust and grime.
 0 401408 0
 Rd     0
 E
-grime~
-&YThe grime covering the room is thick with years of neglect.
+door~
+&YA large engraved wooden door with a &Obrass&Y door knob.
+~
+E
+dust~
+&YThe dust covering the room is thick from years of neglect.
 ~
 E
 weapons~
@@ -1300,12 +1304,8 @@ weapons~
 years past. It is obvious that they are of little or no value.
 ~
 E
-dust~
-&YThe dust covering the room is thick from years of neglect.
-~
-E
-door~
-&YA large engraved wooden door with a &Obrass&Y door knob.
+grime~
+&YThe grime covering the room is thick with years of neglect.
 ~
 D0
 ~
@@ -1325,11 +1325,11 @@ velvet, perhaps a closer look is in order.
 0 393220 0
 Rd     0
 E
-rug~
+rugs~
 &wAncient and beautiful &coriental &wrugs cover the hard stone floor.
 ~
 E
-wall~
+walls~
 &wInscribed in &zblack&w and &Ppurple &wvelvet covering the Walls are
 many ancient &rwarnings&w and &gwards&w.
 ~
@@ -1341,12 +1341,12 @@ You are &rnot welcome&w here, leave now.
 &rWarning!!! &wThis is the only way in or out.
 ~
 E
-walls~
+wall~
 &wInscribed in &zblack&w and &Ppurple &wvelvet covering the Walls are
 many ancient &rwarnings&w and &gwards&w.
 ~
 E
-rugs~
+rug~
 &wAncient and beautiful &coriental &wrugs cover the hard stone floor.
 ~
 D0
@@ -1595,11 +1595,11 @@ figures seem to be avoiding the &Wlight&Y from behind the &Pvelvet&Y.
 0 401412 0
 Rd     0
 E
-velvet~
+curtain~
 &pA &Pvelvet&p curtain hangs on the north wall to act as a door.
 ~
 E
-curtain~
+velvet~
 &pA &Pvelvet&p curtain hangs on the north wall to act as a door.
 ~
 D0
@@ -1723,7 +1723,7 @@ with the picture of a &Wdove&C woven into it covering the floor.
 0 401408 0
 Rd     0
 E
-down~
+dove~
 &CYou see a fine &coriental&C rug with a &Wdove&C woven into it. It 
 seems to have a bump in the middle of it, like something is being
 concealed under it.  
@@ -1735,7 +1735,7 @@ seems to have a bump in the middle of it, like something is being
 concealed under it.  
 ~
 E
-dove~
+down~
 &CYou see a fine &coriental&C rug with a &Wdove&C woven into it. It 
 seems to have a bump in the middle of it, like something is being
 concealed under it.  
@@ -1858,14 +1858,14 @@ they look &Rempty&z.
 0 401409 0
 Rd     0
 E
-walls~
-&YThe walls around you are lined with empty grave niches.
+graves~
+&YThe walls around you are lines of empty grave niches.
 A closer inspection shows fresh &Rdig&Y marks, that seem 
 pretty recent.
 ~
 E
-graves~
-&YThe walls around you are lines of empty grave niches.
+walls~
+&YThe walls around you are lined with empty grave niches.
 A closer inspection shows fresh &Rdig&Y marks, that seem 
 pretty recent.
 ~
@@ -1888,19 +1888,19 @@ the &ccatacombs&z seem to be empty.
 0 401409 0
 Rd     0
 E
-chunks~
-&pNasty, rotting human flesh chunks.
- 
+graves~
+&YThe walls around you are lines of empty grave niches.
+A closer inspection shows fresh &Rdig&Y marks, that seem 
+pretty recent.
 ~
 E
 flesh~
 &pNasty, rotting human flesh chunks.
 ~
 E
-graves~
-&YThe walls around you are lines of empty grave niches.
-A closer inspection shows fresh &Rdig&Y marks, that seem 
-pretty recent.
+chunks~
+&pNasty, rotting human flesh chunks.
+ 
 ~
 D1
 ~
@@ -2251,31 +2251,31 @@ alcove.  There seems to be something written above the exit to the south.
 0 401409 0
 Rd     0
 E
-sign~
-The sign reads: "A great evil lives beyond this doorway.  Once three
-great warriors defeated this evil and forced it into this place.  Don't be
-the fool that lets it free."  
-"Turn around and live. Go on... and die!"
-~
-E
-bodies~
-Ewww....nasty.
-~
-E
-graves~
-These graves are currently occupied... How morbid of you to have looked.
-~
-E
-floor~
-It's littered with rotten flesh and fleshy bone.
+bone~
+A humanoid bone is still intact.
 ~
 E
 flesh~
 It looks like skin and muscle.
 ~
 E
-bone~
-A humanoid bone is still intact.
+floor~
+It's littered with rotten flesh and fleshy bone.
+~
+E
+graves~
+These graves are currently occupied... How morbid of you to have looked.
+~
+E
+bodies~
+Ewww....nasty.
+~
+E
+sign~
+The sign reads: "A great evil lives beyond this doorway.  Once three
+great warriors defeated this evil and forced it into this place.  Don't be
+the fool that lets it free."  
+"Turn around and live. Go on... and die!"
 ~
 D2
 ~
@@ -2296,12 +2296,12 @@ there doesn't seem to be any other exits other than back the way you came.
 0 417797 0
 Rd     0
 E
-floor~
-It's covered in gore.
-~
-E
 gore~
 It looks like a cannibal's schmorgasborg.
+~
+E
+floor~
+It's covered in gore.
 ~
 D0
 ~
@@ -2322,16 +2322,16 @@ the Avatar sits on contemplating his evilness.
 0 401409 0
 Rd     0
 E
-throne~
-A big throne made of various bones.
+furniture~
+A skeletal throne.
 ~
 E
 blood~
 Where should you start? The whole place is covered in it.
 ~
 E
-furniture~
-A skeletal throne.
+throne~
+A big throne made of various bones.
 ~
 D4
 ~

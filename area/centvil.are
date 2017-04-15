@@ -302,7 +302,7 @@ reserved~
 A
 2 1
 E
-belled~
+collar~
 A small collar with a little silver bell.
 ~
 E
@@ -310,7 +310,7 @@ silver~
 A small collar with a little silver bell.
 ~
 E
-collar~
+belled~
 A small collar with a little silver bell.
 ~
 #5101
@@ -375,15 +375,15 @@ reserved~
 0 0
 5116 0 0
 A
-19 10
-A
 18 -50
+A
+19 10
 E
-centaur~
+bow~
 A large bow strung with the hair of a horse.
 ~
 E
-bow~
+centaur~
 A large bow strung with the hair of a horse.
 ~
 #5105
@@ -401,20 +401,20 @@ reserved~
 A
 5 1
 E
-hide~
-A thick piece of animal hide has been fashioned into a bracer.
-~
-E
-bracers~
-A thick piece of animal hide has been fashioned into a bracer.
+thick~
+A thick piece of animal hide has been fashioned into a bracer. 
 ~
 E
 bracer~
 A thick piece of animal hide has been shaped into a bracer.
 ~
 E
-thick~
-A thick piece of animal hide has been fashioned into a bracer. 
+bracers~
+A thick piece of animal hide has been fashioned into a bracer.
+~
+E
+hide~
+A thick piece of animal hide has been fashioned into a bracer.
 ~
 #5106
 hoe~
@@ -429,9 +429,9 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
 19 5
+A
+18 10
 E
 hoe~
 A gardening hoe with some rust and lots of dirt on it.
@@ -449,15 +449,11 @@ reserved~
 0 0
 0 0 0
 A
-12 40
-A
 17 -5
+A
+12 40
 E
-hat~
-A hat with a very wide brim to shade you from the sun.
-~
-E
-brimmed~
+wide-brimmed~
 A hat with a very wide brim to shade you from the sun.
 ~
 E
@@ -465,7 +461,11 @@ wide~
 A hat with a very wide brim to shade you from the sun.
 ~
 E
-wide-brimmed~
+brimmed~
+A hat with a very wide brim to shade you from the sun.
+~
+E
+hat~
 A hat with a very wide brim to shade you from the sun.
 ~
 #5108
@@ -481,11 +481,11 @@ reserved~
 0 0
 0 0 0
 A
-19 50
+18 10
 A
 13 15
 A
-18 10
+19 50
 E
 spear feather feathered~
 A spear with many long feathers tied to its shaft.
@@ -503,9 +503,9 @@ reserved~
 0 0
 0 0 0
 A
-18 70
-A
 19 30
+A
+18 70
 E
 dagger ebony~
 An dark dagger looks pretty deadly despite it's ceremonial-looking style.
@@ -523,11 +523,11 @@ reserved~
 0 0
 0 0 0
 A
-1 1
-A
 3 1
+A
+1 1
 E
-hair~
+ring~
 A ring of carefully braided hair only large enough to fit on a finger.
 ~
 E
@@ -535,7 +535,7 @@ horsehair~
 A ring of carefully braided hair only large enough to fit on a finger.
 ~
 E
-ring~
+hair~
 A ring of carefully braided hair only large enough to fit on a finger.
 ~
 #5111
@@ -551,7 +551,7 @@ reserved~
 0 0
 0 0 0
 E
-honey~
+cake~
 A small cake made of oats and other grains....Yummy!
 ~
 E
@@ -559,7 +559,7 @@ oat~
 A small cake made of oats and other grains....Yummy!
 ~
 E
-cake~
+honey~
 A small cake made of oats and other grains....Yummy!
 ~
 #5112
@@ -575,11 +575,11 @@ reserved~
 0 0
 0 0 0
 E
-leather~
+canteen~
 A nicely crafted canteen made of a leather hide.
 ~
 E
-canteen~
+leather~
 A nicely crafted canteen made of a leather hide.
 ~
 #5113
@@ -595,15 +595,15 @@ reserved~
 0 0
 0 0 0
 A
-5 1
-A
 13 30
+A
+5 1
 E
-bone~
+torch~
 A leg bone wrapped in cloth.
 ~
 E
-torch~
+bone~
 A leg bone wrapped in cloth.
 ~
 #5114
@@ -621,16 +621,16 @@ reserved~
 A
 3 2
 E
-white~
-An antler made of pure crystal shimmers with chaos.  
+crystal~
+An antler made of pure crystal shimmers with chaos.
 ~
 E
 antler~
 An antler made of pure crystal shimmers with chaos.  
 ~
 E
-crystal~
-An antler made of pure crystal shimmers with chaos.
+white~
+An antler made of pure crystal shimmers with chaos.  
 ~
 #5115
 razor sharp arrow~
@@ -645,11 +645,11 @@ reserved~
 0 0
 5116 0 0
 A
-18 75
-A
 19 40
+A
+18 75
 E
-arrow~
+razor~
 A long arrow with a razor sharp point and ribs all along its shaft.
 ~
 E
@@ -657,7 +657,7 @@ sharp~
 A long arrow with a razor sharp point and ribs all along its shaft.
 ~
 E
-razor~
+arrow~
 A long arrow with a razor sharp point and ribs all along its shaft.
 ~
 #5116
@@ -673,15 +673,19 @@ reserved~
 0 0
 0 5104 5115
 A
-18 90
-A
-19 90
+13 60
 A
 117 -1
 A
-13 60
+19 90
+A
+18 90
 E
-lethal~
+bow~
+A lethal looking bow with a razor sharp arrow ready to fire.
+~
+E
+arrow~
 A lethal looking bow with a razor sharp arrow ready to fire.
 ~
 E
@@ -689,11 +693,7 @@ sharp~
 A lethal looking bow and arrow, all set to fire.
 ~
 E
-arrow~
-A lethal looking bow with a razor sharp arrow ready to fire.
-~
-E
-bow~
+lethal~
 A lethal looking bow with a razor sharp arrow ready to fire.
 ~
 >use_prog 100~
@@ -1437,9 +1437,11 @@ west of you.
 0 0 0
 Rd     0
 E
-cushions~
-These are large fluffy cushions that the centaurs use to kneel on when
-they attend mass or pray to their god.  
+portrait~
+A snowy white centaur of large stature is depicted here.  He is facing to
+the side but has turned to look at you.  You almost feel as if those ice
+blue eyes are looking into your very soul.  You almost see the muscles of
+his upper body ripple as he holds his spear before him.  
 ~
 E
 altar~
@@ -1448,11 +1450,9 @@ centaurs hunting out in the fields, gathering food and celebrating have been
 very beautifully carved into the sides leaving the top flat for offerings.  
 ~
 E
-portrait~
-A snowy white centaur of large stature is depicted here.  He is facing to
-the side but has turned to look at you.  You almost feel as if those ice
-blue eyes are looking into your very soul.  You almost see the muscles of
-his upper body ripple as he holds his spear before him.  
+cushions~
+These are large fluffy cushions that the centaurs use to kneel on when
+they attend mass or pray to their god.  
 ~
 D0
 ~
@@ -1606,7 +1606,7 @@ S
 
 
 #SHOPS
-5107 5 9 0 0 0 100 75 0 23
+5107 5 9 0 0 0 150 30 0 23
 5108 1 17 15 30 8 100 70 0 23
 5111 0 19 0 0 0 100 60 0 23
 0

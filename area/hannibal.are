@@ -1430,9 +1430,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -100
-A
 13 75
+A
+17 -100
 #4010
 talon thurll~
 a thrull talon~
@@ -1508,13 +1508,13 @@ dark blessing~
 7 7
 0 0 0
 A
-13 101
-A
-17 -50
+18 20
 A
 19 60
 A
-18 20
+17 -50
+A
+13 101
 #4021
 boots black pitch~
 &wa pair of &zpitch black &wboots~
@@ -1528,11 +1528,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -90
+13 50
 A
 108 -1
 A
-13 50
+17 -90
 #4022
 leggings black~
 &wa pair of &zpitch black &wleggings~
@@ -1546,9 +1546,9 @@ reserved~
 0 0
 0 0 0
 A
-13 90
-A
 17 -30
+A
+13 90
 #4023
 armplates arm plates black pitch~
 &wa set of &zpitch black &warmplates~
@@ -1562,11 +1562,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -10
+1 3
 A
 13 30
 A
-1 3
+17 -10
 #4024
 black pitch gauntlets~
 &wa pair of &zpitch black &wgauntlets~
@@ -1580,13 +1580,13 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-2 -2
+12 50
 A
 17 -50
 A
-12 50
+2 -2
+A
+13 50
 #4025
 sword black pitch longsword~
 &wa &zpitch black &wlongsword~
@@ -1600,13 +1600,13 @@ reserved~
 0 0
 0 0 0
 A
-19 30
-A
-26 50
+13 50
 A
 18 20
 A
-13 50
+26 50
+A
+19 30
 #4026
 cloak black pitch~
 &wa &zpitch black &wcloak~
@@ -1620,13 +1620,13 @@ mist form~
 1 1
 0 0 0
 A
-24 -3
-A
-23 -3
+17 -25
 A
 2 2
 A
-17 -25
+23 -3
+A
+24 -3
 #4027
 shield black pitch~
 &wa &zpitch black &wshield~
@@ -1640,13 +1640,13 @@ inertial barrier~
 5 5
 0 0 0
 A
-12 50
-A
-19 10
+1 2
 A
 13 75
 A
-1 2
+19 10
+A
+12 50
 #4028
 bracer serra~
 &wa &zBlackened &wSerra Paladin Bracer~
@@ -1660,11 +1660,11 @@ reserved~
 0 0
 0 0 0
 A
-13 101
+17 -80
 A
 24 -10
 A
-17 -80
+13 101
 #4029
 black pitch plate full~
 &wa &zpitch black &wfull plate~
@@ -1678,9 +1678,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -75
-A
 13 90
+A
+17 -75
 #4030
 sword pitch black broadsword~
 &wa &zpitch black &wbroadsword~
@@ -1694,15 +1694,15 @@ reserved~
 0 0
 0 0 0
 A
-23 -5
-A
-24 -5
-A
-13 100
+12 75
 A
 17 -100
 A
-12 75
+13 100
+A
+24 -5
+A
+23 -5
 #4058
 wing serraph protective~
 a Serraph's Protective Wing~
@@ -1716,13 +1716,13 @@ animate dead~
 5 5
 0 0 0
 A
-110 -1
-A
-12 100
+17 -150
 A
 13 150
 A
-17 -150
+12 100
+A
+110 -1
 #4062
 blade spiritual~
 a Spiritual Blade~
@@ -1736,13 +1736,13 @@ holy strength~
 1 1
 0 0 0
 A
-24 -5
-A
-12 30
+23 -5
 A
 13 90
 A
-23 -5
+12 30
+A
+24 -5
 #4066
 shield northern paladin~
 a Paladin's Shield~
@@ -1756,15 +1756,15 @@ reserved~
 0 0
 0 0 0
 A
-23 -6
-A
-24 -6
-A
-17 -103
+2 2
 A
 13 100
 A
-2 2
+17 -103
+A
+24 -6
+A
+23 -6
 #4067
 sword avenger holy~
 the Holy Avenger~
@@ -1778,13 +1778,13 @@ dispel magic~
 5 5
 0 0 0
 A
-26 50
-A
-13 100
+19 70
 A
 18 50
 A
-19 70
+13 100
+A
+26 50
 #4083
 Lotus Black~
 a &zBlack &RLotus~
@@ -1798,13 +1798,13 @@ mana~
 10 10
 0 0 0
 A
-12 50
-A
-24 -15
+17 -50
 A
 23 -15
 A
-17 -50
+24 -15
+A
+12 50
 #4093
 earring thousand mercy pleas~
 a thousand pleas for mercy~
@@ -1818,11 +1818,11 @@ reserved~
 0 0
 0 0 0
 A
-13 75
+24 -5
 A
 25 33
 A
-24 -5
+13 75
 #4095
 bracer lava molten~
 &Ra &rmolten lava &Rbracer~
@@ -1836,11 +1836,11 @@ burning hands~
 0 -1
 0 0 0
 A
-24 -5
+13 75
 A
 17 -80
 A
-13 75
+24 -5
 #4097
 pillar hellfire hell~
 &rbl&Oazi&Yng &rhe&zll&wfi&Wre~
@@ -1854,13 +1854,13 @@ reserved~
 0 0
 0 0 0
 A
-13 100
-A
-17 -102
+12 75
 A
 25 25
 A
-12 75
+17 -102
+A
+13 100
 #4098
 chains chain~
 the Chains of Mephistopholes~
@@ -1874,13 +1874,13 @@ entangle~
 10 10
 0 0 0
 A
-13 100
-A
-17 -80
+26 50
 A
 19 70
 A
-26 50
+17 -80
+A
+13 100
 #4100
 soul tortured~
 a tortured soul~
@@ -1930,11 +1930,11 @@ reserved~
 0 0
 0 0 0
 A
-13 100
+110 -1
 A
 17 -100
 A
-110 -1
+13 100
 #4117
 teeth minion~
 the Teeth of Leshrac's Minion~
@@ -1948,11 +1948,11 @@ reserved~
 0 0
 0 0 0
 A
-13 50
+25 100
 A
 17 -100
 A
-25 100
+13 50
 #4126
 key skull broken~
 a broken skull key~
@@ -1978,13 +1978,13 @@ true sight~
 5 5
 0 0 0
 A
-24 -5
-A
-17 -100
+124 -1
 A
 13 110
 A
-124 -1
+17 -100
+A
+24 -5
 #4137
 key skull~
 a skull key~
@@ -2010,15 +2010,15 @@ bloodbath~
 0 -1
 0 0 0
 A
-19 42
-A
-24 -15
-A
-17 -100
+18 28
 A
 25 30
 A
-18 28
+17 -100
+A
+24 -15
+A
+19 42
 #4147
 scimitar wicked~
 a wicked scimitar~
@@ -2032,11 +2032,11 @@ reserved~
 10 10
 0 0 0
 A
-18 30
+19 60
 A
 26 50
 A
-19 60
+18 30
 #4148
 staff lim-dul~
 the Staff of Lim-Dul~
@@ -2050,11 +2050,11 @@ cure light~
 0 -1
 0 0 0
 A
-3 3
+13 20
 A
 4 3
 A
-13 20
+3 3
 #4185
 shield ages~
 the Shield of the Ages~
@@ -2068,9 +2068,9 @@ aura of peace~
 3 3
 0 0 0
 A
-13 100
-A
 17 -100
+A
+13 100
 #4186
 blade knoledge~
 the Blade of Knowledge~
@@ -2084,15 +2084,15 @@ reserved~
 0 0
 0 0 0
 A
-19 35
-A
-18 15
-A
-13 95
+12 100
 A
 26 15
 A
-12 100
+13 95
+A
+18 15
+A
+19 35
 #4299
 picture hannibal~
 hannibal picture~
@@ -5081,12 +5081,12 @@ almost make out the ground below through the mist and dampness.
 0 131072 0
 Rd     0
 E
-ground~
-&wRocks and dead trees litter the ground here...
-~
-E
 clouds~
 &zThick and &Wshimmering &zwith dazzling &Wflashes&z of &Clightning!&z
+~
+E
+ground~
+&wRocks and dead trees litter the ground here...
 ~
 D1
 ~
@@ -5103,13 +5103,13 @@ the &rtower&w.  You cannot see the ground.
 0 131072 0
 Rd     0
 E
+sky~
+&wThe &Csky&w is cut with &Wblinding streaks&w of &Wlightning&w!
+~
+E
 moss~
 &gDamp and slimy &Gmoss&g covers the stone.
 It smells &zmusty&g. It wriggles with &Oinsects&g.
-~
-E
-sky~
-&wThe &Csky&w is cut with &Wblinding streaks&w of &Wlightning&w!
 ~
 D3
 ~
@@ -5393,17 +5393,6 @@ Mpat room for rooms to mpat & mpgoto.
 0 401412 0
 Rd     0
 E
-who2~
-&z[&W   1 Dum Ass   &z] &Y&C[1045] &wThalador &r-<Head Honchos>-
-&z[&W  MENTALLY AFK &z] &R<AFK> &z(Wizinvis 1) &wFlint &r-<Mud Cops>-
-&z[&W_]_Mr_Fix_iT_[_&z] &R<&WBuilding&R> &wHannibal King 
-&z[&WWar/Thi     Drw&z] &wRage will kick your Ass.
-&z[&W     (null)    &z] &z(Wizinvis 110) &R<&WBuilding&R> &wGrimfang &r-<HH>-
-&wMag&z[&W0&z] &wCle&z[&W0&z] &wThi&z[&W0&z] &wWar&z[&W1&z] &wPsi&z[&W1&z] &wDru&z[&W1&z] &wRng&z[&W1&z] &wPal&z[&W1&z] &wBrd&z[&W0&z] &wVam&z[&W3&z] &wNec&z[&W0&z]
-&wWwf&z[&W0&z] &wMnk&z[&W0&z] &RImms&z[&W7&z]
-&cYou see &W6 &cplayers in the game.
-~
-E
 who1~
 &z[&W  MENTALLY AFK &z] &R<AFK> &c(Wizinvis 1) &wFlint &r-<Mud Cops>-
 &z[&W   1 Dum Ass   &z] &Y[1045] &wThalador &r-<Head Honchos>-
@@ -5412,6 +5401,17 @@ who1~
 &z[&WWar/Thi     Drw&z] &wRage will kick your Ass.
 &wMag&z[&R0&z] &wCle&z[&R0&z] &wThi&z[&R0&z] &wWar&z[&R1&z] &wPsi&z[&R1&z] &wDru&z[&R1&z] &wRng&z[&R1&z] &wPal&z[&R1&z] &wBrd&z[&R0&z] &wVam&z[&R3&z] &wNec&z[&R0&z]
 &wWwf&z[&R0&z] &wMnk&z[&R0&z] &RImms&z[&W7&z]
+&cYou see &W6 &cplayers in the game.
+~
+E
+who2~
+&z[&W   1 Dum Ass   &z] &Y&C[1045] &wThalador &r-<Head Honchos>-
+&z[&W  MENTALLY AFK &z] &R<AFK> &z(Wizinvis 1) &wFlint &r-<Mud Cops>-
+&z[&W_]_Mr_Fix_iT_[_&z] &R<&WBuilding&R> &wHannibal King 
+&z[&WWar/Thi     Drw&z] &wRage will kick your Ass.
+&z[&W     (null)    &z] &z(Wizinvis 110) &R<&WBuilding&R> &wGrimfang &r-<HH>-
+&wMag&z[&W0&z] &wCle&z[&W0&z] &wThi&z[&W0&z] &wWar&z[&W1&z] &wPsi&z[&W1&z] &wDru&z[&W1&z] &wRng&z[&W1&z] &wPal&z[&W1&z] &wBrd&z[&W0&z] &wVam&z[&W3&z] &wNec&z[&W0&z]
+&wWwf&z[&W0&z] &wMnk&z[&W0&z] &RImms&z[&W7&z]
 &cYou see &W6 &cplayers in the game.
 ~
 S

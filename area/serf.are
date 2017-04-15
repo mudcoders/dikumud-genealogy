@@ -104,11 +104,6 @@ have a home like the other boys and girls.
 if isnpc($n)
 break
 endif
-if isimmort($n)
-say I know you can help me! You can do anything my liege!
-beg $n
-break
-endif
  if sex($n) == 1
   say Please sir, will you spare me some alms?
   tell $n If I don't bring any back, my father will be most upset.
@@ -399,14 +394,14 @@ reserved~
 A
 17 -6
 E
-pants~
-The pants you see before you are dirty and torn.  They have so many holes
-in them you wonder how it can keep anyone covered or warm for that matter.  
-~
-E
 ragged~
 The pants you see before you are dirty and torn. They have so many holes
 in them you wonder how it can keep anyone covered, or warm for that matter.
+~
+E
+pants~
+The pants you see before you are dirty and torn.  They have so many holes
+in them you wonder how it can keep anyone covered or warm for that matter.  
 ~
 #4601
 rubber boots~
@@ -423,16 +418,16 @@ reserved~
 A
 14 10
 E
-boots~
-The boots are made of rubber and covered with all kinds of dirt and mud. 
-They are black and you can see a few patched areas in them in an attempt to
-hide the holes.  
-~
-E
 rubber~
 The boots are made of rubber and covered with all kinds of dirt and mud.
 They are black and you can see a few patched areas in them in an attempt to
 hide the holes.
+~
+E
+boots~
+The boots are made of rubber and covered with all kinds of dirt and mud. 
+They are black and you can see a few patched areas in them in an attempt to
+hide the holes.  
 ~
 #4602
 cap red~
@@ -584,12 +579,12 @@ reserved~
 A
 3 1
 E
-tear drop~
+water~
 A tear drop from a mother glistens in the light. It obviously holds some
 magic, as the tears of all mothers do.
 ~
 E
-water~
+tear drop~
 A tear drop from a mother glistens in the light. It obviously holds some
 magic, as the tears of all mothers do.
 ~
@@ -627,14 +622,14 @@ reserved~
 A
 17 -4
 E
-boot lace~
-A boot lace made of brown leather is about eight inches in length and is
-very worn.
-~
-E
 string~
 A boot lace made of brown leather is about eight inches in length and
 is very worn.
+~
+E
+boot lace~
+A boot lace made of brown leather is about eight inches in length and is
+very worn.
 ~
 #4613
 pair torn sleeves cloth~
@@ -651,16 +646,16 @@ reserved~
 A
 5 1
 E
-torn sleeves~
-A pair of black sleeves, torn and dirty... smells kind of foul.
+cloth~
+A pair of black sleeves, torn and dirty... smell kind of foul.
 ~
 E
 pair~
 A pair of black sleeves, torn and dirty... smells kind of foul.
 ~
 E
-cloth~
-A pair of black sleeves, torn and dirty... smell kind of foul.
+torn sleeves~
+A pair of black sleeves, torn and dirty... smells kind of foul.
 ~
 #4614
 dusty pair overalls~
@@ -677,7 +672,7 @@ reserved~
 A
 13 6
 E
-overalls~
+dusty~
 A dark brown stained pair of overalls are filthy. Washing them might be a
 good idea.
 ~
@@ -687,7 +682,7 @@ A dark brown stained pair of overalls are filthy. Washing them might be a
 good idea.
 ~
 E
-dusty~
+overalls~
 A dark brown stained pair of overalls are filthy. Washing them might be a
 good idea.
 ~
@@ -723,9 +718,9 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
 19 12
+A
+18 10
 E
 wooden hammer~
 You see a wooden hammer with a short handle at the end of it.  There are
@@ -744,9 +739,9 @@ reserved~
 0 0
 0 0 0
 A
-13 -5
-A
 18 -2
+A
+13 -5
 #4618
 pill yellow~
 a yellow pill~
@@ -866,11 +861,11 @@ reserved~
 0 0
 0 0 0
 A
-19 18
+1 1
 A
 18 14
 A
-1 1
+19 18
 E
 sub billy club dump~
 A billy club is about a foot and a half in length, and about 2 inches thick.
@@ -944,9 +939,9 @@ reserved~
 0 0
 0 0 0
 A
-18 14
+18 30
 A
-19 8
+19 15
 E
 rusty switch switchblade~
 A rusty switchblade is folded up.
@@ -964,9 +959,9 @@ reserved~
 0 0
 0 0 0
 A
-19 10
-A
 18 8
+A
+19 10
 E
 shovel~
 A long handled shovel for digging.
@@ -1036,9 +1031,9 @@ reserved~
 0 0
 0 0 0
 A
-19 25
-A
 18 21
+A
+19 25
 E
 wooden bat~
 A simple wooden bat.
@@ -1058,13 +1053,13 @@ reserved~
 A
 3 1
 E
-paper ball~
-A crumpled up piece of paper has some strange markings written on it.
-~
-E
 markings~
 The markings are indecipherable, but they look kind of spidery the way they
 are written.
+~
+E
+paper ball~
+A crumpled up piece of paper has some strange markings written on it.
 ~
 #4635
 chintz vest~
@@ -1081,14 +1076,14 @@ reserved~
 A
 13 7
 E
-chintz vest~
-A small glazed vest looks like it had some sort of design painted on it
-at one point in time.
-~
-E
 design~
 The design is very colourful, but the paint has worn off from use and you
 can't tell what is used to have glazed upon it.
+~
+E
+chintz vest~
+A small glazed vest looks like it had some sort of design painted on it
+at one point in time.
 ~
 #4636
 corpse body~
@@ -1138,13 +1133,13 @@ reserved~
 A
 13 9
 E
+heap cloth~
+A heap of cloth is a cheap material, maybe big enough to wrap yourself in.
+~
+E
 shapeless shift~
 A piece of material that can be wrapped around the body to cover up. Just
 barely...
-~
-E
-heap cloth~
-A heap of cloth is a cheap material, maybe big enough to wrap yourself in.
 ~
 #4639
 beans bag~
@@ -1229,13 +1224,13 @@ reserved~
 A
 13 10
 E
-cone hat~
-A small cone hat, made of satin.
-~
-E
 chiffon~
 A lovely piece of chiffon is fastened to the end of the hat. It looks quite
 regal.
+~
+E
+cone hat~
+A small cone hat, made of satin.
 ~
 #4644
 bran flakes~
@@ -1285,16 +1280,16 @@ reserved~
 A
 14 10
 E
-pair moccasins~
-&OA soft-leather heelless shoe having its sole and sides made of one piece,
-whose edges are joined with a puckered seam to a U-shaped piece lying on 
-top of the foot.
-~
-E
 beaded~
 A lovely beaded pattern was once sewn into the top of these very comfortable-
 looking shoes. Unfortunately, you can't really tell what type of pattern it
 once was, as most of the beads have fallen off.
+~
+E
+pair moccasins~
+&OA soft-leather heelless shoe having its sole and sides made of one piece,
+whose edges are joined with a puckered seam to a U-shaped piece lying on 
+top of the foot.
 ~
 #4647
 stomach lining juice~
@@ -1309,15 +1304,15 @@ reserved~
 0 0
 0 0 0
 E
+juice~
+&gA green juicy substance slimes the outside of this small stomach lining.
+~
+E
 stomach lining~
 &wThe stomach lining looks quite gross. It is very small in size, and fits
 nicely into the palm of your hand. It is sealed with a drawstring made of
 some type of sinew.
 The lining is slimey and has a bit of &ggreen liquid&w in it.
-~
-E
-juice~
-&gA green juicy substance slimes the outside of this small stomach lining.
 ~
 #4651
 feather pigeon~
@@ -1352,9 +1347,9 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
 19 17
+A
+18 10
 E
 shovel~
 A shovel to dig in the dirt, and perhaps cause a little damage.
@@ -1611,16 +1606,16 @@ not seem to be able to look after themselves.
 0 13 0
 Rd     0
 E
-walls~
-The walls are crumbling down around you.
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a bed.
 ~
 E
 roof~
 The reeds on the roof are almost non-existant.
 ~
 E
-bed~
-A hole dug into the dirt floor and filled with dirty straw serves as a bed.
+walls~
+The walls are crumbling down around you.
 ~
 D0
 ~
@@ -1638,13 +1633,13 @@ The door is to the south.
 0 13 0
 Rd     0
 E
+wall~
+The walls are made from dried mud.
+~
+E
 bed~
 A hole dug into the dirt floor and filled with dirty straw serves as a
 bed.  
-~
-E
-wall~
-The walls are made from dried mud.
 ~
 D2
 ~
@@ -1690,9 +1685,8 @@ straw.
 0 13 0
 Rd     0
 E
-bed~
-A hole dug into the dirt floor and filled with dirty straw serves as a
-bed.  
+wall~
+The walls are made from dried mud.
 ~
 E
 hole~
@@ -1700,8 +1694,9 @@ A hole in the roof provides an exit for the smoke from any fires that
 might be lit.  
 ~
 E
-wall~
-The walls are made from dried mud.
+bed~
+A hole dug into the dirt floor and filled with dirty straw serves as a
+bed.  
 ~
 D0
 ~
@@ -1721,13 +1716,9 @@ Reaching down to feel it, you notice it is stone cold rigid.
 0 12 0
 Rd     0
 E
-wall~
-The walls are made from dried mud.
-~
-E
-hole~
-There are large holes in the roof which may be alright for letting the smoke
-out, but not for keeping out the cold or the rain and other elements.
+hand~
+Judging from the color of the body you can see that it has been dead for
+several days now.  
 ~
 E
 bed~
@@ -1735,9 +1726,13 @@ A hole dug into the dirt floor and filled with dirty straw serves as a
 bed.  
 ~
 E
-hand~
-Judging from the color of the body you can see that it has been dead for
-several days now.  
+hole~
+There are large holes in the roof which may be alright for letting the smoke
+out, but not for keeping out the cold or the rain and other elements.
+~
+E
+wall~
+The walls are made from dried mud.
 ~
 D2
 ~
@@ -1785,8 +1780,12 @@ crate serves as a table and there are no chairs at all in the place.
 0 9 0
 Rd     0
 E
-hole~
-A hole in the ceiling of the hut allows fire-smoke to escape.
+crate~
+An old wobby stack of crates is here.
+~
+E
+wall~
+The walls are made from dried mud.
 ~
 E
 bed~
@@ -1794,12 +1793,8 @@ A hole dug into the dirt floor and filled with dirty straw serves as a
 bed.  
 ~
 E
-wall~
-The walls are made from dried mud.
-~
-E
-crate~
-An old wobby stack of crates is here.
+hole~
+A hole in the ceiling of the hut allows fire-smoke to escape.
 ~
 D0
 ~
@@ -1821,11 +1816,11 @@ poor child lost.
 0 9 0
 Rd     0
 E
-crate~
-The crate is old and wobbly.
+doll~
+An old tattered doll lays in a heap on the floor.
 ~
 E
-wall~
+walls~
 The walls are made from dried mud.
 ~
 E
@@ -1834,12 +1829,12 @@ A hole dug into the dirt floor and filled with dirty straw serves as a
 bed.  
 ~
 E
-walls~
+wall~
 The walls are made from dried mud.
 ~
 E
-doll~
-An old tattered doll lays in a heap on the floor.
+crate~
+The crate is old and wobbly.
 ~
 D2
 ~
@@ -1886,17 +1881,7 @@ that lie around, that this is the home of a medicine man.
 0 13 0
 Rd     0
 E
-daisy~
-A single daisy grows in an old dented pot.  It sits in the window and is
-lovingly cared for.  In all this poverty and sadness it adds a slight touch
-of cheer.  
-~
-E
-walls~
-The walls are made from dried mud.
-~
-E
-reeds~
+roof~
 The roof is thatched with reeds.
 ~
 E
@@ -1904,8 +1889,18 @@ crate~
 The crate is old and wobbly.
 ~
 E
-roof~
+reeds~
 The roof is thatched with reeds.
+~
+E
+walls~
+The walls are made from dried mud.
+~
+E
+daisy~
+A single daisy grows in an old dented pot.  It sits in the window and is
+lovingly cared for.  In all this poverty and sadness it adds a slight touch
+of cheer.  
 ~
 D0
 ~
@@ -1926,20 +1921,20 @@ The only light comes into the room through the hole cut into the wall.
 0 9 0
 Rd     0
 E
-crate~
-The crate is old and wobbly.
-~
-E
-wall~
-The walls are made from dried mud.
+roof~
+The thatched roof is made from reeds.  
 ~
 E
 bed~
 A hole dug into the dirt floor and filled with dirty straw serves as a bed.
 ~
 E
-roof~
-The thatched roof is made from reeds.  
+wall~
+The walls are made from dried mud.
+~
+E
+crate~
+The crate is old and wobbly.
 ~
 D2
 ~
@@ -1979,6 +1974,10 @@ posted here.
 0 4 2
 Rd     0
 E
+flagstones~
+The flagstones are worn and smooth.
+~
+E
 sign~
 +--------------------------------------------------------------+
 | Enter at your own risk!  This area has been quarteened by    |
@@ -1989,10 +1988,6 @@ sign~
 |                                 Gumba, Minister of Health    |
 +--------------------------------------------------------------+
  
-~
-E
-flagstones~
-The flagstones are worn and smooth.
 ~
 D0
 ~
@@ -2020,12 +2015,12 @@ a wooden scoop attached to a bucket on a pulley.
 0 0 2
 Rd     0
 E
-stain~
-The stains are redish brown....blood maybe?
-~
-E
 flagstones~
 The flagstones are worn and smooth.
+~
+E
+stain~
+The stains are redish brown....blood maybe?
 ~
 D2
 ~

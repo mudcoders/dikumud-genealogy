@@ -709,7 +709,7 @@ This is a small pile of dirty useless yet still valuable, Trinkets.
 ~
 #19704
 collar shiny~
-&Ra shiny collar&X~
+&Ra shiny collar&W~
 &RA shiny collar rests here on the ground.~
 ~
 9 0 0 0 5 25
@@ -720,9 +720,9 @@ reserved~
 0 0
 0 0 0
 A
-5 2
-A
 13 25
+A
+5 2
 E
 shiny collar~
 A thin collar made of a red canvas. It looks just like new.
@@ -742,13 +742,13 @@ reserved~
 A
 14 15
 E
-feathers~
-A pile of colourful feathers, a variety of colours.
-~
-E
 feathery miniskirt~
 A very appealing miniskirt made from large feathers. The feathers are a variety
 of colours.
+~
+E
+feathers~
+A pile of colourful feathers, a variety of colours.
 ~
 #19706
 vest tiger skin~
@@ -763,9 +763,9 @@ reserved~
 0 0
 0 0 0
 A
-5 2
-A
 13 22
+A
+5 2
 E
 tiger skin vest~
 This is a small vest made out of real tiger skin.
@@ -785,12 +785,12 @@ reserved~
 A
 3 2
 E
-antennae~
+pair~
 A pair of very long antennae. They have a very rough texture to them and
 one end is bulbous on each.
 ~
 E
-pair~
+antennae~
 A pair of very long antennae. They have a very rough texture to them and
 one end is bulbous on each.
 ~
@@ -807,9 +807,9 @@ reserved~
 0 0
 0 0 0
 A
-18 38
-A
 19 25
+A
+18 38
 E
 bone dagger~
 This dagger is well crafted out of a large animals bone.
@@ -827,9 +827,9 @@ reserved~
 0 0
 0 0 0
 A
-13 22
-A
 17 -22
+A
+13 22
 E
 bone scalemail~
 This suit of well-fitting scalemail is made out of Bones.  It smells
@@ -880,13 +880,13 @@ reserved~
 0 0
 0 0 0
 E
+loaf bread~
+This small loaf of bread is made from (gulp) Ground-up insects.
+~
+E
 insect~
 You can see that this bread is made of ground insects as some of the pieces
 haven't been ground up that well.
-~
-E
-loaf bread~
-This small loaf of bread is made from (gulp) Ground-up insects.
 ~
 #19713
 rapier sword~
@@ -903,13 +903,13 @@ reserved~
 A
 13 20
 E
+lethal~
+This is a straight two-edged sword, having a narrow, pointed blade.
+~
+E
 rapier sword~
 This is a long and thin longsword-sized weapon. A very detailed hilt is very
 nicely crafted. The blade is narrow and pointed.
-~
-E
-lethal~
-This is a straight two-edged sword, having a narrow, pointed blade.
 ~
 #19714
 mask black bandit~
@@ -926,15 +926,15 @@ invis~
 A
 17 -15
 E
-black mask~
-This mask is made of a rubbery material that conforms to the shape of your
-face and then ties off at the back.
-~
-E
 bandit~
 The mask is made of a rubbery type of material and has a leather tie at both
 ear positions so that you can tie it nicely into place. The mask conforms to
 the shape of your face.
+~
+E
+black mask~
+This mask is made of a rubbery material that conforms to the shape of your
+face and then ties off at the back.
 ~
 #19715
 gold coins pile~
@@ -997,13 +997,13 @@ A
 1 1
 E
 blackjack~
-This small blackjack club is very good at knocking its victems out of conscisnous.
-~
-E
-blackjack~
 This weapon is quite large. It is a wooden club that has been covered with
 treated leather. The handle of this club is elasticized somehow, perhaps the
 wood was treated to make it flexible.
+~
+E
+blackjack~
+This small blackjack club is very good at knocking its victems out of conscisnous.
 ~
 #19719
 cape silk~
@@ -1018,16 +1018,16 @@ reserved~
 0 0
 0 0 0
 A
-14 25
-A
 13 25
+A
+14 25
 E
 silk cape~
 This cape is very long and is red on one side, and black on the other.
 ~
 #19720
 pants ripped white~
-&Wa pair of ripped white pants&X~
+&Wa pair of ripped white pants&W~
 &WA pair of ripped white pants lie here.~
 ~
 9 0 0 0 33 22
@@ -1038,9 +1038,9 @@ reserved~
 0 0
 0 0 0
 A
-14 22
-A
 13 -10
+A
+14 22
 E
 ripped white pants~
 These pants of white have been torn and ripped.  They are in terrible
@@ -1048,7 +1048,7 @@ condition.  But give free movement to its owner.
 ~
 #19721
 teddy red silk~
-&Ra scandalous silk teddy&X~
+&Ra scandalous silk teddy&W~
 &RSomething red and silky lies here.~
 ~
 9 0 0 0 9 20
@@ -1077,9 +1077,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -25
-A
 13 25
+A
+17 -25
 E
 insectile shield~
 This shield is made from the exoskeleton of an insectoid.
@@ -1097,9 +1097,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -28
-A
 13 28
+A
+17 -28
 E
 insectile armplates~
 These seem to be the hard exoskeleton of a rather large bug.
@@ -1134,9 +1134,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
 13 30
+A
+17 -30
 E
 ant crown~
 A lovely crown made of brass. A jewel in the centre contains a tiny ant.
@@ -1154,9 +1154,9 @@ reserved~
 0 0
 0 0 0
 A
-17 15
-A
 12 30
+A
+17 15
 E
 ant robe~
 A small cotton robe that radiates magic.
@@ -1225,7 +1225,7 @@ of your grasp..  And spins in circles.
 ~
 #19731
 water sewer~
-&Bthe sewer water&X~
+&Bthe sewer water&C~
 &BThe sewer water flows all around you.~
 ~
 25 0 0 0 0 1
@@ -1260,16 +1260,16 @@ reserved~
 0 0
 0 0 0
 A
-18 26
-A
 19 40
+A
+18 26
 E
 claws~
 A pair of sharp claws from a troll. Looks like they can do a bit of damage.
 ~
 #19734
 ring shiny gold~
-&Ya shiny gold ring&X~
+&Ya shiny gold ring&W~
 &YA shiny gold ring lies here.~
 ~
 8 0 0 0 3 1
@@ -1280,17 +1280,17 @@ reserved~
 0 0
 0 0 0
 E
-shiny~
-You look at the ring, expecting some magical properties of invisibily,
-but to your amazement, find none.  Hey!  This ain't Tolkein!  
+gold~
+The ring is, infact, not gold, but brass.
 ~
 E
 ring~
 This is just a plain ring. Gold in colour, but it is only made of brass.
 ~
 E
-gold~
-The ring is, infact, not gold, but brass.
+shiny~
+You look at the ring, expecting some magical properties of invisibily,
+but to your amazement, find none.  Hey!  This ain't Tolkein!  
 ~
 #19735
 cracker stale~

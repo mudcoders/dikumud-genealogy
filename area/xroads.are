@@ -32,14 +32,18 @@ small &rsign&c sits next to the road.
 0 0 2
 Rd     0
 E
-road~
-This is an old road that has surely seen better days.  
+stones~
+A few pebbles, stones and rocks lie strewn about the path here.
+~
+E
+weeds~
+These weeds seem to thrive here maybe it is due to all the blood that has
+been spilled here.  
  
 ~
 E
-path~
-This is an old path that has surely seen better days.  
- 
+grass~
+Some grass has grown here in the cracks of the pavement.
 ~
 E
 sign~
@@ -49,18 +53,14 @@ The sign reads:
  
 ~
 E
-grass~
-Some grass has grown here in the cracks of the pavement.
-~
-E
-weeds~
-These weeds seem to thrive here maybe it is due to all the blood that has
-been spilled here.  
+path~
+This is an old path that has surely seen better days.  
  
 ~
 E
-stones~
-A few pebbles, stones and rocks lie strewn about the path here.
+road~
+This is an old road that has surely seen better days.  
+ 
 ~
 D1
 ~
@@ -82,22 +82,13 @@ to the east and west.
 0 0 2
 Rd     0
 E
-vegetation~
-Various weeds, grass and clover have grown here in the cracks of the
-pavement.
+clover~
+No four leaf clovers around. How unlucky you are.
 ~
 E
-road~
-It's an old cracked road that has surely seen better days.  
-~
-E
-path~
-This is an old path that has surely seen better days.  
- 
-~
-E
-stones~
-There are many sizes and shapes of stones along the pathway here.
+markings~
+The markings are not much to look at and you are almost sure they come
+from a sword battle that occured here not long ago.  
 ~
 E
 trees~
@@ -106,13 +97,22 @@ interesting tales if they could talk.  Even as old as they are, there are
 some new markings upon them.  
 ~
 E
-markings~
-The markings are not much to look at and you are almost sure they come
-from a sword battle that occured here not long ago.  
+stones~
+There are many sizes and shapes of stones along the pathway here.
 ~
 E
-clover~
-No four leaf clovers around. How unlucky you are.
+path~
+This is an old path that has surely seen better days.  
+ 
+~
+E
+road~
+It's an old cracked road that has surely seen better days.  
+~
+E
+vegetation~
+Various weeds, grass and clover have grown here in the cracks of the
+pavement.
 ~
 D1
 ~
@@ -133,26 +133,26 @@ east and west.
 0 0 2
 Rd     0
 E
-trees~
-These dark trees seem to have been here for many many years.  They have
-grown so close together it is impossible to even think of getting through
-them.  
-~
-E
-stones~
-Various shapes and sizes of stones litter the pathway.
-~
-E
-vegetation~
-Various types of weeds have grown here in the cracks of the pavement.
+road~
+This old road has surely seen better days.  
 ~
 E
 path~
 This path has surely seen better days.  
 ~
 E
-road~
-This old road has surely seen better days.  
+vegetation~
+Various types of weeds have grown here in the cracks of the pavement.
+~
+E
+stones~
+Various shapes and sizes of stones litter the pathway.
+~
+E
+trees~
+These dark trees seem to have been here for many many years.  They have
+grown so close together it is impossible to even think of getting through
+them.  
 ~
 D0
 ~
@@ -178,10 +178,8 @@ the paved road towards a city.
 0 0 2
 Rd     0
 E
-stream~
-The stream seems very calm and would probably be simple to cross without
-the aid of the bridge if it weren't so deep. If you lean over to peer into
-the stream you will notice that you can't see the bottom.
+road~
+This old road has surely seen better days.  
 ~
 E
 trees~
@@ -189,8 +187,10 @@ The tall, dark trees block all passage to the north and south following
 the stream.
 ~
 E
-road~
-This old road has surely seen better days.  
+stream~
+The stream seems very calm and would probably be simple to cross without
+the aid of the bridge if it weren't so deep. If you lean over to peer into
+the stream you will notice that you can't see the bottom.
 ~
 D1
 ~
@@ -211,13 +211,10 @@ sits next to the road.
 0 0 2
 Rd     0
 E
-road~
-This old road has surely seen better days.  
-~
-E
-grass~
-Various types of grass and other pesky weeds have grown here in the cracks
-of the pavement.
+sign~
+The sign reads:
+ 
+Be thee careful fellow adventurer.
 ~
 E
 weeds~
@@ -225,10 +222,13 @@ These weeds seem to thrive here maybe it is due to all the blood that has
 been spilled here.  
 ~
 E
-sign~
-The sign reads:
- 
-Be thee careful fellow adventurer.
+grass~
+Various types of grass and other pesky weeds have grown here in the cracks
+of the pavement.
+~
+E
+road~
+This old road has surely seen better days.  
 ~
 D1
 The gate to the east leads into the city of Bethaven.
@@ -262,23 +262,23 @@ east or north.  In addition, You catch the sounds of some strange chanting.
 0 0 3
 Rd     0
 E
-trees~
-These dark trees seem to have been here for many many years.  They have
-grown so close together it is impossible to even think of getting through
-them.  
-~
-E
-road~
-This old road has surely seen better days.  
+vegetation~
+Various weeds, grass and other lichen-type plant life has begun to grow
+here in the cracks of the cobblestone road.
 ~
 E
 stones~
 Various sized stones have been used to make this cobblestone walkway.
 ~
 E
-vegetation~
-Various weeds, grass and other lichen-type plant life has begun to grow
-here in the cracks of the cobblestone road.
+road~
+This old road has surely seen better days.  
+~
+E
+trees~
+These dark trees seem to have been here for many many years.  They have
+grown so close together it is impossible to even think of getting through
+them.  
 ~
 D0
 ~
@@ -419,18 +419,11 @@ light from the area, blanketing the road in a eerie gloom.
 0 0 2
 Rd     0
 E
-pebbles~
-Some tiny pebbles have littered this roadway, as well as the larger
-rocks around them. Perhaps over time, those will turn into pebbles as well.
-~
-E
-rocks~
-Some larger rocks can also be seen on either side of your path here, as
-well as the litter of pebbles and stones.
-~
-E
-stones~
-Various shapes and sizes of stones litter your path.
+forest~
+These dark trees seem to have been here for many many years.  They have
+grown so close together it is impossible to even think of getting through
+them.  
+ 
 ~
 E
 weeds~
@@ -438,11 +431,18 @@ These weeds seem to thrive here maybe it is due to all the blood that has
 been spilled here.  
 ~
 E
-forest~
-These dark trees seem to have been here for many many years.  They have
-grown so close together it is impossible to even think of getting through
-them.  
- 
+stones~
+Various shapes and sizes of stones litter your path.
+~
+E
+rocks~
+Some larger rocks can also be seen on either side of your path here, as
+well as the litter of pebbles and stones.
+~
+E
+pebbles~
+Some tiny pebbles have littered this roadway, as well as the larger
+rocks around them. Perhaps over time, those will turn into pebbles as well.
 ~
 D0
 ~
@@ -466,16 +466,16 @@ your spine.
 0 0 0
 Rd     0
 E
+weeds~
+These weeds seem to thrive here maybe it is do to all the blood that has
+been spilled here.  
+~
+E
 flagstones~
 These are just pieces of a long dead proud roadway.  Most are just blank
 but every mile or so you spot one with writing on it.  The language seems
 weirrd and the measurement doesn't look like any distance you remember from
 your childhood.  Maybe these were some kind of mile stones.  
-~
-E
-weeds~
-These weeds seem to thrive here maybe it is do to all the blood that has
-been spilled here.  
 ~
 D2
 ~
@@ -496,9 +496,10 @@ tails of robbers and bandits makes you want to hurry upon your way.
 0 0 0
 Rd     0
 E
-trees~
-These trees seem to bow to each other from each side of the street
-forming a dark roof over your head.  
+flagstones~
+Although you can tell these used to be part of a large road it amazes you
+as you try to make a mental picture since there is no way you can even begin
+to imagine these little rocks and pebbles being a road.  
 ~
 E
 pebbles~
@@ -506,10 +507,9 @@ Pebbles pebbles more pebbles.  Maybe you can pick up enough to drown your
 self while swimming.  
 ~
 E
-flagstones~
-Although you can tell these used to be part of a large road it amazes you
-as you try to make a mental picture since there is no way you can even begin
-to imagine these little rocks and pebbles being a road.  
+trees~
+These trees seem to bow to each other from each side of the street
+forming a dark roof over your head.  
 ~
 D1
 ~
@@ -532,14 +532,14 @@ notice a small obscure path leading off to the west.
 0 0 0
 Rd     0
 E
-weeds~
-These weeds seem to thrive here maybe it is due to all the blood that has
-been spilled here.  
-~
-E
 flagstones~
 These stones don't look much like the proud roadway that once stood here
 it looks as if someone just dumped scraps of an old road here.  
+~
+E
+weeds~
+These weeds seem to thrive here maybe it is due to all the blood that has
+been spilled here.  
 ~
 D0
 ~

@@ -165,7 +165,7 @@ reserved~
 0 0
 0 0 0
 E
-scroll~
+gegasean~
 The magical scroll of protection has the mark of the Gegasean on it.
 ~
 E
@@ -173,7 +173,7 @@ protection~
 The magical scroll of protection has the mark of the Gegasean on it.
 ~
 E
-gegasean~
+scroll~
 The magical scroll of protection has the mark of the Gegasean on it.
 ~
 #6351
@@ -189,7 +189,7 @@ reserved~
 0 0
 0 0 0
 E
-copper~
+gegasean~
 The copper vial has the mark of the Gegasean etched into the side of it. 
 There appears to be a slugish black fluid inside it.  
 ~
@@ -199,7 +199,7 @@ The copper vial has the mark of the Gegasean etched into the side of it.
 There appears to be a slugish black fluid inside it.  
 ~
 E
-gegasean~
+copper~
 The copper vial has the mark of the Gegasean etched into the side of it. 
 There appears to be a slugish black fluid inside it.  
 ~
@@ -216,7 +216,7 @@ reserved~
 0 0
 0 0 0
 E
-giant~
+gegasean~
 The Giant's Vial has the Gegasean mark etched into the side of it.
 ~
 E
@@ -224,7 +224,7 @@ vial~
 The Giant's Vial has the Gegasean mark etched into the side of it.
 ~
 E
-gegasean~
+giant~
 The Giant's Vial has the Gegasean mark etched into the side of it.
 ~
 #6353
@@ -240,7 +240,7 @@ reserved~
 0 0
 0 0 0
 E
-vial~
+gegasean~
 The vial has the Gegasean mark on it.
 ~
 E
@@ -248,7 +248,7 @@ defense~
 The vial has the Gegasean mark on it.
 ~
 E
-gegasean~
+vial~
 The vial has the Gegasean mark on it.
 ~
 #6354
@@ -264,8 +264,8 @@ reserved~
 0 0
 0 0 0
 E
-gegasean~
-The vial of potion has the gegasean mark on it.  In side it there is a
+potion~
+The vial of potion has the Gegasean mark on it.  In side it there is a
 slightly green humming potion.  
 ~
 E
@@ -274,8 +274,8 @@ The vial of potion has the Gegasean mark on it.  In side it there is a
 slightly green humming potion.  
 ~
 E
-potion~
-The vial of potion has the Gegasean mark on it.  In side it there is a
+gegasean~
+The vial of potion has the gegasean mark on it.  In side it there is a
 slightly green humming potion.  
 ~
 #6355

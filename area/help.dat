@@ -1870,7 +1870,7 @@ There is currently no way to enter more than one line of text for a
 string-valued option.  In this case, MSET <character> description is
 not supported.
 ~
-53 NOEMOTE NOTELL SILENCE~
+106 NOEMOTE NOTELL~
 Syntax: noemote <character>
 Syntax: notell  <character>
 Syntax: silence <character>
@@ -2757,34 +2757,26 @@ in the guild room, or your stay with us shall be very short indeed.  Type
 available on most commands and abilities.
 ~
 -1 MOTD~
-&WWelcome one and all!
+&W
+Welcome to Entropy of the Soul
  
-We would like to say a big thank you to all the TECHLINE.COM users that
-came out for our Alpha-testing stage. Thank you for coming out and we hope
-that you are continuing your adventures here on The Storm.
+We are open to all players, &RPK&W is restricted to &RPK&Willers,
+&BR&Wole &BP&Wlay is optional.
+Use commands if you need a list of commands.
+Everyone welcome back &RTorann&W!
  
-We are now in our Beta-testing stage, which simply put, means that all are
-welcome. Most of our changes have been made to make the MUD more Roleplayer
-friendly and we hope that you will keep us informed of any changes that you
-like (and dislike). All suggestions are considered.
++++&RHelp rules&W. Ignorance of the rules is no excuse.+++
+
+http://www.kyndig.com/rate.php?id=710
+&BRate us!
  
-Please continue to let us know of any bugs or typos you may find throughout
-the game, by using the TYPO command within. Also, you may send skills and
-spell suggestions/ideas to &Ystorm@technologist.com&W.
- 
-Happy hunting!
  
 &G<Hit Enter>
 ~
 101 IMOTD~
-&RGreetings Imm types. As you all know we still have a long way to go until
-we are ready to go back up. Keep up the good work and keep us notified as
-to your progress.
-
-Thal
-
-&w<Hit Return> 
-
+&RYou are an immortal. Help commandments.
+Break the rules as an immortal and you are
+&BBANNED.&w
 ~
 0 JOBS~
 This is a listing of the various immortal levels and their functions. Please
@@ -2835,16 +2827,16 @@ The Council is the right arm of the Storm Lord and Lady, and are justly
 deserving of the respect and trust of their peers.
 ~
 0 113 IMPLEMENTOR~
-This is the highest level attainable in Eye of the Storm II. The Storm Lord
+This is the highest level attainable in Entropy of the Soul. The Storm Lord
 and Lady positions are set in stone. There is one Storm Lord, Thalador.  This
 is the Implementor of the system, the one who brought life to the game.
 He is here to oversee everything, mortal and immortal.
 ~
 51 COMMANDMENTS LAWS 'GOD RULES' GODS~
 .
-                         **********************
-                         ** The Rules of EOS **
-                         **********************
+                         ***********************
+                         ** The Rules of EotS **
+                         ***********************
  
 1)  Do not kill mortals, do not kill mortals, do not kill mortals.
     This includes transferring/summoning them to aggressive mobs.
@@ -2903,9 +2895,9 @@ But Puff trapped the exception, and grew from naught again!
                 (chorus)
 ~
 -1 RULES~
-These are the rules of EOS.  For other matters, use commom sense.
+These are the rules of EotS.  For other matters, use commom sense.
 
-* foul and/or abusive language will not be tolerated on EoS, from anyone
+* foul and/or abusive language will not be tolerated on EotS, from anyone
   (including gods). Punishments range from deletion to NOCHANNELing.
 
 * sexual harassment of any form will not be tolerated, punishable by deletion
@@ -2928,8 +2920,9 @@ These are the rules of EOS.  For other matters, use commom sense.
  
 ~
 -1 NEWS~
-EOSII NEWS
+EotS NEWS
  
+4/23/03 - EotS, the EOS debug release project begins.
 4/20/96 - EOSII returns
 4/28/96 - EOSII is officially open to the public!
 8/96    - Added the races Ghoul and Illithid 
@@ -2937,7 +2930,7 @@ EOSII NEWS
  
 More new exciting changes in the works!
  
-Thalador
+Thanks to Thalador for beginning the EOSII project.
 ~
 -1 STORY~
 In the beginning, the earth was... oh too far back.
@@ -3682,7 +3675,7 @@ This spell modifies strength by 2 and hit/dam rolls.
 &BEnergy enters your body and you find yourself floating through mid-air.
 Looking around, you sense the presence of many different beings of power,
 though all immortal to different extents.  Congratulations, and welcome
-to the immortal plane of existance on Eye of the Storm.&w
+to the immortal plane of existance on Entropy of the Soul.&w
 ~
 107 ADVM_107~
 &REnergies flow into your body, striking you unconscious.  A short
@@ -3991,7 +3984,7 @@ that the matter just cannot stay together.  This is why the equipment
 &RBeware: &WMost players will get very upset, if this spell is used
 upon them.  Because it will leave most somewhat naked.
 ~
-105 SUMMON ANGEL~
+1 SUMMON_ANGEL~
 Syntax:       cast "summon angel"
 Description:  Summons an angel to do your bidding for a short while.
 ~
@@ -4140,10 +4133,6 @@ TURN EVIL
 Syntax: cast 'turn evil' >mob<
  
 This spell will severely injure or even kill any creature that is evil.
-~
-0 'SUMMON ANGEL' SUMMON ANGEL~
-Syntax:       cast 'summon angel'
-Description:  This spell summons an angel to help the caster for a short while.
 ~
 101 OVARS OVARIABLES~
 All obj_progs may use these variables:
@@ -4350,34 +4339,16 @@ the target of the action.
      &B[&wINFO&B]&w: &Wchannel what mob killed a person.
 ~
 -1 GREETING~
-&G          Welcome &WTraveller &Gto the Eye of the &RStorm &YII&w
- 
-                            &b..,,;;;;;;,,,,
-                     &b.,;'';;,..,;;;,,,,,.''';;,..
-                  &b,,''                   '';;;;,;''
-                 &b;'    ,&R;@@;'  &r,@@;, &W@@&R, '&b;;;@@;,;';.
-                &b''  ,;&R@@@@&r@'  ;@@@@; &b''    ;;&R@@&b@@@;;;;
-                &b   ;;@@@@&R@;&b    '''     &r.,,;;;&R@@@&b@@@@;;;
-                &b  ;;@&R@@@@@;           &r, ';;;@@@@@@&b@@;;;.
-                   &b'';@@&R@@@,&r.  ,   .   &b'&r,;&R;;@@@@&b@@;;;;;;
-                      &b.   &R''&r;;;&W;;&r;;;;,&b;;;;&R@@@&b@@;;' ,.;:'
-                        &b''.&R.,,     &r''''    '  &R.&b,;'
-                            &b''''''::''''''''
- 
-     &YOriginal &RDikuMUD &Yby &RHans Staerfeldt, Katja Nyboe,
-     &RTom Madsen, Michael Seifert, &Yand &RSebastian Hammer&Y.
-     &YBased on &RMERC 2.1 &Ycode by &RHatchet, Furey, and Kahn
-     &YAnd based on &RENVY &Ycode by &RMichael Quan, David Love,
-     &RGuilherme Arnold, Mitchell Tse&Y.
- 
-                        &Y Thalador - Implementor
+&z                      &zEntropy &wof the &zSoul
 
-
-                   &REmail &p(&Rstorm@netway.com)&p)
-
-&WPlease choose a non-offensive, non-vulgar and medieval name!
- 
-&wWhat shall others call you within the Storm? ~
+&w
+            Original DikuMUD by Hans Staerfeldt, Katja Nyboe,
+            Tom Madsen, Michael Seifert, and Sebastian Hammer.
+            Based on MERC 2.1 code by Hatchet, Furey, and Kahn
+            And based on ENVY code by Michael Quan, David Love,
+            Guilherme Arnold, Mitchell Tse.
+&W
+What is your name?~
 0 ANIMATE DEAD~
 Syntax: cast 'animate dead' corpse
  
@@ -4393,9 +4364,9 @@ location anywhere in the Storm.  As long as the area will allow you to
 astral to it or out of it.
 ~
 1 BUILDING~
-Eye of the Storm II perfers to have new and UNIQUE zones.  If the zone
+Entopy of the Soul perfers to have new and UNIQUE zones.  If the zone
 is on anothermud please do not submit it here.  When you create an area for
-use with EOSII, you give to the admin of the mud and those assigned by them
+use with EotS, you give to the admin of the mud and those assigned by them
 the right to use it and modify it on a permanent basis, because of the large
 effort required by us to help you build the zone.  We retain the right to
 use (or not use) any area submitted to us.  Once a zone is submitted and it
@@ -4577,7 +4548,7 @@ prayer, their alignment will move toward that of a good character, though
 they won't receive the blessings a good character would receive.  
 ~
 101 CLASSES~
-Here is a list of all the possible classes here at EOSII
+Here is a list of all the possible classes here at EotS
  
 Mage     Cleric     Thief     Warrior     Psionicist     Druid
 Ranger   Paladin    Bard      Vampire     Necromancer    Werewolf
@@ -4953,7 +4924,8 @@ empty.  A meager spark remains from the power you once had.
 ~
 1 'CHAMPLIST'~
 &z______________________________________________________________________________
-&z|              &B The Collective Champions of &rEye of the Storm II          &z|
+&z|              &B The Collective Champions of &rEntropy of the Soul          
+&z|
 &z|----------------------------------------------------------------------------&z|
 &z| Level 101 Champions:                                                       &z|
 &z|----------------------------------------------------------------------------&z|
@@ -6103,7 +6075,7 @@ Alignment is mostly there for roleplaying purposes, in that you act out your
 Alignment. Some mobs react differently to certain Alignments, and some
 equipment may or may not be usable by certain alignments.
  
-Roleplaying is certainly encouraged here at EYE OF THE STORM II, but is not
+Roleplaying is certainly encouraged here at Entropy of the Soul, but is not
 mandatory and the guideline of RESPECT and CONSIDERATION should also be 
 a big thought when Roleplaying.
 ~
@@ -6149,7 +6121,7 @@ wounds&W.
 1 THANKS~
 This help file is here for those of you that are interested in knowing and
 giving thanks to the ones who helped to bring back and make this Mud better
-for you. &YTHE EYE OF THE STORMII &wwould like to thank the following;
+for you. &zEntropy of the Soul &wwould like to thank the following;
  
 &YREKLAR   &wfor The Dwarven Fort, The Haunted Graveyard, The House of
          Domination, Tolaria, Forest Vale, Bethaven Badlands, Hammerheim,
@@ -6377,6 +6349,86 @@ specifically against his/her class).
 &RSEE ALSO&w: HELP SIZE
           HELP <race>
           HELP EQ_RESTRICTIONS
+~
+1 PURIFY~
+Purify
+ 
+Purify will remove all anti class and anti race flags on a piece of
+equipment. Anti alignment flags still remain.
+~
+1 FLIP~
+Flip
+ 
+Syntax:
+Flip <target>
+Flip <target> <direction>
+ 
+Flip will backflip your target out of the room during a fight. The fight
+will stop and you may possibly damage and/or stun your opponent (by knocking
+the wind out of him).
+~
+1 SILENCE~
+Silence
+ 
+Silence is a spell that will prevent the victim it is
+cast upon from casting spells until it wears off.
+~
+1 IMAGE~
+Image
+ 
+Image surrounds the caster with multiple illusory images,
+confusing any potential attackers. There is a chance that
+the attacker will attack one of the caster's images instead
+of the caster. This will end the spell and set the caster
+to attacking the attacker instead.
+~
+0 KREEN~
+The Kreen are an insectoid race usually standing about four feet tall.
+The Kreen have four arms and two legs. Because of their extra appendages
+they are able to wield three weapons.
+ 
+Size: MEDIUM
+Racial Abilities:
+&w* Triple Wield: Able to wield three weapons.
+ 
+Stat Modifications:
+&cStr: &w-1, &cInt: &w-1, &cDex &w+2
+~
+0 ANGEL~
+By far the race with the most practices, Angels are the most
+skillful players in the game. Their only downfall is their lack
+of constitution, therefore they have the least hit points in the
+game. In fact, they are the total opposite of Demons.
+ 
+Size: MANSIZED
+Racial Abilites:
+&w* Improved Healing: &WAngels are natural Clerics, therefore
+when using a Cleric healing spell, it will heal at twice the
+normal rate.
+ 
+Stat Modifications:
+&cWis: &w+4, &cCon: &w-4
+~
+1 LURE~
+Lure is a combat only skill. The user of lure is so
+adept at fighting that he can 'lure' his opponent into
+a vulnerable position, leaving them open for attack.
+ 
+Lure does not make the next round of attacks completely
+unblockable, but greatly decreases the victims chances of
+doing so.
+~
+1 MANABOMB~
+ManaBomb is an extremely useful skill for very powerful
+high level mages. It's affect is greatly diminished when
+used by anyone else, in particular vampires (since they use
+opposing sources for the power behind their magic).
+ 
+ManaBomb turns the caster into a living bomb of magical
+energy. The explosion's damage and range is based on the
+players ammount of mana and level.
+ 
+Blowing yourself up with ManaBomb of course, kills you.
 ~
 
 0 $~

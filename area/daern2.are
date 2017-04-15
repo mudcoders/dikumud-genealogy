@@ -1257,17 +1257,17 @@ reserved~
 0 0
 0 0 0
 A
-19 85
-A
-18 81
+1 2
 A
 26 -2
 A
-1 2
+18 81
+A
+19 85
 E
-weapon~
+halberd~
 A beautifully forged axe-like blade at the top of a 4.5 foot staff that
-ends with an abstract-shaped spear head.
+ends with an abstract-shaped spear head.  
 ~
 E
 polearm~
@@ -1275,9 +1275,9 @@ A beautifully forged axe-like blade at the top of a 4.5 foot staff that
 ends with an abstract-shaped spear head.  
 ~
 E
-halberd~
+weapon~
 A beautifully forged axe-like blade at the top of a 4.5 foot staff that
-ends with an abstract-shaped spear head.  
+ends with an abstract-shaped spear head.
 ~
 #6601
 nuts bowl~
@@ -1306,11 +1306,11 @@ remove curse~
 A
 5 1
 E
-bar~
+soap~
 When you look closer at a gleaming white bar of soap... You can see your face in it!
 ~
 E
-soap~
+bar~
 When you look closer at a gleaming white bar of soap... You can see your face in it!
 ~
 #6603
@@ -1326,17 +1326,17 @@ reserved~
 0 0
 0 0 0
 E
-chess~
-The chess board is made of wood, and the squares are each made of a
-hand-cut piece of ceramic. On the board there are some checkers pieces
-seemingly in the middle of a game. Perhaps the Chess pieces are inside.  
-~
-E
 board~
 The chess board is one of the nicest you have ever seen... Made of wood,
 and ceramic tiles for each of the squares. Someone seems to be in the
 middle of a checkers game as the pieces are laid out in various squares on
 the board. Perhaps the Chess pieces are inside.  
+~
+E
+chess~
+The chess board is made of wood, and the squares are each made of a
+hand-cut piece of ceramic. On the board there are some checkers pieces
+seemingly in the middle of a game. Perhaps the Chess pieces are inside.  
 ~
 #6604
 rook~
@@ -1363,13 +1363,13 @@ reserved~
 0 0
 0 0 0
 A
-19 83
-A
-18 80
+1 1
 A
 2 1
 A
-1 1
+18 80
+A
+19 83
 E
 sickle~
 An agricultural implement consisting of a curved metal blade with a handle fitted on a tang.
@@ -1387,14 +1387,18 @@ reserved~
 0 0
 0 0 0
 A
-19 93
+13 50
 A
 18 83
 A
-13 50
+19 93
 E
-glyphs~
-The carvings are worn, but still readable...IF you know how to read dwarven,    that is.
+axe~
+A mithril axe with glyptic runes carved upon the blade.
+~
+E
+battleaxe~
+A mithril axe with glyptic runes carved upon the blade.
 ~
 E
 runes~
@@ -1402,12 +1406,8 @@ These particular runes are so ancient that only a dwarf of the appropriate
 descent might be able to decipher them.
 ~
 E
-battleaxe~
-A mithril axe with glyptic runes carved upon the blade.
-~
-E
-axe~
-A mithril axe with glyptic runes carved upon the blade.
+glyphs~
+The carvings are worn, but still readable...IF you know how to read dwarven,    that is.
 ~
 #6607
 apron hide~
@@ -1422,13 +1422,15 @@ reserved~
 0 0
 0 0 0
 A
-13 30
-A
 17 -25
+A
+13 30
 E
-pocket~
-A small pocket contains a powder of some sort... seemingly from the
-chalk a Smithy might use to make notes and mark things with.  
+hide~
+The apron is made of a rough leather hide, and is perfect for using when
+working the forge. A strap at the neck buckles up to adjust size at will
+(although the apron is quite short and wide to begin with). A small pocket
+in front looks useless.  
 ~
 E
 apron~
@@ -1438,11 +1440,9 @@ working the forge. A strap at the neck buckles up to adjust size at will
 in front looks useless.  
 ~
 E
-hide~
-The apron is made of a rough leather hide, and is perfect for using when
-working the forge. A strap at the neck buckles up to adjust size at will
-(although the apron is quite short and wide to begin with). A small pocket
-in front looks useless.  
+pocket~
+A small pocket contains a powder of some sort... seemingly from the
+chalk a Smithy might use to make notes and mark things with.  
 ~
 #6608
 boots steel-toed steel~
@@ -1457,15 +1457,15 @@ reserved~
 0 0
 0 0 0
 A
-19 2
+14 -20
 A
 23 -3
 A
-14 -20
+19 2
 E
-boots~
+steel~
 On the right boot, the toe is worn showing a bit of the steel peering
-through the leather which binds it.
+through the leather which binds it. 
 ~
 E
 steel-toed~
@@ -1473,9 +1473,9 @@ On the right boot, the toe is worn showing a bit of the steel peering
 through the leather which binds it.
 ~
 E
-steel~
+boots~
 On the right boot, the toe is worn showing a bit of the steel peering
-through the leather which binds it. 
+through the leather which binds it.
 ~
 #6609
 gloves hide~
@@ -1490,15 +1490,15 @@ reserved~
 0 0
 0 0 0
 A
-18 2
-A
 17 -26
+A
+18 2
 E
-gloves~
+hide~
 A very well crafted pair of hide gloves are worn a little in the finger tips.
 ~
 E
-hide~
+gloves~
 A very well crafted pair of hide gloves are worn a little in the finger tips.
 ~
 #6610
@@ -1572,7 +1572,7 @@ reserved~
 0 0
 0 0 0
 E
-cobwebs~
+webs~
 The cobwebs stick to your fingers.
 ~
 E
@@ -1580,7 +1580,7 @@ cob~
 The cobwebs stick to your fingers.
 ~
 E
-webs~
+cobwebs~
 The cobwebs stick to your fingers.
 ~
 #6615
@@ -1598,13 +1598,13 @@ reserved~
 A
 17 -15
 E
-weasel~
-A pelt is matted with dried blood, thorns and burrs. If not for these things it might be a nice fur.
-~
-E
 pelt~
 A pelt is matted with dried blood, thorns and burrs. If not for these things it
 might be a nice fur.
+~
+E
+weasel~
+A pelt is matted with dried blood, thorns and burrs. If not for these things it might be a nice fur.
 ~
 #6616
 floor area~
@@ -1631,21 +1631,15 @@ fly~
 1 1
 0 0 0
 A
-1 -1
-A
-2 2
+12 30
 A
 17 -60
 A
-12 30
+2 2
+A
+1 -1
 E
-ladybug~
-A lovely pair of giant ladybug wings. They are rusty red in colour, each with
-several black spots on them. They seem to be very light in weight, and look
-as though they might be comfortable to wear.
-~
-E
-lady~
+wings~
 A lovely pair of giant ladybug wings. They are rusty red in colour, each with
 several black spots on them. They seem to be very light in weight, and look
 as though they might be comfortable to wear.
@@ -1657,7 +1651,13 @@ several black spots on them. They seem to be very light in weight, and look
 as though they might be comfortable to wear.
 ~
 E
-wings~
+lady~
+A lovely pair of giant ladybug wings. They are rusty red in colour, each with
+several black spots on them. They seem to be very light in weight, and look
+as though they might be comfortable to wear.
+~
+E
+ladybug~
 A lovely pair of giant ladybug wings. They are rusty red in colour, each with
 several black spots on them. They seem to be very light in weight, and look
 as though they might be comfortable to wear.
@@ -1687,11 +1687,11 @@ reserved~
 0 0
 0 0 0
 A
-3 2
-A
 2 -2
+A
+3 2
 E
-komodo~
+stuffed~
 Although the Komodo is stuffed, he still looks quite threatening. You can see
 why someone might have a creature of this type stuffed, as these dragons are
 very rare.
@@ -1703,7 +1703,7 @@ why someone might have a creature of this type stuffed, as these dragons are
 very rare.
 ~
 E
-stuffed~
+komodo~
 Although the Komodo is stuffed, he still looks quite threatening. You can see
 why someone might have a creature of this type stuffed, as these dragons are
 very rare.
@@ -1721,24 +1721,24 @@ reserved~
 0 0
 0 0 0
 A
-1 1
+18 11
 A
 19 11
 A
-18 11
-E
-spade~
-A digging implement heavier than a shovel and adapted for being pushed
-into the ground with the foot. A spade shaped gardening instrument.  
-~
+1 1
 E
 tool~
 A digging implement heavier than a shovel and adapted for being pushed into
 the ground with the foot. A spade shaped gardening instrument.
 ~
+E
+spade~
+A digging implement heavier than a shovel and adapted for being pushed
+into the ground with the foot. A spade shaped gardening instrument.  
+~
 #6621
 petals flower handful pill~
-&Wa handful of &ppetals&X~
+&Wa handful of &ppetals&G~
 &WA variety of flower &Rp&re&Yt&Ga&Pl&Cs &Wlie here.~
 ~
 26 3 0 0 16385 61
@@ -1749,7 +1749,7 @@ reserved~
 0 0
 0 0 0
 E
-flower~
+handful~
 Scarlet, yellow and orange rose petals (which make this handful smell so sweet)
 are the majority of the petals... you also see that there are some small mint
 leaves, blue buds, purple snapdragons and forget-me-nots.
@@ -1761,14 +1761,14 @@ are the majority of the petals... you also see that there are some small mint
 leaves, blue buds, purple snapdragons and forget-me-nots.
 ~
 E
-handful~
+flower~
 Scarlet, yellow and orange rose petals (which make this handful smell so sweet)
 are the majority of the petals... you also see that there are some small mint
 leaves, blue buds, purple snapdragons and forget-me-nots.
 ~
 #6622
 queenbee queen bee~
-&Wthe &YQueenbee&X~
+&Wthe &YQueenbee&W~
 &YA Queenbee sits here, buzzing.~
 ~
 9 0 0 0 32769 56
@@ -1779,13 +1779,13 @@ summon swarm~
 1 1
 0 0 0
 A
-3 2
-A
 4 2
+A
+3 2
 E
-queenbee~
-The Queenbee is much larger than a regular bee. Let's hope that none of her
-hive is around or you just might feel the sting!
+queen~
+She is much larger than a regular bee. Let's hope none of her hive are around
+or you just might feel the sting!
 ~
 E
 bee~
@@ -1793,9 +1793,9 @@ She is much larger than a regular bee. Let's hope none of her hive are around
 or you just might feel the sting!
 ~
 E
-queen~
-She is much larger than a regular bee. Let's hope none of her hive are around
-or you just might feel the sting!
+queenbee~
+The Queenbee is much larger than a regular bee. Let's hope that none of her
+hive is around or you just might feel the sting!
 ~
 #6623
 hive beehive~
@@ -1811,7 +1811,7 @@ reserved~
 0 0 0
 #6624
 window stained glass~
-&Wa &pst&Gai&Rne&Cd-&Ygl&Pas&cs &Wwindow&X~
+&Wa &pst&Gai&Rne&Cd-&Ygl&Pas&cs &Wwindow&W~
 A small stained-glass window sits collecting dust here.~
 ~
 8 805306371 0 0 16385 56
@@ -1822,10 +1822,10 @@ reserved~
 0 0
 0 0 0
 E
-window~
+glass~
 A beautifully crafted stained-glass window depicts a sunset over a body
-of water... Someone went through alot of effort and expense to make this. 
-It must be an heirloom.  
+of water...Someone went through alot of effort and expense to make this.
+It must be an heirloom.
 ~
 E
 stained~
@@ -1834,10 +1834,10 @@ of water... Someone went through alot of effort and expense to make this.
 It must be an heirloom.
 ~
 E
-glass~
+window~
 A beautifully crafted stained-glass window depicts a sunset over a body
-of water...Someone went through alot of effort and expense to make this.
-It must be an heirloom.
+of water... Someone went through alot of effort and expense to make this. 
+It must be an heirloom.  
 ~
 #6625
 basin china water~
@@ -1852,8 +1852,8 @@ reserved~
 0 0
 0 0 0
 E
-water~
-A lovely china water basin with little paisley designs hand-painted around the
+china~
+A lovely china water basin with little paisley designs hand-painted around tehe
 trim of the bowl.
 ~
 E
@@ -1862,8 +1862,8 @@ A lovely china water basin with little paisley designs hand-painted around the
 trim of the bowl.
 ~
 E
-china~
-A lovely china water basin with little paisley designs hand-painted around tehe
+water~
+A lovely china water basin with little paisley designs hand-painted around the
 trim of the bowl.
 ~
 #6626
@@ -1881,11 +1881,7 @@ reserved~
 A
 12 -50
 E
-black~
-A set of black eyelids... lashes and all!
-~
-E
-eyelids~
+radar~
 A set of black eyelids... lashes and all!
 ~
 E
@@ -1893,7 +1889,11 @@ bat~
 A set of black eyelids... lashes and all!
 ~
 E
-radar~
+eyelids~
+A set of black eyelids... lashes and all!
+~
+E
+black~
 A set of black eyelids... lashes and all!
 ~
 #6627
@@ -1909,20 +1909,20 @@ reserved~
 0 0
 0 0 0
 E
-darkness~
-The darkness is strange tonight, the stars seem to waver from time to time 
-leaving tracers behind them, like tails on a comet. Perhaps this night is
-different from all that you have ever seen. What is the hour?
-~
-E
 up~
 The darkness is strange tonight, the stars seem to waver from time to time
 leaving tracers behind them, like tails on a comet. Perhaps this night is
 different from all that you have ever seen. What is the hour?
 ~
+E
+darkness~
+The darkness is strange tonight, the stars seem to waver from time to time 
+leaving tracers behind them, like tails on a comet. Perhaps this night is
+different from all that you have ever seen. What is the hour?
+~
 #6628
 wrap wraparound mesh~
-&za mesh wraparound&X~
+&za mesh wraparound&W~
 &bA pile of dark meshy material lies here.~
 ~
 9 536870996 130 0 9 60
@@ -1933,11 +1933,11 @@ charm person~
 1 1
 0 0 0
 A
-13 60
+12 60
 A
 17 -60
 A
-12 60
+13 60
 E
 mesh wrap wraparound~
 &bA large body wrap made of meshy material like that of fish-netting.
@@ -1955,15 +1955,15 @@ reserved~
 0 0
 0 0 0
 A
-17 -60
-A
-13 60
+23 -3
 A
 24 -3
 A
-23 -3
+13 60
+A
+17 -60
 E
-boots~
+thigh~
 A pair of black thigh-high leather boots... each with a steel plate on the shin.
 ~
 E
@@ -1971,12 +1971,12 @@ high~
 A pair of black thigh-high leather boots... each with a steel plate on the shin.
 ~
 E
-thigh~
+boots~
 A pair of black thigh-high leather boots... each with a steel plate on the shin.
 ~
 #6630
 undies undergarment~
-&Rundies&X~
+&Rundies&W~
 A very small undergarment lies here in a ball.~
 ~
 9 33554432 0 0 2049 60
@@ -1987,11 +1987,11 @@ change sex~
 1 1
 0 0 0
 E
-undergarment~
+undies~
 A very tiny pair of black underpants.
 ~
 E
-undies~
+undergarment~
 A very tiny pair of black underpants.
 ~
 #6631
@@ -2007,15 +2007,15 @@ reserved~
 0 0
 0 0 0
 A
-12 60
-A
 25 20
+A
+12 60
 E
-onyx~
+bracelet~
 A shiny black bracelet made of onyx stone.
 ~
 E
-bracelet~
+onyx~
 A shiny black bracelet made of onyx stone.
 ~
 #6632
@@ -2031,22 +2031,22 @@ reserved~
 0 0
 0 0 0
 A
-25 5
+24 -3
 A
 17 -40
 A
-24 -3
+25 5
 E
-onyx~
-Some tiny hoop earrings made of shiny onyx stone.
+hoop~
+A tiny hoop earring made of shiny onyx stone.
 ~
 E
 earring~
 A tiny hoop earring made of shiny onyx stone.
 ~
 E
-hoop~
-A tiny hoop earring made of shiny onyx stone.
+onyx~
+Some tiny hoop earrings made of shiny onyx stone.
 ~
 #6633
 tentacles beast displacer~
@@ -2061,16 +2061,16 @@ reserved~
 0 0
 0 0 0
 A
-17 -50
-A
-1 1
+19 50
 A
 18 98
 A
-19 50
+1 1
+A
+17 -50
 #6634
 ring black alaskan diamond~
-&ba black-alaskan diamond ring&X~
+&ba black-alaskan diamond ring&W~
 A ring with a black, diamond-shaped gem.~
 ~
 8 0 0 0 3 60
@@ -2105,15 +2105,15 @@ reserved~
 0 0
 0 0 0
 A
-4 2
-A
 24 -4
+A
+4 2
 E
-grass~
+bonnet~
 A lovely bonnet made from dried grass.
 ~
 E
-bonnet~
+grass~
 A lovely bonnet made from dried grass.
 ~
 #6637
@@ -2129,9 +2129,9 @@ reserved~
 0 0
 0 0 0
 A
-2 1
-A
 17 -10
+A
+2 1
 #6638
 smock large~
 a smock~
@@ -2145,17 +2145,17 @@ reserved~
 0 0
 0 0 0
 A
-17 -10
-A
 5 2
+A
+17 -10
+E
+large~
+A large piece of material with a hole cut out to allow for the head to go       through.
+~
 E
 smock~
 A large piece of material with a hole cut out to allow for the head to go
 through.
-~
-E
-large~
-A large piece of material with a hole cut out to allow for the head to go       through.
 ~
 #6639
 rope thick piece~
@@ -2184,11 +2184,11 @@ reserved~
 0 0
 0 0 0
 A
-18 20
-A
 19 12
+A
+18 20
 E
-utensil~
+fork~
 A fork made of ceramic has 4 thick tines.
 ~
 E
@@ -2196,7 +2196,7 @@ ceramic~
 A fork made of ceramic has 4 thick tines.
 ~
 E
-fork~
+utensil~
 A fork made of ceramic has 4 thick tines.
 ~
 #6641
@@ -2212,15 +2212,15 @@ reserved~
 0 0
 0 0 0
 E
-pollen~
-This stuff looks like your typical pollen... a sticky powder-like substance
-that is yellow in colour, only these particular pollen particles are quite 
-large in size.
-~
-E
 pill~
 This stuff looks like your typical pollen... a stickey powder-like substance
 that is yellow in colour, only these particular pollen particles are quite
+large in size.
+~
+E
+pollen~
+This stuff looks like your typical pollen... a sticky powder-like substance
+that is yellow in colour, only these particular pollen particles are quite 
 large in size.
 ~
 #6642
@@ -2236,22 +2236,22 @@ reserved~
 0 0
 0 0 0
 E
-narghile~
-This strange looking contraption consists of a closed cylindrical "bowl" as
-the base. The bowl is a translucent orange coloured glass. From the top of
-the bowl a few reeds stick straight out vertically, and are tied together by
-some small vines of some sort. At the top of the tallest reed, there is 
-another "bowl" which is much smaller in size than its counterpart. The 
-smaller bowl is transparent, and inside it you can see there are a few small
-sticks of cinnamon. Ah ha!
-~
-E
 apparatus~
 This strange looking contraption consists of a closed cylindrical "bowl" as
 the base. The bowl is a translucent orange coloured glass. From the top of
 the bowl a few reeds stick straight out vertically, and are tied together by
 some small vines of some sort. At the top of the tallest reed, there is 
 another "bowl" which is much smaller in size than its counterpart. The
+smaller bowl is transparent, and inside it you can see there are a few small
+sticks of cinnamon. Ah ha!
+~
+E
+narghile~
+This strange looking contraption consists of a closed cylindrical "bowl" as
+the base. The bowl is a translucent orange coloured glass. From the top of
+the bowl a few reeds stick straight out vertically, and are tied together by
+some small vines of some sort. At the top of the tallest reed, there is 
+another "bowl" which is much smaller in size than its counterpart. The 
 smaller bowl is transparent, and inside it you can see there are a few small
 sticks of cinnamon. Ah ha!
 ~
@@ -2300,7 +2300,7 @@ reserved~
 0 0
 0 0 0
 E
-peas~
+pods~
 Some nicely sized pea pods. MmmMm MmmM.
 ~
 E
@@ -2308,7 +2308,7 @@ pea~
 Some nicely sized pea pods. MmmMm MmmM.
 ~
 E
-pods~
+peas~
 Some nicely sized pea pods. MmmMm MmmM.
 ~
 #6646
@@ -2340,7 +2340,7 @@ reserved~
 0 0
 0 0 0
 E
-raspberries~
+rasp~
 Juicy, blood-red raspberries... YUM.
 ~
 E
@@ -2348,7 +2348,7 @@ handful~
 Juicy, blood-red raspberries... YUM.
 ~
 E
-rasp~
+raspberries~
 Juicy, blood-red raspberries... YUM.
 ~
 #6648
@@ -2396,7 +2396,13 @@ reserved~
 0 0
 0 0 0
 E
-sugarcane~
+stick~
+The sugarcane is still green, and therefor fresh. It is approximately 1 inch
+in diameter, and about a half of a foot long. Sugarcane is pretty rare, so this
+is a treat.
+~
+E
+cane~
 The sugarcane is still green, and therefore fresh. It is approximately 1 inch
 in diameter, and about a half a foot long. Sugarcane is pretty rare, so this is a treat.
 ~
@@ -2406,15 +2412,9 @@ The sugarcane is still green, and therefore fresh. It is approximately 1 inch
 in diameter, and about a half a foot long. Sugarcane is pretty rare, so this is a treat.
 ~
 E
-cane~
+sugarcane~
 The sugarcane is still green, and therefore fresh. It is approximately 1 inch
 in diameter, and about a half a foot long. Sugarcane is pretty rare, so this is a treat.
-~
-E
-stick~
-The sugarcane is still green, and therefor fresh. It is approximately 1 inch
-in diameter, and about a half of a foot long. Sugarcane is pretty rare, so this
-is a treat.
 ~
 #6651
 staff lightning bug~
@@ -2429,14 +2429,15 @@ reserved~
 0 0
 0 0 0
 A
-4 1
+19 6
 A
 18 6
 A
-19 6
+4 1
 E
-staff~
-The staff is about three and a half feet long, with a glass ball attached to thetip... and inside there is a tiny little bug emitting a powerful light. If you
+bug~
+The staff is about three and a half feet long, with a glass ball attached to the
+tip... and inside there is a tiny little bug emitting a powerful light. If you
 put your ear up to the glass, you can hear it buzzing as its wings flap rapidly.
 ~
 E
@@ -2446,9 +2447,8 @@ tip... and inside there is a tiny little bug emitting a powerful light. If you
 put your ear up to the glass, you can hear it buzzing as its wings flap rapidly.
 ~
 E
-bug~
-The staff is about three and a half feet long, with a glass ball attached to the
-tip... and inside there is a tiny little bug emitting a powerful light. If you
+staff~
+The staff is about three and a half feet long, with a glass ball attached to thetip... and inside there is a tiny little bug emitting a powerful light. If you
 put your ear up to the glass, you can hear it buzzing as its wings flap rapidly.
 ~
 #6652
@@ -2476,11 +2476,7 @@ reserved~
 0 0
 0 0 0
 E
-twigs~
-Some budding pussy willow twigs are soft to the touch.
-~
-E
-bunch~
+willow~
 Some budding pussy willow twigs are soft to the touch.
 ~
 E
@@ -2488,7 +2484,11 @@ pussy~
 Some budding pussy willow twigs are soft to the touch.
 ~
 E
-willow~
+bunch~
+Some budding pussy willow twigs are soft to the touch.
+~
+E
+twigs~
 Some budding pussy willow twigs are soft to the touch.
 ~
 #6654
@@ -2504,18 +2504,18 @@ reserved~
 0 0
 0 0 0
 A
-5 2
-A
 4 2
+A
+5 2
 E
-butterfly~
+jar~
 The jar is about as big as a middle-aged human man's hand. Inside it are some
 pussy willow twigs, some grass, a few flower petals... and on one of the twigs
 rests a lovely butterfly, who flutters its wings from time to time. There are
 holes poked out in the top of the jar.
 ~
 E
-jar~
+butterfly~
 The jar is about as big as a middle-aged human man's hand. Inside it are some
 pussy willow twigs, some grass, a few flower petals... and on one of the twigs
 rests a lovely butterfly, who flutters its wings from time to time. There are
@@ -2534,16 +2534,17 @@ reserved~
 0 0
 0 0 0
 A
-4 3
-A
-17 -30
+12 60
 A
 24 -4
 A
-12 60
+17 -30
+A
+4 3
 E
-leafy~
-The frock coat is made of various types of leaves "sewn" together making a      double-breasted skirt reaching about to the knees.
+coat~
+The frock coat is made of various types of leaves "sewn" together making a
+double-breasted skirt reaching about to the knees.
 ~
 E
 frock~
@@ -2551,9 +2552,8 @@ The frock coat is made of various types of leaves "sewn" together making a
 double-breasted skirt reaching about to the knees.
 ~
 E
-coat~
-The frock coat is made of various types of leaves "sewn" together making a
-double-breasted skirt reaching about to the knees.
+leafy~
+The frock coat is made of various types of leaves "sewn" together making a      double-breasted skirt reaching about to the knees.
 ~
 #6656
 spear branch~
@@ -2568,13 +2568,13 @@ entangle~
 3 3
 0 0 0
 A
-12 60
-A
-13 50
+19 70
 A
 18 70
 A
-19 70
+13 50
+A
+12 60
 #6657
 leggings bark shin guards~
 bark shin guards~
@@ -2588,20 +2588,17 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-2 -2
+17 -25
 A
 1 1
 A
-17 -25
+2 -2
+A
+13 50
 E
-leggings~
-Some large branches have been hollowed out to be used as leggings.
-~
-E
-bark~
-Some large branches have been hollowed out so the bark could be used for shin   guards.
+guards~
+Some large branches have been hollowed out so the bark could be used for shin
+guards.
 ~
 E
 shin~
@@ -2609,9 +2606,12 @@ Some large branches have been hollwed out so the bark could be used for shin
 guards.
 ~
 E
-guards~
-Some large branches have been hollowed out so the bark could be used for shin
-guards.
+bark~
+Some large branches have been hollowed out so the bark could be used for shin   guards.
+~
+E
+leggings~
+Some large branches have been hollowed out to be used as leggings.
 ~
 #6658
 pear~
@@ -2642,13 +2642,13 @@ reserved~
 0 0
 0 0 0
 E
-can~
-A watering can is made of wood, and you can still see some of the carbing marks.
+watering~
+A watering can is made of wood, and you can still see some of the carving marks.
 There is a small spout for the water to pour out of, and a curvy handle to hold on to.
 ~
 E
-watering~
-A watering can is made of wood, and you can still see some of the carving marks.
+can~
+A watering can is made of wood, and you can still see some of the carbing marks.
 There is a small spout for the water to pour out of, and a curvy handle to hold on to.
 ~
 #6660
@@ -2664,12 +2664,12 @@ reserved~
 0 0
 0 0 0
 E
-mommy~
+dress~
 A simple dress, short in length (to mid-calf). It is made of a blue broadcloth
 and the colour has faded somewhat, so it is mostly light blue.
 ~
 E
-dress~
+mommy~
 A simple dress, short in length (to mid-calf). It is made of a blue broadcloth
 and the colour has faded somewhat, so it is mostly light blue.
 ~
@@ -2710,14 +2710,14 @@ reserved~
 0 0
 0 0 0
 E
-vegetables~
-A variety of vegetables consists of a tomato, a corn cob, some pea pods
-and a few large leaves of lettuce.  They're fresh and crispy.  
-~
-E
 variety~
 A variety of vegetables consists of a tomato, a corn cob, some pea pods
 and a few large leaves of lettuce. They're fresh and crispy.
+~
+E
+vegetables~
+A variety of vegetables consists of a tomato, a corn cob, some pea pods
+and a few large leaves of lettuce.  They're fresh and crispy.  
 ~
 #6664
 rolls gatha fresh-baked~
@@ -2732,7 +2732,7 @@ reserved~
 0 0
 0 0 0
 E
-rolls~
+two~
 Two soft rolls with some sunflower seeds sprinkled on top.
 ~
 E
@@ -2740,7 +2740,7 @@ gatha~
 Two soft rolls with some sunflower seeds sprinkled on top.
 ~
 E
-two~
+rolls~
 Two soft rolls with some sunflower seeds sprinkled on top.
 ~
 #6665
@@ -2756,11 +2756,11 @@ reserved~
 0 0
 0 0 0
 E
-sunflower~
+seeds~
 Some sunflower seeds... still in the shell.
 ~
 E
-seeds~
+sunflower~
 Some sunflower seeds... still in the shell.
 ~
 #6666
@@ -2776,16 +2776,16 @@ reserved~
 0 0
 0 0 0
 E
-horn~
-A horn made of concrete. It probably doesn't even work.
+concrete~
+A horn made of concrete. It probably doesn't work.
 ~
 E
 otaq~
 A horn made of concrete. It probably doesn't even work.
 ~
 E
-concrete~
-A horn made of concrete. It probably doesn't work.
+horn~
+A horn made of concrete. It probably doesn't even work.
 ~
 #6667
 earthworms dried pill~
@@ -2800,7 +2800,7 @@ stone skin~
 0 0
 0 0 0
 E
-earthworms~
+dried~
 Some shrivelled up earthworms. Icky.
 ~
 E
@@ -2808,7 +2808,7 @@ pill~
 Some shrivelled up earthworms. Icky.
 ~
 E
-dried~
+earthworms~
 Some shrivelled up earthworms. Icky.
 ~
 #6668
@@ -2824,13 +2824,13 @@ reserved~
 0 0
 0 0 0
 A
-25 17
-A
-2 2
+19 50
 A
 18 100
 A
-19 50
+2 2
+A
+25 17
 #6669
 cornstalk stalk corn~
 a thick cornstalk~
@@ -2856,18 +2856,18 @@ reserved~
 0 0
 0 0 0
 A
-24 -7
-A
-18 112
-A
-19 98
+23 -4
 A
 1 3
 A
-23 -4
+19 98
+A
+18 112
+A
+24 -7
 #6671
 wings brownie fairy willoo~
-&wsome tiny silver-lined wings&X~
+&wsome tiny silver-lined wings&G~
 &wA tiny set of wings are here.~
 ~
 9 1121 3584 65527 1025 70
@@ -2878,19 +2878,15 @@ reserved~
 0 0
 0 0 0
 A
-17 -70
+24 -4
+A
+24 -4
 A
 12 70
 A
-24 -4
-A
-24 -4
+17 -70
 E
-wings~
-A tiny set of silver-lined wings... no longer than your biggest finger.
-~
-E
-willoo~
+brownie~
 A tiny set of silver-lined wings... no longer than your biggest finger.
 ~
 E
@@ -2898,7 +2894,11 @@ fairy~
 A tiny set of silver-lined wings... no longer than your biggest finger.
 ~
 E
-brownie~
+willoo~
+A tiny set of silver-lined wings... no longer than your biggest finger.
+~
+E
+wings~
 A tiny set of silver-lined wings... no longer than your biggest finger.
 ~
 #6672
@@ -2914,15 +2914,15 @@ reserved~
 0 0
 0 0 0
 A
-25 15
-A
-12 60
+17 -60
 A
 5 2
 A
-17 -60
+12 60
+A
+25 15
 E
-spell~
+components~
 The junk consists of bat wings, frogs legs, dead spiders, live spiders, bits of
 web, dust, ashes of something or someone, and a couple of dried up eyeballs.
 ~
@@ -2932,7 +2932,7 @@ The junk consists of bat wings, frogs legs, dead spiders, live spiders, bits of
 web, dust, ashes of something or someone, and a couple of dried up eyeballs.
 ~
 E
-components~
+spell~
 The junk consists of bat wings, frogs legs, dead spiders, live spiders, bits of
 web, dust, ashes of something or someone, and a couple of dried up eyeballs.
 ~
@@ -2949,15 +2949,11 @@ reserved~
 0 0
 0 0 0
 A
-3 2
-A
 4 2
+A
+3 2
 E
-wig~
-A beautiful long blonde, straight-haired wig.
-~
-E
-hair~
+ball~
 A beautiful long blonde, straight-haired wig.
 ~
 E
@@ -2965,7 +2961,11 @@ blonde~
 A beautiful long blonde, straight-haired wig.
 ~
 E
-ball~
+hair~
+A beautiful long blonde, straight-haired wig.
+~
+E
+wig~
 A beautiful long blonde, straight-haired wig.
 ~
 #6674
@@ -2981,11 +2981,11 @@ reserved~
 0 0
 0 0 0
 A
-19 30
-A
 18 25
+A
+19 30
 E
-iron~
+poker~
 A metal rod used for stirring a fire.
 ~
 E
@@ -2993,7 +2993,7 @@ rod~
 A metal rod used for stirring a fire.
 ~
 E
-poker~
+iron~
 A metal rod used for stirring a fire.
 ~
 #6675
@@ -3009,16 +3009,16 @@ reserved~
 0 0
 0 0 0
 E
-fresh~
-Some fresh sticky honey. MmmMmmm.
-~
-E
 honey puddle~
 Some yummy, sticky honey. MmmmMmmMm.
 ~
+E
+fresh~
+Some fresh sticky honey. MmmMmmm.
+~
 #6676
 tomato juicy ripe~
-&Ra juicy tomato&X~
+&Ra juicy tomato&G~
 &RA juicy tomato is ripening here.~
 ~
 19 0 0 0 1 1
@@ -3030,7 +3030,7 @@ reserved~
 0 0 0
 #6677
 corn cob ear~
-&Gan ear of corn&X~
+&Gan ear of corn&G~
 &GAn ear of &Ycorn&G is here.~
 ~
 19 0 0 0 1 1
@@ -3053,7 +3053,7 @@ reserved~
 0 0
 0 0 0
 E
-toad~
+toadstool~
 A large mushroom-looking fungus with greyish spots on the head.
 ~
 E
@@ -3061,7 +3061,7 @@ stool~
 A large mushroom-looking fungus with greyish spots on the head.
 ~
 E
-toadstool~
+toad~
 A large mushroom-looking fungus with greyish spots on the head.
 ~
 #6794
@@ -3077,7 +3077,7 @@ summon swarm~
 0 0
 0 0 0
 E
-branch~
+fallen~
 A gnarly old black tree branch.
 ~
 E
@@ -3085,7 +3085,7 @@ dead~
 A gnarly old black tree branch.
 ~
 E
-fallen~
+branch~
 A gnarly old black tree branch.
 ~
 #6795
@@ -3119,16 +3119,16 @@ reserved~
 0 0
 0 0 0
 E
-exit~
-The tent is made of canvas and is held up by a few wooden poles dug into
-the ground.  Inside it are things such as a bedroll, a lantern (which is
-currently lit) and a few articles of clothing.  
-~
-E
 tent~
 The tent is made of canvas and is held up by a few wooden poles dug into the
 ground. Inside it are things such as a bedroll, a lantern (which is currently
 lit) and a few articles of clothing.
+~
+E
+exit~
+The tent is made of canvas and is held up by a few wooden poles dug into
+the ground.  Inside it are things such as a bedroll, a lantern (which is
+currently lit) and a few articles of clothing.  
 ~
 #6797
 tent~
@@ -3191,11 +3191,11 @@ reserved~
 0 0
 0 0 0
 E
-door~
+cage~
 This cage is large and made from a strange glowing metal..
 ~
 E
-cage~
+door~
 This cage is large and made from a strange glowing metal..
 ~
 #6801
@@ -3239,14 +3239,14 @@ reserved~
 0 0
 0 0 0
 E
-cage~
-Inside the cage you can see a very tall, grey man-like creature staring back at
-you.
-~
-E
 entrance~
 Inside the entrance you can see a very tall, grey man-like creature looking back
 at you.
+~
+E
+cage~
+Inside the cage you can see a very tall, grey man-like creature staring back at
+you.
 ~
 #6804
 exit~
@@ -3291,7 +3291,7 @@ reserved~
 0 0
 0 0 0
 E
-entrance~
+cage~
 This large cage is made from old and rusty metal.
 ~
 E
@@ -3299,7 +3299,7 @@ beholder~
 This large cage is made from old and rusty metal.
 ~
 E
-cage~
+entrance~
 This large cage is made from old and rusty metal.
 ~
 #6807
@@ -3327,17 +3327,17 @@ reserved~
 0 0
 0 0 0
 A
-19 42
+17 -35
 A
 18 28
 A
-17 -35
+19 42
 E
-claw~
+paw~
 The paw is tawny yellow in colour, and has 5 long and sharp claws.
 ~
 E
-paw~
+claw~
 The paw is tawny yellow in colour, and has 5 long and sharp claws.
 ~
 #6809
@@ -3377,16 +3377,16 @@ reserved~
 0 0
 0 0 0
 E
-schmendrick~
-A pointy blue hat that looks somewhat like a dunce cap.
+pointy~
+A pointy blue hat that looks somewhat lik a dunce cap.
 ~
 E
 hat~
 A pointy blue hat that looks somewhat like a dunce cap.
 ~
 E
-pointy~
-A pointy blue hat that looks somewhat lik a dunce cap.
+schmendrick~
+A pointy blue hat that looks somewhat like a dunce cap.
 ~
 #6812
 shoes schmendrick~
@@ -3421,15 +3421,15 @@ reserved~
 0 0
 0 0 0
 A
-12 37
-A
 25 9
+A
+12 37
 E
-feather~
+harpy~
 Your typical feather, although quite large... brown with a greyish tip.
 ~
 E
-harpy~
+feather~
 Your typical feather, although quite large... brown with a greyish tip.
 ~
 #6814
@@ -3445,7 +3445,7 @@ reserved~
 0 0
 0 0 0
 E
-mommy~
+key~
 A plain wooden key.
 ~
 E
@@ -3453,7 +3453,7 @@ harpy~
 A plain wooden key.
 ~
 E
-key~
+mommy~
 A plain wooden key.
 ~
 #6815
@@ -3481,16 +3481,11 @@ reserved~
 0 0
 0 0 0
 A
-12 35
-A
 13 35
+A
+12 35
 E
-robes~
-The robes are blue, and the colour changes slightly with the reflection of
-light.
-~
-E
-cloth~
+schmendrick~
 The robes are blue, and the colour changes slightly with the reflection of
 light.
 ~
@@ -3500,7 +3495,12 @@ The robes are blue, and the colour changes slightly with the reflection of
 light.
 ~
 E
-schmendrick~
+cloth~
+The robes are blue, and the colour changes slightly with the reflection of
+light.
+~
+E
+robes~
 The robes are blue, and the colour changes slightly with the reflection of
 light.
 ~
@@ -3533,11 +3533,11 @@ reserved~
 0 0
 0 0 0
 E
-glittery~
+dust~
 Some shiny dust particles of some sort, no doubt for a cheap magic trick.
 ~
 E
-dust~
+glittery~
 Some shiny dust particles of some sort, no doubt for a cheap magic trick.
 ~
 #6819
@@ -3553,14 +3553,14 @@ astral walk~
 1 1
 0 0 0
 A
-19 72
+12 40
 A
 18 56
 A
-12 40
+19 72
 E
-cane~
-The can is about 4 feet in length, and it is made of an old tree branch. It is
+gnarly~
+The cane is about 4 feet in length, and it is made of an old tree branch. It is
 a strong cane, and is a dark cherry red in colour.
 ~
 E
@@ -3569,8 +3569,8 @@ The cane is about 4 feet in length, and it is made of an old tree branch. It
 is a strong cane, and is a dark cherry red in colour.
 ~
 E
-gnarly~
-The cane is about 4 feet in length, and it is made of an old tree branch. It is
+cane~
+The can is about 4 feet in length, and it is made of an old tree branch. It is
 a strong cane, and is a dark cherry red in colour.
 ~
 #6820
@@ -3586,19 +3586,19 @@ reserved~
 0 0
 0 0 0
 A
-24 -2
-A
 17 -40
-E
-hat~
-A root from a large tree has been hollowed out to make a gnarly old hat. The
-thicker part of the root is made to rest around the head, and the end of it
-spirals up and around to make a somewhat pointed hat.
-~
+A
+24 -2
 E
 root~
 A root from a large tree has been hollowed out to make a gnarly old hat. The
 thicker part of the root is meant to rest around the head, and the end of it
+spirals up and around to make a somewhat pointed hat.
+~
+E
+hat~
+A root from a large tree has been hollowed out to make a gnarly old hat. The
+thicker part of the root is made to rest around the head, and the end of it
 spirals up and around to make a somewhat pointed hat.
 ~
 #0
@@ -3778,12 +3778,12 @@ pokers about, and a pile of wood along the south wall.
 0 12 0
 Rd     0
 E
-pile~
-What was once neatly stacked, is now a disorganized mess. Some of the wood has  been singed from the heat of the stove.
-~
-E
 wood~
 What was once neatly stacked is now a disorganized mess, and some of the wood   has been singed from the heat of the stove.
+~
+E
+pile~
+What was once neatly stacked, is now a disorganized mess. Some of the wood has  been singed from the heat of the stove.
 ~
 D0
 ~
@@ -3821,12 +3821,15 @@ Used simply as a storage room...the place has but a few baskets and boxes.
 0 8 0
 Rd     0
 E
-uniform~
-The uniform has the initials DD interlocked on the left breast pocket.
+basket~
+A nicely woven basket contains some brand new servant uniforms.
 ~
 E
-uniforms~
-Each uniform is nicely embroidered with the initials DD interlocked on the left breast pocket.
+boxes~
+The boxes contain cleaning materials, such as: feather dusters, rags and soap.
+~
+E
+box~
 ~
 E
 baskets~
@@ -3834,15 +3837,12 @@ A nicely woven basket contains uniforms of all shapes and sizes...having
 the embroidered initials DD interlocked on the left breast.
 ~
 E
-box~
+uniforms~
+Each uniform is nicely embroidered with the initials DD interlocked on the left breast pocket.
 ~
 E
-boxes~
-The boxes contain cleaning materials, such as: feather dusters, rags and soap.
-~
-E
-basket~
-A nicely woven basket contains some brand new servant uniforms.
+uniform~
+The uniform has the initials DD interlocked on the left breast pocket.
 ~
 D2
 ~
@@ -7662,17 +7662,17 @@ articles of clothing are scattered about the place.
 0 131084 0
 Rd     0
 E
-table~
-A few large books have been stacked here to make a table.
+clothing~
+Soiled shirts, pants and socks have been scattered about the room. They are 
+all small in size, and probably belong to a man.
 ~
 E
 makeshift~
 A few large books have been stacked here to make a table.
 ~
 E
-clothing~
-Soiled shirts, pants and socks have been scattered about the room. They are 
-all small in size, and probably belong to a man.
+table~
+A few large books have been stacked here to make a table.
 ~
 S
 #6819
@@ -7685,9 +7685,16 @@ the rest of the tent walls in numerical order.
 0 131084 0
 Rd     0
 E
-table~
-On the table is a lit candle, a vial of ink, and a quill pen. A book is opened
-to a blank page in the centre of the table.
+bedroll~
+A bedroll has been neatly made.
+~
+E
+chair~
+A plain wooden chair with a high cushioned back, and a cushioned seat.
+~
+E
+book~
+A book is opened to a blank page here.
 ~
 E
 books~
@@ -7696,16 +7703,9 @@ through the bindings of each book you read titles such as; Book 1, Book 2,
 Book 3 etc... perhaps it is an Encyclopedia of books.
 ~
 E
-book~
-A book is opened to a blank page here.
-~
-E
-chair~
-A plain wooden chair with a high cushioned back, and a cushioned seat.
-~
-E
-bedroll~
-A bedroll has been neatly made.
+table~
+On the table is a lit candle, a vial of ink, and a quill pen. A book is opened
+to a blank page in the centre of the table.
 ~
 S
 #6820

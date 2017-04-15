@@ -327,16 +327,16 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
-A
 13 20
+A
+17 -20
 E
-leather~
+apron~
 This is a hardy apron made from cured leather, creased and worn from long
 hours of use.  
 ~
 E
-apron~
+leather~
 This is a hardy apron made from cured leather, creased and worn from long
 hours of use.  
 ~
@@ -353,16 +353,16 @@ reserved~
 0 0
 0 0 0
 A
-18 56
-A
 19 72
+A
+18 56
 E
-blacksmith~
+hammer~
 This is a large blacksmith's hammer, with a heavy steel head that looks
 like it could cause bodily harm as easily as it forges metal.  
 ~
 E
-hammer~
+blacksmith~
 This is a large blacksmith's hammer, with a heavy steel head that looks
 like it could cause bodily harm as easily as it forges metal.  
 ~
@@ -379,17 +379,17 @@ reserved~
 0 0
 0 0 0
 A
-18 64
-A
 19 56
+A
+18 64
 E
-hot~
+poker~
 This is a red hot poker, obviously used to handle the blacksmith's hot
 coals.  No doubt it could also cause great bodily harm if handled
 incorrectly.  
 ~
 E
-poker~
+hot~
 This is a red hot poker, obviously used to handle the blacksmith's hot
 coals.  No doubt it could also cause great bodily harm if handled
 incorrectly.  
@@ -407,9 +407,9 @@ reserved~
 0 0
 0 0 0
 A
-18 56
-A
 19 72
+A
+18 56
 E
 club~
 This is a stout wooden cudgel, used to chase away would-be thieves and
@@ -428,16 +428,16 @@ reserved~
 0 0
 0 0 0
 A
-18 40
-A
 19 40
+A
+18 40
 E
-rolling~
+pin~
 This is a wooden rolling pin, covered in flour and obviously used by the
 baker to roll her dough.  
 ~
 E
-pin~
+rolling~
 This is a wooden rolling pin, covered in flour and obviously used by the
 baker to roll her dough.  
 ~
@@ -473,12 +473,12 @@ sanctuary~
 A
 5 1
 E
-magical~
+hat~
 This is a dark blue pointed hat.  You can see moons and stars and comets
 on the hat, although you cannot tell if they were painted or stitched on.  
 ~
 E
-hat~
+magical~
 This is a dark blue pointed hat.  You can see moons and stars and comets
 on the hat, although you cannot tell if they were painted or stitched on.  
 ~
@@ -514,15 +514,15 @@ bless~
 5 5
 0 0 0
 A
-13 30
-A
 5 1
+A
+13 30
 E
-mayor~
+medallion~
 This is a shiny silver medallion that seems to give off a glow of its own.  
 ~
 E
-medallion~
+mayor~
 This is a shiny silver medallion that seems to give off a glow of its own.  
 ~
 #5009
@@ -538,9 +538,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
 13 30
+A
+17 -30
 E
 helmet~
 This is a sturdy steel helmet, although there seems to be a large dent on
@@ -559,9 +559,9 @@ reserved~
 0 0
 0 0 0
 A
-18 56
-A
 19 49
+A
+18 56
 E
 crossbow~
 This is a normal heavy crossbow, used by the guards to defend their
@@ -580,16 +580,16 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
-A
 13 20
+A
+17 -20
 E
-metal~
+vest~
 This is a vest made of chain links, providing protection from anything
 but the fiercest blow.  
 ~
 E
-vest~
+metal~
 This is a vest made of chain links, providing protection from anything
 but the fiercest blow.  
 ~
@@ -606,9 +606,9 @@ reserved~
 0 0
 0 0 0
 A
-18 30
-A
 19 30
+A
+18 30
 E
 cudgel~
 This is a stout cudgel made of old, sturdy wood.  No doubt this has been
@@ -627,16 +627,16 @@ sanctuary~
 2 2
 0 0 0
 A
-1 2
-A
 19 80
+A
+1 2
 E
-broad~
+sword~
 This is a large broad sword, easily capable of slicing through flesh when
 put into the right hands.  
 ~
 E
-sword~
+broad~
 This is a large broad sword, easily capable of slicing through flesh when
 put into the right hands.  
 ~
@@ -653,15 +653,15 @@ reserved~
 0 0
 0 0 0
 A
-3 1
-A
 4 1
+A
+3 1
 E
-charm~
+ruby~
 This is a simple necklace with an ordinary red ruby set into a pendant.  
 ~
 E
-ruby~
+charm~
 This is a simple necklace with an ordinary red ruby set into a pendant.  
 ~
 #5015
@@ -677,12 +677,12 @@ armor~
 5 5
 0 0 0
 E
-brush~
+scrub~
 This is a brush with hard bristles made of some kind of thick hair.  It
 has obviously seen much use by its owner.  
 ~
 E
-scrub~
+brush~
 This is a brush with hard bristles made of some kind of thick hair.  It
 has obviously seen much use by its owner.  
 ~
@@ -699,16 +699,16 @@ reserved~
 0 0
 0 0 0
 A
-13 25
-A
 12 25
+A
+13 25
 E
-toy~
+boat~
 This is a small toy boat, made of crudely carved wood and bits of string
 and wool.  
 ~
 E
-boat~
+toy~
 This is a small toy boat, made of crudely carved wood and bits of string
 and wool.  
 ~
@@ -725,16 +725,16 @@ reserved~
 0 0
 0 0 0
 A
-18 20
-A
 19 20
+A
+18 20
 E
-toy~
+spear~
 This is a very small spear, made of flimsy wood and a crude stone blade. 
 It is obviously meant for a small child.  
 ~
 E
-spear~
+toy~
 This is a very small spear, made of flimsy wood and a crude stone blade. 
 It is obviously meant for a small child.  
 ~
@@ -751,17 +751,17 @@ reserved~
 0 0
 0 0 0
 A
-2 1
-A
 12 35
-E
-pastel~
-A lovely blue dress with a flowery hem and neckline.
-~
+A
+2 1
 E
 dress~
 This is a pretty but prim blue dress, with flowery embroidery along the
 hem and neckline.  
+~
+E
+pastel~
+A lovely blue dress with a flowery hem and neckline.
 ~
 #5019
 lipstick red~
@@ -776,9 +776,9 @@ reserved~
 0 0
 0 0 0
 A
-24 -2
-A
 5 1
+A
+24 -2
 E
 lipstick~
 This is a container of smooth red paste, no doubt for applying to the
@@ -814,12 +814,12 @@ reserved~
 0 0
 0 0 0
 E
-pot~
+iron~
 This is a very heavy iron cauldron the cook often uses for the dishes he
 prepares.  
 ~
 E
-iron~
+pot~
 This is a very heavy iron cauldron the cook often uses for the dishes he
 prepares.  
 ~
@@ -836,13 +836,13 @@ reserved~
 0 0
 0 0 0
 A
-19 20
-A
-18 15
+1 1
 A
 17 -30
 A
-1 1
+18 15
+A
+19 20
 E
 spoon~
 This is a stout wooden spoon, no doubt used for spanking as well as
@@ -861,9 +861,9 @@ fly~
 2 2
 0 0 0
 A
-24 -2
-A
 17 -30
+A
+24 -2
 E
 cloak~
 This is a cloak made of many multihued patches of cloth, designed to
@@ -898,9 +898,9 @@ bless~
 2 2
 0 0 0
 A
-19 40
-A
 18 60
+A
+19 40
 E
 dagger~
 This is an ornate steel dagger, designed as much for show as function.  
@@ -918,11 +918,11 @@ reserved~
 0 0
 0 0 0
 E
-key~
+copper~
 This is a shiny new key made of copper.  
 ~
 E
-copper~
+key~
 This is a shiny new key made of copper.  
 ~
 #5027
@@ -938,11 +938,11 @@ reserved~
 0 0
 0 0 0
 E
-ivory~
+key~
 This is a solid ivory key.  
 ~
 E
-key~
+ivory~
 This is a solid ivory key.  
 ~
 #5028
@@ -958,11 +958,11 @@ reserved~
 0 0
 0 0 0
 E
-gold~
+key~
 This is a bright key made of pure gold.  
 ~
 E
-key~
+gold~
 This is a bright key made of pure gold.  
 ~
 #5029
@@ -978,15 +978,15 @@ fly~
 2 2
 0 0 0
 A
-4 1
-A
 5 1
+A
+4 1
 E
-pearl~
+earring~
 This is an earring made of silver, with a large pearl set into the middle.  
 ~
 E
-earring~
+pearl~
 This is an earring made of silver, with a large pearl set into the middle.  
 ~
 #5030
@@ -1034,15 +1034,15 @@ reserved~
 0 0
 0 0 0
 A
-13 30
-A
 17 -25
+A
+13 30
 E
-guard~
+armor~
 This is a heavy piece of body armor, meant for a large person.  
 ~
 E
-armor~
+guard~
 This is a heavy piece of body armor, meant for a large person.  
 ~
 #5033
@@ -1058,16 +1058,16 @@ reserved~
 0 0
 0 0 0
 A
-14 30
-A
 2 1
+A
+14 30
 E
-guard~
+boots~
 This is a pair of heavy leather boots that looks tough enough to stop
 steel.  
 ~
 E
-boots~
+guard~
 This is a pair of heavy leather boots that looks tough enough to stop
 steel.  
 ~
@@ -1084,15 +1084,15 @@ reserved~
 0 0
 0 0 0
 A
-13 25
-A
 17 -20
+A
+13 25
 E
-vault~
+shield~
 This is a sturdy shield made of a thin plate of steel.
 ~
 E
-shield~
+vault~
 This is a sturdy shield made of a thin plate of steel.
 ~
 #5035
@@ -1108,15 +1108,15 @@ fly~
 2 2
 0 0 0
 A
-5 1
-A
 13 30
+A
+5 1
 E
-metal~
+cape~
 This is a large, heavy cape made of chain rings linked together.
 ~
 E
-cape~
+metal~
 This is a large, heavy cape made of chain rings linked together.
 ~
 #5036
@@ -1132,11 +1132,11 @@ reserved~
 0 0
 0 0 0
 E
-leather~
+vest~
 This is a sturdy vest made of thick leather.
 ~
 E
-vest~
+leather~
 This is a sturdy vest made of thick leather.
 ~
 #0
@@ -1468,16 +1468,16 @@ door to the east it reads, 'House of Graknor'.
 0 0 1
 Rd     0
 E
-smoke~
-Smoke rises from the chimney tops.
+sign~
+House of Graknor
 ~
 E
 house~
 The houses are built with only the very best craftmanship.
 ~
 E
-sign~
-House of Graknor
+smoke~
+Smoke rises from the chimney tops.
 ~
 D1
 ~
@@ -1501,12 +1501,12 @@ off in the distance you hear a mother chastising her child.
 0 0 1
 Rd     0
 E
-trees~
-Trees line both sides of the road providing a nice shady area.
-~
-E
 flowerbox~
 Flowerboxes filled with flowers add a spray of color to the area.  
+~
+E
+trees~
+Trees line both sides of the road providing a nice shady area.
 ~
 D0
 ~
@@ -1530,16 +1530,16 @@ gardens adding a vast array of colors to the area.
 0 0 1
 Rd     0
 E
-road~
-The road is in good repair.
+garden~
+The flowers add a nice spray of color to the area.
 ~
 E
 flowers~
 The flowers add a nice spray of color to the area.
 ~
 E
-garden~
-The flowers add a nice spray of color to the area.
+road~
+The road is in good repair.
 ~
 D0
 ~
@@ -1563,12 +1563,12 @@ village a respectful place to visit.
 0 0 1
 Rd     0
 E
-road~
-The road is in good repair.
-~
-E
 grass~
 Grass grows on either side of the roadway.
+~
+E
+road~
+The road is in good repair.
 ~
 D0
 ~
@@ -1626,16 +1626,16 @@ you hear the mischievous laughter of a child.
 0 8 0
 Rd     0
 E
-spill~
-Ewwww something sticky is on the floor.
+bed~
+The sleeping area is a major disaster area.
 ~
 E
 toys~
 Toys lay about the floor everywhere. 
 ~
 E
-bed~
-The sleeping area is a major disaster area.
+spill~
+Ewwww something sticky is on the floor.
 ~
 D3
 ~
@@ -1672,28 +1672,28 @@ house of a newly married couple.  That would explain the lack of furniture.
 0 8 0
 Rd     0
 E
-dresser~
-The dresser stands next to the bed.
-~
-E
-table~
-The table is small, built for two.
-~
-E
-bed~
-The bed is very comfortable looking.
-~
-E
-chairs~
-Two chairs sit around the table.
+dress~
+The wedding dress is white and layed with loving care across a chair.  
 ~
 E
 wedding~
 The wedding dress is white and layed with loving care across a chair.
 ~
 E
-dress~
-The wedding dress is white and layed with loving care across a chair.  
+chairs~
+Two chairs sit around the table.
+~
+E
+bed~
+The bed is very comfortable looking.
+~
+E
+table~
+The table is small, built for two.
+~
+E
+dresser~
+The dresser stands next to the bed.
 ~
 D0
 ~
@@ -1730,12 +1730,12 @@ square itself is paved with black flagstone that is kept in perfect repair.
 0 0 1
 Rd     0
 E
-crowd~
-The crowd is listening to a gleeman tell his story.
-~
-E
 flagstone~
 The flagstones are black and in perfect repair.
+~
+E
+crowd~
+The crowd is listening to a gleeman tell his story.
 ~
 D0
 ~
@@ -1789,20 +1789,20 @@ a snack before dinner.
 0 0 1
 Rd     0
 E
-flagstones~
-The flagstones are black and in perfect repair.
-~
-E
-trees~
-Trees line the square giving the area a natural look to it.
+cat~
+The cat is watching the bird closely.
 ~
 E
 bird~
 A tiny bird is building a nest.
 ~
 E
-cat~
-The cat is watching the bird closely.
+trees~
+Trees line the square giving the area a natural look to it.
+~
+E
+flagstones~
+The flagstones are black and in perfect repair.
 ~
 D0
 ~
@@ -1825,16 +1825,16 @@ tales.
 0 0 1
 Rd     0
 E
-flagstones~
-The flagstones are black and in perfect repair.
+marbles~
+The boys are on the ground playing marbles.
 ~
 E
 boys~
 The boys are on the ground playing marbles.
 ~
 E
-marbles~
-The boys are on the ground playing marbles.
+flagstones~
+The flagstones are black and in perfect repair.
 ~
 D0
 ~
@@ -1860,20 +1860,20 @@ due to the limited amount of these &.flowers&c.
 0 0 1
 Rd     0
 E
-flagstones~
-&zThe flagstones are in perfect repair.&c
-~
-E
-garden~
-&WThe &ggarden&W adds a &.s&.p&.l&.a&.s&.h&W of &.colour&W to the area.
+insects~
+&GTiny insects fly about &Ypollinating&G the &.f&.l&.o&.w&.e&.r&.s&G.
 ~
 E
 flowers~
 &WThe &.flowers&W add a &.s&.p&.l&.a&.s&.h&W of &.colour&W to the area.
 ~
 E
-insects~
-&GTiny insects fly about &Ypollinating&G the &.f&.l&.o&.w&.e&.r&.s&G.
+garden~
+&WThe &ggarden&W adds a &.s&.p&.l&.a&.s&.h&W of &.colour&W to the area.
+~
+E
+flagstones~
+&zThe flagstones are in perfect repair.&c
 ~
 D0
 ~
@@ -1895,28 +1895,28 @@ middle of one of the gardens you notice a small plaque.
 0 0 1
 Rd     0
 E
-plaque~
-&p@&g}-'- &CPlanted in Honour of Our Forefathers. &g-.-{&p@&c
-~
-E
-bird~
-&WA tiny &.bird&W flutters about the trees.
-~
-E
-trees~
-Trees line the square providing shade for those that use the area.  
-~
-E
-flowers~
-&WThe &.flowers&W add a &.s&.p&.l&.a&.s&.h&W of &.colours&W to the area.
+flagstones~
+&zThe flagstones are in perfect repair.&c
 ~
 E
 garden~
 &WThe &ggarden&W adds a &.s&.p&.l&.a&.s&.h&w of &.colours&W to the area.
 ~
 E
-flagstones~
-&zThe flagstones are in perfect repair.&c
+flowers~
+&WThe &.flowers&W add a &.s&.p&.l&.a&.s&.h&W of &.colours&W to the area.
+~
+E
+trees~
+Trees line the square providing shade for those that use the area.  
+~
+E
+bird~
+&WA tiny &.bird&W flutters about the trees.
+~
+E
+plaque~
+&p@&g}-'- &CPlanted in Honour of Our Forefathers. &g-.-{&p@&c
 ~
 D0
 ~
@@ -1943,15 +1943,15 @@ surrounding the statue with a plaque at its base.
 0 0 1
 Rd     0
 E
+statue~
+The statue is in the likeness of Morgan Leah, one of the first settlers
+and a great warrior.  
+~
+E
 plaque~
 Here stands a memorial to the great Morgan Leah.  One of the first
 settlers of this great home of ours and one of the best warriors to
 originate from here.  
-~
-E
-statue~
-The statue is in the likeness of Morgan Leah, one of the first settlers
-and a great warrior.  
 ~
 D0
 ~
@@ -1981,25 +1981,25 @@ shelves.
 0 1036 0
 Rd     0
 E
-pouch~
-Leather pouches lay haphazardly on tables.
-~
-E
-floor~
-The floor is covered with old scraps of leather.  
-~
-E
-leather~
-The floor is covered with old scraps of leather.  
+display~
+Leather pouches, jerkins and various other leather work line the
+shelves.
 ~
 E
 table~
 The floor under the table is covered with old scraps of leather.  
 ~
 E
-display~
-Leather pouches, jerkins and various other leather work line the
-shelves.
+leather~
+The floor is covered with old scraps of leather.  
+~
+E
+floor~
+The floor is covered with old scraps of leather.  
+~
+E
+pouch~
+Leather pouches lay haphazardly on tables.
 ~
 D1
 ~
@@ -2017,16 +2017,16 @@ full view of those that would peek in the door to tempt their taste buds.
 0 1036 0
 Rd     0
 E
-bread~
-Bins of bread line the walls.
+pastries~
+Every imaginable pastry lines the shelf, calling to those that pass by.  
 ~
 E
 bins~
 Bins of bread line the walls.
 ~
 E
-pastries~
-Every imaginable pastry lines the shelf, calling to those that pass by.  
+bread~
+Bins of bread line the walls.
 ~
 D3
 ~
@@ -2044,16 +2044,16 @@ bottles of pills lining the walls on top of rows of shelves.
 0 12 0
 Rd     0
 E
-shelf~
-&zThick &wdust &zhas drifted up against the &Gpill &gbottles &zthat line the shelf.
+vials~
+&zNumerous &Cvials&z and &Gpill &gbottles&z line the wall.
 ~
 E
 smoke~
 &zA foul smelling &ppurple &zsmoke envelopes you.
 ~
 E
-vials~
-&zNumerous &Cvials&z and &Gpill &gbottles&z line the wall.
+shelf~
+&zThick &wdust &zhas drifted up against the &Gpill &gbottles &zthat line the shelf.
 ~
 D1
 ~
@@ -2162,24 +2162,24 @@ are a natural contrast to the array of colors from the gardens.
 0 0 1
 Rd     0
 E
-flagstone~
-The flagstones are black and in perfect repair.
-~
-E
-garden~
-The flowers add a splash of colors to the area.
-~
-E
-flowers~
-The flowers add a splash of colors to the area.
+bird~
+A tiny bird flutters about the trees.
 ~
 E
 trees~
 Trees line the square providing shade for those that use the area.  
 ~
 E
-bird~
-A tiny bird flutters about the trees.
+flowers~
+The flowers add a splash of colors to the area.
+~
+E
+garden~
+The flowers add a splash of colors to the area.
+~
+E
+flagstone~
+The flagstones are black and in perfect repair.
 ~
 D2
 ~
@@ -2201,12 +2201,12 @@ shade on a hot day must be fabulous.
 0 0 1
 Rd     0
 E
-path~
-The road way is well cared for.  
-~
-E
 trees~
 Trees line the road, giving the place a relaxing feeling.
+~
+E
+path~
+The road way is well cared for.  
 ~
 D0
 ~
@@ -2227,12 +2227,12 @@ the end of the road affording each house with a bit of privacy.
 0 0 1
 Rd     0
 E
-sign~
-Each house has a sign over its door with the owner's name on it.
-~
-E
 tree~
 Trees line the roadway, providing some privacy for the homes.  
+~
+E
+sign~
+Each house has a sign over its door with the owner's name on it.
 ~
 D0
 ~
@@ -2263,32 +2263,32 @@ of the living area.
 0 8 0
 Rd     0
 E
-cookie~
-The cookie jar is knocked over and empty.
-~
-E
-footprints~
-Small human and dragon muddy footprints lead through the room.
-~
-E
-counter~
-The counter holds a knocked over, empty cookie jar.
-~
-E
-floor~
-Small human and dragon muddy footprints lead across the floor.  
-~
-E
-fireplace~
-A cold fireplace stands at the south end of the room.
+chairs~
+Chairs sit around a fireplace.
 ~
 E
 bed~
 The beds are clean and neat.
 ~
 E
-chairs~
-Chairs sit around a fireplace.
+fireplace~
+A cold fireplace stands at the south end of the room.
+~
+E
+floor~
+Small human and dragon muddy footprints lead across the floor.  
+~
+E
+counter~
+The counter holds a knocked over, empty cookie jar.
+~
+E
+footprints~
+Small human and dragon muddy footprints lead through the room.
+~
+E
+cookie~
+The cookie jar is knocked over and empty.
 ~
 D3
 ~
@@ -2305,11 +2305,11 @@ the customers, seeing to their every need.
 0 8 0
 Rd     0
 E
-people~
+customers~
 People sit around chewing the fat and gossiping.
 ~
 E
-customers~
+people~
 People sit around chewing the fat and gossiping.
 ~
 D3

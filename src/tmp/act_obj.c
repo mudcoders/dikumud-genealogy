@@ -47,6 +47,8 @@ void	get		args( ( CHAR_DATA *ch, char *argument,
 bool	get_obj		args( ( CHAR_DATA *ch, OBJ_DATA *obj,
 			       OBJ_DATA *container, bool palming ) );
 bool	remove_obj	args( ( CHAR_DATA *ch, int iWear, bool fReplace ) );
+OBJ_DATA  *random_object args(( int level ));
+void obj_random_apply args(( OBJ_DATA *obj, int total, char *buf ));
 void	wear_obj	args( ( CHAR_DATA *ch, OBJ_DATA *obj,
 			       bool fReplace ) );
 CD *	find_keeper	args( ( CHAR_DATA *ch ) );
@@ -1930,6 +1932,96 @@ void do_dual( CHAR_DATA *ch, char *argument )
     return;
 }
 
+void do_triple( CHAR_DATA *ch, char *argument )
+{
+    OBJ_DATA *obj;
+    char      arg [ MAX_INPUT_LENGTH ];
+    char      buf [ MAX_STRING_LENGTH ];
+    bool      fReplace;
+    int       weapon_type = 0;
+      
+    fReplace = TRUE;
+
+    one_argument( argument, arg );
+
+    if ( IS_NPC( ch ) )
+       return;
+    if ( IS_AFFECTED2( ch, AFF_RAGE ) )
+	{
+	send_to_char( AT_RED, "You are too enraged to triple wield.\n\r", ch );
+	return;
+	}
+    if ( get_eq_char( ch, WEAR_WIELD_2 ) && ( get_eq_char ( ch, WEAR_SHIELD ) 
+		||  get_eq_char( ch, WEAR_HOLD ) ) )
+    {
+      send_to_char( AT_BLUE, "You cannot triple wield while you hold something in your hands.\n\r", ch );
+      return;
+    }
+
+	if ( !get_eq_char( ch, WEAR_WIELD_2 ))
+	{
+		send_to_char( AT_BLUE, "You must be dual wielding to triple wield.\n\r", ch);
+		return;
+	}
+
+    if ( arg[0] == '\0' )
+    {
+	send_to_char(AT_BLUE, "Triple wield what?\n\r", ch );
+	return;
+    }
+    if ( !( obj = get_obj_carry( ch, arg ) ) )
+    {
+     send_to_char(AT_BLUE, "You do not have that item.\n\r", ch );
+     return;
+    }
+    if ( ch->level < obj->level )
+    {
+      send_to_char( AT_WHITE, "You are too inexperienced.\n\r", ch );
+      return;
+    }
+    if ( IS_NPC( ch ) )
+    {
+	send_to_char(AT_WHITE, "You cannot.\n\r", ch );
+	return;
+    }
+    if ( ch->race != RACE_KREEN )
+    {   
+     send_to_char( AT_WHITE, "You aren't a Kreen.\n\r", ch );
+     return;
+    }
+
+    if ( CAN_WEAR( obj, ITEM_WIELD ) )
+    { 
+      if ( !remove_obj( ch, WEAR_WIELD_3, fReplace ) )
+         return;
+
+      if ( get_obj_weight( obj ) > str_app[get_curr_str( ch )].wield )
+	{
+	    send_to_char(AT_BLUE, "It is too heavy for you to triple wield.\n\r", ch );
+	    return;
+	}
+
+/* Won't put update_skpell here since it is in fight.c */
+
+	weapon_type = obj->value[3];
+	if((strcmp(flag_string(weapon_flags,weapon_type),"none")))
+	{
+	  if ( !(class_table[prime_class(ch)].objtype[weapon_type]) )
+	  {
+	    sprintf(buf, "%s's cannot use weapons that %s.\n\r", 
+		    class_table[prime_class(ch)].who_long, 
+		    flag_string(weapon_flags,weapon_type) );
+	    send_to_char(AT_YELLOW, buf, ch );
+	    return;
+  	  }
+	}
+      act(AT_BLUE, "You triple wield $p.", ch, obj, NULL, TO_CHAR );
+      act(AT_BLUE, "$n triple wields $p.", ch, obj, NULL, TO_ROOM );
+      equip_char( ch, obj, WEAR_WIELD_3 );
+    }  
+    return;
+}
+
 void do_wear( CHAR_DATA *ch, char *argument )
 {
     OBJ_DATA *obj;
@@ -2036,7 +2128,7 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 
 	/* immortal names go here */
 	char * msgbuf[]=	{
-	"Thalador", "Angi","Sherf","Altrag","Decklarean","Reklar","Cluff","Flint" };
+	"Kjodo", "Torann","Shock","Malum","Zeriara","Rakuum","Xree","Kliq" };
 
     iname = number_range( 0 , 7 ); /* change second # if you add/delete
 				       immortal names */
@@ -5897,3 +5989,4 @@ void do_antidote( CHAR_DATA *ch, char *argument )
   update_skpell( ch, gsn_antidote );
   return;
 }
+

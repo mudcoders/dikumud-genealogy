@@ -491,12 +491,12 @@ reserved~
 0 0
 0 0 0
 E
-coal~
-A lump of coal burns eternally.
-~
-E
 lump~
 A smouldering lump of charred coal.
+~
+E
+coal~
+A lump of coal burns eternally.
 ~
 #601
 slab stone desk 666~
@@ -511,17 +511,17 @@ reserved~
 0 0
 0 0 0
 E
-stone~
-A huge part of this stone cavern is being used as a makeshift desk.
+desk~
+The desk is a huge part of the cavern made into a sort of makeshift table, or
+filing cabinet for the secretary.
 ~
 E
 slab~
 Upon the slab are many tablets piled up very high. You can't read them.
 ~
 E
-desk~
-The desk is a huge part of the cavern made into a sort of makeshift table, or
-filing cabinet for the secretary.
+stone~
+A huge part of this stone cavern is being used as a makeshift desk.
 ~
 #602
 eternal tear 666~
@@ -536,17 +536,17 @@ reserved~
 0 0
 0 0 0
 A
-4 2
+18 10
 A
 13 80
 A
-18 10
+4 2
 E
-tear~
+eternal~
 &BAn eternal tear for the damned spirit in all of us.
 ~
 E
-eternal~
+tear~
 &BAn eternal tear for the damned spirit in all of us.
 ~
 #603
@@ -562,13 +562,13 @@ reserved~
 0 0
 0 0 0
 E
+blood~
+&RThe silver chalice is stained on the inside with the colour of crimson.
+~
+E
 chalice~
 &wA beautiful silver chalice is heavy in weight, with no design on it to
 speak of.
-~
-E
-blood~
-&RThe silver chalice is stained on the inside with the colour of crimson.
 ~
 #604
 wooden club 666~
@@ -583,23 +583,17 @@ reserved~
 0 0
 0 0 0
 A
-19 140
-A
-13 75
-A
-5 1
-A
-18 100
+2 -1
 A
 1 2
 A
-2 -1
-E
-wooden~
-&OA HUGE wooden club is made of a large branch of a tree, that has been
-chipped away into a club. It is about 2 feet in length, and the diameter
-of the round tip is approximately 8 inches.
-~
+18 100
+A
+5 1
+A
+13 75
+A
+19 140
 E
 club~
 &O
@@ -607,6 +601,12 @@ The HUGE club is made from a branch or a small fallen tree. It has been
 chipped away at to be made into a club. It is a little rough around the
 edges and has little peaks here and there that look like they may help
 to cause damage.
+~
+E
+wooden~
+&OA HUGE wooden club is made of a large branch of a tree, that has been
+chipped away into a club. It is about 2 feet in length, and the diameter
+of the round tip is approximately 8 inches.
 ~
 #605
 horned blackened death helm 666~
@@ -621,17 +621,9 @@ reserved~
 0 0
 0 0 0
 E
-666~
-&wHuh?
-~
-E
-helm~
-&wA blackened horned helm of good quality. One which seems to have been used
-by a powerful knight by the insignia on the front of the helm.
-~
-E
-death~
-&wThe helm of a Death Knight.
+horned~
+&wA rounded black helm is tipped with a small horn in the middle-top of
+it, and a horn on each side of the helm as well. 
 ~
 E
 blackened~
@@ -639,9 +631,17 @@ blackened~
 is a very good quality helm, despite this.
 ~
 E
-horned~
-&wA rounded black helm is tipped with a small horn in the middle-top of
-it, and a horn on each side of the helm as well. 
+death~
+&wThe helm of a Death Knight.
+~
+E
+helm~
+&wA blackened horned helm of good quality. One which seems to have been used
+by a powerful knight by the insignia on the front of the helm.
+~
+E
+666~
+&wHuh?
 ~
 #606
 sword dancing 666~
@@ -656,16 +656,16 @@ reserved~
 0 0
 0 0 0
 E
-666~
-&wHuh?
+sword~
+&wA sword with runes etched into the cross-hilt.
 ~
 E
 dancing~
 &wA sword with runes etched into the cross-hilt.
 ~
 E
-sword~
-&wA sword with runes etched into the cross-hilt.
+666~
+&wHuh?
 ~
 #607
 pile rocks 666~
@@ -680,16 +680,16 @@ reserved~
 0 0
 0 0 0
 E
-pile~
-&bThe rock-pile reaches as high as the ceiling. You could try to climb up
-there but you'll only slip back down again.
-~
-E
 rocks~
 &bVarious sized rocks are piled up here, from the rock-slide that took you
 down to this level. You figure that you may be able to use the bigger
 boulders to support you on the climb back up, but when you try, you slip
 back down again.
+~
+E
+pile~
+&bThe rock-pile reaches as high as the ceiling. You could try to climb up
+there but you'll only slip back down again.
 ~
 #608
 pebbles few 666~
@@ -704,12 +704,12 @@ reserved~
 0 0
 0 0 0
 E
-pebbles~
-&bA few useless little pebbles have a faint warmth emanating from them.
-~
-E
 few~
 &bThree useless pebbles feel warm to the touch.
+~
+E
+pebbles~
+&bA few useless little pebbles have a faint warmth emanating from them.
 ~
 #609
 stairway rugged spiral 666~
@@ -724,8 +724,9 @@ reserved~
 0 0
 0 0 0
 E
-stairway~
-&OThe rugged stairway leads you further down into the depths.
+spiral~
+&OThe stairway spirals down in the westerly direction and curves back
+to the east further toward the bottom.
 ~
 E
 rugged~
@@ -733,9 +734,8 @@ rugged~
 a few different levels of the rock formation leading you downward.
 ~
 E
-spiral~
-&OThe stairway spirals down in the westerly direction and curves back
-to the east further toward the bottom.
+stairway~
+&OThe rugged stairway leads you further down into the depths.
 ~
 #610
 scream eternal 666~
@@ -750,15 +750,24 @@ ectoplasmic form~
 1 1
 0 0 0
 A
-18 10
-A
-19 10
-A
-5 -2
+17 -75
 A
 4 2
 A
-17 -75
+5 -2
+A
+19 10
+A
+18 10
+E
+scream~
+&BThe sound you hear from this...  Thing...  Is quite possibly the most
+horrid and most terrifying sound you have ever heard.  It's as if all the
+lost souls from everywhere -and nowhere- are invading your mind, calling out
+to you in pain.  Although it has no physical "body", you know it's there by
+the magical emanation that glows from it (which is a constantly shifting
+abstract shape) even without the aid of spells.  
+~
 E
 eternal~
 &BEven without the aid of spells to help you, you can see that
@@ -769,15 +778,6 @@ shift and myriad of abstract shapes.
 What you hear is an eternal scream of damnation, but it's not
 even a 'physical' scream... it invades your inner mind unlike
 anything you have ever come to know.
-~
-E
-scream~
-&BThe sound you hear from this...  Thing...  Is quite possibly the most
-horrid and most terrifying sound you have ever heard.  It's as if all the
-lost souls from everywhere -and nowhere- are invading your mind, calling out
-to you in pain.  Although it has no physical "body", you know it's there by
-the magical emanation that glows from it (which is a constantly shifting
-abstract shape) even without the aid of spells.  
 ~
 #611
 steel plate bracer 666~
@@ -792,23 +792,19 @@ reserved~
 0 0
 0 0 0
 A
-2 1
-A
-17 25
-A
-13 10
+14 -40
 A
 23 -5
 A
-14 -40
+13 10
+A
+17 25
+A
+2 1
 E
-666~
-&wHuh?
-~
-E
-steel~
-&wA black steel bracer plate is large in size. It is semi-tapered at one
-end seemingly made to wear on the forearm.
+bracer~
+&wThe steel bracer is black with an ovular plate atop it for added protection
+and design. Two sturdy leather straps allow for some adjustment.
 ~
 E
 plate~
@@ -819,9 +815,13 @@ more protection along with some design. The ovular plate is framed with a
 corregated edge.
 ~
 E
-bracer~
-&wThe steel bracer is black with an ovular plate atop it for added protection
-and design. Two sturdy leather straps allow for some adjustment.
+steel~
+&wA black steel bracer plate is large in size. It is semi-tapered at one
+end seemingly made to wear on the forearm.
+~
+E
+666~
+&wHuh?
 ~
 #612
 copper necklace 666~
@@ -836,19 +836,14 @@ reserved~
 0 0
 0 0 0
 A
-23 -4
-A
 24 -4
+A
+23 -4
 E
-666~
-&wHuh?
-~
-E
-copper~
-&OA finely crafted copper necklace is about a quarter inch in diameter. Thin
-strands of copper have been braided tightly to make a delicate charm. The
-necklace is about 4 feet in length if you were to unloop it. You may have to
-string it around your neck a couple times for a proper fit.
+pendant~
+&YThe pendant is large and triangular in shape. You can see that it use to
+be white, but has yellowed with age. Looking carefully, you notice that it
+is a large tooth... probably someone's trophy.
 ~
 E
 necklace~
@@ -858,10 +853,15 @@ necklace is about 4 feet in length if you were to unloop it. You may have to
 string it around your neck a couple of times for a proper fit.
 ~
 E
-pendant~
-&YThe pendant is large and triangular in shape. You can see that it use to
-be white, but has yellowed with age. Looking carefully, you notice that it
-is a large tooth... probably someone's trophy.
+copper~
+&OA finely crafted copper necklace is about a quarter inch in diameter. Thin
+strands of copper have been braided tightly to make a delicate charm. The
+necklace is about 4 feet in length if you were to unloop it. You may have to
+string it around your neck a couple times for a proper fit.
+~
+E
+666~
+&wHuh?
 ~
 #0
 
@@ -898,9 +898,32 @@ usage become part of the foundation itself.
 0 134619160 0
 Rd     0
 E
-down~
-&wThe ground seems to be pretty solid, but you can feel a slight tremor
-every now and then.
+gate~
+Two very large and heavy doors make a gate here. You try to peer through
+them but you cannot see anything beyond.
+ 
+Examining the gate carefully, you know that you have never seen a material
+such as this before. Just by lookig at it you can see that it is quite
+indestructable. A hot breeze rises up from the small crack beneath them
+making you uncomfortably warm.
+~
+E
+up~
+&zBlack as pitch.
+~
+E
+east~
+&wA wall of jagged rock stretches up as far as the eye can see. A glint
+in the wall leads you to examine it and you find a small piece of a blade
+embedded there.
+~
+E
+west~
+&wA wall of jagged rock stretches up as far as the eye can see.
+~
+E
+south~
+&wA jagged wall of rock blocks your passage here.
 ~
 E
 gates~
@@ -913,32 +936,9 @@ indestructable. A hot breeze rises up from the small crack beneath them
 making you uncomfortably warm.
 ~
 E
-south~
-&wA jagged wall of rock blocks your passage here.
-~
-E
-west~
-&wA wall of jagged rock stretches up as far as the eye can see.
-~
-E
-east~
-&wA wall of jagged rock stretches up as far as the eye can see. A glint
-in the wall leads you to examine it and you find a small piece of a blade
-embedded there.
-~
-E
-up~
-&zBlack as pitch.
-~
-E
-gate~
-Two very large and heavy doors make a gate here. You try to peer through
-them but you cannot see anything beyond.
- 
-Examining the gate carefully, you know that you have never seen a material
-such as this before. Just by lookig at it you can see that it is quite
-indestructable. A hot breeze rises up from the small crack beneath them
-making you uncomfortably warm.
+down~
+&wThe ground seems to be pretty solid, but you can feel a slight tremor
+every now and then.
 ~
 D0
 &wTwo very large and heavy doors make a gate here. You try to peer through
@@ -960,25 +960,9 @@ exit somewhere else in this God Forsaken place.
 0 134619160 0
 Rd     0
 E
-north~
-&wYour path continues to the north here taking you out onto a stone bridge
-of some sort.
-~
-E
-down~
-&wThe ground here seems sturdy enough except for the occasional tremor.
-~
-E
-up~
-&zBlack as pitch.
-~
-E
-east~
-&wEast takes you on a path where you can look down into the Heart of Hell.
-~
-E
-west~
-&wWest takes you on a path where you can look down into the Heart of Hell.
+south~
+&wYou look to see where the gates once were is now just a rugged wall of
+rock. Examining it closer, you can feel a cooler breeze at your feet.
 ~
 E
 gates~
@@ -989,9 +973,25 @@ is where you entered from.
 You can attempt to pry open the gates, but to no avail.
 ~
 E
-south~
-&wYou look to see where the gates once were is now just a rugged wall of
-rock. Examining it closer, you can feel a cooler breeze at your feet.
+west~
+&wWest takes you on a path where you can look down into the Heart of Hell.
+~
+E
+east~
+&wEast takes you on a path where you can look down into the Heart of Hell.
+~
+E
+up~
+&zBlack as pitch.
+~
+E
+down~
+&wThe ground here seems sturdy enough except for the occasional tremor.
+~
+E
+north~
+&wYour path continues to the north here taking you out onto a stone bridge
+of some sort.
 ~
 D0
 ~
@@ -1021,23 +1021,9 @@ that you must continue on.
 0 134619160 0
 Rd     0
 E
-down~
-&wThe ground here seems to be sturdy enough, save the tremor that you can
-feel now and then.
-~
-E
-up~
-&zBlack as pitch.
-~
-E
-east~
-&wEast is the only path you can take from here without falling to your
-doom.
-~
-E
-south~
-&wTo the south is a jagged rock which reaches up as far as the eye can see.
-There is no imaginable escape from the planes known as Hell.
+north~
+&wTo your north and far down beyond your capabilities is a pit of molten
+lava which burns like the Heart of Hell.
 ~
 E
 west~
@@ -1045,9 +1031,23 @@ To your west and far beyond your capabilities is a pit of molten lava which
 burns like the Heart of Hell.
 ~
 E
-north~
-&wTo your north and far down beyond your capabilities is a pit of molten
-lava which burns like the Heart of Hell.
+south~
+&wTo the south is a jagged rock which reaches up as far as the eye can see.
+There is no imaginable escape from the planes known as Hell.
+~
+E
+east~
+&wEast is the only path you can take from here without falling to your
+doom.
+~
+E
+up~
+&zBlack as pitch.
+~
+E
+down~
+&wThe ground here seems to be sturdy enough, save the tremor that you can
+feel now and then.
 ~
 D1
 ~
@@ -1075,18 +1075,9 @@ before your eyes.
 0 134619160 0
 Rd     0
 E
-west~
-&wYour only choice in path is to the west, which takes you towards the
-centre of it all.
-~
-E
-south~
-&wA jagged wall stretches up for as far as the eye can see. Even the most
-skilled or magical creature could not dream to venture there.
-~
-E
-up~
-&zBlack as pitch.
+north~
+&wDown and to the north lies a pit of molten lava. So far down is it, but
+its heat still rises here to bite at you.
 ~
 E
 east~
@@ -1094,9 +1085,18 @@ east~
 molten lava so hot that it scorches you from where you stand now.
 ~
 E
-north~
-&wDown and to the north lies a pit of molten lava. So far down is it, but
-its heat still rises here to bite at you.
+up~
+&zBlack as pitch.
+~
+E
+south~
+&wA jagged wall stretches up for as far as the eye can see. Even the most
+skilled or magical creature could not dream to venture there.
+~
+E
+west~
+&wYour only choice in path is to the west, which takes you towards the
+centre of it all.
 ~
 D3
 ~
@@ -1117,18 +1117,8 @@ You trudge on for some glimpse of hope... somewhere.
 0 134619160 0
 Rd     0
 E
-south~
-&wGoing south will have you heading back to the gates from which you came.
-~
-E
-west~
-&wWest and down you can see the faraway lava bubbling and gurgling like
-the Heart of Hell.
-~
-E
-east~
-&wDown and east from here is the Heart of Hell. Molten lava spurts up every
-so often... even from far, far below.
+up~
+&zBlack as pitch.
 ~
 E
 down~
@@ -1137,8 +1127,18 @@ around you now, looms the heat from the lava pit below. Even if you were
 to fly about this place, you would die of exhaustion trying.
 ~
 E
-up~
-&zBlack as pitch.
+east~
+&wDown and east from here is the Heart of Hell. Molten lava spurts up every
+so often... even from far, far below.
+~
+E
+west~
+&wWest and down you can see the faraway lava bubbling and gurgling like
+the Heart of Hell.
+~
+E
+south~
+&wGoing south will have you heading back to the gates from which you came.
 ~
 D0
 ~
@@ -1163,19 +1163,8 @@ maybe you'll bump into something... or someone that can help you find your way.
 0 134619160 0
 Rd     0
 E
-north~
-&wTo the north, you can hear what seems like voices... although it could
-be your own mind playing tricks on you.
-~
-E
-south~
-&wSouth will take you back towards the gates from which you came to know
-this place.
-~
-E
-east west~
-&wOut and down from the mist, you can vaguely see the glow of the molten
-lava below. Far out from the reaches of mankind.
+up~
+&zBlack as pitch.
 ~
 E
 down~
@@ -1184,8 +1173,19 @@ is not. Who would cross a bridge of this kind? Surely not anyone of sane
 mentality.
 ~
 E
-up~
-&zBlack as pitch.
+east west~
+&wOut and down from the mist, you can vaguely see the glow of the molten
+lava below. Far out from the reaches of mankind.
+~
+E
+south~
+&wSouth will take you back towards the gates from which you came to know
+this place.
+~
+E
+north~
+&wTo the north, you can hear what seems like voices... although it could
+be your own mind playing tricks on you.
 ~
 D0
 ~
@@ -1210,13 +1210,8 @@ from what you can see ahead, to the north a little ways.
 0 134619164 0
 Rd     0
 E
-east west~
-&wOut and down from here glow the lava pits, and the Heart of Hell.
-~
-E
-south~
-&wThe south will take you back to the gates from where you entered this
-plane.
+up~
+&zBlack as pitch.
 ~
 E
 down~
@@ -1224,8 +1219,13 @@ The floor here is almost non-existant, it would seem, as the mist from the
 south continues to linger here.
 ~
 E
-up~
-&zBlack as pitch.
+south~
+&wThe south will take you back to the gates from where you entered this
+plane.
+~
+E
+east west~
+&wOut and down from here glow the lava pits, and the Heart of Hell.
 ~
 D0
 A large door of stone stands here to the north.
@@ -1247,9 +1247,12 @@ All throughout the area you can hear the nipping flames of an eternal fire.
 0 168173592 0
 Rd     0
 E
-south~
-&wThe checkpoint that you left behind has disappeared. A wall of rock is in
-it's place now. You perceive no way of getting out in that direction.
+papers~
+A few burned up parchments line the walls here. They are completely illegible.
+~
+E
+up~
+&zBlack as pitch.
 ~
 E
 north west east~
@@ -1257,12 +1260,9 @@ north west east~
 rock.
 ~
 E
-up~
-&zBlack as pitch.
-~
-E
-papers~
-A few burned up parchments line the walls here. They are completely illegible.
+south~
+&wThe checkpoint that you left behind has disappeared. A wall of rock is in
+it's place now. You perceive no way of getting out in that direction.
 ~
 D5
 ~
@@ -1635,13 +1635,13 @@ though you are looking through tinted glass.
 0 134619160 0
 Rd     0
 E
-north~
-&RLooking toward the north, all you can see is a bright orange light.
-~
-E
 light~
 &RIn the north direction, a bright orange light sends its echo throughout
 this cavern.
+~
+E
+north~
+&RLooking toward the north, all you can see is a bright orange light.
 ~
 D0
 ~

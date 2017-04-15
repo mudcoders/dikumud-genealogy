@@ -413,9 +413,9 @@ Although he may not be as poor as he likes people to believe...
 look $n
 say Ahhhhh a traveller....Welcome
 say I will take you across the river for a small fee of....
-say 200,000 gold.. As far as I know I am the only way...
+say 1000 gold.. As far as I know I am the only way...
 ~
->bribe_prog 200000~
+>bribe_prog 1000~
 say Ahhh I can afford to buy some new clothes for my family..
 say You will need this as I only make one way trips...
 mpoload 30599
@@ -744,8 +744,8 @@ Stone potion~
 a stone potion~
 A stone potion lies here~
 ~
-10 268435456 0 0 1 100
-0~ sanctuary~ fireshield~ reserved~
+10 268435456 0 0 1 40
+100~ hallucinate~ hallucinate~ hallucinate~
 10 0 0 0 0
 0 0
 reserved~
@@ -1938,6 +1938,10 @@ A Dark Room~
 ~
 0 131081 0
 Rd     0
+D0
+~
+~
+0 0 10802
 D2
 ~
 ~

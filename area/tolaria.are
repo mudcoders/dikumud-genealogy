@@ -1424,20 +1424,20 @@ reserved~
 0 0
 0 0 0
 A
-17 -75
-A
-1 3
+13 80
 A
 3 -1
 A
-13 80
-E
-armguards~
-This larg chunk of gold has been shaped into armguards.
-~
+1 3
+A
+17 -75
 E
 golden~
 These armguards are made of some of the finest gold around. It sparkles and looks quite Valuable.
+~
+E
+armguards~
+This larg chunk of gold has been shaped into armguards.
 ~
 #9104
 gloves~
@@ -1452,13 +1452,13 @@ reserved~
 0 0
 0 0 0
 A
-13 25
-A
-12 80
+26 8
 A
 17 -80
 A
-26 8
+12 80
+A
+13 25
 E
 gloves~
 A pair of simple chain mail gloves. They Look fairly good at keeping your weapon in your hand.
@@ -1476,15 +1476,15 @@ reserved~
 0 0
 0 0 0
 A
-1 3
-A
-14 -50
-A
-12 80
+13 81
 A
 25 27
 A
-13 81
+12 80
+A
+14 -50
+A
+1 3
 E
 necklace~
 Its Made out of bones and iron. A heavy little thing.
@@ -1502,22 +1502,22 @@ sanctuary~
 5 5
 0 0 0
 A
-13 82
-A
-12 82
-A
-14 -80
+4 3
 A
 25 27
 A
-4 3
-E
-diamond~
-These Earrings made out of Diamonds! Surely for only the richest members of society.
-~
+14 -80
+A
+12 82
+A
+13 82
 E
 earrings~
 Small clips with a Jewel on it. Wonder which jewel?
+~
+E
+diamond~
+These Earrings made out of Diamonds! Surely for only the richest members of society.
 ~
 #9107
 diamond bracelet~
@@ -1532,22 +1532,22 @@ sanctuary~
 5 5
 0 0 0
 A
-4 1
-A
-1 -1
-A
-3 1
+13 -20
 A
 12 82
 A
-13 -20
-E
-diamond~
-This bracelet is made out of Diamonds! Surely for only the richest members of society.
-~
+3 1
+A
+1 -1
+A
+4 1
 E
 bracelet~
 Small ring of iron with a Jewel on it. Wonder which jewel?
+~
+E
+diamond~
+This bracelet is made out of Diamonds! Surely for only the richest members of society.
 ~
 #9108
 gold coin~
@@ -1562,22 +1562,22 @@ protection evil~
 10 10
 0 0 0
 A
-25 24
-A
-1 3
-A
-17 -50
+12 85
 A
 13 85
 A
-12 85
-E
-coin~
-Round flat yellowish piece of metal. It looks lonely. Get more.
-~
+17 -50
+A
+1 3
+A
+25 24
 E
 gold~
 If this gold coin had many more brothers it might mean something.
+~
+E
+coin~
+Round flat yellowish piece of metal. It looks lonely. Get more.
 ~
 #9109
 tower shield~
@@ -1592,20 +1592,20 @@ reserved~
 0 0
 0 0 0
 A
-1 2
-A
-3 -1
+17 -80
 A
 13 80
 A
-17 -80
-E
-tower~
-This shield looks exactly like it were a tower of ivory.
-~
+3 -1
+A
+1 2
 E
 shield~
 This is a large protective shield. Looks as if made of small ivory blocks and shaped into a form of a tower.
+~
+E
+tower~
+This shield looks exactly like it were a tower of ivory.
 ~
 #9110
 platinum gauntlets~
@@ -1620,22 +1620,22 @@ reserved~
 0 0
 0 0 0
 A
-14 85
-A
-25 23
-A
-3 3
+13 85
 A
 12 85
 A
-13 85
-E
-platinum~
-Solid shiny platinum. Very strong. But fairly heavy.
-~
+3 3
+A
+25 23
+A
+14 85
 E
 gauntlets~
 This piece of platinum has been shaped into a pair of fieldplate gauntlets.
+~
+E
+platinum~
+Solid shiny platinum. Very strong. But fairly heavy.
 ~
 #9111
 warhammer~
@@ -1650,11 +1650,11 @@ reserved~
 0 0
 0 0 0
 A
-13 80
+18 112
 A
 19 144
 A
-18 112
+13 80
 E
 warhammer~
 A large black obsidian hammer of war. Looks like it could crush through a skull like a hot knife through butter.
@@ -1672,22 +1672,22 @@ reserved~
 0 0
 0 0 0
 A
-25 28
-A
-12 85
-A
-13 -50
+18 128
 A
 19 85
 A
-18 128
-E
-push~
-Unlike most daggers this is not one to be held its handle is designed for pushing into its enemies backs.
-~
+13 -50
+A
+12 85
+A
+25 28
 E
 dagger~
 This small handled blade is quite a dangerous dagger.
+~
+E
+push~
+Unlike most daggers this is not one to be held its handle is designed for pushing into its enemies backs.
 ~
 #9113
 chicken wings~
@@ -1702,12 +1702,12 @@ reserved~
 0 0
 0 0 0
 E
-chicken~
-Yes. A simple wing from a chicken.
-~
-E
 wing~
 This is a wing off some kind of bird.
+~
+E
+chicken~
+Yes. A simple wing from a chicken.
 ~
 #9114
 pasta~
@@ -1738,12 +1738,12 @@ reserved~
 0 0
 0 0 0
 E
-beef~
-Large chucks of beef float in this bowl of dark suace.
-~
-E
 stew~
 A large bowl of thick stew with beef in it.
+~
+E
+beef~
+Large chucks of beef float in this bowl of dark suace.
 ~
 #9116
 glass water~
@@ -1758,12 +1758,12 @@ reserved~
 0 0
 0 0 0
 E
-glass~
-A round glass. WIth a clear liquid in it.
-~
-E
 water~
 That clear stuff thats inside this glass.
+~
+E
+glass~
+A round glass. WIth a clear liquid in it.
 ~
 #9117
 mug ale~
@@ -1778,12 +1778,12 @@ reserved~
 0 0
 0 0 0
 E
-mug~
-This thick cup is more like a beer mug than anything else.
-~
-E
 ale~
 Dark calored ale floats in this mug.
+~
+E
+mug~
+This thick cup is more like a beer mug than anything else.
 ~
 #9118
 pitcher beer~
@@ -1798,12 +1798,12 @@ reserved~
 0 0
 0 0 0
 E
-pitcher~
-A large pitcher with Beer in it.
-~
-E
 beer~
 A dark liquid of  beer floats in this Half gallon pitcher,
+~
+E
+pitcher~
+A large pitcher with Beer in it.
 ~
 #9119
 potted plant~
@@ -1862,12 +1862,12 @@ reserved~
 0 0
 0 0 0
 E
-potion~
-A small flask full of a purple liquid.
-~
-E
 speed~
 This is a potion speed. Drink it and you shall move fast.
+~
+E
+potion~
+A small flask full of a purple liquid.
 ~
 #9124
 potion might~
@@ -1882,12 +1882,12 @@ reserved~
 0 0
 0 0 0
 E
-might~
-This is the potion of giants. It will make you strong. But it tastes teribly.
-~
-E
 potion~
 This is a small flask full of a green liguid.
+~
+E
+might~
+This is the potion of giants. It will make you strong. But it tastes teribly.
 ~
 #9125
 potion avoidance~
@@ -1902,12 +1902,12 @@ reserved~
 0 0
 0 0 0
 E
-avoidance~
-This is the potion of avoidance. With this you can avoid the rigors of combat.
-~
-E
 potion~
 This is a flask full of a orange liquid. Smells like socks.
+~
+E
+avoidance~
+This is the potion of avoidance. With this you can avoid the rigors of combat.
 ~
 #9126
 potion visions~
@@ -1922,12 +1922,12 @@ reserved~
 0 0
 0 0 0
 E
-potion~
-Thi is a flask full of a black liquid. Smells like horse manure.
-~
-E
 visions~
 This potion is so potent it will cause you to see almost everything.
+~
+E
+potion~
+Thi is a flask full of a black liquid. Smells like horse manure.
 ~
 #9127
 scroll reincarnation~
@@ -1942,12 +1942,12 @@ reserved~
 0 0
 0 0 0
 E
-scroll~
-A small piece of paper with runic writtings on it.
-~
-E
 reincarnation~
 This scroll will raise the dead. But the dead often suffer from Crankiness, sore joints, and bad breath.
+~
+E
+scroll~
+A small piece of paper with runic writtings on it.
 ~
 #9128
 scroll illusions~
@@ -1962,12 +1962,12 @@ reserved~
 0 0
 0 0 0
 E
-illusions~
-Recite this and your illusions of granduer will come true.
-~
-E
 scroll~
 A piece of paper with the spell of illusions upon it.
+~
+E
+illusions~
+Recite this and your illusions of granduer will come true.
 ~
 #9129
 mug everful tolaria~
@@ -2030,20 +2030,20 @@ reserved~
 0 0
 0 0 0
 A
-17 -20
-A
-18 5
+2 2
 A
 19 5
 A
-2 2
-E
-wire~
-This anklet is made of a thin piece of silver wire.
-~
+18 5
+A
+17 -20
 E
 anklet~
 A small loop of silver wire.
+~
+E
+wire~
+This anklet is made of a thin piece of silver wire.
 ~
 #9133
 shirt~
@@ -2058,9 +2058,9 @@ reserved~
 0 0
 0 0 0
 A
-18 10
-A
 19 25
+A
+18 10
 E
 shirt~
 A shirt with the crest of Tolaria.
@@ -2097,9 +2097,9 @@ reserved~
 0 0
 0 0 0
 A
-19 8
-A
 18 8
+A
+19 8
 E
 pants~
 Simple leather Tolarian Pants.
@@ -2117,11 +2117,11 @@ reserved~
 0 0
 0 0 0
 A
-13 20
+2 3
 A
 14 80
 A
-2 3
+13 20
 E
 boots ~
 Simple leather Tolarian Boots.
@@ -2139,13 +2139,13 @@ reserved~
 0 0
 0 0 0
 A
-18 20
-A
-19 20
+12 20
 A
 13 20
 A
-12 20
+19 20
+A
+18 20
 E
 sword~
 A long iron Tolarian sword. Looks quite Deadly.
@@ -2163,13 +2163,13 @@ reserved~
 0 0
 0 0 0
 A
-18 35
-A
-19 15
+13 20
 A
 12 20
 A
-13 20
+19 15
+A
+18 35
 E
 dagger~
 A long slim dagger of cold steel.
@@ -2187,13 +2187,13 @@ fireball~
 5 5
 0 0 0
 A
-18 20
-A
-19 15
+12 80
 A
 13 50
 A
-12 80
+19 15
+A
+18 20
 E
 staff~
 A long staff of wood. It is the staff of fire.
@@ -2211,12 +2211,12 @@ reserved~
 0 0
 0 0 0
 E
-wand~
-A Small wand of flame made by the mages of Tolaria.
-~
-E
 flame~
 This wand burns slightly.
+~
+E
+wand~
+A Small wand of flame made by the mages of Tolaria.
 ~
 #9140
 glass~
@@ -2295,17 +2295,17 @@ reserved~
 0 0
 9147 9149 9150
 A
-12 100
-A
-23 -7
-A
-24 -7
-A
-13 100
+1 3
 A
 2 3
 A
-1 3
+13 100
+A
+24 -7
+A
+23 -7
+A
+12 100
 E
 orb~
 It seems to be broken.
@@ -2323,9 +2323,9 @@ reserved~
 0 0
 9147 0 0
 A
-19 5
-A
 13 30
+A
+19 5
 E
 claw~
 A paw from some animal. It looks like the hand came along.
@@ -2355,17 +2355,17 @@ chaos field~
 12 12
 0 0 0
 A
-17 -40
-A
-24 -10
-A
-23 -10
-A
-13 75
+19 15
 A
 18 8
 A
-19 15
+13 75
+A
+23 -10
+A
+24 -10
+A
+17 -40
 E
 orb~
 An orb of complete and utter chaos floats here.
@@ -2383,9 +2383,9 @@ reserved~
 0 0
 0 0 0
 A
-19 5
-A
 13 10
+A
+19 5
 E
 necklace~
 A necklace made of solid gold.
@@ -2420,12 +2420,12 @@ reserved~
 9144 9141 9142
 E
 glass~
-A strange piece of glass doesn't look quite right. It's missing something.
-But what?
+It is a blue and green piece of glass.
 ~
 E
 glass~
-It is a blue and green piece of glass.
+A strange piece of glass doesn't look quite right. It's missing something.
+But what?
 ~
 #9151
 shard glass~
@@ -2440,15 +2440,15 @@ reserved~
 0 0
 0 0 0
 A
-18 190
-A
-19 190
-A
-26 -100
+24 -40
 A
 23 -25
 A
-24 -40
+26 -100
+A
+19 190
+A
+18 190
 E
 shard glass ~
 A long shard of glass is very sharp, be careful with it.
@@ -2466,25 +2466,25 @@ reserved~
 0 0
 0 0 0
 A
-18 280
-A
-19 280
-A
-23 -45
+26 -140
 A
 24 -90
 A
-26 -140
+23 -45
+A
+19 280
+A
+18 280
 E
 shard glass~
 A long shard of glass is very sharp. Be careful.
 ~
 #9153
 shard glass~
-&ca &Cshard &cof &Cglass&X~
+&ca &Cshard &cof &Cglass&R~
 &BA long shard of glass lies here.~
 ~
-5 268460288 0 0 8193 107
+5 268460288 0 0 8193 100
 0~ 0~ 0~ 11~
 1 0 0 0 0
 0 0
@@ -2492,15 +2492,15 @@ reserved~
 0 0
 0 0 0
 A
-23 -55
-A
-24 -120
-A
-26 -210
+19 350
 A
 18 350
 A
-19 350
+26 -210
+A
+24 -120
+A
+23 -55
 E
 shard glass~
 A plain shard of glass. It is quite sharp, so be careful.
@@ -2518,21 +2518,21 @@ reserved~
 0 0
 0 0 0
 A
-23 -35
-A
-24 -80
+19 25
 A
 18 20
 A
-19 25
-E
-plane glass mirror~
-A small piece of a mirror has a strange aura about it.
-~
+24 -80
+A
+23 -35
 E
 reflected image~
 &BYour image is reflected back at you, only it doesn't look like you. It is
 warped in some way.
+~
+E
+plane glass mirror~
+A small piece of a mirror has a strange aura about it.
 ~
 #9155
 ladder wooden~
@@ -2579,14 +2579,14 @@ reserved~
 0 0
 0 0 0
 E
-thief-potion~
-The shadow's elixir, known as the thief-potion, is very rare in these
-parts of the realm. They are known to have curing affects.
-~
-E
 shadow elixir~
 A shadow's elixir emanates a dreary aura. It is green in color, but it
 makes you feel black and dark.
+~
+E
+thief-potion~
+The shadow's elixir, known as the thief-potion, is very rare in these
+parts of the realm. They are known to have curing affects.
 ~
 #9158
 dark mushroom~
@@ -2607,7 +2607,7 @@ you might see growing on the sides of trees. It is greyish in color.
 ~
 #9159
 Metal necklace~
-&Ya &Cmetal&Y necklace&X~
+&Ya &Cmetal&Y necklace&G~
 &YA &Cmetal&Y necklace is lying here collecting dust.~
 ~
 9 7169 0 0 5 85
@@ -2637,13 +2637,13 @@ reserved~
 0 0
 0 0 0
 A
-13 50
-A
-17 -90
+23 -5
 A
 24 -5
 A
-23 -5
+17 -90
+A
+13 50
 E
 diamond necklace~
 &WA diamond necklace is so beautifully crafted, that the very small size of

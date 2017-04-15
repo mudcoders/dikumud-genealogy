@@ -273,9 +273,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -30
-A
 5 1
+A
+17 -30
 #7701
 boots alligator skin hide~
 alligator skin boots~
@@ -289,9 +289,9 @@ reserved~
 0 0
 0 0 0
 A
-12 20
-A
 110 -1
+A
+12 20
 #7702
 sphere glowing blue~
 a glowing &Bblue sphere~
@@ -305,9 +305,9 @@ fly~
 25 25
 0 0 0
 A
-13 20
-A
 4 1
+A
+13 20
 #7703
 axe hand hand-axe~
 a hand axe~
@@ -321,9 +321,9 @@ reserved~
 0 0
 0 0 0
 A
-18 25
-A
 19 25
+A
+18 25
 #7704
 anklets amber~
 &Oamber anklets~
@@ -337,9 +337,9 @@ shield~
 5 5
 0 0 0
 A
-2 1
-A
 17 -35
+A
+2 1
 #7705
 talon black~
 a &zblack talon~
@@ -353,11 +353,11 @@ reserved~
 0 0
 0 0 0
 A
-19 15
+18 65
 A
 26 10
 A
-18 65
+19 15
 #7706
 shield amber~
 an &Oamber shield~
@@ -371,9 +371,9 @@ fireshield~
 3 3
 0 0 0
 A
-5 2
-A
 13 30
+A
+5 2
 E
 shield~
 This shield has been beautifully crafted from the purest amber by
@@ -425,16 +425,16 @@ reserved~
 0 0
 0 0 0
 E
-toadstool~
-These poisonous mushrooms are rare in most areas of the world, but they
-seem to have found a way to grow and get into your posession.  Potion shops
-would probably pay handsomely for this specimen.  
-~
-E
 mushroom~
 These poisonous mushrooms are rare in most areas of the world, but they
 seem to have found a way to grow and get into your posession.  Potion shops
 would probably pay handsomely for this specimen.
+~
+E
+toadstool~
+These poisonous mushrooms are rare in most areas of the world, but they
+seem to have found a way to grow and get into your posession.  Potion shops
+would probably pay handsomely for this specimen.  
 ~
 #7710
 skeleton skeletal remains~
@@ -449,10 +449,10 @@ reserved~
 0 0
 0 0 0
 E
-skeleton~
+remains~
 You look closely at the skeletal remains but can't quite make out what it
 once was.  Perhaps it was a dragon at one point in time, but you don't think
-you're going to have any luck identifying it.  
+you're going to have any luck identifying it.
 ~
 E
 skeletal~
@@ -461,10 +461,10 @@ once was.  Perhaps it was a dragon at one point in time, but you don't think
 you're going to have any luck identifying it.
 ~
 E
-remains~
+skeleton~
 You look closely at the skeletal remains but can't quite make out what it
 once was.  Perhaps it was a dragon at one point in time, but you don't think
-you're going to have any luck identifying it.
+you're going to have any luck identifying it.  
 ~
 #7711
 skeleton skeletal remains~
@@ -479,11 +479,11 @@ reserved~
 0 0
 0 0 0
 E
-skeleton~
+remains~
 You find yourself studying the back end of a huge skeleton.  It may have
 been a dragon at one point in time, but it's not like any dragon you've seen
 before.  Time probably would have worn it away by now but the swamps seem to
-have preserved it with only the moss and muck disguising its form.  
+have preserved it with only the moss and muck disguising its form.
 ~
 E
 skeletal~
@@ -493,11 +493,11 @@ before.  Time probably would have worn it away by now but the swamps seem to
 have preserved it with only the moss and muck disguising its form.
 ~
 E
-remains~
+skeleton~
 You find yourself studying the back end of a huge skeleton.  It may have
 been a dragon at one point in time, but it's not like any dragon you've seen
 before.  Time probably would have worn it away by now but the swamps seem to
-have preserved it with only the moss and muck disguising its form.
+have preserved it with only the moss and muck disguising its form.  
 ~
 #7712
 horse carcass remains corpse~
@@ -512,14 +512,7 @@ reserved~
 0 0
 0 0 0
 E
-carcass~
-Your breath catches in your throat and you try to keep from gagging as
-the stench from the corpse pervades the area.  Scavengers have long since
-taken what they wanted and now only the maggots crawling all about in the
-corpse have claim to this once proud beast.  
-~
-E
-horse~
+corpse~
 Your breath catches in your throat and you try to keep from gagging as
 the stench from the corpse pervades the area.  Scavengers have long since
 taken what they wanted and now only the maggots crawling all about in the
@@ -533,11 +526,18 @@ taken what they wanted and now only the maggots crawling all about in the
 corpse have claim to this once proud beast.
 ~
 E
-corpse~
+horse~
 Your breath catches in your throat and you try to keep from gagging as
 the stench from the corpse pervades the area.  Scavengers have long since
 taken what they wanted and now only the maggots crawling all about in the
 corpse have claim to this once proud beast.
+~
+E
+carcass~
+Your breath catches in your throat and you try to keep from gagging as
+the stench from the corpse pervades the area.  Scavengers have long since
+taken what they wanted and now only the maggots crawling all about in the
+corpse have claim to this once proud beast.  
 ~
 #7713
 rat tail~
@@ -580,9 +580,9 @@ reserved~
 0 0
 0 0 0
 A
-17 -40
-A
 102 -1
+A
+17 -40
 #7716
 bronze necklace~
 &OA bronze necklace~
@@ -596,9 +596,9 @@ fireball~
 10 10
 0 0 0
 A
-17 -35
-A
 13 35
+A
+17 -35
 #0
 
 

@@ -217,18 +217,13 @@ chi shield~
 5 5
 0 0 0
 A
-17 -50
-A
-12 100
+19 10
 A
 18 9
 A
-19 10
-E
-amulet~
-The amulet consists of a hand trying to clutch something, but it
-seems the item is missing.
-~
+12 100
+A
+17 -50
 E
 colors~
 &.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
@@ -241,6 +236,11 @@ colors~
 &.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
 &.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
 &.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O&.O
+~
+E
+amulet~
+The amulet consists of a hand trying to clutch something, but it
+seems the item is missing.
 ~
 #26203
 robes simple white~
@@ -255,11 +255,11 @@ reserved~
 0 0
 0 0 0
 A
-17 -50
+18 20
 A
 19 30
 A
-18 20
+17 -50
 #26204
 silver chamber key sensei~
 the key to The Sensei's Chambers~

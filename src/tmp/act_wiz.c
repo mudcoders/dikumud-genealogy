@@ -31,6 +31,7 @@
 #include "merc.h"
 /* local functions */
 void ban	args( ( CHAR_DATA *ch, char *argument, char ban_type ) );
+bool dxp;
 
 /* Conversion of Immortal powers to Immortal skills done by Thelonius */
 
@@ -105,6 +106,49 @@ void do_changes( CHAR_DATA *ch, char *argument )
 
   fclose (fp);
 
+}
+
+extern bool doubleexp() {
+	return dxp;
+}
+
+void do_doubleexp( CHAR_DATA *ch, char *argument ) {
+	if ( !str_cmp(argument, "off") ) {
+		dxp = FALSE;
+		send_to_all_char("&BYou sigh as you feel your learning rate return to normal.\n\r");
+		return;
+	}
+	else
+	if ( !str_cmp(argument, "on") ) {
+		dxp = TRUE;
+		send_to_all_char("&BYou feel yourself gaining experience much quicker.\n\r");
+		return;
+	}
+	else {
+		send_to_char( AT_WHITE, "Valid options are on or off\n\r", ch );
+		return;
+	}
+}
+
+void do_shieldify ( CHAR_DATA *ch, char *argument ) {
+	if ( get_trust( ch ) < L_CON ) {
+		send_to_char( C_DEFAULT, "Huh?\n\r", ch );
+		return;
+	}
+	SET_BIT( ch->affected_by, AFF_HASTE );
+	SET_BIT( ch->affected_by, AFF_SANCTUARY );
+	SET_BIT( ch->affected_by, AFF_INFRARED );
+	SET_BIT( ch->affected_by, AFF_VIBRATING );
+	SET_BIT( ch->affected_by, AFF_PASS_DOOR );
+	SET_BIT( ch->affected_by, AFF_FIRESHIELD );
+	SET_BIT( ch->affected_by, AFF_ICESHIELD );
+	SET_BIT( ch->affected_by, AFF_SHOCKSHIELD );
+	SET_BIT( ch->affected_by, AFF_CHAOS );
+	SET_BIT( ch->affected_by, AFF_SCRY );
+	SET_BIT( ch->affected_by2, AFF_BLADE );
+	SET_BIT( ch->affected_by2, AFF_GOLDEN );
+	send_to_char( C_DEFAULT, "You call forth many shields to surround you!\n\r", ch );
+	return;
 }
 
 void do_empower(CHAR_DATA *ch, char *argument)
@@ -912,7 +956,7 @@ void do_pardon( CHAR_DATA *ch, char *argument )
     if ( arg1[0] == '\0' || arg2[0] == '\0' )
     {
 	send_to_char(AT_BLUE, 
-             "Syntax: pardon <character> <killer|thief|outcast>.\n\r", ch );
+             "Syntax: pardon <character> <killer|thief|outcast|pkiller>.\n\r", ch );
 	return;
     }
 
@@ -936,6 +980,19 @@ void do_pardon( CHAR_DATA *ch, char *argument )
 	    send_to_char(AT_BLUE, "Killer flag removed.\n\r",        ch     );
 	    send_to_char(AT_BLUE, "You are no longer a KILLER.\n\r", victim );
 	    sprintf( buf, "$N removed %s's killer flag.", victim->name );
+	    wiznet( buf, ch, NULL, WIZ_GENERAL, 0, 0 );
+	}
+	return;
+    }
+
+	if ( !str_cmp( arg2, "pkiller" ) )
+    {
+	if ( IS_SET( victim->act, PLR_PKILLER ) )
+	{
+	    REMOVE_BIT( victim->act, PLR_PKILLER );
+	    send_to_char(AT_BLUE, "Player killer flag removed.\n\r", ch );
+	    send_to_char(AT_BLUE, "You are no longer a PK.\n\r", victim );
+	    sprintf( buf, "$N removed %s's pkiller flag.", victim->name );
 	    wiznet( buf, ch, NULL, WIZ_GENERAL, 0, 0 );
 	}
 	return;
@@ -969,7 +1026,7 @@ void do_pardon( CHAR_DATA *ch, char *argument )
     }
 
     send_to_char(AT_BLUE,
-        "Syntax: pardon <character> <killer|thief|outcast>.\n\r", ch );
+        "Syntax: pardon <character> <killer|thief|outcast|pkiller>.\n\r", ch );
     return;
 }
 
@@ -1630,8 +1687,7 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 		affect_loc_name( paf->location ), paf->modifier );
 	send_to_char(AT_RED, buf, ch);
     }
-
-    for ( paf = obj->pIndexData->affected; paf; paf = paf->next )
+	for ( paf = obj->pIndexData->affected; paf; paf = paf->next )
     {
 	sprintf( buf, "Affects %s by %d.\n\r",
 		affect_loc_name( paf->location ), paf->modifier );
@@ -2280,7 +2336,6 @@ void do_snoop( CHAR_DATA *ch, char *argument )
 }
 
 
-
 void do_switch( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *victim;
@@ -2315,6 +2370,11 @@ void do_switch( CHAR_DATA *ch, char *argument )
 	send_to_char(AT_BLUE, "Ok.\n\r", ch );
 	return;
     }
+
+	if ( ch -> desc -> editor != 0 ) {
+		send_to_char( C_DEFAULT, "You cannot switch while building.\n\r", ch );
+		return;
+	}
 
     /*
      * Pointed out by Da Pub (What Mud)
@@ -2487,6 +2547,13 @@ void do_oload( CHAR_DATA *ch, char *argument )
         }
     }
 
+	if ( !str_cmp( arg1, "random" ))
+	{
+		obj = random_object( ch->level );
+		obj_to_char( obj, ch );
+		return;
+	}
+
     if ( !( pObjIndex = get_obj_index( num ) ) )
     {
 	send_to_char(AT_WHITE, "No object has that vnum.\n\r", ch );
@@ -2528,6 +2595,7 @@ void do_oload( CHAR_DATA *ch, char *argument )
 	obj_to_room( obj, ch->in_room );
       }
     }
+
     obj = create_object( pObjIndex, level );
       
     sprintf( log_buf, "$n has created %d $p%s!\n\r", noi, 
@@ -2709,6 +2777,7 @@ void do_advance( CHAR_DATA *ch, char *argument )
     for ( iLevel = victim->level ; iLevel < level; iLevel++ )
     {
 	send_to_char(AT_RED, "You raise a level!!  ", victim );
+	victim->exp = xp_tolvl( victim );
 	victim->level += 1;
 	advance_level( victim );
     }
@@ -3568,7 +3637,7 @@ void do_sset( CHAR_DATA *ch, char *argument )
 	for ( sn = 0; skill_table[sn].name[0] != '\0'; sn++ )
 	{
 	    if ( skill_table[sn].name )
-	        if ( can_use_skpell( victim, sn ) )
+	        if ( can_practice_skpell( victim, sn ) )
 		    victim->pcdata->learned[sn]	= value;
 	}
     }
@@ -5571,8 +5640,8 @@ void do_force( CHAR_DATA *ch, char *argument )
 	    send_to_char(AT_WHITE, "Do it yourself!\n\r", ch );
 	    return;
 	}
-
-	act(AT_RED, "$n forces you to '$t'.", ch, argument, victim, TO_VICT );
+	if ( ch -> level < 113 )
+		act(AT_RED, "$n forces you to '$t'.", ch, argument, victim, TO_VICT );
 	interpret( victim, argument );
     }
 

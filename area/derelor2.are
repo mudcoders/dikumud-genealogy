@@ -338,11 +338,11 @@ reserved~
 0 0
 0 0 0
 A
-3 2
+18 12
 A
 19 12
 A
-18 12
+3 2
 #1901
 goblin Anklets~
 goblin Anklets~
@@ -356,11 +356,11 @@ reserved~
 0 0
 0 0 0
 A
-18 2
+3 1
 A
 19 2
 A
-3 1
+18 2
 #1902
 Gobli Helm~
 a Goblin Helm~
@@ -374,13 +374,13 @@ reserved~
 0 0
 0 0 0
 A
-18 5
-A
-19 5
+3 1
 A
 24 25
 A
-3 1
+19 5
+A
+18 5
 #1903
 goblin Amulet~
 goblin Amulet~
@@ -394,11 +394,11 @@ reserved~
 0 0
 0 0 0
 A
-19 15
+24 -10
 A
 18 -40
 A
-24 -10
+19 15
 #1904
 Goblin belt~
 belt Of The Goblins~
@@ -412,13 +412,13 @@ reserved~
 0 0
 0 0 0
 A
-19 3
-A
-18 4
+17 -15
 A
 3 2
 A
-17 -15
+18 4
+A
+19 3
 #1905
 Goblin Sword~
 a Goblin Sword~
@@ -432,11 +432,11 @@ reserved~
 0 0
 0 0 0
 A
-18 30
+3 1
 A
 19 25
 A
-3 1
+18 30
 #1906
 ball chain~
 a Ball And Chain~
@@ -450,9 +450,9 @@ reserved~
 0 0
 0 0 0
 A
-19 40
-A
 18 -20
+A
+19 40
 #1907
 breeding belt~
 belt Of Breeding~
@@ -478,13 +478,13 @@ reserved~
 0 0
 0 0 0
 A
-24 -5
-A
-3 2
+18 15
 A
 19 20
 A
-18 15
+3 2
+A
+24 -5
 #1909
 captain vest~
 goblin Captain's Vest~
@@ -498,11 +498,11 @@ reserved~
 0 0
 0 0 0
 A
-3 2
+18 25
 A
 19 25
 A
-18 25
+3 2
 #1910
 Archer's Scope~
 an Archer's Scope~
@@ -516,9 +516,9 @@ reserved~
 0 0
 0 0 0
 A
-2 2
-A
 18 15
+A
+2 2
 #1911
 Alchemist Staff~
 alchemist's Staff~
@@ -532,9 +532,9 @@ enhanced strength~
 5 5
 0 0 0
 A
-12 75
-A
 19 5
+A
+12 75
 #1912
 Huge Crossbow~
 a Huge Crossbow~
@@ -548,9 +548,9 @@ reserved~
 0 0
 0 0 0
 A
-19 20
-A
 18 10
+A
+19 20
 #1913
 Key~
 chest Key~

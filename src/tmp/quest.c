@@ -107,8 +107,8 @@ void do_quest( CHAR_DATA *ch, char *argument )
 	    if ( ( !ch->questmob && !ch->questobj )
 	    && ch->questgiver->short_descr != NULL )
 	    {
-		sprintf( buf, "&YYour quest is ALMOST complete!\n\rGet back to %s before your time runs out!\n\r",ch->questgiver->short_descr );
-		send_to_char(AT_YELLOW, buf, ch);
+		send_to_char( AT_YELLOW, "&YYour quest is ALMOST complete!\n\r", ch );
+/*		send_to_char(AT_YELLOW, buf, ch); */
 	    }
 	    else if ( ch->questobj )
 	    {
@@ -210,17 +210,17 @@ void do_quest( CHAR_DATA *ch, char *argument )
         act( AT_WHITE, "$n asks $N for a list of quest items.", ch,NULL,questman, TO_ROOM ); 
 	act( AT_WHITE, "You ask $N for a list of quest items.",ch,NULL,questman, TO_CHAR );
         sprintf( result, "&W[&R%5s %10s&W] [&R%30s&W]\n\r", "Lvl", "Points", "Item");
-
+                  
         for ( cnt = 0; quest_table[cnt].name[0] != '\0'; cnt++ )
         {
-            sprintf( buf, "[%5d %10d] [%*s]\n\r", 
+            sprintf( buf, "&C[&R%5d &P%10d&C] &C[&R%*s&C]\n\r", 
                    quest_table[cnt].level,
                    quest_table[cnt].qp, 
-                   30 + strlen( quest_table[cnt].name ) - strlen_wo_col( quest_table[cnt].name ),
-    	           quest_table[cnt].name );
+                   52 + strlen( quest_table[cnt].colorname ) - strlen_wo_col( quest_table[cnt].colorname ),
+    	           quest_table[cnt].colorname );
             strcat( result, buf );
         }        
-        send_to_char( AT_WHITE, result, ch );
+        send_to_char( AT_WHITE, result, ch );                 
         return;
     }
 
@@ -236,7 +236,8 @@ void do_quest( CHAR_DATA *ch, char *argument )
         {
             if ( is_name( ch, arg2, quest_table[cnt].name ) )
             {
-               if ( ch->questpoints >= quest_table[cnt].qp * amt )
+               if ( ch->questpoints >= (quest_table[cnt].qp * amt) &&
+		    amt > -1 )/* kjodo */
                {
                   if ( quest_table[cnt].level <= ch->level )
                   {
@@ -682,17 +683,17 @@ void quest_update(void)
 {
     CHAR_DATA *ch, *ch_next;
 
-    for ( ch = char_list; ch; ch = ch_next )
+/* Added != NULL to the for loop.. hope it removes that crash... */
+    for ( ch = char_list; ch != NULL; ch = ch_next ) 
     {
         ch_next = ch->next;
 
 	if ( IS_NPC( ch ) ) continue;
-
-	if ( ch->nextquest > 0 )
+/* i'll be amazed if the following change works, but i think it might */
+	if ( ch->nextquest > 0 && ch->countdown <= 0 ) /* added the countdown part -- Kj */
 	{
-	    ch->nextquest--;
 
-	    if ( ch->nextquest == 0 )
+	    if ( --ch->nextquest == 0 )
 	    {
 	        send_to_char(AT_WHITE, "You may now quest again.\n\r",ch);
 	        return;
@@ -738,12 +739,25 @@ void quest_update(void)
                 ch->questmob = NULL;
 		ch->questobj = NULL;
 	    }
-	    if (ch->countdown > 0 && ch->countdown < 6)
-	    {
-	        send_to_char(AT_WHITE, "Better hurry, you're almost out of time for your quest!\n\r",ch);
-	        return;
-	    }
+
+            if (ch->countdown > 0 && ch->countdown < 6)
+            {
+                send_to_char(AT_WHITE, "Better hurry, you're almost out of time for your quest!\n\r",ch);
+                return;
+            }
         }
     }
     return;
+}
+
+bool check_for_worn( CHAR_DATA *ch, int vnum )
+{
+   OBJ_DATA *obj;
+   
+   for ( obj = ch->carrying; obj; obj = obj->next_content )
+       if (( obj->pIndexData->vnum == vnum )
+       && obj->wear_loc != WEAR_NONE )
+       return TRUE;
+       
+   return FALSE;
 }

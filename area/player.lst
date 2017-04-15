@@ -1,782 +1,338 @@
-Name        Malikye~
-Lvl         181
-END
-Name        Drew~
-Lvl         10
-END
-Name        Duke~
-Lvl         31
-END
-Name        Kethran~
-Lvl         3
-END
-Name        Siraq~
-Lvl         3
-END
-Name        Abaras~
-Lvl         13
-END
-Name        Joker~
-Lvl         9
-END
-Name        Focht~
-Lvl         13
-END
-Name        Gord~
-Lvl         11
-END
-Name        KaVir~
+Name        Lygon~
 Lvl         2
 END
-Name        Mance~
-Lvl         3
+Name        Cegri~
+Lvl         1
+Clan        &rG&Rl&wa&zd&wi&Ra&rt&Ro&wr&zz&X~
 END
-Name        Radian~
-Lvl         42
+Name        Chrimon~
+Lvl         16
 END
-Name        Wylor~
-Lvl         3
-END
-Name        Hammer~
-Lvl         5
-END
-Name        Bolek~
-Lvl         10
-END
-Name        Vengeance~
-Lvl         10
-END
-Name        Phaethor~
-Lvl         10
-END
-Name        Bret~
-Lvl         5
-END
-Name        Yuihnunh~
-Lvl         10
-END
-Name        Yavu~
-Lvl         2
-END
-Name        Anvil~
-Lvl         12
-END
-Name        Belial~
-Lvl         11
-END
-Name        Angelo~
-Lvl         26
-END
-Name        Timoon~
-Lvl         5
-END
-Name        Hurta~
-Lvl         2
-END
-Name        Rucus~
-Lvl         51
-END
-Name        Akhran~
-Lvl         12
-END
-Name        Quarus~
-Lvl         57
-END
-Name        Wraten~
-Lvl         3
-END
-Name        Lothar~
-Lvl         17
-END
-Name        Lapoisson~
-Lvl         23
-END
-Name        Ketasi~
-Lvl         41
-END
-Name        Ilyatha~
-Lvl         6
-END
-Name        Wolfgang~
-Lvl         9
-END
-Name        Sirac~
-Lvl         56
-END
-Name        Nalfein~
-Lvl         37
-END
-Name        Selinar~
-Lvl         2
-END
-Name        Rumor~
-Lvl         9
-END
-Name        Chandler~
-Lvl         2
-END
-Name        Shyone~
-Lvl         4
-END
-Name        Tatsel~
-Lvl         2
-END
-Name        Blackavar~
-Lvl         56
-END
-Name        Fahlen~
-Lvl         3
-END
-Name        Taitsu~
-Lvl         30
-END
-Name        Gunnhild~
-Lvl         27
-END
-Name        Hasai~
-Lvl         100
-END
-Name        Sivard~
-Lvl         10
-END
-Name        Garrent~
-Lvl         2
-END
-Name        Bastion~
-Lvl         10
-END
-Name        Tamie~
-Lvl         10
-END
-Name        Inferno~
-Lvl         7
-END
-Name        Balcombe~
-Lvl         13
-END
-Name        Calin~
-Lvl         2
-END
-Name        Gannon~
+Name        Tanat~
 Lvl         44
 END
-Name        Gatoris~
-Lvl         13
-END
-Name        Vendes~
-Lvl         11
-END
-Name        Instinct~
-Lvl         2
-END
-Name        Ryoko~
-Lvl         48
-END
-Name        Lachdannon~
-Lvl         100
-END
-Name        Merlin~
-Lvl         29
-END
-Name        Rix~
-Lvl         7
-END
-Name        Furey~
-Lvl         19
-END
-Name        Angorn~
-Lvl         16
-END
-Name        Satyricon~
-Lvl         2
-END
-Name        Tamas~
-Lvl         7
-END
-Name        Jarek~
-Lvl         2
-END
-Name        Syrus~
-Lvl         6
-END
-Name        Tourniquet~
-Lvl         4
-END
-Name        Boda~
-Lvl         3
-END
-Name        Bondo~
-Lvl         91
-END
-Name        Phase~
-Lvl         3
-END
-Name        Leoric~
-Lvl         6
-END
-Name        Vindicator~
-Lvl         9
-END
-Name        Rage~
-Lvl         6
-END
-Name        Blackfang~
-Lvl         6
-END
-Name        Aegir~
-Lvl         40
-END
-Name        Skoriaan~
-Lvl         7
-END
-Name        Reklar~
-Lvl         111
-END
-Name        Grifter~
-Lvl         48
-END
-Name        Evan~
-Lvl         57
-END
-Name        Mordeth~
-Lvl         6
-END
-Name        Zalasta~
-Lvl         2
-END
-Name        Kathryn~
-Lvl         5
-END
-Name        Azaz~
-Lvl         6
-END
-Name        Shadar~
-Lvl         4
-END
-Name        Gulgangain~
-Lvl         10
-END
-Name        Darksword~
-Lvl         10
-END
-Name        Mern~
-Lvl         10
-END
-Name        Fang~
-Lvl         11
-END
-Name        Rubinia~
-Lvl         6
-END
-Name        Khrathan~
-Lvl         43
-END
-Name        Daccoh~
-Lvl         39
-END
-Name        Dergoor~
-Lvl         2
-END
-Name        Kervalin~
-Lvl         3
-END
-Name        Rydic~
-Lvl         7
-END
-Name        Karelon~
-Lvl         6
-END
-Name        Ripper~
-Lvl         21
-END
-Name        Knightmare~
-Lvl         10
-END
-Name        Rog~
-Lvl         10
-END
-Name        Kragmoore~
-Lvl         79
-END
-Name        Kit~
-Lvl         25
-END
-Name        Kronos~
-Lvl         16
-END
-Name        Memnoch~
-Lvl         11
-END
-Name        Karanax~
-Lvl         6
-END
-Name        Penance~
-Lvl         106
-END
-Name        Aleena~
-Lvl         4
-END
-Name        Taig~
-Lvl         42
-END
-Name        Vierna~
-Lvl         19
-END
-Name        Pace~
-Lvl         10
-END
-Name        Nemesis~
-Lvl         3
-END
-Name        Tarlis~
-Lvl         106
-END
-Name        Kisha~
-Lvl         4
-END
-Name        Grunt~
-Lvl         106
-END
-Name        Flint~
-Lvl         106
-END
-Name        Thalador~
-Lvl         113
-END
-Name        Angi~
-Lvl         112
-END
-Name        Decklarean~
-Lvl         100
-END
-Name        Sherf~
-Lvl         112
-END
-Name        Quester~
-Lvl         10
-END
-Name        Dagger~
-Lvl         34
-END
-Name        Cluff~
-Lvl         106
-END
-Name        Mortanius~
-Lvl         10
-END
-Name        Sauron~
-Lvl         113
-Clan        &RStorm Riders~
-CRank       2
-END
-Name        Altrag~
-Lvl         112
-END
-Name        Tae~
-Lvl         5
-END
-Name        Numemelig~
-Lvl         3
-END
-Name        Lestat~
-Lvl         10
-END
-Name        Grail~
-Lvl         9
-END
-Name        Atrax~
-Lvl         2
-END
-Name        Diego~
-Lvl         2
-END
-Name        Barick~
-Lvl         46
-END
-Name        Gemloch~
-Lvl         4
-END
-Name        Illdenmaar~
-Lvl         25
-END
-Name        Arok~
-Lvl         52
-END
-Name        Slith~
-Lvl         7
-END
-Name        Tishinarch~
+Name        Eleven~
 Lvl         20
 END
-Name        Lodoss~
-Lvl         11
+Name        Vlos~
+Lvl         1
 END
-Name        Frodo~
-Lvl         6
+Name        Dikam~
+Lvl         1
 END
-Name        Kevelin~
-Lvl         6
+Name        Flink~
+Lvl         1
 END
-Name        Goarangh~
-Lvl         11
+Name        Mosenrath~
+Lvl         1
 END
-Name        Samson~
-Lvl         14
+Name        Berit~
+Lvl         97
 END
-Name        Pender~
-Lvl         3
+Name        Zaphear~
+Lvl         20
 END
-Name        Kail~
-Lvl         6
-END
-Name        Daero~
-Lvl         40
-END
-Name        Falcyn~
-Lvl         3
-END
-Name        Anivar~
-Lvl         38
-END
-Name        Kassandra~
-Lvl         6
-END
-Name        Garmax~
-Lvl         35
-END
-Name        Aegis~
-Lvl         100
-END
-Name        Ender~
-Lvl         6
-END
-Name        Poison~
-Lvl         4
-END
-Name        Bane~
-Lvl         4
-END
-Name        Dolguard~
-Lvl         8
-END
-Name        Ryguard~
-Lvl         111
-END
-Name        Elvidenvelp~
-Lvl         4
-END
-Name        Xena~
-Lvl         34
-END
-Name        Tagoshi~
-Lvl         6
-END
-Name        Yves~
-Lvl         11
-END
-Name        Evansan~
-Lvl         5
-END
-Name        Gon~
-Lvl         3
-END
-Name        Vermilion~
-Lvl         43
-END
-Name        Jalav~
-Lvl         3
-END
-Name        Krysta~
-Lvl         6
-END
-Name        Shedya~
-Lvl         12
-END
-Name        Malcom~
-Lvl         3
-END
-Name        Gort~
-Lvl         66
-END
-Name        Akar~
-Lvl         4
-END
-Name        Anarchy~
-Lvl         4
-END
-Name        Darksaint~
-Lvl         6
-END
-Name        Magnus~
-Lvl         2
-END
-Name        Lightblade~
-Lvl         11
-END
-Name        Phalse~
-Lvl         21
-END
-Name        Iceblood~
-Lvl         4
-END
-Name        Tvarc~
-Lvl         2
-END
-Name        Brasn~
-Lvl         10
-END
-Name        Phig~
-Lvl         33
-END
-Name        Coren~
-Lvl         4
-END
-Name        Driaza~
-Lvl         11
-END
-Name        Urgo~
-Lvl         7
-END
-Name        Elyas~
-Lvl         2
-END
-Name        Azash~
-Lvl         8
-END
-Name        Blackwolf~
-Lvl         5
-END
-Name        Victoria~
-Lvl         12
-END
-Name        Marthuin~
-Lvl         4
-END
-Name        Kristie~
-Lvl         18
-END
-Name        Macros~
-Lvl         2
-END
-Name        Syrin~
-Lvl         10
-END
-Name        Mercin~
-Lvl         6
-END
-Name        Ghengis~
-Lvl         4
-END
-Name        Frozen~
-Lvl         8
-END
-Name        Grim~
-Lvl         3
-END
-Name        Grounfag~
-Lvl         11
-END
-Name        Kell~
-Lvl         14
-END
-Name        Drann~
-Lvl         51
-END
-Name        Tarii~
-Lvl         6
-END
-Name        Vampyr~
-Lvl         11
-END
-Name        Khelben~
-Lvl         41
-END
-Name        Kharos~
-Lvl         6
-END
-Name        Grandkar~
-Lvl         6
-END
-Name        Youngstar~
-Lvl         2
-END
-Name        Guntar~
-Lvl         4
-END
-Name        Meku~
-Lvl         3
-END
-Name        Tyndal~
-Lvl         6
-END
-Name        Kerensky~
-Lvl         6
-END
-Name        Aria~
-Lvl         4
-END
-Name        Uffran~
-Lvl         10
-END
-Name        Sid~
-Lvl         10
-END
-Name        Shandarra~
+Name        Sandro~
 Lvl         50
 END
-Name        Caldor~
-Lvl         4
+Name        Gruul~
+Lvl         1
 END
-Name        Klendor~
-Lvl         2
+Name        Laerisa~
+Lvl         1
 END
-Name        Ernox~
+Name        Lanik~
 Lvl         17
 END
-Name        Toran~
-Lvl         6
+Name        Guru~
+Lvl         81
 END
-Name        Darkfang~
+Name        Solaron~
+Lvl         1
+END
+Name        Rza~
 Lvl         2
 END
-Name        Edge~
-Lvl         62
-Clan        &RStorm Riders~
+Name        Endbringer~
+Lvl         3
+END
+Name        Gerad~
+Lvl         1
+END
+Name        Dortena~
+Lvl         59
+Clan        &rG&Rl&wa&zd&wi&Ra&rt&Ro&wr&zz&X~
 CRank       4
 END
-Name        Laotse~
-Lvl         9
+Name        Nul~
+Lvl         1
 END
-Name        Hacron~
-Lvl         34
+Name        Jackle~
+Lvl         1
 END
-Name        Geoff~
+Name        Nox~
+Lvl         17
+END
+Name        Yorick~
+Lvl         18
+END
+Name        Torann~
+Lvl         113
+Clan        &zRegime &Rof &wChaos&X~
+CRank       5
+END
+Name        Talabriina~
+Lvl         52
+Clan        &zRegime &Rof &wChaos&X~
+CRank       1
+END
+Name        Wylin~
+Lvl         95
+Clan        &.Ar&.ca&.ne &.Ar&.ts~
+END
+Name        Shamest~
+Lvl         1
+END
+Name        Malin~
+Lvl         100
+END
+Name        Wik~
+Lvl         1
+END
+Name        Myrddhin~
+Lvl         64
+Clan        &zRegime &Rof &wChaos&X~
+END
+Name        Delhi~
+Lvl         1
+END
+Name        Ielenia~
+Lvl         41
+END
+Name        Quaijin~
+Lvl         100
+Clan        &.Ar&.ca&.ne &.Ar&.ts~
+END
+Name        Tim~
 Lvl         16
 END
-Name        Thaal~
-Lvl         6
+Name        Algonas~
+Lvl         64
 END
-Name        Myst~
-Lvl         70
+Name        Kolombia~
+Lvl         1
 END
-Name        DeBernezan~
-Lvl         2
+Name        Ranin~
+Lvl         71
 END
-Name        Ragnar~
-Lvl         6
+Name        Lore~
+Lvl         13
+Clan        &.Ar&.ca&.ne &.Ar&.ts~
 END
-Name        Shadox~
-Lvl         2
+Name        Bolbim~
+Lvl         18
 END
-Name        Kore~
-Lvl         10
+Name        TestShock~
+Lvl         1
 END
-Name        Vance~
-Lvl         6
+Name        Brad~
+Lvl         1
 END
-Name        Malice~
-Lvl         3
+Name        Nurret~
+Lvl         1
 END
-Name        Gadyl~
-Lvl         34
+Name        Ink~
+Lvl         63
+Clan        &.Ar&.ca&.ne &.Ar&.ts~
+CRank       3
 END
-Name        Thumper~
-Lvl         11
-END
-Name        Morbius~
-Lvl         6
-END
-Name        Argonath~
-Lvl         2
-END
-Name        Kath~
-Lvl         7
-END
-Name        Alevin~
-Lvl         2
-END
-Name        Alf~
-Lvl         6
-END
-Name        Smatt~
-Lvl         6
-END
-Name        Sirak~
-Lvl         3
-END
-Name        Shaggy~
-Lvl         3
-END
-Name        Talus~
-Lvl         3
-END
-Name        Blaze~
-Lvl         6
-END
-Name        DumDum~
-Lvl         3
-END
-Name        Warbane~
-Lvl         6
-END
-Name        Deicide~
-Lvl         11
-END
-Name        Yertle~
+Name        Naruto~
 Lvl         14
 END
-Name        Caine~
-Lvl         42
+Name        Sylarn~
+Lvl         100
+Clan        &.Ar&.ca&.ne &.Ar&.ts&X~
+CRank       4
 END
-Name        Munky~
-Lvl         3
+Name        Shock~
+Lvl         113
+Clan        &rG&Rl&wa&zd&wi&Ra&rt&Ro&wr&zz&X~
+CRank       5
 END
-Name        Taylor~
+Name        Kliq~
+Lvl         30
+END
+Name        Nastasha~
+Lvl         1
+END
+Name        Kjodo~
+Lvl         113
+CRank       3
+END
+Name        Yameritzu~
+Lvl         20
+END
+Name        Halia~
+Lvl         1
+END
+Name        Feyd~
+Lvl         20
+Clan        &zRegime &Rof &wChaos&X~
+CRank       3
+END
+Name        Sasuke~
+Lvl         80
+Clan        &zRegime &Rof &wChaos&X~
+END
+Name        Cassius~
+Lvl         1
+END
+Name        Analt~
+Lvl         1
+END
+Name        Locke~
+Lvl         17
+Clan        &.Ar&.ca&.ne &.Ar&.ts&X~
+END
+Name        Bloomer~
+Lvl         1
+END
+Name        Frimp~
+Lvl         1
+END
+Name        Orlando~
 Lvl         2
 END
-Name        Lance~
+Name        Mort~
+Lvl         1
+END
+Name        Kain~
+Lvl         52
+END
+Name        Zaphire~
+Lvl         1
+END
+Name        Floop~
 Lvl         3
 END
-Name        Keebler~
-Lvl         5
+Name        Faust~
+Lvl         25
+Clan        &.Ar&.ca&.ne &.Ar&.ts~
 END
-Name        Dell~
+Name        Cerro~
+Lvl         48
+Clan        &zRegime &Rof &wChaos&X~
+END
+Name        Calvin~
+Lvl         1
+Clan        &zRegime &Rof &wChaos&X~
+END
+Name        Joker~
+Lvl         27
+END
+Name        Skurai~
 Lvl         3
 END
-Name        Gambit~
-Lvl         5
+Name        Reptile~
+Lvl         41
 END
-Name        Raistlin~
+Name        Taipan~
+Lvl         1
+END
+Name        Balthasar~
+Lvl         1
+END
+Name        Revenant~
+Lvl         25
+END
+Name        Mennon~
+Lvl         1
+END
+Name        Quix~
+Lvl         1
+END
+Name        Amun~
+Lvl         20
+END
+Name        Rico~
+Lvl         6
+END
+Name        Joda~
+Lvl         1
+END
+Name        Nevele~
+Lvl         1
+END
+Name        Nuance~
+Lvl         1
+END
+Name        Natte~
+Lvl         6
+END
+Name        Kallin~
+Lvl         2
+END
+Name        Kring~
+Lvl         1
+END
+Name        Tyr~
+Lvl         100
+END
+Name        Ricochet~
+Lvl         3
+END
+Name        Dias~
+Lvl         32
+END
+Name        Shane~
 Lvl         4
 END
-Name        Eyly~
+Name        Pander~
+Lvl         54
+END
+Name        Varonn~
+Lvl         24
+END
+Name        Kilgren~
+Lvl         52
+END
+Name        Osciroft~
+Lvl         25
+END
+Name        Grag~
+Lvl         3
+END
+Name        Adwyvia~
+Lvl         7
+END
+Name        Keray~
+Lvl         1
+END
+Name        Balgamont~
+Lvl         1
+END
+Name        Fuck~
 Lvl         2
 END
-Name        Supreme~
-Lvl         5
-END
-Name        Midnight~
+Name        Rictor~
 Lvl         2
 END
-Name        Epson~
+Name        Tharsis~
+Lvl         11
+END
+Name        Vance~
+Lvl         1
+END
+Name        Juste~
+Lvl         11
+END
+Name        Bloustone~
+Lvl         1
+END
+Name        Rexs~
 Lvl         4
 END
-Name        Fonzy~
-Lvl         3
-END
-Name        Mork~
-Lvl         2
-END
-Name        Talen~
-Lvl         5
-END
-Name        Feihong~
-Lvl         15
-END
-Name        Devon~
-Lvl         3
-END
-Name        ArcAngel~
-Lvl         13
+Name        Varon~
+Lvl         1
 END
 #END

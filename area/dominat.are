@@ -587,12 +587,12 @@ reserved~
 0 0
 0 0 0
 E
-key~
-This key is complex and its teeth are many and complicated.
-~
-E
 black~
 This key is made of solid black iron.
+~
+E
+key~
+This key is complex and its teeth are many and complicated.
 ~
 #22002
 key red~
@@ -607,13 +607,13 @@ reserved~
 0 0
 0 0 0
 E
+red~
+This key is made of a red marble.
+~
+E
 key~
 This is a simple key.  Its color is red marble and its complex pattern on
 it is very beautiful.  
-~
-E
-red~
-This key is made of a red marble.
 ~
 #22003
 corset spiked~
@@ -628,18 +628,18 @@ reserved~
 0 0
 0 0 0
 A
-13 32
+12 55
 A
 17 -50
 A
-12 55
-E
-corset~
-This is a corset with long gawdy spikes coming out of it.
-~
+13 32
 E
 spiked~
 This piece of armor has 2 inch spikes protruding forth.
+~
+E
+corset~
+This is a corset with long gawdy spikes coming out of it.
 ~
 #22004
 boots leather thigh high~
@@ -654,22 +654,22 @@ reserved~
 0 0
 0 0 0
 A
-4 -1
+13 25
 A
 2 2
 A
-13 25
+4 -1
+E
+boots~
+If you are quite tall and petite in size, these boots will go up a ways
+past your knees.
+~
 E
 thigh high leather~
 If you are quite tall and petite in size, these boots will go up a ways
 past your knees.  They are made of a soft leather, and the sole is made of a
 very hard leather.  Laces tie up from the palm of the foot to just under the
 knee.  
-~
-E
-boots~
-If you are quite tall and petite in size, these boots will go up a ways
-past your knees.
 ~
 #22005
 whip dominatrix~
@@ -684,11 +684,11 @@ reserved~
 0 0
 0 0 0
 A
-18 110
+13 42
 A
 19 33
 A
-13 42
+18 110
 E
 whip~
 This is a long black leather whip.  The ends have been frayed to add to
@@ -723,16 +723,16 @@ reserved~
 0 0
 0 0 0
 A
-13 30
-A
 3 3
-E
-chef~
-This is the kind of old fashion hat a chef would wear.
-~
+A
+13 30
 E
 hat~
 It is a tall white chef's Hat.
+~
+E
+chef~
+This is the kind of old fashion hat a chef would wear.
 ~
 #22008
 spatula~
@@ -747,9 +747,9 @@ reserved~
 0 0
 0 0 0
 A
-18 80
-A
 19 70
+A
+18 80
 E
 spatula~
 This is the kind of spatula people beg to lick as kids.
@@ -767,9 +767,9 @@ reserved~
 0 0
 0 0 0
 A
-5 1
-A
 17 -20
+A
+5 1
 E
 apron~
 This is a plain white apron. The type of a apron a cook would wear.
@@ -787,11 +787,11 @@ reserved~
 0 0
 0 0 0
 A
-12 -50
+26 5
 A
 13 51
 A
-26 5
+12 -50
 E
 gloves~
 These are white butlers gloves. They are made of a soft cotten.
@@ -809,17 +809,17 @@ reserved~
 0 0
 0 0 0
 E
+stone statue~
+The statue is made of the finest marble. A triad of white shades swirl in
+a pattern all about it.
+~
+E
 marize~
 Marize is indeed a beautiful woman. Somehow you know that this statue
 could never bestow her true beauty. Her delicate face is framed with long
 and luscious locks of thick curls. Beautiful almond-shaped eyes look up into
 the heavens as if giving thanks. Her curvacious body has no recognizable
 flaws.
-~
-E
-stone statue~
-The statue is made of the finest marble. A triad of white shades swirl in
-a pattern all about it.
 ~
 #22012
 leggings crotchless pair~
@@ -834,17 +834,17 @@ reserved~
 0 0
 0 0 0
 A
-2 -2
+13 48
 A
 1 1
 A
-13 48
+2 -2
 E
-pair crotchless raunchy~
+leggings~
 These leggings seem to have had the crotch cut out of them.
 ~
 E
-leggings~
+pair crotchless raunchy~
 These leggings seem to have had the crotch cut out of them.
 ~
 #22013
@@ -860,19 +860,19 @@ reserved~
 0 0
 0 0 0
 A
-13 -50
+1 3
 A
 12 -50
 A
-1 3
+13 -50
+E
+collar~
+A long metal collar with razor sharp spikes pointing out of it.
+~
 E
 spikes~
 The collar is adjustable so that almost any humanoid can wear it. It is
 made of a black hard-leather and has a few metal spikes on it.
-~
-E
-collar~
-A long metal collar with razor sharp spikes pointing out of it.
 ~
 #22014
 handcuffs~
@@ -887,9 +887,9 @@ reserved~
 0 0
 0 0 0
 A
-2 -3
-A
 14 -35
+A
+2 -3
 E
 handcuffs~
 Kinky iron handcuffs. They look quite restrictive.
@@ -907,11 +907,11 @@ reserved~
 0 0
 0 0 0
 A
-13 -30
+12 50
 A
 3 1
 A
-12 50
+13 -30
 E
 glasses~
 These glasses are incredibly thick and seem to magnify everything almost five or six times.
@@ -971,12 +971,12 @@ reserved~
 0 0
 0 0 0
 E
-key~
-This is a simple drawer key.
-~
-E
 green~
 The key has been painted seaweed green.
+~
+E
+key~
+This is a simple drawer key.
 ~
 #22020
 ring~
@@ -991,11 +991,11 @@ reserved~
 0 0
 0 0 0
 A
-3 1
+12 52
 A
 4 -1
 A
-12 52
+3 1
 E
 ring~
 This is the ring of Obedience. It can be worn only if you Obey.
@@ -1013,11 +1013,11 @@ reserved~
 0 0
 0 0 0
 A
-14 -55
+1 -1
 A
 13 45
 A
-1 -1
+14 -55
 E
 belt~
 This is much like a females chsity belt except this is designed for a male. It has a lock and will protect any males verginity if it is placed.

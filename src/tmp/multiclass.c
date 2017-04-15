@@ -8,6 +8,18 @@ bool can_use_skpell( CHAR_DATA *ch, int sn )
   int iClass = 0;
   if ( IS_NPC( ch ) )
       return TRUE;
+            if ( ch->pcdata->learned[sn] > 0 )
+                return TRUE;
+
+  return FALSE;
+}
+bool can_practice_skpell( CHAR_DATA *ch, int sn )
+{
+  int iClass = 0;
+  if ( IS_NPC( ch ) )
+      return TRUE;
+if ( ch->pcdata->learned[sn] > 0 )
+                return TRUE;
   for ( iClass = 0; ch->class[iClass] != -1; iClass++ )
     {
     if ( ch->level >= skill_table[sn].skill_level[ch->class[iClass]] )
@@ -15,6 +27,7 @@ bool can_use_skpell( CHAR_DATA *ch, int sn )
     }
   return FALSE;
 }
+
 bool has_spells( CHAR_DATA *ch )
 {
   int iClass;
@@ -55,6 +68,7 @@ int number_classes( CHAR_DATA *ch )
     ; 
   return iClass;
 }
+
 char *class_long( CHAR_DATA *ch )
 {
   static char buf [ 512 ];

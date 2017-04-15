@@ -455,7 +455,7 @@ arch sorcerer robe quest~
 2 0 0 0 0
 5 0
 mana~
-50 50
+-1 -1
 0 0 0
 A
 23 -35
@@ -817,7 +817,7 @@ A
 17 -65
 #2455
 earguard helm quest~
-&ca Helm's &BE&wa&Br&wg&Bu&wa&Br&wd&X~
+&ca Helm's &BE&wa&Br&wg&Bu&wa&Br&wd&R~
 &ca Helm's &BE&wa&Br&wg&Bu&wa&Br&wd&c is here.~
 ~
 9 805306496 0 0 524289 100

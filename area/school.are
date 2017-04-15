@@ -1045,9 +1045,9 @@ reserved~
 0 0
 0 805 806
 A
-18 5
-A
 19 6
+A
+18 5
 E
 sword glowing element elements~
 &WAn inscription carved into the sword reads:
@@ -1089,9 +1089,9 @@ reserved~
 0 0
 0 0 0
 A
-19 6
-A
 18 4
+A
+19 6
 E
 sword trickery~
 &CThis magnificent sword has been passed down from many generations of
@@ -1152,9 +1152,9 @@ reserved~
 0 0
 0 0 0
 A
-18 3
-A
 19 4
+A
+18 3
 E
 claws raking pair gloves sharp~
 &YBehold, the Claws of Raking.  Crafted for exceptional Werewolves of the
@@ -1174,9 +1174,9 @@ reserved~
 0 0
 0 0 0
 A
-3 1
-A
 12 3
+A
+3 1
 E
 magical flute glows~
 &YLulling music plays softly from this magical flute.  Only a Bard can
@@ -1258,93 +1258,202 @@ reserved~
 0 -1
 0 0 0
 E
-book~
+9~
 &z--------------------------------------------------------------------------------
-NEWBIE BOOK:
---------------------------------------------------------------------------------
-&BINTRO:
-&cThis book is for the benefit of those who either are just learning to MUD or
-aren't well versed in it already, so those of you who are comfortable with how
-to play you may wish to skip to number 7.  To look at any "chapter" in this book
-you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
-&z--------- &WBeginners &z----------
-&z1&w...&BPracticing & Training
-&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
-&z3&w...&BHP, Blood, Mana & Movement
-&z4&w...&BHelpful starting hints
-&z5&w...&BCommon Abbreivations & MUD communication channels
-&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
-&z-------- &WGeneral Info &z--------
-&z7&w...&BList of Equipment slots & Invokes on items
-&z8&w...&BThe MUD's Rules
-&z9&w...&BWizlist and Getting help
+&BWIZLIST & GETTING HELP:
+&cTyping &z'&wwizlist&z'&c will show you a "reasonably current" list of the MUD's
+immortal staff.  Generally when you wish to seek help on something you should
+begin at the bottom of that list and work upward, since those at the top
+positions are often busy with things and will generally take the longest to
+answer your question.  Also know that most immortals are busy doing something
+even if it may not be immediately appearant so if they don't answer right away
+give them time.  And if you ask for their attention and get it, don't tell them
+"just a sec" if it's something you could have taken care of before calling their
+attention.  These are just general notes of "etiquette" in dealing with 
+immortals.  They're happy to help you out if you give them the chance and don't 
+disrespect them.
 &z--------------------------------------------------------------------------------
 ~
 E
-newbie~
+8~
 &z--------------------------------------------------------------------------------
-NEWBIE BOOK:
---------------------------------------------------------------------------------
-&BINTRO:
-&cThis book is for the benefit of those who either are just learning to MUD or
-aren't well versed in it already, so those of you who are comfortable with how
-to play you may wish to skip to number 7.  To look at any "chapter" in this book
-you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
-&z--------- &WBeginners &z----------
-&z1&w...&BPracticing & Traniing
-&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
-&z3&w...&BHP, Blood, Mana & Movement
-&z4&w...&BHelpful starting hints
-&z5&w...&BCommon Abbreivations & MUD communication channels
-&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
-&z-------- &WGeneral Info &z--------
-&z7&w...&BList of Equipment slots & Invokes on items
-&z8&w...&BThe MUD's Rules
-&z9&w...&BWizlist and Getting help
-&z10&w..&BOK, but where do I go now? & I'm lost, how do I get back?
-&z--------------------------------------------------------------------------------
-~
-E
-guide~
-&z--------------------------------------------------------------------------------
-NEWBIE BOOK:
---------------------------------------------------------------------------------
-&BINTRO:
-&cThis book is for the benefit of those who either are just learning to MUD or
-aren't well versed in it already, so those of you who are comfortable with how
-to play you may wish to skip to number 7.  To look at any "chapter" in this book
-you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
-&z--------- &WBeginners &z----------
-&z1&w...&BPracticing & Traniing
-&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
-&z3&w...&BHP, Blood, Mana & Movement
-&z4&w...&BHelpful starting hints
-&z5&w...&BCommon Abbreivations & MUD communication channels
-&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
-&z-------- &WGeneral Info &z--------
-&z7&w...&BList of Equipment slots & Invokes on items
-&z8&w...&BThe MUD's Rules
-&z9&w...&BWizlist and Getting help
+&BTHE MUD'S RULES:
+&cThese are the rules of EOS.  For other matters, use commom sense.
+&B
+&z*&w foul and/or abusive language will not be tolerated on EoS, from anyone
+  (including gods). Punishments range from deletion to NOCHANNELing.
+&B
+&z*&w sexual harassment of any form will not be tolerated, punishable by deletion
+&B
+&z*&w your presence here is a privilige not a right
+&B
+&z*&w no multiple logins, multiple playing, or helping your own characters with
+  other characters you own -- by any arrangment.
+&B
+&z*&w no kill stealing.  This means you cannot attack a mob someone else is
+  fighting, unless they ask you to. Also avoid attacking fleeing mobs.
+&B
+&z*&w cheating will not be tolerated.  This includes accepting favors from gods
+  and exploiting bugs. If you find a bug, report it, then do not use it.
+&B
+&z*&w Absolutely NO summonsing any mobs to Bethaven, Ravenwood or Alor Raharo.  
+  I do NOT wish newbies jeopardized.  There's plenty of room outside those 
+  towns, use them.
 &z--------------------------------------------------------------------------------
 ~
 E
-1~
+7~
 &z--------------------------------------------------------------------------------
-&BPRACTICING & TRAINING:
-&cOn this mud, unlike some other forms of MUDs, you must train your primary
-statistics (Str, Int, Wis, Dex & Con), plus you may also train your HP, mana &
-move.  To do training you use "practices" that you receive each level based on
-your Wisdom.  The higher your Wisdom the more practices you're able to get per
-level.  To train a stat, like Str, it costs 5 practices per train, but to train
-HP, mana or movement it costs only 1 practice.  Note: You can't train a statisti
-c like Str past 18 regardless of class.  To train a stat you simply type: 
-&wtrain <item> &R#  &C(&R#&C is for how many practices to use.  Ie: train hp 50)
-&cPracticing is a bit more indepth where training deals with statistics,
-practicing is how you aquire new skills and spells.  It only takes one
-practice to improve a skill or spell, but how much it is improved depends upon
-your Int statistic.  Plus different classes can practice to different amounts
-such as a Mage's 95% and a Thief's 85%.  To practice a skill\spell you type:
-&wpractice <skill name>  &C(don't put ""s around the name if it's 2+ words)
+&BLIST OF EQUIPMENT SLOTS:
+&B
+&CLight                           &CShield &w(&z*&w)
+&CFinger &w(&B2&w)                      &COrbit &w(&B2&w)
+&CNeck &w(&B2&w)                        &CWaist
+&CHead                            &CAbout Body
+&CFace                            &CWrists &w(&B2&w)
+&CEyes                            &CEarring
+&CBody                            &CAnkles &w(&B2&w)
+&CArms                            &CWield
+&CHands                           &CDual Wield &w(&z**&w)
+&CLegs                            &CHeld &w(&z*&w)
+&CFeet
+&z*  &w-&c Only usable if you're not dual wielding.  &C(Mainly for spellcasters)
+&z** &w-&c Only usable if you have the "dual" skill.  &C(Fighter classes)
+&B
+INVOKES ON ITEMS:
+&cYou won't find many low level items with invokable spells on them, but just so
+you're aware of their existance there are many items in the game that can be
+"invoked" to produce a certain effect or spell.  An item may contain the spell
+'fireshield' and if you invoke the item it casts that spell upon you or the
+target you select.  These are primarily handy to the non-magical fighting
+classes.
+&z--------------------------------------------------------------------------------
+~
+E
+6~
+&z--------------------------------------------------------------------------------
+&BFIGHTING PLAYERS VS MOBS:
+&c  For attacking normal mobs simply type &w'&Rkill <mob name>&w'&c to start a fight with
+them or if you are a thief type 'bs <mob name>' once you have the backstab
+skill.  If you want to attack an animated corpse (you'll know when you come
+across one) or a player (when you &R_BOTH_ &care in PK clans) you type &w'&Rmurder
+<player>&w'&c to attack.
+  If a fight isn't going well for you and you're likely to die if you don't find
+a quick escape you simply need to type &B'&wflee&B'&c until you escape.  You will lose
+a little bit of experience in the process, but it's better to lose 10xp than
+lose half of what xp you've gained towards leveling.  Btw..it's 1000xp per
+level.  In some areas flee doesn't work though, such as Dragon Valley though.
+  Also, there are numerous "aggressive" mobs in the game that will automatically
+attack you the moment you enter the room regardless of wether you wished to
+fight or not.  So be wary of exploring high level areas or new areas without
+shielding yourself against possible attack.
+&B
+ALIASES - Use and Creation&w:
+&WSyntax&w:&r alias [shortcut] [task]  &C(Creates or modifies an alias)
+&WSyntax&w:&r alias [shortcut]         &C(Deletes that alias)
+&c  Aliases are common to many muds, but aren't found in all.  Basically these
+are exactly what they sound like.  They're shortcut commands to preform larger
+tasks.  &C(&BEx&w:&c having a shortcut command of 'fire' for performing the task, "cast
+'fireball'"&C)&c.  This mainly just saves you on time and typing.  How it works:
+&CExample&w:&c
+<prompt> alias clb cast 'lightning breath'
+Alias 'clb' added.
+<prompt> clb
+Cast spell on whom?
+<prompt> clb dragon
+Your blast of lightning MUTILATES the dragon.
+&z--------------------------------------------------------------------------------
+~
+E
+5~
+&z--------------------------------------------------------------------------------
+&BCOMMON ABBREIVATIONS:
+&cThis is just for those who are truely new to mudding since there are certain
+terms mudders use all the time.
+&BAFK    &w:&c Away From the Keyboard (Could also just be not paying attention)
+&BPK     &w:&c Player Killing
+&BMob    &w:&c Short for Mobile..meaning "creatures" in the MUD.
+&BNewbie &w:&c You :)
+&BRP     &w:&c Roleplay or Roleplaying
+&BCR     &w:&c Corpse retrieval (Asking someone to help you get your corpse back)
+&B
+&BDESCRIPTION OF COMMUNICATION CHANNELS:
+&cMany new players aren't sure how to communicate with others so I hope this helps
+&POOC&w:&c      The general discussion channel..everyone sees it. Shortcut = ]
+&RVent&w:&c     A form of OOC channel that isn't language censored.   All see it.
+&CChat&w:&c     Role-playing channel..everyone sees it.  Shortcut = .
+&RClantalk&w:&c ONLY those in your clan can see it.  Shortcut = cl
+&CShout&w:&c    Everyone sees it, but it's an emergency channel, not a discussion one.
+&CYell&w:&c     Everyone within the same AREA as you sees it.
+&CSay&w:&c      Everyone in the same ROOM as you sees it.  Shortcut = '
+&PEmote&w:&c    Everyone in the same ROOM sees it.  It's for actions not speaking.
+&WTell&w:&c     ONLY the person you send it to sees it.  Tell <player> <message>
+&cClass&w:&c    ONLY those of the same class as you see it.  Ie all thieves etc..
+&GAuction&w:&c  Everyone sees it.  This is to sell items, not talk.
+&GHero&w:&c     ONLY level 100+ characters see this, Champs & Imms.  Shortcut = -
+&cMusic&w:&c    Everyone sees this.  It's for..whatever :)
+&GQuestion&w:&c Everyone sees this.  Ask questions here or on OOC.
+Btw..OOC stands for "out of character" and with emotes it is only for actions.
+If you type "emote grins sheepishly" and your name is Arch others in the room
+will see, "Arch grins sheepishly".
+&z--------------------------------------------------------------------------------
+~
+E
+4~
+&z--------------------------------------------------------------------------------
+&BHELPFUL STARTING HINTS:
+&cHere's a couple setting hints to get you started.  If you type "config" and
+press enter you will see a list of "toggle" settings for your character.  A few
+of these are as follows and as to how you might want them:
+&w+&Rautoloot&w:&c Automatically take all equipment within a monster\player you have
+           killed.  Handy at starting levels, but I'd suggest removing it after
+           about level 10.
+&w+&Rautoexit&w:&c Automatically lists available exits from rooms, except "door" exits.
+&w+&Rautogold&w:&c Automatically take the money a creature had from it's corpse.
+&w-&Ransi&w:&c     IF you don't have the ability to see color you want this off,
+           otherwise leave it on and enjoy.
+&w-&Rcombat&w:&c   This will take away seeing "you dodge.." "<mob> dodges...".  Reduces
+           the spam a great deal.
+&w+&Rkeep&w:&c     This keeps the MUD from autoputting in a new title for you each level
+           so you can keep your own customized one.
+&w-&Rfullname&w:&c This enables 'name completion' which allows you to be lazy and type
+           only partial words.  To look at a salamander you might 'look sal' and
+           it will take the first item\mob\player that begins with those letters
+           it can find.
+These are just to help you get started, but you're welcome to set them up as you
+choose.  To set a "setting" like this you type: "config <+/-><setting>" so to
+say set autoloot ON..you'd type "config +autoloot".
+Another helpful feature of the mud is the PROMPT command.  Using it you can
+customize your info prompt in color or appearance.  "help prompt" will show all
+of the settings you can use, but here's a sample one that you can copy\paste in
+the game for show:
+&Cprompt [&&z%h&&c/&&z%H&&Bhp &&z%m&&c/&&z%M&&Bm &&w[%a][&&C%x&&wxp]:&&z
+&cAssuming your a new character at level 1 this would look like:
+&w[&z20&c/&z20&Bhp &z100&c/&z100&Bm &w[0][&C1000&wxp]:&z <whatever you type in game>
+&C(The [0] is your alignment, which generally starts out at 0.)
+&z--------------------------------------------------------------------------------
+~
+E
+3~
+&z--------------------------------------------------------------------------------
+&BHP, BLOOD, MANA & MOVEMENT:
+&cAside from Str and it's like-statistics there is &CHP &c(Hit points), &CBlood &c(A
+vampire's form of mana), &CMana &c(Amount of magical energy available) & &CMovement
+&c(one's exhaution rating.).  These are fairly simple really:
+&BHP&w:&c       It's in your prompt like 20/20hp.  This is lowered with each hit you
+          take from a player or monster.  If it reaches below 1hp you die and
+          you must get your stuff back from your corpse.
+&BBlood&w:&c    If you're not a vampire don't worry about this.  Vampires use "blood"
+          instead of "mana" that they can't regain via potions, but "feed" off
+          victims to replenish it.
+&BMana&w:&c     The amount of magical energy available to you.  So when a spell costs
+          say..50ma (ma = mana) then if you have 1500/1500ma you go to
+          1450/1500ma.  Potions will revitalize this somewhat though.
+&BMovement&w:&c This of course is the MV stat and lowers as you move between rooms,
+          but it's rare that you ever run out of movement.  Usually people just
+          ignore it completely.
+&cI'd suggest you &w-&Calways&w-&c train HP.  You'll have enough mana with potions,
+movement wears down slowly and blood can't be trained.
 &z--------------------------------------------------------------------------------
 ~
 E
@@ -1388,202 +1497,93 @@ your class' "main" statistic.  These main statistics are as follows:
 &z--------------------------------------------------------------------------------
 ~
 E
-3~
+1~
 &z--------------------------------------------------------------------------------
-&BHP, BLOOD, MANA & MOVEMENT:
-&cAside from Str and it's like-statistics there is &CHP &c(Hit points), &CBlood &c(A
-vampire's form of mana), &CMana &c(Amount of magical energy available) & &CMovement
-&c(one's exhaution rating.).  These are fairly simple really:
-&BHP&w:&c       It's in your prompt like 20/20hp.  This is lowered with each hit you
-          take from a player or monster.  If it reaches below 1hp you die and
-          you must get your stuff back from your corpse.
-&BBlood&w:&c    If you're not a vampire don't worry about this.  Vampires use "blood"
-          instead of "mana" that they can't regain via potions, but "feed" off
-          victims to replenish it.
-&BMana&w:&c     The amount of magical energy available to you.  So when a spell costs
-          say..50ma (ma = mana) then if you have 1500/1500ma you go to
-          1450/1500ma.  Potions will revitalize this somewhat though.
-&BMovement&w:&c This of course is the MV stat and lowers as you move between rooms,
-          but it's rare that you ever run out of movement.  Usually people just
-          ignore it completely.
-&cI'd suggest you &w-&Calways&w-&c train HP.  You'll have enough mana with potions,
-movement wears down slowly and blood can't be trained.
+&BPRACTICING & TRAINING:
+&cOn this mud, unlike some other forms of MUDs, you must train your primary
+statistics (Str, Int, Wis, Dex & Con), plus you may also train your HP, mana &
+move.  To do training you use "practices" that you receive each level based on
+your Wisdom.  The higher your Wisdom the more practices you're able to get per
+level.  To train a stat, like Str, it costs 5 practices per train, but to train
+HP, mana or movement it costs only 1 practice.  Note: You can't train a statisti
+c like Str past 18 regardless of class.  To train a stat you simply type: 
+&wtrain <item> &R#  &C(&R#&C is for how many practices to use.  Ie: train hp 50)
+&cPracticing is a bit more indepth where training deals with statistics,
+practicing is how you aquire new skills and spells.  It only takes one
+practice to improve a skill or spell, but how much it is improved depends upon
+your Int statistic.  Plus different classes can practice to different amounts
+such as a Mage's 95% and a Thief's 85%.  To practice a skill\spell you type:
+&wpractice <skill name>  &C(don't put ""s around the name if it's 2+ words)
 &z--------------------------------------------------------------------------------
 ~
 E
-4~
+guide~
 &z--------------------------------------------------------------------------------
-&BHELPFUL STARTING HINTS:
-&cHere's a couple setting hints to get you started.  If you type "config" and
-press enter you will see a list of "toggle" settings for your character.  A few
-of these are as follows and as to how you might want them:
-&w+&Rautoloot&w:&c Automatically take all equipment within a monster\player you have
-           killed.  Handy at starting levels, but I'd suggest removing it after
-           about level 10.
-&w+&Rautoexit&w:&c Automatically lists available exits from rooms, except "door" exits.
-&w+&Rautogold&w:&c Automatically take the money a creature had from it's corpse.
-&w-&Ransi&w:&c     IF you don't have the ability to see color you want this off,
-           otherwise leave it on and enjoy.
-&w-&Rcombat&w:&c   This will take away seeing "you dodge.." "<mob> dodges...".  Reduces
-           the spam a great deal.
-&w+&Rkeep&w:&c     This keeps the MUD from autoputting in a new title for you each level
-           so you can keep your own customized one.
-&w-&Rfullname&w:&c This enables 'name completion' which allows you to be lazy and type
-           only partial words.  To look at a salamander you might 'look sal' and
-           it will take the first item\mob\player that begins with those letters
-           it can find.
-These are just to help you get started, but you're welcome to set them up as you
-choose.  To set a "setting" like this you type: "config <+/-><setting>" so to
-say set autoloot ON..you'd type "config +autoloot".
-Another helpful feature of the mud is the PROMPT command.  Using it you can
-customize your info prompt in color or appearance.  "help prompt" will show all
-of the settings you can use, but here's a sample one that you can copy\paste in
-the game for show:
-&Cprompt [&&z%h&&c/&&z%H&&Bhp &&z%m&&c/&&z%M&&Bm &&w[%a][&&C%x&&wxp]:&&z
-&cAssuming your a new character at level 1 this would look like:
-&w[&z20&c/&z20&Bhp &z100&c/&z100&Bm &w[0][&C1000&wxp]:&z <whatever you type in game>
-&C(The [0] is your alignment, which generally starts out at 0.)
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Traniing
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
 &z--------------------------------------------------------------------------------
 ~
 E
-5~
+newbie~
 &z--------------------------------------------------------------------------------
-&BCOMMON ABBREIVATIONS:
-&cThis is just for those who are truely new to mudding since there are certain
-terms mudders use all the time.
-&BAFK    &w:&c Away From the Keyboard (Could also just be not paying attention)
-&BPK     &w:&c Player Killing
-&BMob    &w:&c Short for Mobile..meaning "creatures" in the MUD.
-&BNewbie &w:&c You :)
-&BRP     &w:&c Roleplay or Roleplaying
-&BCR     &w:&c Corpse retrieval (Asking someone to help you get your corpse back)
-&B
-&BDESCRIPTION OF COMMUNICATION CHANNELS:
-&cMany new players aren't sure how to communicate with others so I hope this helps
-&POOC&w:&c      The general discussion channel..everyone sees it. Shortcut = ]
-&RVent&w:&c     A form of OOC channel that isn't language censored.   All see it.
-&CChat&w:&c     Role-playing channel..everyone sees it.  Shortcut = .
-&RClantalk&w:&c ONLY those in your clan can see it.  Shortcut = cl
-&CShout&w:&c    Everyone sees it, but it's an emergency channel, not a discussion one.
-&CYell&w:&c     Everyone within the same AREA as you sees it.
-&CSay&w:&c      Everyone in the same ROOM as you sees it.  Shortcut = '
-&PEmote&w:&c    Everyone in the same ROOM sees it.  It's for actions not speaking.
-&WTell&w:&c     ONLY the person you send it to sees it.  Tell <player> <message>
-&cClass&w:&c    ONLY those of the same class as you see it.  Ie all thieves etc..
-&GAuction&w:&c  Everyone sees it.  This is to sell items, not talk.
-&GHero&w:&c     ONLY level 100+ characters see this, Champs & Imms.  Shortcut = -
-&cMusic&w:&c    Everyone sees this.  It's for..whatever :)
-&GQuestion&w:&c Everyone sees this.  Ask questions here or on OOC.
-Btw..OOC stands for "out of character" and with emotes it is only for actions.
-If you type "emote grins sheepishly" and your name is Arch others in the room
-will see, "Arch grins sheepishly".
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Traniing
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
+&z10&w..&BOK, but where do I go now? & I'm lost, how do I get back?
 &z--------------------------------------------------------------------------------
 ~
 E
-6~
+book~
 &z--------------------------------------------------------------------------------
-&BFIGHTING PLAYERS VS MOBS:
-&c  For attacking normal mobs simply type &w'&Rkill <mob name>&w'&c to start a fight with
-them or if you are a thief type 'bs <mob name>' once you have the backstab
-skill.  If you want to attack an animated corpse (you'll know when you come
-across one) or a player (when you &R_BOTH_ &care in PK clans) you type &w'&Rmurder
-<player>&w'&c to attack.
-  If a fight isn't going well for you and you're likely to die if you don't find
-a quick escape you simply need to type &B'&wflee&B'&c until you escape.  You will lose
-a little bit of experience in the process, but it's better to lose 10xp than
-lose half of what xp you've gained towards leveling.  Btw..it's 1000xp per
-level.  In some areas flee doesn't work though, such as Dragon Valley though.
-  Also, there are numerous "aggressive" mobs in the game that will automatically
-attack you the moment you enter the room regardless of wether you wished to
-fight or not.  So be wary of exploring high level areas or new areas without
-shielding yourself against possible attack.
-&B
-ALIASES - Use and Creation&w:
-&WSyntax&w:&r alias [shortcut] [task]  &C(Creates or modifies an alias)
-&WSyntax&w:&r alias [shortcut]         &C(Deletes that alias)
-&c  Aliases are common to many muds, but aren't found in all.  Basically these
-are exactly what they sound like.  They're shortcut commands to preform larger
-tasks.  &C(&BEx&w:&c having a shortcut command of 'fire' for performing the task, "cast
-'fireball'"&C)&c.  This mainly just saves you on time and typing.  How it works:
-&CExample&w:&c
-<prompt> alias clb cast 'lightning breath'
-Alias 'clb' added.
-<prompt> clb
-Cast spell on whom?
-<prompt> clb dragon
-Your blast of lightning MUTILATES the dragon.
-&z--------------------------------------------------------------------------------
-~
-E
-7~
-&z--------------------------------------------------------------------------------
-&BLIST OF EQUIPMENT SLOTS:
-&B
-&CLight                           &CShield &w(&z*&w)
-&CFinger &w(&B2&w)                      &COrbit &w(&B2&w)
-&CNeck &w(&B2&w)                        &CWaist
-&CHead                            &CAbout Body
-&CFace                            &CWrists &w(&B2&w)
-&CEyes                            &CEarring
-&CBody                            &CAnkles &w(&B2&w)
-&CArms                            &CWield
-&CHands                           &CDual Wield &w(&z**&w)
-&CLegs                            &CHeld &w(&z*&w)
-&CFeet
-&z*  &w-&c Only usable if you're not dual wielding.  &C(Mainly for spellcasters)
-&z** &w-&c Only usable if you have the "dual" skill.  &C(Fighter classes)
-&B
-INVOKES ON ITEMS:
-&cYou won't find many low level items with invokable spells on them, but just so
-you're aware of their existance there are many items in the game that can be
-"invoked" to produce a certain effect or spell.  An item may contain the spell
-'fireshield' and if you invoke the item it casts that spell upon you or the
-target you select.  These are primarily handy to the non-magical fighting
-classes.
-&z--------------------------------------------------------------------------------
-~
-E
-8~
-&z--------------------------------------------------------------------------------
-&BTHE MUD'S RULES:
-&cThese are the rules of EOS.  For other matters, use commom sense.
-&B
-&z*&w foul and/or abusive language will not be tolerated on EoS, from anyone
-  (including gods). Punishments range from deletion to NOCHANNELing.
-&B
-&z*&w sexual harassment of any form will not be tolerated, punishable by deletion
-&B
-&z*&w your presence here is a privilige not a right
-&B
-&z*&w no multiple logins, multiple playing, or helping your own characters with
-  other characters you own -- by any arrangment.
-&B
-&z*&w no kill stealing.  This means you cannot attack a mob someone else is
-  fighting, unless they ask you to. Also avoid attacking fleeing mobs.
-&B
-&z*&w cheating will not be tolerated.  This includes accepting favors from gods
-  and exploiting bugs. If you find a bug, report it, then do not use it.
-&B
-&z*&w Absolutely NO summonsing any mobs to Bethaven, Ravenwood or Alor Raharo.  
-  I do NOT wish newbies jeopardized.  There's plenty of room outside those 
-  towns, use them.
-&z--------------------------------------------------------------------------------
-~
-E
-9~
-&z--------------------------------------------------------------------------------
-&BWIZLIST & GETTING HELP:
-&cTyping &z'&wwizlist&z'&c will show you a "reasonably current" list of the MUD's
-immortal staff.  Generally when you wish to seek help on something you should
-begin at the bottom of that list and work upward, since those at the top
-positions are often busy with things and will generally take the longest to
-answer your question.  Also know that most immortals are busy doing something
-even if it may not be immediately appearant so if they don't answer right away
-give them time.  And if you ask for their attention and get it, don't tell them
-"just a sec" if it's something you could have taken care of before calling their
-attention.  These are just general notes of "etiquette" in dealing with 
-immortals.  They're happy to help you out if you give them the chance and don't 
-disrespect them.
+NEWBIE BOOK:
+--------------------------------------------------------------------------------
+&BINTRO:
+&cThis book is for the benefit of those who either are just learning to MUD or
+aren't well versed in it already, so those of you who are comfortable with how
+to play you may wish to skip to number 7.  To look at any "chapter" in this book
+you type: &B"&wlook &R#&B" &C(Minus the quotes.  # refers to the chapter)
+&z--------- &WBeginners &z----------
+&z1&w...&BPracticing & Training
+&z2&w...&BStatistics -> STR, INT, WIS, DEX & CON
+&z3&w...&BHP, Blood, Mana & Movement
+&z4&w...&BHelpful starting hints
+&z5&w...&BCommon Abbreivations & MUD communication channels
+&z6&w...&BFighting players vs mobs & Aliases - Use and Creation
+&z-------- &WGeneral Info &z--------
+&z7&w...&BList of Equipment slots & Invokes on items
+&z8&w...&BThe MUD's Rules
+&z9&w...&BWizlist and Getting help
 &z--------------------------------------------------------------------------------
 ~
 #825
@@ -1787,9 +1787,9 @@ reserved~
 0 0
 0 0 0
 A
-18 2
-A
 19 1
+A
+18 2
 E
 stiletto dagger~
 &YA stiletto is a short dagger with a strong, triangular blade that
@@ -2550,16 +2550,16 @@ against the wall.
 0 394268 0
 Rd     0
 E
+shelf shelve shelves~
+&WThe large wooden shelves are crammed with food and bags!  You see all
+kinds of dried fruits and breads, making your mouth water with anticipation.
+~
+E
 sign~
 &WIf you want to see what items I sell, type &Ylist&W and it will show
 you items and cost.  To buy an item here, type &Ybuy <item>&W and if you
 have enough money, I will gladly sell it to you.  For more detailed help
 about shops, type &Yhelp buy&W.  &WThank you, &WKalin.  
-~
-E
-shelf shelve shelves~
-&WThe large wooden shelves are crammed with food and bags!  You see all
-kinds of dried fruits and breads, making your mouth water with anticipation.
 ~
 D1
 ~
@@ -2603,6 +2603,11 @@ and strategies for newcomers.
 0 393244 0
 Rd     0
 E
+gate~
+&PA large gate blocks your way to the Fighting Grounds.  You must type
+&Ropen south&P or &Ropen gate&P to open the gate south of you.  
+~
+E
 sign~
 &YINFORMATION FOR NEWCOMERS
  
@@ -2618,11 +2623,6 @@ sign~
  
 &Y**&W  Always remember to &Rlook <item>&W or &Rlook <mob name>&W
 &W    as it can often give you more information.
-~
-E
-gate~
-&PA large gate blocks your way to the Fighting Grounds.  You must type
-&Ropen south&P or &Ropen gate&P to open the gate south of you.  
 ~
 D0
 ~
@@ -2652,6 +2652,11 @@ by the edge of the trail.
 0 394268 0
 Rd     0
 E
+gate~
+&PIf the gate is closed, just type &Ropen gate&P &Por &Ropen north&P to
+be able to travel north.  
+~
+E
 sign~
 &WThroughout your journey in the Fighting Grounds, you will encounter
 many creatures and animals to kill. These are called &Rmobs&W.
@@ -2675,11 +2680,6 @@ many creatures and animals to kill. These are called &Rmobs&W.
 
 &Y**&W  If you choose to sleep, let it be known that you are less
 &W    conscious of your surroundings.
-~
-E
-gate~
-&PIf the gate is closed, just type &Ropen gate&P &Por &Ropen north&P to
-be able to travel north.  
 ~
 D0
 &PBeyond this gate lies the Main Grounds of Mudschool, where you must
@@ -3268,11 +3268,6 @@ hangs from an opening in the treehouse floor above.
 0 393240 0
 Rd     0
 E
-ladder~
-&OHoles are dug out for a pair of tiny feet, apparently once used as a
-ladder.  
-~
-E
 initials~
 &R
 &R   @@@      @@@
@@ -3285,6 +3280,11 @@ initials~
 &R      @ oo @
 &R       @  @
 &R        @@
+~
+E
+ladder~
+&OHoles are dug out for a pair of tiny feet, apparently once used as a
+ladder.  
 ~
 D1
 ~
