@@ -1,0 +1,32 @@
+Merc Release 2.0
+Sunday 04 July 1993
+
+Furey	mec@shell.portal.com
+Hatchet	hatchet@uclink.berkeley.edu
+Kahn	michael@uclink.berkeley.edu
+
+
+
+=== Merc-Based Sites
+
+The following muds are based on Merc code.  The implementors of these muds
+add their own changes and features, so don't expect all these muds to look
+alike.  Most of them look VERY different!
+
+To the imps who run these muds ... thanks for sharing your computers with
+us all!
+
+If you would like to be added to (or removed from) to this list, just e-mail
+Furey, Hatchet, or Kahn.
+
+	Dark Castle	spot.colorado.edu	4000
+	Dragonfire	mhoro.cc.columbia.edu	7000
+	Fourth Realm	marble.bu.edu		4000
+	Hidden Worlds	cns.cscns.com		4000
+	The Land	nora.gih.no		4000
+	Mud Lite	haas.berkeley.edu	4000
+	Mystic Realms	dikumud.sju.edu		4000
+	Random Merc	jambo.cc.columbia.edu	9000
+	Rivers of Mud	cie-2.uoregon.edu	9000
+	Ulti Mud	bolero.rahul.net	4000
+	Vego Mud	screech.alfred.edu	9000

@@ -1,94 +1,282 @@
 /***************************************************************************
- *  file: save.c, Database module.                        Part of DIKUMUD  *
- *  Usage: Saving and loading of characters                                *
- *  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
  *                                                                         *
- *  Copyright (C) 1992, 1993 Michael Chastain, Michael Quan, Mitchell Tse  *
- *  Rewritten by MERC Industries, based on crash.c by prometheus           *
- *  (Taquin Ho) and abaddon (Jeff Stile).                                  *
- *  You can use our stuff in any way you like whatsoever so long as this   *
- *  copyright notice remains intact.  If you like it please drop a line    *
- *  to mec@garnet.berkeley.edu.                                            *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
  *                                                                         *
- *  This is free software and you are benefitting.  We hope that you       *
- *  share your changes too.  What goes around, comes around.               *
+ *  In order to use any part of this Merc Diku Mud, you must comply with   *
+ *  both the original Diku license in 'license.doc' as well the Merc       *
+ *  license in 'license.txt'.  In particular, you may not remove either of *
+ *  these copyright notices.                                               *
+ *                                                                         *
+ *  Much time and thought has gone into this software and you are          *
+ *  benefitting.  We hope that you share your changes too.  What goes      *
+ *  around, comes around.                                                  *
  ***************************************************************************/
 
-#include <stdlib.h>
+#include <sys/types.h>
 #include <stdio.h>
-#include <ctype.h>
-#include <strings.h>
 #include <string.h>
+#include <ctype.h>
+#include "merc.h"
 
-#include "structs.h"
-#include "mob.h"
-#include "obj.h"
-#include "utils.h"
-#include "db.h"
-#include "handler.h"
-#include "spells.h"
+#if !defined(macintosh)
+extern	int	_filbuf		args( (FILE *) );
+#endif
 
-extern struct index_data *obj_index;
-extern struct room_data *world;
 
-void obj_store_to_char(struct char_data *ch, struct obj_file_elem *object);
-bool put_obj_in_store(struct obj_data *obj, struct char_data *ch,
-    FILE *fpsave);
-void restore_weight(struct obj_data *obj);
-void store_to_char(struct char_file_u *st, struct char_data *ch);
-void char_to_store(struct char_data *ch, struct char_file_u *st);
+
+/*
+ * Array of containers read for proper re-nesting of objects.
+ */
+#define MAX_NEST	100
+static	OBJ_DATA *	rgObjNest	[MAX_NEST];
+
+
+
+/*
+ * Local functions.
+ */
+void	fwrite_char	args( ( CHAR_DATA *ch,  FILE *fp ) );
+void	fwrite_obj	args( ( CHAR_DATA *ch,  OBJ_DATA  *obj,
+			    FILE *fp, int iNest ) );
+void	fread_char	args( ( CHAR_DATA *ch,  FILE *fp ) );
+void	fread_obj	args( ( CHAR_DATA *ch,  FILE *fp ) );
 
 
 
 /*
  * Save a character and inventory.
- * Would be cool to save NPC's too for quest purposes.
+ * Would be cool to save NPC's too for quest purposes,
+ *   some of the infrastructure is provided.
  */
-void save_char_obj( struct char_data *ch )
+void save_char_obj( CHAR_DATA *ch )
 {
-    struct  char_file_u uchar;
-    FILE *  fpsave  = NULL;
-    char    strsave[MAX_INPUT_LENGTH];
-    int     iWear;
+    char strsave[MAX_INPUT_LENGTH];
+    FILE *fp;
 
-    if ( IS_NPC(ch) || GET_LEVEL(ch) < 2 )
-	goto LSuccess;
+    if ( IS_NPC(ch) || ch->level < 2 )
+	return;
 
-    sprintf( strsave, "%s/%s", SAVE_DIR, ch->player.name );
-    if ( ( fpsave = fopen( strsave, "wb" ) ) == NULL )
-	goto LError;
+    if ( ch->desc != NULL && ch->desc->original != NULL )
+	ch = ch->desc->original;
 
-    char_to_store( ch, &uchar );
-    if ( ch->in_room < 2 )
-	uchar.load_room = world[ch->specials.was_in_room].number;
-    else
-	uchar.load_room = world[ch->in_room].number;
-
-    if ( fwrite( &uchar, sizeof(uchar), 1, fpsave ) == 0 )
-	goto LError;
-
-    if ( !obj_to_store( ch->carrying, ch, fpsave ) )
-	goto LError;
-
-    restore_weight( ch->carrying );
-    for ( iWear = 0; iWear < MAX_WEAR; iWear++ )
+    ch->save_time = current_time;
+    fclose( fpReserve );
+    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( ch->name ) );
+    if ( ( fp = fopen( strsave, "w" ) ) == NULL )
     {
-	if ( ch->equipment[iWear] )
+	bug( "Save_char_obj: fopen", 0 );
+	perror( strsave );
+    }
+    else
+    {
+	fwrite_char( ch, fp );
+	if ( ch->carrying != NULL )
+	    fwrite_obj( ch, ch->carrying, fp, 0 );
+	fprintf( fp, "#END\n" );
+    }
+    fclose( fp );
+    fpReserve = fopen( NULL_FILE, "r" );
+    return;
+}
+
+
+
+/*
+ * Write the char.
+ */
+void fwrite_char( CHAR_DATA *ch, FILE *fp )
+{
+    AFFECT_DATA *paf;
+    int sn;
+
+    fprintf( fp, "#%s\n", IS_NPC(ch) ? "MOB" : "PLAYER"		);
+
+    fprintf( fp, "Name         %s~\n",	ch->name		);
+    fprintf( fp, "ShortDescr   %s~\n",	ch->short_descr		);
+    fprintf( fp, "LongDescr    %s~\n",	ch->long_descr		);
+    fprintf( fp, "Description  %s~\n",	ch->description		);
+    fprintf( fp, "Sex          %d\n",	ch->sex			);
+    fprintf( fp, "Class        %d\n",	ch->class		);
+    fprintf( fp, "Race         %d\n",	ch->race		);
+    fprintf( fp, "Level        %d\n",	ch->level		);
+    fprintf( fp, "Trust        %d\n",	ch->trust		);
+    fprintf( fp, "Played       %d\n",
+	(int) (ch->played + current_time - ch->logon)		);
+    fprintf( fp, "Room         %d\n",
+	ch->in_room == NULL ? ch->was_in_room->vnum : ch->in_room->vnum );
+
+    fprintf( fp, "HpManaMove   %d %d %d %d %d %d\n",
+	ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move );
+    fprintf( fp, "Gold         %d\n",	ch->gold		);
+    fprintf( fp, "Exp          %d\n",	ch->exp			);
+    fprintf( fp, "Act          %d\n",   ch->act			);
+    fprintf( fp, "AffectedBy   %d\n",	ch->affected_by		);
+    fprintf( fp, "Position     %d\n",	ch->position		);
+    fprintf( fp, "Practice     %d\n",	ch->practice		);
+    fprintf( fp, "SavingThrow  %d\n",	ch->saving_throw	);
+    fprintf( fp, "Alignment    %d\n",	ch->alignment		);
+    fprintf( fp, "Hitroll      %d\n",	ch->hitroll		);
+    fprintf( fp, "Damroll      %d\n",	ch->damroll		);
+    fprintf( fp, "Armor        %d\n",	ch->armor		);
+    fprintf( fp, "Wimpy        %d\n",	ch->wimpy		);
+
+    if ( IS_NPC(ch) )
+    {
+	fprintf( fp, "Vnum         %d\n",	ch->pIndexData->vnum	);
+    }
+    else
+    {
+	fprintf( fp, "Password     %s~\n",	ch->pcdata->pwd		);
+	fprintf( fp, "Bamfin       %s~\n",	ch->pcdata->bamfin	);
+	fprintf( fp, "Bamfout      %s~\n",	ch->pcdata->bamfout	);
+	fprintf( fp, "Title        %s~\n",	ch->pcdata->title	);
+	fprintf( fp, "AttrPerm     %d %d %d %d %d\n",
+	    ch->pcdata->perm_str,
+	    ch->pcdata->perm_int,
+	    ch->pcdata->perm_wis,
+	    ch->pcdata->perm_dex,
+	    ch->pcdata->perm_con );
+
+	fprintf( fp, "AttrMod      %d %d %d %d %d\n",
+	    ch->pcdata->mod_str, 
+	    ch->pcdata->mod_int, 
+	    ch->pcdata->mod_wis,
+	    ch->pcdata->mod_dex, 
+	    ch->pcdata->mod_con );
+
+	fprintf( fp, "Condition    %d %d %d\n",
+	    ch->pcdata->condition[0],
+	    ch->pcdata->condition[1],
+	    ch->pcdata->condition[2] );
+
+	for ( sn = 0; sn < MAX_SKILL; sn++ )
 	{
-	    if ( !obj_to_store( ch->equipment[iWear], ch, fpsave ) )
-		goto LError;
-	    restore_weight( ch->equipment[iWear] );
+	    if ( skill_table[sn].name != NULL && ch->pcdata->learned[sn] > 0 )
+	    {
+		fprintf( fp, "Skill        %d '%s'\n",
+		    ch->pcdata->learned[sn], skill_table[sn].name );
+	    }
 	}
     }
-    goto LSuccess;
 
- LError:
-    sprintf( log_buf, "Save_char_obj: %s", strsave );
-    log( log_buf );
+    for ( paf = ch->affected; paf != NULL; paf = paf->next )
+    {
+	fprintf( fp, "Affect %3d %3d %3d %3d %10d\n",
+	    paf->type,
+	    paf->duration,
+	    paf->modifier,
+	    paf->location,
+	    paf->bitvector
+	    );
+    }
 
- LSuccess:
-    if ( fpsave != NULL )
-	fclose( fpsave );
+    fprintf( fp, "End\n\n" );
+    return;
+}
+
+
+
+/*
+ * Write an object and its contents.
+ */
+void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
+{
+    EXTRA_DESCR_DATA *ed;
+    AFFECT_DATA *paf;
+
+    /*
+     * Slick recursion to write lists backwards,
+     *   so loading them will load in forwards order.
+     */
+    if ( obj->next_content != NULL )
+	fwrite_obj( ch, obj->next_content, fp, iNest );
+
+    /*
+     * Castrate storage characters.
+     */
+    if ( ch->level < obj->level
+    ||   obj->item_type == ITEM_KEY
+    ||   obj->item_type == ITEM_POTION )
+	return;
+
+    fprintf( fp, "#OBJECT\n" );
+    fprintf( fp, "Nest         %d\n",	iNest			     );
+    fprintf( fp, "Name         %s~\n",	obj->name		     );
+    fprintf( fp, "ShortDescr   %s~\n",	obj->short_descr	     );
+    fprintf( fp, "Description  %s~\n",	obj->description	     );
+    fprintf( fp, "Vnum         %d\n",	obj->pIndexData->vnum	     );
+    fprintf( fp, "ExtraFlags   %d\n",	obj->extra_flags	     );
+    fprintf( fp, "WearFlags    %d\n",	obj->wear_flags		     );
+    fprintf( fp, "WearLoc      %d\n",	obj->wear_loc		     );
+    fprintf( fp, "ItemType     %d\n",	obj->item_type		     );
+    fprintf( fp, "Weight       %d\n",	obj->weight		     );
+    fprintf( fp, "Level        %d\n",	obj->level		     );
+    fprintf( fp, "Timer        %d\n",	obj->timer		     );
+    fprintf( fp, "Cost         %d\n",	obj->cost		     );
+    fprintf( fp, "Values       %d %d %d %d\n",
+	obj->value[0], obj->value[1], obj->value[2], obj->value[3]	     );
+
+    switch ( obj->item_type )
+    {
+    case ITEM_POTION:
+    case ITEM_SCROLL:
+	if ( obj->value[1] > 0 )
+	{
+	    fprintf( fp, "Spell 1      '%s'\n", 
+		skill_table[obj->value[1]].name );
+	}
+
+	if ( obj->value[2] > 0 )
+	{
+	    fprintf( fp, "Spell 2      '%s'\n", 
+		skill_table[obj->value[2]].name );
+	}
+
+	if ( obj->value[3] > 0 )
+	{
+	    fprintf( fp, "Spell 3      '%s'\n", 
+		skill_table[obj->value[3]].name );
+	}
+
+	break;
+
+    case ITEM_PILL:
+    case ITEM_STAFF:
+    case ITEM_WAND:
+	if ( obj->value[3] > 0 )
+	{
+	    fprintf( fp, "Spell 3      '%s'\n", 
+		skill_table[obj->value[3]].name );
+	}
+
+	break;
+    }
+
+    for ( paf = obj->affected; paf != NULL; paf = paf->next )
+    {
+	fprintf( fp, "Affect       %d %d %d %d %d\n",
+	    paf->type,
+	    paf->duration,
+	    paf->modifier,
+	    paf->location,
+	    paf->bitvector
+	    );
+    }
+
+    for ( ed = obj->extra_descr; ed != NULL; ed = ed->next )
+    {
+	fprintf( fp, "ExtraDescr   %s~ %s~\n",
+	    ed->keyword, ed->description );
+    }
+
+    fprintf( fp, "End\n\n" );
+
+    if ( obj->contains != NULL )
+	fwrite_obj( ch, obj->contains, fp, iNest + 1 );
+
     return;
 }
 
@@ -97,360 +285,566 @@ void save_char_obj( struct char_data *ch )
 /*
  * Load a char and inventory into a new ch structure.
  */
-bool load_char_obj( struct descriptor_data *d, char *name )
+bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 {
-    FILE *  fpsave  = NULL;
-    char    strsave[MAX_INPUT_LENGTH];
-    struct  char_file_u uchar;
-    struct  char_data *ch;
+    static PC_DATA pcdata_zero;
+    char strsave[MAX_INPUT_LENGTH];
+    CHAR_DATA *ch;
+    FILE *fp;
+    bool found;
 
-    CREATE( ch, struct char_data, 1 );
-    d->character    = ch;
-    clear_char( ch );
-    ch->desc        = d;
-
-    sprintf( strsave, "%s/%s", SAVE_DIR, name );
-    if ( ( fpsave = fopen( strsave, "rb" ) ) == NULL )
-	return FALSE;
-
-    if ( fread( &uchar, sizeof(uchar), 1, fpsave ) == 0 )
-	goto LError;
-    reset_char( ch );
-    GET_NAME(ch) = str_dup(name);
-    store_to_char( &uchar, ch );
-    if ( world[ch->in_room].zone != world[real_room(3001)].zone )
-	gain_exp(ch, 0 - MIN(GET_EXP(ch)/2, 10*GET_LEVEL(ch)*GET_LEVEL(ch) ));
-
-    while ( !feof( fpsave ) )
+    if ( char_free == NULL )
     {
-	struct  obj_file_elem   object;
+	ch				= alloc_perm( sizeof(*ch) );
+    }
+    else
+    {
+	ch				= char_free;
+	char_free			= char_free->next;
+    }
+    clear_char( ch );
 
-	fread( &object, sizeof(object), 1, fpsave );
-	if ( ferror( fpsave ) )
-	    goto LError;
-	if ( feof( fpsave ) )
+    if ( pcdata_free == NULL )
+    {
+	ch->pcdata			= alloc_perm( sizeof(*ch->pcdata) );
+    }
+    else
+    {
+	ch->pcdata			= pcdata_free;
+	pcdata_free			= pcdata_free->next;
+    }
+    *ch->pcdata				= pcdata_zero;
+
+    d->character			= ch;
+    ch->desc				= d;
+    ch->name				= str_dup( name );
+    ch->act				= PLR_AUCTION
+					| PLR_BLANK
+					| PLR_CHAT
+					| PLR_COMBINE
+					| PLR_PROMPT;
+    ch->pcdata->pwd			= str_dup( "" );
+    ch->pcdata->bamfin			= str_dup( "" );
+    ch->pcdata->bamfout			= str_dup( "" );
+    ch->pcdata->title			= str_dup( "" );
+    ch->pcdata->perm_str		= 13;
+    ch->pcdata->perm_int		= 13; 
+    ch->pcdata->perm_wis		= 13;
+    ch->pcdata->perm_dex		= 13;
+    ch->pcdata->perm_con		= 13;
+    ch->pcdata->condition[COND_THIRST]	= 24;
+    ch->pcdata->condition[COND_FULL]	= 24;
+
+    found = FALSE;
+    fclose( fpReserve );
+    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( name ) );
+    if ( ( fp = fopen( strsave, "r" ) ) != NULL )
+    {
+	int iNest;
+
+	for ( iNest = 0; iNest < MAX_NEST; iNest++ )
+	    rgObjNest[iNest] = NULL;
+
+	found = TRUE;
+	for ( ; ; )
+	{
+	    char letter;
+	    char *word;
+
+	    letter = fread_letter( fp );
+	    if ( letter == '*' )
+	    {
+		fread_to_eol( fp );
+		continue;
+	    }
+
+	    if ( letter != '#' )
+	    {
+		bug( "Load_char_obj: # not found.", 0 );
+		break;
+	    }
+
+	    word = fread_word( fp );
+	    if      ( !str_cmp( word, "PLAYER" ) ) fread_char ( ch, fp );
+	    else if ( !str_cmp( word, "OBJECT" ) ) fread_obj  ( ch, fp );
+	    else if ( !str_cmp( word, "END"    ) ) break;
+	    else
+	    {
+		bug( "Load_char_obj: bad section.", 0 );
+		break;
+	    }
+	}
+	fclose( fp );
+    }
+
+    fpReserve = fopen( NULL_FILE, "r" );
+    return found;
+}
+
+
+
+/*
+ * Read in a char.
+ */
+
+#if defined(KEY)
+#undef KEY
+#endif
+
+#define KEY( literal, field, value )					\
+				if ( !str_cmp( word, literal ) )	\
+				{					\
+				    field  = value;			\
+				    fMatch = TRUE;			\
+				    break;				\
+				}
+
+void fread_char( CHAR_DATA *ch, FILE *fp )
+{
+    char buf[MAX_STRING_LENGTH];
+    char *word;
+    bool fMatch;
+
+    for ( ; ; )
+    {
+	word   = feof( fp ) ? "End" : fread_word( fp );
+	fMatch = FALSE;
+
+	switch ( UPPER(word[0]) )
+	{
+	case '*':
+	    fMatch = TRUE;
+	    fread_to_eol( fp );
 	    break;
 
-	obj_store_to_char( ch, &object );
-    }
-    goto LSuccess;
+	case 'A':
+	    KEY( "Act",		ch->act,		fread_number( fp ) );
+	    KEY( "AffectedBy",	ch->affected_by,	fread_number( fp ) );
+	    KEY( "Alignment",	ch->alignment,		fread_number( fp ) );
+	    KEY( "Armor",	ch->armor,		fread_number( fp ) );
 
- LError:
-    sprintf( log_buf, "Load_char_obj: %s", strsave );
-    log( log_buf );
-    if ( fpsave != NULL )
-	fclose( fpsave );
-    return FALSE;
+	    if ( !str_cmp( word, "Affect" ) )
+	    {
+		AFFECT_DATA *paf;
 
- LSuccess:
-    if ( fpsave != NULL )
-	fclose( fpsave );
-    return TRUE;
-}
+		if ( affect_free == NULL )
+		{
+		    paf		= alloc_perm( sizeof(*paf) );
+		}
+		else
+		{
+		    paf		= affect_free;
+		    affect_free	= affect_free->next;
+		}
 
+		paf->type	= fread_number( fp );
+		paf->duration	= fread_number( fp );
+		paf->modifier	= fread_number( fp );
+		paf->location	= fread_number( fp );
+		paf->bitvector	= fread_number( fp );
+		paf->next	= ch->affected;
+		ch->affected	= paf;
+		fMatch = TRUE;
+		break;
+	    }
 
+	    if ( !str_cmp( word, "AttrMod"  ) )
+	    {
+		ch->pcdata->mod_str  = fread_number( fp );
+		ch->pcdata->mod_int  = fread_number( fp );
+		ch->pcdata->mod_wis  = fread_number( fp );
+		ch->pcdata->mod_dex  = fread_number( fp );
+		ch->pcdata->mod_con  = fread_number( fp );
+		fMatch = TRUE;
+		break;
+	    }
 
-void obj_store_to_char(struct char_data *ch, struct obj_file_elem *object)
-{
-    struct obj_data *obj;
-    int j;
-    int nr;
+	    if ( !str_cmp( word, "AttrPerm" ) )
+	    {
+		ch->pcdata->perm_str = fread_number( fp );
+		ch->pcdata->perm_int = fread_number( fp );
+		ch->pcdata->perm_wis = fread_number( fp );
+		ch->pcdata->perm_dex = fread_number( fp );
+		ch->pcdata->perm_con = fread_number( fp );
+		fMatch = TRUE;
+		break;
+	    }
+	    break;
 
-    void obj_to_char(struct obj_data *object, struct char_data *ch);
+	case 'B':
+	    KEY( "Bamfin",	ch->pcdata->bamfin,	fread_string( fp ) );
+	    KEY( "Bamfout",	ch->pcdata->bamfout,	fread_string( fp ) );
+	    break;
 
-    if ( ( nr = real_object(object->item_number) ) > -1 ) 
-    {
-	obj = read_object( nr, 0 );
-	obj->obj_flags.value[0] = object->value[0];
-	obj->obj_flags.value[1] = object->value[1];
-	obj->obj_flags.value[2] = object->value[2];
-	obj->obj_flags.value[3] = object->value[3];
+	case 'C':
+	    KEY( "Class",	ch->class,		fread_number( fp ) );
 
-	obj->obj_flags.extra_flags = object->extra_flags;
-	obj->obj_flags.weight      = object->weight;
-	obj->obj_flags.timer       = object->timer;
-	obj->obj_flags.eq_level    = object->eq_level;
-	obj->obj_flags.bitvector   = object->bitvector;
+	    if ( !str_cmp( word, "Condition" ) )
+	    {
+		ch->pcdata->condition[0] = fread_number( fp );
+		ch->pcdata->condition[1] = fread_number( fp );
+		ch->pcdata->condition[2] = fread_number( fp );
+		fMatch = TRUE;
+		break;
+	    }
+	    break;
 
-	for(j=0; j<MAX_OBJ_AFFECT; j++)
-	    obj->affected[j] = object->affected[j];
+	case 'D':
+	    KEY( "Damroll",	ch->damroll,		fread_number( fp ) );
+	    KEY( "Description",	ch->description,	fread_string( fp ) );
+	    break;
 
-	obj_to_char(obj, ch);
-    }
-}
+	case 'E':
+	    if ( !str_cmp( word, "End" ) )
+		return;
+	    KEY( "Exp",		ch->exp,		fread_number( fp ) );
+	    break;
 
+	case 'G':
+	    KEY( "Gold",	ch->gold,		fread_number( fp ) );
+	    break;
 
+	case 'H':
+	    KEY( "Hitroll",	ch->hitroll,		fread_number( fp ) );
 
-bool obj_to_store( struct obj_data *obj, struct char_data *ch, FILE *fpsave )
-{
-    struct obj_data *tmp;
+	    if ( !str_cmp( word, "HpManaMove" ) )
+	    {
+		ch->hit		= fread_number( fp );
+		ch->max_hit	= fread_number( fp );
+		ch->mana	= fread_number( fp );
+		ch->max_mana	= fread_number( fp );
+		ch->move	= fread_number( fp );
+		ch->max_move	= fread_number( fp );
+		fMatch = TRUE;
+		break;
+	    }
+	    break;
 
-    if ( obj == NULL )
-	return TRUE;
+	case 'L':
+	    KEY( "Level",	ch->level,		fread_number( fp ) );
+	    KEY( "LongDescr",	ch->long_descr,		fread_string( fp ) );
+	    break;
 
-    /* Write depth first (so weights come out right) */
-    if ( !obj_to_store( obj->contains, ch, fpsave ) )
-	return FALSE;
-    if ( !obj_to_store( obj->next_content, ch, fpsave) )
-	return FALSE;
-    if ( !put_obj_in_store( obj, ch, fpsave ) )
-	return FALSE;
+	case 'N':
+	    if ( !str_cmp( word, "Name" ) )
+	    {
+		/*
+		 * Name already set externally.
+		 */
+		fread_to_eol( fp );
+		fMatch = TRUE;
+		break;
+	    }
 
-    /* Adjust container weights of up-linked items */
-    for ( tmp = obj->in_obj; tmp; tmp = tmp->in_obj )
-	GET_OBJ_WEIGHT(tmp) -= GET_OBJ_WEIGHT(obj);
+	    break;
 
-    return TRUE;
-}
+	case 'P':
+	    KEY( "Password",	ch->pcdata->pwd,	fread_string( fp ) );
+	    KEY( "Played",	ch->played,		fread_number( fp ) );
+	    KEY( "Position",	ch->position,		fread_number( fp ) );
+	    KEY( "Practice",	ch->practice,		fread_number( fp ) );
+	    break;
 
+	case 'R':
+	    KEY( "Race",        ch->race,		fread_number( fp ) );
 
+	    if ( !str_cmp( word, "Room" ) )
+	    {
+		ch->in_room = get_room_index( fread_number( fp ) );
+		if ( ch->in_room == NULL )
+		    ch->in_room = get_room_index( ROOM_VNUM_LIMBO );
+		fMatch = TRUE;
+		break;
+	    }
 
+	    break;
 
+	case 'S':
+	    KEY( "SavingThrow",	ch->saving_throw,	fread_number( fp ) );
+	    KEY( "Sex",		ch->sex,		fread_number( fp ) );
+	    KEY( "ShortDescr",	ch->short_descr,	fread_string( fp ) );
 
-/*
- * Write one object to the file.
- */
-bool put_obj_in_store(struct obj_data *obj, struct char_data *ch, FILE *fpsave)
-{
-    int iAffect;
-    struct  obj_file_elem   object;
+	    if ( !str_cmp( word, "Skill" ) )
+	    {
+		int sn;
+		int value;
 
-    if ( GET_ITEM_TYPE(obj) == ITEM_KEY )
-	return TRUE;
+		value = fread_number( fp );
+		sn    = skill_lookup( fread_word( fp ) );
+		if ( sn < 0 )
+		    bug( "Fread_char: unknown skill.", 0 );
+		else
+		    ch->pcdata->learned[sn] = value;
+		fMatch = TRUE;
+	    }
 
-    object.version	= 0;
-    object.item_number  = obj_index[obj->item_number].virtual;
-    object.value[0]     = obj->obj_flags.value[0];
-    object.value[1]     = obj->obj_flags.value[1];
-    object.value[2]     = obj->obj_flags.value[2];
-    object.value[3]     = obj->obj_flags.value[3];
-    object.extra_flags  = obj->obj_flags.extra_flags;
-    object.weight       = obj->obj_flags.weight;
-    object.timer        = obj->obj_flags.timer;
-    object.eq_level	= obj->obj_flags.eq_level;
-    object.bitvector    = obj->obj_flags.bitvector;
-    for ( iAffect = 0; iAffect < MAX_OBJ_AFFECT; iAffect++ )
-	object.affected[iAffect]    = obj->affected[iAffect];
-    
-    if ( fwrite( &object, sizeof(object), 1, fpsave ) == 0 )
-	return FALSE;
+	    break;
 
-    return TRUE;
-}
+	case 'T':
+	    KEY( "Trust",	ch->trust,		fread_number( fp ) );
 
+	    if ( !str_cmp( word, "Title" ) )
+	    {
+		ch->pcdata->title = fread_string( fp );
+		if ( isalpha(ch->pcdata->title[0])
+		||   isdigit(ch->pcdata->title[0]) )
+		{
+		    sprintf( buf, " %s", ch->pcdata->title );
+		    free_string( ch->pcdata->title );
+		    ch->pcdata->title = str_dup( buf );
+		}
+		fMatch = TRUE;
+		break;
+	    }
 
+	    break;
 
-/*
- * Restore container weights after a save.
- */
-void restore_weight(struct obj_data *obj)
-{
-    struct obj_data *tmp;
+	case 'V':
+	    if ( !str_cmp( word, "Vnum" ) )
+	    {
+		ch->pIndexData = get_mob_index( fread_number( fp ) );
+		fMatch = TRUE;
+		break;
+	    }
+	    break;
 
-    if ( obj == NULL )
-	return;
+	case 'W':
+	    KEY( "Wimpy",	ch->wimpy,		fread_number( fp ) );
+	    break;
+	}
 
-    restore_weight( obj->contains );
-    restore_weight( obj->next_content );
-    for ( tmp = obj->in_obj; tmp; tmp = tmp->in_obj )
-	GET_OBJ_WEIGHT( tmp ) += GET_OBJ_WEIGHT( obj );
-}
-
-
-
-void store_to_char(struct char_file_u *st, struct char_data *ch)
-{
-    int i;
-
-    strncpy( ch->pwd, st->pwd, 11 );
-
-    GET_SEX(ch) = st->sex;
-    GET_CLASS(ch) = st->class;
-    GET_LEVEL(ch) = st->level;
-
-    ch->player.short_descr = 0;
-    ch->player.long_descr = 0;
-
-    if (*st->title)
-    {
-	CREATE(ch->player.title, char, strlen(st->title) + 1);
-	strcpy(ch->player.title, st->title);
-    }
-    else
-	GET_TITLE(ch) = 0;
-
-    if (*st->description)
-    {
-	CREATE(ch->player.description, char, 
-	    strlen(st->description) + 1);
-	strcpy(ch->player.description, st->description);
-    }
-    else
-	ch->player.description = 0;
-
-    ch->player.hometown = st->hometown;
-
-    ch->player.time.birth = st->birth;
-    ch->player.time.played = st->played;
-    ch->player.time.logon  = time(0);
-
-    for (i = 0; i < MAX_TONGUE; i++)
-	ch->player.talks[i] = st->talks[i];
-
-    ch->player.weight = st->weight;
-    ch->player.height = st->height;
-
-    ch->abilities = st->abilities;
-    ch->tmpabilities = st->abilities;
-    ch->points = st->points;
-	if (ch->points.max_mana < 100) {
-	   ch->points.max_mana = 100;
-     } /* if */
-
-    for (i = 0; i < MAX_SKILLS; i++)
-	ch->skills[i] = st->skills[i];
-
-    ch->specials.practices    = st->practices;
-    ch->specials.alignment    = st->alignment;
-
-    ch->specials.act          = st->act;
-    ch->specials.carry_weight = 0;
-    ch->specials.carry_items  = 0;
-    ch->points.armor          = 100;
-    ch->points.hitroll        = 0;
-    ch->points.damroll        = 0;
-
-    /* Not used as far as I can see (Michael) */
-    for(i = 0; i <= 4; i++)
-      ch->specials.apply_saving_throw[i] = st->apply_saving_throw[i];
-
-    for(i = 0; i <= 2; i++)
-      GET_COND(ch, i) = st->conditions[i];
-
-    /* Add all spell effects */
-    for(i=0; i < MAX_AFFECT; i++) {
-	if (st->affected[i].type)
-	    affect_to_char(ch, &st->affected[i]);
-    }
-    ch->in_room = real_room(st->load_room);
-    affect_total(ch);
-}
-
-
-
-/* copy vital data from a players char-structure to the file structure */
-void char_to_store(struct char_data *ch, struct char_file_u *st)
-{
-    int i;
-    struct affected_type *af;
-    struct obj_data *char_eq[MAX_WEAR];
-
-    strncpy( st->pwd, ch->pwd, 11 );
-
-    /* Unaffect everything a character can be affected by */
-
-    for(i=0; i<MAX_WEAR; i++) {
-	if (ch->equipment[i])
-	    char_eq[i] = unequip_char(ch, i);
-	else
-	    char_eq[i] = 0;
-    }
-
-    for(af = ch->affected, i = 0; i<MAX_AFFECT; i++) {
-	if (af &&
-		    (!(af->type == SPELL_INVISIBLE &&
-		       af->bitvector == AFF_INVISIBLE &&
-		       ch->specials.wizInvis))) {
-	    st->affected[i] = *af;
-	    st->affected[i].next = 0;
-	    /* subtract effect of the spell or the effect will be doubled */
-	    affect_modify( ch, st->affected[i].location,
-			       st->affected[i].modifier,
-			       st->affected[i].bitvector, FALSE);                         
-	    af = af->next;
-	} else {
-	    st->affected[i].type = 0;  /* Zero signifies not used */
-	    st->affected[i].duration = 0;
-	    st->affected[i].modifier = 0;
-	    st->affected[i].location = 0;
-	    st->affected[i].bitvector = 0;
-	    st->affected[i].next = 0;
+	if ( !fMatch )
+	{
+	    bug( "Fread_char: no match.", 0 );
+	    fread_to_eol( fp );
 	}
     }
+}
 
-    if ((i >= MAX_AFFECT) && af && af->next)
-	log( "Char_to_store: too many affects." );
 
-    ch->tmpabilities = ch->abilities;
 
-    st->version    = 0;
-    st->birth      = ch->player.time.birth;
-    st->played     = ch->player.time.played;
-    st->played    += (long) (time(0) - ch->player.time.logon);
-    st->last_logon = time(0);
+void fread_obj( CHAR_DATA *ch, FILE *fp )
+{
+    static OBJ_DATA obj_zero;
+    OBJ_DATA *obj;
+    char *word;
+    int iNest;
+    bool fMatch;
+    bool fNest;
+    bool fVnum;
 
-    ch->player.time.played = st->played;
-    ch->player.time.logon = time(0);
-
-    st->hometown = ch->player.hometown;
-    st->weight   = GET_WEIGHT(ch);
-    st->height   = GET_HEIGHT(ch);
-    st->sex      = GET_SEX(ch);
-    st->class    = GET_CLASS(ch);
-    st->level    = GET_LEVEL(ch);
-    st->abilities = ch->abilities;
-    st->points    = ch->points;
-    st->alignment = ch->specials.alignment;
-    st->practices = ch->specials.practices;
-    st->act       = ch->specials.act;
-
-    st->points.armor   = 100;
-    st->points.hitroll =  0;
-    st->points.damroll =  0;
-
-    if (GET_TITLE(ch))
-	strcpy(st->title, GET_TITLE(ch));
+    if ( obj_free == NULL )
+    {
+	obj		= alloc_perm( sizeof(*obj) );
+    }
     else
-	*st->title = '\0';
+    {
+	obj		= obj_free;
+	obj_free	= obj_free->next;
+    }
 
-    if (ch->player.description)
-	strcpy(st->description, ch->player.description);
-    else
-	*st->description = '\0';
+    *obj		= obj_zero;
+    obj->name		= str_dup( "" );
+    obj->short_descr	= str_dup( "" );
+    obj->description	= str_dup( "" );
 
+    fNest		= FALSE;
+    fVnum		= TRUE;
+    iNest		= 0;
 
-    for (i = 0; i < MAX_TONGUE; i++)
-	st->talks[i] = ch->player.talks[i];
+    for ( ; ; )
+    {
+	word   = feof( fp ) ? "End" : fread_word( fp );
+	fMatch = FALSE;
 
-    for (i = 0; i < MAX_SKILLS; i++)
-	st->skills[i] = ch->skills[i];
+	switch ( UPPER(word[0]) )
+	{
+	case '*':
+	    fMatch = TRUE;
+	    fread_to_eol( fp );
+	    break;
 
-    strcpy(st->name, GET_NAME(ch) );
+	case 'A':
+	    if ( !str_cmp( word, "Affect" ) )
+	    {
+		AFFECT_DATA *paf;
 
-    for(i = 0; i <= 4; i++)
-      st->apply_saving_throw[i] = ch->specials.apply_saving_throw[i];
+		if ( affect_free == NULL )
+		{
+		    paf		= alloc_perm( sizeof(*paf) );
+		}
+		else
+		{
+		    paf		= affect_free;
+		    affect_free	= affect_free->next;
+		}
 
-    for(i = 0; i <= 2; i++)
-      st->conditions[i] = GET_COND(ch, i);
+		paf->type	= fread_number( fp );
+		paf->duration	= fread_number( fp );
+		paf->modifier	= fread_number( fp );
+		paf->location	= fread_number( fp );
+		paf->bitvector	= fread_number( fp );
+		paf->next	= obj->affected;
+		obj->affected	= paf;
+		fMatch		= TRUE;
+		break;
+	    }
+	    break;
 
-    for(af = ch->affected, i = 0; i<MAX_AFFECT; i++) {
-	if (af &&
-		    (!(af->type == SPELL_INVISIBLE &&
-		       af->bitvector == AFF_INVISIBLE &&
-		       ch->specials.wizInvis))) {
-	    /* Add effect of the spell or it will be lost */
-	    /* When saving without quitting               */
-	    affect_modify( ch, st->affected[i].location,
-			       st->affected[i].modifier,
-			       st->affected[i].bitvector, TRUE);
-	    af = af->next;
+	case 'C':
+	    KEY( "Cost",	obj->cost,		fread_number( fp ) );
+	    break;
+
+	case 'D':
+	    KEY( "Description",	obj->description,	fread_string( fp ) );
+	    break;
+
+	case 'E':
+	    KEY( "ExtraFlags",	obj->extra_flags,	fread_number( fp ) );
+
+	    if ( !str_cmp( word, "ExtraDescr" ) )
+	    {
+		EXTRA_DESCR_DATA *ed;
+
+		if ( extra_descr_free == NULL )
+		{
+		    ed			= alloc_perm( sizeof(*ed) );
+		}
+		else
+		{
+		    ed			= extra_descr_free;
+		    extra_descr_free	= extra_descr_free->next;
+		}
+
+		ed->keyword		= fread_string( fp );
+		ed->description		= fread_string( fp );
+		ed->next		= obj->extra_descr;
+		obj->extra_descr	= ed;
+		fMatch = TRUE;
+	    }
+
+	    if ( !str_cmp( word, "End" ) )
+	    {
+		if ( !fNest || !fVnum )
+		{
+		    bug( "Fread_obj: incomplete object.", 0 );
+		    free_string( obj->name        );
+		    free_string( obj->description );
+		    free_string( obj->short_descr );
+		    obj->next = obj_free;
+		    obj_free  = obj;
+		    return;
+		}
+		else
+		{
+		    obj->next	= object_list;
+		    object_list	= obj;
+		    obj->pIndexData->count++;
+		    if ( iNest == 0 || rgObjNest[iNest] == NULL )
+			obj_to_char( obj, ch );
+		    else
+			obj_to_obj( obj, rgObjNest[iNest-1] );
+		    return;
+		}
+	    }
+	    break;
+
+	case 'I':
+	    KEY( "ItemType",	obj->item_type,		fread_number( fp ) );
+	    break;
+
+	case 'L':
+	    KEY( "Level",	obj->level,		fread_number( fp ) );
+	    break;
+
+	case 'N':
+	    KEY( "Name",	obj->name,		fread_string( fp ) );
+
+	    if ( !str_cmp( word, "Nest" ) )
+	    {
+		iNest = fread_number( fp );
+		if ( iNest < 0 || iNest >= MAX_NEST )
+		{
+		    bug( "Fread_obj: bad nest %d.", iNest );
+		}
+		else
+		{
+		    rgObjNest[iNest] = obj;
+		    fNest = TRUE;
+		}
+		fMatch = TRUE;
+	    }
+	    break;
+
+	case 'S':
+	    KEY( "ShortDescr",	obj->short_descr,	fread_string( fp ) );
+
+	    if ( !str_cmp( word, "Spell" ) )
+	    {
+		int iValue;
+		int sn;
+
+		iValue = fread_number( fp );
+		sn     = skill_lookup( fread_word( fp ) );
+		if ( iValue < 0 || iValue > 3 )
+		{
+		    bug( "Fread_obj: bad iValue %d.", iValue );
+		}
+		else if ( sn < 0 )
+		{
+		    bug( "Fread_obj: unknown skill.", 0 );
+		}
+		else
+		{
+		    obj->value[iValue] = sn;
+		}
+		fMatch = TRUE;
+		break;
+	    }
+
+	    break;
+
+	case 'T':
+	    KEY( "Timer",	obj->timer,		fread_number( fp ) );
+	    break;
+
+	case 'V':
+	    if ( !str_cmp( word, "Values" ) )
+	    {
+		obj->value[0]	= fread_number( fp );
+		obj->value[1]	= fread_number( fp );
+		obj->value[2]	= fread_number( fp );
+		obj->value[3]	= fread_number( fp );
+		fMatch		= TRUE;
+		break;
+	    }
+
+	    if ( !str_cmp( word, "Vnum" ) )
+	    {
+		int vnum;
+
+		vnum = fread_number( fp );
+		if ( ( obj->pIndexData = get_obj_index( vnum ) ) == NULL )
+		    bug( "Fread_obj: bad vnum %d.", vnum );
+		else
+		    fVnum = TRUE;
+		fMatch = TRUE;
+		break;
+	    }
+	    break;
+
+	case 'W':
+	    KEY( "WearFlags",	obj->wear_flags,	fread_number( fp ) );
+	    KEY( "WearLoc",	obj->wear_loc,		fread_number( fp ) );
+	    KEY( "Weight",	obj->weight,		fread_number( fp ) );
+	    break;
+
+	}
+
+	if ( !fMatch )
+	{
+	    bug( "Fread_obj: no match.", 0 );
+	    fread_to_eol( fp );
 	}
     }
-
-    for(i=0; i<MAX_WEAR; i++) {
-	if (char_eq[i])
-	    equip_char(ch, char_eq[i], i);
-    }
-
-    affect_total(ch);
 }

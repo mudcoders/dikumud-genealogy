@@ -1,0 +1,18 @@
+#! /bin/csh -f
+#
+# Translate function declarations from Ansi C to traditional C.
+
+foreach file ( *.c )
+ed $file << 'END'
+g/const[	 ][	 ]*/s///g
+g/^[ACDOMRSbcilv].*(.*)$/s/( void )/( )/p
+g/^[ACDOMRSbcilv].*(.*)$/s/( \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\) )/( \2 ) \1\2;/p
+g/^[ACDOMRSbcilv].*(.*)$/s/( \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\), \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\) )/( \2, \4 ) \1\2; \3\4;/p
+g/^[ACDOMRSbcilv].*(.*)$/s/( \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\), \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\), \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\) )/( \2, \4, \6 ) \1\2; \3\4; \5\6;/p
+g/^[ACDOMRSbcilv].*(.*)$/s/( \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\), \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\), \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\), \([A-Za-z0-9_]*[ \*]*\)\([A-Za-z0-9_]*\) )/( \2, \4, \6, \8 ) \1\2; \3\4; \5\6; \7\8;/p
+g/^[ACDOMRSbcilv].*(.*)$/s/( char \*format, CHAR_DATA \*ch, OBJ_DATA \*obj, void \*vo, int type )/( format, ch, obj, vo, type ) char *format; CHAR_DATA *ch; OBJ_DATA *obj; void *vo; int type;/p
+g/^[ACDOMRSbcilv].*(.*)$/s/( int sn, int level, CHAR_DATA \*ch, CHAR_DATA \*victim, OBJ_DATA \*obj )/( sn, level, ch, victim, obj ) int sn; int level; CHAR_DATA *ch; CHAR_DATA *victim; OBJ_DATA *obj;/p
+w
+q
+'END'
+end
