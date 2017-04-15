@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -135,6 +135,7 @@ typedef void SPELL_FUN	args( ( int sn, int level, CHAR_DATA *ch, void *vo,
 #define MAX_CLASS		    4
 #define MAX_PC_RACE		    5
 #define MAX_CLAN		    3
+#define MAX_DAMAGE_MESSAGE	   41
 #define MAX_LEVEL		   60
 #define LEVEL_HERO		   (MAX_LEVEL - 9)
 #define LEVEL_IMMORTAL		   (MAX_LEVEL - 8)
@@ -782,6 +783,7 @@ struct	kill_data
 #define AFF_FAERIE_FIRE		(I)
 #define AFF_INFRARED		(J)
 #define AFF_CURSE		(K)
+#define AFF_UNUSED_FLAG		(L)	/* unused */
 #define AFF_POISON		(M)
 #define AFF_PROTECT_EVIL	(N)
 #define AFF_PROTECT_GOOD	(O)
@@ -938,7 +940,6 @@ struct	kill_data
 #define ITEM_NOPURGE		(O)
 #define ITEM_ROT_DEATH		(P)
 #define ITEM_VIS_DEATH		(Q)
-#define ITEM_NOSAC		(R)
 #define ITEM_NONMETAL		(S)
 #define ITEM_NOLOCATE		(T)
 #define ITEM_MELT_DROP		(U)
@@ -1252,7 +1253,6 @@ struct	kill_data
 #define COMM_SHOUTSOFF		(J)
 
 /* display flags */
-#define COMM_TRUE_TRUST		(K)
 #define COMM_COMPACT		(L)
 #define COMM_BRIEF		(M)
 #define COMM_PROMPT		(N)
@@ -2214,6 +2214,7 @@ int 	get_max_train	args( ( CHAR_DATA *ch, int stat ) );
 int	can_carry_n	args( ( CHAR_DATA *ch ) );
 int	can_carry_w	args( ( CHAR_DATA *ch ) );
 bool	is_name		args( ( char *str, char *namelist ) );
+bool	is_exact_name	args( ( char *str, char *namelist ) );
 void	affect_to_char	args( ( CHAR_DATA *ch, AFFECT_DATA *paf ) );
 void	affect_to_obj	args( ( OBJ_DATA *obj, AFFECT_DATA *paf ) );
 void	affect_remove	args( ( CHAR_DATA *ch, AFFECT_DATA *paf ) );
@@ -2241,7 +2242,8 @@ CD *	get_char_world	args( ( CHAR_DATA *ch, char *argument ) );
 OD *	get_obj_type	args( ( OBJ_INDEX_DATA *pObjIndexData ) );
 OD *	get_obj_list	args( ( CHAR_DATA *ch, char *argument,
 			    OBJ_DATA *list ) );
-OD *	get_obj_carry	args( ( CHAR_DATA *ch, char *argument ) );
+OD *	get_obj_carry	args( ( CHAR_DATA *ch, char *argument, 
+			    CHAR_DATA *viewer ) );
 OD *	get_obj_wear	args( ( CHAR_DATA *ch, char *argument ) );
 OD *	get_obj_here	args( ( CHAR_DATA *ch, char *argument ) );
 OD *	get_obj_world	args( ( CHAR_DATA *ch, char *argument ) );
@@ -2256,7 +2258,6 @@ bool	can_see		args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 bool	can_see_obj	args( ( CHAR_DATA *ch, OBJ_DATA *obj ) );
 bool	can_see_room	args( ( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex) );
 bool	can_drop_obj	args( ( CHAR_DATA *ch, OBJ_DATA *obj ) );
-char *	item_type_name	args( ( OBJ_DATA *obj ) );
 char *	affect_loc_name	args( ( int location ) );
 char *	affect_bit_name	args( ( int vector ) );
 char *	extra_bit_name	args( ( int extra_flags ) );
@@ -2311,7 +2312,7 @@ char *	spec_name	args( ( SPEC_FUN *function ) );
 RID *	room_by_name	args( ( char *target, int level, bool error) );
 
 /* update.c */
-void	advance_level	args( ( CHAR_DATA *ch ) );
+void	advance_level	args( ( CHAR_DATA *ch, bool hide ) );
 void	gain_exp	args( ( CHAR_DATA *ch, int gain ) );
 void	gain_condition	args( ( CHAR_DATA *ch, int iCond, int value ) );
 void	update_handler	args( ( void ) );

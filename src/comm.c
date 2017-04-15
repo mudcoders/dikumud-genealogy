@@ -2,7 +2,7 @@
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
  *                                                                         *
- *  Merc Diku vMud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
  *  Chastain, Michael Quan, and Mitchell Tse.                              *
  *                                                                         *
  *  In order to use any part of this Merc Diku Mud, you must comply with   *
@@ -19,7 +19,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -165,8 +165,13 @@ int	socket		args( ( int domain, int type, int protocol ) );
 #endif
 
 #if	defined(linux)
-int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
-int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
+/*
+    Linux shouldn't need these. If you have a problem compiling, try
+    uncommenting accept and bind.
+    int	accept		args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __addr_len ) );
+    int	bind		args( ( int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len ) );
+*/
+
 int	close		args( ( int fd ) );
 int	getpeername	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
 int	getsockname	args( ( int __fd, __SOCKADDR_ARG __addr, socklen_t *__restrict __len ) );
@@ -981,7 +986,8 @@ void close_socket( DESCRIPTOR_DATA *dclose )
     {
 	sprintf( log_buf, "Closing link to %s.", ch->name );
 	log_string( log_buf );
-	if ( dclose->connected == CON_PLAYING )
+	/* cut down on wiznet spam when rebooting */
+	if ( dclose->connected == CON_PLAYING && !merc_down)
 	{
 	    act( "$n has lost $s link.", ch, NULL, NULL, TO_ROOM );
 	    wiznet("Net death has claimed $N.",ch,NULL,WIZ_LINKS,0,0);
@@ -989,7 +995,8 @@ void close_socket( DESCRIPTOR_DATA *dclose )
 	}
 	else
 	{
-	    free_char( dclose->character );
+	    free_char(dclose->original ? dclose->original :
+		dclose->character );
 	}
     }
 
@@ -1159,7 +1166,8 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
 	}
 	else
 	{
-	    if ( ++d->repeat >= 25 )
+	    if (++d->repeat >= 25 && d->character
+	    &&  d->connected == CON_PLAYING)
 	    {
 		sprintf( log_buf, "%s input spamming!", d->host );
 		log_string( log_buf );
@@ -1392,7 +1400,7 @@ void bust_a_prompt( CHAR_DATA *ch )
             sprintf( buf2, "%d", ch->exp );
             i = buf2; break;
 	 case 'X' :
-	    sprintf(buf2, "%d",
+	    sprintf(buf2, "%d", IS_NPC(ch) ? 0 :
 	    (ch->level + 1) * exp_per_level(ch,ch->pcdata->points) - ch->exp);
 	    i = buf2; break;
          case 'g' :
@@ -2225,8 +2233,6 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 	    }
 	    else
 	    {
-		OBJ_DATA *obj;
-
 		free_char( d->character );
 		d->character = ch;
 		ch->desc	 = d;
@@ -2234,9 +2240,6 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 		send_to_char(
 		    "Reconnecting. Type replay to see missed tells.\n\r", ch );
 		act( "$n has reconnected.", ch, NULL, NULL, TO_ROOM );
-		if ((obj = get_eq_char(ch,WEAR_LIGHT)) != NULL
-		&&  obj->item_type == ITEM_LIGHT && obj->value[2] != 0)
-		    --ch->in_room->light;
 
 		sprintf( log_buf, "%s@%s reconnected.", ch->name, d->host );
 		log_string( log_buf );
@@ -2349,7 +2352,7 @@ void show_string(struct descriptor_data *d, char *input)
     {
 	if (d->showstr_head)
 	{
-	    free_string(d->showstr_head);
+	    free_mem(d->showstr_head,strlen(d->showstr_head));
 	    d->showstr_head = 0;
 	}
     	d->showstr_point  = 0;
@@ -2377,7 +2380,7 @@ void show_string(struct descriptor_data *d, char *input)
 		{
 		    if (d->showstr_head)
         	    {
-            		free_string(d->showstr_head);
+            		free_mem(d->showstr_head,strlen(d->showstr_head));
             		d->showstr_head = 0;
         	    }
         	    d->showstr_point  = 0;

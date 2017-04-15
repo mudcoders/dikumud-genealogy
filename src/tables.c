@@ -16,7 +16,7 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -290,7 +290,6 @@ const struct flag_type comm_flags[] =
     {   "noclan",		COMM_NOCLAN,		TRUE	},
     {   "noquote",		COMM_NOQUOTE,		TRUE	},
     {   "shoutsoff",		COMM_SHOUTSOFF,		TRUE	},
-    {   "true_trust",		COMM_TRUE_TRUST,	TRUE	},
     {   "compact",		COMM_COMPACT,		TRUE	},
     {   "brief",		COMM_BRIEF,		TRUE	},
     {   "prompt",		COMM_PROMPT,		TRUE	},

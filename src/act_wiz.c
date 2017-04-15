@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -53,11 +53,8 @@ DECLARE_DO_FUN(do_ofind		);
 DECLARE_DO_FUN(do_slookup	);
 DECLARE_DO_FUN(do_mload		);
 DECLARE_DO_FUN(do_oload		);
-DECLARE_DO_FUN(do_force		);
 DECLARE_DO_FUN(do_quit		);
-DECLARE_DO_FUN(do_save		);
 DECLARE_DO_FUN(do_look		);
-DECLARE_DO_FUN(do_force		);
 DECLARE_DO_FUN(do_stand		);
 
 
@@ -1255,7 +1252,7 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 
     sprintf( buf, "Vnum: %d  Format: %s  Type: %s  Resets: %d\n\r",
 	obj->pIndexData->vnum, obj->pIndexData->new_format ? "new" : "old",
-	item_type_name(obj), obj->pIndexData->reset_num );
+	item_table[obj->item_type].name, obj->pIndexData->reset_num );
     send_to_char( buf, ch );
 
     sprintf( buf, "Short description: %s\n\rLong description: %s\n\r",
@@ -1401,7 +1398,8 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 	    send_to_char( buf, ch );
 
 	    sprintf(buf,"Damage noun is %s.\n\r",
-		attack_table[obj->value[3]].noun);
+		(obj->value[3] > 0 && obj->value[3] < MAX_DAMAGE_MESSAGE) ?
+		    attack_table[obj->value[3]].noun : "undefined");
 	    send_to_char(buf,ch);
 	    
 	    if (obj->value[4])  /* weapon flags */
@@ -2033,18 +2031,21 @@ void do_reboot( CHAR_DATA *ch, char *argument )
     char buf[MAX_STRING_LENGTH];
     extern bool merc_down;
     DESCRIPTOR_DATA *d,*d_next;
+    CHAR_DATA *vch;
 
     if (ch->invis_level < LEVEL_HERO)
     {
     	sprintf( buf, "Reboot by %s.", ch->name );
     	do_echo( ch, buf );
     }
-    do_force ( ch, "all save");
-    do_save (ch, "");
+
     merc_down = TRUE;
     for ( d = descriptor_list; d != NULL; d = d_next )
     {
 	d_next = d->next;
+	vch = d->original ? d->original : d->character;
+	if (vch != NULL)
+	    save_char_obj(vch);
     	close_socket(d);
     }
     
@@ -2066,6 +2067,7 @@ void do_shutdown( CHAR_DATA *ch, char *argument )
     char buf[MAX_STRING_LENGTH];
     extern bool merc_down;
     DESCRIPTOR_DATA *d,*d_next;
+    CHAR_DATA *vch;
 
     if (ch->invis_level < LEVEL_HERO)
     sprintf( buf, "Shutdown by %s.", ch->name );
@@ -2073,12 +2075,13 @@ void do_shutdown( CHAR_DATA *ch, char *argument )
     strcat( buf, "\n\r" );
     if (ch->invis_level < LEVEL_HERO)
     	do_echo( ch, buf );
-    do_force ( ch, "all save");
-    do_save (ch, "");
     merc_down = TRUE;
     for ( d = descriptor_list; d != NULL; d = d_next)
     {
 	d_next = d->next;
+	vch = d->original ? d->original : d->character;
+	if (vch != NULL)
+	    save_char_obj(vch);
 	close_socket(d);
     }
     return;
@@ -2645,6 +2648,7 @@ void do_purge( CHAR_DATA *ch, char *argument )
 
 void do_advance( CHAR_DATA *ch, char *argument )
 {
+    char buf[MAX_STRING_LENGTH];
     char arg1[MAX_INPUT_LENGTH];
     char arg2[MAX_INPUT_LENGTH];
     CHAR_DATA *victim;
@@ -2707,7 +2711,7 @@ void do_advance( CHAR_DATA *ch, char *argument )
 	victim->hit      = victim->max_hit;
 	victim->mana     = victim->max_mana;
 	victim->move     = victim->max_move;
-	advance_level( victim );
+	advance_level( victim, TRUE );
 	victim->practice = temp_prac;
     }
     else
@@ -2718,10 +2722,11 @@ void do_advance( CHAR_DATA *ch, char *argument )
 
     for ( iLevel = victim->level ; iLevel < level; iLevel++ )
     {
-	send_to_char( "You raise a level!!  ", victim );
 	victim->level += 1;
-	advance_level( victim );
+	advance_level( victim,TRUE);
     }
+    sprintf(buf,"You are now level %d.\n\r",ch->level);
+    send_to_char(buf,victim);
     victim->exp   = exp_per_level(victim,victim->pcdata->points) 
 		  * UMAX( 1, victim->level );
     victim->trust = 0;

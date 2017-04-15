@@ -112,17 +112,17 @@ stand stand none 25
 0 0 medium 0
 #3707
 adept cleric~
-the adept of ~
+the adept of Satin~
 An adept of the mighty goddess Satin is here, contemplating your progress.
 ~
-He is big and bad.  Don't mess with him.
+She is big and bad.  Don't mess with her.
 ~
 human~
 ABGQTV CH 1000 0
 30 10 1d1+999 1d1+999 2d4+30 beating
 -15 -15 -15 -15
 ACEFHIKN ABCD 0 0
-stand stand male 0
+stand stand female 0
 0 0 medium 0
 #3708
 adept~

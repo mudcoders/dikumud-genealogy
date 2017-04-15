@@ -16,7 +16,7 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -666,6 +666,27 @@ void parse_note( CHAR_DATA *ch, char *argument, int type )
 		vnum++;
 	    }
 	}
+	if (!vnum)
+	{
+	    switch(type)
+	    {
+		case NOTE_NOTE:	
+		    send_to_char("There are no notes for you.\n\r",ch);
+		    break;
+		case NOTE_IDEA:
+		    send_to_char("There are no ideas for you.\n\r",ch);
+		    break;
+		case NOTE_PENALTY:
+		    send_to_char("There are no penalties for you.\n\r",ch);
+		    break;
+		case NOTE_NEWS:
+		    send_to_char("There is no news for you.\n\r",ch);
+		    break;
+		case NOTE_CHANGES:
+		    send_to_char("There are no changes for you.\n\r",ch);
+		    break;
+	    }
+	}
 	return;
     }
 
@@ -747,6 +768,7 @@ void parse_note( CHAR_DATA *ch, char *argument, int type )
     ||  (type == NOTE_CHANGES && !IS_TRUSTED(ch,CREATOR)))
     {
 	sprintf(buf,"You aren't high enough level to write %s.",list_name);
+	send_to_char(buf,ch);
 	return;
     }
 
@@ -759,13 +781,14 @@ void parse_note( CHAR_DATA *ch, char *argument, int type )
 		"You already have a different note in progress.\n\r",ch);
 	    return;
 	}
- 	buffer = new_buf();
 
 	if (strlen(ch->pnote->text)+strlen(argument) >= 4096)
 	{
 	    send_to_char( "Note too long.\n\r", ch );
 	    return;
 	}
+
+ 	buffer = new_buf();
 
 	add_buf(buffer,ch->pnote->text);
 	add_buf(buffer,argument);

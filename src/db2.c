@@ -1,5 +1,3 @@
-
-
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -18,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -309,7 +307,7 @@ void load_mobiles( FILE *fp )
                 else if (!str_prefix(word,"aff"))
 		    REMOVE_BIT(pMobIndex->affected_by,vector);
 		else if (!str_prefix(word,"off"))
-		    REMOVE_BIT(pMobIndex->affected_by,vector);
+		    REMOVE_BIT(pMobIndex->off_flags,vector);
 		else if (!str_prefix(word,"imm"))
 		    REMOVE_BIT(pMobIndex->imm_flags,vector);
 		else if (!str_prefix(word,"res"))

@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -653,7 +653,7 @@ void do_unlock( CHAR_DATA *ch, char *argument )
  	/* portal stuff */
 	if (obj->item_type == ITEM_PORTAL)
 	{
-	    if (IS_SET(obj->value[1],EX_ISDOOR))
+	    if (!IS_SET(obj->value[1],EX_ISDOOR))
 	    {
 		send_to_char("You can't do that.\n\r",ch);
 		return;
@@ -901,9 +901,10 @@ void do_stand( CHAR_DATA *ch, char *argument )
 	if (ch->on != obj && count_users(obj) >= obj->value[0])
 	{
 	    act_new("There's no room to stand on $p.",
-		ch,obj,NULL,TO_ROOM,POS_DEAD);
+		ch,obj,NULL,TO_CHAR,POS_DEAD);
 	    return;
 	}
+ 	ch->on = obj;
     }
     
     switch ( ch->position )
@@ -1021,6 +1022,12 @@ void do_rest( CHAR_DATA *ch, char *argument )
     switch ( ch->position )
     {
     case POS_SLEEPING:
+	if (IS_AFFECTED(ch,AFF_SLEEP))
+	{
+	    send_to_char("You can't wake up!\n\r",ch);
+	    return;
+	}
+
 	if (obj == NULL)
 	{
 	    send_to_char( "You wake up and start resting.\n\r", ch );
@@ -1149,6 +1156,12 @@ void do_sit (CHAR_DATA *ch, char *argument )
     switch (ch->position)
     {
 	case POS_SLEEPING:
+	    if (IS_AFFECTED(ch,AFF_SLEEP))
+	    {
+		send_to_char("You can't wake up!\n\r",ch);
+		return;
+	    }
+
             if (obj == NULL)
             {
             	send_to_char( "You wake and sit up.\n\r", ch );

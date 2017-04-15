@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -41,6 +41,7 @@
 DECLARE_DO_FUN(do_split		);
 DECLARE_DO_FUN(do_yell		);
 DECLARE_DO_FUN(do_say		);
+DECLARE_DO_FUN(do_wake		);
 
 
 
@@ -112,8 +113,8 @@ void get_obj( CHAR_DATA *ch, OBJ_DATA *obj, OBJ_DATA *container )
 	return;
     }
 
-
-    if ( get_carry_weight(ch) + get_obj_weight( obj ) > can_carry_w( ch ) )
+    if ((!obj->in_obj || obj->in_obj->carried_by != ch)
+    &&  (get_carry_weight(ch) + get_obj_weight(obj) > can_carry_w(ch)))
     {
 	act( "$d: you can't carry that much weight.",
 	    ch, NULL, obj->name, TO_CHAR );
@@ -394,7 +395,7 @@ void do_put( CHAR_DATA *ch, char *argument )
     if ( str_cmp( arg1, "all" ) && str_prefix( "all.", arg1 ) )
     {
 	/* 'put obj container' */
-	if ( ( obj = get_obj_carry( ch, arg1 ) ) == NULL )
+	if ( ( obj = get_obj_carry( ch, arg1, ch ) ) == NULL )
 	{
 	    send_to_char( "You do not have that item.\n\r", ch );
 	    return;
@@ -590,7 +591,7 @@ void do_drop( CHAR_DATA *ch, char *argument )
     if ( str_cmp( arg, "all" ) && str_prefix( "all.", arg ) )
     {
 	/* 'drop obj' */
-	if ( ( obj = get_obj_carry( ch, arg ) ) == NULL )
+	if ( ( obj = get_obj_carry( ch, arg, ch ) ) == NULL )
 	{
 	    send_to_char( "You do not have that item.\n\r", ch );
 	    return;
@@ -769,7 +770,7 @@ void do_give( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( obj = get_obj_carry( ch, arg1 ) ) == NULL )
+    if ( ( obj = get_obj_carry( ch, arg1, ch ) ) == NULL )
     {
 	send_to_char( "You do not have that item.\n\r", ch );
 	return;
@@ -959,7 +960,7 @@ void do_fill( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( obj = get_obj_carry( ch, arg ) ) == NULL )
+    if ( ( obj = get_obj_carry( ch, arg, ch ) ) == NULL )
     {
 	send_to_char( "You do not have that item.\n\r", ch );
 	return;
@@ -1027,7 +1028,7 @@ void do_pour (CHAR_DATA *ch, char *argument)
     }
     
 
-    if ((out = get_obj_carry(ch,arg)) == NULL)
+    if ((out = get_obj_carry(ch,arg, ch)) == NULL)
     {
 	send_to_char("You don't have that item.\n\r",ch);
 	return;
@@ -1273,7 +1274,7 @@ void do_eat( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( obj = get_obj_carry( ch, arg ) ) == NULL )
+    if ( ( obj = get_obj_carry( ch, arg, ch ) ) == NULL )
     {
 	send_to_char( "You do not have that item.\n\r", ch );
 	return;
@@ -1702,7 +1703,7 @@ void do_wear( CHAR_DATA *ch, char *argument )
     }
     else
     {
-	if ( ( obj = get_obj_carry( ch, arg ) ) == NULL )
+	if ( ( obj = get_obj_carry( ch, arg, ch ) ) == NULL )
 	{
 	    send_to_char( "You do not have that item.\n\r", ch );
 	    return;
@@ -1789,6 +1790,17 @@ void do_sacrifice( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if (obj->in_room != NULL)
+    {
+	for (gch = obj->in_room->people; gch != NULL; gch = gch->next_in_room)
+	    if (gch->on == obj)
+	    {
+		act("$N appears to be using $p.",
+		    ch,obj,gch,TO_CHAR);
+		return;
+	    }
+    }
+		
     silver = UMAX(1,obj->level * 3);
 
     if (obj->item_type != ITEM_CORPSE_NPC && obj->item_type != ITEM_CORPSE_PC)
@@ -1844,7 +1856,7 @@ void do_quaff( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( obj = get_obj_carry( ch, arg ) ) == NULL )
+    if ( ( obj = get_obj_carry( ch, arg, ch ) ) == NULL )
     {
 	send_to_char( "You do not have that potion.\n\r", ch );
 	return;
@@ -1886,7 +1898,7 @@ void do_recite( CHAR_DATA *ch, char *argument )
     argument = one_argument( argument, arg1 );
     argument = one_argument( argument, arg2 );
 
-    if ( ( scroll = get_obj_carry( ch, arg1 ) ) == NULL )
+    if ( ( scroll = get_obj_carry( ch, arg1, ch ) ) == NULL )
     {
 	send_to_char( "You do not have that scroll.\n\r", ch );
 	return;
@@ -2087,8 +2099,9 @@ void do_zap( CHAR_DATA *ch, char *argument )
     {
 	if ( victim != NULL )
 	{
-	    act( "$n zaps $N with $p.", ch, wand, victim, TO_ROOM );
+	    act( "$n zaps $N with $p.", ch, wand, victim, TO_NOTVICT );
 	    act( "You zap $N with $p.", ch, wand, victim, TO_CHAR );
+	    act( "$n zaps you with $p.",ch, wand, victim, TO_VICT );
 	}
 	else
 	{
@@ -2167,8 +2180,13 @@ void do_steal( CHAR_DATA *ch, char *argument )
 
     WAIT_STATE( ch, skill_table[gsn_steal].beats );
     percent  = number_percent();
-    if (get_skill(ch,gsn_steal) >= 1)
-    percent  += ( IS_AWAKE(victim) ? 10 : -50 );
+
+    if (!IS_AWAKE(victim))
+    	percent -= 10;
+    else if (!can_see(victim,ch))
+    	percent += 25;
+    else 
+	percent += 50;
 
     if ( ((ch->level + 7 < victim->level || ch->level -7 > victim->level) 
     && !IS_NPC(victim) && !IS_NPC(ch) )
@@ -2179,6 +2197,9 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	 * Failure.
 	 */
 	send_to_char( "Oops.\n\r", ch );
+	affect_strip(ch,gsn_sneak);
+	REMOVE_BIT(ch->affected_by,AFF_SNEAK);
+
 	act( "$n tried to steal from you.\n\r", ch, NULL, victim, TO_VICT    );
 	act( "$n tried to steal from $N.\n\r",  ch, NULL, victim, TO_NOTVICT );
 	switch(number_range(0,3))
@@ -2197,7 +2218,10 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	    sprintf(buf,"Keep your hands out of there, %s!",ch->name);
 	    break;
         }
-	do_yell( victim, buf );
+        if (!IS_AWAKE(victim))
+            do_wake(victim,"");
+	if (IS_AWAKE(victim))
+	    do_yell( victim, buf );
 	if ( !IS_NPC(ch) )
 	{
 	    if ( IS_NPC(victim) )
@@ -2253,7 +2277,7 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( obj = get_obj_carry( victim, arg1 ) ) == NULL )
+    if ( ( obj = get_obj_carry( victim, arg1, ch ) ) == NULL )
     {
 	send_to_char( "You can't find it.\n\r", ch );
 	return;
@@ -2281,6 +2305,7 @@ void do_steal( CHAR_DATA *ch, char *argument )
 
     obj_from_char( obj );
     obj_to_char( obj, ch );
+    act("You pocket $p.",ch,obj,NULL,TO_CHAR);
     check_improve(ch,gsn_steal,TRUE,2);
     send_to_char( "Got it!\n\r", ch );
     return;
@@ -2601,6 +2626,12 @@ void do_buy( CHAR_DATA *ch, char *argument )
 	obj  = get_obj_keeper( ch,keeper, arg );
 	cost = get_cost( keeper, obj, TRUE );
 
+	if (number < 1)
+	{
+	    act("$n tells you 'Get real!",keeper,NULL,ch,TO_VICT);
+	    return;
+	}
+
 	if ( cost <= 0 || !can_see_obj( ch, obj ) )
 	{
 	    act( "$n tells you 'I don't sell that -- try 'list''.",
@@ -2833,7 +2864,7 @@ void do_sell( CHAR_DATA *ch, char *argument )
     if ( ( keeper = find_keeper( ch ) ) == NULL )
 	return;
 
-    if ( ( obj = get_obj_carry( ch, arg ) ) == NULL )
+    if ( ( obj = get_obj_carry( ch, arg, ch ) ) == NULL )
     {
 	act( "$n tells you 'You don't have that item'.",
 	    keeper, NULL, ch, TO_VICT );
@@ -2925,7 +2956,7 @@ void do_value( CHAR_DATA *ch, char *argument )
     if ( ( keeper = find_keeper( ch ) ) == NULL )
 	return;
 
-    if ( ( obj = get_obj_carry( ch, arg ) ) == NULL )
+    if ( ( obj = get_obj_carry( ch, arg, ch ) ) == NULL )
     {
 	act( "$n tells you 'You don't have that item'.",
 	    keeper, NULL, ch, TO_VICT );

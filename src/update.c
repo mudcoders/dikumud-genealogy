@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -61,7 +61,7 @@ int	save_number = 0;
 /*
  * Advancement stuff.
  */
-void advance_level( CHAR_DATA *ch )
+void advance_level( CHAR_DATA *ch, bool hide )
 {
     char buf[MAX_STRING_LENGTH];
     int add_hp;
@@ -105,14 +105,14 @@ void advance_level( CHAR_DATA *ch )
     ch->pcdata->perm_mana	+= add_mana;
     ch->pcdata->perm_move	+= add_move;
 
-    sprintf( buf,
-	"Your gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
-	add_hp,		ch->max_hit,
-	add_mana,	ch->max_mana,
-	add_move,	ch->max_move,
-	add_prac,	ch->practice
-	);
-    send_to_char( buf, ch );
+    if (!hide)
+    {
+    	sprintf(buf,
+	    "You gain %d hit point%s, %d mana, %d move, and %d practice%s.\n\r",
+	    add_hp, add_hp == 1 ? "" : "s", add_mana, add_move,
+	    add_prac, add_prac == 1 ? "" : "s");
+	send_to_char( buf, ch );
+    }
     return;
 }   
 
@@ -131,9 +131,11 @@ void gain_exp( CHAR_DATA *ch, int gain )
     {
 	send_to_char( "You raise a level!!  ", ch );
 	ch->level += 1;
+	sprintf(buf,"%s gained level %d",ch->name,ch->level);
+	log_string(buf);
 	sprintf(buf,"$N has attained level %d!",ch->level);
 	wiznet(buf,ch,NULL,WIZ_LEVELS,0,0);
-	advance_level( ch );
+	advance_level(ch,FALSE);
 	save_char_obj(ch);
     }
 

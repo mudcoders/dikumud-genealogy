@@ -16,7 +16,7 @@
  **************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -68,6 +68,7 @@ void do_delete( CHAR_DATA *ch, char *argument)
 	{
     	    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( ch->name ) );
 	    wiznet("$N turns $Mself into line noise.",ch,NULL,0,0,0);
+	    stop_fighting(ch,TRUE);
 	    do_quit(ch,"");
 	    unlink(strsave);
 	    return;
@@ -253,6 +254,12 @@ void do_replay (CHAR_DATA *ch, char *argument)
     if (IS_NPC(ch))
     {
 	send_to_char("You can't replay.\n\r",ch);
+	return;
+    }
+
+    if (buf_string(ch->pcdata->buffer)[0] == '\0')
+    {
+	send_to_char("You have no tells to replay.\n\r",ch);
 	return;
     }
 
@@ -1447,7 +1454,7 @@ void do_save( CHAR_DATA *ch, char *argument )
 	return;
 
     save_char_obj( ch );
-    send_to_char("Saving. Remember that ROM has automatic saving now\n\r", ch);
+    send_to_char("Saving. Remember that ROM has automatic saving now.\n\r", ch);
     WAIT_STATE(ch,4 * PULSE_VIOLENCE);
     return;
 }
@@ -1738,7 +1745,7 @@ void do_group( CHAR_DATA *ch, char *argument )
 
     if ( victim->master != ch && ch != victim )
     {
-	act( "$N isn't following you.", ch, NULL, victim, TO_CHAR );
+	act_new("$N isn't following you.",ch,NULL,victim,TO_CHAR,POS_SLEEPING);
 	return;
     }
     
@@ -1750,35 +1757,27 @@ void do_group( CHAR_DATA *ch, char *argument )
     
     if (IS_AFFECTED(ch,AFF_CHARM))
     {
-    	act("You like your master too much to leave $m!",ch,NULL,victim,TO_VICT);
+    	act_new("You like your master too much to leave $m!",
+	    ch,NULL,victim,TO_VICT,POS_SLEEPING);
     	return;
-    }
-
-    if (victim->level - ch->level > 8)
-    {
-	send_to_char("They are to high of a level for your group.\n\r",ch);
-	return;
-    }
-
-    if (victim->level - ch->level < -8)
-    {
-	send_to_char("They are to low of a level for your group.\n\r",ch);
-	return;
     }
 
     if ( is_same_group( victim, ch ) && ch != victim )
     {
 	victim->leader = NULL;
-	act( "$n removes $N from $s group.",   ch, NULL, victim, TO_NOTVICT );
-	act( "$n removes you from $s group.",  ch, NULL, victim, TO_VICT    );
-	act( "You remove $N from your group.", ch, NULL, victim, TO_CHAR    );
+	act_new("$n removes $N from $s group.",
+	    ch,NULL,victim,TO_NOTVICT,POS_RESTING);
+	act_new("$n removes you from $s group.",
+	    ch,NULL,victim,TO_VICT,POS_SLEEPING);
+	act_new("You remove $N from your group.",
+	    ch,NULL,victim,TO_CHAR,POS_SLEEPING);
 	return;
     }
 
     victim->leader = ch;
-    act( "$N joins $n's group.", ch, NULL, victim, TO_NOTVICT );
-    act( "You join $n's group.", ch, NULL, victim, TO_VICT    );
-    act( "$N joins your group.", ch, NULL, victim, TO_CHAR    );
+    act_new("$N joins $n's group.",ch,NULL,victim,TO_NOTVICT,POS_RESTING);
+    act_new("You join $n's group.",ch,NULL,victim,TO_VICT,POS_SLEEPING);
+    act_new("$N joins your group.",ch,NULL,victim,TO_CHAR,POS_SLEEPING);
     return;
 }
 
@@ -1909,7 +1908,6 @@ void do_split( CHAR_DATA *ch, char *argument )
 
 void do_gtell( CHAR_DATA *ch, char *argument )
 {
-    char buf[MAX_STRING_LENGTH];
     CHAR_DATA *gch;
 
     if ( argument[0] == '\0' )
@@ -1924,14 +1922,11 @@ void do_gtell( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    /*
-     * Note use of send_to_char, so gtell works on sleepers.
-     */
-    sprintf( buf, "%s tells the group '%s'\n\r", ch->name, argument );
     for ( gch = char_list; gch != NULL; gch = gch->next )
     {
 	if ( is_same_group( gch, ch ) )
-	    send_to_char( buf, gch );
+	    act_new("$n tells the group '$t'",
+		ch,argument,gch,TO_VICT,POS_SLEEPING);
     }
 
     return;

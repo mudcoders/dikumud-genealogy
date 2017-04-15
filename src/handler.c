@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -711,7 +711,7 @@ int get_trust( CHAR_DATA *ch )
     if ( ch->desc != NULL && ch->desc->original != NULL )
 	ch = ch->desc->original;
 
-    if ( ch->trust != 0 && IS_SET(ch->comm,COMM_TRUE_TRUST))
+    if (ch->trust)
 	return ch->trust;
 
     if ( IS_NPC(ch) && ch->level >= LEVEL_HERO )
@@ -807,27 +807,19 @@ int can_carry_w( CHAR_DATA *ch )
 /*
  * See if a string is one of the names of an object.
  */
-/*
-bool is_name( const char *str, char *namelist )
-{
-    char name[MAX_INPUT_LENGTH];
-
-    for ( ; ; )
-    {
-	namelist = one_argument( namelist, name );
-	if ( name[0] == '\0' )
-	    return FALSE;
-	if ( !str_cmp( str, name ) )
-	    return TRUE;
-    }
-}
-*/
 
 bool is_name ( char *str, char *namelist )
 {
     char name[MAX_INPUT_LENGTH], part[MAX_INPUT_LENGTH];
     char *list, *string;
 
+    /* fix crash on NULL namelist */
+    if (namelist == NULL || namelist[0] == '\0')
+    	return FALSE;
+
+    /* fixed to prevent is_name on "" returning TRUE */
+    if (str[0] == '\0')
+	return FALSE;
 
     string = str;
     /* we need ALL parts of string to match part of namelist */
@@ -855,6 +847,22 @@ bool is_name ( char *str, char *namelist )
     }
 }
 
+bool is_exact_name(char *str, char *namelist )
+{
+    char name[MAX_INPUT_LENGTH];
+
+    if (namelist == NULL)
+	return FALSE;
+
+    for ( ; ; )
+    {
+	namelist = one_argument( namelist, name );
+	if ( name[0] == '\0' )
+	    return FALSE;
+	if ( !str_cmp( str, name ) )
+	    return TRUE;
+    }
+}
 
 /* enchanted stuff for eq */
 void affect_enchant(OBJ_DATA *obj)
@@ -1100,6 +1108,7 @@ void affect_to_char( CHAR_DATA *ch, AFFECT_DATA *paf )
     paf_new = new_affect();
 
     *paf_new		= *paf;
+
     paf_new->next	= ch->affected;
     ch->affected	= paf_new;
 
@@ -1526,8 +1535,6 @@ int apply_ac( OBJ_DATA *obj, int iWear, int type )
     case WEAR_HANDS:	return     obj->value[type];
     case WEAR_ARMS:	return     obj->value[type];
     case WEAR_SHIELD:	return     obj->value[type];
-    case WEAR_FINGER_L:	return     0;
-    case WEAR_FINGER_R: return     obj->value[type];
     case WEAR_NECK_1:	return     obj->value[type];
     case WEAR_NECK_2:	return     obj->value[type];
     case WEAR_ABOUT:	return 2 * obj->value[type];
@@ -2101,7 +2108,7 @@ OBJ_DATA *get_obj_list( CHAR_DATA *ch, char *argument, OBJ_DATA *list )
 /*
  * Find an obj in player's inventory.
  */
-OBJ_DATA *get_obj_carry( CHAR_DATA *ch, char *argument )
+OBJ_DATA *get_obj_carry( CHAR_DATA *ch, char *argument, CHAR_DATA *viewer )
 {
     char arg[MAX_INPUT_LENGTH];
     OBJ_DATA *obj;
@@ -2113,7 +2120,7 @@ OBJ_DATA *get_obj_carry( CHAR_DATA *ch, char *argument )
     for ( obj = ch->carrying; obj != NULL; obj = obj->next_content )
     {
 	if ( obj->wear_loc == WEAR_NONE
-	&&   (can_see_obj( ch, obj ) ) 
+	&&   (can_see_obj( viewer, obj ) ) 
 	&&   is_name( arg, obj->name ) )
 	{
 	    if ( ++count == number )
@@ -2165,7 +2172,7 @@ OBJ_DATA *get_obj_here( CHAR_DATA *ch, char *argument )
     if ( obj != NULL )
 	return obj;
 
-    if ( ( obj = get_obj_carry( ch, argument ) ) != NULL )
+    if ( ( obj = get_obj_carry( ch, argument, ch ) ) != NULL )
 	return obj;
 
     if ( ( obj = get_obj_wear( ch, argument ) ) != NULL )
@@ -2462,9 +2469,9 @@ bool can_see( CHAR_DATA *ch, CHAR_DATA *victim )
     {
 	int chance;
 	chance = get_skill(victim,gsn_sneak);
-	chance += get_curr_stat(ch,STAT_DEX) * 3/2;
+	chance += get_curr_stat(victim,STAT_DEX) * 3/2;
  	chance -= get_curr_stat(ch,STAT_INT) * 2;
-	chance += ch->level - victim->level * 3/2;
+	chance -= ch->level - victim->level * 3/2;
 
 	if (number_percent() < chance)
 	    return FALSE;
@@ -2525,49 +2532,6 @@ bool can_drop_obj( CHAR_DATA *ch, OBJ_DATA *obj )
 
     return FALSE;
 }
-
-
-
-/*
- * Return ascii name of an item type.
- */
-char *item_type_name( OBJ_DATA *obj )
-{
-    switch ( obj->item_type )
-    {
-    case ITEM_LIGHT:		return "light";
-    case ITEM_SCROLL:		return "scroll";
-    case ITEM_WAND:		return "wand";
-    case ITEM_STAFF:		return "staff";
-    case ITEM_WEAPON:		return "weapon";
-    case ITEM_TREASURE:		return "treasure";
-    case ITEM_ARMOR:		return "armor";
-    case ITEM_CLOTHING:		return "clothing";
-    case ITEM_POTION:		return "potion";
-    case ITEM_FURNITURE:	return "furniture";
-    case ITEM_TRASH:		return "trash";
-    case ITEM_CONTAINER:	return "container";
-    case ITEM_DRINK_CON:	return "drink container";
-    case ITEM_KEY:		return "key";
-    case ITEM_FOOD:		return "food";
-    case ITEM_MONEY:		return "money";
-    case ITEM_BOAT:		return "boat";
-    case ITEM_CORPSE_NPC:	return "npc corpse";
-    case ITEM_CORPSE_PC:	return "pc corpse";
-    case ITEM_FOUNTAIN:		return "fountain";
-    case ITEM_PILL:		return "pill";
-    case ITEM_MAP:		return "map";
-    case ITEM_PORTAL:		return "portal";
-    case ITEM_WARP_STONE:	return "warp stone";
-    case ITEM_GEM:		return "gem";
-    case ITEM_JEWELRY:		return "jewelry";
-    case ITEM_JUKEBOX:		return "juke box";
-    }
-
-    bug( "Item_type_name: unknown type %d.", obj->item_type );
-    return "(unknown)";
-}
-
 
 
 /*
@@ -2809,6 +2773,7 @@ char *wear_bit_name(int wear_flags)
     if (wear_flags & ITEM_WEAR_WRIST	) strcat(buf, " wrist");
     if (wear_flags & ITEM_WIELD		) strcat(buf, " wield");
     if (wear_flags & ITEM_HOLD		) strcat(buf, " hold");
+    if (wear_flags & ITEM_NO_SAC	) strcat(buf, " nosac");
     if (wear_flags & ITEM_WEAR_FLOAT	) strcat(buf, " float");
 
     return ( buf[0] != '\0' ) ? buf+1 : "none";

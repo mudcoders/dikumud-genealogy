@@ -1,5 +1,6 @@
+#!/bin/csh
 # Written by Furey.
-# With additions from Tony.
+# With additions from Tony and Alander.
 
 # Set the port number.
 set port = 9000

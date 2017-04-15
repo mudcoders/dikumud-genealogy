@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -402,7 +402,7 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
 	    strcat( buf, "." );
 	}
 	else
-	    strcat( buf, "somone who left??" );
+	    strcat( buf, "someone who left??" );
 	break;
     }
 
@@ -1175,15 +1175,15 @@ void do_look( CHAR_DATA *ch, char *argument )
 		    send_to_char( pdesc, ch );
 		    return;
 	    	}
-	}
 
-	if ( is_name( arg3, obj->name ) )
-	    if (++count == number)
-	    {
-	    	send_to_char( obj->description, ch );
-	    	send_to_char("\n\r",ch);
-	    	return;
-	    }
+	    if ( is_name( arg3, obj->name ) )
+		if (++count == number)
+		{
+		    send_to_char( obj->description, ch );
+		    send_to_char("\n\r",ch);
+		    return;
+		}
+	}
     }
 
     pdesc = get_extra_descr(arg3,ch->in_room->extra_descr);
@@ -1429,7 +1429,7 @@ void do_score( CHAR_DATA *ch, char *argument )
 	send_to_char( buf, ch );
     }
 
-    sprintf(buf, "Race: %s  Sex: %s  Class:  %s\n\r",
+    sprintf(buf, "Race: %s  Sex: %s  Class: %s\n\r",
 	race_table[ch->race].name,
 	ch->sex == 0 ? "sexless" : ch->sex == 1 ? "male" : "female",
  	IS_NPC(ch) ? "mobile" : class_table[ch->class].name);
@@ -1511,6 +1511,9 @@ void do_score( CHAR_DATA *ch, char *argument )
 	break;
     case POS_RESTING:
 	send_to_char( "You are resting.\n\r",		ch );
+	break;
+    case POS_SITTING:
+	send_to_char( "You are sitting.\n\r",		ch );
 	break;
     case POS_STANDING:
 	send_to_char( "You are standing.\n\r",		ch );
@@ -1749,12 +1752,15 @@ void do_weather( CHAR_DATA *ch, char *argument )
     return;
 }
 
-
-
 void do_help( CHAR_DATA *ch, char *argument )
 {
     HELP_DATA *pHelp;
+    BUFFER *output;
+    bool found = FALSE;
     char argall[MAX_INPUT_LENGTH],argone[MAX_INPUT_LENGTH];
+    int level;
+
+    output = new_buf();
 
     if ( argument[0] == '\0' )
 	argument = "summary";
@@ -1771,30 +1777,43 @@ void do_help( CHAR_DATA *ch, char *argument )
 
     for ( pHelp = help_first; pHelp != NULL; pHelp = pHelp->next )
     {
-	if ( pHelp->level > get_trust( ch ) )
+    	level = (pHelp->level < 0) ? -1 * pHelp->level - 1 : pHelp->level;
+
+	if (level > get_trust( ch ) )
 	    continue;
 
 	if ( is_name( argall, pHelp->keyword ) )
 	{
+	    /* add seperator if found */
+	    if (found)
+		add_buf(output,
+    "\n\r============================================================\n\r\n\r");
 	    if ( pHelp->level >= 0 && str_cmp( argall, "imotd" ) )
 	    {
-		send_to_char( pHelp->keyword, ch );
-		send_to_char( "\n\r", ch );
+		add_buf(output,pHelp->keyword);
+		add_buf(output,"\n\r");
 	    }
 
 	    /*
 	     * Strip leading '.' to allow initial blanks.
 	     */
 	    if ( pHelp->text[0] == '.' )
-		page_to_char( pHelp->text+1, ch );
+		add_buf(output,pHelp->text+1);
 	    else
-		page_to_char( pHelp->text  , ch );
-	    return;
+		add_buf(output,pHelp->text);
+	    found = TRUE;
+	    /* small hack :) */
+	    if (ch->desc != NULL && ch->desc->connected != CON_PLAYING 
+	    &&  		    ch->desc->connected != CON_GEN_GROUPS)
+		break;
 	}
     }
 
-    send_to_char( "No help on that word.\n\r", ch );
-    return;
+    if (!found)
+    	send_to_char( "No help on that word.\n\r", ch );
+    else
+	page_to_char(buf_string(output),ch);
+    free_buf(output);
 }
 
 
@@ -1943,7 +1962,7 @@ void do_who( CHAR_DATA *ch, char *argument )
             /*
              * Look for classes to turn on.
              */
-            if ( arg[0] == 'i' )
+            if (!str_prefix(arg,"immortals"))
             {
                 fImmortalOnly = TRUE;
             }
@@ -2155,7 +2174,7 @@ void do_compare( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( obj1 = get_obj_carry( ch, arg1 ) ) == NULL )
+    if ( ( obj1 = get_obj_carry( ch, arg1, ch ) ) == NULL )
     {
 	send_to_char( "You do not have that item.\n\r", ch );
 	return;
@@ -2179,7 +2198,7 @@ void do_compare( CHAR_DATA *ch, char *argument )
 	}
     } 
 
-    else if ( (obj2 = get_obj_carry(ch,arg2) ) == NULL )
+    else if ( (obj2 = get_obj_carry(ch,arg2,ch) ) == NULL )
     {
 	send_to_char("You do not have that item.\n\r",ch);
 	return;
@@ -2459,7 +2478,7 @@ void do_description( CHAR_DATA *ch, char *argument )
 		argument++;
 	}
 
-	if ( strlen(buf) + strlen(argument) >= MAX_STRING_LENGTH - 2 )
+        if ( strlen(buf) >= 1024)
 	{
 	    send_to_char( "Description too long.\n\r", ch );
 	    return;

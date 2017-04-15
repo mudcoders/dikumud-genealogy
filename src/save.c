@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -470,6 +470,7 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
     {
     case ITEM_POTION:
     case ITEM_SCROLL:
+    case ITEM_PILL:
 	if ( obj->value[1] > 0 )
 	{
 	    fprintf( fp, "Spell 1 '%s'\n", 
@@ -490,7 +491,6 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 
 	break;
 
-    case ITEM_PILL:
     case ITEM_STAFF:
     case ITEM_WAND:
 	if ( obj->value[3] > 0 )
@@ -705,6 +705,20 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 #define KEY( literal, field, value )					\
 				if ( !str_cmp( word, literal ) )	\
 				{					\
+				    field  = value;			\
+				    fMatch = TRUE;			\
+				    break;				\
+				}
+
+/* provided to free strings */
+#if defined(KEYS)
+#undef KEYS
+#endif
+
+#define KEYS( literal, field, value )					\
+				if ( !str_cmp( word, literal ) )	\
+				{					\
+				    free_string(field);			\
 				    field  = value;			\
 				    fMatch = TRUE;			\
 				    break;				\
@@ -986,7 +1000,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    break;
 
 	case 'N':
-	    KEY( "Name",	ch->name,		fread_string( fp ) );
+	    KEYS( "Name",	ch->name,		fread_string( fp ) );
 	    KEY( "Note",	ch->pcdata->last_note,	fread_number( fp ) );
 	    if (!str_cmp(word,"Not"))
 	    {
@@ -1011,7 +1025,7 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    KEY( "Pos",		ch->position,		fread_number( fp ) );
 	    KEY( "Practice",	ch->practice,		fread_number( fp ) );
 	    KEY( "Prac",	ch->practice,		fread_number( fp ) );
-            KEY( "Prompt",      ch->prompt,             fread_string( fp ) );
+            KEYS( "Prompt",      ch->prompt,             fread_string( fp ) );
  	    KEY( "Prom",	ch->prompt,		fread_string( fp ) );
 	    break;
 

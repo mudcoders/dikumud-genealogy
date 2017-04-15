@@ -16,7 +16,7 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -63,12 +63,8 @@ void do_flag(CHAR_DATA *ch, char *argument)
 	send_to_char("Syntax:\n\r",ch);
 	send_to_char("  flag mob  <name> <field> <flags>\n\r",ch);
 	send_to_char("  flag char <name> <field> <flags>\n\r",ch);
-	send_to_char("  flag obj  <name> <field> <flags>\n\r",ch);
-	send_to_char("  flag room <room> <field> <flags>\n\r",ch);
 	send_to_char("  mob  flags: act,aff,off,imm,res,vuln,form,part\n\r",ch);
 	send_to_char("  char flags: plr,comm,aff,imm,res,vuln,\n\r",ch);
-	send_to_char("  obj  flags: extra,wear,weap,cont,gate,exit\n\r",ch);
-	send_to_char("  room flags: room\n\r",ch);
 	send_to_char("  +: add flag, -: remove flag, = set equal to\n\r",ch);
 	send_to_char("  otherwise flag toggles the flags listed.\n\r",ch);
 	return;

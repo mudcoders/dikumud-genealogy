@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -46,6 +46,7 @@ void song_update(void)
 {
     OBJ_DATA *obj;
     CHAR_DATA *victim;
+    ROOM_INDEX_DATA *room;
     DESCRIPTOR_DATA *d;
     char buf[MAX_STRING_LENGTH];
     char *line;
@@ -106,12 +107,23 @@ void song_update(void)
 	    continue;
 	}
 
+	/* find which room to play in */
+
+	if ((room = obj->in_room) == NULL)
+	{
+	    if (obj->carried_by == NULL)
+	    	continue;
+	    else
+	    	if ((room = obj->carried_by->in_room) == NULL)
+		    continue;
+	}
+
 	if (obj->value[0] < 0)
 	{
 	    sprintf(buf,"$p starts playing %s, %s.",
 		song_table[obj->value[1]].group,song_table[obj->value[1]].name);
-	    if (obj->in_room->people != NULL)
-		act(buf,obj->in_room->people,obj,NULL,TO_ALL);
+	    if (room->people != NULL)
+		act(buf,room->people,obj,NULL,TO_ALL);
 	    obj->value[0] = 0;
 	    continue;
 	}
@@ -136,8 +148,8 @@ void song_update(void)
 	}
 
 	sprintf(buf,"$p bops: '%s'",line);
-	if (obj->in_room->people != NULL)
-	    act(buf,obj->in_room->people,obj,NULL,TO_ALL);
+	if (room->people != NULL)
+	    act(buf,room->people,obj,NULL,TO_ALL);
     }
 }
 

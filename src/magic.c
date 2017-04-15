@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -321,8 +321,9 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( ( sn = find_spell( ch,arg1 ) ) < 0
-    || ( !IS_NPC(ch) && (ch->level < skill_table[sn].skill_level[ch->class]
+    if ((sn = find_spell(ch,arg1)) < 1
+    ||  skill_table[sn].spell_fun == spell_null
+    || (!IS_NPC(ch) && (ch->level < skill_table[sn].skill_level[ch->class]
     ||   		 ch->pcdata->learned[sn] == 0)))
     {
 	send_to_char( "You don't know any spells of that name.\n\r", ch );
@@ -443,7 +444,7 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( ( obj = get_obj_carry( ch, target_name ) ) == NULL )
+	if ( ( obj = get_obj_carry( ch, target_name, ch ) ) == NULL )
 	{
 	    send_to_char( "You are not carrying that.\n\r", ch );
 	    return;
@@ -512,7 +513,7 @@ void do_cast( CHAR_DATA *ch, char *argument )
             vo = (void *) victim;
             target = TARGET_CHAR;
 	}
-	else if ((obj = get_obj_carry(ch,target_name)) != NULL)
+	else if ((obj = get_obj_carry(ch,target_name,ch)) != NULL)
 	{
 	    vo = (void *) obj;
 	    target = TARGET_OBJ;
@@ -811,6 +812,9 @@ void spell_bless( int sn, int level, CHAR_DATA *ch, void *vo, int target)
 	affect_to_obj(obj,&af);
 
 	act("$p glows with a holy aura.",ch,obj,NULL,TO_ALL);
+
+	if (obj->wear_loc != WEAR_NONE)
+	    ch->saving_throw -= 1;
 	return;
     }
 
@@ -1077,9 +1081,6 @@ void spell_cancellation( int sn, int level, CHAR_DATA *ch, void *vo,int target )
         found = TRUE;
  
     if (check_dispel(level,victim,skill_lookup("detect invis")))
-        found = TRUE;
- 
-    if (check_dispel(level,victim,skill_lookup("detect hidden")))
         found = TRUE;
  
     if (check_dispel(level,victim,skill_lookup("detect magic")))
@@ -1434,7 +1435,7 @@ void spell_continual_light(int sn,int level,CHAR_DATA *ch,void *vo,int target)
 
     if (target_name[0] != '\0')  /* do a glow on some object */
     {
-	light = get_obj_carry(ch,target_name);
+	light = get_obj_carry(ch,target_name,ch);
 	
 	if (light == NULL)
 	{
@@ -1720,6 +1721,9 @@ void spell_curse( int sn, int level, CHAR_DATA *ch, void *vo,int target )
         affect_to_obj(obj,&af);
 
         act("$p glows with a malevolent aura.",ch,obj,NULL,TO_ALL);
+
+	if (obj->wear_loc != WEAR_NONE)
+	    ch->saving_throw += 1;
         return;
     }
 
@@ -2071,11 +2075,6 @@ void spell_dispel_magic( int sn, int level, CHAR_DATA *ch, void *vo,int target )
         found = TRUE;
  
     if (check_dispel(level,victim,skill_lookup("detect invis")))
-        found = TRUE;
- 
-        found = TRUE;
- 
-    if (check_dispel(level,victim,skill_lookup("detect hidden")))
         found = TRUE;
  
     if (check_dispel(level,victim,skill_lookup("detect magic")))
@@ -3237,7 +3236,7 @@ void spell_identify( int sn, int level, CHAR_DATA *ch, void *vo,int target )
 	"Object '%s' is type %s, extra flags %s.\n\rWeight is %d, value is %d, level is %d.\n\r",
 
 	obj->name,
-	item_type_name( obj ),
+	item_table[obj->item_type].name,
 	extra_bit_name( obj->extra_flags ),
 	obj->weight / 10,
 	obj->cost,
@@ -3977,7 +3976,7 @@ void spell_recharge( int sn, int level, CHAR_DATA *ch, void *vo,int target)
     OBJ_DATA *obj = (OBJ_DATA *) vo;
     int chance, percent;
 
-    if (obj->item_type != ITEM_WAND & obj->item_type != ITEM_STAFF)
+    if (obj->item_type != ITEM_WAND && obj->item_type != ITEM_STAFF)
     {
 	send_to_char("That item does not carry charges.\n\r",ch);
 	return;
@@ -4087,6 +4086,8 @@ void spell_remove_curse( int sn, int level, CHAR_DATA *ch, void *vo,int target)
 	    act("The curse on $p is beyond your power.",ch,obj,NULL,TO_CHAR);
 	    return;
 	}
+	act("There doesn't seem to be a curse on $p.",ch,obj,NULL,TO_CHAR);
+	return;
     }
 
     /* characters */
@@ -4394,7 +4395,7 @@ void spell_ventriloquate( int sn, int level, CHAR_DATA *ch,void *vo,int target)
 
     for ( vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room )
     {
-	if ( !is_name( speaker, vch->name ) )
+	if (!is_exact_name( speaker, vch->name) && IS_AWAKE(vch))
 	    send_to_char( saves_spell(level,vch,DAM_OTHER) ? buf2 : buf1, vch );
     }
 

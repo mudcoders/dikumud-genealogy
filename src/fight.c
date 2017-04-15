@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -34,8 +34,6 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
-
-#define MAX_DAMAGE_MESSAGE 39
 
 /* command procedures needed */
 DECLARE_DO_FUN(do_backstab	);
@@ -940,7 +938,9 @@ bool damage(CHAR_DATA *ch,CHAR_DATA *victim,int dam,int dt,int dam_type,
 
         /* RT new auto commands */
 
-	if ( !IS_NPC(ch) && IS_NPC(victim) )
+	if (!IS_NPC(ch)
+	&&  (corpse = get_obj_list(ch,"corpse",ch->in_room->contents)) != NULL
+	&&  corpse->item_type == ITEM_CORPSE_NPC && can_see_obj(ch,corpse))
 	{
 	    OBJ_DATA *coins;
 
@@ -1487,7 +1487,7 @@ bool is_safe_spell(CHAR_DATA *ch, CHAR_DATA *victim, bool area )
 	if (IS_NPC(ch))
 	{
 	    /* charmed mobs and pets cannot attack players while owned */
-	    if (IS_AFFECTED(ch,AFF_CHARM) & ch->master != NULL
+	    if (IS_AFFECTED(ch,AFF_CHARM) && ch->master != NULL
 	    &&  ch->master->fighting != victim)
 		return TRUE;
 	
@@ -2187,14 +2187,14 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim, int total_levels )
  	else if (victim->alignment < -500)
 	    xp = (base_exp * 5)/4;
 
-        else if (victim->alignment > 250)
-	    xp = (base_exp * 3)/4; 
-
         else if (victim->alignment > 750)
 	    xp = base_exp / 4;
 
    	else if (victim->alignment > 500)
 	    xp = base_exp / 2;
+
+        else if (victim->alignment > 250)
+	    xp = (base_exp * 3)/4; 
 
 	else
 	    xp = base_exp;
@@ -2357,7 +2357,7 @@ void dam_message( CHAR_DATA *ch, CHAR_DATA *victim,int dam,int dt,bool immune )
 	if ( dt >= 0 && dt < MAX_SKILL )
 	    attack	= skill_table[dt].noun_damage;
 	else if ( dt >= TYPE_HIT
-	&& dt <= TYPE_HIT + MAX_DAMAGE_MESSAGE) 
+	&& dt < TYPE_HIT + MAX_DAMAGE_MESSAGE) 
 	    attack	= attack_table[dt - TYPE_HIT].noun;
 	else
 	{

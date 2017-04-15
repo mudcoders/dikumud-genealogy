@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -116,7 +116,7 @@ const   struct wiznet_type      wiznet_table    []              =
 };
 
 /* attack table  -- not very organized :( */
-const 	struct attack_type	attack_table	[]		=
+const 	struct attack_type	attack_table	[MAX_DAMAGE_MESSAGE]	=
 {
     { 	"none",		"hit",		-1		},  /*  0 */
     {	"slice",	"slice", 	DAM_SLASH	},	

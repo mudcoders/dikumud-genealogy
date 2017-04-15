@@ -1,4 +1,3 @@
-
 /***************************************************************************
  *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,	   *
  *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
@@ -17,7 +16,7 @@
  ***************************************************************************/
  
 /***************************************************************************
-*	ROM 2.4 is copyright 1993-1995 Russ Taylor			   *
+*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
 *	ROM has been brought to you by the ROM consortium		   *
 *	    Russ Taylor (rtaylor@pacinfo.com)				   *
 *	    Gabrielle Taylor (gtaylor@pacinfo.com)			   *
@@ -38,7 +37,7 @@
 #define L6	MAX_LEVEL - 6	/* demigod */
 #define L7	MAX_LEVEL - 7	/* angel */
 #define L8	MAX_LEVEL - 8	/* avatar */
-#define IM	LEVEL_IMMORTAL 	/* angel */
+#define IM	LEVEL_IMMORTAL 	/* avatar */
 #define HE	LEVEL_HERO	/* hero */
 
 #define COM_INGORE	1
