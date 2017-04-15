@@ -29,6 +29,7 @@ extern int drink_aff[][3];
 
 struct obj_data *get_object_in_equip_vis(struct char_data *ch,
                          char *arg, struct obj_data **equipment, int *j);
+void log(char *str);
 
 
 
@@ -120,7 +121,7 @@ void do_drink(struct char_data *ch, char *argument, int cmd)
 
   if (temp->obj_flags.type_flag==ITEM_DRINKCON){
 		if(temp->obj_flags.value[1]>0)  /* Not empty */
-		{	
+		{
 			sprintf(buf,"$n drinks %s from $p",drinks[temp->obj_flags.value[2]]);
 			act(buf, TRUE, ch, temp, 0, TO_ROOM);
 			sprintf(buf,"You drink the %s.\n\r",drinks[temp->obj_flags.value[2]]);
@@ -179,7 +180,7 @@ void do_drink(struct char_data *ch, char *argument, int cmd)
 	}
 
 	act("It's empty already.",FALSE,ch,0,0,TO_CHAR);
-	
+
 	return;
 }
 
@@ -206,7 +207,7 @@ void do_eat(struct char_data *ch, char *argument, int cmd)
 	}
 
 	if(GET_COND(ch,FULL)>20) /* Stomach full */
-	{	
+	{
 		act("You are to full to eat more!",FALSE,ch,0,0,TO_CHAR);
 		return;
 	}
@@ -288,7 +289,7 @@ void do_pour(struct char_data *ch, char *argument, int cmd)
 		from_obj->obj_flags.value[2]=0;
 		from_obj->obj_flags.value[3]=0;
 		name_from_drinkcon(from_obj);
-		
+
 		return;
 
 	}
@@ -323,7 +324,7 @@ void do_pour(struct char_data *ch, char *argument, int cmd)
 	send_to_char(buf,ch);
 
 	/* New alias */
-	if (to_obj->obj_flags.value[1]==0) 
+	if (to_obj->obj_flags.value[1]==0)
 		name_to_drinkcon(to_obj,from_obj->obj_flags.value[2]);
 
 	/* First same type liq. */
@@ -510,46 +511,46 @@ perform_wear(struct char_data *ch, struct obj_data *obj_object, int keyword)
 		case 0 :
 			act("$n light $p and holds it.", FALSE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 1 : 
+		case 1 :
 			act("$n wears $p on $s finger.", TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 2 : 
+		case 2 :
 			act("$n wears $p around $s neck.", TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 3 : 
+		case 3 :
 			act("$n wears $p on $s body.", TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 4 : 
+		case 4 :
 			act("$n wears $p on $s head.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 5 : 
+		case 5 :
 			act("$n wears $p on $s legs.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 6 : 
+		case 6 :
 			act("$n wears $p on $s feet.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 7 : 
+		case 7 :
 			act("$n wears $p on $s hands.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 8 : 
+		case 8 :
 			act("$n wears $p on $s arms.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 9 : 
+		case 9 :
 			act("$n wears $p about $s body.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 10 : 
+		case 10 :
 			act("$n wears $p about $s waist.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 11 : 
+		case 11 :
 			act("$n wears $p around $s wrist.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 12 : 
+		case 12 :
 			act("$n wields $p.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 13 : 
+		case 13 :
 			act("$n grabs $p.",TRUE, ch, obj_object,0,TO_ROOM);
 			break;
-		case 14 : 
+		case 14 :
 			act("$n starts using $p as shield.", TRUE, ch, obj_object,0,TO_ROOM);
 			break;
 	}
@@ -583,13 +584,13 @@ void wear(struct char_data *ch, struct obj_data *obj_object, int keyword)
 				} else {
 					perform_wear(ch,obj_object,keyword);
 					if (ch->equipment[WEAR_FINGER_L]) {
-						sprintf(buffer, "You put the %s on your right finger.\n\r", 
+						sprintf(buffer, "You put the %s on your right finger.\n\r",
 							fname(obj_object->name));
 						send_to_char(buffer, ch);
 						obj_from_char(obj_object);
 						equip_char(ch, obj_object, WEAR_FINGER_R);
 					} else {
-						sprintf(buffer, "You put the %s on your left finger.\n\r", 
+						sprintf(buffer, "You put the %s on your left finger.\n\r",
 							fname(obj_object->name));
 						send_to_char(buffer, ch);
 						obj_from_char(obj_object);
@@ -741,12 +742,12 @@ void wear(struct char_data *ch, struct obj_data *obj_object, int keyword)
 					perform_wear(ch,obj_object,keyword);
 					obj_from_char(obj_object);
 					if (ch->equipment[WEAR_WRIST_L]) {
-						sprintf(buffer, "You wear the %s around your right wrist.\n\r", 
+						sprintf(buffer, "You wear the %s around your right wrist.\n\r",
 							fname(obj_object->name));
 						send_to_char(buffer, ch);
 						equip_char(ch,  obj_object, WEAR_WRIST_R);
 					} else {
-						sprintf(buffer, "You wear the %s around your left wrist.\n\r", 
+						sprintf(buffer, "You wear the %s around your left wrist.\n\r",
 							fname(obj_object->name));
 						send_to_char(buffer, ch);
 						equip_char(ch, obj_object, WEAR_WRIST_L);
@@ -804,7 +805,7 @@ void wear(struct char_data *ch, struct obj_data *obj_object, int keyword)
 						"You are already using a shield\n\r", ch);
 				} else {
 					perform_wear(ch,obj_object,keyword);
-					sprintf(buffer, "You start using the %s.\n\r", 
+					sprintf(buffer, "You start using the %s.\n\r",
 						fname(obj_object->name));
 					send_to_char(buffer, ch);
 					obj_from_char(obj_object);
@@ -979,10 +980,10 @@ void do_remove(struct char_data *ch, char *argument, int cmd)
 
 /* case 12: ...
 
-					if ( ( (ch->player.class == CLASS_CLERIC) && 
-						( (GET_ITEM_TYPE(obj_object) == ITEM_WEAPON) && 
+					if ( ( (ch->player.class == CLASS_CLERIC) &&
+						( (GET_ITEM_TYPE(obj_object) == ITEM_WEAPON) &&
 						(sharp[obj_object->obj_flags.value[3]]) ) ||
-						( (ch->player.class == CLASS_CLERIC) && 
+						( (ch->player.class == CLASS_CLERIC) &&
 						( (GET_ITEM_TYPE(obj_object) == ITEM_FIREWEAPON) &&
 						(sharp[obj_object->obj_flags.value[3]]) ) ) ) ) {
 							if (GET_ITEM_TYPE(obj_object) == ITEM_WEAPON) {
@@ -991,7 +992,7 @@ void do_remove(struct char_data *ch, char *argument, int cmd)
 								send_to_char(buffer, ch);
 							}
 							if (GET_ITEM_TYPE(obj_object) == ITEM_FIREWEAPON) {
-								strcpy(buffer, 
+								strcpy(buffer,
 									"You can't wield that! it fires only SHARP things.\n\r");
 								strcat(buffer, "You are forbidden to use sharp weapons!\n\r");
 								send_to_char(buffer, ch);
@@ -1001,8 +1002,8 @@ void do_remove(struct char_data *ch, char *argument, int cmd)
 
 /* case 13: ...
 
-					if ( (ch->player.class == CLASS_CLERIC) && 
-						( (GET_ITEM_TYPE(obj_object) == ITEM_MISSILE) && 
+					if ( (ch->player.class == CLASS_CLERIC) &&
+						( (GET_ITEM_TYPE(obj_object) == ITEM_MISSILE) &&
 						(sharp[obj_object->obj_flags.value[3]]) ) ) {
 						strcpy(buffer,
 							"This is a SHARP thing, to be used in a weapon.\n\r.");

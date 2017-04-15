@@ -17,6 +17,7 @@ extern struct room_data *world;
 extern struct str_app_type str_app[];
 
 void hit(struct char_data *ch, struct char_data *victim, int type);
+void log(char *str);
 
 
 void mobile_activity(void)
@@ -67,7 +68,7 @@ void mobile_activity(void)
 					}
 				} /* Scavenger */
 
-				if (!IS_SET(ch->specials.act, ACT_SENTINEL) && 
+				if (!IS_SET(ch->specials.act, ACT_SENTINEL) &&
 					(GET_POS(ch) == POSITION_STANDING) &&
 					((door = number(0, 45)) <= 5) && CAN_GO(ch,door) &&
 					!IS_SET(world[EXIT(ch, door)->to_room].room_flags, NO_MOB) &&
@@ -103,4 +104,3 @@ void mobile_activity(void)
 			} /* If AWAKE(ch)   */
 		}   /* If IS_MOB(ch)  */
 }
-

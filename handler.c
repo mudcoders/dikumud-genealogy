@@ -3,7 +3,7 @@
 *  Usage: Various routines for moving about objects/players               *
 *  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
 ************************************************************************* */
-	
+
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
@@ -28,6 +28,7 @@ int str_cmp(char *arg1, char *arg2);
 void free_char(struct char_data *ch);
 void stop_fighting(struct char_data *ch);
 void remove_follower(struct char_data *ch);
+void log(char *str);
 
 
 
@@ -274,7 +275,7 @@ void affect_to_char( struct char_data *ch, struct affected_type *af )
 
 
 /* Remove an affected_type structure from a char (called when duration
-   reaches zero). Pointer *af must never be NIL! Frees mem and calls 
+   reaches zero). Pointer *af must never be NIL! Frees mem and calls
    affect_location_apply                                                */
 void affect_remove( struct char_data *ch, struct affected_type *af )
 {
@@ -322,7 +323,7 @@ void affect_from_char( struct char_data *ch, byte skill)
 
 
 
-/* Return if a char is affected by a spell (SPELL_XXX), NULL indicates 
+/* Return if a char is affected by a spell (SPELL_XXX), NULL indicates
    not affected                                                        */
 bool affected_by_spell( struct char_data *ch, byte skill )
 {
@@ -345,7 +346,7 @@ void affect_join( struct char_data *ch, struct affected_type *af,
 
 	for (hjp = ch->affected; !found && hjp; hjp = hjp->next) {
 		if ( hjp->type == af->type ) {
-			
+
 			af->duration += hjp->duration;
 			if (avg_dur)
 				af->duration /= 2;
@@ -383,7 +384,7 @@ void char_from_room(struct char_data *ch)
 
 	else    /* locate the previous element */
 	{
-		for (i = world[ch->in_room].people; 
+		for (i = world[ch->in_room].people;
 			 i->next_in_room != ch; i = i->next_in_room);
 
 	 	i->next_in_room = ch->next_in_room;
@@ -432,8 +433,8 @@ void obj_from_char(struct obj_data *object)
 
 	else
 	{
-		for (tmp = object->carried_by->carrying; 
-			 tmp && (tmp->next_content != object); 
+		for (tmp = object->carried_by->carrying;
+			 tmp && (tmp->next_content != object);
 		      tmp = tmp->next_content); /* locate previous */
 
 		tmp->next_content = object->next_content;
@@ -553,7 +554,7 @@ int get_number(char **name) {
 	int i;
 	char *ppos;
   char number[MAX_INPUT_LENGTH] = "";
- 
+
 	if (ppos = index(*name, '.')) {
 		*ppos++ = '\0';
 		strcpy(number,*name);
@@ -582,10 +583,10 @@ struct obj_data *get_obj_in_list(char *name, struct obj_data *list)
 	tmp = tmpname;
   if(!(number = get_number(&tmp)))
     return(0);
- 
+
 	for (i = list, j = 1; i && (j <= number); i = i->next_content)
 		if (isname(tmp, i->name)) {
-			if (j == number) 
+			if (j == number)
 				return(i);
 			j++;
 		}
@@ -601,9 +602,9 @@ struct obj_data *get_obj_in_list_num(int num, struct obj_data *list)
 	struct obj_data *i;
 
 	for (i = list; i; i = i->next_content)
-		if (i->item_number == num) 
+		if (i->item_number == num)
 			return(i);
-		
+
 	return(0);
 }
 
@@ -644,7 +645,7 @@ struct obj_data *get_obj_num(int nr)
 	struct obj_data *i;
 
 	for (i = object_list; i; i = i->next)
-		if (i->item_number == nr) 
+		if (i->item_number == nr)
 			return(i);
 
 	return(0);
@@ -743,7 +744,7 @@ void obj_from_room(struct obj_data *object)
 
 	else     /* locate previous element in list */
 	{
-		for (i = world[object->in_room].contents; i && 
+		for (i = world[object->in_room].contents; i &&
 		   (i->next_content != object); i = i->next_content);
 
 		i->next_content = object->next_content;
@@ -778,7 +779,7 @@ void obj_from_obj(struct obj_data *obj)
 		if (obj == obj_from->contains)   /* head of list */
 		   obj_from->contains = obj->next_content;
 		else {
-			for (tmp = obj_from->contains; 
+			for (tmp = obj_from->contains;
 				tmp && (tmp->next_content != obj);
 				tmp = tmp->next_content); /* locate previous */
 
@@ -847,17 +848,17 @@ void extract_obj(struct obj_data *obj)
 		}
 	}
 
-	for( ; obj->contains; extract_obj(obj->contains)); 
+	for( ; obj->contains; extract_obj(obj->contains));
 		/* leaves nothing ! */
 
 	if (object_list == obj )       /* head of list */
 		object_list = obj->next;
 	else
 	{
-		for(temp1 = object_list; 
+		for(temp1 = object_list;
 			temp1 && (temp1->next != obj);
 			temp1 = temp1->next);
-		
+
 		if(temp1)
 			temp1->next = obj->next;
 	}
@@ -866,7 +867,7 @@ void extract_obj(struct obj_data *obj)
 		(obj_index[obj->item_number].number)--;
 	free_obj(obj);
 }
-		
+
 void update_object( struct obj_data *obj, int use){
 
 	if (obj->obj_flags.timer > 0)	obj->obj_flags.timer -= use;
@@ -884,7 +885,7 @@ void update_char_objects( struct char_data *ch )
 			if (ch->equipment[WEAR_LIGHT]->obj_flags.value[2] > 0)
 				(ch->equipment[WEAR_LIGHT]->obj_flags.value[2])--;
 
-	for(i = 0;i < MAX_WEAR;i++) 
+	for(i = 0;i < MAX_WEAR;i++)
 		if (ch->equipment[i])
 			update_object(ch->equipment[i],2);
 
@@ -934,18 +935,18 @@ void extract_char(struct char_data *ch)
 					ch->desc->snoop.snoop_by);
 				ch->desc->snoop.snoop_by->desc->snoop.snooping = 0;
 			}
-		
+
 		ch->desc->snoop.snooping = ch->desc->snoop.snoop_by = 0;
 	}
 
 	if (ch->carrying)
 	{
 		/* transfer ch's objects to room */
-		
+
 		if (world[ch->in_room].contents)  /* room nonempty */
 		{
 			/* locate tail of room-contents */
-			for (i = world[ch->in_room].contents; i->next_content; 
+			for (i = world[ch->in_room].contents; i->next_content;
 			   i = i->next_content);
 
 			/* append ch's stuff to room-contents */
@@ -963,7 +964,7 @@ void extract_char(struct char_data *ch)
 	}
 
 
-	
+
 	if (ch->specials.fighting)
 		stop_fighting(ch);
 
@@ -986,7 +987,7 @@ void extract_char(struct char_data *ch)
 
 	/* pull the char from the list */
 
-	if (ch == character_list)  
+	if (ch == character_list)
 	   character_list = ch->next;
 	else
 	{
@@ -1008,7 +1009,7 @@ void extract_char(struct char_data *ch)
 		save_char(ch, NOWHERE);
 	}
 
-	if (IS_NPC(ch)) 
+	if (IS_NPC(ch))
 	{
 		if (ch->nr > -1) /* if mobile */
 			mob_index[ch->nr].number--;
@@ -1044,7 +1045,7 @@ struct char_data *get_char_room_vis(struct char_data *ch, char *name)
 	for (i = world[ch->in_room].people, j = 1; i && (j <= number); i = i->next_in_room)
 		if (isname(tmp, GET_NAME(i)))
 			if (CAN_SEE(ch, i))	{
-				if (j == number) 
+				if (j == number)
 					return(i);
 				j++;
 			}
@@ -1088,7 +1089,7 @@ struct char_data *get_char_vis(struct char_data *ch, char *name)
 
 
 
-struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name, 
+struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name,
 				struct obj_data *list)
 {
 	struct obj_data *i;
@@ -1185,7 +1186,7 @@ struct obj_data *create_money( int amount )
 		if(amount<10) {
 			sprintf(buf,"There is %d coins.",amount);
 			new_descr->description = strdup(buf);
-		} 
+		}
 		else if (amount<100) {
 			sprintf(buf,"There is about %d coins",10*(amount/10));
 			new_descr->description = strdup(buf);
@@ -1198,8 +1199,8 @@ struct obj_data *create_money( int amount )
 			sprintf(buf,"You guess there is %d coins",1000*((amount/1000)+ number(0,(amount/1000))));
 			new_descr->description = strdup(buf);
 		}
-		else 
-			new_descr->description = strdup("There is A LOT of coins");			
+		else
+			new_descr->description = strdup("There is A LOT of coins");
 	}
 
 	new_descr->next = 0;

@@ -41,6 +41,7 @@ int move_limit(struct char_data *ch);
 int mana_gain(struct char_data *ch);
 int hit_gain(struct char_data *ch);
 int move_gain(struct char_data *ch);
+void log(char *str);
 
 
 
@@ -70,7 +71,7 @@ void do_echo(struct char_data *ch, char *argument, int cmd)
 {
 	int i;
 	static char buf[MAX_STRING_LENGTH];
-	
+
 	if (IS_NPC(ch))
 		return;
 
@@ -140,7 +141,7 @@ void do_at(struct char_data *ch, char *argument, int cmd)
 	struct char_data *target_mob;
 	struct obj_data *target_obj;
 	extern int top_of_world;
-	
+
 	if (IS_NPC(ch))
 		return;
 
@@ -151,7 +152,7 @@ void do_at(struct char_data *ch, char *argument, int cmd)
 		return;
 	}
 
-	
+
 	if (isdigit(*loc_str))
 	{
 		loc_nr = atoi(loc_str);
@@ -211,7 +212,7 @@ void do_goto(struct char_data *ch, char *argument, int cmd)
 
 	if (IS_NPC(ch))
 		return;
-	
+
 	one_argument(argument, buf);
 	if (!*buf)
 	{
@@ -219,7 +220,7 @@ void do_goto(struct char_data *ch, char *argument, int cmd)
 		return;
 	}
 
-	
+
 	if (isdigit(*buf))
 	{
 		loc_nr = atoi(buf);
@@ -332,7 +333,7 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 			sprinttype(rm->sector_type,sector_types,buf2);
 			sprintf(buf, "Sector type : %s", buf2);
 			send_to_char(buf, ch);
-			
+
 			strcpy(buf,"Special procedure : ");
 			strcat(buf,(rm->funct) ? "Exists\n\r" : "No\n\r");
 			send_to_char(buf, ch);
@@ -344,7 +345,7 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 
 			send_to_char("Description:\n\r", ch);
 			send_to_char(rm->description, ch);
-			
+
 			strcpy(buf, "Extra description keywords(s): ");
 			if(rm->ex_description) {
 				strcat(buf, "\n\r");
@@ -376,7 +377,7 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 			}
 			strcat(buf, "\n\r");
 			send_to_char(buf, ch);
-		
+
 			send_to_char("------- Exits defined -------\n\r", ch);
 			for (i = 0; i <= 5; i++) {
 				if (rm->dir_option[i]) {
@@ -459,25 +460,25 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 			send_to_char(buf, ch);
 
 			switch (j->obj_flags.type_flag) {
-				case ITEM_LIGHT : 
+				case ITEM_LIGHT :
 					sprintf(buf, "Colour : [%d]\n\rType : [%d]\n\rHours : [%d]",
 						j->obj_flags.value[0],
 						j->obj_flags.value[1],
 						j->obj_flags.value[2]);
 					break;
-				case ITEM_SCROLL : 
+				case ITEM_SCROLL :
 					sprintf(buf, "Spells : %d, %d, %d, %d",
 						j->obj_flags.value[0],
 				 		j->obj_flags.value[1],
 				 		j->obj_flags.value[2],
 				 		j->obj_flags.value[3] );
 					break;
-				case ITEM_WAND : 
+				case ITEM_WAND :
 					sprintf(buf, "Spell : %d\n\rMana : %d",
 						j->obj_flags.value[0],
 						j->obj_flags.value[1]);
 					break;
-				case ITEM_STAFF : 
+				case ITEM_STAFF :
 					sprintf(buf, "Spell : %d\n\rMana : %d",
 						j->obj_flags.value[0],
 						j->obj_flags.value[1]);
@@ -489,14 +490,14 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 	    			j->obj_flags.value[2],
 	    			j->obj_flags.value[3]);
 					break;
-				case ITEM_FIREWEAPON : 
+				case ITEM_FIREWEAPON :
 					sprintf(buf, "Tohit : %d\n\rTodam : %dD%d\n\rType : %d",
 						j->obj_flags.value[0],
 	    			j->obj_flags.value[1],
 	    			j->obj_flags.value[2],
 	    			j->obj_flags.value[3]);
 					break;
-				case ITEM_MISSILE : 
+				case ITEM_MISSILE :
 					sprintf(buf, "Tohit : %d\n\rTodam : %d\n\rType : %d",
 						j->obj_flags.value[0],
 						j->obj_flags.value[1],
@@ -506,12 +507,12 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 					sprintf(buf, "AC-apply : [%d]",
 						j->obj_flags.value[0]);
 					break;
-				case ITEM_POTION : 
+				case ITEM_POTION :
 					sprintf(buf, "Spells : %d, %d, %d, %d",
 						j->obj_flags.value[0],
 						j->obj_flags.value[1],
 						j->obj_flags.value[2],
-						j->obj_flags.value[3]); 
+						j->obj_flags.value[3]);
 					break;
 				case ITEM_TRAP :
 					sprintf(buf, "Spell : %d\n\r- Hitpoints : %d",
@@ -595,7 +596,7 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 				sprinttype(j->affected[i].location,apply_types,buf2);
 				sprintf(buf,"    Affects : %s By %d\n\r", buf2,j->affected[i].modifier);
 				send_to_char(buf, ch);
-			}			
+			}
 			return;
 		}
 
@@ -603,8 +604,8 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 		if (k = get_char_vis(ch, arg1)){
 
 			switch(k->player.sex) {
-				case SEX_NEUTRAL : 
-					strcpy(buf,"NEUTRAL-SEX"); 
+				case SEX_NEUTRAL :
+					strcpy(buf,"NEUTRAL-SEX");
 					break;
 				case SEX_MALE :
 					strcpy(buf,"MALE");
@@ -612,7 +613,7 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 				case SEX_FEMALE :
 					strcpy(buf,"FEMALE");
 					break;
-				default : 
+				default :
 					strcpy(buf,"ILLEGAL-SEX!!");
 					break;
 			}
@@ -658,7 +659,7 @@ void do_stat(struct char_data *ch, char *argument, int cmd)
 			strcat(buf, buf2);
 			send_to_char(buf, ch);
 
-			sprintf(buf,"Birth : [%ld]secs, Logon[%ld]secs, Played[%ld]secs\n\r", 
+			sprintf(buf,"Birth : [%ld]secs, Logon[%ld]secs, Played[%ld]secs\n\r",
 			        k->player.time.birth,
 			        k->player.time.logon,
 			        k->player.time.played);
@@ -889,7 +890,7 @@ void do_snoop(struct char_data *ch, char *argument, int cmd)
 		return;
 	}
 
-	if(victim->desc->snoop.snoop_by)	
+	if(victim->desc->snoop.snoop_by)
 	{
 		send_to_char("Busy already. \n\r",ch);
 		return;
@@ -923,7 +924,7 @@ void do_switch(struct char_data *ch, char *argument, int cmd)
 		return;
 
 	one_argument(argument, arg);
-	
+
 	if (!*arg)
 	{
 		send_to_char("Switch with who?\n\r", ch);
@@ -946,7 +947,7 @@ void do_switch(struct char_data *ch, char *argument, int cmd)
 				return;
 			}
 
-			if(victim->desc || (!IS_NPC(victim))) 
+			if(victim->desc || (!IS_NPC(victim)))
       {
 				send_to_char(
            "You can't do that, the body is already in use!\n\r",ch);
@@ -954,7 +955,7 @@ void do_switch(struct char_data *ch, char *argument, int cmd)
 			else
 			{
 				send_to_char("Ok.\n\r", ch);
-				
+
 				ch->desc->character = victim;
 				ch->desc->original = ch;
 
@@ -976,7 +977,7 @@ void do_return(struct char_data *ch, char *argument, int cmd)
 		return;
 
 	if(!ch->desc->original)
-   { 
+   {
 		send_to_char("Arglebargle, glop-glyf!?!\n\r", ch);
 		return;
 	}
@@ -987,7 +988,7 @@ void do_return(struct char_data *ch, char *argument, int cmd)
 		ch->desc->character = ch->desc->original;
 		ch->desc->original = 0;
 
-		ch->desc->character->desc = ch->desc; 
+		ch->desc->character->desc = ch->desc;
 		ch->desc = 0;
 	}
 }
@@ -997,7 +998,7 @@ void do_force(struct char_data *ch, char *argument, int cmd)
 {
   struct descriptor_data *i;
 	struct char_data *vict;
-	char name[100], to_force[100],buf[100]; 
+	char name[100], to_force[100],buf[100];
 
 	if (IS_NPC(ch))
 		return;
@@ -1127,13 +1128,13 @@ void do_purge(struct char_data *ch, char *argument, int cmd)
 			if (IS_NPC(vict)) {
 				extract_char(vict);
 			} else {
-				if (vict->desc) 
+				if (vict->desc)
 				{
 					close_socket(vict->desc);
 					vict->desc = 0;
 					extract_char(vict);
 				}
-				else 
+				else
 				{
 					extract_char(vict);
 				}
@@ -1161,7 +1162,7 @@ void do_purge(struct char_data *ch, char *argument, int cmd)
 			return;
 		}
 
-		act("$n gestures... You are surrounded by scorching flames!", 
+		act("$n gestures... You are surrounded by scorching flames!",
 			FALSE, ch, 0, 0, TO_ROOM);
 		send_to_room("The world seems a little cleaner.\n\r", ch->in_room);
 
@@ -1195,7 +1196,7 @@ void roll_abilities(struct char_data *ch)
 
 		for(j=0; j<4; j++)
 			rools[j] = number(1,6);
-		
+
 		temp = rools[0]+rools[1]+rools[2]+rools[3] -
 		           MIN(rools[0], MIN(rools[1], MIN(rools[2],rools[3])));
 

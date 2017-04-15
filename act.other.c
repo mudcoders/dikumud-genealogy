@@ -30,6 +30,7 @@ extern struct spell_info_type spell_info[];
 
 void hit(struct char_data *ch, struct char_data *victim, int type);
 void do_shout(struct char_data *ch, char *argument, int cmd);
+void log(char *str);
 
 
 
@@ -480,7 +481,7 @@ void do_group(struct char_data *ch, char *argument, int cmd)
 				}
 			}
 		}
-		
+
 		if (found) {
 			if (IS_AFFECTED(victim, AFF_GROUP)) {
 				act("$n has been kicked out of the group!", FALSE, victim, 0, ch, TO_ROOM);

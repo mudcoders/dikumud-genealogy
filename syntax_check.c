@@ -104,12 +104,12 @@ struct index_data *generate_indices(FILE *fl, int *top)
 			if (*buf == '#')
 			{
 				/* allocate new cell */
-				
+
 				if (!i)						 /* first cell */
 					CREATE(index, struct index_data, 1);
 				else
-					if (!(index = 
-						(struct index_data*) realloc(index, 
+					if (!(index =
+						(struct index_data*) realloc(index,
 						(i + 1) * sizeof(struct index_data))))
 					{
 						printf("load indices");
@@ -123,7 +123,7 @@ struct index_data *generate_indices(FILE *fl, int *top)
 				index[i].func = 0;
 				i++;
 			}
-			else 
+			else
 				if (*buf == '$')	/* EOF */
 					break;
 		}
@@ -217,7 +217,7 @@ void check_world(FILE *fl)
 				else
 					assume(FALSE, 0, virtual_nr, "MISSING D/E or S");
 			}
-						
+
 		}
 	}
 	while (flag);
@@ -295,7 +295,7 @@ void check_zones(FILE *fl)
 			fscanf(fl, " "); /* skip blanks */
 			antal = fscanf(fl, "%c", &cmd_type);
 			assume(antal, 1, line_no, "Command type M/*/O/G/E/S missing");
-			
+
 			if (cmd_type == 'S')
 				break;
 
@@ -350,14 +350,14 @@ void check_zones(FILE *fl)
 					exit();
 					break;
 			}
-					
+
 
 			fgets(buf, 80, fl);	/* read comment */
 			line_no++;
 		}
 	}
 }
- 
+
 
 
 
@@ -422,34 +422,34 @@ void check_mobile(FILE *fl)
 			if (bogst == 'S') {
 				/* The new easy monsters */
 
-				antal = fscanf(fl, " %D ", &tmp);
+				antal = fscanf(fl, " %d ", &tmp);
 				assume(antal, 1, virtual_nr, "Level error");
-		
-				antal = fscanf(fl, " %D ", &tmp);
+
+				antal = fscanf(fl, " %d ", &tmp);
 				assume(antal, 1, virtual_nr, "THAC0 error");
-		
-				antal = fscanf(fl, " %D ", &tmp);
+
+				antal = fscanf(fl, " %d ", &tmp);
 				assume(antal, 1, virtual_nr, "AC error");
 
-				antal = fscanf(fl, " %Dd%D+%D ", &tmp, &tmp2, &tmp3);
+				antal = fscanf(fl, " %dd%d+%d ", &tmp, &tmp2, &tmp3);
 				assume(antal, 3, virtual_nr, "Hitpoints");
 
-				antal = fscanf(fl, " %Dd%D+%D \n", &tmp, &tmp2, &tmp3);
+				antal = fscanf(fl, " %dd%d+%d \n", &tmp, &tmp2, &tmp3);
 				assume(antal, 3, virtual_nr, "Damage error");
 
-				antal = fscanf(fl, " %D ", &tmp);
+				antal = fscanf(fl, " %d ", &tmp);
 				assume(antal, 1, virtual_nr, "GOLD error");
 
-				antal = fscanf(fl, " %D \n", &tmp);
+				antal = fscanf(fl, " %d \n", &tmp);
 				assume(antal, 1, virtual_nr, "XP error");
 
-				antal = fscanf(fl, " %D ", &tmp);
+				antal = fscanf(fl, " %d ", &tmp);
 				assume(antal, 1, virtual_nr, "POSITION error");
 
-				antal = fscanf(fl, " %D ", &tmp);
+				antal = fscanf(fl, " %d ", &tmp);
 				assume(antal, 1, virtual_nr, "DEFAULT POS error");
 
-				antal = fscanf(fl, " %D \n", &tmp);
+				antal = fscanf(fl, " %d \n", &tmp);
 				assume(antal, 1, virtual_nr, "SEXY error");
 
 		} else {  /* The old monsters are down below here */
@@ -459,81 +459,81 @@ void check_mobile(FILE *fl)
 
 			exit();
 			/*   ***************************
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->abilities.str = tmp;
 
-			fscanf(fl, " %D ", &tmp);
-			mob->abilities.intel = tmp; 
+			fscanf(fl, " %d ", &tmp);
+			mob->abilities.intel = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->abilities.wis = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->abilities.dex = tmp;
 
-			fscanf(fl, " %D \n", &tmp);
+			fscanf(fl, " %d \n", &tmp);
 			mob->abilities.con = tmp;
 
-			fscanf(fl, " %D ", &tmp);
-			fscanf(fl, " %D ", &tmp2);
+			fscanf(fl, " %d ", &tmp);
+			fscanf(fl, " %d ", &tmp2);
 
 			mob->points.max_hit = 0;
 			mob->points.hit = mob->points.max_hit;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->points.armor = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->points.mana = tmp;
 			mob->points.max_mana = tmp;
 
-			fscanf(fl, " %D ", &tmp);
-			mob->points.move = tmp;		
+			fscanf(fl, " %d ", &tmp);
+			mob->points.move = tmp;
 			mob->points.max_move = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->points.gold = tmp;
 
-			fscanf(fl, " %D \n", &tmp);
+			fscanf(fl, " %d \n", &tmp);
 			GET_EXP(mob) = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->specials.position = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->specials.default_pos = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->player.sex = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->player.class = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			GET_LEVEL(mob) = tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->player.birth.hours = time_info.hours;
 			mob->player.birth.day	= time_info.day;
 			mob->player.birth.month = time_info.month;
 			mob->player.birth.year  = time_info.year - tmp;
 
-			fscanf(fl, " %D ", &tmp);
+			fscanf(fl, " %d ", &tmp);
 			mob->player.weight = tmp;
 
-			fscanf(fl, " %D \n", &tmp);
+			fscanf(fl, " %d \n", &tmp);
 			mob->player.height = tmp;
 
 			for (i = 0; i < 3; i++)
 			{
-				fscanf(fl, " %D ", &tmp);
+				fscanf(fl, " %d ", &tmp);
 				GET_COND(mob, i) = tmp;
 			}
 			fscanf(fl, " \n ");
 
 			for (i = 0; i < 5; i++)
 			{
-				fscanf(fl, " %D ", &tmp);
+				fscanf(fl, " %d ", &tmp);
 				mob->specials.apply_saving_throw[i] = tmp;
 			}
 
@@ -683,7 +683,7 @@ char *fread_string(FILE *fl)
 			strcat(buf, tmp);
 
 		for (point = buf + strlen(buf) - 2; point >= buf && isspace(*point);
-			point--);		
+			point--);
 		if (flag = (*point == '~'))
 			if (*(buf + strlen(buf) - 3) == '\n')
 			{
@@ -744,7 +744,7 @@ int main(int argc, char *argv[])
 		exit();
 	}
 
-	
+
 	printf("Generating world file indexes.\n\r");
 	wld_index = generate_indices(wld_f, &top_of_wldt);
 

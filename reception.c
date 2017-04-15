@@ -28,6 +28,7 @@ void store_to_char(struct char_file_u *st, struct char_data *ch);
 void do_tell(struct char_data *ch, char *argument, int cmd);
 int str_cmp(char *arg1, char *arg2);
 void clear_char(struct char_data *ch);
+void log(char *str);
 
 
 struct obj_cost {
@@ -81,7 +82,7 @@ bool recep_offer(struct char_data *ch,	struct char_data *receptionist,
 
 	if (!cost->ok)
 		return(FALSE);
-	
+
 	if (cost->no_carried == 0) {
 		act("$n tells you 'But you are not carrying anything?'",FALSE,receptionist,0,ch,TO_VICT);
 		return(FALSE);
@@ -203,7 +204,7 @@ void load_char_objs(struct char_data *ch)
 	if (found) {
 
 		obj_store_to_char(ch, &st);
-		
+
 		timegold = (int) ((st.total_cost*(time(0) - st.last_update)) / (SECS_PER_REAL_DAY));
 
 		GET_GOLD(ch) -= timegold;
@@ -502,7 +503,7 @@ int receptionist(struct char_data *ch, int cmd, char *arg)
 		return(TRUE);
 	}
 
-	if (!CAN_SEE(recep, ch)) 
+	if (!CAN_SEE(recep, ch))
 	{
 		act("$n says, 'I don't deal with people I can't see!'", FALSE, recep, 0, 0, TO_ROOM);
 		return(TRUE);
@@ -521,11 +522,11 @@ int receptionist(struct char_data *ch, int cmd, char *arg)
 			ch->in_room = world[save_room].number;
 			save_char(ch, ch->in_room);
 		}
-		
+
 	} else {         /* Offer */
 		recep_offer(ch, recep, &cost);
 		act("$N gives $n an offer.", FALSE, ch, 0, recep, TO_ROOM);
 	}
-	
+
 	return(TRUE);
 }

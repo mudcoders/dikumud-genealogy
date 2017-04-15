@@ -14,6 +14,7 @@ int checkpointing(void);
 int shutdown_request(void);
 int logsig(void);
 int hupsig(void);
+void log(char *str);
 
 void signal_setup(void)
 {
@@ -45,7 +46,7 @@ void signal_setup(void)
 int checkpointing(void)
 {
 	extern int tics;
-	
+
 	if (!tics)
 	{
 		log("CHECKPOINT shutdown: tics not updated");

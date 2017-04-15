@@ -26,6 +26,7 @@
 
 
 void show_string(struct descriptor_data *d, char *input);
+void log(char *str);
 
 
 
@@ -56,7 +57,7 @@ int length[] =
 
 
 
-char *skill_fields[] = 
+char *skill_fields[] =
 {
 	"learned",
 	"affected",
@@ -93,7 +94,7 @@ void string_add(struct descriptor_data *d, char *str)
 			*scan = '\0';
 			break;
 	   }
-	
+
 	if (!(*d->str))
 	{
 		if (strlen(str) > d->max_str)
@@ -114,9 +115,9 @@ void string_add(struct descriptor_data *d, char *str)
 			   d->character);
 			terminator = 1;
 		}
-		else 
+		else
 		{
-			if (!(*d->str = (char *) realloc(*d->str, strlen(*d->str) + 
+			if (!(*d->str = (char *) realloc(*d->str, strlen(*d->str) +
 		   	strlen(str) + 3)))
 			{
 				perror("string_add");
@@ -174,8 +175,8 @@ void quad_arg(char *arg, int *type, char *name, int *field, char *string)
 
 	return;
 }
-	
-	 
+
+
 
 
 /* modification of malloc'ed strings in chars/objects */
@@ -311,7 +312,7 @@ void do_string(struct char_data *ch, char *arg, int cmd)
 				ch->desc->max_str = MAX_STRING_LENGTH;
 				return; /* the stndrd (see below) procedure does not apply here */
 			break;
-			case 6: 
+			case 6:
 				if (!*string)
 				{
 					send_to_char("You must supply a field name.\n\r", ch);
@@ -329,13 +330,13 @@ void do_string(struct char_data *ch, char *arg, int cmd)
 						free(ed->keyword);
 						if (ed->description)
 							free(ed->description);
-						
-						/* delete the entry in the desr list */						
+
+						/* delete the entry in the desr list */
 						if (ed == obj->ex_description)
 							obj->ex_description = ed->next;
 						else
 						{
-							for(tmp = obj->ex_description; tmp->next != ed; 
+							for(tmp = obj->ex_description; tmp->next != ed;
 								tmp = tmp->next);
 							tmp->next = ed->next;
 						}
@@ -344,7 +345,7 @@ void do_string(struct char_data *ch, char *arg, int cmd)
 						send_to_char("Field deleted.\n\r", ch);
 						return;
 					}
-			break;				
+			break;
 			default:
 			   send_to_char(
 			      "That field is undefined for objects.\n\r", ch);
@@ -377,8 +378,8 @@ void do_string(struct char_data *ch, char *arg, int cmd)
 		ch->desc->max_str = length[field - 1];
 	}
 }
-			
-			
+
+
 
 
 
@@ -394,7 +395,7 @@ void do_setskill(struct char_data *ch, char *arg, int cmd)
 	struct char_data *vict;
 	char name[100], num[100], buf[100], help[MAX_STRING_LENGTH];
 	int skill, field, value, i;
-	static char *skills[] = 
+	static char *skills[] =
 	{
 		"search", "frighten", "telepath", "detect-evil",
 		"sense-life", "cure", "bless", "remove",
@@ -521,7 +522,7 @@ char *one_word(char *argument, char *first_arg )
 
 			begin++;
 
-			for (look_at=0; (*(argument+begin+look_at) >= ' ') && 
+			for (look_at=0; (*(argument+begin+look_at) >= ' ') &&
 			    (*(argument+begin+look_at) != '\"') ; look_at++)
 				*(first_arg + look_at) = LOWER(*(argument + begin + look_at));
 
@@ -915,7 +916,7 @@ void gr(int s)
 			strcpy(buf,
 				"Game playing is no longer permitted on this machine:\n\r");
 			strcat(buf, txt);
-			strcat(buf, "\n\r"); 
+			strcat(buf, "\n\r");
 			send_to_all(buf);
 		}
 

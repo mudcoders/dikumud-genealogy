@@ -34,12 +34,12 @@ void spell_magic_missile(byte level, struct char_data *ch,
   struct char_data *victim, struct obj_data *obj)
 {
   int dam;
-	int dam_each[] = 
+	int dam_each[] =
 		{0,  3,3,4,4,5, 6,6,6,6,6, 6,6,6,6,6, 6,6,6,6,6,
 		     6,6,6,6,6, 6,6,6,6,6};
 
   assert(victim && ch);
-  assert((level >= 1) && (level <= 30)); 
+  assert((level >= 1) && (level <= 30));
 
   dam = number(dam_each[level]>>1, dam_each[level]<<1);
 
@@ -56,12 +56,12 @@ void spell_chill_touch(byte level, struct char_data *ch,
 {
   struct affected_type af;
   int dam;
-	int dam_each[] = 
+	int dam_each[] =
 		{0,  0,0,8,7,9, 9,12,13,13,13, 13,13,13,13,13, 13,13,13,13,13,
 		     13,13,13,13,13, 13,13,13,13,13};
 
   assert(victim && ch);
-  assert((level >= 3) && (level <= 30)); 
+  assert((level >= 3) && (level <= 30));
 
   dam = number(dam_each[level]>>1, dam_each[level]<<1);
 
@@ -85,7 +85,7 @@ void spell_burning_hands(byte level, struct char_data *ch,
   struct char_data *victim, struct obj_data *obj)
 {
   int dam;
-	int dam_each[] = 
+	int dam_each[] =
 		{0,  0,0,0,0,19, 17,20,19,19,19, 19,19,19,19,19, 19,19,19,19,19,
 		     19,19,19,19,19, 19,19,19,19,19};
 
@@ -107,12 +107,12 @@ void spell_shocking_grasp(byte level, struct char_data *ch,
   struct char_data *victim, struct obj_data *obj)
 {
   int dam;
-	int dam_each[] = 
+	int dam_each[] =
 		{0,  0,0,0,0,0, 0,41,33,29,27, 25,25,25,25,25, 25,25,25,25,25,
 		     25,25,25,25,25, 25,25,25,25,25};
 
   assert(victim && ch);
-  assert((level >= 7) && (level <= 30)); 
+  assert((level >= 7) && (level <= 30));
 
   dam = number(dam_each[level]>>1, dam_each[level]<<1);
 
@@ -128,12 +128,12 @@ void spell_lightning_bolt(byte level, struct char_data *ch,
   struct char_data *victim, struct obj_data *obj)
 {
   int dam;
-	int dam_each[] = 
+	int dam_each[] =
 		{0,  0,0,0,0,0, 0,0,0,59,46, 39,35,38,36,36, 36,36,36,36,36,
 		     36,36,36,36,36, 36,36,36,36,36};
 
   assert(victim && ch);
-  assert((level >= 9) && (level <= 30)); 
+  assert((level >= 9) && (level <= 30));
 
   dam = number(dam_each[level]>>1, dam_each[level]<<1);
 
@@ -149,7 +149,7 @@ void spell_colour_spray(byte level, struct char_data *ch,
   struct char_data *victim, struct obj_data *obj)
 {
   int dam;
-	int dam_each[] = 
+	int dam_each[] =
 		{0,  0,0,0,0,0, 0,0,0,0,0, 79,60,57,51,47, 44,44,44,44,44,
 		     44,44,44,44,44, 44,44,44,44,44};
 
@@ -210,12 +210,12 @@ void spell_fireball(byte level, struct char_data *ch,
   struct char_data *victim, struct obj_data *obj)
 {
   int dam;
-	int dam_each[] = 
+	int dam_each[] =
 		{0,  0,0,0,0,0, 0,0,0,0,0, 0,0,0,0,143, 105,88,77,71,71,
 		     71,71,71,71,71, 71,71,71,71,71};
 
   assert(victim && ch);
-  assert((level >= 15) && (level <= 30)); 
+  assert((level >= 15) && (level <= 30));
 
   dam = number(dam_each[level]-20, dam_each[level]+20);
 
@@ -235,7 +235,7 @@ void spell_earthquake(byte level, struct char_data *ch,
   struct char_data *tmp_victim, *temp;
 
   assert(ch);
-  assert((level >= 7) && (level <= 30)); 
+  assert((level >= 7) && (level <= 30));
 
 	dam =  dice(1,8)+level;
 
@@ -304,7 +304,7 @@ void spell_call_lightning(byte level, struct char_data *ch,
 
 	  if ( saves_spell(victim, SAVING_SPELL) )
   	  dam >>= 1;
-  
+
   	damage(ch, victim, dam, SPELL_CALL_LIGHTNING);
 	}
 }
@@ -1101,6 +1101,7 @@ void spell_summon(byte level, struct char_data *ch,
 {
 	sh_int target;
 
+  void do_look(struct char_data *ch, char *argument, int cmd);
 	assert(ch && victim);
 
 	if (GET_LEVEL(victim) > MIN(20,level+3)) {
@@ -1248,7 +1249,7 @@ void spell_identify(byte level, struct char_data *ch,
 
     switch (GET_ITEM_TYPE(obj)) {
 
-			case ITEM_SCROLL : 
+			case ITEM_SCROLL :
 			case ITEM_POTION :
 				sprintf(buf, "Level %d spells of:\n\r",	obj->obj_flags.value[0]);
 				send_to_char(buf, ch);
@@ -1269,8 +1270,8 @@ void spell_identify(byte level, struct char_data *ch,
 				}
 				break;
 
-			case ITEM_WAND : 
-			case ITEM_STAFF : 
+			case ITEM_WAND :
+			case ITEM_STAFF :
 				sprintf(buf, "Has %d chages, with %d charges left.\n\r",
 				  obj->obj_flags.value[1],
 				  obj->obj_flags.value[2]);
@@ -1359,7 +1360,7 @@ void spell_fire_breath(byte level, struct char_data *ch,
 	struct obj_data *burn;
 
 	assert(victim && ch);
-	assert((level >= 1) && (level <= 30)); 
+	assert((level >= 1) && (level <= 30));
 
 	hpch = GET_HIT(ch);
 	if(hpch<10) hpch=10;
@@ -1377,8 +1378,8 @@ void spell_fire_breath(byte level, struct char_data *ch,
 	{
 		if (!saves_spell(victim, SAVING_BREATH) )
 		{
-			for(burn=victim->carrying ; 
-				burn && (burn->obj_flags.type_flag!=ITEM_SCROLL) && 
+			for(burn=victim->carrying ;
+				burn && (burn->obj_flags.type_flag!=ITEM_SCROLL) &&
 				(burn->obj_flags.type_flag!=ITEM_WAND) &&
 				(burn->obj_flags.type_flag!=ITEM_STAFF) &&
 				(burn->obj_flags.type_flag!=ITEM_NOTE) &&
@@ -1402,7 +1403,7 @@ void spell_frost_breath(byte level, struct char_data *ch,
 	struct obj_data *frozen;
 
 	assert(victim && ch);
-	assert((level >= 1) && (level <= 30)); 
+	assert((level >= 1) && (level <= 30));
 
 	hpch = GET_HIT(ch);
 	if(hpch<10) hpch=10;
@@ -1420,12 +1421,12 @@ void spell_frost_breath(byte level, struct char_data *ch,
 	{
 		if (!saves_spell(victim, SAVING_BREATH) )
 		{
-			for(frozen=victim->carrying ; 
-				frozen && (frozen->obj_flags.type_flag!=ITEM_DRINKCON) && 
+			for(frozen=victim->carrying ;
+				frozen && (frozen->obj_flags.type_flag!=ITEM_DRINKCON) &&
 				(frozen->obj_flags.type_flag!=ITEM_FOOD) &&
 				(frozen->obj_flags.type_flag!=ITEM_POTION) &&
             (number(0,2)==0) ;
-				 frozen=frozen->next_content); 
+				 frozen=frozen->next_content);
 			if(frozen)
 			{
 				act("$o breaks.",0,victim,frozen,0,TO_CHAR);
@@ -1444,9 +1445,9 @@ void spell_acid_breath(byte level, struct char_data *ch,
 	int damaged;
 
 	int apply_ac(struct char_data *ch, int eq_pos);
-	
+
 	assert(victim && ch);
-	assert((level >= 1) && (level <= 30)); 
+	assert((level >= 1) && (level <= 30));
 
 	hpch = GET_HIT(ch);
 	if(hpch<10) hpch=10;
@@ -1467,8 +1468,8 @@ void spell_acid_breath(byte level, struct char_data *ch,
 			for(damaged = 0; damaged<MAX_WEAR &&
 				(victim->equipment[damaged]) &&
 				(victim->equipment[damaged]->obj_flags.type_flag!=ITEM_ARMOR) &&
-				(victim->equipment[damaged]->obj_flags.value[0]>0) && 
-            (number(0,2)==0) ; damaged++);  
+				(victim->equipment[damaged]->obj_flags.value[0]>0) &&
+            (number(0,2)==0) ; damaged++);
 			if(damaged<MAX_WEAR)
 			{
 				act("$o is damaged.",0,victim,victim->equipment[damaged],0,TO_CHAR);
@@ -1489,7 +1490,7 @@ void spell_gas_breath(byte level, struct char_data *ch,
 	int hpch;
 
 	assert(victim && ch);
-	assert((level >= 1) && (level <= 30)); 
+	assert((level >= 1) && (level <= 30));
 
 	hpch = GET_HIT(ch);
 	if(hpch<10) hpch=10;
@@ -1512,7 +1513,7 @@ void spell_lightning_breath(byte level, struct char_data *ch,
 	int hpch;
 
 	assert(victim && ch);
-	assert((level >= 1) && (level <= 30)); 
+	assert((level >= 1) && (level <= 30));
 
 	hpch = GET_HIT(ch);
 	if(hpch<10) hpch=10;

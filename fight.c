@@ -34,6 +34,7 @@ char *fread_string(FILE *f1);
 void stop_follower(struct char_data *ch);
 void do_flee(struct char_data *ch, char *argument, int cmd);
 void hit(struct char_data *ch, struct char_data *victim, int type);
+void log(char *str);
 
 
 /* Weapon attack texts */
@@ -81,7 +82,7 @@ void load_messages(void)
 	}
 
 	for (i = 0; i < MAX_MESSAGES; i++)
-	{ 
+	{
 		fight_messages[i].a_type = 0;
 		fight_messages[i].number_of_attacks=0;
 		fight_messages[i].msg = 0;
@@ -168,7 +169,7 @@ void stop_fighting(struct char_data *ch)
 	   combat_list = ch->next_fighting;
 	else
 	{
-		for (tmp = combat_list; tmp && (tmp->next_fighting != ch); 
+		for (tmp = combat_list; tmp && (tmp->next_fighting != ch);
 			tmp = tmp->next_fighting);
 		if (!tmp) {
 			log("Char fighting not found Error (fight.c, stop_fighting)");
@@ -191,7 +192,7 @@ void stop_fighting(struct char_data *ch)
 void make_corpse(struct char_data *ch)
 {
 	struct obj_data *corpse, *o;
-	struct obj_data *money;	
+	struct obj_data *money;
 	char buf[MAX_STRING_LENGTH];
 	int i;
 
@@ -201,12 +202,12 @@ void make_corpse(struct char_data *ch)
 	CREATE(corpse, struct obj_data, 1);
 	clear_object(corpse);
 
-	
+
 	corpse->item_number = NOWHERE;
 	corpse->in_room = NOWHERE;
 	corpse->name = strdup("corpse");
 
-	sprintf(buf, "Corpse of %s is lying here.", 
+	sprintf(buf, "Corpse of %s is lying here.",
 	  (IS_NPC(ch) ? ch->player.short_descr : GET_NAME(ch)));
 	corpse->description = strdup(buf);
 
@@ -365,7 +366,7 @@ char *replace_string(char *str, char *weapon)
 	for (; *str; str++) {
 		if (*str == '#') {
 			switch(*(++str)) {
-				case 'W' : 
+				case 'W' :
 					for (; *weapon; *(cp++) = *(weapon++));
 					break;
 				default :
@@ -410,7 +411,7 @@ void dam_message(int dam, struct char_data *ch, struct char_data *victim,
 
 	 {"$n #W $N.",                                          /*  5.. 6  */
     "You #W $N.",
-    "$n #W you."}, 
+    "$n #W you."},
 
 	 {"$n #W $N hard.",                                     /*  7..10  */
 	  "You #W $N hard.",
@@ -507,7 +508,7 @@ void damage(struct char_data *ch, struct char_data *victim,
 
 	if ((GET_LEVEL(victim)>20) && !IS_NPC(victim)) /* You can't damage an immortal! */
 		dam=0;
-		
+
 	if (victim != ch) {
 		if (GET_POS(victim) > POSITION_STUNNED) {
 			if (!(victim->specials.fighting))
@@ -533,7 +534,7 @@ void damage(struct char_data *ch, struct char_data *victim,
 
 	if (victim->master == ch)
 		stop_follower(victim);
-			
+
 	if (IS_AFFECTED(ch, AFF_INVISIBLE))
 		appear(ch);
 
@@ -620,7 +621,7 @@ void damage(struct char_data *ch, struct char_data *victim,
 					if (IS_SET(victim->specials.act, ACT_WIMPY))
 						do_flee(victim, "", 0);
 			}
-			break;		
+			break;
 	}
 
 	if (!IS_NPC(victim) && !(victim->desc)) {

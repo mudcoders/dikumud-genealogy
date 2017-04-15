@@ -22,6 +22,7 @@ extern struct descriptor_data *descriptor_list;
 extern struct room_data *world;
 
 /* extern functions */
+void log(char *str);
 
 void parse_string(char *input, char *output, struct char_data *ch1,
 	struct char_data *ch2, struct char_data *to);
@@ -89,7 +90,7 @@ char *fread_action(FILE *fl)
 		}
 	}
 }
-	
+
 
 
 
@@ -141,7 +142,7 @@ void boot_social_messages(void)
 		if (!soc_mess_list[list_top].char_found)
 			continue;
 
-		soc_mess_list[list_top].others_found = fread_action(fl);	
+		soc_mess_list[list_top].others_found = fread_action(fl);
 		soc_mess_list[list_top].vict_found = fread_action(fl);
 
 		soc_mess_list[list_top].not_found = fread_action(fl);
@@ -253,7 +254,7 @@ void do_insult(struct char_data *ch, char *argument, int cmd)
 		if(!(victim = get_char_room_vis(ch, arg))) {
 			send_to_char("Can't hear you!\n\r", ch);
 		} else {
-			if(victim != ch) { 
+			if(victim != ch) {
 				sprintf(buf, "You insult %s.\n\r",GET_NAME(victim) );
 				send_to_char(buf,ch);
 
@@ -319,7 +320,7 @@ void boot_pose_messages(void)
 			pose_messages[counter].room_msg[class] = fread_action(fl);
 		}
 	}
-  
+
 	fclose(fl);
 }
 
@@ -337,12 +338,12 @@ do_pose(struct char_data *ch, char *argument, int cmd)
 		return;
 	}
 
-	for (counter = 0; (pose_messages[counter].level < GET_LEVEL(ch)) && 
+	for (counter = 0; (pose_messages[counter].level < GET_LEVEL(ch)) &&
                     (pose_messages[counter].level > 0); counter++);
 	counter--;
-  
+
 	to_pose = number(0, counter);
-	
+
 	act(pose_messages[to_pose].poser_msg[GET_CLASS(ch)-1], 0, ch, 0, 0, TO_CHAR);
 	act(pose_messages[to_pose].room_msg[GET_CLASS(ch)-1], 0, ch, 0, 0, TO_ROOM);
 }

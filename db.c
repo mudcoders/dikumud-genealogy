@@ -130,7 +130,7 @@ void boot_db(void)
 	}
 	if (!(help_fl = fopen(HELP_KWRD_FILE, "r")))
       log("   Could not open help file.");
-	else 
+	else
 		help_index = build_help_index(help_fl, &top_of_helpt);
 
 
@@ -145,7 +145,7 @@ void boot_db(void)
 	log("Generating index tables for mobile and object files.");
 	mob_index = generate_indices(mob_f, &top_of_mobt);
 	obj_index = generate_indices(obj_f, &top_of_objt);
-			
+
 	log("Renumbering zone table.");
 	renum_zone_table();
 
@@ -172,7 +172,7 @@ void boot_db(void)
 		assign_rooms();
 	}
 
-	log("   Commands.");	
+	log("   Commands.");
 	assign_command_pointers();
 	log("   Spells.");
 	assign_spell_pointers();
@@ -222,7 +222,7 @@ void reset_time(void)
 
 	fscanf(f1, "#\n");
 
-	fscanf(f1, "%D\n", &last_time);
+	fscanf(f1, "%d\n", &last_time);
 	fscanf(f1, "%d\n", &last_time_info.hours);
 	fscanf(f1, "%d\n", &last_time_info.day);
 	fscanf(f1, "%d\n", &last_time_info.month);
@@ -248,11 +248,11 @@ void reset_time(void)
 
 	diff_hours = diff_time/SECS_PER_MUD_HOUR;
 	diff_time = diff_time % SEC_PR_HOUR;
-	
+
 	sprintf(buf,"   Real time lack : %d sec.", diff_time);
 	log(buf);
 
-	for(;diff_hours > 0; diff_hours--) 
+	for(;diff_hours > 0; diff_hours--)
 		weather_and_time(0);
 
 */
@@ -262,7 +262,7 @@ void reset_time(void)
 		case 1 :
 		case 2 :
 		case 3 :
-		case 4 : 
+		case 4 :
 		{
 			weather_info.sunlight = SUN_DARK;
 			break;
@@ -381,7 +381,7 @@ void build_player_index(void)
 		{
 			/* Create new entry in the list */
 			if (nr == -1) {
-				CREATE(player_table, 
+				CREATE(player_table,
 			           struct player_index_element, 1);
 				nr = 0;
 			}	else {
@@ -393,12 +393,12 @@ void build_player_index(void)
 					exit(0);
 				}
 			}
-		
+
 			player_table[nr].nr = nr;
 
 			CREATE(player_table[nr].name, char,
 			   strlen(dummy.name) + 1);
-			for (i = 0; *(player_table[nr].name + i) = 
+			for (i = 0; *(player_table[nr].name + i) =
 			   LOWER(*(dummy.name + i)); i++);
 		}
 	}
@@ -409,7 +409,7 @@ void build_player_index(void)
 
 	top_of_p_file = top_of_p_table;
 }
-	
+
 
 
 
@@ -432,12 +432,12 @@ struct index_data *generate_indices(FILE *fl, int *top)
 			if (*buf == '#')
 			{
 				/* allocate new cell */
-				
+
 				if (!i)						 /* first cell */
 					CREATE(index, struct index_data, 1);
 				else
-					if (!(index = 
-						(struct index_data*) realloc(index, 
+					if (!(index =
+						(struct index_data*) realloc(index,
 						(i + 1) * sizeof(struct index_data))))
 					{
 						perror("load indices");
@@ -449,7 +449,7 @@ struct index_data *generate_indices(FILE *fl, int *top)
 				index[i].func = 0;
 				i++;
 			}
-			else 
+			else
 				if (*buf == '$')	/* EOF */
 					break;
 		}
@@ -477,7 +477,7 @@ void boot_world(void)
 	world = 0;
 	character_list = 0;
 	object_list = 0;
-	
+
 	if (!(fl = fopen(WORLD_FILE, "r")))
 	{
 		perror("fopen");
@@ -550,7 +550,7 @@ void boot_world(void)
 				else if (*chk == 'S')	/* end of current room */
 					break;
 			}
-						
+
 			room_nr++;
   		}
 	}
@@ -571,13 +571,13 @@ void allocate_room(int new_top)
 	struct room_data *new_world;
 
 	if (new_top)
-	{ 
-		if (!(new_world = (struct room_data *) 
+	{
+		if (!(new_world = (struct room_data *)
 			realloc(world, (new_top + 1) * sizeof(struct room_data))))
 		{
 			perror("alloc_room");
 			exit(0);
-		} 
+		}
 	}
 	else
 		CREATE(new_world, struct room_data, 1);
@@ -595,7 +595,7 @@ void setup_dir(FILE *fl, int room, int dir)
 {
 	int tmp;
 
-	CREATE(world[room].dir_option[dir], 
+	CREATE(world[room].dir_option[dir],
 		struct room_direction_data, 1);
 
 	world[room].dir_option[dir]->general_description =
@@ -609,7 +609,7 @@ void setup_dir(FILE *fl, int room, int dir)
 		world[room].dir_option[dir]->exit_info = EX_ISDOOR | EX_PICKPROOF;
 	else
 		world[room].dir_option[dir]->exit_info = 0;
- 
+
 	fscanf(fl, " %d ", &tmp);
 	world[room].dir_option[dir]->key = tmp;
 
@@ -646,11 +646,11 @@ void renum_zone_table(void)
 				case 'M':
 					zone_table[zone].cmd[comm].arg1 =
 						real_mobile(zone_table[zone].cmd[comm].arg1);
-					zone_table[zone].cmd[comm].arg3 = 
+					zone_table[zone].cmd[comm].arg3 =
 						real_room(zone_table[zone].cmd[comm].arg3);
 				break;
 				case 'O':
-					zone_table[zone].cmd[comm].arg1 = 
+					zone_table[zone].cmd[comm].arg1 =
 						real_object(zone_table[zone].cmd[comm].arg1);
 					if (zone_table[zone].cmd[comm].arg3 != NOWHERE)
 						zone_table[zone].cmd[comm].arg3 =
@@ -669,7 +669,7 @@ void renum_zone_table(void)
 						real_object(zone_table[zone].cmd[comm].arg1);
 					zone_table[zone].cmd[comm].arg3 =
 						real_object(zone_table[zone].cmd[comm].arg3);
-				break;					
+				break;
 				case 'D':
 					zone_table[zone].cmd[comm].arg1 =
 						real_room(zone_table[zone].cmd[comm].arg1);
@@ -692,11 +692,11 @@ void renum_zone_table(void)
 				case 'M':
 					zone_table[zone].cmd[comm].arg1 =
 						real_mobile(zone_table[zone].cmd[comm].arg1);
-					zone_table[zone].cmd[comm].arg3 = 
+					zone_table[zone].cmd[comm].arg3 =
 						real_room(zone_table[zone].cmd[comm].arg3);
 				break;
 				case 'O':
-					zone_table[zone].cmd[comm].arg1 = 
+					zone_table[zone].cmd[comm].arg1 =
 						real_object(zone_table[zone].cmd[comm].arg1);
 					if (zone_table[zone].cmd[comm].arg3 != NOWHERE)
 						zone_table[zone].cmd[comm].arg3 =
@@ -719,7 +719,7 @@ void renum_zone_table(void)
 						real_object(zone_table[zone].cmd[comm].arg1);
 					zone_table[zone].cmd[comm].arg2 =
 						real_object(zone_table[zone].cmd[comm].arg2);
-				break;					
+				break;
 				case 'D':
 					zone_table[zone].cmd[comm].arg1 =
 						real_room(zone_table[zone].cmd[comm].arg1);
@@ -782,7 +782,7 @@ void boot_zones(void)
 					CREATE(zone_table[zon].cmd, struct reset_com, 1);
 				else
 					if (!(zone_table[zon].cmd =
-					  (struct reset_com *) realloc(zone_table[zon].cmd, 
+					  (struct reset_com *) realloc(zone_table[zon].cmd,
 					  (cmd_no + 1) * sizeof(struct reset_com))))
 					{
 						perror("reset command load");
@@ -792,9 +792,9 @@ void boot_zones(void)
 			expand = 1;
 
 			fscanf(fl, " "); /* skip blanks */
-			fscanf(fl, "%c", 
+			fscanf(fl, "%c",
 				&zone_table[zon].cmd[cmd_no].command);
-			
+
 			if (zone_table[zon].cmd[cmd_no].command == 'S')
 				break;
 
@@ -805,7 +805,7 @@ void boot_zones(void)
 				continue;
 			}
 
-			fscanf(fl, " %d %d %d", 
+			fscanf(fl, " %d %d %d",
 				&tmp,
 				&zone_table[zon].cmd[cmd_no].arg1,
 				&zone_table[zon].cmd[cmd_no].arg2);
@@ -883,7 +883,7 @@ void boot_zones(void)
 					CREATE(zone_table[zon].cmd, struct reset_com, 1);
 				else
 					if (!(zone_table[zon].cmd =
-					  (struct reset_com *) realloc(zone_table[zon].cmd, 
+					  (struct reset_com *) realloc(zone_table[zon].cmd,
 					  (cmd_no + 1) * sizeof(struct reset_com))))
 					{
 						perror("reset command load");
@@ -893,9 +893,9 @@ void boot_zones(void)
 			expand = 1;
 
 			fscanf(fl, " "); /* skip blanks */
-			fscanf(fl, "%c", 
+			fscanf(fl, "%c",
 				&zone_table[zon].cmd[cmd_no].command);
-			
+
 			if (zone_table[zon].cmd[cmd_no].command == 'S')
 				break;
 
@@ -906,7 +906,7 @@ void boot_zones(void)
 				continue;
 			}
 
-			fscanf(fl, " %d %d %d", 
+			fscanf(fl, " %d %d %d",
 				&zone_table[zon].cmd[cmd_no].if_flag,
 				&zone_table[zon].cmd[cmd_no].arg1,
 				&zone_table[zon].cmd[cmd_no].arg2);
@@ -959,7 +959,7 @@ struct char_data *read_mobile(int nr, int type)
 	clear_char(mob);
 
 	/***** String data *** */
-		
+
 	mob->player.name = fread_string(mob_f);
 	mob->player.short_descr = fread_string(mob_f);
 	mob->player.long_descr = fread_string(mob_f);
@@ -983,25 +983,26 @@ struct char_data *read_mobile(int nr, int type)
 	if (letter == 'S') {
 		/* The new easy monsters */
 		mob->abilities.str   = 11;
-		mob->abilities.intel = 11; 
+		mob->abilities.intel = 11;
 		mob->abilities.wis   = 11;
 		mob->abilities.dex   = 11;
 		mob->abilities.con   = 11;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		GET_LEVEL(mob) = tmp;
-		
-		fscanf(mob_f, " %D ", &tmp);
+
+		fscanf(mob_f, " %d ", &tmp);
 		mob->points.hitroll = 20-tmp;
-		
-		fscanf(mob_f, " %D ", &tmp);
+
+		fscanf(mob_f, " %d ", &tmp);
 		mob->points.armor = 10*tmp;
 
-		fscanf(mob_f, " %Dd%D+%D ", &tmp, &tmp2, &tmp3);
+		fscanf(mob_f, " %dd%d+%d ", &tmp, &tmp2, &tmp3);
+
 		mob->points.max_hit = dice(tmp, tmp2)+tmp3;
 		mob->points.hit = mob->points.max_hit;
 
-		fscanf(mob_f, " %Dd%D+%D \n", &tmp, &tmp2, &tmp3);
+		fscanf(mob_f, " %dd%d+%d \n", &tmp, &tmp2, &tmp3);
 		mob->points.damroll = tmp3;
 		mob->specials.damnodice = tmp;
 		mob->specials.damsizedice = tmp2;
@@ -1012,19 +1013,19 @@ struct char_data *read_mobile(int nr, int type)
 		mob->points.move = 50;
 		mob->points.max_move = 50;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->points.gold = tmp;
 
-		fscanf(mob_f, " %D \n", &tmp);
+		fscanf(mob_f, " %d \n", &tmp);
 		GET_EXP(mob) = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->specials.position = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->specials.default_pos = tmp;
 
-		fscanf(mob_f, " %D \n", &tmp);
+		fscanf(mob_f, " %d \n", &tmp);
 		mob->player.sex = tmp;
 
 		mob->player.class = 0;
@@ -1043,80 +1044,80 @@ struct char_data *read_mobile(int nr, int type)
 
 	} else {  /* The old monsters are down below here */
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->abilities.str = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
-		mob->abilities.intel = tmp; 
+		fscanf(mob_f, " %d ", &tmp);
+		mob->abilities.intel = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->abilities.wis = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->abilities.dex = tmp;
 
-		fscanf(mob_f, " %D \n", &tmp);
+		fscanf(mob_f, " %d \n", &tmp);
 		mob->abilities.con = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
-		fscanf(mob_f, " %D ", &tmp2);
+		fscanf(mob_f, " %d ", &tmp);
+		fscanf(mob_f, " %d ", &tmp2);
 
 		mob->points.max_hit = number(tmp, tmp2);
 		mob->points.hit = mob->points.max_hit;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->points.armor = 10*tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->points.mana = tmp;
 		mob->points.max_mana = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
-		mob->points.move = tmp;		
+		fscanf(mob_f, " %d ", &tmp);
+		mob->points.move = tmp;
 		mob->points.max_move = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->points.gold = tmp;
 
-		fscanf(mob_f, " %D \n", &tmp);
+		fscanf(mob_f, " %d \n", &tmp);
 		GET_EXP(mob) = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->specials.position = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->specials.default_pos = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->player.sex = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->player.class = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		GET_LEVEL(mob) = tmp;
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->player.time.birth = time(0);
 		mob->player.time.played	= 0;
 		mob->player.time.logon  = time(0);
 
-		fscanf(mob_f, " %D ", &tmp);
+		fscanf(mob_f, " %d ", &tmp);
 		mob->player.weight = tmp;
 
-		fscanf(mob_f, " %D \n", &tmp);
+		fscanf(mob_f, " %d \n", &tmp);
 		mob->player.height = tmp;
 
 		for (i = 0; i < 3; i++)
 		{
-			fscanf(mob_f, " %D ", &tmp);
+			fscanf(mob_f, " %d ", &tmp);
 			GET_COND(mob, i) = tmp;
 		}
 		fscanf(mob_f, " \n ");
 
 		for (i = 0; i < 5; i++)
 		{
-			fscanf(mob_f, " %D ", &tmp);
+			fscanf(mob_f, " %d ", &tmp);
 			mob->specials.apply_saving_throw[i] = tmp;
 		}
 
@@ -1239,7 +1240,7 @@ struct obj_data *read_object(int nr, int type)
 	obj->carried_by = 0;
 	obj->in_obj = 0;
 	obj->contains = 0;
-	obj->item_number = nr;	
+	obj->item_number = nr;
 
 	obj->next = object_list;
 	object_list = obj;
@@ -1247,7 +1248,7 @@ struct obj_data *read_object(int nr, int type)
 	obj_index[nr].number++;
 
 
-	return (obj);  
+	return (obj);
 }
 
 
@@ -1274,7 +1275,7 @@ void zone_update(void)
 			/* enqueue zone */
 
 			CREATE(update_u, struct reset_q_element, 1);
- 
+
 			update_u->zone_to_reset = i;
 			update_u->next = 0;
 
@@ -1292,7 +1293,7 @@ void zone_update(void)
 
 	/* dequeue zones (if possible) and reset */
 
-	for (update_u = reset_q.head; update_u; update_u = update_u->next) 
+	for (update_u = reset_q.head; update_u; update_u = update_u->next)
 		if (zone_table[update_u->zone_to_reset].reset_mode == 2 ||
 			is_empty(update_u->zone_to_reset))
 		{
@@ -1317,7 +1318,7 @@ void zone_update(void)
 
 		free(update_u);
 		break;
-		} 
+		}
 }
 
 
@@ -1344,7 +1345,7 @@ void reset_zone(int zone)
 			switch(ZCMD.command)
 		{
 			case 'M': /* read a mobile */
-				if (mob_index[ZCMD.arg1].number < 
+				if (mob_index[ZCMD.arg1].number <
 					ZCMD.arg2)
 				{
 					mob = read_mobile(ZCMD.arg1, REAL);
@@ -1392,7 +1393,7 @@ void reset_zone(int zone)
 
 			case 'G': /* obj_to_char */
 				if (obj_index[ZCMD.arg1].number < ZCMD.arg2)
-				{		
+				{
 					obj = read_object(ZCMD.arg1, REAL);
 					obj_to_char(obj, mob);
 					last_cmd = 1;
@@ -1403,7 +1404,7 @@ void reset_zone(int zone)
 
 			case 'E': /* object to equipment list */
 				if (obj_index[ZCMD.arg1].number < ZCMD.arg2)
-				{		
+				{
 					obj = read_object(ZCMD.arg1, REAL);
 					equip_char(mob, obj, ZCMD.arg3);
 					last_cmd = 1;
@@ -1476,7 +1477,7 @@ void reset_zone(int zone)
 			switch(ZCMD.command)
 		{
 			case 'M': /* read a mobile */
-				if (mob_index[ZCMD.arg1].number < 
+				if (mob_index[ZCMD.arg1].number <
 					ZCMD.arg2)
 				{
 					mob = read_mobile(ZCMD.arg1, REAL);
@@ -1626,7 +1627,7 @@ int load_char(char *name, struct char_file_u *char_element)
 
 
 
-/* copy data from the file structure to a char struct */	
+/* copy data from the file structure to a char struct */
 void store_to_char(struct char_file_u *st, struct char_data *ch)
 {
 	int i;
@@ -1648,7 +1649,7 @@ void store_to_char(struct char_file_u *st, struct char_data *ch)
 
 	if (*st->description)
 	{
-		CREATE(ch->player.description, char, 
+		CREATE(ch->player.description, char,
 			strlen(st->description) + 1);
 		strcpy(ch->player.description, st->description);
 	}
@@ -1703,9 +1704,9 @@ void store_to_char(struct char_file_u *st, struct char_data *ch)
 	affect_total(ch);
 } /* store_to_char */
 
-	
 
-	
+
+
 /* copy vital data from a players char-structure to the file structure */
 void char_to_store(struct char_data *ch, struct char_file_u *st)
 {
@@ -1729,7 +1730,7 @@ void char_to_store(struct char_data *ch, struct char_file_u *st)
 			/* subtract effect of the spell or the effect will be doubled */
 			affect_modify( ch, st->affected[i].location,
 			                   st->affected[i].modifier,
-			                   st->affected[i].bitvector, FALSE);                         
+			                   st->affected[i].bitvector, FALSE);
 			af = af->next;
 		} else {
 			st->affected[i].type = 0;  /* Zero signifies not used */
@@ -1831,8 +1832,8 @@ int create_entry(char *name)
 		top_of_p_table = 0;
 	}
 	else
-		if (!(player_table = (struct player_index_element *) 
-		  realloc(player_table, sizeof(struct player_index_element) * 
+		if (!(player_table = (struct player_index_element *)
+		  realloc(player_table, sizeof(struct player_index_element) *
 		  (++top_of_p_table + 1))))
 		{
 			perror("create entry");
@@ -1842,16 +1843,16 @@ int create_entry(char *name)
 	CREATE(player_table[top_of_p_table].name, char , strlen(name) + 1);
 
 	/* copy lowercase equivalent of name to table field */
-	for (i = 0; *(player_table[top_of_p_table].name + i) = 
+	for (i = 0; *(player_table[top_of_p_table].name + i) =
 			LOWER(*(name + i)); i++);
 
 	player_table[top_of_p_table].nr = top_of_p_table;
 
 	return (top_of_p_table);
 
-	
+
 }
-		
+
 
 
 /* write the vital data of a player to the player file */
@@ -1896,7 +1897,7 @@ void save_char(struct char_data *ch, sh_int load_room)
 
 
 /* for possible later use with qsort */
-int compare(struct player_index_element *arg1, struct player_index_element 
+int compare(struct player_index_element *arg1, struct player_index_element
 	*arg2)
 {
 	return (str_cmp(arg1->name, arg2->name));
@@ -1937,7 +1938,7 @@ char *fread_string(FILE *fl)
 			strcat(buf, tmp);
 
 		for (point = buf + strlen(buf) - 2; point >= buf && isspace(*point);
-			point--);		
+			point--);
 		if (flag = (*point == '~'))
 			if (*(buf + strlen(buf) - 3) == '\n')
 			{
@@ -1986,7 +1987,7 @@ void free_char(struct char_data *ch)
 	if(ch->player.description)
 		free(ch->player.description);
 
-	for (af = ch->affected; af; af = af->next) 
+	for (af = ch->affected; af; af = af->next)
 		affect_remove(ch, af);
 
 	free(ch);
@@ -2283,5 +2284,3 @@ int real_object(int virtual)
 			bot = mid + 1;
 	}
 }
-
-
