@@ -1,0 +1,32 @@
+Recent changes to MERC Mud:
+
+All old chars and equipment have been wiped.
+
+Playtesters: we have your purple potions.  The list is not negotiable;
+our decision is final.  We credited everything in BUGS, IDEAS, and even
+some TYPOS, as well as e-mail we received.
+
+If you haven't been to Mud school lately, you should.
+
+There is no more rent.  Just save and quit whenever you like.  If you are
+outside of town, it will cost you xp to quit.  There is no more free lunch
+available by killing your link.  Note that first level chars can not save,
+and certain items (such as keys) cannot be saved.
+
+There are no more ATM's, either.
+
+If you go outside the city gates without a recall, and you walk into
+a no-exit room, it's your own fault!  No immortal will rescue you.
+You'll have to persuade another player to come get you.
+
+We have level restrictions on grouping.  We also have level restrictions
+on equipment.
+
+Your initial abilities are now standard, so you won't gain anything by
+rolling characters all night.  Abilities can be trained; there are two
+trainers in town.
+
+We have an entire list of areas in "help areas" now.
+
+Several players have asked for a "scan" command.  We think that would
+unbalance the game and are not going to have one.

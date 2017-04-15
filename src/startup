@@ -1,0 +1,13 @@
+#! /bin/csh -f
+
+nohup
+nice
+limit stack 1024k
+if ( -e syslog ) mv syslog ../log/`date +%j.%H%M%S`
+merc >&! syslog
+mv syslog ../log/`date +%j.%H%M%S`
+
+if ( -e ../lib/core ) then
+	cd ../lib
+	echo '$c' | adb ../src/merc
+endif

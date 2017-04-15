@@ -2,6 +2,7 @@
 -1
 -1
 -1
+3009
 3010
 3011
 1.1
@@ -17,7 +18,7 @@
 %s I don't buy!~
 %s If you have no money, you'll have to go!~
 %s That'll be %d coins.~
-%s Oups - %d a minor bug - please report!~
+%s Oops - %d a minor bug - please report!~
 0
 0
 3001
@@ -28,6 +29,7 @@
 0
 0
 #1~
+-1
 -1
 -1
 -1
@@ -57,6 +59,7 @@
 0
 0
 #2~
+-1
 3020
 3021
 3022
@@ -86,11 +89,12 @@
 0
 0
 #3~
-1205
-1206
 3030
 3031
 3032
+3138
+3034
+3035
 1.5
 0.4
 1
@@ -115,11 +119,12 @@
 0
 0
 #4~
-3040
-3042
-3044
-3076
+3078
+3079
+3080
 3081
+3082
+3083
 1.0
 0.5
 9
@@ -147,6 +152,7 @@
 -1
 -1
 -1
+-1
 3002
 3003
 1.0
@@ -162,7 +168,7 @@
 %s I don't buy!~
 %s If you have no money, you'll have to go!~
 %s That'll be %d coins.~
-%s Oops - %d a minor bug - please report!~
+%s Oups - %d a minor bug - please report!~
 0
 0
 3042
@@ -173,6 +179,7 @@
 0
 0
 #6~
+-1
 -1
 -1
 -1
@@ -191,7 +198,7 @@
 %s I don't buy!~
 %s If you have no money, you'll have to go!~
 %s That'll be %d coins.~
-%s Oops - %d a minor bug - please report!~
+%s Oups - %d a minor bug - please report!~
 0
 0
 3043
@@ -202,6 +209,7 @@
 0
 0
 #7~
+-1
 -1
 -1
 3004
@@ -234,6 +242,7 @@
 -1
 -1
 -1
+-1
 3003
 3004
 1.7
@@ -249,7 +258,7 @@
 %s I don't buy!~
 %s If you have no money, you'll have to go!~
 %s That'll be %d coins.~
-%s Oops - %d a minor bug - please report!~
+%s Oups - %d a minor bug - please report!~
 0
 0
 3044
@@ -260,11 +269,12 @@
 0
 0
 #9~
-3050
-3051
-3052
-3053
-3054
+-1
+3040
+3041
+3042
+3043
+3044
 1.05
 0.15
 2
@@ -289,6 +299,7 @@
 0
 0
 #10~
+-1
 3060
 3061
 -1
@@ -318,6 +329,7 @@
 6
 22
 #11~
+-1
 3100
 3101
 3102
@@ -350,6 +362,7 @@
 -1
 -1
 -1
+-1
 3004
 3003
 1.0
@@ -365,7 +378,7 @@
 %s I don't buy!~
 %s Are you drunk or what ?? - NO CREDIT!~
 %s That'll be - say %d coins.~
-%s Oops - %d a minor bug - please report!~
+%s Oups - %d a minor bug - please report!~
 0
 0
 3046
@@ -376,6 +389,7 @@
 0
 0
 #13~
+-1
 -1
 -1
 3012
@@ -405,123 +419,218 @@
 0
 0
 #14~
-6510
-3022
-6512
-6504
-6505
-1.9
-.3
-1
-15
+3066
+3067
+3068
+3069
+3070
+3071
+1.1
+0.9
 9
-5
 0
-%s We don't have any in storage, sorry!~
-%s Check your possessions, you don't have that.~
-%s I don't care for those types of goods.~
-%s I can't afford something that great!~
-%s You can't afford it, and don't ask a God for the money!~
-%s That'll cost you %d coins, please.~
-%s You'll get %d coins for that.~
-1
-1
-6503
 0
-6516
 0
-23
-23
-28
-#15~
-3000
-3003
+0
+%s Haven't got that on storage - try list!~
+%s You don't seem to have that.~
+%s I only buy armours..~
+%s That is too expensive for me - Try a wizard!~
+%s You can't afford it!~
+%s That'll be %d coins, please.~
+%s You'll get %d coins for it!~
+0
+0
 3010
-3011
-3031
-1.9
-0.2
+0
+3035
+8
+14
+15
+21
+#15~
+-1
+-1
+-1
+-1
+-1
+-1
+1.5
+0.5
+8
+0
+0
+0
+0
+%s Haven't got that on storage - try list!~
+%s You don't seem to have that.~
+%s I only buy fine jewelry..~
+%s That is such an expensive item that I dare not possess it!~
+%s You can't afford it, you slut!~
+%s That'll be %d coins, please.~
+%s You'll get %d coins for it!~
+0
+0
+3009
+0
+3034
+9
+12
+14
+17
+#16~
+-1
+304
+305
+306
+3030
+6001
+1.2
+0.6
+1
+10
+11
+19
+-1
+%s I wouldn't sell YOU any such thing, stranger.~
+%s Are you sure you have such an item ?~
+%s I won't by such a thing from a stranger!~
+%s You can't fool me! that costs far too much!~
+%s You probably can't even pay for it, go home stranger.~
+%s Special price, today only: %d coins.~
+%s Well .. ok. I'll give you %d coins for that.~
+0
+0
+306
+0
+5555
+0
+28
+0
+0
+#17~
+-1
+-1
+-1
+-1
+3000
+3001
+1.1
+1.0
+0
+0
+0
+0
+0
+%s It's very noisy in here, what did you say you wanted to buy?~
+%s I don't buy!~
+%s I don't buy!~
+%s I don't buy!~
+%s Are you drunk or what ?? - NO CREDIT!~
+%s That'll be - say %d coins.~
+%s Oups - %d a minor bug - please report!~
+0
+0
+308
+0
+5556
+0
+28
+0
+0
+#18~
+1351
+1352
+3010
+3100
+3101
+-1
+2.1
+0.5
+17
+19
+0
+0
+0
+%s Havn't got that in storage, try LIST!~
+%s You cant sell what you dont HAVE!~
+%s Sorry, I'm not a fence.~
+%s I'd love to buy it, I just cant spare the coinage~
+%s Bah, come back when you can pay!~
+%s That'll be %d coins -- thank you.~
+%s I'll give ya %d coins for that!~
+0
+1
+1305
+0
+1318
+0
+28
+0
+0
+#19~
+3050
+3051
+3053
+1353
+1354
+-1
+2.5
+0.3
+2
+3
+4
+10
+21
+%s Say again?~
+%s You dont have that, try INVENTORY!~
+%s What do I look like, a fence?~
+%s Sorry, I just cant afford such a costly item.~
+%s You cant afford it!~
+%s You're getting a bargain for that at only %d!~
+%s I guess I could give ya %d for that.~
+0
+1
+1306
+0
+1319
+0
+28
+0
+0
+#20~
+3010
+3032
+3138
+6004
+-1
+-1
+1.0
+1.0
 1
 15
 17
 19
-8
-%s Haven't got that on storage!~
-%s You don't seem to have that!~
-%s I don't buy those types, try another shop.~
-%s I cannot afford such a great treasure!~
-%s You can't afford that!~
-%s That'll be %d coins, please.~
-%s You'll get %d coins for that!~
+0
+0
+%s Say again?~
+%s You dont have that, try INVENTORY!~
+%s What do I look like, a fence?~
+%s Sorry, I just cant afford such a costly item.~
+%s You cant afford it!~
+%s You're getting a bargain for that at only %d!~
+%s I guess I could give ya %d for that.~
 0
 1
-6504
+217
 0
-6535
-0
-24
-24
-28
-#16~
-6524
-6522
-6521
-6523
-6526
-1.2
-.7
-1
-9
-18
-3
-4
-%s Dammit!  I don't have that! Type LIST..damn rookies...~
-%s Christ, don't you even know what you're carrying!!!~
-%s I really could care less about that!~
-%s Listen, I don't have the money now, but if you give it to me,
-I'll gladly pay you tuesday.~
-%s Hey Jerk! You don't have the money, so SCRAM!~
-%s HA! I got your %d coins! Another sucker...~
-%s Gimme that damn thing! Here's your %d coins for it.~
-0
-1
-6521
-0
-6562
-0
-24
-24
-28
-#17~
-6504
-6510
-6512
-6509
-6505
-1.2
-.7
-5
-9
-17
-10
-0
-%s Hey man, I don't seem to have that!~
-%s You don't have that you cool cat.~
-%s Sorry man, I don't buy those things.~
-%s Chill dude, I don't have that much dinero.~
-%s Wow man, you can't afford it!~
-%s Righteous! That'll be %d coins, man..~
-%s DUDE!  Here, you got %d coins for it!~
-0
-1
-6520
-0
-6561
+218
 0
 28
 0
 0
-#90~
+#21~
+-1
 9023
 9025
 9026
@@ -550,6 +659,4 @@ m%  Here you go, sucker!  That's %d more coins for me.~
 18
 18
 24
-$~
---endd
 $~

@@ -1,0 +1,18 @@
+
+                    M          E          R          C
+
+    Brought to you by Kahn, Furey, and Hatchet.
+    Diku Mud was originally created by Hans Henrik Staerfeldt, Katja Nyboe,
+    Tom Madsen, Michael Seifer, and Sebastian Hammer.
+
+                    D          I          K          U
+
+    Thanks to Frag, Tin, Razor, Jordan, Tre, and Matrix for play-testing.
+    Thanks to Copper Mud and Alfa Mud for releasing their code.
+    Thanks to Aod of Generic for swapping code with us.
+    Thanks to Raff for his great worlds.
+
+                               M          U          D
+
+    18 Dec 1992   Release 1.0   Merry Christmas from MERCIndustries!
+
