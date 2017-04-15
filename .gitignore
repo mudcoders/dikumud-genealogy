@@ -1,2 +1,4 @@
 src/merc
+*.exe
 *.o
+*.log

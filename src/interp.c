@@ -1,726 +1,718 @@
 /***************************************************************************
- *  file: interp.c , Command interpreter module.      Part of DIKUMUD      *
- *  Usage: Procedures interpreting user command                            *
- *  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
+ *  Original Diku Mud copyright (C) 1990, 1991 by Sebastian Hammer,        *
+ *  Michael Seifert, Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.   *
  *                                                                         *
- *  Copyright (C) 1992, 1993 Michael Chastain, Michael Quan, Mitchell Tse  *
- *  Performance optimization and bug fixes by MERC Industries.             *
- *  You can use our stuff in any way you like whatsoever so long as this   *
- *  copyright notice remains intact.  If you like it please drop a line    *
- *  to mec@garnet.berkeley.edu.                                            *
+ *  Merc Diku Mud improvments copyright (C) 1992, 1993 by Michael          *
+ *  Chastain, Michael Quan, and Mitchell Tse.                              *
  *                                                                         *
- *  This is free software and you are benefitting.  We hope that you       *
- *  share your changes too.  What goes around, comes around.               *
+ *  In order to use any part of this Merc Diku Mud, you must comply with   *
+ *  both the original Diku license in 'license.doc' as well the Merc       *
+ *  license in 'license.txt'.  In particular, you may not remove either of *
+ *  these copyright notices.                                               *
+ *                                                                         *
+ *  Much time and thought has gone into this software and you are          *
+ *  benefitting.  We hope that you share your changes too.  What goes      *
+ *  around, comes around.                                                  *
  ***************************************************************************/
 
-#include <stdlib.h>
-#include <string.h>
+#if defined(macintosh)
+#include <types.h>
+#else
+#include <sys/types.h>
+#endif
 #include <ctype.h>
 #include <stdio.h>
-#include <memory.h>
-
-#include "structs.h"
-#include "mob.h"
-#include "obj.h"
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include "merc.h"
 #include "interp.h"
-#include "db.h"
-#include "utils.h"
-#include "limits.h"
 
-extern bool check_social( struct char_data *ch, char *pcomm,
-    int length, char *arg );
 
-extern struct index_data *mob_index;
-extern struct index_data *obj_index;
-extern struct room_data *world;
+bool	check_social	args( ( CHAR_DATA *ch, char *command,
+			    char *argument ) );
 
-struct command_info
-{
-    char *command_name;             /* Name of this command             */
-    DO_FUN *command_pointer;        /* Function that does it            */
-    byte minimum_position;          /* Position commander must be in    */
-    byte minimum_level;             /* Minimum level needed             */
-    ubyte command_number;           /* Passed to function as argument   */
-};
+
 
 /*
- * Note that command number is always non-zero for user commands.
- * Various spec_proc.c functions impose ICKY requirements.
- * Someday I'll NUKE the arg and pass the command name instead.
- *
- * Spec_procs that need fixing:
- *	shop_keeper
+ * Command logging types.
  */
-struct command_info cmd_info[] =
+#define LOG_NORMAL	0
+#define LOG_ALWAYS	1
+#define LOG_NEVER	2
+
+
+
+/*
+ * Log-all switch.
+ */
+bool				fLogAll		= FALSE;
+
+
+
+/*
+ * Command table.
+ */
+const	struct	cmd_type	cmd_table	[] =
 {
     /*
      * Common movement commands.
      */
-    { "north",      do_move,        POSITION_STANDING,  0,  1 },
-    { "east",       do_move,        POSITION_STANDING,  0,  2 },
-    { "south",      do_move,        POSITION_STANDING,  0,  3 },
-    { "west",       do_move,        POSITION_STANDING,  0,  4 },
-    { "up",         do_move,        POSITION_STANDING,  0,  5 },
-    { "down",       do_move,        POSITION_STANDING,  0,  6 },
+    { "north",		do_north,	POS_STANDING,    0,  LOG_NEVER, 0 },
+    { "east",		do_east,	POS_STANDING,	 0,  LOG_NEVER, 0 },
+    { "south",		do_south,	POS_STANDING,	 0,  LOG_NEVER, 0 },
+    { "west",		do_west,	POS_STANDING,	 0,  LOG_NEVER, 0 },
+    { "up",		do_up,		POS_STANDING,	 0,  LOG_NEVER, 0 },
+    { "down",		do_down,	POS_STANDING,	 0,  LOG_NEVER, 0 },
 
     /*
      * Common other commands.
      * Placed here so one and two letter abbreviations work.
      */
-    { "at",         do_at,          POSITION_DEAD,      32, 9 },
-    { "cast",       do_cast,        POSITION_SITTING,   0,  9 },
-    { "exits",      do_exits,       POSITION_RESTING,   0,  9 },
-    { "get",        do_get,         POSITION_RESTING,   0,  9 },
-    { "inventory",  do_inventory,   POSITION_DEAD,      0,  9 },
-    { "kill",       do_kill,        POSITION_FIGHTING,  0,  9 },
-    { "look",       do_look,        POSITION_RESTING,   0,  9 },
-    { "order",      do_order,       POSITION_RESTING,   0,  9 },
-    { "rest",       do_rest,        POSITION_RESTING,   0,  9 },
-    { "stand",      do_stand,       POSITION_RESTING,   0,  9 },
-    { "tell",       do_tell,        POSITION_RESTING,   0,  9 },
-    { "wield",      do_wield,       POSITION_RESTING,   0,  9 },
-    { "wizhelp",    do_wizhelp,     POSITION_DEAD,      31, 9 },
+    { "at",             do_at,          POS_DEAD,       L6,  LOG_NORMAL, 1 },
+    { "auction",        do_auction,     POS_SLEEPING,    0,  LOG_NORMAL, 1 },
+    { "buy",		do_buy,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "cast",		do_cast,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
+    { "channels",       do_channels,    POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "exits",		do_exits,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "get",		do_get,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "goto",           do_goto,        POS_DEAD,       L8,  LOG_NORMAL, 1 },
+    { "hit",		do_kill,	POS_FIGHTING,	 0,  LOG_NORMAL, 0 },
+    { "inventory",	do_inventory,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "kill",		do_kill,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
+    { "look",		do_look,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "music",          do_music,   	POS_SLEEPING,    0,  LOG_NORMAL, 1 }, 
+    { "order",		do_order,	POS_RESTING,	 0,  LOG_ALWAYS, 1 },
+    { "practice",       do_practice,	POS_SLEEPING,    0,  LOG_NORMAL, 1 },
+    { "rest",		do_rest,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "sit",		do_sit,		POS_SLEEPING,    0,  LOG_NORMAL, 1 },
+    { "sockets",        do_sockets,	POS_DEAD,       L4,  LOG_NORMAL, 1 },
+    { "stand",		do_stand,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "tell",		do_tell,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "wield",		do_wear,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "wizhelp",	do_wizhelp,	POS_DEAD,	HE,  LOG_NORMAL, 1 },
 
     /*
      * Informational commands.
      */
-    { "brief",      do_brief,       POSITION_DEAD,      0,  9 },
-/*  { "bug",        do_bug,         POSITION_DEAD,      5,  9 },     */
-    { "commands",   do_commands,    POSITION_DEAD,      0,  9 },
-    { "compact",    do_compact,     POSITION_DEAD,      0,  9 },
-    { "credits",    do_credits,     POSITION_DEAD,      0,  9 },
-    { "equipment",  do_equipment,   POSITION_DEAD,      0,  9 },
-    { "help",       do_help,        POSITION_DEAD,      0,  9 },
-    { "idea",       do_idea,        POSITION_DEAD,      5,  9 },
-    { "info",       do_info,        POSITION_DEAD,      0,  9 },
-/*  { "inventory",  do_inventory,   POSITION_DEAD,      0,  9 },    */
-    { "levels",     do_levels,      POSITION_DEAD,      0,  9 },
-    { "motd",	    do_motd,        POSITION_DEAD,      0,  9 },
-    { "news",       do_news,        POSITION_DEAD,      0,  9 },
-    { "score",      do_score,       POSITION_DEAD,      0,  9 },
-    { "scroll",     do_scroll,      POSITION_DEAD,      0,  9 },
-    { "story",      do_story,       POSITION_DEAD,      0,  9 },
-    { "tick",       do_tick,        POSITION_DEAD,      0,  9 },
-    { "time",       do_time,        POSITION_DEAD,      0,  9 },
-    { "title",      do_title,       POSITION_DEAD,      0,  9 },
-    { "typo",       do_typo,        POSITION_DEAD,      5,  9 },
-    { "weather",    do_weather,     POSITION_DEAD,      0,  9 },
-    { "who",        do_who,         POSITION_DEAD,      0,  9 },
-    { "wizlist",    do_wizlist,     POSITION_DEAD,      0,  9 },
+    { "areas",		do_areas,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "bug",		do_bug,		POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "changes",	do_changes,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "commands",	do_commands,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "compare",	do_compare,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "consider",	do_consider,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "count",		do_count,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "credits",	do_credits,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "equipment",	do_equipment,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "examine",	do_examine,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+/*  { "groups",		do_groups,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 }, */
+    { "help",		do_help,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "idea",		do_idea,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "info",           do_groups,      POS_SLEEPING,    0,  LOG_NORMAL, 1 },
+    { "motd",		do_motd,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "news",		do_news,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "read",		do_read,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "report",		do_report,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "rules",		do_rules,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "score",		do_score,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "skills",		do_skills,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "socials",	do_socials,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "spells",		do_spells,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "story",		do_story,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "time",		do_time,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "typo",		do_typo,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "weather",	do_weather,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "who",		do_who,		POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "whois",		do_whois,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "wizlist",	do_wizlist,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "worth",		do_worth,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+
+    /*
+     * Configuration commands.
+     */
+    { "autolist",	do_autolist,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "autoassist",	do_autoassist,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "autoexit",	do_autoexit,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "autogold",	do_autogold,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "autoloot",	do_autoloot,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "autosac",	do_autosac,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "autosplit",	do_autosplit,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "brief",		do_brief,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+/*  { "channels",	do_channels,	POS_DEAD,	 0,  LOG_NORMAL, 1 }, */
+    { "combine",	do_combine,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "compact",	do_compact,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "description",	do_description,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "delet",		do_delet,	POS_DEAD,	 0,  LOG_ALWAYS, 0 },
+    { "delete",		do_delete,	POS_DEAD,	 0,  LOG_ALWAYS, 1 },
+    { "nofollow",	do_nofollow,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "noloot",		do_noloot,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "nosummon",	do_nosummon,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "outfit",		do_outfit,	POS_RESTING,	 0,  LOG_ALWAYS, 1 },
+    { "password",	do_password,	POS_DEAD,	 0,  LOG_NEVER,  1 },
+    { "prompt",		do_prompt,	POS_DEAD,        0,  LOG_NORMAL, 1 },
+    { "scroll",		do_scroll,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "title",		do_title,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "wimpy",		do_wimpy,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
 
     /*
      * Communication commands.
      */
-/*  { "at",         do_at,          POSITION_DEAD,      32, 9 },  */
-    { "answer",     do_answer,      POSITION_SLEEPING,  0,  9 },
-    { "ask",        do_ask,         POSITION_RESTING,   0,  9 },
-    { "auction",    do_auction,     POSITION_SLEEPING,  0,  9 },
-    { "deaf",	    do_deaf,	    POSITION_DEAD,      0,  9 },
-    { "emote",      do_emote,       POSITION_RESTING,   0,  9 },
-    { "erase",	    do_erase,	    POSITION_RESTING,   0,  9 },
-    { ",",          do_emote,       POSITION_RESTING,   0,  9 },    
-    { "gtell",      do_grouptell,   POSITION_SLEEPING,  0,  9 },
-    { ";",          do_grouptell,   POSITION_DEAD,      0,  9 },
-    { "insult",     do_insult,      POSITION_RESTING,   0,  9 },
-/*  { "order",      do_order,       POSITION_RESTING,   0,  9 },    */
-    { "music",      do_music,       POSITION_DEAD,      0,  9 },
-    { "pose",       do_pose,        POSITION_RESTING,   0,  9 },
-    { "question",   do_question,    POSITION_SLEEPING,  0,  9 },
-    { "quiet",      do_quiet,       POSITION_DEAD,      0,  9 },
-    { "report",     do_report,      POSITION_DEAD,      0,  9 },
-    { "say",        do_say,         POSITION_RESTING,   0,  9 },
-    { "'",          do_say,         POSITION_RESTING,   0,  9 },
-    { "shout",      do_shout,       POSITION_RESTING,   0,  9 },
-    { "goto",       do_goto,        POSITION_DEAD,      32, 9 },
-    { "gossip",     do_gossip,      POSITION_SLEEPING,  0,  9 },
-/*  { "tell",       do_tell,        POSITION_RESTING,   0,  9 },    */
-    { "whisper",    do_whisper,     POSITION_RESTING,   0,  9 },
+    { "answer",		do_answer,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+/*  { "auction",	do_auction,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 }, */
+    { "deaf",		do_deaf,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "emote",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { ".",		do_gossip,	POS_SLEEPING,	 0,  LOG_NORMAL, 0 },
+    { "gossip",		do_gossip,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { ",",		do_emote,	POS_RESTING,	 0,  LOG_NORMAL, 0 },
+    { "gtell",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { ";",		do_gtell,	POS_DEAD,	 0,  LOG_NORMAL, 0 },
+/*  { "music",		do_music,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 }, */
+    { "note",		do_note,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "pose",		do_pose,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "question",	do_question,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "quiet",		do_quiet,	POS_SLEEPING, 	 0,  LOG_NORMAL, 1 },
+    { "reply",		do_reply,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "say",		do_say,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "'",		do_say,		POS_RESTING,	 0,  LOG_NORMAL, 0 },
+    { "shout",		do_shout,	POS_RESTING,	 3,  LOG_NORMAL, 1 },
+    { "yell",		do_yell,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
 
     /*
      * Object manipulation commands.
      */
-    { "close",      do_close,       POSITION_RESTING,   0,  9 },
-    { "drink",      do_drink,       POSITION_RESTING,   0,  9 },
-    { "drop",       do_drop,        POSITION_RESTING,   0,  9 },
-    { "eat",        do_eat,         POSITION_RESTING,   0,  9 },
-    { "fill",       do_fill,        POSITION_RESTING,   0,  9 },
-/*  { "get",        do_get,         POSITION_RESTING,   0,  9 },    */
-    { "give",       do_give,        POSITION_RESTING,   0,  9 },
-    { "grab",       do_grab,        POSITION_RESTING,   0,  9 },
-    { "hold",       do_grab,        POSITION_RESTING,   0,  9 },
-    { "lock",       do_lock,        POSITION_RESTING,   0,  9 },
-    { "open",       do_open,        POSITION_RESTING,   0,  9 },
-    { "pour",       do_pour,        POSITION_RESTING,   0,  9 },
-    { "put",        do_put,         POSITION_RESTING,   0,  9 },
-    { "quaff",      do_quaff,       POSITION_RESTING,   0,  9 },
-    { "read",       do_read,        POSITION_RESTING,   0,  9 },
-    { "recite",     do_recite,      POSITION_RESTING,   0,  9 },
-    { "remove",     do_remove,      POSITION_RESTING,   0,  9 },
-    { "sip",        do_sip,         POSITION_RESTING,   0,  9 },
-    { "take",       do_get,         POSITION_RESTING,   0,  9 },
-    { "junk",       do_tap,         POSITION_RESTING,   0,  9 },
-    { "sacrifice",  do_tap,         POSITION_RESTING,   0,  9 },
-    { "tap",        do_tap,         POSITION_RESTING,   0,  9 },
-    { "taste",      do_taste,       POSITION_RESTING,   0,  9 },
-    { "unlock",     do_unlock,      POSITION_RESTING,   0,  9 },
-    { "use",        do_use,         POSITION_RESTING,   0,  9 },
-    { "wear",       do_wear,        POSITION_RESTING,   0,  9 },
-/*  { "wield",      do_wield,       POSITION_RESTING,   0,  9 },    */
+    { "brandish",	do_brandish,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "close",		do_close,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "drink",		do_drink,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "drop",		do_drop,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "eat",		do_eat,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "fill",		do_fill,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "give",		do_give,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "heal",		do_heal,	POS_RESTING,	 0,  LOG_NORMAL, 1 }, 
+    { "hold",		do_wear,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "list",		do_list,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "lock",		do_lock,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "open",		do_open,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "pick",		do_pick,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "put",		do_put,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "quaff",		do_quaff,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "recite",		do_recite,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "remove",		do_remove,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "sell",		do_sell,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "take",		do_get,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "sacrifice",	do_sacrifice,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "junk",           do_sacrifice,   POS_RESTING,     0,  LOG_NORMAL, 0 },
+    { "tap",      	do_sacrifice,   POS_RESTING,     0,  LOG_NORMAL, 0 },   
+    { "unlock",		do_unlock,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "value",		do_value,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "wear",		do_wear,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "zap",		do_zap,		POS_RESTING,	 0,  LOG_NORMAL, 1 },
 
     /*
      * Combat commands.
      */
-    { "assist",     do_assist,      POSITION_FIGHTING,  0,  9 },
-    { "bash",       do_bash,        POSITION_FIGHTING,  0,  9 },
-    { "disarm",     do_disarm,      POSITION_FIGHTING,  0,  9 },
-    { "flee",       do_flee,        POSITION_FIGHTING,  0,  9 },
-    { "hit",        do_hit,         POSITION_FIGHTING,  0,  9 },
-    { "kick",       do_kick,        POSITION_FIGHTING,  0,  9 },
-/*  { "kill",       do_kill,        POSITION_FIGHTING,  0,  9 },    */
-    { "murder",     do_murder,      POSITION_FIGHTING,  5,  9 },
-    { "rescue",     do_rescue,      POSITION_FIGHTING,  0,  9 },
-    { "trip",       do_trip,        POSITION_FIGHTING,  0,  9 },
-
-    /*
-     * Position commands.
-     */
-/*  { "rest",       do_rest,        POSITION_RESTING,   0,  9 },    */
-    { "sit",        do_sit,         POSITION_RESTING,   0,  9 },
-    { "sleep",      do_sleep,       POSITION_SLEEPING,  0,  9 },
-/*  { "stand",      do_stand,       POSITION_RESTING,   0,  9 },    */
-    { "wake",       do_wake,        POSITION_SLEEPING,  0,  9 },
+    { "backstab",	do_backstab,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
+    { "bash",		do_bash,	POS_FIGHTING,    0,  LOG_NORMAL, 1 },
+    { "bs",		do_backstab,	POS_STANDING,	 0,  LOG_NORMAL, 0 },
+    { "berserk",	do_berserk,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
+    { "dirt",		do_dirt,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
+    { "disarm",		do_disarm,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
+    { "flee",		do_flee,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
+    { "kick",		do_kick,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
+    { "murde",		do_murde,	POS_FIGHTING,	IM,  LOG_NORMAL, 0 },
+    { "murder",		do_murder,	POS_FIGHTING,	IM,  LOG_ALWAYS, 1 },
+    { "rescue",		do_rescue,	POS_FIGHTING,	 0,  LOG_NORMAL, 0 },
+    { "trip",		do_trip,	POS_FIGHTING,    0,  LOG_NORMAL, 1 },
 
     /*
      * Miscellaneous commands.
      */
-    { "autolist",   do_autolist,    POSITION_DEAD,	0,  9 },
-    { "autoassist", do_autoassist,  POSITION_DEAD, 	0,  9 },
-    { "autoloot",   do_autoloot,    POSITION_DEAD,	0,  9 },
-    { "autoexit",   do_autoexit,    POSITION_DEAD,	0,  9 },
-    { "autogold",   do_autogold,    POSITION_DEAD, 	0,  9 },
-    { "autosac",    do_autosac,	    POSITION_DEAD,	0,  9 },
-    { "autosplit",  do_autosplit,   POSITION_DEAD,      0,  9 },
-    { "backstab",   do_backstab,    POSITION_STANDING,  0,  9 },
-    { "bs",         do_backstab,    POSITION_STANDING,  0,  9 },
-/*  { "cast",       do_cast,        POSITION_SITTING,   0,  9 },    */
-    { "channels",   do_channels,    POSITION_DEAD,      0,  9 }, 
-    { "consider",   do_consider,    POSITION_RESTING,   0,  9 },
-    { "enter",      do_enter,       POSITION_STANDING,  0,  9 },
-    { "examine",    do_examine,     POSITION_RESTING,   0,  9 },
-/*  { "exits",      do_exits,       POSITION_RESTING,   0,  9 },    */
-    { "follow",     do_follow,      POSITION_RESTING,   0,  9 },
-    { "group",      do_group,       POSITION_RESTING,   0,  9 },    
-    { "hide",       do_hide,        POSITION_RESTING,   0,  9 },
-    { "leave",      do_leave,       POSITION_STANDING,  0,  9 },
-/*  { "look",       do_look,        POSITION_RESTING,   0,  9 },    */
-    { "nofollow",   do_nofollow,    POSITION_DEAD,	0,  9 },
-    { "noloot",	    do_noloot,	    POSITION_DEAD,	0,  9 }, 
-    { "nosummon",   do_nosummon,    POSITION_DEAD,      0,  9 },
-    { "pick",       do_pick,        POSITION_STANDING,  5,  9 },
-    { "qui",        do_qui,         POSITION_DEAD,      0,  9 },
-    { "quit",       do_quit,        POSITION_DEAD,      0,  9 },
-    { "recall",     do_recall,      POSITION_FIGHTING,  0,  9 },
-    { "/",          do_recall,      POSITION_FIGHTING,  0,  9 },
-    { "return",     do_return,      POSITION_DEAD,      0,  9 },
-    { "save",       do_save,        POSITION_DEAD,      0,  9 },
-    { "sneak",      do_sneak,       POSITION_STANDING,  1,  9 },
-    { "split",      do_split,       POSITION_RESTING,   0,  9 },
-    { "steal",      do_steal,       POSITION_STANDING,  3,  9 },
-    { "visible",    do_visible,     POSITION_RESTING,    0,  9 },
-    { "where",      do_where,       POSITION_RESTING,   0,  9 },
-    { "wimpy",      do_wimpy,       POSITION_DEAD,      0,  9 },
-    { "write",      do_write,       POSITION_STANDING,  0,  9 },
+    { "follow",		do_follow,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "gain",		do_gain,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
+    { "group",		do_group,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "groups",		do_groups,	POS_SLEEPING,    0,  LOG_NORMAL, 1 },
+    { "hide",		do_hide,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+/*  { "practice",	do_practice,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 }, */
+    { "qui",		do_qui,		POS_DEAD,	 0,  LOG_NORMAL, 0 },
+    { "quit",		do_quit,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "recall",		do_recall,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
+    { "/",		do_recall,	POS_FIGHTING,	 0,  LOG_NORMAL, 0 },
+    { "rent",		do_rent,	POS_DEAD,	 0,  LOG_NORMAL, 0 },
+    { "save",		do_save,	POS_DEAD,	 0,  LOG_NORMAL, 1 },
+    { "sleep",		do_sleep,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "sneak",		do_sneak,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
+    { "split",		do_split,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "steal",		do_steal,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
+    { "train",		do_train,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "visible",	do_visible,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
+    { "where",		do_where,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
 
-    /*
-     * Special procedure commands.
-     */
-    { "buy",        do_not_here,    POSITION_STANDING,  0,  56 },
-    { "bug", 	    do_bug,         POSITION_DEAD,      0,  9  },
-    { "sell",       do_not_here,    POSITION_STANDING,  0,  57 },
-    { "value",      do_not_here,    POSITION_STANDING,  0,  58 },
-    { "list",       do_not_here,    POSITION_STANDING,  0,  59 },
-    { "practice",   do_practice,    POSITION_RESTING,   1,  164 },
-    { "practise",   do_practice,    POSITION_RESTING,   1,  164 },
-    { "train",      do_not_here,    POSITION_RESTING,   1,  165 },
+
 
     /*
      * Immortal commands.
      */
-    { "advance",    do_advance,     POSITION_DEAD,      35, 9 },
+    { "advance",	do_advance,	POS_DEAD,	ML,  LOG_ALWAYS, 1 },
+    { "dump",		do_dump,	POS_DEAD,	ML,  LOG_ALWAYS, 0 },
+    { "trust",		do_trust,	POS_DEAD,	ML,  LOG_ALWAYS, 1 },
 
-    { "allow",      do_allow,       POSITION_DEAD,      34, 9 },
-    { "ban",        do_ban,         POSITION_DEAD,      34, 9 },
-    { "disconnect", do_disconnect,  POSITION_DEAD,      33, 9 },
-    { "freeze",     do_freeze,      POSITION_DEAD,      33, 9 },
-    { "log",        do_log,         POSITION_DEAD,      35, 9 },
-    { "purge",      do_purge,       POSITION_DEAD,      33, 9 },
-    { "reroll",     do_reroll,      POSITION_DEAD,      35, 9 },
-    { "reset",      do_reroll,      POSITION_DEAD,      35, 9 },
-    { "set",        do_set,         POSITION_DEAD,      34, 9 },
-    { "shutdow",    do_shutdow,     POSITION_DEAD,      35, 9 },
-    { "shutdown",   do_shutdown,    POSITION_DEAD,      35, 9 },
-    { "sockets",    do_sockets,     POSITION_DEAD,      33, 9 },
-    { "string",     do_string,      POSITION_DEAD,      33, 9 },
-    { "wizlock",    do_wizlock,     POSITION_DEAD,      35, 9 },
+    { "allow",		do_allow,	POS_DEAD,	L2,  LOG_ALWAYS, 1 },
+    { "ban",		do_ban,		POS_DEAD,	L2,  LOG_ALWAYS, 1 },
+    { "deny",		do_deny,	POS_DEAD,	L1,  LOG_ALWAYS, 1 },
+    { "disconnect",	do_disconnect,	POS_DEAD,	L3,  LOG_ALWAYS, 1 },
+    { "freeze",		do_freeze,	POS_DEAD,	L3,  LOG_ALWAYS, 1 },
+    { "reboo",		do_reboo,	POS_DEAD,	L1,  LOG_NORMAL, 0 },
+    { "reboot",		do_reboot,	POS_DEAD,	L1,  LOG_ALWAYS, 1 },
+    { "set",		do_set,		POS_DEAD,	L2,  LOG_ALWAYS, 1 },
+    { "shutdow",	do_shutdow,	POS_DEAD,	L1,  LOG_NORMAL, 0 },
+    { "shutdown",	do_shutdown,	POS_DEAD,	L1,  LOG_ALWAYS, 1 },
+/*  { "sockets",	do_sockets,	POS_DEAD,	L4,  LOG_NORMAL, 1 }, */
+    { "wizlock",	do_wizlock,	POS_DEAD,	L2,  LOG_ALWAYS, 1 },
 
-    { "force",      do_force,       POSITION_DEAD,      33, 9 },
-    { "load",       do_load,        POSITION_DEAD,      33, 9 },
-    { "newlock",    do_newlock,     POSITION_DEAD,      33, 9 },
-    { "nochannels", do_nochannels,  POSITION_DEAD,      33, 9 },
-    { "noemote",    do_noemote,     POSITION_DEAD,      33, 9 },
-    { "noshout",    do_noshout,     POSITION_DEAD,      33, 9 },
-    { "notell",     do_notell,      POSITION_DEAD,   	33, 9 },
-    { "pardon",     do_pardon,      POSITION_DEAD,      33, 9 },
-    { "restore",    do_restore,     POSITION_DEAD,      33, 9 },
-    { "teleport",   do_teleport,    POSITION_DEAD,      33, 9 },
-    { "trans",      do_trans,       POSITION_DEAD,      33, 9 },
+    { "force",		do_force,	POS_DEAD,	L7,  LOG_ALWAYS, 1 },
+    { "load",		do_load,	POS_DEAD,	L4,  LOG_ALWAYS, 1 },
+    { "newlock",	do_newlock,	POS_DEAD,	L4,  LOG_ALWAYS, 1 },
+    { "nochannels",	do_nochannels,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+    { "noemote",	do_noemote,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+    { "noshout",	do_noshout,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+    { "notell",		do_notell,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+    { "pecho",		do_pecho,	POS_DEAD,	L4,  LOG_ALWAYS, 1 }, 
+    { "pardon",		do_pardon,	POS_DEAD,	L3,  LOG_ALWAYS, 1 },
+    { "purge",		do_purge,	POS_DEAD,	L4,  LOG_ALWAYS, 1 },
+    { "restore",	do_restore,	POS_DEAD,	L4,  LOG_ALWAYS, 1 },
+    { "sla",		do_sla,		POS_DEAD,	L3,  LOG_NORMAL, 0 },
+    { "slay",		do_slay,	POS_DEAD,	L3,  LOG_ALWAYS, 1 },
+    { "teleport",	do_transfer,    POS_DEAD,	L5,  LOG_ALWAYS, 1 },	
+    { "transfer",	do_transfer,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
 
- /* { "at",         do_at,          POSITION_DEAD,      32, 9 }, */
-    { "echo",       do_echo,        POSITION_DEAD,      32, 9 },
-    { "gecho",      do_gecho,       POSITION_DEAD,      33, 9 },
-    { "snoop",      do_snoop,       POSITION_DEAD,      33, 9 },
-    { "stat",       do_stat,        POSITION_DEAD,      32, 9 },
-    { "switch",     do_switch,      POSITION_DEAD,      32, 9 },
-    { "invis",      do_wizinvis,    POSITION_DEAD,      32, 9 },
-    { "wizinvis",   do_wizinvis,    POSITION_DEAD,      32, 9 },
+/*  { "at",		do_at,		POS_DEAD,	L6,  LOG_NORMAL, 1 }, */
+    { "poofin",		do_bamfin,	POS_DEAD,	L8,  LOG_NORMAL, 1 },
+    { "poofout",	do_bamfout,	POS_DEAD,	L8,  LOG_NORMAL, 1 },
+    { "gecho",		do_echo,	POS_DEAD,	L4,  LOG_ALWAYS, 1 },
+/*  { "goto",		do_goto,	POS_DEAD,	L8,  LOG_NORMAL, 1 }, */
+    { "holylight",	do_holylight,	POS_DEAD,	IM,  LOG_NORMAL, 1 },
+    { "invis",		do_invis,	POS_DEAD,	IM,  LOG_NORMAL, 0 },
+    { "log",		do_log,		POS_DEAD,	L1,  LOG_ALWAYS, 1 },
+    { "memory",		do_memory,	POS_DEAD,	IM,  LOG_NORMAL, 1 },
+    { "mwhere",		do_mwhere,	POS_DEAD,	IM,  LOG_NORMAL, 1 },
+    { "peace",		do_peace,	POS_DEAD,	L5,  LOG_NORMAL, 1 },
+    { "echo",		do_recho,	POS_DEAD,	L6,  LOG_ALWAYS, 1 },
+    { "return",         do_return,      POS_DEAD,       L6,  LOG_NORMAL, 1 },
+    { "snoop",		do_snoop,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+    { "stat",		do_stat,	POS_DEAD,	IM,  LOG_NORMAL, 1 },
+    { "string",		do_string,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+    { "switch",		do_switch,	POS_DEAD,	L6,  LOG_ALWAYS, 1 },
+    { "wizinvis",	do_invis,	POS_DEAD,	IM,  LOG_NORMAL, 1 },
+    { "vnum",		do_vnum,	POS_DEAD,	L4,  LOG_NORMAL, 1 },
 
-    { "holylite",   do_holylite,    POSITION_DEAD,      31, 9 },
-    { "immortal",   do_wiz,         POSITION_DEAD,      31, 9 },
-    { "imotd",	    do_imotd,       POSITION_DEAD,	31, 9 },
-    { ":",          do_wiz,         POSITION_DEAD,      31, 9 },
-/*  { "wizhelp",    do_wizhelp,     POSITION_DEAD,      31, 9 },    */
+    { "clone",		do_clone,	POS_DEAD,	L5,  LOG_ALWAYS, 1 },
+
+    { "immtalk",	do_immtalk,	POS_DEAD,	HE,  LOG_NORMAL, 1 },
+    { "imotd",          do_imotd,       POS_DEAD,       HE,  LOG_NORMAL, 1 },
+    { ":",		do_immtalk,	POS_DEAD,	HE,  LOG_NORMAL, 0 },
 
     /*
      * End of list.
      */
-    { "",           do_not_here,    POSITION_DEAD,      0,  9 }
+    { "",		0,		POS_DEAD,	 0,  LOG_NORMAL, 0 }
 };
 
 
 
-char *fill[]=
+
+/*
+ * The main entry point for executing commands.
+ * Can be recursively called from 'at', 'order', 'force'.
+ */
+void interpret( CHAR_DATA *ch, char *argument )
 {
-    "in", "from", "with", "the", "on", "at", "to", "\n"
-};
-
-
-
-void command_interpreter( struct char_data *ch, char *pcomm )
-{
-    int look_at;
+    char command[MAX_INPUT_LENGTH];
+    char logline[MAX_INPUT_LENGTH];
     int cmd;
+    int trust;
+    bool found;
 
-     
-    
+    /*
+     * Strip leading spaces.
+     */
+    while ( isspace(*argument) )
+	argument++;
+    if ( argument[0] == '\0' )
+	return;
+
     /*
      * No hiding.
      */
-    REMOVE_BIT( ch->specials.affected_by, AFF_HIDE );
-
-    /* set autosave on */
-    ch->specials.will_save = TRUE;
-    
-    if ( !IS_NPC(ch) && IS_SET(ch->specials.act, PLR_LOG) )
-    {
-	sprintf( log_buf, "Log %s: %s", GET_NAME(ch), pcomm );
-	log( log_buf );
-    }
+    REMOVE_BIT( ch->affected_by, AFF_HIDE );
 
     /*
      * Implement freeze command.
      */
-    if ( !IS_NPC(ch) && IS_SET(ch->specials.act, PLR_FREEZE) )
+    if ( !IS_NPC(ch) && IS_SET(ch->act, PLR_FREEZE) )
     {
 	send_to_char( "You're totally frozen!\n\r", ch );
 	return;
     }
 
     /*
-     * Strip initial spaces and parse command word.
-     * Translate to lower case.
+     * Grab the command word.
+     * Special parsing so ' can be a command,
+     *   also no spaces needed after punctuation.
      */
-    while ( *pcomm == ' ' )
-	pcomm++;
-    
-    for ( look_at = 0; pcomm[look_at] > ' '; look_at++ )
-	pcomm[look_at]  = LOWER(pcomm[look_at]);
+    strcpy( logline, argument );
+    if ( !isalpha(argument[0]) && !isdigit(argument[0]) )
+    {
+	command[0] = argument[0];
+	command[1] = '\0';
+	argument++;
+	while ( isspace(*argument) )
+	    argument++;
+    }
+    else
+    {
+	argument = one_argument( argument, command );
+    }
 
-    if ( look_at == 0 )
-	return;
-    
     /*
      * Look for command in command table.
      */
-    for ( cmd = 0; cmd < sizeof(cmd_info)/sizeof(cmd_info[0]); cmd++ )
+    found = FALSE;
+    trust = get_trust( ch );
+    for ( cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++ )
     {
-	if ( GET_LEVEL(ch) < cmd_info[cmd].minimum_level )
-	    continue;
-	if ( cmd_info[cmd].command_pointer == NULL )
-	    continue;
-	if ( memcmp( pcomm, cmd_info[cmd].command_name, look_at ) == 0 )
-	    goto LCmdFound;
+	if ( command[0] == cmd_table[cmd].name[0]
+	&&   !str_prefix( command, cmd_table[cmd].name )
+	&&   cmd_table[cmd].level <= trust )
+	{
+	    found = TRUE;
+	    break;
+	}
     }
 
     /*
-     * Look for command in socials table.
+     * Log and snoop.
      */
-    if ( check_social( ch, pcomm, look_at, &pcomm[look_at] ) )
+    if ( cmd_table[cmd].log == LOG_NEVER )
+	strcpy( logline, "" );
+
+    if ( ( !IS_NPC(ch) && IS_SET(ch->act, PLR_LOG) )
+    ||   fLogAll
+    ||   cmd_table[cmd].log == LOG_ALWAYS )
+    {
+	sprintf( log_buf, "Log %s: %s", ch->name, logline );
+	log_string( log_buf );
+    }
+
+    if ( ch->desc != NULL && ch->desc->snoop_by != NULL )
+    {
+	write_to_buffer( ch->desc->snoop_by, "% ",    2 );
+	write_to_buffer( ch->desc->snoop_by, logline, 0 );
+	write_to_buffer( ch->desc->snoop_by, "\n\r",  2 );
+    }
+
+    if ( !found )
+    {
+	/*
+	 * Look for command in socials table.
+	 */
+	if ( !check_social( ch, command, argument ) )
+	    send_to_char( "Huh?\n\r", ch );
 	return;
+    }
 
-    /*
-     * Unknown command (or char too low level).
-     */
-    send_to_char( "Huh?\n\r", ch );
-    return;
-
- LCmdFound:
     /*
      * Character not in position for command?
      */
-    if ( GET_POS(ch) < cmd_info[cmd].minimum_position )
+    if ( ch->position < cmd_table[cmd].position )
     {
-	switch( GET_POS(ch) )
+	switch( ch->position )
 	{
-	case POSITION_DEAD:
+	case POS_DEAD:
 	    send_to_char( "Lie still; you are DEAD.\n\r", ch );
 	    break;
-	case POSITION_INCAP:
-	case POSITION_MORTALLYW:
+
+	case POS_MORTAL:
+	case POS_INCAP:
 	    send_to_char( "You are hurt far too bad for that.\n\r", ch );
 	    break;
-	case POSITION_STUNNED:
+
+	case POS_STUNNED:
 	    send_to_char( "You are too stunned to do that.\n\r", ch );
 	    break;
-	case POSITION_SLEEPING:
+
+	case POS_SLEEPING:
 	    send_to_char( "In your dreams, or what?\n\r", ch );
 	    break;
-	case POSITION_RESTING:
+
+	case POS_RESTING:
 	    send_to_char( "Nah... You feel too relaxed...\n\r", ch);
 	    break;
-	case POSITION_SITTING:
-	    send_to_char( "Maybe you should stand up first?\n\r", ch);
+
+	case POS_SITTING:
+	    send_to_char( "Better stand up first.\n\r",ch);
 	    break;
-	case POSITION_FIGHTING:
+
+	case POS_FIGHTING:
 	    send_to_char( "No way!  You are still fighting!\n\r", ch);
 	    break;
+
 	}
 	return;
     }
 
     /*
-     * We're gonna execute it.
-     * First look for usable special procedure.
+     * Dispatch the command.
      */
-    if ( special( ch, cmd_info[cmd].command_number, &pcomm[look_at] ) )
-	return;
-      
-    /*
-     * Normal dispatch.
-     */
-    (*cmd_info[cmd].command_pointer)
-	(ch, &pcomm[look_at], cmd_info[cmd].command_number);
+    (*cmd_table[cmd].do_fun) ( ch, argument );
 
-    /*
-     * This call is here to prevent gcc from tail-chaining the
-     * previous call, which screws up the debugger call stack.
-     * -- Furey
-     */
-    number( 0, 0 );
+    tail_chain( );
     return;
 }
 
 
 
-int search_block(char *arg, char **list, bool exact)
+bool check_social( CHAR_DATA *ch, char *command, char *argument )
 {
-    register int i,l;
+    char arg[MAX_INPUT_LENGTH];
+    CHAR_DATA *victim;
+    int cmd;
+    bool found;
 
-    /* Make into lower case, and get length of string */
-    for(l=0; *(arg+l); l++)
-	*(arg+l)=LOWER(*(arg+l));
-
-    if (exact) {
-	for(i=0; **(list+i) != '\n'; i++)
-	    if (!strcmp(arg, *(list+i)))
-		return(i);
-    } else {
-	if (!l)
-	    l=1; /* Avoid "" to match the first available string */
-	for(i=0; **(list+i) != '\n'; i++)
-	    if (!strncmp(arg, *(list+i), l))
-		return(i);
-    }
-
-    return(-1);
-}
-
-
-int old_search_block(char *argument,int begin,int length,char **list,int mode)
-{
-    int guess, found, search;
-	
-    /* If the word contain 0 letters, then a match is already found */
-    found = (length < 1);
-
-    guess = 0;
-
-    /* Search for a match */
-
-    if(mode)
-    while ( !found && *(list[guess]) != '\n' )
+    found  = FALSE;
+    for ( cmd = 0; social_table[cmd].name[0] != '\0'; cmd++ )
     {
-	found = (length==strlen(list[guess]));
-	for ( search = 0; search < length && found; search++ )
-	    found=(*(argument+begin+search)== *(list[guess]+search));
-	guess++;
-    } else {
-	while ( !found && *(list[guess]) != '\n' ) {
-	    found=1;
-	    for(search=0;( search < length && found );search++)
-		found=(*(argument+begin+search)== *(list[guess]+search));
-	    guess++;
+	if ( command[0] == social_table[cmd].name[0]
+	&&   !str_prefix( command, social_table[cmd].name ) )
+	{
+	    found = TRUE;
+	    break;
 	}
     }
 
-    return ( found ? guess : -1 ); 
-}
+    if ( !found )
+	return FALSE;
 
-
-
-void argument_interpreter(char *argument,char *first_arg,char *second_arg )
-{
-    int look_at, found, begin;
-
-    found = begin = 0;
-
-    do
+    if ( !IS_NPC(ch) && IS_SET(ch->comm, COMM_NOEMOTE) )
     {
-	/* Find first non blank */
-	for ( ;*(argument + begin ) == ' ' ; begin++);
+	send_to_char( "You are anti-social!\n\r", ch );
+	return TRUE;
+    }
 
-	/* Find length of first word */
-	for ( look_at=0; *(argument+begin+look_at)> ' ' ; look_at++)
+    switch ( ch->position )
+    {
+    case POS_DEAD:
+	send_to_char( "Lie still; you are DEAD.\n\r", ch );
+	return TRUE;
 
-		/* Make all letters lower case,
-		   and copy them to first_arg */
-		*(first_arg + look_at) =
-		LOWER(*(argument + begin + look_at));
+    case POS_INCAP:
+    case POS_MORTAL:
+	send_to_char( "You are hurt far too bad for that.\n\r", ch );
+	return TRUE;
 
-	*(first_arg + look_at)='\0';
-	begin += look_at;
+    case POS_STUNNED:
+	send_to_char( "You are too stunned to do that.\n\r", ch );
+	return TRUE;
+
+    case POS_SLEEPING:
+	/*
+	 * I just know this is the path to a 12" 'if' statement.  :(
+	 * But two players asked for it already!  -- Furey
+	 */
+	if ( !str_cmp( social_table[cmd].name, "snore" ) )
+	    break;
+	send_to_char( "In your dreams, or what?\n\r", ch );
+	return TRUE;
 
     }
-    while( fill_word(first_arg));
 
-    do
+    one_argument( argument, arg );
+    victim = NULL;
+    if ( arg[0] == '\0' )
     {
-	/* Find first non blank */
-	for ( ;*(argument + begin ) == ' ' ; begin++);
-
-	/* Find length of first word */
-	for ( look_at=0; *(argument+begin+look_at)> ' ' ; look_at++)
-
-		/* Make all letters lower case,
-		   and copy them to second_arg */
-		*(second_arg + look_at) =
-		LOWER(*(argument + begin + look_at));
-
-	*(second_arg + look_at)='\0';
-	begin += look_at;
+	act( social_table[cmd].others_no_arg, ch, NULL, victim, TO_ROOM    );
+	act( social_table[cmd].char_no_arg,   ch, NULL, victim, TO_CHAR    );
     }
-    while( fill_word(second_arg));
-}
+    else if ( ( victim = get_char_room( ch, arg ) ) == NULL )
+    {
+	send_to_char( "They aren't here.\n\r", ch );
+    }
+    else if ( victim == ch )
+    {
+	act( social_table[cmd].others_auto,   ch, NULL, victim, TO_ROOM    );
+	act( social_table[cmd].char_auto,     ch, NULL, victim, TO_CHAR    );
+    }
+    else
+    {
+	act( social_table[cmd].others_found,  ch, NULL, victim, TO_NOTVICT );
+	act( social_table[cmd].char_found,    ch, NULL, victim, TO_CHAR    );
+	act( social_table[cmd].vict_found,    ch, NULL, victim, TO_VICT    );
 
-
-
-int is_number(char *str)
-{
-    int look_at;
-
-    if(*str=='\0')
-	return(0);
-
-    for(look_at=0;*(str+look_at) != '\0';look_at++)
-	if((*(str+look_at)<'0')||(*(str+look_at)>'9'))
-	    return(0);
-    return(1);
-}
-
-
-/* find the first sub-argument of a string, return pointer to first char in
-   primary argument, following the sub-arg                      */
-char *one_argument(char *argument, char *first_arg )
-{
-    int found, begin, look_at;
-
-	found = begin = 0;
-
-	do
+	if ( !IS_NPC(ch) && IS_NPC(victim)
+	&&   !IS_AFFECTED(victim, AFF_CHARM)
+	&&   IS_AWAKE(victim) 
+	&&   victim->desc == NULL)
 	{
-		/* Find first non blank */
-		for ( ;isspace(*(argument + begin)); begin++);
+	    switch ( number_bits( 4 ) )
+	    {
+	    case 0:
 
-		/* Find length of first word */
-		for (look_at=0; *(argument+begin+look_at) > ' ' ; look_at++)
+	    case 1: case 2: case 3: case 4:
+	    case 5: case 6: case 7: case 8:
+		act( social_table[cmd].others_found,
+		    victim, NULL, ch, TO_NOTVICT );
+		act( social_table[cmd].char_found,
+		    victim, NULL, ch, TO_CHAR    );
+		act( social_table[cmd].vict_found,
+		    victim, NULL, ch, TO_VICT    );
+		break;
 
-			/* Make all letters lower case,
-			   and copy them to first_arg */
-			*(first_arg + look_at) =
-			LOWER(*(argument + begin + look_at));
-
-		*(first_arg + look_at)='\0';
-	begin += look_at;
+	    case 9: case 10: case 11: case 12:
+		act( "$n slaps $N.",  victim, NULL, ch, TO_NOTVICT );
+		act( "You slap $N.",  victim, NULL, ch, TO_CHAR    );
+		act( "$n slaps you.", victim, NULL, ch, TO_VICT    );
+		break;
+	    }
+	}
     }
-	while (fill_word(first_arg));
 
-    return(argument+begin);
+    return TRUE;
 }
+
+
+
+/*
+ * Return true if an argument is completely numeric.
+ */
+bool is_number ( char *arg )
+{
+ 
+    if ( *arg == '\0' )
+        return FALSE;
+ 
+    if ( *arg == '+' || *arg == '-' )
+        arg++;
+ 
+    for ( ; *arg != '\0'; arg++ )
+    {
+        if ( !isdigit( *arg ) )
+            return FALSE;
+    }
+ 
+    return TRUE;
+}
+
+
+
+/*
+ * Given a string like 14.foo, return 14 and 'foo'
+ */
+int number_argument( char *argument, char *arg )
+{
+    char *pdot;
+    int number;
     
+    for ( pdot = argument; *pdot != '\0'; pdot++ )
+    {
+	if ( *pdot == '.' )
+	{
+	    *pdot = '\0';
+	    number = atoi( argument );
+	    *pdot = '.';
+	    strcpy( arg, pdot+1 );
+	    return number;
+	}
+    }
 
-
-int fill_word(char *argument)
-{
-    return ( search_block(argument,fill,TRUE) >= 0);
+    strcpy( arg, argument );
+    return 1;
 }
 
 
 
-/* determine if a given string is an abbreviation of another */
-int is_abbrev(char *arg1, char *arg2)
+/*
+ * Pick off one argument from a string and return the rest.
+ * Understands quotes.
+ */
+char *one_argument( char *argument, char *arg_first )
 {
-    if (!*arg1)
-       return(0);
+    char cEnd;
 
-    for (; *arg1; arg1++, arg2++)
-       if (LOWER(*arg1) != LOWER(*arg2))
-	  return(0);
+    while ( isspace(*argument) )
+	argument++;
 
-    return(1);
+    cEnd = ' ';
+    if ( *argument == '\'' || *argument == '"' )
+	cEnd = *argument++;
+
+    while ( *argument != '\0' )
+    {
+	if ( *argument == cEnd )
+	{
+	    argument++;
+	    break;
+	}
+	*arg_first = LOWER(*argument);
+	arg_first++;
+	argument++;
+    }
+    *arg_first = '\0';
+
+    while ( isspace(*argument) )
+	argument++;
+
+    return argument;
 }
 
-
-
-
-/* return first 'word' plus trailing substring of input string */
-void half_chop(char *string, char *arg1, char *arg2)
-{
-    for (; isspace(*string); string++);
-
-    for (; !isspace(*arg1 = *string) && *string; string++, arg1++);
-
-    *arg1 = '\0';
-
-    for (; isspace(*string); string++);
-
-    for (; ( *arg2 = *string ) != '\0'; string++, arg2++)
-	;
-}
-
-
-
-int special(struct char_data *ch, int cmd, char *arg)
-{
-    register struct obj_data *i;
-    register struct char_data *k;
-    int j;
-
-    /* special in room? */
-    if (world[ch->in_room].funct)
-       if ((*world[ch->in_room].funct)(ch, cmd, arg))
-	  return(1);
-
-    /* RT special in equipment list? no special items, removed 
-    for (j = 0; j <= (MAX_WEAR - 1); j++)
-       if (ch->equipment[j] && ch->equipment[j]->item_number>=0)
-	  if (obj_index[ch->equipment[j]->item_number].func)
-	     if ((*obj_index[ch->equipment[j]->item_number].func)
-		(ch, cmd, arg))
-		return(1);  */
-
-    /* RT special in inventory?  no special items, removed
-    for (i = ch->carrying; i; i = i->next_content)
-	if (i->item_number>=0)
-	    if (obj_index[i->item_number].func)
-	   if ((*obj_index[i->item_number].func)(ch, cmd, arg))
-	      return(1);  */
-
-    /* special in mobile present? */
-    for (k = world[ch->in_room].people; k; k = k->next_in_room)
-       if ( IS_MOB(k) )
-	  if (mob_index[k->nr].func)
-	     if ((*mob_index[k->nr].func)(ch, cmd, arg))
-		return(1);
-
-    /* special in object present? no special items, removed 
-    for (i = world[ch->in_room].contents; i; i = i->next_content)
-       if (i->item_number>=0)
-	  if (obj_index[i->item_number].func)
-	     if ((*obj_index[i->item_number].func)(ch, cmd, arg))
-		return(1);  */
-
-
-    return(0);
-}
-
-
-
-void do_wizhelp(struct char_data *ch, char *argument, int cmd_arg)
+/*
+ * Contributed by Alander.
+ */
+void do_commands( CHAR_DATA *ch, char *argument )
 {
     char buf[MAX_STRING_LENGTH];
     int cmd;
-    int no;
-
-    if (IS_NPC(ch))
-	return;
-
-    send_to_char(
-	"The following privileged comands are available:\n\r\n\r", ch);
-
-    buf[0] = '\0';
-    for ( cmd = 0, no = 0; cmd_info[cmd].command_name[0] != '\0'; cmd++ )
+    int col;
+ 
+    col = 0;
+    for ( cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++ )
     {
-	if ( cmd_info[cmd].minimum_level <= 30 )
-	    continue;
-	if ( cmd_info[cmd].minimum_level > GET_LEVEL(ch) )
-	    continue;
-
-	sprintf( buf + strlen(buf), "%-10s", cmd_info[cmd].command_name );
-	if ( no % 7 == 0 )
-	    strcat(buf, "\n\r");
-	no++;
+        if ( cmd_table[cmd].level <  LEVEL_HERO
+        &&   cmd_table[cmd].level <= get_trust( ch ) 
+	&&   cmd_table[cmd].show)
+	{
+	    sprintf( buf, "%-12s", cmd_table[cmd].name );
+	    send_to_char( buf, ch );
+	    if ( ++col % 6 == 0 )
+		send_to_char( "\n\r", ch );
+	}
     }
-
-    strcat(buf, "\n\r");
-    page_string(ch->desc, buf, 1);
+ 
+    if ( col % 6 != 0 )
+	send_to_char( "\n\r", ch );
+    return;
 }
 
-
-void do_commands(struct char_data *ch, char *argument, int cmd_arg)
+void do_wizhelp( CHAR_DATA *ch, char *argument )
 {
     char buf[MAX_STRING_LENGTH];
     int cmd;
-    int no;
+    int col;
  
-    if (IS_NPC(ch))
-        return;
- 
-    send_to_char(
-        "The following player comands are available:\n\r\n\r", ch);
- 
-    buf[0] = '\0';
-    for ( cmd = 0, no = 0; cmd_info[cmd].command_name[0] != '\0'; cmd++ )
+    col = 0;
+    for ( cmd = 0; cmd_table[cmd].name[0] != '\0'; cmd++ )
     {
-        if ( cmd_info[cmd].minimum_level > 30 )
-            continue;
-        if ( cmd_info[cmd].minimum_level > GET_LEVEL(ch) )
-            continue;
- 
-        sprintf( buf + strlen(buf), "%-10s", cmd_info[cmd].command_name );
-        if ( no % 7 == 0 )
-            strcat(buf, "\n\r");
-        no++;
+        if ( cmd_table[cmd].level >= LEVEL_HERO
+        &&   cmd_table[cmd].level <= get_trust( ch ) 
+        &&   cmd_table[cmd].show)
+	{
+	    sprintf( buf, "%-12s", cmd_table[cmd].name );
+	    send_to_char( buf, ch );
+	    if ( ++col % 6 == 0 )
+		send_to_char( "\n\r", ch );
+	}
     }
  
-    strcat(buf, "\n\r");
-    page_string(ch->desc, buf, 1);
+    if ( col % 6 != 0 )
+	send_to_char( "\n\r", ch );
+    return;
 }
+

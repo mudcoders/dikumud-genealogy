@@ -1,7 +1,0 @@
-Script started on Thu Apr 15 18:31:03 1993
-[cie-2:~/Merc/src] 1 % ~/Merc/src/merc 9000 >>& syslog &
-[1] 12323
-[cie-2:~/Merc/src] 2 % exit
-[1]    Exit 1               ~/Merc/src/merc 9000 >> & syslog
-[cie-2:~/Merc/src] 3 % 
-script done on Thu Apr 15 18:31:25 1993

@@ -1,193 +1,236 @@
-/***************************************************************************
- *  file: Interpreter.h , Command interpreter module.      Part of DIKUMUD *
- *  Usage: Procedures interpreting user command                            *
- *  Copyright (C) 1990, 1991 - see 'license.doc' for complete information. *
- *                                                                         *
- *  Copyright (C) 1992, 1993 Michael Chastain, Michael Quan, Mitchell Tse  *
- *  Performance optimization and bug fixes by MERC Industries.             *
- *  You can use our stuff in any way you like whatsoever so long as this   *
- *  copyright notice remains intact.  If you like it please drop a line    *
- *  to mec@garnet.berkeley.edu.                                            *
- *                                                                         *
- *  This is free software and you are benefitting.  We hope that you       *
- *  share your changes too.  What goes around, comes around.               *
- ***************************************************************************/
+/* this is a listing of all the commands and command related data */
 
-void command_interpreter(struct char_data *ch, char *argument);
-int search_block(char *arg, char **list, bool exact);
-int old_search_block(char *argument,int begin,int length,char **list,int mode);
-char lower( char c );
-void argument_interpreter(char *argument, char *first_arg, char *second_arg);
-char *one_argument(char *argument,char *first_arg);
-int fill_word(char *argument);
-void half_chop(char *string, char *arg1, char *arg2);
-void nanny(struct descriptor_data *d, char *arg);
-int is_abbrev(char *arg1, char *arg2);
-
+/* for command types */
+#define ML 	MAX_LEVEL	/* implementor */
+#define L1	MAX_LEVEL - 1  	/* creator */
+#define L2	MAX_LEVEL - 2	/* supreme being */
+#define L3	MAX_LEVEL - 3	/* deity */
+#define L4 	MAX_LEVEL - 4	/* god */
+#define L5	MAX_LEVEL - 5	/* immortal */
+#define L6	MAX_LEVEL - 6	/* demigod */
+#define L7	MAX_LEVEL - 7	/* angel */
+#define L8	MAX_LEVEL - 8	/* avatar */
+#define IM	LEVEL_IMMORTAL 	/* angel */
+#define HE	LEVEL_HERO	/* hero */
 
 
 /*
- * Command functions.
+ * Structure for a command in the command lookup table.
  */
-typedef void    DO_FUN  (struct char_data *ch, char *argument, int cmd);
+struct	cmd_type
+{
+    char * const	name;
+    DO_FUN *		do_fun;
+    sh_int		position;
+    sh_int		level;
+    sh_int		log;
+    bool              show;
+};
 
-DO_FUN  do_action;
-DO_FUN  do_advance;
-DO_FUN  do_allow;
-DO_FUN  do_answer;
-DO_FUN  do_ask;
-DO_FUN  do_assist;
-DO_FUN  do_at;
-DO_FUN  do_auction;
-DO_FUN  do_autoassist;
-DO_FUN  do_autoexit;
-DO_FUN  do_autogold;
-DO_FUN  do_autolist;
-DO_FUN  do_autoloot;
-DO_FUN  do_autosac;
-DO_FUN  do_autosplit;
-DO_FUN  do_backstab;
-DO_FUN  do_ban;
-DO_FUN  do_bash;
-DO_FUN  do_brief;
-DO_FUN  do_bug;
-DO_FUN  do_cast;
-DO_FUN  do_channels;
-DO_FUN  do_close;
-DO_FUN  do_commands;
-DO_FUN  do_compact;
-DO_FUN  do_consider;
-DO_FUN  do_credits;
-DO_FUN  do_deaf;
-DO_FUN  do_disarm;
-DO_FUN  do_disconnect;
-DO_FUN  do_drink;
-DO_FUN  do_drop;
-DO_FUN  do_eat;
-DO_FUN  do_echo;
-DO_FUN  do_emote;
-DO_FUN  do_enter;
-DO_FUN  do_equipment;
-DO_FUN  do_erase;
-DO_FUN  do_examine;
-DO_FUN  do_exit;
-DO_FUN  do_exits;
-DO_FUN  do_fill;
-DO_FUN  do_flee;
-DO_FUN  do_follow;
-DO_FUN  do_force;
-DO_FUN  do_freeze;
-DO_FUN  do_gecho;
-DO_FUN  do_get;
-DO_FUN  do_give;
-DO_FUN  do_gossip;
-DO_FUN  do_goto;
-DO_FUN  do_grab;
-DO_FUN  do_group;
-DO_FUN  do_grouptell;
-DO_FUN  do_help;
-DO_FUN  do_hide;
-DO_FUN  do_hit;
-DO_FUN  do_holylite;
-DO_FUN  do_idea;
-DO_FUN  do_imotd;
-DO_FUN  do_info;
-DO_FUN  do_insult;
-DO_FUN  do_inventory;
-DO_FUN  do_kick;
-DO_FUN  do_kill;
-DO_FUN  do_leave;
-DO_FUN  do_levels;
-DO_FUN  do_load;
-DO_FUN  do_lock;
-DO_FUN  do_log;
-DO_FUN  do_look;
-DO_FUN  do_motd;
-DO_FUN  do_move;
-DO_FUN  do_murder;
-DO_FUN  do_music;
-DO_FUN  do_newlock;
-DO_FUN  do_news;
-DO_FUN  do_nochannels;
-DO_FUN  do_noemote;
-DO_FUN  do_nofollow;
-DO_FUN  do_noloot;
-DO_FUN  do_noshout;
-DO_FUN  do_nosummon;
-DO_FUN  do_not_here;
-DO_FUN  do_notell;
-DO_FUN  do_number;
-DO_FUN  do_offer;
-DO_FUN  do_open;
-DO_FUN  do_order;
-DO_FUN  do_pardon;
-DO_FUN  do_pick;
-DO_FUN  do_pose;
-DO_FUN  do_pour;
-DO_FUN  do_practice;
-DO_FUN  do_purge;
-DO_FUN  do_put;
-DO_FUN  do_quaff;
-DO_FUN  do_question;
-DO_FUN  do_qui;
-DO_FUN  do_quiet;
-DO_FUN  do_quit;
-DO_FUN  do_read;
-DO_FUN	do_recall;
-DO_FUN  do_recite;
-DO_FUN  do_remove;
-DO_FUN  do_rent;
-DO_FUN  do_report;
-DO_FUN  do_reroll;
-DO_FUN  do_rescue;
-DO_FUN  do_rest;
-DO_FUN  do_restore;
-DO_FUN  do_return;
-DO_FUN  do_save;
-DO_FUN  do_say;
-DO_FUN  do_score;
-DO_FUN  do_scroll;
-DO_FUN  do_set;
-DO_FUN  do_shout;
-DO_FUN  do_shutdow;
-DO_FUN  do_shutdown;
-DO_FUN  do_sip;
-DO_FUN  do_sit;
-DO_FUN  do_sleep;
-DO_FUN  do_sneak;
-DO_FUN  do_snoop;
-DO_FUN  do_sockets;
-DO_FUN  do_split;
-DO_FUN  do_stand;
-DO_FUN  do_stat;
-DO_FUN  do_steal;
-DO_FUN  do_story;
-DO_FUN  do_string;
-DO_FUN  do_switch;
-DO_FUN  do_tap;
-DO_FUN  do_taste;
-DO_FUN  do_teleport;
-DO_FUN  do_tell;
-DO_FUN	do_tick;
-DO_FUN  do_time;
-DO_FUN  do_title;
-DO_FUN  do_trans;
-DO_FUN  do_trip;
-DO_FUN  do_typo;
-DO_FUN  do_unlock;
-DO_FUN  do_use;
-DO_FUN  do_visible;
-DO_FUN  do_wake;
-DO_FUN  do_wear;
-DO_FUN  do_weather;
-DO_FUN  do_where;
-DO_FUN  do_whisper;
-DO_FUN  do_who;
-DO_FUN  do_wield;
-DO_FUN  do_wimpy;
-DO_FUN  do_wiz;
-DO_FUN  do_wizhelp;
-DO_FUN  do_wizinvis;
-DO_FUN  do_wizlist;
-DO_FUN  do_wizlock;
-DO_FUN  do_write;
+/* the command table itself */
+extern	const	struct	cmd_type	cmd_table	[];
+
+/*
+ * Command functions.
+ * Defined in act_*.c (mostly).
+ */
+DECLARE_DO_FUN(	do_advance	);
+DECLARE_DO_FUN(	do_allow	);
+DECLARE_DO_FUN( do_answer	);
+DECLARE_DO_FUN(	do_areas	);
+DECLARE_DO_FUN(	do_at		);
+DECLARE_DO_FUN(	do_auction	);
+DECLARE_DO_FUN( do_autoassist	);
+DECLARE_DO_FUN( do_autoexit	);
+DECLARE_DO_FUN( do_autogold	);
+DECLARE_DO_FUN( do_autolist	);
+DECLARE_DO_FUN( do_autoloot	);
+DECLARE_DO_FUN( do_autosac	);
+DECLARE_DO_FUN( do_autosplit	);
+DECLARE_DO_FUN(	do_backstab	);
+DECLARE_DO_FUN(	do_bamfin	);
+DECLARE_DO_FUN(	do_bamfout	);
+DECLARE_DO_FUN(	do_ban		);
+DECLARE_DO_FUN( do_bash		);
+DECLARE_DO_FUN( do_berserk	);
+DECLARE_DO_FUN(	do_brandish	);
+DECLARE_DO_FUN( do_brief	);
+DECLARE_DO_FUN(	do_bug		);
+DECLARE_DO_FUN(	do_buy		);
+DECLARE_DO_FUN(	do_cast		);
+DECLARE_DO_FUN( do_changes	);
+DECLARE_DO_FUN( do_channels	);
+DECLARE_DO_FUN( do_clone	);
+DECLARE_DO_FUN(	do_close	);
+DECLARE_DO_FUN(	do_commands	);
+DECLARE_DO_FUN( do_combine	);
+DECLARE_DO_FUN( do_compact	);
+DECLARE_DO_FUN(	do_compare	);
+DECLARE_DO_FUN(	do_consider	);
+DECLARE_DO_FUN( do_count	);
+DECLARE_DO_FUN(	do_credits	);
+DECLARE_DO_FUN( do_deaf		);
+DECLARE_DO_FUN( do_delet	);
+DECLARE_DO_FUN( do_delete	);
+DECLARE_DO_FUN(	do_deny		);
+DECLARE_DO_FUN(	do_description	);
+DECLARE_DO_FUN( do_dirt		);
+DECLARE_DO_FUN(	do_disarm	);
+DECLARE_DO_FUN(	do_disconnect	);
+DECLARE_DO_FUN(	do_down		);
+DECLARE_DO_FUN(	do_drink	);
+DECLARE_DO_FUN(	do_drop		);
+DECLARE_DO_FUN( do_dump		);
+DECLARE_DO_FUN(	do_east		);
+DECLARE_DO_FUN(	do_eat		);
+DECLARE_DO_FUN(	do_echo		);
+DECLARE_DO_FUN(	do_emote	);
+DECLARE_DO_FUN(	do_equipment	);
+DECLARE_DO_FUN(	do_examine	);
+DECLARE_DO_FUN(	do_exits	);
+DECLARE_DO_FUN(	do_fill		);
+DECLARE_DO_FUN(	do_flee		);
+DECLARE_DO_FUN(	do_follow	);
+DECLARE_DO_FUN(	do_force	);
+DECLARE_DO_FUN(	do_freeze	);
+DECLARE_DO_FUN( do_gain		);
+DECLARE_DO_FUN(	do_get		);
+DECLARE_DO_FUN(	do_give		);
+DECLARE_DO_FUN( do_gossip	);
+DECLARE_DO_FUN(	do_goto		);
+DECLARE_DO_FUN(	do_group	);
+DECLARE_DO_FUN( do_groups	);
+DECLARE_DO_FUN(	do_gtell	);
+DECLARE_DO_FUN( do_heal		);
+DECLARE_DO_FUN(	do_help		);
+DECLARE_DO_FUN(	do_hide		);
+DECLARE_DO_FUN(	do_holylight	);
+DECLARE_DO_FUN(	do_idea		);
+DECLARE_DO_FUN(	do_immtalk	);
+DECLARE_DO_FUN( do_imotd	);
+DECLARE_DO_FUN(	do_inventory	);
+DECLARE_DO_FUN(	do_invis	);
+DECLARE_DO_FUN(	do_kick		);
+DECLARE_DO_FUN(	do_kill		);
+DECLARE_DO_FUN(	do_list		);
+DECLARE_DO_FUN( do_load		);
+DECLARE_DO_FUN(	do_lock		);
+DECLARE_DO_FUN(	do_log		);
+DECLARE_DO_FUN(	do_look		);
+DECLARE_DO_FUN(	do_memory	);
+DECLARE_DO_FUN(	do_mfind	);
+DECLARE_DO_FUN(	do_mload	);
+DECLARE_DO_FUN(	do_mset		);
+DECLARE_DO_FUN(	do_mstat	);
+DECLARE_DO_FUN(	do_mwhere	);
+DECLARE_DO_FUN( do_motd		);
+DECLARE_DO_FUN(	do_murde	);
+DECLARE_DO_FUN(	do_murder	);
+DECLARE_DO_FUN( do_music	);
+DECLARE_DO_FUN( do_newlock	);
+DECLARE_DO_FUN( do_news		);
+DECLARE_DO_FUN( do_nochannels	);
+DECLARE_DO_FUN(	do_noemote	);
+DECLARE_DO_FUN( do_nofollow	);
+DECLARE_DO_FUN( do_noloot	);
+DECLARE_DO_FUN(	do_north	);
+DECLARE_DO_FUN(	do_noshout	);
+DECLARE_DO_FUN( do_nosummon	);
+DECLARE_DO_FUN(	do_note		);
+DECLARE_DO_FUN(	do_notell	);
+DECLARE_DO_FUN(	do_ofind	);
+DECLARE_DO_FUN(	do_oload	);
+DECLARE_DO_FUN(	do_open		);
+DECLARE_DO_FUN(	do_order	);
+DECLARE_DO_FUN(	do_oset		);
+DECLARE_DO_FUN(	do_ostat	);
+DECLARE_DO_FUN( do_outfit	);
+DECLARE_DO_FUN(	do_pardon	);
+DECLARE_DO_FUN(	do_password	);
+DECLARE_DO_FUN(	do_peace	);
+DECLARE_DO_FUN( do_pecho	);
+DECLARE_DO_FUN(	do_pick		);
+DECLARE_DO_FUN(	do_pose		);
+DECLARE_DO_FUN(	do_practice	);
+DECLARE_DO_FUN( do_prompt	);
+DECLARE_DO_FUN(	do_purge	);
+DECLARE_DO_FUN(	do_put		);
+DECLARE_DO_FUN(	do_quaff	);
+DECLARE_DO_FUN( do_question	);
+DECLARE_DO_FUN(	do_qui		);
+DECLARE_DO_FUN( do_quiet	);
+DECLARE_DO_FUN(	do_quit		);
+DECLARE_DO_FUN( do_read		);
+DECLARE_DO_FUN(	do_reboo	);
+DECLARE_DO_FUN(	do_reboot	);
+DECLARE_DO_FUN(	do_recall	);
+DECLARE_DO_FUN(	do_recho	);
+DECLARE_DO_FUN(	do_recite	);
+DECLARE_DO_FUN(	do_remove	);
+DECLARE_DO_FUN(	do_rent		);
+DECLARE_DO_FUN(	do_reply	);
+DECLARE_DO_FUN(	do_report	);
+DECLARE_DO_FUN(	do_rescue	);
+DECLARE_DO_FUN(	do_rest		);
+DECLARE_DO_FUN(	do_restore	);
+DECLARE_DO_FUN(	do_return	);
+DECLARE_DO_FUN(	do_rset		);
+DECLARE_DO_FUN(	do_rstat	);
+DECLARE_DO_FUN( do_rules	);
+DECLARE_DO_FUN(	do_sacrifice	);
+DECLARE_DO_FUN(	do_save		);
+DECLARE_DO_FUN(	do_say		);
+DECLARE_DO_FUN(	do_score	);
+DECLARE_DO_FUN( do_scroll	);
+DECLARE_DO_FUN(	do_sell		);
+DECLARE_DO_FUN( do_set		);
+DECLARE_DO_FUN(	do_shout	);
+DECLARE_DO_FUN(	do_shutdow	);
+DECLARE_DO_FUN(	do_shutdown	);
+DECLARE_DO_FUN( do_sit		);
+DECLARE_DO_FUN( do_skills	);
+DECLARE_DO_FUN(	do_sla		);
+DECLARE_DO_FUN(	do_slay		);
+DECLARE_DO_FUN(	do_sleep	);
+DECLARE_DO_FUN(	do_slookup	);
+DECLARE_DO_FUN(	do_sneak	);
+DECLARE_DO_FUN(	do_snoop	);
+DECLARE_DO_FUN( do_socials	);
+DECLARE_DO_FUN(	do_south	);
+DECLARE_DO_FUN( do_sockets	);
+DECLARE_DO_FUN( do_spells	);
+DECLARE_DO_FUN(	do_split	);
+DECLARE_DO_FUN(	do_sset		);
+DECLARE_DO_FUN(	do_stand	);
+DECLARE_DO_FUN( do_stat		);
+DECLARE_DO_FUN(	do_steal	);
+DECLARE_DO_FUN( do_story	);
+DECLARE_DO_FUN( do_string	);
+DECLARE_DO_FUN(	do_switch	);
+DECLARE_DO_FUN(	do_tell		);
+DECLARE_DO_FUN(	do_time		);
+DECLARE_DO_FUN(	do_title	);
+DECLARE_DO_FUN(	do_train	);
+DECLARE_DO_FUN(	do_transfer	);
+DECLARE_DO_FUN( do_trip		);
+DECLARE_DO_FUN(	do_trust	);
+DECLARE_DO_FUN(	do_typo		);
+DECLARE_DO_FUN(	do_unlock	);
+DECLARE_DO_FUN(	do_up		);
+DECLARE_DO_FUN(	do_value	);
+DECLARE_DO_FUN(	do_visible	);
+DECLARE_DO_FUN( do_vnum		);
+DECLARE_DO_FUN(	do_wake		);
+DECLARE_DO_FUN(	do_wear		);
+DECLARE_DO_FUN(	do_weather	);
+DECLARE_DO_FUN(	do_west		);
+DECLARE_DO_FUN(	do_where	);
+DECLARE_DO_FUN(	do_who		);
+DECLARE_DO_FUN( do_whois	);
+DECLARE_DO_FUN(	do_wimpy	);
+DECLARE_DO_FUN(	do_wizhelp	);
+DECLARE_DO_FUN(	do_wizlock	);
+DECLARE_DO_FUN( do_wizlist	);
+DECLARE_DO_FUN( do_worth	);
+DECLARE_DO_FUN(	do_yell		);
+DECLARE_DO_FUN(	do_zap		);
