@@ -176,9 +176,9 @@ void move_char( CHAR_DATA *ch, int door )
 	if (   to_room->sector_type != SECT_WATER_SWIM
 	    && to_room->sector_type != SECT_WATER_NOSWIM
 	    && to_room->sector_type != SECT_UNDERWATER
-	    && strcmp( race_table[ ch->riding->race ].name, "God" )
-	    && strcmp( race_table[ ch->riding->race ].name, "Bear" )
-	    && IS_SET( race_table[ ch->riding->race ].race_abilities, RACE_SWIM ) )
+	    && str_cmp( race_table[ ch->riding->race ].name, "God"  )
+	    && str_cmp( race_table[ ch->riding->race ].name, "Bear" )
+	    && IS_SET(  race_table[ ch->riding->race ].race_abilities, RACE_SWIM ) )
 	{
 	    send_to_char( "Your mount flaps around but can't move!\n\r", ch );
 	    return;
@@ -189,9 +189,9 @@ void move_char( CHAR_DATA *ch, int door )
 	if (   to_room->sector_type != SECT_WATER_SWIM
 	    && to_room->sector_type != SECT_WATER_NOSWIM
 	    && to_room->sector_type != SECT_UNDERWATER
-	    && strcmp( race_table[ ch->race ].name, "God" )
-	    && strcmp( race_table[ ch->race ].name, "Bear" )
-	    && IS_SET( race_table[ ch->race ].race_abilities, RACE_SWIM ) )
+	    && str_cmp( race_table[ ch->race ].name, "God"  )
+	    && str_cmp( race_table[ ch->race ].name, "Bear" )
+	    && IS_SET(  race_table[ ch->race ].race_abilities, RACE_SWIM ) )
 	{
 	    send_to_char( "You flap around but you can't move!\n\r", ch );
 	    return;
@@ -353,32 +353,6 @@ void move_char( CHAR_DATA *ch, int door )
     char_from_room( ch );
     char_to_room( ch, to_room );
 
-    if ( ch->riding
-	&& ch->in_room != ch->riding->in_room )
-    {
-	move_char( ch->riding, door );
-	if ( ch->riding->in_room != ch->in_room ) 
-	{
-	    send_to_char( "You are forced to leave your mount behind.\n\r", ch );
-	    send_to_char( "Your rider couldn't follow you.\n\r", ch->riding );
-	    ch->riding->rider = NULL;
-	    ch->riding        = NULL; 
-	}
-    }
-    else
-    if ( ch->rider
-	&& ch->in_room != ch->rider->in_room )
-    {
-	move_char( ch->rider, door );
-	if ( ch->rider->in_room != ch->in_room ) 
-	{
-	    send_to_char( "You are forced to leave your rider behind.\n\r", ch );
-	    send_to_char( "Your mount couldn't follow you.\n\r", ch->rider );
-	    ch->rider->riding = NULL;
-	    ch->rider         = NULL;
-	}
-    }
-
     if ( !IS_AFFECTED( ch, AFF_SNEAK )
 	&& ( IS_NPC( ch ) || !IS_SET( ch->act, PLR_WIZINVIS ) ) )
     {
@@ -389,7 +363,7 @@ void move_char( CHAR_DATA *ch, int door )
     }
 
     /* Because of the addition of the deleted flag, we can do this -Kahn */
-    if ( !IS_IMMORTAL( ch ) && !strcmp( race_table[ ch->race ].name, "Vampire" )
+    if ( !IS_IMMORTAL( ch ) && !str_cmp( race_table[ch->race].name, "Vampire" )
 	&& to_room->sector_type == SECT_UNDERWATER )
     {
 	send_to_char( "Arrgh!  Large body of water!\n\r", ch );
@@ -1302,11 +1276,6 @@ void do_recall( CHAR_DATA *ch, char *argument )
     act( "$n disappears.", ch, NULL, NULL, TO_ROOM );
     char_from_room( ch );
     char_to_room( ch, location );
-    if ( ch->riding )
-    {
-	char_from_room( ch->riding );
-	char_to_room( ch->riding, location );
-    }
     act( "$n appears in the room.", ch, NULL, NULL, TO_ROOM );
     do_look( ch, "auto" );
 
@@ -2147,20 +2116,6 @@ void do_enter( CHAR_DATA * ch, char *argument )
 	act( "$n has arrived.", ch, portal, NULL, TO_ROOM );
 
     do_look( ch, "auto" );
-
-    if ( ch->rider )
-    {
-        char_from_room( ch->rider );
-        char_to_room( ch->rider, location );
-        do_look( ch->rider, "auto" );
-    }
-
-    if ( ch->riding )
-    {
-        char_from_room( ch->riding );
-        char_to_room( ch->riding, location );
-        do_look( ch->riding, "auto" );
-    }
 
     if ( portal->value[0] > 0 )	/*
 				 * This way i prevent an underflow 

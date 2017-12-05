@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 35} Chris   The Keep of Mahn-Tor~
-Builders    None~
-VNUMs       2300 2399
+Name        The Keep of Mahn-Tor~
+Author      Chris~
+Levels      15 35
 Security    1
+VNUMs       2300 2399
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -433,9 +436,9 @@ A pair of metal plated gloves lie here.~
 8~ 0~ 0~ 0~ 0~
 6 10000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 E
 gloves combat~
 These gloves are plated with metal plates that provide strength and 
@@ -476,9 +479,9 @@ A shiny metal rod lies here.~
 0~ 5~ 5~ 6~ 0~
 24 50000 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 #2305
 cloak pitch black~
 a pitch black cloak~
@@ -540,9 +543,9 @@ A very evil looking shortsword lies here.~
 0~ 5~ 4~ 11~ 0~
 9 75000 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 E
 nightbringer short sword shortsword~
 The runes "NiGHtBrINgeR" are scrawled along the blade.
@@ -556,9 +559,9 @@ A helm and visor made of pure gold rests here.~
 7~ 0~ 0~ 0~ 0~
 15 25000 0
 A
-4 1 0
-A
 3 1 0
+A
+4 1 0
 #2311
 breast plate gilded gold~
 a gilded gold breast plate~
@@ -600,9 +603,9 @@ A huge mace lies here. It radiates an aura of power.~
 0~ 5~ 5~ 6~ 0~
 24 50000 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 E
 dawnbringer mace huge~
 The runes "DAwNbRIngER" are scrawled along the handle.
@@ -630,9 +633,9 @@ A small ring made of gold and silver bands lies here.~
 1~ 0~ 0~ 0~ 0~
 2 25000 0
 A
-12 30 0
-A
 9 10 0
+A
+12 30 0
 E
 ring banded~
 The ring has entwined bands of gold and silver.
@@ -646,9 +649,9 @@ A small globe rests here. It shimmers and radiates power.~
 10~ 0~ 0~ 0~ 0~
 1 50000 0
 A
-24 -5 0
-A
 23 -5 0
+A
+24 -5 0
 E
 globe minor~
 Shimmering colors move inside the globe.
@@ -662,9 +665,9 @@ A gnarled staff lies here.~
 0~ 4~ 4~ 6~ 0~
 10 35000 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 E
 staff gnarled magius~
 It appears to be simply a gnarled old limb. It feels powerful though.
@@ -720,9 +723,9 @@ A huge mace made of mithril metal lies here.~
 0~ 4~ 4~ 6~ 0~
 13 25000 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #2324
 symbol holy golden~
 a golden holy symbol~
@@ -786,9 +789,9 @@ A staff made of ice rests here.~
 0~ 6~ 3~ 6~ 0~
 13 45000 0
 A
-18 2 0
-A
 12 20 0
+A
+18 2 0
 E
 staff ice~
 The runes "FrIgID" are inscribed in the icy staff.
@@ -802,9 +805,9 @@ A wooden ring is on the floor.~
 1~ 0~ 0~ 0~ 0~
 3 25000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #2331
 horn life~
 the horn of life~
@@ -850,9 +853,9 @@ A huge crossbow rests here.~
 0~ 3~ 7~ 7~ 0~
 15 35000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #2335
 pack leather small~
 a small leather pack~
@@ -902,9 +905,9 @@ A wicked looking shortsword lies here.~
 0~ 3~ 5~ 11~ 0~
 11 50000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 E
 sword wicked short shortsword~
 It looks just perfect for backstabbing.
@@ -932,9 +935,9 @@ A huge pile of black chainmail rests here.~
 15~ 0~ 0~ 0~ 0~
 12 100000 0
 A
-1 1 0
-A
 5 1 0
+A
+1 1 0
 #2342
 buckler spiked~
 a spiked buckler~
@@ -972,9 +975,9 @@ An extremely huge axe is resting here.~
 0~ 5~ 5~ 3~ 0~
 26 100000 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 E
 axe great~
 The runes "DeAtH" are scrawled along the blade.
@@ -1014,9 +1017,9 @@ A shimmering blade lies here.~
 0~ 4~ 3~ 3~ 0~
 3 10000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 E
 blade ethereal~
 You can almost see through it.
@@ -1193,9 +1196,9 @@ A huge halberd has been left here.~
 0~ 9~ 2~ 3~ 0~
 18 20000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #2369
 visor blue steel helm~
 a blue steel helm and visor~
@@ -1229,9 +1232,9 @@ A large sword lies here.~
 0~ 6~ 3~ 3~ 0~
 18 20000 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #2373
 visor helm steel red~
 a red steel helm and visor~
@@ -1265,9 +1268,9 @@ A very large glaive rests here.~
 0~ 5~ 4~ 3~ 0~
 19 45000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #2377
 visor helm crimson steel~
 a crimson steel helm and visor~
@@ -1301,9 +1304,9 @@ A huge morningstar rests here.~
 0~ 7~ 3~ 6~ 0~
 20 65000 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 E
 star morning morningstar~
 It looks damaging.
@@ -1397,11 +1400,11 @@ Some heavy gauntlets lie here.~
 7~ 0~ 0~ 0~ 0~
 13 75000 0
 A
-1 4 0
+17 10 0
 A
 19 3 0
 A
-17 10 0
+1 4 0
 E
 gauntlets ogre power~
 They look very "handy".
@@ -1951,13 +1954,13 @@ There are small inscriptions on the rock at the base of the portal.
 ~
 0 0 2
 E
-small inscriptions inscription~
-"Enter all ye who wish to join the Brotherhood!"
-~
-E
 portal blue~
 You see a swirling blue portal of light. You think you can see glimpses of
 something moving on the "other side".
+~
+E
+small inscriptions inscription~
+"Enter all ye who wish to join the Brotherhood!"
 ~
 D0
 ~
@@ -3186,12 +3189,12 @@ door is to the west. To the east, you see a heavy stone door.
 ~
 0 8 0
 E
-gold~
-Looks like the back of a secret door of sorts.
-~
-E
 huge stone~
 A very formidable looking door.
+~
+E
+gold~
+Looks like the back of a secret door of sorts.
 ~
 D1
 ~
@@ -3253,12 +3256,12 @@ itself leads south and north.
 ~
 0 8 0
 E
-red~
-You see a red door. It has the name "Gorak" written on it.
-~
-E
 yellow~
 You see a yellow door. It has the name "Sumaron" written on it.
+~
+E
+red~
+You see a red door. It has the name "Gorak" written on it.
 ~
 D0
 ~
@@ -3285,12 +3288,12 @@ black door. The hall itself leads north and south.
 ~
 0 8 0
 E
-black~
-You see a black door. It has the name "Darkoth" inscribed on it.
-~
-E
 maroon~
 You see a maroon door here. It has the name "Amyrok" written on it.
+~
+E
+black~
+You see a black door. It has the name "Darkoth" inscribed on it.
 ~
 D0
 ~
@@ -3351,12 +3354,12 @@ south.
 ~
 0 8 0
 E
-white~
-You see a white door here. It has the name "Tyrgoth" inscribed on it.
-~
-E
 green~
 You see a green door here. It has the name "Nasturn" written on it.
+~
+E
+white~
+You see a white door here. It has the name "Tyrgoth" inscribed on it.
 ~
 D0
 ~
@@ -3448,12 +3451,12 @@ itself leads north back along the rows of doors.
 ~
 0 8 0
 E
-brown~
-You see a brown door here. It has the name "Belrak" written on it.
-~
-E
 grey~
 You see a grey door here. It has the name "Dorgar" written on it.
+~
+E
+brown~
+You see a brown door here. It has the name "Belrak" written on it.
 ~
 D0
 ~
@@ -3516,6 +3519,10 @@ M 2328 spec_cast_mage
 M 2329 spec_cast_cleric
 M 2330 spec_cast_cleric
 M 2333 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

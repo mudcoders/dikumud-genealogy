@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 1  5} Furey   Machine Dreams~
-Builders    None~
-VNUMs       8600 8699
+Name        Machine Dreams~
+Author      Furey~
+Levels      1 5
 Security    1
+VNUMs       8600 8699
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -71,7 +74,7 @@ a morris staff~
 A short, stout staff made of polished wood is here.~
 ~
 4 0 16385
-10~ 4~ 4~ protection evil~ 0~
+10~ 4~ 4~ protection~ 0~
 5 10000 0
 E
 stick staff~
@@ -1254,12 +1257,16 @@ You are suspended in cool electric space above a translucent plain.  You feel
 synesthesia invading your nerves and reshuffling your senses.  The sky is the
 same obsidian color as the ground and you can't find a horizon.
 ~
-0 2052 2
+0 2048 2
 S
 #0
 
 
 #SPECIALS
+S
+
+
+#GAMES
 S
 
 

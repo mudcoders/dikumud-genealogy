@@ -41,15 +41,13 @@
  * -- Furey  26 Jan 1993
  */
 
-#if defined( WIN32 )
-char version_str[] = "$VER: EnvyMud 2.2 Windows 32 Bit Version";
+#if   defined( WIN32 )
+char version_str [] = "$VER: EnvyMud 2.2 Windows 32 Bit Version";
 /*
  * Provided by Mystro <http://www.cris.com/~Kendugas/mud.shtml>
  */
-#endif
-
-#if defined( AmigaTCP )
-char version_str[] = "$VER: Merc/Diku Mud Envy2.2 AmiTCP Version";
+#elif defined( AmigaTCP )
+char version_str [] = "$VER: EnvyMud 2.2 AmiTCP Version";
 /*
  * You must rename or delete the sc:sys/types.h, so the 
  * amitcp:netinclude/sys/types.h will be used instead.
@@ -63,17 +61,17 @@ char version_str[] = "$VER: Merc/Diku Mud Envy2.2 AmiTCP Version";
  * or davek@megnet.net
  * 4-16-96
  */
-#endif
-
-#if !defined( WIN32 ) && !defined( AmigaTCP )
-char version_str[] = "$VER: EnvyMud 2.2 *NIX";
+#else
+char version_str [] = "$VER: EnvyMud 2.2 *NIX";
 #endif
 
 #if defined( macintosh )
 #include <types.h>
 #else
 #include <sys/types.h>
-#if !defined( WIN32 )
+#if defined( WIN32 )
+#include <sys/timeb.h> /*for _ftime(), uses _timeb struct*/
+#else
 #include <sys/time.h>
 #endif
 #endif
@@ -85,12 +83,6 @@ char version_str[] = "$VER: EnvyMud 2.2 *NIX";
 #include <string.h>
 #include <time.h>
 #include <stdarg.h>
-
-#if defined( WIN32 )
-#include <winsock.h>
-#include <sys/timeb.h> /*for _ftime(), uses _timeb struct*/
-#endif
-
 #include "merc.h"
 
 
@@ -149,6 +141,14 @@ const	char	echo_on_str	[] = { IAC, WONT, TELOPT_ECHO, '\0' };
 const	char 	go_ahead_str	[] = { IAC, GA, '\0' };
 #endif
 
+#if	defined( WIN32 )
+#include <winsock.h>
+#include "telnet.h"
+const	char	echo_off_str	[] = { IAC, WILL, TELOPT_ECHO, '\0' };
+const	char	echo_on_str	[] = { IAC, WONT, TELOPT_ECHO, '\0' };
+const	char 	go_ahead_str	[] = { IAC, GA, '\0' };
+#endif
+
 
 
 /*
@@ -158,9 +158,6 @@ const	char 	go_ahead_str	[] = { IAC, GA, '\0' };
 #include <sys/select.h>
 int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
 int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
-void	bzero		args( ( char *b, int length ) );
-int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
-int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	setsockopt	args( ( int s, int level, int optname, void *optval,
@@ -169,7 +166,6 @@ int	socket		args( ( int domain, int type, int protocol ) );
 #endif
 
 #if     defined( irix )
-void	bzero		args( ( char *b, int length ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
 int	write		args( ( int fd, char *buf, int nbyte ) );
 int	close		args( ( int fd ) );
@@ -180,9 +176,6 @@ int	select		args( ( int width, fd_set *readfds, fd_set *writefds,
 #if	defined( __hpux )
 int	accept		args( ( int s, void *addr, int *addrlen ) );
 int	bind		args( ( int s, const void *addr, int addrlen ) );
-void	bzero		args( ( char *b, int length ) );
-int	getpeername	args( ( int s, void *addr, int *addrlen ) );
-int	getsockname	args( ( int s, void *name, int *addrlen ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	setsockopt	args( ( int s, int level, int optname,
@@ -233,13 +226,6 @@ int	gettimeofday	args( ( struct timeval *tp, void *tzp ) );
 extern	int		errno;
 #endif
 
-#if	defined( WIN32 )
-const   char echo_off_str	[] = { '\0' };
-const   char echo_on_str	[] = { '\0' };
-const   char go_ahead_str	[] = { '\0' };
-void    gettimeofday    args( ( struct timeval *tp, void *tzp ) );
-#endif
-
 #if	defined( NeXT )
 int	close		args( ( int fd ) );
 int	fcntl		args( ( int fd, int cmd, int arg ) );
@@ -260,8 +246,6 @@ int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
 int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
 int	close		args( ( int fd ) );
 int	fcntl		args( ( int fd, int cmd, int arg ) );
-int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
-int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 #if	!defined( htons )
 u_short	htons		args( ( u_short hostshort ) );
@@ -286,10 +270,7 @@ int	write		args( ( int fd, char *buf, int nbyte ) );
 #if defined( sun )
 int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
 int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
-void	bzero		args( ( char *b, int length ) );
 int	close		args( ( int fd ) );
-int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
-int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
 #if !defined( SYSV )
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 #endif
@@ -311,10 +292,7 @@ int	write		args( ( int fd, char *buf, int nbyte ) );
 #if defined( ultrix )
 int	accept		args( ( int s, struct sockaddr *addr, int *addrlen ) );
 int	bind		args( ( int s, struct sockaddr *name, int namelen ) );
-void	bzero		args( ( char *b, int length ) );
 int	close		args( ( int fd ) );
-int	getpeername	args( ( int s, struct sockaddr *name, int *namelen ) );
-int	getsockname	args( ( int s, struct sockaddr *name, int *namelen ) );
 int	gettimeofday	args( ( struct timeval *tp, struct timezone *tzp ) );
 int	listen		args( ( int s, int backlog ) );
 int	read		args( ( int fd, char *buf, int nbyte ) );
@@ -324,6 +302,10 @@ int	setsockopt	args( ( int s, int level, int optname, void *optval,
 			       int optlen ) );
 int	socket		args( ( int domain, int type, int protocol ) );
 int	write		args( ( int fd, char *buf, int nbyte ) );
+#endif
+
+#if	defined( WIN32 )
+void    gettimeofday    args( ( struct timeval *tp, void *tzp ) );
 #endif
 
 
@@ -382,6 +364,7 @@ bool	process_output		args( ( DESCRIPTOR_DATA *d, bool fPrompt ) );
 void	read_from_buffer	args( ( DESCRIPTOR_DATA *d ) );
 void	stop_idling		args( ( CHAR_DATA *ch ) );
 void    bust_a_prompt           args( ( DESCRIPTOR_DATA *d ) );
+void    flush_command           args( ( DESCRIPTOR_DATA *d ) );
 
 
 int main( int argc, char **argv )
@@ -653,26 +636,41 @@ void game_loop_mac_msdos( void )
 		continue;
 	    }
 
-	    read_from_buffer( d );
-	    if ( d->incomm[0] != '\0' )
+	    if ( d->flush_point )
+	    {
+		flush_command( d );
+	    }
+	    else
+	    {
+		read_from_buffer( d );
+		if ( IS_PLAYING( d ) )
+		    substitute_alias( d );
+	    }
+
+	    if ( d->incomm[0] != '\0' || d->flusher[0] != '\0' )
 	    {
 		d->fcommand	= TRUE;
 		stop_idling( d->character );
 
-		     if ( d->str_editing )
-			string_add( d->character, d->incomm );
-		else if ( d->showstr_point )
+		if ( d->flush_point )
+		    intcomm = d->flusher;
+		else
+		    intcomm = d->incomm;
+
+		     if ( d->showstr_point )
 			show_string( d, d->incomm );
+		else if ( d->str_editing )
+			string_add( d->character, d->incomm );
 		else
 		switch ( d->connected )
 		{
-		case CON_PLAYING:   substitute_alias( d, d->incomm );	  break;
-		case CON_AEDITOR:   aedit( d->character, d->incomm );	  break;
-		case CON_REDITOR:   redit( d->character, d->incomm );	  break;
-		case CON_OEDITOR:   oedit( d->character, d->incomm );	  break;
-		case CON_MEDITOR:   medit( d->character, d->incomm );	  break;
-		case CON_MPEDITOR:  mpedit( d->character, d->incomm );	  break;
-		default:	    nanny( d, d->incomm );		  break;
+		case CON_PLAYING:   interpret( d->character, intcomm );   break;
+		case CON_AEDITOR:   aedit    ( d->character, intcomm );   break;
+		case CON_REDITOR:   redit    ( d->character, intcomm );   break;
+		case CON_OEDITOR:   oedit    ( d->character, intcomm );   break;
+		case CON_MEDITOR:   medit    ( d->character, intcomm );   break;
+		case CON_MPEDITOR:  mpedit   ( d->character, intcomm );   break;
+		default:	    nanny               ( d, intcomm );   break;
 		}
 
 		d->incomm[0]	= '\0';
@@ -765,6 +763,7 @@ void game_loop_unix( int control )
 	fd_set           out_set;
 	fd_set           exc_set;
 	int              maxdesc;
+	char            *intcomm;
 
 #if defined( MALLOC_DEBUG )
 	if ( malloc_verify( ) != 1 )
@@ -846,26 +845,41 @@ void game_loop_unix( int control )
 		continue;
 	    }
 
-	    read_from_buffer( d );
-	    if ( d->incomm[0] != '\0' )
+	    if ( d->flush_point )
+	    {
+		flush_command( d );
+	    }
+	    else
+	    {
+		read_from_buffer( d );
+		if ( IS_PLAYING( d ) )
+		    substitute_alias( d );
+	    }
+
+	    if ( d->incomm[0] != '\0' || d->flusher[0] != '\0' )
 	    {
 		d->fcommand	= TRUE;
 		stop_idling( d->character );
 
-		     if ( d->str_editing )
-			string_add( d->character, d->incomm );
-		else if ( d->showstr_point )
+		if ( d->flush_point )
+		    intcomm = d->flusher;
+		else
+		    intcomm = d->incomm;
+
+		     if ( d->showstr_point )
 			show_string( d, d->incomm );
+		else if ( d->str_editing )
+			string_add( d->character, d->incomm );
 		else
 		switch ( d->connected )
 		{
-		case CON_PLAYING:   substitute_alias( d, d->incomm );	  break;
-		case CON_AEDITOR:   aedit( d->character, d->incomm );	  break;
-		case CON_REDITOR:   redit( d->character, d->incomm );	  break;
-		case CON_OEDITOR:   oedit( d->character, d->incomm );	  break;
-		case CON_MEDITOR:   medit( d->character, d->incomm );	  break;
-		case CON_MPEDITOR:  mpedit( d->character, d->incomm );	  break;
-		default:	    nanny( d, d->incomm );		  break;
+		case CON_PLAYING:   interpret( d->character, intcomm );   break;
+		case CON_AEDITOR:   aedit    ( d->character, intcomm );   break;
+		case CON_REDITOR:   redit    ( d->character, intcomm );   break;
+		case CON_OEDITOR:   oedit    ( d->character, intcomm );   break;
+		case CON_MEDITOR:   medit    ( d->character, intcomm );   break;
+		case CON_MPEDITOR:  mpedit   ( d->character, intcomm );   break;
+		default:	    nanny               ( d, intcomm );   break;
 		}
 
 		d->incomm[0]	= '\0';
@@ -1124,6 +1138,7 @@ void new_descriptor( int control )
 	sysdata.all_time_max = sysdata.max_players;
 	logf( "Broke all-time maximum player record: %d",
 	     sysdata.all_time_max );
+	save_sysdata( );
     }
 
     return;
@@ -1159,7 +1174,7 @@ void close_socket( DESCRIPTOR_DATA *dclose )
     {
 	sprintf( log_buf, "Closing link to %s.", ch->name );
 	log_string( log_buf );
-	if ( CONNECTED( dclose ) )
+	if ( IS_PLAYING( dclose ) )
 	{
 	    act( "$n has lost $s link.", ch, NULL, NULL, TO_ROOM );
 	    ch->desc = NULL;
@@ -1443,7 +1458,7 @@ void read_from_buffer( DESCRIPTOR_DATA *d )
 	}
     }
 
-    if ( d->incomm[0] != '!' && CONNECTED( d ) )
+    if ( d->incomm[0] != '!' && IS_PLAYING( d ) )
     {
 	HISTORY_DATA *command;
 
@@ -1496,16 +1511,16 @@ bool process_output( DESCRIPTOR_DATA *d, bool fPrompt )
     /*
      * Bust a prompt.
      */
-    if ( fPrompt && !merc_down && CONNECTED( d ) )
+    if ( fPrompt && !merc_down && IS_PLAYING( d ) )
     {
         if ( d->showstr_point )
 	{
-	    for ( ptr = d->showstr_point; ptr != d->showstr_head; ptr-- )
+	    for ( ptr = d->showstr_head; ptr != d->showstr_point; ptr++ )
 		if ( *ptr == '\n' )
 		    shown_lines++;
 
 	    total_lines = shown_lines;
-	    for ( ptr = d->showstr_point; *ptr != 0; ptr++ )
+	    for ( ptr = d->showstr_point; *ptr != '\0'; ptr++ )
 		if ( *ptr == '\n' )
 		    total_lines++;
 
@@ -1796,16 +1811,17 @@ void show_title( DESCRIPTOR_DATA *d )
 
     if ( IS_SET( ch->act, PLR_COLOUR ) )
     {
-	send_to_char( "\033[2J", ch );
-	send_ansi_title( ch );
+	write_to_buffer( d, "\033[2J", 0 );
+	send_ansi_title( d );
     }
     else
     {
-	send_to_char( "\014", ch );
-	send_ascii_title( ch );
+	write_to_buffer( d, "\014", 0 );
+	send_ascii_title( d );
     }
 
-    send_to_char( "\n\r{o{cPress [RETURN]{x ", ch );
+    write_to_buffer( d, "\014", 0 );
+    write_to_buffer( d, "\n\rPress [RETURN] ", 0 );
 
     d->connected = CON_SHOW_MOTD;
 
@@ -2175,9 +2191,9 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 
     case CON_SHOW_MOTD:
 	if ( IS_SET( ch->act, PLR_COLOUR ) )
-	    send_to_char( "\033[2J", ch );
+	    write_to_buffer( d, "\033[2J", 0 );
 	else
-	    send_to_char( "\014", ch );
+	    write_to_buffer( d, "\014", 0 );
 
 	lines = ch->pcdata->pagelen;
 	ch->pcdata->pagelen = 20;
@@ -2186,7 +2202,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 	do_help( ch, "motd" );
 	ch->pcdata->pagelen = lines;
 
-        send_to_char( "\n\r{o{cPress [RETURN]{x ", ch );
+	write_to_buffer( d, "\n\rPress [RETURN] ", 0 );
 
 	d->connected = CON_READ_MOTD;
         break;
@@ -2540,11 +2556,11 @@ bool check_reconnect( DESCRIPTOR_DATA *d, char *name, bool fConn )
 		d->character = ch;
 		ch->desc     = d;
 		ch->timer    = 0;
+		d->connected = CON_PLAYING;
 		send_to_char( "Reconnecting.\n\r", ch );
 		act( "$n has reconnected.", ch, NULL, NULL, TO_ROOM );
 		sprintf( log_buf, "%s@%s reconnected.", ch->name, d->host );
 		log_string( log_buf );
-		d->connected = CON_PLAYING;
 	    }
 	    return TRUE;
 	}
@@ -2591,7 +2607,7 @@ void stop_idling( CHAR_DATA *ch )
 {
     if (   !ch
 	|| !ch->desc
-	|| !CONNECTED( ch->desc )
+	||  ch->desc->connected != CON_PLAYING
 	|| !ch->was_in_room
 	||  ch->in_room != get_room_index( ROOM_VNUM_LIMBO ) )
 	return;
@@ -2627,7 +2643,7 @@ void send_to_all_char( const char *text )
     if ( !text )
         return;
     for ( d = descriptor_list; d; d = d->next )
-        if ( CONNECTED( d ) )
+        if ( IS_PLAYING( d ) )
 	    send_to_char( text, d->character );
 
     return;
@@ -2996,18 +3012,6 @@ void act( const char *format, CHAR_DATA *ch, const void *arg1,
 }
 
 
-
-/*
- * Macintosh support functions.
- */
-#if defined( macintosh )
-int gettimeofday( struct timeval *tp, void *tzp )
-{
-    tp->tv_sec  = time( NULL );
-    tp->tv_usec = 0;
-}
-#endif
-
 int colour( char type, CHAR_DATA *ch, char *string )
 {
     char	code[ 20 ];
@@ -3141,6 +3145,18 @@ void colourconv( char *buffer, const char *txt , CHAR_DATA *ch )
 }
 
 
+
+/*
+ * Macintosh support functions.
+ */
+#if defined( macintosh )
+int gettimeofday( struct timeval *tp, void *tzp )
+{
+    tp->tv_sec  = time( NULL );
+    tp->tv_usec = 0;
+}
+#endif
+
 /*
  * Windows 95 and Windows NT support functions
  */
@@ -3151,3 +3167,24 @@ void gettimeofday( struct timeval *tp, void *tzp )
     tp->tv_usec = 0;
 }
 #endif
+
+
+
+void flush_command( DESCRIPTOR_DATA *d )
+{
+    /* flush one command from flusher */
+    strcpy( d->flusher, d->flush_point );
+
+    /* and actualize flush_point */
+    d->flush_point = strchr( d->flusher, ';' );
+
+    if ( !d->flush_point )
+    {
+	strcpy( d->incomm, d->flusher );
+	return;
+    }
+
+    *d->flush_point = '\0';
+    d->flush_point++;
+    return;
+}

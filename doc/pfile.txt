@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -118,7 +118,7 @@ Immskll		wizhelp ~
 
 As an example:
 #PLAYER
-Nm	Kahn~
+Nm		Kahn~
 Immskll		imtlset mset sset advance ~
 End
 

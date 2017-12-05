@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 30} Tyrst   Wyvern's Tower~
-Builders    None~
-VNUMs       1601 1720
+Name        Wyvern's Tower~
+Author      Tyrst~
+Levels      5 30
 Security    1
+VNUMs       1601 1720
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -357,9 +360,9 @@ A fine steel broad sword is lying on the ground.~
 0~ 2~ 6~ 3~ 0~
 12 1200 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #1606
 rod might~
 the rod of might~
@@ -369,9 +372,9 @@ A Rod of Might is lying here.~
 0~ 2~ 7~ 6~ 0~
 13 4000 0
 A
-18 2 0
-A
 1 1 0
+A
+18 2 0
 #1612
 black kite shield~
 a black kite shield~
@@ -414,9 +417,9 @@ A valuable cloak of dark blue cloth lies on the floor.~
 1~ 0~ 0~ 0~ 0~
 2 1600 0
 A
-17 -6 0
-A
 12 5 0
+A
+17 -6 0
 #1621
 dark red potion~
 a dark red potion~
@@ -507,9 +510,9 @@ An ancient long sword has been left here.~
 0~ 2~ 8~ 3~ 0~
 10 10000 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 #1711
 fur cap~
 a fur cap~
@@ -669,7 +672,7 @@ House of Pancakes~
 The moment you enter this room, the ceiling descends and crushes you
 into a pancake.  Don't you hate it when that happens?
 ~
-0 6 0
+0 2 0
 S
 #1608
 Old Store Room~
@@ -1578,6 +1581,10 @@ M 1614 spec_breath_acid
 M 1616 spec_breath_any
 M 1617 spec_cast_undead
 M 1716 spec_cast_undead
+S
+
+
+#GAMES
 S
 
 

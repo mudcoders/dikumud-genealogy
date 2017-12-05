@@ -32,14 +32,16 @@
 #define const
 #define args( list )			( )
 #define DECLARE_DO_FUN( fun )		void fun( )
-#define DECLARE_SPEC_FUN( fun )		bool fun( )
+#define DECLARE_MOB_FUN( fun )		bool fun( )
+#define DECLARE_OBJ_FUN( fun )		bool fun( )
 #define DECLARE_SPELL_FUN( fun )	void fun( )
 #define DECLARE_GAME_FUN( fun ) 	void fun( )
 #define DECLARE_HIT_FUN( fun )          void fun( )
 #else
 #define args( list )			list
 #define DECLARE_DO_FUN( fun )		DO_FUN    fun
-#define DECLARE_SPEC_FUN( fun )		SPEC_FUN  fun
+#define DECLARE_MOB_FUN( fun )		MOB_FUN   fun
+#define DECLARE_OBJ_FUN( fun )		OBJ_FUN   fun
 #define DECLARE_SPELL_FUN( fun )	SPELL_FUN fun
 #define DECLARE_GAME_FUN( fun )		GAME_FUN  fun
 #define DECLARE_HIT_FUN( fun )          HIT_FUN   fun
@@ -63,9 +65,11 @@
 #if	!defined( const )
 #define const
 #endif
+typedef int				unlong;
 typedef int				bool;
 #define unix
 #else
+typedef unsigned long			unlong;
 typedef unsigned char			bool;
 #endif
 
@@ -75,24 +79,6 @@ typedef unsigned char			bool;
  * with str_dup.  Suggested by erwin@pip.dknet.dk - Kahn.
  */
 #define strdup  STRDUP_ERROR__USE_STR_DUP!
-
-
-/*
- * If you don't have these functions, you damn well should...
- * They're needed on mob_prog.c & string.c
- */
-#if defined( DUNNO_STRSTR )
-char *strstr( const char *s1, const char *s2 )
-{
-    char *cp;
-
-    int i, j = strlen( s1 ) - strlen( s2 ), k = strlen( s2 );
-    if ( j < 0 )
-	return NULL;
-    for ( i = 0; i <= j && strncmp( s1++, s2, k ) != 0; i++ );
-    return ( i > j ) ? NULL : ( s1 - 1 );
-}
-#endif
 
 
 /*
@@ -168,13 +154,16 @@ typedef struct	hunt_hate_fear		HHF_DATA;
 typedef struct	system_data		SYSTEM_DATA;
 typedef struct	game_data		GAME_DATA;
 typedef struct	history_data		HISTORY_DATA;
+typedef struct	alias_data		ALIAS_DATA;
 
 /*
  * Function types.
  */
 typedef	void DO_FUN                     args( ( CHAR_DATA *ch,
 					       char *argument ) );
-typedef bool SPEC_FUN                   args( ( CHAR_DATA *ch ) );
+typedef bool MOB_FUN                    args( ( CHAR_DATA *ch ) );
+typedef bool OBJ_FUN                    args( ( OBJ_DATA *obj,
+					       CHAR_DATA *keeper ) );
 typedef void SPELL_FUN                  args( ( int sn, int level,
 					       CHAR_DATA *ch, void *vo ) );
 typedef void GAME_FUN                   args( ( CHAR_DATA *ch,
@@ -204,7 +193,7 @@ typedef bool HIT_FUN			args( ( CHAR_DATA *ch,
 #define MAX_CHUNKS                 33			/* Used in ssm.c */
 
 #define EXP_PER_LEVEL		 1000
-#define MAX_SKILL		  188
+#define MAX_SKILL		  189
 #define MAX_ATTACK                 17
 #define MAX_CLASS		    5
 #define MAX_RACE                   41
@@ -221,7 +210,7 @@ typedef bool HIT_FUN			args( ( CHAR_DATA *ch,
 
 #define PULSE_PER_SECOND	    4
 #define PULSE_VIOLENCE		  (    2 * PULSE_PER_SECOND )
-#define PULSE_MOBILE		  (    5 * PULSE_PER_SECOND )
+#define PULSE_FAST		  (    5 * PULSE_PER_SECOND )
 #define PULSE_TICK		  (   30 * PULSE_PER_SECOND )
 #define PULSE_AREA		  (   60 * PULSE_PER_SECOND )
 #define PULSE_DB_DUMP             ( 1800 * PULSE_PER_SECOND ) /* 30 minutes */
@@ -234,10 +223,10 @@ typedef bool HIT_FUN			args( ( CHAR_DATA *ch,
  */
 struct  key_data
 {
-    char	key[11];	/* Increase if you make a key > 11 chars */
-    int		string;		/* TRUE for string, FALSE for int        */
-    long	deflt;		/* Default value or pointer              */
-    void *	ptrs[7];	/* Increase if you have > 6 parms/line   */
+    char	    key[12];	/* Increase if you make a key > 11 chars */
+    int		    string;	/* TRUE for string, FALSE for int        */
+    unlong	    deflt;	/* Default value or pointer              */
+    void *	    ptrs[7];	/* Increase if you have > 6 parms/line   */
 };
 
 #define MAND		3344556	/* Magic # for manditory field           */
@@ -355,7 +344,7 @@ struct	weather_data
 #define CON_OEDITOR                    -4
 #define CON_MPEDITOR                   -5
 
-#define CONNECTED( d )		( d->connected <= CON_PLAYING )
+#define IS_PLAYING( d )		( d->connected <= CON_PLAYING )
 
 
 /*
@@ -479,6 +468,7 @@ struct	descriptor_data
     int		        connected;
     bool		fcommand;
     char		inbuf		[ MAX_INPUT_LENGTH*4 ];
+    char		flusher		[ MAX_INPUT_LENGTH*4 ];
     char		incomm		[ MAX_INPUT_LENGTH   ];
     HISTORY_DATA *	infirst;
     HISTORY_DATA *	inlast;
@@ -486,6 +476,7 @@ struct	descriptor_data
     int			repeat;
     char *              showstr_head;
     char *              showstr_point;
+    char *              flush_point;
     char *		outbuf;
     int			outsize;
     int			outtop;
@@ -636,8 +627,8 @@ struct  clan_data
     int         illegal_pk;     /* Number of illegal pk's by clan       */
     int         score;          /* Overall score                        */
     int         clan_type;      /* See clan type defines                */
-    int         clanheros;      /* Number of clanheros                  */
     int         subchiefs;      /* Number of subchiefs                  */
+    int         clanheros;      /* Number of clanheros                  */
     int         members;        /* Number of clan members               */
     int         clanobj1;       /* Vnum of first clan obj (ring)        */
     int         clanobj2;       /* Vnum of second clan obj (shield)     */
@@ -671,6 +662,18 @@ struct	who_data
     WHO_DATA *	prev;
     WHO_DATA *	next;
     char *	text;
+};
+
+
+
+/*
+ * For alias output.
+ */
+struct	alias_data
+{
+    ALIAS_DATA * next;
+    char *	 cmd;
+    char *	 subst;
 };
 
 
@@ -938,7 +941,7 @@ struct attack_type
 #define AFF_PROTECT_GOOD           BV29
 #define AFF_PLAGUE		   BV30
 /*
- * one more bit left... now i need a DEC Alpha with 64bit integers :-)
+ * no more bits left... now i need a DEC Alpha with 64bit integers :-)
  * or to add a new field, affect_by2...					Zen
  */
 
@@ -1371,7 +1374,7 @@ struct attack_type
 struct	mob_index_data
 {
     MOB_INDEX_DATA *	next;
-    SPEC_FUN *		spec_fun;
+    MOB_FUN *		spec_fun;
     GAME_DATA *		pGame;
     SHOP_DATA *		pShop;
     AREA_DATA *         area;
@@ -1427,7 +1430,7 @@ struct	char_data
     CHAR_DATA *		reply;
     CHAR_DATA *		riding;
     CHAR_DATA *		rider;
-    SPEC_FUN *		spec_fun;
+    MOB_FUN *		spec_fun;
     MOB_INDEX_DATA *	pIndexData;
     DESCRIPTOR_DATA *	desc;
     AFFECT_DATA *	affected;
@@ -1511,8 +1514,7 @@ struct	pc_data
     int                 pagelen;
     int 		learned		[ MAX_SKILL ];
     bool                switched;
-    char *		alias		[ MAX_ALIAS ];
-    char *		alias_sub 	[ MAX_ALIAS ];
+    ALIAS_DATA *	alias_list;
     int                 security;
     int                 mprog_edit;
     CLAN_DATA *		clan;
@@ -1559,6 +1561,7 @@ struct	extra_descr_data
 struct	obj_index_data
 {
     OBJ_INDEX_DATA *	next;
+    OBJ_FUN *		spec_fun;
     EXTRA_DESCR_DATA *	extra_descr;
     AFFECT_DATA *	affected;
     char *		name;
@@ -1570,8 +1573,8 @@ struct	obj_index_data
     int 		wear_flags;
     int 		count;
     int 		weight;
-    int			level;
     int			cost;			/* Unused */
+    int 		level;
     int			value	[ 5 ];
     AREA_DATA *         area;			/* OLC */
 };
@@ -1587,6 +1590,7 @@ struct	obj_data
     OBJ_DATA *		next_content;
     OBJ_DATA *		contains;
     OBJ_DATA *		in_obj;
+    OBJ_FUN *		spec_fun;
     CHAR_DATA *		carried_by;
     EXTRA_DESCR_DATA *	extra_descr;
     AFFECT_DATA *	affected;
@@ -1679,6 +1683,10 @@ struct	area_data
     int                 hi_o_vnum;
     int                 low_m_vnum;
     int                 hi_m_vnum;
+    int                 llv;
+    int                 ulv;
+    char *              author;
+    char *              resetmsg;
 };
 
 
@@ -1921,6 +1929,13 @@ extern  int     gsn_vampiric_bite;
 #define IS_SWITCHED( ch )       ( ch->pcdata->switched )
 
 #define	WCHAN( ch, chan )	( IS_SET( ch->pcdata->wiznet, chan ) )
+
+#define CHECK_RES( ch, bit )	( IS_SET( ch->resistant                      \
+				    | race_table[ch->race].resistant, bit ) )
+#define CHECK_IMM( ch, bit )	( IS_SET( ch->immune                         \
+				    | race_table[ch->race].immune, bit ) )
+#define CHECK_SUS( ch, bit )	( IS_SET( ch->susceptible                    \
+				    | race_table[ch->race].susceptible, bit ) )
 
 
 /*
@@ -2562,39 +2577,47 @@ int     close           args( ( int fd ) );
  * Then we close it whenever we need to open a file (e.g. a save file).
  */
 #if defined( macintosh )
-#define PLAYER_DIR	 ""		/* Player files			*/
-#define NULL_FILE	 "proto.are"	/* To reserve one stream	*/
-#define MOB_DIR		 ""		/* MOBProg files		*/
-#define CLASS_DIR	 ""		/* New class loading scheme	*/
-#define CLAN_DIR	 ""		/* Clan files              	*/
-#define BACKUP_DIR	 ""		/* Backup player files		*/
+#define PLAYER_DIR	""		/* Player files			*/
+#define BACKUP_DIR	"proto.are"	/* Backup player files		*/
+#define SYSTEM_DIR	""		/* System directory		*/
+#define CLASS_DIR	""		/* New class loading scheme	*/
+#define NULL_FILE	""		/* To reserve one stream	*/
+#define AREA_DIR	""		/* Area files			*/
+#define CLAN_DIR	""		/* Clan files              	*/
+#define MOB_DIR		""		/* MOBProg files		*/
 #endif
 
 #if defined( unix ) || defined( linux )
-#define PLAYER_DIR	 "../player/"	/* Player files			*/
-#define NULL_FILE	 "/dev/null"	/* To reserve one stream	*/
-#define MOB_DIR		 "MOBProgs/"	/* MOBProg files		*/
-#define CLASS_DIR	 "classes/"	/* New class loading scheme	*/
-#define CLAN_DIR	 "clans/"	/* Clan files              	*/
-#define BACKUP_DIR	 "../backup/"	/* Backup player files		*/
+#define PLAYER_DIR	"../player/"	/* Player files			*/
+#define BACKUP_DIR	"../backup/"	/* Backup player files		*/
+#define SYSTEM_DIR	"../sys/"	/* System directory		*/
+#define CLASS_DIR	"../classes/"	/* New class loading scheme	*/
+#define NULL_FILE	"/dev/null"	/* To reserve one stream	*/
+#define AREA_DIR	"../area/"	/* Area files			*/
+#define CLAN_DIR	"../clans/"	/* Clan files              	*/
+#define MOB_DIR		"../mobprogs/"	/* MOBProg files		*/
 #endif
 
 #if defined( AmigaTCP )
-#define PLAYER_DIR       "envy:player/"	/* Player files                 */
-#define NULL_FILE        "proto.are"	/* To reserve one stream        */
-#define MOB_DIR          "MOBProgs/"	/* MOBProg files                */
-#define CLASS_DIR	 "classes/"	/* New class loading scheme	*/
-#define CLAN_DIR	 "clans/"	/* Clan files              	*/
-#define BACKUP_DIR	 "envy:backup/"	/* Backup player files		*/
+#define PLAYER_DIR	"envy:player/"	/* Player files			*/
+#define BACKUP_DIR	"envy:backup/"	/* Backup player files		*/
+#define SYSTEM_DIR	"envy:sys/"	/* System directory		*/
+#define CLASS_DIR	"envy:classes/"	/* New class loading scheme	*/
+#define NULL_FILE	"proto.are"	/* To reserve one stream	*/
+#define AREA_DIR	"envy:area/"	/* Area files			*/
+#define CLAN_DIR	"envy:clans/"	/* Clan files              	*/
+#define MOB_DIR		"envy:mobprogs/"/* MOBProg files		*/
 #endif
 
 #if defined( WIN32 )
-#define PLAYER_DIR       "..\\player\\"	/* Player files                 */
-#define NULL_FILE        "nul"		/* To reserve one stream        */
-#define MOB_DIR          "MOBProgs\\"	/* MOBProg files		*/
-#define CLASS_DIR	 "classes\\"	/* New class loading scheme	*/
-#define CLAN_DIR	 "clans\\"	/* Clan files              	*/
-#define BACKUP_DIR	 "..\\backup\\"	/* Backup player files		*/
+#define PLAYER_DIR	"..\\player\\"	/* Player files			*/
+#define BACKUP_DIR	"..\\backup\\"	/* Backup player files		*/
+#define SYSTEM_DIR	"..\\sys\\"	/* System directory		*/
+#define CLASS_DIR	"..\\classes\\"	/* New class loading scheme	*/
+#define NULL_FILE	"nul"		/* To reserve one stream	*/
+#define AREA_DIR	"..\\area\\"	/* Area files			*/
+#define CLAN_DIR	"..\\clans\\"	/* Clan files              	*/
+#define MOB_DIR		"..\\mobprogs\\"/* MOBProg files		*/
 #endif
 
 #define AREA_LIST	 "AREA.LST"	/* List of areas		*/
@@ -2627,7 +2650,8 @@ int     close           args( ( int fd ) );
 #define ED	EXTRA_DESCR_DATA
 #define OID	OBJ_INDEX_DATA
 #define RID	ROOM_INDEX_DATA
-#define SF	SPEC_FUN
+#define MF	MOB_FUN
+#define OF	OBJ_FUN
 #define SID	SOC_INDEX_DATA
 #define GF      GAME_FUN
 #define CLD     CLAN_DATA
@@ -2639,8 +2663,8 @@ void	die_follower	args( ( CHAR_DATA *ch, char *name ) );
 bool	is_same_group	args( ( CHAR_DATA *ach, CHAR_DATA *bch ) );
 bool	is_note_to	args( ( CHAR_DATA *ch, NOTE_DATA *pnote ) );
 bool	is_same_clan	args( ( CHAR_DATA *ach, CHAR_DATA *bch ) );
-void	send_ansi_title args( ( CHAR_DATA *ch ) );
-void	send_ascii_title	args( ( CHAR_DATA *ch ) );
+void	send_ansi_title args( ( DESCRIPTOR_DATA *d ) );
+void	send_ascii_title	args( ( DESCRIPTOR_DATA *d ) );
 
 /* act_info.c */
 void	set_title	args( ( CHAR_DATA *ch, char *title ) );
@@ -2730,7 +2754,7 @@ void	log_clan	args( ( const char *str ) );
 void	temp_fread_string	args( ( FILE *fp, char *str ) );
 void	conv_braces	args( ( char *buffer, const char *str ) );
 void	unconv_braces	args( ( char *buffer, const char *str ) );
-void	save_system_data	args( ( SYSTEM_DATA *sys ) );
+void	save_sysdata	args( ( void ) );
 
 /* fight.c */
 void	violence_update	args( ( void ) );
@@ -2752,6 +2776,7 @@ void	stop_fighting	args( ( CHAR_DATA *ch, bool fBoth ) );
 void	update_pos	args( ( CHAR_DATA *victim ) );
 void	check_killer	     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 bool	is_safe		     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool    in_arena             args( ( CHAR_DATA *ch ) );
 bool    licensed             args( ( CHAR_DATA *ch ) );
 bool    registered           args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 
@@ -2831,7 +2856,7 @@ int	check_ris	args( ( CHAR_DATA *ch, int dam_type ) );
 
 
 /* interp.c */
-void    substitute_alias args( ( DESCRIPTOR_DATA *d, char *input ) );
+void    substitute_alias args( ( DESCRIPTOR_DATA *d ) );
 void	interpret	args( ( CHAR_DATA *ch, char *argument ) );
 bool	is_number	args( ( char *arg ) );
 int	number_argument	args( ( char *argument, char *arg ) );
@@ -2877,7 +2902,8 @@ void	save_char_obj	args( ( CHAR_DATA *ch ) );
 bool	load_char_obj	args( ( DESCRIPTOR_DATA *d, char *name ) );
 
 /* special.c */
-SF *	spec_lookup	args( ( const char *name ) );
+MF *	spec_mob_lookup	args( ( const char *name ) );
+OF *	spec_obj_lookup	args( ( const char *name ) );
 
 /* tables.c */
 void	clear_social	args( ( SOC_INDEX_DATA *soc ) );
@@ -2889,10 +2915,11 @@ void	load_socials	args( ( void ) );
 void	save_socials	args( ( void ) );
 void	load_classes	args( ( void ) );
 void	save_classes	args( ( void ) );
-CLAN_DATA * get_clan args ( ( char *name ) );
 void	save_clan	args( ( CLAN_DATA *clan ) );
 void	save_clan_list  args( ( void ) );
 void	load_clans	args( ( void ) );
+
+CLAN_DATA * get_clan		args( ( const char *name ) );
 
 /* track.c */
 void    found_prey      args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
@@ -2922,7 +2949,8 @@ char *	fix_string		args ( ( const char *str ) );
 #undef	OD
 #undef	OID
 #undef	RID
-#undef	SF
+#undef	MF
+#undef	OF
 #undef	SID
 #undef	GF
 #undef	CLD
@@ -2936,13 +2964,19 @@ char *	fix_string		args ( ( const char *str ) );
  ***************************************************************************/
 
 /*
- * This structure is used in special.c to lookup spec funs and
+ * This structure is used in spec_*.c to lookup spec funs and
  * also in olc_act.c to display listings of spec funs.
  */
-struct spec_type
+struct spec_mob_type
 {
     char *	spec_name;
-    SPEC_FUN *	spec_fun;
+    MOB_FUN *	spec_fun;
+};
+
+struct spec_obj_type
+{
+    char *	spec_name;
+    OBJ_FUN *	spec_fun;
 };
 
 struct game_type
@@ -3001,7 +3035,8 @@ void    mpedit  args( ( CHAR_DATA * ch, char *argument ) );
  */
 extern  char *  const			dir_name        [ ];
 extern  const   int			rev_dir         [ ];
-extern  const   struct  spec_type       spec_table      [ ];
+extern  const   struct  spec_mob_type	spec_mob_table	[ ];
+extern  const   struct  spec_obj_type	spec_obj_table	[ ];
 extern  const   struct  game_type       game_table      [ ];
 
 /*
@@ -3056,8 +3091,11 @@ bool    run_olc_editor  args( ( DESCRIPTOR_DATA *d ) );
 char    *olc_ed_name    args( ( CHAR_DATA *ch ) );
 char    *olc_ed_vnum    args( ( CHAR_DATA *ch ) );
 
-/* special.c */
-char *  spec_string     args( ( SPEC_FUN *fun ) );
+/* spec_mob.c */
+char *  spec_mob_string	args( ( MOB_FUN *fun ) );
+
+/* spec_obj.c */
+char *  spec_obj_string	args( ( OBJ_FUN *fun ) );
 
 /* gamble.c */
 char *  game_string     args( ( GAME_FUN *fun ) );

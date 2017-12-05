@@ -1,0 +1,15 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
+
+Zen             vasc@camoes.rnl.ist.utl.pt
+
+
+
+=== The clans directory
+
+This file gies a brief description of the files in the clans directory.
+
+CLANS.LST	- Contains a list of all clans to be loaded into the server.
+                The clans are loaded in top-down order.
+
+*.clan		- An individual clan file.

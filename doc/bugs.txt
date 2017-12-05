@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -10,16 +10,16 @@ Zen             vasc@camoes.rnl.ist.utl.pt
 My name in MUDs is Zen... in rl i'm called Vasco Costa.
 The first MUD i ever played was Envy 2.0 and Envy is my favorite mud still.
 Reasons? No need of scrolls of recall, no need to retrieve corpse, need i go
-on? Envy is soo much user friendly... This is the first time ever i took a real
-stab at Envy coding so here's what i came up with.
+on? Envy is soo much user friendly...
 
 
 === BUGS/UNDOCUMENTED FEATURES in this release of UltraEnvy:
 
-		Missile weapons support isn't very good yet.
-		Clans code needs more testing/refinement.
-		Don't mess with crazy non existent value[3] in weapons;
-		    thanx go to Satan for crashing the mud with this...
+		Missile weapons support isn't very good yet (no bugs though).
+		Ridable mobs need more testing.
+		Clans code needs even more testing.
+		Resets aren't converted properly.  (ILAB OLC feature).
+		  [check out shaolin.are object's levels]
 
 Otherwise, none i know of. I usually squash them when i see them. But see
 new.txt also, just in case i forgot to add something here.
@@ -33,113 +33,63 @@ without your precious help.
 === BUGS/UNDOCUMENTED FEATURES in Envy 2.2:
 
 
-Zen			don't do "ofind all"... If you do... segmentation fault!
-			Fixed. In comm.c , write_to_buffer():
-
-    while ( d->outtop + length >= d->outsize )
-    {
-	char *outbuf;
-
-->      if ( d->outsize >= 32000 )
-->      {
-->          /* empty buffer */
-->          d->outtop = 0;
-->          close_socket( d );
-->          bugf( "Buffer overflow. Closing (%s).",
-->               ( d->character ? d->character->name : "???" ) );
-->          return;
-->      }
-
-	outbuf      = alloc_mem( 2 * d->outsize );
-
-Since "ofind all" overflowed the output buffer it would crash the mud. So this
-way, the offending char will simply be disconnected for safety.
-
-
-Zen			mobile_update() in update.c: mobs flee in terror if hurt
-			from some PC even if they can't see him...
-			Fixed!
-
-Zen			do_imtlset has a bug when you use the '-' option.
-			Sometimes the mud crashes with a segmentation fault...
+Zen:			Don't do "ofind all"... If you do... segmentation fault!
+			Since "ofind all" overflowed the output buffer it would
+			  crash the mud.
 			Fixed!
 
 
-Zen			If you set a mobile in the area files to have
-			AFF_CHARM and try to kill him the mud crashes... :(
-			NOW FIXED! The bug was in fight.c in
-			violence_update(), i added these 2 lines of code to
-			solve it.
+Zen:			mobile_update() in update.c: mobs flee in terror if hurt
+			  from some PC even if they can't see him...
+			Fixed!
 
-/* fight.c */
-	        /* Ok here we test for switch if victim is charmed */
-	        if ( IS_AFFECTED( victim, AFF_CHARM )
-->		    && victim->master
-->		    && !victim->master->deleted
-		    && victim->in_room == victim->master->in_room
-		    && number_percent() > 40 )
-
-			Why? If the mob is charmed and has no master the mud
-			would crash with a segmentation fault!
+Zen:			do_imtlset has a bug when you use the '-' option.
+			  Sometimes the mud crashes with a segmentation fault...
+			Fixed!
 
 
-Kenneth Dugas           lower level thieves steal better than > level bug
-Zen			comment: Steal bug still existed in act_obj.c!!!!!!!! :(
-			NOW FIXED! Just change "percent > number_percent()" to
-			"percent < number percent".
-
-/* act_obj.c */
-    if ( (         !IS_NPC( victim )
-          && ( (   !IS_SET( victim->act, PLR_KILLER )
-                && !IS_SET( victim->act, PLR_THIEF )
-                && !IS_SET( victim->act, PLR_REGISTER )
-                && victim->race != race_lookup( "Vampire" ) )
-              ||   ch->level - victim->level < 5 ) )
-        || percent > number_percent( ) )
-    {      ^^^^^^^^^^^^^^^^^^^^^^^^^^^  
-        /*
-         * Failure.
-         */^^^^^^^^
+Zen:			If you set a mobile in the area files to have
+			  AFF_CHARM and try to kill him the mud crashes... :(
+			NOW FIXED! The bug was in fight.c's violence_update().
 
 
-Zen			Mob of race Fish may walk in dry land...
+Kenneth Dugas:		lower level thieves steal better than > level bug
+Zen:			comment: Steal bug still existed in act_obj.c!!!!!!!! :(
+			NOW FIXED! Just changed "percent > number_percent()" to
+			  "percent < number percent".
+
+
+Zen:			Mob of race Fish may walk in dry land...
 			Solution: change do_move in act.move.c.
 			Fixed!
 
-Joguel			characters/mobs of race Fish can't breathe
+Joguel:			characters/mobs of race Fish can't breathe
 			if room is ROOM_WATER_SWIM or ROOM_WATER_NOSWIM!
-Zen			Solution: fix update.c
+Zen:			Solution: fix update.c
 			Fixed!
 
-/* update.c */
-            if ( (   ch->in_room->sector_type == SECT_UNDERWATER
-                  && ( !IS_IMMORTAL( ch ) && !IS_AFFECTED( ch, AFF_GILLS )
-                      && !IS_SET( race_table[ ch->race ].race_abilities,
-                                 RACE_WATERBREATH ) ) )
-                || ( 
-                       ( ch->in_room->sector_type != SECT_UNDERWATER
-->                     && ch->in_room->sector_type != SECT_WATER_NOSWIM
-->                     && ch->in_room->sector_type != SECT_WATER_SWIM )
-                    && IS_SET( race_table[ ch->race ].race_abilities,
-                              RACE_WATERBREATH )
-                    && ( strcmp( race_table[ ch->race ].name, "Object" )
-                        && strcmp( race_table[ ch->race ].name, "God" ) ) ) )
-        {
-            send_to_char( "You can't breathe!\n\r", ch );
-            act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
-            damage( ch, ch, 5, gsn_breathe_water, WEAR_NONE );
 
-
-Zen & Joguel 		Wand of water breathing in Midgaard magic shop is
-			utterly useless unless player is of race Bear.
+Zen & Joguel: 		Wand of water breathing in Midgaard magic shop is
+			  utterly useless unless player is of race Bear.
 			As default player races don't have RACE_SWIM players 
-			can't move in ROOM_UNDERWATER (see act_move.c)
+			  can't move in ROOM_UNDERWATER (see act_move.c)
 			Fish and God race have gills so why bother with the
-			wand? Zen's suggestion: new swim skill.
+			  wand? Zen's suggestion: new swim skill.
 			Swim skill implemented!
 
-Zen			'Cast from pointer to integer of different size' 
-			warnings in save.c caused segmentation faults on DEC
-			Alpha.
+
+Zen:			'Cast from pointer to integer of different size' 
+			  warnings in save.c caused segmentation faults on DEC
+			  Alpha.
+
+
+Zen:			Fixed bug in Envy 2.2 which caused descriptions of
+			  objects in player files to have the corrupt string on
+			  DEC Alpha.  Some genius defined key_data.key[11]  In
+			  case you don't know this has value range [0..10] NOT
+			  [0..11] so when comparing "Description" which is
+			  actually { 'D', 'e', 's', 'c', 'r', 'i', 'p', 't',
+			  'i', 'o', 'n' ,'\0' } you ran out of space...
+
 
 - Zen

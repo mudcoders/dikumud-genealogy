@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 25} Generic Old Marsh~
-Builders    None~
-VNUMs       8301 8321
+Name        Old Marsh~
+Author      Generic~
+Levels      15 25
 Security    1
+VNUMs       8301 8321
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -702,6 +705,10 @@ M 8310 spec_poison
 M 8312 spec_thief
 M 8313 spec_cast_undead
 M 8319 spec_cast_cleric
+S
+
+
+#GAMES
 S
 
 

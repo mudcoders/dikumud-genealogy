@@ -13,7 +13,6 @@ set index=1000
 
 assign Envy: /
 changetaskpri -1
-/area
 stack 70000 ; raise if stack overflow. Looks pretty stable on my machine
 alias rm delete ; need the touch command to use shutdown or reboot
                 ; within the mud.
@@ -35,7 +34,6 @@ LAB Begin
     wait 30
 
 skip Begin back
-/src
 ; Dave Kaupp http://www.geocities.com/SiliconValley/1411
 ; dkaupp@netcom.com  Will change soon! Try davek@megnet.net
 ; 4-16-96, Updated (logfile 5-15-96, command line port# 5-26-96)

@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 35} Anon    The Shire~
-Builders    None~
-VNUMs       1100 1157
+Name        The Shire~
+Author      Anon~
+Levels      5 35
 Security    1
+VNUMs       1100 1157
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -487,13 +490,13 @@ The One Ring is here.~
 0~ 0~ 0~ 0~ 0~
 3 2500 0
 A
-0 0 2
-A
-12 20 0
+1 1 0
 A
 17 10 0
 A
-1 1 0
+12 20 0
+A
+0 0 2
 #1106
 elven bow~
 an elven bow~
@@ -1672,6 +1675,11 @@ M 1117 spec_cast_mage
 M 1121 spec_guard
 M 1122 spec_thief
 M 1132 spec_guard
+O 1105 spec_giggle
+S
+
+
+#GAMES
 S
 
 

@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -107,13 +107,24 @@ it.  This means one of two things:
 
 === How to convert the standard Envy2.2 areas
 
-If 'asaving' the Envy2.2 release areas it will warn you of bugs in 'ocean.are'
-and 'grove.are' #RESETS.  Just delete the lines it gives the warning and swap
-the order of haon.are and arachnos.are in the AREA.LST file so that the resets
-will load correctly.  The order in your AREA.LST file should now be:
+If 'asaving' the Envy2.2 release areas swap the order of haon.are and
+arachnos.are in the AREA.LST file so that the resets will load correctly.
+The order in your AREA.LST file should now be:
 
    arachnos.are
    haon.are
+
+Put naytil.are before grove.are like so:
+
+   naytil.are
+   grove.are
+
+Put shaolin.are before ocean.are like so:
+
+   shaolin.are
+   ocean.are
+
+Now the old areas should be properly converted.
 
 
 
@@ -208,26 +219,30 @@ The syntax of this section is:
 
     #AREADATA
     Name      <area-name:string>
+    Author    <author-name:string>
+    Levels    <lower:number> <higher:number>
+    Security  <security:number>
     Builders  <builders:string>
     VNUMs     <start:number> <end:number>
-    Security  <security:number>
     Recall    <recall-point:number>
+    Reset     <reset-message:string>
     End
 
-The 'area-name' can be any string.  The 'areas' command provides a list of
-areas, so it's worth while to follow the standard Envy format for this
-string:
+The 'area-name' can be any string.  Example for an #AREADATA section:
 
     #AREADATA
-    Name        {{ 5 35} Envy    Prototype for New Area~
-    Builders    None~
-    VNUMs       3000 3383
+    Name        Prototype for New Area~
+    Author      Envy~
+    Levels      5 35
     Security    1
+    VNUMs       3000 3383
+    Builders    None~
     Recall      3001
+    Reset       You hear the patter of little feet.~
     End
 
-The first two numbers are recommended level range.  The name is the name of
-the original author of the area.  The last phrase is the name of the area.
+The two numbers in 'Levels' are recommended level range.  The 'Author' is the
+name of the original author of the area.  The 'Name' is the name of the area.
 
 The 'recall-point' gives the vnum of the room to which a player will 
 recall if they attempt to do so anywhere within the area defined in the
@@ -235,7 +250,8 @@ current file.  If this section is omitted, the recall point will be the
 standard ROOM_VNUM_TEMPLE as defined in merc.h.  It is distributed as room
 vnum 3001 in midgaard.are.  If the 'recall-point' is invalid, the player
 is unable to recall when attempted in the zone.  This function was added by
-Kahn to allow for builder-settable recall points.
+Kahn to allow for builder-settable recall points.  If ommited, 'reset-message'
+will be 'You hear the patter of little feet.'
 
 
 === The #HELPS section
@@ -686,7 +702,7 @@ ITEM_CONTAINER, value[1])
    value[1]    spell name 1
    value[2]    spell name 2
    value[3]    spell name 3
-   value[3]    spell name 4
+   value[4]    spell name 4
 
 03 ITEM_WAND
    value[0]    level
@@ -745,7 +761,7 @@ ITEM_CONTAINER, value[1])
    value[1]    spell name 1
    value[2]    spell name 2
    value[3]    spell name 3
-   value[3]    spell name 4
+   value[4]    spell name 4
 
 12 ITEM_FURNITURE
    value[0]    unused

@@ -704,76 +704,84 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    break;
 
 	case 'n':
-	    if ( actor && !actor->deleted )
-		if ( can_see( mob, actor ) )
-		    one_argument( actor->name, t );
+	    if ( !actor || actor->deleted )
+		break;
+	    if ( can_see( mob, actor ) )
+		one_argument( actor->name, t );
 	    if ( !IS_NPC( actor ) )
 		*t = UPPER(*t);
 	    break;
 
 	case 'N':
-	    if ( actor && !actor->deleted )
-		if ( can_see( mob, actor ) )
-		    if ( IS_NPC(actor ) )
-			strcpy( t, actor->short_descr );
-		    else
-		    {
-			strcpy( t, actor->name );
-			strcat( t, " " );
-			strcat( t, actor->pcdata->title );
-		    }
+	    if ( !actor || actor->deleted )
+		break;
+	    if ( can_see( mob, actor ) )
+	    {
+		if ( IS_NPC( actor ) )
+		    strcpy( t, actor->short_descr );
 		else
-		    strcpy( t, "someone" );
+		{
+		    strcpy( t, actor->name );
+		    strcat( t, " " );
+		    strcat( t, actor->pcdata->title );
+		}
+	    }
+	    else
+		strcpy( t, "someone" );
 	    break;
 
 	case 't':
-	    if ( vict && !vict->deleted )
-	    {
-		if ( can_see( mob, vict ) )
-		    one_argument( vict->name, t );
-		if ( !IS_NPC( vict ) )
-		    *t = UPPER( *t );
-	    }
+	    if ( !vict || vict->deleted )
+		break;
+	    if ( can_see( mob, vict ) )
+		one_argument( vict->name, t );
+	    if ( !IS_NPC( vict ) )
+		*t = UPPER( *t );
 	    break;
 
 	case 'T':
-	    if ( vict && !vict->deleted )
-		if ( can_see( mob, vict ) )
-		    if ( IS_NPC( vict ) )
-			strcpy( t, vict->short_descr );
-		    else
-		    {
-			strcpy( t, vict->name );
-			strcat( t, " " );
-			strcat( t, vict->pcdata->title );
-		    }
+	    if ( !vict || vict->deleted )
+		break;
+	    if ( can_see( mob, vict ) )
+	    {
+		if ( IS_NPC( vict ) )
+		    strcpy( t, vict->short_descr );
 		else
-		    strcpy( t, "someone" );
+		{
+		    strcpy( t, vict->name );
+		    strcat( t, " " );
+		    strcat( t, vict->pcdata->title );
+		}
+	    }
+	    else
+		strcpy( t, "someone" );
 	    break;
 
 	case 'r':
-	    if ( rndm && !rndm->deleted )
-	    {
-		if ( can_see( mob, rndm ) )
-		    one_argument( rndm->name, t );	    
-		if ( !IS_NPC(rndm ) )
-		    *t = UPPER( *t );
-	    }
+	    if ( !rndm || rndm->deleted )
+		break;
+	    if ( can_see( mob, rndm ) )
+		one_argument( rndm->name, t );	    
+	    if ( !IS_NPC( rndm ) )
+		*t = UPPER( *t );
 	    break;
 
 	case 'R':
-	    if ( rndm && !rndm->deleted )
-		if ( can_see( mob, rndm ) )
-		    if ( IS_NPC( rndm ) )
-			strcpy( t, rndm->short_descr );
-		    else
-		    {
-			strcpy( t, rndm->name );
-			strcat( t, " " );
-			strcat( t, rndm->pcdata->title );
-		    }
+	    if ( !rndm || rndm->deleted )
+		break;
+	    if ( can_see( mob, rndm ) )
+	    {
+		if ( IS_NPC( rndm ) )
+		    strcpy( t, rndm->short_descr );
 		else
-		    strcpy( t, "someone" );
+		{
+		    strcpy( t, rndm->name );
+		    strcat( t, " " );
+		    strcat( t, rndm->pcdata->title );
+		}
+	    }
+	    else
+		strcpy( t, "someone" );
 	    break;
 
 	case 'e':

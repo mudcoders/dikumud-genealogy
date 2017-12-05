@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -52,8 +52,8 @@ from one machine type to another.
 
 All this measured on a 16MB Pentium 100 MHz running Linux 2.0.29.
 
-Boot time:    7 CPU seconds (Envy2.2: 5 CPU seconds on my system).
-Memory:       5284 bytes SZ size.
+Boot time:    5 CPU seconds (Envy2.2: 5 CPU seconds on my system).
+Memory:       4984 bytes SZ size.
 CPU usage:    1.5 CPU minutes per hour + 1-2 CPU seconds per player.
 Disk space:   6 megabytes plus 10K per player file.
 IP packets:   about 10 per second with 20 people logged in. (?)

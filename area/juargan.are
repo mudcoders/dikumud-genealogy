@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{10 25} Anon    Kingdom of Juargan~
-Builders    None~
-VNUMs       4700 4785
+Name        Kingdom of Juargan~
+Author      Anon~
+Levels      10 25
 Security    1
+VNUMs       4700 4785
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -169,9 +172,9 @@ A large dwarven shield lies here on the ground.~
 4~ 0~ 0~ 0~ 0~
 7 2000 0
 A
-17 -2 0
-A
 24 4 0
+A
+17 -2 0
 #4705
 coins large pile~
 a large pile of coins~
@@ -189,9 +192,9 @@ A large battle axe lies here on the ground.~
 0~ 2~ 12~ 1~ 0~
 5 10000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 E
 dwarven battle axe~
 It is engraved with beautiful dwarven runes.~
@@ -1628,6 +1631,10 @@ S
 
 
 #SPECIALS
+S
+
+
+#GAMES
 S
 
 

@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 2 10} Hatchet The Rats Lair~
-Builders    None~
-VNUMs       3801 3899
+Name        The Rats Lair~
+Author      Hatchet~
+Levels      2 10
 Security    1
+VNUMs       3801 3899
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -253,12 +256,12 @@ A silver key rest here, making a clean perimeter wherever it touches.~
 3838~ 0~ 0~ 0~ 0~
 1 0 0
 E
-silver key~
-Inscribed on this key are unintelliglble runes.
-~
-E
 runes~
 You don't understand what the runes say at all.
+~
+E
+silver key~
+Inscribed on this key are unintelliglble runes.
 ~
 #3802
 key necklace~
@@ -335,9 +338,9 @@ A lone stool sits on the floor.~
 0~ 2~ 2~ 8~ 0~
 10 0 0
 A
-18 -1 0
-A
 19 2 0
+A
+18 -1 0
 E
 stool~
 This sturdy stool looks like it can be used as a weapon!
@@ -437,23 +440,23 @@ A barbed whip is curled up on the floor.~
 0~ 3~ 4~ 4~ 0~
 10 0 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #3819
 rod holy icaza~
 holy Rod of Icaza~
 A rod of gold rests millimeters from the floor.~
 ~
 4 3395 16385
-10~ 3~ 3~ protection evil~ 0~
+10~ 3~ 3~ protection~ 0~
 10 0 0
 A
-17 -5 0
+3 1 0
 A
 24 -2 0
 A
-3 1 0
+17 -5 0
 E
 rod holy icaza~
 This rod was blessed by the touch and laugh of Goddess Icaza.  Holding on to it
@@ -508,23 +511,57 @@ A book of poetry is beckoning you to read it.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 E
-book poetry poems~
-This book of poetry is written by Hatchet for his loving Goddess, Icaza.  There
-are 5 poems in this book currently.  To read them, read ONE, TWO, THREE, 
-FOUR or FIVE.
+five~
+.
+		Proposal
+	I am enchanted by you.
+	So easily you have captured my heart.
+	And so happy I am when I think of you,
+	My life I wish you to be a part.
+
+	I am in love with you,
+	After only knowing you for time so short.
+	It is your love that I now woo,
+	Your hand I now quietly court.
+
+	I am lonely without you,
+	You are so vital to my life.
+	So I now humbly beg of you,
+	Susan, please be my wife.
+
+by Hatchet, 9/1/93, recited to Icaza on 9/9/1994
 ~
 E
-one~
+four~
 .
-			Dear Icaza
+		Untitled
+	Leaves swirling around us,
+	Raindrops in our hair.
+	Locked within one another's embrace,
+	Lost in our own world.
 
-		Roses are red,
-		Violets are blue.
-		For being my love,
-		I write this book for you.
+	We kiss softly, longingly,
+	Secure within our own warmth.
+	People scurry around us,
+	Oblivious to us, we oblivious to them.
 
-Inspired by and dedicated for the fair lady Icaza.
-by Hatchet, 3/7/94
+Inspired by and dedicated to the fair lady Icaza
+by Hatchet 4/4/94
+~
+E
+three~
+.
+		Untitled
+	I read a poem to my love,
+	One that comes to me unbidden.
+	It is a simple poem, written by simple me,
+	but writing such a poem
+	makes me laugh, and it makes her cry
+	And I know that at that very moment,
+	we are both experiencing the same emotion, Love.
+
+Inspired by and dedicated to the fair lady Icaza
+by Hatchet 3/14/94
 ~
 E
 two~
@@ -580,57 +617,23 @@ Inspired by and dedicated to the fair lady Icaza.
 3/7/94 by Hatchet
 ~
 E
-three~
+one~
 .
-		Untitled
-	I read a poem to my love,
-	One that comes to me unbidden.
-	It is a simple poem, written by simple me,
-	but writing such a poem
-	makes me laugh, and it makes her cry
-	And I know that at that very moment,
-	we are both experiencing the same emotion, Love.
+			Dear Icaza
 
-Inspired by and dedicated to the fair lady Icaza
-by Hatchet 3/14/94
+		Roses are red,
+		Violets are blue.
+		For being my love,
+		I write this book for you.
+
+Inspired by and dedicated for the fair lady Icaza.
+by Hatchet, 3/7/94
 ~
 E
-four~
-.
-		Untitled
-	Leaves swirling around us,
-	Raindrops in our hair.
-	Locked within one another's embrace,
-	Lost in our own world.
-
-	We kiss softly, longingly,
-	Secure within our own warmth.
-	People scurry around us,
-	Oblivious to us, we oblivious to them.
-
-Inspired by and dedicated to the fair lady Icaza
-by Hatchet 4/4/94
-~
-E
-five~
-.
-		Proposal
-	I am enchanted by you.
-	So easily you have captured my heart.
-	And so happy I am when I think of you,
-	My life I wish you to be a part.
-
-	I am in love with you,
-	After only knowing you for time so short.
-	It is your love that I now woo,
-	Your hand I now quietly court.
-
-	I am lonely without you,
-	You are so vital to my life.
-	So I now humbly beg of you,
-	Susan, please be my wife.
-
-by Hatchet, 9/1/93, recited to Icaza on 9/9/1994
+book poetry poems~
+This book of poetry is written by Hatchet for his loving Goddess, Icaza.  There
+are 5 poems in this book currently.  To read them, read ONE, TWO, THREE, 
+FOUR or FIVE.
 ~
 #3826
 book poetry poems~
@@ -641,27 +644,14 @@ A book of poetry is beckoning you to read it.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 E
-book poetry poems~
-This book of poetry is written by Hatchet for his own pleasure.  There are
-4 poems in this book currently.  To read them, read ONE, TWO, THREE, or FOUR.
-~
-E
-one~
+four~
 .
-		Driving Fast
-	Wind streaming hy hair.
-	Racing along the highway.
-	Police behind me.
-
-by Hatchet 6/16/95
-~
-E
-two~
-.
-		Traffic Class
-	We all sit in class.
-	Listening to a comic
-	As he laughs at us.
+		Speeding
+	There was a guy named Mitch
+	Who drove like he had an itch.
+	He sped down Twenty Four,
+	Didn't look aft or fore,
+	And got caught by a bitch.
 
 by Hatchet 6/16/95
 ~
@@ -681,16 +671,29 @@ three~
 by Hatchet 6/16/95
 ~
 E
-four~
+two~
 .
-		Speeding
-	There was a guy named Mitch
-	Who drove like he had an itch.
-	He sped down Twenty Four,
-	Didn't look aft or fore,
-	And got caught by a bitch.
+		Traffic Class
+	We all sit in class.
+	Listening to a comic
+	As he laughs at us.
 
 by Hatchet 6/16/95
+~
+E
+one~
+.
+		Driving Fast
+	Wind streaming hy hair.
+	Racing along the highway.
+	Police behind me.
+
+by Hatchet 6/16/95
+~
+E
+book poetry poems~
+This book of poetry is written by Hatchet for his own pleasure.  There are
+4 poems in this book currently.  To read them, read ONE, TWO, THREE, or FOUR.
 ~
 #0
 
@@ -1409,7 +1412,7 @@ moods.  The smell of roses and perfumes permeates this room, and you can hear
 some soft jazzy music (Kenny G?) in the background.  There is no mortal exit 
 from this room.
 ~
-0 532 1
+0 528 1
 S
 #0
 
@@ -1428,6 +1431,10 @@ M 3811 spec_poison
 M 3812 spec_poison
 M 3815 spec_cast_undead
 M 3816 spec_cast_cleric
+S
+
+
+#GAMES
 S
 
 

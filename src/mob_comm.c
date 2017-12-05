@@ -681,7 +681,7 @@ void do_mptransfer( CHAR_DATA *ch, char *argument )
     {
 	for ( d = descriptor_list; d; d = d->next )
 	{
-	    if ( CONNECTED( d )
+	    if ( d->connected == CON_PLAYING
 	    &&   d->character != ch
 	    &&   d->character->in_room
 	    &&   can_see( ch, d->character ) )

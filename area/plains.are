@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 1 20} Copper  Plains of the North~
-Builders    None~
-VNUMs       300 350
+Name        Plains of the North~
+Author      Copper~
+Levels      1 20
 Security    1
+VNUMs       300 350
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -254,15 +257,15 @@ A clear potion wrapped in leather is unnoticed placed here.~
 20~ detect evil~ detect invis~ detect magic~  ~
 2 2500 0
 E
+leather~
+The leather wrapped around the potion is old and decayed, originating
+from an, to you, unknown creature.~
+E
 potion clear~
 As you examine the potion more, you notice the oddities of this
 potion. When you look through it you notice strange things...
 The clear potion is certainly not of this world.
 ~
-E
-leather~
-The leather wrapped around the potion is old and decayed, originating
-from an, to you, unknown creature.~
 #312
 scroll jhyfrdow~
 a scroll titled 'jhyfrdow'~
@@ -272,16 +275,16 @@ An odd looking scroll is here.~
 0~  ~  ~  ~  ~
 1 500 0
 E
-scroll jhyfrdow~
-The scroll is titled 'jhyfrdow' and looks very old.
-As you examine it closer you notice primitive drawings of
-men doing some kind of a ritual.
-~
-E
 ritual men drawings~
 The drawing pictures people gathered round giant stone formations,
 worshipping a giant worm like creature.
 It seems they are sacrificing some of their own species.
+~
+E
+scroll jhyfrdow~
+The scroll is titled 'jhyfrdow' and looks very old.
+As you examine it closer you notice primitive drawings of
+men doing some kind of a ritual.
 ~
 #0
 
@@ -851,13 +854,13 @@ grow here.
 ~
 0 0 4
 E
+pine tree trees pines~
+The all too quiet trees suggest that something roams these woods.
+~
+E
 mountains~
 The mountains seems dark and all most alive, as they contrast against
 the sky.
-~
-E
-pine tree trees pines~
-The all too quiet trees suggest that something roams these woods.
 ~
 D0
 The path continues up the mountain.
@@ -1138,10 +1141,10 @@ altar shows no sign of such. West of here is the ancient path.
 ~
 0 0 2
 E
-stones g'harne monolith~
-The stones of G'harne tower fifteen feet over you.
-The giant stones are made of a material you haven't seen before.
-It resembles black marble, but somehow feels different.
+death rituals worms engraving picture~
+The pictures are depicting evil rituals.
+You see druids pouring blood over herbs on an altar like this one.
+There are people calling giant worms into existence with dark spells.
 ~
 E
 altar sacrifice~
@@ -1150,10 +1153,10 @@ The altar is about 3 feet high, 10 feet long and 4 feet wide.
 It has engraved pictures of death rituals and horrifying worms.
 ~
 E
-death rituals worms engraving picture~
-The pictures are depicting evil rituals.
-You see druids pouring blood over herbs on an altar like this one.
-There are people calling giant worms into existence with dark spells.
+stones g'harne monolith~
+The stones of G'harne tower fifteen feet over you.
+The giant stones are made of a material you haven't seen before.
+It resembles black marble, but somehow feels different.
 ~
 D3
 You see the ancient path and the wooden bridge here.
@@ -1286,6 +1289,10 @@ S
 
 #SPECIALS
 M 350 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

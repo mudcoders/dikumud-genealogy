@@ -1,34 +1,13 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
-=== The doc directory
+=== The area directory
 
-This file gives a brief description of the files in the doc directory.
+This file gives a brief description of the files in the area directory.
 
 AREA.LST	- Contains a list of all areas to be loaded into the server.
 		The areas are loaded in top-down order.
-BUGS.TXT	- Contains a report of all bugs and player bug comments.  You
-		may wish to look at this file frequently.
-IDEAS.TXT	- Contains a list of all the ideas players contribute using
-		the online IDEA command.
-NOTES.TXT	- Contains all the player notes created by the online NOTE
-		command.  You may wish to clean this file periodically using
-		your favorite text editor.
-SHUTDOWN.TXT	- This file is created by the server when it exits normally
-		by shutdown command or autoshutdown.  The server run script
-		will do its own housekeeping and you will rarely see it.
-TIME.TXT	- Contains information instructing the server when to
-		autoreboot or autoshutdown.
-TYPOS.TXT	- Contains a list of all the player typo contributions.  You
-		may wish to look at this file frequently to maintain integrity
-		of your area files.
-SOCIALS.TXT	- Contains all the socials of the server.  You may add more to
-		the file if you wish and then reboot the server.
-MUDTITLE.ANS	- Contains the ANSI title of the mud.  It's here instead of in
-		help.are so players can choose which title to see.
-MUDTITLE.ASC	- Contains the ASCII mud title, like the one on Envy2.2
-		help.are.

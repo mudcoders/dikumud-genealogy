@@ -4,7 +4,6 @@ setlocal
 set port=4000
 if defined %1 set port=%1
 
-cd ..\area
 if exist SHUTDOWN.TXT del SHUTDOWN.TXT
 if exist ..\log\envy.log del ..\log\envy.log
 

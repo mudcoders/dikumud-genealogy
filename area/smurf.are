@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 1 10} Generic Smurf Village~
-Builders    None~
-VNUMs       100 129
+Name        Smurf Village~
+Author      Generic~
+Levels      1 10
 Security    1
+VNUMs       100 129
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -810,6 +813,10 @@ M 109 spec_thief
 M 110 spec_cast_mage
 M 111 spec_cast_cleric
 M 112 spec_poison
+S
+
+
+#GAMES
 S
 
 

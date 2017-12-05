@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 35} Andi    The Great Pyramid~
-Builders    None~
-VNUMs       2600 2659
+Name        The Great Pyramid~
+Author      Andi~
+Levels      5 35
 Security    1
+VNUMs       2600 2659
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -283,11 +286,11 @@ A flat dirk made of chipped obsidian lies here.~
 0~ 0~ 0~ 11~ 0~
 8 1000 0
 A
-2 1 0
+19 1 0
 A
 18 1 0
 A
-19 1 0
+2 1 0
 E
 obsidian dirk~
 The blade of the dirk is black, glassy obsidian, chipped razor sharp.
@@ -301,9 +304,9 @@ A dirty cloth turban has been forgotten here.~
 5~ 0~ 0~ 0~ 0~
 10 1500 0
 A
-2 1 0
-A
 13 5 0
+A
+2 1 0
 E
 cloth turban~
 The turban used to be white cloth, now it is covered with oil and dirt from
@@ -354,9 +357,9 @@ A little ball of fire hovers in the air before your eyes.~
 0~ 0~ -1~ 0~ 0~
 10 3500 0
 A
-13 10 0
-A
 14 50 0
+A
+13 10 0
 E
 ball fire~
 The ball of fire is hot to the touch and very very bright.
@@ -370,9 +373,9 @@ A curved scimitar made of stone rests on the ground.~
 0~ 0~ 0~ 3~ 0~
 18 10000 0
 A
-18 2 0
-A
 19 3 0
+A
+18 2 0
 E
 stone scimitar~
 The scimitar is formed from solid stone, chipped and carved to perfection,
@@ -443,9 +446,9 @@ A small, tarnished, battered lamp has been dropped here.~
 25~ 5~ 5~ fly~ 0~
 10 25000 0
 A
-17 -5 0
-A
 18 1 0
+A
+17 -5 0
 E
 lamp~
 The lamp is quite old and tarnished.  You rub at it to get some of the
@@ -460,9 +463,9 @@ A small brass ankh has been left here.~
 7~ 0~ 0~ 0~ 0~
 9 10000 0
 A
-3 1 0
-A
 4 2 0
+A
+3 1 0
 E
 ankh~
 The ankh is a small brass symbol of an ancient religion.
@@ -491,11 +494,11 @@ The mighty paw of a lion-like creature has been dropped here.~
 0~ 0~ 0~ 5~ 0~
 20 18000 0
 A
-5 1 0
+19 3 0
 A
 18 4 0
 A
-19 3 0
+5 1 0
 E
 lion paw~
 The massive paw has straps on it formed of bronze, so that it will
@@ -549,15 +552,15 @@ Some fortunate soul has escaped the mummy's curse, for now.~
 0~ 0~ 0~ 0~ 0~
 1 500 0
 A
-1 -3 0
-A
-2 -3 0
-A
-5 -3 0
+14 -100 0
 A
 13 -50 0
 A
-14 -100 0
+5 -3 0
+A
+2 -3 0
+A
+1 -3 0
 E
 curse mummy~
 Rumor has it that whomever disturbs the grave of the mummy shall be 
@@ -587,13 +590,13 @@ A beautiful, intricately detailed mask has been forgotten here.~
 10~ 0~ 0~ 0~ 0~
 10 15000 0
 A
-12 25 0
-A
-13 10 0
+24 -1 0
 A
 14 100 0
 A
-24 -1 0
+13 10 0
+A
+12 25 0
 E
 golden mask~
 This beautiful mask was shaped from solid gold and magically enchanted
@@ -625,9 +628,9 @@ A small length of brass shines here with its own light.~
 35~ 25~ 25~ harm~ 0~
 10 250 0
 A
-21 -5 0
-A
 24 -5 0
+A
+21 -5 0
 E
 sun wand~
 This small brass shaft is a holy weapon used by the ancient people of 
@@ -643,9 +646,9 @@ A small sandy-colored ring has been carelessly dropped here.~
 8~ 0~ 0~ 0~ 0~
 5 200 0
 A
-3 1 0
-A
 12 50 0
+A
+3 1 0
 E
 sandy ring~
 The ring is small, smooth, sandy-colored and unremarkable, save that
@@ -676,9 +679,9 @@ Massive leggings formed from the body of a sphinx stand here.~
 10~ 0~ 0~ 0~ 0~
 20 200 0
 A
-1 3 0
-A
 14 200 0
+A
+1 3 0
 E
 sphinxian leggings~
 These magically fashioned leggings impart the strength and stamina
@@ -881,15 +884,15 @@ cardinal directions.
 ~
 0 0 10
 E
+plaque~
+The plaque reads:
+This area (Great Pyramid) written for any Merc 2.0 standard mud by Andersen.
+~
+E
 stones~
 As you look closer you can make out a crack in the center of the stones
 beneath your feet.  With some effort you might be able to lift that 
 section up and get inside!
-~
-E
-plaque~
-The plaque reads:
-This area (Great Pyramid) written for any Merc 2.0 standard mud by Andersen.
 ~
 D0
 The north side of the pyramid slopes down into the sands.
@@ -967,16 +970,16 @@ inscriptions.
 ~
 0 8 0
 E
-door stone~
-The stone door is covered in strange inscriptions and hieroglyphs that warn
-you not to proceed any further.
-~
-E
 sigils hieroglyphs inscriptions writing~
 You cannot understand the strange glyphs that cover the door, but most of
 them seem to depict scenes of fire and massive creatures of apparently
 tremendous strength.  You have a feeling that the glyphs are serving as a
 warning.
+~
+E
+door stone~
+The stone door is covered in strange inscriptions and hieroglyphs that warn
+you not to proceed any further.
 ~
 D0
 You see a tiny crawlway raised about three feet off the ground.
@@ -1147,13 +1150,13 @@ small rocky crevasse.
 ~
 0 13 0
 E
-u up~
-The hole looks far too slippery to climb back up.
-~
-E
 bones~
 The bones have whitened and cracked in the dry air, apparently the remains 
 of adventurers, thieves, and creatures that did not survive the fall.
+~
+E
+u up~
+The hole looks far too slippery to climb back up.
 ~
 D2
 You see a rocky crevasse that proceeds deep under the pyramid.
@@ -1169,13 +1172,13 @@ small rocky crevasse.
 ~
 0 9 0
 E
-u up~
-The hole looks far too slippery to climb back up.
-~
-E
 bones~
 The bones have whitened and cracked in the dry air, apparently the remains 
 of adventurers, thieves, and creatures that did not survive the fall.
+~
+E
+u up~
+The hole looks far too slippery to climb back up.
 ~
 D2
 You see a rocky crevasse that proceeds deep under the pyramid.
@@ -1260,12 +1263,6 @@ source is too dim to see exactly what it is.
 ~
 0 9 0
 E
-black shape~
-Wind howls about your ears like the roar of a tiger.  As your eyes
-adjust to the light the shape to the south almost seems to take the
-form of a massive animal head.
-~
-E
 tiger head animal sesame~
 You are now certain that the wind is the cold breath of some unearthly
 giant animal, whose voice rumbles lowly on the breeze, and whose
@@ -1275,6 +1272,12 @@ You move closer for a better look, when suddenly a pair of eyes flashes.
 A cold voice echoes: 'SEEK YE THE DIAMOND... IN THE ROUGH...'
 
 ... Then all is silent.
+~
+E
+black shape~
+Wind howls about your ears like the roar of a tiger.  As your eyes
+adjust to the light the shape to the south almost seems to take the
+form of a massive animal head.
 ~
 D2
 You see a strange-looking black shape.
@@ -1361,6 +1364,14 @@ except a large stone coffin that leans against the western wall.
 ~
 0 8 0
 E
+man garments pharoah~
+As you look closer at the figure sculpted into the stone coffin you notice a
+small marking carved into its chest.  It looks like a scarab or small beetle
+would fit into the small space, if properly sized.
+
+Hmm.
+~
+E
 coffin lid~
 The coffin is sculpted into the form of a man, standing several heads above
 you, and clad in the garments of pharoahs.  It has apparently been untouched
@@ -1368,14 +1379,6 @@ by the ravages of time and the activities of looters.  Several markings on the
 side indicate spots where unsuccessful attempts were made to open the coffin.
 
 You can't see any way to open it.
-~
-E
-man garments pharoah~
-As you look closer at the figure sculpted into the stone coffin you notice a
-small marking carved into its chest.  It looks like a scarab or small beetle
-would fit into the small space, if properly sized.
-
-Hmm.
 ~
 D1
 To the east is another tomb.
@@ -1396,13 +1399,13 @@ of dust.  Some inscriptions are carved into the wall here.
 ~
 0 9 0
 E
+coffin lid~
+On this side the coffin lid is smooth featureless stone.
+~
+E
 inscriptions~
 You blow dust away from the inscriptions to read:
 'Beware the curse of the mummy.'
-~
-E
-coffin lid~
-On this side the coffin lid is smooth featureless stone.
 ~
 D1
 You see the backside of the coffin lid, featureless stone.
@@ -1741,14 +1744,14 @@ final resting place of the mighty pharoahs of this land.
 ~
 0 13 0
 E
-tomb~
-The tomb looks like it has stood for many years, much like the pyramid
-which encloses it.  It is covered in small hieroglyphics.
-~
-E
 hieroglyphics carvings~
 The markings indicate that this tomb is indeed the tomb of the greatest
 pharoahs of the ancient civilization that built this massive pyramid.
+~
+E
+tomb~
+The tomb looks like it has stood for many years, much like the pyramid
+which encloses it.  It is covered in small hieroglyphics.
 ~
 D0
 You see the tomb of the pharoahs.
@@ -1877,13 +1880,13 @@ they appear to have been used recently.
 ~
 0 8 0
 E
+bricks~
+The small golden bricks are very smooth and also quite soft.
+~
+E
 rug rugs tapestry tapestries~
 The rugs and tapestries are very fine and worn with age, their colors
 now faded.  They depict scenes of life in an ancient desert city.
-~
-E
-bricks~
-The small golden bricks are very smooth and also quite soft.
 ~
 D3
 You see an arched hall.
@@ -2094,18 +2097,18 @@ every other direction.
 ~
 0 0 10
 E
-sand dune~
-The sand is very white, and very sandy.  There sure is a lot of it.
+hieroglyphics symbols~
+Like most of the ancient hieroglyphics of this land, the symbols are
+totally incomprehensible to you.  Perhaps the Sphinx has the answer
+to this ancient riddle.
 ~
 E
 riddle~
 A vision forms before your eyes, in glowing hieroglyphic symbols.
 ~
 E
-hieroglyphics symbols~
-Like most of the ancient hieroglyphics of this land, the symbols are
-totally incomprehensible to you.  Perhaps the Sphinx has the answer
-to this ancient riddle.
+sand dune~
+The sand is very white, and very sandy.  There sure is a lot of it.
 ~
 D0
 You see only a wall of whirling, blowing, dry sand.
@@ -2147,6 +2150,10 @@ M 2614 spec_cast_cleric
 M 2615 spec_cast_cleric
 M 2616 spec_breath_any
 M 2617 spec_cast_cleric
+S
+
+
+#GAMES
 S
 
 

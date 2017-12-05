@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 1 12} Binky   The Circus~
-Builders    None~
-VNUMs       4400 4469
+Name        The Circus~
+Author      Binky~
+Levels      1 12
 Security    1
+VNUMs       4400 4469
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -477,9 +480,9 @@ A pair of large bracers lies here.~
 3~ 0~ 0~ 0~ 0~
 8 0 0
 A
-1 1 0
-A
 5 1 0
+A
+1 1 0
 #4408
 sword small~
 a small, thin sword~
@@ -489,9 +492,9 @@ A small sword lies here.~
 0~ 0~ 11~ 11~ 0~
 1 0 0
 A
-18 3 0
-A
 17 8 0
+A
+18 3 0
 #4409
 staff translucent~
 a pointy translucent staff~
@@ -501,9 +504,9 @@ A long, thin, shimmering object lies here.~
 0~ 0~ 7~ 7~ 0~
 0 0 0
 A
-18 2 0
-A
 19 1 0
+A
+18 2 0
 #4410
 sword bastard~
 the sword swallower's sword~
@@ -513,9 +516,9 @@ A rubber bastard sword is here.~
 0~ 0~ 1~ 1~ 0~
 0 0 0
 A
-18 1 0
-A
 19 -1 0
+A
+18 1 0
 #4411
 purse~
 the midget's purse~
@@ -541,9 +544,9 @@ A razor lies here.~
 0~ 0~ 2~ 2~ 0~
 1 0 0
 A
-19 2 0
-A
 17 6 0
+A
+19 2 0
 #4414
 barbell~
 a barbell~
@@ -587,9 +590,9 @@ A strip of black cloth lies here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-18 -10 0
-A
 14 -50 0
+A
+18 -10 0
 #4418
 whip~
 a whip~
@@ -599,9 +602,9 @@ A leather whip is lying on the ground.~
 2~ 2~ 4~ 4~ 0~
 1 0 0
 A
-18 5 0
-A
 4 -1 0
+A
+18 5 0
 #4419
 pole~
 tightrope walker's pole~
@@ -621,9 +624,9 @@ A huge pair of shoes lies here, apparently forgotten.~
 0~ 0~ 0~ 0~ 0~
 4 0 0
 A
-14 -20 0
-A
 2 -1 0
+A
+14 -20 0
 #4421
 tophat hat~
 a tophat~
@@ -633,9 +636,9 @@ The Ringmaster's tophat lies here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-12 10 0
-A
 17 4 0
+A
+12 10 0
 #4422
 chest~
 a chest~
@@ -791,9 +794,9 @@ A red nose like a clown might wear, lies forgotten upon the ground.~
 0~ 0~ 0~ 0~ 0~
 1 100 0
 A
-3 -2 0
-A
 4 -1 0
+A
+3 -2 0
 #4440
 chest~
 a chest~
@@ -867,9 +870,9 @@ A thin knife with a sharp blade lies here.~
 0~ 0~ 1~ 1~ 0~
 1 0 0
 A
-18 -2 0
-A
 19 6 0
+A
+18 -2 0
 #4449
 refrigerator frig fridge~
 binky's refrigerator~
@@ -887,9 +890,9 @@ A very sharp knife gleams from the floor.~
 0~ 0~ 11~ 11~ 0~
 1 0 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 #0
 
 
@@ -1834,6 +1837,10 @@ S
 
 #SPECIALS
 M 4451 spec_thief
+S
+
+
+#GAMES
 S
 
 

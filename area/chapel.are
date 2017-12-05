@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 25} Copper  Chapel Catacombs~
-Builders    None~
-VNUMs       3400 3475
+Name        Chapel Catacombs~
+Author      Copper~
+Levels      15 25
 Security    1
+VNUMs       3400 3475
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -268,9 +271,9 @@ A nightgaunt's tickler has been left here.~
 0~ 3~ 4~ 5~ 0~
 8 5000 0
 A
-18 1 0
-A
 19 2 0
+A
+18 1 0
 E
 tickler~
 A horrid black mass of gooey tentacles obviously ripped from the corpse
@@ -336,9 +339,9 @@ A black marble ring is lying here on the ground.~
 0~ 0~ 0~ 0~ 0~
 2 4000 0
 A
-14 10 0
-A
 24 1 0
+A
+14 10 0
 E
 black marble ring~
 It is pitch black and has beautiful swirls characteristic of marble all
@@ -353,9 +356,9 @@ A rapier is lying here.~
 0~ 4~ 2~ 11~ 0~
 4 1000 0
 A
-2 2 0
-A
 18 1 0
+A
+2 2 0
 E
 thin rapier~
 It seems so thin that it would be useless but at the same time it looks deadly.
@@ -527,9 +530,9 @@ A dark black cape is lying here~
 5~ 0~ 0~ 0~ 0~
 10 8000 0
 A
-13 10 0
-A
 17 10 0
+A
+13 10 0
 E
 dark black cape~
 The cape is gently flows and pulls in the light so evenly and perfectly
@@ -586,12 +589,12 @@ do not let much light through.  A few rows of worn wooden benches stand here.
 ~
 0 0 1
 E
-glass windows~
-The windows must be meant to be dark.  At least they are completely clean.
-~
-E
 benches rows~
 The benches are not of the comfortable kind.
+~
+E
+glass windows~
+The windows must be meant to be dark.  At least they are completely clean.
 ~
 D0
 The chapel door is made of dark wood.
@@ -626,7 +629,7 @@ A bloodied corpse of an acolyte is lying here ...
 A bloodied corpse of an acolyte is lying here ...
 A bloodied corpse of an acolyte is lying here ...
 ~
-0 13 0
+0 9 0
 E
 corpse corpses~
 Mauled and torn apart ... throats were ripped out and guts spilled on the
@@ -666,13 +669,13 @@ blood stains, but their color seems a little wrong.
 ~
 0 9 0
 E
-stain stains~
-That's odd ... they seem a little GREEN.
-~
-E
 door writing~
 Above the door is some strange writing!  It is worn with age, but it refers
 to an ancient ruler named 'Shohan'.
+~
+E
+stain stains~
+That's odd ... they seem a little GREEN.
 ~
 D1
 ~
@@ -788,13 +791,6 @@ leading down.  The Ghost of Cristis the Kind stands here.
 ~
 0 9 0
 E
-altar~
-It stands 2 feet high with the remnants of candle-wax on top.  There is
-an inscription on the side:  'Praise the almighty Cristis the bringer of
-good and justice to the world.  He who fought the evilest finally is at
-peace.  May the Gods remember him forever ...'
-~
-E
 ghost cristis~
 His rest has been disturbed by evil creatures who have invaded his domain
 and grave.  He holds up a parchment for you to read:
@@ -808,6 +804,13 @@ and grave.  He holds up a parchment for you to read:
      Roch'tar, the reincarnate Vampire, now rules these tombs.
    You must find and defeat him and his minions!
      May God bless you on your Quest!
+~
+E
+altar~
+It stands 2 feet high with the remnants of candle-wax on top.  There is
+an inscription on the side:  'Praise the almighty Cristis the bringer of
+good and justice to the world.  He who fought the evilest finally is at
+peace.  May the Gods remember him forever ...'
 ~
 D2
 ~
@@ -857,10 +860,23 @@ doors lead off to the south and a large stone staircase leads up.
 ~
 0 9 0
 E
-stone door trapdoor~
-It's rather small and looks quite heavy but maybe with some kind of leverage
-you could move it.  It has a queerly shaped hole that looks big enough
-for an equally queerly shaped pole to fit inside.  If only you had it!
+letters graffiti~
+'Beware here all of man, because past here lies only death.'
+
+    Insho'rkthon brsskra-lehsn Roch'tar
+
+Beneath, there are two criss-crossing scratchmarks in an X formation that
+look like someone (or something) raked their claws across the wood.
+~
+E
+oak~
+They're HUGE!  They are at least 12 feet tall and about 10 feet wide.
+If not for one thing they would be perfectly preserved.  There appears
+to be some letters crudely scratched into the wood.
+~
+E
+staircase stairs~
+Though quite cracked they do look very stable.
 ~
 E
 tapestry tapestries~
@@ -870,23 +886,10 @@ Benevolent and Hroth Kragen's forces that eventually Jubal's army won (of
 course).
 ~
 E
-staircase stairs~
-Though quite cracked they do look very stable.
-~
-E
-oak~
-They're HUGE!  They are at least 12 feet tall and about 10 feet wide.
-If not for one thing they would be perfectly preserved.  There appears
-to be some letters crudely scratched into the wood.
-~
-E
-letters graffiti~
-'Beware here all of man, because past here lies only death.'
-
-    Insho'rkthon brsskra-lehsn Roch'tar
-
-Beneath, there are two criss-crossing scratchmarks in an X formation that
-look like someone (or something) raked their claws across the wood.
+stone door trapdoor~
+It's rather small and looks quite heavy but maybe with some kind of leverage
+you could move it.  It has a queerly shaped hole that looks big enough
+for an equally queerly shaped pole to fit inside.  If only you had it!
 ~
 D2
 Finely polished oak doors stand to the south.
@@ -1801,6 +1804,10 @@ M 3412 spec_cast_mage
 M 3414 spec_cast_mage
 M 3415 spec_cast_undead
 M 3416 spec_cast_undead
+S
+
+
+#GAMES
 S
 
 

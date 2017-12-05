@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 20} Mahatma Arachnos~
-Builders    None~
-VNUMs       6200 6399
+Name        Arachnos~
+Author      Mahatma~
+Levels      5 20
 Security    1
+VNUMs       6200 6399
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -242,9 +245,9 @@ A white cone-shaped head ornament with religious symbols lies here.~
 6~ 0~ 0~ 0~ 0~
 5 20000 0
 A
-4 3 0
-A
 17 -2 0
+A
+4 3 0
 #6304
 visor black knight's~
 a black knight's visor~
@@ -254,9 +257,9 @@ A black visor sits here.~
 6~ 0~ 0~ 0~ 0~
 5 20000 0
 A
-1 1 0
-A
 5 2 0
+A
+1 1 0
 #6308
 coins gold~
 a big pile of gold coins~
@@ -1195,6 +1198,10 @@ M 6316 spec_breath_gas
 M 6317 spec_breath_gas
 M 6318 spec_poison
 M 6319 spec_poison
+S
+
+
+#GAMES
 S
 
 

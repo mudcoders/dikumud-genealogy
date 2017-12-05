@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 1  5} Sandman Dwarven Day Care~
-Builders    None~
-VNUMs       6600 6647
+Name        Dwarven Day Care~
+Author      Sandman~
+Levels      1 5
 Security    1
+VNUMs       6600 6647
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -87,17 +90,6 @@ appears that there is still some fight left in her.
 5 16 6 4d4+50 1d8+2
 750 0
 0 Dwarf~ 2
->all_greet_prog 33~
-if name ($n) == youth dwarven
-  emote frowns and takes something from $N's mouth.
-else
-  if name ($n) == brat spoiled
-    mpecho $I spanks $N and gives him a nasty lecture.
-    mpecho You're sure he deserved it.
-  endif
-endif
-~
-|
 #6607
 guard~
 the armed guard~
@@ -143,9 +135,9 @@ A pink ice ring draws your eye.~
 1~ 0~ 0~ 0~ 0~
 8 7000 0
 A
-1 1 0
-A
 13 6 0
+A
+1 1 0
 #6621
 robe linen~
 a linen robe~
@@ -155,9 +147,9 @@ A linen robe is crumpled into a ball here.~
 1~ 0~ 0~ 0~ 0~
 5 4000 0
 A
-4 1 0
-A
 12 5 0
+A
+4 1 0
 #6644
 meat steak~
 a juicy steak~
@@ -540,6 +532,10 @@ M 6604 spec_thief
 M 6605 spec_thief
 M 6606 spec_cast_cleric
 M 6608 spec_thief
+S
+
+
+#GAMES
 S
 
 

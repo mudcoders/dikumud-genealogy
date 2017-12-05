@@ -28,7 +28,7 @@
     built from the ground up, though got ideas from here and there...
     Painful! -- Zen --
 
-    This file was written by Zen (vasc@camoes.rnl.ist.utl.pt)
+    This file was written by Zen <vasc@camoes.rnl.ist.utl.pt>
  */
 
 #if defined( macintosh )
@@ -141,7 +141,8 @@ void do_initiate( CHAR_DATA *ch, char *argument )
 
     ring = create_object( get_obj_index( clan->clanobj1 ), victim->level );
 
-    obj_to_char( ring, victim );
+    if ( ring )
+	obj_to_char( ring, victim );
 
     sprintf( buf, "Log %s: initiated %s to %s",
 	    ch->name,
@@ -156,7 +157,7 @@ void do_initiate( CHAR_DATA *ch, char *argument )
 		  ch->name,
 		  victim->name,
 		  clan->name,
-		  ring->short_descr,
+		  ring ? ring->short_descr : "my handshake",
 		  clan->motto );
 
     send_to_char( buf, victim );
@@ -226,8 +227,8 @@ void do_exile( CHAR_DATA *ch, char *argument )
 	    ch->pcdata->clan->name  );
     log_clan( buf );
 
-    victim->pcdata->rank = RANK_EXILED;
     remove_from_clan( victim );
+    victim->pcdata->rank = RANK_EXILED;
 
     sprintf( buf,
 	    "The grand Overlord of %s %s says:\n\r\n\r"
@@ -524,11 +525,6 @@ void do_crecall( CHAR_DATA *ch, char *argument )
     act( "$n disappears.", ch, NULL, NULL, TO_ROOM );
     char_from_room( ch );
     char_to_room( ch, location );
-    if ( ch->riding )
-    {
-	char_from_room( ch->riding );
-	char_to_room( ch->riding, location );
-    }
     act( "$n appears in the room.", ch, NULL, NULL, TO_ROOM );
     do_look( ch, "auto" );
 
@@ -685,8 +681,8 @@ void do_leave( CHAR_DATA *ch, char *argument )
         return;
     }
 
-    ch->pcdata->rank = RANK_EXILED;
     remove_from_clan( ch );
+    ch->pcdata->rank = RANK_EXILED;
 
     sprintf( buf,
 	    "You leave %s off into exile.\n\r"
@@ -864,12 +860,12 @@ void do_claninfo( CHAR_DATA *ch, char *argument )
 	    ? "Promote someone to Chieftain!" : "" );
     strcat( buf1, buf );
 
-    sprintf( buf, "{o{cClanheros: %5.5d  Max Clanheros: %5.5d{x\n\r",
-	    clan->clanheros, clan->members / 3 );
-    strcat( buf1, buf );
-
     sprintf( buf, "{o{cSubchiefs: %5.5d  Max Subchiefs: %5.5d{x\n\r",
 	    clan->subchiefs, clan->members / 6 );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{o{cClanheros: %5.5d  Max Clanheros: %5.5d{x\n\r",
+	    clan->clanheros, clan->members / 3 );
     strcat( buf1, buf );
 
     sprintf( buf, "{o{cMembers  : %5.5d  SCORE        : %5.5d{x\n\r",

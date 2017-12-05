@@ -171,7 +171,7 @@ void *hash_find( HASH_HEADER *ht, int key )
     return scan ? scan->data : NULL;
 }
 
-int room_enter( ROOM_INDEX_DATA * rb[], int key, ROOM_INDEX_DATA *rm )
+int room_enter( ROOM_INDEX_DATA *rb[], int key, ROOM_INDEX_DATA *rm )
 {
     ROOM_INDEX_DATA *temp;
 
@@ -195,7 +195,7 @@ int hash_enter( HASH_HEADER *ht, int key, void *data )
     return 1;
 }
 
-ROOM_INDEX_DATA *room_find_or_create( ROOM_INDEX_DATA * rb[], int key )
+ROOM_INDEX_DATA *room_find_or_create( ROOM_INDEX_DATA *rb[], int key )
 {
     ROOM_INDEX_DATA *rv;
 
@@ -223,7 +223,7 @@ void *hash_find_or_create( HASH_HEADER *ht, int key )
     return rval;
 }
 
-int room_remove( ROOM_INDEX_DATA * rb[], int key )
+int room_remove( ROOM_INDEX_DATA *rb[], int key )
 {
     ROOM_INDEX_DATA *tmp;
 
@@ -386,8 +386,7 @@ int find_path( int in_room_vnum, int out_room_vnum, CHAR_DATA *ch,
 			    count++;
 			    /* mark room as visted and put on queue */
 
-			    tmp_q = (ROOM_Q *)
-				malloc( sizeof( ROOM_Q ) );
+			    tmp_q = (ROOM_Q *) malloc( sizeof( ROOM_Q ) );
 			    tmp_q->room_nr = tmp_room;
 			    tmp_q->next_q = 0;
 			    q_tail->next_q = tmp_q;

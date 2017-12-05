@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 25} Karl    The HighLands~
-Builders    None~
-VNUMs       11500 11700
+Name        The HighLands~
+Author      Karl~
+Levels      15 25
 Security    1
+VNUMs       11500 11700
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -3825,6 +3828,10 @@ M 11510 spec_cast_mage
 M 11511 spec_cast_cleric
 M 11513 spec_breath_any
 M 11514 spec_breath_any
+S
+
+
+#GAMES
 S
 
 

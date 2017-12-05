@@ -2623,7 +2623,7 @@ void spell_sleep( int sn, int level, CHAR_DATA *ch, void *vo )
     if ( IS_AFFECTED( victim, AFF_SLEEP )
 	|| level < victim->level
 	|| saves_spell( level, victim, DAM_CHARM )
-	|| victim->race == race_lookup( "Vampire" ) )
+	|| !str_cmp( race_table[victim->race].name, "Vampire" ) )
     {
 	send_to_char( "You failed.\n\r", ch );
 	return;
@@ -3995,8 +3995,8 @@ void spell_turn_undead( int sn, int level, CHAR_DATA *ch, void *vo )
 	return;
     }
 
-    if (   victim->race == race_lookup( "Vampire" )
-	|| victim->race == race_lookup( "Undead" ) )
+    if (   !str_cmp( race_table[victim->race].name, "Vampire" )
+	|| !str_cmp( race_table[victim->race].name, "Undead" ) )
         do_flee( victim, "" );
 
     return;

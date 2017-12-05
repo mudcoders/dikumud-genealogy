@@ -51,7 +51,9 @@ bool    delete_char;
 int	hit_gain        args( ( CHAR_DATA *ch ) );
 int	mana_gain       args( ( CHAR_DATA *ch ) );
 int	move_gain       args( ( CHAR_DATA *ch ) );
+void	room_update	args( ( void ) );
 void	mobile_update   args( ( void ) );
+void	object_update	args( ( void ) );
 void	weather_update  args( ( void ) );
 void	char_update     args( ( void ) );
 void	obj_update      args( ( void ) );
@@ -368,8 +370,10 @@ void mobile_update( void )
         if ( ch->deleted )
 	    continue;
 
+	if ( !ch->in_room )
+	    continue;
+
 	if ( !IS_NPC( ch )
-	    || !ch->in_room
 	    || IS_AFFECTED( ch, AFF_CHARM ) )
 	    continue;
 
@@ -808,30 +812,6 @@ void char_update( void )
 	    }
 	}
 
-	if ( ch->in_room
-	    && ch->in_room->sector_type == SECT_AIR
-	    && ch->in_room->exit[5]
-	    && ch->in_room->exit[5]->to_room
-	    && !IS_AFFECTED( ch, AFF_FLYING )
-            && !IS_SET( race_table[ch->race].race_abilities, RACE_FLY ) )
-	{
-	    ROOM_INDEX_DATA *new_room = ch->in_room->exit[5]->to_room;
-
-	    if ( ( ch->in_room->people ) )
-	    {
-		act( "You are falling down!", ch, NULL, NULL, TO_CHAR );
-		act( "$n falls away.", ch, NULL, NULL, TO_ROOM );
-	    }
-
-	    char_from_room( ch );
-	    char_to_room( ch, new_room );
-
-	    if ( ch->in_room->people )
-	    {
-		act( "$n falls by.", ch, NULL, NULL, TO_ROOM );
-	    }
-	}
-
         /*
          * Careful with the damages here,
          *   MUST NOT refer to ch after damage taken,
@@ -892,8 +872,8 @@ void char_update( void )
         }
 
 	if ( ( time_info.hour > 5 && time_info.hour < 21 )
-	    && ch->in_room->room_flags != ROOM_UNDERGROUND
-	    && check_ris( ch, DAM_LIGHT ) == IS_SUSCEPTIBLE )
+	    && CHECK_SUS( ch, RIS_LIGHT )
+	    && !IS_SET( ch->in_room->room_flags, ROOM_DARK ) )
 	{
 	    int dmg = 0;
 
@@ -933,8 +913,8 @@ void char_update( void )
 		       && ch->in_room->sector_type != SECT_WATER_SWIM )
 		    && IS_SET( race_table[ ch->race ].race_abilities,
 			      RACE_WATERBREATH )
-		    && ( strcmp( race_table[ ch->race ].name, "Object" )
-			&& strcmp( race_table[ ch->race ].name, "God" ) ) ) )
+		    && (   str_cmp( race_table[ch->race].name, "Object" )
+			&& str_cmp( race_table[ch->race].name, "God" ) ) ) )
         {
             send_to_char( "You can't breathe!\n\r", ch );
             act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
@@ -1038,28 +1018,146 @@ void char_update( void )
 
 
 /*
+ * Update all rooms.
+ * This function is performance sensitive.
+ */
+void room_update( void )
+{   
+    OBJ_DATA        *obj;
+    OBJ_DATA        *obj_next;
+    CHAR_DATA       *rch;
+    CHAR_DATA       *rch_next;
+    ROOM_INDEX_DATA *new_room;
+    ROOM_INDEX_DATA *pRoomIndex;
+    int              iHash;
+
+    for ( iHash = 0; iHash < MAX_KEY_HASH; iHash++ )
+    {
+        for ( pRoomIndex  = room_index_hash[iHash];
+              pRoomIndex;
+              pRoomIndex  = pRoomIndex->next )
+        {
+	    if ( pRoomIndex->sector_type != SECT_AIR
+		|| !pRoomIndex->exit[5]
+		|| !( new_room = pRoomIndex->exit[5]->to_room ) )
+		continue;
+
+	    for ( obj = pRoomIndex->contents; obj; obj = obj_next )
+	    {
+		obj_next = obj->next_content;
+
+		if ( obj->deleted )
+		    continue;
+
+		if ( !IS_SET( obj->wear_flags, ITEM_TAKE ) )
+		    continue;
+
+		if ( ( rch = obj->in_room->people ) )
+		{
+		    act( "$p falls away.", rch, obj, NULL, TO_ROOM );
+		    act( "$p falls away.", rch, obj, NULL, TO_CHAR );
+		}
+	
+		obj_from_room( obj );
+		obj_to_room( obj, new_room );
+	
+		if ( ( rch = obj->in_room->people ) )
+		{
+		    act( "$p falls by.", rch, obj, NULL, TO_ROOM );
+		    act( "$p falls by.", rch, obj, NULL, TO_CHAR );
+		}
+	    }
+
+	    for ( rch = pRoomIndex->people; rch; rch = rch_next )
+	    {
+		rch_next = rch->next_in_room;
+
+		if ( rch->deleted )
+		    continue;
+
+		if ( IS_AFFECTED( rch, AFF_FLYING )
+        	    || IS_SET( race_table[rch->race].race_abilities, RACE_FLY ) )
+		    continue;
+
+		if ( rch->in_room->people )
+		{
+		    act( "You are falling down!", rch, NULL, NULL, TO_CHAR );
+		    act( "$n falls away.",        rch, NULL, NULL, TO_ROOM );
+		}
+		
+		char_from_room( rch );
+		char_to_room( rch, new_room );
+	
+		if ( rch->in_room->people )
+		    act( "$n falls by.", rch, NULL, NULL, TO_ROOM );
+	    }
+        }
+    }
+
+    return;
+}
+
+
+
+/*
+ * Update all objects.
+ * This function is performance sensitive.
+ */
+void object_update( void )
+{   
+    OBJ_DATA        *obj;
+    OBJ_DATA        *obj_next;
+
+    for ( obj = object_list; obj; obj = obj_next )
+    {
+	obj_next = obj->next;
+
+	if ( obj->deleted )
+	    continue;
+
+	/* Examine call for special procedure */
+	if ( obj->spec_fun != 0 )
+	{
+	    if ( ( *obj->spec_fun ) ( obj, obj->carried_by ) )
+		continue;
+	}
+    }
+
+    return;
+}
+
+
+
+/*
  * Update all objs.
  * This function is performance sensitive.
  */
 void obj_update( void )
 {   
-    OBJ_DATA *obj;
-    OBJ_DATA *obj_next;
+    OBJ_DATA  *obj;
+    OBJ_DATA  *obj_next;
+    OBJ_DATA  *obj_prev;
+    CHAR_DATA *rch;
+    char      *message;
 
-    for ( obj = object_list; obj; obj = obj_next )
+    for ( obj = object_list, obj_prev = NULL; obj; obj = obj_next )
     {
-	CHAR_DATA *rch;
-	char      *message;
-
 	obj_next = obj->next;
+
 	if ( obj->deleted )
+	{
+	    obj_prev = obj;
 	    continue;
+	}
 
 	if ( obj->timer < -1 )
 	    obj->timer = -1;
 
 	if ( obj->timer < 0 )
+	{
+	    obj_prev = obj;
 	    continue;
+	}
 
 	/*
 	 *  Bug fix:  used to shift to obj_free if an object whose
@@ -1097,53 +1195,21 @@ void obj_update( void )
 	        extract_obj( obj );
    
 	        obj_next = object_list;
+	        obj_prev = NULL;
+	        continue;
 	    }
-	    else				/* (obj != object_list) */
-	    {
-	        OBJ_DATA *previous;
-   
-	        for ( previous = object_list; previous;
-		     previous = previous->next )
-	        {
-		    if ( previous->next == obj )
-	     		break;
-	        }
-   
-		if ( !previous )  /* Can't see how, but... */
-		    bug( "Obj_update: obj %d no longer in object_list",
-    			obj->pIndexData->vnum );
+
+					    /* (obj != object_list) */
+	    if ( !obj_prev )  /* Can't see how, but... */
+		bug( "Obj_update: obj %d no longer in object_list",
+		    obj->pIndexData->vnum );
+
+	    extract_obj( obj );
     
-	        extract_obj( obj );
-    
-	        obj_next = previous->next;
-	    }
+	    obj_next = obj_prev->next;
 	}
 
-	/* Slash's Merc Snippet - Falling objects (slightly changed by Zen) */
-	if ( !obj->carried_by && obj->in_room
-	    && obj->in_room->sector_type == SECT_AIR
-	    && IS_SET( obj->wear_flags, ITEM_TAKE )
-	    && obj->in_room->exit[5]
-	    && obj->in_room->exit[5]->to_room )
-	{
-	    ROOM_INDEX_DATA *new_room = obj->in_room->exit[5]->to_room;
-
-	    if ( ( rch = obj->in_room->people ) )
-	    {
-		act( "$p falls away.", rch, obj, NULL, TO_ROOM );
-		act( "$p falls away.", rch, obj, NULL, TO_CHAR );
-	    }
-
-	    obj_from_room( obj );
-	    obj_to_room( obj, new_room );
-
-	    if ( ( rch = obj->in_room->people ) )
-	    {
-		act( "$p falls by.", rch, obj, NULL, TO_ROOM );
-		act( "$p falls by.", rch, obj, NULL, TO_CHAR );
-	    }
-	}
-
+	obj_prev = obj;
     }
 
     return;
@@ -1176,7 +1242,7 @@ void aggr_update( void )
         mch = mob_act_list->vo;
         if ( !mch->deleted && mch->mpactnum > 0 )
 	{
-	    MPROG_ACT_LIST * tmp_act;
+	    MPROG_ACT_LIST *tmp_act;
 
 	    while ( ( tmp_act = mch->mpact ) )
             {
@@ -1204,7 +1270,7 @@ void aggr_update( void )
     {
 	ch = d->character;
 
-	if ( !CONNECTED( d )
+	if ( d->connected != CON_PLAYING
 	    || ch->level >= LEVEL_IMMORTAL
 	    || !ch->in_room )
 	    continue;
@@ -1546,19 +1612,24 @@ void ban_update( void )
 {
     FILE      *fp;
     BAN_DATA  *pban;
+    char       strsave [ MAX_INPUT_LENGTH ];
 
     fclose( fpReserve );
 
-    if ( !( fp = fopen ( BAN_FILE, "w" ) ) )
+    sprintf( strsave, "%s%s", SYSTEM_DIR, BAN_FILE );
+
+    if ( !( fp = fopen ( strsave, "w" ) ) )
     {
 	bug( "Ban_update:  fopen of BAN_FILE failed", 0 );
-	return;
+    }
+    else
+    {
+	for ( pban = ban_list; pban; pban = pban->next )
+	    fprintf( fp, "%s~\n", pban->name );
+
+	fclose( fp );
     }
 
-    for ( pban = ban_list; pban; pban = pban->next )
-        fprintf( fp, "%s~\n", pban->name );
-
-    fclose( fp );
     fpReserve = fopen( NULL_FILE, "r" );
 
     return;
@@ -1573,7 +1644,7 @@ void ban_update( void )
 void update_handler( void )
 {
     static int pulse_area;
-    static int pulse_mobile;
+    static int pulse_fast;
     static int pulse_violence;
     static int pulse_point;
     static int pulse_db_dump = PULSE_DB_DUMP;
@@ -1611,18 +1682,19 @@ void update_handler( void )
 	violence_update ( );
     }
 
-    if ( --pulse_mobile   <= 0 )
+    if ( --pulse_fast   <= 0 )
     {
-        wiznet( NULL, WIZ_TICKS, L_APP, "Mobile update pulse" );
-	pulse_mobile    =
-	  number_range( PULSE_MOBILE / 2, 3 * PULSE_MOBILE / 2 );
+        wiznet( NULL, WIZ_TICKS, L_APP, "Fast pulse point" );
+	pulse_fast	= number_range( PULSE_FAST / 2, 3 * PULSE_FAST / 2 );
+	room_update     ( );
+	object_update   ( );
 	mobile_update   ( );
     }
 
     if ( --pulse_point    <= 0 )
     {
         wiznet( NULL, WIZ_TICKS, LEVEL_HERO, "Pulse point" );
-	pulse_point     = number_range( PULSE_TICK / 2, 3 * PULSE_TICK / 2 );
+	pulse_point	= number_range( PULSE_TICK / 2, 3 * PULSE_TICK / 2 );
 	weather_update  ( );
 	char_update     ( );
 	obj_update      ( );

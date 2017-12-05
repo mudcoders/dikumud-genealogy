@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 10} Diku    Haon Dor~
-Builders    None~
-VNUMs       6000 6155
+Name        Haon Dor~
+Author      Diku~
+Levels      5 10
 Security    1
+VNUMs       6000 6155
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -21,23 +24,6 @@ one of a peaceful man leading a simple life.
 5 15 7 5d5+50 1d8+2
 50 0
 0 Human~ 1
->entry_prog 100~
-if name($n) == fat worm
-  emote brings a leather-booted foot down atop a fat worm!
-  kill $n
-endif
-~
->all_greet_prog 100~
-if name($n) == fat worm
-  emote brings a leather-booted foot down upon a fat worm!
-  kill $n
-endif
-~
->rand_prog 8~
-emote cleaves a small tree in two with one mighty blow.
-mpasound The sound of an axe blade plunging into soft wood can be heard.
-~
-|
 #6002
 bear~
 the brown bear~
@@ -159,13 +145,6 @@ he is having great fun.
 10 1 -10 10d10+100 1d8+2
 1000 0
 0 Animal~ 1
->rand_prog 16~
-giggle
-~
->rand_prog 14~
-poke $r
-~
-|
 #6116
 elder druid~
 the elder druid~
@@ -199,8 +178,8 @@ shirt~
 a chequered shirt~
 A chequered shirt lies here.~
 ~
-30 0 9
-0~ 0~ 0~ 0~ 0~
+9 0 9
+3~ 0~ 0~ 0~ 0~
 2 20 0
 E
 shirt~

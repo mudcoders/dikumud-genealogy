@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 50} Wench   Dragon Tower~
-Builders    None~
-VNUMs       2200 2299
+Name        Dragon Tower~
+Author      Wench~
+Levels      5 50
 Security    1
+VNUMs       2200 2299
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -269,9 +272,9 @@ A dangerous looking knife made from a dragon's tooth has been left here.~
 0~ 3~ 5~ 11~ 0~
 8 100000 0
 A
-2 1 0
-A
 19 2 0
+A
+2 1 0
 #2203
 bracelet dragon~
 a dragon skin bracelet~
@@ -353,9 +356,9 @@ A diamond ring lies gleaming on the ground.~
 4~ 0~ 0~ 0~ 0~
 6 50000 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 #2230
 ring copper~
 a copper ring~
@@ -486,7 +489,7 @@ a magenta potion~
 A magenta potion.~
 ~
 10 128 1
-30~ cure critical~ protection evil~  ~  ~
+30~ cure critical~ protection~  ~  ~
 1 2000 0
 #2254
 gauntlets spiked~
@@ -497,9 +500,9 @@ A pair of spiked gauntlets.~
 4~ 0~ 0~ 0~ 0~
 10 50000 0
 A
-19 2 0
-A
 1 1 0
+A
+19 2 0
 #2260
 scimitar golden~
 a golden scimitar~
@@ -509,9 +512,9 @@ A golden scimitar.~
 0~ 3~ 5~ 3~ 0~
 10 40000 0
 A
-3 1 0
-A
 4 1 0
+A
+3 1 0
 #2261
 brooch diamond~
 a diamond brooch~
@@ -528,7 +531,7 @@ a runed scroll~
 A runed scroll.~
 ~
 2 64 16385
-30~ armor~ protection evil~ shield~  ~
+30~ armor~ protection~ shield~  ~
 1 5000 0
 #2271
 gloves dragon~
@@ -559,9 +562,9 @@ A large mound of fur is lying here.~
 6~ 0~ 0~ 0~ 0~
 10 25000 0
 A
-1 1 0
-A
 13 10 0
+A
+1 1 0
 #2280
 leggings dragon scale~
 a pair of dragon scale leggings~
@@ -587,9 +590,9 @@ A dragon tailed whip is lying on the ground.~
 0~ 4~ 5~ 4~ 0~
 14 40000 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #2286
 hammer copper~
 a copper hammer~
@@ -685,12 +688,12 @@ You trudge down the hallway.  You notice doors to the east and west.
 ~
 0 8 0
 E
-sign~
-The sign says "NURSERY" in bold letters.     
-~
-E
 inscription~
 It says "STORAGE"
+~
+E
+sign~
+The sign says "NURSERY" in bold letters.     
 ~
 D0
 The hall continues. 
@@ -1304,17 +1307,17 @@ path leads up the mountain.  The small opening is back to the north.
 ~
 0 0 2
 E
-well~
-You peer over the side of the well.  It looks VERY, VERY deep.  It appears
-to be ENDLESS.
-~
-E
 sign~
 The sign reads:
          This is a bottomless pit cleverly disguised as a well.  People have
 fallen in and never been heard from again.  Trust me, you don't want to go 
 down there.
                         The All Powerful Well Keeper
+~
+E
+well~
+You peer over the side of the well.  It looks VERY, VERY deep.  It appears
+to be ENDLESS.
 ~
 D0
 the small opening
@@ -1428,7 +1431,7 @@ O
 right before your eyes.  Pretty pathetic isn't it?  Next time you'll know
 to listen to the God of Laughs.
 ~
-0 6 0
+0 2 0
 S
 #0
 
@@ -1449,6 +1452,10 @@ M 2240 spec_cast_undead
 M 2241 spec_breath_gas
 M 2242 spec_thief
 M 2243 spec_breath_any
+S
+
+
+#GAMES
 S
 
 

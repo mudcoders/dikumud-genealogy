@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 10} Alfa    Graveyard~
-Builders    None~
-VNUMs       3600 3651
+Name        Graveyard~
+Author      Alfa~
+Levels      5 10
 Security    1
+VNUMs       3600 3651
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -848,6 +851,10 @@ M 3602 spec_cast_undead
 M 3603 spec_cast_undead
 M 3604 spec_cast_undead
 M 3605 spec_cast_undead
+S
+
+
+#GAMES
 S
 
 

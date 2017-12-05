@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 20} Alfa    Holy Grove~
-Builders    None~
-VNUMs       8900 8999
+Name        Holy Grove~
+Author      Alfa~
+Levels      5 20
 Security    1
+VNUMs       8900 8999
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -817,6 +820,10 @@ M 8910 spec_cast_cleric
 S
 
 
+#GAMES
+S
+
+
 #RESETS
 M 0 8901 1 8901
 E 0 8910 0 16
@@ -829,6 +836,7 @@ G 0 8914 0
 G 0 8916 0
 M 0 8907 4 8903
 M 0 8907 4 8903
+O 0 10652 0 8903
 M 0 8903 1 8904
 E 0 8910 0 16
 G 0 8919 0

@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 10} Copper  In the Air~
-Builders    None~
-VNUMs       1000 1040
+Name        In the Air~
+Author      Copper~
+Levels      5 10
 Security    1
+VNUMs       1000 1040
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -1208,6 +1211,10 @@ S
 
 #SPECIALS
 M 1000 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

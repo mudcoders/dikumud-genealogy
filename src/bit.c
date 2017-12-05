@@ -354,6 +354,7 @@ const	struct	flag_type	act_flags	[ ]	=
 
 const	struct	flag_type	affect_flags	[ ]	=
 {
+    {	"none", 		0,	 		TRUE	},
     {	"blind", 		AFF_BLIND, 		TRUE	},
     {	"invisible", 		AFF_INVISIBLE, 		TRUE	},
     {	"detect-evil", 		AFF_DETECT_EVIL, 	TRUE	},
@@ -382,6 +383,7 @@ const	struct	flag_type	affect_flags	[ ]	=
     {	"flaming", 		AFF_FLAMING, 		TRUE	},
     {	"detect-good", 		AFF_DETECT_GOOD, 	TRUE	},
     {	"protect-good",		AFF_PROTECT_GOOD, 	TRUE	},
+    {	"plague",		AFF_PLAGUE, 		TRUE	},
     {	"", 			0, 			0	}
 };
 
@@ -447,7 +449,7 @@ const	struct	flag_type	wear_loc_strings	[ ]	=
     {	"around the waist", 	WEAR_WAIST, 		TRUE	},
     {	"on the left wrist", 	WEAR_WRIST_L, 		TRUE	},
     {	"on the right wrist", 	WEAR_WRIST_R, 		TRUE	},
-    {	"wielded", 		WEAR_WIELD, 		TRUE	},
+    {	"primary wield", 	WEAR_WIELD, 		TRUE	},
     {	"held in the hands", 	WEAR_HOLD, 		TRUE	},
     {	"second wield", 	WEAR_WIELD_2, 		TRUE	},
     {	"missile wield", 	WEAR_MISSILE_WIELD, 	TRUE	},

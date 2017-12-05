@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 25} Anon    Drow City~
-Builders    None~
-VNUMs       5100 5150
+Name        Drow City~
+Author      Anon~
+Levels      15 25
 Security    1
+VNUMs       5100 5150
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -169,9 +172,9 @@ A commoner's longsword made of adamantite has been left here.~
 0~ 2~ 6~ 3~ 0~
 2 1000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #5101
 longsword noble~
 a noble's longsword~
@@ -181,9 +184,9 @@ A drow noble's longsword made of adamantite lies here.~
 0~ 3~ 5~ 3~ 0~
 2 1500 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #5102
 whip snake two-headed~
 a snake headed whip~
@@ -193,9 +196,9 @@ A whip with two snakes heads lies here.~
 0~ 2~ 6~ 4~ 0~
 0 1750 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #5103
 whip snake three-headed~
 a snake headed whip~
@@ -205,9 +208,9 @@ A whip with three snake heads has been left here.~
 0~ 2~ 7~ 4~ 0~
 0 5000 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #5104
 whip snake four-headed~
 a snake headed whip~
@@ -217,9 +220,9 @@ A whip with four snake heads has been left here.~
 0~ 2~ 8~ 4~ 0~
 0 10250 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #5105
 longsword black~
 a black longsword~
@@ -229,9 +232,9 @@ A black longsword has been carelessly left here.~
 0~ 3~ 6~ 3~ 0~
 0 10250 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #5106
 whip snake five-headed~
 a snake headed whip~
@@ -241,9 +244,9 @@ A whip with five snake heads is lying here.~
 0~ 3~ 6~ 4~ 0~
 0 12000 0
 A
-1 -1 0
-A
 3 -1 0
+A
+1 -1 0
 #5107
 whip snake six-headed~
 a snake headed whip~
@@ -253,9 +256,9 @@ A whip with six snake heads has been dropped here.~
 0~ 4~ 5~ 4~ 0~
 0 15000 0
 A
-1 -2 0
-A
 3 -2 0
+A
+1 -2 0
 #5108
 bracers iron~
 a pair of bracers~
@@ -311,9 +314,9 @@ A dagger with spider leg shaped blades lies on the ground.~
 0~ 3~ 4~ 11~ 0~
 2 12000 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 #5114
 hat green~
 a small bright green hat~
@@ -323,9 +326,9 @@ A small bright green hat lies in the dirt.~
 5~ 0~ 0~ 0~ 0~
 1 2000 0
 A
-9 -15 0
-A
 17 -2 0
+A
+9 -15 0
 #0
 
 
@@ -337,12 +340,12 @@ gate lies open to the west allowing entrance into the city.
 ~
 0 9 0
 E
-gate~
-A large adamantite gate with giant spider shaped emblems stands here.
-~
-E
 hole~
 A small hole that looks to have sealed at one time.
+~
+E
+gate~
+A large adamantite gate with giant spider shaped emblems stands here.
 ~
 D3
 A huge gate opens to the west allowing entrance into the city.~
@@ -1163,6 +1166,10 @@ M 5103 spec_cast_mage
 M 5104 spec_cast_cleric
 M 5108 spec_cast_cleric
 M 5109 spec_breath_any
+S
+
+
+#GAMES
 S
 
 

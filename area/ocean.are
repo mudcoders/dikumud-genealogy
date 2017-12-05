@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ All } Picard  The River~
-Builders    None~
-VNUMs       201 247
+Name        The River~
+Author      Picard~
+Levels      0 54
 Security    1
+VNUMs       201 247
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -1139,12 +1142,17 @@ S
 S
 
 
+#GAMES
+S
+
+
 #RESETS
 M 0 202 1 239
 G 0 203 0
 M 0 201 1 244
 E 0 202 0 17
 O 0 201 0 244
+M 0 20118 1 246
 S
 
 

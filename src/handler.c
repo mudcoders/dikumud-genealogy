@@ -782,6 +782,10 @@ void char_from_room( CHAR_DATA *ch )
 
     ch->in_room      = NULL;
     ch->next_in_room = NULL;
+
+    if ( ch->riding )
+	char_from_room( ch->riding );
+
     return;
 }
 
@@ -811,6 +815,9 @@ void char_to_room( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex )
 	&& obj->item_type == ITEM_LIGHT
 	&& obj->value[2] != 0 )
 	++ch->in_room->light;
+
+    if ( ch->riding )
+	char_to_room( ch->riding, pRoomIndex );
 
     return;
 }
@@ -2290,7 +2297,7 @@ int advatoi( const char *s )
  * For resistant, immune, and susceptible.
  * The 'globals' (magic and weapons) may be overriden.
  * Three other cases -- wood, silver, and iron -- will be checked in fight.c
- * RIS was mostly based from ROM2.4 code by Russ Taylor (rtaylor@efn.org)
+ * RIS was mostly based from ROM2.4 code by Russ Taylor <rtaylor@efn.org>
  */
 int check_ris( CHAR_DATA *ch, int dam_type )
 {

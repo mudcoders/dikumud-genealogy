@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{10 52} Zen     Steel Cage Arena~
-Builders    None~
-VNUMs       11000 11031
+Name        Steel Cage Arena~
+Author      Zen~
+Levels      10 52
 Security    1
+VNUMs       11000 11031
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 

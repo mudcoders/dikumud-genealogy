@@ -541,7 +541,7 @@ void interpret( CHAR_DATA *ch, char *argument )
 SOC_INDEX_DATA *find_social( char *command )
 {
     SOC_INDEX_DATA *social;
-    int hash;
+    int             hash;
 
     if ( command[0] < 'a' || command[0] > 'z' )
         hash = 0;
@@ -559,9 +559,9 @@ SOC_INDEX_DATA *find_social( char *command )
 
 bool check_social( CHAR_DATA *ch, char *command, char *argument )
 {
-    CHAR_DATA   *victim;
-    char         arg [ MAX_INPUT_LENGTH ];
     SOC_INDEX_DATA *soc;
+    CHAR_DATA      *victim;
+    char            arg [ MAX_INPUT_LENGTH ];
 
     if ( !( soc = find_social( command ) ) )
 	return FALSE;
@@ -793,12 +793,195 @@ void do_history( CHAR_DATA *ch, char *argument )
 
 
 /*
+ * Aliases:
+ * Implemented by list; parameter is '%' or '$'.
+ * (c) 1997 Sektor van Skijlen
+ *
+ * Merged a couple of functions and eliminated gotos  -Zen
+ */
+
+
+/* 
+ * strexg - copies a string, making some replacements
+ * strexg( <to>, <from>, <what>, <for what> )
+ */
+void strexg( char *target, char *source, char c, char *t )
+{
+    int   i = 0;
+    char *temp;
+
+    while ( *source && i < MAX_INPUT_LENGTH )
+    {
+	if ( *source == c )
+	{
+	    if ( !t )
+	    {
+		source++;
+		continue;
+	    }
+	    temp = t;
+	    source++;
+	    while ( *temp )
+	    {
+		i++;
+		*target++ = *temp++;
+	    }
+	}
+	else
+	{
+	    *target++ = *source++;
+	    i++;
+	}
+    }
+    *target = '\0';
+
+    return;
+}
+
+
+void substitute_alias( DESCRIPTOR_DATA *d )
+{
+    ALIAS_DATA *alias;
+    CHAR_DATA  *ch;
+    char       *arg;
+    char        cmd [ MAX_INPUT_LENGTH ];
+    char        buf [ MAX_INPUT_LENGTH ];
+
+    ch = ( d->original ? d->original : d->character );
+
+    arg = d->incomm;
+    arg = one_argument( arg, cmd );
+
+    for( alias = ch->pcdata->alias_list; alias; alias = alias->next )
+    	    if ( !str_cmp( cmd, alias->cmd ) ) break;
+
+    if ( !alias )
+	return;
+
+    if ( strchr( alias->subst, '%' ) )
+	strexg( buf, alias->subst, '%', arg );
+    else
+	strexg( buf, alias->subst, '$', arg );
+
+    if ( !strchr( buf, ';' ) )
+	return;
+
+    strcpy( d->flusher, buf );
+    *d->incomm = '\0';
+
+    d->flush_point = strchr( d->flusher, ';' );
+
+    if ( d->flush_point )
+    {
+	*d->flush_point = '\0';
+	d->flush_point++;
+    }
+
+    return;
+}
+
+
+/*
  * "alia" command is a trap to the "alias" command.
  */
 void do_alia( CHAR_DATA *ch, char *argument )
 {
     send_to_char( "If you want to ALIAS, you have to spell it out.\n\r", ch );
 
+    return;
+}
+
+
+void do_alias( CHAR_DATA *ch, char *argument )
+{
+    char        buf  [ MAX_STRING_LENGTH ];
+    char        buf1 [ MAX_STRING_LENGTH ];
+    char        name [ MAX_INPUT_LENGTH  ];
+    ALIAS_DATA *alias;
+    int         num;
+
+    if ( IS_NPC( ch ) )
+    {
+	send_to_char( "Mobiles can't have aliases.\n\r", ch );
+	return;
+    }
+
+    alias    = ch->pcdata->alias_list;
+    argument = one_argument( argument, name );
+
+    if ( name[0] == '\0' )
+    {
+	if ( !alias )
+	{
+	    send_to_char( "You have no aliases defined.\n\r", ch );
+	    return;
+	}
+
+	buf1[0] = '\0';
+
+	strcat( buf1, "{o{cYour current aliases are:{x\n\r" );
+	for ( ; alias; alias = alias->next )
+	{
+	    sprintf( buf, "{o{y%s = %s{x\n\r", alias->cmd, alias->subst );
+	    strcat( buf1, buf );
+	}
+
+	send_to_char( buf1, ch );
+	return;
+    }
+
+    if ( argument[0] == '\0' )
+    {
+	send_to_char( "What do you want in the alias?\n\r", ch );
+	return;
+    }
+
+    if (   !str_cmp( name, "alias"   )
+	|| !str_cmp( name, "unalias" ) )
+    {
+	send_to_char( "Sorry, that word is reserved.\n\r", ch );
+	return;
+    }
+
+    num = 0;
+    for ( alias = ch->pcdata->alias_list; alias; alias = alias->next )
+    {
+	if ( !str_cmp( alias->cmd, name ) )
+	{
+	    send_to_char( "You already have that alias!  Remove it first.\n\r", ch );
+	    return;
+	}
+
+	num++;
+    }
+
+    if ( num >= MAX_ALIAS )
+    {
+	send_to_char( "You have reached the alias limit.\n\r", ch );
+	return;
+    }
+
+    if ( strchr( argument, '~' ) )
+    {
+	send_to_char( "You cannot include a tilde '~'.\n\r", ch );
+	return;
+    }
+
+    /*
+     * Add alias to alias_list.
+     */
+    alias = alloc_mem( sizeof( ALIAS_DATA ) );
+
+    if ( argument[ strlen( argument )-1 ] != ';' )
+	strcat( argument, ";" );   /* Every alias MUST end with an ';' */
+
+    alias->next            = ch->pcdata->alias_list;
+    alias->cmd             = str_dup( name );
+    alias->subst           = str_dup( argument );
+    ch->pcdata->alias_list = alias;
+
+    sprintf( buf, "'%s' is now aliased to '%s'.\n\r", name, argument );
+    send_to_char( buf, ch );
     return;
 }
 
@@ -814,260 +997,46 @@ void do_unalia( CHAR_DATA *ch, char *argument )
 }
 
 
-/***************************************************************************
-*	ROM 2.4 is copyright 1993-1996 Russ Taylor			   *
-*	ROM has been brought to you by the ROM consortium		   *
-*	    Russ Taylor (rtaylor@efn.org)				   *
-*	    Gabrielle Taylor						   *
-*	    Brian Moore (zump@rom.org)					   *
-*	By using this code, you have agreed to follow the terms of the	   *
-*	ROM license, in the file Rom24/doc/rom.license			   *
-***************************************************************************/
-
-/*
- * does aliasing and other fun stuff.
- * enhanced by Zen so aliases are able to call other aliases.
- */
-void substitute_alias( DESCRIPTOR_DATA *d, char *argument )
-{
-    CHAR_DATA *ch;
-    char      *point;
-    char      *rest;
-    char       buf  [ MAX_STRING_LENGTH ];
-    char       name [ MAX_STRING_LENGTH ];
-    char       part [ MAX_STRING_LENGTH ];
-    char       arg  [ MAX_STRING_LENGTH ];
-    int        alias;
-    int        num;
-    bool       found;
-
-    ch = ( d->original ? d->original : d->character );
-
-    if ( IS_NPC( ch )
-	|| !ch->pcdata->alias[0]
-	|| !str_prefix( "alias", argument )
-	|| !str_prefix( "unalias", argument ) )
-    {
-	interpret( d->character, argument );
-	return;
-    }
-
-    strcpy( buf, argument );
-
-    for ( alias = 0; alias < MAX_ALIAS; alias++ ) /* go through the aliases */
-    {
-	if ( !ch->pcdata->alias[alias] )
-	    break;
-
-	if ( !str_prefix( ch->pcdata->alias[alias], argument ) )
-	{
-	    point = one_argument( argument, name );
-	    if ( !strcmp( ch->pcdata->alias[alias], name ) )
-	    {
-
-		strcpy( arg, ch->pcdata->alias_sub[alias] );
-		buf[0] = '\0';
-
-		/* What the hell is this??? :) - Zen */
-		for ( rest = arg, rest = one_argument( rest, part );
-			part[0] != '\0';
-			rest = one_argument( rest, part ) )
-		{
-		    found = FALSE;
-		    for ( num = 0; num < MAX_ALIAS; num++ )
-		    {
-			if ( !ch->pcdata->alias[num] )
-			    break;
-
-			if ( !str_prefix( ch->pcdata->alias[num], part )
-			     && str_prefix( ch->pcdata->alias[num], name )
-			     && !strchr( part, ' ' ) )
-			{
-			    strcat( buf, ch->pcdata->alias_sub[num] );
-			    found = TRUE;
-			    break;
-			}
-		    }
-
-		    if ( strchr ( part, ' ' ) )
-			strcat( buf, "'" );
-		    if ( !found )
-			strcat( buf, part );
-		    if ( strchr ( part, ' ' ) )
-			strcat( buf, "'" );
-
-		    strcat( buf, " " );
-		}		
-
-		strcat( buf, point );
-		break;
-	    }
-
-	    if ( strlen( buf ) > MAX_INPUT_LENGTH )
-	    {
-		send_to_char( "Alias substitution too long. Truncated.\r\n",
-			     ch );
-		buf [ MAX_INPUT_LENGTH - 1 ] = '\0';
-	    }
-	}
-    }
-
-    interpret( d->character, buf );
-    return;
-}
-
-
-void do_alias( CHAR_DATA *ch, char *argument )
-{
-    CHAR_DATA *rch;
-    char       arg [ MAX_INPUT_LENGTH ];
-    char       buf [ MAX_STRING_LENGTH ];
-    int        pos;
-
-    smash_tilde( argument );
-
-    rch = get_char( ch );
-
-    if ( IS_NPC( rch ) )
-	return;
-
-    argument = one_argument( argument, arg );
-
-    if ( arg[0] == '\0' )
-    {
-	if ( !rch->pcdata->alias[0] )
-	{
-	    send_to_char( "You have no aliases defined.\n\r", ch );
-	    return;
-	}
-	send_to_char( "Your current aliases are:\n\r", ch );
-
-	for ( pos = 0; pos < MAX_ALIAS; pos++ )
-	{
-	    if ( !rch->pcdata->alias[pos]
-		|| !rch->pcdata->alias_sub[pos] )
-		break;
-
-	    sprintf( buf, "alias '{o{c%s{x' to {o{y%s{x\n\r",
-		    rch->pcdata->alias[pos], rch->pcdata->alias_sub[pos] );
-	    send_to_char( buf, ch );
-	}
-
-	return;
-    }
-
-    if ( !str_prefix( "unalias", arg ) || !str_cmp( "alias", arg ) )
-    {
-	send_to_char( "Sorry, that word is reserved.\n\r", ch );
-	return;
-    }
-
-    if ( argument[0] == '\0' )
-    {
-	for ( pos = 0; pos < MAX_ALIAS; pos++ )
-	{
-	    if ( !rch->pcdata->alias[pos]
-		|| !rch->pcdata->alias_sub[pos] )
-		break;
-
-	    if ( !str_cmp( arg, rch->pcdata->alias[pos] ) )
-	    {
-		sprintf( buf, "{o{c%s{x aliases to {o{y%s{x.\n\r",
-			rch->pcdata->alias[pos], rch->pcdata->alias_sub[pos] );
-		send_to_char( buf, ch );
-		return;
-	    }
-	}
-
-	send_to_char( "That alias is not defined.\n\r", ch );
-	return;
-    }
-
-    if ( !str_prefix( argument, "delete" )
-	|| !str_prefix( argument, "retire" ) )
-    {
-	send_to_char( "That shall not be done!\n\r", ch );
-	return;
-    }
-
-    for ( pos = 0; pos < MAX_ALIAS; pos++ )
-    {
-	if ( !rch->pcdata->alias[pos] )
-	    break;
-
-	if ( !str_cmp( arg, rch->pcdata->alias[pos] ) ) /* redefine an alias */
-	{
-	    free_string( rch->pcdata->alias_sub[pos] );
-	    rch->pcdata->alias_sub[pos] = str_dup( argument );
-	    sprintf( buf, "{o{c%s{x is now realiased to {o{y%s{x.\n\r", arg,
-		    argument );
-	    send_to_char( buf, ch );
-	    return;
-	}
-    }
-
-    if ( pos >= MAX_ALIAS )
-    {
-	send_to_char( "Sorry, you have reached the alias limit.\n\r", ch );
-	return;
-    }
-
-    /* make a new alias */
-    rch->pcdata->alias[pos]		= str_dup( arg );
-    rch->pcdata->alias_sub[pos]		= str_dup( argument );
-    sprintf( buf, "{o{c%s{x is now aliased to {o{y%s{x.\n\r", arg, argument );
-    send_to_char( buf, ch );
-    return;
-}
-
-
 void do_unalias( CHAR_DATA *ch, char *argument )
 {
-    CHAR_DATA *rch;
-    char       arg [ MAX_INPUT_LENGTH ];
-    int        pos;
-    bool       found = FALSE;
- 
-    rch = get_char( ch );
- 
-    if ( IS_NPC( rch ) )
+    ALIAS_DATA *alias;
+    ALIAS_DATA *prev;
+    char        buf [ MAX_STRING_LENGTH ];
+    char        arg [ MAX_INPUT_LENGTH  ];
+
+    if ( IS_NPC( ch ) )
+    {
+	send_to_char( "Mobiles can't have aliases.\n\r", ch );
 	return;
- 
+    }
+
     argument = one_argument( argument, arg );
 
-    if ( arg == '\0' )
+    /*
+     * Remove alias from alias_list.
+     */
+    prev = NULL;
+    for ( alias = ch->pcdata->alias_list; alias; alias = alias->next )
     {
-	send_to_char( "Syntax: unalias <word>.\n\r", ch );
-	return;
-    }
-
-    for ( pos = 0; pos < MAX_ALIAS; pos++ )
-    {
-	if ( !rch->pcdata->alias[pos] )
+	if ( !str_cmp( alias->cmd, arg ) )
 	    break;
-
-	if ( found )
-	{
-	    rch->pcdata->alias[pos-1]		= rch->pcdata->alias[pos];
-	    rch->pcdata->alias_sub[pos-1]	= rch->pcdata->alias_sub[pos];
-	    rch->pcdata->alias[pos]		= NULL;
-	    rch->pcdata->alias_sub[pos]		= NULL;
-	    continue;
-	}
-
-	if( !strcmp( arg, rch->pcdata->alias[pos] ) )
-	{
-	    send_to_char( "Alias removed.\n\r", ch );
-	    free_string( rch->pcdata->alias[pos] );
-	    free_string( rch->pcdata->alias_sub[pos] );
-	    rch->pcdata->alias[pos] = NULL;
-	    rch->pcdata->alias_sub[pos] = NULL;
-	    found = TRUE;
-	}
+	prev = alias;
     }
-
-    if ( !found )
+    
+    if ( !alias )
+    {
 	send_to_char( "No alias of that name to remove.\n\r", ch );
+	return;
+    }	
 
+    if ( !prev )
+	ch->pcdata->alias_list = alias->next;
+    else
+	prev->next             = alias->next;
+
+    free_mem( alias, sizeof( ALIAS_DATA ) );
+
+    sprintf( buf, "Alias '%s' removed.\n\r", arg );
+    send_to_char( buf, ch );
     return;
 }

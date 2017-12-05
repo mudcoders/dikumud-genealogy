@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 1  5} Hatchet Mud School~
-Builders    None~
-VNUMs       3700 3760
+Name        Mud School~
+Author      Hatchet~
+Levels      1 5
 Security    1
+VNUMs       3700 3760
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -249,9 +252,9 @@ You see a sub issue mace here.~
 0~ 2~ 3~ 7~ 0~
 5 0 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 E
 sub mace~
 You see a mace of great but cheap craftsmanship.  Imprinted on the side is:
@@ -266,9 +269,9 @@ You see a sub issue dagger here.~
 0~ 2~ 3~ 11~ 0~
 5 0 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 E
 sub dagger~
 You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:
@@ -283,9 +286,9 @@ You see a sub issue sword here.~
 0~ 2~ 3~ 3~ 0~
 5 0 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 E
 sub sword~
 You see a sword of great but cheap craftsmanship.  Imprinted on the side is:
@@ -451,9 +454,9 @@ You see a mud school diploma here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-5 1 0
-A
 4 1 0
+A
+5 1 0
 E
 diploma~
 This document shows that you have graduated from Mud School.
@@ -471,9 +474,9 @@ A war banner is on the floor here.~
 0~ 0~ -1~ 0~ 0~
 1 0 0
 A
-24 -1 0
-A
 17 -1 0
+A
+24 -1 0
 E
 banner~
 This is the official Merc war banner to see you through the darkest realm!
@@ -514,11 +517,6 @@ wall.
 ~
 0 12 0
 E
-plaque~
-This zone (Mud School) is created by Hatchet for any Merc Mud.
-Copyright 1992, 1993.
-~
-E
 sign~
 Equipment check time!  Type 'EQUIPMENT' to see your current equipment.  Right
 now, you have just a vest, a shield, and a weapon.  As you go through Mud
@@ -533,6 +531,11 @@ To stop using a piece of equipment, type 'REMOVE item'.
 Finally, to see the items in your inventory, type 'INVENTORY'.
 
 When you are ready to continue, go west.
+~
+E
+plaque~
+This zone (Mud School) is created by Hatchet for any Merc Mud.
+Copyright 1992, 1993.
 ~
 D2
 You see a path into another room.
@@ -1965,6 +1968,10 @@ S
 #SPECIALS
 M 3707 spec_cast_adept
 M 3714 spec_fido
+S
+
+
+#GAMES
 S
 
 

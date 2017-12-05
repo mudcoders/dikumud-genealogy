@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 20} Strahd  Descent to Hell~
-Builders    None~
-VNUMs       10401 10541
+Name        Descent to Hell~
+Author      Strahd~
+Levels      5 20
 Security    1
+VNUMs       10401 10541
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -920,13 +923,13 @@ A black hilted sword with engravings on the blade lies here.~
 0~ 1~ 100~ 11~ 0~
 7 10000 0
 A
-13 -10 0
-A
-14 -20 0
+19 7 0
 A
 18 7 0
 A
-19 7 0
+14 -20 0
+A
+13 -10 0
 E
 sword~
 The blade of the sword is a full meter long, and straight as an arrow, with

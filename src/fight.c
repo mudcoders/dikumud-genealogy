@@ -89,8 +89,8 @@ void violence_update( void )
 	        /* Ok here we test for switch if victim is charmed */
 	        if ( IS_AFFECTED( victim, AFF_CHARM )
 		    && victim->master
-		    && !victim->master->deleted
 		    && victim->in_room == victim->master->in_room
+		    && ch != victim
 		    && number_percent( ) > 40 )
 		{
 		    stop_fighting( ch, FALSE );
@@ -304,8 +304,18 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int wpn )
     dam_type	= DAM_BASH;
     if ( wield && wield->item_type == ITEM_WEAPON )
     {
-	wpn_gsn		= (*attack_table[wield->value[3]].wpn_gsn);
-	dam_type	= attack_table[wield->value[3]].dam_type;
+	if ( wield->value[3] >= 0 && wield->value[3] < MAX_ATTACK )
+	{
+	    wpn_gsn	= (*attack_table[wield->value[3]].wpn_gsn);
+	    dam_type	= attack_table[wield->value[3]].dam_type;
+	}
+	else
+	{
+	    sprintf( buf, "one_hit: bad weapon dt %d caused by %s.",
+		    dt, ch->name );
+	    bug( buf, 0 );
+	    wield->value[3] = 0;
+	}
     }
 
 
@@ -402,7 +412,7 @@ void one_hit( CHAR_DATA *ch, CHAR_DATA *victim, int dt, int wpn )
 	dam *= 2 + UMIN( ( ch->level / 8 ), 4 );
     else if ( dt == gsn_circle )              /* 150% to 200% at lev. 50 */
 	dam += dam / 2 + ( dam * ch->level ) / 100;
-    if ( !strcmp( race_table[ ch->race ].name, "Vampire" ) && !wield )
+    if ( !str_cmp( race_table[ch->race].name, "Vampire" ) && !wield )
         dam += dam / 2;
 
     if ( dam <= 0 )
@@ -563,7 +573,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 	    dam = 0;
 
 	/*
-	 * Check for disarm, trip, parry, and dodge. (and shield block)
+	 * Check for disarm, trip, parry, dodge and shield block.
 	 */
 	if ( dt >= TYPE_HIT || dt == gsn_kick )
 	{
@@ -580,7 +590,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 	    if ( IS_NPC( ch )
 		&& IS_SET( race_table[ ch->race ].race_abilities,
 			  RACE_WEAPON_WIELD )
-		&& number_percent() < UMIN( 25, UMAX( 10, ch->level ) )
+		&& number_percent( ) < UMIN( 25, UMAX( 10, ch->level ) )
 		&& !IS_NPC( victim ) )
 	        use_magical_item( ch );
 	    if ( check_parry( ch, victim ) && dam > 0 )
@@ -642,7 +652,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 
     if ( dam > 0 && dt > TYPE_HIT
 	&& is_wielding_poisoned( ch, wpn )
-	&& check_ris( victim, DAM_POISON ) != IS_IMMUNE )
+	&& !saves_spell( ch->level, victim, DAM_POISON ) )
     {
 	AFFECT_DATA af;
 
@@ -730,7 +740,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 	    int  exp  = 0;
 	    char buf[ MAX_STRING_LENGTH ];
 
-	    if ( !IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+	    if ( !in_arena( victim ) )
 	    {
 		if ( IS_NPC( ch ) )
 		{
@@ -746,16 +756,23 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 			|| !registered( ch, victim ) )
 		    {
 			ch->pcdata->illegal_pk++;
-			if ( is_clan( victim ) )
+
+			if (   is_clan( ch )
+			    && is_clan( victim )
+			    && ch->pcdata->clan != victim->pcdata->clan )
 			    ch->pcdata->clan->illegal_pk++;
 		    }
 
 		    ch->pcdata->pkills++;
-		    if ( is_clan( ch ) )
-			ch->pcdata->clan->pkills++;
 		    victim->pcdata->pdeaths++;
-		    if ( is_clan( victim ) )
+
+		    if (   is_clan( ch )
+			&& is_clan( victim )
+			&& ch->pcdata->clan != victim->pcdata->clan )
+		    {
+			ch->pcdata->clan->pkills++;
 			victim->pcdata->clan->pdeaths++;
+		    }
 		}
 	    }
 
@@ -769,11 +786,10 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 	     * Dying penalty:
 	     * 1/2 way back to previous 2 levels.
 	     */
-	    if ( IS_NPC( ch )
-		&& !IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
-
+	    if ( IS_NPC( ch ) )
 	    {
-	        if ( victim->exp > EXP_PER_LEVEL * ( victim->level - 1 ) )
+	        if ( !in_arena( victim )
+		    && victim->exp > EXP_PER_LEVEL * ( victim->level - 1 ) )
 		    gain_exp( victim, ( EXP_PER_LEVEL * ( victim->level - 1 ) 
 				       - victim->exp ) / 4 );
 	    }
@@ -781,25 +797,27 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 	    {
 	        if ( ch != victim )
 		{
-		    if ( IS_SET( victim->act, PLR_REGISTER )
-			&& !IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+		    if ( IS_SET( victim->act, PLR_REGISTER ) )
 		    {
-			exp = number_range( 250, 750 );
-			gain_exp( victim, 0 - exp );
-			sprintf( buf, "You lose %d exps.\n\r", exp );
-			send_to_char( buf, victim );
-			if ( victim->exp < 1001 )
+			if ( !in_arena( victim ) )
 			{
-			    send_to_char(
-				"You no longer have any exps to give.\n\r",
-					 victim );
-			    send_to_char( "You are now DEAD.\n\r", victim );
-			    SET_BIT( victim->act, PLR_DENY );
+			    exp = number_range( 250, 750 );
+			    gain_exp( victim, 0 - exp );
+			    sprintf( buf, "You lose %d exps.\n\r", exp );
+			    send_to_char( buf, victim );
+			    if ( victim->exp < 1001 )
+			    {
+				send_to_char(
+				    "You no longer have any exps to give.\n\r",
+					     victim );
+				send_to_char( "You are now DEAD.\n\r", victim );
+				SET_BIT( victim->act, PLR_DENY );
+			    }
 			}
-		    }
-		    else
+			else
 	send_to_char( "You don't lose exps from fighting in an Arena.\n\r",
-					victim );
+			victim );
+		    }
 
 		    gold = victim->gold * number_range( 10, 20 ) / 100;
 		    ch->gold += gold;
@@ -815,7 +833,7 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 	else
 	{
 	    if ( !IS_NPC( ch )
-		&& !IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+		&& !in_arena( victim ) )
 	    {
 		ch->pcdata->mkills++;
 		if ( is_clan( ch ) )
@@ -825,7 +843,20 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn,
 
 	raw_kill( ch, victim );
 
-	/* Ok, now we want to remove the deleted flag from the
+	if (   is_clan( ch )
+	    && is_clan( victim )
+	    && ch->pcdata->clan != victim->pcdata->clan
+	    && ch->pcdata->clan->clan_type != CLAN_NOKILL
+	    && victim->pcdata->clan->clan_type != CLAN_NOKILL )
+	{
+	    act( "{cBolts of blue energy rise from the corpse, seeping into $n.{x",  ch, NULL, NULL, TO_ROOM );
+	    act( "{cBolts of blue energy rise from the corpse, seeping into you.{x", ch, NULL, NULL, TO_CHAR ); 
+
+	    ch->pcdata->clan->score += 20;
+	}
+
+	/* 
+	 * Ok, now we want to remove the deleted flag from the
 	 * PC victim.
 	 */
 	if ( !IS_NPC( victim ) )
@@ -925,7 +956,7 @@ bool is_safe( CHAR_DATA *ch, CHAR_DATA *victim )
 	|| IS_SET( victim->act, PLR_THIEF ) )
         return FALSE;
 
-    if ( IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+    if ( in_arena( victim ) )
         return FALSE;
 
     if ( ch->level < 16 && !ch->fighting )
@@ -990,17 +1021,18 @@ void check_killer( CHAR_DATA *ch, CHAR_DATA *victim )
      * THIEVES are fair game too.
      * KILLER aggressors should not be penalized 1000 exps per attack but
      * per combat started.
+     * ARENA combat is fair game.
      */
     if ( IS_SET( victim->act, PLR_KILLER )
 	|| IS_SET( victim->act, PLR_THIEF )
 	|| ( IS_SET( ch->act, PLR_KILLER ) && ch->fighting )
-        || IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+        || ( in_arena( ch ) && in_arena( victim ) ) )
         return;
 
     /*
      * Vampires are fair game.
      */
-    if ( !strcmp( race_table[ victim->race ].name, "Vampire" ) )
+    if ( !str_cmp( race_table[victim->race].name, "Vampire" ) )
         return;
 
     if ( !licensed( ch ) )
@@ -1072,7 +1104,7 @@ bool is_wielding_poisoned( CHAR_DATA *ch, int wpn )
 
 
 /*
- * hunting, hating and fearing code				- Thoric
+ * Hunting, Hating and Fearing code. -Thoric
  */
 bool is_hunting( CHAR_DATA *ch, CHAR_DATA *victim )
 {
@@ -1640,7 +1672,23 @@ void raw_kill( CHAR_DATA *ch, CHAR_DATA *victim )
     victim->pcdata->mod_wis = 0;
     victim->pcdata->mod_dex = 0;
     victim->pcdata->mod_con = 0;
-    if ( !strcmp( race_table[ ch->race ].name, "Vampire" ) )
+
+    /*
+     * Pardon crimes... -Thoric
+     */
+    if ( IS_SET( victim->act, PLR_KILLER ) )
+    {
+      REMOVE_BIT( victim->act, PLR_KILLER );
+      send_to_char( "The gods have pardoned you for your murderous acts.\n\r", victim );
+    }
+
+    if ( IS_SET( victim->act, PLR_THIEF ) )
+    {
+      REMOVE_BIT( victim->act, PLR_THIEF );
+      send_to_char( "The gods have pardoned you for your thievery.\n\r", victim );
+    }
+
+    if ( !str_cmp( race_table[ch->race].name, "Vampire" ) )
     {
 	victim->pcdata->condition[COND_FULL  ] = 0;
 	victim->pcdata->condition[COND_THIRST] = 0;
@@ -1702,7 +1750,7 @@ void group_gain( CHAR_DATA *ch, CHAR_DATA *victim )
 	    continue;
 	}
 
-        if ( IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+        if ( in_arena( victim ) )
         {
 	    send_to_char( "{o{rNo exps from fighting in an Arena.{x\n\r",  gch );
 	    continue;
@@ -1827,27 +1875,27 @@ int xp_compute( CHAR_DATA *gch, CHAR_DATA *victim )
 
 	if ( victim->spec_fun != 0 )
 	{
-	    if (   victim->spec_fun == spec_lookup( "spec_breath_any"       )
-		|| victim->spec_fun == spec_lookup( "spec_cast_psionicist"  )
-		|| victim->spec_fun == spec_lookup( "spec_cast_undead"      )
-		|| victim->spec_fun == spec_lookup( "spec_breath_gas"       )
-		|| victim->spec_fun == spec_lookup( "spec_cast_mage"        ) )
+	    if (   victim->spec_fun == spec_mob_lookup( "spec_breath_any"       )
+		|| victim->spec_fun == spec_mob_lookup( "spec_cast_psionicist"  )
+		|| victim->spec_fun == spec_mob_lookup( "spec_cast_undead"      )
+		|| victim->spec_fun == spec_mob_lookup( "spec_breath_gas"       )
+		|| victim->spec_fun == spec_mob_lookup( "spec_cast_mage"        ) )
 	        bonus += 1.0/3.0;
 
-	    if (   victim->spec_fun == spec_lookup( "spec_breath_fire"      )
-		|| victim->spec_fun == spec_lookup( "spec_breath_cold"      )
-		|| victim->spec_fun == spec_lookup( "spec_breath_acid"      )
-		|| victim->spec_fun == spec_lookup( "spec_breath_lightning" )
-		|| victim->spec_fun == spec_lookup( "spec_cast_cleric"      )
-		|| victim->spec_fun == spec_lookup( "spec_cast_judge"       )
-		|| victim->spec_fun == spec_lookup( "spec_cast_ghost"       ) )
+	    if (   victim->spec_fun == spec_mob_lookup( "spec_breath_fire"      )
+		|| victim->spec_fun == spec_mob_lookup( "spec_breath_cold"      )
+		|| victim->spec_fun == spec_mob_lookup( "spec_breath_acid"      )
+		|| victim->spec_fun == spec_mob_lookup( "spec_breath_lightning" )
+		|| victim->spec_fun == spec_mob_lookup( "spec_cast_cleric"      )
+		|| victim->spec_fun == spec_mob_lookup( "spec_cast_judge"       )
+		|| victim->spec_fun == spec_mob_lookup( "spec_cast_ghost"       ) )
 	        bonus += 1.0/5.0;
 
-	    if (   victim->spec_fun == spec_lookup( "spec_poison"           )
-		|| victim->spec_fun == spec_lookup( "spec_thief"            ) )
+	    if (   victim->spec_fun == spec_mob_lookup( "spec_poison"           )
+		|| victim->spec_fun == spec_mob_lookup( "spec_thief"            ) )
 	        bonus += 1.0/20.0;
 
-	    if ( victim->spec_fun == spec_lookup( "spec_cast_adept"         ) )
+	    if ( victim->spec_fun == spec_mob_lookup( "spec_cast_adept"         ) )
 	        bonus -= 1.0/2.0;
 	}
     }
@@ -2721,7 +2769,7 @@ void do_dirt( CHAR_DATA *ch, char *argument )
 
     victim = ch->fighting;
 
-    if (arg[0] != '\0')
+    if ( arg[0] != '\0' )
     {
         if ( !( victim = get_char_room( ch, arg ) ) )
         {
@@ -2730,7 +2778,7 @@ void do_dirt( CHAR_DATA *ch, char *argument )
         }
     }
 
-    if (victim == ch)
+    if ( victim == ch )
     {
 	send_to_char( "Very funny.\n\r", ch );
 	return;
@@ -2738,7 +2786,7 @@ void do_dirt( CHAR_DATA *ch, char *argument )
 
     if ( IS_AFFECTED( victim, AFF_BLIND ) )
     {
-	act("$E's already been blinded.",ch,NULL,victim,TO_CHAR);
+	act( "$E's already been blinded.", ch, NULL, victim, TO_CHAR );
 	return;
     }
 
@@ -2751,24 +2799,24 @@ void do_dirt( CHAR_DATA *ch, char *argument )
 	case SECT_INSIDE:		percent -= 20; break;
 	case SECT_CITY:			percent -= 10; break;
 	case SECT_FIELD:		percent +=  5; break;
-	case SECT_FOREST:			      break;
-	case SECT_HILLS:			      break;
+	case SECT_FOREST:			       break;
+	case SECT_HILLS:			       break;
 	case SECT_MOUNTAIN:		percent -= 10; break;
 	case SECT_UNDERWATER:		percent  =  0; break;
 	case SECT_WATER_SWIM:		percent  =  0; break;
 	case SECT_WATER_NOSWIM:		percent  =  0; break;
 	case SECT_AIR:			percent  =  0; break;
 	case SECT_DESERT:		percent += 10; break;
-	default:				      break;
+	default:				       break;
     }
 
-    if (percent <= 0)
+    if ( percent <= 0 )
     {
 	send_to_char( "There isn't any dirt to kick.\n\r", ch );
 	return;
     }
 
-    if ( percent > number_percent() )
+    if ( percent > number_percent( ) )
     {
 	AFFECT_DATA af;
 
@@ -2841,7 +2889,7 @@ void do_whirlwind( CHAR_DATA *ch, char *argument )
     WAIT_STATE( ch, skill_table[gsn_whirlwind].beats );
 
     if ( !found
-	&& number_percent() < 25 )
+	&& number_percent( ) < 25 )
     {
 	act( "$n loses $s balance and falls into a heap.",  ch, NULL, NULL,
 	    TO_ROOM );
@@ -2938,21 +2986,23 @@ void do_slay( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *victim;
     CHAR_DATA *rch;
-    char       arg [ MAX_INPUT_LENGTH ];
+    char       arg1 [ MAX_INPUT_LENGTH ];
+    char       arg2 [ MAX_INPUT_LENGTH ];
 
     rch = get_char( ch );
 
     if ( !authorized( rch, "slay" ) )
         return;
 
-    one_argument( argument, arg );
-    if ( arg[0] == '\0' )
+    one_argument( argument, arg1 );
+    one_argument( argument, arg2 );
+    if ( arg1[0] == '\0' )
     {
 	send_to_char( "Slay whom?\n\r", ch );
 	return;
     }
 
-    if ( !( victim = get_char_room( ch, arg ) ) )
+    if ( !( victim = get_char_room( ch, arg1 ) ) )
     {
 	send_to_char( "They aren't here.\n\r", ch );
 	return;
@@ -2970,12 +3020,58 @@ void do_slay( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    act( "You grasp $S head and squeeze it until it explodes!",
+    if ( !str_cmp( arg2, "immolate" ) )
+    {
+      act( "{o{yYour fireball turns $N into a blazing inferno.{x",
 						ch, NULL, victim, TO_CHAR    );
-    act( "$n grasps your head and squeezes until it explodes!",
+      act( "{o{y$n releases a searing fireball in your direction.{x",
 						ch, NULL, victim, TO_VICT    );
-    act( "$n grasps $N's head and squeezes until it explodes!",
+      act( "{o{y$n points at $N, who bursts into a flaming inferno.{x",
 						ch, NULL, victim, TO_NOTVICT );
+    }
+    else if ( !str_cmp( arg2, "pounce" ) && get_trust( ch ) >= L_DIR )
+    {
+      act( "{o{rLeaping upon $N with bared fangs, you tear open $S throat and toss the corpse to the ground...{x",
+						ch, NULL, victim, TO_CHAR    );
+      act( "{o{rIn a heartbeat, $n rips $s fangs through your throat!  Your blood sprays and pours to the ground as your life ends...{x",
+						ch, NULL, victim, TO_VICT    );
+      act( "{o{rLeaping suddenly, $n sinks $s fangs into $N's throat.  As blood sprays and gushes to the ground, $n tosses $N's dying body away.{x",
+						ch, NULL, victim, TO_NOTVICT );
+    }
+    else if ( !str_cmp( arg2, "shatter" ) )
+    {
+      act( "{cYou freeze $N with a glance and shatter the frozen corpse into tiny shards.{x",
+						ch, NULL, victim, TO_CHAR    );
+      act( "{c$n freezes you with a glance and shatters your frozen body into tiny shards.{x",
+						ch, NULL, victim, TO_VICT    );
+      act( "{c$n freezes $N with a glance and shatters the frozen body into tiny shards.{x",
+						ch, NULL, victim, TO_NOTVICT );
+    } 
+    else if ( !str_cmp( arg2, "slit" ) && get_trust( ch ) >= L_DIR )
+    {
+      act( "{o{rYou calmly slit $N's throat.{x",
+						ch, NULL, victim, TO_CHAR    );
+      act( "{o{r$n reaches out with a clawed finger and calmly slits your throat.{x",
+						ch, NULL, victim, TO_VICT    );
+      act( "{o{r$n calmly slits $N's throat.{x",
+						ch, NULL, victim, TO_NOTVICT );
+    }
+    else if ( !str_cmp( arg2, "squeeze" ) )
+    {
+	act( "{o{rYou grasp $S head and squeeze it until it explodes!{x",
+						ch, NULL, victim, TO_CHAR    );
+	act( "{o{r$n grasps your head and squeezes until it explodes!{x",
+						ch, NULL, victim, TO_VICT    );
+	act( "{o{r$n grasps $N's head and squeezes until it explodes!{x",
+						ch, NULL, victim, TO_NOTVICT );
+    }
+    else
+    {
+	act( "You slay $M in cold blood!",  ch, NULL, victim, TO_CHAR    );
+	act( "$n slays you in cold blood!", ch, NULL, victim, TO_VICT    );
+	act( "$n slays $N in cold blood!",  ch, NULL, victim, TO_NOTVICT );
+    }
+
     raw_kill( ch, victim );
     return;
 }
@@ -3006,7 +3102,7 @@ void pc_breathe( CHAR_DATA *ch )
         if ( !IS_NPC( victim )
             && ( !registered( ch, victim )
                 || ( !licensed( ch )
-                    && strcmp( race_table[ victim->race ].name, "Vampire" ) ) ) )
+                    && str_cmp( race_table[victim->race].name, "Vampire" ) ) ) )
             continue;
 
 	sn = skill_lookup( "fire breath" );
@@ -3042,7 +3138,7 @@ void pc_screech( CHAR_DATA *ch )
         if ( !IS_NPC( victim )
             && ( !registered( ch, victim )
                 || ( !licensed( ch )
-                    && strcmp( race_table[ victim->race ].name, "Vampire" ) ) ) )
+                    && str_cmp( race_table[victim->race].name, "Vampire" ) ) ) )
             continue;
 
 	act( "Your ears pop from $n's scream.  Ouch!", ch, NULL, victim,
@@ -3075,7 +3171,7 @@ void pc_spit( CHAR_DATA *ch )
 	if ( !IS_NPC( victim )
 	    && ( !registered( ch, victim )
 		|| ( !licensed( ch ) 
-                    && strcmp( race_table[ victim->race ].name, "Vampire" ) ) ) )
+                    && str_cmp( race_table[victim->race].name, "Vampire" ) ) ) )
 	    continue;
 
 	act( "You are splattered with $n's vitriol.  Ouch!", ch, NULL, victim,
@@ -3092,7 +3188,7 @@ void pc_spit( CHAR_DATA *ch )
 
 bool check_race_special( CHAR_DATA *ch )
 {
-    if ( !strcmp( race_table[ ch->race ].name, "Dragon" ) )
+    if ( !str_cmp( race_table[ch->race].name, "Dragon" ) )
     {
 	if ( number_percent( ) < ch->level )
 	{
@@ -3101,7 +3197,7 @@ bool check_race_special( CHAR_DATA *ch )
 	}
     }
 
-    if ( !strcmp( race_table[ ch->race ].name, "Harpy" ) )
+    if ( !str_cmp( race_table[ch->race].name, "Harpy" ) )
     {
 	if ( number_percent( ) < ch->level )
 	{
@@ -3110,8 +3206,8 @@ bool check_race_special( CHAR_DATA *ch )
 	}
     }
 
-    if ( !strcmp( race_table[ ch->race ].name, "Arachnid" )
-	|| !strcmp( race_table[ ch->race ].name, "Snake" ) )
+    if (   !str_cmp( race_table[ch->race].name, "Arachnid" )
+	|| !str_cmp( race_table[ch->race].name, "Snake"    ) )
     {
 	if ( number_percent( ) < ch->level )
 	{
@@ -3179,7 +3275,7 @@ void do_feed( CHAR_DATA *ch, char *argument )
 
     WAIT_STATE( ch, 12 );
 
-    if ( strcmp( race_table[ ch->race ].name, "Vampire" ) )
+    if ( str_cmp( race_table[ch->race].name, "Vampire" ) )
     {
         send_to_char( "You missed!\n\r", ch );
 	if ( !ch->fighting )
@@ -3189,7 +3285,7 @@ void do_feed( CHAR_DATA *ch, char *argument )
 
     if ( ch->fighting )
     {
-	if ( number_percent() > ch->level )
+	if ( number_percent( ) > ch->level )
 	{
 	    send_to_char( "You missed!\n\r", ch );
 	    return;
@@ -3199,7 +3295,7 @@ void do_feed( CHAR_DATA *ch, char *argument )
     /* If the victim is asleep, he deserves to be bitten.  :) */
     if ( !ch->fighting )
     {
-	if ( number_percent() > ( ch->level * 1.75 ) && IS_AWAKE( victim ) )
+	if ( number_percent( ) > ( ch->level * 1.75 ) && IS_AWAKE( victim ) )
 	{
 	    send_to_char( "You missed!\n\r", ch );
 	    set_fighting( ch, victim );
@@ -3337,9 +3433,9 @@ void do_stake( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    act( "$n screams and lunges at $N with $p.", ch, obj, victim, TO_NOTVICT );
-    act( "You scream and lunge at $N with $p.", ch, obj, victim, TO_CHAR );
-    act( "$n screams and lunges at you with $p.", ch, obj, victim, TO_VICT );
+    act( "$n screams and lunges at $N with $p.",  ch, obj, victim, TO_NOTVICT );
+    act( "You scream and lunge at $N with $p.",   ch, obj, victim, TO_CHAR    );
+    act( "$n screams and lunges at you with $p.", ch, obj, victim, TO_VICT    );
 
     /* Calculate chances, give vampire the ghoul effect,
        autokill the vampire. */
@@ -3348,9 +3444,9 @@ void do_stake( CHAR_DATA *ch, char *argument )
 
     if ( number_percent( ) < chance
 	|| !IS_AWAKE( victim )
-	|| strcmp( race_table[ victim->race ].name, "Vampire" ) )
+	|| str_cmp( race_table[victim->race].name, "Vampire" ) )
     {
-	if ( !strcmp( race_table[ victim->race ].name, "Vampire" ) )
+	if ( !str_cmp( race_table[victim->race].name, "Vampire" ) )
 	{
 	    damage( ch, victim, victim->hit + 11, gsn_stake, WEAR_NONE,
 		   DAM_NONE );
@@ -3375,14 +3471,22 @@ void do_stake( CHAR_DATA *ch, char *argument )
     return;
 }
 
+bool in_arena ( CHAR_DATA *ch )
+{
+    if ( ch->in_room )
+	return ( IS_SET( ch->in_room->room_flags, ROOM_ARENA ) ? TRUE : FALSE );
+
+    return FALSE;
+}
+
 bool licensed ( CHAR_DATA *ch )
 {
     OBJ_DATA *obj;
 
-    if ( !strcmp( race_table[ ch->race ].name, "Vampire" ) )
+    if ( !str_cmp( race_table[ch->race].name, "Vampire" ) )
         return TRUE;
 
-    if ( IS_SET( ch->in_room->room_flags, ROOM_ARENA ) )
+    if ( in_arena( ch ) )
         return TRUE;
 
     if ( !IS_SET( ch->act, PLR_REGISTER ) )
@@ -3410,10 +3514,10 @@ bool registered ( CHAR_DATA *ch, CHAR_DATA *victim )
     if ( IS_SET( victim->act, PLR_REGISTER ) )
         return TRUE;
 
-    if ( !strcmp( race_table[ ch->race ].name, "Vampire" ) )
+    if ( !str_cmp( race_table[ch->race].name, "Vampire" ) )
         return TRUE;
 
-    if ( IS_SET( victim->in_room->room_flags, ROOM_ARENA ) )
+    if ( in_arena( victim ) )
         return TRUE;
 
     return FALSE;
@@ -3430,6 +3534,8 @@ void use_magical_item( CHAR_DATA *ch )
     OBJ_DATA *obj;
     OBJ_DATA *cobj     = NULL;
     int       number   = 0;
+    int       i        = 0;
+    int       sn       = 0;
     char      buf[ MAX_INPUT_LENGTH ];
 
     for ( obj = ch->carrying; obj; obj = obj->next_content )
@@ -3447,6 +3553,53 @@ void use_magical_item( CHAR_DATA *ch )
 
     if ( !cobj )
         return;
+
+   /*
+    * Modified so mobs don't cause damage to themselves and
+    * don't aid players to help stop HEAVY player cheating -Zen
+    */
+    switch( cobj->item_type )
+    {
+    case ITEM_SCROLL:	for ( i = 1; i < 5; i++ )
+			{
+			    sn = cobj->value[i];
+
+			    if (   sn <= 0
+				|| sn >= MAX_SKILL )
+			    {
+				extract_obj( cobj );
+				return;
+			    }
+
+			    if ( skill_table[sn].target == TAR_CHAR_DEFENSIVE )
+			    {
+				act( "$n discards a $p.", ch, cobj, NULL, TO_ROOM );
+				extract_obj( cobj );
+				return;
+			    }
+			}
+                 	break;
+    case ITEM_POTION:
+    case ITEM_PILL:	for ( i = 1; i < 5; i++ )
+			{
+			    sn = cobj->value[i];
+
+			    if (   sn <= 0
+				|| sn >= MAX_SKILL )
+			    {
+				extract_obj( cobj );
+				return;
+			    }
+
+			    if ( skill_table[sn].target == TAR_CHAR_OFFENSIVE )
+			    {
+				act( "$n discards a $p.", ch, cobj, NULL, TO_ROOM );
+				extract_obj( cobj );
+				return;
+			    }
+			}
+                 	break;
+    }
 
     switch( cobj->item_type )
     {
@@ -3469,7 +3622,7 @@ void use_magical_item( CHAR_DATA *ch )
 }
 
 /*
- * From TheIsles16 code. TheIsles by Locke (locke@lm.com)
+ * From TheIsles16 code.  TheIsles by Locke <locke@lm.com>
  */    
 bool hit_suck_disarm( CHAR_DATA *ch, CHAR_DATA *victim, int hit, int dam )
 {
@@ -3511,7 +3664,7 @@ bool hit_suck_disarm( CHAR_DATA *ch, CHAR_DATA *victim, int hit, int dam )
 }
 
 /*
- * From TheIsles16 code. TheIsles by Locke (locke@lm.com)
+ * From TheIsles16 code.  TheIsles by Locke <locke@lm.com>
  */    
 bool hit_vorpal( CHAR_DATA *ch, CHAR_DATA *victim, int hit, int dam )
 {
@@ -3561,7 +3714,7 @@ bool hit_vorpal( CHAR_DATA *ch, CHAR_DATA *victim, int hit, int dam )
 }
 
 /*
- * From TheIsles16 code. TheIsles by Locke (locke@lm.com)
+ * From TheIsles16 code.  TheIsles by Locke <locke@lm.com>
  * Heavily modified by Zen.
  */    
 void do_shoot( CHAR_DATA *ch, char *argument )
@@ -3655,7 +3808,7 @@ void do_shoot( CHAR_DATA *ch, char *argument )
 
     switch ( obj->value[3] )
     {
-    default:		msg = "You pull back the string on %s and fire %s!\n\r";
+    default:		msg = "You pull back the string on %s and fire %s!";
 									break;
     case RNG_BOW:	msg = "%s pulls back the string on %s and fires %s!";
 									break;
@@ -3742,7 +3895,7 @@ void do_shoot( CHAR_DATA *ch, char *argument )
 
 	    if ( ( mob->position == POS_STANDING 
 		|| mob->position == POS_FIGHTING )
-		&& ( check_dodge( ch, mob ) || ch->level > number_percent() ) )
+		&& ( check_dodge( ch, mob ) || ch->level > number_percent( ) ) )
 	    {
 		int dam;
 
@@ -3817,7 +3970,7 @@ void do_shoot( CHAR_DATA *ch, char *argument )
 }
 
 /*
- * From TheIsles16 code. TheIsles by Locke (locke@lm.com)
+ * From TheIsles16 code.  TheIsles by Locke <locke@lm.com>
  * Heavily modified by Zen.
  */    
 void do_reload( CHAR_DATA *ch, char *argument )

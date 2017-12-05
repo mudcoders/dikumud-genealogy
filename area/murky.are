@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 3 50} Hatchet Murky Land~
-Builders    None~
-VNUMs       10700 10791
+Name        Murky Land~
+Author      Hatchet~
+Levels      3 50
 Security    1
+VNUMs       10700 10791
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -2834,6 +2837,10 @@ M 10742 spec_cast_undead
 M 10743 spec_cast_undead
 M 10744 spec_cast_undead
 M 10745 spec_cast_undead
+S
+
+
+#GAMES
 S
 
 

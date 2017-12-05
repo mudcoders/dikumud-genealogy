@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ ALL } Envy    Purgatory~
-Builders    None~
-VNUMs       401 427
+Name        Purgatory~
+Author      Envy~
+Levels      0 54
 Security    1
+VNUMs       401 427
+Builders    None~
 Recall      401
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -52,9 +55,9 @@ A blaze of white light hangs in the air.~
 36~ 50~ 50~ heal~ 0~
 10 0 0
 A
-12 50 0
-A
 17 -5 0
+A
+12 50 0
 #403
 scythe~
 a Scythe of Death~
@@ -64,11 +67,11 @@ A long curving blade fixed to a long wooden pole lies here.~
 50~ 100~ 0~ 1~ 0~
 20 0 0
 A
-18 9 0
+5 -12 0
 A
 19 9 0
 A
-5 -12 0
+18 9 0
 #0
 
 
@@ -918,6 +921,10 @@ S
 
 #SPECIALS
 M 401 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

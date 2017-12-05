@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -90,7 +90,6 @@ magic.c		- Contains procedures for spells
 merc.h		- Contains data types/prototypes/macros used within the game
 save.c		- Contains procedures for player/mob file read and write
 ssm.c		- Contains procedures for string management
-special.c	- Contains procedures for mobile special abilities
 update.c	- Contains procedures for game operation
 bit.c		- Contains tables used within OLC
 mem.c		- Contains procedures for OLC mem operations
@@ -99,12 +98,14 @@ olc_act.c	- Contains procedures for OLC
 olc_save.c	- Contains procedures for OLC area file write
 string.c	- Contains procedures for OLC's string editor
 mob_prog.c	- Contains procedures for MobPrograms
-mob_commands.c	- Contains procedures for mob commands (used by MobPrograms)
+mob_comm.c	- Contains procedures for mob commands (used by MobPrograms)
 tables.c	- Contains tables/procs used for class/social loading/saving
 track.c		- Contains procedures for hunt/track
 wiznet.c	- Contains procedures for wiznet
 gamble.c	- Contains procedures for player gambling.
 act_clan.c	- Contains procedures for clans
+spec_mob.c	- Contains procedures for mobile special abilities
+spec_obj.c	- Contains procedures for object special abilities
 
 
 === The startup scripts

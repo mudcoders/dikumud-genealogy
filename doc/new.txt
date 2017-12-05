@@ -1,11 +1,104 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
 
 
-=== What's new in this patch Release 0.87
+=== What's new in this patch Release 0.87j
+
+The 0.87X series consists of bugfix releases only.  Don't expect any new
+features in here.  For new features wait for 0.88 (?)...
+
+		---0.87a---
+Zen:		Fixed bug in Envy 2.2 which caused descriptions of objects in
+		  player files to have the corrupt string on DEC Alpha.
+		Added CHECK_RES(), CHECK_IMM(), CHECK_SUS() macros.
+
+		---0.87b---
+		Fixed a couple of mistakes i made on 0.87a.
+		Scrolls, potions & pills v4's use finally is as described in
+		  area.txt.
+
+Rakot:		Chars damaged by daylight even if they aren't Vampires bug
+		  (fixed)
+
+Satan:		Weird value[3] in weapons crashes the mud bug (fixed)
+
+		---0.87c---
+		Fixed bug in mprog_translate() which i thought had been
+		  completely fixed way back in version 0.85.  I hope it's dead.
+		To give you "insufficient security to edit area" messages less
+		  often, you aren't allowed to enter the editor unless you
+		  have enough security.
+
+		---0.87d---
+Zen:		You can use the OLC editors without security to see stats.
+		Added a couple of more checks in fread_char().
+		OLC aedit without arguments edits the player's area.
+		OLC oedit modified to edit new object affect format.
+		OLC oedit bad value settings bug fixed.
+
+		---0.87f---
+Zen:		Removed several ugly bugs from clan code.
+		Removed yet another OLC bug in oedit addaffect.
+		It seems UltraEnvy crashed with some old Envy2.2 player files
+		  and/or areas because i changed the name of "protection"
+		  I'm actually glad this happened because it allowed me to fix
+		  one Envy2.2 bug and one memory leak! (fixed)
+
+		---0.87g---
+		If you ordered a charmed mob to suicide himself he would attack
+		  you, this one comes from Envy2.2 (fixed)
+		No more easy going for players who give offensive pills & stuff
+		  to a mob to make it hurt himself.
+		No more easy going for players who give scrolls of heal to a
+		  mob to make it heal them.
+		Added a couple of small enhancements to clan code.
+		Changed obj_update() a bit; i think it doesn't quite do what
+		  was supposed to but heck!  The mud didn't crash yet...
+		Added checks for fpReserve in a lot of places; is this really
+		  necessary?
+		Cleaned up code.  I hope i didn't introduce any new bug...
+		I had forgot to add the security check for the "sober" imm cmd.
+		Rset now understands strings besides numbers.		
+		Oset now understands strings besides numbers.
+		In comm.c getpeername and getsockname aren't used anymore so
+		  there is no need to have OS-dependent declarations for them.
+		In comm.c bzero isn't called anywhere so i scrapped all related
+		  declarations.
+		Renamed mob_commands.c to mob_comm.c.
+		Added new object_update() loop to introduce object specials.
+		Added object specials.
+		Added new room_update() loop to make falling things faster.
+		"who" command now should have less weird results.
+
+		---0.87h---
+		Solved small bug in saving of object resets.
+		Changed "#if defined( linux )" to "#if defined( __linux__ )".
+		  Although the former is defined, it is not POSIX compliant.
+		Changed OLC and do_astat to work with Sektor's new #AREADATA
+		  format.
+		Changed load_area() to convert well behaved Envy2.2 area names
+		  to Sektor's #AREADATA format.
+		Reconverted most areas back from Envy2.2 again.  Fixed up some
+		  forgotten resets also.
+
+Satan:		Shopkeeper's ITEM_FURNITURE objects get level 0 (fixed)
+
+Sektor:		Suggested new directory structure.
+		'invis', 'mass invis' and 'polymorph other' didn't have realms.
+		New area loading routines: new_load_area(), fread_area().
+
+		---0.87j---
+                Removed ridable mobs bug.
+                Scraped old aliases for Sektor's code.  MUCH better.
+                Made noticeable changes to alias code including I/O routines.
+
+Sektor:         Much improved alias code.
+
+
+=== What's new in patch Release 0.87
 
 Zen:		Now HomeCooked should be compatible with old Envy2.2 player
 		  files. However, it's now incompatible with previous HomeCooked
@@ -98,11 +191,11 @@ Zen:		Now HomeCooked should be compatible with old Envy2.2 player
 		  replaced bzero(), bcopy() for memset(), memmove().
 		It seems Envy2.2's mana cost of remove alignment was right all
 		  along...  Changed it back to 10.  Sorry.
+		Following Erwin's letter to the Merc mailing list regarding int
+		  vs char and EOF handling i changed a lot of chars to ints.
 		Changed source so it would compile without warnings on Visual
 		  C++ 4.0.  Also removed a couple of type casts here and there.
-		Following Erwin's letter to the Merc mailing list regarding int
 		Changed startupWNT.cmd and startupW95.bat a bit.
-		  vs char and EOF handling i changed a lot of chars to ints.
 		Changed select() calls in comm.c to not trap ERRINTR as per
 		  Erwin's suggestion in a letter to the Merc mailing list so i
 		  could profile code.
@@ -111,11 +204,10 @@ Zen:		Now HomeCooked should be compatible with old Envy2.2 player
 		  like:
 		    -> if ( ch->race == race_lookup( "Snake" ) )
 		  for:
-		    -> if ( !strcmp( race_table[ ch->race ].name, "Snake" ) )
-
+		    -> if ( !str_cmp( race_table[ch->race].name, "Snake" ) )
 
 Satan:		Bug in comm.c act() sometimes made a segmentation fault.
-		originated from Envy2.2
+		  originated from Envy2.2 (fixed)
 
 
 === What's new in patch Release 0.85
@@ -155,15 +247,12 @@ Zen:		It seems like i forgot do update load_helps() in db.c.
 		Fixed security loophole in mob_commands.
 		Fixed bug in mptransfer().
 
-
 Stimpy:		WhirlWind skill for Warriors.
-
 
 SMAUG team:	Most Hunt/Track code - 95% i think :-)
 		Track skill for Thieves.
 		Mobile memory. ROM2.4 mobs have better memory but i don't want
 		  a mob with a huge linked memory list...
-
 
 ROM 2.4:	Parts support idea, SMAUG also features this.
 
@@ -254,7 +343,7 @@ this! If everyone were like this soon we would have pages and pages of names in
 the title screen... If you want put your name in the help of the skill or
 whatever. To fight this i will include NO code which requests the author's name
 in the title screen unless it's a MAJOR code change. I have included some
-ROM/SMAUG/NiMUD code and i put a reference to ROM/SMAUG/NiMUD in the code as
+ROM/SMAUG/NiMud code and i put a reference to ROM/SMAUG/NiMud in the code as
 well as in here.
 
   Btw i'm in need of help sections for most of the new skills/spells as i hack

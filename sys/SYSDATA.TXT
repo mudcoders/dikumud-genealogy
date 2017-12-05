@@ -1,0 +1,4 @@
+AllTimeMax  2
+TimeOfMax   Wed Dec  3 21:30:25 1997~
+Act         0
+End

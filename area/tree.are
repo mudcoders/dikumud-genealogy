@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 50} Glop    Yggdrasil~
-Builders    None~
-VNUMs       9900 9923
+Name        Yggdrasil~
+Author      Glop~
+Levels      15 50
 Security    1
+VNUMs       9900 9923
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -706,6 +709,10 @@ M 9909 spec_breath_gas
 M 9910 spec_cast_cleric
 M 9911 spec_thief
 M 9913 spec_breath_any
+S
+
+
+#GAMES
 S
 
 

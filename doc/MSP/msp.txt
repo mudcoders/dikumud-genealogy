@@ -1,15 +1,15 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
 
-Someone asked for MSP support (Sergey? Sorry if your name is misspelled, but i
-lost your email address). I haven't bothered myself much with this since i can't
-test it at home - i'm coding on Linux and there is no MSP client for Linux yet.
-However i wrote some code in about 30 mins... It's in act_msp.c. It's crap but i
-can't use or test it anyway.  Bellow are the MSP specs. Got them somewhere from
-the homesite of the ZMud windows client at <http://www.zuggsoft.com>.
+Rakot asked for MSP support.  I haven't bothered myself much with this since
+i can't test it at home - i'm coding on Linux and there is no MSP client for
+Linux yet.  However i wrote some code in about 30 mins... It's in act_msp.c.
+It's crap but i can't use or test it anyway.  Bellow are the MSP specs.
+Got them somewhere from the homesite of the ZMud windows client at
+<http://www.zuggsoft.com>.
 
 --- MSP Draft Specification 0.2
 

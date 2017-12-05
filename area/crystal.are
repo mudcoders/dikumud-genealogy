@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 45} Strahd  Crystalmir Lake~
-Builders    None~
-VNUMs       10001 10082
+Name        Crystalmir Lake~
+Author      Strahd~
+Levels      5 45
 Security    1
+VNUMs       10001 10082
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -2332,7 +2335,7 @@ D2
 You see an evil book.
 ~
 book evil~
-3 -1 10401
+1 -1 10401
 S
 #0
 
@@ -2341,6 +2344,10 @@ S
 M 10001 spec_cast_adept
 M 10008 spec_breath_gas
 M 10013 spec_thief
+S
+
+
+#GAMES
 S
 
 

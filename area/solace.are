@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 35} Strahd  Town Of Solace~
-Builders    None~
-VNUMs       10201 10317
+Name        Town Of Solace~
+Author      Strahd~
+Levels      5 35
 Security    1
+VNUMs       10201 10317
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -2901,7 +2904,7 @@ Pet Storage~
 This is where Marilyn keeps her birds. It is important that this room be
 right after the bird factory.
 ~
-0 12 1
+0 8 1
 S
 #10254
 Storage Building~
@@ -3018,7 +3021,7 @@ ceiling. The air smells of brimstone and makes your lungs burn with
 every breath. 
 There is a sign floating in front of you.
 ~
-0 524 1
+0 520 1
 E
 sign~
 Please sit and wait.
@@ -4190,6 +4193,10 @@ M 10234 spec_thief
 M 10236 spec_cast_cleric
 M 10242 spec_cast_undead
 M 10243 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

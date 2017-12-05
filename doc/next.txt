@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -11,8 +11,6 @@ I might finish and include these features in the next patch to EnvyMud.
 These features are by NO MEANS guaranteed to be coded. You might notice most of
 the ideas aren't highly original. You see, my mind is usually useless at having
 ideas for what to do if i don't have a set goal :-)
-
-		Object specials.
 
 		Full language support.
 
@@ -71,6 +69,7 @@ plain nut or something.  Toric (Derek Snider) has done a wonderful job on SMAUG.
 I generally feel like Envy is more user friendly, and has cleaner, but sometimes
 slower code (Maybe caused by the number of stock areas).  And i have made it
 even slower!  Much slower!  Muhahahah... :-)  Just kidding...  It's not as slow
-as that.  Booting takes +2 seconds or so.  Guess i'm being ultra picky.
+as that.  BTW booting is FASTER than on Envy2.2.  Guess i'm being ultra picky.
+
 
 - Zen

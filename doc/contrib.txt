@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -90,7 +90,6 @@ Mythran 3.1.11:	Only looked at Mythran code after i released 0.85. They had
 ROM 2.4:	ITEM_PORTAL, ITEM_WARP_STONE idea
 		  (Made code from scratch for Envy2.2 - Zen)
 		Spell "nexus", "portal" idea (Most of the code was rewritten)
-		Most of the alias code itself except load/saving routines.
 		IRV flags system idea & some 40% of it's code.
 		ROM is a nice code base. It has some very nice features like:
 		ITEM_FURNITURE, different damage types, wiznet (this is a must),

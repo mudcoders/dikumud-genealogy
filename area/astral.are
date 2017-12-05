@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 35} Andi    The Astral Plane~
-Builders    None~
-VNUMs       1900 1979
+Name        The Astral Plane~
+Author      Andi~
+Levels      15 35
 Security    1
+VNUMs       1900 1979
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -291,11 +294,11 @@ The ground cracks under the weight of a grey hammer lying here.~
 0~ 4~ 8~ 8~ 0~
 55 1000000 0
 A
-2 -2 0
+19 10 0
 A
 18 -3 0
 A
-19 10 0
+2 -2 0
 E
 hammer sledge grey~
 This massive hammer is incredibly hard, heavy, and utterly grey and featureless.
@@ -346,9 +349,9 @@ A small amulet lies here in the dirt.~
 25~ 5~ 5~ energy drain~ 0~
 5 20000 0
 A
-3 -1 0
-A
 4 -1 0
+A
+3 -1 0
 E
 amulet demon~
 The amulet is a small circular object made from some bizarre metallic alloy.
@@ -385,9 +388,9 @@ A flat-bladed silvery knife lies here.~
 0~ 2~ 4~ 2~ 0~
 3 1000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 E
 knife silvery~
 The knife is forged from a strange silvery metal the likes of which you have
@@ -403,9 +406,9 @@ A sharp-looking silvery dagger lies here.~
 0~ 3~ 4~ 11~ 0~
 3 1500 0
 A
-18 2 0
-A
 19 1 0
+A
+18 2 0
 E
 dagger silvery~
 The dagger is forged from a strange silvery metal the likes of which you have
@@ -421,11 +424,11 @@ Light glints off the edge of a razor-sharp sword.~
 0~ 4~ 4~ 1~ 0~
 3 2000 0
 A
-2 1 0
+19 3 0
 A
 18 1 0
 A
-19 3 0
+2 1 0
 E
 sword thin~
 The sword is forged from a strange silvery metal.  It barely measures an inch
@@ -441,9 +444,9 @@ A heavy yet thinly bladed two-handed sword lies here.~
 0~ 6~ 4~ 3~ 0~
 16 5000 0
 A
-18 2 0
-A
 19 4 0
+A
+18 2 0
 E
 sword thin two two-handed~
 The sword is forged from a strange silvery metal.  It barely measures two
@@ -459,11 +462,11 @@ A silvery sword gleams unnaturally with an alien light.~
 0~ 5~ 4~ 3~ 0~
 13 10000 0
 A
-2 2 0
+19 2 0
 A
 18 4 0
 A
-19 2 0
+2 2 0
 E
 sword silvery~
 The sword is forged from a strange silvery metal the likes of which you have
@@ -479,9 +482,9 @@ A rusty iron flail with wicked barbs on it tears at the ground.~
 0~ 5~ 5~ 5~ 0~
 14 20000 0
 A
-18 3 0
-A
 19 7 0
+A
+18 3 0
 E
 flail barbed iron~
 This hideous weapon has claimed many lives.  You can tell from the bloodstains
@@ -497,13 +500,13 @@ You feel tendrils of evil emanating from a wicked blade.~
 0~ 10~ 3~ 3~ 0~
 25 100000 0
 A
-1 2 0
-A
-3 -2 0
+18 8 0
 A
 4 -1 0
 A
-18 8 0
+3 -2 0
+A
+1 2 0
 E
 sword gith~
 The blade of this sword is a featureless gray.  As you touch it you feel an
@@ -520,9 +523,9 @@ The room is lit by a hot blue flame coming from a small stone.~
 0~ 0~ -1~ 0~ 0~
 1 5000 0
 A
-17 -2 0
-A
 23 -5 0
+A
+17 -2 0
 E
 stone flame~
 This stone burns with an flame that emits great heat, yet it can be held with
@@ -588,11 +591,11 @@ A pair of painstakingly designed ornate gauntlets lie here.~
 7~ 0~ 0~ 0~ 0~
 5 19000 0
 A
-1 2 0
+19 1 0
 A
 18 1 0
 A
-19 1 0
+1 2 0
 E
 gauntlets ornate~
 These gauntlets have been expertly and ornately fashioned from the highest
@@ -607,9 +610,9 @@ A decaying hunk of cracked leather has been discarded here.~
 9~ 0~ 0~ 0~ 0~
 5 50 0
 A
-17 -6 0
-A
 24 -2 0
+A
+17 -6 0
 E
 vest cracked leather~
 The ancient vest is barely intact.  All of the leather has cracked and dried
@@ -621,7 +624,7 @@ a violet potion~
 A tall glass flask holds a translucent violet fluid.~
 ~
 10 0 1
-18~ invis~ protection evil~ detect evil~  ~
+18~ invis~ protection~ detect evil~  ~
 2 1000 0
 E
 potion violet~
@@ -698,9 +701,9 @@ A rusted sword is on the floor.~
 0~ 3~ 3~ 3~ 0~
 10 0 0
 A
-18 -2 0
-A
 19 5 0
+A
+18 -2 0
 E
 rusted sword~
 This sword looks quite rusted, but that makes it nice and dangerous!
@@ -809,9 +812,9 @@ starlike motes of dust.  Ahead of you is a bridge.
 ~
 0 0 5
 E
-rainbow~
-The rainbow brilliantly glows with beams of blinding light, in colors that 
-sweep together and merge before your eyes.
+bridge~
+The colors of the rainbow seem to converge into a glowing bridge that leads
+to a massive white gate.
 ~
 E
 motes star stars dust~
@@ -819,9 +822,9 @@ The star-like motes dance before your eyes.  They are incredibly beautiful yet
 intangible -- your hand passes right through them.
 ~
 E
-bridge~
-The colors of the rainbow seem to converge into a glowing bridge that leads
-to a massive white gate.
+rainbow~
+The rainbow brilliantly glows with beams of blinding light, in colors that 
+sweep together and merge before your eyes.
 ~
 D4
 The rainbow extends above you, merging into a brilliant glowing
@@ -844,9 +847,13 @@ glow interrupted only by the passing of starlike dust motes before your eyes.
 ~
 0 0 1
 E
-rainbow~
-The rainbow seems to be forming directly from the light of the bridge.  It
-drops out of sight below you.
+gate~
+The gate towers tens of feet above your heads.  Beyond it is a field of utter
+blackness, from which the motes of light seem to issue forth.
+~
+E
+bridge~
+The bridge glows with an unearthly light.
 ~
 E
 motes star stars dust~
@@ -854,13 +861,9 @@ The star-like motes dance before your eyes.  They are incredibly beautiful yet
 intangible -- your hand passes right through them.
 ~
 E
-bridge~
-The bridge glows with an unearthly light.
-~
-E
-gate~
-The gate towers tens of feet above your heads.  Beyond it is a field of utter
-blackness, from which the motes of light seem to issue forth.
+rainbow~
+The rainbow seems to be forming directly from the light of the bridge.  It
+drops out of sight below you.
 ~
 D0
 The bridge leads on to a massive white gate.  You see a large grey figure
@@ -883,13 +886,6 @@ stars, and occasional flashes of of light.
 ~
 0 0 1
 E
-gate~
-You see a huge, glowing gate wrought from an incredibly hard translucent 
-material.  Each of the intricately carved bars of this mighty gate are about 
-as thick as a man's wrist, rising from the floor to a height of forty feet.  
-A plaque is inset into the wall next to one side of the gate.
-~
-E
 plaque~
 The plaque reads: 
 
@@ -897,6 +893,13 @@ The plaque reads:
 the outer planes of existence and the creatures fair and foul that dwell within.
 
 -Andersen`
+~
+E
+gate~
+You see a huge, glowing gate wrought from an incredibly hard translucent 
+material.  Each of the intricately carved bars of this mighty gate are about 
+as thick as a man's wrist, rising from the floor to a height of forty feet.  
+A plaque is inset into the wall next to one side of the gate.
 ~
 D0
 Through the gate you see a massive field of blackness that extends as far
@@ -2411,12 +2414,12 @@ of the keep.
 ~
 0 8 0
 E
-steel~
-The door is made from a set of rusting steel plates set deep into the stone.
-~
-E
 door iron~
 The door is made from a set of iron plates set deep into the stone.
+~
+E
+steel~
+The door is made from a set of rusting steel plates set deep into the stone.
 ~
 D1
 You see an iron door which leads out onto a grey stone road.
@@ -2468,12 +2471,12 @@ and west lead into stone buildings.
 ~
 0 0 1
 E
-door wooden~
-The door is thick, made from a knotted and twisted greyish wood.
-~
-E
 door iron~
 The door is fashioned from many iron plates and set deep into the stone wall.
+~
+E
+door wooden~
+The door is thick, made from a knotted and twisted greyish wood.
 ~
 D0
 The grey cobblestones continue.
@@ -2691,12 +2694,12 @@ A door to the north leads into a small stone building.
 ~
 0 0 1
 E
-door wooden~
-The door is thick, made from a knotted and twisted greyish wood.
-~
-E
 door iron~
 The door is made from a set of iron plates set deep into the stone.
+~
+E
+door wooden~
+The door is thick, made from a knotted and twisted greyish wood.
 ~
 D0
 You see a small stone building with a wooden door.
@@ -2991,18 +2994,18 @@ to the south.
 ~
 0 8 0
 E
-armor suits~
-The suits of armor are very intricately and ornately fashioned splint mail.
+doors metal~
+The doors are formed from a silvery substance that feels very hard yet almost
+slippery to the touch.  They are covered in images in bas-relief, depicting
+scenes of combat between humans and strange tentacle-mouthed humanoids.
 ~
 E
 weapons~
 Massive pole arms, spears, mighty swords, all kinds of death-dealing devices.
 ~
 E
-doors metal~
-The doors are formed from a silvery substance that feels very hard yet almost
-slippery to the touch.  They are covered in images in bas-relief, depicting
-scenes of combat between humans and strange tentacle-mouthed humanoids.
+armor suits~
+The suits of armor are very intricately and ornately fashioned splint mail.
 ~
 D0
 The great hall continues to the north.
@@ -3025,16 +3028,16 @@ room to the north.
 ~
 0 8 0
 E
-armor suits~
-The suits of armor are very intricately and ornately fashioned splint mail.
+arch archway door~
+The archway is shrouded in a strange black mist that obscures your vision.
 ~
 E
 weapons~
 Massive pole arms, spears, mighty swords, all kinds of death-dealing devices.
 ~
 E
-arch archway door~
-The archway is shrouded in a strange black mist that obscures your vision.
+armor suits~
+The suits of armor are very intricately and ornately fashioned splint mail.
 ~
 D0
 You think you can see some steps leading up to an altar...
@@ -3078,16 +3081,16 @@ by the horrible presence which stands before you.
 ~
 0 9 0
 E
-altar~
-The altar is a huge sacrificial altar covered in bloodstains.
+hole holes~
+The holes have passed countless amounts of blood down below the altar.
 ~
 E
 blood bloodstains stains~
 The stains of blood run down off the altar towards your feet, oozing quietly.
 ~
 E
-hole holes~
-The holes have passed countless amounts of blood down below the altar.
+altar~
+The altar is a huge sacrificial altar covered in bloodstains.
 ~
 D2
 The steps lie to the south, leading back down to the altar chamber floor.
@@ -3108,14 +3111,14 @@ and long-dead beings.
 ~
 0 9 1
 E
-blood~
-The blood drips from above your head and falls through the field...
-~
-E
 field gateway~
 The field pulses and feeds on the blood dripping from above.
 
 A tangible wave of hatred washes over you, striking fear into your very soul.
+~
+E
+blood~
+The blood drips from above your head and falls through the field...
 ~
 D4
 You see the altar chamber.
@@ -3136,7 +3139,7 @@ It is pitch black...
   You are overwhelmed by the sensation of death and horrible pain as a shape
 begins to coalesce before you.
 ~
-0 5 9
+0 1 9
 S
 #0
 
@@ -3153,6 +3156,10 @@ M 1915 spec_cast_undead
 M 1917 spec_cast_mage
 M 1918 spec_cast_mage
 M 1919 spec_breath_fire
+S
+
+
+#GAMES
 S
 
 

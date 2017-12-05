@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 20} Hatchet Valley of the Elves~
-Builders    None~
-VNUMs       7800 7883
+Name        Valley of the Elves~
+Author      Hatchet~
+Levels      5 20
 Security    1
+VNUMs       7800 7883
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -329,7 +332,7 @@ a potion~
 A potion is on the floor.~
 ~
 10 64 1
-10~ refresh~ protection evil~  ~  ~
+10~ refresh~ protection~  ~  ~
 1 200 0
 #7813
 potion~
@@ -2111,6 +2114,10 @@ M 7807 spec_cast_cleric
 M 7808 spec_cast_mage
 M 7809 spec_breath_fire
 M 7811 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

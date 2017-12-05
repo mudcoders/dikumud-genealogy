@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{None } Diku    Limbo~
-Builders    None~
-VNUMs       1 69
+Name        Limbo~
+Author      Diku~
+Levels      0 0
 Security    1
+VNUMs       1 69
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -207,6 +210,10 @@ S
 
 
 #SPECIALS
+S
+
+
+#GAMES
 S
 
 

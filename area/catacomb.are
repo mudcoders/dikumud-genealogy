@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{10 20} Raff    Dwarven Catacombs~
-Builders    None~
-VNUMs       2001 2069
+Name        Dwarven Catacombs~
+Author      Raff~
+Levels      10 20
 Security    1
+VNUMs       2001 2069
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -245,9 +248,9 @@ A long thin sword with a wide blade makes you wonder.~
 0~ 4~ 5~ 3~ 0~
 9 3304 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #2005
 sword excalibur~
 the sword Excalibur~
@@ -257,9 +260,9 @@ A sword gleams by the light of its magical silvery blade.~
 0~ 5~ 4~ 3~ 0~
 15 12157 0
 A
-18 3 0
-A
 1 1 0
+A
+18 3 0
 #2006
 crown~
 a kingly crown~
@@ -313,13 +316,13 @@ A large shield lies protecting the ground.~
 15~ 0~ 0~ 0~ 0~
 15 33000 0
 A
-12 10 0
-A
-13 10 0
+19 -1 0
 A
 18 -2 0
 A
-19 -1 0
+13 10 0
+A
+12 10 0
 #2012
 scale shield dragonscale~
 a dragonscale shield~
@@ -1021,16 +1024,16 @@ honoring the late king Mokhdon is next to it.
 ~
 0 9 5
 E
-massive open tomb~
-The tomb has been opened, from the inside!  You wonder how that happened.
-~
-E
 plaque~
 Here lies the body of the great king Mokhdon.  He served his country well,
 but was taken by a strange disease that maddened him.  He was found guilty
 of multiple charges of rape, murder, and mutilation of bodies, and was
 beheaded.  On the behest of the queen Sandia, the body of king Mokhdon was
 not buried in the royal court, but instead here.
+~
+E
+massive open tomb~
+The tomb has been opened, from the inside!  You wonder how that happened.
 ~
 D1
 ~
@@ -1613,6 +1616,10 @@ M 2013 spec_cast_undead
 M 2014 spec_cast_undead
 M 2016 spec_breath_any
 M 2017 spec_poison
+S
+
+
+#GAMES
 S
 
 

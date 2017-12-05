@@ -1410,6 +1410,7 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_invis,		TAR_CHAR_DEFENSIVE,	POS_STANDING,
 	&gsn_invis,		5,	12,
 	"",			"You are no longer invisible.",
+	SCHOOL_ILLUSION,
 	MANA_AIR
     },
 
@@ -1463,6 +1464,7 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_mass_invis,	TAR_IGNORE,		POS_STANDING,
 	&gsn_mass_invis,	20,	24,
 	"",			"You are no longer invisible.",
+	SCHOOL_ILLUSION,
 	MANA_AIR
     },
 
@@ -1507,7 +1509,17 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_polymorph_other,	TAR_CHAR_DEFENSIVE,	POS_FIGHTING,
 	NULL,			20,	0,
 	"",			"Your body feels familiar again.",
+	SCHOOL_ALTERATION,
 	MANA_ANY
+    },
+
+    {
+	"protection",		{ L_APP },
+	spell_protection_evil,	TAR_CHAR_SELF,		POS_STANDING,
+	NULL,			5,	12,
+	"",			"You feel less protected.",
+	SCHOOL_ABJURATION,
+	MANA_FIRE
     },
 
     {

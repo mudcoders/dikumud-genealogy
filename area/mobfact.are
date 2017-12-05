@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 35} PinkF   Mob Factory~
-Builders    None~
-VNUMs       9400 9424
+Name        Mob Factory~
+Author      Pinkf~
+Levels      5 35
 Security    1
+VNUMs       9400 9424
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -642,6 +645,10 @@ S
 
 
 #SPECIALS
+S
+
+
+#GAMES
 S
 
 

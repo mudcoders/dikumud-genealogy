@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ All } Maniac  Mythran Mud Casino~
-Builders    None~
-VNUMs       500 599
+Name        Mythran Mud Casino~
+Author      Maniac~
+Levels      0 54
 Security    1
+VNUMs       500 599
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -280,16 +283,16 @@ S
 
 
 #GAMES
-M   500 game_u_l_t                         120000 100 1	* the slick croupier
-M   501 game_high_dice                     150000 100 1	* the slick croupier
-M   502 game_seven                         100000 100 1	* the slick croupier
+M 500 game_u_l_t 120000 100 1
+M 501 game_high_dice 150000 100 1
+M 502 game_seven 100000 100 1
 S
 
 
 #RESETS
-M 0   502  1   509 	* the slick croupier -> The Game of Seven Room
-M 0   500  1   510 	* the slick croupier -> The Upper Lower Triple Room
-M 0   501  1   511 	* the slick croupier -> The High-Dice Room
+M 0 502 1 509
+M 0 500 1 510
+M 0 501 1 511
 S
 
 

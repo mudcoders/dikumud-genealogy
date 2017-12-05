@@ -258,20 +258,20 @@ void	load_rooms        args( ( FILE *fp ) );
 void	load_shops        args( ( FILE *fp ) );
 void	load_specials     args( ( FILE *fp ) );
 void	load_games	  args( ( FILE *fp ) );
-void	load_notes        args( ( void ) );
+void	load_notes	  args( ( void ) );
 void	load_ban          args( ( void ) );
-bool    load_system_data  args( ( SYSTEM_DATA *sys ) );
-void    save_system_data  args( ( SYSTEM_DATA *sys ) );
+void    load_sysdata      args( ( void ) );
+void    save_sysdata      args( ( void ) );
 void    load_down_time    args( ( void ) );
 void	fix_exits         args( ( void ) );
 
-void	reset_area        args( ( AREA_DATA * pArea ) );
+void	reset_area        args( ( AREA_DATA *pArea ) );
 
 /*
  * MOBprogram locals
  */
 int 		mprog_name_to_type	args ( ( char* name ) );
-MPROG_DATA *	mprog_file_read 	args ( ( char* f, MPROG_DATA* mprg, 
+MPROG_DATA *	mprog_file_read 	args ( ( const char* f, MPROG_DATA* mprg, 
 						MOB_INDEX_DATA *pMobIndex ) );
 void		load_mobprogs           args ( ( FILE* fp ) );
 void   		mprog_read_programs     args ( ( FILE* fp,
@@ -364,13 +364,7 @@ void boot_db( void )
 	}
     }
 
-    sysdata.act		= 0;
-
-    if ( !load_system_data( &sysdata ) )
-    {
-        log_string( "Not found.  Creating new configuration." );
-        sysdata.all_time_max	= 0;
-    }
+    load_sysdata( );
 
     log_string( "Loading socials" );
     load_socials( );
@@ -378,16 +372,17 @@ void boot_db( void )
     log_string( "Loading classes" );
     load_classes( );
 
-    sysdata.max_players	= 0;
-
     /*
      * Read in all the area files.
      */
     log_string( "Reading in area files..." );
     {
 	FILE      *fpList;
+	char       strsave [ MAX_INPUT_LENGTH ];
 
-	if ( !( fpList = fopen( AREA_LIST, "r" ) ) )
+	sprintf( strsave, "%s%s", AREA_DIR, AREA_LIST );
+
+	if ( !( fpList = fopen( strsave, "r" ) ) )
 	{
 	    perror( AREA_LIST );
 	    exit( 1 );
@@ -455,7 +450,11 @@ void load_area_file( )
     }
     else
     {
-	if ( !( fpArea = fopen( strArea, "r" ) ) )
+	char strsave [ MAX_INPUT_LENGTH ];
+
+	sprintf( strsave, "%s%s", AREA_DIR, strArea );
+
+	if ( !( fpArea = fopen( strsave, "r" ) ) )
 	{
 	    perror( strArea );
 	    exit( 1 );
@@ -538,17 +537,61 @@ void load_area_file( )
 void load_area( FILE *fp )
 {
     AREA_DATA *pArea;
-    char buf1 [ MAX_STRING_LENGTH * 4 ];	/* by Zen */
-    char buf2 [ MAX_STRING_LENGTH * 4 ];	/* by Zen */
+    char       author [ MAX_STRING_LENGTH ];
+    char       range  [ MAX_STRING_LENGTH ];
+    char       name   [ MAX_STRING_LENGTH ];
+    char       arg1   [ MAX_STRING_LENGTH ];
+    char       arg2   [ MAX_STRING_LENGTH ];
+    char       buf    [ MAX_STRING_LENGTH ];
+    char      *ptr;
 
     pArea               = alloc_perm( sizeof( *pArea ) );       /*
     pArea->reset_first  = NULL;                                  * OLC-Removed
     pArea->reset_last   = NULL;                                  */
 
-    /* This is here because of ColourUp's problem with {'s (Zen) */
-    temp_fread_string( fp, buf1 );
-    conv_braces( buf2, buf1 );
-    pArea->name		= str_dup( buf2 );
+    /*
+     * Ugly hack to convert well behaved areas to new format.  -Zen
+     */
+    temp_fread_string( fp, buf );
+
+    while ( ( ptr = strchr( buf, '{' ) ) )
+	*ptr = '"';
+
+    while ( ( ptr = strchr( buf, '}' ) ) )
+	*ptr = '"';
+
+    ptr = &buf[0];
+
+    ptr = one_argument( ptr, range	);
+    ptr = one_argument( ptr, author	);
+
+    strcpy( name, ptr );
+
+    ptr = &range[0];
+
+    ptr = one_argument( ptr, arg1	);
+    ptr = one_argument( ptr, arg2	);
+
+    if ( is_number( arg1 ) && is_number( arg2 ) )
+    {
+	pArea->llv		= atoi( arg1 );
+	pArea->ulv		= atoi( arg2 );
+    }
+    else
+    if ( !str_cmp( arg1, "All" ) )
+    {
+	pArea->llv		= 0;
+	pArea->ulv		= MAX_LEVEL;
+    }
+    else
+    {
+	pArea->llv		= 0;
+	pArea->ulv		= 0;
+    }
+
+    pArea->name		= str_dup( name );
+    pArea->author	= str_dup( capitalize( author ) );
+    pArea->resetmsg	= str_dup( "You hear the patter of little feet." );
 
     pArea->recall       = ROOM_VNUM_TEMPLE;
     pArea->area_flags   = AREA_LOADING;
@@ -584,106 +627,208 @@ void load_area( FILE *fp )
 
 
 
-/*
+/* 
  * OLC
- * Use these macros to load any new area formats that you choose to
- * support on your MUD.  See the new_load_area format below for
- * a short example.
- */
-#if defined(KEY)
-#undef KEY
-#endif
-
-#define KEY( literal, field, value )                \
-                if ( !str_cmp( word, literal ) )    \
-                {                                   \
-                    field  = value;                 \
-                    fMatch = TRUE;                  \
-                    break;                          \
-                }
-
-#define SKEY( string, field )                       \
-                if ( !str_cmp( word, string ) )     \
-                {                                   \
-                    free_string( field );           \
-                  field = fread_string( fp, &stat); \
-                    fMatch = TRUE;                  \
-                    break;                          \
-                }
-
-
-
-/* OLC
  * Snarf an 'area' header line.   Check this format.  MUCH better.  Add fields
  * too.
  *
  * #AREAFILE
- * Name   { All } Locke    Newbie School~
- * Repop  A teacher pops in the room and says, 'Repop coming!'~
+ * Name   -Newbie School~
+ * Author Locke~
+ * Levels 1 54
  * Recall 3001
+ * Reset You hear hitting a pencil on paper.~
  * End
+ *
+ * The first character of the name ( '-' or '*' ) signs, that the area
+ * is taken from the original (-) or has been added by wizards (*).
+ * 
+ * -Sektor
  */
+void fread_area( FILE *fp, AREA_DATA *pArea )
+{
+    char        *word;
+    char        buf [ MAX_STRING_LENGTH ];
+    int         i;
+    int         j;
+    int         error_count = 0;
+    int         status;
+    char        *p;
+    int         tmpi;
+    int         num_keys;
+    int         last_key = 0;
+
+    char	def_author [] = "Envy";
+    char	def_reset  [] = "You hear the patter of little feet.";
+
+    struct key_data key_tab [] = { 
+      { "Name",     TRUE,  MAND,		{ &pArea->name,       NULL } },
+      { "Author",   TRUE,  (unlong) &def_author,{ &pArea->author,     NULL } },
+      { "Levels",   FALSE, 9999,		{ &pArea->llv,
+						  &pArea->ulv,        NULL } },
+      { "Security", FALSE, MAND,		{ &pArea->security,   NULL } },
+      { "VNUMs",    FALSE, MAND,		{ &pArea->lvnum,
+						  &pArea->uvnum,      NULL } },
+      { "Builders", TRUE,  MAND,		{ &pArea->builders,   NULL } },
+      { "Recall",   FALSE, ROOM_VNUM_TEMPLE,	{ &pArea->recall,     NULL } },
+      { "Reset",    TRUE,  (unlong) &def_reset,	{ &pArea->resetmsg,   NULL } },
+      { "\0",       FALSE, 0                                               } };
+
+
+    for ( num_keys = 0; *key_tab [num_keys].key; )
+        num_keys++;
+
+    for ( ; !feof (fp) ; )
+    {
+
+        word = fread_word( fp, &status );
+
+        if ( !word )
+	{
+            bug( "fread_area:  Error reading key.  EOF?", 0 );
+            fread_to_eol( fp );
+            break;
+	}
+
+                /* This little diddy searches for the keyword
+                   from the last keyword found */
+
+        for ( i = last_key;
+              i < last_key + num_keys &&
+                str_cmp (key_tab [i % num_keys].key, word); )
+            i++;
+
+        i = i % num_keys;
+
+        if ( !str_cmp (key_tab [i].key, word) )
+            last_key = i;
+        else
+            i = num_keys;
+
+        if ( *key_tab [i].key )         /* Key entry found in key_tab */
+	{
+            if ( key_tab [i].string == SPECIFIED )
+                bug ("Key already specified.", 0);
+
+                        /* Entry is a string */
+
+            else
+	      if ( key_tab [i].string )
+	      {
+                  if ( ( p = fread_string( fp, &status ) ) && !status )
+		  {
+		      free_string ( *(char **)key_tab [i].ptrs [0] );
+		      *(char **)key_tab [i].ptrs [0] = p;
+		  }
+	      }
+
+                        /* Entry is an integer */
+            else
+                for ( j = 0; key_tab [i].ptrs [j]; j++ )
+		{
+                    tmpi = fread_number ( fp, &status );
+                    if ( !status )
+                        *(int *)key_tab [i].ptrs [j] = tmpi;
+		}
+
+            if ( status )
+	    {
+                fread_to_eol( fp );
+                continue;
+	    }
+	    else
+                key_tab [i].string = SPECIFIED;
+	}
+
+        else if ( !str_cmp( word, "End" ) )
+            break;
+
+        else
+	{
+	    sprintf( buf, "fread_area: Unknown key '%s' in file.", word );
+	    bug( buf, 0 );
+	    fread_to_eol( fp );
+	}
+	
+    }
+
+                /* Require all manditory fields, set defaults */
+
+    for ( i = 0; *key_tab [i].key; i++ )
+    {
+
+        if ( key_tab [i].string == SPECIFIED ||
+             key_tab [i].deflt == DEFLT )
+            continue;
+
+        if ( key_tab [i].deflt == MAND )
+	{
+            sprintf( buf, "Manditory field '%s' missing from file.",
+                          key_tab [i].key );
+            bug( buf, 0 );
+            error_count++;
+            continue;
+	}
+
+               /* This if/else sets default strings and numbers */
+
+        if ( key_tab [i].string && key_tab [i].deflt )
+	{
+	    free_string( *(char **)key_tab [i].ptrs [0] );
+            *(char **)key_tab [i].ptrs [0] =
+	      str_dup( (char *)key_tab [i].deflt );
+	}
+        else
+            for ( j = 0; key_tab [i].ptrs [j]; j++ )
+	        *(int *)key_tab [i].ptrs [j] = key_tab [i].deflt;
+    }
+
+    if ( pArea->llv == 9999 )
+	pArea->llv = 0;
+
+    if ( pArea->ulv == 9999 )
+	pArea->ulv = MAX_LEVEL;
+
+    return;
+}
+
 void new_load_area( FILE *fp )
 {
     AREA_DATA *pArea;
-    char      *word;
-    bool      fMatch;
-    int        stat;
 
-    pArea               = alloc_perm( sizeof( *pArea ) );
-    pArea->age          = 15;
-    pArea->nplayer      = 0;
-    pArea->filename     = str_dup( strArea );
-    pArea->vnum         = top_area;
-    pArea->name         = str_dup( "New Area" );
-    pArea->builders     = str_dup( "" );
-    pArea->security     = 1;
-    pArea->lvnum        = 0;
-    pArea->area_flags   = 0;
+    pArea		= alloc_perm( sizeof( *pArea ) );
     pArea->recall       = ROOM_VNUM_TEMPLE;
+    pArea->area_flags   = AREA_LOADING;
+    pArea->security     = 1;
+    pArea->builders     = str_dup( "None" );
+    pArea->lvnum        = 0;
+    pArea->uvnum        = 0;
+    pArea->vnum         = top_area;
+    pArea->filename     = str_dup( strArea );
+    pArea->age		= 15;
+    pArea->nplayer	= 0;
 
-    for ( ; ; )
+    pArea->low_r_vnum	= 0;
+    pArea->hi_r_vnum	= 0;
+    pArea->low_o_vnum	= 0;
+    pArea->hi_o_vnum	= 0;
+    pArea->low_m_vnum	= 0;
+    pArea->hi_m_vnum	= 0;
+
+    fread_area( fp, pArea );
+
+    if ( !area_first )
+	area_first = pArea;
+    if (  area_last  )
     {
-       word   = feof( fp ) ? "End" : fread_word( fp, &stat );
-       fMatch = FALSE;
-
-       switch ( UPPER( word[0] ) )
-       {
-           case 'N':
-            SKEY( "Name", pArea->name );
-            break;
-           case 'S':
-             KEY( "Security", pArea->security, fread_number( fp, &stat ) );
-            break;
-           case 'V':
-            if ( !str_cmp( word, "VNUMs" ) )
-            {
-                pArea->lvnum = fread_number( fp, &stat );
-                pArea->uvnum = fread_number( fp, &stat );
-            }
-            break;
-           case 'E':
-             if ( !str_cmp( word, "End" ) )
-             {
-                 fMatch = TRUE;
-                 if ( !area_first )
-                    area_first = pArea;
-                 if ( area_last )
-                    area_last->next = pArea;
-                 area_last   = pArea;
-                 pArea->next = NULL;
-                 top_area++;
-                 return;
-            }
-            break;
-           case 'B':
-            SKEY( "Builders", pArea->builders );
-            break;
-           case 'R':
-             KEY( "Recall", pArea->recall, fread_number( fp, &stat ) );
-            break;
-        }
+	area_last->next = pArea;
+        REMOVE_BIT( area_last->area_flags, AREA_LOADING );
     }
+    area_last	= pArea;
+    pArea->next	= NULL;
+
+    top_area++;
+    return;
 }
 
 
@@ -1710,6 +1855,7 @@ void load_specials( FILE *fp )
     for ( ; ; )
     {
 	MOB_INDEX_DATA *pMobIndex;
+	OBJ_INDEX_DATA *pObjIndex;
 	char            letter;
 	int             stat;
 
@@ -1726,11 +1872,21 @@ void load_specials( FILE *fp )
 	    break;
 
 	case 'M':
-	    pMobIndex           = get_mob_index ( fread_number ( fp, &stat ) );
-	    pMobIndex->spec_fun = spec_lookup   ( fread_word   ( fp, &stat ) );
+	    pMobIndex           = get_mob_index  ( fread_number ( fp, &stat ) );
+	    pMobIndex->spec_fun = spec_mob_lookup( fread_word   ( fp, &stat ) );
 	    if ( pMobIndex->spec_fun == 0 )
 	    {
 		bug( "Load_specials: 'M': vnum %d.", pMobIndex->vnum );
+		exit( 1 );
+	    }
+	    break;
+
+	case 'O':
+	    pObjIndex           = get_obj_index  ( fread_number ( fp, &stat ) );
+	    pObjIndex->spec_fun = spec_obj_lookup( fread_word   ( fp, &stat ) );
+	    if ( pObjIndex->spec_fun == 0 )
+	    {
+		bug( "Load_specials: 'O': vnum %d.", pObjIndex->vnum );
 		exit( 1 );
 	    }
 	    break;
@@ -1816,8 +1972,11 @@ void load_notes( void )
 {
     FILE      *fp;
     NOTE_DATA *pnotelast;
+    char       strsave [ MAX_INPUT_LENGTH ];
 
-    if ( !( fp = fopen( NOTE_FILE, "r" ) ) )
+    sprintf( strsave, "%s%s", SYSTEM_DIR, NOTE_FILE );
+
+    if ( !( fp = fopen( strsave, "r" ) ) )
 	return;
 
     pnotelast = NULL;
@@ -1839,7 +1998,7 @@ void load_notes( void )
 	while ( isspace( letter ) );
 	ungetc( letter, fp );
 
-	pnote		  = alloc_perm( sizeof( *pnote ) );
+	pnote		  = alloc_mem( sizeof( *pnote ) );
 
 	if ( str_cmp( fread_word( fp, &stat ), "sender" ) )
 	    break;
@@ -1881,72 +2040,175 @@ void load_notes( void )
 }
 
 
-bool load_system_data( SYSTEM_DATA *sys )
+
+void load_sysdata( void )
 {
-    FILE *fp;
-    char *word;
-    bool  fMatch;
-    int   stat;
+    char        *word;
+    char        buf [ MAX_STRING_LENGTH ];
+    int         i;
+    int         j;
+    int         error_count = 0;
+    int         status;
+    char        *p;
+    int         tmpi;
+    int         num_keys;
+    int         last_key = 0;
+    FILE       *fp;
+    char        strsave [ MAX_INPUT_LENGTH ];
 
-    if ( !( fp = fopen( SYSDATA_FILE, "r" ) ) )
-        return FALSE;
+    char	def_time [] = "";
 
-    for ( ; ; )
+    struct key_data key_tab [] = { 
+      { "AllTimeMax", FALSE,  MAND,		{ &sysdata.all_time_max,
+                                                                      NULL } },
+      { "TimeOfMax",  TRUE,  (unlong) &def_time,{ &sysdata.time_of_max,
+                                                                      NULL } },
+      { "Act",        FALSE, 0,			{ &sysdata.act,       NULL } },
+      { "\0",         FALSE, 0                                             } };
+
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, SYSDATA_FILE );
+
+    if ( !( fp = fopen( strsave, "r" ) ) )
+	return;
+
+
+    for ( num_keys = 0; *key_tab [num_keys].key; )
+        num_keys++;
+
+    for ( ; !feof (fp) ; )
     {
-	word   = feof( fp ) ? "End" : fread_word( fp, &stat );
-	fMatch = FALSE;
 
-	switch ( UPPER( word[0] ) )
+        word = fread_word( fp, &status );
+
+        if ( !word )
 	{
-	case '*':
-	    fMatch = TRUE;
-	    fread_to_eol( fp );
-	    break;
+            bug( "fread_area:  Error reading key.  EOF?", 0 );
+            fread_to_eol( fp );
+            break;
+	}
 
-	case 'A':
-            KEY( "AllTimeMax",
-		sys->all_time_max, fread_number( fp, &stat ) );
-            KEY( "Act",
-		sys->act, fread_number( fp, &stat ) );
-	    break;
+                /* This little diddy searches for the keyword
+                   from the last keyword found */
 
-        case 'E':
-            if ( !str_cmp( word, "End" ) )
-            {
-                fclose( fp );
-                return TRUE;
-            }
+        for ( i = last_key;
+              i < last_key + num_keys &&
+                str_cmp (key_tab [i % num_keys].key, word); )
+            i++;
+
+        i = i % num_keys;
+
+        if ( !str_cmp (key_tab [i].key, word) )
+            last_key = i;
+        else
+            i = num_keys;
+
+        if ( *key_tab [i].key )         /* Key entry found in key_tab */
+	{
+            if ( key_tab [i].string == SPECIFIED )
+                bug ("Key already specified.", 0);
+
+                        /* Entry is a string */
+
+            else
+	      if ( key_tab [i].string )
+	      {
+                  if ( ( p = fread_string( fp, &status ) ) && !status )
+		  {
+		      free_string ( *(char **)key_tab [i].ptrs [0] );
+		      *(char **)key_tab [i].ptrs [0] = p;
+		  }
+	      }
+
+                        /* Entry is an integer */
+            else
+                for ( j = 0; key_tab [i].ptrs [j]; j++ )
+		{
+                    tmpi = fread_number ( fp, &status );
+                    if ( !status )
+                        *(int *)key_tab [i].ptrs [j] = tmpi;
+		}
+
+            if ( status )
+	    {
+                fread_to_eol( fp );
+                continue;
+	    }
+	    else
+                key_tab [i].string = SPECIFIED;
+	}
+
+        else if ( !str_cmp( word, "End" ) )
             break;
 
-	case 'T':
-	    SKEY( "TimeOfMax", sys->time_of_max );
-	    break;
-	}
-
-	if ( !fMatch )
+        else
 	{
-            bugf( "load_system_file: no match: %s", word );
+	    sprintf( buf, "load_sysdata: Unknown key '%s' in file.", word );
+	    bug( buf, 0 );
+	    fread_to_eol( fp );
 	}
+	
     }
 
-    return TRUE;
+                /* Require all manditory fields, set defaults */
+
+    for ( i = 0; *key_tab [i].key; i++ )
+    {
+
+        if ( key_tab [i].string == SPECIFIED ||
+             key_tab [i].deflt == DEFLT )
+            continue;
+
+        if ( key_tab [i].deflt == MAND )
+	{
+            sprintf( buf, "Manditory field '%s' missing from sysfile.",
+                          key_tab [i].key );
+            bug( buf, 0 );
+            error_count++;
+            continue;
+	}
+
+               /* This if/else sets default strings and numbers */
+
+        if ( key_tab [i].string && key_tab [i].deflt )
+	{
+	    free_string( *(char **)key_tab [i].ptrs [0] );
+            *(char **)key_tab [i].ptrs [0] =
+	      str_dup( (char *)key_tab [i].deflt );
+	}
+        else
+            for ( j = 0; key_tab [i].ptrs [j]; j++ )
+	        *(int *)key_tab [i].ptrs [j] = key_tab [i].deflt;
+    }
+
+    fclose( fp );
+
+    sysdata.max_players			= 0;
+
+    return;
 }
 
 
-void save_system_data( SYSTEM_DATA *sys )
+void save_sysdata( void )
 {
     FILE *fp;
+    char  strsave [ MAX_INPUT_LENGTH ];
 
-    if ( !( fp = fopen( SYSDATA_FILE, "w" ) ) )
-        return;
+    fclose( fpReserve );
 
-    fprintf( fp, "AllTimeMax  %d\n",	sys->all_time_max	);
-    fprintf( fp, "Act         %d\n",	sys->act		);
-    fprintf( fp, "TimeOfMax   %s~\n",	sys->time_of_max	);
+    sprintf( strsave, "%s%s", SYSTEM_DIR, SYSDATA_FILE );
+
+    if ( !( fp = fopen( strsave, "w" ) ) )
+	return;
+
+    fprintf( fp, "AllTimeMax  %d\n",	sysdata.all_time_max	);
+    fprintf( fp, "TimeOfMax   %s~\n",	sysdata.time_of_max	);
+    fprintf( fp, "Act         %d\n",	sysdata.act		);
     fprintf( fp, "End\n" );
 
     fclose( fp );
 
+    fpReserve = fopen( NULL_FILE, "r" );
     return;
 }
 
@@ -1955,14 +2217,17 @@ void load_down_time( void )
 {
     FILE *fp;
     int   number = 0;
+    char  strsave [ MAX_INPUT_LENGTH ];
 
     down_time = 0;
     warning1  = 0;
     warning2  = 0;
     Reboot    = FALSE;
 
-    if ( !( fp = fopen( DOWN_TIME_FILE, "r" ) ) )
-        return;
+    sprintf( strsave, "%s%s", SYSTEM_DIR, DOWN_TIME_FILE );
+
+    if ( !( fp = fopen( strsave, "r" ) ) )
+	return;
 
     for ( ; ; )
     {
@@ -2023,9 +2288,12 @@ void load_ban( void )
 {
     BAN_DATA  *pban;
     FILE      *fp;
+    char       strsave [ MAX_INPUT_LENGTH ];
 
-    if ( !( fp = fopen( BAN_FILE, "r" ) ) )
-        return;
+    sprintf( strsave, "%s%s", SYSTEM_DIR, BAN_FILE );
+
+    if ( !( fp = fopen( strsave, "r" ) ) )
+	return;
 
     for ( ; ; )
     {
@@ -2138,9 +2406,9 @@ void reset_room( ROOM_INDEX_DATA *pRoom )
     RESET_DATA  *pReset;
     CHAR_DATA   *pMob;
     CHAR_DATA   *LastMob = NULL;
-    int iExit;
-    int level = 0;
-    bool last;
+    int          iexit;
+    int          level = 0;
+    bool         last;
 
     if ( !pRoom )
         return;
@@ -2148,20 +2416,22 @@ void reset_room( ROOM_INDEX_DATA *pRoom )
     pMob        = NULL;
     last        = TRUE;
     
-    for ( iExit = 0;  iExit < MAX_DIR;  iExit++ )
+    for ( iexit = 0; iexit < MAX_DIR; iexit++ )
     {
-        EXIT_DATA *pExit;
-        if ( ( pExit = pRoom->exit[iExit] )
-          && !IS_SET( pExit->exit_info, EX_BASHED ) )   /* Skip Bashed. */
-        {
-            pExit->exit_info = pExit->rs_flags;
-            if ( ( pExit->to_room )
-              && ( ( pExit = pExit->to_room->exit[rev_dir[iExit]] ) ) )
-            {
-                /* nail the other side */
-                pExit->exit_info = pExit->rs_flags;
-            }
-        }
+        EXIT_DATA *pexit;
+
+        if ( !( pexit = pRoom->exit[iexit] )
+	    || IS_SET( pexit->exit_info, EX_BASHED ) )
+	    continue;	  
+
+	pexit->exit_info = pexit->rs_flags;
+
+	if ( ( pexit->to_room )
+	    && ( ( pexit = pexit->to_room->exit[rev_dir[iexit]] ) ) )
+	{
+	    /* nail the other side */
+	    pexit->exit_info = pexit->rs_flags;
+	}
     }
 
     for ( pReset = pRoom->reset_first; pReset; pReset = pReset->next )
@@ -2191,7 +2461,7 @@ void reset_room( ROOM_INDEX_DATA *pRoom )
                 continue;
             }
 
-            if ( ( pMobIndex->spec_fun == spec_lookup( "spec_cast_ghost" )
+            if ( ( pMobIndex->spec_fun == spec_mob_lookup( "spec_cast_ghost" )
                   && ( weather_info.sunlight > SUN_DARK )
                   && ( weather_info.sunlight < MOON_RISE ) ) )
             {
@@ -2238,7 +2508,7 @@ void reset_room( ROOM_INDEX_DATA *pRoom )
                 pRoomIndexPrev = get_room_index( pRoomIndex->vnum - 1 );
                 if ( pRoomIndexPrev
                     && IS_SET( pRoomIndexPrev->room_flags, ROOM_PET_SHOP ) )
-                    SET_BIT( pMob->act, ACT_PET);
+                    SET_BIT( pMob->act, ACT_PET );
             }
 
             if ( room_is_dark( pRoomIndex ) )
@@ -2339,14 +2609,15 @@ void reset_room( ROOM_INDEX_DATA *pRoom )
 
                 switch ( pObjIndex->item_type )
                 {
-                default:                olevel = 0;                      break;
-                case ITEM_PILL:         olevel = number_range(  0, 10 ); break;
-                case ITEM_POTION:       olevel = number_range(  0, 10 ); break;
-                case ITEM_SCROLL:       olevel = number_range(  5, 15 ); break;
-                case ITEM_WAND:         olevel = number_range( 10, 20 ); break;
-                case ITEM_STAFF:        olevel = number_range( 15, 25 ); break;
-                case ITEM_ARMOR:        olevel = number_range(  5, 15 ); break;
-                case ITEM_CLOTHING:     olevel = number_range(  5, 15 ); break;
+                default:		olevel = 0;                      break;
+                case ITEM_PILL:		olevel = number_range(  0, 10 ); break;
+                case ITEM_POTION:	olevel = number_range(  0, 10 ); break;
+                case ITEM_SCROLL:	olevel = number_range(  5, 15 ); break;
+                case ITEM_WAND:		olevel = number_range( 10, 20 ); break;
+                case ITEM_STAFF:	olevel = number_range( 15, 25 ); break;
+                case ITEM_ARMOR:	olevel = number_range(  5, 15 ); break;
+                case ITEM_FURNITURE:	olevel = number_range(  5, 15 ); break;
+                case ITEM_CLOTHING:	olevel = number_range(  5, 15 ); break;
                 case ITEM_WEAPON:       if ( pReset->command == 'G' )
                                             olevel = number_range( 5, 15 );
                                         else
@@ -2369,7 +2640,7 @@ void reset_room( ROOM_INDEX_DATA *pRoom )
             break;
 
         case 'D':
-            break;
+	    break;
 
         case 'R':
             break;
@@ -2386,6 +2657,7 @@ void reset_room( ROOM_INDEX_DATA *pRoom )
 void area_update( void )
 {
     AREA_DATA *pArea;
+    char       buf [ MAX_STRING_LENGTH ];
 
     for ( pArea = area_first; pArea; pArea = pArea->next )
     {
@@ -2406,7 +2678,8 @@ void area_update( void )
 		    && pch->in_room
 		    && pch->in_room->area == pArea )
 		{
-		    send_to_char( "You hear the patter of little feet.\n\r",
+		    sprintf( buf, "%s\n\r", pArea->resetmsg );
+		    send_to_char( buf,
 			pch );
 		}
 	    }
@@ -2419,7 +2692,6 @@ void area_update( void )
 	if ( pArea->nplayer == 0 || pArea->age >= 15 )
 	{
 	    ROOM_INDEX_DATA *pRoomIndex;
-	    char             buf [ MAX_STRING_LENGTH ];
 
 	    sprintf( buf, "%s has just been reset.", pArea->filename );
 	    wiznet( NULL, WIZ_RESETS, L_DIR, buf );
@@ -2622,6 +2894,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     obj->name		= str_dup( pObjIndex->name        );
     obj->short_descr	= str_dup( pObjIndex->short_descr );
     obj->description	= str_dup( pObjIndex->description );
+    obj->spec_fun	= pObjIndex->spec_fun;
     obj->item_type	= pObjIndex->item_type;
     obj->extra_flags	= pObjIndex->extra_flags;
     obj->wear_flags	= pObjIndex->wear_flags;
@@ -2629,6 +2902,7 @@ OBJ_DATA *create_object( OBJ_INDEX_DATA *pObjIndex, int level )
     obj->value[1]	= pObjIndex->value[1];
     obj->value[2]	= pObjIndex->value[2];
     obj->value[3]	= pObjIndex->value[3];
+    obj->value[4]	= pObjIndex->value[4];
     obj->weight		= pObjIndex->weight;
     obj->cost		= number_fuzzy( 4 )
 			* number_fuzzy( level ) * number_fuzzy( level );
@@ -3169,28 +3443,62 @@ void *alloc_perm( int sMem )
 
 
 
+/*
+ * Translate area range values to Envy style ranges.  -Zen
+ */
+char *range_string( AREA_DATA *pArea )
+{
+    static char buf [ 512 ];
+
+    if ( !pArea )
+	return "none";
+
+    if ( pArea->llv == 0 && pArea->ulv == MAX_LEVEL )
+	sprintf( buf, " All " );
+    else
+	if ( pArea->llv == 0 && pArea->ulv == 0 )
+	    sprintf( buf, "None " );
+    else
+	sprintf( buf, "%2d %2d", pArea->llv, pArea->ulv );
+
+    return buf;
+}
+
 void do_areas( CHAR_DATA *ch, char *argument )
 {
     AREA_DATA *pArea1;
     AREA_DATA *pArea2;
-    char       buf  [ MAX_STRING_LENGTH   ];
-    char       buf1 [ MAX_STRING_LENGTH*4 ];
+    char       buf   [ MAX_STRING_LENGTH   ];
+    char       buf1  [ MAX_STRING_LENGTH*4 ];
     int        iArea;
     int        iAreaHalf;
 
     buf1[0] = '\0';
+
     iAreaHalf = ( top_area + 1 ) / 2;
-    pArea1    = area_first;
-    pArea2    = area_first;
+    pArea1 = area_first;
+    pArea2 = area_first;
 
     for ( iArea = 0; iArea < iAreaHalf; iArea++ )
-        pArea2 = pArea2->next;
+	pArea2 = pArea2->next;
 
     for ( iArea = 0; iArea < iAreaHalf; iArea++ )
     {
-	sprintf( buf, "%-39s%-39s\n\r", pArea1->name,
-		( pArea2 ) ? pArea2->name : "" );
+	sprintf( buf, "{{%5.5s} %-7.7s %-22.22s ",
+		range_string( pArea1 ), pArea1->author, pArea1->name );
 	strcat( buf1, buf );
+
+	if ( pArea2 )
+	{
+	    sprintf( buf, "{{%5.5s} %-7.7s %-22.22s\n\r",
+		range_string( pArea2 ), pArea2->author, pArea2->name );
+	}
+	else
+	    sprintf( buf, "\n\r" );
+
+	strcat( buf1, buf );
+
+
 	pArea1 = pArea1->next;
 	if ( pArea2 )
 	    pArea2 = pArea2->next;
@@ -3601,7 +3909,9 @@ void append_file( CHAR_DATA *ch, char *file, char *str )
 void bug( const char *str, int param )
 {
     FILE *fp;
-    char  buf [ MAX_STRING_LENGTH ];
+    char  buf     [ MAX_STRING_LENGTH ];
+    char  strsave [ MAX_INPUT_LENGTH  ];
+
 
     if ( fpArea )
     {
@@ -3637,10 +3947,14 @@ void bug( const char *str, int param )
     strcpy( buf, "[*****] BUG: " );
     sprintf( buf + strlen( buf ), str, param );
     log_string( buf );
+
     wiznet( NULL, WIZ_DEBUG, L_DIR, buf );
 
     fclose( fpReserve );
-    if ( ( fp = fopen( BUG_FILE, "a" ) ) )
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, BUG_FILE );
+
+    if ( ( fp = fopen( strsave, "a" ) ) )
     {
 	fprintf( fp, "%s\n", buf );
 	fclose( fp );
@@ -3677,14 +3991,18 @@ void bugf( char * fmt, ... )
 void log_clan( const char *str )
 {
     FILE *fp;
-    char  buf [ MAX_STRING_LENGTH ];
+    char  strsave [ MAX_INPUT_LENGTH ];
 
-    strncpy ( buf, str, MAX_STRING_LENGTH );
-    if ( ( fp = fopen( CLAN_FILE, "a" ) ) )
+    fclose( fpReserve );
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, CLAN_FILE );
+
+    if ( ( fp = fopen( strsave, "a" ) ) )
     {
-	fprintf( fp, "%s\n", buf );
+	fprintf( fp, "%s\n", str );
 	fclose( fp );
     }
+    fpReserve = fopen( NULL_FILE, "r" );
 
     return;
 }
@@ -3774,7 +4092,7 @@ int mprog_name_to_type ( char *name )
 /*
  * This routine reads in scripts of MOBprograms from a file.
  */
-MPROG_DATA* mprog_file_read( char *f, MPROG_DATA *mprg,
+MPROG_DATA* mprog_file_read( const char *f, MPROG_DATA *mprg,
 			    MOB_INDEX_DATA *pMobIndex )
 {
   char        MOBProgfile[ MAX_INPUT_LENGTH ];
@@ -3906,6 +4224,7 @@ void load_mobprogs( FILE *fp )
 void mprog_read_programs( FILE *fp, MOB_INDEX_DATA *pMobIndex )
 {
   MPROG_DATA *mprg;
+  char        buf [MAX_STRING_LENGTH];
   char        letter;
   bool        done = FALSE;
   int         stat;
@@ -3928,7 +4247,8 @@ void mprog_read_programs( FILE *fp, MOB_INDEX_DATA *pMobIndex )
         exit( 1 );
       break;
      case IN_FILE_PROG:
-        mprg = mprog_file_read( fread_string( fp, &stat ), mprg,pMobIndex );
+	temp_fread_string( fp, buf );
+        mprg	 = mprog_file_read( buf, mprg, pMobIndex );
         fread_to_eol( fp );
         switch ( letter = fread_letter( fp ) )
         {

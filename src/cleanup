@@ -3,7 +3,7 @@
 
 cd ../log
 rm -f *.log
-cd ../area
+cd ../sys
 rm -f BUGS.TXT
 rm -f CLANS.TXT
 cd ../src

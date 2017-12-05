@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{20 30} Diku    Redferne's Residence~
-Builders    None~
-VNUMs       7900 7918
+Name        Redferne's Residence~
+Author      Diku~
+Levels      20 30
 Security    1
+VNUMs       7900 7918
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -34,12 +37,12 @@ A huge treasure is lying here, looking very valuable.~
 -100~ 0~ 0~ 0~ 0~
 0 0 0
 E
-treasure~
-Looks like a LOT of coins.  One of them has writing on it.
-~
-E
 writing letters~
 It reads: "Hi Conan.  No more coins from here, pal. :) Signed, Redferne".
+~
+E
+treasure~
+Looks like a LOT of coins.  One of them has writing on it.
 ~
 #7910
 chest~
@@ -109,14 +112,14 @@ this magnificent old house. To the west you can see a large ashen door.
 ~
 0 524 0
 E
+letters~
+They read "LIBRARY".
+~
+E
 runes~
 These runes are utterly strange to you, but you are in luck today: Under
 the runes you can just make out a sentence in Common. It goes : " Stay out,
 if you treasure your life. That is if you are mortal.".
-~
-E
-letters~
-They read "LIBRARY".
 ~
 D0
 The hallway continues that way. You can see more doorways under the
@@ -164,11 +167,28 @@ west wall.
 ~
 0 524 0
 E
-globe world map~
-You see a large world map stretch out on the enormous globe. It has towns
-drawn in every spot available for such. In the middle of the map you can
-spot a large town with the name 'MIDGAARD' written over it. The rest is
-mountains, woods, plains and water.
+river~
+You see a large and winding river cut through the landscape, starting at an
+enormous inland lake, it seeps through Midgaard and finally ends up in the
+Grand Sea on the West-coast of the land.
+~
+E
+out outside beyond~
+The clouds muster and form the ground on which this entire building is set.
+Through the thinnest of the clouds you can just make out MIDGAARD with all
+it's magnificent activity.
+~
+E
+window glass~
+These windows are really BIG! They reach from about 20 inches above the
+floor to approximately 10 inches under the ceiling. If you try and
+"look out", you might see what might lie beyond these windows.
+~
+E
+chairs leather arm-chairs~
+These two chair are exactly alike one another. They look incredibly
+comfortable. They're both made from old leather, and yet they seem so worn
+that they can be nothing but a perfect place for a long needed rest.
 ~
 E
 midgaard town city~
@@ -178,28 +198,11 @@ see a thin trail lead to a large castle. Finally you notice a rather large
 river pour in from the east and go through Midgaard in the middle.
 ~
 E
-chairs leather arm-chairs~
-These two chair are exactly alike one another. They look incredibly
-comfortable. They're both made from old leather, and yet they seem so worn
-that they can be nothing but a perfect place for a long needed rest.
-~
-E
-window glass~
-These windows are really BIG! They reach from about 20 inches above the
-floor to approximately 10 inches under the ceiling. If you try and
-"look out", you might see what might lie beyond these windows.
-~
-E
-out outside beyond~
-The clouds muster and form the ground on which this entire building is set.
-Through the thinnest of the clouds you can just make out MIDGAARD with all
-it's magnificent activity.
-~
-E
-river~
-You see a large and winding river cut through the landscape, starting at an
-enormous inland lake, it seeps through Midgaard and finally ends up in the
-Grand Sea on the West-coast of the land.
+globe world map~
+You see a large world map stretch out on the enormous globe. It has towns
+drawn in every spot available for such. In the middle of the map you can
+spot a large town with the name 'MIDGAARD' written over it. The rest is
+mountains, woods, plains and water.
 ~
 D1
 You can see an old ashen door, painted in a peculiar yellow colour.
@@ -458,6 +461,10 @@ S
 
 #SPECIALS
 M 7900 spec_cast_cleric
+S
+
+
+#GAMES
 S
 
 

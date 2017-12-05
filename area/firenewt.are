@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 15} Nirrad  Land of the Fire Newts~
-Builders    None~
-VNUMs       2900 2931
+Name        Land of the Fire Newts~
+Author      Nirrad~
+Levels      5 15
 Security    1
+VNUMs       2900 2931
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -231,9 +234,9 @@ A broad axe lies here.~
 0~ 2~ 8~ 3~ 0~
 15 600 0
 A
-18 1 0
-A
 19 2 0
+A
+18 1 0
 #2912
 leather suit~
 leather suit~
@@ -253,9 +256,9 @@ A mace lies here.~
 0~ 2~ 6~ 6~ 0~
 10 300 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #2914
 potion~
 orange potion~
@@ -388,12 +391,12 @@ The smoke seems to come from a hole to the south.
 ~
 0 4 4
 E
-top of mountain~
-The top of the mountain is a large area with a hole in the middle.
-~
-E
 smoke~
 The smoke is grey and is coming from the hole.
+~
+E
+top of mountain~
+The top of the mountain is a large area with a hole in the middle.
 ~
 D0
 You see the side of the mountain to the north.
@@ -506,17 +509,17 @@ There are paintings on the wall.  They show battle scenes.
 ~
 0 9 2
 E
-beds~
-The beds are made of metal and rock.
+tables~
+The tables are long and wide.  They are made of stone and obviously too heavy
+to move.
 ~
 E
 chairs~
 The chairs are made of stone and look very heavy.
 ~
 E
-tables~
-The tables are long and wide.  They are made of stone and obviously too heavy
-to move.
+beds~
+The beds are made of metal and rock.
 ~
 D3
 You see the dark tunnel shaft.
@@ -531,17 +534,17 @@ There are paintings on the wall that show great leaders.
 ~
 0 9 2
 E
-beds~
-The beds are made of metal and rock.
+tables~
+The tables are long and wide.  They are made of stone and are obviously to
+heavy to move.
 ~
 E
 chairs~
 The chairs are made of stone and look very heavy.
 ~
 E
-tables~
-The tables are long and wide.  They are made of stone and are obviously to
-heavy to move.
+beds~
+The beds are made of metal and rock.
 ~
 D1
 You see the shaft in the mountain.
@@ -866,6 +869,10 @@ S
 #SPECIALS
 M 2913 spec_cast_cleric
 M 2914 spec_breath_fire
+S
+
+
+#GAMES
 S
 
 

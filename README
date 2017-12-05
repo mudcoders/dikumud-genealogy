@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.87! (Ultra Envy2.2)
-Monday, 20th October 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -32,6 +32,8 @@ Major highlights of this version:
 	Full dice games support
 	Mobile and Object name prefixing
 	Work in progress on MSP spec 0.2 support
+	Object Specials
+	Better Aliasing
 
   It's back!  It's an HomeCooked Envy from the fiery pits of Hades! It's even
 meaner than Shub Niggurath!  Erm... *rant mode off*
@@ -46,10 +48,14 @@ this codebase has grown in leaps and bounds in just 4 months.
 
 	area	Area files.
 	backup	Divided into subdirectories for player files (initially empty).
+	clans	Clan files.
+	classes	Class files.
 	doc	Documentation.
 	log	Log files    (initially empty).
+	mobprog	MobPrograms.
 	player	Divided into subdirectories for player files (initially empty).
 	src	Source files.
+	sys	System files.
 
 Each directory contains a README file that is designed to explain the contents
 and purpose of that particular directory.  Please READ them!
@@ -66,9 +72,13 @@ Envy is easier to install than other muds, but every site is different.
 
 	ftp.game.org
 
+    Or my homepage at:
+
+	http://camoes.rnl.ist.utl.pt/~vasc
+
 (2) Unpack the release.
 
-	gzip -d UE_0.87.tgz | tar xvf -
+	gzip -d UE_0.87j.tgz | tar xvf -
 
 (3) Go into the 'src' directory.  Type 'make' and choose the supported
     platform matching your machine.  Follow instructions.  If your machine

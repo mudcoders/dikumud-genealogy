@@ -3601,29 +3601,30 @@ Syntax: colour    Toggles colour mode on/off
              Marble Mud (marble.bu.edu 4000).
 ~
 
--1 ALIAS UNALIAS~
+0 ALIAS UNALIAS~
 Syntax: alias
-        alias   <word>
         alias   <word> <substitution>
         unalias <word>
 
-The ALIAS command allows limited shortening of command names.
-At this time, aliases cannot generate more than one command.
+        The ALIAS command allows limited shortening of command names.
+        Aliases can generate more than one command using the symbol ';'.
 
-ALIAS by itself lists your current aliases.
-ALIAS <word> lists the alias with that name (if such exist)
-ALIAS with both a word and an argument produces a new alias.
-You cannot alias either alias or unalias to a new command.
+        ALIAS by itself lists your current aliases.
+        ALIAS with both a word and an argument produces a new alias.
+        You cannot alias either ALIAS or UNALIAS to a new command.
 
-Examples of use:
-alias gc get all corpse :: typing gc will equal typing 'get all corpse'
-alias ff cast 'fireball' :: ff orc will equal 'cast 'fireball' orc'
+        '$' is a special symbol which means the argument of the command typed.
 
-alias x orc
-alias ff cast 'fireball' x :: ff will equal cast 'fireball' orc
+        Examples of use:
 
-Only the first word on the line and the words in aliases will be substituted at
-this time.
+        ALIAS                       | TYPING  | ACTION
+        ----------------------------+---------+---------------------------------
+        alias gc get all corpse     | gc      | "get all corpse"
+        alias ff cast 'fireball' $  | ff orc  | "cast 'fireball' orc"
+        alias xx tell $ Quiet $!    | xx Zen  | "tell Zen Quiet Zen!"
+        alias \  recall;north;rest; | \       | "recall", "north", "rest"
+
+        Alias is written by Sektor (sektor@zly.kis.p.lodz.pl)
 ~
 
 0 MANA~

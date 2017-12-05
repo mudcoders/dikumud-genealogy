@@ -625,7 +625,7 @@ void do_give( CHAR_DATA *ch, char *argument )
     }
 
     if ( (   IS_OBJ_STAT( obj, ITEM_HOLY )
-	  && !strcmp( race_table[ victim->race ].name, "Vampire" ) )
+	  && !str_cmp( race_table[victim->race].name, "Vampire" ) )
 	|| ( IS_NPC( victim ) && ( victim->pIndexData->pShop ) ) )
     {
 	act( "$N refuses the $p.", ch, obj, victim, TO_CHAR );
@@ -784,7 +784,7 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	break;
 
     case ITEM_FOUNTAIN:
-	if ( !strcmp( race_table[ ch->race ].name, "Vampire" ) )
+	if ( !str_cmp( race_table[ch->race].name, "Vampire" ) )
 	{
 	    send_to_char( "You can't drink from that.\n\r", ch );
 	    break;
@@ -820,7 +820,7 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	
 	gain_condition( ch, COND_DRUNK,
 	    amount * liq_table[liquid].liq_affect[COND_DRUNK  ] );
-	if ( strcmp( race_table[ ch->race ].name, "Vampire" ) )
+	if ( str_cmp( race_table[ch->race].name, "Vampire" ) )
 	{
 	    gain_condition( ch, COND_FULL,
 			 amount * liq_table[liquid].liq_affect[COND_FULL   ] );
@@ -843,7 +843,7 @@ void do_drink( CHAR_DATA *ch, char *argument )
 	    send_to_char( "You do not feel thirsty.\n\r", ch );
 	
 	if ( obj->value[3] != 0
-	    && check_ris( ch, DAM_POISON ) != IS_IMMUNE )
+	    && !CHECK_IMM( ch, RIS_POISON ) )
 	{
 	    /* The shit was poisoned ! */
 	    AFFECT_DATA af;
@@ -920,7 +920,7 @@ void do_eat( CHAR_DATA *ch, char *argument )
 	    int condition;
 
 	    condition = ch->pcdata->condition[COND_FULL];
-	    if ( strcmp( race_table[ ch->race ].name, "Vampire" ) )
+	    if ( str_cmp( race_table[ch->race].name, "Vampire" ) )
 	        gain_condition( ch, COND_FULL, obj->value[0] );
 	    if ( ch->pcdata->condition[COND_FULL] > 40 )
 	        send_to_char( "You are full.\n\r", ch );
@@ -929,7 +929,7 @@ void do_eat( CHAR_DATA *ch, char *argument )
 	}
 
 	if ( obj->value[3] != 0
-	    && check_ris( ch, DAM_POISON ) != IS_IMMUNE )
+	    && !CHECK_IMM( ch, RIS_POISON ) )
 	{
 	    /* The shit was poisoned! */
 	    AFFECT_DATA af;
@@ -954,6 +954,7 @@ void do_eat( CHAR_DATA *ch, char *argument )
 	    obj_cast_spell( obj->value[1], obj->value[0], ch, ch, NULL );
 	    obj_cast_spell( obj->value[2], obj->value[0], ch, ch, NULL );
 	    obj_cast_spell( obj->value[3], obj->value[0], ch, ch, NULL );
+	    obj_cast_spell( obj->value[4], obj->value[0], ch, ch, NULL );
 	}
 	break;
     }
@@ -1598,6 +1599,7 @@ void do_quaff( CHAR_DATA *ch, char *argument )
 	obj_cast_spell( obj->value[1], obj->level, ch, ch, NULL );
 	obj_cast_spell( obj->value[2], obj->level, ch, ch, NULL );
 	obj_cast_spell( obj->value[3], obj->level, ch, ch, NULL );
+	obj_cast_spell( obj->value[4], obj->level, ch, ch, NULL );
     }
 
     if ( !IS_NPC( ch )
@@ -1725,6 +1727,7 @@ void do_recite( CHAR_DATA *ch, char *argument )
 	obj_cast_spell( scroll->value[1], scroll->level, ch, victim, obj );
 	obj_cast_spell( scroll->value[2], scroll->level, ch, victim, obj );
 	obj_cast_spell( scroll->value[3], scroll->level, ch, victim, obj );
+	obj_cast_spell( scroll->value[4], scroll->level, ch, victim, obj );
     }
 
     if ( !IS_NPC( ch )
@@ -2140,7 +2143,7 @@ void do_steal( CHAR_DATA *ch, char *argument )
 	  && ( (   !IS_SET( victim->act, PLR_KILLER )
 		&& !IS_SET( victim->act, PLR_THIEF )
 		&& !IS_SET( victim->act, PLR_REGISTER )
-		&& strcmp( race_table[ victim->race ].name, "Vampire" ) )
+		&& str_cmp( race_table[victim->race].name, "Vampire" ) )
 	      ||   ch->level - victim->level < 5 ) )
 	|| percent < number_percent( ) )
     {
@@ -3109,7 +3112,7 @@ void do_register( CHAR_DATA *ch, char *arg )
 
 /* 
  * Original Code by Todd Lair.
- * Improvements and Modification by Jason Huang (huangjac@netcom.com).
+ * Improvements and Modification by Jason Huang <huangjac@netcom.com>.
  * Permission to use this code is granted provided this header is
  * retained and unaltered.
  *
@@ -3117,7 +3120,7 @@ void do_register( CHAR_DATA *ch, char *arg )
  */
 void imprint_spell( int sn, int level, CHAR_DATA * ch, void *vo )
 {
-    static const int	sucess_rate[] = { 80, 25, 10 };
+    static const int	sucess_rate[] = { 80, 30, 25, 10 };
 
     char      buf [ MAX_STRING_LENGTH ];
     OBJ_DATA *obj = ( OBJ_DATA * ) vo;
@@ -3131,11 +3134,11 @@ void imprint_spell( int sn, int level, CHAR_DATA * ch, void *vo )
 	return;
     }
 
-    for ( free_slots = i = 1; i < 4; i++ )
+    for ( free_slots = i = 1; i < 5; i++ )
 	if ( obj->value[i] != -1 )
 	    free_slots++;
 
-    if ( free_slots > 3 )
+    if ( free_slots > 4 )
     {
 	act( "$p cannot contain any more spells.", ch, obj, NULL, TO_CHAR );
 	return;
@@ -3222,7 +3225,7 @@ void do_brew( CHAR_DATA * ch, char *argument )
 	return;
     }
 
-    if ( skill_table[sn].target != TAR_CHAR_DEFENSIVE
+    if (   skill_table[sn].target != TAR_CHAR_DEFENSIVE
 	&& skill_table[sn].target != TAR_CHAR_SELF )
     {
 	send_to_char( "You cannot brew that spell.\n\r", ch );

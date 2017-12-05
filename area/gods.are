@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{51 54} Envy    God Rooms~
-Builders    None~
-VNUMs       1200 1275
+Name        God Rooms~
+Author      Envy~
+Levels      51 54
 Security    1
+VNUMs       1200 1275
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -216,8 +219,10 @@ A bed, just a boxspring and mattress really, rests in the far corner.~
 0~ 0~ 0~ 0~ 0~
 1000 0 0
 E
-bed~
-It sure looks comfortable, as a matter of fact, you might just take a nap...
+boxspring~
+The boxspring is just sitting on the floor, so the whole bed is at a 
+comfortable distance to the ground, no danger of falling and hurting
+yourself here eh?
 ~
 E
 mattress~
@@ -225,10 +230,8 @@ It's soft, but not too soft, and it's just big enough for two, but not too
 big for just one, so there is no lonely empty half...
 ~
 E
-boxspring~
-The boxspring is just sitting on the floor, so the whole bed is at a 
-comfortable distance to the ground, no danger of falling and hurting
-yourself here eh?
+bed~
+It sure looks comfortable, as a matter of fact, you might just take a nap...
 ~
 #1202
 stereo hi fi cd player tuner tape deck~
@@ -239,14 +242,16 @@ A stereo spins through punk, industrial, and a few other random discs.~
 0~ 0~ 0~ 0~ 0~
 1000 0 0
 E
-stereo~
-It's your standard 500 disc changer, dual cassette, 7 band graphic equalizer,
-300 watt amp, FM stereo with surround sound, and why the hell not? I wrote
-the damn thing, it _should_ be bad ass  ;)
+fm tuner receiver~
+Tuned to the World Famous 106.7 FM KROQ Los Angeles...
 ~
 E
-500 disc changer cd~
-Wow! This thing could play for days without repeating a single song!
+amp~
+Betcha this thing gets *real* loud...
+~
+E
+equalizer~
+Hmm, spiffy, but I wouldn't mess it up if I were you...
 ~
 E
 dual cassette~
@@ -254,16 +259,14 @@ You know, there are a few really cool tapes which never made it to compact
 discs. Besides, this way, you can dub all those cool CDs!  ;)
 ~
 E
-equalizer~
-Hmm, spiffy, but I wouldn't mess it up if I were you...
+500 disc changer cd~
+Wow! This thing could play for days without repeating a single song!
 ~
 E
-amp~
-Betcha this thing gets *real* loud...
-~
-E
-fm tuner receiver~
-Tuned to the World Famous 106.7 FM KROQ Los Angeles...
+stereo~
+It's your standard 500 disc changer, dual cassette, 7 band graphic equalizer,
+300 watt amp, FM stereo with surround sound, and why the hell not? I wrote
+the damn thing, it _should_ be bad ass  ;)
 ~
 #1203
 computer CPU mac macintosh quadra av 990 990/av~
@@ -274,10 +277,28 @@ A Huge Macintosh Quadra 990/AV with all the neat-o stuff sits in a corner.~
 0~ 0~ 0~ 0~ 0~
 1000 0 0
 E
-computer CPU mac macintosh quadra av 990 990/av~
-Big 56" millions of color display, a camcorder plugged into the back, 
-multi-media stereo speakers, CD-ROM Drive, fat hard drive, tons of
-RAM & Software, a real fast modem, and of course a COOL Screen Saver.
+screen saver~
+Ahh, it's the USCreen Saver (tm). It shifts through old photos and bits of
+school history. FIGHT ON FOR OLD SC!
+~
+E
+modem~
+58.8K baud fax/modem wired into it's own dedicated phone line, so it doesn't
+interfere with incoming calls. Neat-o.
+~
+E
+cd-rom drive~
+It's a x3 speed CD-ROM drive for the Mac. It's hooked into the SCSI chain at
+the back of the Macintosh.
+~
+E
+speakers~
+Pretty loud for as small as they are... hmmm
+~
+E
+camcorder~
+It's a little palm-held 8mm tape camcorder. It has RCA cables leading from it
+to the back of the Macintosh.
 ~
 E
 color display~
@@ -286,28 +307,10 @@ a sound input port, and a stereo sound output port. On the bottom of the
 screen are contrast, brightness, and power buttons.
 ~
 E
-camcorder~
-It's a little palm-held 8mm tape camcorder. It has RCA cables leading from it
-to the back of the Macintosh.
-~
-E
-speakers~
-Pretty loud for as small as they are... hmmm
-~
-E
-cd-rom drive~
-It's a x3 speed CD-ROM drive for the Mac. It's hooked into the SCSI chain at
-the back of the Macintosh.
-~
-E
-modem~
-58.8K baud fax/modem wired into it's own dedicated phone line, so it doesn't
-interfere with incoming calls. Neat-o.
-~
-E
-screen saver~
-Ahh, it's the USCreen Saver (tm). It shifts through old photos and bits of
-school history. FIGHT ON FOR OLD SC!
+computer CPU mac macintosh quadra av 990 990/av~
+Big 56" millions of color display, a camcorder plugged into the back, 
+multi-media stereo speakers, CD-ROM Drive, fat hard drive, tons of
+RAM & Software, a real fast modem, and of course a COOL Screen Saver.
 ~
 #1204
 kenwood big boomer~
@@ -334,11 +337,11 @@ Tobie's GUND tag lays here, waiting to be worn~
 0~ 1~ 6~ 11~ 0~
 5 0 0
 A
-18 5 0
+1 0 0
 A
 19 10 0
 A
-1 0 0
+18 5 0
 #1207
 Toilet~
 a Toilet~
@@ -445,9 +448,9 @@ Snoopy's collar lies here.~
 0~ 0~ 0~ 0~ 0~
 1 9561 0
 A
-8 47 0
-A
 2 1 0
+A
+8 47 0
 #1221
 leg band~
 a leg band~
@@ -467,9 +470,9 @@ James' keyboard lies here.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-6 1 0
-A
 5 3 0
+A
+6 1 0
 #1223
 throne sapphire~
 the Sapphire Throne~
@@ -492,11 +495,11 @@ There is a gleaming sword here, made of brilliant sapphire.~
 0~ 20~ 35~ 3~ 0~
 5 0 0
 A
-12 100 0
+14 100 0
 A
 13 100 0
 A
-14 100 0
+12 100 0
 E
 sapphire sword~
 This is the symbol of the Guardian of Twilight.  It looks sharp.~
@@ -562,9 +565,9 @@ A sparkling diamond collar lies here abandoned.~
 0~ 0~ 0~ 0~ 0~
 1 5000 0
 A
-12 10 0
-A
 19 2 0
+A
+12 10 0
 #1231
 fountain~
 a sparkling clear fountain~
@@ -582,9 +585,9 @@ The Crystal Rose lies here quietly waiting to be picked up.~
 0~ 0~ -1~ 0~ 0~
 5 0 0
 A
-3 1 0
-A
 12 5 0
+A
+3 1 0
 #0
 
 
@@ -627,20 +630,21 @@ equal parts of clothes and books, scattered on the floor.
 ~
 0 2572 0
 E
-nin banner~
-Trent & Crew, hanging out against a wrought iron fence.
+books~
+Books are the food for the soul, or at least who ever left all of em all
+over the floor thought so...
 ~
 E
-sign~
-"SIDEWALK CLOSED, USE STREET" boy, that's your tax dollars at work there...
+clothes~
+Hmmm, dirty, clean, wrinkled, who can tell?
 ~
 E
-poster~
-Which One? There are three you know...
+plants plant~
+Geez! these plants are taking over the whole room!
 ~
 E
-t2 terminator 2 arnold~
-It's Arnold, and he says "I'M BACK!" with the bad harley, shot-gun toting look
+jyhad~
+Jyhad: The Eternal Struggle, by Wizards of the Coast and White Wolf Studios
 ~
 E
 batman arkham asylum~
@@ -648,21 +652,20 @@ Damn this is some cool art, ol' long ears against his ultimate foe: the Joker
 A Serious Place on Serious Earth...
 ~
 E
-jyhad~
-Jyhad: The Eternal Struggle, by Wizards of the Coast and White Wolf Studios
+t2 terminator 2 arnold~
+It's Arnold, and he says "I'M BACK!" with the bad harley, shot-gun toting look
 ~
 E
-plants plant~
-Geez! these plants are taking over the whole room!
+poster~
+Which One? There are three you know...
 ~
 E
-clothes~
-Hmmm, dirty, clean, wrinkled, who can tell?
+sign~
+"SIDEWALK CLOSED, USE STREET" boy, that's your tax dollars at work there...
 ~
 E
-books~
-Books are the food for the soul, or at least who ever left all of em all
-over the floor thought so...
+nin banner~
+Trent & Crew, hanging out against a wrought iron fence.
 ~
 S
 #1204
@@ -706,16 +709,8 @@ boards which form window-like squares on three sides of the room.
 ~
 0 520 0
 E
-light~
-It is a small light bulb without a cover fastened to the south wall of the
-porch.  A few insects circle and are occasionally caught in a spider's
-web and promptly feasted upon.
-~
-E
-rose bushes bush flower~
-These flowers provide a pleasant scent as one sits on the porch, and their
-color resembles that of dark red as they sway with the breeze in partial
-shadow.
+arm name writing~
+Area for Immortals of EnvyMUD written by Picard
 ~
 E
 swing~
@@ -724,8 +719,16 @@ On the arm of the swing you see someone has carved a name.  As the swing
 rocks, the steady creak of the chains can be heard.
 ~
 E
-arm name writing~
-Area for Immortals of EnvyMUD written by Picard
+rose bushes bush flower~
+These flowers provide a pleasant scent as one sits on the porch, and their
+color resembles that of dark red as they sway with the breeze in partial
+shadow.
+~
+E
+light~
+It is a small light bulb without a cover fastened to the south wall of the
+porch.  A few insects circle and are occasionally caught in a spider's
+web and promptly feasted upon.
 ~
 D2
 You see a solid wooden door leading into the house.
@@ -749,9 +752,11 @@ the west wall.
 ~
 0 8 0
 E
-chair chairs~
-Each chair is comfortable, but certainly not posh, and neither matches
-the other, but both fit nicely into their setting.
+television tv~
+Looking at the television, you see a basketball game is playing pitting
+rivals UNC, the University of North Carolina, and NCSU, North Carolina State
+University. They have just shown a score, and it appears NCSU is winning 
+the game!
 ~
 E
 couch~
@@ -759,11 +764,9 @@ The couch is long enough to accommodate even fairly large men should they
 decide to lay down for an afternoon's nap.
 ~
 E
-television tv~
-Looking at the television, you see a basketball game is playing pitting
-rivals UNC, the University of North Carolina, and NCSU, North Carolina State
-University. They have just shown a score, and it appears NCSU is winning 
-the game!
+chair chairs~
+Each chair is comfortable, but certainly not posh, and neither matches
+the other, but both fit nicely into their setting.
 ~
 D0
 You see a solid wooden door leading onto the porch.
@@ -785,13 +788,13 @@ the sink and counter top.
 ~
 0 8 0
 E
-table~
-A round wooden table able to seat maybe 6 people at a time.
-~
-E
 stove oven~
 It is sort of an older model, but still it works quite well in preparing
 food.
+~
+E
+table~
+A round wooden table able to seat maybe 6 people at a time.
 ~
 D1
 You can see the living room.
@@ -940,12 +943,30 @@ hatchway up there too.
 ~
 0 520 0
 E
-bed floor~
-BOING!  Wheeeee!  The bed is so comfortable, and its great for jumping
-up and down on!  Can't wait to have a pillow fight on it!  It must be
-fun sleeping here.
-:)
-~
+control panel controls ~
+This is the controller of everything that this room can do.  There are
+rows of buttons for you to push!  Whee!  Some of the buttons you pick
+out immediately are labeled : view of central square, slay character,
+summon monster, EJECT,  adjust prices, summon player, view of smurf
+village, spy, release drones, change players sex, disengage, travel to
+destination...  Cool stuff!  You see buttons for ordering food, for
+controlling monsters, and for setting items!  There's a whole portion
+devoted to the running of quests (with such commands as, execute quest,
+load quest item, etc....) and the distribution of justice.  You 
+accidentally push the 'self destruct' button... 
+tick.  tick.  tick.  tick.  UH OH. ~
+E
+adventurers list people~
+There are a lot of adventurers in the world right now, but each has his
+updated stats and eq listed on this viewscreen.  Aren't they lucky.  You
+pick out your own and gasp when you realize that you have something you
+didn't know you had!~
+E
+readout shopkeepers purchases sells~
+Apparently the weaponsmith just sold a Sun Sword, and bought a standard
+issue mace in the last 5 minutes.  The armourer apparently hasn't had
+any business recently.  Igor in New Thalos hasn't has a new buy in
+several days, and Elvira isn't MAKING ANY PROFIT!~
 E
 screen wall view display viewscreen~
 Right now there are several different images on the screen : One is of
@@ -962,30 +983,12 @@ purchases/sells of various shopkeepers, and a perpetually updating list
 of adventurers now present in the world.  You wonder how to change the
 pretty pictures...  ~
 E
-readout shopkeepers purchases sells~
-Apparently the weaponsmith just sold a Sun Sword, and bought a standard
-issue mace in the last 5 minutes.  The armourer apparently hasn't had
-any business recently.  Igor in New Thalos hasn't has a new buy in
-several days, and Elvira isn't MAKING ANY PROFIT!~
-E
-adventurers list people~
-There are a lot of adventurers in the world right now, but each has his
-updated stats and eq listed on this viewscreen.  Aren't they lucky.  You
-pick out your own and gasp when you realize that you have something you
-didn't know you had!~
-E
-control panel controls ~
-This is the controller of everything that this room can do.  There are
-rows of buttons for you to push!  Whee!  Some of the buttons you pick
-out immediately are labeled : view of central square, slay character,
-summon monster, EJECT,  adjust prices, summon player, view of smurf
-village, spy, release drones, change players sex, disengage, travel to
-destination...  Cool stuff!  You see buttons for ordering food, for
-controlling monsters, and for setting items!  There's a whole portion
-devoted to the running of quests (with such commands as, execute quest,
-load quest item, etc....) and the distribution of justice.  You 
-accidentally push the 'self destruct' button... 
-tick.  tick.  tick.  tick.  UH OH. ~
+bed floor~
+BOING!  Wheeeee!  The bed is so comfortable, and its great for jumping
+up and down on!  Can't wait to have a pillow fight on it!  It must be
+fun sleeping here.
+:)
+~
 D4
 A secure hatchway that reminds you of an airlock door in a submarine,
 or from one of those sci-fi movies!  AUGH!  ~
@@ -1099,6 +1102,10 @@ M 1222 spec_breath_any
 M 1223 spec_cast_mage
 M 1230 spec_cast_mage
 M 1231 spec_poison
+S
+
+
+#GAMES
 S
 
 

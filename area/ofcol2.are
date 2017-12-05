@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 35} Hatchet New Ofcol~
-Builders    None~
-VNUMs       600 699
+Name        New Ofcol~
+Author      Hatchet~
+Levels      5 35
 Security    1
+VNUMs       600 699
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -214,7 +217,7 @@ A young horse is here, grazing.
 The horse whinnies at you, then runs around you a few times, then just goes
 back to grazing.
 ~
-262273 0 0 S
+129 0 0 S
 6 15 4 6d6+60 1d8+4
 0 0
 0 Animal~ 0

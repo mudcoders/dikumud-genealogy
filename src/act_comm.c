@@ -103,8 +103,9 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
     FILE      *fp;
     NOTE_DATA *prev;
     char      *to_list;
-    char       to_new [ MAX_INPUT_LENGTH ];
-    char       to_one [ MAX_INPUT_LENGTH ];
+    char       to_new  [ MAX_INPUT_LENGTH ];
+    char       to_one  [ MAX_INPUT_LENGTH ];
+    char       strsave [ MAX_INPUT_LENGTH ];
 
     /*
      * Build a new to_list.
@@ -168,7 +169,10 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
      * Rewrite entire list.
      */
     fclose( fpReserve );
-    if ( !( fp = fopen( NOTE_FILE, "w" ) ) )
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, NOTE_FILE );
+
+    if ( !( fp = fopen( strsave, "w" ) ) )
     {
 	perror( NOTE_FILE );
     }
@@ -178,7 +182,7 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
 	{
 	    fprintf( fp, "Sender  %s~\n", pnote->sender			);
 	    fprintf( fp, "Date    %s~\n", pnote->date			);
-	    fprintf( fp, "Stamp   %ld\n", (unsigned long)pnote->date_stamp );
+	    fprintf( fp, "Stamp   %ld\n", (unlong) pnote->date_stamp	);
 	    fprintf( fp, "To      %s~\n", pnote->to_list		);
 	    fprintf( fp, "Subject %s~\n", pnote->subject		);
 	    fprintf( fp, "Text\n%s~\n\n", fix_string( pnote->text )	);
@@ -194,9 +198,10 @@ void note_remove( CHAR_DATA *ch, NOTE_DATA *pnote )
 void do_note( CHAR_DATA *ch, char *argument )
 {
     NOTE_DATA *pnote;
-    char       buf  [ MAX_STRING_LENGTH   ];
-    char       buf1 [ MAX_STRING_LENGTH*7 ];
-    char       arg  [ MAX_INPUT_LENGTH    ];
+    char       buf     [ MAX_STRING_LENGTH   ];
+    char       buf1    [ MAX_STRING_LENGTH*7 ];
+    char       arg     [ MAX_INPUT_LENGTH    ];
+    char       strsave [ MAX_INPUT_LENGTH    ];
     int        vnum;
     int        anum;
 
@@ -430,7 +435,10 @@ void do_note( CHAR_DATA *ch, char *argument )
 	ch->pnote       = NULL;
 
 	fclose( fpReserve );
-	if ( !( fp = fopen( NOTE_FILE, "a" ) ) )
+
+	sprintf( strsave, "%s%s", SYSTEM_DIR, NOTE_FILE );
+
+	if ( !( fp = fopen( strsave, "a" ) ) )
 	{
 	    perror( NOTE_FILE );
 	}
@@ -438,7 +446,7 @@ void do_note( CHAR_DATA *ch, char *argument )
 	{
 	    fprintf( fp, "Sender  %s~\n", pnote->sender			);
 	    fprintf( fp, "Date    %s~\n", pnote->date			);
-	    fprintf( fp, "Stamp   %ld\n", (unsigned long)pnote->date_stamp );
+	    fprintf( fp, "Stamp   %ld\n", (unlong) pnote->date_stamp	);
 	    fprintf( fp, "To      %s~\n", pnote->to_list		);
 	    fprintf( fp, "Subject %s~\n", pnote->subject		);
 	    fprintf( fp, "Text\n%s~\n\n", fix_string( pnote->text )	);
@@ -644,7 +652,7 @@ void talk_channel( CHAR_DATA *ch, char *argument, int channel,
 	och = d->original ? d->original : d->character;
 	vch = d->character;
 
-	if ( CONNECTED( d )
+	if ( d->connected == CON_PLAYING
 	    && vch != ch
 	    && !IS_SET( och->deaf, channel )
             && !IS_SET( och->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
@@ -1254,13 +1262,17 @@ void do_pose( CHAR_DATA *ch, char *argument )
 
 void do_bug( CHAR_DATA *ch, char *argument )
 {
+    char strsave [ MAX_INPUT_LENGTH ];
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, BUG_FILE );
+
     if ( argument[0] == '\0' )
     {
 	send_to_char( "The Implementors look at you quizzically.\n\r", ch );
 	return;
     }
 
-    append_file( ch, BUG_FILE,  argument );
+    append_file( ch, strsave,  argument );
     send_to_char( "Ok.  Thanks.\n\r", ch );
     return;
 }
@@ -1269,13 +1281,17 @@ void do_bug( CHAR_DATA *ch, char *argument )
 
 void do_idea( CHAR_DATA *ch, char *argument )
 {
+    char strsave [ MAX_INPUT_LENGTH ];
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, IDEA_FILE );
+
     if ( argument[0] == '\0' )
     {
 	send_to_char( "The Implementors look at you quizzically.\n\r", ch );
 	return;
     }
 
-    append_file( ch, IDEA_FILE, argument );
+    append_file( ch, strsave,  argument );
     send_to_char( "Ok.  Thanks.\n\r", ch );
     return;
 }
@@ -1284,13 +1300,17 @@ void do_idea( CHAR_DATA *ch, char *argument )
 
 void do_typo( CHAR_DATA *ch, char *argument )
 {
+    char strsave [ MAX_INPUT_LENGTH ];
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, TYPO_FILE );
+
     if ( argument[0] == '\0' )
     {
 	send_to_char( "The Implementors look at you quizzically.\n\r", ch );
 	return;
     }
 
-    append_file( ch, TYPO_FILE, argument );
+    append_file( ch, strsave,  argument );
     send_to_char( "Ok.  Thanks.\n\r", ch );
     return;
 }
@@ -1339,6 +1359,7 @@ void do_quit( CHAR_DATA *ch, char *argument )
     act( "$n has left the game.", ch, NULL, NULL, TO_ROOM );
     sprintf( log_buf, "%s has quit.", ch->name );
     log_string( log_buf );
+
     wiznet ( ch, WIZ_LOGINS, get_trust( ch ), log_buf );
 
     /*
@@ -1954,40 +1975,54 @@ void do_retire( CHAR_DATA *ch, char *argument )
 }
 
 
-void send_ansi_title( CHAR_DATA *ch )
+void send_ansi_title( DESCRIPTOR_DATA *d )
 {
     FILE *titlefile;
-    char  buf [ MAX_STRING_LENGTH*2 ];
+    char  buf     [ MAX_STRING_LENGTH*2 ];
+    char  strsave [ MAX_INPUT_LENGTH    ];
     int   num;
 
     num = 0;
-    if ( ( titlefile = fopen( ANSI_TITLE_FILE, "r" ) ) )
+
+    fclose( fpReserve );
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, ANSI_TITLE_FILE );
+
+    if ( ( titlefile = fopen( strsave, "r" ) ) )
     {
 	while ( ( buf[num] = fgetc( titlefile ) ) != EOF )
 	    num++;
 	fclose( titlefile );
 	buf[num] = '\0';
-	write_to_buffer( ch->desc, buf, num );
+	write_to_buffer( d, buf, num );
     }
 
+    fpReserve = fopen( NULL_FILE, "r" );
     return;
 }
 
-void send_ascii_title( CHAR_DATA *ch )
+void send_ascii_title( DESCRIPTOR_DATA *d )
 {
     FILE *titlefile;
-    char  buf [ MAX_STRING_LENGTH*2 ];
+    char  buf     [ MAX_STRING_LENGTH*2 ];
+    char  strsave [ MAX_INPUT_LENGTH    ];
     int   num;
 
     num = 0;
-    if ( ( titlefile = fopen( ASCII_TITLE_FILE, "r" ) ) )
+
+    fclose( fpReserve );
+
+    sprintf( strsave, "%s%s", SYSTEM_DIR, ANSI_TITLE_FILE );
+
+    if ( ( titlefile = fopen( strsave, "r" ) ) )
     {
 	while ( ( buf[num] = fgetc( titlefile ) ) != EOF )
 	    num++;
 	fclose( titlefile );
 	buf[num] = '\0';
-	write_to_buffer( ch->desc, buf, num );
+	write_to_buffer( d, buf, num );
     }
 
+    fpReserve = fopen( NULL_FILE, "r" );
     return;
 }

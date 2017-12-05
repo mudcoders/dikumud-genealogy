@@ -1,6 +1,5 @@
 @echo off
 
-cd ..\area
 if exist SHUTDOWN.TXT del SHUTDOWN.TXT
 if exist ..\log\envy.log del ..\log\envy.log
 

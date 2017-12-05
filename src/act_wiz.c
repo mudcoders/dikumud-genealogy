@@ -342,7 +342,7 @@ void do_recho( CHAR_DATA *ch, char *argument )
 
     for ( d = descriptor_list; d; d = d->next )
     {
-	if ( CONNECTED( d )
+	if ( d->connected == CON_PLAYING
 	    && d->character->in_room == ch->in_room )
 	{
 	    send_to_char( argument, d->character );
@@ -401,7 +401,7 @@ void do_transfer( CHAR_DATA *ch, char *argument )
     {
 	for ( d = descriptor_list; d; d = d->next )
 	{
-	    if ( CONNECTED( d )
+	    if ( d->connected == CON_PLAYING
 		&& d->character != ch
 		&& d->character->in_room
 		&& can_see( ch, d->character ) )
@@ -575,7 +575,7 @@ void do_goto( CHAR_DATA *ch, char *argument )
 
 
 
-void do_astat( CHAR_DATA * ch, char *argument )
+void do_astat( CHAR_DATA *ch, char *argument )
 {
     AREA_DATA       *pArea;
     CHAR_DATA       *rch;
@@ -593,8 +593,29 @@ void do_astat( CHAR_DATA * ch, char *argument )
     else
         pArea = ch->in_room->area;
         
-    sprintf( buf, "{cFile:   {x%s{c  Name: [%5d] '{x%s{c'.{x\n\r",
-	    pArea->filename, pArea->vnum, pArea->name );
+    sprintf( buf, "{cName:     [%5d] '{x%s{c'.{x\n\r",
+	    pArea->vnum, pArea->name );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cRange:    {{{x%2d %2d{c}  {cAuthor:   {x%s{c.\n\r",
+	    pArea->llv, pArea->ulv, pArea->author );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cFile:     {x%s{c.{x\n\r",
+	    pArea->filename );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cAge:      [{x%5d{c]  Players: [{x%5d{c]  Security: [{x%5d{c]{x\n\r",
+	    pArea->age, pArea->nplayer, pArea->security );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cVnums:    {x%d{c - {x%d\n\r",
+	    pArea->lvnum, pArea->uvnum );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cRooms:    {x%d{c - {x%d{c Objs: {x%d{c - {x%d{c Mobs: {x%d{c - {x%d\n\r",
+	    pArea->low_r_vnum, pArea->hi_r_vnum, pArea->low_o_vnum,
+	    pArea->hi_o_vnum, pArea->low_m_vnum, pArea->hi_m_vnum );
     send_to_char( buf, ch );
 
     sprintf( buf, "{cRecall:   [{x%5d{c] '{x%s{c'.{x\n\r", pArea->recall,
@@ -603,24 +624,14 @@ void do_astat( CHAR_DATA * ch, char *argument )
 	    : "none" );
     send_to_char( buf, ch );
 
-    sprintf( buf, "{cAge:      [{x%5d{c]  Players: [{x%5d{c]  Security: [{x%5d{c]{x\n\r",
-	    pArea->age, pArea->nplayer, pArea->security );
-    send_to_char( buf, ch );
-
-    sprintf( buf, "{cVnums:   {x%5d{c - {x%-5d\n\r",
-	    pArea->lvnum, pArea->uvnum );
-    send_to_char( buf, ch );
-
-    sprintf( buf, "{cRooms:   {x%5d{c - {x%-5d{c Objs: {x%5d{c - {x%-5d{c Mobs: {x%5d{c - {x%-5d\n\r",
-	    pArea->low_r_vnum, pArea->hi_r_vnum, pArea->low_o_vnum,
-	    pArea->hi_o_vnum, pArea->low_m_vnum, pArea->hi_m_vnum );
-    send_to_char( buf, ch );
-
-    sprintf( buf, "{cBuilders:{x %s\n\r", pArea->builders );
-    send_to_char( buf, ch );
-
-    sprintf( buf, "{cFlags:{x    %s\n\r",
+    sprintf( buf, "{cFlags:    {x%s\n\r",
 	    flag_string( area_flags, pArea->area_flags ) );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cReset:    {x%s\n\r", pArea->resetmsg );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cBuilders: {x%s\n\r", pArea->builders );
     send_to_char( buf, ch );
 
     return;
@@ -971,8 +982,9 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	if ( is_clan( victim ) )
 	{
 	    sprintf( buf,
-		    "{cClan: ({x%s{c).  Rank: {x%d{c.{x\n\r",
-		    victim->pcdata->clan->name, victim->pcdata->rank );
+		    "{cClan: {x%s{c.  Rank: {x%s{c.{x\n\r",
+		    victim->pcdata->clan->name,
+		    flag_string( rank_flags, victim->pcdata->rank ) );
 	    strcat( buf1, buf );
 	}
     }
@@ -988,12 +1000,12 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    victim->act );
     strcat( buf1, buf );
 
-    sprintf( buf, "{cRiding: {x%s{c.  {cRider: {x%s{c.{x\n\r",
+    sprintf( buf, "{cRiding:  {x%s{c.  {cRider:  {x%s{c.{x\n\r",
 	    victim->riding      ? victim->riding->name   : "(none)",
 	    victim->rider       ? victim->rider->name    : "(none)" );
     strcat( buf1, buf );
 
-    sprintf( buf, "{cMaster: {x%s{c.  Leader: {x%s{c.{x\n\r",
+    sprintf( buf, "{cMaster:  {x%s{c.  Leader: {x%s{c.{x\n\r",
 	    victim->master      ? victim->master->name   : "(none)",
 	    victim->leader      ? victim->leader->name   : "(none)" );
     strcat( buf1, buf );
@@ -1004,11 +1016,11 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    victim->fearing     ? victim->fearing->name  : "(none)" );
     strcat( buf1, buf );
 
-    sprintf( buf, "{cResistant: {x%s{c.{x\n\r",
+    sprintf( buf, "{cResistant:   {x%s{c.{x\n\r",
 	    ris_bit_name( victim->resistant ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "{cImmune: {x%s{c.{x\n\r",
+    sprintf( buf, "{cImmune:      {x%s{c.{x\n\r",
 	    ris_bit_name( victim->immune ) );
     strcat( buf1, buf );
 
@@ -1023,7 +1035,8 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( victim ) )
     {
-        sprintf( buf, "{cSecurity: {x%d{c.{x\n\r", victim->pcdata->security );
+        sprintf( buf, "{cSecurity: {x%d{c.{x\n\r",
+		victim->pcdata->security );
         strcat( buf1, buf );
     }
 
@@ -1034,13 +1047,21 @@ void do_mstat( CHAR_DATA *ch, char *argument )
     strcat( buf1, buf );
 
     if ( IS_NPC( victim ) && victim->spec_fun != 0 )
-	strcat( buf1, "{xMobile has spec fun{x.\n\r" );
+    {
+	sprintf( buf, "{cMobile has {x%s{c.{x\n\r",
+		spec_mob_string( victim->spec_fun ) );
+        strcat( buf1, buf );
+    }
 
     if ( IS_NPC( victim )
 	&& victim->pIndexData
 	&& victim->pIndexData->pGame
 	&& victim->pIndexData->pGame->game_fun != 0 )
-	strcat( buf1, "{xMobile has game fun{x.\n\r" );
+    {
+	sprintf( buf, "{cMobile has {x%s{c.{x\n\r",
+		game_string( victim->pIndexData->pGame->game_fun ) );
+        strcat( buf1, buf );
+    }
 
     for ( paf = victim->affected; paf; paf = paf->next )
     {
@@ -1048,7 +1069,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    continue;
 	sprintf( buf,
 		"{cSpell: '{x%s{c' modifies {x%s{c by {x%d{c for {x%d{c hours with bits {x%s{c.{x\n\r",
-		skill_table[(int) paf->type].name,
+		skill_table[paf->type].name,
 		affect_loc_name( paf->location ),
 		paf->modifier,
 		paf->duration,
@@ -2583,10 +2604,10 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	send_to_char( "Field being one of:\n\r",			ch );
 	send_to_char( "  str int wis dex con class sex race level\n\r",	ch );
 	send_to_char( "  gold hp mana move practice align\n\r",		ch );
-	send_to_char( "  thirst drunk full security rank",		ch );
+	send_to_char( "  thirst drunk full security",			ch );
 	send_to_char( "\n\r",						ch );
 	send_to_char( "String being one of:\n\r",			ch );
-	send_to_char( "  name short long title spec clan\n\r",          ch );
+	send_to_char( "  name short long title spec clan rank\n\r",	ch );
 	return;
     }
 
@@ -3043,7 +3064,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( ( victim->spec_fun = spec_lookup( arg3 ) ) == 0 )
+	if ( ( victim->spec_fun = spec_mob_lookup( arg3 ) ) == 0 )
 	{
 	    send_to_char( "No such spec fun.\n\r", ch );
 	    return;
@@ -3060,9 +3081,9 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
-	if ( value < 0 )
+	if ( ( value = flag_value( rank_flags, arg3 ) ) == NO_FLAG )
 	{
-	    send_to_char( "You shouldn't insert negative values.\n\r", ch );
+	    send_to_char( "No such rank.\n\r", ch );
 	    return;
 	}
 
@@ -3070,7 +3091,7 @@ void do_mset( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( !str_cmp( arg2, "security" ) ) /* OLC */
+    if ( !str_cmp( arg2, "security" ) )
     {
         if ( IS_NPC( victim ) )
         {
@@ -3078,19 +3099,20 @@ void do_mset( CHAR_DATA *ch, char *argument )
             return;
         }
 
-        if ( value > ch->pcdata->security || value < 0 )
+        if ( ( value > ch->pcdata->security && get_trust( ch ) < L_DIR )
+	    || value < 0 )
         {
-            if ( ch->pcdata->security != 0 )
-            {
-                sprintf( buf, "Valid security is 0-%d.\n\r",
-                    ch->pcdata->security );
-                send_to_char( buf, ch );
-            }
-            else
-            {
-                send_to_char( "Valid security is 0 only.\n\r", ch );
-            }
-            return;
+	    if ( ch->pcdata->security > 0 )
+	    {
+		sprintf( buf, "Valid security is 0-%d.\n\r",
+		    ch->pcdata->security );
+		send_to_char( buf, ch );
+	    }
+	    else
+	    {
+		send_to_char( "Valid security is 0 only.\n\r", ch );
+	    }
+	    return;
         }
         victim->pcdata->security = value;
         return;
@@ -3185,7 +3207,19 @@ void do_oset( CHAR_DATA *ch, char *argument )
 
     if ( !str_cmp( arg2, "extra" ) )
     {
+	if ( !is_number( arg3 ) )
+	{
+	    if ( ( value = flag_value( extra_flags, arg3 ) ) != NO_FLAG )
+	    {
+		TOGGLE_BIT( obj->extra_flags, value );
+		send_to_char( "Extra flag toggled.\n\r", ch );
+	    }
+	
+	    return;
+	}
+
 	obj->extra_flags = value;
+	send_to_char( "Extra flags set.\n\r", ch );
 	return;
     }
 
@@ -3324,18 +3358,12 @@ void do_rset( CHAR_DATA *ch, char *argument )
     }
 
     /*
-     * Snarf the value.
+     * Snarf the value (which need not be numeric).
      */
-    if ( !is_number( arg3 ) )
-    {
-	send_to_char( "Value must be numeric.\n\r", ch );
-	return;
-    }
     value = atoi( arg3 );
 
-    for ( person = location->people; person;
-	 person = person->next_in_room )
-	if ( person != ch && person->level >= ch->level )
+    for ( person = location->people; person; person = person->next_in_room )
+	if ( !IS_NPC( person ) && person != ch && person->level >= ch->level )
 	  {
 	    send_to_char(
 		"Your superior is in this room, no rsetting now.\n\r", ch );
@@ -3347,13 +3375,32 @@ void do_rset( CHAR_DATA *ch, char *argument )
      */
     if ( !str_cmp( arg2, "flags" ) )
     {
+	if ( !is_number( arg3 ) )
+	{
+	    if ( ( value = flag_value( room_flags, arg3 ) ) != NO_FLAG )
+	    {
+		TOGGLE_BIT( location->room_flags, value );
+		send_to_char( "Room flag toggled.\n\r", ch );
+	    }
+
+	    return;
+	}
+
+	location->room_flags = value;
+	send_to_char( "Room flags set.\n\r", ch );
 	location->room_flags	= value;
 	return;
     }
 
     if ( !str_cmp( arg2, "sector" ) )
     {
-	location->sector_type	= value;
+	if ( !is_number( arg3 )
+	    && ( value = flag_value( sector_flags, arg3 ) ) == NO_FLAG )
+		return;
+
+	location->sector_type = value;
+	send_to_char( "Sector type set.\n\r", ch );
+
 	return;
     }
 
@@ -3847,9 +3894,9 @@ void do_sstime( CHAR_DATA *ch, char *argument )
 
 /*
  * Modifications contributed by
- * Canth (phule@xs4all.nl)
- * Maniac (v942346@si.hhs.nl)
- * Vego (v942429@si.hhs.nl)
+ * Canth <phule@xs4all.nl>
+ * Maniac <v942346@si.hhs.nl>
+ * Vego <v942429@si.hhs.nl>
  */
 void do_imtlset( CHAR_DATA *ch, char *argument )
 {
@@ -4114,12 +4161,19 @@ void do_delete( CHAR_DATA *ch, char *argument )
  */
 void do_sober( CHAR_DATA *ch, char *argument )
 {
-    CHAR_DATA *victim;
-    char arg1 [ MAX_INPUT_LENGTH ];
+    CHAR_DATA       *rch;
+    CHAR_DATA       *victim;
+    char             arg [ MAX_INPUT_LENGTH ];
+
+    rch = get_char( ch );
+
+    if ( !authorized( rch, "sober" ) )
+	return;
 
     smash_tilde( argument );
-    argument = one_argument( argument, arg1 );
-    if ( !( victim = get_char_room( ch, arg1 ) ) )
+    argument = one_argument( argument, arg );
+
+    if ( !( victim = get_char_room( ch, arg ) ) )
     {
 	send_to_char( "They aren't here.\n\r", ch );
 	return;
@@ -4133,6 +4187,7 @@ void do_sober( CHAR_DATA *ch, char *argument )
 
     if ( victim->pcdata ) 
 	victim->pcdata->condition[COND_DRUNK] = 0;
+
     send_to_char( "Ok.\n\r", ch );
     send_to_char( "You feel sober again.\n\r", victim );
 
@@ -4622,7 +4677,7 @@ void do_mudconfig( CHAR_DATA *ch, char *argument )
 	{
 	    if ( !str_cmp( arg, "save" ) )
 	    {
-		save_system_data( &sysdata );
+		save_sysdata( );
 		return;
 	    }
 

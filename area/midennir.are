@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 15} Copper  Miden'nir~
-Builders    None~
-VNUMs       3500 3585
+Name        Miden'nir~
+Author      Copper~
+Levels      5 15
 Security    1
+VNUMs       3500 3585
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -56,19 +59,6 @@ place that is used to be in days past.
 10 8 1 1d12+200 2d8+1
 1500 0
 0 Human~ 1
->greet_prog 100~
-tell $n Have ye tasted my specialized green beverage, $n?
-~
->speech_prog nope no~
-tell $n Really? Disgraceful...
-shake
-tell $n Ye must try it, 'tis the best green winter ale in these parts...
-~
->speech_prog yup yes uh-huh yawp yesireebob~
-tell $n Aye? Did ya find it to yer likin'?
-wink $n
-~
-|
 #3504
 bard~
 the bard~
@@ -81,16 +71,6 @@ has been sitting here quite a while, drinking himself into oblivion.
 8 13 3 1d12+110 2d6+0
 1500 0
 0 Hobbit~ 1
->greet_prog 57~
-if ispc($n)
-  emote looks up from his sorry condition for a moment.
-  grumble
-  tell $n What do ye want with me, peasant?!
-  emote lowers his weary head down to the warmth of the table.
-  snore
-endif
-~
-|
 #3505
 horseman dark~
 the dark horseman~
@@ -821,11 +801,6 @@ return to the forest.
 ~
 0 0 3
 E
-sign~
-The sign reads:
-   The Woodsman
-~
-E
 credits credit author~
 +-------------------------------------------------+
 | This zone originally written for Copper II DIKU |
@@ -833,6 +808,11 @@ credits credit author~
 | Modification and alterations for MERCmud DIKU   |
 |   by VampLestat                        1 JAN 93 |
 +-------------------------------------------------+
+~
+E
+sign~
+The sign reads:
+   The Woodsman
 ~
 D0
 You can go north around the inn.
@@ -1099,6 +1079,10 @@ S
 
 #SPECIALS
 M 3500 spec_poison
+S
+
+
+#GAMES
 S
 
 

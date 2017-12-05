@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 50} Generic Olympus~
-Builders    None~
-VNUMs       900 954
+Name        Olympus~
+Author      Generic~
+Levels      15 50
 Security    1
+VNUMs       900 954
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -350,9 +353,9 @@ A huge hammer has been carelessly dropped here.~
 0~ 6~ 5~ 8~ 0~
 24 200000 0
 A
-18 3 0
-A
 19 8 0
+A
+18 3 0
 #902
 helmet winged~
 a Winged Helmet~
@@ -372,9 +375,9 @@ A wicked spear rests on the ground here.~
 0~ 5~ 5~ 2~ 0~
 18 200000 0
 A
-18 2 0
-A
 19 6 0
+A
+18 2 0
 #904
 sandals winged~
 a pair of winged sandals~
@@ -402,9 +405,9 @@ A huge three pronged spear lies here.~
 0~ 3~ 8~ 2~ 0~
 16 100000 0
 A
-4 2 0
-A
 18 5 0
+A
+4 2 0
 #907
 bow silver~
 a silver bow~
@@ -414,9 +417,9 @@ A silver bow.~
 0~ 4~ 4~ 7~ 0~
 15 40000 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 #908
 gauntlets flaming~
 flaming gauntlets~
@@ -454,9 +457,9 @@ A sapphire ring lies here.~
 5~ 0~ 0~ 0~ 0~
 1 40000 0
 A
-4 2 0
-A
 19 5 0
+A
+4 2 0
 #912
 shield glowing~
 a brightly glowing shield~
@@ -568,9 +571,9 @@ A deep blue robe is on the ground here.~
 6~ 0~ 0~ 0~ 0~
 10 50000 0
 A
-13 15 0
-A
 14 5 0
+A
+13 15 0
 #925
 hat~
 a wide brimmed hat~

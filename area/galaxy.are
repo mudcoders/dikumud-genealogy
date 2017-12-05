@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{20 45} Doctor  Galaxy~
-Builders    None~
-VNUMs       9301 9371
+Name        Galaxy~
+Author      Doctor~
+Levels      20 45
 Security    1
+VNUMs       9301 9371
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -1812,6 +1815,10 @@ M 9329 spec_cast_cleric
 M 9330 spec_cast_mage
 M 9331 spec_cast_mage
 M 9332 spec_breath_acid
+S
+
+
+#GAMES
 S
 
 

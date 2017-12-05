@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 50} Casret  Ultima~
-Builders    None~
-VNUMs       2400 2584
+Name        Ultima~
+Author      Casret~
+Levels      5 50
 Security    1
+VNUMs       2400 2584
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -1084,9 +1087,9 @@ You feel an aura of power emanating from the Hourglass.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-9 -50 0
-A
 4 2 0
+A
+9 -50 0
 #2417
 crook~
 the shepherd's crook~
@@ -1137,9 +1140,9 @@ The magic dagger lies here, pulsating.~
 0~ 0~ 0~ 11~ 0~
 4 0 0
 A
-3 2 0
-A
 18 2 0
+A
+3 2 0
 #2422
 robe~
 a robe~
@@ -1161,9 +1164,9 @@ Smithy's horseshoes are here.~
 0~ 0~ 0~ 0~ 0~
 7 0 0
 A
-14 50 0
-A
 19 3 0
+A
+14 50 0
 #2424
 instrument mandolin~
 a mandolin~
@@ -1236,9 +1239,9 @@ The Infinity Bow floats here.~
 0~ 0~ 0~ 6~ 0~
 3 0 0
 A
-2 3 0
-A
 19 5 0
+A
+2 3 0
 E
 infinity bow~
 The bow is immense, yet light.  You see no string, but as your
@@ -1270,9 +1273,9 @@ The Judge's gavel lies here.~
 0~ 0~ 0~ 7~ 0~
 5 0 0
 A
-4 3 0
-A
 12 10 0
+A
+4 3 0
 E
 judge gavel~
 The Gavel is made of ironwood, and seems to have some of the
@@ -1325,17 +1328,17 @@ Simon's monstrous bastard sword lies here.~
 0~ 0~ 0~ 3~ 0~
 18 0 0
 A
-1 3 0
-A
-2 2 0
-A
-18 5 0
-A
-19 5 0
+17 -10 0
 A
 13 -50 0
 A
-17 -10 0
+19 5 0
+A
+18 5 0
+A
+2 2 0
+A
+1 3 0
 E
 sword bastard~
 This is the biggest and best sword you've ever seen.  It's
@@ -1359,11 +1362,11 @@ Julia's hot, glowing sword lies here.~
 0~ 0~ 0~ 1~ 0~
 8 0 0
 A
-23 3 0
+18 -2 0
 A
 19 3 0
 A
-18 -2 0
+23 3 0
 E
 glowing sword hot~
 Julia was working on this sword before you attacked her.  Though
@@ -1380,17 +1383,17 @@ The most beautiful amulet lies in a pile here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-20 -5 0
-A
-21 -5 0
-A
-22 -5 0
-A
-23 -5 0
+6 1 0
 A
 24 -5 0
 A
-6 1 0
+23 -5 0
+A
+22 -5 0
+A
+21 -5 0
+A
+20 -5 0
 #2441
 sword~
 a shiny sword~
@@ -1410,9 +1413,9 @@ A paladin's suit of armour lies here.~
 0~ 0~ 0~ 0~ 0~
 15 0 0
 A
-1 1 0
-A
 17 -5 0
+A
+1 1 0
 #2443
 rapier~
 a rapier~
@@ -1422,9 +1425,9 @@ Dupre's rapier is here.~
 0~ 0~ 0~ 11~ 0~
 13 0 0
 A
-1 1 0
-A
 2 1 0
+A
+1 1 0
 #2444
 boomerang~
 a boomerang~
@@ -1434,9 +1437,9 @@ A gargoyle's boomerang is here.~
 0~ 0~ 0~ 6~ 0~
 6 0 0
 A
-18 5 0
-A
 17 5 0
+A
+18 5 0
 E
 boomerang~
 Though this seems like your basic boomerang, it is much more.  It
@@ -1462,9 +1465,9 @@ A spiked rusty shield lies here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-19 3 0
-A
 17 -3 0
+A
+19 3 0
 #2447
 cloak~
 a magic cloak~
@@ -1474,9 +1477,9 @@ A magic cloak is here.~
 0~ 0~ 0~ 0~ 0~
 6 0 0
 A
-12 10 0
-A
 13 10 0
+A
+12 10 0
 #2448
 aura power~
 an aura of power~
@@ -1486,9 +1489,9 @@ A bright light of power shoots into the air.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-17 10 0
-A
 4 2 0
+A
+17 10 0
 #2449
 red helmet face~
 a big red face~
@@ -1498,15 +1501,15 @@ The empty shell of the Guardian head lies here.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-12 50 0
-A
-13 50 0
-A
-14 50 0
+5 2 0
 A
 1 3 0
 A
-5 2 0
+14 50 0
+A
+13 50 0
+A
+12 50 0
 E
 face head helmet red~
 When you slew the evil Guardian, all that was left was his
@@ -1521,9 +1524,9 @@ Waves of corruption come off this evilly enchanted spiked mace.~
 0~ 0~ 0~ 7~ 0~
 5 0 0
 A
-19 6 0
-A
 18 5 0
+A
+19 6 0
 #2451
 black death armour~
 a completely black armour~
@@ -1533,11 +1536,11 @@ This completely black armor reeks of death.~
 0~ 0~ 0~ 0~ 0~
 9 0 0
 A
-17 5 0
+19 5 0
 A
 14 -100 0
 A
-19 5 0
+17 5 0
 #2452
 evil charm~
 an evil charm~
@@ -1548,11 +1551,11 @@ look at its shape.~
 0~ 0~ 0~ 0~ 0~
 3 0 0
 A
-12 50 0
+6 1 0
 A
 3 1 0
 A
-6 1 0
+12 50 0
 E
 shape~
 The charm looks to be a mummified part of a body.  It is about 3
@@ -1567,9 +1570,9 @@ The evil gem pulsates.~
 60~ 1~ 1~ harm~ 0~
 1 0 0
 A
-12 50 0
-A
 3 3 0
+A
+12 50 0
 #2454
 helmet~
 sentri's helmet~
@@ -1579,9 +1582,9 @@ Sentri's helmet is here.~
 0~ 0~ 0~ 0~ 0~
 30 0 0
 A
-4 2 0
-A
 12 15 0
+A
+4 2 0
 #2455
 sleeves~
 sentri's sleeves~
@@ -1591,9 +1594,9 @@ Sentri's sleeves lies here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-1 2 0
-A
 13 15 0
+A
+1 2 0
 #2456
 girth~
 sentri's girth~
@@ -1603,9 +1606,9 @@ Sentri's girth is here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-13 15 0
-A
 24 -6 0
+A
+13 15 0
 #2457
 two-handed sword~
 sentri's two-handed sword~
@@ -1615,9 +1618,9 @@ Sentri's two-handed sword is here.~
 0~ 0~ 0~ 3~ 0~
 20 0 0
 A
-18 3 0
-A
 19 3 0
+A
+18 3 0
 #2458
 gloves~
 sentri's gloves~
@@ -1627,9 +1630,9 @@ Sentri's gloves are here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-18 3 0
-A
 13 15 0
+A
+18 3 0
 #2459
 boots~
 sentri's boots~
@@ -1639,9 +1642,9 @@ Sentri's boots are here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-2 1 0
-A
 13 15 0
+A
+2 1 0
 #2460
 leggings~
 sentri's leggings~
@@ -1651,9 +1654,9 @@ Sentri left his leggings here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-2 1 0
-A
 18 3 0
+A
+2 1 0
 #2461
 armour~
 sentri's armour~
@@ -1663,9 +1666,9 @@ Sentri left his armour here.~
 0~ 0~ 0~ 0~ 0~
 30 0 0
 A
-18 3 0
-A
 13 20 0
+A
+18 3 0
 #2462
 fellowship medallion~
 a Fellowship medallion~
@@ -1675,9 +1678,9 @@ A triangular shaped medallion is here.~
 0~ 0~ 0~ 0~ 0~
 6 0 0
 A
-12 10 0
-A
 4 -1 0
+A
+12 10 0
 #2463
 glass sword~
 the Glass Sword~
@@ -1687,15 +1690,15 @@ The most amazingly well crafted sword lies here.~
 0~ 0~ 0~ 1~ 0~
 4 0 0
 A
-18 5 0
-A
-19 5 0
-A
-1 1 0
+12 10 0
 A
 2 1 0
 A
-12 10 0
+1 1 0
+A
+19 5 0
+A
+18 5 0
 E
 glass sword~
 Invisible to the naked eye, this sword is the best crafted, as
@@ -1712,13 +1715,13 @@ A jewel encrusted crown is here.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-3 2 0
-A
-4 2 0
+17 10 0
 A
 12 50 0
 A
-17 10 0
+4 2 0
+A
+3 2 0
 E
 british crown~
 Legend has it that this most perfect of crowns has within one of
@@ -1735,23 +1738,23 @@ power.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-5 2 0
-A
-13 50 0
+19 5 0
 A
 18 5 0
 A
-19 5 0
+13 50 0
+A
+5 2 0
+E
+orb~
+The orb of power is transparent to the point of sightlessness. 
+It holds within a vast store of power.
+~
 E
 sceptre~
 The second of the crown jewels, this sceptre is amazingly light,
 and amazingly powerful.  It is pure gold, but topped with an orb
 of power.
-~
-E
-orb~
-The orb of power is transparent to the point of sightlessness. 
-It holds within a vast store of power.
 ~
 #2466
 silver amulet~
@@ -1762,13 +1765,13 @@ A silver amulet lies here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-1 2 0
-A
-2 2 0
+14 50 0
 A
 13 50 0
 A
-14 50 0
+2 2 0
+A
+1 2 0
 E
 amulet~
 British's amulet is in the shape of the great earth serpent.
@@ -1803,16 +1806,16 @@ plaque.
 ~
 0 12 0
 E
+plaque~
+The plaque reads, "The Ultima Area was made for Merc 2.0."
+~
+E
 magic scroll~
 An image flew out of the scroll and creates a huge image of a
 face approximately ten feet off the ground.  It says, " Welcome
 to Ultima, where adventure and excitement may be found for all
 people, and all levels.  Each of the separate planes increase in
 level. Have a nice day!"
-~
-E
-plaque~
-The plaque reads, "The Ultima Area was made for Merc 2.0."
 ~
 D2
 There is a huge gate
@@ -4287,6 +4290,12 @@ one in particular that interest you.
 ~
 0 8 10
 E
+map~
+The map has a rough drawing of the camp and to the north a small
+segment of the desert, and a drawing of a winged lizard near the
+very north.
+~
+E
 scroll~
 The scroll reads as follows:
 Dear Lord British,
@@ -4298,12 +4307,6 @@ another knight, and also he had a moonstone.  Thank you, my
 liege.
 			 Your Servant,
 			 Dupre
-~
-E
-map~
-The map has a rough drawing of the camp and to the north a small
-segment of the desert, and a drawing of a winged lizard near the
-very north.
 ~
 D3
 ~
@@ -4517,6 +4520,12 @@ engraving taking up the west wall.
 ~
 0 4 2
 E
+ankh~
+Through your entire journey you have not understood the real
+symbol of the ankh.  Its true beauty only realizes itself to you
+now.  This knowledge transcends all that come before.
+~
+E
 engraving~
 Pilgrim,
      You have reached the final step on your way to enlightenment. 
@@ -4529,12 +4538,6 @@ one must know both.  Once you have been strengthened and forge
 through the evil, there is one final test before you prove
 yourself equal to the Avatar himself.  You must endure the test
 of time.
-~
-E
-ankh~
-Through your entire journey you have not understood the real
-symbol of the ankh.  Its true beauty only realizes itself to you
-now.  This knowledge transcends all that come before.
 ~
 D0
 You peer into the blackness, and hear shrieks and sounds totally
@@ -5088,7 +5091,7 @@ In the Warp~
 You seem to be in a blue room.  It seems to be only 2 dimensional
 as it sparkles.  There is also a big red face here.
 ~
-0 4 0
+0 0 0
 S
 #2584
 The Lagoon~
@@ -5128,6 +5131,10 @@ M 2454 spec_cast_psionicist
 M 2459 spec_cast_mage
 M 2460 spec_cast_mage
 M 2462 spec_cast_cleric
+S
+
+
+#GAMES
 S
 
 

@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{10 26} Manx    Goblin Caves~
-Builders    None~
-VNUMs       20000 20031
+Name        Goblin Caves~
+Author      Manx~
+Levels      10 26
 Security    1
+VNUMs       20000 20031
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -832,6 +835,10 @@ S
 
 
 #SPECIALS
+S
+
+
+#GAMES
 S
 
 

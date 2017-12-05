@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{10 25} Anon    Thalos~
-Builders    None~
-VNUMs       5200 5280
+Name        Thalos~
+Author      Anon~
+Levels      10 25
 Security    1
+VNUMs       5200 5280
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -121,9 +124,9 @@ A vest made of mithril plates lies heaped on the floor.~
 8~ 0~ 0~ 0~ 0~
 30 12000 0
 A
-19 1 0
-A
 1 2 0
+A
+19 1 0
 #5201
 helm mithril~
 a mithril helm~
@@ -143,9 +146,9 @@ A pair of mithril gauntlets rests on the ground.~
 8~ 0~ 0~ 0~ 0~
 10 2200 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #5203
 sleeves mithril~
 some mithril sleeves~
@@ -155,9 +158,9 @@ A set of mithril sleeves lies on the ground.~
 7~ 0~ 0~ 0~ 0~
 10 12450 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #5204
 boots mithril~
 a pair of mithril boots~
@@ -167,9 +170,9 @@ A pair of mithril boots stands has been left here.~
 7~ 0~ 0~ 0~ 0~
 6 1800 0
 A
-18 1 0
-A
 2 1 0
+A
+18 1 0
 #5205
 leggings mithril~
 a set of mithril leggings~
@@ -179,9 +182,9 @@ A set of mithril leggings lie here unattended.~
 7~ 0~ 0~ 0~ 0~
 10 5400 0
 A
-18 1 0
-A
 2 1 0
+A
+18 1 0
 #5206
 girth mithril~
 a mithril girth~
@@ -211,9 +214,9 @@ A small, but sturdy, iron shield has been left here.~
 7~ 0~ 0~ 0~ 0~
 5 500 0
 A
-20 -2 0
-A
 21 -2 0
+A
+20 -2 0
 #5210
 potion black~
 a black potion~
@@ -271,9 +274,9 @@ A demon-faced talisman glares at you angrily.~
 5~ 0~ 0~ 0~ 0~
 11 2500 0
 A
-1 -10 0
-A
 2 -8 0
+A
+1 -10 0
 #5219
 venison chunk~
 a chunk of venison~
@@ -299,9 +302,9 @@ A nice two-handed sword hangs on a hook in the wall.~
 0~ 2~ 12~ 3~ 0~
 24 55000 0
 A
-18 2 0
-A
 19 3 0
+A
+18 2 0
 #5222
 robe black silk~
 a black silk robe~
@@ -485,9 +488,9 @@ A long slim dagger has been left here.~
 0~ 2~ 5~ 11~ 0~
 4 1000 0
 A
-18 1 0
-A
 19 1 0
+A
+18 1 0
 #0
 
 
@@ -1830,15 +1833,15 @@ Some writings are on this wall.
 ~
 0 1 3
 E
+skeleton skeletons~
+Something is strange about these skeletons.  Upon further investigation, these
+skeletons appear illusionary.
+~
+E
 writings writing words~
 This cave along with the valley and dwarf forest is made by Hatchet for any
 Merc Mud.
 copyright 1992
-~
-E
-skeleton skeletons~
-Something is strange about these skeletons.  Upon further investigation, these
-skeletons appear illusionary.
 ~
 D0
 You see more of the cave.
@@ -2068,6 +2071,10 @@ S
 
 #SPECIALS
 M 5200 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

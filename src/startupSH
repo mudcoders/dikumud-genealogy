@@ -10,13 +10,9 @@
 port=4000
 if [ "$1" != "" ]; then port=$1; fi
 
-# Change to area directory.
-cd ../area
-
 # Set limits. (cannot be used in a 'sh' script - Loki)
 # nohup
-# nice
-# limit stack 1024k
+ulimit -s 1024
 if [ -r SHUTDOWN.TXT ]; then rm -f SHUTDOWN.TXT; fi
 
 while [ 1 ]

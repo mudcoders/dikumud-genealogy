@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{10 30} Mahatma Little Haven~
-Builders    None~
-VNUMs       1801 1833
+Name        Little Haven~
+Author      Mahatma~
+Levels      10 30
 Security    1
+VNUMs       1801 1833
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -151,9 +154,9 @@ An axe of blue flame boils the water beneath it.~
 0~ 2~ 15~ 3~ 0~
 14 5000 0
 A
-13 2 0
-A
 18 2 0
+A
+13 2 0
 #1804
 shield south wind~
 the Shield of the South Wind~
@@ -163,11 +166,11 @@ A beautiful shield lies at your feet.~
 10~ 0~ 0~ 0~ 0~
 8 1000000 0
 A
-1 1 0
+2 3 0
 A
 5 1 0
 A
-2 3 0
+1 1 0
 #1805
 mint sprig~
 a sprig of mints~
@@ -177,9 +180,9 @@ A sprig of mint sprouts at your feet.~
 0~ 0~ 0~ 0~ 0~
 1 20 0
 A
-14 100 0
-A
 13 1 0
+A
+14 100 0
 #1806
 fuschia potion~
 a fuschia potion~
@@ -518,7 +521,7 @@ almost saddening calm that envelops you, as if
 some great loss had taken place here.
 There is no physical escape from here.
 ~
-0 12 1
+0 8 1
 S
 #1820
 The Master Herbal's Room~
@@ -834,6 +837,10 @@ S
 M 1804 spec_cast_mage
 M 1805 spec_cast_mage
 M 1806 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

@@ -42,7 +42,7 @@
 #include <time.h>
 #include "merc.h"
 
-void do_wiznet( CHAR_DATA * ch, char *argument )
+void do_wiznet( CHAR_DATA* ch, char *argument )
 {
     char        arg[ MAX_STRING_LENGTH ];
     CHAR_DATA * rch;
@@ -200,7 +200,7 @@ void do_wiznet( CHAR_DATA * ch, char *argument )
     return;
 }
 
-void wiznet( CHAR_DATA * ch, int chan, int level, const char *string )
+void wiznet( CHAR_DATA *ch, int chan, int level, const char *string )
 {
     DESCRIPTOR_DATA *d;
     char             buf[ MAX_STRING_LENGTH ];
@@ -265,13 +265,13 @@ void wiznet( CHAR_DATA * ch, int chan, int level, const char *string )
 
     for ( d = descriptor_list; d; d = d->next )
     {
-	if ( CONNECTED( d )
+	if ( d->connected == CON_PLAYING
 	    && !d->original
-	    && get_trust( d->character ) >= level
-	    && d->character != ch
-	    && WCHAN( d->character, WIZ_ON )
-	    && WCHAN( d->character, chan )
 	    && IS_IMMORTAL( d->character )
+	    && get_trust( d->character ) >= level
+	    && WCHAN( d->character, chan )
+	    && WCHAN( d->character, WIZ_ON )
+	    && d->character != ch
 	    && ( ch ? can_see( d->character, ch ) : TRUE ) )
 	    send_to_char( buf, d->character );
     }

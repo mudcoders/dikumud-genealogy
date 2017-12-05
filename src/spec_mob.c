@@ -37,49 +37,49 @@
 /*
  * The following special functions are available for mobiles.
  */
-DECLARE_SPEC_FUN(	spec_breath_any		);
-DECLARE_SPEC_FUN(	spec_breath_acid	);
-DECLARE_SPEC_FUN(	spec_breath_fire	);
-DECLARE_SPEC_FUN(	spec_breath_frost	);
-DECLARE_SPEC_FUN(	spec_breath_gas		);
-DECLARE_SPEC_FUN(	spec_breath_lightning	);
-DECLARE_SPEC_FUN(	spec_cast_adept		);
-DECLARE_SPEC_FUN(	spec_cast_cleric	);
-DECLARE_SPEC_FUN(       spec_cast_ghost         );
-DECLARE_SPEC_FUN(	spec_cast_judge		);
-DECLARE_SPEC_FUN(	spec_cast_mage		);
-DECLARE_SPEC_FUN(       spec_cast_psionicist    );
-DECLARE_SPEC_FUN(	spec_cast_undead	);
-DECLARE_SPEC_FUN(	spec_executioner	);
-DECLARE_SPEC_FUN(	spec_fido		);
-DECLARE_SPEC_FUN(	spec_guard		);
-DECLARE_SPEC_FUN(	spec_janitor		);
-DECLARE_SPEC_FUN(	spec_mayor		);
-DECLARE_SPEC_FUN(	spec_poison		);
-DECLARE_SPEC_FUN(	spec_repairman		);
-DECLARE_SPEC_FUN(	spec_thief		);
+DECLARE_MOB_FUN(	spec_breath_any		);
+DECLARE_MOB_FUN(	spec_breath_acid	);
+DECLARE_MOB_FUN(	spec_breath_fire	);
+DECLARE_MOB_FUN(	spec_breath_frost	);
+DECLARE_MOB_FUN(	spec_breath_gas		);
+DECLARE_MOB_FUN(	spec_breath_lightning	);
+DECLARE_MOB_FUN(	spec_cast_adept		);
+DECLARE_MOB_FUN(	spec_cast_cleric	);
+DECLARE_MOB_FUN(	spec_cast_ghost         );
+DECLARE_MOB_FUN(	spec_cast_judge		);
+DECLARE_MOB_FUN(	spec_cast_mage		);
+DECLARE_MOB_FUN(	spec_cast_psionicist    );
+DECLARE_MOB_FUN(	spec_cast_undead	);
+DECLARE_MOB_FUN(	spec_executioner	);
+DECLARE_MOB_FUN(	spec_fido		);
+DECLARE_MOB_FUN(	spec_guard		);
+DECLARE_MOB_FUN(	spec_janitor		);
+DECLARE_MOB_FUN(	spec_mayor		);
+DECLARE_MOB_FUN(	spec_poison		);
+DECLARE_MOB_FUN(	spec_repairman		);
+DECLARE_MOB_FUN(	spec_thief		);
 
 
 
-SPEC_FUN *spec_lookup( const char *name )
+MOB_FUN *spec_mob_lookup( const char *name )
 {
     int cmd;
 
-    for ( cmd = 0; *spec_table[cmd].spec_name; cmd++ )
-        if ( !str_cmp( name, spec_table[cmd].spec_name ) )
-            return spec_table[cmd].spec_fun;
+    for ( cmd = 0; *spec_mob_table[cmd].spec_name; cmd++ )
+        if ( !str_cmp( name, spec_mob_table[cmd].spec_name ) )
+            return spec_mob_table[cmd].spec_fun;
 
     return 0;
 }
 
 
-char *spec_string( SPEC_FUN *fun )
+char *spec_mob_string( MOB_FUN *fun )
 {
     int cmd;
 
-    for ( cmd = 0; *spec_table[cmd].spec_fun; cmd++ )
-        if ( fun == spec_table[cmd].spec_fun )
-            return spec_table[cmd].spec_name;
+    for ( cmd = 0; *spec_mob_table[cmd].spec_fun; cmd++ )
+        if ( fun == spec_mob_table[cmd].spec_fun )
+            return spec_mob_table[cmd].spec_name;
 
     return 0;
 }
@@ -87,7 +87,7 @@ char *spec_string( SPEC_FUN *fun )
 /*
  * Special function commands.
  */
-const	struct	spec_type	spec_table	[ ]	=
+const	struct	spec_mob_type	spec_mob_table	[ ]	=
 {
     { "spec_breath_any",        spec_breath_any         },
     { "spec_breath_acid",       spec_breath_acid        },
@@ -113,6 +113,56 @@ const	struct	spec_type	spec_table	[ ]	=
     { "",                       0			}
 };  
 
+
+
+/*
+ * If a spell casting mob is hating someone... try and summon them. -Toric (?)
+ */
+void summon_if_hating( CHAR_DATA *ch )
+{
+    CHAR_DATA *victim;
+    char       name [ MAX_INPUT_LENGTH  ];
+    char       buf  [ MAX_STRING_LENGTH ];
+    bool       found;
+
+    if ( ch->fighting
+	|| ch->fearing
+	|| !ch->hating
+	|| IS_SET( ch->in_room->room_flags, ROOM_SAFE ) )
+	return;
+
+    /* If player is close enough to hunt... don't summon. */
+    if ( ch->hunting )
+	return;
+
+    one_argument( ch->hating->name, name );
+
+    found = FALSE;
+
+    /* Make sure the char exists; works even if player quits. */
+    for ( victim = char_list; victim; victim = victim->next )
+    {
+	if ( !str_cmp( ch->hating->name, victim->name ) )
+	{
+	    found = TRUE;
+	    break;
+	}
+    }
+
+    if ( !found )
+	return;
+
+    if ( ch->in_room == victim->in_room )
+	return;
+
+    if ( !IS_NPC( victim ) )
+	sprintf( buf, "summon 0.%s", name );
+     else
+	sprintf( buf, "summon %s",   name );
+
+    do_cast( ch, buf );
+    return;
+}
 
 
 /*
@@ -292,6 +342,8 @@ bool spec_cast_cleric( CHAR_DATA *ch )
     char      *spell;
     int        sn;
 
+    summon_if_hating( ch );
+
     if ( ch->position != POS_FIGHTING )
 	return FALSE;
 
@@ -381,6 +433,8 @@ bool spec_cast_mage( CHAR_DATA *ch )
     char      *spell;
     int        sn;
 
+    summon_if_hating( ch );
+
     if ( ch->position != POS_FIGHTING )
 	return FALSE;
 
@@ -438,6 +492,8 @@ bool spec_cast_undead( CHAR_DATA *ch )
     char      *spell;
     int        sn;
 
+    summon_if_hating( ch );
+
     if ( ch->position != POS_FIGHTING )
 	return FALSE;
 
@@ -472,7 +528,7 @@ bool spec_cast_undead( CHAR_DATA *ch )
 	case  7: min_level = 21; spell = "teleport";       break;
 	case  8:
 	case  9:
-	case 10: if ( !strcmp( race_table[ ch->race ].name, "Vampire" ) )
+	case 10: if ( !str_cmp( race_table[ch->race].name, "Vampire" ) )
 	         {
 		     min_level = 24;
 		     spell = "vampiric bite";  break;
@@ -820,6 +876,8 @@ bool spec_cast_psionicist( CHAR_DATA *ch )
     char      *spell;
     int        sn;
 
+    summon_if_hating( ch );
+
     if ( ch->position != POS_FIGHTING )
         return FALSE;
 
@@ -875,6 +933,8 @@ bool spec_cast_ghost( CHAR_DATA *ch )
     CHAR_DATA *victim;
     char      *spell;
     int        sn;
+
+    summon_if_hating( ch );
 
     if  ( weather_info.sunlight != SUN_DARK )
     {

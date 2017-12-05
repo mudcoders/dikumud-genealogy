@@ -1,0 +1,15 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.87j! (Ultra Envy2.2)
+Wednesday, 10th December 1997
+
+Zen             vasc@camoes.rnl.ist.utl.pt
+
+
+
+=== The classes directory
+
+This file gies a brief description of the files in the classes directory.
+
+CLASSES.LST	- Contains a list of all classes to be loaded into the server.
+                The classes are loaded in top-down order.
+
+*.class		- An individual class file.

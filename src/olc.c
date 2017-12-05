@@ -171,8 +171,11 @@ void do_aedit( CHAR_DATA *ch, char *argument )
             return;
         }
         else
-        if ( !str_cmp( argument, "create" ) )
-	    aedit_create( ch, "" );
+	{
+	    if ( !str_cmp( argument, "create" )
+		&& !aedit_create( ch, "" ) )
+		return;
+	}
     }
 
     ch->desc->olc_editing = ( void * ) pArea;
@@ -221,6 +224,8 @@ void do_redit( CHAR_DATA* ch, char *argument )
 		char_from_room( ch );
 		char_to_room( ch, pRoom );
 	    }
+	    else
+		return;
     }
 
     ch->desc->connected = CON_REDITOR;
@@ -703,11 +708,12 @@ void do_resets( CHAR_DATA * ch, char *argument )
 
     if ( !is_number( arg1 ) )
     {
-	send_to_char( "Syntax: RESET <number> OBJ <vnum> <wearloc>\n\r", ch );
-	send_to_char( "        RESET <number> OBJ <vnum> in <vnum>\n\r", ch );
-	send_to_char( "        RESET <number> OBJ <vnum> room     \n\r", ch );
-	send_to_char( "        RESET <number> MOB <vnum> [<max #>]\n\r", ch );
-	send_to_char( "        RESET <number> DELETE              \n\r", ch );
+	send_to_char( "Syntax: reset  <number>  obj     <vnum>  <wearloc>        \n\r", ch );
+	send_to_char( "or:     reset  <number>  obj     <vnum>  room             \n\r", ch );
+	send_to_char( "or:     reset  <number>  obj     <vnum>  in         <vnum>\n\r", ch );
+	send_to_char( "or:     reset  <number>  mob     <vnum>                   \n\r", ch );
+	send_to_char( "or:     reset  <number>  mob     <vnum>  <max num>        \n\r", ch );
+	send_to_char( "or:     reset  <number>  delete                           \n\r", ch );
 	return;
     }
 
@@ -802,7 +808,8 @@ void do_resets( CHAR_DATA * ch, char *argument )
 		}
 
 		pReset->arg3 = flag_value( wear_loc_flags, arg4 );
-		if ( pReset->arg2 == WEAR_NONE )
+
+		if ( pReset->arg3 == WEAR_NONE )
 		    pReset->command = 'G';
 		else
 		    pReset->command = 'E';
@@ -832,9 +839,10 @@ void do_alist( CHAR_DATA * ch, char *argument )
 
     for ( pArea = area_first; pArea; pArea = pArea->next )
     {
-	sprintf( buf, "{c[%3d] {g%-29.29s {c[{x%5d{c/{x%-5d{c] {c%-12.12s [{x%d{c] [{x%-10.10s{c]{x\n\r",
+	sprintf( buf, "{c[%3d] {g%-7.7s %-21.21s {c[{x%5d{c/{x%-5d{c] {c%-12.12s [{x%1.1d{c] [{x%-10.10s{c]{x\n\r",
 		pArea->vnum,
-		&pArea->name[8],
+		pArea->author,
+		pArea->name,
 		pArea->lvnum,
 		pArea->uvnum,
 		pArea->filename,

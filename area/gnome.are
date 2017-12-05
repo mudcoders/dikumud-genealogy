@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 15} Vougon  Gnome Village~
-Builders    None~
-VNUMs       1500 1590
+Name        Gnome Village~
+Author      Vougon~
+Levels      5 15
 Security    1
+VNUMs       1500 1590
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -843,12 +846,12 @@ and a small hut is to the west.
 ~
 0 0 2
 E
-stream~
-The stream is pretty small, but it looks too cold to swim.
-~
-E
 hut~
 The hut looks well built, but it seems to have taken some damage.
+~
+E
+stream~
+The stream is pretty small, but it looks too cold to swim.
 ~
 D1
 You see a small path.
@@ -2069,6 +2072,10 @@ M 1513 spec_breath_acid
 M 1514 spec_cast_undead
 M 1515 spec_breath_fire
 M 1519 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

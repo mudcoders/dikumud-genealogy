@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{10 15} Merc    Troll Den~
-Builders    None~
-VNUMs       2800 2808
+Name        Troll Den~
+Author      Merc~
+Levels      10 15
 Security    1
+VNUMs       2800 2808
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -195,9 +198,9 @@ A cracked piece of bone lies here.~
 0~ 3~ 3~ 7~ 0~
 3 3 0
 A
-19 -1 0
-A
 18 -1 0
+A
+19 -1 0
 E
 bone~
 This piece of bone looks sturdy enough to be used as a weapon, but you
@@ -317,6 +320,10 @@ S
 
 
 #SPECIALS
+S
+
+
+#GAMES
 S
 
 

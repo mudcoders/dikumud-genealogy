@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 31} Mort    Castle Reinhold~
-Builders    None~
-VNUMs       8200 8296
+Name        Castle Reinhold~
+Author      Mort~
+Levels      15 31
 Security    1
+VNUMs       8200 8296
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -690,8 +693,8 @@ ballista siege~
 a siege ballista~
 A siege ballista stands here.~
 ~
-31 0 32769
-8283~ 6~ 6~ 2~ 0~
+5 0 8193
+0~ 0~ 0~ 11~ 0~
 20 0 0
 A
 19 5 0
@@ -1391,14 +1394,6 @@ A White Shield sits here~
 ~
 9 1024 513
 0~ 0~ 0~ 0~ 0~
-10 0 0
-#8283
-arrow ballista~
-a ballista arrow~
-A HUGE ballista arrow lies here.~
-~
-32 1024 16385
-2~ 1~ 0~ 0~ 0~
 10 0 0
 #0
 

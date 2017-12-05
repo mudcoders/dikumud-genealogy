@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 35} Glop    Mega-City One ~
-Builders    None~
-VNUMs       8000 8028
+Name        Mega-City One ~
+Author      Glop~
+Levels      5 35
 Security    1
+VNUMs       8000 8028
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -272,13 +275,13 @@ The Vibroblade is here.~
 0~ 0~ 0~ 3~ 0~
 2 0 0
 A
-18 2 0
-A
-19 2 0
+2 1 0
 A
 5 1 0
 A
-2 1 0
+19 2 0
+A
+18 2 0
 E
 vibroblade~
 Obviously of alien manufacture, this blade enhances fighting
@@ -903,6 +906,10 @@ M 8004 spec_thief
 M 8006 spec_cast_judge
 M 8010 spec_cast_judge
 M 8011 spec_cast_judge
+S
+
+
+#GAMES
 S
 
 

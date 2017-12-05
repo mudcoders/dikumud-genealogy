@@ -257,8 +257,8 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
                                                 strcat( buf, "{o{g(Charmed){r "    );
     if ( IS_AFFECTED( victim, AFF_PASS_DOOR )
 	|| ( IS_SET( race_table[ victim->race ].race_abilities, RACE_PASSDOOR )
-	    && ( !str_cmp( race_table[ victim->race ].name, "undead" )
-		|| !str_cmp( race_table[ victim->race ].name, "vampire" ) ) ) )
+	    && (   !str_cmp( race_table[victim->race].name, "Undead" )
+		|| !str_cmp( race_table[victim->race].name, "Vampire" ) ) ) )
                                                 strcat( buf, "{o{c(Translucent){r ");
     if ( IS_AFFECTED( victim, AFF_FAERIE_FIRE ) )
                                                 strcat( buf, "{o{m(Pink Aura){r "  );
@@ -327,7 +327,7 @@ void show_char_to_char_0( CHAR_DATA *victim, CHAR_DATA *ch )
     {
         char buf1 [ MAX_STRING_LENGTH ];
 
-        sprintf( buf1, ", mounted on %s.\n\r", PERS( victim->riding, ch ) );
+        sprintf( buf1, ", mounted on %s.", PERS( victim->riding, ch ) );
         strcat( buf, buf1 );
     }
     else
@@ -551,9 +551,6 @@ void do_look( CHAR_DATA *ch, char *argument )
 	else
 	    show_room_info( ch, ch->in_room );
 
-	if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_AUTOEXIT ) )
-	    do_exits( ch, "auto" );
-
 	if ( arg1[0] == '\0'
 	    || ( !IS_NPC( ch ) && !IS_SET( ch->act, PLR_BRIEF ) ) ) 
 	{
@@ -563,6 +560,9 @@ void do_look( CHAR_DATA *ch, char *argument )
 	
         if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	    send_to_char( "{o{dIt seems eerily quiet.{x\n\r", ch );
+
+	if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_AUTOEXIT ) )
+	    do_exits( ch, "auto" );
 
 	show_list_to_char( ch->in_room->contents, ch, FALSE, FALSE );
 	show_char_to_char( ch->in_room->people,   ch );
@@ -1043,7 +1043,7 @@ void do_score( CHAR_DATA *ch, char *argument )
     
     if ( !IS_NPC( ch ) &&
 	( IS_SET( ch->act, PLR_REGISTER ) ||
-	  ch->race == race_lookup( "Vampire" ) ) )
+	  !str_cmp( race_table[ch->race].name, "Vampire" ) ) )
     {
 	strcat( buf1, "{o{c-----------------------------------------------------------------------------{x\n\r" );
 
@@ -1397,7 +1397,7 @@ void do_who( CHAR_DATA *ch, char *argument )
 	 * Check for match against restrictions.
 	 * Don't use trust as that exposes trusted mortals.
 	 */
-	if ( !CONNECTED( d ) || !can_see( ch, wch ) )
+	if ( d->connected != CON_PLAYING || !can_see( ch, wch ) )
 	    continue;
 
 	if (   wch->level < iLevelLower
@@ -1433,7 +1433,7 @@ void do_who( CHAR_DATA *ch, char *argument )
 	    char leftletter;
 	    char rightletter;
 
-	    sprintf( buf1, "%s%s%s%s%s.",
+	    sprintf( buf1, "%s%s%s%s%s",
 		    IS_SET( wch->act, PLR_KILLER   ) ? "{o{r(KILLER) {g" : "",
 		    IS_SET( wch->act, PLR_THIEF    ) ? "{o{r(THIEF) {g"  : "",
 		    IS_SET( wch->act, PLR_AFK      ) ? "{y[AFK] {g"    : "",
@@ -1447,11 +1447,11 @@ void do_who( CHAR_DATA *ch, char *argument )
 			? ' '
 			: ( wch->pcdata->clan->clan_type == CLAN_GUILD ) ? '>'
 			: ')';
-	    sprintf( buf2, "%c %-14.14s %c",
+	    sprintf( buf2, " %c%s%c",
 		    leftletter,
 		    !is_clan( wch ) ? "" : wch->pcdata->clan->who_name,
 		    rightletter );
-	    sprintf( buf + strlen( buf ), "{o{g%-2d %-12s %-43.43s %18.18s{x\n\r",
+	    sprintf( buf + strlen( buf ), "{o{g%-2d %-12s %s.%s{x\n\r",
 		    wch->level,
 		    class,
 		    buf1,
@@ -1464,7 +1464,7 @@ void do_who( CHAR_DATA *ch, char *argument )
 	    char leftletter;
 	    char rightletter;
 
-	    sprintf( buf1, "%s%s%s%s%s%s.",
+	    sprintf( buf1, "%s%s%s%s%s%s",
 		    IS_SET( wch->act, PLR_WIZINVIS ) ? "(WIZINVIS) " : "", 
 		    IS_SET( wch->act, PLR_KILLER   ) ? "(KILLER) " : "",
 		    IS_SET( wch->act, PLR_THIEF    ) ? "(THIEF) "  : "",
@@ -1479,11 +1479,11 @@ void do_who( CHAR_DATA *ch, char *argument )
 			? ' '
 			: ( wch->pcdata->clan->clan_type == CLAN_GUILD ) ? '>'
 			: ')';
-	    sprintf( buf2, "%c %-14.14s %c",
+	    sprintf( buf2, " %c%s%c",
 		    leftletter,
 		    !is_clan( wch ) ? "" : wch->pcdata->clan->who_name,
 		    rightletter );
-	    sprintf( buf + strlen( buf ), "{o{g%-15s %-43.43s %18.18s{x\n\r",
+	    sprintf( buf + strlen( buf ), "{o{g%-15s %s.%s{x\n\r",
 		    class,
 		    buf1,
 		    buf2 );
@@ -1573,7 +1573,7 @@ void do_whois( CHAR_DATA *ch, char *argument )
 	
 	wch = ( d->original ) ? d->original : d->character; 
 
-	if( !CONNECTED( d ) || !can_see( ch, wch ) )
+	if( d->connected != CON_PLAYING || !can_see( ch, wch ) )
 	    continue;
   
 	if( str_prefix( name, wch->name ) )
@@ -1842,7 +1842,7 @@ void do_where( CHAR_DATA *ch, char *argument )
 	found = FALSE;
 	for ( d = descriptor_list; d; d = d->next )
 	{
-	    if ( CONNECTED( d )
+	    if ( d->connected == CON_PLAYING
 		&& ( victim = d->character )
 		&& !IS_NPC( victim )
 		&& victim->in_room

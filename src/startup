@@ -7,9 +7,6 @@
 set port = 4000
 if ( "$1" != "" ) set port="$1"
 
-# Change to area directory.
-cd ../area
-
 # Set limits.
 nohup
 limit stack 1024k

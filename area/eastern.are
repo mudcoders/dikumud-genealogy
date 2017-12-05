@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{10 20} Anon    Great Eastern Desert~
-Builders    None~
-VNUMs       5000 5070
+Name        Great Eastern Desert~
+Author      Anon~
+Levels      10 20
 Security    1
+VNUMs       5000 5070
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -221,9 +224,9 @@ A glowing suit of banded mail lies on the ground.~
 7~ 0~ 0~ 0~ 0~
 0 75000 0
 A
-2 2 0
-A
 17 -4 0
+A
+2 2 0
 #5002
 halberd~
 the halberd~
@@ -233,9 +236,9 @@ A mighty halberd lies against the wall.~
 0~ 3~ 7~ 2~ 0~
 16 12000 0
 A
-18 2 0
-A
 19 2 0
+A
+18 2 0
 #5003
 amulet~
 the amulet~
@@ -423,9 +426,9 @@ A tarnished copper bracelet lies at your feet.~
 5~ 0~ 0~ 0~ 0~
 10 23000 0
 A
-13 10 0
-A
 19 2 0
+A
+13 10 0
 #5026
 gem ruby~
 a large ruby~
@@ -1340,6 +1343,10 @@ S
 M 5005 spec_breath_any
 M 5010 spec_breath_fire
 M 5014 spec_cast_cleric
+S
+
+
+#GAMES
 S
 
 

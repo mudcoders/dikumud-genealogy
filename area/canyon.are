@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 30} Raff    Elemental Canyon~
-Builders    None~
-VNUMs       9201 9260
+Name        Elemental Canyon~
+Author      Raff~
+Levels      5 30
 Security    1
+VNUMs       9201 9260
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -1813,6 +1816,10 @@ M 9234 spec_thief
 M 9235 spec_breath_any
 M 9237 spec_breath_any
 M 9238 spec_cast_mage
+S
+
+
+#GAMES
 S
 
 

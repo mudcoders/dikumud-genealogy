@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 25} Sandman Dragon Cult~
-Builders    None~
-VNUMs       9800 9899
+Name        Dragon Cult~
+Author      Sandman~
+Levels      5 25
 Security    1
+VNUMs       9800 9899
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -1437,6 +1440,10 @@ M 9804 spec_cast_mage
 M 9806 spec_breath_acid
 M 9814 spec_cast_undead
 M 9816 spec_fido
+S
+
+
+#GAMES
 S
 
 

@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 25} Dylan   Dylan's Area~
-Builders    None~
-VNUMs       9101 9199
+Name        Dylan's Area~
+Author      Dylan~
+Levels      15 25
 Security    1
+VNUMs       9101 9199
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -1726,6 +1729,10 @@ S
 
 #SPECIALS
 M 9107 spec_cast_undead
+S
+
+
+#GAMES
 S
 
 

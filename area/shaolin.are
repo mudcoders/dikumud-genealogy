@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{15 25} Boom    Shaolin Temple~
-Builders    None~
-VNUMs       20101 20137
+Name        Shaolin Temple~
+Author      Boom~
+Levels      15 25
 Security    1
+VNUMs       20101 20137
+Builders    None~
 Recall      3001
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -1230,6 +1233,10 @@ M 20114 spec_cast_mage
 M 20115 spec_breath_fire
 M 20116 spec_breath_any
 M 20117 spec_thief
+S
+
+
+#GAMES
 S
 
 

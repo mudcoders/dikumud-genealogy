@@ -113,32 +113,32 @@ AREA_DATA *get_vnum_area( int vnum )
 
 const	struct	olc_help_type	help_table	[ ]	=
 {
-    {	"area", 	area_flags, 	   "area attributes"		    },
-    {	"room", 	room_flags,	   "room attributes"		    },
-    {	"sector", 	sector_flags, 	   "sector types, terrain"	    },
-    {	"exit", 	exit_flags, 	   "exit types"			    },
-    {	"type", 	type_flags, 	   "types of objects"		    },
-    {	"extra", 	extra_flags, 	   "object attributes"		    },
-    {	"wear", 	wear_flags, 	   "where to wear object"	    },
-    {	"spec", 	spec_table, 	   "available special programs"     },
-    {	"game",		game_table,	   "available gambling programs"    },
-    {	"sex", 		sex_flags, 	   "sexes"			    },
-    {	"act", 		act_flags, 	   "mobile attributes"		    },
-    {	"affect", 	affect_flags, 	   "mobile affects."		    },
-    {	"wear-loc", 	wear_loc_flags,    "where mobile wears object"	    },
-    {	"spells", 	skill_table, 	   "names of current spells."	    },
-    {	"weapon", 	weapon_flags, 	   "type of weapon"		    },
-    {	"container", 	container_flags,   "container status"		    },
-    {	"liquid", 	liquid_flags, 	   "types of liquids"		    },
-    {	"mobprogs", 	mprog_type_flags,  "types of mob programs"	    },
-    {	"", 		0, 		   ""				    }
+    {	"area", 	area_flags, 	   "area attributes:   e.g. changed" },
+    {	"room", 	room_flags,	   "room attributes:   e.g. safe"    },
+    {	"sector", 	sector_flags, 	   "sector types:      e.g. desert"  },
+    {	"exit", 	exit_flags, 	   "exit types:        e.g. locked"  },
+    {	"type", 	type_flags, 	   "types of objects:  e.g. wand"    },
+    {	"extra", 	extra_flags, 	   "obj attributes:    e.g. humming" },
+    {	"wear", 	wear_flags, 	   "obj wear location: e.g. wield"   },
+    {	"wear-loc", 	wear_loc_flags,    "eq wear location:  e.g. body"    },
+    {	"sex", 		sex_flags, 	   "sexes:             e.g. male"    },
+    {	"weapon", 	weapon_flags, 	   "weapon type:       e.g. slice"   },
+    {	"container", 	container_flags,   "container flags:   e.g. closed"  },
+    {	"liquid", 	liquid_flags, 	   "liquids types:     e.g. water"   },
+    {	"act", 		act_flags, 	   "ACT_ bits:      e.g. scavenger"  },
+    {	"affect", 	affect_flags, 	   "AFF_ bits:      e.g. invisible"  },
+    {	"spec-mob", 	spec_mob_table,    "mob spec progs: e.g. spec_fido"  },
+    {	"mobprogs", 	mprog_type_flags,  "MobProg types:  e.g. act_prog"   },
+    {	"game",		game_table,	   "gambling progs: e.g. game_u_l_t" },
+    {	"spells", 	skill_table, 	   "spell names:    e.g. blindness"  },
+    {	"", 		0, 		   ""				     }
 };
 
 
 void show_flag_cmds( CHAR_DATA *ch, const struct flag_type *flag_table )
 {
-    char buf  [MAX_STRING_LENGTH];
-    char buf1 [MAX_STRING_LENGTH];
+    char buf  [ MAX_STRING_LENGTH ];
+    char buf1 [ MAX_STRING_LENGTH ];
     int  flag;
     int  col;
 
@@ -200,7 +200,7 @@ void show_skill_cmds( CHAR_DATA *ch, int tar )
 }
 
 
-void show_spec_cmds( CHAR_DATA *ch )
+void show_spec_mob_cmds( CHAR_DATA *ch )
 {
     char buf  [MAX_STRING_LENGTH];
     char buf1 [MAX_STRING_LENGTH];
@@ -209,10 +209,10 @@ void show_spec_cmds( CHAR_DATA *ch )
 
     buf1[0] = '\0';
     col = 0;
-    send_to_char( "SPEC FUN's (preceed with spec_):\n\r\n\r", ch );
-    for ( spec = 0; *spec_table[spec].spec_fun; spec++ )
+    send_to_char( "SPEC MOB FUN's (preceed with spec_):\n\r\n\r", ch );
+    for ( spec = 0; *spec_mob_table[spec].spec_fun; spec++ )
     {
-	sprintf( buf, "%-19.18s", &spec_table[spec].spec_name[5] );
+	sprintf( buf, "%-19.18s", &spec_mob_table[spec].spec_name[5] );
 	strcat( buf1, buf );
 	if ( ++col % 4 == 0 )
 	    strcat( buf1, "\n\r" );
@@ -254,9 +254,9 @@ void show_game_cmds( CHAR_DATA *ch )
 
 void show_help( CHAR_DATA *ch, char *argument )
 {
-    char buf   [MAX_STRING_LENGTH];
-    char arg   [MAX_INPUT_LENGTH];
-    char spell [MAX_INPUT_LENGTH];
+    char buf   [ MAX_STRING_LENGTH ];
+    char arg   [ MAX_INPUT_LENGTH  ];
+    char spell [ MAX_INPUT_LENGTH  ];
     int  cnt;
 
     argument = one_argument( argument, arg );
@@ -283,9 +283,9 @@ void show_help( CHAR_DATA *ch, char *argument )
 	if ( arg[0] == help_table[cnt].command[0]
 	    && !str_prefix( arg, help_table[cnt].command ) )
 	{
-	    if ( help_table[cnt].structure == spec_table )
+	    if ( help_table[cnt].structure == spec_mob_table )
 	    {
-		show_spec_cmds( ch );
+		show_spec_mob_cmds( ch );
 		return;
 	    }
 	    else if ( help_table[cnt].structure == game_table )
@@ -371,14 +371,6 @@ void aedit( CHAR_DATA *ch, char *argument )
     strcpy( arg2, argument );
 
 
-    if ( !is_builder( ch, pArea ) )
-    {
-        send_to_char( "Insufficient security to modify area.\n\r", ch );
-	edit_done( ch, "" );
-	return;
-    }
-
-
     if ( !str_prefix( arg1, "show" ) )
     {
         sprintf( buf, "%d", pArea->vnum );
@@ -408,7 +400,15 @@ void aedit( CHAR_DATA *ch, char *argument )
     }
 
 
-    if ( ( value = flag_value( area_flags, arg ) ) != NO_FLAG )
+    if ( !is_builder( ch, pArea ) )
+    {
+        send_to_char( "Insufficient security to modify area.\n\r", ch );
+	edit_done( ch, "" );
+	return;
+    }
+
+
+    if ( ( value = flag_value( area_flags, arg1 ) ) != NO_FLAG )
     {
         TOGGLE_BIT( pArea->area_flags, value );
 
@@ -478,7 +478,7 @@ void aedit( CHAR_DATA *ch, char *argument )
     {
         if ( !is_number( arg2 ) || arg2[0] == '\0' )
         {
-            send_to_char( "Syntax:  recall <recallvnum>\n\r", ch );
+            send_to_char( "Syntax:  recall <vnum>\n\r", ch );
             return;
         }
 
@@ -657,6 +657,64 @@ void aedit( CHAR_DATA *ch, char *argument )
         return;
     }
 
+    if ( !str_prefix( arg1, "range" ) )
+    {
+       argument = one_argument( argument, arg1 );
+       strcpy( arg2, argument );
+
+       if ( !is_number( arg1 ) || arg1[0] == '\0'
+         || !is_number( arg2 ) || arg2[0] == '\0' )
+       {
+            send_to_char( "Syntax:  range <lower> <upper>\n\r", ch );
+            return;
+        }
+
+        value = atoi( arg1 );
+        pArea->llv = value;
+
+        send_to_char( "Lower level set.\n\r", ch );
+
+        value = atoi( arg2 );
+
+        pArea->ulv = value;
+        send_to_char( "Upper level set.\n\r", ch );
+
+        SET_BIT( pArea->area_flags, AREA_CHANGED );
+        return;
+    }
+
+    if ( !str_prefix( arg1, "reset" ) )
+    {
+        if ( argument[0] == '\0' )
+        {
+            send_to_char( "Syntax:  reset <string>\n\r", ch );
+            return;
+        }
+
+        free_string( pArea->resetmsg );
+        pArea->resetmsg = str_dup( arg2 );
+
+        SET_BIT( pArea->area_flags, AREA_CHANGED );
+        send_to_char( "Reset message set.\n\r", ch );
+        return;
+    }
+
+    if ( !str_prefix( arg1, "author" ) )
+    {
+        if ( argument[0] == '\0' )
+        {
+            send_to_char( "Syntax:  author <name>\n\r", ch );
+            return;
+        }
+
+        free_string( pArea->author );
+        pArea->author = str_dup( arg2 );
+
+        SET_BIT( pArea->area_flags, AREA_CHANGED );
+        send_to_char( "Author name set.\n\r", ch );
+        return;
+    }
+
     interpret( ch, arg );
     return;
 }
@@ -737,14 +795,6 @@ void redit( CHAR_DATA *ch, char *argument )
     pArea = pRoom->area;
 
 
-    if ( !is_builder( ch, pArea ) )
-    {
-        send_to_char( "Insufficient security to modify room.\n\r", ch );
-	edit_done( ch, "" );
-	return;
-    }
-
-
     if ( !str_prefix( arg1, "show" ) )
     {
         sprintf( buf, "%d", pRoom->vnum );
@@ -771,6 +821,14 @@ void redit( CHAR_DATA *ch, char *argument )
     {
         show_help( ch, arg2 );
         return;
+    }
+
+
+    if ( !is_builder( ch, pArea ) )
+    {
+        send_to_char( "Insufficient security to modify room.\n\r", ch );
+	edit_done( ch, "" );
+	return;
     }
 
 
@@ -1165,7 +1223,7 @@ void redit( CHAR_DATA *ch, char *argument )
 
 
 
-void show_obj_values( CHAR_DATA * ch, OBJ_INDEX_DATA * obj )
+void show_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *obj )
 {
     char buf [ MAX_STRING_LENGTH ];
 
@@ -1281,7 +1339,7 @@ void show_obj_values( CHAR_DATA * ch, OBJ_INDEX_DATA * obj )
 }
 
 
-bool set_obj_values( CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, int value_num,
+bool set_obj_values( CHAR_DATA *ch, OBJ_INDEX_DATA *pObj, int value_num,
 		    char *argument )
 {
     char buf [ MAX_STRING_LENGTH ];
@@ -1648,14 +1706,6 @@ void oedit( CHAR_DATA *ch, char *argument )
     pArea = pObj->area;
 
 
-    if ( !is_builder( ch, pArea ) )
-    {
-        send_to_char( "Insufficient security to modify object.\n\r", ch );
-	edit_done( ch, "" );
-	return;
-    }
-
-
     if ( !str_prefix( arg1, "show" ) )
     {
         sprintf( buf, "%d", pObj->vnum );
@@ -1685,14 +1735,26 @@ void oedit( CHAR_DATA *ch, char *argument )
     }
 
 
+    if ( !is_builder( ch, pArea ) )
+    {
+        send_to_char( "Insufficient security to modify object.\n\r", ch );
+	edit_done( ch, "" );
+	return;
+    }
+
+
     if ( !str_prefix( arg1, "addaffect" ) )
     {
-        argument = one_argument( argument, arg1 );
-        strcpy( arg2, argument );
+	char  arg3 [MAX_STRING_LENGTH];
 
-        if ( arg1[0] == '\0' || arg2[0] == '\0' || !is_number( arg2 ) )
+        argument = one_argument( argument, arg1 );
+        argument = one_argument( argument, arg2 );
+        strcpy( arg3, argument );
+
+        if ( arg1[0] == '\0' || arg2[0] == '\0' || arg3[0] == '\0'
+	    || !is_number( arg2 ) )
         {
-	    send_to_char( "Syntax:  addaffect <location> <mod>\n\r", ch );
+	    send_to_char( "Syntax:  addaffect <location> <mod> <bitvector>\n\r", ch );
             return;
         }
 
@@ -1702,12 +1764,18 @@ void oedit( CHAR_DATA *ch, char *argument )
 	    return;
 	}
 
+	if ( flag_value( affect_flags, arg3 ) == NO_FLAG )
+	{
+	    send_to_char( "Affect bitvector doesn't exist!\n\r", ch );
+	    return;
+	}
+
         pAf             =   new_affect( );
         pAf->location   =   flag_value( apply_flags, arg1 );
         pAf->modifier   =   atoi( arg2 );
         pAf->type       =   -1;
         pAf->duration   =   -1;
-        pAf->bitvector  =   0;
+        pAf->bitvector  =   flag_value( affect_flags, arg3 );
         pAf->next       =   pObj->affected;
         pObj->affected  =   pAf;
 
@@ -1772,7 +1840,7 @@ void oedit( CHAR_DATA *ch, char *argument )
     }
 
 
-    if ( ( value = flag_value( type_flags, arg ) ) != NO_FLAG )
+    if ( ( value = flag_value( type_flags, arg1 ) ) != NO_FLAG )
     {
 	pObj->item_type = value;
 
@@ -1789,7 +1857,7 @@ void oedit( CHAR_DATA *ch, char *argument )
     }
 
 
-    if ( ( value = flag_value( extra_flags, arg ) ) != NO_FLAG )
+    if ( ( value = flag_value( extra_flags, arg1 ) ) != NO_FLAG )
     {
 	TOGGLE_BIT( pObj->extra_flags, value );
 
@@ -1799,7 +1867,7 @@ void oedit( CHAR_DATA *ch, char *argument )
     }
 
 
-    if ( ( value = flag_value( wear_flags, arg ) ) != NO_FLAG )
+    if ( ( value = flag_value( wear_flags, arg1 ) ) != NO_FLAG )
     {
 	TOGGLE_BIT( pObj->wear_flags, value );
 
@@ -1861,20 +1929,6 @@ void oedit( CHAR_DATA *ch, char *argument )
         return;
     }
 
-    if ( !str_prefix( arg1, "level" ) )
-    {
-        if ( arg2[0] == '\0' || !is_number( arg2 ) )
-        {
-            send_to_char( "Syntax:  level <number>\n\r", ch );
-            return;
-        }
-
-        pObj->level = atoi( arg2 );
-
-        SET_BIT( pArea->area_flags, AREA_CHANGED );
-        send_to_char( "Level set.\n\r", ch );
-        return;
-    }
 
     if ( !str_cmp( arg1, "value0" ) || !str_cmp( arg1, "v0" ) )
     {
@@ -1882,6 +1936,7 @@ void oedit( CHAR_DATA *ch, char *argument )
 	    SET_BIT( pArea->area_flags, AREA_CHANGED );
         return;
     }
+
 
     if ( !str_cmp( arg1, "value1" ) || !str_cmp( arg1, "v1" ) )
     {
@@ -2146,14 +2201,6 @@ void medit( CHAR_DATA *ch, char *argument )
     pArea = pMob->area;
 
 
-    if ( !is_builder( ch, pArea ) )
-    {
-        send_to_char( "Insufficient security to modify mobile.\n\r", ch );
-	edit_done( ch, "" );
-	return;
-    }
-
-
     if ( !str_prefix( arg1, "show" ) )
     {
         sprintf( buf, "%d %s", pMob->vnum, arg2 );
@@ -2180,6 +2227,14 @@ void medit( CHAR_DATA *ch, char *argument )
     {
         show_help( ch, arg2 );
         return;
+    }
+
+
+    if ( !is_builder( ch, pArea ) )
+    {
+        send_to_char( "Insufficient security to modify mobile.\n\r", ch );
+	edit_done( ch, "" );
+	return;
     }
 
 
@@ -2625,9 +2680,9 @@ void medit( CHAR_DATA *ch, char *argument )
             return;
         }
 
-	if ( spec_lookup( arg2 ) )
+	if ( spec_mob_lookup( arg2 ) )
 	{
-	    pMob->spec_fun = spec_lookup( argument );
+	    pMob->spec_fun = spec_mob_lookup( argument );
 	    SET_BIT( pArea->area_flags, AREA_CHANGED );
 	    send_to_char( "Spec set.\n\r", ch);
 	    return;
@@ -2831,14 +2886,6 @@ void mpedit( CHAR_DATA *ch, char *argument )
     count	= mprog_count( pMob );
     pArea	= pMob->area;
 
-    if ( !is_builder( ch, pArea ) )
-    {
-        send_to_char( "Insufficient security to modify mobprog.\n\r", ch );
-	edit_done( ch, "" );
-	return;
-    }
-
-
     if ( !str_prefix( arg1, "show" ) )
     {
         sprintf( buf, "%s", arg2 );
@@ -2865,6 +2912,14 @@ void mpedit( CHAR_DATA *ch, char *argument )
     {
         show_help( ch, arg2 );
         return;
+    }
+
+
+    if ( !is_builder( ch, pArea ) )
+    {
+        send_to_char( "Insufficient security to modify mobprog.\n\r", ch );
+	edit_done( ch, "" );
+	return;
     }
 
 
@@ -3126,16 +3181,20 @@ void do_oindex( CHAR_DATA * ch, char *argument )
     {
 	if ( cnt == 0 )
 	{
-	    send_to_char( "{yNumber Modifier Affects{x\n\r", ch );
-	    send_to_char( "{y------ -------- -------{x\n\r", ch );
+	    send_to_char( "\n\r{o{c{B| Number | Modifier | Affects      | Bitvector             {x\n\r", ch );
+	    send_to_char( "{o{c{B+--------+----------+--------------+-----------------------{x\n\r", ch );
 	}
-	sprintf( buf, "{y[%4d] %-8d %s{x\n\r", cnt,
+	sprintf( buf, "{o{c{B|{o %-4d   {x{o{c{B| %-8d | %-12.12s | ",
+		cnt,
 		paf->modifier,
 		flag_string( apply_flags, paf->location ) );
+	sprintf( buf + strlen( buf ), "%-22.22s{x\n\r",
+		flag_string( affect_flags, paf->bitvector ) );
 	send_to_char( buf, ch );
 	cnt++;
     }
 
+    send_to_char( "\n\r", ch );
     show_obj_values( ch, pObj );
 
     return;
@@ -3200,7 +3259,7 @@ void do_mindex( CHAR_DATA * ch, char *argument )
     if ( pMob->spec_fun )
     {
 	sprintf( buf, "{cSpec fun: {x%s{c.{x\n\r",
-		spec_string( pMob->spec_fun ) );
+		spec_mob_string( pMob->spec_fun ) );
 	send_to_char( buf, ch );
     }
 

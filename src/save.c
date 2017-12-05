@@ -130,23 +130,23 @@ void backup_char_obj( CHAR_DATA *ch )
 void delete_char_obj( CHAR_DATA *ch )
 {
     char  buf     [ MAX_STRING_LENGTH ];
-    char  strremove [ MAX_INPUT_LENGTH  ];
+    char  strsave [ MAX_INPUT_LENGTH  ];
 
     if ( IS_NPC( ch ) || ch->level < 2 )
 	return;
 
     /* player files parsed directories by Yaz 4th Realm */
 #if !defined( macintosh ) && !defined( WIN32 )
-    sprintf( strremove, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
+    sprintf( strsave, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( ch->name ) );
 #else
-    sprintf( strremove, "%s%s", PLAYER_DIR, capitalize( ch->name ) );
+    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( ch->name ) );
 #endif
-    if ( remove( strremove ) )
+    if ( remove( strsave ) )
     {
         sprintf( buf, "Delete_char_obj: remove %s: ", ch->name );
 	bug( buf, 0 );
-	perror( strremove );
+	perror( strsave );
     }
     return;
 }
@@ -205,7 +205,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 {
     AFFECT_DATA *paf;
     int          sn;
-    int		 pos;
+    ALIAS_DATA  *alias;
 
     fprintf( fp, "#%s\n", IS_NPC( ch ) ? "MOB" : "PLAYER"		);
 
@@ -223,7 +223,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Trst        %d\n",	ch->trust			);
     fprintf( fp, "Playd       %d\n",
 	ch->played + (int) ( current_time - ch->logon )			);
-    fprintf( fp, "Note        %ld\n",   (unsigned long)ch->last_note 	);
+    fprintf( fp, "Note        %ld\n",   (unlong) ch->last_note		);
     fprintf( fp, "Room        %d\n",
 	    (  ch->in_room == get_room_index( ROOM_VNUM_LIMBO )
 	     && ch->was_in_room )
@@ -306,15 +306,8 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 
 	fprintf( fp, "Pglen       %d\n",   ch->pcdata->pagelen		);
 
-        for ( pos = 0; pos < MAX_ALIAS; pos++ )
-	{
-	    if ( !ch->pcdata->alias[pos]
-		||  !ch->pcdata->alias_sub[pos] )
-		break;
-
-	    fprintf( fp, "Alias       %d '%s' %s~\n", pos,
-	            ch->pcdata->alias[pos], ch->pcdata->alias_sub[pos] );
-	}
+        for ( alias = ch->pcdata->alias_list; alias; alias = alias->next )
+	    fprintf( fp, "NAlias      '%s' %s~\n", alias->cmd, alias->subst );
 
 	for ( sn = 0; sn < MAX_SKILL; sn++ )
 	{
@@ -374,6 +367,10 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
     fprintf( fp, "ShortDescr   %s~\n",	obj->short_descr	     );
     fprintf( fp, "Description  %s~\n",	obj->description	     );
     fprintf( fp, "Vnum         %d\n",	obj->pIndexData->vnum	     );
+
+    if ( obj->spec_fun )
+      fprintf( fp, "Special      %s\n",	spec_obj_string( obj->spec_fun ) );
+
     fprintf( fp, "ExtraFlags   %d\n",	obj->extra_flags	     );
     fprintf( fp, "WearFlags    %d\n",	obj->wear_flags		     );
     fprintf( fp, "WearLoc      %d\n",	obj->wear_loc		     );
@@ -406,6 +403,12 @@ void fwrite_obj( CHAR_DATA *ch, OBJ_DATA *obj, FILE *fp, int iNest )
 	{
 	    fprintf( fp, "Spell 3      '%s'\n", 
 		skill_table[obj->value[3]].name );
+	}
+
+	if ( obj->value[4] > 0 )
+	{
+	    fprintf( fp, "Spell 4      '%s'\n", 
+		skill_table[obj->value[4]].name );
 	}
 
 	break;
@@ -649,10 +652,10 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
     char        def_title  [] = "Your title was corrupted.";
 
     struct key_data key_tab [] = {
-      { "ShtDsc", TRUE,  (long) &def_sdesc,	{ &ch->short_descr,   NULL } },
-      { "LngDsc", TRUE,  (long) &def_ldesc,	{ &ch->long_descr,    NULL } },
-      { "Dscr",   TRUE,  (long) &def_desc,	{ &ch->description,   NULL } },
-      { "Prmpt",  TRUE,  (long) &def_prompt,	{ &ch->pcdata->prompt,NULL } },
+      { "ShtDsc", TRUE,  (unlong) &def_sdesc,	{ &ch->short_descr,   NULL } },
+      { "LngDsc", TRUE,  (unlong) &def_ldesc,	{ &ch->long_descr,    NULL } },
+      { "Dscr",   TRUE,  (unlong) &def_desc,	{ &ch->description,   NULL } },
+      { "Prmpt",  TRUE,  (unlong) &def_prompt,	{ &ch->pcdata->prompt,NULL } },
       { "Sx",     FALSE, SEX_MALE,		{ &ch->sex,           NULL } },
       { "Cla",    FALSE, MAND,			{ &ch->class,         NULL } },
       { "Lvl",    FALSE, MAND,			{ &ch->level,         NULL } },
@@ -690,7 +693,7 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 						                      NULL } },
       { "Wiznet", FALSE,  0,			{ &ch->pcdata->wiznet,
 						                      NULL } },
-      { "Ttle",   TRUE,  (long) &def_title,	{ &ch->pcdata->title, NULL } },
+      { "Ttle",   TRUE,  (unlong) &def_title,	{ &ch->pcdata->title, NULL } },
       { "AtrPrm", FALSE, MAND,			{ &ch->pcdata->perm_str,
 						  &ch->pcdata->perm_int,
 						  &ch->pcdata->perm_wis,
@@ -807,6 +810,13 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 	      i  = race_lookup( fread_string( fp, &status ) );
 
 	      if ( status )
+	      {
+		  bug( "Fread_char: Error reading Race.", 0 );
+		  fread_to_eol( fp );
+		  continue;
+	      }
+
+	      if ( i < 0 )
 		  bug( "Fread_char: Unknown Race.", 0 );
 	      else
 		  ch->race = i;
@@ -817,37 +827,49 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 	      char *clan_name;
 
 	      ch->pcdata->rank      = fread_number( fp, &status );
-	      clan_name             = fread_string( fp, &status );
+	      clan_name             = fread_string( fp, &status1 );
+
+	      if ( status || status1 )
+	      {
+		  bug( "Fread_char: Error reading PClan.", 0 );
+		  fread_to_eol( fp );
+		  continue;
+	      }
 
 	      if ( !clan_name
 		  || !( ch->pcdata->clan = get_clan( clan_name ) ) )
 	      {
-		bug( "Fread_char: Unknown PClan.", 0 );
-		ch->pcdata->rank      = 0;
+		  bug( "Fread_char: Unknown PClan.", 0 );
+		  ch->pcdata->rank      = 0;
 	      }
 	  }
 
-	else if ( !str_cmp( word, "Alias" ) )
+	else if ( !str_cmp( word, "NAlias" ) )
 	  {
+	      ALIAS_DATA *alias;
+	      int         num;
 
-	      i  = fread_number( fp, &status );
+	      num = 0;
 
-	      if ( status  )
+	      for ( alias = ch->pcdata->alias_list; alias; alias = alias->next )
+		  num++;
+
+	      if ( num >= MAX_ALIAS )
+		  continue;
+
+	      alias                  = alloc_mem( sizeof( ALIAS_DATA ) );
+
+	      alias->cmd             = str_dup( fread_word( fp, &status1 ) );
+	      alias->subst           = fread_string( fp, &status );
+
+	      if ( status || status1 )
 	      {
-		  bug( "Fread_char: Error reading alias.", 0 );
+		  bug( "Fread_char: Error reading NAlias.", 0 );
 		  fread_to_eol( fp );
 		  continue;
 	      }
 
-	      if ( i >= MAX_ALIAS )
-	      {
-		  bug( "Fread_char: too many aliases.", 0 );
-		  fread_to_eol( fp );
-		  continue;
-	      }
-
-	      ch->pcdata->alias[i] = str_dup( fread_word( fp, &status1 ) );
-	      ch->pcdata->alias_sub[i] = fread_string( fp, &status );
+	      ch->pcdata->alias_list = alias;
 	  }
 
         else if ( !str_cmp( word, "Skll" ) )
@@ -871,12 +893,27 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 	else if ( !str_cmp ( word, "Afft" ) )
 	  {
 
-	      int status;
+	      int   status;
+	      char  buf1 [ MAX_STRING_LENGTH ];
 
 	      paf                 = new_affect();
 
-	      paf->type           = affect_lookup( fread_string( fp,
-								&status ) );
+	      temp_fread_string( fp, buf1 );
+
+	      paf->type           = affect_lookup( buf1 );
+
+	      if ( paf->type < 0 )
+	      {
+		  paf->next	  = affect_free;
+		  affect_free	  = paf;
+
+		  sprintf( buf, "Fread_char: Error reading Afft %s.", buf1 );
+		  bug( buf, 0 );
+
+		  fread_to_eol( fp );
+		  continue;
+	      }
+
 	      paf->duration       = fread_number( fp, &status );
 	      paf->modifier       = fread_number( fp, &status );
 	      paf->location       = fread_number( fp, &status );
@@ -888,7 +925,7 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 
         else
 	{
-	    sprintf( buf, "fread_char: Unknown key '%s' in pfile.", word );
+	    sprintf( buf, "Fread_char: Unknown key '%s' in pfile.", word );
 	    bug( buf, 0 );
 	    fread_to_eol( fp );
 	}
@@ -989,8 +1026,8 @@ int fread_obj( CHAR_DATA *ch, FILE *fp )
     struct key_data key_tab [] =
       {
 	{ "Name",        TRUE,  MAND,             { &obj.name,        NULL } },
-	{ "ShortDescr",  TRUE,  (long) &corobj,   { &obj.short_descr, NULL } },
-	{ "Description", TRUE,  (long) &corobj,   { &obj.description, NULL } },
+	{ "ShortDescr",  TRUE,  (unlong) &corobj, { &obj.short_descr, NULL } },
+	{ "Description", TRUE,  (unlong) &corobj, { &obj.description, NULL } },
 	{ "ExtraFlags",  FALSE, MAND,             { &obj.extra_flags, NULL } },
 	{ "WearFlags",   FALSE, MAND,             { &obj.wear_flags,  NULL } },
 	{ "WearLoc",     FALSE, MAND,             { &obj.wear_loc,    NULL } },
@@ -1257,6 +1294,7 @@ int new_fread_obj( CHAR_DATA *ch, FILE *fp )
     char             *p          = NULL;
     char             *word;
     char             *tmp_ptr;
+    char             *special;
     bool              fNest;
     bool              fVnum;
     long              fpos;
@@ -1274,8 +1312,8 @@ int new_fread_obj( CHAR_DATA *ch, FILE *fp )
     struct key_data key_tab [] =
       {
 	{ "Name",        TRUE,  MAND,             { &obj.name,        NULL } },
-	{ "ShortDescr",  TRUE,  (long) &corobj,   { &obj.short_descr, NULL } },
-	{ "Description", TRUE,  (long) &corobj,   { &obj.description, NULL } },
+	{ "ShortDescr",  TRUE,  (unlong) &corobj, { &obj.short_descr, NULL } },
+	{ "Description", TRUE,  (unlong) &corobj, { &obj.description, NULL } },
 	{ "ExtraFlags",  FALSE, MAND,             { &obj.extra_flags, NULL } },
 	{ "WearFlags",   FALSE, MAND,             { &obj.wear_flags,  NULL } },
 	{ "WearLoc",     FALSE, MAND,             { &obj.wear_loc,    NULL } },
@@ -1394,6 +1432,21 @@ int new_fread_obj( CHAR_DATA *ch, FILE *fp )
                 rgObjNest[iNest] = new_obj;
                 fNest = TRUE;
 	    }
+	}
+
+        else if ( !str_cmp( word, "Special" ) )
+	{
+	    special = fread_word( fp, &status );
+
+	    if ( !status )
+		obj.spec_fun = spec_obj_lookup( special );
+
+            if ( status )
+	    {
+                fread_to_eol( fp );
+                continue;
+	    }
+
 	}
 
         else if ( !str_cmp( word, "Spell" ) )

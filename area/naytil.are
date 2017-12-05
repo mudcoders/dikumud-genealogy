@@ -1,9 +1,12 @@
 #AREADATA
-Name        {{ 5 50} Draiden The Castle Naytil~
-Builders    None~
-VNUMs       10601 10699
+Name        The Castle Naytil~
+Author      Draiden~
+Levels      5 50
 Security    1
+VNUMs       10601 10699
+Builders    None~
 Recall      10601
+Reset       You hear the patter of little feet.~
 End
 
 
@@ -509,7 +512,7 @@ This huge horse will be armored and ridden by the knights of baladur in times
 of trouble.  It has been raised to be very high spirited whereas is a very
 dangerous horse to be around if is is angered.
 ~
-262209 8192 0 S
+536870979 8192 0 S
 18 5 9 5d8+10 1d4+10
 75 0
 0 Animal~ 1
@@ -2833,7 +2836,7 @@ The entrance to the courtyard of Naytil, is still guarded after all these
 years.  The inside of courtyard serves as a main trading center for the
 city of Baladur.  Many traders and folk come to see the wonders of the 
 city and manage to find there way to the bazaar in the center.
-There is a portculis to the south.
+There is a portculis to the south
 ~
 0 0 0
 D0
@@ -3191,7 +3194,7 @@ Owinpell Ave, in front of Naytil~
 You are standing in front of the Castle Naytil.  The castle was built in
 the crook of a canyon in order to afford protection from the rear.  They
 then walled off the mouth of the canyon with this huge wall in order to
-provide protection from the front.
+provide protection from the front
 ~
 0 0 0
 D0
