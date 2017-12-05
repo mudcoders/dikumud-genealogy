@@ -1,8 +1,12 @@
-EnvyMud Release 2.0
+MythranMud 3.0 Release 1.0
 Monday, 25th December 1995
 
+This Document was written by:
 Kahn		michael@uclink.berkeley.edu
 Hatchet		hatchet@uclink.berkeley.edu
+
+and changed and updated by:
+The Maniac      v942346@si.hhs.nl       maniacs@dds.nl
 
 
 
@@ -16,6 +20,10 @@ removed references to Farside immortals (You may still ask them them what to
 do! :) ), and have added our own examples, but have otherwise left the
 original document intact.
 					- Thelonius
+
+There have been some more changes by Maniac to fit the changes made to the
+area format, and the extra options for use within areas in mythran mud.
+					- Maniac
 
 
 
@@ -271,13 +279,15 @@ The syntax of this section is:
      <long-description:string>
      <description:string>
      <act-flags:number> <affected-flags:number> <alignment:number> S          
-     <level:number> <hitroll:number> <armor:number>			\
-     <hitnodice:number> d <hitsizedice:number> + <hitplus:number>	\
-     <damnodice:number> d <damsizedice:number> + <damroll:number>
-     <gold:number> <exp:number>
-     <position:number> <race name:string> <sex:number>
+     <level:number> <XXhitroll:number> <XXarmor:number>			\
+     <XXhitnodice:number> d <XXhitsizedice:number> + <XXhitplus:number>	\
+     <XXdamnodice:number> d <XXdamsizedice:number> + <XXdamroll:number>
+     <XXgold:number> <XXexp:number>
+     <XXposition:number> <race name:string> <sex:number>
     }
     #0
+
+XX means these values are ignored...
 
 The 'vnum' is the virtual number of the mobile.
 
@@ -391,6 +401,8 @@ and use, it is best to think up good descriptions for them.  Remember to
 balance these items with those that already exist.
 The syntax of this section is:
 
+XX=value is ignored...
+
     #OBJECTS
     {
      #<vnum:number>
@@ -400,7 +412,7 @@ The syntax of this section is:
      <action-description:string>~
      <item-type:number> <extra-flags:number> <wear-flags:number>     
      <value-0:string>~ <value-1:string>~ <value-2:string>~ <value-3:string>~ 
-     <weight:number> <cost:number> <cost-per-day:number>
+     <weight:number> <XXcost:number> <XXcost-per-day:number>
      {
          E
          <keyword:string>
@@ -440,18 +452,24 @@ ITEM_ types:
   TREASURE    8
   ARMOR       9
   POTION     10
+
   FURNITURE  12
   TRASH      13
+
   CONTAINER  15
+
   DRINK_CON  17
   KEY        18
   FOOD       19
   MONEY      20
+
   BOAT       22
   CORPSE_NPC 23
   CORPSE_PC  24
   FOUNTAIN   25
   PILL       26
+  JUKEBOX    27		(not implemented yet)
+  PORTAL     28		(not implemented yet)
 
 The 'extra-flags' describe more attributes of the object.  The 'wear-flags'
 describe whether the item can be picked up, and if so, what bodily locations
@@ -633,10 +651,10 @@ ITEM_CONTAINER, value[1])
    value[3]    spell name 3
 
 12 ITEM_FURNITURE
-   value[0]    unused
-   value[1]    unused
-   value[2]    unused
-   value[3]    unused
+   value[0]	max_users
+   value[1]	exit vnum (0-5)
+   value[2]	furniture bits, sit/stand/rest/sleep on/at/in etc.
+   value[3]	obj_spec_fun		(Not implemented yet)
 
 13 ITEM_TRASH
    value[0]    unused
@@ -674,6 +692,12 @@ ITEM_CONTAINER, value[1])
    value[2]    unused
    value[3]    unused
 
+21 ITEM_SPECIAL				(Not implemented yet)
+   value[0]	obj_spec_fun
+   value[1]	int argument (could be any integer)
+   value[2]	mob vnum (could be any mob vnum used in obj_spec_fun)
+   value[3]	obj vnum (could be any obj vnum used in obj_spec_fun)
+
 22 ITEM_BOAT
    value[0]    unused
    value[1]    unused
@@ -704,6 +728,18 @@ ITEM_CONTAINER, value[1])
    value[1]    spell name 1
    value[2]    spell name 2
    value[3]    spell name 3
+
+27 ITEM_JUKEBOX
+   value[0]    song currently playing
+   value[1]    line in current song
+   value[2]    next song to play
+   value[3]    play it over music channel (if true)
+
+28 ITEM_PORTAL
+   value[0]    to room vnum
+   value[1]    portal level (to enter)
+   value[2]    unused
+   value[3]    portal duration (timer)
 
 Examples:
 ITEM_ARMOR:

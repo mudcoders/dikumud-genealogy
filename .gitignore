@@ -2,9 +2,9 @@ src/envy
 *.exe
 *.o
 *.log
-area/bugs.txt
-area/ideas.txt
-area/typos.txt
-area/notes.txt
-area/shutdown.txt
-area/time.txt
+area/BUGS.txt
+area/IDEAS.txt
+area/TYPOS.txt
+area/NOTES.txt
+area/SHUTDOWN.txt
+area/TIME.txt

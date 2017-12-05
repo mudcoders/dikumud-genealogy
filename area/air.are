@@ -1,4 +1,10 @@
-#AREA	{ 5 10} Copper  In the Air~
+#AREADATA
+Name        In the Air~
+Builders    None~
+VNUMs       1000 1040
+Security    1
+Recall      3001
+End
 
 
 
@@ -12,9 +18,9 @@ It's a cute little multi-colored dragon...about 2 foot long.
 It gracefully dances around your head.
 ~
 65 24 500 S
-5 16 5 5d5+50 2d4+1
-20 900
-8 dragon~ 2
+6 16 0 5d5+50 2d4+1
+20 0
+0 Dragon~ 2
 #1001
 griffin~
 A griffin~
@@ -23,10 +29,10 @@ A large black winged griffin swoops into an attack.
 Golden maned and black all over.  It's quite a beautiful creature if not
 for the fact it is hungry and is attacking you!
 ~
-96 0 300 S
-8 14 4 1d1+104 2d5+2
-500 3750
-8 harpy~ 1
+97 0 300 S
+15 14 0 1d1+104 2d5+2
+500 0
+0 Harpy~ 1
 #0
 
 
@@ -39,7 +45,7 @@ A red rose is lying on the ground.~
 ~
 9 0 17
 6~ 0~ 0~ 0~
-8 0 200
+8 0 0
 E
 rose~
 This is no ordinary rose, as it is a gift from Dionysus to his
@@ -49,14 +55,14 @@ dearest, Wendella.
 
 
 
-#ROOMS
+#ROOMDATA
 #1001
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above the ground north of the city.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D1
 More of the same.
 ~
@@ -75,11 +81,11 @@ More of the same.
 S
 #1002
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 20 meters above the inside wall of West Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -103,11 +109,11 @@ More of the same.
 S
 #1003
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 20 meters above the west gate of Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -131,11 +137,11 @@ More of the same.
 S
 #1004
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above Wall Road.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -159,11 +165,11 @@ More of the same.
 S
 #1005
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above Wall Road.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -182,11 +188,11 @@ More of the same.
 S
 #1006
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above the ground north of Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D1
 More of the same.
 ~
@@ -210,11 +216,11 @@ More of the same.
 S
 #1007
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 20 meters above the magic shop.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -243,11 +249,11 @@ More of the same.
 S
 #1008
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above Main Street.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -276,11 +282,11 @@ More of the same.
 S
 #1009
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 20 meters above the Mage Guild Hall.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -309,11 +315,11 @@ More of the same.
 S
 #1010
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above Poor Alley.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -337,11 +343,11 @@ More of the same.
 S
 #1011
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above the ground north of Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D1
 More of the same.
 ~
@@ -365,11 +371,11 @@ More of the same.
 S
 #1012
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 20 meters above the bakery.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -398,11 +404,11 @@ More of the same.
 S
 #1013
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above Main Street.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -431,11 +437,11 @@ More of the same.
 S
 #1014
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 20 meters above Armoury.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -464,11 +470,11 @@ More of the same.
 S
 #1015
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above Poor Alley.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -492,11 +498,11 @@ More of the same.
 S
 #1016
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 10 meters above the temple spire of Midgaard
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D2
 More of the same.
 ~
@@ -515,11 +521,11 @@ More of the same.
 S
 #1017
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above the Temple Square.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -548,11 +554,11 @@ More of the same
 S
 #1018
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above Market Square.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -576,11 +582,11 @@ More of the same.
 S
 #1019
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above Market and Commons.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -604,11 +610,11 @@ More of the same.
 S
 #1020
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above ground, overlooking the Common Square.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -627,11 +633,11 @@ More of the same.
 S
 #1021
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above the ground just north of Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D1
 More of the same.
 ~
@@ -650,11 +656,11 @@ More of the same.
 S
 #1022
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above the west gate of Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -678,11 +684,11 @@ More of the same.
 S
 #1023
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above west gate of Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -706,11 +712,11 @@ More of the same.
 S
 #1024
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above wall road.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -734,11 +740,11 @@ More of the same.
 S
 #1025
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above wall road.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -757,11 +763,11 @@ More of the same.
 S
 #1026
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above the ground north of Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D1
 More of the same.
 ~
@@ -785,11 +791,11 @@ More of the same.
 S
 #1027
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above the magic shop.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -818,11 +824,11 @@ More of the same.
 S
 #1028
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above main street.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -851,11 +857,11 @@ More of the same.
 S
 #1029
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above the mage guild.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -884,11 +890,11 @@ More of the same.
 S
 #1030
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above poor alley.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -912,11 +918,11 @@ More of the same.
 S
 #1031
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above the ground north of Midgaard.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D1
 More of the same.
 ~
@@ -940,11 +946,11 @@ More of the same.
 S
 #1032
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above bakery and cleric guild.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -973,11 +979,11 @@ More of the same.
 S
 #1033
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above main street.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -1006,11 +1012,11 @@ More of the same.
 S
 #1034
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 40 meters above the armoury.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -1039,11 +1045,11 @@ More of the same.
 S
 #1035
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above poor alley.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -1067,11 +1073,11 @@ More of the same.
 S
 #1036
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 30 meters above the temple spire.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D2
 More of the same.
 ~
@@ -1095,11 +1101,11 @@ More of the same.
 S
 #1037
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above the temple square.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -1123,11 +1129,11 @@ More of the same.
 S
 #1038
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above market square.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -1151,11 +1157,11 @@ More of the same.
 S
 #1039
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above market square and commons square.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -1179,11 +1185,11 @@ More of the same.
 S
 #1040
 In the air ...~
-  You are flying!
+You are flying!
 Currently you are about 60 meters above commoners square and the dump.
 It seems like you can see forever!
 ~
-30 0 9
+0 0 9
 D0
 More of the same.
 ~
@@ -1204,18 +1210,33 @@ S
 
 
 
-#RESETS
-M 0 1000 10 1005        fairy dragon in sky
-M 0 1000 10 1022        ''
-M 0 1000 10 1019        ''
-M 0 1001  3 1034       Griffin
-S
-
-
-
 #SPECIALS
-M  1000 spec_cast_mage
+M 1000 spec_cast_mage
 S
+
+
+
+#GAMES
+S
+
+
+
+#RESETS
+M 0 1000 10 1005
+M 0 1000 10 1019
+M 0 1000 10 1022
+M 0 1001 3 1034
+S
+
+
+
+#MOBPROGS
+S
+
+
+
+#SHOPS
+0
 
 
 

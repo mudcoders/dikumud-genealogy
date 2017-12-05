@@ -1,0 +1,419 @@
+#AREADATA
+Name        Mythran Arena~
+Builders    None~
+VNUMs       1051 1066
+Security    1
+Recall      3001
+End
+
+
+
+#MOBILES
+#0
+
+
+
+#OBJECTS
+#0
+
+
+
+#ROOMDATA
+#1051
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1063
+D2
+~
+~
+0 -1 1052
+D3
+~
+~
+0 -1 1055
+D4
+~
+~
+0 -1 1054
+S
+#1052
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1064
+D2
+~
+~
+0 -1 1053
+D3
+~
+~
+0 -1 1056
+D4
+~
+~
+0 -1 1051
+S
+#1053
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1065
+D2
+~
+~
+0 -1 1054
+D3
+~
+~
+0 -1 1057
+D4
+~
+~
+0 -1 1052
+S
+#1054
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1066
+D2
+~
+~
+0 -1 1051
+D3
+~
+~
+0 -1 1058
+D4
+~
+~
+0 -1 1053
+S
+#1055
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1051
+D2
+~
+~
+0 -1 1056
+D3
+~
+~
+0 -1 1059
+D4
+~
+~
+0 -1 1058
+S
+#1056
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1052
+D2
+~
+~
+0 -1 1057
+D3
+~
+~
+0 -1 1060
+D4
+~
+~
+0 -1 1055
+S
+#1057
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1053
+D2
+~
+~
+0 -1 1058
+D3
+~
+~
+0 -1 1061
+D4
+~
+~
+0 -1 1056
+S
+#1058
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1054
+D2
+~
+~
+0 -1 1055
+D3
+~
+~
+0 -1 1062
+D4
+~
+~
+0 -1 1057
+S
+#1059
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1055
+D2
+~
+~
+0 -1 1060
+D3
+~
+~
+0 -1 1063
+D4
+~
+~
+0 -1 1062
+S
+#1060
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1056
+D2
+~
+~
+0 -1 1061
+D3
+~
+~
+0 -1 1064
+D4
+~
+~
+0 -1 1059
+S
+#1061
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1057
+D2
+~
+~
+0 -1 1062
+D3
+~
+~
+0 -1 1065
+D4
+~
+~
+0 -1 1060
+S
+#1062
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1058
+D2
+~
+~
+0 -1 1059
+D3
+~
+~
+0 -1 1066
+D4
+~
+~
+0 -1 1061
+S
+#1063
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1059
+D2
+~
+~
+0 -1 1064
+D3
+~
+~
+0 -1 1051
+D4
+~
+~
+0 -1 1066
+S
+#1064
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1060
+D2
+~
+~
+0 -1 1065
+D3
+~
+~
+0 -1 1052
+D4
+~
+~
+0 -1 1063
+S
+#1065
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1061
+D2
+~
+~
+0 -1 1066
+D3
+~
+~
+0 -1 1053
+D4
+~
+~
+0 -1 1064
+S
+#1066
+The Arena~
+ARENA: You are standing in the arena. Go and kill some players...
+~
+0 28 0
+D1
+The arena seems to stretch on forever
+~
+~
+0 -1 1062
+D2
+~
+~
+0 -1 1063
+D3
+~
+~
+0 -1 1054
+D4
+~
+~
+0 -1 1065
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#GAMES
+S
+
+
+
+#RESETS
+S
+
+
+
+#MOBPROGS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

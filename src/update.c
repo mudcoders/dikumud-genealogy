@@ -21,11 +21,6 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
-#if defined( macintosh )
-#include <types.h>
-#else
-#include <sys/types.h>
-#endif
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -54,6 +49,7 @@ void	weather_update  args( ( void ) );
 void	char_update     args( ( void ) );
 void	obj_update      args( ( void ) );
 void	aggr_update     args( ( void ) );
+void    quest_update	args( ( void ) );
 
 
 
@@ -71,6 +67,8 @@ void advance_level( CHAR_DATA *ch )
     sprintf( buf, "the %s",
 	title_table [ch->class] [ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
     set_title( ch, buf );
+/* Uncomment to reset whotext on levelling 
+    ch->pcdata->who_text = str_dup( "@" ); */
 
     add_hp      = con_app[get_curr_con( ch )].hitp + number_range(
 		    class_table[ch->class].hp_min,
@@ -92,10 +90,13 @@ void advance_level( CHAR_DATA *ch )
     ch->practice	+= add_prac;
 
     if ( !IS_NPC( ch ) )
+	ch->pcdata->learn += 1;
+
+    if ( !IS_NPC( ch ) )
 	REMOVE_BIT( ch->act, PLR_BOUGHT_PET );
 
     sprintf( buf,
-	    "Your gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
+	    "Your gain is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\r\n",
 	    add_hp,	ch->max_hit,
 	    add_mana,	ch->max_mana,
 	    add_move,	ch->max_move,
@@ -122,6 +123,8 @@ void demote_level( CHAR_DATA *ch )
     sprintf( buf, "the %s",
 	title_table [ch->class] [ch->level] [ch->sex == SEX_FEMALE ? 1 : 0] );
     set_title( ch, buf );
+/* Uncomment to reset whotext with demoting
+    ch->pcdata->who_text = str_dup( "@" ); */
 
     add_hp      = con_app[get_curr_con( ch )].hitp + number_range(
 		    class_table[ch->class].hp_min,
@@ -147,7 +150,7 @@ void demote_level( CHAR_DATA *ch )
 
     ch->level -= 1;
     sprintf( buf,
-	    "Your loss is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\n\r",
+	    "Your loss is: %d/%d hp, %d/%d m, %d/%d mv %d/%d prac.\r\n",
 	    add_hp,	ch->max_hit,
 	    add_mana,	ch->max_mana,
 	    add_move,	ch->max_move,
@@ -347,16 +350,16 @@ void gain_condition( CHAR_DATA *ch, int iCond, int value )
 	switch ( iCond )
 	{
 	case COND_FULL:
-	    send_to_char( "You are hungry.\n\r",    ch );
+	    send_to_char( "You are hungry.\r\n",    ch );
 	    break;
 
 	case COND_THIRST:
-	    send_to_char( "You are thirsty.\n\r",   ch );
+	    send_to_char( "You are thirsty.\r\n",   ch );
 	    break;
 
 	case COND_DRUNK:
 	    if ( condition != 0 )
-		send_to_char( "You are sober.\n\r", ch );
+		send_to_char( "You are sober.\r\n", ch );
 	    break;
 	}
     }
@@ -400,6 +403,17 @@ void mobile_update( void )
 	/* That's all for sleeping / busy monster */
 	if ( ch->position < POS_STANDING )
 	    continue;
+
+        /* MOBprogram random trigger */
+        if ( ch->in_room->area->nplayer > 0 )
+        {
+            mprog_random_trigger( ch );
+                                                /* If ch dies or changes
+                                                position due to it's random
+                                                trigger, continue - Kahn */
+            if ( ch->position < POS_STANDING )
+                continue;
+        }
 
 	/* Scavenge */
 	if ( IS_SET( ch->act, ACT_SCAVENGER )
@@ -451,6 +465,9 @@ void mobile_update( void )
 	        act( "$n flees in terror!", ch, NULL, NULL, TO_ROOM );
 		  
 	    move_char( ch, door );
+
+            if ( ch->position < POS_STANDING )
+                continue;
 
 	    /* If people are in the room, then flee. */
 	    if ( rnum == 3 )
@@ -509,22 +526,22 @@ void weather_update( void )
     {
     case  6:
 	weather_info.sunlight = SUN_RISE;
-	strcat( buf, "The sun rises in the east.\n\r" );
+	strcat( buf, "The sun rises in the east.\r\n" );
 	break;
 
     case  7:
 	weather_info.sunlight = SUN_LIGHT;
-	strcat( buf, "The day has begun.\n\r" );
+	strcat( buf, "The day has begun.\r\n" );
 	break;
 
     case 19:
 	weather_info.sunlight = SUN_SET;
-	strcat( buf, "The sun slowly disappears in the west.\n\r" );
+	strcat( buf, "The sun slowly disappears in the west.\r\n" );
 	break;
 
     case 20:
 	weather_info.sunlight = SUN_DARK;
-	strcat( buf, "The night has begun.\n\r" );
+	strcat( buf, "The night has begun.\r\n" );
 	break;
 
     case 24:
@@ -572,7 +589,7 @@ void weather_update( void )
 	if (     weather_info.mmhg <  990
 	    || ( weather_info.mmhg < 1010 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The sky is getting cloudy.\n\r" );
+	    strcat( buf, "The sky is getting cloudy.\r\n" );
 	    weather_info.sky = SKY_CLOUDY;
 	}
 	break;
@@ -581,13 +598,13 @@ void weather_update( void )
 	if (     weather_info.mmhg <  970
 	    || ( weather_info.mmhg <  990 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "It starts to rain.\n\r" );
+	    strcat( buf, "It starts to rain.\r\n" );
 	    weather_info.sky = SKY_RAINING;
 	}
 
 	if ( weather_info.mmhg > 1030 && number_bits( 2 ) == 0 )
 	{
-	    strcat( buf, "The clouds disappear.\n\r" );
+	    strcat( buf, "The clouds disappear.\r\n" );
 	    weather_info.sky = SKY_CLOUDLESS;
 	}
 	break;
@@ -595,14 +612,14 @@ void weather_update( void )
     case SKY_RAINING:
 	if ( weather_info.mmhg <  970 && number_bits( 2 ) == 0 )
 	{
-	    strcat( buf, "Lightning flashes in the sky.\n\r" );
+	    strcat( buf, "Lightning flashes in the sky.\r\n" );
 	    weather_info.sky = SKY_LIGHTNING;
 	}
 
 	if (     weather_info.mmhg > 1030
 	    || ( weather_info.mmhg > 1010 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The rain stopped.\n\r" );
+	    strcat( buf, "The rain stopped.\r\n" );
 	    weather_info.sky = SKY_CLOUDY;
 	}
 	break;
@@ -611,7 +628,7 @@ void weather_update( void )
 	if (     weather_info.mmhg > 1010
 	    || ( weather_info.mmhg >  990 && number_bits( 2 ) == 0 ) )
 	{
-	    strcat( buf, "The lightning has stopped.\n\r" );
+	    strcat( buf, "The lightning has stopped.\r\n" );
 	    weather_info.sky = SKY_RAINING;
 	    break;
 	}
@@ -632,7 +649,34 @@ void weather_update( void )
     return;
 }
 
+/*
+ * Update the bank system
+ * (C) 1996 The Maniac from Mythran Mud
+ *
+ * This updates the shares value (I hope)
+ */
+void bank_update(void)
+{
+        int     value = 0;
+        FILE    *fp;
 
+        if ((time_info.hour < 9) || (time_info.hour > 17))
+                return;         /* Bank is closed, no market... */
+
+        value = number_range ( 0, 200);
+        value -= 100;
+        value /= 10;
+
+        share_value += value;
+
+        if ( !( fp = fopen ( BANK_FILE, "w" ) ) )
+        {
+                bug( "bank_update:  fopen of BANK_FILE failed", 0 );
+                return;
+        }
+        fprintf (fp, "SHARE_VALUE %d\r\n", share_value);
+        fclose(fp);
+}
 
 /*
  * Update all chars, including mobs.
@@ -708,7 +752,7 @@ void char_update( void )
 		    ch->was_in_room = ch->in_room;
 		    if ( ch->fighting )
 			stop_fighting( ch, TRUE );
-		    send_to_char( "You disappear into the void.\n\r", ch );
+		    send_to_char( "You disappear into the void.\r\n", ch );
 		    act( "$n disappears into the void.",
 			ch, NULL, NULL, TO_ROOM );
 		    save_char_obj( ch );
@@ -742,7 +786,7 @@ void char_update( void )
 		    if ( paf->type > 0 && skill_table[paf->type].msg_off )
 		    {
 			send_to_char( skill_table[paf->type].msg_off, ch );
-			send_to_char( "\n\r", ch );
+			send_to_char( "\r\n", ch );
 		    }
 		}
 
@@ -758,6 +802,60 @@ void char_update( void )
          *   MUST NOT refer to ch after damage taken,
          *   as it may be lethal damage (on NPC).
          */
+
+        if (is_affected(ch, gsn_plague) && ch != NULL)
+        {
+            AFFECT_DATA *af, plague;
+            CHAR_DATA *vch;
+            int save, dam;
+
+            if (ch->in_room == NULL)
+                return;
+
+            act("$n writhes in agony as plague sores erupt from $s skin.",
+                ch,NULL,NULL,TO_ROOM);
+            send_to_char("You writhe in agony from the plague.\r\n",ch);
+            for ( af = ch->affected; af != NULL; af = af->next )
+            {
+                if (af->type == gsn_plague)
+                    break;
+            }
+
+            if (af == NULL)
+            {
+                REMOVE_BIT(ch->affected_by,AFF_PLAGUE);
+                return;
+            }
+            if (af->level == 1)
+                return;
+
+            plague.type                 = gsn_plague;
+            plague.level                = af->level - 1;
+            plague.duration     = number_range(1,2 * plague.level);
+            plague.location             = APPLY_STR;
+            plague.modifier     = -5;
+            plague.bitvector    = AFF_PLAGUE;
+            save                = plague.level;
+
+            for ( vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room)
+
+            {
+
+                if (save != 0 && !saves_spell(save,vch) && !IS_IMMORTAL(vch)
+                &&  !IS_AFFECTED(vch,AFF_PLAGUE) && number_bits(4) == 0)
+                {
+                    send_to_char("You feel hot and feverish.\r\n",vch);
+                    act("$n shivers and looks very ill.",vch,NULL,NULL,TO_ROOM);
+                    affect_join(vch,&plague);
+                }
+            }
+
+            dam = UMIN(ch->level,5);
+            ch->mana -= dam;
+            ch->move -= dam;
+            damage( ch, ch, dam, gsn_plague, WEAR_NONE );
+        }
+
 	if ( ( time_info.hour > 5 && time_info.hour < 21 )
 	    && ch->race == race_lookup( "vampire" )
 	    && ch->in_room->room_flags != ROOM_UNDERGROUND )
@@ -801,13 +899,13 @@ void char_update( void )
 		    && ( strcmp( race_table[ ch->race ].name, "Object" )
 			&& strcmp( race_table[ ch->race ].name, "God" ) ) ) )
         {
-            send_to_char( "You can't breathe!\n\r", ch );
+            send_to_char( "You can't breathe!\r\n", ch );
             act( "$n sputters and chokes!", ch, NULL, NULL, TO_ROOM );
             damage( ch, ch, 5, gsn_breathe_water, WEAR_NONE );
         }
         else if ( IS_AFFECTED( ch, AFF_POISON ) )
         {
-            send_to_char( "You shiver and suffer.\n\r", ch );
+            send_to_char( "You shiver and suffer.\r\n", ch );
             act( "$n shivers and suffers.", ch, NULL, NULL, TO_ROOM );
             damage( ch, ch, 2, gsn_poison, WEAR_NONE );
         }
@@ -849,8 +947,11 @@ void char_update( void )
  */
 void obj_update( void )
 {   
-    OBJ_DATA *obj;
-    OBJ_DATA *obj_next;
+    CHAR_DATA *hch;
+    OBJ_DATA  *obj;
+    OBJ_DATA  *obj_next;
+    bool       done_it;
+    int        dam;
 
     for ( obj = object_list; obj; obj = obj_next )
     {
@@ -861,10 +962,57 @@ void obj_update( void )
 	if ( obj->deleted )
 	    continue;
 
-	if ( obj->timer < -1 )
+	/*
+	 *Slash's Merc Snippets
+	 *esnible@goodnet.com
+	 *Ported to envy2, and damage from falling objects added by Canth
+	 *phule@xs4all.nl
+	 */
+	if( obj->in_room &&
+	    obj->in_room->sector_type == SECT_AIR &&
+	    (obj->wear_flags & ITEM_TAKE) &&
+	    obj->in_room->exit[5] &&
+	    obj->in_room->exit[5]->to_room &&
+	    obj->timer != 0 )
+	{
+	    ROOM_INDEX_DATA *new_room = obj->in_room->exit[5]->to_room;
+
+	    if( ( rch = obj->in_room->people ) != NULL )
+	    {
+		act( "$p falls down.", rch, obj, NULL, TO_ROOM );
+		act( "$p falls down.", rch, obj, NULL, TO_CHAR );
+	    }
+
+	    obj_from_room( obj );
+	    obj_to_room( obj, new_room );
+
+	    if( ( rch = obj->in_room->people ) != NULL )
+	    {
+		done_it = FALSE;
+		for( hch = obj->in_room->people; hch; hch = hch->next_in_room )
+		{
+		    if( number_percent( ) < 10 && !done_it )
+		    {
+			dam = obj->weight;
+			act( "$p falls from the sky, right on top of $n", hch, obj, NULL, TO_ROOM );
+			act( "$p falls from the sky, right on top of you!", hch, obj, NULL, TO_CHAR );
+			damage( hch, hch, dam, TYPE_UNDEFINED, WEAR_NONE );
+			done_it = TRUE;
+			continue;
+		    }
+		}
+		if( !done_it )
+		{
+		    act( "$p falls from the sky.", rch, obj, NULL, TO_ROOM );
+		    act( "$p falls from the sky.", rch, obj, NULL, TO_CHAR );
+		}
+	    }
+	}
+
+	if( obj->timer < -1 )
 	    obj->timer = -1;
 
-	if ( obj->timer < 0 )
+	if( obj->timer < 0 )
 	    continue;
 
 	/*
@@ -966,6 +1114,27 @@ void aggr_update( void )
 	    int count;
 	    bool hate = FALSE;
 
+        if ( IS_NPC( mch ) && mch->mpactnum > 0
+            && mch->in_room->area->nplayer > 0 )
+        {
+            MPROG_ACT_LIST * tmp_act, *tmp2_act;
+            for ( tmp_act = mch->mpact; tmp_act != NULL;
+                 tmp_act = tmp_act->next )
+            {
+                 mprog_wordlist_check( tmp_act->buf,mch, tmp_act->ch,
+                                      tmp_act->obj, tmp_act->vo, ACT_PROG );
+                 free_string( tmp_act->buf );
+            }
+            for ( tmp_act = mch->mpact; tmp_act != NULL; tmp_act = tmp2_act )
+            {
+                 tmp2_act = tmp_act->next;
+                 free_mem( tmp_act, sizeof( MPROG_ACT_LIST ) );
+            }
+            mch->mpactnum = 0;
+            mch->mpact    = NULL;
+        }
+
+
 	    if ( !IS_NPC( mch )
 		|| mch->deleted
 		|| mch->fighting
@@ -1036,7 +1205,7 @@ void time_update( void )
         return;
     if ( current_time > warning1 && warning1 > 0 )
     {
-	sprintf( buf, "First Warning!\n\r%s in %d minutes or %d seconds.\n\r",
+	sprintf( buf, "First Warning!\r\n%s in %d minutes or %d seconds.\r\n",
 		Reboot ? "Reboot" : "Shutdown",
 		(int) ( down_time - current_time ) / 60,
 		(int) ( down_time - current_time ) );
@@ -1045,7 +1214,7 @@ void time_update( void )
     }
     if ( current_time > warning2 && warning2 > 0 )
     {
-	sprintf( buf, "Second Warning!\n\r%s in %d minutes or %d seconds.\n\r",
+	sprintf( buf, "Second Warning!\r\n%s in %d minutes or %d seconds.\r\n",
 		Reboot ? "Reboot" : "Shutdown",
 		(int) ( down_time - current_time ) / 60,
 		(int) ( down_time - current_time ) );
@@ -1054,14 +1223,17 @@ void time_update( void )
     }
     if ( current_time + 10 > down_time && warning2 == 0 )
     {
-	sprintf( buf, "Final Warning!\n\r%s in 10 seconds.\n\r",
+	sprintf( buf, "Final Warning!\r\n%s in 10 seconds.\r\n",
 		Reboot ? "Reboot" : "Shutdown" );
 	send_to_all_char( buf );
 	warning2--;
     }
     if ( current_time > down_time )
     {
-        sprintf( buf, "%s by system.\n\r", Reboot ? "Reboot" : "Shutdown" );
+        /* OLC 1.1b */
+        do_asave( NULL, "" );
+
+        sprintf( buf, "%s by system.\r\n", Reboot ? "Reboot" : "Shutdown" );
 	send_to_all_char( buf );
 	log_string( buf );
 
@@ -1319,11 +1491,15 @@ void update_handler( void )
     static int pulse_mobile;
     static int pulse_violence;
     static int pulse_point;
+    static int pulse_db_dump = PULSE_DB_DUMP;   /* OLC 1.1b */
 
     if ( --pulse_area     <= 0 )
     {
-	pulse_area	= number_range( PULSE_AREA / 2, 3 * PULSE_AREA / 2 );
+	wiznet(NULL, WIZ_TICKS, L_APP, "Area/Quest update pulse" );
+/*	pulse_area	= number_range( PULSE_AREA / 2, 3 * PULSE_AREA / 2 ); */
+	pulse_area	= PULSE_AREA;
 	area_update	( );
+	quest_update	( );
     }
 
     if ( --pulse_violence <= 0 )
@@ -1339,17 +1515,89 @@ void update_handler( void )
 	mobile_update   ( );
     }
 
+    /* OLC 1.1b */
+    if ( --pulse_db_dump  <= 0 )
+    {
+	wiznet(NULL, WIZ_TICKS, L_DIR, "Dump Area pulse (OLC)" );
+        pulse_db_dump   = PULSE_DB_DUMP;
+        do_asave( NULL, "" );
+    }
+
     if ( --pulse_point    <= 0 )
     {
+	wiznet(NULL, WIZ_TICKS, LEVEL_HERO, "pulse point" );
 	pulse_point     = number_range( PULSE_TICK / 2, 3 * PULSE_TICK / 2 );
 	weather_update  ( );
 	char_update     ( );
 	obj_update      ( );
 	list_update     ( );
+	bank_update	( );
     }
 
     time_update( );
+    auction_update( );
     aggr_update( );
     tail_chain( );
     return;
 }
+
+/* the auction update - another very important part*/
+
+void auction_update (void)
+{
+    char buf[MAX_STRING_LENGTH];
+
+    if (auction->item != NULL)
+        if (--auction->pulse <= 0) /* decrease pulse */
+        {
+            auction->pulse = PULSE_AUCTION;
+            switch (++auction->going) /* increase the going state */
+            {
+            case 1 : /* going once */
+            case 2 : /* going twice */
+            if (auction->bet > 0)
+                sprintf (buf, "%s: going %s for %d.", auction->item->short_descr,
+                     ((auction->going == 1) ? "once" : "twice"), auction->bet);
+            else
+                sprintf (buf, "%s: going %s (no bet received yet).", auction->item->short_descr,
+                     ((auction->going == 1) ? "once" : "twice"));
+
+            talk_auction (buf);
+            break;
+
+            case 3 : /* SOLD! */
+
+            if (auction->bet > 0)
+            {
+                sprintf (buf, "%s sold to %s for %d.",
+                    auction->item->short_descr,
+                    IS_NPC(auction->buyer) ? auction->buyer->short_descr : auction->buyer->name,
+                    auction->bet);
+                talk_auction(buf);
+                obj_to_char (auction->item,auction->buyer);
+                act ("The auctioneer appears before you in a puff of smoke and hands you $p.",
+                     auction->buyer,auction->item,NULL,TO_CHAR);
+                act ("The auctioneer appears before $n, and hands $m $p",
+                     auction->buyer,auction->item,NULL,TO_ROOM);
+
+                auction->seller->gold += auction->bet; /* give him the money */
+
+                auction->item = NULL; /* reset item */
+
+            }
+            else /* not sold */
+            {
+                sprintf (buf, "No bets received for %s - object has been removed.",auction->item->short_descr);
+                talk_auction(buf);
+                act ("The auctioneer appears before you to return $p to you.",
+                      auction->seller,auction->item,NULL,TO_CHAR);
+                act ("The auctioneer appears before $n to return $p to $m.",
+                      auction->seller,auction->item,NULL,TO_ROOM);
+                obj_to_char (auction->item,auction->seller);
+                auction->item = NULL; /* clear auction */
+
+            } /* else */
+
+            } /* switch */
+        } /* if */
+} /* func */

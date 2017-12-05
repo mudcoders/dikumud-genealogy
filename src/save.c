@@ -21,26 +21,12 @@
  *  around, comes around.                                                  *
  ***************************************************************************/
 
-#if defined( macintosh )
-#include <types.h>
-#else
-#include <sys/types.h>
-#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
-
-#if !defined( macintosh )
-extern	int	_filbuf		args( (FILE *) );
-#endif
-
-#if defined( sun )
-int     system          args( ( const char *string ) );
-#endif
-
 
 /*
  * Array of containers read for proper re-nesting of objects.
@@ -91,17 +77,13 @@ void save_char_obj( CHAR_DATA *ch )
     fclose( fpReserve );
 
     /* player files parsed directories by Yaz 4th Realm */
-#if !defined( macintosh ) && !defined( MSDOS )
     sprintf( strsave, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( ch->name ) );
-#else
-    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( ch->name ) );
-#endif
     if ( !( fp = fopen( strsave, "w" ) ) )
     {
         sprintf( buf, "Save_char_obj: fopen %s: ", ch->name );
 	bug( buf, 0 );
-	perror( strsave );
+	perror( (const char*) strsave );
     }
     else
     {
@@ -111,6 +93,10 @@ void save_char_obj( CHAR_DATA *ch )
 	fprintf( fp, "#END\n" );
     }
     fclose( fp );
+#if defined AUTO_COMPRESS
+	sprintf( buf, "gzip -fq %s &\n", strsave);
+	system (buf);
+#endif
     fpReserve = fopen( NULL_FILE, "r" );
     return;
 }
@@ -128,17 +114,24 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "#%s\n", IS_NPC( ch ) ? "MOB" : "PLAYER"	);
 
     fprintf( fp, "Nm          %s~\n",	ch->name		);
+    fprintf( fp, "Version     1\n"				);
     fprintf( fp, "ShtDsc      %s~\n",	ch->short_descr		);
     fprintf( fp, "LngDsc      %s~\n",	ch->long_descr		);
     fprintf( fp, "Dscr        %s~\n",	ch->description		);
     fprintf( fp, "Prmpt       %s~\n",	ch->pcdata->prompt	);
     fprintf( fp, "Sx          %d\n",	ch->sex			);
     fprintf( fp, "Cla         %d\n",	ch->class		);
+    if (!IS_NPC(ch) )
+    {
+        fprintf( fp, "Clan        %s~\n",	clan_name(ch->pcdata->clan) );
+	fprintf( fp, "Clanlev     %d\n",	ch->pcdata->clanlevel );
+    }
 
     fprintf( fp, "Race        %s~\n",	race_table[ ch->race ].name );
 
     fprintf( fp, "Lvl         %d\n",	ch->level		);
     fprintf( fp, "Trst        %d\n",	ch->trust		);
+    fprintf( fp, "Security    %d\n",    ch->pcdata->security    );  /* OLC */
     fprintf( fp, "Playd       %d\n",
 	ch->played + (int) ( current_time - ch->logon )		);
     fprintf( fp, "Note        %ld\n",   (unsigned long)ch->last_note );
@@ -151,6 +144,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "HpMnMv      %d %d %d %d %d %d\n",
 	ch->hit, ch->max_hit, ch->mana, ch->max_mana, ch->move, ch->max_move );
     fprintf( fp, "Gold        %d\n",	ch->gold		);
+    fprintf( fp, "Balance     %d\n",	ch->balance		);
     fprintf( fp, "Exp         %d\n",	ch->exp			);
     fprintf( fp, "Act         %d\n",    ch->act			);
     fprintf( fp, "AffdBy      %d\n",	ch->affected_by		);
@@ -166,6 +160,13 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     fprintf( fp, "Armr        %d\n",	ch->armor		);
     fprintf( fp, "Wimp        %d\n",	ch->wimpy		);
     fprintf( fp, "Deaf        %d\n",	ch->deaf		);
+    if (ch->questpoints != 0)
+	fprintf( fp, "QuestPnts   %d\n",  ch->questpoints );
+    if (ch->nextquest != 0)
+	fprintf( fp, "QuestNext   %d\n",  ch->nextquest   );
+    else if (ch->countdown != 0)
+	fprintf( fp, "QuestNext   %d\n",  10              );
+
 
     if ( IS_NPC( ch ) )
     {
@@ -174,10 +175,16 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
     else
     {
 	fprintf( fp, "Paswd       %s~\n",	ch->pcdata->pwd		);
+	fprintf( fp, "Speak       %d\n",	ch->pcdata->speaking	);
+	fprintf( fp, "Learn       %d\n",	ch->pcdata->learn	);
 	fprintf( fp, "Bmfin       %s~\n",	ch->pcdata->bamfin	);
 	fprintf( fp, "Bmfout      %s~\n",	ch->pcdata->bamfout	);
+	fprintf( fp, "Balance     %d\n",	ch->pcdata->balance	);
+	fprintf( fp, "Shares      %d\n",        ch->pcdata->shares	);
 	fprintf( fp, "Immskll     %s~\n",	ch->pcdata->immskll	);
+	fprintf( fp, "Wiznet      %d\n",	ch->pcdata->wiznet	);
 	fprintf( fp, "Ttle        %s~\n",	ch->pcdata->title	);
+	fprintf( fp, "WhoTxt      %s~\n",	ch->pcdata->who_text	);
 	fprintf( fp, "AtrPrm      %d %d %d %d %d\n",
 		ch->pcdata->perm_str,
 		ch->pcdata->perm_int,
@@ -199,6 +206,12 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 
 	fprintf( fp, "Pglen       %d\n",   ch->pcdata->pagelen     );
 
+	for ( sn = 0; sn < MAX_LANGUAGE; sn++)
+	{
+	    fprintf( fp, "Lang        %d '%s'\n",
+		ch->pcdata->language[sn], lang_table[sn].name );
+	}
+
 	for ( sn = 0; sn < MAX_SKILL; sn++ )
 	{
 	    if ( skill_table[sn].name && ch->pcdata->learned[sn] > 0 )
@@ -207,6 +220,7 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 		    ch->pcdata->learned[sn], skill_table[sn].name );
 	    }
 	}
+
     }
 
     for ( paf = ch->affected; paf; paf = paf->next )
@@ -221,7 +235,6 @@ void fwrite_char( CHAR_DATA *ch, FILE *fp )
 		paf->location,
 		paf->bitvector );
     }
-
     fprintf( fp, "End\n\n" );
     return;
 }
@@ -339,9 +352,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
            FILE      *fp;
     static PC_DATA    pcdata_zero;
 	   CHAR_DATA *ch;
-#if !defined( MSDOS )
 	   char       buf     [ MAX_STRING_LENGTH ];
-#endif
 	   char       strsave [ MAX_INPUT_LENGTH ];
 	   bool       found;
 
@@ -372,14 +383,13 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->name				= str_dup( name );
     ch->pcdata->prompt                  = str_dup( "<%hhp %mm %vmv> " );
     ch->last_note                       = 0;
-    ch->act				= PLR_BLANK
-					| PLR_COMBINE
-					| PLR_PROMPT;
+    ch->act				= PLR_BLANK | PLR_COMBINE | PLR_PROMPT;
     ch->pcdata->pwd			= str_dup( "" );
     ch->pcdata->bamfin			= str_dup( "" );
     ch->pcdata->bamfout			= str_dup( "" );
     ch->pcdata->immskll			= str_dup( "" );
     ch->pcdata->title			= str_dup( "" );
+    ch->pcdata->who_text		= str_dup( "" );
     ch->pcdata->perm_str		= 13;
     ch->pcdata->perm_int		= 13; 
     ch->pcdata->perm_wis		= 13;
@@ -388,6 +398,7 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
     ch->pcdata->condition[COND_THIRST]	= 48;
     ch->pcdata->condition[COND_FULL]	= 48;
     ch->pcdata->pagelen                 = 20;
+    ch->pcdata->security		= 0;
 
     ch->pcdata->switched                = FALSE;
 
@@ -396,7 +407,6 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 
     /* parsed player file directories by Yaz of 4th Realm */
     /* decompress if .gz file exists - Thx Alander */
-#if !defined( macintosh ) && !defined( MSDOS )
     sprintf( strsave, "%s%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( name ), ".gz" );
     if ( ( fp = fopen( strsave, "r" ) ) )
@@ -405,14 +415,9 @@ bool load_char_obj( DESCRIPTOR_DATA *d, char *name )
 	sprintf( buf, "gzip -dfq %s", strsave );
 	system( buf );
     }
-#endif
 
-#if !defined( macintosh ) && !defined( MSDOS )
     sprintf( strsave, "%s%s%s%s", PLAYER_DIR, initial( ch->name ),
 	    "/", capitalize( name ) );
-#else
-    sprintf( strsave, "%s%s", PLAYER_DIR, capitalize( name ) );
-#endif
     if ( ( fp = fopen( strsave, "r" ) ) )
     {
 	int iNest;
@@ -553,12 +558,16 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    break;
 
 	case 'B':
+	    KEY( "Balance",	ch->balance,		fread_number( fp ) );
 	    KEY( "Bmfin",	ch->pcdata->bamfin,	fread_string( fp ) );
 	    KEY( "Bmfout",	ch->pcdata->bamfout,	fread_string( fp ) );
+	    KEY( "Balance",	ch->pcdata->balance,	fread_number( fp ) );
 	    break;
 
 	case 'C':
 	    KEY( "Cla", 	ch->class,		fread_number( fp ) );
+	    KEY( "Clan",	ch->pcdata->clan, clan_lookup(fread_string(fp) ) );
+	    KEY( "Clanlev",	ch->pcdata->clanlevel,	fread_number( fp ) );
 
 	    if ( !str_cmp( word, "Cond" ) )
 	    {
@@ -604,10 +613,27 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 
 	case 'I':
 	    KEY ( "Immskll",    ch->pcdata->immskll,    fread_string( fp ) );
+          break;
 
 	case 'L':
 	    KEY( "Lvl", 	ch->level,		fread_number( fp ) );
 	    KEY( "LngDsc",	ch->long_descr,		fread_string( fp ) );
+	    KEY( "Learn",	ch->pcdata->learn,	fread_number( fp ) );
+
+            if ( !str_cmp( word, "Lang" ) )
+            {
+                int ln;
+                int value;
+
+                value = fread_number( fp );
+                ln    = lang_lookup( fread_word( fp ) );
+                if ( ln < 0 )
+                    bug( "Fread_char: unknown language.", 0 );
+                else
+                    ch->pcdata->language[ln] = value;
+                fMatch = TRUE;
+            }
+
 	    break;
 
 	case 'N':
@@ -630,6 +656,11 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    KEY( "Pos", 	ch->position,		fread_number( fp ) );
 	    KEY( "Prac",	ch->practice,		fread_number( fp ) );
 	    KEY( "Prmpt",	ch->pcdata->prompt,	fread_string( fp ) );
+	    break;
+
+	case 'Q':
+	    KEY( "QuestPnts",   ch->questpoints,        fread_number( fp ) );
+	    KEY( "QuestNext",   ch->nextquest,          fread_number( fp ) );
 	    break;
 
 	case 'R':
@@ -661,6 +692,9 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    KEY( "SavThr",	ch->saving_throw,	fread_number( fp ) );
 	    KEY( "Sx",		ch->sex,		fread_number( fp ) );
 	    KEY( "ShtDsc",	ch->short_descr,	fread_string( fp ) );
+	    KEY( "Speak",	ch->pcdata->speaking,	fread_number( fp ) );
+	    KEY( "Shares",	ch->pcdata->shares,	fread_number( fp ) );
+            KEY( "Security",    ch->pcdata->security,   fread_number( fp ) );
 
 	    if ( !str_cmp( word, "Skll" ) )
 	    {
@@ -698,6 +732,12 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 	    break;
 
 	case 'V':
+	    if ( !str_cmp( word, "Version" ) )
+	    {
+		fread_number( fp );
+		fMatch = TRUE;
+	    }
+
 	    if ( !str_cmp( word, "Vnum" ) )
 	    {
 		ch->pIndexData = get_mob_index( fread_number( fp ) );
@@ -708,6 +748,8 @@ void fread_char( CHAR_DATA *ch, FILE *fp )
 
 	case 'W':
 	    KEY( "Wimp",	ch->wimpy,		fread_number( fp ) );
+	    KEY( "WhoTxt",	ch->pcdata->who_text,	fread_string( fp ) );
+	    KEY( "Wiznet",	ch->pcdata->wiznet,	fread_number( fp ) );
 
 	    if ( !str_cmp( word, "Wizbt" ) )
 	    {
@@ -937,19 +979,19 @@ void fread_obj( CHAR_DATA *ch, FILE *fp )
 		break;
 	    }
 
-	    if ( !str_cmp( word, "Vnum" ) )
-	    {
-		int vnum;
+            if ( !str_cmp( word, "Vnum" ) )     /* OLC */
+            {
+                int vnum;
 
-		vnum = fread_number( fp );
-		if ( !( obj->pIndexData = get_obj_index( vnum ) ) )
-		    bug( "Fread_obj: bad vnum %d.", vnum );
-		else
-		    fVnum = TRUE;
-		fMatch = TRUE;
-		break;
-	    }
-	    break;
+                vnum = fread_number( fp );
+                if ( !( obj->pIndexData = get_obj_index( vnum ) ) )
+                        obj->pIndexData = get_obj_index( OBJ_VNUM_DUMMY );
+
+                fVnum = TRUE;
+                fMatch = TRUE;
+                break;
+            }
+            break;
 
 	case 'W':
 	    KEY( "WearFlags",	obj->wear_flags,	fread_number( fp ) );

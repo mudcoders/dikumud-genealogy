@@ -304,6 +304,26 @@ cards.  '=' is a synonym for STAND.
 
 See also: DOUBLE, HIT, and SPLIT
 ~
+0 HIGHDICE 'HIGH DICE' ~
+
+High dice is a simple dice game... the player (or croupier) with the highest
+dice value (on 2 dice) wins. When the player and the croupier roll the same
+dice value the croupier (bank) wins. If the player wins he gains double the
+money he bet.
+
+See also: 'Upper Lower Triple'
+See also: 'Seven'
+~
+0 SEVEN ~
+
+Seven is a simple dice game. The player bets an amount on Over, Under or Seven
+If the player was correct and he chose over or under he wins 2x what he bet.
+If the player chose Seven and was correct he wins 5x what he bet. If the player
+was incorrect he loses his money...
+
+See also: 'Upper Lower Triple'
+See also: 'High Dice'
+~
 
 0 $~
 

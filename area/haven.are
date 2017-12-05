@@ -1,4 +1,12 @@
-#AREA	{10 30} Mahatma Little Haven~
+#AREADATA
+Name        Little Haven~
+Builders    None~
+VNUMs       1801 1833
+Security    1
+Recall      3001
+End
+
+
 
 #MOBILES
 #1801
@@ -11,9 +19,9 @@ to defend himself to the death.  There is a glazed look
 about her eyes.
 ~
 69 32768 100 S
-16 17 8 5d4+260 3d6+1
-3000 4500
-8 gnome~ 2
+11 17 0 5d4+260 3d6+1
+3000 0
+0 Gnome~ 2
 #1802
 gnome guard~
 the gnome guard~
@@ -23,8 +31,8 @@ There is a glazed look about her eyes.
 ~
 3 32768 100 S
 20 8 0 6d6+440 4d4+2
-5000 40000
-8 gnome~ 2
+5000 0
+0 Gnome~ 2
 #1803
 bear giant polar~
 the giant polar bear~
@@ -32,10 +40,10 @@ The giant polar bear doesn't like you disturbing her sleep.
 ~
 She blends with the snow.
 ~
-34 65544 0 S
-24 8 3 6d10+400 20d2+1
-10000 75000
-8 bear~ 2
+35 65544 0 S
+22 8 0 6d10+400 20d2+1
+10000 0
+0 Bear~ 2
 #1804
 dragon white~
 the white dragon~
@@ -44,9 +52,9 @@ The white dragon glares at you.
 He is an enormous, mature dragon, ready to freeze you.
 ~
 3 128 -1000 S
-25 -5 -100 25d4+550 5d4+5
-50000 450000
-8 dragon~ 1
+23 -5 0 25d4+550 5d4+5
+50000 0
+0 Dragon~ 1
 #1805
 dragon blue~
 the blue dragon~
@@ -55,10 +63,10 @@ The blue dragon dislikes being here.
 She is an enormous, mature dragon, with an attitude
 to match her electric blue scales.
 ~
-32 136 -1000 S
-26 -5  -100 25d4+600 4d10+10
-75000 500000
-8 dragon~ 2
+33 136 -1000 S
+31 -5 0 25d4+600 4d10+10
+75000 0
+0 Dragon~ 2
 #1806
 queen snow~
 the Snow Queen~
@@ -67,9 +75,9 @@ The Queen of Snows did not invite you to be here.
 Dressed in all white, she almost charms you with her placidness.
 ~
 3 128 0 S
-32 -10 -100 3d10+2000 15d3+15
-50000 600000
-8 god~ 2
+28 -10 0 3d10+2000 15d3+15
+50000 0
+0 God~ 2
 #1807
 giant frost guard~
 the cold frost giant~
@@ -79,9 +87,9 @@ He's blue, and he doesn't really like gnomes
 but they keep him fed.
 ~
 5 8 0 S
-20 0 -65 6d4+370 3d8+1
-3000 75000
-8 giant~ 1
+22 0 0 6d4+370 3d8+1
+3000 0
+0 Giant~ 1
 #1808
 mistress white~
 the white mistress~
@@ -90,9 +98,9 @@ The white mistress leaps and shouts "Intruder!"
 She is a fanatical servant to the Snow Queen.
 ~
 39 40 -500 S
-20 5 -66 100d4+50 5d4+10
-14000 70000 
-8 elemental~ 2
+21 5 0 100d4+50 5d4+10
+14000 0
+0 Elemental~ 2
 #1809
 master herbal~
 the master herbal~
@@ -101,9 +109,9 @@ The master herbal is playing with her mints.
 She is too busy to consider you.
 ~
 3 32 0 S
-20 0 -66 4d100+75 3d6+3
-10000 65000
-8 human~ 2
+11 0 0 4d100+75 3d6+3
+10000 0
+0 Human~ 2
 #1810
 thief~
 the thief~
@@ -111,11 +119,13 @@ A thief is here, sneaking between the shadows.
 ~
 He REALLY likes your money!
 ~
-128 32768 -500 S
-7 13 3 7d7+77 2d3+3
-10 1000
-8 human~ 1
+129 32768 -500 S
+7 13 0 7d7+77 2d3+3
+10 0
+0 Human~ 1
 #0
+
+
 
 #OBJECTS
 #1801
@@ -125,7 +135,7 @@ A frozen branch lies on the ground.~
 ~
 4 1 16385
 21~ 3~ 3~ frost breath~
-7 1900 200
+7 1900 0
 #1802
 wand fire~
 a wand of fire~
@@ -133,7 +143,7 @@ A glowing ember of wood melts the snow beneath it.~
 ~
 3 1 16385
 15~ 3~ 3~ fireball~
-7 1900 200
+7 1900 0
 #1803
 flaming axe~
 a flaming axe~
@@ -141,11 +151,11 @@ An axe of blue flame boils the water beneath it.~
 ~
 5 1 8193
 0~ 2~ 15~ 3~
-14 5000 500
-A
-13 2
+14 5000 0
 A
 18 2
+A
+13 2
 #1804
 shield south wind~
 the Shield of the South Wind~
@@ -153,13 +163,13 @@ A beautiful shield lies at your feet.~
 ~
 9 1 513
 10~ 0~ 0~ 0~
-8 1000000 2000
+8 1000000 0
 A
-1 1
+2 3
 A
 5 1
 A
-2 3
+1 1
 #1805
 mint sprig~
 a sprig of mints~
@@ -167,23 +177,24 @@ A sprig of mint sprouts at your feet.~
 ~
 1 65 16385
 0~ 0~ 0~ 0~
-1 20 10
-A
-14 100
+1 20 0
 A
 13 1
+A
+14 100
 #1806
 fuschia potion~
 a fuschia potion~
 A pinkish purple potion is on the floor.~
 ~
 10 0 1
-15~ shield~ remove curse~ ~
-1 100 100
+15~ shield~ remove curse~  ~
+1 100 0
 #0
 
 
-#ROOMS
+
+#ROOMDATA
 #1801
 The Big, Blue Ocean~
 WHOOSH!  A whirlpool sucks you down and spits you out!
@@ -191,7 +202,7 @@ You see the city to the east, with Redferne's castle above,
 teeming with all sorts of life.  The ocean is alive!
 You wonder about the creatures below.
 ~
-18 0 7
+0 0 7
 D0
 ~
 ~
@@ -206,7 +217,7 @@ The Big, Blue Ocean~
 The currents are strong here, guiding you south.  They whisk
 you off in a most magical nature.
 ~
-18 0 7
+0 0 7
 D2
 ~
 ~
@@ -219,7 +230,7 @@ has a mind of its own.  The fish bob there heads
 up at you, mouthing words half-intelligible.  It seems
 you cannot go back but must follow the current.
 ~
-18 0 7
+0 0 7
 D2
 ~
 ~
@@ -232,7 +243,7 @@ masses moving slowly across the see.  The one
 up ahead looks like you could get a footing
 on it and not slip off.
 ~
-18 0 7
+0 0 7
 D2
 ~
 ~
@@ -245,7 +256,7 @@ bites through your magical armor like teeth on bare skin.
 Off in the distance you see a high mountain
 and the seemings of a castle turret.
 ~
-18 0 2
+0 0 2
 D0
 ~
 ~
@@ -261,7 +272,7 @@ You could get lost in the snow, you know.
 The snow is cold, white, and deep.
 It seems you have miles to go...
 ~
-18 0 2
+0 0 2
 D0
 ~
 ~
@@ -270,7 +281,7 @@ D1
 ~
 ~
 0 -1 1831
-D2 
+D2
 ~
 ~
 0 -1 1832
@@ -288,7 +299,7 @@ undecorated are clean and well-kempt, though you think
 to yourself "Who'd want to live out here?"
 The only exist you see is to the north.
 ~
-18 8 0
+0 8 0
 D0
 ~
 ~
@@ -296,7 +307,7 @@ D0
 D5
 You see a poorly-camouflaged door.~
 secret-door~
-2 -1 1808
+33 -1 1808
 S
 #1808
 The Tight Passage~
@@ -305,11 +316,11 @@ but not for you.  You find that the passage goes
 down further, with bits of droppings forming
 snug places for you to hang on too.  Yuck!
 ~
-18 9 1
+0 9 1
 D4
 You see a poorly-camouflaged door.~
 secret-door~
-2 -1 1807
+33 -1 1807
 D5
 ~
 ~
@@ -324,7 +335,7 @@ with finger holes for you to hang on to.
 Down there seems to be flooring to stand on to,
 with the passage to return to the surface.
 ~
-18 9 1
+0 9 1
 D4
 ~
 ~
@@ -343,7 +354,7 @@ a little suspicion.  The tunnels are vast, and from this
 vantage point you can see the huge fortress way
 in the distance.  You have a long way to go.
 ~
-18 8 1
+0 8 1
 D1
 ~
 ~
@@ -360,7 +371,7 @@ of you.  Their faces seem too happy, their manners
 predictable.  The passage is human-sized, not gnome,
 with unidentifiable inscriptions on the walls.
 ~
-18 8 1
+0 8 1
 D1
 ~
 ~
@@ -376,12 +387,12 @@ You are reminded of the biting winds outside,
 as the tunnel suddenly drops in temperature.
 You feel chilling breezes from the north.
 ~
-18 8 1
+0 8 1
 D0
 ~
 ~
 0 -1 1821
-D3 
+D3
 ~
 ~
 0 -1 1811
@@ -393,7 +404,7 @@ The walls are glowing, not from magic, but
 from the heat of some furnace on the other
 side of the wall.  To the west you hear chanting.
 ~
-18 8 1
+0 8 1
 D1
 ~
 ~
@@ -411,7 +422,7 @@ but they do.  It is very immaculate with
 bits of fruit and food offered here,
 precious commodities in a barren place.
 ~
-18 8 1
+0 8 1
 D0
 ~
 ~
@@ -429,8 +440,8 @@ the climate outside you wonder how they could
 exisit in such abundance.  There's a hint of mint
 here.  There are exits to the south and north.
 ~
-18 8 1
-D0 
+0 8 1
+D0
 ~
 ~
 0 -1 1814
@@ -448,7 +459,7 @@ than anywhere else, with torches at each
 column giving the room an air of dancing.
 You hear the hideous songs of "la LA la ..."
 ~
-18 8 1
+0 8 1
 D0
 ~
 ~
@@ -464,7 +475,7 @@ The air is dusty, with the stench of burnt
 carcasses of various animals and meager bits
 of wood.  The heat here is almost unbearable.
 ~
-18 8 1
+0 8 1
 D0
 ~
 ~
@@ -482,7 +493,11 @@ path you walk on goes north.  To the south, there
 is a small room where you can hear chanting.
 There is a sign here.
 ~
-18 8 1
+0 8 1
+E
+sign~
+The sign reads "Woe to the unwelcomed of
+this place!"~
 D0
 ~
 ~
@@ -491,16 +506,12 @@ D1
 The door reads "KEEP OUT!"
 ~
 door east~
-2 -1 1820
+33 -1 1820
 D2
 You see the Chanting Room south of here.
 ~
 ~
 0 0 1816
-E
-sign~
-The sign reads "Woe to the unwelcomed of
-this place!"~
 S
 #1819
 The Snow Queen's Chamber~
@@ -510,7 +521,7 @@ almost saddening calm that envelops you, as if
 some great loss had taken place here.
 There is no physical escape from here.
 ~
-18 8 1
+0 12 1
 S
 #1820
 The Master Herbal's Room~
@@ -519,15 +530,15 @@ with each forest marked for its herbal plant
 growing seasons.  The scent of parsley, sage,
 rosemary and thyme permeate the air.
 ~
-18 8 1
+0 8 1
 D3
 ~
 door west~
-2 -1 1818
+33 -1 1818
 D5
 ~
 secret-door down~
-2 -1 1815
+33 -1 1815
 S
 #1821
 The Guard's Dining Hall~
@@ -539,8 +550,8 @@ how the alliance of Frost Giants and gnomes came
 about.  There are exits to the south and north and a
 room to the east.
 ~
-18 8 1
-D0 
+0 8 1
+D0
 ~
 ~
 0 -1 1823
@@ -551,21 +562,21 @@ D1
 D2
 ~
 ~
-0 -1 1812 
+0 -1 1812
 S
 #1822
 The Vat Room~
 MMMmmmmmmmmmm.  Smells real good in here.
 You see a big vat in the middle of the room.
 ~
-18 8 1
+0 8 1
+E
+vat~
+You see a black vat, melted into the ground.~
 D3
 ~
 ~
 0 -1 1821
-E
-vat~
-You see a black vat, melted into the ground.~
 S
 #1823
 The Frost Giant Guard Quarters~
@@ -576,11 +587,11 @@ and remnants of mead soaking through your
 belongings.  Bits of chewed bones lie about.
 The only visible exit is to the south.
 ~
-18 8 1
+0 8 1
 D0
 The wall surface looks uneven here.~
 sliding-door north~
-2 -1 1826
+33 -1 1826
 D2
 ~
 ~
@@ -594,15 +605,15 @@ has furnished her pet with corpses of lost
 adventurers.  Perhaps yours is next!
 You see a door to the south.
 ~
-18 8 1
-D2
-They must keep it locked for a reason.~
-door south~
-2 -1 1826
+0 8 1
 D0
 The nothern wall seems to give way.~
 secret-door north~
-2 -1 1825
+33 -1 1825
+D2
+They must keep it locked for a reason.~
+door south~
+33 -1 1826
 S
 #1825
 The Blue Dragon's Lair~
@@ -612,7 +623,7 @@ is cold, dry, desert evening-like with a few
 eggs cracked open, as if a hatching just occured.
 The only exit is the crawlway down.
 ~
-18 8 1
+0 8 1
 D5
 ~
 ~
@@ -625,7 +636,7 @@ could trample through it in a second.  Great
 howling abounds from behind the great door
 to the north.
 ~
-18 9 2
+0 9 2
 D0
 They must keep it locked for a reason.
 ~
@@ -648,7 +659,7 @@ There is a giant key hole here, but it looks well
 worn by the snow and wind.  You feel the heat
 of the furnace room to the south.
 ~
-18 8 1
+0 8 1
 D0
 It must be locked to keep you out.
 ~
@@ -669,7 +680,7 @@ reflections.
 
 The white mistress leaps and shouts "Intruder!"
 ~
-18 8 1
+0 8 1
 D0
 ~
 ~
@@ -681,7 +692,7 @@ D1
 D2
 ~
 door south~
-2 -1 1827
+33 -1 1827
 D3
 ~
 ~
@@ -696,7 +707,14 @@ a big plaque on the wall.
 
 The white mistress leaps and shouts "Intruder!"
 ~
-18 1032 1
+0 1032 1
+E
+plaque~
+The plaque reads, "Created by Mahatma 5/24/90
+with thanks to Alander, Hatchet, & Little.
+Thanks to Savaki & Drustan for starting me on
+this junk.  & the sprig of mints are for Andersen."
+~
 D0
 ~
 ~
@@ -713,13 +731,6 @@ D3
 ~
 ~
 0 -1 1828
-E
-plaque~
-The plaque reads, "Created by Mahatma 5/24/90
-with thanks to Alander, Hatchet, & Little.
-Thanks to Savaki & Drustan for starting me on
-this junk.  & the sprig of mints are for Andersen."
-~
 S
 #1830
 Another Mirrored Room~
@@ -727,7 +738,7 @@ Yet another mirrored room, same as before.
 
 The white mistress leaps and shouts "Intruder!"
 ~
-18 1032 1
+0 1032 1
 D0
 ~
 ~
@@ -751,7 +762,7 @@ You could get lost in the snow, you know.
 The snow is cold, white, and deep.
 It seems you have miles to go before you sleep.
 ~
-18 0 2
+0 0 2
 D0
 ~
 ~
@@ -775,7 +786,7 @@ You could get lost in the snow, you know.
 The snow is cold, white, and deep.
 It seems you have miles to go before you sleep.
 ~
-18 0 2
+0 0 2
 D0
 ~
 ~
@@ -801,7 +812,7 @@ It seems you have miles to go before you sleep,
 ...miles to go before you sleep.
 You see an outpost to the south.
 ~
-18 0 2
+0 0 2
 D0
 ~
 ~
@@ -821,82 +832,76 @@ D3
 S
 #0
 
-#RESETS
-* Name of Zone: Little Haven/Glass Fortress
-* Creator: Mahatma
-* Contact: c370672@h281.mdc.com
-* Files: Haven.are (for Merc 2.0)
-* Suggested level: groups of > 10 or soloed by 20-30th levels.
-*	Please send me a fully debugged copy.  I have done my
-* 	best to make it as bug-free as possible.
-*	This area is (hopefully) to be first used
-*	at Rivers of Mud (imp: Alander).  I have written
-*	other areas including Arachnos, Islands of Minos,
-*	and the (failed) Collinwood Area :P .
-*
-* Geography: This adds an ocean area and connects to the
-* standard Midgaard on the river, going west at
-* 'Under the Bridge.'
-*
-* Thank you for allowing me to add to your world.
-*
-*			-- Mahatma the Silent
 
-M 0 1801 10 1810		busy gnome
-M 0 1801 10 1811		busy gnome
-M 0 1801 10 1812		busy gnome
-M 0 1810 10 1812		Thief
-M 0 1801 10 1813		busy gnome
-M 0 1801 10 1814		busy gnome
-M 0 1802 4 1807			gnome guard
-M 0 1802 4 1807			gnome guard
-M 0 1803 1 1831			polar bear
-M 0 1803 1 1832			polar bear
-M 0 1803 1 1833			polar bear
-M 0 1803 1 1805			polar bear
-M 0 1804 1 1824			white dragon
-E 1 1802 2 17				gets a fire wand
-M 0 1805 1 1825			blue dragon
-E 1 1803 2 16				gets a flaming axe
-M 0 1806 1 1819			Snow Queen
-E 1 1804 1 11				gets a shield southwind
-E 1 1804 4 17				gets an ice staff
-M 0 1807 5 1818			frost giant guard
-G 1 1806 10				give him a purple potion
-M 0 1807 5 1814			frost giant guard
-G 1 1806 10				give him a purple potion
-M 0 1807 5 1821			frost giant guard
-G 1 1806 10				give him a purple potion
-M 0 1807 5 1827			frost giant guard
-G 1 1806 10				give him a purple potion
-M 0 1807 5 1827			frost giant guard
-M 0 1808 1 1830			white mistress
-E 1 1802 2 17				gets a fire wand
-M 0 1808 1 1828
-M 0 1808 1 1828			white mistress
-E 1 1803 2 16				gets a flaming axe
-M 0 1809 1 1820			master herbal
-G 1 1805 10 				gets a sprig of mints
-*
-* there were some locked doors here, but I can't find any keys, so I'm not
-* sure what to do with this.    Hatchet of Merc Mud
-*D 0 1827 0 2			Lock the door.
-*D 0 1823 0 2			Lock the door.
-*
-* some randomizing of rooms.    Hatchet
+
+#SPECIALS
+M 1804 spec_cast_mage
+M 1805 spec_cast_mage
+M 1806 spec_cast_mage
+S
+
+
+
+#GAMES
+S
+
+
+
+#RESETS
+M 0 1803 1 1805
 R 0 1806 4
+M 0 1802 4 1807
+M 0 1802 4 1807
+M 0 1801 10 1810
+M 0 1801 10 1811
+M 0 1801 10 1812
+M 0 1810 10 1812
+M 0 1801 10 1813
+M 0 1801 10 1814
+M 0 1807 5 1814
+G 0 1806 0
+M 0 1807 5 1818
+G 0 1806 0
+M 0 1806 1 1819
+E 0 1804 0 11
+E 0 1804 0 17
+M 0 1809 1 1820
+G 0 1805 0
+M 0 1807 5 1821
+G 0 1806 0
+M 0 1804 1 1824
+E 0 1802 0 17
+M 0 1805 1 1825
+E 0 1803 0 16
+M 0 1807 5 1827
+G 0 1806 0
+M 0 1807 5 1827
+M 0 1808 1 1828
+M 0 1808 1 1828
+E 0 1803 0 16
 R 0 1828 4
 R 0 1829 4
+M 0 1808 1 1830
+E 0 1802 0 17
 R 0 1830 4
+M 0 1803 1 1831
 R 0 1831 4
+M 0 1803 1 1832
 R 0 1832 4
+M 0 1803 1 1833
 R 0 1833 4
 S
 
-#SPECIALS
-M  1804 spec_cast_mage
-M  1805 spec_cast_mage
-M  1806 spec_cast_mage
+
+
+#MOBPROGS
 S
+
+
+
+#SHOPS
+0
+
+
 
 #$

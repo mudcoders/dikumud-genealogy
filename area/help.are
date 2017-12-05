@@ -1,8 +1,8 @@
       
 #HELPS
-    
 -1 GREETING~
 .
+This Mud is based on the fabolous
                    __ ____  ./|        ./\     ____ ____
 Based on          / __|_/"`/ /|_______/ / |   '"\_|_  @ \       By:
 Envy 2.0        /  /#/      | @/ _@@@@ \ @/          \#\  @ \     The EnvyMud
@@ -22,9 +22,30 @@ Staerfeldt, Katja    |     \  /     |   | |   |   _     \     @@ \   Kahn,
 Nyboe, Tom Madsen,   |      \/      |   | |   |  | |     |     @@ \   Hatchet,
 Michael Seifert,     |   |\    /|   |   |_|   |  |_|     |      @@ \   and
 and Sebastian Hammer |___| \__/ |___|\_______/|_________/           |   Staff
-( see 'help diku' )			       email: envy@uclink3.berkeley.edu
-	WWW Home Page: http://www.teleport.com/-morpheus/envy.html
-					       \_tilde
+( see 'help diku' )
+
+           _,.-----.,_
+        ,--           --.               M    Y    T    H    R    A    N
+      ,^___           ___^.
+     /--   --   .   --   --\                      M    U    D
+    Y  ,--._    I    _.--.  Y
+    | Y     --. | ,--     Y |                        3 . 0
+    | |        }:{        | |
+    j l       / | \       ! l
+ .--  (__,.--- .^. ---.,__)  --. 
+(           / / | \ \           )
+ \.____,   -  \/-\/  -   .____,/
+  ^.____                 ____.^    Implementor :  Maniac!
+     | |T -\  !   !  /- T| |
+     | |l   _ _ _ _ _   !| |
+     | l \/V V V V V V\/ j |
+     l  \ \|_|_|_|_|_|/ /  ! Original DikuMUD by Hans Staerfeldt, Katja Nyboe,
+      \  \[T T T T T TI/  /  Tom Madsen, Michael Seifert, and Sebastian Hammer
+       \  `^-^-^-^-^-^'  /
+        \               /
+         \.           ,/ 
+           -^-.____,-^
+
 State thy name: ~
 
 -1 HANDBOOK~
@@ -62,12 +83,31 @@ or to render them null and void.
 ~
 
 -1 MOTD~
-.
-If you read this motd, press Return.
+Welcome to Mythran Mud,
+
+Many great and new additions have been made the past few days.
+The following things have changed...
+
+	Languages are in, learn 'em at the healers
+	The mud economy has been boosted, check out: help economy
+	You can do your bank things in the (old) defunct reception
+
+	Maniac
+
 ~
 
 50 IMOTD~
+Immortal Message of the Day.
+============================
 
+Their are lost of new things, here's a summary...
+
+	lset	language set
+	lstat	language stat
+	speak	speak a language
+	learn	to learn a language
+
+	And some more i don't know right now
 ~
 
 -1 SCHOOL~
@@ -104,15 +144,17 @@ Syntax: up
 Syntax: down
 
 Use these commands to walk in a particular direction.
+NOTICE ** These commands (like all) can be shortened to: n,s,e,w,u and d **
 ~
 
 0 BUY LIST SELL VALUE~
-Syntax: buy   <object>       <shopkeeper>
+Syntax: buy   <#> <object>   <shopkeeper>
 Syntax: list  <object | all> <shopkeeper>
 Syntax: sell  <object>       <shopkeeper>
 Syntax: value <object>       <shopkeeper>
 
 BUY buys an object from the first shop keeper if no shopkeeper is identified.
+You can also buy more items in one go. ex. buy 10 bread, buys 10 breads.
 
 LIST with no argument and LIST ALL lists the objects the first shop keeper
 will sell you.
@@ -232,6 +274,53 @@ Syntax: inventory
 
 EQUIPMENT lists your equipment (armor, weapons, and held items).
 INVENTORY lists your visible inventory.
+~
+
+0 ARENA~
+This MUD uses [ARENA] v1.00 code by: Whiplash (whiplash@tft.nacs.net)
+-
+Players may safely battle each other in the "ARENA" regardless of the
+outcome of any battles fought within the arena, players will not lose
+experience, or gain experience, it is simply a safe means of player vs.
+player combat.
+Related ARENA commands.
+CHALLENGE: command sent to challenge a player in the arena.
+ACCEPT:    command given to accept a players challenge.
+DECLINE:   command given to decline a players challenge.
+BET:       command given to place a wager on the outcome of arena battles.
+-
+You can get more detailed information on all of the above commands by
+checking the HELP for each of them.
+~
+
+0 CHALLENGE~
+This command is used to challenge a player to an ARENA battle, you may
+only challenge players, and they must be level 5 or above. You cannot
+challenge immortals, pets, or other mobiles. In order to challenge a
+player, both players must be fully healed, and the challenged player
+must not be fighting something else at the time.
+Syntax: CHALLENGE <player>   ie: challenge whiplash
+~
+
+0 DECLINE~
+This command is used to decline a challenge to an ARENA battle, you may
+only decline a challenge offered by the player who challenged you.
+Syntax: DECLINE <player>     ie: decline whiplash
+~
+
+0 ACCEPT~
+This command is used to accept a challenge to an ARENA battle, you may
+only accept a challenge from the player who challenged you.
+Syntax: ACCEPT <player>      ie: accept whiplash
+~
+
+0 BET~
+This command places a wager on the outcome of upcoming ARENA battles.
+During the initial announcement of a battle, the fighters, as well
+as their arena records will be displayed. You can bet between 1 and
+1000 gold on the outcome of ARENA battles, but you may only bet on a
+single fighter.
+Syntax: BET <gold> <player>  ie: bet 500 whiplash
 ~
 
 0 FEE~
@@ -695,6 +784,27 @@ Syntax: wizhelp
 WIZHELP provides a list of all of the immortal commands available to you.
 ~
 
+50 WIZNET~
+Syntax: wiznet [on|off]
+Syntax: wiznet <string>
+
+Wiznet is an information network for immortals, it supplies immorts with
+all kinds of interesting information about the mud, and the players.
+
+With the wiznet command (no arguments) you can see your current wiznet
+settings, with wiznet on or off you can turn all channels on or off.
+
+If you type wiznet with a string behind it, the matching channel options
+are toggled.
+
+Example: if you only had wiznet logins on, you could turn them off, and
+some others on with this command.
+
+wiznet login snoop chat
+this would turn the logins off (since they where on) and snoop and chat on,
+since they where off.
+~
+
 0 AREAS COMMANDS SOCIALS~
 Syntax: areas
 Syntax: commands
@@ -710,7 +820,7 @@ SOCIALS shows you all of the social commands available to you.
 
 -1 SUMMARY~
 MOVEMENT                          GROUP
-north south east west up down     follow group gtell split
+north south east west up down     follow group gtell split clan
 exits recall
 sleep wake rest stand
 
@@ -719,14 +829,14 @@ get put drop give sacrifice       help credits areas commands socials
 donate wear wield hold            report score time weather where who
 recite quaff zap brandish         channels config description password title
 lock unlock open close pick bash  auction chat music question answer shout yell
-inventory equipment look compare  emote pose say tell
+inventory equipment look compare  emote pose say tell clantalk
 eat drink fill                    bug idea typo
 list buy sell value               note wizlist slist spells autoexit
 				  autoloot autosac blank brief combine prompt
 
 COMBAT                            OTHER
 kill flee kick rescue disarm      ! save quit pagelength
-backstab cast wimpy               practice train
+backstab cast wimpy               practice train learn
 
 For more help, type 'help <topic>' for any command, skill, or spell.
 Also help on: DAMAGE DEATH EXPERIENCE NEWS STORY TICK
@@ -848,29 +958,32 @@ when it comes to bodily health.
 ~
 
 -1 NEWS~
-New Commands:
-"whois" gives information on characters.
-Many socials added by Binky and Katrina.
 
-New Areas:
-Binky's Circus
-Solace
+New stuff:
+	You can now stand/rest/sleep in/on/at objects (ex. rest in tub)
+	Some items give you special powers when you use them.
 
-Features:
-Psionicist class added, with 40-some spells (coded entirely by Thelonius).
-Bash Door skill for Warriors, as well as spec_repairman to fix bashed doors.
-Poison Weapon skill for Thieves.
-Dispel Magic now works.
-Purgatory added, so corpse retrieval parties are not necessary.
+	Clan's are in... if you want to join a clan get info about the clan
+	and then type 'clan apply <clanname>' to apply for membership.
 
-Changes:
-50 mortal levels instead of 36.
-Dragon breath spells, now avaiable to mages for many levels, have increased
-  mana cost and waitstate.
-Changed linked-list structure updates char_list, object_list, and extra
-  descriptions every tick in one function rather than instantaneously in many
-  different functions.
-Reduced memory requirements because of list_update change.
+	At the bank you can deposit and withdraw your money, you can also
+	buy shares, and make profit.
+
+	If you want to stop playing permanently we would like it if you
+	deleted your playerfile, by typing 'delete' twice.
+
+	Some mobs in the game have quests for players to do... You can gain
+	quest points by doing those quests, you can exchange these points
+	for special items or other valuable things.
+
+	Some mobs in the game play dice games, use the 'bet' command to play
+	the games with the mobs, this is a nice way to get more money...
+	but be carefull... your luck can go bad...
+
+	Players can now learn languages, and decide to speak in a specified
+	language, this can be used to hold conversations, and other players
+	who don't speak the language can't understand you.
+
 ~
 
 -1 STORY~
@@ -1133,68 +1246,57 @@ For example, "WHOIS frag" might return information on Frag, Fraggle, and
 McFraggadocio.
 ~
 
--1 "DREAM MAKERS"~
-This entry contains names of the contributing people of this Mud.
-There were the First people to hold these positions..we thank them!
-		Builders	Implementors	Coders
-
-Directors	Hatchet		Kith		Kahn
-                                Yaz
-Seniors		Maxx		Binky		Thelonius
-		Picard		Frag
-		Karl		Maverik
-				Picard
-				Tricia
-				Unisex
-				Icaza
-
-Juniors		Ash		Anthea
-		Binky		Alexis		Binky
-		Demonspawn	Benito
-				Boom		Bongs
-		Dreads		Huka		Demonspawn
-		Elvishparsley	Katrina		Draiden
-		Forstall	Lunch
-				Manx		Globi
-		Katrina		Skie		Greydon
-		Katzenjammer	Katzenjammer	Katrina
-		Lupin		StrayKat	Morgan
-		Mandur				Sandman
-		Maverik				Skie
-		Morgan				Stooly
-		Pudu				Tre
-		Shapeshifter
-		Shoes
-		Stooly
-		Tholeus
-
-	All of these immortals have contributed in some way to the
-workings of this mud.  Please treat them with respect and dignity for
-they _SHAPE YOUR MUD FUTURE!_
-	Congratulations to all here and keep up the good work!
-
-~
 -1 WIZLIST~
-
-*******************************************************************************
-*  These people have achieved immortality and superior powers in this realm.  *
-*  They should be treated with respect and kindness..a few prayers wouldn't be*
-*  a bad idea now and again either. Lying or stealing from them is punishable *
-*  by Death. Word of advice....dont do it. *grin*                             *
-*******************************************************************************
-
-				 Directors
-				===========
-
-				  Seniors
-				 =========
-
-                                  Juniors
-                                 =========
-
-                                Apprentices
-                               =============
-
+.
+        ________        *****************************       ________
+      /+_+_+_+_+_\      ** The Gods of EnvyMud 2.0 **     /+_+_+_+_+_\
+      \__________/      *****************************     \__________/
+        |::XXXX|                                            |::XXXX|
+        |X::XXX|        Implementors / Directors [54]       |X::XXX|
+        |XX::XX|        *****************************       |XX::XX|
+        |XXX::X|                 The Maniac                 |XXX::X|
+        |XXXX::|                                            |XXXX::|
+        |::XXXX|                                            |::XXXX|
+        |X::XXX|            Seniors / Creators [53]         |X::XXX|
+        |XX::XX|            ***********************         |XX::XX|
+        |XXXX::|                   Rimmer                   |XXXX::|
+        |::XXXX|                                            |::XXXX|
+/<<>>\/<<>>\/<<>>\/<<>>\          Vangelis          /<<>>\/<<>>\/<<>>\/<<>>\
+\<<>>/\<<>>/\<<>>/\<<>>/                            \<<>>/\<<>>/\<<>>/\<<>>/
+       |.  /  . |                  Magoo                   |.  /  . |
+       | .//\.  |                                          | .//\.  |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |                                          | .//\.  |
+       |.  /  . |           Juniors / Deities [52]         |.  /  . |
+       | .//\.  |           **********************         | .//\.  |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |                                          | .//\.  |
+       | .//\.  |                                          | .//\.  |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |              	                           | .//\.  |
+       | .//\.  |                                          | .//\.  |
+       |.  /\ . |              Apprentices [51]            |.  /  . |
+       | .//\.  |              ****************            | .//\.  |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |                                          | .//\.  |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |                                          | .//\.  |
+       |.  /\ . |                                          |.  /  . |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |          Hero's / Immortals [50]         | .//\.  |
+       |.  /  . |          ***********************         |.  /  . |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |                                          | .//\.  |
+       | .//\.  |                                          | .//\.  |
+       |.  /  . |                                          |.  /  . |
+       | .//\.  |                                          | .//\.  |
+       |.  /  . |                                          |.  /  . |
+       |.  /  . |                                          |.  /  . |
+        \ //\. /                                            \ //\. /
+         \ /. /                                              \ /. /
+          \ //                                                \ //
+           \/                                                  \/
+-By Liralen
 ~ 
 
 0 AUTO CONFIG~
@@ -1368,7 +1470,7 @@ WIMPY with no argument sets your wimpy value to 20% of your maximum hit points.
 Some monsters are wimpy.
 ~
 
-0 AUCTION CHAT . MUSIC QUESTION ANSWER SHOUT YELL~
+0 AUCTION CHAT . MUSIC QUESTION ANSWER SHOUT YELL CLANTALK ? >~
 Syntax: auction  <message>
 Syntax: chat     <message>
 Syntax: music    <message>
@@ -1385,6 +1487,10 @@ shouting, SHOUT imposes a three-second delay on the shouter.
 AUCTION, CHAT, MUSIC, and QUESTION and ANSWER also send messages to all
 interested players.  '.' is a synonym for CHAT.  The QUESTION and ANSWER
 commands both use the same 'question' channel.
+The question channel can also be used with the '?' key
+
+CLANTALK sends a message to all players in your clan, you can use
+the '>' key as a shortcut for clantalk
 
 YELL sends a message to all awake players within your area.
 
@@ -1560,13 +1666,17 @@ blend in with the surroundings.  This skill is only effective if the
 psionicist remains absolutely still.
 ~
 
-0 FOLLOW GROUP~
+0 FOLLOW GROUP LOSE~
 Syntax: follow <character>
+Syntax: lose <character>
 Syntax: group
 Syntax: group <character>
 
 FOLLOW starts you following another character.  To stop following anyone else,
 just FOLLOW <yourself>.
+
+LOSE lets <character> stop following you, for those irritating basterds who
+keep following you around to get to the best places in the mud.
 
 GROUP <character> makes someone who is following you a member of your group.
 Group members share experience points from kills and may use the GTELL and
@@ -1592,10 +1702,14 @@ go unnoticed.
 
 0 HIDE SNEAK VISIBLE~
 Syntax: HIDE
+Syntax: HIDE <object>
 Syntax: SNEAK
 Syntax: VISIBLE
 
 If you successfully HIDE, then other characters can't see you.
+
+You can also hide objects so other people can't see them. To look for
+hidden objects use the SEARCH command
 
 If you successfully SNEAK, then you can move in and out of rooms without
 being noticed.
@@ -1605,6 +1719,14 @@ skill.
 
 VISIBLE cancels your hiding and sneaking, as well as any invisibility,
 making you visible again.
+~
+
+0 SEARCH~
+Syntax: SEARCH
+
+Search for hidden items, if you find an hidden item you will uncover it.
+If you find an item you will stop searching, so if you suspect there are
+more hidden items in the room you will have to search again.
 ~
 
 0 'POISON WEAPON'~
@@ -1638,6 +1760,18 @@ The higher your intelligence, the more you will learn at each practice
 session.  The higher your wisdom, the more practice sessions you will
 have each time you gain a level.  Unused sessions are saved until you
 do use them.
+~
+
+0 LEARN~
+Syntax: Learn
+Syntax: Learn <language>
+
+LEARN without an argument tells you what languages there are availeble
+and how good you are at them.
+
+LEARN with an argument lets you learn the language, if you at a teacher
+who is willing to teach you the language. Learning a language costs money
+(teachers are not free you know) and a learning session.
 ~
 
 0 QUI~
@@ -3276,6 +3410,176 @@ With this skill, a psionicist can augment the strength of a companion.
 However, the psionicist's own strength is reduced at the same time.  It is
 possible to augment the strength of several others, as long as the psionicist
 does not become too weak.
+~
+
+0 BANK SHARES ECONOMY~
+Syntax:
+bank deposit	<amount>
+bank withdraw	<amount>
+bank balance
+bank transfer	<amount>	<player>
+bank buy	<# of shares>
+bank sell	<# of shares>
+bank check
+
+The Mythran mud bank system enhances the economy of the MUD. In a bank
+you can deposit money to your account, withdraw money from it, check your
+current bank balance, and transfer money to other players.
+This can be usefull if you have to pay your fee for the clan or divide
+the cash from your quest among eachother.
+
+Another feature of the bank is that you can buy and sell shares. By buying
+shares you can invest your money in the mud economy. The shares constantly
+change in value, so you can make a nice profit if you buy and sell your
+shares at the right times.
+The current share price and be seen by going to the bank, or by checking
+your score.
+~
+
+53 UPDATE~
+Syntax:
+update bank
+update time <value>
+
+The update command updates (several) in-game mechanisms.
+
+Update bank forces an update of the share price
+Update time changes the time (handy if shops are closed)
+~
+
+1 CLAN~
+Clans are groups of people that try to further a common idea. Players
+can join a clan at 10th level, using the clan command.
+
+At the moment there are just 2 clans, clan Mythran and clan Dragon
+If you want to set up a new clan, you have to find an immortal who is
+willing to sponsor your clan, that immortal will become the clan god (level 10)
+and has ultimate power over the clan. The clan will then get a clan-room,
+a clan recall room and donation pit, and various pieces of clan-only equiptment.
+For more info about starting clans, ask the gods...
+
+There is help for the 2 clans we currently have, just type
+	help clan_mythran
+	help clan_dragon
+
+Syntax: Clan <command> <parameters>
+
+Clan info:	Gives you information about your clan, and what level you are
+Clan who:	Lists people in your clan (only the ones that are on-line)
+Clan talk:	Another way to use clantalk, or '>'
+Clan apply <clan>
+		Sends your application for <clan> use this if you want to join.
+Clan initiate <name>
+		This let's clan initiaters initiate a new clan-member. The
+		player is then a level 0 clan member.
+Clan recruit <name>
+		After a player is initiated, he needs to be recruited to
+		become a full (level 1) clan member.
+Clan advance <name> [<level>]
+		With this command the clan leader can advance, or demote
+		clan members, if no level is supplied, the default will
+		occur... the player rises 1 level.
+Clan leave:	This command allows a clan member to leave a clan, the player
+		will then be put in clan exile, and can no longer join a clan.
+Clan leader <name>
+		This allows clan leaders to pass on the clan leadership to
+		another clan member.
+Clan kick <name>
+		This allows clan leaders to kick clan members out of the clan.
+
+Clan code: Version 1.0 by Maniac
+Clan code was written by The Maniac from Mythran Mud, more commands will
+follow soon, i hope... <grin> -- Maniac --
+~
+
+1 NECROMANCY NECROMANCER~
+Within all living things is a magical energy of life-force. When that
+life force leaves the body a by-product, known as etheric waves remain
+inside the dead body. Necromancers use this energy to cast their spells.
+
+See also: reagents "necromancer spells"
+~
+
+1 REAGENTS~
+Many of the spells a necromancer can cast require reagents. Reagents are
+special items that represent the elements of which the spell is built.
+If the necromancer doesn't have the reagents required for a spell the spell
+will fail.
+This is a list of commonly required reagents and their purpose:
+      Reagent   Purpose                 Notes
+
+        Blood   Movement/Animation      The essence of life.
+         Bone   Summoning/Communication The source of the will.
+         Wood   Preservation/Binding    Wood can be stronger that rock.
+         Dirt   Protection              Plants grow in solid earth.
+Executioners-
+         hood   Death                   A black fungus.
+    Blackmoor   Power                   A mixture of blackrock and earth.
+~
+
+1 "NECROMANCER SPELLS"~
+This is a list of necromantic spells that are currently available in Mythran.
+More detailed information about the spells can be obtained with help <spell>
+
+Spell:          Reagents:               Description:
+-----------------------------------------------------------------------------
+Rock Flesh      wood, dirt              Turns casters flesh to rock.
+Summon Dead     blood, bone, wood       Summons a dead warrior.
+
+More spells are to come, but since we've only just started necromancy
+there are not many spells yet.
+~
+
+1 "ROCK FLESH"~
+Usage: cast 'Rock flesh'
+
+This spell turns the casters flesh into rock, this enables him to withstand
+battle better.
+This spell requires wood and dirt reagents.
+~
+
+
+1 "SUMMON DEAD"~
+Usage: cast 'summon dead'
+
+This spell summons a dead warrior to abey the commands of the necromancer.
+This spell requires blood, bone and wood reagents.
+~
+
+
+50 FOR~
+
+FOR ALL <action>
+FOR MORTALS <action>
+FOR GODS <action>
+FOR MOBS <action>
+FOR EVERYWHERE <action>
+
+
+Executes action several times, either on ALL players (not including yourself),
+MORTALS (including trusted characters), GODS (characters with level higher than
+L_HERO), MOBS (Not recommended) or every room (not recommended either!)
+
+If you insert a # in the action, it will be replaced by the name of the target.
+
+If # is a part of the action, the action will be executed for every target
+in game. If there is no #, the action will be executed for every room containg
+at least one target, but only once per room. # cannot be used with FOR EVERY-
+WHERE. # can be anywhere in the action.
+
+Example:
+
+FOR ALL SMILE -> you will only smile once in a room with 2 players.
+FOR ALL TWIDDLE # -> In a room with A and B, you will twiddle A then B.
+
+Destroying the characters this command acts upon MAY cause it to fail. Try to
+avoid something like FOR MOBS PURGE (although it actually works at my MUD).
+
+FOR MOBS TRANS 3054 (transfer ALL the mobs to Midgaard temple) does NOT work
+though :)
+
+The command works by transporting the character to each of the rooms with
+target in them. Private rooms are not violated.
 ~
 
 0 $~

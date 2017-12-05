@@ -2,13 +2,14 @@
 # Written by Furey.
 # With additions from Tony.
 # With changes from Kahn.
+# Latest mythran changes by Maniac
 
 # Set the port number.
-set port = 4000
+set port = 1234
 if ( "$1" != "" ) set port="$1"
 
 # Change to area directory.
-cd /EnvyMud/area
+cd ../area
 
 # Set limits.
 nohup

@@ -1,0 +1,18 @@
+How to add a new language to Mythran Mud 3.0
+
+A guide written by: Canth and Maniac from Mythran.
+
+
+	Think of a new language...
+
+	Define the language in merc.h under the section 'language stuff'
+	and give it a new language number.
+	Increase MAX_LANGUAGE by 1
+	add a DECLARE_DO_FUN in merc.h along with the others...
+
+	In const.c update the lang_table, add your language at the bottom
+
+	In language.c add a function that calls do_language, call it
+	do_<some language here>			(just like the others)
+
+	Add a command in interp.c (after the other languages)

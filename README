@@ -1,21 +1,20 @@
-EnvyMud Release 2.0
-Monday, 25th December 1995
+Mythran Mud Release 1.0
+Friday, 21th June 1996
 
-Kahn		michael@uclink.berkeley.edu
-Hatchet		hatchet@uclink.berkeley.edu
-
+Maniac		v942346@hhs.nl
+Canth		phule@xs4all.nl
 
 
 === Introduction
 
-EnvyMud 2.0 is an EnvyMud based on Merc Diku Mud with many
-enhancements and contributions.  See our 'contrib.txt' and 'help envy'
-for acknowledgements.  Send us your contribution, and you'll be in
-there too!
+Mythran Mud is a mud based on Envy 2.0 It has many new enhancements and
+contributions. For a more detailed view on the changes in Mythran check
+the WHATSNEW.TXT file in the src directory.
 
 Enjoy our mud.  May your visit here be ... Fun.
 
-This is the 2.0 production release of Envy.
+This is the 3.1 production version of Mythran.
+(And the first public release)
 
 
 
@@ -42,17 +41,22 @@ copyright and license agreement.  EnvyMud 2.0 contains substantial
 enhancements to EnvyMud 1.0.  These enhancements are copyright 1995 by
 Michael Quan and Mitchell Tse. Our license agreement is in 'license.nvy'.
 
+Mythran Mud is a derivative of EnvyMud 2.0 and is subject to their
+copyright and license agreement.  Mythran Mud contains substantial
+enhancements to EnvyMud 2.0.  These enhancements are copyright 1996 by
+Mark Janssen and Jeroen v/d Maat. Our license agreement is in 'license.myt'.
+
+
 The license terms boil down to this: the people who wrote this mud want due
 credit for their work.
-
 
 
 === Contents of the Release
 
 	area	Area files.
 	doc	Documentation.
-	log	Log files    (initially empty).
-	player	Divided into subdirectories for player files (initially empty).
+	log	Log files				(initially empty).
+	player	Subdirectories for player files		(initially empty).
 	src	Source files.
 
 Each directory contains a README file that is designed to explain the contents
@@ -63,29 +67,30 @@ and purpose of that particular directory.  Please READ them!
 === How to Install
 
 First, group with your highest level Unix guru, and have him or her tank.
-Envy is easier to install than other muds, but every site is different.
+Mythran is easy to install than some muds, but every site is different.
 
-(1) Get the release Envy_20.tar.gz from one of these fine
-    anonymous ftp sites:
-
-	206.24.105.9
+(1) Get the release Mythran-1.0.tar.gz from a web-site, and place it
+    in a directory where you want it to go (ex. /home/mythran on linux)
 
 (2) Unpack the release.
 
-	gzip -d Envy_20.tar.gz | tar xvf -
+	gunzip -c Mythran-1.0.tar.gz | tar xvf -
 
 (3) Go into the 'src' directory.  Choose the Makefile for your operating
     system and copy it into 'Makefile':
 
-	Makefile	Most machines with 'gcc'
-	Makefile.aix	AIX
-	Makefile.hp	Hp/UX
-	Makefile.irx	Most machines running IRIX
-	Makefile.mip	Mips Risc/OS
-	Makefile.nex	NeXT
-	Makefile.sol	SunSoft Solaris 2.1
-	Makefile.sys	Sequent SysV
-	Makefile.tek	Tektronix xd88s
+	Makefile		Most machines with 'gcc'
+	Makefile.aix		AIX
+	Makefile.hp		Hp/UX
+	Makefile.irx		Most machines running IRIX
+	Makefile.mip		Mips Risc/OS
+	Makefile.nex		NeXT
+	Makefile.solaris	SunSoft Solaris 2.1
+	Makefile.sys		Sequent SysV
+	Makefile.tek		Tektronix xd88s
+	Makefile.linux		Linux (worked on 1.2.1 and 1.2.13)
+	Makefile.sunos4		SunOS
+	Makefile.dos		MS-Dos running DJGPP by DJ-Delorie
 
     See 'port.txt' for more information on porting, including the
     single-user MsDos and Macintosh versions.
@@ -99,18 +104,18 @@ Envy is easier to install than other muds, but every site is different.
 
     If you encounter errors with 'make', send us your 'make.out' file:
 
-	mail -s make.out michael@uclink.berkeley.edu < make.out
+	mail -s make.out v942346@hhs.nl < make.out
 
     Also we'll need to know what kind of hardware, operating system,
     and C compiler you have.
 
-    We will help you get Envy running, but obviously we can't guarantee
-    Envy will run on any particular machine.
+    We will help you get Mythran running, but obviously we can't guarantee
+    Mythran will run on any particular machine.
 
 (5) Start the game:
 
 	startup &
-	telnet localhost 4000
+	telnet localhost 1234
 	
 (6) To make your first immortal character, just start as a mortal
     character, play at least as far as level 2, and then edit the
@@ -118,20 +123,19 @@ Envy is easier to install than other muds, but every site is different.
     you can advance the rest).
 
 (7) If you haven't already done so, read 'license.doc', 'license.txt',
-    and 'license.nvy'.  Because Envy is a derivative work of Diku Mud, you
-    must register your mud with the original Diku implementors.
+    'license.nvy' and 'license.myt'.  Because Mythran is a derivative
+    work of Diku Mud, you must register your mud with the original Diku
+    implementors.
   
 (8) Of course you're going to change the title screen, help files, and so on.
     Don't just globally erase the 'Merc' references, ok?  You wouldn't
     like it if we did that to your work, so don't do it to ours.
 
 
-
 === Support
 
-First, read the documentation in the 'doc' directory.  We updated all of the
-documentation files from Envy 1.0 for the Envy 2.0 release, and have been
-keeping them up-to-date since.
+First, read the documentation in the 'doc' directory. The files are not as
+up to date as they should be but they contain most important information.
 
 Also check the 'wizhelp' command and read the 'help' descriptions for the
 individual immortal commands.
@@ -161,9 +165,12 @@ since the release.
 
 === Future Plans
 
-Envy 2.0 contains many structure improvements over Envy 1.0.  Some
+Mythran Mud contains many structure improvements over Envy. Some
 ideas which have been incorporated were suggested by our many players.
 A few of these ideas have been created using the 'Reverse Engineering'
 method.
 
 Enjoy.
+
+Originally released 6/21/1996.
+Updated for GCC4 compatibility 3/5/2006 by Samson.

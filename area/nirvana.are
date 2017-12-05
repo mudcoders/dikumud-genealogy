@@ -1,4 +1,12 @@
-#AREA	{20 45} Forstal The Plane of Nirvana~
+#AREADATA
+Name        The Plane of Nirvana~
+Builders    None~
+VNUMs       8100 8159
+Security    1
+Recall      3001
+End
+
+
 
 #MOBILES
 #8100
@@ -8,10 +16,10 @@ A tridrone is here, doing a menial task.
 ~
 You see what appears to be a 3 sided pyramid with spidery arms and legs.
 ~
-1|4|64 0 0 S
-18 11 4 3d20+80 1d6+6
-0 8500
-8 arachnid~ 0
+69 0 0 S
+16 11 0 3d20+80 1d6+6
+0 0
+0 Arachnid~ 0
 #8101
 quadrone~
 a quadrone~
@@ -19,10 +27,10 @@ A quadrone is here, watching for trespassers.
 ~
 A cubic creature, with spiny arms and legs.
 ~
-1|4|32|64 8 0 S
-21 9 3 14d10+70 2d8+0
-0 13000
-8 arachnid~ 0
+101 8 0 S
+10 9 0 14d10+70 2d8+0
+0 0
+0 Arachnid~ 0
 #8102
 pentadrone~
 a pentadrone~
@@ -30,10 +38,10 @@ A pentadrone is here, policing the area.
 ~
 A five-armed creature which resembles a starfish on thin stilt-like legs.
 ~
-1|2|32|64 8 0 S
+99 8 0 S
 23 8 0 15d12+80 3d4+3
-0 17000
-8 arachnid~ 0
+0 0
+0 Arachnid~ 0
 #8103
 decaton~
 a decaton~
@@ -41,10 +49,10 @@ A decaton is here, overseeing the other modrons.
 ~
 A Decaton  appear as a 10 tentacled sphere on stumpy legs.
 ~
-1|2|32|64 8 0 S
-25 6 2 25d10+50 2d8+2
-0 23000
-8 arachnid~ 0
+99 8 0 S
+20 6 0 25d10+50 2d8+2
+0 0
+0 Arachnid~ 0
 #8104
 nonaton~
 A nonaton~
@@ -52,10 +60,10 @@ A nonaton is here, preserving law and order.
 ~
 A cylidrical modron with 9 tentacles and stubby legs.
 ~
-1|2|32|64 136 0 S
-27 5 2 11d8+150 2d10+1
-0 27000
-8 arachnid~ 0
+99 136 0 S
+28 5 0 11d8+150 2d10+1
+0 0
+0 Arachnid~ 0
 #8105
 octon~
 An octon~
@@ -64,10 +72,10 @@ An octon is here, governing his ward of responsilbility.
 An octon has a collar at shoulder level with 8 tentacled arms outside his
 collar.
 ~
-1|2|32|64 8 0 S
-29 4 1 25d10+75 3d6+5
-0 31000
-8 arachnid~ 0
+99 8 0 S
+32 4 0 25d10+75 3d6+5
+0 0
+0 Arachnid~ 0
 #8106
 septon~
 a septon~
@@ -76,10 +84,10 @@ A septon is here, preserving order.
 A septon appears as a human with a large bald head.  It has a shoulder collar
 with 7 tentacles coming from it.
 ~
-1|2|32|64 8 300 S
-31 3 1 5d10+180 2d8+8
-150 34000
-8 arachnid~ 0
+99 8 300 S
+32 3 0 5d10+180 2d8+8
+150 0
+0 Arachnid~ 0
 #8107
 hexton~
 a hexton~
@@ -88,10 +96,10 @@ A hexton is here, watching over his armies.
 A hexton appears as a humanoid with 6 arms: 2 large human arms with 6 fingers,
 and 4 tentalces below tipped with sharp claws.
 ~
-1|2|32|64 8|128 0 S
-33 1 -2 1d1+249 5d6+5
-2000 50000
-8 arachnid~ 0
+99 136 0 S
+27 1 0 1d1+249 5d6+5
+2000 0
+0 Arachnid~ 0
 #8108
 quinton~
 a quinton~
@@ -101,10 +109,10 @@ Quintons look like tall, stocky humanoids with 4 flexible arms jutting from the
 shoulders.  A prehensile tail serves as the creature's 5th arm, and it has
 fan-like wings attached to their shoulders.
 ~
-1|2|32|64 8 0 S
+99 8 0 S
 35 1 0 8d12+150 4d5+4
-500 50000
-8 arachnid~ 0
+500 0
+0 Arachnid~ 0
 #8109
 tertian~
 a tertian~
@@ -114,10 +122,10 @@ Tertians look very human, save for their 12 foot size, the horns jutting from
 the sides of their bald heads, and the long prehensile tail ending in a mace-
 like ball.
 ~
-1|2|32|64 8 0 S
-40 0 -5 1d1+349 4d6+5
-1000 70000
-8 arachnid~ 0
+99 8 0 S
+39 0 0 1d1+349 4d6+5
+1000 0
+0 Arachnid~ 0
 #8110
 secundus~
 Secundus~
@@ -126,10 +134,10 @@ Secundus, Viceroy of the quarter, is here.
 The secundi appear as incredibly thin, tall humanoids with long, narrow faces
 and deepset eyes.
 ~
-1|2|32|64 8|128 0 S
-45 0 -6 1d1+499 5d6+10
-2500 200000
-8 human~ 0
+99 136 0 S
+50 0 0 1d1+499 5d6+10
+2500 0
+0 Human~ 0
 #8111
 primus~
 Primus~
@@ -139,10 +147,10 @@ Primus is a huge being who rises out of the energy pool and glares at you with
 violet eyes. His right hand is wreathed in darkness, his left in light, and
 he looks very displeased to see you.
 ~
-1|2|32|64 8|128 0 S
-60 0 -10 1d1+1999 3d20+20
-10000 700000
-8 god~ 0
+99 136 0 S
+60 0 0 1d1+1999 3d20+20
+10000 0
+0 God~ 0
 #0
 
 
@@ -150,91 +158,76 @@ he looks very displeased to see you.
 #OBJECTS
 #8100
 sword realms~
-Realms sword~
+realms sword~
 The sword of the rulers of the Realm.~
 ~
-5 2|4|64 8193
+5 70 8193
 0~ 2~ 12~ 3~
-24 55000 12000
-A
-18 5
+24 55000 0
 A
 19 4
+A
+18 5
 #8101
 radiant vest~
 a radiant vest~
 A vest made of some glowing substance.~
 ~
-9 64|1024 9
+9 1088 9
 8~ 0~ 0~ 0~
-30 12000 3000
-A
-19 2
+30 12000 0
 A
 1 3
+A
+19 2
 #8102
 helm radiant~
 a radiant helm~
 A helm glowing and pulsing with radiance.~
 ~
-9 2|4|64|1024 17
+9 1094 17
 8~ 0~ 0~ 0~
-10 5000 1800
+10 5000 0
 A
 18 2
 #8103
 aura sleeves radiant~
-Aura of radiance~
+aura of radiance~
 An aura lies here shimmering before you.~
 ~
-9 2|4|64|1024 257
+9 1094 257
 7~ 0~ 0~ 0~
-10 12450 2200
-A
-18 2
+10 12450 0
 A
 19 2
+A
+18 2
 #8104
 shield aura force~
 a shimmering field of power~
 A pool of energy lies here.~
 ~
-9 2|4|64|512 513
+9 582 513
 7~ 0~ 0~ 0~
-5 500 100
-A
-20 -4
+5 500 0
 A
 21 -6
+A
+20 -4
 #0
 
 
 
-#ROOMS
+#ROOMDATA
 #8100
-In the Plane of Nirvana~ 
+In the Plane of Nirvana~
 You stand in a higher plane of absolute balance and order.  It is equally hot
 and cold, equally light and dark, and made of equal parts of solid and liquid.
 The plane extends to the west and east, while a strange nexial link lies
 under your feet.
    A small, incongrous plaque is fixed in the fabric of existence here.
 ~
-81 0 2
-D1
-To the east, the plane extends for what seems to be forever.
-~
-~
-0 -1 8101
-D5
-The nexial link leads back into the astral plane.
-~
-~
-0 -1 1949
-D3
-To the west, the plane extends for what seems to be forever.
-~
-~
-0 -1 8102
+0 0 2
 E
 plaque~
 The plaque reads:
@@ -242,13 +235,28 @@ This area written orignally by Forstall for Rivers of Mud.
 Modifications by Alander of Rivers of Mud.
 Modifications were made by Andersen for the 4th Realm.
 ~
+D1
+To the east, the plane extends for what seems to be forever.
+~
+~
+0 -1 8101
+D3
+To the west, the plane extends for what seems to be forever.
+~
+~
+0 -1 8102
+D5
+The nexial link leads back into the astral plane.
+~
+~
+0 -1 1949
 S
 #8101
 The Plane of Nirvana~
 You are traveling the Plane of Nirvana.
 It is boundless to the east and west.
 ~
-81 0 2
+0 0 2
 D1
 To the east, there seems to be a bend in direction of travel.
 ~
@@ -265,8 +273,8 @@ The Plane of Nirvana~
 You are on a western strech of the plane.  Boundaries to the east
 and west seem nonexistent.
 ~
-81 0 2
-D1 
+0 0 2
+D1
 The plane seems to strech forever to the east
 ~
 ~
@@ -282,7 +290,7 @@ A Change in Direction~
 Here, the plane seems to direct you to the north.
 Also, the plane continues to the west.
 ~
-81 0 2
+0 0 2
 D0
 The plane continues to the north with no end in sight.
 ~
@@ -298,7 +306,7 @@ S
 A Change in Direction~
 Here, the plane goes to the north and bends to the east.
 ~
-81 0 2
+0 0 2
 D0
 The vast plane seems to have no end to the north.
 ~
@@ -314,7 +322,7 @@ S
 A North-South direction of the plane~
 The plane continues to the north and south.
 ~
-81 0 2
+0 0 2
 D0
 To the north, the plane stretches as far as the eye can see.
 ~
@@ -330,7 +338,7 @@ S
 A North-South stretch of the plane~
 The plane continues to the north and the south.
 ~
-81 0 2
+0 0 2
 D0
 To the north, the plane stretches as far as the eye can see.
 ~
@@ -347,7 +355,7 @@ In the Tower of Nirvana~
 Entering the tower, there seems to be enough light to see by, but no source is 
 visible.  The hall continues to the east, while a door lies to the west.
 ~
-81 8 0
+0 8 0
 D1
 The hall continues east into oblivion.
 ~
@@ -357,19 +365,19 @@ D3
 A great door lies to the west.
 ~
 door~
-1 -1 8113
+3 -1 8113
 S
 #8108
 A hallway in the Tower of Nirvana~
 You are in a east-west hallway in the tower.  To the west, the hall continues 
 and a door lies to the east.
 ~
-81 8 0
+0 8 0
 D1
 A great door lies to the east.
 ~
 door~
-1 -1 8112
+3 -1 8112
 D3
 The hallway continues west into oblivion.
 ~
@@ -380,7 +388,7 @@ S
 An east-west hallway in the Tower of Nirvana~
 The hallway continues to the east, and stretches to the west.
 ~
-81 8 0
+0 8 0
 D1
 The hallway continues east into oblivion.
 ~
@@ -395,7 +403,7 @@ S
 #8110
 An east-west passage in the Tower of Nirvana~
 ~
-81 8 0
+0 8 0
 D1
 The hallway contiues east into oblivion.
 ~
@@ -412,7 +420,7 @@ An intersection in the Tower of Nirvana~
 You are at an intersection where the east-west passage continues, but a large 
 passage leads to the north.
 ~
-81 8 0
+0 8 0
 D0
 The passage continues to the north where it seems to get wider.
 ~
@@ -435,7 +443,14 @@ You stand on the plane where a mighty door lies to the west.
 The plane also continues north and southward.  
 There is a large sign on the door.
 ~
-81 0 2
+0 0 2
+E
+sign~
+The sign reads:
+                     WARNING
+Only those brave of heart and high of level should
+enter the Tower of Nirvana.
+~
 D0
 The plane continues northward as far as the eye can see.
 ~
@@ -450,21 +465,21 @@ D3
 A mighty door lies to the west.
 ~
 door~
-1 -1 8108
-E
-sign~
-The sign reads:
-                     WARNING
-Only those brave of heart and high of level should
-enter the Tower of Nirvana.
-~
+3 -1 8108
 S
 #8113
 At the door to the Tower of Nirvana~
 The plane continue to the north and south, while a mighty door lies to the 
 east.  There is a sign on the door.
 ~
-81 0 2
+0 0 2
+E
+sign~
+The sign reads:
+                  WARNING!
+Only those brave of heart and high of level
+should attempt to enter the Tower of Nirvana.
+~
 D0
 The plane stretches to the north as far as the eye can see.
 ~
@@ -474,25 +489,18 @@ D1
 A mighty door sits to the east.
 ~
 door~
-1 -1 8107
+3 -1 8107
 D2
 The plane continues to the south as far as the eye can see.
 ~
 ~
 0 -1 8106
-E
-sign~
-The sign reads:
-                  WARNING!
-Only those brave of heart and high of level
-should attempt to enter the Tower of Nirvana.
-~
 S
 #8114
 A north-south area of the Plane of Nirvana~
 The plane continues to the north and southward.
 ~
-81 0 2
+0 0 2
 D0
 The plane continues endlessly to the north.
 ~
@@ -508,7 +516,7 @@ S
 A north-south area on the Plane of Nirvana~
 The plane continues to the north and south.
 ~
-81 0 2
+0 0 2
 D0
 The plane continues endlessly to the north.
 ~
@@ -521,10 +529,10 @@ The plane continues endlessly to the south.
 0 -1 8113
 S
 #8116
-Dead End~ 
+Dead End~
 You stand at a dead end where the only exit appears to be west.
 ~
-81 8 0
+0 8 0
 D3
 The passage continue to the west.
 ~
@@ -535,7 +543,7 @@ S
 Dead End~
 You are at what appears to be a dead end.  The only exit is back east.
 ~
-81 8 0
+0 8 0
 D1
 The passage continues to the east.
 ~
@@ -547,7 +555,7 @@ A Tertain's lair~
 You quite possibly have made a terrible mistake coming in here.
 Exits lead east and west.
 ~
-81 8 0
+0 8 0
 D1
 The passage continues to the east.
 ~
@@ -564,7 +572,7 @@ A Tertian's lair~
 You might have made a terrible mistake coming into here.
 Exits lead east and west.
 ~
-81 8 0
+0 8 0
 D1
 The passage continues eastward where you can see a bright light.
 ~
@@ -582,7 +590,7 @@ You are in a large hall, with a massive pool of what appears to be pure energy
 in the center of the room.  Exits lead in all the cardinal directions.  From 
 the pool rises the master of the Plane of Nirvana....
 ~
-81 8 0
+0 8 0
 D0
 A passage leads north into the unknown.
 ~
@@ -593,7 +601,7 @@ A passage leads east into the unknown.
 ~
 ~
 0 -1 8118
-D2 
+D2
 A passage leads south into the unknown.
 ~
 ~
@@ -609,7 +617,7 @@ A Tertian's lair~
 Maybe coming here wasn't such a hot idea.  You feel very unwelcome here.  
 Exits lead north and south.
 ~
-81 8 0
+0 8 0
 D0
 The passage leads north where you can see a bright light.
 ~
@@ -628,7 +636,7 @@ Scrolls lie about the room along with me strange objects...you can't imagine
 what kind of creature would use them.  Exits lead in all the cardinal 
 directions.
 ~
-81 8 0
+0 8 0
 D0
 The passage heads northward where you can see nothing.
 ~
@@ -639,7 +647,7 @@ The passage goes east where you feel it might be bad to go.
 ~
 ~
 0 -1 8146
-D2 
+D2
 The passage goes south into oblivion.
 ~
 ~
@@ -654,7 +662,7 @@ S
 A wide north-south passageway~
 You find yourself in a passage where the exits are north and south.
 ~
-81 8 0
+0 8 0
 D0
 To the north, you spy an intersection of tunnels.
 ~
@@ -670,7 +678,7 @@ S
 A Tertian's lair~
 You find yourself in a lair of a Tertian.  Exits lead north and south.
 ~
-81 8 0
+0 8 0
 D0
 To the north, you can make out a intersection of tunnels.
 ~
@@ -686,7 +694,7 @@ S
 A north south tunnel~
 You are in a passage where the only exits are north and south.
 ~
-81 8 0
+0 8 0
 D0
 Far to the north you can see a door.
 ~
@@ -703,12 +711,12 @@ An intersection of passages~
 You stand at an intersection.  Exits lead off into all the cardinal 
 directions.  A door lies to the north, allowing passage out.
 ~
-81 8 0
+0 8 0
 D0
 You see a massive door.
 ~
 door~
-1 -1 8131
+3 -1 8131
 D1
 To the east, you spy a dark passage.
 ~
@@ -719,7 +727,7 @@ To the south you stare into oblivion.
 ~
 ~
 0 -1 8125
-D3 
+D3
 To the west, you spy a dark passage.
 ~
 ~
@@ -729,7 +737,7 @@ S
 A change of direction~
 The plane curves from the south to west.
 ~
-81 0 2
+0 0 2
 D2
 Looking south, you see the plane extending beyond view.
 ~
@@ -745,7 +753,7 @@ S
 A change of direction~
 Here, the plane takes a turm from the south to heading east.
 ~
-81 0 2
+0 0 2
 D1
 The plane heads east from here. You can't see the end of it.
 ~
@@ -761,7 +769,7 @@ S
 An east-west route on the Plane of Nirvana~
 Exits lead east and west.
 ~
-81 0 2
+0 0 2
 D1
 Looking east, you spy a door far off in the distance.
 ~
@@ -777,7 +785,7 @@ S
 An east-west route on The Plane of Nirvana~
 Exits lead east and west
 ~
-81 0 2
+0 0 2
 D1
 Looking east, you can see a bend in the distance.
 ~
@@ -795,7 +803,14 @@ The plane of Nirvana goes east and west.
 A large door is to the south.
 A sign has been posted outside the door.
 ~
-81 0 2 
+0 0 2
+E
+sign~
+The sign reads:
+                  WARNING!
+Only those brave of heart and high of level
+should attempt to enter the Tower of Nirvana.
+~
 D1
 Looking east, you see more of the passage.
 ~
@@ -805,31 +820,24 @@ D2
 A large door blocks the way to the south.
 ~
 door~
-1 -1 8126
+3 -1 8126
 D3
 Looking west, you see more of the passage.
 ~
 ~
 0 -1 8129
-E
-sign~
-The sign reads:
-                  WARNING!
-Only those brave of heart and high of level
-should attempt to enter the Tower of Nirvana.
-~
 S
 #8132
 A Junction in the passage~
 Here, passages lead off in all cardinal directions.
 ~
-81 8 0
+0 8 0
 D0
 Looking north, you spy a small room in the distance.
 ~
 ~
 0 -1 8133
-D1 
+D1
 Eastward, the passage continues in the darkness.
 ~
 ~
@@ -849,7 +857,7 @@ S
 The office of the Octon~
 you are in a small room, the only exit is south.
 ~
-81 8 0
+0 8 0
 D2
 Looking south, you see an intersection.
 ~
@@ -860,7 +868,7 @@ S
 A small room~
 The only exit is north.
 ~
-81 8 0
+0 8 0
 D0
 Looking north, you spy an intersection.
 ~
@@ -871,7 +879,7 @@ S
 A passageway~
 Exits lead in all cardinal directions.
 ~
-81 8 0
+0 8 0
 D0
 Looking north you spy a average sized room.
 ~
@@ -899,7 +907,7 @@ You are in a room that is in complete disrepair.  Items are thrown throughout
 the room making them worthless piles of junk.
 The only exit is back south
 ~
-81 8 0
+0 8 0
 D2
 Looking south, you can make out a passage.
 ~
@@ -910,7 +918,7 @@ S
 Office of a Hexton~
 A makeshift desk forms the center of this room.  The only exit is north.
 ~
-81 8 0
+0 8 0
 D0
 Looking north, you can make out a hallway.
 ~
@@ -923,7 +931,7 @@ You are standing in a office of one of the Viceroys of the Plane of Nirvana.
 The occupant doesn't look real thrilled with your presence.  The only exit is 
 west.
 ~
-81 8 0
+0 8 0
 D3
 Looking west you can see a long hallway.
 ~
@@ -934,7 +942,7 @@ S
 A Junction in the hallway~
 Your are standing in a junction, exits lead in all the cardinal directions.
 ~
-81 8 0
+0 8 0
 D0
 To the north, you spy a small room.
 ~
@@ -961,7 +969,7 @@ Office of an Octon~
 You see a messy room with papers scattered everywhere.
 The only exit leads back to the south.
 ~
-81 8 0
+0 8 0
 D2
 To the south you can make out a junction.
 ~
@@ -973,7 +981,7 @@ Office of a Septon~
 A neat and tidy room, it appear to be inhabited my a neatenss freak.  The only 
 exit lies to the north.
 ~
-81 8 0
+0 8 0
 D0
 To the north you see a junction.
 ~
@@ -984,13 +992,13 @@ S
 An east-west passage~
 In east west passage is here with exits in all of the cardinal directions.
 ~
-81 8 0
+0 8 0
 D0
 You can see a room to the north.
 ~
 ~
 0 -1 8143
-D1 
+D1
 To the east you can see a junction.
 ~
 ~
@@ -1012,7 +1020,7 @@ A dusty room, with a almost untolerable odor, the barracks are being inspected
 by a Hexton and his personal enterage.
 The only exit lies to the south.
 ~
-81 8 0
+0 8 0
 D2
 To the south you can see a junction.
 ~
@@ -1025,7 +1033,7 @@ You have stumbled on to the office of the Commander of the forces in the Plane
 Of Nirvana.  The room is well furnished and a sense of courage and bravery 
 overtakes you as you enter the room.  The only exit lies to the north.
 ~
-81 8 0
+0 8 0
 D0
 To the north you can visualize a junction of passages.
 ~
@@ -1037,7 +1045,7 @@ The chamber of the second Secundus~
 This huge room is furnished with the finest, and a personal legion guards the 
 Secundus. the only exit is to the east.
 ~
-81 8 0
+0 8 0
 D1
 To the east you can see a junction.
 ~
@@ -1049,7 +1057,7 @@ A Passageway~
 You are in a well lit passage.  A sense of forboding danger envelopes you.  
 Exits lead in all cardinal directions.
 ~
-81 8 0
+0 8 0
 D0
 To the north you can see a small chamber.
 ~
@@ -1076,7 +1084,7 @@ Chamber of the Octon~
 A small room, sparsely furnished, it leaves you with a sense of fear.  The 
 only exit is to the south.
 ~
-81 8 0
+0 8 0
 D2
 To the south you can see a passage.
 ~
@@ -1088,7 +1096,7 @@ Chamber of the Nonaton~
 You have entered the chamber of the principal law and order overseers.  The 
 only exit lies to the north.
 ~
-81 8 0
+0 8 0
 D0
 To the north you can see a passageway.
 ~
@@ -1100,7 +1108,7 @@ End of the passageway~
 You have reached the end of a long east-west passage.  The passage contiues to 
 the west, and rooms lie to the north, south, and east.
 ~
-81 8 0
+0 8 0
 D0
 To the north you can see a room.
 ~
@@ -1116,7 +1124,7 @@ To the south, a room can be seen.
 ~
 ~
 0 -1 8151
-D3 
+D3
 To the west, the passageway continues.
 ~
 ~
@@ -1127,7 +1135,7 @@ Chamber of a Hexton~
 You have entered the chamber of a Hexton.  Trophies adorn the walls, some of 
 which are human. the only exit is to the south.
 ~
-81 8 0
+0 8 0
 D2
 To the south you can see a passageway.
 ~
@@ -1139,7 +1147,7 @@ Chamber of a Hexton~
 You have entered a room where you are not very popular. The only exit lies 
 northbound.
 ~
-81 8 0
+0 8 0
 D0
 To the north you can see a passage.
 ~
@@ -1151,7 +1159,7 @@ Chamber of the Secudus~
 A large canvernous room, this chamber serves as the sleeping quarters for the 
 third Secudus, Viceroy to Primus. The only exit lies to the west.
 ~
-81 8 0
+0 8 0
 D3
 To the west you can see a passageway.
 ~
@@ -1162,7 +1170,7 @@ S
 A passageway~
 You are in a passagway where you may go in any cardinal direction.
 ~
-81 8 0
+0 8 0
 D0
 To the north lies a small chamber.
 ~
@@ -1188,7 +1196,7 @@ S
 A small chamber~
 You are in a small cramped chamber.  The only exit lies to the south.
 ~
-81 8 0
+0 8 0
 D2
 To the south you can see a passage.
 ~
@@ -1199,7 +1207,7 @@ S
 A cramped room~
 You are in a small, crowded room.  The only exit appears to lie to the north.
 ~
-81 8 0
+0 8 0
 D0
 To the north, you can see a passageway.
 ~
@@ -1211,7 +1219,7 @@ A large room~
 You have entered a room where you are not wanted.  The only exit lies to the 
 south.
 ~
-81 8 0
+0 8 0
 D2
 To the south you can visualize a east-west passage.
 ~
@@ -1223,7 +1231,7 @@ A room~
 You have entered a room where there was obviously a hurried move going on.  
 The only exit lies to the north.
 ~
-81 8 0
+0 8 0
 D0
 To the north you can make out a passageway.
 ~
@@ -1236,7 +1244,7 @@ You have disturbed the rest of the First Viceroy to Primus the Prime, The
 Secundus.  He does not look like a happy camper. The only exit lies to the 
 east.
 ~
-81 8 0
+0 8 0
 D1
 To the east you can spot a hallway.
 ~
@@ -1247,7 +1255,7 @@ S
 Junction in the hallway~
 Exits lead off in all of the cardinal directions
 ~
-81 8 0
+0 8 0
 D0
 To the north lies a large chamber.
 ~
@@ -1272,88 +1280,85 @@ S
 #0
 
 
+
+#SPECIALS
+M 8100 spec_thief
+M 8106 spec_cast_cleric
+M 8107 spec_cast_cleric
+M 8108 spec_cast_cleric
+M 8109 spec_cast_mage
+M 8110 spec_cast_mage
+M 8111 spec_cast_mage
+S
+
+
+
+#GAMES
+S
+
+
+
 #RESETS
-*
-* Nirvana originally written by Forstall for Rivers of Mud.
-* Modifications by Andersen for 4th Realm.
-* Further equipment by Yaz for 4th Realm
-*
-M 0 8100 10 8102		tridrones
-M 0 8100 10 8113
-M 0 8100 10 8129
-M 0 8100 10 8127
+M 0 8101 9 8101
+M 0 8100 10 8102
 M 0 8100 10 8103
-*
-M 0 8101 9 8101		quadrones
-M 0 8101 9 8128
+M 0 8102 6 8111
 M 0 8101 9 8112
-*
-M 0 8102 6 8111		pentadrones
+M 0 8100 10 8113
+M 0 8108 4 8116
+M 0 8108 4 8117
+M 0 8109 4 8118
+M 0 8109 4 8119
+M 0 8111 1 8120
+E 0 8100 0 16
+E 0 8101 0 5
+E 0 8102 0 6
+E 0 8103 0 10
+E 0 8104 0 11
+M 0 8109 4 8121
+M 0 8108 4 8122
+M 0 8109 4 8124
+M 0 8108 4 8125
+M 0 8100 10 8127
+M 0 8101 9 8128
+M 0 8100 10 8129
 M 0 8102 6 8131
-M 0 8102 6 8138
-M 0 8102 6 8145
-M 0 8102 6 8158
-M 0 8102 6 8152
-*
-M 0 8103 1 8155		decaton
-*
-M 0 8104 1 8148		nonaton
-*
-M 0 8105 4 8140		octons
 M 0 8105 4 8133
-M 0 8105 4 8154
-M 0 8105 4 8147
-*
-M 0 8106 2 8141		septon
 M 0 8106 2 8134
-*
-M 0 8107 8 8143		hextons
-M 0 8107 8 8144
 M 0 8107 8 8136
 M 0 8107 8 8137
+M 0 8102 6 8138
+M 0 8110 4 8138
+M 0 8105 4 8140
+M 0 8106 2 8141
+M 0 8107 8 8143
+M 0 8107 8 8144
+M 0 8102 6 8145
+M 0 8110 4 8145
+M 0 8105 4 8147
+M 0 8104 1 8148
 M 0 8107 8 8150
+M 0 8102 6 8152
+M 0 8110 4 8152
+M 0 8105 4 8154
+M 0 8103 1 8155
 M 0 8107 8 8155
 M 0 8107 8 8156
 M 0 8107 8 8157
-*
-M 0 8108 4 8122 		quintons
-M 0 8108 4 8116
-M 0 8108 4 8125
-M 0 8108 4 8117
-*
-M 0 8109 4 8119		tertians
-M 0 8109 4 8124
-M 0 8109 4 8118
-M 0 8109 4 8121
-*
-M 0 8110 4 8138		secundi
-M 0 8110 4 8145
+M 0 8102 6 8158
 M 0 8110 4 8158
-M 0 8110 4 8152
-*
-M 0 8111 1 8120		Primus
-E 1 8100 80 16		Realms sword
-E 1 8101 8 5		Radiant Vest 
-E 1 8102 8 6		Radiant Helm
-E 1 8103 8 10		Radiant Sleeves
-E 1 8104 3 11		Radiant Shield
-*
-D 0 8107 3 1		Close doors leading into the tower
-D 0 8108 1 1
-D 0 8112 3 1
-D 0 8113 1 1
-D 0 8126 0 1
-D 0 8131 2 1
 S
 
-#SPECIALS
-M 8100 spec_thief		Tridrone
-M 8106 spec_cast_cleric		Septon
-M 8107 spec_cast_cleric		Hexton
-M 8108 spec_cast_cleric		Quinton
-M 8109 spec_cast_mage		Tertian
-M 8110 spec_cast_mage		Secundus
-M 8111 spec_cast_mage		Primus
+
+
+#MOBPROGS
 S
+
+
+
+#SHOPS
+0
+
+
 
 #$

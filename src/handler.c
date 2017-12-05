@@ -28,6 +28,7 @@
 #endif
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "merc.h"
@@ -325,7 +326,7 @@ bool is_name( const char *str, char *namelist )
 	namelist = one_argument( namelist, name );
 	if ( name[0] == '\0' )
 	    return FALSE;
-	if ( !str_cmp( str, name ) )
+	if ( !str_prefix( str, name ) )
 	    return TRUE;
     }
 }
@@ -649,11 +650,24 @@ void char_from_room( CHAR_DATA *ch )
 void char_to_room( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex )
 {
     OBJ_DATA *obj;
+    AFFECT_DATA *paf;
 
     if ( !pRoomIndex )
     {
 	bug( "Char_to_room: NULL.", 0 );
 	return;
+    }
+
+    /* Make sure char is no longer on an object... this to make sure char's
+	cannot cheat, by standing on an object with affects, and then
+	teleporting, or goto'ing out of the room -- Maniac */
+    if (ch->on)	/* Ch on object ??? */
+    {
+	for ( paf = ch->on->pIndexData->affected; paf; paf = paf->next )
+		affect_modify( ch, paf, FALSE );
+	for ( paf = ch->on->affected; paf; paf = paf->next )
+		affect_modify( ch, paf, FALSE );
+	ch->on = NULL;
     }
 
     ch->in_room		= pRoomIndex;
@@ -668,6 +682,46 @@ void char_to_room( CHAR_DATA *ch, ROOM_INDEX_DATA *pRoomIndex )
 	&& obj->value[2] != 0 )
 	++ch->in_room->light;
 
+    if (IS_AFFECTED(ch,AFF_PLAGUE))
+    {
+        AFFECT_DATA *af, plague;
+        CHAR_DATA *vch;
+        int save;
+
+        for ( af = ch->affected; af != NULL; af = af->next )
+        {
+            if (af->type == gsn_plague)
+                break;
+        }
+
+        if (af == NULL)
+        {
+            REMOVE_BIT(ch->affected_by,AFF_PLAGUE);
+            return;
+        }
+
+        if (af->level == 1)
+            return;
+
+        plague.type             = gsn_plague;
+        plague.level            = af->level - 1;
+        plague.duration         = number_range(1,2 * plague.level);
+        plague.location         = APPLY_STR;
+        plague.modifier         = -5;
+        plague.bitvector        = AFF_PLAGUE;
+
+        save                    = plague.level;
+        for ( vch = ch->in_room->people; vch != NULL; vch = vch->next_in_room)
+        {
+            if (save != 0 && !saves_spell(save,vch) && !IS_IMMORTAL(vch) &&
+                !IS_AFFECTED(vch,AFF_PLAGUE) && number_bits(4) == 0)
+            {
+                send_to_char("You feel hot and feverish.\r\n",vch);
+                act("$n shivers and looks very ill.",vch,NULL,NULL,TO_ROOM);
+                affect_join(vch,&plague);
+            }
+        }
+    }
     return;
 }
 
@@ -1182,6 +1236,35 @@ CHAR_DATA *get_char_room( CHAR_DATA *ch, char *argument )
     return NULL;
 }
 
+/*
+ * Find a char in an area.
+ * (from get_char_world)
+ *
+ * (by Mikko Kilpikoski 09-Jun-94)
+ */
+CHAR_DATA *get_char_area( CHAR_DATA *ch, char *argument )
+{
+  char arg[MAX_INPUT_LENGTH];
+  CHAR_DATA *ach;
+  int number;
+  int count;
+
+  if ( ( ach = get_char_room( ch, argument ) ) != NULL )
+    return ach;
+
+  number = number_argument( argument, arg );
+  count  = 0;
+  for ( ach = char_list; ach != NULL ; ach = ach->next )
+    {
+      if ( ach->in_room->area != ch->in_room->area
+          || !can_see( ch, ach ) || !is_name( arg, ach->name ) )
+        continue;
+      if ( ++count == number )
+        return ach;
+    }
+
+  return NULL;
+}
 
 
 
@@ -1335,6 +1418,21 @@ OBJ_DATA *get_obj_here( CHAR_DATA *ch, char *argument )
 
     return NULL;
 }
+
+/*
+ * Find an obj in the room/
+ */
+OBJ_DATA *get_obj_room( CHAR_DATA *ch, char *argument )
+{
+    OBJ_DATA *obj;
+
+    obj = get_obj_list( ch, argument, ch->in_room->contents );
+    if ( obj )
+        return obj;
+
+    return NULL;
+}
+
 
 
 
@@ -1579,6 +1677,11 @@ bool can_see_obj( CHAR_DATA *ch, OBJ_DATA *obj )
 	&& !IS_AFFECTED( ch, AFF_DETECT_INVIS ) )
 	return FALSE;
 
+    if ( IS_SET( obj->extra_flags, ITEM_HIDDEN )
+	&& !IS_SET( race_table[ ch->race ].race_abilities, RACE_DETECT_HIDDEN )
+	&& !IS_AFFECTED( ch, AFF_DETECT_HIDDEN  ) )
+	return FALSE;
+
     return TRUE;
 }
 
@@ -1630,6 +1733,7 @@ char *item_type_name( OBJ_DATA *obj )
     case ITEM_CORPSE_PC:        return "pc corpse";
     case ITEM_FOUNTAIN:		return "fountain";
     case ITEM_PILL:		return "pill";
+    case ITEM_JUKEBOX:		return "jukebox";
     }
 
     for ( in_obj = obj; in_obj->in_obj; in_obj = in_obj->in_obj )
@@ -1724,14 +1828,84 @@ char *affect_bit_name( int vector )
     if ( vector & AFF_VAMP_BITE     ) strcat( buf, " vampiric curse" );
     if ( vector & AFF_GHOUL         ) strcat( buf, " ghoulic curse"  );
     if ( vector & AFF_FLAMING       ) strcat( buf, " flaming shield" );
+    if ( vector & AFF_PLAGUE        ) strcat( buf, " plague"         );
 
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
 
+/*
+ * Return ascii name of room flags vector.	by The Maniac
+ */
+char *room_flags_name( int vector )
+{
+    static char buf [ 512 ];
 
+    buf[0] = '\0';
+    if ( vector & ROOM_DARK           ) strcat( buf, " dark"           );
+    if ( vector & ROOM_NO_MOB         ) strcat( buf, " no_mob"         );
+    if ( vector & ROOM_INDOORS        ) strcat( buf, " indoors"        );
+    if ( vector & ROOM_UNDERGROUND    ) strcat( buf, " underground"    );
+    if ( vector & ROOM_ARENA          ) strcat( buf, " arena"          );
+    if ( vector & ROOM_PRIVATE        ) strcat( buf, " private"        );
+    if ( vector & ROOM_SAFE           ) strcat( buf, " safe"           );
+    if ( vector & ROOM_SOLITARY       ) strcat( buf, " solitary"       );
+    if ( vector & ROOM_PET_SHOP       ) strcat( buf, " pet_shop"       );
+    if ( vector & ROOM_NO_RECALL      ) strcat( buf, " no_recall"      );
+    if ( vector & ROOM_CONE_OF_SILENCE) strcat( buf, " cone_of_silence");
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
 
 /*
- * Return ascii name of extra flags vector.
+ * Return ascii name of object wear location.      by The Maniac
+ */
+char *obj_eq_loc( int vector )
+{
+    if      ( vector == WEAR_NONE     ) return "none";
+    else if ( vector == WEAR_LIGHT    ) return "light";
+    else if ( vector == WEAR_FINGER_L ) return "left finger";
+    else if ( vector == WEAR_FINGER_R ) return "right finger";
+    else if ( vector == WEAR_NECK_1   ) return "neck 1";
+    else if ( vector == WEAR_NECK_2   ) return "neck 2";
+    else if ( vector == WEAR_BODY     ) return "body";
+    else if ( vector == WEAR_HEAD     ) return "head";
+    else if ( vector == WEAR_LEGS     ) return "legs";
+    else if ( vector == WEAR_FEET     ) return "feet";
+    else if ( vector == WEAR_HANDS    ) return "hands";
+    else if ( vector == WEAR_ARMS     ) return "arms";
+    else if ( vector == WEAR_SHIELD   ) return "shield";
+    else if ( vector == WEAR_ABOUT    ) return "about";
+    else if ( vector == WEAR_WAIST    ) return "waist";
+    else if ( vector == WEAR_WRIST_L  ) return "left wrist";
+    else if ( vector == WEAR_WRIST_R  ) return "right wrist";
+    else if ( vector == WEAR_WIELD    ) return "wield 1";
+    else if ( vector == WEAR_HOLD     ) return "hold";
+    else if ( vector == WEAR_WIELD_2  ) return "wield 2";
+    else if ( vector == MAX_WEAR      ) return "**MAX_WEAR**";
+
+    return "**ERROR**";
+}
+
+/*
+ * Return ascii name of sector type.      by The Maniac
+ */
+char *sector_string( int sector )
+{
+    if      ( sector == SECT_INSIDE       ) return "inside";
+    else if ( sector == SECT_CITY         ) return "city";
+    else if ( sector == SECT_FIELD        ) return "field";
+    else if ( sector == SECT_FOREST       ) return "forest";
+    else if ( sector == SECT_HILLS        ) return "hills";
+    else if ( sector == SECT_MOUNTAIN     ) return "mountain";
+    else if ( sector == SECT_WATER_SWIM   ) return "swim water";
+    else if ( sector == SECT_WATER_NOSWIM ) return "noswim water";
+    else if ( sector == SECT_UNDERWATER   ) return "underwater";
+    else if ( sector == SECT_AIR          ) return "air";
+    else if ( sector == SECT_DESERT       ) return "desert";
+    return "**ERROR**";
+}
+
+/*
+ * Return ascii name of extra flags vector.	with additions by Maniac
  */
 char *extra_bit_name( int extra_flags )
 {
@@ -1753,9 +1927,185 @@ char *extra_bit_name( int extra_flags )
     if ( extra_flags & ITEM_NOREMOVE     ) strcat( buf, " noremove"     );
     if ( extra_flags & ITEM_INVENTORY    ) strcat( buf, " inventory"    );
     if ( extra_flags & ITEM_POISONED     ) strcat( buf, " poisoned"     );
-    if ( extra_flags & ITEM_VAMPIRE_BANE ) strcat( buf, " vampire bane" );
+    if ( extra_flags & ITEM_VAMPIRE_BANE ) strcat( buf, " vampire_bane" );
     if ( extra_flags & ITEM_HOLY         ) strcat( buf, " holy"         );
+    if ( extra_flags & ITEM_BLADE_THIRST ) strcat( buf, " blade_thirst" );
+    if ( extra_flags & ITEM_MELT_DROP    ) strcat( buf, " melt_drop"    );
+    if ( extra_flags & ITEM_NOPURGE      ) strcat( buf, " nopurge"      );
+    if ( extra_flags & ITEM_HIDDEN       ) strcat( buf, " hidden"       );
+
     return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+/*
+ * Return ascii name of race ability flags.     by Maniac
+ */
+char *race_ab_str( int bit )
+{
+    static char buf [ 512 ];
+
+    buf[0] = '\0';
+    if ( bit & RACE_NO_ABILITIES  ) strcat( buf, " none"           );
+    if ( bit & RACE_PC_AVAIL      ) strcat( buf, " pc"             );
+    if ( bit & RACE_WATERBREATH   ) strcat( buf, " waterbreathing" );
+    if ( bit & RACE_FLY           ) strcat( buf, " fly"            );
+    if ( bit & RACE_SWIM          ) strcat( buf, " swim"           );
+    if ( bit & RACE_WATERWALK     ) strcat( buf, " waterwalk"      );
+    if ( bit & RACE_PASSDOOR      ) strcat( buf, " passdoor"       );
+    if ( bit & RACE_INFRAVISION   ) strcat( buf, " infravision"    );
+    if ( bit & RACE_DETECT_ALIGN  ) strcat( buf, " detect_align"   );
+    if ( bit & RACE_DETECT_INVIS  ) strcat( buf, " detect_invis"   );
+    if ( bit & RACE_DETECT_HIDDEN ) strcat( buf, " detect_hidden"  );
+    if ( bit & RACE_PROTECTION    ) strcat( buf, " protection"     );
+    if ( bit & RACE_SANCT         ) strcat( buf, " sanctuary"      );
+    if ( bit & RACE_WEAPON_WIELD  ) strcat( buf, " weapon_wield"   );
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+/*
+ * Return ascii name of act flags vector.	by Maniac
+ */
+char *mob_act_name( int act )
+{
+    static char buf [ 512 ];
+
+    buf[0] = '\0';
+    if ( act & ACT_IS_NPC    ) strcat( buf, " is_npc"         );
+    if ( act & ACT_SENTINEL  ) strcat( buf, " sentinel"       );
+    if ( act & ACT_SCAVENGER ) strcat( buf, " scavenger"      );
+    if ( act & ACT_IS_HEALER ) strcat( buf, " healer"         );
+    if ( act & ACT_AGGRESSIVE) strcat( buf, " aggressive"     );
+    if ( act & ACT_STAY_AREA ) strcat( buf, " stay_area"      );
+    if ( act & ACT_WIMPY     ) strcat( buf, " wimpy"          );
+    if ( act & ACT_PET       ) strcat( buf, " pet"            );
+    if ( act & ACT_TRAIN     ) strcat( buf, " train"          );
+    if ( act & ACT_PRACTICE  ) strcat( buf, " practice"       );
+    if ( act & ACT_BANKER    ) strcat( buf, " banker"         );
+    if ( act & ACT_TEACHER   ) strcat( buf, " teacher"        );
+
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+/*
+ * Return ascii name of object wear locations vector.       by Maniac
+ */
+char *str_wear_loc( int vector )
+{
+    static char buf [ 512 ];
+
+    buf[0] = '\0';
+    if ( vector & ITEM_TAKE        ) strcat( buf, " take"     );
+    if ( vector & ITEM_WEAR_FINGER ) strcat( buf, " finger"   );
+    if ( vector & ITEM_WEAR_NECK   ) strcat( buf, " neck"     );
+    if ( vector & ITEM_WEAR_BODY   ) strcat( buf, " body"     );
+    if ( vector & ITEM_WEAR_HEAD   ) strcat( buf, " head"     );
+    if ( vector & ITEM_WEAR_LEGS   ) strcat( buf, " legs"     );
+    if ( vector & ITEM_WEAR_FEET   ) strcat( buf, " feet"     );
+    if ( vector & ITEM_WEAR_HANDS  ) strcat( buf, " hands"    );
+    if ( vector & ITEM_WEAR_ARMS   ) strcat( buf, " arms"     );
+    if ( vector & ITEM_WEAR_SHIELD ) strcat( buf, " shield"   );
+    if ( vector & ITEM_WEAR_ABOUT  ) strcat( buf, " about"    );
+    if ( vector & ITEM_WEAR_WAIST  ) strcat( buf, " waist"    );
+    if ( vector & ITEM_WEAR_WRIST  ) strcat( buf, " wrist"    );
+    if ( vector & ITEM_WIELD       ) strcat( buf, " wield"    );
+    if ( vector & ITEM_HOLD        ) strcat( buf, " hold"     );
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+/*
+ * Return ascii name of act flags vector.       by Maniac
+ */
+char *plr_act_name( int act )
+{
+    static char buf [ 512 ];
+
+    buf[0] = '\0';
+    if ( act & PLR_IS_NPC    ) strcat( buf, " is_npc"         );
+    if ( act & PLR_BOUGHT_PET) strcat( buf, " bought_pet"     );
+    if ( act & PLR_REGISTER  ) strcat( buf, " registered"     );
+    if ( act & PLR_AUTOEXIT  ) strcat( buf, " autoexit"       );
+    if ( act & PLR_AUTOLOOT  ) strcat( buf, " autoloot"       );
+    if ( act & PLR_AUTOSAC   ) strcat( buf, " autosac"        );
+    if ( act & PLR_BLANK     ) strcat( buf, " blank"          );
+    if ( act & PLR_BRIEF     ) strcat( buf, " brief"          );
+    if ( act & PLR_COMBINE   ) strcat( buf, " combine"        );
+    if ( act & PLR_PROMPT    ) strcat( buf, " prompt"         );
+    if ( act & PLR_TELNET_GA ) strcat( buf, " telnet_ga"      );
+    if ( act & PLR_HOLYLIGHT ) strcat( buf, " holylight"      );
+    if ( act & PLR_WIZINVIS  ) strcat( buf, " wizinvis"       );
+    if ( act & PLR_WIZBIT    ) strcat( buf, " wizbit"         );
+    if ( act & PLR_SILENCE   ) strcat( buf, " silence"        );
+    if ( act & PLR_NO_EMOTE  ) strcat( buf, " no_emote"       );
+    if ( act & PLR_MOVED     ) strcat( buf, " moved"          );
+    if ( act & PLR_NO_TELL   ) strcat( buf, " no_tell"        );
+    if ( act & PLR_LOG       ) strcat( buf, " log"            );
+    if ( act & PLR_DENY      ) strcat( buf, " deny"           );
+    if ( act & PLR_FREEZE    ) strcat( buf, " freeze"         );
+    if ( act & PLR_THIEF     ) strcat( buf, " thief"          );
+    if ( act & PLR_KILLER    ) strcat( buf, " killer"         );
+    if ( act & PLR_AUTOGOLD  ) strcat( buf, " autogold"       );
+    if ( act & PLR_AFK       ) strcat( buf, " afk"            );
+
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+/*
+ * Return ascii name of door vector.       by Maniac
+ */
+char *door_status_name( int status )
+{
+    static char buf [ 512 ];
+
+    buf[0] = '\0';
+    if ( status & EX_ISDOOR     ) strcat( buf, " is_door"          );
+    if ( status & EX_CLOSED     ) strcat( buf, " closed"           );
+    if ( status & EX_LOCKED     ) strcat( buf, " locked"           );
+    if ( status & EX_BASHED     ) strcat( buf, " bashed"           );
+    if ( status & EX_BASHPROOF  ) strcat( buf, " bashproof"        );
+    if ( status & EX_PICKPROOF  ) strcat( buf, " pickproof"        );
+    if ( status & EX_PASSPROOF  ) strcat( buf, " passproof"        );
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+char * pos_string( CHAR_DATA *victim )
+{
+	switch (victim->position)
+	{
+		case POS_DEAD:		return "is DEAD!!";
+		case POS_MORTAL:	return "is mortally wounded";
+		case POS_INCAP:		return "is incapacitated.";
+		case POS_STUNNED:	return "is lying here stunned.";
+		case POS_SLEEPING:	return "is sleeping";
+		case POS_RESTING:	return "is resting";
+		case POS_STANDING:	return "is standing";
+		case POS_FIGHTING:	return "is fighting";
+	}
+	return "ERROR";
+}
+
+char * fur_pos_string( int pos )
+{
+	switch (pos)
+	{
+		case ST_ON:	return "on";
+		case SI_ON:	return "on";
+		case SL_ON:	return "on";
+		case RE_ON:	return "on";
+		case PT_ON:	return "on";
+		case ST_AT:	return "at";
+		case SI_AT:	return "at";
+		case SL_AT:	return "at";
+		case RE_AT:	return "at";
+		case PT_AT:	return "at";
+		case ST_IN:	return "in";
+		case SI_IN:	return "in";
+		case SL_IN:	return "in";
+		case RE_IN:	return "in";
+		case PT_IN:	return "in";
+		case PT_INSIDE: return "inside";
+		break;
+	}
+	return "ERROR";
 }
 
 CHAR_DATA *get_char( CHAR_DATA *ch )
@@ -1770,7 +2120,7 @@ bool longstring( CHAR_DATA *ch, char *argument )
 {
     if ( strlen( argument) > 60 )
     {
-	send_to_char( "No more than 60 characters in this field.\n\r", ch );
+	send_to_char( "No more than 60 characters in this field.\r\n", ch );
 	return TRUE;
     }
     else
@@ -1785,7 +2135,7 @@ bool authorized( CHAR_DATA *ch, char *skllnm )
     if ( ( !IS_NPC( ch ) && str_infix( skllnm, ch->pcdata->immskll ) )
 	||  IS_NPC( ch ) )
     {
-        sprintf( buf, "Sorry, you are not authorized to use %s.\n\r", skllnm );
+        sprintf( buf, "Sorry, you are not authorized to use %s.\r\n", skllnm );
 	send_to_char( buf, ch );
 	return FALSE;
     }
@@ -1839,4 +2189,86 @@ int affect_lookup( const char *affectname )
 
     return -1;
 
+}
+
+/* returns number of people on an object */
+int count_users(OBJ_DATA *obj)
+{
+    CHAR_DATA *fch;
+    int count = 0;
+
+    if (obj->in_room == NULL)
+        return 0;
+
+    for (fch = obj->in_room->people; fch != NULL; fch = fch->next_in_room)
+        if (fch->on == obj)
+            count++;
+
+    return count;
+}
+
+
+int advatoi (const char *s)
+/*
+  14k42 = 14 * 1000 + 14 * 100 + 2 * 10 = 14420
+
+  Of course, it only pays off to use that notation when you can skip many 0's.
+  There is not much point in writing 66k666 instead of 66666, except maybe
+  when you want to make sure that you get 66,666.
+
+  More than 3 (in case of 'k') or 6 ('m') digits after 'k'/'m' are automatically
+  disregarded. Example:
+
+  14k1234 = 14,123
+
+  If the number contains any other characters than digits, 'k' or 'm', the
+  function returns 0. It also returns 0 if 'k' or 'm' appear more than
+  once.
+
+*/
+
+{
+
+/* the pointer to buffer stuff is not really necessary, but originally I
+   modified the buffer, so I had to make a copy of it. What the hell, it 
+   works:) (read: it seems to work:)
+*/
+
+  char string[MAX_INPUT_LENGTH]; /* a buffer to hold a copy of the argument */
+  char *stringptr = string; /* a pointer to the buffer so we can move around */
+  char tempstring[2];       /* a small temp buffer to pass to atoi*/
+  int number = 0;           /* number to be returned */
+  int multiplier = 0;       /* multiplier used to get the extra digits right */
+
+
+  strcpy (string,s);        /* working copy */
+
+  while ( isdigit (*stringptr)) /* as long as the current character is a digit */
+  {
+      strncpy (tempstring,stringptr,1);           /* copy first digit */
+      number = (number * 10) + atoi (tempstring); /* add to current number */
+      stringptr++;                                /* advance */
+  }
+
+  switch (UPPER(*stringptr)) {
+      case 'K'  : multiplier = 1000;    number *= multiplier; stringptr++; break;
+      case 'M'  : multiplier = 1000000; number *= multiplier; stringptr++; break;
+      case '\0' : break;
+      default   : return 0; /* not k nor m nor NUL - return 0! */
+  }
+
+  while ( isdigit (*stringptr) && (multiplier > 1)) /* if any digits follow k/m, add those too */
+  {
+      strncpy (tempstring,stringptr,1);           /* copy first digit */
+      multiplier = multiplier / 10;  /* the further we get to right, the less are the digit 'worth' */
+      number = number + (atoi (tempstring) * multiplier);
+      stringptr++;
+  }
+
+  if (*stringptr != '\0' && !isdigit(*stringptr)) /* a non-digit character was found, other than NUL */
+    return 0; /* If a digit is found, it means the multiplier is 1 - i.e. extra
+                 digits that just have to be ignore, liked 14k4443 -> 3 is ignored */
+
+
+  return (number);
 }

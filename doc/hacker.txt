@@ -1,9 +1,12 @@
-EnvyMud Release 2.0
+MythranMud 3.0 Release 1.0
 Monday, 25th December 1995
 
+This Document was written by:
 Kahn		michael@uclink.berkeley.edu
 Hatchet		hatchet@uclink.berkeley.edu
 
+and changed and updated by:
+The Maniac      v942346@si.hhs.nl       maniacs@dds.nl
 
 
 This is completely from MERC 2.2 documentation written by Furey with names
@@ -53,9 +56,9 @@ through the two-step learning cycle MANY times to master it.
 
 === The Environment
 
-Computer: the big or little box that you're using to run Envy.  Computers come
-    from a _manufacturer_ and have a _model_ name.  Here is a list of common
-    manufacturers and models that you're likely to encounter:
+Computer: the big or little box that you're using to run Mythran. Computers
+    come from a _manufacturer_ and have a _model_ name.  Here is a list of
+    common manufacturers and models that you're likely to encounter:
 
 	Manufacturer	Model
 	------------	-----
@@ -69,6 +72,7 @@ Computer: the big or little box that you're using to run Envy.  Computers come
 	NeXT		NextCube
 	Sequent		Symmetry
 	Sequent		Balance
+        *various*       80386 / 80486 / Pentium etc...
 
     As far as hardware goes, Envy will run on any 32-bit hardware.
 
@@ -91,25 +95,27 @@ Operating system: the lowest level program running on your computer.  Most
     running Unix have a lot more in common with other machines running
     Unix than they have with Vax'es running VMS.
 
-    As far as operating systems go, Envy will run on Unix or Unix variants with
-    TCP/IP networking compatible with Berkeley Unix.  It will also run, in
-    single-user mode only, on MS-DOS.  With a reasonable amount of work, Envy
+    As far as operating systems go, Mythran will run on Unix or Unix variants
+    with TCP/IP networking compatible with Berkeley Unix. It will also run, in
+    single-user mode only, on MS-DOS.  With a reasonable amount of work, it
     can be ported to any operating system that provides TCP service for telnet
     connections.
 
-Languages: Envy is written in C.  ANSI (the American National Standards
-    Institute) has a specification for the C language, and Envy is written in
+Languages: Mythran is written in C.  ANSI (the American National Standards
+    Institute) has a specification for the C language, and Mythran is written in
     Ansi Standard C.
 
     The most popular compiler for Ansi Standard C is the Gnu 'gcc' compiler
     produced by the Free Software Foundation.  It's available by anonymous
-    ftp from prep.ai.mit.edu.  Envy compiles just fine with Gcc 1.38, so
+    ftp from prep.ai.mit.edu.  Mythran compiles just fine with Gcc 1.38, so
     you can probably use 1.42 and skip the much larger 2.X versions.
 
     You don't have to use gcc.  IBM RS/6000's running the AIX operating system
     come with an Ansi C compiler already.  So do NeXT machines (the standard
     'cc' on NeXT happens to be the Gnu C compiler).  Any Ansi compiler will
     work.
+
+    For dos users there is DJGPP a gcc clone written by D.J. Dolorie
 
     Unfortunately, there are still many machines out there without an Ansi
     standard C compiler.  (Sun is the worst offender in this regard).

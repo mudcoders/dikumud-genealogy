@@ -58,37 +58,87 @@ DECLARE_SPEC_FUN(	spec_mayor		);
 DECLARE_SPEC_FUN(	spec_poison		);
 DECLARE_SPEC_FUN(	spec_repairman		);
 DECLARE_SPEC_FUN(	spec_thief		);
-
-
+DECLARE_SPEC_FUN(       spec_buddha             );
+DECLARE_SPEC_FUN(       spec_teacher            );
+DECLARE_SPEC_FUN(       spec_guard_white        );
+DECLARE_SPEC_FUN(       spec_kungfu_poison      );
+DECLARE_SPEC_FUN(       spec_rebel              );
+DECLARE_SPEC_FUN(       spec_drunk              );
+DECLARE_SPEC_FUN(       spec_assassin           );
+DECLARE_SPEC_FUN(	spec_questmaster	);
 
 /*
- * Given a name, return the appropriate spec fun.
+ * Special Functions Table.     OLC
  */
-SPEC_FUN *spec_lookup( const char *name )
+const   struct  spec_type       spec_table      [ ] =
 {
-    if ( !str_cmp( name, "spec_breath_any"	  ) ) return spec_breath_any;
-    if ( !str_cmp( name, "spec_breath_acid"	  ) ) return spec_breath_acid;
-    if ( !str_cmp( name, "spec_breath_fire"	  ) ) return spec_breath_fire;
-    if ( !str_cmp( name, "spec_breath_frost"	  ) ) return spec_breath_frost;
-    if ( !str_cmp( name, "spec_breath_gas"	  ) ) return spec_breath_gas;
-    if ( !str_cmp( name, "spec_breath_lightning"  ) ) return
-							spec_breath_lightning;
-    if ( !str_cmp( name, "spec_cast_adept"	  ) ) return spec_cast_adept;
-    if ( !str_cmp( name, "spec_cast_cleric"	  ) ) return spec_cast_cleric;
-    if ( !str_cmp( name, "spec_cast_ghost"        ) ) return spec_cast_ghost;
-    if ( !str_cmp( name, "spec_cast_judge"	  ) ) return spec_cast_judge;
-    if ( !str_cmp( name, "spec_cast_mage"	  ) ) return spec_cast_mage;
-    if ( !str_cmp( name, "spec_cast_psionicist"   ) ) return
-                                                        spec_cast_psionicist;
-    if ( !str_cmp( name, "spec_cast_undead"	  ) ) return spec_cast_undead;
-    if ( !str_cmp( name, "spec_executioner"	  ) ) return spec_executioner;
-    if ( !str_cmp( name, "spec_fido"		  ) ) return spec_fido;
-    if ( !str_cmp( name, "spec_guard"		  ) ) return spec_guard;
-    if ( !str_cmp( name, "spec_janitor"		  ) ) return spec_janitor;
-    if ( !str_cmp( name, "spec_mayor"		  ) ) return spec_mayor;
-    if ( !str_cmp( name, "spec_poison"		  ) ) return spec_poison;
-    if ( !str_cmp( name, "spec_repairman"	  ) ) return spec_repairman;
-    if ( !str_cmp( name, "spec_thief"		  ) ) return spec_thief;
+    /*
+     * Special function commands.
+     */
+    { "spec_breath_any",        spec_breath_any         },
+    { "spec_breath_acid",       spec_breath_acid        },
+    { "spec_breath_fire",       spec_breath_fire        },
+    { "spec_breath_frost",      spec_breath_frost       },
+    { "spec_breath_gas",        spec_breath_gas         },
+    { "spec_breath_lightning",  spec_breath_lightning   },
+    { "spec_cast_adept",        spec_cast_adept         },
+    { "spec_cast_cleric",       spec_cast_cleric        },
+    { "spec_cast_ghost",        spec_cast_ghost         },
+    { "spec_cast_judge",        spec_cast_judge         },
+    { "spec_cast_mage",         spec_cast_mage          },
+    { "spec_cast_psionicist",   spec_cast_psionicist    },
+    { "spec_cast_undead",       spec_cast_undead        },
+    { "spec_executioner",       spec_executioner        },
+    { "spec_fido",              spec_fido               },
+    { "spec_guard",             spec_guard              },
+    { "spec_janitor",           spec_janitor            },
+    { "spec_mayor",             spec_mayor              },
+    { "spec_poison",            spec_poison             },
+    { "spec_repairman",         spec_repairman          },
+    { "spec_thief",             spec_thief              },
+    { "spec_buddha",		spec_buddha		},
+    { "spec_teacher",		spec_teacher		},
+    { "spec_guard_white",	spec_guard_white	},
+    { "spec_kungfu_poison",	spec_kungfu_poison	},
+    { "spec_drunk",		spec_drunk		},
+    { "spec_assassin",		spec_assassin		},
+    { "spec_questmaster",	spec_questmaster	},
+
+    /*
+     * End of list.
+     */
+    { "",                       0       }
+};
+
+/*****************************************************************************
+ Name:          spec_string
+ Purpose:       Given a function, return the appropriate name.
+ Called by:     <???>
+ ****************************************************************************/
+char *spec_string( SPEC_FUN *fun )      /* OLC */
+{
+    int cmd;
+
+    for ( cmd = 0; *spec_table[cmd].spec_fun; cmd++ )   /* OLC 1.1b */
+        if ( fun == spec_table[cmd].spec_fun )
+            return spec_table[cmd].spec_name;
+
+    return 0;
+}
+
+/*****************************************************************************
+ Name:          spec_lookup
+ Purpose:       Given a name, return the appropriate spec fun.
+ Called by:     do_mset(act_wiz.c) load_specials,reset_area(db.c)
+ ****************************************************************************/
+SPEC_FUN *spec_lookup( const char *name )       /* OLC */
+{
+    int cmd;
+
+    for ( cmd = 0; *spec_table[cmd].spec_name; cmd++ )  /* OLC 1.1b */
+        if ( !str_cmp( name, spec_table[cmd].spec_name ) )
+            return spec_table[cmd].spec_fun;
+
     return 0;
 }
 
@@ -763,8 +813,9 @@ bool spec_thief( CHAR_DATA *ch )
 	    || !can_see( ch, victim ) )	/* Thx Glop */
 	    continue;
 
+	/* Thanks to Zeke from MudX for pointing the percent bug */
 	if ( IS_AWAKE( victim ) && victim->level > 5
-	    && number_percent( ) + ch->level - victim->level >= 33 )
+	    && number_percent( ) + victim->level - ch->level >= 33 )
 	{
 	    act( "You discover $n's hands in your wallet!",
 		ch, NULL, victim, TO_VICT );
@@ -964,5 +1015,321 @@ bool spec_repairman( CHAR_DATA *ch )
 	return TRUE;
     }
 
+    return FALSE;
+}
+
+bool spec_buddha( CHAR_DATA *ch )
+{
+    if ( ch->position != POS_FIGHTING )
+        return FALSE;
+
+    switch ( number_bits( 3 ) )
+    {
+    case 0: return spec_breath_fire             ( ch );
+    case 1:
+    case 2: return spec_breath_lightning        ( ch );
+    case 3: return spec_breath_gas              ( ch );
+    case 4: return spec_breath_acid             ( ch );
+    case 5: return spec_cast_cleric             ( ch );
+    case 6:
+    case 7: return spec_breath_frost            ( ch );
+    }
+
+    return FALSE;
+}
+
+
+bool spec_teacher( CHAR_DATA *ch )
+{
+    OBJ_DATA *corpse;
+    OBJ_DATA *c_next;
+    OBJ_DATA *obj;
+    OBJ_DATA *obj_next;
+
+    if ( !IS_AWAKE(ch) )
+        return FALSE;
+
+    for ( corpse = ch->in_room->contents; corpse != NULL; corpse = c_next )
+    {
+        c_next = corpse->next_content;
+        if ( corpse->item_type != ITEM_CORPSE_NPC )
+            continue;
+
+        act( "$n sacrifices the corpse to Buddha!", ch, NULL, NULL, TO_ROOM );
+        for ( obj = corpse->contains; obj; obj = obj_next )
+        {
+            obj_next = obj->next_content;
+            obj_from_obj( obj );
+            obj_to_room( obj, ch->in_room );
+        }
+        extract_obj( corpse );
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+bool spec_guard_white( CHAR_DATA *ch )
+{
+    char buf[MAX_STRING_LENGTH];
+    CHAR_DATA *victim;
+    CHAR_DATA *v_next;
+    CHAR_DATA *ech;
+    char *crime;
+    int max_evil;
+
+    if ( !IS_AWAKE(ch) || ch->fighting != NULL )
+        return FALSE;
+
+    max_evil = 300;
+    ech      = NULL;
+    crime    = "";
+
+    for ( victim = ch->in_room->people; victim != NULL; victim = v_next )
+    {
+        v_next = victim->next_in_room;
+
+        if ( !IS_NPC(victim) && IS_SET(victim->act, PLR_KILLER) )
+            { crime = "KILLER"; break; }
+
+        if ( !IS_NPC(victim) && IS_SET(victim->act, PLR_THIEF) )
+            { crime = "THIEF"; break; }
+
+        if ( victim->fighting != NULL
+        &&   victim->fighting != ch
+        &&   victim->alignment < max_evil )
+        {
+            max_evil = victim->alignment;
+            ech      = victim;
+        }
+    }
+
+    if ( victim != NULL )
+    {
+        sprintf( buf, "%s is a %s!  How DARE you come to the Temple!!!!",
+            victim->name, crime );
+        do_shout( ch, buf );
+        multi_hit( ch, victim, TYPE_UNDEFINED );
+        return TRUE;
+    }
+
+    if ( ech != NULL )
+    {
+        act( "$n screams ' Now you DIE you Bastard!!!!",
+            ch, NULL, NULL, TO_ROOM );
+        multi_hit( ch, ech, TYPE_UNDEFINED );
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+
+bool spec_kungfu_poison( CHAR_DATA *ch )
+{
+    CHAR_DATA *victim;
+
+    if ( ch->position != POS_FIGHTING
+    || ( victim = ch->fighting ) == NULL
+    ||   number_percent( ) > 2 * ch->level )
+        return FALSE;
+
+    act( "You hit $N with a poison palm technique!",  ch, NULL, victim, TO_CHAR );
+    act( "$n hits $N with the poison palm technique!",  ch, NULL, victim, TO_NOTVICT );
+    act( "$n hits you with the poison palm technique!", ch, NULL, victim, TO_VICT    );
+    spell_poison( gsn_poison, ch->level, ch, victim );
+    return TRUE;
+}
+
+bool spec_rebel( CHAR_DATA *ch )
+{
+    CHAR_DATA *victim;
+    CHAR_DATA *ech;
+    char      *crime;
+    char       buf [ MAX_STRING_LENGTH ];
+    int        max_evil;
+
+    if ( !IS_AWAKE( ch ) || ch->fighting )
+        return FALSE;
+
+    max_evil = 300;
+    ech      = NULL;
+    crime    = "";
+
+    for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
+    {
+        if ( victim->deleted )
+            continue;
+
+        if ( !IS_NPC( victim ) && IS_SET( victim->act, PLR_KILLER ) )
+            { crime = "KILLER"; break; }
+
+        if ( !IS_NPC( victim ) && IS_SET( victim->act, PLR_THIEF  ) )
+            { crime = "THIEF"; break; }
+
+        if ( victim->fighting
+            && victim->fighting != ch
+            && victim->alignment < max_evil )
+        {
+            max_evil = victim->alignment;
+            ech      = victim;
+        }
+    }
+
+    if ( victim )
+    {
+        sprintf( buf, "%s is a %s!  DEATH TO THE EMPIRE!!  BANZAI!!",
+                victim->name, crime );
+        do_shout( ch, buf );
+        multi_hit( ch, victim, TYPE_UNDEFINED );
+        return TRUE;
+    }
+
+    if ( ech )
+    {
+        act( "$n screams 'DEATH TO THE EMPIRE!!  BANZAI!!",
+            ch, NULL, NULL, TO_ROOM );
+        multi_hit( ch, ech, TYPE_UNDEFINED );
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+bool spec_drunk( CHAR_DATA *ch )
+{
+    CHAR_DATA *victim;
+
+    if ( !IS_AWAKE( ch ) || ch->fighting )
+        return FALSE;
+
+    for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
+    {
+        if ( victim != ch && can_see( ch, victim ) && number_bits( 1 ) == 0 )
+            break;
+    }
+
+    if ( !victim || IS_NPC( victim ) )
+        return FALSE;
+
+    switch ( number_bits( 4 ) )
+    {
+    case 0:
+        act( "$n pukes", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 1:
+        act( "Oooohh noooo $n has begon to sing !!", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 2:
+        act( "$n sings 'Ole Ole Ole'.",   ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 3:
+        act( "*hic*",    ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 4:
+        act( "$n hiccups",  ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 5:
+        act( "$n tries to hit you but falls to the ground.", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 6:
+        act( "$n burps", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 7:
+        act( "$n orders another bottle of beer.", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 8:
+        act( "$n tells you 'Ohh i feel so sick...'", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 9:
+        do_chat( ch, "I'm so drunk I'm sober");
+        return TRUE;
+
+    case 10:
+        act( "$n says 'En we gaan nog niet naar huis...'", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 11:
+        act( "$n burps", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 12:
+        act( "$n pukes all over you", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 13:
+        act( "$n tells you 'If you want a drink...", ch, NULL, NULL, TO_ROOM );
+        act( "$n tells you 'You'll need to order one... Hahaha'", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 14:
+        act( "$n says 'Hey guys... buy me a beer will you...*hic*'", ch, NULL, NULL, TO_ROOM );
+        return TRUE;
+
+    case 15:
+        act( "$n says 'Hey you bar-dude gimme another beer will ya'", ch, NULL,
+NULL, TO_ROOM );
+        return TRUE;
+
+    }
+
+    return FALSE;
+}
+
+/* This function was written by Rox of Farside, Permission to
+ * use is granted provided this header is retained
+*/
+
+bool spec_assassin( CHAR_DATA *ch )
+{
+    char buf[MAX_STRING_LENGTH];
+    CHAR_DATA *victim;
+         int rnd_say;
+
+    if ( ch->fighting != NULL )
+                return FALSE;
+
+    for ( victim = ch->in_room->people; victim; victim = victim->next_in_room )
+    {
+               /* this should kill mobs as well as players */
+                        if (victim->class != 2)  /* thieves */
+                                break;
+    }
+
+    if ( victim == NULL || victim == ch || IS_IMMORTAL( victim ) )
+        return FALSE;
+    if ( victim->level > ch->level + 7 )
+        return FALSE;
+
+   rnd_say = number_range (1, 10);
+
+   if ( rnd_say <= 5)
+                sprintf( buf, "Death to is the true end...");
+   else if ( rnd_say <= 6)
+                sprintf( buf, "Time to die....");
+   else if ( rnd_say <= 7)
+                sprintf( buf, "Cabrone....");
+   else if ( rnd_say <= 8)
+                sprintf( buf, "Welcome to your fate....");
+   else if ( rnd_say <= 10)
+                sprintf( buf, "Ever dance with the devil....");
+
+    do_say( ch, buf );
+    multi_hit( ch, victim, gsn_backstab );
+    return TRUE;
+}
+
+bool spec_questmaster (CHAR_DATA *ch)
+{
+    if (ch->fighting != NULL) return spec_cast_mage( ch );
     return FALSE;
 }

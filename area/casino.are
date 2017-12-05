@@ -1,0 +1,205 @@
+#AREADATA
+Name        Mythran Mud Casino~
+Builders    Maniac~
+VNUMs       500 599
+Security    1
+Recall      3001
+End
+
+
+
+#MOBILES
+#0
+
+
+
+#OBJECTS
+#0
+
+
+
+#ROOMDATA
+#500
+Southern hall of the Mythran Mud Casino~
+~
+0 0 0
+D0
+~
+~
+0 0 503
+D2
+~
+~
+0 0 508
+S
+#501
+~
+~
+0 0 0
+D2
+~
+~
+0 0 500
+S
+#502
+~
+~
+0 0 0
+D2
+~
+~
+0 0 500
+S
+#503
+Central hall of the Mythran Mud Casino~
+~
+0 0 0
+D0
+~
+~
+0 0 504
+D1
+~
+~
+0 0 505
+D2
+~
+~
+0 0 500
+D3
+~
+~
+0 0 506
+S
+#504
+Northern hall of the Mythran Mud Casino~
+You are in the Northern hall of the Mythran Mud Casino.
+If you prefer a nice game of seven, we recommend you go east here, where our
+croupiers play the fabulous game of seven.
+The game of upper-lower-triple, is played in the room to the north.
+You can play a game of high-dice in the room in the west
+~
+0 0 0
+D0
+~
+~
+0 0 510
+D1
+~
+~
+0 0 509
+D2
+~
+~
+0 0 503
+D3
+~
+~
+0 0 511
+S
+#505
+Eastern hall of the Mythran Mud Casino~
+~
+0 0 0
+D3
+~
+~
+0 0 503
+S
+#506
+Western hall of the Mythran Mud Casino~
+~
+0 0 0
+D1
+~
+~
+0 0 503
+S
+#507
+Driveway to the Mythran Mud Casino~
+~
+0 0 0
+D0
+~
+~
+0 0 508
+D2
+~
+~
+0 0 3054
+S
+#508
+Entrace to the Mythran Mud Casino~
+~
+0 0 0
+D0
+~
+~
+0 0 500
+D2
+~
+~
+0 0 507
+S
+#509
+The Game of Seven Room~
+In this room you can play the game of seven, well... only if the croupier
+is awake...
+~
+0 0 0
+D3
+~
+~
+0 0 504
+S
+#510
+The Upper Lower Triple Room~
+~
+0 0 0
+D2
+~
+~
+0 0 504
+S
+#511
+The High-Dice Room~
+~
+0 0 0
+D1
+~
+~
+0 0 504
+S
+#0
+
+
+
+#SPECIALS
+S
+
+
+
+#GAMES
+S
+
+
+
+#RESETS
+M 0 3162 1 509
+M 0 3160 1 510
+M 0 3161 1 511
+S
+
+
+
+#MOBPROGS
+S
+
+
+
+#SHOPS
+0
+
+
+
+#$

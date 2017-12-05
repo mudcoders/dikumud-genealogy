@@ -1,4 +1,10 @@
-#AREA	{None } Diku    Limbo~
+#AREADATA
+Name        Limbo~
+Builders    None~
+VNUMs       1 99
+Security    1
+Recall      3001
+End
 
 
 
@@ -10,9 +16,9 @@ Puff the Fractal Dragon is here, contemplating a higher reality.
 ~
 ~
 1 0 1000 S
-26 1 -1 5d10+550 4d6+3
-10000 155000
-8 dragon~ 2
+21 1 0 5d10+550 4d6+3
+10000 0
+0 Dragon~ 2
 #2
 darkside~
 The Mighty Darkside~
@@ -23,14 +29,22 @@ eyestalks atop the round body which can do anything from charm you
 to disintegrate you.  Beholders are not known for their personality.
 ~
 163 8 -870 S
-25 6 0 25d25+250 6d6+5
-22560 94000
-8 god~ 0
+29 6 0 25d25+250 6d6+5
+22560 0
+0 God~ 0
 #0
 
 
 
 #OBJECTS
+#1
+dummy object~
+a dummy object~
+Dummy object is used for loading non-existant objects~
+~
+13 0 0
+0~ 0~ 0~ 0~
+0 0 0
 #2
 coin gold~
 a gold coin~
@@ -52,8 +66,8 @@ generic potion~
 a generic potion~
 A bland generic potion is lying here.~
 ~
-10 1 1|16384
-12~ heal~ 0~ 0~
+10 1 16385
+12~ heal~  ~  ~
 2 0 0
 #10
 corpse~
@@ -118,7 +132,7 @@ A delicious magic mushroom is here.~
 ~
 19 0 1
 5~ 0~ 0~ 0~
-1 10 10
+1 10 0
 #21
 ball light~
 a bright ball of light~
@@ -133,31 +147,203 @@ a magical spring~
 A magical spring flows from the ground here.~
 ~
 25 64 0
-100000~ 100000~ 0~0~
-5000 10 100000
+100000~ 100000~ 0~ 0~
+5000 10 0
+#23
+blood trail~
+a blood trail~
+A blood trail leading %s.~
+~
+13 0 0
+5~ 0~ 0~ 1~
+1 0 0
+#24
+fungus hood~
+an Executioners Hood~
+A black fungus is here.~
+~
+19 0 1
+5~ 0~ 0~ 0~
+1 10 0
+#25
+blood~
+a drop of blood~
+A drop of blood is here.~
+~
+13 0 1
+5~ 0~ 0~ 1~
+1 0 0
+#26
+bone~
+a bone~
+A bone is here.~
+~
+13 0 1
+5~ 0~ 0~ 0~
+1 10 0
+#27
+wood twig~
+a piece of wood~
+A little twig of wood is here.~
+~
+13 0 1
+5~ 0~ 0~ 1~
+1 0 0
+#28
+dirt mud~
+a bit of dirt~
+A little pool of dirt lies here.~
+~
+13 0 1
+5~ 0~ 0~ 0~
+1 10 0
+#29
+blackmoor~
+a pinch of blackmoor~
+A pinch of blackmoor is here.~
+~
+13 0 1
+5~ 0~ 0~ 1~
+1 0 0
+#30
+shield~
+the shield of Mythran Mud~
+The shield of Mythran mud lies here, it is a beautifull shield, covered with
+expensive diamonds and plated with gold and silver.~
+~
+13 0 1
+0~ 0~ 0~ 0~
+10 0 0
+#31
+sword~
+the sword of Mythran Mud~
+This sword of Mythran mud lies here, it looks like a VERY sharp sword, you
+are stunned by it's beauty and brightness.~
+~
+13 0 1
+0~ 0~ 0~ 0~
+8 0 0
+#32
+sceptre~
+the sceptre of Mythran Mud~
+The sceptre of Mythran mud lies here, it's completely covered with diamonds
+and rubies.~
+~
+13 0 1
+0~ 0~ 0~ 0~
+5 0 0
+#33
+ring~
+the ring of Mythran Mud~
+The ring of Mythran mud lies here, it's a beautifully designed golden ring,
+with a big diamond in the centre.~
+~
+13 0 1
+0~ 0~ 0~ 0~
+3 0 0
+#34
+armor~
+the armor of Mythran Mud~
+The armor of Mythran mud lies here, it is a full plate armor, covered with
+gold and silver.~
+~
+13 0 1
+0~ 0~ 0~ 0~
+20 0 0
+#50
+hot tub~
+a hot tub all naked~
+A hot tub is bubbling here~
+~
+12 1048578 0
+2~ 0~ 65535~ 0~
+100 100 0
+A
+17 -100
 #0
 
 
 
-#ROOMS
+#ROOMDATA
 #1
 The Void~
-  You are floating in nothing.
+You are floating in nothing.
 ~
-0 8 1
+0 12 1
 S
 #2
 Limbo~
-   You are floating in a formless void, detached from all sensation of physical
+You are floating in a formless void, detached from all sensation of physical
 matter, surrounded by swirling glowing light, which fades into the relative
 darkness around you without any trace of edges or shadow.
    There is a "No Tipping" notice pinned to the darkness.
 ~
-0 8 1
+0 12 1
+S
+#64
+Maniac's bathroom~
+This is maniac's bathroom, the wall's are covered with nice bathtiles
+displaying all kinds of unix manual-pages.  
+~
+0 0 0
+D3
+~
+~
+0 0 67
+S
+#65
+Maniac's livingroom~
+You are now in maniac's livingroom.
+It is a very cosy place, but it is not like any other livingroom
+Maniac's livingroom is filled with computers and the walls are papered with
+printouts and post-it notes.
+On several computers you see mud's and hacking programs running
+~
+0 0 0
+D1
+~
+~
+4 0 67
+D3
+~
+~
+0 0 66
+D5
+~
+~
+0 0 3001
+S
+#66
+Maniac's Computer and Coding room~
+This is maniac's computer and coding room...
+in this room he writes new pieces of mud code and other programs
+The entire room is filled with computers, cables, printouts and monitors.
+~
+0 4 0
+D1
+~
+~
+0 0 65
+S
+#67
+Maniac's bedroom~
+This is Maniac's bedroom, he doesn't spend much time here, since
+he spends to much time mudding and coding, but when he is here
+(well you know....)
+~
+0 0 0
+D1
+~
+~
+0 0 64
+D3
+~
+~
+4 0 65
 S
 #69
 Frag's Hovel~
-   You are in a small, miserable, dwelling (for those of you nincompoops who
+You are in a small, miserable, dwelling (for those of you nincompoops who
 don't know what a HOVEL is).  It's dark, dank, and cold.  At one end of the
 room, you see a sorry excuse of a rusty, squeaky bunkbed.  Obviously, neither
 of the beds are made.  A dirty, ragtorn teddy bear sleeps heavily on the
@@ -166,15 +352,36 @@ ringing, which shows that this room was made for TWO people to sleep in,
 although it's barely 10 X 12 feet.  Papers, books, and laundry are thrown
 everywhere, with two computers astrally linked to the world of Envy.
 ~
-0 8 1
+0 12 1
 S
 #0
 
 
 
-#RESETS
-M 0 1 1 2		Puff
+#SPECIALS
 S
+
+
+
+#GAMES
+S
+
+
+
+#RESETS
+O 0 50 0 1
+M 0 1 1 2
+S
+
+
+
+#MOBPROGS
+S
+
+
+
+#SHOPS
+0
 
 
 

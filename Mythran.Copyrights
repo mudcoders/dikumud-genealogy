@@ -1,0 +1,38 @@
+Mythran Mud 3
+version: 3.1
+
+Mythran Mud is (C) 1996 by Mark Janssen and Jeroen van der Maat.
+
+*  In order to use any part of this Mud, you must comply with the original
+Diku license in 'license.doc', the Merc license in 'license.txt', the
+Envy license in 'license.nvy' and the Mythran license in 'license.myt' 
+In particular, you may not remove any of these copyright notices.
+
+Based on Mythran Mud
+	(C) 1995 by Mark Janssen
+Based on EnvyMud 2
+	(C) 1995 by Michael Quan, and Mitchell Tse.
+Based on Envy Diku Mud
+	(C) 1994 by Michael Quan, David Love,
+	Guilherme 'Willie' Arnold, and Mitchell Tse.
+Based on Merc Diku Mud
+	(C) 1992, 1993 by Michael Chastain, Michael Quan, and Mitchell Tse.
+Based on Diku Mud
+	(C) 1990, 1991 by Sebastian Hammer, Michael Seifert,
+	Hans Henrik St{rfeldt, Tom Madsen, and Katja Nyboe.
+
+Some pieces of this mud have come from other sources as mentioned above,
+so here are some more credits for these peices of code.
+
+Magoo:	(Izuskin Kromosoeto) from Defiance Mud, for many help in running and
+	compiling muds on solaris machines, and helping me in the early days
+Beavis:	(Zenith) from his mud (without a name) for some spells and skills for
+	the necromancer and druid classes.
+Rimmer:	For his work on the nice ewok area and the specials that come with it.
+Vego:	For his help in programming some functions
+Slash:	Verious pieces of code including falling objects
+Russ Taylor:
+	For various bits of code and idea's I ripped from various versions
+	of Rivers Of Mud (2.3, 2.4)
+Erwin S. Andreasen:
+	Various hunks of code including disable

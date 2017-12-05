@@ -1,0 +1,225 @@
+Additions to EnvyMUd 2.0.
+
+/* Changes by Maniac: */
+
+05-jan-1996:    Added heal command for healer (healer.c)
+
+05-jan-1996:    Added new specials from the old Mythran...
+		spec_buddha, spec_teacher, spec_guard_white, spec_kungfu_poison
+		spec_rebel, spec_drunk, spec_assassin
+
+05-jan-1996:    Pecho has been added...
+
+05-jan-1996:    Added bladethirst skill for mages...
+
+05-jan-1996:    Added cure disease skill (asof now still useless (no plague))
+
+05-jan-1996:    Changed restore to restore room (default) and to cure
+		things like blindness, plague, poison, sleep and curse
+
+07-jan-1996:    Added 'battle prompt', while fighting you can see in what
+		condition the enemy is... (as in look)
+
+07-jan-1996:	Animate dead skill added
+
+07-jan-1996:	Added following immort commands: dog, iscore, smite and sstat
+		Written some time ago for rom24 but now converted to envy20
+
+07-jan-1996:	Added scan command (scans upto 3 rooms in a direction)
+
+08-jan-1196:	Added exp to level in do_score
+
+08-jan-1996:	Moved all gamblind stuff to gamble.c
+
+08-jan-1996:	Added 2 new dice games: SEVEN and HIGH DICE
+
+09-jan-1996:	Added plague...
+
+10-jan-1996:	Added hunt...  very cool...
+
+11-jan-1996:	Changed the scan function, replaced it...
+
+somewhere:	Added the drunk code... finally
+
+02-feb-1996:	Replaced the do_users, moved a few functions to act_wiz2.c
+		to save compilation time...
+		Added hakuna social (hakuna matata)
+		Added notestat (wiz) command
+		Removed drunk code calls, warnings !!
+
+07-may-1996:	Added the wizpassword command
+		Changed sset all to really set ALL
+		Added arena code
+		Fixed the drunk code (finally)
+
+11-may-1996:	Fixed the makefile for linux, the mud now stays up
+		in stead of dieing after one minute with a select error...
+		Fixed the healer/heal function
+
+12-may-1996:	Grouping and following with alignment re-installed (mythran2)
+		Renamed wizpassword to wizpwd
+		NEWS for thief flags added...
+		New messages when stealing fails... (try it..)
+		Added outfit command (to outfit players...)
+		Fixed a slight bug in score (exp to level was wrong place)
+		Added setkill command
+		Director can go/rstat/transfer/at to private rooms now...
+		Added set, stat, string and vnum commands (imm)
+		Added taxes for rich players...muhaha
+		Added banking system.
+		Fixed bug in drunk code
+		Added brew and scribe and the parchment and vial items
+		Added language (now only dwarvish) (needs change !!!)
+
+/* Canth joined the developement team */
+/* Language added by Maniac && Canth */
+16-may-1996:	Major update in the language code (still only dwarvish)
+		LANGUAGE IS IN YEEEEEHAAAAAAAA (cost a little to much time)
+		Modified mset to also set languages
+		Modified stat to include lstat
+		Added lstat command to show languages and learning sessions
+		Added learning sessions and learn command to learn languages
+		Added speak command to speak a language (for use with say)
+		Added default languages for races and new players.
+
+18-may-1996:	Fixed some slight bugs and mistakes in language system
+		Added the 'bank transfer' command, can transfer money now.
+		Added lore skill
+		Added count, counts players in the mud.
+
+19-may-1996:	Added (and fixed) imtlset +all option
+		Added note - option, to remove one line from the note
+		Replaced the ofind function, new version uses max 3000 loops,
+		   the old version about 30000 (one diff, new one isn't sorted)
+		Spell cell_adjustment now also cures plague...
+		Changed do_score, now other display of prac and learns...
+		Added areacount command, counts players per area
+
+20-may-1996:	Added Necromancers and Druids (and temp 'New_class' (need to
+		   add skills and spells still))
+		Added on-line social editing. allowed from level 3, full log.
+
+22-may-1996:	The who text (DIRECT, SENIOR, etc) can now be changed (mset)
+
+23-may-1996:	Added falling objects. Also, they hit chars on the head! :)
+
+26-may-1996:	Added disable to disable commands.
+		disable command now accepts a level!
+		disable all now re-enables all commands.
+		added super AT command 'FOR'. really cool (and dangerous!)
+
+27-may-1996:	Added rename to rename players.
+		Fixed a slight bug in whotext (17 char limit)
+		Added some stuff for iscore (also iscore <victim>)
+		Fixed exits, it now shows vnums for immortals.
+		Added exlist, which lists exits in and out of areas.
+		Added authorization check for imtlskills (where needed)
+
+28-may-1996:	Added new auctioning code.
+
+04-jun-1996:	Added OBJLIST imm command. Dumps objects to a file.
+		Added buy [amount] <item> [shopkeeper]
+		Changed is_name to accept prefixes of names.
+
+09-jun-1996:	Added imtlset <victim> -<skill>... Needs memory improvement!!!
+		Added trust level check for immskills
+
+16-jun-1996:	Hidden items, use hide and search commands
+
+17-jun-1996:	Major improvements on hide and search, now (more) chance to
+		fail to hide items.
+		Added lose command, lose your followers (finally)
+
+19-jun-1996:	Fixed some small bug in language code (no game effect)
+		Upgraded base mud code to envy2.1.19 (2.2 is soon to come)
+		Did not include patches for use with Win95/NT and Amiga (yet)
+
+21-jun-1996:	Added investment options at bank: buy, sell and check
+		Changed do_score for new bank-info
+		Added DMAN's blood trails and corpse decay, with some changes
+
+22-jun-1996:	Added update command, to update bank share_value and
+		update time to update the game time (hours only)
+		Fixed and changed some things in banking stuff
+		Chanced update bank and time, to be able to set the value.
+		Changed do_lset to be able to set learns
+		Big update in do_mset, can now change almost anything of char
+
+23-jun-1996:	Added following handy utility functions:
+		   room_flags_name:	Turn room flags number to string
+		   mob_act_name:	Turn mob act flags into string
+		   plr_act_name:	Turn player act flags into string
+		   door_status_name:	Turn door status flags into string
+		   str_obj_loc:		Item wear lock 2 string (no L and R)
+		   obj_eq_loc:		Where is item being worn now (L and R)
+		These functions can be used in commands like rstat, mstat etc
+		Changed do_mstat to display balance and shares
+		Changed do_mstat, do_rstat and do_ostat to use the new
+		   functions discribed above (string in stead of bitvector #)
+
+24-jun-1996:	Added functions to interpret the #GAMES section in area files
+		Added sector_string function (turn sector value to string)
+		Added race_ab_string function (race ability vector to string)
+		Added advatoi (from bet.h) advanced atoi in handler.c
+		Added 3 spells for necromancer skill call quake, rock flesh
+		   and summon dead, all high level, all require items.
+		Also wrote various help entries for necromancers
+
+26-jun-1996:	Changed do_sacrifice function, now has more possibilities,
+		   not only gives 1 gp, but also mana, move, hp, prac etc...
+
+27-jun-1996:	Added vassago's quest code... needs change... item not correct
+
+29-jun-1996:	Added ILAB OLC 1.1b, needs some change... doesn't save #games
+		Disabled objlist, i have no use for it, won't work with OLC
+
+08-jul-1996:	Added delete and delet commands, so chars can delete themselves
+
+09-jul-1996:	Fixed a bug in games code (bet a negative amount was possible)
+		Added area logging, area name is loggen while loading...
+
+10-jul-1996:	Fixed some small bugs in mobprogs... now more progs work.
+		Changed do_sac to say saveral godnames, and removed giving of
+		practice sessions. Fixed some slight bugs.
+
+12-jul-1996:	Removed all warnings when compiling mobprogs
+
+17-jul-1996:	Added start of clans, all in clan.c, fixed who to display clan.
+		added clan commands: apply, initiate, advance, kick, info,
+		recruit, leader, leave
+		Added guild command for immorts, to control clans.
+
+18-jul-1996:	Added some more clan commands, like clan talk
+
+23-jul-1996:	Added clan recall
+
+24-jul-1996:	Added structure for mobs that play games to have a bankroll,
+		and to cheat, the bankroll is loading in mob->gold, cheat
+		can be found with the macro MOB_GAME_CHEAT(mob)
+
+28-jul-1996:	Added wiznet, very configurable, only made one call to it
+		yet, but easy expandable, but lot of work...
+		see merc.h of channels and wiznet.c for code
+
+01-aug-1996:	Added wiznet tick subfunction. with many tick calls... C it.
+
+		Somewhere in between... remove some calls to tick... irritating
+
+10-aug-1996:	Added first part of furniture code (like in rom)
+		You can now stand on/in/at objects (furniture with bits)
+
+11-aug-1996:	Fixed some naughty bug that caused WIZINVIS/PROMPT to conflict
+		changed all those numbers to BIT_1 to BIT_32.
+		Can now see if someone is on/at/in an object
+
+12-aug-1996:	Fixed some bugs in adding and removing of affects, and
+		added some more places where affects are added/removed (rest/sl)
+		Affects from objects should be completely bugfree now...
+		Added wiznet DEBUG channel, for broadcasting debug-info
+		in a immort visible/player invisible way.
+
+6-nov-1996:	It's been a long time, but i'm back to coding... fixed a
+		bug in mob-progs which caused the mud to crash sometimes
+		Fixed this before, but that was on an older version (17-jun)
+		(which missed all functions added after that date, so I did it
+		again... )
