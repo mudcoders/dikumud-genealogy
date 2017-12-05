@@ -285,11 +285,11 @@ A flat dirk made of chipped obsidian lies here.~
 0~ 0~ 0~ 11~ 0~
 8 1000 0
 A
-2 1
+2 1 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 E
 obsidian dirk~
 The blade of the dirk is black, glassy obsidian, chipped razor sharp.
@@ -303,9 +303,9 @@ A dirty cloth turban has been forgotten here.~
 5~ 0~ 0~ 0~ 0~
 10 1500 0
 A
-2 1
+2 1 0
 A
-13 5
+13 5 0
 E
 cloth turban~
 The turban used to be white cloth, now it is covered with oil and dirt from
@@ -356,9 +356,9 @@ A little ball of fire hovers in the air before your eyes.~
 0~ 0~ -1~ 0~ 0~
 10 3500 0
 A
-13 10
+13 10 0
 A
-14 50
+14 50 0
 E
 ball fire~
 The ball of fire is hot to the touch and very very bright.
@@ -372,9 +372,9 @@ A curved scimitar made of stone rests on the ground.~
 0~ 0~ 0~ 3~ 0~
 18 10000 0
 A
-18 2
+18 2 0
 A
-19 3
+19 3 0
 E
 stone scimitar~
 The scimitar is formed from solid stone, chipped and carved to perfection,
@@ -445,9 +445,9 @@ A small, tarnished, battered lamp has been dropped here.~
 25~ 5~ 5~ fly~ 0~
 10 25000 0
 A
-17 -5
+17 -5 0
 A
-18 1
+18 1 0
 E
 lamp~
 The lamp is quite old and tarnished.  You rub at it to get some of the
@@ -462,9 +462,9 @@ A small brass ankh has been left here.~
 7~ 0~ 0~ 0~ 0~
 9 10000 0
 A
-3 1
+3 1 0
 A
-4 2
+4 2 0
 E
 ankh~
 The ankh is a small brass symbol of an ancient religion.
@@ -493,11 +493,11 @@ The mighty paw of a lion-like creature has been dropped here.~
 0~ 0~ 0~ 5~ 0~
 20 18000 0
 A
-5 1
+5 1 0
 A
-18 4
+18 4 0
 A
-19 3
+19 3 0
 E
 lion paw~
 The massive paw has straps on it formed of bronze, so that it will
@@ -551,15 +551,15 @@ Some fortunate soul has escaped the mummy's curse, for now.~
 0~ 0~ 0~ 0~ 0~
 1 500 0
 A
-1 -3
+1 -3 0
 A
-2 -3
+2 -3 0
 A
-5 -3
+5 -3 0
 A
-13 -50
+13 -50 0
 A
-14 -100
+14 -100 0
 E
 curse mummy~
 Rumor has it that whomever disturbs the grave of the mummy shall be 
@@ -589,13 +589,13 @@ A beautiful, intricately detailed mask has been forgotten here.~
 10~ 0~ 0~ 0~ 0~
 10 15000 0
 A
-12 25
+12 25 0
 A
-13 10
+13 10 0
 A
-14 100
+14 100 0
 A
-24 -1
+24 -1 0
 E
 golden mask~
 This beautiful mask was shaped from solid gold and magically enchanted
@@ -627,9 +627,9 @@ A small length of brass shines here with its own light.~
 35~ 25~ 25~ harm~ 0~
 10 250 0
 A
-21 -5
+21 -5 0
 A
-24 -5
+24 -5 0
 E
 sun wand~
 This small brass shaft is a holy weapon used by the ancient people of 
@@ -645,9 +645,9 @@ A small sandy-colored ring has been carelessly dropped here.~
 8~ 0~ 0~ 0~ 0~
 5 200 0
 A
-3 1
+3 1 0
 A
-12 50
+12 50 0
 E
 sandy ring~
 The ring is small, smooth, sandy-colored and unremarkable, save that
@@ -662,7 +662,7 @@ A small golden sphinx glints in the light.~
 0~ 0~ 0~ 0~ 0~
 5 500 0
 A
-4 2
+4 2 0
 E
 golden sphinx~
 The golden sphinx is incredibly detailed and very small, fitting easily
@@ -678,9 +678,9 @@ Massive leggings formed from the body of a sphinx stand here.~
 10~ 0~ 0~ 0~ 0~
 20 200 0
 A
-1 3
+1 3 0
 A
-14 200
+14 200 0
 E
 sphinxian leggings~
 These magically fashioned leggings impart the strength and stamina

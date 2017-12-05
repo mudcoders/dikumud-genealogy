@@ -8,6 +8,21 @@ End
 
 
 
+#HELPS
+
+-1 GNOME~
+GNOMEs are small peaceloving creatures much like a mix of DWARVES and HOBBITs.
+Not relatives of either race, GNOMEs do not carry the same number of negative
+feelings toward other races.  Having on average less strength than many other
+races, they make up this deficiency through a higher than average
+wisdom, as well as the ability to recover quickly from using magic.
+Also agile, GNOMEs regularly rival HOBBITs in the inter-racial Olympics.
+GNOMEs have certain abilities available to them.
+.	* Infravision.
+~
+
+0 $~
+
 #MOBILES
 #1500
 child gnome~
@@ -379,7 +394,7 @@ A ring in the shape of a bat lies here.~
 3~ 0~ 0~ 0~ 0~
 2 2500 0
 A
-14 15
+14 15 0
 #1509
 necklace bead~
 a bead necklace~
@@ -389,7 +404,7 @@ A string of beads is here.~
 3~ 0~ 0~ 0~ 0~
 8 4000 0
 A
-18 2
+18 2 0
 #1510
 sword electrum~
 an electrum sword~
@@ -439,7 +454,7 @@ You notice a pair of gnome boots.~
 4~ 0~ 0~ 0~ 0~
 12 12000 0
 A
-14 10
+14 10 0
 #1516
 coins~
 a pile of coins~
@@ -473,7 +488,7 @@ A stone slab lies here.~
 4~ 0~ 0~ 0~ 0~
 35 9000 0
 A
-1 2
+1 2 0
 #1520
 mail heavy banded~
 heavy banded mail~

@@ -251,9 +251,9 @@ You see a sub issue mace here.~
 0~ 2~ 3~ 7~ 0~
 5 0 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 E
 sub mace~
 You see a mace of great but cheap craftsmanship.  Imprinted on the side is:
@@ -268,9 +268,9 @@ You see a sub issue dagger here.~
 0~ 2~ 3~ 11~ 0~
 5 0 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 E
 sub dagger~
 You see a dagger of great but cheap craftsmanship.  Imprinted on the side is:
@@ -285,9 +285,9 @@ You see a sub issue sword here.~
 0~ 2~ 3~ 3~ 0~
 5 0 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 E
 sub sword~
 You see a sword of great but cheap craftsmanship.  Imprinted on the side is:
@@ -453,9 +453,9 @@ You see a mud school diploma here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-5 1
+5 1 0
 A
-4 1
+4 1 0
 E
 diploma~
 This document shows that you have graduated from Mud School.
@@ -473,9 +473,9 @@ A war banner is on the floor here.~
 0~ 0~ -1~ 0~ 0~
 1 0 0
 A
-24 -1
+24 -1 0
 A
-17 -1
+17 -1 0
 E
 banner~
 This is the official Merc war banner to see you through the darkest realm!

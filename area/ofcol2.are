@@ -538,7 +538,7 @@ A glass trinket is on the floor, gathering dust.~
 0~ 0~ 0~ 0~ 0~
 1 100 0
 A
-24 -1
+24 -1 0
 #608
 golden necklace~
 a golden necklace~
@@ -548,9 +548,9 @@ A golden necklace is on the floor, gathering dust.~
 0~ 0~ 0~ 0~ 0~
 2 10000 0
 A
-4 -1
+4 -1 0
 A
-9 10
+9 10 0
 #609
 cabbage~
 a head of cabbage~
@@ -648,9 +648,9 @@ A shiny ring of gold is in the dirt.~
 6~ 0~ 0~ 0~ 0~
 1 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #621
 plate brass~
 brass plate~
@@ -660,9 +660,9 @@ A pile of brass plates is against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -2
+24 -2 0
 A
-13 10
+13 10 0
 #622
 helm brass~
 a brass helm~
@@ -672,9 +672,9 @@ A brass helm is against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #623
 leggings brass~
 brass leggings~
@@ -684,9 +684,9 @@ A pile of brass plates is against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #624
 boots brass~
 brass boots~
@@ -696,9 +696,9 @@ Some brass boots are against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #625
 gauntlets brass~
 brass gauntlets~
@@ -708,9 +708,9 @@ Some brass gauntlets are against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #626
 sleeves brass~
 brass sleeves~
@@ -720,9 +720,9 @@ A pile of brass plates is against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #627
 shield brass~
 a brass shield~
@@ -732,9 +732,9 @@ A big plate of brass is against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #628
 girth brass~
 a brass girth~
@@ -744,9 +744,9 @@ A brass girth is against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #629
 bracer brass~
 a brass bracer~
@@ -756,9 +756,9 @@ A brass bracer is against the wall here.~
 6~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+24 -1 0
 A
-13 5
+13 5 0
 #630
 claymore sword~
 a claymore~
@@ -768,9 +768,9 @@ A VERY big sword is against the wall here.~
 0~ 4~ 4~ 1~ 0~
 16 1000 0
 A
-18 -2
+18 -2 0
 A
-19 5
+19 5 0
 #631
 plate silver~
 silver plate~
@@ -780,9 +780,9 @@ A pile of silver plating and chain is on the floor.~
 8~ 0~ 0~ 0~ 0~
 20 2000 0
 A
-12 10
+12 10 0
 A
-1 1
+1 1 0
 #632
 helm silver~
 a silver helm~
@@ -792,9 +792,9 @@ A shiny helm is on the floor.~
 8~ 0~ 0~ 0~ 0~
 20 2000 0
 A
-12 5
+12 5 0
 A
-2 1
+2 1 0
 #633
 leggings silver~
 silver leggings~
@@ -804,9 +804,9 @@ Some shiny leggings are on the floor.~
 8~ 0~ 0~ 0~ 0~
 20 2000 0
 A
-12 5
+12 5 0
 A
-3 1
+3 1 0
 #634
 boots silver~
 silver boots~
@@ -816,9 +816,9 @@ Some shiny boots are on the floor.~
 8~ 0~ 0~ 0~ 0~
 20 2000 0
 A
-12 5
+12 5 0
 A
-4 1
+4 1 0
 #635
 gauntlets silver~
 silver gauntlets~
@@ -828,9 +828,9 @@ Some shiny gauntlets are on the floor.~
 8~ 0~ 0~ 0~ 0~
 20 2000 0
 A
-12 5
+12 5 0
 A
-5 1
+5 1 0
 #636
 sleeves silver~
 silver sleeves~
@@ -840,9 +840,9 @@ Some shiny sleeves are on the floor.~
 8~ 0~ 0~ 0~ 0~
 20 2000 0
 A
-12 5
+12 5 0
 A
-18 1
+18 1 0
 #637
 shield silver~
 the silver shield~
@@ -852,9 +852,9 @@ A shiny shield is on the floor.~
 8~ 0~ 0~ 0~ 0~
 20 2000 0
 A
-12 5
+12 5 0
 A
-17 -3
+17 -3 0
 #638
 girth silver~
 the silver girth~
@@ -864,9 +864,9 @@ A shiny girth is on the floor.~
 8~ 0~ 0~ 0~ 0~
 20 2000 0
 A
-12 5
+12 5 0
 A
-19 1
+19 1 0
 #639
 plate platinum~
 platinum plate~
@@ -876,9 +876,9 @@ A pile of silvery metal is on the floor.~
 9~ 0~ 0~ 0~ 0~
 50 10000 0
 A
-13 15
+13 15 0
 A
-5 2
+5 2 0
 #640
 helmet platinum~
 the platinum helmet~
@@ -888,9 +888,9 @@ A silvery helmet is on the floor.~
 9~ 0~ 0~ 0~ 0~
 30 10000 0
 A
-12 10
+12 10 0
 A
-4 2
+4 2 0
 #641
 leggings platinum~
 platinum leggings~
@@ -900,9 +900,9 @@ Some silvery leggings are on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-13 10
+13 10 0
 A
-2 2
+2 2 0
 #642
 boots platinum~
 platinum boots~
@@ -912,9 +912,9 @@ Some silvery boots are on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-13 10
+13 10 0
 A
-14 100
+14 100 0
 #643
 gauntlets platinum~
 platinum gauntlets~
@@ -924,9 +924,9 @@ A pair of silvery gauntlets are on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-13 10
+13 10 0
 A
-18 2
+18 2 0
 #644
 sleeves platinum~
 platinum sleeves~
@@ -936,9 +936,9 @@ A pair of silvery sleeves are on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-13 10
+13 10 0
 A
-1 2
+1 2 0
 #645
 shield spiked platinum~
 the platinum spiked shield~
@@ -948,9 +948,9 @@ A jagged, silvery shield is on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-13 10
+13 10 0
 A
-19 3
+19 3 0
 #646
 girth platinum~
 the platinum girth~
@@ -960,9 +960,9 @@ A silvery girth is on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-13 10
+13 10 0
 A
-24 -5
+24 -5 0
 #647
 avenger holy sword~
 holy Avenger~
@@ -972,9 +972,9 @@ A glowing silvery sword is hovering here, ready to possess an owner.~
 0~ 5~ 6~ 1~ 0~
 25 10000 0
 A
-18 1
+18 1 0
 A
-19 6
+19 6 0
 #648
 whiskey shot~
 a shot of whiskey~
@@ -1016,9 +1016,9 @@ A very shiny symbol is on the floor.~
 8~ 0~ 0~ 0~ 0~
 5 1000 0
 A
-12 10
+12 10 0
 A
-4 2
+4 2 0
 #653
 ranseur polearm~
 a ranseur~
@@ -1028,9 +1028,9 @@ A heavy polearm is against the wall here, ready to inflict damage.~
 0~ 5~ 6~ 2~ 0~
 20 10000 0
 A
-18 5
+18 5 0
 A
-19 -1
+19 -1 0
 #654
 torso dragonscale golden~
 a golden dragonscale torso~
@@ -1040,9 +1040,9 @@ A golden dragonscale torso is on the floor!~
 9~ 0~ 0~ 0~ 0~
 25 5000 0
 A
-17 -5
+17 -5 0
 A
-18 2
+18 2 0
 #655
 dragonhelm golden~
 a golden dragonhelm~
@@ -1052,9 +1052,9 @@ A golden dragonhelm is on the floor!~
 9~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-17 -3
+17 -3 0
 A
-18 1
+18 1 0
 #656
 leggings golden~
 golden dragonscale leggings~
@@ -1064,9 +1064,9 @@ Some golden dragonscale leggings are on the floor!~
 9~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-17 -3
+17 -3 0
 A
-18 1
+18 1 0
 #657
 boots golden~
 golden dragonscale boots~
@@ -1076,9 +1076,9 @@ Some golden dragonscale boots are on the floor!~
 9~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-17 -3
+17 -3 0
 A
-18 1
+18 1 0
 #658
 gauntlets golden~
 golden dragonscale gauntlets~
@@ -1088,9 +1088,9 @@ Some golden dragonscale gauntlets are on the floor!~
 9~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-17 -3
+17 -3 0
 A
-18 1
+18 1 0
 #659
 sleeves golden~
 golden dragonscale sleeves~
@@ -1100,9 +1100,9 @@ Some golden dragonscale sleeves are on the floor!~
 9~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-17 -3
+17 -3 0
 A
-18 1
+18 1 0
 #660
 shield golden~
 a golden dragonscale shield~
@@ -1112,9 +1112,9 @@ A golden dragonscale shield is on the floor!~
 9~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-17 -3
+17 -3 0
 A
-18 1
+18 1 0
 #661
 girth golden~
 a golden dragonscale girth~
@@ -1124,9 +1124,9 @@ A golden dragonscale girth is on the floor!~
 9~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-17 -3
+17 -3 0
 A
-18 1
+18 1 0
 #662
 claw golden~
 the Golden Claw~
@@ -1136,7 +1136,7 @@ A huge golden claw is on the floor~
 0~ 5~ 5~ 5~ 0~
 20 5000 0
 A
-19 6
+19 6 0
 #663
 orb dragonorb~
 the Gold Dragon Orb~
@@ -1146,9 +1146,9 @@ A very large pearl-like sphere is in the center of this room.~
 14~ 10~ 10~ heal~ 0~
 30 100000 0
 A
-3 3
+3 3 0
 A
-4 3
+4 3 0
 #664
 robe golden~
 a golden robe~
@@ -1158,7 +1158,7 @@ A golden robe is on the floor.~
 9~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-3 3
+3 3 0
 #665
 house key~
 a house key~
@@ -1176,9 +1176,9 @@ A broom is against the wall here.~
 0~ 2~ 3~ 7~ 0~
 8 100 0
 A
-18 3
+18 3 0
 A
-19 -3
+19 -3 0
 #667
 chest~
 a chest~

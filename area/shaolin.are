@@ -275,15 +275,15 @@ Sparks of beautiful multi-colored light envelops you.~
 0~ 0~ -1~ 0~ 0~
 0 0 0
 A
-13 20
+24 -5 0
 A
-17 -10
+23 -5 0
 A
-19 4
+19 4 0
 A
-23 -5
+17 -10 0
 A
-24 -5
+13 20 0
 E
 sparks flame mercy light~
 A gift to the mortal world from the Goddess of Mercy.
@@ -336,9 +336,9 @@ A huge sabre with a dragon motif is planted firmly in the ground.~
 15~ 20~ 0~ 1~ 0~
 100 0 0
 A
-18 5
+19 5 0
 A
-19 5
+18 5 0
 E
 sabre dragon~
 This heavy weapon glows and hums as you lay it upon your laps. The dragon 
@@ -366,9 +366,9 @@ A whip made of chains is left on the floor.~
 12~ 20~ 0~ 4~ 0~
 50 0 0
 A
-18 3
+19 3 0
 A
-19 3
+18 3 0
 E
 chain whip~
 Written on it : Made in Shaolin Temple.
@@ -390,9 +390,9 @@ A long slim spear leans against the wall.~
 10~ 18~ 0~ 11~ 0~
 25 0 0
 A
-18 4
+19 2 0
 A
-19 2
+18 4 0
 E
 horse spear~
 Used during the ancient times for hunting horses, it can be just as effective
@@ -407,9 +407,9 @@ An old and torn book of some sort is left in one corner of the room.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-1 1
+2 1 0
 A
-2 1
+1 1 0
 E
 book sutra manual kamasutra~
 Are you really sure you want to do this?
@@ -423,9 +423,9 @@ A material of some sort is left here.~
 10~ 0~ 0~ 0~ 0~
 10 0 0
 A
-2 1
+14 50 0
 A
-14 50
+2 1 0
 #20119
 robe~
 a monk's robe~
@@ -435,9 +435,9 @@ A rough and cheap looking piece of cloth is discarded here.~
 10~ 0~ 0~ 0~ 0~
 20 0 0
 A
-5 1
+12 10 0
 A
-12 10
+5 1 0
 #20120
 cane armor~
 a cane armor~
@@ -447,7 +447,7 @@ A suit of cane armor stands here.~
 10~ 0~ 0~ 0~ 0~
 30 0 0
 A
-17 -10
+17 -10 0
 #20121
 Jiasha jiasha robe~
 abbot's Jiasha~
@@ -457,11 +457,11 @@ A pile of golden and red cloth lies here.~
 10~ 0~ 0~ 0~ 0~
 25 0 0
 A
-3 1
+24 -5 0
 A
-12 15
+12 15 0
 A
-24 -5
+3 1 0
 E
 jiasha Jiasha robe~
 This robe was tailor-made for the Abbot of Shaolin Temple by Boom's Workshop.
@@ -475,11 +475,11 @@ A necklace made of big black beads is dumped here.~
 10~ 0~ 0~ 0~ 0~
 10 0 0
 A
-1 1
+23 -5 0
 A
-12 10
+12 10 0
 A
-23 -5
+1 1 0
 E
 fozhu necklace~
 Written on it: FOR EXPORT ONLY.
@@ -493,13 +493,13 @@ A staff made entirely of solid gold stands here.~
 10~ 10~ 10~ 208~ 0~
 0 0 0
 A
-13 20
+19 2 0
 A
-17 -10
+18 2 0
 A
-18 2
+17 -10 0
 A
-19 2
+13 20 0
 E
 staff Abbot~
 Written on it : Compliments of Boom's Workshop.
@@ -521,9 +521,9 @@ A disc made of cane lies in the mud.~
 10~ 0~ 0~ 0~ 0~
 35 0 0
 A
-4 2
+2 1 0
 A
-2 1
+4 2 0
 #20131
 chain keys key~
 a chain of keys~

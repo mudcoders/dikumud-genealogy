@@ -146,6 +146,9 @@ void do_mpasound( CHAR_DATA *ch, char *argument )
         return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
+
     if ( argument[0] == '\0' )
     {
         bug( "Mpasound - No argument: vnum %d.", ch->pIndexData->vnum );
@@ -183,6 +186,9 @@ void do_mpkill( CHAR_DATA *ch, char *argument )
         send_to_char( "Huh?\n\r", ch );
 	return;
     }
+
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
 
     one_argument( argument, arg );
 
@@ -243,6 +249,9 @@ void do_mpjunk( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
+
     one_argument( argument, arg );
 
     if ( arg[0] == '\0')
@@ -291,6 +300,9 @@ void do_mpechoaround( CHAR_DATA *ch, char *argument )
        return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
+
     argument = one_argument( argument, arg );
 
     if ( arg[0] == '\0' )
@@ -322,6 +334,9 @@ void do_mpechoat( CHAR_DATA *ch, char *argument )
        return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
+
     argument = one_argument( argument, arg );
 
     if ( arg[0] == '\0' || argument[0] == '\0' )
@@ -345,11 +360,14 @@ void do_mpechoat( CHAR_DATA *ch, char *argument )
 /* prints the message to the room at large */
 void do_mpecho( CHAR_DATA *ch, char *argument )
 {
-    if ( !IS_NPC(ch) )
+    if ( !IS_NPC( ch ) )
     {
         send_to_char( "Huh?\n\r", ch );
         return;
     }
+
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
 
     if ( argument[0] == '\0' )
     {
@@ -379,6 +397,9 @@ void do_mpmload( CHAR_DATA *ch, char *argument )
         send_to_char( "Huh?\n\r", ch );
 	return;
     }
+
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
 
     one_argument( argument, arg );
 
@@ -412,6 +433,9 @@ void do_mpoload( CHAR_DATA *ch, char *argument )
         send_to_char( "Huh?\n\r", ch );
 	return;
     }
+
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
 
     argument = one_argument( argument, arg1 );
     argument = one_argument( argument, arg2 );
@@ -482,6 +506,9 @@ void do_mppurge( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
+
     one_argument( argument, arg );
 
     if ( arg[0] == '\0' )
@@ -542,6 +569,9 @@ void do_mpgoto( CHAR_DATA *ch, char *argument )
 	return;
     }
 
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
+
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
@@ -577,7 +607,10 @@ void do_mpat( CHAR_DATA *ch, char *argument )
         send_to_char( "Huh?\n\r", ch );
 	return;
     }
- 
+
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
+
     argument = one_argument( argument, arg );
 
     if ( arg[0] == '\0' || argument[0] == '\0' )
@@ -631,6 +664,10 @@ void do_mptransfer( CHAR_DATA *ch, char *argument )
 	send_to_char( "Huh?\n\r", ch );
 	return;
     }
+
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
+
     argument = one_argument( argument, arg1 );
     argument = one_argument( argument, arg2 );
 
@@ -642,16 +679,16 @@ void do_mptransfer( CHAR_DATA *ch, char *argument )
 
     if ( !str_cmp( arg1, "all" ) )
     {
-	for ( d = descriptor_list; d != NULL; d = d->next )
+	for ( d = descriptor_list; d; d = d->next )
 	{
 	    if ( d->connected == CON_PLAYING
 	    &&   d->character != ch
-	    &&   d->character->in_room != NULL
+	    &&   d->character->in_room
 	    &&   can_see( ch, d->character ) )
 	    {
 		char buf[MAX_STRING_LENGTH];
 		sprintf( buf, "%s %s", d->character->name, arg2 );
-		do_transfer( ch, buf );
+		do_mptransfer( ch, buf );
 	    }
 	}
 	return;
@@ -666,7 +703,7 @@ void do_mptransfer( CHAR_DATA *ch, char *argument )
     }
     else
     {
-	if ( ( location = find_location( ch, arg2 ) ) == NULL )
+	if ( !( location = find_location( ch, arg2 ) ) )
 	{
 	    bug( "Mptransfer - No such location: vnum %d.",
 	        ch->pIndexData->vnum );
@@ -681,21 +718,21 @@ void do_mptransfer( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    if ( ( victim = get_char_world( ch, arg1 ) ) == NULL )
+    if ( !( victim = get_char_world( ch, arg1 ) ) )
     {
 	bug( "Mptransfer - No such person: vnum %d.",
 	    ch->pIndexData->vnum );
 	return;
     }
 
-    if ( victim->in_room == NULL )
+    if ( !victim->in_room )
     {
 	bug( "Mptransfer - Victim in Limbo: vnum %d.",
 	    ch->pIndexData->vnum );
 	return;
     }
 
-    if ( victim->fighting != NULL )
+    if ( victim->fighting )
 	stop_fighting( victim, TRUE );
 
     char_from_room( victim );
@@ -717,6 +754,9 @@ void do_mpforce( CHAR_DATA *ch, char *argument )
 	send_to_char( "Huh?\n\r", ch );
 	return;
     }
+
+    if ( IS_AFFECTED( ch, AFF_CHARM ) )
+	return;
 
     argument = one_argument( argument, arg );
 

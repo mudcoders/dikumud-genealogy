@@ -237,11 +237,11 @@ A bright silver bracer lies here.~
 7~ 0~ 0~ 0~ 0~
 7 0 0
 A
-1 1
+13 1 0
 A
-14 15
+14 15 0
 A
-13 1
+1 1 0
 E
 bright silver bracer~
 This is a bright silver bracer fitted with four gems. The inside of the
@@ -292,9 +292,9 @@ There is a silver longsword on the ground.~
 0~ 5~ 20~ 1~ 0~
 7 0 0
 A
-13 3
+24 5 0
 A
-24 5
+13 3 0
 E
 silver longsword~
 This silver longsword looks as if it has seen many battles.
@@ -1410,18 +1410,18 @@ You see a closet to the south.
 ~
 0 8 0
 E
-posters~
-They seem to be various posters
-of a purple dinosaur singing...
-
-There is a autograph on one poster.
-~
-E
 autograph~
 I LOVE you 'cause you
 are SUPERDYDUPERDY!!!
 
 Barney
+~
+E
+posters~
+They seem to be various posters
+of a purple dinosaur singing...
+
+There is a autograph on one poster.
 ~
 D2
 You see a closet door.
@@ -1444,15 +1444,15 @@ You are locked in.
 ~
 0 8200 0
 E
+mothballs~
+They look like white Malt balls...
+I wonder if they taste like it too?
+~
+E
 cedar blocks~
 Looks like cedar blocks.
 what did you expect ? Gold?
 This is a FARMER's house.
-~
-E
-mothballs~
-They look like white Malt balls...
-I wonder if they taste like it too?
 ~
 D3
 You see closet door.

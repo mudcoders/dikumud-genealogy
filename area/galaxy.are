@@ -419,9 +419,9 @@ Arm plates of the Zodiac lie here.~
 6~ 0~ 0~ 0~ 0~
 10 10000 0
 A
-1 1
+19 2 0
 A
-19 2
+1 1 0
 E
 arm~
 These mighty armors have been worn by this immortal, since the ancient time.
@@ -435,7 +435,7 @@ A belt of the Zodiac lies here.~
 9~ 0~ 0~ 0~ 0~
 7 10000 0
 A
-5 2
+5 2 0
 E
 belt~
 You can immediately see that it belongs to Orion, from the three stars
@@ -458,7 +458,7 @@ A fleece of the Zodiac lies here.~
 9~ 0~ 0~ 0~ 0~
 9 10000 0
 A
-17 -20
+17 -20 0
 E
 fleece~
 From a look it resembles the Golden Fleece that exists in the Greek myths.
@@ -472,9 +472,9 @@ A hoof of the Zodiac lies here.~
 3~ 0~ 0~ 0~ 0~
 10 10000 0
 A
-14 50
+19 1 0
 A
-19 1
+14 50 0
 E
 hoof~
 It is with these hooves that Taurus can stand against Orion's attacks.
@@ -488,9 +488,9 @@ A mask of the Zodiac lies here.~
 2~ 0~ 0~ 0~ 0~
 7 10000 0
 A
-1 1
+2 2 0
 A
-2 2
+1 1 0
 E
 mask~
 You notice the mask has got two faces, one smiling and the other crying.
@@ -505,7 +505,7 @@ A shell of the Zodiac lies here.~
 10~ 0~ 0~ 0~ 0~
 15 10000 0
 A
-17 -20
+17 -20 0
 E
 shell~
 A shell which is dented in the middle, resulting from the Hercules' mighty
@@ -520,7 +520,7 @@ A skin of the Zodiac lies here.~
 11~ 0~ 0~ 0~ 0~
 15 10000 0
 A
-1 2
+1 2 0
 E
 skin~
 A skin made of metal, which was worn by Hercules during his Ten Labours.
@@ -534,7 +534,7 @@ A bracelet of the Zodiac lies here.~
 4~ 0~ 0~ 0~ 0~
 4 10000 0
 A
-4 2
+4 2 0
 E
 bracelet~
 A bracelet of purity and youth, only worn by selected virgins.
@@ -548,9 +548,9 @@ A shield of the Zodiac lies here.~
 8~ 0~ 0~ 0~ 0~
 15 10000 0
 A
-17 -3
+13 15 0
 A
-13 15
+17 -3 0
 E
 scale~
 It is a shield of justice, used in the ancient battle against injustice.
@@ -564,9 +564,9 @@ A shield of the Zodiac lies here.~
 0~ 0~ 0~ 0~ 0~
 15 10000 0
 A
-17 6
+13 -30 0
 A
-13 -30
+17 6 0
 E
 scale~
 It is a shield of injustice, it picks on the innocent.
@@ -580,9 +580,9 @@ Sting of the Zodiac lies here.~
 0~ 4~ 4~ 11~ 0~
 7 10000 0
 A
-18 3
+19 4 0
 A
-19 4
+18 3 0
 E
 sting~
 This dreadful weapon put a lot of mortals to death before Scorpio was banished.
@@ -608,9 +608,9 @@ The Titanic Bow of Sagittarius lies here.~
 0~ 2~ 9~ 6~ 0~
 20 10000 0
 A
-18 4
+19 3 0
 A
-19 3
+18 4 0
 E
 bow~
 The gigantic bow used by the Archer; it is a very powerful weapon.
@@ -624,9 +624,9 @@ A pair of horns of the Zodiac lies here.~
 4~ 0~ 0~ 0~ 0~
 6 10000 0
 A
-18 3
+19 2 0
 A
-19 2
+18 3 0
 E
 horn~
 These strange horns are the work of gods, shaped to fit on hands.
@@ -654,9 +654,9 @@ A fish tail of the Zodiac lies here.~
 10~ 0~ 0~ 0~ 0~
 10 10000 0
 A
-17 -2
+2 2 0
 A
-2 2
+17 -2 0
 E
 tail~
 This tail can actually be worn by mortals somehow as leggings ... another
@@ -671,9 +671,9 @@ A ring of specialty lies here.~
 0~ 0~ 0~ 0~ 0~
 3 20000 0
 A
-12 25
+3 2 0
 A
-3 2
+12 25 0
 E
 ring~
 This ring belongs to Cassiopeia, queen of the Universe.
@@ -688,9 +688,9 @@ A sceptre of interest lies here.~
 0~ 0~ -1~ 0~ 0~
 4 20000 0
 A
-18 2
+19 2 0
 A
-19 2
+18 2 0
 E
 sceptre~
 You'd better give it back, or the king of the Universe will punish you.
@@ -704,9 +704,9 @@ Here lies a fortune ... a small ring of power.~
 4~ 0~ 0~ 0~ 0~
 3 40000 0
 A
-12 15
+13 30 0
 A
-13 30
+12 15 0
 E
 ring~
 It conceals the power of the universe.
@@ -720,9 +720,9 @@ A dazzling white object lies on the ground.~
 0~ 4~ 6~ 6~ 0~
 20 30000 0
 A
-18 2
+19 2 0
 A
-19 2
+18 2 0
 #9324
 spring shoot~
 a spring shoot~

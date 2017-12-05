@@ -1776,6 +1776,44 @@ char *extra_bit_name( int extra_flags )
     return ( buf[0] != '\0' ) ? buf+1 : "none";
 }
 
+
+
+/*
+ * Return ascii name of parts vector.
+ */
+char *parts_bit_name( int vector )
+{
+    static char buf [ 512 ];
+
+    buf[0] = '\0';
+    if ( vector & PART_HEAD         ) strcat( buf, " head"           );
+    if ( vector & PART_ARMS         ) strcat( buf, " arms"           );
+    if ( vector & PART_LEGS         ) strcat( buf, " legs"           );
+    if ( vector & PART_HEART        ) strcat( buf, " heart"          );
+    if ( vector & PART_BRAINS       ) strcat( buf, " brains"         );
+    if ( vector & PART_GUTS         ) strcat( buf, " guts"           );
+    if ( vector & PART_HANDS        ) strcat( buf, " hands"          );
+    if ( vector & PART_FEET         ) strcat( buf, " feet"           );
+    if ( vector & PART_FINGERS      ) strcat( buf, " fingers"        );
+    if ( vector & PART_EAR          ) strcat( buf, " ear"            );
+    if ( vector & PART_EYE          ) strcat( buf, " eye"            );
+    if ( vector & PART_LONG_TONGUE  ) strcat( buf, " long_tongue"    );
+    if ( vector & PART_EYESTALKS    ) strcat( buf, " eyestalks"      );
+    if ( vector & PART_TENTACLES    ) strcat( buf, " tentacles"      );
+    if ( vector & PART_FINS         ) strcat( buf, " fins"           );
+    if ( vector & PART_WINGS        ) strcat( buf, " wings"          );
+    if ( vector & PART_TAIL         ) strcat( buf, " tail"           );
+    if ( vector & PART_CLAWS        ) strcat( buf, " claws"          );
+    if ( vector & PART_FANGS        ) strcat( buf, " fangs"          );
+    if ( vector & PART_HORNS        ) strcat( buf, " horns"          );
+    if ( vector & PART_SCALES       ) strcat( buf, " scales"         );
+    if ( vector & PART_TUSKS        ) strcat( buf, " tusks"          );
+
+    return ( buf[0] != '\0' ) ? buf+1 : "none";
+}
+
+
+
 CHAR_DATA *get_char( CHAR_DATA *ch )
 {
     if ( !ch->pcdata )

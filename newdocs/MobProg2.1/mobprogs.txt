@@ -473,6 +473,8 @@ rand     (num)			Is random percentage less than or equal to num
 isnpc     ($*)			Is $* an NPC
 ispc      ($*)			Is $* a PC
 isgood    ($*)			Does $* have a good alignment 
+isneutral ($*)			Does $* have a neutral alignment 
+isevil    ($*)			Does $* have a evil alignment 
 isfight   ($*)			Is $* fighting
 isimmort  ($*)			Is the level of $* greater than max_mortal
 ischarmed ($*)			Is $* affected by charm
@@ -782,7 +784,7 @@ level($*)     == integer    Is the level of $* equal to integer
 class($*)     == integer    Is the class of $* equal to integer
 goldamt($*)   == integer    Does $* have a gold total equal to integer
 objtype($*)   == integer    Is the type of $* equal to integer (armor,boat,etc)
-objval#($*)   == integer    Is $*->value[#] equal to integer (# from 0-3)
+objval#($*)   == integer    Is $*->value[#] equal to integer (# from 0-4)
 number($*)    == integer    Is the vnum of $* equal to integer
 name($*)      == string     Is the name of $* equal to string
 

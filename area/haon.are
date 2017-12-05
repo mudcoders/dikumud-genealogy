@@ -22,6 +22,23 @@ one of a peaceful man leading a simple life.
 5 15 7 5d5+50 1d8+2
 50 0
 0 Human~ 1
+>entry_prog 100~
+if name($n) == fat worm
+  emote brings a leather-booted foot down atop a fat worm!
+  mpkill $n
+endif
+~
+>all_greet_prog 100~
+if name($n) == fat worm
+  emote brings a leather-booted foot down upon a fat worm!
+  mpkill $n
+endif
+~
+>rand_prog 8~
+emote cleaves a small tree in two with one mighty blow.
+mpasound The sound of an axe blade plunging into soft wood can be heard.
+~
+|
 #6002
 bear~
 the brown bear~
@@ -143,6 +160,13 @@ he is having great fun.
 10 1 -10 10d10+100 1d8+2
 1000 0
 0 Animal~ 1
+>rand_prog 16~
+giggle
+~
+>rand_prog 14~
+poke $r
+~
+|
 #6116
 elder druid~
 the elder druid~
@@ -316,7 +340,7 @@ A long, grey branch rests heavily on the ground.~
 0~ 2~ 5~ 7~ 0~
 30 60 0
 A
-18 -2
+18 -2 0
 #6105
 branch~
 a long, grey branch~
@@ -386,7 +410,7 @@ An iron crown rests on the ground.~
 4~ 0~ 0~ 0~ 0~
 10 5000 0
 A
-4 3
+4 3 0
 E
 crown iron~
 It is a heavy human-sized crown made from solid iron.
@@ -400,7 +424,7 @@ An iron ring has been left here.~
 1~ 0~ 0~ 0~ 0~
 1 5000 0
 A
-2 1
+2 1 0
 E
 ring iron~
 It is a quite heavy human-sized ring made from solid iron.  It lacks
@@ -415,9 +439,9 @@ The morning star is here collecting dust while it lies on the ground.~
 0~ 2~ 8~ 8~ 0~
 10 15000 0
 A
-18 4
+18 4 0
 A
-19 -1
+19 -1 0
 #0
 
 

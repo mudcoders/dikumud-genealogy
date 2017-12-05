@@ -546,7 +546,7 @@ The Black Chain armor lies on the ground.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-13 10
+13 10 0
 #8202
 helmet horned~
 a black Horned Helmet~
@@ -556,9 +556,9 @@ A black horned helmet lies here.~
 0~ 0~ 0~ 0~ 0~
 20 0 0
 A
-19 2
+19 2 0
 A
-13 10
+13 10 0
 #8203
 sword bastard~
 a Bastard Sword~
@@ -568,11 +568,11 @@ A black Bastard Sword is stuck into the ground here.~
 0~ 0~ 0~ 1~ 0~
 10 0 0
 A
-13 2
+13 2 0
 A
-19 3
+19 3 0
 A
-24 2
+24 2 0
 #8204
 sack~
 a sack~
@@ -590,9 +590,9 @@ A Falcon Shield has been dropped here.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-13 10
+13 10 0
 A
-23 2
+23 2 0
 #8206
 armor plate~
 a set of Plate Armor~
@@ -602,7 +602,7 @@ The Plate Armor has a falcon design upon it.~
 0~ 0~ 0~ 0~ 0~
 12 0 0
 A
-2 2
+2 2 0
 #8207
 guard shin~
 a set of shin guards~
@@ -612,7 +612,7 @@ A set of shin guards rest here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-13 10
+13 10 0
 #8208
 sword long~
 a long sword~
@@ -622,7 +622,7 @@ An etched long sword has been thrown to the floor.~
 0~ 0~ 0~ 3~ 0~
 8 0 0
 A
-18 3
+18 3 0
 #8209
 wagon wooden~
 a wooden wagon~
@@ -632,9 +632,9 @@ A wooden wagon sits here.~
 100~ 0~ 0~ 0~ 0~
 30 0 0
 A
-14 -80
+14 -80 0
 A
-17 -10
+17 -10 0
 #8210
 ring ducal~
 a Ducal Ring~
@@ -644,11 +644,11 @@ The Ducal guards wear this Falcon engraved ring.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-17 5
+17 5 0
 A
-4 1
+4 1 0
 A
-3 1
+3 1 0
 #8211
 club patrol~
 a Ducal Patrol Club~
@@ -658,11 +658,11 @@ The Ducal Sergeant's Patrol Club rests here.~
 0~ 0~ 0~ 8~ 0~
 5 0 0
 A
-13 10
+13 10 0
 A
-18 1
+18 1 0
 A
-19 2
+19 2 0
 #8212
 sword short dual~
 a dual pair of short swords~
@@ -672,9 +672,9 @@ The Ducal Captain's dual short swords rests here.~
 0~ 0~ 0~ 3~ 0~
 5 0 0
 A
-5 2
+5 2 0
 A
-1 1
+1 1 0
 #8213
 halberd~
 a Large Halberd~
@@ -684,9 +684,9 @@ The Ducal armory guard's Halberd rests here.~
 0~ 0~ 0~ 2~ 0~
 8 0 0
 A
-19 3
+19 3 0
 A
-18 -2
+18 -2 0
 #8214
 ballista siege~
 a siege ballista~
@@ -696,11 +696,11 @@ A siege ballista stands here.~
 0~ 0~ 0~ 11~ 0~
 20 0 0
 A
-13 -4
+13 -4 0
 A
-14 -20
+14 -20 0
 A
-19 5
+19 5 0
 #8215
 mask skull~
 a Skull Mask~
@@ -710,9 +710,9 @@ An evil Skull Mask rests here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-23 3
+23 3 0
 A
-24 3
+24 3 0
 #8216
 well old~
 an old well~
@@ -834,9 +834,9 @@ The God of Light has dropped his small finger to earth.~
 28~ 20~ 20~ dispel evil~ 0~
 1 0 0
 A
-18 3
+18 3 0
 A
-12 15
+12 15 0
 #8231
 crowbar~
 a Crowbar~
@@ -846,9 +846,9 @@ A glowing Crowbar has been dropped here.~
 0~ 0~ 0~ 8~ 0~
 8 0 0
 A
-18 -1
+18 -1 0
 A
-19 3
+19 3 0
 #8232
 claw harpy~
 a harpy claw~
@@ -858,9 +858,9 @@ A harpy claw has been dropped here.~
 0~ 0~ 0~ 5~ 0~
 2 0 0
 A
-2 2
+2 2 0
 A
-24 2
+24 2 0
 #8233
 key large~
 the large key~
@@ -894,11 +894,11 @@ A dark blue hat has been thrown on the ground.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-3 2
+3 2 0
 A
-4 2
+4 2 0
 A
-12 10
+12 10 0
 #8237
 potion green~
 a green potion~
@@ -916,9 +916,9 @@ A pouch rests on the ground.~
 40~ 0~ 0~ 0~ 0~
 2 0 0
 A
-1 1
+1 1 0
 A
-2 2
+2 2 0
 #8239
 necklace~
 the Necklace of Power~
@@ -928,9 +928,9 @@ A powerful magical necklace has been discarded here.~
 0~ 0~ 0~ 0~ 0~
 2 0 0
 A
-12 15
+12 15 0
 A
-24 4
+24 4 0
 #8240
 book~
 a Book~
@@ -948,11 +948,11 @@ A set of wizard gauntlets have been discarded here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-2 1
+2 1 0
 A
-12 10
+12 10 0
 A
-19 2
+19 2 0
 #8242
 pile coins~
 a pile of coins~
@@ -1003,13 +1003,13 @@ A water bowl has been left here for you.~
 5~ 1~ 0~ 0~ 0~
 1 0 0
 A
-1 -10
+1 -10 0
 A
-2 -10
+2 -10 0
 A
-12 -60
+12 -60 0
 A
-13 -20
+13 -20 0
 #8247
 wyvern mount~
 a wyvern mount~
@@ -1019,7 +1019,7 @@ The wyvern mount is equipped with a saddle.~
 0~ 50~ 50~ fly~ 0~
 30 0 0
 A
-14 100
+14 100 0
 E
 saddle~
 The instructions on the saddle say to hold the Wyvern and then 
@@ -1113,7 +1113,7 @@ A suit of Scarlet Chainmail has been left here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-9 -5
+9 -5 0
 #8257
 helmet scarlet~
 a Scarlet Helmet~
@@ -1123,7 +1123,7 @@ A Scarlet Helmet has been left here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-9 -5
+9 -5 0
 #8258
 cape scarlet~
 a Scarlet Cape~
@@ -1133,7 +1133,7 @@ A Scarlet Cape with silk lining has been left here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-23 3
+23 3 0
 #8259
 leggings scarlet~
 a Scarlet Leggings~
@@ -1143,7 +1143,7 @@ A set of Scarlet Leggings has been left here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-4 2
+4 2 0
 #8260
 boots scarlet~
 a pair of Scarlet Boots~
@@ -1153,7 +1153,7 @@ A pair of Scarlet Boots has been left here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-14 30
+14 30 0
 #8261
 gloves scarlet~
 a pair of Scarlet Gloves~
@@ -1163,7 +1163,7 @@ A pair of Scarlet Gloves have been left here.~
 0~ 0~ 0~ 0~ 0~
 3 0 0
 A
-1 1
+1 1 0
 #8262
 sword razor~
 a Razor Sword~
@@ -1173,9 +1173,9 @@ A Razor Sword is so sharp you can shave with it.~
 0~ 0~ 0~ 1~ 0~
 8 0 0
 A
-18 2
+18 2 0
 A
-19 3
+19 3 0
 #8263
 club mineral~
 a mineral club~
@@ -1185,7 +1185,7 @@ A mineral club, glistening, sits here.~
 0~ 0~ 0~ 8~ 0~
 10 0 0
 A
-19 3
+19 3 0
 #8264
 ring fishbone~
 a fishbone ring~
@@ -1195,9 +1195,9 @@ A fishbone ring has been dropped here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-12 10
+12 10 0
 A
-2 2
+2 2 0
 #8265
 claw dragon~
 an Albino Dragon Claw~
@@ -1207,11 +1207,11 @@ An Albino Dragon Claw sits here.~
 0~ 0~ 0~ 5~ 0~
 8 0 0
 A
-18 3
+18 3 0
 A
-19 4
+19 4 0
 A
-23 2
+23 2 0
 #8266
 skull dragon~
 an Albino Dragon Skull~
@@ -1221,11 +1221,11 @@ An Albino Dragon Skull helmet has been left here.~
 0~ 0~ 0~ 0~ 0~
 8 0 0
 A
-3 2
+3 2 0
 A
-4 2
+4 2 0
 A
-5 2
+5 2 0
 #8267
 armor dragon~
 an Albino Dragon Armor~
@@ -1235,9 +1235,9 @@ An Albino Dragon Armor is resting here.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-24 2
+24 2 0
 A
-23 4
+23 4 0
 #8268
 abyss helm~
 an Abyss Helm~
@@ -1247,9 +1247,9 @@ An Abyss Helm floats here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-3 2
+3 2 0
 A
-4 2
+4 2 0
 #8269
 abyss ring~
 an Abyss Ring~
@@ -1259,9 +1259,9 @@ An Abyss Ring floats here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-14 20
+14 20 0
 A
-19 2
+19 2 0
 #8270
 abyss amulet~
 an Abyss Amulet~
@@ -1271,9 +1271,9 @@ An Abyss Amulet floats here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-12 10
+12 10 0
 A
-5 1
+5 1 0
 #8271
 abyss leather jerkin~
 an Abyss leather jerkin~
@@ -1283,9 +1283,9 @@ An Abyss leather jerkin floats here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-2 1
+2 1 0
 A
-13 15
+13 15 0
 #8272
 abyss leg guards~
 abyss leg guards~
@@ -1295,9 +1295,9 @@ A set of Abyss leg guards have been left here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-24 2
+24 2 0
 A
-23 2
+23 2 0
 #8273
 abyss boots~
 abyss boots~
@@ -1307,7 +1307,7 @@ A pair of Abyss boots float here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-17 10
+17 10 0
 #8274
 abyss gloves~
 abyss gloves~
@@ -1317,9 +1317,9 @@ A pair of Abyss gloves float here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-13 2
+13 2 0
 A
-1 2
+1 2 0
 #8275
 abyss sleeves~
 abyss sleeves~
@@ -1329,7 +1329,7 @@ A set of Abyss sleeves floats here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-13 5
+13 5 0
 #8276
 abyss shield~
 an Abyss shield~
@@ -1339,9 +1339,9 @@ An Abyss shield floats here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-12 15
+12 15 0
 A
-9 -15
+9 -15 0
 #8277
 abyss bracers~
 an Abyss bracer~
@@ -1351,9 +1351,9 @@ An Abyss bracer floats here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-19 2
+19 2 0
 A
-18 2
+18 2 0
 #8278
 abyss potion~
 an Abyss potion~

@@ -8,6 +8,30 @@ End
 
 
 
+#HELPS
+
+0 'VALLEY ELF'~
+Valley elves are as tall as most humans.  They are thin and have sharp and
+pointed features.  They are reclusive and resent intrusion.  All other sorts
+of elves, including the drow, shun valley elves.  The latter, in turn, dislike
+association with any races save perhaps gnomekind, whom they tolerate.
+~
+
+-1 ELF ELVES~
+ELVES are leaner in stature than humans yet on the average just as strong.
+They are more magical and dexterous than the average HUMAN.  With their
+smaller frame, they are able to better dodge larger foes like GIANTS
+and OGRES.  Unfortunately, ELVES are not so strong in bodily health;
+on the other hand, their magical nature aids them in recovering from
+the rigors of spell-casting.  Due to ancient feuds and past dealings,
+ELVES have strong animosity toward a few races and they toward ELVES.
+ELVES have certain abilities available to them.
+	* Infravision.
+	* Detect Hidden.
+~
+
+0 $~
+
 #MOBILES
 #7800
 cooshee dog~
@@ -212,7 +236,7 @@ Some soft boots are on the floor.~
 3~ 0~ 0~ 0~ 0~
 3 10 0
 A
-14 50
+14 50 0
 #7802
 longsword sword long~
 an elven longsword~
@@ -222,7 +246,7 @@ A shiny blade is on the floor.~
 0~ 3~ 3~ 3~ 0~
 3 50 0
 A
-18 1
+18 1 0
 #7803
 cloak brown~
 a brown cloak~
@@ -232,7 +256,7 @@ A pile of brown cloth is on the floor.~
 3~ 0~ 0~ 0~ 0~
 3 50 0
 A
-2 1
+2 1 0
 #7804
 key~
 a key~
@@ -258,7 +282,7 @@ A shiny ring is on the floor.~
 3~ 0~ 0~ 0~ 0~
 1 1000 0
 A
-12 10
+12 10 0
 #7807
 quarterstaff staff~
 a quarterstaff~
@@ -268,7 +292,7 @@ A quarterstaff is on the floor.~
 0~ 4~ 4~ 8~ 0~
 5 1000 0
 A
-19 2
+19 2 0
 #7808
 potion~
 a potion~
@@ -406,7 +430,7 @@ A dull iron shaft is on the floor.~
 0~ 0~ -1~ 0~ 0~
 1 1000 0
 A
-19 5
+19 5 0
 #0
 
 

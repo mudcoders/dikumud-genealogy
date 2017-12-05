@@ -2024,7 +2024,7 @@ void nanny( DESCRIPTOR_DATA *d, char *argument )
 		    [ch->sex == SEX_FEMALE ? 1 : 0] );
 	    set_title( ch, buf );
 	    free_string( ch->pcdata->prompt );
-	    ch->pcdata->prompt = str_dup( "{c<%hhp %mm %vmv>{x " );
+	    ch->pcdata->prompt = str_dup( "{g<%hhp %mm %vmv>{x " );
 
 	    obj = create_object( get_obj_index( OBJ_VNUM_SCHOOL_BANNER ), 0 );
 	    obj_to_char( obj, ch );
@@ -2311,63 +2311,60 @@ void send_to_char_bw( const char *txt, CHAR_DATA *ch )
 
 /*
  * Send to one char, new colour version, by Lope.
+ * Enhanced by Zen.
  */
 void send_to_char( const char *txt, CHAR_DATA *ch )
 {
     const	char 	*point;
     		char 	*point2;
-    		char 	buf[ MAX_STRING_LENGTH*4 ];
+    		char 	buf	[ MAX_STRING_LENGTH * 4 ];
 		int	skip = 0;
+
+    if( !txt || !ch->desc )
+        return;
 
     buf[0] = '\0';
     point2 = buf;
-    if ( txt && ch->desc )
+
+    for( point = txt ; *point ; point++ )
+    {
+	if( *point == '{' )
 	{
+	    point++;
 	    if ( IS_SET( ch->act, PLR_COLOUR ) )
 	    {
-		for( point = txt ; *point ; point++ )
-	        {
-		    if( *point == '{' )
-		    {
-			point++;
-			skip = colour( *point, ch, point2 );
-			while( skip-- > 0 )
-			    ++point2;
-			continue;
-		    }
-
-		    *point2 = *point;		    *++point2 = '\0';
-		}			
-		*point2 = '\0';
-		free_string( ch->desc->showstr_head );
-		ch->desc->showstr_head  = str_dup( buf );
-		ch->desc->showstr_point = ch->desc->showstr_head;
-		show_string( ch->desc, "" );
+		skip = colour( *point, ch, point2 );
+		while( skip-- > 0 )
+		    ++point2;
+		continue;
 	    }
-	    else
+	    if( *point == '{' )		/* if !IS_SET( ch->act, PLR_COLOUR ) */
 	    {
-		for( point = txt ; *point ; point++ )
-	        {
-		    if( *point == '{' )
-		    {
-			point++;
-			if( *point == '{' )
-			{
-			    *point2 = *point;
-			    *++point2 = '\0';
-			}
-			continue;
-		    }
-		    *point2 = *point;
-		    *++point2 = '\0';
-		}
-		*point2 = '\0';
-		free_string( ch->desc->showstr_head );
-		ch->desc->showstr_head  = str_dup( buf );
-		ch->desc->showstr_point = ch->desc->showstr_head;
-		show_string( ch->desc, "" );
+		*point2 = *point;
+		*++point2 = '\0';
 	    }
+	    continue;
 	}
+	*point2 = *point;
+	*++point2 = '\0';
+    }
+
+    *point2 = '\0';
+
+    /*
+     * Bypass the paging procedure if the text output is small
+     * Saves process time.
+     */
+    if( strlen( buf ) < 600 )
+	write_to_buffer( ch->desc, buf, strlen( buf ) );
+    else
+    {
+        free_string( ch->desc->showstr_head );
+	ch->desc->showstr_head  = str_dup( buf );
+	ch->desc->showstr_point = ch->desc->showstr_head;
+	show_string( ch->desc, "" );
+    }
+
     return;
 }
 

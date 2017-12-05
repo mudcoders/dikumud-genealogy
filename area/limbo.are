@@ -125,6 +125,22 @@ The steaming turds of %s assail your nostrils.~
 13 0 0
 5~ 0~ 0~ 1~ 0~
 1 0 0
+#17
+guts entrails food~
+the guts of %s~
+A steaming pile of %s's entrails is lying here.~
+~
+19 0 1
+20~ 0~ 0~ 0~ 0~
+5 0 0
+#18
+brains brain food~
+the brains of %s~
+The splattered brains of %s are lying here.~
+~
+19 0 1
+20~ 0~ 0~ 0~ 0~
+5 0 0
 #20
 mushroom food~
 a Magic Mushroom~

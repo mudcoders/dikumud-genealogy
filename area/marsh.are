@@ -221,9 +221,9 @@ A strange spear lies here.~
 0~ 3~ 5~ 2~ 0~
 10 20000 0
 A
-19 3
+2 2 0
 A
-2 2
+19 3 0
 #8302
 horned helmet~
 a dark horned helmet~
@@ -233,9 +233,9 @@ A wicked looking horned helmet lies here.~
 6~ 0~ 0~ 0~ 0~
 5 15000 0
 A
-19 1
+3 -3 0
 A
-3 -3
+19 1 0
 E
 horns horn~
 These horns appear to be made of adamantite.~
@@ -256,9 +256,9 @@ An evil, wicked-looking scythe lies in the shadows.~
 0~ 4~ 4~ 1~ 0~
 16 100000 0
 A
-18 3
+19 3 0
 A
-19 3
+18 3 0
 #8307
 green potion~
 a murky green potion~
@@ -330,13 +330,13 @@ distance.  And feel fear creep into your heart.
 ~
 0 1 5
 E
+pieces~
+You see severed limbs and spongy intestines.
+~
+E
 humanoid corpse~
 He looks mangled and shredded.  You see one large gash mark that looks
 like it came from the claw of some huge beast.
-~
-E
-pieces~
-You see severed limbs and spongy intestines.
 ~
 D1
 Eastward is the thick bog of ooze...
@@ -437,12 +437,12 @@ be taunting you towards the pool.
 ~
 0 1 6
 E
-lights ~
-From the stories you have heard, you recognize them as will-o-wisps.
-~
-E
 quicksand~
 It looks deadly to the foolish.
+~
+E
+lights ~
+From the stories you have heard, you recognize them as will-o-wisps.
 ~
 D1
 The swamp thing's lair.
@@ -496,12 +496,8 @@ huge fortress, half buried in the marsh.
 ~
 0 1 6
 E
-clouds~
-The clouds look dark and foreboding.
-~
-E
-beast~
-It looks to be a demon of some foul breed.
+vegetation~
+It looks sentient.
 ~
 E
 fortress~
@@ -509,8 +505,12 @@ It is surrounded by walls nearly 20 meters high.  In a tall tower on the
 northeast side, a window glows blue with magical energy.
 ~
 E
-vegetation~
-It looks sentient.
+beast~
+It looks to be a demon of some foul breed.
+~
+E
+clouds~
+The clouds look dark and foreboding.
 ~
 D0
 To the north a hill protrudes from the marshes.

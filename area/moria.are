@@ -8,6 +8,42 @@ End
 
 
 
+#HELPS
+
+-1 GIANT~
+GIANTs are large hulking humaniods with an overactive ego.  They love picking
+upon those smaller than them.  Not particularly bright nor agile, they
+rely more upon brute force than anything else.  Another one of their
+assets (besides their great smell) is that their dense bodies heal up
+faster than in most races.
+~
+
+-1 OGRE~
+OGREs are slightly less muscular than GIANTs with nothing to do but harass
+creatures which are vertically challenged.  Not particularly bright nor agile,
+they rely more upon brute force than anything else.  Another one of
+their assets (besides their great smell) is that their dense bodies
+heal up faster than in most races.
+~
+
+-1 ORC~
+ORCs are your typical underground dwelling mutant pig humanoid.  Living either
+in caves or other underground dwellings, ORCs have developed keen eyesight
+in the darkness.  What ORCs do not have in intelligence, they make up in
+strength and in their robust bodies, which can recover quickly from
+and damage done to it.
+~
+
+-1 KOBOLD~
+KOBOLDs are smaller than the typical HUMAN.  Once thought of as a clan of
+ELVES banished to the caves long ago by a powerful god, KOBOLDs have become
+more visible as of late.  Their keen eyesight in the darkness coupled with
+their agility make them dangerous.  Fortunately, KOBOLDs lack in strength and
+intelligence.
+~
+
+0 $~
+
 #MOBILES
 #4000
 python snake~
@@ -400,9 +436,9 @@ A ring, with yellow and green ornamentation. It looks very old.~
 0~ 0~ 0~ 0~ 0~
 1 50 0
 A
-1 -2
+1 -2 0
 A
-5 1
+5 1 0
 E
 ring~
 It feels VERY heavy.
@@ -444,9 +480,9 @@ A metal helmet is here.~
 3~ 0~ 0~ 0~ 0~
 4 3000 0
 A
-24 -2
+24 -2 0
 A
-23 -2
+23 -2 0
 #4052
 mushroom~
 a mushroom~
@@ -468,9 +504,9 @@ A beautifully crafted dirk is lying here.~
 0~ 2~ 6~ 11~ 0~
 2 850 0
 A
-18 1
+18 1 0
 A
-19 2
+19 2 0
 E
 dirk~
 It's a medium sized, beautifully crafted dirk made from grey alloy.
@@ -498,9 +534,9 @@ Some gloves are here.  They look like the right equipment for fighting.~
 2~ 0~ 0~ 0~ 0~
 1 1500 0
 A
-18 2
+18 2 0
 A
-19 1
+19 1 0
 #4102
 scroll ysafg~
 a scroll which reads "ysafg"~

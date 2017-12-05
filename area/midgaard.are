@@ -1502,9 +1502,9 @@ You see a standard issue sword here.~
 0~ 3~ 4~ 3~ 0~
 5 0 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 E
 standard sword~
 You see a sword of great craftsmanship.  Imprinted on the side is:
@@ -1519,9 +1519,9 @@ You see a standard issue dagger here.~
 0~ 4~ 4~ 11~ 0~
 5 0 0
 A
-18 2
+18 2 0
 A
-19 1
+19 1 0
 E
 standard dagger~
 You see a dagger of great craftsmanship.  Imprinted on the side is:
@@ -1536,9 +1536,9 @@ You see a standard issue mace here.~
 0~ 4~ 4~ 7~ 0~
 5 0 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 E
 standard mace~
 You see a mace of great craftsmanship.  Imprinted on the side is:
@@ -1696,9 +1696,9 @@ You see a ring with a strange symbol on the floor.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-17 -6
+17 -6 0
 A
-24 -2
+24 -2 0
 #3365
 banner~
 a war banner~
@@ -1708,9 +1708,9 @@ A war banner is on the floor here.~
 0~ 0~ -1~ 0~ 0~
 1 0 0
 A
-24 -2
+24 -2 0
 A
-17 -2
+17 -2 0
 E
 banner~
 This is the official Merc war banner to see you through the darkest realm!
@@ -2116,11 +2116,11 @@ You see a glowing vest here.~
 2~ 0~ 0~ 0~ 0~
 5 0 0
 A
-18 2
+18 2 0
 A
-19 4
+19 4 0
 A
-17 -20
+17 -20 0
 E
 clan vest~
 You see a great red serpent sign on it with the following words inscribed:

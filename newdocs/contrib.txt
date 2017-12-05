@@ -1,0 +1,93 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
+Monday, 14th July 1997
+
+Zen		vasc@camoes.rnl.ist.utl.pt
+
+
+=== Disclaimer
+
+If your name isn't in here, and you think it should be; or if your name IS
+in here and you prefer a different name or anonymity; then just e-mail me
+and i'll fix it in the next release.
+
+
+
+=== Information
+
+Almost all of the features of HomeCooked were heavily based on work done by
+someone else, so they deserve most of the credits not me. I mostly limited
+myself to porting the code to the Envy2.2 code base, fixing bugs, and
+occasionally rewriting some code. I wrote some details to the porting work
+bellow so you can use them for your reference.
+
+
+
+=== The HomeCooked Contributions
+
+Erwin S. A:	Scan(.v1) skill for Thieves (4u2@aabc.dk)
+		Save classes info in file idea
+		Save socials info in file idea
+
+
+Jason Huang:	Brew & Scribe skills for caster classes (huangjac@netcom.com)
+
+
+Lope:		ANSI Colour support using ColoUr_V1.2 (ant@solace.mh.se)
+
+
+Sandman:	Shield Block skill for all classes (morpheus@teleport.com)
+aka Morpheus	Fast Healing skill for all classes
+		Fourth Attack skill for Warriors
+	
+
+Slash:		Falling code (esnible@goodnet.com)
+
+
+Christopher S:	OLC for Envy20 port and a nice e-mail reminding me of his new
+		  release and its changes. Thanks! (stoked@iastate.edu)
+
+
+Stimpy:		Whirlwind skill for Warriors
+
+
+MOBProgs 2.1:	Written by J Murphy, N'Atas-Ha of ThePrincedom and
+		  based on a concept created on Worlds of Carnage by
+		  Aaron Buhr.
+
+
+MOM_Envy:	MobPrograms and a couple of OLC features were ported from this
+		Envy10 based source. (xerxes@primenet.com)
+
+
+ILAB OLC B1.1:	By Jason Dinkel (jdinkel@mines.colorado.edu)
+		  Original by Surreality (cxw197@psu.edu) and
+		  Locke (locke@lm.com)
+
+
+MPEDIT:		Written by Walker (nkrendel@evans.cudenver.edu)
+
+
+ROM 2.4:	ITEM_PORTAL, ITEM_WARP_STONE idea
+		  (Made code from scratch for Envy2.2 - Zen)
+		Spell "nexus", "portal" idea (Most of the code was rewritten)
+		Most of the alias code itself except load/saving routines.
+		ROM is a nice code base. It has some very nice features like:
+		ITEM_FURNITURE, different damage types, wiznet (this is a must),
+		affects like render a char invisible by just wearing an object,
+		smarter mobs, etc.
+
+		ROM consortium:
+		  Russ Taylor (Alander), Gabrielle Taylor, and Brian Moore
+		e-mail: Alander (rtaylor@pacinfo.com).
+
+
+SMAUG team:	Social table structure in memory and social table hashing idea.
+		A couple of functions were also taken from SMAUG code.
+		Track/Hunting module.
+		SMAUG is a great code base. I highly advise you to look at SMAUG
+		unless you're totally addicted to a mud type, like i'm addicted
+		to Envy :-) It has loads of features, spells/skills.
+
+		SMAUG code team: Thoric, Altrag, Blodkai, Narn, Haus, Scryn,
+		    Rennard, Swordbearer, Gorog, Grishnakh and Tricops
+		e-mail: Thoric (thoric@realms.game.org)

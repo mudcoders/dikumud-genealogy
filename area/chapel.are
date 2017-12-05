@@ -270,9 +270,9 @@ A nightgaunt's tickler has been left here.~
 0~ 3~ 4~ 5~ 0~
 8 5000 0
 A
-18 1
+18 1 0
 A
-19 2
+19 2 0
 E
 tickler~
 A horrid black mass of gooey tentacles obviously ripped from the corpse
@@ -338,9 +338,9 @@ A black marble ring is lying here on the ground.~
 0~ 0~ 0~ 0~ 0~
 2 4000 0
 A
-14 10
+14 10 0
 A
-24 1
+24 1 0
 E
 black marble ring~
 It is pitch black and has beautiful swirls characteristic of marble all
@@ -355,9 +355,9 @@ A rapier is lying here.~
 0~ 4~ 2~ 11~ 0~
 4 1000 0
 A
-2 2
+2 2 0
 A
-18 1
+18 1 0
 E
 thin rapier~
 It seems so thin that it would be useless but at the same time it looks deadly.
@@ -468,7 +468,7 @@ An artist's smock is lying here on the floor.~
 0~ 0~ 0~ 0~ 0~
 7 100 0
 A
-9 -3
+9 -3 0
 E
 smock~
 It has paint and little shavings of different materials all over it.
@@ -529,9 +529,9 @@ A dark black cape is lying here~
 5~ 0~ 0~ 0~ 0~
 10 8000 0
 A
-13 10
+13 10 0
 A
-17 10
+17 10 0
 E
 dark black cape~
 The cape is gently flows and pulls in the light so evenly and perfectly
@@ -546,7 +546,7 @@ A sword lies here~
 0~ 3~ 6~ 3~ 0~
 20 7000 0
 A
-18 1
+18 1 0
 E
 flaming sword long longsword~
 This sword is amazing! It almost wields itself! As you test it out, the

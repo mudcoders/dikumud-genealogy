@@ -491,18 +491,3 @@ char * string_proper( char * argument )
 
     return argument;
 }
-
-
-/*
- * Returns an all-caps string.          OLC 1.1b
- */
-char* all_capitalize( const char *str )
-{
-    static char strcap [ MAX_STRING_LENGTH ];
-           int  i;
-    for ( i = 0; str[i] != '\0'; i++ )
-        strcap[i] = UPPER( str[i] );
-    strcap[i] = '\0';
-    return strcap;
-}
-

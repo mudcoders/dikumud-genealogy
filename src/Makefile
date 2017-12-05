@@ -33,6 +33,9 @@ amiga:
 hpux:
 	make -f Makefile.hp
 
+irix:
+	make -f Makefile.irx
+
 mip:
 	make -f Makefile.mip
 

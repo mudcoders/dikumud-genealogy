@@ -435,9 +435,9 @@ A pair of metal plated gloves lie here.~
 8~ 0~ 0~ 0~ 0~
 6 10000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 E
 gloves combat~
 These gloves are plated with metal plates that provide strength and 
@@ -452,7 +452,7 @@ A pile of spiked chainmail lies here.~
 7~ 0~ 0~ 0~ 0~
 8 25000 0
 A
-19 2
+19 2 0
 #2302
 greaves black~
 a pair of black minotaur greaves~
@@ -478,9 +478,9 @@ A shiny metal rod lies here.~
 0~ 5~ 5~ 6~ 0~
 24 50000 0
 A
-18 3
+18 3 0
 A
-19 3
+19 3 0
 #2305
 cloak pitch black~
 a pitch black cloak~
@@ -490,7 +490,7 @@ A pile of black cloth lies here.~
 150~ 0~ 0~ 0~ 0~
 3 25000 0
 A
-23 -3
+23 -3 0
 E
 cloak pitch black~
 It appears to have pockets inside it.
@@ -504,7 +504,7 @@ A black plate collar rests here.~
 9~ 0~ 0~ 0~ 0~
 10 10000 0
 A
-4 1
+4 1 0
 #2307
 spiked gauntlets~
 a pair of spiked gauntlets~
@@ -514,7 +514,7 @@ A pair of spiked gauntlets lies here.~
 3~ 0~ 0~ 0~ 0~
 10 15000 0
 A
-19 3
+19 3 0
 E
 spiked gauntlets~
 They look pretty damaging.
@@ -528,7 +528,7 @@ A shadowy shield rests here.~
 15~ 0~ 0~ 0~ 0~
 15 50000 0
 A
-23 -3
+23 -3 0
 E
 shield shadow~
 You look into the depths of the shield and shiver at the evil it contains.
@@ -542,9 +542,9 @@ A very evil looking shortsword lies here.~
 0~ 5~ 4~ 11~ 0~
 9 75000 0
 A
-18 3
+18 3 0
 A
-19 3
+19 3 0
 E
 nightbringer short sword shortsword~
 The runes "NiGHtBrINgeR" are scrawled along the blade.
@@ -558,9 +558,9 @@ A helm and visor made of pure gold rests here.~
 7~ 0~ 0~ 0~ 0~
 15 25000 0
 A
-4 1
+4 1 0
 A
-3 1
+3 1 0
 #2311
 breast plate gilded gold~
 a gilded gold breast plate~
@@ -570,7 +570,7 @@ A large golden breast plate lies here.~
 15~ 0~ 0~ 0~ 0~
 18 35000 0
 A
-13 25
+13 25 0
 #2312
 cape white billowing silk~
 a billowing white cape ~
@@ -580,7 +580,7 @@ A pile of white silk lies here.~
 5~ 0~ 0~ 0~ 0~
 5 15000 0
 A
-9 20
+9 20 0
 #2313
 shield huge tower~
 a huge tower shield~
@@ -602,9 +602,9 @@ A huge mace lies here. It radiates an aura of power.~
 0~ 5~ 5~ 6~ 0~
 24 50000 0
 A
-18 3
+18 3 0
 A
-19 3
+19 3 0
 E
 dawnbringer mace huge~
 The runes "DAwNbRIngER" are scrawled along the handle.
@@ -618,7 +618,7 @@ A small pair of wire rimmed spectacles rests here.~
 1~ 0~ 0~ 0~ 0~
 2 25000 0
 A
-3 4
+3 4 0
 E
 spectacles wire rimmed~
 They'll make you look smart.
@@ -632,9 +632,9 @@ A small ring made of gold and silver bands lies here.~
 1~ 0~ 0~ 0~ 0~
 2 25000 0
 A
-12 30
+12 30 0
 A
-9 10
+9 10 0
 E
 ring banded~
 The ring has entwined bands of gold and silver.
@@ -648,9 +648,9 @@ A small globe rests here. It shimmers and radiates power.~
 10~ 0~ 0~ 0~ 0~
 1 50000 0
 A
-24 -5
+24 -5 0
 A
-23 -5
+23 -5 0
 E
 globe minor~
 Shimmering colors move inside the globe.
@@ -664,9 +664,9 @@ A gnarled staff lies here.~
 0~ 4~ 4~ 6~ 0~
 10 35000 0
 A
-18 3
+18 3 0
 A
-19 3
+19 3 0
 E
 staff gnarled magius~
 It appears to be simply a gnarled old limb. It feels powerful though.
@@ -700,7 +700,7 @@ A small ivory brooch lies here.~
 2~ 0~ 0~ 0~ 0~
 5 50000 0
 A
-13 50
+13 50 0
 #2322
 manual arts healing book~
 a manual of healing arts~
@@ -722,9 +722,9 @@ A huge mace made of mithril metal lies here.~
 0~ 4~ 4~ 6~ 0~
 13 25000 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 #2324
 symbol holy golden~
 a golden holy symbol~
@@ -734,7 +734,7 @@ A small holy symbol on a golden chain lies here.~
 2~ 0~ 0~ 0~ 0~
 3 10000 0
 A
-12 10
+12 10 0
 #2325
 ring marble thick~
 a thick marble ring~
@@ -752,7 +752,7 @@ A thick bracelet made of marble lies here.~
 4~ 0~ 0~ 0~ 0~
 8 30000 0
 A
-5 1
+5 1 0
 #2327
 boots striding~
 boots of striding~
@@ -762,7 +762,7 @@ A lithe pair of leather boots have been left here.~
 5~ 0~ 0~ 0~ 0~
 5 45000 0
 A
-14 30
+14 30 0
 E
 boots striding~
 They look comfortable to walk in.
@@ -788,9 +788,9 @@ A staff made of ice rests here.~
 0~ 6~ 3~ 6~ 0~
 13 45000 0
 A
-18 2
+18 2 0
 A
-12 20
+12 20 0
 E
 staff ice~
 The runes "FrIgID" are inscribed in the icy staff.
@@ -804,9 +804,9 @@ A wooden ring is on the floor.~
 1~ 0~ 0~ 0~ 0~
 3 25000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 #2331
 horn life~
 the horn of life~
@@ -828,7 +828,7 @@ A strange belt lies here.~
 3~ 0~ 0~ 0~ 0~
 9 50000 0
 A
-5 3
+5 3 0
 #2333
 stone blood red~
 a blood red stone~
@@ -838,7 +838,7 @@ A blood red stone lies here collecting dust.~
 3~ 0~ 0~ 0~ 0~
 2 45000 0
 A
-13 20
+13 20 0
 E
 stone blood red~
 The stone pulses with your own heart beat.
@@ -852,9 +852,9 @@ A huge crossbow rests here.~
 0~ 3~ 7~ 7~ 0~
 15 35000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 #2335
 pack leather small~
 a small leather pack~
@@ -904,9 +904,9 @@ A wicked looking shortsword lies here.~
 0~ 3~ 5~ 11~ 0~
 11 50000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 E
 sword wicked short shortsword~
 It looks just perfect for backstabbing.
@@ -920,7 +920,7 @@ A large globe rests here, pulsing uneasily.~
 15~ 0~ 0~ 0~ 0~
 1 100000 0
 A
-24 -5
+24 -5 0
 E
 globe major~
 Shimmering colors move inside the globe.
@@ -934,9 +934,9 @@ A huge pile of black chainmail rests here.~
 15~ 0~ 0~ 0~ 0~
 12 100000 0
 A
-1 1
+1 1 0
 A
-5 1
+5 1 0
 #2342
 buckler spiked~
 a spiked buckler~
@@ -946,7 +946,7 @@ A small spiked buckler rests here.~
 10~ 0~ 0~ 0~ 0~
 5 22500 0
 A
-19 2
+19 2 0
 #2343
 ring studded~
 a studded ring~
@@ -956,7 +956,7 @@ A small studded ring lies here.~
 5~ 0~ 0~ 0~ 0~
 1 5000 0
 A
-19 1
+19 1 0
 #2344
 helm horned~
 a horned minotaur helm~
@@ -974,9 +974,9 @@ An extremely huge axe is resting here.~
 0~ 5~ 5~ 3~ 0~
 26 100000 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 E
 axe great~
 The runes "DeAtH" are scrawled along the blade.
@@ -990,7 +990,7 @@ A suit of shimmering plate rests here.~
 10~ 0~ 0~ 0~ 0~
 2 50000 0
 A
-24 -3
+24 -3 0
 E
 plate ethereal suit~
 You can almost see through it.
@@ -1016,9 +1016,9 @@ A shimmering blade lies here.~
 0~ 4~ 3~ 3~ 0~
 3 10000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 E
 blade ethereal~
 You can almost see through it.
@@ -1124,7 +1124,7 @@ A pair of boots are on the floor.~
 3~ 0~ 0~ 0~ 0~
 5 10000 0
 A
-14 10
+14 10 0
 #2361
 pelt yeti white~
 the white pelt of a yeti~
@@ -1195,9 +1195,9 @@ A huge halberd has been left here.~
 0~ 9~ 2~ 3~ 0~
 18 20000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 #2369
 visor blue steel helm~
 a blue steel helm and visor~
@@ -1231,9 +1231,9 @@ A large sword lies here.~
 0~ 6~ 3~ 3~ 0~
 18 20000 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 #2373
 visor helm steel red~
 a red steel helm and visor~
@@ -1267,9 +1267,9 @@ A very large glaive rests here.~
 0~ 5~ 4~ 3~ 0~
 19 45000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 #2377
 visor helm crimson steel~
 a crimson steel helm and visor~
@@ -1303,9 +1303,9 @@ A huge morningstar rests here.~
 0~ 7~ 3~ 6~ 0~
 20 65000 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 E
 star morning morningstar~
 It looks damaging.
@@ -1399,11 +1399,11 @@ Some heavy gauntlets lie here.~
 7~ 0~ 0~ 0~ 0~
 13 75000 0
 A
-1 4
+1 4 0
 A
-19 3
+19 3 0
 A
-17 10
+17 10 0
 E
 gauntlets ogre power~
 They look very "handy".

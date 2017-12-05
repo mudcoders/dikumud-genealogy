@@ -156,23 +156,28 @@ bool mprog_veval( int lhs, char *opr, int rhs )
  * optional. The evaluation of the opr expressions is farmed out
  * to reduce the redundancy of the mammoth if statement list.
  * If there are errors, then return -1 otherwise return boolean 1,0
+ *
+ * Killed all that big copy-code that performs the same action on each
+ * variable - Zen
  */
 bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
 		     OBJ_DATA * obj, void *vo, CHAR_DATA * rndm )
 {
-    char buf [ MAX_INPUT_LENGTH ];
-    char arg [ MAX_INPUT_LENGTH ];
-    char opr [ MAX_INPUT_LENGTH ];
-    char val [ MAX_INPUT_LENGTH ];
-    CHAR_DATA *vict = (CHAR_DATA *) vo;
-    OBJ_DATA *v_obj = (OBJ_DATA *) vo;
-    char *bufpt = buf;
-    char *argpt = arg;
-    char *oprpt = opr;
-    char *valpt = val;
-    char *point = ifchck;
-    int lhsvl;
-    int rhsvl;
+    char        buf [ MAX_INPUT_LENGTH ];
+    char        arg [ MAX_INPUT_LENGTH ];
+    char        opr [ MAX_INPUT_LENGTH ];
+    char        val [ MAX_INPUT_LENGTH ];
+    CHAR_DATA  *vict	= (CHAR_DATA *) vo;
+    OBJ_DATA   *v_obj	= (OBJ_DATA *) vo;
+    char       *bufpt	= buf;
+    char       *argpt	= arg;
+    char       *oprpt	= opr;
+    char       *valpt	= val;
+    char       *point	= ifchck;
+    int         lhsvl;
+    int         rhsvl;
+    CHAR_DATA  *chkchar	= NULL;
+    OBJ_DATA   *chkobj	= NULL;
 
     if ( *point == '\0' )
     {
@@ -276,825 +281,188 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
      * send the lhs, opr, rhs off to be evaluated.
      */
 
+    if ( arg[0] == '$' )
+    {
+	char        buf1 [ MAX_INPUT_LENGTH ];	/* Used for output */
+
+	/*
+	 * arg should be "$*" so just get the letter 
+	 */
+	switch( arg[1] )
+	{
+	case 'i':	chkchar	= mob;					break;
+	case 'n':	chkchar	= actor;				break;
+	case 't':	chkchar	= vict;					break;
+	case 'r':	chkchar	= rndm;					break;
+	case 'o':	chkobj	= obj;					break;
+	case 'p':	chkobj	= v_obj;				break;
+	default:
+
+	    sprintf( buf1, "Mob: %%d bad argument '%s' to '%s'", arg, buf );
+	    bug( buf1, mob->pIndexData->vnum );
+	    return -1;
+	}
+	if ( !chkchar && !chkobj )
+	    return -1;
+    }
+
     if ( !str_cmp( buf, "rand" ) )
     {
 	return ( number_percent() <= atoi( arg ) );
     }
 
-    if ( !str_cmp( buf, "ispc" ) )
+    if ( chkchar
+	&& !chkchar->deleted )
     {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
+	if ( !str_cmp( buf, "ispc" ) )
+	    return ( IS_NPC( chkchar ) ? FALSE : TRUE );
+
+	if ( !str_cmp( buf, "isnpc" ) )
+	    return ( IS_NPC( chkchar ) ? TRUE : FALSE );
+
+	if ( !str_cmp( buf, "isgood" ) )
+	    return ( IS_GOOD( chkchar ) ? TRUE : FALSE );
+
+	if ( !str_cmp( buf, "isneutral" ) )
+	    return ( IS_NEUTRAL( chkchar ) ? TRUE : FALSE );
+
+	if ( !str_cmp( buf, "isevil" ) )
+	    return ( IS_EVIL( chkchar ) ? TRUE : FALSE );
+
+	if ( !str_cmp( buf, "isfight" ) )
+	    return ( chkchar->fighting ? 1 : 0 );
+
+	if ( !str_cmp( buf, "isimmort" ) )
+	    return ( IS_IMMORTAL( chkchar ) ? TRUE : FALSE );
+
+	if ( !str_cmp( buf, "ischarmed" ) )
+	    return ( IS_AFFECTED( chkchar, AFF_CHARM ) ? TRUE : FALSE );
+
+	if ( !str_cmp( buf, "isfollow" ) )
+	    return ( chkchar->master
+		    && chkchar->master->in_room == chkchar->in_room );
+
+	if ( !str_cmp( buf, "isaffected" ) )
+	    return ( IS_SET( chkchar->affected_by, atoi( arg ) ) );
+
+	if ( !str_cmp( buf, "hitprcnt" ) )
 	{
-	    case 'i':
-		return 0;
-	    case 'n':
-		if ( actor )
-		    return ( !IS_NPC( actor ) );
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		    return ( !IS_NPC( vict ) );
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return ( !IS_NPC( rndm ) );
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'ispc'", mob->pIndexData->vnum );
-		return -1;
+	    lhsvl = chkchar->hit / chkchar->max_hit;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
 	}
+
+	if ( !str_cmp( buf, "inroom" ) )
+	{
+	    lhsvl = chkchar->in_room->vnum;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
+	}
+
+	if ( !str_cmp( buf, "sex" ) )
+	{
+	    lhsvl = chkchar->sex;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
+	}
+
+	if ( !str_cmp( buf, "position" ) )
+	{
+	    lhsvl = chkchar->position;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
+	}
+
+	if ( !str_cmp( buf, "level" ) )
+	{
+	    lhsvl = get_trust( chkchar );
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
+	}
+
+	if ( !str_cmp( buf, "class" ) )
+	{
+	    lhsvl = chkchar->class;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
+	}
+
+	if ( !str_cmp( buf, "goldamt" ) )
+	{
+	    lhsvl = chkchar->gold;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
+	}
+
+	if ( !str_cmp( buf, "number" ) )
+	{
+	    lhsvl = chkchar->pIndexData->vnum;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
+	}
+
+	if ( !str_cmp( buf, "name" ) )
+	    return mprog_seval( chkchar->name, opr, val );
     }
 
-    if ( !str_cmp( buf, "isnpc" ) )
+    if ( chkobj
+	&& !chkobj->deleted )
     {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
+	if ( !str_cmp( buf, "objtype" ) )
 	{
-	    case 'i':
-		return 1;
-	    case 'n':
-		if ( actor )
-		    return IS_NPC( actor );
-		else
-		    return -1;
-	    case 't':
-		if (vict)
-		    return IS_NPC( vict );
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return IS_NPC( rndm );
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'isnpc'", mob->pIndexData->vnum );
-		return -1;
+	    lhsvl = chkobj->item_type;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
 	}
-    }
 
-    if ( !str_cmp( buf, "isgood" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
+	if ( !str_cmp( buf, "objval0" ) )
 	{
-	    case 'i':
-		return IS_GOOD( mob );
-	    case 'n':
-		if ( actor )
-		    return IS_GOOD( actor );
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		    return IS_GOOD( vict );
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return IS_GOOD( rndm );
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'isgood'",
-		    mob->pIndexData->vnum );
-		return -1;
+	    lhsvl = chkobj->value[0];
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
 	}
-    }
 
-    if ( !str_cmp( buf, "isfight" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
+	if ( !str_cmp( buf, "objval1" ) )
 	{
-	    case 'i':
-		return ( mob->fighting ) ? 1 : 0;
-	    case 'n':
-		if ( actor )
-		    return ( actor->fighting ) ? 1 : 0;
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		    return ( vict->fighting ) ? 1 : 0;
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return ( rndm->fighting ) ? 1 : 0;
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'isfight'",
-		    mob->pIndexData->vnum );
-		return -1;
+	    lhsvl = chkobj->value[1];
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
 	}
-    }
 
-    if ( !str_cmp( buf, "isimmort" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
+	if ( !str_cmp( buf, "objval2" ) )
 	{
-	    case 'i':
-		return ( get_trust( mob ) > LEVEL_IMMORTAL );
-	    case 'n':
-		if ( actor )
-		    return ( get_trust( actor ) > LEVEL_IMMORTAL );
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		    return ( get_trust( vict ) > LEVEL_IMMORTAL );
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return ( get_trust(rndm) > LEVEL_IMMORTAL );
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'isimmort'",
-		    mob->pIndexData->vnum );
-		return -1;
+	    lhsvl = chkobj->value[2];
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
 	}
-    }
 
-    if ( !str_cmp( buf, "ischarmed" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
+	if ( !str_cmp( buf, "objval3" ) )
 	{
-	    case 'i':
-		return ( IS_AFFECTED( mob, AFF_CHARM ) ? TRUE : FALSE );
-	    case 'n':
-		if ( actor )
-		    return ( IS_AFFECTED( actor, AFF_CHARM ) ? TRUE : FALSE );
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		    return ( IS_AFFECTED( vict, AFF_CHARM ) ? TRUE : FALSE );
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return ( IS_AFFECTED( rndm, AFF_CHARM ) ? TRUE : FALSE );
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'ischarmed'",
-		    mob->pIndexData->vnum );
-		return -1;
+	    lhsvl = chkobj->value[3];
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
 	}
-    }
 
-    if ( !str_cmp( buf, "isfollow" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
+	if ( !str_cmp( buf, "objval4" ) )
 	{
-	    case 'i':
-		return ( mob->master
-			&& mob->master->in_room == mob->in_room );
-	    case 'n':
-		if ( actor )
-		    return ( actor->master
-			    && actor->master->in_room == actor->in_room );
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		    return ( vict->master
-			    && vict->master->in_room == vict->in_room );
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return ( rndm->master
-			    && rndm->master->in_room == rndm->in_room );
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'isfollow'",
-		    mob->pIndexData->vnum );
-		return -1;
+	    lhsvl = chkobj->value[4];
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
 	}
-    }
 
-    if ( !str_cmp( buf, "isaffected" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
+	if ( !str_cmp( buf, "number" ) )
 	{
-	    case 'i':
-		return ( mob->affected_by & atoi( arg ) );
-	    case 'n':
-		if ( actor )
-		    return ( actor->affected_by & atoi( arg ) );
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		    return ( vict->affected_by & atoi( arg ) );
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return ( rndm->affected_by & atoi( arg ) );
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'isaffected'",
-		    mob->pIndexData->vnum );
-		return -1;
+	    lhsvl = chkobj->pIndexData->vnum;
+	    rhsvl = atoi( val );
+	    return mprog_veval( lhsvl, opr, rhsvl );
 	}
-    }
 
-    if ( !str_cmp( buf, "hitprcnt" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		lhsvl = mob->hit / mob->max_hit;
-		rhsvl = atoi( val );
-		return mprog_veval( lhsvl, opr, rhsvl );
-	    case 'n':
-		if ( actor )
-		{
-		    lhsvl = actor->hit / actor->max_hit;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		{
-		    lhsvl = vict->hit / vict->max_hit;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		{
-		    lhsvl = rndm->hit / rndm->max_hit;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'hitprcnt'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "inroom" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		lhsvl = mob->in_room->vnum;
-		rhsvl = atoi( val );
-		return mprog_veval( lhsvl, opr, rhsvl );
-	    case 'n':
-		if ( actor )
-		{
-		    lhsvl = actor->in_room->vnum;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		{
-		    lhsvl = vict->in_room->vnum;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		{
-		    lhsvl = rndm->in_room->vnum;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'inroom'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "sex" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		lhsvl = mob->sex;
-		rhsvl = atoi( val );
-		return mprog_veval( lhsvl, opr, rhsvl );
-	    case 'n':
-		if ( actor )
-		{
-		    lhsvl = actor->sex;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		{
-		    lhsvl = vict->sex;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		{
-		    lhsvl = rndm->sex;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'sex'", mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "position" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		lhsvl = mob->position;
-		rhsvl = atoi( val );
-		return mprog_veval( lhsvl, opr, rhsvl );
-	    case 'n':
-		if ( actor )
-		{
-		    lhsvl = actor->position;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		{
-		    lhsvl = vict->position;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		{
-		    lhsvl = rndm->position;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'position'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "level" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		lhsvl = get_trust( mob );
-		rhsvl = atoi( val );
-		return mprog_veval( lhsvl, opr, rhsvl );
-	    case 'n':
-		if ( actor )
-		{
-		    lhsvl = get_trust( actor );
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		{
-		    lhsvl = get_trust( vict );
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		{
-		    lhsvl = get_trust( rndm );
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'level'", mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "class" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		lhsvl = mob->class;
-		rhsvl = atoi( val );
-		return mprog_veval( lhsvl, opr, rhsvl );
-	    case 'n':
-		if ( actor )
-		{
-		    lhsvl = actor->class;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		{
-		    lhsvl = vict->class;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		{
-		    lhsvl = rndm->class;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'class'", mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "goldamt" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		lhsvl = mob->gold;
-		rhsvl = atoi( val );
-		return mprog_veval( lhsvl, opr, rhsvl );
-	    case 'n':
-		if ( actor )
-		{
-		    lhsvl = actor->gold;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		{
-		    lhsvl = vict->gold;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		{
-		    lhsvl = rndm->gold;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'goldamt'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "objtype" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'o':
-		if ( obj )
-		{
-		    lhsvl = obj->item_type;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'p':
-		if ( v_obj )
-		{
-		    lhsvl = v_obj->item_type;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'objtype'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "objval0" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'o':
-		if ( obj )
-		{
-		    lhsvl = obj->value[0];
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'p':
-		if ( v_obj )
-		{
-		    lhsvl = v_obj->value[0];
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'objval0'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "objval1" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'o':
-		if ( obj )
-		{
-		    lhsvl = obj->value[1];
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'p':
-		if ( v_obj )
-		{
-		    lhsvl = v_obj->value[1];
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'objval1'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "objval2" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'o':
-		if ( obj )
-		{
-		    lhsvl = obj->value[2];
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'p':
-		if ( v_obj )
-		{
-		    lhsvl = v_obj->value[2];
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'objval2'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "objval3" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'o':
-		if ( obj )
-		{
-		    lhsvl = obj->value[3];
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'p':
-		if ( v_obj )
-		{
-		    lhsvl = v_obj->value[3];
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'objval3'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "number" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		lhsvl = mob->gold;
-		rhsvl = atoi( val );
-		return mprog_veval( lhsvl, opr, rhsvl );
-	    case 'n':
-		if ( actor )
-		{
-		    if IS_NPC( actor )
-		    {
-			lhsvl = actor->pIndexData->vnum;
-			rhsvl = atoi( val );
-			return mprog_veval( lhsvl, opr, rhsvl );
-		    }
-		}
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		{
-		    if IS_NPC( actor )
-		    {
-			lhsvl = vict->pIndexData->vnum;
-			rhsvl = atoi( val );
-			return mprog_veval( lhsvl, opr, rhsvl );
-		    }
-		}
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		{
-		    if IS_NPC( actor )
-		    {
-			lhsvl = rndm->pIndexData->vnum;
-			rhsvl = atoi( val );
-			return mprog_veval( lhsvl, opr, rhsvl );
-		    }
-		}
-		else
-		    return -1;
-	    case 'o':
-		if ( obj )
-		{
-		    lhsvl = obj->pIndexData->vnum;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    case 'p':
-		if ( v_obj )
-		{
-		    lhsvl = v_obj->pIndexData->vnum;
-		    rhsvl = atoi( val );
-		    return mprog_veval( lhsvl, opr, rhsvl );
-		}
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'number'",
-		    mob->pIndexData->vnum );
-		return -1;
-	}
-    }
-
-    if ( !str_cmp( buf, "name" ) )
-    {
-	switch ( arg[1] )	/*
-				 * arg should be "$*" so just get the letter 
-				 */
-	{
-	    case 'i':
-		return mprog_seval( mob->name, opr, val );
-	    case 'n':
-		if ( actor )
-		    return mprog_seval( actor->name, opr, val );
-		else
-		    return -1;
-	    case 't':
-		if ( vict )
-		    return mprog_seval( vict->name, opr, val );
-		else
-		    return -1;
-	    case 'r':
-		if ( rndm )
-		    return mprog_seval( rndm->name, opr, val );
-		else
-		    return -1;
-	    case 'o':
-		if ( obj )
-		    return mprog_seval( obj->name, opr, val );
-		else
-		    return -1;
-	    case 'p':
-		if ( v_obj )
-		    return mprog_seval( v_obj->name, opr, val );
-		else
-		    return -1;
-	    default:
-		bug( "Mob: %d bad argument to 'name'", mob->pIndexData->vnum );
-		return -1;
-	}
+	if ( !str_cmp( buf, "name" ) )
+	    return mprog_seval( chkobj->name, opr, val );
     }
 
     /*
-     * Ok... all the ifchcks are done, so if we didnt find ours then something
+     * Ok... all the ifchcks are done, so if we didn't find ours then something
      * odd happened.  So report the bug and abort the MOBprogram (return error)
      */
     bug( "Mob: %d unknown ifchck", mob->pIndexData->vnum );
@@ -1111,7 +479,7 @@ bool mprog_do_ifchck( char *ifchck, CHAR_DATA * mob, CHAR_DATA * actor,
  * recursion without catastrophe in the event of a mis-parse was
  * believed to be high. Thus, if an error is found, it is bugged and
  * the parser acts as though a break were issued and just bails out
- * at that point. I havent tested all the possibilites, so I'm speaking
+ * at that point. I haven't tested all the possibilites, so I'm speaking
  * in theory, but it is 'guaranteed' to work on syntactically correct
  * MOBprograms, so if the mud crashes here, check the mob carefully!
  */
@@ -1324,6 +692,10 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
     CHAR_DATA *vict = (CHAR_DATA *) vo;
     OBJ_DATA *v_obj = (OBJ_DATA *) vo;
 
+    /* Just a little safety check - Zen */
+    if ( !mob || mob->deleted )
+	return;
+
     *t = '\0';
     switch ( ch )
     {
@@ -1336,7 +708,7 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    break;
 
 	case 'n':
-	    if ( actor )
+	    if ( actor && !actor->deleted )
 		if ( can_see( mob, actor ) )
 		    one_argument( actor->name, t );
 	    if ( !IS_NPC(actor ) )
@@ -1344,7 +716,7 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    break;
 
 	case 'N':
-	    if ( actor )
+	    if ( actor && !actor->deleted )
 		if ( can_see( mob, actor ) )
 		    if ( IS_NPC(actor ) )
 			strcpy( t, actor->short_descr );
@@ -1359,15 +731,17 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    break;
 
 	case 't':
-	    if ( vict )
+	    if ( vict && !vict->deleted )
+	    {
 		if ( can_see( mob, vict ) )
 		    one_argument( vict->name, t );
-	    if ( !IS_NPC( vict ) )
-		*t = UPPER( *t );
+		if ( !IS_NPC( vict ) )
+		    *t = UPPER( *t );
+	    }
 	    break;
 
 	case 'T':
-	    if ( vict )
+	    if ( vict && !vict->deleted )
 		if ( can_see( mob, vict ) )
 		    if ( IS_NPC( vict ) )
 			strcpy( t, vict->short_descr );
@@ -1382,15 +756,17 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    break;
 
 	case 'r':
-	    if ( rndm )
+	    if ( rndm && !rndm->deleted )
+	    {
 		if ( can_see( mob, rndm ) )
-		    one_argument( rndm->name, t );
-	    if ( !IS_NPC(rndm ) )
-		*t = UPPER( *t );
+		    one_argument( rndm->name, t );	    
+		if ( !IS_NPC(rndm ) )
+		    *t = UPPER( *t );
+	    }
 	    break;
 
 	case 'R':
-	    if ( rndm )
+	    if ( rndm && !rndm->deleted )
 		if ( can_see( mob, rndm ) )
 		    if ( IS_NPC( rndm ) )
 			strcpy( t, rndm->short_descr );
@@ -1405,37 +781,37 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    break;
 
 	case 'e':
-	    if ( actor )
+	    if ( actor && !actor->deleted )
 		can_see( mob, actor ) ? strcpy( t, he_she[actor->sex] )
 		    : strcpy( t, "someone" );
 	    break;
 
 	case 'm':
-	    if ( actor )
+	    if ( actor && !actor->deleted )
 		can_see( mob, actor ) ? strcpy( t, him_her[actor->sex] )
 		    : strcpy( t, "someone" );
 	    break;
 
 	case 's':
-	    if ( actor )
+	    if ( actor && !actor->deleted )
 		can_see( mob, actor ) ? strcpy( t, his_her[actor->sex] )
 		    : strcpy( t, "someone's" );
 	    break;
 
 	case 'E':
-	    if ( vict )
+	    if ( vict && !vict->deleted )
 		can_see( mob, vict ) ? strcpy( t, he_she[vict->sex] )
 		    : strcpy( t, "someone" );
 	    break;
 
 	case 'M':
-	    if ( vict )
+	    if ( vict && !vict->deleted )
 		can_see( mob, vict ) ? strcpy( t, him_her[vict->sex] )
 		    : strcpy( t, "someone" );
 	    break;
 
 	case 'S':
-	    if ( vict )
+	    if ( vict && !vict->deleted )
 		can_see( mob, vict ) ? strcpy( t, his_her[vict->sex] )
 		    : strcpy( t, "someone's" );
 	    break;
@@ -1453,49 +829,49 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    break;
 
 	case 'J':
-	    if ( rndm )
+	    if ( rndm && !rndm->deleted )
 		can_see( mob, rndm ) ? strcpy( t, he_she[rndm->sex] )
 		    : strcpy( t, "someone" );
 	    break;
 
 	case 'K':
-	    if ( rndm )
+	    if ( rndm && !rndm->deleted )
 		can_see( mob, rndm ) ? strcpy( t, him_her[rndm->sex] )
 		    : strcpy( t, "someone" );
 	    break;
 
 	case 'L':
-	    if ( rndm )
+	    if ( rndm && !rndm->deleted )
 		can_see( mob, rndm ) ? strcpy( t, his_her[rndm->sex] )
 		    : strcpy( t, "someone's" );
 	    break;
 
 	case 'o':
-	    if ( obj )
+	    if ( obj && !obj->deleted )
 		can_see_obj( mob, obj ) ? one_argument( obj->name, t )
 		    : strcpy( t, "something" );
 	    break;
 
 	case 'O':
-	    if ( obj )
+	    if ( obj && !obj->deleted )
 		can_see_obj( mob, obj ) ? strcpy( t, obj->short_descr )
 		    : strcpy( t, "something" );
 	    break;
 
 	case 'p':
-	    if ( v_obj )
+	    if ( v_obj && !v_obj->deleted )
 		can_see_obj( mob, v_obj ) ? one_argument( v_obj->name, t )
 		    : strcpy( t, "something" );
 	    break;
 
 	case 'P':
-	    if ( v_obj )
+	    if ( v_obj && !v_obj->deleted )
 		can_see_obj( mob, v_obj ) ? strcpy( t, v_obj->short_descr )
 		    : strcpy( t, "something" );
 	    break;
 
 	case 'a':
-	    if ( obj )
+	    if ( obj && !obj->deleted )
 		switch (*(obj->name))
 		{
 		    case 'a':
@@ -1511,7 +887,7 @@ void mprog_translate( char ch, char *t, CHAR_DATA * mob, CHAR_DATA * actor,
 	    break;
 
 	case 'A':
-	    if ( v_obj )
+	    if ( v_obj && !v_obj->deleted )
 		switch (*(v_obj->name))
 		{
 		    case 'a':
@@ -1603,6 +979,7 @@ void mprog_driver( char *com_list, CHAR_DATA * mob, CHAR_DATA * actor,
      */
     for ( vch = mob->in_room->people; vch; vch = vch->next_in_room )
 	if ( !IS_NPC( vch )
+	    && !vch->deleted
 	    && vch->level < LEVEL_IMMORTAL
 	    && can_see( mob, vch ) )
 	{

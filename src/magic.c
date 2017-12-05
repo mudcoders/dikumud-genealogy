@@ -213,11 +213,10 @@ void do_cast( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
-	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
+    if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-	send_to_char( "You can't...you are in a Cone of Silence!\n\r", ch );
-	return;
+        send_to_char( "You can't...you are in a Cone of Silence!\n\r", ch );
+        return;
     }
 
     mana = MANA_COST( ch, sn );
@@ -810,12 +809,11 @@ void spell_cone_of_silence( int sn, int level, CHAR_DATA *ch, void *vo )
 	return;
     }
 
-    if ( !IS_SET( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE )
-	|| !IS_SET( pRoomIndex->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
+    if ( !IS_SET( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
-	SET_BIT( pRoomIndex->room_flags, ROOM_TEMP_CONE_OF_SILENCE );
-	send_to_char( "You have created a cone of silence!\n\r", ch );
-	act( "$n has created a cone of silence!", ch, NULL, NULL, TO_ROOM );
+        SET_BIT( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE );
+        send_to_char( "You have created a cone of silence!\n\r", ch );
+        act( "$n has created a cone of silence!", ch, NULL, NULL, TO_ROOM );
     }
 
     return;
@@ -1698,7 +1696,7 @@ void spell_identify( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     OBJ_DATA    *obj = (OBJ_DATA *) vo;
     AFFECT_DATA *paf;
-    char         buf [ MAX_STRING_LENGTH ];
+    char         buf  [ MAX_STRING_LENGTH ];
 
     sprintf( buf,
 	    "Object '%s' is type %s, extra flags %s.\n\r",
@@ -1781,7 +1779,20 @@ void spell_identify( int sn, int level, CHAR_DATA *ch, void *vo )
 	    sprintf( buf, "Affects %s by %d.\n\r",
 		    affect_loc_name( paf->location ), paf->modifier );
 	    send_to_char( buf, ch );
+	    if ( paf->bitvector )
+	    {
+		sprintf( buf, "Enables %s.\n\r",
+			affect_bit_name( paf->bitvector ) );
+		send_to_char( buf, ch );
+	    }
 	}
+	else
+	    if ( paf->bitvector )
+	    {
+		sprintf( buf, "Enables %s.\n\r",
+			affect_bit_name( paf->bitvector ) );
+		send_to_char( buf, ch );
+	    }
     }
 
     for ( paf = obj->affected; paf; paf = paf->next )
@@ -1791,7 +1802,20 @@ void spell_identify( int sn, int level, CHAR_DATA *ch, void *vo )
 	    sprintf( buf, "Affects %s by %d.\n\r",
 		    affect_loc_name( paf->location ), paf->modifier );
 	    send_to_char( buf, ch );
+	    if ( paf->bitvector )
+	    {
+		sprintf( buf, "Enables %s.\n\r",
+			affect_bit_name( paf->bitvector ) );
+		send_to_char( buf, ch );
+	    }
 	}
+	else
+	    if ( paf->bitvector )
+	    {
+		sprintf( buf, "Enables %s.\n\r",
+			affect_bit_name( paf->bitvector ) );
+		send_to_char( buf, ch );
+	    }
     }
 
     return;
@@ -2328,13 +2352,13 @@ void spell_remove_silence( int sn, int level, CHAR_DATA *ch, void *vo )
 	pRoomIndex   = ch->in_room;
 	DidSomething = FALSE;
 
-	if ( IS_SET( pRoomIndex->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
+        if ( IS_SET( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE ) )
         {
-	    REMOVE_BIT( pRoomIndex->room_flags, ROOM_TEMP_CONE_OF_SILENCE );
-	    send_to_char( "You have lifted the cone of silence!\n\r", ch );
-	    act( "$n has lifted the cone of silence!",
-		ch, NULL, NULL,   TO_ROOM );
-	    DidSomething = TRUE;
+            REMOVE_BIT( pRoomIndex->room_flags, ROOM_CONE_OF_SILENCE );
+            send_to_char( "You have lifted the cone of silence!\n\r", ch );
+            act( "$n has lifted the cone of silence!",
+                ch, NULL, NULL,   TO_ROOM );
+            DidSomething = TRUE;
         }
 
 	if ( IS_AFFECTED( victim, AFF_MUTE ) )
@@ -3956,7 +3980,7 @@ void spell_vortex_lift( int sn, int level, CHAR_DATA *ch, void *vo )
 }
 
 
-void spell_scry( int sn, int level, CHAR_DATA *ch, void *vo )
+void spell_wizard_eye( int sn, int level, CHAR_DATA *ch, void *vo )
 {
     ROOM_INDEX_DATA *original;
     CHAR_DATA       *wch;
@@ -3979,7 +4003,7 @@ void spell_scry( int sn, int level, CHAR_DATA *ch, void *vo )
 
     /*
      * See if 'ch' still exists before continuing!
-     * Handles 'c scry XXXX quit' case.
+     * Handles 'c 'wizard eye' XXXX quit' case.
      */
     for ( wch = char_list; wch; wch = wch->next )
     {

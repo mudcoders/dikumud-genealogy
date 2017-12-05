@@ -321,7 +321,8 @@ void new_save_objects(FILE * fp, AREA_DATA * pArea)
 
 		for (pAf = pObjIndex->affected; pAf; pAf = pAf->next)
 		{
-		    fprintf(fp, "A\n%d %d\n", pAf->location, pAf->modifier);
+		    fprintf(fp, "A\n%d %d %d\n", pAf->location, pAf->modifier,
+			    pAf->bitvector);
 		}
 
 		for (pEd = pObjIndex->extra_descr; pEd; pEd = pEd->next)
@@ -363,7 +364,7 @@ void save_rooms(FILE * fp, AREA_DATA * pArea)
 		fprintf(fp, "%s~\n", pRoomIndex->name);
 		fprintf(fp, "%s~\n", fix_string(pRoomIndex->description));
 		fprintf(fp, "0 ");
-		fprintf(fp, "%d ", pRoomIndex->room_flags);
+		fprintf(fp, "%d ", pRoomIndex->orig_room_flags);
 		fprintf(fp, "%d\n", pRoomIndex->sector_type);
 
 		for (pEd = pRoomIndex->extra_descr; pEd; pEd = pEd->next)
@@ -799,7 +800,7 @@ void save_helps(FILE * fp, AREA_DATA * pArea)
 		fprintf(fp, "#HELPS\n\n");
 		found = TRUE;
 	    }
-	    fprintf(fp, "%d %s~\n%s~\n",
+	    fprintf(fp, "%d %s~\n%s~\n\n",
 		    pHelp->level,
 		    all_capitalize(pHelp->keyword),
 		    fix_string(pHelp->text));
@@ -807,7 +808,7 @@ void save_helps(FILE * fp, AREA_DATA * pArea)
     }
 
     if (found)
-	fprintf(fp, "\n0 $~\n\n");
+	fprintf(fp, "0 $~\n\n");
 
     return;
 }

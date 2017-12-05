@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.83! (HomeCooked Envy2.2)
-Monday, 30th June 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
+Monday, 14th July 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -12,35 +12,57 @@ the ideas aren't highly original. You see, my mind is usually useless at having
 ideas for what to do, if i don't have a goal :-)
 
 
+		Add value5 field to objects?
+
+		Increase number of mortal levels to 60?
+
 		Now we have OLC the time is right to change the area format
-		  while keeping compatibility with old areas (you will lose
-		  some of the new format's features but that's life!).
+		while keeping compatibility with old areas (you will lose
+		some of the new format's features but that's life!).
+
 		Add pose table to class files
+
                 A new class different from the others (no Paladins please)!
-		   ( ideas desperately needed, my mind is void... )
+		( ideas desperately needed, my mind is void... )
+
                 Even more spells, even more skills.
+
                 Traps (discussed in the Merc mailing list)
-                Hunt & Track (SMAUG has this and there is a SillyMUD based
-		  source somewhere) 
+
                 Different damage types (FIRE, WATER, etc) like in ROM/SMAUG.
-                  ( Should be VERY painful to add to Envy2.2 code :-( *sig* )
+                ( Should be VERY painful to add to Envy2.2 code :-( *sig* )
+
                 Different "schools and spheres of knowledge" like in OBLIVION.
-                  ( Not so painful to add but also very tiresome )
+                ( Not so painful to add but also very tiresome )
+
                 Improved clans code ( The one now is very crap. I made it :) )
+
 		Command History ( VERY nice )
-		Alias allows things as: "alias vo cast 'vortex lift'"
-		  and then "vo executioner" should expand to:
-		  "cast 'vortex lift' executioner" but guess what? It doesn't!
+
 		Add a couple more immskills ( never can have enough :-) )
+
 		Bulletin Boards (like SMAUG's)
+
 		Improved auction (like Erwin's idea)
+
 		Online editing of classes & socials (save routine already made)
-		Object affects, so you can make a 'One Ring' with invisibility,
-		  true seeing for example (ROM already has this)
+
+		Enhance Mobprograms to make them more like Mudprograms in SMAUG
+
 		RFC 1413 protocol use: well, SMAUG and Mordor feature this, so
-		  it should be fairly simple to slam it in Envy2.2
-		  Of course my knowledge of networking protocols is near zero
-		  :-) But hey! The old art of cut & paste usually works... With
-		  a few dozens of modifications...
+		it should be fairly simple to slam it in Envy2.2
+		Of course my knowledge of networking protocols is near zero
+		:-) But hey! The old art of cut & paste usually works... With
+		a few dozens of modifications...
+		There is some info on RFC protocols on:
+			http://wuarchive.wustl.edu
+
+I guess you are seeing SMAUG mentioned here loads of times huh? It's that it's
+just soo nice... But i like more the feel of Envy you know... Maybe i'm just
+plain nut or something. Toric (Derek Snider) has done a wonderful job on SMAUG.
+I generally feel like Envy is more user friendly, and has cleaner, but sometimes
+slower code. And i have made it even slower! Much slower! Muhahahah... :-)
+Just kidding... It's not as slow as that. Booting takes +2 seconds or so. Guess
+i'm being ultra picky.
 
 - Zen

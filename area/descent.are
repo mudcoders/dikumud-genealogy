@@ -922,13 +922,13 @@ A black hilted sword with engravings on the blade lies here.~
 0~ 1~ 100~ 11~ 0~
 7 10000 0
 A
-13 -10
+19 7 0
 A
-14 -20
+18 7 0
 A
-18 7
+14 -20 0
 A
-19 7
+13 -10 0
 E
 sword~
 The blade of the sword is a full meter long, and straight as an arrow, with
@@ -1104,7 +1104,7 @@ A set of spectacles lies here on the ground. Don't step on them.~
 15~ 0~ 0~ 0~ 0~
 1 20 0
 A
-3 2
+3 2 0
 #10425
 unholy symbol~
 unholy symbol~
@@ -1122,7 +1122,7 @@ A stinking pile of cloth lies here.~
 20~ 0~ 0~ 0~ 0~
 4 20 0
 A
-12 100
+12 100 0
 #10427
 sharp teeth lawyer~
 sharp teeth of a lawyer~
@@ -1172,7 +1172,7 @@ You see a small figurine of a horse on the ground.~
 0~ 0~ 0~ 0~ 0~
 3 20 0
 A
-14 20
+14 20 0
 #10433
 figurine winged horse pegasus~
 figurine of a winged horse~
@@ -1182,7 +1182,7 @@ You see a small figurine of a winged horse on the ground.~
 54~ 50~ 50~ fly~ 0~
 3 20 0
 A
-14 25
+14 25 0
 #10434
 figurine dark horse nightmare~
 figurine of a nightmare~
@@ -1192,7 +1192,7 @@ You see a small figurine of a dark horse on the ground.~
 54~ 50~ 50~ teleport~ 0~
 3 20 0
 A
-14 30
+14 30 0
 #10435
 figurine black dragon~
 figurine of a black dragon~
@@ -1202,7 +1202,7 @@ You see a small figurine of a black dragon on the ground.~
 54~ 10~ 10~ weaken~ 0~
 3 20 0
 A
-14 35
+14 35 0
 #10436
 figurine red dragon~
 figurine of a red dragon~
@@ -1212,7 +1212,7 @@ You see a small figurine of a red dragon on the ground.~
 54~ 10~ 10~ mass invis~ 0~
 3 20 0
 A
-14 35
+14 35 0
 #10437
 figurine white dragon~
 figurine of a white dragon~
@@ -1222,7 +1222,7 @@ You see a small figurine of a white dragon on the ground.~
 54~ 10~ 10~ acid blast~ 0~
 3 20 0
 A
-14 35
+14 35 0
 #10438
 figurine green dragon~
 figurine of a green dragon~
@@ -1232,7 +1232,7 @@ You see a small figurine of a green dragon on the ground.~
 54~ 10~ 10~ gas breath~ 0~
 3 20 0
 A
-14 35
+14 35 0
 #10439
 figurine blue dragon~
 figurine of a blue dragon~
@@ -1242,7 +1242,7 @@ You see a small figurine of a blue dragon on the ground.~
 54~ 10~ 10~ faerie fire~ 0~
 3 20 0
 A
-14 35
+14 35 0
 #10440
 geiger counter~
 geiger counter~

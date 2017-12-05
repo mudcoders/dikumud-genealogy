@@ -55,7 +55,7 @@ The new modularized system for ILAB OLC makes it simple to add new commands
 and features to you editor.  It also aids in debugging problem areas.
 
 With OLC you no longer have to check over the syntax of a builders area that
-was mailed to you.  You won't have to edit area.lst ever again to get the
+was mailed to you.  You won't have to edit AREA.LST ever again to get the
 areas loaded in the correct places.
 
 

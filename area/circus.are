@@ -479,9 +479,9 @@ A pair of large bracers lies here.~
 3~ 0~ 0~ 0~ 0~
 8 0 0
 A
-1 1
+1 1 0
 A
-5 1
+5 1 0
 #4408
 sword small~
 a small, thin sword~
@@ -491,9 +491,9 @@ A small sword lies here.~
 0~ 0~ 11~ 11~ 0~
 1 0 0
 A
-18 3
+18 3 0
 A
-17 8
+17 8 0
 #4409
 staff translucent~
 a pointy translucent staff~
@@ -503,9 +503,9 @@ A long, thin, shimmering object lies here.~
 0~ 0~ 7~ 7~ 0~
 0 0 0
 A
-18 2
+18 2 0
 A
-19 1
+19 1 0
 #4410
 sword bastard~
 the sword swallower's sword~
@@ -515,9 +515,9 @@ A rubber bastard sword is here.~
 0~ 0~ 1~ 1~ 0~
 0 0 0
 A
-18 1
+18 1 0
 A
-19 -1
+19 -1 0
 #4411
 purse~
 the midget's purse~
@@ -543,9 +543,9 @@ A razor lies here.~
 0~ 0~ 2~ 2~ 0~
 1 0 0
 A
-19 2
+19 2 0
 A
-17 6
+17 6 0
 #4414
 barbell~
 a barbell~
@@ -579,7 +579,7 @@ A sharp, well balanced knife lies on the ground.~
 0~ 0~ 2~ 2~ 0~
 1 0 0
 A
-18 2
+18 2 0
 #4417
 blindfold~
 a blindfold~
@@ -589,9 +589,9 @@ A strip of black cloth lies here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-18 -10
+18 -10 0
 A
-14 -50
+14 -50 0
 #4418
 whip~
 a whip~
@@ -601,9 +601,9 @@ A leather whip is lying on the ground.~
 2~ 2~ 4~ 4~ 0~
 1 0 0
 A
-18 5
+18 5 0
 A
-4 -1
+4 -1 0
 #4419
 pole~
 tightrope walker's pole~
@@ -613,7 +613,7 @@ A long pole lies here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-2 2
+2 2 0
 #4420
 clown shoes~
 big clown shoes~
@@ -623,9 +623,9 @@ A huge pair of shoes lies here, apparently forgotten.~
 0~ 0~ 0~ 0~ 0~
 4 0 0
 A
-14 -20
+14 -20 0
 A
-2 -1
+2 -1 0
 #4421
 tophat hat~
 a tophat~
@@ -635,9 +635,9 @@ The Ringmaster's tophat lies here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-12 10
+12 10 0
 A
-17 4
+17 4 0
 #4422
 chest~
 a chest~
@@ -793,9 +793,9 @@ A red nose like a clown might wear, lies forgotten upon the ground.~
 0~ 0~ 0~ 0~ 0~
 1 100 0
 A
-3 -2
+3 -2 0
 A
-4 -1
+4 -1 0
 #4440
 chest~
 a chest~
@@ -869,9 +869,9 @@ A thin knife with a sharp blade lies here.~
 0~ 0~ 1~ 1~ 0~
 1 0 0
 A
-18 -2
+18 -2 0
 A
-19 6
+19 6 0
 #4449
 refrigerator frig fridge~
 binky's refrigerator~
@@ -889,9 +889,9 @@ A very sharp knife gleams from the floor.~
 0~ 0~ 11~ 11~ 0~
 1 0 0
 A
-18 3
+18 3 0
 A
-19 3
+19 3 0
 #0
 
 

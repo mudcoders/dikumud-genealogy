@@ -271,9 +271,9 @@ A dangerous looking knife made from a dragon's tooth has been left here.~
 0~ 3~ 5~ 11~ 0~
 8 100000 0
 A
-2 1
+2 1 0
 A
-19 2
+19 2 0
 #2203
 bracelet dragon~
 a dragon skin bracelet~
@@ -291,7 +291,7 @@ A black belt made of the finest silk is hanging here.~
 6~ 0~ 0~ 0~ 0~
 25 10000 0
 A
-5 2
+5 2 0
 #2210
 belt silk white~
 a white silk belt.~
@@ -301,7 +301,7 @@ A white belt made of the finest silk is hanging here.~
 6~ 0~ 0~ 0~ 0~
 25 10000 0
 A
-1 2
+1 2 0
 #2211
 bracelet platinum~
 a platinum bracelet.~
@@ -319,7 +319,7 @@ A golden holy symbol is here.~
 4~ 0~ 0~ 0~ 0~
 2 50000 0
 A
-12 15
+12 15 0
 #2221
 robe black~
 a plain black robe~
@@ -329,7 +329,7 @@ A black robe is hanging on a hook on the wall.~
 5~ 0~ 0~ 0~ 0~
 3 50000 0
 A
-19 2
+19 2 0
 #2222
 sword emerald~
 an emerald sword~
@@ -355,9 +355,9 @@ A diamond ring lies gleaming on the ground.~
 4~ 0~ 0~ 0~ 0~
 6 50000 0
 A
-18 3
+18 3 0
 A
-19 3
+19 3 0
 #2230
 ring copper~
 a copper ring~
@@ -367,7 +367,7 @@ A copper ring is here.~
 1~ 0~ 0~ 0~ 0~
 1 100000 0
 A
-4 2
+4 2 0
 #2231
 key steel~
 a steel key~
@@ -433,7 +433,7 @@ A large crested shield draws your attention.~
 8~ 0~ 0~ 0~ 0~
 20 200000 0
 A
-5 1
+5 1 0
 #2243
 wand golden~
 a golden wand~
@@ -499,9 +499,9 @@ A pair of spiked gauntlets.~
 4~ 0~ 0~ 0~ 0~
 10 50000 0
 A
-19 2
+19 2 0
 A
-1 1
+1 1 0
 #2260
 scimitar golden~
 a golden scimitar~
@@ -511,9 +511,9 @@ A golden scimitar.~
 0~ 3~ 5~ 3~ 0~
 10 40000 0
 A
-3 1
+3 1 0
 A
-4 1
+4 1 0
 #2261
 brooch diamond~
 a diamond brooch~
@@ -523,7 +523,7 @@ A diamond brooch.~
 4~ 0~ 0~ 0~ 0~
 2 10000 0
 A
-12 25
+12 25 0
 #2270
 scroll~
 a runed scroll~
@@ -541,7 +541,7 @@ A pair of dragon skin gloves are lying on the ground.~
 6~ 0~ 0~ 0~ 0~
 5 40000 0
 A
-2 2
+2 2 0
 #2275
 helm dragon~
 a helm of dragon kind~
@@ -551,7 +551,7 @@ A helm made of a dragon's skull is lying on the ground.~
 5~ 0~ 0~ 0~ 0~
 15 30000 0
 A
-13 15
+13 15 0
 #2276
 fur cloak~
 a fur cloak~
@@ -561,9 +561,9 @@ A large mound of fur is lying here.~
 6~ 0~ 0~ 0~ 0~
 10 25000 0
 A
-1 1
+1 1 0
 A
-13 10
+13 10 0
 #2280
 leggings dragon scale~
 a pair of dragon scale leggings~
@@ -589,9 +589,9 @@ A dragon tailed whip is lying on the ground.~
 0~ 4~ 5~ 4~ 0~
 14 40000 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 #2286
 hammer copper~
 a copper hammer~

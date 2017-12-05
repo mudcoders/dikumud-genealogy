@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.83! (HomeCooked Envy2.2)
-Monday, 30th June 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
+Monday, 14th July 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -456,7 +456,7 @@ The syntax of this section is:
      }
      {
          A
-         <apply-type:number> <apply-value:number>
+         <apply-type:number> <apply-value:number> <apply-bitvector:number>
      }
     }
     #0
@@ -571,10 +571,11 @@ descriptions on your important objects that have items of note on them.
 It might even be desirable to link your extra descriptions to give just so
 much information at a time, leading each extra description to each other.
 
-An 'A' section ('apply') contains an apply-type and an apply-value.  When a
-character uses this object as equipment (holds, wields, or wears it), then
-the value of 'apply-value' is added to the character attribute identified by
-'apply-type'.
+An 'A' section ('apply') contains an apply-type, an apply-value and an bitvector.
+When a character uses this object as equipment (holds, wields, or wears it),
+then the value of 'apply-value' is added to the character attribute identified
+by 'apply-type'. The 'apply-bitvector' is added to the attribute of the
+character.
 
 APPLY_ types:
   NONE           0
@@ -602,6 +603,38 @@ APPLY_ types:
   SAVING_PETRI  22
   SAVING_BREATH 23
   SAVING_SPELL  24
+
+The 'apply-bitvector' defines the altered attributes of the character.
+AFF_ flags:
+  NONE                 0
+  BLIND                1
+  INVISIBLE            2
+  DETECT_EVIL          4
+  DETECT_INVIS         8
+  DETECT_MAGIC        16
+  DETECT_HIDDEN       32
+  HOLD                64       
+  SANCTUARY          128
+  FAERIE_FIRE        256
+  INFRARED           512
+  CURSE             1024
+  POISON            4096
+  PROTECT_EVIL      8192
+  SNEAK            32768
+  HIDE             65536
+  SLEEP           131072
+  CHARM           262144
+  FLYING          524288
+  PASS_DOOR      1048576
+  WATERWALK      2097152       
+  SUMMONED       4194304       (Soon to be implemented) 
+  MUTE           8388608     
+  GILLS         16777216       
+  VAMP_BITE     33554432	     (internally set)
+  GHOUL	        67108864	     (internally set)
+  FLAMING      134217728
+  DETECT_GOOD  268435456
+  PROTECT_GOOD 536870912
 
 An object may have an unlimited number of 'E' and 'A' sections.
 
@@ -885,6 +918,7 @@ ROOM_ flags:
   PET_SHOP          4096       A pet shop
   NO_RECALL         8192       Can't recall
   CONE_OF_SILENCE  16384       No speech/spells/communication channels
+  ARENA            32768       May attack anyone, No xp loss upon death
 
 The 'sector-type' identifies the type of terrain.  This affects movement cost
 through the room.  Certain sector types (air and boat) require special

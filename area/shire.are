@@ -431,7 +431,7 @@ The rainbow staff lies here.~
 0~ 0~ -1~ 0~ 0~
 8 5000 0
 A
-4 1
+4 1 0
 #1101
 sting~
 sting~
@@ -441,7 +441,7 @@ Sting lies here.~
 0~ 2~ 7~ 11~ 0~
 1 10000 0
 A
-2 2
+2 2 0
 #1102
 sign~
 a sign~
@@ -479,7 +479,7 @@ A silvery cloak lies here.~
 7~ 0~ 0~ 0~ 0~
 3 10000 0
 A
-24 -2
+24 -2 0
 #1105
 one ring~
 the One Ring~
@@ -489,9 +489,13 @@ The One Ring is here.~
 0~ 0~ 0~ 0~ 0~
 3 2500 0
 A
-17 10
+0 0 2
 A
-12 20
+12 20 0
+A
+17 10 0
+A
+1 1 0
 #1106
 elven bow~
 an elven bow~
@@ -501,7 +505,7 @@ An elven bow lies here.~
 0~ 2~ 8~ 4~ 0~
 10 2000 0
 A
-18 2
+18 2 0
 #1107
 mithril axe~
 a mithril axe~
@@ -511,7 +515,7 @@ A mithril axe lies here.~
 0~ 2~ 8~ 5~ 0~
 12 4000 0
 A
-19 2
+19 2 0
 #1108
 thain girth~
 the thain girth~
@@ -521,7 +525,7 @@ The girth of the thain lies here.~
 5~ 3~ 0~ 0~ 0~
 4 1000 0
 A
-4 2
+4 2 0
 #1109
 tiny dagger~
 a tiny dagger~
@@ -563,7 +567,7 @@ A long weapon with a sharp end is on the floor.~
 0~ 3~ 4~ 3~ 0~
 10 1000 0
 A
-18 4
+18 4 0
 #1114
 flail~
 a flail~

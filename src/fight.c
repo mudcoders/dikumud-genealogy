@@ -474,6 +474,39 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 	}
 
 	/*
+	 * Hunting stuff...
+	 */
+	if ( dam && IS_NPC( victim ) )
+	{
+	    if ( !IS_SET( victim->act, ACT_SENTINEL ) )
+	    {
+		if ( victim->hunting )
+		{
+		    if ( victim->hunting->who != ch )
+		    {
+			free_string( victim->hunting->name );
+			victim->hunting->name = str_dup( ch->name );
+			victim->hunting->who  = ch;
+		    }
+		}
+		else
+		    start_hunting( victim, ch );
+	    }
+
+	    if ( victim->hating )
+	    {
+		if ( victim->hating->who != ch )
+		{
+		    free_string( victim->hating->name );
+		    victim->hating->name = str_dup( ch->name );
+		    victim->hating->who  = ch;
+		}
+	    }
+	    else
+		start_hating( victim, ch );
+	}
+
+	/*
 	 * Damage modifiers.
 	 */
 	if (   IS_AFFECTED( victim, AFF_SANCTUARY      )
@@ -614,8 +647,25 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
     /*
      * Sleep spells and extremely wounded folks.
      */
-    if ( !IS_AWAKE( victim ) && victim->fighting )
-	stop_fighting( victim, FALSE );
+    if ( !IS_AWAKE( victim ) )		/* lets make NPC's not slaughter PC's */
+    {
+	if ( victim->fighting
+	    && victim->fighting->hunting
+	    && victim->fighting->hunting->who == victim )
+	    stop_hunting( victim->fighting );
+
+	if ( victim->fighting
+	    && victim->fighting->hating
+	    && victim->fighting->hating->who == victim )
+	    stop_hating( victim->fighting );
+
+        if ( victim->fighting
+	    && !IS_NPC( victim )
+	    && IS_NPC( ch ) )
+          stop_fighting( victim, TRUE );
+        else
+          stop_fighting( victim, FALSE );
+    }
 
     /*
      * Payoff for killing things.
@@ -742,7 +792,11 @@ void damage( CHAR_DATA *ch, CHAR_DATA *victim, int dam, int dt, int wpn )
 	      && victim->hit < victim->max_hit / 2 )
 	    || ( IS_AFFECTED( victim, AFF_CHARM ) && victim->master
 		&& victim->master->in_room != victim->in_room ) )
-	    do_flee( victim, "" );
+	    {
+		start_fearing( victim, ch );
+		stop_hunting( victim );
+		do_flee( victim, "" );
+	    }
     }
 
     if ( !IS_NPC( victim )
@@ -927,6 +981,99 @@ bool is_wielding_poisoned( CHAR_DATA *ch, int wpn )
 
 }
 
+
+/*
+ * hunting, hating and fearing code				- Thoric
+ */
+bool is_hunting( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    if ( !ch->hunting || ch->hunting->who != victim )
+      return FALSE;
+    
+    return TRUE;    
+}
+
+bool is_hating( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    if ( !ch->hating || ch->hating->who != victim )
+      return FALSE;
+    
+    return TRUE;    
+}
+
+bool is_fearing( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    if ( !ch->fearing || ch->fearing->who != victim )
+      return FALSE;
+    
+    return TRUE;    
+}
+
+void stop_hunting( CHAR_DATA *ch )
+{
+    if ( ch->hunting )
+    {
+	free_string( ch->hunting->name );
+	free_mem( ch->hunting, sizeof( HHF_DATA ) );
+	ch->hunting = NULL;
+    }
+    return;
+}
+
+void stop_hating( CHAR_DATA *ch )
+{
+    if ( ch->hating )
+    {
+	free_string( ch->hating->name );
+	free_mem( ch->hating, sizeof( HHF_DATA ) );
+	ch->hating = NULL;
+    }
+    return;
+}
+
+void stop_fearing( CHAR_DATA *ch )
+{
+    if ( ch->fearing )
+    {
+	free_string( ch->fearing->name );
+	free_mem( ch->fearing, sizeof( HHF_DATA ) );
+	ch->fearing = NULL;
+    }
+    return;
+}
+
+void start_hunting( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    if ( ch->hunting )
+      stop_hunting( ch );
+
+    ch->hunting = alloc_mem( sizeof( HHF_DATA ) );
+    ch->hunting->name = str_dup( victim->name );
+    ch->hunting->who  = victim;
+    return;
+}
+
+void start_hating( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    if ( ch->hating )
+      stop_hating( ch );
+
+    ch->hating = alloc_mem( sizeof( HHF_DATA ) );
+    ch->hating->name = str_dup( victim->name );
+    ch->hating->who  = victim;
+    return;
+}
+
+void start_fearing( CHAR_DATA *ch, CHAR_DATA *victim )
+{
+    if ( ch->fearing )
+      stop_fearing( ch );
+
+    ch->fearing = alloc_mem( sizeof( HHF_DATA ) );
+    ch->fearing->name = str_dup( victim->name );
+    ch->fearing->who  = victim;
+    return;
+}
 
 /*
  * Check for parry.
@@ -1230,6 +1377,8 @@ void death_cry( CHAR_DATA *ch )
     int              door;
 
     vnum = 0;
+    
+    msg  = "You hear $n's death cry.";
     switch ( number_bits( 4 ) )
     {
     default: msg  = "You hear $n's death cry.";				break;
@@ -1237,14 +1386,36 @@ void death_cry( CHAR_DATA *ch )
     case  1: msg  = "$n splatters blood on your armor.";		break;
     case  2: msg  = "You smell $n's sphincter releasing in death.";
 	     vnum = OBJ_VNUM_FINAL_TURD;				break;
-    case  3: msg  = "$n's severed head plops on the ground.";
-	     vnum = OBJ_VNUM_SEVERED_HEAD;				break;
-    case  4: msg  = "$n's heart is torn from $s chest.";
-	     vnum = OBJ_VNUM_TORN_HEART;				break;
-    case  5: msg  = "$n's arm is sliced from $s dead body.";
-	     vnum = OBJ_VNUM_SLICED_ARM;				break;
-    case  6: msg  = "$n's leg is sliced from $s dead body.";
-	     vnum = OBJ_VNUM_SLICED_LEG;				break;
+    case  3: if ( IS_SET( ch->parts, PART_GUTS ) )
+	     {
+		msg = "$n spills $s guts all over the floor.";
+		vnum = OBJ_VNUM_GUTS;
+	     }								break;
+    case  4: if ( IS_SET( ch->parts, PART_HEAD ) )
+	     {
+		msg  = "$n's severed head plops on the ground.";
+		vnum = OBJ_VNUM_SEVERED_HEAD;				
+	     }								break;
+    case  5: if ( IS_SET( ch->parts, PART_HEART ) )
+	     {
+		msg  = "$n's heart is torn from $s chest.";
+		vnum = OBJ_VNUM_TORN_HEART;				
+	     }								break;
+    case  6: if ( IS_SET( ch->parts, PART_ARMS ) )
+	     {
+		msg  = "$n's arm is sliced from $s dead body.";
+		vnum = OBJ_VNUM_SLICED_ARM;				
+	     }								break;
+    case  7: if ( IS_SET( ch->parts, PART_LEGS ) )
+	     {
+		msg  = "$n's leg is sliced from $s dead body.";
+		vnum = OBJ_VNUM_SLICED_LEG;				
+	     }								break;
+    case 8: if ( IS_SET( ch->parts, PART_BRAINS ) )
+	    {
+		msg = "$n's head is shattered, and $s brains splash all over you.";
+		vnum = OBJ_VNUM_BRAINS;
+	    }								break;
     }
 
     act( msg, ch, NULL, NULL, TO_ROOM );
@@ -2454,6 +2625,68 @@ void do_dirt( CHAR_DATA *ch, char *argument )
 
     return;
 }
+
+
+void do_whirlwind( CHAR_DATA *ch, char *argument )
+{
+    CHAR_DATA *pChar;
+    CHAR_DATA *pChar_next;
+    OBJ_DATA  *wield;
+    bool       found = FALSE;
+
+    if ( !IS_NPC( ch ) 
+	&& ch->level < skill_table[gsn_whirlwind].skill_level[ch->class] )
+    {
+	send_to_char( "You don't know how to do that...\n\r", ch );
+	return;
+    }
+
+    if ( !( wield = get_eq_char( ch, WEAR_WIELD ) ) )
+    {
+	send_to_char( "You need to wield a weapon first...\n\r", ch );
+	return;
+    }
+
+    act( "$n holds $p firmly, and starts spinning round...", ch, wield, NULL,
+	TO_ROOM );
+    act( "You hold $p firmly, and start spinning round...",  ch, wield, NULL,
+	TO_CHAR );
+
+    pChar_next = NULL;   
+    for ( pChar = ch->in_room->people; pChar; pChar = pChar_next )
+    {
+	pChar_next = pChar->next_in_room;
+	if ( IS_NPC( pChar ) )
+	{
+	    found = TRUE;
+	    act( "$n turns towards YOU!", ch, NULL, pChar, TO_VICT );
+	    one_hit( ch, pChar, gsn_whirlwind, WEAR_WIELD );
+	}
+    }
+
+    if ( !found )
+    {
+	act( "$n looks dizzy, and a tiny bit embarassed.", ch, NULL, NULL,
+	    TO_ROOM );
+	act( "You feel dizzy, and a tiny bit embarassed.", ch, NULL, NULL,
+	    TO_CHAR );
+    }
+
+    WAIT_STATE( ch, skill_table[gsn_whirlwind].beats );
+
+    if ( !found
+	&& number_percent() < 25 )
+    {
+	act( "$n loses $s balance and falls into a heap.",  ch, NULL, NULL,
+	    TO_ROOM );
+	act( "You lose your balance and fall into a heap.", ch, NULL, NULL,
+	    TO_CHAR );
+	ch->position = POS_STUNNED;
+    }
+
+   return;
+}      
+
 
 void do_disarm( CHAR_DATA *ch, char *argument )
 {

@@ -882,9 +882,9 @@ A mithril hammer has been left here~
 0~ 2~ 6~ 7~ 0~
 19 10000 0
 A
-18 2
+18 2 0
 A
-1 1
+1 1 0
 #1315
 chest~
 a chest~
@@ -910,9 +910,9 @@ A long sword has been left here.~
 0~ 1~ 8~ 3~ 0~
 8 10000 0
 A
-18 1
+18 1 0
 A
-19 2
+19 2 0
 #1318
 dagger silver~
 a silver dagger~
@@ -922,9 +922,9 @@ A finely crafted dagger made of silver is on the ground here.~
 0~ 3~ 3~ 11~ 0~
 5 15000 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 #1319
 scimitar~
 a curved scimitar~
@@ -934,7 +934,7 @@ A curved scimitar is here in a jewel-covered sheath.~
 0~ 2~ 7~ 3~ 0~
 10 17500 0
 A
-13 3
+13 3 0
 #1320
 staff wooden~
 a wooden staff~
@@ -1064,9 +1064,9 @@ A pair of wire-rimmed spectacles has been left here.~
 0~ 0~ 0~ 0~ 0~
 4 10000 0
 A
-3 1
+3 1 0
 A
-4 1
+4 1 0
 #1336
 altar~
 a golden altar~
@@ -1084,9 +1084,9 @@ A heart shaped medallion is here.~
 0~ 0~ 0~ 0~ 0~
 3 10000 0
 A
-4 2
+4 2 0
 A
-5 -1
+5 -1 0
 #1338
 chest~
 a large chest~
@@ -1104,7 +1104,7 @@ An intricately carved key has been left here.~
 1338~ 0~ 0~ 0~ 0~
 1 10000 0
 A
-24 -1
+24 -1 0
 #1340
 a pile of coins~
 a pile of coins is here~
@@ -1122,9 +1122,9 @@ A travel worn cloak has carelessly been left here.~
 0~ 0~ 0~ 0~ 0~
 5 2000 0
 A
-17 -5
+17 -5 0
 A
-24 -3
+24 -3 0
 #1342
 chameleon poncho~
 a chameleon poncho~
@@ -1134,9 +1134,9 @@ Some multicolored cloth is on the ground here~
 0~ 0~ 0~ 0~ 0~
 4 15000 0
 A
-2 2
+2 2 0
 A
-17 -3
+17 -3 0
 #1343
 boots worn~
 a pair of old boots~
@@ -1146,7 +1146,7 @@ A pair of old boots is here, they look very comfortable.~
 0~ 0~ 0~ 0~ 0~
 2 3500 0
 A
-14 15
+14 15 0
 #1344
 ring seashell~
 a seashell ring~
@@ -1196,9 +1196,9 @@ Some chain shackles have been discarded here~
 0~ 0~ 0~ 0~ 0~
 15 750 0
 A
-12 -100
+12 -100 0
 A
-14 -82
+14 -82 0
 #1357
 dagger silvery~
 a silvery dagger~
@@ -1208,7 +1208,7 @@ A long dagger that seems to be made of silver is here.~
 0~ 2~ 4~ 11~ 0~
 5 1200 0
 A
-18 1
+18 1 0
 #1359
 scroll~
 a scroll~
@@ -1226,7 +1226,7 @@ A bound scroll is here blowing in the breeze.~
 16~ armor~ teleport~ protection evil~  ~
 3 9500 0
 A
-17 -6
+17 -6 0
 #1361
 tube~
 a long cylindrical tube~
@@ -1268,7 +1268,7 @@ A silver stirring spoon has been left here.~
 0~ 0~ 0~ 0~ 0~
 1 5650 0
 A
-24 -1
+24 -1 0
 #1366
 potion blue~
 a blue potion~
@@ -1330,7 +1330,7 @@ A golden flute has been left here.~
 22~ 1~ 1~ charm person~ 0~
 4 15000 0
 A
-3 -6
+3 -6 0
 #1373
 figurine~
 a small figurine~
@@ -1364,7 +1364,7 @@ A runed chisel is here.~
 0~ 2~ 3~ 11~ 0~
 6 1500 0
 A
-2 1
+2 1 0
 #1377
 pouch belt beltpouch~
 a beltpouch~
@@ -1390,9 +1390,9 @@ A dark cowl is here.~
 0~ 0~ 0~ 0~ 0~
 5 1200 0
 A
-17 -8
+17 -8 0
 A
-24 -3
+24 -3 0
 #1380
 wand ashen~
 an ashen wand~
@@ -1418,9 +1418,9 @@ A pile of grey cloth has been left here.~
 50~ 0~ -1~ 0~ 0~
 8 5000 0
 A
-17 -9
+17 -9 0
 A
-24 -2
+24 -2 0
 #1383
 cloak grey~
 a long grey cloak~
@@ -1430,9 +1430,9 @@ A pile of grey cloth has been left here.~
 0~ 0~ 0~ 0~ 0~
 7 12000 0
 A
-17 -12
+17 -12 0
 A
-24 -3
+24 -3 0
 #1384
 bracelet silver~
 a glinting silver bracelet~
@@ -1442,7 +1442,7 @@ A glinting hoop of silvery metal is here.~
 0~ 0~ 0~ 0~ 0~
 5 5000 0
 A
-17 -5
+17 -5 0
 #1385
 staff~
 an iron shod staff~
@@ -1452,7 +1452,7 @@ A grey piece of wood shod in iron has been left here.~
 0~ 2~ 7~ 8~ 0~
 7 9000 0
 A
-18 3
+18 3 0
 #1386
 minor ward cube clear~
 a ward minor~
@@ -1462,7 +1462,7 @@ A small clear cube is sitting here.~
 0~ 0~ 0~ 0~ 0~
 5 5000 0
 A
-17 -5
+17 -5 0
 #1387
 robe black~
 a black robe~
@@ -1472,9 +1472,9 @@ A pile of black cloth is on the ground here.~
 50~ 0~ -1~ 0~ 0~
 8 5000 0
 A
-17 -9
+17 -9 0
 A
-24 -2
+24 -2 0
 #1388
 bracelet onyx~
 an onyx bracelet~
@@ -1484,7 +1484,7 @@ A hoop of black onyx is here.~
 0~ 0~ 0~ 0~ 0~
 6 8500 0
 A
-19 2
+19 2 0
 #1389
 cloak black dark~
 a dark black cloak~
@@ -1494,9 +1494,9 @@ A pile of black cloth is on the ground here.~
 0~ 0~ 0~ 0~ 0~
 8 9000 0
 A
-17 -12
+17 -12 0
 A
-24 -3
+24 -3 0
 #1390
 shard black obsidian~
 a sharp shard of obsidian~
@@ -1506,7 +1506,7 @@ A piece of black glass is here.~
 0~ 2~ 7~ 1~ 0~
 8 12000 0
 A
-19 3
+19 3 0
 #1391
 robe white~
 a white robe~
@@ -1516,9 +1516,9 @@ A pile of white cloth is on the ground here.~
 50~ 0~ -1~ 0~ 0~
 7 7500 0
 A
-17 -9
+17 -9 0
 A
-24 -2
+24 -2 0
 #1392
 bracelet white gold~
 a white gold bracelet~
@@ -1528,7 +1528,7 @@ A hoop of silvery metal is here.~
 0~ 0~ 0~ 0~ 0~
 5 5000 0
 A
-18 2
+18 2 0
 #1393
 cloak white~
 a white cloak~
@@ -1538,9 +1538,9 @@ A pile of white cloth is on the ground here.~
 0~ 0~ 0~ 0~ 0~
 7 9000 0
 A
-17 -12
+17 -12 0
 A
-24 -3
+24 -3 0
 #1394
 ivory dagger~
 an ivory hilted dagger~
@@ -1550,9 +1550,9 @@ An ivory hilted dagger has been left here~
 0~ 2~ 6~ 11~ 0~
 8 12000 0
 A
-18 1
+18 1 0
 A
-19 2
+19 2 0
 #1395
 collar spiked~
 a spiked collar~
@@ -1562,9 +1562,9 @@ A small spiked collar is here.~
 0~ 0~ 0~ 0~ 0~
 9 10000 0
 A
-17 -2
+17 -2 0
 A
-19 3
+19 3 0
 #1396
 cloak shimmering~
 a shimmering cloak of many colors~
@@ -1574,9 +1574,9 @@ A multi-colored pile of cloth shimmers here.~
 100~ 0~ -1~ 0~ 0~
 8 25000 0
 A
-17 -15
+17 -15 0
 A
-24 -5
+24 -5 0
 #1397
 emerald ring~
 a small emerald ring~
@@ -1586,7 +1586,7 @@ A small ring with a green gemstone is here.~
 0~ 0~ 0~ 0~ 0~
 5 50000 0
 A
-12 20
+12 20 0
 #1398
 bracelet emerald~
 an emerald bracelet~
@@ -1596,9 +1596,9 @@ A beautifully crafted hoop of emerald is here.~
 0~ 0~ 0~ 0~ 0~
 5 30000 0
 A
-17 -5
+17 -5 0
 A
-3 1
+3 1 0
 #1399
 ward major clear crystal~
 a ward major~
@@ -1608,9 +1608,9 @@ A large clear crystal cube is here.~
 0~ 0~ 0~ 0~ 0~
 6 20000 0
 A
-17 -10
+17 -10 0
 A
-24 -2
+24 -2 0
 #1400
 ebony kris~
 the ebony kris~
@@ -1620,9 +1620,9 @@ A wavy bladed knife made of ebony is here.~
 0~ 3~ 4~ 11~ 0~
 9 60000 0
 A
-2 2
+2 2 0
 A
-19 5
+19 5 0
 #1401
 green scale shirt~
 a tight fitting green dragon scale shirt~
@@ -1632,9 +1632,9 @@ Some green dragon scales which have been sewn together are here.~
 10~ 0~ 0~ 0~ 0~
 9 10000 0
 A
-2 3
+2 3 0
 A
-17 -5
+17 -5 0
 E
 green scale shirt~
 Green dragon scale shirt was made from a poor unfortunate green dragon.

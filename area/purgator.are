@@ -54,9 +54,9 @@ A blaze of white light hangs in the air.~
 36~ 50~ 50~ heal~ 0~
 10 0 0
 A
-12 50
+12 50 0
 A
-17 -5
+17 -5 0
 #403
 scythe~
 a Scythe of Death~
@@ -66,11 +66,11 @@ A long curving blade fixed to a long wooden pole lies here.~
 50~ 100~ 0~ 1~ 0~
 20 0 0
 A
-18 9
+18 9 0
 A
-19 9
+19 9 0
 A
-5 -12
+5 -12 0
 #0
 
 

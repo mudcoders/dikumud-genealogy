@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.84! (HomeCooked Envy2.2)
-Monday, 7th July 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
+Monday, 14th July 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -37,8 +37,19 @@ version of the code which is cleaner and doesn't use bzero... Updated one or
 two docs but that's it i think. Sheeesh... It's official. I made my first bug
 fix version just one day after the previous one! This isn't a serious bug but
 people might bother me if they use AIX i think. Since i use Linux i didn't
-notice it until the day after i uploaded to ftp.game.org. Don't bother too much
-with the release date above it's just for reference.
+notice it until the day after i uploaded to ftp.game.org.
+
+
+=== General info (version 0.85)
+
+Major changes of this version:
+
+	Hunt/Track
+	Smarter Mobs
+	Object affects - changed object format yet again...
+	A couple of slight changes to make OLC a bit easier/nicer.
+	Parts code, now you don't slice off snake arms and such.
+	Detailed boot log - ala SMAUG
 
 
 === Future Plans
@@ -51,6 +62,7 @@ A few of these ideas have been created using the 'Reverse Engineering' method.
 Do not expect a new release so soon. This was highly unusual. I expect to have
 the next release made in September, and this will have MAJOR changes i think.
 Probably... But don't hold your breath :-) I have to study you know...
+	I think you are saying now: this guy is nuts! New releases every week...
 
 Enjoy!
 

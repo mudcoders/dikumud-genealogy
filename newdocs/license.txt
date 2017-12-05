@@ -1,0 +1,26 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
+Monday, 14th July 1997
+
+Zen		vasc@camoes.rnl.ist.utl.pt
+
+
+=== DISCLAIMER! ATTENTION!
+
+  I have worked hard on this code and i ask you nothing for it. All i can
+say is that it works fine on my 16MB Pentium Linux system and without any 
+warnings or errors, i have tested the code very throughly and found no
+bugs (yet). So i say to you this:
+1. If this code blows up your machine it's not my fault.
+2. If your girlfriend/boyfriend leaves you it's not my fault.
+3. If while crossing the street you are hit by a car it's not my fault.
+4. In short: USE THIS AT YOUR OWN RISK!
+With that said if you report bugs i will *try* to solve them.
+
+=== License
+
+All my code here is *freeware* but the snippets have their own author rights.
+Also don't forget to follow the Envy, Merc and Diku licenses. You should find
+them in the 'doc' directory.
+
+
+- Zen

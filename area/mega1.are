@@ -209,7 +209,7 @@ There is a stooky gland laying here.~
 20~ cure poison~ heal~  ~  ~
 1 0 0
 A
-9 -1
+9 -1 0
 E
 stooky gland~
 Stooky glands are known for the restorative properties.
@@ -274,13 +274,13 @@ The Vibroblade is here.~
 0~ 0~ 0~ 3~ 0~
 2 0 0
 A
-18 2
+18 2 0
 A
-19 2
+19 2 0
 A
-5 1
+5 1 0
 A
-2 1
+2 1 0
 E
 vibroblade~
 Obviously of alien manufacture, this blade enhances fighting
@@ -320,7 +320,7 @@ A wet noodle is laying here with clam sauce on it.~
 0~ 0~ 0~ 4~ 0~
 1 0 0
 A
-3 1
+3 1 0
 E
 noodle~
 It looks like a noodle freshly made at the Olive Garden.
@@ -334,7 +334,7 @@ A Judge's club is resting here.~
 0~ 0~ 0~ 7~ 0~
 3 0 0
 A
-19 2
+19 2 0
 E
 judge club~
 It is a standard Justice Hall issue club.  Many a Perp's

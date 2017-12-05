@@ -339,7 +339,7 @@ There is a large mace of fine quality here.~
 0~ 2~ 5~ 7~ 0~
 11 900 0
 A
-18 1
+18 1 0
 #1603
 elven dagger~
 a long elven dagger~
@@ -349,7 +349,7 @@ A long elven dagger made of adamantite is here.~
 0~ 2~ 5~ 11~ 0~
 2 1000 0
 A
-18 2
+18 2 0
 #1604
 steel broad sword~
 a steel broad sword~
@@ -359,9 +359,9 @@ A fine steel broad sword is lying on the ground.~
 0~ 2~ 6~ 3~ 0~
 12 1200 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 #1606
 rod might~
 the rod of might~
@@ -371,9 +371,9 @@ A Rod of Might is lying here.~
 0~ 2~ 7~ 6~ 0~
 13 4000 0
 A
-18 2
+18 2 0
 A
-1 1
+1 1 0
 #1612
 black kite shield~
 a black kite shield~
@@ -383,7 +383,7 @@ There is a large black kite shield lying here.~
 6~ 0~ 0~ 0~ 0~
 6 1000 0
 A
-24 1
+24 1 0
 #1614
 helm~
 a commander's helm~
@@ -393,7 +393,7 @@ A commander's helm rests on a table here.~
 7~ 0~ 0~ 0~ 0~
 4 2000 0
 A
-4 1
+4 1 0
 E
 helm~
 This elegant helm is plated in mithril and silver.~
@@ -406,7 +406,7 @@ A magical bracer made from mithril lies on the ground!~
 6~ 0~ 0~ 0~ 0~
 2 6500 0
 A
-1 1
+1 1 0
 #1616
 dark blue cloak~
 a dark blue cloak~
@@ -416,9 +416,9 @@ A valuable cloak of dark blue cloth lies on the floor.~
 1~ 0~ 0~ 0~ 0~
 2 1600 0
 A
-17 -6
+17 -6 0
 A
-12 5
+12 5 0
 #1621
 dark red potion~
 a dark red potion~
@@ -460,7 +460,7 @@ There is a very strange-looking key on the ground here.~
 2~ 0~ 0~ 0~ 0~
 1 1200 0
 A
-17 -5
+17 -5 0
 E
 strange key~
 This key is of an unusual shape ... must go to an unusual lock!~
@@ -485,7 +485,7 @@ A long bow has been foolishly abandoned here.~
 0~ 2~ 6~ 11~ 0~
 8 500 0
 A
-18 1
+18 1 0
 E
 long bow~
 It looks like the bows used by rustin hunters.
@@ -499,7 +499,7 @@ A gnarled looking staff lies on the ground.~
 0~ 2~ 6~ 7~ 0~
 7 800 0
 A
-13 5
+13 5 0
 #1704
 ancient sword~
 an ancient long sword~
@@ -509,9 +509,9 @@ An ancient long sword has been left here.~
 0~ 2~ 8~ 3~ 0~
 10 10000 0
 A
-18 3
+18 3 0
 A
-19 3
+19 3 0
 #1711
 fur cap~
 a fur cap~
@@ -529,7 +529,7 @@ A sturdy pair of travelling boots lies here.~
 5~ 0~ 0~ 0~ 0~
 2 3500 0
 A
-14 10
+14 10 0
 #1713
 bronze ring~
 a bronze ring~
@@ -539,7 +539,7 @@ A ring of etched bronze gleams dimly on the ground.~
 3~ 0~ 0~ 0~ 0~
 1 2000 0
 A
-12 5
+12 5 0
 #0
 
 

@@ -8,6 +8,22 @@ End
 
 
 
+#HELPS
+
+0 HATCHET~
+Hatchet is a Merc Guy.  He founded Merc with Kahn one day in 1992 because one
+day, when he complained about muds, the imps said, 'If you have a problem, go 
+make your own mud.'  His love is for the mudders, specifically a lady named 
+Icaza.
+~
+
+0 ICAZA~
+Icaza is a Goddess of the mud realm.  She is currently being pursued by Hatchet
+of Merc.  Her smiles are contagious, and her Southern accent is intriguing.
+~
+
+0 $~
+
 #MOBILES
 #3801
 rat small~
@@ -321,9 +337,9 @@ A lone stool sits on the floor.~
 0~ 2~ 2~ 8~ 0~
 10 0 0
 A
-18 -1
+18 -1 0
 A
-19 2
+19 2 0
 E
 stool~
 This sturdy stool looks like it can be used as a weapon!
@@ -375,7 +391,7 @@ A long bladed knife is rusting on the floor.~
 0~ 2~ 3~ 3~ 0~
 7 0 0
 A
-19 1
+19 1 0
 E
 long rusted knife~
 This knife is rusted, but the rust only adds to the wickedness of this blade.
@@ -413,7 +429,7 @@ A spiked flail rests on the floor.~
 0~ 3~ 3~ 7~ 0~
 5 0 0
 A
-19 2
+19 2 0
 #3818
 whip barbed~
 a barbed whip~
@@ -423,9 +439,9 @@ A barbed whip is curled up on the floor.~
 0~ 3~ 4~ 4~ 0~
 10 0 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 #3819
 rod holy icaza~
 holy Rod of Icaza~
@@ -435,11 +451,11 @@ A rod of gold rests millimeters from the floor.~
 10~ 3~ 3~ protection evil~ 0~
 10 0 0
 A
-17 -5
+17 -5 0
 A
-24 -2
+24 -2 0
 A
-3 1
+3 1 0
 E
 rod holy icaza~
 This rod was blessed by the touch and laugh of Goddess Icaza.  Holding on to it

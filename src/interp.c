@@ -141,6 +141,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "murder",		do_murder,	POS_FIGHTING,	 0,  LOG_ALWAYS, 1 },
     { "rescue",		do_rescue,	POS_FIGHTING,	 0,  LOG_NORMAL, 1 },
     { "stake",		do_stake,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
+    { "whirlwind",	do_whirlwind,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
 
     /*
      * Configuration commands.
@@ -257,6 +258,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "wager",          do_bet,         POS_STANDING,    0,  LOG_NORMAL, 1 },
     { "wake",		do_wake,	POS_SLEEPING,	 0,  LOG_NORMAL, 1 },
     { "where",		do_where,	POS_RESTING,	 0,  LOG_NORMAL, 1 },
+    { "track",		do_track,	POS_STANDING,	 0,  LOG_NORMAL, 1 },
 
     /*
      * Immortal commands.
@@ -267,7 +269,6 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "delete",		do_delete,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "allow",		do_allow,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "ban",		do_ban,		POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
-    { "clookup",	do_clookup,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "deny",		do_deny,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "disconnect",	do_disconnect,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
     { "force",		do_force,	POS_DEAD,    L_SEN,  LOG_ALWAYS, 1 },
@@ -312,7 +313,8 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "return",		do_return,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "rset",		do_rset,	POS_DEAD,    L_JUN,  LOG_ALWAYS, 1 },
     { "rstat",		do_rstat,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
-    { "showclass",	do_showclass,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "clookup",	do_clookup,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "clist",		do_clist,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "slookup",	do_slookup,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
     { "sober",		do_sober,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "snoop",		do_snoop,	POS_DEAD,    L_JUN,  LOG_NORMAL, 1 },
@@ -324,6 +326,7 @@ const	struct	cmd_type	cmd_table	[ ] =
     { "bamfout",	do_bamfout,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "goto",		do_goto,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
     { "holylight",	do_holylight,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
+    { "editinfo",	do_editinfo,	POS_DEAD,    L_APP,  LOG_NORMAL, 1 },
 
     { ":",		do_immtalk,	POS_DEAD,    L_HER,  LOG_NORMAL, 1 },
 

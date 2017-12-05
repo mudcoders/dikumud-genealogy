@@ -156,7 +156,7 @@ The filthy hide of a beast is laying here.~
 5~ 0~ 0~ 0~ 0~
 50 50 0
 A
-1 1
+1 1 0
 E
 troll skin~
 This is the skin from a huge (and dead) beast.  It looks bad, smells bad,
@@ -171,7 +171,7 @@ A ring of black opal lies here gathering dust.~
 3~ 0~ 0~ 0~ 0~
 1 1000 0
 A
-19 2
+19 2 0
 E
 ring opal~
 It is a full circle of opal, smooth and simple.
@@ -197,9 +197,9 @@ A cracked piece of bone lies here.~
 0~ 3~ 3~ 7~ 0~
 3 3 0
 A
-19 -1
+19 -1 0
 A
-18 -1
+18 -1 0
 E
 bone~
 This piece of bone looks sturdy enough to be used as a weapon, but you

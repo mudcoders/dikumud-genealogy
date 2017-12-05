@@ -138,6 +138,8 @@ int                     gsn_dirt;
 int                     gsn_meditate;		/* by Zen */
 int			gsn_swim;		/* by Zen */
 int			gsn_mass_vortex_lift;	/* by Zen */
+int			gsn_track;
+int			gsn_whirlwind;
 
 /*
  * Race gsn's (by Kahn).
@@ -225,6 +227,7 @@ char *  daPrompt;
  */
 void	init_mm		args( ( void ) );
 
+void	load_area_file  args( ( void ) );
 void	load_area       args( ( FILE *fp ) );
 void	load_helps      args( ( FILE *fp ) );
 void    load_recall     args( ( FILE *fp ) );
@@ -272,15 +275,18 @@ void boot_db( void )
 	fBootDb		= TRUE;
     }
 
-    log_string( "Loading socials." );
+    fprintf( stderr, "[*****] BOOT: ---------------------------[ Boot Log ]---------------------------" );
+
+    log_string( "Loading socials" );
     load_socials();
 
-    log_string( "Loading classes." );
+    log_string( "Loading classes" );
     load_classes();
 
     /*
      * Init random number generator.
      */
+    log_string( "Initializing random number generator" );
     {
 	init_mm( );
     }
@@ -288,6 +294,7 @@ void boot_db( void )
     /*
      * Set time and weather.
      */
+    log_string( "Setting time and weather" );
     {
 	long lhour, lday, lmonth;
 
@@ -323,6 +330,7 @@ void boot_db( void )
     /*
      * Assign gsn's for skills which have them.
      */
+    log_string( "Assigning gsn's" );
     {
 	int sn;
 
@@ -336,8 +344,9 @@ void boot_db( void )
     /*
      * Read in all the area files.
      */
+    log_string( "Reading in area files..." );
     {
-	FILE *fpList;
+	FILE      *fpList;
 
 	if ( !( fpList = fopen( AREA_LIST, "r" ) ) )
 	{
@@ -353,70 +362,8 @@ void boot_db( void )
 	    if ( strArea[0] == '$' )
 		break;
 
-	    if ( strArea[0] == '-' )
-	    {
-		fpArea = stdin;
-	    }
-	    else
-	    {
-		if ( !( fpArea = fopen( strArea, "r" ) ) )
-		{
-		    perror( strArea );
-		    exit( 1 );
-		}
-	    }
+	    load_area_file( );
 
-	    for ( ; ; )
-	    {
-		char *word;
-
-		if ( fread_letter( fpArea ) != '#' )
-		{
-		    bug( "Boot_db: # not found.", 0 );
-		    exit( 1 );
-		}
-
-		word = fread_word( fpArea, &stat );
-
-		     if ( word[0] == '$'               )
-                    break;
-		else if ( !str_cmp( word, "AREA"     ) )
-		    load_area    ( fpArea );
-		else if ( !str_cmp( word, "HELPS"    ) ) 
-		    load_helps   ( fpArea );
-		else if ( !str_cmp( word, "RECALL"   ) )
-		    load_recall  ( fpArea );
-		else if ( !str_cmp( word, "MOBILES"  ) )
-		    load_mobiles ( fpArea );
-		else if ( !str_cmp( word, "MOBPROGS" ) ) 
-		    load_mobprogs( fpArea );
-		else if ( !str_cmp( word, "OBJECTS"  ) )
-		    load_objects ( fpArea );
-                else if ( !str_cmp( word, "NEWOBJECTS" ) )	/* Zen */
-                    new_load_objects( fpArea );
-		else if ( !str_cmp( word, "RESETS"   ) )
-		    load_resets  ( fpArea );
-		else if ( !str_cmp( word, "ROOMS"    ) )
-		    load_rooms   ( fpArea );
-		else if ( !str_cmp( word, "SHOPS"    ) )
-		    load_shops   ( fpArea );
-		else if ( !str_cmp( word, "SPECIALS" ) )
-		    load_specials( fpArea );
-                else if ( !str_cmp( word, "AREADATA" ) )	/* OLC */
-                    new_load_area( fpArea );
-                else if ( !str_cmp( word, "ROOMDATA" ) )	/* OLC 1.1b */
-                    new_load_rooms( fpArea );
-
-		else
-		{
-		    bug( "Boot_db: bad section name.", 0 );
-		    exit( 1 );
-		}
-	    }
-
-	    if ( fpArea != stdin )
-		fclose( fpArea );
-	    fpArea = NULL;
 	}
 	fclose( fpList );
     }
@@ -428,15 +375,115 @@ void boot_db( void )
      * Load up the notes file.
      */
     {
+	log_string( "Fixing exits" );
 	fix_exits( );
 	fBootDb  = FALSE;
 	daPrompt = str_dup( "<%hhp %mm %vmv> " );
 	boot_done( );
+	log_string( "Reseting areas" );
 	area_update( );
 	load_notes( );
 	load_ban( );
+	MOBtrigger = TRUE;
 	load_down_time( );
     }
+
+    return;
+}
+
+
+
+/*
+ * Snarf an 'area' header line.
+ */
+void load_area_file( )
+{
+    int		stat;
+    char	buf [ MAX_STRING_LENGTH ];
+
+    if ( !fBootDb )
+    {
+        bug( "Load_area: can't load area if not booting!", 0 );
+        return;
+    }
+
+    if ( strArea[0] == '-' )
+    {
+	fpArea = stdin;
+	strcpy ( buf, &strArea[1] );
+	strcpy ( strArea, buf );
+    }
+    else
+    {
+	if ( !( fpArea = fopen( strArea, "r" ) ) )
+	{
+	    perror( strArea );
+	    exit( 1 );
+	}
+    }
+
+    for ( ; ; )
+    {
+	char *word;
+
+	if ( fread_letter( fpArea ) != '#' )
+	{
+	    bug( "Load_area: # not found.", 0 );
+	    exit( 1 );
+	}
+
+	word = fread_word( fpArea, &stat );
+
+	if ( word[0] == '$'               )
+	    break;
+	else if ( !str_cmp( word, "AREA"     ) )
+	    load_area    ( fpArea );
+	else if ( !str_cmp( word, "HELPS"    ) ) 
+	    load_helps   ( fpArea );
+	else if ( !str_cmp( word, "RECALL"   ) )
+	    load_recall  ( fpArea );
+	else if ( !str_cmp( word, "MOBILES"  ) )
+	    load_mobiles ( fpArea );
+	else if ( !str_cmp( word, "MOBPROGS" ) ) 
+	    load_mobprogs( fpArea );
+	else if ( !str_cmp( word, "OBJECTS"  ) )
+	    load_objects ( fpArea );
+	else if ( !str_cmp( word, "RESETS"   ) )
+	    load_resets  ( fpArea );
+	else if ( !str_cmp( word, "ROOMS"    ) )
+	    load_rooms   ( fpArea );
+	else if ( !str_cmp( word, "SHOPS"    ) )
+	    load_shops   ( fpArea );
+	else if ( !str_cmp( word, "SPECIALS" ) )
+	    load_specials( fpArea );
+	else if ( !str_cmp( word, "AREADATA" ) )	/* OLC */
+	    new_load_area( fpArea );
+	else if ( !str_cmp( word, "ROOMDATA" ) )	/* OLC 1.1b */
+	    new_load_rooms( fpArea );
+	else if ( !str_cmp( word, "NEWOBJECTS" ) )	/* Zen */
+	    new_load_objects( fpArea );
+
+	else
+	{
+	    bug( "Load_area: bad section name.", 0 );
+	    exit( 1 );
+	}
+    }
+
+    if ( fpArea != stdin )
+	fclose( fpArea );
+    fpArea = NULL;
+
+    if ( area_last )
+    {
+	fprintf( stderr, "%-14s: Rooms: %5d - %-5d Objs: %5d - %-5d Mobs: %5d - %d\n",
+		area_last->filename,
+		area_last->low_r_vnum, area_last->hi_r_vnum,
+		area_last->low_o_vnum, area_last->hi_o_vnum,
+		area_last->low_m_vnum, area_last->hi_m_vnum );
+    }
+    else
+	fprintf( stderr, "(%s)\n", strArea );
 
     return;
 }
@@ -472,6 +519,13 @@ void load_area( FILE *fp )
     pArea->age		= 15;
     pArea->nplayer	= 0;
 
+    pArea->low_r_vnum	= 0;			/* OLC */
+    pArea->hi_r_vnum	= 0;			/* OLC */
+    pArea->low_o_vnum	= 0;			/* OLC */
+    pArea->hi_o_vnum	= 0;			/* OLC */
+    pArea->low_m_vnum	= 0;			/* OLC */
+    pArea->hi_m_vnum	= 0;			/* OLC */
+    
     if ( !area_first )
 	area_first = pArea;
     if (  area_last  )
@@ -628,6 +682,7 @@ void load_helps( FILE *fp )
 	pHelp->level	= level;
 	pHelp->keyword	= keyword;
 	pHelp->text	= fread_string( fp, &stat );
+        pHelp->area     = area_last ? area_last : NULL;         /* OLC */
 
 	if ( !str_cmp( pHelp->keyword, "greeting" ) )
 	    help_greeting = pHelp->text;
@@ -714,6 +769,12 @@ void load_mobiles( FILE *fp )
 
 	pMobIndex			= alloc_perm( sizeof( *pMobIndex ) );
 	pMobIndex->vnum			= vnum;
+
+	if ( !area_last->low_m_vnum )
+	    area_last->low_m_vnum       = vnum;
+	if ( vnum > area_last->hi_m_vnum )
+	    area_last->hi_m_vnum        = vnum;
+
         pMobIndex->area                 = area_last;		/* OLC */
 	pMobIndex->player_name		= fread_string( fp, &stat );
 	pMobIndex->short_descr		= fread_string( fp, &stat );
@@ -772,6 +833,8 @@ void load_mobiles( FILE *fp )
 	    bug( "Load_mobiles: vnum %d bad race.", vnum );
 	    pMobIndex->race = 0;
 	}
+
+	pMobIndex->parts = race_table[pMobIndex->race].parts;
 
 	if ( letter != 'S' )
 	{
@@ -843,6 +906,12 @@ void load_objects( FILE *fp )
 
 	pObjIndex			= alloc_perm( sizeof( *pObjIndex ) );
 	pObjIndex->vnum			= vnum;
+
+	if ( !area_last->low_o_vnum )
+	    area_last->low_o_vnum       = vnum;
+	if ( vnum > area_last->hi_o_vnum )
+	    area_last->hi_o_vnum        = vnum;
+
         pObjIndex->area                 = area_last;		/* OLC */
 	pObjIndex->name			= fread_string( fp, &stat );
 	pObjIndex->short_descr		= fread_string( fp, &stat );
@@ -963,8 +1032,8 @@ void load_objects( FILE *fp )
 
 /*
  * Snarf an obj section. This supports the new obj format with value[4]...
- * So much work just to support a new value! This was i ported OLC!
- * This way OLC acts as a file converter for your Envy areas.
+ * So much work just to support a new value! This was why i ported OLC!
+ * This way OLC acts as a file converter for your old Envy areas.
  * - Zen
  */
 void new_load_objects( FILE *fp )
@@ -1006,6 +1075,12 @@ void new_load_objects( FILE *fp )
 
 	pObjIndex			= alloc_perm( sizeof( *pObjIndex ) );
 	pObjIndex->vnum			= vnum;
+
+	if ( !area_last->low_o_vnum )
+	    area_last->low_o_vnum       = vnum;
+	if ( vnum > area_last->hi_o_vnum )
+	    area_last->hi_o_vnum        = vnum;
+
         pObjIndex->area                 = area_last;		/* OLC */
 	pObjIndex->name			= fread_string( fp, &stat );
 	pObjIndex->short_descr		= fread_string( fp, &stat );
@@ -1053,7 +1128,7 @@ void new_load_objects( FILE *fp )
 		paf->duration		= -1;
 		paf->location		= fread_number( fp, &stat );
 		paf->modifier		= fread_number( fp, &stat );
-		paf->bitvector		= 0;
+		paf->bitvector		= fread_number( fp, &stat );
 		paf->next		= pObjIndex->affected;
 		pObjIndex->affected	= paf;
 		top_affect++;
@@ -1334,9 +1409,16 @@ void load_rooms( FILE *fp )
 	pRoomIndex->area		= area_last;
 	pRoomIndex->vnum		= vnum;
 	pRoomIndex->name		= fread_string( fp, &stat );
+
+	if ( !area_last->low_r_vnum )
+	    area_last->low_r_vnum       = vnum;
+	if ( vnum > area_last->hi_r_vnum )
+	    area_last->hi_r_vnum        = vnum;
+
 	pRoomIndex->description		= fread_string( fp, &stat );
 	/* Area number */		  fread_number( fp, &stat );   /* Unused */
 	pRoomIndex->room_flags		= fread_number( fp, &stat );
+	pRoomIndex->orig_room_flags	= pRoomIndex->room_flags;      /* OLC */
 	pRoomIndex->sector_type		= fread_number( fp, &stat );
 	pRoomIndex->light		= 0;
 	for ( door = 0; door <= 5; door++ )
@@ -1467,10 +1549,17 @@ void new_load_rooms( FILE *fp )
         pRoomIndex->extra_descr         = NULL;
         pRoomIndex->area                = area_last;
         pRoomIndex->vnum                = vnum;
+
+	if ( !area_last->low_r_vnum )
+	    area_last->low_r_vnum       = vnum;
+	if ( vnum > area_last->hi_r_vnum )
+	    area_last->hi_r_vnum        = vnum;
+
         pRoomIndex->name                = fread_string( fp, &stat );
         pRoomIndex->description         = fread_string( fp, &stat );
         /* Area number */                 fread_number( fp, &stat ); /*Unused*/
         pRoomIndex->room_flags          = fread_number( fp, &stat );
+	pRoomIndex->orig_room_flags	= pRoomIndex->room_flags;      /* OLC */
         pRoomIndex->sector_type         = fread_number( fp, &stat );
         pRoomIndex->light               = 0;
         for ( door = 0; door <= 5; door++ )
@@ -2320,6 +2409,7 @@ CHAR_DATA *create_mobile( MOB_INDEX_DATA *pMobIndex )
     mob->alignment	= pMobIndex->alignment;
     mob->sex		= pMobIndex->sex;
     mob->race           = pMobIndex->race;
+    mob->parts		= pMobIndex->parts;
     mob->gold           = number_fuzzy( 10 )
                         * number_fuzzy( pMobIndex->level )
 			* number_fuzzy( pMobIndex->level );
@@ -3271,6 +3361,22 @@ char *capitalize( const char *str )
 	strcap[i] = LOWER( str[i] );
     strcap[i] = '\0';
     strcap[0] = UPPER( strcap[0] );
+    return strcap;
+}
+
+
+
+/*
+ * Returns an all-caps string.
+ */
+char *all_capitalize( const char *str )
+{
+    static char strcap [ MAX_STRING_LENGTH ];
+           int  i;
+
+    for ( i = 0; str[i] != '\0'; i++ )
+	strcap[i] = UPPER( str[i] );
+    strcap[i] = '\0';
     return strcap;
 }
 

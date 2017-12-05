@@ -8,6 +8,18 @@ End
 
 
 
+#HELPS
+
+3 'SHADOW DEMON' 'SHADOWDEMON' 'SHADOWLORD' 'SHADOW LORD' 'SHADE'~
+The Shadowlord is merely a myth.  According to such myths, the Shadowlord
+was the first creation from God.  After falling from grace, the Shadowlord
+was cast to earth and died.  He supposed reincarnates about every 600-700
+years.  When he does reincarnate, he creates minions called shadowdemons.
+They, in turn, create minions, named shades.
+~
+
+0 $~
+
 #MOBILES
 #10700
 cashier~
@@ -600,11 +612,11 @@ A small hatchet is on the floor.~
 0~ 0~ 0~ 13~ 0~
 5 0 0
 A
-1 1
+2 -1 0
 A
-5 1
+5 1 0
 A
-2 -1
+1 1 0
 #10703
 ice pick icepick~
 a small icepick~
@@ -614,7 +626,7 @@ A small icepick is sticking out of the ground.~
 0~ 0~ 0~ 11~ 0~
 5 0 0
 A
-2 1
+2 1 0
 #10704
 engagement ring gold~
 a simple engagement ring~
@@ -624,11 +636,11 @@ A simple ring of gold is on the floor.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-2 1
+3 1 0
 A
-4 -1
+4 -1 0
 A
-3 1
+2 1 0
 #10705
 black tooth blacktooth dirk~
 blacktooth~
@@ -646,11 +658,11 @@ A shell of a spider is here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-5 2
+14 -20 0
 A
-12 -10
+12 -10 0
 A
-14 -20
+5 2 0
 #10707
 cooking spatula~
 a cooking spatula~
@@ -668,9 +680,9 @@ An apron hangs here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-17 1
+24 -3 0
 A
-24 -3
+17 1 0
 E
 apron~
 You realize that this grease splattered apron offers great protection, not
@@ -740,7 +752,7 @@ A bloody razor is on the floor, ready to cut your feet.~
 0~ 0~ 0~ 1~ 0~
 5 0 0
 A
-19 1
+19 1 0
 #10715
 match~
 a lit match~
@@ -798,7 +810,7 @@ A spiked cudgel is on the floor here.~
 0~ 0~ 0~ 7~ 0~
 10 0 0
 A
-19 3
+19 3 0
 #10722
 cape~
 a dark cape~
@@ -808,7 +820,7 @@ A dark cape hangs here.~
 0~ 0~ 0~ 0~ 0~
 4 0 0
 A
-2 1
+2 1 0
 #10723
 key a~
 key A~
@@ -882,9 +894,9 @@ A chair is here.~
 0~ 0~ 0~ 8~ 0~
 8 0 0
 A
-18 -2
+19 -2 0
 A
-19 -2
+18 -2 0
 #10732
 bed~
 a smelly bed~
@@ -910,11 +922,11 @@ A pair of spiffy running shoes hover magically here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-2 2
+5 -1 0
 A
-14 20
+14 20 0
 A
-5 -1
+2 2 0
 #10735
 chair~
 a chair~
@@ -957,13 +969,13 @@ A thin black robe lies on the floor here.~
 0~ 0~ 0~ 0~ 0~
 3 0 0
 A
-3 1
+12 10 0
 A
-4 1
+1 -1 0
 A
-1 -1
+4 1 0
 A
-12 10
+3 1 0
 #10739
 black scroll~
 a black scroll~
@@ -1083,7 +1095,7 @@ A spear is leaning against the wall.~
 0~ 0~ 0~ 2~ 0~
 7 0 0
 A
-18 4
+18 4 0
 #10749
 splintmail splint mail vest~
 splintmail vest~
@@ -1093,7 +1105,7 @@ A splintmail vest is bundled here.~
 0~ 0~ 0~ 0~ 0~
 12 0 0
 A
-5 1
+5 1 0
 #10750
 shot vodka~
 a shot of vodka~
@@ -1159,7 +1171,7 @@ A thin dirk is on the floor.~
 0~ 0~ 0~ 11~ 0~
 5 0 0
 A
-18 1
+18 1 0
 #10758
 key skeleton~
 a skeleton key~
@@ -1177,7 +1189,7 @@ You see a sabre.~
 0~ 0~ 0~ 1~ 0~
 5 0 0
 A
-1 2
+1 2 0
 #10760
 shield square~
 a square shield~
@@ -1187,7 +1199,7 @@ A square shield is on the floor.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-5 2
+5 2 0
 #10761
 hidden panel~
 a hidden panel~
@@ -1210,9 +1222,9 @@ You see an ivory bracelet here.~
 0~ 0~ 0~ 0~ 0~
 2 0 0
 A
-12 10
+3 1 0
 A
-3 1
+12 10 0
 #10763
 statuette eagle~
 an eagle statuette~
@@ -1254,11 +1266,11 @@ You see the silhouette of a sword here.~
 0~ 0~ 0~ 1~ 0~
 10 0 0
 A
-1 1
+2 1 0
 A
-5 1
+5 1 0
 A
-2 1
+1 1 0
 #10768
 shadow vest~
 a shadow vest~
@@ -1268,11 +1280,11 @@ You see a silhouette of a vest.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-2 1
+13 20 0
 A
-5 1
+5 1 0
 A
-13 20
+2 1 0
 #10769
 shadow helm helmet~
 a shadow helm~
@@ -1282,11 +1294,11 @@ You see the silhouette of a helmet here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-4 1
+12 10 0
 A
-3 1
+3 1 0
 A
-12 10
+4 1 0
 #10770
 shadow leggings~
 shadow leggings~
@@ -1296,9 +1308,9 @@ You see the silhouette of leggings here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-2 1
+5 1 0
 A
-5 1
+2 1 0
 #10771
 shadow boots~
 shadow boots~
@@ -1308,9 +1320,9 @@ You see the silhouette of boots.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-2 2
+14 50 0
 A
-14 50
+2 2 0
 #10772
 shadow gauntlets~
 shadow gauntlets~
@@ -1320,11 +1332,11 @@ You see the silhouette of some gauntlets here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-1 1
+18 2 0
 A
-2 1
+2 1 0
 A
-18 2
+1 1 0
 #10773
 shadow sleeves~
 shadow sleeves~
@@ -1334,11 +1346,11 @@ You see the silhouette of some sleeves here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-1 1
+13 10 0
 A
-5 1
+5 1 0
 A
-13 10
+1 1 0
 #10774
 a shadow shield~
 a shadow shield~
@@ -1348,9 +1360,9 @@ You see the silhouette of a shield here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-5 2
+18 2 0
 A
-18 2
+5 2 0
 #10775
 black fang blackfang~
 blackfang~
@@ -1360,15 +1372,15 @@ You see the silhouette of something sharp.~
 0~ 0~ 0~ 11~ 0~
 8 0 0
 A
-1 2
+2 2 0
 A
-18 7
+5 -10 0
 A
-19 7
+19 7 0
 A
-5 -10
+18 7 0
 A
-2 2
+1 2 0
 #10776
 shadow orb~
 the Shadow Orb~
@@ -1378,11 +1390,11 @@ You see the silhouette of a small globe.~
 0~ 20~ 20~ teleport~ 0~
 5 0 0
 A
-3 2
+12 30 0
 A
-4 2
+4 2 0
 A
-12 30
+3 2 0
 #10777
 gold coins treasure~
 a large pile of coins~
@@ -1416,13 +1428,13 @@ A dark staff is on the floor.~
 0~ 0~ 0~ 8~ 0~
 15 0 0
 A
-1 2
+19 5 0
 A
-5 -8
+18 5 0
 A
-18 5
+5 -8 0
 A
-19 5
+1 2 0
 #10781
 cloak shadows~
 cloak of Shadows~
@@ -1432,9 +1444,9 @@ The silhouette of a cloak can be barely seen.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-2 2
+17 -30 0
 A
-17 -30
+2 2 0
 #10782
 scroll~
 a scroll~
@@ -1538,11 +1550,11 @@ A long, slim shadow is against the wall.~
 0~ 0~ 0~ 2~ 0~
 5 0 0
 A
-1 2
+19 12 0
 A
-18 -2
+18 -2 0
 A
-19 12
+1 2 0
 #10791
 shadow whip~
 a shadow whip~
@@ -1552,9 +1564,9 @@ A shadow of some rope is on the floor.~
 0~ 0~ 0~ 4~ 0~
 5 0 0
 A
-18 5
+19 5 0
 A
-19 5
+18 5 0
 #0
 
 
@@ -2192,14 +2204,14 @@ You are in an office.  The exit is to the south.
 ~
 0 8 0
 E
-desk~
-The desk is quite old.  The wood grain pattern looks a bit peculiar, for
-some reason.
-~
-E
 wood grain pattern~
 Upon further inspection, you realize the peculiarity is that there is a
 hidden panel along the side of the desk!
+~
+E
+desk~
+The desk is quite old.  The wood grain pattern looks a bit peculiar, for
+some reason.
 ~
 D2
 ~

@@ -30,9 +30,9 @@
 
 struct olc_help_type
 {
-    char *command;
+    char       *command;
     const void *structure;
-    char *desc;
+    char       *desc;
 };
 
 /*
@@ -95,7 +95,7 @@ bool show_version(CHAR_DATA * ch, char *argument)
 const struct olc_help_type help_table[] =
 {
     {	"area", 	area_flags, 	"Area attributes."		},
-    {	"room", 	room_flags, 	"Room attributes."		},
+    {	"room", 	room_flags,	"Room attributes."		},
     {	"sector", 	sector_flags, 	"Sector types, terrain."	},
     {	"exit", 	exit_flags, 	"Exit types."			},
     {	"type", 	type_flags, 	"Types of objects."		},
@@ -121,30 +121,30 @@ const struct olc_help_type help_table[] =
  * Purpose:	Displays settable flags and stats.
  * Called by:	show_help(olc_act.c).
  */
-void show_flag_cmds(CHAR_DATA * ch, const struct flag_type *flag_table)
+void show_flag_cmds( CHAR_DATA * ch, const struct flag_type *flag_table )
 {
-    char buf[MAX_STRING_LENGTH];
-    char buf1[MAX_STRING_LENGTH];
-    int flag;
-    int col;
+    char buf	[ MAX_STRING_LENGTH ];
+    char buf1	[ MAX_STRING_LENGTH ];
+    int  flag;
+    int  col;
 
     buf1[0] = '\0';
     col = 0;
-    for (flag = 0; *flag_table[flag].name; flag++)
+    for ( flag = 0; *flag_table[flag].name; flag++ )
     {
-	if (flag_table[flag].settable)
+	if ( flag_table[flag].settable )
 	{
-	    sprintf(buf, "%-19.18s", flag_table[flag].name);
-	    strcat(buf1, buf);
-	    if (++col % 4 == 0)
-		strcat(buf1, "\n\r");
+	    sprintf( buf, "%-19.18s", flag_table[flag].name );
+	    strcat( buf1, buf );
+	    if ( ++col % 4 == 0 )
+		strcat( buf1, "\n\r" );
 	}
     }
 
-    if (col % 4 != 0)
-	strcat(buf1, "\n\r");
+    if ( col % 4 != 0 )
+	strcat( buf1, "\n\r" );
 
-    send_to_char(buf1, ch);
+    send_to_char( buf1, ch );
     return;
 }
 
@@ -293,8 +293,7 @@ bool show_help(CHAR_DATA * ch, char *argument)
 		else if (!str_prefix(spell, "object"))
 		    show_skill_cmds(ch, TAR_OBJ_INV);
 		else
-		    send_to_char("Syntax:  ? spell "
-		       "[ignore/attack/defend/self/object/all]\n\r", ch);
+		    send_to_char("Syntax:  ? spell [ignore/attack/defend/self/object/all]\n\r", ch);
 
 		return FALSE;
 	    }
@@ -336,7 +335,7 @@ bool redit_mlist( CHAR_DATA * ch, char *argument )
     fAll = !str_cmp( arg, "all" );
     found = FALSE;
 
-    for ( vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++ )
+    for ( vnum = pArea->low_m_vnum; vnum <= pArea->hi_m_vnum; vnum++ )
     {
 	if ( !( pMobIndex = get_mob_index( vnum ) )
 	    || pArea != pMobIndex->area )
@@ -392,7 +391,7 @@ bool redit_olist( CHAR_DATA * ch, char *argument )
     fAll = !str_cmp( arg, "all" );
     found = FALSE;
 
-    for ( vnum = pArea->lvnum; vnum <= pArea->uvnum; vnum++ )
+    for ( vnum = pArea->low_o_vnum; vnum <= pArea->hi_o_vnum; vnum++ )
     {
 	if ( !( pObjIndex = get_obj_index( vnum ) )
 	    || pArea != pObjIndex->area )
@@ -440,7 +439,7 @@ bool redit_mshow(CHAR_DATA * ch, char *argument)
 	value = atoi(argument);
 	if (!(pMob = get_mob_index(value)))
 	{
-	    send_to_char("REdit:  That mobile does not exist.\n\r", ch);
+	    send_to_char("That mobile does not exist.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -469,7 +468,7 @@ bool redit_oshow(CHAR_DATA * ch, char *argument)
 	value = atoi(argument);
 	if (!(pObj = get_obj_index(value)))
 	{
-	    send_to_char("REdit:  That object does not exist.\n\r", ch);
+	    send_to_char("That object does not exist.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -526,39 +525,37 @@ AREA_DATA *get_vnum_area(int vnum)
 /*
  * Area Editor Functions.
  */
-bool aedit_show(CHAR_DATA * ch, char *argument)
+bool aedit_show( CHAR_DATA * ch, char *argument )
 {
     AREA_DATA *pArea = edit_area( ch );
-    char buf[MAX_STRING_LENGTH];
+    char       buf	[ MAX_STRING_LENGTH ];
 
-    sprintf(buf, "Name:     [%5d] %s\n\r", pArea->vnum, pArea->name);
+    sprintf( buf, "{cFile:   {x%s{c  Name: [%5d] '{x%s{c'.{x\n\r",
+	    pArea->filename, pArea->vnum, pArea->name  );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cRecall:   [{x%5d{c] '{x%s{c'.{x\n\r", pArea->recall,
+	    get_room_index(pArea->recall) ? get_room_index(pArea->recall)->name
+	    : "none" );
+    send_to_char( buf, ch );
+
+    sprintf( buf, "{cAge:      [{x%5d{c]  Players: [{x%5d{c]  Security: [{x%5d{c]{x\n\r",
+	    pArea->age, pArea->nplayer, pArea->security );
     send_to_char(buf, ch);
 
-    sprintf(buf, "Recall:   [%5d] %s\n\r", pArea->recall,
-	    get_room_index(pArea->recall)
-	    ? get_room_index(pArea->recall)->name : "none");
-    send_to_char(buf, ch);
+    sprintf( buf, "{cVnums:   {x%5d{c - {x%-5d\n\r", pArea->lvnum, pArea->uvnum );
+    send_to_char( buf, ch );
 
-    sprintf(buf, "File:     %s\n\r", pArea->filename);
-    send_to_char(buf, ch);
+    sprintf( buf, "{cRooms:   {x%5d{c - {x%-5d{c Objs: {x%5d{c - {x%-5d{c Mobs: {x%5d{c - {x%-5d\n\r",
+	    pArea->low_r_vnum, pArea->hi_r_vnum, pArea->low_o_vnum,
+	    pArea->hi_o_vnum, pArea->low_m_vnum, pArea->hi_m_vnum );
+    send_to_char( buf, ch );
 
-    sprintf(buf, "Vnums:    [%d-%d]\n\r", pArea->lvnum, pArea->uvnum);
-    send_to_char(buf, ch);
+    sprintf( buf, "{cBuilders:{x %s\n\r", pArea->builders );
+    send_to_char( buf, ch );
 
-    sprintf(buf, "Age:      [%d]\n\r", pArea->age);
-    send_to_char(buf, ch);
-
-    sprintf(buf, "Players:  [%d]\n\r", pArea->nplayer);
-    send_to_char(buf, ch);
-
-    sprintf(buf, "Security: [%d]\n\r", pArea->security);
-    send_to_char(buf, ch);
-
-    sprintf(buf, "Builders: [%s]\n\r", pArea->builders);
-    send_to_char(buf, ch);
-
-    sprintf(buf, "Flags:    [%s]\n\r", flag_string(area_flags, pArea->area_flags));
-    send_to_char(buf, ch);
+    sprintf( buf, "{cFlags:{x    %s\n\r", flag_string(area_flags, pArea->area_flags) );
+    send_to_char( buf, ch );
 
     return FALSE;
 }
@@ -984,153 +981,14 @@ bool aedit_uvnum(CHAR_DATA * ch, char *argument)
 /*
  * Room Editor Functions.
  */
-bool redit_show(CHAR_DATA * ch, char *argument)
+bool redit_show( CHAR_DATA * ch, char *argument )
 {
     ROOM_INDEX_DATA *pRoom;
-    char buf[MAX_STRING_LENGTH];
-    char buf1[2 * MAX_STRING_LENGTH];
-    OBJ_DATA *obj;
-    CHAR_DATA *rch;
-    int door;
-    bool fcnt;
+    char             buf	[ MAX_STRING_LENGTH ];
 
-    pRoom = edit_room(ch);
-
-    buf1[0] = '\0';
-
-    sprintf(buf, "Description:\n\r%s", pRoom->description);
-    strcat(buf1, buf);
-
-    sprintf(buf, "Name:       [%s]\n\rArea:       [%5d] %s\n\r",
-	    pRoom->name, pRoom->area->vnum, pRoom->area->name);
-    strcat(buf1, buf);
-
-    sprintf(buf, "Vnum:       [%5d]\n\rSector:     [%s]\n\r",
-	    pRoom->vnum, flag_string(sector_flags, pRoom->sector_type));
-    strcat(buf1, buf);
-
-    sprintf(buf, "Room flags: [%s]\n\r",
-	    flag_string(room_flags, pRoom->room_flags));
-    strcat(buf1, buf);
-
-    if (pRoom->extra_descr)
-    {
-	EXTRA_DESCR_DATA *ed;
-
-	strcat(buf1, "Desc Kwds:  [");
-	for (ed = pRoom->extra_descr; ed; ed = ed->next)
-	{
-	    strcat(buf1, ed->keyword);
-	    if (ed->next)
-		strcat(buf1, " ");
-	}
-	strcat(buf1, "]\n\r");
-    }
-
-    strcat(buf1, "Characters: [");
-    fcnt = FALSE;
-    for (rch = pRoom->people; rch; rch = rch->next_in_room)
-    {
-	one_argument(rch->name, buf);
-	strcat(buf1, buf);
-	strcat(buf1, " ");
-	fcnt = TRUE;
-    }
-
-    if (fcnt)
-    {
-	int end;
-
-	end = strlen(buf1) - 1;
-	buf1[end] = ']';
-	strcat(buf1, "\n\r");
-    }
-    else
-	strcat(buf1, "none]\n\r");
-
-    strcat(buf1, "Objects:    [");
-    fcnt = FALSE;
-    for (obj = pRoom->contents; obj; obj = obj->next_content)
-    {
-	one_argument(obj->name, buf);
-	strcat(buf1, buf);
-	strcat(buf1, " ");
-	fcnt = TRUE;
-    }
-
-    if (fcnt)
-    {
-	int end;
-
-	end = strlen(buf1) - 1;
-	buf1[end] = ']';
-	strcat(buf1, "\n\r");
-    }
-    else
-	strcat(buf1, "none]\n\r");
-
-    for (door = 0; door < MAX_DIR; door++)
-    {
-	EXIT_DATA *pexit;
-
-	if ((pexit = pRoom->exit[door]))
-	{
-	    char word[MAX_INPUT_LENGTH];
-	    char reset_state[MAX_STRING_LENGTH];
-	    char *state;
-	    int i, length;
-
-	    sprintf(buf, "-%-5s to [%5d] Key: [%5d]",
-		    capitalize(dir_name[door]),
-		    pexit->to_room ? pexit->to_room->vnum : 0,
-		    pexit->key);
-	    strcat(buf1, buf);
-
-	    /*
-	     * Format up the exit info.
-	     * Capitalize all flags that are not part of the reset info.
-	     */
-	    strcpy(reset_state, flag_string(exit_flags, pexit->rs_flags));
-	    state = flag_string(exit_flags, pexit->exit_info);
-	    strcat(buf1, " Exit flags: [");
-	    for (;;)
-	    {
-		state = one_argument(state, word);
-
-		if (word[0] == '\0')
-		{
-		    int end;
-
-		    end = strlen(buf1) - 1;
-		    buf1[end] = ']';
-		    strcat(buf1, "\n\r");
-		    break;
-		}
-
-		if (str_infix(word, reset_state))
-		{
-		    length = strlen(word);
-		    for (i = 0; i < length; i++)
-			word[i] = toupper(word[i]);
-		}
-		strcat(buf1, word);
-		strcat(buf1, " ");
-	    }
-
-	    if (pexit->keyword && pexit->keyword[0] != '\0')
-	    {
-		sprintf(buf, "Kwds: [%s]\n\r", pexit->keyword);
-		strcat(buf1, buf);
-	    }
-	    if (pexit->description && pexit->description[0] != '\0')
-	    {
-		sprintf(buf, "%s", pexit->description);
-		strcat(buf1, buf);
-	    }
-	}
-    }
-
-    send_to_char(buf1, ch);
+    pRoom = edit_room( ch );
+    sprintf ( buf, "%d", edit_room( ch )->vnum );
+    do_rstat( ch, buf );
     return FALSE;
 }
 
@@ -1175,7 +1033,7 @@ bool change_exit(CHAR_DATA * ch, char *argument, int door)
     {
 	if (!pRoom->exit[door])
 	{
-	    send_to_char("REdit:  Exit does not exist.\n\r", ch);
+	    send_to_char("Exit does not exist.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -1214,19 +1072,19 @@ bool change_exit(CHAR_DATA * ch, char *argument, int door)
 
 	if (!(pLinkRoom = get_room_index(atoi(arg))))
 	{
-	    send_to_char("REdit:  Non-existant room.\n\r", ch);
+	    send_to_char("Non-existant room.\n\r", ch);
 	    return FALSE;
 	}
 
 	if (!is_builder(ch, pLinkRoom->area))
 	{
-	    send_to_char("REdit:  Cannot link to that area.\n\r", ch);
+	    send_to_char("Cannot link to that area.\n\r", ch);
 	    return FALSE;
 	}
 
 	if (pLinkRoom->exit[rev])
 	{
-	    send_to_char("REdit:  Remote side's exit exists.\n\r", ch);
+	    send_to_char("Remote side's exit exists.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -1295,7 +1153,7 @@ bool change_exit(CHAR_DATA * ch, char *argument, int door)
 
 	if (!(pLinkRoom = get_room_index(atoi(arg))))
 	{
-	    send_to_char("REdit:  Non-existant room.\n\r", ch);
+	    send_to_char("Non-existant room.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -1319,7 +1177,7 @@ bool change_exit(CHAR_DATA * ch, char *argument, int door)
 
 	if (!pRoom->exit[door])
 	{
-	    send_to_char("REdit:  Exit does not exist.\n\r", ch);
+	    send_to_char("Exit does not exist.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -1362,13 +1220,13 @@ bool change_exit(CHAR_DATA * ch, char *argument, int door)
 
 	if (!(pObjIndex = get_obj_index(atoi(arg))))
 	{
-	    send_to_char("REdit:  Item does not exist.\n\r", ch);
+	    send_to_char("Item does not exist.\n\r", ch);
 	    return FALSE;
 	}
 
 	if (pObjIndex->item_type != ITEM_KEY)
 	{
-	    send_to_char("REdit:  Item is not a key.\n\r", ch);
+	    send_to_char("Item is not a key.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -1573,7 +1431,7 @@ bool redit_ed(CHAR_DATA * ch, char *argument)
 
 	if (!ed)
 	{
-	    send_to_char("REdit:  Extra description keyword not found.\n\r", ch);
+	    send_to_char("Extra description keyword not found.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -1602,7 +1460,7 @@ bool redit_ed(CHAR_DATA * ch, char *argument)
 
 	if (!ed)
 	{
-	    send_to_char("REdit:  Extra description keyword not found.\n\r", ch);
+	    send_to_char("Extra description keyword not found.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -1634,7 +1492,7 @@ bool redit_ed(CHAR_DATA * ch, char *argument)
 
 	if (!ed)
 	{
-	    send_to_char("REdit:  Extra description keyword not found.\n\r", ch);
+	    send_to_char("Extra description keyword not found.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -1681,28 +1539,22 @@ bool redit_create(CHAR_DATA * ch, char *argument)
 	return FALSE;
     }
 
-    if (argument[0] == '\0' || value <= 0)
-    {
-	send_to_char("Syntax:  create [vnum > 0]\n\r", ch);
-	return FALSE;
-    }
-
     pArea = get_vnum_area(value);
     if (!pArea)
     {
-	send_to_char("REdit:  That vnum is not assigned an area.\n\r", ch);
+	send_to_char("That vnum is not assigned an area.\n\r", ch);
 	return FALSE;
     }
 
     if (!is_builder(ch, pArea))
     {
-	send_to_char("REdit:  Vnum in an area you cannot build in.\n\r", ch);
+	send_to_char("Room vnum in an area you cannot build in.\n\r", ch);
 	return FALSE;
     }
 
     if (get_room_index(value))
     {
-	send_to_char("REdit:  Room vnum already exists.\n\r", ch);
+	send_to_char("Room vnum already exists.\n\r", ch);
 	return FALSE;
     }
 
@@ -1804,13 +1656,13 @@ bool redit_mreset(CHAR_DATA * ch, char *argument)
 
     if (!(pMobIndex = get_mob_index(atoi(arg))))
     {
-	send_to_char("REdit: No mobile has that vnum.\n\r", ch);
+	send_to_char("No mobile has that vnum.\n\r", ch);
 	return FALSE;
     }
 
     if (pMobIndex->area != pRoom->area)
     {
-	send_to_char("REdit: No such mobile in this area.\n\r", ch);
+	send_to_char("No such mobile in this area.\n\r", ch);
 	return FALSE;
     }
 
@@ -1832,8 +1684,7 @@ bool redit_mreset(CHAR_DATA * ch, char *argument)
     newmob = create_mobile(pMobIndex);
     char_to_room(newmob, pRoom);
 
-    sprintf(output, "%s (%d) has been loaded and added to resets.\n\r"
-	    "There will be a maximum of %d loaded to this room.\n\r",
+    sprintf(output, "%s (%d) has been loaded and added to resets.\n\rThere will be a maximum of %d loaded to this room.\n\r",
 	    capitalize(pMobIndex->short_descr),
 	    pMobIndex->vnum,
 	    pReset->arg2);
@@ -1944,13 +1795,13 @@ bool redit_oreset(CHAR_DATA * ch, char *argument)
 
     if (!(pObjIndex = get_obj_index(atoi(arg1))))
     {
-	send_to_char("REdit: No object has that vnum.\n\r", ch);
+	send_to_char("No object has that vnum.\n\r", ch);
 	return FALSE;
     }
 
     if (pObjIndex->area != pRoom->area)
     {
-	send_to_char("REdit: No such object in this area.\n\r", ch);
+	send_to_char("No such object in this area.\n\r", ch);
 	return FALSE;
     }
 
@@ -1996,8 +1847,7 @@ bool redit_oreset(CHAR_DATA * ch, char *argument)
 	newobj->cost = 0;
 	obj_to_obj(newobj, to_obj);
 
-	sprintf(output, "%s (%d) has been loaded into "
-		"%s (%d) and added to resets.\n\r",
+	sprintf(output, "%s (%d) has been loaded into %s (%d) and added to resets.\n\r",
 		capitalize(newobj->short_descr),
 		newobj->pIndexData->vnum,
 		to_obj->short_descr,
@@ -2017,7 +1867,7 @@ bool redit_oreset(CHAR_DATA * ch, char *argument)
 	 */
 	if ((wear_loc = flag_value(wear_loc_flags, argument)) == NO_FLAG)
 	{
-	    send_to_char("REdit: Invalid wear_loc.  '? wear-loc'\n\r", ch);
+	    send_to_char("Invalid wear_loc.  '? wear-loc'\n\r", ch);
 	    return FALSE;
 	}
 
@@ -2040,7 +1890,7 @@ bool redit_oreset(CHAR_DATA * ch, char *argument)
 	 */
 	if (get_eq_char(to_mob, wear_loc))
 	{
-	    send_to_char("REdit:  Object already equipped.\n\r", ch);
+	    send_to_char("Object already equipped.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -2106,8 +1956,7 @@ bool redit_oreset(CHAR_DATA * ch, char *argument)
 	if (pReset->command == 'E')
 	    equip_char(to_mob, newobj, pReset->arg3);
 
-	sprintf(output, "%s (%d) has been loaded "
-		"%s of %s (%d) and added to resets.\n\r",
+	sprintf(output, "%s (%d) has been loaded %s of %s (%d) and added to resets.\n\r",
 		capitalize(pObjIndex->short_descr),
 		pObjIndex->vnum,
 		flag_string(wear_loc_strings, pReset->arg3),
@@ -2120,7 +1969,7 @@ bool redit_oreset(CHAR_DATA * ch, char *argument)
 	 * Display Syntax 
 	 */
     {
-	send_to_char("REdit:  That mobile isn't here.\n\r", ch);
+	send_to_char("That mobile isn't here.\n\r", ch);
 	return FALSE;
     }
 
@@ -2145,19 +1994,19 @@ void show_obj_values(CHAR_DATA * ch, OBJ_INDEX_DATA * obj)
 
 	case ITEM_LIGHT:
 	    if (obj->value[2] == -1)
-		sprintf(buf, "[v2] Light:  Infinite[-1]\n\r");
+		sprintf(buf, "{c[{xv2{c] Light:{x  Infinite{c[{x-1{c]{x\n\r");
 	    else
-		sprintf(buf, "[v2] Light:  [%d]\n\r", obj->value[2]);
+		sprintf(buf, "{c[{xv2{c] Light:  [{x%d{c]{x\n\r", obj->value[2]);
 	    send_to_char(buf, ch);
 	    break;
 
 	case ITEM_WAND:
 	case ITEM_STAFF:
 	    sprintf(buf,
-		    "[v0] Level:          [%d]\n\r"
-		    "[v1] Charges Total:  [%d]\n\r"
-		    "[v2] Charges Left:   [%d]\n\r"
-		    "[v3] Spell:          %s\n\r",
+		    "{c[{xv0{c] Level:          [{x%d{c]{x\n\r"
+		    "{c[{xv1{c] Charges Total:  [{x%d{c]{x\n\r"
+		    "{c[{xv2{c] Charges Left:   [{x%d{c]{x\n\r"
+		    "{c[{xv3{c] Spell:          {x%s{x\n\r",
 		    obj->value[0],
 		    obj->value[1],
 		    obj->value[2],
@@ -2170,11 +2019,11 @@ void show_obj_values(CHAR_DATA * ch, OBJ_INDEX_DATA * obj)
 	case ITEM_POTION:
 	case ITEM_PILL:
 	    sprintf(buf,
-		    "[v0] Level:  [%d]\n\r"
-		    "[v1] Spell:  %s\n\r"
-		    "[v2] Spell:  %s\n\r"
-		    "[v3] Spell:  %s\n\r"
-		    "[v4] Spell:  %s\n\r",
+		    "{c[{xv0{c] Level:  [{x%d{c]{x\n\r"
+		    "{c[{xv1{c] Spell:  {x%s{x\n\r"
+		    "{c[{xv2{c] Spell:  {x%s{x\n\r"
+		    "{c[{xv3{c] Spell:  {x%s{x\n\r"
+		    "{c[{xv4{c] Spell:  {x%s{x\n\r",
 		    obj->value[0],
 		    obj->value[1] != -1 ? skill_table[obj->value[1]].name
 		    : "none",
@@ -2189,9 +2038,9 @@ void show_obj_values(CHAR_DATA * ch, OBJ_INDEX_DATA * obj)
 
 	case ITEM_WEAPON:
 	    sprintf(buf,
-		    "[v1] Damage minimum: [%d]\n\r"
-		    "[v2] Damage maximum: [%d]\n\r"
-		    "[v3] Type:           %s\n\r",
+		    "{c[{xv1{c] Damage minimum: [{x%d{c]{x\n\r"
+		    "{c[{xv2{c] Damage maximum: [{x%d{c]{x\n\r"
+		    "{c[{xv3{c] Type:           {x%s{x\n\r",
 		    obj->value[1],
 		    obj->value[2],
 		    flag_string(weapon_flags, obj->value[3]));
@@ -2200,9 +2049,9 @@ void show_obj_values(CHAR_DATA * ch, OBJ_INDEX_DATA * obj)
 
 	case ITEM_CONTAINER:
 	    sprintf(buf,
-		    "[v0] Weight: [%d kg]\n\r"
-		    "[v1] Flags:  [%s]\n\r"
-		    "[v2] Key:    %s [%d]\n\r",
+		    "{c[{xv0{c] Weight: [{x%d{c kg]{x\n\r"
+		    "{c[{xv1{c] Flags:  [{x%s{c]{x\n\r"
+		    "{c[{xv2{c] Key:    {x%s {c[{x%d{c]{x\n\r",
 		    obj->value[0],
 		    flag_string(container_flags, obj->value[1]),
 		    get_obj_index(obj->value[2])
@@ -2213,10 +2062,10 @@ void show_obj_values(CHAR_DATA * ch, OBJ_INDEX_DATA * obj)
 
 	case ITEM_DRINK_CON:
 	    sprintf(buf,
-		    "[v0] Liquid Total: [%d]\n\r"
-		    "[v1] Liquid Left:  [%d]\n\r"
-		    "[v2] Liquid:       %s\n\r"
-		    "[v3] Poisoned:     %s\n\r",
+		    "{c[{xv0{c] Liquid Total: [{x%d{c]{x\n\r"
+		    "{c[{xv1{c] Liquid Left:  [{x%d{c]{x\n\r"
+		    "{c[{xv2{c] Liquid:       {x%s{x\n\r"
+		    "{c[{xv3{c] Poisoned:     {x%s{x\n\r",
 		    obj->value[0],
 		    obj->value[1],
 		    flag_string(liquid_flags, obj->value[2]),
@@ -2226,25 +2075,25 @@ void show_obj_values(CHAR_DATA * ch, OBJ_INDEX_DATA * obj)
 
 	case ITEM_FOOD:
 	    sprintf(buf,
-		    "[v0] Food hours: [%d]\n\r"
-		    "[v3] Poisoned:   %s\n\r",
+		    "{c[{xv0{c] Food hours: [{x%d{c]{x\n\r"
+		    "{c[{xv3{c] Poisoned:   {x%s{x\n\r",
 		    obj->value[0],
 		    obj->value[3] != 0 ? "Yes" : "No");
 	    send_to_char(buf, ch);
 	    break;
 
 	case ITEM_MONEY:
-	    sprintf(buf, "[v0] Gold:   [%d]\n\r", obj->value[0]);
+	    sprintf(buf, "{c[{xv0{c] Gold:   [{x%d{c]{x\n\r", obj->value[0]);
 	    send_to_char(buf, ch);
 	    break;
 
 	case ITEM_PORTAL:
 	    sprintf(buf,
-		    "[v0] Charges:        [%d]\n\r"
-		    "[v1] Flags:          [%s]\n\r"
-		    "[v2] Key:            %s [%d]\n\r"
-		    "[v3] Flags:          [%s]\n\r"
-		    "[v4] Destiny:        [%d]\n\r",
+		    "{c[{xv0{c] Charges:        [{x%d{c]{x\n\r"
+		    "{c[{xv1{c] Flags:          [{x%s{c]{x\n\r"
+		    "{c[{xv2{c] Key:            {x%s{c [{x%d{c]{x\n\r"
+		    "{c[{xv3{c] Flags:          [{x%s{c]{x\n\r"
+		    "{c[{xv4{c] Destiny:        [{x%d{c]{x\n\r",
 		    obj->value[0],
 		    flag_string(portal_door_flags, obj->value[1]),
 		    get_obj_index(obj->value[2])
@@ -2490,8 +2339,7 @@ bool set_obj_values(CHAR_DATA * ch, OBJ_INDEX_DATA * pObj, int value_num, char *
 			    return FALSE;
 			}
 
-			if (get_obj_index(atoi(argument))->item_type !=
-			ITEM_KEY)
+			if (get_obj_index(atoi(argument))->item_type != ITEM_KEY)
 			{
 			    send_to_char("THAT ITEM IS NOT A KEY.\n\r\n\r", ch);
 			    return FALSE;
@@ -2535,27 +2383,27 @@ bool oedit_show(CHAR_DATA * ch, char *argument)
 
     pObj = edit_obj(ch);
 
-    sprintf(buf, "Name:        [%s]\n\rArea:        [%5d] %s\n\r",
+    sprintf(buf, "{cName: {x%s{c.{x\n\r{cArea: [%5d] '{x%s{c'.{x\n\r",
 	    pObj->name,
 	    !pObj->area ? -1 : pObj->area->vnum,
 	    !pObj->area ? "No Area" : pObj->area->name);
     send_to_char(buf, ch);
 
 
-    sprintf(buf, "Vnum:        [%5d]\n\rType:        [%s]\n\r",
+    sprintf(buf, "{cVnum: {x%d{c.{x\n\r{cType: {x%s{c.{x\n\r",
 	    pObj->vnum,
 	    flag_string(type_flags, pObj->item_type));
     send_to_char(buf, ch);
 
-    sprintf(buf, "Wear flags:  [%s]\n\r",
+    sprintf(buf, "{cWear flags: {x%s{c.{x\n\r",
 	    flag_string(wear_flags, pObj->wear_flags));
     send_to_char(buf, ch);
 
-    sprintf(buf, "Extra flags: [%s]\n\r",
+    sprintf(buf, "{cExtra flags: {x%s{c.{x\n\r",
 	    flag_string(extra_flags, pObj->extra_flags));
     send_to_char(buf, ch);
 
-    sprintf(buf, "Weight:      [%d]\n\rCost:        [%d]\n\r",
+    sprintf(buf, "{cWeight: {x%d{c.{x\n\r{cCost: {x%d{c.{x\n\r",
 	    pObj->weight, pObj->cost);
     send_to_char(buf, ch);
 
@@ -2563,19 +2411,18 @@ bool oedit_show(CHAR_DATA * ch, char *argument)
     {
 	EXTRA_DESCR_DATA *ed;
 
-	send_to_char("Ex desc kwd: ", ch);
+	send_to_char("{cExtra description keywords: {x", ch);
 
 	for (ed = pObj->extra_descr; ed; ed = ed->next)
 	{
-	    send_to_char("[", ch);
 	    send_to_char(ed->keyword, ch);
-	    send_to_char("]", ch);
+	    send_to_char(" ", ch);
 	}
 
-	send_to_char("\n\r", ch);
+	send_to_char("{c.{x\n\r", ch);
     }
 
-    sprintf(buf, "Short desc:  %s\n\rLong desc:\n\r     %s\n\r",
+    sprintf(buf, "{cShort description: {x%s{x\n\r{cLong description:{x\n\r{x%s{x\n\r",
 	    pObj->short_descr, pObj->description);
     send_to_char(buf, ch);
 
@@ -2583,10 +2430,10 @@ bool oedit_show(CHAR_DATA * ch, char *argument)
     {
 	if (cnt == 0)
 	{
-	    send_to_char("Number Modifier Affects\n\r", ch);
-	    send_to_char("------ -------- -------\n\r", ch);
+	    send_to_char("{yNumber Modifier Affects{x\n\r", ch);
+	    send_to_char("{y------ -------- -------{x\n\r", ch);
 	}
-	sprintf(buf, "[%4d] %-8d %s\n\r", cnt,
+	sprintf(buf, "{y[%4d] %-8d %s{x\n\r", cnt,
 		paf->modifier,
 		flag_string(apply_flags, paf->location));
 	send_to_char(buf, ch);
@@ -2623,7 +2470,7 @@ bool oedit_addaffect(CHAR_DATA * ch, char *argument)
 
     if ( ( value = flag_value( affect_flags, argument ) ) == NO_FLAG )
     {
-        send_to_char( "OEdit: Invalid value.  '? addaffect'\n\r", ch );
+        send_to_char( "Invalid value.  '? addaffect'\n\r", ch );
         return FALSE;
     }
 
@@ -2674,7 +2521,7 @@ bool oedit_delaffect(CHAR_DATA * ch, char *argument)
 
     if (!(pAf = pObj->affected))
     {
-	send_to_char("OEdit:  Non-existant affect.\n\r", ch);
+	send_to_char("Non-existant affect.\n\r", ch);
 	return FALSE;
     }
 
@@ -2936,19 +2783,19 @@ bool oedit_create(CHAR_DATA * ch, char *argument)
     pArea = get_vnum_area(value);
     if (!pArea)
     {
-	send_to_char("OEdit:  That vnum is not assigned an area.\n\r", ch);
+	send_to_char("That vnum is not assigned an area.\n\r", ch);
 	return FALSE;
     }
 
     if (!is_builder(ch, pArea))
     {
-	send_to_char("OEdit:  Vnum in an area you cannot build in.\n\r", ch);
+	send_to_char("Obj vnum in an area you cannot build in.\n\r", ch);
 	return FALSE;
     }
 
     if (get_obj_index(value))
     {
-	send_to_char("OEdit:  Object vnum already exists.\n\r", ch);
+	send_to_char("Object vnum already exists.\n\r", ch);
 	return FALSE;
     }
 
@@ -2965,6 +2812,83 @@ bool oedit_create(CHAR_DATA * ch, char *argument)
     ch->desc->pEdit = (void *) pObj;
 
     send_to_char("Object Created.\n\r", ch);
+    return TRUE;
+}
+
+
+bool oedit_copy(CHAR_DATA * ch, char *argument)
+{
+    OBJ_INDEX_DATA *pObj;
+    OBJ_INDEX_DATA *OldObj;
+    AREA_DATA *pArea;
+    int value;
+    int iHash;
+
+    value = atoi(argument);
+
+    /*
+     * OLC 1.1b 
+     */
+    if (argument[0] == '\0' || value <= 0 || value >= INT_MAX)
+    {
+	char output[MAX_STRING_LENGTH];
+
+	sprintf(output, "Syntax:  copy [0 < vnum < %d]\n\r", INT_MAX);
+	send_to_char(output, ch);
+	return FALSE;
+    }
+
+    pArea = get_vnum_area(value);
+    if (!pArea)
+    {
+	send_to_char("That vnum is not assigned an area.\n\r", ch);
+	return FALSE;
+    }
+
+    if (!is_builder(ch, pArea))
+    {
+	send_to_char("Obj vnum in an area you cannot build in.\n\r", ch);
+	return FALSE;
+    }
+
+    if (get_obj_index(value))
+    {
+	send_to_char("Object vnum already exists.\n\r", ch);
+	return FALSE;
+    }
+
+    OldObj		= ( OBJ_INDEX_DATA *) ch->desc->pEdit;
+
+    if ( !OldObj )
+	return FALSE;
+
+    pObj		= new_obj_index();
+    pObj->vnum		= value;
+    pObj->area		= pArea;
+    pObj->name		= str_dup ( OldObj->name );
+    pObj->short_descr	= str_dup ( OldObj->short_descr );
+    pObj->description	= str_dup ( OldObj->description );
+    pObj->item_type	= OldObj->item_type;
+    pObj->extra_flags	= OldObj->extra_flags;
+    pObj->wear_flags	= OldObj->wear_flags;
+    pObj->cost		= OldObj->cost;
+    pObj->weight	= OldObj->weight;
+    pObj->value[0]	= OldObj->value[0];
+    pObj->value[1]	= OldObj->value[1];
+    pObj->value[2]	= OldObj->value[2];
+    pObj->value[3]	= OldObj->value[3];
+    pObj->value[4]	= OldObj->value[4];
+
+
+    if (value > top_vnum_obj)
+	top_vnum_obj = value;
+
+    iHash = value % MAX_KEY_HASH;
+    pObj->next = obj_index_hash[iHash];
+    obj_index_hash[iHash] = pObj;
+    ch->desc->pEdit = (void *) pObj;
+
+    send_to_char("Object copied.\n\r", ch);
     return TRUE;
 }
 
@@ -3024,7 +2948,7 @@ bool oedit_ed(CHAR_DATA * ch, char *argument)
 
 	if (!ed)
 	{
-	    send_to_char("OEdit:  Extra description keyword not found.\n\r", ch);
+	    send_to_char("Extra description keyword not found.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -3052,7 +2976,7 @@ bool oedit_ed(CHAR_DATA * ch, char *argument)
 
 	if (!ed)
 	{
-	    send_to_char("OEdit:  Extra description keyword not found.\n\r", ch);
+	    send_to_char("Extra description keyword not found.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -3087,7 +3011,7 @@ bool oedit_ed(CHAR_DATA * ch, char *argument)
 
 	if (!ed)
 	{
-	    send_to_char("OEdit:  Extra description keyword not found.\n\r", ch);
+	    send_to_char("Extra description keyword not found.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -3121,46 +3045,46 @@ bool medit_show(CHAR_DATA * ch, char *argument)
 
     pMob = edit_mob(ch);
 
-    sprintf(buf, "Name:        [%s]\n\rArea:        [%5d] %s\n\r",
+    sprintf(buf, "{cName: {x%s{c.{x\n\r{cArea: [%5d] '{x%s{c'.{x\n\r",
 	    pMob->player_name,
 	    !pMob->area ? -1 : pMob->area->vnum,
 	    !pMob->area ? "No Area" : pMob->area->name);
     send_to_char(buf, ch);
 
-    sprintf(buf, "Act:         [%s]\n\r",
-	    flag_string(act_flags, pMob->act));
+    sprintf(buf, "{cRace: {x%s{c.{x\n\r", race_table[pMob->race].name);
     send_to_char(buf, ch);
 
-    sprintf(buf, "Vnum:        [%5d]\n\rSex:         [%s]\n\r",
+    sprintf(buf, "{cVnum: {x%d{c.  Sex: {x%s{c.{x\n\r",
 	    pMob->vnum,
 	    pMob->sex == SEX_MALE ? "male" :
 	    pMob->sex == SEX_FEMALE ? "female" : "neutral");
     send_to_char(buf, ch);
 
-    sprintf(buf, "Race:        [%s]\n\r", race_table[pMob->race].name);
-    send_to_char(buf, ch);
-
     sprintf(buf,
-	    "Level:       [%2d]\n\rAlign:       [%4d]\n\r",
+	    "{cLevel: {x%2d{c.  Align: {x%4d{c.{x\n\r",
 	    pMob->level, pMob->alignment);
     send_to_char(buf, ch);
 
-    sprintf(buf, "Affected by: [%s]\n\r",
+    sprintf(buf, "{cAffected by: {x%s{c.{x\n\r",
 	    flag_string(affect_flags, pMob->affected_by));
     send_to_char(buf, ch);
 
-    if (pMob->spec_fun)
-    {
-	sprintf(buf, "Spec fun:    [%s]\n\r", spec_string(pMob->spec_fun));
-	send_to_char(buf, ch);
-    }
+    sprintf(buf, "{cAct: {x%s{c.{x\n\r",
+	    flag_string(act_flags, pMob->act));
+    send_to_char(buf, ch);
 
-    sprintf(buf, "Short descr: %s\n\rLong descr:\n\r%s",
+    sprintf(buf, "{cShort description: {x%s{c.{x\n\r{cLong description: {x%s",
 	    pMob->short_descr,
 	    pMob->long_descr);
     send_to_char(buf, ch);
 
-    sprintf(buf, "Description:\n\r%s", pMob->description);
+    if (pMob->spec_fun)
+    {
+	sprintf(buf, "{cSpec fun: {x%s{c.{x\n\r", spec_string(pMob->spec_fun));
+	send_to_char(buf, ch);
+    }
+
+    sprintf(buf, "{cDescription:{x\n\r%s", pMob->description);
     send_to_char(buf, ch);
 
     if (pMob->pShop)
@@ -3171,12 +3095,10 @@ bool medit_show(CHAR_DATA * ch, char *argument)
 	pShop = pMob->pShop;
 
 	sprintf(buf,
-		"Shop data for [%5d]:\n\r"
-		"  Markup for purchaser: %d%%\n\r"
-		"  Markdown for seller:  %d%%\n\r",
+		"{cShop data for [{x%5d{c]:{x\n\r  {cMarkup for purchaser: {x%d%%\n\r  {cMarkdown for seller:  {x%d%%\n\r",
 		pShop->keeper, pShop->profit_buy, pShop->profit_sell);
 	send_to_char(buf, ch);
-	sprintf(buf, "  Hours: %d to %d.\n\r",
+	sprintf(buf, "  {cHours: {x%d{c to {x%d.\n\r",
 		pShop->open_hour, pShop->close_hour);
 	send_to_char(buf, ch);
 
@@ -3186,10 +3108,10 @@ bool medit_show(CHAR_DATA * ch, char *argument)
 	    {
 		if (iTrade == 0)
 		{
-		    send_to_char("  Number Trades Type\n\r", ch);
-		    send_to_char("  ------ -----------\n\r", ch);
+		    send_to_char("  {cNumber Trades Type{x\n\r", ch);
+		    send_to_char("  {c------ -----------{x\n\r", ch);
 		}
-		sprintf(buf, "  [%4d] %s\n\r", iTrade,
+		sprintf(buf, "  {c[{x%4d{c] {x%s\n\r", iTrade,
 			flag_string(type_flags, pShop->buy_type[iTrade]));
 		send_to_char(buf, ch);
 	    }
@@ -3225,19 +3147,19 @@ bool medit_create(CHAR_DATA * ch, char *argument)
 
     if (!pArea)
     {
-	send_to_char("MEdit:  That vnum is not assigned an area.\n\r", ch);
+	send_to_char("That vnum is not assigned an area.\n\r", ch);
 	return FALSE;
     }
 
     if (!is_builder(ch, pArea))
     {
-	send_to_char("MEdit:  Vnum in an area you cannot build in.\n\r", ch);
+	send_to_char("Mob vnum is in an area you cannot build in.\n\r", ch);
 	return FALSE;
     }
 
     if (get_mob_index(value))
     {
-	send_to_char("MEdit:  Mobile vnum already exists.\n\r", ch);
+	send_to_char("Mobile vnum already exists.\n\r", ch);
 	return FALSE;
     }
 
@@ -3254,7 +3176,84 @@ bool medit_create(CHAR_DATA * ch, char *argument)
     mob_index_hash[iHash] = pMob;
     ch->desc->pEdit = (void *) pMob;
 
-    send_to_char("Mobile Created.\n\r", ch);
+    send_to_char("Mobile created.\n\r", ch);
+    return TRUE;
+}
+
+
+bool medit_copy(CHAR_DATA * ch, char *argument)
+{
+    MOB_INDEX_DATA *pMob;
+    MOB_INDEX_DATA *OldMob;
+    AREA_DATA *pArea;
+    int value;
+    int iHash;
+
+    value = atoi(argument);
+
+    /*
+     * OLC 1.1b 
+     */
+    if (argument[0] == '\0' || value <= 0 || value >= INT_MAX)
+    {
+	char output[MAX_STRING_LENGTH];
+
+	sprintf(output, "Syntax:  copy [0 < vnum < %d]\n\r", INT_MAX);
+	send_to_char(output, ch);
+	return FALSE;
+    }
+
+    pArea = get_vnum_area(value);
+
+    if (!pArea)
+    {
+	send_to_char("That vnum is not assigned an area.\n\r", ch);
+	return FALSE;
+    }
+
+    if (!is_builder(ch, pArea))
+    {
+	send_to_char("Mob vnum in an area you cannot build in.\n\r", ch);
+	return FALSE;
+    }
+
+    if (get_mob_index(value))
+    {
+	send_to_char("Mobile vnum already exists.\n\r", ch);
+	return FALSE;
+    }
+
+    OldMob		= ( MOB_INDEX_DATA *) ch->desc->pEdit;
+
+    if ( !OldMob )
+	return FALSE;
+
+    pMob		= new_mob_index();
+    pMob->vnum		= value;
+    pMob->area		= pArea;
+    pMob->spec_fun	= OldMob->spec_fun;
+    pMob->player_name	= str_dup ( OldMob->player_name );
+    pMob->short_descr	= str_dup ( OldMob->short_descr );
+    pMob->long_descr	= str_dup ( OldMob->long_descr );
+    pMob->description	= str_dup ( OldMob->description );
+    pMob->count		= OldMob->count;
+    pMob->sex		= OldMob->sex;
+    pMob->level		= OldMob->level;
+    pMob->act		= OldMob->act;
+    pMob->affected_by	= OldMob->affected_by;
+    pMob->alignment	= OldMob->alignment;
+    pMob->race		= OldMob->race;
+    pMob->parts		= OldMob->parts;
+
+    if (value > top_vnum_mob)
+	top_vnum_mob = value;
+
+    iHash = value % MAX_KEY_HASH;
+    pMob->next = mob_index_hash[iHash];
+    mob_index_hash[iHash] = pMob;
+    ch->desc->pEdit = (void *) pMob;
+
+    send_to_char("Mobile copied.\n\r", ch);
     return TRUE;
 }
 
@@ -3287,7 +3286,7 @@ bool medit_spec(CHAR_DATA * ch, char *argument)
 	return TRUE;
     }
 
-    send_to_char("MEdit: No such special function.\n\r", ch);
+    send_to_char("No such special function.\n\r", ch);
     return FALSE;
 }
 
@@ -3492,14 +3491,14 @@ bool medit_shop(CHAR_DATA * ch, char *argument)
 
 	if (atoi(arg1) >= MAX_TRADE)
 	{
-	    sprintf(buf, "REdit:  May sell %d items max.\n\r", MAX_TRADE);
+	    sprintf(buf, "May sell %d items max.\n\r", MAX_TRADE);
 	    send_to_char(buf, ch);
 	    return FALSE;
 	}
 
 	if ((value = flag_value(type_flags, argument)) == NO_FLAG)
 	{
-	    send_to_char("REdit:  That type of item is not known.\n\r", ch);
+	    send_to_char("That type of item is not known.\n\r", ch);
 	    return FALSE;
 	}
 
@@ -3523,7 +3522,7 @@ bool medit_shop(CHAR_DATA * ch, char *argument)
 
         if (!pMob->pShop)
         {
-            send_to_char ("REdit:  Non-existant shop.\n\r", ch);
+            send_to_char ("Non-existant shop.\n\r", ch);
             return FALSE;
         }
 
@@ -3566,7 +3565,7 @@ MPEDIT(mpedit_show)
 
 	if (prg < 1 || prg > cnt)
 	{
-	    sprintf(buf, "MPEdit:  Valid range is 1 to %d.\n\r", cnt);
+	    sprintf(buf, "Valid range is 1 to %d.\n\r", cnt);
 	    send_to_char(buf, ch);
 	    return FALSE;
 	}
@@ -3606,25 +3605,25 @@ MPEDIT(mpedit_create)
 
     if (!pArea)
     {
-	send_to_char("MPEdit:  That vnum is not assigned an area.\n\r", ch);
+	send_to_char("That vnum is not assigned an area.\n\r", ch);
 	return FALSE;
     }
 
     if (!is_builder(ch, pArea))
     {
-	send_to_char("MPEdit:  Vnum in an area you cannot build in.\n\r", ch);
+	send_to_char("Mob vnum in an area you cannot build in.\n\r", ch);
 	return FALSE;
     }
 
     if (!(pMob = get_mob_index(value)))
     {
-	send_to_char("MPEdit:  Mobile vnum does not exist!\n\r", ch);
+	send_to_char("Mobile vnum does not exist!\n\r", ch);
 	return FALSE;
     }
 
     if (pMob->mobprogs)
     {
-	send_to_char("MPEdit:  Mobile already has mob programs!\n\r", ch);
+	send_to_char("Mobile already has mob programs!\n\r", ch);
 	return FALSE;
     }
 
@@ -3641,7 +3640,7 @@ MPEDIT(mpedit_create)
     ch->desc->pEdit = (void *) pMob;
     ch->pcdata->mprog_edit = 0;
 
-    send_to_char("MOBProg Created.\n\r", ch);
+    send_to_char("MOBProg created.\n\r", ch);
     return TRUE;
 }
 
@@ -3657,7 +3656,7 @@ MPEDIT(mpedit_add)
 
     if (!pMob->mobprogs)
     {
-	send_to_char("Mobile doesn't have mobprogs.  Use create.\n\r", ch);
+	send_to_char( "Mobile doesn't have mobprogs. Use create.\n\r", ch );
 	return FALSE;
     }
 

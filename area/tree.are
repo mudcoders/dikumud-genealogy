@@ -227,9 +227,9 @@ A beautiful sword lies on the ground here.~
 0~ 4~ 5~ 3~ 0~
 19 76000 0
 A
-13 25
+24 2 0
 A
-24 2
+13 25 0
 #9903
 looking glass~
 a looking glass~
@@ -255,7 +255,7 @@ Some sleeves made of crystal lie here.~
 20~ 0~ 0~ 0~ 0~
 10 50000 0
 A
-19 2
+19 2 0
 #9906
 sparkling green potion~
 a sparkling green potion~
@@ -289,7 +289,7 @@ A cast iron girth lies here.~
 45~ 0~ 0~ 0~ 0~
 10 4000 0
 A
-3 -4
+3 -4 0
 #0
 
 

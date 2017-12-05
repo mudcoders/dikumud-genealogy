@@ -604,7 +604,7 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
     int         num_keys;
     int         last_key = 0;
 
-    char        def_prompt [] = "{c<%hhp %mm %vmv>{x ";
+    char        def_prompt [] = "{g<%hhp %mm %vmv>{x ";
     char        def_sdesc  [] = "Your short description was corrupted.";
     char        def_ldesc  [] = "Your long description was corrupted.";
     char        def_desc   [] = "Your description was corrupted.";
@@ -759,6 +759,7 @@ int fread_char( CHAR_DATA *ch, FILE *fp )
 		  bug( "Fread_char: Unknown Race.", 0 );
 	      else
 		  ch->race = i;
+	      ch->parts       = race_table[ch->race].parts;
 	  }
 
 	else if ( !str_cmp( word, "Alias" ) )

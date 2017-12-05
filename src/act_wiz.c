@@ -34,6 +34,7 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "olc.h"
 
 /* Conversion of Immortal powers to Immortal skills done by Thelonius */
 
@@ -583,21 +584,27 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 
     buf1[0] = '\0';
 
-    sprintf( buf, "Name: '%s.'\n\rArea: '%s'.\n\r",
+    sprintf( buf, "{cName: '{x%s{c'.{x\n\r{cArea: [%5d] '{x%s{c'.{x\n\r",
 	    location->name,
+	    location->area->vnum,
 	    location->area->name );
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "Vnum: %d.  Sector: %d.  Light: %d.\n\r",
+	    "{cVnum: {x%d{c.  Light: {x%d{c.  Sector: {x%s{c.{x\n\r",
 	    location->vnum,
-	    location->sector_type,
-	    location->light );
+	    location->light,
+	    flag_string( sector_flags, location->sector_type ) );
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "Room flags: %d.\n\rDescription:\n\r%s",
-	    location->room_flags,
+	    "{cTemp Room flags: {x%s{c.{x\n\r",
+	    flag_string( room_flags, location->room_flags ) );
+    strcat( buf1, buf );
+
+    sprintf( buf,
+	    "{cOrig Room flags: {x%s{c.{x\n\r{cDescription:{x\n\r{x%s",
+	    flag_string( room_flags, location->orig_room_flags ),
 	    location->description );
     strcat( buf1, buf );
 
@@ -605,17 +612,17 @@ void do_rstat( CHAR_DATA *ch, char *argument )
     {
 	EXTRA_DESCR_DATA *ed;
 
-	strcat( buf1, "Extra description keywords: '" );
+	strcat( buf1, "{cExtra description keywords: '{x" );
 	for ( ed = location->extra_descr; ed; ed = ed->next )
 	{
 	    strcat( buf1, ed->keyword );
 	    if ( ed->next )
 		strcat( buf1, " " );
 	}
-	strcat( buf1, "'.\n\r" );
+	strcat( buf1, "{c'.{x\n\r" );
     }
 
-    strcat( buf1, "Characters:" );
+    strcat( buf1, "{cCharacters:{x" );
 
     /* Yes, we are reusing the variable rch.  - Kahn */
     for ( rch = location->people; rch; rch = rch->next_in_room )
@@ -629,14 +636,14 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 	}
     }
 
-    strcat( buf1, ".\n\rObjects:   " );
+    strcat( buf1, "{c.\n\rObjects:   {x" );
     for ( obj = location->contents; obj; obj = obj->next_content )
     {
 	strcat( buf1, " " );
 	one_argument( obj->name, buf );
 	strcat( buf1, buf );
     }
-    strcat( buf1, ".\n\r" );
+    strcat( buf1, "{c.{x\n\r" );
 
     for ( door = 0; door <= 5; door++ )
     {
@@ -645,14 +652,14 @@ void do_rstat( CHAR_DATA *ch, char *argument )
 	if ( ( pexit = location->exit[door] ) )
 	{
 	    sprintf( buf,
-		    "Door: %d.  To: %d.  Key: %d.  Exit flags: %d.\n\r",
-		    door,
+		    "{x%-5s{c:  To: {x%d{c.  Key: {x%d{c.  Exit flags: {x%s{c.{x\n\r",
+		    capitalize( dir_name[door] ),
 		    pexit->to_room ? pexit->to_room->vnum : 0,
 		    pexit->key,
-		    pexit->exit_info );
+		    flag_string( exit_flags, pexit->exit_info ) );
 	    strcat( buf1, buf );
 	    sprintf( buf,
-		    "Keyword: '%s'.  Description: %s",
+		    "{cKeyword: '{x%s{c'.  Description: {x%s",
 		    pexit->keyword,
 		    pexit->description[0] != '\0' ? pexit->description
 		                                  : "(none).\n\r" );
@@ -696,40 +703,40 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 	return;
     }
 
-    sprintf( buf, "Name: %s.\n\r",
+    sprintf( buf, "{cName:{x %s{c.{x\n\r",
 	    obj->name );
     strcat( buf1, buf );
 
-    sprintf( buf, "Vnum: %d.  Type: %s.\n\r",
+    sprintf( buf, "{cVnum: {x%d{c.  Type: {x%s{c.{x\n\r",
 	    obj->pIndexData->vnum, item_type_name( obj ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Short description: %s.\n\rLong description: %s\n\r",
+    sprintf( buf, "{cShort description: {x%s{c.{x\n\r{cLong description: {x%s\n\r",
 	    obj->short_descr, obj->description );
     strcat( buf1, buf );
 
-    sprintf( buf, "Wear bits: %d.  Extra bits: %s.\n\r",
+    sprintf( buf, "{cWear bits: {x%d{c.  Extra bits: {x%s{c.{x\n\r",
 	    obj->wear_flags, extra_bit_name( obj->extra_flags ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Number: %d/%d.  Weight: %d/%d.\n\r",
+    sprintf( buf, "{cNumber: {x%d{c/{x%d{c.  Weight: {x%d{c/{x%d{c.{x\n\r",
 	    1,           get_obj_number( obj ),
 	    obj->weight, get_obj_weight( obj ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Cost: %d.  Timer: %d.  Level: %d.\n\r",
+    sprintf( buf, "{cCost: {x%d{c.  Timer: {x%d{c.  Level: {x%d{c.{x\n\r",
 	    obj->cost, obj->timer, obj->level );
     strcat( buf1, buf );
 
     sprintf( buf,
-	    "In room: %d.  In object: %s.  Carried by: %s.  Wear_loc: %d.\n\r",
+	    "{cIn room: {x%d{c.  In object: {x%s{c.  Carried by: {x%s{c.  Wear_loc: {x%d{c.{x\n\r",
 	    !obj->in_room    ?        0 : obj->in_room->vnum,
 	    !obj->in_obj     ? "(none)" : obj->in_obj->short_descr,
 	    !obj->carried_by ? "(none)" : obj->carried_by->name,
 	    obj->wear_loc );
     strcat( buf1, buf );
     
-    sprintf( buf, "Values: %d %d %d %d %d.\n\r",
+    sprintf( buf, "{cValues: {x%d %d %d %d %d.\n\r",
 	    obj->value[0], obj->value[1], obj->value[2], obj->value[3],
 								obj->value[4] );
     strcat( buf1, buf );
@@ -738,7 +745,7 @@ void do_ostat( CHAR_DATA *ch, char *argument )
     {
 	EXTRA_DESCR_DATA *ed;
 
-	strcat( buf1, "Extra description keywords: '" );
+	strcat( buf1, "{cExtra description keywords: '{x" );
 
 	for ( ed = obj->extra_descr; ed; ed = ed->next )
 	{
@@ -754,20 +761,22 @@ void do_ostat( CHAR_DATA *ch, char *argument )
 		strcat( buf1, " " );
 	}
 
-	strcat( buf1, "'.\n\r" );
+	strcat( buf1, "{c'.{x\n\r" );
     }
 
     for ( paf = obj->affected; paf; paf = paf->next )
     {
-	sprintf( buf, "Affects %s by %d.\n\r",
-		affect_loc_name( paf->location ), paf->modifier );
+	sprintf( buf, "{cAffects {x%s{c by {x%d{c, Bits {x%s{c.{x\n\r",
+		affect_loc_name( paf->location ), paf->modifier,
+		affect_bit_name( paf->bitvector ) );
 	strcat( buf1, buf );
     }
 
     for ( paf = obj->pIndexData->affected; paf; paf = paf->next )
     {
-	sprintf( buf, "Affects %s by %d.\n\r",
-		affect_loc_name( paf->location ), paf->modifier );
+	sprintf( buf, "{cAffects {x%s{c by {x%d{c, Bits {x%s{c.{x\n\r",
+		affect_loc_name( paf->location ), paf->modifier,
+		affect_bit_name( paf->bitvector ) );
 	strcat( buf1, buf );
     }
 
@@ -806,21 +815,24 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     buf1[0] = '\0';
 
-    sprintf( buf, "Name: %s.\n\r",
+    sprintf( buf, "{cName: {x%s{c.{x\n\r",
 	    victim->name );
     strcat( buf1, buf );
 
-    sprintf( buf, "Race: %s.\n\r", race_table[victim->race].name );
+    sprintf( buf, "{cRace: {x%s{c.{x\n\r", race_table[victim->race].name );
     strcat( buf1, buf );
 
-    sprintf( buf, "Vnum: %d.  Sex: %s.  Room: %d.\n\r",
+    sprintf( buf, "{cParts: {x%s{c.{x\n\r", parts_bit_name( victim->parts ) );
+    strcat( buf1, buf );
+
+    sprintf( buf, "{cVnum: {x%d{c.  Sex: {x%s{c.  Room: {x%d{c.{x\n\r",
 	    IS_NPC( victim ) ? victim->pIndexData->vnum : 0,
 	    victim->sex == SEX_MALE    ? "male"   :
 	    victim->sex == SEX_FEMALE  ? "female" : "neuter",
 	    !victim->in_room           ?        0 : victim->in_room->vnum );
     strcat( buf1, buf );
 
-    sprintf( buf, "Str: %d.  Int: %d.  Wis: %d.  Dex: %d.  Con: %d.\n\r",
+    sprintf( buf, "{cStr: {x%d{c.  Int: {x%d{c.  Wis: {x%d{c.  Dex: {x%d{c.  Con: {x%d{c.{x\n\r",
 	    get_curr_str( victim ),
 	    get_curr_int( victim ),
 	    get_curr_wis( victim ),
@@ -828,7 +840,7 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    get_curr_con( victim ) );
     strcat( buf1, buf );
 
-    sprintf( buf, "Hp: %d/%d.  Mana: %d/%d.  Move: %d/%d.  Practices: %d.\n\r",
+    sprintf( buf, "{cHp: {x%d{c/{x%d{c.  Mana: {x%d{c/{x%d{c.  Move: {x%d{c/{x%d{c.  Practices: {x%d{c.{x\n\r",
 	    victim->hit,         victim->max_hit,
 	    victim->mana,        victim->max_mana,
 	    victim->move,        victim->max_move,
@@ -841,21 +853,21 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 	    GET_AC( victim ),    victim->gold,         victim->exp );
     strcat( buf1, buf );
 
-    sprintf( buf, "Position: %d.  Wimpy: %d.\n\r",
+    sprintf( buf, "{cPosition: {x%d{c.  Wimpy: {x%d{c.{x\n\r",
             victim->position,    victim->wimpy );
     strcat( buf1, buf );
 
     if ( IS_NPC( victim )
         || victim->level >= skill_table[gsn_dual].skill_level[victim->class] )
-	strcat ( buf1, "Primary Weapon " );
-    sprintf( buf, "Hitroll: %d  Damroll: %d.\n\r",
+	strcat ( buf1, "{cPrimary Weapon {x" );
+    sprintf( buf, "{cHitroll: {x%d{c  Damroll: {x%d{c.{x\n\r",
             get_hitroll( victim, WEAR_WIELD ),
             get_damroll( victim, WEAR_WIELD ) );
     strcat( buf1, buf );
 
     if ( get_eq_char( victim, WEAR_WIELD_2 ) )
     {
-	sprintf( buf, " Second Weapon Hitroll: %d  Damroll: %d.\n\r",
+	sprintf( buf, "{c Second Weapon Hitroll: {x%d{c  Damroll: {x%d{c.{x\n\r",
 		get_hitroll( victim, WEAR_WIELD_2 ),
 		get_damroll( victim, WEAR_WIELD_2 ) );
 	strcat( buf1, buf );
@@ -863,68 +875,74 @@ void do_mstat( CHAR_DATA *ch, char *argument )
 
     if ( !IS_NPC( victim ) )
     {
-	sprintf( buf, "Page Lines: %d.\n\r", victim->pcdata->pagelen );
+	sprintf( buf, "{cPage Lines: {x%d{c.{x\n\r", victim->pcdata->pagelen );
 	strcat( buf1, buf );
     }
 
-    sprintf( buf, "Fighting: %s.\n\r",
+    sprintf( buf, "{cFighting: {x%s{c.{x\n\r",
 	    victim->fighting ? victim->fighting->name : "(none)" );
     strcat( buf1, buf );
 
     if ( !IS_NPC( victim ) )
     {
 	sprintf( buf,
-		"Thirst: %d.  Full: %d.  Drunk: %d.  Saving throw: %d.\n\r",
+		"{cThirst: {x%d{c.  Full: {x%d{c.  Drunk: {x%d{c.  Saving throw: {x%d{c.{x\n\r",
 		victim->pcdata->condition[COND_THIRST],
 		victim->pcdata->condition[COND_FULL  ],
 		victim->pcdata->condition[COND_DRUNK ],
 		victim->saving_throw );
 	strcat( buf1, buf );
 	sprintf( buf,
-		"Clan: %d (%s).  Rank: %d.\n\r",
+		"{cClan: [%2d] ({x%s{c).  Rank: {x%d{c.{x\n\r",
 		 victim->pcdata->clan, clan_table[ victim->pcdata->clan ].name,
 		victim->pcdata->rank );
 	strcat( buf1, buf );
     }
 
-    sprintf( buf, "Carry number: %d.  Carry weight: %d.\n\r",
+    sprintf( buf, "{cCarry number: {x%d{c.  Carry weight: {x%d{c.{x\n\r",
 	    victim->carry_number, victim->carry_weight );
     strcat( buf1, buf );
 
-    sprintf( buf, "Age: %d.  Played: %d.  Timer: %d.  Act: %d.\n\r",
+    sprintf( buf, "{cAge: {x%d{c.  Played: {x%d{c.  Timer: {x%d{c.  Act: {x%d{c.{x\n\r",
 	    get_age( victim ),
 	    (int) victim->played,
 	    victim->timer,
 	    victim->act );
     strcat( buf1, buf );
 
-    sprintf( buf, "Master: %s.  Leader: %s.  Affected by: %s.\n\r",
+    sprintf( buf, "{cMaster: {x%s{c.  Leader: {x%s{c.  Affected by: {x%s{c.{x\n\r",
 	    victim->master      ? victim->master->name   : "(none)",
 	    victim->leader      ? victim->leader->name   : "(none)",
 	    affect_bit_name( victim->affected_by ) );
     strcat( buf1, buf );
 
+    sprintf( buf, "{cHunting: {x%s{c.  Hating: {x%s{c.  Fearing: {x%s{c.{x\n\r",
+	    victim->hunting     ? victim->hunting->name  : "(none)",
+	    victim->hating      ? victim->hating->name   : "(none)",
+	    victim->fearing     ? victim->fearing->name  : "(none)" );
+    strcat( buf1, buf );
+
     if ( !IS_NPC( victim ) )    /* OLC */
     {
-        sprintf( buf, "Security: %d.\n\r", ch->pcdata->security );
+        sprintf( buf, "{cSecurity: {x%d{c.{x\n\r", ch->pcdata->security );
         strcat( buf1, buf );
     }
 
-    sprintf( buf, "Short description: %s.\n\rLong  description: %s",
+    sprintf( buf, "{cShort description: {x%s{c.{x\n\r{cLong  description: {x%s",
 	    victim->short_descr,
 	    victim->long_descr[0] != '\0' ? victim->long_descr
 	                                  : "(none).\n\r" );
     strcat( buf1, buf );
 
     if ( IS_NPC( victim ) && victim->spec_fun != 0 )
-	strcat( buf1, "Mobile has spec fun.\n\r" );
+	strcat( buf1, "{xMobile has spec fun{x.\n\r" );
 
     for ( paf = victim->affected; paf; paf = paf->next )
     {
         if ( paf->deleted )
 	    continue;
 	sprintf( buf,
-		"Spell: '%s' modifies %s by %d for %d hours with bits %s.\n\r",
+		"{cSpell: '{x%s{c' modifies {x%s{c by {x%d{c for {x%d{c hours with bits {x%s{c.{x\n\r",
 		skill_table[(int) paf->type].name,
 		affect_loc_name( paf->location ),
 		paf->modifier,
@@ -2024,8 +2042,15 @@ void do_peace( CHAR_DATA *ch, char *argument )
     /* Yes, we are reusing rch.  -Kahn */
     for ( rch = ch->in_room->people; rch; rch = rch->next_in_room )
     {
+	if ( rch->deleted )
+	    continue;
+
 	if ( rch->fighting )
 	    stop_fighting( rch, TRUE );
+
+	stop_hating( rch );
+	stop_hunting( rch );
+	stop_fearing( rch );
     }
 
     send_to_char( "Ok.\n\r", ch );
@@ -3312,6 +3337,28 @@ void do_holylight( CHAR_DATA *ch, char *argument )
     return;
 }
 
+void do_editinfo( CHAR_DATA *ch, char *argument )
+{
+    if ( IS_NPC( ch ) )
+	return;
+
+    if ( !authorized( ch, "editinfo" ) )
+        return;
+
+    if ( IS_SET( ch->act, PLR_EDIT_INFO ) )
+    {
+	REMOVE_BIT( ch->act, PLR_EDIT_INFO );
+	send_to_char( "Edit info mode off.\n\r", ch );
+    }
+    else
+    {
+	SET_BIT(    ch->act, PLR_EDIT_INFO );
+	send_to_char( "Edit info mode on.\n\r", ch );
+    }
+
+    return;
+}
+
 /* Wizify and Wizbit sent in by M. B. King */
 
 void do_wizify( CHAR_DATA *ch, char *argument )
@@ -3878,7 +3925,7 @@ void do_delete( CHAR_DATA *ch, char *argument )
 
 
 
-void do_clookup( CHAR_DATA *ch, char *argument )
+void do_clist( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA *rch;
     char       buf  [ MAX_STRING_LENGTH ];
@@ -3888,15 +3935,15 @@ void do_clookup( CHAR_DATA *ch, char *argument )
 
     rch = get_char( ch );
 
-    if ( !authorized( rch, "clookup" ) )
+    if ( !authorized( rch, "clist" ) )
         return;
 
     one_argument( argument, arg );
     if ( arg[0] == '\0' )
     {
-	send_to_char( "Syntax: clookup all\n\r",			ch );
-	send_to_char( "or:     clookup <clan number>\n\r",		ch );
-	send_to_char( "or:     clookup <clan name>\n\r",		ch );
+	send_to_char( "Syntax: clist all\n\r",				ch );
+	send_to_char( "or:     clist <clan number>\n\r",		ch );
+	send_to_char( "or:     clist <clan name>\n\r",			ch );
 	return;
     }
 
@@ -3978,7 +4025,7 @@ void do_sober( CHAR_DATA *ch, char *argument )
 
 
 
-void do_showclass( CHAR_DATA *ch, char *argument )
+void do_clookup( CHAR_DATA *ch, char *argument )
 {
     CHAR_DATA         *rch;
     char               buf  [ MAX_STRING_LENGTH * 2 ];
@@ -3996,7 +4043,7 @@ void do_showclass( CHAR_DATA *ch, char *argument )
     rch = get_char( ch );
     num = rch->class;
 
-    if ( !authorized( rch, "showclass" ) )
+    if ( !authorized( rch, "clookup" ) )
         return;
 
     /*

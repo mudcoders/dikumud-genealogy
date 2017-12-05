@@ -17,7 +17,7 @@
        [1;34m_____[1;32m \         --+--                   [1;34m___[1;32m-=[1;34m_______[1;32m
             [1;34m-@#-- == ...______ __ ___ _------_[0m
 
-                       [1;31mENVY MUD 2.2 - HOMECOOKED 0.83!
+                       [1;31mENVY MUD 2.2 - HOMECOOKED 0.85!
 
 [0;36m    DikuMud was created by:  Han Henrik Staerfeldt, Katja Nyboe, Tom Madsen,
            Michael Seifert, and Sebastian Hammer ( see 'help diku' )
@@ -875,7 +875,7 @@ Features:
 ANSI color code (by Lope ant@solace.mh.se).
 New ARENA code (by Zen).
 New CLANS code (by Zen).
-New spells: Mass Vortex Lift, Vortex Lift, Scry, Meteor Swarm.
+New spells: Mass Vortex Lift, Vortex Lift, Wizard Eye, Meteor Swarm.
 New skills: Meditate, Fast Healing, Shield Block, Scan, Swim
   Many spells/skills by Zen some by others in src/Contributions.
 Psionicist class added, with 40-some spells (coded entirely by Thelonius).
@@ -3336,8 +3336,8 @@ location somewhere in the world.
 You cannot vortex lift to characters who are in a private or solitary room.
 ~
 
-0 'SCRY'~
-Syntax: cast 'scry' <character>
+0 'WIZARD EYE'~
+Syntax: cast 'wizard eye' <character>
 
 This spell enables the caster to see the location of another caracter somewhere
 in the world.
@@ -3365,8 +3365,7 @@ to shield block.
 
 This skill enables you to regain mana faster than normal.
 Use of the skill is automatic once you have practiced it. You may meditate
-while resting or sleeping. EXTREMELLY high level casters (>= level 45) may
-meditate even while fighting thus making then highly deadly!
+while resting or sleeping.
 ~
 
 0 'FAST HEALING'~
@@ -3395,7 +3394,7 @@ which are logged on.
 0 SCAN~
 Syntax: scan
 
-This skill high-level thief to sense there characters around him.
+This skill allows the high-level thief to sense characters around him.
 You may SCAN characters upto 4 squares away from you.
 ~
 
@@ -3434,7 +3433,7 @@ This command makes you quit the game and erase your player file.
 WARNING! ONCE ERASED YOUR PLAYER FILE IS NOT RECOVERABLE!
 ~
 
-54 DELET~
+53 DELET~
 Syntax: DELET
 
 DELET is a command trap to prevent you from mistakenly typing DELETE.
@@ -3442,21 +3441,20 @@ DELET is a command trap to prevent you from mistakenly typing DELETE.
 If you wish to DELETE and erase the target char type DELETE in whole.
 ~
 
-54 DELETE~
+53 DELETE~
 Syntax: delete <character>
 
-This Directorship command makes you disconnect the char and erase his player
-file. USE WITH GREAT CARE!
-WARNING! ONCE ERASED HIS PLAYER FILE IS NOT RECOVERABLE!
+This Senior command makes you disconnect the char and erase his player
+file. The file is recoverable.
 ~
 
-52 CLOOKUP~
-Syntax: clookup <clan number>
-Syntax: clookup all
+52 CLIST~
+Syntax: clist <clan number>
+Syntax: clist all
 
-CLOOKUP shows the clan's name for the given clan number.
+CLIST shows the clan's name for the given clan number.
 
-CLOOKUP ALL shows this information for all clans.
+CLIST ALL shows this information for all clans.
 ~
 
 0 SWIM~
@@ -3464,13 +3462,6 @@ CLOOKUP ALL shows this information for all clans.
 This skill enables the character to swim.
 Use of the skill is automatic once you have practiced it.
 The better skilled you are, better will you swim.
-~
-
-0 SCAN~
-Syntax: scan
-
-This skill high-level thief to sense there characters around him.
-You may SCAN characters upto 4 squares away from you.
 ~
 
 0 COLOUR COLOR ANSI~

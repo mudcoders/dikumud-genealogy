@@ -1,7 +1,7 @@
 #AREADATA
 Name        {{51 54} Envy    God Rooms~
 Builders    None~
-VNUMs       1200 4475
+VNUMs       1200 1275
 Security    1
 Recall      3001
 End
@@ -336,11 +336,11 @@ Tobie's GUND tag lays here, waiting to be worn~
 0~ 1~ 6~ 11~ 0~
 5 0 0
 A
-18 5
+18 5 0
 A
-19 10
+19 10 0
 A
-1 0
+1 0 0
 #1207
 Toilet~
 a Toilet~
@@ -447,9 +447,9 @@ Snoopy's collar lies here.~
 0~ 0~ 0~ 0~ 0~
 1 9561 0
 A
-8 47
+8 47 0
 A
-2 1
+2 1 0
 #1221
 leg band~
 a leg band~
@@ -459,7 +459,7 @@ Angel's leg band lies here.~
 0~ 0~ 0~ 0~ 0~
 10 3457 0
 A
-3 2
+3 2 0
 #1222
 keyboard board key~
 keyboard~
@@ -469,9 +469,9 @@ James' keyboard lies here.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-6 1
+6 1 0
 A
-5 3
+5 3 0
 #1223
 throne sapphire~
 the Sapphire Throne~
@@ -494,11 +494,11 @@ There is a gleaming sword here, made of brilliant sapphire.~
 0~ 20~ 35~ 3~ 0~
 5 0 0
 A
-12 100
+12 100 0
 A
-13 100
+13 100 0
 A
-14 100
+14 100 0
 E
 sapphire sword~
 This is the symbol of the Guardian of Twilight.  It looks sharp.~
@@ -511,7 +511,7 @@ There is a swirling, blue cloak lying here.~
 20~ 1~ 6~ 11~ 0~
 5 0 0
 A
-17 -20
+17 -20 0
 E
 blue cloak~
 Looking closely, you can see stars depicted on the dark blue cloth.~
@@ -524,7 +524,7 @@ There is a big, blue, fluffy pillow here.~
 50~ 10~ 10~  ~ 0~
 5 0 0
 A
-17 -5
+17 -5 0
 E
 pillow big blue fluffy~
 Its big and blue and scary.  But its a friendly pillow too!  PILLOW FIGHT!!!!~
@@ -537,7 +537,7 @@ There is a big, red, fluffy pillow here.~
 50~ 10~ 10~  ~ 0~
 5 0 0
 A
-17 -5
+17 -5 0
 E
 red fluffy pillow big~
 OH NO!  ITS A BIG FLUFFY PILLOW!!!~
@@ -550,7 +550,7 @@ There is a warm, cozy-looking blanket here.~
 10~ 1~ 6~ 11~ 0~
 5 0 0
 A
-17 -5
+17 -5 0
 E
 cozy warm blanket~
 It looks very comfortable.  I wonder if its almost bedtime?  Heck with it.
@@ -564,9 +564,9 @@ A sparkling diamond collar lies here abandoned.~
 0~ 0~ 0~ 0~ 0~
 1 5000 0
 A
-12 10
+12 10 0
 A
-19 2
+19 2 0
 #1231
 fountain~
 a sparkling clear fountain~
@@ -584,9 +584,9 @@ The Crystal Rose lies here quietly waiting to be picked up.~
 0~ 0~ -1~ 0~ 0~
 5 0 0
 A
-3 1
+3 1 0
 A
-12 5
+12 5 0
 #0
 
 
@@ -1080,7 +1080,7 @@ a nice breeze blows thru the window.
 ~
 0 8204 0
 S
-#4475
+#1275
 The Burning Shrine~
 You are standing in a very dark room, only lit by the light of a darkly
 burning altar. Everything except the gleaming black marble floor seems to

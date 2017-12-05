@@ -231,9 +231,9 @@ Its an claymore made of laen a rare metal lies here.~
 0~ 0~ 0~ 3~ 0~
 24 2450 0
 A
-18 2
+19 2 0
 A
-19 2
+18 2 0
 #11501
 barbed barbarian sword~
 a Barbarian sword~
@@ -243,7 +243,7 @@ A barbed sword lies here.~
 0~ 0~ 0~ 6~ 0~
 12 1250 0
 A
-3 -2
+3 -2 0
 #11502
 kilt~
 a Highlanders Kilt~
@@ -253,9 +253,9 @@ A skirt lies on the ground.~
 0~ 0~ 0~ 0~ 0~
 7 1450 0
 A
-17 -10
+14 10 0
 A
-14 10
+17 -10 0
 #11503
 plate suit~
 a suit of Laen Plate~
@@ -265,11 +265,11 @@ A heap of plate lies on the ground.~
 0~ 0~ 0~ 0~ 0~
 42 4555 0
 A
-17 -10
+2 -2 0
 A
-19 2
+19 2 0
 A
-2 -2
+17 -10 0
 #11504
 boots~
 a pair of laen Boots~
@@ -279,9 +279,9 @@ A pair of boots lies here.~
 0~ 0~ 0~ 0~ 0~
 16 3345 0
 A
-14 20
+3 -2 0
 A
-3 -2
+14 20 0
 #11505
 helmet~
 a laen helmet~
@@ -291,9 +291,9 @@ A helmet made of laen lies here.~
 0~ 0~ 0~ 0~ 0~
 27 4211 0
 A
-5 2
+24 -1 0
 A
-24 -1
+5 2 0
 #11506
 gauntlets~
 a pair of laen gauntlets~
@@ -303,9 +303,9 @@ A pair of queer looking gauntlets lie here.~
 0~ 0~ 0~ 0~ 0~
 14 3325 0
 A
-1 2
+2 -1 0
 A
-2 -1
+1 2 0
 #11507
 sword~
 a highlanders sword~
@@ -315,9 +315,9 @@ A sword of a highlander lies here.~
 0~ 0~ 0~ 3~ 0~
 5 2000 0
 A
-18 5
+19 2 0
 A
-19 2
+18 5 0
 #11508
 rod~
 a Rod of OmniScience~
@@ -327,9 +327,9 @@ A strange rod lies here.~
 18~ 10~ 9~ flamestrike~ 0~
 1 4400 0
 A
-3 1
+5 -1 0
 A
-5 -1
+3 1 0
 #11509
 cloak~
 the cloak of Magus~
@@ -339,7 +339,7 @@ A cloak with constantly changing colors lies here.~
 0~ 0~ 0~ 0~ 0~
 3 1200 0
 A
-24 -2
+24 -2 0
 #11510
 mace~
 the mace of oblivion~
@@ -349,7 +349,7 @@ A dark mace lies here.~
 0~ 0~ 0~ 7~ 0~
 12 3340 0
 A
-12 20
+12 20 0
 #11511
 boots~
 the boots of necromany~
@@ -359,9 +359,9 @@ A pair of blackish boots lies here.~
 0~ 0~ 0~ 0~ 0~
 10 3223 0
 A
-12 15
+4 2 0
 A
-4 2
+12 15 0
 #11512
 holy basher~
 the Holy Basher~
@@ -371,11 +371,11 @@ A weapon of some sort lies here.~
 0~ 0~ 0~ 8~ 0~
 19 3440 0
 A
-1 2
+19 4 0
 A
-18 9
+18 9 0
 A
-19 4
+1 2 0
 #11513
 armor~
 the holy armor~
@@ -385,13 +385,13 @@ A pile of armor lies here.~
 0~ 0~ 0~ 0~ 0~
 45 5600 0
 A
-17 -30
+2 -1 0
 A
-24 -4
+18 2 0
 A
-18 2
+24 -4 0
 A
-2 -1
+17 -30 0
 #11514
 potion lady~
 potion of the lady~
@@ -465,7 +465,7 @@ A dark shield lies here.~
 0~ 0~ 0~ 0~ 0~
 18 2300 0
 A
-17 -10
+17 -10 0
 #11523
 bag pipes bagpipes~
 a bagpipe~
@@ -475,7 +475,7 @@ A bagpipe has been carelessly tosed on the ground here.~
 0~ 0~ 0~ 0~ 0~
 10 2300 0
 A
-24 -5
+24 -5 0
 #11524
 claymore~
 a Claymore~
@@ -485,9 +485,9 @@ A Claymore lies here.~
 0~ 0~ 0~ 6~ 0~
 12 1250 0
 A
-5 1
+18 2 0
 A
-18 2
+5 1 0
 #0
 
 
@@ -2365,16 +2365,8 @@ You can look in all directions here.
 ~
 0 0 1
 E
-north~
-You can see another tower to the north.
-~
-E
-east~
-You see nothing, nothing at all.
-~
-E
-south~
-Nothing there absolutely nothing.
+up~
+The sky.
 ~
 E
 west~
@@ -2382,8 +2374,16 @@ You see the lake, there appears to be a Isle in the middle of the lake.
 In the distance you see another tower.
 ~
 E
-up~
-The sky.
+south~
+Nothing there absolutely nothing.
+~
+E
+east~
+You see nothing, nothing at all.
+~
+E
+north~
+You can see another tower to the north.
 ~
 D5
 ~
@@ -2444,20 +2444,20 @@ will cover your approach.
 ~
 0 0 1
 E
-north~
-You see another tower on another hill.
-~
-E
-east~
-You see the valley, the lake the path you walked on and another tower.
+west~
+A somber void is there.
 ~
 E
 south~
 Nothing there.
 ~
 E
-west~
-A somber void is there.
+east~
+You see the valley, the lake the path you walked on and another tower.
+~
+E
+north~
+You see another tower on another hill.
 ~
 D5
 There is a trap-door here.
@@ -2619,21 +2619,21 @@ The light shines brightly here.
 ~
 0 0 1
 E
-north~
-A big forest stretches before as far as you can see.
-~
-E
-east~
-A void through which you can discern nothing.
+west~
+You see a large castle it's totally black. Also a bit further is an-
+other tower.
 ~
 E
 south~
 You look at another tower.
 ~
 E
-west~
-You see a large castle it's totally black. Also a bit further is an-
-other tower.
+east~
+A void through which you can discern nothing.
+~
+E
+north~
+A big forest stretches before as far as you can see.
 ~
 D5
 A trapdoor is here.

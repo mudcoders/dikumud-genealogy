@@ -100,6 +100,7 @@ typedef struct  mob_prog_data           MPROG_DATA;
 typedef struct  mob_prog_act_list       MPROG_ACT_LIST;
 typedef struct	soc_index_data		SOC_INDEX_DATA;
 typedef struct	class_type		CLASS_TYPE;
+typedef struct	hunt_hate_fear		HHF_DATA;
 
 /*
  * Function types.
@@ -145,11 +146,11 @@ typedef void GAME_FUN                   args( ( CHAR_DATA *ch,
 #define LEVEL_HERO		  ( LEVEL_IMMORTAL - 1 )
 
 #define PULSE_PER_SECOND	    4
-#define PULSE_VIOLENCE		  (  2 * PULSE_PER_SECOND )
-#define PULSE_MOBILE		  (  5 * PULSE_PER_SECOND )
-#define PULSE_TICK		  ( 30 * PULSE_PER_SECOND )
-#define PULSE_AREA		  ( 60 * PULSE_PER_SECOND )
-#define PULSE_DB_DUMP             (1800* PULSE_PER_SECOND ) /* 30 minutes */
+#define PULSE_VIOLENCE		  (    2 * PULSE_PER_SECOND )
+#define PULSE_MOBILE		  (    5 * PULSE_PER_SECOND )
+#define PULSE_TICK		  (   30 * PULSE_PER_SECOND )
+#define PULSE_AREA		  (   60 * PULSE_PER_SECOND )
+#define PULSE_DB_DUMP             ( 1800 * PULSE_PER_SECOND ) /* 30 minutes */
 
 
 
@@ -278,6 +279,7 @@ struct  race_type
     int                 hunger_mod;
     char *              dmg_message;
     char *              hate;
+    int			parts;
 };
 
 /* Race ability bits */
@@ -525,6 +527,37 @@ struct	kill_data
 #define ACT_GAMBLE                 2048         /* Runs a gambling game */
 #define ACT_MOVED                131072         /* Dont ever set!       */
 
+/* 
+ * body parts
+ */
+#define PART_NONE		      0
+#define PART_HEAD		      1
+#define PART_ARMS		      2
+#define PART_LEGS		      4
+#define PART_HEART		      8
+#define PART_BRAINS		     16
+#define PART_GUTS		     32
+#define PART_HANDS		     64
+#define PART_FEET		    128
+#define PART_FINGERS		    256
+#define PART_EAR		    512
+#define PART_EYE		   1024
+#define PART_LONG_TONGUE	   2048
+#define PART_EYESTALKS		   4096
+#define PART_TENTACLES		   8192
+#define PART_FINS		  16384
+#define PART_WINGS		  32768
+#define PART_TAIL		  65536
+
+/*
+ * for combat
+ */
+#define PART_CLAWS		 131072
+#define PART_FANGS		 262144
+#define PART_HORNS		 524288
+#define PART_SCALES		1048576
+#define PART_TUSKS		2097152
+
 /*
  * Bits for 'affected_by'.
  * Used in #MOBILES.
@@ -584,6 +617,8 @@ struct	kill_data
 #define OBJ_VNUM_SLICED_ARM	     14
 #define OBJ_VNUM_SLICED_LEG	     15
 #define OBJ_VNUM_FINAL_TURD	     16
+#define OBJ_VNUM_GUTS		     17
+#define OBJ_VNUM_BRAINS		     18
 
 #define OBJ_VNUM_MUSHROOM	     20
 #define OBJ_VNUM_LIGHT_BALL	     21
@@ -768,7 +803,6 @@ struct	kill_data
 #define ROOM_NO_RECALL		   8192
 #define ROOM_CONE_OF_SILENCE      16384
 #define ROOM_ARENA		  32768		/* by Zen */
-#define ROOM_TEMP_CONE_OF_SILENCE 65536 /* So spell doesn't save into areas */
 
 /*
  * Directions.
@@ -902,6 +936,7 @@ struct	kill_data
 #define PLR_AUTOGOLD           16777216
 #define PLR_AFK                33554432
 #define PLR_COLOUR             67108864
+#define PLR_EDIT_INFO         134217728
 
 /*
  * Obsolete bits.
@@ -962,6 +997,15 @@ struct	mob_index_data
     AREA_DATA *         area;			/* OLC */
     MPROG_DATA *        mobprogs;
     int			progtypes;
+    int			parts;
+};
+
+
+
+struct hunt_hate_fear
+{
+    char *		name;
+    CHAR_DATA *		who;
 };
 
 
@@ -1025,6 +1069,10 @@ struct	char_data
     bool                deleted;
     MPROG_ACT_LIST *    mpact;
     int                 mpactnum;
+    HHF_DATA *		hunting;
+    HHF_DATA *		hating;
+    HHF_DATA *		fearing;
+    int			parts;
 };
 
 
@@ -1212,6 +1260,12 @@ struct	area_data
     int                 uvnum;			/* OLC - Upper vnum */
     int                 vnum;			/* OLC - Area vnum  */
     int                 area_flags;		/* OLC */
+    int                 low_r_vnum;
+    int                 hi_r_vnum;
+    int                 low_o_vnum;
+    int                 hi_o_vnum;
+    int                 low_m_vnum;
+    int                 hi_m_vnum;
 };
 
 
@@ -1231,6 +1285,7 @@ struct	room_index_data
     char *		description;
     int 		vnum;
     int 		room_flags;
+    int 		orig_room_flags;	/* OLC */
     int 		light;
     int 		sector_type;
     RESET_DATA *        reset_first;		/* OLC */
@@ -1380,6 +1435,8 @@ extern	int	gsn_dirt;
 extern  int     gsn_meditate;			/* by Zen */
 extern  int     gsn_swim;			/* by Zen */
 extern  int     gsn_mass_vortex_lift;		/* by Zen */
+extern	int	gsn_track;
+extern	int	gsn_whirlwind;
 
 /*
  * Race gsn's (by Kahn).
@@ -1782,12 +1839,15 @@ DECLARE_DO_FUN(	do_unalia	);		/* by Zen */
 DECLARE_DO_FUN(	do_unalias	);
 DECLARE_DO_FUN(	do_join		);		/* by Zen */
 DECLARE_DO_FUN(	do_members	);		/* by Zen */
-DECLARE_DO_FUN(	do_clookup	);		/* by Zen */
+DECLARE_DO_FUN(	do_clist	);		/* by Zen */
 DECLARE_DO_FUN(	do_dirt		);
 DECLARE_DO_FUN(	do_grats	);		/* by Zen */
 DECLARE_DO_FUN(	do_clantalk	);		/* by Zen */
 DECLARE_DO_FUN(	do_sober	);
-DECLARE_DO_FUN(	do_showclass	);
+DECLARE_DO_FUN(	do_clookup	);
+DECLARE_DO_FUN(	do_track	);
+DECLARE_DO_FUN(	do_whirlwind	);
+DECLARE_DO_FUN(	do_editinfo	);		/* by Zen */
 
 
 /*
@@ -1932,7 +1992,7 @@ DECLARE_SPELL_FUN(	spell_dispel_good	);
 DECLARE_SPELL_FUN(      spell_meteor_swarm	);
 DECLARE_SPELL_FUN(      spell_chain_lightning	);
 DECLARE_SPELL_FUN(      spell_vortex_lift	);
-DECLARE_SPELL_FUN(      spell_scry		);
+DECLARE_SPELL_FUN(      spell_wizard_eye	);
 DECLARE_SPELL_FUN(      spell_mass_vortex_lift	);
 DECLARE_SPELL_FUN(      spell_home_sick		);
 DECLARE_SPELL_FUN(      spell_portal		);
@@ -2117,6 +2177,7 @@ bool	is_same_clan	args( ( CHAR_DATA *ach, CHAR_DATA *bch ) );
 /* act_info.c */
 void	set_title	args( ( CHAR_DATA *ch, char *title ) );
 bool	check_blind	args( ( CHAR_DATA *ch ) );
+void	show_room_info	args( ( CHAR_DATA *ch, ROOM_INDEX_DATA *room ) );
 
 /* act_move.c */
 void	move_char	args( ( CHAR_DATA *ch, int door ) );
@@ -2184,6 +2245,7 @@ bool	str_prefix	args( ( const char *astr, const char *bstr ) );
 bool	str_infix	args( ( const char *astr, const char *bstr ) );
 bool	str_suffix	args( ( const char *astr, const char *bstr ) );
 char *	capitalize	args( ( const char *str ) );
+char *  all_capitalize  args( ( const char *str ) );
 void	append_file	args( ( CHAR_DATA *ch, char *file, char *str ) );
 void	bug		args( ( const char *str, int param ) );
 void	log_string	args( ( const char *str ) );
@@ -2202,6 +2264,15 @@ void	damage		args( ( CHAR_DATA *ch, CHAR_DATA *victim, int dam,
 			       int dt, int wpn ) );
 void	raw_kill	args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 void    death_cry	args( ( CHAR_DATA *ch ) );
+void    stop_hunting    args( ( CHAR_DATA *ch ) );
+void    stop_hating     args( ( CHAR_DATA *ch ) );
+void    stop_fearing    args( ( CHAR_DATA *ch ) );
+void    start_hunting   args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+void    start_hating    args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+void    start_fearing   args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool    is_hunting      args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool    is_hating       args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+bool    is_fearing      args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
 void	stop_fighting	args( ( CHAR_DATA *ch, bool fBoth ) );
 void	update_pos	args( ( CHAR_DATA *victim ) );
 void	check_killer	     args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
@@ -2263,6 +2334,7 @@ char *	item_type_name	args( ( OBJ_DATA *obj ) );
 char *	affect_loc_name	args( ( int location ) );
 char *	affect_bit_name	args( ( int vector ) );
 char *	extra_bit_name	args( ( int extra_flags ) );
+char *	parts_bit_name	args( ( int parts ) );
 CD   *  get_char        args( ( CHAR_DATA *ch ) );
 bool    longstring      args( ( CHAR_DATA *ch, char *argument ) );
 bool    authorized      args( ( CHAR_DATA *ch, char *skllnm ) );
@@ -2322,15 +2394,19 @@ bool	load_char_obj	args( ( DESCRIPTOR_DATA *d, char *name ) );
 SF *	spec_lookup	args( ( const char *name ) );
 
 /* tables.c */
-void	clear_social		args( ( SOC_INDEX_DATA *soc ) );
-void	extract_social		args( ( SOC_INDEX_DATA *soc ) );
-SID *	new_social		args( ( ) );
-void	free_social		args( ( SOC_INDEX_DATA *soc ) );
+void	clear_social	args( ( SOC_INDEX_DATA *soc ) );
+void	extract_social	args( ( SOC_INDEX_DATA *soc ) );
+SID *	new_social	args( ( void ) );
+void	free_social	args( ( SOC_INDEX_DATA *soc ) );
 
-void	load_socials		args( ( ) );
-void	save_socials		args( ( ) );
-void	load_classes		args( ( ) );
-void	save_classes		args( ( ) );
+void	load_socials	args( ( void ) );
+void	save_socials	args( ( void ) );
+void	load_classes	args( ( void ) );
+void	save_classes	args( ( void ) );
+
+/* track.c */
+void    found_prey      args( ( CHAR_DATA *ch, CHAR_DATA *victim ) );
+void    hunt_victim     args( ( CHAR_DATA *ch) );
 
 /* update.c */
 void	advance_level	args( ( CHAR_DATA *ch ) );
@@ -2457,7 +2533,6 @@ char *  format_string   args( ( char *oldstring /*, bool fSpace */ ) );
 char *  first_arg       args( ( char *argument, char *arg_first, bool fCase ) );
 char *  string_unpad    args( ( char * argument ) );
 char *  string_proper   args( ( char * argument ) );
-char *  all_capitalize  args( ( const char * argument ) );
 
 /* olc.c */
 bool    run_olc_editor  args( ( DESCRIPTOR_DATA *d ) );

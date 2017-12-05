@@ -1086,9 +1086,9 @@ You feel an aura of power emanating from the Hourglass.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-9 -50
+9 -50 0
 A
-4 2
+4 2 0
 #2417
 crook~
 the shepherd's crook~
@@ -1139,9 +1139,9 @@ The magic dagger lies here, pulsating.~
 0~ 0~ 0~ 11~ 0~
 4 0 0
 A
-3 2
+3 2 0
 A
-18 2
+18 2 0
 #2422
 robe~
 a robe~
@@ -1163,9 +1163,9 @@ Smithy's horseshoes are here.~
 0~ 0~ 0~ 0~ 0~
 7 0 0
 A
-14 50
+14 50 0
 A
-19 3
+19 3 0
 #2424
 instrument mandolin~
 a mandolin~
@@ -1207,7 +1207,7 @@ Iolo's bow stands against a wall.~
 0~ 0~ 0~ 6~ 0~
 4 0 0
 A
-2 1
+2 1 0
 E
 bow iolo~
 Crafted by the master himself, Iolo, the bow is finely made.  It
@@ -1223,7 +1223,7 @@ A chicken is lying on the ground.~
 0~ 0~ 0~ 7~ 0~
 6 0 0
 A
-19 3
+19 3 0
 E
 chicken~
 As you look closer you see this isn't a real chicken, it's one of
@@ -1238,9 +1238,9 @@ The Infinity Bow floats here.~
 0~ 0~ 0~ 6~ 0~
 3 0 0
 A
-2 3
+2 3 0
 A
-19 5
+19 5 0
 E
 infinity bow~
 The bow is immense, yet light.  You see no string, but as your
@@ -1272,9 +1272,9 @@ The Judge's gavel lies here.~
 0~ 0~ 0~ 7~ 0~
 5 0 0
 A
-4 3
+4 3 0
 A
-12 10
+12 10 0
 E
 judge gavel~
 The Gavel is made of ironwood, and seems to have some of the
@@ -1289,7 +1289,7 @@ Janna's staff lies here.~
 0~ 0~ 0~ 8~ 0~
 7 0 0
 A
-4 1
+4 1 0
 E
 staff~
 Janna's staff is strangely shaped, in a double helix form.  As
@@ -1305,7 +1305,7 @@ Geoffrey's sword gleams in the sun.~
 0~ 0~ 0~ 3~ 0~
 7 0 0
 A
-1 1
+1 1 0
 E
 geoffreys sword~
 Geoffrey's sword is heavy but sharp.  When you touch the jeweled
@@ -1327,17 +1327,17 @@ Simon's monstrous bastard sword lies here.~
 0~ 0~ 0~ 3~ 0~
 18 0 0
 A
-1 3
+1 3 0
 A
-2 2
+2 2 0
 A
-18 5
+18 5 0
 A
-19 5
+19 5 0
 A
-13 -50
+13 -50 0
 A
-17 -10
+17 -10 0
 E
 sword bastard~
 This is the biggest and best sword you've ever seen.  It's
@@ -1361,11 +1361,11 @@ Julia's hot, glowing sword lies here.~
 0~ 0~ 0~ 1~ 0~
 8 0 0
 A
-23 3
+23 3 0
 A
-19 3
+19 3 0
 A
-18 -2
+18 -2 0
 E
 glowing sword hot~
 Julia was working on this sword before you attacked her.  Though
@@ -1382,17 +1382,17 @@ The most beautiful amulet lies in a pile here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-20 -5
+20 -5 0
 A
-21 -5
+21 -5 0
 A
-22 -5
+22 -5 0
 A
-23 -5
+23 -5 0
 A
-24 -5
+24 -5 0
 A
-6 1
+6 1 0
 #2441
 sword~
 a shiny sword~
@@ -1402,7 +1402,7 @@ A sword lies on the ground.~
 0~ 0~ 0~ 1~ 0~
 10 0 0
 A
-18 2
+18 2 0
 #2442
 armour~
 shiny armour~
@@ -1412,9 +1412,9 @@ A paladin's suit of armour lies here.~
 0~ 0~ 0~ 0~ 0~
 15 0 0
 A
-1 1
+1 1 0
 A
-17 -5
+17 -5 0
 #2443
 rapier~
 a rapier~
@@ -1424,9 +1424,9 @@ Dupre's rapier is here.~
 0~ 0~ 0~ 11~ 0~
 13 0 0
 A
-1 1
+1 1 0
 A
-2 1
+2 1 0
 #2444
 boomerang~
 a boomerang~
@@ -1436,9 +1436,9 @@ A gargoyle's boomerang is here.~
 0~ 0~ 0~ 6~ 0~
 6 0 0
 A
-18 5
+18 5 0
 A
-17 5
+17 5 0
 E
 boomerang~
 Though this seems like your basic boomerang, it is much more.  It
@@ -1454,7 +1454,7 @@ A corroded, rusty sword is here.~
 0~ 0~ 0~ 1~ 0~
 9 0 0
 A
-9 100
+9 100 0
 #2446
 rusty shield~
 a rusty shield~
@@ -1464,9 +1464,9 @@ A spiked rusty shield lies here.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-19 3
+19 3 0
 A
-17 -3
+17 -3 0
 #2447
 cloak~
 a magic cloak~
@@ -1476,9 +1476,9 @@ A magic cloak is here.~
 0~ 0~ 0~ 0~ 0~
 6 0 0
 A
-12 10
+12 10 0
 A
-13 10
+13 10 0
 #2448
 aura power~
 an aura of power~
@@ -1488,9 +1488,9 @@ A bright light of power shoots into the air.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-17 10
+17 10 0
 A
-4 2
+4 2 0
 #2449
 red helmet face~
 a big red face~
@@ -1500,15 +1500,15 @@ The empty shell of the Guardian head lies here.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-12 50
+12 50 0
 A
-13 50
+13 50 0
 A
-14 50
+14 50 0
 A
-1 3
+1 3 0
 A
-5 2
+5 2 0
 E
 face head helmet red~
 When you slew the evil Guardian, all that was left was his
@@ -1523,9 +1523,9 @@ Waves of corruption come off this evilly enchanted spiked mace.~
 0~ 0~ 0~ 7~ 0~
 5 0 0
 A
-19 6
+19 6 0
 A
-18 5
+18 5 0
 #2451
 black death armour~
 a completely black armour~
@@ -1535,11 +1535,11 @@ This completely black armor reeks of death.~
 0~ 0~ 0~ 0~ 0~
 9 0 0
 A
-17 5
+17 5 0
 A
-14 -100
+14 -100 0
 A
-19 5
+19 5 0
 #2452
 evil charm~
 an evil charm~
@@ -1550,11 +1550,11 @@ look at its shape.~
 0~ 0~ 0~ 0~ 0~
 3 0 0
 A
-12 50
+12 50 0
 A
-3 1
+3 1 0
 A
-6 1
+6 1 0
 E
 shape~
 The charm looks to be a mummified part of a body.  It is about 3
@@ -1569,9 +1569,9 @@ The evil gem pulsates.~
 60~ 1~ 1~ harm~ 0~
 1 0 0
 A
-12 50
+12 50 0
 A
-3 3
+3 3 0
 #2454
 helmet~
 sentri's helmet~
@@ -1581,9 +1581,9 @@ Sentri's helmet is here.~
 0~ 0~ 0~ 0~ 0~
 30 0 0
 A
-4 2
+4 2 0
 A
-12 15
+12 15 0
 #2455
 sleeves~
 sentri's sleeves~
@@ -1593,9 +1593,9 @@ Sentri's sleeves lies here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-1 2
+1 2 0
 A
-13 15
+13 15 0
 #2456
 girth~
 sentri's girth~
@@ -1605,9 +1605,9 @@ Sentri's girth is here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-13 15
+13 15 0
 A
-24 -6
+24 -6 0
 #2457
 two-handed sword~
 sentri's two-handed sword~
@@ -1617,9 +1617,9 @@ Sentri's two-handed sword is here.~
 0~ 0~ 0~ 3~ 0~
 20 0 0
 A
-18 3
+18 3 0
 A
-19 3
+19 3 0
 #2458
 gloves~
 sentri's gloves~
@@ -1629,9 +1629,9 @@ Sentri's gloves are here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-18 3
+18 3 0
 A
-13 15
+13 15 0
 #2459
 boots~
 sentri's boots~
@@ -1641,9 +1641,9 @@ Sentri's boots are here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-2 1
+2 1 0
 A
-13 15
+13 15 0
 #2460
 leggings~
 sentri's leggings~
@@ -1653,9 +1653,9 @@ Sentri left his leggings here.~
 0~ 0~ 0~ 0~ 0~
 40 0 0
 A
-2 1
+2 1 0
 A
-18 3
+18 3 0
 #2461
 armour~
 sentri's armour~
@@ -1665,9 +1665,9 @@ Sentri left his armour here.~
 0~ 0~ 0~ 0~ 0~
 30 0 0
 A
-18 3
+18 3 0
 A
-13 20
+13 20 0
 #2462
 fellowship medallion~
 a Fellowship medallion~
@@ -1677,9 +1677,9 @@ A triangular shaped medallion is here.~
 0~ 0~ 0~ 0~ 0~
 6 0 0
 A
-12 10
+12 10 0
 A
-4 -1
+4 -1 0
 #2463
 glass sword~
 the Glass Sword~
@@ -1689,15 +1689,15 @@ The most amazingly well crafted sword lies here.~
 0~ 0~ 0~ 1~ 0~
 4 0 0
 A
-18 5
+18 5 0
 A
-19 5
+19 5 0
 A
-1 1
+1 1 0
 A
-2 1
+2 1 0
 A
-12 10
+12 10 0
 E
 glass sword~
 Invisible to the naked eye, this sword is the best crafted, as
@@ -1714,13 +1714,13 @@ A jewel encrusted crown is here.~
 0~ 0~ 0~ 0~ 0~
 10 0 0
 A
-3 2
+3 2 0
 A
-4 2
+4 2 0
 A
-12 50
+12 50 0
 A
-17 10
+17 10 0
 E
 british crown~
 Legend has it that this most perfect of crowns has within one of
@@ -1737,13 +1737,13 @@ power.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-5 2
+5 2 0
 A
-13 50
+13 50 0
 A
-18 5
+18 5 0
 A
-19 5
+19 5 0
 E
 sceptre~
 The second of the crown jewels, this sceptre is amazingly light,
@@ -1764,13 +1764,13 @@ A silver amulet lies here.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-1 2
+1 2 0
 A
-2 2
+2 2 0
 A
-13 50
+13 50 0
 A
-14 50
+14 50 0
 E
 amulet~
 British's amulet is in the shape of the great earth serpent.

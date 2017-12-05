@@ -160,6 +160,18 @@ it moves closer.  'Can one NEVER sleep in peace ... Hsss'.
 30 -10 -10 30d30+300 3d4+30
 100000 0
 0 Dragon~ 0
+>rand_prog 10~
+mpasound Something nearby bellows angrily.
+mpecho The beast bellows angrily, then snorts and closes its eyes once more.
+~
+>all_greet_prog 100~
+if isnpc($n)
+or isimmort($n)
+else
+  c flamestrike $n
+endif
+~
+|
 #7041
 sea hag~
 the sea hag~
@@ -317,7 +329,7 @@ A lovely silver ring has been left here.~
 4~ 0~ 0~ 0~ 0~
 1 2000 0
 A
-18 1
+18 1 0
 #7200
 rod devil~
 the devil rod~
@@ -327,9 +339,9 @@ The mysterious devil rod lies on the floor.~
 0~ 3~ 5~ 5~ 0~
 6 16000 0
 A
-18 2
+18 2 0
 A
-1 1
+1 1 0
 E
 devil rod~
 This is indeed a mysterious rod.  It is dark black at the base but has four
@@ -344,7 +356,7 @@ A large mace lies here.~
 0~ 2~ 6~ 8~ 0~
 10 1000 0
 A
-19 2
+19 2 0
 E
 large mace~
 The mace is pretty large with a weight of 10 lbs.  The head is actually four
@@ -359,7 +371,7 @@ A small mace has been left here.~
 0~ 2~ 5~ 8~ 0~
 6 600 0
 A
-19 1
+19 1 0
 E
 small mace~
 This weapon doesn't look like it does a lot of damage, but then you never know.
@@ -374,7 +386,7 @@ A purple cloak lies on the floor.~
 6~ 0~ 0~ 0~ 0~
 20 5000 0
 A
-24 -1
+24 -1 0
 #7204
 potion neon blue~
 an neon blue potion~
@@ -400,7 +412,7 @@ A strange white skull lies on the floor looking at you.~
 1~ 0~ 0~ 0~ 0~
 30 0 0
 A
-2 -4
+2 -4 0
 E
 white skull~
 The skull has two small horns in the forehead. You notice some writing on
@@ -436,7 +448,7 @@ A pair of muddy boots has been dropped here.~
 3~ 0~ 0~ 0~ 0~
 20 75 0
 A
-2 1
+2 1 0
 E
 The boots are muddy and they look well worn, but also very comfortable.~
 ~
@@ -461,7 +473,7 @@ There lies a short sword.~
 0~ 2~ 4~ 11~ 0~
 4 60 0
 A
-18 1
+18 1 0
 #7216
 claw red redclaw~
 a red dragon claw~
@@ -471,9 +483,9 @@ On the floor rests an enormous red claw.~
 0~ 4~ 4~ 5~ 0~
 19 1800 0
 A
-17 5
+17 5 0
 A
-19 5
+19 5 0
 E
 claw red redclaw~
 This big claw looks like a part of a dragon.
@@ -487,7 +499,7 @@ There is a silvery breast plate on the floor.~
 8~ 0~ 0~ 0~ 0~
 40 25000 0
 A
-1 3
+1 3 0
 E
 plate breast silvery~
 On the breast plate you notice a relief of large rose. The metal seems to be 
@@ -502,7 +514,7 @@ On the floor you see some silvery leg plates.~
 8~ 0~ 0~ 0~ 0~
 20 12500 0
 A
-3 3
+3 3 0
 E
 leg plates silvery~
 They seem to be made from silver or platinum.  You see the outline of a rose.
@@ -516,9 +528,9 @@ You can see a pair of silvery gloves on the floor.~
 8~ 0~ 0~ 0~ 0~
 14 900 0
 A
-18 3
+18 3 0
 A
-18 1
+18 1 0
 E
 gloves silvery~
 The gloves are made of silver threads.
@@ -532,7 +544,7 @@ The silvery helmet lies here.~
 9~ 0~ 0~ 0~ 0~
 35 9000 0
 A
-4 3
+4 3 0
 E
 helmet silvery~
 The helmet is made from platinum or silver and has a white fur brush attached
@@ -547,7 +559,7 @@ The shield of the rose rests on the floor.~
 10~ 0~ 0~ 0~ 0~
 60 15000 0
 A
-17 -10
+17 -10 0
 E
 shield~
 On the shield you see a clear and perfect painting of a dark red rose on a white
@@ -562,7 +574,7 @@ A pair of silvery boots stand on the floor.~
 8~ 0~ 0~ 0~ 0~
 40 2000 0
 A
-2 3
+2 3 0
 E
 boots silvery~
 The boots are made from a silvery metal.
@@ -576,7 +588,7 @@ On the floor you see some silvery arm plates.~
 8~ 0~ 0~ 0~ 0~
 40 12500 0
 A
-5 3
+5 3 0
 E
 plates arm silvery~
 They seem to be made from silver or platinum. You see the outline of a rose.
@@ -590,7 +602,7 @@ A white cloak lies on the floor.~
 10~ 0~ 0~ 0~ 0~
 20 10000 0
 A
-24 -5
+24 -5 0
 E
 cloak white~
 This is a very fine made cloak from an unknown material, in a bright white
@@ -645,9 +657,9 @@ A large reddish sphere is in the center of the room.~
 13~ 10~ 10~ sanctuary~ 0~
 5 10000 0
 A
-3 2
+3 2 0
 A
-4 2
+4 2 0
 #7304
 red torso~
 a red dragon torso~
@@ -657,9 +669,9 @@ There is a pile of red dragonscale on the floor.~
 9~ 0~ 0~ 0~ 0~
 30 50000 0
 A
-2 -1
+2 -1 0
 A
-19 2
+19 2 0
 #7305
 leggings red~
 red dragonscale leggings~
@@ -669,9 +681,9 @@ On the floor you see two red dragonscale leggings.~
 9~ 0~ 0~ 0~ 0~
 17 12500 0
 A
-2 -1
+2 -1 0
 A
-19 2
+19 2 0
 #7306
 claws dragonclaws red~
 a pair of red dragon claws~
@@ -681,7 +693,7 @@ You can see a pair of large red dragon claws on the floor.~
 9~ 0~ 0~ 0~ 0~
 4 900 0
 A
-19 2
+19 2 0
 #7307
 skull dragonhelm red helm helmet~
 a red dragonhelm~
@@ -691,11 +703,11 @@ A helmet fashioned into the likeness of a dragon skull is here.~
 9~ 0~ 0~ 0~ 0~
 15 9000 0
 A
-2 -1
+2 -1 0
 A
-19 2
+19 2 0
 A
-4 2
+4 2 0
 #7308
 shield red~
 the red dragon shield~
@@ -705,7 +717,7 @@ A large red dragon shield rests on the floor.~
 10~ 0~ 0~ 0~ 0~
 10 15000 0
 A
-19 2
+19 2 0
 #7309
 greaves red~
 a pair of a red dragon's rear claws~
@@ -715,9 +727,9 @@ A pair of a red dragon's rear claws is on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 2000 0
 A
-19 2
+19 2 0
 A
-2 -1
+2 -1 0
 #7310
 arm guards red~
 red dragon arm guards~
@@ -727,9 +739,9 @@ On the ground you see two red arm guards.~
 9~ 0~ 0~ 0~ 0~
 40 12500 0
 A
-19 2
+19 2 0
 A
-2 -1
+2 -1 0
 #0
 
 

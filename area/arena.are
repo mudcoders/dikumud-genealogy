@@ -348,13 +348,13 @@ A powerful armor lies here.~
 0~ 0~ 0~ 0~ 0~
 20 1000 0
 A
-5 2
+19 5 0
 A
-13 50
+23 -5 0
 A
-23 -5
+13 50 0
 A
-19 5
+5 2 0
 E
 armor~
 As you look closer you notice this is no ordinary armor, it must have been made
@@ -369,11 +369,11 @@ A huge sword rests here.~
 0~ 0~ 0~ 3~ 0~
 8 1000 0
 A
-18 8
+1 2 0
 A
-19 8
+19 8 0
 A
-1 2
+18 8 0
 E
 sword thunderblade~
 The holy ThunderBlade was made by the Gods to aid Heimmdall in his quest. He
@@ -389,11 +389,11 @@ A magic ring is floating here.~
 100~ 0~ 0~ 0~ 0~
 5 1000 0
 A
-13 20
+17 -10 0
 A
-19 6
+19 6 0
 A
-17 -10
+13 20 0
 E
 ring honor~
 The ring of honor is a gift of the Gods to those who have a high sense of
@@ -408,11 +408,11 @@ A bloody scarf lies here.~
 0~ 0~ 0~ 0~ 0~
 5 1000 0
 A
-18 2
+3 1 0
 A
-17 -20
+17 -20 0
 A
-3 1
+18 2 0
 #11004
 scroll doom~
 the scroll of Doom~
@@ -438,11 +438,11 @@ Some robes lies here sucking the light of this room.~
 0~ 0~ 0~ 0~ 0~
 6 1000 0
 A
-12 50
+4 3 0
 A
-24 -10
+24 -10 0
 A
-4 3
+12 50 0
 E
 black robes~
 These are the mythical robes of the Lord of the Night himself.
@@ -456,13 +456,13 @@ A strange looking wand lies here.~
 40~ 50~ 50~ energy drain~ 0~
 1 1000 0
 A
-18 2
+2 2 0
 A
-17 -10
+19 2 0
 A
-19 2
+17 -10 0
 A
-2 2
+18 2 0
 #11008
 ring sorcery~
 a Ring of Sorcery~
@@ -472,13 +472,13 @@ A magical ring floats in the air.~
 0~ 0~ 0~ 0~ 0~
 1 1000 0
 A
-12 50
+17 -20 0
 A
-18 5
+3 2 0
 A
-3 2
+18 5 0
 A
-17 -20
+12 50 0
 #11009
 blue field force~
 a Blue Force field~
@@ -488,11 +488,11 @@ A strange blue light floats in the air.~
 0~ 0~ 0~ 0~ 0~
 1 1000 0
 A
-2 4
+24 -10 0
 A
-17 -40
+17 -40 0
 A
-24 -10
+2 4 0
 #11010
 silver~
 a Silver Dagger~
@@ -502,11 +502,11 @@ A silver dagger lies here.~
 0~ 0~ 0~ 2~ 0~
 5 1000 0
 A
-18 8
+13 10 0
 A
-19 6
+19 6 0
 A
-13 10
+18 8 0
 #11011
 gauntlets neutronium~
 a pair of neutronium gauntlets~
@@ -516,11 +516,11 @@ A pair of shiny gauntlets lies here.~
 0~ 0~ 0~ 0~ 0~
 5 1000 0
 A
-1 4
+19 4 0
 A
-18 2
+18 2 0
 A
-19 4
+1 4 0
 #11012
 shield darkness~
 a Shield of Darkness~
@@ -530,11 +530,11 @@ A evil looking shield lies here.~
 0~ 0~ 0~ 0~ 0~
 8 1000 0
 A
-23 -5
+19 2 0
 A
-17 -5
+17 -5 0
 A
-19 2
+23 -5 0
 #11013
 sword dragonslayer~
 a unholy DragonSlayer sword~
@@ -544,13 +544,13 @@ A sword rests here.~
 0~ 0~ 0~ 3~ 0~
 10 1000 0
 A
-18 6
+17 -10 0
 A
-19 6
+13 20 0
 A
-13 20
+19 6 0
 A
-17 -10
+18 6 0
 #11014
 armor unholy~
 a Unholy Armor~
@@ -560,11 +560,11 @@ A strange looking armor lies here.~
 0~ 0~ 0~ 0~ 0~
 15 1000 0
 A
-18 5
+17 -5 0
 A
-19 5
+19 5 0
 A
-17 -5
+18 5 0
 #11015
 dark arm plates~
 some Dark Arm Plates~
@@ -574,9 +574,9 @@ Some plates lie here.~
 0~ 0~ 0~ 0~ 0~
 7 1000 0
 A
-1 2
+18 3 0
 A
-18 3
+1 2 0
 #11016
 hammer steel~
 a huge steel hammer~
@@ -586,13 +586,13 @@ A huge steel hammer lies here.~
 0~ 0~ 0~ 8~ 0~
 5 1000 0
 A
-18 -6
+24 -5 0
 A
-19 12
+17 -10 0
 A
-17 -10
+19 12 0
 A
-24 -5
+18 -6 0
 #11017
 flame darkness~
 a Flame of Darkness~
@@ -602,21 +602,21 @@ A flame made of pure evil floats in the air.~
 0~ 0~ -1~ 0~ 0~
 1 1000 0
 A
-24 -5
+18 4 0
 A
-23 -5
+13 25 0
 A
-1 2
+12 25 0
 A
-2 2
+3 2 0
 A
-3 2
+2 2 0
 A
-12 25
+1 2 0
 A
-13 25
+23 -5 0
 A
-18 4
+24 -5 0
 #11018
 silvery skull~
 a Silvery Skull~
@@ -626,17 +626,17 @@ A skull made of some metal rests here.~
 0~ 0~ 0~ 0~ 0~
 6 1000 0
 A
-4 3
+12 50 0
 A
-3 3
+19 2 0
 A
-5 3
+13 50 0
 A
-13 50
+5 3 0
 A
-19 2
+3 3 0
 A
-12 50
+4 3 0
 #11019
 dark helm~
 a dark helm~
@@ -646,13 +646,13 @@ A dark helm rests here.~
 0~ 0~ 0~ 0~ 0~
 5 1000 0
 A
-13 50
+19 4 0
 A
-3 -2
+18 4 0
 A
-18 4
+3 -2 0
 A
-19 4
+13 50 0
 #11020
 ring speed~
 a Ring of Speed~
@@ -662,9 +662,9 @@ A small ring rests here.~
 0~ 0~ 0~ 0~ 0~
 2 1000 0
 A
-2 4
+14 150 0
 A
-14 150
+2 4 0
 #11021
 bones~
 some bones~
@@ -727,12 +727,6 @@ one be you of course. Good look adventurer the kill free zone is north.
 ~
 0 1044 0
 E
-skull skulls~
-Has you look at the skull you can't help to feel sad for the poor creature's
-demise. After all it could well be you who got your skull onto a spear end.
-BRRRRR. Wait... You notice there is some writing in the skull!
-~
-E
 writing~
 I am writing this on the skull in case i don't return to the surface. Having
 heard some strange rumors of a strange evil force around this place i found
@@ -740,6 +734,12 @@ out this Arena to be more than it seems... I found a trap door in the floor of
 this room. I will try to find what strange force lurks there...
 
                                                            Xangtoac the Priest
+~
+E
+skull skulls~
+Has you look at the skull you can't help to feel sad for the poor creature's
+demise. After all it could well be you who got your skull onto a spear end.
+BRRRRR. Wait... You notice there is some writing in the skull!
 ~
 D0
 ~

@@ -638,9 +638,9 @@ A black helmet is on the floor.~
 8~ 0~ 0~ 0~ 0~
 30 10000 0
 A
-13 1
+1 1 0
 A
-1 1
+13 1 0
 #10202
 sleeves obsidian~
 obsidian sleeves~
@@ -650,9 +650,9 @@ A pair of black sleeves are on the floor.~
 8~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-5 1
+24 -5 0
 A
-24 -5
+5 1 0
 #10203
 leggings obsidian~
 obsidian leggings~
@@ -662,9 +662,9 @@ Some black leggings are on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-14 20
+2 2 0
 A
-2 2
+14 20 0
 #10204
 gauntlets obsidian~
 obsidian gauntlets~
@@ -674,9 +674,9 @@ A pair of black gauntlets are on the floor.~
 11~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-18 3
+23 -3 0
 A
-23 -3
+18 3 0
 #10205
 boots obsidian~
 obsidian boots~
@@ -686,9 +686,9 @@ Some black boots are on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-13 10
+23 -6 0
 A
-23 -6
+13 10 0
 #10206
 cloak obsidian~
 obsidian cloak~
@@ -698,9 +698,9 @@ A black cloak lies on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-22 -4
+24 -2 0
 A
-24 -2
+22 -4 0
 #10207
 girth obsidian~
 the obsidian girth~
@@ -710,9 +710,9 @@ A black girth is on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-1 1
+24 -2 0
 A
-24 -2
+1 1 0
 #10208
 shield large obsidian~
 the large obsidian shield~
@@ -722,9 +722,9 @@ A large, black shield is on the floor.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-17 4
+19 3 0
 A
-19 3
+17 4 0
 #10209
 amulet solace~
 the amulet of Solace~
@@ -734,9 +734,9 @@ A shiny black amulet with a gold symbol is here.~
 9~ 0~ 0~ 0~ 0~
 40 10000 0
 A
-17 -3
+19 1 0
 A
-19 1
+17 -3 0
 #10210
 obsidian key~
 a obsidian key~
@@ -754,9 +754,9 @@ A black hilted sword with engravings on the blade lie here.~
 0~ 6~ 8~ 1~ 0~
 7 10000 0
 A
-18 5
+19 4 0
 A
-19 4
+18 5 0
 E
 sword~
 The blade of the sword is a full meter long, and straight as an arrow, with
@@ -780,9 +780,9 @@ A shiny ring of obsidian is in the dirt.~
 6~ 0~ 0~ 0~ 0~
 1 1000 0
 A
-24 -2
+13 4 0
 A
-13 4
+24 -2 0
 #10213
 bracer~
 an obsidian bracer~
@@ -814,11 +814,11 @@ A black hilted sword with engravings on the blade lie here.~
 0~ 6~ 8~ 1~ 0~
 7 10000 0
 A
-18 2
+23 -15 0
 A
-19 6
+19 6 0
 A
-23 -15
+18 2 0
 E
 sword~
 The blade of the sword is a full meter long, and straight as an arrow, with
@@ -842,9 +842,9 @@ A steel helmet is on the floor.~
 5~ 0~ 0~ 0~ 0~
 25 10000 0
 A
-21 -2
+3 1 0
 A
-3 1
+21 -2 0
 #10217
 sleeves steel~
 steel sleeves~
@@ -854,9 +854,9 @@ A pair of steel sleeves are on the floor.~
 7~ 0~ 0~ 0~ 0~
 35 10000 0
 A
-20 -2
+24 -1 0
 A
-24 -1
+20 -2 0
 #10218
 leggings steel~
 steel leggings~
@@ -866,9 +866,9 @@ Some steel leggings are on the floor.~
 8~ 0~ 0~ 0~ 0~
 35 10000 0
 A
-14 10
+2 1 0
 A
-2 1
+14 10 0
 #10219
 gauntlets steel~
 steel gauntlets~
@@ -878,11 +878,11 @@ A pair of steel gauntlets are on the floor.~
 9~ 0~ 0~ 0~ 0~
 35 10000 0
 A
-18 1
+1 1 0
 A
-23 -1
+23 -1 0
 A
-1 1
+18 1 0
 #10220
 boots steel~
 steel boots~
@@ -892,9 +892,9 @@ Some steel boots are on the floor.~
 8~ 0~ 0~ 0~ 0~
 35 10000 0
 A
-13 5
+23 -2 0
 A
-23 -2
+13 5 0
 #10221
 cloak lieutenant ~
 the lieutenant's cloak~
@@ -904,9 +904,9 @@ A lieutenant's cloak lies on the floor.~
 8~ 0~ 0~ 0~ 0~
 35 10000 0
 A
-22 -2
+24 -1 0
 A
-24 -1
+22 -2 0
 #10222
 girth steel~
 the steel girth~
@@ -916,7 +916,7 @@ A steel girth is on the floor.~
 8~ 0~ 0~ 0~ 0~
 35 10000 0
 A
-24 -1
+24 -1 0
 #10223
 shield large steel~
 the large steel shield~
@@ -926,9 +926,9 @@ A large, steel shield is on the floor.~
 8~ 0~ 0~ 0~ 0~
 35 10000 0
 A
-17 2
+19 1 0
 A
-19 1
+17 2 0
 #10224
 bracer steel~
 a steel bracer~
@@ -938,7 +938,7 @@ You see a steel bracer here.~
 6~ 0~ 0~ 0~ 0~
 9 0 0
 A
-12 5
+12 5 0
 #10225
 sword shieldbreaker~
 black hilted sword called, "Shieldbreaker"~
@@ -948,13 +948,13 @@ A black hilted sword with engravings on the blade lie here.~
 0~ 10~ 35~ 11~ 0~
 7 10000 0
 A
-13 -50
+24 10 0
 A
-18 10
+19 10 0
 A
-19 10
+18 10 0
 A
-24 10
+13 -50 0
 E
 sword~
 The blade of the sword is a full meter long, and straight as an arrow, with
@@ -978,7 +978,7 @@ A red helmet is on the floor.~
 4~ 0~ 0~ 0~ 0~
 20 10000 0
 A
-21 -1
+21 -1 0
 #10227
 sleeves red scalemail~
 red scalemail sleeves~
@@ -988,7 +988,7 @@ A pair of red scalemail sleeves are on the floor.~
 6~ 0~ 0~ 0~ 0~
 30 10000 0
 A
-20 -1
+20 -1 0
 #10228
 leggings red scalemail~
 red scalemail leggings~
@@ -998,7 +998,7 @@ Some red scalemail leggings are on the floor.~
 7~ 0~ 0~ 0~ 0~
 30 10000 0
 A
-14 5
+14 5 0
 #10229
 gauntlets red scalemail~
 red scalemail gauntlets~
@@ -1008,7 +1008,7 @@ A pair of red scalemail gauntlets are on the floor.~
 8~ 0~ 0~ 0~ 0~
 30 10000 0
 A
-21 -1
+21 -1 0
 #10230
 boots red scalemail~
 red scalemail boots~
@@ -1018,9 +1018,9 @@ Some red scalemail boots are on the floor.~
 7~ 0~ 0~ 0~ 0~
 30 10000 0
 A
-13 2
+23 -1 0
 A
-23 -1
+13 2 0
 #10231
 cloak red sergeant~
 the red sergeant's cloak~
@@ -1030,7 +1030,7 @@ A red sergeant's cloak lies on the floor.~
 7~ 0~ 0~ 0~ 0~
 30 10000 0
 A
-22 -1
+22 -1 0
 #10232
 girth red scalemail~
 the red scalemail girth~
@@ -1048,7 +1048,7 @@ A large, red shield is on the floor.~
 7~ 0~ 0~ 0~ 0~
 30 10000 0
 A
-17 1
+17 1 0
 #10234
 bracer red~
 a red bracer~
@@ -1058,7 +1058,7 @@ You see a red bracer here.~
 5~ 0~ 0~ 0~ 0~
 9 0 0
 A
-12 1
+12 1 0
 #10235
 warhammer mage masher~
 a red steel warhammer called, "Mage Masher"~
@@ -1068,11 +1068,11 @@ A red steel warhammer with engravings on the head lies here.~
 0~ 6~ 15~ 8~ 0~
 35 10000 0
 A
-18 4
+12 -50 0
 A
-19 1
+19 1 0
 A
-12 -50
+18 4 0
 E
 hammer warhammer~
 This hammer has the words, "MAGE MASHER" engraved into it's head.
@@ -1088,9 +1088,9 @@ A suit of black platemail is sitting on the floor.~
 7~ 0~ 0~ 0~ 0~
 10 1000 0
 A
-24 -1
+13 8 0
 A
-13 8
+24 -1 0
 #10237
 enchanted longsword~
 enchanted longsword~
@@ -1100,7 +1100,7 @@ A blade with runes etched in it is on the floor.~
 0~ 3~ 12~ 3~ 0~
 7 1000 0
 A
-18 2
+18 2 0
 #10238
 enchanted hammer~
 enchanted hammer~
@@ -1110,7 +1110,7 @@ A hammer with runes etched in it is on the floor.~
 0~ 2~ 10~ 7~ 0~
 12 1000 0
 A
-18 2
+18 2 0
 #10239
 enchanted pike polearm~
 enchanted pike~
@@ -1120,7 +1120,7 @@ A polearm with runes etched in it is on the floor.~
 0~ 6~ 15~ 1~ 0~
 7 1000 0
 A
-18 2
+18 2 0
 #10240
 chamorro ringmail~
 chamorro ringmail~
@@ -1130,7 +1130,7 @@ A bunch of rings sewn together with taotamoa bark is on the ground.~
 11~ 0~ 0~ 0~ 0~
 6 1000 0
 A
-12 15
+12 15 0
 E
 ringmail~
 This armor is imported from the island of Guam.
@@ -1208,7 +1208,7 @@ A bunch of taxes and fines are here waiting to take your money.~
 0~ 10~ 15~ 12~ 0~
 40 100 0
 A
-15 -10000
+15 -10000 0
 #10250
 enchanted two-handed sword~
 enchanted two-handed sword~
@@ -1218,7 +1218,7 @@ A large two-handed sword with runes etched in it is on the floor.~
 0~ 5~ 15~ 2~ 0~
 7 1000 0
 A
-18 2
+18 2 0
 #10251
 carrot~
 carrot~
@@ -1372,7 +1372,7 @@ A frozen asparagus spear is on the ground melting.~
 0~ 3~ 9~ 0~ 0~
 15 1000 0
 A
-18 1
+18 1 0
 #10270
 mulburry extract~
 mulburry extract~
@@ -1430,7 +1430,7 @@ A pair of flippers are here.~
 6~ 0~ 0~ 0~ 0~
 7 400 0
 A
-2 2
+2 2 0
 #10277
 scuba snorkle~
 scuba snorkle~
@@ -1568,9 +1568,9 @@ A pile of cloth is on the ground. The cloth is covered with arcane symbols.~
 10~ 0~ 0~ 0~ 0~
 10 400 0
 A
-12 20
+24 -5 0
 A
-24 -5
+12 20 0
 #10294
 crystal plate armor~
 crystal plate armor~
@@ -1580,11 +1580,11 @@ A finely crafted suit of crystal plate armor is here.~
 12~ 0~ 0~ 0~ 0~
 60 400 0
 A
-1 1
+13 10 0
 A
-5 1
+5 1 0
 A
-13 10
+1 1 0
 #10295
 scythe grim reaper~
 scythe of the Grim Reaper~
@@ -1594,11 +1594,11 @@ A huge bloody scythe is here floating above the ground~
 0~ 100~ 100~ 0~ 0~
 50 400 0
 A
-18 80
+24 -30 0
 A
-19 80
+19 80 0
 A
-24 -30
+18 80 0
 #10296
 crystal shield~
 crystal shield~
@@ -1608,7 +1608,7 @@ A finely crafted crystal shield is here.~
 12~ 0~ 0~ 0~ 0~
 20 400 0
 A
-13 10
+13 10 0
 #10297
 crystal longsword~
 crystal longsword~
@@ -1618,9 +1618,9 @@ A finely crafted crystal longsword is here.~
 0~ 5~ 12~ 1~ 0~
 7 400 0
 A
-13 10
+18 3 0
 A
-18 3
+13 10 0
 #10298
 obsidian plate armor~
 a suit of obsidian plate armor~
@@ -1630,9 +1630,9 @@ A suit of obsiadian plate armor is here on the ground.~
 15~ 0~ 0~ 0~ 0~
 40 400 0
 A
-13 20
+14 20 0
 A
-14 20
+13 20 0
 #10299
 steel plate armor~
 a suit of steel plate armor~
@@ -1642,9 +1642,9 @@ A suit of steel plate armor is here on the ground.~
 14~ 0~ 0~ 0~ 0~
 37 400 0
 A
-13 15
+14 15 0
 A
-14 15
+13 15 0
 #10300
 red plate armor~
 a suit of red plate armor~
@@ -1654,9 +1654,9 @@ A suit of red plate armor is here on the ground.~
 12~ 0~ 0~ 0~ 0~
 33 400 0
 A
-13 10
+14 10 0
 A
-14 10
+13 10 0
 #10301
 enchanted bow~
 enchanted bow~
@@ -1666,7 +1666,7 @@ A bow with runes etched in it is on the floor.~
 0~ 6~ 15~ 6~ 0~
 7 1000 0
 A
-18 2
+18 2 0
 #10302
 safe deposit box~
 safe deposit box~
@@ -1763,6 +1763,14 @@ There is a Gate to the south.
 ~
 0 0 1
 E
+plaque~
+*************
+Town of Solace
+*************
+
+Brought to you by Strahd
+~
+E
 sign~
 **WELCOME TO SOLACE**
 
@@ -1776,14 +1784,6 @@ And please behave yourself.
 Gates will be closed and lock at night to keep the town safe.
 
 -Captain of the Guard-
-~
-E
-plaque~
-*************
-Town of Solace
-*************
-
-Brought to you by Strahd
 ~
 D0
 You see the Main road in Solace.

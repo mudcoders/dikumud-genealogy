@@ -1,12 +1,30 @@
+UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
+Monday, 14th July 1997
+
+Zen		vasc@camoes.rnl.ist.utl.pt
+
+
+=== Changes for Envy2.2 & HomeCooked:
+
+Please see 'new.txt' in the 'newdocs' directory, this file here should be very
+out of date. I sometimes do bugfixes which don't go there also, but that's life!
+
+
+- Zen
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 ILAB OLC Beta 1.1 For Envy2.0
 25th June 1997
 
 Christopher Smith	stoked@iastate.edu
 
 
-
 === Changes for Envy2.0:
-
 
 	Lots of porting - reset_room, etc :)
 	Removed number_fuzzy in load_mobiles() to keep Mobiles at constant level
@@ -40,9 +58,7 @@ ILAB OLC Beta 1.0 For Envy1.0
 Jason Dinkel	jdinkel@mines.colorado.edu
 
 
-
-=== What's new in ILAB OLC Beta 1.1 For Envy1.0
-
+=== What's new in ILAB OLC Beta 1.1 For Envy1.0:
 
 These are some of the changes that I have made to this version of OLC.
 Notice that I will not be keeping a running tally of repairs I have

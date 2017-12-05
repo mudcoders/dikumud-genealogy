@@ -651,13 +651,13 @@ the dead hands of one of their wielders.~
 0~ 0~ 0~ 1~ 0~
 14 0 0
 A
-1 2
+19 5 0
 A
-5 1
+18 5 0
 A
-18 5
+5 1 0
 A
-19 5
+1 2 0
 #10602
 breast shining breastplate~
 a shining breastplate~
@@ -669,13 +669,13 @@ a badge of honor.~
 1~ 0~ 0~ 0~ 0~
 24 0 0
 A
-10 1
+19 2 0
 A
-13 40
+18 2 0
 A
-18 2
+13 40 0
 A
-19 2
+10 1 0
 #10603
 shining helm~
 a shining helm~
@@ -687,7 +687,7 @@ peice of armor.~
 4~ 0~ 0~ 0~ 0~
 4 0 0
 A
-4 3
+4 3 0
 #10604
 shining gauntlets~
 a pair of shining gauntlets~
@@ -699,7 +699,7 @@ to use a sword with minimal effort.~
 4~ 0~ 0~ 0~ 0~
 8 0 0
 A
-2 2
+2 2 0
 #10605
 belt pride~
 a belt of pride~
@@ -711,9 +711,9 @@ been deemed worthy of knighthood.~
 2~ 0~ 0~ 0~ 0~
 4 0 0
 A
-20 5
+22 5 0
 A
-22 5
+20 5 0
 #10606
 purple cloak dark~
 a dark purple cloak~
@@ -726,13 +726,13 @@ the bards guild invented this cloak to assorb magic.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-24 10
+12 -50 0
 A
-21 10
+17 10 0
 A
-17 10
+21 10 0
 A
-12 -50
+24 10 0
 E
 assorb~
 Unfortunately the cloak assorbs magic from both the caster and the user of 
@@ -750,7 +750,7 @@ was created by the order of armorers to protect the paladin.~
 10~ 0~ 0~ 0~ 0~
 34 0 0
 A
-17 10
+17 10 0
 E
 cladding~
 Unfortunately the armor is heavy and the armorers are looking for some way to
@@ -767,21 +767,21 @@ the king to have a very mobile and potent force.~
 0~ 0~ 0~ 0~ 0~
 9 0 0
 A
-14 50
+2 1 0
 A
-17 5
+17 5 0
 A
-2 1
-E
-rare~
-The rarity of this chain has forced the king to keep the size of his forces 
-to a minimum.  There is a benefit to this.
-~
+14 50 0
 E
 benefit~
 The benefit is that the king does not have to have a huge supply line to
 feed his troops.  The training of his men and potency of their armor and
 weapons allow for a small, but potent force.
+~
+E
+rare~
+The rarity of this chain has forced the king to keep the size of his forces 
+to a minimum.  There is a benefit to this.
 ~
 #10609
 baladurian pendant~
@@ -795,13 +795,13 @@ standing symbol of Truth, Justice and the Baladurian way.~
 0~ 0~ 0~ 0~ 0~
 2 0 0
 A
-3 1
+24 -10 0
 A
-4 1
+18 4 0
 A
-18 4
+4 1 0
 A
-24 -10
+3 1 0
 E
 mishap~
 The mishap the poor knights suffered is a lessing of their magic resistance
@@ -819,13 +819,13 @@ has an an unfortunate side effect though.~
 0~ 0~ 0~ 0~ 0~
 5 0 0
 A
-3 -1
+17 5 0
 A
-4 -1
+1 2 0
 A
-1 2
+4 -1 0
 A
-17 5
+3 -1 0
 E
 side effect~
 This intelligent neckguard is actually a living being who is so intent upon
@@ -844,25 +844,25 @@ wear these shields have good cause to fear them.~
 0~ 0~ 0~ 0~ 0~
 18 0 0
 A
-17 10
+13 50 0
 A
-14 -50
+2 -2 0
 A
-2 -2
+14 -50 0
 A
-13 50
-E
-foes~
-The foes of the Baladurian Knights are the servants of Darkeness.  The one
-whos name you do not say is the evil that comes under all guises.  Most of
-thier foes are Drow, orcs and goblins.  They also come under the guise of
-humans and even elfs.~
+17 10 0
 E
 cause~
 The foes who see this shield know the man behind it is a brave warrior
 who is intelligent enough to have friends around to aide the cause of
 justice.  Otherwise, where there is one, there are more.
 ~
+E
+foes~
+The foes of the Baladurian Knights are the servants of Darkeness.  The one
+whos name you do not say is the evil that comes under all guises.  Most of
+thier foes are Drow, orcs and goblins.  They also come under the guise of
+humans and even elfs.~
 #10612
 robe white bright~
 a bright white robe~
@@ -875,27 +875,27 @@ but at a cost.~
 0~ 0~ 0~ 0~ 0~
 6 0 0
 A
-1 -4
+24 5 0
 A
-5 -2
+23 5 0
 A
-13 -50
+22 5 0
 A
-12 100
+21 5 0
 A
-18 -1
+20 5 0
 A
-19 -1
+19 -1 0
 A
-20 5
+18 -1 0
 A
-21 5
+12 100 0
 A
-22 5
+13 -50 0
 A
-23 5
+5 -2 0
 A
-24 5
+1 -4 0
 E
 cost~
 The robe artificially enhances the wizards magic abilities, but it does this by
@@ -912,22 +912,22 @@ him a warning if he failed to observe maintain his virtues.~
 0~ 0~ 0~ 7~ 0~
 5 0 0
 A
-4 3
+19 5 0
 A
-18 5
+18 5 0
 A
-19 5
-E
-warning~
-He told his son "Do not ever become evil because there is a dark beast who 
-will attempt to take your mind and your soul.  If you wish to remain with 
-the living you must stay good, not neutral, but good."
-~
+4 3 0
 E
 father~
 Ifors father was a great wizard of the ages past.  He was a marvelous ruler,
 but when the hords of dragons came he wished his son away before his ancient
 city was wiped out.
+~
+E
+warning~
+He told his son "Do not ever become evil because there is a dark beast who 
+will attempt to take your mind and your soul.  If you wish to remain with 
+the living you must stay good, not neutral, but good."
 ~
 #10614
 ball striped~
@@ -941,11 +941,11 @@ playing on the top of the stairs.~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-4 -6
+19 3 0
 A
-18 3
+18 3 0
 A
-19 3
+4 -6 0
 #10615
 bed~
 Sabrina's pink canopied bed~
@@ -981,9 +981,9 @@ Pink panties are what all little girls wear for comfort and protection.~
 0~ 0~ 0~ 0~ 0~
 2 0 0
 A
-23 25
+17 10 0
 A
-17 10
+23 25 0
 #10619
 training bra~
 a lace trimmed training bra~
@@ -993,9 +993,9 @@ For a young girl coming of age this is a necessary item.~
 0~ 0~ 0~ 0~ 0~
 2 0 0
 A
-17 10
+6 2 0
 A
-6 2
+17 10 0
 #10620
 chest toychest~
 A toy chest~
@@ -1091,15 +1091,15 @@ You are not sure, but you believe dog collars are in vogue now.~
 0~ 0~ 0~ 0~ 0~
 3 0 0
 A
-3 -5
+19 3 0
 A
-4 -5
+18 3 0
 A
-17 10
+17 10 0
 A
-18 3
+4 -5 0
 A
-19 3
+3 -5 0
 #10630
 yard stick yardstick wooden~
 a wooden yardstick~
@@ -1192,7 +1192,7 @@ You see a feather duster laying here.~
 8~ 0~ 0~ 0~ 0~
 2 0 0
 A
-12 35
+12 35 0
 E
 featherduster duster~
 This is a tool that all good maids use.  They use it to tickle the fancy of
@@ -1206,7 +1206,7 @@ A pair of soft cotton slippers lie here.~
 0~ 0~ 0~ 0~ 0~
 2 0 0
 A
-14 100
+14 100 0
 E
 cotton slippers~
 This pair of slippers was made for comfort and silence so the maid can glide
@@ -1278,25 +1278,25 @@ The cursed staff of Nyrobia is kept here out of the hands of evil wizards.~
 35~ 25~ 25~ blindness~ 0~
 8 0 0
 A
-18 -5
+14 -100 0
 A
-19 -5
+5 -5 0
 A
-12 100
+1 -4 0
 A
-13 -100
+17 75 0
 A
-3 4
+4 4 0
 A
-4 4
+3 4 0
 A
-17 75
+13 -100 0
 A
-1 -4
+12 100 0
 A
-5 -5
+19 -5 0
 A
-14 -100
+18 -5 0
 #10647
 breast bronze breastplate~
 a bronze breastplate~
@@ -1314,15 +1314,15 @@ These shields protect the regulars from distance spells.~
 4~ 0~ 0~ 0~ 0~
 7 0 0
 A
-20 8
+24 8 0
 A
-21 8
+23 8 0
 A
-22 8
+22 8 0
 A
-23 8
+21 8 0
 A
-24 8
+20 8 0
 #10649
 shinguards bronze~
 a pair of bronze shinguards~
@@ -1362,11 +1362,11 @@ A large hammer lies here.~
 0~ 0~ 0~ 8~ 0~
 5 300 0
 A
-13 100
+19 10 0
 A
-18 5
+18 5 0
 A
-19 10
+13 100 0
 E
 hammer~
 This well worn hammer must have been a wonderful item at one time because
@@ -1418,17 +1418,17 @@ A blue embroidered white towel lies here~
 0~ 0~ 0~ 6~ 0~
 1 0 0
 A
-18 4
+19 5 0
 A
-19 5
-E
-towel white~
-This neatly folded white towel is embroidered with a blue sigel of the
-paladins of Naytil.~
+18 4 0
 E
 sigel~
 The sword and cross emblem is on that signifies holiness and the willingness
 to back up your believes with action if necessary.~
+E
+towel white~
+This neatly folded white towel is embroidered with a blue sigel of the
+paladins of Naytil.~
 #10657
 sheet white~
 a starched white sheet~
@@ -1438,7 +1438,7 @@ A neatly folded white bed sheet lies here~
 2~ 0~ 0~ 0~ 0~
 3 0 0
 A
-1 2
+1 2 0
 E
 sheet white~
 This neatly folded sheet is for use on the beds in the castle, of course
@@ -1463,9 +1463,9 @@ A heap of human teeth are lying in a heap here~
 0~ 0~ 0~ 0~ 0~
 1 0 0
 A
-18 5
+19 5 0
 A
-19 5
+18 5 0
 E
 teeth necklace~
 This string of teeth is a remnant of some of the missing prisoners~
@@ -1838,9 +1838,10 @@ There is a door to the south.
 ~
 0 8 0
 E
-holy~
-This symbol is that of a cross crossed with a sword.  It is the symbol of the
-mighty god Owinpell.
+Owinpell~
+Owinpell is the king of the gods of Baladur.  This pantheon leads and 
+controls the daily lives of the city of Baladur.  Owinpell is a good and
+lawful god.  He is the god of Paladins and protects the good of the world.
 ~
 E
 arcane~
@@ -1849,10 +1850,9 @@ which drives the world.  This also serves as a protective device for the
 rooms occupant.
 ~
 E
-Owinpell~
-Owinpell is the king of the gods of Baladur.  This pantheon leads and 
-controls the daily lives of the city of Baladur.  Owinpell is a good and
-lawful god.  He is the god of Paladins and protects the good of the world.
+holy~
+This symbol is that of a cross crossed with a sword.  It is the symbol of the
+mighty god Owinpell.
 ~
 D0
 A door with arcane symbols leads to the north.
@@ -2264,12 +2264,12 @@ by an inhuman persistance. There is a LARGE sign hanging here.
 ~
 0 8 0
 E
-sigel~
-The demon behind this door will kill you if you pass.
-~
-E
 large sign~
 DO NOT CROSS MY THRESHOLD, you have been warned.
+~
+E
+sigel~
+The demon behind this door will kill you if you pass.
 ~
 D0
 This ominous black door has a sigel attached to it.
@@ -2345,14 +2345,14 @@ A door leads to the south.
 ~
 0 8 0
 E
-artistry~
-The artistry in Baladur all tends towards things that are good.  So do 
-the paintings in this room.
-~
-E
 painting paintings~
 The paintings of the King and Queen are very well done.  You have seen the
 King before and the queen looks like the person standing before you.
+~
+E
+artistry~
+The artistry in Baladur all tends towards things that are good.  So do 
+the paintings in this room.
 ~
 D2
 A fine gold inlaid door leads to the south.

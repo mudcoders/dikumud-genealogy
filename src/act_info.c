@@ -34,6 +34,7 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "olc.h"
 
 
 char *	const	where_name	[] =
@@ -514,8 +515,13 @@ void do_look( CHAR_DATA *ch, char *argument )
     if ( arg1[0] == '\0' || !str_cmp( arg1, "auto" ) )
     {
 	/* 'look' or 'look auto' */
-	sprintf ( buf, "{r%s{x\n\r", ch->in_room->name );
-        send_to_char( buf, ch );
+	if ( !IS_SET( ch->act, PLR_EDIT_INFO ) )
+	{
+	    sprintf ( buf, "{r%s{x\n\r", ch->in_room->name );
+	    send_to_char( buf, ch );
+	}
+	else
+	    show_room_info( ch, ch->in_room );
 
 	if ( !IS_NPC( ch ) && IS_SET( ch->act, PLR_AUTOEXIT ) )
 	    do_exits( ch, "auto" );
@@ -527,8 +533,7 @@ void do_look( CHAR_DATA *ch, char *argument )
 	    send_to_char( buf, ch );
 	}
 	
-	if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) 
-	    || IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
+        if ( IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
 	    send_to_char( "{BIt seems eerily quiet.{x\n\r", ch );
 
 	show_list_to_char( ch->in_room->contents, ch, FALSE, FALSE );
@@ -790,6 +795,33 @@ void do_exits( CHAR_DATA *ch, char *argument )
 	strcat( buf, "]{x\n\r" );
 
     send_to_char( buf, ch );
+    return;
+}
+
+
+
+/*
+ * Enhanced version of do_exits() done by Zen.
+ */
+void show_room_info( CHAR_DATA *ch, ROOM_INDEX_DATA *room )
+{
+    char buf	[ MAX_STRING_LENGTH ];
+    char buf1	[ MAX_STRING_LENGTH ];
+
+    if ( !IS_SET( ch->act, PLR_EDIT_INFO ) )
+	return;
+
+    buf[0] = '\0';
+    strcpy ( buf1, flag_string( room_flags, room->room_flags ) );
+    sprintf( buf, "{c[%d] %s [%s] <%s>{x\n\r",
+	    room->vnum,
+	    room->name,
+	    all_capitalize( buf1 ),
+	    flag_string( sector_flags, room->sector_type ) );
+    buf1[0] = '\0';
+    strcat( buf1, buf );
+    send_to_char( buf1, ch );
+
     return;
 }
 

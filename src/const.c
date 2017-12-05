@@ -67,131 +67,237 @@ const	struct	clan_type	clan_table	[MAX_CLAN]	=
 const   struct    race_type       race_table      [ MAX_RACE ]    =
 {
     { "Human",     RACE_PC_AVAIL | RACE_WEAPON_WIELD,      3, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, "punch", "Githyanki Vampire Werewolf Mindflayer"      },
+	0, 0, 0, 0, 0, "punch", "Githyanki Vampire Werewolf Mindflayer",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Elf",       RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
 	           RACE_WEAPON_WIELD,                      2, 0, 1, 0, 1, -1,
 	0, 4, 0, 0, 0, "punch",
-	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"                                                                    },
+	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Halfelf",   RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	                                                   3, 0, 0, 0, 1, 0,
 	0, 2, 0, 0, 0, "punch",
-	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin"},
+	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Drow",      RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
 	           RACE_WEAPON_WIELD,                      2, 0, 0, 1, 1, 0,
 	0, 4, 0, 0, 0, "punch",
-	"Elf Halfelf Hobbit Githyanki Vampire Werewolf"             },
+	"Elf Halfelf Hobbit Githyanki Vampire Werewolf",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Dwarf",     RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
 	           RACE_WEAPON_WIELD,                      2, 0, 0, 0, -1, 1,
 	0, 0, 0, 0, 1, "punch",
-	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"                                                          },
+	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Halfdwarf", RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	                                                   2, 0, 0, 0, 0, 1,
 	0, 0, 0, 0, 0, "punch",
-	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin"                                                                     },
+	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Hobbit",    RACE_PC_AVAIL | RACE_INFRAVISION | RACE_DETECT_HIDDEN      |
 	           RACE_WEAPON_WIELD,                      2, 0, 0, 0, 1, -1,
 	0, 0, 0, 0, 0, "punch",
-	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold"                                                          },
+	"Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Dragon Vampire Werewolf Goblin Halfkobold",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Gnome",     RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	                                                   2, -1, 0, 1, 1, -1,
 	0, 4, 0, 0, 0, "punch",
-	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin"},
+	"Drow Ogre Orc Kobold Troll Hobgoblin Dragon Vampire Werewolf Goblin",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Halfkobold", RACE_PC_AVAIL | RACE_INFRAVISION | RACE_WEAPON_WIELD,
 	                                                  2, -2, -1, -2, 3, -2,
-	0, 0, 0, 0, 0, "punch", "Ogre Orc Giant Troll Hobgoblin"             },
+	0, 0, 0, 0, 0, "punch", "Ogre Orc Giant Troll Hobgoblin",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_TAIL },
     { "Giant",     RACE_WEAPON_WIELD,                      6, 2, -1, 0, -1, 1,
 	3, -5, -2, 2, 4, "fist",
-	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"          },
+	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Ogre",      RACE_WEAPON_WIELD,                      6, 1, -1, 0, -1, 1,
 	2, -3, -1, 0, 2, "fist",
-	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"          },
+	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Orc",       RACE_INFRAVISION | RACE_WEAPON_WIELD,   4, 1, -1, 0, 0, 0,
 	2, -1, -1, 0, 1, "punch",
-	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"          },
+	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Kobold",    RACE_INFRAVISION | RACE_WEAPON_WIELD,   2, -1, -1, 0, 1, 0,
 	0, 0, 0, 0, 0, "punch",
-	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome Halfkobold"},
+	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome Halfkobold",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_TAIL },
     { "Minotaur",  RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 5, 2, 0, 0, -1, 1,
 	3, 0, -1, 0, 3, "fist",
-	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"          },
+	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_TAIL },
     { "Troll",     RACE_INFRAVISION | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	                                                   7, 2, -1, 0, 0, 1,
 	10, 0, 0, 0, 8, "fist",
-	"Human Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"    },
+	"Human Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_CLAWS | PART_FANGS },
     { "Hobgoblin", RACE_INFRAVISION | RACE_WEAPON_WIELD,   3, 1, 0, -1, 0, 1,
 	0, 0, 0, 0, 0, "punch",
-	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"          },
+	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Insect",    RACE_MUTE,                              0, 0, 0, 0, 0, -1,
-	0, 0, 5, 0, 0, "bite", ""                                            },
+	0, 0, 5, 0, 0, "bite", "",
+	PART_HEAD | PART_LEGS | PART_EYE },
     { "Dragon",    RACE_FLY | RACE_INFRAVISION | RACE_DETECT_ALIGN |
 	           RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	                                                   9, 2, 2, 1, -3, 2,
-	15, 0, -10, 0, 10, "claw", ""                                        },
+	15, 0, -10, 0, 10, "claw", "",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_WINGS | PART_TAIL | PART_CLAWS | PART_FANGS |
+	PART_SCALES },
     { "Animal",    RACE_DETECT_HIDDEN | RACE_MUTE,         2, 0, 0, 0, 1, 0,
-	0, 0, 0, 0, 0, "bite", "Kobold Halfkobold"                           },
+	0, 0, 0, 0, 0, "bite", "Kobold Halfkobold",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_GUTS | PART_FEET |
+	PART_EAR | PART_EYE },
     { "God",       RACE_WATERBREATH | RACE_FLY | RACE_SWIM | RACE_WATERWALK   |
 	           RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN       |
 		   RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_PROTECTION   |
 		   RACE_SANCT | RACE_WEAPON_WIELD,         8, 3, 3, 3, 3, 3,
-	20, 0, 10, 0, 0, "smite", ""                                         },
+	20, 0, 10, 0, 0, "smite", "",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Undead",    RACE_PASSDOOR | RACE_INFRAVISION | RACE_DETECT_ALIGN       |
 	           RACE_DETECT_INVIS | RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD,
 	                                                   3, 1, 0, 0, -2, 1,
 	0, 0, 0, -1, -1, "touch",
-	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Goblin Faerie Gnome"                                  },
+	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Goblin Faerie Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Harpy",     RACE_FLY | RACE_DETECT_INVIS | RACE_MUTE,
 	                                                   3, 0, 0, 0, 2, 0,
 	0, 0, 6, 0, 0, "claw",
-	"Human Elf Halfelf Dwarf Halfdwarf Hobbit Gnome"                     },
+	"Human Elf Halfelf Dwarf Halfdwarf Hobbit Gnome",
+	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
+	PART_FEET | PART_FINGERS | PART_EAR | PART_EYE | PART_WINGS |
+	PART_TAIL | PART_CLAWS | PART_FANGS | PART_SCALES },
     { "Bear",      RACE_SWIM | RACE_DETECT_HIDDEN | RACE_MUTE,
 	                                                   3, 1, 0, 0, -1, 1,
-	0, 0, 0, 0, 3, "swipe", ""                                           },
+	0, 0, 0, 0, 3, "swipe", "",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_EAR | PART_EYE | PART_CLAWS |
+	PART_FANGS },
     { "Githyanki", RACE_WEAPON_WIELD,                      3, 0, 1, 0, 0, 0,
-	0, 4, 0, 0, 0, "punch", "Mindflayer"                                 },
+	0, 4, 0, 0, 0, "punch", "Mindflayer",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Elemental", RACE_MUTE,                              4, 1, 0, 0, 0, 1,
-	0, 0, 0, -1, -1, "punch", ""                                         },
+	0, 0, 0, -1, -1, "punch", "",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE },
     { "Bat",       RACE_FLY | RACE_INFRAVISION | RACE_MUTE,
 	                                                   1, -1, 0, 0, 2, -1,
-	0, 0, 4, 0, 0, "bite", ""                                            },
+	0, 0, 4, 0, 0, "bite", "",
+	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
+	PART_FEET | PART_EAR | PART_EYE | PART_WINGS | PART_CLAWS |
+	PART_FANGS },
     { "Plant",     RACE_MUTE,                              1, 0, 0, 0, -1, 1,
-	0, 0, 0, -1, 0, "swipe", ""                                          },
+	0, 0, 0, -1, 0, "swipe", "",
+	PART_HEAD | PART_FANGS },
+
     { "Rat",       RACE_PASSDOOR | RACE_MUTE,              0, -1, 0, 0, 2, -1,
-	0, 0, 0, 0, 0, "bite", ""                                            },
+	0, 0, 0, 0, 0, "bite", "",
+	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
+	PART_FEET | PART_EAR | PART_EYE | PART_FANGS },
     { "Vampire",   RACE_FLY | RACE_PASSDOOR | RACE_INFRAVISION                |
 	           RACE_DETECT_ALIGN | RACE_DETECT_INVIS | RACE_DETECT_HIDDEN |
 		   RACE_WEAPON_WIELD,                      3, 1, 1, 0, 1, 2,
 	10, 3, 3, -1, 10, "claw",
-	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Werewolf Goblin Faerie Gnome"                         },
+	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Werewolf Goblin Faerie Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_FANGS },
     { "Werewolf",  RACE_INFRAVISION | RACE_DETECT_ALIGN | RACE_DETECT_INVIS   |
 	           RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 3, 2, 0, 1, 2, 3,
 	10, 0, 5, 0, 5, "claw",
-	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Vampire Goblin Faerie Gnome"                          },
+	"Human Elf Halfelf Drow Dwarf Halfdwarf Hobbit Giant Ogre Orc Kobold Minotaur Troll Hobgoblin Vampire Goblin Faerie Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_TAIL | PART_CLAWS | PART_FANGS },
     { "Goblin",    RACE_INFRAVISION | RACE_WEAPON_WIELD,   2, -1, -1, -1, 1, 0,
 	0, 0, 0, 0, 0, "punch",
-	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome"          },
+	"Elf Halfelf Dwarf Halfdwarf Hobbit Vampire Werewolf Gnome",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_TUSKS },
     { "Faerie",    RACE_FLY | RACE_INFRAVISION | RACE_DETECT_INVIS            |
 	           RACE_DETECT_HIDDEN | RACE_WEAPON_WIELD, 1, -2, 1, 1, 1, -1,
-	0, 0, 7, 0, 0, "punch", ""                                           },
+	0, 0, 7, 0, 0, "punch", "",
+	PART_HEAD | PART_ARMS | PART_LEGS | PART_HEART | PART_BRAINS |
+	PART_GUTS | PART_HANDS | PART_FEET | PART_FINGERS | PART_EAR |
+	PART_EYE | PART_WINGS },
     { "Arachnid",  RACE_NO_ABILITIES | RACE_WEAPON_WIELD | RACE_MUTE,
 	                                                   2, 0, 0, 0, 1, 0,
-	0, 0, 0, 0, 0, "bite", ""                                            },
+	0, 0, 0, 0, 0, "bite", "",
+	PART_HEAD | PART_LEGS | PART_HEART | PART_FEET | PART_EYE |
+	PART_FANGS },
     { "Mindflayer",RACE_INFRAVISION | RACE_WEAPON_WIELD,   3, 1, 2, 1, -1, 0,
-	0, 6, 0, 0, 0, "punch", "Githyanki"                                  },
+	0, 6, 0, 0, 0, "punch", "Githyanki",
+	PART_LEGS | PART_HEART | PART_GUTS | PART_FEET | PART_TENTACLES },
     { "Object",    RACE_WATERBREATH | RACE_MUTE,           3, 3, 0, 0, 0, 3,
-	0, 0, 0, -1, -1, "swing", ""                                         },
+	0, 0, 0, -1, -1, "swing", "",
+	PART_NONE },
     { "Mist",      RACE_FLY | RACE_PASSDOOR | RACE_MUTE,   2, -1, 0, 0, 3, 0,
-	0, 0, 20, -1, -1, "gas", ""                                          },
+	0, 0, 20, -1, -1, "gas", "",
+	PART_NONE },
     { "Snake",     RACE_MUTE,                              1, 0, 0, 0, 1, 0,
-	0, 0, 0, 0, 0, "bite", ""                                            },
+	0, 0, 0, 0, 0, "bite", "",
+	PART_HEAD | PART_HEART | PART_BRAINS | PART_GUTS | PART_EYE |
+	PART_TAIL | PART_FANGS | PART_SCALES },
     { "Worm",      RACE_PASSDOOR | RACE_MUTE,              0, 0, 0, 0, 0, 0,
-	0, 0, 0, 0, 0, "slime", ""                                           },
+	0, 0, 0, 0, 0, "slime", "",
+	PART_HEAD | PART_TAIL },
     { "Fish",      RACE_WATERBREATH | RACE_SWIM | RACE_MUTE,
 	                                                   1, 0, 0, 0, 2, 0,
-	0, 0, 0, -1, 0, "slap", ""                                           },
+	0, 0, 0, -1, 0, "slap", "",
+	PART_HEAD | PART_HEART | PART_BRAINS | PART_GUTS | PART_EYE |
+	PART_TAIL | PART_SCALES | PART_FINS },
     { "Hydra",     RACE_DETECT_HIDDEN | RACE_MUTE,         8, 2, 0, 0, -1, 2,
-	0, 0, 0, 0, 0, "bite", ""                                            },
+	0, 0, 0, 0, 0, "bite", "",
+	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
+	PART_FEET | PART_EYE | PART_TAIL | PART_FANGS | PART_SCALES },
     { "Lizard",    RACE_MUTE,                              1, -1, 0, 0, 1, 0,
-	0, 0, 0, 0, 0, "lash", ""                                            }
+	0, 0, 0, 0, 0, "lash", "",
+	PART_HEAD | PART_LEGS | PART_HEART | PART_BRAINS | PART_GUTS |
+	PART_FEET | PART_EYE | PART_TAIL | PART_FANGS }
 };
 
 
@@ -1550,7 +1656,7 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
 	/* New abilities added by Zen made by other ppl */
     {
         "scan",			{},
-        spell_null,		TAR_IGNORE,     POS_STANDING,
+        spell_null,		TAR_IGNORE,		POS_STANDING,
         &gsn_scan,		0,       24,
         "",			"!Scan!"
     },
@@ -1588,6 +1694,20 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
 	spell_null,		TAR_IGNORE,		POS_STANDING,
 	&gsn_scribe,		0,	 24,
 	"blunder",		"!Scribe!"
+    },
+
+    {
+        "track",		{},
+        spell_null,		TAR_IGNORE,		POS_STANDING,
+        &gsn_track,		0,       24,
+        "",			"!Track!"
+    },
+
+    {
+	"whirlwind",		{},
+	spell_null,		TAR_IGNORE,		POS_FIGHTING,
+	&gsn_whirlwind,		0,	 12,
+	"WhirlWind",		"!Whirlwind!"
     },
 
 	/*
@@ -1629,10 +1749,10 @@ struct	skill_type	skill_table	[MAX_SKILL]	=
     }, 
 
     {
-	"scry",			{},
-	spell_scry, 		TAR_IGNORE,		POS_STANDING,
+	"wizard eye",		{},
+	spell_wizard_eye, 	TAR_IGNORE,		POS_STANDING,
 	NULL,			15,	12,
-	"",			"!Scry!"
+	"",			"!Wizard Eye!"
     },
     
     {

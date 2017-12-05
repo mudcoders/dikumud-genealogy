@@ -1,5 +1,5 @@
-UNNOFICIAL Zen's EnvyMud patch Release 0.83! (HomeCooked Envy2.2)
-Monday, 30th June 1997
+UNNOFICIAL Zen's EnvyMud patch Release 0.85! (HomeCooked Envy2.2)
+Monday, 14th July 1997
 
 Zen             vasc@camoes.rnl.ist.utl.pt
 
@@ -15,11 +15,19 @@ stab at Envy coding so here's what i came up with.
 
 === BUGS/UNDOCUMENTED FEATURES in this release of HomeCooked:
 
-None i know of. I usually squash them when i see them. But see changes.txt also,
+None i know of. I usually squash them when i see them. But see new.txt also,
 just in case i forgot to add something here.
 
 
 === BUGS/UNDOCUMENTED FEATURES in Envy 2.2:
+
+
+Zen			don't do "ofind all"... If you do... shutdown!
+
+
+Zen			mobile_update() in update.c: mobs flee in terror if hurt
+			from some PC even if they can't see him...
+			Fixed!
 
 Zen			do_imtlset has a bug when you use the '-' option.
 			Sometimes the mud crashes with a segmentation fault...

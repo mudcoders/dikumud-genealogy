@@ -353,6 +353,7 @@ void mobile_update( void )
     CHAR_DATA *ch;
     EXIT_DATA *pexit;
     int        door;
+    char       buf [ MAX_STRING_LENGTH ];
 
     /* Examine all mobs. */
     for ( ch = char_list; ch; ch = ch->next )
@@ -366,6 +367,19 @@ void mobile_update( void )
 	    || !ch->in_room
 	    || IS_AFFECTED( ch, AFF_CHARM ) )
 	    continue;
+
+	if ( !IS_SET( ch->act, ACT_SENTINEL )
+	    && !ch->fighting
+	    && ch->hunting )
+	{
+	    WAIT_STATE( ch, 2 * PULSE_VIOLENCE );
+	    /* Comment this out temporarily to avoid spam - Scryn */
+	    sprintf( buf, "%s hunting %s from %s.", ch->name, ch->hunting->name,
+		    ch->in_room->name );
+	    log_string( buf );
+	    hunt_victim( ch );
+	    continue;
+	}  
 
 	/* Examine call for special procedure */
 	if ( ch->spec_fun != 0 )
@@ -436,7 +450,7 @@ void mobile_update( void )
 	{
 	    /* Give message if hurt */
 	    if ( rnum == 3 )
-	        act( "$n flees in terror!", ch, NULL, NULL, TO_ROOM );
+	        act( "$n wanders off terrified!", ch, NULL, NULL, TO_ROOM );
 		  
 	    move_char( ch, door );
 	                                        /* If ch changes
@@ -447,39 +461,61 @@ void mobile_update( void )
             if ( ch->position < POS_STANDING )
                 continue;
 
-	    /* If people are in the room, then flee. */
-	    if ( rnum == 3 )
+	}
+
+	/* If people are in the room, then flee. */
+	if ( rnum == 3
+	    && !IS_SET( ch->act, ACT_SENTINEL ) )
+	{
+	    CHAR_DATA *rch;
+
+	    for ( rch  = ch->in_room->people; rch; rch  = rch->next_in_room )
 	    {
-		CHAR_DATA *rch;
-		
-		for ( rch  = pexit->to_room->people;
-		      rch;
-		      rch  = rch->next_in_room )
+		if ( rch->deleted )
+		    continue;
+
+		/* If NPC can't see PC it shouldn't feel fear - Zen */
+		if ( !IS_NPC( rch ) && can_see( ch, rch ) )
 		{
-		    if ( rch->deleted )
-		        continue;
-		    if ( !IS_NPC( rch ) )
+		    int direction;
+
+		    door = -1;
+
+		    /* SMAUG had this. It makes some nice FX - Zen */
+		    if ( is_fearing( ch, rch ) )
 		    {
-		        int direction;
-
-		        door = -1;
-			act( "$n flees in terror!", ch, NULL, NULL, TO_ROOM );
-
-			/* Find an exit giving each one an equal chance */
-			for ( direction = 0; direction <= 5; direction++ )
+			switch( number_bits( 2 ) )
 			{
-			    if ( ch->in_room->exit[direction]
-				&& number_range( 0, direction ) == 0 )
-			        door = direction;
+			default: sprintf( buf, "May i have some peace %s?",
+					 rch->name );			break;
+			case  0: sprintf( buf, "Get away from me, %s!",
+					 rch->name );			break;
+			case  1: sprintf( buf, "Leave me be, %s!",
+					    rch->name );		break;
+			case  2: sprintf( buf, "%s is trying to kill me! Help!",
+					 rch->name );			break;
+			case  3: sprintf( buf, "Someone save me from %s!",
+					    rch->name );		break;
 			}
-
-			/* If no exit, attack.  Else flee! */
-			if ( door == -1 )
-			    multi_hit( ch, rch, TYPE_UNDEFINED );
-			else
-			    move_char( ch, door );
-			break;
+			do_yell( ch, buf );
 		    }
+
+		    act( "$n flees in terror!", ch, NULL, NULL, TO_ROOM );
+
+		    /* Find an exit giving each one an equal chance */
+		    for ( direction = 0; direction <= 5; direction++ )
+		    {
+			if ( ch->in_room->exit[direction]
+			    && number_range( 0, direction ) == 0 )
+			    door = direction;
+		    }
+
+		    /* If no exit, attack.  Else flee! */
+		    if ( door == -1 )
+			multi_hit( ch, rch, TYPE_UNDEFINED );
+		    else
+			move_char( ch, door );
+		    break;
 		}
 	    }
 	}

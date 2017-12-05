@@ -8,6 +8,21 @@ End
 
 
 
+#HELPS
+
+-1 DWARF DWARVES~
+DWARVES are a race of hardy individuals known for their love of adventure and
+great food.  DWARVES still hold their racial dislikes and prefer to act on
+them before anything else.  Because of their squat stature, they gain certain
+size bonuses in combat yet are not as dexterious.  DWARVES do have better
+bodily health than most civilized races due to racial development.
+DWARVES have certain abilities available to them.
+	* Infravision.
+	* Detect Hidden.
+~
+
+0 $~
+
 #MOBILES
 #6500
 dwarf guard~
@@ -263,9 +278,9 @@ A two-handed Dwarven axe is here.~
 0~ 2~ 7~ 1~ 0~
 5 5000 0
 A
-18 2
+18 2 0
 A
-1 2
+1 2 0
 #6510
 helmet~
 a dwarven helmet~
@@ -283,9 +298,9 @@ A pretty golden ring is here.~
 0~ 0~ 0~ 0~ 0~
 1 15000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 #6512
 gloves~
 dwarven gloves~
@@ -295,9 +310,9 @@ Thick dwarven gloves lay here.~
 4~ 0~ 0~ 0~ 0~
 2 4000 0
 A
-1 1
+1 1 0
 A
-2 1
+2 1 0
 #6513
 note~
 a note~

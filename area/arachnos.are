@@ -244,9 +244,9 @@ A white cone-shaped head ornament with religious symbols lies here.~
 6~ 0~ 0~ 0~ 0~
 5 20000 0
 A
-4 3
+4 3 0
 A
-17 -2
+17 -2 0
 #6304
 visor black knight's~
 a black knight's visor~
@@ -256,9 +256,9 @@ A black visor sits here.~
 6~ 0~ 0~ 0~ 0~
 5 20000 0
 A
-1 1
+1 1 0
 A
-5 2
+5 2 0
 #6308
 coins gold~
 a big pile of gold coins~

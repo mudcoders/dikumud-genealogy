@@ -77,19 +77,19 @@ char *olc_ed_name(CHAR_DATA * ch)
     switch (ch->desc->editor)
     {
 	case ED_AREA:
-	    sprintf(buf, "AEdit");
+	    sprintf(buf, "AEDIT");
 	    break;
 	case ED_ROOM:
-	    sprintf(buf, "REdit");
+	    sprintf(buf, "REDIT");
 	    break;
 	case ED_OBJECT:
-	    sprintf(buf, "OEdit");
+	    sprintf(buf, "OEDIT");
 	    break;
 	case ED_MOBILE:
-	    sprintf(buf, "MEdit");
+	    sprintf(buf, "MEDIT");
 	    break;
 	case ED_MPROG:
-	    sprintf(buf, "MPEdit");
+	    sprintf(buf, "MPEDIT");
 	    break;
 	default:
 	    sprintf(buf, " ");
@@ -214,6 +214,7 @@ bool show_commands(CHAR_DATA * ch, char *argument)
 const struct olc_cmd_type aedit_table[] =
 {
 /*  {   command          function                }, */
+    {	"show", 	aedit_show	},
     {	"age", 		aedit_age	},
     {	"builders", 	aedit_builder	},
     {	"commands", 	show_commands	},
@@ -223,7 +224,6 @@ const struct olc_cmd_type aedit_table[] =
     {	"recall", 	aedit_recall	},
     {	"reset", 	aedit_reset	},
     {	"security", 	aedit_security	},
-    {	"show", 	aedit_show	},
     {	"vnum", 	aedit_vnum	},
     {	"lvnum", 	aedit_lvnum	},
     {	"uvnum", 	aedit_uvnum	},
@@ -240,14 +240,6 @@ const struct olc_cmd_type aedit_table[] =
 const struct olc_cmd_type redit_table[] =
 {
 /*  {   command          function                }, */
-    {	"commands", 	show_commands	},
-    {	"create", 	redit_create	},
-    {	"desc", 	redit_desc	},
-    {	"ed", 		redit_ed	},
-    {	"format", 	redit_format	},
-    {	"name", 	redit_name	},
-    {	"show", 	redit_show	},
-
     {	"north", 	redit_north	},
     {	"south", 	redit_south	},
     {	"east", 	redit_east	},
@@ -255,6 +247,14 @@ const struct olc_cmd_type redit_table[] =
     {	"up", 		redit_up	},
     {	"down", 	redit_down	},
     {	"walk", 	redit_move	},
+
+    {	"commands", 	show_commands	},
+    {	"show", 	redit_show	},
+    {	"create", 	redit_create	},
+    {	"desc", 	redit_desc	},
+    {	"ed", 		redit_ed	},
+    {	"format", 	redit_format	},
+    {	"name", 	redit_name	},
 
   /*
    * New reset commands. 
@@ -278,16 +278,17 @@ const struct olc_cmd_type redit_table[] =
 const struct olc_cmd_type oedit_table[] =
 {
 /*  {   command          function                }, */
-    {	"addaffect", 	oedit_addaffect	},
+    {	"show", 	oedit_show	},
     {	"commands", 	show_commands	},
+    {	"addaffect", 	oedit_addaffect	},
     {	"cost", 	oedit_cost	},
     {	"create", 	oedit_create	},
+    {	"copy", 	oedit_copy	},
     {	"delaffect", 	oedit_delaffect	},
     {	"ed", 		oedit_ed	},
     {	"long", 	oedit_long	},
     {	"name", 	oedit_name	},
     {	"short", 	oedit_short	},
-    {	"show", 	oedit_show	},
     {	"v0", 		oedit_value0	},
     {	"v1", 		oedit_value1	},
     {	"v2", 		oedit_value2	},
@@ -310,6 +311,7 @@ const struct olc_cmd_type medit_table[] =
     {	"alignment", 	medit_align	},
     {	"commands", 	show_commands	},
     {	"create", 	medit_create	},
+    {	"copy", 	medit_copy	},
     {	"desc", 	medit_desc	},
     {	"level", 	medit_level	},
     {	"long", 	medit_long	},
@@ -472,7 +474,7 @@ void redit(CHAR_DATA * ch, char *argument)
 
     if (!is_builder(ch, pArea))
     {
-	send_to_char("REdit:  Insufficient security to modify room.\n\r", ch);
+	send_to_char("Insufficient security to modify room.\n\r", ch);
 	interpret(ch, arg);
 	return;
     }
@@ -501,7 +503,7 @@ void redit(CHAR_DATA * ch, char *argument)
      */
     if ((value = flag_value(room_flags, arg)) != NO_FLAG)
     {
-	TOGGLE_BIT(pRoom->room_flags, value);
+	TOGGLE_BIT(pRoom->orig_room_flags, value);
 
 	SET_BIT(pArea->area_flags, AREA_CHANGED);
 	send_to_char("Room flag toggled.\n\r", ch);
@@ -547,7 +549,7 @@ void oedit(CHAR_DATA * ch, char *argument)
 
     if (!is_builder(ch, pArea))
     {
-	send_to_char("OEdit: Insufficient security to modify area.\n\r", ch);
+	send_to_char("Insufficient security to modify area.\n\r", ch);
 	interpret(ch, arg);
 	return;
     }
@@ -640,7 +642,7 @@ void medit(CHAR_DATA * ch, char *argument)
 
     if (!is_builder(ch, pArea))
     {
-	send_to_char("MEdit: Insufficient security to modify area.\n\r", ch);
+	send_to_char("Insufficient security to modify area.\n\r", ch);
 	interpret(ch, arg);
 	return;
     }
@@ -735,7 +737,7 @@ void mpedit(CHAR_DATA * ch, char *argument)
 
     if (!is_builder(ch, pArea))
     {
-	send_to_char("MPEdit: Insufficient security to modify area.\n\r", ch);
+	send_to_char("Insufficient security to modify area.\n\r", ch);
 	interpret(ch, arg);
 	return;
     }
@@ -889,7 +891,7 @@ void do_oedit(CHAR_DATA * ch, char *argument)
     {
 	if ( !(pObj = get_obj_index(atoi(command))) )
 	{
-	    send_to_char("OEdit:  That vnum does not exist.\n\r", ch);
+	    send_to_char("That vnum does not exist.\n\r", ch);
 	    return;
 	}
 
@@ -911,7 +913,7 @@ void do_oedit(CHAR_DATA * ch, char *argument)
 	return;
     }
 
-    send_to_char("OEdit:  There is no default object to edit.\n\r", ch);
+    send_to_char("Syntax: oedit <vnum>.\n\r", ch);
     return;
 }
 
@@ -931,7 +933,7 @@ void do_medit(CHAR_DATA * ch, char *argument)
     {
 	if (!(pMob = get_mob_index(atoi(command))))
 	{
-	    send_to_char("MEdit:  That vnum does not exist.\n\r", ch);
+	    send_to_char("That vnum does not exist.\n\r", ch);
 	    return;
 	}
 
@@ -953,7 +955,7 @@ void do_medit(CHAR_DATA * ch, char *argument)
 	return;
     }
 
-    send_to_char("MEdit:  There is no default mobile to edit.\n\r", ch);
+    send_to_char("Syntax: medit <vnum>.\n\r", ch);
     return;
 }
 
@@ -976,7 +978,7 @@ void do_mpedit(CHAR_DATA * ch, char *argument)
 
     if (ch->in_room && !is_builder(ch, ch->in_room->area))
     {
-	send_to_char("MPEdit:  Insufficient security to edit mobprog.\n\r", ch);
+	send_to_char("Insufficient security to edit mobprog.\n\r", ch);
 	return;
     }
 
@@ -985,7 +987,7 @@ void do_mpedit(CHAR_DATA * ch, char *argument)
 	value = atoi(arg1);
 	if (!(pMob = get_mob_index(value)))
 	{
-	    send_to_char("MPEdit:  That vnum does not exist.\n\r", ch);
+	    send_to_char("That vnum does not exist.\n\r", ch);
 	    return;
 	}
 
@@ -993,20 +995,19 @@ void do_mpedit(CHAR_DATA * ch, char *argument)
 	{
 	    if (!pMob->mobprogs)
 	    {
-		send_to_char("MPEdit:  Mobile has no mobprogs.", ch);
+		send_to_char("Mobile has no mobprogs.", ch);
 		send_to_char("  Use create.\n\r", ch);
 		return;
 	    }
 	    else
 	    {
-		send_to_char("MPEdit:  Editing first mobprog.\n\r", ch);
+		send_to_char("Editing first mobprog.\n\r", ch);
 		value = 1;
 	    }
 	}
 	else if ((value = atoi(arg2)) > mprog_count(pMob))
 	{
-	    send_to_char("MPEdit:  Mobile does not have that many ", ch);
-	    send_to_char("mobprogs.\n\r ", ch);
+	    send_to_char("Mobile does not have that many mobprogs.\n\r", ch);
 	    return;
 	}
 
@@ -1086,7 +1087,7 @@ void do_mpedit(CHAR_DATA * ch, char *argument)
 	}
     }
 
-    send_to_char("MPEdit:  There is no default mobile to edit.\n\r", ch);
+    send_to_char("Syntax: mpedit <vnum>.\n\r", ch);
     return;
 }
 
@@ -1104,9 +1105,9 @@ void display_resets(CHAR_DATA * ch)
     pRoom = edit_room(ch);
     final[0] = '\0';
 
-    send_to_char(" No.  Loads    Description       Location         Vnum", ch);
-    send_to_char("    Max  Description\n\r==== ======== =============", ch);
-    send_to_char(" =================== ======== ===== ===========\n\r", ch);
+    send_to_char("{c No.  Loads    Description       Location         Vnum", ch);
+    send_to_char("    Max    Description{x\n\r{c==== ======== =============", ch);
+    send_to_char(" =================== ======== ===== ==============={x\n\r", ch);
 
     for (pReset = pRoom->reset_first; pReset; pReset = pReset->next)
     {
@@ -1117,7 +1118,7 @@ void display_resets(CHAR_DATA * ch)
 	ROOM_INDEX_DATA *pRoomIndex;
 
 	final[0] = '\0';
-	sprintf(final, "[%2d] ", ++iReset);
+	sprintf(final, "{c[%2d] {x", ++iReset);
 
 	switch (pReset->command)
 	{
@@ -1142,7 +1143,7 @@ void display_resets(CHAR_DATA * ch)
 		}
 
 		pMob = pMobIndex;
-		sprintf(buf, "M[%5d] %-13.13s in room             R[%5d] [%3d] %-15.15s\n\r",
+		sprintf(buf, "{BM[%5d] %-13.13s in room             R[%5d] [%3d] %-15.15s{x\n\r",
 			pReset->arg1, pMob->short_descr, pReset->arg3,
 			pReset->arg2, pRoomIndex->name);
 		strcat(final, buf);
@@ -1156,7 +1157,7 @@ void display_resets(CHAR_DATA * ch)
 
 		    pRoomIndexPrev = get_room_index(pRoomIndex->vnum - 1);
 		    if (pRoomIndexPrev
-		    && IS_SET(pRoomIndexPrev->room_flags, ROOM_PET_SHOP))
+		    && IS_SET(pRoomIndexPrev->orig_room_flags, ROOM_PET_SHOP))
 			final[5] = 'P';
 		}
 
@@ -1180,7 +1181,7 @@ void display_resets(CHAR_DATA * ch)
 		    continue;
 		}
 
-		sprintf(buf, "O[%5d] %-13.13s in room             R[%5d]       %-15.15s\n\r",
+		sprintf(buf, "{GO[%5d] %-13.13s in room             R[%5d]       %-15.15s{x\n\r",
 			pReset->arg1, pObj->short_descr,
 			pReset->arg3, pRoomIndex->name);
 		strcat(final, buf);
@@ -1207,7 +1208,7 @@ void display_resets(CHAR_DATA * ch)
 		}
 
 		sprintf(buf,
-			"O[%5d] %-13.13s inside              O[%5d]       %-15.15s\n\r",
+			"{gO[%5d] %-13.13s inside              O[%5d]       %-15.15s{x\n\r",
 			pReset->arg1,
 			pObj->short_descr,
 			pReset->arg3,
@@ -1238,7 +1239,7 @@ void display_resets(CHAR_DATA * ch)
 		if (pMob->pShop)
 		{
 		    sprintf(buf,
-			    "O[%5d] %-13.13s in the inventory of S[%5d]       %-15.15s\n\r",
+			    "{bO[%5d] %-13.13s in the inventory of S[%5d]       %-15.15s{x\n\r",
 			    pReset->arg1,
 			    pObj->short_descr,
 			    pMob->vnum,
@@ -1246,7 +1247,7 @@ void display_resets(CHAR_DATA * ch)
 		}
 		else
 		    sprintf(buf,
-		    "O[%5d] %-13.13s %-19.19s M[%5d]       %-15.15s\n\r",
+		    "{bO[%5d] %-13.13s %-19.19s M[%5d]       %-15.15s{x\n\r",
 			    pReset->arg1,
 			    pObj->short_descr,
 			    (pReset->command == 'G') ?
@@ -1265,7 +1266,7 @@ void display_resets(CHAR_DATA * ch)
 		 *
 		 case 'D':
 		 pRoomIndex = get_room_index( pReset->arg1 );
-		 sprintf( buf, "R[%5d] %s door of %-19.19s reset to %s\n\r",
+		 sprintf( buf, "{MR[%5d] %s door of %-19.19s reset to %s{x\n\r",
 		 pReset->arg1,
 		 capitalize( dir_name[ pReset->arg2 ] ),
 		 pRoomIndex->name,
@@ -1285,7 +1286,7 @@ void display_resets(CHAR_DATA * ch)
 		    continue;
 		}
 
-		sprintf(buf, "R[%5d] Exits are randomized in %s\n\r",
+		sprintf(buf, "{rR[%5d] Exits are randomized in %s{x\n\r",
 			pReset->arg1, pRoomIndex->name);
 		strcat(final, buf);
 
@@ -1369,17 +1370,17 @@ void do_resets(CHAR_DATA * ch, char *argument)
     {
 	if (ch->in_room->reset_first)
 	{
-	    send_to_char("Resets: M = mobile, R = room, O = object, ", ch);
-	    send_to_char("P = pet, S = shopkeeper\n\r", ch);
+	    send_to_char("{cResets: M = mobile, R = room, O = object, {x", ch);
+	    send_to_char("{cP = pet, S = shopkeeper{x\n\r", ch);
 	    display_resets(ch);
 	}
 	else
-	    send_to_char("No resets in this room.\n\r", ch);
+	    send_to_char("There are no resets in this room.\n\r", ch);
     }
 
     if (!is_builder(ch, ch->in_room->area))
     {
-	send_to_char("Resets: Invalid security for editing this area.\n\r",
+	send_to_char("Invalid security for editing this area.\n\r",
 		     ch);
 	return;
     }
@@ -1402,7 +1403,7 @@ void do_resets(CHAR_DATA * ch, char *argument)
 
 	    if (!ch->in_room->reset_first)
 	    {
-		send_to_char("No resets in this area.\n\r", ch);
+		send_to_char("There are no resets in this area.\n\r", ch);
 		return;
 	    }
 
@@ -1551,12 +1552,12 @@ void do_alist(CHAR_DATA * ch, char *argument)
 						 */
     AREA_DATA *pArea;
 
-    sprintf(result, "[%3s] [%-27s] (%-5s-%5s) [%-10s] %3s [%-10s]\n\r",
+    sprintf(result, "{c[%3s] [%-27s] [%-5s/%5s] [%-10s] %3s [%-10s]{x\n\r",
     "Num", "Area Name", "lvnum", "uvnum", "Filename", "Sec", "Builders");
 
     for (pArea = area_first; pArea; pArea = pArea->next)
     {
-	sprintf(buf, "[%3d] %-29.29s (%-5d-%5d) %-12.12s [%d] [%-10.10s]\n\r",
+	sprintf(buf, "{c[%3d] {g%-29.29s {c[{x%5d{c/{x%-5d{c] {c%-12.12s [{x%d{c] [{x%-10.10s{c]{x\n\r",
 		pArea->vnum,
 		&pArea->name[8],
 		pArea->lvnum,

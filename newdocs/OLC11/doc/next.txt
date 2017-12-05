@@ -4,7 +4,6 @@ ILAB OLC Beta 1.1
 Jason Dinkel    jdinkel@mines.colorado.edu
 
 
-
 === Considered features:
 
 	Change those crazy door bits so we don't have a 3 page case statement.
@@ -33,5 +32,6 @@ Jason Dinkel    jdinkel@mines.colorado.edu
 	  simultaneously.  This is unnecessary and I can't see a way that it
 	  could cause a crash.  Players assigned to the same area by the imp
 	  should coordinate their efforts.
+
 
 - Jason

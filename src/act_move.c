@@ -33,6 +33,7 @@
 #include <string.h>
 #include <time.h>
 #include "merc.h"
+#include "olc.h"
 
 
 
@@ -72,6 +73,8 @@ void move_char( CHAR_DATA *ch, int door )
     EXIT_DATA       *pexit;
     ROOM_INDEX_DATA *in_room;
     ROOM_INDEX_DATA *to_room;
+    char             buf	[ MAX_STRING_LENGTH ];
+    char             buf1	[ MAX_STRING_LENGTH ];
     int              moved = 131072; /* Matches ACT & PLR bits */
 
     if ( door < 0 || door > 5 )
@@ -103,14 +106,16 @@ void move_char( CHAR_DATA *ch, int door )
     if ( IS_SET( pexit->exit_info, EX_CLOSED ) )
     {
         if ( !IS_AFFECTED( ch, AFF_PASS_DOOR )
-	   && !IS_SET( race_table[ ch->race ].race_abilities, RACE_PASSDOOR ) )
+	   && !IS_SET( race_table[ ch->race ].race_abilities, RACE_PASSDOOR )
+	   && !IS_IMMORTAL ( ch ) )
         {
 	    act( "The $d is closed.",
 		ch, NULL, pexit->keyword, TO_CHAR );
 	    return;
 	}
 	
-	if ( IS_SET( pexit->exit_info, EX_PASSPROOF ) )
+	if ( IS_SET( pexit->exit_info, EX_PASSPROOF )
+	    && !IS_IMMORTAL( ch ) )
         {
 	    act( "You are unable to pass through the $d.  Ouch!",
 		ch, NULL, pexit->keyword, TO_CHAR );
@@ -233,6 +238,17 @@ void move_char( CHAR_DATA *ch, int door )
 	ch->move -= move;
     }
 
+    /* Added by Zen */
+    if ( IS_NPC( ch ) )
+    {
+	if ( IS_SET( ch->act, ACT_SENTINEL )
+	    || IS_SET( to_room->room_flags, ROOM_NO_MOB ) )	
+	    return;
+	if ( IS_SET( ch->act, ACT_STAY_AREA )
+	    && to_room->area != in_room->area )
+	    return;
+    }
+
     if ( !IS_AFFECTED( ch, AFF_SNEAK )
 	&& ( IS_NPC( ch ) || !IS_SET( ch->act, PLR_WIZINVIS ) ) )
         if (     (   ( in_room->sector_type == SECT_WATER_SWIM )
@@ -274,6 +290,19 @@ void move_char( CHAR_DATA *ch, int door )
      */
     if ( ch->desc )
     {
+        if ( IS_SET( ch->act, PLR_EDIT_INFO ) && pexit->exit_info )
+	{
+	    buf1[0] = '\0';
+	    sprintf( buf, "{w* You just passed trough an exit of type %s.{x\n\r",
+		    flag_string( exit_flags, pexit->exit_info ) );
+	    strcat( buf1, buf );
+	    sprintf( buf, "{w* It had been reset to [%d] %s.{x\n\r",
+		    pexit->rs_flags,
+		    flag_string( exit_flags, pexit->rs_flags ) );
+	    strcat( buf1, buf );
+	    send_to_char( buf1, ch );
+	}
+
 	do_look( ch, "auto" );
     }
 
@@ -1359,63 +1388,73 @@ void do_chameleon ( CHAR_DATA *ch, char *argument )
     return;
 }
 
-/* 
- * returns everything the character can see at that location in buf
- * returns number of creatures seen 
- */
+/*
+===========================================================================
+This snippet was written by Erwin S. Andreasen, erwin@pip.dknet.dk. You may 
+use this code freely, as long as you retain my name in all of the files. You
+also have to mail me telling that you are using it.
 
-int scan_room (CHAR_DATA *ch, const ROOM_INDEX_DATA *room,char *buf)
+All my snippets are publically available at: http://pip.dknet.dk/~pip1773/
+
+The classic SCAN command, shows the mobs surrounding the character.
+
+===========================================================================
+*/
+int scan_room( CHAR_DATA *ch, const ROOM_INDEX_DATA *room, char *buf )
 {
-    CHAR_DATA *target = room->people;
-    int number_found = 0;
+    CHAR_DATA *target		= room->people;
+    int        number_found	= 0;
 
-    while (target != NULL) /* repeat as long more peple in the room */
+    while ( target )
     {
-        if (can_see(ch,target)) /* show only if the character can see the target */
+        if ( can_see( ch, target ) )
         {
-            strcat (buf, " - ");
-            strcat (buf, IS_NPC(target) ? target->short_descr : target->name);
-            strcat (buf, "\n\r");
+            strcat ( buf, " - " );
+            strcat ( buf, IS_NPC(target) ? target->short_descr : target->name );
+            strcat ( buf, "\n\r" );
             number_found++;
         }
         target = target->next_in_room;
     }
-
     return number_found;
 }
 
-void do_scan (CHAR_DATA *ch, char *argument)
+void do_scan( CHAR_DATA *ch, char *argument )
 {
-    EXIT_DATA * pexit;
-    ROOM_INDEX_DATA * room;
-    extern char * const dir_name[];
-    char buf[MAX_STRING_LENGTH];
-    int dir;
-    int distance;
+    EXIT_DATA       *pexit;
+    ROOM_INDEX_DATA *room;
+    extern char     *const dir_name[];
+    char             buf[ MAX_STRING_LENGTH ];
+    int              dir;
+    int              distance;
 
-    sprintf (buf, "Right here you see:\n\r");
-    if (scan_room(ch,ch->in_room,buf) == 0)
-        strcat (buf, "Noone\n\r");
-    send_to_char (buf,ch);
+    sprintf( buf, "Right here you see:\n\r" );
+    if ( scan_room( ch, ch->in_room, buf ) == 0 )
+        strcat( buf, "Noone\n\r" );
+    send_to_char( buf, ch );
 
-    for (dir = 0; dir < 6; dir++) /* look in every direction */
+    for ( dir = 0; dir < MAX_DIR; dir++ )
     {
-        room = ch->in_room; /* starting point */
+        room = ch->in_room;
 
-        for (distance = 1 ; distance < 4; distance++)
+        for ( distance = 1 ; distance < 4; distance++ )
         {
-            pexit = room->exit[dir]; /* find the door to the next room */
-            if ((pexit == NULL) || (pexit->to_room == NULL) || (IS_SET(pexit->exit_info, EX_CLOSED)))
-                break; /* exit not there OR points to nothing OR is closed */
+            pexit = room->exit[dir];
+            if ( !pexit
+		|| !pexit->to_room
+		|| IS_SET( pexit->exit_info, EX_CLOSED ) )
+                break;
 
-            /* char can see the room */
-            sprintf (buf, "%d %s from here you see:\n\r", distance, dir_name[dir]);
-            if (scan_room(ch,pexit->to_room,buf)) /* if there is something there */
-                send_to_char (buf,ch);
+            sprintf( buf, "%d %s from here you see:\n\r", distance,
+		    dir_name[dir] );
+            if ( scan_room( ch, pexit->to_room, buf ) )
+                send_to_char ( buf, ch );
 
-            room = pexit->to_room; /* go to the next room */
-        } /* for distance */
-    } /* for dir */
+            room = pexit->to_room;
+        }
+    }
+    return;
+
 }
 
 void do_heighten ( CHAR_DATA *ch, char *argument )
@@ -1848,9 +1887,8 @@ void do_bet( CHAR_DATA *ch, char *argument )
     CHAR_DATA *croupier;
 
     if ( IS_AFFECTED( ch, AFF_MUTE )
-	|| IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
-	|| IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE )
-	|| IS_SET( ch->in_room->room_flags, ROOM_TEMP_CONE_OF_SILENCE ) )
+        || IS_SET( race_table[ch->race].race_abilities, RACE_MUTE )
+        || IS_SET( ch->in_room->room_flags, ROOM_CONE_OF_SILENCE ) )
     {
         send_to_char( "Your lips move but no sound comes out.\n\r", ch );
         return;

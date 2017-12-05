@@ -171,9 +171,9 @@ A large dwarven shield lies here on the ground.~
 4~ 0~ 0~ 0~ 0~
 7 2000 0
 A
-17 -2
+17 -2 0
 A
-24 4
+24 4 0
 #4705
 coins large pile~
 a large pile of coins~
@@ -191,9 +191,9 @@ A large battle axe lies here on the ground.~
 0~ 2~ 12~ 1~ 0~
 5 10000 0
 A
-18 1
+18 1 0
 A
-19 1
+19 1 0
 E
 dwarven battle axe~
 It is engraved with beautiful dwarven runes.~
